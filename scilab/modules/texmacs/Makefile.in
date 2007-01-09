@@ -61,11 +61,11 @@ am__vpath_adj = case $$p in \
     *) f=$$p;; \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
-am__installdirs = "$(DESTDIR)$(libtexmacs_la_etcdir)" \
-	"$(DESTDIR)$(libtexmacs_la_rootdir)"
-libtexmacs_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libtexmacs_la_rootDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libtexmacs_la_etc_DATA) $(libtexmacs_la_root_DATA)
+am__installdirs = "$(DESTDIR)$(libscitexmacs_la_etcdir)" \
+	"$(DESTDIR)$(libscitexmacs_la_rootdir)"
+libscitexmacs_la_etcDATA_INSTALL = $(INSTALL_DATA)
+libscitexmacs_la_rootDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(libscitexmacs_la_etc_DATA) $(libscitexmacs_la_root_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
@@ -212,12 +212,12 @@ top_srcdir = @top_srcdir@
 target = $(datadir)/texmacs
 
 #### texmacs : Conf files ####
-libtexmacs_la_rootdir = $(target)
-libtexmacs_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscitexmacs_la_rootdir = $(target)
+libscitexmacs_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### texmacs : Scilab macros ###
-libtexmacs_la_macrodir = $(target)/macros
-libtexmacs_la_macro_DATA22 = macros/%p_p.sci \
+libscitexmacs_la_macrodir = $(target)/macros
+libscitexmacs_la_macro_DATA22 = macros/%p_p.sci \
 macros/%b_p.sci \
 macros/%r_p.sci \
 macros/%c_p.sci \
@@ -241,8 +241,8 @@ macros/texprint.bin macros/names macros/lib macros/buildmacros.sce
 
 
 #### texmacs : init scripts #### 
-libtexmacs_la_etcdir = $(target)/etc
-libtexmacs_la_etc_DATA = etc/texmacs.quit etc/texmacs.start
+libscitexmacs_la_etcdir = $(target)/etc
+libscitexmacs_la_etc_DATA = etc/texmacs.quit etc/texmacs.start
 
 #SUFFIXES = .xml .sci .htm
 SUFFIXES = .sci
@@ -298,39 +298,39 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libtexmacs_la_etcDATA: $(libtexmacs_la_etc_DATA)
+install-libscitexmacs_la_etcDATA: $(libscitexmacs_la_etc_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libtexmacs_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libtexmacs_la_etcdir)"
-	@list='$(libtexmacs_la_etc_DATA)'; for p in $$list; do \
+	test -z "$(libscitexmacs_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libscitexmacs_la_etcdir)"
+	@list='$(libscitexmacs_la_etc_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libtexmacs_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libtexmacs_la_etcdir)/$$f'"; \
-	  $(libtexmacs_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libtexmacs_la_etcdir)/$$f"; \
+	  echo " $(libscitexmacs_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscitexmacs_la_etcdir)/$$f'"; \
+	  $(libscitexmacs_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscitexmacs_la_etcdir)/$$f"; \
 	done
 
-uninstall-libtexmacs_la_etcDATA:
+uninstall-libscitexmacs_la_etcDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libtexmacs_la_etc_DATA)'; for p in $$list; do \
+	@list='$(libscitexmacs_la_etc_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libtexmacs_la_etcdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libtexmacs_la_etcdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscitexmacs_la_etcdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscitexmacs_la_etcdir)/$$f"; \
 	done
-install-libtexmacs_la_rootDATA: $(libtexmacs_la_root_DATA)
+install-libscitexmacs_la_rootDATA: $(libscitexmacs_la_root_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libtexmacs_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libtexmacs_la_rootdir)"
-	@list='$(libtexmacs_la_root_DATA)'; for p in $$list; do \
+	test -z "$(libscitexmacs_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libscitexmacs_la_rootdir)"
+	@list='$(libscitexmacs_la_root_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libtexmacs_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libtexmacs_la_rootdir)/$$f'"; \
-	  $(libtexmacs_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libtexmacs_la_rootdir)/$$f"; \
+	  echo " $(libscitexmacs_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscitexmacs_la_rootdir)/$$f'"; \
+	  $(libscitexmacs_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscitexmacs_la_rootdir)/$$f"; \
 	done
 
-uninstall-libtexmacs_la_rootDATA:
+uninstall-libscitexmacs_la_rootDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libtexmacs_la_root_DATA)'; for p in $$list; do \
+	@list='$(libscitexmacs_la_root_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libtexmacs_la_rootdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libtexmacs_la_rootdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscitexmacs_la_rootdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscitexmacs_la_rootdir)/$$f"; \
 	done
 tags: TAGS
 TAGS:
@@ -369,7 +369,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(libtexmacs_la_etcdir)" "$(DESTDIR)$(libtexmacs_la_rootdir)"; do \
+	for dir in "$(DESTDIR)$(libscitexmacs_la_etcdir)" "$(DESTDIR)$(libscitexmacs_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -414,8 +414,8 @@ info: info-am
 
 info-am:
 
-install-data-am: install-data-local install-libtexmacs_la_etcDATA \
-	install-libtexmacs_la_rootDATA
+install-data-am: install-data-local install-libscitexmacs_la_etcDATA \
+	install-libscitexmacs_la_rootDATA
 
 install-dvi: install-dvi-am
 
@@ -451,8 +451,8 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libtexmacs_la_etcDATA \
-	uninstall-libtexmacs_la_rootDATA
+uninstall-am: uninstall-libscitexmacs_la_etcDATA \
+	uninstall-libscitexmacs_la_rootDATA
 
 .MAKE: install-am install-strip
 
@@ -462,14 +462,14 @@ uninstall-am: uninstall-libtexmacs_la_etcDATA \
 	install-data install-data-am install-data-local install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
-	install-info-am install-libtexmacs_la_etcDATA \
-	install-libtexmacs_la_rootDATA install-man install-pdf \
+	install-info-am install-libscitexmacs_la_etcDATA \
+	install-libscitexmacs_la_rootDATA install-man install-pdf \
 	install-pdf-am install-ps install-ps-am install-strip \
 	installcheck installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am uninstall uninstall-am \
-	uninstall-libtexmacs_la_etcDATA \
-	uninstall-libtexmacs_la_rootDATA
+	uninstall-libscitexmacs_la_etcDATA \
+	uninstall-libscitexmacs_la_rootDATA
 
 
 #.xml.htm:

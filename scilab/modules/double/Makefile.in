@@ -56,22 +56,23 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
-	"$(DESTDIR)$(libdouble_la_etcdir)" \
-	"$(DESTDIR)$(libdouble_la_rootdir)"
+	"$(DESTDIR)$(libscidouble_la_etcdir)" \
+	"$(DESTDIR)$(libscidouble_la_rootdir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
-libdouble_la_DEPENDENCIES = $(top_builddir)/libs/blas/libblas.la \
-	$(top_builddir)/modules/polynomials/libpolynomials.la \
+libscidouble_la_DEPENDENCIES =  \
+	$(top_builddir)/libs/blas/libsciblas.la \
+	$(top_builddir)/modules/polynomials/libscipolynomials.la \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la \
-	$(top_builddir)/modules/core/libcore.la \
-	$(top_builddir)/modules/intersci/libintersci.la
+	$(top_builddir)/modules/core/libscicore.la \
+	$(top_builddir)/modules/intersci/libsciintersci.la
 am__objects_1 = gw_double.lo
 am__objects_2 = vecldiv.lo vecmul.lo matxpow.lo vecimpl.lo matldiv.lo \
 	matsubst.lo vecrdiv.lo matchsgn.lo matrdiv.lo matrc.lo \
 	matpow.lo matins1.lo matins2.lo matcmp.lo matmult.lo \
 	matext1.lo matext2.lo mattr.lo matcc.lo mattrc.lo matadd.lo
-am_libdouble_la_OBJECTS = $(am__objects_1) $(am__objects_2)
-libdouble_la_OBJECTS = $(am_libdouble_la_OBJECTS)
+am_libscidouble_la_OBJECTS = $(am__objects_1) $(am__objects_2)
+libscidouble_la_OBJECTS = $(am_libscidouble_la_OBJECTS)
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -91,11 +92,11 @@ F77LD = $(F77)
 F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libdouble_la_SOURCES)
-DIST_SOURCES = $(libdouble_la_SOURCES)
-libdouble_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libdouble_la_rootDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libdouble_la_etc_DATA) $(libdouble_la_root_DATA)
+SOURCES = $(libscidouble_la_SOURCES)
+DIST_SOURCES = $(libscidouble_la_SOURCES)
+libscidouble_la_etcDATA_INSTALL = $(INSTALL_DATA)
+libscidouble_la_rootDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(libscidouble_la_etc_DATA) $(libscidouble_la_root_DATA)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -263,30 +264,30 @@ sci_gateway/fortran/matcc.f \
 sci_gateway/fortran/mattrc.f \
 sci_gateway/fortran/matadd.f
 
-lib_LTLIBRARIES = libdouble.la
-libdouble_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-libdouble_la_LIBADD = \
-	$(top_builddir)/libs/blas/libblas.la \
-	$(top_builddir)/modules/polynomials/libpolynomials.la \
+lib_LTLIBRARIES = libscidouble.la
+libscidouble_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscidouble_la_LIBADD = \
+	$(top_builddir)/libs/blas/libsciblas.la \
+	$(top_builddir)/modules/polynomials/libscipolynomials.la \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la  \
-	$(top_builddir)/modules/core/libcore.la \
-	$(top_builddir)/modules/intersci/libintersci.la
+	$(top_builddir)/modules/core/libscicore.la \
+	$(top_builddir)/modules/intersci/libsciintersci.la
 
-libdouble_la_PKGCONFIG = double.pc
+libscidouble_la_PKGCONFIG = double.pc
 #### Target ######
 target = $(datadir)/double
 
 #### double : Conf files ####
-libdouble_la_rootdir = $(target)
-libdouble_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscidouble_la_rootdir = $(target)
+libscidouble_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### double : Scilab macros ###
-libdouble_la_macrodir = $(target)/macros
-libdouble_la_macro_DATA22 = macros/buildmacros.sce
+libscidouble_la_macrodir = $(target)/macros
+libscidouble_la_macro_DATA22 = macros/buildmacros.sce
 
 #### double : init scripts #### 
-libdouble_la_etcdir = $(target)/etc
-libdouble_la_etc_DATA = etc/double.quit etc/double.start
+libscidouble_la_etcdir = $(target)/etc
+libscidouble_la_etc_DATA = etc/double.quit etc/double.start
 
 #SUFFIXES = .xml .sci .htm
 SUFFIXES = .sci
@@ -363,8 +364,8 @@ clean-libLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
-libdouble.la: $(libdouble_la_OBJECTS) $(libdouble_la_DEPENDENCIES) 
-	$(F77LINK) -rpath $(libdir) $(libdouble_la_OBJECTS) $(libdouble_la_LIBADD) $(LIBS)
+libscidouble.la: $(libscidouble_la_OBJECTS) $(libscidouble_la_DEPENDENCIES) 
+	$(F77LINK) -rpath $(libdir) $(libscidouble_la_OBJECTS) $(libscidouble_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -479,39 +480,39 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libdouble_la_etcDATA: $(libdouble_la_etc_DATA)
+install-libscidouble_la_etcDATA: $(libscidouble_la_etc_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libdouble_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libdouble_la_etcdir)"
-	@list='$(libdouble_la_etc_DATA)'; for p in $$list; do \
+	test -z "$(libscidouble_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libscidouble_la_etcdir)"
+	@list='$(libscidouble_la_etc_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libdouble_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libdouble_la_etcdir)/$$f'"; \
-	  $(libdouble_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libdouble_la_etcdir)/$$f"; \
+	  echo " $(libscidouble_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscidouble_la_etcdir)/$$f'"; \
+	  $(libscidouble_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscidouble_la_etcdir)/$$f"; \
 	done
 
-uninstall-libdouble_la_etcDATA:
+uninstall-libscidouble_la_etcDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libdouble_la_etc_DATA)'; for p in $$list; do \
+	@list='$(libscidouble_la_etc_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libdouble_la_etcdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libdouble_la_etcdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscidouble_la_etcdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscidouble_la_etcdir)/$$f"; \
 	done
-install-libdouble_la_rootDATA: $(libdouble_la_root_DATA)
+install-libscidouble_la_rootDATA: $(libscidouble_la_root_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libdouble_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libdouble_la_rootdir)"
-	@list='$(libdouble_la_root_DATA)'; for p in $$list; do \
+	test -z "$(libscidouble_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libscidouble_la_rootdir)"
+	@list='$(libscidouble_la_root_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libdouble_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libdouble_la_rootdir)/$$f'"; \
-	  $(libdouble_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libdouble_la_rootdir)/$$f"; \
+	  echo " $(libscidouble_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscidouble_la_rootdir)/$$f'"; \
+	  $(libscidouble_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscidouble_la_rootdir)/$$f"; \
 	done
 
-uninstall-libdouble_la_rootDATA:
+uninstall-libscidouble_la_rootDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libdouble_la_root_DATA)'; for p in $$list; do \
+	@list='$(libscidouble_la_root_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libdouble_la_rootdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libdouble_la_rootdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscidouble_la_rootdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscidouble_la_rootdir)/$$f"; \
 	done
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
@@ -592,7 +593,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libdouble_la_etcdir)" "$(DESTDIR)$(libdouble_la_rootdir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libscidouble_la_etcdir)" "$(DESTDIR)$(libscidouble_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -640,8 +641,8 @@ info: info-am
 
 info-am:
 
-install-data-am: install-data-local install-libdouble_la_etcDATA \
-	install-libdouble_la_rootDATA
+install-data-am: install-data-local install-libscidouble_la_etcDATA \
+	install-libscidouble_la_rootDATA
 
 install-dvi: install-dvi-am
 
@@ -679,8 +680,9 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libLTLIBRARIES uninstall-libdouble_la_etcDATA \
-	uninstall-libdouble_la_rootDATA
+uninstall-am: uninstall-libLTLIBRARIES \
+	uninstall-libscidouble_la_etcDATA \
+	uninstall-libscidouble_la_rootDATA
 
 .MAKE: install-am install-strip
 
@@ -692,14 +694,15 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libdouble_la_etcDATA \
 	install-data-local install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
-	install-libLTLIBRARIES install-libdouble_la_etcDATA \
-	install-libdouble_la_rootDATA install-man install-pdf \
+	install-libLTLIBRARIES install-libscidouble_la_etcDATA \
+	install-libscidouble_la_rootDATA install-man install-pdf \
 	install-pdf-am install-ps install-ps-am install-strip \
 	installcheck installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
-	uninstall-libdouble_la_etcDATA uninstall-libdouble_la_rootDATA
+	uninstall-libscidouble_la_etcDATA \
+	uninstall-libscidouble_la_rootDATA
 
 
 #.xml.htm:

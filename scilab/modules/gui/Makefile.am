@@ -90,32 +90,32 @@ $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h: $(top_srcdir)/modules/gui/src
 
 CLEANFILES=$(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
 
-libgui_la_CFLAGS=  -Iincludes/    -I$(top_srcdir)/modules/graphics/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/core/src/c/ -I$(top_srcdir)/modules/string/includes/ -I$(top_srcdir)/modules/tclsci/includes/ -I$(top_srcdir)/modules/gui/src/c/xsci/ $(TCL_INC_PATH) $(Tk_INC_PATH) 
+libscigui_la_CFLAGS=  -Iincludes/    -I$(top_srcdir)/modules/graphics/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/core/src/c/ -I$(top_srcdir)/modules/string/includes/ -I$(top_srcdir)/modules/tclsci/includes/ -I$(top_srcdir)/modules/gui/src/c/xsci/ $(TCL_INC_PATH) $(Tk_INC_PATH) 
 if JAVA
-libgui_la_CFLAGS += $(JAVA_JNI_INCLUDE)
+libscigui_la_CFLAGS += $(JAVA_JNI_INCLUDE)
 endif
 
-libgui_la_LDFLAGS = $(X_LIBS) $(TERMCAP_LIB)
+libscigui_la_LDFLAGS = $(X_LIBS) $(TERMCAP_LIB)
 
-lib_LTLIBRARIES = libgui.la
+lib_LTLIBRARIES = libscigui.la
 
-libgui_la_SOURCES = $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscigui_la_SOURCES = $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 if JAVA
-libgui_la_SOURCES += $(GUI_JAVA_SOURCES)
+libscigui_la_SOURCES += $(GUI_JAVA_SOURCES)
 endif
 
-libgui_la_LIBADD = \
-	$(top_builddir)/modules/tclsci/libtclsci.la \
-	$(top_builddir)/modules/core/libcore.la \
-	$(top_builddir)/modules/string/libstring.la
+libscigui_la_LIBADD = \
+	$(top_builddir)/modules/tclsci/libscitclsci.la \
+	$(top_builddir)/modules/core/libscicore.la \
+	$(top_builddir)/modules/string/libscistring.la
 
 
 # Cyclic dep
-#	$(top_builddir)/modules/graphics/libgraphics.la
-#	$(top_builddir)/modules/jvm/libscijvm.la
+#	$(top_builddir)/modules/graphics/libscigraphics.la
+#	$(top_builddir)/modules/jvm/libsciscijvm.la
 
-libgui_la_PKGCONFIG = gui.pc
+libscigui_la_PKGCONFIG = gui.pc
 
 datadir=${prefix}/modules
 #### Target ######
@@ -123,13 +123,13 @@ target=$(datadir)/gui
 
 
 #### gui : Conf files ####
-libgui_la_rootdir = $(target)
-libgui_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscigui_la_rootdir = $(target)
+libscigui_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
 #### gui : Scilab macros ###
-libgui_la_macrodir = $(target)/macros
-libgui_la_macro_DATA22 = macros/unsetmenu.sci \
+libscigui_la_macrodir = $(target)/macros
+libscigui_la_macro_DATA22 = macros/unsetmenu.sci \
 macros/x_choices.sci \
 macros/savedefaultbrowser.sci \
 macros/delmenu.sci \
@@ -153,17 +153,17 @@ macros/x_matrix.bin macros/names macros/lib macros/buildmacros.sce
 
 
 #### gui : init scripts #### 
-libgui_la_etcdir = $(target)/etc
-libgui_la_etc_DATA = etc/gui.quit etc/gui.start
+libscigui_la_etcdir = $(target)/etc
+libscigui_la_etc_DATA = etc/gui.quit etc/gui.start
 
 #### gui : gateway declaration #### 
-libgui_la_sci_gatewaydir = $(target)/sci_gateway
-libgui_la_sci_gateway_DATA = sci_gateway/gui
+libscigui_la_sci_gatewaydir = $(target)/sci_gateway
+libscigui_la_sci_gateway_DATA = sci_gateway/gui
 
 
 #### gui : include files ####
-libgui_la_includedir=$(includedir)/gui
-libgui_la_include_HEADERS = includes/men_choice.h \
+libscigui_la_includedir=$(includedir)/gui
+libscigui_la_include_HEADERS = includes/men_choice.h \
 includes/sci_tohome.h \
 includes/men_scilab.h \
 includes/sci_clc.h \
@@ -173,7 +173,7 @@ includes/sci_show_window.h
 
 
 #### gui : demos files ####
-libgui_la_demosdir=$(target)/demos/
-libgui_la_demos_DATA = demos/dialog.dem
+libscigui_la_demosdir=$(target)/demos/
+libscigui_la_demos_DATA = demos/dialog.dem
 
 include $(top_srcdir)/Makefile.incl.am

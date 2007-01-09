@@ -39,7 +39,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = $(liblocalization_la_include_HEADERS) \
+DIST_COMMON = $(libscilocalization_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 subdir = modules/localization
@@ -63,22 +63,22 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
-	"$(DESTDIR)$(liblocalization_la_etcdir)" \
-	"$(DESTDIR)$(liblocalization_la_rootdir)" \
-	"$(DESTDIR)$(liblocalization_la_includedir)"
+	"$(DESTDIR)$(libscilocalization_la_etcdir)" \
+	"$(DESTDIR)$(libscilocalization_la_rootdir)" \
+	"$(DESTDIR)$(libscilocalization_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
-liblocalization_la_DEPENDENCIES =  \
-	$(top_builddir)/libs/MALLOC/libmalloc.la \
-	$(top_builddir)/libs/hashtable/libhashtable.la
-am__objects_1 = liblocalization_la-hashtable_localization.lo \
-	liblocalization_la-localization.lo
-am_liblocalization_la_OBJECTS = $(am__objects_1)
-liblocalization_la_OBJECTS = $(am_liblocalization_la_OBJECTS)
-liblocalization_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
+libscilocalization_la_DEPENDENCIES =  \
+	$(top_builddir)/libs/MALLOC/libscimalloc.la \
+	$(top_builddir)/libs/hashtable/libscihashtable.la
+am__objects_1 = libscilocalization_la-hashtable_localization.lo \
+	libscilocalization_la-localization.lo
+am_libscilocalization_la_OBJECTS = $(am__objects_1)
+libscilocalization_la_OBJECTS = $(am_libscilocalization_la_OBJECTS)
+libscilocalization_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
-	$(liblocalization_la_CFLAGS) $(CFLAGS) \
-	$(liblocalization_la_LDFLAGS) $(LDFLAGS) -o $@
+	$(libscilocalization_la_CFLAGS) $(CFLAGS) \
+	$(libscilocalization_la_LDFLAGS) $(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -91,13 +91,14 @@ CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(liblocalization_la_SOURCES)
-DIST_SOURCES = $(liblocalization_la_SOURCES)
-liblocalization_la_etcDATA_INSTALL = $(INSTALL_DATA)
-liblocalization_la_rootDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(liblocalization_la_etc_DATA) $(liblocalization_la_root_DATA)
-liblocalization_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
-HEADERS = $(liblocalization_la_include_HEADERS)
+SOURCES = $(libscilocalization_la_SOURCES)
+DIST_SOURCES = $(libscilocalization_la_SOURCES)
+libscilocalization_la_etcDATA_INSTALL = $(INSTALL_DATA)
+libscilocalization_la_rootDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(libscilocalization_la_etc_DATA) \
+	$(libscilocalization_la_root_DATA)
+libscilocalization_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
+HEADERS = $(libscilocalization_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -245,32 +246,32 @@ top_srcdir = @top_srcdir@
 LOCALIZATION_C_SOURCES = src/hashtable_localization.c \
 src/localization.c
 
-liblocalization_la_CFLAGS = -Iincludes/ -Isrc/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/ $(XML_FLAGS)
-liblocalization_la_LDFLAGS = $(XML_LIBS)
-lib_LTLIBRARIES = liblocalization.la
-liblocalization_la_SOURCES = $(LOCALIZATION_C_SOURCES) 
-liblocalization_la_LIBADD = $(top_builddir)/libs/MALLOC/libmalloc.la \
-$(top_builddir)/libs/hashtable/libhashtable.la
+libscilocalization_la_CFLAGS = -Iincludes/ -Isrc/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/ $(XML_FLAGS)
+libscilocalization_la_LDFLAGS = $(XML_LIBS)
+lib_LTLIBRARIES = libscilocalization.la
+libscilocalization_la_SOURCES = $(LOCALIZATION_C_SOURCES) 
+libscilocalization_la_LIBADD = $(top_builddir)/libs/MALLOC/libscimalloc.la \
+$(top_builddir)/libs/hashtable/libscihashtable.la
 
-liblocalization_la_PKGCONFIG = localization.pc
+libscilocalization_la_PKGCONFIG = localization.pc
 #### Target ######
 target = $(datadir)/localization
 
 #### localization : Conf files ####
-liblocalization_la_rootdir = $(target)
-liblocalization_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscilocalization_la_rootdir = $(target)
+libscilocalization_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### localization : Scilab macros ###
-liblocalization_la_macrodir = $(target)/macros
-liblocalization_la_macro_DATA22 = macros/setlanguage.sci macros/setlanguage.bin macros/names macros/lib macros/buildmacros.sce
+libscilocalization_la_macrodir = $(target)/macros
+libscilocalization_la_macro_DATA22 = macros/setlanguage.sci macros/setlanguage.bin macros/names macros/lib macros/buildmacros.sce
 
 #### localization : init scripts #### 
-liblocalization_la_etcdir = $(target)/etc
-liblocalization_la_etc_DATA = etc/localization.quit etc/localization.start
+libscilocalization_la_etcdir = $(target)/etc
+libscilocalization_la_etc_DATA = etc/localization.quit etc/localization.start
 
 #### localization : include files ####
-liblocalization_la_includedir = $(includedir)/localization
-liblocalization_la_include_HEADERS = includes/localization.h
+libscilocalization_la_includedir = $(includedir)/localization
+libscilocalization_la_include_HEADERS = includes/localization.h
 
 #SUFFIXES = .xml .sci .htm
 SUFFIXES = .sci
@@ -347,8 +348,8 @@ clean-libLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
-liblocalization.la: $(liblocalization_la_OBJECTS) $(liblocalization_la_DEPENDENCIES) 
-	$(liblocalization_la_LINK) -rpath $(libdir) $(liblocalization_la_OBJECTS) $(liblocalization_la_LIBADD) $(LIBS)
+libscilocalization.la: $(libscilocalization_la_OBJECTS) $(libscilocalization_la_DEPENDENCIES) 
+	$(libscilocalization_la_LINK) -rpath $(libdir) $(libscilocalization_la_OBJECTS) $(libscilocalization_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -356,8 +357,8 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblocalization_la-hashtable_localization.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liblocalization_la-localization.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilocalization_la-hashtable_localization.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilocalization_la-localization.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -380,75 +381,75 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
-liblocalization_la-hashtable_localization.lo: src/hashtable_localization.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(liblocalization_la_CFLAGS) $(CFLAGS) -MT liblocalization_la-hashtable_localization.lo -MD -MP -MF $(DEPDIR)/liblocalization_la-hashtable_localization.Tpo -c -o liblocalization_la-hashtable_localization.lo `test -f 'src/hashtable_localization.c' || echo '$(srcdir)/'`src/hashtable_localization.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/liblocalization_la-hashtable_localization.Tpo $(DEPDIR)/liblocalization_la-hashtable_localization.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/hashtable_localization.c' object='liblocalization_la-hashtable_localization.lo' libtool=yes @AMDEPBACKSLASH@
+libscilocalization_la-hashtable_localization.lo: src/hashtable_localization.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -MT libscilocalization_la-hashtable_localization.lo -MD -MP -MF $(DEPDIR)/libscilocalization_la-hashtable_localization.Tpo -c -o libscilocalization_la-hashtable_localization.lo `test -f 'src/hashtable_localization.c' || echo '$(srcdir)/'`src/hashtable_localization.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscilocalization_la-hashtable_localization.Tpo $(DEPDIR)/libscilocalization_la-hashtable_localization.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/hashtable_localization.c' object='libscilocalization_la-hashtable_localization.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(liblocalization_la_CFLAGS) $(CFLAGS) -c -o liblocalization_la-hashtable_localization.lo `test -f 'src/hashtable_localization.c' || echo '$(srcdir)/'`src/hashtable_localization.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -c -o libscilocalization_la-hashtable_localization.lo `test -f 'src/hashtable_localization.c' || echo '$(srcdir)/'`src/hashtable_localization.c
 
-liblocalization_la-localization.lo: src/localization.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(liblocalization_la_CFLAGS) $(CFLAGS) -MT liblocalization_la-localization.lo -MD -MP -MF $(DEPDIR)/liblocalization_la-localization.Tpo -c -o liblocalization_la-localization.lo `test -f 'src/localization.c' || echo '$(srcdir)/'`src/localization.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/liblocalization_la-localization.Tpo $(DEPDIR)/liblocalization_la-localization.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/localization.c' object='liblocalization_la-localization.lo' libtool=yes @AMDEPBACKSLASH@
+libscilocalization_la-localization.lo: src/localization.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -MT libscilocalization_la-localization.lo -MD -MP -MF $(DEPDIR)/libscilocalization_la-localization.Tpo -c -o libscilocalization_la-localization.lo `test -f 'src/localization.c' || echo '$(srcdir)/'`src/localization.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscilocalization_la-localization.Tpo $(DEPDIR)/libscilocalization_la-localization.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/localization.c' object='libscilocalization_la-localization.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(liblocalization_la_CFLAGS) $(CFLAGS) -c -o liblocalization_la-localization.lo `test -f 'src/localization.c' || echo '$(srcdir)/'`src/localization.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -c -o libscilocalization_la-localization.lo `test -f 'src/localization.c' || echo '$(srcdir)/'`src/localization.c
 
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-liblocalization_la_etcDATA: $(liblocalization_la_etc_DATA)
+install-libscilocalization_la_etcDATA: $(libscilocalization_la_etc_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(liblocalization_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(liblocalization_la_etcdir)"
-	@list='$(liblocalization_la_etc_DATA)'; for p in $$list; do \
+	test -z "$(libscilocalization_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libscilocalization_la_etcdir)"
+	@list='$(libscilocalization_la_etc_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(liblocalization_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(liblocalization_la_etcdir)/$$f'"; \
-	  $(liblocalization_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(liblocalization_la_etcdir)/$$f"; \
+	  echo " $(libscilocalization_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscilocalization_la_etcdir)/$$f'"; \
+	  $(libscilocalization_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscilocalization_la_etcdir)/$$f"; \
 	done
 
-uninstall-liblocalization_la_etcDATA:
+uninstall-libscilocalization_la_etcDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(liblocalization_la_etc_DATA)'; for p in $$list; do \
+	@list='$(libscilocalization_la_etc_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(liblocalization_la_etcdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(liblocalization_la_etcdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscilocalization_la_etcdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscilocalization_la_etcdir)/$$f"; \
 	done
-install-liblocalization_la_rootDATA: $(liblocalization_la_root_DATA)
+install-libscilocalization_la_rootDATA: $(libscilocalization_la_root_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(liblocalization_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(liblocalization_la_rootdir)"
-	@list='$(liblocalization_la_root_DATA)'; for p in $$list; do \
+	test -z "$(libscilocalization_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libscilocalization_la_rootdir)"
+	@list='$(libscilocalization_la_root_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(liblocalization_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(liblocalization_la_rootdir)/$$f'"; \
-	  $(liblocalization_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(liblocalization_la_rootdir)/$$f"; \
+	  echo " $(libscilocalization_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscilocalization_la_rootdir)/$$f'"; \
+	  $(libscilocalization_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscilocalization_la_rootdir)/$$f"; \
 	done
 
-uninstall-liblocalization_la_rootDATA:
+uninstall-libscilocalization_la_rootDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(liblocalization_la_root_DATA)'; for p in $$list; do \
+	@list='$(libscilocalization_la_root_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(liblocalization_la_rootdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(liblocalization_la_rootdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscilocalization_la_rootdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscilocalization_la_rootdir)/$$f"; \
 	done
-install-liblocalization_la_includeHEADERS: $(liblocalization_la_include_HEADERS)
+install-libscilocalization_la_includeHEADERS: $(libscilocalization_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
-	test -z "$(liblocalization_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(liblocalization_la_includedir)"
-	@list='$(liblocalization_la_include_HEADERS)'; for p in $$list; do \
+	test -z "$(libscilocalization_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscilocalization_la_includedir)"
+	@list='$(libscilocalization_la_include_HEADERS)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(liblocalization_la_includeHEADERS_INSTALL) '$$d$$p' '$(DESTDIR)$(liblocalization_la_includedir)/$$f'"; \
-	  $(liblocalization_la_includeHEADERS_INSTALL) "$$d$$p" "$(DESTDIR)$(liblocalization_la_includedir)/$$f"; \
+	  echo " $(libscilocalization_la_includeHEADERS_INSTALL) '$$d$$p' '$(DESTDIR)$(libscilocalization_la_includedir)/$$f'"; \
+	  $(libscilocalization_la_includeHEADERS_INSTALL) "$$d$$p" "$(DESTDIR)$(libscilocalization_la_includedir)/$$f"; \
 	done
 
-uninstall-liblocalization_la_includeHEADERS:
+uninstall-libscilocalization_la_includeHEADERS:
 	@$(NORMAL_UNINSTALL)
-	@list='$(liblocalization_la_include_HEADERS)'; for p in $$list; do \
+	@list='$(libscilocalization_la_include_HEADERS)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(liblocalization_la_includedir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(liblocalization_la_includedir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscilocalization_la_includedir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscilocalization_la_includedir)/$$f"; \
 	done
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
@@ -529,7 +530,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(liblocalization_la_etcdir)" "$(DESTDIR)$(liblocalization_la_rootdir)" "$(DESTDIR)$(liblocalization_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libscilocalization_la_etcdir)" "$(DESTDIR)$(libscilocalization_la_rootdir)" "$(DESTDIR)$(libscilocalization_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -577,9 +578,10 @@ info: info-am
 
 info-am:
 
-install-data-am: install-data-local install-liblocalization_la_etcDATA \
-	install-liblocalization_la_includeHEADERS \
-	install-liblocalization_la_rootDATA
+install-data-am: install-data-local \
+	install-libscilocalization_la_etcDATA \
+	install-libscilocalization_la_includeHEADERS \
+	install-libscilocalization_la_rootDATA
 
 install-dvi: install-dvi-am
 
@@ -618,9 +620,9 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libLTLIBRARIES \
-	uninstall-liblocalization_la_etcDATA \
-	uninstall-liblocalization_la_includeHEADERS \
-	uninstall-liblocalization_la_rootDATA
+	uninstall-libscilocalization_la_etcDATA \
+	uninstall-libscilocalization_la_includeHEADERS \
+	uninstall-libscilocalization_la_rootDATA
 
 .MAKE: install-am install-strip
 
@@ -632,17 +634,17 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	install-data-local install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
-	install-libLTLIBRARIES install-liblocalization_la_etcDATA \
-	install-liblocalization_la_includeHEADERS \
-	install-liblocalization_la_rootDATA install-man install-pdf \
+	install-libLTLIBRARIES install-libscilocalization_la_etcDATA \
+	install-libscilocalization_la_includeHEADERS \
+	install-libscilocalization_la_rootDATA install-man install-pdf \
 	install-pdf-am install-ps install-ps-am install-strip \
 	installcheck installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
-	uninstall-liblocalization_la_etcDATA \
-	uninstall-liblocalization_la_includeHEADERS \
-	uninstall-liblocalization_la_rootDATA
+	uninstall-libscilocalization_la_etcDATA \
+	uninstall-libscilocalization_la_includeHEADERS \
+	uninstall-libscilocalization_la_rootDATA
 
 
 #.xml.htm:

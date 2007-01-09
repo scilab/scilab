@@ -9,13 +9,13 @@ target=$(datadir)/functions
 
 
 #### functions : Conf files ####
-libfunctions_la_rootdir = $(target)
-libfunctions_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscifunctions_la_rootdir = $(target)
+libscifunctions_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
 #### functions : Scilab macros ###
-libfunctions_la_macrodir = $(target)/macros
-libfunctions_la_macro_DATA22 = macros/getd.sci \
+libscifunctions_la_macrodir = $(target)/macros
+libscifunctions_la_macro_DATA22 = macros/getd.sci \
 macros/head_comments.sci \
 macros/macrovar.sci \
 macros/old2newinstr.sci \
@@ -41,7 +41,7 @@ macros/showprofile.bin macros/names macros/lib macros/buildmacros.sce
 
 
 #### functions : init scripts #### 
-libfunctions_la_etcdir = $(target)/etc
-libfunctions_la_etc_DATA = etc/functions.quit etc/functions.start
+libscifunctions_la_etcdir = $(target)/etc
+libscifunctions_la_etc_DATA = etc/functions.quit etc/functions.start
 
 include $(top_srcdir)/Makefile.incl.am

@@ -113,7 +113,7 @@ lib_LTLIBRARIES = libdifferential_equations.la
 libdifferential_equations_la_SOURCES = $(DIFFERENTIAL_EQUATIONS_C_SOURCES) $(DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 libdifferential_equations_la_LIBADD = \
-	$(top_builddir)/libs/blas/libblas.la \
+	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
 
 libdifferential_equations_la_PKGCONFIG = differential_equations.pc

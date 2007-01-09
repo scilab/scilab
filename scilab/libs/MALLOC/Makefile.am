@@ -5,18 +5,18 @@
 
 MALLOC_C_SOURCES = src/sci_mem_alloc.c src/getmaxMALLOC.c
 
-libmalloc_la_includedir=$(includedir)/malloc
+libscimalloc_la_includedir=$(includedir)/malloc
 
-libmalloc_la_include_HEADERS = includes/sci_mem_alloc.h \
+libscimalloc_la_include_HEADERS = includes/sci_mem_alloc.h \
 includes/MALLOC.h \
 includes/getmaxMALLOC.h
 
-libmalloc_la_CFLAGS= 
+libscimalloc_la_CFLAGS= 
 
-lib_LTLIBRARIES = libmalloc.la
+lib_LTLIBRARIES = libscimalloc.la
 
-libmalloc_la_SOURCES = $(MALLOC_C_SOURCES)
+libscimalloc_la_SOURCES = $(MALLOC_C_SOURCES)
 
-libmalloc_la_LIBADD = 
+libscimalloc_la_LIBADD = 
 
-libmalloc_la_PKGCONFIG = malloc.pc
+libscimalloc_la_PKGCONFIG = malloc.pc

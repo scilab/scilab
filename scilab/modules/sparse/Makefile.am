@@ -160,18 +160,18 @@ sci_gateway/fortran/sci_lusolve.f \
 sci_gateway/fortran/sci_fadj2sp.f \
 sci_gateway/fortran/sci_sfinit.f
 
-libsparse_la_CFLAGS=  -Iincludes/ 
+libscisparse_la_CFLAGS=  -Iincludes/ 
 #-Isrc/c/
-lib_LTLIBRARIES = libsparse.la
+lib_LTLIBRARIES = libscisparse.la
 
-libsparse_la_SOURCES = $(SPARSE_C_SOURCES) $(SPARSE_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscisparse_la_SOURCES = $(SPARSE_C_SOURCES) $(SPARSE_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
-libsparse_la_LIBADD = \
+libscisparse_la_LIBADD = \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la  \
-	$(top_builddir)/modules/core/libcore.la \
-	$(top_builddir)/modules/intersci/libintersci.la
+	$(top_builddir)/modules/core/libscicore.la \
+	$(top_builddir)/modules/intersci/libsciintersci.la
 
-libsparse_la_PKGCONFIG = sparse.pc
+libscisparse_la_PKGCONFIG = sparse.pc
 
 datadir=${prefix}/modules
 #### Target ######
@@ -179,13 +179,13 @@ target=$(datadir)/sparse
 
 
 #### sparse : Conf files ####
-libsparse_la_rootdir = $(target)
-libsparse_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscisparse_la_rootdir = $(target)
+libscisparse_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
 #### sparse : Scilab macros ###
-libsparse_la_macrodir = $(target)/macros
-libsparse_la_macro_DATA22 = macros/adj2sp.sci \
+libscisparse_la_macrodir = $(target)/macros
+libscisparse_la_macro_DATA22 = macros/adj2sp.sci \
 macros/sp2adj.sci \
 macros/issparse.sci \
 macros/pcg.sci \
@@ -199,16 +199,16 @@ macros/sp2adj.bin macros/names macros/lib macros/buildmacros.sce
 
 
 #### sparse : init scripts #### 
-libsparse_la_etcdir = $(target)/etc
-libsparse_la_etc_DATA = etc/sparse.quit etc/sparse.start
+libscisparse_la_etcdir = $(target)/etc
+libscisparse_la_etc_DATA = etc/sparse.quit etc/sparse.start
 
 #### sparse : gateway declaration #### 
-libsparse_la_sci_gatewaydir = $(target)/sci_gateway
-libsparse_la_sci_gateway_DATA = sci_gateway/sparse
+libscisparse_la_sci_gatewaydir = $(target)/sci_gateway
+libscisparse_la_sci_gateway_DATA = sci_gateway/sparse
 
 #### sparse : include files ####
-libsparse_la_includedir=$(includedir)/sparse
-libsparse_la_include_HEADERS = includes/gw_sparse.h \
+libscisparse_la_includedir=$(includedir)/sparse
+libscisparse_la_include_HEADERS = includes/gw_sparse.h \
 includes/spmalloc.h \
 includes/sp.h \
 includes/spDefs.h \

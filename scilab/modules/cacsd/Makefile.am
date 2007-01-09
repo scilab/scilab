@@ -212,24 +212,24 @@ sci_gateway/fortran/sci_f_gspec.f \
 sci_gateway/fortran/sci_f_linmeq.f \
 sci_gateway/fortran/sci_f_rankqr.f
 
-libcacsd_la_FFLAGS= -Iincludes/ 
-libcacsd_la_CFLAGS= -Iincludes/ 
+libscicacsd_la_FFLAGS= -Iincludes/ 
+libscicacsd_la_CFLAGS= -Iincludes/ 
 
-lib_LTLIBRARIES = libcacsd.la
+lib_LTLIBRARIES = libscicacsd.la
 
-libcacsd_la_SOURCES = $(CACSD_FORTRAN_SOURCES) $(SLICOT_FORTRAN_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
+libscicacsd_la_SOURCES = $(CACSD_FORTRAN_SOURCES) $(SLICOT_FORTRAN_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 
-libcacsd_la_LIBADD = \
-	$(top_builddir)/libs/lapack/liblapack.la \
-	$(top_builddir)/libs/blas/libblas.la \
-	$(top_builddir)/modules/polynomials/libpolynomials.la
+libscicacsd_la_LIBADD = \
+	$(top_builddir)/libs/lapack/libscilapack.la \
+	$(top_builddir)/libs/blas/libsciblas.la \
+	$(top_builddir)/modules/polynomials/libscipolynomials.la
 #	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la
 
 
 # Cyclic deps
-#	$(top_builddir)/modules/core/libcore.la 
+#	$(top_builddir)/modules/core/libscicore.la 
 
-libcacsd_la_PKGCONFIG = cacsd.pc
+libscicacsd_la_PKGCONFIG = cacsd.pc
 
 
 datadir=${prefix}/modules
@@ -238,13 +238,13 @@ target=$(datadir)/cacsd
 
 
 #### cacsd : Conf files ####
-libcacsd_la_rootdir = $(target)
-libcacsd_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscicacsd_la_rootdir = $(target)
+libscicacsd_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
 #### cacsd : Scilab macros ###
-libcacsd_la_macrodir = $(target)/macros
-libcacsd_la_macro_DATA22 = macros/krac2.sci \
+libscicacsd_la_macrodir = $(target)/macros
+libscicacsd_la_macro_DATA22 = macros/krac2.sci \
 macros/sysdiag.sci \
 macros/linfn.sci \
 macros/sm2ss.sci \
@@ -536,24 +536,24 @@ macros/zeropen.bin macros/names macros/lib macros/buildmacros.sce
 
 
 #### cacsd : init scripts #### 
-libcacsd_la_etcdir = $(target)/etc
-libcacsd_la_etc_DATA = etc/cacsd.quit etc/cacsd.start
+libscicacsd_la_etcdir = $(target)/etc
+libscicacsd_la_etc_DATA = etc/cacsd.quit etc/cacsd.start
 
 #### cacsd : gateway declaration ####
-libcacsd_la_sci_gatewaydir = $(target)/sci_gateway
-libcacsd_la_sci_gateway_DATA = sci_gateway/cacsd
+libscicacsd_la_sci_gatewaydir = $(target)/sci_gateway
+libscicacsd_la_sci_gateway_DATA = sci_gateway/cacsd
 
 #### cacsd : include files ####
-libcacsd_la_includedir=$(includedir)/cacsd
-libcacsd_la_include_HEADERS = includes/gw_cacsd0.h \
+libscicacsd_la_includedir=$(includedir)/cacsd
+libscicacsd_la_include_HEADERS = includes/gw_cacsd0.h \
 includes/gw_cacsd1.h \
 includes/gw_cacsd2.h \
 includes/gw_cacsd3.h
 
 
 #### cacsd : demos files ####
-libcacsd_la_demosdir=$(target)
-nobase_libcacsd_la_demos_DATA = demos/tracking/track.dem \
+libscicacsd_la_demosdir=$(target)
+nobase_libscicacsd_la_demos_DATA = demos/tracking/track.dem \
 demos/lqg/lqg.dem \
 demos/lqg/scheme.dem \
 demos/lqg/lqg2.dem \

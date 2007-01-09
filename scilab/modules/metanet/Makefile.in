@@ -39,8 +39,9 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = $(libmetanet_la_include_HEADERS) $(srcdir)/Makefile.am \
-	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
+DIST_COMMON = $(libscimetanet_la_include_HEADERS) \
+	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+	$(top_srcdir)/Makefile.incl.am
 subdir = modules/metanet
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fortran.m4 \
@@ -62,23 +63,25 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
-	"$(DESTDIR)$(libmetanet_la_demosdir)" \
-	"$(DESTDIR)$(libmetanet_la_etcdir)" \
-	"$(DESTDIR)$(libmetanet_la_rootdir)" \
-	"$(DESTDIR)$(libmetanet_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libmetanet_la_includedir)"
+	"$(DESTDIR)$(libscimetanet_la_demosdir)" \
+	"$(DESTDIR)$(libscimetanet_la_etcdir)" \
+	"$(DESTDIR)$(libscimetanet_la_rootdir)" \
+	"$(DESTDIR)$(libscimetanet_la_sci_gatewaydir)" \
+	"$(DESTDIR)$(libscimetanet_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
-libmetanet_la_DEPENDENCIES = $(top_builddir)/libs/MALLOC/libmalloc.la \
-	$(top_builddir)/libs/hashtable/libhashtable.la \
-	$(top_builddir)/libs/blas/libblas.la \
-	$(top_builddir)/modules/intersci/libintersci.la \
-	$(top_builddir)/modules/core/libcore.la \
+libscimetanet_la_DEPENDENCIES =  \
+	$(top_builddir)/libs/MALLOC/libscimalloc.la \
+	$(top_builddir)/libs/hashtable/libscihashtable.la \
+	$(top_builddir)/libs/blas/libsciblas.la \
+	$(top_builddir)/modules/intersci/libsciintersci.la \
+	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la
-am__objects_1 = libmetanet_la-paths.lo libmetanet_la-dmtree.lo \
-	libmetanet_la-files.lo libmetanet_la-hashtable_metanet.lo \
-	libmetanet_la-saveg.lo libmetanet_la-loadg.lo \
-	libmetanet_la-connex.lo libmetanet_la-transc.lo
+am__objects_1 = libscimetanet_la-paths.lo libscimetanet_la-dmtree.lo \
+	libscimetanet_la-files.lo \
+	libscimetanet_la-hashtable_metanet.lo \
+	libscimetanet_la-saveg.lo libscimetanet_la-loadg.lo \
+	libscimetanet_la-connex.lo libscimetanet_la-transc.lo
 am__objects_2 = visitor.lo cfc.lo bmatch.lo compmat.lo compc.lo \
 	clique1.lo arbor.lo compfc.lo busack.lo diam.lo dfs.lo \
 	frmtrs.lo getran.lo mesh2b.lo johns.lo kiltq.lo flomax.lo \
@@ -88,7 +91,7 @@ am__objects_2 = visitor.lo cfc.lo bmatch.lo compmat.lo compc.lo \
 	carete.lo prfmatch.lo prim.lo meshmesh.lo chcm.lo relax.lo \
 	fordfulk.lo seed.lo mintyq.lo clique.lo hullcvex.lo knapsk.lo \
 	dijkst.lo ford.lo
-am__objects_3 = libmetanet_la-gw_metanet.lo
+am__objects_3 = libscimetanet_la-gw_metanet.lo
 am__objects_4 = sci_m6bandred.lo sci_m6bmatch.lo sci_m6busack.lo \
 	sci_m6cent.lo sci_m6chcm.lo sci_m6clique1.lo sci_m6clique.lo \
 	sci_m6compc.lo sci_m6compfc.lo sci_m6concom.lo \
@@ -104,9 +107,9 @@ am__objects_4 = sci_m6bandred.lo sci_m6bmatch.lo sci_m6busack.lo \
 	sci_m6saveg.lo sci_m6sconcom.lo sci_m6ta2lpd.lo \
 	sci_m6ta2lpu.lo sci_m6tconex.lo sci_m6transc.lo \
 	sci_m6umtree1.lo sci_m6umtree.lo sci_m6visitor.lo
-am_libmetanet_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
+am_libscimetanet_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3) $(am__objects_4)
-libmetanet_la_OBJECTS = $(am_libmetanet_la_OBJECTS)
+libscimetanet_la_OBJECTS = $(am_libscimetanet_la_OBJECTS)
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -126,16 +129,17 @@ F77LD = $(F77)
 F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libmetanet_la_SOURCES)
-DIST_SOURCES = $(libmetanet_la_SOURCES)
-libmetanet_la_demosDATA_INSTALL = $(INSTALL_DATA)
-libmetanet_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libmetanet_la_rootDATA_INSTALL = $(INSTALL_DATA)
-libmetanet_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libmetanet_la_demos_DATA) $(libmetanet_la_etc_DATA) \
-	$(libmetanet_la_root_DATA) $(libmetanet_la_sci_gateway_DATA)
-libmetanet_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
-HEADERS = $(libmetanet_la_include_HEADERS)
+SOURCES = $(libscimetanet_la_SOURCES)
+DIST_SOURCES = $(libscimetanet_la_SOURCES)
+libscimetanet_la_demosDATA_INSTALL = $(INSTALL_DATA)
+libscimetanet_la_etcDATA_INSTALL = $(INSTALL_DATA)
+libscimetanet_la_rootDATA_INSTALL = $(INSTALL_DATA)
+libscimetanet_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(libscimetanet_la_demos_DATA) $(libscimetanet_la_etc_DATA) \
+	$(libscimetanet_la_root_DATA) \
+	$(libscimetanet_la_sci_gateway_DATA)
+libscimetanet_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
+HEADERS = $(libscimetanet_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -391,28 +395,28 @@ sci_gateway/fortran/sci_m6umtree1.f \
 sci_gateway/fortran/sci_m6umtree.f \
 sci_gateway/fortran/sci_m6visitor.f
 
-libmetanet_la_CFLAGS = -Iincludes/  -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/
-lib_LTLIBRARIES = libmetanet.la
-libmetanet_la_SOURCES = $(METANET_C_SOURCES) $(METANET_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-libmetanet_la_LIBADD = \
-	$(top_builddir)/libs/MALLOC/libmalloc.la \
-	$(top_builddir)/libs/hashtable/libhashtable.la \
-	$(top_builddir)/libs/blas/libblas.la \
-	$(top_builddir)/modules/intersci/libintersci.la \
-	$(top_builddir)/modules/core/libcore.la \
+libscimetanet_la_CFLAGS = -Iincludes/  -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/
+lib_LTLIBRARIES = libscimetanet.la
+libscimetanet_la_SOURCES = $(METANET_C_SOURCES) $(METANET_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscimetanet_la_LIBADD = \
+	$(top_builddir)/libs/MALLOC/libscimalloc.la \
+	$(top_builddir)/libs/hashtable/libscihashtable.la \
+	$(top_builddir)/libs/blas/libsciblas.la \
+	$(top_builddir)/modules/intersci/libsciintersci.la \
+	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la
 
-libmetanet_la_PKGCONFIG = metanet.pc
+libscimetanet_la_PKGCONFIG = metanet.pc
 #### Target ######
 target = $(datadir)/metanet
 
 #### metanet : Conf files ####
-libmetanet_la_rootdir = $(target)
-libmetanet_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscimetanet_la_rootdir = $(target)
+libscimetanet_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### metanet : Scilab macros ###
-libmetanet_la_macrodir = $(target)/macros
-libmetanet_la_macro_DATA22 = macros/ge_do_replot.sci \
+libscimetanet_la_macrodir = $(target)/macros
+libscimetanet_la_macro_DATA22 = macros/ge_do_replot.sci \
 macros/salesman.sci \
 macros/strong_con_nodes.sci \
 macros/perfect_match.sci \
@@ -724,20 +728,20 @@ macros/trans_closure.bin macros/names macros/lib macros/buildmacros.sce
 
 
 #### metanet : init scripts #### 
-libmetanet_la_etcdir = $(target)/etc
-libmetanet_la_etc_DATA = etc/metanet.quit etc/metanet.start
+libscimetanet_la_etcdir = $(target)/etc
+libscimetanet_la_etc_DATA = etc/metanet.quit etc/metanet.start
 
 #### metanet : gateway declaration #### 
-libmetanet_la_sci_gatewaydir = $(target)/sci_gateway
-libmetanet_la_sci_gateway_DATA = sci_gateway/metanet
+libscimetanet_la_sci_gatewaydir = $(target)/sci_gateway
+libscimetanet_la_sci_gateway_DATA = sci_gateway/metanet
 
 #### metanet : include files ####
-libmetanet_la_includedir = $(includedir)/metanet
-libmetanet_la_include_HEADERS = includes/gw_metanet.h
+libscimetanet_la_includedir = $(includedir)/metanet
+libscimetanet_la_include_HEADERS = includes/gw_metanet.h
 
 #### metanet : demos files ####
-libmetanet_la_demosdir = $(target)/demos/
-libmetanet_la_demos_DATA = demos/foret.graph \
+libscimetanet_la_demosdir = $(target)/demos/
+libscimetanet_la_demos_DATA = demos/foret.graph \
 demos/toto.graph \
 demos/colored.graph \
 demos/icon.graph \
@@ -831,8 +835,8 @@ clean-libLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
-libmetanet.la: $(libmetanet_la_OBJECTS) $(libmetanet_la_DEPENDENCIES) 
-	$(F77LINK) -rpath $(libdir) $(libmetanet_la_OBJECTS) $(libmetanet_la_LIBADD) $(LIBS)
+libscimetanet.la: $(libscimetanet_la_OBJECTS) $(libscimetanet_la_DEPENDENCIES) 
+	$(F77LINK) -rpath $(libdir) $(libscimetanet_la_OBJECTS) $(libscimetanet_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -840,15 +844,15 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmetanet_la-connex.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmetanet_la-dmtree.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmetanet_la-files.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmetanet_la-gw_metanet.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmetanet_la-hashtable_metanet.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmetanet_la-loadg.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmetanet_la-paths.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmetanet_la-saveg.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmetanet_la-transc.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimetanet_la-connex.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimetanet_la-dmtree.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimetanet_la-files.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimetanet_la-gw_metanet.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimetanet_la-hashtable_metanet.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimetanet_la-loadg.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimetanet_la-paths.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimetanet_la-saveg.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimetanet_la-transc.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -871,68 +875,68 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
-libmetanet_la-paths.lo: src/c/paths.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmetanet_la_CFLAGS) $(CFLAGS) -MT libmetanet_la-paths.lo -MD -MP -MF $(DEPDIR)/libmetanet_la-paths.Tpo -c -o libmetanet_la-paths.lo `test -f 'src/c/paths.c' || echo '$(srcdir)/'`src/c/paths.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libmetanet_la-paths.Tpo $(DEPDIR)/libmetanet_la-paths.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/paths.c' object='libmetanet_la-paths.lo' libtool=yes @AMDEPBACKSLASH@
+libscimetanet_la-paths.lo: src/c/paths.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimetanet_la_CFLAGS) $(CFLAGS) -MT libscimetanet_la-paths.lo -MD -MP -MF $(DEPDIR)/libscimetanet_la-paths.Tpo -c -o libscimetanet_la-paths.lo `test -f 'src/c/paths.c' || echo '$(srcdir)/'`src/c/paths.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscimetanet_la-paths.Tpo $(DEPDIR)/libscimetanet_la-paths.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/paths.c' object='libscimetanet_la-paths.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmetanet_la_CFLAGS) $(CFLAGS) -c -o libmetanet_la-paths.lo `test -f 'src/c/paths.c' || echo '$(srcdir)/'`src/c/paths.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimetanet_la_CFLAGS) $(CFLAGS) -c -o libscimetanet_la-paths.lo `test -f 'src/c/paths.c' || echo '$(srcdir)/'`src/c/paths.c
 
-libmetanet_la-dmtree.lo: src/c/dmtree.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmetanet_la_CFLAGS) $(CFLAGS) -MT libmetanet_la-dmtree.lo -MD -MP -MF $(DEPDIR)/libmetanet_la-dmtree.Tpo -c -o libmetanet_la-dmtree.lo `test -f 'src/c/dmtree.c' || echo '$(srcdir)/'`src/c/dmtree.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libmetanet_la-dmtree.Tpo $(DEPDIR)/libmetanet_la-dmtree.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/dmtree.c' object='libmetanet_la-dmtree.lo' libtool=yes @AMDEPBACKSLASH@
+libscimetanet_la-dmtree.lo: src/c/dmtree.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimetanet_la_CFLAGS) $(CFLAGS) -MT libscimetanet_la-dmtree.lo -MD -MP -MF $(DEPDIR)/libscimetanet_la-dmtree.Tpo -c -o libscimetanet_la-dmtree.lo `test -f 'src/c/dmtree.c' || echo '$(srcdir)/'`src/c/dmtree.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscimetanet_la-dmtree.Tpo $(DEPDIR)/libscimetanet_la-dmtree.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/dmtree.c' object='libscimetanet_la-dmtree.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmetanet_la_CFLAGS) $(CFLAGS) -c -o libmetanet_la-dmtree.lo `test -f 'src/c/dmtree.c' || echo '$(srcdir)/'`src/c/dmtree.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimetanet_la_CFLAGS) $(CFLAGS) -c -o libscimetanet_la-dmtree.lo `test -f 'src/c/dmtree.c' || echo '$(srcdir)/'`src/c/dmtree.c
 
-libmetanet_la-files.lo: src/c/files.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmetanet_la_CFLAGS) $(CFLAGS) -MT libmetanet_la-files.lo -MD -MP -MF $(DEPDIR)/libmetanet_la-files.Tpo -c -o libmetanet_la-files.lo `test -f 'src/c/files.c' || echo '$(srcdir)/'`src/c/files.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libmetanet_la-files.Tpo $(DEPDIR)/libmetanet_la-files.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/files.c' object='libmetanet_la-files.lo' libtool=yes @AMDEPBACKSLASH@
+libscimetanet_la-files.lo: src/c/files.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimetanet_la_CFLAGS) $(CFLAGS) -MT libscimetanet_la-files.lo -MD -MP -MF $(DEPDIR)/libscimetanet_la-files.Tpo -c -o libscimetanet_la-files.lo `test -f 'src/c/files.c' || echo '$(srcdir)/'`src/c/files.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscimetanet_la-files.Tpo $(DEPDIR)/libscimetanet_la-files.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/files.c' object='libscimetanet_la-files.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmetanet_la_CFLAGS) $(CFLAGS) -c -o libmetanet_la-files.lo `test -f 'src/c/files.c' || echo '$(srcdir)/'`src/c/files.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimetanet_la_CFLAGS) $(CFLAGS) -c -o libscimetanet_la-files.lo `test -f 'src/c/files.c' || echo '$(srcdir)/'`src/c/files.c
 
-libmetanet_la-hashtable_metanet.lo: src/c/hashtable_metanet.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmetanet_la_CFLAGS) $(CFLAGS) -MT libmetanet_la-hashtable_metanet.lo -MD -MP -MF $(DEPDIR)/libmetanet_la-hashtable_metanet.Tpo -c -o libmetanet_la-hashtable_metanet.lo `test -f 'src/c/hashtable_metanet.c' || echo '$(srcdir)/'`src/c/hashtable_metanet.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libmetanet_la-hashtable_metanet.Tpo $(DEPDIR)/libmetanet_la-hashtable_metanet.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/hashtable_metanet.c' object='libmetanet_la-hashtable_metanet.lo' libtool=yes @AMDEPBACKSLASH@
+libscimetanet_la-hashtable_metanet.lo: src/c/hashtable_metanet.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimetanet_la_CFLAGS) $(CFLAGS) -MT libscimetanet_la-hashtable_metanet.lo -MD -MP -MF $(DEPDIR)/libscimetanet_la-hashtable_metanet.Tpo -c -o libscimetanet_la-hashtable_metanet.lo `test -f 'src/c/hashtable_metanet.c' || echo '$(srcdir)/'`src/c/hashtable_metanet.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscimetanet_la-hashtable_metanet.Tpo $(DEPDIR)/libscimetanet_la-hashtable_metanet.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/hashtable_metanet.c' object='libscimetanet_la-hashtable_metanet.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmetanet_la_CFLAGS) $(CFLAGS) -c -o libmetanet_la-hashtable_metanet.lo `test -f 'src/c/hashtable_metanet.c' || echo '$(srcdir)/'`src/c/hashtable_metanet.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimetanet_la_CFLAGS) $(CFLAGS) -c -o libscimetanet_la-hashtable_metanet.lo `test -f 'src/c/hashtable_metanet.c' || echo '$(srcdir)/'`src/c/hashtable_metanet.c
 
-libmetanet_la-saveg.lo: src/c/saveg.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmetanet_la_CFLAGS) $(CFLAGS) -MT libmetanet_la-saveg.lo -MD -MP -MF $(DEPDIR)/libmetanet_la-saveg.Tpo -c -o libmetanet_la-saveg.lo `test -f 'src/c/saveg.c' || echo '$(srcdir)/'`src/c/saveg.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libmetanet_la-saveg.Tpo $(DEPDIR)/libmetanet_la-saveg.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/saveg.c' object='libmetanet_la-saveg.lo' libtool=yes @AMDEPBACKSLASH@
+libscimetanet_la-saveg.lo: src/c/saveg.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimetanet_la_CFLAGS) $(CFLAGS) -MT libscimetanet_la-saveg.lo -MD -MP -MF $(DEPDIR)/libscimetanet_la-saveg.Tpo -c -o libscimetanet_la-saveg.lo `test -f 'src/c/saveg.c' || echo '$(srcdir)/'`src/c/saveg.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscimetanet_la-saveg.Tpo $(DEPDIR)/libscimetanet_la-saveg.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/saveg.c' object='libscimetanet_la-saveg.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmetanet_la_CFLAGS) $(CFLAGS) -c -o libmetanet_la-saveg.lo `test -f 'src/c/saveg.c' || echo '$(srcdir)/'`src/c/saveg.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimetanet_la_CFLAGS) $(CFLAGS) -c -o libscimetanet_la-saveg.lo `test -f 'src/c/saveg.c' || echo '$(srcdir)/'`src/c/saveg.c
 
-libmetanet_la-loadg.lo: src/c/loadg.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmetanet_la_CFLAGS) $(CFLAGS) -MT libmetanet_la-loadg.lo -MD -MP -MF $(DEPDIR)/libmetanet_la-loadg.Tpo -c -o libmetanet_la-loadg.lo `test -f 'src/c/loadg.c' || echo '$(srcdir)/'`src/c/loadg.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libmetanet_la-loadg.Tpo $(DEPDIR)/libmetanet_la-loadg.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/loadg.c' object='libmetanet_la-loadg.lo' libtool=yes @AMDEPBACKSLASH@
+libscimetanet_la-loadg.lo: src/c/loadg.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimetanet_la_CFLAGS) $(CFLAGS) -MT libscimetanet_la-loadg.lo -MD -MP -MF $(DEPDIR)/libscimetanet_la-loadg.Tpo -c -o libscimetanet_la-loadg.lo `test -f 'src/c/loadg.c' || echo '$(srcdir)/'`src/c/loadg.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscimetanet_la-loadg.Tpo $(DEPDIR)/libscimetanet_la-loadg.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/loadg.c' object='libscimetanet_la-loadg.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmetanet_la_CFLAGS) $(CFLAGS) -c -o libmetanet_la-loadg.lo `test -f 'src/c/loadg.c' || echo '$(srcdir)/'`src/c/loadg.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimetanet_la_CFLAGS) $(CFLAGS) -c -o libscimetanet_la-loadg.lo `test -f 'src/c/loadg.c' || echo '$(srcdir)/'`src/c/loadg.c
 
-libmetanet_la-connex.lo: src/c/connex.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmetanet_la_CFLAGS) $(CFLAGS) -MT libmetanet_la-connex.lo -MD -MP -MF $(DEPDIR)/libmetanet_la-connex.Tpo -c -o libmetanet_la-connex.lo `test -f 'src/c/connex.c' || echo '$(srcdir)/'`src/c/connex.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libmetanet_la-connex.Tpo $(DEPDIR)/libmetanet_la-connex.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/connex.c' object='libmetanet_la-connex.lo' libtool=yes @AMDEPBACKSLASH@
+libscimetanet_la-connex.lo: src/c/connex.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimetanet_la_CFLAGS) $(CFLAGS) -MT libscimetanet_la-connex.lo -MD -MP -MF $(DEPDIR)/libscimetanet_la-connex.Tpo -c -o libscimetanet_la-connex.lo `test -f 'src/c/connex.c' || echo '$(srcdir)/'`src/c/connex.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscimetanet_la-connex.Tpo $(DEPDIR)/libscimetanet_la-connex.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/connex.c' object='libscimetanet_la-connex.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmetanet_la_CFLAGS) $(CFLAGS) -c -o libmetanet_la-connex.lo `test -f 'src/c/connex.c' || echo '$(srcdir)/'`src/c/connex.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimetanet_la_CFLAGS) $(CFLAGS) -c -o libscimetanet_la-connex.lo `test -f 'src/c/connex.c' || echo '$(srcdir)/'`src/c/connex.c
 
-libmetanet_la-transc.lo: src/c/transc.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmetanet_la_CFLAGS) $(CFLAGS) -MT libmetanet_la-transc.lo -MD -MP -MF $(DEPDIR)/libmetanet_la-transc.Tpo -c -o libmetanet_la-transc.lo `test -f 'src/c/transc.c' || echo '$(srcdir)/'`src/c/transc.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libmetanet_la-transc.Tpo $(DEPDIR)/libmetanet_la-transc.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/transc.c' object='libmetanet_la-transc.lo' libtool=yes @AMDEPBACKSLASH@
+libscimetanet_la-transc.lo: src/c/transc.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimetanet_la_CFLAGS) $(CFLAGS) -MT libscimetanet_la-transc.lo -MD -MP -MF $(DEPDIR)/libscimetanet_la-transc.Tpo -c -o libscimetanet_la-transc.lo `test -f 'src/c/transc.c' || echo '$(srcdir)/'`src/c/transc.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscimetanet_la-transc.Tpo $(DEPDIR)/libscimetanet_la-transc.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/transc.c' object='libscimetanet_la-transc.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmetanet_la_CFLAGS) $(CFLAGS) -c -o libmetanet_la-transc.lo `test -f 'src/c/transc.c' || echo '$(srcdir)/'`src/c/transc.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimetanet_la_CFLAGS) $(CFLAGS) -c -o libscimetanet_la-transc.lo `test -f 'src/c/transc.c' || echo '$(srcdir)/'`src/c/transc.c
 
-libmetanet_la-gw_metanet.lo: sci_gateway/c/gw_metanet.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmetanet_la_CFLAGS) $(CFLAGS) -MT libmetanet_la-gw_metanet.lo -MD -MP -MF $(DEPDIR)/libmetanet_la-gw_metanet.Tpo -c -o libmetanet_la-gw_metanet.lo `test -f 'sci_gateway/c/gw_metanet.c' || echo '$(srcdir)/'`sci_gateway/c/gw_metanet.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libmetanet_la-gw_metanet.Tpo $(DEPDIR)/libmetanet_la-gw_metanet.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/gw_metanet.c' object='libmetanet_la-gw_metanet.lo' libtool=yes @AMDEPBACKSLASH@
+libscimetanet_la-gw_metanet.lo: sci_gateway/c/gw_metanet.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimetanet_la_CFLAGS) $(CFLAGS) -MT libscimetanet_la-gw_metanet.lo -MD -MP -MF $(DEPDIR)/libscimetanet_la-gw_metanet.Tpo -c -o libscimetanet_la-gw_metanet.lo `test -f 'sci_gateway/c/gw_metanet.c' || echo '$(srcdir)/'`sci_gateway/c/gw_metanet.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscimetanet_la-gw_metanet.Tpo $(DEPDIR)/libscimetanet_la-gw_metanet.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/gw_metanet.c' object='libscimetanet_la-gw_metanet.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmetanet_la_CFLAGS) $(CFLAGS) -c -o libmetanet_la-gw_metanet.lo `test -f 'sci_gateway/c/gw_metanet.c' || echo '$(srcdir)/'`sci_gateway/c/gw_metanet.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimetanet_la_CFLAGS) $(CFLAGS) -c -o libscimetanet_la-gw_metanet.lo `test -f 'sci_gateway/c/gw_metanet.c' || echo '$(srcdir)/'`sci_gateway/c/gw_metanet.c
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<
@@ -1245,90 +1249,90 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libmetanet_la_demosDATA: $(libmetanet_la_demos_DATA)
+install-libscimetanet_la_demosDATA: $(libscimetanet_la_demos_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libmetanet_la_demosdir)" || $(MKDIR_P) "$(DESTDIR)$(libmetanet_la_demosdir)"
-	@list='$(libmetanet_la_demos_DATA)'; for p in $$list; do \
+	test -z "$(libscimetanet_la_demosdir)" || $(MKDIR_P) "$(DESTDIR)$(libscimetanet_la_demosdir)"
+	@list='$(libscimetanet_la_demos_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libmetanet_la_demosDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libmetanet_la_demosdir)/$$f'"; \
-	  $(libmetanet_la_demosDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libmetanet_la_demosdir)/$$f"; \
+	  echo " $(libscimetanet_la_demosDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscimetanet_la_demosdir)/$$f'"; \
+	  $(libscimetanet_la_demosDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscimetanet_la_demosdir)/$$f"; \
 	done
 
-uninstall-libmetanet_la_demosDATA:
+uninstall-libscimetanet_la_demosDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libmetanet_la_demos_DATA)'; for p in $$list; do \
+	@list='$(libscimetanet_la_demos_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libmetanet_la_demosdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libmetanet_la_demosdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscimetanet_la_demosdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscimetanet_la_demosdir)/$$f"; \
 	done
-install-libmetanet_la_etcDATA: $(libmetanet_la_etc_DATA)
+install-libscimetanet_la_etcDATA: $(libscimetanet_la_etc_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libmetanet_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libmetanet_la_etcdir)"
-	@list='$(libmetanet_la_etc_DATA)'; for p in $$list; do \
+	test -z "$(libscimetanet_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libscimetanet_la_etcdir)"
+	@list='$(libscimetanet_la_etc_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libmetanet_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libmetanet_la_etcdir)/$$f'"; \
-	  $(libmetanet_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libmetanet_la_etcdir)/$$f"; \
+	  echo " $(libscimetanet_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscimetanet_la_etcdir)/$$f'"; \
+	  $(libscimetanet_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscimetanet_la_etcdir)/$$f"; \
 	done
 
-uninstall-libmetanet_la_etcDATA:
+uninstall-libscimetanet_la_etcDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libmetanet_la_etc_DATA)'; for p in $$list; do \
+	@list='$(libscimetanet_la_etc_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libmetanet_la_etcdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libmetanet_la_etcdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscimetanet_la_etcdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscimetanet_la_etcdir)/$$f"; \
 	done
-install-libmetanet_la_rootDATA: $(libmetanet_la_root_DATA)
+install-libscimetanet_la_rootDATA: $(libscimetanet_la_root_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libmetanet_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libmetanet_la_rootdir)"
-	@list='$(libmetanet_la_root_DATA)'; for p in $$list; do \
+	test -z "$(libscimetanet_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libscimetanet_la_rootdir)"
+	@list='$(libscimetanet_la_root_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libmetanet_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libmetanet_la_rootdir)/$$f'"; \
-	  $(libmetanet_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libmetanet_la_rootdir)/$$f"; \
+	  echo " $(libscimetanet_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscimetanet_la_rootdir)/$$f'"; \
+	  $(libscimetanet_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscimetanet_la_rootdir)/$$f"; \
 	done
 
-uninstall-libmetanet_la_rootDATA:
+uninstall-libscimetanet_la_rootDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libmetanet_la_root_DATA)'; for p in $$list; do \
+	@list='$(libscimetanet_la_root_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libmetanet_la_rootdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libmetanet_la_rootdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscimetanet_la_rootdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscimetanet_la_rootdir)/$$f"; \
 	done
-install-libmetanet_la_sci_gatewayDATA: $(libmetanet_la_sci_gateway_DATA)
+install-libscimetanet_la_sci_gatewayDATA: $(libscimetanet_la_sci_gateway_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libmetanet_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libmetanet_la_sci_gatewaydir)"
-	@list='$(libmetanet_la_sci_gateway_DATA)'; for p in $$list; do \
+	test -z "$(libscimetanet_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libscimetanet_la_sci_gatewaydir)"
+	@list='$(libscimetanet_la_sci_gateway_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libmetanet_la_sci_gatewayDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libmetanet_la_sci_gatewaydir)/$$f'"; \
-	  $(libmetanet_la_sci_gatewayDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libmetanet_la_sci_gatewaydir)/$$f"; \
+	  echo " $(libscimetanet_la_sci_gatewayDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscimetanet_la_sci_gatewaydir)/$$f'"; \
+	  $(libscimetanet_la_sci_gatewayDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscimetanet_la_sci_gatewaydir)/$$f"; \
 	done
 
-uninstall-libmetanet_la_sci_gatewayDATA:
+uninstall-libscimetanet_la_sci_gatewayDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libmetanet_la_sci_gateway_DATA)'; for p in $$list; do \
+	@list='$(libscimetanet_la_sci_gateway_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libmetanet_la_sci_gatewaydir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libmetanet_la_sci_gatewaydir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscimetanet_la_sci_gatewaydir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscimetanet_la_sci_gatewaydir)/$$f"; \
 	done
-install-libmetanet_la_includeHEADERS: $(libmetanet_la_include_HEADERS)
+install-libscimetanet_la_includeHEADERS: $(libscimetanet_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
-	test -z "$(libmetanet_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libmetanet_la_includedir)"
-	@list='$(libmetanet_la_include_HEADERS)'; for p in $$list; do \
+	test -z "$(libscimetanet_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscimetanet_la_includedir)"
+	@list='$(libscimetanet_la_include_HEADERS)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libmetanet_la_includeHEADERS_INSTALL) '$$d$$p' '$(DESTDIR)$(libmetanet_la_includedir)/$$f'"; \
-	  $(libmetanet_la_includeHEADERS_INSTALL) "$$d$$p" "$(DESTDIR)$(libmetanet_la_includedir)/$$f"; \
+	  echo " $(libscimetanet_la_includeHEADERS_INSTALL) '$$d$$p' '$(DESTDIR)$(libscimetanet_la_includedir)/$$f'"; \
+	  $(libscimetanet_la_includeHEADERS_INSTALL) "$$d$$p" "$(DESTDIR)$(libscimetanet_la_includedir)/$$f"; \
 	done
 
-uninstall-libmetanet_la_includeHEADERS:
+uninstall-libscimetanet_la_includeHEADERS:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libmetanet_la_include_HEADERS)'; for p in $$list; do \
+	@list='$(libscimetanet_la_include_HEADERS)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libmetanet_la_includedir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libmetanet_la_includedir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscimetanet_la_includedir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscimetanet_la_includedir)/$$f"; \
 	done
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
@@ -1409,7 +1413,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libmetanet_la_demosdir)" "$(DESTDIR)$(libmetanet_la_etcdir)" "$(DESTDIR)$(libmetanet_la_rootdir)" "$(DESTDIR)$(libmetanet_la_sci_gatewaydir)" "$(DESTDIR)$(libmetanet_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libscimetanet_la_demosdir)" "$(DESTDIR)$(libscimetanet_la_etcdir)" "$(DESTDIR)$(libscimetanet_la_rootdir)" "$(DESTDIR)$(libscimetanet_la_sci_gatewaydir)" "$(DESTDIR)$(libscimetanet_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1457,11 +1461,11 @@ info: info-am
 
 info-am:
 
-install-data-am: install-data-local install-libmetanet_la_demosDATA \
-	install-libmetanet_la_etcDATA \
-	install-libmetanet_la_includeHEADERS \
-	install-libmetanet_la_rootDATA \
-	install-libmetanet_la_sci_gatewayDATA
+install-data-am: install-data-local install-libscimetanet_la_demosDATA \
+	install-libscimetanet_la_etcDATA \
+	install-libscimetanet_la_includeHEADERS \
+	install-libscimetanet_la_rootDATA \
+	install-libscimetanet_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
 
@@ -1500,11 +1504,11 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libLTLIBRARIES \
-	uninstall-libmetanet_la_demosDATA \
-	uninstall-libmetanet_la_etcDATA \
-	uninstall-libmetanet_la_includeHEADERS \
-	uninstall-libmetanet_la_rootDATA \
-	uninstall-libmetanet_la_sci_gatewayDATA
+	uninstall-libscimetanet_la_demosDATA \
+	uninstall-libscimetanet_la_etcDATA \
+	uninstall-libscimetanet_la_includeHEADERS \
+	uninstall-libscimetanet_la_rootDATA \
+	uninstall-libscimetanet_la_sci_gatewayDATA
 
 .MAKE: install-am install-strip
 
@@ -1516,21 +1520,21 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	install-data-local install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
-	install-libLTLIBRARIES install-libmetanet_la_demosDATA \
-	install-libmetanet_la_etcDATA \
-	install-libmetanet_la_includeHEADERS \
-	install-libmetanet_la_rootDATA \
-	install-libmetanet_la_sci_gatewayDATA install-man install-pdf \
-	install-pdf-am install-ps install-ps-am install-strip \
-	installcheck installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-compile \
-	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
-	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
-	uninstall-libmetanet_la_demosDATA \
-	uninstall-libmetanet_la_etcDATA \
-	uninstall-libmetanet_la_includeHEADERS \
-	uninstall-libmetanet_la_rootDATA \
-	uninstall-libmetanet_la_sci_gatewayDATA
+	install-libLTLIBRARIES install-libscimetanet_la_demosDATA \
+	install-libscimetanet_la_etcDATA \
+	install-libscimetanet_la_includeHEADERS \
+	install-libscimetanet_la_rootDATA \
+	install-libscimetanet_la_sci_gatewayDATA install-man \
+	install-pdf install-pdf-am install-ps install-ps-am \
+	install-strip installcheck installcheck-am installdirs \
+	maintainer-clean maintainer-clean-generic mostlyclean \
+	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
+	pdf pdf-am ps ps-am tags uninstall uninstall-am \
+	uninstall-libLTLIBRARIES uninstall-libscimetanet_la_demosDATA \
+	uninstall-libscimetanet_la_etcDATA \
+	uninstall-libscimetanet_la_includeHEADERS \
+	uninstall-libscimetanet_la_rootDATA \
+	uninstall-libscimetanet_la_sci_gatewayDATA
 
 
 #.xml.htm:

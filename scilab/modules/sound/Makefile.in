@@ -39,7 +39,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = $(libsound_la_include_HEADERS) $(srcdir)/Makefile.am \
+DIST_COMMON = $(libscisound_la_include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
 subdir = modules/sound
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -62,24 +62,26 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
-	"$(DESTDIR)$(libsound_la_demosdir)" \
-	"$(DESTDIR)$(libsound_la_etcdir)" \
-	"$(DESTDIR)$(libsound_la_rootdir)" \
-	"$(DESTDIR)$(libsound_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libsound_la_includedir)"
+	"$(DESTDIR)$(libscisound_la_demosdir)" \
+	"$(DESTDIR)$(libscisound_la_etcdir)" \
+	"$(DESTDIR)$(libscisound_la_rootdir)" \
+	"$(DESTDIR)$(libscisound_la_sci_gatewaydir)" \
+	"$(DESTDIR)$(libscisound_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
-libsound_la_DEPENDENCIES = $(top_builddir)/libs/MALLOC/libmalloc.la \
-	$(top_builddir)/modules/core/libcore.la
-am__objects_1 = libsound_la-raw.lo libsound_la-sox.lo \
-	libsound_la-libst.lo libsound_la-wav.lo libsound_la-misc.lo
-am__objects_2 = libsound_la-sci_savewave.lo \
-	libsound_la-sci_loadwave.lo libsound_la-gw_sound.lo \
-	libsound_la-sci_beep.lo libsound_la-sci_PlaySound.lo
-am_libsound_la_OBJECTS = $(am__objects_1) $(am__objects_2)
-libsound_la_OBJECTS = $(am_libsound_la_OBJECTS)
-libsound_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libsound_la_CFLAGS) \
+libscisound_la_DEPENDENCIES =  \
+	$(top_builddir)/libs/MALLOC/libscimalloc.la \
+	$(top_builddir)/modules/core/libscicore.la
+am__objects_1 = libscisound_la-raw.lo libscisound_la-sox.lo \
+	libscisound_la-libst.lo libscisound_la-wav.lo \
+	libscisound_la-misc.lo
+am__objects_2 = libscisound_la-sci_savewave.lo \
+	libscisound_la-sci_loadwave.lo libscisound_la-gw_sound.lo \
+	libscisound_la-sci_beep.lo libscisound_la-sci_PlaySound.lo
+am_libscisound_la_OBJECTS = $(am__objects_1) $(am__objects_2)
+libscisound_la_OBJECTS = $(am_libscisound_la_OBJECTS)
+libscisound_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libscisound_la_CFLAGS) \
 	$(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
@@ -93,16 +95,16 @@ CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libsound_la_SOURCES)
-DIST_SOURCES = $(libsound_la_SOURCES)
-libsound_la_demosDATA_INSTALL = $(INSTALL_DATA)
-libsound_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libsound_la_rootDATA_INSTALL = $(INSTALL_DATA)
-libsound_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libsound_la_demos_DATA) $(libsound_la_etc_DATA) \
-	$(libsound_la_root_DATA) $(libsound_la_sci_gateway_DATA)
-libsound_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
-HEADERS = $(libsound_la_include_HEADERS)
+SOURCES = $(libscisound_la_SOURCES)
+DIST_SOURCES = $(libscisound_la_SOURCES)
+libscisound_la_demosDATA_INSTALL = $(INSTALL_DATA)
+libscisound_la_etcDATA_INSTALL = $(INSTALL_DATA)
+libscisound_la_rootDATA_INSTALL = $(INSTALL_DATA)
+libscisound_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(libscisound_la_demos_DATA) $(libscisound_la_etc_DATA) \
+	$(libscisound_la_root_DATA) $(libscisound_la_sci_gateway_DATA)
+libscisound_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
+HEADERS = $(libscisound_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -259,24 +261,24 @@ sci_gateway/gw_sound.c \
 sci_gateway/sci_beep.c \
 sci_gateway/sci_PlaySound.c
 
-libsound_la_CFLAGS = -Iincludes/ -Isrc/ -I$(top_srcdir)/libs/MALLOC/includes/
-lib_LTLIBRARIES = libsound.la
-libsound_la_SOURCES = $(SOUND_C_SOURCES) $(GATEWAY_C_SOURCES)
-libsound_la_LIBADD = \
-	$(top_builddir)/libs/MALLOC/libmalloc.la \
-	$(top_builddir)/modules/core/libcore.la
+libscisound_la_CFLAGS = -Iincludes/ -Isrc/ -I$(top_srcdir)/libs/MALLOC/includes/
+lib_LTLIBRARIES = libscisound.la
+libscisound_la_SOURCES = $(SOUND_C_SOURCES) $(GATEWAY_C_SOURCES)
+libscisound_la_LIBADD = \
+	$(top_builddir)/libs/MALLOC/libscimalloc.la \
+	$(top_builddir)/modules/core/libscicore.la
 
-libsound_la_PKGCONFIG = sound.pc
+libscisound_la_PKGCONFIG = sound.pc
 #### Target ######
 target = $(datadir)/sound
 
 #### sound : Conf files ####
-libsound_la_rootdir = $(target)
-libsound_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscisound_la_rootdir = $(target)
+libscisound_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### sound : Scilab macros ###
-libsound_la_macrodir = $(target)/macros
-libsound_la_macro_DATA22 = macros/analyze.sci \
+libscisound_la_macrodir = $(target)/macros
+libscisound_la_macro_DATA22 = macros/analyze.sci \
 macros/soundsec.sci \
 macros/lin2mu.sci \
 macros/mapsound.sci \
@@ -300,16 +302,16 @@ macros/wavwrite.bin macros/names macros/lib macros/buildmacros.sce
 
 
 #### sound : init scripts #### 
-libsound_la_etcdir = $(target)/etc
-libsound_la_etc_DATA = etc/sound.quit etc/sound.start
+libscisound_la_etcdir = $(target)/etc
+libscisound_la_etc_DATA = etc/sound.quit etc/sound.start
 
 #### sound : gateway declaration #### 
-libsound_la_sci_gatewaydir = $(target)/sci_gateway
-libsound_la_sci_gateway_DATA = sci_gateway/sound
+libscisound_la_sci_gatewaydir = $(target)/sci_gateway
+libscisound_la_sci_gateway_DATA = sci_gateway/sound
 
 #### sound : include files ####
-libsound_la_includedir = $(includedir)/sound
-libsound_la_include_HEADERS = includes/sci_beep.h \
+libscisound_la_includedir = $(includedir)/sound
+libscisound_la_include_HEADERS = includes/sci_beep.h \
 includes/sci_PlaySound.h \
 includes/sci_savewave.h \
 includes/sci_loadwave.h \
@@ -317,8 +319,8 @@ includes/gw_sound.h
 
 
 #### sound : demos files ####
-libsound_la_demosdir = $(target)/demos/
-libsound_la_demos_DATA = demos/chimes.wav \
+libscisound_la_demosdir = $(target)/demos/
+libscisound_la_demos_DATA = demos/chimes.wav \
 demos/sound.dem
 
 
@@ -397,8 +399,8 @@ clean-libLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
-libsound.la: $(libsound_la_OBJECTS) $(libsound_la_DEPENDENCIES) 
-	$(libsound_la_LINK) -rpath $(libdir) $(libsound_la_OBJECTS) $(libsound_la_LIBADD) $(LIBS)
+libscisound.la: $(libscisound_la_OBJECTS) $(libscisound_la_DEPENDENCIES) 
+	$(libscisound_la_LINK) -rpath $(libdir) $(libscisound_la_OBJECTS) $(libscisound_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -406,16 +408,16 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsound_la-gw_sound.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsound_la-libst.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsound_la-misc.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsound_la-raw.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsound_la-sci_PlaySound.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsound_la-sci_beep.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsound_la-sci_loadwave.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsound_la-sci_savewave.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsound_la-sox.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsound_la-wav.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisound_la-gw_sound.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisound_la-libst.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisound_la-misc.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisound_la-raw.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisound_la-sci_PlaySound.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisound_la-sci_beep.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisound_la-sci_loadwave.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisound_la-sci_savewave.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisound_la-sox.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisound_la-wav.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -438,165 +440,165 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
-libsound_la-raw.lo: src/raw.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsound_la_CFLAGS) $(CFLAGS) -MT libsound_la-raw.lo -MD -MP -MF $(DEPDIR)/libsound_la-raw.Tpo -c -o libsound_la-raw.lo `test -f 'src/raw.c' || echo '$(srcdir)/'`src/raw.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsound_la-raw.Tpo $(DEPDIR)/libsound_la-raw.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/raw.c' object='libsound_la-raw.lo' libtool=yes @AMDEPBACKSLASH@
+libscisound_la-raw.lo: src/raw.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisound_la_CFLAGS) $(CFLAGS) -MT libscisound_la-raw.lo -MD -MP -MF $(DEPDIR)/libscisound_la-raw.Tpo -c -o libscisound_la-raw.lo `test -f 'src/raw.c' || echo '$(srcdir)/'`src/raw.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisound_la-raw.Tpo $(DEPDIR)/libscisound_la-raw.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/raw.c' object='libscisound_la-raw.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsound_la_CFLAGS) $(CFLAGS) -c -o libsound_la-raw.lo `test -f 'src/raw.c' || echo '$(srcdir)/'`src/raw.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisound_la_CFLAGS) $(CFLAGS) -c -o libscisound_la-raw.lo `test -f 'src/raw.c' || echo '$(srcdir)/'`src/raw.c
 
-libsound_la-sox.lo: src/sox.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsound_la_CFLAGS) $(CFLAGS) -MT libsound_la-sox.lo -MD -MP -MF $(DEPDIR)/libsound_la-sox.Tpo -c -o libsound_la-sox.lo `test -f 'src/sox.c' || echo '$(srcdir)/'`src/sox.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsound_la-sox.Tpo $(DEPDIR)/libsound_la-sox.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/sox.c' object='libsound_la-sox.lo' libtool=yes @AMDEPBACKSLASH@
+libscisound_la-sox.lo: src/sox.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisound_la_CFLAGS) $(CFLAGS) -MT libscisound_la-sox.lo -MD -MP -MF $(DEPDIR)/libscisound_la-sox.Tpo -c -o libscisound_la-sox.lo `test -f 'src/sox.c' || echo '$(srcdir)/'`src/sox.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisound_la-sox.Tpo $(DEPDIR)/libscisound_la-sox.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/sox.c' object='libscisound_la-sox.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsound_la_CFLAGS) $(CFLAGS) -c -o libsound_la-sox.lo `test -f 'src/sox.c' || echo '$(srcdir)/'`src/sox.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisound_la_CFLAGS) $(CFLAGS) -c -o libscisound_la-sox.lo `test -f 'src/sox.c' || echo '$(srcdir)/'`src/sox.c
 
-libsound_la-libst.lo: src/libst.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsound_la_CFLAGS) $(CFLAGS) -MT libsound_la-libst.lo -MD -MP -MF $(DEPDIR)/libsound_la-libst.Tpo -c -o libsound_la-libst.lo `test -f 'src/libst.c' || echo '$(srcdir)/'`src/libst.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsound_la-libst.Tpo $(DEPDIR)/libsound_la-libst.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/libst.c' object='libsound_la-libst.lo' libtool=yes @AMDEPBACKSLASH@
+libscisound_la-libst.lo: src/libst.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisound_la_CFLAGS) $(CFLAGS) -MT libscisound_la-libst.lo -MD -MP -MF $(DEPDIR)/libscisound_la-libst.Tpo -c -o libscisound_la-libst.lo `test -f 'src/libst.c' || echo '$(srcdir)/'`src/libst.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisound_la-libst.Tpo $(DEPDIR)/libscisound_la-libst.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/libst.c' object='libscisound_la-libst.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsound_la_CFLAGS) $(CFLAGS) -c -o libsound_la-libst.lo `test -f 'src/libst.c' || echo '$(srcdir)/'`src/libst.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisound_la_CFLAGS) $(CFLAGS) -c -o libscisound_la-libst.lo `test -f 'src/libst.c' || echo '$(srcdir)/'`src/libst.c
 
-libsound_la-wav.lo: src/wav.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsound_la_CFLAGS) $(CFLAGS) -MT libsound_la-wav.lo -MD -MP -MF $(DEPDIR)/libsound_la-wav.Tpo -c -o libsound_la-wav.lo `test -f 'src/wav.c' || echo '$(srcdir)/'`src/wav.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsound_la-wav.Tpo $(DEPDIR)/libsound_la-wav.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/wav.c' object='libsound_la-wav.lo' libtool=yes @AMDEPBACKSLASH@
+libscisound_la-wav.lo: src/wav.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisound_la_CFLAGS) $(CFLAGS) -MT libscisound_la-wav.lo -MD -MP -MF $(DEPDIR)/libscisound_la-wav.Tpo -c -o libscisound_la-wav.lo `test -f 'src/wav.c' || echo '$(srcdir)/'`src/wav.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisound_la-wav.Tpo $(DEPDIR)/libscisound_la-wav.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/wav.c' object='libscisound_la-wav.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsound_la_CFLAGS) $(CFLAGS) -c -o libsound_la-wav.lo `test -f 'src/wav.c' || echo '$(srcdir)/'`src/wav.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisound_la_CFLAGS) $(CFLAGS) -c -o libscisound_la-wav.lo `test -f 'src/wav.c' || echo '$(srcdir)/'`src/wav.c
 
-libsound_la-misc.lo: src/misc.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsound_la_CFLAGS) $(CFLAGS) -MT libsound_la-misc.lo -MD -MP -MF $(DEPDIR)/libsound_la-misc.Tpo -c -o libsound_la-misc.lo `test -f 'src/misc.c' || echo '$(srcdir)/'`src/misc.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsound_la-misc.Tpo $(DEPDIR)/libsound_la-misc.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/misc.c' object='libsound_la-misc.lo' libtool=yes @AMDEPBACKSLASH@
+libscisound_la-misc.lo: src/misc.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisound_la_CFLAGS) $(CFLAGS) -MT libscisound_la-misc.lo -MD -MP -MF $(DEPDIR)/libscisound_la-misc.Tpo -c -o libscisound_la-misc.lo `test -f 'src/misc.c' || echo '$(srcdir)/'`src/misc.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisound_la-misc.Tpo $(DEPDIR)/libscisound_la-misc.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/misc.c' object='libscisound_la-misc.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsound_la_CFLAGS) $(CFLAGS) -c -o libsound_la-misc.lo `test -f 'src/misc.c' || echo '$(srcdir)/'`src/misc.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisound_la_CFLAGS) $(CFLAGS) -c -o libscisound_la-misc.lo `test -f 'src/misc.c' || echo '$(srcdir)/'`src/misc.c
 
-libsound_la-sci_savewave.lo: sci_gateway/sci_savewave.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsound_la_CFLAGS) $(CFLAGS) -MT libsound_la-sci_savewave.lo -MD -MP -MF $(DEPDIR)/libsound_la-sci_savewave.Tpo -c -o libsound_la-sci_savewave.lo `test -f 'sci_gateway/sci_savewave.c' || echo '$(srcdir)/'`sci_gateway/sci_savewave.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsound_la-sci_savewave.Tpo $(DEPDIR)/libsound_la-sci_savewave.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_savewave.c' object='libsound_la-sci_savewave.lo' libtool=yes @AMDEPBACKSLASH@
+libscisound_la-sci_savewave.lo: sci_gateway/sci_savewave.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisound_la_CFLAGS) $(CFLAGS) -MT libscisound_la-sci_savewave.lo -MD -MP -MF $(DEPDIR)/libscisound_la-sci_savewave.Tpo -c -o libscisound_la-sci_savewave.lo `test -f 'sci_gateway/sci_savewave.c' || echo '$(srcdir)/'`sci_gateway/sci_savewave.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisound_la-sci_savewave.Tpo $(DEPDIR)/libscisound_la-sci_savewave.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_savewave.c' object='libscisound_la-sci_savewave.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsound_la_CFLAGS) $(CFLAGS) -c -o libsound_la-sci_savewave.lo `test -f 'sci_gateway/sci_savewave.c' || echo '$(srcdir)/'`sci_gateway/sci_savewave.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisound_la_CFLAGS) $(CFLAGS) -c -o libscisound_la-sci_savewave.lo `test -f 'sci_gateway/sci_savewave.c' || echo '$(srcdir)/'`sci_gateway/sci_savewave.c
 
-libsound_la-sci_loadwave.lo: sci_gateway/sci_loadwave.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsound_la_CFLAGS) $(CFLAGS) -MT libsound_la-sci_loadwave.lo -MD -MP -MF $(DEPDIR)/libsound_la-sci_loadwave.Tpo -c -o libsound_la-sci_loadwave.lo `test -f 'sci_gateway/sci_loadwave.c' || echo '$(srcdir)/'`sci_gateway/sci_loadwave.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsound_la-sci_loadwave.Tpo $(DEPDIR)/libsound_la-sci_loadwave.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_loadwave.c' object='libsound_la-sci_loadwave.lo' libtool=yes @AMDEPBACKSLASH@
+libscisound_la-sci_loadwave.lo: sci_gateway/sci_loadwave.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisound_la_CFLAGS) $(CFLAGS) -MT libscisound_la-sci_loadwave.lo -MD -MP -MF $(DEPDIR)/libscisound_la-sci_loadwave.Tpo -c -o libscisound_la-sci_loadwave.lo `test -f 'sci_gateway/sci_loadwave.c' || echo '$(srcdir)/'`sci_gateway/sci_loadwave.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisound_la-sci_loadwave.Tpo $(DEPDIR)/libscisound_la-sci_loadwave.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_loadwave.c' object='libscisound_la-sci_loadwave.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsound_la_CFLAGS) $(CFLAGS) -c -o libsound_la-sci_loadwave.lo `test -f 'sci_gateway/sci_loadwave.c' || echo '$(srcdir)/'`sci_gateway/sci_loadwave.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisound_la_CFLAGS) $(CFLAGS) -c -o libscisound_la-sci_loadwave.lo `test -f 'sci_gateway/sci_loadwave.c' || echo '$(srcdir)/'`sci_gateway/sci_loadwave.c
 
-libsound_la-gw_sound.lo: sci_gateway/gw_sound.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsound_la_CFLAGS) $(CFLAGS) -MT libsound_la-gw_sound.lo -MD -MP -MF $(DEPDIR)/libsound_la-gw_sound.Tpo -c -o libsound_la-gw_sound.lo `test -f 'sci_gateway/gw_sound.c' || echo '$(srcdir)/'`sci_gateway/gw_sound.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsound_la-gw_sound.Tpo $(DEPDIR)/libsound_la-gw_sound.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/gw_sound.c' object='libsound_la-gw_sound.lo' libtool=yes @AMDEPBACKSLASH@
+libscisound_la-gw_sound.lo: sci_gateway/gw_sound.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisound_la_CFLAGS) $(CFLAGS) -MT libscisound_la-gw_sound.lo -MD -MP -MF $(DEPDIR)/libscisound_la-gw_sound.Tpo -c -o libscisound_la-gw_sound.lo `test -f 'sci_gateway/gw_sound.c' || echo '$(srcdir)/'`sci_gateway/gw_sound.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisound_la-gw_sound.Tpo $(DEPDIR)/libscisound_la-gw_sound.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/gw_sound.c' object='libscisound_la-gw_sound.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsound_la_CFLAGS) $(CFLAGS) -c -o libsound_la-gw_sound.lo `test -f 'sci_gateway/gw_sound.c' || echo '$(srcdir)/'`sci_gateway/gw_sound.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisound_la_CFLAGS) $(CFLAGS) -c -o libscisound_la-gw_sound.lo `test -f 'sci_gateway/gw_sound.c' || echo '$(srcdir)/'`sci_gateway/gw_sound.c
 
-libsound_la-sci_beep.lo: sci_gateway/sci_beep.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsound_la_CFLAGS) $(CFLAGS) -MT libsound_la-sci_beep.lo -MD -MP -MF $(DEPDIR)/libsound_la-sci_beep.Tpo -c -o libsound_la-sci_beep.lo `test -f 'sci_gateway/sci_beep.c' || echo '$(srcdir)/'`sci_gateway/sci_beep.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsound_la-sci_beep.Tpo $(DEPDIR)/libsound_la-sci_beep.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_beep.c' object='libsound_la-sci_beep.lo' libtool=yes @AMDEPBACKSLASH@
+libscisound_la-sci_beep.lo: sci_gateway/sci_beep.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisound_la_CFLAGS) $(CFLAGS) -MT libscisound_la-sci_beep.lo -MD -MP -MF $(DEPDIR)/libscisound_la-sci_beep.Tpo -c -o libscisound_la-sci_beep.lo `test -f 'sci_gateway/sci_beep.c' || echo '$(srcdir)/'`sci_gateway/sci_beep.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisound_la-sci_beep.Tpo $(DEPDIR)/libscisound_la-sci_beep.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_beep.c' object='libscisound_la-sci_beep.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsound_la_CFLAGS) $(CFLAGS) -c -o libsound_la-sci_beep.lo `test -f 'sci_gateway/sci_beep.c' || echo '$(srcdir)/'`sci_gateway/sci_beep.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisound_la_CFLAGS) $(CFLAGS) -c -o libscisound_la-sci_beep.lo `test -f 'sci_gateway/sci_beep.c' || echo '$(srcdir)/'`sci_gateway/sci_beep.c
 
-libsound_la-sci_PlaySound.lo: sci_gateway/sci_PlaySound.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsound_la_CFLAGS) $(CFLAGS) -MT libsound_la-sci_PlaySound.lo -MD -MP -MF $(DEPDIR)/libsound_la-sci_PlaySound.Tpo -c -o libsound_la-sci_PlaySound.lo `test -f 'sci_gateway/sci_PlaySound.c' || echo '$(srcdir)/'`sci_gateway/sci_PlaySound.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsound_la-sci_PlaySound.Tpo $(DEPDIR)/libsound_la-sci_PlaySound.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_PlaySound.c' object='libsound_la-sci_PlaySound.lo' libtool=yes @AMDEPBACKSLASH@
+libscisound_la-sci_PlaySound.lo: sci_gateway/sci_PlaySound.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisound_la_CFLAGS) $(CFLAGS) -MT libscisound_la-sci_PlaySound.lo -MD -MP -MF $(DEPDIR)/libscisound_la-sci_PlaySound.Tpo -c -o libscisound_la-sci_PlaySound.lo `test -f 'sci_gateway/sci_PlaySound.c' || echo '$(srcdir)/'`sci_gateway/sci_PlaySound.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisound_la-sci_PlaySound.Tpo $(DEPDIR)/libscisound_la-sci_PlaySound.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_PlaySound.c' object='libscisound_la-sci_PlaySound.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsound_la_CFLAGS) $(CFLAGS) -c -o libsound_la-sci_PlaySound.lo `test -f 'sci_gateway/sci_PlaySound.c' || echo '$(srcdir)/'`sci_gateway/sci_PlaySound.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisound_la_CFLAGS) $(CFLAGS) -c -o libscisound_la-sci_PlaySound.lo `test -f 'sci_gateway/sci_PlaySound.c' || echo '$(srcdir)/'`sci_gateway/sci_PlaySound.c
 
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libsound_la_demosDATA: $(libsound_la_demos_DATA)
+install-libscisound_la_demosDATA: $(libscisound_la_demos_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libsound_la_demosdir)" || $(MKDIR_P) "$(DESTDIR)$(libsound_la_demosdir)"
-	@list='$(libsound_la_demos_DATA)'; for p in $$list; do \
+	test -z "$(libscisound_la_demosdir)" || $(MKDIR_P) "$(DESTDIR)$(libscisound_la_demosdir)"
+	@list='$(libscisound_la_demos_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libsound_la_demosDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsound_la_demosdir)/$$f'"; \
-	  $(libsound_la_demosDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsound_la_demosdir)/$$f"; \
+	  echo " $(libscisound_la_demosDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscisound_la_demosdir)/$$f'"; \
+	  $(libscisound_la_demosDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscisound_la_demosdir)/$$f"; \
 	done
 
-uninstall-libsound_la_demosDATA:
+uninstall-libscisound_la_demosDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libsound_la_demos_DATA)'; for p in $$list; do \
+	@list='$(libscisound_la_demos_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libsound_la_demosdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libsound_la_demosdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscisound_la_demosdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscisound_la_demosdir)/$$f"; \
 	done
-install-libsound_la_etcDATA: $(libsound_la_etc_DATA)
+install-libscisound_la_etcDATA: $(libscisound_la_etc_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libsound_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libsound_la_etcdir)"
-	@list='$(libsound_la_etc_DATA)'; for p in $$list; do \
+	test -z "$(libscisound_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libscisound_la_etcdir)"
+	@list='$(libscisound_la_etc_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libsound_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsound_la_etcdir)/$$f'"; \
-	  $(libsound_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsound_la_etcdir)/$$f"; \
+	  echo " $(libscisound_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscisound_la_etcdir)/$$f'"; \
+	  $(libscisound_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscisound_la_etcdir)/$$f"; \
 	done
 
-uninstall-libsound_la_etcDATA:
+uninstall-libscisound_la_etcDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libsound_la_etc_DATA)'; for p in $$list; do \
+	@list='$(libscisound_la_etc_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libsound_la_etcdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libsound_la_etcdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscisound_la_etcdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscisound_la_etcdir)/$$f"; \
 	done
-install-libsound_la_rootDATA: $(libsound_la_root_DATA)
+install-libscisound_la_rootDATA: $(libscisound_la_root_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libsound_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libsound_la_rootdir)"
-	@list='$(libsound_la_root_DATA)'; for p in $$list; do \
+	test -z "$(libscisound_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libscisound_la_rootdir)"
+	@list='$(libscisound_la_root_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libsound_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsound_la_rootdir)/$$f'"; \
-	  $(libsound_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsound_la_rootdir)/$$f"; \
+	  echo " $(libscisound_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscisound_la_rootdir)/$$f'"; \
+	  $(libscisound_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscisound_la_rootdir)/$$f"; \
 	done
 
-uninstall-libsound_la_rootDATA:
+uninstall-libscisound_la_rootDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libsound_la_root_DATA)'; for p in $$list; do \
+	@list='$(libscisound_la_root_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libsound_la_rootdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libsound_la_rootdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscisound_la_rootdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscisound_la_rootdir)/$$f"; \
 	done
-install-libsound_la_sci_gatewayDATA: $(libsound_la_sci_gateway_DATA)
+install-libscisound_la_sci_gatewayDATA: $(libscisound_la_sci_gateway_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libsound_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libsound_la_sci_gatewaydir)"
-	@list='$(libsound_la_sci_gateway_DATA)'; for p in $$list; do \
+	test -z "$(libscisound_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libscisound_la_sci_gatewaydir)"
+	@list='$(libscisound_la_sci_gateway_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libsound_la_sci_gatewayDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsound_la_sci_gatewaydir)/$$f'"; \
-	  $(libsound_la_sci_gatewayDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsound_la_sci_gatewaydir)/$$f"; \
+	  echo " $(libscisound_la_sci_gatewayDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscisound_la_sci_gatewaydir)/$$f'"; \
+	  $(libscisound_la_sci_gatewayDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscisound_la_sci_gatewaydir)/$$f"; \
 	done
 
-uninstall-libsound_la_sci_gatewayDATA:
+uninstall-libscisound_la_sci_gatewayDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libsound_la_sci_gateway_DATA)'; for p in $$list; do \
+	@list='$(libscisound_la_sci_gateway_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libsound_la_sci_gatewaydir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libsound_la_sci_gatewaydir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscisound_la_sci_gatewaydir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscisound_la_sci_gatewaydir)/$$f"; \
 	done
-install-libsound_la_includeHEADERS: $(libsound_la_include_HEADERS)
+install-libscisound_la_includeHEADERS: $(libscisound_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
-	test -z "$(libsound_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libsound_la_includedir)"
-	@list='$(libsound_la_include_HEADERS)'; for p in $$list; do \
+	test -z "$(libscisound_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscisound_la_includedir)"
+	@list='$(libscisound_la_include_HEADERS)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libsound_la_includeHEADERS_INSTALL) '$$d$$p' '$(DESTDIR)$(libsound_la_includedir)/$$f'"; \
-	  $(libsound_la_includeHEADERS_INSTALL) "$$d$$p" "$(DESTDIR)$(libsound_la_includedir)/$$f"; \
+	  echo " $(libscisound_la_includeHEADERS_INSTALL) '$$d$$p' '$(DESTDIR)$(libscisound_la_includedir)/$$f'"; \
+	  $(libscisound_la_includeHEADERS_INSTALL) "$$d$$p" "$(DESTDIR)$(libscisound_la_includedir)/$$f"; \
 	done
 
-uninstall-libsound_la_includeHEADERS:
+uninstall-libscisound_la_includeHEADERS:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libsound_la_include_HEADERS)'; for p in $$list; do \
+	@list='$(libscisound_la_include_HEADERS)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libsound_la_includedir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libsound_la_includedir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscisound_la_includedir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscisound_la_includedir)/$$f"; \
 	done
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
@@ -677,7 +679,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libsound_la_demosdir)" "$(DESTDIR)$(libsound_la_etcdir)" "$(DESTDIR)$(libsound_la_rootdir)" "$(DESTDIR)$(libsound_la_sci_gatewaydir)" "$(DESTDIR)$(libsound_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libscisound_la_demosdir)" "$(DESTDIR)$(libscisound_la_etcdir)" "$(DESTDIR)$(libscisound_la_rootdir)" "$(DESTDIR)$(libscisound_la_sci_gatewaydir)" "$(DESTDIR)$(libscisound_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -725,10 +727,11 @@ info: info-am
 
 info-am:
 
-install-data-am: install-data-local install-libsound_la_demosDATA \
-	install-libsound_la_etcDATA install-libsound_la_includeHEADERS \
-	install-libsound_la_rootDATA \
-	install-libsound_la_sci_gatewayDATA
+install-data-am: install-data-local install-libscisound_la_demosDATA \
+	install-libscisound_la_etcDATA \
+	install-libscisound_la_includeHEADERS \
+	install-libscisound_la_rootDATA \
+	install-libscisound_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
 
@@ -766,11 +769,12 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libLTLIBRARIES uninstall-libsound_la_demosDATA \
-	uninstall-libsound_la_etcDATA \
-	uninstall-libsound_la_includeHEADERS \
-	uninstall-libsound_la_rootDATA \
-	uninstall-libsound_la_sci_gatewayDATA
+uninstall-am: uninstall-libLTLIBRARIES \
+	uninstall-libscisound_la_demosDATA \
+	uninstall-libscisound_la_etcDATA \
+	uninstall-libscisound_la_includeHEADERS \
+	uninstall-libscisound_la_rootDATA \
+	uninstall-libscisound_la_sci_gatewayDATA
 
 .MAKE: install-am install-strip
 
@@ -782,19 +786,21 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libsound_la_demosDATA \
 	install-data-local install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
-	install-libLTLIBRARIES install-libsound_la_demosDATA \
-	install-libsound_la_etcDATA install-libsound_la_includeHEADERS \
-	install-libsound_la_rootDATA \
-	install-libsound_la_sci_gatewayDATA install-man install-pdf \
+	install-libLTLIBRARIES install-libscisound_la_demosDATA \
+	install-libscisound_la_etcDATA \
+	install-libscisound_la_includeHEADERS \
+	install-libscisound_la_rootDATA \
+	install-libscisound_la_sci_gatewayDATA install-man install-pdf \
 	install-pdf-am install-ps install-ps-am install-strip \
 	installcheck installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
-	uninstall-libsound_la_demosDATA uninstall-libsound_la_etcDATA \
-	uninstall-libsound_la_includeHEADERS \
-	uninstall-libsound_la_rootDATA \
-	uninstall-libsound_la_sci_gatewayDATA
+	uninstall-libscisound_la_demosDATA \
+	uninstall-libscisound_la_etcDATA \
+	uninstall-libscisound_la_includeHEADERS \
+	uninstall-libscisound_la_rootDATA \
+	uninstall-libscisound_la_sci_gatewayDATA
 
 
 #.xml.htm:

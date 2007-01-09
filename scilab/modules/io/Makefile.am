@@ -73,18 +73,18 @@ noinst_LTLIBRARIES = libdummy-io.la
 libdummy_io_la_SOURCES = sci_gateway/fortran/intmgetl.f
 libdummy_io_la_FFLAGS = $(FFLAGS:-O%=)
 
-libio_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
+libsciio_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 
-lib_LTLIBRARIES = libio.la
+lib_LTLIBRARIES = libsciio.la
 
-libio_la_SOURCES = $(IO_C_SOURCES) $(IO_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libsciio_la_SOURCES = $(IO_C_SOURCES) $(IO_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
-libio_la_LIBADD = libdummy-io.la \
-	$(top_builddir)/modules/sparse/libsparse.la \
-	$(top_builddir)/modules/fileio/libfileio.la \
-	$(top_builddir)/libs/MALLOC/libmalloc.la
+libsciio_la_LIBADD = libdummy-io.la \
+	$(top_builddir)/modules/sparse/libscisparse.la \
+	$(top_builddir)/modules/fileio/libscifileio.la \
+	$(top_builddir)/libs/MALLOC/libscimalloc.la
 
-libio_la_PKGCONFIG = io.pc
+libsciio_la_PKGCONFIG = io.pc
 
 libdummy_io_la-intmgetl.lo: sci_gateway/fortran/intmgetl.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_io_la_FFLAGS) -c -o libdummy_io_la-intmgetl.lo `test -f 'sci_gateway/fortran/intmgetl.f' || echo '$(srcdir)/'`sci_gateway/fortran/intmgetl.f
@@ -96,13 +96,13 @@ target=$(datadir)/io
 
 
 #### io : Conf files ####
-libio_la_rootdir = $(target)
-libio_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libsciio_la_rootdir = $(target)
+libsciio_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
 #### io : Scilab macros ###
-libio_la_macrodir = $(target)/macros
-libio_la_macro_DATA22 = macros/printf.sci \
+libsciio_la_macrodir = $(target)/macros
+libsciio_la_macro_DATA22 = macros/printf.sci \
 macros/ssprint.sci \
 macros/getscilabkeywords.sci \
 macros/sprintf.sci \
@@ -132,16 +132,16 @@ macros/unix_x.bin macros/names macros/lib macros/buildmacros.sce
 
 
 #### io : init scripts #### 
-libio_la_etcdir = $(target)/etc
-libio_la_etc_DATA = etc/io.quit etc/io.start
+libsciio_la_etcdir = $(target)/etc
+libsciio_la_etc_DATA = etc/io.quit etc/io.start
 
 #### io : gateway declaration #### 
-libio_la_sci_gatewaydir = $(target)/sci_gateway
-libio_la_sci_gateway_DATA = sci_gateway/io
+libsciio_la_sci_gatewaydir = $(target)/sci_gateway
+libsciio_la_sci_gateway_DATA = sci_gateway/io
 
 #### io : include files ####
-libio_la_includedir=$(includedir)/io
-libio_la_include_HEADERS = includes/sci_getrelativefilename.h \
+libsciio_la_includedir=$(includedir)/io
+libsciio_la_include_HEADERS = includes/sci_getrelativefilename.h \
 includes/gw_io.h
 
 include $(top_srcdir)/Makefile.incl.am

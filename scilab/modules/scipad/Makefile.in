@@ -61,11 +61,11 @@ am__vpath_adj = case $$p in \
     *) f=$$p;; \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
-am__installdirs = "$(DESTDIR)$(libscipad_la_etcdir)" \
-	"$(DESTDIR)$(libscipad_la_rootdir)"
-libscipad_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libscipad_la_rootDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libscipad_la_etc_DATA) $(libscipad_la_root_DATA)
+am__installdirs = "$(DESTDIR)$(libsciscipad_la_etcdir)" \
+	"$(DESTDIR)$(libsciscipad_la_rootdir)"
+libsciscipad_la_etcDATA_INSTALL = $(INSTALL_DATA)
+libsciscipad_la_rootDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(libsciscipad_la_etc_DATA) $(libsciscipad_la_root_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
@@ -212,12 +212,12 @@ top_srcdir = @top_srcdir@
 target = $(datadir)/scipad
 
 #### scipad : Conf files ####
-libscipad_la_rootdir = $(target)
-libscipad_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libsciscipad_la_rootdir = $(target)
+libsciscipad_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### scipad : Scilab macros ###
-libscipad_la_macrodir = $(target)
-nobase_libscipad_la_macro_DATA22 = macros/scipad_internals/lib \
+libsciscipad_la_macrodir = $(target)
+nobase_libsciscipad_la_macro_DATA22 = macros/scipad_internals/lib \
 macros/scipad_internals/LocalizeForScipad.sci \
 macros/scipad_internals/ext_exists.sci \
 macros/scipad_internals/msgdiff.sci \
@@ -236,8 +236,8 @@ macros/scipad.bin macros/names macros/lib macros/buildmacros.sce
 
 
 #### scipad : init scripts #### 
-libscipad_la_etcdir = $(target)/etc
-libscipad_la_etc_DATA = etc/scipad.quit etc/scipad.start
+libsciscipad_la_etcdir = $(target)/etc
+libsciscipad_la_etc_DATA = etc/scipad.quit etc/scipad.start
 
 #SUFFIXES = .xml .sci .htm
 SUFFIXES = .sci
@@ -293,39 +293,39 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libscipad_la_etcDATA: $(libscipad_la_etc_DATA)
+install-libsciscipad_la_etcDATA: $(libsciscipad_la_etc_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libscipad_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libscipad_la_etcdir)"
-	@list='$(libscipad_la_etc_DATA)'; for p in $$list; do \
+	test -z "$(libsciscipad_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciscipad_la_etcdir)"
+	@list='$(libsciscipad_la_etc_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libscipad_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscipad_la_etcdir)/$$f'"; \
-	  $(libscipad_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscipad_la_etcdir)/$$f"; \
+	  echo " $(libsciscipad_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsciscipad_la_etcdir)/$$f'"; \
+	  $(libsciscipad_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsciscipad_la_etcdir)/$$f"; \
 	done
 
-uninstall-libscipad_la_etcDATA:
+uninstall-libsciscipad_la_etcDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libscipad_la_etc_DATA)'; for p in $$list; do \
+	@list='$(libsciscipad_la_etc_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscipad_la_etcdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscipad_la_etcdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libsciscipad_la_etcdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libsciscipad_la_etcdir)/$$f"; \
 	done
-install-libscipad_la_rootDATA: $(libscipad_la_root_DATA)
+install-libsciscipad_la_rootDATA: $(libsciscipad_la_root_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libscipad_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libscipad_la_rootdir)"
-	@list='$(libscipad_la_root_DATA)'; for p in $$list; do \
+	test -z "$(libsciscipad_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciscipad_la_rootdir)"
+	@list='$(libsciscipad_la_root_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libscipad_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscipad_la_rootdir)/$$f'"; \
-	  $(libscipad_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscipad_la_rootdir)/$$f"; \
+	  echo " $(libsciscipad_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsciscipad_la_rootdir)/$$f'"; \
+	  $(libsciscipad_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsciscipad_la_rootdir)/$$f"; \
 	done
 
-uninstall-libscipad_la_rootDATA:
+uninstall-libsciscipad_la_rootDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libscipad_la_root_DATA)'; for p in $$list; do \
+	@list='$(libsciscipad_la_root_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscipad_la_rootdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscipad_la_rootdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libsciscipad_la_rootdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libsciscipad_la_rootdir)/$$f"; \
 	done
 tags: TAGS
 TAGS:
@@ -364,7 +364,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(libscipad_la_etcdir)" "$(DESTDIR)$(libscipad_la_rootdir)"; do \
+	for dir in "$(DESTDIR)$(libsciscipad_la_etcdir)" "$(DESTDIR)$(libsciscipad_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -409,8 +409,8 @@ info: info-am
 
 info-am:
 
-install-data-am: install-data-local install-libscipad_la_etcDATA \
-	install-libscipad_la_rootDATA
+install-data-am: install-data-local install-libsciscipad_la_etcDATA \
+	install-libsciscipad_la_rootDATA
 
 install-dvi: install-dvi-am
 
@@ -446,8 +446,8 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libscipad_la_etcDATA \
-	uninstall-libscipad_la_rootDATA
+uninstall-am: uninstall-libsciscipad_la_etcDATA \
+	uninstall-libsciscipad_la_rootDATA
 
 .MAKE: install-am install-strip
 
@@ -457,13 +457,14 @@ uninstall-am: uninstall-libscipad_la_etcDATA \
 	install-data install-data-am install-data-local install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
-	install-info-am install-libscipad_la_etcDATA \
-	install-libscipad_la_rootDATA install-man install-pdf \
+	install-info-am install-libsciscipad_la_etcDATA \
+	install-libsciscipad_la_rootDATA install-man install-pdf \
 	install-pdf-am install-ps install-ps-am install-strip \
 	installcheck installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am uninstall uninstall-am \
-	uninstall-libscipad_la_etcDATA uninstall-libscipad_la_rootDATA
+	uninstall-libsciscipad_la_etcDATA \
+	uninstall-libsciscipad_la_rootDATA
 
 
 #.xml.htm:

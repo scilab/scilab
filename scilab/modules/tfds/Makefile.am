@@ -9,13 +9,13 @@ target=$(datadir)/tfds
 
 
 #### tfds : Conf files ####
-libtfds_la_rootdir = $(target)
-libtfds_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscitfds_la_rootdir = $(target)
+libscitfds_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
 #### tfds : Scilab macros ###
-libtfds_la_macrodir = $(target)/macros
-libtfds_la_macro_DATA22 = macros/artest.sci \
+libscitfds_la_macrodir = $(target)/macros
+libscitfds_la_macro_DATA22 = macros/artest.sci \
 macros/logr.sci \
 macros/bifish.sci \
 macros/portrait.sci \
@@ -63,7 +63,7 @@ macros/test_d.bin macros/names macros/lib macros/buildmacros.sce
 
 
 #### tfds : init scripts #### 
-libtfds_la_etcdir = $(target)/etc
-libtfds_la_etc_DATA = etc/tfds.quit etc/tfds.start
+libscitfds_la_etcdir = $(target)/etc
+libscitfds_la_etc_DATA = etc/tfds.quit etc/tfds.start
 
 include $(top_srcdir)/Makefile.incl.am

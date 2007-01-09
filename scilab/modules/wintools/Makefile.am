@@ -22,17 +22,17 @@ sci_gateway/intOEMconvert.c \
 sci_gateway/sci_toprint.c \
 sci_gateway/sci_clipboard.c
 
-libwintools_la_CFLAGS= -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
+libsciwintools_la_CFLAGS= -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 
-lib_LTLIBRARIES = libwintools.la
+lib_LTLIBRARIES = libsciwintools.la
 
-libwintools_la_SOURCES = $(GATEWAY_C_SOURCES)
+libsciwintools_la_SOURCES = $(GATEWAY_C_SOURCES)
 
-libwintools_la_LIBADD = \
-	$(top_builddir)/modules/core/libcore.la \
-	$(top_builddir)/libs/MALLOC/libmalloc.la
+libsciwintools_la_LIBADD = \
+	$(top_builddir)/modules/core/libscicore.la \
+	$(top_builddir)/libs/MALLOC/libscimalloc.la
 
-libwintools_la_PKGCONFIG = wintools.pc
+libsciwintools_la_PKGCONFIG = wintools.pc
 
 datadir=${prefix}/modules
 #### Target ######
@@ -40,27 +40,27 @@ target=$(datadir)/wintools
 
 
 #### wintools : Conf files ####
-libwintools_la_rootdir = $(target)
-libwintools_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libsciwintools_la_rootdir = $(target)
+libsciwintools_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
 #### wintools : Scilab macros ###
-libwintools_la_macrodir = $(target)/macros
-libwintools_la_macro_DATA22 =  macros/buildmacros.sce 
+libsciwintools_la_macrodir = $(target)/macros
+libsciwintools_la_macro_DATA22 =  macros/buildmacros.sce 
 
 
 #### wintools : init scripts #### 
-libwintools_la_etcdir = $(target)/etc
-libwintools_la_etc_DATA = etc/wintools.quit etc/wintools.start 
+libsciwintools_la_etcdir = $(target)/etc
+libsciwintools_la_etc_DATA = etc/wintools.quit etc/wintools.start 
 
 
 #### wintools : gateway declaration #### 
-libwintools_la_sci_gatewaydir = $(target)/sci_gateway
-libwintools_la_sci_gateway_DATA = sci_gateway/wintools
+libsciwintools_la_sci_gatewaydir = $(target)/sci_gateway
+libsciwintools_la_sci_gateway_DATA = sci_gateway/wintools
 
 #### wintools : include files ####
-libwintools_la_includedir=$(includedir)/wintools
-libwintools_la_include_HEADERS = includes/sci_dde.h \
+libsciwintools_la_includedir=$(includedir)/wintools
+libsciwintools_la_include_HEADERS = includes/sci_dde.h \
 includes/intOEMconvert.h \
 includes/sci_clipboard.h \
 includes/sci_toprint.h \

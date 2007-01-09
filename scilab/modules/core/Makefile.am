@@ -308,25 +308,25 @@ CORE_C_SOURCES+=src/c/getarg.c
 endif
 
 
-libcore_la_CFLAGS=  -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ 
-libcore_la_LDFLAGS = 
-lib_LTLIBRARIES = libcore.la
+libscicore_la_CFLAGS=  -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ 
+libscicore_la_LDFLAGS = 
+lib_LTLIBRARIES = libscicore.la
 
-libcore_la_SOURCES = $(CORE_C_SOURCES) $(CORE_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscicore_la_SOURCES = $(CORE_C_SOURCES) $(CORE_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
-libcore_la_LIBADD = \
-	$(top_builddir)/libs/blas/libblas.la \
-	$(top_builddir)/libs/lapack/liblapack.la \
-	$(top_builddir)/libs/MALLOC/libmalloc.la \
-	$(top_builddir)/modules/cacsd/libcacsd.la \
+libscicore_la_LIBADD = \
+	$(top_builddir)/libs/blas/libsciblas.la \
+	$(top_builddir)/libs/lapack/libscilapack.la \
+	$(top_builddir)/libs/MALLOC/libscimalloc.la \
+	$(top_builddir)/modules/cacsd/libscicacsd.la \
 	$(top_builddir)/modules/differential_equations/libdifferential_equations.la \
-	$(top_builddir)/modules/polynomials/libpolynomials.la \
+	$(top_builddir)/modules/polynomials/libscipolynomials.la \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la \
-	$(top_builddir)/modules/string/libstring.la \
+	$(top_builddir)/modules/string/libscistring.la \
 	$(top_builddir)/modules/signal_processing/libsignal_processing.la \
-	$(top_builddir)/modules/fileio/libfileio.la
+	$(top_builddir)/modules/fileio/libscifileio.la
 
-libcore_la_PKGCONFIG = core.pc
+libscicore_la_PKGCONFIG = core.pc
 
 datadir=${prefix}/modules
 #### Target ######
@@ -334,13 +334,13 @@ target=$(datadir)/core
 
 
 #### core : Conf files ####
-libcore_la_rootdir = $(target)
-libcore_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscicore_la_rootdir = $(target)
+libscicore_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
 #### core : Scilab macros ###
-libcore_la_macrodir = $(target)/macros
-libcore_la_macro_DATA22 = macros/perl.sci \
+libscicore_la_macrodir = $(target)/macros
+libscicore_la_macro_DATA22 = macros/perl.sci \
 macros/typeof.sci \
 macros/getshell.sci \
 macros/with_tk.sci \
@@ -376,17 +376,17 @@ macros/with_tk.bin macros/names macros/lib macros/buildmacros.sce
 
 
 #### core : init scripts #### 
-libcore_la_etcdir = $(target)/etc
-libcore_la_etc_DATA = etc/core.quit etc/core.start
+libscicore_la_etcdir = $(target)/etc
+libscicore_la_etc_DATA = etc/core.quit etc/core.start
 
 #### core : gateway declaration #### 
-libcore_la_sci_gatewaydir = $(target)/sci_gateway
-libcore_la_sci_gateway_DATA = sci_gateway/core
+libscicore_la_sci_gatewaydir = $(target)/sci_gateway
+libscicore_la_sci_gateway_DATA = sci_gateway/core
 
 
 #### core : include files ####
-libcore_la_includedir=$(includedir)/core
-libcore_la_include_HEADERS = includes/GetExceptionCode.h \
+libscicore_la_includedir=$(includedir)/core
+libscicore_la_include_HEADERS = includes/GetExceptionCode.h \
 includes/CallScilab.h \
 includes/sciprint.h \
 includes/link.h \
@@ -420,8 +420,8 @@ includes/loadversion.h
 
 
 #### core : demos files ####
-libcore_la_demosintrodir=$(target)/demos/intro/
-libcore_la_demosintro_DATA = demos/intro/extf.sce \
+libscicore_la_demosintrodir=$(target)/demos/intro/
+libscicore_la_demosintro_DATA = demos/intro/extf.sce \
 demos/intro/Makefile.mak \
 demos/intro/MakeC.mak \
 demos/intro/MakeF.mak \

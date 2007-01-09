@@ -90,19 +90,19 @@ sci_gateway/c/sci_cdfbet.c \
 sci_gateway/c/sci_cdfnbn.c \
 sci_gateway/c/sci_cdfnor.c
 
-libstatistics_la_CFLAGS=  -Iincludes/
+libscistatistics_la_CFLAGS=  -Iincludes/
 #-Isrc/c/
-lib_LTLIBRARIES = libstatistics.la
+lib_LTLIBRARIES = libscistatistics.la
 
-libstatistics_la_SOURCES = $(STATISTICS_C_SOURCES) $(STATISTICS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
+libscistatistics_la_SOURCES = $(STATISTICS_C_SOURCES) $(STATISTICS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 
-libstatistics_la_LIBADD = \
-	$(top_builddir)/libs/lapack/liblapack.la
+libscistatistics_la_LIBADD = \
+	$(top_builddir)/libs/lapack/libscilapack.la
 
-#	$(top_builddir)/modules/arnoldi/libarnoldi.la \
+#	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
 #	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
 
-libstatistics_la_PKGCONFIG = statistics.pc
+libscistatistics_la_PKGCONFIG = statistics.pc
 
 datadir=${prefix}/modules
 #### Target ######
@@ -110,13 +110,13 @@ target=$(datadir)/statistics
 
 
 #### statistics : Conf files ####
-libstatistics_la_rootdir = $(target)
-libstatistics_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscistatistics_la_rootdir = $(target)
+libscistatistics_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
 #### statistics : Scilab macros ###
-libstatistics_la_macrodir = $(target)/macros
-libstatistics_la_macro_DATA22 = macros/cmoment.sci \
+libscistatistics_la_macrodir = $(target)/macros
+libscistatistics_la_macro_DATA22 = macros/cmoment.sci \
 macros/strange.sci \
 macros/wcenter.sci \
 macros/regress.sci \
@@ -206,16 +206,16 @@ macros/wcenter.bin macros/names macros/lib macros/buildmacros.sce
 
 
 #### statistics : init scripts #### 
-libstatistics_la_etcdir = $(target)/etc
-libstatistics_la_etc_DATA = etc/statistics.quit etc/statistics.start
+libscistatistics_la_etcdir = $(target)/etc
+libscistatistics_la_etc_DATA = etc/statistics.quit etc/statistics.start
 
 #### statistics : gateway declaration #### 
-libstatistics_la_sci_gatewaydir = $(target)/sci_gateway
-libstatistics_la_sci_gateway_DATA = sci_gateway/statistics
+libscistatistics_la_sci_gatewaydir = $(target)/sci_gateway
+libscistatistics_la_sci_gateway_DATA = sci_gateway/statistics
 
 
 #### statistics : include files ####
-libstatistics_la_includedir=$(includedir)/statistics
-libstatistics_la_include_HEADERS = includes/gw_statistics.h
+libscistatistics_la_includedir=$(includedir)/statistics
+libscistatistics_la_include_HEADERS = includes/gw_statistics.h
 
 include $(top_srcdir)/Makefile.incl.am

@@ -39,8 +39,9 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = $(librandlib_la_include_HEADERS) $(srcdir)/Makefile.am \
-	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
+DIST_COMMON = $(libscirandlib_la_include_HEADERS) \
+	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+	$(top_srcdir)/Makefile.incl.am
 subdir = modules/randlib
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fortran.m4 \
@@ -62,28 +63,29 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
-	"$(DESTDIR)$(librandlib_la_demosdir)" \
-	"$(DESTDIR)$(librandlib_la_etcdir)" \
-	"$(DESTDIR)$(librandlib_la_rootdir)" \
-	"$(DESTDIR)$(librandlib_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(librandlib_la_includedir)"
+	"$(DESTDIR)$(libscirandlib_la_demosdir)" \
+	"$(DESTDIR)$(libscirandlib_la_etcdir)" \
+	"$(DESTDIR)$(libscirandlib_la_rootdir)" \
+	"$(DESTDIR)$(libscirandlib_la_sci_gatewaydir)" \
+	"$(DESTDIR)$(libscirandlib_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
-librandlib_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/intersci/libintersci.la \
-	$(top_builddir)/modules/core/libcore.la
-am__objects_1 = librandlib_la-fsultra.lo librandlib_la-mt.lo \
-	librandlib_la-igngeom.lo librandlib_la-kiss.lo \
-	librandlib_la-urand.lo librandlib_la-clcg2.lo \
-	librandlib_la-clcg4.lo
-am__objects_2 = librandlib_la-gw_randlib.lo librandlib_la-sci_grand.lo
+libscirandlib_la_DEPENDENCIES =  \
+	$(top_builddir)/modules/intersci/libsciintersci.la \
+	$(top_builddir)/modules/core/libscicore.la
+am__objects_1 = libscirandlib_la-fsultra.lo libscirandlib_la-mt.lo \
+	libscirandlib_la-igngeom.lo libscirandlib_la-kiss.lo \
+	libscirandlib_la-urand.lo libscirandlib_la-clcg2.lo \
+	libscirandlib_la-clcg4.lo
+am__objects_2 = libscirandlib_la-gw_randlib.lo \
+	libscirandlib_la-sci_grand.lo
 am__objects_3 = gennf.lo genchi.lo setgmn.lo gengam.lo sexpo.lo \
 	snorm.lo gennch.lo genmn.lo genbet.lo phrtsd.lo sgamma.lo \
 	ignbin.lo spofa.lo sdot.lo ignnbn.lo lennob.lo genf.lo \
 	genunf.lo ignpoi.lo genexp.lo genmul.lo genprm.lo gennor.lo
-am_librandlib_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
+am_libscirandlib_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3)
-librandlib_la_OBJECTS = $(am_librandlib_la_OBJECTS)
+libscirandlib_la_OBJECTS = $(am_libscirandlib_la_OBJECTS)
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -103,16 +105,17 @@ F77LD = $(F77)
 F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(librandlib_la_SOURCES)
-DIST_SOURCES = $(librandlib_la_SOURCES)
-librandlib_la_demosDATA_INSTALL = $(INSTALL_DATA)
-librandlib_la_etcDATA_INSTALL = $(INSTALL_DATA)
-librandlib_la_rootDATA_INSTALL = $(INSTALL_DATA)
-librandlib_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(librandlib_la_demos_DATA) $(librandlib_la_etc_DATA) \
-	$(librandlib_la_root_DATA) $(librandlib_la_sci_gateway_DATA)
-librandlib_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
-HEADERS = $(librandlib_la_include_HEADERS)
+SOURCES = $(libscirandlib_la_SOURCES)
+DIST_SOURCES = $(libscirandlib_la_SOURCES)
+libscirandlib_la_demosDATA_INSTALL = $(INSTALL_DATA)
+libscirandlib_la_etcDATA_INSTALL = $(INSTALL_DATA)
+libscirandlib_la_rootDATA_INSTALL = $(INSTALL_DATA)
+libscirandlib_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(libscirandlib_la_demos_DATA) $(libscirandlib_la_etc_DATA) \
+	$(libscirandlib_la_root_DATA) \
+	$(libscirandlib_la_sci_gateway_DATA)
+libscirandlib_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
+HEADERS = $(libscirandlib_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -293,47 +296,47 @@ src/fortran/gennor.f
 GATEWAY_C_SOURCES = sci_gateway/gw_randlib.c \
 sci_gateway/sci_grand.c
 
-librandlib_la_CFLAGS = -Iincludes/ 
+libscirandlib_la_CFLAGS = -Iincludes/ 
 #-Isrc/c/
-lib_LTLIBRARIES = librandlib.la
-librandlib_la_SOURCES = $(RANDLIB_C_SOURCES) $(GATEWAY_C_SOURCES) $(RANDLIB_FORTRAN_SOURCES)
-librandlib_la_LIBADD = \
-	$(top_builddir)/modules/intersci/libintersci.la \
-	$(top_builddir)/modules/core/libcore.la
+lib_LTLIBRARIES = libscirandlib.la
+libscirandlib_la_SOURCES = $(RANDLIB_C_SOURCES) $(GATEWAY_C_SOURCES) $(RANDLIB_FORTRAN_SOURCES)
+libscirandlib_la_LIBADD = \
+	$(top_builddir)/modules/intersci/libsciintersci.la \
+	$(top_builddir)/modules/core/libscicore.la
 
 
-#	$(top_builddir)/libs/blas/libblas.la \
+#	$(top_builddir)/libs/blas/libsciblas.la \
 #	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
-librandlib_la_PKGCONFIG = randlib.pc
+libscirandlib_la_PKGCONFIG = randlib.pc
 #### Target ######
 target = $(datadir)/randlib
 
 #### randlib : Conf files ####
-librandlib_la_rootdir = $(target)
-librandlib_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscirandlib_la_rootdir = $(target)
+libscirandlib_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### randlib : Scilab macros ###
-librandlib_la_macrodir = $(target)/macros
-librandlib_la_macro_DATA22 = macros/buildmacros.sce
+libscirandlib_la_macrodir = $(target)/macros
+libscirandlib_la_macro_DATA22 = macros/buildmacros.sce
 
 #### randlib : init scripts #### 
-librandlib_la_etcdir = $(target)/etc
-librandlib_la_etc_DATA = etc/randlib.quit etc/randlib.start
+libscirandlib_la_etcdir = $(target)/etc
+libscirandlib_la_etc_DATA = etc/randlib.quit etc/randlib.start
 
 #### randlib : gateway declaration #### 
-librandlib_la_sci_gatewaydir = $(target)/sci_gateway
-librandlib_la_sci_gateway_DATA = sci_gateway/randlib
+libscirandlib_la_sci_gatewaydir = $(target)/sci_gateway
+libscirandlib_la_sci_gateway_DATA = sci_gateway/randlib
 
 #### randlib : include files ####
-librandlib_la_includedir = $(includedir)/randlib
-librandlib_la_include_HEADERS = includes/grand.h \
+libscirandlib_la_includedir = $(includedir)/randlib
+libscirandlib_la_include_HEADERS = includes/grand.h \
 includes/clcg4.h \
 includes/others_generators.h
 
 
 #### randlib : demos files ####
-librandlib_la_demosdir = $(target)/demos/
-librandlib_la_demos_DATA = demos/randomT.sci \
+libscirandlib_la_demosdir = $(target)/demos/
+libscirandlib_la_demos_DATA = demos/randomT.sci \
 demos/random.dem \
 demos/random.sci
 
@@ -413,8 +416,8 @@ clean-libLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
-librandlib.la: $(librandlib_la_OBJECTS) $(librandlib_la_DEPENDENCIES) 
-	$(F77LINK) -rpath $(libdir) $(librandlib_la_OBJECTS) $(librandlib_la_LIBADD) $(LIBS)
+libscirandlib.la: $(libscirandlib_la_OBJECTS) $(libscirandlib_la_DEPENDENCIES) 
+	$(F77LINK) -rpath $(libdir) $(libscirandlib_la_OBJECTS) $(libscirandlib_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -422,15 +425,15 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librandlib_la-clcg2.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librandlib_la-clcg4.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librandlib_la-fsultra.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librandlib_la-gw_randlib.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librandlib_la-igngeom.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librandlib_la-kiss.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librandlib_la-mt.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librandlib_la-sci_grand.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/librandlib_la-urand.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirandlib_la-clcg2.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirandlib_la-clcg4.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirandlib_la-fsultra.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirandlib_la-gw_randlib.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirandlib_la-igngeom.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirandlib_la-kiss.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirandlib_la-mt.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirandlib_la-sci_grand.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirandlib_la-urand.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -453,68 +456,68 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
-librandlib_la-fsultra.lo: src/c/fsultra.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(librandlib_la_CFLAGS) $(CFLAGS) -MT librandlib_la-fsultra.lo -MD -MP -MF $(DEPDIR)/librandlib_la-fsultra.Tpo -c -o librandlib_la-fsultra.lo `test -f 'src/c/fsultra.c' || echo '$(srcdir)/'`src/c/fsultra.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/librandlib_la-fsultra.Tpo $(DEPDIR)/librandlib_la-fsultra.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/fsultra.c' object='librandlib_la-fsultra.lo' libtool=yes @AMDEPBACKSLASH@
+libscirandlib_la-fsultra.lo: src/c/fsultra.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscirandlib_la_CFLAGS) $(CFLAGS) -MT libscirandlib_la-fsultra.lo -MD -MP -MF $(DEPDIR)/libscirandlib_la-fsultra.Tpo -c -o libscirandlib_la-fsultra.lo `test -f 'src/c/fsultra.c' || echo '$(srcdir)/'`src/c/fsultra.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscirandlib_la-fsultra.Tpo $(DEPDIR)/libscirandlib_la-fsultra.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/fsultra.c' object='libscirandlib_la-fsultra.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(librandlib_la_CFLAGS) $(CFLAGS) -c -o librandlib_la-fsultra.lo `test -f 'src/c/fsultra.c' || echo '$(srcdir)/'`src/c/fsultra.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscirandlib_la_CFLAGS) $(CFLAGS) -c -o libscirandlib_la-fsultra.lo `test -f 'src/c/fsultra.c' || echo '$(srcdir)/'`src/c/fsultra.c
 
-librandlib_la-mt.lo: src/c/mt.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(librandlib_la_CFLAGS) $(CFLAGS) -MT librandlib_la-mt.lo -MD -MP -MF $(DEPDIR)/librandlib_la-mt.Tpo -c -o librandlib_la-mt.lo `test -f 'src/c/mt.c' || echo '$(srcdir)/'`src/c/mt.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/librandlib_la-mt.Tpo $(DEPDIR)/librandlib_la-mt.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/mt.c' object='librandlib_la-mt.lo' libtool=yes @AMDEPBACKSLASH@
+libscirandlib_la-mt.lo: src/c/mt.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscirandlib_la_CFLAGS) $(CFLAGS) -MT libscirandlib_la-mt.lo -MD -MP -MF $(DEPDIR)/libscirandlib_la-mt.Tpo -c -o libscirandlib_la-mt.lo `test -f 'src/c/mt.c' || echo '$(srcdir)/'`src/c/mt.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscirandlib_la-mt.Tpo $(DEPDIR)/libscirandlib_la-mt.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/mt.c' object='libscirandlib_la-mt.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(librandlib_la_CFLAGS) $(CFLAGS) -c -o librandlib_la-mt.lo `test -f 'src/c/mt.c' || echo '$(srcdir)/'`src/c/mt.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscirandlib_la_CFLAGS) $(CFLAGS) -c -o libscirandlib_la-mt.lo `test -f 'src/c/mt.c' || echo '$(srcdir)/'`src/c/mt.c
 
-librandlib_la-igngeom.lo: src/c/igngeom.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(librandlib_la_CFLAGS) $(CFLAGS) -MT librandlib_la-igngeom.lo -MD -MP -MF $(DEPDIR)/librandlib_la-igngeom.Tpo -c -o librandlib_la-igngeom.lo `test -f 'src/c/igngeom.c' || echo '$(srcdir)/'`src/c/igngeom.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/librandlib_la-igngeom.Tpo $(DEPDIR)/librandlib_la-igngeom.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/igngeom.c' object='librandlib_la-igngeom.lo' libtool=yes @AMDEPBACKSLASH@
+libscirandlib_la-igngeom.lo: src/c/igngeom.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscirandlib_la_CFLAGS) $(CFLAGS) -MT libscirandlib_la-igngeom.lo -MD -MP -MF $(DEPDIR)/libscirandlib_la-igngeom.Tpo -c -o libscirandlib_la-igngeom.lo `test -f 'src/c/igngeom.c' || echo '$(srcdir)/'`src/c/igngeom.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscirandlib_la-igngeom.Tpo $(DEPDIR)/libscirandlib_la-igngeom.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/igngeom.c' object='libscirandlib_la-igngeom.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(librandlib_la_CFLAGS) $(CFLAGS) -c -o librandlib_la-igngeom.lo `test -f 'src/c/igngeom.c' || echo '$(srcdir)/'`src/c/igngeom.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscirandlib_la_CFLAGS) $(CFLAGS) -c -o libscirandlib_la-igngeom.lo `test -f 'src/c/igngeom.c' || echo '$(srcdir)/'`src/c/igngeom.c
 
-librandlib_la-kiss.lo: src/c/kiss.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(librandlib_la_CFLAGS) $(CFLAGS) -MT librandlib_la-kiss.lo -MD -MP -MF $(DEPDIR)/librandlib_la-kiss.Tpo -c -o librandlib_la-kiss.lo `test -f 'src/c/kiss.c' || echo '$(srcdir)/'`src/c/kiss.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/librandlib_la-kiss.Tpo $(DEPDIR)/librandlib_la-kiss.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/kiss.c' object='librandlib_la-kiss.lo' libtool=yes @AMDEPBACKSLASH@
+libscirandlib_la-kiss.lo: src/c/kiss.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscirandlib_la_CFLAGS) $(CFLAGS) -MT libscirandlib_la-kiss.lo -MD -MP -MF $(DEPDIR)/libscirandlib_la-kiss.Tpo -c -o libscirandlib_la-kiss.lo `test -f 'src/c/kiss.c' || echo '$(srcdir)/'`src/c/kiss.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscirandlib_la-kiss.Tpo $(DEPDIR)/libscirandlib_la-kiss.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/kiss.c' object='libscirandlib_la-kiss.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(librandlib_la_CFLAGS) $(CFLAGS) -c -o librandlib_la-kiss.lo `test -f 'src/c/kiss.c' || echo '$(srcdir)/'`src/c/kiss.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscirandlib_la_CFLAGS) $(CFLAGS) -c -o libscirandlib_la-kiss.lo `test -f 'src/c/kiss.c' || echo '$(srcdir)/'`src/c/kiss.c
 
-librandlib_la-urand.lo: src/c/urand.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(librandlib_la_CFLAGS) $(CFLAGS) -MT librandlib_la-urand.lo -MD -MP -MF $(DEPDIR)/librandlib_la-urand.Tpo -c -o librandlib_la-urand.lo `test -f 'src/c/urand.c' || echo '$(srcdir)/'`src/c/urand.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/librandlib_la-urand.Tpo $(DEPDIR)/librandlib_la-urand.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/urand.c' object='librandlib_la-urand.lo' libtool=yes @AMDEPBACKSLASH@
+libscirandlib_la-urand.lo: src/c/urand.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscirandlib_la_CFLAGS) $(CFLAGS) -MT libscirandlib_la-urand.lo -MD -MP -MF $(DEPDIR)/libscirandlib_la-urand.Tpo -c -o libscirandlib_la-urand.lo `test -f 'src/c/urand.c' || echo '$(srcdir)/'`src/c/urand.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscirandlib_la-urand.Tpo $(DEPDIR)/libscirandlib_la-urand.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/urand.c' object='libscirandlib_la-urand.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(librandlib_la_CFLAGS) $(CFLAGS) -c -o librandlib_la-urand.lo `test -f 'src/c/urand.c' || echo '$(srcdir)/'`src/c/urand.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscirandlib_la_CFLAGS) $(CFLAGS) -c -o libscirandlib_la-urand.lo `test -f 'src/c/urand.c' || echo '$(srcdir)/'`src/c/urand.c
 
-librandlib_la-clcg2.lo: src/c/clcg2.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(librandlib_la_CFLAGS) $(CFLAGS) -MT librandlib_la-clcg2.lo -MD -MP -MF $(DEPDIR)/librandlib_la-clcg2.Tpo -c -o librandlib_la-clcg2.lo `test -f 'src/c/clcg2.c' || echo '$(srcdir)/'`src/c/clcg2.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/librandlib_la-clcg2.Tpo $(DEPDIR)/librandlib_la-clcg2.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/clcg2.c' object='librandlib_la-clcg2.lo' libtool=yes @AMDEPBACKSLASH@
+libscirandlib_la-clcg2.lo: src/c/clcg2.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscirandlib_la_CFLAGS) $(CFLAGS) -MT libscirandlib_la-clcg2.lo -MD -MP -MF $(DEPDIR)/libscirandlib_la-clcg2.Tpo -c -o libscirandlib_la-clcg2.lo `test -f 'src/c/clcg2.c' || echo '$(srcdir)/'`src/c/clcg2.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscirandlib_la-clcg2.Tpo $(DEPDIR)/libscirandlib_la-clcg2.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/clcg2.c' object='libscirandlib_la-clcg2.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(librandlib_la_CFLAGS) $(CFLAGS) -c -o librandlib_la-clcg2.lo `test -f 'src/c/clcg2.c' || echo '$(srcdir)/'`src/c/clcg2.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscirandlib_la_CFLAGS) $(CFLAGS) -c -o libscirandlib_la-clcg2.lo `test -f 'src/c/clcg2.c' || echo '$(srcdir)/'`src/c/clcg2.c
 
-librandlib_la-clcg4.lo: src/c/clcg4.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(librandlib_la_CFLAGS) $(CFLAGS) -MT librandlib_la-clcg4.lo -MD -MP -MF $(DEPDIR)/librandlib_la-clcg4.Tpo -c -o librandlib_la-clcg4.lo `test -f 'src/c/clcg4.c' || echo '$(srcdir)/'`src/c/clcg4.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/librandlib_la-clcg4.Tpo $(DEPDIR)/librandlib_la-clcg4.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/clcg4.c' object='librandlib_la-clcg4.lo' libtool=yes @AMDEPBACKSLASH@
+libscirandlib_la-clcg4.lo: src/c/clcg4.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscirandlib_la_CFLAGS) $(CFLAGS) -MT libscirandlib_la-clcg4.lo -MD -MP -MF $(DEPDIR)/libscirandlib_la-clcg4.Tpo -c -o libscirandlib_la-clcg4.lo `test -f 'src/c/clcg4.c' || echo '$(srcdir)/'`src/c/clcg4.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscirandlib_la-clcg4.Tpo $(DEPDIR)/libscirandlib_la-clcg4.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/clcg4.c' object='libscirandlib_la-clcg4.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(librandlib_la_CFLAGS) $(CFLAGS) -c -o librandlib_la-clcg4.lo `test -f 'src/c/clcg4.c' || echo '$(srcdir)/'`src/c/clcg4.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscirandlib_la_CFLAGS) $(CFLAGS) -c -o libscirandlib_la-clcg4.lo `test -f 'src/c/clcg4.c' || echo '$(srcdir)/'`src/c/clcg4.c
 
-librandlib_la-gw_randlib.lo: sci_gateway/gw_randlib.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(librandlib_la_CFLAGS) $(CFLAGS) -MT librandlib_la-gw_randlib.lo -MD -MP -MF $(DEPDIR)/librandlib_la-gw_randlib.Tpo -c -o librandlib_la-gw_randlib.lo `test -f 'sci_gateway/gw_randlib.c' || echo '$(srcdir)/'`sci_gateway/gw_randlib.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/librandlib_la-gw_randlib.Tpo $(DEPDIR)/librandlib_la-gw_randlib.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/gw_randlib.c' object='librandlib_la-gw_randlib.lo' libtool=yes @AMDEPBACKSLASH@
+libscirandlib_la-gw_randlib.lo: sci_gateway/gw_randlib.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscirandlib_la_CFLAGS) $(CFLAGS) -MT libscirandlib_la-gw_randlib.lo -MD -MP -MF $(DEPDIR)/libscirandlib_la-gw_randlib.Tpo -c -o libscirandlib_la-gw_randlib.lo `test -f 'sci_gateway/gw_randlib.c' || echo '$(srcdir)/'`sci_gateway/gw_randlib.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscirandlib_la-gw_randlib.Tpo $(DEPDIR)/libscirandlib_la-gw_randlib.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/gw_randlib.c' object='libscirandlib_la-gw_randlib.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(librandlib_la_CFLAGS) $(CFLAGS) -c -o librandlib_la-gw_randlib.lo `test -f 'sci_gateway/gw_randlib.c' || echo '$(srcdir)/'`sci_gateway/gw_randlib.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscirandlib_la_CFLAGS) $(CFLAGS) -c -o libscirandlib_la-gw_randlib.lo `test -f 'sci_gateway/gw_randlib.c' || echo '$(srcdir)/'`sci_gateway/gw_randlib.c
 
-librandlib_la-sci_grand.lo: sci_gateway/sci_grand.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(librandlib_la_CFLAGS) $(CFLAGS) -MT librandlib_la-sci_grand.lo -MD -MP -MF $(DEPDIR)/librandlib_la-sci_grand.Tpo -c -o librandlib_la-sci_grand.lo `test -f 'sci_gateway/sci_grand.c' || echo '$(srcdir)/'`sci_gateway/sci_grand.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/librandlib_la-sci_grand.Tpo $(DEPDIR)/librandlib_la-sci_grand.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_grand.c' object='librandlib_la-sci_grand.lo' libtool=yes @AMDEPBACKSLASH@
+libscirandlib_la-sci_grand.lo: sci_gateway/sci_grand.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscirandlib_la_CFLAGS) $(CFLAGS) -MT libscirandlib_la-sci_grand.lo -MD -MP -MF $(DEPDIR)/libscirandlib_la-sci_grand.Tpo -c -o libscirandlib_la-sci_grand.lo `test -f 'sci_gateway/sci_grand.c' || echo '$(srcdir)/'`sci_gateway/sci_grand.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscirandlib_la-sci_grand.Tpo $(DEPDIR)/libscirandlib_la-sci_grand.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_grand.c' object='libscirandlib_la-sci_grand.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(librandlib_la_CFLAGS) $(CFLAGS) -c -o librandlib_la-sci_grand.lo `test -f 'sci_gateway/sci_grand.c' || echo '$(srcdir)/'`sci_gateway/sci_grand.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscirandlib_la_CFLAGS) $(CFLAGS) -c -o libscirandlib_la-sci_grand.lo `test -f 'sci_gateway/sci_grand.c' || echo '$(srcdir)/'`sci_gateway/sci_grand.c
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<
@@ -599,90 +602,90 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-librandlib_la_demosDATA: $(librandlib_la_demos_DATA)
+install-libscirandlib_la_demosDATA: $(libscirandlib_la_demos_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(librandlib_la_demosdir)" || $(MKDIR_P) "$(DESTDIR)$(librandlib_la_demosdir)"
-	@list='$(librandlib_la_demos_DATA)'; for p in $$list; do \
+	test -z "$(libscirandlib_la_demosdir)" || $(MKDIR_P) "$(DESTDIR)$(libscirandlib_la_demosdir)"
+	@list='$(libscirandlib_la_demos_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(librandlib_la_demosDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(librandlib_la_demosdir)/$$f'"; \
-	  $(librandlib_la_demosDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(librandlib_la_demosdir)/$$f"; \
+	  echo " $(libscirandlib_la_demosDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscirandlib_la_demosdir)/$$f'"; \
+	  $(libscirandlib_la_demosDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscirandlib_la_demosdir)/$$f"; \
 	done
 
-uninstall-librandlib_la_demosDATA:
+uninstall-libscirandlib_la_demosDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(librandlib_la_demos_DATA)'; for p in $$list; do \
+	@list='$(libscirandlib_la_demos_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(librandlib_la_demosdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(librandlib_la_demosdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscirandlib_la_demosdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscirandlib_la_demosdir)/$$f"; \
 	done
-install-librandlib_la_etcDATA: $(librandlib_la_etc_DATA)
+install-libscirandlib_la_etcDATA: $(libscirandlib_la_etc_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(librandlib_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(librandlib_la_etcdir)"
-	@list='$(librandlib_la_etc_DATA)'; for p in $$list; do \
+	test -z "$(libscirandlib_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libscirandlib_la_etcdir)"
+	@list='$(libscirandlib_la_etc_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(librandlib_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(librandlib_la_etcdir)/$$f'"; \
-	  $(librandlib_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(librandlib_la_etcdir)/$$f"; \
+	  echo " $(libscirandlib_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscirandlib_la_etcdir)/$$f'"; \
+	  $(libscirandlib_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscirandlib_la_etcdir)/$$f"; \
 	done
 
-uninstall-librandlib_la_etcDATA:
+uninstall-libscirandlib_la_etcDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(librandlib_la_etc_DATA)'; for p in $$list; do \
+	@list='$(libscirandlib_la_etc_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(librandlib_la_etcdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(librandlib_la_etcdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscirandlib_la_etcdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscirandlib_la_etcdir)/$$f"; \
 	done
-install-librandlib_la_rootDATA: $(librandlib_la_root_DATA)
+install-libscirandlib_la_rootDATA: $(libscirandlib_la_root_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(librandlib_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(librandlib_la_rootdir)"
-	@list='$(librandlib_la_root_DATA)'; for p in $$list; do \
+	test -z "$(libscirandlib_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libscirandlib_la_rootdir)"
+	@list='$(libscirandlib_la_root_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(librandlib_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(librandlib_la_rootdir)/$$f'"; \
-	  $(librandlib_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(librandlib_la_rootdir)/$$f"; \
+	  echo " $(libscirandlib_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscirandlib_la_rootdir)/$$f'"; \
+	  $(libscirandlib_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscirandlib_la_rootdir)/$$f"; \
 	done
 
-uninstall-librandlib_la_rootDATA:
+uninstall-libscirandlib_la_rootDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(librandlib_la_root_DATA)'; for p in $$list; do \
+	@list='$(libscirandlib_la_root_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(librandlib_la_rootdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(librandlib_la_rootdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscirandlib_la_rootdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscirandlib_la_rootdir)/$$f"; \
 	done
-install-librandlib_la_sci_gatewayDATA: $(librandlib_la_sci_gateway_DATA)
+install-libscirandlib_la_sci_gatewayDATA: $(libscirandlib_la_sci_gateway_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(librandlib_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(librandlib_la_sci_gatewaydir)"
-	@list='$(librandlib_la_sci_gateway_DATA)'; for p in $$list; do \
+	test -z "$(libscirandlib_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libscirandlib_la_sci_gatewaydir)"
+	@list='$(libscirandlib_la_sci_gateway_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(librandlib_la_sci_gatewayDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(librandlib_la_sci_gatewaydir)/$$f'"; \
-	  $(librandlib_la_sci_gatewayDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(librandlib_la_sci_gatewaydir)/$$f"; \
+	  echo " $(libscirandlib_la_sci_gatewayDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscirandlib_la_sci_gatewaydir)/$$f'"; \
+	  $(libscirandlib_la_sci_gatewayDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscirandlib_la_sci_gatewaydir)/$$f"; \
 	done
 
-uninstall-librandlib_la_sci_gatewayDATA:
+uninstall-libscirandlib_la_sci_gatewayDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(librandlib_la_sci_gateway_DATA)'; for p in $$list; do \
+	@list='$(libscirandlib_la_sci_gateway_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(librandlib_la_sci_gatewaydir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(librandlib_la_sci_gatewaydir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscirandlib_la_sci_gatewaydir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscirandlib_la_sci_gatewaydir)/$$f"; \
 	done
-install-librandlib_la_includeHEADERS: $(librandlib_la_include_HEADERS)
+install-libscirandlib_la_includeHEADERS: $(libscirandlib_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
-	test -z "$(librandlib_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(librandlib_la_includedir)"
-	@list='$(librandlib_la_include_HEADERS)'; for p in $$list; do \
+	test -z "$(libscirandlib_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscirandlib_la_includedir)"
+	@list='$(libscirandlib_la_include_HEADERS)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(librandlib_la_includeHEADERS_INSTALL) '$$d$$p' '$(DESTDIR)$(librandlib_la_includedir)/$$f'"; \
-	  $(librandlib_la_includeHEADERS_INSTALL) "$$d$$p" "$(DESTDIR)$(librandlib_la_includedir)/$$f"; \
+	  echo " $(libscirandlib_la_includeHEADERS_INSTALL) '$$d$$p' '$(DESTDIR)$(libscirandlib_la_includedir)/$$f'"; \
+	  $(libscirandlib_la_includeHEADERS_INSTALL) "$$d$$p" "$(DESTDIR)$(libscirandlib_la_includedir)/$$f"; \
 	done
 
-uninstall-librandlib_la_includeHEADERS:
+uninstall-libscirandlib_la_includeHEADERS:
 	@$(NORMAL_UNINSTALL)
-	@list='$(librandlib_la_include_HEADERS)'; for p in $$list; do \
+	@list='$(libscirandlib_la_include_HEADERS)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(librandlib_la_includedir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(librandlib_la_includedir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscirandlib_la_includedir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscirandlib_la_includedir)/$$f"; \
 	done
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
@@ -763,7 +766,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(librandlib_la_demosdir)" "$(DESTDIR)$(librandlib_la_etcdir)" "$(DESTDIR)$(librandlib_la_rootdir)" "$(DESTDIR)$(librandlib_la_sci_gatewaydir)" "$(DESTDIR)$(librandlib_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libscirandlib_la_demosdir)" "$(DESTDIR)$(libscirandlib_la_etcdir)" "$(DESTDIR)$(libscirandlib_la_rootdir)" "$(DESTDIR)$(libscirandlib_la_sci_gatewaydir)" "$(DESTDIR)$(libscirandlib_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -811,11 +814,11 @@ info: info-am
 
 info-am:
 
-install-data-am: install-data-local install-librandlib_la_demosDATA \
-	install-librandlib_la_etcDATA \
-	install-librandlib_la_includeHEADERS \
-	install-librandlib_la_rootDATA \
-	install-librandlib_la_sci_gatewayDATA
+install-data-am: install-data-local install-libscirandlib_la_demosDATA \
+	install-libscirandlib_la_etcDATA \
+	install-libscirandlib_la_includeHEADERS \
+	install-libscirandlib_la_rootDATA \
+	install-libscirandlib_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
 
@@ -854,11 +857,11 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libLTLIBRARIES \
-	uninstall-librandlib_la_demosDATA \
-	uninstall-librandlib_la_etcDATA \
-	uninstall-librandlib_la_includeHEADERS \
-	uninstall-librandlib_la_rootDATA \
-	uninstall-librandlib_la_sci_gatewayDATA
+	uninstall-libscirandlib_la_demosDATA \
+	uninstall-libscirandlib_la_etcDATA \
+	uninstall-libscirandlib_la_includeHEADERS \
+	uninstall-libscirandlib_la_rootDATA \
+	uninstall-libscirandlib_la_sci_gatewayDATA
 
 .MAKE: install-am install-strip
 
@@ -870,21 +873,21 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	install-data-local install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
-	install-libLTLIBRARIES install-librandlib_la_demosDATA \
-	install-librandlib_la_etcDATA \
-	install-librandlib_la_includeHEADERS \
-	install-librandlib_la_rootDATA \
-	install-librandlib_la_sci_gatewayDATA install-man install-pdf \
-	install-pdf-am install-ps install-ps-am install-strip \
-	installcheck installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-compile \
-	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
-	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
-	uninstall-librandlib_la_demosDATA \
-	uninstall-librandlib_la_etcDATA \
-	uninstall-librandlib_la_includeHEADERS \
-	uninstall-librandlib_la_rootDATA \
-	uninstall-librandlib_la_sci_gatewayDATA
+	install-libLTLIBRARIES install-libscirandlib_la_demosDATA \
+	install-libscirandlib_la_etcDATA \
+	install-libscirandlib_la_includeHEADERS \
+	install-libscirandlib_la_rootDATA \
+	install-libscirandlib_la_sci_gatewayDATA install-man \
+	install-pdf install-pdf-am install-ps install-ps-am \
+	install-strip installcheck installcheck-am installdirs \
+	maintainer-clean maintainer-clean-generic mostlyclean \
+	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
+	pdf pdf-am ps ps-am tags uninstall uninstall-am \
+	uninstall-libLTLIBRARIES uninstall-libscirandlib_la_demosDATA \
+	uninstall-libscirandlib_la_etcDATA \
+	uninstall-libscirandlib_la_includeHEADERS \
+	uninstall-libscirandlib_la_rootDATA \
+	uninstall-libscirandlib_la_sci_gatewayDATA
 
 
 #.xml.htm:

@@ -9,23 +9,23 @@ target=$(datadir)/others
 
 
 #### others : Conf files ####
-libothers_la_rootdir = $(target)
-libothers_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libsciothers_la_rootdir = $(target)
+libsciothers_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
 #### others : Scilab macros ###
-libothers_la_macrodir = $(target)/macros
-libothers_la_macro_DATA22 = macros/edit.sci macros/edit.bin macros/names macros/lib macros/buildmacros.sce
+libsciothers_la_macrodir = $(target)/macros
+libsciothers_la_macro_DATA22 = macros/edit.sci macros/edit.bin macros/names macros/lib macros/buildmacros.sce
 
 
 #### others : init scripts #### 
-libothers_la_etcdir = $(target)/etc
-libothers_la_etc_DATA = etc/others.quit etc/others.start
+libsciothers_la_etcdir = $(target)/etc
+libsciothers_la_etc_DATA = etc/others.quit etc/others.start
 
 
 #### others : demos files - velpic ####
-libothers_la_demosdir=$(target)
-nobase_libothers_la_demos_DATA = demos/velpic/id_rgn.desc \
+libsciothers_la_demosdir=$(target)
+nobase_libsciothers_la_demos_DATA = demos/velpic/id_rgn.desc \
 demos/velpic/velpic.sci \
 demos/velpic/plotdb.sci \
 demos/velpic/velpic.1 \

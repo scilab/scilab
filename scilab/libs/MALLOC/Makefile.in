@@ -39,7 +39,7 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 subdir = libs/MALLOC
-DIST_COMMON = $(libmalloc_la_include_HEADERS) $(srcdir)/Makefile.am \
+DIST_COMMON = $(libscimalloc_la_include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fortran.m4 \
@@ -61,16 +61,16 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
-	"$(DESTDIR)$(libmalloc_la_includedir)"
+	"$(DESTDIR)$(libscimalloc_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
-libmalloc_la_DEPENDENCIES =
-am__objects_1 = libmalloc_la-sci_mem_alloc.lo \
-	libmalloc_la-getmaxMALLOC.lo
-am_libmalloc_la_OBJECTS = $(am__objects_1)
-libmalloc_la_OBJECTS = $(am_libmalloc_la_OBJECTS)
-libmalloc_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libmalloc_la_CFLAGS) \
+libscimalloc_la_DEPENDENCIES =
+am__objects_1 = libscimalloc_la-sci_mem_alloc.lo \
+	libscimalloc_la-getmaxMALLOC.lo
+am_libscimalloc_la_OBJECTS = $(am__objects_1)
+libscimalloc_la_OBJECTS = $(am_libscimalloc_la_OBJECTS)
+libscimalloc_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libscimalloc_la_CFLAGS) \
 	$(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
@@ -84,10 +84,10 @@ CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libmalloc_la_SOURCES)
-DIST_SOURCES = $(libmalloc_la_SOURCES)
-libmalloc_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
-HEADERS = $(libmalloc_la_include_HEADERS)
+SOURCES = $(libscimalloc_la_SOURCES)
+DIST_SOURCES = $(libscimalloc_la_SOURCES)
+libscimalloc_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
+HEADERS = $(libscimalloc_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -233,16 +233,16 @@ tcldir = @tcldir@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 MALLOC_C_SOURCES = src/sci_mem_alloc.c src/getmaxMALLOC.c
-libmalloc_la_includedir = $(includedir)/malloc
-libmalloc_la_include_HEADERS = includes/sci_mem_alloc.h \
+libscimalloc_la_includedir = $(includedir)/malloc
+libscimalloc_la_include_HEADERS = includes/sci_mem_alloc.h \
 includes/MALLOC.h \
 includes/getmaxMALLOC.h
 
-libmalloc_la_CFLAGS = 
-lib_LTLIBRARIES = libmalloc.la
-libmalloc_la_SOURCES = $(MALLOC_C_SOURCES)
-libmalloc_la_LIBADD = 
-libmalloc_la_PKGCONFIG = malloc.pc
+libscimalloc_la_CFLAGS = 
+lib_LTLIBRARIES = libscimalloc.la
+libscimalloc_la_SOURCES = $(MALLOC_C_SOURCES)
+libscimalloc_la_LIBADD = 
+libscimalloc_la_PKGCONFIG = malloc.pc
 all: all-am
 
 .SUFFIXES:
@@ -303,8 +303,8 @@ clean-libLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
-libmalloc.la: $(libmalloc_la_OBJECTS) $(libmalloc_la_DEPENDENCIES) 
-	$(libmalloc_la_LINK) -rpath $(libdir) $(libmalloc_la_OBJECTS) $(libmalloc_la_LIBADD) $(LIBS)
+libscimalloc.la: $(libscimalloc_la_OBJECTS) $(libscimalloc_la_DEPENDENCIES) 
+	$(libscimalloc_la_LINK) -rpath $(libdir) $(libscimalloc_la_OBJECTS) $(libscimalloc_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -312,8 +312,8 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmalloc_la-getmaxMALLOC.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmalloc_la-sci_mem_alloc.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimalloc_la-getmaxMALLOC.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimalloc_la-sci_mem_alloc.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -336,41 +336,41 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
-libmalloc_la-sci_mem_alloc.lo: src/sci_mem_alloc.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmalloc_la_CFLAGS) $(CFLAGS) -MT libmalloc_la-sci_mem_alloc.lo -MD -MP -MF $(DEPDIR)/libmalloc_la-sci_mem_alloc.Tpo -c -o libmalloc_la-sci_mem_alloc.lo `test -f 'src/sci_mem_alloc.c' || echo '$(srcdir)/'`src/sci_mem_alloc.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libmalloc_la-sci_mem_alloc.Tpo $(DEPDIR)/libmalloc_la-sci_mem_alloc.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/sci_mem_alloc.c' object='libmalloc_la-sci_mem_alloc.lo' libtool=yes @AMDEPBACKSLASH@
+libscimalloc_la-sci_mem_alloc.lo: src/sci_mem_alloc.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimalloc_la_CFLAGS) $(CFLAGS) -MT libscimalloc_la-sci_mem_alloc.lo -MD -MP -MF $(DEPDIR)/libscimalloc_la-sci_mem_alloc.Tpo -c -o libscimalloc_la-sci_mem_alloc.lo `test -f 'src/sci_mem_alloc.c' || echo '$(srcdir)/'`src/sci_mem_alloc.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscimalloc_la-sci_mem_alloc.Tpo $(DEPDIR)/libscimalloc_la-sci_mem_alloc.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/sci_mem_alloc.c' object='libscimalloc_la-sci_mem_alloc.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmalloc_la_CFLAGS) $(CFLAGS) -c -o libmalloc_la-sci_mem_alloc.lo `test -f 'src/sci_mem_alloc.c' || echo '$(srcdir)/'`src/sci_mem_alloc.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimalloc_la_CFLAGS) $(CFLAGS) -c -o libscimalloc_la-sci_mem_alloc.lo `test -f 'src/sci_mem_alloc.c' || echo '$(srcdir)/'`src/sci_mem_alloc.c
 
-libmalloc_la-getmaxMALLOC.lo: src/getmaxMALLOC.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmalloc_la_CFLAGS) $(CFLAGS) -MT libmalloc_la-getmaxMALLOC.lo -MD -MP -MF $(DEPDIR)/libmalloc_la-getmaxMALLOC.Tpo -c -o libmalloc_la-getmaxMALLOC.lo `test -f 'src/getmaxMALLOC.c' || echo '$(srcdir)/'`src/getmaxMALLOC.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libmalloc_la-getmaxMALLOC.Tpo $(DEPDIR)/libmalloc_la-getmaxMALLOC.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/getmaxMALLOC.c' object='libmalloc_la-getmaxMALLOC.lo' libtool=yes @AMDEPBACKSLASH@
+libscimalloc_la-getmaxMALLOC.lo: src/getmaxMALLOC.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimalloc_la_CFLAGS) $(CFLAGS) -MT libscimalloc_la-getmaxMALLOC.lo -MD -MP -MF $(DEPDIR)/libscimalloc_la-getmaxMALLOC.Tpo -c -o libscimalloc_la-getmaxMALLOC.lo `test -f 'src/getmaxMALLOC.c' || echo '$(srcdir)/'`src/getmaxMALLOC.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscimalloc_la-getmaxMALLOC.Tpo $(DEPDIR)/libscimalloc_la-getmaxMALLOC.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/getmaxMALLOC.c' object='libscimalloc_la-getmaxMALLOC.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmalloc_la_CFLAGS) $(CFLAGS) -c -o libmalloc_la-getmaxMALLOC.lo `test -f 'src/getmaxMALLOC.c' || echo '$(srcdir)/'`src/getmaxMALLOC.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimalloc_la_CFLAGS) $(CFLAGS) -c -o libscimalloc_la-getmaxMALLOC.lo `test -f 'src/getmaxMALLOC.c' || echo '$(srcdir)/'`src/getmaxMALLOC.c
 
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libmalloc_la_includeHEADERS: $(libmalloc_la_include_HEADERS)
+install-libscimalloc_la_includeHEADERS: $(libscimalloc_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
-	test -z "$(libmalloc_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libmalloc_la_includedir)"
-	@list='$(libmalloc_la_include_HEADERS)'; for p in $$list; do \
+	test -z "$(libscimalloc_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscimalloc_la_includedir)"
+	@list='$(libscimalloc_la_include_HEADERS)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libmalloc_la_includeHEADERS_INSTALL) '$$d$$p' '$(DESTDIR)$(libmalloc_la_includedir)/$$f'"; \
-	  $(libmalloc_la_includeHEADERS_INSTALL) "$$d$$p" "$(DESTDIR)$(libmalloc_la_includedir)/$$f"; \
+	  echo " $(libscimalloc_la_includeHEADERS_INSTALL) '$$d$$p' '$(DESTDIR)$(libscimalloc_la_includedir)/$$f'"; \
+	  $(libscimalloc_la_includeHEADERS_INSTALL) "$$d$$p" "$(DESTDIR)$(libscimalloc_la_includedir)/$$f"; \
 	done
 
-uninstall-libmalloc_la_includeHEADERS:
+uninstall-libscimalloc_la_includeHEADERS:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libmalloc_la_include_HEADERS)'; for p in $$list; do \
+	@list='$(libscimalloc_la_include_HEADERS)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libmalloc_la_includedir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libmalloc_la_includedir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscimalloc_la_includedir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscimalloc_la_includedir)/$$f"; \
 	done
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
@@ -451,7 +451,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libmalloc_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libscimalloc_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -499,7 +499,7 @@ info: info-am
 
 info-am:
 
-install-data-am: install-libmalloc_la_includeHEADERS
+install-data-am: install-libscimalloc_la_includeHEADERS
 
 install-dvi: install-dvi-am
 
@@ -536,7 +536,7 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libLTLIBRARIES \
-	uninstall-libmalloc_la_includeHEADERS
+	uninstall-libscimalloc_la_includeHEADERS
 
 .MAKE: install-am install-strip
 
@@ -547,14 +547,14 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	install install-am install-data install-data-am install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-info install-info-am \
-	install-libLTLIBRARIES install-libmalloc_la_includeHEADERS \
+	install-libLTLIBRARIES install-libscimalloc_la_includeHEADERS \
 	install-man install-pdf install-pdf-am install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
 	installdirs maintainer-clean maintainer-clean-generic \
 	mostlyclean mostlyclean-compile mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
 	uninstall-am uninstall-libLTLIBRARIES \
-	uninstall-libmalloc_la_includeHEADERS
+	uninstall-libscimalloc_la_includeHEADERS
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

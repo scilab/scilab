@@ -39,8 +39,9 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = $(libboolean_la_include_HEADERS) $(srcdir)/Makefile.am \
-	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
+DIST_COMMON = $(libsciboolean_la_include_HEADERS) \
+	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+	$(top_srcdir)/Makefile.incl.am
 subdir = modules/boolean
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fortran.m4 \
@@ -62,24 +63,25 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
-	"$(DESTDIR)$(libboolean_la_etcdir)" \
-	"$(DESTDIR)$(libboolean_la_rootdir)" \
-	"$(DESTDIR)$(libboolean_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libboolean_la_includedir)"
+	"$(DESTDIR)$(libsciboolean_la_etcdir)" \
+	"$(DESTDIR)$(libsciboolean_la_rootdir)" \
+	"$(DESTDIR)$(libsciboolean_la_sci_gatewaydir)" \
+	"$(DESTDIR)$(libsciboolean_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
-libboolean_la_DEPENDENCIES = $(top_builddir)/libs/blas/libblas.la \
-	$(top_builddir)/modules/arnoldi/libarnoldi.la \
+libsciboolean_la_DEPENDENCIES =  \
+	$(top_builddir)/libs/blas/libsciblas.la \
+	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la
-am__objects_1 = libboolean_la-matboolean.lo libboolean_la-vect_or.lo \
-	libboolean_la-vect_and.lo
+am__objects_1 = libsciboolean_la-matboolean.lo \
+	libsciboolean_la-vect_or.lo libsciboolean_la-vect_and.lo
 am__objects_2 = logic.lo find.lo
-am__objects_3 = libboolean_la-sci_and.lo libboolean_la-sci_or.lo \
-	libboolean_la-gw_boolean.lo
+am__objects_3 = libsciboolean_la-sci_and.lo libsciboolean_la-sci_or.lo \
+	libsciboolean_la-gw_boolean.lo
 am__objects_4 = sci_bool2s.lo sci_find.lo
-am_libboolean_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
+am_libsciboolean_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3) $(am__objects_4)
-libboolean_la_OBJECTS = $(am_libboolean_la_OBJECTS)
+libsciboolean_la_OBJECTS = $(am_libsciboolean_la_OBJECTS)
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -99,15 +101,15 @@ F77LD = $(F77)
 F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libboolean_la_SOURCES)
-DIST_SOURCES = $(libboolean_la_SOURCES)
-libboolean_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libboolean_la_rootDATA_INSTALL = $(INSTALL_DATA)
-libboolean_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libboolean_la_etc_DATA) $(libboolean_la_root_DATA) \
-	$(libboolean_la_sci_gateway_DATA)
-libboolean_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
-HEADERS = $(libboolean_la_include_HEADERS)
+SOURCES = $(libsciboolean_la_SOURCES)
+DIST_SOURCES = $(libsciboolean_la_SOURCES)
+libsciboolean_la_etcDATA_INSTALL = $(INSTALL_DATA)
+libsciboolean_la_rootDATA_INSTALL = $(INSTALL_DATA)
+libsciboolean_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(libsciboolean_la_etc_DATA) $(libsciboolean_la_root_DATA) \
+	$(libsciboolean_la_sci_gateway_DATA)
+libsciboolean_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
+HEADERS = $(libsciboolean_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -266,42 +268,42 @@ sci_gateway/c/gw_boolean.c
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_bool2s.f \
 sci_gateway/fortran/sci_find.f
 
-libboolean_la_CFLAGS = -Iincludes/ 
-lib_LTLIBRARIES = libboolean.la
-libboolean_la_SOURCES = $(BOOLEAN_C_SOURCES) $(BOOLEAN_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-libboolean_la_LIBADD = \
-	$(top_builddir)/libs/blas/libblas.la \
-	$(top_builddir)/modules/arnoldi/libarnoldi.la \
+libsciboolean_la_CFLAGS = -Iincludes/ 
+lib_LTLIBRARIES = libsciboolean.la
+libsciboolean_la_SOURCES = $(BOOLEAN_C_SOURCES) $(BOOLEAN_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libsciboolean_la_LIBADD = \
+	$(top_builddir)/libs/blas/libsciblas.la \
+	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
 
-#$(top_builddir)/libs/blas/libblas.la:
-#	(cd $(top_builddir)/libs/blas/; make libblas.la)
+#$(top_builddir)/libs/blas/libsciblas.la:
+#	(cd $(top_builddir)/libs/blas/; make libsciblas.la)
 #SUFFIXES = .la
 #.la:
 #	echo "oh oh"
-libboolean_la_PKGCONFIG = boolean.pc
+libsciboolean_la_PKGCONFIG = boolean.pc
 #### Target ######
 target = $(datadir)/boolean
 
 #### boolean : Conf files ####
-libboolean_la_rootdir = $(target)
-libboolean_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libsciboolean_la_rootdir = $(target)
+libsciboolean_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### boolean : Scilab macros ###
-libboolean_la_macrodir = $(target)/macros
-libboolean_la_macro_DATA22 = macros/buildmacros.sce
+libsciboolean_la_macrodir = $(target)/macros
+libsciboolean_la_macro_DATA22 = macros/buildmacros.sce
 
 #### boolean : init scripts #### 
-libboolean_la_etcdir = $(target)/etc
-libboolean_la_etc_DATA = etc/boolean.quit etc/boolean.start
+libsciboolean_la_etcdir = $(target)/etc
+libsciboolean_la_etc_DATA = etc/boolean.quit etc/boolean.start
 
 #### boolean : gateway declaration #### 
-libboolean_la_sci_gatewaydir = $(target)/sci_gateway
-libboolean_la_sci_gateway_DATA = sci_gateway/boolean
+libsciboolean_la_sci_gatewaydir = $(target)/sci_gateway
+libsciboolean_la_sci_gateway_DATA = sci_gateway/boolean
 
 #### boolean : include files ####
-libboolean_la_includedir = $(includedir)/boolean
-libboolean_la_include_HEADERS = includes/gw_boolean.h
+libsciboolean_la_includedir = $(includedir)/boolean
+libsciboolean_la_include_HEADERS = includes/gw_boolean.h
 
 #SUFFIXES = .xml .sci .htm
 SUFFIXES = .sci
@@ -378,8 +380,8 @@ clean-libLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
-libboolean.la: $(libboolean_la_OBJECTS) $(libboolean_la_DEPENDENCIES) 
-	$(F77LINK) -rpath $(libdir) $(libboolean_la_OBJECTS) $(libboolean_la_LIBADD) $(LIBS)
+libsciboolean.la: $(libsciboolean_la_OBJECTS) $(libsciboolean_la_DEPENDENCIES) 
+	$(F77LINK) -rpath $(libdir) $(libsciboolean_la_OBJECTS) $(libsciboolean_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -387,12 +389,12 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libboolean_la-gw_boolean.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libboolean_la-matboolean.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libboolean_la-sci_and.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libboolean_la-sci_or.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libboolean_la-vect_and.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libboolean_la-vect_or.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciboolean_la-gw_boolean.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciboolean_la-matboolean.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciboolean_la-sci_and.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciboolean_la-sci_or.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciboolean_la-vect_and.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciboolean_la-vect_or.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -415,47 +417,47 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
-libboolean_la-matboolean.lo: src/c/matboolean.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libboolean_la_CFLAGS) $(CFLAGS) -MT libboolean_la-matboolean.lo -MD -MP -MF $(DEPDIR)/libboolean_la-matboolean.Tpo -c -o libboolean_la-matboolean.lo `test -f 'src/c/matboolean.c' || echo '$(srcdir)/'`src/c/matboolean.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libboolean_la-matboolean.Tpo $(DEPDIR)/libboolean_la-matboolean.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/matboolean.c' object='libboolean_la-matboolean.lo' libtool=yes @AMDEPBACKSLASH@
+libsciboolean_la-matboolean.lo: src/c/matboolean.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciboolean_la_CFLAGS) $(CFLAGS) -MT libsciboolean_la-matboolean.lo -MD -MP -MF $(DEPDIR)/libsciboolean_la-matboolean.Tpo -c -o libsciboolean_la-matboolean.lo `test -f 'src/c/matboolean.c' || echo '$(srcdir)/'`src/c/matboolean.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciboolean_la-matboolean.Tpo $(DEPDIR)/libsciboolean_la-matboolean.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/matboolean.c' object='libsciboolean_la-matboolean.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libboolean_la_CFLAGS) $(CFLAGS) -c -o libboolean_la-matboolean.lo `test -f 'src/c/matboolean.c' || echo '$(srcdir)/'`src/c/matboolean.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciboolean_la_CFLAGS) $(CFLAGS) -c -o libsciboolean_la-matboolean.lo `test -f 'src/c/matboolean.c' || echo '$(srcdir)/'`src/c/matboolean.c
 
-libboolean_la-vect_or.lo: src/c/vect_or.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libboolean_la_CFLAGS) $(CFLAGS) -MT libboolean_la-vect_or.lo -MD -MP -MF $(DEPDIR)/libboolean_la-vect_or.Tpo -c -o libboolean_la-vect_or.lo `test -f 'src/c/vect_or.c' || echo '$(srcdir)/'`src/c/vect_or.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libboolean_la-vect_or.Tpo $(DEPDIR)/libboolean_la-vect_or.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/vect_or.c' object='libboolean_la-vect_or.lo' libtool=yes @AMDEPBACKSLASH@
+libsciboolean_la-vect_or.lo: src/c/vect_or.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciboolean_la_CFLAGS) $(CFLAGS) -MT libsciboolean_la-vect_or.lo -MD -MP -MF $(DEPDIR)/libsciboolean_la-vect_or.Tpo -c -o libsciboolean_la-vect_or.lo `test -f 'src/c/vect_or.c' || echo '$(srcdir)/'`src/c/vect_or.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciboolean_la-vect_or.Tpo $(DEPDIR)/libsciboolean_la-vect_or.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/vect_or.c' object='libsciboolean_la-vect_or.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libboolean_la_CFLAGS) $(CFLAGS) -c -o libboolean_la-vect_or.lo `test -f 'src/c/vect_or.c' || echo '$(srcdir)/'`src/c/vect_or.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciboolean_la_CFLAGS) $(CFLAGS) -c -o libsciboolean_la-vect_or.lo `test -f 'src/c/vect_or.c' || echo '$(srcdir)/'`src/c/vect_or.c
 
-libboolean_la-vect_and.lo: src/c/vect_and.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libboolean_la_CFLAGS) $(CFLAGS) -MT libboolean_la-vect_and.lo -MD -MP -MF $(DEPDIR)/libboolean_la-vect_and.Tpo -c -o libboolean_la-vect_and.lo `test -f 'src/c/vect_and.c' || echo '$(srcdir)/'`src/c/vect_and.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libboolean_la-vect_and.Tpo $(DEPDIR)/libboolean_la-vect_and.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/vect_and.c' object='libboolean_la-vect_and.lo' libtool=yes @AMDEPBACKSLASH@
+libsciboolean_la-vect_and.lo: src/c/vect_and.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciboolean_la_CFLAGS) $(CFLAGS) -MT libsciboolean_la-vect_and.lo -MD -MP -MF $(DEPDIR)/libsciboolean_la-vect_and.Tpo -c -o libsciboolean_la-vect_and.lo `test -f 'src/c/vect_and.c' || echo '$(srcdir)/'`src/c/vect_and.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciboolean_la-vect_and.Tpo $(DEPDIR)/libsciboolean_la-vect_and.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/vect_and.c' object='libsciboolean_la-vect_and.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libboolean_la_CFLAGS) $(CFLAGS) -c -o libboolean_la-vect_and.lo `test -f 'src/c/vect_and.c' || echo '$(srcdir)/'`src/c/vect_and.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciboolean_la_CFLAGS) $(CFLAGS) -c -o libsciboolean_la-vect_and.lo `test -f 'src/c/vect_and.c' || echo '$(srcdir)/'`src/c/vect_and.c
 
-libboolean_la-sci_and.lo: sci_gateway/c/sci_and.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libboolean_la_CFLAGS) $(CFLAGS) -MT libboolean_la-sci_and.lo -MD -MP -MF $(DEPDIR)/libboolean_la-sci_and.Tpo -c -o libboolean_la-sci_and.lo `test -f 'sci_gateway/c/sci_and.c' || echo '$(srcdir)/'`sci_gateway/c/sci_and.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libboolean_la-sci_and.Tpo $(DEPDIR)/libboolean_la-sci_and.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_and.c' object='libboolean_la-sci_and.lo' libtool=yes @AMDEPBACKSLASH@
+libsciboolean_la-sci_and.lo: sci_gateway/c/sci_and.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciboolean_la_CFLAGS) $(CFLAGS) -MT libsciboolean_la-sci_and.lo -MD -MP -MF $(DEPDIR)/libsciboolean_la-sci_and.Tpo -c -o libsciboolean_la-sci_and.lo `test -f 'sci_gateway/c/sci_and.c' || echo '$(srcdir)/'`sci_gateway/c/sci_and.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciboolean_la-sci_and.Tpo $(DEPDIR)/libsciboolean_la-sci_and.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_and.c' object='libsciboolean_la-sci_and.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libboolean_la_CFLAGS) $(CFLAGS) -c -o libboolean_la-sci_and.lo `test -f 'sci_gateway/c/sci_and.c' || echo '$(srcdir)/'`sci_gateway/c/sci_and.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciboolean_la_CFLAGS) $(CFLAGS) -c -o libsciboolean_la-sci_and.lo `test -f 'sci_gateway/c/sci_and.c' || echo '$(srcdir)/'`sci_gateway/c/sci_and.c
 
-libboolean_la-sci_or.lo: sci_gateway/c/sci_or.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libboolean_la_CFLAGS) $(CFLAGS) -MT libboolean_la-sci_or.lo -MD -MP -MF $(DEPDIR)/libboolean_la-sci_or.Tpo -c -o libboolean_la-sci_or.lo `test -f 'sci_gateway/c/sci_or.c' || echo '$(srcdir)/'`sci_gateway/c/sci_or.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libboolean_la-sci_or.Tpo $(DEPDIR)/libboolean_la-sci_or.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_or.c' object='libboolean_la-sci_or.lo' libtool=yes @AMDEPBACKSLASH@
+libsciboolean_la-sci_or.lo: sci_gateway/c/sci_or.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciboolean_la_CFLAGS) $(CFLAGS) -MT libsciboolean_la-sci_or.lo -MD -MP -MF $(DEPDIR)/libsciboolean_la-sci_or.Tpo -c -o libsciboolean_la-sci_or.lo `test -f 'sci_gateway/c/sci_or.c' || echo '$(srcdir)/'`sci_gateway/c/sci_or.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciboolean_la-sci_or.Tpo $(DEPDIR)/libsciboolean_la-sci_or.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_or.c' object='libsciboolean_la-sci_or.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libboolean_la_CFLAGS) $(CFLAGS) -c -o libboolean_la-sci_or.lo `test -f 'sci_gateway/c/sci_or.c' || echo '$(srcdir)/'`sci_gateway/c/sci_or.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciboolean_la_CFLAGS) $(CFLAGS) -c -o libsciboolean_la-sci_or.lo `test -f 'sci_gateway/c/sci_or.c' || echo '$(srcdir)/'`sci_gateway/c/sci_or.c
 
-libboolean_la-gw_boolean.lo: sci_gateway/c/gw_boolean.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libboolean_la_CFLAGS) $(CFLAGS) -MT libboolean_la-gw_boolean.lo -MD -MP -MF $(DEPDIR)/libboolean_la-gw_boolean.Tpo -c -o libboolean_la-gw_boolean.lo `test -f 'sci_gateway/c/gw_boolean.c' || echo '$(srcdir)/'`sci_gateway/c/gw_boolean.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libboolean_la-gw_boolean.Tpo $(DEPDIR)/libboolean_la-gw_boolean.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/gw_boolean.c' object='libboolean_la-gw_boolean.lo' libtool=yes @AMDEPBACKSLASH@
+libsciboolean_la-gw_boolean.lo: sci_gateway/c/gw_boolean.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciboolean_la_CFLAGS) $(CFLAGS) -MT libsciboolean_la-gw_boolean.lo -MD -MP -MF $(DEPDIR)/libsciboolean_la-gw_boolean.Tpo -c -o libsciboolean_la-gw_boolean.lo `test -f 'sci_gateway/c/gw_boolean.c' || echo '$(srcdir)/'`sci_gateway/c/gw_boolean.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciboolean_la-gw_boolean.Tpo $(DEPDIR)/libsciboolean_la-gw_boolean.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/gw_boolean.c' object='libsciboolean_la-gw_boolean.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libboolean_la_CFLAGS) $(CFLAGS) -c -o libboolean_la-gw_boolean.lo `test -f 'sci_gateway/c/gw_boolean.c' || echo '$(srcdir)/'`sci_gateway/c/gw_boolean.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciboolean_la_CFLAGS) $(CFLAGS) -c -o libsciboolean_la-gw_boolean.lo `test -f 'sci_gateway/c/gw_boolean.c' || echo '$(srcdir)/'`sci_gateway/c/gw_boolean.c
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<
@@ -483,73 +485,73 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libboolean_la_etcDATA: $(libboolean_la_etc_DATA)
+install-libsciboolean_la_etcDATA: $(libsciboolean_la_etc_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libboolean_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libboolean_la_etcdir)"
-	@list='$(libboolean_la_etc_DATA)'; for p in $$list; do \
+	test -z "$(libsciboolean_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciboolean_la_etcdir)"
+	@list='$(libsciboolean_la_etc_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libboolean_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libboolean_la_etcdir)/$$f'"; \
-	  $(libboolean_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libboolean_la_etcdir)/$$f"; \
+	  echo " $(libsciboolean_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsciboolean_la_etcdir)/$$f'"; \
+	  $(libsciboolean_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsciboolean_la_etcdir)/$$f"; \
 	done
 
-uninstall-libboolean_la_etcDATA:
+uninstall-libsciboolean_la_etcDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libboolean_la_etc_DATA)'; for p in $$list; do \
+	@list='$(libsciboolean_la_etc_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libboolean_la_etcdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libboolean_la_etcdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libsciboolean_la_etcdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libsciboolean_la_etcdir)/$$f"; \
 	done
-install-libboolean_la_rootDATA: $(libboolean_la_root_DATA)
+install-libsciboolean_la_rootDATA: $(libsciboolean_la_root_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libboolean_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libboolean_la_rootdir)"
-	@list='$(libboolean_la_root_DATA)'; for p in $$list; do \
+	test -z "$(libsciboolean_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciboolean_la_rootdir)"
+	@list='$(libsciboolean_la_root_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libboolean_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libboolean_la_rootdir)/$$f'"; \
-	  $(libboolean_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libboolean_la_rootdir)/$$f"; \
+	  echo " $(libsciboolean_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsciboolean_la_rootdir)/$$f'"; \
+	  $(libsciboolean_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsciboolean_la_rootdir)/$$f"; \
 	done
 
-uninstall-libboolean_la_rootDATA:
+uninstall-libsciboolean_la_rootDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libboolean_la_root_DATA)'; for p in $$list; do \
+	@list='$(libsciboolean_la_root_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libboolean_la_rootdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libboolean_la_rootdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libsciboolean_la_rootdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libsciboolean_la_rootdir)/$$f"; \
 	done
-install-libboolean_la_sci_gatewayDATA: $(libboolean_la_sci_gateway_DATA)
+install-libsciboolean_la_sci_gatewayDATA: $(libsciboolean_la_sci_gateway_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libboolean_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libboolean_la_sci_gatewaydir)"
-	@list='$(libboolean_la_sci_gateway_DATA)'; for p in $$list; do \
+	test -z "$(libsciboolean_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libsciboolean_la_sci_gatewaydir)"
+	@list='$(libsciboolean_la_sci_gateway_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libboolean_la_sci_gatewayDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libboolean_la_sci_gatewaydir)/$$f'"; \
-	  $(libboolean_la_sci_gatewayDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libboolean_la_sci_gatewaydir)/$$f"; \
+	  echo " $(libsciboolean_la_sci_gatewayDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsciboolean_la_sci_gatewaydir)/$$f'"; \
+	  $(libsciboolean_la_sci_gatewayDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsciboolean_la_sci_gatewaydir)/$$f"; \
 	done
 
-uninstall-libboolean_la_sci_gatewayDATA:
+uninstall-libsciboolean_la_sci_gatewayDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libboolean_la_sci_gateway_DATA)'; for p in $$list; do \
+	@list='$(libsciboolean_la_sci_gateway_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libboolean_la_sci_gatewaydir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libboolean_la_sci_gatewaydir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libsciboolean_la_sci_gatewaydir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libsciboolean_la_sci_gatewaydir)/$$f"; \
 	done
-install-libboolean_la_includeHEADERS: $(libboolean_la_include_HEADERS)
+install-libsciboolean_la_includeHEADERS: $(libsciboolean_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
-	test -z "$(libboolean_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libboolean_la_includedir)"
-	@list='$(libboolean_la_include_HEADERS)'; for p in $$list; do \
+	test -z "$(libsciboolean_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libsciboolean_la_includedir)"
+	@list='$(libsciboolean_la_include_HEADERS)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libboolean_la_includeHEADERS_INSTALL) '$$d$$p' '$(DESTDIR)$(libboolean_la_includedir)/$$f'"; \
-	  $(libboolean_la_includeHEADERS_INSTALL) "$$d$$p" "$(DESTDIR)$(libboolean_la_includedir)/$$f"; \
+	  echo " $(libsciboolean_la_includeHEADERS_INSTALL) '$$d$$p' '$(DESTDIR)$(libsciboolean_la_includedir)/$$f'"; \
+	  $(libsciboolean_la_includeHEADERS_INSTALL) "$$d$$p" "$(DESTDIR)$(libsciboolean_la_includedir)/$$f"; \
 	done
 
-uninstall-libboolean_la_includeHEADERS:
+uninstall-libsciboolean_la_includeHEADERS:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libboolean_la_include_HEADERS)'; for p in $$list; do \
+	@list='$(libsciboolean_la_include_HEADERS)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libboolean_la_includedir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libboolean_la_includedir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libsciboolean_la_includedir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libsciboolean_la_includedir)/$$f"; \
 	done
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
@@ -630,7 +632,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libboolean_la_etcdir)" "$(DESTDIR)$(libboolean_la_rootdir)" "$(DESTDIR)$(libboolean_la_sci_gatewaydir)" "$(DESTDIR)$(libboolean_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libsciboolean_la_etcdir)" "$(DESTDIR)$(libsciboolean_la_rootdir)" "$(DESTDIR)$(libsciboolean_la_sci_gatewaydir)" "$(DESTDIR)$(libsciboolean_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -678,10 +680,10 @@ info: info-am
 
 info-am:
 
-install-data-am: install-data-local install-libboolean_la_etcDATA \
-	install-libboolean_la_includeHEADERS \
-	install-libboolean_la_rootDATA \
-	install-libboolean_la_sci_gatewayDATA
+install-data-am: install-data-local install-libsciboolean_la_etcDATA \
+	install-libsciboolean_la_includeHEADERS \
+	install-libsciboolean_la_rootDATA \
+	install-libsciboolean_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
 
@@ -719,10 +721,11 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libLTLIBRARIES uninstall-libboolean_la_etcDATA \
-	uninstall-libboolean_la_includeHEADERS \
-	uninstall-libboolean_la_rootDATA \
-	uninstall-libboolean_la_sci_gatewayDATA
+uninstall-am: uninstall-libLTLIBRARIES \
+	uninstall-libsciboolean_la_etcDATA \
+	uninstall-libsciboolean_la_includeHEADERS \
+	uninstall-libsciboolean_la_rootDATA \
+	uninstall-libsciboolean_la_sci_gatewayDATA
 
 .MAKE: install-am install-strip
 
@@ -734,19 +737,19 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libboolean_la_etcDATA \
 	install-data-local install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
-	install-libLTLIBRARIES install-libboolean_la_etcDATA \
-	install-libboolean_la_includeHEADERS \
-	install-libboolean_la_rootDATA \
-	install-libboolean_la_sci_gatewayDATA install-man install-pdf \
-	install-pdf-am install-ps install-ps-am install-strip \
-	installcheck installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-compile \
-	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
-	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
-	uninstall-libboolean_la_etcDATA \
-	uninstall-libboolean_la_includeHEADERS \
-	uninstall-libboolean_la_rootDATA \
-	uninstall-libboolean_la_sci_gatewayDATA
+	install-libLTLIBRARIES install-libsciboolean_la_etcDATA \
+	install-libsciboolean_la_includeHEADERS \
+	install-libsciboolean_la_rootDATA \
+	install-libsciboolean_la_sci_gatewayDATA install-man \
+	install-pdf install-pdf-am install-ps install-ps-am \
+	install-strip installcheck installcheck-am installdirs \
+	maintainer-clean maintainer-clean-generic mostlyclean \
+	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
+	pdf pdf-am ps ps-am tags uninstall uninstall-am \
+	uninstall-libLTLIBRARIES uninstall-libsciboolean_la_etcDATA \
+	uninstall-libsciboolean_la_includeHEADERS \
+	uninstall-libsciboolean_la_rootDATA \
+	uninstall-libsciboolean_la_sci_gatewayDATA
 
 
 #.xml.htm:

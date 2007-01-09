@@ -65,26 +65,26 @@ sci_gateway/sci_dnaupd.c \
 sci_gateway/sci_dneupd.c
 
 
-libarnoldi_la_includedir=$(includedir)/arnoldi
+libsciarnoldi_la_includedir=$(includedir)/arnoldi
 
-libarnoldi_la_include_HEADERS = 
+libsciarnoldi_la_include_HEADERS = 
 
 
-libarnoldi_la_CFLAGS= -I$(top_srcdir)/libs/MALLOC/includes/ 
-libarnoldi_la_FFLAGS= -Isrc/arpack/
+libsciarnoldi_la_CFLAGS= -I$(top_srcdir)/libs/MALLOC/includes/ 
+libsciarnoldi_la_FFLAGS= -Isrc/arpack/
 
-lib_LTLIBRARIES = libarnoldi.la
+lib_LTLIBRARIES = libsciarnoldi.la
 
-libarnoldi_la_SOURCES =  $(ARNOLDI_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
+libsciarnoldi_la_SOURCES =  $(ARNOLDI_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 
-libarnoldi_la_LIBADD = $(top_builddir)/libs/lapack/liblapack.la \
-$(top_builddir)/libs/blas/libblas.la \
-$(top_builddir)/libs/MALLOC/libmalloc.la
+libsciarnoldi_la_LIBADD = $(top_builddir)/libs/lapack/libscilapack.la \
+$(top_builddir)/libs/blas/libsciblas.la \
+$(top_builddir)/libs/MALLOC/libscimalloc.la
 
 # Cyclic deps
-#$(top_builddir)/modules/core/libcore.la
+#$(top_builddir)/modules/core/libscicore.la
 
-libarnoldi_la_PKGCONFIG = arnoldi.pc
+libsciarnoldi_la_PKGCONFIG = arnoldi.pc
 
 datadir=${prefix}/modules
 #### Target ######
@@ -92,21 +92,21 @@ target=$(datadir)/arnoldi
 
 
 #### arnoldi : Conf files ####
-libarnoldi_la_rootdir = $(target)
-libarnoldi_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libsciarnoldi_la_rootdir = $(target)
+libsciarnoldi_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
 #### arnoldi : Scilab macros ###
-libarnoldi_la_macrodir = $(target)/macros
-libarnoldi_la_macro_DATA22 =  macros/buildmacros.sce
+libsciarnoldi_la_macrodir = $(target)/macros
+libsciarnoldi_la_macro_DATA22 =  macros/buildmacros.sce
 
 
 #### arnoldi : init scripts #### 
-libarnoldi_la_etcdir = $(target)/etc
-libarnoldi_la_etc_DATA = etc/arnoldi.quit etc/arnoldi.start
+libsciarnoldi_la_etcdir = $(target)/etc
+libsciarnoldi_la_etc_DATA = etc/arnoldi.quit etc/arnoldi.start
 
 #### arnoldi : gateway declaration #### 
-libarnoldi_la_sci_gatewaydir = $(target)/sci_gateway
-libarnoldi_la_sci_gateway_DATA = sci_gateway/arnoldi
+libsciarnoldi_la_sci_gatewaydir = $(target)/sci_gateway
+libsciarnoldi_la_sci_gateway_DATA = sci_gateway/arnoldi
 
 include $(top_srcdir)/Makefile.incl.am

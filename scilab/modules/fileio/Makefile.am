@@ -35,18 +35,18 @@ GATEWAY_SOURCES = \
 	sci_gateway/sci_fscanfMat.c
 
 
-libfileio_la_CFLAGS=-Iincludes/ -Isrc/ -I$(top_srcdir)/libs/MALLOC/includes/ 
+libscifileio_la_CFLAGS=-Iincludes/ -Isrc/ -I$(top_srcdir)/libs/MALLOC/includes/ 
 
-lib_LTLIBRARIES = libfileio.la
+lib_LTLIBRARIES = libscifileio.la
 
-libfileio_la_SOURCES = $(FILEIO_SOURCES) $(GATEWAY_SOURCES)
+libscifileio_la_SOURCES = $(FILEIO_SOURCES) $(GATEWAY_SOURCES)
 
-libfileio_la_LIBADD = \
-	$(top_builddir)/libs/MALLOC/libmalloc.la
+libscifileio_la_LIBADD = \
+	$(top_builddir)/libs/MALLOC/libscimalloc.la
 # cyclic deps
-#	$(top_builddir)/modules/core/libcore.la
+#	$(top_builddir)/modules/core/libscicore.la
 
-libfileio_la_PKGCONFIG = fileio.pc
+libscifileio_la_PKGCONFIG = fileio.pc
 
 datadir=${prefix}/modules
 #### Target ######
@@ -54,13 +54,13 @@ target=$(datadir)/fileio
 
 
 #### fileio : Conf files ####
-libfileio_la_rootdir = $(target)
-libfileio_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscifileio_la_rootdir = $(target)
+libscifileio_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
 #### fileio : Scilab macros ###
-libfileio_la_macrodir = $(target)/macros
-libfileio_la_macro_DATA22 = macros/fullfile.sci \
+libscifileio_la_macrodir = $(target)/macros
+libscifileio_la_macro_DATA22 = macros/fullfile.sci \
 macros/readxls.sci \
 macros/mkdir.sci \
 macros/isdir.sci \
@@ -112,23 +112,23 @@ macros/sci2excel.bin macros/names macros/lib macros/buildmacros.sce
 
 
 #### fileio : init scripts #### 
-libfileio_la_etcdir = $(target)/etc
-libfileio_la_etc_DATA = etc/fileio.quit etc/fileio.start
+libscifileio_la_etcdir = $(target)/etc
+libscifileio_la_etc_DATA = etc/fileio.quit etc/fileio.start
 
 #### fileio : gateway declaration #### 
-libfileio_la_sci_gatewaydir = $(target)/sci_gateway
-libfileio_la_sci_gateway_DATA = sci_gateway/fileio
+libscifileio_la_sci_gatewaydir = $(target)/sci_gateway
+libscifileio_la_sci_gateway_DATA = sci_gateway/fileio
 
 #### fileio : include files ####
-libfileio_la_includedir=$(includedir)/fileio
-libfileio_la_include_HEADERS = includes/FileExist.h \
+libscifileio_la_includedir=$(includedir)/fileio
+libscifileio_la_include_HEADERS = includes/FileExist.h \
 includes/gw_fileio.h \
 includes/sci_fileio.h
 
 
 #### fileio : demos files ####
-libfileio_la_demosdir=$(target)
-nobase_libfileio_la_demos_DATA = demos/excel/Testo1.xls \
+libscifileio_la_demosdir=$(target)
+nobase_libscifileio_la_demos_DATA = demos/excel/Testo1.xls \
 demos/excel/o1.xls \
 demos/excel/Test1.xls \
 demos/excel/Testobig.xls \

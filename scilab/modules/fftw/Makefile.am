@@ -5,26 +5,26 @@ target=$(datadir)/fftw
 
 
 #### fftw : Conf files ####
-libfftw_la_rootdir = $(target)
-libfftw_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscifftw_la_rootdir = $(target)
+libscifftw_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
 #### fftw : Scilab macros ###
-libfftw_la_macrodir = $(target)/macros
-libfftw_la_macro_DATA22 =   macros/names macros/lib macros/buildmacros.sce
+libscifftw_la_macrodir = $(target)/macros
+libscifftw_la_macro_DATA22 =   macros/names macros/lib macros/buildmacros.sce
 
 
 #### fftw : init scripts #### 
-libfftw_la_etcdir = $(target)/etc
-libfftw_la_etc_DATA = etc/fftw.quit etc/fftw.start
+libscifftw_la_etcdir = $(target)/etc
+libscifftw_la_etc_DATA = etc/fftw.quit etc/fftw.start
 
 #### fftw : gateway declaration #### 
-libfftw_la_sci_gatewaydir = $(target)/sci_gateway
-libfftw_la_sci_gateway_DATA = sci_gateway/fftw
+libscifftw_la_sci_gatewaydir = $(target)/sci_gateway
+libscifftw_la_sci_gateway_DATA = sci_gateway/fftw
 
 #### fftw : include files ####
-libfftw_la_includedir=$(includedir)/fftw
-libfftw_la_include_HEADERS = includes/sci_loadfftwlibrary.h \
+libscifftw_la_includedir=$(includedir)/fftw
+libscifftw_la_include_HEADERS = includes/sci_loadfftwlibrary.h \
 includes/sci_fftwlibraryisloaded.h \
 includes/sci_pushfftw_plan.h \
 includes/sci_fftw_inplace.h \

@@ -16,18 +16,18 @@ sci_gateway/sci_sleep.c \
 sci_gateway/sci_getdate.c \
 sci_gateway/gw_time.c
 
-libtime_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/ -Isrc/
+libscitime_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/ -Isrc/
 
-lib_LTLIBRARIES = libtime.la
+lib_LTLIBRARIES = libscitime.la
 
-libtime_la_SOURCES = $(TIME_C_SOURCES) $(GATEWAY_C_SOURCES)
+libscitime_la_SOURCES = $(TIME_C_SOURCES) $(GATEWAY_C_SOURCES)
 
-libtime_la_LIBADD = \
-       $(top_builddir)/modules/intersci/libintersci.la \
-       $(top_builddir)/modules/core/libcore.la \
-       $(top_builddir)/libs/MALLOC/libmalloc.la
+libscitime_la_LIBADD = \
+       $(top_builddir)/modules/intersci/libsciintersci.la \
+       $(top_builddir)/modules/core/libscicore.la \
+       $(top_builddir)/libs/MALLOC/libscimalloc.la
 
-libtime_la_PKGCONFIG = time.pc
+libscitime_la_PKGCONFIG = time.pc
 
 
 datadir=${prefix}/modules
@@ -36,13 +36,13 @@ target=$(datadir)/time
 
 
 #### time : Conf files ####
-libtime_la_rootdir = $(target)
-libtime_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscitime_la_rootdir = $(target)
+libscitime_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
 #### time : Scilab macros ###
-libtime_la_macrodir = $(target)/macros
-libtime_la_macro_DATA22 = macros/etime.sci \
+libscitime_la_macrodir = $(target)/macros
+libscitime_la_macro_DATA22 = macros/etime.sci \
 macros/now.sci \
 macros/toc.sci \
 macros/calendar.sci \
@@ -68,16 +68,16 @@ macros/weekday.bin macros/names macros/lib macros/buildmacros.sce
 
 
 #### time : init scripts #### 
-libtime_la_etcdir = $(target)/etc
-libtime_la_etc_DATA = etc/time.quit etc/time.start
+libscitime_la_etcdir = $(target)/etc
+libscitime_la_etc_DATA = etc/time.quit etc/time.start
 
 #### time : gateway declaration #### 
-libtime_la_sci_gatewaydir = $(target)/sci_gateway
-libtime_la_sci_gateway_DATA = sci_gateway/time
+libscitime_la_sci_gatewaydir = $(target)/sci_gateway
+libscitime_la_sci_gateway_DATA = sci_gateway/time
 
 #### time : include files ####
-libtime_la_includedir=$(includedir)/time
-libtime_la_include_HEADERS = includes/gw_time.h \
+libscitime_la_includedir=$(includedir)/time
+libscitime_la_include_HEADERS = includes/gw_time.h \
 includes/sci_getdate.h \
 includes/sci_timer.h \
 includes/sci_realtime.h \

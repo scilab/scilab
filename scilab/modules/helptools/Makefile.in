@@ -61,11 +61,11 @@ am__vpath_adj = case $$p in \
     *) f=$$p;; \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
-am__installdirs = "$(DESTDIR)$(libhelptools_la_etcdir)" \
-	"$(DESTDIR)$(libhelptools_la_rootdir)"
-libhelptools_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libhelptools_la_rootDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libhelptools_la_etc_DATA) $(libhelptools_la_root_DATA)
+am__installdirs = "$(DESTDIR)$(libscihelptools_la_etcdir)" \
+	"$(DESTDIR)$(libscihelptools_la_rootdir)"
+libscihelptools_la_etcDATA_INSTALL = $(INSTALL_DATA)
+libscihelptools_la_rootDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(libscihelptools_la_etc_DATA) $(libscihelptools_la_root_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
@@ -216,12 +216,12 @@ target = $(datadir)/helptools
 #	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$SCISCRIPT'); save('$SCISCRIPT.bin'); exit;"
 
 #### helptools : Conf files ####
-libhelptools_la_rootdir = $(target)
-libhelptools_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscihelptools_la_rootdir = $(target)
+libscihelptools_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### helptools : Scilab macros ###
-libhelptools_la_macrodir = $(target)/macros
-dist_libhelptools_la_macro_DATA22 = macros/add_help_chapter.sci \
+libscihelptools_la_macrodir = $(target)/macros
+dist_libscihelptools_la_macro_DATA22 = macros/add_help_chapter.sci \
 macros/browsehelp.sci \
 macros/help_menu.sci \
 macros/make_help_index.sci \
@@ -267,8 +267,8 @@ macros/xmltohtml.bin macros/names macros/lib macros/buildmacros.sce
 
 
 #### helptools : init scripts #### 
-libhelptools_la_etcdir = $(target)/etc
-libhelptools_la_etc_DATA = etc/helptools.quit etc/helptools.start
+libscihelptools_la_etcdir = $(target)/etc
+libscihelptools_la_etc_DATA = etc/helptools.quit etc/helptools.start
 
 #SUFFIXES = .xml .sci .htm
 SUFFIXES = .sci
@@ -324,39 +324,39 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libhelptools_la_etcDATA: $(libhelptools_la_etc_DATA)
+install-libscihelptools_la_etcDATA: $(libscihelptools_la_etc_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libhelptools_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libhelptools_la_etcdir)"
-	@list='$(libhelptools_la_etc_DATA)'; for p in $$list; do \
+	test -z "$(libscihelptools_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_etcdir)"
+	@list='$(libscihelptools_la_etc_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libhelptools_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libhelptools_la_etcdir)/$$f'"; \
-	  $(libhelptools_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libhelptools_la_etcdir)/$$f"; \
+	  echo " $(libscihelptools_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscihelptools_la_etcdir)/$$f'"; \
+	  $(libscihelptools_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscihelptools_la_etcdir)/$$f"; \
 	done
 
-uninstall-libhelptools_la_etcDATA:
+uninstall-libscihelptools_la_etcDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libhelptools_la_etc_DATA)'; for p in $$list; do \
+	@list='$(libscihelptools_la_etc_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libhelptools_la_etcdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libhelptools_la_etcdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_etcdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscihelptools_la_etcdir)/$$f"; \
 	done
-install-libhelptools_la_rootDATA: $(libhelptools_la_root_DATA)
+install-libscihelptools_la_rootDATA: $(libscihelptools_la_root_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libhelptools_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libhelptools_la_rootdir)"
-	@list='$(libhelptools_la_root_DATA)'; for p in $$list; do \
+	test -z "$(libscihelptools_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_rootdir)"
+	@list='$(libscihelptools_la_root_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libhelptools_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libhelptools_la_rootdir)/$$f'"; \
-	  $(libhelptools_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libhelptools_la_rootdir)/$$f"; \
+	  echo " $(libscihelptools_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscihelptools_la_rootdir)/$$f'"; \
+	  $(libscihelptools_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscihelptools_la_rootdir)/$$f"; \
 	done
 
-uninstall-libhelptools_la_rootDATA:
+uninstall-libscihelptools_la_rootDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libhelptools_la_root_DATA)'; for p in $$list; do \
+	@list='$(libscihelptools_la_root_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libhelptools_la_rootdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libhelptools_la_rootdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_rootdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscihelptools_la_rootdir)/$$f"; \
 	done
 tags: TAGS
 TAGS:
@@ -395,7 +395,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(libhelptools_la_etcdir)" "$(DESTDIR)$(libhelptools_la_rootdir)"; do \
+	for dir in "$(DESTDIR)$(libscihelptools_la_etcdir)" "$(DESTDIR)$(libscihelptools_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -440,8 +440,8 @@ info: info-am
 
 info-am:
 
-install-data-am: install-data-local install-libhelptools_la_etcDATA \
-	install-libhelptools_la_rootDATA
+install-data-am: install-data-local install-libscihelptools_la_etcDATA \
+	install-libscihelptools_la_rootDATA
 
 install-dvi: install-dvi-am
 
@@ -477,8 +477,8 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libhelptools_la_etcDATA \
-	uninstall-libhelptools_la_rootDATA
+uninstall-am: uninstall-libscihelptools_la_etcDATA \
+	uninstall-libscihelptools_la_rootDATA
 
 .MAKE: install-am install-strip
 
@@ -488,14 +488,14 @@ uninstall-am: uninstall-libhelptools_la_etcDATA \
 	install-data install-data-am install-data-local install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
-	install-info-am install-libhelptools_la_etcDATA \
-	install-libhelptools_la_rootDATA install-man install-pdf \
+	install-info-am install-libscihelptools_la_etcDATA \
+	install-libscihelptools_la_rootDATA install-man install-pdf \
 	install-pdf-am install-ps install-ps-am install-strip \
 	installcheck installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am uninstall uninstall-am \
-	uninstall-libhelptools_la_etcDATA \
-	uninstall-libhelptools_la_rootDATA
+	uninstall-libscihelptools_la_etcDATA \
+	uninstall-libscihelptools_la_rootDATA
 
 
 #.xml.htm:

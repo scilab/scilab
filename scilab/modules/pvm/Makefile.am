@@ -49,47 +49,47 @@ sci_gateway/sci_pvm_config.c \
 sci_gateway/sci_pvm_recv_var.c \
 sci_gateway/sci_pvm_exit.c
 
-libscipvm_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
+libsciscipvm_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 
-lib_LTLIBRARIES = libscipvm.la
+lib_LTLIBRARIES = libsciscipvm.la
 
-libscipvm_la_SOURCES = $(PVM_C_SOURCES) $(GATEWAY_C_SOURCES)
+libsciscipvm_la_SOURCES = $(PVM_C_SOURCES) $(GATEWAY_C_SOURCES)
 
-libscipvm_la_LIBADD = \
-	$(top_builddir)/modules/core/libcore.la \
-	$(top_builddir)/libs/MALLOC/libmalloc.la
+libsciscipvm_la_LIBADD = \
+	$(top_builddir)/modules/core/libscicore.la \
+	$(top_builddir)/libs/MALLOC/libscimalloc.la
 
-libscipvm_la_LDFLAGS = $(PVM_LIB)
+libsciscipvm_la_LDFLAGS = $(PVM_LIB)
 
-libscipvm_la_PKGCONFIG = scipvm.pc
+libsciscipvm_la_PKGCONFIG = scipvm.pc
 
 #datadir=${prefix}/modules
 #### Target ######
 target=$(datadir)/modules/pvm
 
 #### pvm : Conf files ####
-libpvm_la_rootdir = $(target)
-libpvm_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscipvm_la_rootdir = $(target)
+libscipvm_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
 #### pvm : Scilab macros ###
-libpvm_la_macrodir = $(target)/macros
-libpvm_la_macro_DATA22 = macros/configure_pvm.sci \
+libscipvm_la_macrodir = $(target)/macros
+libscipvm_la_macro_DATA22 = macros/configure_pvm.sci \
 macros/with_pvm.sci macros/configure_pvm.bin \
 macros/with_pvm.bin macros/names macros/lib macros/buildmacros.sce
 
 
 #### pvm : init scripts #### 
-libpvm_la_etcdir = $(target)/etc
-libpvm_la_etc_DATA = etc/pvm.quit etc/pvm.start
+libscipvm_la_etcdir = $(target)/etc
+libscipvm_la_etc_DATA = etc/pvm.quit etc/pvm.start
 
 #### pvm : gateway declaration #### 
-libpvm_la_sci_gatewaydir = $(target)/sci_gateway
-libpvm_la_sci_gateway_DATA = sci_gateway/pvm
+libscipvm_la_sci_gatewaydir = $(target)/sci_gateway
+libscipvm_la_sci_gateway_DATA = sci_gateway/pvm
 
 #### pvm : include files ####
-libpvm_la_includedir=$(includedir)/pvm
-libpvm_la_include_HEADERS = includes/sci_pvm_exit.h \
+libscipvm_la_includedir=$(includedir)/pvm
+libscipvm_la_include_HEADERS = includes/sci_pvm_exit.h \
 includes/sci_pvm_get_timer.h \
 includes/sci_pvm_gettid.h \
 includes/sci_pvm_gsize.h \
@@ -126,8 +126,8 @@ includes/sci_pvm_recv_var.h
 
 
 #### pvm : demos files ####
-libpvm_la_demosdir=$(target)/demos/
-libpvm_la_demos_DATA = demos/pvm.dem \
+libscipvm_la_demosdir=$(target)/demos/
+libscipvm_la_demos_DATA = demos/pvm.dem \
 demos/pvm1.sce \
 demos/script.sce
 include $(top_srcdir)/Makefile.incl.am

@@ -84,9 +84,9 @@ libdummy_elementaries_functions_la_LINK = $(LIBTOOL) --tag=F77 \
 	$(AM_LDFLAGS) $(LDFLAGS) -o $@
 libelementaries_functions_la_DEPENDENCIES =  \
 	libdummy-elementaries_functions.la \
-	$(top_builddir)/modules/cacsd/libcacsd.la \
-	$(top_builddir)/libs/blas/libblas.la \
-	$(top_builddir)/libs/MALLOC/libmalloc.la
+	$(top_builddir)/modules/cacsd/libscicacsd.la \
+	$(top_builddir)/libs/blas/libsciblas.la \
+	$(top_builddir)/libs/MALLOC/libscimalloc.la
 am__objects_1 = libelementaries_functions_la-zwrsk.lo \
 	libelementaries_functions_la-d9b0mp.lo \
 	libelementaries_functions_la-d9b1mp.lo \
@@ -951,12 +951,12 @@ lib_LTLIBRARIES = libelementaries_functions.la
 libelementaries_functions_la_SOURCES = $(SLATEC_SOURCES) $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libelementaries_functions_la_LIBADD = \
 	libdummy-elementaries_functions.la \
-	$(top_builddir)/modules/cacsd/libcacsd.la \
-	$(top_builddir)/libs/blas/libblas.la \
-	$(top_builddir)/libs/MALLOC/libmalloc.la
+	$(top_builddir)/modules/cacsd/libscicacsd.la \
+	$(top_builddir)/libs/blas/libsciblas.la \
+	$(top_builddir)/libs/MALLOC/libscimalloc.la
 
-#	$(top_builddir)/modules/sparse/libsparse.la \
-#	$(top_builddir)/modules/polynomials/libpolynomials.la
+#	$(top_builddir)/modules/sparse/libscisparse.la \
+#	$(top_builddir)/modules/polynomials/libscipolynomials.la
 libelementaries_functions_la_PKGCONFIG = elementaries_functions.pc
 #### Target ######
 target = $(datadir)/elementaries_functions

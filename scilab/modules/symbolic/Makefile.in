@@ -39,8 +39,9 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = $(libsymbolic_la_include_HEADERS) $(srcdir)/Makefile.am \
-	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
+DIST_COMMON = $(libscisymbolic_la_include_HEADERS) \
+	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+	$(top_srcdir)/Makefile.incl.am
 subdir = modules/symbolic
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fortran.m4 \
@@ -62,19 +63,21 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
-	"$(DESTDIR)$(libsymbolic_la_etcdir)" \
-	"$(DESTDIR)$(libsymbolic_la_rootdir)" \
-	"$(DESTDIR)$(libsymbolic_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libsymbolic_la_includedir)"
+	"$(DESTDIR)$(libscisymbolic_la_etcdir)" \
+	"$(DESTDIR)$(libscisymbolic_la_rootdir)" \
+	"$(DESTDIR)$(libscisymbolic_la_sci_gatewaydir)" \
+	"$(DESTDIR)$(libscisymbolic_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
-libsymbolic_la_DEPENDENCIES = $(top_builddir)/modules/core/libcore.la
-am__objects_1 = libsymbolic_la-gw_symbolic.lo \
-	libsymbolic_la-sci_mulf.lo libsymbolic_la-sci_ldivf.lo \
-	libsymbolic_la-sci_addsubf.lo libsymbolic_la-sci_rdivf.lo
+libscisymbolic_la_DEPENDENCIES =  \
+	$(top_builddir)/modules/core/libscicore.la
+am__objects_1 = libscisymbolic_la-gw_symbolic.lo \
+	libscisymbolic_la-sci_mulf.lo libscisymbolic_la-sci_ldivf.lo \
+	libscisymbolic_la-sci_addsubf.lo \
+	libscisymbolic_la-sci_rdivf.lo
 am__objects_2 = sci_addsubf.lo sci_mulf.lo sci_ldivf.lo sci_rdivf.lo
-am_libsymbolic_la_OBJECTS = $(am__objects_1) $(am__objects_2)
-libsymbolic_la_OBJECTS = $(am_libsymbolic_la_OBJECTS)
+am_libscisymbolic_la_OBJECTS = $(am__objects_1) $(am__objects_2)
+libscisymbolic_la_OBJECTS = $(am_libscisymbolic_la_OBJECTS)
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -94,15 +97,15 @@ F77LD = $(F77)
 F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libsymbolic_la_SOURCES)
-DIST_SOURCES = $(libsymbolic_la_SOURCES)
-libsymbolic_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libsymbolic_la_rootDATA_INSTALL = $(INSTALL_DATA)
-libsymbolic_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libsymbolic_la_etc_DATA) $(libsymbolic_la_root_DATA) \
-	$(libsymbolic_la_sci_gateway_DATA)
-libsymbolic_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
-HEADERS = $(libsymbolic_la_include_HEADERS)
+SOURCES = $(libscisymbolic_la_SOURCES)
+DIST_SOURCES = $(libscisymbolic_la_SOURCES)
+libscisymbolic_la_etcDATA_INSTALL = $(INSTALL_DATA)
+libscisymbolic_la_rootDATA_INSTALL = $(INSTALL_DATA)
+libscisymbolic_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(libscisymbolic_la_etc_DATA) $(libscisymbolic_la_root_DATA) \
+	$(libscisymbolic_la_sci_gateway_DATA)
+libscisymbolic_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
+HEADERS = $(libscisymbolic_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -258,36 +261,36 @@ sci_gateway/fortran/sci_mulf.f \
 sci_gateway/fortran/sci_ldivf.f \
 sci_gateway/fortran/sci_rdivf.f
 
-libsymbolic_la_CFLAGS = -Iincludes/ 
+libscisymbolic_la_CFLAGS = -Iincludes/ 
 #-Isrc/c/
-lib_LTLIBRARIES = libsymbolic.la
-libsymbolic_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-libsymbolic_la_LIBADD = \
-$(top_builddir)/modules/core/libcore.la
+lib_LTLIBRARIES = libscisymbolic.la
+libscisymbolic_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscisymbolic_la_LIBADD = \
+$(top_builddir)/modules/core/libscicore.la
 
-libsymbolic_la_PKGCONFIG = symbolic.pc
+libscisymbolic_la_PKGCONFIG = symbolic.pc
 #### Target ######
 target = $(datadir)/symbolic
 
 #### symbolic : Conf files ####
-libsymbolic_la_rootdir = $(target)
-libsymbolic_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscisymbolic_la_rootdir = $(target)
+libscisymbolic_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### symbolic : Scilab macros ###
-libsymbolic_la_macrodir = $(target)/macros
-libsymbolic_la_macro_DATA22 = macros/buildmacros.sce
+libscisymbolic_la_macrodir = $(target)/macros
+libscisymbolic_la_macro_DATA22 = macros/buildmacros.sce
 
 #### symbolic : init scripts #### 
-libsymbolic_la_etcdir = $(target)/etc
-libsymbolic_la_etc_DATA = etc/symbolic.quit etc/symbolic.start
+libscisymbolic_la_etcdir = $(target)/etc
+libscisymbolic_la_etc_DATA = etc/symbolic.quit etc/symbolic.start
 
 #### symbolic : gateway declaration #### 
-libsymbolic_la_sci_gatewaydir = $(target)/sci_gateway
-libsymbolic_la_sci_gateway_DATA = sci_gateway/symbolic
+libscisymbolic_la_sci_gatewaydir = $(target)/sci_gateway
+libscisymbolic_la_sci_gateway_DATA = sci_gateway/symbolic
 
 #### symbolic : include files ####
-libsymbolic_la_includedir = $(includedir)/symbolic
-libsymbolic_la_include_HEADERS = includes/gw_symbolic.h
+libscisymbolic_la_includedir = $(includedir)/symbolic
+libscisymbolic_la_include_HEADERS = includes/gw_symbolic.h
 
 #SUFFIXES = .xml .sci .htm
 SUFFIXES = .sci
@@ -364,8 +367,8 @@ clean-libLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
-libsymbolic.la: $(libsymbolic_la_OBJECTS) $(libsymbolic_la_DEPENDENCIES) 
-	$(F77LINK) -rpath $(libdir) $(libsymbolic_la_OBJECTS) $(libsymbolic_la_LIBADD) $(LIBS)
+libscisymbolic.la: $(libscisymbolic_la_OBJECTS) $(libscisymbolic_la_DEPENDENCIES) 
+	$(F77LINK) -rpath $(libdir) $(libscisymbolic_la_OBJECTS) $(libscisymbolic_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -373,11 +376,11 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsymbolic_la-gw_symbolic.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsymbolic_la-sci_addsubf.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsymbolic_la-sci_ldivf.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsymbolic_la-sci_mulf.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsymbolic_la-sci_rdivf.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisymbolic_la-gw_symbolic.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisymbolic_la-sci_addsubf.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisymbolic_la-sci_ldivf.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisymbolic_la-sci_mulf.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisymbolic_la-sci_rdivf.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -400,40 +403,40 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
-libsymbolic_la-gw_symbolic.lo: sci_gateway/c/gw_symbolic.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsymbolic_la_CFLAGS) $(CFLAGS) -MT libsymbolic_la-gw_symbolic.lo -MD -MP -MF $(DEPDIR)/libsymbolic_la-gw_symbolic.Tpo -c -o libsymbolic_la-gw_symbolic.lo `test -f 'sci_gateway/c/gw_symbolic.c' || echo '$(srcdir)/'`sci_gateway/c/gw_symbolic.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsymbolic_la-gw_symbolic.Tpo $(DEPDIR)/libsymbolic_la-gw_symbolic.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/gw_symbolic.c' object='libsymbolic_la-gw_symbolic.lo' libtool=yes @AMDEPBACKSLASH@
+libscisymbolic_la-gw_symbolic.lo: sci_gateway/c/gw_symbolic.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisymbolic_la_CFLAGS) $(CFLAGS) -MT libscisymbolic_la-gw_symbolic.lo -MD -MP -MF $(DEPDIR)/libscisymbolic_la-gw_symbolic.Tpo -c -o libscisymbolic_la-gw_symbolic.lo `test -f 'sci_gateway/c/gw_symbolic.c' || echo '$(srcdir)/'`sci_gateway/c/gw_symbolic.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisymbolic_la-gw_symbolic.Tpo $(DEPDIR)/libscisymbolic_la-gw_symbolic.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/gw_symbolic.c' object='libscisymbolic_la-gw_symbolic.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsymbolic_la_CFLAGS) $(CFLAGS) -c -o libsymbolic_la-gw_symbolic.lo `test -f 'sci_gateway/c/gw_symbolic.c' || echo '$(srcdir)/'`sci_gateway/c/gw_symbolic.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisymbolic_la_CFLAGS) $(CFLAGS) -c -o libscisymbolic_la-gw_symbolic.lo `test -f 'sci_gateway/c/gw_symbolic.c' || echo '$(srcdir)/'`sci_gateway/c/gw_symbolic.c
 
-libsymbolic_la-sci_mulf.lo: sci_gateway/c/sci_mulf.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsymbolic_la_CFLAGS) $(CFLAGS) -MT libsymbolic_la-sci_mulf.lo -MD -MP -MF $(DEPDIR)/libsymbolic_la-sci_mulf.Tpo -c -o libsymbolic_la-sci_mulf.lo `test -f 'sci_gateway/c/sci_mulf.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mulf.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsymbolic_la-sci_mulf.Tpo $(DEPDIR)/libsymbolic_la-sci_mulf.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_mulf.c' object='libsymbolic_la-sci_mulf.lo' libtool=yes @AMDEPBACKSLASH@
+libscisymbolic_la-sci_mulf.lo: sci_gateway/c/sci_mulf.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisymbolic_la_CFLAGS) $(CFLAGS) -MT libscisymbolic_la-sci_mulf.lo -MD -MP -MF $(DEPDIR)/libscisymbolic_la-sci_mulf.Tpo -c -o libscisymbolic_la-sci_mulf.lo `test -f 'sci_gateway/c/sci_mulf.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mulf.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisymbolic_la-sci_mulf.Tpo $(DEPDIR)/libscisymbolic_la-sci_mulf.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_mulf.c' object='libscisymbolic_la-sci_mulf.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsymbolic_la_CFLAGS) $(CFLAGS) -c -o libsymbolic_la-sci_mulf.lo `test -f 'sci_gateway/c/sci_mulf.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mulf.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisymbolic_la_CFLAGS) $(CFLAGS) -c -o libscisymbolic_la-sci_mulf.lo `test -f 'sci_gateway/c/sci_mulf.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mulf.c
 
-libsymbolic_la-sci_ldivf.lo: sci_gateway/c/sci_ldivf.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsymbolic_la_CFLAGS) $(CFLAGS) -MT libsymbolic_la-sci_ldivf.lo -MD -MP -MF $(DEPDIR)/libsymbolic_la-sci_ldivf.Tpo -c -o libsymbolic_la-sci_ldivf.lo `test -f 'sci_gateway/c/sci_ldivf.c' || echo '$(srcdir)/'`sci_gateway/c/sci_ldivf.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsymbolic_la-sci_ldivf.Tpo $(DEPDIR)/libsymbolic_la-sci_ldivf.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_ldivf.c' object='libsymbolic_la-sci_ldivf.lo' libtool=yes @AMDEPBACKSLASH@
+libscisymbolic_la-sci_ldivf.lo: sci_gateway/c/sci_ldivf.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisymbolic_la_CFLAGS) $(CFLAGS) -MT libscisymbolic_la-sci_ldivf.lo -MD -MP -MF $(DEPDIR)/libscisymbolic_la-sci_ldivf.Tpo -c -o libscisymbolic_la-sci_ldivf.lo `test -f 'sci_gateway/c/sci_ldivf.c' || echo '$(srcdir)/'`sci_gateway/c/sci_ldivf.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisymbolic_la-sci_ldivf.Tpo $(DEPDIR)/libscisymbolic_la-sci_ldivf.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_ldivf.c' object='libscisymbolic_la-sci_ldivf.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsymbolic_la_CFLAGS) $(CFLAGS) -c -o libsymbolic_la-sci_ldivf.lo `test -f 'sci_gateway/c/sci_ldivf.c' || echo '$(srcdir)/'`sci_gateway/c/sci_ldivf.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisymbolic_la_CFLAGS) $(CFLAGS) -c -o libscisymbolic_la-sci_ldivf.lo `test -f 'sci_gateway/c/sci_ldivf.c' || echo '$(srcdir)/'`sci_gateway/c/sci_ldivf.c
 
-libsymbolic_la-sci_addsubf.lo: sci_gateway/c/sci_addsubf.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsymbolic_la_CFLAGS) $(CFLAGS) -MT libsymbolic_la-sci_addsubf.lo -MD -MP -MF $(DEPDIR)/libsymbolic_la-sci_addsubf.Tpo -c -o libsymbolic_la-sci_addsubf.lo `test -f 'sci_gateway/c/sci_addsubf.c' || echo '$(srcdir)/'`sci_gateway/c/sci_addsubf.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsymbolic_la-sci_addsubf.Tpo $(DEPDIR)/libsymbolic_la-sci_addsubf.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_addsubf.c' object='libsymbolic_la-sci_addsubf.lo' libtool=yes @AMDEPBACKSLASH@
+libscisymbolic_la-sci_addsubf.lo: sci_gateway/c/sci_addsubf.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisymbolic_la_CFLAGS) $(CFLAGS) -MT libscisymbolic_la-sci_addsubf.lo -MD -MP -MF $(DEPDIR)/libscisymbolic_la-sci_addsubf.Tpo -c -o libscisymbolic_la-sci_addsubf.lo `test -f 'sci_gateway/c/sci_addsubf.c' || echo '$(srcdir)/'`sci_gateway/c/sci_addsubf.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisymbolic_la-sci_addsubf.Tpo $(DEPDIR)/libscisymbolic_la-sci_addsubf.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_addsubf.c' object='libscisymbolic_la-sci_addsubf.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsymbolic_la_CFLAGS) $(CFLAGS) -c -o libsymbolic_la-sci_addsubf.lo `test -f 'sci_gateway/c/sci_addsubf.c' || echo '$(srcdir)/'`sci_gateway/c/sci_addsubf.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisymbolic_la_CFLAGS) $(CFLAGS) -c -o libscisymbolic_la-sci_addsubf.lo `test -f 'sci_gateway/c/sci_addsubf.c' || echo '$(srcdir)/'`sci_gateway/c/sci_addsubf.c
 
-libsymbolic_la-sci_rdivf.lo: sci_gateway/c/sci_rdivf.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsymbolic_la_CFLAGS) $(CFLAGS) -MT libsymbolic_la-sci_rdivf.lo -MD -MP -MF $(DEPDIR)/libsymbolic_la-sci_rdivf.Tpo -c -o libsymbolic_la-sci_rdivf.lo `test -f 'sci_gateway/c/sci_rdivf.c' || echo '$(srcdir)/'`sci_gateway/c/sci_rdivf.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsymbolic_la-sci_rdivf.Tpo $(DEPDIR)/libsymbolic_la-sci_rdivf.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_rdivf.c' object='libsymbolic_la-sci_rdivf.lo' libtool=yes @AMDEPBACKSLASH@
+libscisymbolic_la-sci_rdivf.lo: sci_gateway/c/sci_rdivf.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisymbolic_la_CFLAGS) $(CFLAGS) -MT libscisymbolic_la-sci_rdivf.lo -MD -MP -MF $(DEPDIR)/libscisymbolic_la-sci_rdivf.Tpo -c -o libscisymbolic_la-sci_rdivf.lo `test -f 'sci_gateway/c/sci_rdivf.c' || echo '$(srcdir)/'`sci_gateway/c/sci_rdivf.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisymbolic_la-sci_rdivf.Tpo $(DEPDIR)/libscisymbolic_la-sci_rdivf.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_rdivf.c' object='libscisymbolic_la-sci_rdivf.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsymbolic_la_CFLAGS) $(CFLAGS) -c -o libsymbolic_la-sci_rdivf.lo `test -f 'sci_gateway/c/sci_rdivf.c' || echo '$(srcdir)/'`sci_gateway/c/sci_rdivf.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisymbolic_la_CFLAGS) $(CFLAGS) -c -o libscisymbolic_la-sci_rdivf.lo `test -f 'sci_gateway/c/sci_rdivf.c' || echo '$(srcdir)/'`sci_gateway/c/sci_rdivf.c
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<
@@ -461,73 +464,73 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libsymbolic_la_etcDATA: $(libsymbolic_la_etc_DATA)
+install-libscisymbolic_la_etcDATA: $(libscisymbolic_la_etc_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libsymbolic_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libsymbolic_la_etcdir)"
-	@list='$(libsymbolic_la_etc_DATA)'; for p in $$list; do \
+	test -z "$(libscisymbolic_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libscisymbolic_la_etcdir)"
+	@list='$(libscisymbolic_la_etc_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libsymbolic_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsymbolic_la_etcdir)/$$f'"; \
-	  $(libsymbolic_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsymbolic_la_etcdir)/$$f"; \
+	  echo " $(libscisymbolic_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscisymbolic_la_etcdir)/$$f'"; \
+	  $(libscisymbolic_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscisymbolic_la_etcdir)/$$f"; \
 	done
 
-uninstall-libsymbolic_la_etcDATA:
+uninstall-libscisymbolic_la_etcDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libsymbolic_la_etc_DATA)'; for p in $$list; do \
+	@list='$(libscisymbolic_la_etc_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libsymbolic_la_etcdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libsymbolic_la_etcdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscisymbolic_la_etcdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscisymbolic_la_etcdir)/$$f"; \
 	done
-install-libsymbolic_la_rootDATA: $(libsymbolic_la_root_DATA)
+install-libscisymbolic_la_rootDATA: $(libscisymbolic_la_root_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libsymbolic_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libsymbolic_la_rootdir)"
-	@list='$(libsymbolic_la_root_DATA)'; for p in $$list; do \
+	test -z "$(libscisymbolic_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libscisymbolic_la_rootdir)"
+	@list='$(libscisymbolic_la_root_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libsymbolic_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsymbolic_la_rootdir)/$$f'"; \
-	  $(libsymbolic_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsymbolic_la_rootdir)/$$f"; \
+	  echo " $(libscisymbolic_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscisymbolic_la_rootdir)/$$f'"; \
+	  $(libscisymbolic_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscisymbolic_la_rootdir)/$$f"; \
 	done
 
-uninstall-libsymbolic_la_rootDATA:
+uninstall-libscisymbolic_la_rootDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libsymbolic_la_root_DATA)'; for p in $$list; do \
+	@list='$(libscisymbolic_la_root_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libsymbolic_la_rootdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libsymbolic_la_rootdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscisymbolic_la_rootdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscisymbolic_la_rootdir)/$$f"; \
 	done
-install-libsymbolic_la_sci_gatewayDATA: $(libsymbolic_la_sci_gateway_DATA)
+install-libscisymbolic_la_sci_gatewayDATA: $(libscisymbolic_la_sci_gateway_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libsymbolic_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libsymbolic_la_sci_gatewaydir)"
-	@list='$(libsymbolic_la_sci_gateway_DATA)'; for p in $$list; do \
+	test -z "$(libscisymbolic_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libscisymbolic_la_sci_gatewaydir)"
+	@list='$(libscisymbolic_la_sci_gateway_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libsymbolic_la_sci_gatewayDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsymbolic_la_sci_gatewaydir)/$$f'"; \
-	  $(libsymbolic_la_sci_gatewayDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsymbolic_la_sci_gatewaydir)/$$f"; \
+	  echo " $(libscisymbolic_la_sci_gatewayDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscisymbolic_la_sci_gatewaydir)/$$f'"; \
+	  $(libscisymbolic_la_sci_gatewayDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscisymbolic_la_sci_gatewaydir)/$$f"; \
 	done
 
-uninstall-libsymbolic_la_sci_gatewayDATA:
+uninstall-libscisymbolic_la_sci_gatewayDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libsymbolic_la_sci_gateway_DATA)'; for p in $$list; do \
+	@list='$(libscisymbolic_la_sci_gateway_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libsymbolic_la_sci_gatewaydir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libsymbolic_la_sci_gatewaydir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscisymbolic_la_sci_gatewaydir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscisymbolic_la_sci_gatewaydir)/$$f"; \
 	done
-install-libsymbolic_la_includeHEADERS: $(libsymbolic_la_include_HEADERS)
+install-libscisymbolic_la_includeHEADERS: $(libscisymbolic_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
-	test -z "$(libsymbolic_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libsymbolic_la_includedir)"
-	@list='$(libsymbolic_la_include_HEADERS)'; for p in $$list; do \
+	test -z "$(libscisymbolic_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscisymbolic_la_includedir)"
+	@list='$(libscisymbolic_la_include_HEADERS)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libsymbolic_la_includeHEADERS_INSTALL) '$$d$$p' '$(DESTDIR)$(libsymbolic_la_includedir)/$$f'"; \
-	  $(libsymbolic_la_includeHEADERS_INSTALL) "$$d$$p" "$(DESTDIR)$(libsymbolic_la_includedir)/$$f"; \
+	  echo " $(libscisymbolic_la_includeHEADERS_INSTALL) '$$d$$p' '$(DESTDIR)$(libscisymbolic_la_includedir)/$$f'"; \
+	  $(libscisymbolic_la_includeHEADERS_INSTALL) "$$d$$p" "$(DESTDIR)$(libscisymbolic_la_includedir)/$$f"; \
 	done
 
-uninstall-libsymbolic_la_includeHEADERS:
+uninstall-libscisymbolic_la_includeHEADERS:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libsymbolic_la_include_HEADERS)'; for p in $$list; do \
+	@list='$(libscisymbolic_la_include_HEADERS)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libsymbolic_la_includedir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libsymbolic_la_includedir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscisymbolic_la_includedir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscisymbolic_la_includedir)/$$f"; \
 	done
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
@@ -608,7 +611,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libsymbolic_la_etcdir)" "$(DESTDIR)$(libsymbolic_la_rootdir)" "$(DESTDIR)$(libsymbolic_la_sci_gatewaydir)" "$(DESTDIR)$(libsymbolic_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libscisymbolic_la_etcdir)" "$(DESTDIR)$(libscisymbolic_la_rootdir)" "$(DESTDIR)$(libscisymbolic_la_sci_gatewaydir)" "$(DESTDIR)$(libscisymbolic_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -656,10 +659,10 @@ info: info-am
 
 info-am:
 
-install-data-am: install-data-local install-libsymbolic_la_etcDATA \
-	install-libsymbolic_la_includeHEADERS \
-	install-libsymbolic_la_rootDATA \
-	install-libsymbolic_la_sci_gatewayDATA
+install-data-am: install-data-local install-libscisymbolic_la_etcDATA \
+	install-libscisymbolic_la_includeHEADERS \
+	install-libscisymbolic_la_rootDATA \
+	install-libscisymbolic_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
 
@@ -698,10 +701,10 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libLTLIBRARIES \
-	uninstall-libsymbolic_la_etcDATA \
-	uninstall-libsymbolic_la_includeHEADERS \
-	uninstall-libsymbolic_la_rootDATA \
-	uninstall-libsymbolic_la_sci_gatewayDATA
+	uninstall-libscisymbolic_la_etcDATA \
+	uninstall-libscisymbolic_la_includeHEADERS \
+	uninstall-libscisymbolic_la_rootDATA \
+	uninstall-libscisymbolic_la_sci_gatewayDATA
 
 .MAKE: install-am install-strip
 
@@ -713,19 +716,19 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	install-data-local install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
-	install-libLTLIBRARIES install-libsymbolic_la_etcDATA \
-	install-libsymbolic_la_includeHEADERS \
-	install-libsymbolic_la_rootDATA \
-	install-libsymbolic_la_sci_gatewayDATA install-man install-pdf \
-	install-pdf-am install-ps install-ps-am install-strip \
-	installcheck installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-compile \
-	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
-	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
-	uninstall-libsymbolic_la_etcDATA \
-	uninstall-libsymbolic_la_includeHEADERS \
-	uninstall-libsymbolic_la_rootDATA \
-	uninstall-libsymbolic_la_sci_gatewayDATA
+	install-libLTLIBRARIES install-libscisymbolic_la_etcDATA \
+	install-libscisymbolic_la_includeHEADERS \
+	install-libscisymbolic_la_rootDATA \
+	install-libscisymbolic_la_sci_gatewayDATA install-man \
+	install-pdf install-pdf-am install-ps install-ps-am \
+	install-strip installcheck installcheck-am installdirs \
+	maintainer-clean maintainer-clean-generic mostlyclean \
+	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
+	pdf pdf-am ps ps-am tags uninstall uninstall-am \
+	uninstall-libLTLIBRARIES uninstall-libscisymbolic_la_etcDATA \
+	uninstall-libscisymbolic_la_includeHEADERS \
+	uninstall-libscisymbolic_la_rootDATA \
+	uninstall-libscisymbolic_la_sci_gatewayDATA
 
 
 #.xml.htm:

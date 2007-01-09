@@ -39,8 +39,8 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 subdir = libs/hashtable
-DIST_COMMON = $(libhashtable_la_include_HEADERS) $(srcdir)/Makefile.am \
-	$(srcdir)/Makefile.in
+DIST_COMMON = $(libscihashtable_la_include_HEADERS) \
+	$(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
@@ -61,13 +61,13 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
-	"$(DESTDIR)$(libhashtable_la_includedir)"
+	"$(DESTDIR)$(libscihashtable_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
-libhashtable_la_DEPENDENCIES =
+libscihashtable_la_DEPENDENCIES =
 am__objects_1 = hashtable_utility.lo hashtable_itr.lo hashtable.lo
-am_libhashtable_la_OBJECTS = $(am__objects_1)
-libhashtable_la_OBJECTS = $(am_libhashtable_la_OBJECTS)
+am_libscihashtable_la_OBJECTS = $(am__objects_1)
+libscihashtable_la_OBJECTS = $(am_libscihashtable_la_OBJECTS)
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -80,10 +80,10 @@ CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libhashtable_la_SOURCES)
-DIST_SOURCES = $(libhashtable_la_SOURCES)
-libhashtable_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
-HEADERS = $(libhashtable_la_include_HEADERS)
+SOURCES = $(libscihashtable_la_SOURCES)
+DIST_SOURCES = $(libscihashtable_la_SOURCES)
+libscihashtable_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
+HEADERS = $(libscihashtable_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -232,17 +232,17 @@ HASHTABLE_C_SOURCES = hashtable_utility.c \
 hashtable_itr.c \
 hashtable.c
 
-libhashtable_la_includedir = $(includedir)/hashtable
-libhashtable_la_include_HEADERS = ./hashtable_itr.h \
+libscihashtable_la_includedir = $(includedir)/hashtable
+libscihashtable_la_include_HEADERS = ./hashtable_itr.h \
 ./hashtable.h \
 ./hashtable_utility.h
 
 
-#libhashtable_la_CFLAGS=  
-lib_LTLIBRARIES = libhashtable.la
-libhashtable_la_SOURCES = $(HASHTABLE_C_SOURCES)
-libhashtable_la_LIBADD = 
-libhashtable_la_PKGCONFIG = hashtable.pc
+#libscihashtable_la_CFLAGS=  
+lib_LTLIBRARIES = libscihashtable.la
+libscihashtable_la_SOURCES = $(HASHTABLE_C_SOURCES)
+libscihashtable_la_LIBADD = 
+libscihashtable_la_PKGCONFIG = hashtable.pc
 all: all-am
 
 .SUFFIXES:
@@ -303,8 +303,8 @@ clean-libLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
-libhashtable.la: $(libhashtable_la_OBJECTS) $(libhashtable_la_DEPENDENCIES) 
-	$(LINK) -rpath $(libdir) $(libhashtable_la_OBJECTS) $(libhashtable_la_LIBADD) $(LIBS)
+libscihashtable.la: $(libscihashtable_la_OBJECTS) $(libscihashtable_la_DEPENDENCIES) 
+	$(LINK) -rpath $(libdir) $(libscihashtable_la_OBJECTS) $(libscihashtable_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -342,22 +342,22 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libhashtable_la_includeHEADERS: $(libhashtable_la_include_HEADERS)
+install-libscihashtable_la_includeHEADERS: $(libscihashtable_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
-	test -z "$(libhashtable_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libhashtable_la_includedir)"
-	@list='$(libhashtable_la_include_HEADERS)'; for p in $$list; do \
+	test -z "$(libscihashtable_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscihashtable_la_includedir)"
+	@list='$(libscihashtable_la_include_HEADERS)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libhashtable_la_includeHEADERS_INSTALL) '$$d$$p' '$(DESTDIR)$(libhashtable_la_includedir)/$$f'"; \
-	  $(libhashtable_la_includeHEADERS_INSTALL) "$$d$$p" "$(DESTDIR)$(libhashtable_la_includedir)/$$f"; \
+	  echo " $(libscihashtable_la_includeHEADERS_INSTALL) '$$d$$p' '$(DESTDIR)$(libscihashtable_la_includedir)/$$f'"; \
+	  $(libscihashtable_la_includeHEADERS_INSTALL) "$$d$$p" "$(DESTDIR)$(libscihashtable_la_includedir)/$$f"; \
 	done
 
-uninstall-libhashtable_la_includeHEADERS:
+uninstall-libscihashtable_la_includeHEADERS:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libhashtable_la_include_HEADERS)'; for p in $$list; do \
+	@list='$(libscihashtable_la_include_HEADERS)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libhashtable_la_includedir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libhashtable_la_includedir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscihashtable_la_includedir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscihashtable_la_includedir)/$$f"; \
 	done
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
@@ -438,7 +438,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libhashtable_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libscihashtable_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -486,7 +486,7 @@ info: info-am
 
 info-am:
 
-install-data-am: install-libhashtable_la_includeHEADERS
+install-data-am: install-libscihashtable_la_includeHEADERS
 
 install-dvi: install-dvi-am
 
@@ -523,7 +523,7 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libLTLIBRARIES \
-	uninstall-libhashtable_la_includeHEADERS
+	uninstall-libscihashtable_la_includeHEADERS
 
 .MAKE: install-am install-strip
 
@@ -534,14 +534,15 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	install install-am install-data install-data-am install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-info install-info-am \
-	install-libLTLIBRARIES install-libhashtable_la_includeHEADERS \
-	install-man install-pdf install-pdf-am install-ps \
-	install-ps-am install-strip installcheck installcheck-am \
-	installdirs maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-compile mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
-	uninstall-am uninstall-libLTLIBRARIES \
-	uninstall-libhashtable_la_includeHEADERS
+	install-libLTLIBRARIES \
+	install-libscihashtable_la_includeHEADERS install-man \
+	install-pdf install-pdf-am install-ps install-ps-am \
+	install-strip installcheck installcheck-am installdirs \
+	maintainer-clean maintainer-clean-generic mostlyclean \
+	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
+	pdf pdf-am ps ps-am tags uninstall uninstall-am \
+	uninstall-libLTLIBRARIES \
+	uninstall-libscihashtable_la_includeHEADERS
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

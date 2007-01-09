@@ -99,7 +99,7 @@ libsignal_processing_la_SOURCES = $(SIGNAL_PROCESSING_FORTRAN_SOURCES) $(GATEWAY
 libsignal_processing_la_LIBADD = \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
 # Cyclic deps
-#	$(top_builddir)/modules/core/libcore.la
+#	$(top_builddir)/modules/core/libscicore.la
 
 libsignal_processing_la_PKGCONFIG = signal_processing.pc
 

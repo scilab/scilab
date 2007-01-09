@@ -39,7 +39,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = $(libstring_la_include_HEADERS) $(srcdir)/Makefile.am \
+DIST_COMMON = $(libscistring_la_include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
 subdir = modules/string
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -62,34 +62,37 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
-	"$(DESTDIR)$(libstring_la_etcdir)" \
-	"$(DESTDIR)$(libstring_la_rootdir)" \
-	"$(DESTDIR)$(libstring_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libstring_la_includedir)"
+	"$(DESTDIR)$(libscistring_la_etcdir)" \
+	"$(DESTDIR)$(libscistring_la_rootdir)" \
+	"$(DESTDIR)$(libscistring_la_sci_gatewaydir)" \
+	"$(DESTDIR)$(libscistring_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
-libstring_la_DEPENDENCIES = $(top_builddir)/libs/blas/libblas.la \
-	$(top_builddir)/modules/polynomials/libpolynomials.la \
-	$(top_builddir)/libs/MALLOC/libmalloc.la
-am__objects_1 = libstring_la-strcat-c.lo libstring_la-men_Sutils.lo
+libscistring_la_DEPENDENCIES =  \
+	$(top_builddir)/libs/blas/libsciblas.la \
+	$(top_builddir)/modules/polynomials/libscipolynomials.la \
+	$(top_builddir)/libs/MALLOC/libscimalloc.la
+am__objects_1 = libscistring_la-strcat-c.lo \
+	libscistring_la-men_Sutils.lo
 am__objects_2 = strord.lo strdsp.lo
-am__objects_3 = libstring_la-sci_strindex.lo \
-	libstring_la-sci_strcat.lo libstring_la-sci_tokens.lo \
-	libstring_la-gw_string.lo libstring_la-sci_string.lo \
-	libstring_la-sci_part.lo libstring_la-sci_ssort.lo \
-	libstring_la-sci_length.lo libstring_la-sci_strsplit.lo \
-	libstring_la-sci_str2code.lo libstring_la-sci_code2str.lo \
-	libstring_la-sci_emptystr.lo libstring_la-sci_ascii.lo \
-	libstring_la-sci_strsubst.lo libstring_la-sci_grep.lo \
-	libstring_la-sci_convstr.lo
+am__objects_3 = libscistring_la-sci_strindex.lo \
+	libscistring_la-sci_strcat.lo libscistring_la-sci_tokens.lo \
+	libscistring_la-gw_string.lo libscistring_la-sci_string.lo \
+	libscistring_la-sci_part.lo libscistring_la-sci_ssort.lo \
+	libscistring_la-sci_length.lo libscistring_la-sci_strsplit.lo \
+	libscistring_la-sci_str2code.lo \
+	libscistring_la-sci_code2str.lo \
+	libscistring_la-sci_emptystr.lo libscistring_la-sci_ascii.lo \
+	libscistring_la-sci_strsubst.lo libscistring_la-sci_grep.lo \
+	libscistring_la-sci_convstr.lo
 am__objects_4 = sci_convstr.lo sci_grep.lo sci_strindex.lo \
 	sci_strcat.lo sci_tokens.lo sci_string.lo sci_part.lo \
 	sci_length.lo sci_strsplit.lo sci_str2code.lo sci_code2str.lo \
 	sci_sort.lo sci_emptystr.lo sci_ascii.lo sci_strsubst.lo \
 	strops.lo
-am_libstring_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
+am_libscistring_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3) $(am__objects_4)
-libstring_la_OBJECTS = $(am_libstring_la_OBJECTS)
+libscistring_la_OBJECTS = $(am_libscistring_la_OBJECTS)
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -109,15 +112,15 @@ F77LD = $(F77)
 F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libstring_la_SOURCES)
-DIST_SOURCES = $(libstring_la_SOURCES)
-libstring_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libstring_la_rootDATA_INSTALL = $(INSTALL_DATA)
-libstring_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libstring_la_etc_DATA) $(libstring_la_root_DATA) \
-	$(libstring_la_sci_gateway_DATA)
-libstring_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
-HEADERS = $(libstring_la_include_HEADERS)
+SOURCES = $(libscistring_la_SOURCES)
+DIST_SOURCES = $(libscistring_la_SOURCES)
+libscistring_la_etcDATA_INSTALL = $(INSTALL_DATA)
+libscistring_la_rootDATA_INSTALL = $(INSTALL_DATA)
+libscistring_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(libscistring_la_etc_DATA) $(libscistring_la_root_DATA) \
+	$(libscistring_la_sci_gateway_DATA)
+libscistring_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
+HEADERS = $(libscistring_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -300,27 +303,27 @@ sci_gateway/fortran/sci_ascii.f \
 sci_gateway/fortran/sci_strsubst.f \
 sci_gateway/fortran/strops.f
 
-libstring_la_CFLAGS = -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
-lib_LTLIBRARIES = libstring.la
-libstring_la_SOURCES = $(STRING_C_SOURCES) $(STRING_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-libstring_la_LIBADD = \
-	$(top_builddir)/libs/blas/libblas.la \
-	$(top_builddir)/modules/polynomials/libpolynomials.la \
-	$(top_builddir)/libs/MALLOC/libmalloc.la
+libscistring_la_CFLAGS = -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
+lib_LTLIBRARIES = libscistring.la
+libscistring_la_SOURCES = $(STRING_C_SOURCES) $(STRING_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscistring_la_LIBADD = \
+	$(top_builddir)/libs/blas/libsciblas.la \
+	$(top_builddir)/modules/polynomials/libscipolynomials.la \
+	$(top_builddir)/libs/MALLOC/libscimalloc.la
 
 # Cyclic deps
-#	$(top_builddir)/modules/core/libcore.la
-libstring_la_PKGCONFIG = string.pc
+#	$(top_builddir)/modules/core/libscicore.la
+libscistring_la_PKGCONFIG = string.pc
 #### Target ######
 target = $(datadir)/string
 
 #### string : Conf files ####
-libstring_la_rootdir = $(target)
-libstring_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscistring_la_rootdir = $(target)
+libscistring_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### string : Scilab macros ###
-libstring_la_macrodir = $(target)/macros
-libstring_la_macro_DATA22 = macros/dec2hex.sci \
+libscistring_la_macrodir = $(target)/macros
+libscistring_la_macro_DATA22 = macros/dec2hex.sci \
 macros/hex2dec.sci \
 macros/tokenpos.sci \
 macros/evstr.sci \
@@ -346,16 +349,16 @@ macros/tokenpos.bin macros/names macros/lib macros/buildmacros.sce
 
 
 #### string : init scripts #### 
-libstring_la_etcdir = $(target)/etc
-libstring_la_etc_DATA = etc/string.quit etc/string.start
+libscistring_la_etcdir = $(target)/etc
+libscistring_la_etc_DATA = etc/string.quit etc/string.start
 
 #### string : gateway declaration #### 
-libstring_la_sci_gatewaydir = $(target)/sci_gateway
-libstring_la_sci_gateway_DATA = sci_gateway/string
+libscistring_la_sci_gatewaydir = $(target)/sci_gateway
+libscistring_la_sci_gateway_DATA = sci_gateway/string
 
 #### string : include files ####
-libstring_la_includedir = $(includedir)/string
-libstring_la_include_HEADERS = includes/men_Sutils.h \
+libscistring_la_includedir = $(includedir)/string
+libscistring_la_include_HEADERS = includes/men_Sutils.h \
 includes/gw_string.h
 
 
@@ -434,8 +437,8 @@ clean-libLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
-libstring.la: $(libstring_la_OBJECTS) $(libstring_la_DEPENDENCIES) 
-	$(F77LINK) -rpath $(libdir) $(libstring_la_OBJECTS) $(libstring_la_LIBADD) $(LIBS)
+libscistring.la: $(libscistring_la_OBJECTS) $(libscistring_la_DEPENDENCIES) 
+	$(F77LINK) -rpath $(libdir) $(libscistring_la_OBJECTS) $(libscistring_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -443,24 +446,24 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libstring_la-gw_string.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libstring_la-men_Sutils.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libstring_la-sci_ascii.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libstring_la-sci_code2str.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libstring_la-sci_convstr.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libstring_la-sci_emptystr.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libstring_la-sci_grep.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libstring_la-sci_length.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libstring_la-sci_part.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libstring_la-sci_ssort.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libstring_la-sci_str2code.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libstring_la-sci_strcat.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libstring_la-sci_strindex.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libstring_la-sci_string.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libstring_la-sci_strsplit.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libstring_la-sci_strsubst.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libstring_la-sci_tokens.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libstring_la-strcat-c.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-gw_string.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-men_Sutils.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-sci_ascii.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-sci_code2str.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-sci_convstr.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-sci_emptystr.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-sci_grep.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-sci_length.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-sci_part.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-sci_ssort.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-sci_str2code.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-sci_strcat.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-sci_strindex.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-sci_string.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-sci_strsplit.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-sci_strsubst.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-sci_tokens.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-strcat-c.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -483,131 +486,131 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
-libstring_la-strcat-c.lo: src/c/strcat-c.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libstring_la_CFLAGS) $(CFLAGS) -MT libstring_la-strcat-c.lo -MD -MP -MF $(DEPDIR)/libstring_la-strcat-c.Tpo -c -o libstring_la-strcat-c.lo `test -f 'src/c/strcat-c.c' || echo '$(srcdir)/'`src/c/strcat-c.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libstring_la-strcat-c.Tpo $(DEPDIR)/libstring_la-strcat-c.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/strcat-c.c' object='libstring_la-strcat-c.lo' libtool=yes @AMDEPBACKSLASH@
+libscistring_la-strcat-c.lo: src/c/strcat-c.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-strcat-c.lo -MD -MP -MF $(DEPDIR)/libscistring_la-strcat-c.Tpo -c -o libscistring_la-strcat-c.lo `test -f 'src/c/strcat-c.c' || echo '$(srcdir)/'`src/c/strcat-c.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscistring_la-strcat-c.Tpo $(DEPDIR)/libscistring_la-strcat-c.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/strcat-c.c' object='libscistring_la-strcat-c.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libstring_la_CFLAGS) $(CFLAGS) -c -o libstring_la-strcat-c.lo `test -f 'src/c/strcat-c.c' || echo '$(srcdir)/'`src/c/strcat-c.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-strcat-c.lo `test -f 'src/c/strcat-c.c' || echo '$(srcdir)/'`src/c/strcat-c.c
 
-libstring_la-men_Sutils.lo: src/c/men_Sutils.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libstring_la_CFLAGS) $(CFLAGS) -MT libstring_la-men_Sutils.lo -MD -MP -MF $(DEPDIR)/libstring_la-men_Sutils.Tpo -c -o libstring_la-men_Sutils.lo `test -f 'src/c/men_Sutils.c' || echo '$(srcdir)/'`src/c/men_Sutils.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libstring_la-men_Sutils.Tpo $(DEPDIR)/libstring_la-men_Sutils.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/men_Sutils.c' object='libstring_la-men_Sutils.lo' libtool=yes @AMDEPBACKSLASH@
+libscistring_la-men_Sutils.lo: src/c/men_Sutils.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-men_Sutils.lo -MD -MP -MF $(DEPDIR)/libscistring_la-men_Sutils.Tpo -c -o libscistring_la-men_Sutils.lo `test -f 'src/c/men_Sutils.c' || echo '$(srcdir)/'`src/c/men_Sutils.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscistring_la-men_Sutils.Tpo $(DEPDIR)/libscistring_la-men_Sutils.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/men_Sutils.c' object='libscistring_la-men_Sutils.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libstring_la_CFLAGS) $(CFLAGS) -c -o libstring_la-men_Sutils.lo `test -f 'src/c/men_Sutils.c' || echo '$(srcdir)/'`src/c/men_Sutils.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-men_Sutils.lo `test -f 'src/c/men_Sutils.c' || echo '$(srcdir)/'`src/c/men_Sutils.c
 
-libstring_la-sci_strindex.lo: sci_gateway/c/sci_strindex.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libstring_la_CFLAGS) $(CFLAGS) -MT libstring_la-sci_strindex.lo -MD -MP -MF $(DEPDIR)/libstring_la-sci_strindex.Tpo -c -o libstring_la-sci_strindex.lo `test -f 'sci_gateway/c/sci_strindex.c' || echo '$(srcdir)/'`sci_gateway/c/sci_strindex.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libstring_la-sci_strindex.Tpo $(DEPDIR)/libstring_la-sci_strindex.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_strindex.c' object='libstring_la-sci_strindex.lo' libtool=yes @AMDEPBACKSLASH@
+libscistring_la-sci_strindex.lo: sci_gateway/c/sci_strindex.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-sci_strindex.lo -MD -MP -MF $(DEPDIR)/libscistring_la-sci_strindex.Tpo -c -o libscistring_la-sci_strindex.lo `test -f 'sci_gateway/c/sci_strindex.c' || echo '$(srcdir)/'`sci_gateway/c/sci_strindex.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscistring_la-sci_strindex.Tpo $(DEPDIR)/libscistring_la-sci_strindex.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_strindex.c' object='libscistring_la-sci_strindex.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libstring_la_CFLAGS) $(CFLAGS) -c -o libstring_la-sci_strindex.lo `test -f 'sci_gateway/c/sci_strindex.c' || echo '$(srcdir)/'`sci_gateway/c/sci_strindex.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-sci_strindex.lo `test -f 'sci_gateway/c/sci_strindex.c' || echo '$(srcdir)/'`sci_gateway/c/sci_strindex.c
 
-libstring_la-sci_strcat.lo: sci_gateway/c/sci_strcat.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libstring_la_CFLAGS) $(CFLAGS) -MT libstring_la-sci_strcat.lo -MD -MP -MF $(DEPDIR)/libstring_la-sci_strcat.Tpo -c -o libstring_la-sci_strcat.lo `test -f 'sci_gateway/c/sci_strcat.c' || echo '$(srcdir)/'`sci_gateway/c/sci_strcat.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libstring_la-sci_strcat.Tpo $(DEPDIR)/libstring_la-sci_strcat.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_strcat.c' object='libstring_la-sci_strcat.lo' libtool=yes @AMDEPBACKSLASH@
+libscistring_la-sci_strcat.lo: sci_gateway/c/sci_strcat.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-sci_strcat.lo -MD -MP -MF $(DEPDIR)/libscistring_la-sci_strcat.Tpo -c -o libscistring_la-sci_strcat.lo `test -f 'sci_gateway/c/sci_strcat.c' || echo '$(srcdir)/'`sci_gateway/c/sci_strcat.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscistring_la-sci_strcat.Tpo $(DEPDIR)/libscistring_la-sci_strcat.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_strcat.c' object='libscistring_la-sci_strcat.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libstring_la_CFLAGS) $(CFLAGS) -c -o libstring_la-sci_strcat.lo `test -f 'sci_gateway/c/sci_strcat.c' || echo '$(srcdir)/'`sci_gateway/c/sci_strcat.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-sci_strcat.lo `test -f 'sci_gateway/c/sci_strcat.c' || echo '$(srcdir)/'`sci_gateway/c/sci_strcat.c
 
-libstring_la-sci_tokens.lo: sci_gateway/c/sci_tokens.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libstring_la_CFLAGS) $(CFLAGS) -MT libstring_la-sci_tokens.lo -MD -MP -MF $(DEPDIR)/libstring_la-sci_tokens.Tpo -c -o libstring_la-sci_tokens.lo `test -f 'sci_gateway/c/sci_tokens.c' || echo '$(srcdir)/'`sci_gateway/c/sci_tokens.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libstring_la-sci_tokens.Tpo $(DEPDIR)/libstring_la-sci_tokens.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_tokens.c' object='libstring_la-sci_tokens.lo' libtool=yes @AMDEPBACKSLASH@
+libscistring_la-sci_tokens.lo: sci_gateway/c/sci_tokens.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-sci_tokens.lo -MD -MP -MF $(DEPDIR)/libscistring_la-sci_tokens.Tpo -c -o libscistring_la-sci_tokens.lo `test -f 'sci_gateway/c/sci_tokens.c' || echo '$(srcdir)/'`sci_gateway/c/sci_tokens.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscistring_la-sci_tokens.Tpo $(DEPDIR)/libscistring_la-sci_tokens.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_tokens.c' object='libscistring_la-sci_tokens.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libstring_la_CFLAGS) $(CFLAGS) -c -o libstring_la-sci_tokens.lo `test -f 'sci_gateway/c/sci_tokens.c' || echo '$(srcdir)/'`sci_gateway/c/sci_tokens.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-sci_tokens.lo `test -f 'sci_gateway/c/sci_tokens.c' || echo '$(srcdir)/'`sci_gateway/c/sci_tokens.c
 
-libstring_la-gw_string.lo: sci_gateway/c/gw_string.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libstring_la_CFLAGS) $(CFLAGS) -MT libstring_la-gw_string.lo -MD -MP -MF $(DEPDIR)/libstring_la-gw_string.Tpo -c -o libstring_la-gw_string.lo `test -f 'sci_gateway/c/gw_string.c' || echo '$(srcdir)/'`sci_gateway/c/gw_string.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libstring_la-gw_string.Tpo $(DEPDIR)/libstring_la-gw_string.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/gw_string.c' object='libstring_la-gw_string.lo' libtool=yes @AMDEPBACKSLASH@
+libscistring_la-gw_string.lo: sci_gateway/c/gw_string.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-gw_string.lo -MD -MP -MF $(DEPDIR)/libscistring_la-gw_string.Tpo -c -o libscistring_la-gw_string.lo `test -f 'sci_gateway/c/gw_string.c' || echo '$(srcdir)/'`sci_gateway/c/gw_string.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscistring_la-gw_string.Tpo $(DEPDIR)/libscistring_la-gw_string.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/gw_string.c' object='libscistring_la-gw_string.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libstring_la_CFLAGS) $(CFLAGS) -c -o libstring_la-gw_string.lo `test -f 'sci_gateway/c/gw_string.c' || echo '$(srcdir)/'`sci_gateway/c/gw_string.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-gw_string.lo `test -f 'sci_gateway/c/gw_string.c' || echo '$(srcdir)/'`sci_gateway/c/gw_string.c
 
-libstring_la-sci_string.lo: sci_gateway/c/sci_string.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libstring_la_CFLAGS) $(CFLAGS) -MT libstring_la-sci_string.lo -MD -MP -MF $(DEPDIR)/libstring_la-sci_string.Tpo -c -o libstring_la-sci_string.lo `test -f 'sci_gateway/c/sci_string.c' || echo '$(srcdir)/'`sci_gateway/c/sci_string.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libstring_la-sci_string.Tpo $(DEPDIR)/libstring_la-sci_string.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_string.c' object='libstring_la-sci_string.lo' libtool=yes @AMDEPBACKSLASH@
+libscistring_la-sci_string.lo: sci_gateway/c/sci_string.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-sci_string.lo -MD -MP -MF $(DEPDIR)/libscistring_la-sci_string.Tpo -c -o libscistring_la-sci_string.lo `test -f 'sci_gateway/c/sci_string.c' || echo '$(srcdir)/'`sci_gateway/c/sci_string.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscistring_la-sci_string.Tpo $(DEPDIR)/libscistring_la-sci_string.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_string.c' object='libscistring_la-sci_string.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libstring_la_CFLAGS) $(CFLAGS) -c -o libstring_la-sci_string.lo `test -f 'sci_gateway/c/sci_string.c' || echo '$(srcdir)/'`sci_gateway/c/sci_string.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-sci_string.lo `test -f 'sci_gateway/c/sci_string.c' || echo '$(srcdir)/'`sci_gateway/c/sci_string.c
 
-libstring_la-sci_part.lo: sci_gateway/c/sci_part.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libstring_la_CFLAGS) $(CFLAGS) -MT libstring_la-sci_part.lo -MD -MP -MF $(DEPDIR)/libstring_la-sci_part.Tpo -c -o libstring_la-sci_part.lo `test -f 'sci_gateway/c/sci_part.c' || echo '$(srcdir)/'`sci_gateway/c/sci_part.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libstring_la-sci_part.Tpo $(DEPDIR)/libstring_la-sci_part.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_part.c' object='libstring_la-sci_part.lo' libtool=yes @AMDEPBACKSLASH@
+libscistring_la-sci_part.lo: sci_gateway/c/sci_part.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-sci_part.lo -MD -MP -MF $(DEPDIR)/libscistring_la-sci_part.Tpo -c -o libscistring_la-sci_part.lo `test -f 'sci_gateway/c/sci_part.c' || echo '$(srcdir)/'`sci_gateway/c/sci_part.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscistring_la-sci_part.Tpo $(DEPDIR)/libscistring_la-sci_part.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_part.c' object='libscistring_la-sci_part.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libstring_la_CFLAGS) $(CFLAGS) -c -o libstring_la-sci_part.lo `test -f 'sci_gateway/c/sci_part.c' || echo '$(srcdir)/'`sci_gateway/c/sci_part.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-sci_part.lo `test -f 'sci_gateway/c/sci_part.c' || echo '$(srcdir)/'`sci_gateway/c/sci_part.c
 
-libstring_la-sci_ssort.lo: sci_gateway/c/sci_ssort.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libstring_la_CFLAGS) $(CFLAGS) -MT libstring_la-sci_ssort.lo -MD -MP -MF $(DEPDIR)/libstring_la-sci_ssort.Tpo -c -o libstring_la-sci_ssort.lo `test -f 'sci_gateway/c/sci_ssort.c' || echo '$(srcdir)/'`sci_gateway/c/sci_ssort.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libstring_la-sci_ssort.Tpo $(DEPDIR)/libstring_la-sci_ssort.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_ssort.c' object='libstring_la-sci_ssort.lo' libtool=yes @AMDEPBACKSLASH@
+libscistring_la-sci_ssort.lo: sci_gateway/c/sci_ssort.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-sci_ssort.lo -MD -MP -MF $(DEPDIR)/libscistring_la-sci_ssort.Tpo -c -o libscistring_la-sci_ssort.lo `test -f 'sci_gateway/c/sci_ssort.c' || echo '$(srcdir)/'`sci_gateway/c/sci_ssort.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscistring_la-sci_ssort.Tpo $(DEPDIR)/libscistring_la-sci_ssort.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_ssort.c' object='libscistring_la-sci_ssort.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libstring_la_CFLAGS) $(CFLAGS) -c -o libstring_la-sci_ssort.lo `test -f 'sci_gateway/c/sci_ssort.c' || echo '$(srcdir)/'`sci_gateway/c/sci_ssort.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-sci_ssort.lo `test -f 'sci_gateway/c/sci_ssort.c' || echo '$(srcdir)/'`sci_gateway/c/sci_ssort.c
 
-libstring_la-sci_length.lo: sci_gateway/c/sci_length.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libstring_la_CFLAGS) $(CFLAGS) -MT libstring_la-sci_length.lo -MD -MP -MF $(DEPDIR)/libstring_la-sci_length.Tpo -c -o libstring_la-sci_length.lo `test -f 'sci_gateway/c/sci_length.c' || echo '$(srcdir)/'`sci_gateway/c/sci_length.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libstring_la-sci_length.Tpo $(DEPDIR)/libstring_la-sci_length.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_length.c' object='libstring_la-sci_length.lo' libtool=yes @AMDEPBACKSLASH@
+libscistring_la-sci_length.lo: sci_gateway/c/sci_length.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-sci_length.lo -MD -MP -MF $(DEPDIR)/libscistring_la-sci_length.Tpo -c -o libscistring_la-sci_length.lo `test -f 'sci_gateway/c/sci_length.c' || echo '$(srcdir)/'`sci_gateway/c/sci_length.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscistring_la-sci_length.Tpo $(DEPDIR)/libscistring_la-sci_length.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_length.c' object='libscistring_la-sci_length.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libstring_la_CFLAGS) $(CFLAGS) -c -o libstring_la-sci_length.lo `test -f 'sci_gateway/c/sci_length.c' || echo '$(srcdir)/'`sci_gateway/c/sci_length.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-sci_length.lo `test -f 'sci_gateway/c/sci_length.c' || echo '$(srcdir)/'`sci_gateway/c/sci_length.c
 
-libstring_la-sci_strsplit.lo: sci_gateway/c/sci_strsplit.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libstring_la_CFLAGS) $(CFLAGS) -MT libstring_la-sci_strsplit.lo -MD -MP -MF $(DEPDIR)/libstring_la-sci_strsplit.Tpo -c -o libstring_la-sci_strsplit.lo `test -f 'sci_gateway/c/sci_strsplit.c' || echo '$(srcdir)/'`sci_gateway/c/sci_strsplit.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libstring_la-sci_strsplit.Tpo $(DEPDIR)/libstring_la-sci_strsplit.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_strsplit.c' object='libstring_la-sci_strsplit.lo' libtool=yes @AMDEPBACKSLASH@
+libscistring_la-sci_strsplit.lo: sci_gateway/c/sci_strsplit.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-sci_strsplit.lo -MD -MP -MF $(DEPDIR)/libscistring_la-sci_strsplit.Tpo -c -o libscistring_la-sci_strsplit.lo `test -f 'sci_gateway/c/sci_strsplit.c' || echo '$(srcdir)/'`sci_gateway/c/sci_strsplit.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscistring_la-sci_strsplit.Tpo $(DEPDIR)/libscistring_la-sci_strsplit.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_strsplit.c' object='libscistring_la-sci_strsplit.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libstring_la_CFLAGS) $(CFLAGS) -c -o libstring_la-sci_strsplit.lo `test -f 'sci_gateway/c/sci_strsplit.c' || echo '$(srcdir)/'`sci_gateway/c/sci_strsplit.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-sci_strsplit.lo `test -f 'sci_gateway/c/sci_strsplit.c' || echo '$(srcdir)/'`sci_gateway/c/sci_strsplit.c
 
-libstring_la-sci_str2code.lo: sci_gateway/c/sci_str2code.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libstring_la_CFLAGS) $(CFLAGS) -MT libstring_la-sci_str2code.lo -MD -MP -MF $(DEPDIR)/libstring_la-sci_str2code.Tpo -c -o libstring_la-sci_str2code.lo `test -f 'sci_gateway/c/sci_str2code.c' || echo '$(srcdir)/'`sci_gateway/c/sci_str2code.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libstring_la-sci_str2code.Tpo $(DEPDIR)/libstring_la-sci_str2code.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_str2code.c' object='libstring_la-sci_str2code.lo' libtool=yes @AMDEPBACKSLASH@
+libscistring_la-sci_str2code.lo: sci_gateway/c/sci_str2code.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-sci_str2code.lo -MD -MP -MF $(DEPDIR)/libscistring_la-sci_str2code.Tpo -c -o libscistring_la-sci_str2code.lo `test -f 'sci_gateway/c/sci_str2code.c' || echo '$(srcdir)/'`sci_gateway/c/sci_str2code.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscistring_la-sci_str2code.Tpo $(DEPDIR)/libscistring_la-sci_str2code.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_str2code.c' object='libscistring_la-sci_str2code.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libstring_la_CFLAGS) $(CFLAGS) -c -o libstring_la-sci_str2code.lo `test -f 'sci_gateway/c/sci_str2code.c' || echo '$(srcdir)/'`sci_gateway/c/sci_str2code.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-sci_str2code.lo `test -f 'sci_gateway/c/sci_str2code.c' || echo '$(srcdir)/'`sci_gateway/c/sci_str2code.c
 
-libstring_la-sci_code2str.lo: sci_gateway/c/sci_code2str.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libstring_la_CFLAGS) $(CFLAGS) -MT libstring_la-sci_code2str.lo -MD -MP -MF $(DEPDIR)/libstring_la-sci_code2str.Tpo -c -o libstring_la-sci_code2str.lo `test -f 'sci_gateway/c/sci_code2str.c' || echo '$(srcdir)/'`sci_gateway/c/sci_code2str.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libstring_la-sci_code2str.Tpo $(DEPDIR)/libstring_la-sci_code2str.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_code2str.c' object='libstring_la-sci_code2str.lo' libtool=yes @AMDEPBACKSLASH@
+libscistring_la-sci_code2str.lo: sci_gateway/c/sci_code2str.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-sci_code2str.lo -MD -MP -MF $(DEPDIR)/libscistring_la-sci_code2str.Tpo -c -o libscistring_la-sci_code2str.lo `test -f 'sci_gateway/c/sci_code2str.c' || echo '$(srcdir)/'`sci_gateway/c/sci_code2str.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscistring_la-sci_code2str.Tpo $(DEPDIR)/libscistring_la-sci_code2str.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_code2str.c' object='libscistring_la-sci_code2str.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libstring_la_CFLAGS) $(CFLAGS) -c -o libstring_la-sci_code2str.lo `test -f 'sci_gateway/c/sci_code2str.c' || echo '$(srcdir)/'`sci_gateway/c/sci_code2str.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-sci_code2str.lo `test -f 'sci_gateway/c/sci_code2str.c' || echo '$(srcdir)/'`sci_gateway/c/sci_code2str.c
 
-libstring_la-sci_emptystr.lo: sci_gateway/c/sci_emptystr.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libstring_la_CFLAGS) $(CFLAGS) -MT libstring_la-sci_emptystr.lo -MD -MP -MF $(DEPDIR)/libstring_la-sci_emptystr.Tpo -c -o libstring_la-sci_emptystr.lo `test -f 'sci_gateway/c/sci_emptystr.c' || echo '$(srcdir)/'`sci_gateway/c/sci_emptystr.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libstring_la-sci_emptystr.Tpo $(DEPDIR)/libstring_la-sci_emptystr.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_emptystr.c' object='libstring_la-sci_emptystr.lo' libtool=yes @AMDEPBACKSLASH@
+libscistring_la-sci_emptystr.lo: sci_gateway/c/sci_emptystr.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-sci_emptystr.lo -MD -MP -MF $(DEPDIR)/libscistring_la-sci_emptystr.Tpo -c -o libscistring_la-sci_emptystr.lo `test -f 'sci_gateway/c/sci_emptystr.c' || echo '$(srcdir)/'`sci_gateway/c/sci_emptystr.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscistring_la-sci_emptystr.Tpo $(DEPDIR)/libscistring_la-sci_emptystr.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_emptystr.c' object='libscistring_la-sci_emptystr.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libstring_la_CFLAGS) $(CFLAGS) -c -o libstring_la-sci_emptystr.lo `test -f 'sci_gateway/c/sci_emptystr.c' || echo '$(srcdir)/'`sci_gateway/c/sci_emptystr.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-sci_emptystr.lo `test -f 'sci_gateway/c/sci_emptystr.c' || echo '$(srcdir)/'`sci_gateway/c/sci_emptystr.c
 
-libstring_la-sci_ascii.lo: sci_gateway/c/sci_ascii.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libstring_la_CFLAGS) $(CFLAGS) -MT libstring_la-sci_ascii.lo -MD -MP -MF $(DEPDIR)/libstring_la-sci_ascii.Tpo -c -o libstring_la-sci_ascii.lo `test -f 'sci_gateway/c/sci_ascii.c' || echo '$(srcdir)/'`sci_gateway/c/sci_ascii.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libstring_la-sci_ascii.Tpo $(DEPDIR)/libstring_la-sci_ascii.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_ascii.c' object='libstring_la-sci_ascii.lo' libtool=yes @AMDEPBACKSLASH@
+libscistring_la-sci_ascii.lo: sci_gateway/c/sci_ascii.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-sci_ascii.lo -MD -MP -MF $(DEPDIR)/libscistring_la-sci_ascii.Tpo -c -o libscistring_la-sci_ascii.lo `test -f 'sci_gateway/c/sci_ascii.c' || echo '$(srcdir)/'`sci_gateway/c/sci_ascii.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscistring_la-sci_ascii.Tpo $(DEPDIR)/libscistring_la-sci_ascii.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_ascii.c' object='libscistring_la-sci_ascii.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libstring_la_CFLAGS) $(CFLAGS) -c -o libstring_la-sci_ascii.lo `test -f 'sci_gateway/c/sci_ascii.c' || echo '$(srcdir)/'`sci_gateway/c/sci_ascii.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-sci_ascii.lo `test -f 'sci_gateway/c/sci_ascii.c' || echo '$(srcdir)/'`sci_gateway/c/sci_ascii.c
 
-libstring_la-sci_strsubst.lo: sci_gateway/c/sci_strsubst.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libstring_la_CFLAGS) $(CFLAGS) -MT libstring_la-sci_strsubst.lo -MD -MP -MF $(DEPDIR)/libstring_la-sci_strsubst.Tpo -c -o libstring_la-sci_strsubst.lo `test -f 'sci_gateway/c/sci_strsubst.c' || echo '$(srcdir)/'`sci_gateway/c/sci_strsubst.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libstring_la-sci_strsubst.Tpo $(DEPDIR)/libstring_la-sci_strsubst.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_strsubst.c' object='libstring_la-sci_strsubst.lo' libtool=yes @AMDEPBACKSLASH@
+libscistring_la-sci_strsubst.lo: sci_gateway/c/sci_strsubst.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-sci_strsubst.lo -MD -MP -MF $(DEPDIR)/libscistring_la-sci_strsubst.Tpo -c -o libscistring_la-sci_strsubst.lo `test -f 'sci_gateway/c/sci_strsubst.c' || echo '$(srcdir)/'`sci_gateway/c/sci_strsubst.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscistring_la-sci_strsubst.Tpo $(DEPDIR)/libscistring_la-sci_strsubst.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_strsubst.c' object='libscistring_la-sci_strsubst.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libstring_la_CFLAGS) $(CFLAGS) -c -o libstring_la-sci_strsubst.lo `test -f 'sci_gateway/c/sci_strsubst.c' || echo '$(srcdir)/'`sci_gateway/c/sci_strsubst.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-sci_strsubst.lo `test -f 'sci_gateway/c/sci_strsubst.c' || echo '$(srcdir)/'`sci_gateway/c/sci_strsubst.c
 
-libstring_la-sci_grep.lo: sci_gateway/c/sci_grep.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libstring_la_CFLAGS) $(CFLAGS) -MT libstring_la-sci_grep.lo -MD -MP -MF $(DEPDIR)/libstring_la-sci_grep.Tpo -c -o libstring_la-sci_grep.lo `test -f 'sci_gateway/c/sci_grep.c' || echo '$(srcdir)/'`sci_gateway/c/sci_grep.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libstring_la-sci_grep.Tpo $(DEPDIR)/libstring_la-sci_grep.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_grep.c' object='libstring_la-sci_grep.lo' libtool=yes @AMDEPBACKSLASH@
+libscistring_la-sci_grep.lo: sci_gateway/c/sci_grep.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-sci_grep.lo -MD -MP -MF $(DEPDIR)/libscistring_la-sci_grep.Tpo -c -o libscistring_la-sci_grep.lo `test -f 'sci_gateway/c/sci_grep.c' || echo '$(srcdir)/'`sci_gateway/c/sci_grep.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscistring_la-sci_grep.Tpo $(DEPDIR)/libscistring_la-sci_grep.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_grep.c' object='libscistring_la-sci_grep.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libstring_la_CFLAGS) $(CFLAGS) -c -o libstring_la-sci_grep.lo `test -f 'sci_gateway/c/sci_grep.c' || echo '$(srcdir)/'`sci_gateway/c/sci_grep.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-sci_grep.lo `test -f 'sci_gateway/c/sci_grep.c' || echo '$(srcdir)/'`sci_gateway/c/sci_grep.c
 
-libstring_la-sci_convstr.lo: sci_gateway/c/sci_convstr.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libstring_la_CFLAGS) $(CFLAGS) -MT libstring_la-sci_convstr.lo -MD -MP -MF $(DEPDIR)/libstring_la-sci_convstr.Tpo -c -o libstring_la-sci_convstr.lo `test -f 'sci_gateway/c/sci_convstr.c' || echo '$(srcdir)/'`sci_gateway/c/sci_convstr.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libstring_la-sci_convstr.Tpo $(DEPDIR)/libstring_la-sci_convstr.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_convstr.c' object='libstring_la-sci_convstr.lo' libtool=yes @AMDEPBACKSLASH@
+libscistring_la-sci_convstr.lo: sci_gateway/c/sci_convstr.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-sci_convstr.lo -MD -MP -MF $(DEPDIR)/libscistring_la-sci_convstr.Tpo -c -o libscistring_la-sci_convstr.lo `test -f 'sci_gateway/c/sci_convstr.c' || echo '$(srcdir)/'`sci_gateway/c/sci_convstr.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscistring_la-sci_convstr.Tpo $(DEPDIR)/libscistring_la-sci_convstr.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_convstr.c' object='libscistring_la-sci_convstr.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libstring_la_CFLAGS) $(CFLAGS) -c -o libstring_la-sci_convstr.lo `test -f 'sci_gateway/c/sci_convstr.c' || echo '$(srcdir)/'`sci_gateway/c/sci_convstr.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-sci_convstr.lo `test -f 'sci_gateway/c/sci_convstr.c' || echo '$(srcdir)/'`sci_gateway/c/sci_convstr.c
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<
@@ -677,73 +680,73 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libstring_la_etcDATA: $(libstring_la_etc_DATA)
+install-libscistring_la_etcDATA: $(libscistring_la_etc_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libstring_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libstring_la_etcdir)"
-	@list='$(libstring_la_etc_DATA)'; for p in $$list; do \
+	test -z "$(libscistring_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libscistring_la_etcdir)"
+	@list='$(libscistring_la_etc_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libstring_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libstring_la_etcdir)/$$f'"; \
-	  $(libstring_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libstring_la_etcdir)/$$f"; \
+	  echo " $(libscistring_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscistring_la_etcdir)/$$f'"; \
+	  $(libscistring_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscistring_la_etcdir)/$$f"; \
 	done
 
-uninstall-libstring_la_etcDATA:
+uninstall-libscistring_la_etcDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libstring_la_etc_DATA)'; for p in $$list; do \
+	@list='$(libscistring_la_etc_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libstring_la_etcdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libstring_la_etcdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscistring_la_etcdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscistring_la_etcdir)/$$f"; \
 	done
-install-libstring_la_rootDATA: $(libstring_la_root_DATA)
+install-libscistring_la_rootDATA: $(libscistring_la_root_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libstring_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libstring_la_rootdir)"
-	@list='$(libstring_la_root_DATA)'; for p in $$list; do \
+	test -z "$(libscistring_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libscistring_la_rootdir)"
+	@list='$(libscistring_la_root_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libstring_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libstring_la_rootdir)/$$f'"; \
-	  $(libstring_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libstring_la_rootdir)/$$f"; \
+	  echo " $(libscistring_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscistring_la_rootdir)/$$f'"; \
+	  $(libscistring_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscistring_la_rootdir)/$$f"; \
 	done
 
-uninstall-libstring_la_rootDATA:
+uninstall-libscistring_la_rootDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libstring_la_root_DATA)'; for p in $$list; do \
+	@list='$(libscistring_la_root_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libstring_la_rootdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libstring_la_rootdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscistring_la_rootdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscistring_la_rootdir)/$$f"; \
 	done
-install-libstring_la_sci_gatewayDATA: $(libstring_la_sci_gateway_DATA)
+install-libscistring_la_sci_gatewayDATA: $(libscistring_la_sci_gateway_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libstring_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libstring_la_sci_gatewaydir)"
-	@list='$(libstring_la_sci_gateway_DATA)'; for p in $$list; do \
+	test -z "$(libscistring_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libscistring_la_sci_gatewaydir)"
+	@list='$(libscistring_la_sci_gateway_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libstring_la_sci_gatewayDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libstring_la_sci_gatewaydir)/$$f'"; \
-	  $(libstring_la_sci_gatewayDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libstring_la_sci_gatewaydir)/$$f"; \
+	  echo " $(libscistring_la_sci_gatewayDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscistring_la_sci_gatewaydir)/$$f'"; \
+	  $(libscistring_la_sci_gatewayDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscistring_la_sci_gatewaydir)/$$f"; \
 	done
 
-uninstall-libstring_la_sci_gatewayDATA:
+uninstall-libscistring_la_sci_gatewayDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libstring_la_sci_gateway_DATA)'; for p in $$list; do \
+	@list='$(libscistring_la_sci_gateway_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libstring_la_sci_gatewaydir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libstring_la_sci_gatewaydir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscistring_la_sci_gatewaydir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscistring_la_sci_gatewaydir)/$$f"; \
 	done
-install-libstring_la_includeHEADERS: $(libstring_la_include_HEADERS)
+install-libscistring_la_includeHEADERS: $(libscistring_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
-	test -z "$(libstring_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libstring_la_includedir)"
-	@list='$(libstring_la_include_HEADERS)'; for p in $$list; do \
+	test -z "$(libscistring_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscistring_la_includedir)"
+	@list='$(libscistring_la_include_HEADERS)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libstring_la_includeHEADERS_INSTALL) '$$d$$p' '$(DESTDIR)$(libstring_la_includedir)/$$f'"; \
-	  $(libstring_la_includeHEADERS_INSTALL) "$$d$$p" "$(DESTDIR)$(libstring_la_includedir)/$$f"; \
+	  echo " $(libscistring_la_includeHEADERS_INSTALL) '$$d$$p' '$(DESTDIR)$(libscistring_la_includedir)/$$f'"; \
+	  $(libscistring_la_includeHEADERS_INSTALL) "$$d$$p" "$(DESTDIR)$(libscistring_la_includedir)/$$f"; \
 	done
 
-uninstall-libstring_la_includeHEADERS:
+uninstall-libscistring_la_includeHEADERS:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libstring_la_include_HEADERS)'; for p in $$list; do \
+	@list='$(libscistring_la_include_HEADERS)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libstring_la_includedir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libstring_la_includedir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscistring_la_includedir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscistring_la_includedir)/$$f"; \
 	done
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
@@ -824,7 +827,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libstring_la_etcdir)" "$(DESTDIR)$(libstring_la_rootdir)" "$(DESTDIR)$(libstring_la_sci_gatewaydir)" "$(DESTDIR)$(libstring_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libscistring_la_etcdir)" "$(DESTDIR)$(libscistring_la_rootdir)" "$(DESTDIR)$(libscistring_la_sci_gatewaydir)" "$(DESTDIR)$(libscistring_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -872,10 +875,10 @@ info: info-am
 
 info-am:
 
-install-data-am: install-data-local install-libstring_la_etcDATA \
-	install-libstring_la_includeHEADERS \
-	install-libstring_la_rootDATA \
-	install-libstring_la_sci_gatewayDATA
+install-data-am: install-data-local install-libscistring_la_etcDATA \
+	install-libscistring_la_includeHEADERS \
+	install-libscistring_la_rootDATA \
+	install-libscistring_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
 
@@ -913,10 +916,11 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libLTLIBRARIES uninstall-libstring_la_etcDATA \
-	uninstall-libstring_la_includeHEADERS \
-	uninstall-libstring_la_rootDATA \
-	uninstall-libstring_la_sci_gatewayDATA
+uninstall-am: uninstall-libLTLIBRARIES \
+	uninstall-libscistring_la_etcDATA \
+	uninstall-libscistring_la_includeHEADERS \
+	uninstall-libscistring_la_rootDATA \
+	uninstall-libscistring_la_sci_gatewayDATA
 
 .MAKE: install-am install-strip
 
@@ -928,19 +932,19 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libstring_la_etcDATA \
 	install-data-local install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
-	install-libLTLIBRARIES install-libstring_la_etcDATA \
-	install-libstring_la_includeHEADERS \
-	install-libstring_la_rootDATA \
-	install-libstring_la_sci_gatewayDATA install-man install-pdf \
-	install-pdf-am install-ps install-ps-am install-strip \
-	installcheck installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-compile \
-	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
-	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
-	uninstall-libstring_la_etcDATA \
-	uninstall-libstring_la_includeHEADERS \
-	uninstall-libstring_la_rootDATA \
-	uninstall-libstring_la_sci_gatewayDATA
+	install-libLTLIBRARIES install-libscistring_la_etcDATA \
+	install-libscistring_la_includeHEADERS \
+	install-libscistring_la_rootDATA \
+	install-libscistring_la_sci_gatewayDATA install-man \
+	install-pdf install-pdf-am install-ps install-ps-am \
+	install-strip installcheck installcheck-am installdirs \
+	maintainer-clean maintainer-clean-generic mostlyclean \
+	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
+	pdf pdf-am ps ps-am tags uninstall uninstall-am \
+	uninstall-libLTLIBRARIES uninstall-libscistring_la_etcDATA \
+	uninstall-libscistring_la_includeHEADERS \
+	uninstall-libscistring_la_rootDATA \
+	uninstall-libscistring_la_sci_gatewayDATA
 
 
 #.xml.htm:

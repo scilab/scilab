@@ -16,17 +16,17 @@ sci_gateway/sci_beep.c \
 sci_gateway/sci_PlaySound.c
 
 
-libsound_la_CFLAGS=  -Iincludes/ -Isrc/ -I$(top_srcdir)/libs/MALLOC/includes/
+libscisound_la_CFLAGS=  -Iincludes/ -Isrc/ -I$(top_srcdir)/libs/MALLOC/includes/
 
-lib_LTLIBRARIES = libsound.la
+lib_LTLIBRARIES = libscisound.la
 
-libsound_la_SOURCES = $(SOUND_C_SOURCES) $(GATEWAY_C_SOURCES)
+libscisound_la_SOURCES = $(SOUND_C_SOURCES) $(GATEWAY_C_SOURCES)
 
-libsound_la_LIBADD = \
-	$(top_builddir)/libs/MALLOC/libmalloc.la \
-	$(top_builddir)/modules/core/libcore.la
+libscisound_la_LIBADD = \
+	$(top_builddir)/libs/MALLOC/libscimalloc.la \
+	$(top_builddir)/modules/core/libscicore.la
 
-libsound_la_PKGCONFIG = sound.pc
+libscisound_la_PKGCONFIG = sound.pc
 
 datadir=${prefix}/modules
 #### Target ######
@@ -34,13 +34,13 @@ target=$(datadir)/sound
 
 
 #### sound : Conf files ####
-libsound_la_rootdir = $(target)
-libsound_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscisound_la_rootdir = $(target)
+libscisound_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
 #### sound : Scilab macros ###
-libsound_la_macrodir = $(target)/macros
-libsound_la_macro_DATA22 = macros/analyze.sci \
+libscisound_la_macrodir = $(target)/macros
+libscisound_la_macro_DATA22 = macros/analyze.sci \
 macros/soundsec.sci \
 macros/lin2mu.sci \
 macros/mapsound.sci \
@@ -64,16 +64,16 @@ macros/wavwrite.bin macros/names macros/lib macros/buildmacros.sce
 
 
 #### sound : init scripts #### 
-libsound_la_etcdir = $(target)/etc
-libsound_la_etc_DATA = etc/sound.quit etc/sound.start
+libscisound_la_etcdir = $(target)/etc
+libscisound_la_etc_DATA = etc/sound.quit etc/sound.start
 
 #### sound : gateway declaration #### 
-libsound_la_sci_gatewaydir = $(target)/sci_gateway
-libsound_la_sci_gateway_DATA = sci_gateway/sound
+libscisound_la_sci_gatewaydir = $(target)/sci_gateway
+libscisound_la_sci_gateway_DATA = sci_gateway/sound
 
 #### sound : include files ####
-libsound_la_includedir=$(includedir)/sound
-libsound_la_include_HEADERS = includes/sci_beep.h \
+libscisound_la_includedir=$(includedir)/sound
+libscisound_la_include_HEADERS = includes/sci_beep.h \
 includes/sci_PlaySound.h \
 includes/sci_savewave.h \
 includes/sci_loadwave.h \
@@ -81,8 +81,8 @@ includes/gw_sound.h
 
 
 #### sound : demos files ####
-libsound_la_demosdir=$(target)/demos/
-libsound_la_demos_DATA = demos/chimes.wav \
+libscisound_la_demosdir=$(target)/demos/
+libscisound_la_demos_DATA = demos/chimes.wav \
 demos/sound.dem
 
 include $(top_srcdir)/Makefile.incl.am

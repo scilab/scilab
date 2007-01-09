@@ -9,13 +9,13 @@ target=$(datadir)/scipad
 
 
 #### scipad : Conf files ####
-libscipad_la_rootdir = $(target)
-libscipad_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libsciscipad_la_rootdir = $(target)
+libsciscipad_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
 #### scipad : Scilab macros ###
-libscipad_la_macrodir = $(target)
-nobase_libscipad_la_macro_DATA22 = macros/scipad_internals/lib \
+libsciscipad_la_macrodir = $(target)
+nobase_libsciscipad_la_macro_DATA22 = macros/scipad_internals/lib \
 macros/scipad_internals/LocalizeForScipad.sci \
 macros/scipad_internals/ext_exists.sci \
 macros/scipad_internals/msgdiff.sci \
@@ -34,8 +34,8 @@ macros/scipad.bin macros/names macros/lib macros/buildmacros.sce
 
 
 #### scipad : init scripts #### 
-libscipad_la_etcdir = $(target)/etc
-libscipad_la_etc_DATA = etc/scipad.quit etc/scipad.start
+libsciscipad_la_etcdir = $(target)/etc
+libsciscipad_la_etc_DATA = etc/scipad.quit etc/scipad.start
 
 
 include $(top_srcdir)/Makefile.incl.am

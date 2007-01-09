@@ -104,19 +104,19 @@ sci_gateway/fortran/sci_f_pclean.f \
 sci_gateway/fortran/sci_f_sfact.f \
 sci_gateway/fortran/sci_f_simpmd.f
 
-#libpolynomials_la_FFLAGS= -Iincludes/ 
-libpolynomials_la_CFLAGS= -Iincludes/ 
+#libscipolynomials_la_FFLAGS= -Iincludes/ 
+libscipolynomials_la_CFLAGS= -Iincludes/ 
 #-Isrc/c/
-lib_LTLIBRARIES = libpolynomials.la
+lib_LTLIBRARIES = libscipolynomials.la
 
-libpolynomials_la_SOURCES = $(POLYNOMIALS_FORTRAN_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
+libscipolynomials_la_SOURCES = $(POLYNOMIALS_FORTRAN_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 
-libpolynomials_la_LIBADD =
+libscipolynomials_la_LIBADD =
 # Cyclic dependencies : 
 #	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la  
-#	$(top_builddir)/modules/core/libcore.la 
+#	$(top_builddir)/modules/core/libscicore.la 
 
-libpolynomials_la_PKGCONFIG = polynomials.pc
+libscipolynomials_la_PKGCONFIG = polynomials.pc
 
 datadir=${prefix}/modules
 #### Target ######
@@ -124,13 +124,13 @@ target=$(datadir)/polynomials
 
 
 #### polynomials : Conf files ####
-libpolynomials_la_rootdir = $(target)
-libpolynomials_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscipolynomials_la_rootdir = $(target)
+libscipolynomials_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
 #### polynomials : Scilab macros ###
-libpolynomials_la_macrodir = $(target)/macros
-libpolynomials_la_macro_DATA22 = macros/denom.sci \
+libscipolynomials_la_macrodir = $(target)/macros
+libscipolynomials_la_macro_DATA22 = macros/denom.sci \
 macros/pdiv.sci \
 macros/systmat.sci \
 macros/pol2str.sci \
@@ -190,18 +190,18 @@ macros/systmat.bin macros/names macros/lib macros/buildmacros.sce
 
 
 #### polynomials : init scripts #### 
-libpolynomials_la_etcdir = $(target)/etc
-libpolynomials_la_etc_DATA = etc/polynomials.quit etc/polynomials.start
+libscipolynomials_la_etcdir = $(target)/etc
+libscipolynomials_la_etc_DATA = etc/polynomials.quit etc/polynomials.start
 
 #### polynomials : gateway declaration #### 
-libpolynomials_la_sci_gatewaydir = $(target)/sci_gateway
-libpolynomials_la_sci_gateway_DATA = sci_gateway/polynomials
+libscipolynomials_la_sci_gatewaydir = $(target)/sci_gateway
+libscipolynomials_la_sci_gateway_DATA = sci_gateway/polynomials
 
 
 
 #### polynomials : include files ####
-libpolynomials_la_includedir=$(includedir)/polynomials
-libpolynomials_la_include_HEADERS = includes/gw_polynomials.h
+libscipolynomials_la_includedir=$(includedir)/polynomials
+libscipolynomials_la_include_HEADERS = includes/gw_polynomials.h
 
 include $(top_srcdir)/Makefile.incl.am
 

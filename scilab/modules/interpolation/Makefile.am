@@ -25,18 +25,18 @@ sci_gateway/c/sci_splin3d.c \
 sci_gateway/c/sci_bsplin3val.c \
 sci_gateway/c/sci_eval_cshep2d.c
 
-libinterpolation_la_FFLAGS=  -Iincludes/
-libinterpolation_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
+libsciinterpolation_la_FFLAGS=  -Iincludes/
+libsciinterpolation_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 
-lib_LTLIBRARIES = libinterpolation.la
+lib_LTLIBRARIES = libsciinterpolation.la
 
-libinterpolation_la_SOURCES = $(INTERPOLATION_C_SOURCES) $(INTERPOLATION_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) 
+libsciinterpolation_la_SOURCES = $(INTERPOLATION_C_SOURCES) $(INTERPOLATION_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) 
 
-libinterpolation_la_LIBADD = \
-	$(top_builddir)/modules/core/libcore.la \
+libsciinterpolation_la_LIBADD = \
+	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
 
-libinterpolation_la_PKGCONFIG = interpolation.pc
+libsciinterpolation_la_PKGCONFIG = interpolation.pc
 
 datadir=${prefix}/modules
 #### Target ######
@@ -44,32 +44,32 @@ target=$(datadir)/interpolation
 
 
 #### interpolation : Conf files ####
-libinterpolation_la_rootdir = $(target)
-libinterpolation_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libsciinterpolation_la_rootdir = $(target)
+libsciinterpolation_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
 #### interpolation : Scilab macros ###
-libinterpolation_la_macrodir = $(target)/macros
-libinterpolation_la_macro_DATA22 = macros/buildmacros.sce
+libsciinterpolation_la_macrodir = $(target)/macros
+libsciinterpolation_la_macro_DATA22 = macros/buildmacros.sce
 
 
 #### interpolation : init scripts #### 
-libinterpolation_la_etcdir = $(target)/etc
-libinterpolation_la_etc_DATA = etc/interpolation.quit etc/interpolation.start
+libsciinterpolation_la_etcdir = $(target)/etc
+libsciinterpolation_la_etc_DATA = etc/interpolation.quit etc/interpolation.start
 
 #### interpolation : gateway declaration #### 
-libinterpolation_la_sci_gatewaydir = $(target)/sci_gateway
-libinterpolation_la_sci_gateway_DATA = sci_gateway/interpolation
+libsciinterpolation_la_sci_gatewaydir = $(target)/sci_gateway
+libsciinterpolation_la_sci_gateway_DATA = sci_gateway/interpolation
 
 #### interpolation : include files ####
-libinterpolation_la_includedir=$(includedir)/interpolation
-libinterpolation_la_include_HEADERS = includes/gw_interpolation.h \
+libsciinterpolation_la_includedir=$(includedir)/interpolation
+libsciinterpolation_la_include_HEADERS = includes/gw_interpolation.h \
 includes/interpolation.h \
 includes/constinterp.h
 
 
 #### interpolation : demos files ####
-libinterpolation_la_demosdir=$(target)/demos/
-libinterpolation_la_demos_DATA = demos/interp_demo.sci
+libsciinterpolation_la_demosdir=$(target)/demos/
+libsciinterpolation_la_demos_DATA = demos/interp_demo.sci
 
 include $(top_srcdir)/Makefile.incl.am

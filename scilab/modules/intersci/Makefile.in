@@ -63,19 +63,20 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(bindir)" \
-	"$(DESTDIR)$(libintersci_la_etcdir)" \
-	"$(DESTDIR)$(libintersci_la_rootdir)"
+	"$(DESTDIR)$(libsciintersci_la_etcdir)" \
+	"$(DESTDIR)$(libsciintersci_la_rootdir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
-libintersci_la_DEPENDENCIES =  \
-	$(top_builddir)/libs/MALLOC/libmalloc.la
-am__objects_1 = libintersci_la-libinter.lo libintersci_la-erro.lo \
-	libintersci_la-out.lo
-am_libintersci_la_OBJECTS = $(am__objects_1)
-libintersci_la_OBJECTS = $(am_libintersci_la_OBJECTS)
-libintersci_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libintersci_la_CFLAGS) \
-	$(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
+libsciintersci_la_DEPENDENCIES =  \
+	$(top_builddir)/libs/MALLOC/libscimalloc.la
+am__objects_1 = libsciintersci_la-libinter.lo \
+	libsciintersci_la-erro.lo libsciintersci_la-out.lo
+am_libsciintersci_la_OBJECTS = $(am__objects_1)
+libsciintersci_la_OBJECTS = $(am_libsciintersci_la_OBJECTS)
+libsciintersci_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
+	$(libsciintersci_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) \
+	-o $@
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
 am__objects_2 = intersci-n.$(OBJEXT) getrhs.$(OBJEXT) crerhs.$(OBJEXT) \
@@ -97,11 +98,11 @@ CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libintersci_la_SOURCES) $(intersci_SOURCES)
-DIST_SOURCES = $(libintersci_la_SOURCES) $(intersci_SOURCES)
-libintersci_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libintersci_la_rootDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libintersci_la_etc_DATA) $(libintersci_la_root_DATA)
+SOURCES = $(libsciintersci_la_SOURCES) $(intersci_SOURCES)
+DIST_SOURCES = $(libsciintersci_la_SOURCES) $(intersci_SOURCES)
+libsciintersci_la_etcDATA_INSTALL = $(INSTALL_DATA)
+libsciintersci_la_rootDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(libsciintersci_la_etc_DATA) $(libsciintersci_la_root_DATA)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -264,29 +265,29 @@ src/exe/declare.c \
 src/exe/opt.c \
 src/exe/check.c
 
-libintersci_la_includedir = $(includedir)/intersci
-lib_LTLIBRARIES = libintersci.la
+libsciintersci_la_includedir = $(includedir)/intersci
+lib_LTLIBRARIES = libsciintersci.la
 intersci_SOURCES = $(INTERSCI_EXE_C_SOURCES)
-libintersci_la_SOURCES = $(INTERSCI_LIB_C_SOURCES)
-libintersci_la_CFLAGS = -I$(top_srcdir)/libs/MALLOC/includes/
-libintersci_la_LIBADD = \
-	$(top_builddir)/libs/MALLOC/libmalloc.la
+libsciintersci_la_SOURCES = $(INTERSCI_LIB_C_SOURCES)
+libsciintersci_la_CFLAGS = -I$(top_srcdir)/libs/MALLOC/includes/
+libsciintersci_la_LIBADD = \
+	$(top_builddir)/libs/MALLOC/libscimalloc.la
 
-libintersci_la_PKGCONFIG = intersci.pc
+libsciintersci_la_PKGCONFIG = intersci.pc
 #### Target ######
 target = $(datadir)/intersci
 
 #### intersci : Conf files ####
-libintersci_la_rootdir = $(target)
-libintersci_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libsciintersci_la_rootdir = $(target)
+libsciintersci_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### intersci : Scilab macros ###
-libintersci_la_macrodir = $(target)/macros
-libintersci_la_macro_DATA22 = macros/buildmacros.sce
+libsciintersci_la_macrodir = $(target)/macros
+libsciintersci_la_macro_DATA22 = macros/buildmacros.sce
 
 #### intersci : init scripts #### 
-libintersci_la_etcdir = $(target)/etc
-libintersci_la_etc_DATA = etc/intersci.quit etc/intersci.start
+libsciintersci_la_etcdir = $(target)/etc
+libsciintersci_la_etc_DATA = etc/intersci.quit etc/intersci.start
 
 #SUFFIXES = .xml .sci .htm
 SUFFIXES = .sci
@@ -363,8 +364,8 @@ clean-libLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
-libintersci.la: $(libintersci_la_OBJECTS) $(libintersci_la_DEPENDENCIES) 
-	$(libintersci_la_LINK) -rpath $(libdir) $(libintersci_la_OBJECTS) $(libintersci_la_LIBADD) $(LIBS)
+libsciintersci.la: $(libsciintersci_la_OBJECTS) $(libsciintersci_la_DEPENDENCIES) 
+	$(libsciintersci_la_LINK) -rpath $(libdir) $(libsciintersci_la_OBJECTS) $(libsciintersci_la_LIBADD) $(LIBS)
 install-binPROGRAMS: $(bin_PROGRAMS)
 	@$(NORMAL_INSTALL)
 	test -z "$(bindir)" || $(MKDIR_P) "$(DESTDIR)$(bindir)"
@@ -409,9 +410,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/fornames.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/getrhs.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/intersci-n.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libintersci_la-erro.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libintersci_la-libinter.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libintersci_la-out.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciintersci_la-erro.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciintersci_la-libinter.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciintersci_la-out.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/opt.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/out-e.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/outext.Po@am__quote@
@@ -439,26 +440,26 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
-libintersci_la-libinter.lo: src/lib/libinter.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libintersci_la_CFLAGS) $(CFLAGS) -MT libintersci_la-libinter.lo -MD -MP -MF $(DEPDIR)/libintersci_la-libinter.Tpo -c -o libintersci_la-libinter.lo `test -f 'src/lib/libinter.c' || echo '$(srcdir)/'`src/lib/libinter.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libintersci_la-libinter.Tpo $(DEPDIR)/libintersci_la-libinter.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/lib/libinter.c' object='libintersci_la-libinter.lo' libtool=yes @AMDEPBACKSLASH@
+libsciintersci_la-libinter.lo: src/lib/libinter.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciintersci_la_CFLAGS) $(CFLAGS) -MT libsciintersci_la-libinter.lo -MD -MP -MF $(DEPDIR)/libsciintersci_la-libinter.Tpo -c -o libsciintersci_la-libinter.lo `test -f 'src/lib/libinter.c' || echo '$(srcdir)/'`src/lib/libinter.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciintersci_la-libinter.Tpo $(DEPDIR)/libsciintersci_la-libinter.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/lib/libinter.c' object='libsciintersci_la-libinter.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libintersci_la_CFLAGS) $(CFLAGS) -c -o libintersci_la-libinter.lo `test -f 'src/lib/libinter.c' || echo '$(srcdir)/'`src/lib/libinter.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciintersci_la_CFLAGS) $(CFLAGS) -c -o libsciintersci_la-libinter.lo `test -f 'src/lib/libinter.c' || echo '$(srcdir)/'`src/lib/libinter.c
 
-libintersci_la-erro.lo: src/lib/erro.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libintersci_la_CFLAGS) $(CFLAGS) -MT libintersci_la-erro.lo -MD -MP -MF $(DEPDIR)/libintersci_la-erro.Tpo -c -o libintersci_la-erro.lo `test -f 'src/lib/erro.c' || echo '$(srcdir)/'`src/lib/erro.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libintersci_la-erro.Tpo $(DEPDIR)/libintersci_la-erro.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/lib/erro.c' object='libintersci_la-erro.lo' libtool=yes @AMDEPBACKSLASH@
+libsciintersci_la-erro.lo: src/lib/erro.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciintersci_la_CFLAGS) $(CFLAGS) -MT libsciintersci_la-erro.lo -MD -MP -MF $(DEPDIR)/libsciintersci_la-erro.Tpo -c -o libsciintersci_la-erro.lo `test -f 'src/lib/erro.c' || echo '$(srcdir)/'`src/lib/erro.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciintersci_la-erro.Tpo $(DEPDIR)/libsciintersci_la-erro.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/lib/erro.c' object='libsciintersci_la-erro.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libintersci_la_CFLAGS) $(CFLAGS) -c -o libintersci_la-erro.lo `test -f 'src/lib/erro.c' || echo '$(srcdir)/'`src/lib/erro.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciintersci_la_CFLAGS) $(CFLAGS) -c -o libsciintersci_la-erro.lo `test -f 'src/lib/erro.c' || echo '$(srcdir)/'`src/lib/erro.c
 
-libintersci_la-out.lo: src/lib/out.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libintersci_la_CFLAGS) $(CFLAGS) -MT libintersci_la-out.lo -MD -MP -MF $(DEPDIR)/libintersci_la-out.Tpo -c -o libintersci_la-out.lo `test -f 'src/lib/out.c' || echo '$(srcdir)/'`src/lib/out.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libintersci_la-out.Tpo $(DEPDIR)/libintersci_la-out.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/lib/out.c' object='libintersci_la-out.lo' libtool=yes @AMDEPBACKSLASH@
+libsciintersci_la-out.lo: src/lib/out.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciintersci_la_CFLAGS) $(CFLAGS) -MT libsciintersci_la-out.lo -MD -MP -MF $(DEPDIR)/libsciintersci_la-out.Tpo -c -o libsciintersci_la-out.lo `test -f 'src/lib/out.c' || echo '$(srcdir)/'`src/lib/out.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciintersci_la-out.Tpo $(DEPDIR)/libsciintersci_la-out.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/lib/out.c' object='libsciintersci_la-out.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libintersci_la_CFLAGS) $(CFLAGS) -c -o libintersci_la-out.lo `test -f 'src/lib/out.c' || echo '$(srcdir)/'`src/lib/out.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciintersci_la_CFLAGS) $(CFLAGS) -c -o libsciintersci_la-out.lo `test -f 'src/lib/out.c' || echo '$(srcdir)/'`src/lib/out.c
 
 intersci-n.o: src/exe/intersci-n.c
 @am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT intersci-n.o -MD -MP -MF $(DEPDIR)/intersci-n.Tpo -c -o intersci-n.o `test -f 'src/exe/intersci-n.c' || echo '$(srcdir)/'`src/exe/intersci-n.c
@@ -619,39 +620,39 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libintersci_la_etcDATA: $(libintersci_la_etc_DATA)
+install-libsciintersci_la_etcDATA: $(libsciintersci_la_etc_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libintersci_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libintersci_la_etcdir)"
-	@list='$(libintersci_la_etc_DATA)'; for p in $$list; do \
+	test -z "$(libsciintersci_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciintersci_la_etcdir)"
+	@list='$(libsciintersci_la_etc_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libintersci_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libintersci_la_etcdir)/$$f'"; \
-	  $(libintersci_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libintersci_la_etcdir)/$$f"; \
+	  echo " $(libsciintersci_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsciintersci_la_etcdir)/$$f'"; \
+	  $(libsciintersci_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsciintersci_la_etcdir)/$$f"; \
 	done
 
-uninstall-libintersci_la_etcDATA:
+uninstall-libsciintersci_la_etcDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libintersci_la_etc_DATA)'; for p in $$list; do \
+	@list='$(libsciintersci_la_etc_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libintersci_la_etcdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libintersci_la_etcdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libsciintersci_la_etcdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libsciintersci_la_etcdir)/$$f"; \
 	done
-install-libintersci_la_rootDATA: $(libintersci_la_root_DATA)
+install-libsciintersci_la_rootDATA: $(libsciintersci_la_root_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libintersci_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libintersci_la_rootdir)"
-	@list='$(libintersci_la_root_DATA)'; for p in $$list; do \
+	test -z "$(libsciintersci_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciintersci_la_rootdir)"
+	@list='$(libsciintersci_la_root_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libintersci_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libintersci_la_rootdir)/$$f'"; \
-	  $(libintersci_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libintersci_la_rootdir)/$$f"; \
+	  echo " $(libsciintersci_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsciintersci_la_rootdir)/$$f'"; \
+	  $(libsciintersci_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsciintersci_la_rootdir)/$$f"; \
 	done
 
-uninstall-libintersci_la_rootDATA:
+uninstall-libsciintersci_la_rootDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libintersci_la_root_DATA)'; for p in $$list; do \
+	@list='$(libsciintersci_la_root_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libintersci_la_rootdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libintersci_la_rootdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libsciintersci_la_rootdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libsciintersci_la_rootdir)/$$f"; \
 	done
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
@@ -734,7 +735,7 @@ all-am: Makefile $(LTLIBRARIES) $(PROGRAMS) $(DATA)
 install-binPROGRAMS: install-libLTLIBRARIES
 
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(bindir)" "$(DESTDIR)$(libintersci_la_etcdir)" "$(DESTDIR)$(libintersci_la_rootdir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(bindir)" "$(DESTDIR)$(libsciintersci_la_etcdir)" "$(DESTDIR)$(libsciintersci_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -782,8 +783,8 @@ info: info-am
 
 info-am:
 
-install-data-am: install-data-local install-libintersci_la_etcDATA \
-	install-libintersci_la_rootDATA
+install-data-am: install-data-local install-libsciintersci_la_etcDATA \
+	install-libsciintersci_la_rootDATA
 
 install-dvi: install-dvi-am
 
@@ -822,8 +823,8 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-binPROGRAMS uninstall-libLTLIBRARIES \
-	uninstall-libintersci_la_etcDATA \
-	uninstall-libintersci_la_rootDATA
+	uninstall-libsciintersci_la_etcDATA \
+	uninstall-libsciintersci_la_rootDATA
 
 .MAKE: install-am install-strip
 
@@ -836,15 +837,15 @@ uninstall-am: uninstall-binPROGRAMS uninstall-libLTLIBRARIES \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
 	install-info-am install-libLTLIBRARIES \
-	install-libintersci_la_etcDATA install-libintersci_la_rootDATA \
-	install-man install-pdf install-pdf-am install-ps \
-	install-ps-am install-strip installcheck installcheck-am \
-	installdirs maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-compile mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
-	uninstall-am uninstall-binPROGRAMS uninstall-libLTLIBRARIES \
-	uninstall-libintersci_la_etcDATA \
-	uninstall-libintersci_la_rootDATA
+	install-libsciintersci_la_etcDATA \
+	install-libsciintersci_la_rootDATA install-man install-pdf \
+	install-pdf-am install-ps install-ps-am install-strip \
+	installcheck installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	tags uninstall uninstall-am uninstall-binPROGRAMS \
+	uninstall-libLTLIBRARIES uninstall-libsciintersci_la_etcDATA \
+	uninstall-libsciintersci_la_rootDATA
 
 
 #.xml.htm:

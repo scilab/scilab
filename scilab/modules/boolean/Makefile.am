@@ -17,22 +17,22 @@ sci_gateway/c/gw_boolean.c
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_bool2s.f \
 sci_gateway/fortran/sci_find.f
 
-libboolean_la_CFLAGS=  -Iincludes/ 
+libsciboolean_la_CFLAGS=  -Iincludes/ 
 
-lib_LTLIBRARIES = libboolean.la
+lib_LTLIBRARIES = libsciboolean.la
 
-libboolean_la_SOURCES = $(BOOLEAN_C_SOURCES) $(BOOLEAN_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libsciboolean_la_SOURCES = $(BOOLEAN_C_SOURCES) $(BOOLEAN_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
-libboolean_la_LIBADD = \
-	$(top_builddir)/libs/blas/libblas.la \
-	$(top_builddir)/modules/arnoldi/libarnoldi.la \
+libsciboolean_la_LIBADD = \
+	$(top_builddir)/libs/blas/libsciblas.la \
+	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
-#$(top_builddir)/libs/blas/libblas.la:
-#	(cd $(top_builddir)/libs/blas/; make libblas.la)
+#$(top_builddir)/libs/blas/libsciblas.la:
+#	(cd $(top_builddir)/libs/blas/; make libsciblas.la)
 #SUFFIXES = .la
 #.la:
 #	echo "oh oh"
-libboolean_la_PKGCONFIG = boolean.pc
+libsciboolean_la_PKGCONFIG = boolean.pc
 
 datadir=${prefix}/modules
 #### Target ######
@@ -40,25 +40,25 @@ target=$(datadir)/boolean
 
 
 #### boolean : Conf files ####
-libboolean_la_rootdir = $(target)
-libboolean_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libsciboolean_la_rootdir = $(target)
+libsciboolean_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
 #### boolean : Scilab macros ###
-libboolean_la_macrodir = $(target)/macros
-libboolean_la_macro_DATA22 =  macros/buildmacros.sce
+libsciboolean_la_macrodir = $(target)/macros
+libsciboolean_la_macro_DATA22 =  macros/buildmacros.sce
 
 
 #### boolean : init scripts #### 
-libboolean_la_etcdir = $(target)/etc
-libboolean_la_etc_DATA = etc/boolean.quit etc/boolean.start
+libsciboolean_la_etcdir = $(target)/etc
+libsciboolean_la_etc_DATA = etc/boolean.quit etc/boolean.start
 
 #### boolean : gateway declaration #### 
-libboolean_la_sci_gatewaydir = $(target)/sci_gateway
-libboolean_la_sci_gateway_DATA = sci_gateway/boolean
+libsciboolean_la_sci_gatewaydir = $(target)/sci_gateway
+libsciboolean_la_sci_gateway_DATA = sci_gateway/boolean
 
 #### boolean : include files ####
-libboolean_la_includedir=$(includedir)/boolean
-libboolean_la_include_HEADERS = includes/gw_boolean.h
+libsciboolean_la_includedir=$(includedir)/boolean
+libsciboolean_la_include_HEADERS = includes/gw_boolean.h
 
 include $(top_srcdir)/Makefile.incl.am

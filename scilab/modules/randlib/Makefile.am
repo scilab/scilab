@@ -39,21 +39,21 @@ src/fortran/gennor.f
 GATEWAY_C_SOURCES = sci_gateway/gw_randlib.c \
 sci_gateway/sci_grand.c
 
-librandlib_la_CFLAGS=  -Iincludes/ 
+libscirandlib_la_CFLAGS=  -Iincludes/ 
 #-Isrc/c/
-lib_LTLIBRARIES = librandlib.la
+lib_LTLIBRARIES = libscirandlib.la
 
-librandlib_la_SOURCES = $(RANDLIB_C_SOURCES) $(GATEWAY_C_SOURCES) $(RANDLIB_FORTRAN_SOURCES)
+libscirandlib_la_SOURCES = $(RANDLIB_C_SOURCES) $(GATEWAY_C_SOURCES) $(RANDLIB_FORTRAN_SOURCES)
 
-librandlib_la_LIBADD = \
-	$(top_builddir)/modules/intersci/libintersci.la \
-	$(top_builddir)/modules/core/libcore.la
+libscirandlib_la_LIBADD = \
+	$(top_builddir)/modules/intersci/libsciintersci.la \
+	$(top_builddir)/modules/core/libscicore.la
 
-#	$(top_builddir)/libs/blas/libblas.la \
+#	$(top_builddir)/libs/blas/libsciblas.la \
 #	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
 
 
-librandlib_la_PKGCONFIG = randlib.pc
+libscirandlib_la_PKGCONFIG = randlib.pc
 
 datadir=${prefix}/modules
 #### Target ######
@@ -61,33 +61,33 @@ target=$(datadir)/randlib
 
 
 #### randlib : Conf files ####
-librandlib_la_rootdir = $(target)
-librandlib_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscirandlib_la_rootdir = $(target)
+libscirandlib_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
 #### randlib : Scilab macros ###
-librandlib_la_macrodir = $(target)/macros
-librandlib_la_macro_DATA22 =  macros/buildmacros.sce
+libscirandlib_la_macrodir = $(target)/macros
+libscirandlib_la_macro_DATA22 =  macros/buildmacros.sce
 
 
 #### randlib : init scripts #### 
-librandlib_la_etcdir = $(target)/etc
-librandlib_la_etc_DATA = etc/randlib.quit etc/randlib.start
+libscirandlib_la_etcdir = $(target)/etc
+libscirandlib_la_etc_DATA = etc/randlib.quit etc/randlib.start
 
 #### randlib : gateway declaration #### 
-librandlib_la_sci_gatewaydir = $(target)/sci_gateway
-librandlib_la_sci_gateway_DATA = sci_gateway/randlib
+libscirandlib_la_sci_gatewaydir = $(target)/sci_gateway
+libscirandlib_la_sci_gateway_DATA = sci_gateway/randlib
 
 #### randlib : include files ####
-librandlib_la_includedir=$(includedir)/randlib
-librandlib_la_include_HEADERS = includes/grand.h \
+libscirandlib_la_includedir=$(includedir)/randlib
+libscirandlib_la_include_HEADERS = includes/grand.h \
 includes/clcg4.h \
 includes/others_generators.h
 
 
 #### randlib : demos files ####
-librandlib_la_demosdir=$(target)/demos/
-librandlib_la_demos_DATA = demos/randomT.sci \
+libscirandlib_la_demosdir=$(target)/demos/
+libscirandlib_la_demos_DATA = demos/randomT.sci \
 demos/random.dem \
 demos/random.sci
 

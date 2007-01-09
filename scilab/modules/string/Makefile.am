@@ -42,21 +42,21 @@ sci_gateway/fortran/sci_ascii.f \
 sci_gateway/fortran/sci_strsubst.f \
 sci_gateway/fortran/strops.f
 
-libstring_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
+libscistring_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 
-lib_LTLIBRARIES = libstring.la
+lib_LTLIBRARIES = libscistring.la
 
-libstring_la_SOURCES = $(STRING_C_SOURCES) $(STRING_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscistring_la_SOURCES = $(STRING_C_SOURCES) $(STRING_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
-libstring_la_LIBADD = \
-	$(top_builddir)/libs/blas/libblas.la \
-	$(top_builddir)/modules/polynomials/libpolynomials.la \
-	$(top_builddir)/libs/MALLOC/libmalloc.la
+libscistring_la_LIBADD = \
+	$(top_builddir)/libs/blas/libsciblas.la \
+	$(top_builddir)/modules/polynomials/libscipolynomials.la \
+	$(top_builddir)/libs/MALLOC/libscimalloc.la
 # Cyclic deps
-#	$(top_builddir)/modules/core/libcore.la
+#	$(top_builddir)/modules/core/libscicore.la
 
 
-libstring_la_PKGCONFIG = string.pc
+libscistring_la_PKGCONFIG = string.pc
 
 datadir=${prefix}/modules
 #### Target ######
@@ -64,13 +64,13 @@ target=$(datadir)/string
 
 
 #### string : Conf files ####
-libstring_la_rootdir = $(target)
-libstring_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscistring_la_rootdir = $(target)
+libscistring_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
 #### string : Scilab macros ###
-libstring_la_macrodir = $(target)/macros
-libstring_la_macro_DATA22 = macros/dec2hex.sci \
+libscistring_la_macrodir = $(target)/macros
+libscistring_la_macro_DATA22 = macros/dec2hex.sci \
 macros/hex2dec.sci \
 macros/tokenpos.sci \
 macros/evstr.sci \
@@ -96,16 +96,16 @@ macros/tokenpos.bin macros/names macros/lib macros/buildmacros.sce
 
 
 #### string : init scripts #### 
-libstring_la_etcdir = $(target)/etc
-libstring_la_etc_DATA = etc/string.quit etc/string.start
+libscistring_la_etcdir = $(target)/etc
+libscistring_la_etc_DATA = etc/string.quit etc/string.start
 
 #### string : gateway declaration #### 
-libstring_la_sci_gatewaydir = $(target)/sci_gateway
-libstring_la_sci_gateway_DATA = sci_gateway/string
+libscistring_la_sci_gatewaydir = $(target)/sci_gateway
+libscistring_la_sci_gateway_DATA = sci_gateway/string
 
 #### string : include files ####
-libstring_la_includedir=$(includedir)/string
-libstring_la_include_HEADERS = includes/men_Sutils.h \
+libscistring_la_includedir=$(includedir)/string
+libscistring_la_include_HEADERS = includes/men_Sutils.h \
 includes/gw_string.h
 
 include $(top_srcdir)/Makefile.incl.am

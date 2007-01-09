@@ -8,6 +8,7 @@ src/c/w_rottext.c \
 src/c/gifimg.c \
 src/c/WindowList.c \
 src/c/Events.c \
+src/c/Plo2d.c \
 src/c/getHandleProperty/get_figure_position_property.c \
 src/c/getHandleProperty/get_figure_size_property.c \
 src/c/getHandleProperty/get_visible_property.c \
@@ -427,23 +428,23 @@ sci_gateway/sci_winsid.c \
 sci_gateway/sci_addcb.c \
 sci_gateway/sci_fec.c
 
-libgraphics_la_CFLAGS =  -Iincludes/ -Isrc/c/ -Isrc/gd/ -Isrc/gd/xdr/ -Isrc/gd/gdfonts/ $(TCL_INC_PATH) $(TK_INC_PATH) -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/
+libscigraphics_la_CFLAGS =  -Iincludes/ -Isrc/c/ -Isrc/gd/ -Isrc/gd/xdr/ -Isrc/gd/gdfonts/ $(TCL_INC_PATH) $(TK_INC_PATH) -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/
 
-libgraphics_la_LDFLAGS = $(TCLTK_LIBS) $(X_LIBS)
+libscigraphics_la_LDFLAGS = $(TCLTK_LIBS) $(X_LIBS)
 
-lib_LTLIBRARIES = libgraphics.la
+lib_LTLIBRARIES = libscigraphics.la
 
-libgraphics_la_SOURCES = $(GRAPHICS_C_SOURCES) $(GATEWAY_C_SOURCES)
+libscigraphics_la_SOURCES = $(GRAPHICS_C_SOURCES) $(GATEWAY_C_SOURCES)
 
-libgraphics_la_LIBADD = \
-	$(top_builddir)/modules/intersci/libintersci.la \
+libscigraphics_la_LIBADD = \
+	$(top_builddir)/modules/intersci/libsciintersci.la \
 	$(top_builddir)/modules/data_structures/libdata_structures.la \
-	$(top_builddir)/modules/tclsci/libtclsci.la \
-	$(top_builddir)/modules/string/libstring.la
+	$(top_builddir)/modules/tclsci/libscitclsci.la \
+	$(top_builddir)/modules/string/libscistring.la
 
-#	$(top_builddir)/modules/gui/libgui.la
+#	$(top_builddir)/modules/gui/libscigui.la
 
-libgraphics_la_PKGCONFIG = graphics.pc
+libscigraphics_la_PKGCONFIG = graphics.pc
 
 datadir=${prefix}/modules
 #### Target ######
@@ -451,13 +452,13 @@ target=$(datadir)/graphics
 
 
 #### graphics : Conf files ####
-libgraphics_la_rootdir = $(target)
-libgraphics_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscigraphics_la_rootdir = $(target)
+libscigraphics_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
 #### graphics : Scilab macros ###
-libgraphics_la_macrodir = $(target)/macros
-libgraphics_la_macro_DATA22 = macros/replot.sci \
+libscigraphics_la_macrodir = $(target)/macros
+libscigraphics_la_macro_DATA22 = macros/replot.sci \
 macros/getlinestyle.sci \
 macros/zlabel.sci \
 macros/checkXYPair.sci \
@@ -731,16 +732,16 @@ macros/zlabel.bin macros/names macros/lib macros/buildmacros.sce
 
 
 #### graphics : init scripts #### 
-libgraphics_la_etcdir = $(target)/etc
-libgraphics_la_etc_DATA = etc/graphics.quit etc/graphics.start
+libscigraphics_la_etcdir = $(target)/etc
+libscigraphics_la_etc_DATA = etc/graphics.quit etc/graphics.start
 
 #### graphics : gateway declaration #### 
-libgraphics_la_sci_gatewaydir = $(target)/sci_gateway
-libgraphics_la_sci_gateway_DATA = sci_gateway/graphics
+libscigraphics_la_sci_gatewaydir = $(target)/sci_gateway
+libscigraphics_la_sci_gateway_DATA = sci_gateway/graphics
 
 #### graphics : include files ####
-libgraphics_la_includedir=$(includedir)/graphics
-libgraphics_la_include_HEADERS = includes/sci_xdel.h \
+libscigraphics_la_includedir=$(includedir)/graphics
+libscigraphics_la_include_HEADERS = includes/sci_xdel.h \
 includes/sci_winsid.h \
 includes/sci_addcb.h \
 includes/sci_grayplot.h \
@@ -880,8 +881,8 @@ includes/periGif.h
 
 
 #### graphics : demos files ####
-libgraphics_la_demosdir=$(target)
-nobase_libgraphics_la_demos_DATA = demos/anim/anim7.dem \
+libscigraphics_la_demosdir=$(target)
+nobase_libscigraphics_la_demos_DATA = demos/anim/anim7.dem \
 demos/anim/anim8.dem \
 demos/anim/~anim6.sci \
 demos/anim/riemann.sci \

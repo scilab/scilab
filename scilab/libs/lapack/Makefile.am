@@ -3,7 +3,7 @@
 ### INRIA - Scilab 2006 
 ##########
 
-lib_LTLIBRARIES = liblapack.la 
+lib_LTLIBRARIES = libscilapack.la 
 
 noinst_LTLIBRARIES = libdummy-lapack.la
 
@@ -279,17 +279,17 @@ dtzrzf.f
 
 
 
-liblapack_la_SOURCES = $(LAPACK_FORTRAN_SOURCES)
+libscilapack_la_SOURCES = $(LAPACK_FORTRAN_SOURCES)
 
 libdummy_lapack_la_SOURCES = dlamch.f slamch.f
 
 libdummy_lapack_la_FFLAGS = `echo "@FFLAGS@"| sed -e 's|-O[0-9+]|-O0|'`
 
 
-liblapack_la_LIBADD = libdummy-lapack.la \
-	$(top_builddir)/libs/blas/libblas.la 
+libscilapack_la_LIBADD = libdummy-lapack.la \
+	$(top_builddir)/libs/blas/libsciblas.la 
 
-liblapack_la_PKGCONFIG = lapack.pc
+libscilapack_la_PKGCONFIG = lapack.pc
 
 libdummy_lapack_la-dlamch.lo: dlamch.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_lapack_la_FFLAGS) -c -o libdummy_lapack_la-dlamch.lo `test -f 'dlamch.f' || echo '$(srcdir)/'`dlamch.f

@@ -10,13 +10,13 @@ target=$(datadir)/texmacs
 
 
 #### texmacs : Conf files ####
-libtexmacs_la_rootdir = $(target)
-libtexmacs_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscitexmacs_la_rootdir = $(target)
+libscitexmacs_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
 #### texmacs : Scilab macros ###
-libtexmacs_la_macrodir = $(target)/macros
-libtexmacs_la_macro_DATA22 = macros/%p_p.sci \
+libscitexmacs_la_macrodir = $(target)/macros
+libscitexmacs_la_macro_DATA22 = macros/%p_p.sci \
 macros/%b_p.sci \
 macros/%r_p.sci \
 macros/%c_p.sci \
@@ -40,7 +40,7 @@ macros/texprint.bin macros/names macros/lib macros/buildmacros.sce
 
 
 #### texmacs : init scripts #### 
-libtexmacs_la_etcdir = $(target)/etc
-libtexmacs_la_etc_DATA = etc/texmacs.quit etc/texmacs.start
+libscitexmacs_la_etcdir = $(target)/etc
+libscitexmacs_la_etc_DATA = etc/texmacs.quit etc/texmacs.start
 
 include $(top_srcdir)/Makefile.incl.am

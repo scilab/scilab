@@ -41,7 +41,7 @@ build_triplet = @build@
 host_triplet = @host@
 @JAVA_TRUE@am__append_1 = $(JAVA_JNI_INCLUDE)
 @JAVA_TRUE@am__append_2 = $(GUI_JAVA_SOURCES)
-DIST_COMMON = $(libgui_la_include_HEADERS) $(srcdir)/Makefile.am \
+DIST_COMMON = $(libscigui_la_include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
 subdir = modules/gui
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -64,18 +64,19 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
-	"$(DESTDIR)$(libgui_la_demosdir)" \
-	"$(DESTDIR)$(libgui_la_etcdir)" \
-	"$(DESTDIR)$(libgui_la_rootdir)" \
-	"$(DESTDIR)$(libgui_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libgui_la_includedir)"
+	"$(DESTDIR)$(libscigui_la_demosdir)" \
+	"$(DESTDIR)$(libscigui_la_etcdir)" \
+	"$(DESTDIR)$(libscigui_la_rootdir)" \
+	"$(DESTDIR)$(libscigui_la_sci_gatewaydir)" \
+	"$(DESTDIR)$(libscigui_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
-libgui_la_DEPENDENCIES = $(top_builddir)/modules/tclsci/libtclsci.la \
-	$(top_builddir)/modules/core/libcore.la \
-	$(top_builddir)/modules/string/libstring.la
-am__libgui_la_SOURCES_DIST = src/c/xsci/wf_w_util.c src/c/xsci/utils.c \
-	src/c/xsci/x_cursor.c src/c/xsci/x_main.c \
+libscigui_la_DEPENDENCIES =  \
+	$(top_builddir)/modules/tclsci/libscitclsci.la \
+	$(top_builddir)/modules/core/libscicore.la \
+	$(top_builddir)/modules/string/libscistring.la
+am__libscigui_la_SOURCES_DIST = src/c/xsci/wf_w_util.c \
+	src/c/xsci/utils.c src/c/xsci/x_cursor.c src/c/xsci/x_main.c \
 	src/c/xsci/wf_f_read.c src/c/xsci/wf_f_util.c \
 	src/c/xsci/x_tabs.c src/c/xsci/x_misc.c src/c/xsci/wf_e_edit.c \
 	src/c/xsci/windows.c src/c/xsci/wf_w_cursor.c \
@@ -115,49 +116,52 @@ am__libgui_la_SOURCES_DIST = src/c/xsci/wf_w_util.c src/c/xsci/utils.c \
 	sci_gateway/fortran/sci_addmenu_old.f \
 	sci_gateway/fortran/sci_delmenu_old.f \
 	src/c/SciGUIConsole/SciGUIConsole.c
-am__objects_1 = libgui_la-wf_w_util.lo libgui_la-utils.lo \
-	libgui_la-x_cursor.lo libgui_la-x_main.lo \
-	libgui_la-wf_f_read.lo libgui_la-wf_f_util.lo \
-	libgui_la-x_tabs.lo libgui_la-x_misc.lo libgui_la-wf_e_edit.lo \
-	libgui_la-windows.lo libgui_la-wf_w_cursor.lo \
-	libgui_la-wf_w_dir.lo libgui_la-x_util.lo \
-	libgui_la-x_screen.lo libgui_la-x_scrollbar.lo \
-	libgui_la-zzledt.lo libgui_la-SGraph.lo libgui_la-x_menu.lo \
-	libgui_la-xwidgets.lo libgui_la-x_data.lo \
-	libgui_la-x_VTPrsTbl.lo libgui_la-inter.lo \
-	libgui_la-coloredit.lo libgui_la-x_input.lo \
-	libgui_la-x_charproc.lo libgui_la-wf_w_msgpanel.lo \
-	libgui_la-wf_w_file.lo libgui_la-x_button.lo \
-	libgui_la-command.lo libgui_la-wf_w_setup.lo \
-	libgui_la-wf_w_init.lo libgui_la-men_dialog.lo \
-	libgui_la-xmen_getfile.lo libgui_la-xmen_choose.lo \
-	libgui_la-xmen_message.lo libgui_la-xmen_mdial.lo \
-	libgui_la-men_getfile.lo libgui_la-xmen_madial.lo \
-	libgui_la-men_choose.lo libgui_la-xmen_choice.lo \
-	libgui_la-men_message.lo libgui_la-xmen_print.lo \
-	libgui_la-men_mdial.lo libgui_la-men_madial.lo \
-	libgui_la-xmen_dialog.lo libgui_la-xmen_Utils.lo \
-	libgui_la-men_choice.lo libgui_la-men_print.lo
-am__objects_2 = libgui_la-sci_x_choice.lo libgui_la-sci_clc.lo \
-	libgui_la-sci_x_message_modeless.lo libgui_la-gw_gui.lo \
-	libgui_la-sci_x_mdialog.lo libgui_la-sci_x_dialog.lo \
-	libgui_la-sci_show_window.lo libgui_la-sci_x_choose.lo \
-	libgui_la-sci_xgetfile.lo libgui_la-sci_tohome.lo \
-	libgui_la-sci_x_message.lo libgui_la-sci_unsetmenu_old.lo \
-	libgui_la-sci_delmenu_old.lo libgui_la-sci_addmenu_old.lo \
-	libgui_la-sci_setmenu_old.lo
+am__objects_1 = libscigui_la-wf_w_util.lo libscigui_la-utils.lo \
+	libscigui_la-x_cursor.lo libscigui_la-x_main.lo \
+	libscigui_la-wf_f_read.lo libscigui_la-wf_f_util.lo \
+	libscigui_la-x_tabs.lo libscigui_la-x_misc.lo \
+	libscigui_la-wf_e_edit.lo libscigui_la-windows.lo \
+	libscigui_la-wf_w_cursor.lo libscigui_la-wf_w_dir.lo \
+	libscigui_la-x_util.lo libscigui_la-x_screen.lo \
+	libscigui_la-x_scrollbar.lo libscigui_la-zzledt.lo \
+	libscigui_la-SGraph.lo libscigui_la-x_menu.lo \
+	libscigui_la-xwidgets.lo libscigui_la-x_data.lo \
+	libscigui_la-x_VTPrsTbl.lo libscigui_la-inter.lo \
+	libscigui_la-coloredit.lo libscigui_la-x_input.lo \
+	libscigui_la-x_charproc.lo libscigui_la-wf_w_msgpanel.lo \
+	libscigui_la-wf_w_file.lo libscigui_la-x_button.lo \
+	libscigui_la-command.lo libscigui_la-wf_w_setup.lo \
+	libscigui_la-wf_w_init.lo libscigui_la-men_dialog.lo \
+	libscigui_la-xmen_getfile.lo libscigui_la-xmen_choose.lo \
+	libscigui_la-xmen_message.lo libscigui_la-xmen_mdial.lo \
+	libscigui_la-men_getfile.lo libscigui_la-xmen_madial.lo \
+	libscigui_la-men_choose.lo libscigui_la-xmen_choice.lo \
+	libscigui_la-men_message.lo libscigui_la-xmen_print.lo \
+	libscigui_la-men_mdial.lo libscigui_la-men_madial.lo \
+	libscigui_la-xmen_dialog.lo libscigui_la-xmen_Utils.lo \
+	libscigui_la-men_choice.lo libscigui_la-men_print.lo
+am__objects_2 = libscigui_la-sci_x_choice.lo libscigui_la-sci_clc.lo \
+	libscigui_la-sci_x_message_modeless.lo libscigui_la-gw_gui.lo \
+	libscigui_la-sci_x_mdialog.lo libscigui_la-sci_x_dialog.lo \
+	libscigui_la-sci_show_window.lo libscigui_la-sci_x_choose.lo \
+	libscigui_la-sci_xgetfile.lo libscigui_la-sci_tohome.lo \
+	libscigui_la-sci_x_message.lo \
+	libscigui_la-sci_unsetmenu_old.lo \
+	libscigui_la-sci_delmenu_old.lo \
+	libscigui_la-sci_addmenu_old.lo \
+	libscigui_la-sci_setmenu_old.lo
 am__objects_3 = sci_choices.lo sci_x_mdialog.lo sci_x_dialog.lo \
 	sci_x_message_modeless.lo sci_x_choose.lo sci_xgetfile.lo \
 	sci_x_message.lo sci_setmenu_old.lo sci_addmenu_old.lo \
 	sci_delmenu_old.lo
-am__objects_4 = libgui_la-SciGUIConsole.lo
+am__objects_4 = libscigui_la-SciGUIConsole.lo
 @JAVA_TRUE@am__objects_5 = $(am__objects_4)
-am_libgui_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
+am_libscigui_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3) $(am__objects_5)
-libgui_la_OBJECTS = $(am_libgui_la_OBJECTS)
-libgui_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
+libscigui_la_OBJECTS = $(am_libscigui_la_OBJECTS)
+libscigui_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) \
-	$(libgui_la_LDFLAGS) $(LDFLAGS) -o $@
+	$(libscigui_la_LDFLAGS) $(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -177,16 +181,16 @@ F77LD = $(F77)
 F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libgui_la_SOURCES)
-DIST_SOURCES = $(am__libgui_la_SOURCES_DIST)
-libgui_la_demosDATA_INSTALL = $(INSTALL_DATA)
-libgui_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libgui_la_rootDATA_INSTALL = $(INSTALL_DATA)
-libgui_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libgui_la_demos_DATA) $(libgui_la_etc_DATA) \
-	$(libgui_la_root_DATA) $(libgui_la_sci_gateway_DATA)
-libgui_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
-HEADERS = $(libgui_la_include_HEADERS)
+SOURCES = $(libscigui_la_SOURCES)
+DIST_SOURCES = $(am__libscigui_la_SOURCES_DIST)
+libscigui_la_demosDATA_INSTALL = $(INSTALL_DATA)
+libscigui_la_etcDATA_INSTALL = $(INSTALL_DATA)
+libscigui_la_rootDATA_INSTALL = $(INSTALL_DATA)
+libscigui_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(libscigui_la_demos_DATA) $(libscigui_la_etc_DATA) \
+	$(libscigui_la_root_DATA) $(libscigui_la_sci_gateway_DATA)
+libscigui_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
+HEADERS = $(libscigui_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -412,7 +416,7 @@ sci_gateway/fortran/sci_delmenu_old.f
 GUI_JAVA_SOURCES = src/c/SciGUIConsole/SciGUIConsole.c
 BUILT_SOURCES = $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
 CLEANFILES = $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
-libgui_la_CFLAGS = -Iincludes/ \
+libscigui_la_CFLAGS = -Iincludes/ \
 	-I$(top_srcdir)/modules/graphics/includes/ \
 	-I$(top_srcdir)/libs/MALLOC/includes/ \
 	-I$(top_srcdir)/modules/core/src/c/ \
@@ -420,30 +424,30 @@ libgui_la_CFLAGS = -Iincludes/ \
 	-I$(top_srcdir)/modules/tclsci/includes/ \
 	-I$(top_srcdir)/modules/gui/src/c/xsci/ $(TCL_INC_PATH) \
 	$(Tk_INC_PATH) $(am__append_1)
-libgui_la_LDFLAGS = $(X_LIBS) $(TERMCAP_LIB)
-lib_LTLIBRARIES = libgui.la
-libgui_la_SOURCES = $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES) \
+libscigui_la_LDFLAGS = $(X_LIBS) $(TERMCAP_LIB)
+lib_LTLIBRARIES = libscigui.la
+libscigui_la_SOURCES = $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES) \
 	$(GATEWAY_FORTRAN_SOURCES) $(am__append_2)
-libgui_la_LIBADD = \
-	$(top_builddir)/modules/tclsci/libtclsci.la \
-	$(top_builddir)/modules/core/libcore.la \
-	$(top_builddir)/modules/string/libstring.la
+libscigui_la_LIBADD = \
+	$(top_builddir)/modules/tclsci/libscitclsci.la \
+	$(top_builddir)/modules/core/libscicore.la \
+	$(top_builddir)/modules/string/libscistring.la
 
 
 # Cyclic dep
-#	$(top_builddir)/modules/graphics/libgraphics.la
-#	$(top_builddir)/modules/jvm/libscijvm.la
-libgui_la_PKGCONFIG = gui.pc
+#	$(top_builddir)/modules/graphics/libscigraphics.la
+#	$(top_builddir)/modules/jvm/libsciscijvm.la
+libscigui_la_PKGCONFIG = gui.pc
 #### Target ######
 target = $(datadir)/gui
 
 #### gui : Conf files ####
-libgui_la_rootdir = $(target)
-libgui_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscigui_la_rootdir = $(target)
+libscigui_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### gui : Scilab macros ###
-libgui_la_macrodir = $(target)/macros
-libgui_la_macro_DATA22 = macros/unsetmenu.sci \
+libscigui_la_macrodir = $(target)/macros
+libscigui_la_macro_DATA22 = macros/unsetmenu.sci \
 macros/x_choices.sci \
 macros/savedefaultbrowser.sci \
 macros/delmenu.sci \
@@ -467,16 +471,16 @@ macros/x_matrix.bin macros/names macros/lib macros/buildmacros.sce
 
 
 #### gui : init scripts #### 
-libgui_la_etcdir = $(target)/etc
-libgui_la_etc_DATA = etc/gui.quit etc/gui.start
+libscigui_la_etcdir = $(target)/etc
+libscigui_la_etc_DATA = etc/gui.quit etc/gui.start
 
 #### gui : gateway declaration #### 
-libgui_la_sci_gatewaydir = $(target)/sci_gateway
-libgui_la_sci_gateway_DATA = sci_gateway/gui
+libscigui_la_sci_gatewaydir = $(target)/sci_gateway
+libscigui_la_sci_gateway_DATA = sci_gateway/gui
 
 #### gui : include files ####
-libgui_la_includedir = $(includedir)/gui
-libgui_la_include_HEADERS = includes/men_choice.h \
+libscigui_la_includedir = $(includedir)/gui
+libscigui_la_include_HEADERS = includes/men_choice.h \
 includes/sci_tohome.h \
 includes/men_scilab.h \
 includes/sci_clc.h \
@@ -486,8 +490,8 @@ includes/sci_show_window.h
 
 
 #### gui : demos files ####
-libgui_la_demosdir = $(target)/demos/
-libgui_la_demos_DATA = demos/dialog.dem
+libscigui_la_demosdir = $(target)/demos/
+libscigui_la_demos_DATA = demos/dialog.dem
 
 #SUFFIXES = .xml .sci .htm
 SUFFIXES = .sci
@@ -565,8 +569,8 @@ clean-libLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
-libgui.la: $(libgui_la_OBJECTS) $(libgui_la_DEPENDENCIES) 
-	$(libgui_la_LINK) -rpath $(libdir) $(libgui_la_OBJECTS) $(libgui_la_LIBADD) $(LIBS)
+libscigui.la: $(libscigui_la_OBJECTS) $(libscigui_la_DEPENDENCIES) 
+	$(libscigui_la_LINK) -rpath $(libdir) $(libscigui_la_OBJECTS) $(libscigui_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -574,70 +578,70 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-SGraph.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-SciGUIConsole.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-coloredit.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-command.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-gw_gui.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-inter.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-men_choice.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-men_choose.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-men_dialog.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-men_getfile.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-men_madial.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-men_mdial.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-men_message.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-men_print.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-sci_addmenu_old.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-sci_clc.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-sci_delmenu_old.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-sci_setmenu_old.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-sci_show_window.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-sci_tohome.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-sci_unsetmenu_old.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-sci_x_choice.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-sci_x_choose.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-sci_x_dialog.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-sci_x_mdialog.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-sci_x_message.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-sci_x_message_modeless.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-sci_xgetfile.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-utils.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-wf_e_edit.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-wf_f_read.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-wf_f_util.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-wf_w_cursor.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-wf_w_dir.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-wf_w_file.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-wf_w_init.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-wf_w_msgpanel.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-wf_w_setup.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-wf_w_util.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-windows.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-x_VTPrsTbl.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-x_button.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-x_charproc.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-x_cursor.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-x_data.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-x_input.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-x_main.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-x_menu.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-x_misc.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-x_screen.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-x_scrollbar.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-x_tabs.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-x_util.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-xmen_Utils.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-xmen_choice.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-xmen_choose.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-xmen_dialog.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-xmen_getfile.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-xmen_madial.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-xmen_mdial.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-xmen_message.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-xmen_print.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-xwidgets.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-zzledt.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SGraph.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SciGUIConsole.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-coloredit.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-command.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-gw_gui.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-inter.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-men_choice.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-men_choose.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-men_dialog.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-men_getfile.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-men_madial.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-men_mdial.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-men_message.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-men_print.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_addmenu_old.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_clc.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_delmenu_old.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_setmenu_old.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_show_window.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_tohome.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_unsetmenu_old.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_x_choice.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_x_choose.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_x_dialog.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_x_mdialog.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_x_message.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_x_message_modeless.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_xgetfile.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-utils.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-wf_e_edit.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-wf_f_read.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-wf_f_util.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-wf_w_cursor.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-wf_w_dir.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-wf_w_file.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-wf_w_init.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-wf_w_msgpanel.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-wf_w_setup.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-wf_w_util.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-windows.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-x_VTPrsTbl.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-x_button.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-x_charproc.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-x_cursor.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-x_data.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-x_input.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-x_main.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-x_menu.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-x_misc.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-x_screen.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-x_scrollbar.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-x_tabs.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-x_util.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-xmen_Utils.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-xmen_choice.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-xmen_choose.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-xmen_dialog.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-xmen_getfile.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-xmen_madial.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-xmen_mdial.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-xmen_message.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-xmen_print.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-xwidgets.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-zzledt.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -660,453 +664,453 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
-libgui_la-wf_w_util.lo: src/c/xsci/wf_w_util.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-wf_w_util.lo -MD -MP -MF $(DEPDIR)/libgui_la-wf_w_util.Tpo -c -o libgui_la-wf_w_util.lo `test -f 'src/c/xsci/wf_w_util.c' || echo '$(srcdir)/'`src/c/xsci/wf_w_util.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-wf_w_util.Tpo $(DEPDIR)/libgui_la-wf_w_util.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/wf_w_util.c' object='libgui_la-wf_w_util.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-wf_w_util.lo: src/c/xsci/wf_w_util.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-wf_w_util.lo -MD -MP -MF $(DEPDIR)/libscigui_la-wf_w_util.Tpo -c -o libscigui_la-wf_w_util.lo `test -f 'src/c/xsci/wf_w_util.c' || echo '$(srcdir)/'`src/c/xsci/wf_w_util.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-wf_w_util.Tpo $(DEPDIR)/libscigui_la-wf_w_util.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/wf_w_util.c' object='libscigui_la-wf_w_util.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-wf_w_util.lo `test -f 'src/c/xsci/wf_w_util.c' || echo '$(srcdir)/'`src/c/xsci/wf_w_util.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-wf_w_util.lo `test -f 'src/c/xsci/wf_w_util.c' || echo '$(srcdir)/'`src/c/xsci/wf_w_util.c
 
-libgui_la-utils.lo: src/c/xsci/utils.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-utils.lo -MD -MP -MF $(DEPDIR)/libgui_la-utils.Tpo -c -o libgui_la-utils.lo `test -f 'src/c/xsci/utils.c' || echo '$(srcdir)/'`src/c/xsci/utils.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-utils.Tpo $(DEPDIR)/libgui_la-utils.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/utils.c' object='libgui_la-utils.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-utils.lo: src/c/xsci/utils.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-utils.lo -MD -MP -MF $(DEPDIR)/libscigui_la-utils.Tpo -c -o libscigui_la-utils.lo `test -f 'src/c/xsci/utils.c' || echo '$(srcdir)/'`src/c/xsci/utils.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-utils.Tpo $(DEPDIR)/libscigui_la-utils.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/utils.c' object='libscigui_la-utils.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-utils.lo `test -f 'src/c/xsci/utils.c' || echo '$(srcdir)/'`src/c/xsci/utils.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-utils.lo `test -f 'src/c/xsci/utils.c' || echo '$(srcdir)/'`src/c/xsci/utils.c
 
-libgui_la-x_cursor.lo: src/c/xsci/x_cursor.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-x_cursor.lo -MD -MP -MF $(DEPDIR)/libgui_la-x_cursor.Tpo -c -o libgui_la-x_cursor.lo `test -f 'src/c/xsci/x_cursor.c' || echo '$(srcdir)/'`src/c/xsci/x_cursor.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-x_cursor.Tpo $(DEPDIR)/libgui_la-x_cursor.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/x_cursor.c' object='libgui_la-x_cursor.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-x_cursor.lo: src/c/xsci/x_cursor.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-x_cursor.lo -MD -MP -MF $(DEPDIR)/libscigui_la-x_cursor.Tpo -c -o libscigui_la-x_cursor.lo `test -f 'src/c/xsci/x_cursor.c' || echo '$(srcdir)/'`src/c/xsci/x_cursor.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-x_cursor.Tpo $(DEPDIR)/libscigui_la-x_cursor.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/x_cursor.c' object='libscigui_la-x_cursor.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-x_cursor.lo `test -f 'src/c/xsci/x_cursor.c' || echo '$(srcdir)/'`src/c/xsci/x_cursor.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-x_cursor.lo `test -f 'src/c/xsci/x_cursor.c' || echo '$(srcdir)/'`src/c/xsci/x_cursor.c
 
-libgui_la-x_main.lo: src/c/xsci/x_main.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-x_main.lo -MD -MP -MF $(DEPDIR)/libgui_la-x_main.Tpo -c -o libgui_la-x_main.lo `test -f 'src/c/xsci/x_main.c' || echo '$(srcdir)/'`src/c/xsci/x_main.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-x_main.Tpo $(DEPDIR)/libgui_la-x_main.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/x_main.c' object='libgui_la-x_main.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-x_main.lo: src/c/xsci/x_main.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-x_main.lo -MD -MP -MF $(DEPDIR)/libscigui_la-x_main.Tpo -c -o libscigui_la-x_main.lo `test -f 'src/c/xsci/x_main.c' || echo '$(srcdir)/'`src/c/xsci/x_main.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-x_main.Tpo $(DEPDIR)/libscigui_la-x_main.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/x_main.c' object='libscigui_la-x_main.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-x_main.lo `test -f 'src/c/xsci/x_main.c' || echo '$(srcdir)/'`src/c/xsci/x_main.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-x_main.lo `test -f 'src/c/xsci/x_main.c' || echo '$(srcdir)/'`src/c/xsci/x_main.c
 
-libgui_la-wf_f_read.lo: src/c/xsci/wf_f_read.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-wf_f_read.lo -MD -MP -MF $(DEPDIR)/libgui_la-wf_f_read.Tpo -c -o libgui_la-wf_f_read.lo `test -f 'src/c/xsci/wf_f_read.c' || echo '$(srcdir)/'`src/c/xsci/wf_f_read.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-wf_f_read.Tpo $(DEPDIR)/libgui_la-wf_f_read.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/wf_f_read.c' object='libgui_la-wf_f_read.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-wf_f_read.lo: src/c/xsci/wf_f_read.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-wf_f_read.lo -MD -MP -MF $(DEPDIR)/libscigui_la-wf_f_read.Tpo -c -o libscigui_la-wf_f_read.lo `test -f 'src/c/xsci/wf_f_read.c' || echo '$(srcdir)/'`src/c/xsci/wf_f_read.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-wf_f_read.Tpo $(DEPDIR)/libscigui_la-wf_f_read.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/wf_f_read.c' object='libscigui_la-wf_f_read.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-wf_f_read.lo `test -f 'src/c/xsci/wf_f_read.c' || echo '$(srcdir)/'`src/c/xsci/wf_f_read.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-wf_f_read.lo `test -f 'src/c/xsci/wf_f_read.c' || echo '$(srcdir)/'`src/c/xsci/wf_f_read.c
 
-libgui_la-wf_f_util.lo: src/c/xsci/wf_f_util.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-wf_f_util.lo -MD -MP -MF $(DEPDIR)/libgui_la-wf_f_util.Tpo -c -o libgui_la-wf_f_util.lo `test -f 'src/c/xsci/wf_f_util.c' || echo '$(srcdir)/'`src/c/xsci/wf_f_util.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-wf_f_util.Tpo $(DEPDIR)/libgui_la-wf_f_util.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/wf_f_util.c' object='libgui_la-wf_f_util.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-wf_f_util.lo: src/c/xsci/wf_f_util.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-wf_f_util.lo -MD -MP -MF $(DEPDIR)/libscigui_la-wf_f_util.Tpo -c -o libscigui_la-wf_f_util.lo `test -f 'src/c/xsci/wf_f_util.c' || echo '$(srcdir)/'`src/c/xsci/wf_f_util.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-wf_f_util.Tpo $(DEPDIR)/libscigui_la-wf_f_util.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/wf_f_util.c' object='libscigui_la-wf_f_util.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-wf_f_util.lo `test -f 'src/c/xsci/wf_f_util.c' || echo '$(srcdir)/'`src/c/xsci/wf_f_util.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-wf_f_util.lo `test -f 'src/c/xsci/wf_f_util.c' || echo '$(srcdir)/'`src/c/xsci/wf_f_util.c
 
-libgui_la-x_tabs.lo: src/c/xsci/x_tabs.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-x_tabs.lo -MD -MP -MF $(DEPDIR)/libgui_la-x_tabs.Tpo -c -o libgui_la-x_tabs.lo `test -f 'src/c/xsci/x_tabs.c' || echo '$(srcdir)/'`src/c/xsci/x_tabs.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-x_tabs.Tpo $(DEPDIR)/libgui_la-x_tabs.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/x_tabs.c' object='libgui_la-x_tabs.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-x_tabs.lo: src/c/xsci/x_tabs.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-x_tabs.lo -MD -MP -MF $(DEPDIR)/libscigui_la-x_tabs.Tpo -c -o libscigui_la-x_tabs.lo `test -f 'src/c/xsci/x_tabs.c' || echo '$(srcdir)/'`src/c/xsci/x_tabs.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-x_tabs.Tpo $(DEPDIR)/libscigui_la-x_tabs.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/x_tabs.c' object='libscigui_la-x_tabs.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-x_tabs.lo `test -f 'src/c/xsci/x_tabs.c' || echo '$(srcdir)/'`src/c/xsci/x_tabs.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-x_tabs.lo `test -f 'src/c/xsci/x_tabs.c' || echo '$(srcdir)/'`src/c/xsci/x_tabs.c
 
-libgui_la-x_misc.lo: src/c/xsci/x_misc.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-x_misc.lo -MD -MP -MF $(DEPDIR)/libgui_la-x_misc.Tpo -c -o libgui_la-x_misc.lo `test -f 'src/c/xsci/x_misc.c' || echo '$(srcdir)/'`src/c/xsci/x_misc.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-x_misc.Tpo $(DEPDIR)/libgui_la-x_misc.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/x_misc.c' object='libgui_la-x_misc.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-x_misc.lo: src/c/xsci/x_misc.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-x_misc.lo -MD -MP -MF $(DEPDIR)/libscigui_la-x_misc.Tpo -c -o libscigui_la-x_misc.lo `test -f 'src/c/xsci/x_misc.c' || echo '$(srcdir)/'`src/c/xsci/x_misc.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-x_misc.Tpo $(DEPDIR)/libscigui_la-x_misc.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/x_misc.c' object='libscigui_la-x_misc.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-x_misc.lo `test -f 'src/c/xsci/x_misc.c' || echo '$(srcdir)/'`src/c/xsci/x_misc.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-x_misc.lo `test -f 'src/c/xsci/x_misc.c' || echo '$(srcdir)/'`src/c/xsci/x_misc.c
 
-libgui_la-wf_e_edit.lo: src/c/xsci/wf_e_edit.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-wf_e_edit.lo -MD -MP -MF $(DEPDIR)/libgui_la-wf_e_edit.Tpo -c -o libgui_la-wf_e_edit.lo `test -f 'src/c/xsci/wf_e_edit.c' || echo '$(srcdir)/'`src/c/xsci/wf_e_edit.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-wf_e_edit.Tpo $(DEPDIR)/libgui_la-wf_e_edit.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/wf_e_edit.c' object='libgui_la-wf_e_edit.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-wf_e_edit.lo: src/c/xsci/wf_e_edit.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-wf_e_edit.lo -MD -MP -MF $(DEPDIR)/libscigui_la-wf_e_edit.Tpo -c -o libscigui_la-wf_e_edit.lo `test -f 'src/c/xsci/wf_e_edit.c' || echo '$(srcdir)/'`src/c/xsci/wf_e_edit.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-wf_e_edit.Tpo $(DEPDIR)/libscigui_la-wf_e_edit.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/wf_e_edit.c' object='libscigui_la-wf_e_edit.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-wf_e_edit.lo `test -f 'src/c/xsci/wf_e_edit.c' || echo '$(srcdir)/'`src/c/xsci/wf_e_edit.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-wf_e_edit.lo `test -f 'src/c/xsci/wf_e_edit.c' || echo '$(srcdir)/'`src/c/xsci/wf_e_edit.c
 
-libgui_la-windows.lo: src/c/xsci/windows.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-windows.lo -MD -MP -MF $(DEPDIR)/libgui_la-windows.Tpo -c -o libgui_la-windows.lo `test -f 'src/c/xsci/windows.c' || echo '$(srcdir)/'`src/c/xsci/windows.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-windows.Tpo $(DEPDIR)/libgui_la-windows.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/windows.c' object='libgui_la-windows.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-windows.lo: src/c/xsci/windows.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-windows.lo -MD -MP -MF $(DEPDIR)/libscigui_la-windows.Tpo -c -o libscigui_la-windows.lo `test -f 'src/c/xsci/windows.c' || echo '$(srcdir)/'`src/c/xsci/windows.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-windows.Tpo $(DEPDIR)/libscigui_la-windows.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/windows.c' object='libscigui_la-windows.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-windows.lo `test -f 'src/c/xsci/windows.c' || echo '$(srcdir)/'`src/c/xsci/windows.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-windows.lo `test -f 'src/c/xsci/windows.c' || echo '$(srcdir)/'`src/c/xsci/windows.c
 
-libgui_la-wf_w_cursor.lo: src/c/xsci/wf_w_cursor.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-wf_w_cursor.lo -MD -MP -MF $(DEPDIR)/libgui_la-wf_w_cursor.Tpo -c -o libgui_la-wf_w_cursor.lo `test -f 'src/c/xsci/wf_w_cursor.c' || echo '$(srcdir)/'`src/c/xsci/wf_w_cursor.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-wf_w_cursor.Tpo $(DEPDIR)/libgui_la-wf_w_cursor.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/wf_w_cursor.c' object='libgui_la-wf_w_cursor.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-wf_w_cursor.lo: src/c/xsci/wf_w_cursor.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-wf_w_cursor.lo -MD -MP -MF $(DEPDIR)/libscigui_la-wf_w_cursor.Tpo -c -o libscigui_la-wf_w_cursor.lo `test -f 'src/c/xsci/wf_w_cursor.c' || echo '$(srcdir)/'`src/c/xsci/wf_w_cursor.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-wf_w_cursor.Tpo $(DEPDIR)/libscigui_la-wf_w_cursor.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/wf_w_cursor.c' object='libscigui_la-wf_w_cursor.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-wf_w_cursor.lo `test -f 'src/c/xsci/wf_w_cursor.c' || echo '$(srcdir)/'`src/c/xsci/wf_w_cursor.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-wf_w_cursor.lo `test -f 'src/c/xsci/wf_w_cursor.c' || echo '$(srcdir)/'`src/c/xsci/wf_w_cursor.c
 
-libgui_la-wf_w_dir.lo: src/c/xsci/wf_w_dir.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-wf_w_dir.lo -MD -MP -MF $(DEPDIR)/libgui_la-wf_w_dir.Tpo -c -o libgui_la-wf_w_dir.lo `test -f 'src/c/xsci/wf_w_dir.c' || echo '$(srcdir)/'`src/c/xsci/wf_w_dir.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-wf_w_dir.Tpo $(DEPDIR)/libgui_la-wf_w_dir.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/wf_w_dir.c' object='libgui_la-wf_w_dir.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-wf_w_dir.lo: src/c/xsci/wf_w_dir.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-wf_w_dir.lo -MD -MP -MF $(DEPDIR)/libscigui_la-wf_w_dir.Tpo -c -o libscigui_la-wf_w_dir.lo `test -f 'src/c/xsci/wf_w_dir.c' || echo '$(srcdir)/'`src/c/xsci/wf_w_dir.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-wf_w_dir.Tpo $(DEPDIR)/libscigui_la-wf_w_dir.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/wf_w_dir.c' object='libscigui_la-wf_w_dir.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-wf_w_dir.lo `test -f 'src/c/xsci/wf_w_dir.c' || echo '$(srcdir)/'`src/c/xsci/wf_w_dir.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-wf_w_dir.lo `test -f 'src/c/xsci/wf_w_dir.c' || echo '$(srcdir)/'`src/c/xsci/wf_w_dir.c
 
-libgui_la-x_util.lo: src/c/xsci/x_util.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-x_util.lo -MD -MP -MF $(DEPDIR)/libgui_la-x_util.Tpo -c -o libgui_la-x_util.lo `test -f 'src/c/xsci/x_util.c' || echo '$(srcdir)/'`src/c/xsci/x_util.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-x_util.Tpo $(DEPDIR)/libgui_la-x_util.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/x_util.c' object='libgui_la-x_util.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-x_util.lo: src/c/xsci/x_util.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-x_util.lo -MD -MP -MF $(DEPDIR)/libscigui_la-x_util.Tpo -c -o libscigui_la-x_util.lo `test -f 'src/c/xsci/x_util.c' || echo '$(srcdir)/'`src/c/xsci/x_util.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-x_util.Tpo $(DEPDIR)/libscigui_la-x_util.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/x_util.c' object='libscigui_la-x_util.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-x_util.lo `test -f 'src/c/xsci/x_util.c' || echo '$(srcdir)/'`src/c/xsci/x_util.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-x_util.lo `test -f 'src/c/xsci/x_util.c' || echo '$(srcdir)/'`src/c/xsci/x_util.c
 
-libgui_la-x_screen.lo: src/c/xsci/x_screen.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-x_screen.lo -MD -MP -MF $(DEPDIR)/libgui_la-x_screen.Tpo -c -o libgui_la-x_screen.lo `test -f 'src/c/xsci/x_screen.c' || echo '$(srcdir)/'`src/c/xsci/x_screen.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-x_screen.Tpo $(DEPDIR)/libgui_la-x_screen.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/x_screen.c' object='libgui_la-x_screen.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-x_screen.lo: src/c/xsci/x_screen.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-x_screen.lo -MD -MP -MF $(DEPDIR)/libscigui_la-x_screen.Tpo -c -o libscigui_la-x_screen.lo `test -f 'src/c/xsci/x_screen.c' || echo '$(srcdir)/'`src/c/xsci/x_screen.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-x_screen.Tpo $(DEPDIR)/libscigui_la-x_screen.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/x_screen.c' object='libscigui_la-x_screen.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-x_screen.lo `test -f 'src/c/xsci/x_screen.c' || echo '$(srcdir)/'`src/c/xsci/x_screen.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-x_screen.lo `test -f 'src/c/xsci/x_screen.c' || echo '$(srcdir)/'`src/c/xsci/x_screen.c
 
-libgui_la-x_scrollbar.lo: src/c/xsci/x_scrollbar.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-x_scrollbar.lo -MD -MP -MF $(DEPDIR)/libgui_la-x_scrollbar.Tpo -c -o libgui_la-x_scrollbar.lo `test -f 'src/c/xsci/x_scrollbar.c' || echo '$(srcdir)/'`src/c/xsci/x_scrollbar.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-x_scrollbar.Tpo $(DEPDIR)/libgui_la-x_scrollbar.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/x_scrollbar.c' object='libgui_la-x_scrollbar.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-x_scrollbar.lo: src/c/xsci/x_scrollbar.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-x_scrollbar.lo -MD -MP -MF $(DEPDIR)/libscigui_la-x_scrollbar.Tpo -c -o libscigui_la-x_scrollbar.lo `test -f 'src/c/xsci/x_scrollbar.c' || echo '$(srcdir)/'`src/c/xsci/x_scrollbar.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-x_scrollbar.Tpo $(DEPDIR)/libscigui_la-x_scrollbar.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/x_scrollbar.c' object='libscigui_la-x_scrollbar.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-x_scrollbar.lo `test -f 'src/c/xsci/x_scrollbar.c' || echo '$(srcdir)/'`src/c/xsci/x_scrollbar.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-x_scrollbar.lo `test -f 'src/c/xsci/x_scrollbar.c' || echo '$(srcdir)/'`src/c/xsci/x_scrollbar.c
 
-libgui_la-zzledt.lo: src/c/xsci/zzledt.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-zzledt.lo -MD -MP -MF $(DEPDIR)/libgui_la-zzledt.Tpo -c -o libgui_la-zzledt.lo `test -f 'src/c/xsci/zzledt.c' || echo '$(srcdir)/'`src/c/xsci/zzledt.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-zzledt.Tpo $(DEPDIR)/libgui_la-zzledt.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/zzledt.c' object='libgui_la-zzledt.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-zzledt.lo: src/c/xsci/zzledt.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-zzledt.lo -MD -MP -MF $(DEPDIR)/libscigui_la-zzledt.Tpo -c -o libscigui_la-zzledt.lo `test -f 'src/c/xsci/zzledt.c' || echo '$(srcdir)/'`src/c/xsci/zzledt.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-zzledt.Tpo $(DEPDIR)/libscigui_la-zzledt.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/zzledt.c' object='libscigui_la-zzledt.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-zzledt.lo `test -f 'src/c/xsci/zzledt.c' || echo '$(srcdir)/'`src/c/xsci/zzledt.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-zzledt.lo `test -f 'src/c/xsci/zzledt.c' || echo '$(srcdir)/'`src/c/xsci/zzledt.c
 
-libgui_la-SGraph.lo: src/c/xsci/SGraph.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-SGraph.lo -MD -MP -MF $(DEPDIR)/libgui_la-SGraph.Tpo -c -o libgui_la-SGraph.lo `test -f 'src/c/xsci/SGraph.c' || echo '$(srcdir)/'`src/c/xsci/SGraph.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-SGraph.Tpo $(DEPDIR)/libgui_la-SGraph.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/SGraph.c' object='libgui_la-SGraph.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-SGraph.lo: src/c/xsci/SGraph.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-SGraph.lo -MD -MP -MF $(DEPDIR)/libscigui_la-SGraph.Tpo -c -o libscigui_la-SGraph.lo `test -f 'src/c/xsci/SGraph.c' || echo '$(srcdir)/'`src/c/xsci/SGraph.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-SGraph.Tpo $(DEPDIR)/libscigui_la-SGraph.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/SGraph.c' object='libscigui_la-SGraph.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-SGraph.lo `test -f 'src/c/xsci/SGraph.c' || echo '$(srcdir)/'`src/c/xsci/SGraph.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-SGraph.lo `test -f 'src/c/xsci/SGraph.c' || echo '$(srcdir)/'`src/c/xsci/SGraph.c
 
-libgui_la-x_menu.lo: src/c/xsci/x_menu.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-x_menu.lo -MD -MP -MF $(DEPDIR)/libgui_la-x_menu.Tpo -c -o libgui_la-x_menu.lo `test -f 'src/c/xsci/x_menu.c' || echo '$(srcdir)/'`src/c/xsci/x_menu.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-x_menu.Tpo $(DEPDIR)/libgui_la-x_menu.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/x_menu.c' object='libgui_la-x_menu.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-x_menu.lo: src/c/xsci/x_menu.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-x_menu.lo -MD -MP -MF $(DEPDIR)/libscigui_la-x_menu.Tpo -c -o libscigui_la-x_menu.lo `test -f 'src/c/xsci/x_menu.c' || echo '$(srcdir)/'`src/c/xsci/x_menu.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-x_menu.Tpo $(DEPDIR)/libscigui_la-x_menu.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/x_menu.c' object='libscigui_la-x_menu.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-x_menu.lo `test -f 'src/c/xsci/x_menu.c' || echo '$(srcdir)/'`src/c/xsci/x_menu.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-x_menu.lo `test -f 'src/c/xsci/x_menu.c' || echo '$(srcdir)/'`src/c/xsci/x_menu.c
 
-libgui_la-xwidgets.lo: src/c/xsci/xwidgets.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-xwidgets.lo -MD -MP -MF $(DEPDIR)/libgui_la-xwidgets.Tpo -c -o libgui_la-xwidgets.lo `test -f 'src/c/xsci/xwidgets.c' || echo '$(srcdir)/'`src/c/xsci/xwidgets.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-xwidgets.Tpo $(DEPDIR)/libgui_la-xwidgets.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/xwidgets.c' object='libgui_la-xwidgets.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-xwidgets.lo: src/c/xsci/xwidgets.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-xwidgets.lo -MD -MP -MF $(DEPDIR)/libscigui_la-xwidgets.Tpo -c -o libscigui_la-xwidgets.lo `test -f 'src/c/xsci/xwidgets.c' || echo '$(srcdir)/'`src/c/xsci/xwidgets.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-xwidgets.Tpo $(DEPDIR)/libscigui_la-xwidgets.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/xwidgets.c' object='libscigui_la-xwidgets.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-xwidgets.lo `test -f 'src/c/xsci/xwidgets.c' || echo '$(srcdir)/'`src/c/xsci/xwidgets.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-xwidgets.lo `test -f 'src/c/xsci/xwidgets.c' || echo '$(srcdir)/'`src/c/xsci/xwidgets.c
 
-libgui_la-x_data.lo: src/c/xsci/x_data.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-x_data.lo -MD -MP -MF $(DEPDIR)/libgui_la-x_data.Tpo -c -o libgui_la-x_data.lo `test -f 'src/c/xsci/x_data.c' || echo '$(srcdir)/'`src/c/xsci/x_data.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-x_data.Tpo $(DEPDIR)/libgui_la-x_data.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/x_data.c' object='libgui_la-x_data.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-x_data.lo: src/c/xsci/x_data.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-x_data.lo -MD -MP -MF $(DEPDIR)/libscigui_la-x_data.Tpo -c -o libscigui_la-x_data.lo `test -f 'src/c/xsci/x_data.c' || echo '$(srcdir)/'`src/c/xsci/x_data.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-x_data.Tpo $(DEPDIR)/libscigui_la-x_data.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/x_data.c' object='libscigui_la-x_data.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-x_data.lo `test -f 'src/c/xsci/x_data.c' || echo '$(srcdir)/'`src/c/xsci/x_data.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-x_data.lo `test -f 'src/c/xsci/x_data.c' || echo '$(srcdir)/'`src/c/xsci/x_data.c
 
-libgui_la-x_VTPrsTbl.lo: src/c/xsci/x_VTPrsTbl.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-x_VTPrsTbl.lo -MD -MP -MF $(DEPDIR)/libgui_la-x_VTPrsTbl.Tpo -c -o libgui_la-x_VTPrsTbl.lo `test -f 'src/c/xsci/x_VTPrsTbl.c' || echo '$(srcdir)/'`src/c/xsci/x_VTPrsTbl.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-x_VTPrsTbl.Tpo $(DEPDIR)/libgui_la-x_VTPrsTbl.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/x_VTPrsTbl.c' object='libgui_la-x_VTPrsTbl.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-x_VTPrsTbl.lo: src/c/xsci/x_VTPrsTbl.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-x_VTPrsTbl.lo -MD -MP -MF $(DEPDIR)/libscigui_la-x_VTPrsTbl.Tpo -c -o libscigui_la-x_VTPrsTbl.lo `test -f 'src/c/xsci/x_VTPrsTbl.c' || echo '$(srcdir)/'`src/c/xsci/x_VTPrsTbl.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-x_VTPrsTbl.Tpo $(DEPDIR)/libscigui_la-x_VTPrsTbl.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/x_VTPrsTbl.c' object='libscigui_la-x_VTPrsTbl.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-x_VTPrsTbl.lo `test -f 'src/c/xsci/x_VTPrsTbl.c' || echo '$(srcdir)/'`src/c/xsci/x_VTPrsTbl.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-x_VTPrsTbl.lo `test -f 'src/c/xsci/x_VTPrsTbl.c' || echo '$(srcdir)/'`src/c/xsci/x_VTPrsTbl.c
 
-libgui_la-inter.lo: src/c/xsci/inter.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-inter.lo -MD -MP -MF $(DEPDIR)/libgui_la-inter.Tpo -c -o libgui_la-inter.lo `test -f 'src/c/xsci/inter.c' || echo '$(srcdir)/'`src/c/xsci/inter.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-inter.Tpo $(DEPDIR)/libgui_la-inter.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/inter.c' object='libgui_la-inter.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-inter.lo: src/c/xsci/inter.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-inter.lo -MD -MP -MF $(DEPDIR)/libscigui_la-inter.Tpo -c -o libscigui_la-inter.lo `test -f 'src/c/xsci/inter.c' || echo '$(srcdir)/'`src/c/xsci/inter.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-inter.Tpo $(DEPDIR)/libscigui_la-inter.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/inter.c' object='libscigui_la-inter.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-inter.lo `test -f 'src/c/xsci/inter.c' || echo '$(srcdir)/'`src/c/xsci/inter.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-inter.lo `test -f 'src/c/xsci/inter.c' || echo '$(srcdir)/'`src/c/xsci/inter.c
 
-libgui_la-coloredit.lo: src/c/xsci/coloredit.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-coloredit.lo -MD -MP -MF $(DEPDIR)/libgui_la-coloredit.Tpo -c -o libgui_la-coloredit.lo `test -f 'src/c/xsci/coloredit.c' || echo '$(srcdir)/'`src/c/xsci/coloredit.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-coloredit.Tpo $(DEPDIR)/libgui_la-coloredit.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/coloredit.c' object='libgui_la-coloredit.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-coloredit.lo: src/c/xsci/coloredit.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-coloredit.lo -MD -MP -MF $(DEPDIR)/libscigui_la-coloredit.Tpo -c -o libscigui_la-coloredit.lo `test -f 'src/c/xsci/coloredit.c' || echo '$(srcdir)/'`src/c/xsci/coloredit.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-coloredit.Tpo $(DEPDIR)/libscigui_la-coloredit.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/coloredit.c' object='libscigui_la-coloredit.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-coloredit.lo `test -f 'src/c/xsci/coloredit.c' || echo '$(srcdir)/'`src/c/xsci/coloredit.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-coloredit.lo `test -f 'src/c/xsci/coloredit.c' || echo '$(srcdir)/'`src/c/xsci/coloredit.c
 
-libgui_la-x_input.lo: src/c/xsci/x_input.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-x_input.lo -MD -MP -MF $(DEPDIR)/libgui_la-x_input.Tpo -c -o libgui_la-x_input.lo `test -f 'src/c/xsci/x_input.c' || echo '$(srcdir)/'`src/c/xsci/x_input.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-x_input.Tpo $(DEPDIR)/libgui_la-x_input.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/x_input.c' object='libgui_la-x_input.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-x_input.lo: src/c/xsci/x_input.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-x_input.lo -MD -MP -MF $(DEPDIR)/libscigui_la-x_input.Tpo -c -o libscigui_la-x_input.lo `test -f 'src/c/xsci/x_input.c' || echo '$(srcdir)/'`src/c/xsci/x_input.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-x_input.Tpo $(DEPDIR)/libscigui_la-x_input.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/x_input.c' object='libscigui_la-x_input.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-x_input.lo `test -f 'src/c/xsci/x_input.c' || echo '$(srcdir)/'`src/c/xsci/x_input.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-x_input.lo `test -f 'src/c/xsci/x_input.c' || echo '$(srcdir)/'`src/c/xsci/x_input.c
 
-libgui_la-x_charproc.lo: src/c/xsci/x_charproc.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-x_charproc.lo -MD -MP -MF $(DEPDIR)/libgui_la-x_charproc.Tpo -c -o libgui_la-x_charproc.lo `test -f 'src/c/xsci/x_charproc.c' || echo '$(srcdir)/'`src/c/xsci/x_charproc.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-x_charproc.Tpo $(DEPDIR)/libgui_la-x_charproc.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/x_charproc.c' object='libgui_la-x_charproc.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-x_charproc.lo: src/c/xsci/x_charproc.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-x_charproc.lo -MD -MP -MF $(DEPDIR)/libscigui_la-x_charproc.Tpo -c -o libscigui_la-x_charproc.lo `test -f 'src/c/xsci/x_charproc.c' || echo '$(srcdir)/'`src/c/xsci/x_charproc.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-x_charproc.Tpo $(DEPDIR)/libscigui_la-x_charproc.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/x_charproc.c' object='libscigui_la-x_charproc.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-x_charproc.lo `test -f 'src/c/xsci/x_charproc.c' || echo '$(srcdir)/'`src/c/xsci/x_charproc.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-x_charproc.lo `test -f 'src/c/xsci/x_charproc.c' || echo '$(srcdir)/'`src/c/xsci/x_charproc.c
 
-libgui_la-wf_w_msgpanel.lo: src/c/xsci/wf_w_msgpanel.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-wf_w_msgpanel.lo -MD -MP -MF $(DEPDIR)/libgui_la-wf_w_msgpanel.Tpo -c -o libgui_la-wf_w_msgpanel.lo `test -f 'src/c/xsci/wf_w_msgpanel.c' || echo '$(srcdir)/'`src/c/xsci/wf_w_msgpanel.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-wf_w_msgpanel.Tpo $(DEPDIR)/libgui_la-wf_w_msgpanel.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/wf_w_msgpanel.c' object='libgui_la-wf_w_msgpanel.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-wf_w_msgpanel.lo: src/c/xsci/wf_w_msgpanel.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-wf_w_msgpanel.lo -MD -MP -MF $(DEPDIR)/libscigui_la-wf_w_msgpanel.Tpo -c -o libscigui_la-wf_w_msgpanel.lo `test -f 'src/c/xsci/wf_w_msgpanel.c' || echo '$(srcdir)/'`src/c/xsci/wf_w_msgpanel.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-wf_w_msgpanel.Tpo $(DEPDIR)/libscigui_la-wf_w_msgpanel.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/wf_w_msgpanel.c' object='libscigui_la-wf_w_msgpanel.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-wf_w_msgpanel.lo `test -f 'src/c/xsci/wf_w_msgpanel.c' || echo '$(srcdir)/'`src/c/xsci/wf_w_msgpanel.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-wf_w_msgpanel.lo `test -f 'src/c/xsci/wf_w_msgpanel.c' || echo '$(srcdir)/'`src/c/xsci/wf_w_msgpanel.c
 
-libgui_la-wf_w_file.lo: src/c/xsci/wf_w_file.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-wf_w_file.lo -MD -MP -MF $(DEPDIR)/libgui_la-wf_w_file.Tpo -c -o libgui_la-wf_w_file.lo `test -f 'src/c/xsci/wf_w_file.c' || echo '$(srcdir)/'`src/c/xsci/wf_w_file.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-wf_w_file.Tpo $(DEPDIR)/libgui_la-wf_w_file.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/wf_w_file.c' object='libgui_la-wf_w_file.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-wf_w_file.lo: src/c/xsci/wf_w_file.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-wf_w_file.lo -MD -MP -MF $(DEPDIR)/libscigui_la-wf_w_file.Tpo -c -o libscigui_la-wf_w_file.lo `test -f 'src/c/xsci/wf_w_file.c' || echo '$(srcdir)/'`src/c/xsci/wf_w_file.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-wf_w_file.Tpo $(DEPDIR)/libscigui_la-wf_w_file.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/wf_w_file.c' object='libscigui_la-wf_w_file.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-wf_w_file.lo `test -f 'src/c/xsci/wf_w_file.c' || echo '$(srcdir)/'`src/c/xsci/wf_w_file.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-wf_w_file.lo `test -f 'src/c/xsci/wf_w_file.c' || echo '$(srcdir)/'`src/c/xsci/wf_w_file.c
 
-libgui_la-x_button.lo: src/c/xsci/x_button.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-x_button.lo -MD -MP -MF $(DEPDIR)/libgui_la-x_button.Tpo -c -o libgui_la-x_button.lo `test -f 'src/c/xsci/x_button.c' || echo '$(srcdir)/'`src/c/xsci/x_button.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-x_button.Tpo $(DEPDIR)/libgui_la-x_button.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/x_button.c' object='libgui_la-x_button.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-x_button.lo: src/c/xsci/x_button.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-x_button.lo -MD -MP -MF $(DEPDIR)/libscigui_la-x_button.Tpo -c -o libscigui_la-x_button.lo `test -f 'src/c/xsci/x_button.c' || echo '$(srcdir)/'`src/c/xsci/x_button.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-x_button.Tpo $(DEPDIR)/libscigui_la-x_button.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/x_button.c' object='libscigui_la-x_button.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-x_button.lo `test -f 'src/c/xsci/x_button.c' || echo '$(srcdir)/'`src/c/xsci/x_button.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-x_button.lo `test -f 'src/c/xsci/x_button.c' || echo '$(srcdir)/'`src/c/xsci/x_button.c
 
-libgui_la-command.lo: src/c/xsci/command.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-command.lo -MD -MP -MF $(DEPDIR)/libgui_la-command.Tpo -c -o libgui_la-command.lo `test -f 'src/c/xsci/command.c' || echo '$(srcdir)/'`src/c/xsci/command.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-command.Tpo $(DEPDIR)/libgui_la-command.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/command.c' object='libgui_la-command.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-command.lo: src/c/xsci/command.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-command.lo -MD -MP -MF $(DEPDIR)/libscigui_la-command.Tpo -c -o libscigui_la-command.lo `test -f 'src/c/xsci/command.c' || echo '$(srcdir)/'`src/c/xsci/command.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-command.Tpo $(DEPDIR)/libscigui_la-command.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/command.c' object='libscigui_la-command.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-command.lo `test -f 'src/c/xsci/command.c' || echo '$(srcdir)/'`src/c/xsci/command.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-command.lo `test -f 'src/c/xsci/command.c' || echo '$(srcdir)/'`src/c/xsci/command.c
 
-libgui_la-wf_w_setup.lo: src/c/xsci/wf_w_setup.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-wf_w_setup.lo -MD -MP -MF $(DEPDIR)/libgui_la-wf_w_setup.Tpo -c -o libgui_la-wf_w_setup.lo `test -f 'src/c/xsci/wf_w_setup.c' || echo '$(srcdir)/'`src/c/xsci/wf_w_setup.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-wf_w_setup.Tpo $(DEPDIR)/libgui_la-wf_w_setup.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/wf_w_setup.c' object='libgui_la-wf_w_setup.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-wf_w_setup.lo: src/c/xsci/wf_w_setup.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-wf_w_setup.lo -MD -MP -MF $(DEPDIR)/libscigui_la-wf_w_setup.Tpo -c -o libscigui_la-wf_w_setup.lo `test -f 'src/c/xsci/wf_w_setup.c' || echo '$(srcdir)/'`src/c/xsci/wf_w_setup.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-wf_w_setup.Tpo $(DEPDIR)/libscigui_la-wf_w_setup.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/wf_w_setup.c' object='libscigui_la-wf_w_setup.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-wf_w_setup.lo `test -f 'src/c/xsci/wf_w_setup.c' || echo '$(srcdir)/'`src/c/xsci/wf_w_setup.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-wf_w_setup.lo `test -f 'src/c/xsci/wf_w_setup.c' || echo '$(srcdir)/'`src/c/xsci/wf_w_setup.c
 
-libgui_la-wf_w_init.lo: src/c/xsci/wf_w_init.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-wf_w_init.lo -MD -MP -MF $(DEPDIR)/libgui_la-wf_w_init.Tpo -c -o libgui_la-wf_w_init.lo `test -f 'src/c/xsci/wf_w_init.c' || echo '$(srcdir)/'`src/c/xsci/wf_w_init.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-wf_w_init.Tpo $(DEPDIR)/libgui_la-wf_w_init.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/wf_w_init.c' object='libgui_la-wf_w_init.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-wf_w_init.lo: src/c/xsci/wf_w_init.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-wf_w_init.lo -MD -MP -MF $(DEPDIR)/libscigui_la-wf_w_init.Tpo -c -o libscigui_la-wf_w_init.lo `test -f 'src/c/xsci/wf_w_init.c' || echo '$(srcdir)/'`src/c/xsci/wf_w_init.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-wf_w_init.Tpo $(DEPDIR)/libscigui_la-wf_w_init.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/wf_w_init.c' object='libscigui_la-wf_w_init.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-wf_w_init.lo `test -f 'src/c/xsci/wf_w_init.c' || echo '$(srcdir)/'`src/c/xsci/wf_w_init.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-wf_w_init.lo `test -f 'src/c/xsci/wf_w_init.c' || echo '$(srcdir)/'`src/c/xsci/wf_w_init.c
 
-libgui_la-men_dialog.lo: src/c/men_dialog.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-men_dialog.lo -MD -MP -MF $(DEPDIR)/libgui_la-men_dialog.Tpo -c -o libgui_la-men_dialog.lo `test -f 'src/c/men_dialog.c' || echo '$(srcdir)/'`src/c/men_dialog.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-men_dialog.Tpo $(DEPDIR)/libgui_la-men_dialog.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/men_dialog.c' object='libgui_la-men_dialog.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-men_dialog.lo: src/c/men_dialog.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-men_dialog.lo -MD -MP -MF $(DEPDIR)/libscigui_la-men_dialog.Tpo -c -o libscigui_la-men_dialog.lo `test -f 'src/c/men_dialog.c' || echo '$(srcdir)/'`src/c/men_dialog.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-men_dialog.Tpo $(DEPDIR)/libscigui_la-men_dialog.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/men_dialog.c' object='libscigui_la-men_dialog.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-men_dialog.lo `test -f 'src/c/men_dialog.c' || echo '$(srcdir)/'`src/c/men_dialog.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-men_dialog.lo `test -f 'src/c/men_dialog.c' || echo '$(srcdir)/'`src/c/men_dialog.c
 
-libgui_la-xmen_getfile.lo: src/c/xmen_getfile.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-xmen_getfile.lo -MD -MP -MF $(DEPDIR)/libgui_la-xmen_getfile.Tpo -c -o libgui_la-xmen_getfile.lo `test -f 'src/c/xmen_getfile.c' || echo '$(srcdir)/'`src/c/xmen_getfile.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-xmen_getfile.Tpo $(DEPDIR)/libgui_la-xmen_getfile.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xmen_getfile.c' object='libgui_la-xmen_getfile.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-xmen_getfile.lo: src/c/xmen_getfile.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-xmen_getfile.lo -MD -MP -MF $(DEPDIR)/libscigui_la-xmen_getfile.Tpo -c -o libscigui_la-xmen_getfile.lo `test -f 'src/c/xmen_getfile.c' || echo '$(srcdir)/'`src/c/xmen_getfile.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-xmen_getfile.Tpo $(DEPDIR)/libscigui_la-xmen_getfile.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xmen_getfile.c' object='libscigui_la-xmen_getfile.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-xmen_getfile.lo `test -f 'src/c/xmen_getfile.c' || echo '$(srcdir)/'`src/c/xmen_getfile.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-xmen_getfile.lo `test -f 'src/c/xmen_getfile.c' || echo '$(srcdir)/'`src/c/xmen_getfile.c
 
-libgui_la-xmen_choose.lo: src/c/xmen_choose.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-xmen_choose.lo -MD -MP -MF $(DEPDIR)/libgui_la-xmen_choose.Tpo -c -o libgui_la-xmen_choose.lo `test -f 'src/c/xmen_choose.c' || echo '$(srcdir)/'`src/c/xmen_choose.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-xmen_choose.Tpo $(DEPDIR)/libgui_la-xmen_choose.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xmen_choose.c' object='libgui_la-xmen_choose.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-xmen_choose.lo: src/c/xmen_choose.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-xmen_choose.lo -MD -MP -MF $(DEPDIR)/libscigui_la-xmen_choose.Tpo -c -o libscigui_la-xmen_choose.lo `test -f 'src/c/xmen_choose.c' || echo '$(srcdir)/'`src/c/xmen_choose.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-xmen_choose.Tpo $(DEPDIR)/libscigui_la-xmen_choose.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xmen_choose.c' object='libscigui_la-xmen_choose.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-xmen_choose.lo `test -f 'src/c/xmen_choose.c' || echo '$(srcdir)/'`src/c/xmen_choose.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-xmen_choose.lo `test -f 'src/c/xmen_choose.c' || echo '$(srcdir)/'`src/c/xmen_choose.c
 
-libgui_la-xmen_message.lo: src/c/xmen_message.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-xmen_message.lo -MD -MP -MF $(DEPDIR)/libgui_la-xmen_message.Tpo -c -o libgui_la-xmen_message.lo `test -f 'src/c/xmen_message.c' || echo '$(srcdir)/'`src/c/xmen_message.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-xmen_message.Tpo $(DEPDIR)/libgui_la-xmen_message.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xmen_message.c' object='libgui_la-xmen_message.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-xmen_message.lo: src/c/xmen_message.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-xmen_message.lo -MD -MP -MF $(DEPDIR)/libscigui_la-xmen_message.Tpo -c -o libscigui_la-xmen_message.lo `test -f 'src/c/xmen_message.c' || echo '$(srcdir)/'`src/c/xmen_message.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-xmen_message.Tpo $(DEPDIR)/libscigui_la-xmen_message.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xmen_message.c' object='libscigui_la-xmen_message.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-xmen_message.lo `test -f 'src/c/xmen_message.c' || echo '$(srcdir)/'`src/c/xmen_message.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-xmen_message.lo `test -f 'src/c/xmen_message.c' || echo '$(srcdir)/'`src/c/xmen_message.c
 
-libgui_la-xmen_mdial.lo: src/c/xmen_mdial.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-xmen_mdial.lo -MD -MP -MF $(DEPDIR)/libgui_la-xmen_mdial.Tpo -c -o libgui_la-xmen_mdial.lo `test -f 'src/c/xmen_mdial.c' || echo '$(srcdir)/'`src/c/xmen_mdial.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-xmen_mdial.Tpo $(DEPDIR)/libgui_la-xmen_mdial.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xmen_mdial.c' object='libgui_la-xmen_mdial.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-xmen_mdial.lo: src/c/xmen_mdial.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-xmen_mdial.lo -MD -MP -MF $(DEPDIR)/libscigui_la-xmen_mdial.Tpo -c -o libscigui_la-xmen_mdial.lo `test -f 'src/c/xmen_mdial.c' || echo '$(srcdir)/'`src/c/xmen_mdial.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-xmen_mdial.Tpo $(DEPDIR)/libscigui_la-xmen_mdial.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xmen_mdial.c' object='libscigui_la-xmen_mdial.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-xmen_mdial.lo `test -f 'src/c/xmen_mdial.c' || echo '$(srcdir)/'`src/c/xmen_mdial.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-xmen_mdial.lo `test -f 'src/c/xmen_mdial.c' || echo '$(srcdir)/'`src/c/xmen_mdial.c
 
-libgui_la-men_getfile.lo: src/c/men_getfile.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-men_getfile.lo -MD -MP -MF $(DEPDIR)/libgui_la-men_getfile.Tpo -c -o libgui_la-men_getfile.lo `test -f 'src/c/men_getfile.c' || echo '$(srcdir)/'`src/c/men_getfile.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-men_getfile.Tpo $(DEPDIR)/libgui_la-men_getfile.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/men_getfile.c' object='libgui_la-men_getfile.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-men_getfile.lo: src/c/men_getfile.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-men_getfile.lo -MD -MP -MF $(DEPDIR)/libscigui_la-men_getfile.Tpo -c -o libscigui_la-men_getfile.lo `test -f 'src/c/men_getfile.c' || echo '$(srcdir)/'`src/c/men_getfile.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-men_getfile.Tpo $(DEPDIR)/libscigui_la-men_getfile.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/men_getfile.c' object='libscigui_la-men_getfile.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-men_getfile.lo `test -f 'src/c/men_getfile.c' || echo '$(srcdir)/'`src/c/men_getfile.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-men_getfile.lo `test -f 'src/c/men_getfile.c' || echo '$(srcdir)/'`src/c/men_getfile.c
 
-libgui_la-xmen_madial.lo: src/c/xmen_madial.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-xmen_madial.lo -MD -MP -MF $(DEPDIR)/libgui_la-xmen_madial.Tpo -c -o libgui_la-xmen_madial.lo `test -f 'src/c/xmen_madial.c' || echo '$(srcdir)/'`src/c/xmen_madial.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-xmen_madial.Tpo $(DEPDIR)/libgui_la-xmen_madial.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xmen_madial.c' object='libgui_la-xmen_madial.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-xmen_madial.lo: src/c/xmen_madial.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-xmen_madial.lo -MD -MP -MF $(DEPDIR)/libscigui_la-xmen_madial.Tpo -c -o libscigui_la-xmen_madial.lo `test -f 'src/c/xmen_madial.c' || echo '$(srcdir)/'`src/c/xmen_madial.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-xmen_madial.Tpo $(DEPDIR)/libscigui_la-xmen_madial.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xmen_madial.c' object='libscigui_la-xmen_madial.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-xmen_madial.lo `test -f 'src/c/xmen_madial.c' || echo '$(srcdir)/'`src/c/xmen_madial.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-xmen_madial.lo `test -f 'src/c/xmen_madial.c' || echo '$(srcdir)/'`src/c/xmen_madial.c
 
-libgui_la-men_choose.lo: src/c/men_choose.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-men_choose.lo -MD -MP -MF $(DEPDIR)/libgui_la-men_choose.Tpo -c -o libgui_la-men_choose.lo `test -f 'src/c/men_choose.c' || echo '$(srcdir)/'`src/c/men_choose.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-men_choose.Tpo $(DEPDIR)/libgui_la-men_choose.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/men_choose.c' object='libgui_la-men_choose.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-men_choose.lo: src/c/men_choose.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-men_choose.lo -MD -MP -MF $(DEPDIR)/libscigui_la-men_choose.Tpo -c -o libscigui_la-men_choose.lo `test -f 'src/c/men_choose.c' || echo '$(srcdir)/'`src/c/men_choose.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-men_choose.Tpo $(DEPDIR)/libscigui_la-men_choose.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/men_choose.c' object='libscigui_la-men_choose.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-men_choose.lo `test -f 'src/c/men_choose.c' || echo '$(srcdir)/'`src/c/men_choose.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-men_choose.lo `test -f 'src/c/men_choose.c' || echo '$(srcdir)/'`src/c/men_choose.c
 
-libgui_la-xmen_choice.lo: src/c/xmen_choice.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-xmen_choice.lo -MD -MP -MF $(DEPDIR)/libgui_la-xmen_choice.Tpo -c -o libgui_la-xmen_choice.lo `test -f 'src/c/xmen_choice.c' || echo '$(srcdir)/'`src/c/xmen_choice.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-xmen_choice.Tpo $(DEPDIR)/libgui_la-xmen_choice.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xmen_choice.c' object='libgui_la-xmen_choice.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-xmen_choice.lo: src/c/xmen_choice.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-xmen_choice.lo -MD -MP -MF $(DEPDIR)/libscigui_la-xmen_choice.Tpo -c -o libscigui_la-xmen_choice.lo `test -f 'src/c/xmen_choice.c' || echo '$(srcdir)/'`src/c/xmen_choice.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-xmen_choice.Tpo $(DEPDIR)/libscigui_la-xmen_choice.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xmen_choice.c' object='libscigui_la-xmen_choice.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-xmen_choice.lo `test -f 'src/c/xmen_choice.c' || echo '$(srcdir)/'`src/c/xmen_choice.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-xmen_choice.lo `test -f 'src/c/xmen_choice.c' || echo '$(srcdir)/'`src/c/xmen_choice.c
 
-libgui_la-men_message.lo: src/c/men_message.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-men_message.lo -MD -MP -MF $(DEPDIR)/libgui_la-men_message.Tpo -c -o libgui_la-men_message.lo `test -f 'src/c/men_message.c' || echo '$(srcdir)/'`src/c/men_message.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-men_message.Tpo $(DEPDIR)/libgui_la-men_message.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/men_message.c' object='libgui_la-men_message.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-men_message.lo: src/c/men_message.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-men_message.lo -MD -MP -MF $(DEPDIR)/libscigui_la-men_message.Tpo -c -o libscigui_la-men_message.lo `test -f 'src/c/men_message.c' || echo '$(srcdir)/'`src/c/men_message.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-men_message.Tpo $(DEPDIR)/libscigui_la-men_message.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/men_message.c' object='libscigui_la-men_message.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-men_message.lo `test -f 'src/c/men_message.c' || echo '$(srcdir)/'`src/c/men_message.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-men_message.lo `test -f 'src/c/men_message.c' || echo '$(srcdir)/'`src/c/men_message.c
 
-libgui_la-xmen_print.lo: src/c/xmen_print.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-xmen_print.lo -MD -MP -MF $(DEPDIR)/libgui_la-xmen_print.Tpo -c -o libgui_la-xmen_print.lo `test -f 'src/c/xmen_print.c' || echo '$(srcdir)/'`src/c/xmen_print.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-xmen_print.Tpo $(DEPDIR)/libgui_la-xmen_print.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xmen_print.c' object='libgui_la-xmen_print.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-xmen_print.lo: src/c/xmen_print.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-xmen_print.lo -MD -MP -MF $(DEPDIR)/libscigui_la-xmen_print.Tpo -c -o libscigui_la-xmen_print.lo `test -f 'src/c/xmen_print.c' || echo '$(srcdir)/'`src/c/xmen_print.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-xmen_print.Tpo $(DEPDIR)/libscigui_la-xmen_print.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xmen_print.c' object='libscigui_la-xmen_print.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-xmen_print.lo `test -f 'src/c/xmen_print.c' || echo '$(srcdir)/'`src/c/xmen_print.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-xmen_print.lo `test -f 'src/c/xmen_print.c' || echo '$(srcdir)/'`src/c/xmen_print.c
 
-libgui_la-men_mdial.lo: src/c/men_mdial.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-men_mdial.lo -MD -MP -MF $(DEPDIR)/libgui_la-men_mdial.Tpo -c -o libgui_la-men_mdial.lo `test -f 'src/c/men_mdial.c' || echo '$(srcdir)/'`src/c/men_mdial.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-men_mdial.Tpo $(DEPDIR)/libgui_la-men_mdial.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/men_mdial.c' object='libgui_la-men_mdial.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-men_mdial.lo: src/c/men_mdial.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-men_mdial.lo -MD -MP -MF $(DEPDIR)/libscigui_la-men_mdial.Tpo -c -o libscigui_la-men_mdial.lo `test -f 'src/c/men_mdial.c' || echo '$(srcdir)/'`src/c/men_mdial.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-men_mdial.Tpo $(DEPDIR)/libscigui_la-men_mdial.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/men_mdial.c' object='libscigui_la-men_mdial.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-men_mdial.lo `test -f 'src/c/men_mdial.c' || echo '$(srcdir)/'`src/c/men_mdial.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-men_mdial.lo `test -f 'src/c/men_mdial.c' || echo '$(srcdir)/'`src/c/men_mdial.c
 
-libgui_la-men_madial.lo: src/c/men_madial.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-men_madial.lo -MD -MP -MF $(DEPDIR)/libgui_la-men_madial.Tpo -c -o libgui_la-men_madial.lo `test -f 'src/c/men_madial.c' || echo '$(srcdir)/'`src/c/men_madial.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-men_madial.Tpo $(DEPDIR)/libgui_la-men_madial.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/men_madial.c' object='libgui_la-men_madial.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-men_madial.lo: src/c/men_madial.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-men_madial.lo -MD -MP -MF $(DEPDIR)/libscigui_la-men_madial.Tpo -c -o libscigui_la-men_madial.lo `test -f 'src/c/men_madial.c' || echo '$(srcdir)/'`src/c/men_madial.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-men_madial.Tpo $(DEPDIR)/libscigui_la-men_madial.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/men_madial.c' object='libscigui_la-men_madial.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-men_madial.lo `test -f 'src/c/men_madial.c' || echo '$(srcdir)/'`src/c/men_madial.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-men_madial.lo `test -f 'src/c/men_madial.c' || echo '$(srcdir)/'`src/c/men_madial.c
 
-libgui_la-xmen_dialog.lo: src/c/xmen_dialog.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-xmen_dialog.lo -MD -MP -MF $(DEPDIR)/libgui_la-xmen_dialog.Tpo -c -o libgui_la-xmen_dialog.lo `test -f 'src/c/xmen_dialog.c' || echo '$(srcdir)/'`src/c/xmen_dialog.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-xmen_dialog.Tpo $(DEPDIR)/libgui_la-xmen_dialog.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xmen_dialog.c' object='libgui_la-xmen_dialog.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-xmen_dialog.lo: src/c/xmen_dialog.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-xmen_dialog.lo -MD -MP -MF $(DEPDIR)/libscigui_la-xmen_dialog.Tpo -c -o libscigui_la-xmen_dialog.lo `test -f 'src/c/xmen_dialog.c' || echo '$(srcdir)/'`src/c/xmen_dialog.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-xmen_dialog.Tpo $(DEPDIR)/libscigui_la-xmen_dialog.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xmen_dialog.c' object='libscigui_la-xmen_dialog.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-xmen_dialog.lo `test -f 'src/c/xmen_dialog.c' || echo '$(srcdir)/'`src/c/xmen_dialog.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-xmen_dialog.lo `test -f 'src/c/xmen_dialog.c' || echo '$(srcdir)/'`src/c/xmen_dialog.c
 
-libgui_la-xmen_Utils.lo: src/c/xmen_Utils.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-xmen_Utils.lo -MD -MP -MF $(DEPDIR)/libgui_la-xmen_Utils.Tpo -c -o libgui_la-xmen_Utils.lo `test -f 'src/c/xmen_Utils.c' || echo '$(srcdir)/'`src/c/xmen_Utils.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-xmen_Utils.Tpo $(DEPDIR)/libgui_la-xmen_Utils.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xmen_Utils.c' object='libgui_la-xmen_Utils.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-xmen_Utils.lo: src/c/xmen_Utils.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-xmen_Utils.lo -MD -MP -MF $(DEPDIR)/libscigui_la-xmen_Utils.Tpo -c -o libscigui_la-xmen_Utils.lo `test -f 'src/c/xmen_Utils.c' || echo '$(srcdir)/'`src/c/xmen_Utils.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-xmen_Utils.Tpo $(DEPDIR)/libscigui_la-xmen_Utils.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xmen_Utils.c' object='libscigui_la-xmen_Utils.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-xmen_Utils.lo `test -f 'src/c/xmen_Utils.c' || echo '$(srcdir)/'`src/c/xmen_Utils.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-xmen_Utils.lo `test -f 'src/c/xmen_Utils.c' || echo '$(srcdir)/'`src/c/xmen_Utils.c
 
-libgui_la-men_choice.lo: src/c/men_choice.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-men_choice.lo -MD -MP -MF $(DEPDIR)/libgui_la-men_choice.Tpo -c -o libgui_la-men_choice.lo `test -f 'src/c/men_choice.c' || echo '$(srcdir)/'`src/c/men_choice.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-men_choice.Tpo $(DEPDIR)/libgui_la-men_choice.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/men_choice.c' object='libgui_la-men_choice.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-men_choice.lo: src/c/men_choice.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-men_choice.lo -MD -MP -MF $(DEPDIR)/libscigui_la-men_choice.Tpo -c -o libscigui_la-men_choice.lo `test -f 'src/c/men_choice.c' || echo '$(srcdir)/'`src/c/men_choice.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-men_choice.Tpo $(DEPDIR)/libscigui_la-men_choice.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/men_choice.c' object='libscigui_la-men_choice.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-men_choice.lo `test -f 'src/c/men_choice.c' || echo '$(srcdir)/'`src/c/men_choice.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-men_choice.lo `test -f 'src/c/men_choice.c' || echo '$(srcdir)/'`src/c/men_choice.c
 
-libgui_la-men_print.lo: src/c/men_print.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-men_print.lo -MD -MP -MF $(DEPDIR)/libgui_la-men_print.Tpo -c -o libgui_la-men_print.lo `test -f 'src/c/men_print.c' || echo '$(srcdir)/'`src/c/men_print.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-men_print.Tpo $(DEPDIR)/libgui_la-men_print.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/men_print.c' object='libgui_la-men_print.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-men_print.lo: src/c/men_print.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-men_print.lo -MD -MP -MF $(DEPDIR)/libscigui_la-men_print.Tpo -c -o libscigui_la-men_print.lo `test -f 'src/c/men_print.c' || echo '$(srcdir)/'`src/c/men_print.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-men_print.Tpo $(DEPDIR)/libscigui_la-men_print.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/men_print.c' object='libscigui_la-men_print.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-men_print.lo `test -f 'src/c/men_print.c' || echo '$(srcdir)/'`src/c/men_print.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-men_print.lo `test -f 'src/c/men_print.c' || echo '$(srcdir)/'`src/c/men_print.c
 
-libgui_la-sci_x_choice.lo: sci_gateway/c/sci_x_choice.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-sci_x_choice.lo -MD -MP -MF $(DEPDIR)/libgui_la-sci_x_choice.Tpo -c -o libgui_la-sci_x_choice.lo `test -f 'sci_gateway/c/sci_x_choice.c' || echo '$(srcdir)/'`sci_gateway/c/sci_x_choice.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-sci_x_choice.Tpo $(DEPDIR)/libgui_la-sci_x_choice.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_x_choice.c' object='libgui_la-sci_x_choice.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-sci_x_choice.lo: sci_gateway/c/sci_x_choice.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_x_choice.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_x_choice.Tpo -c -o libscigui_la-sci_x_choice.lo `test -f 'sci_gateway/c/sci_x_choice.c' || echo '$(srcdir)/'`sci_gateway/c/sci_x_choice.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_x_choice.Tpo $(DEPDIR)/libscigui_la-sci_x_choice.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_x_choice.c' object='libscigui_la-sci_x_choice.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-sci_x_choice.lo `test -f 'sci_gateway/c/sci_x_choice.c' || echo '$(srcdir)/'`sci_gateway/c/sci_x_choice.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_x_choice.lo `test -f 'sci_gateway/c/sci_x_choice.c' || echo '$(srcdir)/'`sci_gateway/c/sci_x_choice.c
 
-libgui_la-sci_clc.lo: sci_gateway/c/sci_clc.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-sci_clc.lo -MD -MP -MF $(DEPDIR)/libgui_la-sci_clc.Tpo -c -o libgui_la-sci_clc.lo `test -f 'sci_gateway/c/sci_clc.c' || echo '$(srcdir)/'`sci_gateway/c/sci_clc.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-sci_clc.Tpo $(DEPDIR)/libgui_la-sci_clc.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_clc.c' object='libgui_la-sci_clc.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-sci_clc.lo: sci_gateway/c/sci_clc.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_clc.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_clc.Tpo -c -o libscigui_la-sci_clc.lo `test -f 'sci_gateway/c/sci_clc.c' || echo '$(srcdir)/'`sci_gateway/c/sci_clc.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_clc.Tpo $(DEPDIR)/libscigui_la-sci_clc.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_clc.c' object='libscigui_la-sci_clc.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-sci_clc.lo `test -f 'sci_gateway/c/sci_clc.c' || echo '$(srcdir)/'`sci_gateway/c/sci_clc.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_clc.lo `test -f 'sci_gateway/c/sci_clc.c' || echo '$(srcdir)/'`sci_gateway/c/sci_clc.c
 
-libgui_la-sci_x_message_modeless.lo: sci_gateway/c/sci_x_message_modeless.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-sci_x_message_modeless.lo -MD -MP -MF $(DEPDIR)/libgui_la-sci_x_message_modeless.Tpo -c -o libgui_la-sci_x_message_modeless.lo `test -f 'sci_gateway/c/sci_x_message_modeless.c' || echo '$(srcdir)/'`sci_gateway/c/sci_x_message_modeless.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-sci_x_message_modeless.Tpo $(DEPDIR)/libgui_la-sci_x_message_modeless.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_x_message_modeless.c' object='libgui_la-sci_x_message_modeless.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-sci_x_message_modeless.lo: sci_gateway/c/sci_x_message_modeless.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_x_message_modeless.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_x_message_modeless.Tpo -c -o libscigui_la-sci_x_message_modeless.lo `test -f 'sci_gateway/c/sci_x_message_modeless.c' || echo '$(srcdir)/'`sci_gateway/c/sci_x_message_modeless.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_x_message_modeless.Tpo $(DEPDIR)/libscigui_la-sci_x_message_modeless.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_x_message_modeless.c' object='libscigui_la-sci_x_message_modeless.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-sci_x_message_modeless.lo `test -f 'sci_gateway/c/sci_x_message_modeless.c' || echo '$(srcdir)/'`sci_gateway/c/sci_x_message_modeless.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_x_message_modeless.lo `test -f 'sci_gateway/c/sci_x_message_modeless.c' || echo '$(srcdir)/'`sci_gateway/c/sci_x_message_modeless.c
 
-libgui_la-gw_gui.lo: sci_gateway/c/gw_gui.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-gw_gui.lo -MD -MP -MF $(DEPDIR)/libgui_la-gw_gui.Tpo -c -o libgui_la-gw_gui.lo `test -f 'sci_gateway/c/gw_gui.c' || echo '$(srcdir)/'`sci_gateway/c/gw_gui.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-gw_gui.Tpo $(DEPDIR)/libgui_la-gw_gui.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/gw_gui.c' object='libgui_la-gw_gui.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-gw_gui.lo: sci_gateway/c/gw_gui.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-gw_gui.lo -MD -MP -MF $(DEPDIR)/libscigui_la-gw_gui.Tpo -c -o libscigui_la-gw_gui.lo `test -f 'sci_gateway/c/gw_gui.c' || echo '$(srcdir)/'`sci_gateway/c/gw_gui.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-gw_gui.Tpo $(DEPDIR)/libscigui_la-gw_gui.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/gw_gui.c' object='libscigui_la-gw_gui.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-gw_gui.lo `test -f 'sci_gateway/c/gw_gui.c' || echo '$(srcdir)/'`sci_gateway/c/gw_gui.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-gw_gui.lo `test -f 'sci_gateway/c/gw_gui.c' || echo '$(srcdir)/'`sci_gateway/c/gw_gui.c
 
-libgui_la-sci_x_mdialog.lo: sci_gateway/c/sci_x_mdialog.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-sci_x_mdialog.lo -MD -MP -MF $(DEPDIR)/libgui_la-sci_x_mdialog.Tpo -c -o libgui_la-sci_x_mdialog.lo `test -f 'sci_gateway/c/sci_x_mdialog.c' || echo '$(srcdir)/'`sci_gateway/c/sci_x_mdialog.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-sci_x_mdialog.Tpo $(DEPDIR)/libgui_la-sci_x_mdialog.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_x_mdialog.c' object='libgui_la-sci_x_mdialog.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-sci_x_mdialog.lo: sci_gateway/c/sci_x_mdialog.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_x_mdialog.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_x_mdialog.Tpo -c -o libscigui_la-sci_x_mdialog.lo `test -f 'sci_gateway/c/sci_x_mdialog.c' || echo '$(srcdir)/'`sci_gateway/c/sci_x_mdialog.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_x_mdialog.Tpo $(DEPDIR)/libscigui_la-sci_x_mdialog.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_x_mdialog.c' object='libscigui_la-sci_x_mdialog.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-sci_x_mdialog.lo `test -f 'sci_gateway/c/sci_x_mdialog.c' || echo '$(srcdir)/'`sci_gateway/c/sci_x_mdialog.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_x_mdialog.lo `test -f 'sci_gateway/c/sci_x_mdialog.c' || echo '$(srcdir)/'`sci_gateway/c/sci_x_mdialog.c
 
-libgui_la-sci_x_dialog.lo: sci_gateway/c/sci_x_dialog.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-sci_x_dialog.lo -MD -MP -MF $(DEPDIR)/libgui_la-sci_x_dialog.Tpo -c -o libgui_la-sci_x_dialog.lo `test -f 'sci_gateway/c/sci_x_dialog.c' || echo '$(srcdir)/'`sci_gateway/c/sci_x_dialog.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-sci_x_dialog.Tpo $(DEPDIR)/libgui_la-sci_x_dialog.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_x_dialog.c' object='libgui_la-sci_x_dialog.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-sci_x_dialog.lo: sci_gateway/c/sci_x_dialog.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_x_dialog.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_x_dialog.Tpo -c -o libscigui_la-sci_x_dialog.lo `test -f 'sci_gateway/c/sci_x_dialog.c' || echo '$(srcdir)/'`sci_gateway/c/sci_x_dialog.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_x_dialog.Tpo $(DEPDIR)/libscigui_la-sci_x_dialog.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_x_dialog.c' object='libscigui_la-sci_x_dialog.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-sci_x_dialog.lo `test -f 'sci_gateway/c/sci_x_dialog.c' || echo '$(srcdir)/'`sci_gateway/c/sci_x_dialog.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_x_dialog.lo `test -f 'sci_gateway/c/sci_x_dialog.c' || echo '$(srcdir)/'`sci_gateway/c/sci_x_dialog.c
 
-libgui_la-sci_show_window.lo: sci_gateway/c/sci_show_window.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-sci_show_window.lo -MD -MP -MF $(DEPDIR)/libgui_la-sci_show_window.Tpo -c -o libgui_la-sci_show_window.lo `test -f 'sci_gateway/c/sci_show_window.c' || echo '$(srcdir)/'`sci_gateway/c/sci_show_window.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-sci_show_window.Tpo $(DEPDIR)/libgui_la-sci_show_window.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_show_window.c' object='libgui_la-sci_show_window.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-sci_show_window.lo: sci_gateway/c/sci_show_window.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_show_window.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_show_window.Tpo -c -o libscigui_la-sci_show_window.lo `test -f 'sci_gateway/c/sci_show_window.c' || echo '$(srcdir)/'`sci_gateway/c/sci_show_window.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_show_window.Tpo $(DEPDIR)/libscigui_la-sci_show_window.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_show_window.c' object='libscigui_la-sci_show_window.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-sci_show_window.lo `test -f 'sci_gateway/c/sci_show_window.c' || echo '$(srcdir)/'`sci_gateway/c/sci_show_window.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_show_window.lo `test -f 'sci_gateway/c/sci_show_window.c' || echo '$(srcdir)/'`sci_gateway/c/sci_show_window.c
 
-libgui_la-sci_x_choose.lo: sci_gateway/c/sci_x_choose.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-sci_x_choose.lo -MD -MP -MF $(DEPDIR)/libgui_la-sci_x_choose.Tpo -c -o libgui_la-sci_x_choose.lo `test -f 'sci_gateway/c/sci_x_choose.c' || echo '$(srcdir)/'`sci_gateway/c/sci_x_choose.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-sci_x_choose.Tpo $(DEPDIR)/libgui_la-sci_x_choose.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_x_choose.c' object='libgui_la-sci_x_choose.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-sci_x_choose.lo: sci_gateway/c/sci_x_choose.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_x_choose.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_x_choose.Tpo -c -o libscigui_la-sci_x_choose.lo `test -f 'sci_gateway/c/sci_x_choose.c' || echo '$(srcdir)/'`sci_gateway/c/sci_x_choose.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_x_choose.Tpo $(DEPDIR)/libscigui_la-sci_x_choose.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_x_choose.c' object='libscigui_la-sci_x_choose.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-sci_x_choose.lo `test -f 'sci_gateway/c/sci_x_choose.c' || echo '$(srcdir)/'`sci_gateway/c/sci_x_choose.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_x_choose.lo `test -f 'sci_gateway/c/sci_x_choose.c' || echo '$(srcdir)/'`sci_gateway/c/sci_x_choose.c
 
-libgui_la-sci_xgetfile.lo: sci_gateway/c/sci_xgetfile.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-sci_xgetfile.lo -MD -MP -MF $(DEPDIR)/libgui_la-sci_xgetfile.Tpo -c -o libgui_la-sci_xgetfile.lo `test -f 'sci_gateway/c/sci_xgetfile.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xgetfile.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-sci_xgetfile.Tpo $(DEPDIR)/libgui_la-sci_xgetfile.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xgetfile.c' object='libgui_la-sci_xgetfile.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-sci_xgetfile.lo: sci_gateway/c/sci_xgetfile.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_xgetfile.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_xgetfile.Tpo -c -o libscigui_la-sci_xgetfile.lo `test -f 'sci_gateway/c/sci_xgetfile.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xgetfile.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_xgetfile.Tpo $(DEPDIR)/libscigui_la-sci_xgetfile.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xgetfile.c' object='libscigui_la-sci_xgetfile.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-sci_xgetfile.lo `test -f 'sci_gateway/c/sci_xgetfile.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xgetfile.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_xgetfile.lo `test -f 'sci_gateway/c/sci_xgetfile.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xgetfile.c
 
-libgui_la-sci_tohome.lo: sci_gateway/c/sci_tohome.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-sci_tohome.lo -MD -MP -MF $(DEPDIR)/libgui_la-sci_tohome.Tpo -c -o libgui_la-sci_tohome.lo `test -f 'sci_gateway/c/sci_tohome.c' || echo '$(srcdir)/'`sci_gateway/c/sci_tohome.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-sci_tohome.Tpo $(DEPDIR)/libgui_la-sci_tohome.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_tohome.c' object='libgui_la-sci_tohome.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-sci_tohome.lo: sci_gateway/c/sci_tohome.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_tohome.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_tohome.Tpo -c -o libscigui_la-sci_tohome.lo `test -f 'sci_gateway/c/sci_tohome.c' || echo '$(srcdir)/'`sci_gateway/c/sci_tohome.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_tohome.Tpo $(DEPDIR)/libscigui_la-sci_tohome.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_tohome.c' object='libscigui_la-sci_tohome.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-sci_tohome.lo `test -f 'sci_gateway/c/sci_tohome.c' || echo '$(srcdir)/'`sci_gateway/c/sci_tohome.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_tohome.lo `test -f 'sci_gateway/c/sci_tohome.c' || echo '$(srcdir)/'`sci_gateway/c/sci_tohome.c
 
-libgui_la-sci_x_message.lo: sci_gateway/c/sci_x_message.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-sci_x_message.lo -MD -MP -MF $(DEPDIR)/libgui_la-sci_x_message.Tpo -c -o libgui_la-sci_x_message.lo `test -f 'sci_gateway/c/sci_x_message.c' || echo '$(srcdir)/'`sci_gateway/c/sci_x_message.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-sci_x_message.Tpo $(DEPDIR)/libgui_la-sci_x_message.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_x_message.c' object='libgui_la-sci_x_message.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-sci_x_message.lo: sci_gateway/c/sci_x_message.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_x_message.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_x_message.Tpo -c -o libscigui_la-sci_x_message.lo `test -f 'sci_gateway/c/sci_x_message.c' || echo '$(srcdir)/'`sci_gateway/c/sci_x_message.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_x_message.Tpo $(DEPDIR)/libscigui_la-sci_x_message.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_x_message.c' object='libscigui_la-sci_x_message.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-sci_x_message.lo `test -f 'sci_gateway/c/sci_x_message.c' || echo '$(srcdir)/'`sci_gateway/c/sci_x_message.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_x_message.lo `test -f 'sci_gateway/c/sci_x_message.c' || echo '$(srcdir)/'`sci_gateway/c/sci_x_message.c
 
-libgui_la-sci_unsetmenu_old.lo: sci_gateway/c/sci_unsetmenu_old.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-sci_unsetmenu_old.lo -MD -MP -MF $(DEPDIR)/libgui_la-sci_unsetmenu_old.Tpo -c -o libgui_la-sci_unsetmenu_old.lo `test -f 'sci_gateway/c/sci_unsetmenu_old.c' || echo '$(srcdir)/'`sci_gateway/c/sci_unsetmenu_old.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-sci_unsetmenu_old.Tpo $(DEPDIR)/libgui_la-sci_unsetmenu_old.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_unsetmenu_old.c' object='libgui_la-sci_unsetmenu_old.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-sci_unsetmenu_old.lo: sci_gateway/c/sci_unsetmenu_old.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_unsetmenu_old.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_unsetmenu_old.Tpo -c -o libscigui_la-sci_unsetmenu_old.lo `test -f 'sci_gateway/c/sci_unsetmenu_old.c' || echo '$(srcdir)/'`sci_gateway/c/sci_unsetmenu_old.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_unsetmenu_old.Tpo $(DEPDIR)/libscigui_la-sci_unsetmenu_old.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_unsetmenu_old.c' object='libscigui_la-sci_unsetmenu_old.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-sci_unsetmenu_old.lo `test -f 'sci_gateway/c/sci_unsetmenu_old.c' || echo '$(srcdir)/'`sci_gateway/c/sci_unsetmenu_old.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_unsetmenu_old.lo `test -f 'sci_gateway/c/sci_unsetmenu_old.c' || echo '$(srcdir)/'`sci_gateway/c/sci_unsetmenu_old.c
 
-libgui_la-sci_delmenu_old.lo: sci_gateway/c/sci_delmenu_old.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-sci_delmenu_old.lo -MD -MP -MF $(DEPDIR)/libgui_la-sci_delmenu_old.Tpo -c -o libgui_la-sci_delmenu_old.lo `test -f 'sci_gateway/c/sci_delmenu_old.c' || echo '$(srcdir)/'`sci_gateway/c/sci_delmenu_old.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-sci_delmenu_old.Tpo $(DEPDIR)/libgui_la-sci_delmenu_old.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_delmenu_old.c' object='libgui_la-sci_delmenu_old.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-sci_delmenu_old.lo: sci_gateway/c/sci_delmenu_old.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_delmenu_old.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_delmenu_old.Tpo -c -o libscigui_la-sci_delmenu_old.lo `test -f 'sci_gateway/c/sci_delmenu_old.c' || echo '$(srcdir)/'`sci_gateway/c/sci_delmenu_old.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_delmenu_old.Tpo $(DEPDIR)/libscigui_la-sci_delmenu_old.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_delmenu_old.c' object='libscigui_la-sci_delmenu_old.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-sci_delmenu_old.lo `test -f 'sci_gateway/c/sci_delmenu_old.c' || echo '$(srcdir)/'`sci_gateway/c/sci_delmenu_old.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_delmenu_old.lo `test -f 'sci_gateway/c/sci_delmenu_old.c' || echo '$(srcdir)/'`sci_gateway/c/sci_delmenu_old.c
 
-libgui_la-sci_addmenu_old.lo: sci_gateway/c/sci_addmenu_old.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-sci_addmenu_old.lo -MD -MP -MF $(DEPDIR)/libgui_la-sci_addmenu_old.Tpo -c -o libgui_la-sci_addmenu_old.lo `test -f 'sci_gateway/c/sci_addmenu_old.c' || echo '$(srcdir)/'`sci_gateway/c/sci_addmenu_old.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-sci_addmenu_old.Tpo $(DEPDIR)/libgui_la-sci_addmenu_old.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_addmenu_old.c' object='libgui_la-sci_addmenu_old.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-sci_addmenu_old.lo: sci_gateway/c/sci_addmenu_old.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_addmenu_old.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_addmenu_old.Tpo -c -o libscigui_la-sci_addmenu_old.lo `test -f 'sci_gateway/c/sci_addmenu_old.c' || echo '$(srcdir)/'`sci_gateway/c/sci_addmenu_old.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_addmenu_old.Tpo $(DEPDIR)/libscigui_la-sci_addmenu_old.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_addmenu_old.c' object='libscigui_la-sci_addmenu_old.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-sci_addmenu_old.lo `test -f 'sci_gateway/c/sci_addmenu_old.c' || echo '$(srcdir)/'`sci_gateway/c/sci_addmenu_old.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_addmenu_old.lo `test -f 'sci_gateway/c/sci_addmenu_old.c' || echo '$(srcdir)/'`sci_gateway/c/sci_addmenu_old.c
 
-libgui_la-sci_setmenu_old.lo: sci_gateway/c/sci_setmenu_old.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-sci_setmenu_old.lo -MD -MP -MF $(DEPDIR)/libgui_la-sci_setmenu_old.Tpo -c -o libgui_la-sci_setmenu_old.lo `test -f 'sci_gateway/c/sci_setmenu_old.c' || echo '$(srcdir)/'`sci_gateway/c/sci_setmenu_old.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-sci_setmenu_old.Tpo $(DEPDIR)/libgui_la-sci_setmenu_old.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_setmenu_old.c' object='libgui_la-sci_setmenu_old.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-sci_setmenu_old.lo: sci_gateway/c/sci_setmenu_old.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_setmenu_old.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_setmenu_old.Tpo -c -o libscigui_la-sci_setmenu_old.lo `test -f 'sci_gateway/c/sci_setmenu_old.c' || echo '$(srcdir)/'`sci_gateway/c/sci_setmenu_old.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_setmenu_old.Tpo $(DEPDIR)/libscigui_la-sci_setmenu_old.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_setmenu_old.c' object='libscigui_la-sci_setmenu_old.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-sci_setmenu_old.lo `test -f 'sci_gateway/c/sci_setmenu_old.c' || echo '$(srcdir)/'`sci_gateway/c/sci_setmenu_old.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_setmenu_old.lo `test -f 'sci_gateway/c/sci_setmenu_old.c' || echo '$(srcdir)/'`sci_gateway/c/sci_setmenu_old.c
 
-libgui_la-SciGUIConsole.lo: src/c/SciGUIConsole/SciGUIConsole.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-SciGUIConsole.lo -MD -MP -MF $(DEPDIR)/libgui_la-SciGUIConsole.Tpo -c -o libgui_la-SciGUIConsole.lo `test -f 'src/c/SciGUIConsole/SciGUIConsole.c' || echo '$(srcdir)/'`src/c/SciGUIConsole/SciGUIConsole.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgui_la-SciGUIConsole.Tpo $(DEPDIR)/libgui_la-SciGUIConsole.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/SciGUIConsole/SciGUIConsole.c' object='libgui_la-SciGUIConsole.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-SciGUIConsole.lo: src/c/SciGUIConsole/SciGUIConsole.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-SciGUIConsole.lo -MD -MP -MF $(DEPDIR)/libscigui_la-SciGUIConsole.Tpo -c -o libscigui_la-SciGUIConsole.lo `test -f 'src/c/SciGUIConsole/SciGUIConsole.c' || echo '$(srcdir)/'`src/c/SciGUIConsole/SciGUIConsole.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-SciGUIConsole.Tpo $(DEPDIR)/libscigui_la-SciGUIConsole.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/SciGUIConsole/SciGUIConsole.c' object='libscigui_la-SciGUIConsole.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-SciGUIConsole.lo `test -f 'src/c/SciGUIConsole/SciGUIConsole.c' || echo '$(srcdir)/'`src/c/SciGUIConsole/SciGUIConsole.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-SciGUIConsole.lo `test -f 'src/c/SciGUIConsole/SciGUIConsole.c' || echo '$(srcdir)/'`src/c/SciGUIConsole/SciGUIConsole.c
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<
@@ -1152,90 +1156,90 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libgui_la_demosDATA: $(libgui_la_demos_DATA)
+install-libscigui_la_demosDATA: $(libscigui_la_demos_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libgui_la_demosdir)" || $(MKDIR_P) "$(DESTDIR)$(libgui_la_demosdir)"
-	@list='$(libgui_la_demos_DATA)'; for p in $$list; do \
+	test -z "$(libscigui_la_demosdir)" || $(MKDIR_P) "$(DESTDIR)$(libscigui_la_demosdir)"
+	@list='$(libscigui_la_demos_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libgui_la_demosDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libgui_la_demosdir)/$$f'"; \
-	  $(libgui_la_demosDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libgui_la_demosdir)/$$f"; \
+	  echo " $(libscigui_la_demosDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscigui_la_demosdir)/$$f'"; \
+	  $(libscigui_la_demosDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscigui_la_demosdir)/$$f"; \
 	done
 
-uninstall-libgui_la_demosDATA:
+uninstall-libscigui_la_demosDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libgui_la_demos_DATA)'; for p in $$list; do \
+	@list='$(libscigui_la_demos_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libgui_la_demosdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libgui_la_demosdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscigui_la_demosdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscigui_la_demosdir)/$$f"; \
 	done
-install-libgui_la_etcDATA: $(libgui_la_etc_DATA)
+install-libscigui_la_etcDATA: $(libscigui_la_etc_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libgui_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libgui_la_etcdir)"
-	@list='$(libgui_la_etc_DATA)'; for p in $$list; do \
+	test -z "$(libscigui_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libscigui_la_etcdir)"
+	@list='$(libscigui_la_etc_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libgui_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libgui_la_etcdir)/$$f'"; \
-	  $(libgui_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libgui_la_etcdir)/$$f"; \
+	  echo " $(libscigui_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscigui_la_etcdir)/$$f'"; \
+	  $(libscigui_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscigui_la_etcdir)/$$f"; \
 	done
 
-uninstall-libgui_la_etcDATA:
+uninstall-libscigui_la_etcDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libgui_la_etc_DATA)'; for p in $$list; do \
+	@list='$(libscigui_la_etc_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libgui_la_etcdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libgui_la_etcdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscigui_la_etcdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscigui_la_etcdir)/$$f"; \
 	done
-install-libgui_la_rootDATA: $(libgui_la_root_DATA)
+install-libscigui_la_rootDATA: $(libscigui_la_root_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libgui_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libgui_la_rootdir)"
-	@list='$(libgui_la_root_DATA)'; for p in $$list; do \
+	test -z "$(libscigui_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libscigui_la_rootdir)"
+	@list='$(libscigui_la_root_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libgui_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libgui_la_rootdir)/$$f'"; \
-	  $(libgui_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libgui_la_rootdir)/$$f"; \
+	  echo " $(libscigui_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscigui_la_rootdir)/$$f'"; \
+	  $(libscigui_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscigui_la_rootdir)/$$f"; \
 	done
 
-uninstall-libgui_la_rootDATA:
+uninstall-libscigui_la_rootDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libgui_la_root_DATA)'; for p in $$list; do \
+	@list='$(libscigui_la_root_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libgui_la_rootdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libgui_la_rootdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscigui_la_rootdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscigui_la_rootdir)/$$f"; \
 	done
-install-libgui_la_sci_gatewayDATA: $(libgui_la_sci_gateway_DATA)
+install-libscigui_la_sci_gatewayDATA: $(libscigui_la_sci_gateway_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libgui_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libgui_la_sci_gatewaydir)"
-	@list='$(libgui_la_sci_gateway_DATA)'; for p in $$list; do \
+	test -z "$(libscigui_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libscigui_la_sci_gatewaydir)"
+	@list='$(libscigui_la_sci_gateway_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libgui_la_sci_gatewayDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libgui_la_sci_gatewaydir)/$$f'"; \
-	  $(libgui_la_sci_gatewayDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libgui_la_sci_gatewaydir)/$$f"; \
+	  echo " $(libscigui_la_sci_gatewayDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscigui_la_sci_gatewaydir)/$$f'"; \
+	  $(libscigui_la_sci_gatewayDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscigui_la_sci_gatewaydir)/$$f"; \
 	done
 
-uninstall-libgui_la_sci_gatewayDATA:
+uninstall-libscigui_la_sci_gatewayDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libgui_la_sci_gateway_DATA)'; for p in $$list; do \
+	@list='$(libscigui_la_sci_gateway_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libgui_la_sci_gatewaydir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libgui_la_sci_gatewaydir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscigui_la_sci_gatewaydir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscigui_la_sci_gatewaydir)/$$f"; \
 	done
-install-libgui_la_includeHEADERS: $(libgui_la_include_HEADERS)
+install-libscigui_la_includeHEADERS: $(libscigui_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
-	test -z "$(libgui_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libgui_la_includedir)"
-	@list='$(libgui_la_include_HEADERS)'; for p in $$list; do \
+	test -z "$(libscigui_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscigui_la_includedir)"
+	@list='$(libscigui_la_include_HEADERS)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libgui_la_includeHEADERS_INSTALL) '$$d$$p' '$(DESTDIR)$(libgui_la_includedir)/$$f'"; \
-	  $(libgui_la_includeHEADERS_INSTALL) "$$d$$p" "$(DESTDIR)$(libgui_la_includedir)/$$f"; \
+	  echo " $(libscigui_la_includeHEADERS_INSTALL) '$$d$$p' '$(DESTDIR)$(libscigui_la_includedir)/$$f'"; \
+	  $(libscigui_la_includeHEADERS_INSTALL) "$$d$$p" "$(DESTDIR)$(libscigui_la_includedir)/$$f"; \
 	done
 
-uninstall-libgui_la_includeHEADERS:
+uninstall-libscigui_la_includeHEADERS:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libgui_la_include_HEADERS)'; for p in $$list; do \
+	@list='$(libscigui_la_include_HEADERS)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libgui_la_includedir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libgui_la_includedir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscigui_la_includedir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscigui_la_includedir)/$$f"; \
 	done
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
@@ -1317,7 +1321,7 @@ check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libgui_la_demosdir)" "$(DESTDIR)$(libgui_la_etcdir)" "$(DESTDIR)$(libgui_la_rootdir)" "$(DESTDIR)$(libgui_la_sci_gatewaydir)" "$(DESTDIR)$(libgui_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libscigui_la_demosdir)" "$(DESTDIR)$(libscigui_la_etcdir)" "$(DESTDIR)$(libscigui_la_rootdir)" "$(DESTDIR)$(libscigui_la_sci_gatewaydir)" "$(DESTDIR)$(libscigui_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -1368,9 +1372,11 @@ info: info-am
 
 info-am:
 
-install-data-am: install-data-local install-libgui_la_demosDATA \
-	install-libgui_la_etcDATA install-libgui_la_includeHEADERS \
-	install-libgui_la_rootDATA install-libgui_la_sci_gatewayDATA
+install-data-am: install-data-local install-libscigui_la_demosDATA \
+	install-libscigui_la_etcDATA \
+	install-libscigui_la_includeHEADERS \
+	install-libscigui_la_rootDATA \
+	install-libscigui_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
 
@@ -1408,10 +1414,12 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libLTLIBRARIES uninstall-libgui_la_demosDATA \
-	uninstall-libgui_la_etcDATA uninstall-libgui_la_includeHEADERS \
-	uninstall-libgui_la_rootDATA \
-	uninstall-libgui_la_sci_gatewayDATA
+uninstall-am: uninstall-libLTLIBRARIES \
+	uninstall-libscigui_la_demosDATA \
+	uninstall-libscigui_la_etcDATA \
+	uninstall-libscigui_la_includeHEADERS \
+	uninstall-libscigui_la_rootDATA \
+	uninstall-libscigui_la_sci_gatewayDATA
 
 .MAKE: install-am install-strip
 
@@ -1423,19 +1431,21 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libgui_la_demosDATA \
 	install-data-local install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
-	install-libLTLIBRARIES install-libgui_la_demosDATA \
-	install-libgui_la_etcDATA install-libgui_la_includeHEADERS \
-	install-libgui_la_rootDATA install-libgui_la_sci_gatewayDATA \
-	install-man install-pdf install-pdf-am install-ps \
-	install-ps-am install-strip installcheck installcheck-am \
-	installdirs maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-compile mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
-	uninstall-am uninstall-libLTLIBRARIES \
-	uninstall-libgui_la_demosDATA uninstall-libgui_la_etcDATA \
-	uninstall-libgui_la_includeHEADERS \
-	uninstall-libgui_la_rootDATA \
-	uninstall-libgui_la_sci_gatewayDATA
+	install-libLTLIBRARIES install-libscigui_la_demosDATA \
+	install-libscigui_la_etcDATA \
+	install-libscigui_la_includeHEADERS \
+	install-libscigui_la_rootDATA \
+	install-libscigui_la_sci_gatewayDATA install-man install-pdf \
+	install-pdf-am install-ps install-ps-am install-strip \
+	installcheck installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
+	uninstall-libscigui_la_demosDATA \
+	uninstall-libscigui_la_etcDATA \
+	uninstall-libscigui_la_includeHEADERS \
+	uninstall-libscigui_la_rootDATA \
+	uninstall-libscigui_la_sci_gatewayDATA
 
 
 $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h: $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad src/c/xsci/x_main.c

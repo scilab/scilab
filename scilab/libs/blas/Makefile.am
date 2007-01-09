@@ -77,10 +77,10 @@ dsymm.f \
 zher2.f
 
 
-lib_LTLIBRARIES = libblas.la
+lib_LTLIBRARIES = libsciblas.la
 
-libblas_la_SOURCES = $(BLAS_FORTRAN_SOURCES)
+libsciblas_la_SOURCES = $(BLAS_FORTRAN_SOURCES)
 
-libblas_la_LIBADD =
+libsciblas_la_LIBADD =
 
-libblas_la_PKGCONFIG = blas.pc
+libsciblas_la_PKGCONFIG = blas.pc

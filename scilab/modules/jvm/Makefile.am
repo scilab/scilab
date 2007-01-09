@@ -9,18 +9,18 @@ JVM_C_SOURCES = src/JVM_CONSOLE.c \
 src/JVM_Unix.c \
 src/jvms.c
 
-libscijvm_la_CFLAGS=  $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/libs/MALLOC/includes/
+libsciscijvm_la_CFLAGS=  $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/libs/MALLOC/includes/
 
-libscijvm_la_LDFLAGS = $(JAVA_JNI_LIBS) -lpthread -ldl
+libsciscijvm_la_LDFLAGS = $(JAVA_JNI_LIBS) -lpthread -ldl
 
-lib_LTLIBRARIES = libscijvm.la
+lib_LTLIBRARIES = libsciscijvm.la
 
-libscijvm_la_SOURCES = $(JVM_C_SOURCES)
+libsciscijvm_la_SOURCES = $(JVM_C_SOURCES)
 
-libscijvm_la_LIBADD = \
-$(top_builddir)/modules/gui/libgui.la
+libsciscijvm_la_LIBADD = \
+$(top_builddir)/modules/gui/libscigui.la
 
-libscijvm_la_PKGCONFIG = scijvm.pc
+libsciscijvm_la_PKGCONFIG = scijvm.pc
 
 datadir=${prefix}/modules
 #### Target ######
@@ -28,18 +28,18 @@ target=$(datadir)/jvm
 
 
 #### jvm : Conf files ####
-libjvm_la_rootdir = $(target)
-libjvm_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscijvm_la_rootdir = $(target)
+libscijvm_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
 #### jvm : Scilab macros ###
-libjvm_la_macrodir = $(target)/macros
-libjvm_la_macro_DATA22 =  macros/buildmacros.sce
+libscijvm_la_macrodir = $(target)/macros
+libscijvm_la_macro_DATA22 =  macros/buildmacros.sce
 
 
 #### jvm : init scripts #### 
-libjvm_la_etcdir = $(target)/etc
-libjvm_la_etc_DATA = etc/jvm.quit etc/jvm.start
+libscijvm_la_etcdir = $(target)/etc
+libscijvm_la_etc_DATA = etc/jvm.quit etc/jvm.start
 
 include $(top_srcdir)/Makefile.incl.am
 

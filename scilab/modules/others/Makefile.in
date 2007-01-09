@@ -61,14 +61,14 @@ am__vpath_adj = case $$p in \
     *) f=$$p;; \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
-am__installdirs = "$(DESTDIR)$(libothers_la_etcdir)" \
-	"$(DESTDIR)$(libothers_la_rootdir)" \
-	"$(DESTDIR)$(libothers_la_demosdir)"
-libothers_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libothers_la_rootDATA_INSTALL = $(INSTALL_DATA)
-nobase_libothers_la_demosDATA_INSTALL = $(install_sh_DATA)
-DATA = $(libothers_la_etc_DATA) $(libothers_la_root_DATA) \
-	$(nobase_libothers_la_demos_DATA)
+am__installdirs = "$(DESTDIR)$(libsciothers_la_etcdir)" \
+	"$(DESTDIR)$(libsciothers_la_rootdir)" \
+	"$(DESTDIR)$(libsciothers_la_demosdir)"
+libsciothers_la_etcDATA_INSTALL = $(INSTALL_DATA)
+libsciothers_la_rootDATA_INSTALL = $(INSTALL_DATA)
+nobase_libsciothers_la_demosDATA_INSTALL = $(install_sh_DATA)
+DATA = $(libsciothers_la_etc_DATA) $(libsciothers_la_root_DATA) \
+	$(nobase_libsciothers_la_demos_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
@@ -215,20 +215,20 @@ top_srcdir = @top_srcdir@
 target = $(datadir)/others
 
 #### others : Conf files ####
-libothers_la_rootdir = $(target)
-libothers_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libsciothers_la_rootdir = $(target)
+libsciothers_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### others : Scilab macros ###
-libothers_la_macrodir = $(target)/macros
-libothers_la_macro_DATA22 = macros/edit.sci macros/edit.bin macros/names macros/lib macros/buildmacros.sce
+libsciothers_la_macrodir = $(target)/macros
+libsciothers_la_macro_DATA22 = macros/edit.sci macros/edit.bin macros/names macros/lib macros/buildmacros.sce
 
 #### others : init scripts #### 
-libothers_la_etcdir = $(target)/etc
-libothers_la_etc_DATA = etc/others.quit etc/others.start
+libsciothers_la_etcdir = $(target)/etc
+libsciothers_la_etc_DATA = etc/others.quit etc/others.start
 
 #### others : demos files - velpic ####
-libothers_la_demosdir = $(target)
-nobase_libothers_la_demos_DATA = demos/velpic/id_rgn.desc \
+libsciothers_la_demosdir = $(target)
+nobase_libsciothers_la_demos_DATA = demos/velpic/id_rgn.desc \
 demos/velpic/velpic.sci \
 demos/velpic/plotdb.sci \
 demos/velpic/velpic.1 \
@@ -460,58 +460,58 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libothers_la_etcDATA: $(libothers_la_etc_DATA)
+install-libsciothers_la_etcDATA: $(libsciothers_la_etc_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libothers_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libothers_la_etcdir)"
-	@list='$(libothers_la_etc_DATA)'; for p in $$list; do \
+	test -z "$(libsciothers_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciothers_la_etcdir)"
+	@list='$(libsciothers_la_etc_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libothers_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libothers_la_etcdir)/$$f'"; \
-	  $(libothers_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libothers_la_etcdir)/$$f"; \
+	  echo " $(libsciothers_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsciothers_la_etcdir)/$$f'"; \
+	  $(libsciothers_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsciothers_la_etcdir)/$$f"; \
 	done
 
-uninstall-libothers_la_etcDATA:
+uninstall-libsciothers_la_etcDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libothers_la_etc_DATA)'; for p in $$list; do \
+	@list='$(libsciothers_la_etc_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libothers_la_etcdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libothers_la_etcdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libsciothers_la_etcdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libsciothers_la_etcdir)/$$f"; \
 	done
-install-libothers_la_rootDATA: $(libothers_la_root_DATA)
+install-libsciothers_la_rootDATA: $(libsciothers_la_root_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libothers_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libothers_la_rootdir)"
-	@list='$(libothers_la_root_DATA)'; for p in $$list; do \
+	test -z "$(libsciothers_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciothers_la_rootdir)"
+	@list='$(libsciothers_la_root_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libothers_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libothers_la_rootdir)/$$f'"; \
-	  $(libothers_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libothers_la_rootdir)/$$f"; \
+	  echo " $(libsciothers_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsciothers_la_rootdir)/$$f'"; \
+	  $(libsciothers_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsciothers_la_rootdir)/$$f"; \
 	done
 
-uninstall-libothers_la_rootDATA:
+uninstall-libsciothers_la_rootDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libothers_la_root_DATA)'; for p in $$list; do \
+	@list='$(libsciothers_la_root_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libothers_la_rootdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libothers_la_rootdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libsciothers_la_rootdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libsciothers_la_rootdir)/$$f"; \
 	done
-install-nobase_libothers_la_demosDATA: $(nobase_libothers_la_demos_DATA)
+install-nobase_libsciothers_la_demosDATA: $(nobase_libsciothers_la_demos_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libothers_la_demosdir)" || $(MKDIR_P) "$(DESTDIR)$(libothers_la_demosdir)"
+	test -z "$(libsciothers_la_demosdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciothers_la_demosdir)"
 	@$(am__vpath_adj_setup) \
-	list='$(nobase_libothers_la_demos_DATA)'; for p in $$list; do \
+	list='$(nobase_libsciothers_la_demos_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  $(am__vpath_adj) \
-	  echo " $(nobase_libothers_la_demosDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libothers_la_demosdir)/$$f'"; \
-	  $(nobase_libothers_la_demosDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libothers_la_demosdir)/$$f"; \
+	  echo " $(nobase_libsciothers_la_demosDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsciothers_la_demosdir)/$$f'"; \
+	  $(nobase_libsciothers_la_demosDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsciothers_la_demosdir)/$$f"; \
 	done
 
-uninstall-nobase_libothers_la_demosDATA:
+uninstall-nobase_libsciothers_la_demosDATA:
 	@$(NORMAL_UNINSTALL)
 	@$(am__vpath_adj_setup) \
-	list='$(nobase_libothers_la_demos_DATA)'; for p in $$list; do \
+	list='$(nobase_libsciothers_la_demos_DATA)'; for p in $$list; do \
 	  $(am__vpath_adj) \
-	  echo " rm -f '$(DESTDIR)$(libothers_la_demosdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libothers_la_demosdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libsciothers_la_demosdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libsciothers_la_demosdir)/$$f"; \
 	done
 tags: TAGS
 TAGS:
@@ -550,7 +550,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(libothers_la_etcdir)" "$(DESTDIR)$(libothers_la_rootdir)" "$(DESTDIR)$(libothers_la_demosdir)"; do \
+	for dir in "$(DESTDIR)$(libsciothers_la_etcdir)" "$(DESTDIR)$(libsciothers_la_rootdir)" "$(DESTDIR)$(libsciothers_la_demosdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -595,9 +595,9 @@ info: info-am
 
 info-am:
 
-install-data-am: install-data-local install-libothers_la_etcDATA \
-	install-libothers_la_rootDATA \
-	install-nobase_libothers_la_demosDATA
+install-data-am: install-data-local install-libsciothers_la_etcDATA \
+	install-libsciothers_la_rootDATA \
+	install-nobase_libsciothers_la_demosDATA
 
 install-dvi: install-dvi-am
 
@@ -633,9 +633,9 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libothers_la_etcDATA \
-	uninstall-libothers_la_rootDATA \
-	uninstall-nobase_libothers_la_demosDATA
+uninstall-am: uninstall-libsciothers_la_etcDATA \
+	uninstall-libsciothers_la_rootDATA \
+	uninstall-nobase_libsciothers_la_demosDATA
 
 .MAKE: install-am install-strip
 
@@ -645,15 +645,16 @@ uninstall-am: uninstall-libothers_la_etcDATA \
 	install-data install-data-am install-data-local install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
-	install-info-am install-libothers_la_etcDATA \
-	install-libothers_la_rootDATA install-man \
-	install-nobase_libothers_la_demosDATA install-pdf \
+	install-info-am install-libsciothers_la_etcDATA \
+	install-libsciothers_la_rootDATA install-man \
+	install-nobase_libsciothers_la_demosDATA install-pdf \
 	install-pdf-am install-ps install-ps-am install-strip \
 	installcheck installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am uninstall uninstall-am \
-	uninstall-libothers_la_etcDATA uninstall-libothers_la_rootDATA \
-	uninstall-nobase_libothers_la_demosDATA
+	uninstall-libsciothers_la_etcDATA \
+	uninstall-libsciothers_la_rootDATA \
+	uninstall-nobase_libsciothers_la_demosDATA
 
 
 #.xml.htm:

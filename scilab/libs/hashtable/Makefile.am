@@ -8,18 +8,18 @@ hashtable_itr.c \
 hashtable.c
 
 
-libhashtable_la_includedir=$(includedir)/hashtable
+libscihashtable_la_includedir=$(includedir)/hashtable
 
-libhashtable_la_include_HEADERS = ./hashtable_itr.h \
+libscihashtable_la_include_HEADERS = ./hashtable_itr.h \
 ./hashtable.h \
 ./hashtable_utility.h
 
-#libhashtable_la_CFLAGS=  
+#libscihashtable_la_CFLAGS=  
 
-lib_LTLIBRARIES = libhashtable.la
+lib_LTLIBRARIES = libscihashtable.la
 
-libhashtable_la_SOURCES = $(HASHTABLE_C_SOURCES)
+libscihashtable_la_SOURCES = $(HASHTABLE_C_SOURCES)
 
-libhashtable_la_LIBADD = 
+libscihashtable_la_LIBADD = 
 
-libhashtable_la_PKGCONFIG = hashtable.pc
+libscihashtable_la_PKGCONFIG = hashtable.pc

@@ -89,8 +89,8 @@ lib_LTLIBRARIES = liblinear_algebra.la
 
 liblinear_algebra_la_SOURCES = $(LINEAR_ALGEBRA_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
-liblinear_algebra_la_LIBADD = $(top_builddir)/libs/lapack/liblapack.la \
-$(top_builddir)/libs/blas/libblas.la \
+liblinear_algebra_la_LIBADD = $(top_builddir)/libs/lapack/libscilapack.la \
+$(top_builddir)/libs/blas/libsciblas.la \
 $(top_builddir)/modules/elementaries_functions/libelementaries_functions.la  
 
 liblinear_algebra_la_PKGCONFIG = linear_algebra.pc

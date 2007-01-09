@@ -116,18 +116,18 @@ sci_gateway/fortran/sci_i_triu.f \
 sci_gateway/fortran/sci_i_min.f \
 sci_gateway/fortran/sci_inttype.f
 
-libinteger_la_CFLAGS=  -Iincludes/ 
+libsciinteger_la_CFLAGS=  -Iincludes/ 
 
-lib_LTLIBRARIES = libinteger.la
+lib_LTLIBRARIES = libsciinteger.la
 
-libinteger_la_SOURCES = $(INTEGER_C_SOURCES) $(INTEGER_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libsciinteger_la_SOURCES = $(INTEGER_C_SOURCES) $(INTEGER_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
-libinteger_la_LIBADD = \
-	$(top_builddir)/modules/polynomials/libpolynomials.la \
-	$(top_builddir)/modules/core/libcore.la \
-	$(top_builddir)/modules/fileio/libfileio.la 
+libsciinteger_la_LIBADD = \
+	$(top_builddir)/modules/polynomials/libscipolynomials.la \
+	$(top_builddir)/modules/core/libscicore.la \
+	$(top_builddir)/modules/fileio/libscifileio.la 
 
-libinteger_la_PKGCONFIG = integer.pc
+libsciinteger_la_PKGCONFIG = integer.pc
 
 datadir=${prefix}/modules
 #### Target ######
@@ -135,13 +135,13 @@ target=$(datadir)/integer
 
 
 #### integer : Conf files ####
-libinteger_la_rootdir = $(target)
-libinteger_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libsciinteger_la_rootdir = $(target)
+libsciinteger_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
 #### integer : Scilab macros ###
-libinteger_la_macrodir = $(target)/macros
-libinteger_la_macro_DATA22 = macros/%i_plot2d1.sci \
+libsciinteger_la_macrodir = $(target)/macros
+libsciinteger_la_macro_DATA22 = macros/%i_plot2d1.sci \
 macros/%i_mfprintf.sci \
 macros/%i_plot2d2.sci \
 macros/%i_contour.sci \
@@ -241,16 +241,16 @@ macros/%s_x_i.bin macros/names macros/lib macros/buildmacros.sce
 
 
 #### integer : init scripts #### 
-libinteger_la_etcdir = $(target)/etc
-libinteger_la_etc_DATA = etc/integer.quit etc/integer.start
+libsciinteger_la_etcdir = $(target)/etc
+libsciinteger_la_etc_DATA = etc/integer.quit etc/integer.start
 
 #### integer : gateway declaration #### 
-libinteger_la_sci_gatewaydir = $(target)/sci_gateway
-libinteger_la_sci_gateway_DATA = sci_gateway/integer
+libsciinteger_la_sci_gatewaydir = $(target)/sci_gateway
+libsciinteger_la_sci_gateway_DATA = sci_gateway/integer
 
 #### integer : include files ####
-libinteger_la_includedir=$(includedir)/integer
-libinteger_la_include_HEADERS = includes/gw_integer.h \
+libsciinteger_la_includedir=$(includedir)/integer
+libsciinteger_la_include_HEADERS = includes/gw_integer.h \
 includes/def.h
 
 include $(top_srcdir)/Makefile.incl.am

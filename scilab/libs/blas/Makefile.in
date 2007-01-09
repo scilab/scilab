@@ -61,7 +61,7 @@ am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
-libblas_la_DEPENDENCIES =
+libsciblas_la_DEPENDENCIES =
 am__objects_1 = zrotg.lo zhpr2.lo zher2k.lo dspr.lo xerbla.lo dcopy.lo \
 	dsyr2k.lo zsymm.lo zhemm.lo dtbsv.lo dtrmm.lo dscal.lo ddot.lo \
 	dgbmv.lo dtpsv.lo dtrsv.lo dgemv.lo idamax.lo dzasum.lo \
@@ -73,8 +73,8 @@ am__objects_1 = zrotg.lo zhpr2.lo zher2k.lo dspr.lo xerbla.lo dcopy.lo \
 	zgeru.lo dtrmv.lo dsyrk.lo lsame.lo ztbmv.lo dsyr2.lo zhpmv.lo \
 	zsyr2k.lo zaxpy.lo zgemm.lo drotg.lo ztrsm.lo ztpmv.lo dsyr.lo \
 	zsyrk.lo ztrmv.lo zherk.lo dsymm.lo zher2.lo
-am_libblas_la_OBJECTS = $(am__objects_1)
-libblas_la_OBJECTS = $(am_libblas_la_OBJECTS)
+am_libsciblas_la_OBJECTS = $(am__objects_1)
+libsciblas_la_OBJECTS = $(am_libsciblas_la_OBJECTS)
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
 F77COMPILE = $(F77) $(AM_FFLAGS) $(FFLAGS)
 LTF77COMPILE = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
@@ -83,8 +83,8 @@ F77LD = $(F77)
 F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libblas_la_SOURCES)
-DIST_SOURCES = $(libblas_la_SOURCES)
+SOURCES = $(libsciblas_la_SOURCES)
+DIST_SOURCES = $(libsciblas_la_SOURCES)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -302,10 +302,10 @@ zherk.f \
 dsymm.f \
 zher2.f
 
-lib_LTLIBRARIES = libblas.la
-libblas_la_SOURCES = $(BLAS_FORTRAN_SOURCES)
-libblas_la_LIBADD = 
-libblas_la_PKGCONFIG = blas.pc
+lib_LTLIBRARIES = libsciblas.la
+libsciblas_la_SOURCES = $(BLAS_FORTRAN_SOURCES)
+libsciblas_la_LIBADD = 
+libsciblas_la_PKGCONFIG = blas.pc
 all: all-am
 
 .SUFFIXES:
@@ -366,8 +366,8 @@ clean-libLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
-libblas.la: $(libblas_la_OBJECTS) $(libblas_la_DEPENDENCIES) 
-	$(F77LINK) -rpath $(libdir) $(libblas_la_OBJECTS) $(libblas_la_LIBADD) $(LIBS)
+libsciblas.la: $(libsciblas_la_OBJECTS) $(libsciblas_la_DEPENDENCIES) 
+	$(F77LINK) -rpath $(libdir) $(libsciblas_la_OBJECTS) $(libsciblas_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

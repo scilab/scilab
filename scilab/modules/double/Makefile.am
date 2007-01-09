@@ -23,18 +23,18 @@ sci_gateway/fortran/matcc.f \
 sci_gateway/fortran/mattrc.f \
 sci_gateway/fortran/matadd.f
 
-lib_LTLIBRARIES = libdouble.la
+lib_LTLIBRARIES = libscidouble.la
 
-libdouble_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscidouble_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
-libdouble_la_LIBADD = \
-	$(top_builddir)/libs/blas/libblas.la \
-	$(top_builddir)/modules/polynomials/libpolynomials.la \
+libscidouble_la_LIBADD = \
+	$(top_builddir)/libs/blas/libsciblas.la \
+	$(top_builddir)/modules/polynomials/libscipolynomials.la \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la  \
-	$(top_builddir)/modules/core/libcore.la \
-	$(top_builddir)/modules/intersci/libintersci.la
+	$(top_builddir)/modules/core/libscicore.la \
+	$(top_builddir)/modules/intersci/libsciintersci.la
 
-libdouble_la_PKGCONFIG = double.pc
+libscidouble_la_PKGCONFIG = double.pc
 
 datadir=${prefix}/modules
 #### Target ######
@@ -42,17 +42,17 @@ target=$(datadir)/double
 
 
 #### double : Conf files ####
-libdouble_la_rootdir = $(target)
-libdouble_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscidouble_la_rootdir = $(target)
+libscidouble_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
 #### double : Scilab macros ###
-libdouble_la_macrodir = $(target)/macros
-libdouble_la_macro_DATA22 = macros/buildmacros.sce
+libscidouble_la_macrodir = $(target)/macros
+libscidouble_la_macro_DATA22 = macros/buildmacros.sce
 
 
 #### double : init scripts #### 
-libdouble_la_etcdir = $(target)/etc
-libdouble_la_etc_DATA = etc/double.quit etc/double.start
+libscidouble_la_etcdir = $(target)/etc
+libscidouble_la_etc_DATA = etc/double.quit etc/double.start
 
 include $(top_srcdir)/Makefile.incl.am

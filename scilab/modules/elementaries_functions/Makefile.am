@@ -359,11 +359,11 @@ libelementaries_functions_la_SOURCES = $(SLATEC_SOURCES) $(ELEMENTARIES_FUNCTION
 
 libelementaries_functions_la_LIBADD = \
 	libdummy-elementaries_functions.la \
-	$(top_builddir)/modules/cacsd/libcacsd.la \
-	$(top_builddir)/libs/blas/libblas.la \
-	$(top_builddir)/libs/MALLOC/libmalloc.la
-#	$(top_builddir)/modules/sparse/libsparse.la \
-#	$(top_builddir)/modules/polynomials/libpolynomials.la
+	$(top_builddir)/modules/cacsd/libscicacsd.la \
+	$(top_builddir)/libs/blas/libsciblas.la \
+	$(top_builddir)/libs/MALLOC/libscimalloc.la
+#	$(top_builddir)/modules/sparse/libscisparse.la \
+#	$(top_builddir)/modules/polynomials/libscipolynomials.la
 
 libelementaries_functions_la_PKGCONFIG = elementaries_functions.pc
 

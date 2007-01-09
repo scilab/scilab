@@ -39,7 +39,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = $(libsparse_la_include_HEADERS) $(srcdir)/Makefile.am \
+DIST_COMMON = $(libscisparse_la_include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
 subdir = modules/sparse
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -62,20 +62,20 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
-	"$(DESTDIR)$(libsparse_la_etcdir)" \
-	"$(DESTDIR)$(libsparse_la_rootdir)" \
-	"$(DESTDIR)$(libsparse_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libsparse_la_includedir)"
+	"$(DESTDIR)$(libscisparse_la_etcdir)" \
+	"$(DESTDIR)$(libscisparse_la_rootdir)" \
+	"$(DESTDIR)$(libscisparse_la_sci_gatewaydir)" \
+	"$(DESTDIR)$(libscisparse_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
-libsparse_la_DEPENDENCIES = $(top_builddir)/modules/elementaries_functions/libelementaries_functions.la \
-	$(top_builddir)/modules/core/libcore.la \
-	$(top_builddir)/modules/intersci/libintersci.la
-am__objects_1 = libsparse_la-spFortran.lo libsparse_la-mspelm.lo \
-	libsparse_la-lu.lo libsparse_la-spFactor.lo \
-	libsparse_la-spBuild.lo libsparse_la-spOutput.lo \
-	libsparse_la-spUtils.lo libsparse_la-spAllocate.lo \
-	libsparse_la-spSolve.lo
+libscisparse_la_DEPENDENCIES = $(top_builddir)/modules/elementaries_functions/libelementaries_functions.la \
+	$(top_builddir)/modules/core/libscicore.la \
+	$(top_builddir)/modules/intersci/libsciintersci.la
+am__objects_1 = libscisparse_la-spFortran.lo libscisparse_la-mspelm.lo \
+	libscisparse_la-lu.lo libscisparse_la-spFactor.lo \
+	libscisparse_la-spBuild.lo libscisparse_la-spOutput.lo \
+	libscisparse_la-spUtils.lo libscisparse_la-spAllocate.lo \
+	libscisparse_la-spSolve.lo
 am__objects_2 = spcompack.lo wsposp.lo dspmax.lo findl.lo spcho1.lo \
 	dspful.lo blkslv.lo wspcle.lo wspt.lo wspssp.lo lspmat.lo \
 	lsosp.lo blkfc1.lo wspxsp.lo lspful.lo blkfct.lo symfct.lo \
@@ -92,29 +92,29 @@ am__objects_2 = spcompack.lo wsposp.lo dspmax.lo findl.lo spcho1.lo \
 	lspops.lo spifp.lo isort1.lo dspis.lo wspxs.lo lspe2.lo \
 	wspisp.lo dsmsp.lo dspms.lo spord.lo dsosp.lo dspmat.lo \
 	wspmsp.lo lspis.lo dspmin.lo dspdsp.lo wspdsp.lo writebuf.lo
-am__objects_3 = libsparse_la-sci_spcompa.lo libsparse_la-sci_full.lo \
-	libsparse_la-sci_blkslvi.lo libsparse_la-sci_inpnvi.lo \
-	libsparse_la-sci_nnz.lo libsparse_la-sci_ludel.lo \
-	libsparse_la-sci_spmatrix.lo libsparse_la-sci_msparse.lo \
-	libsparse_la-sci_blkfc1i.lo libsparse_la-sci_bfinit.lo \
-	libsparse_la-sci_lufact.lo libsparse_la-sci_symfcti.lo \
-	libsparse_la-sci_mfull.lo libsparse_la-sci_luget.lo \
-	libsparse_la-sci_ordmmd.lo libsparse_la-sci_spget.lo \
-	libsparse_la-sci_spclean.lo libsparse_la-sci_spmin.lo \
-	libsparse_la-sci_spchol.lo libsparse_la-sci_spmax.lo \
-	libsparse_la-sci_lusolve.lo libsparse_la-sci_fadj2sp.lo \
-	libsparse_la-sci_readmps.lo libsparse_la-gw_sparse.lo \
-	libsparse_la-sci_sfinit.lo libsparse_la-sci_sparse.lo \
-	libsparse_la-sci_mspget.lo
+am__objects_3 = libscisparse_la-sci_spcompa.lo \
+	libscisparse_la-sci_full.lo libscisparse_la-sci_blkslvi.lo \
+	libscisparse_la-sci_inpnvi.lo libscisparse_la-sci_nnz.lo \
+	libscisparse_la-sci_ludel.lo libscisparse_la-sci_spmatrix.lo \
+	libscisparse_la-sci_msparse.lo libscisparse_la-sci_blkfc1i.lo \
+	libscisparse_la-sci_bfinit.lo libscisparse_la-sci_lufact.lo \
+	libscisparse_la-sci_symfcti.lo libscisparse_la-sci_mfull.lo \
+	libscisparse_la-sci_luget.lo libscisparse_la-sci_ordmmd.lo \
+	libscisparse_la-sci_spget.lo libscisparse_la-sci_spclean.lo \
+	libscisparse_la-sci_spmin.lo libscisparse_la-sci_spchol.lo \
+	libscisparse_la-sci_spmax.lo libscisparse_la-sci_lusolve.lo \
+	libscisparse_la-sci_fadj2sp.lo libscisparse_la-sci_readmps.lo \
+	libscisparse_la-gw_sparse.lo libscisparse_la-sci_sfinit.lo \
+	libscisparse_la-sci_sparse.lo libscisparse_la-sci_mspget.lo
 am__objects_4 = sci_spcompa.lo sci_sparse.lo sci_full.lo \
 	sci_blkslvi.lo sci_inpnvi.lo sci_nnz.lo sci_ludel.lo \
 	sci_bfinit.lo spops.lo sci_spmatrix.lo sci_blkfc1i.lo \
 	sci_lufact.lo sci_symfcti.lo sci_luget.lo sci_ordmmd.lo \
 	sci_spget.lo sci_spclean.lo sci_spchol.lo sci_spmax.lo \
 	sci_lusolve.lo sci_fadj2sp.lo sci_sfinit.lo
-am_libsparse_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
+am_libscisparse_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3) $(am__objects_4)
-libsparse_la_OBJECTS = $(am_libsparse_la_OBJECTS)
+libscisparse_la_OBJECTS = $(am_libscisparse_la_OBJECTS)
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -134,15 +134,15 @@ F77LD = $(F77)
 F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libsparse_la_SOURCES)
-DIST_SOURCES = $(libsparse_la_SOURCES)
-libsparse_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libsparse_la_rootDATA_INSTALL = $(INSTALL_DATA)
-libsparse_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libsparse_la_etc_DATA) $(libsparse_la_root_DATA) \
-	$(libsparse_la_sci_gateway_DATA)
-libsparse_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
-HEADERS = $(libsparse_la_include_HEADERS)
+SOURCES = $(libscisparse_la_SOURCES)
+DIST_SOURCES = $(libscisparse_la_SOURCES)
+libscisparse_la_etcDATA_INSTALL = $(INSTALL_DATA)
+libscisparse_la_rootDATA_INSTALL = $(INSTALL_DATA)
+libscisparse_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(libscisparse_la_etc_DATA) $(libscisparse_la_root_DATA) \
+	$(libscisparse_la_sci_gateway_DATA)
+libscisparse_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
+HEADERS = $(libscisparse_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -444,26 +444,26 @@ sci_gateway/fortran/sci_lusolve.f \
 sci_gateway/fortran/sci_fadj2sp.f \
 sci_gateway/fortran/sci_sfinit.f
 
-libsparse_la_CFLAGS = -Iincludes/ 
+libscisparse_la_CFLAGS = -Iincludes/ 
 #-Isrc/c/
-lib_LTLIBRARIES = libsparse.la
-libsparse_la_SOURCES = $(SPARSE_C_SOURCES) $(SPARSE_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-libsparse_la_LIBADD = \
+lib_LTLIBRARIES = libscisparse.la
+libscisparse_la_SOURCES = $(SPARSE_C_SOURCES) $(SPARSE_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscisparse_la_LIBADD = \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la  \
-	$(top_builddir)/modules/core/libcore.la \
-	$(top_builddir)/modules/intersci/libintersci.la
+	$(top_builddir)/modules/core/libscicore.la \
+	$(top_builddir)/modules/intersci/libsciintersci.la
 
-libsparse_la_PKGCONFIG = sparse.pc
+libscisparse_la_PKGCONFIG = sparse.pc
 #### Target ######
 target = $(datadir)/sparse
 
 #### sparse : Conf files ####
-libsparse_la_rootdir = $(target)
-libsparse_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscisparse_la_rootdir = $(target)
+libscisparse_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### sparse : Scilab macros ###
-libsparse_la_macrodir = $(target)/macros
-libsparse_la_macro_DATA22 = macros/adj2sp.sci \
+libscisparse_la_macrodir = $(target)/macros
+libscisparse_la_macro_DATA22 = macros/adj2sp.sci \
 macros/sp2adj.sci \
 macros/issparse.sci \
 macros/pcg.sci \
@@ -477,16 +477,16 @@ macros/sp2adj.bin macros/names macros/lib macros/buildmacros.sce
 
 
 #### sparse : init scripts #### 
-libsparse_la_etcdir = $(target)/etc
-libsparse_la_etc_DATA = etc/sparse.quit etc/sparse.start
+libscisparse_la_etcdir = $(target)/etc
+libscisparse_la_etc_DATA = etc/sparse.quit etc/sparse.start
 
 #### sparse : gateway declaration #### 
-libsparse_la_sci_gatewaydir = $(target)/sci_gateway
-libsparse_la_sci_gateway_DATA = sci_gateway/sparse
+libscisparse_la_sci_gatewaydir = $(target)/sci_gateway
+libscisparse_la_sci_gateway_DATA = sci_gateway/sparse
 
 #### sparse : include files ####
-libsparse_la_includedir = $(includedir)/sparse
-libsparse_la_include_HEADERS = includes/gw_sparse.h \
+libscisparse_la_includedir = $(includedir)/sparse
+libscisparse_la_include_HEADERS = includes/gw_sparse.h \
 includes/spmalloc.h \
 includes/sp.h \
 includes/spDefs.h \
@@ -569,8 +569,8 @@ clean-libLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
-libsparse.la: $(libsparse_la_OBJECTS) $(libsparse_la_DEPENDENCIES) 
-	$(F77LINK) -rpath $(libdir) $(libsparse_la_OBJECTS) $(libsparse_la_LIBADD) $(LIBS)
+libscisparse.la: $(libscisparse_la_OBJECTS) $(libscisparse_la_DEPENDENCIES) 
+	$(F77LINK) -rpath $(libdir) $(libscisparse_la_OBJECTS) $(libscisparse_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -578,42 +578,42 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsparse_la-gw_sparse.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsparse_la-lu.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsparse_la-mspelm.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsparse_la-sci_bfinit.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsparse_la-sci_blkfc1i.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsparse_la-sci_blkslvi.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsparse_la-sci_fadj2sp.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsparse_la-sci_full.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsparse_la-sci_inpnvi.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsparse_la-sci_ludel.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsparse_la-sci_lufact.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsparse_la-sci_luget.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsparse_la-sci_lusolve.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsparse_la-sci_mfull.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsparse_la-sci_msparse.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsparse_la-sci_mspget.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsparse_la-sci_nnz.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsparse_la-sci_ordmmd.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsparse_la-sci_readmps.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsparse_la-sci_sfinit.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsparse_la-sci_sparse.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsparse_la-sci_spchol.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsparse_la-sci_spclean.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsparse_la-sci_spcompa.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsparse_la-sci_spget.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsparse_la-sci_spmatrix.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsparse_la-sci_spmax.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsparse_la-sci_spmin.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsparse_la-sci_symfcti.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsparse_la-spAllocate.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsparse_la-spBuild.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsparse_la-spFactor.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsparse_la-spFortran.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsparse_la-spOutput.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsparse_la-spSolve.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsparse_la-spUtils.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-gw_sparse.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-lu.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-mspelm.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_bfinit.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_blkfc1i.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_blkslvi.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_fadj2sp.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_full.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_inpnvi.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_ludel.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_lufact.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_luget.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_lusolve.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_mfull.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_msparse.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_mspget.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_nnz.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_ordmmd.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_readmps.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_sfinit.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_sparse.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_spchol.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_spclean.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_spcompa.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_spget.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_spmatrix.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_spmax.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_spmin.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_symfcti.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-spAllocate.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-spBuild.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-spFactor.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-spFortran.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-spOutput.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-spSolve.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-spUtils.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -636,257 +636,257 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
-libsparse_la-spFortran.lo: src/c/spFortran.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -MT libsparse_la-spFortran.lo -MD -MP -MF $(DEPDIR)/libsparse_la-spFortran.Tpo -c -o libsparse_la-spFortran.lo `test -f 'src/c/spFortran.c' || echo '$(srcdir)/'`src/c/spFortran.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsparse_la-spFortran.Tpo $(DEPDIR)/libsparse_la-spFortran.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/spFortran.c' object='libsparse_la-spFortran.lo' libtool=yes @AMDEPBACKSLASH@
+libscisparse_la-spFortran.lo: src/c/spFortran.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-spFortran.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-spFortran.Tpo -c -o libscisparse_la-spFortran.lo `test -f 'src/c/spFortran.c' || echo '$(srcdir)/'`src/c/spFortran.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisparse_la-spFortran.Tpo $(DEPDIR)/libscisparse_la-spFortran.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/spFortran.c' object='libscisparse_la-spFortran.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -c -o libsparse_la-spFortran.lo `test -f 'src/c/spFortran.c' || echo '$(srcdir)/'`src/c/spFortran.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -c -o libscisparse_la-spFortran.lo `test -f 'src/c/spFortran.c' || echo '$(srcdir)/'`src/c/spFortran.c
 
-libsparse_la-mspelm.lo: src/c/mspelm.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -MT libsparse_la-mspelm.lo -MD -MP -MF $(DEPDIR)/libsparse_la-mspelm.Tpo -c -o libsparse_la-mspelm.lo `test -f 'src/c/mspelm.c' || echo '$(srcdir)/'`src/c/mspelm.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsparse_la-mspelm.Tpo $(DEPDIR)/libsparse_la-mspelm.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/mspelm.c' object='libsparse_la-mspelm.lo' libtool=yes @AMDEPBACKSLASH@
+libscisparse_la-mspelm.lo: src/c/mspelm.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-mspelm.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-mspelm.Tpo -c -o libscisparse_la-mspelm.lo `test -f 'src/c/mspelm.c' || echo '$(srcdir)/'`src/c/mspelm.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisparse_la-mspelm.Tpo $(DEPDIR)/libscisparse_la-mspelm.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/mspelm.c' object='libscisparse_la-mspelm.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -c -o libsparse_la-mspelm.lo `test -f 'src/c/mspelm.c' || echo '$(srcdir)/'`src/c/mspelm.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -c -o libscisparse_la-mspelm.lo `test -f 'src/c/mspelm.c' || echo '$(srcdir)/'`src/c/mspelm.c
 
-libsparse_la-lu.lo: src/c/lu.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -MT libsparse_la-lu.lo -MD -MP -MF $(DEPDIR)/libsparse_la-lu.Tpo -c -o libsparse_la-lu.lo `test -f 'src/c/lu.c' || echo '$(srcdir)/'`src/c/lu.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsparse_la-lu.Tpo $(DEPDIR)/libsparse_la-lu.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/lu.c' object='libsparse_la-lu.lo' libtool=yes @AMDEPBACKSLASH@
+libscisparse_la-lu.lo: src/c/lu.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-lu.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-lu.Tpo -c -o libscisparse_la-lu.lo `test -f 'src/c/lu.c' || echo '$(srcdir)/'`src/c/lu.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisparse_la-lu.Tpo $(DEPDIR)/libscisparse_la-lu.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/lu.c' object='libscisparse_la-lu.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -c -o libsparse_la-lu.lo `test -f 'src/c/lu.c' || echo '$(srcdir)/'`src/c/lu.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -c -o libscisparse_la-lu.lo `test -f 'src/c/lu.c' || echo '$(srcdir)/'`src/c/lu.c
 
-libsparse_la-spFactor.lo: src/c/spFactor.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -MT libsparse_la-spFactor.lo -MD -MP -MF $(DEPDIR)/libsparse_la-spFactor.Tpo -c -o libsparse_la-spFactor.lo `test -f 'src/c/spFactor.c' || echo '$(srcdir)/'`src/c/spFactor.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsparse_la-spFactor.Tpo $(DEPDIR)/libsparse_la-spFactor.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/spFactor.c' object='libsparse_la-spFactor.lo' libtool=yes @AMDEPBACKSLASH@
+libscisparse_la-spFactor.lo: src/c/spFactor.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-spFactor.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-spFactor.Tpo -c -o libscisparse_la-spFactor.lo `test -f 'src/c/spFactor.c' || echo '$(srcdir)/'`src/c/spFactor.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisparse_la-spFactor.Tpo $(DEPDIR)/libscisparse_la-spFactor.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/spFactor.c' object='libscisparse_la-spFactor.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -c -o libsparse_la-spFactor.lo `test -f 'src/c/spFactor.c' || echo '$(srcdir)/'`src/c/spFactor.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -c -o libscisparse_la-spFactor.lo `test -f 'src/c/spFactor.c' || echo '$(srcdir)/'`src/c/spFactor.c
 
-libsparse_la-spBuild.lo: src/c/spBuild.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -MT libsparse_la-spBuild.lo -MD -MP -MF $(DEPDIR)/libsparse_la-spBuild.Tpo -c -o libsparse_la-spBuild.lo `test -f 'src/c/spBuild.c' || echo '$(srcdir)/'`src/c/spBuild.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsparse_la-spBuild.Tpo $(DEPDIR)/libsparse_la-spBuild.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/spBuild.c' object='libsparse_la-spBuild.lo' libtool=yes @AMDEPBACKSLASH@
+libscisparse_la-spBuild.lo: src/c/spBuild.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-spBuild.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-spBuild.Tpo -c -o libscisparse_la-spBuild.lo `test -f 'src/c/spBuild.c' || echo '$(srcdir)/'`src/c/spBuild.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisparse_la-spBuild.Tpo $(DEPDIR)/libscisparse_la-spBuild.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/spBuild.c' object='libscisparse_la-spBuild.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -c -o libsparse_la-spBuild.lo `test -f 'src/c/spBuild.c' || echo '$(srcdir)/'`src/c/spBuild.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -c -o libscisparse_la-spBuild.lo `test -f 'src/c/spBuild.c' || echo '$(srcdir)/'`src/c/spBuild.c
 
-libsparse_la-spOutput.lo: src/c/spOutput.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -MT libsparse_la-spOutput.lo -MD -MP -MF $(DEPDIR)/libsparse_la-spOutput.Tpo -c -o libsparse_la-spOutput.lo `test -f 'src/c/spOutput.c' || echo '$(srcdir)/'`src/c/spOutput.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsparse_la-spOutput.Tpo $(DEPDIR)/libsparse_la-spOutput.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/spOutput.c' object='libsparse_la-spOutput.lo' libtool=yes @AMDEPBACKSLASH@
+libscisparse_la-spOutput.lo: src/c/spOutput.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-spOutput.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-spOutput.Tpo -c -o libscisparse_la-spOutput.lo `test -f 'src/c/spOutput.c' || echo '$(srcdir)/'`src/c/spOutput.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisparse_la-spOutput.Tpo $(DEPDIR)/libscisparse_la-spOutput.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/spOutput.c' object='libscisparse_la-spOutput.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -c -o libsparse_la-spOutput.lo `test -f 'src/c/spOutput.c' || echo '$(srcdir)/'`src/c/spOutput.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -c -o libscisparse_la-spOutput.lo `test -f 'src/c/spOutput.c' || echo '$(srcdir)/'`src/c/spOutput.c
 
-libsparse_la-spUtils.lo: src/c/spUtils.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -MT libsparse_la-spUtils.lo -MD -MP -MF $(DEPDIR)/libsparse_la-spUtils.Tpo -c -o libsparse_la-spUtils.lo `test -f 'src/c/spUtils.c' || echo '$(srcdir)/'`src/c/spUtils.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsparse_la-spUtils.Tpo $(DEPDIR)/libsparse_la-spUtils.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/spUtils.c' object='libsparse_la-spUtils.lo' libtool=yes @AMDEPBACKSLASH@
+libscisparse_la-spUtils.lo: src/c/spUtils.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-spUtils.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-spUtils.Tpo -c -o libscisparse_la-spUtils.lo `test -f 'src/c/spUtils.c' || echo '$(srcdir)/'`src/c/spUtils.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisparse_la-spUtils.Tpo $(DEPDIR)/libscisparse_la-spUtils.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/spUtils.c' object='libscisparse_la-spUtils.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -c -o libsparse_la-spUtils.lo `test -f 'src/c/spUtils.c' || echo '$(srcdir)/'`src/c/spUtils.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -c -o libscisparse_la-spUtils.lo `test -f 'src/c/spUtils.c' || echo '$(srcdir)/'`src/c/spUtils.c
 
-libsparse_la-spAllocate.lo: src/c/spAllocate.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -MT libsparse_la-spAllocate.lo -MD -MP -MF $(DEPDIR)/libsparse_la-spAllocate.Tpo -c -o libsparse_la-spAllocate.lo `test -f 'src/c/spAllocate.c' || echo '$(srcdir)/'`src/c/spAllocate.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsparse_la-spAllocate.Tpo $(DEPDIR)/libsparse_la-spAllocate.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/spAllocate.c' object='libsparse_la-spAllocate.lo' libtool=yes @AMDEPBACKSLASH@
+libscisparse_la-spAllocate.lo: src/c/spAllocate.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-spAllocate.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-spAllocate.Tpo -c -o libscisparse_la-spAllocate.lo `test -f 'src/c/spAllocate.c' || echo '$(srcdir)/'`src/c/spAllocate.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisparse_la-spAllocate.Tpo $(DEPDIR)/libscisparse_la-spAllocate.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/spAllocate.c' object='libscisparse_la-spAllocate.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -c -o libsparse_la-spAllocate.lo `test -f 'src/c/spAllocate.c' || echo '$(srcdir)/'`src/c/spAllocate.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -c -o libscisparse_la-spAllocate.lo `test -f 'src/c/spAllocate.c' || echo '$(srcdir)/'`src/c/spAllocate.c
 
-libsparse_la-spSolve.lo: src/c/spSolve.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -MT libsparse_la-spSolve.lo -MD -MP -MF $(DEPDIR)/libsparse_la-spSolve.Tpo -c -o libsparse_la-spSolve.lo `test -f 'src/c/spSolve.c' || echo '$(srcdir)/'`src/c/spSolve.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsparse_la-spSolve.Tpo $(DEPDIR)/libsparse_la-spSolve.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/spSolve.c' object='libsparse_la-spSolve.lo' libtool=yes @AMDEPBACKSLASH@
+libscisparse_la-spSolve.lo: src/c/spSolve.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-spSolve.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-spSolve.Tpo -c -o libscisparse_la-spSolve.lo `test -f 'src/c/spSolve.c' || echo '$(srcdir)/'`src/c/spSolve.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisparse_la-spSolve.Tpo $(DEPDIR)/libscisparse_la-spSolve.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/spSolve.c' object='libscisparse_la-spSolve.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -c -o libsparse_la-spSolve.lo `test -f 'src/c/spSolve.c' || echo '$(srcdir)/'`src/c/spSolve.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -c -o libscisparse_la-spSolve.lo `test -f 'src/c/spSolve.c' || echo '$(srcdir)/'`src/c/spSolve.c
 
-libsparse_la-sci_spcompa.lo: sci_gateway/c/sci_spcompa.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -MT libsparse_la-sci_spcompa.lo -MD -MP -MF $(DEPDIR)/libsparse_la-sci_spcompa.Tpo -c -o libsparse_la-sci_spcompa.lo `test -f 'sci_gateway/c/sci_spcompa.c' || echo '$(srcdir)/'`sci_gateway/c/sci_spcompa.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsparse_la-sci_spcompa.Tpo $(DEPDIR)/libsparse_la-sci_spcompa.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_spcompa.c' object='libsparse_la-sci_spcompa.lo' libtool=yes @AMDEPBACKSLASH@
+libscisparse_la-sci_spcompa.lo: sci_gateway/c/sci_spcompa.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-sci_spcompa.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-sci_spcompa.Tpo -c -o libscisparse_la-sci_spcompa.lo `test -f 'sci_gateway/c/sci_spcompa.c' || echo '$(srcdir)/'`sci_gateway/c/sci_spcompa.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisparse_la-sci_spcompa.Tpo $(DEPDIR)/libscisparse_la-sci_spcompa.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_spcompa.c' object='libscisparse_la-sci_spcompa.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -c -o libsparse_la-sci_spcompa.lo `test -f 'sci_gateway/c/sci_spcompa.c' || echo '$(srcdir)/'`sci_gateway/c/sci_spcompa.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -c -o libscisparse_la-sci_spcompa.lo `test -f 'sci_gateway/c/sci_spcompa.c' || echo '$(srcdir)/'`sci_gateway/c/sci_spcompa.c
 
-libsparse_la-sci_full.lo: sci_gateway/c/sci_full.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -MT libsparse_la-sci_full.lo -MD -MP -MF $(DEPDIR)/libsparse_la-sci_full.Tpo -c -o libsparse_la-sci_full.lo `test -f 'sci_gateway/c/sci_full.c' || echo '$(srcdir)/'`sci_gateway/c/sci_full.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsparse_la-sci_full.Tpo $(DEPDIR)/libsparse_la-sci_full.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_full.c' object='libsparse_la-sci_full.lo' libtool=yes @AMDEPBACKSLASH@
+libscisparse_la-sci_full.lo: sci_gateway/c/sci_full.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-sci_full.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-sci_full.Tpo -c -o libscisparse_la-sci_full.lo `test -f 'sci_gateway/c/sci_full.c' || echo '$(srcdir)/'`sci_gateway/c/sci_full.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisparse_la-sci_full.Tpo $(DEPDIR)/libscisparse_la-sci_full.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_full.c' object='libscisparse_la-sci_full.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -c -o libsparse_la-sci_full.lo `test -f 'sci_gateway/c/sci_full.c' || echo '$(srcdir)/'`sci_gateway/c/sci_full.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -c -o libscisparse_la-sci_full.lo `test -f 'sci_gateway/c/sci_full.c' || echo '$(srcdir)/'`sci_gateway/c/sci_full.c
 
-libsparse_la-sci_blkslvi.lo: sci_gateway/c/sci_blkslvi.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -MT libsparse_la-sci_blkslvi.lo -MD -MP -MF $(DEPDIR)/libsparse_la-sci_blkslvi.Tpo -c -o libsparse_la-sci_blkslvi.lo `test -f 'sci_gateway/c/sci_blkslvi.c' || echo '$(srcdir)/'`sci_gateway/c/sci_blkslvi.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsparse_la-sci_blkslvi.Tpo $(DEPDIR)/libsparse_la-sci_blkslvi.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_blkslvi.c' object='libsparse_la-sci_blkslvi.lo' libtool=yes @AMDEPBACKSLASH@
+libscisparse_la-sci_blkslvi.lo: sci_gateway/c/sci_blkslvi.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-sci_blkslvi.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-sci_blkslvi.Tpo -c -o libscisparse_la-sci_blkslvi.lo `test -f 'sci_gateway/c/sci_blkslvi.c' || echo '$(srcdir)/'`sci_gateway/c/sci_blkslvi.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisparse_la-sci_blkslvi.Tpo $(DEPDIR)/libscisparse_la-sci_blkslvi.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_blkslvi.c' object='libscisparse_la-sci_blkslvi.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -c -o libsparse_la-sci_blkslvi.lo `test -f 'sci_gateway/c/sci_blkslvi.c' || echo '$(srcdir)/'`sci_gateway/c/sci_blkslvi.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -c -o libscisparse_la-sci_blkslvi.lo `test -f 'sci_gateway/c/sci_blkslvi.c' || echo '$(srcdir)/'`sci_gateway/c/sci_blkslvi.c
 
-libsparse_la-sci_inpnvi.lo: sci_gateway/c/sci_inpnvi.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -MT libsparse_la-sci_inpnvi.lo -MD -MP -MF $(DEPDIR)/libsparse_la-sci_inpnvi.Tpo -c -o libsparse_la-sci_inpnvi.lo `test -f 'sci_gateway/c/sci_inpnvi.c' || echo '$(srcdir)/'`sci_gateway/c/sci_inpnvi.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsparse_la-sci_inpnvi.Tpo $(DEPDIR)/libsparse_la-sci_inpnvi.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_inpnvi.c' object='libsparse_la-sci_inpnvi.lo' libtool=yes @AMDEPBACKSLASH@
+libscisparse_la-sci_inpnvi.lo: sci_gateway/c/sci_inpnvi.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-sci_inpnvi.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-sci_inpnvi.Tpo -c -o libscisparse_la-sci_inpnvi.lo `test -f 'sci_gateway/c/sci_inpnvi.c' || echo '$(srcdir)/'`sci_gateway/c/sci_inpnvi.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisparse_la-sci_inpnvi.Tpo $(DEPDIR)/libscisparse_la-sci_inpnvi.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_inpnvi.c' object='libscisparse_la-sci_inpnvi.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -c -o libsparse_la-sci_inpnvi.lo `test -f 'sci_gateway/c/sci_inpnvi.c' || echo '$(srcdir)/'`sci_gateway/c/sci_inpnvi.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -c -o libscisparse_la-sci_inpnvi.lo `test -f 'sci_gateway/c/sci_inpnvi.c' || echo '$(srcdir)/'`sci_gateway/c/sci_inpnvi.c
 
-libsparse_la-sci_nnz.lo: sci_gateway/c/sci_nnz.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -MT libsparse_la-sci_nnz.lo -MD -MP -MF $(DEPDIR)/libsparse_la-sci_nnz.Tpo -c -o libsparse_la-sci_nnz.lo `test -f 'sci_gateway/c/sci_nnz.c' || echo '$(srcdir)/'`sci_gateway/c/sci_nnz.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsparse_la-sci_nnz.Tpo $(DEPDIR)/libsparse_la-sci_nnz.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_nnz.c' object='libsparse_la-sci_nnz.lo' libtool=yes @AMDEPBACKSLASH@
+libscisparse_la-sci_nnz.lo: sci_gateway/c/sci_nnz.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-sci_nnz.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-sci_nnz.Tpo -c -o libscisparse_la-sci_nnz.lo `test -f 'sci_gateway/c/sci_nnz.c' || echo '$(srcdir)/'`sci_gateway/c/sci_nnz.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisparse_la-sci_nnz.Tpo $(DEPDIR)/libscisparse_la-sci_nnz.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_nnz.c' object='libscisparse_la-sci_nnz.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -c -o libsparse_la-sci_nnz.lo `test -f 'sci_gateway/c/sci_nnz.c' || echo '$(srcdir)/'`sci_gateway/c/sci_nnz.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -c -o libscisparse_la-sci_nnz.lo `test -f 'sci_gateway/c/sci_nnz.c' || echo '$(srcdir)/'`sci_gateway/c/sci_nnz.c
 
-libsparse_la-sci_ludel.lo: sci_gateway/c/sci_ludel.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -MT libsparse_la-sci_ludel.lo -MD -MP -MF $(DEPDIR)/libsparse_la-sci_ludel.Tpo -c -o libsparse_la-sci_ludel.lo `test -f 'sci_gateway/c/sci_ludel.c' || echo '$(srcdir)/'`sci_gateway/c/sci_ludel.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsparse_la-sci_ludel.Tpo $(DEPDIR)/libsparse_la-sci_ludel.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_ludel.c' object='libsparse_la-sci_ludel.lo' libtool=yes @AMDEPBACKSLASH@
+libscisparse_la-sci_ludel.lo: sci_gateway/c/sci_ludel.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-sci_ludel.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-sci_ludel.Tpo -c -o libscisparse_la-sci_ludel.lo `test -f 'sci_gateway/c/sci_ludel.c' || echo '$(srcdir)/'`sci_gateway/c/sci_ludel.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisparse_la-sci_ludel.Tpo $(DEPDIR)/libscisparse_la-sci_ludel.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_ludel.c' object='libscisparse_la-sci_ludel.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -c -o libsparse_la-sci_ludel.lo `test -f 'sci_gateway/c/sci_ludel.c' || echo '$(srcdir)/'`sci_gateway/c/sci_ludel.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -c -o libscisparse_la-sci_ludel.lo `test -f 'sci_gateway/c/sci_ludel.c' || echo '$(srcdir)/'`sci_gateway/c/sci_ludel.c
 
-libsparse_la-sci_spmatrix.lo: sci_gateway/c/sci_spmatrix.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -MT libsparse_la-sci_spmatrix.lo -MD -MP -MF $(DEPDIR)/libsparse_la-sci_spmatrix.Tpo -c -o libsparse_la-sci_spmatrix.lo `test -f 'sci_gateway/c/sci_spmatrix.c' || echo '$(srcdir)/'`sci_gateway/c/sci_spmatrix.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsparse_la-sci_spmatrix.Tpo $(DEPDIR)/libsparse_la-sci_spmatrix.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_spmatrix.c' object='libsparse_la-sci_spmatrix.lo' libtool=yes @AMDEPBACKSLASH@
+libscisparse_la-sci_spmatrix.lo: sci_gateway/c/sci_spmatrix.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-sci_spmatrix.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-sci_spmatrix.Tpo -c -o libscisparse_la-sci_spmatrix.lo `test -f 'sci_gateway/c/sci_spmatrix.c' || echo '$(srcdir)/'`sci_gateway/c/sci_spmatrix.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisparse_la-sci_spmatrix.Tpo $(DEPDIR)/libscisparse_la-sci_spmatrix.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_spmatrix.c' object='libscisparse_la-sci_spmatrix.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -c -o libsparse_la-sci_spmatrix.lo `test -f 'sci_gateway/c/sci_spmatrix.c' || echo '$(srcdir)/'`sci_gateway/c/sci_spmatrix.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -c -o libscisparse_la-sci_spmatrix.lo `test -f 'sci_gateway/c/sci_spmatrix.c' || echo '$(srcdir)/'`sci_gateway/c/sci_spmatrix.c
 
-libsparse_la-sci_msparse.lo: sci_gateway/c/sci_msparse.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -MT libsparse_la-sci_msparse.lo -MD -MP -MF $(DEPDIR)/libsparse_la-sci_msparse.Tpo -c -o libsparse_la-sci_msparse.lo `test -f 'sci_gateway/c/sci_msparse.c' || echo '$(srcdir)/'`sci_gateway/c/sci_msparse.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsparse_la-sci_msparse.Tpo $(DEPDIR)/libsparse_la-sci_msparse.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_msparse.c' object='libsparse_la-sci_msparse.lo' libtool=yes @AMDEPBACKSLASH@
+libscisparse_la-sci_msparse.lo: sci_gateway/c/sci_msparse.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-sci_msparse.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-sci_msparse.Tpo -c -o libscisparse_la-sci_msparse.lo `test -f 'sci_gateway/c/sci_msparse.c' || echo '$(srcdir)/'`sci_gateway/c/sci_msparse.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisparse_la-sci_msparse.Tpo $(DEPDIR)/libscisparse_la-sci_msparse.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_msparse.c' object='libscisparse_la-sci_msparse.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -c -o libsparse_la-sci_msparse.lo `test -f 'sci_gateway/c/sci_msparse.c' || echo '$(srcdir)/'`sci_gateway/c/sci_msparse.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -c -o libscisparse_la-sci_msparse.lo `test -f 'sci_gateway/c/sci_msparse.c' || echo '$(srcdir)/'`sci_gateway/c/sci_msparse.c
 
-libsparse_la-sci_blkfc1i.lo: sci_gateway/c/sci_blkfc1i.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -MT libsparse_la-sci_blkfc1i.lo -MD -MP -MF $(DEPDIR)/libsparse_la-sci_blkfc1i.Tpo -c -o libsparse_la-sci_blkfc1i.lo `test -f 'sci_gateway/c/sci_blkfc1i.c' || echo '$(srcdir)/'`sci_gateway/c/sci_blkfc1i.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsparse_la-sci_blkfc1i.Tpo $(DEPDIR)/libsparse_la-sci_blkfc1i.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_blkfc1i.c' object='libsparse_la-sci_blkfc1i.lo' libtool=yes @AMDEPBACKSLASH@
+libscisparse_la-sci_blkfc1i.lo: sci_gateway/c/sci_blkfc1i.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-sci_blkfc1i.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-sci_blkfc1i.Tpo -c -o libscisparse_la-sci_blkfc1i.lo `test -f 'sci_gateway/c/sci_blkfc1i.c' || echo '$(srcdir)/'`sci_gateway/c/sci_blkfc1i.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisparse_la-sci_blkfc1i.Tpo $(DEPDIR)/libscisparse_la-sci_blkfc1i.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_blkfc1i.c' object='libscisparse_la-sci_blkfc1i.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -c -o libsparse_la-sci_blkfc1i.lo `test -f 'sci_gateway/c/sci_blkfc1i.c' || echo '$(srcdir)/'`sci_gateway/c/sci_blkfc1i.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -c -o libscisparse_la-sci_blkfc1i.lo `test -f 'sci_gateway/c/sci_blkfc1i.c' || echo '$(srcdir)/'`sci_gateway/c/sci_blkfc1i.c
 
-libsparse_la-sci_bfinit.lo: sci_gateway/c/sci_bfinit.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -MT libsparse_la-sci_bfinit.lo -MD -MP -MF $(DEPDIR)/libsparse_la-sci_bfinit.Tpo -c -o libsparse_la-sci_bfinit.lo `test -f 'sci_gateway/c/sci_bfinit.c' || echo '$(srcdir)/'`sci_gateway/c/sci_bfinit.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsparse_la-sci_bfinit.Tpo $(DEPDIR)/libsparse_la-sci_bfinit.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_bfinit.c' object='libsparse_la-sci_bfinit.lo' libtool=yes @AMDEPBACKSLASH@
+libscisparse_la-sci_bfinit.lo: sci_gateway/c/sci_bfinit.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-sci_bfinit.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-sci_bfinit.Tpo -c -o libscisparse_la-sci_bfinit.lo `test -f 'sci_gateway/c/sci_bfinit.c' || echo '$(srcdir)/'`sci_gateway/c/sci_bfinit.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisparse_la-sci_bfinit.Tpo $(DEPDIR)/libscisparse_la-sci_bfinit.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_bfinit.c' object='libscisparse_la-sci_bfinit.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -c -o libsparse_la-sci_bfinit.lo `test -f 'sci_gateway/c/sci_bfinit.c' || echo '$(srcdir)/'`sci_gateway/c/sci_bfinit.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -c -o libscisparse_la-sci_bfinit.lo `test -f 'sci_gateway/c/sci_bfinit.c' || echo '$(srcdir)/'`sci_gateway/c/sci_bfinit.c
 
-libsparse_la-sci_lufact.lo: sci_gateway/c/sci_lufact.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -MT libsparse_la-sci_lufact.lo -MD -MP -MF $(DEPDIR)/libsparse_la-sci_lufact.Tpo -c -o libsparse_la-sci_lufact.lo `test -f 'sci_gateway/c/sci_lufact.c' || echo '$(srcdir)/'`sci_gateway/c/sci_lufact.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsparse_la-sci_lufact.Tpo $(DEPDIR)/libsparse_la-sci_lufact.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_lufact.c' object='libsparse_la-sci_lufact.lo' libtool=yes @AMDEPBACKSLASH@
+libscisparse_la-sci_lufact.lo: sci_gateway/c/sci_lufact.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-sci_lufact.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-sci_lufact.Tpo -c -o libscisparse_la-sci_lufact.lo `test -f 'sci_gateway/c/sci_lufact.c' || echo '$(srcdir)/'`sci_gateway/c/sci_lufact.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisparse_la-sci_lufact.Tpo $(DEPDIR)/libscisparse_la-sci_lufact.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_lufact.c' object='libscisparse_la-sci_lufact.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -c -o libsparse_la-sci_lufact.lo `test -f 'sci_gateway/c/sci_lufact.c' || echo '$(srcdir)/'`sci_gateway/c/sci_lufact.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -c -o libscisparse_la-sci_lufact.lo `test -f 'sci_gateway/c/sci_lufact.c' || echo '$(srcdir)/'`sci_gateway/c/sci_lufact.c
 
-libsparse_la-sci_symfcti.lo: sci_gateway/c/sci_symfcti.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -MT libsparse_la-sci_symfcti.lo -MD -MP -MF $(DEPDIR)/libsparse_la-sci_symfcti.Tpo -c -o libsparse_la-sci_symfcti.lo `test -f 'sci_gateway/c/sci_symfcti.c' || echo '$(srcdir)/'`sci_gateway/c/sci_symfcti.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsparse_la-sci_symfcti.Tpo $(DEPDIR)/libsparse_la-sci_symfcti.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_symfcti.c' object='libsparse_la-sci_symfcti.lo' libtool=yes @AMDEPBACKSLASH@
+libscisparse_la-sci_symfcti.lo: sci_gateway/c/sci_symfcti.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-sci_symfcti.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-sci_symfcti.Tpo -c -o libscisparse_la-sci_symfcti.lo `test -f 'sci_gateway/c/sci_symfcti.c' || echo '$(srcdir)/'`sci_gateway/c/sci_symfcti.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisparse_la-sci_symfcti.Tpo $(DEPDIR)/libscisparse_la-sci_symfcti.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_symfcti.c' object='libscisparse_la-sci_symfcti.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -c -o libsparse_la-sci_symfcti.lo `test -f 'sci_gateway/c/sci_symfcti.c' || echo '$(srcdir)/'`sci_gateway/c/sci_symfcti.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -c -o libscisparse_la-sci_symfcti.lo `test -f 'sci_gateway/c/sci_symfcti.c' || echo '$(srcdir)/'`sci_gateway/c/sci_symfcti.c
 
-libsparse_la-sci_mfull.lo: sci_gateway/c/sci_mfull.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -MT libsparse_la-sci_mfull.lo -MD -MP -MF $(DEPDIR)/libsparse_la-sci_mfull.Tpo -c -o libsparse_la-sci_mfull.lo `test -f 'sci_gateway/c/sci_mfull.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mfull.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsparse_la-sci_mfull.Tpo $(DEPDIR)/libsparse_la-sci_mfull.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_mfull.c' object='libsparse_la-sci_mfull.lo' libtool=yes @AMDEPBACKSLASH@
+libscisparse_la-sci_mfull.lo: sci_gateway/c/sci_mfull.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-sci_mfull.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-sci_mfull.Tpo -c -o libscisparse_la-sci_mfull.lo `test -f 'sci_gateway/c/sci_mfull.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mfull.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisparse_la-sci_mfull.Tpo $(DEPDIR)/libscisparse_la-sci_mfull.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_mfull.c' object='libscisparse_la-sci_mfull.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -c -o libsparse_la-sci_mfull.lo `test -f 'sci_gateway/c/sci_mfull.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mfull.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -c -o libscisparse_la-sci_mfull.lo `test -f 'sci_gateway/c/sci_mfull.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mfull.c
 
-libsparse_la-sci_luget.lo: sci_gateway/c/sci_luget.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -MT libsparse_la-sci_luget.lo -MD -MP -MF $(DEPDIR)/libsparse_la-sci_luget.Tpo -c -o libsparse_la-sci_luget.lo `test -f 'sci_gateway/c/sci_luget.c' || echo '$(srcdir)/'`sci_gateway/c/sci_luget.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsparse_la-sci_luget.Tpo $(DEPDIR)/libsparse_la-sci_luget.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_luget.c' object='libsparse_la-sci_luget.lo' libtool=yes @AMDEPBACKSLASH@
+libscisparse_la-sci_luget.lo: sci_gateway/c/sci_luget.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-sci_luget.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-sci_luget.Tpo -c -o libscisparse_la-sci_luget.lo `test -f 'sci_gateway/c/sci_luget.c' || echo '$(srcdir)/'`sci_gateway/c/sci_luget.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisparse_la-sci_luget.Tpo $(DEPDIR)/libscisparse_la-sci_luget.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_luget.c' object='libscisparse_la-sci_luget.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -c -o libsparse_la-sci_luget.lo `test -f 'sci_gateway/c/sci_luget.c' || echo '$(srcdir)/'`sci_gateway/c/sci_luget.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -c -o libscisparse_la-sci_luget.lo `test -f 'sci_gateway/c/sci_luget.c' || echo '$(srcdir)/'`sci_gateway/c/sci_luget.c
 
-libsparse_la-sci_ordmmd.lo: sci_gateway/c/sci_ordmmd.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -MT libsparse_la-sci_ordmmd.lo -MD -MP -MF $(DEPDIR)/libsparse_la-sci_ordmmd.Tpo -c -o libsparse_la-sci_ordmmd.lo `test -f 'sci_gateway/c/sci_ordmmd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_ordmmd.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsparse_la-sci_ordmmd.Tpo $(DEPDIR)/libsparse_la-sci_ordmmd.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_ordmmd.c' object='libsparse_la-sci_ordmmd.lo' libtool=yes @AMDEPBACKSLASH@
+libscisparse_la-sci_ordmmd.lo: sci_gateway/c/sci_ordmmd.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-sci_ordmmd.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-sci_ordmmd.Tpo -c -o libscisparse_la-sci_ordmmd.lo `test -f 'sci_gateway/c/sci_ordmmd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_ordmmd.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisparse_la-sci_ordmmd.Tpo $(DEPDIR)/libscisparse_la-sci_ordmmd.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_ordmmd.c' object='libscisparse_la-sci_ordmmd.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -c -o libsparse_la-sci_ordmmd.lo `test -f 'sci_gateway/c/sci_ordmmd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_ordmmd.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -c -o libscisparse_la-sci_ordmmd.lo `test -f 'sci_gateway/c/sci_ordmmd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_ordmmd.c
 
-libsparse_la-sci_spget.lo: sci_gateway/c/sci_spget.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -MT libsparse_la-sci_spget.lo -MD -MP -MF $(DEPDIR)/libsparse_la-sci_spget.Tpo -c -o libsparse_la-sci_spget.lo `test -f 'sci_gateway/c/sci_spget.c' || echo '$(srcdir)/'`sci_gateway/c/sci_spget.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsparse_la-sci_spget.Tpo $(DEPDIR)/libsparse_la-sci_spget.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_spget.c' object='libsparse_la-sci_spget.lo' libtool=yes @AMDEPBACKSLASH@
+libscisparse_la-sci_spget.lo: sci_gateway/c/sci_spget.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-sci_spget.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-sci_spget.Tpo -c -o libscisparse_la-sci_spget.lo `test -f 'sci_gateway/c/sci_spget.c' || echo '$(srcdir)/'`sci_gateway/c/sci_spget.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisparse_la-sci_spget.Tpo $(DEPDIR)/libscisparse_la-sci_spget.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_spget.c' object='libscisparse_la-sci_spget.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -c -o libsparse_la-sci_spget.lo `test -f 'sci_gateway/c/sci_spget.c' || echo '$(srcdir)/'`sci_gateway/c/sci_spget.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -c -o libscisparse_la-sci_spget.lo `test -f 'sci_gateway/c/sci_spget.c' || echo '$(srcdir)/'`sci_gateway/c/sci_spget.c
 
-libsparse_la-sci_spclean.lo: sci_gateway/c/sci_spclean.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -MT libsparse_la-sci_spclean.lo -MD -MP -MF $(DEPDIR)/libsparse_la-sci_spclean.Tpo -c -o libsparse_la-sci_spclean.lo `test -f 'sci_gateway/c/sci_spclean.c' || echo '$(srcdir)/'`sci_gateway/c/sci_spclean.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsparse_la-sci_spclean.Tpo $(DEPDIR)/libsparse_la-sci_spclean.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_spclean.c' object='libsparse_la-sci_spclean.lo' libtool=yes @AMDEPBACKSLASH@
+libscisparse_la-sci_spclean.lo: sci_gateway/c/sci_spclean.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-sci_spclean.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-sci_spclean.Tpo -c -o libscisparse_la-sci_spclean.lo `test -f 'sci_gateway/c/sci_spclean.c' || echo '$(srcdir)/'`sci_gateway/c/sci_spclean.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisparse_la-sci_spclean.Tpo $(DEPDIR)/libscisparse_la-sci_spclean.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_spclean.c' object='libscisparse_la-sci_spclean.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -c -o libsparse_la-sci_spclean.lo `test -f 'sci_gateway/c/sci_spclean.c' || echo '$(srcdir)/'`sci_gateway/c/sci_spclean.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -c -o libscisparse_la-sci_spclean.lo `test -f 'sci_gateway/c/sci_spclean.c' || echo '$(srcdir)/'`sci_gateway/c/sci_spclean.c
 
-libsparse_la-sci_spmin.lo: sci_gateway/c/sci_spmin.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -MT libsparse_la-sci_spmin.lo -MD -MP -MF $(DEPDIR)/libsparse_la-sci_spmin.Tpo -c -o libsparse_la-sci_spmin.lo `test -f 'sci_gateway/c/sci_spmin.c' || echo '$(srcdir)/'`sci_gateway/c/sci_spmin.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsparse_la-sci_spmin.Tpo $(DEPDIR)/libsparse_la-sci_spmin.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_spmin.c' object='libsparse_la-sci_spmin.lo' libtool=yes @AMDEPBACKSLASH@
+libscisparse_la-sci_spmin.lo: sci_gateway/c/sci_spmin.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-sci_spmin.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-sci_spmin.Tpo -c -o libscisparse_la-sci_spmin.lo `test -f 'sci_gateway/c/sci_spmin.c' || echo '$(srcdir)/'`sci_gateway/c/sci_spmin.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisparse_la-sci_spmin.Tpo $(DEPDIR)/libscisparse_la-sci_spmin.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_spmin.c' object='libscisparse_la-sci_spmin.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -c -o libsparse_la-sci_spmin.lo `test -f 'sci_gateway/c/sci_spmin.c' || echo '$(srcdir)/'`sci_gateway/c/sci_spmin.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -c -o libscisparse_la-sci_spmin.lo `test -f 'sci_gateway/c/sci_spmin.c' || echo '$(srcdir)/'`sci_gateway/c/sci_spmin.c
 
-libsparse_la-sci_spchol.lo: sci_gateway/c/sci_spchol.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -MT libsparse_la-sci_spchol.lo -MD -MP -MF $(DEPDIR)/libsparse_la-sci_spchol.Tpo -c -o libsparse_la-sci_spchol.lo `test -f 'sci_gateway/c/sci_spchol.c' || echo '$(srcdir)/'`sci_gateway/c/sci_spchol.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsparse_la-sci_spchol.Tpo $(DEPDIR)/libsparse_la-sci_spchol.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_spchol.c' object='libsparse_la-sci_spchol.lo' libtool=yes @AMDEPBACKSLASH@
+libscisparse_la-sci_spchol.lo: sci_gateway/c/sci_spchol.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-sci_spchol.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-sci_spchol.Tpo -c -o libscisparse_la-sci_spchol.lo `test -f 'sci_gateway/c/sci_spchol.c' || echo '$(srcdir)/'`sci_gateway/c/sci_spchol.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisparse_la-sci_spchol.Tpo $(DEPDIR)/libscisparse_la-sci_spchol.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_spchol.c' object='libscisparse_la-sci_spchol.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -c -o libsparse_la-sci_spchol.lo `test -f 'sci_gateway/c/sci_spchol.c' || echo '$(srcdir)/'`sci_gateway/c/sci_spchol.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -c -o libscisparse_la-sci_spchol.lo `test -f 'sci_gateway/c/sci_spchol.c' || echo '$(srcdir)/'`sci_gateway/c/sci_spchol.c
 
-libsparse_la-sci_spmax.lo: sci_gateway/c/sci_spmax.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -MT libsparse_la-sci_spmax.lo -MD -MP -MF $(DEPDIR)/libsparse_la-sci_spmax.Tpo -c -o libsparse_la-sci_spmax.lo `test -f 'sci_gateway/c/sci_spmax.c' || echo '$(srcdir)/'`sci_gateway/c/sci_spmax.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsparse_la-sci_spmax.Tpo $(DEPDIR)/libsparse_la-sci_spmax.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_spmax.c' object='libsparse_la-sci_spmax.lo' libtool=yes @AMDEPBACKSLASH@
+libscisparse_la-sci_spmax.lo: sci_gateway/c/sci_spmax.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-sci_spmax.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-sci_spmax.Tpo -c -o libscisparse_la-sci_spmax.lo `test -f 'sci_gateway/c/sci_spmax.c' || echo '$(srcdir)/'`sci_gateway/c/sci_spmax.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisparse_la-sci_spmax.Tpo $(DEPDIR)/libscisparse_la-sci_spmax.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_spmax.c' object='libscisparse_la-sci_spmax.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -c -o libsparse_la-sci_spmax.lo `test -f 'sci_gateway/c/sci_spmax.c' || echo '$(srcdir)/'`sci_gateway/c/sci_spmax.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -c -o libscisparse_la-sci_spmax.lo `test -f 'sci_gateway/c/sci_spmax.c' || echo '$(srcdir)/'`sci_gateway/c/sci_spmax.c
 
-libsparse_la-sci_lusolve.lo: sci_gateway/c/sci_lusolve.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -MT libsparse_la-sci_lusolve.lo -MD -MP -MF $(DEPDIR)/libsparse_la-sci_lusolve.Tpo -c -o libsparse_la-sci_lusolve.lo `test -f 'sci_gateway/c/sci_lusolve.c' || echo '$(srcdir)/'`sci_gateway/c/sci_lusolve.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsparse_la-sci_lusolve.Tpo $(DEPDIR)/libsparse_la-sci_lusolve.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_lusolve.c' object='libsparse_la-sci_lusolve.lo' libtool=yes @AMDEPBACKSLASH@
+libscisparse_la-sci_lusolve.lo: sci_gateway/c/sci_lusolve.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-sci_lusolve.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-sci_lusolve.Tpo -c -o libscisparse_la-sci_lusolve.lo `test -f 'sci_gateway/c/sci_lusolve.c' || echo '$(srcdir)/'`sci_gateway/c/sci_lusolve.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisparse_la-sci_lusolve.Tpo $(DEPDIR)/libscisparse_la-sci_lusolve.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_lusolve.c' object='libscisparse_la-sci_lusolve.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -c -o libsparse_la-sci_lusolve.lo `test -f 'sci_gateway/c/sci_lusolve.c' || echo '$(srcdir)/'`sci_gateway/c/sci_lusolve.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -c -o libscisparse_la-sci_lusolve.lo `test -f 'sci_gateway/c/sci_lusolve.c' || echo '$(srcdir)/'`sci_gateway/c/sci_lusolve.c
 
-libsparse_la-sci_fadj2sp.lo: sci_gateway/c/sci_fadj2sp.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -MT libsparse_la-sci_fadj2sp.lo -MD -MP -MF $(DEPDIR)/libsparse_la-sci_fadj2sp.Tpo -c -o libsparse_la-sci_fadj2sp.lo `test -f 'sci_gateway/c/sci_fadj2sp.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fadj2sp.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsparse_la-sci_fadj2sp.Tpo $(DEPDIR)/libsparse_la-sci_fadj2sp.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_fadj2sp.c' object='libsparse_la-sci_fadj2sp.lo' libtool=yes @AMDEPBACKSLASH@
+libscisparse_la-sci_fadj2sp.lo: sci_gateway/c/sci_fadj2sp.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-sci_fadj2sp.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-sci_fadj2sp.Tpo -c -o libscisparse_la-sci_fadj2sp.lo `test -f 'sci_gateway/c/sci_fadj2sp.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fadj2sp.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisparse_la-sci_fadj2sp.Tpo $(DEPDIR)/libscisparse_la-sci_fadj2sp.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_fadj2sp.c' object='libscisparse_la-sci_fadj2sp.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -c -o libsparse_la-sci_fadj2sp.lo `test -f 'sci_gateway/c/sci_fadj2sp.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fadj2sp.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -c -o libscisparse_la-sci_fadj2sp.lo `test -f 'sci_gateway/c/sci_fadj2sp.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fadj2sp.c
 
-libsparse_la-sci_readmps.lo: sci_gateway/c/sci_readmps.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -MT libsparse_la-sci_readmps.lo -MD -MP -MF $(DEPDIR)/libsparse_la-sci_readmps.Tpo -c -o libsparse_la-sci_readmps.lo `test -f 'sci_gateway/c/sci_readmps.c' || echo '$(srcdir)/'`sci_gateway/c/sci_readmps.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsparse_la-sci_readmps.Tpo $(DEPDIR)/libsparse_la-sci_readmps.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_readmps.c' object='libsparse_la-sci_readmps.lo' libtool=yes @AMDEPBACKSLASH@
+libscisparse_la-sci_readmps.lo: sci_gateway/c/sci_readmps.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-sci_readmps.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-sci_readmps.Tpo -c -o libscisparse_la-sci_readmps.lo `test -f 'sci_gateway/c/sci_readmps.c' || echo '$(srcdir)/'`sci_gateway/c/sci_readmps.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisparse_la-sci_readmps.Tpo $(DEPDIR)/libscisparse_la-sci_readmps.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_readmps.c' object='libscisparse_la-sci_readmps.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -c -o libsparse_la-sci_readmps.lo `test -f 'sci_gateway/c/sci_readmps.c' || echo '$(srcdir)/'`sci_gateway/c/sci_readmps.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -c -o libscisparse_la-sci_readmps.lo `test -f 'sci_gateway/c/sci_readmps.c' || echo '$(srcdir)/'`sci_gateway/c/sci_readmps.c
 
-libsparse_la-gw_sparse.lo: sci_gateway/c/gw_sparse.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -MT libsparse_la-gw_sparse.lo -MD -MP -MF $(DEPDIR)/libsparse_la-gw_sparse.Tpo -c -o libsparse_la-gw_sparse.lo `test -f 'sci_gateway/c/gw_sparse.c' || echo '$(srcdir)/'`sci_gateway/c/gw_sparse.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsparse_la-gw_sparse.Tpo $(DEPDIR)/libsparse_la-gw_sparse.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/gw_sparse.c' object='libsparse_la-gw_sparse.lo' libtool=yes @AMDEPBACKSLASH@
+libscisparse_la-gw_sparse.lo: sci_gateway/c/gw_sparse.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-gw_sparse.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-gw_sparse.Tpo -c -o libscisparse_la-gw_sparse.lo `test -f 'sci_gateway/c/gw_sparse.c' || echo '$(srcdir)/'`sci_gateway/c/gw_sparse.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisparse_la-gw_sparse.Tpo $(DEPDIR)/libscisparse_la-gw_sparse.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/gw_sparse.c' object='libscisparse_la-gw_sparse.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -c -o libsparse_la-gw_sparse.lo `test -f 'sci_gateway/c/gw_sparse.c' || echo '$(srcdir)/'`sci_gateway/c/gw_sparse.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -c -o libscisparse_la-gw_sparse.lo `test -f 'sci_gateway/c/gw_sparse.c' || echo '$(srcdir)/'`sci_gateway/c/gw_sparse.c
 
-libsparse_la-sci_sfinit.lo: sci_gateway/c/sci_sfinit.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -MT libsparse_la-sci_sfinit.lo -MD -MP -MF $(DEPDIR)/libsparse_la-sci_sfinit.Tpo -c -o libsparse_la-sci_sfinit.lo `test -f 'sci_gateway/c/sci_sfinit.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sfinit.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsparse_la-sci_sfinit.Tpo $(DEPDIR)/libsparse_la-sci_sfinit.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_sfinit.c' object='libsparse_la-sci_sfinit.lo' libtool=yes @AMDEPBACKSLASH@
+libscisparse_la-sci_sfinit.lo: sci_gateway/c/sci_sfinit.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-sci_sfinit.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-sci_sfinit.Tpo -c -o libscisparse_la-sci_sfinit.lo `test -f 'sci_gateway/c/sci_sfinit.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sfinit.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisparse_la-sci_sfinit.Tpo $(DEPDIR)/libscisparse_la-sci_sfinit.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_sfinit.c' object='libscisparse_la-sci_sfinit.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -c -o libsparse_la-sci_sfinit.lo `test -f 'sci_gateway/c/sci_sfinit.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sfinit.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -c -o libscisparse_la-sci_sfinit.lo `test -f 'sci_gateway/c/sci_sfinit.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sfinit.c
 
-libsparse_la-sci_sparse.lo: sci_gateway/c/sci_sparse.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -MT libsparse_la-sci_sparse.lo -MD -MP -MF $(DEPDIR)/libsparse_la-sci_sparse.Tpo -c -o libsparse_la-sci_sparse.lo `test -f 'sci_gateway/c/sci_sparse.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sparse.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsparse_la-sci_sparse.Tpo $(DEPDIR)/libsparse_la-sci_sparse.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_sparse.c' object='libsparse_la-sci_sparse.lo' libtool=yes @AMDEPBACKSLASH@
+libscisparse_la-sci_sparse.lo: sci_gateway/c/sci_sparse.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-sci_sparse.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-sci_sparse.Tpo -c -o libscisparse_la-sci_sparse.lo `test -f 'sci_gateway/c/sci_sparse.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sparse.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisparse_la-sci_sparse.Tpo $(DEPDIR)/libscisparse_la-sci_sparse.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_sparse.c' object='libscisparse_la-sci_sparse.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -c -o libsparse_la-sci_sparse.lo `test -f 'sci_gateway/c/sci_sparse.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sparse.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -c -o libscisparse_la-sci_sparse.lo `test -f 'sci_gateway/c/sci_sparse.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sparse.c
 
-libsparse_la-sci_mspget.lo: sci_gateway/c/sci_mspget.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -MT libsparse_la-sci_mspget.lo -MD -MP -MF $(DEPDIR)/libsparse_la-sci_mspget.Tpo -c -o libsparse_la-sci_mspget.lo `test -f 'sci_gateway/c/sci_mspget.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mspget.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsparse_la-sci_mspget.Tpo $(DEPDIR)/libsparse_la-sci_mspget.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_mspget.c' object='libsparse_la-sci_mspget.lo' libtool=yes @AMDEPBACKSLASH@
+libscisparse_la-sci_mspget.lo: sci_gateway/c/sci_mspget.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-sci_mspget.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-sci_mspget.Tpo -c -o libscisparse_la-sci_mspget.lo `test -f 'sci_gateway/c/sci_mspget.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mspget.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisparse_la-sci_mspget.Tpo $(DEPDIR)/libscisparse_la-sci_mspget.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_mspget.c' object='libscisparse_la-sci_mspget.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsparse_la_CFLAGS) $(CFLAGS) -c -o libsparse_la-sci_mspget.lo `test -f 'sci_gateway/c/sci_mspget.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mspget.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -c -o libscisparse_la-sci_mspget.lo `test -f 'sci_gateway/c/sci_mspget.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mspget.c
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<
@@ -1253,73 +1253,73 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libsparse_la_etcDATA: $(libsparse_la_etc_DATA)
+install-libscisparse_la_etcDATA: $(libscisparse_la_etc_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libsparse_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libsparse_la_etcdir)"
-	@list='$(libsparse_la_etc_DATA)'; for p in $$list; do \
+	test -z "$(libscisparse_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libscisparse_la_etcdir)"
+	@list='$(libscisparse_la_etc_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libsparse_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsparse_la_etcdir)/$$f'"; \
-	  $(libsparse_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsparse_la_etcdir)/$$f"; \
+	  echo " $(libscisparse_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscisparse_la_etcdir)/$$f'"; \
+	  $(libscisparse_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscisparse_la_etcdir)/$$f"; \
 	done
 
-uninstall-libsparse_la_etcDATA:
+uninstall-libscisparse_la_etcDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libsparse_la_etc_DATA)'; for p in $$list; do \
+	@list='$(libscisparse_la_etc_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libsparse_la_etcdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libsparse_la_etcdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscisparse_la_etcdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscisparse_la_etcdir)/$$f"; \
 	done
-install-libsparse_la_rootDATA: $(libsparse_la_root_DATA)
+install-libscisparse_la_rootDATA: $(libscisparse_la_root_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libsparse_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libsparse_la_rootdir)"
-	@list='$(libsparse_la_root_DATA)'; for p in $$list; do \
+	test -z "$(libscisparse_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libscisparse_la_rootdir)"
+	@list='$(libscisparse_la_root_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libsparse_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsparse_la_rootdir)/$$f'"; \
-	  $(libsparse_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsparse_la_rootdir)/$$f"; \
+	  echo " $(libscisparse_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscisparse_la_rootdir)/$$f'"; \
+	  $(libscisparse_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscisparse_la_rootdir)/$$f"; \
 	done
 
-uninstall-libsparse_la_rootDATA:
+uninstall-libscisparse_la_rootDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libsparse_la_root_DATA)'; for p in $$list; do \
+	@list='$(libscisparse_la_root_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libsparse_la_rootdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libsparse_la_rootdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscisparse_la_rootdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscisparse_la_rootdir)/$$f"; \
 	done
-install-libsparse_la_sci_gatewayDATA: $(libsparse_la_sci_gateway_DATA)
+install-libscisparse_la_sci_gatewayDATA: $(libscisparse_la_sci_gateway_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libsparse_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libsparse_la_sci_gatewaydir)"
-	@list='$(libsparse_la_sci_gateway_DATA)'; for p in $$list; do \
+	test -z "$(libscisparse_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libscisparse_la_sci_gatewaydir)"
+	@list='$(libscisparse_la_sci_gateway_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libsparse_la_sci_gatewayDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsparse_la_sci_gatewaydir)/$$f'"; \
-	  $(libsparse_la_sci_gatewayDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsparse_la_sci_gatewaydir)/$$f"; \
+	  echo " $(libscisparse_la_sci_gatewayDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscisparse_la_sci_gatewaydir)/$$f'"; \
+	  $(libscisparse_la_sci_gatewayDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscisparse_la_sci_gatewaydir)/$$f"; \
 	done
 
-uninstall-libsparse_la_sci_gatewayDATA:
+uninstall-libscisparse_la_sci_gatewayDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libsparse_la_sci_gateway_DATA)'; for p in $$list; do \
+	@list='$(libscisparse_la_sci_gateway_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libsparse_la_sci_gatewaydir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libsparse_la_sci_gatewaydir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscisparse_la_sci_gatewaydir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscisparse_la_sci_gatewaydir)/$$f"; \
 	done
-install-libsparse_la_includeHEADERS: $(libsparse_la_include_HEADERS)
+install-libscisparse_la_includeHEADERS: $(libscisparse_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
-	test -z "$(libsparse_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libsparse_la_includedir)"
-	@list='$(libsparse_la_include_HEADERS)'; for p in $$list; do \
+	test -z "$(libscisparse_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscisparse_la_includedir)"
+	@list='$(libscisparse_la_include_HEADERS)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libsparse_la_includeHEADERS_INSTALL) '$$d$$p' '$(DESTDIR)$(libsparse_la_includedir)/$$f'"; \
-	  $(libsparse_la_includeHEADERS_INSTALL) "$$d$$p" "$(DESTDIR)$(libsparse_la_includedir)/$$f"; \
+	  echo " $(libscisparse_la_includeHEADERS_INSTALL) '$$d$$p' '$(DESTDIR)$(libscisparse_la_includedir)/$$f'"; \
+	  $(libscisparse_la_includeHEADERS_INSTALL) "$$d$$p" "$(DESTDIR)$(libscisparse_la_includedir)/$$f"; \
 	done
 
-uninstall-libsparse_la_includeHEADERS:
+uninstall-libscisparse_la_includeHEADERS:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libsparse_la_include_HEADERS)'; for p in $$list; do \
+	@list='$(libscisparse_la_include_HEADERS)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libsparse_la_includedir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libsparse_la_includedir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscisparse_la_includedir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscisparse_la_includedir)/$$f"; \
 	done
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
@@ -1400,7 +1400,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libsparse_la_etcdir)" "$(DESTDIR)$(libsparse_la_rootdir)" "$(DESTDIR)$(libsparse_la_sci_gatewaydir)" "$(DESTDIR)$(libsparse_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libscisparse_la_etcdir)" "$(DESTDIR)$(libscisparse_la_rootdir)" "$(DESTDIR)$(libscisparse_la_sci_gatewaydir)" "$(DESTDIR)$(libscisparse_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1448,10 +1448,10 @@ info: info-am
 
 info-am:
 
-install-data-am: install-data-local install-libsparse_la_etcDATA \
-	install-libsparse_la_includeHEADERS \
-	install-libsparse_la_rootDATA \
-	install-libsparse_la_sci_gatewayDATA
+install-data-am: install-data-local install-libscisparse_la_etcDATA \
+	install-libscisparse_la_includeHEADERS \
+	install-libscisparse_la_rootDATA \
+	install-libscisparse_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
 
@@ -1489,10 +1489,11 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libLTLIBRARIES uninstall-libsparse_la_etcDATA \
-	uninstall-libsparse_la_includeHEADERS \
-	uninstall-libsparse_la_rootDATA \
-	uninstall-libsparse_la_sci_gatewayDATA
+uninstall-am: uninstall-libLTLIBRARIES \
+	uninstall-libscisparse_la_etcDATA \
+	uninstall-libscisparse_la_includeHEADERS \
+	uninstall-libscisparse_la_rootDATA \
+	uninstall-libscisparse_la_sci_gatewayDATA
 
 .MAKE: install-am install-strip
 
@@ -1504,19 +1505,19 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libsparse_la_etcDATA \
 	install-data-local install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
-	install-libLTLIBRARIES install-libsparse_la_etcDATA \
-	install-libsparse_la_includeHEADERS \
-	install-libsparse_la_rootDATA \
-	install-libsparse_la_sci_gatewayDATA install-man install-pdf \
-	install-pdf-am install-ps install-ps-am install-strip \
-	installcheck installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-compile \
-	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
-	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
-	uninstall-libsparse_la_etcDATA \
-	uninstall-libsparse_la_includeHEADERS \
-	uninstall-libsparse_la_rootDATA \
-	uninstall-libsparse_la_sci_gatewayDATA
+	install-libLTLIBRARIES install-libscisparse_la_etcDATA \
+	install-libscisparse_la_includeHEADERS \
+	install-libscisparse_la_rootDATA \
+	install-libscisparse_la_sci_gatewayDATA install-man \
+	install-pdf install-pdf-am install-ps install-ps-am \
+	install-strip installcheck installcheck-am installdirs \
+	maintainer-clean maintainer-clean-generic mostlyclean \
+	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
+	pdf pdf-am ps ps-am tags uninstall uninstall-am \
+	uninstall-libLTLIBRARIES uninstall-libscisparse_la_etcDATA \
+	uninstall-libscisparse_la_includeHEADERS \
+	uninstall-libscisparse_la_rootDATA \
+	uninstall-libscisparse_la_sci_gatewayDATA
 
 
 #.xml.htm:

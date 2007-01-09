@@ -42,11 +42,11 @@ lib_LTLIBRARIES = libspecial_functions.la
 libspecial_functions_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libspecial_functions_la_LIBADD = \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la \
-	$(top_builddir)/modules/statistics/libstatistics.la
+	$(top_builddir)/modules/statistics/libscistatistics.la
 
 #\
-#	$(top_builddir)/libs/blas/libblas.la \
-#	$(top_builddir)/modules/arnoldi/libarnoldi.la
+#	$(top_builddir)/libs/blas/libsciblas.la \
+#	$(top_builddir)/modules/arnoldi/libsciarnoldi.la
 
 libspecial_functions_la_PKGCONFIG = special_functions.pc
 

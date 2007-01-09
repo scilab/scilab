@@ -12,12 +12,12 @@ target=$(datadir)/helptools
 #	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$SCISCRIPT'); save('$SCISCRIPT.bin'); exit;"
 
 #### helptools : Conf files ####
-libhelptools_la_rootdir = $(target)
-libhelptools_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscihelptools_la_rootdir = $(target)
+libscihelptools_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### helptools : Scilab macros ###
-libhelptools_la_macrodir = $(target)/macros
-dist_libhelptools_la_macro_DATA22 = macros/add_help_chapter.sci \
+libscihelptools_la_macrodir = $(target)/macros
+dist_libscihelptools_la_macro_DATA22 = macros/add_help_chapter.sci \
 macros/browsehelp.sci \
 macros/help_menu.sci \
 macros/make_help_index.sci \
@@ -63,7 +63,7 @@ macros/xmltohtml.bin macros/names macros/lib macros/buildmacros.sce
 
 
 #### helptools : init scripts #### 
-libhelptools_la_etcdir = $(target)/etc
-libhelptools_la_etc_DATA = etc/helptools.quit etc/helptools.start
+libscihelptools_la_etcdir = $(target)/etc
+libscihelptools_la_etc_DATA = etc/helptools.quit etc/helptools.start
 
 include $(top_srcdir)/Makefile.incl.am

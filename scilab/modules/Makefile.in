@@ -43,9 +43,9 @@ host_triplet = @host@
 @JAVA_TRUE@javasci
 
 @PVM_TRUE@am__append_3 = pvm
-@PVM_TRUE@am__append_4 = $(top_builddir)/modules/pvm/libscipvm.la
-@JAVA_TRUE@am__append_5 = $(top_builddir)/modules/jvm/libscijvm.la
-@SCICOS_TRUE@am__append_6 = $(top_builddir)/modules/scicos/libscicos.la
+@PVM_TRUE@am__append_4 = $(top_builddir)/modules/pvm/libsciscipvm.la
+@JAVA_TRUE@am__append_5 = $(top_builddir)/modules/jvm/libsciscijvm.la
+@SCICOS_TRUE@am__append_6 = $(top_builddir)/modules/scicos/libsciscicos.la
 subdir = modules
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -68,47 +68,47 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
-	"$(DESTDIR)$(libscilab_la_rootdir)"
+	"$(DESTDIR)$(libsciscilab_la_rootdir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
-libscilab_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/mexlib/libmexlib.la \
-	$(top_builddir)/modules/arnoldi/libarnoldi.la \
-	$(top_builddir)/modules/boolean/libboolean.la \
-	$(top_builddir)/modules/cacsd/libcacsd.la \
-	$(top_builddir)/modules/core/libcore.la \
+libsciscilab_la_DEPENDENCIES =  \
+	$(top_builddir)/modules/mexlib/libscimexlib.la \
+	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
+	$(top_builddir)/modules/boolean/libsciboolean.la \
+	$(top_builddir)/modules/cacsd/libscicacsd.la \
+	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/data_structures/libdata_structures.la \
 	$(top_builddir)/modules/differential_equations/libdifferential_equations.la \
-	$(top_builddir)/modules/double/libdouble.la \
+	$(top_builddir)/modules/double/libscidouble.la \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la \
-	$(top_builddir)/modules/fileio/libfileio.la \
-	$(top_builddir)/modules/graphics/libgraphics.la \
-	$(top_builddir)/modules/gui/libgui.la \
-	$(top_builddir)/modules/integer/libinteger.la \
-	$(top_builddir)/modules/interpolation/libinterpolation.la \
-	$(top_builddir)/modules/intersci/libintersci.la \
-	$(top_builddir)/modules/io/libio.la \
+	$(top_builddir)/modules/fileio/libscifileio.la \
+	$(top_builddir)/modules/graphics/libscigraphics.la \
+	$(top_builddir)/modules/gui/libscigui.la \
+	$(top_builddir)/modules/integer/libsciinteger.la \
+	$(top_builddir)/modules/interpolation/libsciinterpolation.la \
+	$(top_builddir)/modules/intersci/libsciintersci.la \
+	$(top_builddir)/modules/io/libsciio.la \
 	$(top_builddir)/modules/linear_algebra/liblinear_algebra.la \
-	$(top_builddir)/modules/localization/liblocalization.la \
-	$(top_builddir)/modules/metanet/libmetanet.la \
-	$(top_builddir)/modules/optimization/liboptimization.la \
-	$(top_builddir)/modules/polynomials/libpolynomials.la \
-	$(top_builddir)/modules/randlib/librandlib.la \
-	$(top_builddir)/modules/symbolic/libsymbolic.la \
+	$(top_builddir)/modules/localization/libscilocalization.la \
+	$(top_builddir)/modules/metanet/libscimetanet.la \
+	$(top_builddir)/modules/optimization/libscioptimization.la \
+	$(top_builddir)/modules/polynomials/libscipolynomials.la \
+	$(top_builddir)/modules/randlib/libscirandlib.la \
+	$(top_builddir)/modules/symbolic/libscisymbolic.la \
 	$(top_builddir)/modules/signal_processing/libsignal_processing.la \
 	$(top_builddir)/modules/special_functions/libspecial_functions.la \
-	$(top_builddir)/modules/sound/libsound.la \
-	$(top_builddir)/modules/tclsci/libtclsci.la \
-	$(top_builddir)/modules/statistics/libstatistics.la \
-	$(top_builddir)/modules/time/libtime.la \
-	$(top_builddir)/modules/wintools/libwintools.la \
+	$(top_builddir)/modules/sound/libscisound.la \
+	$(top_builddir)/modules/tclsci/libscitclsci.la \
+	$(top_builddir)/modules/statistics/libscistatistics.la \
+	$(top_builddir)/modules/time/libscitime.la \
+	$(top_builddir)/modules/wintools/libsciwintools.la \
 	$(am__append_4) $(am__append_5) $(am__append_6) \
-	$(top_builddir)/libs/blas/libblas.la \
-	$(top_builddir)/libs/hashtable/libhashtable.la \
-	$(top_builddir)/libs/lapack/liblapack.la \
-	$(top_builddir)/libs/MALLOC/libmalloc.la
-am_libscilab_la_OBJECTS =
-libscilab_la_OBJECTS = $(am_libscilab_la_OBJECTS)
+	$(top_builddir)/libs/blas/libsciblas.la \
+	$(top_builddir)/libs/hashtable/libscihashtable.la \
+	$(top_builddir)/libs/lapack/libscilapack.la \
+	$(top_builddir)/libs/MALLOC/libscimalloc.la
+am_libsciscilab_la_OBJECTS =
+libsciscilab_la_OBJECTS = $(am_libsciscilab_la_OBJECTS)
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -119,8 +119,8 @@ CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libscilab_la_SOURCES)
-DIST_SOURCES = $(libscilab_la_SOURCES)
+SOURCES = $(libsciscilab_la_SOURCES)
+DIST_SOURCES = $(libsciscilab_la_SOURCES)
 RECURSIVE_TARGETS = all-recursive check-recursive dvi-recursive \
 	html-recursive info-recursive install-data-recursive \
 	install-dvi-recursive install-exec-recursive \
@@ -128,8 +128,8 @@ RECURSIVE_TARGETS = all-recursive check-recursive dvi-recursive \
 	install-pdf-recursive install-ps-recursive install-recursive \
 	installcheck-recursive installdirs-recursive pdf-recursive \
 	ps-recursive uninstall-recursive
-libscilab_la_rootDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libscilab_la_root_DATA)
+libsciscilab_la_rootDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(libsciscilab_la_root_DATA)
 RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\
   distclean-recursive maintainer-clean-recursive
 ETAGS = etags
@@ -300,49 +300,50 @@ SUBDIRS = intersci polynomials cacsd elementaries_functions arnoldi \
 target = $(datadir)
 
 #### Basic files ####
-libscilab_la_rootdir = $(target)
-libscilab_la_root_DATA = modules
+libsciscilab_la_rootdir = $(target)
+libsciscilab_la_root_DATA = modules
 
 # 
-lib_LTLIBRARIES = libscilab.la
-libscilab_la_SOURCES = 
+lib_LTLIBRARIES = libsciscilab.la
+libsciscilab_la_SOURCES = 
 
 # Core modules
-libscilab_la_LIBADD = $(top_builddir)/modules/mexlib/libmexlib.la \
-	$(top_builddir)/modules/arnoldi/libarnoldi.la \
-	$(top_builddir)/modules/boolean/libboolean.la \
-	$(top_builddir)/modules/cacsd/libcacsd.la \
-	$(top_builddir)/modules/core/libcore.la \
+libsciscilab_la_LIBADD =  \
+	$(top_builddir)/modules/mexlib/libscimexlib.la \
+	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
+	$(top_builddir)/modules/boolean/libsciboolean.la \
+	$(top_builddir)/modules/cacsd/libscicacsd.la \
+	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/data_structures/libdata_structures.la \
 	$(top_builddir)/modules/differential_equations/libdifferential_equations.la \
-	$(top_builddir)/modules/double/libdouble.la \
+	$(top_builddir)/modules/double/libscidouble.la \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la \
-	$(top_builddir)/modules/fileio/libfileio.la \
-	$(top_builddir)/modules/graphics/libgraphics.la \
-	$(top_builddir)/modules/gui/libgui.la \
-	$(top_builddir)/modules/integer/libinteger.la \
-	$(top_builddir)/modules/interpolation/libinterpolation.la \
-	$(top_builddir)/modules/intersci/libintersci.la \
-	$(top_builddir)/modules/io/libio.la \
+	$(top_builddir)/modules/fileio/libscifileio.la \
+	$(top_builddir)/modules/graphics/libscigraphics.la \
+	$(top_builddir)/modules/gui/libscigui.la \
+	$(top_builddir)/modules/integer/libsciinteger.la \
+	$(top_builddir)/modules/interpolation/libsciinterpolation.la \
+	$(top_builddir)/modules/intersci/libsciintersci.la \
+	$(top_builddir)/modules/io/libsciio.la \
 	$(top_builddir)/modules/linear_algebra/liblinear_algebra.la \
-	$(top_builddir)/modules/localization/liblocalization.la \
-	$(top_builddir)/modules/metanet/libmetanet.la \
-	$(top_builddir)/modules/optimization/liboptimization.la \
-	$(top_builddir)/modules/polynomials/libpolynomials.la \
-	$(top_builddir)/modules/randlib/librandlib.la \
-	$(top_builddir)/modules/symbolic/libsymbolic.la \
+	$(top_builddir)/modules/localization/libscilocalization.la \
+	$(top_builddir)/modules/metanet/libscimetanet.la \
+	$(top_builddir)/modules/optimization/libscioptimization.la \
+	$(top_builddir)/modules/polynomials/libscipolynomials.la \
+	$(top_builddir)/modules/randlib/libscirandlib.la \
+	$(top_builddir)/modules/symbolic/libscisymbolic.la \
 	$(top_builddir)/modules/signal_processing/libsignal_processing.la \
 	$(top_builddir)/modules/special_functions/libspecial_functions.la \
-	$(top_builddir)/modules/sound/libsound.la \
-	$(top_builddir)/modules/tclsci/libtclsci.la \
-	$(top_builddir)/modules/statistics/libstatistics.la \
-	$(top_builddir)/modules/time/libtime.la \
-	$(top_builddir)/modules/wintools/libwintools.la \
+	$(top_builddir)/modules/sound/libscisound.la \
+	$(top_builddir)/modules/tclsci/libscitclsci.la \
+	$(top_builddir)/modules/statistics/libscistatistics.la \
+	$(top_builddir)/modules/time/libscitime.la \
+	$(top_builddir)/modules/wintools/libsciwintools.la \
 	$(am__append_4) $(am__append_5) $(am__append_6) \
-	$(top_builddir)/libs/blas/libblas.la \
-	$(top_builddir)/libs/hashtable/libhashtable.la \
-	$(top_builddir)/libs/lapack/liblapack.la \
-	$(top_builddir)/libs/MALLOC/libmalloc.la
+	$(top_builddir)/libs/blas/libsciblas.la \
+	$(top_builddir)/libs/hashtable/libscihashtable.la \
+	$(top_builddir)/libs/lapack/libscilapack.la \
+	$(top_builddir)/libs/MALLOC/libscimalloc.la
 BUILT_SOURCES = modules
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
@@ -404,8 +405,8 @@ clean-libLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
-libscilab.la: $(libscilab_la_OBJECTS) $(libscilab_la_DEPENDENCIES) 
-	$(LINK) -rpath $(libdir) $(libscilab_la_OBJECTS) $(libscilab_la_LIBADD) $(LIBS)
+libsciscilab.la: $(libsciscilab_la_OBJECTS) $(libsciscilab_la_DEPENDENCIES) 
+	$(LINK) -rpath $(libdir) $(libsciscilab_la_OBJECTS) $(libsciscilab_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -418,22 +419,22 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libscilab_la_rootDATA: $(libscilab_la_root_DATA)
+install-libsciscilab_la_rootDATA: $(libsciscilab_la_root_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libscilab_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libscilab_la_rootdir)"
-	@list='$(libscilab_la_root_DATA)'; for p in $$list; do \
+	test -z "$(libsciscilab_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciscilab_la_rootdir)"
+	@list='$(libsciscilab_la_root_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libscilab_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscilab_la_rootdir)/$$f'"; \
-	  $(libscilab_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscilab_la_rootdir)/$$f"; \
+	  echo " $(libsciscilab_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsciscilab_la_rootdir)/$$f'"; \
+	  $(libsciscilab_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsciscilab_la_rootdir)/$$f"; \
 	done
 
-uninstall-libscilab_la_rootDATA:
+uninstall-libsciscilab_la_rootDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libscilab_la_root_DATA)'; for p in $$list; do \
+	@list='$(libsciscilab_la_root_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscilab_la_rootdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscilab_la_rootdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libsciscilab_la_rootdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libsciscilab_la_rootdir)/$$f"; \
 	done
 
 # This directory's subdirectories are mostly independent; you can cd
@@ -616,7 +617,7 @@ check: $(BUILT_SOURCES)
 all-am: Makefile $(LTLIBRARIES) $(DATA)
 installdirs: installdirs-recursive
 installdirs-am:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libscilab_la_rootdir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libsciscilab_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -665,7 +666,7 @@ info: info-recursive
 
 info-am:
 
-install-data-am: install-libscilab_la_rootDATA
+install-data-am: install-libsciscilab_la_rootDATA
 
 install-dvi: install-dvi-recursive
 
@@ -700,7 +701,8 @@ ps: ps-recursive
 
 ps-am:
 
-uninstall-am: uninstall-libLTLIBRARIES uninstall-libscilab_la_rootDATA
+uninstall-am: uninstall-libLTLIBRARIES \
+	uninstall-libsciscilab_la_rootDATA
 
 .MAKE: $(RECURSIVE_CLEAN_TARGETS) $(RECURSIVE_TARGETS) install-am \
 	install-strip
@@ -714,13 +716,13 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libscilab_la_rootDATA
 	install-data-am install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am install-info \
 	install-info-am install-libLTLIBRARIES \
-	install-libscilab_la_rootDATA install-man install-pdf \
+	install-libsciscilab_la_rootDATA install-man install-pdf \
 	install-pdf-am install-ps install-ps-am install-strip \
 	installcheck installcheck-am installdirs installdirs-am \
 	maintainer-clean maintainer-clean-generic mostlyclean \
 	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
 	pdf pdf-am ps ps-am tags tags-recursive uninstall uninstall-am \
-	uninstall-libLTLIBRARIES uninstall-libscilab_la_rootDATA
+	uninstall-libLTLIBRARIES uninstall-libsciscilab_la_rootDATA
 
 
 # Generate the module list from the SUBDIRS

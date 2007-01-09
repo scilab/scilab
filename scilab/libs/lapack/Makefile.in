@@ -69,8 +69,8 @@ libdummy_lapack_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(F77LD) \
 	$(libdummy_lapack_la_FFLAGS) $(FFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-liblapack_la_DEPENDENCIES = libdummy-lapack.la \
-	$(top_builddir)/libs/blas/libblas.la
+libscilapack_la_DEPENDENCIES = libdummy-lapack.la \
+	$(top_builddir)/libs/blas/libsciblas.la
 am__objects_1 = dlasv2.lo zgeqpf.lo zrot.lo dpotrf.lo zunmr3.lo \
 	zlanhs.lo zgebak.lo zbdsqr.lo zunmrz.lo dgetc2.lo zlaqp2.lo \
 	dsytrd.lo dsytd2.lo zlange.lo dlansp.lo dhgeqz.lo dlasq2.lo \
@@ -116,8 +116,8 @@ am__objects_1 = dlasv2.lo zgeqpf.lo zrot.lo dpotrf.lo zunmr3.lo \
 	dsterf.lo zsteqr.lo zgelqf.lo dsytrs.lo dgges.lo dorg2l.lo \
 	dlapy3.lo lsame.lo ztrsyl.lo izmax1.lo ztgsen.lo zunmbr.lo \
 	zlabrd.lo dtgexc.lo dgeql2.lo dlagv2.lo dggbak.lo dtzrzf.lo
-am_liblapack_la_OBJECTS = $(am__objects_1)
-liblapack_la_OBJECTS = $(am_liblapack_la_OBJECTS)
+am_libscilapack_la_OBJECTS = $(am__objects_1)
+libscilapack_la_OBJECTS = $(am_libscilapack_la_OBJECTS)
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
 F77COMPILE = $(F77) $(AM_FFLAGS) $(FFLAGS)
 LTF77COMPILE = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
@@ -126,8 +126,9 @@ F77LD = $(F77)
 F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libdummy_lapack_la_SOURCES) $(liblapack_la_SOURCES)
-DIST_SOURCES = $(libdummy_lapack_la_SOURCES) $(liblapack_la_SOURCES)
+SOURCES = $(libdummy_lapack_la_SOURCES) $(libscilapack_la_SOURCES)
+DIST_SOURCES = $(libdummy_lapack_la_SOURCES) \
+	$(libscilapack_la_SOURCES)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -272,7 +273,7 @@ target_alias = @target_alias@
 tcldir = @tcldir@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-lib_LTLIBRARIES = liblapack.la 
+lib_LTLIBRARIES = libscilapack.la 
 noinst_LTLIBRARIES = libdummy-lapack.la
 LAPACK_FORTRAN_SOURCES = dlasv2.f \
 zgeqpf.f \
@@ -544,13 +545,13 @@ dlagv2.f \
 dggbak.f \
 dtzrzf.f
 
-liblapack_la_SOURCES = $(LAPACK_FORTRAN_SOURCES)
+libscilapack_la_SOURCES = $(LAPACK_FORTRAN_SOURCES)
 libdummy_lapack_la_SOURCES = dlamch.f slamch.f
 libdummy_lapack_la_FFLAGS = `echo "@FFLAGS@"| sed -e 's|-O[0-9+]|-O0|'`
-liblapack_la_LIBADD = libdummy-lapack.la \
-	$(top_builddir)/libs/blas/libblas.la 
+libscilapack_la_LIBADD = libdummy-lapack.la \
+	$(top_builddir)/libs/blas/libsciblas.la 
 
-liblapack_la_PKGCONFIG = lapack.pc
+libscilapack_la_PKGCONFIG = lapack.pc
 all: all-am
 
 .SUFFIXES:
@@ -622,8 +623,8 @@ clean-noinstLTLIBRARIES:
 	done
 libdummy-lapack.la: $(libdummy_lapack_la_OBJECTS) $(libdummy_lapack_la_DEPENDENCIES) 
 	$(libdummy_lapack_la_LINK)  $(libdummy_lapack_la_OBJECTS) $(libdummy_lapack_la_LIBADD) $(LIBS)
-liblapack.la: $(liblapack_la_OBJECTS) $(liblapack_la_DEPENDENCIES) 
-	$(F77LINK) -rpath $(libdir) $(liblapack_la_OBJECTS) $(liblapack_la_LIBADD) $(LIBS)
+libscilapack.la: $(libscilapack_la_OBJECTS) $(libscilapack_la_DEPENDENCIES) 
+	$(F77LINK) -rpath $(libdir) $(libscilapack_la_OBJECTS) $(libscilapack_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

@@ -134,19 +134,19 @@ sci_gateway/fortran/Ex-lsqrsolve.f
 
 
 
-liboptimization_la_CFLAGS=  -Iincludes/ 
+libscioptimization_la_CFLAGS=  -Iincludes/ 
 #-Isrc/c/
-lib_LTLIBRARIES = liboptimization.la
+lib_LTLIBRARIES = libscioptimization.la
 
-liboptimization_la_SOURCES = $(OPTIMIZATION_C_SOURCES) $(OPTIMIZATION_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscioptimization_la_SOURCES = $(OPTIMIZATION_C_SOURCES) $(OPTIMIZATION_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
-liboptimization_la_LIBADD = \
+libscioptimization_la_LIBADD = \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la \
-	$(top_builddir)/libs/blas/libblas.la \
-	$(top_builddir)/libs/lapack/liblapack.la\
-	$(top_builddir)/modules/core/libcore.la
+	$(top_builddir)/libs/blas/libsciblas.la \
+	$(top_builddir)/libs/lapack/libscilapack.la\
+	$(top_builddir)/modules/core/libscicore.la
 
-liboptimization_la_PKGCONFIG = optimization.pc
+libscioptimization_la_PKGCONFIG = optimization.pc
 
 datadir=${prefix}/modules
 #### Target ######
@@ -154,13 +154,13 @@ target=$(datadir)/optimization
 
 
 #### optimization : Conf files ####
-liboptimization_la_rootdir = $(target)
-liboptimization_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscioptimization_la_rootdir = $(target)
+libscioptimization_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
 #### optimization : Scilab macros ###
-liboptimization_la_macrodir = $(target)/macros
-liboptimization_la_macro_DATA22 = macros/derivative.sci \
+libscioptimization_la_macrodir = $(target)/macros
+libscioptimization_la_macro_DATA22 = macros/derivative.sci \
 macros/linpro.sci \
 macros/quapro.sci \
 macros/fit_dat.sci \
@@ -198,21 +198,21 @@ macros/vec2list.bin macros/names macros/lib macros/buildmacros.sce
 
 
 #### optimization : init scripts #### 
-liboptimization_la_etcdir = $(target)/etc
-liboptimization_la_etc_DATA = etc/optimization.quit etc/optimization.start
+libscioptimization_la_etcdir = $(target)/etc
+libscioptimization_la_etc_DATA = etc/optimization.quit etc/optimization.start
 
 #### optimization : gateway declaration #### 
-liboptimization_la_sci_gatewaydir = $(target)/sci_gateway
-liboptimization_la_sci_gateway_DATA = sci_gateway/optimization
+libscioptimization_la_sci_gatewaydir = $(target)/sci_gateway
+libscioptimization_la_sci_gateway_DATA = sci_gateway/optimization
 #### optimization : include files ####
-liboptimization_la_includedir=$(includedir)/optimization
-liboptimization_la_include_HEADERS = includes/gw_optim.h \
+libscioptimization_la_includedir=$(includedir)/optimization
+libscioptimization_la_include_HEADERS = includes/gw_optim.h \
 includes/spd.h
 
 
 #### optimization : demos files ####
-liboptimization_la_demosdir=$(target)
-nobase_liboptimization_la_demos_DATA = demos/lmitool/normoptd.sci \
+libscioptimization_la_demosdir=$(target)
+nobase_libscioptimization_la_demos_DATA = demos/lmitool/normoptd.sci \
 demos/lmitool/dscr_lyap2.sci \
 demos/lmitool/fullstate.sci \
 demos/lmitool/testdscr_lyap \

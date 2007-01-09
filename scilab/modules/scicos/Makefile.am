@@ -207,23 +207,23 @@ includes/blocks.h:
 
 CLEANFILES=includes/blocks.h build/Cblocknames build/Fblocknames 
 
-libscicos_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
-#libscicos_la_LDFLAGS = -lf2c
-lib_LTLIBRARIES = libscicos.la
+libsciscicos_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
+#libsciscicos_la_LDFLAGS = -lf2c
+lib_LTLIBRARIES = libsciscicos.la
 
-libscicos_la_SOURCES = $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(SCICOS_FORTRAN_SOURCES_EXT) $(SCICOS_C_SOURCES_EXT)
+libsciscicos_la_SOURCES = $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(SCICOS_FORTRAN_SOURCES_EXT) $(SCICOS_C_SOURCES_EXT)
 
-libscicos_la_LIBADD = \
+libsciscicos_la_LIBADD = \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la \
 	$(top_builddir)/modules/differential_equations/libdifferential_equations.la \
-	$(top_builddir)/modules/core/libcore.la \
-	$(top_builddir)/modules/time/libtime.la \
-	$(top_builddir)/modules/gui/libgui.la \
-	$(top_builddir)/modules/fileio/libfileio.la \
-	$(top_builddir)/modules/graphics/libgraphics.la \
-	$(top_builddir)/libs/MALLOC/libmalloc.la
+	$(top_builddir)/modules/core/libscicore.la \
+	$(top_builddir)/modules/time/libscitime.la \
+	$(top_builddir)/modules/gui/libscigui.la \
+	$(top_builddir)/modules/fileio/libscifileio.la \
+	$(top_builddir)/modules/graphics/libscigraphics.la \
+	$(top_builddir)/libs/MALLOC/libscimalloc.la
 
-libscicos_la_PKGCONFIG = scicos.pc
+libsciscicos_la_PKGCONFIG = scicos.pc
 
 datadir=${prefix}/modules
 #### Target ######
@@ -231,13 +231,13 @@ target=$(datadir)/scicos
 
 
 #### scicos : Conf files ####
-libscicos_la_rootdir = $(target)
-libscicos_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libsciscicos_la_rootdir = $(target)
+libsciscicos_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
 #### scicos : Scilab macros ###
-libscicos_la_macrodir = $(target)
-nobase_libscicos_la_macro_DATA22 = macros/scicos_blocks/Sources/TIME_f.sci \
+libsciscicos_la_macrodir = $(target)
+nobase_libsciscicos_la_macro_DATA22 = macros/scicos_blocks/Sources/TIME_f.sci \
 macros/scicos_blocks/Sources/GENSQR_f.sci \
 macros/scicos_blocks/Sources/CLKIN_f.sci \
 macros/scicos_blocks/Sources/READAU_f.sci \
@@ -1396,17 +1396,17 @@ macros/lib
 
 
 #### scicos : init scripts #### 
-libscicos_la_etcdir = $(target)/etc
-libscicos_la_etc_DATA = etc/scicos.quit etc/scicos.start
+libsciscicos_la_etcdir = $(target)/etc
+libsciscicos_la_etc_DATA = etc/scicos.quit etc/scicos.start
 
 #### scicos : gateway declaration #### 
-libscicos_la_sci_gatewaydir = $(target)/sci_gateway
-libscicos_la_sci_gateway_DATA = sci_gateway/scicos
+libsciscicos_la_sci_gatewaydir = $(target)/sci_gateway
+libsciscicos_la_sci_gateway_DATA = sci_gateway/scicos
 
 
 #### scicos : include files ####
-libscicos_la_includedir=$(includedir)/scicos
-libscicos_la_include_HEADERS = includes/import.h \
+libsciscicos_la_includedir=$(includedir)/scicos
+libsciscicos_la_include_HEADERS = includes/import.h \
 includes/cc_pass2.h \
 includes/scicos_block.h \
 includes/scicos-def.h \
@@ -1419,8 +1419,8 @@ includes/blocks.h
 
 
 #### scicos : demos files ####
-libscicos_la_demosdir=$(target)
-nobase_libscicos_la_demos_DATA = demos/CodeGen/Fibo_standalone.c \
+libsciscicos_la_demosdir=$(target)
+nobase_libsciscicos_la_demos_DATA = demos/CodeGen/Fibo_standalone.c \
 demos/CodeGen/Therm.cosf \
 demos/CodeGen/Therm_standalone.c \
 demos/CodeGen/fibo.cosf \

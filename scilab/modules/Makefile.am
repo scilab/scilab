@@ -71,64 +71,64 @@ datadir=${prefix}/modules
 target=$(datadir)
 
 #### Basic files ####
-libscilab_la_rootdir = $(target)
-libscilab_la_root_DATA = modules
+libsciscilab_la_rootdir = $(target)
+libsciscilab_la_root_DATA = modules
 
 # 
-lib_LTLIBRARIES = libscilab.la
-libscilab_la_SOURCES = 
+lib_LTLIBRARIES = libsciscilab.la
+libsciscilab_la_SOURCES = 
 
 # Core modules
-libscilab_la_LIBADD = \
-	$(top_builddir)/modules/mexlib/libmexlib.la \
-	$(top_builddir)/modules/arnoldi/libarnoldi.la \
-	$(top_builddir)/modules/boolean/libboolean.la \
-	$(top_builddir)/modules/cacsd/libcacsd.la \
-	$(top_builddir)/modules/core/libcore.la \
+libsciscilab_la_LIBADD = \
+	$(top_builddir)/modules/mexlib/libscimexlib.la \
+	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
+	$(top_builddir)/modules/boolean/libsciboolean.la \
+	$(top_builddir)/modules/cacsd/libscicacsd.la \
+	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/data_structures/libdata_structures.la \
 	$(top_builddir)/modules/differential_equations/libdifferential_equations.la \
-	$(top_builddir)/modules/double/libdouble.la \
+	$(top_builddir)/modules/double/libscidouble.la \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la \
-	$(top_builddir)/modules/fileio/libfileio.la \
-	$(top_builddir)/modules/graphics/libgraphics.la \
-	$(top_builddir)/modules/gui/libgui.la \
-	$(top_builddir)/modules/integer/libinteger.la \
-	$(top_builddir)/modules/interpolation/libinterpolation.la \
-	$(top_builddir)/modules/intersci/libintersci.la \
-	$(top_builddir)/modules/io/libio.la \
+	$(top_builddir)/modules/fileio/libscifileio.la \
+	$(top_builddir)/modules/graphics/libscigraphics.la \
+	$(top_builddir)/modules/gui/libscigui.la \
+	$(top_builddir)/modules/integer/libsciinteger.la \
+	$(top_builddir)/modules/interpolation/libsciinterpolation.la \
+	$(top_builddir)/modules/intersci/libsciintersci.la \
+	$(top_builddir)/modules/io/libsciio.la \
 	$(top_builddir)/modules/linear_algebra/liblinear_algebra.la \
-	$(top_builddir)/modules/localization/liblocalization.la \
-	$(top_builddir)/modules/metanet/libmetanet.la \
-	$(top_builddir)/modules/optimization/liboptimization.la \
-	$(top_builddir)/modules/polynomials/libpolynomials.la \
-	$(top_builddir)/modules/randlib/librandlib.la \
-	$(top_builddir)/modules/symbolic/libsymbolic.la \
+	$(top_builddir)/modules/localization/libscilocalization.la \
+	$(top_builddir)/modules/metanet/libscimetanet.la \
+	$(top_builddir)/modules/optimization/libscioptimization.la \
+	$(top_builddir)/modules/polynomials/libscipolynomials.la \
+	$(top_builddir)/modules/randlib/libscirandlib.la \
+	$(top_builddir)/modules/symbolic/libscisymbolic.la \
 	$(top_builddir)/modules/signal_processing/libsignal_processing.la \
 	$(top_builddir)/modules/special_functions/libspecial_functions.la \
-	$(top_builddir)/modules/sound/libsound.la \
-	$(top_builddir)/modules/tclsci/libtclsci.la \
-	$(top_builddir)/modules/statistics/libstatistics.la \
-	$(top_builddir)/modules/time/libtime.la \
-	$(top_builddir)/modules/wintools/libwintools.la
+	$(top_builddir)/modules/sound/libscisound.la \
+	$(top_builddir)/modules/tclsci/libscitclsci.la \
+	$(top_builddir)/modules/statistics/libscistatistics.la \
+	$(top_builddir)/modules/time/libscitime.la \
+	$(top_builddir)/modules/wintools/libsciwintools.la
 
 if PVM
-libscilab_la_LIBADD += $(top_builddir)/modules/pvm/libscipvm.la
+libsciscilab_la_LIBADD += $(top_builddir)/modules/pvm/libsciscipvm.la
 endif
 
 if JAVA
-libscilab_la_LIBADD += $(top_builddir)/modules/jvm/libscijvm.la
+libsciscilab_la_LIBADD += $(top_builddir)/modules/jvm/libsciscijvm.la
 endif
 
 if SCICOS
-libscilab_la_LIBADD += $(top_builddir)/modules/scicos/libscicos.la
+libsciscilab_la_LIBADD += $(top_builddir)/modules/scicos/libsciscicos.la
 endif
 
 ## Libs 
-libscilab_la_LIBADD += \
-$(top_builddir)/libs/blas/libblas.la \
-$(top_builddir)/libs/hashtable/libhashtable.la \
-$(top_builddir)/libs/lapack/liblapack.la \
-$(top_builddir)/libs/MALLOC/libmalloc.la 
+libsciscilab_la_LIBADD += \
+$(top_builddir)/libs/blas/libsciblas.la \
+$(top_builddir)/libs/hashtable/libscihashtable.la \
+$(top_builddir)/libs/lapack/libscilapack.la \
+$(top_builddir)/libs/MALLOC/libscimalloc.la 
 
 BUILT_SOURCES = modules
 

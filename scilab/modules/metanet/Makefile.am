@@ -116,21 +116,21 @@ sci_gateway/fortran/sci_m6umtree.f \
 sci_gateway/fortran/sci_m6visitor.f
 
 
-libmetanet_la_CFLAGS=  -Iincludes/  -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/
+libscimetanet_la_CFLAGS=  -Iincludes/  -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/
 
-lib_LTLIBRARIES = libmetanet.la
+lib_LTLIBRARIES = libscimetanet.la
 
-libmetanet_la_SOURCES = $(METANET_C_SOURCES) $(METANET_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscimetanet_la_SOURCES = $(METANET_C_SOURCES) $(METANET_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
-libmetanet_la_LIBADD = \
-	$(top_builddir)/libs/MALLOC/libmalloc.la \
-	$(top_builddir)/libs/hashtable/libhashtable.la \
-	$(top_builddir)/libs/blas/libblas.la \
-	$(top_builddir)/modules/intersci/libintersci.la \
-	$(top_builddir)/modules/core/libcore.la \
+libscimetanet_la_LIBADD = \
+	$(top_builddir)/libs/MALLOC/libscimalloc.la \
+	$(top_builddir)/libs/hashtable/libscihashtable.la \
+	$(top_builddir)/libs/blas/libsciblas.la \
+	$(top_builddir)/modules/intersci/libsciintersci.la \
+	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la
 
-libmetanet_la_PKGCONFIG = metanet.pc
+libscimetanet_la_PKGCONFIG = metanet.pc
 
 datadir=${prefix}/modules
 #### Target ######
@@ -138,13 +138,13 @@ target=$(datadir)/metanet
 
 
 #### metanet : Conf files ####
-libmetanet_la_rootdir = $(target)
-libmetanet_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscimetanet_la_rootdir = $(target)
+libscimetanet_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
 #### metanet : Scilab macros ###
-libmetanet_la_macrodir = $(target)/macros
-libmetanet_la_macro_DATA22 = macros/ge_do_replot.sci \
+libscimetanet_la_macrodir = $(target)/macros
+libscimetanet_la_macro_DATA22 = macros/ge_do_replot.sci \
 macros/salesman.sci \
 macros/strong_con_nodes.sci \
 macros/perfect_match.sci \
@@ -456,21 +456,21 @@ macros/trans_closure.bin macros/names macros/lib macros/buildmacros.sce
 
 
 #### metanet : init scripts #### 
-libmetanet_la_etcdir = $(target)/etc
-libmetanet_la_etc_DATA = etc/metanet.quit etc/metanet.start
+libscimetanet_la_etcdir = $(target)/etc
+libscimetanet_la_etc_DATA = etc/metanet.quit etc/metanet.start
 
 #### metanet : gateway declaration #### 
-libmetanet_la_sci_gatewaydir = $(target)/sci_gateway
-libmetanet_la_sci_gateway_DATA = sci_gateway/metanet
+libscimetanet_la_sci_gatewaydir = $(target)/sci_gateway
+libscimetanet_la_sci_gateway_DATA = sci_gateway/metanet
 
 #### metanet : include files ####
-libmetanet_la_includedir=$(includedir)/metanet
-libmetanet_la_include_HEADERS = includes/gw_metanet.h
+libscimetanet_la_includedir=$(includedir)/metanet
+libscimetanet_la_include_HEADERS = includes/gw_metanet.h
 
 
 #### metanet : demos files ####
-libmetanet_la_demosdir=$(target)/demos/
-libmetanet_la_demos_DATA = demos/foret.graph \
+libscimetanet_la_demosdir=$(target)/demos/
+libscimetanet_la_demos_DATA = demos/foret.graph \
 demos/toto.graph \
 demos/colored.graph \
 demos/icon.graph \

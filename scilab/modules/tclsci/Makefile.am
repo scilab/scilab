@@ -38,19 +38,19 @@ sci_gateway/sci_set.c \
 sci_gateway/sci_TCL_ExistArray.c \
 sci_gateway/sci_TCL_UpVar.c
 
-lib_LTLIBRARIES = libtclsci.la
+lib_LTLIBRARIES = libscitclsci.la
 
-libtclsci_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/ $(TCL_INC_PATH) $(TK_INC_PATH)
-libtclsci_la_LDFLAGS= $(TCLTK_LIBS)
+libscitclsci_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/ $(TCL_INC_PATH) $(TK_INC_PATH)
+libscitclsci_la_LDFLAGS= $(TCLTK_LIBS)
 
-libtclsci_la_SOURCES = $(TCLSCI_C_SOURCES) $(GATEWAY_C_SOURCES)
+libscitclsci_la_SOURCES = $(TCLSCI_C_SOURCES) $(GATEWAY_C_SOURCES)
 
-libtclsci_la_LIBADD = 
-	$(top_builddir)/modules/intersci/libintersci.la \
-	$(top_builddir)/modules/core/libcore.la \
-	$(top_builddir)/libs/MALLOC/libmalloc.la
+libscitclsci_la_LIBADD = 
+	$(top_builddir)/modules/intersci/libsciintersci.la \
+	$(top_builddir)/modules/core/libscicore.la \
+	$(top_builddir)/libs/MALLOC/libscimalloc.la
 
-libtclsci_la_PKGCONFIG = tclsci.pc
+libscitclsci_la_PKGCONFIG = tclsci.pc
 
 
 
@@ -60,13 +60,13 @@ target=$(datadir)/tclsci
 
 
 #### tclsci : Conf files ####
-libtclsci_la_rootdir = $(target)
-libtclsci_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscitclsci_la_rootdir = $(target)
+libscitclsci_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
 #### tclsci : Scilab macros ###
-libtclsci_la_macrodir = $(target)/macros
-libtclsci_la_macro_DATA22 = macros/TK_SetVar.sci \
+libscitclsci_la_macrodir = $(target)/macros
+libscitclsci_la_macro_DATA22 = macros/TK_SetVar.sci \
 macros/IsAScalar.sci \
 macros/uimenu.sci \
 macros/config.sci \
@@ -124,8 +124,8 @@ macros/winlist.bin macros/names macros/lib macros/buildmacros.sce
 
 
 ### TCL macros ###
-libtclsci_la_tcldir = $(target)
-nobase_libtclsci_la_tcl_DATA = tcl/utils/tk_choose.tcl \
+libscitclsci_la_tcldir = $(target)
+nobase_libscitclsci_la_tcl_DATA = tcl/utils/tk_choose.tcl \
 tcl/utils/Notebook.tcl \
 tcl/utils/Balloon.tcl \
 tcl/utils/Combobox.tcl \
@@ -316,16 +316,16 @@ tcl/misc.tcl \
 tcl/set.tcl
 
 #### tclsci : init scripts #### 
-libtclsci_la_etcdir = $(target)/etc
-libtclsci_la_etc_DATA = etc/tclsci.quit etc/tclsci.start
+libscitclsci_la_etcdir = $(target)/etc
+libscitclsci_la_etc_DATA = etc/tclsci.quit etc/tclsci.start
 
 #### tclsci : gateway declaration #### 
-libtclsci_la_sci_gatewaydir = $(target)/sci_gateway
-libtclsci_la_sci_gateway_DATA = sci_gateway/tclsci
+libscitclsci_la_sci_gatewaydir = $(target)/sci_gateway
+libscitclsci_la_sci_gateway_DATA = sci_gateway/tclsci
 
 #### tclsci : include files ####
-libtclsci_la_includedir=$(includedir)/tclsci
-libtclsci_la_include_HEADERS = includes/sci_set.h \
+libscitclsci_la_includedir=$(includedir)/tclsci
+libscitclsci_la_include_HEADERS = includes/sci_set.h \
 includes/sci_TCL_ExistArray.h \
 includes/TclUiSet.h \
 includes/GedManagement.h \
@@ -358,15 +358,15 @@ includes/sci_TCL_GetVar.h
 
 
 #### tclsci : demos files sciGUI ####
-libtclsci_la_demossciGUIdir=$(target)/demos/sciGUI/
-libtclsci_la_demossciGUI_DATA = demos/sciGUI/sciGUIdemo.dpf \
+libscitclsci_la_demossciGUIdir=$(target)/demos/sciGUI/
+libscitclsci_la_demossciGUI_DATA = demos/sciGUI/sciGUIdemo.dpf \
 demos/sciGUI/test_demoplay.dpf \
 demos/sciGUI/scilab01.gif \
 demos/sciGUI/logo01.gif
 
 #### tclsci : demos files tk ####
-libtclsci_la_demostkdir=$(target)/demos/tk/
-libtclsci_la_demostk_DATA = demos/tk/timer \
+libscitclsci_la_demostkdir=$(target)/demos/tk/
+libscitclsci_la_demostk_DATA = demos/tk/timer \
 demos/tk/tk.dem \
 demos/tk/rolodex.sce \
 demos/tk/demredraw.sci \
