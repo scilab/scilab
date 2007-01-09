@@ -156,6 +156,8 @@ proc packnewbuffer {textarea targetpw forcetitlebar {whereafter ""} {wherebefore
                                               $pad.filemenu.wind invoke 1"
     bind $tapwfr.topbar    <Button-2>        {switchbuffersinpane %W}
     bind $tapwfr.panetitle <Button-2>        {switchbuffersinpane %W}
+    bind $tapwfr.panetitle <Enter> "update_bubble_panetitle enter %W \[winfo pointerxy $pad\] $textarea"
+    bind $tapwfr.panetitle <Leave> "update_bubble_panetitle leave %W \[winfo pointerxy $pad\] $textarea"
     pack $tapwfr.panetitle -in $tapwfr.topbar -expand 1 -fill none
 
     pack $textarea       -in $tapwfr.topleft  -side left   -expand 1 -fill both
@@ -197,6 +199,8 @@ proc packbuffer {textarea} {
                                                  $pad.filemenu.wind invoke 1"
     bind $curtapwfr.topbar    <Button-2>        {switchbuffersinpane %W}
     bind $curtapwfr.panetitle <Button-2>        {switchbuffersinpane %W}
+    bind $curtapwfr.panetitle <Enter> "update_bubble_panetitle enter %W \[winfo pointerxy $pad\] $textarea"
+    bind $curtapwfr.panetitle <Leave> "update_bubble_panetitle leave %W \[winfo pointerxy $pad\] $textarea"
 
     pack $textarea -in $curtapwfr.topleft -side left -expand 1 -fill both
 

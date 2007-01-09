@@ -7,7 +7,8 @@ set winTitle "SciPad"
 #                b. -stretch always option for panedwindows
 #                c. proc timestamp uses clock milliseconds
 #                d. peer text widgets are used when splitting
-#                e. Tk bug 1169429 is fixed, workaround hack removed
+#                e. Tk bug 1169429 (relative to cursor blinking) is fixed, workaround hack removed
+#                f. -topmost option of toplevels used also on Linux
 if { [package vcompare $tcl_version 8.5] >= 0 } {
     set Tcl85 1
 } else {

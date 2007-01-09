@@ -2674,3 +2674,12 @@ Francois VOGEL, 05/01/07
  * Fixed: proc changedmodified could be launched with a non-textarea input
    argument
  * version --> 6.72
+
+Francois VOGEL, 09/01/07
+ * Added tooltips displaying the full filename of the file packed in the
+   buffer whose title is currently hovered (only when filenames display
+   type is not "Full path")
+ * Fixed the bad fix for hidden files introduced in 6.71. When saving, the
+   files must actually be truncated. The workaround for overwriting hidden
+   files is to delete them first
+ * version --> 6.73

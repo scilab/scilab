@@ -955,17 +955,44 @@ proc writesave {textarea nametosave} {
 proc writefileondisk {textarea nametosave {nobackupskip 1}} {
 # really write the file onto the disk
 # all writability tests have normally been done before
-    global filebackupdepth
+    global filebackupdepth tcl_platform
+
     if {$nobackupskip} {
         backupfile $nametosave $filebackupdepth
     }
-    # the flags "WRONLY CREAT" are needed instead of "w" because "w" actually
-    # means "WRONLY CREAT TRUNC", which fails with existing hidden files. See
-    # Tcl bug 1622579:
+
+    # open in mode "w" means "WRONLY CREAT TRUNC", and this should work OK
+    # for all files, hidden or not, IMHO
+    # but experience shows that "w" fails with existing hidden files on
+    # Windows. See Tcl bug 1622579:
     # http://sourceforge.net/tracker/index.php?func=detail&aid=1622579&group_id=10894&atid=110894
-    set FileNameToSave [open $nametosave "WRONLY CREAT"]
-    puts -nonewline $FileNameToSave [$textarea get 1.0 end]
-    close $FileNameToSave
+    # However, the TRUNC flag is really needed (i.e. there should be the
+    # full "w" mode) to overwrite files, otherwise writing overwrites
+    # without truncating to zero length when opening, which results in
+    # a wrong file when the new version is smaller than the exising
+    # version on disk
+    # Therefore, hidden files are treated specially on windows: first
+    # they are deleted and then saved on disk
+    set specialtreatment 0
+    if {$tcl_platform(platform) == "windows" && [file exists $nametosave]} {
+        if {[file attributes $nametosave -hidden]} {
+            set specialtreatment 1
+        }
+    }
+
+    if {!$specialtreatment} {
+        # normal case
+        set FileNameToSave [open $nametosave w]
+        puts -nonewline $FileNameToSave [$textarea get 1.0 end]
+        close $FileNameToSave
+    } else {
+        # we are on windows, and the file is hidden
+        file delete -- $nametosave
+        set FileNameToSave [open $nametosave "WRONLY CREAT"]
+        puts -nonewline $FileNameToSave [$textarea get 1.0 end]
+        close $FileNameToSave
+        file attributes $nametosave -hidden 1
+    }
 }
 
 proc savepreferences {} {
