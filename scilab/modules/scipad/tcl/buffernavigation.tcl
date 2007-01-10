@@ -276,13 +276,22 @@ proc maximizebuffer {} {
     restoremenuesbinds
 }
 
-proc splitwindow {neworient {tatopack ""}} {
+proc splitwindow {neworient tatopack {splitmode tile}} {
 # split current window:
 #    add a vertical pane if $neworient is "vertical"
 #    add an horizontal pane if $neworient is "horizontal"
 # splitting always starts from the current textarea, i.e
 # everything appears to happen as if the *current* textarea
 # is split
+# if $tatopack != "" then the textarea $tatopack will be packed in the new
+# pane, otherwise:
+#    - with Tk 8.5: behaviour depends on $splitmode as follows:
+#        - if $splitmode == "file", a new peer is created
+#        - if $splitmode == "tile", the last hidden textarea is used, and if
+#          there is none an empty textarea is created (Tk 8.4 behaviour)
+#    - with Tk 8.4: the last hidden textarea is used, and if there is none
+#      an empty textarea is created
+# $splitmode is only used with Tk 8.5 :
     global pad pwmaxid textfontsize listoftextarea tileprocalreadyrunning
     global Tk85
 
@@ -320,7 +329,11 @@ proc splitwindow {neworient {tatopack ""}} {
         } else {
             # the name of of the textarea to pack was not provided,
             # this happens with the commands from the windows menu
-            if {!$Tk85} {
+            if {$Tk85 && $splitmode == "file"} {
+                # create a peer text widget
+                set newta [createpeertextwidget $tacur]
+            } else {
+                # Tk 8.4 case, or $splitmode == "tile" in Tk 8.5
                 if {[llength $listoftextarea] > [gettotnbpanes]} {
                     # if there is a hidden buffer, use it
                     set newta $pad.new[getlasthiddentextareaid]
@@ -328,9 +341,6 @@ proc splitwindow {neworient {tatopack ""}} {
                     # otherwise create an empty textarea
                     set newta [createnewemptytextarea]
                 }
-            } else {
-                # create a peer text widget
-                set newta [createpeertextwidget $tacur]
             }
         }
 
@@ -377,7 +387,11 @@ proc splitwindow {neworient {tatopack ""}} {
         } else {
             # the name of of the textarea to pack was not provided,
             # this happens with the commands from the windows menu
-            if {!$Tk85} {
+            if {$Tk85 && $splitmode == "file"} {
+                # create a peer text widget
+                set newta [createpeertextwidget $tacur]
+            } else {
+                # Tk 8.4 case, or $splitmode == "tile" in Tk 8.5
                 if {[llength $listoftextarea] > [gettotnbpanes]} {
                     # if there is a hidden buffer, use it
                     set newta $pad.new[getlasthiddentextareaid]
@@ -385,9 +399,6 @@ proc splitwindow {neworient {tatopack ""}} {
                     # otherwise create an empty textarea
                     set newta [createnewemptytextarea]
                 }
-            } else {
-                # create a peer text widget
-                set newta [createpeertextwidget $tacur]
             }
         }
 

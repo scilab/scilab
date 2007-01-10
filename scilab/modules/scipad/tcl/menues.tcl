@@ -6,6 +6,7 @@ proc createmenues {} {
     global FirstMRUFileNameInFileMenu
     global Shift_Tab
     foreach c1 "$bgcolors $fgcolors" {global $c1}
+    global Tk85
 
     #destroy old menues (used when changing language)
     foreach w [winfo children $pad.filemenu] {
@@ -351,9 +352,17 @@ proc createmenues {} {
     eval "$pad.filemenu.wind add command [me "&Maximize"] \
                -command \"maximizebuffer\" -accelerator Ctrl+1 "
     eval "$pad.filemenu.wind add command [me "&Split"] \
-               -command \"splitwindow vertical\" -accelerator Ctrl+2 "
+               -command \"splitwindow vertical \\\"\\\" tile\" -accelerator Ctrl+2 "
     eval "$pad.filemenu.wind add command [me "S&plit (side by side)"] \
-               -command \"splitwindow horizontal\" -accelerator Ctrl+3 "
+               -command \"splitwindow horizontal \\\"\\\" tile\" -accelerator Ctrl+3 "
+    if {$Tk85} {
+        eval "$pad.filemenu.wind add command [me "Sp&lit file"] \
+                   -command \"splitwindow vertical \\\"\\\" file\" \
+                   -accelerator Ctrl+Alt+2 "
+        eval "$pad.filemenu.wind add command [me "Spl&it file (side by side)"] \
+                   -command \"splitwindow horizontal \\\"\\\" file\" \
+                   -accelerator Ctrl+Alt+3 "
+    }
     eval "$pad.filemenu.wind add command [me "Tile all &vertically"] \
                -command \"tileallbuffers vertical\" "
     eval "$pad.filemenu.wind add command [me "Tile all &horizontally"] \

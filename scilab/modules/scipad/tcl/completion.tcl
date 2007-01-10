@@ -508,7 +508,7 @@ proc SetCompletionBinding {} {
     global Shift_Tab
 
     if {![info exists oldcompletionbinding]} {
-        # this is the first call of the proc (from bindings.tcl)
+        # this is the first call of the proc (from commonbindings.tcl)
     } else {
         # the proc was called from the options/completion menu
 

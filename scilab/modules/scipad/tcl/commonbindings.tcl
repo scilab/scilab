@@ -75,6 +75,10 @@ bind Text <Shift-Control-Button-1> {set ind [%W index current]; showpopupsource 
 bind $pad <Control-Key-1> "$pad.filemenu.wind invoke 1"
 bind $pad <Control-Key-2> "$pad.filemenu.wind invoke 2"
 bind $pad <Control-Key-3> "$pad.filemenu.wind invoke 3"
+if {$Tk85} {
+    bind $pad <Control-Alt-Key-2> "$pad.filemenu.wind invoke 4"
+    bind $pad <Control-Alt-Key-3> "$pad.filemenu.wind invoke 5"
+}
 # For Tk 8.5 and above, the behavior on external resize is driven by
 # the option -stretch always
 # For Tk before 8.5, proc spaceallsasheskeeprelsizes emulates this option

@@ -2690,3 +2690,13 @@ Francois VOGEL, 10/01/07
    visible in the leaved textarea
  * First tests of debug with peers (OK)
  * version --> 6.74
+
+Francois VOGEL, 10/01/07
+ * Better fix for saving over hidden files (6.73). The hidden attribute is
+   removed, the file is saved, and the attribute is set back
+ * Tk 8.5: Added commands in the windows menu to distinguish split tile (and
+   pack a hidden buffer, or create a new empty buffer), from split file (and
+   create a new peer)
+ * After closure of peers, the last remaining peer now properly looses its
+   peer identifier in the displayed name
+ * version --> 6.75

@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.72
+# in sync at least with v6.75
 
 
 # commons
@@ -477,6 +477,8 @@
     ::msgcat::mcset fr "&Maximize" "&Maximiser"
     ::msgcat::mcset fr "&Split" "&Diviser"
     ::msgcat::mcset fr "S&plit (side by side)" "Diviser (&côte à côte)"
+    ::msgcat::mcset fr "Sp&lit file" "D&iviser le fichier"
+    ::msgcat::mcset fr "Spl&it file (side by side)" "Diviser le fichier (cô&te à côte)"
     ::msgcat::mcset fr "Tile all &vertically" "Aligner &verticalement"
     ::msgcat::mcset fr "Tile all &horizontally" "Aligner &horizontalement"
     ::msgcat::mcset fr "Space sashes &evenly" "Homo&généiser"

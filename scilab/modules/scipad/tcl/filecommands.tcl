@@ -217,6 +217,7 @@ proc byebye {textarea} {
         $pad.filemenu.wind delete $ilab
 
         # refresh peer identifiers in the windows menu and title bars
+        #   first decrease peer id for required buffers
         foreach {dname removedpeerid} [removepeerid $listoffile("$textarea",displayedname)] {}
         foreach peerta [getpeerlist $textarea] {
             set ilab [extractindexfromlabel $pad.filemenu.wind \
@@ -227,6 +228,15 @@ proc byebye {textarea} {
                 set listoffile("$peerta",displayedname) $dname
                 setwindowsmenuentrylabel $ilab $dname
             }
+        }
+        #   second, if there is only one peer buffer remaining, then remove its peer id
+        set peerslist [getpeerlist $textarea]
+        if {[llength $peerslist] == 1} {
+            set ilab [extractindexfromlabel $pad.filemenu.wind \
+                     $listoffile("$peerslist",displayedname)]
+            foreach {dname peerid} [removepeerid $listoffile("$peerslist",displayedname)] {}
+            set listoffile("$peerslist",displayedname) $dname
+            setwindowsmenuentrylabel $ilab $dname
         }
         # refresh panes titles (actually only needed for peers)
         updatepanestitles
@@ -972,7 +982,8 @@ proc writefileondisk {textarea nametosave {nobackupskip 1}} {
     # a wrong file when the new version is smaller than the exising
     # version on disk
     # Therefore, hidden files are treated specially on windows: first
-    # they are deleted and then saved on disk
+    # the hidden flag is removed, the file is saved on disk and finally
+    # the hidden flag is set back
     set specialtreatment 0
     if {$tcl_platform(platform) == "windows" && [file exists $nametosave]} {
         if {[file attributes $nametosave -hidden]} {
@@ -980,17 +991,15 @@ proc writefileondisk {textarea nametosave {nobackupskip 1}} {
         }
     }
 
-    if {!$specialtreatment} {
-        # normal case
-        set FileNameToSave [open $nametosave w]
-        puts -nonewline $FileNameToSave [$textarea get 1.0 end]
-        close $FileNameToSave
-    } else {
-        # we are on windows, and the file is hidden
-        file delete -- $nametosave
-        set FileNameToSave [open $nametosave "WRONLY CREAT"]
-        puts -nonewline $FileNameToSave [$textarea get 1.0 end]
-        close $FileNameToSave
+    if {$specialtreatment} {
+        file attributes $nametosave -hidden 0
+    }
+
+    set FileNameToSave [open $nametosave w]
+    puts -nonewline $FileNameToSave [$textarea get 1.0 end]
+    close $FileNameToSave
+
+    if {$specialtreatment} {
         file attributes $nametosave -hidden 1
     }
 }
