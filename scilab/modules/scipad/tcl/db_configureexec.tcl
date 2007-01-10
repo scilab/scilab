@@ -361,7 +361,7 @@ proc checkarglist {funname} {
     set varargincase false
     set parametersOK "false"
     set found "false"
-    foreach textarea $listoftextarea {
+    foreach textarea [filteroutpeers $listoftextarea] {
         set allfun [regexp -all -inline -indices -- $pat [$textarea get "1.0" end]]
 # <TODO>: if the above returns more than one match that is not in a comment
 #         nor in a string, result of checkarglist can be wrong - currently the
@@ -602,14 +602,14 @@ proc Obtainall_bp {} {
 
 proc showwrappercode {} {
     global listoftextarea
-    foreach w $listoftextarea {
+    foreach w [filteroutpeers $listoftextarea] {
         $w tag configure db_wrapper -elide false
     }
 }
 
 proc hidewrappercode {} {
     global listoftextarea
-    foreach w $listoftextarea {
+    foreach w [filteroutpeers $listoftextarea] {
         $w tag configure db_wrapper -elide true
     }
 }
@@ -628,7 +628,7 @@ proc scedebugcleanup_bp {} {
     if {!$debugassce} {return}
 
     # remove wrapper data previously added in the buffer
-    foreach w $listoftextarea {
+    foreach w [filteroutpeers $listoftextarea] {
         # wrapper data removal cannot be undone
         # and must not change the modified flag
         $w configure -undo 0

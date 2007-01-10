@@ -77,8 +77,7 @@ proc closecurifjustopenedbyuabpt {} {
 
 proc removeallactive_bp {} {
     global listoftextarea
-    foreach textarea $listoftextarea {
+    foreach textarea [filteroutpeers $listoftextarea] {
         $textarea tag remove activebreakpoint 1.0 end
     }
 }
-

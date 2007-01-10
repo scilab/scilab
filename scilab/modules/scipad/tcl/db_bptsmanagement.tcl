@@ -74,7 +74,7 @@ proc removeall_bp {} {
 # possibly existing breakpoints in Scilab are not touched
     global listoftextarea
     if {[isscilabbusy 5]} {return}
-    foreach textarea $listoftextarea {
+    foreach textarea [filteroutpeers $listoftextarea] {
         set saveinsert [$textarea index insert]
         set tagranges [$textarea tag ranges breakpoint]
         foreach {bp_start bp_stop} $tagranges {
@@ -97,7 +97,7 @@ proc removescilab_bp {outp} {
         foreach fun $funnames {
             set delbpcomm [concat $delbpcomm "delbpt(\"$fun\");"]
         }
-        foreach textarea $listoftextarea {
+        foreach textarea [filteroutpeers $listoftextarea] {
             set delbpcomm [concat $delbpcomm [removescilabbuffer_bp "no_output" $textarea]]
         }
         if {$outp != "no_output"} {
@@ -166,7 +166,7 @@ proc countallbreakpointedlines {} {
 # count the number of breakpointed lines in all the opened buffers
     global listoftextarea
     set N 0
-    foreach ta $listoftextarea {
+    foreach ta [filteroutpeers $listoftextarea] {
         incr N [llength [$ta tag ranges breakpoint]]
     }
     # divide by 2 since $ta tag ranges returns 2 elements for each breakpoint
@@ -178,7 +178,7 @@ proc countallbreakpointedmacros {} {
 # contain breakpointed lines
     global listoftextarea
     set N 0
-    foreach ta $listoftextarea {
+    foreach ta [filteroutpeers $listoftextarea] {
         # to take into account functions of the same name defined in
         # different buffers, macrlst is initialized for each buffer
         set macrlst [list ]

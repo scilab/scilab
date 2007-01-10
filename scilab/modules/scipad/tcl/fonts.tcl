@@ -250,6 +250,7 @@ proc updatefont {{fontsource "newfont"}} {
     }
     foreach m "$allmenus" {$m configure -font $menuFont}
 
+    # this must be done for all textareas, including peers
     foreach textarea $listoftextarea {
         $textarea configure -font $textFont
         $textarea tag configure activebreakpoint -font $actbptextFont
@@ -333,6 +334,7 @@ proc settabsize {} {
 # update the tab size in all the existing text widgets
     global textfontsize tabsizeinchars listoftextarea
     set tabsizeinpix [expr $textfontsize / [tk scaling] / [tk scaling] * $tabsizeinchars]
+    # this must be done for all textareas, including peers
     foreach textarea $listoftextarea {
         $textarea configure -tabs $tabsizeinpix
     }

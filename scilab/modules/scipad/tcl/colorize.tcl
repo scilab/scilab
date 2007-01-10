@@ -656,7 +656,15 @@ proc docolorizeuserfun {} {
     set mode scilab
     set tag userfun
 
-    foreach ta $listoftextarea {
+    # note wrt to peers:
+    #    - tags are shared among peers
+    #    - $listoffile("$ta",colorize) is the same for all peers of $ta
+    # there is therefore no need to perform the tasks in this proc for all
+    # textareas, it is only required for any one of the peers (and of course
+    # for textareas that have no peers)
+    set nopeerslistoftextarea [filteroutpeers $listoftextarea]
+
+    foreach ta $nopeerslistoftextarea {
         if {[isdisplayed $ta]} {
             $ta tag remove userfun 1.0 end
         }
@@ -674,7 +682,7 @@ proc docolorizeuserfun {} {
     # appear if a function is defined more than once in a buffer or across
     # opened buffers (the entries in words will at least differ by the
     # line number)
-    foreach ta $listoftextarea {
+    foreach ta $nopeerslistoftextarea {
         if {$listoffile("$ta",colorize)} {
             set funsinthatbuf [lindex [getallfunsintextarea $ta] 1]
             if {[lindex $funsinthatbuf 0] == "0NoFunInBuf"} {
@@ -697,7 +705,7 @@ proc docolorizeuserfun {} {
     # regexp (fooi) n times (n being the number of defined functions)
     # speed gain is approximately 20%
     # tagging is done only in visible buffers
-    foreach ta $listoftextarea {
+    foreach ta $nopeerslistoftextarea {
         if {[isdisplayed $ta] && $listoffile("$ta",colorize)} {
 
             # don't colorize user function in buffers other than scilab
@@ -933,8 +941,11 @@ proc colormenuoption {c} {
         updateactiveforegroundcolormenu
         # refresh all color settings for all the opened buffers (only one
         # color was changed)
+        # we need to do it also for peers, because TextStyles is not only tag
+        # management, it is also configuration of the text widget itself
+        # ($FGCOLOR $BGCOLOR $CURCOLOR $SELCOLOR)
         foreach i $listoftextarea {
-            TextStyles $i; update
+            TextStyles $i
         }
         tagcontlinesinallbuffers
     }
@@ -943,7 +954,7 @@ proc colormenuoption {c} {
 proc refreshQuotedStrings {} {
     global listoftextarea
     showinfo [mc "Wait seconds while recolorizing file"]
-    foreach w $listoftextarea {
+    foreach w [filteroutpeers $listoftextarea] {
         $w tag remove rem2 1.0 end
         $w tag remove textquoted 1.0 end
         backgroundcolorize $w

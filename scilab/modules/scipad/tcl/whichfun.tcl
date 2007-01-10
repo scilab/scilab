@@ -147,7 +147,7 @@ proc getendfunctionpos {ta precfun} {
 
 proc tagcontlinesinallbuffers {} {
     global listoftextarea
-    foreach w $listoftextarea {
+    foreach w [filteroutpeers $listoftextarea] {
         tagcontlines $w
     }
 }
@@ -347,7 +347,7 @@ proc getallfunsinalltextareas {} {
 # "
     global listoftextarea
     set hitslist ""
-    foreach textarea $listoftextarea {
+    foreach textarea [filteroutpeers $listoftextarea] {
         set hitslistinbuf [getallfunsintextarea $textarea]
         set hitslist "$hitslist $hitslistinbuf"
     }

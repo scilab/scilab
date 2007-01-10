@@ -17,7 +17,7 @@ proc execfile_bp {{stepmode "nostep"}} {
 
     # create the setbpt command
     set setbpcomm ""
-    foreach textarea $listoftextarea {
+    foreach textarea [filteroutpeers $listoftextarea] {
         set tagranges [$textarea tag ranges breakpoint]
         foreach {tstart tstop} $tagranges {
             set infun [whichfun [$textarea index $tstart] $textarea]
@@ -47,7 +47,7 @@ proc execfile_bp {{stepmode "nostep"}} {
         # note : we can't exec *all* buffers because some might contain
         # non-Scilab scripts, which is not checked by execfile
         set funname [string range $funnameargs 0 [expr [string first "(" $funnameargs] - 1]]
-        foreach textarea $listoftextarea {
+        foreach textarea [filteroutpeers $listoftextarea] {
             if {[info exists funsinbuffer($textarea)]} {
                 if {[lsearch $funsinbuffer($textarea) $funname] != -1 && \
                      $textarea != [gettextareacur]} {

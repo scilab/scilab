@@ -603,7 +603,7 @@ proc openfileifexists {file} {
     global tileprocalreadyrunning
     if {$tileprocalreadyrunning} {return}
     set alreadyopen "false"
-    foreach ta $listoftextarea {
+    foreach ta [filteroutpeers $listoftextarea] {
         if {$listoffile("$ta",fullname) == $file} {
             set i [extractindexfromlabel $pad.filemenu.wind $listoffile("$ta",displayedname)]
             $pad.filemenu.wind invoke $i
@@ -687,8 +687,8 @@ proc lookiffileisopen {file} {
     global pad listoffile listoftextarea
     set ilab 0
     set fpf [file normalize $file]
-    foreach textarea $listoftextarea {
-        if {$listoffile("$textarea",fullname)==$fpf} {
+    foreach textarea [filteroutpeers $listoftextarea] {
+        if {$listoffile("$textarea",fullname) == $fpf} {
             set ilab [extractindexfromlabel $pad.filemenu.wind $listoffile("$textarea",displayedname)]
             break
         }
@@ -785,7 +785,7 @@ proc filetosavecur {} {
 proc filetosaveall {} {
 # save all modified buffers to disk
     global listoftextarea
-    foreach ta $listoftextarea {
+    foreach ta [filteroutpeers $listoftextarea] {
         if {[ismodified $ta]} {
             filetosave $ta
         }

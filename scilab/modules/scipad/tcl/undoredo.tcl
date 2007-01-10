@@ -55,7 +55,8 @@ proc isanymodified {} {
 # Return true if any buffer was modified
     global listoftextarea
     set ret false
-    foreach textarea $listoftextarea {
+    # the modified flag is shared among peers, no need to check all of them
+    foreach textarea [filteroutpeers $listoftextarea] {
         if {[ismodified $textarea]} {
             set ret true
             break

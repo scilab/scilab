@@ -306,3 +306,7 @@ http://groups.google.fr/group/comp.soft-sys.math.scilab/browse_thread/thread/dc0
 -In tile mode, add tooltips displaying listoffile("$ta",fullname) of the
  hoovered buffer title (perhaps only when filenames display type is not
  "Full path")
+
+-Think about maintaining a nopeerlistoftextarea variable in the code,
+ instead of filtering out peers a lot of times everywhere. Filtering is
+ costly when there is a lot of textareas

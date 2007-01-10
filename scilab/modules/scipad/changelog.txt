@@ -2683,3 +2683,10 @@ Francois VOGEL, 09/01/07
    files must actually be truncated. The workaround for overwriting hidden
    files is to delete them first
  * version --> 6.73
+
+Francois VOGEL, 10/01/07
+ * Optimized loops on $listoftextarea to avoid unnecessary work on peers
+ * Fixed textarea jump when switching to another one when the cursor is not
+   visible in the leaved textarea
+ * First tests of debug with peers (OK)
+ * version --> 6.74

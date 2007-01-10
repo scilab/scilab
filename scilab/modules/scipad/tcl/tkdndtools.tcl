@@ -192,7 +192,7 @@ proc Button1BindTextArea { w x y } {
 
     # ensure that the insertion point remains visible, even if it jumped
     # to the next line (see comment above about TextClosestGap)
-    after idle {[gettextareacur] see insert}
+    after idle "$w see insert"
 
     return $dndreallystarted
 }

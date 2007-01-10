@@ -354,7 +354,7 @@ proc findtextdialog {typ} {
     if {!$tahasnosel} {
         $find.l.f4.f5.cbox3 deselect
     }
-    if {[llength $listoftextarea] == 1} {
+    if {[llength [filteroutpeers $listoftextarea]] == 1} {
         $find.l.f4.f5.cbox3 configure -state disabled
     }
 
@@ -441,7 +441,9 @@ proc setsearchintagsettings {} {
     if {$multiplefiles} {
         # to allow for searching in tagged text, one must have at least one file
         # with scilab language scheme, and with colorization switched on
-        foreach ta $listoftextarea {
+        # since these attributes are the same for all peers of a textarea
+        # we can narrow the search to the filtered list of textareas
+        foreach ta [filteroutpeers $listoftextarea] {
             if {$listoffile("$ta",language) == "scilab" && \
                 $listoffile("$ta",colorize) } {
                 set candoit true
@@ -632,6 +634,8 @@ proc multiplefilesfindreplace {w frit} {
         # current textarea is kept and is the first element of the list
         # note: $listoftextarea_nopeers is only used in this proc and is not
         #       maintained elsewhere even if it is a global
+        #       It must not be used anywhere else since it is not ordered
+        #       as listoftextarea
         set listoftextarea_nopeers [shiftlistofta $listoftextarea [gettextareacur]]
         set listoftextarea_nopeers [filteroutpeers $listoftextarea_nopeers]
 
@@ -789,9 +793,11 @@ proc findit {w pw textarea tosearchfor reg} {
     # arrange for this match to be visible and tag it
     $textarea see $mpos
     $textarea mark set insert $mpos
-    foreach ta $listoftextarea {
+    foreach ta [filteroutpeers $listoftextarea] {
         # this must be done for each ta, not only for $textarea
         # because of the switch buffer case in tile mode
+        # however since this is only playing with tags, there is
+        # no need to do it for peers
         $ta tag remove foundtext 1.0 end
         $ta tag remove replacedtext 1.0 end
     }
@@ -974,9 +980,11 @@ proc replaceit {w pw textarea tosearchfor reg {replacesingle 1}} {
         backgroundcolorizeuserfun
     }
     $textarea mark set insert $mpos
-    foreach ta $listoftextarea {
+    foreach ta [filteroutpeers $listoftextarea] {
         # this must be done for each ta, not only for $textarea
         # because of the switch buffer case in tile mode
+        # however since this is only playing with tags, there is
+        # no need to do it for peers
         $ta tag remove foundtext 1.0 end
         $ta tag remove replacedtext 1.0 end
     }
@@ -1516,7 +1524,7 @@ proc cancelfind {} {
     global listoftagsforfind
     global findreplaceboxalreadyopen
 
-    foreach textarea $listoftextarea {
+    foreach textarea [filteroutpeers $listoftextarea] {
         $textarea tag remove foundtext 1.0 end
         $textarea tag remove replacedtext 1.0 end
 
