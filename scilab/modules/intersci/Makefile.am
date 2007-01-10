@@ -25,7 +25,7 @@ src/exe/check.c
 libsciintersci_la_includedir=$(includedir)/intersci
 
 
-lib_LTLIBRARIES = libsciintersci.la
+pkglib_LTLIBRARIES = libsciintersci.la
 
 bin_PROGRAMS = intersci
 intersci_SOURCES = $(INTERSCI_EXE_C_SOURCES)

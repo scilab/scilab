@@ -24,7 +24,7 @@ sci_gateway/sci_clipboard.c
 
 libsciwintools_la_CFLAGS= -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 
-lib_LTLIBRARIES = libsciwintools.la
+pkglib_LTLIBRARIES = libsciwintools.la
 
 libsciwintools_la_SOURCES = $(GATEWAY_C_SOURCES)
 

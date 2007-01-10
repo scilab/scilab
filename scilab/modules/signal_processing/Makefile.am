@@ -92,7 +92,7 @@ sci_gateway/fortran/Ex-corr.f
 
 libsignal_processing_la_CFLAGS=  -Iincludes/ 
 #-Isrc/c/
-lib_LTLIBRARIES = libsignal_processing.la
+pkglib_LTLIBRARIES = libsignal_processing.la
 
 libsignal_processing_la_SOURCES = $(SIGNAL_PROCESSING_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 

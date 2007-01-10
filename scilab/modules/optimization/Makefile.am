@@ -136,7 +136,7 @@ sci_gateway/fortran/Ex-lsqrsolve.f
 
 libscioptimization_la_CFLAGS=  -Iincludes/ 
 #-Isrc/c/
-lib_LTLIBRARIES = libscioptimization.la
+pkglib_LTLIBRARIES = libscioptimization.la
 
 libscioptimization_la_SOURCES = $(OPTIMIZATION_C_SOURCES) $(OPTIMIZATION_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 

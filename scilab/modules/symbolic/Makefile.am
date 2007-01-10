@@ -16,7 +16,7 @@ sci_gateway/fortran/sci_rdivf.f
 
 libscisymbolic_la_CFLAGS=  -Iincludes/ 
 #-Isrc/c/
-lib_LTLIBRARIES = libscisymbolic.la
+pkglib_LTLIBRARIES = libscisymbolic.la
 
 libscisymbolic_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 

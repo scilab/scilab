@@ -13,7 +13,7 @@ includes/getmaxMALLOC.h
 
 libscimalloc_la_CFLAGS= 
 
-lib_LTLIBRARIES = libscimalloc.la
+pkglib_LTLIBRARIES = libscimalloc.la
 
 libscimalloc_la_SOURCES = $(MALLOC_C_SOURCES)
 

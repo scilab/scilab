@@ -118,7 +118,7 @@ sci_gateway/fortran/sci_inttype.f
 
 libsciinteger_la_CFLAGS=  -Iincludes/ 
 
-lib_LTLIBRARIES = libsciinteger.la
+pkglib_LTLIBRARIES = libsciinteger.la
 
 libsciinteger_la_SOURCES = $(INTEGER_C_SOURCES) $(INTEGER_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 

@@ -13,7 +13,7 @@ libsciscijvm_la_CFLAGS=  $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/libs/MALLOC/include
 
 libsciscijvm_la_LDFLAGS = $(JAVA_JNI_LIBS) -lpthread -ldl
 
-lib_LTLIBRARIES = libsciscijvm.la
+pkglib_LTLIBRARIES = libsciscijvm.la
 
 libsciscijvm_la_SOURCES = $(JVM_C_SOURCES)
 

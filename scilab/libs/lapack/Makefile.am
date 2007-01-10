@@ -3,7 +3,7 @@
 ### INRIA - Scilab 2006 
 ##########
 
-lib_LTLIBRARIES = libscilapack.la 
+pkglib_LTLIBRARIES = libscilapack.la 
 
 noinst_LTLIBRARIES = libdummy-lapack.la
 

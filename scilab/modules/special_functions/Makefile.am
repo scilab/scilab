@@ -37,7 +37,7 @@ libspecial_functions_la_includedir=$(includedir)/special_functions
 
 #libspecial_functions_la_CFLAGS=  -Iincludes/ 
 #-Isrc/c/
-lib_LTLIBRARIES = libspecial_functions.la
+pkglib_LTLIBRARIES = libspecial_functions.la
 
 libspecial_functions_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libspecial_functions_la_LIBADD = \

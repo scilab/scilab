@@ -107,7 +107,7 @@ sci_gateway/fortran/sci_f_simpmd.f
 #libscipolynomials_la_FFLAGS= -Iincludes/ 
 libscipolynomials_la_CFLAGS= -Iincludes/ 
 #-Isrc/c/
-lib_LTLIBRARIES = libscipolynomials.la
+pkglib_LTLIBRARIES = libscipolynomials.la
 
 libscipolynomials_la_SOURCES = $(POLYNOMIALS_FORTRAN_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 

@@ -432,7 +432,7 @@ libscigraphics_la_CFLAGS =  -Iincludes/ -Isrc/c/ -Isrc/gd/ -Isrc/gd/xdr/ -Isrc/g
 
 libscigraphics_la_LDFLAGS = $(TCLTK_LIBS) $(X_LIBS)
 
-lib_LTLIBRARIES = libscigraphics.la
+pkglib_LTLIBRARIES = libscigraphics.la
 
 libscigraphics_la_SOURCES = $(GRAPHICS_C_SOURCES) $(GATEWAY_C_SOURCES)
 

@@ -7,7 +7,7 @@ MEXLIB_C_SOURCES = src/mexlib.c
 
 libscimexlib_la_CFLAGS=  -Iincludes/ 
 
-lib_LTLIBRARIES = libscimexlib.la
+pkglib_LTLIBRARIES = libscimexlib.la
 
 libscimexlib_la_SOURCES = $(MEXLIB_C_SOURCES)
 

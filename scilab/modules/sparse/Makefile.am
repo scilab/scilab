@@ -162,7 +162,7 @@ sci_gateway/fortran/sci_sfinit.f
 
 libscisparse_la_CFLAGS=  -Iincludes/ 
 #-Isrc/c/
-lib_LTLIBRARIES = libscisparse.la
+pkglib_LTLIBRARIES = libscisparse.la
 
 libscisparse_la_SOURCES = $(SPARSE_C_SOURCES) $(SPARSE_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 

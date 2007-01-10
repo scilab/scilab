@@ -108,7 +108,7 @@ sci_gateway/fortran/Ex-feval.f
 libdifferential_equations_la_CFLAGS= 
 # -Iincludes/ 
 #-Isrc/c/
-lib_LTLIBRARIES = libdifferential_equations.la
+pkglib_LTLIBRARIES = libdifferential_equations.la
 
 libdifferential_equations_la_SOURCES = $(DIFFERENTIAL_EQUATIONS_C_SOURCES) $(DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 

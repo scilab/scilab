@@ -16,7 +16,7 @@ libscihashtable_la_include_HEADERS = ./hashtable_itr.h \
 
 #libscihashtable_la_CFLAGS=  
 
-lib_LTLIBRARIES = libscihashtable.la
+pkglib_LTLIBRARIES = libscihashtable.la
 
 libscihashtable_la_SOURCES = $(HASHTABLE_C_SOURCES)
 

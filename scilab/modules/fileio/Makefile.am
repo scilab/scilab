@@ -37,7 +37,7 @@ GATEWAY_SOURCES = \
 
 libscifileio_la_CFLAGS=-Iincludes/ -Isrc/ -I$(top_srcdir)/libs/MALLOC/includes/ 
 
-lib_LTLIBRARIES = libscifileio.la
+pkglib_LTLIBRARIES = libscifileio.la
 
 libscifileio_la_SOURCES = $(FILEIO_SOURCES) $(GATEWAY_SOURCES)
 

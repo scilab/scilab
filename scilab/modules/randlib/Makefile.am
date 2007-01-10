@@ -41,7 +41,7 @@ sci_gateway/sci_grand.c
 
 libscirandlib_la_CFLAGS=  -Iincludes/ 
 #-Isrc/c/
-lib_LTLIBRARIES = libscirandlib.la
+pkglib_LTLIBRARIES = libscirandlib.la
 
 libscirandlib_la_SOURCES = $(RANDLIB_C_SOURCES) $(GATEWAY_C_SOURCES) $(RANDLIB_FORTRAN_SOURCES)
 

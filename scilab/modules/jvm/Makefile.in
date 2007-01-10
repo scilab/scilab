@@ -60,11 +60,11 @@ am__vpath_adj = case $$p in \
     *) f=$$p;; \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
-am__installdirs = "$(DESTDIR)$(libdir)" \
+am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscijvm_la_etcdir)" \
 	"$(DESTDIR)$(libscijvm_la_rootdir)"
-libLTLIBRARIES_INSTALL = $(INSTALL)
-LTLIBRARIES = $(lib_LTLIBRARIES)
+pkglibLTLIBRARIES_INSTALL = $(INSTALL)
+LTLIBRARIES = $(pkglib_LTLIBRARIES)
 @JAVA_TRUE@libsciscijvm_la_DEPENDENCIES =  \
 @JAVA_TRUE@	$(top_builddir)/modules/gui/libscigui.la
 am__libsciscijvm_la_SOURCES_DIST = src/JVM_CONSOLE.c src/JVM_Unix.c \
@@ -76,7 +76,7 @@ libsciscijvm_la_OBJECTS = $(am_libsciscijvm_la_OBJECTS)
 libsciscijvm_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libsciscijvm_la_CFLAGS) \
 	$(CFLAGS) $(libsciscijvm_la_LDFLAGS) $(LDFLAGS) -o $@
-@JAVA_TRUE@am_libsciscijvm_la_rpath = -rpath $(libdir)
+@JAVA_TRUE@am_libsciscijvm_la_rpath = -rpath $(pkglibdir)
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -245,7 +245,7 @@ top_srcdir = @top_srcdir@
 
 @JAVA_TRUE@libsciscijvm_la_CFLAGS = $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/libs/MALLOC/includes/
 @JAVA_TRUE@libsciscijvm_la_LDFLAGS = $(JAVA_JNI_LIBS) -lpthread -ldl
-@JAVA_TRUE@lib_LTLIBRARIES = libsciscijvm.la
+@JAVA_TRUE@pkglib_LTLIBRARIES = libsciscijvm.la
 @JAVA_TRUE@libsciscijvm_la_SOURCES = $(JVM_C_SOURCES)
 @JAVA_TRUE@libsciscijvm_la_LIBADD = \
 @JAVA_TRUE@$(top_builddir)/modules/gui/libscigui.la
@@ -314,28 +314,28 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
-install-libLTLIBRARIES: $(lib_LTLIBRARIES)
+install-pkglibLTLIBRARIES: $(pkglib_LTLIBRARIES)
 	@$(NORMAL_INSTALL)
-	test -z "$(libdir)" || $(MKDIR_P) "$(DESTDIR)$(libdir)"
-	@list='$(lib_LTLIBRARIES)'; for p in $$list; do \
+	test -z "$(pkglibdir)" || $(MKDIR_P) "$(DESTDIR)$(pkglibdir)"
+	@list='$(pkglib_LTLIBRARIES)'; for p in $$list; do \
 	  if test -f $$p; then \
 	    f=$(am__strip_dir) \
-	    echo " $(LIBTOOL) --mode=install $(libLTLIBRARIES_INSTALL) $(INSTALL_STRIP_FLAG) '$$p' '$(DESTDIR)$(libdir)/$$f'"; \
-	    $(LIBTOOL) --mode=install $(libLTLIBRARIES_INSTALL) $(INSTALL_STRIP_FLAG) "$$p" "$(DESTDIR)$(libdir)/$$f"; \
+	    echo " $(LIBTOOL) --mode=install $(pkglibLTLIBRARIES_INSTALL) $(INSTALL_STRIP_FLAG) '$$p' '$(DESTDIR)$(pkglibdir)/$$f'"; \
+	    $(LIBTOOL) --mode=install $(pkglibLTLIBRARIES_INSTALL) $(INSTALL_STRIP_FLAG) "$$p" "$(DESTDIR)$(pkglibdir)/$$f"; \
 	  else :; fi; \
 	done
 
-uninstall-libLTLIBRARIES:
+uninstall-pkglibLTLIBRARIES:
 	@$(NORMAL_UNINSTALL)
-	@list='$(lib_LTLIBRARIES)'; for p in $$list; do \
+	@list='$(pkglib_LTLIBRARIES)'; for p in $$list; do \
 	  p=$(am__strip_dir) \
-	  echo " $(LIBTOOL) --mode=uninstall rm -f '$(DESTDIR)$(libdir)/$$p'"; \
-	  $(LIBTOOL) --mode=uninstall rm -f "$(DESTDIR)$(libdir)/$$p"; \
+	  echo " $(LIBTOOL) --mode=uninstall rm -f '$(DESTDIR)$(pkglibdir)/$$p'"; \
+	  $(LIBTOOL) --mode=uninstall rm -f "$(DESTDIR)$(pkglibdir)/$$p"; \
 	done
 
-clean-libLTLIBRARIES:
-	-test -z "$(lib_LTLIBRARIES)" || rm -f $(lib_LTLIBRARIES)
-	@list='$(lib_LTLIBRARIES)'; for p in $$list; do \
+clean-pkglibLTLIBRARIES:
+	-test -z "$(pkglib_LTLIBRARIES)" || rm -f $(pkglib_LTLIBRARIES)
+	@list='$(pkglib_LTLIBRARIES)'; for p in $$list; do \
 	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
 	  test "$$dir" != "$$p" || dir=.; \
 	  echo "rm -f \"$${dir}/so_locations\""; \
@@ -514,7 +514,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libscijvm_la_etcdir)" "$(DESTDIR)$(libscijvm_la_rootdir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscijvm_la_etcdir)" "$(DESTDIR)$(libscijvm_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -545,7 +545,7 @@ maintainer-clean-generic:
 @JAVA_FALSE@install-html-local:
 clean: clean-am
 
-clean-am: clean-generic clean-libLTLIBRARIES clean-libtool \
+clean-am: clean-generic clean-libtool clean-pkglibLTLIBRARIES \
 	mostlyclean-am
 
 distclean: distclean-am
@@ -569,7 +569,7 @@ install-data-am: install-data-local install-libscijvm_la_etcDATA \
 
 install-dvi: install-dvi-am
 
-install-exec-am: install-libLTLIBRARIES
+install-exec-am: install-pkglibLTLIBRARIES
 
 install-html: install-html-am
 
@@ -603,27 +603,28 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libLTLIBRARIES uninstall-libscijvm_la_etcDATA \
-	uninstall-libscijvm_la_rootDATA
+uninstall-am: uninstall-libscijvm_la_etcDATA \
+	uninstall-libscijvm_la_rootDATA uninstall-pkglibLTLIBRARIES
 
 .MAKE: install-am install-strip
 
 .PHONY: CTAGS GTAGS all all-am check check-am clean clean-generic \
-	clean-libLTLIBRARIES clean-libtool ctags distclean \
+	clean-libtool clean-pkglibLTLIBRARIES ctags distclean \
 	distclean-compile distclean-generic distclean-libtool \
 	distclean-tags distdir dvi dvi-am html html-am info info-am \
 	install install-am install-data install-data-am \
 	install-data-local install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
-	install-libLTLIBRARIES install-libscijvm_la_etcDATA \
-	install-libscijvm_la_rootDATA install-man install-pdf \
-	install-pdf-am install-ps install-ps-am install-strip \
-	installcheck installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-compile \
-	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
-	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
-	uninstall-libscijvm_la_etcDATA uninstall-libscijvm_la_rootDATA
+	install-libscijvm_la_etcDATA install-libscijvm_la_rootDATA \
+	install-man install-pdf install-pdf-am \
+	install-pkglibLTLIBRARIES install-ps install-ps-am \
+	install-strip installcheck installcheck-am installdirs \
+	maintainer-clean maintainer-clean-generic mostlyclean \
+	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
+	pdf pdf-am ps ps-am tags uninstall uninstall-am \
+	uninstall-libscijvm_la_etcDATA uninstall-libscijvm_la_rootDATA \
+	uninstall-pkglibLTLIBRARIES
 
 
 #.xml.htm:

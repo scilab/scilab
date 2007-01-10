@@ -77,7 +77,7 @@ dsymm.f \
 zher2.f
 
 
-lib_LTLIBRARIES = libsciblas.la
+pkglib_LTLIBRARIES = libsciblas.la
 
 libsciblas_la_SOURCES = $(BLAS_FORTRAN_SOURCES)
 

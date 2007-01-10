@@ -51,7 +51,7 @@ sci_gateway/sci_pvm_exit.c
 
 libsciscipvm_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 
-lib_LTLIBRARIES = libsciscipvm.la
+pkglib_LTLIBRARIES = libsciscipvm.la
 
 libsciscipvm_la_SOURCES = $(PVM_C_SOURCES) $(GATEWAY_C_SOURCES)
 

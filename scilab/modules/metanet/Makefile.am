@@ -118,7 +118,7 @@ sci_gateway/fortran/sci_m6visitor.f
 
 libscimetanet_la_CFLAGS=  -Iincludes/  -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/
 
-lib_LTLIBRARIES = libscimetanet.la
+pkglib_LTLIBRARIES = libscimetanet.la
 
 libscimetanet_la_SOURCES = $(METANET_C_SOURCES) $(METANET_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 

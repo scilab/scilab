@@ -19,7 +19,7 @@ sci_gateway/fortran/sci_find.f
 
 libsciboolean_la_CFLAGS=  -Iincludes/ 
 
-lib_LTLIBRARIES = libsciboolean.la
+pkglib_LTLIBRARIES = libsciboolean.la
 
 libsciboolean_la_SOURCES = $(BOOLEAN_C_SOURCES) $(BOOLEAN_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 

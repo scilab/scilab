@@ -23,7 +23,7 @@ sci_gateway/fortran/matcc.f \
 sci_gateway/fortran/mattrc.f \
 sci_gateway/fortran/matadd.f
 
-lib_LTLIBRARIES = libscidouble.la
+pkglib_LTLIBRARIES = libscidouble.la
 
 libscidouble_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 

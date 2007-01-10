@@ -41,7 +41,7 @@ sci_gateway/fortran/sci_lstcat.f \
 sci_gateway/fortran/sci_list.f
 
 libdata_structures_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
-lib_LTLIBRARIES = libdata_structures.la
+pkglib_LTLIBRARIES = libdata_structures.la
 
 libdata_structures_la_SOURCES = $(DATA_STRUCTURES_C_SOURCES) $(DATA_STRUCTURES_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 

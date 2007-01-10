@@ -28,7 +28,7 @@ sci_gateway/c/sci_eval_cshep2d.c
 libsciinterpolation_la_FFLAGS=  -Iincludes/
 libsciinterpolation_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 
-lib_LTLIBRARIES = libsciinterpolation.la
+pkglib_LTLIBRARIES = libsciinterpolation.la
 
 libsciinterpolation_la_SOURCES = $(INTERPOLATION_C_SOURCES) $(INTERPOLATION_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) 
 

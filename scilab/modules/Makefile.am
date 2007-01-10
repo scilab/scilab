@@ -75,7 +75,7 @@ libsciscilab_la_rootdir = $(target)
 libsciscilab_la_root_DATA = modules
 
 # 
-lib_LTLIBRARIES = libsciscilab.la
+pkglib_LTLIBRARIES = libsciscilab.la
 libsciscilab_la_SOURCES = 
 
 # Core modules

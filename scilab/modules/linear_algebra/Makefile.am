@@ -85,7 +85,7 @@ sci_gateway/fortran/bschur.f
 
 liblinear_algebra_la_CFLAGS=  -Iincludes/ 
 
-lib_LTLIBRARIES = liblinear_algebra.la
+pkglib_LTLIBRARIES = liblinear_algebra.la
 
 liblinear_algebra_la_SOURCES = $(LINEAR_ALGEBRA_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 

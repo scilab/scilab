@@ -62,13 +62,13 @@ am__vpath_adj = case $$p in \
     *) f=$$p;; \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
-am__installdirs = "$(DESTDIR)$(libdir)" \
+am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libelementaries_functions_la_etcdir)" \
 	"$(DESTDIR)$(libelementaries_functions_la_rootdir)" \
 	"$(DESTDIR)$(libelementaries_functions_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libelementaries_functions_la_includedir)"
-libLTLIBRARIES_INSTALL = $(INSTALL)
-LTLIBRARIES = $(lib_LTLIBRARIES) $(noinst_LTLIBRARIES)
+pkglibLTLIBRARIES_INSTALL = $(INSTALL)
+LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libdummy_elementaries_functions_la_LIBADD =
 am_libdummy_elementaries_functions_la_OBJECTS =  \
 	libdummy_elementaries_functions_la-hqror2.lo \
@@ -947,7 +947,7 @@ libdummy_elementaries_functions_la_SOURCES = src/fortran/hqror2.f \
 libdummy_elementaries_functions_la_FFLAGS = $(FFLAGS:-O%=)
 libelementaries_functions_la_FFLAGS = -Iincludes/ 
 libelementaries_functions_la_CFLAGS = -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
-lib_LTLIBRARIES = libelementaries_functions.la
+pkglib_LTLIBRARIES = libelementaries_functions.la
 libelementaries_functions_la_SOURCES = $(SLATEC_SOURCES) $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libelementaries_functions_la_LIBADD = \
 	libdummy-elementaries_functions.la \
@@ -1205,33 +1205,6 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
-install-libLTLIBRARIES: $(lib_LTLIBRARIES)
-	@$(NORMAL_INSTALL)
-	test -z "$(libdir)" || $(MKDIR_P) "$(DESTDIR)$(libdir)"
-	@list='$(lib_LTLIBRARIES)'; for p in $$list; do \
-	  if test -f $$p; then \
-	    f=$(am__strip_dir) \
-	    echo " $(LIBTOOL) --mode=install $(libLTLIBRARIES_INSTALL) $(INSTALL_STRIP_FLAG) '$$p' '$(DESTDIR)$(libdir)/$$f'"; \
-	    $(LIBTOOL) --mode=install $(libLTLIBRARIES_INSTALL) $(INSTALL_STRIP_FLAG) "$$p" "$(DESTDIR)$(libdir)/$$f"; \
-	  else :; fi; \
-	done
-
-uninstall-libLTLIBRARIES:
-	@$(NORMAL_UNINSTALL)
-	@list='$(lib_LTLIBRARIES)'; for p in $$list; do \
-	  p=$(am__strip_dir) \
-	  echo " $(LIBTOOL) --mode=uninstall rm -f '$(DESTDIR)$(libdir)/$$p'"; \
-	  $(LIBTOOL) --mode=uninstall rm -f "$(DESTDIR)$(libdir)/$$p"; \
-	done
-
-clean-libLTLIBRARIES:
-	-test -z "$(lib_LTLIBRARIES)" || rm -f $(lib_LTLIBRARIES)
-	@list='$(lib_LTLIBRARIES)'; for p in $$list; do \
-	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
-	  test "$$dir" != "$$p" || dir=.; \
-	  echo "rm -f \"$${dir}/so_locations\""; \
-	  rm -f "$${dir}/so_locations"; \
-	done
 
 clean-noinstLTLIBRARIES:
 	-test -z "$(noinst_LTLIBRARIES)" || rm -f $(noinst_LTLIBRARIES)
@@ -1241,10 +1214,37 @@ clean-noinstLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
+install-pkglibLTLIBRARIES: $(pkglib_LTLIBRARIES)
+	@$(NORMAL_INSTALL)
+	test -z "$(pkglibdir)" || $(MKDIR_P) "$(DESTDIR)$(pkglibdir)"
+	@list='$(pkglib_LTLIBRARIES)'; for p in $$list; do \
+	  if test -f $$p; then \
+	    f=$(am__strip_dir) \
+	    echo " $(LIBTOOL) --mode=install $(pkglibLTLIBRARIES_INSTALL) $(INSTALL_STRIP_FLAG) '$$p' '$(DESTDIR)$(pkglibdir)/$$f'"; \
+	    $(LIBTOOL) --mode=install $(pkglibLTLIBRARIES_INSTALL) $(INSTALL_STRIP_FLAG) "$$p" "$(DESTDIR)$(pkglibdir)/$$f"; \
+	  else :; fi; \
+	done
+
+uninstall-pkglibLTLIBRARIES:
+	@$(NORMAL_UNINSTALL)
+	@list='$(pkglib_LTLIBRARIES)'; for p in $$list; do \
+	  p=$(am__strip_dir) \
+	  echo " $(LIBTOOL) --mode=uninstall rm -f '$(DESTDIR)$(pkglibdir)/$$p'"; \
+	  $(LIBTOOL) --mode=uninstall rm -f "$(DESTDIR)$(pkglibdir)/$$p"; \
+	done
+
+clean-pkglibLTLIBRARIES:
+	-test -z "$(pkglib_LTLIBRARIES)" || rm -f $(pkglib_LTLIBRARIES)
+	@list='$(pkglib_LTLIBRARIES)'; for p in $$list; do \
+	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
+	  test "$$dir" != "$$p" || dir=.; \
+	  echo "rm -f \"$${dir}/so_locations\""; \
+	  rm -f "$${dir}/so_locations"; \
+	done
 libdummy-elementaries_functions.la: $(libdummy_elementaries_functions_la_OBJECTS) $(libdummy_elementaries_functions_la_DEPENDENCIES) 
 	$(libdummy_elementaries_functions_la_LINK)  $(libdummy_elementaries_functions_la_OBJECTS) $(libdummy_elementaries_functions_la_LIBADD) $(LIBS)
 libelementaries_functions.la: $(libelementaries_functions_la_OBJECTS) $(libelementaries_functions_la_DEPENDENCIES) 
-	$(libelementaries_functions_la_LINK) -rpath $(libdir) $(libelementaries_functions_la_OBJECTS) $(libelementaries_functions_la_LIBADD) $(LIBS)
+	$(libelementaries_functions_la_LINK) -rpath $(pkglibdir) $(libelementaries_functions_la_OBJECTS) $(libelementaries_functions_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -2702,7 +2702,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libelementaries_functions_la_etcdir)" "$(DESTDIR)$(libelementaries_functions_la_rootdir)" "$(DESTDIR)$(libelementaries_functions_la_sci_gatewaydir)" "$(DESTDIR)$(libelementaries_functions_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libelementaries_functions_la_etcdir)" "$(DESTDIR)$(libelementaries_functions_la_rootdir)" "$(DESTDIR)$(libelementaries_functions_la_sci_gatewaydir)" "$(DESTDIR)$(libelementaries_functions_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -2731,8 +2731,8 @@ maintainer-clean-generic:
 	@echo "it deletes files that may require special tools to rebuild."
 clean: clean-am
 
-clean-am: clean-generic clean-libLTLIBRARIES clean-libtool \
-	clean-noinstLTLIBRARIES mostlyclean-am
+clean-am: clean-generic clean-libtool clean-noinstLTLIBRARIES \
+	clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
@@ -2758,7 +2758,7 @@ install-data-am: install-data-local \
 
 install-dvi: install-dvi-am
 
-install-exec-am: install-libLTLIBRARIES
+install-exec-am: install-pkglibLTLIBRARIES
 
 install-html: install-html-am
 
@@ -2792,37 +2792,37 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libLTLIBRARIES \
-	uninstall-libelementaries_functions_la_etcDATA \
+uninstall-am: uninstall-libelementaries_functions_la_etcDATA \
 	uninstall-libelementaries_functions_la_includeHEADERS \
 	uninstall-libelementaries_functions_la_rootDATA \
-	uninstall-libelementaries_functions_la_sci_gatewayDATA
+	uninstall-libelementaries_functions_la_sci_gatewayDATA \
+	uninstall-pkglibLTLIBRARIES
 
 .MAKE: install-am install-strip
 
 .PHONY: CTAGS GTAGS all all-am check check-am clean clean-generic \
-	clean-libLTLIBRARIES clean-libtool clean-noinstLTLIBRARIES \
+	clean-libtool clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES \
 	ctags distclean distclean-compile distclean-generic \
 	distclean-libtool distclean-tags distdir dvi dvi-am html \
 	html-am info info-am install install-am install-data \
 	install-data-am install-data-local install-dvi install-dvi-am \
 	install-exec install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
-	install-libLTLIBRARIES \
 	install-libelementaries_functions_la_etcDATA \
 	install-libelementaries_functions_la_includeHEADERS \
 	install-libelementaries_functions_la_rootDATA \
 	install-libelementaries_functions_la_sci_gatewayDATA \
-	install-man install-pdf install-pdf-am install-ps \
-	install-ps-am install-strip installcheck installcheck-am \
-	installdirs maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-compile mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
-	uninstall-am uninstall-libLTLIBRARIES \
+	install-man install-pdf install-pdf-am \
+	install-pkglibLTLIBRARIES install-ps install-ps-am \
+	install-strip installcheck installcheck-am installdirs \
+	maintainer-clean maintainer-clean-generic mostlyclean \
+	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
+	pdf pdf-am ps ps-am tags uninstall uninstall-am \
 	uninstall-libelementaries_functions_la_etcDATA \
 	uninstall-libelementaries_functions_la_includeHEADERS \
 	uninstall-libelementaries_functions_la_rootDATA \
-	uninstall-libelementaries_functions_la_sci_gatewayDATA
+	uninstall-libelementaries_functions_la_sci_gatewayDATA \
+	uninstall-pkglibLTLIBRARIES
 
 
 libdummy_elementaries_functions_la-hqror2.lo: src/fortran/hqror2.f

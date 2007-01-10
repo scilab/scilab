@@ -75,7 +75,7 @@ libdummy_io_la_FFLAGS = $(FFLAGS:-O%=)
 
 libsciio_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 
-lib_LTLIBRARIES = libsciio.la
+pkglib_LTLIBRARIES = libsciio.la
 
 libsciio_la_SOURCES = $(IO_C_SOURCES) $(IO_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 

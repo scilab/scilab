@@ -62,11 +62,11 @@ am__vpath_adj = case $$p in \
     *) f=$$p;; \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
-am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(bindir)" \
+am__installdirs = "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(bindir)" \
 	"$(DESTDIR)$(libsciintersci_la_etcdir)" \
 	"$(DESTDIR)$(libsciintersci_la_rootdir)"
-libLTLIBRARIES_INSTALL = $(INSTALL)
-LTLIBRARIES = $(lib_LTLIBRARIES)
+pkglibLTLIBRARIES_INSTALL = $(INSTALL)
+LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libsciintersci_la_DEPENDENCIES =  \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
 am__objects_1 = libsciintersci_la-libinter.lo \
@@ -266,7 +266,7 @@ src/exe/opt.c \
 src/exe/check.c
 
 libsciintersci_la_includedir = $(includedir)/intersci
-lib_LTLIBRARIES = libsciintersci.la
+pkglib_LTLIBRARIES = libsciintersci.la
 intersci_SOURCES = $(INTERSCI_EXE_C_SOURCES)
 libsciintersci_la_SOURCES = $(INTERSCI_LIB_C_SOURCES)
 libsciintersci_la_CFLAGS = -I$(top_srcdir)/libs/MALLOC/includes/
@@ -337,35 +337,35 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
-install-libLTLIBRARIES: $(lib_LTLIBRARIES)
+install-pkglibLTLIBRARIES: $(pkglib_LTLIBRARIES)
 	@$(NORMAL_INSTALL)
-	test -z "$(libdir)" || $(MKDIR_P) "$(DESTDIR)$(libdir)"
-	@list='$(lib_LTLIBRARIES)'; for p in $$list; do \
+	test -z "$(pkglibdir)" || $(MKDIR_P) "$(DESTDIR)$(pkglibdir)"
+	@list='$(pkglib_LTLIBRARIES)'; for p in $$list; do \
 	  if test -f $$p; then \
 	    f=$(am__strip_dir) \
-	    echo " $(LIBTOOL) --mode=install $(libLTLIBRARIES_INSTALL) $(INSTALL_STRIP_FLAG) '$$p' '$(DESTDIR)$(libdir)/$$f'"; \
-	    $(LIBTOOL) --mode=install $(libLTLIBRARIES_INSTALL) $(INSTALL_STRIP_FLAG) "$$p" "$(DESTDIR)$(libdir)/$$f"; \
+	    echo " $(LIBTOOL) --mode=install $(pkglibLTLIBRARIES_INSTALL) $(INSTALL_STRIP_FLAG) '$$p' '$(DESTDIR)$(pkglibdir)/$$f'"; \
+	    $(LIBTOOL) --mode=install $(pkglibLTLIBRARIES_INSTALL) $(INSTALL_STRIP_FLAG) "$$p" "$(DESTDIR)$(pkglibdir)/$$f"; \
 	  else :; fi; \
 	done
 
-uninstall-libLTLIBRARIES:
+uninstall-pkglibLTLIBRARIES:
 	@$(NORMAL_UNINSTALL)
-	@list='$(lib_LTLIBRARIES)'; for p in $$list; do \
+	@list='$(pkglib_LTLIBRARIES)'; for p in $$list; do \
 	  p=$(am__strip_dir) \
-	  echo " $(LIBTOOL) --mode=uninstall rm -f '$(DESTDIR)$(libdir)/$$p'"; \
-	  $(LIBTOOL) --mode=uninstall rm -f "$(DESTDIR)$(libdir)/$$p"; \
+	  echo " $(LIBTOOL) --mode=uninstall rm -f '$(DESTDIR)$(pkglibdir)/$$p'"; \
+	  $(LIBTOOL) --mode=uninstall rm -f "$(DESTDIR)$(pkglibdir)/$$p"; \
 	done
 
-clean-libLTLIBRARIES:
-	-test -z "$(lib_LTLIBRARIES)" || rm -f $(lib_LTLIBRARIES)
-	@list='$(lib_LTLIBRARIES)'; for p in $$list; do \
+clean-pkglibLTLIBRARIES:
+	-test -z "$(pkglib_LTLIBRARIES)" || rm -f $(pkglib_LTLIBRARIES)
+	@list='$(pkglib_LTLIBRARIES)'; for p in $$list; do \
 	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
 	  test "$$dir" != "$$p" || dir=.; \
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
 libsciintersci.la: $(libsciintersci_la_OBJECTS) $(libsciintersci_la_DEPENDENCIES) 
-	$(libsciintersci_la_LINK) -rpath $(libdir) $(libsciintersci_la_OBJECTS) $(libsciintersci_la_LIBADD) $(LIBS)
+	$(libsciintersci_la_LINK) -rpath $(pkglibdir) $(libsciintersci_la_OBJECTS) $(libsciintersci_la_LIBADD) $(LIBS)
 install-binPROGRAMS: $(bin_PROGRAMS)
 	@$(NORMAL_INSTALL)
 	test -z "$(bindir)" || $(MKDIR_P) "$(DESTDIR)$(bindir)"
@@ -732,10 +732,8 @@ distdir: $(DISTFILES)
 check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(PROGRAMS) $(DATA)
-install-binPROGRAMS: install-libLTLIBRARIES
-
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(bindir)" "$(DESTDIR)$(libsciintersci_la_etcdir)" "$(DESTDIR)$(libsciintersci_la_rootdir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(bindir)" "$(DESTDIR)$(libsciintersci_la_etcdir)" "$(DESTDIR)$(libsciintersci_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -764,8 +762,8 @@ maintainer-clean-generic:
 	@echo "it deletes files that may require special tools to rebuild."
 clean: clean-am
 
-clean-am: clean-binPROGRAMS clean-generic clean-libLTLIBRARIES \
-	clean-libtool mostlyclean-am
+clean-am: clean-binPROGRAMS clean-generic clean-libtool \
+	clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
@@ -788,7 +786,7 @@ install-data-am: install-data-local install-libsciintersci_la_etcDATA \
 
 install-dvi: install-dvi-am
 
-install-exec-am: install-binPROGRAMS install-libLTLIBRARIES
+install-exec-am: install-binPROGRAMS install-pkglibLTLIBRARIES
 
 install-html: install-html-am
 
@@ -822,30 +820,32 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-binPROGRAMS uninstall-libLTLIBRARIES \
+uninstall-am: uninstall-binPROGRAMS \
 	uninstall-libsciintersci_la_etcDATA \
-	uninstall-libsciintersci_la_rootDATA
+	uninstall-libsciintersci_la_rootDATA \
+	uninstall-pkglibLTLIBRARIES
 
 .MAKE: install-am install-strip
 
 .PHONY: CTAGS GTAGS all all-am check check-am clean clean-binPROGRAMS \
-	clean-generic clean-libLTLIBRARIES clean-libtool ctags \
+	clean-generic clean-libtool clean-pkglibLTLIBRARIES ctags \
 	distclean distclean-compile distclean-generic \
 	distclean-libtool distclean-tags distdir dvi dvi-am html \
 	html-am info info-am install install-am install-binPROGRAMS \
 	install-data install-data-am install-data-local install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
-	install-info-am install-libLTLIBRARIES \
-	install-libsciintersci_la_etcDATA \
+	install-info-am install-libsciintersci_la_etcDATA \
 	install-libsciintersci_la_rootDATA install-man install-pdf \
-	install-pdf-am install-ps install-ps-am install-strip \
-	installcheck installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-compile \
-	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
-	tags uninstall uninstall-am uninstall-binPROGRAMS \
-	uninstall-libLTLIBRARIES uninstall-libsciintersci_la_etcDATA \
-	uninstall-libsciintersci_la_rootDATA
+	install-pdf-am install-pkglibLTLIBRARIES install-ps \
+	install-ps-am install-strip installcheck installcheck-am \
+	installdirs maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-compile mostlyclean-generic \
+	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
+	uninstall-am uninstall-binPROGRAMS \
+	uninstall-libsciintersci_la_etcDATA \
+	uninstall-libsciintersci_la_rootDATA \
+	uninstall-pkglibLTLIBRARIES
 
 
 #.xml.htm:

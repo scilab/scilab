@@ -73,7 +73,7 @@ libsciarnoldi_la_include_HEADERS =
 libsciarnoldi_la_CFLAGS= -I$(top_srcdir)/libs/MALLOC/includes/ 
 libsciarnoldi_la_FFLAGS= -Isrc/arpack/
 
-lib_LTLIBRARIES = libsciarnoldi.la
+pkglib_LTLIBRARIES = libsciarnoldi.la
 
 libsciarnoldi_la_SOURCES =  $(ARNOLDI_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 

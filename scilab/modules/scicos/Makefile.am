@@ -209,7 +209,7 @@ CLEANFILES=includes/blocks.h build/Cblocknames build/Fblocknames
 
 libsciscicos_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 #libsciscicos_la_LDFLAGS = -lf2c
-lib_LTLIBRARIES = libsciscicos.la
+pkglib_LTLIBRARIES = libsciscicos.la
 
 libsciscicos_la_SOURCES = $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(SCICOS_FORTRAN_SOURCES_EXT) $(SCICOS_C_SOURCES_EXT)
 

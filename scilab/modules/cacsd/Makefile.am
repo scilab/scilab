@@ -215,7 +215,7 @@ sci_gateway/fortran/sci_f_rankqr.f
 libscicacsd_la_FFLAGS= -Iincludes/ 
 libscicacsd_la_CFLAGS= -Iincludes/ 
 
-lib_LTLIBRARIES = libscicacsd.la
+pkglib_LTLIBRARIES = libscicacsd.la
 
 libscicacsd_la_SOURCES = $(CACSD_FORTRAN_SOURCES) $(SLICOT_FORTRAN_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 

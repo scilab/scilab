@@ -44,7 +44,7 @@ sci_gateway/fortran/strops.f
 
 libscistring_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 
-lib_LTLIBRARIES = libscistring.la
+pkglib_LTLIBRARIES = libscistring.la
 
 libscistring_la_SOURCES = $(STRING_C_SOURCES) $(STRING_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 

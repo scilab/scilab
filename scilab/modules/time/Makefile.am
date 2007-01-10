@@ -18,7 +18,7 @@ sci_gateway/gw_time.c
 
 libscitime_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/ -Isrc/
 
-lib_LTLIBRARIES = libscitime.la
+pkglib_LTLIBRARIES = libscitime.la
 
 libscitime_la_SOURCES = $(TIME_C_SOURCES) $(GATEWAY_C_SOURCES)
 

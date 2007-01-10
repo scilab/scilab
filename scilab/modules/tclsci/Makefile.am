@@ -38,7 +38,7 @@ sci_gateway/sci_set.c \
 sci_gateway/sci_TCL_ExistArray.c \
 sci_gateway/sci_TCL_UpVar.c
 
-lib_LTLIBRARIES = libscitclsci.la
+pkglib_LTLIBRARIES = libscitclsci.la
 
 libscitclsci_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/ $(TCL_INC_PATH) $(TK_INC_PATH)
 libscitclsci_la_LDFLAGS= $(TCLTK_LIBS)

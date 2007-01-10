@@ -353,7 +353,7 @@ libdummy_elementaries_functions_la_FFLAGS = $(FFLAGS:-O%=)
 libelementaries_functions_la_FFLAGS= -Iincludes/ 
 libelementaries_functions_la_CFLAGS= -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 
-lib_LTLIBRARIES = libelementaries_functions.la
+pkglib_LTLIBRARIES = libelementaries_functions.la
 
 libelementaries_functions_la_SOURCES = $(SLATEC_SOURCES) $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 

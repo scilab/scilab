@@ -92,7 +92,7 @@ sci_gateway/c/sci_cdfnor.c
 
 libscistatistics_la_CFLAGS=  -Iincludes/
 #-Isrc/c/
-lib_LTLIBRARIES = libscistatistics.la
+pkglib_LTLIBRARIES = libscistatistics.la
 
 libscistatistics_la_SOURCES = $(STATISTICS_C_SOURCES) $(STATISTICS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 

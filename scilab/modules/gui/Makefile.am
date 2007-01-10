@@ -97,7 +97,7 @@ endif
 
 libscigui_la_LDFLAGS = $(X_LIBS) $(TERMCAP_LIB)
 
-lib_LTLIBRARIES = libscigui.la
+pkglib_LTLIBRARIES = libscigui.la
 
 libscigui_la_SOURCES = $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 

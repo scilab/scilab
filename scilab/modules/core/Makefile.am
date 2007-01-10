@@ -310,7 +310,7 @@ endif
 
 libscicore_la_CFLAGS=  -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ 
 libscicore_la_LDFLAGS = 
-lib_LTLIBRARIES = libscicore.la
+pkglib_LTLIBRARIES = libscicore.la
 
 libscicore_la_SOURCES = $(CORE_C_SOURCES) $(CORE_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 

@@ -60,10 +60,10 @@ am__vpath_adj = case $$p in \
     *) f=$$p;; \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
-am__installdirs = "$(DESTDIR)$(libdir)" \
+am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscihashtable_la_includedir)"
-libLTLIBRARIES_INSTALL = $(INSTALL)
-LTLIBRARIES = $(lib_LTLIBRARIES)
+pkglibLTLIBRARIES_INSTALL = $(INSTALL)
+LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscihashtable_la_DEPENDENCIES =
 am__objects_1 = hashtable_utility.lo hashtable_itr.lo hashtable.lo
 am_libscihashtable_la_OBJECTS = $(am__objects_1)
@@ -239,7 +239,7 @@ libscihashtable_la_include_HEADERS = ./hashtable_itr.h \
 
 
 #libscihashtable_la_CFLAGS=  
-lib_LTLIBRARIES = libscihashtable.la
+pkglib_LTLIBRARIES = libscihashtable.la
 libscihashtable_la_SOURCES = $(HASHTABLE_C_SOURCES)
 libscihashtable_la_LIBADD = 
 libscihashtable_la_PKGCONFIG = hashtable.pc
@@ -276,35 +276,35 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
-install-libLTLIBRARIES: $(lib_LTLIBRARIES)
+install-pkglibLTLIBRARIES: $(pkglib_LTLIBRARIES)
 	@$(NORMAL_INSTALL)
-	test -z "$(libdir)" || $(MKDIR_P) "$(DESTDIR)$(libdir)"
-	@list='$(lib_LTLIBRARIES)'; for p in $$list; do \
+	test -z "$(pkglibdir)" || $(MKDIR_P) "$(DESTDIR)$(pkglibdir)"
+	@list='$(pkglib_LTLIBRARIES)'; for p in $$list; do \
 	  if test -f $$p; then \
 	    f=$(am__strip_dir) \
-	    echo " $(LIBTOOL) --mode=install $(libLTLIBRARIES_INSTALL) $(INSTALL_STRIP_FLAG) '$$p' '$(DESTDIR)$(libdir)/$$f'"; \
-	    $(LIBTOOL) --mode=install $(libLTLIBRARIES_INSTALL) $(INSTALL_STRIP_FLAG) "$$p" "$(DESTDIR)$(libdir)/$$f"; \
+	    echo " $(LIBTOOL) --mode=install $(pkglibLTLIBRARIES_INSTALL) $(INSTALL_STRIP_FLAG) '$$p' '$(DESTDIR)$(pkglibdir)/$$f'"; \
+	    $(LIBTOOL) --mode=install $(pkglibLTLIBRARIES_INSTALL) $(INSTALL_STRIP_FLAG) "$$p" "$(DESTDIR)$(pkglibdir)/$$f"; \
 	  else :; fi; \
 	done
 
-uninstall-libLTLIBRARIES:
+uninstall-pkglibLTLIBRARIES:
 	@$(NORMAL_UNINSTALL)
-	@list='$(lib_LTLIBRARIES)'; for p in $$list; do \
+	@list='$(pkglib_LTLIBRARIES)'; for p in $$list; do \
 	  p=$(am__strip_dir) \
-	  echo " $(LIBTOOL) --mode=uninstall rm -f '$(DESTDIR)$(libdir)/$$p'"; \
-	  $(LIBTOOL) --mode=uninstall rm -f "$(DESTDIR)$(libdir)/$$p"; \
+	  echo " $(LIBTOOL) --mode=uninstall rm -f '$(DESTDIR)$(pkglibdir)/$$p'"; \
+	  $(LIBTOOL) --mode=uninstall rm -f "$(DESTDIR)$(pkglibdir)/$$p"; \
 	done
 
-clean-libLTLIBRARIES:
-	-test -z "$(lib_LTLIBRARIES)" || rm -f $(lib_LTLIBRARIES)
-	@list='$(lib_LTLIBRARIES)'; for p in $$list; do \
+clean-pkglibLTLIBRARIES:
+	-test -z "$(pkglib_LTLIBRARIES)" || rm -f $(pkglib_LTLIBRARIES)
+	@list='$(pkglib_LTLIBRARIES)'; for p in $$list; do \
 	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
 	  test "$$dir" != "$$p" || dir=.; \
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
 libscihashtable.la: $(libscihashtable_la_OBJECTS) $(libscihashtable_la_DEPENDENCIES) 
-	$(LINK) -rpath $(libdir) $(libscihashtable_la_OBJECTS) $(libscihashtable_la_LIBADD) $(LIBS)
+	$(LINK) -rpath $(pkglibdir) $(libscihashtable_la_OBJECTS) $(libscihashtable_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -438,7 +438,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libscihashtable_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscihashtable_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -467,7 +467,7 @@ maintainer-clean-generic:
 	@echo "it deletes files that may require special tools to rebuild."
 clean: clean-am
 
-clean-am: clean-generic clean-libLTLIBRARIES clean-libtool \
+clean-am: clean-generic clean-libtool clean-pkglibLTLIBRARIES \
 	mostlyclean-am
 
 distclean: distclean-am
@@ -490,7 +490,7 @@ install-data-am: install-libscihashtable_la_includeHEADERS
 
 install-dvi: install-dvi-am
 
-install-exec-am: install-libLTLIBRARIES
+install-exec-am: install-pkglibLTLIBRARIES
 
 install-html: install-html-am
 
@@ -522,27 +522,27 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libLTLIBRARIES \
-	uninstall-libscihashtable_la_includeHEADERS
+uninstall-am: uninstall-libscihashtable_la_includeHEADERS \
+	uninstall-pkglibLTLIBRARIES
 
 .MAKE: install-am install-strip
 
 .PHONY: CTAGS GTAGS all all-am check check-am clean clean-generic \
-	clean-libLTLIBRARIES clean-libtool ctags distclean \
+	clean-libtool clean-pkglibLTLIBRARIES ctags distclean \
 	distclean-compile distclean-generic distclean-libtool \
 	distclean-tags distdir dvi dvi-am html html-am info info-am \
 	install install-am install-data install-data-am install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-info install-info-am \
-	install-libLTLIBRARIES \
 	install-libscihashtable_la_includeHEADERS install-man \
-	install-pdf install-pdf-am install-ps install-ps-am \
-	install-strip installcheck installcheck-am installdirs \
-	maintainer-clean maintainer-clean-generic mostlyclean \
-	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
-	pdf pdf-am ps ps-am tags uninstall uninstall-am \
-	uninstall-libLTLIBRARIES \
-	uninstall-libscihashtable_la_includeHEADERS
+	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
+	install-ps install-ps-am install-strip installcheck \
+	installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	tags uninstall uninstall-am \
+	uninstall-libscihashtable_la_includeHEADERS \
+	uninstall-pkglibLTLIBRARIES
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

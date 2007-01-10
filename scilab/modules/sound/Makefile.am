@@ -18,7 +18,7 @@ sci_gateway/sci_PlaySound.c
 
 libscisound_la_CFLAGS=  -Iincludes/ -Isrc/ -I$(top_srcdir)/libs/MALLOC/includes/
 
-lib_LTLIBRARIES = libscisound.la
+pkglib_LTLIBRARIES = libscisound.la
 
 libscisound_la_SOURCES = $(SOUND_C_SOURCES) $(GATEWAY_C_SOURCES)
 
