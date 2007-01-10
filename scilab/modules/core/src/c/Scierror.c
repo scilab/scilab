@@ -27,7 +27,6 @@ extern int C2F(errloc)  __PARAMS((integer *n));
 extern void C2F(freemsgtable)();
 extern int C2F(msgstore)(char *str,int *n);
 extern int C2F(errstore)(int *n);
-
 static int Scierror_internal __PARAMS((integer *n,char *buffer));
 /*-----------------------------------------------------------------------------------*/ 
 /* Scilab Error at C level */
@@ -117,7 +116,8 @@ static int Scierror_internal(integer *n,char *buffer)
 		C2F(msgstore)(buffer,&len);
 		if (C2F(iop).lct[0] != -1)
 		{
-			sciprint(buffer);
+//			sciprint(buffer);
+			sciprint_l(buffer);
 		}
 		C2F(iop).lct[0] = 0;
 	}
