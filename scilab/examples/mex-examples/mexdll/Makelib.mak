@@ -10,4 +10,4 @@ OTHERLIBS = xtimesy.lib
 CFLAGS = $(CC_OPTIONS) -DFORDLL -I"$(SCIDIR)/routines" 
 FFLAGS = $(FC_OPTIONS) -DFORDLL -I"$(SCIDIR)/routines"
 EXTRA_LDFLAGS = 
-!include $(SCIDIR1)\config\Makedll.incl 
+!include $(SCIDIR1)\modules\incremental_link\src\scripts\Makedll.incl 

@@ -177,7 +177,7 @@ function ilib_link_gen_Make_win32(names,files,libs,Makename,libname,ldflags, ...
   mfprintf(fd,"FFLAGS = $(FC_OPTIONS) -DFORDLL -I\""$(SCIDIR)/modules\"" -I\""$(SCIDIR)/modules/core/includes\"""+...
 	   " -Dmexfunction=mex$* "+ fflags +"\n"); 
   mfprintf(fd,"EXTRA_LDFLAGS = "+ ldflags+"\n");
-  mfprintf(fd,"!include $(SCIDIR1)\\config\\Makedll.incl \n");
+  mfprintf(fd,"!include $(SCIDIR1)\\modules\\incremental_link\\src\\scripts\\Makedll.incl \n");
   mclose(fd);
 endfunction
 
