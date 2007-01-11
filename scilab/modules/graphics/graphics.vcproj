@@ -878,10 +878,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\Plo2d.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\Plo2dEch.c"
 				>
 			</File>

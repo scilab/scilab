@@ -5242,10 +5242,30 @@ BOOL sciIsMergeable( sciPointObj * pObj )
 }
 /*-------------------------------------------------------------------------------------------*/
 /**
-* return if the drawlater mode is on for the parent figure.
-*/
+ * return if the drawlater mode is on for the parent figure.
+ */
 BOOL sciGetIsAutoDrawable( sciPointObj * pobj )
 {
   return pFIGURE_FEATURE(sciGetParentFigure(pobj))->auto_redraw ;
+}
+/*-------------------------------------------------------------------------------------------*/
+/**
+ * To retreive the type of grid for each dimension
+ */
+void sciGetGridStyle( sciPointObj * pObj, int * xStyle, int * yStyle, int * zStyle )
+{
+  switch ( sciGetEntityType (pObj) )
+  {
+  case SCI_SUBWIN:
+    *xStyle = pSUBWIN_FEATURE(pObj)->grid[0] ;
+    *yStyle = pSUBWIN_FEATURE(pObj)->grid[1] ;
+    *zStyle = pSUBWIN_FEATURE(pObj)->grid[2] ;
+    break ;
+  default:
+    sciprint( "This object has no grid property.\n" ) ;
+    *xStyle = -1 ;
+    *yStyle = -1 ;
+    *zStyle = -1 ;
+  }
 }
 /*-------------------------------------------------------------------------------------------*/

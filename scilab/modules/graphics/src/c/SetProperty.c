@@ -3179,11 +3179,6 @@ int sciInitVisibility( sciPointObj * pobj, BOOL value )
 			{
 			pAGREG_FEATURE (pobj)->visible = value; 
 			}
-      /*       while ((psonstmp != (sciSons *) NULL) && (psonstmp->pointobj != (sciPointObj *)NULL)) */
-      /* 	{ */
-      /* 	  sciSetVisibility ((sciPointObj *)psonstmp->pointobj,value);  */
-      /* 	  psonstmp = psonstmp->pnext; */
-      /* 	}   */
       break;
     case SCI_LABEL: /* F.Leray 28.05.04 */
       return sciInitVisibility( pLABEL_FEATURE(pobj)->text, value ) ;
@@ -4865,5 +4860,38 @@ int sciSetHiddenColor( sciPointObj * pObj, int newColor )
     return 1 ;
   }
   return sciInitHiddenColor( pObj, newColor ) ;
+}
+/*--------------------------------------------------------------------------------------------*/
+int sciInitGridStyle( sciPointObj * pObj, int xStyle, int yStyle, int zStyle )
+{
+  switch( sciGetEntityType( pObj ) )
+  {
+  case SCI_SUBWIN:
+    pSUBWIN_FEATURE(pObj)->grid[0] = xStyle ;
+    pSUBWIN_FEATURE(pObj)->grid[1] = yStyle ;
+    pSUBWIN_FEATURE(pObj)->grid[2] = zStyle ;
+    return 0 ;
+  default:
+    sciprint( "This object has no grid property.\n" ) ;
+    return -1 ;
+  }
+  return -1 ;
+}
+/*--------------------------------------------------------------------------------------------*/
+/**
+ * Set the grid of an axes object
+ */
+int sciSetGridStyle( sciPointObj * pObj, int xStyle, int yStyle, int zStyle )
+{
+  int curX ;
+  int curY ;
+  int curZ ;
+  sciGetGridStyle( pObj, &curX, &curY, &curZ ) ;
+  if ( curX == xStyle && curY == yStyle && curZ == zStyle )
+  {
+    /* nothing to do */
+    return 1 ;
+  }
+  return sciInitGridStyle( pObj, xStyle, yStyle, zStyle ) ;
 }
 /*--------------------------------------------------------------------------------------------*/

@@ -199,4 +199,6 @@ extern BOOL sciIsMergeable( sciPointObj * pObj ) ;
 
 extern BOOL sciGetIsAutoDrawable( sciPointObj * pobj ) ;
 
+extern void sciGetGridStyle( sciPointObj * pObj, int * xStyle, int * yStyle, int * zStyle ) ;
+
 #endif /* __SCI_GET_PROPERTY__ */

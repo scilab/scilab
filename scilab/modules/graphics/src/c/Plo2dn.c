@@ -113,34 +113,25 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
   {
     containsSurface = TRUE ;
   }
-
-  /* if (!(sciGetGraphicMode (psubwin)->addplot)) {  */
-/*     sciXbasc();  */
-/*     initsubwin(); 	/\* Pb here Re-init for the psubwin does not work properly F.Leray 24.02.04*\/ */
-/*     sciRedrawFigure(); */
-/*     psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());  */
-/*   }  */
-  
-  
   
   if (sciGetSurface(psubwin) == (sciPointObj *) NULL) /* F.Leray 18.05.04 */
     {
-      pSUBWIN_FEATURE (psubwin)->is3d = FALSE;
-      pSUBWIN_FEATURE (psubwin)->project[2]= 0;
+      ppsubwin->is3d = FALSE;
+      ppsubwin->project[2]= 0;
     }
   else
     {
-      pSUBWIN_FEATURE (psubwin)->theta_kp=pSUBWIN_FEATURE (psubwin)->theta;
-      pSUBWIN_FEATURE (psubwin)->alpha_kp=pSUBWIN_FEATURE (psubwin)->alpha;
+      ppsubwin->theta_kp=ppsubwin->theta;
+      ppsubwin->alpha_kp=ppsubwin->alpha;
     }
   
-  pSUBWIN_FEATURE (psubwin)->alpha  = 0.0;
-  pSUBWIN_FEATURE (psubwin)->theta  = 270.0;
+  ppsubwin->alpha  = 0.0;
+  ppsubwin->theta  = 270.0;
   
   if (sciGetSurface(psubwin) != (sciPointObj *) NULL){
     if(sciGetCurrentScilabXgc () != (struct BCG *) NULL)
       UpdateSubwinScale(psubwin);
-    pSUBWIN_FEATURE (psubwin)->is3d = FALSE;
+    ppsubwin->is3d = FALSE;
   }
 
 
@@ -151,9 +142,10 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
   
 
   /* Force psubwin->logflags to those given by argument*/
-  if (pSUBWIN_FEATURE(psubwin)->FirstPlot == TRUE){
-    pSUBWIN_FEATURE (psubwin)->logflags[0]=logflags[1];
-    pSUBWIN_FEATURE (psubwin)->logflags[1]=logflags[2];
+  if ( ppsubwin->FirstPlot )
+  {
+    ppsubwin->logflags[0]=logflags[1];
+    ppsubwin->logflags[1]=logflags[2];
   }
 
   /* Force "cligrf" clipping */
@@ -175,30 +167,30 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
     case '2' : case '4' : case '6' : case '8': case '9':
       /* Force psubwin->Srect to the x and y bounds */
       if ( (int)strlen(logflags) < 1) dataflag='g' ; else dataflag=logflags[0];
-      compute_data_bounds2(0,dataflag,pSUBWIN_FEATURE (psubwin)->logflags,x,y,*n1,*n2,drect);
+      compute_data_bounds2(0,dataflag,ppsubwin->logflags,x,y,*n1,*n2,drect);
       break;
     }
     if (!pSUBWIN_FEATURE(psubwin)->FirstPlot && 
 	(strflag[1] == '5' || strflag[1] == '7' || strflag[1] == '8' || strflag[1] == '9')) { /* merge psubwin->Srect and drect */
       
-      drect[0] = Min(pSUBWIN_FEATURE(psubwin)->SRect[0],drect[0]); /*xmin*/
-      drect[2] = Min(pSUBWIN_FEATURE(psubwin)->SRect[2],drect[2]); /*ymin*/
-      drect[1] = Max(pSUBWIN_FEATURE(psubwin)->SRect[1],drect[1]); /*xmax*/
-      drect[3] = Max(pSUBWIN_FEATURE(psubwin)->SRect[3],drect[3]); /*ymax*/
+      drect[0] = Min(ppsubwin->SRect[0],drect[0]); /*xmin*/
+      drect[2] = Min(ppsubwin->SRect[2],drect[2]); /*ymin*/
+      drect[1] = Max(ppsubwin->SRect[1],drect[1]); /*xmax*/
+      drect[3] = Max(ppsubwin->SRect[3],drect[3]); /*ymax*/
       
     }
     if (strflag[1] != '0')
       bounds_changed = update_specification_bounds(psubwin, drect,2);
   } 
   
-  if(pSUBWIN_FEATURE (psubwin)->FirstPlot == TRUE) bounds_changed = TRUE;
+  if(ppsubwin->FirstPlot == TRUE) bounds_changed = TRUE;
   
   axes_properties_changed = strflag2axes_properties(psubwin, strflag);
      
-  pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE; /* just after strflag2axes_properties */
+  ppsubwin->FirstPlot = FALSE; /* just after strflag2axes_properties */
    
   with_leg= (strflag[0] == '1');
-  pSUBWIN_FEATURE (psubwin)->with_leg = with_leg;
+  ppsubwin->with_leg = with_leg;
 
   /* F.Leray 07.10.04 : trigger algo to init. manual graduation u_xgrads and 
      u_ygrads if nax (in matdes.c which is == aaint HERE) was specified */
@@ -273,7 +265,6 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
       hdl=sciGetHandle(sciGetCurrentObj ());   
       hdltab[cmpt]=hdl;
       cmpt++;
-      Legends (style, n1, legend);  
       FREE(pptabofpointobj);
     }
 
