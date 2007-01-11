@@ -267,10 +267,7 @@ void sfClear( long *Matrix )
  */
 
 long
-sfGetElement( Matrix, Row, Col )
-
-long *Matrix;
-int  *Row, *Col;
+sfGetElement( long *Matrix, int *Row, int *Col )
 {
 /* Begin `sfGetElement'. */
     return (long)spGetElement((char *)*Matrix, *Row, *Col);
@@ -318,10 +315,7 @@ int  *Row, *Col;
  */
 
 int
-sfGetAdmittance( Matrix, Node1, Node2, Template )
-
-long  *Matrix, Template[4];
-int  *Node1, *Node2;
+sfGetAdmittance( long *Matrix, int *Node1, int *Node2, long Template[4] )
 {
 /* Begin `spGetAdmittance'. */
     return
@@ -388,10 +382,7 @@ int  *Node1, *Node2;
  */
 
 int
-sfGetQuad( Matrix, Row1, Row2, Col1, Col2, Template )
-
-long  *Matrix, Template[4];
-int  *Row1, *Row2, *Col1, *Col2;
+sfGetQuad( long  *Matrix, int  *Row1, int  *Row2, int  *Col1, int  *Col2, long Template[4] )
 {
 /* Begin `spGetQuad'. */
     return
@@ -451,10 +442,7 @@ int  *Row1, *Row2, *Col1, *Col2;
  */
 
 int
-sfGetOnes(Matrix, Pos, Neg, Eqn, Template)
-
-long  *Matrix, Template[4];
-int  *Pos, *Neg, *Eqn;
+sfGetOnes(long *Matrix, int *Pos, int *Neg, int *Eqn, long Template[4])
 {
 /* Begin `sfGetOnes'. */
     return
@@ -490,10 +478,7 @@ int  *Pos, *Neg, *Eqn;
  */
 
 void
-sfAdd1Real( Element, Real )
-
-long *Element;
-RealNumber *Real;
+sfAdd1Real( long *Element, RealNumber *Real )
 {
 /* Begin `sfAdd1Real'. */
     *((RealNumber *)*Element) += *Real;
@@ -503,10 +488,7 @@ RealNumber *Real;
 #ifdef spCOMPLEX
 
 void
-sfAdd1Imag( Element, Imag )
-
-long *Element;
-RealNumber *Imag;
+sfAdd1Imag( long *Element, RealNumber *Imag )
 {
 /* Begin `sfAdd1Imag'. */
     *(((RealNumber *)*Element)+1) += *Imag;
@@ -514,10 +496,7 @@ RealNumber *Imag;
 
 
 void
-sfAdd1Complex( Element, Real, Imag )
-
-long *Element;
-RealNumber *Real, *Imag;
+sfAdd1Complex( long *Element, RealNumber *Real, RealNumber *Imag )
 {
 /* Begin `sfAdd1Complex'. */
     *((RealNumber *)*Element) += *Real;
@@ -529,10 +508,7 @@ RealNumber *Real, *Imag;
 #ifdef QUAD_ELEMENT
 
 void
-sfAdd4Real( Template, Real )
-
-long Template[4];
-RealNumber *Real;
+sfAdd4Real( long Template[4], RealNumber *Real )
 {
 /* Begin `sfAdd4Real'. */
     *((RealNumber *)Template[0]) += *Real;
@@ -545,10 +521,7 @@ RealNumber *Real;
 #ifdef spCOMPLEX
 
 void
-sfAdd4Imag( Template, Imag )
-
-long Template[4];
-RealNumber *Imag;
+sfAdd4Imag( long Template[4], RealNumber *Imag )
 {
 /* Begin `sfAdd4Imag'. */
     *(((RealNumber *)Template[0])+1) += *Imag;
@@ -559,10 +532,7 @@ RealNumber *Imag;
 
 
 void
-sfAdd4Complex( Template, Real, Imag )
-
-long Template[4];
-RealNumber *Real, *Imag;
+sfAdd4Complex( long Template[4], RealNumber *Real, RealNumber *Imag )
 {
 /* Begin `sfAdd4Complex'. */
     *((RealNumber *)Template[0]) += *Real;
@@ -671,10 +641,7 @@ RealNumber *Real, *Imag;
  */
 
 int
-sfOrderAndFactor( Matrix, RHS, RelThreshold, AbsThreshold, DiagPivoting )
-
-long *Matrix, *DiagPivoting;
-RealNumber  RHS[], *RelThreshold, *AbsThreshold;
+sfOrderAndFactor( long *Matrix, RealNumber RHS[], RealNumber *RelThreshold, RealNumber* AbsThreshold, long *DiagPivoting )
 {
 /* Begin `sfOrderAndFactor'. */
     return spOrderAndFactor( (char *)*Matrix, RHS, *RelThreshold,
@@ -768,10 +735,7 @@ sfFactor( long *Matrix )
  */
 
 void
-sfPartition( Matrix, Mode )
-
-long *Matrix;
-int *Mode;
+sfPartition( long *Matrix, int *Mode )
 {
 /* Begin `sfPartition'. */
     spPartition((char *)*Matrix, *Mode);
@@ -824,10 +788,7 @@ int *Mode;
 /*VARARGS3*/
 
 void
-sfSolve( Matrix, RHS, Solution IMAG_VECTORS )
-
-long *Matrix;
-RealVector  RHS, Solution IMAG_VECTORS;
+sfSolve( long *Matrix, RealVector RHS, RealVector Solution IMAG_VECTORS )
 {
 /* Begin `sfSolve'. */
     spSolve( (char *)*Matrix, RHS, Solution IMAG_VECTORS );
@@ -880,10 +841,7 @@ RealVector  RHS, Solution IMAG_VECTORS;
 /*VARARGS3*/
 
 void
-sfSolveTransposed( Matrix, RHS, Solution IMAG_VECTORS )
-
-long *Matrix;
-RealVector  RHS, Solution IMAG_VECTORS;
+sfSolveTransposed( long *Matrix, RealVector RHS, RealVector Solution IMAG_VECTORS )
 {
 /* Begin `sfSolveTransposed'. */
     spSolveTransposed( (char *)*Matrix, RHS, Solution IMAG_VECTORS );
@@ -924,9 +882,7 @@ RealVector  RHS, Solution IMAG_VECTORS;
  */
 
 void
-sfPrint( Matrix, Data, PrintReordered, Header )
-
-long *Matrix, *PrintReordered, *Data, *Header;
+sfPrint( long *Matrix, long *Data, long *PrintReordered, long *Header )
 {
 /* Begin `sfPrint'. */
     spPrint( (char *)*Matrix, (int)*PrintReordered, (int)*Data, (int)*Header );
@@ -970,9 +926,7 @@ long *Matrix, *PrintReordered, *Data, *Header;
 #define STATS_FILE_NAME         "spStats"
 
 long
-sfFileMatrix( Matrix, Reordered, Data, Header )
-
-long *Matrix, *Reordered, *Data, *Header;
+sfFileMatrix( long *Matrix, long *Reordered, long *Data, long *Header )
 {
 /* Begin `sfFileMatrix'. */
     return spFileMatrix( (char *)*Matrix, MATRIX_FILE_NAME, "",
@@ -1007,10 +961,7 @@ long *Matrix, *Reordered, *Data, *Header;
  */
 
 int
-sfFileVector( Matrix, RHS IMAG_RHS )
-
-long *Matrix;
-RealVector  RHS IMAG_RHS;
+sfFileVector( long *Matrix, RealVector RHS IMAG_RHS )
 {
 /* Begin `sfFileVector'. */
     return spFileVector( (char *)*Matrix, MATRIX_FILE_NAME, RHS IMAG_RHS );
@@ -1183,10 +1134,7 @@ sfMNA_Preorder( long *Matrix )
  */
 
 void
-sfScale( Matrix, RHS_ScaleFactors, SolutionScaleFactors )
-
-long *Matrix;
-RealVector  RHS_ScaleFactors, SolutionScaleFactors;
+sfScale( long *Matrix, RealVector RHS_ScaleFactors, RealVector SolutionScaleFactors )
 {
 /* Begin `sfScale'. */
     spScale( (char *)*Matrix, RHS_ScaleFactors, SolutionScaleFactors );
@@ -1746,10 +1694,7 @@ sfLargestElement( long *Matrix )
  */
 
 RealNumber
-sfRoundoff( Matrix, Rho )
-
-long *Matrix;
-RealNumber *Rho;
+sfRoundoff( long *Matrix, RealNumber *Rho )
 {
 /* Begin `sfRoundoff'. */
     return spRoundoff( (char *)*Matrix, *Rho );
