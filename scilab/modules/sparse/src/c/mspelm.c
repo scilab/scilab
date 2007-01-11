@@ -40,7 +40,7 @@ extern  int C2F(icopy)();
 extern  int C2F(error)();
 extern  int C2F(dset)();
 extern  int C2F(int2db)();
-extern  int empty();
+extern  int empty(void);
 
 int C2F(intmsparse)(integer *id)
 {
@@ -126,7 +126,7 @@ int C2F(intmsparse)(integer *id)
     return 0;
 }
 
-int empty()
+int empty(void)
 {
   int m,n;int k;
   int m1,n1,p1;
@@ -162,7 +162,7 @@ int C2F(intmspget)(integer *id)
     /* Local variables */
     static integer ilrs;
     static integer ityp, j, l, m, n;
-    static integer j1;
+    static integer j1_;
     static integer nc, il, it, lv, lw;
     static double tv;
     static integer ilc, nel, nelmax, ilr, lij, ilv, top0, kkk;
@@ -272,9 +272,9 @@ int C2F(intmspget)(integer *id)
     C2F(int2db)(&nel, istk(ilrs + n+1), &c1, stk(lij), &c1);
     for (j = 1; j <= n; ++j) {
 	nc = *istk(ilrs + j ) - *istk(ilrs + j - 1);
-	j1 = *istk(ilrs + j - 1) -1;
+	j1_ = *istk(ilrs + j - 1) -1;
 	tv = (double) j;
-	C2F(dset)(&nc, &tv, stk(lij + nel + j1 ), &c1);
+	C2F(dset)(&nc, &tv, stk(lij + nel + j1_ ), &c1);
     }
 
     /*            ij               */

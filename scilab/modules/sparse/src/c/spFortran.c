@@ -101,14 +101,6 @@
  *  any purpose.  It is provided `as is', without express or implied warranty.
  */
 
-#ifndef lint
-	#ifndef _MSC_VER
-static char copyright[] = "Sparse1.3: Copyright (c) 1985,86,87,88 by Kenneth S. Kundert";
-static char RCSid[] = "@(#)$Header: /usr/local/cvsroot_tmp/scilab/routines/sparse/spFortran.c,v 1.1 2001/04/26 07:48:07 scilab Exp $";
-	#endif
-#endif
-
-
 
 
 /*
@@ -121,62 +113,20 @@ static char RCSid[] = "@(#)$Header: /usr/local/cvsroot_tmp/scilab/routines/spars
  *     Macros and declarations to be imported by the user.
  *  spDefs.h
  *     Matrix type and macro definitions for the sparse matrix routines.
+ *  spFortran.h
+ *     Definition of profiles
  */
 
 #define spINSIDE_SPARSE
 #include "spConfig.h"
 #include "spmatrix.h"
 #include "spDefs.h"
+#include "spFortran.h"
 
-#if FORTRAN
+#ifdef FORTRAN
 
 
 
-
-/*
- *  Routine Renaming
- */
-#include "machine.h"
-#define sfCreate                C2F(sfcreate)
-#define sfStripFills            C2F(sfstripfills)
-#define sfDestroy               C2F(sfdestroy)
-#define sfClear                 C2F(sfclear)
-#define sfGetElement            C2F(sfgetelement)
-#define sfGetAdmittance         C2F(sfgetadmittance)
-#define sfGetQuad               C2F(sfgetquad)
-#define sfGetOnes               C2F(sfgetones)
-#define sfAdd1Real              C2F(sfadd1real)
-#define sfAdd1Imag              C2F(sfadd1imag)
-#define sfAdd1Complex           C2F(sfadd1complex)
-#define sfAdd4Real              C2F(sfadd4real)
-#define sfAdd4Imag              C2F(sfadd4imag)
-#define sfAdd4Complex           C2F(sfadd4complex)
-#define sfOrderAndFactor        C2F(sforderandfactor)
-#define sfFactor                C2F(sffactor)
-#define sfPartition             C2F(sfpartition)
-#define sfSolve                 C2F(sfsolve)
-#define sfSolveTransposed       C2F(sfsolvetransposed)
-#define sfPrint                 C2F(sfprint)
-#define sfFileMatrix            C2F(sffilematrix)
-#define sfFileVector            C2F(sffilevector)
-#define sfFileStats             C2F(sffilestats)
-#define sfMNA_Preorder          C2F(sfmna_preorder)
-#define sfScale                 C2F(sfscale)
-#define sfMultiply              C2F(sfmultiply)
-#define sfDeterminant           C2F(sfdeterminant)
-#define sfError                 C2F(sferror)
-#define sfWhereSingular         C2F(sfwheresingular)
-#define sfGetSize               C2F(sfgetsize)
-#define sfSetReal               C2F(sfsetreal)
-#define sfSetComplex            C2F(sfsetcomplex)
-#define sfFillinCount           C2F(sffillincount)
-#define sfElementCount          C2F(sfelementcount)
-#define sfDeleteRowAndCol       C2F(sfdeleterowandcol)
-#define sfPseudoCondition       C2F(sfpseudocondition)
-#define sfCondition             C2F(sfcondition)
-#define sfNorm                  C2F(sfnorm)
-#define sfLargestElement        C2F(sflargestelement)
-#define sfRoundoff              C2F(sfroundoff)
 
 
 
@@ -228,64 +178,15 @@ c
 
 
 
-
-/*
- *  MATRIX SPALLOCATION
- *
- *  Allocates and initializes the data structures associated with a matrix.
- *
- *  >>> Returned: [INTEGER]
- *  A pointer to the matrix is returned cast into an integer.  This pointer
- *  is then passed and used by the other matrix routines to refer to a
- *  particular matrix.  If an error occurs, the NULL pointer is returned.
- *
- *  >>> Arguments:
- *  Size  <input>  (long *) [INTEGER]
- *      Size of matrix or estimate of size of matrix if matrix is EXPANDABLE.
- *  Complex  <input>  (int *) [INTEGER or INTEGER*2]
- *      Type of matrix.  If Complex is 0 then the matrix is real, otherwise
- *      the matrix will be complex.  Note that if the routines are not set up
- *      to handle the type of matrix requested, then a spPANIC error will occur.
- *      Further note that if a matrix will be both real and complex, it must
- *      be specified here as being complex.
- *  Error  <output>  (int *) [INTEGER or INTEGER*2]
- *      Returns error flag, needed because function spError() will not work
- *      correctly if spCreate() returns NULL.
- *
- *  >>> Possible errors:
- *  spNO_MEMORY
- *  spPANIC
- *  Error is cleared in this routine.
- */
 
-long
-sfCreate( Size, Complex, Error )
-
-int  *Size, *Complex, *Error;
+long sfCreate(int  *Size, int  *Complex, int  *Error )
 {
 /* Begin `sfCreate'. */
     return (long)spCreate(*Size, *Complex, Error );
 }
 
 
-
-
-
-
-/*
- *  MATRIX DEALLOCATION
- *
- *  Deallocates pointers and elements of Matrix.
- *
- *  >>> Arguments:
- *  Matrix  <input>  (long *) [INTEGER]
- *      Pointer to the matrix frame which is to be removed from memory.
- */
-
-void
-sfDestroy( Matrix )
-
-long *Matrix;
+void sfDestroy( long *Matrix )
 {
 /* Begin `sfDestroy'. */
     spDestroy((char *)*Matrix);
@@ -297,22 +198,8 @@ long *Matrix;
 
 
 
-#if STRIP
-
-/*
- *  STRIP FILL-INS FROM MATRIX
- *
- *  Strips the matrix of all fill-ins.
- *
- *  >>> Arguments:
- *  Matrix  <input>  (long *) [INTEGER]
- *      Pointer to the matrix to be stripped.
- */
-
-void
-sfStripFills( Matrix )
-
-long *Matrix;
+#ifdef STRIP
+void sfStripFills( long *Matrix )
 {
 /* Begin `sfStripFills'. */
     spStripFills((char *)*Matrix);
@@ -325,7 +212,7 @@ long *Matrix;
 
 
 
-
+
 /*
  *  CLEAR MATRIX
  *
@@ -336,10 +223,7 @@ long *Matrix;
  *     Pointer to matrix that is to be cleared.
  */
 
-void
-sfClear( Matrix )
-
-long *Matrix;
+void sfClear( long *Matrix )
 {
 /* Begin `sfClear'. */
     spClear((char *)*Matrix);
@@ -350,7 +234,7 @@ long *Matrix;
 
 
 
-
+
 /*
  *  SINGLE ELEMENT ADDITION TO MATRIX BY INDEX
  *
@@ -397,8 +281,8 @@ int  *Row, *Col;
 
 
 
-
-#if QUAD_ELEMENT
+
+#ifdef QUAD_ELEMENT
 /*
  *  ADDITION OF ADMITTANCE TO MATRIX BY INDEX
  *
@@ -454,8 +338,8 @@ int  *Node1, *Node2;
 
 
 
-
-#if QUAD_ELEMENT
+
+#ifdef QUAD_ELEMENT
 /*
  *  ADDITION OF FOUR ELEMENTS TO MATRIX BY INDEX
  *
@@ -524,8 +408,8 @@ int  *Row1, *Row2, *Col1, *Col2;
 
 
 
-
-#if QUAD_ELEMENT
+
+#ifdef QUAD_ELEMENT
 /*
  *  ADDITION OF FOUR STRUCTURAL ONES TO MATRIX BY INDEX
  *
@@ -585,7 +469,7 @@ int  *Pos, *Neg, *Eqn;
 
 
 
-
+
 /*
  *  ADD ELEMENT(S) DIRECTLY TO MATRIX
  *
@@ -616,7 +500,7 @@ RealNumber *Real;
 }
 
 
-#if spCOMPLEX
+#ifdef spCOMPLEX
 
 void
 sfAdd1Imag( Element, Imag )
@@ -642,7 +526,7 @@ RealNumber *Real, *Imag;
 #endif /* spCOMPLEX */
 
 
-#if QUAD_ELEMENT
+#ifdef QUAD_ELEMENT
 
 void
 sfAdd4Real( Template, Real )
@@ -658,7 +542,7 @@ RealNumber *Real;
 }
 
 
-#if spCOMPLEX
+#ifdef spCOMPLEX
 
 void
 sfAdd4Imag( Template, Imag )
@@ -697,7 +581,7 @@ RealNumber *Real, *Imag;
 
 
 
-
+
 /*
  *  ORDER AND FACTOR MATRIX
  *
@@ -802,7 +686,7 @@ RealNumber  RHS[], *RelThreshold, *AbsThreshold;
 
 
 
-
+
 /*
  *  FACTOR MATRIX
  *
@@ -835,9 +719,7 @@ RealNumber  RHS[], *RelThreshold, *AbsThreshold;
  */
 
 int
-sfFactor( Matrix )
-
-long *Matrix;
+sfFactor( long *Matrix )
 {
 /* Begin `sfFactor'. */
     return spFactor((char *)*Matrix);
@@ -847,7 +729,7 @@ long *Matrix;
 
 
 
-
+
 /*
  *  PARTITION MATRIX
  *
@@ -900,7 +782,7 @@ int *Mode;
 
 
 
-
+
 /*
  *  SOLVE MATRIX EQUATION
  *
@@ -955,8 +837,8 @@ RealVector  RHS, Solution IMAG_VECTORS;
 
 
 
-
-#if TRANSPOSE
+
+#ifdef TRANSPOSE
 /*
  *  SOLVE TRANSPOSED MATRIX EQUATION
  *
@@ -1012,7 +894,7 @@ RealVector  RHS, Solution IMAG_VECTORS;
 
 
 
-#if DOCUMENTATION
+#ifdef DOCUMENTATION
 /*
  *  PRINT MATRIX
  *
@@ -1056,7 +938,7 @@ long *Matrix, *PrintReordered, *Data, *Header;
 
 
 
-#if DOCUMENTATION
+#ifdef DOCUMENTATION
 /*
  *  OUTPUT MATRIX TO FILE
  *
@@ -1100,7 +982,7 @@ long *Matrix, *Reordered, *Data, *Header;
 
 
 
-#if DOCUMENTATION
+#ifdef DOCUMENTATION
 /*
  *  OUTPUT SOURCE VECTOR TO FILE
  *
@@ -1141,7 +1023,7 @@ RealVector  RHS IMAG_RHS;
 
 
 
-#if DOCUMENTATION
+#ifdef DOCUMENTATION
 /*
  *  OUTPUT STATISTICS TO FILE
  *
@@ -1159,9 +1041,7 @@ RealVector  RHS IMAG_RHS;
  */
 
 int
-sfFileStats( Matrix )
-
-long *Matrix;
+sfFileStats( long *Matrix )
 {
 /* Begin `sfFileStats'. */
     return spFileStats( (char *)*Matrix, STATS_FILE_NAME, "" );
@@ -1171,7 +1051,7 @@ long *Matrix;
 
 
 
-#if MODIFIED_NODAL
+#ifdef MODIFIED_NODAL
 /*
  *  PREORDER MODIFIED NODE ADMITTANCE MATRIX TO REMOVE ZEROS FROM DIAGONAL
  *
@@ -1244,9 +1124,7 @@ long *Matrix;
  */
 
 void
-sfMNA_Preorder( Matrix )
-
-long *Matrix;
+sfMNA_Preorder( long *Matrix )
 {
 /* Begin `sfMNA_Preorder'. */
     spMNA_Preorder( (char *)*Matrix );
@@ -1258,7 +1136,7 @@ long *Matrix;
 
 
 
-#if SCALING
+#ifdef SCALING
 /*
  *  SCALE MATRIX
  *
@@ -1319,8 +1197,8 @@ RealVector  RHS_ScaleFactors, SolutionScaleFactors;
 
 
 
-
-#if MULTIPLICATION
+
+#ifdef MULTIPLICATION
 /*
  *  MATRIX MULTIPLICATION
  *
@@ -1353,10 +1231,7 @@ RealVector  RHS_ScaleFactors, SolutionScaleFactors;
  */
 
 void
-sfMultiply( Matrix, RHS, Solution IMAG_VECTORS )
-
-long *Matrix;
-RealVector Solution, RHS IMAG_VECTORS;
+sfMultiply( long *Matrix, RealVector RHS, RealVector Solution IMAG_VECTORS )
 {
 /* Begin `sfMultiply'. */
     spMultiply( (char *)*Matrix, RHS, Solution IMAG_VECTORS );
@@ -1368,7 +1243,7 @@ RealVector Solution, RHS IMAG_VECTORS;
 
 
 
-#if MULTIPLICATION AND TRANSPOSE
+#ifdef MULTIPLICATION AND TRANSPOSE
 /*
  *  TRANSPOSED MATRIX MULTIPLICATION
  *
@@ -1401,23 +1276,18 @@ RealVector Solution, RHS IMAG_VECTORS;
  */
 
 void
-sfMultTransposed( Matrix, RHS, Solution IMAG_VECTORS )
-
-long *Matrix;
-RealVector Solution, RHS IMAG_VECTORS;
+sfMultTransposed( long *Matrix, RealVector RHS, RealVector Solution IMAG_VECTORS )
 {
 /* Begin `sfMultTransposed'. */
     spMultTransposed( (char *)*Matrix, RHS, Solution IMAG_VECTORS );
 }
-#endif /* MULTIPLICATION AND TRANSPOSE */
+#endif
+ /* MULTIPLICATION AND TRANSPOSE */
 
 
 
+#ifdef DETERMINANT
 
-
-
-#if DETERMINANT
-
 /*
  *  CALCULATE DETERMINANT
  *
@@ -1451,14 +1321,10 @@ RealVector Solution, RHS IMAG_VECTORS;
  *      number is scaled to be greater than or equal to 1.0 and less than 10.0.
  */
 
-#if spCOMPLEX
+#ifdef spCOMPLEX
 
 void
-sfDeterminant( Matrix, pExponent, pDeterminant, piDeterminant )
-
-long *Matrix;
-RealNumber *pDeterminant, *piDeterminant;
-int  *pExponent;
+sfDeterminant( long *Matrix, int  *pExponent, RealNumber *pDeterminant, RealNumber *piDeterminant )
 {
 /* Begin `sfDeterminant'. */
     spDeterminant( (char *)*Matrix, pExponent, pDeterminant, piDeterminant );
@@ -1467,11 +1333,7 @@ int  *pExponent;
 #else /* spCOMPLEX */
 
 void
-sfDeterminant( Matrix, pExponent, pDeterminant )
-
-long *Matrix;
-RealNumber *pDeterminant;
-int  *pExponent;
+sfDeterminant( long *Matrix, int  *pExponent, RealNumber *pDeterminant )
 {
 /* Begin `sfDeterminant'. */
     spDeterminant( (char *)*Matrix, pExponent, pDeterminant );
@@ -1498,9 +1360,7 @@ int  *pExponent;
  */
 
 int
-sfError( Matrix )
-
-long  *Matrix;
+sfError( long *Matrix )
 {
 /* Begin `sfError'. */
     return spError( (char *)*Matrix );
@@ -1527,10 +1387,7 @@ long  *Matrix;
  */
 
 void
-sfWhereSingular( Matrix, Row, Col )
-
-long *Matrix;
-int *Row, *Col;
+sfWhereSingular( long *Matrix, int *Row, int *Col )
 {
 /* Begin `sfWhereSingular'. */
     spWhereSingular( (char *)*Matrix, Row, Col );
@@ -1557,9 +1414,7 @@ int *Row, *Col;
  */
 
 int
-sfGetSize( Matrix, External )
-
-long  *Matrix, *External;
+sfGetSize( long *Matrix, long *External )
 {
 /* Begin `sfGetSize'. */
     return spGetSize( (char *)*Matrix, (SPBOOLEAN)*External );
@@ -1571,7 +1426,7 @@ long  *Matrix, *External;
 
 
 
-
+
 /*
  *   SET MATRIX COMPLEX OR REAL
  *
@@ -1583,9 +1438,7 @@ long  *Matrix, *External;
  */
 
 void
-sfSetReal( Matrix )
-
-long *Matrix;
+sfSetReal( long *Matrix )
 {
 /* Begin `sfSetReal'. */
     spSetReal( (char *)*Matrix );
@@ -1593,9 +1446,7 @@ long *Matrix;
 
 
 void
-sfSetComplex( Matrix )
-
-long *Matrix;
+sfSetComplex( long *Matrix )
 {
 /* Begin `sfSetComplex'. */
     spSetComplex( (char *)*Matrix );
@@ -1608,7 +1459,7 @@ long *Matrix;
 
 
 
-
+
 /*
  *   ELEMENT OR FILL-IN COUNT
  *
@@ -1621,9 +1472,7 @@ long *Matrix;
  */
 
 int
-sfFillinCount( Matrix )
-
-long *Matrix;
+sfFillinCount( long *Matrix )
 {
 /* Begin `sfFillinCount'. */
     return spFillinCount( (char *)*Matrix );
@@ -1631,9 +1480,7 @@ long *Matrix;
 
 
 int
-sfElementCount( Matrix )
-
-long *Matrix;
+sfElementCount( long *Matrix )
 {
 /* Begin `sfElementCount'. */
     return spElementCount( (char *)*Matrix );
@@ -1644,8 +1491,8 @@ long *Matrix;
 
 
 
-#if TRANSLATE AND DELETE
-
+#ifdef TRANSLATE AND DELETE
+
 /*
  *  DELETE A ROW AND COLUMN FROM THE MATRIX
  *
@@ -1664,10 +1511,7 @@ long *Matrix;
  */
 
 void
-sfDeleteRowAndCol( Matrix, Row, Col )
-
-long *Matrix;
-int  *Row, *Col;
+sfDeleteRowAndCol( long *Matrix, int *Row, int *Col )
 {
 /* Begin `sfDeleteRowAndCol'. */
     spDeleteRowAndCol( (char *)*Matrix, *Row, *Col );
@@ -1678,8 +1522,8 @@ int  *Row, *Col;
 
 
 
-#if PSEUDOCONDITION
-
+#ifdef PSEUDOCONDITION
+
 /*
  *  CALCULATE PSEUDOCONDITION
  *
@@ -1704,10 +1548,7 @@ int  *Row, *Col;
  *     Pointer to the matrix.
  */
 
-RealNumber
-sfPseudoCondition( Matrix )
-
-long *Matrix;
+RealNumber sfPseudoCondition( long *Matrix )
 {
 /* Begin `sfPseudoCondition'. */
     return spPseudoCondition( (char *)Matrix );
@@ -1720,8 +1561,8 @@ long *Matrix;
 
 
 
-#if CONDITION
-
+#ifdef CONDITION
+
 /*
  *  ESTIMATE CONDITION NUMBER
  *
@@ -1775,18 +1616,11 @@ long *Matrix;
  *  spNO_MEMORY
  */
 
-RealNumber
-sfCondition( Matrix, NormOfMatrix, pError )
-
-long *Matrix;
-RealNumber *NormOfMatrix;
-int *pError;
+RealNumber sfCondition( long * Matrix, RealNumber *NormOfMatrix, int *pError )
 {
 /* Begin `sfCondition'. */
     return spCondition( (char *)*Matrix, *NormOfMatrix, pError );
 }
-
-
 
 
 
@@ -1806,10 +1640,7 @@ int *pError;
  *     Pointer to the matrix.
  */
 
-RealNumber
-sfNorm( Matrix )
-
-long *Matrix;
+RealNumber sfNorm( long *Matrix )
 {
 /* Begin `sfNorm'. */
     return spNorm( (char *)*Matrix );
@@ -1820,8 +1651,8 @@ long *Matrix;
 
 
 
-#if STABILITY
-
+#ifdef STABILITY
+
 /*
  *  STABILITY OF FACTORIZATION
  *
@@ -1889,9 +1720,7 @@ long *Matrix;
  */
 
 RealNumber
-sfLargestElement( Matrix )
-
-long *Matrix;
+sfLargestElement( long *Matrix )
 {
 /* Begin `sfLargestElement'. */
     return spLargestElement( (char *)Matrix );
