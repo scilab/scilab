@@ -5,6 +5,7 @@
 #include "machine.h"
 #include "stack-c.h"
 #include "do_xxprintf.h"
+#include "gw_fileio.h"
 /*-----------------------------------------------------------------------------------*/ 
 int int_objprintf __PARAMS((char *fname,unsigned long fname_len))
 {

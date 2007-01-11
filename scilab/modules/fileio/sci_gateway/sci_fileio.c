@@ -2,10 +2,13 @@
 /* INRIA 2006 */
 /* Allan CORNET*/
 /*-----------------------------------------------------------------------------------*/ 
-#include "sci_fileio.h"
+
 #include <string.h>
 #include <stdio.h>
 #include "MALLOC.h" /* MALLOC */
+#include "sci_fileio.h"
+#include "gw_fileio.h"
+#include "files.h"
 
 /*-----------------------------------------------------------------------------------*/ 
 #ifdef hppa 
@@ -15,21 +18,7 @@
 /*-----------------------------------------------------------------------------------*/ 
 static char filename[FILENAME_MAX];
 static int out_n;
-static long int lin,lout;
-/*-----------------------------------------------------------------------------------*/ 
-extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int name_len,long int nams_len));  
-extern void C2F(mopen) __PARAMS((int *fd, char *file, char *status, int *f_swap, double *res, int *error));
-extern void C2F(mclose) __PARAMS((integer *fd, double *res));
-extern void C2F(meof) __PARAMS((integer *fd, double *res));
-extern void C2F(merror) __PARAMS((integer *fd, double *res));
-extern void C2F(mclearerr) __PARAMS((integer *fd));
-extern void C2F(mseek) __PARAMS((integer *fd, integer *offset, char *flag, integer *err));
-extern void C2F(mtell) __PARAMS((integer *fd, double *offset, integer *err));
-extern void C2F(mput) __PARAMS((integer *fd, double *res, integer *n, char *type, integer *ierr));
-extern void C2F(mget) __PARAMS((integer *fd, double *res, integer *n, char *type, integer *ierr));
-extern void C2F(mgetstr) __PARAMS((integer *fd, char **start, integer *n, integer *ierr));
-extern void C2F(mgetstr1) __PARAMS((integer *fd, char *start, integer *n, integer *ierr));
-extern void C2F(mputstr) __PARAMS((int *fd, char *str, double *res, int *ierr));
+static long int lout;
 /*-----------------------------------------------------------------------------------*/ 
 /* SCILAB function : mopen */
 /*-----------------------------------------------------------------------------------*/ 

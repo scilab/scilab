@@ -3,9 +3,9 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include "machine.h"
 #include "stack-c.h"
+#include "fileio.h"
 /*-----------------------------------------------------------------------------------*/ 
-extern int StringConvert __PARAMS((char *str));
-extern int NumTokens(char *string);
+int int_objnumTokens(char *fname,unsigned long fname_len);
 /*-----------------------------------------------------------------------------------*/ 
 int int_objnumTokens(char *fname,unsigned long fname_len)
 {

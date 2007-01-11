@@ -5,8 +5,8 @@
 #include "machine.h"
 #include "stack-c.h"
 #include "do_xxprintf.h"
-/*-----------------------------------------------------------------------------------*/ 
-extern FILE *GetFile(integer *fd);
+#include "files.h"
+#include "gw_fileio.h"
 /*-----------------------------------------------------------------------------------*/ 
 int int_objfprintf __PARAMS((char *fname,unsigned long fname_len))
 {

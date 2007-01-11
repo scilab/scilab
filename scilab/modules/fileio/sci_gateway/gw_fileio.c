@@ -7,32 +7,7 @@
 	#include <Windows.h>
 	#include "ExceptionMessage.h"
 #endif
-/*-----------------------------------------------------------------------------------*/
-/* interface for the function Table */ 
-/*-----------------------------------------------------------------------------------*/ 
-extern int int_objprintf __PARAMS((char *fname,unsigned long fname_len));
-extern int int_objfprintf __PARAMS((char *fname,unsigned long fname_len));
-extern int int_objsprintf __PARAMS((char *fname,unsigned long fname_len));
-extern int int_objscanf __PARAMS((char *fname,unsigned long fname_len));
-extern int int_objfscanf __PARAMS((char *fname,unsigned long fname_len));
-extern int int_objsscanf __PARAMS((char *fname,unsigned long fname_len));
-extern int int_objfscanfMat __PARAMS((char *fname,unsigned long fname_len));
-extern int int_objnumTokens __PARAMS((char *fname,unsigned long fname_len));
-extern int int_objfprintfMat __PARAMS((char *fname,unsigned long fname_len));
-extern int intsmclearerr __PARAMS((char *fname,unsigned long fname_len));
-extern int intsmeof __PARAMS((char *fname,unsigned long fname_len));
-extern int intsmopen __PARAMS((char *fname,unsigned long fname_len));
-extern int intsmputstr __PARAMS((char *fname,unsigned long fname_len));
-extern int intsmclose __PARAMS((char *fname,unsigned long fname_len));
-extern int intsmerror __PARAMS((char *fname,unsigned long fname_len));
-extern int intsmputstr __PARAMS((char *fname,unsigned long fname_len));
-extern int intsmput __PARAMS((char *fname,unsigned long fname_len));
-extern int intsmget __PARAMS((char *fname,unsigned long fname_len));
-extern int intsmgetstr __PARAMS((char *fname,unsigned long fname_len));
-extern int intsmseek __PARAMS((char *fname,unsigned long fname_len));
-extern int intsmtell __PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_xls_open) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_xls_read) _PARAMS((char *fname,unsigned long fname_len));
+
 /*-----------------------------------------------------------------------------------*/ 
 /*  interface function */
 /*-----------------------------------------------------------------------------------*/ 

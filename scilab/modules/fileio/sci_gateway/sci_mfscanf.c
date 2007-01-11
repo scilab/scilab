@@ -7,8 +7,8 @@
 #include "do_xxprintf.h"
 #include "do_xxscanf.h"
 #include "fileio.h"
-/*-----------------------------------------------------------------------------------*/ 
-extern FILE *GetFile(integer *fd);
+#include "files.h"
+#include "gw_fileio.h"
 /*-----------------------------------------------------------------------------------*/ 
 int int_objfscanf(char *fname,unsigned long fname_len)
 {

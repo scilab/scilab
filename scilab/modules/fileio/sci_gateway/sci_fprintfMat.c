@@ -5,8 +5,8 @@
 #include "machine.h"
 #include "MALLOC.h"
 #include "stack-c.h"
-/*-----------------------------------------------------------------------------------*/ 
-extern int StringConvert __PARAMS((char *str));
+#include "gw_fileio.h"
+#include "fileio.h"
 /*-----------------------------------------------------------------------------------*/ 
 int int_objfprintfMat(char *fname,unsigned long fname_len)
 {

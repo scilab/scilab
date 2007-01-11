@@ -6,12 +6,15 @@
 #include "stack-c.h"
 #include "ole.h"
 #include "ripole.h"
+#include "files.h"
+#include "gw_fileio.h"
+#include "intreadxls.h"
+
 /*---------------------------------------------------------------
   Authors Pierrick Mode, Serge Steer INRIA 2005, Copyright INRIA
   --------------------------------------------------------------*/
 
 extern void GetenvB( char *name,char *env, int len);
-extern void C2F(mopen)(int *fd, char *file, char *status, int *f_swap, double *res, int *error);
 extern int C2F(cluni0)(char *in_name, char *out_name, int *out_n, long int lin, long int lout);
 
 /*Prototype*/
