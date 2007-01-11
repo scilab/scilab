@@ -19,7 +19,7 @@ static char strBufOut[LENGTH_OUTPUT];
 
 static struct hashtable *Table_Scilab_Errors=NULL;
 
-static char *Replace(char *s1, char *s2, char *s3);
+static char *ReplaceChars(char *s1, char *s2, char *s3);
 /*-----------------------------------------------------------------------------------*/ 
 char* ConvertEncoding(char *encodingFrom, char *encodingTo, char* inputStr)
 {
@@ -220,28 +220,31 @@ IMPORT_EXPORT_LOCALIZATION_DLL char *QueryStringError(char *Tag)
 	char *StringError=NULL;
 	char *StringWithoutSomeChars=NULL;
 
-	/* Replace \r\n by \\r\\n */
-	strcpy(oldpiece,"\r\n");
-	strcpy(newpiece,"\\r\\n");
-	StringWithoutSomeChars=Replace( Tag,oldpiece,newpiece);
-
-	StringError=SearchHashtable_string(Table_Scilab_Errors,StringWithoutSomeChars);
-	if (StringWithoutSomeChars) FREE(StringWithoutSomeChars);
-	
-	if (StringError)
+	if (strcmp(Tag,"\r\n"))
 	{
-		/* Replace \\r\\n by \r\n */
-		strcpy(oldpiece,"\\r\\n");
-		strcpy(newpiece,"\r\n");
-		StringWithoutSomeChars=Replace(StringError,oldpiece,newpiece);
-		if (StringError) FREE(StringError);
-		StringError = StringWithoutSomeChars;
-	}
+		/* Replace \r\n by \\r\\n */
+		strcpy(oldpiece,"\r\n");
+		strcpy(newpiece,"\\r\\n");
+		StringWithoutSomeChars=ReplaceChars( Tag,oldpiece,newpiece);
 
+		StringError=SearchHashtable_string(Table_Scilab_Errors,StringWithoutSomeChars);
+		if (StringWithoutSomeChars) FREE(StringWithoutSomeChars);
+
+		if (StringError)
+		{
+			/* Replace \\r\\n by \r\n */
+			strcpy(oldpiece,"\\r\\n");
+			strcpy(newpiece,"\r\n");
+			StringWithoutSomeChars=ReplaceChars(StringError,oldpiece,newpiece);
+			if (StringError) FREE(StringError);
+			StringError = StringWithoutSomeChars;
+		}
+	}
+	
 	return StringError;
 }
 /*-----------------------------------------------------------------------------------*/ 
-static char *Replace(char *S1, char *S2, char *S3) 
+static char *ReplaceChars(char *S1, char *S2, char *S3) 
 {
 	char *buffer=NULL;
 	char *p=NULL;
