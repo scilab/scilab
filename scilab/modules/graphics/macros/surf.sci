@@ -7,14 +7,6 @@ function surf(varargin)
 
 [lhs,rhs]=argn(0);
 
-isold=get('figure_style')=='old'
-
-if isold
-  disp("Not supported under old graphic style");
-  return;
-end
-
-
 if ~rhs
   s_mat = [ "Z= [   0.0001    0.0013    0.0053   -0.0299   -0.1809   -0.2465   -0.1100   -0.0168   -0.0008   -0.0000;";
 	  "0.0005    0.0089    0.0259   -0.3673   -1.8670   -2.4736   -1.0866   -0.1602   -0.0067    0.0000;";

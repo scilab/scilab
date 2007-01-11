@@ -366,6 +366,7 @@ void fillarcs_1(char *fname, char *str, integer *v1, integer *fillvect, integer 
   if (err ==  1) return;
   C2F(ellipse2d)(vects,xm,(n2=6*(*n),&n2),"f2i");
   C2F(dr)(fname,str,xm,fillvect,n,x6,x7,x8,PD0,dx2,dx3,dx4,lx0,lx1);
+  FREE(xm) ;
 }
 
 /*-----------------------------------------------------------------------------
@@ -379,6 +380,7 @@ void drawarcs_1(char *fname, char *str, integer *v1, integer *style, integer *n,
   if (err ==  1) return;
   C2F(ellipse2d)(vects,xm,(n2=6*(*n),&n2),"f2i");
   C2F(dr)(fname,str,xm,style,n,x6,x7,x8,PD0,dx2,dx3,dx4,lx0,lx1);
+  FREE(xm) ;
 }
 /*-----------------------------------------------------------------------------
  *  
@@ -391,6 +393,8 @@ void fillpolyline_1(char *fname, char *str, integer *n, integer *v1, integer *v2
   if (err ==  1) return;
   C2F(echelle2d)(vx,vy,xm,ym,n,&n2,"f2i",3L);
   C2F(dr)(fname,str,n,xm,ym,closeflag,x7,x8,PD0,PD0,dx3,dx4,lx0,lx1);
+  FREE(xm) ;
+  FREE(ym) ;
 }
 
 /*-----------------------------------------------------------------------------
@@ -422,6 +426,8 @@ void drawarrows_1(char *fname, char *str, integer *style, integer *iflag, intege
   C2F(echelle2dl)(as,as,&ias,&ias1,&n1,&n1,"f2i"); 
   ias=10*ias;
   C2F(dr)(fname,str,xm,ym,n,&ias,style,iflag,PD0,PD0,PD0,dx4,lx0,lx1);
+  FREE(xm) ;
+  FREE(ym) ;
 }
 
 /*-----------------------------------------------------------------------------
@@ -540,6 +546,8 @@ void drawpolyline_1(char *fname, char *str, integer *n, integer *v1, integer *v2
   if (err ==  1) return;
   C2F(echelle2d)(vx,vy,xm,ym,n,&n2,"f2i",3L);
   C2F(dr)(fname,str,n,xm,ym,closeflag,x7,x8,PD0,PD0,dx3,dx4,lx0,lx1);
+  FREE(xm) ;
+  FREE(ym) ;
 }
 
 /*-----------------------------------------------------------------------------
@@ -578,6 +586,7 @@ void fillpolylines_1(char *fname, char *str, integer *v1, integer *v2, integer *
 
   /* end of code modified by polpoth 11/7/2000 */
 
+
 }
 /*-----------------------------------------------------------------------------
  *  drawpolymark
@@ -589,7 +598,8 @@ void drawpolymark_1(char *fname, char *str, integer *n, integer *v1, integer *v2
   if (err ==  1) return;
   C2F(echelle2d)(vx,vy,xm,ym,n,&n2,"f2i",3L);
   C2F(dr)(fname,str,n,xm,ym,x6,x7,x8,PD0,PD0,dx3,dx4,lx0,lx1);
-
+  FREE(xm) ;
+  FREE(ym) ;
 }
 
 /*-----------------------------------------------------------------------------
@@ -603,6 +613,8 @@ void displaynumbers_1(char *fname, char *str, integer *v1, integer *v2, integer 
   if (err ==  1) return;
   C2F(echelle2d)(x,y,xm,ym,n,&n2,"f2i",3L);
   C2F(dr)(fname,str,xm,ym,PI0,PI0,n,flag,z,alpha,PD0,PD0,lx0,lx1);
+  FREE(xm) ;
+  FREE(ym) ;
 }
 
 /*-----------------------------------------------------------------------------
@@ -616,6 +628,8 @@ void drawpolylines_1(char *fname, char *str, integer *v1, integer *v2, integer *
   if (err ==  1) return;
   C2F(echelle2d)(vx,vy,xm,ym,n,p,"f2i",3L);
   C2F(dr)(fname,str,xm,ym,drawvect,n,p,x8,PD0,PD0,dx3,dx4,lx0,lx1);
+  FREE(xm) ;
+  FREE(ym) ;
 }
 /*-----------------------------------------------------------------------------
  *   drawrectangle
@@ -638,6 +652,7 @@ void drawrectangles_1(char *fname, char *str, integer *v1, integer *fillvect, in
   if (err ==  1) return;
   C2F(rect2d)(vects,xm,(n2=4*(*n),&n2),"f2i");
   C2F(dr)(fname,str,xm,fillvect,n,x6,x7,x8,PD0,dx2,dx3,dx4,lx0,lx1);
+  FREE(xm) ;
 }
 /*-----------------------------------------------------------------------------
  *  drawsegments
@@ -649,6 +664,8 @@ void drawsegments_1(char *fname, char *str, integer *style, integer *iflag, inte
   if (err ==  1) return;
   C2F(echelle2d)(vx,vy,xm,ym,n,&n2,"f2i",3L);
   C2F(dr)(fname,str,xm,ym,n,style,iflag,x8,PD0,PD0,dx3,dx4,lx0,lx1);
+  FREE(xm) ;
+  FREE(ym) ;
 }
 /*-----------------------------------------------------------------------------
  *  displaystring
@@ -958,8 +975,8 @@ static void Myalloc(integer **xm, integer **ym, integer n, integer *err)
 {
   if ( n != 0) 
     {
-      *xm= graphic_alloc(6,n,sizeof(integer));
-      *ym= graphic_alloc(7,n,sizeof(integer));
+      *xm= MALLOC( n * sizeof(integer) ) ;
+      *ym= MALLOC( n * sizeof(integer) ) ;
       if ( *xm == 0 || *ym == 0 )
 	{
 	  sciprint("malloc: Running out of memory\n");
@@ -972,7 +989,7 @@ static void Myalloc1(integer **xm, integer n, integer *err)
 {
   if ( n != 0) 
     {
-      if (( *xm= graphic_alloc(6,n,sizeof(integer)))  == 0  )
+      if (( *xm= MALLOC( n * sizeof(integer)))  == 0  )
 	{
 	  sciprint("malloc: Running out of memory\n");
 	  *err=1;

@@ -26,23 +26,16 @@ else
   error("function ""color"" must have 1 or 3 arguments")
 end
 
-if get("figure_style")=="old" then
-  cmap=xget("colormap");
-else
-  f=gcf();
-  cmap=f.color_map;
-end
+f=gcf();
+cmap=f.color_map;
+
 ncol=max(size(cmap,"r"));
 k=find(abs(cmap-ones(ncol,1)*c)*ones(3,1)<=1.d-5);
 if k==[] then
   // color does not exist, add it
   cmap=[cmap;c];
   id=ncol+1;
-  if get("figure_style")=="old" then
-    xset("colormap",cmap);
-  else
-    f.color_map=cmap;
-  end
+  f.color_map=cmap;
 else
   id=k(1);
 end

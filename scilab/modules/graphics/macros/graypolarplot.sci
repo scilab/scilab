@@ -1,22 +1,16 @@
 function graypolarplot(theta,rho,z,varargin)
 [lhs,rhs]=argn(0)
-fstyle=get('figure_style')
 if rhs<=0 then
   rho=1:0.2:4;theta=(0:0.02:1)*2*%pi;
   z=30+round(theta'*(1+rho^2));
   xbasc();
-  if fstyle=='new' then 
-    f=gcf();
-    f.color_map=hotcolormap(128);
-    f.background= 128;
-    f.foreground=1;
-    a=gca();
-    a.background= 128;
-    a.foreground=1;
-  else
-    xset('colormap',hotcolormap(128))
-    xset('background',xget('white'))
-  end
+  f=gcf();
+  f.color_map=hotcolormap(128);
+  f.background= 128;
+  f.foreground=1;
+  a=gca();
+  a.background= 128;
+  a.foreground=1;
   graypolarplot(theta,rho,z)
   return
 end
@@ -26,9 +20,7 @@ R=max(rho)
 nv=size(varargin)
 if nv>=1 then strf=varargin(2),else  strf='030',end
 if nv>=2 then rect=varargin(4),else  rect=[-R -R R R]*1.1,end
-if fstyle=='new' then 
-  drawlater()
-end
+drawlater()
 plot2d(0,0,1,strf,' ',rect)
 
 [rho,k]=sort(rho);z=z(:,k);
@@ -71,5 +63,6 @@ for k=0:11
   xstring(r*cos(k*(%pi/6))-w/2,r*sin(k*(%pi/6))-h/2,string(k*30))
 end
 xset("dashes",1)
-if fstyle=='new' then drawnow(),end
+drawnow()
+
 endfunction

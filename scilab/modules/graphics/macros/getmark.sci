@@ -42,7 +42,6 @@ function [k1,k2]=getmark()
 	deff('menu_ok(k,gwin)','global done;done=1')
 	deff('menu_cancel(k,gwin)','global done;done=2')
 	
-	set('figure_style','new')
 	f=gcf();
 	f.figure_size = [674,841]
 	f.axes_size = [610,780]

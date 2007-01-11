@@ -29,7 +29,7 @@ void loadGraphicModule( void )
 /*------------------------------------------------------------------------*/
 void closeGraphicModule( void )
 {
-  if ( !isGraphicModuleLoaded ) { return ;}
+  if ( !isGraphicModuleLoaded ) { return ; }
 
   /* destroy hashtables */
   destroyScilabGetHashTable() ;

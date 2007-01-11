@@ -18,11 +18,7 @@ else
 end;
 
 if winsid()~=[] then
-  if get("figure_style")=="old" then
-    cmap = xget("colormap");
-  else
-    cmap = get(gcf(),"color_map");
-  end;
+  cmap = get(gcf(),"color_map");
   curwin = xget("window");
 else
   cmap = []
@@ -31,9 +27,6 @@ end;
 win = max(winsid()+1);
 xset("window",win);
 
-if get("figure_style")=="old" then
-  set("figure_style","new");
-end;
 sdf;
 sda;
 f = gcf();

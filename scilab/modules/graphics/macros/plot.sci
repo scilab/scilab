@@ -10,13 +10,6 @@ function plot(varargin)
 
 [lhs,rhs]=argn(0);
 
-isold=get('figure_style')=='old'
-
-if isold
-  T = varargin
-  oldplot(T(:));
-  return;
-end
 
 
 if ~rhs

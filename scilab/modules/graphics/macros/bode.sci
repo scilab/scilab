@@ -128,26 +128,18 @@ if comments==' ' then
    hx=0.43
 end;
 
-isNewStyle = ( get("figure_style") == "new") ;
-
 [wrect,frect]=xgetech();
 //magnitude
 xsetech(wrect=[wrect(1)+0,wrect(2)+0,wrect(3)*1.0,wrect(4)*hx*0.95]);
 rect=[mini(frq),mini(d);maxi(frq),maxi(d)]
-// just to fix the scales for xgrid
-if ~isNewStyle then
-  plot2d1("oln",mini(frq),mini(d),0,"051"," ",rect);
-end
 
 // xgrid first 
 xgrid(4);
 // now the curves 
 plot2d1("oln",frq',d') ;
-if isNewStyle then
-  axes = gca() ;
-  axes.data_bounds = rect ;
-  a.log_flags = "lnn" ;
-end
+axes = gca() ;
+axes.data_bounds = rect ;
+a.log_flags = "lnn" ;
 
 if type(dom)==1 then
   [xx1,xx2]=xgetech();
@@ -159,24 +151,15 @@ xtitle('Magnitude ',' Hz','db');
 xsetech(wrect=[wrect(1)+0,wrect(2)+wrect(4)*hx,wrect(3)*1.0,wrect(4)*hx*0.95]);
 
 // get the axes of the phase
-if ( get("figure_style") == "new" ) then
-  sciCurAxes = get("current_axes") ;
-end
+sciCurAxes = get("current_axes") ;
 
 rect=[mini(frq),mini(phi);maxi(frq),maxi(phi)]
-// just to fix the scales for xgrid
-if ~isNewStyle then
-  plot2d1("oln",mini(frq),mini(phi),0,"051"," ",rect);
-end
 
 xgrid(4);
 //  now the curves
 plot2d1( "oln",frq',phi' ) ;
-if isNewStyle then
-  axes = gca() ;
-  axes.data_bounds = rect ;
-  a.log_flags = "lnn" ;
-end
+axes = gca() ;
+axes.data_bounds = rect ;zzz a.log_flags = "lnn" ;
 
 
 if type(dom)==1 then
@@ -207,10 +190,6 @@ if mnc>0 then
 end
 
 // return to the previous scale
-if ( get("figure_style") == "old" ) then
-  xsetech(wrect,frect);
-else
-  set( "current_axes", sciCurAxes ) ;
-end
+set( "current_axes", sciCurAxes ) ;
 
 endfunction

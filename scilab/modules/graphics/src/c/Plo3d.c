@@ -157,10 +157,10 @@ static void C2F(plot3dg)(char *name, int (*func) (/* ??? */), double *x, double 
       if (flag[2] >=2 )DrawAxis(xbox,ybox,InsideU,fg1);
     }
  
-  polyx = graphic_alloc(0,5*(*q),sizeof(int));
-  polyy = graphic_alloc(1,5*(*q),sizeof(int));
-  fill  = graphic_alloc(2,(*q),sizeof(int));
-  if ( (polyx == NULL) || (polyy == NULL) || (fill  == NULL)) 
+  polyx = MALLOC( 5 * (*q) * sizeof(int) ) ;
+  polyy = MALLOC( 5 * (*q) * sizeof(int) ) ;
+  fill  = MALLOC( (*q) * sizeof(int) ) ;
+  if ( (polyx == NULL) || (polyy == NULL) || (fill  == NULL))
     {
       sciprint("plot3dg_ : malloc No more Place\n");
       return;
@@ -235,7 +235,10 @@ static void C2F(plot3dg)(char *name, int (*func) (/* ??? */), double *x, double 
 	}
       break;
     }
-  /* jpc   if (flag[1] != 0 && flag[2] >=3 ) */
+  
+  FREE( polyx ) ;
+  FREE( polyy ) ;
+
   if ( flag[2] >=3 )
     {
       /** Le triedre que l'on doit voir **/
@@ -295,16 +298,16 @@ static void C2F(fac3dg)(char *name, int iflag, double *x, double *y, double *z, 
       cache=InsideU[0]-4;
       if (flag[2] >=2 )DrawAxis(xbox,ybox,InsideU,fg1);
     }
-  polyz = graphic_alloc(5,(*q),sizeof(double));
+  polyz = MALLOC( (*q) * sizeof(double) ) ;
   if ( (polyz == NULL) && (*q) != 0)
     {
       sciprint("plot3dg_ : malloc No more Place\n");
       return;
     }
   /** Allocation  **/
-  polyx = graphic_alloc(0,(*p)+1L,sizeof(int));
-  polyy = graphic_alloc(1,(*p)+1L,sizeof(int));
-  locindex = graphic_alloc(2,(*q),sizeof(int));
+  polyx = MALLOC( ((*p) + 1L) * sizeof(int) ) ;
+  polyy = MALLOC( ((*p)+1L) * sizeof(int) ) ;
+  locindex = MALLOC( (*q) * sizeof(int) ) ;
   if ( ( polyx == NULL) ||  ( polyy== NULL) || ( locindex== NULL) )
     {
       sciprint("plot3dg_ : malloc No more Place\n");
@@ -447,7 +450,13 @@ static void C2F(fac3dg)(char *name, int iflag, double *x, double *y, double *z, 
 	  /* End of modified code by polpoth 4/5/2000 */
 
 	}
-    } 
+    }
+
+  FREE( polyx ) ;
+  FREE( polyy ) ;
+  FREE( polyz ) ;
+  FREE( locindex ) ;
+
   if ( flag[2] >=3 )
     {
       integer fg;
@@ -575,8 +584,8 @@ int C2F(param3d)(double *x, double *y, double *z, integer *n, double *teta, doub
       if (flag[2] >=2 ) DrawAxis(xbox,ybox,InsideU,fg1);
     }
 
-  xm = graphic_alloc(0,(*n),sizeof(int));
-  ym = graphic_alloc(1,(*n),sizeof(int));
+  xm = MALLOC( (*n) * sizeof(int) ) ;
+  ym = MALLOC( (*n) * sizeof(int) ) ;
   if ( ( (xm == NULL) && *n != 0 ) || ((ym == NULL) && *n != 0)) 
     {
       sciprint("Param3d : malloc  No more Place\n");
@@ -606,6 +615,10 @@ int C2F(param3d)(double *x, double *y, double *z, integer *n, double *teta, doub
       init = j+1;
       if ( init >= (*n)) break;
     }
+
+  FREE( xm ) ;
+  FREE( ym ) ;
+
   if (flag[2] >=3 ) 
     {
       integer fg;
@@ -663,8 +676,8 @@ int C2F(param3d1)(double *x, double *y, double *z, integer *m, integer *n, integ
       if (flag[2] >=2 ) DrawAxis(xbox,ybox,InsideU,fg1);
     }
 
-  xm = graphic_alloc(0,(*m),sizeof(int));
-  ym = graphic_alloc(1,(*m),sizeof(int));
+  xm = MALLOC( (*m) * sizeof(int) ) ;
+  ym = MALLOC( (*m) * sizeof(int) ) ;
   if ( ( (xm == NULL) && *m != 0 ) || ((ym == NULL) && *m != 0)) 
     {
       sciprint("Param3d : malloc  No more Place\n");
@@ -699,6 +712,10 @@ int C2F(param3d1)(double *x, double *y, double *z, integer *m, integer *n, integ
 	  if ( init >= (*m)) break;
 	}
     }
+
+  FREE( xm ) ;
+  FREE( ym ) ;
+
   if (flag[2] >=3 ) 
     {
       integer fg;

@@ -6,6 +6,9 @@
 #include "WindowList.h"
 
 #include "MALLOC.h" /* MALLOC */
+
+void scig_savesg( int win_num, char * filename ) ;
+
 /*-----------------------------------------------------------------------------------*/
 extern HINSTANCE hdllInstance;
 /*-----------------------------------------------------------------------------------*/
@@ -496,6 +499,7 @@ void CloseGraphMacros (struct BCG *ScilabGC)
     if ( ScilabGC->lpmw.szMenuName != NULL )
     {
       FREE( ScilabGC->lpmw.szMenuName ) ;
+      ScilabGC->lpmw.szMenuName = NULL ;
     }
 }
 /*-----------------------------------------------------------------------------------*/

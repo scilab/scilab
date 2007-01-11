@@ -12,6 +12,7 @@
 #include "PloEch.h"
 #include "Xcall1.h"
 #include "sciprint.h"
+#include "MALLOC.h"
 
 #include "GetProperty.h"
 
@@ -77,6 +78,12 @@ static integer oddp  __PARAMS((integer i));
 static double *GX,*GY,*GZ;
 static integer Gn1,Gn2;
 
+static double * Gxcont = NULL ;
+static double * Gycont = NULL ;
+
+static integer * xcont = NULL ;
+static integer * ycont = NULL ;
+
 static void InitValues(double *x, double *y, double *z, integer n1, integer n2)
 {
   Gn1=n1;  Gn2=n2;  GX = x;  GY = y;  GZ = z;
@@ -134,11 +141,11 @@ static integer oddp(integer i) { return( i == 1 || i ==3 );}
 
 /*---------return the x-value of a grid point--------*/
 
-static double x_cont(integer i) {  return GX[i] ;}
+static double x_cont(integer i) { return GX[i] ;}
 
 /*---------return the y-value of a grid point --------*/
 
-static double y_cont(integer i) {  return GY[i] ;}
+static double y_cont(integer i) { return GY[i] ;}
 
 /*------------------------------------------------------------
  * Draw level curves for a function f(x,y) which values 
@@ -220,7 +227,7 @@ int C2F(contour)(double *x, double *y, double *z, integer *n1, integer *n2, inte
      }
   if (*flagnz == 0)
     {
-      if ((zconst = graphic_alloc(5,(*nz),sizeof(double)))== 0) 
+      if ( ( zconst = MALLOC( (*nz) * sizeof(double) ) )== 0) 
 	{
 	  sciprint("Running out of memory\r\n");
 	  return 0;
@@ -229,6 +236,8 @@ int C2F(contour)(double *x, double *y, double *z, integer *n1, integer *n2, inte
 	zconst[i]=zmin + (i+1)*(zmax-zmin)/(*nz+1);
       N[0]= *n1;N[1]= *n2;N[2]= *nz;
       contourI(func,x,y,z,zconst,N,(integer *) 0,&err);
+      FREE(zconst) ;
+      zconst = NULL ;
     }
    else
     {
@@ -245,6 +254,7 @@ int C2F(contour)(double *x, double *y, double *z, integer *n1, integer *n2, inte
 	DrawAxis(xbox,ybox,InsideD,fg);
     }
   frame_clip_off();
+
   return(0);
 }
 
@@ -336,7 +346,7 @@ static int Contour2D(ptr_level_f func, char *name, double *x, double *y, double 
     }
   if (*flagnz==0)
     {
-      if ((zconst = graphic_alloc(5,(*nz),sizeof(double)))== 0) 
+      if (( zconst = MALLOC( (*nz) * sizeof(double) ) )== 0) 
 	{
 	  sciprint("Running out of memory\r\n");
 	  return 0;
@@ -345,6 +355,8 @@ static int Contour2D(ptr_level_f func, char *name, double *x, double *y, double 
 	zconst[i]=zmin + (i+1)*(zmax-zmin)/(*nz+1);
       N[0]= *n1;N[1]= *n2;N[2]= *nz;
       contourI(func,x,y,z,zconst,N,style,&err);
+      FREE(zconst) ;
+      zconst = NULL ;
     }
   else
     {
@@ -353,6 +365,7 @@ static int Contour2D(ptr_level_f func, char *name, double *x, double *y, double 
     }
 
   if (strcmp(name,"contour2")==0 )frame_clip_off();
+
   return(0);
 }
 
@@ -368,7 +381,7 @@ int C2F(contourif)(double *x, double *y, double *z, integer *n1, integer *n2, in
 
   if (*flagnz==0)
     {
-      if ((zconst = graphic_alloc(5,(*nz),sizeof(double)))== 0) 
+      if ( ( zconst = MALLOC( (*nz) * sizeof(double) ) ) == 0 ) 
 	{
 	  sciprint("Running out of memory\r\n");
 	  return 0;
@@ -377,12 +390,15 @@ int C2F(contourif)(double *x, double *y, double *z, integer *n1, integer *n2, in
 	zconst[i]=zmin + (i+1)*(zmax-zmin)/(*nz+1);
       N[0]= *n1;N[1]= *n2;N[2]= *nz;
       contourI(GContStore2,x,y,z,zconst,N,style,&err);
+      FREE(zconst) ;
+      zconst = NULL ;
     }
   else
     {
       N[0]= *n1;N[1]= *n2;N[2]= *nz;
       contourI(GContStore2,x,y,z,zz,N,style,&err);
     }
+
   return(0);
 }
 
@@ -410,14 +426,17 @@ static void contourI(ptr_level_f func, double *x, double *y, double *z, double *
   n5 =  2*(n1)+2*(n2)-3;
   /* Allocation */
   Gcont_size = 0; /** initialize the array indices for storing contours **/
-  xbd_cont = graphic_alloc(0,n5,sizeof(int));
-  ybd_cont = graphic_alloc(1,n5,sizeof(int));
-  itg_cont = graphic_alloc(2,n1*n2,sizeof(int));
+  xbd_cont = MALLOC( n5 * sizeof(int) ) ;
+  ybd_cont = MALLOC( n5 * sizeof(int) ) ;
+  itg_cont = MALLOC( n1*n2 * sizeof(int) ) ;
   if ( (xbd_cont == NULL) && n5 != 0) check= 0;
   if ( (ybd_cont == NULL) && n5 != 0) check= 0;
   if ( (itg_cont == NULL) && n1*n2 != 0) check= 0;
   if ( check == 0) 
     {
+      FREE( xbd_cont ) ;
+      FREE( ybd_cont ) ;
+      FREE( itg_cont ) ;
       sciprint("contourI_: Running out of memory\n");
       return;
     }
@@ -465,6 +484,10 @@ static void contourI(ptr_level_f func, double *x, double *y, double *z, double *
 			       phi_cont(i, j-1)-zCont[c]))
 	    look(func,i,j,i,j-1,2L,zCont[c],stylec);
     }
+  FREE( xbd_cont ) ;
+  FREE( ybd_cont ) ;
+  FREE( itg_cont ) ;
+
 }
 
 /*--------------------------------------------------------------------
@@ -674,7 +697,6 @@ static integer ffnd (ptr_level_f func, integer i1, integer i2, integer i3, integ
  * Storing and tracing level curves 
  *----------------------------------------------------------------*/
 
-static integer *xcont,*ycont;
 static integer cont_size ;
 
 /*
@@ -690,10 +712,15 @@ G_ContStore(integer ival, int xncont, int yncont)
   /* nouveau contour */
   if ( ival == 0) cont_size =0 ;
   n= cont_size + 1;
-  xcont = graphic_alloc(3,n,sizeof(int));
-  ycont = graphic_alloc(4,n,sizeof(int));
-  if ( (xcont == NULL) && n != 0) return ; 
-  if ( (ycont == NULL) && n != 0) return ;
+  xcont = REALLOC( xcont, n * sizeof(int) ) ;
+  ycont = REALLOC( ycont, n * sizeof(int) ) ;
+  if ( ( xcont == NULL || ycont == NULL ) && n != 0 )
+  {
+    FREE( xcont ) ;
+    FREE( ycont ) ;
+
+    return ;
+  }
   xcont[cont_size]= xncont;
   ycont[cont_size++]= yncont;
 }
@@ -778,8 +805,6 @@ static void ContourTrace(double Cont, integer style)
  * double in order to access to the stored data at Scilab level 
  *----------------------------------------------------------------*/
 
-
-double *Gxcont,*Gycont;
 static int last=-1;
 static int count=0; 
  
@@ -802,22 +827,41 @@ static void GContStore2(integer ival, double Cont, double xncont, double yncont)
       /* Here : ival == 0 means stop the current level curve and 
        * store data at the end but do reset Gcont_size to zero 
        */
-      n= Gcont_size + 1;
-      Gxcont = graphic_alloc(3,n,sizeof(double));
-      Gycont = graphic_alloc(4,n,sizeof(double));
+      n= Gcont_size + 2;
+      if ( Gxcont == NULL )
+      {
+        Gxcont = MALLOC( n * sizeof(double) ) ;
+        Gycont = MALLOC( n * sizeof(double) ) ;
+      }
+      else
+      {
+        Gxcont = REALLOC( Gxcont, n * sizeof(double) ) ;
+        Gycont = REALLOC( Gycont, n * sizeof(double) ) ;
+      }
       if ( (Gxcont == NULL) && n != 0) return ; 
       if ( (Gycont == NULL) && n != 0) return ;
       Gxcont[Gcont_size] = Cont;
-      if ( last != -1 ) Gycont[last]= count;
+      if ( last != -1 && last < n ) Gycont[last]= count;
       last = Gcont_size;
       Gcont_size++;
       count = 0;
     }
-  n= Gcont_size + 1;
-  Gxcont = graphic_alloc(3,n,sizeof(double));
-  Gycont = graphic_alloc(4,n,sizeof(double));
-  if ( (Gxcont == NULL) && n != 0) return ; 
-  if ( (Gycont == NULL) && n != 0) return ;
+  else
+  {
+    n = Gcont_size + 1 ;
+    if ( Gxcont == NULL )
+    {
+      Gxcont = MALLOC( n * sizeof(double) ) ;
+      Gycont = MALLOC( n * sizeof(double) ) ;
+    }
+    else
+    {
+      Gxcont = REALLOC( Gxcont, n * sizeof(double) ) ;
+      Gycont = REALLOC( Gycont, n * sizeof(double) ) ;
+    }
+    if ( (Gxcont == NULL) && n != 0) return ; 
+    if ( (Gycont == NULL) && n != 0) return ;
+  }
   Gxcont[Gcont_size]=xncont;
   Gycont[Gcont_size++]=yncont;
   count++;

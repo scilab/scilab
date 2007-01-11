@@ -11,7 +11,6 @@ function [fontId,fontSize]=getfont(S,v1)
 	xset('window',win);
 	
 	xset('window',win);
-	set figure_style new;
 	
 	fnts=xlfont();
 	nf=size(find(fnts<>''),'*')-1

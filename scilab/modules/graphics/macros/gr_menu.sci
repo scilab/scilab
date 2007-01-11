@@ -1,6 +1,7 @@
 function [sd]=gr_menu(sd,flag,noframe)
 // Copyright INRIA
-  set figure_style old
+  error("gr_menu is no longer available.",999);
+  return ;
   getf('SCI/modules/graphics/macros/gr_macros.sce','c');
 
   deff('[modek]=clearmode()',['modek=xget(''alufunction'')';

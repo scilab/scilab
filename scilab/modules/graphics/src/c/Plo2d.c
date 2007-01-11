@@ -90,11 +90,13 @@ int C2F(plot2d)(double    x[]      ,
   n = (*n1)*(*n2) ; 
   if ( n != 0 ) 
     {
-      xm = graphic_alloc(0,n,sizeof(int));
-      ym = graphic_alloc(1,n,sizeof(int));
+      xm = MALLOC( n * sizeof(int) ) ;
+      ym = MALLOC( n * sizeof(int) ) ;
       if ( xm == 0 || ym == 0) 
 	{
 	  sciprint("Running out of memory \n");
+          FREE( xm ) ;
+          FREE( ym ) ;
 	  return 0;
 	}      
       /** Real to Pixel values **/
@@ -112,6 +114,8 @@ int C2F(plot2d)(double    x[]      ,
       if ((int)strlen(strflag) >=1  && strflag[0] == '1')
 	Legends(style,n1,legend); 
     }
+  FREE( xm ) ;
+  FREE( ym ) ;
   return(0);
 }
 

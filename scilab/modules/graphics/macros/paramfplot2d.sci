@@ -27,50 +27,30 @@ if rhs<5 then //compute the data bounds
 end
 if rhs<43 then flag='no';end
 realtimeinit(0.1);
-if get("figure_style")=="new" then
-  xbasc();
-  fig=gcf();
-  a=gca();
-  a.data_bounds=matrix(rect,2,2);
-  a.axes_visible='on';
-  fig.pixmap='on'; //double buffer mode
-  y=feval(x,theta(1),f);
-  xpoly(x,y(:));p=gce(); //the polyline handle
-  realtime(0);
-  if flag=='no' then
-    for k=1:size(theta,'*')
-      realtime(k);
-      y=feval(x,theta(k),f);
-      p.data(:,2)=y(:);
-      show_pixmap()
-    end
-  else
-    for k=1:size(theta,'*')
-       realtime(k);
-      plot2d(x,feval(x,theta(k),f))
-      show_pixmap()
-    end
+ 
+xbasc();
+fig=gcf();
+a=gca();
+a.data_bounds=matrix(rect,2,2);
+a.axes_visible='on';
+fig.pixmap='on'; //double buffer mode
+y=feval(x,theta(1),f);
+xpoly(x,y(:));p=gce(); //the polyline handle
+realtime(0);
+if flag=='no' then
+  for k=1:size(theta,'*')
+    realtime(k);
+    y=feval(x,theta(k),f);
+    p.data(:,2)=y(:);
+    show_pixmap()
   end
-  fig.pixmap='off';
 else
-  plot2d(0,0,0,"010"," ",rect);  //First plot to set the rectangle 
-  //    Animated plot
-  xset('pixmap',1);
-  realtime(0);
-  if flag=='no' then
-    for k=1:size(theta,'*')
-      realtime(k);
-      xset("wwpc");
-      plot2d(x,feval(x,theta(k),f)) 
-      xset("wshow");
-    end
-  else
-    for k=1:size(theta,'*')
-      realtime(k);
-      plot2d(x,feval(x,theta(k),f)) 
-      xset("wshow");
-    end
+  for k=1:size(theta,'*')
+    realtime(k);
+    plot2d(x,feval(x,theta(k),f))
+    show_pixmap()
   end
-  xset("pixmap",0);
 end
+fig.pixmap='off';
+
 endfunction

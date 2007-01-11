@@ -1,11 +1,4 @@
 function clf(varargin)
-// This function is dedicated to the new graphics mode only
-// If called in old mode, it performs a basic 'xbasc' call.
-newstyle = get('figure_style')=='new'
-if ~newstyle
-  xbasc();
-  return;
-end
 
 if size(varargin)==0 then
   h=gcf()

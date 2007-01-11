@@ -9,13 +9,7 @@ function ged_insert(k,win)
   
   ged_current_figure=xget('window')
   xset('window',win) 
-  isold=get('figure_style')=='old'
-  if isold then 
-    message('this menu does not apply to old style graphics')
-    xset('window',ged_current_figure)
-    return
-  end
-
+  
   scf(win);
   ged_cur_fig_handle=gcf();
   

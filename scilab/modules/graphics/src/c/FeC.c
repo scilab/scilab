@@ -316,9 +316,9 @@ void newfec(integer *xm,integer *ym,double *triangles,double *func,integer *Nnod
  
   /* allocations for some arrays ... */
   nz = color_max - color_min + 1;
-  zone   = MALLOC( *Nnode * sizeof(int)    ) ; /*graphic_alloc(2,(*Nnode),sizeof(int)); */
-  zlevel = MALLOC( (nz+1) * sizeof(double) ) ;/* graphic_alloc(3,nz+1,sizeof(double));*/
-  fill   = MALLOC( (nz+2) * sizeof(int)    ) ; /*graphic_alloc(4,nz+2,sizeof(int));*/
+  zone   = MALLOC( *Nnode * sizeof(int)    ) ;
+  zlevel = MALLOC( (nz+1) * sizeof(double) ) ;
+  fill   = MALLOC( (nz+2) * sizeof(int)    ) ;
   if ( (zone == NULL) || (zlevel == NULL) || (fill  == NULL)) 
   {
     sciprint("fec: malloc No more Place\n");

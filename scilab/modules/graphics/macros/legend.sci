@@ -1,7 +1,4 @@
 function R=legend(varargin)
-  if get('figure_style')=='old' then
-    error('This function cannot be used with old style graphics, see legends')
-  end
   f=gcf()
   vis=f.immediate_drawing;
   narg=size(varargin)

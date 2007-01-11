@@ -30,11 +30,6 @@ extern void scig_resize __PARAMS((integer ));
 extern void scig_resize_pixmap __PARAMS((integer )); 
 extern void scig_erase __PARAMS((integer )); 
 
-/* Alloc.c */
-
-void *graphic_alloc __PARAMS((int indice,int n,unsigned int size));
-void graphic_alloc_info __PARAMS((void));
-void graphic_alloc_free __PARAMS((void));
 
 /* Axes.c */
 

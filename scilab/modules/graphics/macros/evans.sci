@@ -130,39 +130,22 @@ if dx<1d-10, dx=0.01,end
 if dy<1d-10, dy=0.01,end
 legs=[],lstyle=[];
 rect=[xmin-dx;ymin-dy;xmax+dx;ymax+dy];
-gstyle=get('figure_style')
-if gstyle=='new' then 
-  f=gcf();
-  cur_im_dr= f.immediate_drawing;
-  f.immediate_drawing = 'off';
-  a=gca()
-  a.data_bounds=[rect(1) rect(2);rect(3) rect(4)]
-  if nroots<>[] then 
-    plot2d(real(nroots),imag(nroots),style=-5)
-    e=gce();e=e.children;e.mark_size_unit="point";e.mark_size=7;
-    legs=[legs 'open loop zeroes']
-  end
-  if racines<>[] then 
-    plot2d(real(racines(:,1)),imag(racines(:,1)),style=-2)
-    e=gce();e=e.children;e.mark_size_unit="point";e.mark_size=7;
-    legs=[legs,'open loop poles']
-  end
-else
-  plot2d([],[],rect=rect,frameflag=7)
-  xx=xget("mark")
-  xset("mark",xx(1),xx(1)+3);
-  if nroots<>[] then
-    plot2d(real(nroots),imag(nroots),style=-5,frameflag=0,axesflag=0)
-    legs=[legs 'open loop zeroes'],lstyle=[lstyle [-5;0]];
-  end
-  //plot the poles locations
-  if racines<>[] then
-    plot2d(real(racines(:,1)),imag(racines(:,1)),style=-2,frameflag=0, ...
-	   axesflag=0)
-    legs=[legs,'open loop poles'],lstyle=[lstyle, [-2;0]];
-  end
-
+f=gcf();
+cur_im_dr= f.immediate_drawing;
+f.immediate_drawing = 'off';
+a=gca()
+a.data_bounds=[rect(1) rect(2);rect(3) rect(4)]
+if nroots<>[] then 
+  plot2d(real(nroots),imag(nroots),style=-5)
+  e=gce();e=e.children;e.mark_size_unit="point";e.mark_size=7;
+  legs=[legs 'open loop zeroes']
 end
+if racines<>[] then 
+  plot2d(real(racines(:,1)),imag(racines(:,1)),style=-2)
+  e=gce();e=e.children;e.mark_size_unit="point";e.mark_size=7;
+  legs=[legs,'open loop poles']
+end
+
 dx=maxi(abs(xmax-xmin),abs(ymax-ymin));
 //plot the zeros locations
 
@@ -200,19 +183,12 @@ end;
 
 //lieu de evans
 [n1,n2]=size(racines);
-if gstyle=='new' then
-  plot2d(real(racines)',imag(racines)',style=2+(1:n2));
-  legend(legs,1);
-  xtitle('Evans root locus','Real axis','Imag. axis');
-  f=gcf();
-  if(cur_im_dr=="on") then f.immediate_drawing = 'on';end
-else
-  plot2d(real(racines)',imag(racines)',style=2+(1:n2),frameflag=0,axesflag=0);
-  legends(legs,lstyle,1);
-  xtitle('Evans root locus','Real axis','Imag. axis');
-  xset("mark",xx(1),xx(2));
-end
 
+plot2d(real(racines)',imag(racines)',style=2+(1:n2));
+legend(legs,1);
+xtitle('Evans root locus','Real axis','Imag. axis');
+f=gcf();
+if(cur_im_dr=="on") then f.immediate_drawing = 'on';end
 
 if fin=='nptmax' then
   write(%io(2),'evans : too many points required')

@@ -138,9 +138,9 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
   xx[0] = sciGetForeground (pobj);
 
   /** initialisation **/
-  polyx = graphic_alloc (0, 5 * (*q), sizeof (int));
-  polyy = graphic_alloc (1, 5 * (*q), sizeof (int));
-  fill = graphic_alloc (2, (*q), sizeof (int));
+  polyx = MALLOC( 5 * (*q) * sizeof(int) ) ;
+  polyy = MALLOC( 5 * (*q) * sizeof(int) );
+  fill = MALLOC( (*q) * sizeof(int) ) ;
   if ((polyx == NULL) || (polyy == NULL) || (fill == NULL))
     {
       sciprint ("plot3dg_ : malloc No more Place\n");
@@ -649,6 +649,9 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
   xtmp = NULL;
   FREE (ytmp);
   ytmp = NULL;
+  FREE( polyx ) ;
+  FREE( polyy ) ;
+  FREE( fill ) ;
 }
 
 void C2F (fac3dn) (sciPointObj * pobj, double *x, double *y, double *z,

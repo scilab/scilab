@@ -1,20 +1,14 @@
 function []=xbasr(win_num)
 // This function is used to redraw the content of the graphic 
-// window win_num. It works only with the driver "Rec"
+// window win_num.
 //!
 // Copyright Enpc
+// Copyright INRIA 2007
+
 [lhs,rhs]=argn(0);
 if rhs==0,
-  if get('figure_style')=='old' then
-    win_num=xget("window");
-    xclear(win_num);xtape('replay',win_num);
-  end
+  draw(gcf()) ;
 else 
-   cw=xget("window");
-   xset("window",win_num);
-   if get('figure_style')=='old' then
-     xclear(win_num);xtape('replay',win_num);
-   end
-   xset("window",cw);
+   draw(scf(win_num)) ;
 end 
 endfunction

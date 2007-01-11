@@ -36,7 +36,6 @@ deff('menu_ok(k,gwin)','global done;done=1')
 deff('menu_cancel(k,gwin)','global done;done=2')
 
 
-set('figure_style','new')
 f=gcf();
 cur_draw_mode = f.immediate_drawing;
 f.immediate_drawing='off'

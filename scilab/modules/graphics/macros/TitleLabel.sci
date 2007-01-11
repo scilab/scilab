@@ -6,13 +6,6 @@ function TitleLabel(varargin)
 
 [lhs,rhs]=argn(0);
 
-isold=get('figure_style')=='old'
-
-if isold
-  disp("Not supported under old graphic style");
-  return;
-end
-
 //CurColor = 0; // current color used if no color specified via LineSpec
 // nor PropertyName
 

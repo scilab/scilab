@@ -11,15 +11,6 @@ function ged(k,win)
   
   ged_current_figure=xget('window')
   xset('window',win) 
-  isold=get('figure_style')=='old'
-  if isold&k>3 then 
-    message('this menu does not apply to old style graphics')
-    xset('window',ged_current_figure)
-    clearglobal ged_current_figure
-    clear ged_current_figure
-    return
-  end
-  
   
   scf(win);
   ged_cur_fig_handle=gcf();
@@ -36,7 +27,7 @@ function ged(k,win)
     case 1 then //Select (make it current)
       return
     case 2 then //redraw
-      if isold then xbasr(win),end
+      // nothing to do in new graphic mode
     case 3 then //erase
       xbasc()
     case 4 then //copy
