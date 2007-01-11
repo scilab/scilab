@@ -64,7 +64,7 @@ src/c/LoadFunctionsTab.c \
 src/c/with_module.c \
 src/c/loadversion.c \
 src/c/stackinfo.c \
-src/c/scirun.c \
+src/c/scirun.c
 
 
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f \

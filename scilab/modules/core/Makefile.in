@@ -101,11 +101,11 @@ am__libscicore_la_SOURCES_DIST = src/c/history.c src/c/inffic.c \
 	src/c/sciprint.c src/c/link.c src/c/xscion.c src/c/SciEnv.c \
 	src/c/hashtable_core.c src/c/returnanan.c \
 	src/c/LoadFunctionsTab.c src/c/with_module.c \
-	src/c/loadversion.c src/c/stackinfo.c src/c/getarg-hpux.c \
-	src/c/getarg.c src/fortran/algebre.f src/fortran/clunit.f \
-	src/fortran/complexify.f src/fortran/allowptr.f \
-	src/fortran/dldsp.f src/fortran/bcol.f src/fortran/msgs.f \
-	src/fortran/getlin.f src/fortran/isany.f \
+	src/c/loadversion.c src/c/stackinfo.c src/c/scirun.c \
+	src/c/getarg-hpux.c src/c/getarg.c src/fortran/algebre.f \
+	src/fortran/clunit.f src/fortran/complexify.f \
+	src/fortran/allowptr.f src/fortran/dldsp.f src/fortran/bcol.f \
+	src/fortran/msgs.f src/fortran/getlin.f src/fortran/isany.f \
 	src/fortran/hmcreate.f src/fortran/nextj.f \
 	src/fortran/scilab.f src/fortran/functionsforbasout.f \
 	src/fortran/setgetmode.f src/fortran/errmsgf.f \
@@ -139,8 +139,8 @@ am__libscicore_la_SOURCES_DIST = src/c/history.c src/c/inffic.c \
 	src/fortran/ptover.f src/fortran/Ex-fort.f \
 	src/fortran/getfunction.f src/fortran/stackp.f \
 	src/fortran/getpro.f src/fortran/dbasin.f src/fortran/macro.f \
-	src/fortran/scirun.f src/fortran/lspdsp.f \
-	src/fortran/extlarg.f src/fortran/getstr.f src/fortran/cvwm.f \
+	src/fortran/lspdsp.f src/fortran/extlarg.f \
+	src/fortran/getstr.f src/fortran/cvwm.f \
 	src/fortran/storeglobal.f src/fortran/lst2vars.f \
 	src/fortran/fmttyp.f src/fortran/basnms.f src/fortran/matc.f \
 	src/fortran/ptrback.f src/fortran/getch.f src/fortran/ftob.f \
@@ -252,7 +252,7 @@ am__objects_3 = libscicore_la-history.lo libscicore_la-inffic.lo \
 	libscicore_la-hashtable_core.lo libscicore_la-returnanan.lo \
 	libscicore_la-LoadFunctionsTab.lo libscicore_la-with_module.lo \
 	libscicore_la-loadversion.lo libscicore_la-stackinfo.lo \
-	$(am__objects_1) $(am__objects_2)
+	libscicore_la-scirun.lo $(am__objects_1) $(am__objects_2)
 @IS_HPUX_TRUE@am__objects_4 = fgetarg-hpux.lo
 @IS_HPUX_FALSE@am__objects_5 = fgetarg.lo
 am__objects_6 = algebre.lo clunit.lo complexify.lo allowptr.lo \
@@ -272,12 +272,11 @@ am__objects_6 = algebre.lo clunit.lo complexify.lo allowptr.lo \
 	defmat.lo mklist.lo dmdsp.lo sigbas.lo indxg.lo matz.lo \
 	istrue.lo terme.lo inisci.lo expr.lo ptover.lo Ex-fort.lo \
 	getfunction.lo stackp.lo getpro.lo dbasin.lo macro.lo \
-	scirun.lo lspdsp.lo extlarg.lo getstr.lo cvwm.lo \
-	storeglobal.lo lst2vars.lo fmttyp.lo basnms.lo matc.lo \
-	ptrback.lo getch.lo ftob.lo seteol.lo basin.lo clause.lo \
-	compcl.lo termf.lo expsum.lo eqid.lo copyvar.lo putid.lo \
-	itosci.lo formatnumber.lo wmdsp.lo $(am__objects_4) \
-	$(am__objects_5)
+	lspdsp.lo extlarg.lo getstr.lo cvwm.lo storeglobal.lo \
+	lst2vars.lo fmttyp.lo basnms.lo matc.lo ptrback.lo getch.lo \
+	ftob.lo seteol.lo basin.lo clause.lo compcl.lo termf.lo \
+	expsum.lo eqid.lo copyvar.lo putid.lo itosci.lo \
+	formatnumber.lo wmdsp.lo $(am__objects_4) $(am__objects_5)
 am__objects_7 = libscicore_la-sci_savehistory.lo \
 	libscicore_la-sci_stacksize.lo libscicore_la-sci_resume.lo \
 	libscicore_la-sci_mtlb_mode.lo libscicore_la-intgetmd5.lo \
@@ -521,8 +520,8 @@ CORE_C_SOURCES = src/c/history.c src/c/inffic.c src/c/cs2st.c \
 	src/c/sciprint.c src/c/link.c src/c/xscion.c src/c/SciEnv.c \
 	src/c/hashtable_core.c src/c/returnanan.c \
 	src/c/LoadFunctionsTab.c src/c/with_module.c \
-	src/c/loadversion.c src/c/stackinfo.c $(am__append_2) \
-	$(am__append_4)
+	src/c/loadversion.c src/c/stackinfo.c src/c/scirun.c \
+	$(am__append_2) $(am__append_4)
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f src/fortran/clunit.f \
 	src/fortran/complexify.f src/fortran/allowptr.f \
 	src/fortran/dldsp.f src/fortran/bcol.f src/fortran/msgs.f \
@@ -560,8 +559,8 @@ CORE_FORTRAN_SOURCES = src/fortran/algebre.f src/fortran/clunit.f \
 	src/fortran/ptover.f src/fortran/Ex-fort.f \
 	src/fortran/getfunction.f src/fortran/stackp.f \
 	src/fortran/getpro.f src/fortran/dbasin.f src/fortran/macro.f \
-	src/fortran/scirun.f src/fortran/lspdsp.f \
-	src/fortran/extlarg.f src/fortran/getstr.f src/fortran/cvwm.f \
+	src/fortran/lspdsp.f src/fortran/extlarg.f \
+	src/fortran/getstr.f src/fortran/cvwm.f \
 	src/fortran/storeglobal.f src/fortran/lst2vars.f \
 	src/fortran/fmttyp.f src/fortran/basnms.f src/fortran/matc.f \
 	src/fortran/ptrback.f src/fortran/getch.f src/fortran/ftob.f \
@@ -996,6 +995,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-scimem.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sciprint.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sciquit.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-scirun.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-setgetSCIpath.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-stack1.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-stack2.Plo@am__quote@
@@ -1449,6 +1449,13 @@ libscicore_la-stackinfo.lo: src/c/stackinfo.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/stackinfo.c' object='libscicore_la-stackinfo.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-stackinfo.lo `test -f 'src/c/stackinfo.c' || echo '$(srcdir)/'`src/c/stackinfo.c
+
+libscicore_la-scirun.lo: src/c/scirun.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-scirun.lo -MD -MP -MF $(DEPDIR)/libscicore_la-scirun.Tpo -c -o libscicore_la-scirun.lo `test -f 'src/c/scirun.c' || echo '$(srcdir)/'`src/c/scirun.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-scirun.Tpo $(DEPDIR)/libscicore_la-scirun.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/scirun.c' object='libscicore_la-scirun.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-scirun.lo `test -f 'src/c/scirun.c' || echo '$(srcdir)/'`src/c/scirun.c
 
 libscicore_la-getarg-hpux.lo: src/c/getarg-hpux.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-getarg-hpux.lo -MD -MP -MF $(DEPDIR)/libscicore_la-getarg-hpux.Tpo -c -o libscicore_la-getarg-hpux.lo `test -f 'src/c/getarg-hpux.c' || echo '$(srcdir)/'`src/c/getarg-hpux.c
@@ -2226,9 +2233,6 @@ dbasin.lo: src/fortran/dbasin.f
 
 macro.lo: src/fortran/macro.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o macro.lo `test -f 'src/fortran/macro.f' || echo '$(srcdir)/'`src/fortran/macro.f
-
-scirun.lo: src/fortran/scirun.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o scirun.lo `test -f 'src/fortran/scirun.f' || echo '$(srcdir)/'`src/fortran/scirun.f
 
 lspdsp.lo: src/fortran/lspdsp.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o lspdsp.lo `test -f 'src/fortran/lspdsp.f' || echo '$(srcdir)/'`src/fortran/lspdsp.f
