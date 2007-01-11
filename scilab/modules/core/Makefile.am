@@ -63,7 +63,8 @@ src/c/returnanan.c \
 src/c/LoadFunctionsTab.c \
 src/c/with_module.c \
 src/c/loadversion.c \
-src/c/stackinfo.c
+src/c/stackinfo.c \
+src/c/scirun.c \
 
 
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f \
@@ -161,7 +162,6 @@ src/fortran/stackp.f \
 src/fortran/getpro.f \
 src/fortran/dbasin.f \
 src/fortran/macro.f \
-src/fortran/scirun.f \
 src/fortran/lspdsp.f \
 src/fortran/extlarg.f \
 src/fortran/getstr.f \

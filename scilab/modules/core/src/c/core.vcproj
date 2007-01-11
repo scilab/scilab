@@ -654,6 +654,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\scirun.c"
+				>
+			</File>
+			<File
 				RelativePath=".\setgetSCIpath.c"
 				>
 			</File>

@@ -749,10 +749,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\scirun.c"
-				>
-			</File>
-			<File
 				RelativePath=".\seteol.c"
 				>
 			</File>
@@ -1418,10 +1414,6 @@
 			</File>
 			<File
 				RelativePath=".\scilines.f"
-				>
-			</File>
-			<File
-				RelativePath=".\scirun.f"
 				>
 			</File>
 			<File

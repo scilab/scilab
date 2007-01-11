@@ -13,7 +13,6 @@ extern int C2F(dcopy)  __PARAMS((integer *,double *,integer *,double *,integer *
 extern int C2F(unsfdcopy)  __PARAMS((integer *,double *,integer *,double *,integer *));
 extern int C2F(rcopy)  __PARAMS((integer *,float *,integer *,float *,integer *));
 extern void C2F(cstringf) __PARAMS((char ***,integer *,integer *,integer *,integer *,integer *));
-extern int s_copy __PARAMS((char *,char *, integer, unsigned long int));
 extern int C2F(stringc)  __PARAMS((integer *,char ***,integer *));
 extern int C2F(stackg)   __PARAMS((integer *));
 
