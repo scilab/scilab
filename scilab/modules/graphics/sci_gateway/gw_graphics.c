@@ -14,7 +14,6 @@ extern int GetWITH_GUI(void);
 static MatdesTable Tab[]={
 	{sci_champ,"champ"},	
 	{sci_champ1,"champ1"},
-	{sci_contour,"contour"},
 	{sci_driver,"driver"},
 	{sci_fec,"scifec"},
 	{sci_geom3d,"geom3d"},

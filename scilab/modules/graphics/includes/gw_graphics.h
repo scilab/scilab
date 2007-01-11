@@ -25,7 +25,6 @@ int C2F(gw_graphics)(void);
 
 /*-----------------------------------------------------------------------------------*/ 
 extern int sci_champ                      _PARAMS((char *fname, unsigned long fname_len));
-extern int sci_contour                    _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_param3d                    _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_plot3d                     _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_plot2d                     _PARAMS((char *fname, unsigned long fname_len));

@@ -9,23 +9,8 @@
 #ifndef _PLO3D_H_
 #define _PLO3D_H_
 
-int C2F(plot3d)(double *x, double *y, double *z, integer *p, integer *q, double *teta, double *alpha, char *legend, integer *flag, double *bbox, integer lstr) ;
-
-int C2F(plot3d1)(double *x, double *y, double *z, integer *p, integer *q, double *teta, double *alpha, char *legend, integer *flag, double *bbox, integer lstr) ;
-
-int C2F(fac3d)(double *x, double *y, double *z, integer *cvect, integer *p, integer *q, double *teta, double *alpha, char *legend, integer *flag, double *bbox, integer lstr) ;
-
-int C2F(fac3d1)(double *x, double *y, double *z, integer *cvect, integer *p, integer *q, double *teta, double *alpha, char *legend, integer *flag, double *bbox, integer lstr) ;
-
-int C2F(fac3d2)(double *x, double *y, double *z, integer *cvect, integer *p, integer *q, double *teta, double *alpha, char *legend, integer *flag, double *bbox, integer lstr) ;
-
-int C2F(param3d)(double *x, double *y, double *z, integer *n, double *teta, double *alpha, char *legend, integer *flag, double *bbox, integer lstr) ;
-
-int C2F(param3d1)(double *x, double *y, double *z, integer *m, integer *n, integer *iflag, integer *colors, double *teta, double *alpha, char *legend, integer *flag, double *bbox, integer lstr) ;
 
 int C2F(box3d)(double *xbox, double *ybox, double *zbox) ;
-
-int C2F(geom3d)(double *x, double *y, double *z, integer *n) ;
 
 void SetEch3d(double *xbox, double *ybox, double *zbox, double *bbox, double *teta, double *alpha) ;
 

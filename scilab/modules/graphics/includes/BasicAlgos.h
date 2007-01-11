@@ -19,6 +19,8 @@
  */
 double sciFindStPosMin( double x[], int n ) ;
 
+void MaxiInd( double vect[], integer n, integer * ind, double maxi ) ;
+
 /**
  *     convertion d'entier vers double
  *     d et s peuvent en fait pointer sur le meme tableau

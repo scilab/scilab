@@ -954,10 +954,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_contour.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\sci_contour2di.c"
 				>
 			</File>
@@ -2080,10 +2076,6 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_champ.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_contour.h"
 				>
 			</File>
 			<File

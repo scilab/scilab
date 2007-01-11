@@ -53,6 +53,7 @@
 #include "Format.h"
 #include "axesScale.h"
 #include "drawMarks.h"
+#include "BasicAlgos.h"
 
 #include "MALLOC.h" /* MALLOC */
 

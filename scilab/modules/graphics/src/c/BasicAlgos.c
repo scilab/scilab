@@ -35,6 +35,22 @@ double sciFindStPosMin( double x[], int n )
   return min ;
 }
 /*------------------------------------------------------------------------*/
+void MaxiInd( double vect[], integer n, integer * ind, double maxi )
+{
+  integer i ;
+  if ( *ind+1 < n )
+  {
+    for ( i = *ind+1 ; i < n ; i++ )
+    {
+      if ( vect[i] >= maxi)
+      {
+        *ind=i;
+        return ;
+      }
+    }
+  }
+}
+/*------------------------------------------------------------------------*/
 int C2F(entier2d)( integer * n, double * dx,integer * s )
 {
   integer ix;

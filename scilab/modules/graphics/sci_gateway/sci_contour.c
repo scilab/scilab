@@ -57,33 +57,33 @@ int sci_contour( char * fname, unsigned long fname_len )
   GetRhsVar(2, "d", &m2, &n2, &l2);
   CheckVector(2,m2,n2);
   GetRhsVar(3, "d", &m3, &n3, &l3)
-    if (m3 * n3 == 0) {LhsVar(1)=0;  return 0;} 
-    if (m3 == 1 || n3 == 1) {
-      Scierror(999,"%s: third argument is a vector, expecting a matrix \r\n",fname,m3*n3);
-      return 0;
-    }
-
-    CheckDimProp(1,3, m1 * n1 != m3); 
-    CheckDimProp(2,3, m2 * n2 != n3); 
-
-    GetRhsVar(4, "d", &m4, &n4, &l4);
-    if (m4 * n4 == 0) {LhsVar(1)=0;  return 0;} 
-    if (m4 * n4 == 1) {
-      flagx = 0;  nz = Max(1,(integer) *stk(l4));
-    } else {
-      flagx = 1;  nz = m4 * n4;
-    }
-    GetOptionalDoubleArg(fname,5,"theta",&theta,1,opts);
-    GetOptionalDoubleArg(fname,6,"alpha",&alpha,1,opts);
-    GetLabels(fname,7,opts,&labels);
-    GetOptionalIntArg(fname,8,"flag",&iflag,3,opts);
-    GetOptionalDoubleArg(fname,9,"ebox",&ebox,6,opts);
-    GetOptionalDoubleArg(fname,10,"zlev",&zlev,1,opts);
-    SciWin();
-    SciGerase() ;
-    C2F(contour)(stk(l1), stk(l2), stk(l3), &m3, &n3, &flagx, &nz, stk(l4), theta, alpha,
-      labels, iflag, ebox, zlev, bsiz);
-    LhsVar(1)=0;
+  if (m3 * n3 == 0) {LhsVar(1)=0;  return 0;} 
+  if (m3 == 1 || n3 == 1) {
+    Scierror(999,"%s: third argument is a vector, expecting a matrix \r\n",fname,m3*n3);
     return 0;
+  }
+
+  CheckDimProp(1,3, m1 * n1 != m3); 
+  CheckDimProp(2,3, m2 * n2 != n3); 
+
+  GetRhsVar(4, "d", &m4, &n4, &l4);
+  if (m4 * n4 == 0) {LhsVar(1)=0;  return 0;} 
+  if (m4 * n4 == 1) {
+    flagx = 0;  nz = Max(1,(integer) *stk(l4));
+  } else {
+    flagx = 1;  nz = m4 * n4;
+  }
+  GetOptionalDoubleArg(fname,5,"theta",&theta,1,opts);
+  GetOptionalDoubleArg(fname,6,"alpha",&alpha,1,opts);
+  GetLabels(fname,7,opts,&labels);
+  GetOptionalIntArg(fname,8,"flag",&iflag,3,opts);
+  GetOptionalDoubleArg(fname,9,"ebox",&ebox,6,opts);
+  GetOptionalDoubleArg(fname,10,"zlev",&zlev,1,opts);
+  SciWin();
+  SciGerase() ;
+  C2F(contour)(stk(l1), stk(l2), stk(l3), &m3, &n3, &flagx, &nz, stk(l4), theta, alpha,
+    labels, iflag, ebox, zlev, bsiz);
+  LhsVar(1)=0;
+  return 0;
 }
 /*-----------------------------------------------------------------------------------*/

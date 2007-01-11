@@ -54,7 +54,6 @@ extern void champg  __PARAMS((char *,integer ,double *,double *,double *,double 
 	/* Contour.c */
 
 extern int C2F(getconts) __PARAMS((double **x,double **y,integer *mm,integer *n));
-extern int C2F(contour)  __PARAMS((double *,double *,double *,integer *,integer *,integer *,integer *,double *,double *,double *,char *,integer *,double *,double *,integer)); 
 extern int C2F(contour2)  __PARAMS((double *,double *,double *,integer *,integer *,integer *,integer *,double *,integer *,char *,char *,double *,integer *,integer,integer)); 
 extern int C2F(contourif)  __PARAMS((double *,double *,double *,integer *,integer *,integer *,integer *,double *,integer *)); 
 
@@ -156,16 +155,6 @@ extern void TDAxis  __PARAMS((integer flag,double FPval,double LPval,integer *na
 extern void C2F(TDdrawaxis)  __PARAMS((double ,double FPval,double LPval,integer *nax,integer *FPoint,integer *LPoint,integer *Ticsdir)); 
 extern void BBoxToval  __PARAMS((double *,double *,double *,integer ,double *)); 
 extern int I3dRotation  __PARAMS((void)); 
-extern int DPoints1  __PARAMS((integer *polyx,integer *polyy,integer *fill,integer whiteid,double zmin,double zmax,double *,double *,double *,integer i,integer j,integer jj1,integer *p,integer dc,integer fg)); 
-extern int DPoints  __PARAMS((integer *polyx,integer *polyy,integer *fill,integer whiteid,double zmin,double zmax,double *,double *,double *,integer i,integer j,integer jj1,integer *p,integer dc,integer fg)); 
-extern int C2F(plot3d)  __PARAMS((double *,double *,double *,integer *p,integer *q,double *teta,double *,char *,integer *,double *,integer)); 
-extern int C2F(plot3d1)  __PARAMS((double *,double *,double *,integer *p,integer *q,double *teta,double *,char *,integer *,double *,integer)); 
-extern int C2F(fac3d)  __PARAMS((double *,double *,double *,integer *cvect,integer *p,integer *q,double *teta,double *,char *,integer *,double *,integer)); 
-extern int C2F(fac3d1)  __PARAMS((double *,double *,double *,integer *cvect,integer *p,integer *q,double *teta,double *,char *,integer *,double *,integer)); 
-extern int C2F(fac3d2)  __PARAMS((double *,double *,double *,integer *cvect,integer *p,integer *q,double *teta,double *,char *,integer *,double *,integer));
-extern int C2F(fac3d3)  __PARAMS((double *,double *,double *,integer *cvect,integer *p,integer *q,double *teta,double *,char *,integer *,double *,integer));
-extern int C2F(param3d)  __PARAMS((double *,double *,double *,integer *,double *teta,double *,char *,integer *,double *,integer)); 
-extern int C2F(param3d1)  __PARAMS((double *,double *,double *,integer *,integer *,integer *,integer *colors,double *teta,double *,char *,integer *,double *,integer )); 
 extern int C2F(box3d)  __PARAMS((double *,double *,double *)); 
 extern void SetEch3d  __PARAMS((double *,double *,double *,double *,double *teta,double *)); 
 extern void SetEch3d1  __PARAMS((double *,double *,double *,double *,double *teta,double *,integer flag)); 
