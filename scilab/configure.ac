@@ -401,11 +401,11 @@ AM_CONDITIONAL(IS_MIPS_SGI_IRIX, test -n "$MIPS_SGI_IRIX")
 
 
 ##########" 
+# not useful under Linux (and was only defined here with scilab 4)
+#AC_CHECK_LIB(ieee,main,[LIEEE="-lieee"])
 
-AC_CHECK_LIB(ieee,main,[LIEEE="-lieee"])
-
-LDFLAGS="$LDFLAGS $LIEEE"
-F77_LDFLAGS="$F77_LDFLAGS $LIEEE"
+#LDFLAGS="$LIEEE $LDFLAGS"
+#F77_LDFLAGS="$F77_LDFLAGS $LIEEE"
 
 if test "$CC" = "gcc"; then
    ## With GNU Compiler
@@ -963,7 +963,7 @@ fi
 ## libtool 
 #########################
 
-
+AC_PROG_LIBTOOL
 LT_INIT([shared static dlopen win32-dll])
 
 
