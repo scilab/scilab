@@ -18,7 +18,8 @@ static unsigned int hashfromkey_string(void *ky)
 	k =	(struct key_string *)ky;
 	str=k->Key_String;
 
-	while (c = *str++) 	hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
+	while ((c = *str++))
+		hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
 
 	return hash;
 
@@ -49,7 +50,6 @@ void DestroyHashtable_string(struct hashtable *hash_table)
 char *SearchHashtable_string(struct hashtable *hash_table, const char* key)
 /* return a copy of the string in hashtable */
 {
-	int i=0;
 	char *FindString=NULL;
 	struct key_string *k;
 	struct value_string *kElem=NULL;

@@ -9,8 +9,6 @@
 /*-----------------------------------------------------------------------------------*/ 
 #define LENGTH_OUTPUT 1024
 static int count=0;//count the number of the #text and type==3 node 
-static char *tag=NULL;
-static char *string=NULL;
 
 static char *Key_String=NULL;
 static char *Key_Value=NULL;
@@ -20,6 +18,10 @@ static char strBufOut[LENGTH_OUTPUT];
 static struct hashtable *Table_Scilab_Errors=NULL;
 
 static char *ReplaceChars(char *s1, char *s2, char *s3);
+char* ConvertEncoding(char *encodingFrom, char *encodingTo, char* inputStr);
+void ProcessNode(xmlTextReaderPtr reader, struct hashtable *table, char *encoding);
+char *GetXmlFileEncoding(const char *filename);
+
 /*-----------------------------------------------------------------------------------*/ 
 char* ConvertEncoding(char *encodingFrom, char *encodingTo, char* inputStr)
 {

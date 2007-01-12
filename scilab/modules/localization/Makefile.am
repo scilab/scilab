@@ -3,14 +3,10 @@
 ### INRIA - Scilab 2006 
 ##########
 
-
-MODULECOMMONFLAGS = -no-undefined -module -avoid-version
-
 LOCALIZATION_C_SOURCES = src/hashtable_localization.c \
 src/localization.c
 
 libscilocalization_la_CFLAGS=  -Iincludes/ -Isrc/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/ $(XML_FLAGS)
-libscilocalization_la_LDFLAGS= $(XML_LIBS) $(MODULECOMMONFLAGS)
 
 pkglib_LTLIBRARIES = libscilocalization.la
 

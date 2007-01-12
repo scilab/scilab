@@ -7,6 +7,8 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include "hashtable.h"
 #include "MALLOC.h"
+#include <stdlib.h>
+
 /*-----------------------------------------------------------------------------------*/ 
 struct key_string
 {
@@ -19,7 +21,7 @@ struct value_string
 };
 /*-----------------------------------------------------------------------------------*/ 
 /* create a hashtable and return it */
-struct hashtable *CreateHashtable_string();
+struct hashtable *CreateHashtable_string(void);
 
 /* destroy the hashtable and clean the resources used */
 void DestroyHashtable_string(struct hashtable *hash_table);
