@@ -8,6 +8,8 @@ src/localization.c
 
 libscilocalization_la_CFLAGS=  -Iincludes/ -Isrc/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/ $(XML_FLAGS)
 
+libscilocalization_la_LDFLAGS= $(XML_LIBS)
+
 pkglib_LTLIBRARIES = libscilocalization.la
 
 libscilocalization_la_SOURCES = $(LOCALIZATION_C_SOURCES) 
