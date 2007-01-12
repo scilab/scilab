@@ -244,7 +244,7 @@ LOCALIZATION_C_SOURCES = src/hashtable_localization.c \
 src/localization.c
 
 libscilocalization_la_CFLAGS = -Iincludes/ -Isrc/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/ $(XML_FLAGS)
-libscilocalization_la_LDFLAGS = $(XML_LIBS)
+libscilocalization_la_LDFLAGS = $(LDFLAGS) $(XML_LIBS)
 pkglib_LTLIBRARIES = libscilocalization.la
 libscilocalization_la_SOURCES = $(LOCALIZATION_C_SOURCES) 
 libscilocalization_la_LIBADD = $(top_builddir)/libs/MALLOC/libscimalloc.la \
