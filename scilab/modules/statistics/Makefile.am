@@ -100,7 +100,7 @@ libscistatistics_la_LIBADD = \
 	$(top_builddir)/libs/lapack/libscilapack.la
 
 #	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-#	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
+#	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la 
 
 libscistatistics_la_PKGCONFIG = statistics.pc
 
@@ -215,7 +215,7 @@ libscistatistics_la_sci_gateway_DATA = sci_gateway/statistics
 
 
 #### statistics : include files ####
-libscistatistics_la_includedir=$(includedir)/statistics
+libscistatistics_la_includedir=$(sciincludedir)/statistics
 libscistatistics_la_include_HEADERS = includes/gw_statistics.h
 
 include $(top_srcdir)/Makefile.incl.am

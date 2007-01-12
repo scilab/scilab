@@ -140,7 +140,6 @@ DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
 AR = @AR@
-AS = @AS@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
@@ -157,7 +156,6 @@ CXXFLAGS = @CXXFLAGS@
 CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
-DLLTOOL = @DLLTOOL@
 DUMPBIN = @DUMPBIN@
 ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
@@ -188,7 +186,6 @@ MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
 MKDIR_P = @MKDIR_P@
 NM = @NM@
-OBJDUMP = @OBJDUMP@
 OBJEXT = @OBJEXT@
 OCAMLC = @OCAMLC@
 OCAMLDEP = @OCAMLDEP@
@@ -404,7 +401,7 @@ libsciio_la_sci_gatewaydir = $(target)/sci_gateway
 libsciio_la_sci_gateway_DATA = sci_gateway/io
 
 #### io : include files ####
-libsciio_la_includedir = $(includedir)/io
+libsciio_la_includedir = $(sciincludedir)/io
 libsciio_la_include_HEADERS = includes/sci_getrelativefilename.h \
 includes/gw_io.h
 
@@ -424,6 +421,9 @@ DOCMASK = *.htm
 pkgmacrosdir = $(target)
 MACROSDIRS = macros/
 MACROSMASK = *.sci
+
+# Where headers (*.h) are installed (usually /usr/include/scilab/)
+sciincludedir = ${includedir}/scilab
 all: all-am
 
 .SUFFIXES:

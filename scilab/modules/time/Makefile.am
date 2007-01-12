@@ -76,7 +76,7 @@ libscitime_la_sci_gatewaydir = $(target)/sci_gateway
 libscitime_la_sci_gateway_DATA = sci_gateway/time
 
 #### time : include files ####
-libscitime_la_includedir=$(includedir)/time
+libscitime_la_includedir=$(sciincludedir)/time
 libscitime_la_include_HEADERS = includes/gw_time.h \
 includes/sci_getdate.h \
 includes/sci_timer.h \

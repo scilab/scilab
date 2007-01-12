@@ -324,7 +324,7 @@ libscitclsci_la_sci_gatewaydir = $(target)/sci_gateway
 libscitclsci_la_sci_gateway_DATA = sci_gateway/tclsci
 
 #### tclsci : include files ####
-libscitclsci_la_includedir=$(includedir)/tclsci
+libscitclsci_la_includedir=$(sciincludedir)/tclsci
 libscitclsci_la_include_HEADERS = includes/sci_set.h \
 includes/sci_TCL_ExistArray.h \
 includes/TclUiSet.h \

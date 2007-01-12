@@ -71,8 +71,8 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciscicos_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libsciscicos_la_DEPENDENCIES = $(top_builddir)/modules/elementaries_functions/libelementaries_functions.la \
-	$(top_builddir)/modules/differential_equations/libdifferential_equations.la \
+libsciscicos_la_DEPENDENCIES = $(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la \
+	$(top_builddir)/modules/differential_equations/libscidifferential_equations.la \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/time/libscitime.la \
 	$(top_builddir)/modules/gui/libscigui.la \
@@ -189,7 +189,6 @@ DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
 AR = @AR@
-AS = @AS@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
@@ -206,7 +205,6 @@ CXXFLAGS = @CXXFLAGS@
 CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
-DLLTOOL = @DLLTOOL@
 DUMPBIN = @DUMPBIN@
 ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
@@ -237,7 +235,6 @@ MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
 MKDIR_P = @MKDIR_P@
 NM = @NM@
-OBJDUMP = @OBJDUMP@
 OBJEXT = @OBJEXT@
 OCAMLC = @OCAMLC@
 OCAMLDEP = @OCAMLDEP@
@@ -524,8 +521,8 @@ libsciscicos_la_CFLAGS = -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 pkglib_LTLIBRARIES = libsciscicos.la
 libsciscicos_la_SOURCES = $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(SCICOS_FORTRAN_SOURCES_EXT) $(SCICOS_C_SOURCES_EXT)
 libsciscicos_la_LIBADD = \
-	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la \
-	$(top_builddir)/modules/differential_equations/libdifferential_equations.la \
+	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la \
+	$(top_builddir)/modules/differential_equations/libscidifferential_equations.la \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/time/libscitime.la \
 	$(top_builddir)/modules/gui/libscigui.la \
@@ -1709,7 +1706,7 @@ libsciscicos_la_sci_gatewaydir = $(target)/sci_gateway
 libsciscicos_la_sci_gateway_DATA = sci_gateway/scicos
 
 #### scicos : include files ####
-libsciscicos_la_includedir = $(includedir)/scicos
+libsciscicos_la_includedir = $(sciincludedir)/scicos
 libsciscicos_la_include_HEADERS = includes/import.h \
 includes/cc_pass2.h \
 includes/scicos_block.h \
@@ -1787,6 +1784,9 @@ MACROSDIRS = macros/ macros/scicos_blocks macros/scicos_blocks/Sources \
 	macros/scicos_blocks/Branching macros/scicos_blocks/Misc \
 	macros/scicos_blocks/Threshold macros/scicos
 MACROSMASK = *.sci
+
+# Where headers (*.h) are installed (usually /usr/include/scilab/)
+sciincludedir = ${includedir}/scilab
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 

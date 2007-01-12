@@ -72,7 +72,7 @@ libscisound_la_sci_gatewaydir = $(target)/sci_gateway
 libscisound_la_sci_gateway_DATA = sci_gateway/sound
 
 #### sound : include files ####
-libscisound_la_includedir=$(includedir)/sound
+libscisound_la_includedir=$(sciincludedir)/sound
 libscisound_la_include_HEADERS = includes/sci_beep.h \
 includes/sci_PlaySound.h \
 includes/sci_savewave.h \

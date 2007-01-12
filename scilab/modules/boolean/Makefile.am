@@ -26,7 +26,7 @@ libsciboolean_la_SOURCES = $(BOOLEAN_C_SOURCES) $(BOOLEAN_FORTRAN_SOURCES) $(GAT
 libsciboolean_la_LIBADD = \
 	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
+	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la 
 #$(top_builddir)/libs/blas/libsciblas.la:
 #	(cd $(top_builddir)/libs/blas/; make libsciblas.la)
 #SUFFIXES = .la
@@ -58,7 +58,7 @@ libsciboolean_la_sci_gatewaydir = $(target)/sci_gateway
 libsciboolean_la_sci_gateway_DATA = sci_gateway/boolean
 
 #### boolean : include files ####
-libsciboolean_la_includedir=$(includedir)/boolean
+libsciboolean_la_includedir=$(sciincludedir)/boolean
 libsciboolean_la_include_HEADERS = includes/gw_boolean.h
 
 include $(top_srcdir)/Makefile.incl.am

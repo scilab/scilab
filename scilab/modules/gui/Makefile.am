@@ -162,7 +162,7 @@ libscigui_la_sci_gateway_DATA = sci_gateway/gui
 
 
 #### gui : include files ####
-libscigui_la_includedir=$(includedir)/gui
+libscigui_la_includedir=$(sciincludedir)/gui
 libscigui_la_include_HEADERS = includes/men_choice.h \
 includes/sci_tohome.h \
 includes/men_scilab.h \

@@ -319,11 +319,11 @@ libscicore_la_LIBADD = \
 	$(top_builddir)/libs/lapack/libscilapack.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/cacsd/libscicacsd.la \
-	$(top_builddir)/modules/differential_equations/libdifferential_equations.la \
+	$(top_builddir)/modules/differential_equations/libscidifferential_equations.la \
 	$(top_builddir)/modules/polynomials/libscipolynomials.la \
-	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la \
+	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la \
 	$(top_builddir)/modules/string/libscistring.la \
-	$(top_builddir)/modules/signal_processing/libsignal_processing.la \
+	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
 	$(top_builddir)/modules/fileio/libscifileio.la
 
 libscicore_la_PKGCONFIG = core.pc
@@ -385,7 +385,7 @@ libscicore_la_sci_gateway_DATA = sci_gateway/core
 
 
 #### core : include files ####
-libscicore_la_includedir=$(includedir)/core
+libscicore_la_includedir=$(sciincludedir)/core
 libscicore_la_include_HEADERS = includes/GetExceptionCode.h \
 includes/CallScilab.h \
 includes/sciprint.h \

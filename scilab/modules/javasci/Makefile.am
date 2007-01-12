@@ -23,7 +23,7 @@ libscijavasci_la_etc_DATA = etc/javasci.quit etc/javasci.start
 
 
 #### javasci : include files ####
-libscijavasci_la_includedir=$(includedir)/javasci
+libscijavasci_la_includedir=$(sciincludedir)/javasci
 libscijavasci_la_include_HEADERS = includes/javasci_Scilab.h \
 includes/javasci_Scilab2.h \
 includes/javasci_globals.h \

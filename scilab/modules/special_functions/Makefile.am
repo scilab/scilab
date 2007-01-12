@@ -31,24 +31,24 @@ sci_gateway/fortran/sci_f_oldbesselj.f \
 sci_gateway/fortran/sci_f_oldbesselk.f \
 sci_gateway/fortran/sci_f_calerf.f
 
-libspecial_functions_la_includedir=$(includedir)/special_functions
+libscispecial_functions_la_includedir=$(sciincludedir)/special_functions
 
-#libspecial_functions_la_include_HEADERS = includes/gw_special_functions.h
+#libscispecial_functions_la_include_HEADERS = includes/gw_special_functions.h
 
-#libspecial_functions_la_CFLAGS=  -Iincludes/ 
+#libscispecial_functions_la_CFLAGS=  -Iincludes/ 
 #-Isrc/c/
-pkglib_LTLIBRARIES = libspecial_functions.la
+pkglib_LTLIBRARIES = libscispecial_functions.la
 
-libspecial_functions_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-libspecial_functions_la_LIBADD = \
-	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la \
+libscispecial_functions_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscispecial_functions_la_LIBADD = \
+	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la \
 	$(top_builddir)/modules/statistics/libscistatistics.la
 
 #\
 #	$(top_builddir)/libs/blas/libsciblas.la \
 #	$(top_builddir)/modules/arnoldi/libsciarnoldi.la
 
-libspecial_functions_la_PKGCONFIG = special_functions.pc
+libscispecial_functions_la_PKGCONFIG = special_functions.pc
 
 datadir=${prefix}/modules
 #### Target ######
@@ -56,21 +56,21 @@ target=$(datadir)/special_functions
 
 
 #### special_functions : Conf files ####
-libspecial_functions_la_rootdir = $(target)
-libspecial_functions_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscispecial_functions_la_rootdir = $(target)
+libscispecial_functions_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
 #### special_functions : Scilab macros ###
-libspecial_functions_la_macrodir = $(target)/macros
-libspecial_functions_la_macro_DATA22 =  macros/buildmacros.sce
+libscispecial_functions_la_macrodir = $(target)/macros
+libscispecial_functions_la_macro_DATA22 =  macros/buildmacros.sce
 
 
 #### special_functions : init scripts #### 
-libspecial_functions_la_etcdir = $(target)/etc
-libspecial_functions_la_etc_DATA = etc/special_functions.quit etc/special_functions.start
+libscispecial_functions_la_etcdir = $(target)/etc
+libscispecial_functions_la_etc_DATA = etc/special_functions.quit etc/special_functions.start
 
 #### special_functions : gateway declaration #### 
-libspecial_functions_la_sci_gatewaydir = $(target)/sci_gateway
-libspecial_functions_la_sci_gateway_DATA = sci_gateway/special_functions
+libscispecial_functions_la_sci_gatewaydir = $(target)/sci_gateway
+libscispecial_functions_la_sci_gateway_DATA = sci_gateway/special_functions
 
 include $(top_srcdir)/Makefile.incl.am

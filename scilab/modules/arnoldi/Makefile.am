@@ -65,7 +65,7 @@ sci_gateway/sci_dnaupd.c \
 sci_gateway/sci_dneupd.c
 
 
-libsciarnoldi_la_includedir=$(includedir)/arnoldi
+libsciarnoldi_la_includedir=$(sciincludedir)/arnoldi
 
 libsciarnoldi_la_include_HEADERS = 
 

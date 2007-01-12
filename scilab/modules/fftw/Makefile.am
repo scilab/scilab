@@ -23,7 +23,7 @@ libscifftw_la_sci_gatewaydir = $(target)/sci_gateway
 libscifftw_la_sci_gateway_DATA = sci_gateway/fftw
 
 #### fftw : include files ####
-libscifftw_la_includedir=$(includedir)/fftw
+libscifftw_la_includedir=$(sciincludedir)/fftw
 libscifftw_la_include_HEADERS = includes/sci_loadfftwlibrary.h \
 includes/sci_fftwlibraryisloaded.h \
 includes/sci_pushfftw_plan.h \

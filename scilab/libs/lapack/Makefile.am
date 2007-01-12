@@ -296,3 +296,4 @@ libdummy_lapack_la-dlamch.lo: dlamch.f
 
 libdummy_lapack_la-slamch.lo: slamch.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_lapack_la_FFLAGS) -c -o libdummy_lapack_la-slamch.lo `test -f 'slamch.f' || echo '$(srcdir)/'`slamch.f
+include $(top_srcdir)/Makefile.incl.am

@@ -72,3 +72,6 @@ macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(MACROS)
 	-@( \
 	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$L D_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
 	$(top_builddir)/bin/scilab -nb -nwni -f $(abs_srcdir)/macros/buildmacros.sce 	)
+
+# Where headers (*.h) are installed (usually /usr/include/scilab/)
+sciincludedir=${includedir}/scilab

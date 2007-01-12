@@ -8,7 +8,6 @@ src/c/w_rottext.c \
 src/c/gifimg.c \
 src/c/WindowList.c \
 src/c/Events.c \
-src/c/Plo2d.c \
 src/c/getHandleProperty/get_figure_position_property.c \
 src/c/getHandleProperty/get_figure_size_property.c \
 src/c/getHandleProperty/get_visible_property.c \
@@ -282,7 +281,6 @@ src/c/InitObjects.c \
 src/c/pixel_mode.c \
 src/c/Format.c \
 src/c/Champ.c \
-src/c/Alloc.c \
 src/c/StringMatrix.c \
 src/c/FeC.c \
 src/c/gsort.c \
@@ -438,7 +436,7 @@ libscigraphics_la_SOURCES = $(GRAPHICS_C_SOURCES) $(GATEWAY_C_SOURCES)
 
 libscigraphics_la_LIBADD = \
 	$(top_builddir)/modules/intersci/libsciintersci.la \
-	$(top_builddir)/modules/data_structures/libdata_structures.la \
+	$(top_builddir)/modules/data_structures/libscidata_structures.la \
 	$(top_builddir)/modules/tclsci/libscitclsci.la \
 	$(top_builddir)/modules/string/libscistring.la
 
@@ -740,7 +738,7 @@ libscigraphics_la_sci_gatewaydir = $(target)/sci_gateway
 libscigraphics_la_sci_gateway_DATA = sci_gateway/graphics
 
 #### graphics : include files ####
-libscigraphics_la_includedir=$(includedir)/graphics
+libscigraphics_la_includedir=$(sciincludedir)/graphics
 libscigraphics_la_include_HEADERS = includes/sci_xdel.h \
 includes/sci_winsid.h \
 includes/sci_addcb.h \
@@ -836,7 +834,6 @@ includes/sci_xgetech.h \
 includes/sci_seteventhandler.h \
 includes/sci_glue.h \
 includes/sci_xstringb.h \
-includes/Graphics.h \
 includes/sci_xs2emf.h \
 includes/fig.h \
 includes/sci_xname.h \
@@ -856,7 +853,6 @@ includes/BuildObjects.h \
 includes/CloneObjects.h \
 includes/sci_xs2ps.h \
 includes/sci_xarcs.h \
-includes/Plo2d.h \
 includes/pixel_mode.h \
 includes/sci_champ.h \
 includes/Champ.h \

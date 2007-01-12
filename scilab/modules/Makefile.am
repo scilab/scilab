@@ -85,10 +85,10 @@ libsciscilab_la_LIBADD = \
 	$(top_builddir)/modules/boolean/libsciboolean.la \
 	$(top_builddir)/modules/cacsd/libscicacsd.la \
 	$(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/modules/data_structures/libdata_structures.la \
-	$(top_builddir)/modules/differential_equations/libdifferential_equations.la \
+	$(top_builddir)/modules/data_structures/libscidata_structures.la \
+	$(top_builddir)/modules/differential_equations/libscidifferential_equations.la \
 	$(top_builddir)/modules/double/libscidouble.la \
-	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la \
+	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la \
 	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/graphics/libscigraphics.la \
 	$(top_builddir)/modules/gui/libscigui.la \
@@ -96,15 +96,15 @@ libsciscilab_la_LIBADD = \
 	$(top_builddir)/modules/interpolation/libsciinterpolation.la \
 	$(top_builddir)/modules/intersci/libsciintersci.la \
 	$(top_builddir)/modules/io/libsciio.la \
-	$(top_builddir)/modules/linear_algebra/liblinear_algebra.la \
+	$(top_builddir)/modules/linear_algebra/libscilinear_algebra.la \
 	$(top_builddir)/modules/localization/libscilocalization.la \
 	$(top_builddir)/modules/metanet/libscimetanet.la \
 	$(top_builddir)/modules/optimization/libscioptimization.la \
 	$(top_builddir)/modules/polynomials/libscipolynomials.la \
 	$(top_builddir)/modules/randlib/libscirandlib.la \
 	$(top_builddir)/modules/symbolic/libscisymbolic.la \
-	$(top_builddir)/modules/signal_processing/libsignal_processing.la \
-	$(top_builddir)/modules/special_functions/libspecial_functions.la \
+	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
+	$(top_builddir)/modules/special_functions/libscispecial_functions.la \
 	$(top_builddir)/modules/sound/libscisound.la \
 	$(top_builddir)/modules/tclsci/libscitclsci.la \
 	$(top_builddir)/modules/statistics/libscistatistics.la \

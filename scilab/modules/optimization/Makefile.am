@@ -141,7 +141,7 @@ pkglib_LTLIBRARIES = libscioptimization.la
 libscioptimization_la_SOURCES = $(OPTIMIZATION_C_SOURCES) $(OPTIMIZATION_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 libscioptimization_la_LIBADD = \
-	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la \
+	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la \
 	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/libs/lapack/libscilapack.la\
 	$(top_builddir)/modules/core/libscicore.la
@@ -205,7 +205,7 @@ libscioptimization_la_etc_DATA = etc/optimization.quit etc/optimization.start
 libscioptimization_la_sci_gatewaydir = $(target)/sci_gateway
 libscioptimization_la_sci_gateway_DATA = sci_gateway/optimization
 #### optimization : include files ####
-libscioptimization_la_includedir=$(includedir)/optimization
+libscioptimization_la_includedir=$(sciincludedir)/optimization
 libscioptimization_la_include_HEADERS = includes/gw_optim.h \
 includes/spd.h
 

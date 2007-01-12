@@ -223,7 +223,7 @@ libscicacsd_la_LIBADD = \
 	$(top_builddir)/libs/lapack/libscilapack.la \
 	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/modules/polynomials/libscipolynomials.la
-#	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la
+#	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la
 
 
 # Cyclic deps
@@ -544,7 +544,7 @@ libscicacsd_la_sci_gatewaydir = $(target)/sci_gateway
 libscicacsd_la_sci_gateway_DATA = sci_gateway/cacsd
 
 #### cacsd : include files ####
-libscicacsd_la_includedir=$(includedir)/cacsd
+libscicacsd_la_includedir=$(sciincludedir)/cacsd
 libscicacsd_la_include_HEADERS = includes/gw_cacsd0.h \
 includes/gw_cacsd1.h \
 includes/gw_cacsd2.h \

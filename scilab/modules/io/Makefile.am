@@ -140,7 +140,7 @@ libsciio_la_sci_gatewaydir = $(target)/sci_gateway
 libsciio_la_sci_gateway_DATA = sci_gateway/io
 
 #### io : include files ####
-libsciio_la_includedir=$(includedir)/io
+libsciio_la_includedir=$(sciincludedir)/io
 libsciio_la_include_HEADERS = includes/sci_getrelativefilename.h \
 includes/gw_io.h
 

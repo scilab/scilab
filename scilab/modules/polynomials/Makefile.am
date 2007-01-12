@@ -113,7 +113,7 @@ libscipolynomials_la_SOURCES = $(POLYNOMIALS_FORTRAN_SOURCES) $(GATEWAY_FORTRAN_
 
 libscipolynomials_la_LIBADD =
 # Cyclic dependencies : 
-#	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la  
+#	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la  
 #	$(top_builddir)/modules/core/libscicore.la 
 
 libscipolynomials_la_PKGCONFIG = polynomials.pc
@@ -200,7 +200,7 @@ libscipolynomials_la_sci_gateway_DATA = sci_gateway/polynomials
 
 
 #### polynomials : include files ####
-libscipolynomials_la_includedir=$(includedir)/polynomials
+libscipolynomials_la_includedir=$(sciincludedir)/polynomials
 libscipolynomials_la_include_HEADERS = includes/gw_polynomials.h
 
 include $(top_srcdir)/Makefile.incl.am

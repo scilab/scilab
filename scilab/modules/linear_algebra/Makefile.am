@@ -83,17 +83,17 @@ sci_gateway/c/sci_lsq.c
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/Ex-schur.f \
 sci_gateway/fortran/bschur.f
 
-liblinear_algebra_la_CFLAGS=  -Iincludes/ 
+libscilinear_algebra_la_CFLAGS=  -Iincludes/ 
 
-pkglib_LTLIBRARIES = liblinear_algebra.la
+pkglib_LTLIBRARIES = libscilinear_algebra.la
 
-liblinear_algebra_la_SOURCES = $(LINEAR_ALGEBRA_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscilinear_algebra_la_SOURCES = $(LINEAR_ALGEBRA_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
-liblinear_algebra_la_LIBADD = $(top_builddir)/libs/lapack/libscilapack.la \
+libscilinear_algebra_la_LIBADD = $(top_builddir)/libs/lapack/libscilapack.la \
 $(top_builddir)/libs/blas/libsciblas.la \
-$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la  
+$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la  
 
-liblinear_algebra_la_PKGCONFIG = linear_algebra.pc
+libscilinear_algebra_la_PKGCONFIG = linear_algebra.pc
 
 datadir=${prefix}/modules
 #### Target ######
@@ -101,13 +101,13 @@ target=$(datadir)/linear_algebra
 
 
 #### linear_algebra : Conf files ####
-liblinear_algebra_la_rootdir = $(target)
-liblinear_algebra_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscilinear_algebra_la_rootdir = $(target)
+libscilinear_algebra_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
 #### linear_algebra : Scilab macros ###
-liblinear_algebra_la_macrodir = $(target)/macros
-liblinear_algebra_la_macro_DATA22 = macros/spaninter.sci \
+libscilinear_algebra_la_macrodir = $(target)/macros
+libscilinear_algebra_la_macro_DATA22 = macros/spaninter.sci \
 macros/WritemiMatrix.sci \
 macros/penlaur.sci \
 macros/ndims.sci \
@@ -211,16 +211,16 @@ macros/WritemiMatrix.bin macros/names macros/lib macros/buildmacros.sce
 
 
 #### linear_algebra : init scripts #### 
-liblinear_algebra_la_etcdir = $(target)/etc
-liblinear_algebra_la_etc_DATA = etc/linear_algebra.quit etc/linear_algebra.start
+libscilinear_algebra_la_etcdir = $(target)/etc
+libscilinear_algebra_la_etc_DATA = etc/linear_algebra.quit etc/linear_algebra.start
 #### linear_algebra : gateway declaration #### 
-liblinear_algebra_la_sci_gatewaydir = $(target)/sci_gateway
-liblinear_algebra_la_sci_gateway_DATA = sci_gateway/linear_algebra
+libscilinear_algebra_la_sci_gatewaydir = $(target)/sci_gateway
+libscilinear_algebra_la_sci_gateway_DATA = sci_gateway/linear_algebra
 
 
 #### linear_algebra : include files ####
-liblinear_algebra_la_includedir=$(includedir)/linear_algebra
-liblinear_algebra_la_include_HEADERS = includes/gw_linear_algebra.h \
+libscilinear_algebra_la_includedir=$(sciincludedir)/linear_algebra
+libscilinear_algebra_la_include_HEADERS = includes/gw_linear_algebra.h \
 includes/gw_linear_algebra2.h
 
 include $(top_srcdir)/Makefile.incl.am

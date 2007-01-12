@@ -104,7 +104,7 @@ libscistring_la_sci_gatewaydir = $(target)/sci_gateway
 libscistring_la_sci_gateway_DATA = sci_gateway/string
 
 #### string : include files ####
-libscistring_la_includedir=$(includedir)/string
+libscistring_la_includedir=$(sciincludedir)/string
 libscistring_la_include_HEADERS = includes/men_Sutils.h \
 includes/gw_string.h
 

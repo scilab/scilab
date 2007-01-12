@@ -84,3 +84,5 @@ libsciblas_la_SOURCES = $(BLAS_FORTRAN_SOURCES)
 libsciblas_la_LIBADD =
 
 libsciblas_la_PKGCONFIG = blas.pc
+
+include $(top_srcdir)/Makefile.incl.am

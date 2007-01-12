@@ -72,13 +72,12 @@ pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscigraphics_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/intersci/libsciintersci.la \
-	$(top_builddir)/modules/data_structures/libdata_structures.la \
+	$(top_builddir)/modules/data_structures/libscidata_structures.la \
 	$(top_builddir)/modules/tclsci/libscitclsci.la \
 	$(top_builddir)/modules/string/libscistring.la
 am__objects_1 = libscigraphics_la-GetCommandArg.lo \
 	libscigraphics_la-w_rottext.lo libscigraphics_la-gifimg.lo \
 	libscigraphics_la-WindowList.lo libscigraphics_la-Events.lo \
-	libscigraphics_la-Plo2d.lo \
 	libscigraphics_la-get_figure_position_property.lo \
 	libscigraphics_la-get_figure_size_property.lo \
 	libscigraphics_la-get_visible_property.lo \
@@ -342,12 +341,11 @@ am__objects_1 = libscigraphics_la-GetCommandArg.lo \
 	libscigraphics_la-CloneObjects.lo \
 	libscigraphics_la-InitObjects.lo \
 	libscigraphics_la-pixel_mode.lo libscigraphics_la-Format.lo \
-	libscigraphics_la-Champ.lo libscigraphics_la-Alloc.lo \
-	libscigraphics_la-StringMatrix.lo libscigraphics_la-FeC.lo \
-	libscigraphics_la-gsort.lo libscigraphics_la-Plo2dn.lo \
-	libscigraphics_la-Plo3dn.lo libscigraphics_la-Actions.lo \
-	libscigraphics_la-Plo2dEch.lo libscigraphics_la-Gray.lo \
-	libscigraphics_la-DestroyObjects.lo \
+	libscigraphics_la-Champ.lo libscigraphics_la-StringMatrix.lo \
+	libscigraphics_la-FeC.lo libscigraphics_la-gsort.lo \
+	libscigraphics_la-Plo2dn.lo libscigraphics_la-Plo3dn.lo \
+	libscigraphics_la-Actions.lo libscigraphics_la-Plo2dEch.lo \
+	libscigraphics_la-Gray.lo libscigraphics_la-DestroyObjects.lo \
 	libscigraphics_la-clipping.lo libscigraphics_la-qsort.lo \
 	libscigraphics_la-qsort-char.lo \
 	libscigraphics_la-qsort-double.lo \
@@ -482,7 +480,6 @@ DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
 AR = @AR@
-AS = @AS@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
@@ -499,7 +496,6 @@ CXXFLAGS = @CXXFLAGS@
 CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
-DLLTOOL = @DLLTOOL@
 DUMPBIN = @DUMPBIN@
 ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
@@ -530,7 +526,6 @@ MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
 MKDIR_P = @MKDIR_P@
 NM = @NM@
-OBJDUMP = @OBJDUMP@
 OBJEXT = @OBJEXT@
 OCAMLC = @OCAMLC@
 OCAMLDEP = @OCAMLDEP@
@@ -625,7 +620,6 @@ src/c/w_rottext.c \
 src/c/gifimg.c \
 src/c/WindowList.c \
 src/c/Events.c \
-src/c/Plo2d.c \
 src/c/getHandleProperty/get_figure_position_property.c \
 src/c/getHandleProperty/get_figure_size_property.c \
 src/c/getHandleProperty/get_visible_property.c \
@@ -899,7 +893,6 @@ src/c/InitObjects.c \
 src/c/pixel_mode.c \
 src/c/Format.c \
 src/c/Champ.c \
-src/c/Alloc.c \
 src/c/StringMatrix.c \
 src/c/FeC.c \
 src/c/gsort.c \
@@ -1050,7 +1043,7 @@ pkglib_LTLIBRARIES = libscigraphics.la
 libscigraphics_la_SOURCES = $(GRAPHICS_C_SOURCES) $(GATEWAY_C_SOURCES)
 libscigraphics_la_LIBADD = \
 	$(top_builddir)/modules/intersci/libsciintersci.la \
-	$(top_builddir)/modules/data_structures/libdata_structures.la \
+	$(top_builddir)/modules/data_structures/libscidata_structures.la \
 	$(top_builddir)/modules/tclsci/libscitclsci.la \
 	$(top_builddir)/modules/string/libscistring.la
 
@@ -1348,7 +1341,7 @@ libscigraphics_la_sci_gatewaydir = $(target)/sci_gateway
 libscigraphics_la_sci_gateway_DATA = sci_gateway/graphics
 
 #### graphics : include files ####
-libscigraphics_la_includedir = $(includedir)/graphics
+libscigraphics_la_includedir = $(sciincludedir)/graphics
 libscigraphics_la_include_HEADERS = includes/sci_xdel.h \
 includes/sci_winsid.h \
 includes/sci_addcb.h \
@@ -1444,7 +1437,6 @@ includes/sci_xgetech.h \
 includes/sci_seteventhandler.h \
 includes/sci_glue.h \
 includes/sci_xstringb.h \
-includes/Graphics.h \
 includes/sci_xs2emf.h \
 includes/fig.h \
 includes/sci_xname.h \
@@ -1464,7 +1456,6 @@ includes/BuildObjects.h \
 includes/CloneObjects.h \
 includes/sci_xs2ps.h \
 includes/sci_xarcs.h \
-includes/Plo2d.h \
 includes/pixel_mode.h \
 includes/sci_champ.h \
 includes/Champ.h \
@@ -1557,6 +1548,9 @@ DOCMASK = *.htm
 pkgmacrosdir = $(target)
 MACROSDIRS = macros/
 MACROSMASK = *.sci
+
+# Where headers (*.h) are installed (usually /usr/include/scilab/)
+sciincludedir = ${includedir}/scilab
 all: all-am
 
 .SUFFIXES:
@@ -1627,7 +1621,6 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-Actions.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-Alloc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-Axes.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-BasicAlgos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-BuildObjects.Plo@am__quote@
@@ -1650,7 +1643,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-HandleManagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-InitObjects.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-Interaction.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-Plo2d.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-Plo2dEch.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-Plo2dn.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-Plo3d.Plo@am__quote@
@@ -2095,13 +2087,6 @@ libscigraphics_la-Events.lo: src/c/Events.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/Events.c' object='libscigraphics_la-Events.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-Events.lo `test -f 'src/c/Events.c' || echo '$(srcdir)/'`src/c/Events.c
-
-libscigraphics_la-Plo2d.lo: src/c/Plo2d.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-Plo2d.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-Plo2d.Tpo -c -o libscigraphics_la-Plo2d.lo `test -f 'src/c/Plo2d.c' || echo '$(srcdir)/'`src/c/Plo2d.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-Plo2d.Tpo $(DEPDIR)/libscigraphics_la-Plo2d.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/Plo2d.c' object='libscigraphics_la-Plo2d.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-Plo2d.lo `test -f 'src/c/Plo2d.c' || echo '$(srcdir)/'`src/c/Plo2d.c
 
 libscigraphics_la-get_figure_position_property.lo: src/c/getHandleProperty/get_figure_position_property.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-get_figure_position_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-get_figure_position_property.Tpo -c -o libscigraphics_la-get_figure_position_property.lo `test -f 'src/c/getHandleProperty/get_figure_position_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_figure_position_property.c
@@ -4013,13 +3998,6 @@ libscigraphics_la-Champ.lo: src/c/Champ.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/Champ.c' object='libscigraphics_la-Champ.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-Champ.lo `test -f 'src/c/Champ.c' || echo '$(srcdir)/'`src/c/Champ.c
-
-libscigraphics_la-Alloc.lo: src/c/Alloc.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-Alloc.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-Alloc.Tpo -c -o libscigraphics_la-Alloc.lo `test -f 'src/c/Alloc.c' || echo '$(srcdir)/'`src/c/Alloc.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-Alloc.Tpo $(DEPDIR)/libscigraphics_la-Alloc.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/Alloc.c' object='libscigraphics_la-Alloc.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-Alloc.lo `test -f 'src/c/Alloc.c' || echo '$(srcdir)/'`src/c/Alloc.c
 
 libscigraphics_la-StringMatrix.lo: src/c/StringMatrix.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-StringMatrix.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-StringMatrix.Tpo -c -o libscigraphics_la-StringMatrix.lo `test -f 'src/c/StringMatrix.c' || echo '$(srcdir)/'`src/c/StringMatrix.c

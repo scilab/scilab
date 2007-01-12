@@ -88,7 +88,7 @@ libscipvm_la_sci_gatewaydir = $(target)/sci_gateway
 libscipvm_la_sci_gateway_DATA = sci_gateway/pvm
 
 #### pvm : include files ####
-libscipvm_la_includedir=$(includedir)/pvm
+libscipvm_la_includedir=$(sciincludedir)/pvm
 libscipvm_la_include_HEADERS = includes/sci_pvm_exit.h \
 includes/sci_pvm_get_timer.h \
 includes/sci_pvm_gettid.h \

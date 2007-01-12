@@ -50,7 +50,7 @@ libscirandlib_la_LIBADD = \
 	$(top_builddir)/modules/core/libscicore.la
 
 #	$(top_builddir)/libs/blas/libsciblas.la \
-#	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
+#	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la 
 
 
 libscirandlib_la_PKGCONFIG = randlib.pc
@@ -79,7 +79,7 @@ libscirandlib_la_sci_gatewaydir = $(target)/sci_gateway
 libscirandlib_la_sci_gateway_DATA = sci_gateway/randlib
 
 #### randlib : include files ####
-libscirandlib_la_includedir=$(includedir)/randlib
+libscirandlib_la_includedir=$(sciincludedir)/randlib
 libscirandlib_la_include_HEADERS = includes/grand.h \
 includes/clcg4.h \
 includes/others_generators.h

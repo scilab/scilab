@@ -52,3 +52,10 @@ distclean-local::
 clean-local:
 #	@..\..\..\bin\scilex -nb -l eng -nouserstartup -nwni -e clean_help();exit;
 #	@..\..\..\bin\scilex -nb -l fr -nouserstartup -nwni -e clean_help();exit;
+
+
+# Pkgconfig directory
+pkgconfigdir = $(libdir)/pkgconfig
+
+# Files to install in Pkgconfig directory
+pkgconfig_DATA =  scilab.pc

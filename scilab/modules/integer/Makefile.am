@@ -249,7 +249,7 @@ libsciinteger_la_sci_gatewaydir = $(target)/sci_gateway
 libsciinteger_la_sci_gateway_DATA = sci_gateway/integer
 
 #### integer : include files ####
-libsciinteger_la_includedir=$(includedir)/integer
+libsciinteger_la_includedir=$(sciincludedir)/integer
 libsciinteger_la_include_HEADERS = includes/gw_integer.h \
 includes/def.h
 

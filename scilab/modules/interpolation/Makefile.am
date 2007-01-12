@@ -34,7 +34,7 @@ libsciinterpolation_la_SOURCES = $(INTERPOLATION_C_SOURCES) $(INTERPOLATION_FORT
 
 libsciinterpolation_la_LIBADD = \
 	$(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
+	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la 
 
 libsciinterpolation_la_PKGCONFIG = interpolation.pc
 
@@ -62,7 +62,7 @@ libsciinterpolation_la_sci_gatewaydir = $(target)/sci_gateway
 libsciinterpolation_la_sci_gateway_DATA = sci_gateway/interpolation
 
 #### interpolation : include files ####
-libsciinterpolation_la_includedir=$(includedir)/interpolation
+libsciinterpolation_la_includedir=$(sciincludedir)/interpolation
 libsciinterpolation_la_include_HEADERS = includes/gw_interpolation.h \
 includes/interpolation.h \
 includes/constinterp.h

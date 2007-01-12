@@ -120,7 +120,7 @@ libscifileio_la_sci_gatewaydir = $(target)/sci_gateway
 libscifileio_la_sci_gateway_DATA = sci_gateway/fileio
 
 #### fileio : include files ####
-libscifileio_la_includedir=$(includedir)/fileio
+libscifileio_la_includedir=$(sciincludedir)/fileio
 libscifileio_la_include_HEADERS = includes/FileExist.h \
 includes/gw_fileio.h \
 includes/sci_fileio.h

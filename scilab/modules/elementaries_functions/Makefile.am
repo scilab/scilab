@@ -350,14 +350,14 @@ libdummy_elementaries_functions_la_SOURCES = src/fortran/hqror2.f \
 
 libdummy_elementaries_functions_la_FFLAGS = $(FFLAGS:-O%=)
 
-libelementaries_functions_la_FFLAGS= -Iincludes/ 
-libelementaries_functions_la_CFLAGS= -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
+libscielementaries_functions_la_FFLAGS= -Iincludes/ 
+libscielementaries_functions_la_CFLAGS= -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 
-pkglib_LTLIBRARIES = libelementaries_functions.la
+pkglib_LTLIBRARIES = libscielementaries_functions.la
 
-libelementaries_functions_la_SOURCES = $(SLATEC_SOURCES) $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscielementaries_functions_la_SOURCES = $(SLATEC_SOURCES) $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
-libelementaries_functions_la_LIBADD = \
+libscielementaries_functions_la_LIBADD = \
 	libdummy-elementaries_functions.la \
 	$(top_builddir)/modules/cacsd/libscicacsd.la \
 	$(top_builddir)/libs/blas/libsciblas.la \
@@ -365,7 +365,7 @@ libelementaries_functions_la_LIBADD = \
 #	$(top_builddir)/modules/sparse/libscisparse.la \
 #	$(top_builddir)/modules/polynomials/libscipolynomials.la
 
-libelementaries_functions_la_PKGCONFIG = elementaries_functions.pc
+libscielementaries_functions_la_PKGCONFIG = elementaries_functions.pc
 
 libdummy_elementaries_functions_la-hqror2.lo: src/fortran/hqror2.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementaries_functions_la_FFLAGS) -c -o libdummy_elementaries_functions_la-hqror2.lo `test -f 'src/fortran/hqror2.f' || echo '$(srcdir)/'`src/fortran/hqror2.f
@@ -392,12 +392,12 @@ target=$(datadir)/elementaries_functions
 
 
 #### elementaries_functions : Conf files ####
-libelementaries_functions_la_rootdir = $(target)
-libelementaries_functions_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscielementaries_functions_la_rootdir = $(target)
+libscielementaries_functions_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
 #### elementaries_functions : Scilab macros ###
-libelementaries_functions_la_macrodir = $(target)/macros
+libscielementaries_functions_la_macrodir = $(target)/macros
 MACROS = macros/asinh.sci \
 macros/vectorfind.sci \
 macros/erfcx.sci \
@@ -574,17 +574,17 @@ macros/vectorfind.bin macros/names macros/lib macros/buildmacros.sce
 
 
 #### elementaries_functions : init scripts #### 
-libelementaries_functions_la_etcdir = $(target)/etc
-libelementaries_functions_la_etc_DATA = etc/elementaries_functions.quit etc/elementaries_functions.start
+libscielementaries_functions_la_etcdir = $(target)/etc
+libscielementaries_functions_la_etc_DATA = etc/elementaries_functions.quit etc/elementaries_functions.start
 
 #### elementaries_functions : gateway declaration #### 
-libelementaries_functions_la_sci_gatewaydir = $(target)/sci_gateway
-libelementaries_functions_la_sci_gateway_DATA = sci_gateway/elementaries_functions
+libscielementaries_functions_la_sci_gatewaydir = $(target)/sci_gateway
+libscielementaries_functions_la_sci_gateway_DATA = sci_gateway/elementaries_functions
 
 
 #### elementaries_functions : include files ####
-libelementaries_functions_la_includedir=$(includedir)/elementaries_functions
-libelementaries_functions_la_include_HEADERS = includes/sci_tools.h \
+libscielementaries_functions_la_includedir=$(sciincludedir)/elementaries_functions
+libscielementaries_functions_la_include_HEADERS = includes/sci_tools.h \
 includes/gw_elementaries_functions.h \
 includes/elementaries_functions.h
 

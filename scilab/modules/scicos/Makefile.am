@@ -214,8 +214,8 @@ pkglib_LTLIBRARIES = libsciscicos.la
 libsciscicos_la_SOURCES = $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(SCICOS_FORTRAN_SOURCES_EXT) $(SCICOS_C_SOURCES_EXT)
 
 libsciscicos_la_LIBADD = \
-	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la \
-	$(top_builddir)/modules/differential_equations/libdifferential_equations.la \
+	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la \
+	$(top_builddir)/modules/differential_equations/libscidifferential_equations.la \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/time/libscitime.la \
 	$(top_builddir)/modules/gui/libscigui.la \
@@ -1405,7 +1405,7 @@ libsciscicos_la_sci_gateway_DATA = sci_gateway/scicos
 
 
 #### scicos : include files ####
-libsciscicos_la_includedir=$(includedir)/scicos
+libsciscicos_la_includedir=$(sciincludedir)/scicos
 libsciscicos_la_include_HEADERS = includes/import.h \
 includes/cc_pass2.h \
 includes/scicos_block.h \

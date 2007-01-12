@@ -105,18 +105,18 @@ sci_gateway/fortran/Ex-bvode.f \
 sci_gateway/fortran/bbvode.f \
 sci_gateway/fortran/Ex-feval.f
 
-libdifferential_equations_la_CFLAGS= 
+libscidifferential_equations_la_CFLAGS= 
 # -Iincludes/ 
 #-Isrc/c/
-pkglib_LTLIBRARIES = libdifferential_equations.la
+pkglib_LTLIBRARIES = libscidifferential_equations.la
 
-libdifferential_equations_la_SOURCES = $(DIFFERENTIAL_EQUATIONS_C_SOURCES) $(DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscidifferential_equations_la_SOURCES = $(DIFFERENTIAL_EQUATIONS_C_SOURCES) $(DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
-libdifferential_equations_la_LIBADD = \
+libscidifferential_equations_la_LIBADD = \
 	$(top_builddir)/libs/blas/libsciblas.la \
-	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
+	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la 
 
-libdifferential_equations_la_PKGCONFIG = differential_equations.pc
+libscidifferential_equations_la_PKGCONFIG = differential_equations.pc
 
 datadir=${prefix}/modules
 #### Target ######
@@ -124,21 +124,21 @@ target=$(datadir)/differential_equations
 
 
 #### differential_equations : Conf files ####
-libdifferential_equations_la_rootdir = $(target)
-libdifferential_equations_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscidifferential_equations_la_rootdir = $(target)
+libscidifferential_equations_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
 #### differential_equations : Scilab macros ###
-libdifferential_equations_la_macrodir = $(target)/macros
-libdifferential_equations_la_macro_DATA22 = macros/odeoptions.sci macros/odeoptions.bin macros/names macros/lib macros/buildmacros.sce
+libscidifferential_equations_la_macrodir = $(target)/macros
+libscidifferential_equations_la_macro_DATA22 = macros/odeoptions.sci macros/odeoptions.bin macros/names macros/lib macros/buildmacros.sce
 
 
 #### differential_equations : init scripts #### 
-libdifferential_equations_la_etcdir = $(target)/etc
-libdifferential_equations_la_etc_DATA = etc/differential_equations.quit etc/differential_equations.start
+libscidifferential_equations_la_etcdir = $(target)/etc
+libscidifferential_equations_la_etc_DATA = etc/differential_equations.quit etc/differential_equations.start
 
 #### differential_equations : gateway declaration #### 
-libdifferential_equations_la_sci_gatewaydir = $(target)/sci_gateway
-libdifferential_equations_la_sci_gateway_DATA = sci_gateway/differential_equations
+libscidifferential_equations_la_sci_gatewaydir = $(target)/sci_gateway
+libscidifferential_equations_la_sci_gateway_DATA = sci_gateway/differential_equations
 
 include $(top_srcdir)/Makefile.incl.am

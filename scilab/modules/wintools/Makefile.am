@@ -59,7 +59,7 @@ libsciwintools_la_sci_gatewaydir = $(target)/sci_gateway
 libsciwintools_la_sci_gateway_DATA = sci_gateway/wintools
 
 #### wintools : include files ####
-libsciwintools_la_includedir=$(includedir)/wintools
+libsciwintools_la_includedir=$(sciincludedir)/wintools
 libsciwintools_la_include_HEADERS = includes/sci_dde.h \
 includes/intOEMconvert.h \
 includes/sci_clipboard.h \

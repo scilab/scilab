@@ -128,7 +128,7 @@ libscimetanet_la_LIBADD = \
 	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/modules/intersci/libsciintersci.la \
 	$(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la
+	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la
 
 libscimetanet_la_PKGCONFIG = metanet.pc
 
@@ -464,7 +464,7 @@ libscimetanet_la_sci_gatewaydir = $(target)/sci_gateway
 libscimetanet_la_sci_gateway_DATA = sci_gateway/metanet
 
 #### metanet : include files ####
-libscimetanet_la_includedir=$(includedir)/metanet
+libscimetanet_la_includedir=$(sciincludedir)/metanet
 libscimetanet_la_include_HEADERS = includes/gw_metanet.h
 
 

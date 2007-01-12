@@ -13,7 +13,7 @@ libscimexlib_la_SOURCES = $(MEXLIB_C_SOURCES)
 
 libscimexlib_la_LIBADD = \
 	$(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/modules/data_structures/libdata_structures.la 
+	$(top_builddir)/modules/data_structures/libscidata_structures.la 
 #	$(top_builddir)/libs/blas/libsciblas.la \
 #	$(top_builddir)/modules/arnoldi/libsciarnoldi.la
 
@@ -40,7 +40,7 @@ libscimexlib_la_etc_DATA = etc/mexlib.quit etc/mexlib.start
 
 
 #### mexlib : include files ####
-libscimexlib_la_includedir=$(includedir)/mexlib
+libscimexlib_la_includedir=$(sciincludedir)/mexlib
 libscimexlib_la_include_HEADERS = includes/mex.h
 
 include $(top_srcdir)/Makefile.incl.am

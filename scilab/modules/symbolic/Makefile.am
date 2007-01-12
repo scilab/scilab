@@ -50,7 +50,7 @@ libscisymbolic_la_sci_gateway_DATA = sci_gateway/symbolic
 
 
 #### symbolic : include files ####
-libscisymbolic_la_includedir=$(includedir)/symbolic
+libscisymbolic_la_includedir=$(sciincludedir)/symbolic
 libscisymbolic_la_include_HEADERS = includes/gw_symbolic.h
 
 include $(top_srcdir)/Makefile.incl.am

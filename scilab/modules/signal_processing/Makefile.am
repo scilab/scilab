@@ -90,18 +90,18 @@ sci_gateway/fortran/bgetx.f \
 sci_gateway/fortran/bgety.f \
 sci_gateway/fortran/Ex-corr.f
 
-libsignal_processing_la_CFLAGS=  -Iincludes/ 
+libscisignal_processing_la_CFLAGS=  -Iincludes/ 
 #-Isrc/c/
-pkglib_LTLIBRARIES = libsignal_processing.la
+pkglib_LTLIBRARIES = libscisignal_processing.la
 
-libsignal_processing_la_SOURCES = $(SIGNAL_PROCESSING_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscisignal_processing_la_SOURCES = $(SIGNAL_PROCESSING_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
-libsignal_processing_la_LIBADD = \
-	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
+libscisignal_processing_la_LIBADD = \
+	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la 
 # Cyclic deps
 #	$(top_builddir)/modules/core/libscicore.la
 
-libsignal_processing_la_PKGCONFIG = signal_processing.pc
+libscisignal_processing_la_PKGCONFIG = signal_processing.pc
 
 datadir=${prefix}/modules
 #### Target ######
@@ -109,13 +109,13 @@ target=$(datadir)/signal_processing
 
 
 #### signal_processing : Conf files ####
-libsignal_processing_la_rootdir = $(target)
-libsignal_processing_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscisignal_processing_la_rootdir = $(target)
+libscisignal_processing_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
 #### signal_processing : Scilab macros ###
-libsignal_processing_la_macrodir = $(target)/macros
-libsignal_processing_la_macro_DATA22 = macros/srkf.sci \
+libscisignal_processing_la_macrodir = $(target)/macros
+libscisignal_processing_la_macro_DATA22 = macros/srkf.sci \
 macros/intdec.sci \
 macros/phc.sci \
 macros/lindquist.sci \
@@ -247,23 +247,23 @@ macros/zpell.bin macros/names macros/lib macros/buildmacros.sce
 
 
 #### signal_processing : init scripts #### 
-libsignal_processing_la_etcdir = $(target)/etc
-libsignal_processing_la_etc_DATA = etc/signal_processing.quit etc/signal_processing.start
+libscisignal_processing_la_etcdir = $(target)/etc
+libscisignal_processing_la_etc_DATA = etc/signal_processing.quit etc/signal_processing.start
 
 #### signal_processing : gateway declaration #### 
-libsignal_processing_la_sci_gatewaydir = $(target)/sci_gateway
-libsignal_processing_la_sci_gateway_DATA = sci_gateway/signal_processing
+libscisignal_processing_la_sci_gatewaydir = $(target)/sci_gateway
+libscisignal_processing_la_sci_gateway_DATA = sci_gateway/signal_processing
 
 
 
 #### signal_processing : include files ####
-libsignal_processing_la_includedir=$(includedir)/signal_processing
-libsignal_processing_la_include_HEADERS = includes/gw_signal.h
+libscisignal_processing_la_includedir=$(sciincludedir)/signal_processing
+libscisignal_processing_la_include_HEADERS = includes/gw_signal.h
 
 
 #### signal_processing : demos files ####
-libsignal_processing_la_demosdir=$(target)
-nobase_libsignal_processing_la_demos_DATA = demos/arma/arma1.dem \
+libscisignal_processing_la_demosdir=$(target)
+nobase_libscisignal_processing_la_demos_DATA = demos/arma/arma1.dem \
 demos/arma/arma2.dem \
 demos/arma/arma3.dem \
 demos/winfilt.dem \
