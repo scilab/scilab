@@ -6,13 +6,11 @@
 #define __INTFILEIO__
 
 #ifdef _MSC_VER
-#include <windows.h>
-#include <stdio.h>
+	#include <stdio.h>
 #endif
 
 #include "machine.h"
-#include "stack-c.h"
-#include "sciprint.h"
+
 
 int intsmeof __PARAMS((char *fname,unsigned long fname_len));
 int intsmopen __PARAMS((char *fname,unsigned long fname_len));

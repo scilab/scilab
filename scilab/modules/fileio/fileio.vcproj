@@ -314,6 +314,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\intreadxls.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\logger.h"
 				>
 			</File>

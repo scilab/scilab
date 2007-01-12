@@ -31,7 +31,7 @@ parameters
 
 	/* set instruction to execute at start-up */
 
-	str_copy_buf(cha1_.buf, bu1, 4096, bu1_len);
+	str_copy_buf(cha1_.buf, bu1, bsiz, bu1_len);
     C2F(iop).rio = -1;
     C2F(iop).lpt[0] = 1;
     C2F(iop).lpt[5] = 0;

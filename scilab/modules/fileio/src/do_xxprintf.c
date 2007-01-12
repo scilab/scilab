@@ -18,7 +18,7 @@ typedef int (*FLUSH) __PARAMS((FILE *));
 #define  PF_D		2
 #define  PF_LD		3
 #define  PF_F		4
-#define  MAX_SPRINTF_SIZE  4096
+#define  MAX_SPRINTF_SIZE  bsiz
 /*-----------------------------------------------------------------------------------*/
 static char sprintf_buffer[MAX_SPRINTF_SIZE];
 static char *sprintf_limit = sprintf_buffer + MAX_SPRINTF_SIZE;

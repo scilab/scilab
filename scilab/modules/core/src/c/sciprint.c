@@ -211,15 +211,15 @@ extern void diary_nnl __PARAMS((char *str,int *n));
   void sciprint_full(va_alist) va_dcl
 #endif 
 {
-	integer lstr;
-	va_list ap;
+  integer lstr;
+  va_list ap;
   char *s_buf=NULL;
   char *split_s_buf=NULL;
   int count=0;
   int p_s=0;
   static integer colwidth;
 
-	s_buf=MALLOC(sizeof(char)*(MAXCHARSSCIPRINT_FULL+1));
+  s_buf=MALLOC(sizeof(char)*(MAXCHARSSCIPRINT_FULL+1));
   if (s_buf == (char *) 0)
   {
      sciprint("sciprint_full: No more memory\r\n");
