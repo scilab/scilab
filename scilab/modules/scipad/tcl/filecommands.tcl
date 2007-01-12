@@ -124,15 +124,53 @@ proc filesetasnew {} {
 
     newfilebind
     showinfo [mc "New script"]
-    montretext $pad.new$winopened
+    showtext $pad.new$winopened
     resetmodified $pad.new$winopened
 }
 
 ##################################################
 # procs closing buffers
 ##################################################
+proc closecurfile {quittype} {
+# close current file, i.e. close the current textarea and also
+# all its peers
+# confirmation for saving is asked only once
+    set peerslist [getpeerlist [gettextareacur]]
+    set wascanceled [closecur $quittype]
+    if {$wascanceled == "Canceled"} {
+        break
+    } else {
+        # assert: $wascanceled == "Done"
+        # close peers without asking again for confirmation
+        foreach peerta $peerslist {
+            showtext $peerta
+            closecur "NoSaveQuestion"
+        }
+    }
+    # there must be no code here for the Cancel button to work OK
+}
+
+proc closecurtile {quittype} {
+# close current tile
+# this proc closes the current tile, i.e. the current textarea
+# if the current textarea has peers, no confirmation is asked (and
+# this is justified because there is at least one peer that contain
+# the file information)
+# if the current textarea has no peers, the normal confirmation
+# process is required (which is required to prevent the user from
+# loosing data
+    if {[llength [getpeerlist [gettextareacur]]] >= 1} {
+        closecur "NoSaveQuestion"
+    } else {
+        closecur $quittype
+    }
+}
+
 proc closecur { {quittype yesno} } {
-# close current buffer
+# close current textarea
+# if the current textarea is the last one to contain a given file, then
+# the file is closed (as seen from the user, actually the file closure on
+# disk occurred right after reading it from disk)
 # possible options for $quittype are yesno, yesnocancel and "NoSaveQuestion"
 # return value can be "Done" or "Canceled" (see proc closefile), which is used
 # by proc exitapp
@@ -252,10 +290,14 @@ proc byebye {textarea} {
         unset listoffile("$textarea",redostackdepth)
         unset listoffile("$textarea",progressbar_id)
 
+        # the rest of this proc is similar to proc hidetext,
+        # but not identical
+        # unpack the textarea
         if {[llength $listoftextarea] <= [gettotnbpanes]} {
             destroypaneframe $textarea
         }
 
+        # destroy the textarea widget itself
         destroy $textarea
 
         # place as current textarea the last one that is not already visible
@@ -337,20 +379,8 @@ proc exitapp { {quittype yesno} } {
     # however, once confirmation has been asked for a buffer that has peers,
     # do not ask again for confirmation for those peers
     foreach textarea [shiftlistofta [filteroutpeers $listoftextarea] [gettextareacur]] {
-        set peerslist [getpeerlist $textarea]
-        montretext $textarea
-        set wascanceled [closecur $quittype]
-        if {$wascanceled == "Canceled"} {
-            break
-        } else {
-            # assert: $wascanceled == "Done"
-            # close peers without asking again for confirmation
-            foreach peerta $peerslist {
-                montretext $peerta
-                closecur "NoSaveQuestion"
-            }
-        }
-        # there must be no code here for the Cancel button to work OK
+        showtext $textarea
+        closecurfile $quittype
     }
     # there must be no code here for the Cancel button to work OK
 }
@@ -358,7 +388,6 @@ proc exitapp { {quittype yesno} } {
 ##################################################
 # procs for opening buffers from disk
 ##################################################
-
 proc opensourceof {} {
 # open a dialog for selection of the function whose source the user
 # wants to open
@@ -673,7 +702,7 @@ proc openfile {file {tiledisplay "currenttile"}} {
                     set closeinitialbufferallowed false
                     closefile $pad.new1
                 }
-                montretext $pad.new$winopened
+                showtext $pad.new$winopened
                 RefreshWindowsMenuLabelsWrtPruning
             }
             $pad.new$winopened mark set insert "1.0"
@@ -741,7 +770,7 @@ proc shownewbuffer {file tiledisplay} {
     backgroundcolorize $pad.new$winopened
     tagcontlines $pad.new$winopened
     if {$tiledisplay == "currenttile"} {
-        montretext $pad.new$winopened
+        showtext $pad.new$winopened
     } else {
         set closeinitialbufferallowed false
         # pack the new buffer in a splitted window
@@ -1086,7 +1115,7 @@ proc revertsaved {textarea {ConfirmFlag "ConfirmNeeded"}} {
             foreach ta [getfullpeerset $textarea] {
                 set listoffile("$ta",thetime) [file mtime $thefile]
             }
-            montretext $textarea
+            showtext $textarea
             tagcontlines $textarea
             backgroundcolorize $textarea
         }

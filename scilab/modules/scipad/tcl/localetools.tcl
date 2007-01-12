@@ -96,9 +96,15 @@ global lang msgsdir
     createmenues
     setdbmenuentriesstates_bp
     updatepanestitles
+    set bestwidth [mcmaxra "Hide" \
+                           "Close"]
     foreach ta $listoftextarea {
         if {[isdisplayed $ta]} {
-            [getpaneframename $ta].clbutton configure -text [mc "Close"]
+            [getpaneframename $ta].clbutton configure -text [mc "Close"] -width $bestwidth
+            [getpaneframename $ta].hibutton configure -text [mc "Hide"]  -width $bestwidth
+            # tooltips on hide and close buttons do not need to be updated
+            # because localization occurs on the fly each time the tooltip
+            # displays its string content
         }
     }
     keyposn [gettextareacur]

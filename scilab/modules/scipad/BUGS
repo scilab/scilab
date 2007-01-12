@@ -255,10 +255,9 @@ Other wishes:
  .text replace is available at least from 8.5a3
 
 -peer text widgets:
- F6/F7 should display the next/previous buffer of the full list in the
- current active pane only, creating peer widgets as necessary
- warning: montretext is used to switch buffers when finding in multiple
- files!
+ Think about maintaining a nopeerlistoftextarea variable in the code,
+ instead of filtering out peers a lot of times everywhere. Filtering is
+ costly when there is a lot of textareas
 
 -*maybe* a global undo stack instead of one per buffer
  advantages: can undo at once a dnd from one pane to another one
@@ -303,10 +302,3 @@ http://groups.google.fr/group/comp.soft-sys.math.scilab/browse_thread/thread/dc0
 
 -Request 262: tabbed buffers (see discussion in this request)
 
--In tile mode, add tooltips displaying listoffile("$ta",fullname) of the
- hoovered buffer title (perhaps only when filenames display type is not
- "Full path")
-
--Think about maintaining a nopeerlistoftextarea variable in the code,
- instead of filtering out peers a lot of times everywhere. Filtering is
- costly when there is a lot of textareas

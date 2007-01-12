@@ -655,7 +655,7 @@ proc multiplefilesfindreplace {w frit} {
                 showinfo [mc "Back at the first file searched!"]
             }
             set newta [lindex $listoftextarea_nopeers $indofcurrentbuf]
-            montretext $newta
+            showtext $newta
             # set insertion cursor at the beginning or end of buffer
             # this is required when looping through buffers for proc
             # getnextmatch to work correctly: on first match search in

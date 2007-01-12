@@ -55,8 +55,8 @@ proc createmenues {} {
     $pad.filemenu.files add separator
     set FirstMRUFileNameInFileMenu [expr [$pad.filemenu.files index last] + 1]
     BuildInitialRecentFilesList
-    eval "$pad.filemenu.files add command [me "&Close"]\
-                   [ca {closecur yesnocancel}]"
+    eval "$pad.filemenu.files add command [me "&Close file"]\
+                   [ca {closecurfile yesnocancel}]"
     eval "$pad.filemenu.files add command [me "E&xit"] \
                    [ca idleexitapp]"
     bind $pad.filemenu.files <<MenuSelect>> {+showinfo_menu_file %W}
@@ -428,17 +428,18 @@ proc disablemenuesbinds {} {
     # File/Close
     set iClose [expr [GetFirstRecentInd] + $nbrecentfiles + 1]
     $pad.filemenu.files entryconfigure $iClose -state disabled
-    binddisable $pad {closecur yesnocancel}
+    binddisable $pad {closecurfile yesnocancel}
     # Windows menu entries
     set lasttoset [expr $FirstBufferNameInWindowsMenu - 2]
     for {set i 1} {$i<=$lasttoset} {incr i} {
         $pad.filemenu.wind entryconfigure $i -state disabled
         bind $pad <Control-Key-$i> ""
     }
-    # Close buttons in the tile titles
+    # Close and hide buttons in the tile titles
     foreach ta $listoftextarea {
         if {[isdisplayed $ta]} {
             [getpaneframename $ta].clbutton configure -state disabled
+            [getpaneframename $ta].hibutton configure -state disabled
         }
     }
 }
@@ -450,20 +451,44 @@ proc restoremenuesbinds {} {
     # File/Close
     set iClose [expr [GetFirstRecentInd] + $nbrecentfiles + 1]
     $pad.filemenu.files entryconfigure $iClose -state normal
-    bindenable $pad {closecur yesnocancel}
+    bindenable $pad {closecurfile yesnocancel}
     # Windows menu entries
     set lasttoset [expr $FirstBufferNameInWindowsMenu - 2]
     for {set i 1} {$i<=$lasttoset} {incr i} {
         $pad.filemenu.wind entryconfigure $i -state normal
         bind $pad <Control-Key-$i> "$pad.filemenu.wind invoke $i"
     }
-    # Close buttons in the tile titles
+    # Close and hide buttons in the tile titles
     foreach ta $listoftextarea {
         if {[isdisplayed $ta]} {
             [getpaneframename $ta].clbutton configure -state normal
+            [getpaneframename $ta].hibutton configure -state normal
         }
     }
     set tileprocalreadyrunning false
+}
+
+proc getlastvisibletextareamenuind {} {
+# get the index in the windows menu of the last entry of this menu
+# that is visible (i.e. packed in a pane)
+# note that there is always such an entry
+    global pad FirstBufferNameInWindowsMenu
+    set found 0
+    set i [$pad.filemenu.wind index end]
+    while {$i >= $FirstBufferNameInWindowsMenu} {
+        if {[isdisplayed $pad.new[$pad.filemenu.wind entrycget $i -value]]} {
+            set found 1
+            break
+        }
+        incr i -1
+    }
+    if {$found == 1} {
+        return $i
+    } else {
+        # shouldn't happen
+        tk_messageBox -message "Impossible case in proc getlastvisibletextareamenuind: please report"
+        return ""
+    }
 }
 
 proc getlasthiddentextareamenuind {} {
@@ -575,7 +600,7 @@ proc addwindowsmenuentry {val lab} {
     global pad
     $pad.filemenu.wind add radiobutton \
         -value $val -variable textareaid \
-        -command "montretext $pad.new$val"
+        -command "showtext $pad.new$val"
     setwindowsmenuentrylabel [$pad.filemenu.wind index end] $lab
 }
 
@@ -622,7 +647,7 @@ proc sortwindowsmenuentries {} {
         set winopened [gettaidfromwidgetname $ta]
         $pad.filemenu.wind entryconfigure $i \
             -value $winopened \
-            -command "montretext $pad.new$winopened"
+            -command "showtext $pad.new$winopened"
         setwindowsmenuentrylabel $i $lab "dontsort"
         incr i
     }

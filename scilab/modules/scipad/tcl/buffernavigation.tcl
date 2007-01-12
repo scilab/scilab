@@ -110,11 +110,18 @@ proc packnewbuffer {textarea targetpw forcetitlebar {whereafter ""} {wherebefore
     frame $tapwfr -borderwidth 2
 
     # this is for the top bar containing the pane title (file name)
-    # and the close button
+    # and the hide and close buttons
     frame $tapwfr.topbar
-    button $tapwfr.clbutton -text [mc "Close"] -font $menuFont \
-        -command "focustextarea $textarea; closecur yesnocancel"
+    set bestwidth [mcmaxra "Hide" \
+                           "Close"]
+    button $tapwfr.clbutton -text [mc "Close"] \
+        -font $menuFont -width $bestwidth \
+        -command "focustextarea $textarea; closecurtile yesnocancel"
     pack $tapwfr.clbutton  -in $tapwfr.topbar -side right  -expand 0 -fill none
+    button $tapwfr.hibutton -text [mc "Hide"] -font $menuFont \
+        -width $bestwidth \
+        -command "hidetext $textarea"
+    pack $tapwfr.hibutton  -in $tapwfr.topbar -side right  -expand 0 -fill none
 
     # this is for the text widget and the y scroll bar
     frame $tapwfr.top
@@ -158,6 +165,10 @@ proc packnewbuffer {textarea targetpw forcetitlebar {whereafter ""} {wherebefore
     bind $tapwfr.panetitle <Button-2>        {switchbuffersinpane %W}
     bind $tapwfr.panetitle <Enter> "update_bubble_panetitle enter %W \[winfo pointerxy $pad\] $textarea"
     bind $tapwfr.panetitle <Leave> "update_bubble_panetitle leave %W \[winfo pointerxy $pad\] $textarea"
+    bind $tapwfr.clbutton  <Enter> "update_bubble enter %W \[winfo pointerxy $pad\] \[mc \"Close this tile\"\]"
+    bind $tapwfr.clbutton  <Leave> "update_bubble leave %W \[winfo pointerxy $pad\] \[mc \"Close this tile\"\]"
+    bind $tapwfr.hibutton  <Enter> "update_bubble enter %W \[winfo pointerxy $pad\] \[mc \"Close this tile, keep content\"\]"
+    bind $tapwfr.hibutton  <Leave> "update_bubble leave %W \[winfo pointerxy $pad\] \[mc \"Close this tile, keep content\"\]"
     pack $tapwfr.panetitle -in $tapwfr.topbar -expand 1 -fill none
 
     pack $textarea       -in $tapwfr.topleft  -side left   -expand 1 -fill both
@@ -189,7 +200,8 @@ proc packbuffer {textarea} {
     $curtapwfr.yscroll configure -command "$textarea yview"
     $curtapwfr.xscroll configure -command "$textarea xview"
 
-    $curtapwfr.clbutton configure -command "focustextarea $textarea; closecur yesnocancel"
+    $curtapwfr.clbutton configure -command "focustextarea $textarea; closecurtile yesnocancel"
+    $curtapwfr.hibutton configure -command "hidetext $textarea"
 
     bind $curtapwfr.topbar    <ButtonRelease-1> "focustextarea $textarea"
     bind $curtapwfr.panetitle <ButtonRelease-1> "focustextarea $textarea"
@@ -201,6 +213,10 @@ proc packbuffer {textarea} {
     bind $curtapwfr.panetitle <Button-2>        {switchbuffersinpane %W}
     bind $curtapwfr.panetitle <Enter> "update_bubble_panetitle enter %W \[winfo pointerxy $pad\] $textarea"
     bind $curtapwfr.panetitle <Leave> "update_bubble_panetitle leave %W \[winfo pointerxy $pad\] $textarea"
+    bind $curtapwfr.clbutton  <Enter> "update_bubble enter %W \[winfo pointerxy $pad\] \[mc \"Close this tile\"\]"
+    bind $curtapwfr.clbutton  <Leave> "update_bubble leave %W \[winfo pointerxy $pad\] \[mc \"Close this tile\"\]"
+    bind $curtapwfr.hibutton  <Enter> "update_bubble enter %W \[winfo pointerxy $pad\] \[mc \"Close this tile, keep content\"\]"
+    bind $curtapwfr.hibutton  <Leave> "update_bubble leave %W \[winfo pointerxy $pad\] \[mc \"Close this tile, keep content\"\]"
 
     pack $textarea -in $curtapwfr.topleft -side left -expand 1 -fill both
 
@@ -213,16 +229,43 @@ proc packbuffer {textarea} {
     set pwframe($textarea) $curtapwfr
 }
 
-proc montretext {textarea} {
-# display a textarea in the current pane
-# this textarea becomes the current one
-    # prevent from displaying the same buffer in two or more panes
-    # <TODO>: make use of peer text widgets (Tk 8.5) instead
+proc showtext {textarea} {
+# if $textarea is not currently visible, pack it in the current pane,
+# and make this textarea the current one
+# if $textarea is already visible in some other pane than the
+# current one, simply switch to this textarea
+
     if {![isdisplayed $textarea]} {
         packbuffer $textarea
     }
+
     focustextarea $textarea
     backgroundcolorizeuserfun
+}
+
+proc hidetext {textarea} {
+# hide a textarea currently packed
+# this is different from closing a tile since hiding keeps the textarea
+# entry in the windows menu (and in listoftexarea)
+# it is purely an unpacking action
+    global pad listoftextarea pwframe tileprocalreadyrunning
+
+    if {$tileprocalreadyrunning} {return}
+    disablemenuesbinds
+
+    # unpack the textarea
+    destroypaneframe $textarea
+
+    # place as current textarea the last one that is already visible
+    $pad.filemenu.wind invoke [getlastvisibletextareamenuind]
+
+    # remove tile title if there is a single pane
+    if {[gettotnbpanes] == 1} {
+        set visibletapwfr [lindex [array get pwframe] 1]
+        pack forget $visibletapwfr.topbar
+    }
+    
+    restoremenuesbinds
 }
 
 proc focustextarea {textarea} {
@@ -619,6 +662,12 @@ proc createpaneframename {textarea targetpw} {
 
 proc destroypaneframe {textarea {hierarchy "destroyit"}} {
 # forget about the frame and pane in which $textarea is packed
+# i.e. this destroys the packing of $textarea without destroying
+# the textarea itself
+# the optional argument $hierarchy might be "destroyit" or
+# "nohierarchydestroy", the former being the normal mode, and the
+# latter being used when repacking to tell this proc not to destroy
+# the conatining panedwindow itself if there is no remaining pane
     global pad pwframe
 
     set tapwfr [getpaneframename $textarea]
@@ -1100,7 +1149,7 @@ proc switchbuffersinpane {w} {
     if {$toshow == [llength $talist]} {
         set toshow 0
     }
-    montretext [lindex $talist $toshow]
+    showtext [lindex $talist $toshow]
 }
 
 proc nextbuffer {type} {
@@ -1411,7 +1460,7 @@ proc dogotoline {{physlogic_ "useglobals"} {linetogo_ ""} {curfileorfun_ ""} {fu
                     set absoluteline [$textarea index "[lindex $funtogoto_ 2] + $linetogo_ lines -1l"]
                 }
             }
-            montretext $textarea
+            showtext $textarea
             $textarea mark set insert $absoluteline
             catch {keyposn $textarea}
             $textarea see insert
@@ -1439,7 +1488,7 @@ proc dogotoline {{physlogic_ "useglobals"} {linetogo_ ""} {curfileorfun_ ""} {fu
                 showinfo [mc "Outside of function definition"]
                 set targetline [$textarea index $funstart]
             }
-            montretext $textarea
+            showtext $textarea
             $textarea mark set insert $targetline
             catch {keyposn $textarea}
             $textarea see insert

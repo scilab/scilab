@@ -258,6 +258,7 @@ proc updatefont {{fontsource "newfont"}} {
             set tapwfr [getpaneframename $textarea]
             $tapwfr.panetitle configure -font $menuFont
             $tapwfr.clbutton  configure -font $menuFont
+            $tapwfr.hibutton  configure -font $menuFont
         }
     }
     settabsize

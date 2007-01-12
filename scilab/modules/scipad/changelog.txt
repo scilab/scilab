@@ -2700,3 +2700,17 @@ Francois VOGEL, 10/01/07
  * After closure of peers, the last remaining peer now properly looses its
    peer identifier in the displayed name
  * version --> 6.75
+
+Francois VOGEL, 12/01/07
+ * Separated functions Close File and Close Tile: File/Close closes the
+   file, i.e. the current textarea but also all its peers, whereas the Close
+   button of a tile closes this tile only, i.e. the current textarea (which
+   might result of file closure if the closed tile was the last peer). This
+   distinction is apparent with Tk 8.5 only
+ * Confirmation for saving is not asked when closing a tile if there is any
+   remaining peer of this tile
+ * Added a Hide button in tiles: this is purely unpacking of the textarea,
+   which is not closed
+ * Added tooltip for the Close and Hide buttons of tiles
+ * Proc montretext changes name to become proc showtext
+ * version --> 6.76

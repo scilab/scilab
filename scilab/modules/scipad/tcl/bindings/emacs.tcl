@@ -67,8 +67,8 @@ sbind Text <Control-slash> ""
 sbind Text <Control-x><h> {selectall}
 
 
-sbind $pad <Control-x><Key-k> {closecur yesnocancel}
-sbind Text <Control-x><Key-k> {closecur yesnocancel; break}
+sbind $pad <Control-x><Key-k> {closecurfile yesnocancel}
+sbind Text <Control-x><Key-k> {closecurfile yesnocancel; break}
 #sbind $pad <Control-x><Control-f> {filesetasnew}
 sbind $pad <Control-x><Control-c> {idleexitapp}
 sbind $pad <Control-g> {gotoline}

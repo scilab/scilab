@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.75
+# in sync at least with v6.76
 
 
 # commons
@@ -18,6 +18,9 @@
 
 
 # buffernavigation.tcl
+::msgcat::mcset fr "Hide" "Cacher"
+::msgcat::mcset fr "Close this tile, keep content" "Fermer cette vue, conserver le contenu"
+::msgcat::mcset fr "Close this tile" "Fermer cette vue"
 ::msgcat::mcset fr "Goto Line?" "Aller à la ligne ?"
 ::msgcat::mcset fr "Go to:" "Aller à : "
 ::msgcat::mcset fr "&logical line" "la ligne &logique"
@@ -300,7 +303,7 @@
                    "Voulez-vous vraiment revenir aux polices par défaut ?"
 
 
-#FormatStringsForWatch.sci
+# FormatStringsForWatch.sci
 ::msgcat::mcset fr " what you try to watch is not supported by the debugger" \
                    " ce que vous essayez d'espionner n'est pas supporté par le débuggueur"
 ::msgcat::mcset fr " what you try to watch is of type " \
@@ -309,7 +312,7 @@
                        " - ce type n'est pas supporté par le débuggueur"
 
 
-#FormatWhereForWatch.sci
+# FormatWhereForWatch.sci
 ::msgcat::mcset fr "Breakpoint" "Point d'arrêt"
 ::msgcat::mcset fr "called at line" "appelé à la ligne "
 ::msgcat::mcset fr "of exec file" "dans un fichier exec"
@@ -376,6 +379,7 @@
     ::msgcat::mcset fr "Open &function source" "Ouvrir le source &de la fonction"
     ::msgcat::mcset fr "Print Se&tup" "Mise en pa&ge"
     ::msgcat::mcset fr "&Print" "&Imprimer"
+    ::msgcat::mcset fr "&Close file" "&Fermer ce fichier"
     ::msgcat::mcset fr "E&xit" "&Quitter"
 
     # menues.tcl - Edit menu
