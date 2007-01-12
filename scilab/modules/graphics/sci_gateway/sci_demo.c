@@ -9,8 +9,8 @@
 
 #include "machine.h"
 #include "stack-c.h"
-#include "Graphics.h"
 #include "sci_demo.h"
+#include "sciprint.h"
 
 int sci_demo( char * fname, char * code, int * flagx )
 {

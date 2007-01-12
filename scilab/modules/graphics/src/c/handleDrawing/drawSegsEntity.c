@@ -19,6 +19,8 @@
 #include "Champ.h"
 #include "MALLOC.h"
 #include "clipping.h"
+#include "sciprint.h"
+#include "PloEch.h"
 
 /*---------------------------------------------------------------------------------*/
 int drawSegsEntity( sciPointObj * pObj )

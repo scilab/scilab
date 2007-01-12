@@ -11,4 +11,30 @@
 void newfec(integer *xm,integer *ym,double *triangles,double *func,integer *Nnode,
             integer *Ntr,double *zminmax,integer *colminmax, integer *colout, BOOL with_mesh) ;
 
+/**
+ *  Iso contour with grey level or colors 
+ *  for a function defined by finite elements 
+ *  ( f is linear on triangles )
+ *  we give two versions of the function : 
+ *     - a quick version wich only fill triangles according to the average 
+ *     value of f on a triangle (no more such version now ?)
+ *     - and a slow version but more sexy which use the fact that f is linear
+ *     on each triangle.
+ *  Nodes (x[no],y[no])
+ *  Triangles (Matrix: [ numero, no1,no2,no3,iflag;...]
+ *  func[no] : Function value on Nodes.
+ *  Nnode : number of nodes 
+ *  Ntr   : number of triangles 
+ *  strflag,legend,brect,aint : see plot2d
+ *  zminmax   : to set (optionnaly) the min and max level
+ *  colminmax : to set (optionnaly) the first and last color to use
+ *
+ *  modified by Bruno Pincon 01/02/2001 for gain in speed and added 
+ *  possibilities to set zmin, zmax by the user and also to set the 
+ *  first and last color of the colormap (Bruno.Pincon@iecn.u-nancy.fr)
+ */
+int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nnode, integer *Ntr, 
+             char *strflag, char *legend, double *brect, integer *aaint, double *zminmax, 
+             integer *colminmax, integer *colout, BOOL with_mesh, BOOL flagNax, integer lstr1, integer lstr2) ;
+
 #endif /* _FEC_H_ */

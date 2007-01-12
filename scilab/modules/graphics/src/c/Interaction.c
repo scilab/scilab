@@ -17,12 +17,11 @@
 #include <stdarg.h>
 #include <time.h>
 
-#include "Graphics.h" 
 #include "Interaction.h"
 #include "SetProperty.h"
 #include "GetProperty.h"
 #include "DrawObjects.h"
-
+#include "sciprint.h"
 #include "MALLOC.h" /* MALLOC */
 
 /**sciAddCallback

@@ -24,7 +24,6 @@
 #include <windows.h>
 #endif
 
-#include "Graphics.h" 
 #include "BuildObjects.h"
 #include "GetProperty.h"
 #include "InitObjects.h"
@@ -35,6 +34,7 @@
 #include "CloneObjects.h"
 #include "StringMatrix.h"
 #include "Xcall1.h"
+#include "sciprint.h"
 
 #include "MALLOC.h" /* MALLOC */
 

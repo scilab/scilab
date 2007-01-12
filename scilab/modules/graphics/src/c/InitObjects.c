@@ -17,7 +17,6 @@
 #include <stdarg.h>
 #include <time.h>
 
-#include "Graphics.h" 
 #include "InitObjects.h"
 #include "SetProperty.h"
 #include "GetProperty.h"
@@ -28,6 +27,7 @@
 #include "CloneObjects.h"
 #include "BuildObjects.h"
 #include "Xcall1.h"
+#include "sciprint.h"
 
 
 #include "MALLOC.h" /* MALLOC */

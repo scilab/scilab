@@ -42,7 +42,6 @@ extern  char  *getenv();
 #endif
 
 #include "math_graphics.h"
-#include "Graphics.h" 
 #include "periGif.h"
 #include "color.h"
 #include "sciprint.h"
@@ -52,6 +51,8 @@ extern  char  *getenv();
 #include "MALLOC.h" /* MALLOC */
 
 #include "prompt.h"
+#include "Xcall1.h"
+#include "periScreen.h"
 
 
 #if defined(_MSC_VER)
@@ -595,7 +596,6 @@ return ScilabGCGif.CurDrawFunction;
 void C2F(setthicknessGif)(integer *value, integer *v2, integer *v3, integer *v4)
 { 
   ScilabGCGif.CurLineWidth =Max(0, *value);
-/*  FPRINTF((file,"\n%d Thickness",(int)Max(0,*value*Thick_prec))); */
 }
 
 /** to get the thicknes value **/

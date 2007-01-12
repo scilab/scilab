@@ -7,7 +7,6 @@
 
 #include "sci_xpoly.h"
 #include "stack-c.h"
-#include "Graphics.h"
 #include "sciCall.h"
 #include "DrawObjects.h"
 #include "GetProperty.h"

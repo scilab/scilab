@@ -7,18 +7,19 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "Graphics.h" 
 #include "SetProperty.h"
 #include "GetProperty.h"
 #include "DrawObjects.h"
 #include "BuildObjects.h"
 #include "InitObjects.h"
 #include "BasicAlgos.h"
-
+#include "math_graphics.h"
 #include "PloEch.h"
 #include "Axes.h"
 #include "Xcall1.h"
 #include "sciprint.h"
+#include "Fec.h"
+#include "GrayPlot.h"
 
 #include "MALLOC.h" /* MALLOC */
 

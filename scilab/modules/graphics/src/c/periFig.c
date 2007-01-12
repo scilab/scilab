@@ -47,6 +47,7 @@
 #include "bcg.h" /* NG */
 #include "clipping.h"
 #include "sciprint.h"
+#include "periScreen.h"
 
 
 #include "MALLOC.h" /* MALLOC */
@@ -72,6 +73,9 @@ void C2F(getscilabVersionXfig)(integer *verbose, integer *vers, integer *narg, d
 void C2F(setscilabxgcXfig)(integer *v1, integer *v2, integer *v3, integer *v4); 
 void C2F(getscilabxgcXfig)(integer *verbose, integer *x,integer *narg, double *dummy);
 /* NG end */
+
+extern void getcolordef( integer * screenc ) ;
+extern void setcolordef( integer   screenc ) ;
 
 static void 
 C2F(analyze_pointsXfig) (integer n, integer *vx, integer *vy,
@@ -2797,12 +2801,8 @@ static void My2draw(integer j, integer *vx, integer *vy)
 }
 static void C2F(analyze_pointsXfig)(integer n, integer *vx, integer *vy, integer onemore)
 {
-  SClipRegion clipping ;
+  SClipRegion clipping = getClipRegion( &ScilabGCXfig ) ;
 
-  clipping.leftX = ScilabGCXfig.CurClipRegion[0];
-  clipping.rightX = ScilabGCXfig.CurClipRegion[0] +ScilabGCXfig.CurClipRegion[2];
-  clipping.bottomY = ScilabGCXfig.CurClipRegion[1] ;
-  clipping.topY = ScilabGCXfig.CurClipRegion[1] + ScilabGCXfig.CurClipRegion[3] ;
   C2F(clipPolyLine)( n, vx, vy, onemore, &clipping ) ;
 }
 

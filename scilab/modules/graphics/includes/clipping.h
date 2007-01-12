@@ -8,7 +8,6 @@
 #ifndef __SCI_CLIPPING__
 #define __SCI_CLIPPING__
 
-#include "Graphics.h"
 #include "ObjectStructure.h"
 #include "PloEch.h"
 
@@ -26,8 +25,13 @@ typedef struct
 SClipRegion ;
 
 /*----------------------------------------------------------------------------------------*/
+/**
+ * To retrieve the current clipping region
+ */
+SClipRegion getClipRegion( struct BCG * scilabXGC ) ;
+/*----------------------------------------------------------------------------------------*/
 /* 
- * @memo use for drawing precomputing clipping when drawing polygons
+ * use for drawing precomputing clipping when drawing polygons
  * Test a single point to be within the xleft,xright,ybot,ytop bbox.
  * Sets the returned integers 4 l.s.b. as follows:
  * bit 0 if to the left of xleft.

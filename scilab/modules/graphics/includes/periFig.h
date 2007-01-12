@@ -49,6 +49,8 @@ static BOOL ScilabGCXfig_is_initialized = FALSE;
  extern void  C2F(loadfamilyXfig)();
  extern void  C2F(queryfamilyXfig)() ;
 
+void C2F(getwindowdimXfig)(integer *verbose, integer *x, integer *narg, double *dummy) ;
+
 void C2F(set_dash_or_color_Xfig)(integer *value, integer *v2, integer *v3, integer *v4);
 
 void C2F(set_dash_and_color_Xfig)(integer *value, integer *v2, integer *v3, integer *v4);

@@ -22,7 +22,6 @@
 #include <commdlg.h>
 #include <direct.h>
 
-#include "Graphics.h"
 
 
 #include "../../../../string/includes/men_Sutils.h"

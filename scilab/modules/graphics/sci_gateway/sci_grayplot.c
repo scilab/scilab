@@ -11,7 +11,6 @@
 #include "BuildObjects.h"
 #include "gw_graphics.h"
 #include "DestroyObjects.h"
-#include "Graphics.h"
 #include "GetProperty.h"
 #include "DefaultCommandArg.h"
 #include "sciCall.h"

@@ -1811,6 +1811,10 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
+				RelativePath=".\includes\Actions.h"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\Axes.h"
 				>
 			</File>
@@ -1852,6 +1856,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\ColorMapManagement.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\Contour.h"
 				>
 			</File>
 			<File
@@ -1988,6 +1996,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\Gray.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\GrayPlot.h"
 				>
 			</File>
 			<File

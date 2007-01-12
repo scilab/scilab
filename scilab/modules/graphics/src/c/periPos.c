@@ -21,6 +21,7 @@
 #include "machine.h"
 #include "bcg.h"
 #include "sciprint.h"
+#include "periScreen.h"
 
 #if defined(_MSC_VER)
 #define CoordModePrevious 1
@@ -47,7 +48,6 @@ struct BCG  ScilabGCPos ;
 static BOOL ScilabGCPos_is_initialized = FALSE;
 
 #include "math_graphics.h"
-#include "Graphics.h" 
 #include "periPos.h"
 #include "color.h"
 #include "bcg.h" /* NG */

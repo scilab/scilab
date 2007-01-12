@@ -13,7 +13,6 @@
 #include "gw_graphics.h"
 #include "DestroyObjects.h"
 #include "GetProperty.h"
-#include "Graphics.h"
 #include "sciCall.h"
 
 /*-----------------------------------------------------------------------------------*/

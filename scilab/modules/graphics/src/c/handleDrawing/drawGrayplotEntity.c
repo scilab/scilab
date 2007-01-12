@@ -19,6 +19,7 @@
 #include "PloEch.h"
 #include "MALLOC.h"
 #include "periScreen.h"
+#include "math_graphics.h"
 
 /*-------------------------------------------------------------------------------------*/
 int drawGrayplotEntity( sciPointObj * pObj )

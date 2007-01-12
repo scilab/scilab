@@ -4,6 +4,8 @@
 #include "Warnings.h"
 #include "Errors.h"
 #include "WindowList.h"
+#include "Actions.h"
+#include "periScreen.h"
 
 #include "MALLOC.h" /* MALLOC */
 

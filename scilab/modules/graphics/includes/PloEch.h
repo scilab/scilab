@@ -190,6 +190,38 @@ void Plo2d2RealToPixel(integer *n1, integer *n2, double *x, double *y, integer *
 void Plo2d3RealToPixel(integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf) ;
 void Plo2d4RealToPixel(integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf) ;
 
+int C2F(echelle2d)( double    x[]  ,
+                    double    y[]  ,
+                    integer   x1[] ,
+                    integer   yy1[],
+                    integer * n1   ,
+                    integer * n2   ,
+                    char      dir[],
+                    integer   lstr ) ;
+
+void C2F(echelle2dl)( double    x[]  ,
+                      double    y[]  ,
+                      integer   x1[] ,
+                      integer   yy1[],
+                      integer * n1   ,
+                      integer * n2   ,
+                      char    * dir   ) ;
+
+void C2F(rect2d)( double x[], integer x1[], integer * n, char * dir ) ;
+void C2F(ellipse2d)( double x[], integer x1[], integer * n, char * dir) ;
+void C2F(axis2d)( double  * alpha     ,
+                  double  * initpoint ,
+                  double  * size      ,
+                  integer * initpoint1,
+                  double  * size1       ) ;
+
+int get_window_scale( integer i, double * subwin ) ;
+void del_window_scale( integer i ) ;
+
+void Cscale2default( void ) ;
+
+void set_window_scale_with_default( int i ) ;
+
 #endif  /* _SCI_ECH */
 
 

@@ -19,7 +19,7 @@
 #include "DrawObjects.h"
 #include "InitObjects.h"
 #include "XsetXgetParameters.h"
-#include "Graphics.h"
+#include "periScreen.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_xset( char *fname, unsigned long fname_len )

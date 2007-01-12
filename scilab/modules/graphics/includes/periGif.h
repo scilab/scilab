@@ -44,6 +44,17 @@
  extern void  C2F(drawarrowsGif)(char *str, integer *vx, integer *vy, integer *n, integer *as, integer *style, integer *iflag, double *dv1, double *dv2, double *dv3, double *dv4); 
  extern void  C2F(loadfamilyGif)(char *name, integer *j, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4);
  extern void  C2F(queryfamilyGif)(char *name, integer *j, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4);
+
+void InitScilabGCGif(integer *v1, integer *v2, integer *v3, integer *v4) ;
+
+void C2F(setthicknessGif)(integer *value, integer *v2, integer *v3, integer *v4) ;
+void C2F(setalufunctionGif)(char *string) ;
+void C2F(unsetclipGif)(integer *v1, integer *v2, integer *v3, integer *v4) ;
+void C2F(setpatternGif)(integer *num, integer *v2, integer *v3, integer *v4) ;
+void C2F(setdashGif)(integer *value, integer *v2, integer *v3, integer *v4) ;
+void C2F(sethidden3dGif)(integer *num, integer *v2, integer *v3, integer *v4) ;
+void C2F(usecolorGif)(integer *num, integer *v2, integer *v3, integer *v4) ;
+
 #endif /* __PERIGIF_H__ */
 
 

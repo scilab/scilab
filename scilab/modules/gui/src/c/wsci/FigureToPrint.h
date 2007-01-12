@@ -12,7 +12,6 @@
 #include "stack-c.h"
 #include "version.h"
 #include "scigraphic.h"
-#include "Graphics.h"
 
 #include "wgraph.h"
 #include "Messages.h"

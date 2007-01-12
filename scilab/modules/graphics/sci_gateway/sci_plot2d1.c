@@ -13,7 +13,6 @@
 #include "gw_graphics.h"
 #include "DestroyObjects.h"
 #include "DefaultCommandArg.h"
-#include "Graphics.h"
 #include "GetProperty.h"
 #include "sciCall.h"
 

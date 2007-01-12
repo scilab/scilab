@@ -45,6 +45,30 @@
 
 void deletePoints( void ) ;
 
+void set_clip_box( integer xxleft ,
+                  integer xxright,
+                  integer yybot  ,
+                  integer yytop  ) ;
+
+void clip_line( integer   x1  ,
+               integer   yy1 ,
+               integer   x2  ,
+               integer   y2  ,
+               integer * x1n ,
+               integer * yy1n,
+               integer * x2n ,
+               integer * y2n ,
+               integer * flag ) ;
+
+int CheckColormap( int * m ) ;
+
+void get_r( int i, float * r ) ;
+void get_g( int i, float * g ) ;
+void get_b( int i, float * b ) ;
+
+void C2F(getwindowdim)( integer * verbose, integer * x, integer * narg, double * dummy ) ;
+
+int C2F(sedeco)( int * flag ) ;
 
 /*---------------------END------------------------------*/
 #endif /* __PERIX11_H__ */

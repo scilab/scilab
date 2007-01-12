@@ -3,6 +3,8 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include "WndGraphProc.h"
+#include "Actions.h"
+
 /*-----------------------------------------------------------------------------------*/
 extern int GetEventKeyboardAndMouse(  UINT message, WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC);
 extern void SendGraphMacro (struct BCG *ScilabGC, UINT m);

@@ -125,6 +125,17 @@ void axis_draw2(char strflag[]) ;
 void Sci_Axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny,
               char *str[], int subtics, char *format, int fontsize, int textcolor, 
               int fontstyle, int ticscolor, char logflag, int seg_flag, int axisbuild_flag) ;
+/**
+ * Trace un triedre : Indices[4] donne les indices des points qui 
+ * constituent le triedre dans les tableaux xbox et ybox
+ */
+void DrawAxis(double xbox[8], double ybox[8], integer Indices[4], integer style) ;
+
+/**
+ * @author F.Leray 18.10.04
+ */
+int Axes3dStrings2( integer * ixbox, integer * iybox, integer * xind ) ;
+
 /*--------------------------------------------------------------------------------------*/
 
 #endif /*__SCI_AXES_H_*/

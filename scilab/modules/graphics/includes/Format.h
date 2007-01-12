@@ -22,6 +22,26 @@ StringMatrix * computeDefaultTicsLabels( sciPointObj * pobj ) ;
 
 int ChooseGoodFormat( char * c_format,char logflag, double *_grads,int n_grads ) ;
 
+/**
+ * same as ChoixFormatE when numbers are given through an 
+ * array xx[0:nx-1];
+ */
+void ChoixFormatE1(char *fmt, double *xx, integer nx) ;
+
+/**
+ * ChoixFormatE returns a format ("%.*f" or "%.*e")
+ * in fmt given xmin,xmax,pas. 
+ *   fmt : character string 
+ * fmt gives a format which can be used to display
+ * number in range xmin:step:xmax  
+ * Exemple : ChoixFormatE(format,min,max,step);
+ *           fprintf(format,min+k*step);
+ * The format is searched so as to give distinct values 
+ * for the numeric values xmin + k*xpas in [xmin,xmax] 
+ * and give enough precision. 
+ */
+void ChoixFormatE(char *fmt, double xmin, double xmax, double xpas) ;
+
 double * ReBuildTicksLog2Lin(char logflag, int nbtics, double *grads) ;
 
 int ComputeXIntervals( sciPointObj * pobj, char xy_type, double ** vector, int * N, int checkdim ) ;
@@ -44,5 +64,13 @@ char * copyFormatedValue( double value, const char format[5], int bufferSize ) ;
 *                   and ideally the maximum length.
 */
 char ** copyFormatedArray( const double values[], int nbStrings, const char format[5], int bufferSize ) ;
+
+int TheTicks( double * xminv ,
+              double * xmaxv , 
+              double * grads , 
+              int    * ngrads,
+              int      compNgrads ) ;
+
+int GradEqual( const double grads[], const int * ngrads) ;
 
 #endif /* _FORMAT_H_ */

@@ -17,7 +17,6 @@
 #include <stdarg.h>
 #include <time.h>
 
-#include "Graphics.h" 
 #include "HandleManagement.h"
 #include "InitObjects.h"
 #include "DrawObjects.h"
@@ -28,7 +27,7 @@
 #include "bcg.h"
 #include "WindowList.h"
 #include "../../../data_structures/includes/DoublyLinkedList.h" /* REORGANISATION TEMPORAIRE */
-
+#include "sciprint.h"
 
 
 #include "MALLOC.h" /* MALLOC */

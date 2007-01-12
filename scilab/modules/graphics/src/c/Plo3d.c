@@ -8,7 +8,6 @@
 #include <math.h>
 #include <stdio.h>
 #include "math_graphics.h"
-#include "Graphics.h" 
 #include "PloEch.h"
 #include "GetProperty.h"
 #include "SetProperty.h"
@@ -17,7 +16,9 @@
 #include "Plo3d.h"
 #include "axesScale.h"
 #include "BasicAlgos.h"
-
+#include "sciprint.h"
+#include "Format.h"
+#include "periScreen.h"
 
 #include "MALLOC.h" /* MALLOC */
 
@@ -37,7 +38,6 @@ static double xx1,yy1;
 #define PGEOY(x1,y1,z1) inint(yy1= Cscale.Wscy1*(-TRY(x1,y1,z1)+Cscale.frect[3])+Cscale.Wyofset1);
 
 static void dbox __PARAMS((void));
-
 
 /*-------------------------------------------------------------------
  * box3d 
@@ -122,11 +122,6 @@ int C2F(box3d)(double *xbox, double *ybox, double *zbox)
 /*-------------------------------------------------------------------
  * functions for 3D scales 
  *-------------------------------------------------------------------*/
-
-void SetEch3d(double *xbox, double *ybox, double *zbox, double *bbox, double *teta, double *alpha)
-{
-  SetEch3d1(xbox,ybox,zbox,bbox,teta,alpha,1L);
-}
 
 /* 
  * if flag==1,2,3  m and bbox and Cscale are  recomputed  
@@ -255,34 +250,23 @@ void SetEch3d1(double *xbox, double *ybox, double *zbox, double *bbox, double *t
   /* end of code added by es */
 }
 
-/*----------------------------------------------------------------
- *Trace un triedre : Indices[4] donne les indices des points qui 
- * constituent le triedre dans les tableaux xbox et ybox 
- *-----------------------------------------------------------------*/ 
+/* renvoit les indices des points voisins de ind1 sur la face haute 
+de la boite  */
 
-void DrawAxis(double *xbox, double *ybox, integer *Indices, integer style)
+void UpNext(integer ind1, integer *ind2, integer *ind3)
 {
-  integer ixbox[6],iybox[6],npoly=6,lstyle[6],verbose=0,narg_,hiddencolor;
-  integer i, iflag=0, j=1;
-  sciPointObj *psubwin;
-  for ( i = 0 ; i <= 4 ; i=i+2)
-    {
-      ixbox[i]=XScale(xbox[Indices[0]]);iybox[i]=YScale(ybox[Indices[0]]);
-    }
-  ixbox[1]=XScale(xbox[Indices[1]]);iybox[1]=YScale(ybox[Indices[1]]);
-  ixbox[3]=XScale(xbox[Indices[2]]);iybox[3]=YScale(ybox[Indices[2]]);
-  ixbox[5]=XScale(xbox[Indices[3]]);iybox[5]=YScale(ybox[Indices[3]]);
-  C2F(dr)("xget","line style",&verbose,lstyle,&narg_,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
-  /**DJ.Abdemouche 2003**/
+  *ind2 = ind1+1;
+  *ind3 = ind1-1;
+  if (*ind2 == 8) *ind2 = 4;
+  if (*ind3 == 3) *ind3 = 7;
+}
 
-  psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
-  hiddencolor = pSUBWIN_FEATURE (psubwin)->hiddencolor;
-  j = sciGetLineStyle (psubwin) ;
-
-  C2F(dr)("xset","line style",&j,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr)("xsegs","v",ixbox,iybox,&npoly,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr)("xset","line style",lstyle,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-
+void DownNext(integer ind1, integer *ind2, integer *ind3)
+{
+  *ind2 = ind1+1;
+  *ind3 = ind1-1;
+  if (*ind2 == 4) *ind2 = 0;
+  if (*ind3 == -1) *ind3 = 3;
 }
 
 /*---------------------------------------------------------------------
@@ -384,6 +368,85 @@ void Convex_Box(double *xbox, double *ybox, integer *InsideU, integer *InsideD, 
   C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 
 }
+
+void C2F(TDdrawaxis)(double size, double FPval, double LPval, integer *nax, integer *FPoint, integer *LPoint, integer *Ticsdir)
+{ 
+  integer i;
+  double dx,dy,ticsx,ticsy;
+  dx= ((double) LPoint[0]-FPoint[0])/((double)nax[1]*nax[0]);
+  dy= ((double) LPoint[1]-FPoint[1])/((double)nax[1]*nax[0]);
+  if ( Ticsdir[0] == 0 && Ticsdir[1] == 0) 
+  {
+    ticsx= ticsy = 0;
+  }
+  else 
+  {
+    ticsx= ( Ticsdir[0])/
+      sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1]);
+    ticsy= ( Ticsdir[1])/
+      sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1]);
+  }
+  for (i=0; i <= nax[1]*nax[0];i++)
+  {       
+    integer siz=2,x[2],y[2],iflag=0,style=0;
+    x[0] =linint(FPoint[0]+ ((double)i)*dx );
+    y[0] =linint(FPoint[1]+ ((double)i)*dy );
+    x[1] =linint(x[0]+ ticsx*size);
+    y[1] =linint(y[0]+ ticsy*size);
+    C2F(dr)("xsegs","v",x,y,&siz,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  }
+}
+
+
+void TDAxis(integer flag, double FPval, double LPval, integer *nax, integer *FPoint, integer *LPoint, integer *Ticsdir)
+{
+  char fornum[100];
+  integer i,barlength;
+  double xp, dx,dy,ticsx,ticsy,size;
+  integer verbose=0,narg_,xz[2];
+  C2F(dr)("xget","wdim",&verbose,xz,&narg_, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  size = xz[0]>=xz[1] ? xz[1]/50.0 : xz[0]/50.0; 
+  C2F(TDdrawaxis)(size,FPval,LPval,nax,FPoint,LPoint,Ticsdir) ;
+  ChoixFormatE(fornum,Min(FPval,LPval),Max(LPval,FPval),
+    Abs((LPval-FPval))/nax[1]);
+  xp= FPval;
+  barlength=inint(1.2*size);
+  dx= ((double) LPoint[0]-FPoint[0])/((double)nax[1]);
+  dy= ((double) LPoint[1]-FPoint[1])/((double)nax[1]);
+  if ( Ticsdir[0] == 0 && Ticsdir[1] == 0) 
+  {
+    ticsx= ticsy = 0;
+  }
+  else 
+  {
+    ticsx= barlength*( Ticsdir[0])/
+      sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1]);
+    ticsy= barlength*( Ticsdir[1])/
+      sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1]);
+  }
+  for (i=0; i <= nax[1];i++)
+  { double angle=0.0;
+  integer flag1=0;
+  integer xx=0,yy=0, posi[2],rect[4];
+  char foo[100];/*** JPC : must be cleared properly **/
+  double lp;
+  lp = xp + i*(LPval-FPval)/((double)nax[1]);
+  sprintf(foo,fornum,lp);   
+  C2F(dr)("xstringl",foo,&xx,&yy,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  posi[0]=inint(FPoint[0]+ i*dx + 2*ticsx );
+  posi[1]=inint(FPoint[1]+ i*dy + 2*ticsy +rect[3]/2 );
+  switch ( flag)
+  {
+  case 1: posi[0] -= rect[2];
+    /** pour separer ;e 1er arg de l'axe des z de l'axe voisin **/
+    if ( i== nax[1]) posi[1] -= rect[3]/2;
+    break;
+  case 2: posi[0] -= rect[2];break;
+  }
+  C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag1,PI0,PI0,&angle,PD0,PD0,PD0,0L,0L);
+  } 
+}
+
 
 /** rajoute des symboles x,y,z : sur les axes     **/
 /** et une graduation sur les axes **/
@@ -544,107 +607,9 @@ void AxesStrings(integer axflag, integer *ixbox, integer *iybox, integer *xind, 
 }
 
 
-/* renvoit les indices des points voisins de ind1 sur la face haute 
-   de la boite  */
-
-void UpNext(integer ind1, integer *ind2, integer *ind3)
-{
-  *ind2 = ind1+1;
-  *ind3 = ind1-1;
-  if (*ind2 == 8) *ind2 = 4;
-  if (*ind3 == 3) *ind3 = 7;
-}
-
-void DownNext(integer ind1, integer *ind2, integer *ind3)
-{
-  *ind2 = ind1+1;
-  *ind3 = ind1-1;
-  if (*ind2 == 4) *ind2 = 0;
-  if (*ind3 == -1) *ind3 = 3;
-}
-
-void TDAxis(integer flag, double FPval, double LPval, integer *nax, integer *FPoint, integer *LPoint, integer *Ticsdir)
-{
-  char fornum[100];
-  integer i,barlength;
-  double xp, dx,dy,ticsx,ticsy,size;
-  integer verbose=0,narg_,xz[2];
-  C2F(dr)("xget","wdim",&verbose,xz,&narg_, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  size = xz[0]>=xz[1] ? xz[1]/50.0 : xz[0]/50.0; 
-  C2F(TDdrawaxis)(size,FPval,LPval,nax,FPoint,LPoint,Ticsdir) ;
-  ChoixFormatE(fornum,Min(FPval,LPval),Max(LPval,FPval),
-	       Abs((LPval-FPval))/nax[1]);
-  xp= FPval;
-  barlength=inint(1.2*size);
-  dx= ((double) LPoint[0]-FPoint[0])/((double)nax[1]);
-  dy= ((double) LPoint[1]-FPoint[1])/((double)nax[1]);
-  if ( Ticsdir[0] == 0 && Ticsdir[1] == 0) 
-    {
-      ticsx= ticsy = 0;
-    }
-  else 
-    {
-      ticsx= barlength*( Ticsdir[0])/
-	sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1]);
-      ticsy= barlength*( Ticsdir[1])/
-	sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1]);
-    }
-  for (i=0; i <= nax[1];i++)
-    { double angle=0.0;
-    integer flag1=0;
-    integer xx=0,yy=0, posi[2],rect[4];
-    char foo[100];/*** JPC : must be cleared properly **/
-    double lp;
-    lp = xp + i*(LPval-FPval)/((double)nax[1]);
-    sprintf(foo,fornum,lp);   
-    C2F(dr)("xstringl",foo,&xx,&yy,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-    posi[0]=inint(FPoint[0]+ i*dx + 2*ticsx );
-    posi[1]=inint(FPoint[1]+ i*dy + 2*ticsy +rect[3]/2 );
-    switch ( flag)
-      {
-      case 1: posi[0] -= rect[2];
-	/** pour separer ;e 1er arg de l'axe des z de l'axe voisin **/
-	if ( i== nax[1]) posi[1] -= rect[3]/2;
-	break;
-      case 2: posi[0] -= rect[2];break;
-      }
-    C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag1,PI0,PI0,&angle,PD0,PD0,PD0,0L,0L);
-    } 
-}
-
-
-void C2F(TDdrawaxis)(double size, double FPval, double LPval, integer *nax, integer *FPoint, integer *LPoint, integer *Ticsdir)
-{ 
-  integer i;
-  double dx,dy,ticsx,ticsy;
-  dx= ((double) LPoint[0]-FPoint[0])/((double)nax[1]*nax[0]);
-  dy= ((double) LPoint[1]-FPoint[1])/((double)nax[1]*nax[0]);
-  if ( Ticsdir[0] == 0 && Ticsdir[1] == 0) 
-    {
-      ticsx= ticsy = 0;
-    }
-  else 
-    {
-      ticsx= ( Ticsdir[0])/
-	sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1]);
-      ticsy= ( Ticsdir[1])/
-	sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1]);
-    }
-  for (i=0; i <= nax[1]*nax[0];i++)
-    {       
-      integer siz=2,x[2],y[2],iflag=0,style=0;
-      x[0] =linint(FPoint[0]+ ((double)i)*dx );
-      y[0] =linint(FPoint[1]+ ((double)i)*dy );
-      x[1] =linint(x[0]+ ticsx*size);
-      y[1] =linint(y[0]+ ticsy*size);
-      C2F(dr)("xsegs","v",x,y,&siz,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
-    }
-}
-
-
 /** Returns the [x,y,z] values of a pointeger given its xbox or ybox indices **/
 
-void BBoxToval(double *x, double *y, double *z, integer ind, double *bbox)
+void BBoxToval(double *x, double *y, double *z, integer ind, double bbox[6] )
 {
   switch ( ind)
     {

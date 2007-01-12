@@ -44,7 +44,6 @@
 #include "periMac.h"
 #else 
 #include "math_graphics.h"
-#include "Graphics.h" 
 #ifdef _MSC_VER
 #include "periWin.h"
 #else

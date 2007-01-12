@@ -15,7 +15,6 @@
 #include "wgnuplib.h"
 #include "resource.h"
 #include "scigraphic.h"
-#include "Graphics.h"
 
 #include "wgraph.h"
 #include "Messages.h"

@@ -17,6 +17,7 @@
 #include "Plo3d.h"
 #include "periScreen.h"
 #include "BasicAlgos.h"
+#include "PloEch.h"
 
 /*------------------------------------------------------------------------------------*/
 int drawPolylineEntity( sciPointObj * pObj )

@@ -17,12 +17,12 @@
 #include <stdarg.h>
 #include <time.h>
 
-#include "Graphics.h" 
 #include "CloneObjects.h"
 #include "GetProperty.h"
 #include "BuildObjects.h"
 #include "bcg.h"
 #include "SetProperty.h"
+#include "sciprint.h"
 
 
 #include "MALLOC.h" /* MALLOC */

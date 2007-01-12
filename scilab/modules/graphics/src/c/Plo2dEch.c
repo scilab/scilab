@@ -10,7 +10,6 @@
 #include <stdio.h>
 #include <math.h>
 #include "math_graphics.h" 
-#include "Graphics.h"
 #include "PloEch.h"
 
 #include "GetProperty.h"
@@ -23,6 +22,9 @@
 #include "Vertices.h"
 #include "GraphicZoom.h"
 #include "axesScale.h"
+#include "sciprint.h"
+#include "periScreen.h"
+#include "Format.h"
 
 #include "MALLOC.h" /* MALLOC */
 
@@ -106,12 +108,12 @@ WCScaleList  Defscale =
  * and curwin() scale with default scale.
  *----------------------------------------------------------*/
 
-extern void Cscale2default()
+void Cscale2default( void )
 {
   scale_copy(&Cscale,&Defscale);  set_window_scale(curwin(),&Cscale);
 }
 
-void set_window_scale_with_default(i) int i; { set_window_scale(i,&Defscale);} 
+void set_window_scale_with_default( int i ) { set_window_scale(i,&Defscale);} 
 
 /*------------------------------------------------------------
  * void get_window_scale(i,subwin)
@@ -124,9 +126,7 @@ void set_window_scale_with_default(i) int i; { set_window_scale(i,&Defscale);}
 
 static int get_scale_win __PARAMS((ScaleList *listptr, integer wi, double *subwin));
 
-int get_window_scale(i,subwin)
-     integer i;
-     double *subwin;
+int get_window_scale( integer i, double * subwin )
 { 
   return get_scale_win(The_List,Max(0L,i),subwin);
 }
@@ -284,8 +284,7 @@ static int same_subwin( lsubwin_rect,subwin_rect)
 
 static void DeleteWCScale __PARAMS((WCScaleList *l));
 
-void del_window_scale(i)
-     integer i;
+void del_window_scale( integer i )
 { 
   ScaleList *loc, *loc1;
   /* check head of The_List */
@@ -795,6 +794,65 @@ void get_cwindow_dims(int wdims[2])
   C2F(dr)("xget","wdim",&verbose,wdims,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 }
 
+/* for x only */
+
+int C2F(xechelle2d)(x,x1,n1,dir,lstr)
+double x[];
+integer x1[],*n1;
+char dir[];
+integer lstr;
+{
+  integer i;
+  if (strcmp("f2i",dir)==0) 
+  {
+
+    if (Cscale.logflag[0] == 'n') 
+      for ( i=0 ; i < (*n1) ; i++) x1[i]= XScale(x[i]);
+    else 
+      for ( i=0 ; i < (*n1) ; i++) x1[i]= XLogScale(x[i]);
+  }
+  else if (strcmp("i2f",dir)==0) 
+  {
+    if (Cscale.logflag[0] == 'n') 
+      for ( i=0 ; i < (*n1) ; i++) x[i]= XPi2R( x1[i] );
+    else 
+      for ( i=0 ; i < (*n1) ; i++) x[i]= exp10(XPi2R( x1[i]));
+  }
+  else 
+    sciprint(" Wrong dir %s argument in echelle2d\r\n",dir);
+
+  return(0);
+}
+
+/* for y only */
+
+int C2F(yechelle2d)(y,yy1,n2,dir,lstr)
+double y[];
+integer yy1[],*n2;
+char dir[];
+integer lstr;
+{
+  integer i;
+  if (strcmp("f2i",dir)==0) 
+  {
+    if (Cscale.logflag[1] == 'n') 
+      for ( i=0 ; i < (*n2) ; i++) yy1[i]= YScale(y[i]);
+    else 
+      for ( i=0 ; i < (*n2) ; i++) yy1[i]= YLogScale(y[i]);
+  }
+  else if (strcmp("i2f",dir)==0) 
+  {
+    if (Cscale.logflag[1] == 'n') 
+      for ( i=0 ; i < (*n2) ; i++)  y[i]= YPi2R( yy1[i] );
+    else 
+      for ( i=0 ; i < (*n2) ; i++)  y[i]= exp10(YPi2R( yy1[i]));
+  }
+  else 
+    sciprint(" Wrong dir %s argument in echelle2d\r\n",dir); 
+
+  return(0);
+}
+
 /*--------------------------------------------------------------------
  * Convert pixel<->double using current scale 
  * 
@@ -805,10 +863,15 @@ void get_cwindow_dims(int wdims[2])
  *    lstr    : unused (Fortran/C) 
  * --------------------------------------------------------------------------*/
 
-int C2F(echelle2d)(x,y,x1,yy1,n1,n2,dir,lstr)
-     double x[],y[];
-     integer x1[],yy1[],*n1,*n2,lstr;
-     char dir[];
+int C2F(echelle2d)( double    x[]  ,
+                    double    y[]  ,
+                    integer   x1[] ,
+                    integer   yy1[],
+                    integer * n1   ,
+                    integer * n2   ,
+                    char      dir[],
+                    integer   lstr )
+
 {
   int n=(*n1)*(*n2);
   C2F(xechelle2d)(x,x1,&n,dir,lstr);
@@ -816,64 +879,7 @@ int C2F(echelle2d)(x,y,x1,yy1,n1,n2,dir,lstr)
   return(0);
 }
 
-/* for x only */
 
-int C2F(xechelle2d)(x,x1,n1,dir,lstr)
-     double x[];
-     integer x1[],*n1;
-     char dir[];
-     integer lstr;
-{
-  integer i;
-  if (strcmp("f2i",dir)==0) 
-    {
-      
-      if (Cscale.logflag[0] == 'n') 
-	for ( i=0 ; i < (*n1) ; i++) x1[i]= XScale(x[i]);
-      else 
-	for ( i=0 ; i < (*n1) ; i++) x1[i]= XLogScale(x[i]);
-    }
-  else if (strcmp("i2f",dir)==0) 
-    {
-      if (Cscale.logflag[0] == 'n') 
-	for ( i=0 ; i < (*n1) ; i++) x[i]= XPi2R( x1[i] );
-      else 
-	for ( i=0 ; i < (*n1) ; i++) x[i]= exp10(XPi2R( x1[i]));
-    }
-  else 
-    sciprint(" Wrong dir %s argument in echelle2d\r\n",dir);
-  
-  return(0);
-}
-
-/* for y only */
-
-int C2F(yechelle2d)(y,yy1,n2,dir,lstr)
-     double y[];
-     integer yy1[],*n2;
-     char dir[];
-     integer lstr;
-{
-  integer i;
-  if (strcmp("f2i",dir)==0) 
-    {
-      if (Cscale.logflag[1] == 'n') 
-	for ( i=0 ; i < (*n2) ; i++) yy1[i]= YScale(y[i]);
-      else 
-	for ( i=0 ; i < (*n2) ; i++) yy1[i]= YLogScale(y[i]);
-    }
-  else if (strcmp("i2f",dir)==0) 
-    {
-      if (Cscale.logflag[1] == 'n') 
-	for ( i=0 ; i < (*n2) ; i++)  y[i]= YPi2R( yy1[i] );
-      else 
-	for ( i=0 ; i < (*n2) ; i++)  y[i]= exp10(YPi2R( yy1[i]));
-    }
-  else 
-    sciprint(" Wrong dir %s argument in echelle2d\r\n",dir); 
-  
-  return(0);
-}
 
 /*--------------------------------------------------------------------
  * void C2F(echelle2dl)(x, y, x1, yy1, n1, n2,  dir)
@@ -881,10 +887,13 @@ int C2F(yechelle2d)(y,yy1,n2,dir,lstr)
  * Note that it cannot work in logarithmic scale 
  *--------------------------------------------------------------------*/
 
-void C2F(echelle2dl)(x, y, x1, yy1, n1, n2,  dir)
-     double  x[],y[];
-     integer x1[],yy1[],*n1,*n2;
-     char *dir;
+void C2F(echelle2dl)( double    x[]  ,
+                      double    y[]  ,
+                      integer   x1[] ,
+                      integer   yy1[],
+                      integer * n1   ,
+                      integer * n2   ,
+                      char    * dir   )
 {
   integer i;
   if (strcmp("f2i",dir)==0) 
@@ -909,10 +918,7 @@ void C2F(echelle2dl)(x, y, x1, yy1, n1, n2,  dir)
 
 /** meme chose mais pour transformer des ellipses **/
 
-void C2F(ellipse2d)(x, x1, n, dir)
-     double x[];
-     integer x1[],*n;
-     char *dir;
+void C2F(ellipse2d)( double x[], integer x1[], integer * n, char * dir)
 {
   integer i;
   if (strcmp("f2i",dir)==0) 
@@ -946,10 +952,7 @@ void C2F(ellipse2d)(x, x1, n, dir)
 
 /** meme chose mais pour transformer des rectangles **/
 
-void C2F(rect2d)(x, x1, n, dir)
-     double x[];
-     integer x1[],*n;
-     char *dir;
+void C2F(rect2d)( double x[], integer x1[], integer * n, char * dir)
 {
   integer i;
   if (strcmp("f2i",dir)==0) 
@@ -1014,12 +1017,11 @@ void C2F(rect2d)(x, x1, n, dir)
  
 /** meme chose mais pour axis **/
 
-void C2F(axis2d)(alpha, initpoint, size, initpoint1, size1)
-     double *alpha;
-     double *initpoint;
-     double *size;
-     integer *initpoint1;
-     double *size1;
+void C2F(axis2d)( double  * alpha     ,
+                  double  * initpoint ,
+                  double  * size      ,
+                  integer * initpoint1,
+                  double  * size1       )
 {
   double sina ,cosa;
   double xx,yy,scl;

@@ -7,7 +7,6 @@
 #include <math.h>
 #include <stdio.h>
 #include "math_graphics.h"
-#include "Graphics.h" 
 #include "PloEch.h"
 
 #include "SetProperty.h"

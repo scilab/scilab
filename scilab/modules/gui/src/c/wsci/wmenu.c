@@ -29,8 +29,7 @@
 #include "Messages.h"
 #include "Warnings.h"
 #include "Errors.h"
-
-#include "Graphics.h" 
+#include "periScreen.h"
 
 #include "win_mem_alloc.h" /* MALLOC */
 #include "setgetSCIpath.h"
@@ -76,8 +75,6 @@ static integer lab_count = 0;
 static char gwin_name[100], gwin_name1[100];
 static void Countp ();
 static void Countm ();
-static void SendCountSet ();
-static void SendCountRaise ();
 static void SendCountDelete ();
 
 /*-----------------------------------------------------------------------------------*/
@@ -964,17 +961,6 @@ static void Countm ()
 {
   MenuFixCurrentWin ((lab_count == 0) ? 0 : lab_count - 1);
 }
-/*-----------------------------------------------------------------------------------*/
-static void SendCountSet ()
-{
-  scig_sel(lab_count);
-}
-/*-----------------------------------------------------------------------------------*/
-static void SendCountRaise()
-{
-  scig_raise(lab_count);
-}
-
 /*-----------------------------------------------------------------------------------*/
 static void SendCountDelete ()
 {

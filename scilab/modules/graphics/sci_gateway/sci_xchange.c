@@ -6,7 +6,6 @@
 /*------------------------------------------------------------------------*/
 
 #include "sci_xchange.h"
-#include "Graphics.h"
 #include "stack-c.h"
 #include "BuildObjects.h"
 #include "gw_graphics.h"

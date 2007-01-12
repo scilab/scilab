@@ -8,13 +8,14 @@
 #include <string.h>
 
 #include "math_graphics.h"
-#include "Graphics.h" 
 #include "GetProperty.h"
 #include "SetProperty.h"
 #include "DrawObjects.h"
 #include "Xcall1.h"
 #include "WindowList.h"
 #include "MALLOC.h"
+#include "Xcall1.h"
+#include "sciprint.h"
 
 extern int xinitxend_flag;
 
@@ -38,6 +39,10 @@ extern int WithBackingStore();
 #endif
 static int scig_buzy = 0;
 
+int I3dRotation(void) ;
+
+typedef int (*Scig_handler) __PARAMS((int));
+
 void reset_scig_handler(void);
 int scig_handler_none(int win_num);
 
@@ -52,17 +57,6 @@ int scig_handler_none(int win_num) {
 
 Scig_handler scig_handler = scig_handler_none;
 
-Scig_handler set_scig_handler(Scig_handler f)
-{
-  Scig_handler old = scig_handler;
-  scig_handler = f;
-  return old;
-}
-
-void reset_scig_handler(void)
-{
-  scig_handler = scig_handler_none;
-}
 
 /********************************************************
  * Basic Replay : redraw recorded graphics 
@@ -110,112 +104,7 @@ void scig_replay(integer win_num)
 }
 
 
-/********************************************************
- * Basic Replay : expose graphics i.e 
- * if we have a pixmap we can perform a wshow 
- * else we perform a sgig_replay 
- ********************************************************/
-
-void scig_expose(integer win_num)
-{
-  integer verb=0,cur,pix,na,backing;
-  char name[4];
-  if ( scig_buzy  == 1 ) return ;
-  scig_buzy =1;
-  GetDriver1(name,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-  C2F(dr)("xget","window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
-  C2F(dr)("xset","window",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr)("xget","pixmap",&verb,&pix,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
-
-#if defined(_MSC_VER)
-  backing = 0;
-#else
-  backing = WithBackingStore();
-#endif
-  if (backing) 
-    {
-      /* only used whith X11 were pixmap mode can be used for backing store 
-       * we are here in a case where the pixmap is used for backing store 
-       */
-      C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);    
-    }
-  else 
-    {
-      if (pix == 0) 
-	{
-	  if ( (GetDriver()) != 'R') 
-	    C2F(SetDriver)("Rec",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-	  C2F(dr)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
-	  sciRedrawFigure();
-	  C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	}
-      else
-	{
-	  C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);    
-	}
-    }
-  C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr)("xsetdr",name, PI0, PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  scig_buzy = 0;
-}
-
-/********************************************************
- * Redraw graphic window win_num  after resizing 
- ********************************************************/
-
-void scig_resize(integer win_num)
-{
-  integer verb=0,cur,na,pix,backing;
-  char name[4];
-  if ( scig_buzy  == 1 ) return ;
-  scig_buzy =1;
-  GetDriver1(name,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-  if ( (GetDriver()) !='R') 
-    C2F(SetDriver)("Rec",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-  C2F(dr)("xget","window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
-  C2F(dr)("xset","window",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr)("xget","pixmap",&verb,&pix,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
-  CPixmapResize1();
-  C2F(dr)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);    
-#if defined(_MSC_VER)
-  backing = 0;
-#else
-  backing = WithBackingStore();
-#endif
-  sciRedrawFigure();
-  if (backing && pix!=1 ) C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-
-  C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr)("xsetdr",name, PI0, PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  scig_buzy = 0;
-}
-
-/********************************************************
- * Just resize a pixmap (win95 only)
- ********************************************************/
-
-void scig_resize_pixmap(integer win_num)
-{
-  integer verb=0,cur,na;
-  char name[4];
-  if ( scig_buzy  == 1 ) return ;
-  scig_buzy =1;
-  GetDriver1(name,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-  C2F(SetDriver)("Int",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-  C2F(dr)("xget","window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
-  C2F(dr)("xset","window",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  CPixmapResize1();
-  C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr)("xsetdr",name, PI0, PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  scig_buzy = 0;
-}
-
-
-/********************************************************
- * clear window 
- ********************************************************/
-
-void  scig_erase(integer win_num)
+void scig_erase(integer win_num)
 {
   integer verb=0,cur,na;
   char name[4];
@@ -235,10 +124,6 @@ void  scig_erase(integer win_num)
 }
 
 
-
-/*******************************************************
- * 2D Zoom 
- ******************************************************/
 
 int scig_2dzoom(integer win_num)
 {
@@ -261,12 +146,7 @@ int scig_2dzoom(integer win_num)
   return ret;
 }
 
-
-/*******************************************************
- * Unzoom function 
- ******************************************************/
-
-void   scig_unzoom(integer win_num)
+void scig_unzoom(integer win_num)
 {
   integer verb=0,cur,na;
   char name[4];
@@ -281,10 +161,6 @@ void   scig_unzoom(integer win_num)
   C2F(dr)("xsetdr",name, PI0, PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   scig_buzy = 0;
 }
-
-/*******************************************************
- * 3d rotation function 
- ******************************************************/
 
 int scig_3drot(integer win_num)
 {
@@ -304,10 +180,6 @@ int scig_3drot(integer win_num)
   return ret;
 }
 
-/********************************************************
- * graphic Window selection 
- ********************************************************/
-
 void scig_sel(integer win_num)
 {
   char c ;
@@ -318,43 +190,6 @@ void scig_sel(integer win_num)
       sciSwitchWindow(&win_num) ;
     }
 }
-
-/********************************************************
- * graphic Window raise 
- ********************************************************/
-
-void scig_raise(integer win_num)
-{
- 
-  int cur,n,na,verb=0,iflag=0;
-
-  sciGetIdFigure (PI0,&n,&iflag);
-  if ( n > 0 )
-  {
-    C2F(dr)("xget","window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-     if (win_num != cur) 
-     {
-       C2F(dr)("xset","window",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-       sciSwitchWindow(&win_num);
-       C2F(dr)("xselect","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-       C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-     }
-     else
-     {
-       C2F(dr)("xselect","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-     }
-  }
-  else
-  { 
-    C2F(dr)("xset","window",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-    sciSwitchWindow(&win_num);
-  }
-}
-
-
-/********************************************************
- * Reload a saved graphic
- ********************************************************/
 
 void scig_loadsg(int win_num, char *filename)
 {

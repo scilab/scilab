@@ -20,7 +20,6 @@
 #include <stdarg.h>
 #include <time.h>
 
-#include "Graphics.h" 
 #include "DestroyObjects.h"
 #include "GetProperty.h"
 #include "DrawObjects.h"
@@ -30,6 +29,8 @@
 #include "Xcall1.h"
 #include "WindowList.h"
 #include "PloEch.h"
+#include "sciprint.h"
+
 #ifdef WITH_TK
 #include "../../../tclsci/includes/GedManagement.h"
 #endif

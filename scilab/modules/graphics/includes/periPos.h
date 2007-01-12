@@ -62,6 +62,8 @@ void C2F(getcolormapPos)(integer *v1, integer *v2, integer *v3, double *val);
 
 void C2F(setwwhowPos)(integer *verbose, integer *v2, integer *v3, integer *v4);
 
+void InitScilabGCPos(integer *v1, integer *v2, integer *v3, integer *v4) ;
+
 void setposfig( integer * i, integer * j ) ;
 
 #endif /*__PERIPOS_H__*/

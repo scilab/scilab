@@ -8,7 +8,6 @@
 #include <stdio.h>
 #include <string.h>
 #include "math_graphics.h"
-#include "Graphics.h" 
 #include "PloEch.h"
 
 #include "GetProperty.h"
@@ -18,6 +17,8 @@
 #include "Axes.h"
 #include "Xcall1.h"
 #include "Champ.h"
+#include "sciprint.h"
+#include "periScreen.h"
 
 
 #include "MALLOC.h" /* MALLOC */

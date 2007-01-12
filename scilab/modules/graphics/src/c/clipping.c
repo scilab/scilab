@@ -12,6 +12,20 @@
 #include "SetProperty.h"
 
 /*-------------------------------------------------------------------------------------*/
+SClipRegion getClipRegion( struct BCG * scilabXGC )
+{
+  SClipRegion clipping ;
+
+  clipping.leftX   = scilabXGC->CurClipRegion[0];
+  clipping.rightX  = scilabXGC->CurClipRegion[0] + scilabXGC->CurClipRegion[2];
+  clipping.bottomY = scilabXGC->CurClipRegion[1] ;
+  clipping.topY    = scilabXGC->CurClipRegion[1] + scilabXGC->CurClipRegion[3] ;
+
+  return clipping ;
+}
+/*-------------------------------------------------------------------------------------*/
+
+/*-------------------------------------------------------------------------------------*/
 /* Functions taken from periX11.c used here to work on every plateform                 */
 /*-------------------------------------------------------------------------------------*/
 

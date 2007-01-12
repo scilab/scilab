@@ -8,20 +8,15 @@
 #include <stdio.h>
 #include <math.h>
 #include "math_graphics.h"
-#include "Graphics.h" 
 #include "PloEch.h"
 #include "Xcall1.h"
 #include "sciprint.h"
 #include "MALLOC.h"
+#include "Format.h"
+#include "Contour.h"
 
 #include "GetProperty.h"
 
-/* #include "Entities.h" /\* F.Leray 21.04.04 : for update_2dbounds call*\/ */
-/*extern void compute_data_bounds(int cflag,char dataflag,double *x,double *y,int n1,int n2,double *drect);*/
-extern void compute_data_bounds2(int cflag,char dataflag,char *logflags,double *x,double *y,int n1,int n2,double *drect);
-extern BOOL update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);
-extern int re_index_brect(double * brect, double * drect);
-extern BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag);
 
 #ifdef _MSC_VER
 extern void Scistring (char *str);
@@ -32,11 +27,7 @@ typedef void (level_f) __PARAMS((integer ival, double Cont, double xncont,
 typedef void (*ptr_level_f) __PARAMS((integer ival, double Cont, double xncont,
 			       double yncont));
 
-static int 
-Contour2D __PARAMS((ptr_level_f,char *,double *x,double *y,double *z,integer *n1,
-		   integer *n2,integer *flagnz,integer *nz,double *zz,
-		   integer *style,char *strflag,char *legend,double *brect,
-		   integer *aaint,integer lstr1,integer lstr2));
+
 static void 
 contourI __PARAMS((ptr_level_f,double *, double *, double *,
 		  double *, integer *, integer *, integer *));
@@ -147,133 +138,234 @@ static double x_cont(integer i) { return GX[i] ;}
 
 static double y_cont(integer i) { return GY[i] ;}
 
-/*------------------------------------------------------------
- * Draw level curves for a function f(x,y) which values 
- * at points x(i),y(j) are given by z(i,j)
- * - z is a (n1,n2) matrix 
- * - x is a (1,n1) matrix 
- * - y is a (1,n2) matrix 
- * - x,y,z are stored as one dimensionnal array in C 
- * - if *flagnz =0 
- * -   then  nz is an integer pointer to the number of level curves. 
- *     else  zz is an array which gives th requested level values.
- *            (and nz is the size of thos array)
- * Computed from min and max of z
- * Exemple Contour(1:5,1:10,rand(5,10),5);
- *---------------------------------------------------------------*/
+
 
 static double ZC=0.0;
 static char   ContNumFormat[100];
 
-/** interface for contour2d **/
+/*--------------------------------------------------------------------
+*  the level curve is crossing the segment (i,j) (ib,jb)
+*  look store the level curve point and try to find the next segment to look at
+*  Cont: value of f along the contour 
+*  ncont: number of contour 
+*  c: indice of the contour Cont 
+*---------------------------------------------------------------------*/
 
-int C2F(contour2)(double *x, double *y, double *z, integer *n1, integer *n2, integer *flagnz, integer *nz, double *zz, integer *style, char *strflag, char *legend, double *brect, integer *aaint, integer lstr1, integer lstr2)
+static void look(ptr_level_f func, integer i, integer j, integer ib, integer jb, integer qq, double Cont, integer style)
 {
-  Contour2D(ContStore2,"contour2",x,y,z,n1,n2,flagnz,nz,zz,style,strflag,
-	    legend,brect,aaint,lstr1,lstr2);
-  return 0;
+  integer ip,jp,im,jm,zds,ent=0,flag=0,wflag;
+  jp= j+1; ip= i+1; jm=j-1;im=i-1;
+  /*  on regarde comment est le segment de depart */
+  if  ( jb == jm)  flag = 1; 
+  else  { 
+    if ( ib == im ) flag = 2 ;
+    else  {
+      if ( jb == jp ) flag = 3 ;
+      else  if ( ib == ip ) flag = 4;}}
+  switch  (  flag)
+  {
+  case  1 :
+    if  (get_itg_cont(i,jm) > 1) return;
+    ent=1 ; /* le segment est vertical vers le bas */
+    /* Storing intersection point */
+    (*func)(0,Cont, x_cont(i), 
+      f_intercept(Cont,phi_cont(i,jm),
+      y_cont(jm),phi_cont(i,j),y_cont(j)));
+    break;
+  case 2 : 
+    if  (get_itg_cont(im,j) == 1 || get_itg_cont(im,j)==3 ) return;
+    ent=2 ; /* le segment est horizontal gauche */
+    /* Storing intersection point */
+    (*func)( 0,Cont,
+      f_intercept(Cont,phi_cont(im,j),
+      x_cont(im),phi_cont(i,j),x_cont(i)), y_cont(j));
+    break ; 
+  case 3 :
+    if  (get_itg_cont(i,j) > 1 ) return;
+    ent=3 ; /* le segment est vertical haut */
+    /* Storing intersection point */
+    (*func)(0,Cont,x_cont(i), f_intercept(Cont,phi_cont(i,j),
+      y_cont(j),phi_cont(i,jp),y_cont(jp)));
+    break ;
+  case 4 :
+    if  (get_itg_cont(i,j) == 1 || get_itg_cont(i,j)==3 ) return;
+    ent=4 ; /* le segment est horizontal droit */
+    /* Storing intersection point */
+    (*func)(0,Cont,f_intercept(Cont,phi_cont(i,j),
+      x_cont(i),phi_cont(ip,j),x_cont(ip)),
+      y_cont(j));
+    break;
+  default :
+    sciprint(" Error in case wrong value ");
+    break;
+  }
+  wflag=1;
+  while ( wflag) 
+  { 
+    jp= j+1; ip= i+1; jm=j-1;im=i-1;
+    switch  ( ent) 
+    {case 1 :
+    inc_itg_cont(i,jm,2L);
+    ent = ffnd(func,i,ip,ip,i,j,j,jm,jm,ent,qq,Cont,&zds);
+    /* on calcule le nouveau point, ent donne la 
+    direction du segment a explorer */
+    switch ( ent)
+    {
+    case -1: wflag=0; break;
+    case 1 : i=ip ; break ;
+    case 2 : i=ip;j=jm; break ;
+    }
+    break ;
+    case 2  :
+      inc_itg_cont(im,j,1L);
+      ent = ffnd(func,i,i,im,im,j,jm,jm,j,ent,qq,Cont,&zds);
+      switch ( ent)
+      { 
+      case -1: wflag=0; break;
+      case 2 : j = jm ;break ;
+      case  3  : i=im;j=jm; break ;
+      }
+      break ;
+    case 3 :
+      inc_itg_cont(i,j,2L);
+      ent = ffnd(func,i,im,im,i,j,j,jp,jp,ent,qq,Cont,&zds);
+      switch ( ent)
+      { 
+      case -1: wflag=0; break;
+      case 3 : i=im; break ;
+      case 4 : i=im;j=jp; break ;
+      }
+      break ;
+    case 4 :
+      inc_itg_cont(i,j,1L);
+      ent = ffnd(func,i,i,ip,ip,j,jp,jp,j,ent,qq,Cont,&zds);
+      switch ( ent)
+      {
+      case -1: wflag=0; break;
+      case 4 :j=jp;break ;
+      case 1 :i=ip;j=jp;break ;
+      }
+      break ;
+    }
+
+    /** new segment is on the boundary **/
+    if ( zds == 1) 
+    {
+      switch ( ent) 
+      {
+      case 1 : inc_itg_cont(i,(j-1),2L); break ; 
+      case 2 : inc_itg_cont(i-1,j,1L);  break ; 
+      case 3 : inc_itg_cont(i,j,2L); break ; 
+      case 4 : inc_itg_cont(i,j,1L); break ; 
+      }
+      /** we must quit the while loop **/
+      wflag = 0 ;
+    }
+    /**  init point was inside the domain */
+    if ( qq == 2) 
+    {
+      switch ( ent) 
+      {
+      case 1 : if  ( get_itg_cont (i,j-1)  > 1) wflag = 0 ; break ; 
+      case 2 : if  ( oddp(get_itg_cont(i-1,j))) wflag = 0 ; break ; 
+      case 3 : if  ( get_itg_cont(i,j) > 1)     wflag = 0 ; break ; 
+      case 4 : if  ( oddp(get_itg_cont(i,j)))   wflag = 0 ; break ; 
+      }
+    }
+  }
+  if ( func == GContStore2 ) 
+    GContStore2Last();
+  else 
+    ContourTrace(Cont,style);
 }
 
-/* interface for contour2di used in macro contourf 
- * used when we want to get the values which constitues the contour inside Scilab 
- * contour2di + c2dex 
- * THIS PROCEDURE IS NO LONGUER USED 
- */
 
-static int Contour2D(ptr_level_f func, char *name, double *x, double *y, double *z, integer *n1, integer *n2, integer *flagnz, integer *nz, double *zz, integer *style, char *strflag, char *legend, double *brect, integer *aaint, integer lstr1, integer lstr2)
+/*-------------------------------------------------------
+*  The function f is given on a grid and we want the level curves 
+*  for the zCont[N[2]] values 
+*  x : of size N[0] gives the x-values of the grid 
+*  y : of size N[1] gives the y-values of the grid 
+*  z : of size N[0]*N[1]  gives the f-values on the grid 
+*  style: size ncont (=N[2]) or empty integer pointer 
+*  gives the dash style for contour i
+*-------------------------------------------------------*/
+
+static void contourI(ptr_level_f func, double *x, double *y, double *z, double *zCont, integer *N, integer *style, integer *err)
 {
-  integer err=0;
-  static double *zconst;
-  double zmin,zmax;
-  integer N[3],i;
-  double drect[6];
-  sciPointObj * psubwin = NULL;  /* Adding F.Leray 22.04.04 */
-  BOOL bounds_changed = FALSE;
-  BOOL axes_properties_changed = FALSE;
-  
-  /** Boundaries of the frame **/
-  psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
-
-  /* Force psubwin->is3d to FALSE: we are in 2D mode */
-  if (sciGetSurface(psubwin) == (sciPointObj *) NULL)
+  int check = 1;
+  char *F;
+  integer n1,n2,ncont,i,c,j,k,n5;
+  integer stylec;
+  n1=N[0];n2=N[1];ncont=N[2];
+  F=getFPF();
+  if ( F[0] == '\0') 
+    ChoixFormatE1(ContNumFormat,zCont,N[2]);
+  InitValues(x,y,z,n1,n2);
+  n5 =  2*(n1)+2*(n2)-3;
+  /* Allocation */
+  Gcont_size = 0; /** initialize the array indices for storing contours **/
+  xbd_cont = MALLOC( n5 * sizeof(int) ) ;
+  ybd_cont = MALLOC( n5 * sizeof(int) ) ;
+  itg_cont = MALLOC( n1*n2 * sizeof(int) ) ;
+  if ( (xbd_cont == NULL) && n5 != 0) check= 0;
+  if ( (ybd_cont == NULL) && n5 != 0) check= 0;
+  if ( (itg_cont == NULL) && n1*n2 != 0) check= 0;
+  if ( check == 0) 
   {
-    pSUBWIN_FEATURE (psubwin)->is3d = FALSE;
-    pSUBWIN_FEATURE (psubwin)->project[2]= 0;
+    FREE( xbd_cont ) ;
+    FREE( ybd_cont ) ;
+    FREE( itg_cont ) ;
+    sciprint("contourI_: Running out of memory\n");
+    return;
   }
-  else
+  /* just a parametrization of the boundary points */
+  for ( i = 0 ; i <  n2 ; i++)
   {
-    pSUBWIN_FEATURE (psubwin)->theta_kp=pSUBWIN_FEATURE (psubwin)->theta;
-    pSUBWIN_FEATURE (psubwin)->alpha_kp=pSUBWIN_FEATURE (psubwin)->alpha;  
+    ybd_cont[i] = i ;
+    xbd_cont[i] = 0 ;
   }
-
-  pSUBWIN_FEATURE (psubwin)->alpha  = 0.0;
-  pSUBWIN_FEATURE (psubwin)->theta  = 270.0;
-
-  /*****TO CHANGE F.Leray 10.09.04    for (i=0;i<4;i++) pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; */
-  if (sciGetGraphicMode (psubwin)->autoscaling) {
-    /* compute and merge new specified bounds with psubwin->Srect */
-    switch (strflag[1])  {
-        case '0': 
-          /* do not change psubwin->Srect */
-          break;
-        case '1' : case '3' : case '5' : case '7':
-          /* Force psubwin->Srect=brect */
-          re_index_brect(brect,drect);
-          break;
-        case '2' : case '4' : case '6' : case '8':
-          /* Force psubwin->Srect to the x and y bounds */
-          /*  compute_data_bounds(1,'g',x,y,*n1,*n2,drect); */
-          compute_data_bounds2(1,'g',pSUBWIN_FEATURE(psubwin)->logflags,x,y,*n1,*n2,drect);
-          break;
+  for ( i = 1 ; i <  n1 ; i++)
+  {
+    ybd_cont[n2+i-1] = n2-1 ;
+    xbd_cont[n2+i-1] = i  ;
+  }
+  for ( i = n2-2;  i >= 0  ; i--)
+  {
+    ybd_cont[2*n2 +n1-3-i] = i ;
+    xbd_cont[2*n2 +n1-3-i] = n1-1  ;
+  }
+  for ( i = n1-2 ; i >= 0 ; i--)
+  {
+    ybd_cont[2*n2 +2*n1-4-i] = 0 ;
+    xbd_cont[2*n2 +2*n1-4-i] = i  ;
+  }
+  for ( c= 0 ; c < ncont ; c++)
+  {
+    stylec = ( style != (integer *) 0) ? style[c] : c;
+    /** itg-cont is a flag array to memorize checked parts of the grid **/
+    for ( i = 0 ; i < n1; i++)
+      for ( j =0 ; j < n2 ; j++)
+        itg_cont[i+n1*j]=0 ;
+    /** all the boundary segments **/
+    for ( k = 1 ; k < n5 ; k++)
+    { integer ib,jb;
+    i = xbd_cont[k] ; j = ybd_cont[k];
+    ib = xbd_cont[k-1] ; jb= ybd_cont[k-1];
+    if  (not_same_sign (phi_cont(i,j)-zCont[c] , 
+      phi_cont(ib,jb)-zCont[c]))
+      look(func,i,j,ib,jb,1L,zCont[c],stylec);
     }
-    if (!pSUBWIN_FEATURE(psubwin)->FirstPlot &&(strflag[1] == '7' || strflag[1] == '8')) { /* merge psubwin->Srect and drect */
-      drect[0] = Min(pSUBWIN_FEATURE(psubwin)->SRect[0],drect[0]); /*xmin*/
-      drect[2] = Min(pSUBWIN_FEATURE(psubwin)->SRect[2],drect[2]); /*ymin*/
-      drect[1] = Max(pSUBWIN_FEATURE(psubwin)->SRect[1],drect[1]); /*xmax*/
-      drect[3] = Max(pSUBWIN_FEATURE(psubwin)->SRect[3],drect[3]); /*ymax*/
-    }
-    if (strflag[1] != '0')
-      bounds_changed = update_specification_bounds(psubwin, drect,2);
-  } 
+    /** inside segments **/
+    for ( i = 1 ; i < n1-1; i++)
+      for ( j = 1 ; j < n2-1 ; j++)
+        if  (not_same_sign ( phi_cont(i,j)-zCont[c] , 
+          phi_cont(i, j-1)-zCont[c]))
+          look(func,i,j,i,j-1,2L,zCont[c],stylec);
+  }
+  FREE( xbd_cont ) ;
+  FREE( ybd_cont ) ;
+  FREE( itg_cont ) ;
 
-  if(pSUBWIN_FEATURE (psubwin)->FirstPlot == TRUE) bounds_changed = TRUE;
-
-  axes_properties_changed = strflag2axes_properties(psubwin, strflag);
-
-  pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE; /* just after strflag2axes_properties */
-
-  zmin=(double) Mini(z,*n1*(*n2)); 
-  zmax=(double) Maxi(z,*n1*(*n2));
-
-  /** Scales **/
-  if (strcmp(name,"contour2")==0 )
-    {
-      axis_draw(strflag);
-      frame_clip_on();
-    }
-  if (*flagnz==0)
-    {
-      if (( zconst = MALLOC( (*nz) * sizeof(double) ) )== 0) 
-	{
-	  sciprint("Running out of memory\r\n");
-	  return 0;
-	}
-      for ( i =0 ; i < *nz ; i++) 
-	zconst[i]=zmin + (i+1)*(zmax-zmin)/(*nz+1);
-      N[0]= *n1;N[1]= *n2;N[2]= *nz;
-      contourI(func,x,y,z,zconst,N,style,&err);
-      FREE(zconst) ;
-      zconst = NULL ;
-    }
-  else
-    {
-      N[0]= *n1;N[1]= *n2;N[2]= *nz;
-      contourI(func,x,y,z,zz,N,style,&err);
-    }
-
-  if (strcmp(name,"contour2")==0 )frame_clip_off();
-
-  return(0);
 }
 
 int C2F(contourif)(double *x, double *y, double *z, integer *n1, integer *n2, integer *flagnz, integer *nz, double *zz, integer *style)
@@ -309,229 +401,8 @@ int C2F(contourif)(double *x, double *y, double *z, integer *n1, integer *n2, in
   return(0);
 }
 
-/*-------------------------------------------------------
- *  The function f is given on a grid and we want the level curves 
- *  for the zCont[N[2]] values 
- *  x : of size N[0] gives the x-values of the grid 
- *  y : of size N[1] gives the y-values of the grid 
- *  z : of size N[0]*N[1]  gives the f-values on the grid 
- *  style: size ncont (=N[2]) or empty integer pointer 
- *  gives the dash style for contour i
- *-------------------------------------------------------*/
 
-static void contourI(ptr_level_f func, double *x, double *y, double *z, double *zCont, integer *N, integer *style, integer *err)
-{
-  int check = 1;
-  char *F;
-  integer n1,n2,ncont,i,c,j,k,n5;
-  integer stylec;
-  n1=N[0];n2=N[1];ncont=N[2];
-  F=getFPF();
-  if ( F[0] == '\0') 
-    ChoixFormatE1(ContNumFormat,zCont,N[2]);
-  InitValues(x,y,z,n1,n2);
-  n5 =  2*(n1)+2*(n2)-3;
-  /* Allocation */
-  Gcont_size = 0; /** initialize the array indices for storing contours **/
-  xbd_cont = MALLOC( n5 * sizeof(int) ) ;
-  ybd_cont = MALLOC( n5 * sizeof(int) ) ;
-  itg_cont = MALLOC( n1*n2 * sizeof(int) ) ;
-  if ( (xbd_cont == NULL) && n5 != 0) check= 0;
-  if ( (ybd_cont == NULL) && n5 != 0) check= 0;
-  if ( (itg_cont == NULL) && n1*n2 != 0) check= 0;
-  if ( check == 0) 
-    {
-      FREE( xbd_cont ) ;
-      FREE( ybd_cont ) ;
-      FREE( itg_cont ) ;
-      sciprint("contourI_: Running out of memory\n");
-      return;
-    }
-  /* just a parametrization of the boundary points */
-  for ( i = 0 ; i <  n2 ; i++)
-	{
-	  ybd_cont[i] = i ;
-	  xbd_cont[i] = 0 ;
-	}
-  for ( i = 1 ; i <  n1 ; i++)
-	{
-	  ybd_cont[n2+i-1] = n2-1 ;
-	  xbd_cont[n2+i-1] = i  ;
-	}
-  for ( i = n2-2;  i >= 0  ; i--)
-	{
-	  ybd_cont[2*n2 +n1-3-i] = i ;
-	  xbd_cont[2*n2 +n1-3-i] = n1-1  ;
-	}
-  for ( i = n1-2 ; i >= 0 ; i--)
-	{
-	  ybd_cont[2*n2 +2*n1-4-i] = 0 ;
-	  xbd_cont[2*n2 +2*n1-4-i] = i  ;
-	}
-  for ( c= 0 ; c < ncont ; c++)
-    {
-      stylec = ( style != (integer *) 0) ? style[c] : c;
-      /** itg-cont is a flag array to memorize checked parts of the grid **/
-      for ( i = 0 ; i < n1; i++)
-	for ( j =0 ; j < n2 ; j++)
-	  itg_cont[i+n1*j]=0 ;
-      /** all the boundary segments **/
-      for ( k = 1 ; k < n5 ; k++)
-	{ integer ib,jb;
-	i = xbd_cont[k] ; j = ybd_cont[k];
-	ib = xbd_cont[k-1] ; jb= ybd_cont[k-1];
-	if  (not_same_sign (phi_cont(i,j)-zCont[c] , 
-			    phi_cont(ib,jb)-zCont[c]))
-	  look(func,i,j,ib,jb,1L,zCont[c],stylec);
-	}
-      /** inside segments **/
-      for ( i = 1 ; i < n1-1; i++)
-	for ( j = 1 ; j < n2-1 ; j++)
-	  if  (not_same_sign ( phi_cont(i,j)-zCont[c] , 
-			       phi_cont(i, j-1)-zCont[c]))
-	    look(func,i,j,i,j-1,2L,zCont[c],stylec);
-    }
-  FREE( xbd_cont ) ;
-  FREE( ybd_cont ) ;
-  FREE( itg_cont ) ;
 
-}
-
-/*--------------------------------------------------------------------
- *  the level curve is crossing the segment (i,j) (ib,jb)
- *  look store the level curve point and try to find the next segment to look at
- *  Cont: value of f along the contour 
- *  ncont: number of contour 
- *  c: indice of the contour Cont 
- *---------------------------------------------------------------------*/
-
-static void look(ptr_level_f func, integer i, integer j, integer ib, integer jb, integer qq, double Cont, integer style)
-{
-  integer ip,jp,im,jm,zds,ent=0,flag=0,wflag;
-  jp= j+1; ip= i+1; jm=j-1;im=i-1;
-  /*  on regarde comment est le segment de depart */
-  if  ( jb == jm)  flag = 1; 
-  else  { 
-    if ( ib == im ) flag = 2 ;
-    else  {
-      if ( jb == jp ) flag = 3 ;
-      else  if ( ib == ip ) flag = 4;}}
-  switch  (  flag)
-    {
-    case  1 :
-      if  (get_itg_cont(i,jm) > 1) return;
-      ent=1 ; /* le segment est vertical vers le bas */
-      /* Storing intersection point */
-      (*func)(0,Cont, x_cont(i), 
-		f_intercept(Cont,phi_cont(i,jm),
-			    y_cont(jm),phi_cont(i,j),y_cont(j)));
-      break;
-    case 2 : 
-      if  (get_itg_cont(im,j) == 1 || get_itg_cont(im,j)==3 ) return;
-      ent=2 ; /* le segment est horizontal gauche */
-      /* Storing intersection point */
-      (*func)( 0,Cont,
-		f_intercept(Cont,phi_cont(im,j),
-			    x_cont(im),phi_cont(i,j),x_cont(i)), y_cont(j));
-      break ; 
-    case 3 :
-      if  (get_itg_cont(i,j) > 1 ) return;
-      ent=3 ; /* le segment est vertical haut */
-      /* Storing intersection point */
-      (*func)(0,Cont,x_cont(i), f_intercept(Cont,phi_cont(i,j),
-					    y_cont(j),phi_cont(i,jp),y_cont(jp)));
-      break ;
-    case 4 :
-      if  (get_itg_cont(i,j) == 1 || get_itg_cont(i,j)==3 ) return;
-      ent=4 ; /* le segment est horizontal droit */
-      /* Storing intersection point */
-      (*func)(0,Cont,f_intercept(Cont,phi_cont(i,j),
-				 x_cont(i),phi_cont(ip,j),x_cont(ip)),
-	      y_cont(j));
-      break;
-      default :
-	sciprint(" Error in case wrong value ");
-      break;
-    }
-  wflag=1;
-  while ( wflag) 
-    { 
-      jp= j+1; ip= i+1; jm=j-1;im=i-1;
-      switch  ( ent) 
-	{case 1 :
-	  inc_itg_cont(i,jm,2L);
-	  ent = ffnd(func,i,ip,ip,i,j,j,jm,jm,ent,qq,Cont,&zds);
-	  /* on calcule le nouveau point, ent donne la 
-	     direction du segment a explorer */
-	  switch ( ent)
-	    {
-	    case -1: wflag=0; break;
-	    case 1 : i=ip ; break ;
-	    case 2 : i=ip;j=jm; break ;
-	    }
-	  break ;
-	case 2  :
-	  inc_itg_cont(im,j,1L);
-	  ent = ffnd(func,i,i,im,im,j,jm,jm,j,ent,qq,Cont,&zds);
-	  switch ( ent)
-	    { 
-	    case -1: wflag=0; break;
-	    case 2 : j = jm ;break ;
-	    case  3  : i=im;j=jm; break ;
-	    }
-	  break ;
-	case 3 :
-	  inc_itg_cont(i,j,2L);
-	  ent = ffnd(func,i,im,im,i,j,j,jp,jp,ent,qq,Cont,&zds);
-	  switch ( ent)
-	    { 
-	    case -1: wflag=0; break;
-	    case 3 : i=im; break ;
-	    case 4 : i=im;j=jp; break ;
-	    }
-	  break ;
-	case 4 :
-	  inc_itg_cont(i,j,1L);
-	  ent = ffnd(func,i,i,ip,ip,j,jp,jp,j,ent,qq,Cont,&zds);
-	  switch ( ent)
-	    {
-	    case -1: wflag=0; break;
-	    case 4 :j=jp;break ;
-	    case 1 :i=ip;j=jp;break ;
-	    }
-	  break ;
-	}
-     
-      /** new segment is on the boundary **/
-      if ( zds == 1) 
-	{
-	  switch ( ent) 
-	    {
-	    case 1 : inc_itg_cont(i,(j-1),2L); break ; 
-	    case 2 : inc_itg_cont(i-1,j,1L);  break ; 
-	    case 3 : inc_itg_cont(i,j,2L); break ; 
-	    case 4 : inc_itg_cont(i,j,1L); break ; 
-	    }
-	  /** we must quit the while loop **/
-	  wflag = 0 ;
-	  }
-      /**  init point was inside the domain */
-      if ( qq == 2) 
-	{
-	  switch ( ent) 
-	    {
-	    case 1 : if  ( get_itg_cont (i,j-1)  > 1) wflag = 0 ; break ; 
-	    case 2 : if  ( oddp(get_itg_cont(i-1,j))) wflag = 0 ; break ; 
-	    case 3 : if  ( get_itg_cont(i,j) > 1)     wflag = 0 ; break ; 
-	    case 4 : if  ( oddp(get_itg_cont(i,j)))   wflag = 0 ; break ; 
-	    }
-	}
-    }
-  if ( func == GContStore2 ) 
-    GContStore2Last();
-  else 
-    ContourTrace(Cont,style);
-}
 
 
 /*-----------------------------------------------------------------------
@@ -605,70 +476,6 @@ static integer ffnd (ptr_level_f func, integer i1, integer i2, integer i3, integ
  *----------------------------------------------------------------*/
 
 static integer cont_size ;
-
-/*
- * store a point in the current level curve if ival == 0 the level 
- * curve is reinitialized 
- * used for a contour in a 3D drawing 
- */
-
-static void
-G_ContStore(integer ival, int xncont, int yncont)
-{
-  int n;
-  /* nouveau contour */
-  if ( ival == 0) cont_size =0 ;
-  n= cont_size + 1;
-  xcont = REALLOC( xcont, n * sizeof(int) ) ;
-  ycont = REALLOC( ycont, n * sizeof(int) ) ;
-  if ( ( xcont == NULL || ycont == NULL ) && n != 0 )
-  {
-    FREE( xcont ) ;
-    FREE( ycont ) ;
-
-    return ;
-  }
-  xcont[cont_size]= xncont;
-  ycont[cont_size++]= yncont;
-}
-
-/*
- * store a point in the current level curve if ival == 0 the level 
- * curve is reinitialized 
- * used for a contour in a 3D drawing 
- */
-
-static void
-ContStore(integer ival, double Cont, double xncont, double yncont)
-{
-  G_ContStore(ival,GEOX(xncont,yncont,Cont),
-	      GEOY(xncont,yncont,Cont));
-}
-
-/*
- * store a point in the current level curve if ival == 0 the level 
- * curve is reinitialized 
- * used for a contour in a 3D drawing with projection at level ZC 
- */
-
-static void
-ContStore1(integer ival, double Cont, double xncont, double yncont)
-{
-  G_ContStore(ival,GEOX(xncont,yncont,ZC),
-	      GEOY(xncont,yncont,ZC));
-}
-
-/*
- * store a point in the current level curve if ival == 0 the level 
- * curve is reinitialized 
- * used for a contour in a 2D drawing 
- */
-
-static void
-ContStore2(integer ival, double Cont, double xncont, double yncont)
-{
-  G_ContStore(ival,XScale(xncont),YScale(yncont));
-}
 
 /* 
  * Explicit drawing of the current level curve with a dash style 

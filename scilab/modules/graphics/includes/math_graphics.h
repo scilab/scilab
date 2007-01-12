@@ -102,6 +102,9 @@
 #define M_PI 3.14159265358979323846 
 #endif
 
+double Mini(double *vect, integer n) ;
+
+double Maxi(double *vect,integer n) ;
 
 extern double exp10 __PARAMS((double));
 

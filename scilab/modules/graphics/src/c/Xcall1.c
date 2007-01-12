@@ -15,8 +15,9 @@
 #include <string.h>
 #include <stdio.h>
 #include "math_graphics.h"
-#include "Graphics.h"
 #include "PloEch.h"
+#include "sciprint.h"
+#include "clipping.h"
 
 typedef void (f_xcall1) (char *,char *,integer *,integer *,integer *,integer *,integer *,integer *,
 			       double *,double *,double *,double *,integer,integer );
@@ -31,15 +32,12 @@ extern void Scistring (char *str);
 static void GSciString (int,integer *x,integer *y,char *StrMat,integer *w,integer *h);
 static void Myalloc1 (integer **xm,integer n,integer *err);
 static void Myalloc (integer **xm,integer **ym, integer n, integer *err);
-static void xstringb ( char *string,integer x, integer y, integer w, integer h);
-void xstringb_angle (char *string, integer x, integer y, integer w, integer h, double angle);
-void xstringb_bbox (char *string, integer x, integer y, integer w, integer h, double angle, int *bbox);
 
 static f_xcall1 xset_1, drawarc_1, fillarcs_1  ,drawarcs_1  ,fillpolyline_1  ,drawarrows_1  ;
 static f_xcall1 drawaxis_1  ,cleararea_1  ,xclick_1  ,xclick_any_1  ,xgetmouse_1  ,fillarc_1  ;
 static f_xcall1 fillrectangle_1  ,drawpolyline_1  ,fillpolylines_1  ,drawpolymark_1  ,displaynumbers_1  ;
 static f_xcall1 drawpolylines_1  ,drawrectangle_1  ,drawrectangles_1  ,drawsegments_1  ,displaystring_1  ;
-static f_xcall1 displaystringa_1  ,boundingbox_1  ,xstringb_1  ,displaystringt;
+static f_xcall1 boundingbox_1  ,xstringb_1  ,displaystringt;
 static f_xcall1 xinit_1;
 
 static integer Ivide=0;
@@ -55,8 +53,6 @@ extern int scilab_shade(integer *polyx, integer *polyy, integer *fill, integer p
 #endif
 
 const struct funreplace * in_word_set (register const char *str, register unsigned int len);
-void C2F(setautoclear)(integer *num,integer * v2,integer * v3,integer * v4);
-void C2F(getautoclear)(integer * verbose,integer * num,integer * narg,double *dummy);
 void xclick_2(char *fname, char *str, integer *ibutton, integer *iflag, integer *istr, integer *x1, integer *yy1, integer *x7, double *x, double *y, double *dx3, double *dx4, integer lx0, integer lx1);
 void xgetmouse2(char *fname, char *str, integer *ibutton, integer *iflag, integer *x1, integer *yy1, integer *x6, integer *x7, double *x, double *y, double *dx3, double *dx4, integer lx0, integer lx1);
 
@@ -136,8 +132,8 @@ in_word_set (register const char *str, register unsigned int len)
       {"xinit",		xinit_1},
       {"xsetdr",		(func) C2F(dr)},
       {""},
-      {"xstringa",	displaystringa_1},
-      {"xstringtt",	displaystringt},
+      {""},
+      {""},
       {"xarcs",		drawarcs_1},
       {"xrects",		drawrectangles_1},
       {"xreplay",	(func) C2F(dr)},
@@ -224,22 +220,8 @@ int C2F(dr1)( char x0[],char x1[],integer *x2,integer *x3,integer *x4,integer *x
  **************************************************/
 
 static char FPF[32]={'\0'};
-static int Autoclear = 0;
 
-void C2F(setautoclear)(integer *num,integer * v2,integer * v3,integer * v4)
-{ 
-  Autoclear = Max(0,Min(1,*num));
-}
-
-void C2F(getautoclear)(integer * verbose,integer * num,integer * narg,double *dummy)
-{ 
-  *narg=1;
-  *num = Autoclear;
-  if (*verbose == 1) 
-    sciprint("\n Autoclear : %d\r\n",*num);
-}
-
-char *getFPF(void)
+char * getFPF(void)
 {
   return(FPF);
 }
@@ -255,17 +237,14 @@ int C2F(xsetg)(char * str,char * str1,integer lx0,integer lx1)
       sciPointObj * subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
       if (strcmp(str1,"on")==0 )
       {
-	Autoclear = 1;
 	sciSetAddPlot( subwin,FALSE);
       }
       else{
-	Autoclear = 0;
 	sciSetAddPlot( subwin,TRUE);
       }
     }
   else if ( strcmp(str,"default")==0)
     {
-      Autoclear =0;
       FPF[0]='\0';
     }
   else 
@@ -676,190 +655,6 @@ void displaystring_1(char *fname, char *string, integer *v1, integer *v2, intege
   x1 = XDouble2Pixel(*x);
   yy1 = YDouble2Pixel(*y);
   C2F(dr)(fname,string,&x1,&yy1,PI0,flag,x7,x8,angle,PD0,PD0,dx4,lx0,lx1);
-}
-/*-----------------------------------------------------------------------------
- *  displaystringa
- *-----------------------------------------------------------------------------*/
-void displaystringa_1(char *fname, char *string, integer *ipos, integer *v2, integer *v3, 
-		      integer *v4, integer *x7, integer *x8, double *dx1, double *dx2, 
-		      double *dx3, double *dx4, integer lx0, integer lx1)
-{
-  /* modified by Bruno 11 nov 04 */
-  integer Margin[4]; /* 0 left, 1 right, 2 up, 3 down */
-  get_margin_in_pixel(Margin);
-
-  switch ( *ipos )
-    {
-    case 1:
-      xstringb(string,Cscale.WIRect1[0],Cscale.WIRect1[1],Cscale.WIRect1[2],Margin[2]);
-      break;
-    case 2:
-      xstringb(string, Cscale.WIRect1[0]+Cscale.WIRect1[2], Cscale.WIRect1[1]+Cscale.WIRect1[3]+Margin[3], 
-	       Margin[1], 2*Margin[3]);
-      break;
-    case 3:
-      xstringb(string, Cscale.WIRect1[0]-Margin[0], Cscale.WIRect1[1], 2*Margin[0], Margin[2]);
-      break;
-    }
-}
-/*-----------------------------------------------------------------------------
- * MAJ D.A
- *-----------------------------------------------------------------------------*/
-void displaystringt(char *fname,char *string, integer *v1, integer *v2, integer *v3, 
-		    integer *v4 , integer *x7, integer *x8, double *dx1, double *dx2, 
-		    double *dx3, double *dx4, integer lx0, integer lx1)
-{
-  integer x, y, w, h;
-  x=*v1; 
-  y=*v2; 
-  w=*v3; 
-  h=*v4;
-  xstringb (string,x,y,w,h);
-}
-/*-----------------------------------------------------------------------------
- * display a set of lines coded with 'line1@line2@.....@'
- *   centred in the rectangle [x,y,w=wide,h=height] 
- *-----------------------------------------------------------------------------*/
-
-static void xstringb (char *string, integer x, integer y, integer w, integer h)
-{
-  char *loc,*loc1;
-  loc= (char *) MALLOC( (strlen(string)+1)*sizeof(char));
-  if ( loc != 0)
-    {
-      integer wmax=0,htot=0,x1=0,yy1=0,rect[4],i;
-      strcpy(loc,string);
-      loc1=strtok(loc,"@");
-
-      for(i=0;i<4;i++) rect[i] = 0; /* Init. to 0 to prevent Windows RunTime 'warning/error' in debug mode F.Leray 06.04.04 */
-
-      while ( loc1 != ( char * ) 0) 
-	{  
-	  C2F(dr)("xstringl",loc1,&x1,&yy1,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  if ( rect[2] >= wmax ) wmax=rect[2];
-	  htot += (int) (1.2*((double) rect[3]));
-	  loc1=strtok((char *) 0,"@");
-	}
-      x1=x+ (w- wmax)/2;
-      yy1=y - h + ( h - htot)/2 + rect[3];
-      strcpy(loc,string);
-      loc1=strtok(loc,"@");
-      while ( loc1 != ( char * ) 0) 
-	{  
-	  double angle=0.0;
-	  integer flag=0;
-	  C2F(dr)("xstring",loc1,&x1,&yy1,PI0,&flag,PI0,PI0,&angle,PD0,PD0,PD0,0L,0L);
-	  yy1 += (int) (1.2*((double)rect[3]));
-	  loc1=strtok((char *) 0,"@");
-	}
-      FREE(loc);
-    }
-  else
-    {
-      sciprint("xstring : No more Place  \n");
-    }
-}
-
-/*-----------------------------------------------------------------------------
- * Return the corresponding bounding box with parameters:
- * entry is a set of lines coded with 'line1@line2@.....@'
- * centered in the rectangle [x,y,w=wide,h=height] 
- * BUT also allow angle selection for string rotation
- * angle is not taken into account
- *-----------------------------------------------------------------------------*/
-
-void xstringb_bbox (char *string, integer x, integer y, integer w, integer h, double angle, int *bbox)
-{
-  char *loc=NULL,*loc1=NULL;
-  int compteur = 1;
-  int hauteur=0;
-  loc= (char *) MALLOC( (strlen(string)+1)*sizeof(char));
-  
-  if (loc)
-  {
-    integer wmax=0,x1=0,yy1=0,rect[4],i;
-    double htot = 0.0;
-    strcpy(loc,string);
-    loc1=strtok(loc,"@");
-    
-    for(i=0;i<4;i++) rect[i] = 0; /* Init. to 0 to prevent Windows RunTime 'warning/error' in debug mode F.Leray 06.04.04 */
-    
-    while (loc1 != ( char * ) 0) 
-    {  
-      C2F(dr)("xstringl",loc1,&x1,&yy1,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      if ( rect[2] >= wmax ) wmax=rect[2];
-      /*htot += (int) (1.2*((double) rect[3]));*/
-      loc1=strtok((char *) 0,"@");
-      /*if(compteur==1) hauteur = rect[3];*/
-      /* modified 30/11/05 jean-baptiste Silvy */
-      if ( compteur == 1 )
-      {
-        hauteur = rect[3] ;
-        /* no extra space before this line */
-        htot += rect[3] ;
-      }
-      else
-      {
-        htot += 1.2 * rect[3] ;
-      }
-      compteur++;
-    }
-    
-    x1=x+ (w- wmax)/2;
-    yy1=(integer)(y - h + ( h - htot)/2 + rect[3]);
-    
-    bbox[0] = x1;
-    bbox[1] = yy1 - hauteur;
-    bbox[2] = wmax;
-    bbox[3] = round( htot ) ;
-    FREE(loc);
-    loc=NULL;
-  }
-  
-}
-
-/*-----------------------------------------------------------------------------
- * display a set of lines coded with 'line1@line2@.....@'
- *   centred in the rectangle [x,y,w=wide,h=height] 
- * BUT also allow angle selection for string rotation
- *-----------------------------------------------------------------------------*/
-
-void xstringb_angle (char *string, integer x, integer y, integer w, integer h, double angle)
-{
-  char *loc,*loc1;
-  loc= (char *) MALLOC( (strlen(string)+1)*sizeof(char));
-  if ( loc != 0)
-    {
-      integer wmax=0,htot=0,x1=0,yy1=0,rect[4],i;
-      strcpy(loc,string);
-      loc1=strtok(loc,"@");
-
-      for(i=0;i<4;i++) rect[i] = 0; /* Init. to 0 to prevent Windows RunTime 'warning/error' in debug mode F.Leray 06.04.04 */
-
-      while ( loc1 != ( char * ) 0) 
-	{  
-	  C2F(dr)("xstringl",loc1,&x1,&yy1,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  if ( rect[2] >= wmax ) wmax=rect[2];
-	  htot += (int) (1.2*((double) rect[3]));
-	  loc1=strtok((char *) 0,"@");
-	}
-      x1=x+ (w- wmax)/2;
-      yy1=y - h + ( h - htot)/2 + rect[3];
-      strcpy(loc,string);
-      loc1=strtok(loc,"@");
-      while ( loc1 != ( char * ) 0) 
-	{
-	  integer flag=0;
-	  C2F(dr)("xstring",loc1,&x1,&yy1,PI0,&flag,PI0,PI0,&angle,PD0,PD0,PD0,0L,0L);
-	  yy1 += (int) (1.2*((double)rect[3]));
-	  loc1=strtok((char *) 0,"@");
-	}
-      FREE(loc);
-    }
-  else
-    {
-      sciprint("xstring : No more Place  \n");
-    }
 }
 
 /*-----------------------------------------------------------------------------

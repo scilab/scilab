@@ -18,14 +18,13 @@
 #include <stdarg.h>
 #include <time.h>
 
-#include "Graphics.h" 
 #include "GetProperty.h"
 #include "bcg.h"
 #include "BuildObjects.h"
 #include "SetProperty.h"
 #include "Xcall1.h"
 #include "WindowList.h"
-
+#include "sciprint.h"
 #include "PloEch.h"
 
 #include "MALLOC.h" /* MALLOC */

@@ -33,7 +33,6 @@
 #include "bcg.h"
 #include "periWin.h" 
 #include "color.h" 
-#include "Graphics.h"
 #include "scigraphic.h"
 #include "machine.h"
 #include "clipping.h"
@@ -310,7 +309,7 @@ int sciInitScrollBar(struct BCG *Scilabgc)
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/
-void  SetWinhdc()
+void SetWinhdc( void )
 {
   if ( ScilabXgc != (struct BCG *) 0 && ScilabXgc->CWindow != (HWND) 0)
     {
@@ -530,7 +529,7 @@ void CPixmapResize(int x,int y)
  * Resize the Pixmap according to window size change 
  * But only if there's a pixmap 
  */
-void CPixmapResize1()
+void CPixmapResize1( void )
 {
   if ( sciGetPixmapStatus() == 1 )
     sci_pixmap_resize(ScilabXgc,ScilabXgc->CWindowWidth,ScilabXgc->CWindowHeight);
@@ -785,6 +784,85 @@ void C2F(xclick_any)(char *str,integer *ibutton,integer* x1,integer * yy1, integ
   set_wait_click(0);
 }
 /*-----------------------------------------------------------------------------------*/
+void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int getmouse, int getrelease, int dyn_men, char *str, integer *lstr)
+{
+  integer ok,choice,motion,release;
+  int win;
+
+  choice=(dyn_men>1); /* depending on lhs */
+  if ( ScilabXgc == (struct BCG *) 0 || ScilabXgc->CWindow == (HWND) 0)
+  {
+    *x1   =  -1;
+    *yy1  =  -1;
+    *ibutton = -100;
+    return;
+  }
+
+  win = ScilabXgc->CurWindow;
+
+  if ( *iflag ==0 )  ClearClickQueue(ScilabXgc->CurWindow);
+
+  /** Pas necessaire en fait voir si c'est mieux ou moins bien **/
+  if (IsIconic(ScilabXgc->hWndParent)) ShowWindow(ScilabXgc->hWndParent, SW_SHOWNORMAL);
+  BringWindowToTop(ScilabXgc->hWndParent);
+
+  set_wait_click(1);
+  set_event_select(1+2*getmouse+4*getrelease);
+
+  while ( 1 ) 
+  {
+    /** first check if an event has been store in the queue while wait_for_click was 0 **/
+    if (choice) win=-1;
+    ok=0;
+    if (CheckClickQueue(&win,x1,yy1,ibutton,&motion,&release) == 1)  {
+      if ((release&&getrelease) || (motion&&getmouse) || ((motion==0)&&(release==0))){
+        *iflag=win;
+        ok=1;
+        break;
+      }
+      if (choice) win=-1;
+    }
+    if(ok) break;
+
+    /* make the X and tk event loop */
+    C2F(sxevents)();
+    Sleep(1);
+
+    if ( ScilabXgc == (struct BCG *) 0 || ScilabXgc->CWindow == (HWND) 0)
+    {
+      /* graphic window was deleted */
+      *x1= 0 ;
+      *yy1= 0;
+      *ibutton=-100; 
+      set_event_select(1+4);
+      set_wait_click(0);
+      return;
+    }
+
+    if ( dyn_men == 1 &&  C2F(ismenu)()==1 ) 
+    {
+      int entry;
+      C2F(getmen)(str,lstr,&entry);
+      *ibutton = -2;
+      *x1=0;
+      *yy1=0;
+      set_event_select(1+4);
+      set_wait_click(0);
+      return ;
+    }
+
+    if ( CtrlCHit(&textwin) == 1) 
+    {
+      *x1= 0 ;
+      *yy1= 0;
+      *ibutton=0;
+      break ;
+    }
+  }
+  set_event_select(1+4);
+  set_wait_click(0);
+}
+/*-----------------------------------------------------------------------------------*/
 void C2F(xclick)(str, ibutton, x1, yy1, iflag,istr, v7, dv1, dv2, dv3, dv4)
      char *str;
      integer *ibutton,*x1,*yy1,*iflag,*istr,*v7;
@@ -818,12 +896,12 @@ void C2F(xgetmouse)(str, ibutton, x1, yy1,iflag, v6, v7, dv1, dv2, dv3, dv4)
   SciClick(ibutton,x1, yy1,iflag,v6[0],v6[1],0,(char *) 0,(integer *)0);
 }
 /*-----------------------------------------------------------------------------------*/
-void SciMouseCapture()
+void SciMouseCapture( void )
 {
   SetCapture(ScilabXgc->CWindow);
 }
 /*-----------------------------------------------------------------------------------*/
-void SciMouseRelease()
+void SciMouseRelease( void )
 {
   ReleaseCapture();
 }
@@ -893,86 +971,6 @@ static int check_mouse(MSG *msg,integer *ibutton,integer *x1,integer *yy1,
   return 1;
 }
 /*-----------------------------------------------------------------------------------*/
-void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int getmouse, int getrelease, int dyn_men, char *str, integer *lstr)
-{
-	integer ok,choice,motion,release;
-  int win;
-  
-  choice=(dyn_men>1); /* depending on lhs */
-  if ( ScilabXgc == (struct BCG *) 0 || ScilabXgc->CWindow == (HWND) 0)
-    {
-      *x1   =  -1;
-      *yy1  =  -1;
-      *ibutton = -100;
-      return;
-    }
-
-  win = ScilabXgc->CurWindow;
-  
-  if ( *iflag ==0 )  ClearClickQueue(ScilabXgc->CurWindow);
-
-  /** Pas necessaire en fait voir si c'est mieux ou moins bien **/
-  if (IsIconic(ScilabXgc->hWndParent)) ShowWindow(ScilabXgc->hWndParent, SW_SHOWNORMAL);
-  BringWindowToTop(ScilabXgc->hWndParent);
-
-  set_wait_click(1);
-  set_event_select(1+2*getmouse+4*getrelease);
-
-  while ( 1 ) 
-    {
-      /** first check if an event has been store in the queue while wait_for_click was 0 **/
-      if (choice) win=-1;
-      ok=0;
-      if (CheckClickQueue(&win,x1,yy1,ibutton,&motion,&release) == 1)  {
-	if ((release&&getrelease) || (motion&&getmouse) || ((motion==0)&&(release==0))){
-	  *iflag=win;
-	  ok=1;
-	  break;
-	}
-	if (choice) win=-1;
-      }
-      if(ok) break;
-
-      /* make the X and tk event loop */
-      C2F(sxevents)();
-      Sleep(1);
-
-      if ( ScilabXgc == (struct BCG *) 0 || ScilabXgc->CWindow == (HWND) 0)
-	{
-	  /* graphic window was deleted */
-	  *x1= 0 ;
-	  *yy1= 0;
-	  *ibutton=-100; 
-	  set_event_select(1+4);
-	  set_wait_click(0);
-	  return;
-	}
-
-      if ( dyn_men == 1 &&  C2F(ismenu)()==1 ) 
-	{
-	  int entry;
-	  C2F(getmen)(str,lstr,&entry);
-	  *ibutton = -2;
-	  *x1=0;
-	  *yy1=0;
-	  set_event_select(1+4);
-	  set_wait_click(0);
-	  return ;
-	}
-
-      if ( CtrlCHit(&textwin) == 1) 
-	{
-	  *x1= 0 ;
-	  *yy1= 0;
-	  *ibutton=0;
-	  break ;
-	}
-    }
-  set_event_select(1+4);
-  set_wait_click(0);
-}
- 
-/*-----------------------------------------------------------------------------------*/
 /*------------------------------------------------
   \encadre{Clear a rectangle }
   -------------------------------------------------*/
@@ -1037,11 +1035,7 @@ void C2F(setwindowpos)(x, y, v3, v4)
 }
 /*-----------------------------------------------------------------------------------*/
 /** To get the window size **/
-void C2F(getwindowdim)(verbose, x, narg,dummy)
-     integer *verbose;
-     integer *x;
-     integer *narg;
-     double *dummy;
+void C2F(getwindowdim)( integer * verbose, integer * x, integer * narg, double * dummy )
 {     
   *narg = 2;
   /* on renvoie la taille de la fenetre virtuelle */
@@ -1468,6 +1462,59 @@ static void idfromname(name1, num)
    }
 }
 /*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------
+\encadre{Routine for initialisation : string is a display name }
+--------------------------------------------------------------*/
+void set_c(integer coli)
+{
+  int i=0,id=0, width=0;
+  COLORREF col=RGB(0,0,0);
+  HBRUSH hBrush=NULL;
+  HBRUSH hBrushOld=NULL;
+  HPEN hpen=NULL;
+  HPEN hpenOld=NULL;
+  int style=0;
+
+  if (ScilabXgc->Colors == NULL)  return;
+
+  i= Max(0,Min(coli,ScilabXgc->Numcolors + 1));
+  ScilabXgc->CurColor = i ;
+
+  if ( ScilabXgc->CurDrawFunction !=  GXxor ) col = ScilabXgc->Colors[i];
+  else col = ScilabXgc->Colors[i] ^ ScilabXgc->Colors[ScilabXgc->NumBackground];
+
+  hBrush=CreateSolidBrush(col);
+  hBrushOld=SelectObject(hdc,hBrush);
+  if ( hBrushOld ) DeleteObject(hBrushOld);
+  ScilabXgc->hBrush = hBrush;
+
+  id =  ScilabXgc->CurDashStyle;
+  style=DashTab[id];
+
+  width = ScilabXgc->CurLineWidth;
+
+  if ( (style == PS_SOLID) || (width<=1) )
+  {
+    hpen = CreatePen(style,ScilabXgc->CurLineWidth,col);
+  }
+  else
+  {
+    LOGBRUSH logbrush;
+    logbrush.lbStyle = BS_SOLID;
+    logbrush.lbColor = col;
+    logbrush.lbHatch = 0;
+    hpen = ExtCreatePen(PS_GEOMETRIC|PS_ENDCAP_FLAT|style,width,&logbrush,0,NULL);
+  }
+
+  hpenOld=SelectObject(hdc,hpen);
+  if (hpenOld) DeleteObject(hpenOld);
+  ScilabXgc->hPen = hpen;
+
+  SetTextColor(hdc,col); 
+}
+
+
+/*-----------------------------------------------------------------------------------*/
 void C2F(setalufunction)(string)
      char *string;
 {     
@@ -1674,6 +1721,49 @@ void C2F(getlast)(verbose, num, narg,dummy)
   *narg=1;
 }
 /*-----------------------------------------------------------------------------------*/
+void C2F(setdash)(integer *value,integer *v2,integer *v3,integer *v4)
+{
+  static integer l3 ;
+  COLORREF col=RGB(0,0,0) ;
+  HPEN hpen=NULL;
+  HPEN hpenOld=NULL;
+  int id=0,width=0;
+
+  l3 = Max(0,Min(MAXDASH - 1,*value - 1));
+
+  width = ScilabXgc->CurLineWidth ;
+
+  if ( ScilabXgc->CurColorStatus == 1) 
+  {
+    id = ScilabXgc->CurColor;
+    if ( ScilabXgc->CurDrawFunction !=  GXxor ) col = ScilabXgc->Colors[id];
+    else col = ScilabXgc->Colors[id] ^ ScilabXgc->Colors[ScilabXgc->NumBackground];
+  }
+  else col=RGB(0,0,0);
+
+  {
+    int style = DashTab[l3];
+    if ( (style == PS_SOLID) || (width<=1) )
+    {
+      hpen = CreatePen(style,width,col); /** warning win95 only uses dot or dash with linewidth <= 1 **/
+    }
+    else
+    {
+      LOGBRUSH logbrush;
+      logbrush.lbStyle = BS_SOLID;
+      logbrush.lbColor = col;
+      logbrush.lbHatch = 0;
+      hpen = ExtCreatePen(PS_GEOMETRIC|PS_ENDCAP_FLAT|style,width,&logbrush,0,NULL);
+    }
+  }
+
+
+  hpenOld=SelectObject(hdc,hpen);
+  if ( hpenOld ) DeleteObject(hpenOld);
+  ScilabXgc->hPen = hpen;
+  ScilabXgc->CurDashStyle = l3;
+}
+/*-----------------------------------------------------------------------------------*/
 /*--------------------------------------
   \encadre{Line style }
   ---------------------------------------*/
@@ -1693,49 +1783,6 @@ void C2F(set_dash_or_color)(value, v2, v3, v4)
 {
   if ( ScilabXgc->CurColorStatus == 1) set_c(*value-1);
   else C2F(setdash)(value, v2, v3, v4);
-}
-/*-----------------------------------------------------------------------------------*/
-void C2F(setdash)(integer *value,integer *v2,integer *v3,integer *v4)
-{
-  static integer l3 ;
-  COLORREF col=RGB(0,0,0) ;
-  HPEN hpen=NULL;
-  HPEN hpenOld=NULL;
-  int id=0,width=0;
-
-  l3 = Max(0,Min(MAXDASH - 1,*value - 1));
-
-  width = ScilabXgc->CurLineWidth ;
-  
-  if ( ScilabXgc->CurColorStatus == 1) 
-  {
-    id = ScilabXgc->CurColor;
-    if ( ScilabXgc->CurDrawFunction !=  GXxor ) col = ScilabXgc->Colors[id];
-    else col = ScilabXgc->Colors[id] ^ ScilabXgc->Colors[ScilabXgc->NumBackground];
-  }
-  else col=RGB(0,0,0);
- 
-  {
-	int style = DashTab[l3];
-	if ( (style == PS_SOLID) || (width<=1) )
-	{
-		hpen = CreatePen(style,width,col); /** warning win95 only uses dot or dash with linewidth <= 1 **/
-	}
-	else
-	{
-		LOGBRUSH logbrush;
-		logbrush.lbStyle = BS_SOLID;
-		logbrush.lbColor = col;
-		logbrush.lbHatch = 0;
-		hpen = ExtCreatePen(PS_GEOMETRIC|PS_ENDCAP_FLAT|style,width,&logbrush,0,NULL);
-	}
-   }
-
-   
-  hpenOld=SelectObject(hdc,hpen);
-  if ( hpenOld ) DeleteObject(hpenOld);
-  ScilabXgc->hPen = hpen;
-  ScilabXgc->CurDashStyle = l3;
 }
 /*-----------------------------------------------------------------------------------*/
 static void C2F(set_dash_and_color)(value, v2, v3, v4)
@@ -1764,6 +1811,23 @@ static void C2F(set_line_style)(value, v2, v3, v4)
   }
 }
 /*-----------------------------------------------------------------------------------*/
+void C2F(getdash)( integer * verbose, integer * value, integer * narg, double * dummy)
+{
+  *narg =1 ;
+  *value =ScilabXgc->CurDashStyle+1;
+  if ( *verbose == 1) 
+  {
+    switch ( *value )
+    {
+    case 0: Scistring("\nLine style = Line Solid\n"); break ;
+    case 1: Scistring("\nLine style = DASH\n"); break ;
+    case 2: Scistring("\nLine style = DOT\n"); break ;
+    case 3: Scistring("\nLine style = DASHDOT\n"); break ;
+    case 4: Scistring("\nLine style = DASHDOTDOT\n"); break ;
+    }
+  }
+}
+/*-----------------------------------------------------------------------------------*/
 /** to get the current dash-style **/
 /* old version of getdash retained for compatibility */
 void C2F(get_dash_or_color)(verbose, value, narg,dummy)
@@ -1781,27 +1845,6 @@ void C2F(get_dash_or_color)(verbose, value, narg,dummy)
       return;
     }
   C2F(getdash)(verbose, value, narg,dummy);
-}
-
-void C2F(getdash)(verbose, value, narg,dummy)
-     integer *verbose;
-     integer *value;
-     integer *narg;
-     double *dummy; 
-{
-  *narg =1 ;
-  *value =ScilabXgc->CurDashStyle+1;
-  if ( *verbose == 1) 
-    {
-      switch ( *value )
-	{
-	case 0: Scistring("\nLine style = Line Solid\n"); break ;
-	case 1: Scistring("\nLine style = DASH\n"); break ;
-	case 2: Scistring("\nLine style = DOT\n"); break ;
-	case 3: Scistring("\nLine style = DASHDOT\n"); break ;
-	case 4: Scistring("\nLine style = DASHDOTDOT\n"); break ;
-	}
-    }
 }
 /*-----------------------------------------------------------------------------------*/
 static void C2F(get_dash_and_color)(verbose, value, narg,dummy)
@@ -1998,8 +2041,7 @@ integer sciGetwresize()
 /*-----------------------------------------------------------------------------------*/
 static int set_default_colormap_flag = 1;
 /*-----------------------------------------------------------------------------------*/
-int C2F(sedeco)(flag) 
-     int *flag;
+int C2F(sedeco)( int * flag )
 {
   set_default_colormap_flag = *flag;
   return(0);
@@ -2399,11 +2441,7 @@ void C2F(getcolormap)(verbose,num,narg,val)
 }
 /*-----------------------------------------------------------------------------------*/
 /** set and get the number of the background or foreground */
-void C2F(setbackground)(num, v2, v3, v4)
-     integer *num;
-     integer *v2;
-     integer *v3;
-     integer *v4;
+void C2F(setbackground)( integer * num, integer * v2, integer * v3, integer * v4)
 {
   if (ScilabXgc->CurColorStatus == 1)
     {
@@ -2441,11 +2479,7 @@ void C2F(getbackground)(verbose, num, narg,dummy)
 }
 /*-----------------------------------------------------------------------------------*/
 /** set and get the number of the background or foreground */
-void C2F(setforeground)(num, v2, v3, v4)
-     integer *num;
-     integer *v2;
-     integer *v3;
-     integer *v4;
+void C2F(setforeground)( integer * num, integer * v2, integer * v3, integer * v4)
 {
   if (ScilabXgc->CurColorStatus == 1)
     {
@@ -2655,6 +2689,37 @@ test(str,flag,verbose,x1,x2,x3,x4,x5)
 
 #endif 
 /*-----------------------------------------------------------------------------------*/
+void C2F(MissileGCGetorSet)(char *str,integer flag,integer *verbose,integer *x1,integer *x2,integer *x3,integer *x4,integer *x5,integer *x6,double  *dv1)
+{
+  integer i ;
+  for (i=0; i < NUMSETFONC ; i++)
+  {
+    integer j;
+    j = strcmp(str,MissileGCTab_[i].name);
+    if ( j == 0 ) 
+    {
+#ifdef _DEBUG
+      if (*verbose == 1)	 sciprint("\nGetting Info on %s\r\n",str);
+#endif
+      if (flag == 1)	 (MissileGCTab_[i].getfonc)(verbose,x1,x2,dv1);
+      else  (MissileGCTab_[i].setfonc)(x1,x2,x3,x4,x5,x6,dv1);
+      return;
+    }
+    else 
+    {
+      if ( j <= 0)
+      {
+        sciprint("\nUnknow X operator <%s>\r\n",str);
+        *x1=1;*x2=0;
+        return;
+      }
+    }
+  }
+  sciprint("\n Unknow X operator <%s>\r\n",str);
+  *x1=1;
+  *x2=0;
+}
+/*-----------------------------------------------------------------------------------*/
 void C2F(MissileGCget)(str, verbose, x1, x2, x3, x4, x5,dv1, dv2, dv3, dv4)
      char *str; 
      integer *verbose;
@@ -2680,37 +2745,6 @@ void C2F(MissileGCset)(str, x1, x2, x3, x4, x5, x6, dv1, dv2, dv3, dv4)
 {
   integer verbose=0 ;
   C2F(MissileGCGetorSet)(str,0L,&verbose,x1,x2,x3,x4,x5,x6,dv1);
-}
-/*-----------------------------------------------------------------------------------*/
-void C2F(MissileGCGetorSet)(char *str,integer flag,integer *verbose,integer *x1,integer *x2,integer *x3,integer *x4,integer *x5,integer *x6,double  *dv1)
-{
-	integer i ;
-	for (i=0; i < NUMSETFONC ; i++)
-	{
-		integer j;
-		j = strcmp(str,MissileGCTab_[i].name);
-		if ( j == 0 ) 
-		{
-			#ifdef _DEBUG
-			if (*verbose == 1)	 sciprint("\nGetting Info on %s\r\n",str);
-			#endif
-			if (flag == 1)	 (MissileGCTab_[i].getfonc)(verbose,x1,x2,dv1);
-			else  (MissileGCTab_[i].setfonc)(x1,x2,x3,x4,x5,x6,dv1);
-			return;
-		}
-		else 
-		{
-			if ( j <= 0)
-			{
-				sciprint("\nUnknow X operator <%s>\r\n",str);
-				*x1=1;*x2=0;
-				return;
-			}
-		}
-	}
-	sciprint("\n Unknow X operator <%s>\r\n",str);
-	*x1=1;
-	*x2=0;
 }
 /*-----------------------------------------------------------------------------------*/
 /*-------------------------------------------------------
@@ -2836,11 +2870,7 @@ FontAlias fonttab[] ={
 /* F.Leray: the algo. changed. to allow nicer rotation for the font characters string */
 /* For more explanations, see http://msdn.microsoft.com/library/default.asp?url=/library/en-us/gdi/fontext_2tf8.asp */
 /*-----------------------------------------------------------------------------------*/
-void C2F(DispStringAngle)(x0, yy0, string, angle)
-     integer *x0;
-     integer *yy0;
-     char *string;
-     double *angle;
+void C2F(DispStringAngle)( integer * x0, integer * yy0, char * string, double * angle)
 {
 
   HFONT hfnt, hfntPrev;
@@ -3650,32 +3680,6 @@ struct BCG *AddNewWindowToList()
   return newWin ;
 }
 /*-----------------------------------------------------------------------------------*/
-/** destruction d'une fenetre **/
-void DeleteSGWin( integer intnum )
-{
-  int curwin;
-  if ( ScilabXgc == NULL ) { return ; }
-  curwin = ScilabXgc->CurWindow ;
-  DeleteWindowToList( intnum ) ;
-  /*XXXX: jpc 2000: I also delete the scale list associated to that window */
-  del_window_scale(intnum);
-  if ( curwin  == intnum )
-    {
-      if ( isWindowListEmpty() )
-        {
-          /** No more graphic window ; **/
-          ScilabXgc = NULL ;
-        }
-      else
-        {
-          /** fix the new current graphic window **/
-          ScilabXgc = getFirstWindow() ;
-          ResetScilabXgc() ;
-          get_window_scale(ScilabXgc->CurWindow,NULL);
-        }
-    }
-}
-/*-----------------------------------------------------------------------------------*/
 /** detruit la fenetre num dans la liste des fenetres */
 void DeleteWindowToList( integer num )
 {
@@ -3689,7 +3693,7 @@ void DeleteWindowToList( integer num )
   DestroyWindow(window->Statusbar);
   CloseGraphMacros( window ) ;
   XgcFreeColors( window );
-  
+
   /* allocated in wgmenu.c:UpdateFileGraphNameMenu */
   if ( window->lpgw->szMenuName != NULL )
   {
@@ -3717,6 +3721,32 @@ void DeleteWindowToList( integer num )
   removeWindowItem( window ) ;
 }
 /*-----------------------------------------------------------------------------------*/
+/** destruction d'une fenetre **/
+void DeleteSGWin( integer intnum )
+{
+  int curwin;
+  if ( ScilabXgc == NULL ) { return ; }
+  curwin = ScilabXgc->CurWindow ;
+  DeleteWindowToList( intnum ) ;
+  /*XXXX: jpc 2000: I also delete the scale list associated to that window */
+  del_window_scale(intnum);
+  if ( curwin  == intnum )
+    {
+      if ( isWindowListEmpty() )
+        {
+          /** No more graphic window ; **/
+          ScilabXgc = NULL ;
+        }
+      else
+        {
+          /** fix the new current graphic window **/
+          ScilabXgc = getFirstWindow() ;
+          ResetScilabXgc() ;
+          get_window_scale(ScilabXgc->CurWindow,NULL);
+        }
+    }
+}
+/*-----------------------------------------------------------------------------------*/
 /********************************************
  * Get Window number wincount ( or 0 )
  ********************************************/
@@ -3731,59 +3761,6 @@ HWND GetWindowNumber(wincount)
   else
     return( (HWND) 0);
 }
-/*-----------------------------------------------------------------------------------*/
-/*--------------------------------------------------------------
-  \encadre{Routine for initialisation : string is a display name }
-  --------------------------------------------------------------*/
-void set_c(integer coli)
-{
-  int i=0,id=0, width=0;
-  COLORREF col=RGB(0,0,0);
-  HBRUSH hBrush=NULL;
-  HBRUSH hBrushOld=NULL;
-  HPEN hpen=NULL;
-  HPEN hpenOld=NULL;
-  int style=0;
-
-  if (ScilabXgc->Colors == NULL)  return;
-
-  i= Max(0,Min(coli,ScilabXgc->Numcolors + 1));
-  ScilabXgc->CurColor = i ;
-
-  if ( ScilabXgc->CurDrawFunction !=  GXxor ) col = ScilabXgc->Colors[i];
-  else col = ScilabXgc->Colors[i] ^ ScilabXgc->Colors[ScilabXgc->NumBackground];
-
-  hBrush=CreateSolidBrush(col);
-  hBrushOld=SelectObject(hdc,hBrush);
-  if ( hBrushOld ) DeleteObject(hBrushOld);
-  ScilabXgc->hBrush = hBrush;
-
-  id =  ScilabXgc->CurDashStyle;
-  style=DashTab[id];
-
-  width = ScilabXgc->CurLineWidth;
-
-  if ( (style == PS_SOLID) || (width<=1) )
-  {
-	hpen = CreatePen(style,ScilabXgc->CurLineWidth,col);
-  }
-  else
-  {
-	LOGBRUSH logbrush;
-	logbrush.lbStyle = BS_SOLID;
-	logbrush.lbColor = col;
-	logbrush.lbHatch = 0;
-	hpen = ExtCreatePen(PS_GEOMETRIC|PS_ENDCAP_FLAT|style,width,&logbrush,0,NULL);
-  }
-
-  hpenOld=SelectObject(hdc,hpen);
-  if (hpenOld) DeleteObject(hpenOld);
-  ScilabXgc->hPen = hpen;
-
-  SetTextColor(hdc,col); 
-}
-
- 
 /*-----------------------------------------------------------------------------------*/
 /** Initialyze the dpy connection and creates graphic windows **/
 /** If v2 is not a nul pointer *v2 is the window number to create **/
@@ -4143,7 +4120,7 @@ void setcolordef( integer screenc )
 /* Utilise le ScilabXgc courant pour reinitialiser le gc XWindow */
 /* cela est utilis'e quand on change de fenetre graphique        */
 
-void ResetScilabXgc ()
+void ResetScilabXgc( void )
 { 
   integer i,j, clip[4];
   i= ScilabXgc->FontId;
@@ -4332,11 +4309,7 @@ void C2F(bitmap)(string, w, h)
  * fontsize ( <<load>> the font if necessary )
  ***********************************/
 
-void C2F(xsetfont)(fontid, fontsize, v3, v4)
-     integer *fontid;
-     integer *fontsize;
-     integer *v3;
-     integer *v4;
+void C2F(xsetfont)( integer * fontid, integer * fontsize, integer * v3, integer * v4 )
 { 
   integer i,fsiz;
   i = Min(FONTNUMBER-1,Max(*fontid,0));
@@ -4369,11 +4342,7 @@ static HFONT getcurfont()
  * To get the  id and size of the current font 
  **********************************************/
 
-void  C2F(xgetfont)(verbose, font, nargs,dummy)
-     integer *verbose;
-     integer *font;
-     integer *nargs;
-     double *dummy;
+void C2F(xgetfont)( integer * verbose, integer * font, integer * nargs, double * dummy)
 {
   *nargs=2;
   font[0]= ScilabXgc->FontId ;
@@ -4391,11 +4360,7 @@ void  C2F(xgetfont)(verbose, font, nargs,dummy)
  * To set the current mark ( a symbol in font symbol)
  **********************************************/
 
-void C2F(xsetmark)(number, size, v3, v4)
-     integer *number;
-     integer *size;
-     integer *v3;
-     integer *v4;
+void C2F(xsetmark)( integer * number, integer * size, integer * v3, integer * v4)
 { 
   ScilabXgc->CurHardSymb = Max(Min(SYMBOLNUMBER-1,*number),0);
   ScilabXgc->CurHardSymbSize = Max(Min(FONTMAXSIZE-1,*size),0);
@@ -4406,11 +4371,7 @@ void C2F(xsetmark)(number, size, v3, v4)
  * To get the current mark id 
  **********************************************/
 
-void C2F(xgetmark)(verbose, symb, narg,dummy)
-     integer *verbose;
-     integer *symb;
-     integer *narg;
-     double *dummy;
+void C2F(xgetmark)( integer * verbose,  integer *symb, integer * narg, double * dummy)
 {
   *narg =2 ;
   symb[0] = ScilabXgc->CurHardSymb ;
@@ -4536,6 +4497,23 @@ static void C2F(loadfamily_n)(name, j)
     strcpy((*FontTab)[*j].fname,"Courier New");
 }
 /*-----------------------------------------------------------------------------------*/
+void CleanFonts()
+{
+  int i,j;
+  for ( j= 0 ; j < FONTNUMBER  ; j++ )
+  {
+    if ( (*FontTab)[j].ok == 1) 
+    {
+      (*FontTab)[j].ok = 0;
+      for ( i = 0; i < FONTMAXSIZE ; i++)
+      {
+        DeleteObject( (*FontTab)[j].hf[i]) ;
+        (*FontTab)[j].hf[i] = (HFONT) 0;
+      }
+    }
+  }
+}
+/*-----------------------------------------------------------------------------------*/
 /********************************************
  * switch to printer font 
  ********************************************/
@@ -4556,23 +4534,6 @@ void SciG_Font(void)
   FontTab = &FontInfoTab;
   SymbOffset = &ListOffset;
   scale_font_size = 1; 
-}
-/*-----------------------------------------------------------------------------------*/
-void CleanFonts()
-{
-  int i,j;
-  for ( j= 0 ; j < FONTNUMBER  ; j++ )
-    {
-      if ( (*FontTab)[j].ok == 1) 
-	{
-	  (*FontTab)[j].ok = 0;
-	  for ( i = 0; i < FONTMAXSIZE ; i++)
-	    {
-	      DeleteObject( (*FontTab)[j].hf[i]) ;
-	      (*FontTab)[j].hf[i] = (HFONT) 0;
-	    }
-	}
-    }
 }
 /*-----------------------------------------------------------------------------------*/
 /********************************************
@@ -4672,11 +4633,7 @@ static POINT *points;
 static unsigned nbpoints;
 #define NBPOINTS 256 
 /*-----------------------------------------------------------------------------------*/
-int C2F(store_points)(n, vx, vy, onemore)
-     integer n;
-     integer *vx;
-     integer *vy;
-     integer onemore;
+int C2F(store_points)( integer n, integer * vx, integer * vy, integer onemore)
 { 
   integer i,n1;
   if ( onemore == 1) n1=n+1;
@@ -4722,7 +4679,7 @@ void deletePoints( void )
   }
 }
 /*-----------------------------------------------------------------------------------*/
-int C2F(AllocVectorStorage)()
+int C2F(AllocVectorStorage)( void )
 {
   nbpoints = NBPOINTS;
   points = (POINT *) MALLOC( nbpoints * sizeof (POINT)); 
@@ -4771,8 +4728,10 @@ static int clip_point( integer x,integer y)
 */
 
 
-void set_clip_box(xxleft,xxright,yybot,yytop)
-     integer xxleft,xxright,yybot,yytop;
+void set_clip_box( integer xxleft ,
+                   integer xxright,
+                   integer yybot  ,
+                   integer yytop  )
 {
   xleft=xxleft;
   xright=xxright;
@@ -4786,8 +4745,15 @@ void set_clip_box(xxleft,xxright,yybot,yytop)
 */
 
 void
-clip_line(x1, yy1, x2, y2, x1n, yy1n, x2n, y2n, flag)
-     integer x1, yy1, x2, y2, *flag, *x1n, *yy1n, *x2n, *y2n;
+clip_line( integer   x1  ,
+           integer   yy1 ,
+           integer   x2  ,
+           integer   y2  ,
+           integer * x1n ,
+           integer * yy1n,
+           integer * x2n ,
+           integer * y2n ,
+           integer * flag )
 {
   integer x, y, dx, dy, x_intr[2], y_intr[2], count, pos1, pos2;
 

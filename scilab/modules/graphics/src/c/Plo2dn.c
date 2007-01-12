@@ -7,7 +7,6 @@
 #include <stdio.h>
 #include <math.h>
 #include "math_graphics.h"
-#include "Graphics.h" 
 #include "PloEch.h"
 
 #define spINSIDE_SPARSE
@@ -20,7 +19,8 @@
 #include "BuildObjects.h"
 #include "Axes.h"
 #include "BasicAlgos.h"
-
+#include "clipping.h"
+#include "sciprint.h"
 
 #include "MALLOC.h" /* MALLOC */
 

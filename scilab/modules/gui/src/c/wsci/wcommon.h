@@ -185,7 +185,6 @@ extern int C2F(stimer)(void);
 extern int C2F(sigbas)(integer *);
 /*-----------------------------------------------------------------------------------*/
 /* handlers */
-extern void  reset_scig_handler __PARAMS((void));
 extern void  reset_scig_click_handler __PARAMS((void));
 extern void  reset_scig_deletegwin_handler __PARAMS((void));
 extern void  reset_scig_command_handler __PARAMS((void));

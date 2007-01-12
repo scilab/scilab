@@ -16,7 +16,6 @@ for entities handling
 #include <math.h>
 #include <string.h>
 #include "math_graphics.h" 
-#include "Graphics.h"
 #include "Axes.h"
 
 #include "GetProperty.h"
@@ -26,6 +25,7 @@ for entities handling
 #include "Xcall1.h"
 #include "MALLOC.h"
 #include "sciprint.h"
+#include "clipping.h"
 
 
 /* functions used by the modified version : */

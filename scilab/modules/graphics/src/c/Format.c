@@ -15,11 +15,12 @@
 #include <string.h>
 #include <stdio.h>
 #include "math_graphics.h"
-#include "Graphics.h" 
 #include "Format.h"
 #include "MALLOC.h"
 #include "GetProperty.h"
 #include "BasicAlgos.h"
+#include "sciprint.h"
+#include "clipping.h"
 
 /* Add those lines for FD algo on Theticks */
 #define ROUND(x) (x<0?ceil((x)-0.5):floor((x)+0.5))
@@ -52,18 +53,7 @@ static int  gradu2   __PARAMS((double *xmax, double *thewidth, double *scal));
 static void grds     __PARAMS((double *xminv, double *xmaxv, double *gr, int *nticks, double *thewidth, int *tst0, double *scal));
 static int  agrandir __PARAMS((double *xmin, double *xmax, double *xlow, double *xup));
 
-/*----------------------------------------------------
- * ChoixFormatE returns a format ("%.*f" or "%.*e")
- * in fmt given xmin,xmax,pas. 
- *   fmt : character string 
- * fmt gives a format which can be used to display
- * number in range xmin:step:xmax  
- * Exemple : ChoixFormatE(format,min,max,step);
- *           fprintf(format,min+k*step);
- * The format is searched so as to give distinct values 
- * for the numeric values xmin + k*xpas in [xmin,xmax] 
- * and give enough precision. 
- *------------------------------------------------*/
+
 
 void ChoixFormatE(char *fmt, double xmin, double xmax, double xpas)
 {
@@ -140,11 +130,6 @@ static int Fsepare(char *fmt, integer dec, integer *l, double xmin, double xmax,
     }
   return(1);
 }
-
-/*--------------------------------------------
- * same as ChoixFormatE when numbers are given through an 
- * array xx[0:nx-1];
- *------------------------------------------------*/
 
 void ChoixFormatE1(char *fmt, double *xx, integer nx)
 {

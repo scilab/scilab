@@ -45,6 +45,14 @@
  extern void  C2F(queryfamily)();
  extern void C2F(xinfo)();
  
+/** set and get the number of the background or foreground */
+void C2F(setforeground)( integer * num, integer * v2, integer * v3, integer * v4) ;
+void C2F(setbackground)( integer * num, integer * v2, integer * v3, integer * v4) ;
+void C2F(xsetfont)( integer * fontid, integer * fontsize, integer * v3, integer * v4 ) ;
+void C2F(xgetfont)( integer * verbose, integer * font, integer * nargs, double * dummy) ;
+void C2F(xsetmark)( integer * number, integer * size, integer * v3, integer * v4) ;
+void C2F(xgetmark)( integer * verbose,  integer *symb, integer * narg, double * dummy) ;
+
  extern void C2F(getwins)( integer * Num, integer Ids[] , integer * flag) ;
 
  extern void getcolordef( integer * screenc ) ;
@@ -68,6 +76,63 @@ void  ReleaseWinHdc( void ) ;
 static int flag_DO; /* F.Leray 16.02.04 flag global pour la fonction recursive DrawObj*/
 #endif
 /*-------------------------------------------------------------------------------*/
+
+void set_clip_box( integer xxleft ,
+                   integer xxright,
+                   integer yybot  ,
+                   integer yytop  ) ;
+
+void clip_line( integer   x1  ,
+                integer   yy1 ,
+                integer   x2  ,
+                integer   y2  ,
+                integer * x1n ,
+                integer * yy1n,
+                integer * x2n ,
+                integer * y2n ,
+                integer * flag ) ;
+
+
+int CheckColormap( int * m ) ;
+
+void get_r( int i, float * r ) ;
+void get_g( int i, float * g ) ;
+void get_b( int i, float * b ) ;
+
+
+void C2F(getwindowdim)( integer * verbose, integer * x, integer * narg, double * dummy ) ;
+
+int C2F(sedeco)( int * flag ) ;
+
+int C2F(store_points)( integer n, integer * vx, integer * vy, integer onemore) ;
+int C2F(AllocVectorStorage)( void ) ;
+
+/*--------------------------------------------------------------------------------------------*/
+
+void SetWinhdc( void ) ;
+
+void SciMouseCapture( void ) ;
+void SciMouseRelease( void ) ;
+
+void DeleteSGWin( integer intnum ) ;
+
+void CPixmapResize1( void ) ;
+
+void SciG_Font_Printer(int scale) ;
+
+/**
+ * Utilise le ScilabXgc courant pour reinitialiser le gc XWindow
+ * cela est utilis'e quand on change de fenetre graphique
+ */
+
+void ResetScilabXgc( void ) ;
+void SciG_Font(void)  ;
+void wininfo(char *fmt,...) ;
+
+void C2F(DispStringAngle)( integer * x0, integer * yy0, char * string, double * angle) ;
+
+/*--------------------------------------------------------------------------------------------*/
+
 
 #endif /* __PERIWIN_H__ */
 

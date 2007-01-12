@@ -6,7 +6,6 @@
 /*------------------------------------------------------------------------*/
 
 #include "sci_xarcs.h"
-#include "Graphics.h"
 #include "BuildObjects.h"
 #include "gw_graphics.h"
 #include "SetProperty.h"

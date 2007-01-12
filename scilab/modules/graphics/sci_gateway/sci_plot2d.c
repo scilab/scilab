@@ -11,7 +11,6 @@
 #include "GetCommandArg.h"
 #include "machine.h"
 #include "stack-c.h"
-#include "Graphics.h"
 #include "BuildObjects.h"
 #include "gw_graphics.h"
 #include "DestroyObjects.h"

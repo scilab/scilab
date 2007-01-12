@@ -7,6 +7,8 @@
 #include "Errors.h"
 #include "WindowList.h"
 #include "periScreen.h"
+#include "Actions.h"
+#include "periScreen.h"
 
 #include "win_mem_alloc.h" /* MALLOC */
 /*-----------------------------------------------------------------------------------*/

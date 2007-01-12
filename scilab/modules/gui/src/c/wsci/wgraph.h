@@ -53,7 +53,6 @@
 #include "wresource.h"
 #include "wcommon.h"
 #include "scigraphic.h"
-#include "Graphics.h"
 
 #include "DestroyObjects.h"
 #include "GetProperty.h"
