@@ -35,7 +35,6 @@
 #include "GetProperty.h"
 #include "DestroyObjects.h"
 #include "SGraph.h"
-#include "Graphics.h"
 #include "xs2file.h" /* for scig_toPs */
 #include "Xcall1.h" /* dr_ */
 #include "WindowList.h"

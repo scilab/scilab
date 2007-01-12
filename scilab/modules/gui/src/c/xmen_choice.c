@@ -9,7 +9,6 @@
 #include "x_charproc.h" /* Scistring */
 #include "men_Sutils.h" /* ScilabMStr2C */
 #include "sciprint.h"
-#include "Graphics.h" /* get_pixel */
 
 extern int IsPrivateCmap();
 extern void ShellFormCreate(char *shellname, Widget *shell, Widget *form, Display **dpyh);
