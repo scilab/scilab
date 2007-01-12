@@ -125,34 +125,10 @@ void set_cf_type(int val)
 
 
 
-/**sciGetDC
- * Returns the HDC of the figure window (not the parent)
- */
-#ifdef _MSC_VER
-HDC        /* BCG Type priWin !! decommente par SS ???? */ 
-sciGetDC (sciPointObj * pobj)
-{
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_FIGURE:
-    case SCI_SUBWIN:
-      return (HDC)TryToGetDC (sciGetScilabXgc (pobj)->CWindow);
-      break;
-    default:
-      return sciGetDC (sciGetParent (pobj));
-      break;
-    }
-  return (HDC ) NULL;        /* Type HDC ! "periWin-bgc"*/
-}
-#endif
 
-
-void sciRedrawFigure()
+void sciRedrawFigure( void )
 {
-  sciSetReplay (TRUE);
   sciDrawObj (sciGetCurrentFigure ());
-  sciSetReplay (FALSE);
-   
 }
 
 void sciRedrawF(value)
@@ -171,10 +147,7 @@ void sciRedrawF(value)
     {
       C2F (dr) ("xget", "window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,6L);
       C2F (dr) ("xset", "window",value,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,6L);
-      /* sciSetCurrentObj(figure); */ /*F.Leray 25.03.04*/
-      sciSetReplay (TRUE);
       sciDrawObj (figure);
-      sciSetReplay (FALSE);
       C2F (dr) ("xset", "window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,6L);
     }
 }
@@ -192,30 +165,6 @@ void sciXbasc()
     sciSetCurrentObj(masousfen);
     sciSetOriginalSubWin (mafigure, masousfen);}
   sciDrawObj(sciGetCurrentFigure ());      
-} 	
-
-/* Completely destroy the handle hierearchy */
-/* when switching from new to old figure_style */
-/* see intgset.c */
-void sciXClearFigure()
-{  
-  static sciPointObj *mafigure;
-  struct BCG * XGC = (struct BCG*) NULL;
-  int v = 1, verb = 0;
-  double dv = 0.;
-
-  mafigure= (sciPointObj *) sciGetCurrentFigure(); 
-
-
-#ifdef WITH_TK
-            /* close ged to prevent errors when using it */
-            sciDestroyGed( sciGetNum( mafigure ) ) ;
-#endif
-
-  DestroyAllGraphicsSons((sciPointObj *)mafigure);
-  DestroyFigure (mafigure); 
-  C2F(dr)("xget","gc",&verb,&v,&v,&v,&v,&v,(double *)&XGC,&dv,&dv,&dv,5L,10L);
-  XGC->mafigure = (sciPointObj *) NULL;
 } 	
 
 void sciXclear()
@@ -239,31 +188,6 @@ void sciXclear()
   sciSetSelectedSubWin (tmpsousfen);
   sciDrawObj(sciGetCurrentFigure ());      
 }
-
-void sciXdraw()
-{
-  static sciPointObj *masousfen, *tmpsousfen;
-  sciSons *psonstmp; 
-   
-  tmpsousfen= (sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure ());
-  psonstmp = sciGetSons (sciGetCurrentFigure ());
-  
-  
-  while (psonstmp != (sciSons *) NULL)	
-    {  
-      if(sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN)
-	{
-          masousfen= (sciPointObj *)psonstmp->pointobj;
-          sciSetSelectedSubWin (masousfen);
-          sciSetdrawmode (TRUE); 
-	}
-      psonstmp = psonstmp->pnext;
-    }
-  sciSetSelectedSubWin (tmpsousfen); 
-  sciDrawObj(sciGetCurrentFigure ());
-           
-}
-
 
 /* update the scale and retrieve the bounding box of the axis */
 void updateScale3d( sciPointObj * pobj    ,
@@ -466,12 +390,6 @@ BOOL IsDownAxes(sciPointObj *pobj)
       cof=10.0;
     else
       cof = 5.0; /* F.Leray : hard fixed here */
-    /* Correction Warnings Attention Precision*/
-    /*   cof= (double) (Min(5.0,ceil(Max( */
-    /* 				      abs((int)ppsubwin->axes.xlim[1]-(int)ppsubwin->axes.xlim[0])/ */
-    /* 				      abs((int)ppsubwin->axes.ylim[1]-(int)ppsubwin->axes.ylim[0]), */
-    /* 				      abs((int)ppsubwin->axes.ylim[1]-(int)ppsubwin->axes.ylim[0])/ */
-    /* 				      abs((int)ppsubwin->axes.xlim[1]-(int)ppsubwin->axes.xlim[0]))))); */
     if (cof == 0 ) cof =5;
     if ((alpha <=(-90.0+cof) ) && (alpha >= (-90.0-cof))) 
       return TRUE;
@@ -1045,20 +963,6 @@ int ComputeCorrectXindAndInsideUD(double Teta,double Alpha, double *dbox, intege
   sciGetAxisBox( dbox, xbox, ybox, zbox ) ;
  
   sciAxesVerticesIndices( InsideU, InsideD, xbox, ybox, xind ) ;
-
-  return 0;
-}
-
-/* don't waste time on %NaN */
-int CheckIfiisNan(int j, int dim, int * tab)
-{
-  int i;
-
-  for(i=0;i<dim;i++)
-  {
-    if(tab[i] == j)
-      return -1;
-  }
 
   return 0;
 }
@@ -1731,7 +1635,6 @@ int AdaptGraduationsOnYBottomLeft(int iof, int x, int y, int size, integer *Tics
       else{
 	vx[1]=vx[0]+barlengthx;
 	vy[1]=vy[0]+barlengthy;
-/* 	posi[0] = inint( xm+2*barlengthx-rect[2]/2);  */
 	posi[0] = inint( xm+2*barlengthx-rect[2]);
 	posi[1]=inint( ym + 2*barlengthy + rect[3]);}
       
@@ -1927,13 +1830,6 @@ int AdaptGraduationsOnXBottomLeft(int iof, int x, int y, int size, integer *Tics
       char foo[256]; 
       double xtmp = ppsubwin->axes.xgrads[i];
 		  
-/*       if(xtmp<xminval || xtmp>xmaxval)  */
-/* 	{ */
-/* 	  /\*   sciprint("je rejete la valeur: %lf\n\n",xtmp); *\/ */
-/* 	  continue; /\* cas ou TL est ON et on a des graduations qui ne seront pas affichees de tte facon *\/ */
-/* 	  /\* donc autant ne pas aller plus loin dans l'algo... *\/ */
-/* 	} */
-		  
       sprintf(foo,c_format,xtmp);
 
       /***************************************************************/
@@ -1953,17 +1849,6 @@ int AdaptGraduationsOnXBottomLeft(int iof, int x, int y, int size, integer *Tics
       C2F(dr)("xstringl",foo,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       
 
-/*       if (IsDownAxes(psubwin)){ */
-/* 	vx[1]=vx[0]; */
-/* 	vy[1]=vy[0]+iof/2; */
-/* 	posi[0] = inint(xm-rect[2]/2);  */
-/* 	posi[1]=inint( vy[0] + iof + rect[3]);} */
-/*       else{ */
-/* 	vx[1]=vx[0]+barlengthx; */
-/* 	vy[1]=vy[0]+barlengthy; */
-/* 	posi[0] = inint( xm+2*barlengthx); */
-/* 	posi[1]=inint( ym + 2*barlengthy + rect[3]);} */
-		      
       if (IsDownAxes(psubwin)){
 	vx[1]=vx[0];
 	vy[1]=vy[0]+iof/2;
@@ -2525,9 +2410,6 @@ int AdaptGraduationsOnXBottomRight(int iof, int x, int y, int size, integer *Tic
     
     ppsubwin->axes.nxgrads = compteur;
     
-    /* Nb of subtics computation and storage */
-    /* ppsubwin->axes.nbsubtics[0] = ComputeNbSubTicsFor3dUse(psubwin,ppsubwin->axes.nxgrads,ppsubwin->logflags[0], */
-/* 							   ppsubwin->axes.xgrads,Max((int) abs((13-compteur)/2),2)); */
     ppsubwin->axes.nbsubtics[0] = ComputeNbSubTicsFor3dUse(psubwin,
                                                            ppsubwin->axes.nxgrads,
                                                            ppsubwin->logflags[0],
@@ -2538,9 +2420,6 @@ int AdaptGraduationsOnXBottomRight(int iof, int x, int y, int size, integer *Tic
     ppsubwin->axes.xgrads[0] = grads_tmp[0];
     ppsubwin->axes.xgrads[1] = grads_tmp[lastxindex];
     ppsubwin->axes.nxgrads = 2;
-    /* /\* Nb of subtics computation and storage *\/ */
-/*     ppsubwin->axes.nbsubtics[0] = ComputeNbSubTicsFor3dUse(psubwin,ppsubwin->axes.nxgrads,ppsubwin->logflags[0], */
-/* 							   ppsubwin->axes.xgrads,Max((int) abs((13-compteur)/2),2));  */
     ppsubwin->axes.nbsubtics[0] = ComputeNbSubTicsFor3dUse(psubwin,
                                                            ppsubwin->axes.nxgrads,
                                                            ppsubwin->logflags[0],
@@ -2557,12 +2436,6 @@ int AdaptGraduationsOnXBottomRight(int iof, int x, int y, int size, integer *Tic
 	
 	ppsubwin->axes.xgrads[3] = grads_tmp[lastxindex]; /* exact max */
 	ppsubwin->axes.nxgrads = 4;
-        /* Nb of subtics computation and storage */
-	/* ppsubwin->axes.nbsubtics[0] = ComputeNbSubTicsFor3dUse(psubwin, */
-/*                                                                ppsubwin->axes.nxgrads, */
-/*                                                                'n', */
-/* 							       ppsubwin->axes.xgrads, */
-/*                                                                Max((int) abs((13-compteur)/2),2) ); */
         ppsubwin->axes.nbsubtics[0] = ComputeNbSubTicsFor3dUse(psubwin,
                                                                ppsubwin->axes.nxgrads,
                                                                'n',

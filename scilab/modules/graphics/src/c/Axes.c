@@ -32,9 +32,6 @@
 
 static double  x_convert __PARAMS((char xy_type,double x[] ,int i));
 static double  y_convert __PARAMS((char xy_type,double x[] ,int i));
-extern void NumberFormat __PARAMS((char *str,integer k,integer a));
-static void aplotv1  __PARAMS((char*));
-static void aplotv2  __PARAMS((char*));
 
 
 static void axesplot(char* ,sciPointObj*);
@@ -189,275 +186,6 @@ void DrawAxesBackground( void )
 
 }
 
-/*--------------------------------------------------------------
- *  aplot: used to draw a box + x and y ticks and scales 
- *  xmin,ymin,xmax,ymax : are the boundary values
- *  xnax and ynax gives the ticks numbers ex: nax=[3,7];
- *  will give 8 big ticks (7 intervals) with numbers and 
- *  each big interval will be divided in 3 small intervals.
- *----------------------------------------------------------------*/
-
-static void aplotv2(char *strflag)
-{
-  char dir = 'l';
-  int nx,ny;
-  int fontsize=-1,textcolor=-1,ticscolor=-1 ; /*==> use default values  */
-  int fontstyle= 0; 
-  int seg =0;
-  double x[4],y[4],x1,y1_;
-  char xstr,ystr;  
-  char dirx = 'd';
-  int i;
-  sciSubWindow * ppSubWin = NULL ;
-  static sciPointObj * psubwin;
-  char c = (strlen(strflag) >= 3) ? strflag[2] : '1';
-  x[0] = Cscale.frect[0]; x[1] = Cscale.frect[2] ; x[2]=Cscale.Waaint1[1];
-  y[0]=  Cscale.frect[1]; y[1] = Cscale.frect[3] ; y[2]=Cscale.Waaint1[3]; 
-
-  /* Comments on the x and y arrays:
-   x = [xmin,xmax,nb_subtics_on_x_axis]
-   y = [ymin,ymax,nb_subtics_on_y_axis]
-  */
-
-  /** Cscale.frect[4]= xmin ymin xmax ymax **/ 
-
-  
-
-
-  /* initialize only there since in old style no subwin */
-  ppSubWin = pSUBWIN_FEATURE(psubwin) ;
-  Cscale.xtics[2] = ppSubWin->axes.xlim[2];
-  Cscale.ytics[2] = ppSubWin->axes.ylim[2]; 
-
-  /* Remis F.Leray 06.05.04 */
-  for(i=0 ; i<4 ; i++ )
-    Cscale.frect[i]=  ppSubWin->FRect[i] ;
-
-  Cscale.xtics[1] = (Cscale.frect[2] / (exp10( Cscale.xtics[2]))) ; 
-  Cscale.xtics[0] = (Cscale.frect[0]  / (exp10( Cscale.xtics[2]))) ;
-  Cscale.xtics[3] = inint(Cscale.xtics[1]-Cscale.xtics[0]);
-  Cscale.ytics[1] = (Cscale.frect[3] / (exp10( Cscale.ytics[2]))) ; 
-  Cscale.ytics[0] = (Cscale.frect[1]  / (exp10( Cscale.ytics[2]))) ;
-  Cscale.ytics[3] = inint(Cscale.ytics[1]-Cscale.ytics[0]);
-
-
-  switch ( c ) 
-    { 
-    case '3' : /* right axis */ 
-      x1 = x[1]; y1_ = y[0]; dir = 'r'; 
-      break;
-    case '4' : /* centred axis */
-      seg=1;
-      x1 = (x[0]+x[1])/2.0;y1_=(y[0]+y[1])/2.0; 
-      break ;
-    case '5': /* centred at (0,0) */
-      seg=1;
-      x1 = y1_ = 0.0; 
-      break;
-    case '1' : /* left axis */
-    default : 
-      x1 = x[0]; y1_ = y[0];   
-      break;
-    } 
-   
-  if ( c != '4' )
-    {  
-      xstr = ppSubWin->axes.xdir;
-      switch (xstr) 
-	{
-	case 'u':  
-	  y1_ = y[1];
-	  dirx='u';   
-	  break;
-	case 'c':  
-	  y1_=(y[0]>0.0) ? y[0]: 0.0;
-	  y1_=(y[1]<0.0) ? y[0]: y1_; 
-	  seg =1; 
-	  dirx ='d';                           
-	  break;
-	default :  
-	  y1_= y[0];;
-	  dirx ='d'; 
-	  break;
-	}
-      ystr = ppSubWin->axes.ydir;
-      switch (ystr) 
-	{
-	case 'r': 
-	  x1=x[1];
-	  dir='r';    
-	  break;
-	case 'c': 
-	  x1=(x[0]>0.0) ? x[0]: 0.0;
-	  x1=(x[1]<0.0) ? x[0]: x1; 
-	  seg =1; 
-	  dir ='l';                              
-	  break; 
-	default : 
-	  x1= x[0];
-	  dir ='l';  
-	  break;
-	}
-    }
-  if ( c != '4' && c != '5' ) {
-    if ( ppSubWin->axes.rect == BT_OFF || ppSubWin->axes.rect == BT_HIDDEN_AXIS )
-    {
-      seg=1; /* seg=1 means not to draw a rectangle (cases wherexy-axis is centered in the middle of the frame or in (0,0))*/
-    }
-    else
-    {
-      /** frame rectangle **/
-      C2F(dr)("xrect","v",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2],&Cscale.WIRect1[3], 
-	      PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-    }
-  }
-
-  Cscale.Waaint1[0]= ppSubWin->axes.subint[0]+1;
-  Cscale.Waaint1[1]= (integer) (ppSubWin->axes.xlim[3]); /*SS 02/01/03 */ /* Give the number of intervals on x*/
-  Cscale.Waaint1[2]= ppSubWin->axes.subint[1]+1; 
-  Cscale.Waaint1[3]= (integer) (ppSubWin->axes.ylim[3]);/*SS 02/01/03 */  /* Give the number of intervals on y*/
-
-  /* Above: Number of tics on x-axis: Cscale.Waaint1[0]*/
-  /*        Number of tics on y-axis: Cscale.Waaint1[2]*/
-
-  /* Above: Number of subtics on x-axis: Cscale.Waaint1[1]*/
-  /*        Number of subtics on y-axis: Cscale.Waaint1[3]*/
-
-  ticscolor = ppSubWin->axes.ticscolor;
-  textcolor=sciGetFontForeground(psubwin);
-  fontsize=sciGetFontDeciWidth(psubwin)/100;
-  /* F.Leray 08.04.04 New data for Axes Font*/
-  fontstyle=sciGetFontStyle(psubwin);
-
- 
-  /** x-axis **/
-  ny=1,nx=3;
-  Sci_Axis(dirx,'r',x,&nx,&y1_,&ny,NULL,Cscale.Waaint1[0],NULL,fontsize,textcolor,fontstyle,ticscolor,Cscale.logflag[0],seg,0);
-  /** y-axis **/
-  ny=3,nx=1;
-  Sci_Axis(dir,'r',&x1,&nx,y,&ny,NULL,Cscale.Waaint1[2],NULL,fontsize,textcolor,fontstyle,ticscolor,Cscale.logflag[1],seg,0);
-}
-
-static void aplotv1(strflag)
-     char *strflag;
-{
-  char dir = 'l';
-  char c = (strlen(strflag) >= 3) ? strflag[2] : '1';
-  int nx,ny,seg=0,i;
-  int fontsize = -1 ,textcolor = -1 ,ticscolor = -1 ; /* default values */
-  int fontstyle= 0;
-  double  x1,y1_;
-  char xstr,ystr; 
-  char dirx = 'd';
-  double CSxtics[4], CSytics[4];
-  sciSubWindow * ppSubWin = NULL ;
-  static sciPointObj * psubwin;
-  seg=0; 
-  
-  switch ( c ) 
-    { 
-    case '3' : /* right axis */
-      x1= Cscale.xtics[1]*exp10(Cscale.xtics[2]);
-      y1_= Cscale.ytics[0]*exp10(Cscale.ytics[2]);
-      dir = 'r';
-      break;
-    case '4' : /* centred axis */
-      seg=1;
-      x1= (Cscale.xtics[0]+Cscale.xtics[1])*exp10(Cscale.xtics[2])/2.0;
-      y1_= (Cscale.ytics[0]+Cscale.xtics[1])*exp10(Cscale.ytics[2])/2.0;
-      break ;
-    case '5': /* centred at (0,0) */
-      seg=1;
-      x1 = y1_ = 0.0; 
-      break;
-    case '1' : /* left axis */
-    default :  
-      x1= Cscale.xtics[0]*exp10(Cscale.xtics[2]);
-      y1_= Cscale.ytics[0]*exp10(Cscale.ytics[2]);
-      break;
-    }
-       
-  if ( c != '4' )
-    {  
-      xstr = ppSubWin->axes.xdir;
-      switch (xstr) 
-	{
-	case 'u':  
-	  y1_=Cscale.ytics[1]*exp10(Cscale.ytics[2]);
-	  dirx='u';   
-	  break;
-	case 'c':  
-	  y1_=(Cscale.ytics[0]*exp10(Cscale.ytics[2])>0.0)?Cscale.ytics[0]*exp10(Cscale.ytics[2]): 0.0;
-	  y1_=(Cscale.ytics[1]*exp10(Cscale.ytics[2])<0.0)?Cscale.ytics[0]*exp10(Cscale.ytics[2]): y1_; 
-	  seg =1; 
-	  dirx ='d';                           
-	  break;
-	default :  
-	  y1_= Cscale.ytics[0]*exp10(Cscale.ytics[2]);
-	  dirx ='d'; 
-	  break;
-	}
-      ystr=pSUBWIN_FEATURE(psubwin)->axes.ydir;
-      switch (ystr) 
-	{
-	case 'r': 
-	  x1=Cscale.xtics[1]*exp10(Cscale.xtics[2]);
-	  dir='r';    
-	  break;
-	case 'c': 
-	  x1=(Cscale.xtics[0]*exp10(Cscale.xtics[2])>0.0)?Cscale.xtics[0]*exp10(Cscale.xtics[2]): 0.0;
-	  x1=(Cscale.xtics[1]*exp10(Cscale.xtics[2])<0.0)?Cscale.xtics[0]*exp10(Cscale.xtics[2]): x1; 
-	  seg =1; 
-	  dir ='l';                              
-	  break; 
-	default : 
-	  x1= Cscale.xtics[0]*exp10(Cscale.xtics[2]);
-	  dir ='l';  
-	  break;
-	}
-    }
-  
-  if ( c != '4' && c != '5' ) {
-    if ( ppSubWin->axes.rect == BT_OFF || ppSubWin->axes.rect == BT_HIDDEN_AXIS )
-    {
-      seg=1;
-    }
-    else
-    {
-      /** frame rectangle **/
-      C2F(dr)("xrect","v",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2],&Cscale.WIRect1[3], 
-	      PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-    }
-  }
-  ppSubWin = pSUBWIN_FEATURE(psubwin) ;
-  Cscale.Waaint1[0]= ppSubWin->axes.subint[0]+1;
-  Cscale.Waaint1[1]= (integer) (ppSubWin->axes.xlim[3]); /*SS 02/01/03 */
-  Cscale.Waaint1[2]= ppSubWin->axes.subint[1]+1; 
-  Cscale.Waaint1[3]= (integer) (ppSubWin->axes.ylim[3]);/*SS 02/01/03 */
-
-  ticscolor = ppSubWin->axes.ticscolor;
-  textcolor=sciGetFontForeground(psubwin);
-  fontsize=sciGetFontDeciWidth(psubwin)/100;
-  fontstyle=sciGetFontStyle(psubwin);
- 
-  /* Handle CSxtics and CSytics instead of directly overwrite */
-  /* Cscale.xtics and Cscale.ytics */
-
-  for (i=0;i<4;i++) CSxtics[i] = Cscale.xtics[i];
-  for (i=0;i<4;i++) CSytics[i] = Cscale.ytics[i];
-
-
-  /** x-axis **/
-  ny=1,nx=4;
-  Sci_Axis(dirx,'i',CSxtics,&nx,&y1_,&ny,NULL,Cscale.Waaint1[0],
-	   NULL,fontsize,textcolor,fontstyle,ticscolor,Cscale.logflag[0],seg,0);
-  
-  /** y-axis **/
-  ny=4,nx=1;
-  Sci_Axis(dir,'i',&x1,&nx,CSytics,&ny,NULL,Cscale.Waaint1[2],
-	   NULL,fontsize,textcolor,fontstyle,ticscolor,Cscale.logflag[1],seg,0);
-}
-
 
 /*-------------------------------------------------------------
  * Sci_Axis : 
@@ -494,13 +222,6 @@ static void aplotv1(strflag)
  *   seg_flag : 0 or 1, flag which control the drawing of the segment associated to the axis 
  *            if 1 the segment is drawn 
  *-------------------------------------------------------------*/
-
-void sci_axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny,
-              char *str[], int subtics, char *format, int fontsize, int textcolor, 
-              int fontstyle, int ticscolor, char logflag, int seg_flag)
-{
-  Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontstyle,ticscolor,logflag,seg_flag,0);
-}
 
 void Sci_Axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny,
               char *str[], int subtics, char *format, int fontsize, int textcolor, 
@@ -557,7 +278,7 @@ void Sci_Axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny,
   /* Pb here, dim of x and y can be lesser than 4 (ie in example_eng.tst : nx = 6 and ny = 1) F.Leray 25.02.04
   x and y are either double x[3] (resp. y[3]) or simply a double !  F.Leray 05.03.04
   So a test on x[3] (resp. y[3]) is ALWAYS bad!!
-  NO!! It depends on the xy_type as follow (see in aplotv1):*/
+  NO!! It depends on the xy_type as follow */
   /*
   *   xy_type = 'v' (for vector) or 'r' (for range) 
   *         'v' means that tics position are given by a vector 
@@ -1108,33 +829,6 @@ static double y_convert(char xy_type, double *y , int i)
   return 0.0; 
 }
 
-
-
-/* Format pour imprimer un nombre de la forme k10^a */
-
-extern void NumberFormat(char *str, integer k, integer a)
-{
-  if ( k==0)
-    {
-      sprintf(str,"0");
-    }
-  else
-    {
-      switch (a)
-	{
-	case -1: sprintf(str,"%.1f",(double)k/10.0);break;
-	case -2: sprintf(str,"%.2f",(double)k/100.0);break;
-	case 0 : sprintf(str,"%d",(int)k);break;
-	case 1 : sprintf(str,"%d0",(int)k);break;
-	case 2 : sprintf(str,"%d00",(int)k);break;
-	default: sprintf(str,"%de%d",(int)k,(int)a) ;break;
-
-	}
-    }
-
-}
-
-
 static void axesplot(char * strflag, sciPointObj * psubwin)
 {
   char dir = 'l';
@@ -1145,7 +839,6 @@ static void axesplot(char * strflag, sciPointObj * psubwin)
   double  x1,y1_;
   char xstr,ystr; 
   char dirx = 'd';
- /*  double CSxtics[4], CSytics[4]; */
 
 
   int lastxindex = 0, lastyindex = 0;
@@ -1773,20 +1466,10 @@ static void DrawXTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
       nbtics = ppsubwin->axes.nxgrads;
       
 
-      /* test ici */
-    /*   for(i=0;i<nbtics;i++) sciprint("xgrads(%d) = %lf\n",i,ppsubwin->axes.xgrads[i]); */
-/*       sciprint("\n\n"); */
-
       for(i=0;i<nbtics;i++)
 	{
 	  char foo[256]; 
 	  double xtmp = ppsubwin->axes.xgrads[i];
-	  
-	  /* if ( xtmp < xminval || xtmp > xmaxval )  */
-/*           { */
-/*             continue; /\* cas ou TL est ON et on a des graduations qui ne seront pas affichées de tte facon *\/ */
-/*                       /\* donc autant ne pas aller plus loin dans l'algo... *\/ */
-/*           } */
           
           /* chack that xtmp < xminval || xtmp > xmalval */
           /* but if xtmp is very close to xminval or xmaxval we display it */
@@ -1864,11 +1547,6 @@ static void DrawXTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
       
 
     }
-  
-
-  
-
-  
 
 }
 
@@ -2116,12 +1794,10 @@ static void DrawYTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
   char logflag = ppsubwin->logflags[1];
   
   xm[0] = XScale(xy); /* F.Leray modified le 28.09.04 */
-  /*  xm[0] = (ppsubwin->logflags[0]=='n')?XScale(xy):XLogScale(xy);*/
   
   /* at least 1 pixels */
   barlength =  Max( (integer) (Cscale.WIRect1[2]/75.0), 2 ) ;
   
-  /* ppsubwin->firsttime_y = TRUE */;
 
   if(ppsubwin->axes.auto_ticks[1] == FALSE)
     {
@@ -2137,10 +1813,6 @@ static void DrawYTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
 	  if(ytmp<yminval || ytmp>ymaxval) continue; /* cas ou TL est ON et on a des graduations qui ne seront pas affichées de tte facon */
 	                                             /* donc autant ne pas aller plus loin dans l'algo... */
 
-	  /* Rajout 24.09.04 */
-/* 	  if(logflag == 'l') */
-/* 	    ytmp = log10(ytmp); */
-	  /* fin Rajout 24.09.04 */
 
 	  /***************************************************************/
 	  /************************* COMMON PART *************************/
@@ -2174,14 +1846,7 @@ static void DrawYTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
             C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&angle, PD0,PD0,PD0,0L,0L);
           }
 	  YGradPosition(psubwin,posi[0],rect[2]);
-	  /*   if ( logflag == 'l' ) */
-	  /* 	    { */
-	  /* 	      C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
-	  /* 	      C2F(dr)("xstring","10",(posi[0] -= logrect[2],&posi[0]), */
-	  /* 		      (posi[1] += logrect[3],&posi[1]), */
-	  /* 		      PI0,&flag,PI0,PI0,&angle,PD0,PD0,PD0,0L,0L); */
-	  /* 	      C2F(dr)("xset","font",fontid,&smallersize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
-	  /* 	    } */
+
           if ( ppsubwin->axes.axes_visible[1] )
           {
             if ( textcolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -2210,11 +1875,6 @@ static void DrawYTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
 	  char foo[256];
 	  double ytmp = ppsubwin->axes.ygrads[i];
 	  
-	  /* if ( ytmp < yminval || ytmp > ymaxval )  */
-/*           { */
-/*             continue; /\* cas ou TL est ON et on a des graduations qui ne seront pas affichées de tte facon *\/ */
-/*             /\* donc autant ne pas aller plus loin dans l'algo... *\/ */
-/*           } */
           
           /* chack that xtmp < xminval || xtmp > xmalval */
           /* but if xtmp is very close to xminval or xmaxval we display it */
@@ -2246,30 +1906,6 @@ static void DrawYTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
 	      posi[0]=inint(xm[0] - 1.2*barlength - rect[2]);
 	      vx[0]= xm[0];vx[1]= xm[0] - barlength;
 	    }
-
-
-
-/* 	  if ( pos == 'r' )  */
-/* 	    { */
-/* 	      posi[0]=inint( xm[0] + 1.2*barlength); */
-/* 	      vx[0]= xm[0];vx[1]= xm[0]+barlength; */
-/* 	    } */
-/* 	  else  */
-/* 	    {  */
-/* 	      posi[0]=inint(xm[0] - 1.2*barlength - rect[2]); */
-/* 	      vx[0]= xm[0];vx[1]= xm[0] - barlength; */
-/* 	    } */
-          
-          /* if ( !CheckDisplay( 1.5, 1.5, */
-/*                               ppsubwin->logflags[1], */
-/*                               foo, posi, */
-/*                               fontid, oldRect ) ) */
-/*           { */
-/*             continue ; */
-/*           } */
-
-/*           /\* update old_rect *\/ */
-/*           getTicksLabelBox( 1.5, 1.5, foo, posi, fontid, old_rect ) ; */
           
           
           if ( ppsubwin->axes.axes_visible[1] )

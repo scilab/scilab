@@ -37,8 +37,6 @@ extern sciPointObj *paxesmdl;
 
 extern int cf_type;
 
-/* extern sciClipTab ptabclip[15]; */
-static BOOL modereplay = FALSE;
 
 /**sciGetPointerToFeature
  * Returns the pointer to features structure from this object Used only for functions FREE or to use void pointer
@@ -3818,17 +3816,6 @@ sciGetCurrentScilabXgc ()
   C2F(dr)("xget","gc",&v,&v,&v,&v,&v,&v,(double *)&XGC,&dv,&dv,&dv,5L,10L); /* ajout cast ???*/
   CurrentScilabXgc=(struct BCG *)XGC;
   return (struct BCG *) CurrentScilabXgc;
-}
-
-
-/**sciGetReplay
- * @memo returns the variable "we are in replay mode"
- */
-BOOL
-sciGetReplay ()
-{
-  return modereplay;
-
 }
 
 

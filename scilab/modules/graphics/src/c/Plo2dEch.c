@@ -1357,9 +1357,7 @@ int zoom_box(double *bbox,int *x_pixel, int *y_pixel)
     psonstmp = psonstmp->pnext;
   }
   sciSetSelectedSubWin(tmpsousfen);
-  sciSetReplay(1);
   sciDrawObj(sciGetCurrentFigure());
-  sciSetReplay(0);
 
   return 0;
 }
@@ -1429,9 +1427,7 @@ extern void unzoom()
     psonstmp = psonstmp->pnext;
   }
 
-  sciSetReplay(1);
   sciDrawObj(sciGetCurrentFigure());
-  sciSetReplay(0);
 }
 
 extern void unzoom_one_axes(sciPointObj *psousfen)
@@ -1465,9 +1461,7 @@ extern void unzoom_one_axes(sciPointObj *psousfen)
     C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
     pSUBWIN_FEATURE(psousfen)->axes.ylim[2]=puiss;
 
-    sciSetReplay(1);
     sciDrawObj(sciGetCurrentFigure());
-    sciSetReplay(0);
   }
 }
 

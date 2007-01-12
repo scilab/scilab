@@ -50,16 +50,13 @@ extern int cf_type ; /* used by gcf to determine if current figure is a graphic 
 
 #ifdef _MSC_VER
 extern HFONT sciCreateFont (HDC hdc, char *szFaceName, int iDeciPtHeight, int iDeciPtWidth, int iAttributes, BOOL fLogRes);  /* DRAWINGS */
-extern HDC sciGetDC (sciPointObj * pobj);     /* DRAWINGS */
 /* extern HDC sciGetHDC (sciPointObj * pobj);    /\* DRAWINGS *\/ */ /* inexistant in Entities.c */
 #endif
 
 extern void sciRedrawFigure(void); /* DRAWINGS */
 extern void sciRedrawF(int *num); /* DRAWINGS */
 extern void sciXbasc(void);  /* DRAWINGS */
-extern void sciXClearFigure(void); /* DRAWINGS */
 extern void sciXclear(void); /* DRAWINGS */
-extern void sciXdraw(void);  /* DRAWINGS */
  
 /* 3 next are in plo3d.c*/
 extern void SetEch3d1(double *xbox, double *ybox, double *zbox, double *bbox, double *teta, double *alpha, integer flag); /* DRAWINGS */
@@ -98,7 +95,6 @@ extern int CheckDisplay(double fact_h, double fact_w, char logflag, char *foo,in
 
 extern int IsInsideRectangle(int * rect, int *point);
 
-extern int CheckIfiisNan(int j, int dim, int * tab); /* DRAWINGS */
 extern int ComputeGoodTrans3d( sciPointObj * psubwin, int n, int *xm, int *ym, double * fx, double *fy, double *fz); /* DRAWINGS */
 extern void DrawAxesIfRequired(sciPointObj*); /* DRAWINGS */
 extern void DrawAxes(sciPointObj*); /* DRAWINGS */
@@ -114,9 +110,6 @@ extern int ComputeXIntervals(sciPointObj *pobj, char xy_type, double **vector, i
 
 /* Other functions coming from Entities.c (old file) */
 
-
-/*F.Leray : Format pour imprimer un nombre de la forme k10^a ; cf. Axes.c*/
-extern void NumberFormat __PARAMS((char *str,integer k,integer a));
 
 /**DJ.Abdemouche 2003**/
 

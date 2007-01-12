@@ -37,9 +37,6 @@
 
 #include "MALLOC.h"
 
-BOOL modereplay = FALSE;
-
-
 /*------------------------------------------------------------------------------------*/
 /* setSubWinAngles                                                                    */
 /* Modify the viewing angles of a subwindow                                           */
@@ -3742,18 +3739,6 @@ sciSetCurrentFigure (sciPointObj * mafigure)
   return sciInitCurrentFigure( mafigure ) ;
   
 }                                                               
-
-
-/**sciSetReplay
- * @memo sets the variable "we are in replay mode"
- */
-int
-sciSetReplay (BOOL value)
-{
-  modereplay = value;
-  return 0;
-
-}
 
 
 
