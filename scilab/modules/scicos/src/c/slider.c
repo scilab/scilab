@@ -3,7 +3,6 @@
  */
 #include <stdio.h>
 #include "core_math.h"
-#include "../../graphics/includes/Graphics.h" 
 
 extern int C2F(getgeom)(double *);
 
