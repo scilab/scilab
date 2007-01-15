@@ -743,10 +743,10 @@ AC_ARG_WITH(ocaml,
 AC_ARG_WITH(scicos,
     [  --without-scicos        do not compile scicos ])
 
-if test "$without_scicos" = yes; then 
+if test "$with_scicos" = yes; then
    AC_DEFINE([WITHOUT_SCICOS], [], [Without SCICOS])
 fi
-AM_CONDITIONAL(SCICOS, test "$without_scicos" != no)
+AM_CONDITIONAL(SCICOS, test "$with_scicos" = yes)
 
 #################
 ## PVM
@@ -1167,8 +1167,8 @@ echo "Uses local xaw (--with-local-xaw) ............... : $with_local_xaw"
 echo "Use PVM (--with-pvm) ............................ : $with_pvm"
 echo "PVM include (--with-pvm-include) ................ : $PVMINCLUDE"
 echo "PVM library (--with-pvm-library) ................ : $PVMLIBDIR"
-echo "Don't use TCL/TK (--without-tk) ................. : $with_tk"
-echo "Don't compile with Ocaml (--without-ocaml) ...... : $with_ocaml"
+echo "Do not use TCL/TK (--without-tk) ................. : $with_tk"
+echo "Do not compile with Ocaml (--without-ocaml) ...... : $with_ocaml"
 echo "TCL include (--with-tcl-include) ................ : $USER_TCL_INC_PATH"
 echo "TCL library (--with-tcl-library) ................ : $USER_TCL_LIB_PATH"
 echo "TK include (--with-tk-include) .................. : $USER_TK_INC_PATH"
@@ -1176,6 +1176,7 @@ echo "TK library (--with-tk-library) .................. : $USER_TK_LIB_PATH"
 echo "Atlas library (--with-atlas-library) ............ : $USER_ATLAS_LIB_PATH"
 echo "Sablotron processor (--with-sablotron) .......... : $with_sablotron"
 echo "Xsltproc processor (--with-xsltproc) ............ : $with_xsltproc"
+echo "Do not compile Scicos (--without-scicos) ........ : $without_scicos"
 echo ""
 echo "GUI : $GUI"
 echo ""
