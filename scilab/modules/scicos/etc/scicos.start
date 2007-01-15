@@ -33,8 +33,8 @@ clear pathhelp pathdemos get_absolute_file_path add_help_chapter LANGUAGE;
       ~isdef("%scicos_short") | ~isdef("%scicos_help") | ..
       ~isdef("%scicos_display_mode") | ~isdef("modelica_libs") | ..
       ~isdef("scicos_pal_libs") ) then
-   [scicos_pal,%scicos_menu,%scicos_short,%scicos_help,..
-   %scicos_display_mode,modelica_libs,scicos_pal_libs]=initial_scicos_tables();
+//   [scicos_pal,%scicos_menu,%scicos_short,%scicos_help,..
+//   %scicos_display_mode,modelica_libs,scicos_pal_libs]=initial_scicos_tables();
    clear initial_scicos_tables
 end
 // Define Scicos data tables ===========================================

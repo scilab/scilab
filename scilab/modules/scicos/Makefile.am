@@ -5,6 +5,10 @@
 
 # SUBDIRS = src/ocaml/
 
+pkglib_LTLIBRARIES = libsciscicos.la
+
+if SCICOS
+
 SCICOS_C_SOURCES = src/c/cstblk4.c \
 src/c/readau.c \
 src/c/variable_delay.c \
@@ -209,7 +213,6 @@ CLEANFILES=includes/blocks.h build/Cblocknames build/Fblocknames
 
 libsciscicos_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 #libsciscicos_la_LDFLAGS = -lf2c
-pkglib_LTLIBRARIES = libsciscicos.la
 
 libsciscicos_la_SOURCES = $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(SCICOS_FORTRAN_SOURCES_EXT) $(SCICOS_C_SOURCES_EXT)
 
@@ -1476,3 +1479,16 @@ macros/scicos_blocks/Branching \
 macros/scicos_blocks/Misc \
 macros/scicos_blocks/Threshold \
 macros/scicos
+
+else
+
+NO_SCICOS_C_SOURCES = src/c/noscicos/noscicos.c
+
+libsciscicos_la_SOURCES = $(NO_SCICOS_C_SOURCES)
+
+libsciscicos_la_includedir=$(sciincludedir)/scicos
+libsciscicos_la_include_HEADERS = src/c/noscicos/resource.h
+
+
+
+endif
