@@ -1139,6 +1139,7 @@ int C2F(setworksize)(integer *number,integer *size)
 	     fname);
     return FALSE_ ;
   }
+  *istk(iadr(*Lstk(lw1)))=0;
   *Lstk(lw1+1) = *Lstk(lw1) + *size ;
   C2F(intersci).ntypes[*number - 1] = '$';
   C2F(intersci).iwhere[*number - 1] = *Lstk(lw1);
