@@ -43,4 +43,21 @@ void scig_replay(integer win_num) ;
  */
 void scig_loadsg(int win_num, char *filename) ;
 
+/* 
+ * Basic Replay : expose graphics i.e 
+ * if we have a pixmap we can perform a wshow 
+ * else we perform a sgig_replay 
+ */
+void scig_expose(integer win_num) ;
+
+/**
+ * Redraw graphic window win_num  after resizing 
+ */
+void scig_resize(integer win_num) ;
+
+/*
+ * graphic Window raise 
+ */
+void scig_raise(integer win_num) ;
+
 #endif /* _ACTIONS_H_ */

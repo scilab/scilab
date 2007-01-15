@@ -70,6 +70,8 @@ void C2F(getwindowdim)( integer * verbose, integer * x, integer * narg, double *
 
 int C2F(sedeco)( int * flag ) ;
 
+void CPixmapResize1(void) ;
+
 /*---------------------END------------------------------*/
 #endif /* __PERIX11_H__ */
 

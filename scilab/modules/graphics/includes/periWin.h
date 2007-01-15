@@ -131,6 +131,8 @@ void wininfo(char *fmt,...) ;
 
 void C2F(DispStringAngle)( integer * x0, integer * yy0, char * string, double * angle) ;
 
+void CPixmapResize1( void ) ;
+
 /*--------------------------------------------------------------------------------------------*/
 
 

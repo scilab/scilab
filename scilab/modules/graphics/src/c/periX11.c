@@ -760,6 +760,7 @@ static void xget_viewport(integer *verbose, integer *x, integer *narg, double *d
   *narg = 2;
   if ( ScilabXgc->CurResizeStatus != 1) 
     {
+      
       SciViewportGet(ScilabXgc,x,x+1) ;
     }
   else 
