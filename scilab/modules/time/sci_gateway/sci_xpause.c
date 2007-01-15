@@ -3,6 +3,10 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
 #include "sci_xpause.h"
+#ifdef HAVE_USLEEP
+#include <unistd.h>
+#endif
+
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(sci_xpause) _PARAMS((char *fname,unsigned long fname_len))
 {

@@ -3,7 +3,7 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include <stdio.h>
 #include "machine.h"
-
+#include "realtime.h"
 #if _MSC_VER
 	#include <windows.h>
 #else

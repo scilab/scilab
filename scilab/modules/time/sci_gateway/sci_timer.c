@@ -3,12 +3,12 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include "sci_timer.h"
-/*-----------------------------------------------------------------------------------*/
-extern int C2F(timer)(double *etime);
+#include "timer.h"
+
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_timer) _PARAMS((char *fname,unsigned long fname_len))
 {
-	static int l1,n1,m1;
+	static int l1,n1;
 	double timeval=0;
 	
 	Rhs = Max(0, Rhs);

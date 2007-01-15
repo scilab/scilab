@@ -7,16 +7,8 @@
 #if _MSC_VER
 #include "ExceptionMessage.h"
 #endif
+#include "gw_time.h"
 /*-----------------------------------------------------------------------------------*/
-/* interface for the previous function Table */ 
-/*-----------------------------------------------------------------------------------*/ 
-extern int C2F(sci_getdate) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_calendar) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_timer) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_sleep) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_xpause) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_realtimeinit) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_realtime) _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/ 
 static intTimeTable Tab[]={
     {C2F(sci_getdate),"getdate"},

@@ -3,6 +3,7 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include <stdio.h>
+#include <time.h>
 
 #ifndef _MSC_VER
 	#include <sys/time.h>
@@ -11,8 +12,11 @@
 	#include <winbase.h> /* header du compteur haute résolution */
 #endif 
 
-#include <time.h>
 #include "machine.h"
+#include "timer.h"
+
+
+
 /*-----------------------------------------------------------------------------------*/
 #if _MSC_VER
 	static __int64 i64UserTick1;

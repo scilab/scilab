@@ -5,11 +5,13 @@
 	#define _USE_32BIT_TIME_T 1
 #endif
 /*-----------------------------------------------------------------------------------*/
-#include "machine.h"
 
 #include <time.h>
 #include <locale.h>
 #include <stdio.h>
+
+#include "machine.h"
+#include "sciprint.h"
 
 #if _MSC_VER
 	#include <sys/types.h> 
@@ -35,9 +37,6 @@ except every 100th isn't, and every 400th is).  */
 	#endif
 #endif
 /*-----------------------------------------------------------------------------------*/
-#if _MSC_VER
-extern void sciprint __PARAMS((char *fmt,...));
-#endif
 
 static int week_number __PARAMS ((struct tm *tp));
 void C2F(scigetdate) __PARAMS ((time_t *dt, int *ierr));
