@@ -4365,7 +4365,7 @@ static void DrawMark(integer *x, integer *y)
  * Allocation and storing function for vectors of X11-points
  *------------------------------------------------------------------------*/
 
-static XPoint *points;
+static XPoint *points = NULL ;
 static XPoint *get_xpoints(void) { return(points); }
 
 int C2F(store_points)(integer n, integer *vx, integer *vy, integer onemore)
@@ -4394,11 +4394,23 @@ int C2F(store_points)(integer n, integer *vx, integer *vy, integer onemore)
 
 static int ReallocVector(integer n)
 {
-  if (( points = graphic_alloc(8,n,sizeof(XPoint))) == 0) 
-    { 
-      sciprint(MESSAGE5); return 0;
-    }
-  return 1;
+  if ( points == NULL )
+  {
+    points = MALLOC( n * sizeof(XPoint) ) ;
+  }
+  else
+  {
+    points = REALLOC( points, n * sizeof(XPoint) ) ;
+  }
+
+  if ( points == NULL )
+  {
+     sciprint(MESSAGE5);
+     return 0;
+  }
+  
+  return 1 ;
+
 }
 
 void deletePoints( void )
