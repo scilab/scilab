@@ -14,9 +14,11 @@
  *  modifications pour le champs dim en int32 maintenant
  */
 
-#include "stack-c.h"
+
 #include <math.h>
 #include <stdlib.h>
+#include "stack-c.h"
+#include "hmops.h"
 
 #if _MSC_VER
 #undef min
@@ -484,7 +486,7 @@ static int create_index_vector(int pos, int pos_ind, int *mn,
 	  *mn = 0; *ind_max = -1;
 	  return 1;
 	}
-      else if ( ipas < 0  &&  ifin <= 0   ||  ipas > 0  &&  ideb <= 0 )
+      else if ( (ipas < 0  &&  ifin <= 0)   ||  (ipas > 0  &&  ideb <= 0) )
 	{
 	  return 0;    /* at least one index will be <= 0 => error */
 	}

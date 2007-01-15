@@ -1,23 +1,16 @@
+#include <string.h>
 #include "stack-c.h"
 #define memused(it,mn) ((((mn)*( it % 10))/sizeof(int))+1)
 #include "stack-c.h"
-
-#include <string.h>
+#include "stcreate.h"
 
 /* Table of constant values */
 static integer c17 = 17;
 static integer c1 = 1;
 static integer c4 = 4;
 
-#ifdef _MSC_VER
-int sttyp(ivt, job, nf, fnames);
-int creonevoid(slw,lw);
-int crelistofvoids(slw,lw,nels);
-#endif
 
-int C2F(stcreate)(lw, nz, sz, nf, fnames, retval)
-integer *lw, *nz, *sz, *nf, *retval;
-char *fnames[];
+int C2F(stcreate)(integer *lw, integer *nz, integer *sz, integer *nf, char *fnames[], integer *retval)
 {
     integer next,k,lr,nels;
 
@@ -84,8 +77,8 @@ char *fnames[];
     *Lstk(*lw+1)=l;
     return 1; 
 } 
-int creonevoid(slw,lw)
-     integer *slw, *lw;
+
+int creonevoid(integer *slw,integer *lw)
 {
   int il;
   il = iadr(*slw);
@@ -97,8 +90,8 @@ int creonevoid(slw,lw)
   *lw = sadr(il);
   return 0;
 }
-int crelistofvoids(slw,lw,nels)
-     integer *slw, *lw, *nels;
+
+int crelistofvoids(integer *slw,integer *lw,integer *nels)
 {
   int il,k;
   il = iadr(*slw);
@@ -120,8 +113,7 @@ int crelistofvoids(slw,lw,nels)
   return 0;
 }
 
-int sttyp(ivt, job, nf, fnames)
-     int *nf;     int *ivt;     char *job;     char *fnames[];
+int sttyp(int *ivt, char *job, int *nf, char *fnames[])
 {
   static int l; int ls,k,shft,stp,Job;
 
