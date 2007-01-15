@@ -284,7 +284,6 @@ src/c/Champ.c \
 src/c/StringMatrix.c \
 src/c/FeC.c \
 src/c/gsort.c \
-src/c/Plo2dn.c \
 src/c/Plo3dn.c \
 src/c/Actions.c \
 src/c/Plo2dEch.c \
@@ -384,7 +383,6 @@ sci_gateway/sci_drawaxis.c \
 sci_gateway/sci_demo.c \
 sci_gateway/sci_plot2d1.c \
 sci_gateway/sci_xrect.c \
-sci_gateway/sci_contour.c \
 sci_gateway/sci_xclea.c \
 sci_gateway/sci_draw.c \
 sci_gateway/sci_xg2ps.c \
@@ -845,7 +843,6 @@ includes/sci_xchange.h \
 includes/sci_demo.h \
 includes/periFig.h \
 includes/ObjectStructure.h \
-includes/sci_contour.h \
 includes/sci_draw.h \
 includes/sci_plot3d.h \
 includes/sci_copy.h \
