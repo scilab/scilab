@@ -26,9 +26,6 @@
 #include "sciCall.h"
 
 extern BOOL update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);
-#ifdef _MSC_VER
-extern void Scistring (char *str);
-#endif
 
 int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer *n2,integer *style,char *strflag,char *legend,double *brect,integer *aaint, BOOL flagNax, integer lstr1,integer lstr2);
 

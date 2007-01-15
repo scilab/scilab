@@ -717,6 +717,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\get_viewport_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\get_visible_property.c"
 				>
 			</File>
@@ -1687,6 +1691,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\getHandleProperty\set_view_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_viewport_property.c"
 				>
 			</File>
 			<File

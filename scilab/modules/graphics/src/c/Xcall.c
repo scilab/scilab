@@ -115,10 +115,6 @@ inline
 #endif
 #endif
 
-#ifdef _MSC_VER
-extern void Scistring (char *str);
-#endif
-
 static unsigned int hash (register const char *str, register unsigned int len)
 {
   static const unsigned char asso_values[] =

@@ -28,9 +28,6 @@ extern double C2F(dsort)();
 extern char GetDriver(void);
 extern int Check3DPlots(char *, integer *);
 extern int scilab_shade(integer *polyx, integer *polyy, integer *fill, integer polysize, integer flag);
-#ifdef _MSC_VER
-extern void Scistring (char *str);
-#endif
 
 /** PGEOX and PGEOY are like GEOX or GEOY in PloEch.h but we keep values in xx1 and yy1 for finite check **/
 static double xx1,yy1;

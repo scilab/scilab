@@ -5236,7 +5236,7 @@ BOOL sciGetIsAutoDrawable( sciPointObj * pobj )
 }
 /*-------------------------------------------------------------------------------------------*/
 /**
- * To retreive the type of grid for each dimension
+ * To retrieve the type of grid for each dimension
  */
 void sciGetGridStyle( sciPointObj * pObj, int * xStyle, int * yStyle, int * zStyle )
 {
@@ -5252,6 +5252,33 @@ void sciGetGridStyle( sciPointObj * pObj, int * xStyle, int * yStyle, int * zSty
     *xStyle = -1 ;
     *yStyle = -1 ;
     *zStyle = -1 ;
+  }
+}
+/*-------------------------------------------------------------------------------------------*/
+/**
+ * To retrieve the viewport property
+ * viewport property is only enable when the auto_resize property of the figure is
+ * disable.
+ */
+void sciGetViewport( sciPointObj * pObj, int * xSize, int * ySize )
+{
+  switch ( sciGetEntityType(pObj) )
+  {
+  case SCI_FIGURE:
+    if ( !sciGetResize(pObj) )
+    {
+      SciViewportGet( sciGetScilabXgc(pObj), xSize, ySize ) ;
+    }
+    else
+    {
+      *xSize = 0 ;
+      *ySize = 0 ;
+    }
+    break ;
+  default:
+    sciprint( "This object has no viewport property.\n" ) ;
+    *xSize = -1 ;
+    *ySize = -1 ;
   }
 }
 /*-------------------------------------------------------------------------------------------*/

@@ -234,6 +234,9 @@ int sciInitGraphicsStyle( sciPointObj * pobj, BOOL value );
 extern int sciInitGridStyle( sciPointObj * pObj, int xStyle, int yStyle, int zStyle ) ; 
 extern int sciSetGridStyle( sciPointObj * pObj, int xStyle, int yStyle, int zStyle ) ; /* SET */
 
+int sciInitViewport( sciPointObj * pObj, int xSize, int ySize ) ;
+int sciSetViewport(  sciPointObj * pObj, int xSize, int ySize ) ; /* SET */
+
 /*---------------------------------------------------------------------------*/
 /* return 0 if the string contains any % character, 1 if a %d has been found */
 /* and -1 otherwise. */

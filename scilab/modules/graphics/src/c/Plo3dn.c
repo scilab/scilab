@@ -28,10 +28,6 @@ extern int facet_facing_rear (integer facteur, integer * x, integer * y,
                               integer * yr, integer * cr, integer * rsize);
 extern int scilab_shade(integer *polyx, integer *polyy, integer *fill, integer polysize, integer flag);
 
-#ifdef _MSC_VER
-extern void Scistring (char *str);
-#endif
-
 void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                     integer * p, integer * q, int *DPI)
 {

@@ -16,6 +16,7 @@
 #include "MALLOC.h"
 #include "Xcall1.h"
 #include "sciprint.h"
+#include "periScreen.h"
 
 extern int xinitxend_flag;
 

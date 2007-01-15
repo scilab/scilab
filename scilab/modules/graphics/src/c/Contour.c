@@ -17,11 +17,6 @@
 
 #include "GetProperty.h"
 
-
-#ifdef _MSC_VER
-extern void Scistring (char *str);
-#endif
-
 typedef void (level_f) __PARAMS((integer ival, double Cont, double xncont,
 			       double yncont));
 typedef void (*ptr_level_f) __PARAMS((integer ival, double Cont, double xncont,

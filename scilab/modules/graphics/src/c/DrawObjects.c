@@ -69,9 +69,6 @@ extern HDC TryToGetDC(HWND hWnd);
 
 extern double C2F(dsort)();/*DJ.A merge*/ 
 extern int scilab_shade(integer *polyx, integer *polyy, integer *fill, integer polysize, integer flag);
-#ifdef _MSC_VER
-extern void Scistring (char *str);
-#endif
 
 void GradFixedlog( double minVal, double maxVal, double * ticks, int nbGrads );
 int sciGetLogExponent( double minBound, double maxBound, double * expMin, double * expMax );

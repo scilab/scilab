@@ -37,9 +37,7 @@ extern void xgetmouse2(char *fname, char *str, integer *ibutton, integer *iflag,
 extern void xclick_2(char *fname, char *str, integer *ibutton, integer *iflag, integer *istr, integer *x1, integer *yy1, integer *x7, double *x, double *y, double *dx3, double *dx4, integer lx0, integer lx1);
 extern int StoreCommand( char *command);
 extern int C2F(scirun)(char * startup, int lstartup);
-#ifdef _MSC_VER
-extern void Scistring (char *str);
-#endif
+
 /*----------------------------------------------
  * A List for storing Window scaling information 
  *----------------------------------------------*/

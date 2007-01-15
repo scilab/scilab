@@ -36,6 +36,7 @@
 #include "scigraphic.h"
 #include "machine.h"
 #include "clipping.h"
+#include "SetProperty.h"
 
 #include "math_graphics.h"
 
@@ -1156,37 +1157,18 @@ void C2F(setpopupdim)(x, y, v3, v4)
 }
 /*-----------------------------------------------------------------------------------*/
 /** To change the window view  **/
-void C2F(setviewport)(x, y, v3, v4)
-     integer *x;
-     integer *y;
-     integer *v3;
-     integer *v4;
+void C2F(setviewport)( integer * x, integer * y, integer *  v3, integer * v4)
 {
-  if ( sciGetwresize() == 0) 
-    SciViewportMove(ScilabXgc,*x,*y);
+  sciSetViewport( ScilabXgc->mafigure, *x, *y ) ;
 }
 /*-----------------------------------------------------------------------------------*/
 /**C2F(getviewport)
  *@description: To get the viewport Upper/Left point Position 
  **/
-void C2F(getviewport)(verbose, x, narg,dummy)
-     integer *verbose;
-     integer *x;
-     integer *narg;
-     double *dummy;
-{     
+void C2F(getviewport)( integer * verbose, integer * x, integer * narg, double * dummy)
+{
   *narg = 2;
-  if ( sciGetwresize() == 0) 
-    {	
-      SciViewportGet(ScilabXgc,x,x+1);
-    }
-  else 
-    { 
-      x[0]=0;
-      x[1]=0;
-    }
-  if (*verbose == 1) 
-    sciprint("\n Viewport position:%d,%d\r\n",(int) x[0],(int) x[1]);
+  sciGetViewport( ScilabXgc->mafigure, &x[0], &x[1] ) ;
 } 
 /*-----------------------------------------------------------------------------------*/
 /********************************************

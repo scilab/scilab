@@ -15,6 +15,7 @@
 #include "HandleManagement.h"
 #include "StringMatrix.h"
 #include "bcg.h"
+#include "scigraphic.h"
 
 #ifndef __SCI_GET_PROPERTY__
 #define __SCI_GET_PROPERTY__
@@ -200,5 +201,7 @@ extern BOOL sciIsMergeable( sciPointObj * pObj ) ;
 extern BOOL sciGetIsAutoDrawable( sciPointObj * pobj ) ;
 
 extern void sciGetGridStyle( sciPointObj * pObj, int * xStyle, int * yStyle, int * zStyle ) ;
+
+void sciGetViewport( sciPointObj * pObj, int * xSize, int * ySize ) ;
 
 #endif /* __SCI_GET_PROPERTY__ */

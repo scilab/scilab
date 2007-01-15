@@ -50,10 +50,6 @@ extern int re_index_brect(double * brect, double * drect);
 extern BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag);
 extern int CreatePrettyGradsFromNax(sciPointObj * psubwin,int * Nax);
 
-#ifdef _MSC_VER
-extern void Scistring (char *str);
-#endif
-
 int C2F(xgray)(double *x, double *y, double *z, integer *n1, integer *n2, char *strflag, double *brect, integer *aaint, BOOL flagNax, long int l1)
 {
   int N = Max((*n1),(*n2));

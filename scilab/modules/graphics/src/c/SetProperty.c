@@ -3219,28 +3219,9 @@ int sciInitResize( sciPointObj * pobj, BOOL value )
   
   if ( (pobj != getFigureModel()) && (pobj != getAxesModel()))
     { 
-      /* this code will coms from
-       *  C2F(setwresize)((i = value, &i), PI0,PI0,PI0);
-       * je changerais ce morceau de code quand tout csera OK
-       */
       if (sciGetScilabXgc (pobj)->CurResizeStatus != num1)
 	{
 	  C2F(dr)("xset","wresize",&(num1),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,5L);  
-	  
-	  /*  sciGetScilabXgc (pobj)->CurResizeStatus = num1;  
-	      C2F(dr)("xget","wpdim",&xtmp,x,&xtmp,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,5L); 
-	      C2F(dr)("xset","wpdim",&(x[0]),&(x[1]),PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,5L);*/
-#ifdef _MSC_VER
-	  /* Win function sciGetScilabXgc (pobj)->horzsi.nPos !!? BCG.horzsi.nPos*/
-	  /* SetViewportOrgEx (GetDC (sciGetScilabXgc (pobj)->CWindow),  
-	     -sciGetScilabXgc (pobj)->horzsi.nPos,
-	     -sciGetScilabXgc (pobj)->vertsi.nPos, NULL);*/
-	  /*if (sciGetPixmapStatus () == 0)                                          
-	    InvalidateRect (sciGetScilabXgc (pobj)->CWindow, NULL, TRUE); 
-	    return ScilabXgc->CurPixmapStatus;
-	    UpdateWindow (sciGetScilabXgc (pobj)->CWindow); */ /* dependent function MacWinOther.c"*/
-	  
-#endif
 	}
     }
   switch (sciGetEntityType (pobj))
@@ -3250,8 +3231,6 @@ int sciInitResize( sciPointObj * pobj, BOOL value )
       break;
     case SCI_SUBWIN:
       (sciGetGraphicMode (pobj))->wresize = value;
-      /* the value is inhirated by the parent */
-      /*sciSetResize (sciGetParentFigure (pobj), value);*/
       break;
     case SCI_TEXT:
     case SCI_TITLE:
@@ -4878,5 +4857,38 @@ int sciSetGridStyle( sciPointObj * pObj, int xStyle, int yStyle, int zStyle )
     return 1 ;
   }
   return sciInitGridStyle( pObj, xStyle, yStyle, zStyle ) ;
+}
+/*--------------------------------------------------------------------------------------------*/
+int sciInitViewport( sciPointObj * pObj, int xSize, int ySize )
+{
+  switch( sciGetEntityType( pObj ) )
+  {
+  case SCI_FIGURE:
+    SciViewportMove( sciGetScilabXgc(pObj), xSize, ySize ) ;
+    return 0 ;
+  default:
+    sciprint( "This object has no viewport property.\n" ) ;
+    return -1 ;
+  }
+  return -1 ;
+}
+/*--------------------------------------------------------------------------------------------*/
+/**
+ * Set the viewport property of a figure.
+ * Effective only if the auto_resize property is enable
+ */
+int sciSetViewport( sciPointObj * pObj, int xSize, int ySize )
+{
+  int curXSize = 0 ;
+  int curYSize = 0 ;
+  sciGetViewport( pObj, &curXSize, &curYSize ) ;
+  if ( sciGetResize( pObj ) || ( xSize == curYSize && xSize == curYSize ) )
+  {
+    /* nothing to do */
+    return 1 ;
+  }
+
+  return sciInitViewport( pObj, xSize, ySize ) ;
+
 }
 /*--------------------------------------------------------------------------------------------*/

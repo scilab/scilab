@@ -132,5 +132,6 @@ int get_hidden_axis_color_property(   sciPointObj * pobj ) ;
 int get_x_ticks_property(             sciPointObj * pobj ) ;
 int get_y_ticks_property(             sciPointObj * pobj ) ;
 int get_z_ticks_property(             sciPointObj * pobj ) ;
+int get_viewport_property(            sciPointObj * pobj ) ;
 
 #endif /* _GET_HANDLE_PROPERTY_H_ */
