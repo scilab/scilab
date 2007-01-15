@@ -50,9 +50,7 @@ scilab2fortran \
 development_tools \
 helptools
 
-if SCICOS
 SUBDIRS += scicos 
-endif
 
 if JAVA
 SUBDIRS += jvm \
@@ -119,9 +117,7 @@ if JAVA
 libsciscilab_la_LIBADD += $(top_builddir)/modules/jvm/libsciscijvm.la
 endif
 
-if SCICOS
 libsciscilab_la_LIBADD += $(top_builddir)/modules/scicos/libsciscicos.la
-endif
 
 ## Libs 
 libsciscilab_la_LIBADD += \
