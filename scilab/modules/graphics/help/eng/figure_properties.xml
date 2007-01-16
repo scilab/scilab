@@ -65,6 +65,11 @@
             children are zoomed accordingly. If the value is
             <VERB>"off"</VERB> that indicate that <VERB>axes_size</VERB>
             cannot be resized when <VERB>figure_size</VERB> is changed.</SP>
+	  </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="viewport: ">
+            <SP>Postion of the visible part of graphics in the
+            panner.</SP>
           </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM label="figure_name: ">
