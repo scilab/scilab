@@ -346,8 +346,8 @@ am__objects_1 = libscigraphics_la-GetCommandArg.lo \
 	libscigraphics_la-Champ.lo libscigraphics_la-StringMatrix.lo \
 	libscigraphics_la-FeC.lo libscigraphics_la-gsort.lo \
 	libscigraphics_la-Plo3dn.lo libscigraphics_la-Actions.lo \
-	libscigraphics_la-Plo2dEch.lo libscigraphics_la-Gray.lo \
-	libscigraphics_la-DestroyObjects.lo \
+	libscigraphics_la-Plo2dEch.lo libscigraphics_la-Plo2dn.lo \
+	libscigraphics_la-Gray.lo libscigraphics_la-DestroyObjects.lo \
 	libscigraphics_la-clipping.lo libscigraphics_la-qsort.lo \
 	libscigraphics_la-qsort-char.lo \
 	libscigraphics_la-qsort-double.lo \
@@ -901,6 +901,7 @@ src/c/gsort.c \
 src/c/Plo3dn.c \
 src/c/Actions.c \
 src/c/Plo2dEch.c \
+src/c/Plo2dn.c \
 src/c/Gray.c \
 src/c/DestroyObjects.c \
 src/c/clipping.c \
@@ -1643,6 +1644,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-InitObjects.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-Interaction.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-Plo2dEch.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-Plo2dn.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-Plo3d.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-Plo3dn.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-SetHashTable.Plo@am__quote@
@@ -4053,6 +4055,13 @@ libscigraphics_la-Plo2dEch.lo: src/c/Plo2dEch.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/Plo2dEch.c' object='libscigraphics_la-Plo2dEch.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-Plo2dEch.lo `test -f 'src/c/Plo2dEch.c' || echo '$(srcdir)/'`src/c/Plo2dEch.c
+
+libscigraphics_la-Plo2dn.lo: src/c/Plo2dn.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-Plo2dn.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-Plo2dn.Tpo -c -o libscigraphics_la-Plo2dn.lo `test -f 'src/c/Plo2dn.c' || echo '$(srcdir)/'`src/c/Plo2dn.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-Plo2dn.Tpo $(DEPDIR)/libscigraphics_la-Plo2dn.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/Plo2dn.c' object='libscigraphics_la-Plo2dn.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-Plo2dn.lo `test -f 'src/c/Plo2dn.c' || echo '$(srcdir)/'`src/c/Plo2dn.c
 
 libscigraphics_la-Gray.lo: src/c/Gray.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-Gray.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-Gray.Tpo -c -o libscigraphics_la-Gray.lo `test -f 'src/c/Gray.c' || echo '$(srcdir)/'`src/c/Gray.c

@@ -289,6 +289,7 @@ src/c/gsort.c \
 src/c/Plo3dn.c \
 src/c/Actions.c \
 src/c/Plo2dEch.c \
+src/c/Plo2dn.c \
 src/c/Gray.c \
 src/c/DestroyObjects.c \
 src/c/clipping.c \
