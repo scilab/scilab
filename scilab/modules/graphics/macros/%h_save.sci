@@ -1,6 +1,6 @@
 function %h_save(h,fd)
   //Author S. Steer Sept 2004, Copyright INRIA
-  version=[4 0 0 1]
+  version=[4 1 0 1]
   mput(version,'c',fd)
   
   hsize = size(h);
@@ -31,6 +31,7 @@ function save_graphichandle(h,fd)
     mput(h.figure_position,'sl',fd) // figure_position
     mput(h.figure_size,'sl',fd) // figure size
     mput(h.axes_size,'sl',fd) // axes_size
+    mput(h.viewport,'sl',fd) // viewport
     mput(bool2s(h.auto_resize=='on'),'c',fd) // auto_resize
     mput(length(h.figure_name),'c',fd); // figure_name
     mput(ascii(h.figure_name),'c',fd);
