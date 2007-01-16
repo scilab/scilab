@@ -26,7 +26,7 @@
 #include "WindowList.h"
 #include "sciprint.h"
 #include "PloEch.h"
-#include "../gui/includes/SGraph.h"
+#include "../../gui/includes/GraphicWindow.h"
 
 #include "MALLOC.h" /* MALLOC */
 

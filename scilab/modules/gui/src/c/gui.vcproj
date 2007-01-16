@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../../libs/MALLOC/includes;"
+				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../../libs/MALLOC/includes;../src/c"
 				PreprocessorDefinitions="_LIB;STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="1"
@@ -117,7 +117,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../../libs/MALLOC/includes;"
+				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../../libs/MALLOC/includes;D:\ScilabDev\Scilab_Trunk\modules\gui\src\c"
 				PreprocessorDefinitions="NDEBUG;_LIB;STRICT;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="0"
@@ -302,6 +302,10 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
+			<File
+				RelativePath="..\..\includes\GraphicWindow.h"
+				>
+			</File>
 			<File
 				RelativePath="..\..\includes\gw_gui.h"
 				>

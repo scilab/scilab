@@ -34,7 +34,7 @@
 #include "Xcall1.h"
 #include "math_graphics.h" /* GET_NB_DIGITS */
 #include "sciprint.h"
-#include "../gui/includes/SGraph.h"
+#include "../../gui/includes/GraphicWindow.h"
 
 #include "MALLOC.h"
 
