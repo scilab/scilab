@@ -29,7 +29,6 @@ extern void SetFromCToON(void);
 extern void sciGetIdFigure (int *vect, int *id, int *flag);
 extern BOOL GetWITH_GUI(void);
 extern void SetWITH_GUI(BOOL ON);
-
 /*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 extern char *GetScilabDirectory(BOOL UnixStyle);
@@ -43,8 +42,6 @@ extern int C2F(sxevents)();
 #ifdef _MSC_VER
 static void SetSciEnv(void)
 {
-  
-  
   char *ScilabDirectory=NULL;
 
   ScilabDirectory=GetScilabDirectory(TRUE);
@@ -165,40 +162,6 @@ int TerminateScilab(char *ScilabQuit)
 	}
 
 	return bOK;
-}
-/*-----------------------------------------------------------------------------------*/
-int SendScilabJob(char *job)
-{
-  int m,n,lp;
-  double code=-1;
-
-  static char buf[1024];
-  char format[]="Err=execstr('%s','errcatch','n');quit;";
-  
-  if ((strlen(format)+strlen(job))>= 1024)
-  {
-	fprintf(stderr,"Error : SendScilabJob string 'job' too long \n");
-	return (int) code;
-  }
-
-  sprintf(buf,format,job);
-
-  C2F(scirun)(buf,strlen(buf));
-
-  if ( ! C2F(cmatptr)("Err", &m, &n, &lp,strlen("Err")))
-  {
-	  fprintf(stderr,"Error : SendScilabJob (cmatptr) 'Err' \n");
-  }
-  else
-  {
-	  if (m*n == 1)
-	  {
-		ReadMatrix("Err", &m, &n, &code);
-	  }
-	  else fprintf(stderr,"Error : SendScilabJob (ReadMatrix Err)\n");
-  }
-
-  return (int) code;
 }
 /*-----------------------------------------------------------------------------------*/
 void ScilabDoOneEvent(void)

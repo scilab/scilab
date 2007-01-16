@@ -21,6 +21,7 @@
 extern int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize);
 extern int TerminateScilab(char *ScilabQuit);
 extern int SendScilabJob(char *job); 
+extern int SendScilabJobs(char **job,int numberjobs); 
 extern void ScilabDoOneEvent(void);
 extern int ScilabHaveAGraph(void);
 /*-----------------------------------------------------------------------------------*/
@@ -36,11 +37,11 @@ static int example1(void)
 	WriteMatrix("A", &mA, &nA, A);
 	WriteMatrix("b", &mb, &nb, b);
 
-	SendScilabJob("disp(''A='');");
+	SendScilabJob("disp('A=');");
 	SendScilabJob("disp(A);");
-	SendScilabJob("disp(''b='');");
+	SendScilabJob("disp('b=');");
 	SendScilabJob("disp(b);");
-	SendScilabJob("disp(''x=A\\b'');");
+	SendScilabJob("disp('x=A\\b');");
 
 	if ( SendScilabJob("A,b,x=A\\b;") != 0) 
 	{
@@ -77,24 +78,67 @@ static int example2(void)
 {
 	SendScilabJob("plot3d();");
 	printf("\nClose Graphical Windows to close this example.\n");
-
 	while( ScilabHaveAGraph() )
 	{
 		ScilabDoOneEvent();
 		Sleep(1);
 	}
-		return 1;
+	return 1;
+}
+/*-----------------------------------------------------------------------------------*/
+static int example3(void)
+{
+	int code=0;
+
+	char **JOBS=NULL;
+
+	JOBS=(char**)malloc(sizeof(char**)*6);
+
+	JOBS[0]=(char*)malloc(sizeof(char*)*1024);
+	JOBS[1]=(char*)malloc(sizeof(char*)*1024);
+	JOBS[2]=(char*)malloc(sizeof(char*)*1024);
+	JOBS[3]=(char*)malloc(sizeof(char*)*1024);
+	JOBS[4]=(char*)malloc(sizeof(char*)*1024);
+	JOBS[5]=(char*)malloc(sizeof(char*)*1024);
+
+	strcpy(JOBS[0],"A=1 ..");
+	strcpy(JOBS[1],"+3;");
+	strcpy(JOBS[2],"B = 8;");
+	/* strcpy(JOBS[2],"b = V_NOT_EXIST;"); */
+	strcpy(JOBS[3],"+3;");
+	strcpy(JOBS[4],"disp('C=');");
+	strcpy(JOBS[5],"C=A+B;disp(C);");
+
+	code=SendScilabJobs(JOBS,6);
+
+	if (code)
+	{
+		char lastjob[4096]; // bsiz in scilab 4096 max
+		if (GetLastJob(lastjob))
+		{
+			printf("%s\n",lastjob);
+		}
+	}
+
+	return 1;
 }
 /*-----------------------------------------------------------------------------------*/
 int main(void)
 /* int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR szCmdLine, int iCmdShow) */
 {
 	if ( StartScilab(NULL,NULL,NULL) == FALSE ) printf("Error : StartScilab \n");
+
 	printf("\nexample 1\n");
 	example1();
+	system("pause");
+
 	printf("\nexample 2\n");
 	example2();
-	printf("\n\n");
+	system("pause");
+
+	printf("\nexample 3\n");
+	example3();
+	system("pause");
 	if ( TerminateScilab(NULL) == FALSE ) printf("Error : TerminateScilab \n");
 	return 0;
 }

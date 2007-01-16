@@ -11,7 +11,7 @@ class  Exemple4 {
     
     SciString S2 = new SciString("Sentence2",S1);
 
-    Scilab.Exec("Sentence2=''Scilab is the best.'';");
+    Scilab.Exec("Sentence2='Scilab is the best.';");
     S2.disp();
 
 		Scilab.Finish();

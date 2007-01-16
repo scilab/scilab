@@ -36,11 +36,11 @@ static int premier_exemple()
   static double b[]={4,5};  int mb=2,nb=1;
   int m,n,lp,i;
   
-  SendScilabJob("disp(''A='');");
+  SendScilabJob("disp('A=');");
 	SendScilabJob("disp(A);");
-	SendScilabJob("disp(''b='');");
+	SendScilabJob("disp('b=');");
 	SendScilabJob("disp(b);");
-	SendScilabJob("disp(''x=A\\b'');");
+	SendScilabJob("disp('x=A\\b');");
 
   WriteMatrix("A", &mA, &nA, A);
   WriteMatrix("b", &mb, &nb, b);
@@ -83,12 +83,12 @@ int troisieme_exemple()
   double time[]={0.4,4}; int mt=1,nt=2;
   fprintf(stdout,"linking ... \n");
   #ifdef WIN32
-  SendScilabJob("ilib_for_link(''odeex'',SCI+''/examples/callsci/callsciC/my_ode.o'',[],''c'');");
+  SendScilabJob("ilib_for_link('odeex',SCI+'/examples/callsci/callsciC/my_ode.o',[],'c');");
   #else
-  SendScilabJob("ilib_for_link(''odeex'',''my_ode.o'',[],''c'');");
+  SendScilabJob("ilib_for_link('odeex','my_ode.o',[],'c');");
   #endif
   fprintf(stdout,"end of link  \n");
-  SendScilabJob("link(''show'')");
+  SendScilabJob("link('show')");
   WriteMatrix("x", &mx, &nx, x);
   WriteMatrix("time", &mt, &nt,time);
   /* pour que scilab <<linke>> mon_edo */

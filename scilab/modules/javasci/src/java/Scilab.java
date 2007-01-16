@@ -64,7 +64,7 @@ public class Scilab
   * Execute a scilab script .sce
   */
   {
-		return Exec("exec(''"+scriptfilename+"'');");
+		return Exec("exec('"+scriptfilename+"');");
   }
   
   public static native boolean Finish();

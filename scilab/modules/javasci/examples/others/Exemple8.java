@@ -6,12 +6,12 @@ class  Exemple8 {
   {
   
     SciString SCIPATH = new SciString("SCILABROOTPATH");
-    Scilab.Exec("SCILABROOTPATH=getenv(''SCI'')");
+    Scilab.Exec("SCILABROOTPATH=getenv('SCI');");
     
     Scilab.ExecuteScilabScript(SCIPATH.getData()+"/modules/Javasci/examples/others/test.sce");
     
     /* "notest.sce" not exist */
-    if (! Scilab.ExecuteScilabScript(SCIPATH.getData()+"/modules/Javasci/examples/others/test2.sce") )
+    if (! Scilab.ExecuteScilabScript(SCIPATH.getData()+"/modules/Javasci/examples/others/notest.sce") )
     {
     	System.out.println("Scilab Error code : "+Scilab.GetLastErrorCode());
     }

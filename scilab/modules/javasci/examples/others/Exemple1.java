@@ -39,14 +39,14 @@ class  Exemple1 {
  	  SciDoubleArray d = new SciDoubleArray("D",1,4,new double [] {1,2,3,4});
  	  SciDoubleArray q = new SciDoubleArray("Q",3,1, new double [] {0,0,0} );
 
-    Scilab.Exec("Str=''Scilab'';");
-    Scilab.Exec("P=poly(D'',''x'',''coeff'');");
+    Scilab.Exec("Str='Scilab';");
+    Scilab.Exec("P=poly(D','x','coeff');");
     Scilab.Exec("Q=real(roots(P));");
 
 		System.out.println("----------------------------------------------------");
 		
     System.out.println("----------------------------------------------------");   
-    Scilab.Exec("disp(''Str : ''+Str);");
+    Scilab.Exec("disp('Str : '+Str);");
 		System.out.println("Q ScilabType : "+Scilab.TypeVar("Q"));
 		System.out.println("Str ScilabType : "+Scilab.TypeVar("Str"));
 		System.out.println("----------------------------------------------------");

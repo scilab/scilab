@@ -62,7 +62,6 @@ static int CloseConsoleGUI(void)
 /*-----------------------------------------------------------------------------------*/
 int ExitScilab(void)
 {
-	int i=0;
     if ( Get_no_startup_flag() == 0) 
     {
       char *quit_script =  get_sci_data_strings(5);

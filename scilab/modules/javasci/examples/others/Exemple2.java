@@ -16,7 +16,7 @@ class  Exemple2 {
     v.disp();
     // Attention aux ' il faut les doubler
     // on fait executer une instruction Scilab 
-    Scilab.Exec("write(%io(2),''coucou'')");
+    Scilab.Exec("write(%io(2),'coucou')");
     SciDoubleArray h = new SciDoubleArray("H",2,2, new double [] {1,2,3,4} );
     // on envoit h a Scilab 
     // on fait executer une instruction Scilab 

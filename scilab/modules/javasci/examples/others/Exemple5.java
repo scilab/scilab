@@ -11,7 +11,7 @@ class  Exemple5 {
   	String [] d=new String[row*col];
   	
   	SciStringArray a = new SciStringArray("A",row,col);
-  	Scilab.Exec("A=[''Aaa'',''Bbb'',''Ccc'',''Ddd'';''Eee'',''Fff'',''Ggg'',''Hhh''];");
+  	Scilab.Exec("A=['Aaa','Bbb','Ccc','Ddd';'Eee','Fff','Ggg','Hhh'];");
   	a.Get();
   	System.out.println("----------------------------------------------------");
   	a.disp();
