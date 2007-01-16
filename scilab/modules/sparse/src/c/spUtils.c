@@ -61,14 +61,11 @@
 
 #define spINSIDE_SPARSE
 #include "spConfig.h"
+#include "spUtils.h"
 #include "spmatrix.h"
 #include "spDefs.h"
 #include "spmalloc.h"
 
-static CountTwins();
-static SwapCols();
-static void ScaleComplexMatrix();
-static void ComplexMatrixMultiply();
 static void ComplexTransposedMatrixMultiply();
 static RealNumber ComplexCondition();
 
@@ -226,11 +223,7 @@ SPBOOLEAN  Swapped, AnotherPassNeeded;
  */
 
 static int
-CountTwins( Matrix, Col, ppTwin1, ppTwin2 )
-
-MatrixPtr Matrix;
-int Col;
-ElementPtr *ppTwin1, *ppTwin2;
+CountTwins( MatrixPtr Matrix, int Col, ElementPtr *ppTwin1, ElementPtr *ppTwin2 )
 {
 int Row, Twins = 0;
 ElementPtr pTwin1, pTwin2;
@@ -266,11 +259,8 @@ ElementPtr pTwin1, pTwin2;
  *  linked.
  */
 
-static
-SwapCols( Matrix, pTwin1, pTwin2 )
-
-MatrixPtr Matrix;
-ElementPtr pTwin1, pTwin2;
+static int
+SwapCols( MatrixPtr Matrix, ElementPtr pTwin1, ElementPtr pTwin2 )
 {
 int Col1 = pTwin1->Col, Col2 = pTwin2->Col;
 
@@ -471,10 +461,7 @@ RealNumber  ScaleFactor;
  */
 
 static void
-ScaleComplexMatrix( Matrix, RHS_ScaleFactors, SolutionScaleFactors )
-
-MatrixPtr  Matrix;
-register  RealVector  RHS_ScaleFactors, SolutionScaleFactors;
+ScaleComplexMatrix( MatrixPtr Matrix, register  RealVector  RHS_ScaleFactors, register  RealVector  SolutionScaleFactors )
 {
 register ElementPtr  pElement;
 register int  I, lSize, *pExtOrder;
@@ -640,10 +627,7 @@ MatrixPtr  Matrix = (MatrixPtr)eMatrix;
  */
 
 static void
-ComplexMatrixMultiply( Matrix, RHS, Solution IMAG_VECTORS )
-
-MatrixPtr  Matrix;
-RealVector RHS, Solution IMAG_VECTORS;
+ComplexMatrixMultiply( MatrixPtr Matrix, RealVector RHS , RealVector Solution IMAG_VECTORS )
 {
 register  ElementPtr  pElement;
 register  ComplexVector  Vector;
@@ -818,10 +802,7 @@ MatrixPtr  Matrix = (MatrixPtr)eMatrix;
  */
 
 static void
-ComplexTransposedMatrixMultiply( Matrix, RHS, Solution IMAG_VECTORS )
-
-MatrixPtr  Matrix;
-RealVector RHS, Solution IMAG_VECTORS;
+ComplexTransposedMatrixMultiply( MatrixPtr Matrix, RealVector RHS, RealVector Solution IMAG_VECTORS )
 {
 register  ElementPtr  pElement;
 register  ComplexVector  Vector;
@@ -1170,11 +1151,7 @@ struct FillinListNodeStruct  *pListNode;
 extern void spcRowExchange(MatrixPtr Matrix,int  Row1,int Row2);
 extern void spcColExchange(MatrixPtr Matrix,int  Col1,int Col2);
 
-void
-spDeleteRowAndCol( eMatrix, Row, Col )
-
-char *eMatrix;
-int  Row, Col;
+void spDeleteRowAndCol( char *eMatrix, int Row, int Col )
 {
 MatrixPtr  Matrix = (MatrixPtr)eMatrix;
 register  ElementPtr  pElement, *ppElement, pLastElement;
@@ -1571,11 +1548,7 @@ RealNumber Linpack, OLeary, InvNormOfInverse;
  */
 
 static RealNumber
-ComplexCondition( Matrix, NormOfMatrix, pError )
-
-MatrixPtr Matrix;
-RealNumber NormOfMatrix;
-int *pError;
+ComplexCondition( MatrixPtr Matrix, RealNumber NormOfMatrix, int *pError )
 {
 register ElementPtr pElement;
 register ComplexVector T, Tm;
