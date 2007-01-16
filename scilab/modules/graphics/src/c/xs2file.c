@@ -46,7 +46,7 @@ int xs2file( char * fname, char * dr, unsigned long fname_len, unsigned long dr_
 int scig_toPs( integer win_num, integer colored, char * bufname, char * driver )
 {
   char name[4];
-  integer zero=0,un=1,ierr;
+  integer ierr;
   integer verb=0,cur,na ;
   int save_xinitxend_flag = isGraphicSessionOpened();
   sciPointObj * curFig = sciGetCurrentFigure ();

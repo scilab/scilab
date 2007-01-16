@@ -62,6 +62,10 @@ void clip_line( integer   x1  ,
 
 int CheckColormap( int * m ) ;
 
+
+void getcolordef( integer * screenc ) ;
+void setcolordef( int screenc ) ;
+
 void get_r( int i, float * r ) ;
 void get_g( int i, float * g ) ;
 void get_b( int i, float * b ) ;
@@ -71,6 +75,10 @@ void C2F(getwindowdim)( integer * verbose, integer * x, integer * narg, double *
 int C2F(sedeco)( int * flag ) ;
 
 void CPixmapResize1(void) ;
+
+void SwitchWindow(integer *intnum) ;
+
+int C2F(store_points)(integer n, integer *vx, integer *vy, integer onemore) ;
 
 /*---------------------END------------------------------*/
 #endif /* __PERIX11_H__ */

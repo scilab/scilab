@@ -15,7 +15,6 @@
 #include "HandleManagement.h"
 #include "StringMatrix.h"
 #include "bcg.h"
-#include "scigraphic.h"
 
 #ifndef __SCI_GET_PROPERTY__
 #define __SCI_GET_PROPERTY__

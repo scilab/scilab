@@ -58,7 +58,6 @@ extern int getpid();
 #include "men_scilab.h"
 #include "All-extern.h"
 #include "All-extern-x1.h"
-#include "bcg.h"
 #include "Events.h"
 
 extern XtAppContext app_con;
@@ -490,14 +489,6 @@ void PannerCallback(w, scigc_ptr , report_ptr)
   MoveChild(viewport, report->slider_x ,report->slider_y);
 }
 
-/*	Function Name: SciViewportMove
- *	Description: used to move the panner and the viewport interactively 
- *                   through scilab command.
- *	Arguments: ScilabXgc : structure associated to a Scilab Graphic window
- *                 x,y : the x,y point of the graphic window to be moved at 
- *                 the up-left position of the viewport
- *	Returns: none.
- */
 
 void SciViewportMove(struct BCG *ScilabXgc, int x, int y)
      
@@ -516,11 +507,6 @@ void SciViewportMove(struct BCG *ScilabXgc, int x, int y)
 }
 
 
-/*	Function Name: SciViewportGet
- *	Description: used to get panner position through scilab command.
- *	Arguments: ScilabXgc : structure associated to a Scilab Graphic window
- *                 x,y : the returned position 
- */
 
 void SciViewportGet(struct BCG *ScilabXgc, int *x, int *y)
 {

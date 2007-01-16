@@ -330,21 +330,7 @@ Atom wm_delete_window;
 	toplevel_w = XtCreateManagedWidget(NAME,formWidgetClass, \
 					 realToplevel_w,(ArgList)0 ,(Cardinal)0);
 
-static int screencolor = 1 ; /* default screen color status */
 
-/* return the current screencolor */
-
-void getcolordef(screenc)
-     integer *screenc;
-{
-  *screenc= screencolor;
-}
-
-void setcolordef(screenc)
-     int screenc;
-{
-  screencolor = screenc;
-}
 /*----------------------------------------------------------------------------------*/
 Widget initColors(realToplevel_w)
      Widget realToplevel_w;

@@ -34,11 +34,9 @@ static f_xcall1 xset_1, drawarc_1, fillarcs_1  ,drawarcs_1  ,fillpolyline_1  ,dr
 static f_xcall1 drawaxis_1  ,cleararea_1  ,xclick_1  ,xclick_any_1  ,xgetmouse_1  ,fillarc_1  ;
 static f_xcall1 fillrectangle_1  ,drawpolyline_1  ,fillpolylines_1  ,drawpolymark_1  ,displaynumbers_1  ;
 static f_xcall1 drawpolylines_1  ,drawrectangle_1  ,drawrectangles_1  ,drawsegments_1  ,displaystring_1  ;
-static f_xcall1 boundingbox_1  ,xstringb_1  ,displaystringt;
+static f_xcall1 boundingbox_1  ,xstringb_1 ;
 static f_xcall1 xinit_1;
 
-static integer Ivide=0;
-static double  Dvide;
 
 #ifndef __STDC__ 
 #define const 

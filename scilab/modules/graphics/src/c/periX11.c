@@ -37,6 +37,9 @@
 #include "Events.h"
 #include "clipping.h"
 #include "WindowList.h"
+#include "sciprint.h"
+#include "GetProperty.h"
+#include "SetProperty.h"
 
 #include "prompt.h"
 
@@ -235,22 +238,22 @@ int XgcAllocColors(struct BCG *xgc, int m)
   /* don't forget black and white */
   mm = m + 2;
   if (!(xgc->Red = (float *) MALLOC(mm*sizeof(float)))) {
-    Scistring("XgcAllocColors: unable to alloc\n");
+    sciprint("XgcAllocColors: unable to alloc\n");
     return 0;
   }
   if (!(xgc->Green = (float *) MALLOC(mm*sizeof(float)))) {
-    Scistring("XgcAllocColors: unable to alloc\n");
+    sciprint("XgcAllocColors: unable to alloc\n");
     FREE(xgc->Red);
     return 0;
   }
   if (!(xgc->Blue = (float *) MALLOC(mm*sizeof(float)))) {
-    Scistring("XgcAllocColors: unable to alloc\n");
+    sciprint("XgcAllocColors: unable to alloc\n");
     FREE(xgc->Red);
     FREE(xgc->Green);
     return 0;
   }
   if (!(xgc->Colors = (Pixel *) MALLOC(mm*sizeof(Pixel)))) {
-    Scistring("XgcAllocColors: unable to alloc\n");
+    sciprint("XgcAllocColors: unable to alloc\n");
     FREE(xgc->Red);
     FREE(xgc->Green);
     FREE(xgc->Blue);
@@ -428,6 +431,108 @@ void C2F(setpopupname)(char *x0, integer *v2, integer *v3, integer *v4, integer 
   Setpopupname(x0);
 }
 
+static int client_message=0;
+static void set_client_message_on(void) { client_message=1;};
+static void set_client_message_off(void) { client_message=0;};
+int get_xclick_client_message_flag (void) { return client_message;}
+
+extern void set_wait_click(int val); 
+extern void set_event_select(int val);
+
+/*****************************************
+ * general function for mouse click or 
+ * dynamic menu activation 
+ * 
+ * if iflag = 0 : clear previous mouse click 
+ * if iflag = 1 : doesn't
+ * iflag is also used to output window number in case win is required
+ * if getmouse = 1 : check also mouse move 
+ * if getrelease=1 : check also mouse release 
+ * if dyn_men = 1 ; check also dynamic menus, win not required
+ *              ( return the button code in str )
+ * if dyn_men = 0 ; don't check dynamic menus, win not required
+ * if dyn_men = 2 ; don't check dynamic menus and win is required
+ * if dyn_men = 3 ; check dynamic menus and win is required
+ * return value : 0,1,2 ButtonPressed 
+ *                -5,-4,-3: ButtonReleased
+ *                -100 : error 
+ *                -2   : menu 
+ *****************************************/
+
+void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int getmouse, int getrelease, int dyn_men, char *str, integer *lstr)
+{
+  integer buttons = 0;
+  integer win,ok,choice,motion,release;
+  Window SCWindow;
+  struct timeval delay; /* usec, to slow down event loop */
+
+  choice=(dyn_men>1); /* depending on lhs */
+
+  if ( ScilabXgc == (struct BCG *) 0 || ScilabXgc->CWindow == (Window) 0)
+    {
+      *x1   =  -1;
+      *yy1  =  -1;
+      *ibutton = -100;     return;
+    }
+  win = ScilabXgc->CurWindow;
+  SCWindow = ScilabXgc->CWindow;
+
+  if ( *iflag ==0 )  ClearClickQueue(ScilabXgc->CurWindow);
+  XDefineCursor(dpy, ScilabXgc->CWindow ,crosscursor);
+
+  /*set wait_for_click=1 to diable event handler if any */
+  set_wait_click(1);
+  set_event_select(1+2*getmouse+4*getrelease);
+
+  while (buttons == 0) 
+    {
+      /** first check if an event has been store in the queue while wait_for_click was 0 **/
+      if (choice) win=-1;
+      ok=0;
+      if (CheckClickQueue(&win,x1,yy1,ibutton,&motion,&release) == 1)  {
+	if ((release&&getrelease) || (motion&&getmouse) || ((motion==0)&&(release==0))){
+	  *iflag=win;
+	  ok=1;
+	  break;
+	}
+	if (choice) win=-1;
+      }
+      if(ok) break;
+      /* make the X and tk event loop */
+      C2F(sxevents)();
+
+      /** maybe someone decided to destroy scilab Graphic window **/
+      if ( ScilabXgc == (struct BCG *) 0 || ScilabXgc->CWindow != SCWindow)
+	{
+	  *x1   =  -1;
+	  *yy1  =  -1;
+	  *ibutton = -100;
+	  set_event_select(1+4); 
+	  set_wait_click(0);
+	  return;
+	}
+      /** check for dynamic menu  **/
+      if ( (dyn_men == 1||dyn_men==3) &&  C2F(ismenu)()==1 ) {
+	int entry;
+	C2F(getmen)(str,lstr,&entry);
+	*ibutton = -2;
+	*x1=0;
+	*yy1=0;
+	break;
+      }
+
+    /* to slow down event loop not to use all cpu when nothing happen*/
+      delay.tv_sec = 0; delay.tv_usec = 10;
+      select(0, 0, 0, 0, &delay);
+    }
+  set_event_select(1+4); 
+  set_wait_click(0);
+  if ( ScilabXgc != (struct BCG *) 0 && ScilabXgc->CWindow != (Window) 0)
+    XDefineCursor(dpy, ScilabXgc->CWindow ,arrowcursor);
+  XSync (dpy, 0);
+}
+
+
 /*-----------------------------------------------------------------
  * Wait for mouse click in graphic window 
  *   send back mouse location  (x1,y1)  and button number  {0,1,2}
@@ -449,13 +554,7 @@ void C2F(setpopupname)(char *x0, integer *v2, integer *v3, integer *v4, integer 
 /*   return -1; */
 /* } */
 
-static int client_message=0;
-static void set_client_message_on(void) { client_message=1;};
-static void set_client_message_off(void) { client_message=0;};
-int get_xclick_client_message_flag (void) { return client_message;}
-
-extern void set_wait_click(int val); 
-extern void set_event_select(int val); 
+ 
 
 void C2F(xclick_any)(char *str, integer *ibutton, integer *x1, integer *yy1, integer *iwin, integer *iflag, integer *istr, double *dv1, double *dv2, double *dv3, double *dv4)
 {
@@ -557,99 +656,6 @@ void C2F(xgetmouse)(char *str, integer *ibutton, integer *x1, integer *yy1, inte
   SciClick(ibutton,x1, yy1,iflag,v6[0],v6[1],(v7==NULL)?0:*v7,(char *) 0,(integer *)0);
 }
 
-
-/*****************************************
- * general function for mouse click or 
- * dynamic menu activation 
- * 
- * if iflag = 0 : clear previous mouse click 
- * if iflag = 1 : doesn't
- * iflag is also used to output window number in case win is required
- * if getmouse = 1 : check also mouse move 
- * if getrelease=1 : check also mouse release 
- * if dyn_men = 1 ; check also dynamic menus, win not required
- *              ( return the button code in str )
- * if dyn_men = 0 ; don't check dynamic menus, win not required
- * if dyn_men = 2 ; don't check dynamic menus and win is required
- * if dyn_men = 3 ; check dynamic menus and win is required
- * return value : 0,1,2 ButtonPressed 
- *                -5,-4,-3: ButtonReleased
- *                -100 : error 
- *                -2   : menu 
- *****************************************/
-
-void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int getmouse, int getrelease, int dyn_men, char *str, integer *lstr)
-{
-  integer buttons = 0;
-  integer win,ok,choice,motion,release;
-  Window SCWindow;
-  struct timeval delay; /* usec, to slow down event loop */
-
-  choice=(dyn_men>1); /* depending on lhs */
-
-  if ( ScilabXgc == (struct BCG *) 0 || ScilabXgc->CWindow == (Window) 0)
-    {
-      *x1   =  -1;
-      *yy1  =  -1;
-      *ibutton = -100;     return;
-    }
-  win = ScilabXgc->CurWindow;
-  SCWindow = ScilabXgc->CWindow;
-
-  if ( *iflag ==0 )  ClearClickQueue(ScilabXgc->CurWindow);
-  XDefineCursor(dpy, ScilabXgc->CWindow ,crosscursor);
-
-  /*set wait_for_click=1 to diable event handler if any */
-  set_wait_click(1);
-  set_event_select(1+2*getmouse+4*getrelease);
-
-  while (buttons == 0) 
-    {
-      /** first check if an event has been store in the queue while wait_for_click was 0 **/
-      if (choice) win=-1;
-      ok=0;
-      if (CheckClickQueue(&win,x1,yy1,ibutton,&motion,&release) == 1)  {
-	if ((release&&getrelease) || (motion&&getmouse) || ((motion==0)&&(release==0))){
-	  *iflag=win;
-	  ok=1;
-	  break;
-	}
-	if (choice) win=-1;
-      }
-      if(ok) break;
-      /* make the X and tk event loop */
-      C2F(sxevents)();
-
-      /** maybe someone decided to destroy scilab Graphic window **/
-      if ( ScilabXgc == (struct BCG *) 0 || ScilabXgc->CWindow != SCWindow)
-	{
-	  *x1   =  -1;
-	  *yy1  =  -1;
-	  *ibutton = -100;
-	  set_event_select(1+4); 
-	  set_wait_click(0);
-	  return;
-	}
-      /** check for dynamic menu  **/
-      if ( (dyn_men == 1||dyn_men==3) &&  C2F(ismenu)()==1 ) {
-	int entry;
-	C2F(getmen)(str,lstr,&entry);
-	*ibutton = -2;
-	*x1=0;
-	*yy1=0;
-	break;
-      }
-
-    /* to slow down event loop not to use all cpu when nothing happen*/
-      delay.tv_sec = 0; delay.tv_usec = 10;
-      select(0, 0, 0, 0, &delay);
-    }
-  set_event_select(1+4); 
-  set_wait_click(0);
-  if ( ScilabXgc != (struct BCG *) 0 && ScilabXgc->CWindow != (Window) 0)
-    XDefineCursor(dpy, ScilabXgc->CWindow ,arrowcursor);
-  XSync (dpy, 0);
-}
 
 /*******************************************************
  * clear a rectangle zone 
@@ -758,26 +764,43 @@ static void xset_popupdim(integer *x, integer *y, integer *v3, integer *v4)
 static void xget_viewport(integer *verbose, integer *x, integer *narg, double *dummy)
 {     
   *narg = 2;
-  if ( ScilabXgc->CurResizeStatus != 1) 
-    {
-      
-      SciViewportGet(ScilabXgc,x,x+1) ;
-    }
-  else 
-    { 
-      x[0]=x[1]=0;
-    }
-  if (*verbose == 1) 
-    sciprint("\n Viewport position:%d,%d\r\n",(int) x[0],(int) x[1]);
+  sciGetViewport( ScilabXgc->mafigure, &x[0], &x[1] ) ;
 } 
 
 /** To change the window size  **/
 
 static void xset_viewport(integer *x, integer *y, integer *v3, integer *v4)
 {
-  if ( ScilabXgc->CurResizeStatus != 1) 
-    SciViewportMove(ScilabXgc,*x,*y);
+  sciSetViewport( ScilabXgc->mafigure, *x, *y ) ;
 }
+
+
+/* used in the previous function to set back the graphic scales 
+ * when changing form one window to an other 
+ * Also used in scig_toPs : to force a reset of scilab graphic scales 
+ * after a print in Postscript or Xfig 
+ */
+
+void SwitchWindow(integer *intnum)
+{
+  /** trying to get window *intnum **/
+  struct BCG *SXgc;
+  integer ierr;
+  SXgc = getWindowXgcNumber(*intnum);
+  if ( SXgc != (struct BCG *) 0 ) 
+    {
+      /** Window intnum exists **/
+      ScilabXgc = SXgc ;
+      ResetScilabXgc ();
+      get_window_scale(*intnum,NULL);
+    }
+  else 
+    {
+      /** Create window **/
+      C2F(initgraphic)("",intnum,&ierr,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
+    }
+}
+
 
 /********************************************
  * select window intnum as the current window 
@@ -854,33 +877,6 @@ static void xget_scilabxgc(verbose, x,narg, dummy)
 /* NG end */
 
 
-/* used in the previous function to set back the graphic scales 
- * when changing form one window to an other 
- * Also used in scig_toPs : to force a reset of scilab graphic scales 
- * after a print in Postscript or Xfig 
- */
-
-void SwitchWindow(integer *intnum)
-{
-  /** trying to get window *intnum **/
-  struct BCG *SXgc;
-  integer ierr;
-  SXgc = getWindowXgcNumber(*intnum);
-  if ( SXgc != (struct BCG *) 0 ) 
-    {
-      /** Window intnum exists **/
-      ScilabXgc = SXgc ;
-      ResetScilabXgc ();
-      get_window_scale(*intnum,NULL);
-    }
-  else 
-    {
-      /** Create window **/
-      C2F(initgraphic)("",intnum,&ierr,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-    }
-}
-
-
 /*
  *  Get the id number of the Current Graphic Window 
  * In all the other functions we are sure that ScilabXgc exists 
@@ -947,7 +943,7 @@ static void xget_clip(integer *verbose, integer *x, integer *narg, double *dummy
 		 ScilabXgc->CurClipRegion[2],
 		 ScilabXgc->CurClipRegion[3]);
       else 
-	Scistring("\nNo Clip Region");
+	sciprint("\nNo Clip Region");
     }
 }
 
@@ -979,11 +975,33 @@ static void xget_absourel(integer *verbose, integer *num, integer *narg, double 
   if (*verbose == 1) 
     {
       if (ScilabXgc->CurVectorStyle == CoordModeOrigin)
-	Scistring("\nTrace Absolu");
+	sciprint("\nTrace Absolu");
       else 
-	Scistring("\nTrace Relatif");
+	sciprint("\nTrace Relatif");
     }
 }
+
+void set_c(integer col)
+{
+  int i,bk;
+  /* colors from 1 to ScilabXgc->Numcolors */
+  i= Max(0,Min(col,ScilabXgc->Numcolors + 1));     
+  ScilabXgc->CurColor = i;
+  bk= Max(0,Min(ScilabXgc->NumBackground,ScilabXgc->Numcolors + 1));
+  if (ScilabXgc->Colors == NULL) return;
+  switch ( ScilabXgc->CurDrawFunction  ) 
+    {
+    case GXclear :
+      break ;
+    case GXxor   : 
+      XSetForeground(dpy, gc,(unsigned long) 
+		     ScilabXgc->Colors[i] ^ ScilabXgc->Colors[bk]);break;
+    default :  
+      XSetForeground(dpy, gc,(unsigned long) ScilabXgc->Colors[i] );break;
+    }
+}
+
+
 
 /* The alu function for drawing : Works only with X11
  * Not in Postscript, Read The X11 manual to get more informations 
@@ -1021,7 +1039,7 @@ static void idfromname(char *name1, integer *num)
      *num=AluStruc_[i].id;
  if (*num == -1 ) 
    {
-     Scistring("\n Use the following keys (integer in scilab");
+     sciprint("\n Use the following keys (integer in scilab");
      for ( i=0 ; i < 16 ; i++)
        sciprint("\nkey %s   -> %s\r\n",AluStruc_[i].name,
 		AluStruc_[i].info);
@@ -1046,7 +1064,6 @@ static void xset_alufunction1(integer *num, integer *v2, integer *v3, integer *v
 {
   xset_alufunction2(ScilabXgc,num,v2,v3,v4);
 }
-
 
 
 static void xset_alufunction2(struct BCG *Xgc,integer *num, integer *v2, integer *v3, integer *v4)
@@ -1378,7 +1395,7 @@ static void xget_dash(integer *verbose, integer *value, integer *narg, double *d
   *narg =1 ;
   *value = ScilabXgc->CurDashStyle + 1;
   if (*value == 1) 
-    { if (*verbose == 1) Scistring("\nLine style = Line Solid");}
+    { if (*verbose == 1) sciprint("\nLine style = Line Solid");}
   else 
     {
       value[1]=4;
@@ -1389,7 +1406,7 @@ static void xget_dash(integer *verbose, integer *value, integer *narg, double *d
 	  sciprint("\nDash Style %d:<",(int)*value - 1);
 	  for (i = 0 ; i < value[1]; i++)
 	    sciprint("%d ",(int)value[i+2]);
-	  Scistring(">\n");
+	  sciprint(">\n");
 	}
     }
 }
@@ -1782,7 +1799,7 @@ void set_default_colormap3(int m)
   }
 
   if (!(pixels = (Pixel *) MALLOC(m*sizeof(Pixel)))) {
-    Scistring("set_default_colormap: unable to alloc\n");
+    sciprint("set_default_colormap: unable to alloc\n");
     XgcFreeColors(ScilabXgc);
     ScilabXgc->Colors = c;
     ScilabXgc->Red = r;
@@ -2024,7 +2041,7 @@ void setcolormap1(struct BCG *Xgc,integer m, double *a, integer *v3) /*NG*/
   for (i = 0; i < m; i++) {
     if (a[i] < 0 || a[i] > 1 || a[i+m] < 0 || a[i+m] > 1 ||
 	a[i+2*m] < 0 || a[i+2*m]> 1) {
-      Scistring("RGB values must be between 0 and 1\n");
+      sciprint("RGB values must be between 0 and 1\n");
       Xgc->Colors = c;
       Xgc->Red = r;
       Xgc->Green = g;
@@ -2109,7 +2126,7 @@ void setcolormap3(struct BCG *Xgc,integer m, double *a, integer *v3)
   }
 
   if (!(pixels = (Pixel *) MALLOC((m+2)*sizeof(Pixel)))) {
-    Scistring("setcolormap: unable to alloc\n");
+    sciprint("setcolormap: unable to alloc\n");
     XgcFreeColors(Xgc);
     Xgc->Colors = c;
     Xgc->Red = r;
@@ -2123,7 +2140,7 @@ void setcolormap3(struct BCG *Xgc,integer m, double *a, integer *v3)
   for (i = 0; i < m; i++) {
     if (a[i] < 0 || a[i] > 1 || a[i+m] < 0 || a[i+m] > 1 ||
 	a[i+2*m] < 0 || a[i+2*m]> 1) {
-      Scistring("RGB values must be between 0 and 1\n");
+      sciprint("RGB values must be between 0 and 1\n");
       Xgc->Colors = c;
       Xgc->Red = r;
       Xgc->Green = g;
@@ -2497,12 +2514,12 @@ static void InitMissileXgc(integer *v1, integer *v2, integer *v3, integer *v4);
 
 static void xset_empty(integer *verbose, integer *v2, integer *v3, integer *v4)
 {
-  if ( *verbose ==1 ) Scistring("\n No operation ");
+  if ( *verbose ==1 ) sciprint("\n No operation ");
 }
 
 static void xget_empty(integer *verbose, integer *v2, integer *v3, double *dummy)
 {
-  if ( *verbose ==1 ) Scistring("\n No operation ");
+  if ( *verbose ==1 ) sciprint("\n No operation ");
 }
 
 #define NUMSETFONC 32
@@ -3197,17 +3214,16 @@ void C2F(drawpolyline)(char *str, integer *n, integer *vx, integer *vy, integer 
   }
   if (n1 >= 2) 
   {
-    /*C2F(analyze_points)(*n, vx, vy,*closeflag);*/
+    
     /*Old code replaced by a routine with clipping */
     if (C2F(store_points)(*n, vx, vy,*closeflag))
     {
       /* draw the points */
       XDroutine( n1 ) ;
-      /*XDrawLines (dpy, ScilabXgc->Cdrawable, gc, get_xpoints(), (int) n1,
-        ScilabXgc->CurVectorStyle);*/
+      
       XFlush(dpy);
     }
-    /*XFlush(dpy);*/
+    
   }
 }
 
@@ -3300,6 +3316,33 @@ struct BCG *AddNewWindowToList(void)
 
 }
 
+/***********************************************
+ * Free the entry in window list for window number num 
+ * The X Objects are also freed 
+ *     WARNING : A Finir  
+ *   [1] Detruire physiquement la fenetre 
+ *      C'est fait dans la fonction suiante 
+ *	reste le Pixmap a detruire si besoin 
+ *	ainsi que le colormap ? 
+ *   [2] del_window_scale(intnum); 
+ ************************************************/
+
+void DeleteWindowToList(integer num)
+{
+  Widget popup = NULL ;
+  struct BCG * window = getWindowXgcNumber( num ) ;
+
+  if ( window == NULL ) { return ; }
+
+  popup = XtWindowToWidget(dpy,window->CBGWindow);
+  XtDestroyWidget( popup ) ;
+  XgcFreeColors( window ) ;
+
+  removeWindowItem( window ) ;
+
+}
+
+
 /* delete a graphic window  **/
 
 void DeleteSGWin(integer intnum)
@@ -3328,31 +3371,6 @@ void DeleteSGWin(integer intnum)
     }
 }
 
-/***********************************************
- * Free the entry in window list for window number num 
- * The X Objects are also freed 
- *     WARNING : A Finir  
- *   [1] Detruire physiquement la fenetre 
- *      C'est fait dans la fonction suiante 
- *	reste le Pixmap a detruire si besoin 
- *	ainsi que le colormap ? 
- *   [2] del_window_scale(intnum); 
- ************************************************/
-
-void DeleteWindowToList(integer num)
-{
-  Widget popup = NULL ;
-  struct BCG * window = getWindowXgcNumber( num ) ;
-
-  if ( window == NULL ) { return ; }
-
-  popup = XtWindowToWidget(dpy,window->CBGWindow);
-  XtDestroyWidget( popup ) ;
-  XgcFreeColors( window ) ;
-
-  removeWindowItem( window ) ;
-
-}
 
 /********************************************
  * Get Window number wincount ( or 0 ) 
@@ -3438,26 +3456,6 @@ static int X_error_handler(Display *d, XErrorEvent *err_ev)
   return(0);
 }
 
-void set_c(integer col)
-{
-  int i,bk;
-  /* colors from 1 to ScilabXgc->Numcolors */
-  i= Max(0,Min(col,ScilabXgc->Numcolors + 1));     
-  ScilabXgc->CurColor = i;
-  bk= Max(0,Min(ScilabXgc->NumBackground,ScilabXgc->Numcolors + 1));
-  if (ScilabXgc->Colors == NULL) return;
-  switch ( ScilabXgc->CurDrawFunction  ) 
-    {
-    case GXclear :
-      break ;
-    case GXxor   : 
-      XSetForeground(dpy, gc,(unsigned long) 
-		     ScilabXgc->Colors[i] ^ ScilabXgc->Colors[bk]);break;
-    default :  
-      XSetForeground(dpy, gc,(unsigned long) ScilabXgc->Colors[i] );break;
-    }
-}
-
 /*
  * initgraphic : initialize graphic window
  * If v2 is not a nul pointer *v2 is the window number to create 
@@ -3514,7 +3512,7 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4, integ
   NewXgc = AddNewWindowToList();
   if ( NewXgc == (struct BCG *) 0) 
     {
-      Scistring("initgraphics: unable to alloc\n");
+      sciprint("initgraphics: unable to alloc\n");
       return;
     }
   else 
@@ -4111,7 +4109,7 @@ static void xset_font(integer *fontid, integer *fontsize, integer *v3, integer *
       else 
 	{
 	  sciprint(" The Font Id %d is not affected \r\n",(int)i);
-	  Scistring(" use xlfont to set it \n");
+	  sciprint(" use xlfont to set it \n");
 	  return;
 	}
     }
@@ -4204,12 +4202,12 @@ void C2F(loadfamily)(char *name, integer *j, integer *v3, integer *v4, integer *
 	    { 
 	      flag=0;
 	      sciprint("\n Unknown font : %s",name1);
-	      Scistring("\n I'll use font: fixed ");
+	      sciprint("\n I'll use font: fixed ");
 	      FontsList_[*j][i]=XLoadQueryFont(dpy,"fixed");
 	      if  (FontsList_[*j][i]== NULL)
 		{
 		  sciprint("\n Unknown font : %s\r\n","fixed");
-		  Scistring("Please call an X Wizard !");
+		  sciprint("Please call an X Wizard !");
 		}
 	    }
 	}
@@ -4235,12 +4233,12 @@ static void C2F(loadfamily_n)(char *name, integer *j)
 	{ 
 	  flag=0;
 	  sciprint("\n Unknown font : %s",name1);
-	  Scistring("\n I'll use font: fixed ");
+	  sciprint("\n I'll use font: fixed ");
 	  FontsList_[*j][i]=XLoadQueryFont(dpy,"fixed");
 	  if  (FontsList_[*j][i]== NULL)
 	    {
 	      sciprint("\n Unknown font : %s\r\n","fixed");
-	      Scistring("  Please call an X Wizard !");
+	      sciprint("  Please call an X Wizard !");
 	    }
 	}
     }
@@ -4626,6 +4624,19 @@ int CheckScilabXgc(void)
 }
 
 
+static int screencolor = 1 ; /* default screen color status */
+
+/* return the current screencolor */
+
+void getcolordef( integer * screenc )
+{
+  *screenc= screencolor;
+}
+
+void setcolordef( int screenc )
+{
+  screencolor = screenc;
+}
 
 #undef MAXTAB
 #undef DASH_TAB_SIZE

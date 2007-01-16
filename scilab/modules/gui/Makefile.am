@@ -169,7 +169,8 @@ includes/men_scilab.h \
 includes/sci_clc.h \
 includes/gw_gui.h \
 includes/wmen_scilab.h \
-includes/sci_show_window.h
+includes/sci_show_window.h \
+includes/SGraph.h
 
 
 #### gui : demos files ####

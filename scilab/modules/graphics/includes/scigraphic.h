@@ -1,4 +1,6 @@
 
+#include "bcg.h"
+
 /**
  * Sets the dimension of the scroll bars
  * @attention Do not call SetScrollInfo windows function,
