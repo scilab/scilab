@@ -10,7 +10,7 @@
  *@author Matthieu PHILIPPE 
  *@date Dec 1999
  **/
-extern int sciSetScrollInfo(struct BCG *Scilabgc, int sb_ctl,SCROLLINFO *si, BOOLEAN bRedraw);
+int sciSetScrollInfo(struct BCG *Scilabgc, int sb_ctl, SCROLLINFO *si, BOOLEAN bRedraw);
 
 /**
  * Returns the dimension of the scroll bars
@@ -22,7 +22,7 @@ extern int sciSetScrollInfo(struct BCG *Scilabgc, int sb_ctl,SCROLLINFO *si, BOO
  *@author Matthieu PHILIPPE 
  *@date Dec 1999
  **/
-extern int sciGetScrollInfo(struct BCG *Scilabgc, int sb_ctl, SCROLLINFO *si);
+int sciGetScrollInfo(struct BCG *Scilabgc, int sb_ctl, SCROLLINFO *si);
 
 /**
  * Returns the wresize status.
@@ -31,7 +31,7 @@ extern int sciGetScrollInfo(struct BCG *Scilabgc, int sb_ctl, SCROLLINFO *si);
  *@author Matthieu PHILIPPE 
  *@date Dec 1999
  **/
-extern integer sciGetwresize();
+integer sciGetwresize();
 
 /**
  * Returns the pixmap status.
@@ -40,14 +40,14 @@ extern integer sciGetwresize();
  *@author Matthieu PHILIPPE 
  *@date Dec 1999
  **/
-extern integer sciGetPixmapStatus();
+integer sciGetPixmapStatus();
 
 /**
  * used to get panner position through scilab command.
  * @param[in] struct BCG *ScilabGC : structure associated to a Scilab Graphic window
  * @param[in] int x,y : the x,y point of the graphic window to be moved at the up-left position of the viewport
  **/
-extern void SciViewportGet __PARAMS((struct BCG *ScilabXgc,int *x,int *y));
+void SciViewportGet __PARAMS((struct BCG *ScilabXgc,int *x,int *y));
 
 /**
  * used to move the panner and the viewport interactively 
@@ -55,7 +55,7 @@ extern void SciViewportGet __PARAMS((struct BCG *ScilabXgc,int *x,int *y));
  * @param[in] struct BCG *ScilabGC : structure associated to a Scilab Graphic window
  * @param[in] int x,y : the x,y point of the graphic window to be moved at the up-left position of the viewport
  **/
-extern void SciViewportMove __PARAMS((struct BCG *ScilabXgc,int x,int y));
+void SciViewportMove __PARAMS((struct BCG *ScilabXgc,int x,int y));
 
 /**
  * A little beat different to windowdim. GPopupResize sets the visible window (parents dimension)
@@ -63,5 +63,5 @@ extern void SciViewportMove __PARAMS((struct BCG *ScilabXgc,int x,int y));
  * @param[in] int * x,y , where x,y are the new dimension
  * @see setwindowdim
  **/
-extern void GPopupResize __PARAMS((struct BCG *ScilabXgc,int *x,int *y));
+void GPopupResize __PARAMS((struct BCG *ScilabXgc,int *x,int *y));
 
