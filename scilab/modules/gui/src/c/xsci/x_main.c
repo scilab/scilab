@@ -32,6 +32,7 @@
 #include "scimem.h" /* nofpex */
 
 #include "DestroyObjects.h"
+#include "periScreen.h"
 
 extern void  controlC_handler(int n);
 
@@ -374,19 +375,19 @@ Widget initColors(realToplevel_w)
     case TrueColor:
     case DirectColor:
       ADDTOPLEVEL("color");
-      screencolor = 1;
+      setcolordef(1) ;
       break;
     case StaticGray:
     case GrayScale:
       ADDTOPLEVEL("gray");
-      screencolor = 0;
+      setcolordef(0) ;
       break;
     default:
-      screencolor = 0;
+      setcolordef(0) ;
       toplevel_w = realToplevel_w;
     }
   } else {
-      screencolor = 0;
+      setcolordef(0) ;
       toplevel_w = realToplevel_w;
   }
   /* Ton van Overbeek patch 22/08/00 */

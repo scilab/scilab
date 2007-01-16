@@ -1,4 +1,25 @@
+#include <X11/keysym.h>
+#include <X11/DECkeysym.h>
 
+#include <X11/Xatom.h>
+#include <X11/Intrinsic.h>
+#include <X11/StringDefs.h>
+#include <X11/Shell.h>
+#include <X11/Xaw3d/Box.h>
+#include <X11/Xaw3d/Command.h>
+#include <X11/Xaw3d/Form.h>
+#include <X11/Xaw3d/Label.h>
+#include <X11/Xaw3d/Cardinals.h>
+#include <X11/Xaw3d/Paned.h>
+#include <X11/Xaw3d/Grip.h>
+#include <X11/Xaw3d/MenuButton.h>
+#include <X11/Xaw3d/SimpleMenu.h>
+#include <X11/Xaw3d/SmeBSB.h>
+#include <X11/Xaw3d/SmeLine.h>
+#include <X11/Xaw3d/Viewport.h>
+#include <X11/Xaw3d/Panner.h>	
+#include <X11/IntrinsicP.h>
+#include <X11/Xaw3d/ViewportP.h>
 
 int IswmDeleteWindow(XEvent *event);
 
