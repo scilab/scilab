@@ -6,7 +6,7 @@ class  Exec
 
   public static void main(String[] args) 
 	{
-    	    Scilab.Exec("disp(''Hello from Scilab'');");
+    	    Scilab.Exec("disp('Hello from Scilab');");
 	}
 }
 

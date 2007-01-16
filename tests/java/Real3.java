@@ -32,7 +32,7 @@ class Real3
   		E.Send();
   		
   		Scilab.Exec("C=A+B;");
-  		D.Job("Dim=size(C)");
+  		D.Job("Dim=size(C);");
 			
 			DisplayResult(A.getName(),A.getData(),A.getRow(),A.getCol());
 			DisplayResult(B.getName(),B.getData(),B.getRow(),B.getCol());

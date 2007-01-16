@@ -12,11 +12,11 @@ public static void main(String[] args)
   F.Send();
   G.Send();
 
-	Scilab.Exec("disp(''F='');disp(F);");
-	Scilab.Exec("disp(''G='');disp(G);");
+	Scilab.Exec("disp('F=');disp(F);");
+	Scilab.Exec("disp('G=');disp(G);");
   
   Scilab.Exec("H=F*G;");
-  DimH.Job("DimH=size(H)");
+  DimH.Job("DimH=size(H);");
       
   double DxDy[]=DimH.getData();
   
@@ -25,7 +25,7 @@ public static void main(String[] args)
   
   H.Get();
   
-  Scilab.Exec("disp(''H='');disp(H);");
+  Scilab.Exec("disp('H=');disp(H);");
 
 }
 /********************************************************************************************************/      

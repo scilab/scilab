@@ -17,19 +17,19 @@ class Real1
   		E.Send();
   		
   		
-  		Scilab.Exec("disp(''A='');disp(A);");
-  		Scilab.Exec("disp(''B='');disp(B);");
-			Scilab.Exec("disp(''C='');disp(C);");
-			Scilab.Exec("disp(''E='');disp(E);");
+  		Scilab.Exec("disp('A=');disp(A);");
+  		Scilab.Exec("disp('B=');disp(B);");
+			Scilab.Exec("disp('C=');disp(C);");
+			Scilab.Exec("disp('E=');disp(E);");
 			
   		Scilab.Exec("C=A+B;");
-  		D.Job("Dim=size(C)");
+  		D.Job("Dim=size(C);");
 			
-			Scilab.Exec("disp(''A='');disp(A);");
-  		Scilab.Exec("disp(''B='');disp(B);");
-			Scilab.Exec("disp(''C='');disp(C);");
-			Scilab.Exec("disp(''Dim='');disp(Dim);");
-			Scilab.Exec("disp(''E='');disp(E);");
+			Scilab.Exec("disp('A=');disp(A);");
+  		Scilab.Exec("disp('B=');disp(B);");
+			Scilab.Exec("disp('C=');disp(C);");
+			Scilab.Exec("disp('Dim=');disp(Dim);");
+			Scilab.Exec("disp('E=');disp(E);");
 
     }
 /********************************************************************************************************/      

@@ -14,8 +14,8 @@ class String1
     System.out.println("S1 : "+ S1.getName()+" = "+S1.getData());
     System.out.println("S2 : "+ S2.getName()+" = "+S2.getData());
     
-    Scilab.Exec("Sentence1=''You are the best !'';");
-    Scilab.Exec("Sentence3=Sentence1+'' ''+Sentence2;");
+    Scilab.Exec("Sentence1='You are the best !';");
+    Scilab.Exec("Sentence3=Sentence1+' '+Sentence2;");
     
     System.out.println("S3 : "+ S3.getName()+" = "+S3.getData());
     
