@@ -60,6 +60,8 @@
  */
 
 #define spINSIDE_SPARSE
+
+
 #include "spConfig.h"
 #include "spUtils.h"
 #include "spmatrix.h"
@@ -1110,7 +1112,7 @@ struct FillinListNodeStruct  *pListNode;
 }
 #endif
 
-#if TRANSLATE AND DELETE
+//#if TRANSLATE AND DELETE
 /*
  *  DELETE A ROW AND COLUMN FROM THE MATRIX
  *
@@ -1226,7 +1228,7 @@ ElementPtr  spcFindElementInCol();
 
     return;
 }
-#endif
+//#endif
 
 #if PSEUDOCONDITION
 /*
