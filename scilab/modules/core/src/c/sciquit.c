@@ -81,8 +81,11 @@ int ExitScilab(void)
 			if ( !IsFromC() && !IsFromJava() )  RestoreConsoleColors();
 		}
 	#else
-		C2F (xscion) (&i);
-		if (i != 0)	CloseConsoleGUI();
+        {
+          int i = 0 ;
+	  C2F (xscion) (&i);
+	  if (i != 0) CloseConsoleGUI();
+        }
 	#endif
 
 		/*	#ifdef _MSC_VER */ /* Bug sous Linux lors de la liberation memoire */
