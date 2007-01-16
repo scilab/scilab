@@ -33,6 +33,6 @@ int BuildXYZvectForClipping_IfNanOrLogON( sciPointObj *   ppolyline,
                                           double      *** zvect    ,
                                           int         **  curves_size ) ;
 
-void Plo2dTo3d(integer type, integer *n1, integer *n2, double *x, double *y, double *z, double *x1, double *y1, double *z1) ;
+void Plo2dTo3d(integer type, integer *n1, integer *n2, double x[], double y[], double z[], double xOut[], double yOut[], double zOut[]) ;
 
 #endif /* _DRAW_POLYLINE_ENTITY_H_ */

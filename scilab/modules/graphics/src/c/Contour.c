@@ -37,7 +37,7 @@ static integer ffnd __PARAMS((ptr_level_f,integer,integer,integer,integer,intege
 static int Gcont_size = 0;
 
 static void ContourTrace __PARAMS((double Cont, integer style));
-static level_f ContStore, ContStore1, ContStore2,GContStore2;
+static level_f GContStore2;
 static void GContStore2Last __PARAMS((void));
 static double x_cont __PARAMS((integer i));
 static double y_cont __PARAMS((integer i));
@@ -134,8 +134,6 @@ static double x_cont(integer i) { return GX[i] ;}
 static double y_cont(integer i) { return GY[i] ;}
 
 
-
-static double ZC=0.0;
 static char   ContNumFormat[100];
 
 /*--------------------------------------------------------------------

@@ -32,18 +32,14 @@ int drawPolylineEntity( sciPointObj * pObj )
   int markStyle      = sciGetMarkStyle(pObj) ;
   int markSize       = sciGetMarkSize( pObj) ;
   int markForeground = sciGetMarkForeground(pObj) ;
-  int verbose = 0 ;
   int v = 0 ;
   double dv = 0.0 ;
   char logFlags[4] ;
-  int narg = 0 ;
   int nb_curves = 0 ;
   int * curves_size = NULL ; /* for SCI_POLYLINE */
   double ** xMat = NULL ;
   double ** yMat = NULL ;
   double ** zMat = NULL ;
-  int nbPoints = ppPoly->n1 ;
-  int nbCurvesBar = ppPoly->n2 ;
   int closeFlag = ppPoly->closed ;
   int i ;
   int DPI[2] ;
@@ -307,11 +303,8 @@ int drawPolylineEntity( sciPointObj * pObj )
     case 6: /* 'Matlab' bar */
       {
         /* get the number of polylines sisters with bar property "on" */
-
-        double barWidth =  ppPoly->bar_width;
-        double * x_shift = ppPoly->x_shift ;
         double * y_shift = ppPoly->y_shift ;
-        double * z_shift = ppPoly->z_shift ;
+        double barWidth =  ppPoly->bar_width;
         double barX[4] ;
         double barY[4] ;
         double barZ[4];
@@ -428,9 +421,7 @@ int drawPolylineEntity( sciPointObj * pObj )
       break;
     case 7: /* 'Matlab' barh */
       {
-        double * x_shift = ppPoly->x_shift ;
         double * y_shift = ppPoly->y_shift ;
-        double * z_shift = ppPoly->z_shift ;
         double barX[4] ;
         double barY[4] ;
         double barZ[4];
@@ -1081,7 +1072,7 @@ int BuildXYZvectForClipping_IfNanOrLogON( sciPointObj *   ppolyline,
   return 0;
 }
 /*------------------------------------------------------------------------------------*/
-void Plo2dTo3d(integer type, integer *n1, integer *n2, double *x, double *y, double *z, double *x1, double *y1, double *z1)
+void Plo2dTo3d(integer type, integer *n1, integer *n2, double x[], double y[], double z[], double xOut[], double yOut[], double zOut[])
 {
   /* JBS : happy understanding */
   integer i,j;
@@ -1092,11 +1083,11 @@ void Plo2dTo3d(integer type, integer *n1, integer *n2, double *x, double *y, dou
     for ( i=0 ; i < (*n2) ; i++)
       for (j=0 ; j< (*n1) ; j++)
       {
-        y1[2*i+1+2*(*n2)*j]= y1[2*i+2*(*n2)*j]= y[i+(*n2)*j];
+        yOut[2*i+1+2*(*n2)*j]= yOut[2*i+2*(*n2)*j]= y[i+(*n2)*j];
         if (z == NULL)
-          z1 = (double *) NULL;
+          zOut = (double *) NULL;
         else
-          z1[2*i+1+2*(*n2)*j]= z1[2*i+2*(*n2)*j]= z[i+(*n2)*j];
+          zOut[2*i+1+2*(*n2)*j]= zOut[2*i+2*(*n2)*j]= z[i+(*n2)*j];
       }
       /*ym[2*i+1+2*(*n2)*j]= ym[2*i+2*(*n2)*j]= YScale(y[i+(*n2)*j]);*/
 
@@ -1105,11 +1096,11 @@ void Plo2dTo3d(integer type, integer *n1, integer *n2, double *x, double *y, dou
       {
         for ( i=1 ; i < (*n2) ; i++)
         {
-          x1[2*i+2*(*n2)*j]= x[i+(*n2)*j];
-          x1[2*i-1+2*(*n2)*j]=x1[2*i+2*(*n2)*j];
+          xOut[2*i+2*(*n2)*j]= x[i+(*n2)*j];
+          xOut[2*i-1+2*(*n2)*j]=xOut[2*i+2*(*n2)*j];
         }
-        x1[2*(*n2)*j]= x[(*n2)*j];
-        x1[2*(*n2)-1+ 2*(*n2)*j]= x1[2*(*n2-1)+ 2*(*n2)*j];
+        xOut[2*(*n2)*j]= x[(*n2)*j];
+        xOut[2*(*n2)-1+ 2*(*n2)*j]= xOut[2*(*n2-1)+ 2*(*n2)*j];
       }
       break;
   case 3:
@@ -1117,22 +1108,22 @@ void Plo2dTo3d(integer type, integer *n1, integer *n2, double *x, double *y, dou
     for ( i=0 ; i < (*n2) ; i++)
       for (j=0 ; j< (*n1) ; j++)
       {
-        y1[2*i+1+2*(*n2)*j]= 0.0;
-        y1[2*i+2*(*n2)*j]= y[i+(*n2)*j];
+        yOut[2*i+1+2*(*n2)*j]= 0.0;
+        yOut[2*i+2*(*n2)*j]= y[i+(*n2)*j];
       }
       /** Computing x/z-values **/
       for (j=0 ; j< (*n1) ; j++)
       {
         for ( i=0 ; i < (*n2) ; i++)
         {
-          x1[2*i+2*(*n2)*j]= x[i+(*n2)*j];
-          x1[2*i+1+2*(*n2)*j]=x1[2*i+2*(*n2)*j]; 
+          xOut[2*i+2*(*n2)*j]= x[i+(*n2)*j];
+          xOut[2*i+1+2*(*n2)*j]=xOut[2*i+2*(*n2)*j]; 
           if (z == NULL)
-            z1 = (double *) NULL;
+            zOut = (double *) NULL;
           else
           {
-            z1[2*i+2*(*n2)*j]= z[i+(*n2)*j];
-            z1[2*i+1+2*(*n2)*j]=z1[2*i+2*(*n2)*j];
+            zOut[2*i+2*(*n2)*j]= z[i+(*n2)*j];
+            zOut[2*i+1+2*(*n2)*j]=zOut[2*i+2*(*n2)*j];
           }
         }
       }
@@ -1141,28 +1132,28 @@ void Plo2dTo3d(integer type, integer *n1, integer *n2, double *x, double *y, dou
     /** Computing y-values **/
     for ( i=0 ; i < (*n2) ; i++)
       for (j=0 ; j< (*n1) ; j++)
-        y1[2*i+2*(*n2)*j]= y[i+(*n2)*j];
+        yOut[2*i+2*(*n2)*j]= y[i+(*n2)*j];
     for ( i=0 ; i < (*n2)-1 ; i++)
       for (j=0 ; j< (*n1) ; j++)
-        y1[2*i+1+2*(*n2)*j]=y1[2*i+2+2*(*n2)*j]; 
+        yOut[2*i+1+2*(*n2)*j]=yOut[2*i+2+2*(*n2)*j]; 
     /** Computing x-values **/
     for (j=0 ; j< (*n1) ; j++)
       for ( i=0 ; i < (*n2) ; i++)
-        x1[2*i+2*(*n2)*j]= x[i+(*n2)*j];
+        xOut[2*i+2*(*n2)*j]= x[i+(*n2)*j];
     for (j=0 ; j< (*n1) ; j++)
       for ( i=0 ; i < (*n2)-1 ; i++)
-        x1[2*i+1+2*(*n2)*j]=x1[2*i+2+2*(*n2)*j];
+        xOut[2*i+1+2*(*n2)*j]=xOut[2*i+2+2*(*n2)*j];
     /** Computing z-values **/
     if (z == NULL)
-      z1 = (double *) NULL;
+      zOut = (double *) NULL;
     else
     {
       for (j=0 ; j< (*n1) ; j++)
         for ( i=0 ; i < (*n2) ; i++)
-          z1[2*i+2*(*n2)*j]= z[i+(*n2)*j];
+          zOut[2*i+2*(*n2)*j]= z[i+(*n2)*j];
       for (j=0 ; j< (*n1) ; j++)
         for ( i=0 ; i < (*n2)-1 ; i++)
-          z1[2*i+1+2*(*n2)*j]=z1[2*i+2+2*(*n2)*j];
+          zOut[2*i+1+2*(*n2)*j]=zOut[2*i+2+2*(*n2)*j];
     }
     break;
   default:

@@ -10,6 +10,7 @@
 #include "sci_contour2di.h"
 #include "GetCommandArg.h"
 #include "Scierror.h"
+#include "Contour.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_contour2di( char * fname, unsigned long fname_len )

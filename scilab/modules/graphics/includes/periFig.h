@@ -7,9 +7,6 @@
 #define __PERIFIG_H__
 
 #include "bcg.h"
-struct BCG  ScilabGCXfig ;
-
-static BOOL ScilabGCXfig_is_initialized = FALSE;
 
 
  extern void  C2F(drawarcXfig)();

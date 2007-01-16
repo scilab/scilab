@@ -52,7 +52,6 @@ extern int CreatePrettyGradsFromNax(sciPointObj * psubwin,int * Nax);
 
 int C2F(xgray)(double *x, double *y, double *z, integer *n1, integer *n2, char *strflag, double *brect, integer *aaint, BOOL flagNax, long int l1)
 {
-  int N = Max((*n1),(*n2));
   double xx[2],yy[2];
   integer nn1=1,nn2=2;
   sciPointObj  *psubwin = NULL;
@@ -216,9 +215,8 @@ extern void GraySquare(integer *x, integer *y, double *z, integer n1, integer n2
 
 int C2F(xgray1)(double *z, integer *n1, integer *n2, char *strflag, double *brect, integer *aaint, BOOL flagNax, long int l1)
 {
-  int N = Max((*n1+1),(*n2+1))/*,i*/;
   double xx[2],yy[2];
-  static integer *xm,*ym,j, nn1=1,nn2=2;
+  static integer nn1=1,nn2=2;
   sciPointObj  *psubwin = NULL;
   double drect[6];
   BOOL bounds_changed = FALSE;

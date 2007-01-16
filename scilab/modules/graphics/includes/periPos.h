@@ -8,6 +8,8 @@
 #ifndef __PERIPOS_H__
 #define __PERIPOS_H__
 
+#include "bcg.h"
+
  extern void  C2F(drawarcPos)(char *str, integer *x, integer *y, integer *width, integer *height, integer *angle1, integer *angle2, double *dv1, double *dv2, double *dv3, double *dv4);
  extern void  C2F(fillarcsPos)(char *str, integer *vects, integer *fillvect, integer *n, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4);
  extern void  C2F(drawarcsPos)(char *str, integer *vects, integer *style, integer *n, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4);
@@ -54,7 +56,7 @@ void C2F(get_dash_or_color_Pos)(integer *verbose, integer *value, integer *narg,
 
 void C2F(get_dash_and_color_Pos)(integer *verbose, integer *value, integer *narg, double *dummy);
 
-void C2F(setgccolormapPos)(struct BCG *Xgc,integer m, double *a, integer *v3);
+void C2F(setgccolormapPos)( struct BCG * Xgc,integer m, double *a, integer *v3);
 
 void C2F(getcolormapsizePos)(integer *v1, integer *v2, integer *v3, double *val);
 

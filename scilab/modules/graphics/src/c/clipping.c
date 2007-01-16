@@ -224,15 +224,15 @@ void sciDrawInsideSegments( integer       iib,
 /*-------------------------------------------------------------------------------------*/
 
 /* draw the segement defined by (vx[index-1],vy[index-1]) (vx[index],vy[index]) */
-void sciDrawOutsideSegment( integer index, 
-                            integer *vx  ,
-                            integer *vy  , 
+void sciDrawOutsideSegment( integer ind, 
+                            integer *vx,
+                            integer *vy, 
                             SClipRegion * clipping )
 {
   /** The segment is out but can cross the box **/
   integer segX[2],segY[2],flag;
-  sciClipLine( vx[index-1], vy[index-1]  ,
-               vx[index]  , vy[index]    ,
+  sciClipLine( vx[ind-1], vy[ind-1]  ,
+               vx[ind]  , vy[ind]    ,
                &segX[0]   , &segY[0],
                &segX[1]   , &segY[1]  ,
                &flag      , clipping  ) ;

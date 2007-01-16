@@ -12,7 +12,7 @@
 
 /*-------------------------------------------------------------------------------------------*/
 int  getVertexIndex( void ) ;
-void setVertexIndex( int index ) ;
+void setVertexIndex( int ind ) ;
 /*-------------------------------------------------------------------------------------------*/
 int SetMinMaxVertices( Vertices * vertices_list, double * xmin, double * ymin, double * zmin,double * xmax, double * ymax, double * zmax ) ;
 int GetVerticesAt( Vertices * vertices_list, int * xm, int * ym, double * x, double * y, double * z ) ;

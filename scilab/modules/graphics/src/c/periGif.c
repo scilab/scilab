@@ -1452,7 +1452,9 @@ void C2F(DispStringAngleGif)(integer *x0, integer *yy0, char *string, double *an
 
 void C2F(displaystringGif)(char *string, integer *x, integer *y, integer *v1, integer *flag, integer *v6, integer *v7, double *angle, double *dv2, double *dv3, double *dv4)
 {     
-  integer rect[4],x1=0,y1=0;
+  integer rect[4] ;
+  integer boxX = 0 ;
+  integer boxY = 0 ;
 
   integer verbose, Dnarg,Dvalue[10],j;
   verbose =0 ;
@@ -1461,7 +1463,7 @@ void C2F(displaystringGif)(char *string, integer *x, integer *y, integer *v1, in
     return;
   }
   if ( Abs(*angle) <= 0.1) {
-    C2F(boundingboxGif)(string,&x1,&y1,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
+    C2F(boundingboxGif)(string,&boxX,&boxY,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
     C2F(getdashGif)(&verbose,Dvalue,&Dnarg,vdouble);
     C2F(setdashGif)((j=1,&j),PI0,PI0,PI0);
     gdImageString(GifIm, GifFont, *x, *y - rect[3], (unsigned char*) string,
@@ -1470,7 +1472,7 @@ void C2F(displaystringGif)(char *string, integer *x, integer *y, integer *v1, in
   }
   else if ( Abs(*angle + 90) <= 0.1 )   /* added by Bruno */
     {
-    C2F(boundingboxGif)(string,&x1,&y1,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
+    C2F(boundingboxGif)(string,&boxX,&boxY,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
     C2F(getdashGif)(&verbose,Dvalue,&Dnarg,vdouble);
     C2F(setdashGif)((j=1,&j),PI0,PI0,PI0);
     /* a voir (peut etre enlever le -rect[2] qui doit centrer en vertical alors
@@ -2278,7 +2280,7 @@ void C2F(loadfamilyGif)(char *name, integer *j, integer *v3, integer *v4, intege
   char fname[1024];
   int i,ierr;
   char *SciPath;
-  gdFontPtr Font;
+  gdFontPtr font;
 
   /** test if it is an alias font name **/
   if ( strchr(name,'%') != (char *) NULL)  /* no apriori it is an X11 font name */
@@ -2299,8 +2301,8 @@ void C2F(loadfamilyGif)(char *name, integer *j, integer *v3, integer *v4, intege
       /* unload this font */
       FontInfoTabGif[*j].ok = 0;
       for (i=0;i<FONTMAXSIZE;i++) {
-	Font = &(FontListGif[*j][i]);
-	  if (Font != NULL) FREE(Font->data);
+	font = &(FontListGif[*j][i]);
+	  if (font != NULL) FREE(font->data);
       }
     }
   }

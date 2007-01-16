@@ -28,11 +28,6 @@
 
 #include "MALLOC.h" /* MALLOC */
 
-//int index_vertex=0;
-/* static double xz1,yz1; */
-/* #define pixel2TRX(x) xz1= Cscale.frect[0] + (1.0/Cscale.Wscx1)*((x) - Cscale.Wxofset1) */
-/* #define pixel2TRY(y) yz1= Cscale.frect[3] - (1.0/Cscale.Wscy1)*((y) - Cscale.Wyofset1) */
-
 extern void xgetmouse2(char *fname, char *str, integer *ibutton, integer *iflag, integer *x1, integer *yy1, integer *x6, integer *x7, double *x, double *y, double *dx3, double *dx4, integer lx0, integer lx1);
 extern void xclick_2(char *fname, char *str, integer *ibutton, integer *iflag, integer *istr, integer *x1, integer *yy1, integer *x7, double *x, double *y, double *dx3, double *dx4, integer lx0, integer lx1);
 extern int StoreCommand( char *command);
@@ -1471,7 +1466,7 @@ extern void unzoom_one_axes(sciPointObj *psousfen)
  *  (voir les fonctions qui suivent )
  */
 
-void Gr_Rescale(char *logf, double *FRectI, integer *Xdec, integer *Ydec, integer *xnax, integer *ynax)
+void Gr_Rescale(char *logFlags, double *FRectI, integer *Xdec, integer *Ydec, integer *xnax, integer *ynax)
 {
   double FRectO[4];
   sciPointObj *psubwin; 
@@ -1483,7 +1478,7 @@ void Gr_Rescale(char *logf, double *FRectI, integer *Xdec, integer *Ydec, intege
       pSUBWIN_FEATURE (psubwin)->axes.limits[i+1]=FRectI[i];
      
     
-  if (logf[0] == 'n') 
+  if (logFlags[0] == 'n') 
     { 
       if (!pSUBWIN_FEATURE (psubwin)->tight_limits )
 	{
@@ -1502,7 +1497,7 @@ void Gr_Rescale(char *logf, double *FRectI, integer *Xdec, integer *Ydec, intege
       Xdec[1]=inint(FRectI[2]);
       Xdec[2]=0;
     }
-  if (logf[1] == 'n') 
+  if (logFlags[1] == 'n') 
     {
       if ( !pSUBWIN_FEATURE (psubwin)->tight_limits)
 	{

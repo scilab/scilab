@@ -59,13 +59,13 @@ void sciDrawInsideSegments( integer       iib,
                             integer     * vy ,
                             SClipRegion * clipping ) ;
 
-/* @memo draw the segement defined by (vx[index-1],vy[index-1]) (vx[index],vy[index]) */
-void sciDrawOutsideSegment( integer index, 
-                            integer *vx  ,
-                            integer *vy  , 
+/* draw the segement defined by (vx[index-1],vy[index-1]) (vx[index],vy[index]) */
+void sciDrawOutsideSegment( integer ind, 
+                            integer *vx,
+                            integer *vy, 
                             SClipRegion * clipping ) ;
 /* 
- * @memo returns the first (vx[.],vy[.]) point inside 
+ *  returns the first (vx[.],vy[.]) point inside 
  *  xleft,xright,ybot,ytop bbox. begining at index ideb
  *  or zero if the whole polyline is out 
  */
@@ -75,7 +75,7 @@ integer sciFirstInClipRegion( integer       n   ,
                               integer     * vy  ,
                               SClipRegion * clipping ) ;
 /* 
- *  @memo returns the first (vx[.],vy[.]) point outside
+ *  returns the first (vx[.],vy[.]) point outside
  *  xleft,xright,ybot,ytop bbox.
  *  or zero if the whole polyline is out 
  */
@@ -86,7 +86,7 @@ integer sciFirstOutClipRegion( integer       n   ,
                                SClipRegion * clipping ) ;
 
 /* 
- * @memo check every segment of the polyline and draw only the part which is in the
+ * check every segment of the polyline and draw only the part which is in the
  * clip region
  */
 void C2F(clipPolyLine)( integer       n     , 
@@ -97,7 +97,7 @@ void C2F(clipPolyLine)( integer       n     ,
 
 /*----------------------------------------------------------------------------------------*/
 /*
- * @memo get the real clipping (the set one the axe or the window borders) 
+ * get the real clipping (the set one the axe or the window borders) 
  * in pixels of a graphic object
  */
 void getPixelClipping( sciPointObj * pObj, SClipRegion * clipping ) ;

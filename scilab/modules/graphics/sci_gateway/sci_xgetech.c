@@ -17,7 +17,7 @@ int sci_xgetech( char *fname, unsigned long fname_len )
   double WRect[4],FRect[4],ARect[4];
   double *W= WRect, *F = FRect, *A= ARect ;
   int un=1,deux=2,quatre=4,i,l1,l2,l3,l4;
-  char logf[2], *L=logf;
+  char logFlags[2], *L=logFlags ;
 
   CheckRhs(0,0);
   CheckLhs(1,4);

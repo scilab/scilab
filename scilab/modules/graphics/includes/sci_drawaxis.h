@@ -41,7 +41,7 @@
 int sci_drawaxis( char * fname, unsigned long fname_len ) ;
 
 int check_xy(char *fname, char dir, int mn, int xpos, int xm, int xn, 
-             long unsigned int xl, int ypos, int ym, int yn, long unsigned int yl, 
+             long unsigned int xl, int ypos, int yRow, int yCol, long unsigned int yl, 
              int *ntics) ;
 
 #endif /* _INT_DRAWAXIS_H_ */

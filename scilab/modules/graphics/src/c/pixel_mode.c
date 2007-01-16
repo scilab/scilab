@@ -37,9 +37,9 @@ static char * pmodes[NB_PIXEL_MODES] = { "clear"       , /* 0 */
                                        } ;
 
 /*----------------------------------------------------------------------------------*/
-char * getPixelMode( int index )
+char * getPixelMode( int ind )
 {
-    return pmodes[index] ;
+    return pmodes[ind] ;
 }
 /*----------------------------------------------------------------------------------*/
 int getPixelModeIndex( const char * modeName )

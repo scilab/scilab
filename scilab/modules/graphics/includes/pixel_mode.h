@@ -17,7 +17,7 @@ int getNbPixelModes( void ) ;
 /**
  * Get the name of pixel mode number index.
  */
-char * getPixelMode( int index ) ;
+char * getPixelMode( int ind ) ;
 
 /**
  * Look for a pixel mode of name modeName and return its index.

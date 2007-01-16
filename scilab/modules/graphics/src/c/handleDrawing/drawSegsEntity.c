@@ -334,7 +334,7 @@ int drawSegsEntity( sciPointObj * pObj )
 
     if( sciGetIsLine( pObj ) )
     {
-      int arrowSize =  computeRealArrowSize( pObj, nbArrow, xCoords, yCoords ) ;
+      arrowSize =  computeRealArrowSize( pObj, nbArrow, xCoords, yCoords ) ;
 
       C2F (dr) ("xset", "dashes", &foreground, &foreground, &v, &v, &v, &v, &dv,
         &dv, &dv, &dv, 5L, 4096);

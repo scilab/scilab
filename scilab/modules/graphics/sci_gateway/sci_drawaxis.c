@@ -174,7 +174,7 @@ int sci_drawaxis( char * fname, unsigned long fname_len )
 
 /*-----------------------------------------------------------------------------------*/
 int check_xy(char *fname, char dir, int mn, int xpos, int xm, int xn, 
-             long unsigned int xl, int ypos, int ym, int yn, long unsigned int yl, 
+             long unsigned int xl, int ypos, int yRow, int yCol, long unsigned int yl, 
              int *ntics)
 {
   switch ( dir ) 
@@ -183,7 +183,7 @@ int check_xy(char *fname, char dir, int mn, int xpos, int xm, int xn,
     /* x must be scalar */
     if ( xpos != -1 ) CheckScalar(xpos,xm,xn);
     /* y must be of size mn */
-    if ( mn != -1 ) CheckDims(ypos,ym,yn,1,mn);
+    if ( mn != -1 ) CheckDims(ypos,yRow,yCol,1,mn);
     switch (mn) 
     {
     case 3: 
@@ -191,12 +191,12 @@ int check_xy(char *fname, char dir, int mn, int xpos, int xm, int xn,
     case 4: 
       *ntics = (int) *stk(yl+3)+1;break;
     case -1: 
-      *ntics =  ym*yn;break;
+      *ntics =  yRow*yCol;break;
     }
     break;
   case 'u' : case 'd' : 
     /* y must be scalar */
-    if ( ypos  != -1 ) CheckScalar(ypos,ym,yn);
+    if ( ypos  != -1 ) CheckScalar(ypos,yRow,yCol);
     /* x must be of size mn */
     if (mn != -1 ) CheckDims(xpos,xm,xn,1,mn);
     switch (mn) 

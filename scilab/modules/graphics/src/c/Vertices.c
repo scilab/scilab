@@ -21,9 +21,9 @@ int  getVertexIndex( void )
   return vertex_index ;
 }
 /*--------------------------------------------------------------------------------------------------*/
-void setVertexIndex( int index )
+void setVertexIndex( int ind )
 {
-  vertex_index = index ;
+  vertex_index = ind ;
 }
 /*--------------------------------------------------------------------------------------------------*/
 int SetMinMaxVertices(Vertices *vertices_list, double *xmin, double *ymin, double *zmin,double *xmax, double *ymax, double *zmax)

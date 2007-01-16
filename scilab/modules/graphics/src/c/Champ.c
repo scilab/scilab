@@ -54,10 +54,9 @@ extern BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag);
 void champg(char *name, integer colored, double *x, double *y, double *fx, double *fy, integer *n1, 
 	    integer *n2, char *strflag, double *brect, double *arfact, integer lstr)
 {
-  static integer aaint[]={2,10,2,10};
-  integer *xm = NULL,*ym = NULL,*zm = NULL,n;
+  integer n;
   double  xx[2],yy[2];
-  integer nn1=1,nn2=2,iflag=0;  
+  integer nn1=1,nn2=2;  
   /* NG */
   sciPointObj  *psubwin;
   integer flag,type =1;

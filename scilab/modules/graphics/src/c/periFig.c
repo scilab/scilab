@@ -52,6 +52,10 @@
 
 #include "MALLOC.h" /* MALLOC */
 
+struct BCG  ScilabGCXfig ;
+
+static BOOL ScilabGCXfig_is_initialized = FALSE;
+
 #define WHITE 7
 #define BLACK 0
 
@@ -80,11 +84,6 @@ extern void setcolordef( integer   screenc ) ;
 static void 
 C2F(analyze_pointsXfig) (integer n, integer *vx, integer *vy,
 			 integer onemore);
-/* static void  */
-/* C2F(analyze_pointsXfigForFilling)(integer n, integer *vx, integer *vy, */
-/* 				  integer onemore, integer cpat); */
-/* static void MyDrawForFilling(integer iib, integer iif, integer *vx, integer *vy, integer fvect); */
-/* static void My2drawForFilling(integer j, integer *vx, integer *vy, integer fvect); */
 
 static void C2F(displaysymbolsXfig) (char *str, integer *n, integer *vx, integer *vy);
 static int C2F(FigQueryFont)(char *name);
@@ -2734,247 +2733,12 @@ void C2F(Write2VectXfig)(integer *vx, integer *vy, integer n, integer flag)
  * Clipping functions for XFig 
  ************************************************************/
 
-static void MyDraw(integer iib, integer iif, integer *vx, integer *vy)
-{
-  integer fvect=0,ipoly=1;
-  integer iideb;
-  integer x1kn,y1kn,x2kn,y2kn;
-  integer x1n,y1n,x11n,y11n,x2n,y2n,flag2=0,flag1=0;
-  integer npts;
-
-  if ( ScilabGCXfig_is_initialized == FALSE ) {
-    sciprint("xinit must be called before any action \r\n");
-    return;
-  }
-
-  npts= ( iib > 0) ? iif-iib+2  : iif-iib+1;
-  if ( iib > 0) 
-    {
-      clip_line(vx[iib-1],vy[iib-1],vx[iib],vy[iib],&x1n,&y1n,&x2n,&y2n,&flag1);
-    }
-  clip_line(vx[iif-1],vy[iif-1],vx[iif],vy[iif],&x11n,&y11n,&x2n,&y2n,&flag2);
-  /** if (C2F(store_points)(npts, &vx[Max(0,iib-1)], &vy[Max(0,iib-1)],(integer)0L)); **/
-  iideb = Max(0,iib-1);
-  if (iib > 0 && (flag1==1||flag1==3)) 
-    {
-      x1kn=vx[iideb]; y1kn=vy[iideb];
-      vx[iideb]=x1n; vy[iideb]=y1n;
-    }
-  if (flag2==2 || flag2==3) 
-    {
-      x2kn=vx[iideb+npts-1]; y2kn=vy[iideb+npts-1];
-      vx[iideb+npts-1]=x2n; vy[iideb+npts-1]=y2n;
-    }
-  C2F(fillpolylinesXfig)("MyDraw",&vx[iideb],&vy[iideb],&fvect,&ipoly,&npts,
-			 PI0,PD0,PD0,PD0,PD0);
-  if (iib > 0 && (flag1==1||flag1==3)) 
-    {
-      vx[iideb]=x1kn; vy[iideb]=y1kn;
-    }
-  if (flag2==2 || flag2==3) 
-    {
-      vx[iideb+npts-1]=x2kn; vy[iideb+npts-1]=y2kn;
-    }
-}
-
-static void My2draw(integer j, integer *vx, integer *vy)
-{
-  /** The segment is out but can cross the box **/
-  integer vxn[2],vyn[2],flag,fvect=0,ipoly=1;
-
-  if ( ScilabGCXfig_is_initialized == FALSE ) {
-    sciprint("xinit must be called before any action \r\n");
-    return;
-  }
-
-  clip_line(vx[j-1],vy[j-1],vx[j],vy[j],&vxn[0],&vyn[0],&vxn[1],&vyn[1],&flag);
-  if (flag == 3 ) 
-  {
-    integer deux=2;
-    C2F(fillpolylinesXfig)("MyDraw",vxn,vyn,&fvect,&ipoly,&deux,
-			 PI0,PD0,PD0,PD0,PD0);
-  }
-}
 static void C2F(analyze_pointsXfig)(integer n, integer *vx, integer *vy, integer onemore)
 {
   SClipRegion clipping = getClipRegion( &ScilabGCXfig ) ;
 
   C2F(clipPolyLine)( n, vx, vy, onemore, &clipping ) ;
 }
-
-
-/* static void C2F(analyze_pointsXfig)(integer n, integer *vx, integer *vy, integer onemore) */
-/* {  */
-/*   integer iib,iif,ideb=0,vxl[2],vyl[2],fvect=0,ipoly=1,deux=2; */
-/*   integer xleft, xright, ybot, ytop; */
-
-/*   if ( ScilabGCXfig_is_initialized == FALSE ) { */
-/*     sciprint("xinit must be called before any action \r\n"); */
-/*     return; */
-/*   } */
-
-/*   xleft=ScilabGCXfig.CurClipRegion[0]; */
-/*   xright=xleft+ScilabGCXfig.CurClipRegion[2]; */
-/*   ybot=ScilabGCXfig.CurClipRegion[1]; */
-/*   ytop= ybot + ScilabGCXfig.CurClipRegion[3]; */
-/*   set_clip_box(xleft, xright, ybot, ytop); */
-/*   while (1)  */
-/*     { integer j; */
-/*       iib=first_in(n,ideb,vx,vy); */
-/*       if (iib == -1)  */
-/* 	{  */
-/* 	  for (j=ideb+1; j < n; j++) My2draw(j,vx,vy); */
-/* 	  break; */
-/* 	} */
-/*       else  */
-/*       if ( iib - ideb > 1)  */
-/* 	{ */
-/* 	  /\* un partie du polygine est totalement out de ideb a iib -1 *\/ */
-/* 	  /\* mais peu couper la zone *\/ */
-/* 	  for (j=ideb+1; j < iib; j++) My2draw(j,vx,vy); */
-/* 	}; */
-/*       iif=first_out(n,iib,vx,vy); */
-/*       if (iif == -1) { */
-/* 	/\* special case the polyligne is totaly inside *\/ */
-/* 	if (iib == 0)  */
-/* 	  { */
-/* 	    /\** XXXX : if (C2F(store_points)(n,vx,vy,onemore)); **\/ */
-/* 	    /\** if (onemore == 1) n1 = n+1;else n1= n; **\/ */
-/* 	    C2F(fillpolylinesXfig)("MyDraw",vx,vy,&fvect,&ipoly,&n, */
-/* 			 PI0,PD0,PD0,PD0,PD0); */
-/* 	    return ; */
-/* 	  } */
-/* 	else  */
-/* 	  MyDraw(iib,n-1,vx,vy); */
-/* 	break; */
-/*       } */
-/*       MyDraw(iib,iif,vx,vy); */
-/*       ideb=iif; */
-/*     } */
-/*   if (onemore == 1) { */
-/*     /\* The polyligne is closed we consider the closing segment *\/ */
-/*     integer x1n,y1n,x2n,y2n,flag1=0; */
-/*     vxl[0]=vx[n-1];vxl[1]=vx[0];vyl[0]=vy[n-1];vyl[1]=vy[0]; */
-/*     clip_line(vxl[0],vyl[0],vxl[1],vyl[1],&x1n,&y1n,&x2n,&y2n,&flag1); */
-/*     if ( flag1==0) return ; */
-/*     if (flag1==1||flag1==3) {vxl[0]=x1n;vyl[0]=y1n;} */
-/*     if (flag1==2||flag1==3) {vxl[1]=x2n;vyl[0]=y2n;} */
-/*     C2F(fillpolylinesXfig)("MyDraw",vxl,vyl,&fvect,&ipoly,&deux, */
-/* 			 PI0,PD0,PD0,PD0,PD0); */
-/*   } */
-/* } */
-
-/* static void C2F(analyze_pointsXfigForFilling)(integer n, integer *vx, integer *vy, integer onemore, integer cpat) */
-/* {  */
-/*   integer iib,iif,ideb=0,vxl[2],vyl[2],fvect=cpat,ipoly=1,deux=2; */
-/*   integer xleft, xright, ybot, ytop; */
-/*   xleft=ScilabGCXfig.CurClipRegion[0]; */
-/*   xright=xleft+ScilabGCXfig.CurClipRegion[2]; */
-/*   ybot=ScilabGCXfig.CurClipRegion[1]; */
-/*   ytop= ybot + ScilabGCXfig.CurClipRegion[3]; */
-/*   set_clip_box(xleft, xright, ybot, ytop); */
-/*   while (1)  */
-/*     { integer j; */
-/*       iib=first_in(n,ideb,vx,vy); */
-/*       if (iib == -1)  */
-/* 	{  */
-/* 	  for (j=ideb+1; j < n; j++) My2drawForFilling(j,vx,vy,fvect); */
-/* 	  break; */
-/* 	} */
-/*       else  */
-/*       if ( iib - ideb > 1)  */
-/* 	{ */
-/* 	  /\* un partie du polygine est totalement out de ideb a iib -1 *\/ */
-/* 	  /\* mais peu couper la zone *\/ */
-/* 	  for (j=ideb+1; j < iib; j++) My2drawForFilling(j,vx,vy,fvect); */
-/* 	}; */
-/*       iif=first_out(n,iib,vx,vy); */
-/*       if (iif == -1) { */
-/* 	/\* special case the polyligne is totaly inside *\/ */
-/* 	if (iib == 0)  */
-/* 	  { */
-/* 	    /\** XXXX : if (C2F(store_points)(n,vx,vy,onemore)); **\/ */
-/* 	    /\** if (onemore == 1) n1 = n+1;else n1= n; **\/ */
-/* 	    C2F(fillpolylinesXfig)("MyDraw",vx,vy,&fvect,&ipoly,&n, */
-/* 			 PI0,PD0,PD0,PD0,PD0); */
-/* 	    return ; */
-/* 	  } */
-/* 	else  */
-/* 	  MyDrawForFilling(iib,n-1,vx,vy,fvect); */
-/* 	break; */
-/*       } */
-/*       MyDrawForFilling(iib,iif,vx,vy,fvect); */
-/*       ideb=iif; */
-/*     } */
-/* /\*   if (onemore == 1) { *\/ */
-/* /\*     /\\* The polyligne is closed we consider the closing segment *\\/ *\/ */
-/* /\*     integer x1n,y1n,x2n,y2n,flag1=0; *\/ */
-/* /\*     vxl[0]=vx[n-1];vxl[1]=vx[0];vyl[0]=vy[n-1];vyl[1]=vy[0]; *\/ */
-/* /\*     clip_line(vxl[0],vyl[0],vxl[1],vyl[1],&x1n,&y1n,&x2n,&y2n,&flag1); *\/ */
-/* /\*     if ( flag1==0) return ; *\/ */
-/* /\*     if (flag1==1||flag1==3) {vxl[0]=x1n;vyl[0]=y1n;} *\/ */
-/* /\*     if (flag1==2||flag1==3) {vxl[1]=x2n;vyl[0]=y2n;} *\/ */
-/* /\*     C2F(fillpolylinesXfig)("MyDraw",vxl,vyl,&fvect,&ipoly,&deux, *\/ */
-/* /\* 			 PI0,PD0,PD0,PD0,PD0); *\/ */
-/* /\*   } *\/ */
-/* } */
-
-
-
-/* /\************************************************************ */
-/*  * Clipping functions for XFig  */
-/*  ************************************************************\/ */
-
-/* static void MyDrawForFilling(integer iib, integer iif, integer *vx, integer *vy, integer fvect) */
-/* { */
-/*   integer ipoly=1; */
-/*   integer iideb; */
-/*   integer x1kn,y1kn,x2kn,y2kn; */
-/*   integer x1n,y1n,x11n,y11n,x2n,y2n,flag2=0,flag1=0; */
-/*   integer npts; */
-/*   npts= ( iib > 0) ? iif-iib+2  : iif-iib+1; */
-/*   if ( iib > 0)  */
-/*     { */
-/*       clip_line(vx[iib-1],vy[iib-1],vx[iib],vy[iib],&x1n,&y1n,&x2n,&y2n,&flag1); */
-/*     } */
-/*   clip_line(vx[iif-1],vy[iif-1],vx[iif],vy[iif],&x11n,&y11n,&x2n,&y2n,&flag2); */
-/*   /\** if (C2F(store_points)(npts, &vx[Max(0,iib-1)], &vy[Max(0,iib-1)],(integer)0L)); **\/ */
-/*   iideb = Max(0,iib-1); */
-/*   if (iib > 0 && (flag1==1||flag1==3))  */
-/*     { */
-/*       x1kn=vx[iideb]; y1kn=vy[iideb]; */
-/*       vx[iideb]=x1n; vy[iideb]=y1n; */
-/*     } */
-/*   if (flag2==2 || flag2==3)  */
-/*     { */
-/*       x2kn=vx[iideb+npts-1]; y2kn=vy[iideb+npts-1]; */
-/*       vx[iideb+npts-1]=x2n; vy[iideb+npts-1]=y2n; */
-/*     } */
-/*   C2F(fillpolylinesXfig)("MyDraw",&vx[iideb],&vy[iideb],&fvect,&ipoly,&npts, */
-/* 			 PI0,PD0,PD0,PD0,PD0); */
-/*   if (iib > 0 && (flag1==1||flag1==3))  */
-/*     { */
-/*       vx[iideb]=x1kn; vy[iideb]=y1kn; */
-/*     } */
-/*   if (flag2==2 || flag2==3)  */
-/*     { */
-/*       vx[iideb+npts-1]=x2kn; vy[iideb+npts-1]=y2kn; */
-/*     } */
-/* } */
-
-/* static void My2drawForFilling(integer j, integer *vx, integer *vy, integer fvect) */
-/* { */
-/*   /\** The segment is out but can cross the box **\/ */
-/*   integer vxn[2],vyn[2],flag,ipoly=1; */
-/*   clip_line(vx[j-1],vy[j-1],vx[j],vy[j],&vxn[0],&vyn[0],&vxn[1],&vyn[1],&flag); */
-/*   if (flag == 3 )  */
-/*   { */
-/*     integer deux=2; */
-/*     C2F(fillpolylinesXfig)("MyDraw",vxn,vyn,&fvect,&ipoly,&deux, */
-/* 			 PI0,PD0,PD0,PD0,PD0); */
-/*   } */
-/* } */
-
 
 
 /* NG beg */

@@ -19,8 +19,6 @@ int drawSurfaceEntity( sciPointObj * pObj )
   int lineWidth = sciGetLineWidth( pObj ) ;
   int lineStyle = sciGetLineStyle( pObj ) ;
   int markStyle = sciGetMarkStyle( pObj ) ;
-  int v = 0 ;
-  double dv = 0.0 ;
   int DPI[2] ;
 
   if ( pSUBWIN_FEATURE(parentSubWin)->facetmerge ) { return 0 ; }  
@@ -28,20 +26,6 @@ int drawSurfaceEntity( sciPointObj * pObj )
     
   GetDPIFromDriver(DPI) ;
   
-
-  //itmp[0] = 0;		/* verbose*/
-  //itmp[1] = 0;		/* thickness value*/
-  //itmp[2] = 1;		/* narg*/
-  //C2F (dr) ("xget", "thickness", &itmp[0], &itmp[1], &itmp[2], PI0, PI0,PI0, PD0, PD0, PD0, PD0, 4L, 9L);
-  //C2F (dr) ("xget", "mark", &itmp[0], markidsizeold, &itmp[3], PI0, PI0, PI0,PD0, PD0, PD0, PD0, 4L, 4L);
-
-  /* load the object foreground and dashes color */
-  /*       x[0] = sciGetForeground (pobj);	 */
-  /*x[2] = sciGetLineWidth (pobj);
-  x[3] = sciGetLineStyle (pobj);
-  markidsizenew[0] = sciGetMarkStyle(pobj);
-  markidsizenew[1] = sciGetLineWidth (pobj);
-  x[4] = 0;v = 0;dv = 0; */
 #ifdef _MSC_VER
   flag_DO = MaybeSetWinhdc();
 #endif

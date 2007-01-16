@@ -121,10 +121,7 @@ int drawLegendEntity( sciPointObj * pObj )
   sciLegend * ppLegend = pLEGEND_FEATURE(pObj) ;
 
   int verbose = 0 ;
-  int thickness = 0 ;
-  int narg = 1 ;
   int foreground = sciGetForeground( pObj ) ;
-  int fontForeground = sciGetFontForeground( pObj ) ;
   int fontWidth = sciGetFontDeciWidth( pObj ) / 100 ;
   int fontStyle = sciGetFontStyle( pObj ) ;
   int oldForeground = 0 ;

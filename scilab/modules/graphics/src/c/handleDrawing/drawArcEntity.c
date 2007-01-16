@@ -19,7 +19,6 @@ int drawArcEntity( sciPointObj * pObj )
   sciArc * ppArc = pARC_FEATURE(pObj) ;
   sciPointObj * parentSubWin = sciGetParentSubwin(pObj) ;
   sciSubWindow * ppSubWin = pSUBWIN_FEATURE(parentSubWin) ;
-  int verbose = 0 ;
   int v = 0 ;
   double dv = 0.0 ;
   int lineWidth = sciGetLineWidth(pObj) ;

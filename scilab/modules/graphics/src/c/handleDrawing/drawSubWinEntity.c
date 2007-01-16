@@ -111,7 +111,6 @@ int drawSubWinEntity( sciPointObj * pObj )
     sciSons * curSon = NULL ;
     int foreground = sciGetForeground( pObj ) ;
     int lineWidth  = sciGetLineWidth( pObj ) ;
-    int lineStyle  = sciGetLineStyle( pObj ) ;
     int markStyle = sciGetMarkStyle( pObj ) ;
     int markSize  = sciGetLineWidth( pObj ) ;
     int v = 0 ;
