@@ -66,9 +66,6 @@
 #include "spDefs.h"
 #include "spmalloc.h"
 
-static void ComplexTransposedMatrixMultiply();
-static RealNumber ComplexCondition();
-
 #if MODIFIED_NODAL
 /*
  *  PREORDER MODIFIED NODE ADMITTANCE MATRIX TO REMOVE ZEROS FROM DIAGONAL
