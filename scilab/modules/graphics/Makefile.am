@@ -419,7 +419,6 @@ sci_gateway/sci_xtitle.c \
 sci_gateway/sci_StringBox.c \
 sci_gateway/sci_xgetmouse.c \
 sci_gateway/sci_drawnow.c \
-sci_gateway/sci_xinfo.c \
 sci_gateway/sci_xfarcs.c \
 sci_gateway/sci_param3d.c \
 sci_gateway/sci_contour2di.c \
@@ -873,7 +872,6 @@ includes/sci_xtitle.h \
 includes/math_graphics.h \
 includes/sci_drawnow.h \
 includes/giffonts.h \
-includes/sci_xinfo.h \
 includes/sci_param3d.h \
 includes/periGif.h
 
