@@ -167,7 +167,7 @@ static setHashTableCouple propertyTable[NB_PROPERTIES] =
 } ;
 
 /*-----------------------------------------------------------------------------------*/
-GetPropertyHashTable * createScilabSetHashTable( void )
+SetPropertyHashTable * createScilabSetHashTable( void )
 {
   int i ;
   if ( setHashTableCreated )
@@ -177,6 +177,11 @@ GetPropertyHashTable * createScilabSetHashTable( void )
 
   /* create the hash table */
   setHashTable = createSetHashTable() ;
+
+  if ( setHashTable == NULL )
+  {
+    return NULL ;
+  }
 
   /* insert every couple */
   for ( i = 0 ; i < NB_PROPERTIES ; i++ )

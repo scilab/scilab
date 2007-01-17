@@ -145,19 +145,7 @@ str_l(26)=['t=%pi*(-10:10)/10;';
           'title=[''plot3d and contour''];';
           'xtitle(title,'' '','' '','' '');'];
 	  
-str_l(27)=['exec(''SCI/modules/graphics/demos/sd.sav'');';
-          'set figure_style old';
-          'plot2d();gr_menu(sd_1,1,1);';
-          'title=[''plot2d and gr_menu''];';
-          'xtitle(title,'' '','' '','' '');'];
-
-str_l(28)=['exec(''SCI/modules/graphics/demos/sd.sav'');';
-          'set figure_style old';
-          'plot3d();gr_menu(sd_2,1,1);';
-          'title=[''plot3d and gr_menu''];';
-          'xtitle(title,'' '','' '','' '');'];
-
-str_l(29)=[
+str_l(27)=[
 	'subplot(2,2,1);';
 	'plot3d();';
 	'subplot(2,2,2);';
@@ -167,9 +155,9 @@ str_l(29)=[
 	'subplot(2,2,4);';
 	'grayplot();'];
 
-str_l(30)=['fac3d();'];
+str_l(28)=['fac3d();'];
 
-str_l(31)=['fac3d1();'];
+str_l(29)=['fac3d1();'];
 
 info_l=['plot2d';
 	'plot2d1';     
@@ -197,8 +185,6 @@ info_l=['plot2d';
 	'contour (3d) 2';
 	'contour (3d) 3';
 	'contour (3d) 4';
-	'plot2d+gr_menu';
-	'plot3d+gr_menu';
 	'subplot';
 	'fac3d';
 	'fac3d1'];

@@ -181,6 +181,11 @@ GetPropertyHashTable * createScilabGetHashTable( void )
   /* create the hash table */
   getHashTable = createGetHashTable() ;
 
+  if ( getHashTable == NULL )
+  {
+    return NULL ;
+  }
+
   /* insert every couple */
   for ( i = 0 ; i < NB_PROPERTIES ; i++ )
   {
