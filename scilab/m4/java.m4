@@ -373,7 +373,7 @@ AC_DEFUN([AC_JAVA_JNI_INCLUDE], [
 AC_DEFUN([AC_JAVA_JNI_LIBS], [
     machine=`uname -m`
     case "$machine" in
-        i?86)
+        i?86*)
           machine=i386
           ;;
     esac
