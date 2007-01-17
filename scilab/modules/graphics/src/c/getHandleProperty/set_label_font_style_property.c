@@ -32,6 +32,5 @@ int set_labels_font_style_property( sciPointObj * pobj, int stackPointer, int va
     sciprint( "labels_font_style property does not exist for this handle.\n" ) ;
     return SET_PROPERTY_ERROR ;
   }
-  return SET_PROPERTY_ERROR ;
 }
 /*------------------------------------------------------------------------*/
