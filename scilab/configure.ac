@@ -474,7 +474,8 @@ else
 
 		## CC compiler (not GCC)
 		if test "$enable_debug" != yes; then 
-		     CFLAGS="$CFLAGS -DNDEBUG " # used to be -O
+		     CFLAGS="$CFLAGS -DNDEBUG " 
+			 # used to be -O
 		else
 		     CFLAGS="$CFLAGS -g"
 		fi
@@ -957,7 +958,7 @@ else
 fi
 # Gets compilation and library flags
 
-
+LDFLAGS="$LDFLAGS -no-undefined"
 
 #########################
 ## libtool 
