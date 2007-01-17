@@ -3,11 +3,15 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include "CallScilab.h"
+#include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(scirun)(char * startup, int lstartup);
 /*-----------------------------------------------------------------------------------*/
 static BOOL RemoveCharsFromEOL(char *line,char CharToRemove);
+static char *RepeatChar(char *S1, char c);
 static char lastjob[bsiz]="";
+/*-----------------------------------------------------------------------------------*/
+/* see CallScilab.h more informations*/
 /*-----------------------------------------------------------------------------------*/
 int SendScilabJob(char *job)
 {
@@ -15,29 +19,32 @@ int SendScilabJob(char *job)
 	double code = -1;
 
 	static char buf[bsiz];
-	char format[]="try %s,catch,end;quit;";
-	char CommandGetLastError[]="[StrErr,Err]=lasterror(%f);quit;";
-	char ClearErrVariables[]="clear StrErr;clear Err;quit;";
+	static char *command=NULL;
+	static char *tmprepeat=NULL;
+	char formatcommand[]="Err=execstr('%s','errcatch','n');quit;";
+	char ClearErrVariable[]="clear Err;quit;";
 
-	if ( (strlen(format)+strlen(job)) >= bsiz)
+	/* pretreatment */
+	/* we repeat \' & \" */
+	tmprepeat=RepeatChar(job,'\"');
+	command=RepeatChar(tmprepeat,'\'');
+
+	if ( (strlen(command)+strlen(formatcommand)) >= bsiz)
 	{
 		fprintf(stderr,"Error : SendScilabJob string 'job' too long \n");
 		return (int) code;
 	}
 
-	sprintf(buf,format,job);
+	/* clear prev. Err scilab variable */
+	C2F(scirun)(ClearErrVariable,strlen(ClearErrVariable));
+
+	sprintf(buf,formatcommand,command);
 	strcpy(lastjob,job);
 	C2F(scirun)(buf,strlen(buf));
 
-	/* clear prev. Err & StrErr scilab variables */
-	C2F(scirun)(ClearErrVariables,strlen(ClearErrVariables));
-
-	/* check lasterror */ 
-	C2F(scirun)(CommandGetLastError,strlen(CommandGetLastError));
-
 	if ( ! C2F(cmatptr)("Err", &m, &n, &lp,strlen("Err")))
 	{
-		fprintf(stderr,"Error : SendScilabJob (cmatptr) 'Err' \n");
+		fprintf(stderr,"Error : SendScilabJob (1) 'Err'.\n");
 	}
 	else
 	{
@@ -45,11 +52,14 @@ int SendScilabJob(char *job)
 		{
 			ReadMatrix("Err", &m, &n, &code);
 		}
-		else fprintf(stderr,"Error : SendScilabJob (ReadMatrix Err)\n");
+		else fprintf(stderr,"Error : SendScilabJob (2) 'Err'.\n");
 	}
 
 	/* clear prev. Err & StrErr scilab variables */
-	C2F(scirun)(ClearErrVariables,strlen(ClearErrVariables));
+	C2F(scirun)(ClearErrVariable,strlen(ClearErrVariable));
+
+	if (command) {FREE(command);command=NULL;}
+	if (tmprepeat) {FREE(tmprepeat);tmprepeat=NULL;}
 
 	return (int) code;
 }
@@ -57,7 +67,6 @@ int SendScilabJob(char *job)
 BOOL GetLastJob(char *JOB)
 {
 	BOOL bOK=FALSE;
-
 	if (strcmp(lastjob,""))
 	{
 		if (JOB)
@@ -119,5 +128,36 @@ static BOOL RemoveCharsFromEOL(char *line,char CharToRemove)
 		else break;
 	}
 	return bOK;
+}
+/*-----------------------------------------------------------------------------------*/
+static char *RepeatChar(char *S1, char c) 
+{
+	char *buffer=NULL;
+	int i=0;
+	int j=0;
+	int nbchartorepeat=0;
+
+	for (i=0;i<(int)strlen(S1);i++) if (S1[i] == c) nbchartorepeat++;
+
+	buffer = (char*)MALLOC((strlen(S1)+nbchartorepeat+1)*sizeof(char));
+
+	if (buffer)
+	{
+		for (i=0;i<(int)strlen(S1);i++)
+		{
+			if (S1[i] == c)
+			{
+				buffer[j]=c;
+				buffer[j+1]=c;
+				j=j+2;
+			}
+			else
+			{
+				buffer[j]=S1[i];
+				j++;
+			}
+		}
+	}
+	return buffer;
 }
 /*-----------------------------------------------------------------------------------*/
