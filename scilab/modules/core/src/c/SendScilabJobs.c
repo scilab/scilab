@@ -157,6 +157,7 @@ static char *RepeatChar(char *S1, char c)
 				j++;
 			}
 		}
+		buffer[j]='\0';
 	}
 	return buffer;
 }
