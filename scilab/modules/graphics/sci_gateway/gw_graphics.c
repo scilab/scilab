@@ -52,7 +52,6 @@ static MatdesTable Tab[]={
 	{sci_xgetech,"xgetech"},
 	{sci_xgetmouse,"xgetmouse"},
 	{sci_xgrid,"xgrid"},
-	{sci_xinfo,"xinfo"},
 	{sci_xinit,"xinit"},
 	{sci_xlfont,"xlfont"},
 	{sci_xpoly,"xpoly"},

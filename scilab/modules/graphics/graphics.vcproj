@@ -1186,10 +1186,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xinfo.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\sci_xinit.c"
 				>
 			</File>
@@ -2328,10 +2324,6 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_xgrid.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xinfo.h"
 				>
 			</File>
 			<File

@@ -64,7 +64,6 @@ extern int sci_xgetech                    _PARAMS((char *fname, unsigned long fn
 extern int sci_geom3d                     _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_fec                        _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xgetmouse                  _PARAMS((char *fname, unsigned long fname_len));
-extern int sci_xinfo                      _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xtitle                     _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xgrid                      _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xfarcs                     _PARAMS((char *fname, unsigned long fname_len));
