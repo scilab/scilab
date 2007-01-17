@@ -3,13 +3,14 @@
 ### INRIA - Scilab 2006 
 ##########
 
-SPARSE_C_SOURCES = src/c/spFortran.c \
+SPARSE_C_SOURCES = \
+src/c/spUtils.c \
+src/c/spFortran.c \
 src/c/mspelm.c \
 src/c/lu.c \
 src/c/spFactor.c \
 src/c/spBuild.c \
 src/c/spOutput.c \
-src/c/spUtils.c \
 src/c/spAllocate.c \
 src/c/spSolve.c
 

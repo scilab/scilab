@@ -71,11 +71,11 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscisparse_la_DEPENDENCIES = $(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/intersci/libsciintersci.la
-am__objects_1 = libscisparse_la-spFortran.lo libscisparse_la-mspelm.lo \
+am__objects_1 = libscisparse_la-spUtils.lo \
+	libscisparse_la-spFortran.lo libscisparse_la-mspelm.lo \
 	libscisparse_la-lu.lo libscisparse_la-spFactor.lo \
 	libscisparse_la-spBuild.lo libscisparse_la-spOutput.lo \
-	libscisparse_la-spUtils.lo libscisparse_la-spAllocate.lo \
-	libscisparse_la-spSolve.lo
+	libscisparse_la-spAllocate.lo libscisparse_la-spSolve.lo
 am__objects_2 = spcompack.lo wsposp.lo dspmax.lo findl.lo spcho1.lo \
 	dspful.lo blkslv.lo wspcle.lo wspt.lo wspssp.lo lspmat.lo \
 	lsosp.lo blkfc1.lo wspxsp.lo lspful.lo blkfct.lo symfct.lo \
@@ -284,13 +284,14 @@ target_alias = @target_alias@
 tcldir = @tcldir@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-SPARSE_C_SOURCES = src/c/spFortran.c \
+SPARSE_C_SOURCES = \
+src/c/spUtils.c \
+src/c/spFortran.c \
 src/c/mspelm.c \
 src/c/lu.c \
 src/c/spFactor.c \
 src/c/spBuild.c \
 src/c/spOutput.c \
-src/c/spUtils.c \
 src/c/spAllocate.c \
 src/c/spSolve.c
 
@@ -636,6 +637,13 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
+libscisparse_la-spUtils.lo: src/c/spUtils.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-spUtils.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-spUtils.Tpo -c -o libscisparse_la-spUtils.lo `test -f 'src/c/spUtils.c' || echo '$(srcdir)/'`src/c/spUtils.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisparse_la-spUtils.Tpo $(DEPDIR)/libscisparse_la-spUtils.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/spUtils.c' object='libscisparse_la-spUtils.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -c -o libscisparse_la-spUtils.lo `test -f 'src/c/spUtils.c' || echo '$(srcdir)/'`src/c/spUtils.c
+
 libscisparse_la-spFortran.lo: src/c/spFortran.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-spFortran.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-spFortran.Tpo -c -o libscisparse_la-spFortran.lo `test -f 'src/c/spFortran.c' || echo '$(srcdir)/'`src/c/spFortran.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisparse_la-spFortran.Tpo $(DEPDIR)/libscisparse_la-spFortran.Plo
@@ -677,13 +685,6 @@ libscisparse_la-spOutput.lo: src/c/spOutput.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/spOutput.c' object='libscisparse_la-spOutput.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -c -o libscisparse_la-spOutput.lo `test -f 'src/c/spOutput.c' || echo '$(srcdir)/'`src/c/spOutput.c
-
-libscisparse_la-spUtils.lo: src/c/spUtils.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-spUtils.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-spUtils.Tpo -c -o libscisparse_la-spUtils.lo `test -f 'src/c/spUtils.c' || echo '$(srcdir)/'`src/c/spUtils.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisparse_la-spUtils.Tpo $(DEPDIR)/libscisparse_la-spUtils.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/spUtils.c' object='libscisparse_la-spUtils.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -c -o libscisparse_la-spUtils.lo `test -f 'src/c/spUtils.c' || echo '$(srcdir)/'`src/c/spUtils.c
 
 libscisparse_la-spAllocate.lo: src/c/spAllocate.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-spAllocate.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-spAllocate.Tpo -c -o libscisparse_la-spAllocate.lo `test -f 'src/c/spAllocate.c' || echo '$(srcdir)/'`src/c/spAllocate.c

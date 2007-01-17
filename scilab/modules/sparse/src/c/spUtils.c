@@ -160,9 +160,7 @@
 #undef SPBOOLEAN
 #define  SPBOOLEAN        int
 
-void spMNA_Preorder( eMatrix )
-
-char *eMatrix;
+void spMNA_Preorder( char * eMatrix )
 {
 MatrixPtr  Matrix = (MatrixPtr)eMatrix;
 register  int  J, Size;
@@ -899,16 +897,11 @@ register  int  I, *pExtOrder;
 
 #if spCOMPLEX
 void
-spDeterminant( eMatrix, pExponent, pDeterminant, piDeterminant )
-RealNumber *piDeterminant;
+spDeterminant( char *eMatrix, int *pExponent, register  RealNumber *pDeterminant, RealNumber *piDeterminant )
 #else
 void
-spDeterminant( eMatrix, pExponent, pDeterminant )
+spDeterminant( char *eMatrix, int *pExponent, register  RealNumber *pDeterminant )
 #endif
-
-char *eMatrix;
-register  RealNumber *pDeterminant;
-int  *pExponent;
 {
 register MatrixPtr  Matrix = (MatrixPtr)eMatrix;
 register int I, Size;
@@ -1112,7 +1105,7 @@ struct FillinListNodeStruct  *pListNode;
 }
 #endif
 
-//#if TRANSLATE AND DELETE
+#if TRANSLATE AND DELETE
 /*
  *  DELETE A ROW AND COLUMN FROM THE MATRIX
  *
@@ -1228,7 +1221,7 @@ ElementPtr  spcFindElementInCol();
 
     return;
 }
-//#endif
+#endif
 
 #if PSEUDOCONDITION
 /*
