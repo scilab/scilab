@@ -48,7 +48,11 @@ IMPORT_EXPORT_MALLOC_DLL unsigned long GetLargestFreeMemoryRegion(void)
 	unsigned long largestSize = 0;
 
 	/* HP-UX Use RLIMIT_AIO_MEM instead of RLIMIT_MEMLOCK */
-	getrlimit(RLIMIT_MEMLOCK, &rlim);
+#ifdef solaris
+getrlimit(RLIMIT_VMEM,&rlim);
+#else	
+getrlimit(RLIMIT_MEMLOCK, &rlim);
+#endif
 	largestSize = rlim.rlim_max;
 
 	return largestSize;
