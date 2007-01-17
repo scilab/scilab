@@ -156,8 +156,8 @@ int Sci_Store __PARAMS((int nrow, int ncol, entry *data, sfdir *type, int retval
 	      for (j=0;j<nrow;j++) temp[k++]=data[i1+ncol*j].s;
 	    CreateVarFromPtr(++iarg, "S", &nrow, &colcount,temp);
 	    FREE(temp);
-	    for (i1=cur_i;i1<i;i1++)
-	      for (j=0;j<nrow;j++) FREE(data[i1+ncol*j].s);
+	    /*for (i1=cur_i;i1<i;i1++)
+	      for (j=0;j<nrow;j++) FREE(data[i1+ncol*j].s);*/
 	  }
 	  else {
 	    CreateVar(++iarg, "d", &nrow, &colcount, &l);
@@ -192,8 +192,8 @@ int Sci_Store __PARAMS((int nrow, int ncol, entry *data, sfdir *type, int retval
 	  for (j=0;j<nrow;j++) temp[k++]=data[i1+ncol*j].s;
 	CreateVarFromPtr(Rhs+1, "S", &nrow, &ncol, temp);
 	FREE(temp);
-	for (i1=0;i1<ncol;i1++)
-	  for (j=0;j<nrow;j++) FREE(data[i1+ncol*j].s);
+	/*for (i1=0;i1<ncol;i1++)
+	  for (j=0;j<nrow;j++) FREE(data[i1+ncol*j].s);*/
       }
       else {
 	CreateVar(Rhs+1, "d", &nrow, &ncol, &l);
