@@ -126,6 +126,7 @@ src/c/getHandleProperty/get_cdata_mapping_property.c \
 src/c/getHandleProperty/get_colored_property.c \
 src/c/getHandleProperty/get_triangles_property.c \
 src/c/getHandleProperty/get_viewport_property.c \
+src/c/getHandleProperty/get_info_message_property.c \
 src/c/getHandleProperty/returnPropertyList.c \
 src/c/getHandleProperty/get_y_ticks_property.c \
 src/c/getHandleProperty/get_z_ticks_property.c \
@@ -258,6 +259,7 @@ src/c/getHandleProperty/set_yticks_coord_property.c \
 src/c/getHandleProperty/CheckTicksProperty.c \
 src/c/getHandleProperty/set_x_ticks_property.c \
 src/c/getHandleProperty/set_viewport_property.c \
+src/c/getHandleProperty/set_info_message_property.c \
 src/c/DefaultCommandArg.c \
 src/c/periPos.c \
 src/c/periX11.c \
