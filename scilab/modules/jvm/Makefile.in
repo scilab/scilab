@@ -681,7 +681,7 @@ uninstall-am: uninstall-libscijvm_la_etcDATA \
 
 @JAVA_TRUE@macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(MACROS)
 @JAVA_TRUE@	-@( \
-@JAVA_TRUE@	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$L D_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
+@JAVA_TRUE@	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
 @JAVA_TRUE@	$(top_builddir)/bin/scilab -nb -nwni -f $(abs_srcdir)/macros/buildmacros.sce 	)
 
 @JAVA_FALSE@		echo "Java disabled. Skip this module."

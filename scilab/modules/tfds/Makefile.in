@@ -550,7 +550,7 @@ install-data-local: $(MACROS)
 
 macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(MACROS)
 	-@( \
-	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$L D_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
+	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
 	$(top_builddir)/bin/scilab -nb -nwni -f $(abs_srcdir)/macros/buildmacros.sce 	)
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

@@ -474,7 +474,7 @@ else
 
 		## CC compiler (not GCC)
 		if test "$enable_debug" != yes; then 
-		     CFLAGS="$CFLAGS -DNDEBUG " 
+		     CFLAGS="$CFLAGS -DNDEBUG" 
 			 # used to be -O
 		else
 		     CFLAGS="$CFLAGS -g"
@@ -511,7 +511,8 @@ case "$host" in
     CFLAGS="$CFLAGS -DSYSV -Dhpux -Dhppa +Z +DAportable"
   ;;
   *-*-solaris*) # SUN SOLARIS
-    CFLAGS="$CFLAGS -DSVR4 -DSYSV -Dsolaris"
+    CFLAGS="$CFLAGS -DSVR4 -DSYSV -Dsolaris -I/usr/local/include/"
+	LDFLAGS="$LDFLAGS  -L/usr/local/lib/"
   ;;
 esac
 fi
@@ -578,6 +579,7 @@ if test "x$GUI" = "xX11"; then
       fi
     fi
   fi 
+  AC_CHECK_HEADERS([X11/Xaw3d/ViewportP.h],[],[AC_MSG_ERROR([Cannot find headers of the library Xaw3d. Please install the dev package (Debian : xaw3dg-dev)])],[[#include <X11/IntrinsicP.h>]])
   AC_SUBST(X_LIBS)
 fi
 
@@ -701,7 +703,7 @@ AC_CHECK_HEADERS([limits.h values.h])
 AC_CHECK_HEADERS([fcntl.h float.h locale.h malloc.h netdb.h netinet/in.h nlist.h sgtty.h stddef.h sys/file.h sys/ioctl.h sys/param.h sys/socket.h sys/time.h sys/timeb.h syslog.h termio.h termios.h wchar.h wctype.h libintl.h])
 
 AC_CHECK_HEADERS([X11/IntrinsicP.h],[],[AC_MSG_ERROR([Cannot find headers of the library Xt. Please install the dev package (Debian : libxt-dev)])])
-AC_CHECK_HEADERS([X11/Xaw3d/ViewportP.h],[],[AC_MSG_ERROR([Cannot find headers of the library Xaw3d. Please install the dev package (Debian : xaw3dg-dev)])],[[#include <X11/IntrinsicP.h>]])
+
 
 
 #######################
@@ -957,8 +959,6 @@ else
 #		AC_CHECK_HEADERS([libxml/tree.h],,[AC_MSG_ERROR([libxml2 : library missing missing])])	
 fi
 # Gets compilation and library flags
-
-LDFLAGS="$LDFLAGS -no-undefined"
 
 #########################
 ## libtool 
