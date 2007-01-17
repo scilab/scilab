@@ -35,7 +35,7 @@ typedef struct
 * don't forget to modify it each time the propertyTable
 * is modified.
 */
-#define NB_PROPERTIES 121
+#define NB_PROPERTIES 122
 
 /**
 * list of all property names and associated functions in scilab
@@ -162,7 +162,8 @@ static setHashTableCouple propertyTable[NB_PROPERTIES] =
   { "x_ticks"            , set_x_ticks_property             },
   { "y_ticks"            , set_y_ticks_property             },
   { "z_ticks"            , set_z_ticks_property             },
-  { "viewport"           , set_viewport_property            }
+  { "viewport"           , set_viewport_property            },
+  { "info_message"       , set_info_message_property        }
 } ;
 
 /*-----------------------------------------------------------------------------------*/

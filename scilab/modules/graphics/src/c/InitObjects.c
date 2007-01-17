@@ -29,7 +29,6 @@
 #include "Xcall1.h"
 #include "sciprint.h"
 
-
 #include "MALLOC.h" /* MALLOC */
 
 static char error_message[70]; /* DJ.A 08/01/04 */
@@ -461,7 +460,7 @@ void initsubwin()  /* Interesting / F.Leray 05.04.04 */
 
 }
 
-int InitFigureModel()
+int InitFigureModel( void )
 { 
   int i ;
   int m = NUMCOLORS_SCI ;
@@ -514,8 +513,12 @@ int InitFigureModel()
   pFIGURE_FEATURE (pfiguremdl)->size_of_user_data = 0; /* pour completude */
 
   pFIGURE_FEATURE (pfiguremdl)->numsubwinselected = 0; 
-  pFIGURE_FEATURE (pfiguremdl)->pixmap = 0; 
-  pFIGURE_FEATURE (pfiguremdl)->wshow = 0;
+  pFIGURE_FEATURE (pfiguremdl)->pixmap = 0 ; 
+  pFIGURE_FEATURE (pfiguremdl)->wshow = 0 ;
+
+  pFIGURE_FEATURE(pfiguremdl)->infoMessage = NULL ;
+  sciSetInfoMessage( pfiguremdl, "" ) ;
+
   return 0;
 }
 

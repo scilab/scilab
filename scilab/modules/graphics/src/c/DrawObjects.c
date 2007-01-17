@@ -872,8 +872,6 @@ BOOL sci_update_frame_bounds_3d(sciPointObj *pobj)
   ppsubwin->axes.zlim[3] = ppsubwin->axes.nzgrads;
    
   set_scale("tftftf",NULL,ppsubwin->FRect,NULL,ppsubwin->logflags,NULL); 
-     
-  wininfo("alpha=%.1f,theta=%.1f",ppsubwin->alpha,ppsubwin->theta); 
     
   for(i=0;i<6;i++)
     if(ppsubwin->FRect[i] != ExistingFRect[i]){

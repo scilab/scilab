@@ -64,6 +64,9 @@ int drawFigureEntity( sciPointObj * pObj )
     curSon = curSon->pprev;
   }
 
+  /* draw the info Message */
+  C2F(dr)("xinfo",sciGetInfoMessage(pObj),PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,6L,0L);
+
   /* return to the current window */
   C2F(dr)("xset","window",&curWinNum,PI0,PI0,PI0,PI0,PI0,&dv,&dv,&dv,&dv,5L,7L);
 

@@ -641,7 +641,6 @@ int I3dRotation(void)
   /*  sciPointObj *psurface; */
   integer xr, yr;
 
-  BOOL cube_scaling; /* TEST F.Leray 22.04.04 */
 
   integer ibutton,in,iwait=0,istr=0;
   integer verbose_=0,ww_;
@@ -669,31 +668,31 @@ int I3dRotation(void)
   alpha0=alpha;
 
   ibutton=-1;
-  tmpsubwin = (sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure ());   
-  if (pFIGURE_FEATURE((sciPointObj *)sciGetCurrentFigure())->rotstyle == 0)    
+  tmpsubwin = sciGetSelectedSubWin( sciGetCurrentFigure() ) ;   
+  if ( pFIGURE_FEATURE(sciGetCurrentFigure())->rotstyle == 0)    
   {
-    psubwin = (sciPointObj *)CheckClickedSubwin(xr,yr);
+    psubwin = CheckClickedSubwin(xr,yr);
     /**DJ.Abdemouche 2003**/
-    if((sciPointObj *) psubwin != NULL)
+    if( psubwin != NULL )
     {
+      sciSubWindow * ppSubWin = pSUBWIN_FEATURE(psubwin) ;
       sciSetSelectedSubWin (psubwin);
 
-      theta0 =  pSUBWIN_FEATURE (psubwin)-> theta; 
-      alpha0 =  pSUBWIN_FEATURE (psubwin)-> alpha;
-      pSUBWIN_FEATURE (psubwin)-> is3d = TRUE;
-      Cscale.metric3d = (long)(pSUBWIN_FEATURE (psubwin)->axes.flag[1]+1)/2; 
+      theta0 = ppSubWin-> theta; 
+      alpha0 = ppSubWin-> alpha;
+      ppSubWin->is3d = TRUE;
+      Cscale.metric3d = (long)(ppSubWin->axes.flag[1]+1)/2; 
 
       /* Modif. HERE F.Leray 24.05.04 : we take advantage of update_specification_bounds and update_3dbounds previous call */
       /* brect variable should not exist any more.*/
-      Cscale.bbox1[0] = pSUBWIN_FEATURE (psubwin)->FRect[0]; 
-      Cscale.bbox1[1] = pSUBWIN_FEATURE (psubwin)->FRect[2];
-      Cscale.bbox1[2] = pSUBWIN_FEATURE (psubwin)->FRect[1];
-      Cscale.bbox1[3] = pSUBWIN_FEATURE (psubwin)->FRect[3];
-      Cscale.bbox1[4] = pSUBWIN_FEATURE (psubwin)->FRect[4];
-      Cscale.bbox1[5] = pSUBWIN_FEATURE (psubwin)->FRect[5];
+      Cscale.bbox1[0] = ppSubWin->FRect[0]; 
+      Cscale.bbox1[1] = ppSubWin->FRect[2];
+      Cscale.bbox1[2] = ppSubWin->FRect[1];
+      Cscale.bbox1[3] = ppSubWin->FRect[3];
+      Cscale.bbox1[4] = ppSubWin->FRect[4];
+      Cscale.bbox1[5] = ppSubWin->FRect[5];
 
-      cube_scaling =  pSUBWIN_FEATURE (psubwin)->cube_scaling;
-      if(cube_scaling == TRUE)
+      if( ppSubWin->cube_scaling )
       {
         Cscale.bbox1[0] =  0.; 
         Cscale.bbox1[1] =  1.;
@@ -782,6 +781,7 @@ int I3dRotation(void)
     } 
   }
   sciRedrawFigure(); 
+  wininfo("alpha=%.1f,theta=%.1f",alpha,theta); 
   sciSetSelectedSubWin (tmpsubwin);
   return 0;
 }

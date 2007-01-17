@@ -135,5 +135,6 @@ int set_z_ticks_property(             sciPointObj * pobj, int stackPointer, int 
 int set_parent_property(              sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol ) ;
 int set_children_property(            sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol ) ;
 int set_viewport_property(            sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol ) ;
+int set_info_message_property(        sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol ) ;
 
 #endif /* _SET_HANDLE_PROPERTY_H_ */

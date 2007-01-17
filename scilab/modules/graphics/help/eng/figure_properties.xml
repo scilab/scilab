@@ -86,6 +86,11 @@
             changed after.</SP>
           </DESCRIPTION_ITEM>
 
+          <DESCRIPTION_ITEM label="info_message: ">
+            <SP>This character string set the text displayed in the info bar of the
+             graphic window.</SP>
+          </DESCRIPTION_ITEM>
+
           <DESCRIPTION_ITEM label="color_map: ">
             <SP>Property which defines the colormap used by this figure. The
             colormap is a <VERB>m</VERB> by <VERB>3</VERB> matrix.

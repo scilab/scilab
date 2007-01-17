@@ -257,6 +257,7 @@ DestroyFigure (sciPointObj * pthis)
    */
   FREE ((sciGetFontContext(pthis))->pfontname);
   FREE(pFIGURE_FEATURE(pthis)->pcolormap);
+  FREE( pFIGURE_FEATURE(pthis)->infoMessage ) ;
   FREE(pFIGURE_FEATURE(pthis)->user_data);
   pFIGURE_FEATURE(pthis)->size_of_user_data = 0;
   FREE (sciGetPointerToFeature (pthis));

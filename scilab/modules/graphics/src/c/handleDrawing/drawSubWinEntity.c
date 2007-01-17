@@ -103,8 +103,6 @@ int drawSubWinEntity( sciPointObj * pObj )
     }
 
     triedre(pObj,xbox,ybox,zbox,InsideU,InsideD);
-
-    wininfo("alpha=%.1f,theta=%.1f",ppsubwin->alpha,ppsubwin->theta); 
   }
   else /* we are in 2D mode...*/
   {

@@ -237,6 +237,8 @@ extern int sciSetGridStyle( sciPointObj * pObj, int xStyle, int yStyle, int zSty
 int sciInitViewport( sciPointObj * pObj, int xSize, int ySize ) ;
 int sciSetViewport(  sciPointObj * pObj, int xSize, int ySize ) ; /* SET */
 
+int sciSetInfoMessage( sciPointObj * pObj, const char * newMessage ) ; /* SET */
+
 /*---------------------------------------------------------------------------*/
 /* return 0 if the string contains any % character, 1 if a %d has been found */
 /* and -1 otherwise. */

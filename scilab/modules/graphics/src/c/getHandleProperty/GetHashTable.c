@@ -35,7 +35,7 @@ typedef struct
  * don't forget to modify it each time the propertyTable
  * is modified.
  */
-#define NB_PROPERTIES 124
+#define NB_PROPERTIES 125
 
 /**
  * list of all property names and associated functions in scilab
@@ -165,7 +165,8 @@ static getHashTableCouple propertyTable[NB_PROPERTIES] =
   { "x_ticks"            , get_x_ticks_property             },
   { "y_ticks"            , get_y_ticks_property             },
   { "z_ticks"            , get_z_ticks_property             },
-  { "viewport"           , get_viewport_property            }
+  { "viewport"           , get_viewport_property            },
+  { "info_message"       , get_info_message_property        }
 } ;
 
 /*-----------------------------------------------------------------------------------*/

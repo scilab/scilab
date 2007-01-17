@@ -203,4 +203,8 @@ extern void sciGetGridStyle( sciPointObj * pObj, int * xStyle, int * yStyle, int
 
 void sciGetViewport( sciPointObj * pObj, int * xSize, int * ySize ) ;
 
+char * sciGetInfoMessage( sciPointObj * pObj ) ;
+
+int sciGetInfoMessageLength( sciPointObj * pObj ) ;
+
 #endif /* __SCI_GET_PROPERTY__ */

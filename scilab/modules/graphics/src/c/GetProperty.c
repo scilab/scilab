@@ -5283,3 +5283,28 @@ void sciGetViewport( sciPointObj * pObj, int * xSize, int * ySize )
   }
 }
 /*-------------------------------------------------------------------------------------------*/
+char * sciGetInfoMessage( sciPointObj * pObj )
+{
+  switch ( sciGetEntityType(pObj) )
+  {
+  case SCI_FIGURE:
+    return pFIGURE_FEATURE(pObj)->infoMessage ;
+  default:
+    sciprint( "This object has no info_message property.\n" ) ;
+    return NULL ;
+  }
+  return NULL ;
+}
+/*-------------------------------------------------------------------------------------------*/
+int sciGetInfoMessageLength( sciPointObj * pObj )
+{
+  switch ( sciGetEntityType(pObj) )
+  {
+  case SCI_FIGURE:
+    return strlen( pFIGURE_FEATURE(pObj)->infoMessage ) ;
+  default:
+    sciprint( "This object has no info_message property.\n" ) ;
+    return -1 ;
+  }
+  return -1 ;
+}

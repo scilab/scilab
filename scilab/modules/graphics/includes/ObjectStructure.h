@@ -450,9 +450,10 @@ typedef struct
   int wshow ;
   
   BOOL allredraw;
-  /*   BOOL force_draw; /\* exclusively used with draw command to force the drawing of the object *\/ */
-
+  
   sciFont fontcontext; /* F.Leray 08.04.04 */
+  char * infoMessage ; /** String displayed in the info bar of the graphic window */
+  
   int * user_data; /* adding 27.06.05 */
   int size_of_user_data;
   

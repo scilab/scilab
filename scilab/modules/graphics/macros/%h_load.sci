@@ -50,6 +50,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       axes_size=mget(2,'sl',fd); //axes_size
       if ( is_higher_than([4 1 0 0]) ) then
         viewport = mget(2,'sl',fd) ; // viewport
+        info_message = ascii(mget(mget(1,'c',fd),'c',fd)) ; // info_message
       end
       auto_resize=toggle(mget(1,'c',fd)); // auto_resize
       figure_name=ascii(mget(mget(1,'c',fd),'c',fd)) // figure_name
@@ -68,11 +69,11 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       axes_size=mget(2,'sl',fd); // axes_size
       if ( is_higher_than([4 1 0 0]) ) then
         viewport = mget(2,'sl',fd) ; // viewport
+        info_message = ascii(mget(mget(1,'c',fd),'c',fd)) ; // info_message
       end
       auto_resize=toggle(mget(1,'c',fd)); // auto_resize
       figure_name=ascii(mget(mget(1,'c',fd),'c',fd)) // figure_name
       figure_id=mget(1,'sl',fd); // figure_id
-      pause ;
       // create the figure
       h=scf(figure_id)
        h.visible=visible;  // can be set now as we act on immediate_drawing everywhere else F.Leray 18.02.05
@@ -81,13 +82,12 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       h.axes_size=axes_size
       if ( is_higher_than([4 1 0 0]) ) then
         h.viewport = viewport // should be set before auto_resize
+        h.info_message = info_message ;
       end
-	pause ;
       h.auto_resize=auto_resize
       h.figure_name=figure_name
       h.color_map=matrix(mget(mget(1,'il',fd),"dl",fd),-1,3) // color_map
       h.pixmap=toggle(mget(1,'c',fd)); // pixmap
-	pause ;
       h.pixel_drawing_mode=ascii(mget(mget(1,'c',fd),'c',fd)) // pixel_drawing_mode
       immediate_drawing=toggle(mget(1,'c',fd)); // immediate_drawing  // init. global variable immediate_drawing
       h.immediate_drawing = 'off'; // set it to 'off' to pass useless redraw due to several 'set' calls
@@ -95,7 +95,6 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       h.rotation_style=ascii(mget(mget(1,'c',fd),'c',fd)) // rotation_style
       
     end
-    pause ;
     // children
     n_axes=mget(1,'il',fd);
     if n_axes==1 then
@@ -107,9 +106,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
 	load_graphichandle(fd)
       end
     end
-    pause ;
     load_user_data(fd); // user_data
-    pause ;
   case "Axes"
     
     a=gca() ;
