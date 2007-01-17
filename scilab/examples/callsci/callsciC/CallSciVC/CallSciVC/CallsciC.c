@@ -25,10 +25,8 @@ extern int SendScilabJobs(char **job,int numberjobs);
 extern void ScilabDoOneEvent(void);
 extern int ScilabHaveAGraph(void);
 /*-----------------------------------------------------------------------------------*/
-
 static int example1(void)
 {
-
 	static double A[]={1,2,3,4};  int mA=2,nA=2;
 	static double b[]={4,5};  int mb=2,nb=1;
 
@@ -70,7 +68,6 @@ static int example1(void)
 			cxtmp=NULL;
 		}
 	}
-
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -83,7 +80,7 @@ static int example2(void)
 		ScilabDoOneEvent();
 		Sleep(1);
 	}
-	return 1;
+	return 1; 
 }
 /*-----------------------------------------------------------------------------------*/
 static int example3(void)
@@ -91,15 +88,15 @@ static int example3(void)
 	int code=0;
 
 	char **JOBS=NULL;
+	const int SizeJOBS=6;
+	int i=0;
 
-	JOBS=(char**)malloc(sizeof(char**)*6);
+	JOBS=(char**)malloc(sizeof(char**)*SizeJOBS);
 
-	JOBS[0]=(char*)malloc(sizeof(char*)*1024);
-	JOBS[1]=(char*)malloc(sizeof(char*)*1024);
-	JOBS[2]=(char*)malloc(sizeof(char*)*1024);
-	JOBS[3]=(char*)malloc(sizeof(char*)*1024);
-	JOBS[4]=(char*)malloc(sizeof(char*)*1024);
-	JOBS[5]=(char*)malloc(sizeof(char*)*1024);
+	for (i=0;i<SizeJOBS;i++)
+	{
+		JOBS[i]=(char*)malloc(sizeof(char*)*1024);
+	}
 
 	strcpy(JOBS[0],"A=1 ..");
 	strcpy(JOBS[1],"+3;");
@@ -107,19 +104,23 @@ static int example3(void)
 	/* strcpy(JOBS[2],"b = V_NOT_EXIST;"); */
 	strcpy(JOBS[3],"+3;");
 	strcpy(JOBS[4],"disp('C=');");
-	strcpy(JOBS[5],"C=A+B;disp(C);");
+	strcpy(JOBS[5],"C=A+B;disp(C);"); /* C = 12 */
 
-	code=SendScilabJobs(JOBS,6);
+	code=SendScilabJobs(JOBS,SizeJOBS);
 
 	if (code)
 	{
 		char lastjob[4096]; // bsiz in scilab 4096 max
 		if (GetLastJob(lastjob))
 		{
-			printf("%s\n",lastjob);
+			printf("Error %s\n",lastjob);
 		}
 	}
 
+	for (i=0;i<SizeJOBS;i++)
+	{
+		if (JOBS[i]) {free(JOBS[i]);JOBS[i]=NULL;}
+	}
 	return 1;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -131,16 +132,14 @@ int main(void)
 	printf("\nexample 1\n");
 	example1();
 	system("pause");
-
 	printf("\nexample 2\n");
 	example2();
 	system("pause");
-
 	printf("\nexample 3\n");
 	example3();
 	system("pause");
+	
 	if ( TerminateScilab(NULL) == FALSE ) printf("Error : TerminateScilab \n");
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
-
