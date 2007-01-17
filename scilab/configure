@@ -9373,7 +9373,7 @@ else
 
 		## CC compiler (not GCC)
 		if test "$enable_debug" != yes; then
-		     CFLAGS="$CFLAGS -DNDEBUG " 
+		     CFLAGS="$CFLAGS -DNDEBUG" 
 			 # used to be -O
 		else
 		     CFLAGS="$CFLAGS -g"
