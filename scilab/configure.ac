@@ -291,10 +291,10 @@ NMOPT=
 
 if test "$with_intelcompilers" = yes; then
 		
-		CFLAGS=' $CFLAGS -Dlinux -DNARROWPROTO -mp'
+		CFLAGS=" $CFLAGS -Dlinux -DNARROWPROTO -mp"
 		# -cm remove comments displays, -w90  -w95 remove warnings abort f90 f95 non standard
 
-		FFLAGS=' $FFLAGS -cm  -w90 -w95 -mp'
+		FFLAGS=" $FFLAGS -cm  -w90 -w95 -mp"
 
 
 		case "$host" in
@@ -332,46 +332,46 @@ if test -n "$F77"; then
    fi
 	  case "$host" in
 		 x86_64-*-linux-gnu)
-			FFLAGS='$FFLAGS -march=athlon64 -mfpmath=sse -msse2 -m3dnow -m64 -fPIC'
+			FFLAGS="$FFLAGS -march=athlon64 -mfpmath=sse -msse2 -m3dnow -m64 -fPIC"
 					;;
 		# Dec Alpha OSF 4
 		alpha*-dec-osf4.*)
-	      FFLAGS='$FFLAGS -fpe3'
+	      FFLAGS="$FFLAGS -fpe3"
 		;;
 		alpha*-dec-osf*)
-		    FFLAGS='$FFLAGS -fpe3 -switch nosqrt_recip'
+		    FFLAGS="$FFLAGS -fpe3 -switch nosqrt_recip"
 		;;
 		rs6000-*-*)
-		    FFLAGS='$FFLAGS -qcharlen=4096'
+		    FFLAGS="$FFLAGS -qcharlen=4096"
 			;;
 		mips-*-ultrix*)
-		    FFLAGS='-O0 -fpe1'
+		    FFLAGS="-O0 -fpe1"
 		;;
 		  *-*-hpux9.*)
-			FFLAGS='$FFLAGS +Obb1200 +E4 -Dhpux'
+			FFLAGS="$FFLAGS +Obb1200 +E4 -Dhpux"
 		;;
 		  *-*-hpux10.*)
 		    if test "$enable_debug" != yes; then 
-	   		    FFLAGS='+O2 +E4 +Z +DAportable -Dhpux'
+	   		    FFLAGS="+O2 +E4 +Z +DAportable -Dhpux"
 			else
-			    FFLAGS='+E4 +Z +DAportable -Dhpux'
+			    FFLAGS="+E4 +Z +DAportable -Dhpux"
 			fi
-#		    F77_LDFLAGS='-Wl,+vnocompatwarnings,-E /usr/lib/libdld.sl'
+#		    F77_LDFLAGS="-Wl,+vnocompatwarnings,-E /usr/lib/libdld.sl"
 
 			;;
 		  *-*-hpux11.*)
 		   if test "$enable_debug" != yes; then 
-		      FFLAGS='+O2 +Z +DAportable -Dhpux'
+		      FFLAGS="+O2 +Z +DAportable -Dhpux"
 			 else
-			  FFLAGS=' +Z +DAportable -Dhpux'
+			  FFLAGS=" +Z +DAportable -Dhpux"
 		  fi
-			  FLIBS='-ldld -lnsl -lU77 -lm'
+			  FLIBS="-ldld -lnsl -lU77 -lm"
     #do not call AC_F77_LIBRARY_LDFLAGS because if assumes PA2.0 while Scilab is built with 
     #DAportable=PA1.1
     #AC_F77_LIBRARY_LDFLAGS
 	# TODO : check why and if it is still the case
 
-#    F77_LDFLAGS='-Wl,+vnocompatwarnings,-E /usr/lib/libdld.sl'
+#    F77_LDFLAGS="-Wl,+vnocompatwarnings,-E /usr/lib/libdld.sl"
 	 ;;
 	  esac
 #	   FFLAGS_O0=`echo $FFLAGS | sed 's/-O[0-9]*//g'`
@@ -419,7 +419,7 @@ if test "$CC" = "gcc"; then
    case "$host" in
    # Linux sparc | Linux, old binary format a.out (NO LONGER SUPPORTED)
 	 sparc-*-linux-gnu|*-pc-linux-gnuaout)
-	    CFLAGS='$CFLAGS -Dlinux -fwritable-strings'
+	    CFLAGS="$CFLAGS -Dlinux -fwritable-strings"
 	;;
 	 x86_64-*-linux-gnu)
 		CFLAGS="$CFLAGS -Dlinux -DNARROWPROTO -march=athlon64 -mfpmath=sse -msse2 -m3dnow -m64"
@@ -436,9 +436,9 @@ if test "$CC" = "gcc"; then
 	;;
 	 *-*-solaris*)
 	    if test "$enable_debug" != yes; then 
-			 CFLAGS='-O2 -DNDEBUG -DSVR4 -DSYSV -Dsolaris'
+			 CFLAGS="-O2 -DNDEBUG -DSVR4 -DSYSV -Dsolaris"
 		else
-			 CFLAGS='$CFLAGS -DSVR4 -DSYSV -Dsolaris'
+			 CFLAGS="$CFLAGS -DSVR4 -DSYSV -Dsolaris"
 		fi
 	;;
    *-*-freebsd*)
@@ -451,22 +451,22 @@ if test "$CC" = "gcc"; then
 	;;
   *-*-cygwin* )
      if test "$enable_debug" != yes; then 
-	 	 CFLAGS='-O2 -DNDEBUG -mieee-fp '
+	 	 CFLAGS="-O2 -DNDEBUG -mieee-fp "
 	 else
-	 	 CFLAGS='$CFLAGS -mieee-fp '
+	 	 CFLAGS="$CFLAGS -mieee-fp "
 	 fi
 	;;
    *-*-mingw32*)
-    CFLAGS='$CFLAGS -mno-cygwin -mieee-fp -fwritable-strings '
+    CFLAGS="$CFLAGS -mno-cygwin -mieee-fp -fwritable-strings "
 	;;
 
   *-*-darwin*)
      if test "$enable_debug" != yes; then 
-	      CFLAGS=' -O2 -DNDEBUG -no-cpp-precomp -I/sw/include -L/sw/lib'
+	      CFLAGS=" -O2 -DNDEBUG -no-cpp-precomp -I/sw/include -L/sw/lib"
 	 else
-	      CFLAGS=' $CFLAGS -I/sw/include -L/sw/lib'
+	      CFLAGS=" $CFLAGS -I/sw/include -L/sw/lib"
 	 fi
-     LDFLAGS='$LDFLAGS -L/sw/lib'
+     LDFLAGS="$LDFLAGS -L/sw/lib"
 	;;
 esac
 
@@ -483,15 +483,15 @@ else
 case "$host" in
 # Dec Alpha OSF 4
   alpha*-dec-osf4.*)
-      CFLAGS='$CFLAGS -std -ieee_with_inexact' 
-      LDFLAGS='$LDFLAGS -ieee_with_inexact'
+      CFLAGS="$CFLAGS -std -ieee_with_inexact"
+      LDFLAGS="$LDFLAGS -ieee_with_inexact"
 	  ;;
   alpha*-dec-osf*)
-      CFLAGS='$CFLAGS -ieee_with_inexact' 
-      LDFLAGS='$LDFLAGS -ieee_with_inexact'
+      CFLAGS="$CFLAGS -ieee_with_inexact" 
+      LDFLAGS="$LDFLAGS -ieee_with_inexact"
       ;;
   rs6000-*-*) # IBM AIX RS 6000 (NO LONGER SUPPORTED)
-    CFLAGS='-Daix -DSYSV'
+    CFLAGS="-Daix -DSYSV"
   ;;
   mips-sgi-irix*) # SGI
 	CFLAGS="$CFLAGS -DSYSV -DSVR4"
@@ -511,7 +511,7 @@ case "$host" in
     CFLAGS="$CFLAGS -DSYSV -Dhpux -Dhppa +Z +DAportable"
   ;;
   *-*-solaris*) # SUN SOLARIS
-    CFLAGS='$CFLAGS -DSVR4 -DSYSV -Dsolaris'
+    CFLAGS="$CFLAGS -DSVR4 -DSYSV -Dsolaris"
   ;;
 esac
 fi
