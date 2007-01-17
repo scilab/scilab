@@ -45,7 +45,7 @@ libscitclsci_la_LDFLAGS= $(TCLTK_LIBS)
 
 libscitclsci_la_SOURCES = $(TCLSCI_C_SOURCES) $(GATEWAY_C_SOURCES)
 
-libscitclsci_la_LIBADD = 
+libscitclsci_la_LIBADD = \
 	$(top_builddir)/modules/intersci/libsciintersci.la \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la

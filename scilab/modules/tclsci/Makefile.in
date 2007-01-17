@@ -71,7 +71,10 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscitclsci_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libscitclsci_la_DEPENDENCIES =
+libscitclsci_la_DEPENDENCIES =  \
+	$(top_builddir)/modules/intersci/libsciintersci.la \
+	$(top_builddir)/modules/core/libscicore.la \
+	$(top_builddir)/libs/MALLOC/libscimalloc.la
 am__objects_1 = libscitclsci_la-GedManagement.lo \
 	libscitclsci_la-TclUiGet.lo libscitclsci_la-TCL_Global.lo \
 	libscitclsci_la-tksynchro.lo libscitclsci_la-InitTclTk.lo \
@@ -306,7 +309,11 @@ pkglib_LTLIBRARIES = libscitclsci.la
 libscitclsci_la_CFLAGS = -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/ $(TCL_INC_PATH) $(TK_INC_PATH)
 libscitclsci_la_LDFLAGS = $(TCLTK_LIBS)
 libscitclsci_la_SOURCES = $(TCLSCI_C_SOURCES) $(GATEWAY_C_SOURCES)
-libscitclsci_la_LIBADD = 
+libscitclsci_la_LIBADD = \
+	$(top_builddir)/modules/intersci/libsciintersci.la \
+	$(top_builddir)/modules/core/libscicore.la \
+	$(top_builddir)/libs/MALLOC/libscimalloc.la
+
 libscitclsci_la_PKGCONFIG = tclsci.pc
 #### Target ######
 target = $(datadir)/tclsci
@@ -1325,9 +1332,6 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 	uninstall-nobase_libscitclsci_la_tclDATA \
 	uninstall-pkglibLTLIBRARIES
 
-	$(top_builddir)/modules/intersci/libsciintersci.la \
-	$(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la
 
 #.xml.htm:
 #	@( if test ! -x $(top_builddir)/scilab-bin; then \
@@ -1383,7 +1387,7 @@ install-data-local: $(MACROS)
 
 macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(MACROS)
 	-@( \
-	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$L D_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
+	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
 	$(top_builddir)/bin/scilab -nb -nwni -f $(abs_srcdir)/macros/buildmacros.sce 	)
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
