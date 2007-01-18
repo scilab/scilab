@@ -103,7 +103,8 @@ int StoreCommand1 (char *command,int flag)
 			return (0);
 		}
 		break;
- case 0: default : /* the command is not shown in Scilab */
+	 case 0: 
+	 default : /* the command is not shown in Scilab */
 		{
 			  CommandRec *p, *q, *r;
 
@@ -141,7 +142,6 @@ int StoreCommand1 (char *command,int flag)
 		break;
 		}
  }
-return (0);
 }
 void SetCommandflag(int flag)
 {
