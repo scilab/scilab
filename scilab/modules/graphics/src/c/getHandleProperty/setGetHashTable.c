@@ -63,6 +63,7 @@ int insertGetHashtable( GetPropertyHashTable * hashTable, char * key, getPropert
   int    keyLength = strlen( key ) + 1 ;
 
   copyKey = MALLOC( keyLength * sizeof(char) ) ;
+  if ( copyKey == NULL ) { return 0 ; }
   strcpy( copyKey, key ) ;
 
   return hashtable_insert( hashTable, copyKey, value ) ;
