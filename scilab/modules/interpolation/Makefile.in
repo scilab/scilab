@@ -883,13 +883,6 @@ uninstall-am: uninstall-libsciinterpolation_la_demosDATA \
 	uninstall-pkglibLTLIBRARIES
 
 
-#.xml.htm:
-#	@( if test ! -x $(top_builddir)/scilab-bin; then \
-#	echo "Error : Cannot build $< : Scilab has not been build"; \
-#	else \
-#	echo "converted $< to $@"; \
-#	fi )
-
 # Rule to build a macro
 .sci.bin:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \

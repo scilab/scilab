@@ -1195,13 +1195,6 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 	uninstall-pkglibLTLIBRARIES
 
 
-#.xml.htm:
-#	@( if test ! -x $(top_builddir)/scilab-bin; then \
-#	echo "Error : Cannot build $< : Scilab has not been build"; \
-#	else \
-#	echo "converted $< to $@"; \
-#	fi )
-
 # Rule to build a macro
 @PVM_TRUE@.sci.bin:
 @PVM_TRUE@	-@( if test ! -x $(top_builddir)/scilab-bin; then \

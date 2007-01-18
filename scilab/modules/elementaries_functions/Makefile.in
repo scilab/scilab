@@ -2850,13 +2850,6 @@ libdummy_elementaries_functions_la-unsfdcopy.lo: src/fortran/unsfdcopy.f
 libdummy_elementaries_functions_la-icopy.lo: src/fortran/icopy.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementaries_functions_la_FFLAGS) -c -o libdummy_elementaries_functions_la-icopy.lo `test -f 'src/fortran/icopy.f' || echo '$(srcdir)/'`src/fortran/icopy.f
 
-#.xml.htm:
-#	@( if test ! -x $(top_builddir)/scilab-bin; then \
-#	echo "Error : Cannot build $< : Scilab has not been build"; \
-#	else \
-#	echo "converted $< to $@"; \
-#	fi )
-
 # Rule to build a macro
 .sci.bin:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \

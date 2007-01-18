@@ -637,13 +637,6 @@ uninstall-am: uninstall-libscijvm_la_etcDATA \
 	uninstall-pkglibLTLIBRARIES
 
 
-#.xml.htm:
-#	@( if test ! -x $(top_builddir)/scilab-bin; then \
-#	echo "Error : Cannot build $< : Scilab has not been build"; \
-#	else \
-#	echo "converted $< to $@"; \
-#	fi )
-
 # Rule to build a macro
 @JAVA_TRUE@.sci.bin:
 @JAVA_TRUE@	-@( if test ! -x $(top_builddir)/scilab-bin; then \

@@ -668,13 +668,6 @@ uninstall-am: uninstall-libsciothers_la_etcDATA \
 	uninstall-nobase_libsciothers_la_demosDATA
 
 
-#.xml.htm:
-#	@( if test ! -x $(top_builddir)/scilab-bin; then \
-#	echo "Error : Cannot build $< : Scilab has not been build"; \
-#	else \
-#	echo "converted $< to $@"; \
-#	fi )
-
 # Rule to build a macro
 .sci.bin:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \
