@@ -19,49 +19,42 @@ static char str1[MAXNAM];
 static char str2[MAXNAM];
 static char str3[MAXNAM];
 
-void OutExtCOLUMN(f,var,insidelist,nel)
-     FILE *f;VARPTR var;
+void OutExtCOLUMN(FILE *f,VARPTR var,int insidelist,int nel)
 {
   strcpy(str2,"1");
   strcpy(str1,Forname2Int(variables[var->el[0]-1],0));  
   OutExtCommon(f,var,insidelist,nel);
 }
 
-void OutExtROW(f,var,insidelist,nel)
-     FILE *f;VARPTR var;
+void OutExtROW(FILE *f,VARPTR var,int insidelist,int nel)
 {
   strcpy(str1,"1");
   strcpy(str2,Forname2Int(variables[var->el[0]-1],0));
   OutExtCommon(f,var,insidelist,nel);
 }
 
-void OutExtVECTOR(f,var,insidelist,nel)
-     FILE *f;VARPTR var;
+void OutExtVECTOR(FILE *f,VARPTR var,int insidelist,int nel)
 {
   strcpy(str1,"1");
   strcpy(str2,Forname2Int(variables[var->el[0]-1],0));
   OutExtCommon(f,var,insidelist,nel);
 }
 
-void OutExtMATRIX(f,var,insidelist,nel)
-     FILE *f;VARPTR var;
+void OutExtMATRIX(FILE *f,VARPTR var,int insidelist,int nel)
 {
   strcpy(str1,Forname2Int(variables[var->el[0]-1],0));
   strcpy(str2,Forname2Int(variables[var->el[1]-1],0));
   OutExtCommon(f,var,insidelist,nel);
 }
 
-void OutExtSCALAR(f,var,insidelist,nel)
-     FILE *f;VARPTR var;
+void OutExtSCALAR(FILE *f,VARPTR var,int insidelist,int nel)
 {
   strcpy(str1,"1");
   strcpy(str2,"1");
   OutExtCommon(f,var,insidelist,nel);
 }
 
-void OutExtCommon(f,var,insidelist,nel)
-     FILE *f;VARPTR var;
-     int insidelist,nel;
+void OutExtCommon(FILE *f,VARPTR var,int insidelist,int nel)
 {
   if ( insidelist != 0)
     {
@@ -209,8 +202,7 @@ void OutExtCommon(f,var,insidelist,nel)
 }
 
 
-void OutExtSTRING(f,var,insidelist,nel)
-     FILE *f;VARPTR var;
+void OutExtSTRING(FILE *f,VARPTR var,int insidelist,int nel)
 {
   strcpy(str1,Forname2Int(variables[var->el[0]-1],0));
   strcpy(str2,"1");
@@ -270,9 +262,7 @@ void OutExtSTRING(f,var,insidelist,nel)
 }
 
 
-void OutExtSPARSE(f,var,insidelist,nel) 
-     FILE *f;VARPTR var;
-     int insidelist,nel;
+void OutExtSPARSE(FILE *f,VARPTR var,int insidelist,int nel) 
 {
   strcpy(str1,Forname2Int(variables[var->el[0]-1],0));
   strcpy(str2,Forname2Int(variables[var->el[1]-1],0));
@@ -300,8 +290,7 @@ void OutExtSPARSE(f,var,insidelist,nel)
 
 /**** OK ****/
 
-void OutExtIMATRIX(f,var,insidelist,nel)
-     FILE *f;VARPTR var;
+void OutExtIMATRIX(FILE *f,VARPTR var,int insidelist,int nel)
 {
   strcpy(str1,Forname2Int(variables[var->el[0]-1],0));
   strcpy(str2,Forname2Int(variables[var->el[1]-1],0));
@@ -341,8 +330,7 @@ void OutExtIMATRIX(f,var,insidelist,nel)
 }
 
 
-void OutExtBMATRIX(f,var,insidelist,nel)
-     FILE *f;VARPTR var;
+void OutExtBMATRIX(FILE *f,VARPTR var,int insidelist,int nel)
 {
   strcpy(str1,Forname2Int(variables[var->el[0]-1],0));
   strcpy(str2,Forname2Int(variables[var->el[1]-1],0));
@@ -350,9 +338,7 @@ void OutExtBMATRIX(f,var,insidelist,nel)
 }
 
 
-void OutExtBMATRIX1(f,var,insidelist,nel)
-     FILE *f;VARPTR var;
-     int insidelist,nel;
+void OutExtBMATRIX1(FILE *f,VARPTR var,int insidelist,int nel)
 {
   strcpy(str1,Forname2Int(variables[var->el[0]-1],0));
   strcpy(str2,Forname2Int(variables[var->el[1]-1],0));
@@ -371,9 +357,7 @@ void OutExtBMATRIX1(f,var,insidelist,nel)
   Fprintf(f,indent,"call %s(%s*%s,istk(%s),istk(lrs))\n",var->fexternal,str1,str2,str);
 }
 
-void OutExtPOLYNOM(f,var,insidelist,nel)
-     FILE *f;VARPTR var;
-     int insidelist,nel;
+void OutExtPOLYNOM(FILE *f,VARPTR var,int insidelist,int nel)
 {
   strcpy(str1,Forname2Int(variables[var->el[0]-1],0));
   strcpy(str2,variables[var->el[1]-1]->name);
@@ -398,9 +382,7 @@ void OutExtPOLYNOM(f,var,insidelist,nel)
 }
 
 
-void OutExtPOINTER(f,var,insidelist,nel)
-     FILE *f;VARPTR var;
-     int insidelist,nel;
+void OutExtPOINTER(FILE *f,VARPTR var,int insidelist,int nel)
 {
   if ( insidelist != 0)
     {
@@ -411,9 +393,7 @@ void OutExtPOINTER(f,var,insidelist,nel)
     }
 }
 
-void OutExtSTRINGMAT(f,var,insidelist,nel)
-     FILE *f;VARPTR var;
-     int insidelist,nel;
+void OutExtSTRINGMAT(FILE *f,VARPTR var,int insidelist,int nel)
 {
   strcpy(str1,Forname2Int(variables[var->el[0]-1],0));
   strcpy(str2,Forname2Int(variables[var->el[1]-1],0));
@@ -430,9 +410,7 @@ void OutExtSTRINGMAT(f,var,insidelist,nel)
 }
 
 
-void OutExtANY(f,var,insidelist,nel)
-     FILE *f;VARPTR var; 
-     int insidelist,nel;
+void OutExtANY(FILE *f,VARPTR var,int insidelist,int nel)
 {
   printf("output variable \"%s\" cannot have type\n",
 	 var->name);
@@ -482,10 +460,7 @@ OutExtRhsTab OutExtRHSTAB[] = {
  * Convert ==> 1 if the variable has an output convertion to be done
  ***********************************************/
 
-void WriteExternalVariableOutput(f,var,insidelist,nel)
-     FILE *f;
-     VARPTR var;
-     int insidelist,nel;
+void WriteExternalVariableOutput(FILE *f,VARPTR var,int insidelist,int nel)
 {
   (*(OutExtRHSTAB[var->type].fonc))(f,var,insidelist,nel);
 }

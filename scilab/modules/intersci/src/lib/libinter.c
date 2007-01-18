@@ -310,8 +310,7 @@ void C2F(int2cint)(n,ip,op)
  * New Sparse matrix 
  *--------------------------------------------------------------*/
 
-SciSparse *NewSparse(it,m,n,nel)
-     int *m,*n,*nel,*it;
+SciSparse *NewSparse(int *it,int *m,int *n,int *nel)
 {
   SciSparse *loc;
   loc = (SciSparse *) MALLOC((unsigned) sizeof(SciSparse));
@@ -364,8 +363,7 @@ SciSparse *NewSparse(it,m,n,nel)
  * FreeSparse : free memory  associated to a sparse 
  *-------------------------------------------------*/
 
-void FreeSparse(x)
-     SciSparse *x;
+void FreeSparse(SciSparse *x)
 {
   if ( x->it == 1 ) FREE(x->I);
   FREE(x->R);
@@ -378,10 +376,7 @@ void FreeSparse(x)
  * intersci external function for sparse 
  *--------------------------------------------*/
 
-int C2F(csparsef)(x,mnel,icol,R,I)
-     SciSparse **x;
-     int *mnel,*icol;
-     double *R,*I;
+int C2F(csparsef)(SciSparse **x,int *mnel,int *icol,double *R,double *I)
 {
   int i;
   for ( i=0 ; i < (*x)->m ; i++) 
