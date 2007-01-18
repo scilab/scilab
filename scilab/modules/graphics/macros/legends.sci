@@ -1,4 +1,4 @@
-function legendsNew(leg, style, opt, with_box, font_size )
+function legends(leg, style, opt, with_box, font_size )
 //
 // PURPOSE
 //    draw legends on a plot
