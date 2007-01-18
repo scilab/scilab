@@ -308,6 +308,5 @@ static int getversion_two_rhs(void)
 		Scierror(999,"invalid argument(s).\n");
 		return 0;
 	}
-	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
