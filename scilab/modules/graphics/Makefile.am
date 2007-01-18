@@ -444,9 +444,9 @@ libscigraphics_la_LIBADD = \
 
 #	$(top_builddir)/modules/gui/libscigui.la
 
-libscigraphics_la_PKGCONFIG = graphics.pc
 
-datadir=${prefix}/modules
+
+
 #### Target ######
 target=$(datadir)/graphics
 

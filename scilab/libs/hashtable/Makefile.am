@@ -22,6 +22,7 @@ libscihashtable_la_SOURCES = $(HASHTABLE_C_SOURCES)
 
 libscihashtable_la_LIBADD = 
 
-libscihashtable_la_PKGCONFIG = hashtable.pc
+#### Target ######
+target=$(datadir)/hashtable
 
 include $(top_srcdir)/Makefile.incl.am

@@ -14,6 +14,14 @@
 
 @SET_MAKE@
 
+##########
+### Sylvestre Ledru <sylvestre.ledru@inria.fr>
+### INRIA - Scilab 2006 - 2007
+### 
+### Makefile included stuff
+### Target, variable, suffixes which are supposed to be usefull in every makefile.am
+##########
+
 
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
@@ -204,6 +212,8 @@ build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
 builddir = @builddir@
+
+# Where all the Scilab stuff is installed (macros, help, ...)
 datadir = ${prefix}/modules
 datarootdir = @datarootdir@
 docdir = @docdir@
@@ -270,7 +280,7 @@ libscidouble_la_LIBADD = \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/intersci/libsciintersci.la
 
-libscidouble_la_PKGCONFIG = double.pc
+
 #### Target ######
 target = $(datadir)/double
 
@@ -285,6 +295,9 @@ libscidouble_la_macro_DATA22 = macros/buildmacros.sce
 #### double : init scripts #### 
 libscidouble_la_etcdir = $(target)/etc
 libscidouble_la_etc_DATA = etc/double.quit etc/double.start
+
+# Where headers (*.h) are installed (usually /usr/include/scilab/)
+sciincludedir = ${includedir}/scilab
 
 #SUFFIXES = .xml .sci .htm
 SUFFIXES = .sci
@@ -301,9 +314,6 @@ DOCMASK = *.htm
 pkgmacrosdir = $(target)
 MACROSDIRS = macros/
 MACROSMASK = *.sci
-
-# Where headers (*.h) are installed (usually /usr/include/scilab/)
-sciincludedir = ${includedir}/scilab
 all: all-am
 
 .SUFFIXES:

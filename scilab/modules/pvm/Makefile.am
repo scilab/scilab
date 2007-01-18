@@ -61,9 +61,9 @@ libsciscipvm_la_LIBADD = \
 
 libsciscipvm_la_LDFLAGS = $(PVM_LIB)
 
-libsciscipvm_la_PKGCONFIG = scipvm.pc
 
-#datadir=${prefix}/modules
+
+#
 #### Target ######
 target=$(datadir)/modules/pvm
 

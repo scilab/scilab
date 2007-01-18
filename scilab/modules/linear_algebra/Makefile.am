@@ -93,9 +93,9 @@ libscilinear_algebra_la_LIBADD = $(top_builddir)/libs/lapack/libscilapack.la \
 $(top_builddir)/libs/blas/libsciblas.la \
 $(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la  
 
-libscilinear_algebra_la_PKGCONFIG = linear_algebra.pc
 
-datadir=${prefix}/modules
+
+
 #### Target ######
 target=$(datadir)/linear_algebra
 

@@ -19,6 +19,14 @@
 ### INRIA - Scilab 2006 
 ##########
 
+##########
+### Sylvestre Ledru <sylvestre.ledru@inria.fr>
+### INRIA - Scilab 2006 - 2007
+### 
+### Makefile included stuff
+### Target, variable, suffixes which are supposed to be usefull in every makefile.am
+##########
+
 
 
 VPATH = @srcdir@
@@ -563,6 +571,8 @@ build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
 builddir = @builddir@
+
+# Where all the Scilab stuff is installed (macros, help, ...)
 datadir = ${prefix}/modules
 datarootdir = @datarootdir@
 docdir = @docdir@
@@ -952,9 +962,7 @@ libscielementaries_functions_la_LIBADD = \
 	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
 
-#	$(top_builddir)/modules/sparse/libscisparse.la \
-#	$(top_builddir)/modules/polynomials/libscipolynomials.la
-libscielementaries_functions_la_PKGCONFIG = elementaries_functions.pc
+
 #### Target ######
 target = $(datadir)/elementaries_functions
 
@@ -1154,6 +1162,9 @@ includes/gw_elementaries_functions.h \
 includes/elementaries_functions.h
 
 
+# Where headers (*.h) are installed (usually /usr/include/scilab/)
+sciincludedir = ${includedir}/scilab
+
 #SUFFIXES = .xml .sci .htm
 SUFFIXES = .sci
 
@@ -1169,9 +1180,6 @@ DOCMASK = *.htm
 pkgmacrosdir = $(target)
 MACROSDIRS = macros/
 MACROSMASK = *.sci
-
-# Where headers (*.h) are installed (usually /usr/include/scilab/)
-sciincludedir = ${includedir}/scilab
 all: all-am
 
 .SUFFIXES:
@@ -2824,6 +2832,8 @@ uninstall-am: uninstall-libscielementaries_functions_la_etcDATA \
 	uninstall-libscielementaries_functions_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
+#	$(top_builddir)/modules/sparse/libscisparse.la \
+#	$(top_builddir)/modules/polynomials/libscipolynomials.la
 
 libdummy_elementaries_functions_la-hqror2.lo: src/fortran/hqror2.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementaries_functions_la_FFLAGS) -c -o libdummy_elementaries_functions_la-hqror2.lo `test -f 'src/fortran/hqror2.f' || echo '$(srcdir)/'`src/fortran/hqror2.f

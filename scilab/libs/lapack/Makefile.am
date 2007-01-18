@@ -289,7 +289,9 @@ libdummy_lapack_la_FFLAGS = `echo "@FFLAGS@"| sed -e 's|-O[0-9+]|-O0|'`
 libscilapack_la_LIBADD = libdummy-lapack.la \
 	$(top_builddir)/libs/blas/libsciblas.la 
 
-libscilapack_la_PKGCONFIG = lapack.pc
+
+#### Target ######
+target=$(datadir)/lapack
 
 libdummy_lapack_la-dlamch.lo: dlamch.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_lapack_la_FFLAGS) -c -o libdummy_lapack_la-dlamch.lo `test -f 'dlamch.f' || echo '$(srcdir)/'`dlamch.f

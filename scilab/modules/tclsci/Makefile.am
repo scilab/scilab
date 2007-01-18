@@ -50,11 +50,11 @@ libscitclsci_la_LIBADD = \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
 
-libscitclsci_la_PKGCONFIG = tclsci.pc
 
 
 
-datadir=${prefix}/modules
+
+
 #### Target ######
 target=$(datadir)/tclsci
 

@@ -19,6 +19,14 @@
 ### INRIA - Scilab 2006 
 ##########
 
+##########
+### Sylvestre Ledru <sylvestre.ledru@inria.fr>
+### INRIA - Scilab 2006 - 2007
+### 
+### Makefile included stuff
+### Target, variable, suffixes which are supposed to be usefull in every makefile.am
+##########
+
 
 
 VPATH = @srcdir@
@@ -289,6 +297,9 @@ build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
 builddir = @builddir@
+
+# Where all the Scilab stuff is installed (macros, help, ...)
+@PVM_TRUE@datadir = ${prefix}/modules
 datadir = @datadir@
 datarootdir = @datarootdir@
 docdir = @docdir@
@@ -375,9 +386,8 @@ top_srcdir = @top_srcdir@
 @PVM_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la
 
 @PVM_TRUE@libsciscipvm_la_LDFLAGS = $(PVM_LIB)
-@PVM_TRUE@libsciscipvm_la_PKGCONFIG = scipvm.pc
 
-#datadir=${prefix}/modules
+#
 #### Target ######
 @PVM_TRUE@target = $(datadir)/modules/pvm
 
@@ -445,6 +455,9 @@ top_srcdir = @top_srcdir@
 @PVM_TRUE@demos/script.sce
 
 
+# Where headers (*.h) are installed (usually /usr/include/scilab/)
+@PVM_TRUE@sciincludedir = ${includedir}/scilab
+
 #SUFFIXES = .xml .sci .htm
 @PVM_TRUE@SUFFIXES = .sci
 
@@ -460,9 +473,6 @@ top_srcdir = @top_srcdir@
 @PVM_TRUE@pkgmacrosdir = $(target)
 @PVM_TRUE@MACROSDIRS = macros/
 @PVM_TRUE@MACROSMASK = *.sci
-
-# Where headers (*.h) are installed (usually /usr/include/scilab/)
-@PVM_TRUE@sciincludedir = ${includedir}/scilab
 all: all-am
 
 .SUFFIXES:

@@ -19,6 +19,14 @@
 ### INRIA - Scilab 2006 
 ##########
 
+##########
+### Sylvestre Ledru <sylvestre.ledru@inria.fr>
+### INRIA - Scilab 2006 - 2007
+### 
+### Makefile included stuff
+### Target, variable, suffixes which are supposed to be usefull in every makefile.am
+##########
+
 
 
 VPATH = @srcdir@
@@ -237,6 +245,8 @@ build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
 builddir = @builddir@
+
+# Where all the Scilab stuff is installed (macros, help, ...)
 datadir = ${prefix}/modules
 datarootdir = @datarootdir@
 docdir = @docdir@
@@ -301,7 +311,7 @@ libsciinterpolation_la_LIBADD = \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la 
 
-libsciinterpolation_la_PKGCONFIG = interpolation.pc
+
 #### Target ######
 target = $(datadir)/interpolation
 
@@ -332,6 +342,9 @@ includes/constinterp.h
 libsciinterpolation_la_demosdir = $(target)/demos/
 libsciinterpolation_la_demos_DATA = demos/interp_demo.sci
 
+# Where headers (*.h) are installed (usually /usr/include/scilab/)
+sciincludedir = ${includedir}/scilab
+
 #SUFFIXES = .xml .sci .htm
 SUFFIXES = .sci
 
@@ -347,9 +360,6 @@ DOCMASK = *.htm
 pkgmacrosdir = $(target)
 MACROSDIRS = macros/
 MACROSMASK = *.sci
-
-# Where headers (*.h) are installed (usually /usr/include/scilab/)
-sciincludedir = ${includedir}/scilab
 all: all-am
 
 .SUFFIXES:

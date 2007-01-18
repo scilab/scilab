@@ -19,6 +19,7 @@ libscimalloc_la_SOURCES = $(MALLOC_C_SOURCES)
 
 libscimalloc_la_LIBADD = 
 
-libscimalloc_la_PKGCONFIG = malloc.pc
+#### Target ######
+target=$(datadir)/malloc
 
 include $(top_srcdir)/Makefile.incl.am

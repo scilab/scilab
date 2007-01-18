@@ -365,7 +365,7 @@ libscielementaries_functions_la_LIBADD = \
 #	$(top_builddir)/modules/sparse/libscisparse.la \
 #	$(top_builddir)/modules/polynomials/libscipolynomials.la
 
-libscielementaries_functions_la_PKGCONFIG = elementaries_functions.pc
+
 
 libdummy_elementaries_functions_la-hqror2.lo: src/fortran/hqror2.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementaries_functions_la_FFLAGS) -c -o libdummy_elementaries_functions_la-hqror2.lo `test -f 'src/fortran/hqror2.f' || echo '$(srcdir)/'`src/fortran/hqror2.f
@@ -386,7 +386,7 @@ libdummy_elementaries_functions_la-icopy.lo: src/fortran/icopy.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementaries_functions_la_FFLAGS) -c -o libdummy_elementaries_functions_la-icopy.lo `test -f 'src/fortran/icopy.f' || echo '$(srcdir)/'`src/fortran/icopy.f
 
 
-datadir=${prefix}/modules
+
 #### Target ######
 target=$(datadir)/elementaries_functions
 

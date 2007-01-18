@@ -17,9 +17,9 @@ libscimexlib_la_LIBADD = \
 #	$(top_builddir)/libs/blas/libsciblas.la \
 #	$(top_builddir)/modules/arnoldi/libsciarnoldi.la
 
-libscimexlib_la_PKGCONFIG = mexlib.pc
 
-datadir=${prefix}/modules
+
+
 #### Target ######
 target=$(datadir)/mexlib
 

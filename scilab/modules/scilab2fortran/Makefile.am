@@ -3,7 +3,7 @@
 ### INRIA - Scilab 2006 
 ##########
 
-datadir=${prefix}/modules
+
 #### Target ######
 target=$(datadir)/scilab2fortran
 

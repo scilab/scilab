@@ -127,9 +127,9 @@ libsciinteger_la_LIBADD = \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/fileio/libscifileio.la 
 
-libsciinteger_la_PKGCONFIG = integer.pc
 
-datadir=${prefix}/modules
+
+
 #### Target ######
 target=$(datadir)/integer
 

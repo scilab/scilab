@@ -32,9 +32,9 @@ libsciwintools_la_LIBADD = \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
 
-libsciwintools_la_PKGCONFIG = wintools.pc
 
-datadir=${prefix}/modules
+
+
 #### Target ######
 target=$(datadir)/wintools
 

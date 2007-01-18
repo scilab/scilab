@@ -19,6 +19,14 @@
 ### INRIA - Scilab 2006 
 ##########
 
+##########
+### Sylvestre Ledru <sylvestre.ledru@inria.fr>
+### INRIA - Scilab 2006 - 2007
+### 
+### Makefile included stuff
+### Target, variable, suffixes which are supposed to be usefull in every makefile.am
+##########
+
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkglibdir = $(libdir)/@PACKAGE@
@@ -193,7 +201,9 @@ build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
 builddir = @builddir@
-datadir = @datadir@
+
+# Where all the Scilab stuff is installed (macros, help, ...)
+datadir = ${prefix}/modules
 datarootdir = @datarootdir@
 docdir = @docdir@
 dvidir = @dvidir@
@@ -303,7 +313,12 @@ zher2.f
 pkglib_LTLIBRARIES = libsciblas.la
 libsciblas_la_SOURCES = $(BLAS_FORTRAN_SOURCES)
 libsciblas_la_LIBADD = 
-libsciblas_la_PKGCONFIG = blas.pc
+
+#### Target ######
+target = $(datadir)/blas
+
+# Where headers (*.h) are installed (usually /usr/include/scilab/)
+sciincludedir = ${includedir}/scilab
 
 #SUFFIXES = .xml .sci .htm
 SUFFIXES = .sci
@@ -320,9 +335,6 @@ DOCMASK = *.htm
 pkgmacrosdir = $(target)
 MACROSDIRS = macros/
 MACROSMASK = *.sci
-
-# Where headers (*.h) are installed (usually /usr/include/scilab/)
-sciincludedir = ${includedir}/scilab
 all: all-am
 
 .SUFFIXES:

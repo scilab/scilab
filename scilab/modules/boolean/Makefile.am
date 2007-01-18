@@ -32,9 +32,8 @@ libsciboolean_la_LIBADD = \
 #SUFFIXES = .la
 #.la:
 #	echo "oh oh"
-libsciboolean_la_PKGCONFIG = boolean.pc
 
-datadir=${prefix}/modules
+
 #### Target ######
 target=$(datadir)/boolean
 

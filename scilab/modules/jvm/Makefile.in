@@ -19,6 +19,14 @@
 ### INRIA - Scilab 2006 
 ##########
 
+##########
+### Sylvestre Ledru <sylvestre.ledru@inria.fr>
+### INRIA - Scilab 2006 - 2007
+### 
+### Makefile included stuff
+### Target, variable, suffixes which are supposed to be usefull in every makefile.am
+##########
+
 
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
@@ -201,6 +209,8 @@ build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
 builddir = @builddir@
+
+# Where all the Scilab stuff is installed (macros, help, ...)
 @JAVA_TRUE@datadir = ${prefix}/modules
 datadir = @datadir@
 datarootdir = @datarootdir@
@@ -247,7 +257,7 @@ top_srcdir = @top_srcdir@
 @JAVA_TRUE@libsciscijvm_la_LIBADD = \
 @JAVA_TRUE@$(top_builddir)/modules/gui/libscigui.la
 
-@JAVA_TRUE@libsciscijvm_la_PKGCONFIG = scijvm.pc
+
 #### Target ######
 @JAVA_TRUE@target = $(datadir)/jvm
 
@@ -262,6 +272,9 @@ top_srcdir = @top_srcdir@
 #### jvm : init scripts #### 
 @JAVA_TRUE@libscijvm_la_etcdir = $(target)/etc
 @JAVA_TRUE@libscijvm_la_etc_DATA = etc/jvm.quit etc/jvm.start
+
+# Where headers (*.h) are installed (usually /usr/include/scilab/)
+@JAVA_TRUE@sciincludedir = ${includedir}/scilab
 
 #SUFFIXES = .xml .sci .htm
 @JAVA_TRUE@SUFFIXES = .sci
@@ -278,9 +291,6 @@ top_srcdir = @top_srcdir@
 @JAVA_TRUE@pkgmacrosdir = $(target)
 @JAVA_TRUE@MACROSDIRS = macros/
 @JAVA_TRUE@MACROSMASK = *.sci
-
-# Where headers (*.h) are installed (usually /usr/include/scilab/)
-@JAVA_TRUE@sciincludedir = ${includedir}/scilab
 all: all-am
 
 .SUFFIXES:

@@ -328,9 +328,9 @@ libscicore_la_LIBADD = \
 	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
 	$(top_builddir)/modules/fileio/libscifileio.la
 
-libscicore_la_PKGCONFIG = core.pc
 
-datadir=${prefix}/modules
+
+
 #### Target ######
 target=$(datadir)/core
 

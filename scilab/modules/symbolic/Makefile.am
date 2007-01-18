@@ -23,9 +23,9 @@ libscisymbolic_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libscisymbolic_la_LIBADD = \
 $(top_builddir)/modules/core/libscicore.la
 
-libscisymbolic_la_PKGCONFIG = symbolic.pc
 
-datadir=${prefix}/modules
+
+
 #### Target ######
 target=$(datadir)/symbolic
 

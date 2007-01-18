@@ -37,9 +37,9 @@ libsciintersci_la_CFLAGS = -I$(top_srcdir)/libs/MALLOC/includes/
 libsciintersci_la_LIBADD = \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
 
-libsciintersci_la_PKGCONFIG = intersci.pc
 
-datadir=${prefix}/modules
+
+
 #### Target ######
 target=$(datadir)/intersci
 

@@ -247,7 +247,7 @@ build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
 builddir = @builddir@
-datadir = ${prefix}/modules
+datadir = @datadir@
 datarootdir = @datarootdir@
 docdir = @docdir@
 dvidir = @dvidir@
@@ -292,6 +292,7 @@ SUBDIRS = intersci polynomials cacsd elementaries_functions arnoldi \
 	incremental_link others overloading maple2scilab m2sci texmacs \
 	tfds scipad scilab2fortran development_tools helptools scicos \
 	$(am__append_1) $(am__append_2) .
+
 #### Target ######
 target = $(datadir)
 

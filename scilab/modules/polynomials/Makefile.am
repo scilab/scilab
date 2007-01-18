@@ -116,9 +116,9 @@ libscipolynomials_la_LIBADD =
 #	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la  
 #	$(top_builddir)/modules/core/libscicore.la 
 
-libscipolynomials_la_PKGCONFIG = polynomials.pc
 
-datadir=${prefix}/modules
+
+
 #### Target ######
 target=$(datadir)/polynomials
 

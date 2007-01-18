@@ -7,6 +7,11 @@
 
 pkglib_LTLIBRARIES = libsciscicos.la
 
+#### Target ######
+target=$(datadir)/scicos
+
+include $(top_srcdir)/Makefile.incl.am
+
 if SCICOS
 
 SCICOS_C_SOURCES = src/c/cstblk4.c \
@@ -225,12 +230,6 @@ libsciscicos_la_LIBADD = \
 	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/graphics/libscigraphics.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
-
-libsciscicos_la_PKGCONFIG = scicos.pc
-
-datadir=${prefix}/modules
-#### Target ######
-target=$(datadir)/scicos
 
 
 #### scicos : Conf files ####
@@ -1465,7 +1464,7 @@ demos/fibo.cosf \
 demos/Controller.cosf
 
 
-include $(top_srcdir)/Makefile.incl.am
+
 MACROSDIRS+= macros/scicos_blocks \
 macros/scicos_blocks/Sources \
 macros/scicos_blocks/Events \
@@ -1489,6 +1488,6 @@ libsciscicos_la_SOURCES = $(NO_SCICOS_C_SOURCES)
 libsciscicos_la_includedir=$(sciincludedir)/scicos
 libsciscicos_la_include_HEADERS = src/c/noscicos/resource.h
 
-
-
 endif
+
+

@@ -116,9 +116,9 @@ libscidifferential_equations_la_LIBADD = \
 	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la 
 
-libscidifferential_equations_la_PKGCONFIG = differential_equations.pc
 
-datadir=${prefix}/modules
+
+
 #### Target ######
 target=$(datadir)/differential_equations
 

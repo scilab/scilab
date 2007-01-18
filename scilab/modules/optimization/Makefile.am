@@ -146,9 +146,9 @@ libscioptimization_la_LIBADD = \
 	$(top_builddir)/libs/lapack/libscilapack.la\
 	$(top_builddir)/modules/core/libscicore.la
 
-libscioptimization_la_PKGCONFIG = optimization.pc
 
-datadir=${prefix}/modules
+
+
 #### Target ######
 target=$(datadir)/optimization
 

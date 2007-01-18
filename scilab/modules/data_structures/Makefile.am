@@ -51,14 +51,14 @@ libscidata_structures_la_LIBADD = \
 	$(top_builddir)/modules/integer/libsciinteger.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
 
-libscidata_structures_la_PKGCONFIG = data_structures.pc
+
 
 #SUFFIXES = .sci
 #.sci:
 #	$(top_builddir)/scilab-bin -nb -l eng -nouserstartup -nwni -e "xmltohtml();exit;"
 
 
-datadir=${prefix}/modules
+
 #### Target ######
 target=$(datadir)/data_structures
 

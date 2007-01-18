@@ -1,5 +1,5 @@
 
-datadir=${prefix}/modules
+
 #### Target ######
 target=$(datadir)/sci2c
 

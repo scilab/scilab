@@ -34,9 +34,9 @@ libscidouble_la_LIBADD = \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/intersci/libsciintersci.la
 
-libscidouble_la_PKGCONFIG = double.pc
 
-datadir=${prefix}/modules
+
+
 #### Target ######
 target=$(datadir)/double
 

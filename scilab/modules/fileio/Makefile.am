@@ -46,9 +46,9 @@ libscifileio_la_LIBADD = \
 # cyclic deps
 #	$(top_builddir)/modules/core/libscicore.la
 
-libscifileio_la_PKGCONFIG = fileio.pc
 
-datadir=${prefix}/modules
+
+
 #### Target ######
 target=$(datadir)/fileio
 

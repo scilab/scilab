@@ -4,7 +4,7 @@
 ##########
 
 
-datadir=${prefix}/modules
+
 #### Target ######
 target=$(datadir)/texmacs
 

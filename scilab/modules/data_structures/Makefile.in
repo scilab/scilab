@@ -19,6 +19,14 @@
 ### INRIA - Scilab 2006 
 ##########
 
+##########
+### Sylvestre Ledru <sylvestre.ledru@inria.fr>
+### INRIA - Scilab 2006 - 2007
+### 
+### Makefile included stuff
+### Target, variable, suffixes which are supposed to be usefull in every makefile.am
+##########
+
 
 
 VPATH = @srcdir@
@@ -234,9 +242,7 @@ build_os = @build_os@
 build_vendor = @build_vendor@
 builddir = @builddir@
 
-#SUFFIXES = .sci
-#.sci:
-#	$(top_builddir)/scilab-bin -nb -l eng -nouserstartup -nwni -e "xmltohtml();exit;"
+# Where all the Scilab stuff is installed (macros, help, ...)
 datadir = ${prefix}/modules
 datarootdir = @datarootdir@
 docdir = @docdir@
@@ -316,7 +322,11 @@ libscidata_structures_la_LIBADD = \
 	$(top_builddir)/modules/integer/libsciinteger.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
 
-libscidata_structures_la_PKGCONFIG = data_structures.pc
+
+#SUFFIXES = .sci
+#.sci:
+#	$(top_builddir)/scilab-bin -nb -l eng -nouserstartup -nwni -e "xmltohtml();exit;"
+
 #### Target ######
 target = $(datadir)/data_structures
 
@@ -352,6 +362,9 @@ includes/gw_data_structures2.h \
 includes/DoublyLinkedList.h
 
 
+# Where headers (*.h) are installed (usually /usr/include/scilab/)
+sciincludedir = ${includedir}/scilab
+
 #SUFFIXES = .xml .sci .htm
 SUFFIXES = .sci
 
@@ -367,9 +380,6 @@ DOCMASK = *.htm
 pkgmacrosdir = $(target)
 MACROSDIRS = macros/
 MACROSMASK = *.sci
-
-# Where headers (*.h) are installed (usually /usr/include/scilab/)
-sciincludedir = ${includedir}/scilab
 all: all-am
 
 .SUFFIXES:

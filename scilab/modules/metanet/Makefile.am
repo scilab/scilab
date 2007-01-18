@@ -130,9 +130,9 @@ libscimetanet_la_LIBADD = \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la
 
-libscimetanet_la_PKGCONFIG = metanet.pc
 
-datadir=${prefix}/modules
+
+
 #### Target ######
 target=$(datadir)/metanet
 

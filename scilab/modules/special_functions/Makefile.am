@@ -48,9 +48,9 @@ libscispecial_functions_la_LIBADD = \
 #	$(top_builddir)/libs/blas/libsciblas.la \
 #	$(top_builddir)/modules/arnoldi/libsciarnoldi.la
 
-libscispecial_functions_la_PKGCONFIG = special_functions.pc
 
-datadir=${prefix}/modules
+
+
 #### Target ######
 target=$(datadir)/special_functions
 

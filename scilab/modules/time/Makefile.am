@@ -27,10 +27,10 @@ libscitime_la_LIBADD = \
        $(top_builddir)/modules/core/libscicore.la \
        $(top_builddir)/libs/MALLOC/libscimalloc.la
 
-libscitime_la_PKGCONFIG = time.pc
 
 
-datadir=${prefix}/modules
+
+
 #### Target ######
 target=$(datadir)/time
 

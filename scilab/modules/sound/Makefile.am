@@ -26,9 +26,9 @@ libscisound_la_LIBADD = \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/core/libscicore.la
 
-libscisound_la_PKGCONFIG = sound.pc
 
-datadir=${prefix}/modules
+
+
 #### Target ######
 target=$(datadir)/sound
 

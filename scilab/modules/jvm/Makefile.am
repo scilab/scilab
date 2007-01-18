@@ -20,9 +20,9 @@ libsciscijvm_la_SOURCES = $(JVM_C_SOURCES)
 libsciscijvm_la_LIBADD = \
 $(top_builddir)/modules/gui/libscigui.la
 
-libsciscijvm_la_PKGCONFIG = scijvm.pc
 
-datadir=${prefix}/modules
+
+
 #### Target ######
 target=$(datadir)/jvm
 

@@ -17,9 +17,9 @@ libscilocalization_la_SOURCES = $(LOCALIZATION_C_SOURCES)
 libscilocalization_la_LIBADD = 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 $(top_builddir)/libs/hashtable/libscihashtable.la
 
-libscilocalization_la_PKGCONFIG = localization.pc
 
-datadir=${prefix}/modules
+
+
 #### Target ######
 target=$(datadir)/localization
 

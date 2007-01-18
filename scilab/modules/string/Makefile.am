@@ -56,9 +56,9 @@ libscistring_la_LIBADD = \
 #	$(top_builddir)/modules/core/libscicore.la
 
 
-libscistring_la_PKGCONFIG = string.pc
 
-datadir=${prefix}/modules
+
+
 #### Target ######
 target=$(datadir)/string
 

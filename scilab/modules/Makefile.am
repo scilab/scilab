@@ -64,7 +64,7 @@ endif
 SUBDIRS += .
 
 
-datadir=${prefix}/modules
+
 #### Target ######
 target=$(datadir)
 

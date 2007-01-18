@@ -21,6 +21,14 @@
 
 # SUBDIRS = src/ocaml/
 
+##########
+### Sylvestre Ledru <sylvestre.ledru@inria.fr>
+### INRIA - Scilab 2006 - 2007
+### 
+### Makefile included stuff
+### Target, variable, suffixes which are supposed to be usefull in every makefile.am
+##########
+
 
 
 VPATH = @srcdir@
@@ -44,6 +52,20 @@ host_triplet = @host@
 DIST_COMMON = $(am__libsciscicos_la_include_HEADERS_DIST) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
+@SCICOS_TRUE@am__append_1 = macros/scicos_blocks \
+@SCICOS_TRUE@macros/scicos_blocks/Sources \
+@SCICOS_TRUE@macros/scicos_blocks/Events \
+@SCICOS_TRUE@macros/scicos_blocks/NonLinear \
+@SCICOS_TRUE@macros/scicos_blocks/Electrical \
+@SCICOS_TRUE@macros/scicos_blocks/Hydraulics \
+@SCICOS_TRUE@macros/scicos_blocks/Sinks \
+@SCICOS_TRUE@macros/scicos_blocks/PDE \
+@SCICOS_TRUE@macros/scicos_blocks/Linear \
+@SCICOS_TRUE@macros/scicos_blocks/Branching \
+@SCICOS_TRUE@macros/scicos_blocks/Misc \
+@SCICOS_TRUE@macros/scicos_blocks/Threshold \
+@SCICOS_TRUE@macros/scicos
+
 subdir = modules/scicos
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fortran.m4 \
@@ -419,8 +441,9 @@ build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
 builddir = @builddir@
-@SCICOS_TRUE@datadir = ${prefix}/modules
-datadir = @datadir@
+
+# Where all the Scilab stuff is installed (macros, help, ...)
+datadir = ${prefix}/modules
 datarootdir = @datarootdir@
 docdir = @docdir@
 dvidir = @dvidir@
@@ -455,6 +478,28 @@ tcldir = @tcldir@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 pkglib_LTLIBRARIES = libsciscicos.la
+
+#### Target ######
+target = $(datadir)/scicos
+
+# Where headers (*.h) are installed (usually /usr/include/scilab/)
+sciincludedir = ${includedir}/scilab
+
+#SUFFIXES = .xml .sci .htm
+SUFFIXES = .sci
+
+# Install HTML files into the right target
+# We do not use the automake mechanism (libxxxx_la_help_fr_DATA) because
+# automake needs the html files to be present which is not the case when
+# we are building Scilab
+pkgdocdir = $(target)
+DOCDIRS = help/fr help/eng
+DOCMASK = *.htm
+
+#bhalbhalbha
+pkgmacrosdir = $(target)
+MACROSDIRS = macros/ $(am__append_1)
+MACROSMASK = *.sci
 @SCICOS_TRUE@SCICOS_C_SOURCES = src/c/cstblk4.c \
 @SCICOS_TRUE@src/c/readau.c \
 @SCICOS_TRUE@src/c/variable_delay.c \
@@ -661,9 +706,6 @@ pkglib_LTLIBRARIES = libsciscicos.la
 @SCICOS_TRUE@	$(top_builddir)/modules/graphics/libscigraphics.la \
 @SCICOS_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la
 
-@SCICOS_TRUE@libsciscicos_la_PKGCONFIG = scicos.pc
-#### Target ######
-@SCICOS_TRUE@target = $(datadir)/scicos
 
 #### scicos : Conf files ####
 @SCICOS_TRUE@libsciscicos_la_rootdir = $(target)
@@ -1895,36 +1937,6 @@ pkglib_LTLIBRARIES = libsciscicos.la
 @SCICOS_TRUE@demos/fibo.cosf \
 @SCICOS_TRUE@demos/Controller.cosf
 
-
-#SUFFIXES = .xml .sci .htm
-@SCICOS_TRUE@SUFFIXES = .sci
-
-# Install HTML files into the right target
-# We do not use the automake mechanism (libxxxx_la_help_fr_DATA) because
-# automake needs the html files to be present which is not the case when
-# we are building Scilab
-@SCICOS_TRUE@pkgdocdir = $(target)
-@SCICOS_TRUE@DOCDIRS = help/fr help/eng
-@SCICOS_TRUE@DOCMASK = *.htm
-
-#bhalbhalbha
-@SCICOS_TRUE@pkgmacrosdir = $(target)
-@SCICOS_TRUE@MACROSDIRS = macros/ macros/scicos_blocks \
-@SCICOS_TRUE@	macros/scicos_blocks/Sources \
-@SCICOS_TRUE@	macros/scicos_blocks/Events \
-@SCICOS_TRUE@	macros/scicos_blocks/NonLinear \
-@SCICOS_TRUE@	macros/scicos_blocks/Electrical \
-@SCICOS_TRUE@	macros/scicos_blocks/Hydraulics \
-@SCICOS_TRUE@	macros/scicos_blocks/Sinks \
-@SCICOS_TRUE@	macros/scicos_blocks/PDE \
-@SCICOS_TRUE@	macros/scicos_blocks/Linear \
-@SCICOS_TRUE@	macros/scicos_blocks/Branching \
-@SCICOS_TRUE@	macros/scicos_blocks/Misc \
-@SCICOS_TRUE@	macros/scicos_blocks/Threshold macros/scicos
-@SCICOS_TRUE@MACROSMASK = *.sci
-
-# Where headers (*.h) are installed (usually /usr/include/scilab/)
-@SCICOS_TRUE@sciincludedir = ${includedir}/scilab
 @SCICOS_FALSE@NO_SCICOS_C_SOURCES = src/c/noscicos/noscicos.c
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
@@ -3256,8 +3268,6 @@ maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
 	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
-@SCICOS_FALSE@install-data-local:
-@SCICOS_FALSE@install-html-local:
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-pkglibLTLIBRARIES \
@@ -3356,13 +3366,6 @@ uninstall-am: uninstall-libsciscicos_la_etcDATA \
 	uninstall-pkglibLTLIBRARIES
 
 
-@SCICOS_TRUE@includes/blocks.h:
-@SCICOS_TRUE@	if test ! -d build; then mkdir build; fi
-# Get the filename, strip the extension and put into a file
-@SCICOS_TRUE@	for file in $(SCICOS_FORTRAN_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.f|\1|';done > build/Fblocknames 
-@SCICOS_TRUE@	for file in $(SCICOS_C_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.c|\1|' ;done > build/Cblocknames
-@SCICOS_TRUE@	$(top_srcdir)/modules/scicos/src/c/GenBlocks.sh build/Fblocknames build/Cblocknames includes/blocks.h
-
 #.xml.htm:
 #	@( if test ! -x $(top_builddir)/scilab-bin; then \
 #	echo "Error : Cannot build $< : Scilab has not been build"; \
@@ -3371,54 +3374,61 @@ uninstall-am: uninstall-libsciscicos_la_etcDATA \
 #	fi )
 
 # Rule to build a macro
-@SCICOS_TRUE@.sci.bin:
-@SCICOS_TRUE@	-@( if test ! -x $(top_builddir)/scilab-bin; then \
-@SCICOS_TRUE@	echo "Error : Cannot build $< : Scilab has not been build"; \
-@SCICOS_TRUE@	else \
-@SCICOS_TRUE@	echo "Creating $@"; \
-@SCICOS_TRUE@	$(top_builddir)/bin/scilab -ns -nwni -e "getf('$(abs_srcdir)/$<');save('$(abs_srcdir)/$@');exit;"; \
-@SCICOS_TRUE@	fi )
+.sci.bin:
+	-@( if test ! -x $(top_builddir)/scilab-bin; then \
+	echo "Error : Cannot build $< : Scilab has not been build"; \
+	else \
+	echo "Creating $@"; \
+	$(top_builddir)/bin/scilab -ns -nwni -e "getf('$(abs_srcdir)/$<');save('$(abs_srcdir)/$@');exit;"; \
+	fi )
 
-@SCICOS_TRUE@macrossly:
-@SCICOS_TRUE@	@( if test ! -x $(top_builddir)/scilab-bin; then \
-@SCICOS_TRUE@	echo "Error : Cannot build $< : Scilab has not been build"; \
-@SCICOS_TRUE@	else \
-@SCICOS_TRUE@	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
-@SCICOS_TRUE@	SCI=`cd $(top_builddir); pwd;`; export SCI; \
-@SCICOS_TRUE@	echo $$SCI/modules/functions/macros/genlib.bin; \
-@SCICOS_TRUE@	if test ! -f $$SCI/modules/functions/macros/genlib.bin; then \
-@SCICOS_TRUE@	(cd $$SCI; $$SCI/scilab-bin -ns -nwni -f $$SCI/modules/functions/scripts/buildmacros/buildmacros.sce;) \
-@SCICOS_TRUE@	fi; \
-@SCICOS_TRUE@	echo $(top_builddir)/scilab-bin -ns -nwni -f macros/buildmacros.sce; \
-@SCICOS_TRUE@	$(top_builddir)/scilab-bin -nwni -f macros/buildmacros.sce; \
-@SCICOS_TRUE@	fi )
-@SCICOS_TRUE@install-html-local:
-@SCICOS_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
-@SCICOS_TRUE@	@for dir in $(DOCDIRS) ; do \
-@SCICOS_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-@SCICOS_TRUE@		if ls -lLd $(srcdir)/$$dir/$(DOCMASK) >/dev/null 2>&1; then \
-@SCICOS_TRUE@		  for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
-@SCICOS_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-@SCICOS_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
-@SCICOS_TRUE@		  done ; \
-@SCICOS_TRUE@		fi; \
-@SCICOS_TRUE@	done
-@SCICOS_TRUE@install-data-local: $(MACROS)
-@SCICOS_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)
-@SCICOS_TRUE@	@for dir in $(MACROSDIRS) ; do \
-@SCICOS_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-@SCICOS_TRUE@		if ls -lLd $(srcdir)/$$dir/$(MACROSMASK)  >/dev/null 2>&1; then \
-@SCICOS_TRUE@		  for file in $(srcdir)/$$dir/$(MACROSMASK) ; do \
-@SCICOS_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
-@SCICOS_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
-@SCICOS_TRUE@		  done ; \
-@SCICOS_TRUE@		fi; \
-@SCICOS_TRUE@	done
+macrossly:
+	@( if test ! -x $(top_builddir)/scilab-bin; then \
+	echo "Error : Cannot build $< : Scilab has not been build"; \
+	else \
+	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
+	SCI=`cd $(top_builddir); pwd;`; export SCI; \
+	echo $$SCI/modules/functions/macros/genlib.bin; \
+	if test ! -f $$SCI/modules/functions/macros/genlib.bin; then \
+	(cd $$SCI; $$SCI/scilab-bin -ns -nwni -f $$SCI/modules/functions/scripts/buildmacros/buildmacros.sce;) \
+	fi; \
+	echo $(top_builddir)/scilab-bin -ns -nwni -f macros/buildmacros.sce; \
+	$(top_builddir)/scilab-bin -nwni -f macros/buildmacros.sce; \
+	fi )
+install-html-local:
+	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
+	@for dir in $(DOCDIRS) ; do \
+	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+		if ls -lLd $(srcdir)/$$dir/$(DOCMASK) >/dev/null 2>&1; then \
+		  for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
+		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+		  done ; \
+		fi; \
+	done
+install-data-local: $(MACROS)
+	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)
+	@for dir in $(MACROSDIRS) ; do \
+	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
+		if ls -lLd $(srcdir)/$$dir/$(MACROSMASK)  >/dev/null 2>&1; then \
+		  for file in $(srcdir)/$$dir/$(MACROSMASK) ; do \
+		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
+	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
+		  done ; \
+		fi; \
+	done
 
-@SCICOS_TRUE@macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(MACROS)
-@SCICOS_TRUE@	-@( \
-@SCICOS_TRUE@	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
-@SCICOS_TRUE@	$(top_builddir)/bin/scilab -nb -nwni -f $(abs_srcdir)/macros/buildmacros.sce 	)
+macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(MACROS)
+	-@( \
+	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
+	$(top_builddir)/bin/scilab -nb -nwni -f $(abs_srcdir)/macros/buildmacros.sce 	)
+
+@SCICOS_TRUE@includes/blocks.h:
+@SCICOS_TRUE@	if test ! -d build; then mkdir build; fi
+# Get the filename, strip the extension and put into a file
+@SCICOS_TRUE@	for file in $(SCICOS_FORTRAN_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.f|\1|';done > build/Fblocknames 
+@SCICOS_TRUE@	for file in $(SCICOS_C_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.c|\1|' ;done > build/Cblocknames
+@SCICOS_TRUE@	$(top_srcdir)/modules/scicos/src/c/GenBlocks.sh build/Fblocknames build/Cblocknames includes/blocks.h
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

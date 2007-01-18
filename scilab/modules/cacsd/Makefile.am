@@ -229,10 +229,10 @@ libscicacsd_la_LIBADD = \
 # Cyclic deps
 #	$(top_builddir)/modules/core/libscicore.la 
 
-libscicacsd_la_PKGCONFIG = cacsd.pc
 
 
-datadir=${prefix}/modules
+
+
 #### Target ######
 target=$(datadir)/cacsd
 

@@ -101,9 +101,9 @@ libscisignal_processing_la_LIBADD = \
 # Cyclic deps
 #	$(top_builddir)/modules/core/libscicore.la
 
-libscisignal_processing_la_PKGCONFIG = signal_processing.pc
 
-datadir=${prefix}/modules
+
+
 #### Target ######
 target=$(datadir)/signal_processing
 

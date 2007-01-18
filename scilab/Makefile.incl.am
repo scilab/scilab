@@ -1,12 +1,19 @@
+##########
+### Sylvestre Ledru <sylvestre.ledru@inria.fr>
+### INRIA - Scilab 2006 - 2007
+### 
+### Makefile included stuff
+### Target, variable, suffixes which are supposed to be usefull in every makefile.am
+##########
+
+# Where headers (*.h) are installed (usually /usr/include/scilab/)
+sciincludedir=${includedir}/scilab
+
+# Where all the Scilab stuff is installed (macros, help, ...)
+datadir=${prefix}/modules
+
 #SUFFIXES = .xml .sci .htm
 SUFFIXES = .sci
-
-#.xml.htm:
-#	@( if test ! -x $(top_builddir)/scilab-bin; then \
-#	echo "Error : Cannot build $< : Scilab has not been build"; \
-#	else \
-#	echo "converted $< to $@"; \
-#	fi )
 
 # Rule to build a macro
 .sci.bin:
@@ -72,6 +79,3 @@ macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(MACROS)
 	-@( \
 	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
 	$(top_builddir)/bin/scilab -nb -nwni -f $(abs_srcdir)/macros/buildmacros.sce 	)
-
-# Where headers (*.h) are installed (usually /usr/include/scilab/)
-sciincludedir=${includedir}/scilab

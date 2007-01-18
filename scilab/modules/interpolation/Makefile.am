@@ -36,9 +36,9 @@ libsciinterpolation_la_LIBADD = \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la 
 
-libsciinterpolation_la_PKGCONFIG = interpolation.pc
 
-datadir=${prefix}/modules
+
+
 #### Target ######
 target=$(datadir)/interpolation
 

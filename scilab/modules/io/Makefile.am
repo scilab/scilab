@@ -84,13 +84,13 @@ libsciio_la_LIBADD = libdummy-io.la \
 	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
 
-libsciio_la_PKGCONFIG = io.pc
+
 
 libdummy_io_la-intmgetl.lo: sci_gateway/fortran/intmgetl.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_io_la_FFLAGS) -c -o libdummy_io_la-intmgetl.lo `test -f 'sci_gateway/fortran/intmgetl.f' || echo '$(srcdir)/'`sci_gateway/fortran/intmgetl.f
 
 
-datadir=${prefix}/modules
+
 #### Target ######
 target=$(datadir)/io
 

@@ -53,9 +53,9 @@ libscirandlib_la_LIBADD = \
 #	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la 
 
 
-libscirandlib_la_PKGCONFIG = randlib.pc
 
-datadir=${prefix}/modules
+
+
 #### Target ######
 target=$(datadir)/randlib
 

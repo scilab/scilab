@@ -84,9 +84,9 @@ $(top_builddir)/libs/MALLOC/libscimalloc.la
 # Cyclic deps
 #$(top_builddir)/modules/core/libscicore.la
 
-libsciarnoldi_la_PKGCONFIG = arnoldi.pc
 
-datadir=${prefix}/modules
+
+
 #### Target ######
 target=$(datadir)/arnoldi
 

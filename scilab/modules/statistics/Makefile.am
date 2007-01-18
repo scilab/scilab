@@ -102,9 +102,9 @@ libscistatistics_la_LIBADD = \
 #	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
 #	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la 
 
-libscistatistics_la_PKGCONFIG = statistics.pc
 
-datadir=${prefix}/modules
+
+
 #### Target ######
 target=$(datadir)/statistics
 

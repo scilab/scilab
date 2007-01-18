@@ -19,6 +19,14 @@
 ### INRIA - Scilab 2006 
 ##########
 
+##########
+### Sylvestre Ledru <sylvestre.ledru@inria.fr>
+### INRIA - Scilab 2006 - 2007
+### 
+### Makefile included stuff
+### Target, variable, suffixes which are supposed to be usefull in every makefile.am
+##########
+
 
 
 VPATH = @srcdir@
@@ -298,6 +306,8 @@ build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
 builddir = @builddir@
+
+# Where all the Scilab stuff is installed (macros, help, ...)
 datadir = ${prefix}/modules
 datarootdir = @datarootdir@
 docdir = @docdir@
@@ -434,7 +444,7 @@ libscigui_la_LIBADD = \
 # Cyclic dep
 #	$(top_builddir)/modules/graphics/libscigraphics.la
 #	$(top_builddir)/modules/jvm/libsciscijvm.la
-libscigui_la_PKGCONFIG = gui.pc
+
 #### Target ######
 target = $(datadir)/gui
 
@@ -491,6 +501,9 @@ includes/GraphicWindow.h
 libscigui_la_demosdir = $(target)/demos/
 libscigui_la_demos_DATA = demos/dialog.dem
 
+# Where headers (*.h) are installed (usually /usr/include/scilab/)
+sciincludedir = ${includedir}/scilab
+
 #SUFFIXES = .xml .sci .htm
 SUFFIXES = .sci
 
@@ -506,9 +519,6 @@ DOCMASK = *.htm
 pkgmacrosdir = $(target)
 MACROSDIRS = macros/
 MACROSMASK = *.sci
-
-# Where headers (*.h) are installed (usually /usr/include/scilab/)
-sciincludedir = ${includedir}/scilab
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 

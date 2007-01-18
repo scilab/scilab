@@ -115,9 +115,9 @@ libscigui_la_LIBADD = \
 #	$(top_builddir)/modules/graphics/libscigraphics.la
 #	$(top_builddir)/modules/jvm/libsciscijvm.la
 
-libscigui_la_PKGCONFIG = gui.pc
 
-datadir=${prefix}/modules
+
+
 #### Target ######
 target=$(datadir)/gui
 
