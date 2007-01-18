@@ -25,9 +25,7 @@
 
 #include "machine.h"
 #include "math.h"
-#ifndef _MSC_VER
 #include "version.h"
-#endif
 #include "realmain.h" /* realmain */
 #include "scimem.h" /* nofpex */
 
@@ -103,7 +101,6 @@ extern void sci_usr1_signal(int n) ;
 extern char ** create_argv(int *argc);
 extern void settexmacs(void);
 extern void SetWITH_GUI(BOOL);
-extern void disp_scilab_version(void);
 /*-----------------------------------------------------------------------------------*/
 /*static void Syntax __PARAMS((char *badOption));  */
 /*static void Syntax (char *badOption);  */
