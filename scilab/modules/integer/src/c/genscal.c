@@ -1,4 +1,5 @@
 #include "machine.h"
+#include "genscal.h"
 typedef signed char integer1;
 typedef short integer2;
 /*     Copyright INRIA */
@@ -14,12 +15,7 @@ Type *DA;\
     }\
 }
 
-int C2F(genscal)(typ, n, da, dx, incx)
-integer *n;
-integer *incx;
-integer *typ;
-int *da;
-int *dx;
+int C2F(genscal)(integer *typ, integer *n, int *da, int *dx, integer *incx)
 {
   static integer i, i1, i2, nincx;
   if (*n <= 0 || *incx <= 0) return 0;

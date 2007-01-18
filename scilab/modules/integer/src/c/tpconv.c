@@ -1,4 +1,5 @@
 #include "machine.h"
+#include "tpconv.h"
 typedef signed char integer1;
 typedef short integer2;
 /*     Copyright INRIA */
@@ -24,13 +25,7 @@ Ytype *DY;\
     }\
 }
 
-int C2F(tpconv)(xtyp, ytyp, n, dx, incx, dy, incy)
-integer *n;
-integer *incx;
-integer *incy;
-integer *xtyp, *ytyp;
-void *dx;
-void *dy;
+int C2F(tpconv)(integer *xtyp, integer *ytyp, integer *n, void *dx, integer *incx, void *dy, integer *incy)
 {
   integer i1;
   static integer i, ix, iy;
