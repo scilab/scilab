@@ -362,6 +362,9 @@ if test "$rest" = "yes"; then
       -nogui)
 	  sci_args="$sci_args -nogui"
           ;;
+      -version)
+	  sci_args="$sci_args -version"
+          ;;
       -ns)
 	  sci_args="$sci_args -ns"
           ;;
