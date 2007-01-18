@@ -145,6 +145,7 @@
 #define MSG_SCIMSG132 "-nwni : start Scilab without user interaction (batch mode).\n"
 #define MSG_SCIMSG133 "-nogui : start Scilab without GUI,tcl/tk and user interaction (batch mode).\n"
 #define MSG_SCIMSG134 "-texmacs : reserved for WinTeXMacs.\n"
+#define MSG_SCIMSG135 "-version : print product version and exit.\n"
 
 
 #endif /*_MESSAGESH_*/

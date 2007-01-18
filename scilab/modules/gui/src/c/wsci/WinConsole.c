@@ -129,6 +129,11 @@ BOOL IsWindowInterface(void)
 	return WindowMode;
 }
 /*-----------------------------------------------------------------------------------*/
+int IsConsoleMode(void)
+{
+	return (int)(!WindowMode);
+}
+/*-----------------------------------------------------------------------------------*/
 /* Retourne un numéro valide pour nommer les fenetres associées à ce process */
 int FindFreeScilexNumber(void)
 {

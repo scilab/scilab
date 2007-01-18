@@ -103,9 +103,10 @@ extern void sci_usr1_signal(int n) ;
 extern char ** create_argv(int *argc);
 extern void settexmacs(void);
 extern void SetWITH_GUI(BOOL);
+extern void disp_scilab_version(void);
 /*-----------------------------------------------------------------------------------*/
-//static void Syntax __PARAMS((char *badOption));  
-//static void Syntax (char *badOption);  
+/*static void Syntax __PARAMS((char *badOption));  */
+/*static void Syntax (char *badOption);  */
 /*-----------------------------------------------------------------------------------*/
 /**
  * mainsci.f directly call this function 
@@ -172,6 +173,7 @@ fpsetmask(0);
 			} 
       else if ( strcmp(argv[i],"--texmacs") == 0)  { no_window = 1;settexmacs();}
       else if ( strcmp(argv[i],"-nogui") == 0)  {no_window = 1; nointeractive = 1; SetWITH_GUI(0);}
+      else if ( strcmp(argv[i],"-version") == 0) {disp_scilab_version();exit(1);}
     }
 
   realmain(no_window,no_startup_flag,initial_script,initial_script_type,memory);

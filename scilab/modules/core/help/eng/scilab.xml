@@ -107,6 +107,10 @@
       <DESCRIPTION_ITEM label="--texmacs">
 	<SP>:This option is reserved for TeXMacs.</SP>
       </DESCRIPTION_ITEM>
+      
+      <DESCRIPTION_ITEM label="-version">
+	<SP>:This option print product version and exit.</SP>
+      </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
   </DESCRIPTION>
 </MAN>

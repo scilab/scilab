@@ -107,6 +107,10 @@
       <DESCRIPTION_ITEM label="--texmacs">
 	<SP>: Cette option est réservée pour TeXMacs.</SP>
       </DESCRIPTION_ITEM>
+      
+      <DESCRIPTION_ITEM label="-version">
+	<SP>: Cette option affiche la version de Scilab.</SP>
+      </DESCRIPTION_ITEM>
   
    </DESCRIPTION_INDENT>
   </DESCRIPTION>

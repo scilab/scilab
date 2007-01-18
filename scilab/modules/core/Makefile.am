@@ -64,6 +64,7 @@ src/c/returnanan.c \
 src/c/LoadFunctionsTab.c \
 src/c/with_module.c \
 src/c/loadversion.c \
+src/c/version.c \
 src/c/stackinfo.c \
 src/c/scirun.c
 

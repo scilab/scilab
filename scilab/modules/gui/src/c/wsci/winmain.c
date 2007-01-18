@@ -56,6 +56,7 @@ extern void MessageBoxNewGraphicMode(void);
 extern int ExitScilab(void);
 extern void SetWITH_GUI(BOOL ON);
 extern BOOL GetWITH_GUI(void);
+extern void disp_scilab_version(void);
 /*-----------------------------------------------------------------------------------*/
 static LPSTR my_argv[MAXCMDTOKENS];
 /*-----------------------------------------------------------------------------------*/
@@ -152,6 +153,12 @@ int Console_Main(int argc, char **argv)
 		  nointeractive = 1;
 		  SetWITH_GUI(FALSE);
 	  }
+	  else if ( (stricmp (my_argv[argcount],"-VERSION")==0) ||
+		  (stricmp (my_argv[argcount],"-VER")==0) )
+	  {
+			disp_scilab_version();
+			exit(1);
+	  }
 	  else if ( (stricmp (my_argv[argcount],"-H")==0) ||
 		  (stricmp (my_argv[argcount],"-?")==0) ||
 		  (stricmp (my_argv[argcount],"-HELP")==0) )
@@ -170,6 +177,7 @@ int Console_Main(int argc, char **argv)
 			printf(MSG_SCIMSG132); 
 			printf(MSG_SCIMSG133); 
 			printf(MSG_SCIMSG134); 
+			printf(MSG_SCIMSG135); 
 
 		  printf("\n");
 		  exit(1);
@@ -186,7 +194,6 @@ int Console_Main(int argc, char **argv)
 		  RenameConsole();
 		  UpdateConsoleColors();
 	  }
-
 	  
 	  sci_windows_main (nowin, &startupf,path,pathtype, &lpath,memory);
 	 
@@ -331,6 +338,13 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 			exit(1);
 		}
 
+		if ( (stricmp (my_argv[i], "-VERSION") == 0) ||
+			(stricmp (my_argv[i], "-VER") == 0) )
+		{
+			disp_scilab_version();
+			exit(1);
+		}
+
 		if ( (stricmp (my_argv[i], "-H") == 0) ||
 			 (stricmp (my_argv[i], "-?") == 0) ||
 			 (stricmp (my_argv[i], "-HELP") == 0) )
@@ -350,6 +364,7 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 			strcat(Msg,MSG_SCIMSG132); 
 			strcat(Msg,MSG_SCIMSG133); 
 			strcat(Msg,MSG_SCIMSG134); 
+			strcat(Msg,MSG_SCIMSG135); 
 
 			MessageBox(NULL,Msg,MSG_SCIMSG30,MB_ICONINFORMATION);
 			exit(1);

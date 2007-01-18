@@ -702,6 +702,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\version.c"
+				>
+			</File>
+			<File
 				RelativePath=".\with_module.c"
 				>
 			</File>

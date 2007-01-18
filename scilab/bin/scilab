@@ -158,6 +158,7 @@ echo     "      -nouserstartup  : do not execute the user startup files SCIHOME/
 echo     "      -nw             : start Scilab without specialized Scilab Window."
 echo     "      -nwni           : start Scilab without user interaction (batch mode)."
 echo     "      -nogui          : start Scilab without user GUI (batch mode)."
+echo     "      -version        : print product version and exit."
 echo     "      --texmacs       : reserved for TeXMacs."
 exit
 }
