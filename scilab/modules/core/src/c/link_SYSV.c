@@ -66,6 +66,7 @@
 #endif
 
 #include <string.h>
+#include "sciprint.h"
 
 #include "tmpdir.h"
 #include "setgetSCIpath.h"
