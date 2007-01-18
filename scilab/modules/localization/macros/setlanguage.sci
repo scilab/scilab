@@ -8,8 +8,6 @@ if (language=='fr' | language=='eng') & ~(LANGUAGE==language) then
 //Scilab Help Chapters, ===============================================
 //%helps is a two column matrix of strings
 	global %helps
-	%helps=initial_help_chapters(LANGUAGE);
-	clear initial_help_chapters
 	if with_tk() then 
 		RescanSciGUIHelp();
 		winclose(winlist());
