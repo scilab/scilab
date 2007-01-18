@@ -7,7 +7,7 @@
   <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="legends"> draw graph legend</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>legends(strings,style [,opt, with_box])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>legends(strings,style,&lt;opt_args&gt;)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
@@ -25,50 +25,76 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>opt</PARAM_NAME>
+        <PARAM_NAME>&lt;opt_args&gt;</PARAM_NAME>
+        
         <PARAM_DESCRIPTION>
-          <SP>: (optional) specify where to draw the legends; this parameter may be a integer
+          <SP>: This represents a sequence of statements
+          <VERB>key1=value1,key2=value2</VERB>,... where <VERB>key1</VERB>,
+          <VERB>key2,...</VERB> can be one of the following:</SP>
+          
+          <PARAM_INDENT>
+            <PARAM_ITEM>
+              <PARAM_NAME>opt</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: specify where to draw the legends; this parameter may be a integer
                 flag (or equivalently a string flag) or a vector [x,y] which gives the coordinates 
                 of the upper left corner of the legend box. In the first case the possible values
                 are:</SP>
-          <PARAM_INDENT>
-            <PARAM_ITEM>
-              <PARAM_NAME>1 or &quot;ur&quot;</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP> the legends are drawn in the upper right-hand corner.</SP>
+                <PARAM_INDENT>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>1 or &quot;ur&quot;</PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP> the legends are drawn in the upper right-hand corner.</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>2 or &quot;ul&quot;</PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP> the legends are drawn in the upper left-hand corner.</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>3 or &quot;ll&quot;</PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP> the legends are drawn in the lower left-hand corner.</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>4 or &quot;lr&quot;</PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP> the legends are drawn in the lower right-hand corner.</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>5 or &quot;?&quot;</PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP> interactive placement with the mouse  (default).</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>6 or &quot;below&quot;</PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP> the legends are drawn under the graph (which is resized accordingly).</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                </PARAM_INDENT>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
+          
             <PARAM_ITEM>
-              <PARAM_NAME>2 or &quot;ul&quot;</PARAM_NAME>
+              <PARAM_NAME>with_box</PARAM_NAME>
               <PARAM_DESCRIPTION>
-                <SP> the legends are drawn in the upper left-hand corner.</SP>
+                <SP>: a boolean (default value %t) which sets ot not the drawing of the box.</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
+          
             <PARAM_ITEM>
-              <PARAM_NAME>3 or &quot;ll&quot;</PARAM_NAME>
+              <PARAM_NAME>font_size</PARAM_NAME>
               <PARAM_DESCRIPTION>
-                <SP> the legends are drawn in the lower left-hand corner.</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>4 or &quot;lr&quot;</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP> the legends are drawn in the lower right-hand corner.</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>5 or &quot;?&quot;</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP> interactive placement with the mouse  (default).</SP>
+                <SP>: an integer (default value 1) which sets the size of the font used for the names in the legend. </SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
           </PARAM_INDENT>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>with_box</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a boolean (default value %t) which sets ot not the drawing of the box.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
@@ -104,5 +130,10 @@ legends(["sin(t)";"cos(t)"],[[5;2],[3;4]], with_box=%f, opt="?")
     <SEE_ALSO_ITEM>
       <LINK>xtitle</LINK>
     </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>legend</LINK>
+    </SEE_ALSO_ITEM>
+
   </SEE_ALSO>
 </MAN>

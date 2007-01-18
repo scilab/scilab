@@ -13,8 +13,7 @@
   2D</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>legends(strings,style
-    [,opt])</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>legends(strings,style,&lt;opt_args&gt;)</CALLING_SEQUENCE_ITEM>
 
     <CALLING_SEQUENCE_ITEM>legends(strings,style,xy)</CALLING_SEQUENCE_ITEM>
 
@@ -45,58 +44,86 @@
       </PARAM_ITEM>
 
       <PARAM_ITEM>
-        <PARAM_NAME>opt</PARAM_NAME>
-
+        <PARAM_NAME>&lt;opt_args&gt;</PARAM_NAME>
+        
         <PARAM_DESCRIPTION>
+          <SP>: This represents a sequence of statements
+          <VERB>key1=value1,key2=value2</VERB>,... where <VERB>key1</VERB>,
+          <VERB>key2,...</VERB> can be one of the following:</SP>
+          
           <PARAM_INDENT>
             <PARAM_ITEM>
-              <PARAM_NAME>1</PARAM_NAME>
-
+              <PARAM_NAME>opt</PARAM_NAME>
               <PARAM_DESCRIPTION>
-                <SP>= coin en haut à  droite 2 = coin en haut à  gauche</SP>
+                <SP>: determine la position des légendes. Ce paramètre peut être un vecteur
+                [x,y] spécifiant les coordonnées du point supérieur gauche de la boîte
+                contenant les légendes. Il peut aussi prendre l'une des valeurs suivantes:</SP>
+                <PARAM_INDENT>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>1 or &quot;ur&quot;</PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>les légendes sont positionnées dans le coin supérieur droit.</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>2 or &quot;ul&quot;</PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>les légendes sont positionnées dans le coin supérieur gauche.</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>3 or &quot;ll&quot;</PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>les légendes sont positionnées dans le coin inférieur gauche.</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>4 or &quot;lr&quot;</PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>les légendes sont positionnées dans le coin inférieur droit.</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>5 or &quot;?&quot;</PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>placement intéractif avec la souris.</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>6 or &quot;below&quot;</PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>les légendes sont positionnées en dessous du graphique
+                      (qui est alors réduit pour laisser de la place aux légendes).</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                </PARAM_INDENT>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
-
+          
             <PARAM_ITEM>
-              <PARAM_NAME>3</PARAM_NAME>
-
+              <PARAM_NAME>with_box</PARAM_NAME>
               <PARAM_DESCRIPTION>
-                <SP>= coin en bas à  gauche</SP>
+                <SP>: booléen (%t par défaut) qui détermine la présence du cadre
+                des légendes.</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
-
+          
             <PARAM_ITEM>
-              <PARAM_NAME>4</PARAM_NAME>
-
+              <PARAM_NAME>font_size</PARAM_NAME>
               <PARAM_DESCRIPTION>
-                <SP>= coin en bas à  droite</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-
-            <PARAM_ITEM>
-              <PARAM_NAME>5</PARAM_NAME>
-
-              <PARAM_DESCRIPTION>
-                <SP>= placement interactif avec la souris (par défaut)</SP>
+                <SP>: entier (1 par défaut) précisant la taille de la fonte utilisée pour
+                les légendes.</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
           </PARAM_INDENT>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>xy</PARAM_NAME>
-
-        <PARAM_DESCRIPTION>
-          <SP>: un vecteur [x,y] donnant les coordonnées du coin en haut à 
-          gauche de la boîte contenant la légende</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
     </PARAM_INDENT>
   </PARAM>
 
   <DESCRIPTION>
-    <P>Dessine des légendes sur le dessin courant en utilisant des chaînes de
+    <P>Dessine des légendes sur le dessin courant à partir des chaînes de
     caractères données.</P>
 
     <P>En cas de placement interactif (opt=5) déplacer la boîte de la légende
@@ -130,6 +157,10 @@ legends(["sin(t)";"cos(t)"],[[5;2],[3;4]], with_box=%f, opt="?")
 
     <SEE_ALSO_ITEM>
       <LINK>xtitle</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>legend</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>
