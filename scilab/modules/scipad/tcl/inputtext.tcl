@@ -297,18 +297,37 @@ proc inserttab {w} {
 
 proc puttext {w text} {
     global listoffile buffermodifiedsincelastsearch
+
     if {[IsBufferEditable] == "No"} {return}
+
+    # stop/restorecursorblink is primarily to fix bug 2239
+    # but:
+    # We want that when typing in a widget the line numbers in its margin be
+    # updated automatically, i.e. we want that proc managescroll (which calls
+    # updatelinenumbersmargin) be called automatically by Tk for each peer
+    # To achieve this, we need to perform a configure action with any option
+    # on all the peer text widgets, i.e. we must use $ta configure -anyoption xxx
+    # This is quite easily done by stopping and restoring cursor blinking, that
+    # does precisely $ta configure -insertofftime xx
+    # Note that we must in principle do it only for peers since typing in a widget
+    # cannot change any other non-peer text widget, but it's easier to do it for
+    # all textareas, and it's also needed to fix bug 2239
+    stopcursorblink
+
     foreach ta [getfullpeerset $w] {
         set listoffile("$ta",redostackdepth) 0
     }
+
     set oldSeparator [$w cget -autoseparators] ;# in case this proc is called from another proc
     if {$oldSeparator} {
         $w configure -autoseparators 0 ;# so only one undo is required to undo text replacement
         $w edit separator
     }
+
     if {[gettaselind $w] != ""} {
         $w delete sel.first sel.last
     }
+
     set i1 [$w index insert]
     $w insert insert $text
     set i2 [$w index insert]
@@ -319,15 +338,20 @@ proc puttext {w text} {
         colorize $w $uplimit $dnlimit
         backgroundcolorizeuserfun
     }
+
     reshape_bp
+
     $w see insert
+
     if {$oldSeparator} {
         $w edit separator
         $w configure -autoseparators 1
     }
-    set buffermodifiedsincelastsearch true
-}
 
+    set buffermodifiedsincelastsearch true
+
+    restorecursorblink ; # see comments above
+}
 
 proc printtime {} {
 #procedure to set the time change %R to %I:%M for 12 hour time display
@@ -340,7 +364,6 @@ proc printtime {} {
                     -format "%R %p %D"]
     set buffermodifiedsincelastsearch true
 }
-
 
 proc IsBufferEditable {} {
     if {[getdbstate]=="DebugInProgress"} {

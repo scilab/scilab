@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.76
+# in sync at least with v6.77
 
 
 # commons
@@ -21,6 +21,8 @@
 ::msgcat::mcset fr "Hide" "Cacher"
 ::msgcat::mcset fr "Close this tile, keep content" "Fermer cette vue, conserver le contenu"
 ::msgcat::mcset fr "Close this tile" "Fermer cette vue"
+::msgcat::mcset fr "Incompatible with word wrapping" \
+                   "Incompatible avec le retour à la ligne automatique"
 ::msgcat::mcset fr "Goto Line?" "Aller à la ligne ?"
 ::msgcat::mcset fr "Go to:" "Aller à : "
 ::msgcat::mcset fr "&logical line" "la ligne &logique"
@@ -436,7 +438,11 @@
         ::msgcat::mcset fr "Ask for &big files" "&Demander pour les gros fichiers"
         ::msgcat::mcset fr "&Never" "&Jamais"
         ::msgcat::mcset fr "Colorize \'&strings\'" "Colorer \'&chaîne\'"
-    ::msgcat::mcset fr "Show c&ontinued lines" "Afficher les li&gnes incomplètes"
+    ::msgcat::mcset fr "Line n&umbers" "N&uméros de ligne"
+        ::msgcat::mcset fr "&Hide" "&Masqués"
+        ::msgcat::mcset fr "&Left aligned" "Alignés à &gauche"
+        ::msgcat::mcset fr "&Right aligned" "Alignés à &droite"
+    ::msgcat::mcset fr "Show c&ontinued lines" "Surligner les li&gnes incomplètes"
     ::msgcat::mcset fr "Word &wrap" "&Retour à la ligne automatique"
     ::msgcat::mcset fr "&Double-click behavior" "Comportement du &double-clic"
         ::msgcat::mcset fr "&Linux" "&Linux"
@@ -575,6 +581,11 @@
 ::msgcat::mcset fr "NOT CONNECTED TO SCILAB" "PAS DE CONNEXION A SCILAB"
 
 
+# textarea.tcl
+::msgcat::mcset fr "Incompatible with line numbers margin" \
+                   "Fonction incompatible avec les numéros de ligne en marge"
+
+
 # whichfun.tcl
 ::msgcat::mcset fr "Being at line" "Etant à la ligne"
     ::msgcat::mcset fr ", function" ", la fonction"
@@ -589,8 +600,10 @@
 
 
 #preference variables description
-::msgcat::mcset fr "BGCOLOR" "Arrière-plan"
+::msgcat::mcset fr "BGCOLOR" "Arrière-plan de la zone d'édition"
+::msgcat::mcset fr "BGLNMARGCOLOR" "Arrière-plan des numéros de ligne"
 ::msgcat::mcset fr "FGCOLOR" "Texte brut"
+::msgcat::mcset fr "FGLNMARGCOLOR" "Texte des numéros de ligne"
 ::msgcat::mcset fr "CURCOLOR" "Curseur"
 ::msgcat::mcset fr "PARCOLOR" "Parenthèses ()"
 ::msgcat::mcset fr "BRAKCOLOR" "Crochets \\\[\\\]"

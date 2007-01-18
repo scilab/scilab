@@ -1,4 +1,4 @@
-# in sync at least with v6.2
+# in sync at least with v6.77
 # English is the original language of Scipad
 # Scipad tcl/tk source should use english texts
 # for instance [mc "your text in english here"]
@@ -18,6 +18,7 @@
                     German translation by Dirk Reusch 2005.\n\
                     Polish translation by Bartosz Kosiorek 2005.\n\
                     Spanish translation by Juan Nicolás Quesada 2006"
+
 
 # menues.tcl 
   # locale names (common)
@@ -50,7 +51,8 @@
 
 
 #preference variables description
-::msgcat::mcset eng "BGCOLOR" "Background"
+::msgcat::mcset eng "BGCOLOR" "Edit area background"
+::msgcat::mcset eng "BGLNMARGCOLOR" "Line numbers background"
 ::msgcat::mcset eng "FGCOLOR" "Plain text"
 ::msgcat::mcset eng "CURCOLOR" "Cursor"
 ::msgcat::mcset eng "PARCOLOR" "Parentheses ()"

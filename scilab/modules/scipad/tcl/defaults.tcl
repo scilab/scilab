@@ -28,12 +28,12 @@ if { [package vcompare $tk_version 8.5] >= 0 } {
 #  - if needed, assign an initial fallback value here
 
 # group here for convenience all the color settings
-set bgcolors {BGCOLOR SELCOLOR BREAKPOINTCOLOR FOUNDTEXTCOLOR \
-       CONTLINECOLOR}
-set fgcolors {FGCOLOR CURCOLOR PARCOLOR BRAKCOLOR \
-       BRACCOLOR PUNCOLOR INTFCOLOR COMMCOLOR OPCOLOR QTXTCOLOR \
-       REMCOLOR XMLCOLOR NUMCOLOR LFUNCOLOR PDEFCOLOR SCICCOLOR \
-       USERFUNCOLOR}
+set bgcolors {BGCOLOR BGLNMARGCOLOR SELCOLOR \
+        BREAKPOINTCOLOR FOUNDTEXTCOLOR CONTLINECOLOR}
+set fgcolors {FGCOLOR FGLNMARGCOLOR CURCOLOR PARCOLOR BRAKCOLOR \
+        BRACCOLOR PUNCOLOR INTFCOLOR COMMCOLOR OPCOLOR QTXTCOLOR \
+        REMCOLOR XMLCOLOR NUMCOLOR LFUNCOLOR PDEFCOLOR SCICCOLOR \
+        USERFUNCOLOR}
 set colorpref "$bgcolors $fgcolors"
 
 # those are the preferences which are going to be saved
@@ -43,13 +43,15 @@ set listofpref "$colorpref wordWrap \
        filenamesdisplaytype maxrecentfiles scilabSingleQuotedStrings \
        tabinserts lang completionbinding showContinuedLines \
        filebackupdepth bindstyle doubleclickscheme colorizeenable \
-       windowsmenusorting"
+       windowsmenusorting linenumbersmargins"
 set listofpref_list { listofrecent textFont menuFont }
 
 # default options which can be overriden
 set wordWrap "none"
 set BGCOLOR "snow1"
+set BGLNMARGCOLOR lightgrey
 set FGCOLOR "black"
+set FGLNMARGCOLOR black
 set CURCOLOR "red"
 set PARCOLOR "magenta3"
 set BRAKCOLOR "DarkGoldenrod4"
@@ -88,6 +90,7 @@ set bindstyle "mac-pc"
 set doubleclickscheme "Scilab"  ;# "Scilab" or "Windows" or "Linux"
 set colorizeenable "always"     ;# "always" or "ask" or "never"
 set windowsmenusorting "openorder" ; # "openorder", or "alphabeticorder", or "MRUorder"
+set linenumbersmargins "right" ; # "hide" (line numbers are not displayed), or "left" (they are left-aligned), or "right" (right-aligned)
 
 setdefaultfonts
 
@@ -116,6 +119,10 @@ array unset pwframe
 # source the user preferences file if any
 set preffilename $env(SCIHOME)/.SciPadPreferences.tcl
 catch {source $preffilename}
+
+# ensure the menu option setting for line numbers is consistent with
+# the default or the value from the preferences file
+set linenumbersmarginsmenusetting $linenumbersmargins
 
 # recompute $textfontsize and $menufontsize from the preferences file fonts
 if {[lsearch $textFont "-size"] != -1} {

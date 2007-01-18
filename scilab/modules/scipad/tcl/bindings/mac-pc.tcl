@@ -12,13 +12,6 @@ sbind Text <Control-f> {} ; # avoids selection deletion on find box open
 # remove the default sbind ctrl-d=delete char
 sbind Text <Control-d> ""
 
-# stop/restorecursorblink is to fix bug 2239
-sbind Text <KeyPress>  {if {{%A} != {{}}} { \
-                        stopcursorblink ; \
-                        puttext %W %A ; \
-                        restorecursorblink \
-                       }}
-
 # remove the default sbind ctrl-o=insert new line
 sbind Text <Control-o> {}
 sbind $pad <Control-o>     {showopenwin currenttile}

@@ -57,6 +57,7 @@ proc TextStyles { t } {
     global colorpref
     foreach c1 $colorpref {global $c1}
     global actbptextFont
+    global linenumbersmargins
 
     set REPLACEDTEXTCOLOR $FOUNDTEXTCOLOR
     set FAKESELCOLOR $SELCOLOR
@@ -87,6 +88,11 @@ proc TextStyles { t } {
     $t tag configure fakeselection -background $FAKESELCOLOR
     $t tag raise activebreakpoint breakpoint
     $t tag raise sel activebreakpoint
+
+    if {$linenumbersmargins != "hide" && [isdisplayed $t]} {
+        set tapwfr [getpaneframename $t]
+        $tapwfr.margin configure -background $BGLNMARGCOLOR -foreground $FGLNMARGCOLOR
+    }
 }
 
 proc setwingeom {wintoset} {
@@ -136,5 +142,23 @@ proc highlighttextarea {textarea} {
         tk_messageBox -message "Unexpected condition triggered in proc highlighttextarea. Clicking OK in this dialog will display the full error message. Please report to the Bugzilla and detail precisely what you were doing when this happened."
         # trigger the error
         [getpaneframename $textarea] configure -background black
+    }
+}
+
+proc togglewordwrap {} {
+    global wordWrap listoftextarea
+
+    # until I find a way to identify wrapped lines in a textarea, line
+    # numbers margin is claimed to be not compatible with word wrapping
+    # see also proc togglelinenumbersmargins
+    global linenumbersmargins
+    if {$linenumbersmargins != "hide"} {
+        set wordWrap "none"
+        showinfo [mc "Incompatible with line numbers margin"]
+        return
+    }
+
+    foreach ta $listoftextarea {
+        $ta configure -wrap $wordWrap
     }
 }

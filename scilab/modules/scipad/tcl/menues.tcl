@@ -216,8 +216,20 @@ proc createmenues {} {
         eval "$pad.filemenu.options.colorizeoptions add check [me "Show c&ontinued lines"] \
               -command {tagcontlinesinallbuffers}\
               -offvalue no -onvalue yes -variable showContinuedLines"
+    menu $pad.filemenu.options.linenumbers -tearoff 0
+    eval "$pad.filemenu.options add cascade [me "Line n&umbers"] \
+      -menu $pad.filemenu.options.linenumbers"
+        eval "$pad.filemenu.options.linenumbers add radiobutton [me "&Hide"] \
+          -command {togglelinenumbersmargins}\
+          -value hide -variable linenumbersmarginsmenusetting"
+        eval "$pad.filemenu.options.linenumbers add radiobutton [me "&Left aligned"] \
+          -command {togglelinenumbersmargins}\
+          -value left -variable linenumbersmarginsmenusetting"
+        eval "$pad.filemenu.options.linenumbers add radiobutton [me "&Right aligned"] \
+          -command {togglelinenumbersmargins}\
+          -value right -variable linenumbersmarginsmenusetting"
     eval "$pad.filemenu.options add check [me "Word &wrap"] \
-      -command {foreach l \$listoftextarea \{\$l configure -wrap \$wordWrap\}}\
+      -command {togglewordwrap}\
       -offvalue none -onvalue word -variable wordWrap"
     menu $pad.filemenu.options.doubleclick -tearoff 0
     eval "$pad.filemenu.options add cascade [me "&Double-click behavior"]\

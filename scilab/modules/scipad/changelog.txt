@@ -2714,3 +2714,9 @@ Francois VOGEL, 12/01/07
  * Added tooltip for the Close and Hide buttons of tiles
  * Proc montretext changes name to become proc showtext
  * version --> 6.76
+
+Francois VOGEL, 18/01/07
+ * Fixed Tcl error popping up when cancelling a save on buffer close
+ * First Scipad version with line numbers in the textarea margin (request
+   138)
+ * version --> 6.77

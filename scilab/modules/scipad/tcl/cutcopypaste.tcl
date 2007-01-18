@@ -4,6 +4,7 @@ proc deletetext {} {
     global listoffile buffermodifiedsincelastsearch
     set textareacur [gettextareacur]
     if {[IsBufferEditable] == "No"} {return}
+    stopcursorblink ; # see comments in proc puttext
     foreach ta [getfullpeerset $textareacur] {
         set listoffile("$ta",redostackdepth) 0
     }
@@ -33,6 +34,7 @@ proc deletetext {} {
     # update menues contextually
     keyposn $textareacur
     set buffermodifiedsincelastsearch true
+    restorecursorblink ; # see comments in proc puttext
 }
 
 proc backspacetext {} {
@@ -41,6 +43,7 @@ proc backspacetext {} {
     global listoffile buffermodifiedsincelastsearch
     set textareacur [gettextareacur]
     if {[IsBufferEditable] == "No"} {return}
+    stopcursorblink ; # see comments in proc puttext
     foreach ta [getfullpeerset $textareacur] {
         set listoffile("$ta",redostackdepth) 0
     }
@@ -70,6 +73,7 @@ proc backspacetext {} {
     # update menues contextually
     keyposn $textareacur
     set buffermodifiedsincelastsearch true
+    restorecursorblink ; # see comments in proc puttext
 }
 
 proc cuttext {} {
@@ -77,6 +81,7 @@ proc cuttext {} {
     global listoffile buffermodifiedsincelastsearch
     set textareacur [gettextareacur]
     if {[IsBufferEditable] == "No"} {return}
+    stopcursorblink ; # see comments in proc puttext
     foreach ta [getfullpeerset $textareacur] {
         set listoffile("$ta",redostackdepth) 0
     }
@@ -94,11 +99,14 @@ proc cuttext {} {
     # update menues contextually
     keyposn $textareacur
     set buffermodifiedsincelastsearch true
+    restorecursorblink ; # see comments in proc puttext
 }
 
 proc copytext {} {
 # copy text procedure
+    stopcursorblink ; # see comments in proc puttext
     tk_textCopy [gettextareacur]
+    restorecursorblink ; # see comments in proc puttext
 }
 
 proc pastetext {} {
@@ -106,6 +114,7 @@ proc pastetext {} {
     global listoffile buffermodifiedsincelastsearch
     set textareacur [gettextareacur]
     if {[IsBufferEditable] == "No"} {return}
+    stopcursorblink ; # see comments in proc puttext
     foreach ta [getfullpeerset $textareacur] {
         set listoffile("$ta",redostackdepth) 0
     }
@@ -135,14 +144,16 @@ proc pastetext {} {
     # update menues contextually
     keyposn $textareacur
     set buffermodifiedsincelastsearch true
+    restorecursorblink ; # see comments in proc puttext
 }
 
 proc button2copypaste {w x y} {
 ##ES 16/11/04 -- we have to write a full proc for this because we need
 # to take care of colorization, insert only when editable, etc
     global textareacur listoffile
-#the target textarea gets focused, even if paste is forbidden there
+    # the target textarea gets focused, even if paste is forbidden there
     if {[IsBufferEditable] == "No"} {focustextarea $w; return}
+    stopcursorblink ; # see comments in proc puttext
     if {[catch {selection get}] == 0} {
         foreach ta [getfullpeerset $textareacur] {
             set listoffile("$ta",redostackdepth) 0
@@ -157,8 +168,9 @@ proc button2copypaste {w x y} {
     } else {
         focustextarea $w
     }
-#there is still one glitch - the cursor returns at the beginning
-# of the insertion point (why?) - but not on windows !
-#also in windows this works as a sort of "drop selection here", but
-# with glitches (which ones?)
+    #there is still one glitch - the cursor returns at the beginning
+    # of the insertion point (why?) - but not on windows !
+    #also in windows this works as a sort of "drop selection here", but
+    # with glitches (which ones?)
+    restorecursorblink ; # see comments in proc puttext
 }

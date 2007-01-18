@@ -23,15 +23,6 @@ sbind Text <Control-h><Control-KeyPress> {validpostfix %A %s "f"; break}
 #(that seems to be the easiest way to get out of the prefix troubles)
 
 
-# stop/restorecursorblink is to fix bug 2239
-sbind Text <KeyPress>  {if {{%A} != {{}}} { \
-                        stopcursorblink ; \
-                        puttext %W %A ; \
-                        restorecursorblink \
-                       }}
-
-
-
 #delete "native" text sbindings in the textarea -- we want all text
 # manipulation to pass through our procs, so that e.g. colorization and
 # edit while debug are correctly treated

@@ -191,6 +191,7 @@ proc updatefont {{fontsource "newfont"}} {
     global pad listoftextarea watch firsttimeinshowwatch
     global showwatchvariablesarea showcallstackarea    
     global usefontfor textfontsize menufontsize
+    global linenumbersmargins
 
     if {$fontsource == "newfont"} {
         if {$usefontfor == "textfont"} {
@@ -259,6 +260,9 @@ proc updatefont {{fontsource "newfont"}} {
             $tapwfr.panetitle configure -font $menuFont
             $tapwfr.clbutton  configure -font $menuFont
             $tapwfr.hibutton  configure -font $menuFont
+            if {$linenumbersmargins != "hide"} {
+                $tapwfr.margin configure -font $textFont
+            }
         }
     }
     settabsize

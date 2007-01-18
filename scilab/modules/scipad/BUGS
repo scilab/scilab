@@ -91,6 +91,14 @@ endfunction
  This is actually fixed in Tk 8.5: http://www.tcl.tk/cgi-bin/tct/tip/155.html
  No workaround available in 8.4, this is a deep Tk core issue.
 
+-[me "accented_text_then_an_ampersand"] underlines the intended character,
+ and seems to work perfectly, even if there are accented characters before
+ the ampersand. However, launching such a menu option using the keyboard
+ accelerator does apparently not trigger the associated -command proc.
+ This is Tk bug #1638905. Workaround: use no accented characters before
+ the ampersand in strings. Or use Tk 8.5 (issue is only with 8.4, or
+ perhaps with the pre-built binaries)
+
 
 Old bugs/whishes which have been hacked but could have been done better:
 ------------------------------------------------------------------------
@@ -186,7 +194,9 @@ Debugger wishes:
  Not worth the effort and complication I think.
 
 -add a debugger command: "Show next instruction", with a little yellow arrow
- in the margin (see also request 138)
+ in the margin (see also request 138, which generally speaking asks for some
+ left margin to display various information such as line numbers or debug
+ info)
 
 -add a control in the watch window to gear in an automatic mode: all the
  local variables are added and displayed when entering a function, and
@@ -233,8 +243,7 @@ Other wishes:
  put (breakpoint pink dot, yellow arrow to show the next instruction
  to be executed like in Visual C++ or Matlab, or wrapped lines sign).
  This is request 138, with the general demand for some sort of left band
- that would also allow for hard line numbers, debugger information and
- so on.
+ that would also allow for debugger information and so on.
 
 -Block selection, copy/paste, move with dnd, indent/unindent, comment
  and uncomment. See last snaphot in http://www.winedt.com/ for an
@@ -253,11 +262,6 @@ Other wishes:
  that will do it at once and manage the undo/redo stacks at the same time.
  See TIP #155 for details: http://www.cs.man.ac.uk/fellowsd-bin/TIP/155.html
  .text replace is available at least from 8.5a3
-
--peer text widgets:
- Think about maintaining a nopeerlistoftextarea variable in the code,
- instead of filtering out peers a lot of times everywhere. Filtering is
- costly when there is a lot of textareas
 
 -*maybe* a global undo stack instead of one per buffer
  advantages: can undo at once a dnd from one pane to another one

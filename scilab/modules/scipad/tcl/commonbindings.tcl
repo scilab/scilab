@@ -13,9 +13,13 @@ bind Text <Control-t> {}
 bind Text <Control-i> {}
 bind Text <Control-f> {} ; # avoids selection deletion on find box open
 
-bind Text <KeyPress>  {if {{%A} != {{}}} {puttext %W %A}}
+bind Text <KeyPress>  {if {{%A} != {{}}} { \
+                          puttext %W %A ; \
+                       }}
+
 bind Text <BackSpace> {backspacetext}
 bind Text <Return>    {insertnewline %W}
+
 # break prevents from triggering the default Tk
 # binding: bind all <Key-Tab> tk::TabToWindow [tk_focusNext %W], which
 # is harmful when displaying more than one buffer at the same time
@@ -79,6 +83,7 @@ if {$Tk85} {
     bind $pad <Control-Alt-Key-2> "$pad.filemenu.wind invoke 4"
     bind $pad <Control-Alt-Key-3> "$pad.filemenu.wind invoke 5"
 }
+
 # For Tk 8.5 and above, the behavior on external resize is driven by
 # the option -stretch always
 # For Tk before 8.5, proc spaceallsasheskeeprelsizes emulates this option

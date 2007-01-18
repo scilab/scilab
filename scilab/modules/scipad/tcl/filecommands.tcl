@@ -138,7 +138,7 @@ proc closecurfile {quittype} {
     set peerslist [getpeerlist [gettextareacur]]
     set wascanceled [closecur $quittype]
     if {$wascanceled == "Canceled"} {
-        break
+        # do nothing
     } else {
         # assert: $wascanceled == "Done"
         # close peers without asking again for confirmation
@@ -148,6 +148,7 @@ proc closecurfile {quittype} {
         }
     }
     # there must be no code here for the Cancel button to work OK
+    return $wascanceled
 }
 
 proc closecurtile {quittype} {
@@ -376,11 +377,12 @@ proc exitapp { {quittype yesno} } {
     }
 
     # close each buffer one after the other
-    # however, once confirmation has been asked for a buffer that has peers,
-    # do not ask again for confirmation for those peers
     foreach textarea [shiftlistofta [filteroutpeers $listoftextarea] [gettextareacur]] {
         showtext $textarea
-        closecurfile $quittype
+        set wascanceled [closecurfile $quittype]
+        if {$wascanceled == "Canceled"} {
+            break
+        }
     }
     # there must be no code here for the Cancel button to work OK
 }

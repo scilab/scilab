@@ -99,7 +99,7 @@
 
 proc packnewbuffer {textarea targetpw forcetitlebar {whereafter ""} {wherebefore ""}} {
 # this packs a textarea buffer in a new pane that will be added in an existing panedwindow
-    global pad textfontsize menuFont
+    global pad textfontsize menuFont linenumbersmargins
     global Tk85
 
     # everything is packed in a frame whose name is provided by createpaneframename
@@ -123,11 +123,11 @@ proc packnewbuffer {textarea targetpw forcetitlebar {whereafter ""} {wherebefore
         -command "hidetext $textarea"
     pack $tapwfr.hibutton  -in $tapwfr.topbar -side right  -expand 0 -fill none
 
-    # this is for the text widget and the y scroll bar
+    # this is for the text widget, its margin, and the y scroll bar
     frame $tapwfr.top
     pack $tapwfr.top -side top -expand 1 -fill both
 
-    # this is where the text widget is packed
+    # this is where the text widget and its margin are packed
     frame $tapwfr.topleft
     pack $tapwfr.topleft   -in $tapwfr.top    -side left   -expand 1 -fill both
 
@@ -179,10 +179,14 @@ proc packnewbuffer {textarea targetpw forcetitlebar {whereafter ""} {wherebefore
         pack $tapwfr.topbar -side top -expand 0 -fill both -in $tapwfr -before $tapwfr.top
     }
 
-    $textarea configure -xscrollcommand "managescroll $tapwfr.xscroll"
-    $textarea configure -yscrollcommand "managescroll $tapwfr.yscroll"
+    $textarea configure -xscrollcommand "managescroll $tapwfr.xscroll $textarea"
+    $textarea configure -yscrollcommand "managescroll $tapwfr.yscroll $textarea"
     $tapwfr.xscroll set [lindex [$textarea xview] 0] [lindex [$textarea xview] 1]
     $tapwfr.yscroll set [lindex [$textarea yview] 0] [lindex [$textarea yview] 1]
+
+    if {$linenumbersmargins != "hide"} {
+        addlinenumbersmargin $textarea
+    }
 
     spacesashesevenly $targetpw
 }
@@ -220,8 +224,8 @@ proc packbuffer {textarea} {
 
     pack $textarea -in $curtapwfr.topleft -side left -expand 1 -fill both
 
-    $textarea configure -xscrollcommand "managescroll $curtapwfr.xscroll"
-    $textarea configure -yscrollcommand "managescroll $curtapwfr.yscroll"
+    $textarea configure -xscrollcommand "managescroll $curtapwfr.xscroll $textarea"
+    $textarea configure -yscrollcommand "managescroll $curtapwfr.yscroll $textarea"
 
     $curtapwfr.xscroll set [lindex [$textarea xview] 0] [lindex [$textarea xview] 1]
     $curtapwfr.yscroll set [lindex [$textarea yview] 0] [lindex [$textarea yview] 1]
@@ -264,7 +268,7 @@ proc hidetext {textarea} {
         set visibletapwfr [lindex [array get pwframe] 1]
         pack forget $visibletapwfr.topbar
     }
-    
+
     restoremenuesbinds
 }
 
@@ -1130,12 +1134,174 @@ proc spaceallsasheskeeprelsizes {} {
 
 }
 
-proc managescroll {scrbar a b} {
-# this is only to add a catch to the command normally used
+proc managescroll {scrbar ta a b} {
+# this is primarily only to add a catch to the command normally used
 # this catch is required because the text widget may trigger scroll commands
 # automatically when it is not packed in a pane,
 # e.g. on $textarea configure -someoption
+# note: this seems to happen because textareas are never destroyed, they
+# are just unpacked. Therefore the bindind to the scrollbar might still
+# be alive for hidden or closed textareas
+# 2nd benefit, thanks to this proc, updating the margin does not need
+# to redefine a lot of bindings relative to the textarea view adjustment
+# such as MouseWheel, Key-Return, Key-Down, etc - quick and elegant
+# solution, and as a bonus it is not very costly, e.g. 6ms to refresh
+# 600 lines when line numbers are left aligned (12 ms when right aligned),
+# all this on a slow 866 MHz PC
+    global linenumbersmargins
+
     catch {$scrbar set $a $b}
+
+    if {$linenumbersmargins != "hide"} {
+        catch {updatelinenumbersmargin $ta}
+    }
+}
+
+proc updatelinenumbersmargin {ta} {
+# update linenumbers margin view
+    populatelinenumbersmargin $ta
+    [getpaneframename $ta].margin yview moveto [lindex [$ta yview] 0]
+}
+
+proc populatelinenumbersmargin {ta} {
+# delete the line numbers in the margin of textarea $ta, and
+# re-enter all of them taking into account the possibly new end of $ta
+# the width of the margin is also updated, depending on the number of
+# digits to display
+    global linenumbersmargins
+
+    # assert: when entering this proc, we have $linenumbersmargins != "hide"
+
+    set tamargin [getpaneframename $ta].margin
+
+    # start modifying margin content
+    $tamargin configure -state normal
+
+    $tamargin delete 1.0 end
+    set endindex [$ta index end]
+    scan $endindex "%d.%d" yend xend
+    set nbyendchar [string length [expr $yend - 1]]
+
+    switch -- $linenumbersmargins {
+        right {
+            for {set i 1} {$i < $yend} {incr i} {
+                # bracing expr is fundamental for performance - speed ratio = 2
+                set spacepad [string repeat " " [expr {$nbyendchar - [string length $i]}]]
+                $tamargin insert end "$spacepad$i\n"
+            }
+        }
+        left {
+            for {set i 1} {$i < $yend} {incr i} {
+                $tamargin insert end "$i\n"
+            }
+        }
+    }
+
+    # delete last \n, otherwise there is one line more in the margin than
+    # in the textarea, and this can make yview commands show different
+    # results in those two text widgets
+    $tamargin delete "end-1c"
+
+    # end of modification of margin content
+    $tamargin configure -state disabled
+
+    # update margin width according to the size of what it displays
+    $tamargin configure -width $nbyendchar
+}
+
+proc togglelinenumbersmargins {} {
+# for all visible textareas, show or hide line numbers in a textarea margin
+# when entering this proc, $linenumbersmarginsmenusetting has the newly
+# selected value in the options menu, and $linenumbersmargins is the old
+# value
+    global linenumbersmargins linenumbersmarginsmenusetting
+
+    # until I find a way to identify wrapped lines in a textarea, line
+    # numbers margin is claimed to be not compatible with word wrapping
+    # see also proc togglewordwrap
+    global wordWrap
+    if {$wordWrap != "none"} {
+        set linenumbersmarginsmenusetting "hide"
+        showinfo [mc "Incompatible with word wrapping"]
+        return
+    }
+
+    # nothing to do if the selected option is the same as the old one
+    if {$linenumbersmargins == $linenumbersmarginsmenusetting} {
+        return
+    }
+
+    if {$linenumbersmargins == "hide"} {
+        # from "hide" to "left" or "right"
+        showlinenumbersmargins
+    } elseif {$linenumbersmarginsmenusetting == "hide"} {
+        # from "left" or "right" to "hide"
+        hidelinenumbersmargins
+    } else {
+        # from "left" to "right", or from "right" to "left"
+        hidelinenumbersmargins ; update idletasks
+        showlinenumbersmargins
+    }
+
+    set linenumbersmargins $linenumbersmarginsmenusetting
+}
+
+proc showlinenumbersmargins {} {
+# for all visible textareas, show line numbers in a textarea margin
+    global listoftextarea
+    foreach ta $listoftextarea {
+        if {[isdisplayed $ta]} {
+            addlinenumbersmargin $ta
+        }
+    }
+}
+
+proc addlinenumbersmargin {ta} {
+# create a textarea margin where line numbers will be displayed
+    global textFont bgcolors fgcolors
+    foreach c1 "$bgcolors $fgcolors" {global $c1}
+
+    set tapwfr [getpaneframename $ta]
+
+    # margin for line numbers
+    # -width 1 ensures that the bottom scrollbar shows up
+    # whatever the size of the textarea
+    # the correct -width is anyway set in proc populatelinenumbersmargin
+    text $tapwfr.margin -bd 0 -font $textFont \
+            -background $BGLNMARGCOLOR -foreground $FGLNMARGCOLOR \
+            -height 1 -width 1 -takefocus 0 -state disabled
+
+    # let the user think he cannot select in the margin
+    $tapwfr.margin configure -selectbackground [$tapwfr.margin cget -background]
+    $tapwfr.margin configure -selectforeground [$tapwfr.margin cget -foreground]
+
+    # prevent unwanted Text class bindings from triggering
+    bind $tapwfr.margin <Button-3> {break}
+    bind $tapwfr.margin <Shift-Button-3> {break}
+    bind $tapwfr.margin <Control-Button-3> {break}
+    bind $tapwfr.margin <ButtonRelease-2> {break}
+
+    pack $tapwfr.margin -in $tapwfr.topleft -before $ta -side left \
+            -expand 0 -fill both -padx 2
+
+    updatelinenumbersmargin $ta
+}
+
+proc hidelinenumbersmargins {} {
+# for all visible textareas, hide line numbers from the textarea margin
+    global listoftextarea
+    foreach ta $listoftextarea {
+        if {[isdisplayed $ta]} {
+            removelinenumbersmargin $ta
+        }
+    }
+}
+
+proc removelinenumbersmargin {ta} {
+# remove a textarea margin where line numbers are displayed
+    set tapwfr [getpaneframename $ta]
+    pack forget $tapwfr.margin
+    destroy $tapwfr.margin
 }
 
 proc switchbuffersinpane {w} {
