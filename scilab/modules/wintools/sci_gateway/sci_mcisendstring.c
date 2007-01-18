@@ -108,7 +108,6 @@ int mcisendstringWindowsfunction _PARAMS((char *fname))
 		Scierror(999,"parameter must be a string.");
 		return 0;
 	}
-	return 0;
 }
 #else
 /*-----------------------------------------------------------------------------------*/
