@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>show_window</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>$LastChangedDate: 2007-01-19 15:23:10 +0100 (ven., 19 janv. 2007) $</DATE>
+  <SHORT_DESCRIPTION name="show_window"> met la fenêtre courante au premier plan</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>show_window()</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+    <P><VERB>show_window</VERB> met la fenêtre courante au premier plan, qu'elle soit
+    iconifiée ou non. Une fenêtre est crée si aucune n'existait auparavant.</P>
+  </DESCRIPTION>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>
