@@ -23,7 +23,7 @@ proc execfile_bp {{stepmode "nostep"}} {
             set infun [whichfun [$textarea index $tstart] $textarea]
             if {$infun != {} } {
                 set funname [lindex $infun 0]
-                set lineinfun [expr [lindex $infun 1] - 1]
+                set lineinfun [expr {[lindex $infun 1] - 1}]
                 set setbpcomm [concat $setbpcomm "setbpt(\"$funname\",$lineinfun);"]
             } else {
                 # <TODO> .sce case if some day the parser uses pseudocode noops
@@ -46,7 +46,7 @@ proc execfile_bp {{stepmode "nostep"}} {
         #        than one single buffer
         # note : we can't exec *all* buffers because some might contain
         # non-Scilab scripts, which is not checked by execfile
-        set funname [string range $funnameargs 0 [expr [string first "(" $funnameargs] - 1]]
+        set funname [string range $funnameargs 0 [expr {[string first "(" $funnameargs] - 1}]]
         foreach textarea [filteroutpeers $listoftextarea] {
             if {[info exists funsinbuffer($textarea)]} {
                 if {[lsearch $funsinbuffer($textarea) $funname] != -1 && \
@@ -129,7 +129,7 @@ proc stepbystep_bp {checkbusyflag stepmode rescanbuffers} {
 #        showwrappercode
 
         if {$funnameargs != ""} {
-            set funname [string range $funnameargs 0 [expr [string first "(" $funnameargs] - 1]]
+            set funname [string range $funnameargs 0 [expr {[string first "(" $funnameargs] - 1}]]
             ScilabEval_lt "setbpt(\"$funname\",1);" "seq"
         } else {
             # <TODO> .sce case if some day the parser uses pseudocode noops
@@ -275,7 +275,7 @@ proc getlogicallinenumbersranges {stepscope} {
             set nbcontlines [countcontlines $ta $precfun $curpos]
             scan $precfun "%d." startoffun 
             scan $curpos  "%d." endoffun 
-            set lastlogicalline [expr $endoffun - $startoffun - $nbcontlines +1]
+            set lastlogicalline [expr {$endoffun - $startoffun - $nbcontlines + 1}]
 
             # if the debug occurs on a .sce file wrapped in a function, the
             # last four logical line numbers contain the code added to return
@@ -422,7 +422,7 @@ proc isinstepscope {funname stepscope} {
         return true
 
     } elseif {$stepscope == "configuredfoo"} {
-        set oppar [expr [string first "\(" $funnameargs] - 1]
+        set oppar [expr {[string first "\(" $funnameargs] - 1}]
         set configuredfunname [string range $funnameargs 0 $oppar]
         if {$funname == $configuredfunname} {
             return true
@@ -495,7 +495,7 @@ proc runtocursor_bp {{checkbusyflag 1} {skipbptmode 0}} {
         if {!$skipbptmode} {
             set cursorfunname [lindex $infun 0]
             # substract 1 since we want to stop before this line and not after
-            set cursorfunline [expr [lindex $infun 1] - 1]
+            set cursorfunline [expr {[lindex $infun 1] - 1}]
             if {$cursorfunline == 0} {
                 # cursor is on the function definition line
                 set cursorfunline 1
@@ -518,7 +518,7 @@ proc iscursorplace_bp {} {
     global cursorfunname cursorfunline
     global callstackfuns callstacklines
     if {[lindex $callstackfuns 0] == $cursorfunname} {
-        if {[expr [lindex $callstacklines 0] -1] == $cursorfunline} {
+        if {[expr {[lindex $callstacklines 0] -1}] == $cursorfunline} {
             return true
         }
     }

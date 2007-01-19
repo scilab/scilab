@@ -99,10 +99,10 @@ proc setwingeom {wintoset} {
 # proc to set child window position
     global pad
     wm resizable $wintoset 0 0
-    set myx [expr (([winfo screenwidth $pad]/2) - \
-                ([winfo reqwidth $wintoset]))]
-    set myy [expr (([winfo screenheight $pad]/2) - \
-                ([winfo reqheight $wintoset]/2))]
+    set myx [expr {([winfo screenwidth $pad]/2) - \
+                ([winfo reqwidth $wintoset])}]
+    set myy [expr {([winfo screenheight $pad]/2) - \
+                ([winfo reqheight $wintoset]/2)}]
     wm geometry $wintoset +$myx+$myy
 }
 
@@ -147,17 +147,6 @@ proc highlighttextarea {textarea} {
 
 proc togglewordwrap {} {
     global wordWrap listoftextarea
-
-    # until I find a way to identify wrapped lines in a textarea, line
-    # numbers margin is claimed to be not compatible with word wrapping
-    # see also proc togglelinenumbersmargins
-    global linenumbersmargins
-    if {$linenumbersmargins != "hide"} {
-        set wordWrap "none"
-        showinfo [mc "Incompatible with line numbers margin"]
-        return
-    }
-
     foreach ta $listoftextarea {
         $ta configure -wrap $wordWrap
     }

@@ -85,9 +85,9 @@ proc tkdndbind {w} {
         %W mark set insert $dnddroppos
         %W see insert
         if {%x <= 10} { %W xview scroll -1 units }
-        if {%x >= [expr [winfo width  %W] - 10]} { %W xview scroll 1 units }
+        if {%x >= [expr {[winfo width  %W] - 10}]} { %W xview scroll 1 units }
         if {%y <= 10} { %W yview scroll -1 units }
-        if {%y >= [expr [winfo height %W] - 10]} { %W yview scroll 1 units }
+        if {%y >= [expr {[winfo height %W] - 10}]} { %W yview scroll 1 units }
         update idletasks
         if {[lsearch "%m" "Control"] != -1} {
             return copy

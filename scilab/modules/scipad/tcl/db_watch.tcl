@@ -375,11 +375,11 @@ proc showwatch_bp {} {
         bind $watch <Configure> { \
             if {$showwatchvariablesarea == "true" && $firsttimeinshowwatch == "false"} { \
                 set watchhsashcoord [$watch.f.vpw.f2.f2r.hpw sash coord 0]; \
-                set watchminw [expr [lindex $watchminsinit 0] + [lindex $watchhsashcoord 0] - $watchhpane1mins -4]; \
+                set watchminw [expr {[lindex $watchminsinit 0] + [lindex $watchhsashcoord 0] - $watchhpane1mins - 4}]; \
                 set watchmins [lreplace $watchmins 0 0 $watchminw]; \
                 if {$showcallstackarea == "true"} { \
                     set watchvsashcoord [$watch.f.vpw sash coord 0]; \
-                    set watchminh [expr [lindex $watchminsinit 1] + [lindex $watchvsashcoord 1] - $watchvpane1mins -4]; \
+                    set watchminh [expr {[lindex $watchminsinit 1] + [lindex $watchvsashcoord 1] - $watchvpane1mins - 4}]; \
                     set watchmins [lreplace $watchmins 1 1 $watchminh]; \
                 } ; \
                 wm minsize $watch [lindex $watchmins 0] [lindex $watchmins 1]; \
@@ -641,7 +641,7 @@ proc createsetinscishellcomm {setofvars} {
             if {$oppar == -1} {
                 set varset [concat $varset $var]
             } else {
-                set varset [concat $varset [string range $var 0 [expr $oppar-1]]]
+                set varset [concat $varset [string range $var 0 [expr {$oppar - 1}]]]
             }
         } else {
             if {$watchvarsvals($var) == $unklabel} {
@@ -654,7 +654,7 @@ proc createsetinscishellcomm {setofvars} {
                 # $var=list();$var($curind)=elt1; and so on, forgetting the undefined elements
                 # marked as $unklabel. This recreates truly undefined elements in Scilab
                 set oppar [string first "\(" $watchvarsvals($var)]
-                set listtype [string range $watchvarsvals($var) 0 [expr $oppar-1]]
+                set listtype [string range $watchvarsvals($var) 0 [expr {$oppar - 1}]]
                 if {$listtype != "list"} {
                     # Undefined elements are forbidden in any variable of type different than "list"
                     tk_messageBox -message [concat \
@@ -666,7 +666,7 @@ proc createsetinscishellcomm {setofvars} {
                 }
                 set onecomm "$var=[string range $watchvarsvals($var) 0 $oppar]);"
                 set fullcomm [concat $fullcomm $onecomm]
-                set start [expr $oppar+1]
+                set start [expr {$oppar + 1}]
                 set anotherelt "true"
                 set curind 0
                 while {$anotherelt == "true"} {
@@ -698,18 +698,18 @@ proc createsetinscishellcomm {setofvars} {
                         incr i -1
                     }
                     incr curind
-                    set curval [string range $watchvarsvals($var) $start [expr $i-1]]
+                    set curval [string range $watchvarsvals($var) $start [expr {$i - 1}]]
                     if {$curval != $unklabel} { 
                         set onecomm [duplicatechars "$var\($curind\)=$curval;" "\""]
                         set onecomm [duplicatechars $onecomm "'"]
                         set fullcomm [concat $fullcomm $onecomm]
                     }
-                    set start [expr $i+1]
+                    set start [expr {$i + 1}]
                     set oppar [string first "\(" $var]
                     if {$oppar == -1} {
                         set varset [concat $varset $var]
                     } else {
-                        set varset [concat $varset [string range $var 0 [expr $oppar-1]]]
+                        set varset [concat $varset [string range $var 0 [expr {$oppar - 1}]]]
                     }
                 }
             }
@@ -749,8 +749,8 @@ proc openpointedstacklevel {w x y} {
         #     %foo       called at line 4 of macro foo
         #     foo        called at line 5 of macro b_test
         #     b_test     called at line 101 of macro atest
-        set nametoopen  [lindex $callstackfuns  [expr $lin - 1]]
-        set loglinetogo [lindex $callstacklines [expr $lin - 1]]
+        set nametoopen  [lindex $callstackfuns  [expr {$lin - 1}]]
+        set loglinetogo [lindex $callstacklines [expr {$lin - 1}]]
     } else {
         # no debug in progress
         # either there was no error (the call stack area is empty), and in
@@ -802,7 +802,7 @@ proc duplicatechars {st ch} {
     set indquot [string first $ch $st 0]
     while {$indquot != -1} {
         set st [string replace $st $indquot $indquot "$ch$ch"]
-        set indquot [string first $ch $st [expr $indquot + 2]]
+        set indquot [string first $ch $st [expr {$indquot + 2}]]
     }
     return $st
 }

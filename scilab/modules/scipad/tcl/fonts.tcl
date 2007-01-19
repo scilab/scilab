@@ -8,35 +8,35 @@ proc choosefonts {} {
     set textfontattributes [font actual $textFont]
     if {[lsearch $textfontattributes "-family"] != -1} {
         set fontfamily [lindex $textfontattributes \
-                [expr [lsearch $textfontattributes "-family"] + 1] ]
+                [expr {[lsearch $textfontattributes "-family"] + 1}] ]
     } else {
         set fontfamily ""
     }
     if {[lsearch $textfontattributes "-size"] != -1} {
         set textfontsize [lindex $textfontattributes \
-                [expr [lsearch $textfontattributes "-size"] + 1] ]
+                [expr {[lsearch $textfontattributes "-size"] + 1}] ]
     } else {
         set textfontsize 12
     }
     # positive value for -size is interpreted as a size in points, but
     # $textfontsize is a value in pixels
     # therefore use tk scaling to get the ratio between points and pixels
-    set textfontsize [expr round($textfontsize * [tk scaling])]
+    set textfontsize [expr {round($textfontsize * [tk scaling])}]
     if {[lsearch $textfontattributes "-weight"] != -1} {
         set fontweight [lindex $textfontattributes \
-                [expr [lsearch $textfontattributes "-weight"] + 1] ]
+                [expr {[lsearch $textfontattributes "-weight"] + 1}] ]
     } else {
         set fontweight "normal"
     }
     if {[lsearch $textfontattributes "-slant"] != -1} {
         set fontslant [lindex $textfontattributes \
-                [expr [lsearch $textfontattributes "-slant"] + 1] ]
+                [expr {[lsearch $textfontattributes "-slant"] + 1}] ]
     } else {
         set fontslant "roman"
     }
     if {[lsearch $textfontattributes "-underline"] != -1} {
         set fontunderline [lindex $textfontattributes \
-                [expr [lsearch $textfontattributes "-underline"] + 1] ]
+                [expr {[lsearch $textfontattributes "-underline"] + 1}] ]
     } else {
         set fontunderline 0
     }
@@ -144,13 +144,13 @@ proc choosefonts {} {
     bind $fch <Down> {scrollarrows_bp [winfo toplevel %W].f0.lf1.f1.lb down ; updatesamplefont}
 
     bind $fch <Left>          {set sc [winfo toplevel %W].f0.f2.fsize ; \
-                               $sc set [expr [$sc get] - [$sc cget -resolution] ]}
+                               $sc set [expr {[$sc get] - [$sc cget -resolution]} ]}
     bind $fch <Right>         {set sc [winfo toplevel %W].f0.f2.fsize ; \
-                               $sc set [expr [$sc get] + [$sc cget -resolution] ]}
+                               $sc set [expr {[$sc get] + [$sc cget -resolution]} ]}
     bind $fch <Control-Left>  {set sc [winfo toplevel %W].f0.f2.fsize ; \
-                              $sc set [expr [$sc get] - [$sc cget -bigincrement] ]}
+                              $sc set [expr {[$sc get] - [$sc cget -bigincrement]} ]}
     bind $fch <Control-Right> {set sc [winfo toplevel %W].f0.f2.fsize ; \
-                              $sc set [expr [$sc get] + [$sc cget -bigincrement] ]}
+                              $sc set [expr {[$sc get] + [$sc cget -bigincrement]} ]}
 
     bind $fch <Return> {[winfo toplevel %W].f0.f3.button1 invoke}
     bind $fch <Escape> {[winfo toplevel %W].f0.f3.button2 invoke}
@@ -176,7 +176,7 @@ proc updatesamplefont {{notused ""}} {
     # positive value for -size is interpreted as a size in points, but
     # $scalefontsize is a value in pixels
     # therefore use tk scaling to get the ratio between points and pixels
-    lappend newfont "-size" [expr round($scalefontsize / [tk scaling])]
+    lappend newfont "-size" [expr {round($scalefontsize / [tk scaling])}]
     lappend newfont "-weight" $fontweight
     lappend newfont "-slant" $fontslant
     lappend newfont "-underline" $fontunderline
@@ -198,8 +198,8 @@ proc updatefont {{fontsource "newfont"}} {
             set textFont [updatesamplefont]
             if {[lsearch $textFont "-size"] != -1} {
                 set textfontsize [lindex $textFont \
-                        [expr [lsearch $textFont "-size"] + 1] ]
-                set textfontsize [expr round($textfontsize * [tk scaling])]
+                        [expr {[lsearch $textFont "-size"] + 1}] ]
+                set textfontsize [expr {round($textfontsize * [tk scaling])}]
             } else {
                 set textfontsize 12
             }
@@ -208,8 +208,8 @@ proc updatefont {{fontsource "newfont"}} {
             set menuFont [updatesamplefont]
             if {[lsearch $menuFont "-size"] != -1} {
                 set menufontsize [lindex $menuFont \
-                        [expr [lsearch $menuFont "-size"] + 1] ]
-                set menufontsize [expr round($menufontsize * [tk scaling])]
+                        [expr {[lsearch $menuFont "-size"] + 1}] ]
+                set menufontsize [expr {round($menufontsize * [tk scaling])}]
             } else {
                 set menufontsize 12
             }
@@ -217,29 +217,29 @@ proc updatefont {{fontsource "newfont"}} {
     } else {
         # $fontsource == "all"
         # this is used when updating the size only
-        set sizeinpoints [expr round($textfontsize / [tk scaling])]
+        set sizeinpoints [expr {round($textfontsize / [tk scaling])}]
         set textFont [font actual $textFont]
-        set sizevalueindex [expr [lsearch $textFont "-size"] + 1]
+        set sizevalueindex [expr {[lsearch $textFont "-size"] + 1}]
         set textFont [lreplace $textFont $sizevalueindex $sizevalueindex $sizeinpoints]
-        set sizeinpoints [expr round($menufontsize / [tk scaling])]
+        set sizeinpoints [expr {round($menufontsize / [tk scaling])}]
         set menuFont [font actual $menuFont]
-        set sizevalueindex [expr [lsearch $menuFont "-size"] + 1]
+        set sizevalueindex [expr {[lsearch $menuFont "-size"] + 1}]
         set menuFont [lreplace $menuFont $sizevalueindex $sizevalueindex $sizeinpoints]
     }
 
     # $actbptextFont is $textFont in bold and with a larger size
     set actbptextFont [font actual $textFont]
-    set sizevalueindex [expr [lsearch $actbptextFont "-size"] + 1]
+    set sizevalueindex [expr {[lsearch $actbptextFont "-size"] + 1}]
     set actbptextFont [lreplace $actbptextFont $sizevalueindex $sizevalueindex \
-            [expr round( ($textfontsize + round(2*[tk scaling])) / [tk scaling] ) ]]
-    set weightvalueindex [expr [lsearch $actbptextFont "-weight"] + 1]
+            [expr {round( ($textfontsize + round(2*[tk scaling])) / [tk scaling] )} ]]
+    set weightvalueindex [expr {[lsearch $actbptextFont "-weight"] + 1}]
     set actbptextFont [lreplace $actbptextFont $weightvalueindex $weightvalueindex "bold"]
 
     # $textsmallerFont is $textFont with reduced size
     set textsmallerFont [font actual $textFont]
-    set sizevalueindex [expr [lsearch $textsmallerFont "-size"] + 1]
+    set sizevalueindex [expr {[lsearch $textsmallerFont "-size"] + 1}]
     set textsmallerFont [lreplace $textsmallerFont $sizevalueindex $sizevalueindex \
-            [expr round( ($textfontsize - round(2*[tk scaling])) / [tk scaling] ) ]]
+            [expr {round( ($textfontsize - round(2*[tk scaling])) / [tk scaling] )} ]]
 
     # change the font of all of the entries in the menu tree and status bar
     set allmenus1 "$pad.statusind $pad.statusind2 $pad.statusmes $pad.filemenu"
@@ -271,7 +271,7 @@ proc updatefont {{fontsource "newfont"}} {
     # native platform dialogs are used by Tk)
     # $dialogfont is $menuFont in normal weight (non-bold)
     set dialogFont [font actual $menuFont]
-    set weightvalueindex [expr [lsearch $dialogFont "-weight"] + 1]
+    set weightvalueindex [expr {[lsearch $dialogFont "-weight"] + 1}]
     set dialogFont [lreplace $dialogFont $weightvalueindex $weightvalueindex "normal"]
     option add *Dialog.msg.font    $dialogFont userDefault  ; # for all tk_messageBox and tk_dialog
     option add *TkFDialog*Font     $dialogFont userDefault  ; # file open / save as dialogs
@@ -325,7 +325,7 @@ proc setdefaultfonts {} {
     set textfontsize 12
     set menufontsize $textfontsize
 
-    if [ expr [string compare $tcl_platform(platform) "unix"] ==0] {
+    if {$tcl_platform(platform) == "unix"} {
         # format is  -foundry-family-weight-slant-setwidth-addstyle-pixel-point-resx-resy-spacing-width-charset-encoding
         set textFont [font actual -Adobe-courier-medium-r-Normal-*-$textfontsize-*]
         set menuFont [font actual -adobe-helvetica-bold-r-normal--$menufontsize-*-75-75-*-*-*-*]
@@ -338,7 +338,7 @@ proc setdefaultfonts {} {
 proc settabsize {} {
 # update the tab size in all the existing text widgets
     global textfontsize tabsizeinchars listoftextarea
-    set tabsizeinpix [expr $textfontsize / [tk scaling] / [tk scaling] * $tabsizeinchars]
+    set tabsizeinpix [expr {$textfontsize / [tk scaling] / [tk scaling] * $tabsizeinchars}]
     # this must be done for all textareas, including peers
     foreach textarea $listoftextarea {
         $textarea configure -tabs $tabsizeinpix

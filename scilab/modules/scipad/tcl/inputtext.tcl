@@ -280,8 +280,8 @@ proc inserttab {w} {
             # insert spaces up to the next tab stop
             set curpos [$w index insert]
             scan $curpos "%d.%d" curline curcol
-            set nexttabstop [expr ($curcol / $indentspaces + 1) * $indentspaces]
-            set nbtoinsert [expr $nexttabstop - $curcol]
+            set nexttabstop [expr {($curcol / $indentspaces + 1) * $indentspaces}]
+            set nbtoinsert [expr {$nexttabstop - $curcol}]
             set toinsert ""
             for {set x 0} {$x<$nbtoinsert} {incr x} {
                 append toinsert " "

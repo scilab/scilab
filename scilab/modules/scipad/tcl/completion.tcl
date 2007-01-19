@@ -139,8 +139,8 @@ proc popup_completions {} {
         catch {destroy $pad.popcompl}
         text $pad.popcompl -font $menuFont \
                 -bd 1 -relief solid -padx 2 -pady 2 -background $BGCOLOR
-        set xpaddingspace [expr ([$pad.popcompl cget -bd] + [$pad.popcompl cget -padx]) * 2]
-        set ypaddingspace [expr ([$pad.popcompl cget -bd] + [$pad.popcompl cget -pady]) * 2]
+        set xpaddingspace [expr {([$pad.popcompl cget -bd] + [$pad.popcompl cget -padx]) * 2}]
+        set ypaddingspace [expr {([$pad.popcompl cget -bd] + [$pad.popcompl cget -pady]) * 2}]
         set popw $xpaddingspace
         set poph $ypaddingspace
         foreach posscompl $compl {
@@ -149,8 +149,8 @@ proc popup_completions {} {
             $pad.popcompl insert end "$completedword\n"
             # compute popup size
             set itemw [font measure [$pad.popcompl cget -font] "$completedword\n"]
-            if {$popw < [expr $itemw + $xpaddingspace]} {
-                set popw [expr $itemw + $xpaddingspace]
+            if {$popw < [expr {$itemw + $xpaddingspace}]} {
+                set popw [expr {$itemw + $xpaddingspace}]
             }
             # colorization settings
             $pad.popcompl tag add $tag "insert - 1c linestart" insert
@@ -212,13 +212,13 @@ proc popup_completions {} {
         set startofline [$ta get "insert linestart" insert]
         set startoflinewidth [font measure $textFont $startofline]
         set insertbbox [$ta dlineinfo insert]
-        set posx [expr [lindex $insertbbox 0] + $startoflinewidth]
-        set posy [expr [lindex $insertbbox 1] + [lindex $insertbbox 3]]
-        if {[expr $posx + $popw] > [winfo width $ta]} {
-            set posx [expr $posx - $popw]
+        set posx [expr {[lindex $insertbbox 0] + $startoflinewidth}]
+        set posy [expr {[lindex $insertbbox 1] + [lindex $insertbbox 3]}]
+        if {[expr {$posx + $popw}] > [winfo width $ta]} {
+            set posx [expr {$posx - $popw}]
         }
-        if {[expr $posy + $poph] > [winfo height $ta]} {
-            set posy [expr $posy - $poph - [lindex $linebbox 3]]
+        if {[expr {$posy + $poph}] > [winfo height $ta]} {
+            set posy [expr {$posy - $poph - [lindex $linebbox 3]}]
         }
         # place at final position
         place $pad.popcompl -in $ta \
@@ -272,7 +272,7 @@ proc selectnextcompletion {w compl} {
 
     unselectcompletion $w $compl $currentselcompl
 
-    set lastcompl [expr [llength $compl] -1]
+    set lastcompl [expr {[llength $compl] - 1}]
     incr currentselcompl
     if {$currentselcompl > $lastcompl} {
         set currentselcompl 0
@@ -289,7 +289,7 @@ proc selectpreviouscompletion {w compl} {
 
     incr currentselcompl -1
     if {$currentselcompl < 0} {
-        set currentselcompl [expr [llength $compl] -1]
+        set currentselcompl [expr {[llength $compl] - 1}]
     }
 
     selectcompletion $w $compl $currentselcompl
@@ -303,14 +303,14 @@ proc unselectcompletion {w compl cn} {
 
 proc selectcompletion {w compl cn} {
 # highlight completion identified by $cn
-    set newpos "[expr $cn + 1].0"
+    set newpos "[expr {$cn + 1}].0"
     set curseltag [lindex [lindex $compl $cn] 0]
     $w tag add sel$curseltag $newpos "$newpos + 1l linestart"
 }
 
 proc selectlastcompletion {w compl} {
 # highlight the last possible completion in the popup
-    selectcompletionnumber $w $compl [expr [llength $compl] -1]
+    selectcompletionnumber $w $compl [expr {[llength $compl] - 1}]
 }
 
 proc selectfirstcompletion {w compl} {
@@ -365,7 +365,7 @@ proc completionmouseselect {w x y compl popw poph {ind ""} {ta ""}} {
         unselectcompletion $w $compl $currentselcompl
 
         set mousepos [$w index "@$x,$y linestart"]
-        scan [expr $mousepos - 1] "%d.%d" currentselcompl junk
+        scan [expr {$mousepos - 1}] "%d.%d" currentselcompl junk
         set curseltag [lindex [lindex $compl $currentselcompl] 0]
         $w tag add sel$curseltag $mousepos "$mousepos + 1l linestart"
 
@@ -440,7 +440,7 @@ proc popup_completions_again_KP {w character keysym modstate} {
         # first event firing when the user hits a shift key
         popup_completions
 
-    } elseif {[expr $modstate & 1] != 0} {
+    } elseif {[expr {$modstate & 1}] != 0} {
         # modstate (actually %s field of the KeyPress event) has
         # bit 1 set (LSB) if the shift key is pressed
         puttext [gettextareacur] $character

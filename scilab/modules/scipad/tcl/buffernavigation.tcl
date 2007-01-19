@@ -139,7 +139,7 @@ proc packnewbuffer {textarea targetpw forcetitlebar {whereafter ""} {wherebefore
     frame $tapwfr.bottom
     pack $tapwfr.bottom                       -side bottom -expand 0 -fill both
 
-    $targetpw add $tapwfr -minsize [expr $textfontsize * 2]
+    $targetpw add $tapwfr -minsize [expr {$textfontsize * 2}]
     if {$Tk85} {
         $targetpw paneconfigure $tapwfr -stretch always
     }
@@ -399,7 +399,7 @@ proc splitwindow {neworient tatopack {splitmode tile}} {
         # a new panedwindow is needed
 
         # save position and geometry of current textarea, then remove it
-        set ind [expr [lsearch [$pwname panes] $tapwfr] - 1]
+        set ind [expr {[lsearch [$pwname panes] $tapwfr] - 1}]
         if {$ind != -1} {
             set aftopt [lindex [$pwname panes] $ind]
             set befopt ""
@@ -416,7 +416,7 @@ proc splitwindow {neworient tatopack {splitmode tile}} {
         set newpw $pwname.pw$pwmaxid
         panedwindow $newpw -orient $neworient -opaqueresize true
         $pwname paneconfigure $newpw -after $aftopt -before $befopt \
-            -width $panewidth -height $paneheigth -minsize [expr $textfontsize * 2]
+            -width $panewidth -height $paneheigth -minsize [expr {$textfontsize * 2}]
 
         # pack the previously existing textarea first, then the textarea whose
         # name was provided as argument, or:
@@ -522,14 +522,14 @@ proc createpeertextwidget {ta} {
 
     # create peer displayedname
     set dispname [appendpeerid $listoffile("$ta",displayedname) \
-            [expr [llength [getpeerlist $ta]] + 1]]
+            [expr {[llength [getpeerlist $ta]] + 1}]]
 
     set listoffile("$newta",fullname) $listoffile("$ta",fullname)
     set listoffile("$newta",displayedname) $dispname
     set listoffile("$newta",new) $listoffile("$ta",new)
     set listoffile("$newta",thetime) $listoffile("$ta",thetime)
     set listoffile("$newta",language) $listoffile("$ta",language)
-    setlistoffile_colorize "$newta" $listoffile("$ta",fullname)
+    set listoffile("$newta",colorize) $listoffile("$ta",colorize)
     set listoffile("$newta",readonly) $listoffile("$ta",readonly)
     set listoffile("$newta",redostackdepth) $listoffile("$ta",redostackdepth)
     set listoffile("$newta",progressbar_id) $listoffile("$ta",progressbar_id)
@@ -590,7 +590,7 @@ proc shiftlistofta {intalist ta} {
 # $ta must be an element of $intalist
     set posta [lsearch -sorted $intalist $ta]
     set outtalist [lrange $intalist $posta end]
-    set eltstomove [lrange $intalist 0 [expr $posta - 1]]
+    set eltstomove [lrange $intalist 0 [expr {$posta - 1}]]
     foreach elt $eltstomove {
         lappend outtalist $elt
     }
@@ -798,7 +798,7 @@ proc mergepanedwindows2 {pwname} {
 
     if {$doit == "true"} {
         # save position (in the packing order) of the panedwindow to destroy
-        set ind [expr [lsearch [$parpw panes] $pwname] - 1]
+        set ind [expr {[lsearch [$parpw panes] $pwname] - 1}]
         if {$ind != -1} {
             set aftopt [lindex [$parpw panes] $ind]
             set befopt ""
@@ -864,7 +864,7 @@ proc repackwidget {w pwname {aftopt ""} {befopt ""}} {
         incr pwmaxid
         set newpw $pwname.pw$pwmaxid
         panedwindow $newpw -orient [lindex $w 1] -opaqueresize true
-        $pwname paneconfigure $newpw -after $lastexistingpane -minsize [expr $textfontsize * 2]
+        $pwname paneconfigure $newpw -after $lastexistingpane -minsize [expr {$textfontsize * 2}]
 
         # repack anything that was previously in this paned window
         foreach sw [lindex $w 2] {
@@ -1087,11 +1087,11 @@ proc spacesashesevenly {pwname} {
 # space evenly the sashes attached to the panes of paned window $pwname
     update
     set nbpanes [llength [$pwname panes]]
-    set paneheight [expr [winfo height $pwname] / $nbpanes]
-    set panewidth  [expr [winfo width  $pwname] / $nbpanes]
-    for {set i 0} {$i < [expr $nbpanes - 1]} {incr i} {
-        set paneposx [expr $panewidth  * ($i + 1)]
-        set paneposy [expr $paneheight * ($i + 1)]
+    set paneheight [expr {[winfo height $pwname] / $nbpanes}]
+    set panewidth  [expr {[winfo width  $pwname] / $nbpanes}]
+    for {set i 0} {$i < [expr {$nbpanes - 1}]} {incr i} {
+        set paneposx [expr {$panewidth  * ($i + 1)}]
+        set paneposy [expr {$paneheight * ($i + 1)}]
         $pwname sash place $i $paneposx $paneposy
         update idletasks
     }
@@ -1109,7 +1109,7 @@ proc spaceallsasheskeeprelsizes {} {
     # save the current sashes positions before updating the display
     foreach pw $pwlist {
         set nbpanes($pw) [llength [$pw panes]]
-        for {set i 0} {$i < [expr $nbpanes($pw) - 1]} {incr i} {
+        for {set i 0} {$i < [expr {$nbpanes($pw) - 1}]} {incr i} {
             set sashxy($pw,$i) [$pw sash coord $i]
         }
         set pwheight($pw) [winfo height $pw]
@@ -1122,11 +1122,11 @@ proc spaceallsasheskeeprelsizes {} {
     foreach pw $pwlist {
         set pwheight2 [winfo height $pw]
         set pwwidth2  [winfo width  $pw]
-        set incfacty [expr $pwheight2. / $pwheight($pw)]
-        set incfactx [expr $pwwidth2.  / $pwwidth($pw) ]
-        for {set i 0} {$i < [expr $nbpanes($pw) - 1]} {incr i} {
-            set newx [expr round([lindex $sashxy($pw,$i) 0] * $incfactx)]
-            set newy [expr round([lindex $sashxy($pw,$i) 1] * $incfacty)]
+        set incfacty [expr {$pwheight2. / $pwheight($pw)}]
+        set incfactx [expr {$pwwidth2.  / $pwwidth($pw) }]
+        for {set i 0} {$i < [expr {$nbpanes($pw) - 1}]} {incr i} {
+            set newx [expr {round([lindex $sashxy($pw,$i) 0] * $incfactx)}]
+            set newy [expr {round([lindex $sashxy($pw,$i) 1] * $incfacty)}]
             $pw sash place $i $newx $newy
             update idletasks
         }
@@ -1140,14 +1140,12 @@ proc managescroll {scrbar ta a b} {
 # automatically when it is not packed in a pane,
 # e.g. on $textarea configure -someoption
 # note: this seems to happen because textareas are never destroyed, they
-# are just unpacked. Therefore the bindind to the scrollbar might still
+# are just unpacked. Therefore the binding to the scrollbar might still
 # be alive for hidden or closed textareas
 # 2nd benefit, thanks to this proc, updating the margin does not need
 # to redefine a lot of bindings relative to the textarea view adjustment
 # such as MouseWheel, Key-Return, Key-Down, etc - quick and elegant
-# solution, and as a bonus it is not very costly, e.g. 6ms to refresh
-# 600 lines when line numbers are left aligned (12 ms when right aligned),
-# all this on a slow 866 MHz PC
+# solution
     global linenumbersmargins
 
     catch {$scrbar set $a $b}
@@ -1158,16 +1156,28 @@ proc managescroll {scrbar ta a b} {
 }
 
 proc updatelinenumbersmargin {ta} {
-# update linenumbers margin view
-    populatelinenumbersmargin $ta
-    [getpaneframename $ta].margin yview moveto [lindex [$ta yview] 0]
-}
-
-proc populatelinenumbersmargin {ta} {
 # delete the line numbers in the margin of textarea $ta, and
 # re-enter all of them taking into account the possibly new end of $ta
 # the width of the margin is also updated, depending on the number of
 # digits to display
+# Algorithm:
+#   Instead of having a text widget with the same number of lines as the
+# textarea, with one line number in each of its line (hence line 1 always
+# contains number 1), and arranging for yview to fit in both (this was
+# my first idea), now I have a text widget that is never scrolled and
+# whose first line contains the first line number of the textarea aside
+# This is much more performant, and fits also nicely with wrapped lines
+# Wrapped lines detection is done this way:
+#   - retrieve the display line height
+#   - loop from the first displayed line (not from start of textarea!)
+#      . if the line number of the beginning of display line is equal to
+#        the line number of the previous line plus one, then the current
+#        line did not wrap, and its line number must be inserted in the
+#        margin
+#      . otherwise the current display line wrapped and an empty line must
+#        be inserted in the margin
+#   - until last display line (i.e. when current y in pixels is greater
+#     than winfo height $ta)
     global linenumbersmargins
 
     # assert: when entering this proc, we have $linenumbersmargins != "hide"
@@ -1178,23 +1188,47 @@ proc populatelinenumbersmargin {ta} {
     $tamargin configure -state normal
 
     $tamargin delete 1.0 end
+
     set endindex [$ta index end]
     scan $endindex "%d.%d" yend xend
-    set nbyendchar [string length [expr $yend - 1]]
+    set nbyendchar [string length [expr {$yend - 1}]]
 
-    switch -- $linenumbersmargins {
-        right {
-            for {set i 1} {$i < $yend} {incr i} {
-                # bracing expr is fundamental for performance - speed ratio = 2
-                set spacepad [string repeat " " [expr {$nbyendchar - [string length $i]}]]
-                $tamargin insert end "$spacepad$i\n"
-            }
+    # find out the display line height, which will be the increment in the
+    # loop below, and the height of the textarea, which will be the upper
+    # bound in that same loop
+    set dlinfo [$ta dlineinfo @0,0]
+    set topinpix [lindex $dlinfo 1]
+    set lineheightinpix [lindex $dlinfo 3]
+    set winfoheight [winfo height $ta]
+
+    # initialization values
+    # $prevstop_p1 might be fractional (when the first display line is a
+    # wrapped line), and this is wanted so that the line number will be
+    # printed for this first line even if it's a wrapped line
+    set prevstop_p1 [$ta index @0,0]
+    set i 1
+    set curheight [expr {$topinpix + $lineheightinpix * ($i - 1)}]
+    set spacepad ""
+
+    while {$curheight <= $winfoheight} {
+        set stop [$ta index @0,$curheight]
+        if {$stop == $prevstop_p1} {
+            scan $stop "%d.%d" linenum dropthis
+            # floor() needed because $prevstop_p1 might be
+            # fractional during the first iteration only
+            set prevstop_p1 [expr {floor($stop) + 1}]
+       } else {
+            set linenum ""
+            incr yend
+       }
+        if {$linenumbersmargins == "right"} {
+            set spacepad [string repeat " " [expr {$nbyendchar - [string length $linenum]}]]
+        } else {
+            # spacepad is the empty string
         }
-        left {
-            for {set i 1} {$i < $yend} {incr i} {
-                $tamargin insert end "$i\n"
-            }
-        }
+        $tamargin insert end "$spacepad$linenum\n"
+        incr i
+        set curheight [expr {$topinpix + $lineheightinpix * ($i - 1)}]
     }
 
     # delete last \n, otherwise there is one line more in the margin than
@@ -1215,16 +1249,6 @@ proc togglelinenumbersmargins {} {
 # selected value in the options menu, and $linenumbersmargins is the old
 # value
     global linenumbersmargins linenumbersmarginsmenusetting
-
-    # until I find a way to identify wrapped lines in a textarea, line
-    # numbers margin is claimed to be not compatible with word wrapping
-    # see also proc togglewordwrap
-    global wordWrap
-    if {$wordWrap != "none"} {
-        set linenumbersmarginsmenusetting "hide"
-        showinfo [mc "Incompatible with word wrapping"]
-        return
-    }
 
     # nothing to do if the selected option is the same as the old one
     if {$linenumbersmargins == $linenumbersmarginsmenusetting} {
@@ -1266,7 +1290,7 @@ proc addlinenumbersmargin {ta} {
     # margin for line numbers
     # -width 1 ensures that the bottom scrollbar shows up
     # whatever the size of the textarea
-    # the correct -width is anyway set in proc populatelinenumbersmargin
+    # the correct -width is anyway set in proc updatelinenumbersmargin
     text $tapwfr.margin -bd 0 -font $textFont \
             -background $BGLNMARGCOLOR -foreground $FGLNMARGCOLOR \
             -height 1 -width 1 -takefocus 0 -state disabled
@@ -1311,7 +1335,7 @@ proc switchbuffersinpane {w} {
     set tacur [gettextareacur]
     lappend talist $tacur
     set talist [lsort $talist]
-    set toshow [expr [lsearch -sorted $talist $tacur] + 1]
+    set toshow [expr {[lsearch -sorted $talist $tacur] + 1}]
     if {$toshow == [llength $talist]} {
         set toshow 0
     }
@@ -1323,7 +1347,7 @@ proc nextbuffer {type} {
 # $type is either "all" or "visible"
     global pad listoftextarea listoffile
     global FirstBufferNameInWindowsMenu
-    set nbuf [expr [llength $listoftextarea] + $FirstBufferNameInWindowsMenu]
+    set nbuf [expr {[llength $listoftextarea] + $FirstBufferNameInWindowsMenu}]
     set ta [gettextareacur]
     set curbuf [extractindexfromlabel $pad.filemenu.wind $listoffile("$ta",displayedname)]
     set initialcurbuf $curbuf
@@ -1357,7 +1381,7 @@ proc prevbuffer {type} {
 # $type is either "all" or "visible"
     global pad listoftextarea listoffile
     global FirstBufferNameInWindowsMenu
-    set nbuf [expr [llength $listoftextarea] + $FirstBufferNameInWindowsMenu - 1]
+    set nbuf [expr {[llength $listoftextarea] + $FirstBufferNameInWindowsMenu - 1}]
     set ta [gettextareacur]
     set curbuf [extractindexfromlabel $pad.filemenu.wind $listoffile("$ta",displayedname)]
     set initialcurbuf $curbuf

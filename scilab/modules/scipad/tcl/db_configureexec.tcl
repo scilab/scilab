@@ -39,7 +39,7 @@ proc configurefoo_bp {} {
     spinbox $spin -width 35 -font $textFont -command "spinboxbuttoninvoke" \
                   -values $funnames -state readonly -takefocus 0
     set oppar [string first "\(" $funnameargs]
-    set funname [string range $funnameargs 0 [expr $oppar-1]]
+    set funname [string range $funnameargs 0 [expr {$oppar - 1}]]
     if {$funname != "" } {
         $spin set $funname
     } else {
@@ -164,14 +164,14 @@ proc scrollyboth_bp {leftwin rightwin args} {
 }
 proc scrollyleftandscrollbar_bp {lbscrolly leftwin rightwin x y} {
     eval "$lbscrolly set $x $y"
-    set firstvisible [expr round([lindex [$rightwin yview] 0] \
-                               * [$rightwin size])]
+    set firstvisible [expr {round([lindex [$rightwin yview] 0] \
+                               * [$rightwin size]) } ]
     eval "$leftwin yview $firstvisible"
 }
 proc scrollyrightandscrollbar_bp {lbscrolly leftwin rightwin x y} {
     eval "$lbscrolly set $x $y"
-    set firstvisible [expr round([lindex [$leftwin yview] 0] \
-                               * [$leftwin size])]
+    set firstvisible [expr {round([lindex [$leftwin yview] 0] \
+                               * [$leftwin size]) } ]
     eval "$rightwin yview $firstvisible"
 }
 proc selectinrightwin_bp {leftwin rightwin} {
@@ -200,16 +200,16 @@ proc scrollarrows_bp {w dir} {
     set ind [$w curselection]
     if {$ind != ""} {
         if {$dir == "down"} {
-            if {$ind < [expr [$w size] - 1]} {
+            if {$ind < [expr {[$w size] - 1}]} {
                 $w selection clear $ind
-                $w selection set [expr $ind + 1]
-                $w see [expr $ind + 1]
+                $w selection set [expr {$ind + 1}]
+                $w see [expr {$ind + 1}]
             }
         } else {
             if {$ind > 0} {
                 $w selection clear $ind
-                $w selection set [expr $ind - 1]
-                $w see [expr $ind - 1]
+                $w selection set [expr {$ind - 1}]
+                $w see [expr {$ind - 1}]
             }
         }
     }
@@ -265,7 +265,7 @@ proc dropitem_bp {leftwin rightwin spinwidget dragind droppos} {
 proc showdroppos_bp {w oldcurdropind droppos} {
     if {$droppos < 1} {
         if {$oldcurdropind > 0} {
-            $w see [expr $oldcurdropind - 1]
+            $w see [expr {$oldcurdropind - 1}]
         }
     }
 # <TODO>: $maxi computation is unperfect, but should work in most cases
@@ -273,11 +273,11 @@ proc showdroppos_bp {w oldcurdropind droppos} {
 # winfo fpixels or winfo pixels could be a good idea...
 # [winfo height $w] should do it, maybe after update has been called!
     set maxi [$w bbox $oldcurdropind]
-    set maxi [expr [lindex $maxi 3] + 1]
-    set maxi [expr $maxi * [$w cget -height] + 4]
+    set maxi [expr {[lindex $maxi 3] + 1}]
+    set maxi [expr {$maxi * [$w cget -height] + 4}]
     if {$droppos > $maxi} {
-        if {$oldcurdropind < [expr [$w size] - 1]} {
-            $w see [expr $oldcurdropind + 1]
+        if {$oldcurdropind < [expr {[$w size] - 1}]} {
+            $w see [expr {$oldcurdropind + 1}]
         }
     }
     set dropind [$w index @0,$droppos]
@@ -382,7 +382,7 @@ proc checkarglist {funname} {
                 set funline [trimcontandcomments $funline]
                 set oppar [string first "\(" $funline]
                 set clpar [string first "\)" $funline]
-                set listvars [string range $funline [expr $oppar+1] [expr $clpar-1]]
+                set listvars [string range $funline [expr {$oppar + 1}] [expr {$clpar - 1}]]
                 set listvars [string map {, " "} $listvars]
                 set parametersOK "true"
                 set orderOK "true"
@@ -476,7 +476,7 @@ proc Obtainall_bp {} {
     for {set i 0} {$i < [llength $funsinfo]} {incr i 3} {
         set funname [lindex $funsinfo $i]
         if {[lsearch -exact $debugger_fun_ancillaries $funname] != -1} {
-            set funsinfo [lreplace $funsinfo $i [expr $i+2]]
+            set funsinfo [lreplace $funsinfo $i [expr {$i + 2}]]
         }
     }
 
@@ -528,7 +528,7 @@ proc Obtainall_bp {} {
             }
             set oppar [string first "\(" $funline]
             set clpar [string first "\)" $funline]
-            set listvars [string range $funline [expr $oppar+1] [expr $clpar-1]]
+            set listvars [string range $funline [expr {$oppar + 1}] [expr {$clpar - 1}]]
             set listvars [string map {, " "} $listvars]
             foreach {varargincase listvars} [hasvarargin $listvars] {}
             foreach var $listvars {

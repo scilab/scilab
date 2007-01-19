@@ -60,8 +60,8 @@ image create photo butbreakimage_o       -file [file join $iconsdir arrowstop.gi
 image create photo butcancelimage_o      -file [file join $iconsdir arrowend2.gif]
 set orig_w [image width  butconfigureimage_o]
 set orig_h [image height butconfigureimage_o]
-set subsamplex [expr $orig_w / $newsizex]
-set subsampley [expr $orig_h / $newsizey]
+set subsamplex [expr {$orig_w / $newsizex}]
+set subsampley [expr {$orig_h / $newsizey}]
 image create photo butsetbptimage
 image create photo butremoveallimage
 image create photo butconfigureimage
@@ -107,8 +107,8 @@ image create photo menubutgoonignorimage
 image create photo menubutwatchimage
 image create photo menubutbreakimage
 image create photo menubutcancelimage
-set subsamplex [expr $orig_w / ($newsizex / 2)]
-set subsampley [expr $orig_h / ($newsizey / 2)]
+set subsamplex [expr {$orig_w / ($newsizex / 2)}]
+set subsampley [expr {$orig_h / ($newsizey / 2)}]
 menubutsetbptimage      copy butsetbptimage_o      -subsample $subsamplex $subsampley
 menubutremoveallimage   copy butremoveallimage_o   -subsample $subsamplex $subsampley
 menubutconfigureimage   copy butconfigureimage_o   -subsample $subsamplex $subsampley

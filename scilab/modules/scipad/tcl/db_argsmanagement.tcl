@@ -153,7 +153,7 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
         }
         if {$alreadyexists == "false"} {
             # a new variable was added in the add box
-            set pos [expr $pos + 1]
+            incr pos
             if {[string first listboxinput $leftwin] != -1} {
                 # the proc was called from configure box
                 set funvars($funname) [linsert $funvars($funname) $pos $argname]
@@ -184,7 +184,7 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
             $leftwin see $pos
         } else {
             # an existing variable was modified in the add box
-            set nextone [expr $eltindex + 1]
+            set nextone [expr {$eltindex + 1}]
             if {$nextone >= [$leftwin size]} {
                 set nextone 0
             }
@@ -256,10 +256,10 @@ proc Removearg_bp {leftwin rightwin} {
         $leftwin delete $selecteditem
         $leftwin see $selecteditem
         $rightwin delete $selecteditem
-        if {$selecteditem < [expr [$leftwin size] ]} {
+        if {$selecteditem < [$leftwin size]} {
             $leftwin selection set $selecteditem
         } else {
-            $leftwin selection set [expr [$leftwin size] - 1]
+            $leftwin selection set [expr {[$leftwin size] - 1}]
         }
     }
 }
@@ -306,7 +306,7 @@ proc quickAddWatch_bp {watchvar} {
 proc removefuns_bp {textarea} {
     global funsinbuffer funvars funvarsvals funnames funnameargs
     if {[info exists funsinbuffer($textarea)]} {
-        set oppar [expr [string first "\(" $funnameargs] - 1]
+        set oppar [expr {[string first "\(" $funnameargs] - 1}]
         set curfunname [string range $funnameargs 0 $oppar]
         foreach fun $funsinbuffer($textarea) {
             if {[info exists funvars($fun)]} {
@@ -324,7 +324,7 @@ proc removefuns_bp {textarea} {
             }
         }
         if {$funnameargs != "("} {
-            set funname [string range $funnameargs 0 [expr [string length $funnameargs] - 2]]
+            set funname [string range $funnameargs 0 [expr {[string length $funnameargs] - 2}]]
             set strargs ""
             if {[info exists funvars($funname)]} {
                 foreach var $funvars($funname) {

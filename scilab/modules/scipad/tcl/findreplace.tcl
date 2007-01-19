@@ -1376,7 +1376,7 @@ proc getnextmatchany {textarea dir ssel} {
             set haswrapped true
         }
         if {$indoffirstmatch == -1} {
-            set indoffirstmatch [expr [llength $listofmatch] - 1]
+            set indoffirstmatch [expr {[llength $listofmatch] - 1}]
             set haswrapped true
         }
 
@@ -1400,7 +1400,7 @@ proc getnextmatchany {textarea dir ssel} {
         } else {
             incr indofcurrentmatch -1
             if {$indofcurrentmatch == -1} {
-                set indofcurrentmatch [expr [llength $listofmatch] - 1]
+                set indofcurrentmatch [expr {[llength $listofmatch] - 1}]
                 set haswrapped true
             }
         }
@@ -1442,7 +1442,7 @@ proc getnexteltid {textarea aval alist dir} {
         set id 0
         set lval [lindex [lindex $alist $id] 0]
         set compres [$textarea compare $aval >= $lval]
-        while {$compres == 1 && $id < [expr [llength $alist] - 1]} {
+        while {$compres == 1 && $id < [expr {[llength $alist] - 1}]} {
             incr id
             set lval [lindex [lindex $alist $id] 0]
             set compres [$textarea compare $aval >= $lval]
@@ -1451,10 +1451,10 @@ proc getnexteltid {textarea aval alist dir} {
             return $id
         } else {
             # for all the elements of $alist, $aval >= $lval is wrong
-            return [expr $id + 1] ; # i.e. [llength $alist]
+            return [expr {$id + 1}] ; # i.e. [llength $alist]
         }
     } else {
-        set id [expr [llength $alist] - 1]
+        set id [expr {[llength $alist] - 1}]
         set lval [lindex [lindex $alist $id] 0]
         set compres [$textarea compare $aval <= $lval]
         while {$compres == 1 && $id > 0} {
@@ -1466,7 +1466,7 @@ proc getnexteltid {textarea aval alist dir} {
             return $id
         } else {
             # for all the elements of $alist, $aval <= $lval is wrong
-            return [expr $id - 1] ; # i.e. -1
+            return [expr {$id - 1}] ; # i.e. -1
         }
     }
 }
@@ -1487,7 +1487,7 @@ proc setcurmatchasreplaced {textarea lenR} {
     set listofmatch [lreplace $listofmatch $indofcurrentmatch $indofcurrentmatch $curmatch]
 
     # shift certain matches
-    set lendiff [expr $lenR - [lindex $curmatch 1]]
+    set lendiff [expr {$lenR - [lindex $curmatch 1]}]
     scan [lindex $curmatch 0] "%d.%d" curmatchlin curmatchcol
     set lm $listofmatch
     set i 0
@@ -1495,7 +1495,7 @@ proc setcurmatchasreplaced {textarea lenR} {
         scan [lindex $mat 0] "%d.%d" malin macol
         if {$malin == $curmatchlin && $macol > $curmatchcol} {
             # shift only the matches located on the same line and after $curmatch
-            set newpos $malin.[expr $macol + $lendiff]
+            set newpos $malin.[expr {$macol + $lendiff}]
             set listofmatch [lreplace $listofmatch $i $i [lreplace $mat 0 0 $newpos]]
         }
         incr i
@@ -1713,9 +1713,9 @@ proc MoveDialogIfTaggedTextHidden {w textarea tagname} {
     # coordinates of the _d_ialog - left, right, top, bottom - screen coordinate system
     foreach {ww wh wdl wdt} [totalGeometry $w] {}
     set ld $wdl
-    set rd [expr $wdl + $ww]
+    set rd [expr {$wdl + $ww}]
     set td $wdt
-    set bd [expr $wdt + $wh]
+    set bd [expr {$wdt + $wh}]
 
     # get _t_agged text area coordinates relative to the $textarea coordinate system
     if {[catch {set taggedlcoord [$textarea dlineinfo $tagname.first]} ]} {
@@ -1732,29 +1732,29 @@ proc MoveDialogIfTaggedTextHidden {w textarea tagname} {
     set taggedtextwidth  [font measure $textFont $taggedtext]
     set startoflinewidth [font measure $textFont $startofline]
     set lineheight [lindex $taggedlcoord 3]
-    set lt1 [expr [lindex $taggedlcoord 0] + $startoflinewidth]
-    set rt1 [expr $lt1 + $taggedtextwidth]
+    set lt1 [expr {[lindex $taggedlcoord 0] + $startoflinewidth}]
+    set rt1 [expr {$lt1 + $taggedtextwidth}]
     set tt1 [lindex $taggedlcoord 1]
-    set bt1 [expr $tt1 + $lineheight]
+    set bt1 [expr {$tt1 + $lineheight}]
 
     # convert tagged text coordinates into screen coordinate system
     set lta [winfo rootx $textarea]
     set tta [winfo rooty $textarea]
-    set lt [expr $lt1 + $lta]
-    set rt [expr $rt1 + $lta]
-    set tt [expr $tt1 + $tta]
-    set bt [expr $bt1 + $tta]
+    set lt [expr {$lt1 + $lta}]
+    set rt [expr {$rt1 + $lta}]
+    set tt [expr {$tt1 + $tta}]
+    set bt [expr {$bt1 + $tta}]
 
     # check if the dialog overlaps the tagged text (intersection of two rectangles)
     if { ! ( ($ld > $rt) || ($lt > $rd) || ($td > $bt) || ($tt > $bd) ) } {
         # the two rectangles intersect, move the dialog
-        set newx [expr $ld - ($rd - $ld)]
+        set newx [expr {$ld - ($rd - $ld)}]
         if {$newx < 1} {
-            set newx [expr [winfo screenwidth $w] - ($rd - $ld)]
+            set newx [expr {[winfo screenwidth $w] - ($rd - $ld)}]
         }
-        set newy [expr $td - ($bd - $td)]
+        set newy [expr {$td - ($bd - $td)}]
         if {$newy < 1} {
-            set newy [expr [winfo screenheight $w] - ($bd - $td)]
+            set newy [expr {[winfo screenheight $w] - ($bd - $td)}]
         }
         wm geometry $w "+$newx+$newy"
     }

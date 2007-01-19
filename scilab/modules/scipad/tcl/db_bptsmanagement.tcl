@@ -48,14 +48,14 @@ proc insertremovedebug_bp {textarea} {
             if {[lsearch $activetags breakpoint] == -1} {
                 $textarea tag add breakpoint $i1 $i2
                 set funname [lindex $infun 0]
-                set lineinfun [expr [lindex $infun 1] - 1]
+                set lineinfun [expr {[lindex $infun 1] - 1}]
                 set setbpcomm "setbpt(\"$funname\",$lineinfun);"
                 append setbptonreallybreakpointedlinescmd $setbpcomm
                 ScilabEval_lt $setbpcomm "seq"
             } else {
                 $textarea tag remove breakpoint $i1 $i2
                 set funname [lindex $infun 0]
-                set lineinfun [expr [lindex $infun 1] - 1]
+                set lineinfun [expr {[lindex $infun 1] - 1}]
                 set delbpcomm "delbpt(\"$funname\",$lineinfun);"
                 append setbptonreallybreakpointedlinescmd $delbpcomm
                 ScilabEval_lt $delbpcomm  "seq"
@@ -122,7 +122,7 @@ proc removescilabbuffer_bp {outp textarea} {
             set infun [whichfun [$textarea index $tstart] $textarea]
             if {$infun !={} } {
                 set funname [lindex $infun 0]
-                set lineinfun [expr [lindex $infun 1] - 1]
+                set lineinfun [expr {[lindex $infun 1] - 1}]
                 if {[lsearch $funnames $funname] == -1} {
                     set delbpcomm [concat $delbpcomm "delbpt(\"$funname\",$lineinfun);"]
                 }
@@ -170,7 +170,7 @@ proc countallbreakpointedlines {} {
         incr N [llength [$ta tag ranges breakpoint]]
     }
     # divide by 2 since $ta tag ranges returns 2 elements for each breakpoint
-    return [expr $N/2]
+    return [expr {$N / 2}]
 }
 
 proc countallbreakpointedmacros {} {

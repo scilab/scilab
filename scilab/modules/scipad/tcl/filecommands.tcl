@@ -263,7 +263,7 @@ proc byebye {textarea} {
                      $listoffile("$peerta",displayedname)]
             foreach {dname peerid} [removepeerid $listoffile("$peerta",displayedname)] {}
             if {$peerid > $removedpeerid} {
-                set dname [appendpeerid $dname [expr $peerid - 1]]
+                set dname [appendpeerid $dname [expr {$peerid - 1}]]
                 set listoffile("$peerta",displayedname) $dname
                 setwindowsmenuentrylabel $ilab $dname
             }
@@ -751,7 +751,7 @@ proc notopenedfile {file} {
     set listoffile("$pad.new$winopened",new) 0
     if {[file exists $file]} {
         set listoffile("$pad.new$winopened",readonly) \
-             [expr [file writable $file] == 0]
+             [expr {[file writable $file] == 0}]
     } else {
         set listoffile("$pad.new$winopened",readonly) 0
     }
@@ -961,9 +961,9 @@ proc writesave {textarea nametosave} {
     # if it doesn't, check if the directory is writable
     # (case of Save as...) (non existent files return 0 to writable)
     if {[file exists $nametosave]} {
-        set readonlyflag [expr [file writable $nametosave] == 0]
+        set readonlyflag [expr {[file writable $nametosave] == 0}]
     } else {
-        set readonlyflag [expr [file writable [file dirname $nametosave]] == 0]
+        set readonlyflag [expr {[file writable [file dirname $nametosave]] == 0}]
     }
     if {$readonlyflag==0} {
         # writefileondisk catched to deal with unexpected errors (should
@@ -1299,7 +1299,9 @@ proc setlistoffile_colorize {ta fullfilename} {
 # the fullfilename parameter can be set to "", which is used for new files not
 # yet saved on disk, and which have therefore no size - colorize defaults to
 # true in the "ask" case
-# this proc is supposed to be used when opening or creating files only
+# this proc is supposed to be used only when:
+#   - opening files from disk
+#   - creating new files (not when creating peers)
 # listoffile("$ta",colorize) can also be changed after opening of the
 # file through the Scheme menu and proc switchcolorizefile
 
@@ -1310,7 +1312,7 @@ proc setlistoffile_colorize {ta fullfilename} {
     global pad listoffile colorizeenable
 
     # arbitrary size in bytes above which Scipad will ask for colorization
-    set sizelimit 100000
+    set sizelimit 130000
 
     if {$colorizeenable == "always"} {
         set listoffile("$ta",colorize) true
@@ -1336,6 +1338,7 @@ proc setlistoffile_colorize {ta fullfilename} {
         }
 
     } else {
+        # assert: $colorizeenable == "never"
         set listoffile("$ta",colorize) false
     }
 }
@@ -1572,7 +1575,7 @@ proc CreateUnambiguousPrunedNames {talist} {
     # determine number of levels to keep in pruned filenames
     # and index of the first element to keep for each textarea
     set completetalist $talist
-    set ta1 [lindex $talist [expr [llength $talist] - 1]]
+    set ta1 [lindex $talist [expr {[llength $talist] - 1}]]
     set talist [lreplace $talist end end]
     set leveltokeep "true"
     set nleveltokeep 0
@@ -1592,7 +1595,7 @@ proc CreateUnambiguousPrunedNames {talist} {
     # create new minimally pruned unambiguous filenames
     foreach ta $completetalist {
         set newname ""
-        for {set i $ind("$ta")} {$i <= [expr $ind("$ta") + $nleveltokeep]} {incr i} {
+        for {set i $ind("$ta")} {$i <= [expr {$ind("$ta") + $nleveltokeep}]} {incr i} {
             set tojoin [lindex $elts("$ta") $i]
             set newname [file join $newname $tojoin]
         }
@@ -1655,7 +1658,7 @@ proc GetFirstRecentInd {} {
 # get index of first recent file item in the file menu
     global FirstMRUFileNameInFileMenu nbrecentfiles
     if {$nbrecentfiles == 0} {
-        return [expr $FirstMRUFileNameInFileMenu - 1]
+        return [expr {$FirstMRUFileNameInFileMenu - 1}]
     } else {
         return $FirstMRUFileNameInFileMenu
     }
@@ -1666,11 +1669,11 @@ proc UpdateRecentLabels {rec1ind} {
     global pad listofrecent nbrecentfiles
     for {set i 0} {$i<$nbrecentfiles} {incr i} {
         if {$i<9} {
-            set lab [concat [expr $i + 1] [file tail [lindex $listofrecent $i] ] ]
+            set lab [concat [expr {$i + 1}] [file tail [lindex $listofrecent $i] ] ]
         } else {
             set lab [file tail [lindex $listofrecent $i] ]
         }
-        set ind [expr $rec1ind + $i]
+        set ind [expr {$rec1ind + $i}]
         # [list [lindex $listofrecent $i]] automatically escapes special characters
         $pad.filemenu.files entryconfigure $ind \
                    -label $lab \
@@ -1688,7 +1691,7 @@ proc BuildInitialRecentFilesList {} {
     set nbrecentfiles [llength $listofrecent]
     for {set i 0} {$i<$nbrecentfiles} {incr i} {
         if {$i<9} {
-            set lab [concat [expr $i + 1] [file tail [lindex $listofrecent $i] ] ]
+            set lab [concat [expr {$i + 1}] [file tail [lindex $listofrecent $i] ] ]
         } else {
             set lab [file tail [lindex $listofrecent $i] ]
         }
@@ -1717,11 +1720,11 @@ proc UpdateRecentFilesList {} {
         # maxrecentfiles was decreased
         # forget the entries in listofrecent, and update the file menu
         set rec1ind [GetFirstRecentInd]
-        set firstind [expr $rec1ind + $maxrecentfiles]
-        set lastind  [expr $rec1ind + [llength $listofrecent] - 1]
+        set firstind [expr {$rec1ind + $maxrecentfiles}]
+        set lastind  [expr {$rec1ind + [llength $listofrecent] - 1}]
         $pad.filemenu.files delete $firstind $lastind
         set listofrecent [lreplace $listofrecent $maxrecentfiles end]
-        incr nbrecentfiles [expr - ($lastind - $firstind + 1)]
+        incr nbrecentfiles [expr {- ($lastind - $firstind + 1)}]
         if {$maxrecentfiles == 0} {
             # remove the separator
             $pad.filemenu.files delete $firstind

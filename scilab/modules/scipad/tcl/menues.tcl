@@ -53,7 +53,7 @@ proc createmenues {} {
     eval "$pad.filemenu.files add command [me "&Print"] \
             [ca {selectprint [gettextareacur]}]"
     $pad.filemenu.files add separator
-    set FirstMRUFileNameInFileMenu [expr [$pad.filemenu.files index last] + 1]
+    set FirstMRUFileNameInFileMenu [expr {[$pad.filemenu.files index last] + 1}]
     BuildInitialRecentFilesList
     eval "$pad.filemenu.files add command [me "&Close file"]\
                    [ca {closecurfile yesnocancel}]"
@@ -382,7 +382,7 @@ proc createmenues {} {
     eval "$pad.filemenu.wind add command [me "Space sashes &evenly"] \
                -command \"spaceallsashesevenly\" "
     $pad.filemenu.wind add separator
-    set FirstBufferNameInWindowsMenu [expr [$pad.filemenu.wind index last] + 1]
+    set FirstBufferNameInWindowsMenu [expr {[$pad.filemenu.wind index last] + 1}]
     foreach ta $listoftextarea {
         set winopened [gettaidfromwidgetname $ta]
         addwindowsmenuentry $winopened $listoffile("$ta",displayedname)
@@ -438,11 +438,11 @@ proc disablemenuesbinds {} {
     global tileprocalreadyrunning
     set tileprocalreadyrunning true
     # File/Close
-    set iClose [expr [GetFirstRecentInd] + $nbrecentfiles + 1]
+    set iClose [expr {[GetFirstRecentInd] + $nbrecentfiles + 1}]
     $pad.filemenu.files entryconfigure $iClose -state disabled
     binddisable $pad {closecurfile yesnocancel}
     # Windows menu entries
-    set lasttoset [expr $FirstBufferNameInWindowsMenu - 2]
+    set lasttoset [expr {$FirstBufferNameInWindowsMenu - 2}]
     for {set i 1} {$i<=$lasttoset} {incr i} {
         $pad.filemenu.wind entryconfigure $i -state disabled
         bind $pad <Control-Key-$i> ""
@@ -461,11 +461,11 @@ proc restoremenuesbinds {} {
     global pad nbrecentfiles FirstBufferNameInWindowsMenu listoftextarea
     global tileprocalreadyrunning
     # File/Close
-    set iClose [expr [GetFirstRecentInd] + $nbrecentfiles + 1]
+    set iClose [expr {[GetFirstRecentInd] + $nbrecentfiles + 1}]
     $pad.filemenu.files entryconfigure $iClose -state normal
     bindenable $pad {closecurfile yesnocancel}
     # Windows menu entries
-    set lasttoset [expr $FirstBufferNameInWindowsMenu - 2]
+    set lasttoset [expr {$FirstBufferNameInWindowsMenu - 2}]
     for {set i 1} {$i<=$lasttoset} {incr i} {
         $pad.filemenu.wind entryconfigure $i -state normal
         bind $pad <Control-Key-$i> "$pad.filemenu.wind invoke $i"
@@ -554,7 +554,7 @@ proc extractindexfromlabel {dm labsearched} {
         set stoppoint  [$dm index last]
     } elseif {$dm == "$pad.filemenu.files"} {
         set startpoint $FirstMRUFileNameInFileMenu
-        set stoppoint  [expr $FirstMRUFileNameInFileMenu + $nbrecentfiles]
+        set stoppoint  [expr {$FirstMRUFileNameInFileMenu + $nbrecentfiles}]
     } else {
         tk_messageBox -message "Unexpected menu widget in proc extractindexfromlabel ($dm): please report"
     }
@@ -564,7 +564,7 @@ proc extractindexfromlabel {dm labsearched} {
             set lab [$dm entrycget $i -label]
             # the first 9 labels have an underlined number prepended
             # that must be removed before comparison to the searched label
-            if {$i < [expr $startpoint + 9]} {
+            if {$i < [expr {$startpoint + 9}]} {
                 regexp {^[0-9] (.*)} $lab -> lab
             }
             if {$lab == $labsearched} {
@@ -590,7 +590,7 @@ proc setwindowsmenuentrylabel {entry lab {sortmenu "sortmenu"}} {
 # entry in the menu (only the first 9 entries have such an
 # underlined number)
     global pad FirstBufferNameInWindowsMenu
-    set underlinednumber [expr $entry - $FirstBufferNameInWindowsMenu + 1]
+    set underlinednumber [expr {$entry - $FirstBufferNameInWindowsMenu + 1}]
     if {$underlinednumber<10} {
         set underlinedlabel [concat $underlinednumber $lab]
         $pad.filemenu.wind entryconfigure $entry \
@@ -697,10 +697,10 @@ proc showinfo_menu_file {w} {
     global pad nbrecentfiles listofrecent
     if {$nbrecentfiles > 0} {
         set rec1ind [GetFirstRecentInd]
-        set recnind [expr $rec1ind + $nbrecentfiles - 1]
+        set recnind [expr {$rec1ind + $nbrecentfiles - 1}]
         set mouseentry [$w index active]
         if {$rec1ind<=$mouseentry && $mouseentry<=$recnind} {
-            showinfo [lindex $listofrecent [expr $mouseentry - $rec1ind]]
+            showinfo [lindex $listofrecent [expr {$mouseentry - $rec1ind}]]
         }
     }
 }

@@ -261,7 +261,7 @@ proc ScilabEval_lt {comm {opt1 ""} {opt2 ""}} {
         if {[catch {
             set fname [file join $tmpdir "ScilabEval_command.sce"]
             set splitsize 4000 ;# arbitrary but works up to approx. 4095
-            set nbparts [expr [string length $comm] / $splitsize + 1]
+            set nbparts [expr {[string length $comm] / $splitsize + 1}]
             set fid [open $fname w]
             # mode(-1) to prevent Scilab to echo the commands passed to the temporary
             # file - only "mode(-1)" will be displayed in the Scilab shell when the
@@ -269,7 +269,7 @@ proc ScilabEval_lt {comm {opt1 ""} {opt2 ""}} {
             puts $fid "mode(-1);"
             set startpos 0
             for {set i 1} {$i < $nbparts} {incr i} {
-                set stoppos  [expr $i * $splitsize - 1]
+                set stoppos  [expr {$i * $splitsize - 1}]
                 # Warning: the string must not be split (.. added) just after a dot!
                 # Here possible endless loop if $comm contains only dots, but why would this happen?
                 while {[string index $comm $stoppos] == "."} {incr stoppos}

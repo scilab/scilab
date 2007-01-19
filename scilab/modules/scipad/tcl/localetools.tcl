@@ -64,7 +64,7 @@ proc mcmaxra {args} {
     set maxlen_amp   [eval $cmda]
     set maxlen_noamp [eval $cmdnoa]
     if {$maxlen_amp > $maxlen_noamp} {
-        return [expr $maxlen_amp - 1]
+        return [expr {$maxlen_amp - 1}]
     } else {
         return $maxlen_noamp
     }

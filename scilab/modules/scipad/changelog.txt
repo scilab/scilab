@@ -2720,3 +2720,17 @@ Francois VOGEL, 18/01/07
  * First Scipad version with line numbers in the textarea margin (request
    138)
  * version --> 6.77
+
+Francois VOGEL, 19/01/07
+ * Fixed: Undo/Redo did not update the line number margin when the undo or
+   redo action did not modify the scrollbar size
+ * Fixed: When creating peers, Scipad does no longer ask the confirmation
+   question for colorizing large files
+ * Line numbers in the margin are now compatible with word wrapping
+ * Great performance improvement when updating line numbers
+ * Huge performance improvement in colorization, continued lines tagging,
+   and functions identification (30% faster), and in some other areas as
+   well, just by bracing all Tcl expr - see the magic arcane at
+   http://wiki.tcl.tk/10225
+ * Pushed size limit for colorization question from 100 kb to 130 kb
+ * version --> 6.78

@@ -89,7 +89,7 @@ proc whichfun {indexin {buf "current"}} {
         # current logical line within the function definition
         set contlines [countcontlines $textarea $precfun $indexin]
         scan $precfun "%d." beginfunline 
-        set lineinfun [expr $ypos-$beginfunline-$contlines+1]
+        set lineinfun [expr {$ypos - $beginfunline - $contlines + 1}]
 
 #        tk_messageBox -message [concat \
 #                               [mc "Being at line"] $ypos \
@@ -181,11 +181,12 @@ proc tagcontlines {w} {
         # what really cuts down performance is to do [$w index "1.0 + $i c"]
         # many times with $i being large (>100000, which is fairly common
         # for say 15000 lines buffers), thus avoid to do it at all and use
-        # position differences [expr $j - $i] instead
-        # For a 15000 lines test buffer performance gain factor is around 20:1
-        # depending on the buffer content
-        set mi [$w index "$ind + [expr $i - $previ] c"]
-        set mj [$w index "$mi + [expr $j - $i] c"]
+        # position differences [expr {$j - $i}] instead
+        # of course, bracing expr provides a good amount of performance too
+        # For a 15000 lines test buffer performance gain factor is better
+        # than 20:1, depending on the buffer content
+        set mi [$w index "$ind + [expr {$i - $previ}] c"]
+        set mj [$w index "$mi + [expr {$j - $i}] c"]
         $w tag add contline "$mi linestart" "$mj lineend + 1 c"
         set ind $mi
         set previ $i
@@ -399,8 +400,8 @@ proc getallfunsintextarea {{buf "current"}} {
     set previ 0
     foreach {fullmatch funname} $allfun {
         foreach {i j} $fullmatch {}
-        set star [$textarea index "$ind + [expr $i - $previ] c"]
-        set stop [$textarea index "$star + [expr $j - $i] c"]
+        set star [$textarea index "$ind + [expr {$i - $previ}] c"]
+        set stop [$textarea index "$star + [expr {$j - $i}] c"]
         if {[lsearch [$textarea tag names $star] "rem2"] == -1} {
             if {[lsearch [$textarea tag names $star] "textquoted"] == -1} {
                 # skip the keyword "function" (8 characters)
@@ -470,7 +471,7 @@ proc extractfunnamefromfunline {str} {
     global snRE
     set funname ""
     if {[set i [string first "=" $str]] != {}} {
-        regexp -start [expr $i+1] -- $snRE $str funname  
+        regexp -start [expr {$i + 1}] -- $snRE $str funname  
     } else {
         regexp -- $snRE $str funname  
     }
@@ -617,7 +618,7 @@ proc getlistofancillaries {ta fun tag {lifun -1}} {
         }
         # remove duplicates
         for {set i 0} {$i < [llength $listofancill]} {incr i} {
-            for {set j [expr $i+1]} {$j < [llength $listofancill]} {incr j} {
+            for {set j [expr {$i + 1}]} {$j < [llength $listofancill]} {incr j} {
                 if {[lindex $listofancill $j] == [lindex $listofancill $i]} {
                     set listofancill [lreplace $listofancill $j $j]
                     incr j -1

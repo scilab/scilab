@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.77
+# in sync at least with v6.78
 
 
 # commons
@@ -21,8 +21,6 @@
 ::msgcat::mcset fr "Hide" "Cacher"
 ::msgcat::mcset fr "Close this tile, keep content" "Fermer cette vue, conserver le contenu"
 ::msgcat::mcset fr "Close this tile" "Fermer cette vue"
-::msgcat::mcset fr "Incompatible with word wrapping" \
-                   "Incompatible avec le retour à la ligne automatique"
 ::msgcat::mcset fr "Goto Line?" "Aller à la ligne ?"
 ::msgcat::mcset fr "Go to:" "Aller à : "
 ::msgcat::mcset fr "&logical line" "la ligne &logique"
@@ -579,11 +577,6 @@
 
 # scipad.tcl
 ::msgcat::mcset fr "NOT CONNECTED TO SCILAB" "PAS DE CONNEXION A SCILAB"
-
-
-# textarea.tcl
-::msgcat::mcset fr "Incompatible with line numbers margin" \
-                   "Fonction incompatible avec les numéros de ligne en marge"
 
 
 # whichfun.tcl

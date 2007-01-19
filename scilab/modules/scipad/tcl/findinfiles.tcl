@@ -166,7 +166,7 @@ proc findinonefile {fname str cas reg whword} {
             # at least one match has been found in the searched line of the file
             foreach amatch $listoflinematch {
                 scan [lindex $amatch 0] "%d.%d" ypos xpos
-                set pos "[expr $ypos + $linenumber - 1].$xpos"
+                set pos "[expr {$ypos + $linenumber - 1}].$xpos"
                 set len [lindex $amatch 1]
                 set zero [lindex $amatch 2]
                 lappend filematchlist [list $fname $pos $len $zero]
@@ -178,7 +178,7 @@ proc findinonefile {fname str cas reg whword} {
                 scan [$matchres.f1.resarea index end] "%d.%d" lastline junk
                 incr lastline -2
                 incr xpos [string length "$prependedtext"]
-                $matchres.f1.resarea tag add matchedtext "$lastline.$xpos" "$lastline.[expr $xpos + $len]"
+                $matchres.f1.resarea tag add matchedtext "$lastline.$xpos" "$lastline.[expr {$xpos + $len}]"
             }
         }
         $pad.fake delete 1.0 end
@@ -266,8 +266,8 @@ proc displaymatchresultswin {} {
         wm resizable $matchres 1 1
         set myx 0
         set myw [winfo screenwidth $pad]
-        set myh [expr [winfo screenheight $pad] / 5]
-        set myy [expr [winfo screenheight $pad] *2/3]
+        set myh [expr {[winfo screenheight $pad] / 5}]
+        set myy [expr {[winfo screenheight $pad] * 2/3}]
         wm geometry $matchres "=$myw\x$myh+$myx+$myy"
 
         # this is for the text results area and the scrollbars
@@ -397,7 +397,7 @@ proc opennextmatch {w} {
     } else {
         scan $curmatch "%d.%d" ypos xpos
     }
-    set posinresarea "[expr $ypos + 1].0"
+    set posinresarea "[expr {$ypos + 1}].0"
     if {$posinresarea == [$w index "end - 1l linestart"]} {
         set posinresarea 1.0
     }
@@ -415,7 +415,7 @@ proc openprevmatch {w} {
     } else {
         scan $curmatch "%d.%d" ypos xpos
     }
-    set posinresarea "[expr $ypos - 1].0"
+    set posinresarea "[expr {$ypos - 1}].0"
     if {$posinresarea == "0.0"} {
         set posinresarea [$w index "end - 2l linestart"]
     }
@@ -441,7 +441,7 @@ proc openamatch {w posinresarea} {
 
     # retrieve match coordinates
     scan $posinresarea "%d.%d" linenum xpos
-    set thematch [lindex $allthematches [expr $linenum - 1]]
+    set thematch [lindex $allthematches [expr {$linenum - 1}]]
 
     # open the file (or display it if already open), and highlight the match
     if {[openfileifexists [lindex $thematch 0]]} {

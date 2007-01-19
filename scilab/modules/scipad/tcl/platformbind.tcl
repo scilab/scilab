@@ -91,7 +91,7 @@ proc binddisable {tag command} {
 
 proc validpostfix {char status options} {
 #      puts "$char $status"
-    if {[regexp $char $options] & [expr "!($status & 252)"]} {
+    if {[regexp $char $options] & [expr {!($status & 252)}]} {
           showinfo " "
       } else {
           showinfo [mc "Invalid keyboard sequence!"]        

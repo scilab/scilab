@@ -206,19 +206,19 @@ if {$debuglog} {
         if {$Tcl85} {
             # Tcl >= 8.5, clock milliseconds is better
             set stamp [clock milliseconds]
-            set secs [expr $stamp / 1000]
-            set fract [expr $stamp - ($secs * 1000)]
+            set secs [expr {$stamp / 1000}]
+            set fract [expr {$stamp - ($secs * 1000)}]
 
         } else {
             # Tcl < 8.5, use what available
             set secs [clock seconds]
             set ms [clock clicks -milliseconds]
-            set base [expr { $secs * 1000 }]
-            set fract [expr { $ms - $base }]
+            set base [expr {$secs * 1000}]
+            set fract [expr {$ms - $base}]
             if { $fract > 1000 } {
-                set diff [expr { $fract / 1000 }]
+                set diff [expr {$fract / 1000}]
                 incr secs $diff
-                incr fract [expr { -1000 * $diff }]
+                incr fract [expr {-1000 * $diff}]
             }
 
         }

@@ -110,8 +110,8 @@ proc colorizetag {w pat tagname str start} {
     set previ 0
     foreach amatch $allmatch {
         foreach {i j} $amatch {}
-        set star [$w index "$ind  + [expr $i - $previ] c"]
-        set stop [$w index "$star + [expr $j - $i + 1] c"]
+        set star [$w index "$ind  + [expr {$i - $previ}] c"]
+        set stop [$w index "$star + [expr {$j - $i + 1}] c"]
         $w tag add $tagname $star $stop
         set ind $star
         set previ $i
@@ -177,8 +177,8 @@ proc colorize {w cpos iend} {
         set previ 0
         foreach amatch $allmatch {
             foreach {i j} $amatch {}
-            set star [$w index "$ind + [expr $i - $previ] c"]
-            set stop [$w index "$star + [expr $j - $i + 1] c"]
+            set star [$w index "$ind + [expr {$i - $previ}] c"]
+            set stop [$w index "$star + [expr {$j - $i + 1}] c"]
             set kword [$w get $star $stop]
             set initial [string range $kword 0 0]
             foreach itag $scitags {
@@ -309,7 +309,7 @@ proc colorizestringsandcomments {w thebegin theend textcommfullRE separationRE q
     if {$schema == "scilab"} {
         foreach {resi simpstr contstr outstrcomm} $allmatch {
             foreach {i j} $resi {}
-            set star [$w index "$star  + [expr $i - $previ] c"]
+            set star [$w index "$star  + [expr {$i - $previ}] c"]
             set ind $star
             # $ind contains now the start index for a not yet colorized match
             # with either:
@@ -328,7 +328,7 @@ proc colorizestringsandcomments {w thebegin theend textcommfullRE separationRE q
             # case 3: the match starts at the first slash indicating a comment
 
             # length of the match
-            set num [expr $j - $i + 1]
+            set num [expr {$j - $i + 1}]
 
             set done false
             # try first case: string on a single line
@@ -441,10 +441,10 @@ proc colorizestringsandcomments {w thebegin theend textcommfullRE separationRE q
         # non scilab schema, i.e. xml or none
         foreach resi $allmatch {
             foreach {i j} $resi {}
-            set star [$w index "$star  + [expr $i - $previ] c"]
+            set star [$w index "$star  + [expr {$i - $previ}] c"]
             set ind $star
             # length of the match
-            set num [expr $j - $i + 1]
+            set num [expr {$j - $i + 1}]
             $w mark set stop "$ind +$num c"
             if {![string match $quotespattern [$w get $ind]]} {
                 # in this case we did not match at the beginning of the
@@ -747,8 +747,8 @@ proc docolorizeuserfun {} {
             set previ 1 ;# and not 0 because of the added leading space in $fulltext
             foreach {fullmatch funnamematch} $allmatch {
                 foreach {i j} $funnamematch {}
-                set star [$ta index "$ind + [expr $i - $previ] c"]
-                set malength [expr $j - $i + 1]
+                set star [$ta index "$ind + [expr {$i - $previ}] c"]
+                set malength [expr {$j - $i + 1}]
                 set stop [$ta index "$star + $malength c"]
                 if {[lsearch [$ta tag names $star] "rem2"] == -1} {
                     if {[lsearch [$ta tag names $star] "textquoted"] == -1} {
@@ -757,7 +757,7 @@ proc docolorizeuserfun {} {
                             # since this is the Scilab limitation - this is to remind
                             # the user of this limit
                             # Scipad is not limited in function names, but Scilab is
-                            set stop [$ta index "$stop - [expr $malength - $maxcharinascilabname] c"]
+                            set stop [$ta index "$stop - [expr {$malength - $maxcharinascilabname}] c"]
                         }
                         $ta tag add "userfun" $star $stop
                     }

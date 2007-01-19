@@ -28,6 +28,7 @@ proc undoredo {textarea action} {
 # or redo, a string comparison between before and after the operation
 # is done. A better mechanism has been asked for in Tk request 1217222
     global buffermodifiedsincelastsearch
+    global linenumbersmargins
     if {[IsBufferEditable] == "No"} {return}
     set bef [$textarea get 1.0 end]
     event generate $textarea $action 
@@ -49,6 +50,14 @@ proc undoredo {textarea action} {
     reshape_bp
     keyposn $textarea
     set buffermodifiedsincelastsearch true
+    # explicitely calling updatelinenumbersmargin is needed when the
+    # undo/redo operation occurs in a textarea that does entirely fit
+    # in the alloted space (i.e. the scrollbars are disabled)
+    if {$linenumbersmargins != "hide"} {
+        foreach ta [getfullpeerset $textarea] {
+            updatelinenumbersmargin $ta
+        }
+    }
 }
 
 proc isanymodified {} {

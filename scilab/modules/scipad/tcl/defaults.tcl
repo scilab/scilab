@@ -127,15 +127,15 @@ set linenumbersmarginsmenusetting $linenumbersmargins
 # recompute $textfontsize and $menufontsize from the preferences file fonts
 if {[lsearch $textFont "-size"] != -1} {
     set textfontsize [lindex $textFont \
-            [expr [lsearch $textFont "-size"] + 1] ]
-    set textfontsize [expr round($textfontsize * [tk scaling])]
+            [expr {[lsearch $textFont "-size"] + 1}] ]
+    set textfontsize [expr {round($textfontsize * [tk scaling])}]
 } else {
     set textfontsize 12
 }
 if {[lsearch $menuFont "-size"] != -1} {
     set menufontsize [lindex $menuFont \
-            [expr [lsearch $menuFont "-size"] + 1] ]
-    set menufontsize [expr round($menufontsize * [tk scaling])]
+            [expr {[lsearch $menuFont "-size"] + 1}] ]
+    set menufontsize [expr {round($menufontsize * [tk scaling])}]
 } else {
     set menufontsize 12
 }

@@ -66,11 +66,11 @@ bind $pad <Control-B> {showwhichfun}
 # remove the default bind ctrl-d=delete char
 bind Text <Control-d> ""
 
-bind $pad <Control-plus>  {set textfontsize [expr round($textfontsize*1.11)]; \
-                           set menufontsize [expr round($menufontsize*1.11)]; \
+bind $pad <Control-plus>  {set textfontsize [expr {round($textfontsize*1.11)}]; \
+                           set menufontsize [expr {round($menufontsize*1.11)}]; \
                            updatefont all}
-bind $pad <Control-minus> {set textfontsize [expr round($textfontsize*0.9)]; \
-                           set menufontsize [expr round($menufontsize*0.9)]; \
+bind $pad <Control-minus> {set textfontsize [expr {round($textfontsize*0.9)}]; \
+                           set menufontsize [expr {round($menufontsize*0.9)}]; \
                            updatefont all}
 
 
