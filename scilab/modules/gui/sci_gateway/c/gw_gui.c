@@ -22,7 +22,7 @@ static GuiTable Tab[]=
 	{C2F(sci_xgetfile),"xgetfile"},
 	{C2F(sci_x_message_modeless),"x_message_modeless"},
     {sci_clc,"clc"},
-    {sci_show_window,"show_window"},
+    {sci_raise_window,"raise_window"},
     {sci_tohome,"tohome"}
 };
 /*-----------------------------------------------------------------------------------*/

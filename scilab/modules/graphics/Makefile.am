@@ -375,7 +375,7 @@ sci_gateway/sci_xstring.c \
 sci_gateway/sci_xstringb.c \
 sci_gateway/sci_xs2gif.c \
 sci_gateway/sci_xsetech.c \
-sci_gateway/sci_xselect.c \
+sci_gateway/sci_show_window.c \
 sci_gateway/sci_param3d1.c \
 sci_gateway/sci_xname.c \
 sci_gateway/sci_xstringl.c \
@@ -769,7 +769,7 @@ includes/sci_xs2gif.h \
 includes/Axes.h \
 includes/sci_xsetech.h \
 includes/sciMatrix.h \
-includes/sci_xselect.h \
+includes/sci_show_window.h \
 includes/sci_param3d1.h \
 includes/sci_xstringl.h \
 includes/graphicModuleLoad.h \

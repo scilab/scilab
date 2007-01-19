@@ -53,7 +53,7 @@ extern int sci_xinit                      _PARAMS((char *fname, unsigned long fn
 extern int sci_xlfont                     _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xpoly                      _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xpolys                     _PARAMS((char *fname, unsigned long fname_len));
-extern int sci_xselect                    _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_show_window                _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xset                       _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xstring                    _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xstringl                   _PARAMS((char *fname, unsigned long fname_len));

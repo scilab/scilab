@@ -18,6 +18,6 @@
 25 10 xgetfile             
 25 11 x_message_modeless   
 25 12 clc                  
-25 13 show_window          
+25 13 raise_window          
 25 14 tohome               
 ; --------------------------                                       

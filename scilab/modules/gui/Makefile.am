@@ -59,7 +59,7 @@ sci_gateway/c/sci_x_message_modeless.c \
 sci_gateway/c/gw_gui.c \
 sci_gateway/c/sci_x_mdialog.c \
 sci_gateway/c/sci_x_dialog.c \
-sci_gateway/c/sci_show_window.c \
+sci_gateway/c/sci_raise_window.c \
 sci_gateway/c/sci_x_choose.c \
 sci_gateway/c/sci_xgetfile.c \
 sci_gateway/c/sci_tohome.c \
@@ -169,7 +169,7 @@ includes/men_scilab.h \
 includes/sci_clc.h \
 includes/gw_gui.h \
 includes/wmen_scilab.h \
-includes/sci_show_window.h \
+includes/sci_raise_window.h \
 includes/GraphicWindow.h
 
 

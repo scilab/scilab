@@ -1,11 +1,11 @@
 /*------------------------------------------------------------------------*/
-/* file: sci_show_window.h                                                */
+/* file: sci_raise_window.h                                                */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Allan Cornet, Jean-Baptiste Silvy                            */
 /* desc : interface for show_window routine                               */
 /*------------------------------------------------------------------------*/
 
-#include "sci_show_window.h"
+#include "sci_raise_window.h"
 #ifdef _MSC_VER
 #include "../src/c/wsci/wtext.h"
 #include "../src/c/wsci/WinConsole.h"
@@ -21,7 +21,7 @@
 #include "gw_gui.h"
 #include "../../graphics/includes/WindowList.h"
 /*-----------------------------------------------------------------------------------*/
-int sci_show_window( char * fname, unsigned long fname_len )
+int sci_raise_window( char * fname, unsigned long fname_len )
 {
 #ifdef _MSC_VER
   static int l1, m1, n1;	

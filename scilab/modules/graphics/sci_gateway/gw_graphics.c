@@ -60,7 +60,7 @@ static MatdesTable Tab[]={
 	{sci_xrects,"xrects"},
 	{sci_xs2fig,"xg2fig"},
 	{sci_xsegs,"xsegs"},
-	{sci_xselect,"xselect"},
+	{sci_show_window,"show_window"},
 	{sci_xset,"xset"},
 	{sci_xsetech,"xsetech"},
 	{sci_xstring,"xstring"},

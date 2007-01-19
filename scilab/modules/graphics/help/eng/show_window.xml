@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>show_window</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>$LastChangedDate$</DATE>
+  <SHORT_DESCRIPTION name="show_window"> raise the current graphics window</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>show_window()</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+    <P><VERB>show_window</VERB> raises the current graphics window even if
+    it is iconified. If no window already exists, one is created.</P>
+  </DESCRIPTION>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>
