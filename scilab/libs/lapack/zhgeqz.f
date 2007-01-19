@@ -1,43 +1,63 @@
-      SUBROUTINE ZHGEQZ( JOB, COMPQ, COMPZ, N, ILO, IHI, A, LDA, B, LDB,
+      SUBROUTINE ZHGEQZ( JOB, COMPQ, COMPZ, N, ILO, IHI, H, LDH, T, LDT,
      $                   ALPHA, BETA, Q, LDQ, Z, LDZ, WORK, LWORK,
      $                   RWORK, INFO )
 *
-*  -- LAPACK routine (version 3.0) --
-*     Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
-*     Courant Institute, Argonne National Lab, and Rice University
-*     June 30, 1999
+*  -- LAPACK routine (version 3.1) --
+*     Univ. of Tennessee, Univ. of California Berkeley and NAG Ltd..
+*     November 2006
 *
 *     .. Scalar Arguments ..
       CHARACTER          COMPQ, COMPZ, JOB
-      INTEGER            IHI, ILO, INFO, LDA, LDB, LDQ, LDZ, LWORK, N
+      INTEGER            IHI, ILO, INFO, LDH, LDQ, LDT, LDZ, LWORK, N
 *     ..
 *     .. Array Arguments ..
       DOUBLE PRECISION   RWORK( * )
-      COMPLEX*16         A( LDA, * ), ALPHA( * ), B( LDB, * ),
-     $                   BETA( * ), Q( LDQ, * ), WORK( * ), Z( LDZ, * )
+      COMPLEX*16         ALPHA( * ), BETA( * ), H( LDH, * ),
+     $                   Q( LDQ, * ), T( LDT, * ), WORK( * ),
+     $                   Z( LDZ, * )
 *     ..
 *
 *  Purpose
 *  =======
 *
-*  ZHGEQZ implements a single-shift version of the QZ
-*  method for finding the generalized eigenvalues w(i)=ALPHA(i)/BETA(i)
-*  of the equation
-*
-*       det( A - w(i) B ) = 0
-*
-*  If JOB='S', then the pair (A,B) is simultaneously
-*  reduced to Schur form (i.e., A and B are both upper triangular) by
-*  applying one unitary tranformation (usually called Q) on the left and
-*  another (usually called Z) on the right.  The diagonal elements of
-*  A are then ALPHA(1),...,ALPHA(N), and of B are BETA(1),...,BETA(N).
-*
-*  If JOB='S' and COMPQ and COMPZ are 'V' or 'I', then the unitary
-*  transformations used to reduce (A,B) are accumulated into the arrays
-*  Q and Z s.t.:
-*
-*       Q(in) A(in) Z(in)* = Q(out) A(out) Z(out)*
-*       Q(in) B(in) Z(in)* = Q(out) B(out) Z(out)*
+*  ZHGEQZ computes the eigenvalues of a complex matrix pair (H,T),
+*  where H is an upper Hessenberg matrix and T is upper triangular,
+*  using the single-shift QZ method.
+*  Matrix pairs of this type are produced by the reduction to
+*  generalized upper Hessenberg form of a complex matrix pair (A,B):
+*  
+*     A = Q1*H*Z1**H,  B = Q1*T*Z1**H,
+*  
+*  as computed by ZGGHRD.
+*  
+*  If JOB='S', then the Hessenberg-triangular pair (H,T) is
+*  also reduced to generalized Schur form,
+*  
+*     H = Q*S*Z**H,  T = Q*P*Z**H,
+*  
+*  where Q and Z are unitary matrices and S and P are upper triangular.
+*  
+*  Optionally, the unitary matrix Q from the generalized Schur
+*  factorization may be postmultiplied into an input matrix Q1, and the
+*  unitary matrix Z may be postmultiplied into an input matrix Z1.
+*  If Q1 and Z1 are the unitary matrices from ZGGHRD that reduced
+*  the matrix pair (A,B) to generalized Hessenberg form, then the output
+*  matrices Q1*Q and Z1*Z are the unitary factors from the generalized
+*  Schur factorization of (A,B):
+*  
+*     A = (Q1*Q)*S*(Z1*Z)**H,  B = (Q1*Q)*P*(Z1*Z)**H.
+*  
+*  To avoid overflow, eigenvalues of the matrix pair (H,T)
+*  (equivalently, of (A,B)) are computed as a pair of complex values
+*  (alpha,beta).  If beta is nonzero, lambda = alpha / beta is an
+*  eigenvalue of the generalized nonsymmetric eigenvalue problem (GNEP)
+*     A*x = lambda*B*x
+*  and if alpha is nonzero, mu = beta / alpha is an eigenvalue of the
+*  alternate form of the GNEP
+*     mu*A*y = B*y.
+*  The values of alpha and beta for the i-th eigenvalue can be read
+*  directly from the generalized Schur form:  alpha = S(i,i),
+*  beta = P(i,i).
 *
 *  Ref: C.B. Moler & G.W. Stewart, "An Algorithm for Generalized Matrix
 *       Eigenvalue Problems", SIAM J. Numer. Anal., 10(1973),
@@ -47,89 +67,94 @@
 *  =========
 *
 *  JOB     (input) CHARACTER*1
-*          = 'E': compute only ALPHA and BETA.  A and B will not
-*                 necessarily be put into generalized Schur form.
-*          = 'S': put A and B into generalized Schur form, as well
-*                 as computing ALPHA and BETA.
+*          = 'E': Compute eigenvalues only;
+*          = 'S': Computer eigenvalues and the Schur form.
 *
 *  COMPQ   (input) CHARACTER*1
-*          = 'N': do not modify Q.
-*          = 'V': multiply the array Q on the right by the conjugate
-*                 transpose of the unitary tranformation that is
-*                 applied to the left side of A and B to reduce them
-*                 to Schur form.
-*          = 'I': like COMPQ='V', except that Q will be initialized to
-*                 the identity first.
+*          = 'N': Left Schur vectors (Q) are not computed;
+*          = 'I': Q is initialized to the unit matrix and the matrix Q
+*                 of left Schur vectors of (H,T) is returned;
+*          = 'V': Q must contain a unitary matrix Q1 on entry and
+*                 the product Q1*Q is returned.
 *
 *  COMPZ   (input) CHARACTER*1
-*          = 'N': do not modify Z.
-*          = 'V': multiply the array Z on the right by the unitary
-*                 tranformation that is applied to the right side of
-*                 A and B to reduce them to Schur form.
-*          = 'I': like COMPZ='V', except that Z will be initialized to
-*                 the identity first.
+*          = 'N': Right Schur vectors (Z) are not computed;
+*          = 'I': Q is initialized to the unit matrix and the matrix Z
+*                 of right Schur vectors of (H,T) is returned;
+*          = 'V': Z must contain a unitary matrix Z1 on entry and
+*                 the product Z1*Z is returned.
 *
 *  N       (input) INTEGER
-*          The order of the matrices A, B, Q, and Z.  N >= 0.
+*          The order of the matrices H, T, Q, and Z.  N >= 0.
 *
 *  ILO     (input) INTEGER
 *  IHI     (input) INTEGER
-*          It is assumed that A is already upper triangular in rows and
-*          columns 1:ILO-1 and IHI+1:N.
-*          1 <= ILO <= IHI <= N, if N > 0; ILO=1 and IHI=0, if N=0.
+*          ILO and IHI mark the rows and columns of H which are in
+*          Hessenberg form.  It is assumed that A is already upper
+*          triangular in rows and columns 1:ILO-1 and IHI+1:N.
+*          If N > 0, 1 <= ILO <= IHI <= N; if N = 0, ILO=1 and IHI=0.
 *
-*  A       (input/output) COMPLEX*16 array, dimension (LDA, N)
-*          On entry, the N-by-N upper Hessenberg matrix A.  Elements
-*          below the subdiagonal must be zero.
-*          If JOB='S', then on exit A and B will have been
-*             simultaneously reduced to upper triangular form.
-*          If JOB='E', then on exit A will have been destroyed.
+*  H       (input/output) COMPLEX*16 array, dimension (LDH, N)
+*          On entry, the N-by-N upper Hessenberg matrix H.
+*          On exit, if JOB = 'S', H contains the upper triangular
+*          matrix S from the generalized Schur factorization.
+*          If JOB = 'E', the diagonal of H matches that of S, but
+*          the rest of H is unspecified.
 *
-*  LDA     (input) INTEGER
-*          The leading dimension of the array A.  LDA >= max( 1, N ).
+*  LDH     (input) INTEGER
+*          The leading dimension of the array H.  LDH >= max( 1, N ).
 *
-*  B       (input/output) COMPLEX*16 array, dimension (LDB, N)
-*          On entry, the N-by-N upper triangular matrix B.  Elements
-*          below the diagonal must be zero.
-*          If JOB='S', then on exit A and B will have been
-*             simultaneously reduced to upper triangular form.
-*          If JOB='E', then on exit B will have been destroyed.
+*  T       (input/output) COMPLEX*16 array, dimension (LDT, N)
+*          On entry, the N-by-N upper triangular matrix T.
+*          On exit, if JOB = 'S', T contains the upper triangular
+*          matrix P from the generalized Schur factorization.
+*          If JOB = 'E', the diagonal of T matches that of P, but
+*          the rest of T is unspecified.
 *
-*  LDB     (input) INTEGER
-*          The leading dimension of the array B.  LDB >= max( 1, N ).
+*  LDT     (input) INTEGER
+*          The leading dimension of the array T.  LDT >= max( 1, N ).
 *
 *  ALPHA   (output) COMPLEX*16 array, dimension (N)
-*          The diagonal elements of A when the pair (A,B) has been
-*          reduced to Schur form.  ALPHA(i)/BETA(i) i=1,...,N
-*          are the generalized eigenvalues.
+*          The complex scalars alpha that define the eigenvalues of
+*          GNEP.  ALPHA(i) = S(i,i) in the generalized Schur
+*          factorization.
 *
 *  BETA    (output) COMPLEX*16 array, dimension (N)
-*          The diagonal elements of B when the pair (A,B) has been
-*          reduced to Schur form.  ALPHA(i)/BETA(i) i=1,...,N
-*          are the generalized eigenvalues.  A and B are normalized
-*          so that BETA(1),...,BETA(N) are non-negative real numbers.
+*          The real non-negative scalars beta that define the
+*          eigenvalues of GNEP.  BETA(i) = P(i,i) in the generalized
+*          Schur factorization.
+*
+*          Together, the quantities alpha = ALPHA(j) and beta = BETA(j)
+*          represent the j-th eigenvalue of the matrix pair (A,B), in
+*          one of the forms lambda = alpha/beta or mu = beta/alpha.
+*          Since either lambda or mu may overflow, they should not,
+*          in general, be computed.
 *
 *  Q       (input/output) COMPLEX*16 array, dimension (LDQ, N)
-*          If COMPQ='N', then Q will not be referenced.
-*          If COMPQ='V' or 'I', then the conjugate transpose of the
-*             unitary transformations which are applied to A and B on
-*             the left will be applied to the array Q on the right.
+*          On entry, if COMPZ = 'V', the unitary matrix Q1 used in the
+*          reduction of (A,B) to generalized Hessenberg form.
+*          On exit, if COMPZ = 'I', the unitary matrix of left Schur
+*          vectors of (H,T), and if COMPZ = 'V', the unitary matrix of
+*          left Schur vectors of (A,B).
+*          Not referenced if COMPZ = 'N'.
 *
 *  LDQ     (input) INTEGER
 *          The leading dimension of the array Q.  LDQ >= 1.
 *          If COMPQ='V' or 'I', then LDQ >= N.
 *
 *  Z       (input/output) COMPLEX*16 array, dimension (LDZ, N)
-*          If COMPZ='N', then Z will not be referenced.
-*          If COMPZ='V' or 'I', then the unitary transformations which
-*             are applied to A and B on the right will be applied to the
-*             array Z on the right.
+*          On entry, if COMPZ = 'V', the unitary matrix Z1 used in the
+*          reduction of (A,B) to generalized Hessenberg form.
+*          On exit, if COMPZ = 'I', the unitary matrix of right Schur
+*          vectors of (H,T), and if COMPZ = 'V', the unitary matrix of
+*          right Schur vectors of (A,B).
+*          Not referenced if COMPZ = 'N'.
 *
 *  LDZ     (input) INTEGER
 *          The leading dimension of the array Z.  LDZ >= 1.
 *          If COMPZ='V' or 'I', then LDZ >= N.
 *
-*  WORK    (workspace/output) COMPLEX*16 array, dimension (LWORK)
+*  WORK    (workspace/output) COMPLEX*16 array, dimension (MAX(1,LWORK))
 *          On exit, if INFO >= 0, WORK(1) returns the optimal LWORK.
 *
 *  LWORK   (input) INTEGER
@@ -145,13 +170,12 @@
 *  INFO    (output) INTEGER
 *          = 0: successful exit
 *          < 0: if INFO = -i, the i-th argument had an illegal value
-*          = 1,...,N: the QZ iteration did not converge.  (A,B) is not
+*          = 1,...,N: the QZ iteration did not converge.  (H,T) is not
 *                     in Schur form, but ALPHA(i) and BETA(i),
 *                     i=INFO+1,...,N should be correct.
-*          = N+1,...,2*N: the shift calculation failed.  (A,B) is not
+*          = N+1,...,2*N: the shift calculation failed.  (H,T) is not
 *                     in Schur form, but ALPHA(i) and BETA(i),
 *                     i=INFO-N+1,...,N should be correct.
-*          > 2*N:     various "impossible" errors.
 *
 *  Further Details
 *  ===============
@@ -178,7 +202,7 @@
       DOUBLE PRECISION   ABSB, ANORM, ASCALE, ATOL, BNORM, BSCALE, BTOL,
      $                   C, SAFMIN, TEMP, TEMP2, TEMPR, ULP
       COMPLEX*16         ABI22, AD11, AD12, AD21, AD22, CTEMP, CTEMP2,
-     $                   CTEMP3, ESHIFT, RTDISC, S, SHIFT, SIGNBC, T,
+     $                   CTEMP3, ESHIFT, RTDISC, S, SHIFT, SIGNBC, T1,
      $                   U12, X
 *     ..
 *     .. External Functions ..
@@ -256,9 +280,9 @@
          INFO = -5
       ELSE IF( IHI.GT.N .OR. IHI.LT.ILO-1 ) THEN
          INFO = -6
-      ELSE IF( LDA.LT.N ) THEN
+      ELSE IF( LDH.LT.N ) THEN
          INFO = -8
-      ELSE IF( LDB.LT.N ) THEN
+      ELSE IF( LDT.LT.N ) THEN
          INFO = -10
       ELSE IF( LDQ.LT.1 .OR. ( ILQ .AND. LDQ.LT.N ) ) THEN
          INFO = -14
@@ -294,8 +318,8 @@
       IN = IHI + 1 - ILO
       SAFMIN = DLAMCH( 'S' )
       ULP = DLAMCH( 'E' )*DLAMCH( 'B' )
-      ANORM = ZLANHS( 'F', IN, A( ILO, ILO ), LDA, RWORK )
-      BNORM = ZLANHS( 'F', IN, B( ILO, ILO ), LDB, RWORK )
+      ANORM = ZLANHS( 'F', IN, H( ILO, ILO ), LDH, RWORK )
+      BNORM = ZLANHS( 'F', IN, T( ILO, ILO ), LDT, RWORK )
       ATOL = MAX( SAFMIN, ULP*ANORM )
       BTOL = MAX( SAFMIN, ULP*BNORM )
       ASCALE = ONE / MAX( SAFMIN, ANORM )
@@ -305,23 +329,23 @@
 *     Set Eigenvalues IHI+1:N
 *
       DO 10 J = IHI + 1, N
-         ABSB = ABS( B( J, J ) )
+         ABSB = ABS( T( J, J ) )
          IF( ABSB.GT.SAFMIN ) THEN
-            SIGNBC = DCONJG( B( J, J ) / ABSB )
-            B( J, J ) = ABSB
+            SIGNBC = DCONJG( T( J, J ) / ABSB )
+            T( J, J ) = ABSB
             IF( ILSCHR ) THEN
-               CALL ZSCAL( J-1, SIGNBC, B( 1, J ), 1 )
-               CALL ZSCAL( J, SIGNBC, A( 1, J ), 1 )
+               CALL ZSCAL( J-1, SIGNBC, T( 1, J ), 1 )
+               CALL ZSCAL( J, SIGNBC, H( 1, J ), 1 )
             ELSE
-               A( J, J ) = A( J, J )*SIGNBC
+               H( J, J ) = H( J, J )*SIGNBC
             END IF
             IF( ILZ )
      $         CALL ZSCAL( N, SIGNBC, Z( 1, J ), 1 )
          ELSE
-            B( J, J ) = CZERO
+            T( J, J ) = CZERO
          END IF
-         ALPHA( J ) = A( J, J )
-         BETA( J ) = B( J, J )
+         ALPHA( J ) = H( J, J )
+         BETA( J ) = T( J, J )
    10 CONTINUE
 *
 *     If IHI < ILO, skip QZ steps
@@ -366,22 +390,22 @@
 *        Split the matrix if possible.
 *
 *        Two tests:
-*           1: A(j,j-1)=0  or  j=ILO
-*           2: B(j,j)=0
+*           1: H(j,j-1)=0  or  j=ILO
+*           2: T(j,j)=0
 *
 *        Special case: j=ILAST
 *
          IF( ILAST.EQ.ILO ) THEN
             GO TO 60
          ELSE
-            IF( ABS1( A( ILAST, ILAST-1 ) ).LE.ATOL ) THEN
-               A( ILAST, ILAST-1 ) = CZERO
+            IF( ABS1( H( ILAST, ILAST-1 ) ).LE.ATOL ) THEN
+               H( ILAST, ILAST-1 ) = CZERO
                GO TO 60
             END IF
          END IF
 *
-         IF( ABS( B( ILAST, ILAST ) ).LE.BTOL ) THEN
-            B( ILAST, ILAST ) = CZERO
+         IF( ABS( T( ILAST, ILAST ) ).LE.BTOL ) THEN
+            T( ILAST, ILAST ) = CZERO
             GO TO 50
          END IF
 *
@@ -389,30 +413,30 @@
 *
          DO 40 J = ILAST - 1, ILO, -1
 *
-*           Test 1: for A(j,j-1)=0 or j=ILO
+*           Test 1: for H(j,j-1)=0 or j=ILO
 *
             IF( J.EQ.ILO ) THEN
                ILAZRO = .TRUE.
             ELSE
-               IF( ABS1( A( J, J-1 ) ).LE.ATOL ) THEN
-                  A( J, J-1 ) = CZERO
+               IF( ABS1( H( J, J-1 ) ).LE.ATOL ) THEN
+                  H( J, J-1 ) = CZERO
                   ILAZRO = .TRUE.
                ELSE
                   ILAZRO = .FALSE.
                END IF
             END IF
 *
-*           Test 2: for B(j,j)=0
+*           Test 2: for T(j,j)=0
 *
-            IF( ABS( B( J, J ) ).LT.BTOL ) THEN
-               B( J, J ) = CZERO
+            IF( ABS( T( J, J ) ).LT.BTOL ) THEN
+               T( J, J ) = CZERO
 *
 *              Test 1a: Check for 2 consecutive small subdiagonals in A
 *
                ILAZR2 = .FALSE.
                IF( .NOT.ILAZRO ) THEN
-                  IF( ABS1( A( J, J-1 ) )*( ASCALE*ABS1( A( J+1,
-     $                J ) ) ).LE.ABS1( A( J, J ) )*( ASCALE*ATOL ) )
+                  IF( ABS1( H( J, J-1 ) )*( ASCALE*ABS1( H( J+1,
+     $                J ) ) ).LE.ABS1( H( J, J ) )*( ASCALE*ATOL ) )
      $                ILAZR2 = .TRUE.
                END IF
 *
@@ -424,21 +448,21 @@
 *
                IF( ILAZRO .OR. ILAZR2 ) THEN
                   DO 20 JCH = J, ILAST - 1
-                     CTEMP = A( JCH, JCH )
-                     CALL ZLARTG( CTEMP, A( JCH+1, JCH ), C, S,
-     $                            A( JCH, JCH ) )
-                     A( JCH+1, JCH ) = CZERO
-                     CALL ZROT( ILASTM-JCH, A( JCH, JCH+1 ), LDA,
-     $                          A( JCH+1, JCH+1 ), LDA, C, S )
-                     CALL ZROT( ILASTM-JCH, B( JCH, JCH+1 ), LDB,
-     $                          B( JCH+1, JCH+1 ), LDB, C, S )
+                     CTEMP = H( JCH, JCH )
+                     CALL ZLARTG( CTEMP, H( JCH+1, JCH ), C, S,
+     $                            H( JCH, JCH ) )
+                     H( JCH+1, JCH ) = CZERO
+                     CALL ZROT( ILASTM-JCH, H( JCH, JCH+1 ), LDH,
+     $                          H( JCH+1, JCH+1 ), LDH, C, S )
+                     CALL ZROT( ILASTM-JCH, T( JCH, JCH+1 ), LDT,
+     $                          T( JCH+1, JCH+1 ), LDT, C, S )
                      IF( ILQ )
      $                  CALL ZROT( N, Q( 1, JCH ), 1, Q( 1, JCH+1 ), 1,
      $                             C, DCONJG( S ) )
                      IF( ILAZR2 )
-     $                  A( JCH, JCH-1 ) = A( JCH, JCH-1 )*C
+     $                  H( JCH, JCH-1 ) = H( JCH, JCH-1 )*C
                      ILAZR2 = .FALSE.
-                     IF( ABS1( B( JCH+1, JCH+1 ) ).GE.BTOL ) THEN
+                     IF( ABS1( T( JCH+1, JCH+1 ) ).GE.BTOL ) THEN
                         IF( JCH+1.GE.ILAST ) THEN
                            GO TO 60
                         ELSE
@@ -446,35 +470,35 @@
                            GO TO 70
                         END IF
                      END IF
-                     B( JCH+1, JCH+1 ) = CZERO
+                     T( JCH+1, JCH+1 ) = CZERO
    20             CONTINUE
                   GO TO 50
                ELSE
 *
-*                 Only test 2 passed -- chase the zero to B(ILAST,ILAST)
-*                 Then process as in the case B(ILAST,ILAST)=0
+*                 Only test 2 passed -- chase the zero to T(ILAST,ILAST)
+*                 Then process as in the case T(ILAST,ILAST)=0
 *
                   DO 30 JCH = J, ILAST - 1
-                     CTEMP = B( JCH, JCH+1 )
-                     CALL ZLARTG( CTEMP, B( JCH+1, JCH+1 ), C, S,
-     $                            B( JCH, JCH+1 ) )
-                     B( JCH+1, JCH+1 ) = CZERO
+                     CTEMP = T( JCH, JCH+1 )
+                     CALL ZLARTG( CTEMP, T( JCH+1, JCH+1 ), C, S,
+     $                            T( JCH, JCH+1 ) )
+                     T( JCH+1, JCH+1 ) = CZERO
                      IF( JCH.LT.ILASTM-1 )
-     $                  CALL ZROT( ILASTM-JCH-1, B( JCH, JCH+2 ), LDB,
-     $                             B( JCH+1, JCH+2 ), LDB, C, S )
-                     CALL ZROT( ILASTM-JCH+2, A( JCH, JCH-1 ), LDA,
-     $                          A( JCH+1, JCH-1 ), LDA, C, S )
+     $                  CALL ZROT( ILASTM-JCH-1, T( JCH, JCH+2 ), LDT,
+     $                             T( JCH+1, JCH+2 ), LDT, C, S )
+                     CALL ZROT( ILASTM-JCH+2, H( JCH, JCH-1 ), LDH,
+     $                          H( JCH+1, JCH-1 ), LDH, C, S )
                      IF( ILQ )
      $                  CALL ZROT( N, Q( 1, JCH ), 1, Q( 1, JCH+1 ), 1,
      $                             C, DCONJG( S ) )
-                     CTEMP = A( JCH+1, JCH )
-                     CALL ZLARTG( CTEMP, A( JCH+1, JCH-1 ), C, S,
-     $                            A( JCH+1, JCH ) )
-                     A( JCH+1, JCH-1 ) = CZERO
-                     CALL ZROT( JCH+1-IFRSTM, A( IFRSTM, JCH ), 1,
-     $                          A( IFRSTM, JCH-1 ), 1, C, S )
-                     CALL ZROT( JCH-IFRSTM, B( IFRSTM, JCH ), 1,
-     $                          B( IFRSTM, JCH-1 ), 1, C, S )
+                     CTEMP = H( JCH+1, JCH )
+                     CALL ZLARTG( CTEMP, H( JCH+1, JCH-1 ), C, S,
+     $                            H( JCH+1, JCH ) )
+                     H( JCH+1, JCH-1 ) = CZERO
+                     CALL ZROT( JCH+1-IFRSTM, H( IFRSTM, JCH ), 1,
+     $                          H( IFRSTM, JCH-1 ), 1, C, S )
+                     CALL ZROT( JCH-IFRSTM, T( IFRSTM, JCH ), 1,
+     $                          T( IFRSTM, JCH-1 ), 1, C, S )
                      IF( ILZ )
      $                  CALL ZROT( N, Z( 1, JCH ), 1, Z( 1, JCH-1 ), 1,
      $                             C, S )
@@ -498,42 +522,42 @@
          INFO = 2*N + 1
          GO TO 210
 *
-*        B(ILAST,ILAST)=0 -- clear A(ILAST,ILAST-1) to split off a
+*        T(ILAST,ILAST)=0 -- clear H(ILAST,ILAST-1) to split off a
 *        1x1 block.
 *
    50    CONTINUE
-         CTEMP = A( ILAST, ILAST )
-         CALL ZLARTG( CTEMP, A( ILAST, ILAST-1 ), C, S,
-     $                A( ILAST, ILAST ) )
-         A( ILAST, ILAST-1 ) = CZERO
-         CALL ZROT( ILAST-IFRSTM, A( IFRSTM, ILAST ), 1,
-     $              A( IFRSTM, ILAST-1 ), 1, C, S )
-         CALL ZROT( ILAST-IFRSTM, B( IFRSTM, ILAST ), 1,
-     $              B( IFRSTM, ILAST-1 ), 1, C, S )
+         CTEMP = H( ILAST, ILAST )
+         CALL ZLARTG( CTEMP, H( ILAST, ILAST-1 ), C, S,
+     $                H( ILAST, ILAST ) )
+         H( ILAST, ILAST-1 ) = CZERO
+         CALL ZROT( ILAST-IFRSTM, H( IFRSTM, ILAST ), 1,
+     $              H( IFRSTM, ILAST-1 ), 1, C, S )
+         CALL ZROT( ILAST-IFRSTM, T( IFRSTM, ILAST ), 1,
+     $              T( IFRSTM, ILAST-1 ), 1, C, S )
          IF( ILZ )
      $      CALL ZROT( N, Z( 1, ILAST ), 1, Z( 1, ILAST-1 ), 1, C, S )
 *
-*        A(ILAST,ILAST-1)=0 -- Standardize B, set ALPHA and BETA
+*        H(ILAST,ILAST-1)=0 -- Standardize B, set ALPHA and BETA
 *
    60    CONTINUE
-         ABSB = ABS( B( ILAST, ILAST ) )
+         ABSB = ABS( T( ILAST, ILAST ) )
          IF( ABSB.GT.SAFMIN ) THEN
-            SIGNBC = DCONJG( B( ILAST, ILAST ) / ABSB )
-            B( ILAST, ILAST ) = ABSB
+            SIGNBC = DCONJG( T( ILAST, ILAST ) / ABSB )
+            T( ILAST, ILAST ) = ABSB
             IF( ILSCHR ) THEN
-               CALL ZSCAL( ILAST-IFRSTM, SIGNBC, B( IFRSTM, ILAST ), 1 )
-               CALL ZSCAL( ILAST+1-IFRSTM, SIGNBC, A( IFRSTM, ILAST ),
+               CALL ZSCAL( ILAST-IFRSTM, SIGNBC, T( IFRSTM, ILAST ), 1 )
+               CALL ZSCAL( ILAST+1-IFRSTM, SIGNBC, H( IFRSTM, ILAST ),
      $                     1 )
             ELSE
-               A( ILAST, ILAST ) = A( ILAST, ILAST )*SIGNBC
+               H( ILAST, ILAST ) = H( ILAST, ILAST )*SIGNBC
             END IF
             IF( ILZ )
      $         CALL ZSCAL( N, SIGNBC, Z( 1, ILAST ), 1 )
          ELSE
-            B( ILAST, ILAST ) = CZERO
+            T( ILAST, ILAST ) = CZERO
          END IF
-         ALPHA( ILAST ) = A( ILAST, ILAST )
-         BETA( ILAST ) = B( ILAST, ILAST )
+         ALPHA( ILAST ) = H( ILAST, ILAST )
+         BETA( ILAST ) = T( ILAST, ILAST )
 *
 *        Go to next block -- exit if finished.
 *
@@ -566,7 +590,7 @@
 *        Compute the Shift.
 *
 *        At this point, IFIRST < ILAST, and the diagonal elements of
-*        B(IFIRST:ILAST,IFIRST,ILAST) are larger than BTOL (in
+*        T(IFIRST:ILAST,IFIRST,ILAST) are larger than BTOL (in
 *        magnitude)
 *
          IF( ( IITER / 10 )*10.NE.IITER ) THEN
@@ -578,33 +602,33 @@
 *           We factor B as U*D, where U has unit diagonals, and
 *           compute (A*inv(D))*inv(U).
 *
-            U12 = ( BSCALE*B( ILAST-1, ILAST ) ) /
-     $            ( BSCALE*B( ILAST, ILAST ) )
-            AD11 = ( ASCALE*A( ILAST-1, ILAST-1 ) ) /
-     $             ( BSCALE*B( ILAST-1, ILAST-1 ) )
-            AD21 = ( ASCALE*A( ILAST, ILAST-1 ) ) /
-     $             ( BSCALE*B( ILAST-1, ILAST-1 ) )
-            AD12 = ( ASCALE*A( ILAST-1, ILAST ) ) /
-     $             ( BSCALE*B( ILAST, ILAST ) )
-            AD22 = ( ASCALE*A( ILAST, ILAST ) ) /
-     $             ( BSCALE*B( ILAST, ILAST ) )
+            U12 = ( BSCALE*T( ILAST-1, ILAST ) ) /
+     $            ( BSCALE*T( ILAST, ILAST ) )
+            AD11 = ( ASCALE*H( ILAST-1, ILAST-1 ) ) /
+     $             ( BSCALE*T( ILAST-1, ILAST-1 ) )
+            AD21 = ( ASCALE*H( ILAST, ILAST-1 ) ) /
+     $             ( BSCALE*T( ILAST-1, ILAST-1 ) )
+            AD12 = ( ASCALE*H( ILAST-1, ILAST ) ) /
+     $             ( BSCALE*T( ILAST, ILAST ) )
+            AD22 = ( ASCALE*H( ILAST, ILAST ) ) /
+     $             ( BSCALE*T( ILAST, ILAST ) )
             ABI22 = AD22 - U12*AD21
 *
-            T = HALF*( AD11+ABI22 )
-            RTDISC = SQRT( T**2+AD12*AD21-AD11*AD22 )
-            TEMP = DBLE( T-ABI22 )*DBLE( RTDISC ) +
-     $             DIMAG( T-ABI22 )*DIMAG( RTDISC )
+            T1 = HALF*( AD11+ABI22 )
+            RTDISC = SQRT( T1**2+AD12*AD21-AD11*AD22 )
+            TEMP = DBLE( T1-ABI22 )*DBLE( RTDISC ) +
+     $             DIMAG( T1-ABI22 )*DIMAG( RTDISC )
             IF( TEMP.LE.ZERO ) THEN
-               SHIFT = T + RTDISC
+               SHIFT = T1 + RTDISC
             ELSE
-               SHIFT = T - RTDISC
+               SHIFT = T1 - RTDISC
             END IF
          ELSE
 *
 *           Exceptional shift.  Chosen for no particularly good reason.
 *
-            ESHIFT = ESHIFT + DCONJG( ( ASCALE*A( ILAST-1, ILAST ) ) /
-     $               ( BSCALE*B( ILAST-1, ILAST-1 ) ) )
+            ESHIFT = ESHIFT + DCONJG( ( ASCALE*H( ILAST-1, ILAST ) ) /
+     $               ( BSCALE*T( ILAST-1, ILAST-1 ) ) )
             SHIFT = ESHIFT
          END IF
 *
@@ -612,46 +636,46 @@
 *
          DO 80 J = ILAST - 1, IFIRST + 1, -1
             ISTART = J
-            CTEMP = ASCALE*A( J, J ) - SHIFT*( BSCALE*B( J, J ) )
+            CTEMP = ASCALE*H( J, J ) - SHIFT*( BSCALE*T( J, J ) )
             TEMP = ABS1( CTEMP )
-            TEMP2 = ASCALE*ABS1( A( J+1, J ) )
+            TEMP2 = ASCALE*ABS1( H( J+1, J ) )
             TEMPR = MAX( TEMP, TEMP2 )
             IF( TEMPR.LT.ONE .AND. TEMPR.NE.ZERO ) THEN
                TEMP = TEMP / TEMPR
                TEMP2 = TEMP2 / TEMPR
             END IF
-            IF( ABS1( A( J, J-1 ) )*TEMP2.LE.TEMP*ATOL )
+            IF( ABS1( H( J, J-1 ) )*TEMP2.LE.TEMP*ATOL )
      $         GO TO 90
    80    CONTINUE
 *
          ISTART = IFIRST
-         CTEMP = ASCALE*A( IFIRST, IFIRST ) -
-     $           SHIFT*( BSCALE*B( IFIRST, IFIRST ) )
+         CTEMP = ASCALE*H( IFIRST, IFIRST ) -
+     $           SHIFT*( BSCALE*T( IFIRST, IFIRST ) )
    90    CONTINUE
 *
 *        Do an implicit-shift QZ sweep.
 *
 *        Initial Q
 *
-         CTEMP2 = ASCALE*A( ISTART+1, ISTART )
+         CTEMP2 = ASCALE*H( ISTART+1, ISTART )
          CALL ZLARTG( CTEMP, CTEMP2, C, S, CTEMP3 )
 *
 *        Sweep
 *
          DO 150 J = ISTART, ILAST - 1
             IF( J.GT.ISTART ) THEN
-               CTEMP = A( J, J-1 )
-               CALL ZLARTG( CTEMP, A( J+1, J-1 ), C, S, A( J, J-1 ) )
-               A( J+1, J-1 ) = CZERO
+               CTEMP = H( J, J-1 )
+               CALL ZLARTG( CTEMP, H( J+1, J-1 ), C, S, H( J, J-1 ) )
+               H( J+1, J-1 ) = CZERO
             END IF
 *
             DO 100 JC = J, ILASTM
-               CTEMP = C*A( J, JC ) + S*A( J+1, JC )
-               A( J+1, JC ) = -DCONJG( S )*A( J, JC ) + C*A( J+1, JC )
-               A( J, JC ) = CTEMP
-               CTEMP2 = C*B( J, JC ) + S*B( J+1, JC )
-               B( J+1, JC ) = -DCONJG( S )*B( J, JC ) + C*B( J+1, JC )
-               B( J, JC ) = CTEMP2
+               CTEMP = C*H( J, JC ) + S*H( J+1, JC )
+               H( J+1, JC ) = -DCONJG( S )*H( J, JC ) + C*H( J+1, JC )
+               H( J, JC ) = CTEMP
+               CTEMP2 = C*T( J, JC ) + S*T( J+1, JC )
+               T( J+1, JC ) = -DCONJG( S )*T( J, JC ) + C*T( J+1, JC )
+               T( J, JC ) = CTEMP2
   100       CONTINUE
             IF( ILQ ) THEN
                DO 110 JR = 1, N
@@ -661,19 +685,19 @@
   110          CONTINUE
             END IF
 *
-            CTEMP = B( J+1, J+1 )
-            CALL ZLARTG( CTEMP, B( J+1, J ), C, S, B( J+1, J+1 ) )
-            B( J+1, J ) = CZERO
+            CTEMP = T( J+1, J+1 )
+            CALL ZLARTG( CTEMP, T( J+1, J ), C, S, T( J+1, J+1 ) )
+            T( J+1, J ) = CZERO
 *
             DO 120 JR = IFRSTM, MIN( J+2, ILAST )
-               CTEMP = C*A( JR, J+1 ) + S*A( JR, J )
-               A( JR, J ) = -DCONJG( S )*A( JR, J+1 ) + C*A( JR, J )
-               A( JR, J+1 ) = CTEMP
+               CTEMP = C*H( JR, J+1 ) + S*H( JR, J )
+               H( JR, J ) = -DCONJG( S )*H( JR, J+1 ) + C*H( JR, J )
+               H( JR, J+1 ) = CTEMP
   120       CONTINUE
             DO 130 JR = IFRSTM, J
-               CTEMP = C*B( JR, J+1 ) + S*B( JR, J )
-               B( JR, J ) = -DCONJG( S )*B( JR, J+1 ) + C*B( JR, J )
-               B( JR, J+1 ) = CTEMP
+               CTEMP = C*T( JR, J+1 ) + S*T( JR, J )
+               T( JR, J ) = -DCONJG( S )*T( JR, J+1 ) + C*T( JR, J )
+               T( JR, J+1 ) = CTEMP
   130       CONTINUE
             IF( ILZ ) THEN
                DO 140 JR = 1, N
@@ -701,23 +725,23 @@
 *     Set Eigenvalues 1:ILO-1
 *
       DO 200 J = 1, ILO - 1
-         ABSB = ABS( B( J, J ) )
+         ABSB = ABS( T( J, J ) )
          IF( ABSB.GT.SAFMIN ) THEN
-            SIGNBC = DCONJG( B( J, J ) / ABSB )
-            B( J, J ) = ABSB
+            SIGNBC = DCONJG( T( J, J ) / ABSB )
+            T( J, J ) = ABSB
             IF( ILSCHR ) THEN
-               CALL ZSCAL( J-1, SIGNBC, B( 1, J ), 1 )
-               CALL ZSCAL( J, SIGNBC, A( 1, J ), 1 )
+               CALL ZSCAL( J-1, SIGNBC, T( 1, J ), 1 )
+               CALL ZSCAL( J, SIGNBC, H( 1, J ), 1 )
             ELSE
-               A( J, J ) = A( J, J )*SIGNBC
+               H( J, J ) = H( J, J )*SIGNBC
             END IF
             IF( ILZ )
      $         CALL ZSCAL( N, SIGNBC, Z( 1, J ), 1 )
          ELSE
-            B( J, J ) = CZERO
+            T( J, J ) = CZERO
          END IF
-         ALPHA( J ) = A( J, J )
-         BETA( J ) = B( J, J )
+         ALPHA( J ) = H( J, J )
+         BETA( J ) = T( J, J )
   200 CONTINUE
 *
 *     Normal Termination

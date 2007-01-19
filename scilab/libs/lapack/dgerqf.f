@@ -1,9 +1,8 @@
       SUBROUTINE DGERQF( M, N, A, LDA, TAU, WORK, LWORK, INFO )
 *
-*  -- LAPACK routine (version 3.0) --
-*     Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
-*     Courant Institute, Argonne National Lab, and Rice University
-*     June 30, 1999
+*  -- LAPACK routine (version 3.1) --
+*     Univ. of Tennessee, Univ. of California Berkeley and NAG Ltd..
+*     November 2006
 *
 *     .. Scalar Arguments ..
       INTEGER            INFO, LDA, LWORK, M, N
@@ -45,7 +44,7 @@
 *          The scalar factors of the elementary reflectors (see Further
 *          Details).
 *
-*  WORK    (workspace/output) DOUBLE PRECISION array, dimension (LWORK)
+*  WORK    (workspace/output) DOUBLE PRECISION array, dimension (MAX(1,LWORK))
 *          On exit, if INFO = 0, WORK(1) returns the optimal LWORK.
 *
 *  LWORK   (input) INTEGER
@@ -99,9 +98,6 @@
 *     Test the input arguments
 *
       INFO = 0
-      NB = ILAENV( 1, 'DGERQF', ' ', M, N, -1, -1 )
-      LWKOPT = M*NB
-      WORK( 1 ) = LWKOPT
       LQUERY = ( LWORK.EQ.-1 )
       IF( M.LT.0 ) THEN
          INFO = -1
@@ -109,9 +105,23 @@
          INFO = -2
       ELSE IF( LDA.LT.MAX( 1, M ) ) THEN
          INFO = -4
-      ELSE IF( LWORK.LT.MAX( 1, M ) .AND. .NOT.LQUERY ) THEN
-         INFO = -7
       END IF
+*
+      IF( INFO.EQ.0 ) THEN
+         K = MIN( M, N )
+         IF( K.EQ.0 ) THEN
+            LWKOPT = 1
+         ELSE
+            NB = ILAENV( 1, 'DGERQF', ' ', M, N, -1, -1 )
+            LWKOPT = M*NB
+         END IF
+         WORK( 1 ) = LWKOPT
+*
+         IF( LWORK.LT.MAX( 1, M ) .AND. .NOT.LQUERY ) THEN
+            INFO = -7
+         END IF
+      END IF
+*
       IF( INFO.NE.0 ) THEN
          CALL XERBLA( 'DGERQF', -INFO )
          RETURN
@@ -121,9 +131,7 @@
 *
 *     Quick return if possible
 *
-      K = MIN( M, N )
       IF( K.EQ.0 ) THEN
-         WORK( 1 ) = 1
          RETURN
       END IF
 *

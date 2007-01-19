@@ -2,10 +2,9 @@
      $                   LDD, E, LDE, F, LDF, SCALE, DIF, WORK, LWORK,
      $                   IWORK, INFO )
 *
-*  -- LAPACK routine (version 3.0) --
-*     Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
-*     Courant Institute, Argonne National Lab, and Rice University
-*     June 30, 1999
+*  -- LAPACK routine (version 3.1) --
+*     Univ. of Tennessee, Univ. of California Berkeley and NAG Ltd..
+*     November 2006
 *
 *     .. Scalar Arguments ..
       CHARACTER          TRANS
@@ -149,13 +148,12 @@
 *          solutions R and L, respectively, to the homogeneous system
 *          with C = F = 0. Normally, SCALE = 1.
 *
-*  WORK    (workspace/output) DOUBLE PRECISION array, dimension (LWORK)
-*          If IJOB = 0, WORK is not referenced.  Otherwise,
-*          on exit, if INFO = 0, WORK(1) returns the optimal LWORK.
+*  WORK    (workspace/output) DOUBLE PRECISION array, dimension (MAX(1,LWORK))
+*          On exit, if INFO = 0, WORK(1) returns the optimal LWORK.
 *
 *  LWORK   (input) INTEGER
 *          The dimension of the array WORK. LWORK > = 1.
-*          If IJOB = 1 or 2 and TRANS = 'N', LWORK >= 2*M*N.
+*          If IJOB = 1 or 2 and TRANS = 'N', LWORK >= max(1,2*M*N).
 *
 *          If LWORK = -1, then a workspace query is assumed; the routine
 *          only calculates the optimal size of the WORK array, returns
@@ -194,6 +192,8 @@
 *      July 1989, pp 745-751.
 *
 *  =====================================================================
+*  Replaced various illegal calls to DCOPY by calls to DLASET.
+*  Sven Hammarling, 1/5/02.
 *
 *     .. Parameters ..
       DOUBLE PRECISION   ZERO, ONE
@@ -211,7 +211,7 @@
       EXTERNAL           LSAME, ILAENV
 *     ..
 *     .. External Subroutines ..
-      EXTERNAL           DCOPY, DGEMM, DLACPY, DSCAL, DTGSY2, XERBLA
+      EXTERNAL           DGEMM, DLACPY, DLASET, DSCAL, DTGSY2, XERBLA
 *     ..
 *     .. Intrinsic Functions ..
       INTRINSIC          DBLE, MAX, SQRT
@@ -224,44 +224,66 @@
       NOTRAN = LSAME( TRANS, 'N' )
       LQUERY = ( LWORK.EQ.-1 )
 *
-      IF( ( IJOB.EQ.1 .OR. IJOB.EQ.2 ) .AND. NOTRAN ) THEN
-         LWMIN = MAX( 1, 2*M*N )
-      ELSE
-         LWMIN = 1
-      END IF
-*
       IF( .NOT.NOTRAN .AND. .NOT.LSAME( TRANS, 'T' ) ) THEN
          INFO = -1
-      ELSE IF( ( IJOB.LT.0 ) .OR. ( IJOB.GT.4 ) ) THEN
-         INFO = -2
-      ELSE IF( M.LE.0 ) THEN
-         INFO = -3
-      ELSE IF( N.LE.0 ) THEN
-         INFO = -4
-      ELSE IF( LDA.LT.MAX( 1, M ) ) THEN
-         INFO = -6
-      ELSE IF( LDB.LT.MAX( 1, N ) ) THEN
-         INFO = -8
-      ELSE IF( LDC.LT.MAX( 1, M ) ) THEN
-         INFO = -10
-      ELSE IF( LDD.LT.MAX( 1, M ) ) THEN
-         INFO = -12
-      ELSE IF( LDE.LT.MAX( 1, N ) ) THEN
-         INFO = -14
-      ELSE IF( LDF.LT.MAX( 1, M ) ) THEN
-         INFO = -16
-      ELSE IF( LWORK.LT.LWMIN .AND. .NOT.LQUERY ) THEN
-         INFO = -20
+      ELSE IF( NOTRAN ) THEN
+         IF( ( IJOB.LT.0 ) .OR. ( IJOB.GT.4 ) ) THEN
+            INFO = -2
+         END IF
+      END IF
+      IF( INFO.EQ.0 ) THEN
+         IF( M.LE.0 ) THEN
+            INFO = -3
+         ELSE IF( N.LE.0 ) THEN
+            INFO = -4
+         ELSE IF( LDA.LT.MAX( 1, M ) ) THEN
+            INFO = -6
+         ELSE IF( LDB.LT.MAX( 1, N ) ) THEN
+            INFO = -8
+         ELSE IF( LDC.LT.MAX( 1, M ) ) THEN
+            INFO = -10
+         ELSE IF( LDD.LT.MAX( 1, M ) ) THEN
+            INFO = -12
+         ELSE IF( LDE.LT.MAX( 1, N ) ) THEN
+            INFO = -14
+         ELSE IF( LDF.LT.MAX( 1, M ) ) THEN
+            INFO = -16
+         END IF
       END IF
 *
       IF( INFO.EQ.0 ) THEN
+         IF( NOTRAN ) THEN
+            IF( IJOB.EQ.1 .OR. IJOB.EQ.2 ) THEN
+               LWMIN = MAX( 1, 2*M*N )
+            ELSE
+               LWMIN = 1
+            END IF
+         ELSE
+            LWMIN = 1
+         END IF
          WORK( 1 ) = LWMIN
+*
+         IF( LWORK.LT.LWMIN .AND. .NOT.LQUERY ) THEN
+            INFO = -20
+         END IF
       END IF
 *
       IF( INFO.NE.0 ) THEN
          CALL XERBLA( 'DTGSYL', -INFO )
          RETURN
       ELSE IF( LQUERY ) THEN
+         RETURN
+      END IF
+*
+*     Quick return if possible
+*
+      IF( M.EQ.0 .OR. N.EQ.0 ) THEN
+         SCALE = 1
+         IF( NOTRAN ) THEN
+            IF( IJOB.NE.0 ) THEN
+               DIF = 0
+            END IF
+         END IF
          RETURN
       END IF
 *
@@ -272,14 +294,14 @@
 *
       ISOLVE = 1
       IFUNC = 0
-      IF( IJOB.GE.3 .AND. NOTRAN ) THEN
-         IFUNC = IJOB - 2
-         DO 10 J = 1, N
-            CALL DCOPY( M, ZERO, 0, C( 1, J ), 1 )
-            CALL DCOPY( M, ZERO, 0, F( 1, J ), 1 )
-   10    CONTINUE
-      ELSE IF( IJOB.GE.1 .AND. NOTRAN ) THEN
-         ISOLVE = 2
+      IF( NOTRAN ) THEN
+         IF( IJOB.GE.3 ) THEN
+            IFUNC = IJOB - 2
+            CALL DLASET( 'F', M, N, ZERO, ZERO, C, LDC )
+            CALL DLASET( 'F', M, N, ZERO, ZERO, F, LDF )
+         ELSE IF( IJOB.GE.1 ) THEN
+            ISOLVE = 2
+         END IF
       END IF
 *
       IF( ( MB.LE.1 .AND. NB.LE.1 ) .OR. ( MB.GE.M .AND. NB.GE.N ) )
@@ -304,14 +326,14 @@
             END IF
 *
             IF( ISOLVE.EQ.2 .AND. IROUND.EQ.1 ) THEN
-               IFUNC = IJOB
+               IF( NOTRAN ) THEN
+                  IFUNC = IJOB
+               END IF
                SCALE2 = SCALE
                CALL DLACPY( 'F', M, N, C, LDC, WORK, M )
                CALL DLACPY( 'F', M, N, F, LDF, WORK( M*N+1 ), M )
-               DO 20 J = 1, N
-                  CALL DCOPY( M, ZERO, 0, C( 1, J ), 1 )
-                  CALL DCOPY( M, ZERO, 0, F( 1, J ), 1 )
-   20          CONTINUE
+               CALL DLASET( 'F', M, N, ZERO, ZERO, C, LDC )
+               CALL DLASET( 'F', M, N, ZERO, ZERO, F, LDF )
             ELSE IF( ISOLVE.EQ.2 .AND. IROUND.EQ.2 ) THEN
                CALL DLACPY( 'F', M, N, WORK, M, C, LDC )
                CALL DLACPY( 'F', M, N, WORK( M*N+1 ), M, F, LDF )
@@ -444,14 +466,14 @@
                END IF
             END IF
             IF( ISOLVE.EQ.2 .AND. IROUND.EQ.1 ) THEN
-               IFUNC = IJOB
+               IF( NOTRAN ) THEN
+                  IFUNC = IJOB
+               END IF
                SCALE2 = SCALE
                CALL DLACPY( 'F', M, N, C, LDC, WORK, M )
                CALL DLACPY( 'F', M, N, F, LDF, WORK( M*N+1 ), M )
-               DO 140 J = 1, N
-                  CALL DCOPY( M, ZERO, 0, C( 1, J ), 1 )
-                  CALL DCOPY( M, ZERO, 0, F( 1, J ), 1 )
-  140          CONTINUE
+               CALL DLASET( 'F', M, N, ZERO, ZERO, C, LDC )
+               CALL DLASET( 'F', M, N, ZERO, ZERO, F, LDF )
             ELSE IF( ISOLVE.EQ.2 .AND. IROUND.EQ.2 ) THEN
                CALL DLACPY( 'F', M, N, WORK, M, C, LDC )
                CALL DLACPY( 'F', M, N, WORK( M*N+1 ), M, F, LDF )

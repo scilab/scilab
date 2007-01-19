@@ -1,11 +1,10 @@
-      SUBROUTINE ZGGES( JOBVSL, JOBVSR, SORT, DELCTG, N, A, LDA, B, LDB,
+      SUBROUTINE ZGGES( JOBVSL, JOBVSR, SORT, SELCTG, N, A, LDA, B, LDB,
      $                  SDIM, ALPHA, BETA, VSL, LDVSL, VSR, LDVSR, WORK,
      $                  LWORK, RWORK, BWORK, INFO )
 *
-*  -- LAPACK driver routine (version 3.0) --
-*     Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
-*     Courant Institute, Argonne National Lab, and Rice University
-*     June 30, 1999
+*  -- LAPACK driver routine (version 3.1) --
+*     Univ. of Tennessee, Univ. of California Berkeley and NAG Ltd..
+*     November 2006
 *
 *     .. Scalar Arguments ..
       CHARACTER          JOBVSL, JOBVSR, SORT
@@ -19,8 +18,8 @@
      $                   WORK( * )
 *     ..
 *     .. Function Arguments ..
-      LOGICAL            DELCTG
-      EXTERNAL           DELCTG
+      LOGICAL            SELCTG
+      EXTERNAL           SELCTG
 *     ..
 *
 *  Purpose
@@ -68,18 +67,18 @@
 *          Specifies whether or not to order the eigenvalues on the
 *          diagonal of the generalized Schur form.
 *          = 'N':  Eigenvalues are not ordered;
-*          = 'S':  Eigenvalues are ordered (see DELZTG).
+*          = 'S':  Eigenvalues are ordered (see SELCTG).
 *
-*  DELZTG  (input) LOGICAL FUNCTION of two COMPLEX*16 arguments
-*          DELZTG must be declared EXTERNAL in the calling subroutine.
-*          If SORT = 'N', DELZTG is not referenced.
-*          If SORT = 'S', DELZTG is used to select eigenvalues to sort
+*  SELCTG  (external procedure) LOGICAL FUNCTION of two COMPLEX*16 arguments
+*          SELCTG must be declared EXTERNAL in the calling subroutine.
+*          If SORT = 'N', SELCTG is not referenced.
+*          If SORT = 'S', SELCTG is used to select eigenvalues to sort
 *          to the top left of the Schur form.
 *          An eigenvalue ALPHA(j)/BETA(j) is selected if
-*          DELZTG(ALPHA(j),BETA(j)) is true.
+*          SELCTG(ALPHA(j),BETA(j)) is true.
 *
 *          Note that a selected complex eigenvalue may no longer satisfy
-*          DELZTG(ALPHA(j),BETA(j)) = .TRUE. after ordering, since
+*          SELCTG(ALPHA(j),BETA(j)) = .TRUE. after ordering, since
 *          ordering may change the value of complex eigenvalues
 *          (especially if the eigenvalue is ill-conditioned), in this
 *          case INFO is set to N+2 (See INFO below).
@@ -106,7 +105,7 @@
 *  SDIM    (output) INTEGER
 *          If SORT = 'N', SDIM = 0.
 *          If SORT = 'S', SDIM = number of eigenvalues (after sorting)
-*          for which DELZTG is true.
+*          for which SELCTG is true.
 *
 *  ALPHA   (output) COMPLEX*16 array, dimension (N)
 *  BETA    (output) COMPLEX*16 array, dimension (N)
@@ -138,7 +137,7 @@
 *          The leading dimension of the matrix VSR. LDVSR >= 1, and
 *          if JOBVSR = 'V', LDVSR >= N.
 *
-*  WORK    (workspace/output) COMPLEX*16 array, dimension (LWORK)
+*  WORK    (workspace/output) COMPLEX*16 array, dimension (MAX(1,LWORK))
 *          On exit, if INFO = 0, WORK(1) returns the optimal LWORK.
 *
 *  LWORK   (input) INTEGER
@@ -166,7 +165,7 @@
 *                =N+2: after reordering, roundoff changed values of
 *                      some complex eigenvalues so that leading
 *                      eigenvalues in the Generalized Schur form no
-*                      longer satisfy DELZTG=.TRUE.  This could also
+*                      longer satisfy SELCTG=.TRUE.  This could also
 *                      be caused due to scaling.
 *                =N+3: reordering falied in ZTGSEN.
 *
@@ -193,8 +192,9 @@
       DOUBLE PRECISION   DIF( 2 )
 *     ..
 *     .. External Subroutines ..
-      EXTERNAL           XERBLA, ZGEQRF, ZGGBAK, ZGGBAL, ZGGHRD, ZHGEQZ,
-     $                   ZLACPY, ZLASCL, ZLASET, ZTGSEN, ZUNGQR, ZUNMQR
+      EXTERNAL           DLABAD, XERBLA, ZGEQRF, ZGGBAK, ZGGBAL, ZGGHRD,
+     $                   ZHGEQZ, ZLACPY, ZLASCL, ZLASET, ZTGSEN, ZUNGQR,
+     $                   ZUNMQR
 *     ..
 *     .. External Functions ..
       LOGICAL            LSAME
@@ -262,19 +262,20 @@
 *       NB refers to the optimal block size for the immediately
 *       following subroutine, as returned by ILAENV.)
 *
-      LWKMIN = 1
-      IF( INFO.EQ.0 .AND. ( LWORK.GE.1 .OR. LQUERY ) ) THEN
+      IF( INFO.EQ.0 ) THEN
          LWKMIN = MAX( 1, 2*N )
-         LWKOPT = N + N*ILAENV( 1, 'ZGEQRF', ' ', N, 1, N, 0 )
+         LWKOPT = MAX( 1, N + N*ILAENV( 1, 'ZGEQRF', ' ', N, 1, N, 0 ) )
+         LWKOPT = MAX( LWKOPT, N +
+     $                 N*ILAENV( 1, 'ZUNMQR', ' ', N, 1, N, -1 ) )
          IF( ILVSL ) THEN
-            LWKOPT = MAX( LWKOPT, N+N*ILAENV( 1, 'ZUNGQR', ' ', N, 1, N,
-     $               -1 ) )
+            LWKOPT = MAX( LWKOPT, N +
+     $                    N*ILAENV( 1, 'ZUNGQR', ' ', N, 1, N, -1 ) )
          END IF
          WORK( 1 ) = LWKOPT
-      END IF
 *
-      IF( LWORK.LT.LWKMIN .AND. .NOT.LQUERY )
-     $   INFO = -18
+         IF( LWORK.LT.LWKMIN .AND. .NOT.LQUERY )
+     $      INFO = -18
+      END IF
 *
       IF( INFO.NE.0 ) THEN
          CALL XERBLA( 'ZGGES ', -INFO )
@@ -285,7 +286,6 @@
 *
 *     Quick return if possible
 *
-      WORK( 1 ) = LWKOPT
       IF( N.EQ.0 ) THEN
          SDIM = 0
          RETURN
@@ -361,8 +361,10 @@
 *
       IF( ILVSL ) THEN
          CALL ZLASET( 'Full', N, N, CZERO, CONE, VSL, LDVSL )
-         CALL ZLACPY( 'L', IROWS-1, IROWS-1, B( ILO+1, ILO ), LDB,
-     $                VSL( ILO+1, ILO ), LDVSL )
+         IF( IROWS.GT.1 ) THEN
+            CALL ZLACPY( 'L', IROWS-1, IROWS-1, B( ILO+1, ILO ), LDB,
+     $                   VSL( ILO+1, ILO ), LDVSL )
+         END IF
          CALL ZUNGQR( IROWS, IROWS, IROWS, VSL( ILO, ILO ), LDVSL,
      $                WORK( ITAU ), WORK( IWRK ), LWORK+1-IWRK, IERR )
       END IF
@@ -414,7 +416,7 @@
 *        Select eigenvalues
 *
          DO 10 I = 1, N
-            BWORK( I ) = DELCTG( ALPHA( I ), BETA( I ) )
+            BWORK( I ) = SELCTG( ALPHA( I ), BETA( I ) )
    10    CONTINUE
 *
          CALL ZTGSEN( 0, ILVSL, ILVSR, BWORK, N, A, LDA, B, LDB, ALPHA,
@@ -454,7 +456,7 @@
          LASTSL = .TRUE.
          SDIM = 0
          DO 20 I = 1, N
-            CURSL = DELCTG( ALPHA( I ), BETA( I ) )
+            CURSL = SELCTG( ALPHA( I ), BETA( I ) )
             IF( CURSL )
      $         SDIM = SDIM + 1
             IF( CURSL .AND. .NOT.LASTSL )

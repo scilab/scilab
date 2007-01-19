@@ -1,10 +1,9 @@
       SUBROUTINE DLAQP2( M, N, OFFSET, A, LDA, JPVT, TAU, VN1, VN2,
      $                   WORK )
 *
-*  -- LAPACK auxiliary routine (version 3.0) --
-*     Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
-*     Courant Institute, Argonne National Lab, and Rice University
-*     June 30, 1999
+*  -- LAPACK auxiliary routine (version 3.1) --
+*     Univ. of Tennessee, Univ. of California Berkeley and NAG Ltd..
+*     November 2006
 *
 *     .. Scalar Arguments ..
       INTEGER            LDA, M, N, OFFSET
@@ -37,7 +36,7 @@
 *
 *  A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
 *          On entry, the M-by-N matrix A.
-*          On exit, the upper triangle of block A(OFFSET+1:M,1:N) is
+*          On exit, the upper triangle of block A(OFFSET+1:M,1:N) is 
 *          the triangular factor obtained; the elements in block
 *          A(OFFSET+1:M,1:N) below the diagonal, together with the
 *          array TAU, represent the orthogonal matrix Q as a product of
@@ -72,6 +71,11 @@
 *    G. Quintana-Orti, Depto. de Informatica, Universidad Jaime I, Spain
 *    X. Sun, Computer Science Dept., Duke University, USA
 *
+*  Partial column norm updating strategy modified by
+*    Z. Drmac and Z. Bujanovic, Dept. of Mathematics,
+*    University of Zagreb, Croatia.
+*    June 2006.
+*  For more details see LAPACK Working Note 176.
 *  =====================================================================
 *
 *     .. Parameters ..
@@ -80,7 +84,7 @@
 *     ..
 *     .. Local Scalars ..
       INTEGER            I, ITEMP, J, MN, OFFPI, PVT
-      DOUBLE PRECISION   AII, TEMP, TEMP2
+      DOUBLE PRECISION   AII, TEMP, TEMP2, TOL3Z
 *     ..
 *     .. External Subroutines ..
       EXTERNAL           DLARF, DLARFG, DSWAP
@@ -90,12 +94,13 @@
 *     ..
 *     .. External Functions ..
       INTEGER            IDAMAX
-      DOUBLE PRECISION   DNRM2
-      EXTERNAL           IDAMAX, DNRM2
+      DOUBLE PRECISION   DLAMCH, DNRM2
+      EXTERNAL           IDAMAX, DLAMCH, DNRM2
 *     ..
 *     .. Executable Statements ..
 *
       MN = MIN( M-OFFSET, N )
+      TOL3Z = SQRT(DLAMCH('Epsilon'))
 *
 *     Compute factorization.
 *
@@ -140,10 +145,14 @@
 *
          DO 10 J = I + 1, N
             IF( VN1( J ).NE.ZERO ) THEN
+*
+*              NOTE: The following 4 lines follow from the analysis in
+*              Lapack Working Note 176.
+*
                TEMP = ONE - ( ABS( A( OFFPI, J ) ) / VN1( J ) )**2
                TEMP = MAX( TEMP, ZERO )
-               TEMP2 = ONE + 0.05D0*TEMP*( VN1( J ) / VN2( J ) )**2
-               IF( TEMP2.EQ.ONE ) THEN
+               TEMP2 = TEMP*( VN1( J ) / VN2( J ) )**2
+               IF( TEMP2 .LE. TOL3Z ) THEN
                   IF( OFFPI.LT.M ) THEN
                      VN1( J ) = DNRM2( M-OFFPI, A( OFFPI+1, J ), 1 )
                      VN2( J ) = VN1( J )

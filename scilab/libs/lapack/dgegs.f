@@ -2,10 +2,9 @@
      $                  ALPHAI, BETA, VSL, LDVSL, VSR, LDVSR, WORK,
      $                  LWORK, INFO )
 *
-*  -- LAPACK driver routine (version 3.0) --
-*     Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
-*     Courant Institute, Argonne National Lab, and Rice University
-*     June 30, 1999
+*  -- LAPACK driver routine (version 3.1) --
+*     Univ. of Tennessee, Univ. of California Berkeley and NAG Ltd..
+*     November 2006
 *
 *     .. Scalar Arguments ..
       CHARACTER          JOBVSL, JOBVSR
@@ -22,105 +21,75 @@
 *
 *  This routine is deprecated and has been replaced by routine DGGES.
 *
-*  DGEGS computes for a pair of N-by-N real nonsymmetric matrices A, B:
-*  the generalized eigenvalues (alphar +/- alphai*i, beta), the real
-*  Schur form (A, B), and optionally left and/or right Schur vectors
-*  (VSL and VSR).
+*  DGEGS computes the eigenvalues, real Schur form, and, optionally,
+*  left and or/right Schur vectors of a real matrix pair (A,B).
+*  Given two square matrices A and B, the generalized real Schur
+*  factorization has the form
 *
-*  (If only the generalized eigenvalues are needed, use the driver DGEGV
-*  instead.)
+*    A = Q*S*Z**T,  B = Q*T*Z**T
 *
-*  A generalized eigenvalue for a pair of matrices (A,B) is, roughly
-*  speaking, a scalar w or a ratio  alpha/beta = w, such that  A - w*B
-*  is singular.  It is usually represented as the pair (alpha,beta),
-*  as there is a reasonable interpretation for beta=0, and even for
-*  both being zero.  A good beginning reference is the book, "Matrix
-*  Computations", by G. Golub & C. van Loan (Johns Hopkins U. Press)
+*  where Q and Z are orthogonal matrices, T is upper triangular, and S
+*  is an upper quasi-triangular matrix with 1-by-1 and 2-by-2 diagonal
+*  blocks, the 2-by-2 blocks corresponding to complex conjugate pairs
+*  of eigenvalues of (A,B).  The columns of Q are the left Schur vectors
+*  and the columns of Z are the right Schur vectors.
 *
-*  The (generalized) Schur form of a pair of matrices is the result of
-*  multiplying both matrices on the left by one orthogonal matrix and
-*  both on the right by another orthogonal matrix, these two orthogonal
-*  matrices being chosen so as to bring the pair of matrices into
-*  (real) Schur form.
-*
-*  A pair of matrices A, B is in generalized real Schur form if B is
-*  upper triangular with non-negative diagonal and A is block upper
-*  triangular with 1-by-1 and 2-by-2 blocks.  1-by-1 blocks correspond
-*  to real generalized eigenvalues, while 2-by-2 blocks of A will be
-*  "standardized" by making the corresponding elements of B have the
-*  form:
-*          [  a  0  ]
-*          [  0  b  ]
-*
-*  and the pair of corresponding 2-by-2 blocks in A and B will
-*  have a complex conjugate pair of generalized eigenvalues.
-*
-*  The left and right Schur vectors are the columns of VSL and VSR,
-*  respectively, where VSL and VSR are the orthogonal matrices
-*  which reduce A and B to Schur form:
-*
-*  Schur form of (A,B) = ( (VSL)**T A (VSR), (VSL)**T B (VSR) )
+*  If only the eigenvalues of (A,B) are needed, the driver routine
+*  DGEGV should be used instead.  See DGEGV for a description of the
+*  eigenvalues of the generalized nonsymmetric eigenvalue problem
+*  (GNEP).
 *
 *  Arguments
 *  =========
 *
 *  JOBVSL  (input) CHARACTER*1
 *          = 'N':  do not compute the left Schur vectors;
-*          = 'V':  compute the left Schur vectors.
+*          = 'V':  compute the left Schur vectors (returned in VSL).
 *
 *  JOBVSR  (input) CHARACTER*1
 *          = 'N':  do not compute the right Schur vectors;
-*          = 'V':  compute the right Schur vectors.
+*          = 'V':  compute the right Schur vectors (returned in VSR).
 *
 *  N       (input) INTEGER
 *          The order of the matrices A, B, VSL, and VSR.  N >= 0.
 *
 *  A       (input/output) DOUBLE PRECISION array, dimension (LDA, N)
-*          On entry, the first of the pair of matrices whose generalized
-*          eigenvalues and (optionally) Schur vectors are to be
-*          computed.
-*          On exit, the generalized Schur form of A.
-*          Note: to avoid overflow, the Frobenius norm of the matrix
-*          A should be less than the overflow threshold.
+*          On entry, the matrix A.
+*          On exit, the upper quasi-triangular matrix S from the
+*          generalized real Schur factorization.
 *
 *  LDA     (input) INTEGER
 *          The leading dimension of A.  LDA >= max(1,N).
 *
 *  B       (input/output) DOUBLE PRECISION array, dimension (LDB, N)
-*          On entry, the second of the pair of matrices whose
-*          generalized eigenvalues and (optionally) Schur vectors are
-*          to be computed.
-*          On exit, the generalized Schur form of B.
-*          Note: to avoid overflow, the Frobenius norm of the matrix
-*          B should be less than the overflow threshold.
+*          On entry, the matrix B.
+*          On exit, the upper triangular matrix T from the generalized
+*          real Schur factorization.
 *
 *  LDB     (input) INTEGER
 *          The leading dimension of B.  LDB >= max(1,N).
 *
 *  ALPHAR  (output) DOUBLE PRECISION array, dimension (N)
-*  ALPHAI  (output) DOUBLE PRECISION array, dimension (N)
-*  BETA    (output) DOUBLE PRECISION array, dimension (N)
-*          On exit, (ALPHAR(j) + ALPHAI(j)*i)/BETA(j), j=1,...,N, will
-*          be the generalized eigenvalues.  ALPHAR(j) + ALPHAI(j)*i,
-*          j=1,...,N  and  BETA(j),j=1,...,N  are the diagonals of the
-*          complex Schur form (A,B) that would result if the 2-by-2
-*          diagonal blocks of the real Schur form of (A,B) were further
-*          reduced to triangular form using 2-by-2 complex unitary
-*          transformations.  If ALPHAI(j) is zero, then the j-th
-*          eigenvalue is real; if positive, then the j-th and (j+1)-st
-*          eigenvalues are a complex conjugate pair, with ALPHAI(j+1)
-*          negative.
+*          The real parts of each scalar alpha defining an eigenvalue
+*          of GNEP.
 *
-*          Note: the quotients ALPHAR(j)/BETA(j) and ALPHAI(j)/BETA(j)
-*          may easily over- or underflow, and BETA(j) may even be zero.
-*          Thus, the user should avoid naively computing the ratio
-*          alpha/beta.  However, ALPHAR and ALPHAI will be always less
-*          than and usually comparable with norm(A) in magnitude, and
-*          BETA always less than and usually comparable with norm(B).
+*  ALPHAI  (output) DOUBLE PRECISION array, dimension (N)
+*          The imaginary parts of each scalar alpha defining an
+*          eigenvalue of GNEP.  If ALPHAI(j) is zero, then the j-th
+*          eigenvalue is real; if positive, then the j-th and (j+1)-st
+*          eigenvalues are a complex conjugate pair, with
+*          ALPHAI(j+1) = -ALPHAI(j).
+*
+*  BETA    (output) DOUBLE PRECISION array, dimension (N)
+*          The scalars beta that define the eigenvalues of GNEP.
+*          Together, the quantities alpha = (ALPHAR(j),ALPHAI(j)) and
+*          beta = BETA(j) represent the j-th eigenvalue of the matrix
+*          pair (A,B), in one of the forms lambda = alpha/beta or
+*          mu = beta/alpha.  Since either lambda or mu may overflow,
+*          they should not, in general, be computed.
 *
 *  VSL     (output) DOUBLE PRECISION array, dimension (LDVSL,N)
-*          If JOBVSL = 'V', VSL will contain the left Schur vectors.
-*          (See "Purpose", above.)
+*          If JOBVSL = 'V', the matrix of left Schur vectors Q.
 *          Not referenced if JOBVSL = 'N'.
 *
 *  LDVSL   (input) INTEGER
@@ -128,15 +97,14 @@
 *          if JOBVSL = 'V', LDVSL >= N.
 *
 *  VSR     (output) DOUBLE PRECISION array, dimension (LDVSR,N)
-*          If JOBVSR = 'V', VSR will contain the right Schur vectors.
-*          (See "Purpose", above.)
+*          If JOBVSR = 'V', the matrix of right Schur vectors Z.
 *          Not referenced if JOBVSR = 'N'.
 *
 *  LDVSR   (input) INTEGER
 *          The leading dimension of the matrix VSR. LDVSR >= 1, and
 *          if JOBVSR = 'V', LDVSR >= N.
 *
-*  WORK    (workspace/output) DOUBLE PRECISION array, dimension (LWORK)
+*  WORK    (workspace/output) DOUBLE PRECISION array, dimension (MAX(1,LWORK))
 *          On exit, if INFO = 0, WORK(1) returns the optimal LWORK.
 *
 *  LWORK   (input) INTEGER

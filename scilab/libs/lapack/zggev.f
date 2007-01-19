@@ -1,10 +1,9 @@
       SUBROUTINE ZGGEV( JOBVL, JOBVR, N, A, LDA, B, LDB, ALPHA, BETA,
      $                  VL, LDVL, VR, LDVR, WORK, LWORK, RWORK, INFO )
 *
-*  -- LAPACK driver routine (version 3.0) --
-*     Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
-*     Courant Institute, Argonne National Lab, and Rice University
-*     June 30, 1999
+*  -- LAPACK driver routine (version 3.1) --
+*     Univ. of Tennessee, Univ. of California Berkeley and NAG Ltd..
+*     November 2006
 *
 *     .. Scalar Arguments ..
       CHARACTER          JOBVL, JOBVR
@@ -86,8 +85,8 @@
 *          If JOBVL = 'V', the left generalized eigenvectors u(j) are
 *          stored one after another in the columns of VL, in the same
 *          order as their eigenvalues.
-*          Each eigenvector will be scaled so the largest component
-*          will have abs(real part) + abs(imag. part) = 1.
+*          Each eigenvector is scaled so the largest component has
+*          abs(real part) + abs(imag. part) = 1.
 *          Not referenced if JOBVL = 'N'.
 *
 *  LDVL    (input) INTEGER
@@ -98,15 +97,15 @@
 *          If JOBVR = 'V', the right generalized eigenvectors v(j) are
 *          stored one after another in the columns of VR, in the same
 *          order as their eigenvalues.
-*          Each eigenvector will be scaled so the largest component
-*          will have abs(real part) + abs(imag. part) = 1.
+*          Each eigenvector is scaled so the largest component has
+*          abs(real part) + abs(imag. part) = 1.
 *          Not referenced if JOBVR = 'N'.
 *
 *  LDVR    (input) INTEGER
 *          The leading dimension of the matrix VR. LDVR >= 1, and
 *          if JOBVR = 'V', LDVR >= N.
 *
-*  WORK    (workspace/output) COMPLEX*16 array, dimension (LWORK)
+*  WORK    (workspace/output) COMPLEX*16 array, dimension (MAX(1,LWORK))
 *          On exit, if INFO = 0, WORK(1) returns the optimal LWORK.
 *
 *  LWORK   (input) INTEGER
@@ -153,8 +152,9 @@
       LOGICAL            LDUMMA( 1 )
 *     ..
 *     .. External Subroutines ..
-      EXTERNAL           XERBLA, ZGEQRF, ZGGBAK, ZGGBAL, ZGGHRD, ZHGEQZ,
-     $                   ZLACPY, ZLASCL, ZLASET, ZTGEVC, ZUNGQR, ZUNMQR
+      EXTERNAL           DLABAD, XERBLA, ZGEQRF, ZGGBAK, ZGGBAL, ZGGHRD,
+     $                   ZHGEQZ, ZLACPY, ZLASCL, ZLASET, ZTGEVC, ZUNGQR,
+     $                   ZUNMQR
 *     ..
 *     .. External Functions ..
       LOGICAL            LSAME
@@ -226,15 +226,20 @@
 *       following subroutine, as returned by ILAENV. The workspace is
 *       computed assuming ILO = 1 and IHI = N, the worst case.)
 *
-      LWKMIN = 1
-      IF( INFO.EQ.0 .AND. ( LWORK.GE.1 .OR. LQUERY ) ) THEN
-         LWKOPT = N + N*ILAENV( 1, 'ZGEQRF', ' ', N, 1, N, 0 )
+      IF( INFO.EQ.0 ) THEN
          LWKMIN = MAX( 1, 2*N )
+         LWKOPT = MAX( 1, N + N*ILAENV( 1, 'ZGEQRF', ' ', N, 1, N, 0 ) )
+         LWKOPT = MAX( LWKOPT, N +
+     $                 N*ILAENV( 1, 'ZUNMQR', ' ', N, 1, N, 0 ) )
+         IF( ILVL ) THEN
+            LWKOPT = MAX( LWKOPT, N +
+     $                    N*ILAENV( 1, 'ZUNGQR', ' ', N, 1, N, -1 ) )
+         END IF
          WORK( 1 ) = LWKOPT
-      END IF
 *
-      IF( LWORK.LT.LWKMIN .AND. .NOT.LQUERY )
-     $   INFO = -15
+         IF( LWORK.LT.LWKMIN .AND. .NOT.LQUERY )
+     $      INFO = -15
+      END IF
 *
       IF( INFO.NE.0 ) THEN
          CALL XERBLA( 'ZGGEV ', -INFO )
@@ -245,7 +250,6 @@
 *
 *     Quick return if possible
 *
-      WORK( 1 ) = LWKOPT
       IF( N.EQ.0 )
      $   RETURN
 *
@@ -321,8 +325,10 @@
 *
       IF( ILVL ) THEN
          CALL ZLASET( 'Full', N, N, CZERO, CONE, VL, LDVL )
-         CALL ZLACPY( 'L', IROWS-1, IROWS-1, B( ILO+1, ILO ), LDB,
-     $                VL( ILO+1, ILO ), LDVL )
+         IF( IROWS.GT.1 ) THEN
+            CALL ZLACPY( 'L', IROWS-1, IROWS-1, B( ILO+1, ILO ), LDB,
+     $                   VL( ILO+1, ILO ), LDVL )
+         END IF
          CALL ZUNGQR( IROWS, IROWS, IROWS, VL( ILO, ILO ), LDVL,
      $                WORK( ITAU ), WORK( IWRK ), LWORK+1-IWRK, IERR )
       END IF

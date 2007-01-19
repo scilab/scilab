@@ -2,10 +2,11 @@
      $                   ALPHA, BETA, Q, LDQ, Z, LDZ, M, PL, PR, DIF,
      $                   WORK, LWORK, IWORK, LIWORK, INFO )
 *
-*  -- LAPACK routine (version 3.0) --
-*     Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
-*     Courant Institute, Argonne National Lab, and Rice University
-*     June 30, 1999
+*  -- LAPACK routine (version 3.1) --
+*     Univ. of Tennessee, Univ. of California Berkeley and NAG Ltd..
+*     November 2006
+*
+*     Modified to call ZLACN2 in place of ZLACON, 10 Feb 03, SJH.
 *
 *     .. Scalar Arguments ..
       LOGICAL            WANTQ, WANTZ
@@ -134,7 +135,8 @@
 *          The dimension of the specified pair of left and right
 *          eigenspaces, (deflating subspaces) 0 <= M <= N.
 *
-*  PL, PR  (output) DOUBLE PRECISION
+*  PL      (output) DOUBLE PRECISION
+*  PR      (output) DOUBLE PRECISION
 *          If IJOB = 1, 4 or 5, PL, PR are lower bounds on the
 *          reciprocal  of the norm of "projections" onto left and right
 *          eigenspace with respect to the selected cluster.
@@ -147,11 +149,11 @@
 *          If IJOB = 2 or 4, DIF(1:2) are F-norm-based upper bounds on
 *          Difu and Difl. If IJOB = 3 or 5, DIF(1:2) are 1-norm-based
 *          estimates of Difu and Difl, computed using reversed
-*          communication with ZLACON.
+*          communication with ZLACN2.
 *          If M = 0 or N, DIF(1:2) = F-norm([A, B]).
 *          If IJOB = 0 or 1, DIF is not referenced.
 *
-*  WORK    (workspace/output) COMPLEX*16 array, dimension (LWORK)
+*  WORK    (workspace/output) COMPLEX*16 array, dimension (MAX(1,LWORK))
 *          IF IJOB = 0, WORK is not referenced.  Otherwise,
 *          on exit, if INFO = 0, WORK(1) returns the optimal LWORK.
 *
@@ -165,7 +167,7 @@
 *          this value as the first entry of the WORK array, and no error
 *          message related to LWORK is issued by XERBLA.
 *
-*  IWORK   (workspace/output) INTEGER, dimension (LIWORK)
+*  IWORK   (workspace/output) INTEGER array, dimension (MAX(1,LIWORK))
 *          IF IJOB = 0, IWORK is not referenced.  Otherwise,
 *          on exit, if INFO = 0, IWORK(1) returns the optimal LIWORK.
 *
@@ -332,8 +334,11 @@
      $                   N1, N2
       DOUBLE PRECISION   DSCALE, DSUM, RDSCAL, SAFMIN
 *     ..
+*     .. Local Arrays ..
+      INTEGER            ISAVE( 3 )
+*     ..
 *     .. External Subroutines ..
-      EXTERNAL           XERBLA, ZLACON, ZLACPY, ZLASSQ, ZSCAL, ZTGEXC,
+      EXTERNAL           XERBLA, ZLACN2, ZLACPY, ZLASSQ, ZSCAL, ZTGEXC,
      $                   ZTGSYL
 *     ..
 *     .. Intrinsic Functions ..
@@ -541,7 +546,7 @@
          ELSE
 *
 *           Compute 1-norm-based estimates of Difu and Difl using
-*           reversed communication with ZLACON. In each step a
+*           reversed communication with ZLACN2. In each step a
 *           generalized Sylvester equation or a transposed variant
 *           is solved.
 *
@@ -555,7 +560,8 @@
 *           1-norm-based estimate of Difu.
 *
    40       CONTINUE
-            CALL ZLACON( MN2, WORK( MN2+1 ), WORK, DIF( 1 ), KASE )
+            CALL ZLACN2( MN2, WORK( MN2+1 ), WORK, DIF( 1 ), KASE,
+     $                   ISAVE )
             IF( KASE.NE.0 ) THEN
                IF( KASE.EQ.1 ) THEN
 *
@@ -583,7 +589,8 @@
 *           1-norm-based estimate of Difl.
 *
    50       CONTINUE
-            CALL ZLACON( MN2, WORK( MN2+1 ), WORK, DIF( 2 ), KASE )
+            CALL ZLACN2( MN2, WORK( MN2+1 ), WORK, DIF( 2 ), KASE,
+     $                   ISAVE )
             IF( KASE.NE.0 ) THEN
                IF( KASE.EQ.1 ) THEN
 *

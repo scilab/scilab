@@ -1,10 +1,9 @@
       SUBROUTINE DLAQGE( M, N, A, LDA, R, C, ROWCND, COLCND, AMAX,
      $                   EQUED )
 *
-*  -- LAPACK auxiliary routine (version 3.0) --
-*     Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
-*     Courant Institute, Argonne National Lab, and Rice University
-*     February 29, 1992
+*  -- LAPACK auxiliary routine (version 3.1) --
+*     Univ. of Tennessee, Univ. of California Berkeley and NAG Ltd..
+*     November 2006
 *
 *     .. Scalar Arguments ..
       CHARACTER          EQUED
@@ -19,7 +18,7 @@
 *  =======
 *
 *  DLAQGE equilibrates a general M by N matrix A using the row and
-*  scaling factors in the vectors R and C.
+*  column scaling factors in the vectors R and C.
 *
 *  Arguments
 *  =========

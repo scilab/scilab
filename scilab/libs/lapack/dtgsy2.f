@@ -2,10 +2,9 @@
      $                   LDD, E, LDE, F, LDF, SCALE, RDSUM, RDSCAL,
      $                   IWORK, PQ, INFO )
 *
-*  -- LAPACK auxiliary routine (version 3.0) --
-*     Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
-*     Courant Institute, Argonne National Lab, and Rice University
-*     June 30, 1999
+*  -- LAPACK auxiliary routine (version 3.1) --
+*     Univ. of Tennessee, Univ. of California Berkeley and NAG Ltd..
+*     November 2006
 *
 *     .. Scalar Arguments ..
       CHARACTER          TRANS
@@ -63,7 +62,7 @@
 *  Arguments
 *  =========
 *
-*  TRANS   (input) CHARACTER
+*  TRANS   (input) CHARACTER*1
 *          = 'N', solve the generalized Sylvester equation (1).
 *          = 'T': solve the 'transposed' system (3).
 *
@@ -98,7 +97,7 @@
 *  LDB     (input) INTEGER
 *          The leading dimension of the matrix B. LDB >= max(1, N).
 *
-*  C       (input/ output) DOUBLE PRECISION array, dimension (LDC, N)
+*  C       (input/output) DOUBLE PRECISION array, dimension (LDC, N)
 *          On entry, C contains the right-hand-side of the first matrix
 *          equation in (1).
 *          On exit, if IJOB = 0, C has been overwritten by the
@@ -119,7 +118,7 @@
 *  LDE     (input) INTEGER
 *          The leading dimension of the matrix E. LDE >= max(1, N).
 *
-*  F       (input/ output) DOUBLE PRECISION array, dimension (LDF, N)
+*  F       (input/output) DOUBLE PRECISION array, dimension (LDF, N)
 *          On entry, F contains the right-hand-side of the second matrix
 *          equation in (1).
 *          On exit, if IJOB = 0, F has been overwritten by the
@@ -174,6 +173,8 @@
 *     Umea University, S-901 87 Umea, Sweden.
 *
 *  =====================================================================
+*  Replaced various illegal calls to DCOPY by calls to DLASET.
+*  Sven Hammarling, 27/5/02.
 *
 *     .. Parameters ..
       INTEGER            LDZ
@@ -197,7 +198,7 @@
 *     ..
 *     .. External Subroutines ..
       EXTERNAL           DAXPY, DCOPY, DGEMM, DGEMV, DGER, DGESC2,
-     $                   DGETC2, DLATDF, DSCAL, XERBLA
+     $                   DGETC2, DLASET, DLATDF, DSCAL, XERBLA
 *     ..
 *     .. Intrinsic Functions ..
       INTRINSIC          MAX
@@ -211,24 +212,29 @@
       NOTRAN = LSAME( TRANS, 'N' )
       IF( .NOT.NOTRAN .AND. .NOT.LSAME( TRANS, 'T' ) ) THEN
          INFO = -1
-      ELSE IF( ( IJOB.LT.0 ) .OR. ( IJOB.GT.2 ) ) THEN
-         INFO = -2
-      ELSE IF( M.LE.0 ) THEN
-         INFO = -3
-      ELSE IF( N.LE.0 ) THEN
-         INFO = -4
-      ELSE IF( LDA.LT.MAX( 1, M ) ) THEN
-         INFO = -5
-      ELSE IF( LDB.LT.MAX( 1, N ) ) THEN
-         INFO = -8
-      ELSE IF( LDC.LT.MAX( 1, M ) ) THEN
-         INFO = -10
-      ELSE IF( LDD.LT.MAX( 1, M ) ) THEN
-         INFO = -12
-      ELSE IF( LDE.LT.MAX( 1, N ) ) THEN
-         INFO = -14
-      ELSE IF( LDF.LT.MAX( 1, M ) ) THEN
-         INFO = -16
+      ELSE IF( NOTRAN ) THEN
+         IF( ( IJOB.LT.0 ) .OR. ( IJOB.GT.2 ) ) THEN
+            INFO = -2
+         END IF
+      END IF
+      IF( INFO.EQ.0 ) THEN
+         IF( M.LE.0 ) THEN
+            INFO = -3
+         ELSE IF( N.LE.0 ) THEN
+            INFO = -4
+         ELSE IF( LDA.LT.MAX( 1, M ) ) THEN
+            INFO = -5
+         ELSE IF( LDB.LT.MAX( 1, N ) ) THEN
+            INFO = -8
+         ELSE IF( LDC.LT.MAX( 1, M ) ) THEN
+            INFO = -10
+         ELSE IF( LDD.LT.MAX( 1, M ) ) THEN
+            INFO = -12
+         ELSE IF( LDE.LT.MAX( 1, N ) ) THEN
+            INFO = -14
+         ELSE IF( LDF.LT.MAX( 1, M ) ) THEN
+            INFO = -16
+         END IF
       END IF
       IF( INFO.NE.0 ) THEN
          CALL XERBLA( 'DTGSY2', -INFO )
@@ -513,7 +519,7 @@
 *
 *                 Build an 8-by-8 system Z * x = RHS
 *
-                  CALL DCOPY( LDZ*LDZ, ZERO, 0, Z, 1 )
+                  CALL DLASET( 'F', LDZ, LDZ, ZERO, ZERO, Z, LDZ )
 *
                   Z( 1, 1 ) = A( IS, IS )
                   Z( 2, 1 ) = A( ISP1, IS )
@@ -631,7 +637,7 @@
 *
             IS = IWORK( I )
             ISP1 = IS + 1
-            IE = IWORK( I+1 ) - 1
+            IE = ( I+1 ) - 1
             MB = IE - IS + 1
             DO 190 J = Q, P + 2, -1
 *
@@ -841,7 +847,7 @@
 *
 *                 Build an 8-by-8 system Z' * x = RHS
 *
-                  CALL DCOPY( LDZ*LDZ, ZERO, 0, Z, 1 )
+                  CALL DLASET( 'F', LDZ, LDZ, ZERO, ZERO, Z, LDZ )
 *
                   Z( 1, 1 ) = A( IS, IS )
                   Z( 2, 1 ) = A( IS, ISP1 )

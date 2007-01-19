@@ -1,9 +1,8 @@
       SUBROUTINE DLAPMT( FORWRD, M, N, X, LDX, K )
 *
-*  -- LAPACK auxiliary routine (version 3.0) --
-*     Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
-*     Courant Institute, Argonne National Lab, and Rice University
-*     March 31, 1993
+*  -- LAPACK auxiliary routine (version 3.1) --
+*     Univ. of Tennessee, Univ. of California Berkeley and NAG Ltd..
+*     November 2006
 *
 *     .. Scalar Arguments ..
       LOGICAL            FORWRD
@@ -47,8 +46,10 @@
 *  LDX     (input) INTEGER
 *          The leading dimension of the array X, LDX >= MAX(1,M).
 *
-*  K       (input) INTEGER array, dimension (N)
-*          On entry, K contains the permutation vector.
+*  K       (input/output) INTEGER array, dimension (N)
+*          On entry, K contains the permutation vector. K is used as
+*          internal workspace, but reset to its original value on
+*          output.
 *
 *  =====================================================================
 *

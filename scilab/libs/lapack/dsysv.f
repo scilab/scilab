@@ -1,10 +1,9 @@
       SUBROUTINE DSYSV( UPLO, N, NRHS, A, LDA, IPIV, B, LDB, WORK,
      $                  LWORK, INFO )
 *
-*  -- LAPACK driver routine (version 3.0) --
-*     Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
-*     Courant Institute, Argonne National Lab, and Rice University
-*     June 30, 1999
+*  -- LAPACK driver routine (version 3.1) --
+*     Univ. of Tennessee, Univ. of California Berkeley and NAG Ltd..
+*     November 2006
 *
 *     .. Scalar Arguments ..
       CHARACTER          UPLO
@@ -81,12 +80,12 @@
 *  LDB     (input) INTEGER
 *          The leading dimension of the array B.  LDB >= max(1,N).
 *
-*  WORK    (workspace/output) DOUBLE PRECISION array, dimension (LWORK)
+*  WORK    (workspace/output) DOUBLE PRECISION array, dimension (MAX(1,LWORK))
 *          On exit, if INFO = 0, WORK(1) returns the optimal LWORK.
 *
 *  LWORK   (input) INTEGER
 *          The length of WORK.  LWORK >= 1, and for best performance
-*          LWORK >= N*NB, where NB is the optimal blocksize for
+*          LWORK >= max(1,N*NB), where NB is the optimal blocksize for
 *          DSYTRF.
 *
 *          If LWORK = -1, then a workspace query is assumed; the routine
@@ -139,8 +138,12 @@
       END IF
 *
       IF( INFO.EQ.0 ) THEN
-         NB = ILAENV( 1, 'DSYTRF', UPLO, N, -1, -1, -1 )
-         LWKOPT = N*NB
+         IF( N.EQ.0 ) THEN
+            LWKOPT = 1
+         ELSE
+            NB = ILAENV( 1, 'DSYTRF', UPLO, N, -1, -1, -1 )
+            LWKOPT = N*NB
+         END IF
          WORK( 1 ) = LWKOPT
       END IF
 *

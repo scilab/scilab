@@ -1,10 +1,9 @@
       SUBROUTINE DGGEV( JOBVL, JOBVR, N, A, LDA, B, LDB, ALPHAR, ALPHAI,
      $                  BETA, VL, LDVL, VR, LDVR, WORK, LWORK, INFO )
 *
-*  -- LAPACK driver routine (version 3.0) --
-*     Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
-*     Courant Institute, Argonne National Lab, and Rice University
-*     June 30, 1999
+*  -- LAPACK driver routine (version 3.1) --
+*     Univ. of Tennessee, Univ. of California Berkeley and NAG Ltd..
+*     November 2006
 *
 *     .. Scalar Arguments ..
       CHARACTER          JOBVL, JOBVR
@@ -93,7 +92,7 @@
 *          u(j) = VL(:,j), the j-th column of VL. If the j-th and
 *          (j+1)-th eigenvalues form a complex conjugate pair, then
 *          u(j) = VL(:,j)+i*VL(:,j+1) and u(j+1) = VL(:,j)-i*VL(:,j+1).
-*          Each eigenvector will be scaled so the largest component have
+*          Each eigenvector is scaled so the largest component has
 *          abs(real part)+abs(imag. part)=1.
 *          Not referenced if JOBVL = 'N'.
 *
@@ -108,7 +107,7 @@
 *          v(j) = VR(:,j), the j-th column of VR. If the j-th and
 *          (j+1)-th eigenvalues form a complex conjugate pair, then
 *          v(j) = VR(:,j)+i*VR(:,j+1) and v(j+1) = VR(:,j)-i*VR(:,j+1).
-*          Each eigenvector will be scaled so the largest component have
+*          Each eigenvector is scaled so the largest component has
 *          abs(real part)+abs(imag. part)=1.
 *          Not referenced if JOBVR = 'N'.
 *
@@ -116,7 +115,7 @@
 *          The leading dimension of the matrix VR. LDVR >= 1, and
 *          if JOBVR = 'V', LDVR >= N.
 *
-*  WORK    (workspace/output) DOUBLE PRECISION array, dimension (LWORK)
+*  WORK    (workspace/output) DOUBLE PRECISION array, dimension (MAX(1,LWORK))
 *          On exit, if INFO = 0, WORK(1) returns the optimal LWORK.
 *
 *  LWORK   (input) INTEGER
@@ -157,8 +156,9 @@
       LOGICAL            LDUMMA( 1 )
 *     ..
 *     .. External Subroutines ..
-      EXTERNAL           DGEQRF, DGGBAK, DGGBAL, DGGHRD, DHGEQZ, DLACPY,
-     $                   DLASCL, DLASET, DORGQR, DORMQR, DTGEVC, XERBLA
+      EXTERNAL           DGEQRF, DGGBAK, DGGBAL, DGGHRD, DHGEQZ, DLABAD,
+     $                   DLACPY,DLASCL, DLASET, DORGQR, DORMQR, DTGEVC,
+     $                   XERBLA
 *     ..
 *     .. External Functions ..
       LOGICAL            LSAME
@@ -224,15 +224,21 @@
 *       following subroutine, as returned by ILAENV. The workspace is
 *       computed assuming ILO = 1 and IHI = N, the worst case.)
 *
-      MINWRK = 1
-      IF( INFO.EQ.0 .AND. ( LWORK.GE.1 .OR. LQUERY ) ) THEN
-         MAXWRK = 7*N + N*ILAENV( 1, 'DGEQRF', ' ', N, 1, N, 0 )
+      IF( INFO.EQ.0 ) THEN
          MINWRK = MAX( 1, 8*N )
+         MAXWRK = MAX( 1, N*( 7 +
+     $                 ILAENV( 1, 'DGEQRF', ' ', N, 1, N, 0 ) ) )
+         MAXWRK = MAX( MAXWRK, N*( 7 +
+     $                 ILAENV( 1, 'DORMQR', ' ', N, 1, N, 0 ) ) )
+         IF( ILVL ) THEN
+            MAXWRK = MAX( MAXWRK, N*( 7 +
+     $                 ILAENV( 1, 'DORGQR', ' ', N, 1, N, -1 ) ) )
+         END IF
          WORK( 1 ) = MAXWRK
-      END IF
 *
-      IF( LWORK.LT.MINWRK .AND. .NOT.LQUERY )
-     $   INFO = -16
+         IF( LWORK.LT.MINWRK .AND. .NOT.LQUERY )
+     $      INFO = -16
+      END IF
 *
       IF( INFO.NE.0 ) THEN
          CALL XERBLA( 'DGGEV ', -INFO )
@@ -318,8 +324,10 @@
 *
       IF( ILVL ) THEN
          CALL DLASET( 'Full', N, N, ZERO, ONE, VL, LDVL )
-         CALL DLACPY( 'L', IROWS-1, IROWS-1, B( ILO+1, ILO ), LDB,
-     $                VL( ILO+1, ILO ), LDVL )
+         IF( IROWS.GT.1 ) THEN
+            CALL DLACPY( 'L', IROWS-1, IROWS-1, B( ILO+1, ILO ), LDB,
+     $                   VL( ILO+1, ILO ), LDVL )
+         END IF
          CALL DORGQR( IROWS, IROWS, IROWS, VL( ILO, ILO ), LDVL,
      $                WORK( ITAU ), WORK( IWRK ), LWORK+1-IWRK, IERR )
       END IF

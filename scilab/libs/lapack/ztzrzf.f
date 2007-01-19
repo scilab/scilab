@@ -1,9 +1,8 @@
       SUBROUTINE ZTZRZF( M, N, A, LDA, TAU, WORK, LWORK, INFO )
 *
-*  -- LAPACK routine (version 3.0) --
-*     Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
-*     Courant Institute, Argonne National Lab, and Rice University
-*     June 30, 1999
+*  -- LAPACK routine (version 3.1) --
+*     Univ. of Tennessee, Univ. of California Berkeley and NAG Ltd..
+*     November 2006
 *
 *     .. Scalar Arguments ..
       INTEGER            INFO, LDA, LWORK, M, N
@@ -32,7 +31,7 @@
 *          The number of rows of the matrix A.  M >= 0.
 *
 *  N       (input) INTEGER
-*          The number of columns of the matrix A.  N >= 0.
+*          The number of columns of the matrix A.  N >= M.
 *
 *  A       (input/output) COMPLEX*16 array, dimension (LDA,N)
 *          On entry, the leading M-by-N upper trapezoidal part of the
@@ -48,7 +47,7 @@
 *  TAU     (output) COMPLEX*16 array, dimension (M)
 *          The scalar factors of the elementary reflectors.
 *
-*  WORK    (workspace/output) COMPLEX*16 array, dimension (LWORK)
+*  WORK    (workspace/output) COMPLEX*16 array, dimension (MAX(1,LWORK))
 *          On exit, if INFO = 0, WORK(1) returns the optimal LWORK.
 *
 *  LWORK   (input) INTEGER
@@ -130,17 +129,23 @@
          INFO = -2
       ELSE IF( LDA.LT.MAX( 1, M ) ) THEN
          INFO = -4
-      ELSE IF( LWORK.LT.MAX( 1, M ) .AND. .NOT.LQUERY ) THEN
-         INFO = -7
       END IF
 *
       IF( INFO.EQ.0 ) THEN
+         IF( M.EQ.0 .OR. M.EQ.N ) THEN
+            LWKOPT = 1
+         ELSE
 *
-*        Determine the block size.
+*           Determine the block size.
 *
-         NB = ILAENV( 1, 'ZGERQF', ' ', M, N, -1, -1 )
-         LWKOPT = M*NB
+            NB = ILAENV( 1, 'ZGERQF', ' ', M, N, -1, -1 )
+            LWKOPT = M*NB
+         END IF
          WORK( 1 ) = LWKOPT
+*
+         IF( LWORK.LT.MAX( 1, M ) .AND. .NOT.LQUERY ) THEN
+            INFO = -7
+         END IF
       END IF
 *
       IF( INFO.NE.0 ) THEN
@@ -153,13 +158,11 @@
 *     Quick return if possible
 *
       IF( M.EQ.0 ) THEN
-         WORK( 1 ) = 1
          RETURN
       ELSE IF( M.EQ.N ) THEN
          DO 10 I = 1, N
             TAU( I ) = ZERO
    10    CONTINUE
-         WORK( 1 ) = 1
          RETURN
       END IF
 *

@@ -1,10 +1,9 @@
       SUBROUTINE ZLAQP2( M, N, OFFSET, A, LDA, JPVT, TAU, VN1, VN2,
      $                   WORK )
 *
-*  -- LAPACK auxiliary routine (version 3.0) --
-*     Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
-*     Courant Institute, Argonne National Lab, and Rice University
-*     June 30, 1999
+*  -- LAPACK auxiliary routine (version 3.1) --
+*     Univ. of Tennessee, Univ. of California Berkeley and NAG Ltd..
+*     November 2006
 *
 *     .. Scalar Arguments ..
       INTEGER            LDA, M, N, OFFSET
@@ -72,6 +71,11 @@
 *    G. Quintana-Orti, Depto. de Informatica, Universidad Jaime I, Spain
 *    X. Sun, Computer Science Dept., Duke University, USA
 *
+*  Partial column norm updating strategy modified by
+*    Z. Drmac and Z. Bujanovic, Dept. of Mathematics,
+*    University of Zagreb, Croatia.
+*    June 2006.
+*  For more details see LAPACK Working Note 176.
 *  =====================================================================
 *
 *     .. Parameters ..
@@ -82,7 +86,7 @@
 *     ..
 *     .. Local Scalars ..
       INTEGER            I, ITEMP, J, MN, OFFPI, PVT
-      DOUBLE PRECISION   TEMP, TEMP2
+      DOUBLE PRECISION   TEMP, TEMP2, TOL3Z
       COMPLEX*16         AII
 *     ..
 *     .. External Subroutines ..
@@ -93,12 +97,13 @@
 *     ..
 *     .. External Functions ..
       INTEGER            IDAMAX
-      DOUBLE PRECISION   DZNRM2
-      EXTERNAL           IDAMAX, DZNRM2
+      DOUBLE PRECISION   DLAMCH, DZNRM2
+      EXTERNAL           IDAMAX, DLAMCH, DZNRM2
 *     ..
 *     .. Executable Statements ..
 *
       MN = MIN( M-OFFSET, N )
+      TOL3Z = SQRT(DLAMCH('Epsilon'))
 *
 *     Compute factorization.
 *
@@ -144,10 +149,14 @@
 *
          DO 10 J = I + 1, N
             IF( VN1( J ).NE.ZERO ) THEN
+*
+*              NOTE: The following 4 lines follow from the analysis in
+*              Lapack Working Note 176.
+*
                TEMP = ONE - ( ABS( A( OFFPI, J ) ) / VN1( J ) )**2
                TEMP = MAX( TEMP, ZERO )
-               TEMP2 = ONE + 0.05D0*TEMP*( VN1( J ) / VN2( J ) )**2
-               IF( TEMP2.EQ.ONE ) THEN
+               TEMP2 = TEMP*( VN1( J ) / VN2( J ) )**2
+               IF( TEMP2 .LE. TOL3Z ) THEN
                   IF( OFFPI.LT.M ) THEN
                      VN1( J ) = DZNRM2( M-OFFPI, A( OFFPI+1, J ), 1 )
                      VN2( J ) = VN1( J )

@@ -1,10 +1,9 @@
       SUBROUTINE DGELSY( M, N, NRHS, A, LDA, B, LDB, JPVT, RCOND, RANK,
      $                   WORK, LWORK, INFO )
 *
-*  -- LAPACK driver routine (version 3.0) --
-*     Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
-*     Courant Institute, Argonne National Lab, and Rice University
-*     June 30, 1999
+*  -- LAPACK driver routine (version 3.1) --
+*     Univ. of Tennessee, Univ. of California Berkeley and NAG Ltd..
+*     November 2006
 *
 *     .. Scalar Arguments ..
       INTEGER            INFO, LDA, LDB, LWORK, M, N, NRHS, RANK
@@ -100,7 +99,7 @@
 *          R11.  This is the same as the order of the submatrix T11
 *          in the complete orthogonal factorization of A.
 *
-*  WORK    (workspace/output) DOUBLE PRECISION array, dimension (LWORK)
+*  WORK    (workspace/output) DOUBLE PRECISION array, dimension (MAX(1,LWORK))
 *          On exit, if INFO = 0, WORK(1) returns the optimal LWORK.
 *
 *  LWORK   (input) INTEGER
@@ -141,8 +140,8 @@
 *     ..
 *     .. Local Scalars ..
       LOGICAL            LQUERY
-      INTEGER            I, IASCL, IBSCL, ISMAX, ISMIN, J, LWKOPT, MN,
-     $                   NB, NB1, NB2, NB3, NB4
+      INTEGER            I, IASCL, IBSCL, ISMAX, ISMIN, J, LWKMIN,
+     $                   LWKOPT, MN, NB, NB1, NB2, NB3, NB4
       DOUBLE PRECISION   ANRM, BIGNUM, BNRM, C1, C2, S1, S2, SMAX,
      $                   SMAXPR, SMIN, SMINPR, SMLNUM, WSIZE
 *     ..
@@ -156,7 +155,7 @@
      $                   DORMQR, DORMRZ, DTRSM, DTZRZF, XERBLA
 *     ..
 *     .. Intrinsic Functions ..
-      INTRINSIC          ABS, DBLE, MAX, MIN
+      INTRINSIC          ABS, MAX, MIN
 *     ..
 *     .. Executable Statements ..
 *
@@ -167,13 +166,6 @@
 *     Test the input arguments.
 *
       INFO = 0
-      NB1 = ILAENV( 1, 'DGEQRF', ' ', M, N, -1, -1 )
-      NB2 = ILAENV( 1, 'DGERQF', ' ', M, N, -1, -1 )
-      NB3 = ILAENV( 1, 'DORMQR', ' ', M, N, NRHS, -1 )
-      NB4 = ILAENV( 1, 'DORMRQ', ' ', M, N, NRHS, -1 )
-      NB = MAX( NB1, NB2, NB3, NB4 )
-      LWKOPT = MAX( 1, MN+2*N+NB*( N+1 ), 2*MN+NB*NRHS )
-      WORK( 1 ) = DBLE( LWKOPT )
       LQUERY = ( LWORK.EQ.-1 )
       IF( M.LT.0 ) THEN
          INFO = -1
@@ -185,9 +177,29 @@
          INFO = -5
       ELSE IF( LDB.LT.MAX( 1, M, N ) ) THEN
          INFO = -7
-      ELSE IF( LWORK.LT.MAX( 1, MN+3*N+1, 2*MN+NRHS ) .AND. .NOT.
-     $         LQUERY ) THEN
-         INFO = -12
+      END IF
+*
+*     Figure out optimal block size
+*
+      IF( INFO.EQ.0 ) THEN
+         IF( MN.EQ.0 .OR. NRHS.EQ.0 ) THEN
+            LWKMIN = 1
+            LWKOPT = 1
+         ELSE
+            NB1 = ILAENV( 1, 'DGEQRF', ' ', M, N, -1, -1 )
+            NB2 = ILAENV( 1, 'DGERQF', ' ', M, N, -1, -1 )
+            NB3 = ILAENV( 1, 'DORMQR', ' ', M, N, NRHS, -1 )
+            NB4 = ILAENV( 1, 'DORMRQ', ' ', M, N, NRHS, -1 )
+            NB = MAX( NB1, NB2, NB3, NB4 )
+            LWKMIN = MN + MAX( 2*MN, N + 1, MN + NRHS )
+            LWKOPT = MAX( LWKMIN,
+     $                    MN + 2*N + NB*( N + 1 ), 2*MN + NB*NRHS )
+         END IF
+         WORK( 1 ) = LWKOPT
+*
+         IF( LWORK.LT.LWKMIN .AND. .NOT.LQUERY ) THEN
+            INFO = -12
+         END IF
       END IF
 *
       IF( INFO.NE.0 ) THEN
@@ -199,7 +211,7 @@
 *
 *     Quick return if possible
 *
-      IF( MIN( M, N, NRHS ).EQ.0 ) THEN
+      IF( MN.EQ.0 .OR. NRHS.EQ.0 ) THEN
          RANK = 0
          RETURN
       END IF
@@ -370,7 +382,7 @@
       END IF
 *
    70 CONTINUE
-      WORK( 1 ) = DBLE( LWKOPT )
+      WORK( 1 ) = LWKOPT
 *
       RETURN
 *

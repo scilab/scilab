@@ -1,10 +1,9 @@
       SUBROUTINE ZGEES( JOBVS, SORT, SELECT, N, A, LDA, SDIM, W, VS,
      $                  LDVS, WORK, LWORK, RWORK, BWORK, INFO )
 *
-*  -- LAPACK driver routine (version 3.0) --
-*     Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
-*     Courant Institute, Argonne National Lab, and Rice University
-*     June 30, 1999
+*  -- LAPACK driver routine (version 3.1) --
+*     Univ. of Tennessee, Univ. of California Berkeley and NAG Ltd..
+*     November 2006
 *
 *     .. Scalar Arguments ..
       CHARACTER          JOBVS, SORT
@@ -47,7 +46,7 @@
 *          = 'N': Eigenvalues are not ordered:
 *          = 'S': Eigenvalues are ordered (see SELECT).
 *
-*  SELECT  (input) LOGICAL FUNCTION of one COMPLEX*16 argument
+*  SELECT  (external procedure) LOGICAL FUNCTION of one COMPLEX*16 argument
 *          SELECT must be declared EXTERNAL in the calling subroutine.
 *          If SORT = 'S', SELECT is used to select eigenvalues to order
 *          to the top left of the Schur form.
@@ -82,7 +81,7 @@
 *          The leading dimension of the array VS.  LDVS >= 1; if
 *          JOBVS = 'V', LDVS >= N.
 *
-*  WORK    (workspace/output) COMPLEX*16 array, dimension (LWORK)
+*  WORK    (workspace/output) COMPLEX*16 array, dimension (MAX(1,LWORK))
 *          On exit, if INFO = 0, WORK(1) returns the optimal LWORK.
 *
 *  LWORK   (input) INTEGER
@@ -126,15 +125,15 @@
 *     .. Local Scalars ..
       LOGICAL            LQUERY, SCALEA, WANTST, WANTVS
       INTEGER            HSWORK, I, IBAL, ICOND, IERR, IEVAL, IHI, ILO,
-     $                   ITAU, IWRK, K, MAXB, MAXWRK, MINWRK
+     $                   ITAU, IWRK, MAXWRK, MINWRK
       DOUBLE PRECISION   ANRM, BIGNUM, CSCALE, EPS, S, SEP, SMLNUM
 *     ..
 *     .. Local Arrays ..
       DOUBLE PRECISION   DUM( 1 )
 *     ..
 *     .. External Subroutines ..
-      EXTERNAL           XERBLA, ZCOPY, ZGEBAK, ZGEBAL, ZGEHRD, ZHSEQR,
-     $                   ZLACPY, ZLASCL, ZTRSEN, ZUNGHR
+      EXTERNAL           DLABAD, XERBLA, ZCOPY, ZGEBAK, ZGEBAL, ZGEHRD,
+     $                   ZHSEQR, ZLACPY, ZLASCL, ZTRSEN, ZUNGHR
 *     ..
 *     .. External Functions ..
       LOGICAL            LSAME
@@ -143,7 +142,7 @@
       EXTERNAL           LSAME, ILAENV, DLAMCH, ZLANGE
 *     ..
 *     .. Intrinsic Functions ..
-      INTRINSIC          MAX, MIN, SQRT
+      INTRINSIC          MAX, SQRT
 *     ..
 *     .. Executable Statements ..
 *
@@ -176,30 +175,33 @@
 *       calculated below. HSWORK is computed assuming ILO=1 and IHI=N,
 *       the worst case.)
 *
-      MINWRK = 1
-      IF( INFO.EQ.0 .AND. ( LWORK.GE.1 .OR. LQUERY ) ) THEN
-         MAXWRK = N + N*ILAENV( 1, 'ZGEHRD', ' ', N, 1, N, 0 )
-         MINWRK = MAX( 1, 2*N )
-         IF( .NOT.WANTVS ) THEN
-            MAXB = MAX( ILAENV( 8, 'ZHSEQR', 'SN', N, 1, N, -1 ), 2 )
-            K = MIN( MAXB, N, MAX( 2, ILAENV( 4, 'ZHSEQR', 'SN', N, 1,
-     $          N, -1 ) ) )
-            HSWORK = MAX( K*( K+2 ), 2*N )
-            MAXWRK = MAX( MAXWRK, HSWORK, 1 )
+      IF( INFO.EQ.0 ) THEN
+         IF( N.EQ.0 ) THEN
+            MINWRK = 1
+            MAXWRK = 1
          ELSE
-            MAXWRK = MAX( MAXWRK, N+( N-1 )*
-     $               ILAENV( 1, 'ZUNGHR', ' ', N, 1, N, -1 ) )
-            MAXB = MAX( ILAENV( 8, 'ZHSEQR', 'EN', N, 1, N, -1 ), 2 )
-            K = MIN( MAXB, N, MAX( 2, ILAENV( 4, 'ZHSEQR', 'EN', N, 1,
-     $          N, -1 ) ) )
-            HSWORK = MAX( K*( K+2 ), 2*N )
-            MAXWRK = MAX( MAXWRK, HSWORK, 1 )
+            MAXWRK = N + N*ILAENV( 1, 'ZGEHRD', ' ', N, 1, N, 0 )
+            MINWRK = 2*N
+*
+            CALL ZHSEQR( 'S', JOBVS, N, 1, N, A, LDA, W, VS, LDVS,
+     $             WORK, -1, IEVAL )
+            HSWORK = WORK( 1 )
+*
+            IF( .NOT.WANTVS ) THEN
+               MAXWRK = MAX( MAXWRK, HSWORK )
+            ELSE
+               MAXWRK = MAX( MAXWRK, N + ( N - 1 )*ILAENV( 1, 'ZUNGHR',
+     $                       ' ', N, 1, N, -1 ) )
+               MAXWRK = MAX( MAXWRK, HSWORK )
+            END IF
          END IF
          WORK( 1 ) = MAXWRK
+*
+         IF( LWORK.LT.MINWRK .AND. .NOT.LQUERY ) THEN
+            INFO = -12
+         END IF
       END IF
-      IF( LWORK.LT.MINWRK .AND. .NOT.LQUERY ) THEN
-         INFO = -12
-      END IF
+*
       IF( INFO.NE.0 ) THEN
          CALL XERBLA( 'ZGEES ', -INFO )
          RETURN

@@ -1,10 +1,9 @@
       SUBROUTINE ZLAQPS( M, N, OFFSET, NB, KB, A, LDA, JPVT, TAU, VN1,
      $                   VN2, AUXV, F, LDF )
 *
-*  -- LAPACK auxiliary routine (version 3.0) --
-*     Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
-*     Courant Institute, Argonne National Lab, and Rice University
-*     June 30, 1999
+*  -- LAPACK auxiliary routine (version 3.1) --
+*     Univ. of Tennessee, Univ. of California Berkeley and NAG Ltd..
+*     November 2006
 *
 *     .. Scalar Arguments ..
       INTEGER            KB, LDA, LDF, M, N, NB, OFFSET
@@ -99,7 +98,7 @@
 *     ..
 *     .. Local Scalars ..
       INTEGER            ITEMP, J, K, LASTRK, LSTICC, PVT, RK
-      DOUBLE PRECISION   TEMP, TEMP2
+      DOUBLE PRECISION   TEMP, TEMP2, TOL3Z
       COMPLEX*16         AKK
 *     ..
 *     .. External Subroutines ..
@@ -110,14 +109,15 @@
 *     ..
 *     .. External Functions ..
       INTEGER            IDAMAX
-      DOUBLE PRECISION   DZNRM2
-      EXTERNAL           IDAMAX, DZNRM2
+      DOUBLE PRECISION   DLAMCH, DZNRM2
+      EXTERNAL           IDAMAX, DLAMCH, DZNRM2
 *     ..
 *     .. Executable Statements ..
 *
       LASTRK = MIN( M, N+OFFSET )
       LSTICC = 0
       K = 0
+      TOL3Z = SQRT(DLAMCH('Epsilon'))
 *
 *     Beginning of while loop.
 *
@@ -143,9 +143,6 @@
 *        A(RK:M,K) := A(RK:M,K) - A(RK:M,1:K-1)*F(K,1:K-1)'.
 *
          IF( K.GT.1 ) THEN
-*CC            CALL ZGEMM( 'No transpose', 'Conjugate transpose',
-*CC     $                  M-RK+1, 1, K-1, -CONE, A( RK, 1 ), LDA,
-*CC     $                  F( K, 1 ), LDF, CONE, A( RK, K ), LDA )
             DO 20 J = 1, K - 1
                F( K, J ) = DCONJG( F( K, J ) )
    20       CONTINUE
@@ -210,10 +207,14 @@
          IF( RK.LT.LASTRK ) THEN
             DO 50 J = K + 1, N
                IF( VN1( J ).NE.ZERO ) THEN
+*
+*                 NOTE: The following 4 lines follow from the analysis in
+*                 Lapack Working Note 176.
+*
                   TEMP = ABS( A( RK, J ) ) / VN1( J )
                   TEMP = MAX( ZERO, ( ONE+TEMP )*( ONE-TEMP ) )
-                  TEMP2 = ONE + 0.05D0*TEMP*( VN1( J ) / VN2( J ) )**2
-                  IF( TEMP2.EQ.ONE ) THEN
+                  TEMP2 = TEMP*( VN1( J ) / VN2( J ) )**2
+                  IF( TEMP2 .LE. TOL3Z ) THEN
                      VN2( J ) = DBLE( LSTICC )
                      LSTICC = J
                   ELSE
@@ -248,6 +249,11 @@
       IF( LSTICC.GT.0 ) THEN
          ITEMP = NINT( VN2( LSTICC ) )
          VN1( LSTICC ) = DZNRM2( M-RK, A( RK+1, LSTICC ), 1 )
+*
+*        NOTE: The computation of VN1( LSTICC ) relies on the fact that 
+*        SNRM2 does not fail on vectors with norm below the value of
+*        SQRT(DLAMCH('S')) 
+*
          VN2( LSTICC ) = VN1( LSTICC )
          LSTICC = ITEMP
          GO TO 60

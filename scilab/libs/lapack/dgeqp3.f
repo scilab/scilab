@@ -1,9 +1,8 @@
       SUBROUTINE DGEQP3( M, N, A, LDA, JPVT, TAU, WORK, LWORK, INFO )
 *
-*  -- LAPACK routine (version 3.0) --
-*     Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
-*     Courant Institute, Argonne National Lab, and Rice University
-*     June 30, 1999
+*  -- LAPACK routine (version 3.1) --
+*     Univ. of Tennessee, Univ. of California Berkeley and NAG Ltd..
+*     November 2006
 *
 *     .. Scalar Arguments ..
       INTEGER            INFO, LDA, LWORK, M, N
@@ -49,7 +48,7 @@
 *  TAU     (output) DOUBLE PRECISION array, dimension (min(M,N))
 *          The scalar factors of the elementary reflectors.
 *
-*  WORK    (workspace/output) DOUBLE PRECISION array, dimension (LWORK)
+*  WORK    (workspace/output) DOUBLE PRECISION array, dimension (MAX(1,LWORK))
 *          On exit, if INFO=0, WORK(1) returns the optimal LWORK.
 *
 *  LWORK   (input) INTEGER
@@ -109,16 +108,10 @@
 *     ..
 *     .. Executable Statements ..
 *
-      IWS = 3*N + 1
-      MINMN = MIN( M, N )
-*
 *     Test input arguments
 *     ====================
 *
       INFO = 0
-      NB = ILAENV( INB, 'DGEQRF', ' ', M, N, -1, -1 )
-      LWKOPT = 2*N + ( N+1 )*NB
-      WORK( 1 ) = LWKOPT
       LQUERY = ( LWORK.EQ.-1 )
       IF( M.LT.0 ) THEN
          INFO = -1
@@ -126,9 +119,25 @@
          INFO = -2
       ELSE IF( LDA.LT.MAX( 1, M ) ) THEN
          INFO = -4
-      ELSE IF( ( LWORK.LT.IWS ) .AND. .NOT.LQUERY ) THEN
-         INFO = -8
       END IF
+*
+      IF( INFO.EQ.0 ) THEN
+         MINMN = MIN( M, N )
+         IF( MINMN.EQ.0 ) THEN
+            IWS = 1
+            LWKOPT = 1
+         ELSE
+            IWS = 3*N + 1
+            NB = ILAENV( INB, 'DGEQRF', ' ', M, N, -1, -1 )
+            LWKOPT = 2*N + ( N + 1 )*NB
+         END IF
+         WORK( 1 ) = LWKOPT
+*
+         IF( ( LWORK.LT.IWS ) .AND. .NOT.LQUERY ) THEN
+            INFO = -8
+         END IF
+      END IF
+*
       IF( INFO.NE.0 ) THEN
          CALL XERBLA( 'DGEQP3', -INFO )
          RETURN
@@ -139,7 +148,6 @@
 *     Quick return if possible.
 *
       IF( MINMN.EQ.0 ) THEN
-         WORK( 1 ) = 1
          RETURN
       END IF
 *

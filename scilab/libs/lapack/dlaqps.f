@@ -1,10 +1,9 @@
       SUBROUTINE DLAQPS( M, N, OFFSET, NB, KB, A, LDA, JPVT, TAU, VN1,
      $                   VN2, AUXV, F, LDF )
 *
-*  -- LAPACK auxiliary routine (version 3.0) --
-*     Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
-*     Courant Institute, Argonne National Lab, and Rice University
-*     June 30, 1999
+*  -- LAPACK auxiliary routine (version 3.1) --
+*     Univ. of Tennessee, Univ. of California Berkeley and NAG Ltd..
+*     November 2006
 *
 *     .. Scalar Arguments ..
       INTEGER            KB, LDA, LDF, M, N, NB, OFFSET
@@ -88,6 +87,11 @@
 *    G. Quintana-Orti, Depto. de Informatica, Universidad Jaime I, Spain
 *    X. Sun, Computer Science Dept., Duke University, USA
 *
+*  Partial column norm updating strategy modified by
+*    Z. Drmac and Z. Bujanovic, Dept. of Mathematics,
+*    University of Zagreb, Croatia.
+*    June 2006.
+*  For more details see LAPACK Working Note 176.
 *  =====================================================================
 *
 *     .. Parameters ..
@@ -96,7 +100,7 @@
 *     ..
 *     .. Local Scalars ..
       INTEGER            ITEMP, J, K, LASTRK, LSTICC, PVT, RK
-      DOUBLE PRECISION   AKK, TEMP, TEMP2
+      DOUBLE PRECISION   AKK, TEMP, TEMP2, TOL3Z
 *     ..
 *     .. External Subroutines ..
       EXTERNAL           DGEMM, DGEMV, DLARFG, DSWAP
@@ -106,14 +110,15 @@
 *     ..
 *     .. External Functions ..
       INTEGER            IDAMAX
-      DOUBLE PRECISION   DNRM2
-      EXTERNAL           IDAMAX, DNRM2
+      DOUBLE PRECISION   DLAMCH, DNRM2
+      EXTERNAL           IDAMAX, DLAMCH, DNRM2
 *     ..
 *     .. Executable Statements ..
 *
       LASTRK = MIN( M, N+OFFSET )
       LSTICC = 0
       K = 0
+      TOL3Z = SQRT(DLAMCH('Epsilon'))
 *
 *     Beginning of while loop.
 *
@@ -195,10 +200,14 @@
          IF( RK.LT.LASTRK ) THEN
             DO 30 J = K + 1, N
                IF( VN1( J ).NE.ZERO ) THEN
+*
+*                 NOTE: The following 4 lines follow from the analysis in
+*                 Lapack Working Note 176.
+*
                   TEMP = ABS( A( RK, J ) ) / VN1( J )
                   TEMP = MAX( ZERO, ( ONE+TEMP )*( ONE-TEMP ) )
-                  TEMP2 = ONE + 0.05D0*TEMP*( VN1( J ) / VN2( J ) )**2
-                  IF( TEMP2.EQ.ONE ) THEN
+                  TEMP2 = TEMP*( VN1( J ) / VN2( J ) )**2
+                  IF( TEMP2 .LE. TOL3Z ) THEN
                      VN2( J ) = DBLE( LSTICC )
                      LSTICC = J
                   ELSE
@@ -233,6 +242,11 @@
       IF( LSTICC.GT.0 ) THEN
          ITEMP = NINT( VN2( LSTICC ) )
          VN1( LSTICC ) = DNRM2( M-RK, A( RK+1, LSTICC ), 1 )
+*
+*        NOTE: The computation of VN1( LSTICC ) relies on the fact that 
+*        SNRM2 does not fail on vectors with norm below the value of
+*        SQRT(DLAMCH('S')) 
+*
          VN2( LSTICC ) = VN1( LSTICC )
          LSTICC = ITEMP
          GO TO 40

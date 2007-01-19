@@ -401,11 +401,19 @@
 				>
 			</File>
 			<File
+				RelativePath="..\disnan.c"
+				>
+			</File>
+			<File
 				RelativePath="..\dlabad.c"
 				>
 			</File>
 			<File
 				RelativePath="..\dlabrd.c"
+				>
+			</File>
+			<File
+				RelativePath="..\dlacn2.c"
 				>
 			</File>
 			<File
@@ -445,11 +453,19 @@
 				>
 			</File>
 			<File
+				RelativePath="..\dlahr2.c"
+				>
+			</File>
+			<File
 				RelativePath="..\dlahrd.c"
 				>
 			</File>
 			<File
 				RelativePath="..\dlaic1.c"
+				>
+			</File>
+			<File
+				RelativePath="..\dlaisnan.c"
 				>
 			</File>
 			<File
@@ -510,6 +526,30 @@
 			</File>
 			<File
 				RelativePath="..\dlaqps.c"
+				>
+			</File>
+			<File
+				RelativePath="..\dlaqr0.c"
+				>
+			</File>
+			<File
+				RelativePath="..\dlaqr1.c"
+				>
+			</File>
+			<File
+				RelativePath="..\dlaqr2.c"
+				>
+			</File>
+			<File
+				RelativePath="..\dlaqr3.c"
+				>
+			</File>
+			<File
+				RelativePath="..\dlaqr4.c"
+				>
+			</File>
+			<File
+				RelativePath="..\dlaqr5.c"
 				>
 			</File>
 			<File
@@ -630,6 +670,14 @@
 			</File>
 			<File
 				RelativePath="..\dlatzm.c"
+				>
+			</File>
+			<File
+				RelativePath="..\dlazq3.c"
+				>
+			</File>
+			<File
+				RelativePath="..\dlazq4.c"
 				>
 			</File>
 			<File
@@ -893,6 +941,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\iparmq.c"
+				>
+			</File>
+			<File
 				RelativePath="..\izmax1.c"
 				>
 			</File>
@@ -1061,6 +1113,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\zlacn2.c"
+				>
+			</File>
+			<File
 				RelativePath="..\zlacon.c"
 				>
 			</File>
@@ -1074,6 +1130,10 @@
 			</File>
 			<File
 				RelativePath="..\zlahqr.c"
+				>
+			</File>
+			<File
+				RelativePath="..\zlahr2.c"
 				>
 			</File>
 			<File
@@ -1102,6 +1162,30 @@
 			</File>
 			<File
 				RelativePath="..\zlaqps.c"
+				>
+			</File>
+			<File
+				RelativePath="..\zlaqr0.c"
+				>
+			</File>
+			<File
+				RelativePath="..\zlaqr1.c"
+				>
+			</File>
+			<File
+				RelativePath="..\zlaqr2.c"
+				>
+			</File>
+			<File
+				RelativePath="..\zlaqr3.c"
+				>
+			</File>
+			<File
+				RelativePath="..\zlaqr4.c"
+				>
+			</File>
+			<File
+				RelativePath="..\zlaqr5.c"
 				>
 			</File>
 			<File
@@ -1507,11 +1591,19 @@
 				>
 			</File>
 			<File
+				RelativePath="..\disnan.f"
+				>
+			</File>
+			<File
 				RelativePath="..\dlabad.f"
 				>
 			</File>
 			<File
 				RelativePath="..\dlabrd.f"
+				>
+			</File>
+			<File
+				RelativePath="..\dlacn2.f"
 				>
 			</File>
 			<File
@@ -1551,11 +1643,19 @@
 				>
 			</File>
 			<File
+				RelativePath="..\dlahr2.f"
+				>
+			</File>
+			<File
 				RelativePath="..\dlahrd.f"
 				>
 			</File>
 			<File
 				RelativePath="..\dlaic1.f"
+				>
+			</File>
+			<File
+				RelativePath="..\dlaisnan.f"
 				>
 			</File>
 			<File
@@ -1616,6 +1716,30 @@
 			</File>
 			<File
 				RelativePath="..\dlaqps.f"
+				>
+			</File>
+			<File
+				RelativePath="..\dlaqr0.f"
+				>
+			</File>
+			<File
+				RelativePath="..\dlaqr1.f"
+				>
+			</File>
+			<File
+				RelativePath="..\dlaqr2.f"
+				>
+			</File>
+			<File
+				RelativePath="..\dlaqr3.f"
+				>
+			</File>
+			<File
+				RelativePath="..\dlaqr4.f"
+				>
+			</File>
+			<File
+				RelativePath="..\dlaqr5.f"
 				>
 			</File>
 			<File
@@ -1736,6 +1860,14 @@
 			</File>
 			<File
 				RelativePath="..\dlatzm.f"
+				>
+			</File>
+			<File
+				RelativePath="..\dlazq3.f"
+				>
+			</File>
+			<File
+				RelativePath="..\dlazq4.f"
 				>
 			</File>
 			<File
@@ -1999,6 +2131,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\iparmq.f"
+				>
+			</File>
+			<File
 				RelativePath="..\izmax1.f"
 				>
 			</File>
@@ -2167,6 +2303,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\zlacn2.f"
+				>
+			</File>
+			<File
 				RelativePath="..\zlacon.f"
 				>
 			</File>
@@ -2180,6 +2320,10 @@
 			</File>
 			<File
 				RelativePath="..\zlahqr.f"
+				>
+			</File>
+			<File
+				RelativePath="..\zlahr2.f"
 				>
 			</File>
 			<File
@@ -2208,6 +2352,30 @@
 			</File>
 			<File
 				RelativePath="..\zlaqps.f"
+				>
+			</File>
+			<File
+				RelativePath="..\zlaqr0.f"
+				>
+			</File>
+			<File
+				RelativePath="..\zlaqr1.f"
+				>
+			</File>
+			<File
+				RelativePath="..\zlaqr2.f"
+				>
+			</File>
+			<File
+				RelativePath="..\zlaqr3.f"
+				>
+			</File>
+			<File
+				RelativePath="..\zlaqr4.f"
+				>
+			</File>
+			<File
+				RelativePath="..\zlaqr5.f"
 				>
 			</File>
 			<File

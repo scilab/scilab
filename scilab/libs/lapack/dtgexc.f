@@ -1,10 +1,9 @@
       SUBROUTINE DTGEXC( WANTQ, WANTZ, N, A, LDA, B, LDB, Q, LDQ, Z,
      $                   LDZ, IFST, ILST, WORK, LWORK, INFO )
 *
-*  -- LAPACK routine (version 3.0) --
-*     Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
-*     Courant Institute, Argonne National Lab, and Rice University
-*     June 30, 1999
+*  -- LAPACK routine (version 3.1) --
+*     Univ. of Tennessee, Univ. of California Berkeley and NAG Ltd..
+*     November 2006
 *
 *     .. Scalar Arguments ..
       LOGICAL            WANTQ, WANTZ
@@ -98,11 +97,12 @@
 *          final position (which may differ from its input value by
 *          +1 or -1). 1 <= IFST, ILST <= N.
 *
-*  WORK    (workspace/output) DOUBLE PRECISION array, dimension (LWORK)
+*  WORK    (workspace/output) DOUBLE PRECISION array, dimension (MAX(1,LWORK))
 *          On exit, if INFO = 0, WORK(1) returns the optimal LWORK.
 *
 *  LWORK   (input) INTEGER
-*          The dimension of the array WORK. LWORK >= 4*N + 16.
+*          The dimension of the array WORK.
+*          LWORK >= 1 when N <= 1, otherwise LWORK >= 4*N + 16.
 *
 *          If LWORK = -1, then a workspace query is assumed; the routine
 *          only calculates the optimal size of the WORK array, returns
@@ -151,7 +151,6 @@
 *     Decode and test input arguments.
 *
       INFO = 0
-      LWMIN = MAX( 1, 4*N+16 )
       LQUERY = ( LWORK.EQ.-1 )
       IF( N.LT.0 ) THEN
          INFO = -3
@@ -167,12 +166,19 @@
          INFO = -12
       ELSE IF( ILST.LT.1 .OR. ILST.GT.N ) THEN
          INFO = -13
-      ELSE IF( LWORK.LT.LWMIN .AND. .NOT.LQUERY ) THEN
-         INFO = -15
       END IF
 *
       IF( INFO.EQ.0 ) THEN
-         WORK( 1 ) = LWMIN
+         IF( N.LE.1 ) THEN
+            LWMIN = 1
+         ELSE
+            LWMIN = 4*N + 16
+         END IF
+         WORK(1) = LWMIN
+*
+         IF (LWORK.LT.LWMIN .AND. .NOT.LQUERY) THEN
+            INFO = -15
+         END IF
       END IF
 *
       IF( INFO.NE.0 ) THEN

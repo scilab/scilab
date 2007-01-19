@@ -1,10 +1,9 @@
       SUBROUTINE ZTGEXC( WANTQ, WANTZ, N, A, LDA, B, LDB, Q, LDQ, Z,
      $                   LDZ, IFST, ILST, INFO )
 *
-*  -- LAPACK routine (version 3.0) --
-*     Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
-*     Courant Institute, Argonne National Lab, and Rice University
-*     June 30, 1999
+*  -- LAPACK routine (version 3.1) --
+*     Univ. of Tennessee, Univ. of California Berkeley and NAG Ltd..
+*     November 2006
 *
 *     .. Scalar Arguments ..
       LOGICAL            WANTQ, WANTZ
@@ -78,7 +77,7 @@
 *          The leading dimension of the array Z. LDZ >= 1;
 *          If WANTZ = .TRUE., LDZ >= N.
 *
-*  IFST    (input/output) INTEGER
+*  IFST    (input) INTEGER
 *  ILST    (input/output) INTEGER
 *          Specify the reordering of the diagonal blocks of (A, B).
 *          The block with row index IFST is moved to row ILST, by a

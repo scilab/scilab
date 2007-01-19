@@ -275,9 +275,28 @@ dtgexc.f \
 dgeql2.f \
 dlagv2.f \
 dggbak.f \
-dtzrzf.f
-
-
+dtzrzf.f \
+zlaqr0.f \
+dlacn2.f \
+zlacn2.f \
+dlazq3.f \
+zlahr2.f \
+dlaqr0.f \
+iparmq.f \
+disnan.f \
+dlaisnan.f \
+dlahr2.f \
+zlaqr3.f \
+zlaqr4.f \
+zlaqr5.f \
+dlazq4.f \
+dlaqr3.f \
+dlaqr4.f \
+dlaqr5.f \
+zlaqr2.f \
+zlaqr1.f \
+dlaqr2.f \
+dlaqr1.f \
 
 libscilapack_la_SOURCES = $(LAPACK_FORTRAN_SOURCES)
 
@@ -289,9 +308,7 @@ libdummy_lapack_la_FFLAGS = `echo "@FFLAGS@"| sed -e 's|-O[0-9+]|-O0|'`
 libscilapack_la_LIBADD = libdummy-lapack.la \
 	$(top_builddir)/libs/blas/libsciblas.la 
 
-
-#### Target ######
-target=$(datadir)/lapack
+libscilapack_la_PKGCONFIG = lapack.pc
 
 libdummy_lapack_la-dlamch.lo: dlamch.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_lapack_la_FFLAGS) -c -o libdummy_lapack_la-dlamch.lo `test -f 'dlamch.f' || echo '$(srcdir)/'`dlamch.f

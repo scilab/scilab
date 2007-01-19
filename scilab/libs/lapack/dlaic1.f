@@ -1,9 +1,8 @@
       SUBROUTINE DLAIC1( JOB, J, X, SEST, W, GAMMA, SESTPR, S, C )
 *
-*  -- LAPACK auxiliary routine (version 3.0) --
-*     Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
-*     Courant Institute, Argonne National Lab, and Rice University
-*     October 31, 1992
+*  -- LAPACK auxiliary routine (version 3.1) --
+*     Univ. of Tennessee, Univ. of California Berkeley and NAG Ltd..
+*     November 2006
 *
 *     .. Scalar Arguments ..
       INTEGER            J, JOB
@@ -64,7 +63,7 @@
 *  GAMMA   (input) DOUBLE PRECISION
 *          The diagonal element gamma.
 *
-*  SEDTPR  (output) DOUBLE PRECISION
+*  SESTPR  (output) DOUBLE PRECISION
 *          Estimated singular value of (j+1) by (j+1) matrix Lhat.
 *
 *  S       (output) DOUBLE PRECISION

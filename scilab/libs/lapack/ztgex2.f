@@ -1,10 +1,9 @@
       SUBROUTINE ZTGEX2( WANTQ, WANTZ, N, A, LDA, B, LDB, Q, LDQ, Z,
      $                   LDZ, J1, INFO )
 *
-*  -- LAPACK auxiliary routine (version 3.0) --
-*     Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
-*     Courant Institute, Argonne National Lab, and Rice University
-*     June 30, 1999
+*  -- LAPACK auxiliary routine (version 3.1) --
+*     Univ. of Tennessee, Univ. of California Berkeley and NAG Ltd..
+*     November 2006
 *
 *     .. Scalar Arguments ..
       LOGICAL            WANTQ, WANTZ
@@ -85,9 +84,7 @@
 *           =0:  Successful exit.
 *           =1:  The transformed matrix pair (A, B) would be too far
 *                from generalized Schur form; the problem is ill-
-*                conditioned. (A, B) may have been partially reordered,
-*                and ILST points to the first row of the current
-*                position of the block being moved.
+*                conditioned. 
 *
 *
 *  Further Details

@@ -1,10 +1,9 @@
       SUBROUTINE DGEES( JOBVS, SORT, SELECT, N, A, LDA, SDIM, WR, WI,
      $                  VS, LDVS, WORK, LWORK, BWORK, INFO )
 *
-*  -- LAPACK driver routine (version 3.0) --
-*     Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
-*     Courant Institute, Argonne National Lab, and Rice University
-*     June 30, 1999
+*  -- LAPACK driver routine (version 3.1) --
+*     Univ. of Tennessee, Univ. of California Berkeley and NAG Ltd..
+*     November 2006
 *
 *     .. Scalar Arguments ..
       CHARACTER          JOBVS, SORT
@@ -53,7 +52,7 @@
 *          = 'N': Eigenvalues are not ordered;
 *          = 'S': Eigenvalues are ordered (see SELECT).
 *
-*  SELECT  (input) LOGICAL FUNCTION of two DOUBLE PRECISION arguments
+*  SELECT  (external procedure) LOGICAL FUNCTION of two DOUBLE PRECISION arguments
 *          SELECT must be declared EXTERNAL in the calling subroutine.
 *          If SORT = 'S', SELECT is used to select eigenvalues to sort
 *          to the top left of the Schur form.
@@ -103,7 +102,7 @@
 *          The leading dimension of the array VS.  LDVS >= 1; if
 *          JOBVS = 'V', LDVS >= N.
 *
-*  WORK    (workspace/output) DOUBLE PRECISION array, dimension (LWORK)
+*  WORK    (workspace/output) DOUBLE PRECISION array, dimension (MAX(1,LWORK))
 *          On exit, if INFO = 0, WORK(1) contains the optimal LWORK.
 *
 *  LWORK   (input) INTEGER
@@ -145,8 +144,7 @@
       LOGICAL            CURSL, LASTSL, LQUERY, LST2SL, SCALEA, WANTST,
      $                   WANTVS
       INTEGER            HSWORK, I, I1, I2, IBAL, ICOND, IERR, IEVAL,
-     $                   IHI, ILO, INXT, IP, ITAU, IWRK, K, MAXB,
-     $                   MAXWRK, MINWRK
+     $                   IHI, ILO, INXT, IP, ITAU, IWRK, MAXWRK, MINWRK
       DOUBLE PRECISION   ANRM, BIGNUM, CSCALE, EPS, S, SEP, SMLNUM
 *     ..
 *     .. Local Arrays ..
@@ -155,7 +153,7 @@
 *     ..
 *     .. External Subroutines ..
       EXTERNAL           DCOPY, DGEBAK, DGEBAL, DGEHRD, DHSEQR, DLACPY,
-     $                   DLASCL, DORGHR, DSWAP, DTRSEN, XERBLA
+     $                   DLABAD, DLASCL, DORGHR, DSWAP, DTRSEN, XERBLA
 *     ..
 *     .. External Functions ..
       LOGICAL            LSAME
@@ -164,7 +162,7 @@
       EXTERNAL           LSAME, ILAENV, DLAMCH, DLANGE
 *     ..
 *     .. Intrinsic Functions ..
-      INTRINSIC          MAX, MIN, SQRT
+      INTRINSIC          MAX, SQRT
 *     ..
 *     .. Executable Statements ..
 *
@@ -196,30 +194,33 @@
 *       calculated below. HSWORK is computed assuming ILO=1 and IHI=N,
 *       the worst case.)
 *
-      MINWRK = 1
-      IF( INFO.EQ.0 .AND. ( LWORK.GE.1 .OR. LQUERY ) ) THEN
-         MAXWRK = 2*N + N*ILAENV( 1, 'DGEHRD', ' ', N, 1, N, 0 )
-         MINWRK = MAX( 1, 3*N )
-         IF( .NOT.WANTVS ) THEN
-            MAXB = MAX( ILAENV( 8, 'DHSEQR', 'SN', N, 1, N, -1 ), 2 )
-            K = MIN( MAXB, N, MAX( 2, ILAENV( 4, 'DHSEQR', 'SN', N, 1,
-     $          N, -1 ) ) )
-            HSWORK = MAX( K*( K+2 ), 2*N )
-            MAXWRK = MAX( MAXWRK, N+HSWORK, 1 )
+      IF( INFO.EQ.0 ) THEN
+         IF( N.EQ.0 ) THEN
+            MINWRK = 1
+            MAXWRK = 1
          ELSE
-            MAXWRK = MAX( MAXWRK, 2*N+( N-1 )*
-     $               ILAENV( 1, 'DORGHR', ' ', N, 1, N, -1 ) )
-            MAXB = MAX( ILAENV( 8, 'DHSEQR', 'EN', N, 1, N, -1 ), 2 )
-            K = MIN( MAXB, N, MAX( 2, ILAENV( 4, 'DHSEQR', 'EN', N, 1,
-     $          N, -1 ) ) )
-            HSWORK = MAX( K*( K+2 ), 2*N )
-            MAXWRK = MAX( MAXWRK, N+HSWORK, 1 )
+            MAXWRK = 2*N + N*ILAENV( 1, 'DGEHRD', ' ', N, 1, N, 0 )
+            MINWRK = 3*N
+*
+            CALL DHSEQR( 'S', JOBVS, N, 1, N, A, LDA, WR, WI, VS, LDVS,
+     $             WORK, -1, IEVAL )
+            HSWORK = WORK( 1 )
+*
+            IF( .NOT.WANTVS ) THEN
+               MAXWRK = MAX( MAXWRK, N + HSWORK )
+            ELSE
+               MAXWRK = MAX( MAXWRK, 2*N + ( N - 1 )*ILAENV( 1,
+     $                       'DORGHR', ' ', N, 1, N, -1 ) )
+               MAXWRK = MAX( MAXWRK, N + HSWORK )
+            END IF
          END IF
          WORK( 1 ) = MAXWRK
+*
+         IF( LWORK.LT.MINWRK .AND. .NOT.LQUERY ) THEN
+            INFO = -13
+         END IF
       END IF
-      IF( LWORK.LT.MINWRK .AND. .NOT.LQUERY ) THEN
-         INFO = -13
-      END IF
+*
       IF( INFO.NE.0 ) THEN
          CALL XERBLA( 'DGEES ', -INFO )
          RETURN
@@ -368,7 +369,9 @@
                      IF( N.GT.I+1 )
      $                  CALL DSWAP( N-I-1, A( I, I+2 ), LDA,
      $                              A( I+1, I+2 ), LDA )
-                     CALL DSWAP( N, VS( 1, I ), 1, VS( 1, I+1 ), 1 )
+                     IF( WANTVS ) THEN
+                        CALL DSWAP( N, VS( 1, I ), 1, VS( 1, I+1 ), 1 )
+                     END IF
                      A( I, I+1 ) = A( I+1, I )
                      A( I+1, I ) = ZERO
                   END IF

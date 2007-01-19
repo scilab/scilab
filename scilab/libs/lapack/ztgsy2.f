@@ -2,10 +2,9 @@
      $                   LDD, E, LDE, F, LDF, SCALE, RDSUM, RDSCAL,
      $                   INFO )
 *
-*  -- LAPACK auxiliary routine (version 3.0) --
-*     Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
-*     Courant Institute, Argonne National Lab, and Rice University
-*     June 30, 1999
+*  -- LAPACK auxiliary routine (version 3.1) --
+*     Univ. of Tennessee, Univ. of California Berkeley and NAG Ltd..
+*     November 2006
 *
 *     .. Scalar Arguments ..
       CHARACTER          TRANS
@@ -59,7 +58,7 @@
 *  Arguments
 *  =========
 *
-*  TRANS   (input) CHARACTER
+*  TRANS   (input) CHARACTER*1
 *          = 'N', solve the generalized Sylvester equation (1).
 *          = 'T': solve the 'transposed' system (3).
 *
@@ -94,7 +93,7 @@
 *  LDB     (input) INTEGER
 *          The leading dimension of the matrix B. LDB >= max(1, N).
 *
-*  C       (input/ output) COMPLEX*16 array, dimension (LDC, N)
+*  C       (input/output) COMPLEX*16 array, dimension (LDC, N)
 *          On entry, C contains the right-hand-side of the first matrix
 *          equation in (1).
 *          On exit, if IJOB = 0, C has been overwritten by the solution
@@ -115,7 +114,7 @@
 *  LDE     (input) INTEGER
 *          The leading dimension of the matrix E. LDE >= max(1, N).
 *
-*  F       (input/ output) COMPLEX*16 array, dimension (LDF, N)
+*  F       (input/output) COMPLEX*16 array, dimension (LDF, N)
 *          On entry, F contains the right-hand-side of the second matrix
 *          equation in (1).
 *          On exit, if IJOB = 0, F has been overwritten by the solution
@@ -200,24 +199,29 @@
       NOTRAN = LSAME( TRANS, 'N' )
       IF( .NOT.NOTRAN .AND. .NOT.LSAME( TRANS, 'C' ) ) THEN
          INFO = -1
-      ELSE IF( ( IJOB.LT.0 ) .OR. ( IJOB.GT.2 ) ) THEN
-         INFO = -2
-      ELSE IF( M.LE.0 ) THEN
-         INFO = -3
-      ELSE IF( N.LE.0 ) THEN
-         INFO = -4
-      ELSE IF( LDA.LT.MAX( 1, M ) ) THEN
-         INFO = -5
-      ELSE IF( LDB.LT.MAX( 1, N ) ) THEN
-         INFO = -8
-      ELSE IF( LDC.LT.MAX( 1, M ) ) THEN
-         INFO = -10
-      ELSE IF( LDD.LT.MAX( 1, M ) ) THEN
-         INFO = -12
-      ELSE IF( LDE.LT.MAX( 1, N ) ) THEN
-         INFO = -14
-      ELSE IF( LDF.LT.MAX( 1, M ) ) THEN
-         INFO = -16
+      ELSE IF( NOTRAN ) THEN
+         IF( ( IJOB.LT.0 ) .OR. ( IJOB.GT.2 ) ) THEN
+            INFO = -2
+         END IF
+      END IF
+      IF( INFO.EQ.0 ) THEN
+         IF( M.LE.0 ) THEN
+            INFO = -3
+         ELSE IF( N.LE.0 ) THEN
+            INFO = -4
+         ELSE IF( LDA.LT.MAX( 1, M ) ) THEN
+            INFO = -5
+         ELSE IF( LDB.LT.MAX( 1, N ) ) THEN
+            INFO = -8
+         ELSE IF( LDC.LT.MAX( 1, M ) ) THEN
+            INFO = -10
+         ELSE IF( LDD.LT.MAX( 1, M ) ) THEN
+            INFO = -12
+         ELSE IF( LDE.LT.MAX( 1, N ) ) THEN
+            INFO = -14
+         ELSE IF( LDF.LT.MAX( 1, M ) ) THEN
+            INFO = -16
+         END IF
       END IF
       IF( INFO.NE.0 ) THEN
          CALL XERBLA( 'ZTGSY2', -INFO )
