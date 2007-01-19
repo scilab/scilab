@@ -14,6 +14,7 @@
 #include "jni.h"
 #include "machine.h"
 #include "stack-c.h"
+#include "tmpdir.h"
 
 #include "MALLOC.h"
 
@@ -34,7 +35,6 @@ extern void C2F(banier)(int *x) ;
 extern void initTCLTK();
 extern int C2F(inisci)(int *,int *,int *);
 extern int C2F (sciquit) (void);
-extern void C2F(settmpdir) (void);
 extern int C2F(scirun)(char * startup, int lstartup);
 extern void C2F(storeversion)(char *str,int n);
 extern void sciGetIdFigure (int *vect, int *id, int *flag);
