@@ -418,8 +418,8 @@ includes/stack3.h \
 includes/machine.h \
 includes/ExceptionMessage.h \
 includes/prompt.h \
-includes/loadversion.h
-
+includes/loadversion.h \
+includes/tmpdir.h
 
 #### core : demos files ####
 libscicore_la_demosintrodir=$(target)/demos/intro/
