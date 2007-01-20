@@ -2734,3 +2734,13 @@ Francois VOGEL, 19/01/07
    http://wiki.tcl.tk/10225
  * Pushed size limit for colorization question from 100 kb to 130 kb
  * version --> 6.78
+
+Francois VOGEL, 20/01/07
+ * Fixed: line numbers disappeared when there was no wrapping mode set and
+   the x scrollbar was not completely to the left
+ * Fixed: line numbers could be scrolled by clicking in the area and using
+   the mouse wheel
+ * Fixed: With Tk 8.5 the text widget scrolls smoothly, while with Tk 8.4
+   it scrolls by line increments. This required a slight scrolling of the
+   line numbers margin to align it perfectly with the textarea
+ * version --> 6.79

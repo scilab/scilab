@@ -1202,16 +1202,15 @@ proc updatelinenumbersmargin {ta} {
     set winfoheight [winfo height $ta]
 
     # initialization values
-    # $prevstop_p1 might be fractional (when the first display line is a
-    # wrapped line), and this is wanted so that the line number will be
-    # printed for this first line even if it's a wrapped line
     set prevstop_p1 [$ta index @0,0]
+    scan $prevstop_p1 "%d.%d" prevstop_p1 junk
     set i 1
     set curheight [expr {$topinpix + $lineheightinpix * ($i - 1)}]
     set spacepad ""
 
     while {$curheight <= $winfoheight} {
         set stop [$ta index @0,$curheight]
+        scan $stop "%d.%d" stop junk
         if {$stop == $prevstop_p1} {
             scan $stop "%d.%d" linenum dropthis
             # floor() needed because $prevstop_p1 might be
@@ -1231,16 +1230,24 @@ proc updatelinenumbersmargin {ta} {
         set curheight [expr {$topinpix + $lineheightinpix * ($i - 1)}]
     }
 
-    # delete last \n, otherwise there is one line more in the margin than
-    # in the textarea, and this can make yview commands show different
-    # results in those two text widgets
-    $tamargin delete "end-1c"
-
     # end of modification of margin content
     $tamargin configure -state disabled
 
     # update margin width according to the size of what it displays
     $tamargin configure -width $nbyendchar
+
+    # scroll the line numbers margin to align them perfectly with the textarea
+    # this is only actually needed for Tk 8.5 but doesn't hurt in 8.4
+    # in 8.4 $topinpix is always 1 since the first displayed line in the
+    # textarea is never clipped by the top of the textarea
+    # in 8.5 $topinpix might be negative, indicating a clipping of the first
+    # displayed line
+    if {$topinpix < 0} {
+        set hiddenpartof1stline [expr {- $topinpix}]
+        set marginheight [winfo height $tamargin]
+        set fractomoveto [expr {double($hiddenpartof1stline) / $marginheight}]
+        $tamargin yview moveto $fractomoveto
+    }
 }
 
 proc togglelinenumbersmargins {} {
@@ -1304,6 +1311,10 @@ proc addlinenumbersmargin {ta} {
     bind $tapwfr.margin <Shift-Button-3> {break}
     bind $tapwfr.margin <Control-Button-3> {break}
     bind $tapwfr.margin <ButtonRelease-2> {break}
+    bind $tapwfr.margin <Button-1> {break}
+    bind $tapwfr.margin <Button-2> {break}
+    bind $tapwfr.margin <Motion> {break}
+    bind $tapwfr.margin <MouseWheel> {break}
 
     pack $tapwfr.margin -in $tapwfr.topleft -before $ta -side left \
             -expand 0 -fill both -padx 2
