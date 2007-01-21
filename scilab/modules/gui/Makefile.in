@@ -106,7 +106,7 @@ am__libscigui_la_SOURCES_DIST = src/c/xsci/wf_w_util.c \
 	sci_gateway/c/sci_x_choice.c sci_gateway/c/sci_clc.c \
 	sci_gateway/c/sci_x_message_modeless.c sci_gateway/c/gw_gui.c \
 	sci_gateway/c/sci_x_mdialog.c sci_gateway/c/sci_x_dialog.c \
-	sci_gateway/c/sci_show_window.c sci_gateway/c/sci_x_choose.c \
+	sci_gateway/c/sci_raise_window.c sci_gateway/c/sci_x_choose.c \
 	sci_gateway/c/sci_xgetfile.c sci_gateway/c/sci_tohome.c \
 	sci_gateway/c/sci_x_message.c \
 	sci_gateway/c/sci_unsetmenu_old.c \
@@ -151,7 +151,7 @@ am__objects_1 = libscigui_la-wf_w_util.lo libscigui_la-utils.lo \
 am__objects_2 = libscigui_la-sci_x_choice.lo libscigui_la-sci_clc.lo \
 	libscigui_la-sci_x_message_modeless.lo libscigui_la-gw_gui.lo \
 	libscigui_la-sci_x_mdialog.lo libscigui_la-sci_x_dialog.lo \
-	libscigui_la-sci_show_window.lo libscigui_la-sci_x_choose.lo \
+	libscigui_la-sci_raise_window.lo libscigui_la-sci_x_choose.lo \
 	libscigui_la-sci_xgetfile.lo libscigui_la-sci_tohome.lo \
 	libscigui_la-sci_x_message.lo \
 	libscigui_la-sci_unsetmenu_old.lo \
@@ -398,7 +398,7 @@ sci_gateway/c/sci_x_message_modeless.c \
 sci_gateway/c/gw_gui.c \
 sci_gateway/c/sci_x_mdialog.c \
 sci_gateway/c/sci_x_dialog.c \
-sci_gateway/c/sci_show_window.c \
+sci_gateway/c/sci_raise_window.c \
 sci_gateway/c/sci_x_choose.c \
 sci_gateway/c/sci_xgetfile.c \
 sci_gateway/c/sci_tohome.c \
@@ -493,7 +493,7 @@ includes/men_scilab.h \
 includes/sci_clc.h \
 includes/gw_gui.h \
 includes/wmen_scilab.h \
-includes/sci_show_window.h \
+includes/sci_raise_window.h \
 includes/GraphicWindow.h
 
 
@@ -606,8 +606,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_addmenu_old.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_clc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_delmenu_old.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_raise_window.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_setmenu_old.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_show_window.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_tohome.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_unsetmenu_old.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_x_choice.Plo@am__quote@
@@ -1053,12 +1053,12 @@ libscigui_la-sci_x_dialog.lo: sci_gateway/c/sci_x_dialog.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_x_dialog.lo `test -f 'sci_gateway/c/sci_x_dialog.c' || echo '$(srcdir)/'`sci_gateway/c/sci_x_dialog.c
 
-libscigui_la-sci_show_window.lo: sci_gateway/c/sci_show_window.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_show_window.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_show_window.Tpo -c -o libscigui_la-sci_show_window.lo `test -f 'sci_gateway/c/sci_show_window.c' || echo '$(srcdir)/'`sci_gateway/c/sci_show_window.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_show_window.Tpo $(DEPDIR)/libscigui_la-sci_show_window.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_show_window.c' object='libscigui_la-sci_show_window.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-sci_raise_window.lo: sci_gateway/c/sci_raise_window.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_raise_window.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_raise_window.Tpo -c -o libscigui_la-sci_raise_window.lo `test -f 'sci_gateway/c/sci_raise_window.c' || echo '$(srcdir)/'`sci_gateway/c/sci_raise_window.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_raise_window.Tpo $(DEPDIR)/libscigui_la-sci_raise_window.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_raise_window.c' object='libscigui_la-sci_raise_window.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_show_window.lo `test -f 'sci_gateway/c/sci_show_window.c' || echo '$(srcdir)/'`sci_gateway/c/sci_show_window.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_raise_window.lo `test -f 'sci_gateway/c/sci_raise_window.c' || echo '$(srcdir)/'`sci_gateway/c/sci_raise_window.c
 
 libscigui_la-sci_x_choose.lo: sci_gateway/c/sci_x_choose.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_x_choose.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_x_choose.Tpo -c -o libscigui_la-sci_x_choose.lo `test -f 'sci_gateway/c/sci_x_choose.c' || echo '$(srcdir)/'`sci_gateway/c/sci_x_choose.c
