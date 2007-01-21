@@ -1,5 +1,5 @@
 # Scipad texts in Italian
-# in sync at least with v6.69
+# in sync at least with v6.79
 
 
 # commons
@@ -18,6 +18,10 @@
 
 
 # buffernavigation.tcl
+::msgcat::mcset it "Hide" "Nascondi"
+::msgcat::mcset it "Close this tile, keep content"\
+                   "Chiudere il pannello, lasciare il file aperto"
+::msgcat::mcset it "Close this tile" "Chiudi questo pannello"
 ::msgcat::mcset it "Goto Line?" "Vai alla linea?"
 ::msgcat::mcset it "Go to:" "Vai a:"
 ::msgcat::mcset it "&logical line" "linea &logica"
@@ -179,6 +183,8 @@
 
 # filecommands.tcl
 ::msgcat::mcset it "New script" "Nuovo testo"
+::msgcat::mcset it "New view on the same file"\
+                   "Nuova pannello per lo stesso file"
 ::msgcat::mcset it "The contents of" "Il contenuto di"
 ::msgcat::mcset it "may have changed, do you wish to save your changes?"\
                    "potrebbe essere cambiato, registrare le modifiche?"
@@ -233,7 +239,7 @@
                     potrebbe richiedere tempo. Colorare comunque?"
 ::msgcat::mcset it "File size warning" "Avvertimento: grosso file"
 ::msgcat::mcset it "Windows shortcut file" "File scorciatoia Windows"
-#::msgcat::mcset it "The file" "Il file" ;# defined in the "commons" section
+#::msgcat::mcset fr "The file" "Le fichier" ;# defined in the "commons" section
 ::msgcat::mcset it "is a Windows shortcut and will not be opened!"\
                    "è una scorciatoia windows e non sarà aperto!"
 
@@ -333,6 +339,7 @@
 ::msgcat::mcset it "Searching in file:" "Ricerca in:"
 ::msgcat::mcset it "End of file search:" "Fine della ricerca:"
 ::msgcat::mcset it "matches found" "corrispondenze trovate"
+::msgcat::mcset it "searched files" "files esaminati"
 ::msgcat::mcset it "Constructing file list:"\
                    "Costruzione della lista dei files:"
 ::msgcat::mcset it "&Previous" "&Precedente"
@@ -359,7 +366,7 @@
                    "Sicuri di voler ripristinare i caratteri predefiniti?"
 
 
-#FormatStringsForWatch.sci
+# FormatStringsForWatch.sci
 ::msgcat::mcset it " what you try to watch is not supported by the debugger"\
                    "Il debugger non supporta quello che si sta cercando di\
                     osservare"
@@ -369,7 +376,7 @@
                    "questo tipo non viene supportato dal debugger"
 
 
-#FormatWhereForWatch.sci
+# FormatWhereForWatch.sci
 ::msgcat::mcset it "Breakpoint" "Arresto"
 ::msgcat::mcset it "called at line" "alla linea"
 ::msgcat::mcset it "of exec file" "in un file exec"
@@ -436,6 +443,7 @@
 ::msgcat::mcset it "Open &function source" "Apri la sorgente della &funzione"
 ::msgcat::mcset it "Print Se&tup" "Confi&gura stampante"
 ::msgcat::mcset it "&Print" "Stam&pa"
+::msgcat::mcset it "&Close file" "Chiudere questo file"
 ::msgcat::mcset it "E&xit" "&Esci"
 
 # menues.tcl - Edit menu
@@ -493,6 +501,10 @@
 ::msgcat::mcset it "Ask for &big files" "&Chiedere per files grandi"
 ::msgcat::mcset it "&Never" "&Mai"
 ::msgcat::mcset it "Colorize \'&strings\'" "Colora &\'stringhe\'"
+::msgcat::mcset it "Line n&umbers" "N&umeri di linea"
+::msgcat::mcset it "&Hide" "&Nascosti"
+::msgcat::mcset it "&Left aligned" "Allineati a &sinistra"
+::msgcat::mcset it "&Right aligned" "Allineati a &destra"
 ::msgcat::mcset it "Show c&ontinued lines" "Colora linee &incomplete"
 ::msgcat::mcset it "Word &wrap" "&Ritorno a capo visuale"
 ::msgcat::mcset it "&Double-click behavior" "Doppio clic &seleziona come"
@@ -538,6 +550,9 @@
 ::msgcat::mcset it "&Maximize" "&Massimizza"
 ::msgcat::mcset it "&Split" "Dividi in &orizzontale"
 ::msgcat::mcset it "S&plit (side by side)" "Dividi in &verticale"
+::msgcat::mcset it "Sp&lit file" "D&ividi il file"
+::msgcat::mcset it "Spl&it file (side by side)"\
+                   "Dividere il file (&fianco a fianco)"
 ::msgcat::mcset it "Tile all &vertically" "&Impila tutte"
 ::msgcat::mcset it "Tile all &horizontally" "&Affianca tutte"
 ::msgcat::mcset it "Space sashes &evenly" "Spezzatura &uniforme"
@@ -674,7 +689,9 @@
 
 #preference variables description
 ::msgcat::mcset it "BGCOLOR" "Sfondo"
+::msgcat::mcset it "BGLNMARGCOLOR" "Sfondo numeri linea"
 ::msgcat::mcset it "FGCOLOR" "Testo semplice"
+::msgcat::mcset it "FGLNMARGCOLOR" "Testo numeri linea"
 ::msgcat::mcset it "CURCOLOR" "Cursore"
 ::msgcat::mcset it "PARCOLOR" "Parentesi tonde ()"
 ::msgcat::mcset it "BRAKCOLOR" "Parentesi quadre \\\[\\\]"
