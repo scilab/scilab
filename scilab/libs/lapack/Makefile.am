@@ -296,7 +296,7 @@ dlaqr5.f \
 zlaqr2.f \
 zlaqr1.f \
 dlaqr2.f \
-dlaqr1.f \
+dlaqr1.f
 
 libscilapack_la_SOURCES = $(LAPACK_FORTRAN_SOURCES)
 

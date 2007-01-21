@@ -124,7 +124,11 @@ am__objects_1 = dlasv2.lo zgeqpf.lo zrot.lo dpotrf.lo zunmr3.lo \
 	dlapmt.lo ieeeck.lo dlasq1.lo dorghr.lo zlacon.lo dgelsx.lo \
 	dsterf.lo zsteqr.lo zgelqf.lo dsytrs.lo dgges.lo dorg2l.lo \
 	dlapy3.lo lsame.lo ztrsyl.lo izmax1.lo ztgsen.lo zunmbr.lo \
-	zlabrd.lo dtgexc.lo dgeql2.lo dlagv2.lo dggbak.lo dtzrzf.lo
+	zlabrd.lo dtgexc.lo dgeql2.lo dlagv2.lo dggbak.lo dtzrzf.lo \
+	zlaqr0.lo dlacn2.lo zlacn2.lo dlazq3.lo zlahr2.lo dlaqr0.lo \
+	iparmq.lo disnan.lo dlaisnan.lo dlahr2.lo zlaqr3.lo zlaqr4.lo \
+	zlaqr5.lo dlazq4.lo dlaqr3.lo dlaqr4.lo dlaqr5.lo zlaqr2.lo \
+	zlaqr1.lo dlaqr2.lo dlaqr1.lo
 am_libscilapack_la_OBJECTS = $(am__objects_1)
 libscilapack_la_OBJECTS = $(am_libscilapack_la_OBJECTS)
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
@@ -551,7 +555,28 @@ dtgexc.f \
 dgeql2.f \
 dlagv2.f \
 dggbak.f \
-dtzrzf.f
+dtzrzf.f \
+zlaqr0.f \
+dlacn2.f \
+zlacn2.f \
+dlazq3.f \
+zlahr2.f \
+dlaqr0.f \
+iparmq.f \
+disnan.f \
+dlaisnan.f \
+dlahr2.f \
+zlaqr3.f \
+zlaqr4.f \
+zlaqr5.f \
+dlazq4.f \
+dlaqr3.f \
+dlaqr4.f \
+dlaqr5.f \
+zlaqr2.f \
+zlaqr1.f \
+dlaqr2.f \
+dlaqr1.f
 
 libscilapack_la_SOURCES = $(LAPACK_FORTRAN_SOURCES)
 libdummy_lapack_la_SOURCES = dlamch.f slamch.f
@@ -559,9 +584,7 @@ libdummy_lapack_la_FFLAGS = `echo "@FFLAGS@"| sed -e 's|-O[0-9+]|-O0|'`
 libscilapack_la_LIBADD = libdummy-lapack.la \
 	$(top_builddir)/libs/blas/libsciblas.la 
 
-
-#### Target ######
-target = $(datadir)/lapack
+libscilapack_la_PKGCONFIG = lapack.pc
 
 # Where headers (*.h) are installed (usually /usr/include/scilab/)
 sciincludedir = ${includedir}/scilab
