@@ -17,6 +17,11 @@ extern int C2F(cmatcptr)  __PARAMS((char *name__, integer *m, integer *n, intege
 extern int C2F(cmatsptr)  __PARAMS((char *name__, integer *m, integer *n, integer *ix, integer *j, integer *lp, integer *nlr, unsigned long name_len));
 
 
+extern int C2F(creadbmat)(char *namex, integer *m, integer *n, int *scimat, unsigned long name_len);
+extern int C2F(cwritebmat)(char *namex, integer *m, integer *n, int *mat, unsigned long name_len);
+
+
+
 extern int C2F(str2name)  __PARAMS((char *name__, integer *id, unsigned long name_len));
 extern int C2F(objptr)  __PARAMS((char *name__, integer *lp, integer *fin, unsigned long name_len));
 extern int C2F(putvar) __PARAMS((int *number, char *namex, unsigned long name_len ));
