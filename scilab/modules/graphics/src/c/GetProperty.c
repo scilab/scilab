@@ -3684,8 +3684,7 @@ sciIsExistingSubWin (WRect)
   return (sciPointObj *)NULL;
 }
 
-sciPointObj *sciIsExistingFigure(value)
-     int *value;
+sciPointObj * sciIsExistingFigure( int *value )
 {
   struct BCG *figGC = NULL;
   integer v=0;
