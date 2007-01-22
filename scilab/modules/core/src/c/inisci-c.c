@@ -133,7 +133,7 @@ int SetSci()
 
 /*************************************************************************************************/
 /**
- * Get the SCI path and initialize the scilab environement path
+ * Get the SCI path and initialize the scilab environment path
  *
  */
 int C2F(getsci)(char *buf,int *nbuf,long int lbuf)
