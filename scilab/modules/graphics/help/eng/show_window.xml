@@ -5,13 +5,24 @@
   <TITLE>show_window</TITLE>
   <TYPE>Scilab Function</TYPE>
   <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="show_window"> raise the current graphics window</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="show_window"> raises a graphics window</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>show_window()</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>show_window([figure])</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>figure</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: number or handle of the figure to show.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
   <DESCRIPTION>
-    <P><VERB>show_window</VERB> raises the current graphics window even if
-    it is iconified. If no window already exists, one is created.</P>
+    <P> With no parameters,<VERB>show_window</VERB>raises the current graphics window even if
+    it is iconified. Otherwise, raises the specified window by its number or handle.
+    If no window already exists, one is created.</P>
   </DESCRIPTION>
   <AUTHOR>J.Ph.C.  </AUTHOR>
 </MAN>
