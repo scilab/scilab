@@ -37,9 +37,8 @@
   <EXAMPLE><![CDATA[[s,w] = dos('dir');
 [s,w] = dos('dir','-echo');
 dos('start notepad')
-[s, w] = dos('foo') 
-
-
+dos('taskkill /IM notepad.exe') // Caution, this command will kill all launched notepad's processus
+[s, w] = dos('foo')
 ]]></EXAMPLE>
 
   <SEE_ALSO>
