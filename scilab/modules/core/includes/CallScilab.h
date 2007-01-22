@@ -53,7 +53,7 @@ Example :
 	SendScilabJobs(jobs,3);
 **/
 
-BOOL GetLastJob(char *Job);
+BOOL GetLastJob(char *JOB,int nbcharsJOB);
 /**
 Returns last job send to scilab by SendScilabJobs or SendScilabJob
 Example :
@@ -63,7 +63,7 @@ jobs[2] : c = a + b;
 if (SendScilabJobs(jobs,3))
 {
 	char lastjob[4096]; // bsiz in scilab 
-	if (GetLastJob(lastjob))
+	if (GetLastJob(lastjob,4096))
 	{
 		printf("%s\n",lastjob);
 	}
