@@ -428,7 +428,7 @@ sci_gateway/sci_winsid.c \
 sci_gateway/sci_addcb.c \
 sci_gateway/sci_fec.c
 
-libscigraphics_la_CFLAGS =  -Iincludes/ -Isrc/c/ -Isrc/gd/ -Isrc/gd/xdr/ -Isrc/gd/gdfonts/ $(TCL_INC_PATH) $(TK_INC_PATH) -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/
+libscigraphics_la_CFLAGS =  -Iincludes/ -Isrc/c/ -Isrc/gd/  -Isrc/gd/gdfonts/ $(TCL_INC_PATH) $(TK_INC_PATH) -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/
 
 libscigraphics_la_LDFLAGS = $(TCLTK_LIBS) $(X_LIBS)
 
