@@ -10,7 +10,7 @@ correctItem=0;
 
 M=[1+%i;2+3*%i] ;
 try
-	fprintfMat('d:/pipo.txt',M,'%f',['comment un';'comment 2'])
+	fprintfMat(TMPDIR+'/pipo.txt',M,'%f',['comment un';'comment 2'])
 	correct=%T;
 catch
   correctItem=correctItem+1;
@@ -18,13 +18,13 @@ end
 
 M=[1.2,2.3];
 try
-	fprintfMat('d:/pipo.txt',M,'%f',['comment un';'comment 2'])
+	fprintfMat(TMPDIR+'/pipo.txt',M,'%f',['comment un';'comment 2'])
 catch
   correctItem=correctItem+1;
 end
 
 try
-	fprintfMat('d:/pipo.txt','M','%f',['comment un';'comment 2'])
+	fprintfMat(TMPDIR+'/pipo.txt','M','%f',['comment un';'comment 2'])
 	correct=%T;
 catch
   correctItem=correctItem+1;
