@@ -150,4 +150,29 @@ proc togglewordwrap {} {
     foreach ta $listoftextarea {
         $ta configure -wrap $wordWrap
     }
+    if {$wordWrap != "none"} {        
+        # remove x scrollbars
+        foreach ta $listoftextarea {
+            if {[isdisplayed $ta]} {
+                set tapwfr [getpaneframename $ta]
+                pack forget $tapwfr.xscroll
+                destroy $tapwfr.xscroll
+                pack forget $tapwfr.bottom
+                destroy $tapwfr.bottom
+            }
+        }
+    } else {
+        # display x scrollbars
+        foreach ta $listoftextarea {
+            if {[isdisplayed $ta]} {
+                set tapwfr [getpaneframename $ta]
+                frame $tapwfr.bottom
+                pack $tapwfr.bottom -side bottom -expand 0 -fill both
+                scrollbar $tapwfr.xscroll -command "$ta xview" \
+                    -takefocus 0 -orient horizontal
+                pack $tapwfr.xscroll -in $tapwfr.bottom -side bottom \
+                    -expand 1 -fill x
+            }
+        }
+    }
 }

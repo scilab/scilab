@@ -95,7 +95,7 @@ endfunction
  and seems to work perfectly, even if there are accented characters before
  the ampersand. However, launching such a menu option using the keyboard
  accelerator does apparently not trigger the associated -command proc.
- This is Tk bug #1638905 (which is a duplicate of #1599877), and it is fixed
+ This is Tk bug #1638905 (which is a duplicate of #1599877), which is fixed
  in both 8.4.15 and 8.5a6 versions of Tcl/Tk.
 
 
@@ -191,6 +191,11 @@ Debugger wishes:
  be dealt with and combined (what about a continued line also tagged
  as a breakpointed line, in which some characters are selected?)
  Not worth the effort and complication I think.
+ Now that one side margin is implemented (for line numbers), it is pretty
+ easy to add further margins and this could be used to tag breakpoints
+ instead of tagging the line (but there is a lot of implications: for
+ instance the debugger currently scans the textarea for breakpoint tags
+ and does not maintain a list of breakpointed lines)
 
 -add a debugger command: "Show next instruction", with a little yellow arrow
  in the margin, and perhaps a breakpoint pink dot in that margin, or other
@@ -236,7 +241,7 @@ Other wishes:
  word boundaries with .. dots and \n
 
 -Block selection, copy/paste, move with dnd, indent/unindent, comment
- and uncomment. See last snaphot in http://www.winedt.com/ for an
+ and uncomment. See last snapshot in http://www.winedt.com/ for an
  example. Add an option to toggle between line mode (current mode) and
  block mode. In block mode, word wrapping should be disabled. This is
  part of request 179.
@@ -295,4 +300,3 @@ http://groups.google.fr/group/comp.soft-sys.math.scilab/browse_thread/thread/dc0
  tabs, and reindents according to keywords (if, function, while, for...)
 
 -Request 262: tabbed buffers (see discussion in this request)
-

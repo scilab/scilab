@@ -2742,5 +2742,13 @@ Francois VOGEL, 20/01/07
    the mouse wheel
  * Fixed: With Tk 8.5 the text widget scrolls smoothly, while with Tk 8.4
    it scrolls by line increments. This required a slight scrolling of the
-   line numbers margin to align it perfectly with the textarea
+   line numbers margin to always align it perfectly with the textarea
  * version --> 6.79
+
+Francois VOGEL, 23/01/07
+ * Fixed Tcl error when opening one of the info boxes from the help menu
+ * Fixed: Line numbers margin does no longer scroll when dragging outside
+   of Scipad with mouse button-1 down
+ * Horizontal scrollbars are automatically removed when wrapping lines since
+   they are useless in this mode
+ * version --> 6.80

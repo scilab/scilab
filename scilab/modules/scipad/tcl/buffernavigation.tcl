@@ -99,7 +99,7 @@
 
 proc packnewbuffer {textarea targetpw forcetitlebar {whereafter ""} {wherebefore ""}} {
 # this packs a textarea buffer in a new pane that will be added in an existing panedwindow
-    global pad textfontsize menuFont linenumbersmargins
+    global pad textfontsize menuFont linenumbersmargins wordWrap
     global Tk85
 
     # everything is packed in a frame whose name is provided by createpaneframename
@@ -136,8 +136,10 @@ proc packnewbuffer {textarea targetpw forcetitlebar {whereafter ""} {wherebefore
     pack  $tapwfr.topright -in $tapwfr.top    -side right  -expand 0 -fill both 
 
     # this is for the x scroll bar at the bottom of the pane
-    frame $tapwfr.bottom
-    pack $tapwfr.bottom                       -side bottom -expand 0 -fill both
+    if {$wordWrap == "none"} {
+        frame $tapwfr.bottom
+        pack $tapwfr.bottom                   -side bottom -expand 0 -fill both
+    }
 
     $targetpw add $tapwfr -minsize [expr {$textfontsize * 2}]
     if {$Tk85} {
@@ -151,8 +153,10 @@ proc packnewbuffer {textarea targetpw forcetitlebar {whereafter ""} {wherebefore
     $targetpw paneconfigure $tapwfr -after $whereafter -before $wherebefore
 
     scrollbar $tapwfr.yscroll -command "$textarea yview" -takefocus 0
-    scrollbar $tapwfr.xscroll -command "$textarea xview" -takefocus 0 \
-        -orient horizontal
+    if {$wordWrap == "none"} {
+        scrollbar $tapwfr.xscroll -command "$textarea xview" -takefocus 0 \
+            -orient horizontal
+    }
 
     label $tapwfr.panetitle -font $menuFont
     bind $tapwfr.topbar    <ButtonRelease-1> "focustextarea $textarea"
@@ -173,16 +177,16 @@ proc packnewbuffer {textarea targetpw forcetitlebar {whereafter ""} {wherebefore
 
     pack $textarea       -in $tapwfr.topleft  -side left   -expand 1 -fill both
     pack $tapwfr.yscroll -in $tapwfr.topright -side right  -expand 1 -fill y
-    pack $tapwfr.xscroll -in $tapwfr.bottom   -side bottom -expand 1 -fill x
+    if {$wordWrap == "none"} {
+        pack $tapwfr.xscroll -in $tapwfr.bottom   -side bottom -expand 1 -fill x
+    }
 
     if {[gettotnbpanes] > 1 || $forcetitlebar == 1} {
         pack $tapwfr.topbar -side top -expand 0 -fill both -in $tapwfr -before $tapwfr.top
     }
 
-    $textarea configure -xscrollcommand "managescroll $tapwfr.xscroll $textarea"
-    $textarea configure -yscrollcommand "managescroll $tapwfr.yscroll $textarea"
-    $tapwfr.xscroll set [lindex [$textarea xview] 0] [lindex [$textarea xview] 1]
-    $tapwfr.yscroll set [lindex [$textarea yview] 0] [lindex [$textarea yview] 1]
+    $textarea configure -xscrollcommand "managescroll $tapwfr.xscroll"
+    $textarea configure -yscrollcommand "managescroll $tapwfr.yscroll"
 
     if {$linenumbersmargins != "hide"} {
         addlinenumbersmargin $textarea
@@ -195,14 +199,16 @@ proc packbuffer {textarea} {
 # this packs a textarea buffer in an existing pane of an existing panedwindow
 # this pane is always the current one
 # the text widget is packed in the frame that contained the current textarea
-    global pad pwframe
+    global pad pwframe wordWrap
 
     pack forget [gettextareacur]
     set curtapwfr [getpaneframename [gettextareacur]]
     unset pwframe([gettextareacur])
 
     $curtapwfr.yscroll configure -command "$textarea yview"
-    $curtapwfr.xscroll configure -command "$textarea xview"
+    if {$wordWrap == "none"} {
+        $curtapwfr.xscroll configure -command "$textarea xview"
+    }
 
     $curtapwfr.clbutton configure -command "focustextarea $textarea; closecurtile yesnocancel"
     $curtapwfr.hibutton configure -command "hidetext $textarea"
@@ -224,11 +230,8 @@ proc packbuffer {textarea} {
 
     pack $textarea -in $curtapwfr.topleft -side left -expand 1 -fill both
 
-    $textarea configure -xscrollcommand "managescroll $curtapwfr.xscroll $textarea"
-    $textarea configure -yscrollcommand "managescroll $curtapwfr.yscroll $textarea"
-
-    $curtapwfr.xscroll set [lindex [$textarea xview] 0] [lindex [$textarea xview] 1]
-    $curtapwfr.yscroll set [lindex [$textarea yview] 0] [lindex [$textarea yview] 1]
+    $textarea configure -xscrollcommand "managescroll $curtapwfr.xscroll"
+    $textarea configure -yscrollcommand "managescroll $curtapwfr.yscroll"
 
     set pwframe($textarea) $curtapwfr
 }
@@ -1134,7 +1137,7 @@ proc spaceallsasheskeeprelsizes {} {
 
 }
 
-proc managescroll {scrbar ta a b} {
+proc managescroll {scrbar a b} {
 # this is primarily only to add a catch to the command normally used
 # this catch is required because the text widget may trigger scroll commands
 # automatically when it is not packed in a pane,
@@ -1146,12 +1149,21 @@ proc managescroll {scrbar ta a b} {
 # to redefine a lot of bindings relative to the textarea view adjustment
 # such as MouseWheel, Key-Return, Key-Down, etc - quick and elegant
 # solution
-    global linenumbersmargins
+    global listoftextarea linenumbersmargins
 
     catch {$scrbar set $a $b}
 
-    if {$linenumbersmargins != "hide"} {
-        catch {updatelinenumbersmargin $ta}
+    # proc managescroll might be called when scrolling text widgets other
+    # than textareas, for instance the info box of the help menu. In such
+    # a case, do not attempt to update line numbers
+    # note: catched for the same reason as above
+    catch {
+        set ta [gettafromwidget [winfo parent $scrbar]]
+        if {[lsearch -exact $listoftextarea $ta] != -1} {
+            if {$linenumbersmargins != "hide"} {
+                updatelinenumbersmargin $ta
+            }
+        }
     }
 }
 
@@ -1305,6 +1317,13 @@ proc addlinenumbersmargin {ta} {
     # let the user think he cannot select in the margin
     $tapwfr.margin configure -selectbackground [$tapwfr.margin cget -background]
     $tapwfr.margin configure -selectforeground [$tapwfr.margin cget -foreground]
+    $tapwfr.margin configure -selectborderwidth 0
+
+    bind $tapwfr.margin <ButtonRelease-1> { set ta [gettafromwidget [winfo parent %W]] ; \
+                                            if {[info exists listoffile("$ta",fullname)]} { \
+                                                focustextarea $ta ; \
+                                            } \
+                                          }
 
     # prevent unwanted Text class bindings from triggering
     bind $tapwfr.margin <Button-3> {break}
@@ -1315,6 +1334,7 @@ proc addlinenumbersmargin {ta} {
     bind $tapwfr.margin <Button-2> {break}
     bind $tapwfr.margin <Motion> {break}
     bind $tapwfr.margin <MouseWheel> {break}
+    bind $tapwfr.margin <Button1-Leave> {break} ; # prevents autoscan
 
     pack $tapwfr.margin -in $tapwfr.topleft -before $ta -side left \
             -expand 0 -fill both -padx 2
