@@ -29,6 +29,8 @@ includes/javasci_Scilab2.h \
 includes/javasci_globals.h \
 includes/javasci_SciStringArray.h \
 includes/javasci_SciComplexArray.h \
-includes/javasci_SciDoubleArray.h
+includes/javasci_SciDoubleArray.h \
+includes/javasci_SciBooleanArray.h
+
 
 include $(top_srcdir)/Makefile.incl.am

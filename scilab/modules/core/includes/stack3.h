@@ -16,15 +16,31 @@ extern int C2F(cmatptr)  __PARAMS((char *name__, integer *m, integer *n, integer
 extern int C2F(cmatcptr)  __PARAMS((char *name__, integer *m, integer *n, integer *lp, unsigned long name_len));
 extern int C2F(cmatsptr)  __PARAMS((char *name__, integer *m, integer *n, integer *ix, integer *j, integer *lp, integer *nlr, unsigned long name_len));
 
-
+/** 
+read a boolean matrix in scilab stack
+*/
 extern int C2F(creadbmat)(char *namex, integer *m, integer *n, int *scimat, unsigned long name_len);
+/**
+write a boolean matrix in scilab stack
+*/
 extern int C2F(cwritebmat)(char *namex, integer *m, integer *n, int *mat, unsigned long name_len);
-
-
+/**
+get pointer on a named boolean matrix 
+*/
+extern int C2F(cmatbptr)(char *namex, integer *m,integer *n,integer *lp, unsigned long name_len);
 
 extern int C2F(str2name)  __PARAMS((char *name__, integer *id, unsigned long name_len));
 extern int C2F(objptr)  __PARAMS((char *name__, integer *lp, integer *fin, unsigned long name_len));
 extern int C2F(putvar) __PARAMS((int *number, char *namex, unsigned long name_len ));
+
+extern int getlengthchain(char *namex);
+/**
+returns length of a "chain variable" in scilab
+example :
+in scilab --> str = "abcdefghijklmnopqrstuvwxyz";
+in C getlengthchain("str") returns 26
+error returns -1 
+*/ 
 
 #endif 
 

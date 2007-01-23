@@ -1,7 +1,8 @@
 /*------------------------------------------------------------------------
  *    Graphic library
  *    Copyright (C) 1998-2000 Enpc/Inria 
- *    jpc@cereve.enpc.fr 
+ *    2003 JPC Enpc
+ *	  2007 Allan CORNET INRIA
  --------------------------------------------------------------------------*/
 /*------------------------------------------------------
  * Read and Write inside the Scilab stack 
@@ -687,6 +688,32 @@ int C2F(cwritebmat)(char *namex, integer *m, integer *n,  int *mat, unsigned lon
 	return TRUE_;
 
 }
+/*-----------------------------------------------------------------------------------*/
+int C2F(cmatbptr)(char *namex, integer *m,integer *n,integer *lp, unsigned long name_len)
+{
+	integer id[nsiz];
+	C2F(str2name)(namex, id, name_len);
+	/* get the position in fin */
+	Fin = -1;
+	C2F(stackg)(id);
+	if (Fin == 0) 
+	{
+		Scierror(4,"Undefined variable %s\r\n",get_fname(namex,name_len));
+		*m = -1;
+		*n = -1;
+		return FALSE_;
+	}
+	/* get data */
+	if (*Infstk(Fin ) == 2) 
+	{
+		Fin = *istk(iadr(*Lstk(Fin )) + 1 +1);
+	}
+
+	if (! C2F(getbmat)("creadbmat", &Fin, &Fin, m, n, lp , 9L))	return FALSE_;
+	
+	return TRUE_ ;
+}
+
 /*-----------------------------------------------------------------------------------*/
 /**
 	returns length of a "chain variable" in scilab

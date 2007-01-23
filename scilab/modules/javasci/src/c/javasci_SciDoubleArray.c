@@ -150,12 +150,12 @@ JNIEXPORT jdouble JNICALL Java_javasci_SciDoubleArray_GetElement(JNIEnv *env , j
 
   if ( ! C2F(cmatptr)((char *)cname, &cm, &cn, &lp,(unsigned long)strlen(cname))) 
   {
-  	fprintf(stderr,"Error in Java_javasci_SciDoubleArray_GetReal (1).\n");
+  	fprintf(stderr,"Error in Java_javasci_SciDoubleArray_GetElement (1).\n");
   }
   else 
   if (! C2F(creadmat)((char *)cname,&cm, &cn,cx,(unsigned long)strlen(cname) ))
   {	
-	fprintf(stderr,"Error in Java_javasci_SciDoubleArray_GetReal (2).\n");
+	fprintf(stderr,"Error in Java_javasci_SciDoubleArray_GetElement (2).\n");
   }
 
   (*env)->ReleaseStringUTFChars(env, jname , cname);

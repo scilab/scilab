@@ -197,6 +197,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\javasci_SciBoolean.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\javasci_SciComplexArray.c"
 				>
 			</File>
@@ -224,6 +228,10 @@
 			>
 			<File
 				RelativePath=".\includes\javasci_globals.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\javasci_SciBooleanArray.h"
 				>
 			</File>
 			<File
@@ -265,6 +273,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\java\SciBoolean.java"
+				>
+			</File>
+			<File
+				RelativePath=".\src\java\SciBooleanArray.java"
+				>
+			</File>
+			<File
 				RelativePath=".\src\java\SciComplex.java"
 				>
 			</File>
@@ -293,6 +309,10 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath=".\Makefile.am"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

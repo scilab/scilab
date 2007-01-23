@@ -10,5 +10,6 @@ rem Compilation des classes Java d'interfaces
 %JAVAC% -classpath ..\..\..\..\bin -d ..\..\..\..\bin SciString.java
 %JAVAC% -classpath ..\..\..\..\bin -d ..\..\..\..\bin SciComplexArray.java
 %JAVAC% -classpath ..\..\..\..\bin -d ..\..\..\..\bin SciComplex.java
-
+%JAVAC% -classpath ..\..\..\..\bin -d ..\..\..\..\bin SciBooleanArray.java
+%JAVAC% -classpath ..\..\..\..\bin -d ..\..\..\..\bin SciBoolean.java
 @echo on
