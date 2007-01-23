@@ -45,7 +45,7 @@ c
       endif
 
       lhs=1
-c      call ref2val
+      call ref2val
       call gwdatastructures1
       rhs=srhs
       lhs=slhs
