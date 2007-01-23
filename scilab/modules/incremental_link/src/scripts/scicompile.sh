@@ -36,11 +36,18 @@ SOURCES=`echo $SOURCES|sed -e 's|\.c|\.lo|g'`
 SOURCES=`echo $SOURCES|sed -e 's|\.f|\.lo|g'`
 SOURCES=`echo $SOURCES|sed -e 's|\.cxx|\.lo|g'`
 
-### Changes objects in the source code
-sed -e "s|am_libsciexternal_la_OBJECTS = foo.lo foo2.lo foo3.lo|am_lib"$LIB"_la_OBJECTS = $SOURCES|g" Makefile > Makefile
+# Makefile.swap is used because there is no inline option with sed under Solaris 
 
 ### Changes objects in the source code
-sed -e "s|libsciexternal|lib"$LIB"|g" Makefile > akefile
+sed -e "s|am_libsciexternal_la_OBJECTS = foo.lo foo2.lo foo3.lo|am_lib"$LIB"_la_OBJECTS = $SOURCES|g" Makefile > Makefile.swap
+mv  Makefile.swap Makefile
+
+### Changes objects in the source code
+sed -e "s|libsciexternal|lib"$LIB"|g" Makefile > Makefile.swap
+mv  Makefile.swap Makefile
 
 ### Remove the dependencies computed by the system
-sed -e "s|^include[[:space:]]\(.*\)Plo||" Makefile > Makefile 
+sed -e "s|^include[[:space:]]\(.*\)Plo||" Makefile > Makefile.swap
+mv  Makefile.swap Makefile
+
+rm Makefile.swap
