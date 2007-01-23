@@ -50,4 +50,4 @@ mv  Makefile.swap Makefile
 sed -e "s|^include[[:space:]]\(.*\)Plo||" Makefile > Makefile.swap
 mv  Makefile.swap Makefile
 
-rm Makefile.swap
+
