@@ -11,11 +11,11 @@ if ~exists('iolib') then load('SCI/modules/io/macros/lib'),end
 //------------------------------------
 genlib('libscicos','SCI/modules/scicos/macros');
 //------------------------------------
-disp('-- Creation of [SCI/modules/scicos/macros/scicos] (Macros) --');
-chdir('SCI/modules/scicos/macros/scicos'); 
+mprintf(" -- Creation of [SCI/modules/scicos/macros/scicos] (Macros) --\n");
+chdir('SCI/modules/scicos/macros/scicos');
 exec('buildmacros.sce',-1);
 //------------------------------------
-disp('-- Creation of [SCI/modules/scicos/macros/scicos_blocks] (Macros) --');
-chdir('SCI/modules/scicos/macros/scicos_blocks'); 
+mprintf(" -- Creation of [SCI/modules/scicos/macros/scicos_blocks] (Macros) --\n");
+chdir('SCI/modules/scicos/macros/scicos_blocks');
 exec('buildmacros.sce',-1);
 //------------------------------------

@@ -3,11 +3,11 @@
 //------------------------------------
 genlib('libm2sci','SCI/modules/m2sci/macros');
 //------------------------------------
-disp('-- Creation of [SCI/modules/m2sci/macros/m2sci] (Macros) --');
-chdir('SCI/modules/m2sci/macros/m2sci'); 
+mprintf(" -- Creation of [SCI/modules/m2sci/macros/m2sci] (Macros) --\n");
+chdir('SCI/modules/m2sci/macros/m2sci');
 exec('buildmacros.sce',-1);
 //------------------------------------
-disp('-- Creation of [SCI/modules/m2sci/macros/mtlb] (Macros) --');
-chdir('SCI/modules/m2sci/macros/mtlb'); 
+mprintf(" -- Creation of [SCI/modules/m2sci/macros/mtlb] (Macros) --\n");
+chdir('SCI/modules/m2sci/macros/mtlb');
 exec('buildmacros.sce',-1);
 //------------------------------------
