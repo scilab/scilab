@@ -10,11 +10,7 @@
 
 #include <string.h> /* in case of dmalloc */ 
 
-#ifdef __STDC__
 #include <stdlib.h>
-#else
-#include <malloc.h>
-#endif
 
 #include "machine.h"
 #include "All-extern.h"

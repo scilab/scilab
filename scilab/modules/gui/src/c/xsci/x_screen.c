@@ -26,11 +26,7 @@
  */
 
 /* screen.c */
-#ifdef __STDC__
 #include <stdlib.h>
-#else 
-#include <malloc.h>
-#endif 
 #include "x_ptyxP.h"
 #include "x_error.h"
 #include "x_data.h"

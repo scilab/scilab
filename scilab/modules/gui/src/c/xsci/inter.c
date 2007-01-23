@@ -43,11 +43,7 @@
 #include <sys/select.h>
 #endif
 
-#ifdef __STDC__
 #include <stdlib.h>
-#else
-#include <malloc.h>
-#endif
 
 #ifdef WITH_TK
 #include "TCL_Global.h"

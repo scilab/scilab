@@ -32,8 +32,7 @@
 #include "x_data.h"
 
 #include <stdio.h>
-
-#include <malloc.h>
+#include <stdlib.h>
 
 /*
    allocates memory for a 2-dimensional array of chars and returns a pointer

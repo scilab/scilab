@@ -1,16 +1,8 @@
 #include <stdio.h>
 #include <string.h>
-
-#ifdef __STDC__
 #include <stdlib.h>
-#else
-#include <malloc.h>
-#endif
-
-
 
 #include "machine.h"
-
 #include "MALLOC.h"
 
 

@@ -29,11 +29,7 @@
 
 #include <stdio.h>
 #include <ctype.h>
-#ifdef __STDC__
 #include <stdlib.h>
-#else 
-#include <malloc.h>
-#endif
 
 #include <X11/Xatom.h>
 #include <X11/StringDefs.h>

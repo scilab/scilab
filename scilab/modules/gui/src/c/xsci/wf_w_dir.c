@@ -53,12 +53,7 @@
 #else
 #include <sys/dir.h>
 #endif
-
-#ifdef __STDC__ 
 #include <stdlib.h>
-#else 
-#include <malloc.h>
-#endif
 
 #include "machine.h"
 #include "setgetSCIpath.h"

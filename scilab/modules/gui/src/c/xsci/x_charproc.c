@@ -50,20 +50,13 @@
 #include <errno.h>
 #include <setjmp.h>
 #include <ctype.h>
-#ifdef __STDC__
-#include <stdlib.h>
-#endif
 
 #ifdef aix
 #include <sys/select.h>
 #endif
 
 #include <string.h> /* in case of dmalloc */ 
-#ifdef __STDC__
 #include <stdlib.h>
-#else
-#include <malloc.h>
-#endif
 
 
 #ifdef WITH_TK

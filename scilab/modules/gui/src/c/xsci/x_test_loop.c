@@ -39,7 +39,7 @@ extern void C2F (cvstr) __PARAMS((int *n, int *line, char *str, int *job, long i
 extern int demo_menu_activate;
 
 #include <string.h> /* in case of dmalloc */ 
-#include <malloc.h>
+#include <stdlib.h>
 
 
 int main(argc, argv)

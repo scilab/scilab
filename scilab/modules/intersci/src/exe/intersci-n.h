@@ -21,12 +21,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-
-#ifdef __STDC__
 #include <stdlib.h>
-#else 
-#include <malloc.h>
-#endif
+
 
 /* FORTRAN variable types */ 
 #define CHAR 1

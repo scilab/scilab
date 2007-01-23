@@ -16,12 +16,7 @@
 #include "link.h"
 #include "sciprint.h"
 
-
-#ifdef __STDC__
 #include <stdlib.h>
-#else
-#include <malloc.h>
-#endif
 
 #include "machine.h"
 #include "stack-c.h"

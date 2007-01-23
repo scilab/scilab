@@ -1,12 +1,7 @@
-
-
 /* Copyright (C) 1998-2002 Chancelier Jean-Philippe */
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#ifndef __STDC__
-#include <malloc.h>
-#endif
 #include <stdio.h>
 
 #include "machine.h"
@@ -14,15 +9,13 @@
 #include "Messages.h"
 #include "Warnings.h"
 #include "Errors.h"
-
+#include "setgetSCIpath.h"
 #include "sciprint.h"
 
 
 static int Sed __PARAMS ((int, char *, FILE *, char *, char *, char *, char *, char *, char *));
 static void readOneLine __PARAMS ((char *buff, int *stop, FILE * fd));
 static void ConvertName __PARAMS ((char *filein, char *fileout));
-
-extern char *getSCIpath(void);
 
 /**************************************************
  * Converts a scilab Eps file to an Epsf file 

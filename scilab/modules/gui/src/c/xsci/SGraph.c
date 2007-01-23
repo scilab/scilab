@@ -6,8 +6,7 @@
 
 #include <stdio.h>			/* For the Syntax message */
 #include <signal.h>
-
-
+#include <stdlib.h>
 #include <string.h>
 
 #include "sci_mem_alloc.h"
@@ -23,11 +22,9 @@ extern int StoreCommand  __PARAMS((char *command));
 
 /** getpid **/
 #ifdef __STDC__
-#include <stdlib.h>
 #include <sys/types.h>
 #include <unistd.h>
 #else 
-#include <malloc.h>
 extern char * getenv();
 extern int getpid();
 #endif

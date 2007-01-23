@@ -20,12 +20,8 @@
 #include "wf_w_util.h"
 
 #include <string.h> /* in case of dmalloc */ 
-
-#ifdef __STDC__ 
 #include <stdlib.h>
-#else
-#include <malloc.h>
-#endif
+
 /*-----------------------------------------------------------------------------------*/
 static void get_clipboard(Widget w, XtPointer client_data, Atom *selection, Atom *type, XtPointer buf, unsigned long *length, int *format);
 int panel_set_value(Widget widg, char *val);

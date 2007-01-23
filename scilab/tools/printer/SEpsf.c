@@ -5,7 +5,7 @@
 # include <stdarg.h>
 #else
 # include <varargs.h>
-# include <malloc.h>
+# include <stdlib.h>
 char *getenv();
 #endif 
 

@@ -31,12 +31,8 @@
 #include <signal.h>
 #include <ctype.h>
 #include <sys/wait.h>
-
-#ifdef __STDC__
 #include <stdlib.h>
-#else
-#include <malloc.h>
-#endif
+
 
 #include "global.h"
 #include "Os_specific.h" 

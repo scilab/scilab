@@ -1,15 +1,7 @@
 #include <string.h>
-#ifdef __STDC__
 #include <stdlib.h>
-#else
-	#ifndef _MSC_VER
-		#include <malloc.h>
-	#endif
-#endif
-
 
 #include "machine.h"
-
 #include "MALLOC.h"
 
 #ifdef _MSC_VER

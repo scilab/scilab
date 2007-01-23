@@ -23,11 +23,7 @@ extern int C2F(funtab) __PARAMS((int *id, int *fptr, int *job,char *namefunction
 extern int C2F(error)  __PARAMS((integer *n));  
 extern void GetenvB __PARAMS(( char *name,char *env, int len));
 
-#ifdef __STDC__
 #include <stdlib.h>
-#else
-#include <malloc.h>
-#endif
 
 #define OK 1
 #define FAIL 0

@@ -4,7 +4,7 @@
 #include <string.h>
 #include <ctype.h>
 #ifndef __STDC__
-#include <malloc.h>
+#include <stdlib.h>
 #endif 
 #include <stdio.h>
 

@@ -42,17 +42,12 @@
  *    concat():			Concatenate two strings together
  */
 
-#include "global.h"
+
 #include <string.h> /* in case of dmalloc */ 
-
-#ifdef __STDC__
 #include <stdlib.h>
-#else
-#include <malloc.h>
-#endif
+#include "global.h"
 
-void DisableWindowResize(w)
-Widget w;
+void DisableWindowResize(Widget w)
 {
     Arg args[MAXARGS];
     Cardinal n;

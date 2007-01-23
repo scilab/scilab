@@ -6,16 +6,11 @@
 #include <dirent.h>
 #endif
 #include <string.h>
-#ifdef __STDC__ 
 #include <stdlib.h>
-#else
-#include <malloc.h>
-#endif
 
 #include <math.h>
 
 #ifdef _MSC_VER
-#include <stdlib.h> /*qsort*/
 #include <direct.h> /*_getcwd _chdir*/
 #endif
 #if (defined _MSC_VER)

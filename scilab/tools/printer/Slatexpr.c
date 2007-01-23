@@ -1,14 +1,14 @@
 /* Copyright ENPC/Chancelier Jean-Philippe */
 
 #ifdef __STDC__
-# include <stdlib.h>
 # include <stdarg.h>
 #else
 # include <varargs.h>
-# include <malloc.h>
+
 char *getenv();
 #endif 
 
+#include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 #include <stdio.h>
