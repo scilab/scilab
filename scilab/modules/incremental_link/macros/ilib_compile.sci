@@ -21,14 +21,15 @@ function libn=ilib_compile(lib_name,makename,files)
       ilib_compile_get_names(lib_name,makename,files)  
   if path<> '';  chdir(path);  end 
   // first try to build each file step by step 
-  nf = size(files,'*');
-  for i=1:nf 
-    write(%io(2),'   compilation of '+files1(i));
-    unix_s(make_command+makename + ' '+ files(i)); 
-  end
+  //  nf = size(files,'*');
+  //for i=1:nf 
+//    write(%io(2),'   compilation of '+files1(i));
+//    unix_s(make_command+makename + ' '+ files(i)); 
+//  end
   // then the shared library 
-  write(%io(2),'   building shared library (be patient)');
-  unix_s(make_command+makename + ' '+ lib_name); 
+//  write(%io(2),'   building shared library (be patient)');
+//  unix_s(make_command+makename + ' '+ lib_name); 
+	unix_s("make");
   // a revoir 
   libn=path+lib_name_make ; 
   chdir(oldpath)

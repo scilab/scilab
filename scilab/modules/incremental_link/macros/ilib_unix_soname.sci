@@ -4,8 +4,10 @@ function rep=ilib_unix_soname()
 	// Copyright INRIA
 	// try to get the proper sufix for 
 	// shared unix library sl or so ?
-	
-	libtoolconf=unix_g("$SCI/libtool --config")
+
+	commandpath=SCI+"/modules/incremental_link/src/scripts/";
+	libtoolconf=unix_g(commandpath+"/libtool --config")
+
 	//check if shared libraries are built
 	k=grep(libtoolconf,'build_libtool_libs')
 	
