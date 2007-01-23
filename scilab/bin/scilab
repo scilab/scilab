@@ -219,12 +219,12 @@ do_save()
           Postscript-Latex)
 
                 wantedEpsName=$2.eps
-                newEps=$(echo $2 | cut -d . -f1).eps
+                newEps=`echo $2 | cut -d . -f1`.eps
                 # move the file in case BEpsf will destroy it
                 mv $newEps $newEps.scilab.temp 1> /dev/null  2>&1
 
                 wantedTexName=$2.tex
-                newTex=$(echo $2 | cut -d . -f1).tex # get the name created by Blatexpr
+                newTex=`echo $2 | cut -d . -f1`.tex # get the name created by Blatexpr
                 # move the file in case BEpsf will destroy it
                 mv $newTex $newTex.scilab.temp 1> /dev/null  2>&1
 
