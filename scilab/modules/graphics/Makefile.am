@@ -334,15 +334,6 @@ src/c/handleDrawing/drawSurfaceEntity.c \
 src/c/handleDrawing/drawTextEntity.c
 
 
-# A voir si c'st utilisé
-#src/xdr/xdr_reference.c \
-#src/xdr/xdr_stdio.c \
-#src/xdr/xdr_float.c \
-#src/xdr/xdr_rec.c \
-#src/xdr/xdr_array.c \
-#src/xdr/xdr_mem.c \
-#src/xdr/xdr.c
-
 GATEWAY_C_SOURCES = sci_gateway/sci_swap_handles.c \
 sci_gateway/sci_readgif.c \
 sci_gateway/sci_grayplot.c \
