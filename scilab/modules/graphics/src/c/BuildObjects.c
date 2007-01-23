@@ -266,6 +266,7 @@ ConstructFigure (struct BCG *XGC)
   pFIGURE_FEATURE (pobj)->wshow = pFIGURE_FEATURE (pfiguremdl)->wshow ; 
   pFIGURE_FEATURE (pobj)->allredraw = pFIGURE_FEATURE (pfiguremdl)->allredraw;
 
+  pFIGURE_FEATURE (pobj)->infoMessage = NULL ; /* needed otherwise it will be realloc */
   sciSetInfoMessage( pobj, sciGetInfoMessage(pfiguremdl) ) ;
 
   return pobj;
