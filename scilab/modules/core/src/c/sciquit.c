@@ -87,11 +87,11 @@ int ExitScilab(void)
 	  if (i != 0) CloseConsoleGUI();
         }
 	#endif
-
-		/*	#ifdef _MSC_VER */ /* Bug sous Linux lors de la liberation memoire */
+	
+	#ifdef _MSC_VER /* Bug sous Linux lors de la liberation memoire */
 		C2F(freegmem)();
 		C2F(freemem)();
-		/*	#endif */
+	#endif
 
 	#ifdef WITH_TK
 		CloseTCLsci();
