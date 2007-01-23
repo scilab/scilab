@@ -47,7 +47,7 @@ sed -e "s|libsciexternal|lib"$LIB"|g" Makefile > Makefile.swap
 mv  Makefile.swap Makefile
 
 ### Remove the dependencies computed by the system
-sed -e "s|^include[[:space:]]\(.*\)Plo||" Makefile > Makefile.swap
+sed -e "s|^include\(.*\)Plo||" Makefile > Makefile.swap
 mv  Makefile.swap Makefile
 
 
