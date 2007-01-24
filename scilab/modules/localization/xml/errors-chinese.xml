@@ -1,0 +1,5404 @@
+<?xml version="1.0" encoding="GBk"?>
+<!-- 编辑使用 XMLSpy v2006 U (http://www.altova.com) 由 any (any) -->
+<Info>
+	<Sciprint>
+		<!-- Scilab_Chinese_ForSciprint-->
+		<!-- Created by HUANG Guanwei and CUI Wendi, Xiamen University, Oct.2006-->
+		<!-- Modified by HUANG Xu, Xiamen University, Oct.2006-->
+		<!-- Revised, corrected and tested by CAI Jun, CUI Wendi and HUANG Guanwei, Xiamen University, Dec.2006-->
+		<!-- Final Version on Jan. 8th, 2007, by CAI Jun, HUANG Xu, CUI Wendi, and HUANG Guanwei, Xiamen University-->
+		<entry>
+			<tag>                 Copyright (c) 1989-2007                   \r\n</tag>
+			<string>                  版权所有 (c) 1989-2007                   \r\n</string>
+		</entry>
+		<entry>
+			<tag>              Consortium Scilab (INRIA, ENPC)              \r\n</tag>
+			<string>                 Scilab 协会(INRIA, ENPC)              \r\n</string>
+		</entry>
+		<entry>
+			<tag>        %d byte/sec, %d block align, %d bits/samp, %u data bytes\r\n</tag>
+			<string>        %d byte/sec, %d block align, %d bits/samp, %u data bytes\r\n</string>
+		</entry>
+		<entry>
+			<tag>        %d byte/sec, %d block align, %d bits/samp\r\n</tag>
+			<string>        %d byte/sec, %d block align, %d bits/samp\r\n</string>
+		</entry>
+		<entry>
+			<tag>   doesn't provide and doesn't support the port of Scilab to MacOS.\r\n\r\n</tag>
+			<string>  不提供且不支持 Scilab 到 MacOS 的接口程序。\r\n\r\n</string>
+		</entry>
+		<entry>
+			<tag>   doesn't provide and doesn't support this version of Scilab built with\r\n</tag>
+			<string>    不提供且不支持该版本的 Scilab 创建在平台\r\n</string>
+		</entry>
+		<entry>
+			<tag>   Unqueuing %s - No option\r\n</tag>
+			<string>   Unqueuing %s - 没有选项\r\n</string>
+		</entry>
+		<entry>
+			<tag>   Unqueuing %s - seq\r\n</tag>
+			<string>   Unqueuing %s - seq\r\n</string>
+		</entry>
+		<entry>
+			<tag> %s</tag>
+			<string> %s</string>
+		</entry>
+		<entry>
+			<tag> %s(%d,%d)=%g;</tag>
+			<string> %s(%d,%d)=%g;</string>
+		</entry>
+		<entry>
+			<tag> 1 xinit must be called before any action \r\n</tag>
+			<string> 1 任何操作之前必须先调用 xinit \r\n</string>
+		</entry>
+		<entry>
+			<tag> 10 xinit must be called before any action \r\n</tag>
+			<string> 10 任何操作之前必须先调用 xinit \r\n</string>
+		</entry>
+		<entry>
+			<tag> 10.1 xinit must be called before any action \r\n</tag>
+			<string> 10.1 任何操作之前必须先调用 xinit \r\n</string>
+		</entry>
+		<entry>
+			<tag> 11 xinit must be called before any action \r\n</tag>
+			<string> 11 任何操作之前必须先调用 xinit \r\n</string>
+		</entry>
+		<entry>
+			<tag> 12 xinit must be called before any action \r\n</tag>
+			<string> 12 任何操作之前必须先调用 xinit \r\n</string>
+		</entry>
+		<entry>
+			<tag> 13 xinit must be called before any action \r\n</tag>
+			<string> 13 任何操作之前必须先调用 xinit \r\n</string>
+		</entry>
+		<entry>
+			<tag> 14 xinit must be called before any action \r\n</tag>
+			<string> 14 任何操作之前必须先调用 xinit \r\n</string>
+		</entry>
+		<entry>
+			<tag> 15 xinit must be called before any action \r\n</tag>
+			<string> 15 任何操作之前必须先调用 xinit \r\n</string>
+		</entry>
+		<entry>
+			<tag> 16 xinit must be called before any action \r\n</tag>
+			<string> 16 任何操作之前必须先调用 xinit \r\n</string>
+		</entry>
+		<entry>
+			<tag> 17 xinit must be called before any action \r\n</tag>
+			<string> 17 任何操作之前必须先调用 xinit \r\n</string>
+		</entry>
+		<entry>
+			<tag> 18 xinit must be called before any action \r\n</tag>
+			<string> 18 任何操作之前必须先调用 xinit \r\n</string>
+		</entry>
+		<entry>
+			<tag> 19 xinit must be called before any action \r\n</tag>
+			<string> 19 任何操作之前必须先调用 xinit \r\n</string>
+		</entry>
+		<entry>
+			<tag> 2 xinit must be called before any action \r\n</tag>
+			<string> 2 任何操作之前必须先调用 xinit \r\n</string>
+		</entry>
+		<entry>
+			<tag> 20 xinit must be called before any action \r\n</tag>
+			<string> 20 任何操作之前必须先调用 xinit \r\n</string>
+		</entry>
+		<entry>
+			<tag> 21 xinit must be called before any action \r\n</tag>
+			<string> 21 任何操作之前必须先调用 xinit \r\n</string>
+		</entry>
+		<entry>
+			<tag> 22 xinit must be called before any action \r\n</tag>
+			<string> 22 任何操作之前必须先调用 xinit \r\n</string>
+		</entry>
+		<entry>
+			<tag> 23 xinit must be called before any action \r\n</tag>
+			<string> 23 任何操作之前必须先调用 xinit \r\n</string>
+		</entry>
+		<entry>
+			<tag> 24 xinit must be called before any action \r\n</tag>
+			<string> 24 任何操作之前必须先调用 xinit \r\n</string>
+		</entry>
+		<entry>
+			<tag> 25 xinit must be called before any action \r\n</tag>
+			<string> 25 任何操作之前必须先调用 xinit \r\n</string>
+		</entry>
+		<entry>
+			<tag> 26 xinit must be called before any action \r\n</tag>
+			<string> 26 任何操作之前必须先调用 xinit \r\n</string>
+		</entry>
+		<entry>
+			<tag> 27 xinit must be called before any action \r\n</tag>
+			<string> 27 任何操作之前必须先调用 xinit \r\n</string>
+		</entry>
+		<entry>
+			<tag> 28 xinit must be called before any action \r\n</tag>
+			<string> 28 任何操作之前必须先调用 xinit \r\n</string>
+		</entry>
+		<entry>
+			<tag> 29 xinit must be called before any action \r\n</tag>
+			<string> 29 任何操作之前必须先调用 xinit \r\n</string>
+		</entry>
+		<entry>
+			<tag> 3 xinit must be called before any action \r\n</tag>
+			<string> 3 任何操作之前必须先调用 xinit \r\n</string>
+		</entry>
+		<entry>
+			<tag> 4 xinit must be called before any action \r\n</tag>
+			<string> 4 任何操作之前必须先调用 xinit \r\n</string>
+		</entry>
+		<entry>
+			<tag> 5 xinit must be called before any action \r\n</tag>
+			<string> 5 任何操作之前必须先调用 xinit \r\n</string>
+		</entry>
+		<entry>
+			<tag> 6 xinit must be called before any action \r\n</tag>
+			<string> 6 任何操作之前必须先调用 xinit \r\n</string>
+		</entry>
+		<entry>
+			<tag> 7 xinit must be called before any action \r\n</tag>
+			<string> 7 任何操作之前必须先调用 xinit \r\n</string>
+		</entry>
+		<entry>
+			<tag> 8 xinit must be called before any action \r\n</tag>
+			<string> 8 任何操作之前必须先调用 xinit \r\n</string>
+		</entry>
+		<entry>
+			<tag> 9 xinit must be called before any action \r\n</tag>
+			<string> 9 任何操作之前必须先调用 xinit \r\n</string>
+		</entry>
+		<entry>
+			<tag> Can't open file %s\n</tag>
+			<string> 无法打开文件 %s \n</string>
+		</entry>
+		<entry>
+			<tag> Can't open file %s\r\n</tag>
+			<string>无法打开文件 %s \r\n</string>
+		</entry>
+		<entry>
+			<tag> Can't raise the print menu : you must quit another raised menu before \r\n</tag>
+			<string> 不能激活 print 菜单：你必须先退出另一个激活的菜单 \r\n</string>
+		</entry>
+		<entry>
+			<tag> Function %s not found\r\n</tag>
+			<string> 函数 %s 未找到 \r\n</string>
+		</entry>
+		<entry>
+			<tag> ID %d\r\n</tag>
+			<string> ID %d\r\n</string>
+		</entry>
+		<entry>
+			<tag> index[%d]=%d\r\n</tag>
+			<string> index[%d]=%d\r\n</string>
+		</entry>
+		<entry>
+			<tag> Normally, unavailable case  AAA \n</tag>
+			<string> 通常情况下，这种情况无法得到 AAA \n</string>
+		</entry>
+		<entry>
+			<tag> Normally, unreachable case \n</tag>
+			<string> 通常情况下，不会出现这种情况\n</string>
+		</entry>
+		<entry>
+			<tag> Sorry wav file too big \r\n</tag>
+			<string> 抱歉，wav 文件过大  \r\n</string>
+		</entry>
+		<entry>
+			<tag> submenu %d, [%s]</tag>
+			<string>子菜单 %d, [%s]</string>
+		</entry>
+		<entry>
+			<tag> The Font Id %d is not affected \r\n</tag>
+			<string>字体 Id %d 没有受影响 \r\n</string>
+		</entry>
+		<entry>
+			<tag> The Font Id %d is not affected: use default font (Times)\r\n</tag>
+			<string> 这个字体标识符 %d 没有受到影响：使用缺省字体（Times）\r\n</string>
+		</entry>
+		<entry>
+			<tag> Wrong dir %s argument in echelle2d\r\n</tag>
+			<string>错误路径：echelle2d中的 %s 参数\r\n</string>
+		</entry>
+		<entry>
+			<tag>!!!!! Not replaying use color\r\n</tag>
+			<string>!!!!! Not replaying use color\r\n</string>
+		</entry>
+		<entry>
+			<tag>%+24s </tag>
+			<string>%+24s </string>
+		</entry>
+		<entry>
+			<tag>%5.2f  </tag>
+			<string>%5.2f  </string>
+		</entry>
+		<entry>
+			<tag>%5d  </tag>
+			<string>%5d   </string>
+		</entry>
+		<entry>
+			<tag>%d </tag>
+			<string>%d </string>
+		</entry>
+		<entry>
+			<tag>%d %d </tag>
+			<string>%d %d </string>
+		</entry>
+		<entry>
+			<tag>%s </tag>
+			<string>%s </string>
+		</entry>
+		<entry>
+			<tag>%s %s\n</tag>
+			<string>%s %s\n</string>
+		</entry>
+		<entry>
+			<tag>%s %s\r\n</tag>
+			<string>%s %s\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s \r\n</tag>
+			<string>%s \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s pts\r\n</tag>
+			<string>%s pts\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s warning: rank deficiency of the least square matrix\r\n</tag>
+			<string>%s 警告：最小方阵的秩过小\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s(&apos;max&apos;) fixed to %d.\n</tag>
+			<string>%s(&apos;max&apos;) 固定为 %d。\n</string>
+		</entry>
+		<entry>
+			<tag>%s, </tag>
+			<string>%s, </string>
+		</entry>
+		<entry>
+			<tag>%s: bad argument specified in input\r\n</tag>
+			<string>%s: 输入中给定了错误的参数\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: Internal Error \r\n</tag>
+			<string>%s: 内部错误 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: misplaced optional argument, first must be at osition %d \r\n</tag>
+			<string>%s: 可选参数放错位置，第一个可选参数必须位于位置 %d \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: misplaced optional argument, first must be at position %d \r\n</tag>
+			<string>%s: 可选参数放错位置，第一个可选参数必须位于位置 %d \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: misplaced optional argument, first must be at position %d\r\n</tag>
+			<string>%s: 缺省参数放错位置，第一个缺省参数必须放在位置 %d\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: No such file or directory\r\n</tag>
+			<string>%s：没有这个文件或者目录\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: Only for Windows.\r\n</tag>
+			<string>%s: 只能为窗口.\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: unrecognized optional arguments %s\r\n</tag>
+			<string>%s: 不能识别的可选参数 %s\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s\n</tag>
+			<string>%s\n</string>
+		</entry>
+		<entry>
+			<tag>%s\n\r</tag>
+			<string>%s\n\r</string>
+		</entry>
+		<entry>
+			<tag>%s\r\n</tag>
+			<string>%s\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s\r\n\n</tag>
+			<string>%s\r\n\n</string>
+		</entry>
+		<entry>
+			<tag>**** daskr failed to initialize -&gt;try again *****/r/n</tag>
+			<string>**** daskr 初始化失败 -&gt;请重试一次 *****/r/n</string>
+		</entry>
+		<entry>
+			<tag>**** daskr succesfully initialized *****/r/n</tag>
+			<string>**** daskr 初始化成功 *****/r/n</string>
+		</entry>
+		<entry>
+			<tag>**** Stiffness at: %26.18f %d\r\n</tag>
+			<string>**** Stiffness at: %26.18f %d\r\n</string>
+		</entry>
+		<entry>
+			<tag>****daskr from: %f to %f hot= %d  \r\n</tag>
+			<string>****daskr from: %f to %f hot= %d  \r\n</string>
+		</entry>
+		<entry>
+			<tag>****daskr reached: %f\r\n</tag>
+			<string>****daskr reached: %f\r\n</string>
+		</entry>
+		<entry>
+			<tag>****lsodar from: %f to %f hot= %d  \r\n</tag>
+			<string>****lsodar from: %f to %f hot= %d  \r\n</string>
+		</entry>
+		<entry>
+			<tag>****lsodar reached: %f\r\n</tag>
+			<string>****lsodar reached: %f\r\n</string>
+		</entry>
+		<entry>
+			<tag>**mod**\r\n</tag>
+			<string>**mod**\r\n</string>
+		</entry>
+		<entry>
+			<tag>-&gt; %s\r\n</tag>
+			<string>-&gt; %s\r\n</string>
+		</entry>
+		<entry>
+			<tag>-&gt; &lt;%s&gt;\r\n</tag>
+			<string>-&gt; &lt;%s&gt;\r\n</string>
+		</entry>
+		<entry>
+			<tag>--&gt; %s at size</tag>
+			<string>--&gt; %s at size</string>
+		</entry>
+		<entry>
+			<tag>--&gt; %s at size %s pts\r\n</tag>
+			<string>--&gt; %s 大小为 %s pts\r\n</string>
+		</entry>
+		<entry>
+			<tag>--&gt; %s at size %s pts\r\n</tag>
+			<string>--&gt; %s at size %s pts\r\n</string>
+		</entry>
+		<entry>
+			<tag>----%d\r\n</tag>
+			<string>----%d\r\n</string>
+		</entry>
+		<entry>
+			<tag>-----------------stack-info-----------------\r\n</tag>
+			<string>-----------------堆栈信息-----------------\r\n</string>
+		</entry>
+		<entry>
+			<tag>-----------end----------------\r\n</tag>
+			<string>-----------结束----------------\r\n</string>
+		</entry>
+		<entry>
+			<tag>-----------scales-------------\r\n</tag>
+			<string>-----------标尺-------------\r\n</string>
+		</entry>
+		<entry>
+			<tag>----------current scale-------\r\n</tag>
+			<string>----------当前标尺-------\r\n</string>
+		</entry>
+		<entry>
+			<tag>.\r\n\r\n</tag>
+			<string>.\r\n\r\n</string>
+		</entry>
+		<entry>
+			<tag>2 premier nombres du bloc \r\n</tag>
+			<string>2 premier nombres du bloc \r\n</string>
+		</entry>
+		<entry>
+			<tag>========================================</tag>
+			<string>========================================</string>
+		</entry>
+		<entry>
+			<tag>[%s]=&gt;[%s]\n</tag>
+			<string>[%s]=&gt;[%s]\n</string>
+		</entry>
+		<entry>
+			<tag>[%s]=&gt;[%s]\r\n</tag>
+			<string>[%s]=&gt;[%s]\r\n</string>
+		</entry>
+		<entry>
+			<tag>\"%s\" </tag>
+			<string>\"%s\" </string>
+		</entry>
+		<entry>
+			<tag>\"%s\", </tag>
+			<string>\"%s\", </string>
+		</entry>
+		<entry>
+			<tag>\n</tag>
+			<string>\n</string>
+		</entry>
+		<entry>
+			<tag>\n Autoclear : %d\r\n</tag>
+			<string>\n Autoclear : %d\r\n</string>
+		</entry>
+		<entry>
+			<tag>\n Background : %d\r\n</tag>
+			<string>\n 背景：%d\r\n</string>
+		</entry>
+		<entry>
+			<tag>\n Cannot allocate memory for font : %s%s\n</tag>
+			<string>\n不能给字体分配内存：%s%s\n</string>
+		</entry>
+		<entry>
+			<tag>\n Color : %d\r\n</tag>
+			<string>\n 颜色：%d\r\n</string>
+		</entry>
+		<entry>
+			<tag>\n Commands: \n\n</tag>
+			<string>\n命令: \n\n</string>
+		</entry>
+		<entry>
+			<tag>\n CWindow dim :%d,%d\r\n</tag>
+			<string>\n CWindow 大小：%d, %d\r\n</string>
+		</entry>
+		<entry>
+			<tag>\n CWindow position :%d,%d\r\n</tag>
+			<string>\n CWindow 位置：%d, %d\r\n</string>
+		</entry>
+		<entry>
+			<tag>\n Font not found: %s%s\n</tag>
+			<string>\n 未找到字体: %s%s\n</string>
+		</entry>
+		<entry>
+			<tag>\n Foreground : %d\r\n</tag>
+			<string>\n 前景：%d\r\n</string>
+		</entry>
+		<entry>
+			<tag>\n Hidden3d : %d\r\n</tag>
+			<string>\n Hidden3d : %d\r\n</string>
+		</entry>
+		<entry>
+			<tag>\n Id of Last Color %d\r\n</tag>
+			<string>\n 上一个颜色的ID是 %d\r\n</string>
+		</entry>
+		<entry>
+			<tag>\n Id of Last Pattern %d\r\n</tag>
+			<string>\n 上一个模式的ID是 %d\r\n</string>
+		</entry>
+		<entry>
+			<tag>\n Id of White Pattern %d\r\n</tag>
+			<string>\n 白色模式的 Id 是 %d\r\n</string>
+		</entry>
+		<entry>
+			<tag>\n Internal Functions: \n\n</tag>
+			<string>\n 内部函数: \n\n</string>
+		</entry>
+		<entry>
+			<tag>\n Pattern : %d\r\n</tag>
+			<string>\n 模式：%d\r\n</string>
+		</entry>
+		<entry>
+			<tag>\n ScilabXgc-&gt;CWindow dim :%d,%d\r\n</tag>
+			<string>\n ScilabXgc-&gt;CWindow 位置 :%d,%d\r\n</string>
+		</entry>
+		<entry>
+			<tag>\n ScilabXgc->CWindow position :%d,%d\r\n</tag>
+			<string>\n ScilabXgc->CWindow position :%d,%d\r\n</string>
+		</entry>
+		<entry>
+			<tag>\n Unknow  operator &lt;%s&gt;\r\n</tag>
+			<string>\n 未知的操作符 &lt;%s&gt;\r\n</string>
+		</entry>
+		<entry>
+			<tag>\n Unknow GIF operator &lt;%s&gt;\r\n</tag>
+			<string>\n 未知的 GIF 操作符  &lt;%s&gt;\r\n</string>
+		</entry>
+		<entry>
+			<tag>\n Unknow Plot type &lt;%s&gt;\r\n</tag>
+			<string>\n 未知的 Plot 类型 &lt;%s&gt;\r\n</string>
+		</entry>
+		<entry>
+			<tag>\n Unknow Postscript operator &lt;%s&gt;\r\n</tag>
+			<string>\n 未知的 Postscript 操作符  &lt;%s&gt;\r\n</string>
+		</entry>
+		<entry>
+			<tag>\n Unknow X operator &lt;%s&gt;\r\n</tag>
+			<string>\n 未知的 X 操作符 &lt;%s&gt;\r\n</string>
+		</entry>
+		<entry>
+			<tag>\n unknown font family : %s \r\n</tag>
+			<string>\n 未知的字体族：%s \r\n</string>
+		</entry>
+		<entry>
+			<tag>\n unknown font family : %s\r\n</tag>
+			<string>\n 未知的字体族：%s\r\n</string>
+		</entry>
+		<entry>
+			<tag>\n Use color %d\r\n</tag>
+			<string>\n 使用颜色 %d\r\n</string>
+		</entry>
+		<entry>
+			<tag>\n Viewport position:%d,%d\r\n</tag>
+			<string>\n Viewport 位置:%d,%d\r\n</string>
+		</entry>
+		<entry>
+			<tag>\n%s%s\n&quot;, &quot;--&gt;</tag>
+			<string>\n%s%s\n&quot;, &quot;--&gt;</string>
+		</entry>
+		<entry>
+			<tag>\n\n</tag>
+			<string>\n\n</string>
+		</entry>
+		<entry>
+			<tag>\n\r</tag>
+			<string>\n\r</string>
+		</entry>
+		<entry>
+			<tag>\n\r                                             s2 in [1, 2147483542]</tag>
+			<string>\n\r                                             s2 在区间 [1, 2147483542]</string>
+		</entry>
+		<entry>
+			<tag>\n\r                                             s3 in [1, 2147483422]</tag>
+			<string>\n\r                                             s3 在区间 [1, 2147483422]</string>
+		</entry>
+		<entry>
+			<tag>\n\r                                             s4 in [1, 2147483322]</tag>
+			<string>\n\r                                             s4 在区间 [1, 2147483322]</string>
+		</entry>
+		<entry>
+			<tag>\n\r                                        and  s2 in [1, 2147483398]\n\r</tag>
+			<string>\n\r                                        及  s2 在区间 [1, 2147483398]\n\r</string>
+		</entry>
+		<entry>
+			<tag>\n\r    between the virtual gen %d and the others !</tag>
+			<string>\n\r  在虚拟产生器 %d 和其他产生器之间!!</string>
+		</entry>
+		<entry>
+			<tag>\n\r    use grand(\"setall\", s1, s2, s3, s4) if you want recover it.</tag>
+			<string>\n\r    如果你想重新获得同步，请使用 grand(\"setall\", s1, s2, s3, s4)。 </string>
+		</entry>
+		<entry>
+			<tag>\n\r =&gt; be aware that you have may lost synchronization</tag>
+			<string>\n\r =&gt; 请注意，你可能失去同步</string>
+		</entry>
+		<entry>
+			<tag>\n\r bad seed for fsultra, must be integers in [0, 2^32-1] \n\r</tag>
+			<string>\n\r fusltar 的种子错误，必须是在 [0, 2^32-1] 区间的整数\n\r</string>
+		</entry>
+		<entry>
+			<tag>\n\r bad seed for mt, must be an integer in [0, 2^32-1] \n\r</tag>
+			<string>\n\r mt 的种子错误，必须是在 [0,2^32-1] 区间的一个整数 \n\r</string>
+		</entry>
+		<entry>
+			<tag>\n\r bad seed for urand, must be an integer in [0,  2147483647]\n\r</tag>
+			<string>\n\r urand  的种子错误，必须是在 [0,  2147483647] 区间的一个整数\n\r</string>
+		</entry>
+		<entry>
+			<tag>\n\r bad seeds for clcg2, must be integers with  s1 in [1, 2147483562]</tag>
+			<string>\n\r clcg2 的种子错误，必须是整数，且 s1 在区间 [1, 2147483562]</string>
+		</entry>
+		<entry>
+			<tag>\n\r bad seeds for clcg4, must be integers with  s1 in [1, 2147483646]</tag>
+			<string>\n\r clcg4 的种子错误，必须是整数，且 s1 在区间 [1, 2147483562]</string>
+		</entry>
+		<entry>
+			<tag>\n\r bad seeds for kiss, must be integers in [0,2^32-1]\n\r</tag>
+			<string>\n\r kiss 的种子错误，必须是在 [0,2^32-1] 区间的整数\n\r</string>
+		</entry>
+		<entry>
+			<tag>\n\r error in Jacobian</tag>
+			<string>\n\r 在 Jacobi 矩阵中有错误</string>
+		</entry>
+		<entry>
+			<tag>\n\r Error in matrix multiplication</tag>
+			<string>\n\r 矩阵乘法出错</string>
+		</entry>
+		<entry>
+			<tag>\n\r fec : colminmax badly choosen ! </tag>
+			<string>\n\r fec : colminmax  选择错误！ </string>
+		</entry>
+		<entry>
+			<tag>\n\r fec : colout badly choosen ! </tag>
+			<string>\n\r fec : colout  选择错误！ </string>
+		</entry>
+		<entry>
+			<tag>\n\r the first component of the fsultra state, must be an integer in [0, %d] \n\r</tag>
+			<string>\n\r fsultra 状态的第一个分量必须是在 [0, %d] 区间的整数 \n\r</string>
+		</entry>
+		<entry>
+			<tag>\n\r the first component of the mt state mt, must be an integer in [1, 624] \n\r</tag>
+			<string>\n\r  mt 状态的第一分量必须是在 [1, 624] 区间的一个整数 \n\r</string>
+		</entry>
+		<entry>
+			<tag>\n\r the second component of the fsultra state, must be 0 or 1 \n\r</tag>
+			<string>\n\r  fsultra 状态的第二个分量必须是 0 或 1\n\r</string>
+		</entry>
+		<entry>
+			<tag>\n\r the third component of the fsultra state, must be an integer in [1, 2^32-1] \n\r</tag>
+			<string>\n\r  fsultra 状态的第三个分量必须是在 [1, 2^32-1] 区间的整数 \n\r</string>
+		</entry>
+		<entry>
+			<tag>\nCurrent Graphic Window :%d\r\n</tag>
+			<string>\n当前图形窗口：%d\r\n</string>
+		</entry>
+		<entry>
+			<tag>\nDash Style %d.</tag>
+			<string>\nDash 类型 %d.</string>
+		</entry>
+		<entry>
+			<tag>\nDash Style %d:&lt;</tag>
+			<string>\nDash Style %d:&lt;</string>
+		</entry>
+		<entry>
+			<tag>\nError : Can't open %s.\n</tag>
+			<string>\n错误：无法打开  %s。\n</string>
+		</entry>
+		<entry>
+			<tag>\nFontId : %d </tag>
+			<string>\nFontId : %d </string>
+		</entry>
+		<entry>
+			<tag>\ngetscicosvars : utility function to retrieve\n</tag>
+			<string>\ngetscicosvars：功能函数，用于提取\n</string>
+		</entry>
+		<entry>
+			<tag>\nGetting Info on %s\r\n</tag>
+			<string>\n获取 %s 的信息\r\n</string>
+		</entry>
+		<entry>
+			<tag>\nkey %s </tag>
+			<string>\n键值 %s </string>
+		</entry>
+		<entry>
+			<tag>\nkey %s   -> %s\r\n</tag>
+			<string>\nkey %s   -> %s\r\n</string>
+		</entry>
+		<entry>
+			<tag>\nkey %s -&gt; %s\r\n</tag>
+			<string>\nkey %s -&gt; %s\r\n</string>
+		</entry>
+		<entry>
+			<tag>\nLine Width:%d\r\n</tag>
+			<string>\n线宽：%d\r\n</string>
+		</entry>
+		<entry>
+			<tag>\nMark : %d</tag>
+			<string>\nMark : %d</string>
+		</entry>
+		<entry>
+			<tag>\nMark : %d </tag>
+			<string>\nMark : %d </string>
+		</entry>
+		<entry>
+			<tag>\nMark : %d at size %d pts\r\n</tag>
+			<string>\nMark : %d 大小 %d pts\r\n</string>
+		</entry>
+		<entry>
+			<tag>\nNo more place to allocates style\n</tag>
+			<string>\n没有多余的空间分配类型（style）\n</string>
+		</entry>
+		<entry>
+			<tag>\nNo more place to allocates text string, try a shorter string\n</tag>
+			<string>\n没有多余空间分配给文本字符串，请尝试较短的字符串\n</string>
+		</entry>
+		<entry>
+			<tag>\nThe Alufunction is %s</tag>
+			<string>\n Alufunction 是 %s</string>
+		</entry>
+		<entry>
+			<tag>\nThe Alufunction is %s -&gt; &lt;%s&gt;\r\n</tag>
+			<string>\n Alufunction 是 %s -&gt; &lt;%s&gt;\r\n</string>
+		</entry>
+		<entry>
+			<tag>\nThere's a Clip Region :x:%d,y:%d,w:%d,h:%d\r\n</tag>
+			<string>\n有一个 Clip Region：x:%d,y:%d,w:%d,h:%d\r\n</string>
+		</entry>
+		<entry>
+			<tag>\nUnknow function (%s)\r\n</tag>
+			<string>\n未知函数 (%s)\r\n</string>
+		</entry>
+		<entry>
+			<tag>\nUnknow GIF operator &lt;%s&gt;\r\n</tag>
+			<string>\n未知的 GIF 操作符 &lt;%s&gt;\r\n</string>
+		</entry>
+		<entry>
+			<tag>\nUnknow operator &lt;%s&gt;\r\n</tag>
+			<string>\n未知的操作符 &lt;%s&gt;\r\n</string>
+		</entry>
+		<entry>
+			<tag>\nUnknow Plot type &lt;%s&gt;\r\n</tag>
+			<string>\n未知的 Plot 类型 &lt;%s&gt;\r\n</string>
+		</entry>
+		<entry>
+			<tag>\nUnknow Postscript operator %s\r\n</tag>
+			<string>\n未知的 Postscript 操作符 %s\r\n</string>
+		</entry>
+		<entry>
+			<tag>\nUnknow Postscript operator &lt;%s&gt;\r\n</tag>
+			<string>\n 未知的 Postscript 操作符 &lt;%s&gt;\r\n</string>
+		</entry>
+		<entry>
+			<tag>\nUnknow X operator &lt;%s&gt;\r\n</tag>
+			<string>\n未知的 X 操作符 &lt;%s&gt;\r\n</string>
+		</entry>
+		<entry>
+			<tag>\r\n</tag>
+			<string>\r\n</string>
+		</entry>
+		<entry>
+			<tag>\r\n default values cant not be loaded !</tag>
+			<string>\r\n 缺省值不能被载入！</string>
+		</entry>
+		<entry>
+			<tag>\r\n No Callback is associated with this Entity</tag>
+			<string>\r\n 这个项没有 Callback 与之相关联</string>
+		</entry>
+		<entry>
+			<tag>\r\n No merge supported</tag>
+			<string>\r\n 没有可支持的合并</string>
+		</entry>
+		<entry>
+			<tag>\r\n-----------------stack-info-----------------\r\n</tag>
+			<string>\r\n-----------------堆栈信息-----------------\r\n</string>
+		</entry>
+		<entry>
+			<tag>\r\n\r\n</tag>
+			<string>\r\n\r\n</string>
+		</entry>
+		<entry>
+			<tag>\r\nFontId : %d </tag>
+			<string>\r\n FontId : %d </string>
+		</entry>
+		<entry>
+			<tag>\r\nNo Background is associated with this Entity</tag>
+			<string>\r\n这个项没有 Background 与之相关联</string>
+		</entry>
+		<entry>
+			<tag>\r\nNo Callback is associated with this Entity</tag>
+			<string>\r\n这个项没有 Callback 与之相关联</string>
+		</entry>
+		<entry>
+			<tag>\r\nNo Callback is associetad with this Entity</tag>
+			<string>\r\n这个项没有 Callback 与之相关联</string>
+		</entry>
+		<entry>
+			<tag>\r\nNo FontBackground is associated with this Entity</tag>
+			<string>\r\n这个项没有 FontBackground 与之相关联</string>
+		</entry>
+		<entry>
+			<tag>\r\nNo FontForeground is associated with this Entity</tag>
+			<string>\r\n没有 FontForeground 与这个项相联系</string>
+		</entry>
+		<entry>
+			<tag>\r\nNo Foreground is associated with this Entity</tag>
+			<string>\r\n这个项没有 Foreground 与之相关联</string>
+		</entry>
+		<entry>
+			<tag>\r\nNo Mark Background is associated with this Entity</tag>
+			<string>\r\n这个项没有 Mark Background 与之相关联</string>
+		</entry>
+		<entry>
+			<tag>\r\nNo Mark Foreground is associated with this Entity</tag>
+			<string>\r\n这个实体没有标志前景与之相关联</string>
+		</entry>
+		<entry>
+			<tag>\r\nNothing to do\n</tag>
+			<string>\r\n无事可做\n</string>
+		</entry>
+		<entry>
+			<tag>\r\nThis object cannot be zoomed \r\n</tag>
+			<string>\r\n这个对象不能被放大 \r\n</string>
+		</entry>
+		<entry>
+			<tag>\r\nThis object cannot be zoomed\r\n</tag>
+			<string>\r\n这个对象不能被放大\r\n</string>
+		</entry>
+		<entry>
+			<tag>\t (Cf. man pvmd3)\r\n</tag>
+			<string>\t (参见 man pvmd3)\r\n</string>
+		</entry>
+		<entry>
+			<tag>\t%s\n\n</tag>
+			<string>\t%s\n\n</string>
+		</entry>
+		<entry>
+			<tag>\t%s\r\n</tag>
+			<string>\t%s\r\n</string>
+		</entry>
+		<entry>
+			<tag>\tbut there exists no configuration file:\r\n</tag>
+			<string>\t但是没有配置文件：\r\n</string>
+		</entry>
+		<entry>
+			<tag>\tin order to spawn scilab\r\n</tag>
+			<string>\以生成新的 scilab\r\n</string>
+		</entry>
+		<entry>
+			<tag>\tSCI will have to be set on remote hosts \r\n</tag>
+			<string>\tSCI 将设置在远程主机上 \r\n</string>
+		</entry>
+		<entry>
+			<tag>\tsize %s, style %s, %d %s\r\n</tag>
+			<string>\t大小 %s，格式 %s, %d %s\r\n</string>
+		</entry>
+		<entry>
+			<tag>\tsubwin=[%5.2f,%5.2f,%5.2f,%5.2f], flag=%d\r\n</tag>
+			<string>\tsubwin=[%5.2f,%5.2f,%5.2f,%5.2f], flag=%d\r\n</string>
+		</entry>
+		<entry>
+			<tag>\tWe supposed that PVM and scilab are in standard place on your net\r\n</tag>
+			<string>\t我们假设 PVM 和 scilab 在你的网络上已位于标准位置\r\n</string>
+		</entry>
+		<entry>
+			<tag>\tWith SCI=%s\r\n</tag>
+			<string>\t其中，SCI=%s\r\n</string>
+		</entry>
+		<entry>
+			<tag>] : %d libs\r\n</tag>
+			<string>] : %d libs\r\n</string>
+		</entry>
+		<entry>
+			<tag>addinter failed for %s Not  found!\r\n</tag>
+			<string>接口插入操作（addinter）失败！%s 未找到！\r\n</string>
+		</entry>
+		<entry>
+			<tag>Allocation failed for color in LinearScaling2Colormap</tag>
+			<string>LinearScaling2Colormap 中分配颜色失败</string>
+		</entry>
+		<entry>
+			<tag>Allocation failed in merge for color matrix\n</tag>
+			<string>合并颜色矩阵的过程中内存分配失败\n</string>
+		</entry>
+		<entry>
+			<tag>and %s.\r\n</tag>
+			<string>以及 %s。\r\n</string>
+		</entry>
+		<entry>
+			<tag>arg %d =[%s]\r\n</tag>
+			<string>arg %d =[%s]\r\n</string>
+		</entry>
+		<entry>
+			<tag>Argument-1, taille %ld \n</tag>
+			<string>Argument-1，截短的长整数 %ld \n</string>
+		</entry>
+		<entry>
+			<tag>Argument-2, taille %ld \n</tag>
+			<string>Argument-2，截短的长整数 %ld \n</string>
+		</entry>
+		<entry>
+			<tag>Argument-3, taille %ld \n</tag>
+			<string>Argument-3，截短的长整数 %ld \n</string>
+		</entry>
+		<entry>
+			<tag>Argument-4, taille %ld \n</tag>
+			<string>Argument-4，截短的长整数 %ld \n</string>
+		</entry>
+		<entry>
+			<tag>Argument-5, taille %ld \n</tag>
+			<string>Argument-5，截短的长整数 %ld \n</string>
+		</entry>
+		<entry>
+			<tag>Argument-6, taille %ld \n</tag>
+			<string>Argument-6，截短的长整数 %ld \n</string>
+		</entry>
+		<entry>
+			<tag>at size %s pts\r\n</tag>
+			<string>大小为 %s pts\r\n</string>
+		</entry>
+		<entry>
+			<tag>at time %f \r\n</tag>
+			<string>在 %f 时刻 \r\n</string>
+		</entry>
+		<entry>
+			<tag>Axes.c : SciAxisNew : Impossible case</tag>
+			<string>Axes.c : SciAxisNew : 这种情况不可能出现</string>
+		</entry>
+		<entry>
+			<tag>block %d is called </tag>
+			<string>模块 %d 被调用</string>
+		</entry>
+		<entry>
+			<tag>buffer</tag>
+			<string>缓冲区</string>
+		</entry>
+		<entry>
+			<tag>calloc installed at position %d\r\n</tag>
+			<string>calloc 被安装在位置 %d\r\n</string>
+		</entry>
+		<entry>
+			<tag>Can not allocate room for shaded color vbector\n</tag>
+			<string>不能为加阴影的颜色向量分配空间\n</string>
+		</entry>
+		<entry>
+			<tag>Can not allocate user_data for cloned object.\n</tag>
+			<string>无法给复制的对象分配 user_data 。\n</string>
+		</entry>
+		<entry>
+			<tag>Can not allocate vxtmp while exporting to Fig\n</tag>
+			<string>输出到 Fig 时候不能分配 vxtmp\n</string>
+		</entry>
+		<entry>
+			<tag>Can not change the typeof3d of graphic object: its type is SCI_FAC3D\r\n</tag>
+			<string>不能改变图形对象的 typeof3d：其类型是 SCI_FAC3D\r\n</string>
+		</entry>
+		<entry>
+			<tag>Can not change the typeof3d of graphic object: its type is SCI_PLOT3D\r\n</tag>
+			<string>不能改变图形对象的 typeof3d：它的类型是SCI_PLOT3D\r\n</string>
+		</entry>
+		<entry>
+			<tag>Can't get current directory\r\n</tag>
+			<string>无法获得当前目录\r\n</string>
+		</entry>
+		<entry>
+			<tag>Can't go to directory %s \r\n</tag>
+			<string>无法进入目录 %s \r\n</string>
+		</entry>
+		<entry>
+			<tag>Can't open file %s, I'll use stdout\r\n</tag>
+			<string>不能打开文件 %s，我将使用 stdout\r\n</string>
+		</entry>
+		<entry>
+			<tag>Can't open file %s\n</tag>
+			<string>不能打开文件 %s\n</string>
+		</entry>
+		<entry>
+			<tag>Can't open font file %s\n</tag>
+			<string>不能打开字体文件 %s\n</string>
+		</entry>
+		<entry>
+			<tag>Can't open input file &apos;%s&apos;: %s\r\n</tag>
+			<string>无法打开输入文件 &apos;%s&apos;: %s\r\n</string>
+		</entry>
+		<entry>
+			<tag>Can't open output file &apos;%s&apos;: %s\r\n</tag>
+			<string>无法打开输出文件 &apos;%s&apos;: %s\r\n</string>
+		</entry>
+		<entry>
+			<tag>Can't resize pixmap\r\n</tag>
+			<string>不能调整 pixmap 的大小\r\n</string>
+		</entry>
+		<entry>
+			<tag>Can't translate %s\r\n</tag>
+			<string>不能转换 %s\r\n</string>
+		</entry>
+		<entry>
+			<tag>cmd=[%s]\r\n</tag>
+			<string>cmd=[%s]\r\n</string>
+		</entry>
+		<entry>
+			<tag>Color %d</tag>
+			<string>颜色 %d</string>
+		</entry>
+		<entry>
+			<tag>Color matrix is NULL ; can not build color scaled linearly into the current colormap</tag>
+			<string>颜色矩阵为空：当前的 colormap 中不能线性变化地创建颜色</string>
+		</entry>
+		<entry>
+			<tag>colormap : number of colums must be 3\n</tag>
+			<string>colormap：列数必须为3\n</string>
+		</entry>
+		<entry>
+			<tag>Colormap must be a m x 3 array with m &lt;= %d\r\n</tag>
+			<string>Colormap 必须是一个 m x 3 的数组，m &lt;= %d\r\n</string>
+		</entry>
+		<entry>
+			<tag>complexity: wrong code %d\r\n</tag>
+			<string>复杂性：代码 %d 错误\r\n</string>
+		</entry>
+		<entry>
+			<tag>Consider increasing the length of buffer in delay block \r\n</tag>
+			<string>考虑增加延时模块中的缓冲区长度 \r\n</string>
+		</entry>
+		<entry>
+			<tag>Consider increasing the length of buffer in variable delay block\r\n</tag>
+			<string>考虑增加可变延时模块中的缓冲区长度\r\n</string>
+		</entry>
+		<entry>
+			<tag>Could not open /dev/audio!\n</tag>
+			<string>不能打开 /dev/audio！\n</string>
+		</entry>
+		<entry>
+			<tag>Could not open the file!\n</tag>
+			<string>无法打开文件！\n</string>
+		</entry>
+		<entry>
+			<tag>createptr XXXX  %d\n\r</tag>
+			<string>createptr XXXX  %d\n\r</string>
+		</entry>
+		<entry>
+			<tag>Data size was not given for %s file\r\n</tag>
+			<string>文件 %s 的数据大小未给出\r\n</string>
+		</entry>
+		<entry>
+			<tag>Data style was not given for %s file\r\n</tag>
+			<string>文件 %s 的数据类型未给出\r\n</string>
+		</entry>
+		<entry>
+			<tag>datum %d %d %d \r\n</tag>
+			<string>datum %d %d %d \r\n</string>
+		</entry>
+		<entry>
+			<tag>delayed time=%f but last stored time=%f \r\n</tag>
+			<string>延迟时间=%f，但是上次存储时间=%f \r\n</string>
+		</entry>
+		<entry>
+			<tag>Demo of %s()\r\n</tag>
+			<string>演示 %s()\r\n</string>
+		</entry>
+		<entry>
+			<tag>Do you really want to abort computation (y n  ?) </tag>
+			<string>真的要终止当前计算吗？(y n  ?) </string>
+		</entry>
+		<entry>
+			<tag>Drop through in rawread!\r\n</tag>
+			<string>执行函数 rawread 时失败！\r\n</string>
+		</entry>
+		<entry>
+			<tag>Drop through in rawwrite!\r\n</tag>
+			<string>执行函数 rawwrite 时失败！\r\n</string>
+		</entry>
+		<entry>
+			<tag>dt=getdate(x) x must be &gt; 0.\n</tag>
+			<string>dt=getdate(x)中，x 必须大于0。\n</string>
+		</entry>
+		<entry>
+			<tag>dt=getdate(x) x must be &lt; %d.\n</tag>
+			<string>dt=getdate(x)中，x 必须小于 %d。\n</string>
+		</entry>
+		<entry>
+			<tag>Ecriture d'un long %f %ld\r\n</tag>
+			<string>Ecriture d'un long %f %ld\r\n</string>
+		</entry>
+		<entry>
+			<tag>End of activation</tag>
+			<string>触发结束</string>
+		</entry>
+		<entry>
+			<tag>End of activation\r\n</tag>
+			<string>触发结束\r\n</string>
+		</entry>
+		<entry>
+			<tag>Entering the block \r\n</tag>
+			<string>进入模块\r\n</string>
+		</entry>
+		<entry>
+			<tag>Entity with type %d cannot be destroyed\n</tag>
+			<string>类型为 %d 的项不能被撤销\n</string>
+		</entry>
+		<entry>
+			<tag>Entry point %s in shared lib %d\r\n</tag>
+			<string>入口点 %s 在共享静态库 %d中\r\n</string>
+		</entry>
+		<entry>
+			<tag>Environment variable SCI must be defined\n</tag>
+			<string>必须预先定义环境变量 SCI \n</string>
+		</entry>
+		<entry>
+			<tag>Environment variable SCI must be defined\r\n</tag>
+			<string>必须预先定义环境变量 SCI \r\n</string>
+		</entry>
+		<entry>
+			<tag>Error : first argument must be a string of length 3</tag>
+			<string>错误：第一个参数必须是一个长度为 3 的字符串</string>
+		</entry>
+		<entry>
+			<tag>Error : wrong first character in string \"%s\"\n</tag>
+			<string>错误：字符串 \"%s\" 中的第一个字符错误 \n</string>
+		</entry>
+		<entry>
+			<tag>Error : wrong second character in string \"%s\"\n</tag>
+			<string>错误：字符串 \"%s\" 中的第二个字符错误 \n</string>
+		</entry>
+		<entry>
+			<tag>Error : wrong third character in string \"%s\"\n</tag>
+			<string>错误：字符串 \"%s\" 中的第三个字符错误 \n</string>
+		</entry>
+		<entry>
+			<tag>Error allocating tmp_log_grads\n</tag>
+			<string>分配 tmp_log_grads 出现错误\n</string>
+		</entry>
+		<entry>
+			<tag>Error in function %s\r\n</tag>
+			<string>函数 %s 中出错\r\n</string>
+		</entry>
+		<entry>
+			<tag>Error in the Debug block \r\n</tag>
+			<string>调试模块出错 \r\n</string>
+		</entry>
+		<entry>
+			<tag>Error in XLogScale\n</tag>
+			<string>XLogScale 中出现错误\n</string>
+		</entry>
+		<entry>
+			<tag>Error in XScale\n</tag>
+			<string>XScale 中出现错误\n</string>
+		</entry>
+		<entry>
+			<tag>Error in YLogScale\n</tag>
+			<string>YLogScale 中出现错误\n</string>
+		</entry>
+		<entry>
+			<tag>Error in YScale\n</tag>
+			<string>YScale 中出现错误\n</string>
+		</entry>
+		<entry>
+			<tag>Error in Zoom3d_XScale\n</tag>
+			<string>Zoom3d_XScale 中出现错误\n</string>
+		</entry>
+		<entry>
+			<tag>Error in Zoom3d_YScale\n</tag>
+			<string>Zoom3d_YScale 中出现错误\n</string>
+		</entry>
+		<entry>
+			<tag>Error m3tl must be equal to 4 or 5\r\n</tag>
+			<string>错误：m3tl 必须等于 4 或 5\r\n</string>
+		</entry>
+		<entry>
+			<tag>error unhandled alignment\n</tag>
+			<string>错误。未处理对齐操作\n</string>
+		</entry>
+		<entry>
+			<tag>Error while reading \r\n</tag>
+			<string>读取时发生错误 \r\n</string>
+		</entry>
+		<entry>
+			<tag>Error:  Impossible status min &gt; max in x or y rect data\n</tag>
+			<string>错误：出现了不可能德情况，x 或 y 矩阵数据中的最小值大于最大值\n</string>
+		</entry>
+		<entry>
+			<tag>Error: at least one x data must be strictly positive to compute the bounds and use logarithmic mode\n</tag>
+			<string>错误：为了计算取值范围并使用对数模式，至少一个 x 数据必须严格为正\n</string>
+		</entry>
+		<entry>
+			<tag>Error: at least one y data must be strictly positive to compute the bounds and use logarithmic mode\n</tag>
+			<string>错误: 至少一个y数据必须严格为正, 以计算范围和利用对数衡量模式\n</string>
+		</entry>
+		<entry>
+			<tag>Error: bounds on x axis must be strictly positive to use logarithmic mode\n</tag>
+			<string>错误：为了使用对数模式，x 轴上的取值范围必须严格为正\n</string>
+		</entry>
+		<entry>
+			<tag>Error: bounds on y axis must be strictly positive to use logarithmic mode\n</tag>
+			<string>错误：为了使用对数模式，y 轴上的取值范围必须严格为正\n</string>
+		</entry>
+		<entry>
+			<tag>Error: can not allocate temporary coloramp\n</tag>
+			<string>错误：不能分配临时彩色图（coloramp）\n</string>
+		</entry>
+		<entry>
+			<tag>Error: clip_region is NULL\n</tag>
+			<string>错误：clip_region 为空\n</string>
+		</entry>
+		<entry>
+			<tag>Error: ComputeFormat must be used with SCI_AXES objects\n</tag>
+			<string>错误:  SCI_AXES 对象必须利用ComputeFormat\n</string>
+		</entry>
+		<entry>
+			<tag>Error: tics_coord must be changed FIRST, xy_type is &apos;r&apos; and tics_coord dimension  &lt; 3\n</tag>
+			<string>错误：必须首先改变 tics_coord，xy_type 应是 &apos;r&apos;，并且 tics_coord 的维数应小于3\n</string>
+		</entry>
+		<entry>
+			<tag>Error: tics_coord must be changed FIRST, xy_type is 'i' and tics_coord dimension &lt; 4\n</tag>
+			<string>错误：必须首先改变 tics_coord，xy_type 应是 &apos;i&apos;，并且 tics_coord 的维数应小于4\n</string>
+		</entry>
+		<entry>
+			<tag>Error: window closed while zooming\t\n</tag>
+			<string>错误：在放大时窗口已关闭\t\n</string>
+		</entry>
+		<entry>
+			<tag>Event: %d activated at t=%f\r\n</tag>
+			<string>事件: %d 在 t=%f 时被触发\r\n</string>
+		</entry>
+		<entry>
+			<tag>Fail in Allocating palette!\r\n</tag>
+			<string>分配调色板失败!\r\n</string>
+		</entry>
+		<entry>
+			<tag>Fail in creating palette!\r\n</tag>
+			<string>创建调色板失败!\r\n</string>
+		</entry>
+		<entry>
+			<tag>Failed to change colormap : Allocation failed or missing xinit detected\n</tag>
+			<string>无法改变彩色图（colormap）：分配失败，或者发现没有 xinit\n</string>
+		</entry>
+		<entry>
+			<tag>Failed to load default colormap : Allocation failed or missing xinit detected\n</tag>
+			<string>无法载入缺省德颜色图：分配失败，或发现没有 xinit\n</string>
+		</entry>
+		<entry>
+			<tag>Figure name may not contains any %% character, except a single %%d.\n</tag>
+			<string>图形名字不能包含任何 %% 字符，除非是单个的 %%d。\n</string>
+		</entry>
+		<entry>
+			<tag>file %d : %s \r\n</tag>
+			<string>文件 %d : %s \r\n</string>
+		</entry>
+		<entry>
+			<tag>File %d not active \r\n</tag>
+			<string>文件 %d 不活跃 \r\n</string>
+		</entry>
+		<entry>
+			<tag>file %s not found \n</tag>
+			<string>文件 %s 未找到 \n</string>
+		</entry>
+		<entry>
+			<tag>file %s not found \r\n</tag>
+			<string>文件 %s 未找到 \r\n</string>
+		</entry>
+		<entry>
+			<tag>Finished writing Wave file, %u data bytes\r\n</tag>
+			<string>完成写入波形文件，%u 个字节\r\n</string>
+		</entry>
+		<entry>
+			<tag>first out %d-&gt;%d=(%d,%d)\r\n</tag>
+			<string>第一个输出 %d-&gt;%d=(%d,%d)\r\n</string>
+		</entry>
+		<entry>
+			<tag>flags: %i %i %\r\n</tag>
+			<string>flags: %i %i %\r\n</string>
+		</entry>
+		<entry>
+			<tag>fopen failed\r\n</tag>
+			<string>fopen 失败\r\n</string>
+		</entry>
+		<entry>
+			<tag>Function not found\r\n</tag>
+			<string>函数未找到\r\n</string>
+		</entry>
+		<entry>
+			<tag>geom3d error : Operation can not be performed because X axis is in logscale mode and the specified x vector has a negative value\n</tag>
+			<string>geom3d 错误：不能执行操作，因为 X 轴是对数坐标模式，而给定的 x 向量是负值\n</string>
+		</entry>
+		<entry>
+			<tag>geom3d error : Operation can not be performed because Y axis is in logscale mode and the specified y vector has a negative value\n</tag>
+			<string>geom3d 错误：不能执行操作，因为 Y 轴是对数坐标模式，而给定的 y 向量是负值\n</string>
+		</entry>
+		<entry>
+			<tag>geom3d error : Operation can not be performed because Z axis is in logscale mode and the specified z vector has a negative value\n</tag>
+			<string>geom3d 错误：不能执行操作，因为 Z 轴是对数坐标模式，而给定的 z 向量是负值\n</string>
+		</entry>
+		<entry>
+			<tag>Graphic allocated dynamic memory: %ud bytes\n</tag>
+			<string>分配给图形的动态内存：%ud 字节\n</string>
+		</entry>
+		<entry>
+			<tag>Graphic Load/Save Error \r\n</tag>
+			<string>图形载入/保存错误 \r\n</string>
+		</entry>
+		<entry>
+			<tag>has been reached\r\n</tag>
+			<string>已到达\r\n</string>
+		</entry>
+		<entry>
+			<tag>Impossible case happened ! Check if instruction in matdes.c inside gget function</tag>
+			<string>发生异常情况！须检查 matdes.c 中 gget 函数内部的 if 指令</string>
+		</entry>
+		<entry>
+			<tag>Impossible case when buyilding axis\n</tag>
+			<string>创建 axis 时出现异常\n</string>
+		</entry>
+		<entry>
+			<tag>Impossible case xyztick must be equal to x_, y_ or z_tick</tag>
+			<string>出现错误情况：xyztick 必须等于  x_, y_ 或 z_tick</string>
+		</entry>
+		<entry>
+			<tag>Impossible case xyztick must be equal to x_, y_ or z_tick</tag>
+			<string>出现错误的情况：xyztick 必须等于 x_, y_ 或 z_tick</string>
+		</entry>
+		<entry>
+			<tag>Impossible case: champ object is now treated as a tlist. See set/getchampdata\r\n</tag>
+			<string>异常情况：champ 对象目前被当作 tlist 对象处理。参见：set/getchampdata\r\n</string>
+		</entry>
+		<entry>
+			<tag>Impossible case\n</tag>
+			<string>不可能出现的情况\n</string>
+		</entry>
+		<entry>
+			<tag>Impossible: u_xgrads must be freed before re-allocating</tag>
+			<string>不可能的情况：重新分配前，u_xgrads 必须被释放</string>
+		</entry>
+		<entry>
+			<tag>Impossible: u_xlabels must be freed before re-allocating</tag>
+			<string>不可能的情况：在重新分配之前，u_xlabels 必须先释放</string>
+		</entry>
+		<entry>
+			<tag>input file doesn't need to be changed to epsf \r\n</tag>
+			<string>输入文件没必要转换成 epsf \r\n</string>
+		</entry>
+		<entry>
+			<tag>input file doesn't need to be converted to Epsf\n</tag>
+			<string>输入文件没必要转换成 Epsf\n</string>
+		</entry>
+		<entry>
+			<tag>Input file: using sample rate %lu\r\n</tag>
+			<string>输入文件：使用采样率 %lu\r\n</string>
+		</entry>
+		<entry>
+			<tag>Inside StoreXcall1 [%s],[%s]\n</tag>
+			<string>在 StoreXcall1 中 [%s], [%s]\n</string>
+		</entry>
+		<entry>
+			<tag>Interface %d %s\r\n</tag>
+			<string>接口 %d %s\r\n</string>
+		</entry>
+		<entry>
+			<tag>Interface %s not linked\r\n</tag>
+			<string>接口 %s 未连接\r\n</string>
+		</entry>
+		<entry>
+			<tag>Internal Error: Loop in graduate1 \r\n</tag>
+			<string>内部错误：在 graduate1 中循环 \r\n</string>
+		</entry>
+		<entry>
+			<tag>Internal functions: \n\n</tag>
+			<string>内在函数: \n\n</string>
+		</entry>
+		<entry>
+			<tag>Invalid interface number %d</tag>
+			<string>无效的接口数 %d</string>
+		</entry>
+		<entry>
+			<tag>istk(%d:..) -&gt;[%d %d %d %d ....]\r\n</tag>
+			<string>istk(%d:..) -&gt;[%d %d %d %d ....]\r\n</string>
+		</entry>
+		<entry>
+			<tag>JE PASSE PAR ICI et col_white vaut: %d\n</tag>
+			<string>我调试过此处，col_white 取值为: %d\n</string>
+		</entry>
+		<entry>
+			<tag>je trouve un bbox ds [%f %f %f %f ] ds [%f,%f,%f,%f] log=[%c,%c]\r\n</tag>
+			<string>je trouve un bbox ds [%f %f %f %f ] ds [%f,%f,%f,%f] log=[%c,%c]\r\n</string>
+		</entry>
+		<entry>
+			<tag>Leaving block %d \r\n</tag>
+			<string>离开模块 %d \r\n</string>
+		</entry>
+		<entry>
+			<tag>Length in output .wav header will wrong since can't seek to fix it\r\n</tag>
+			<string>由于无法找到 length 信息，因此输出的 .wav 文件头中的 length 信息可能有错误\r\n</string>
+		</entry>
+		<entry>
+			<tag>Link done\r\n</tag>
+			<string>连接已完成\r\n</string>
+		</entry>
+		<entry>
+			<tag>lw=%d -[istk]-&gt; il lw+1 -[istk]-&gt; %d \r\n</tag>
+			<string>lw=%d -[istk]-&gt; il lw+1 -[istk]-&gt; %d \r\n</string>
+		</entry>
+		<entry>
+			<tag>malloc installed at position %d\r\n</tag>
+			<string>malloc 被安装在位置 %d\r\n</string>
+		</entry>
+		<entry>
+			<tag>Maximum number of dynamic interfaces %d\r\n</tag>
+			<string>允许的最大动态接口数 %d\r\n</string>
+		</entry>
+		<entry>
+			<tag>Memory allocation failed in ComputeFormat\n</tag>
+			<string>ComputeFormat 中内存分配失败\n</string>
+		</entry>
+		<entry>
+			<tag>Menu activated %s %d</tag>
+			<string>菜单被激活 %s %d</string>
+		</entry>
+		<entry>
+			<tag>mget : %s format not recognized \r\n</tag>
+			<string>mget：%s 格式无法识别 \r\n</string>
+		</entry>
+		<entry>
+			<tag>mget : format is of length 0\r\n</tag>
+			<string>mget：格式的长度为 0\r\n</string>
+		</entry>
+		<entry>
+			<tag>mgeti : format is of 0 length  \r\n</tag>
+			<string>mgeti：格式的长度为 0 \r\n</string>
+		</entry>
+		<entry>
+			<tag>mgeti : unknown format %s  \r\n</tag>
+			<string>mgeti：未知格式 %s  \r\n</string>
+		</entry>
+		<entry>
+			<tag>Microsoft Visual C++ 6.0</tag>
+			<string>Microsoft Visual C++ 6.0</string>
+		</entry>
+		<entry>
+			<tag>mode of block %d=%d, </tag>
+			<string>模块 %d 的模式=%d, </string>
+		</entry>
+		<entry>
+			<tag>mput : %s format not recognized \r\n</tag>
+			<string>mput：%s 格式不能识别 \r\n</string>
+		</entry>
+		<entry>
+			<tag>mput : format is of length 0\r\n</tag>
+			<string>mput：格式的长度为 0\r\n</string>
+		</entry>
+		<entry>
+			<tag>mputi : %s format not recognized \r\n</tag>
+			<string>mputi : %s 格式不能被识别 \r\n</string>
+		</entry>
+		<entry>
+			<tag>mputi : format is of 0 length  \r\n</tag>
+			<string>mputi : 格式长度为 0 \r\n</string>
+		</entry>
+		<entry>
+			<tag>mseek : flag = %s not recognized \r\n</tag>
+			<string>mseek：flag = %s 不能被识别 \r\n</string>
+		</entry>
+		<entry>
+			<tag>mseek: error\r\n</tag>
+			<string>mseek：错误\r\n</string>
+		</entry>
+		<entry>
+			<tag>mseek: wrong file logical unit \r\n</tag>
+			<string>mseek：错误的文件逻辑单元\r\n</string>
+		</entry>
+		<entry>
+			<tag>MSG_ERROR34</tag>
+			<string>MSG_ERROR34</string>
+		</entry>
+		<entry>
+			<tag>MSG_ERROR49</tag>
+			<string>MSG_ERROR49</string>
+		</entry>
+		<entry>
+			<tag>MSG_ERROR50</tag>
+			<string>MSG_ERROR50</string>
+		</entry>
+		<entry>
+			<tag>MSG_ERROR51</tag>
+			<string>MSG_ERROR51</string>
+		</entry>
+		<entry>
+			<tag>MSG_ERROR52</tag>
+			<string>MSG_ERROR52</string>
+		</entry>
+		<entry>
+			<tag>MSG_ERROR57</tag>
+			<string>MSG_ERROR57</string>
+		</entry>
+		<entry>
+			<tag>MSG_ERROR58</tag>
+			<string>MSG_ERROR58</string>
+		</entry>
+		<entry>
+			<tag>MSG_ERROR71, port, GetLastError ()</tag>
+			<string>MSG_ERROR71, port, GetLastError ()</string>
+		</entry>
+		<entry>
+			<tag>MSG_ERROR72, GetLastError ()</tag>
+			<string>MSG_ERROR72, GetLastError ()</string>
+		</entry>
+		<entry>
+			<tag>MSG_ERROR73, GetLastError ()</tag>
+			<string>MSG_ERROR73, GetLastError ()</string>
+		</entry>
+		<entry>
+			<tag>MSG_ERROR74, GetLastError ()</tag>
+			<string>MSG_ERROR74, GetLastError ()</string>
+		</entry>
+		<entry>
+			<tag>MSG_ERROR78</tag>
+			<string>MSG_ERROR78</string>
+		</entry>
+		<entry>
+			<tag>MSG_ERROR80</tag>
+			<string>MSG_ERROR80</string>
+		</entry>
+		<entry>
+			<tag>MSG_WARNING10</tag>
+			<string>MSG_WARNING10</string>
+		</entry>
+		<entry>
+			<tag>MSG_WARNING11</tag>
+			<string>MSG_WARNING11</string>
+		</entry>
+		<entry>
+			<tag>MSG_WARNING12</tag>
+			<string>MSG_WARNING12</string>
+		</entry>
+		<entry>
+			<tag>MSG_WARNING13</tag>
+			<string>MSG_WARNING13</string>
+		</entry>
+		<entry>
+			<tag>MSG_WARNING14</tag>
+			<string>MSG_WARNING14</string>
+		</entry>
+		<entry>
+			<tag>MSG_WARNING15</tag>
+			<string>MSG_WARNING15</string>
+		</entry>
+		<entry>
+			<tag>MSG_WARNING17</tag>
+			<string>MSG_WARNING17</string>
+		</entry>
+		<entry>
+			<tag>MSG_WARNING18</tag>
+			<string>MSG_WARNING18</string>
+		</entry>
+		<entry>
+			<tag>MSG_WARNING19</tag>
+			<string>MSG_WARNING19</string>
+		</entry>
+		<entry>
+			<tag>MSG_WARNING28</tag>
+			<string>MSG_WARNING28</string>
+		</entry>
+		<entry>
+			<tag>MSG_WARNING29</tag>
+			<string>MSG_WARNING29</string>
+		</entry>
+		<entry>
+			<tag>MSG_WARNING31</tag>
+			<string>MSG_WARNING31</string>
+		</entry>
+		<entry>
+			<tag>mtell: wrong file logical unit \r\b</tag>
+			<string>mtell：错误的文件逻辑单元 \r\b</string>
+		</entry>
+		<entry>
+			<tag>mxFree all position %d \r\n</tag>
+			<string>mxFree all 的位置为 %d \r\n</string>
+		</entry>
+		<entry>
+			<tag>mxFree position %d \r\n</tag>
+			<string>mxFree 的位置为 %d \r\n</string>
+		</entry>
+		<entry>
+			<tag>name %d : %s \r\n</tag>
+			<string>名字 %d : %s \r\n</string>
+		</entry>
+		<entry>
+			<tag>No A-Law support for shorts (try -b option ?)\r\n</tag>
+			<string>A-Law 编码不支持短整型 （尝试 -b 选项？）\r\n</string>
+		</entry>
+		<entry>
+			<tag>No A-Law support for shorts\r\n</tag>
+			<string>A-Law 编码不支持短整型\r\n</string>
+		</entry>
+		<entry>
+			<tag>No enough colors for default colormap. Maximum is %d\r\n</tag>
+			<string>缺省的 colormap 没有足够的颜色数。最大数目是  %d\r\n</string>
+		</entry>
+		<entry>
+			<tag>No file to close \r\n</tag>
+			<string>没有要关闭的文件 \r\n</string>
+		</entry>
+		<entry>
+			<tag>no handle for this object !\n</tag>
+			<string>这个对象没有句柄 ！\n</string>
+		</entry>
+		<entry>
+			<tag>no handle to allocate\n</tag>
+			<string>没有要分配的操作\n</string>
+		</entry>
+		<entry>
+			<tag>no handle to del\n</tag>
+			<string>没有要删除的句柄\n</string>
+		</entry>
+		<entry>
+			<tag>No input file \r\n</tag>
+			<string>没有输入文件 \r\n</string>
+		</entry>
+		<entry>
+			<tag>No input file associated to logical unit %d\r\n</tag>
+			<string>没有输入文件与逻辑单元 %d 相关联\r\n</string>
+		</entry>
+		<entry>
+			<tag>No more memory \r\n</tag>
+			<string>内存不足 \r\n</string>
+		</entry>
+		<entry>
+			<tag>No more Memory allocation !\n</tag>
+			<string>无法分配内存 ！\n</string>
+		</entry>
+		<entry>
+			<tag>No more memory available\n</tag>
+			<string>没有更多的可用内存\n</string>
+		</entry>
+		<entry>
+			<tag>No more Memory for fontname\n</tag>
+			<string>没有更多内存分配给 fontname\n</string>
+		</entry>
+		<entry>
+			<tag>No more memory for legend\n</tag>
+			<string>没有多余的内存空间分配图例\n</string>
+		</entry>
+		<entry>
+			<tag>No more memory left.\n</tag>
+			<string>内存耗尽。\n</string>
+		</entry>
+		<entry>
+			<tag>No more memory left.\n </tag>
+			<string>没有剩余内存.\n </string>
+		</entry>
+		<entry>
+			<tag>No more memory left.\n </tag>
+			<string>内存耗尽。\n </string>
+		</entry>
+		<entry>
+			<tag>No more place for allocating ticklabel</tag>
+			<string>没有更多的空间来分配 ticklabel</string>
+		</entry>
+		<entry>
+			<tag>No more place for allocating u_xlabels</tag>
+			<string>没有多余空间分配 u_xlabels</string>
+		</entry>
+		<entry>
+			<tag>No more place for allocating user grads using Nax</tag>
+			<string>没有多余的空间用 Nax 分配 user grads </string>
+		</entry>
+		<entry>
+			<tag>No more place to allocates label string, try a shorter string</tag>
+			<string>没有多余空间分配给标签字符串，请尝试较短的字符串</string>
+		</entry>
+		<entry>
+			<tag>No more place to allocates text string, try a shorter string</tag>
+			<string>没有多余空间分配给文本字符串，请尝试较短的字符串</string>
+		</entry>
+		<entry>
+			<tag>No ScilabXgc allocated\n</tag>
+			<string>未分配 ScilabXgc\n</string>
+		</entry>
+		<entry>
+			<tag>No space to allocate Scilab stack\r\n</tag>
+			<string>没有空间分配 Scilab 堆栈\r\n</string>
+		</entry>
+		<entry>
+			<tag>No U-Law support for shorts (try -b option ?)\r\n</tag>
+			<string>U-Law 编码不支持短整型 （尝试 -b 选项？）\r\n</string>
+		</entry>
+		<entry>
+			<tag>No U-Law support for shorts\r\n</tag>
+			<string>U-Law 编码不支持短整型 \r\n</string>
+		</entry>
+		<entry>
+			<tag>Nombre d'Items %d\r\n</tag>
+			<string>项数为 %d\r\n</string>
+		</entry>
+		<entry>
+			<tag>nombre de tics %d\r\n</tag>
+			<string>tics 的数目为 %d\r\n</string>
+		</entry>
+		<entry>
+			<tag>Not a save graphics file: %s\n\n</tag>
+			<string>不是已保存的图形文件: %s\n\n</string>
+		</entry>
+		<entry>
+			<tag>Not enough memory available for colormap, previous one kept\n</tag>
+			<string>没有足够内存给 colormap, 保持其原有值\n</string>
+		</entry>
+		<entry>
+			<tag>Not enough memory\n</tag>
+			<string>没有足够的内存\n</string>
+		</entry>
+		<entry>
+			<tag>Not in Console mode\n</tag>
+			<string>不在控制台模式下\n</string>
+		</entry>
+		<entry>
+			<tag>NOT USED in win95</tag>
+			<string>在 win95 中不可用</string>
+		</entry>
+		<entry>
+			<tag>Number of entry points %d\r\n</tag>
+			<string>入口点的数目为 %d\r\n</string>
+		</entry>
+		<entry>
+			<tag>numcol vaut: %d et ...-&gt;pvz = %d</tag>
+			<string>numcol vaut: %d 以及 ...-&gt;pvz = %d</string>
+		</entry>
+		<entry>
+			<tag>Object not drawn\n</tag>
+			<string>对象没有被描绘\n</string>
+		</entry>
+		<entry>
+			<tag>only alias font name are supported by gif driver\n</tag>
+			<string>gif 驱动只支持字体别名\n</string>
+		</entry>
+		<entry>
+			<tag>Only Figure be numerated\n</tag>
+			<string>只有图形可以被计数\n</string>
+		</entry>
+		<entry>
+			<tag>Only Figure can be named\n</tag>
+			<string>只有 Figure 才能被命名\n</string>
+		</entry>
+		<entry>
+			<tag>Only Figure can be numerated\n</tag>
+			<string>只有 Figure 才能被计数\n</string>
+		</entry>
+		<entry>
+			<tag>Only Figure can breturn position\n</tag>
+			<string>只有 Figure 才能返回位置值\n</string>
+		</entry>
+		<entry>
+			<tag>Only Figure can return iconic status\n</tag>
+			<string>只有 Figure 才能返回图标状态（iconic status）\n</string>
+		</entry>
+		<entry>
+			<tag>Only Figure can return position\n</tag>
+			<string>只有 Figure 才能返回位置值\n</string>
+		</entry>
+		<entry>
+			<tag>Only Figure is physical dimensioned\n</tag>
+			<string>只有 Figure 才有物理尺度\n</string>
+		</entry>
+		<entry>
+			<tag>Only Figure or Subwin can be sized\n</tag>
+			<string>只有 Figure 或 SubWin 才有大小\n</string>
+		</entry>
+		<entry>
+			<tag>Only Figure or SubWindow can be named\n</tag>
+			<string>只有 Figure 或 SubWindow 才能被命名\n</string>
+		</entry>
+		<entry>
+			<tag>Only on Windows Mode, not in Console Mode.\n</tag>
+			<string>只能用于 Windows 模式，不能用于控制台模式。\n</string>
+		</entry>
+		<entry>
+			<tag>Only one dialog at a time please \r\n</tag>
+			<string>一次只能有一个对话框（dialog）\r\n</string>
+		</entry>
+		<entry>
+			<tag>Only one madialog at a time please \r\n</tag>
+			<string>每次只能有一个 madialog \r\n</string>
+		</entry>
+		<entry>
+			<tag>Only one mdialog at a time please \r\n</tag>
+			<string>一次只能有一个 madialog\r\n</string>
+		</entry>
+		<entry>
+			<tag>Only one message window at a time please \r\n</tag>
+			<string>一次只能有一个消息窗口 \r\n</string>
+		</entry>
+		<entry>
+			<tag>Only one toggle menu at a time please \n</tag>
+			<string>一次只能有一个 toggle 菜单 \n</string>
+		</entry>
+		<entry>
+			<tag>Only one toggle menu at a time please \r\n</tag>
+			<string>一次只能有一个 toggle 菜单 \r\n</string>
+		</entry>
+		<entry>
+			<tag>Only subwin can be return position\n</tag>
+			<string>只有子窗口（ subwin ）能返回位置\n</string>
+		</entry>
+		<entry>
+			<tag>optional argument list is empty\r\n</tag>
+			<string>可选参数列表是空的\r\n</string>
+		</entry>
+		<entry>
+			<tag>optional arguments list: </tag>
+			<string>可选参数列表: </string>
+		</entry>
+		<entry>
+			<tag>pas de context</tag>
+			<string>没有上下文</string>
+		</entry>
+		<entry>
+			<tag>Please send a Bug report to scilab@inria.fr\r\n</tag>
+			<string>请发送一个 Bug 报告到 scilab@inria.fr\r\n</string>
+		</entry>
+		<entry>
+			<tag>Premature EOF on .wav input file\r\n</tag>
+			<string>在 .wav 输入文件过早出现了 EOF\r\n</string>
+		</entry>
+		<entry>
+			<tag>Problem with sciInitFontContext\n</tag>
+			<string>sciInitFontContext 有错误\n</string>
+		</entry>
+		<entry>
+			<tag>pvm interface not loaded \n</tag>
+			<string>pvm 接口没有被加载 \n</string>
+		</entry>
+		<entry>
+			<tag>Read error!\n</tag>
+			<string>读取错误!\n</string>
+		</entry>
+		<entry>
+			<tag>Read error!\r\n</tag>
+			<string>读取错误!\r\n</string>
+		</entry>
+		<entry>
+			<tag>Read error\r\n</tag>
+			<string>读取错误\r\n</string>
+		</entry>
+		<entry>
+			<tag>Read swap status  %d\r\n</tag>
+			<string>读取交换数据状态 %d\r\n</string>
+		</entry>
+		<entry>
+			<tag>Reading Wave file: %s format, %d channel%s, %d samp/sec\r\n</tag>
+			<string>正在读取 Wave 文件：%s 格式, %d 通道 %s, %d 样本/秒\r\n</string>
+		</entry>
+		<entry>
+			<tag>real base %s\n</tag>
+			<string>实基数 %s\n</string>
+		</entry>
+		<entry>
+			<tag>Resize status %d</tag>
+			<string>调整 status %d 的大小</string>
+		</entry>
+		<entry>
+			<tag>root found at t=: %f\r\n</tag>
+			<string>在 t=: %f 找到根节点（root）\r\n</string>
+		</entry>
+		<entry>
+			<tag>Running out of memory \n</tag>
+			<string>内存耗尽 \n</string>
+		</entry>
+		<entry>
+			<tag>Running out of memory for plot2d\n</tag>
+			<string>plot2d 耗尽内存\n</string>
+		</entry>
+		<entry>
+			<tag>Running out of memory\r\n</tag>
+			<string>内存耗尽\r\n</string>
+		</entry>
+		<entry>
+			<tag>Sampling rate %lu for %s file is bogus\r\n</tag>
+			<string>采样率的值 %lu （对于文件 %s ）是不对的\r\n</string>
+		</entry>
+		<entry>
+			<tag>Sampling rate for %s file was not given\r\n</tag>
+			<string>文件 %s 的采样率未给定\r\n</string>
+		</entry>
+		<entry>
+			<tag>save: saving colormap failed\r\n</tag>
+			<string>保存：保存 colormap 失败\r\n</string>
+		</entry>
+		<entry>
+			<tag>saving %f\r\n</tag>
+			<string>正在保存 %f\r\n</string>
+		</entry>
+		<entry>
+			<tag>Sci_Axis: wrong type argument xy_type\r\n</tag>
+			<string>Sci_Axis：参数 xy_type 类型错误\r\n</string>
+		</entry>
+		<entry>
+			<tag>Sci_Axis: wrong type argument xy_type\r\n</tag>
+			<string>Sci_Axis：错误的参数类型 xy_type\r\n</string>
+		</entry>
+		<entry>
+			<tag>Sci_Prompt</tag>
+			<string>Sci_Prompt</string>
+		</entry>
+		<entry>
+			<tag>scicos interfaces not loaded \n</tag>
+			<string>scicos 接口没有被加载 \n</string>
+		</entry>
+		<entry>
+			<tag>Scilab can't have more menu \n</tag>
+			<string>Scilab 不能配置更多的菜单 \n</string>
+		</entry>
+		<entry>
+			<tag>Sciprinting - writing bad .wav file using %s\r\n</tag>
+			<string>Sciprinting - 正在使用 %s 写入坏的 .wav 文件\r\n</string>
+		</entry>
+		<entry>
+			<tag>Sciprinting - writing bad .wav file using A-law data and %d bits/sample\r\n</tag>
+			<string>Sciprinting - 正在使用 A-law 编码的数据和 %d bits/sample 写入坏的 .wav 文件\r\n</string>
+		</entry>
+		<entry>
+			<tag>Sciprinting - writing bad .wav file using signed data and %d bits/sample\r\n</tag>
+			<string>Sciprinting - 正在使用有符号数据和 %d bits/sample 写入坏的 .wav 文件\r\n</string>
+		</entry>
+		<entry>
+			<tag>Sciprinting - writing bad .wav file using U-law data and %d bits/sample\r\n</tag>
+			<string>Sciprinting - 正在使用 U-law 编码的数据和 %d bits/sample 写入坏的 .wav 文件\r\n</string>
+		</entry>
+		<entry>
+			<tag>Sciprinting - writing bad .wav file using unsigned data and %d bits/sample\r\n</tag>
+			<string>Sciprinting - 正在使用无符号数据和 %d bits/sample 写入坏的 .wav 文件\r\n</string>
+		</entry>
+		<entry>
+			<tag>sciSetColormap Error: Object must be a SCI_FIGURE\n</tag>
+			<string>sciSetColormap 错误：对象必须是 SCI_FIGURE\n</string>
+		</entry>
+		<entry>
+			<tag>send_command : No more memory \r\n</tag>
+			<string>send_command：内存不足 \r\n</string>
+		</entry>
+		<entry>
+			<tag>serious bug,report0</tag>
+			<string>严重的 bug，报告 0</string>
+		</entry>
+		<entry>
+			<tag>serious bug,report1</tag>
+			<string>严重的 bug，报告 1</string>
+		</entry>
+		<entry>
+			<tag>Setting pixmap on is impossible \r\n</tag>
+			<string>不可能设置 picmap \r\n</string>
+		</entry>
+		<entry>
+			<tag>Shared libs : [</tag>
+			<string>共享静态库文件 : [</string>
+		</entry>
+		<entry>
+			<tag>Size of colormap: %d colors\r\n</tag>
+			<string>colormap 的大小: %d 种颜色\r\n</string>
+		</entry>
+		<entry>
+			<tag>Slider t=%10.3f, flag=%d \r\n</tag>
+			<string>Slider t=%10.3f, flag=%d \r\n</string>
+		</entry>
+		<entry>
+			<tag>Sorry : Dynamic linking is not implemented  \r\n</tag>
+			<string>抱歉：动态链接未实现  \r\n</string>
+		</entry>
+		<entry>
+			<tag>Sorry : Matdialog not implemented . See \"help editvar\" \r\n</tag>
+			<string>抱歉：不能实现 Matdialog。参见帮助文档 \"help editvar\" \r\n</string>
+		</entry>
+		<entry>
+			<tag>Sorry : Unlinking is not implemented \r\n</tag>
+			<string>抱歉：接口释放（unlinking）未实现 \r\n</string>
+		</entry>
+		<entry>
+			<tag>Sorry : x_mdialog limited to %d items on Windows \r\n</tag>
+			<string>抱歉：在 Windows 中，x_mdialog 被限制为 %d 项 \r\n</string>
+		</entry>
+		<entry>
+			<tag>Sorry : x_mdialog limited to %d items on Windows\n</tag>
+			<string>抱歉：在 Windows 中，x_mdialog 被限制为 %d 项\n</string>
+		</entry>
+		<entry>
+			<tag>Sorry, .wav input file must be a file, not a pipe\r\n</tag>
+			<string>抱歉，.wav 的输入文件必须是一个文件，而非管道\r\n</string>
+		</entry>
+		<entry>
+			<tag>Sorry, can't rewind output file to rewrite .wav header.\r\n</tag>
+			<string>抱歉，无法重绕输出文件来重写 .wav 的文件头。\r\n</string>
+		</entry>
+		<entry>
+			<tag>Sorry, don't have code to read %s, %s\r\n</tag>
+			<string>抱歉，没有相应的编码来读取 %s, %s\r\n</string>
+		</entry>
+		<entry>
+			<tag>Sorry, don't have code to write %s, %s\r\n</tag>
+			<string>抱歉，没有相应的编码来写 %s, %s\r\n</string>
+		</entry>
+		<entry>
+			<tag>Sorry, don't understand .wav size\r\n</tag>
+			<string>抱歉，无法确定 .wav 文件的大小\r\n</string>
+		</entry>
+		<entry>
+			<tag>Sorry, don't understand format\r\n</tag>
+			<string>抱歉，未知的格式\r\n</string>
+		</entry>
+		<entry>
+			<tag>Sorry, fmt chunk is too short\r\n</tag>
+			<string>抱歉，fmt 块太短了\r\n</string>
+		</entry>
+		<entry>
+			<tag>Sorry, missing data chunk\r\n</tag>
+			<string>抱歉，缺少数据块\r\n</string>
+		</entry>
+		<entry>
+			<tag>Sorry, missing fmt spec\r\n</tag>
+			<string>抱歉，缺少 fmt 规格说明\r\n</string>
+		</entry>
+		<entry>
+			<tag>Sorry, not a RIFF file\r\n</tag>
+			<string>抱歉，这不是一个 RIFF 文件\r\n</string>
+		</entry>
+		<entry>
+			<tag>Sorry, not a WAVE file\r\n</tag>
+			<string>抱歉，这不是一个 WAVE 文件\r\n</string>
+		</entry>
+		<entry>
+			<tag>Sorry, this WAV file is in Digifix format.\r\n</tag>
+			<string>抱歉，此 WAV 文件的格式为 Digifix。\r\n</string>
+		</entry>
+		<entry>
+			<tag>Sorry, this WAV file is in Digistd format.\r\n</tag>
+			<string>抱歉，此 WAV 文件的格式为 Digistd。\r\n</string>
+		</entry>
+		<entry>
+			<tag>Sorry, this WAV file is in IBM A-law format.\r\n</tag>
+			<string>抱歉，此 WAV 文件的格式为 IBM A-law。\r\n</string>
+		</entry>
+		<entry>
+			<tag>Sorry, this WAV file is in IBM ADPCM format.\r\n</tag>
+			<string>抱歉，此 WAV 文件的格式为 IBM ADPCM。\r\n</string>
+		</entry>
+		<entry>
+			<tag>Sorry, this WAV file is in IBM U-law format.\r\n</tag>
+			<string>抱歉，此 WAV 文件的格式为 IBM U-law\r\n</string>
+		</entry>
+		<entry>
+			<tag>Sorry, this WAV file is in Microsoft ADPCM format.\r\n</tag>
+			<string>抱歉，此 WAV 文件的格式为 Microsoft ADPCM\r\n</string>
+		</entry>
+		<entry>
+			<tag>Sorry, this WAV file is in Microsoft Official Unknown format.\r\n</tag>
+			<string>抱歉，此 WAV 文件的格式为 Microsoft Official Unknown 。\r\n</string>
+		</entry>
+		<entry>
+			<tag>Sorry, this WAV file is in OKI ADPCM format.\r\n</tag>
+			<string>抱歉，此 WAV 文件的格式为 OKI ADPCM\r\n</string>
+		</entry>
+		<entry>
+			<tag>stacksize requested size is too big (max &lt; %lu)\r\n</tag>
+			<string>所需的堆栈容量过大 (最大容量 &lt; %lu)\r\n</string>
+		</entry>
+		<entry>
+			<tag>String %d %s\r\n</tag>
+			<string>字符串 %d %s\r\n</string>
+		</entry>
+		<entry>
+			<tag>Synchro block cannot have more than 1 input</tag>
+			<string>同步模块（Synchro block）不可以有多于一个的输入</string>
+		</entry>
+		<entry>
+			<tag>TCL_ERROR28</tag>
+			<string>TCL_ERROR28</string>
+		</entry>
+		<entry>
+			<tag>TCL_MSG1</tag>
+			<string>TCL_MSG1</string>
+		</entry>
+		<entry>
+			<tag>TCL_MSG10</tag>
+			<string>TCL_MSG10</string>
+		</entry>
+		<entry>
+			<tag>TCL_MSG11</tag>
+			<string>TCL_MSG11</string>
+		</entry>
+		<entry>
+			<tag>TCL_MSG12</tag>
+			<string>TCL_MSG12</string>
+		</entry>
+		<entry>
+			<tag>TCL_MSG13</tag>
+			<string>TCL_MSG13</string>
+		</entry>
+		<entry>
+			<tag>TCL_MSG14</tag>
+			<string>TCL_MSG14</string>
+		</entry>
+		<entry>
+			<tag>TCL_MSG7</tag>
+			<string>TCL_MSG7</string>
+		</entry>
+		<entry>
+			<tag>TCL_MSG8</tag>
+			<string>TCL_MSG8</string>
+		</entry>
+		<entry>
+			<tag>TCL_MSG9</tag>
+			<string>TCL_MSG9</string>
+		</entry>
+		<entry>
+			<tag>TCL_WARNING1</tag>
+			<string>TCL_WARNING1</string>
+		</entry>
+		<entry>
+			<tag>TCL_WARNING2</tag>
+			<string>TCL_WARNING2</string>
+		</entry>
+		<entry>
+			<tag>TCL_WARNING3</tag>
+			<string>TCL_WARNING3</string>
+		</entry>
+		<entry>
+			<tag>TCL_WARNING4</tag>
+			<string>TCL_WARNING4</string>
+		</entry>
+		<entry>
+			<tag>TCL_WARNING5</tag>
+			<string>TCL_WARNING5</string>
+		</entry>
+		<entry>
+			<tag>TCL_WARNING6</tag>
+			<string>TCL_WARNING6</string>
+		</entry>
+		<entry>
+			<tag>TclSci interface not loaded \n</tag>
+			<string>TclSci 接口没有被加载 \n</string>
+		</entry>
+		<entry>
+			<tag>That's over\n</tag>
+			<string>完毕\n</string>
+		</entry>
+		<entry>
+			<tag>the &apos;advnst&apos; option affect only the clcg4 generator !\n\r</tag>
+			<string> &apos;advnst&apos; 选项只影响 clcg4 产生器！\n\r</string>
+		</entry>
+		<entry>
+			<tag>The configuration file\n %s\nis used.\n</tag>
+			<string>配置文件\n %s\n 已经被使用。\n</string>
+		</entry>
+		<entry>
+			<tag>The data must have 3 columns\n</tag>
+			<string>数据必须有 3 列\n</string>
+		</entry>
+		<entry>
+			<tag>the fill width must be equal or greater than 0\n</tag>
+			<string>填充宽度（fill width）必须大于或等于 0\n</string>
+		</entry>
+		<entry>
+			<tag>The font angle must be greater than 0\n</tag>
+			<string>字体角度必须大于 0\n</string>
+		</entry>
+		<entry>
+			<tag>The font size must be greater than 0\n</tag>
+			<string>字体大小必须大于 0\n</string>
+		</entry>
+		<entry>
+			<tag>the line style must be greater than 0\n</tag>
+			<string>线的类型（style）必须大于 0\n</string>
+		</entry>
+		<entry>
+			<tag>the line width must be greater than 0\n</tag>
+			<string>线的宽度必须大于 0\n</string>
+		</entry>
+		<entry>
+			<tag>the mark size must be greater or equal than 0\n</tag>
+			<string>记号的大小（mark size）必须大于或等于 0\n</string>
+		</entry>
+		<entry>
+			<tag>the mark size unit must be greater than 0\n</tag>
+			<string>记号大小的单位必须大于 0\n</string>
+		</entry>
+		<entry>
+			<tag>the mark style must be greater or equal than 0\n</tag>
+			<string> 记号类型（mark style）必须大于或等于 0\n</string>
+		</entry>
+		<entry>
+			<tag>The number of columns must be 2 (3 if three-dimensional axes) \n</tag>
+			<string>列的数目必须是 2 （如果是三维轴，则取为 3） \n</string>
+		</entry>
+		<entry>
+			<tag>The number of element must be 4 (5 if z coordinate )\n</tag>
+			<string>元素的数目必须是 4 （如果是 z 坐标，则取为 5）\n</string>
+		</entry>
+		<entry>
+			<tag>The number of elements must be 2 (3 if z coordinate)\n</tag>
+			<string>元素的数目必须是 2 （如果是 z 坐标，则取为 3）\n</string>
+		</entry>
+		<entry>
+			<tag>The number of elements must be 6 (7 if z coordinate )\n</tag>
+			<string>元素的数目必须是 6 （如果是 z 坐标，则取为 7）\n</string>
+		</entry>
+		<entry>
+			<tag>The parent has to be a FIGURE \n</tag>
+			<string>父对象必须是一个 FIGURE \n</string>
+		</entry>
+		<entry>
+			<tag>The parent has to be a FIGURE or a UIMENU\n</tag>
+			<string>父对象必须是一个 FIGURE 或一个 UIMENU\n</string>
+		</entry>
+		<entry>
+			<tag>The parent has to be a SUBWIN \n</tag>
+			<string>父对象必须是一个 SUBWIN \n</string>
+		</entry>
+		<entry>
+			<tag>the setall option affect only the clcg4 generator !\n\r</tag>
+			<string> setall 选项只影响 clcg4 产生器 ！\n\r</string>
+		</entry>
+		<entry>
+			<tag>the setcgn option affect only the clcg4 generator\n\r</tag>
+			<string>setcgn 选项只影响 clcg4 产生器\n\r</string>
+		</entry>
+		<entry>
+			<tag>The standard configuration file $SCI/.pvmd.conf will be used.\r\n</tag>
+			<string>标准配置文件 $SCI/.pvmd.conf 将被使用。\r\n</string>
+		</entry>
+		<entry>
+			<tag>There is no Son in this Parent!!!!\n</tag>
+			<string>这个父对象中没有子对象!!!!\n</string>
+		</entry>
+		<entry>
+			<tag>This Handle is not a Figure\n</tag>
+			<string>这个句柄不是 Figure\n</string>
+		</entry>
+		<entry>
+			<tag>This Handle is not a SubWindow\n</tag>
+			<string>这个句柄不是一个 SubWindow\n</string>
+		</entry>
+		<entry>
+			<tag>this information concerns only the clcg4 generator\n\r</tag>
+			<string>这条消息只与 clcg4 产生器有关\n\r</string>
+		</entry>
+		<entry>
+			<tag>This object can not be moved\r\n</tag>
+			<string>这个对象不能被移动\r\n</string>
+		</entry>
+		<entry>
+			<tag>This object can not be selected.\n</tag>
+			<string>这个对象不能被选择。\n</string>
+		</entry>
+		<entry>
+			<tag>This object cannot be addploted\n</tag>
+			<string>This object cannot be addploted\n</string>
+		</entry>
+		<entry>
+			<tag>This object cannot be autoscaled\n</tag>
+			<string>这个对象不能被自动缩放\n</string>
+		</entry>
+		<entry>
+			<tag>This object cannot be cloned !\n</tag>
+			<string>这个对象不能被复制 ！\n</string>
+		</entry>
+		<entry>
+			<tag>This object cannot be deleted\n</tag>
+			<string>这个对象不能被删除\n</string>
+		</entry>
+		<entry>
+			<tag>This object cannot be highlighted\n</tag>
+			<string>这个对象不能被高亮度显示\n</string>
+		</entry>
+		<entry>
+			<tag>This object cannot be resized\n</tag>
+			<string>这个对象的大小不能被调整\n</string>
+		</entry>
+		<entry>
+			<tag>This object has no  Font width \n</tag>
+			<string>这个对象没有字体宽度\n</string>
+		</entry>
+		<entry>
+			<tag>This object has no  font width \n</tag>
+			<string>这个对象没有 font width 属性\n</string>
+		</entry>
+		<entry>
+			<tag>This object has no  ismark \n</tag>
+			<string>这个对象没有 ismark 属性 \n</string>
+		</entry>
+		<entry>
+			<tag>This object has no  line style \n</tag>
+			<string>这个对象没有线型（line style） \n</string>
+		</entry>
+		<entry>
+			<tag>This object has no  line width \n</tag>
+			<string>这个对象没有 line width 属性\n</string>
+		</entry>
+		<entry>
+			<tag>This object has no 3d mode.\n</tag>
+			<string>这个对象没有 3d 模式。\n</string>
+		</entry>
+		<entry>
+			<tag>This object has no box type \n</tag>
+			<string>这个对象没有 box type 属性\n</string>
+		</entry>
+		<entry>
+			<tag>This object has no centered position.\n</tag>
+			<string>这个对象没有 centered position 属性\n</string>
+		</entry>
+		<entry>
+			<tag>This object has no Fill Style\n</tag>
+			<string>这个对象没有 Fill Style 属性\n</string>
+		</entry>
+		<entry>
+			<tag>This object has no font style !\n</tag>
+			<string>这个对象没有 font style  属性！\n</string>
+		</entry>
+		<entry>
+			<tag>This object has no fontdeciwidth\n</tag>
+			<string>这个对象没有 fontdeciwidth 属性\n</string>
+		</entry>
+		<entry>
+			<tag>This object has no isboxed \n</tag>
+			<string>这个对象没有 isboxed 属性\n</string>
+		</entry>
+		<entry>
+			<tag>This object has no isfilled \n</tag>
+			<string>这个对象没有 isfilled 属性 \n</string>
+		</entry>
+		<entry>
+			<tag>This object has no isfilled\n</tag>
+			<string>这个对象没有 isfilled 属性\n</string>
+		</entry>
+		<entry>
+			<tag>This object has no isline \n</tag>
+			<string>这个对象没有 isline 属性\n</string>
+		</entry>
+		<entry>
+			<tag>This object has no isline\n</tag>
+			<string>这个对象没有 isline 属性\n</string>
+		</entry>
+		<entry>
+			<tag>This object has no ismark\n</tag>
+			<string>这个对象没有 ismark 属性\n</string>
+		</entry>
+		<entry>
+			<tag>This object has no Line Style\n</tag>
+			<string>这个对象没有Line Style 属性\n</string>
+		</entry>
+		<entry>
+			<tag>This object has no Line Width\n</tag>
+			<string>这个对象没有 Line Width 属性\n</string>
+		</entry>
+		<entry>
+			<tag>This object has no mark \n</tag>
+			<string>这个对象没有记号（mark）属性 \n</string>
+		</entry>
+		<entry>
+			<tag>This object has no points Y\n</tag>
+			<string>这个对象没有点 Y\n</string>
+		</entry>
+		<entry>
+			<tag>This object has no position\n</tag>
+			<string>这个对象没有 position 属性\n</string>
+		</entry>
+		<entry>
+			<tag>This object has no possibility to set points !\n</tag>
+			<string>这个对象不可能进行点的设置！\n</string>
+		</entry>
+		<entry>
+			<tag>This object has no Specified Size\n</tag>
+			<string>这个对象没有 Specified Size 属性\n</string>
+		</entry>
+		<entry>
+			<tag>This object has no text !\n</tag>
+			<string>这个对象没有 text 属性！\n</string>
+		</entry>
+		<entry>
+			<tag>This object has no text !\n</tag>
+			<string>这个对象没有 text 属性！\n</string>
+		</entry>
+		<entry>
+			<tag>This object has no Text Alignment\n</tag>
+			<string>这个对象没有 Text Alignment 属性\n</string>
+		</entry>
+		<entry>
+			<tag>This object has no text position!\n</tag>
+			<string>这个对象没有文本位置！\n</string>
+		</entry>
+		<entry>
+			<tag>This object has no textorientation\n</tag>
+			<string>这个对象没有 textorientation 属性\n</string>
+		</entry>
+		<entry>
+			<tag>This object hasn't any automoatic size\n</tag>
+			<string>这个对象没有任何自动的尺寸大小\n</string>
+		</entry>
+		<entry>
+			<tag>This object hasn't any automoatic size\n</tag>
+			<string>这个对象没有 automoatic size 属性\n</string>
+		</entry>
+		<entry>
+			<tag>This object haven't any graphic mode\n</tag>
+			<string>这个对象没有图形模式\n</string>
+		</entry>
+		<entry>
+			<tag>this option affect only the clcg4 generator\n\r</tag>
+			<string>这个选项只影响 clcg4 产生器\n\r</string>
+		</entry>
+		<entry>
+			<tag>This Polyline cannot be drawn !\n</tag>
+			<string>无法描绘这个 Polyline ！\n</string>
+		</entry>
+		<entry>
+			<tag>Tlist size must be 1x4\r\n</tag>
+			<string>Tlist 的维数大小必须是 1x4\r\n</string>
+		</entry>
+		<entry>
+			<tag>Tlist size must be 1x5\r\n</tag>
+			<string>Tlist 的维数大小必须是 1x5\r\n</string>
+		</entry>
+		<entry>
+			<tag>Trigger block must have discrete time input.</tag>
+			<string>触发模块（Trigger block）必须是离散时间输入。</string>
+		</entry>
+		<entry>
+			<tag>Trying to stop scilab in the middle of an interface\n</tag>
+			<string>试图在一个接口中间关闭 scilab\n</string>
+		</entry>
+		<entry>
+			<tag>type 1 function not allowed for scilab blocks\r\n</tag>
+			<string>函数类型 1 不允许使用 scilab 模块\r\n</string>
+		</entry>
+		<entry>
+			<tag>type 2 function not allowed for scilab blocks\r\n</tag>
+			<string>函数类型 2 不允许使用 scilab 模块\r\n</string>
+		</entry>
+		<entry>
+			<tag>Un handled data field\n</tag>
+			<string>一个句柄数据域\n</string>
+		</entry>
+		<entry>
+			<tag>Undefined Function type\r\n</tag>
+			<string>未定义的函数类型\r\n</string>
+		</entry>
+		<entry>
+			<tag>Unexpected case, please report\n</tag>
+			<string>出现异常情况，请报告此情况\n</string>
+		</entry>
+		<entry>
+			<tag>Unhandled case</tag>
+			<string>未处理的情况</string>
+		</entry>
+		<entry>
+			<tag>Unknow Plot type &lt;%s&gt;\r\n</tag>
+			<string>未知的 Plot 类型 &lt;%s&gt;\r\n</string>
+		</entry>
+		<entry>
+			<tag>Unknown font : %s\r\n</tag>
+			<string>未知字体：%s\r\n</string>
+		</entry>
+		<entry>
+			<tag>Unknown font : %s\r\n","Courier New</tag>
+			<string>未知字体：%s\r\n","Courier New</string>
+		</entry>
+		<entry>
+			<tag>Unknown Plot type &lt;%s&gt;\r\n</tag>
+			<string>未知的 Plot 类型 &lt;%s&gt;\r\n</string>
+		</entry>
+		<entry>
+			<tag>Unsupported language\n</tag>
+			<string>不支持的语言\n</string>
+		</entry>
+		<entry>
+			<tag>User options overiding channels read in .wav header\r\n</tag>
+			<string>用户选项覆盖了读入的 .wav 文件头中的 channels 信息\r\n</string>
+		</entry>
+		<entry>
+			<tag>User options overiding rate read in .wav header\r\n</tag>
+			<string>用户选项覆盖了读入的 .wav 文件头中的 rate 信息\r\n</string>
+		</entry>
+		<entry>
+			<tag>User options overiding size read in .wav header\r\n</tag>
+			<string>用户选项覆盖了读入的 .wav 文件头中的 size 信息\r\n</string>
+		</entry>
+		<entry>
+			<tag>User options overiding style read in .wav header\r\n</tag>
+			<string>用户选项覆盖了读入的 .wav 文件头中的 style 信息\r\n</string>
+		</entry>
+		<entry>
+			<tag>User options overiding style written to .wav header\r\n</tag>
+			<string>用户选项覆盖了写入 .wav 文件头中的 style 信息\r\n</string>
+		</entry>
+		<entry>
+			<tag>values are  %f   %f.\r\n</tag>
+			<string>数值为 %f   %f 。\r\n</string>
+		</entry>
+		<entry>
+			<tag>Warning !!!\nScilab has found a critical error (%s).\nScilab may become unstable.\n</tag>
+			<string>警告!!!\nScilab 发现一个关键错误 (%s)。\nScilab 可能变得不稳定。\n</string>
+		</entry>
+		<entry>
+			<tag>Warning !!!\nScilab has found a critical error (%s)\nwith \"%s\"                      function.\nScilab may become unstable.\n</tag>
+			<string>警告!!!\nScilab 发现一个关键错误 (%s)\n无法正确执行 \"%s\" 函数。\nScilab 可能变得不稳定。\n</string>
+		</entry>
+		<entry>
+			<tag>Warning !!!\nScilab has found a critical error (%s)\nwith \"%s\" function.\nScilab may become unstable.\n</tag>
+			<string>警告 !!!\nScilab 发现一个严重的错误(%s)\n出现在 \"%s\" 函数\nScilab 可能变得不稳定\n</string>
+		</entry>
+		<entry>
+			<tag>Warning : Can't delete predefined menus\r\n</tag>
+			<string>警告：无法删除预定义的菜单项\r\n</string>
+		</entry>
+		<entry>
+			<tag>Warning : Nax does not work with logarithmic scaling\n</tag>
+			<string>警告：Nax 不能用于对数坐标\n</string>
+		</entry>
+		<entry>
+			<tag>warning(problem1)</tag>
+			<string>警告（问题1）</string>
+		</entry>
+		<entry>
+			<tag>warning(problem2)</tag>
+			<string>警告（问题2）</string>
+		</entry>
+		<entry>
+			<tag>Warning: cube_scaling property is only used in 3D mode\n</tag>
+			<string>警告：cube_scaling 属性只能在3D模式中使用\n</string>
+		</entry>
+		<entry>
+			<tag>Warning: Figure name is limited to %d characters.\n</tag>
+			<string>警告：图形名字应限制在 %d 个字符内。\n</string>
+		</entry>
+		<entry>
+			<tag>Warning: graduation number %d is ignored : when switching to logarithmic scale, we must have strictly positive graduations!\n</tag>
+			<string>警告：刻度数 %d 被忽略：当切换到对数坐标时，我们必须采用严格正的刻度\n</string>
+		</entry>
+		<entry>
+			<tag>Warning: PVM_ROOT is set to %s\r\n</tag>
+			<string>警告：PVM_ROOT 被设置为 %s\r\n</string>
+		</entry>
+		<entry>
+			<tag>Warning: SetProperty.c:sciSetIsBoxed : please use sciSetBoxType instead\n</tag>
+			<string>警告：SetProperty.c:sciSetIsBoxed：请用 sciSetBoxType 来替代\n</string>
+		</entry>
+		<entry>
+			<tag>Warning: the operational team of the Scilab Consortium\r\n</tag>
+			<string>警告：Scilab 协会业务运作组\r\n</string>
+		</entry>
+		<entry>
+			<tag>Warning: The standard configuration file $SCI/.pvmd.conf was not found.\r\n</tag>
+			<string>警告：未找到标准配置文件 $SCI/.pvmd.conf 。\r\n</string>
+		</entry>
+		<entry>
+			<tag>Warning: tics_color use is deprecated and no more taken into account, use foreground property to edit Axes color\n</tag>
+			<string>警告：tics_color 不再被使用，请使用 foreground 属性来编辑 Axes 颜色\n</string>
+		</entry>
+		<entry>
+			<tag>Warning: tics_coord must be changed, xy_type is &apos;i&apos; and tics_coord dimension is not 4\n</tag>
+			<string>警告：tics_coord 必须被改变，xy_type 应是 &apos;i&apos;，并且 tics_coord 的维数不应是4\n</string>
+		</entry>
+		<entry>
+			<tag>Warning: tics_coord must be changed, xy_type is &apos;r&apos; and tics_coord dimension is not 3\n</tag>
+			<string>警告：必须改变 tics_coord，xy_type 应是 &apos;r&apos;，并且 tics_coord 的维数不应是3\n</string>
+		</entry>
+		<entry>
+			<tag>Warning: tics_coord must be changed, xy_type is 'i' and tics_coord dimension is not &lt; 4\n</tag>
+			<string>警告: tics_coord必须被改变, xy_type 是'i' 并且 tics_coord 维数不是4\n</string>
+		</entry>
+		<entry>
+			<tag>Warning: tics_coord must be changed, xy_type is 'r' and tics_coord dimension is not &lt; 3\n</tag>
+			<string>警告: 必须改变tics_coord, xy_type 是 'r' 并且tics_coord 维数不是3\n</string>
+		</entry>
+		<entry>
+			<tag>Warning: Value on z data is negative or zero while logarithmic scale enabled\n</tag>
+			<string>警告：此时使用的是对数坐标，而 z 数据的值为负，或者为0 \n</string>
+		</entry>
+		<entry>
+			<tag>WARNING:%s\r\n</tag>
+			<string>警告：%s\r\n</string>
+		</entry>
+		<entry>
+			<tag>We cannot highlight this object\n</tag>
+			<string>无法高亮度显示这个对象\n</string>
+		</entry>
+		<entry>
+			<tag>Window %d \r\n</tag>
+			<string>窗口 %d \r\n</string>
+		</entry>
+		<entry>
+			<tag>with flag %d </tag>
+			<string>使用 flag %d </string>
+		</entry>
+		<entry>
+			<tag>Writing Wave file: %s format, %d channel%s, %d samp/sec\r\n</tag>
+			<string>正在写入波形文件：%s format, %d channel%s, %d samp/sec\r\n</string>
+		</entry>
+		<entry>
+			<tag>Wrong parameter in %s ! (number %d)\r\n</tag>
+			<string> %s 中存在错误参数 ! (第 %d 个参数)\r\n</string>
+		</entry>
+		<entry>
+			<tag>Wrong plot file : %s\n\n</tag>
+			<string> plot 文件错误：%s\n\n</string>
+		</entry>
+		<entry>
+			<tag>Wrong version of saved graphics %s : %s\n\n</tag>
+			<string>已保存的图形文件 %s 版本错误：%s\n\n</string>
+		</entry>
+		<entry>
+			<tag>x_choices : No more place\r\n</tag>
+			<string>x_choices：没有足够的空间\r\n</string>
+		</entry>
+		<entry>
+			<tag>x_choices : the choice vector is too small\r\n</tag>
+			<string>x_choices：所选择的向量过小\r\n</string>
+		</entry>
+		<entry>
+			<tag>x_choices : There's no choice to the %d item\r\n</tag>
+			<string>x_choices：对 %d 项未作任何选择\r\n</string>
+		</entry>
+		<entry>
+			<tag>xinit must be called before any action \r\n</tag>
+			<string>在任何操作之前必须先调用 xinit \r\n</string>
+		</entry>
+		<entry>
+			<tag>xset(\"window\",window-number): window-number must be set\r\n</tag>
+			<string>xset(\"窗口\",窗口数目): 窗口数目必须被设置\r\n</string>
+		</entry>
+		<entry>
+			<tag>xset(arg,&lt;string&gt;): Unrecognized arg: %s\r\n</tag>
+			<string>xset(arg,&lt;string&gt;)：不能识别参数 arg: %s\r\n</string>
+		</entry>
+		<entry>
+			<tag>XXXX Fail %d var %d\r\n</tag>
+			<string>XXXX Fail %d var %d\r\n</string>
+		</entry>
+		<entry>
+			<tag>XXXX mxfree NOTOK %d \r\n</tag>
+			<string>XXXX mxfree NOTOK %d \r\n</string>
+		</entry>
+		<entry>
+			<tag>XXXX mxfree OK  %d \r\n</tag>
+			<string>XXXX mxfree OK  %d \r\n</string>
+		</entry>
+		<entry>
+			<tag>XXXX OK %d var %d \r\n</tag>
+			<string>XXXX OK %d var %d \r\n</string>
+		</entry>
+		<entry>
+			<tag>You cannot open more than one choose dialog at a time \r\n</tag>
+			<string>你不能一次打开多个选择对话框 \r\n</string>
+		</entry>
+		<entry>
+			<tag>You must define the environment variable %s\r\n</tag>
+			<string>必须定义环境变量 %s\r\n</string>
+		</entry>
+		<entry>
+			<tag>Your are not using a legend object !\n</tag>
+			<string>当前使用的不是图例对象！\n</string>
+		</entry>
+		<entry>
+			<tag>Your are not using a title object !\n</tag>
+			<string>当前使用的不是标题对象！\n</string>
+		</entry>
+		<entry>
+			<tag>Your second entity is not a popup menu !\n</tag>
+			<string>第二项不是一个弹出菜单 !\n</string>
+		</entry>
+	</Sciprint>
+	<Scierror>
+		<!-- Scilab_Chinese_ForScierror-->
+		<!-- Created by CAI Jun, HUANG Xu, CUI Wendi, and HUANG Guanwei, Xiamen University, Oct.2006-->
+		<!-- Revised, corrected and tested by CAI Jun, CUI Wendi, Xiamen University, Dec.2006-->
+		<entry>
+			<tag>%s: bad first argument\r\n</tag>
+			<string>%s: 第一个变量不当\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: bad second argument\r\n</tag>
+			<string>%s: 第二个变量不当\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: only one of arg1 and arg2 may be a vector\r\n</tag>
+			<string>%s: arg1 和 arg2 中只能有一个是向量\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: 3th argument must be a real matrix\r\n</tag>
+			<string>%s: 第三个变量必须是一个实数矩阵\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: 3th argument must be a matrix with elements in (-1,1)\r\n</tag>
+			<string>%s: 第三个变量必须是一个元素在 (-1,1) 区间的矩阵\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: overflow or underflow of an extended range number\r\n</tag>
+			<string>%s: 一个可扩展范围的数字上溢或下溢\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: error number %d\r\n</tag>
+			<string>%s: 错误的数字%d\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: arguments must be positive \r\n</tag>
+			<string>>%s: 各变量必须为正\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s:  Non convergence in QR steps.\r\n</tag>
+			<string>%s: 在QR步骤中不收敛\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s :Requested figure cannot be created \r\n</tag>
+			<string>%s: 需要的图形不能创建\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: third argument is a vector, expecting a matrix \r\n</tag>
+			<string>%s: 第三个变量输入了一个向量，应该是一个矩阵\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: second argument has a wrong size (%d), expecting a list of size %d\r\n</tag>
+			<string>%s: 第二个变量的维数(%d)错误，应该是一个维数为 %d 的列表\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: third argument: color specification has wrong size, expecting %d \r\n</tag>
+			<string>%s: 第三个变量: 颜色设置的维数错误，应该设置为 %d \r\n</string>
+		</entry>
+		<entry>
+			<tag>Allocation failed for color matrix in %s\r\n</tag>
+			<string> %s中的颜色矩阵分配失败\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: object has no parent !!</tag>
+			<string>%s: 对象没有父对象 !!</string>
+		</entry>
+		<entry>
+			<tag>%s: arcs has a wrong size (6,n) expected \r\n</tag>
+			<string>%s: 圆弧的规模错误，应该为(6,n) \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: rects has a wrong size (4,n) expected \r\n</tag>
+			<string>%s: 矩形的规模错误，应该为 (4,n) \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: arguments have incompatible size\r\n</tag>
+			<string>%s: 各变量的规模不相容 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: style has a wrong size (%d), expecting (%d)\r\n</tag>
+			<string>%s: 类型(style)的规模(%d)错误，应该为(%d)\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s:  dtype must be \&quot;lines\&quot; or \&quot;marks\&quot;\r\n</tag>
+			<string>%s: dtype必须是\&quot;lines\&quot; 或者 \&quot;marks\&quot;\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: Value must be 1 or 0</tag>
+			<string>%s: 取值必须是 1 或 0</string>
+		</entry>
+		<entry>
+			<tag>%s: It was not possible to create the requested figure</tag>
+			<string>%s: 不能创建所需要的图形</string>
+		</entry>
+		<entry>
+			<tag>The boxed parameter must be a scalar</tag>
+			<string>方框中的参数必须是一个标量</string>
+		</entry>
+		<entry>
+			<tag>%s: optional argument has a wrong value &apos;fill&apos; expected\r\n</tag>
+			<string>%s: 可选变量的取值错误，应该取为 &apos;fill&apos; \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: first argument has a wrong value %s\r\n</tag>
+			<string>%s: 第一个变量取了错误的值 %s\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: running out of memory \r\n</tag>
+			<string>%s: 内存耗尽\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: interpolated shading only works for polygons of size 3 or 4\r\n</tag>
+			<string>%s: 插值阴影处理只对三角形或四边形有效\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: triangles have %d columns,expecting 5\r\n</tag>
+			<string>%s: 三角形当前有 %d 个列，列数应该取为5 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: first argument has a wrong type, expecting scalar or string matrix\r\n</tag>
+			<string>%s: 第一个变量的类型错误，应该是标量或字符串矩阵\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: second argument is an empty string\r\n</tag>
+			<string>%s: 第二个变量当前是一个空字符串\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: second argument has a wrong value %s should be in r,c,g,lr,lc\r\n</tag>
+			<string>%s: 第二个变元的取值错误，%s 应该在r,c,g,lr,lc中取值\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: third argument must be \&quot;i\&quot; or \&quot;d\&quot;\r\n</tag>
+			<string>%s: 第三个变元必须 \&quot;i\&quot; 或者 \&quot;d\&quot;\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: tics has a wrong value \&quot;%c\&quot; should be one of \&quot;r\&quot;,\&quot;v\&quot; and \&quot;i\&quot; \r\n</tag>
+			<string>%s: tics的取值错误。\&quot;%c\&quot; 必须是 \&quot;r\&quot;，\&quot;v\&quot; 和 \&quot;i\&quot; 中的一个。\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s:  no sub_window selected !!</tag>
+			<string>%s:  没有选择子窗口 !!</string>
+		</entry>
+		<entry>
+			<tag>%s :the handle is not or no more valid\r\n</tag>
+			<string>%s :句柄无效或不再有效\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: &apos;all&apos; or an handle on a subwindow is expected\r\n</tag>
+			<string>%s: 应该取为&apos;all&apos;，或者一个子窗口上的句柄\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: expecting at least 4 arguments\r\n</tag>
+			<string>%s: 至少应该包括4个变元\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: third argument: color specification has wrong size, expecting %d or %d \r\n</tag>
+			<string>%s: 第三个变元颜色设置的规模大小错误，应该取为 %d 或者 %d \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: The three first arguments have incompatible length \r\n</tag>
+			<string>%s: 前3个变元的长度不相容 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: second and third arguments have incompatible length\r\n</tag>
+			<string>%s: 第一和第二个变元的长度不相容\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: first and third arguments have incompatible length\r\n</tag>
+			<string>%s: 第一和第三个变元的长度不相容\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: first and second arguments should be of size &gt;= 2\r\n</tag>
+			<string>%s: 第一个和第二个变元的规模必须大于等于2 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: third argument is a vector, expecting a matrix\r\n</tag>
+			<string>%s: 第三个参数当前是一个向量，应该是一个矩阵\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: First Argument. Must be &gt;=0.\r\n</tag>
+			<string>%s: 第一个变元必须大于等于0。\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: First Argument. Must be a integer scalar.\r\n</tag>
+			<string>%s: 第一个变元必须是一个整型标量。\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: Second Argument. Must be a string.\r\n</tag>
+			<string>%s: 第二个变元必须是一个字符串。\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: wrong number of rhs argumens (%d), rhs must be 1 or 4\r\n</tag>
+			<string>%s: rhs 变元的数目(%d)错误，rhs 应该是 1 或者 4\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s :Incorrect argument\r\n</tag>
+			<string>%s :变元有错误\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s :the handle is not valid\r\n</tag>
+			<string>%s : 句柄无效\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: Pad parameters\r\n</tag>
+			<string>%s: 需要填入参数\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: invalid option \r\n</tag>
+			<string>%s: 选项无效 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: third argument is a vector,[x y] or [x,y,z] \r\n</tag>
+			<string>%s: 第三个变元应该是一个向量，为[x y] 或者 [x,y,z] \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s :each handle should not appear twice\r\n</tag>
+			<string>%s : 每个句柄不能出现两次\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: Objects must have the same parent\r\n</tag>
+			<string>%s: 各个对象必须具有相同的父对象\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: handle %d cannot be glued (invalid parent)\r\n</tag>
+			<string>%s: 句柄 %d 不能被结合(父对象无效) \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: Object must be an Compound\r\n</tag>
+			<string>%s: 对象必须是一个复合对象\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: style is too small (%d &lt; %d)\r\n</tag>
+			<string>%s: 当前类型(style)太小了 (%d &lt; %d)\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: rect has Nan or Inf values, 4 finite values expected \r\n</tag>
+			<string>%s: 当前 rect 有 Nan 或者 Inf 值，应该是4个有限的值 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: strf has wrong size (%d), 3 expected \r\n</tag>
+			<string>%s: strf 的规模 (%d) 错误，应该取为 3 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: zminmax has wrong size (%d), 2 expected \r\n</tag>
+			<string>%s: zminmax 的规模 (%d) 错误，应该取为 2 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: logflag has wrong size (%d), expected 2 or 3\r\n</tag>
+			<string>%s: logflag 的规模 (%d) 错误，应该取为 2 或者 3\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: dir has a wrong value \&quot;%c\&quot; should be one of \&quot;u\&quot;,\&quot;d\&quot;,\&quot;r\&quot; and \&quot;l\&quot;\r\n</tag>
+			<string>%s: dir的取值 \&quot;%c\&quot;  错误，应该为 \&quot;u\&quot;,\&quot;d\&quot;,\&quot;r\&quot; and \&quot;l\&quot;中的一个\r\n</string>
+		</entry>
+		<entry>
+			<tag>Not valid under old graphics mode.</tag>
+			<string>在旧的图形模式下无效。</string>
+		</entry>
+		<entry>
+			<tag>Incorrect parameter(s)</tag>
+			<string>一个或多个参数不正确</string>
+		</entry>
+		<entry>
+			<tag>Must be a figure or a uimenu parent.</tag>
+			<string>必须是一个图形或者一个用户界面父对象。</string>
+		</entry>
+		<entry>
+			<tag>Invalid A,B matrices \r\n</tag>
+			<string>矩阵A，B无效 \r\n</string>
+		</entry>
+		<entry>
+			<tag>TOL must be in [0 1]\r\n</tag>
+			<string>TOL必须在区间[0 1]内\r\n</string>
+		</entry>
+		<entry>
+			<tag>Invalid parameter. must be a Figure handle</tag>
+			<string>参数无效。必须是一个图形句柄。</string>
+		</entry>
+		<entry>
+			<tag>Invalid type : string recquired</tag>
+			<string>数据类型不正确 ：要求是字符串</string>
+		</entry>
+		<entry>
+			<tag> an hypermat extraction must have at least 2 args </tag>
+			<string> 超矩阵元素抽取至少需要 2 个参数 </string>
+		</entry>
+		<entry>
+			<tag> argument is not an hypermatrix </tag>
+			<string> 当前变元不是超矩阵 </string>
+		</entry>
+		<entry>
+			<tag> incompatible hypermat extraction </tag>
+			<string> 不一致的超矩阵元素抽取 </string>
+		</entry>
+		<entry>
+			<tag>bad (%d th) index in hypermat extraction </tag>
+			<string>超矩阵元素抽取的第（%d th）个索引错误 </string>
+		</entry>
+		<entry>
+			<tag> bad hypermat insertion </tag>
+			<string> 超矩阵元素插入错误 </string>
+		</entry>
+		<entry>
+			<tag>%s :the handle is not or no more valid\r\n</tag>
+			<string>%s :句柄无效法，或者不再有效\r\n</string>
+		</entry>
+		<entry>
+			<tag>Error: Bad size in tics_coord ; you must first increase the size of the tics_coord\n</tag>
+			<string>错误：tics_coord 的规模大小错误 ；你首先应增加 tics_coord 的规模\n</string>
+		</entry>
+		<entry>
+			<tag>%s: uncompatible values for property type  &apos;%s&apos; \r\n</tag>
+			<string>%s: 属性类型&apos;%s&apos;和值不相容 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: unknown property name &apos;%s&apos; \r\n</tag>
+			<string>%s: 属性名&apos;%s&apos;未知 \r\n</string>
+		</entry>
+		<entry>
+			<tag>Objplot3d: x vector is not monotonous \t\n</tag>
+			<string>Objplot3d： 当前的 x 向量不单调 \t\n</string>
+		</entry>
+		<entry>
+			<tag>%s: Incorrect argument, must be a Tlist!\r\n</tag>
+			<string>%s: 变元不正确，必须是Tlist! \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: Incorrect argument, a complete &apos;ticks&apos; tlist must be defined!\r\n</tag>
+			<string>%s: 变元不正确，必须定义一个完整的 tlist！\r\n</string>
+		</entry>
+		<entry>
+			<tag>Argument %d is not a real hypermatrix\r\n</tag>
+			<string>第 %d 个变元不是实型超矩阵\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s:  Inside the Tlist : the first argument must be columns vectors\r\n</tag>
+			<string>%s:  在Tlist中，第一个变元必须是列向量\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s:  Inside the Tlist : incompatible length in the third and/or fourth argument(s)\r\n</tag>
+			<string>%s:  在当前的Tlist中，第三个和/或第四个变元的长度不相容\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s:  Inside the Tlist : incompatible length in the third argument\r\n</tag>
+			<string>%s:  在当前的Tlist中，第三个变元的长度不相容\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s:  Inside the Tlist (third argument): The second and third arguments have incompatible length\r\n</tag>
+			<string>%s:  在当前的Tlist（第三个变元）中: 第二个和第三个变元的长度不相容\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s:  Inside the Tlist (third argument): The first and third arguments have incompatible length\r\n</tag>
+			<string>%s:  在当前的Tlist（第三个变元）中: 第一个和第三个变元的长度不相容\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: Inside the Tlist (third argument):The first and second arguments should be of size &gt;= 2\r\n</tag>
+			<string>%s: 在当前的Tlist（第三个变元）中: 第一个和第二个变元应满足 size &gt;= 2\r\n</string>
+		</entry>
+		<entry>
+			<tag>Objplot3d: y vector is not monotonous \t\n</tag>
+			<string>Objplot3d：当前的 y 向量不单调 \t\n</string>
+		</entry>
+		<entry>
+			<tag>Warning: tics_labels has been set by user ; you must first increase the size of the tics_labels string vector before switching to &apos;%c&apos; tics_style mode\n</tag>
+			<string>警告：tics_table已经被用户设置；在转换到 &apos;%c&apos; tics_style 模式之前，首先必须增加 tics_table 字符串向量的维数 \n</string>
+		</entry>
+		<entry>
+			<tag>Argument %d is not a real hypermatrix\r\n</tag>
+			<string>第 %d 个变元不是实型超矩阵\r\n</string>
+		</entry>
+		<entry>
+			<tag>Argument %d is not a scalar string\r\n</tag>
+			<string>第 %d 个变元不是标量串\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: arg1 and arg2 must be 2 vectors with same size\r\n</tag>
+			<string>%s: 变元 arg1 和 arg2 必须是维数相同的两个向量\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: the number of interpolation points must be &gt;= 2\r\n</tag>
+			<string>%s: 插入点的数目必须 &gt;= 2\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: elts of arg 1 not (strictly) increasing or +-inf detected\r\n</tag>
+			<string>%s: 当前 arg1 的元素不（严格）递增，或者其值为正、负无穷大\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: unknown spline_type\n\r</tag>
+			<string>%s: 样条类型spline_type未知\n\r</string>
+		</entry>
+		<entry>
+			<tag>%s: for a clamped spline you must give the endpoint slopes\n\r</tag>
+			<string>%s:  对于夹具式（Clamped）样条，必须给定端点的斜率\n\r</string>
+		</entry>
+		<entry>
+			<tag>%s: bad dimension for the 4 arg (endpoint slopes)\n\r</tag>
+			<string>%s: 4个变元（端点斜率）的维数错误\n\r</string>
+		</entry>
+		<entry>
+			<tag>%s: 4 args are required only for a clamped spline\n\r</tag>
+			<string>%s: 只有夹具式（Clamped）样条才需要4个变元\n\r</string>
+		</entry>
+		<entry>
+			<tag>%s: for a periodic spline y(1) must be equal to y(n)\n\r</tag>
+			<string>%s: 对于周期样条， y(1) 必须等于 y(n)\n\r</string>
+		</entry>
+		<entry>
+			<tag>%s: arg 1 and 2 must be vectors of same size with at least %d elements\r\n</tag>
+			<string>%s: arg1 和 arg2 必须是维数相等的向量，且至少有 %d 个元素 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: bad input for arg 3\r\n</tag>
+			<string>%s: arg3 错误输入\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: bad input for x \r\n</tag>
+			<string>%s: x 错误输入 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: elts of arg %d not (strictly) increasing or +-inf detected\r\n</tag>
+			<string>%s: arg %d 的当前元素不（严格）递增，或者取值为正、负无穷大\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: not enought points for the fit \r\n</tag>
+			<string>%s: 没有足够的点用于拟合 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s warning: rank deficiency of the least square matrix\r\n</tag>
+			<string>%s 警告： 方阵的秩不够大\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: bad inputs \r\n</tag>
+			<string>%s: 输入错误 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: unknown outmode type\n\r</tag>
+			<string>%s: 输出模式（outmode）的类型未知\n\r</string>
+		</entry>
+		<entry>
+			<tag>%s: too few arg \r\n</tag>
+			<string>%s: 变元数目太少 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: bad inputs for xp1, xp2, ...., \r\n</tag>
+			<string>%s: xp1, xp2, .... 的输入错误\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: bad arg number %d \r\n</tag>
+			<string>%s: 变元数目 %d 错误 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: U must be a real %d-dim hypermatrix  \n</tag>
+			<string>%s: U 必须是 %d 维的超矩阵  \n</string>
+		</entry>
+		<entry>
+			<tag>%s: size incompatibility between grid points and grid values in dim %d \n\r</tag>
+			<string>%s: 在第 %d 维中，网格点和网格值的规模不相容 \n\r</string>
+		</entry>
+		<entry>
+			<tag>%s: size incompatibility between grid points and values in dim 1 \n\r</tag>
+			<string>%s: 在第 1 维中，网格点和网格值的规模不相容 \n\r</string>
+		</entry>
+		<entry>
+			<tag>%s: size incompatibility between grid points and values in dim 1 or 2 \n\r</tag>
+			<string>%s:  在第 1 维或第 2 维中，网格点和网格值的规模不相容 \n\r</string>
+		</entry>
+		<entry>
+			<tag>%s: unsupported outmode type\n\r</tag>
+			<string>%s: 不支持的输出模式（outmode）类型\n\r</string>
+		</entry>
+		<entry>
+			<tag>%s: unsupported spline type\n\r</tag>
+			<string>%s: 不支持的样条类型\n\r</string>
+		</entry>
+		<entry>
+			<tag>%s: x and/or y are not in strict increasing order (or +-inf detected) \r\n</tag>
+			<string>%s: x 和/或 y 不按严格的顺序递增，或者取值为正、负无穷大 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: xyz must be a (n,3) real matrix with n &gt;= 10 \r\n</tag>
+			<string>%s: xyz 必须是 (n,3) 的实数矩阵，且 n &gt;= 10 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: duplicate nodes or all nodes colinears (ier = %d) \r\n</tag>
+			<string>%s: 节点重复，或者所有节点在同一直线上 (ier = %d) \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: xp and yp must have the same dimension \r\n</tag>
+			<string>%s: xp 和 yp 必须具有相同的维数 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: Argument 2 is not an cshep2d tlist\r\n</tag>
+			<string>%s: 变元 2 不是一个 cshep2d tlist \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: the x, y and z grids must have at least 3 points \r\n</tag>
+			<string>%s: x, y and z 网格应有至少三个点 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: 4 th argument must be a real 3-dim hypermatrix  \n</tag>
+			<string>%s: 第 4 个变元必须是实数型的三维超矩阵  \n</string>
+		</entry>
+		<entry>
+			<tag>%s: size incompatibility between grid points and grid values\n\r</tag>
+			<string>%s: 网格点和网格值的规模不相容 \n\r</string>
+		</entry>
+		<entry>
+			<tag>%s: problem : flag = %d \r\n</tag>
+			<string>%s: 问题 : flag = %d \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: xp, yp and zp must have the same dimensions \r\n</tag>
+			<string>%s: xp, yp 和 zp 必须具有相同的维数 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: 4 th argument is not an tensbs3d tlist \r\n</tag>
+			<string>%s: 变元 4 不是一个 tensbs3d tlist \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: bad 5 th argument \r\n</tag>
+			<string>%s: 第5个变元错误 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: Invalid input! \r\n</tag>
+			<string>%s:  非法输入! \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: Invalid call! \r\n</tag>
+			<string>%s: 非法调用! \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s :Not enough memory to allocate results \r\n</tag>
+			<string>%s : 没有足够的内存分配给计算结果 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s :Failed to read expected data, may be invalid xls file \r\n</tag>
+			<string>%s : 读取预期的数据失败，可能是非法的 xls 文件 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s :End of File \r\n</tag>
+			<string>%s : 文件结束 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s :There is no  file %s \r\n</tag>
+			<string>%s : 文件 %s 不存在 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s :file %s is not an ole2 file\r\n</tag>
+			<string>%s : 文件 %s 不是 ole2 文件 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s :file %s exists but cannot be opened\r\n</tag>
+			<string>%s : 文件 %s 存在，但打不开 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s :There is no xls stream in the ole2 file %s \r\n</tag>
+			<string>%s : 在 ole2 文件 %s 中，没有 xls 流 </string>
+		</entry>
+		<entry>
+			<tag>%s :Not an ole2 file \r\n</tag>
+			<string>%s : 不是 ole2 文件 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s : the file has no Workbook directory \r\n</tag>
+			<string>%s : 文件没有工作簿（Workbook）目录 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s : impossible to alloc enough memory \r\n</tag>
+			<string>%s : 无法分配足够的内存 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s : incorrect or corrupted file \r\n</tag>
+			<string>%s : 文件错误或者被破坏 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s : Only BIFF8 file format is handled \r\n</tag>
+			<string>%s : 只能处理 BIFF8 格式的文件 \r\n</string>
+		</entry>
+		<entry>
+			<tag>qld: Argument 3: wrong number of columns %d expected \r\n</tag>
+			<string>qld: 变元3的列数错误，应为 %d 列 \r\n</string>
+		</entry>
+		<entry>
+			<tag>qld: Too many iterations (more than %d) \r\n</tag>
+			<string>qld: 迭代次数太多（大于 %d 次）\r\n</string>
+		</entry>
+		<entry>
+			<tag>qld: Accuracy insufficient to statify convergence criterion.\r\n</tag>
+			<string>qld: 精度不够，不能满足收敛条件。\r\n</string>
+		</entry>
+		<entry>
+			<tag>qld: Length of working array is too short.\r\n</tag>
+			<string>qld: 当前阵列的长度太短。\r\n</string>
+		</entry>
+		<entry>
+			<tag>qld: The constraints are inconsistent.\r\n</tag>
+			<string>qld: 各约束条件不一致。\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: argument %d should be a list of size at least %d \r\n</tag>
+			<string>%s: 变元 %d 必须是一个大小至少为 %d 的列表 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: Argument %d: wrong type argument expecting a real matrix\r\n</tag>
+			<string>%s: 变元 %d 类型错误，应该是一个实数类型的矩阵 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: Argument %d: wrong matrix size (%d,%d) expected \r\n</tag>
+			<string>%s: 变元 %d 的矩阵规模错误， 应该为(%d,%d) \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: argument %d should be a real or complex matrix\r\n</tag>
+			<string>%s: 变元 %d 应该是一个实数或复数矩阵\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: too many names\r\n</tag>
+			<string>%s: 名字过多\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: stack size exceeded (Use stacksize function to increase it)\r\n</tag>
+			<string>%s: 堆栈溢出，请用 stacksize 函数来增大堆栈 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: argument %d &gt;(%d) should be an int matrix\r\n</tag>
+			<string>%s: 变元 %d &gt;(%d) 必须是一个整型矩阵 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: argument %d should be a boolean matrix\r\n</tag>
+			<string>%s: 变元 %d 应该是一个布尔型矩阵\r\n</string>
+		</entry>
+		<entry>
+			<tag>fakecrebmat: too many names\r\n</tag>
+			<string>fakecrebmat: 名字过多\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: argument %d &gt;(%d) should be a sparse matrix\r\n</tag>
+			<string>%s: 变元 %d &gt;(%d) 必须是一个稀疏矩阵\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: argument %d &gt;(%d) should be a vector \r\n</tag>
+			<string>%s: 变元 %d &gt;(%d) 必须是向量 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: Argument %d: wrong type argument expecting a vector\r\n</tag>
+			<string>%s: 变元 %d 类型错误，应该是一个向量\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: Argument %d: wrong type argument expecting a real vector\r\n</tag>
+			<string>%s:  变元 %d 类型错误，应该是一个实数向量\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: Argument %d wrong vector size (%d) expected\r\n</tag>
+			<string>%s: 变元 %d 的向量维数错误，应该取为 (%d) \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: argument %d &gt; (%d) should be a scalar\r\n</tag>
+			<string>%s: 变元 %d &gt;(%d) 必须是一个标量\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: Argument %d: wrong wrong type argument expecting a scalar\r\n</tag>
+			<string>%s: 变元 %d 的类型错误，应该是一个标量\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: argument %d &gt;(%d) should be a matrix of strings\r\n</tag>
+			<string>%s: 变元 %d &gt;(%d) 必须是一个矩阵或字符串\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: Argument %d : wrong type argument, expecting a matrix of strings\r\n</tag>
+			<string>%s: 变元 %d 的类型错误，应该是一个矩阵或字符串\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: argument %d &gt;(%d) should be a  string  matrix\r\n</tag>
+			<string>%s: 变元 %d &gt;(%d) 必须是一个字符串矩阵\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: Argument %d: wrong type argument, expecting a list\r\n</tag>
+			<string>%s: 变元 %d 的类型错误，应该是一个列表\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: Argument %d: wrong type argument, expecting a polynomial matrix\r\n</tag>
+			<string>%s: 变元 %d 的类型错误，应该是一个多项式矩阵\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: argument should be a polygon\r\n</tag>
+			<string>%s: 变元必须是一个多边形\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: Argument %d: wrong type argument, expecting a working\r\n\tinteger matrix\r\n</tag>
+			<string>%s: 变元 %d 的类型错误，应该是一个工作\r\n\t整数型矩阵\r\n</string>
+		</entry>
+		<entry>
+			<tag>Not enough memory\r\n</tag>
+			<string>内存不足\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: argument %d &gt;(%d) should be a row vector \r\n</tag>
+			<string>%s: 变元 %d &gt;(%d) 必须是一个行向量 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: argument %d &gt;(%d) should be a column vector \r\n</tag>
+			<string>%s: 变元 %d &gt;(%d) 必须是一个列向量 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: argument %d &gt;(%d) should be a boxed pointer\r\n</tag>
+			<string>%s: 变元 %d &gt;(%d) 必须是一个加框的指针\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: Argument %d wrong type argument, expecting a matrix\r\n</tag>
+			<string>%s: 变元 %d 类型错误，应该是一个矩阵\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: entry point %s not found in predefined tables or link table\r\n</tag>
+			<string>%s: 在预先定义的表或链接表里，没有发现表项%s \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: Argument %d: wrong type argument, expecting a function\r\n\tor string (external function)\r\n</tag>
+			<string>%s: 变元 %d 类型错误，应该是一个函数\r\n\t或字符串(外部函数)\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: incompatible sizes \r\n</tag>
+			<string>%s: 规模大小不适合 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: optional argument %d not given and default value %s not found\r\n</tag>
+			<string>%s: 没有给定可选变元 arg %d ，且找不到缺省值%s \r\n</string>
+		</entry>
+		<entry>
+			<tag>%f: No more space to store string arguments\r\n</tag>
+			<string>%f: 没有更多的空间来存储字符串变元\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: argument %d &gt;(%d) should be a matrix of handle\r\n</tag>
+			<string>%s: 变元 %d &gt;(%d) 必须是一个句柄矩阵\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: wrong number of rhs arguments\r\n</tag>
+			<string>%s: rhs 变元的数目错误\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: wrong number of lhs arguments\r\n</tag>
+			<string>%s: lhs 变元的数目错误\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: optional arguments name=val must be at the end\r\n</tag>
+			<string>%s: 可选参数 name=val 必须在最后面\r\n</string>
+		</entry>
+		<entry>
+			<tag>isref: bad call to isref! (1rst argument)\r\n</tag>
+			<string>isref: 对 isref 进行了错误调用！(第一个变元)\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: (createvar) too many arguments in the stack edit stack.h and enlarge intersiz\r\n</tag>
+			<string>%s: (createvar) 堆栈中参数过多，请编辑 stack.h 并增大 intersiz 的值\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: bad call to createvar! (1rst argument)\r\n</tag>
+			<string>%s: 对 createvar 进行了错误调用！(第一个变元)\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: (createlist) too many arguments in the stack edit stack.h and enlarge intersiz\r\n</tag>
+			<string>%s: (createlist) 堆栈中参数过多，请编辑 stack.h 并增大 intersiz 的值\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: bad call to createlist! (1rst argument)\r\n</tag>
+			<string>%s: 对 createlist 进行了错误调用！(第一个变元)\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: (createvarfrom) too many arguments in the stack edit stack.h and enlarge intersiz\r\n</tag>
+			<string>%s: (createvarfrom) 堆栈中参数过多，请编辑 stack.h 并增大 intersiz 的值\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: bad call to createvarfrom! (1rst argument)\r\n</tag>
+			<string>%s: 对 createvarfrom 进行了错误调用！(第一个变元)\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: (createlistvar) too many arguments in the stack edit stack.h and enlarge intersiz\r\n</tag>
+			<string>%s: (createlistvar) 堆栈中参数过多，请编辑 stack.h 并增大 intersiz 的值\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: (createlistvar) bad third argument!\r\n</tag>
+			<string>%s: (createlistvar) 第三个变元错误！\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: (createlistcvar) too many arguments in the stack edit stack.h and enlarge intersiz\r\n</tag>
+			<string>%s: (createlistcvar) 堆栈中参数过多，请编辑 stack.h 并增大 intersiz 的值\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s:  createlistcvar called with bad third argument!\r\n</tag>
+			<string>%s:  调用 createlistcvar 时，第三个参数错误\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: (createlistvarfromptr) too many arguments in the stack edit stack.h and enlarge intersiz\r\n</tag>
+			<string>%s: (createlistvarfromptr) 堆栈中参数过多，请编辑 stack.h 并增大 intersiz 的值\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: (createlistvarfromptr) bad third argument!\r\n</tag>
+			<string>%s: (createlistvarfromptr) 第三个变元错误！\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: (creatework) too many arguments in the stack edit stack.h and enlarge intersiz\r\n</tag>
+			<string>%s: (creatework) 堆栈中参数过多，请编辑 stack.h 并增大 intersiz 的值\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: bad call to creatework! (1rst argument)\r\n</tag>
+			<string>%s: 对 creatework 进行了错误调用！(第一个变元)\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: bad call to setworksize! (1rst argument)\r\n</tag>
+			<string>%s: 对 setworksize 进行了错误调用！(第一个变元)\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: bad call to getmatdims! (1rst argument)\r\n</tag>
+			<string>%s: 对 getmatdims 进行了错误调用！(第一个变元)\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: bad call to getrhsvar! (1rst argument)\r\n</tag>
+			<string>%s: 访问getrhsvar不当(第一个变元)\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: (getrhsvar) too many arguments in the stack edit stack.h and enlarge intersiz\r\n</tag>
+			<string>%s: (getrhsvar) 堆栈中参数过多，请编辑 stack.h 并增大 intersiz 的值\r\n</string>
+		</entry>
+		<entry>
+			<tag> Waiting for a complex argument (z)</tag>
+			<string>正在等待一个复数参数 (z)</string>
+		</entry>
+		<entry>
+			<tag>%s: bad call to getrhscvar! (1rst argument)\r\n</tag>
+			<string>%s: 对 getrhscvar 进行了错误调用！(第一个变元)\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: (getrhscvar) too many arguments in the stack edit stack.h and enlarge intersiz\r\n</tag>
+			<string>%s: (getrhscvar) 堆栈中参数过多，请编辑 stack.h 并增大 intersiz 的值\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: bad call to getlistrhsvar! (1rst argument)\r\n</tag>
+			<string>%s: 对 getlistrhsvar 进行了错误调用！(第一个变元)\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: (getlistrhsvar) too many arguments in the stack edit stack.h and enlarge intersiz\r\n</tag>
+			<string>%s: (getlistrhsvar) 堆栈中参数过多，请编辑 stack.h 并增大 intersiz 的值\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: getlistrhsvar was called with bad third argument (%c)\r\n</tag>
+			<string>%s: 调用 createlistcvar 时，第三个参数 (%c) 错误 \r\n</string>
+		</entry>
+		<entry>
+			<tag>too many arguments in the stack edit stack.h and enlarge intersiz\r\n</tag>
+			<string>堆栈中参数过多，请编辑 stack.h 并增大 intersiz 的值\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: createvarfromptr was called with bad second argument!\r\n</tag>
+			<string>%s: 调用 createvarfromptr 时，第二个参数错误！\r\n</string>
+		</entry>
+		<entry>
+			<tag>scifunction: Running out of memory \r\n</tag>
+			<string>scifunction: 内存耗尽 \r\n</string>
+		</entry>
+		<entry>
+			<tag>scifunction: recursion problems. Sorry....\r\n</tag>
+			<string>scifunction: 递归问题。抱歉....\r\n</string>
+		</entry>
+		<entry>
+			<tag>scifunction: too many names\r\n</tag>
+			<string>scifunction: 名字过多\r\n</string>
+		</entry>
+		<entry>
+			<tag>scistring: %s is not a Scilab function\r\n</tag>
+			<string>scistring: %s 不是 Scilab函数 \r\n</string>
+		</entry>
+		<entry>
+			<tag>scibuiltin: too many names\r\n</tag>
+			<string>scibuiltin: 名字过多\r\n</string>
+		</entry>
+		<entry>
+			<tag>scibuiltin: recursion problems. Sorry....\r\n</tag>
+			<string>scibuiltin: 递归问题。抱歉....\r\n</string>
+		</entry>
+		<entry>
+			<tag>invalid time domain\r\n</tag>
+			<string>时间域无效\r\n</string>
+		</entry>
+		<entry>
+			<tag>invalid system\r\n</tag>
+			<string>系统错误\r\n</string>
+		</entry>
+		<entry>
+			<tag>A matrix non square!\r\n</tag>
+			<string>一个矩阵不是方阵！\r\n</string>
+		</entry>
+		<entry>
+			<tag>Invalid A,B matrices\r\n</tag>
+			<string>矩阵 A,B 无效\r\n</string>
+		</entry>
+		<entry>
+			<tag>Invalid A,C matrices\r\n</tag>
+			<string>矩阵 A,C 无效\r\n</string>
+		</entry>
+		<entry>
+			<tag>Invalid C,D matrices\r\n</tag>
+			<string>矩阵 C,D 无效\r\n</string>
+		</entry>
+		<entry>
+			<tag>Invalid B;D matrices\r\n</tag>
+			<string>矩阵 B,D 无效\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: internal error, info=%d\r\n</tag>
+			<string>%s: 内部错误，(info=%d)\r\n</string>
+		</entry>
+		<entry>
+			<tag>putlhsvar: intersiz is too small\r\n</tag>
+			<string>putlhsvar: intersiz 的值太小\r\n</string>
+		</entry>
+		<entry>
+			<tag>copyref: bad call to isref! (1rst argument)\r\n</tag>
+			<string>copyref: 对 isref 进行了错误调用！(第一个变元)\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: %s %s\r\n</tag>
+			<string>%s: %s %s\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: %s has wrong dimensions (%d,%d), expecting (%d,%d)\r\n</tag>
+			<string>%s: %s 的维数 (%d,%d)错误，维数应该为 (%d,%d)\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: %s has wrong %s dimension (%d), expecting (%d)\r\n</tag>
+			<string>%s: %s 的 %s 维数 (%d)错误，维数应该为(%d)\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: %s has wrong length %d, expecting (%d)\r\n</tag>
+			<string>%s: %s 的长度 %d 错误，应该取为(%d)\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: %s have incompatible dimensions (%dx%d) # (%dx%d)\r\n</tag>
+			<string>%s: %s 的维数不相容 (%dx%d) # (%dx%d)\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: %s have incompatible dimensions\r\n</tag>
+			<string>%s: %s 的维数不相容\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: %s should be a list with %d-element being %s \r\n</tag>
+			<string>%s: %s 必须是一个有 %d 个 %s 元素构成的列表 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: argument %d(%d) has wrong %s dimension (%d), expecting (%d)\r\n</tag>
+			<string>%s: 变元 %d(%d) 的 %s 维数 (%d) 错误，应该取为(%d)\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: (createdata) too many arguments in the stack edit stack.h and enlarge intersiz\r\n</tag>
+			<string>%s: (createdata) 堆栈中参数过多，请编辑 stack.h 并增大 intersiz 的值\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: bad call to createdata! (1rst argument)\r\n</tag>
+			<string>%s: 对 createdata 进行了错误调用！(第一个变元)\r\n</string>
+		</entry>
+		<entry>
+			<tag>GetDataFromName: variable %s not found\r\n</tag>
+			<string>GetDataFromName: 变量 %s 未找到\r\n</string>
+		</entry>
+		<entry>
+			<tag>CreateRefFromName: variable %s not found\r\n</tag>
+			<string>CreateRefFromName: 变量 %s 未找到\r\n</string>
+		</entry>
+		<entry>
+			<tag>Undefined variable %s\r\n</tag>
+			<string>变量 %s 未定义\r\n</string>
+		</entry>
+		<entry>
+			<tag>creadchain: argument must be a string\r\n</tag>
+			<string>creadchain: 参数必须是一个字符串\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: third argument should be &apos;c&apos; or &apos;r&apos;\r\n</tag>
+			<string>%s: 第三个参数必须是 &apos;c&apos; 或 &apos;r&apos;\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: Out of memory\r\n</tag>
+			<string>内存耗尽\r\n</string>
+		</entry>
+		<entry>
+			<tag>running out of memory\r\n</tag>
+			<string>内存耗尽\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: second argument \&quot;%s\&quot;, should be &apos;u&apos; or &apos;l&apos;\r\n</tag>
+			<string>%s: 第二个参数 \&quot;%s\&quot; 必须是 &apos;u&apos; 或&apos;l&apos; \r\n</string>
+		</entry>
+		<entry>
+			<tag>sort to be done \r\n</tag>
+			<string>将要进行排序 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: Wrong first argument %s\r\n</tag>
+			<string>%s: 第一个参数 %s 错误 \r\n</string>
+		</entry>
+		<entry>
+			<tag>answer appears to be lower than lowest search bound %f\r\n</tag>
+			<string>答案比搜索的下界  %f 更小 \r\n</string>
+		</entry>
+		<entry>
+			<tag>answer appears to be higher than greatest search bound %f\r\n</tag>
+			<string>答案比搜索的上界  %f 更大\r\n</string>
+		</entry>
+		<entry>
+			<tag> P + Q .ne. 1 \r\n</tag>
+			<string> P + Q 不等于 1  \r\n</string>
+		</entry>
+		<entry>
+			<tag> X + Y .ne. 1 \r\n</tag>
+			<string> X + Y 不等于 1 \r\n</string>
+		</entry>
+		<entry>
+			<tag>input parameter %c is out of range \r\n\tbound exceeded: %f\r\n</tag>
+			<string>输入参数 %c 越界 \r\n\t超出界限: %f\r\n</string>
+		</entry>
+		<entry>
+			<tag> Pr + Ompr .ne. 1 \r\n</tag>
+			<string> Pr + Ompr 不等于 1 \r\n</string>
+		</entry>
+		<entry>
+			<tag>cdfchi: Error in  cumgam\r\n</tag>
+			<string>cdfchi: cumgam 中存在错误\r\n</string>
+		</entry>
+		<entry>
+			<tag> cannot compute the answer \r\n</tag>
+			<string> 无法计算出答案 \r\n</string>
+		</entry>
+		<entry>
+			<tag> Std must not be zero \r\n</tag>
+			<string> Std不能为0 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: Rhs must be %d for &apos;%s&apos; option&apos;\r\n</tag>
+			<string>%s: Rhs 必须赋值为 %d ，对于 '&apos;%s&apos; 选项&apos; \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s %s must have same size\r\n</tag>
+			<string>%s 和 %s 的维数大小必须相同\r\n</string>
+		</entry>
+		<entry>
+			<tag>SIGSTP: aborting current computation\r\n</tag>
+			<string>SIGSTP: 终止当前计算\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: external %s not found \r\n</tag>
+			<string>%s: 外部变量 %s 没有找到 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: given external has wrong (lhs,rhs) values (%d,%d), (%d,%d) required\r\n</tag>
+			<string>%s: 给定的外部变量的 (lhs,rhs) 值 (%d,%d) 错误，应该取为 (%d,%d)\r\n</string>
+		</entry>
+		<entry>
+			<tag>No current graphic window %d found for exporting to %s\r\n</tag>
+			<string>找不到当前图形窗口 %d 用以输出到 %s\r\n</string>
+		</entry>
+		<entry>
+			<tag>Width and height must be positive.\n</tag>
+			<string>宽度和高度必须是正数.\n</string>
+		</entry>
+		<entry>
+			<tag>Error in function ChooseFormatForOneGrad\n</tag>
+			<string>函数 ChooseFormatForOneGrad 中存在错误\n</string>
+		</entry>
+		<entry>
+			<tag>The parent handle is not or no more valid\r\n</tag>
+			<string>父对象的句柄无效或不再有效\r\n</string>
+		</entry>
+		<entry>
+			<tag>Memory full, aborting operation.\r\n</tag>
+			<string>内存已占满，终止操作。\r\n</string>
+		</entry>
+		<entry>
+			<tag>Handle number %d is not or no more valid\r\n</tag>
+			<string>句柄号 %d 无效或不再有效\r\n</string>
+		</entry>
+		<entry>
+			<tag>Handle number %d is not compatible with the parent handle.\r\n</tag>
+			<string>句柄号 %d 与父句柄不相容。\r\n</string>
+		</entry>
+		<entry>
+			<tag>Error relocating handle %d.</tag>
+			<string>重定位句柄 %d 错误。</string>
+		</entry>
+		<entry>
+			<tag>Objplot3d: x vector is not monotonous \t\n</tag>
+			<string>Objplot3d: 向量 x 不单调 \t\n</string>
+		</entry>
+		<entry>
+			<tag>Objplot3d: y vector is not monotonous \t\n</tag>
+			<string>Objplot3d: 向量 y 不单调 \t\n</string>
+		</entry>
+		<entry>
+			<tag>%s: No more memory available\r\n</tag>
+			<string>%s: 没有可用内存\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: work space (stacksize) is too small d\r\n</tag>
+			<string>%s: 工作空间（stacksize）太小\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: Unknow type or not yet implemented\r\n</tag>
+			<string>%s: 未知类型，或该类型尚未实现\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: Error \r\n</tag>
+			<string>%s: 错误 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: %s\r\n</tag>
+			<string>%s: %s\r\n</string>
+		</entry>
+		<entry>
+			<tag>pvm_config: Error  %d\n</tag>
+			<string>pvm_config: %d 错误\n</string>
+		</entry>
+		<entry>
+			<tag>pvm_tasks: Error in C routine pvm_tasks  %d\n</tag>
+			<string>pvm_tasks: C函数 pvm_tasks  %d 中出现错误  %d\n</string>
+		</entry>
+		<entry>
+			<tag>Lhs and Rhs should be 1 for &apos;getsd&apos; option\n\r</tag>
+			<string>对于 &apos;getsd&apos; 选项，Lhs 和 Rhs 应该取为1\n\r</string>
+		</entry>
+		<entry>
+			<tag>Rhs should be 5 for &apos;setall&apos;  option\n\r</tag>
+			<string>对于&apos;setall&apos;选项，Rhs 应该取为5\n\r</string>
+		</entry>
+		<entry>
+			<tag>second argument must be scalar\r\n</tag>
+			<string>第二个参数必须是标量\r\n</string>
+		</entry>
+		<entry>
+			<tag>third argument must be scalar\r\n</tag>
+			<string>第三个参数必须是标量\r\n</string>
+		</entry>
+		<entry>
+			<tag>fourth argument must be scalar\r\n</tag>
+			<string>第四个参数必须是标量\r\n</string>
+		</entry>
+		<entry>
+			<tag>fifth argument must be scalar\r\n</tag>
+			<string>第五个参数必须是标量\r\n</string>
+		</entry>
+		<entry>
+			<tag>Rhs should be 2 for &apos;setsd&apos; option with the mt generator\n\r</tag>
+			<string>使用 mt 生成器时，对于&apos;setsd&apos; 选项，Rhs 应该取为2\n\r</string>
+		</entry>
+		<entry>
+			<tag>for mt you must init the state with a vector of 1 or 625 values !\n\r</tag>
+			<string>对于mt，必须用1个值或者625个值的向量进行状态初始化!\n\r</string>
+		</entry>
+		<entry>
+			<tag>the state for fsultra must be a 40x1 vector !\n\r</tag>
+			<string>fsultra 的状态必须是一个 40x1 的向量 !\n\r</string>
+		</entry>
+		<entry>
+			<tag>Rhs should be 2 or 3 for &apos;setsd&apos; option with the fsultra generator\n\r</tag>
+			<string>使用 fsultra 产生器时，对于&apos;setsd&apos; 选项，Rhs 应该取为2或3 \n\r</string>
+		</entry>
+		<entry>
+			<tag>Rhs should be 5 for &apos;setsd&apos; option with the kiss or clcg4 generator\n\r</tag>
+			<string>使用 kiss 或者 clcg4 产生器时，对于&apos;setsd&apos; 选项，Rhs 应该取为5\n\r</string>
+		</entry>
+		<entry>
+			<tag>Rhs should be 3 for &apos;setsd&apos; option with the clcg2 generator\n\r</tag>
+			<string>使用 clcg2 产生器时，对于&apos;setsd&apos; 选项，Rhs 应该取为3\n\r</string>
+		</entry>
+		<entry>
+			<tag>Rhs should be 2 for &apos;setsd&apos; option with the urand generator\n\r</tag>
+			<string>使用 urand 产生器时，对于&apos;setsd&apos; 选项，Rhs 应该取为2 \n\r</string>
+		</entry>
+		<entry>
+			<tag>Rhs should be 2 for &apos;phr2sd&apos; option and Lhs should be 1\n\r</tag>
+			<string>对于&apos;phr2sd&apos; 选项，Rhs 应取为2，Lhs 应取为1\n\r</string>
+		</entry>
+		<entry>
+			<tag>Rhs should be 2 for &apos;initgn&apos; option\n\r</tag>
+			<string>对于&apos;initgn&apos; 选项，Rhs 应取为2\n\r</string>
+		</entry>
+		<entry>
+			<tag>for initgn option argument must be -1,0 or 1\r\n</tag>
+			<string>对于 initgn 选项，参数必须是－1、0 或者 1\r\n</string>
+		</entry>
+		<entry>
+			<tag>Rhs should be 2 for &apos;setcgn&apos; option\n\r</tag>
+			<string>对于&apos;setcgn&apos; 选项，Rhs 应取为2\n\r</string>
+		</entry>
+		<entry>
+			<tag>bad virtual number generator (must be in [0,%d])\n\r</tag>
+			<string>virtual number 生成器错误 (必须在区间 [0,%d]内)\n\r</string>
+		</entry>
+		<entry>
+			<tag>Rhs should be 2 for &apos;advnst&apos; option\n\r</tag>
+			<string>对于&apos;advnst&apos; 选项，Rhs 应取为2\n\r</string>
+		</entry>
+		<entry>
+			<tag>parameter K must be &gt; 0 for &apos;advnst&apos; option\n\r</tag>
+			<string>对于&apos;advnst&apos; 选项，参数 K 必须大于0 \n\r</string>
+		</entry>
+		<entry>
+			<tag>Rhs should be 1 for &apos;getcgn&apos; option\n\r</tag>
+			<string>对于&apos;getcgn&apos; 选项，Rhs 应取为1\n\r</string>
+		</entry>
+		<entry>
+			<tag>Rhs should be 2 for &apos;setgen&apos; option\n\r</tag>
+			<string>对于&apos;setgen&apos; 选项，Rhs 应取为2\n\r</string>
+		</entry>
+		<entry>
+			<tag>unknown generator (choose among : mt kiss clcg4 clcg2 urand fsultra) \n\r</tag>
+			<string>未知的生成器 (在以下生成器中选择 : mt kiss clcg4 clcg2 urand fsultra) \n\r</string>
+		</entry>
+		<entry>
+			<tag>Rhs should be 1 for &apos;getgen&apos; option\n\r</tag>
+			<string>对于&apos;getgen&apos; 选项，Rhs 应取为1\n\r</string>
+		</entry>
+		<entry>
+			<tag>Missing A and B for beta law\r\n</tag>
+			<string>对于beta定律，缺少 A 和 B\r\n</string>
+		</entry>
+		<entry>
+			<tag>A must be scalar\r\n</tag>
+			<string>A必须是标量\r\n</string>
+		</entry>
+		<entry>
+			<tag>B must be scalar\r\n</tag>
+			<string>B必须是标量\r\n</string>
+		</entry>
+		<entry>
+			<tag>Missing Dfn and Dfd for F law\r\n</tag>
+			<string>对于F定律，缺少 Dfn 和 Dfd \r\n</string>
+		</entry>
+		<entry>
+			<tag>Dfn must be scalar\r\n</tag>
+			<string>Dfn 必须是标量\r\n</string>
+		</entry>
+		<entry>
+			<tag>Dfd must be scalar\r\n</tag>
+			<string>Dfd 必须是标量\r\n</string>
+		</entry>
+		<entry>
+			<tag>Degrees of freedom nonpositive \r\n</tag>
+			<string>当前自由度值不是正数 \r\n</string>
+		</entry>
+		<entry>
+			<tag>First argument for &apos;mul&apos; option must be the number of random deviate \r\n</tag>
+			<string>&apos;mul&apos; 选项的第一个参数必须是随机偏差的数目\r\n</string>
+		</entry>
+		<entry>
+			<tag>Missing N and P for MULtinomial law\r\n</tag>
+			<string>MULtinomial 定律缺少 N 和 P\r\n</string>
+		</entry>
+		<entry>
+			<tag>N must be scalar\r\n</tag>
+			<string>N 必须是标量\r\n</string>
+		</entry>
+		<entry>
+			<tag>P must be a column vector\r\n</tag>
+			<string>P 必须是列向量\r\n</string>
+		</entry>
+		<entry>
+			<tag>Missing shape and scale for Gamma law\r\n</tag>
+			<string>Gamma 定律缺少 shape 和 scale\r\n</string>
+		</entry>
+		<entry>
+			<tag>shape must be scalar\r\n</tag>
+			<string>shape 必须是标量\r\n</string>
+		</entry>
+		<entry>
+			<tag>scale must be scalar\r\n</tag>
+			<string>scale 必须是标量\r\n</string>
+		</entry>
+		<entry>
+			<tag>Missing Av and Sd for Normal law\r\n</tag>
+			<string>Normal 定律缺少 Av 和 Sd\r\n</string>
+		</entry>
+		<entry>
+			<tag>Av must be scalar\r\n</tag>
+			<string>Av 必须是标量\r\n</string>
+		</entry>
+		<entry>
+			<tag>Sd must be scalar\r\n</tag>
+			<string>Sd 必须是标量\r\n</string>
+		</entry>
+		<entry>
+			<tag>Missing Low and High for Uniform Real law\r\n</tag>
+			<string>Uniform Real 定律缺少 Low 和 High\r\n</string>
+		</entry>
+		<entry>
+			<tag>Low must be scalar\r\n</tag>
+			<string>Low 必须是标量\r\n</string>
+		</entry>
+		<entry>
+			<tag>High must be scalar\r\n</tag>
+			<string>High 必须是标量\r\n</string>
+		</entry>
+		<entry>
+			<tag>Missing Low and High for Uniform integer law\r\n</tag>
+			<string>Uniform integer 定律缺少 Low 和 High\r\n</string>
+		</entry>
+		<entry>
+			<tag>Only %d arguments required for &apos;lgi&apos; option</tag>
+			<string>&apos;lgi&apos; 选项只需要 %d 个参数</string>
+		</entry>
+		<entry>
+			<tag>First argument for &apos;prm&apos; option must be the number of random simulation \r\n</tag>
+			<string>&apos;prm&apos; 选项的第一个参数必须是随机模拟的数目 \r\n</string>
+		</entry>
+		<entry>
+			<tag>Missing vect for random permutation\r\n</tag>
+			<string>随机置换缺少 vect\r\n</string>
+		</entry>
+		<entry>
+			<tag>vect must be column vector\r\n</tag>
+			<string>vect 必须是列向量\r\n</string>
+		</entry>
+		<entry>
+			<tag>Missing N and P for Negative Binomial law\r\n</tag>
+			<string>Negative Binomial 定律缺少 N 和 P\r\n</string>
+		</entry>
+		<entry>
+			<tag>P must be scalar\r\n</tag>
+			<string>P 必须是标量\r\n</string>
+		</entry>
+		<entry>
+			<tag>P is not in [0,1] \r\n</tag>
+			<string>P 不在区间 [0,1] 内\r\n</string>
+		</entry>
+		<entry>
+			<tag>Missing N and P for Binomial law\r\n</tag>
+			<string>Binomial 定律缺少 N 和 P\r\n</string>
+		</entry>
+		<entry>
+			<tag>First argument for &apos;mn&apos; option must be the number of random simulation \r\n</tag>
+			<string>&apos;mn&apos; 选项的第一个参数必须是随机模拟的数目\r\n</string>
+		</entry>
+		<entry>
+			<tag>Missing Mean and Cov for Multivariate Normal law\r\n</tag>
+			<string>多变量正态律缺少均值和协方差\r\n</string>
+		</entry>
+		<entry>
+			<tag>Mean must be column vector\r\n</tag>
+			<string>均值必须是列向量\r\n</string>
+		</entry>
+		<entry>
+			<tag>Cov must be a square matrix\r\n</tag>
+			<string>协方差必须是方阵\r\n</string>
+		</entry>
+		<entry>
+			<tag>Mean and Cov have incompatible dimensions\n</tag>
+			<string>均值和协方差的维数不相容\n</string>
+		</entry>
+		<entry>
+			<tag>Mean and Cov are of null size\r\n</tag>
+			<string>均值和协方差的维数大小均为空值\r\n</string>
+		</entry>
+		<entry>
+			<tag>First argument for &apos;markov&apos; option must be the number of random simulation \r\n</tag>
+			<string>&apos;markov&apos; 选项的第一个参数必须是随机模拟的数目  \r\n</string>
+		</entry>
+		<entry>
+			<tag>Missing P matrix and X0 for Markov chain\r\n</tag>
+			<string>Markov 链缺少 P 矩阵和 X0\r\n</string>
+		</entry>
+		<entry>
+			<tag>P must be a square matrix or a row vector\r\n</tag>
+			<string>P 必须是方阵或者行向量\r\n</string>
+		</entry>
+		<entry>
+			<tag>X0 is empty\r\n</tag>
+			<string>当前 X0 为空\r\n</string>
+		</entry>
+		<entry>
+			<tag>X0(%d) must be in the range [1,%d]\r\n</tag>
+			<string>X0(%d) 必须在范围 [1,%d] 内\r\n</string>
+		</entry>
+		<entry>
+			<tag>Sum of P(%d,1:%d)=%f ~= 1 \r\n</tag>
+			<string>P(%d,1:%d)的总和等于 %f，而不等于 1  \r\n</string>
+		</entry>
+		<entry>
+			<tag>no argument required for &apos;def&apos; option\r\n</tag>
+			<string>&apos;def&apos; 选项不需要参数\r\n</string>
+		</entry>
+		<entry>
+			<tag>Missing Df and Xnonc for non-central chi-square law\r\n</tag>
+			<string>non-central chi-square 律缺少 Df 和 Xnonc\r\n</string>
+		</entry>
+		<entry>
+			<tag>Df must be scalar\r\n</tag>
+			<string>Df 必须是标量\r\n</string>
+		</entry>
+		<entry>
+			<tag>Xnonc must be scalar\r\n</tag>
+			<string>Xnonc 必须是标量\r\n</string>
+		</entry>
+		<entry>
+			<tag>Missing Dfn, Dfd and Xnonc for non-central F law\r\n</tag>
+			<string>non-central F 律缺少 Dfn、Dfd 和 Xnonc\r\n</string>
+		</entry>
+		<entry>
+			<tag>Missing Df for chi-square law\r\n</tag>
+			<string>chi-square 律缺少 Df \r\n</string>
+		</entry>
+		<entry>
+			<tag>Missing Av for Poisson law\r\n</tag>
+			<string>Poisson 律缺少 Av\r\n</string>
+		</entry>
+		<entry>
+			<tag>Missing p for Geometric law\r\n</tag>
+			<string>Geometric 律缺少 p\r\n</string>
+		</entry>
+		<entry>
+			<tag>p must be in [pmin,1]\r\n</tag>
+			<string>p 必须在区间 [pmin,1] 内\r\n</string>
+		</entry>
+		<entry>
+			<tag>Missing Av for exponential law\r\n</tag>
+			<string>指数律缺少 Av\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s Wrong argument %s\r\n</tag>
+			<string>%s 错误的参数 %s\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: 1st and 2nd argument must have equal size \r\n</tag>
+			<string>%s: 第一个和第二个参数的维数必须相同 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s : First argument must be a Tlist.\n</tag>
+			<string>%s : 第一个参数必须是 Tlist 类型。\n</string>
+		</entry>
+		<entry>
+			<tag>%s : outtb element of state must be a list.\n</tag>
+			<string>%s : 状态的 outtb 元素必须一个列表。\n</string>
+		</entry>
+		<entry>
+			<tag>%s : Second argument must be a scalar.\n</tag>
+			<string>%s : 第二个参数必须是标量。\n</string>
+		</entry>
+		<entry>
+			<tag>%s : Third argument must be a scalar.\n</tag>
+			<string>%s : 第三个参数必须是标量。\n</string>
+		</entry>
+		<entry>
+			<tag>%s : Fourth argument must be a Tlist.\n</tag>
+			<string>%s : 第四个参数必须是 Tlist 类型。\n</string>
+		</entry>
+		<entry>
+			<tag>%s : Second element of sim must be a list.\n</tag>
+			<string>%s : sim 的第二个元素必须是一个列表。\n</string>
+		</entry>
+		<entry>
+			<tag>%s : Incompatible sim.nb RHS parameter.\n</tag>
+			<string>%s : 不合适的 sim.nb RHS 参数。\n</string>
+		</entry>
+		<entry>
+			<tag>%s : Fifth argument is incorrect.\n</tag>
+			<string>%s : 第五个参数不正确。\n</string>
+		</entry>
+		<entry>
+			<tag>%s : Sixth argument must have at least four elements.\n</tag>
+			<string>%s : 第六个参数至少须有4个元素。\n</string>
+		</entry>
+		<entry>
+			<tag>%s : Sixth argument must have a maximum of seven elements.\n</tag>
+			<string>%s : 第六个参数至多有7个元素。\n</string>
+		</entry>
+		<entry>
+			<tag>%s : error in cross variable size checking : %d\n</tag>
+			<string>%s : 变量维数交叉检查错误 : %d\n</string>
+		</entry>
+		<entry>
+			<tag>%s : unknown block : %s\n</tag>
+			<string>%s : 未知块 : %s\n</string>
+		</entry>
+		<entry>
+			<tag>%s : error\n</tag>
+			<string>%s : 错误\n</string>
+		</entry>
+		<entry>
+			<tag>Rand(...,&apos;bet&apos;,..): A or B &lt; %f \r\b</tag>
+			<string>Rand(...,&apos;bet&apos;,..): A 或 B &lt; %f \r\b</string>
+		</entry>
+		<entry>
+			<tag>N &lt; 0 \r\n</tag>
+			<string>N &lt; 0 \r\n</string>
+		</entry>
+		<entry>
+			<tag>Ncat &lt;= 1 \r\n</tag>
+			<string>Ncat &lt;= 1 \r\n</string>
+		</entry>
+		<entry>
+			<tag>P(%d) &lt; 0 \r\n</tag>
+			<string>P(%d) &lt; 0 \r\n</string>
+		</entry>
+		<entry>
+			<tag>P(%d) &gt; 1 \r\n</tag>
+			<string>P(%d) &gt; 1 \r\n</string>
+		</entry>
+		<entry>
+			<tag>Sum of P(i) &gt; 1 \r\n</tag>
+			<string>P(i) 的总和超过 1 \r\n</string>
+		</entry>
+		<entry>
+			<tag>grand(..&apos;gam&apos;,A,R) : A &lt;= 0.0 or R &lt;= 0.0 \r\n</tag>
+			<string>grand(..&apos;gam&apos;,A,R) : A &lt;= 0.0 或 R &lt;= 0.0 \r\n</string>
+		</entry>
+		<entry>
+			<tag> a and b must integers with (b-a+1) &lt;= 2147483561</tag>
+			<string> a 和b 必须是整数，且 (b-a+1) &lt;= 214748356</string>
+		</entry>
+		<entry>
+			<tag>SD &lt; 0.0 \r\n</tag>
+			<string>SD &lt; 0.0 \r\n</string>
+		</entry>
+		<entry>
+			<tag>Low &gt; High \r\n</tag>
+			<string>Low &gt; High \r\n</string>
+		</entry>
+		<entry>
+			<tag>P(%d,%d) &lt; 0 \r\n</tag>
+			<string>P(%d,%d) &lt; 0 \r\n</string>
+		</entry>
+		<entry>
+			<tag>P(%d,%d) &gt; 1 \r\n</tag>
+			<string>P(%d,%d) &gt; 1 \r\n</string>
+		</entry>
+		<entry>
+			<tag>DF &lt; 1 or XNONC &lt; 0 \r\n</tag>
+			<string>DF &lt; 1 或 XNONC &lt; 0\r\n</string>
+		</entry>
+		<entry>
+			<tag>DF &lt; 1.0 or DF &lt;= 0.0 or Xnonc &lt; 0.0 \r\n</tag>
+			<string>DF &lt; 1.0 或 DF &lt;= 0.0 或 Xnonc &lt; 0.0  \r\n</string>
+		</entry>
+		<entry>
+			<tag>Rand: DF &lt;= 0 \r\n</tag>
+			<string>Rand: DF &lt;= 0 \r\n</string>
+		</entry>
+		<entry>
+			<tag>Av &lt; 0 \r\n</tag>
+			<string>Av &lt; 0 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s : error. Type %d of double scalar matrix not yet supported.\n</tag>
+			<string>%s : 错误。double型的标量矩阵类型 %d 尚未得到支持。\n</string>
+		</entry>
+		<entry>
+			<tag>%s : error. Type %d of integer scalar matrix not yet supported.\n</tag>
+			<string>%s : 错误。整型的标量矩阵类型 %d 尚未得到支持。\n</string>
+		</entry>
+		<entry>
+			<tag>%s : error. Type %d not yet supported.\n</tag>
+			<string>%s : 错误。类型 %d 尚未得到支持。\n</string>
+		</entry>
+		<entry>
+			<tag>%s : No more free memory.\n</tag>
+			<string>%s : 没有空闲的内存。\n</string>
+		</entry>
+		<entry>
+			<tag>%s\n</tag>
+			<string>%s\n</string>
+		</entry>
+		<entry>
+			<tag>%s : First argument must be a string.\n</tag>
+			<string>%s : 第一个参数必须是字符串。\n</string>
+		</entry>
+		<entry>
+			<tag>%s : Undefined field in string matrix position : %d.\n</tag>
+			<string>%s : 在字符串矩阵中，位置 : %d 的字段未定义。\n</string>
+		</entry>
+		<entry>
+			<tag>%s : Undefined field.\n</tag>
+			<string>%s : 字段未定义。\n</string>
+		</entry>
+		<entry>
+			<tag>%s : first argument must be double or int32.\n</tag>
+			<string>%s :  第一个参数必须是 double 或 int32 类型。\n</string>
+		</entry>
+		<entry>
+			<tag>%s : bad dimension for first argument.\n</tag>
+			<string>%s : 第一个参数的维数错误。\n</string>
+		</entry>
+		<entry>
+			<tag>%s : second argument must be double or int32.\n</tag>
+			<string>%s : 第二个参数必须是 double 或 int32 类型。\n</string>
+		</entry>
+		<entry>
+			<tag>%s : bad dimension for second argument.\n</tag>
+			<string>%s : 第二个参数的维数错误。\n</string>
+		</entry>
+		<entry>
+			<tag>%s : first and second argument must have the same length.\n</tag>
+			<string>%s : 第一个参数和第二个参数必须具有相同的长度。\n</string>
+		</entry>
+		<entry>
+			<tag>Scicos isn&apos;t installed\n</tag>
+			<string>没有安装Scicos \n</string>
+		</entry>
+		<entry>
+			<tag>var2sci : error %d. Stack is full.\n</tag>
+			<string>var2sci : 错误 %d。堆栈已满。\n</string>
+		</entry>
+		<entry>
+			<tag>var2sci : error %d. No more space on the stack for new data.\n</tag>
+			<string>var2sci : 错误 %d。栈内没有空间容纳新数据。\n</string>
+		</entry>
+		<entry>
+			<tag>var2sci : error %d. Undefined error.\n</tag>
+			<string>var2sci : 错误 %d。未定义错误.\n</string>
+		</entry>
+		<entry>
+			<tag>sci2var : error %d. Only integer or double object are accepted.\n</tag>
+			<string>sci2var : 错误 %d。只接受整型和双精度浮点数。\n</string>
+		</entry>
+		<entry>
+			<tag>sci2var : error %d. Bad double object sub_type.\n</tag>
+			<string>sci2var :  错误 %d。错误的 double 型对象子类型。\n</string>
+		</entry>
+		<entry>
+			<tag>sci2var : error %d. Bad integer object sub_type.\n</tag>
+			<string>sci2var : 错误 %d。错误的 integer 型对象子类型。\n</string>
+		</entry>
+		<entry>
+			<tag>sci2var : error %d. A type of a scilab object has changed.\n</tag>
+			<string>sci2var : 错误 %d。一个 Scilab 对象的类型已改变。\n</string>
+		</entry>
+		<entry>
+			<tag>sci2var : error %d. Undefined error.\n</tag>
+			<string>sci2var : 错误 %d。未定义错误。\n</string>
+		</entry>
+		<entry>
+			<tag>Error:\tRhs must be &gt; 0\r\n</tag>
+			<string>错误:\tRhs 必须大于 0\r\n</string>
+		</entry>
+		<entry>
+			<tag>mfprintf: Invalid format.\r\n</tag>
+			<string>mfprintf: 格式无效。\r\n</string>
+		</entry>
+		<entry>
+			<tag>Error:\tRhs must be &gt;= 2\r\n</tag>
+			<string>错误:\tRhs 必须大于等于 2\r\n</string>
+		</entry>
+		<entry>
+			<tag>mfprintf:\t wrong file descriptor %d\r\n</tag>
+			<string>mfprintf:\t 错误的文件描述符 %d\r\n</string>
+		</entry>
+		<entry>
+			<tag>sprintf: Invalid format.\r\n</tag>
+			<string>sprintf: 格式无效。\r\n</string>
+		</entry>
+		<entry>
+			<tag>sprintf: cannot allocate more memory \r\n</tag>
+			<string>sprintf: 无法分配更多的内存 \r\n</string>
+		</entry>
+		<entry>
+			<tag>Error: in scanf: incorrect first argument\r\n</tag>
+			<string>错误: 在 scanf 中，第一个参数不正确\r\n</string>
+		</entry>
+		<entry>
+			<tag>Error: in scanf: format cannot include \\n \r\n</tag>
+			<string>错误: 在 scanf 中，格式不能包含 \\n  \r\n</string>
+		</entry>
+		<entry>
+			<tag>Error: in scanf\r\n</tag>
+			<string>错误: 在 scanf 中\r\n</string>
+		</entry>
+		<entry>
+			<tag>Error: in %s: end of file reached\r\n</tag>
+			<string>错误: 在 scanf 中，已到达文件结尾\r\n</string>
+		</entry>
+		<entry>
+			<tag>Error: in fscanf: data mismatch\r\n</tag>
+			<string>错误: 在 fscanf 中，数据不匹配\r\n</string>
+		</entry>
+		<entry>
+			<tag>Error: in sscanf: cannot allocate more memory \r\n</tag>
+			<string>错误: 在 sscanf 中，无法分配更多的内存 \r\n</string>
+		</entry>
+		<entry>
+			<tag>Error: in sscanf: incorrect first argument\r\n</tag>
+			<string>错误: 在 sscanf 中，第一个参数不正确\r\n</string>
+		</entry>
+		<entry>
+			<tag>Error: in sscanf: data mismatch\r\n</tag>
+			<string>错误: 在 sscanf 中，数据不匹配\r\n</string>
+		</entry>
+		<entry>
+			<tag>Error: in sscanf: not enough entries in str\r\n</tag>
+			<string>错误: 在 sscanf 中，str中没有足够的项\r\n</string>
+		</entry>
+		<entry>
+			<tag>Error: in %s: end of string reached\r\n</tag>
+			<string>错误: 在 %s 中，已到达字符串结尾\r\n</string>
+		</entry>
+		<entry>
+			<tag>Error: in fscanf: incorrect first argument\r\n</tag>
+			<string>错误: 在 fscanf 中，第一个参数不正确\r\n</string>
+		</entry>
+		<entry>
+			<tag>fprintf:\t wrong file descriptor %d\r\n</tag>
+			<string>fprintf:\t 不正确的文件描述符 %d\r\n</string>
+		</entry>
+		<entry>
+			<tag>Error: in fscanf: cannot allocate more memory \r\n</tag>
+			<string>错误: 在 fscanf 中，无法分配更多的内存 \r\n</string>
+		</entry>
+		<entry>
+			<tag>Error: in function %s, cannot open file %s\r\n</tag>
+			<string>错误: 在函数 %s 中，无法打开文件 %s \r\n</string>
+		</entry>
+		<entry>
+			<tag>Error: in function %s, cannot allocate enough memory\r\n</tag>
+			<string>错误: 在函数 %s 中，无法分配足够的内存\r\n</string>
+		</entry>
+		<entry>
+			<tag>Error: in function %s, cannot read data in file %s\r\n</tag>
+			<string>错误:在函数 %s 中，无法读入文件 %s 中的数据s\r\n</string>
+		</entry>
+		<entry>
+			<tag>Error:\tscanf, unclosed [ directive\r\n</tag>
+			<string>错误:\tscanf， [ 命令未闭合 \r\n</string>
+		</entry>
+		<entry>
+			<tag>Error:\tscanf too many (&gt; %d) conversion required\r\n</tag>
+			<string>错误:\tscanf 需要的转换数目 (&gt; %d) 过多\r\n</string>
+		</entry>
+		<entry>
+			<tag>Error:\tscanf, width field %d is too long (&gt; %d) for %%[ directive\r\n</tag>
+			<string>错误:\tscanf，对于 %%[ 命令，width 字段 %d 过长 (&gt; %d) \r\n</string>
+		</entry>
+		<entry>
+			<tag>Error:\tscanf: bad conversion\r\n</tag>
+			<string>错误:\tscanf: 出现转换错误\r\n</string>
+		</entry>
+		<entry>
+			<tag>Error:\tscanf, width field %d is too long (&lt; %d) for %%s directive\r\n</tag>
+			<string>错误:\tscanf，对于 %%s 命令，width 字段 %d 过长 (&lt; %d)\r\n</string>
+		</entry>
+		<entry>
+			<tag>Error:\tscanf width field %d is too long (&lt; %d) for %%c directive\r\n</tag>
+			<string>错误:\tscanf，对于 %%c 命令，width 字段 %d 过长 (&lt; %d)\r\n</string>
+		</entry>
+		<entry>
+			<tag>Error:\tscanf, format is too long (&gt; %d) \r\n</tag>
+			<string>错误:\tscanf，格式过长 (&gt; %d) \r\n</string>
+		</entry>
+		<entry>
+			<tag>Error:\tsprintf problem, buffer too small\r\n</tag>
+			<string>错误:\tsprintf 问题，缓冲区太小\r\n</string>
+		</entry>
+		<entry>
+			<tag>Warning:\tprintf: bad conversion l or h flag mixed with s directive\r\n</tag>
+			<string>警告：\tprintf：出现转换错误，l 或 h 标记与 s 命令相混合\r\n</string>
+		</entry>
+		<entry>
+			<tag>Warning:\tprintf: bad conversion l or h flag mixed with c directive\r\n</tag>
+			<string>警告：\tprintf：出现转换错误，l 或 h 标记与 c 命令相混合\r\n</string>
+		</entry>
+		<entry>
+			<tag>Error:\tprintf: \&quot;o\&quot; format not allowed\r\n</tag>
+			<string>错误:\tprintf: 格式不能为 \&quot;o\&quot; \r\n</string>
+		</entry>
+		<entry>
+			<tag>Error:\tprintf: bad conversion\r\n</tag>
+			<string>错误:\tprintf: 出现转换错误\r\n</string>
+		</entry>
+		<entry>
+			<tag>Error:\tprintf: not enough arguments\r\n</tag>
+			<string>错误:\tprintf: 参数不够\r\n</string>
+		</entry>
+		<entry>
+			<tag>Error:\ttoo many directive in scanf\r\n</tag>
+			<string>错误:\tscanf中命令过多\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s:  Could not open the file!\r\n</tag>
+			<string>%s:  无法打开文件！\r\n</string>
+		</entry>
+		<entry>
+			<tag>file %s doesn&apos;t exist.</tag>
+			<string>文件 %s 不存在。</string>
+		</entry>
+		<entry>
+			<tag>Invalid type parameter. it must be a string (a filename).</tag>
+			<string>类型参数无效。必须是字符串（文件名）。</string>
+		</entry>
+		<entry>
+			<tag>Invalid second parameter. It must be \&quot;string\&quot;.</tag>
+			<string>第二个参数无效。必须是 \&quot;string\&quot; 。</string>
+		</entry>
+		<entry>
+			<tag>Invalid type parameter. parameters must be strings.</tag>
+			<string>类型参数无效。参数必须是字符串。</string>
+		</entry>
+		<entry>
+			<tag>macr2tree: input argument must be a named variable\r\n</tag>
+			<string>macr2tree: 输入参数必须是一个已命名的变量\r\n</string>
+		</entry>
+		<entry>
+			<tag>macr2tree: Wrong input type (must be a compiled macro)!\r\n</tag>
+			<string>macr2tree: 错误的输入类型（必须是一个编译过的宏）！\r\n</string>
+		</entry>
+		<entry>
+			<tag>macr2tree: No more memory available\r\n</tag>
+			<string>macr2tree: 没有更多的内存可用\r\n</string>
+		</entry>
+		<entry>
+			<tag>macr2tree: stack size exceeded (Use stacksize function to increase it)\r\n</tag>
+			<string>macr2tree: 栈的大小超界（使用 stacksize 函数增加栈的大小）\r\n</string>
+		</entry>
+		<entry>
+			<tag>macr2tree: Out of code\r\n</tag>
+			<string>macr2tree: 代码越界\r\n</string>
+		</entry>
+		<entry>
+			<tag>macr2tree: wrong Top value %d instead of %d\r\n</tag>
+			<string>macr2tree: 错误的 Top 值 %d，应该为 %d\r\n</string>
+		</entry>
+		<entry>
+			<tag>CreateEOLList: No more memory available\r\n</tag>
+			<string>CreateEOLList: 没有更多的内存可用\r\n</string>
+		</entry>
+		<entry>
+			<tag>GetInstruction: No more memory available\r\n</tag>
+			<string>GetInstruction: 没有更多的内存可用\r\n</string>
+		</entry>
+		<entry>
+			<tag>GetInstruction: code %d not yet implemented\r\n</tag>
+			<string>GetInstruction: 代码 %d 尚未实现\r\n</string>
+		</entry>
+		<entry>
+			<tag>GetInstruction: unknown code %d at index %d \r\n</tag>
+			<string>GetInstruction: 未知代码 %d，位于索引 %d \r\n</string>
+		</entry>
+		<entry>
+			<tag>GetControlInstruction: No more memory available\r\n</tag>
+			<string>GetControlInstruction: 没有更多的内存可用\r\n</string>
+		</entry>
+		<entry>
+			<tag>GetControlInstruction: old version of if and while not yet implemented\r\n</tag>
+			<string>GetControlInstruction: 旧版本的 if 和 while 尚未实现\r\n</string>
+		</entry>
+		<entry>
+			<tag>CreateCsteTList: No more memory available\r\n</tag>
+			<string>CreateCsteTList: 没有更多的内存可用\r\n</string>
+		</entry>
+		<entry>
+			<tag>CreateCsteTList: wrong type value %s\r\n</tag>
+			<string>CreateCsteTList: 错误的类型值 %s\r\n</string>
+		</entry>
+		<entry>
+			<tag>CreateOperationTList: No more memory available\r\n</tag>
+			<string>CreateOperationTList: 没有更多的内存可用\r\n</string>
+		</entry>
+		<entry>
+			<tag>CreateOperationTList: unknown operator %d\r\n</tag>
+			<string>CreateOperationTList: 未知的运算符 %d\r\n</string>
+		</entry>
+		<entry>
+			<tag>CreateFuncallTList: No more memory available\r\n</tag>
+			<string>CreateFuncallTList: 没有更多的内存可用\r\n</string>
+		</entry>
+		<entry>
+			<tag>CreateFuncallTList: wrong fromwhat value %s\r\n</tag>
+			<string>CreateFuncallTList: fromwhat 值 %s 错误\r\n</string>
+		</entry>
+		<entry>
+			<tag>CreateEqualTList: No more memory available\r\n</tag>
+			<string>CreateEqualTList: 没有更多的内存可用\r\n</string>
+		</entry>
+		<entry>
+			<tag>CreateEqualTList: wrong fromwhat value %s\r\n</tag>
+			<string>CreateEqualTList: 错误的来源值 %s\r\n</string>
+		</entry>
+		<entry>
+			<tag>CreateCsteTList: No more memory available\r\n</tag>
+			<string>CreateCsteTList: 没有更多的内存可用\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: %d not in [%d,%d].</tag>
+			<string>%s: %d 不在区间 [%d,%d] 内。</string>
+		</entry>
+		<entry>
+			<tag>%s: Argument 1: wrong type argument expecting a scalar or &apos;max&apos;.</tag>
+			<string>%s: 参数1: 错误的类型参数。应该取为标量或者是 &apos;max&apos; 。</string>
+		</entry>
+		<entry>
+			<tag>Parameter must be a integer.\r\n</tag>
+			<string>参数必须是整数。\r\n</string>
+		</entry>
+		<entry>
+			<tag>Parameter must be a string.\r\n</tag>
+			<string>参数必须是字符串。\r\n</string>
+		</entry>
+		<entry>
+			<tag>Error : tksynchro %s \r\n</tag>
+			<string>错误 : tksynchro %s \r\n</string>
+		</entry>
+		<entry>
+			<tag>Incorrect second parameter.</tag>
+			<string>第二个参数不正确。</string>
+		</entry>
+		<entry>
+			<tag>Incorrect parameters. See : help clipboard</tag>
+			<string>参数不正确。参见 : help clipboard</string>
+		</entry>
+		<entry>
+			<tag>Invalid Windows number.</tag>
+			<string>Windows 号无效。</string>
+		</entry>
+		<entry>
+			<tag>parameter must be &gt;= 0.</tag>
+			<string>参数必须大于等于0。</string>
+		</entry>
+		<entry>
+			<tag>Second parameter must be &apos;EMF&apos; or &apos;DIB&apos;.</tag>
+			<string>第二个参数必须是  &apos;EMF&apos; 或  &apos;DIB&apos;。</string>
+		</entry>
+		<entry>
+			<tag>xs2bmp : win_num invalid : %d \n</tag>
+			<string>xs2bmp : win_num 无效 : %d \n</string>
+		</entry>
+		<entry>
+			<tag>xs2emf : win_num invalid : %d \n</tag>
+			<string>xs2emf : win_num 无效 : %d \n</string>
+		</entry>
+		<entry>
+			<tag>%s: stack size exceeded (Use stacksize function to increase it)\r\n</tag>
+			<string>%s: 栈的大小超界（使用 stacksize 函数增加栈的大小）\r\n</string>
+		</entry>
+		<entry>
+			<tag>\nNot yet implemented. \n</tag>
+			<string>\n尚未实现。\n</string>
+		</entry>
+		<entry>
+			<tag>Only for Windows\r\n</tag>
+			<string>只适用于Windows\r\n</string>
+		</entry>
+		<entry>
+			<tag>parameter incorrect: &apos;on&apos; or &apos;off&apos;</tag>
+			<string>参数不正确: &apos;on &apos; 或 &apos;off&apos;</string>
+		</entry>
+		<entry>
+			<tag>first parameter must be a string.\r\n</tag>
+			<string>第一个参数必须是字符串。\r\n</string>
+		</entry>
+		<entry>
+			<tag>second parameter must be a string.\r\n</tag>
+			<string>第二个参数必须是字符串。\r\n</string>
+		</entry>
+		<entry>
+			<tag>Unrecognized option: %s.\r\n</tag>
+			<string>无法识别的选项: %s 。\r\n</string>
+		</entry>
+		<entry>
+			<tag>R,G,B &gt;=0 and &lt;256.\n</tag>
+			<string>R,G,B 的值应大于等于0，且小于256。\n</string>
+		</entry>
+		<entry>
+			<tag>Parameter incorrect type.\n</tag>
+			<string>参数类型不正确。\n</string>
+		</entry>
+		<entry>
+			<tag>Second parameter incorrect: &apos;on&apos; or &apos;off&apos;</tag>
+			<string>第二个参数不正确: &apos;on&apos; 或 &apos;off&apos;</string>
+		</entry>
+		<entry>
+			<tag>parameter incorrect must be a string (a filename).</tag>
+			<string>参数不正确，必须是字符串（文件名）。</string>
+		</entry>
+		<entry>
+			<tag>parameter must be&gt;= 0.</tag>
+			<string>参数必须大于等于0。</string>
+		</entry>
+		<entry>
+			<tag>parameter incorrect --&gt; see help toprint.</tag>
+			<string>参数不正确。 --&gt;  参见：help toprint。</string>
+		</entry>
+		<entry>
+			<tag>parameter incorrect must be a string or a string matrix (1 x m) or (n x 1).</tag>
+			<string>参数不正确。必须是字符串，或者是(1 x m) 或 (n x 1)的字符串矩阵。</string>
+		</entry>
+		<entry>
+			<tag>2nd parameter incorrect --&gt; see help toprint (&apos;pos&apos; or &apos;gdi&apos;).</tag>
+			<string>第二个参数不正确。  --&gt;  参见：help toprint (&apos;pos&apos; 或 &apos;gdi&apos;).</string>
+		</entry>
+		<entry>
+			<tag>1st parameter incorrect --&gt; see help toprint.</tag>
+			<string>第一个参数不正确。 --&gt; 参见：help toprint。</string>
+		</entry>
+		<entry>
+			<tag>Couldn&apos;t Open this document\r\n</tag>
+			<string>无法打开这个文档\r\n</string>
+		</entry>
+		<entry>
+			<tag>Tcl Error %s\r\n</tag>
+			<string>Tcl 错误 %s\r\n</string>
+		</entry>
+		<entry>
+			<tag>doesn&apos;t work with Complex</tag>
+			<string>不能和复数一起使用</string>
+		</entry>
+		<entry>
+			<tag>[] doesn&apos;t work with TCL</tag>
+			<string> [] 不能和 TCL一起使用</string>
+		</entry>
+		<entry>
+			<tag>Variable too long</tag>
+			<string>变量过长</string>
+		</entry>
+		<entry>
+			<tag>Tcl/TK interface disabled in -nogui mode.\r\n</tag>
+			<string>在 -nogui 模式下 Tcl/TK 接口无效。\r\n</string>
+		</entry>
+		<entry>
+			<tag>Error : year (1800 - 3000).\n</tag>
+			<string>错误 : 年份 (1800 - 3000)。\n</string>
+		</entry>
+		<entry>
+			<tag>Error : month (1 - 12).\n</tag>
+			<string>错误 : 月份 (1 - 12)。\n</string>
+		</entry>
+		<entry>
+			<tag>Invalid argument(s) type.\n</tag>
+			<string>参数类型无效。\n</string>
+		</entry>
+		<entry>
+			<tag>Impossible to get the date...</tag>
+			<string>无法获取日期...</string>
+		</entry>
+		<entry>
+			<tag>Parameter must be a \&quot;s\&quot; or a integer.</tag>
+			<string>参数必须是 \&quot;s\&quot; 或整数。</string>
+		</entry>
+		<entry>
+			<tag>sleep: error time must be &gt;0.\r\n</tag>
+			<string>休眠: 时间错误。时间值必须大于0。\r\n</string>
+		</entry>
+		<entry>
+			<tag>xpause: error time must be &gt;0.\r\n</tag>
+			<string>xpause: 时间错误。时间值必须大于0。\r\n</string>
+		</entry>
+		<entry>
+			<tag>Unknown command option.\r\n</tag>
+			<string>未知的命令选项。\r\n</string>
+		</entry>
+		<entry>
+			<tag>Error in PlaySound\r\n</tag>
+			<string>PlaySound中有错误。\r\n</string>
+		</entry>
+		<entry>
+			<tag>Tcl Error  : Tcl_CreateInterp\r\n</tag>
+			<string>Tcl 错误  : Tcl_CreateInterp\r\n</string>
+		</entry>
+		<entry>
+			<tag>Tcl Error  : Tcl_Init\r\n</tag>
+			<string>Tcl 错误  : Tcl_Init\r\n</string>
+		</entry>
+		<entry>
+			<tag>Tcl Error  : Tk_Init\r\n</tag>
+			<string>Tcl 错误  : Tk_Init\r\n</string>
+		</entry>
+		<entry>
+			<tag>Tcl Error %s\r\n</tag>
+			<string>Tcl 错误 %s\r\n</string>
+		</entry>
+		<entry>
+			<tag>parameter must be &gt;= 0\r\n</tag>
+			<string>参数必须大于等于0 \r\n</string>
+		</entry>
+		<entry>
+			<tag>Invalid parameter type: must be an integer\r\n</tag>
+			<string>参数类型无效，必须是整数\r\n</string>
+		</entry>
+		<entry>
+			<tag>Invalid parameter(s) type.\r\n</tag>
+			<string>参数类型无效。\r\n</string>
+		</entry>
+		<entry>
+			<tag>Argument type incorrect: Must be a string\r\n</tag>
+			<string>参数类型错误：必须是字符串。\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s, ScilabEval error at line %i \r\n%s\r\n</tag>
+			<string>%s, ScilabEval 错误，在第 %i 行 \r\n%s\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s, %s at line %i \r\n%s\r\n</tag>
+			<string>%s，%s 在第 %i 行 \r\n%s\r\n</string>
+		</entry>
+		<entry>
+			<tag>Argument type incorrect: Must be a string or vector of strings\r\n</tag>
+			<string>参数类型错误：必须是字符串或者是字符串向量\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: Error main TCL interpreter not initialized\r\n</tag>
+			<string>%s: TCL主解释器错误，没有初始化。\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: Argument type must be character string\r\n</tag>
+			<string>%s: 参数类型必须是字符串\r\n</string>
+		</entry>
+		<entry>
+			<tag>Tcl Error: GetTclCurrentFigure.\r\n</tag>
+			<string>Tcl 错误: GetTclCurrentFigure。\r\n</string>
+		</entry>
+		<entry>
+			<tag>Tcl Error: SetTclCurrentFigure.\r\n</tag>
+			<string>Tcl 错误: SetTclCurrentFigure。\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: No such slave interpreter.\r\n</tag>
+			<string>%s: 没有这样的从解释器。\r\n</string>
+		</entry>
+		<entry>
+			<tag>TCL_GetVar: Could not read Tcl Var \r\n</tag>
+			<string>TCL_GetVar: 无法读取 Tcl 变量 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: Could not create a slave interpreter.\r\n</tag>
+			<string>%s: 无法创建从解释器。\r\n</string>
+		</entry>
+		<entry>
+			<tag>You have started Scilab in a mode in which TCL/TK is not initialized.\r\n</tag>
+			<string>在当前的 Scilab 打开模式中，TCL/TK 没有被初始化。\r\n</string>
+		</entry>
+		<entry>
+			<tag>Handle must be an integer.\r\n</tag>
+			<string>句柄必须是一个整数。\r\n</string>
+		</entry>
+		<entry>
+			<tag>Field parameter must be a string.\r\n</tag>
+			<string>字段参数必须是字符串。\r\n</string>
+		</entry>
+		<entry>
+			<tag>TCL_SetVar: Error TCL interpreter not initialized\r\n</tag>
+			<string>TCL_SetVar: TCL 解释器错误，没有被初始化。\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: Invalid argument type.\r\n</tag>
+			<string>%s: 无效的参数类型。\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: %s interpreter already exist.\r\n</tag>
+			<string>%s: %s 解释器已存在。\r\n</string>
+		</entry>
+		<entry>
+			<tag>TCL_EvalScilabCmd: No more memory\r\n</tag>
+			<string>TCL_EvalScilabCmd: 没有内存可用。\r\n</string>
+		</entry>
+		<entry>
+			<tag>ScilabEval: at least one argument is required\r\n</tag>
+			<string>ScilabEval: 至少需要一个参数\r\n</string>
+		</entry>
+		<entry>
+			<tag>Unknown property %s\r\n</tag>
+			<string>属性 %s 未知\r\n</string>
+		</entry>
+		<entry>
+			<tag>Error property not found.\r\n</tag>
+			<string>错误，属性未找到。\r\n</string>
+		</entry>
+		<entry>
+			<tag>Tcl Command &gt; %d characters \r\n</tag>
+			<string>Tcl 命令 &gt; %d 个字符 \r\n</string>
+		</entry>
+		<entry>
+			<tag>Invalid parameter(s) type (Style).\r\n</tag>
+			<string>无效的参数类型（Style）。\r\n</string>
+		</entry>
+		<entry>
+			<tag>Invalid Handle. it must be &gt; 0.\r\n</tag>
+			<string>无效的句柄。句柄必须 &gt; 0。\r\n</string>
+		</entry>
+		<entry>
+			<tag>Floating Exception</tag>
+			<string>浮点计算异常</string>
+		</entry>
+		<entry>
+			<tag>IOT Trap</tag>
+			<string>IOT 陷阱（Trap）</string>
+		</entry>
+		<entry>
+			<tag>Quit signal</tag>
+			<string>退出信号</string>
+		</entry>
+		<entry>
+			<tag>Interrupt</tag>
+			<string>中断</string>
+		</entry>
+		<entry>
+			<tag>Killed</tag>
+			<string>已取消（Killed）</string>
+		</entry>
+		<entry>
+			<tag>Trace trap</tag>
+			<string>Trace 陷阱（Trap）</string>
+		</entry>
+		<entry>
+			<tag>unknown first parameter.\r\n</tag>
+			<string>第一个参数未知。\r\n</string>
+		</entry>
+		<entry>
+			<tag>type of second parameter incorrect.\r\n</tag>
+			<string>第二个参数的类型错误。\r\n</string>
+		</entry>
+		<entry>
+			<tag>unknown first parameter.\r\n</tag>
+			<string>第一个参数未知。\r\n</string>
+		</entry>
+		<entry>
+			<tag>Only on Windows mode.\r\n</tag>
+			<string>只适用于 Windows 模式。\r\n</string>
+		</entry>
+		<entry>
+			<tag>system() failed</tag>
+			<string>system() 失败</string>
+		</entry>
+		<entry>
+			<tag>Cannot remove directory %s\r\n</tag>
+			<string>无法删除目录 %s\r\n</string>
+		</entry>
+		<entry>
+			<tag>Error DDE.\r\n</tag>
+			<string>DDE 错误。\r\n</string>
+		</entry>
+		<entry>
+			<tag>parameter(s) type incorrect.\r\n</tag>
+			<string>参数类型不正确。\r\n</string>
+		</entry>
+		<entry>
+			<tag>2 parameters required.\r\n</tag>
+			<string>需要两个参数。\r\n</string>
+		</entry>
+		<entry>
+			<tag>Error.\r\n</tag>
+			<string>错误。\r\n</string>
+		</entry>
+		<entry>
+			<tag>Cannot query value of this type.\r\n</tag>
+			<string>无法查询这个类型的值。\r\n</string>
+		</entry>
+		<entry>
+			<tag>Two arguments required\r\n</tag>
+			<string>需要两个参数。\r\n</string>
+		</entry>
+		<entry>
+			<tag>Incorrect SCI path. Please verify your SCI environment variable.\n</tag>
+			<string>不正确的SCI路径。请检查、确认 SCI 环境变量的设置。\n</string>
+		</entry>
+		<entry>
+			<tag>ERROR</tag>
+			<string>错误</string>
+		</entry>
+		<entry>
+			<tag>Incorrect HOME path. Please verify your HOME environment variable.\n</tag>
+			<string>不正确的 HOME 路径。请检查、确认 HOME 环境变量的设置。\n</string>
+		</entry>
+		<entry>
+			<tag>Incorrect TCL_LIBRARY environment variable</tag>
+			<string>不正确的 TCL_LIBRARY 环境变量</string>
+		</entry>
+		<entry>
+			<tag>Incorrect TK_LIBRARY environment variable</tag>
+			<string>不正确的 TK_LIBRARY 环境变量</string>
+		</entry>
+		<entry>
+			<tag>No PATH environment ...</tag>
+			<string>没有 PATH 环境...</string>
+		</entry>
+		<entry>
+			<tag>Stdout pipe creation failed\n</tag>
+			<string>Stdout 管道创建失败\n</string>
+		</entry>
+		<entry>
+			<tag>Redirecting STDOUT failed\r\n</tag>
+			<string>STDOUT 重定向失败\r\n</string>
+		</entry>
+		<entry>
+			<tag>Stdin pipe creation failed\r\n</tag>
+			<string>Stdin 管道创建失败\r\n</string>
+		</entry>
+		<entry>
+			<tag>Redirecting Stdin failed\r\n</tag>
+			<string>Stdin 重定向失败\r\n</string>
+		</entry>
+		<entry>
+			<tag>DuplicateHandle failed\r\n</tag>
+			<string>复制句柄失败\r\n</string>
+		</entry>
+		<entry>
+			<tag>Create process failed\r\n</tag>
+			<string>创建进程失败\r\n</string>
+		</entry>
+		<entry>
+			<tag>Re-redirecting Stdin failed\r\n</tag>
+			<string>Stdin 二次重定向失败\r\n</string>
+		</entry>
+		<entry>
+			<tag>Re-redirecting Stdout failed\r\n</tag>
+			<string>Stdout 二次重定向失败\r\n</string>
+		</entry>
+		<entry>
+			<tag>Incorrect DLL version\nExpected version   %s\nThis is version   %s</tag>
+			<string>动态链接库版本（DLL）不正确\n应该为版本   %s\n当前是版本   %s</string>
+		</entry>
+		<entry>
+			<tag>Can&apos;t print : Error in SetWindowLong</tag>
+			<string>无法打印： SetWindowLong 中存在错误</string>
+		</entry>
+		<entry>
+			<tag>xsnative: input argument incorrect\r\n</tag>
+			<string>xsnative: 输入参数错误\r\n</string>
+		</entry>
+		<entry>
+			<tag>Error : GetDC fails</tag>
+			<string>错误 : GetDC 失败</string>
+		</entry>
+		<entry>
+			<tag>Error : GetDC Input don&apos;t handle NULL</tag>
+			<string>错误 : GetDC 输入不能处理 NULL</string>
+		</entry>
+		<entry>
+			<tag>GetScilabDirectory()</tag>
+			<string>GetScilabDirectory()</string>
+		</entry>
+		<entry>
+			<tag>Do not find LibScilab.dll</tag>
+			<string>没有找到 LibScilab.dll</string>
+		</entry>
+		<entry>
+			<tag>out of memory</tag>
+			<string>内存耗尽</string>
+		</entry>
+		<entry>
+			<tag>Scilab doesn&apos;&apos;t support Windows NT 3.51 or 4.\n</tag>
+			<string>Scilab 不支持 Windows NT 3.51 或 4。\n</string>
+		</entry>
+		<entry>
+			<tag>Scilab supports only 256 colors or more.\n</tag>
+			<string>Scilab 支持256色及更多的彩色。\n</string>
+		</entry>
+		<entry>
+			<tag>Menu is too deep at line %d of %s\n</tag>
+			<string>第 %d 行  %s 的菜单深度过大 \n</string>
+		</entry>
+		<entry>
+			<tag>Too many buttons at line %d of %s\n</tag>
+			<string>>第 %d 行  %s 的按键数过多\n</string>
+		</entry>
+		<entry>
+			<tag>Problem on line %d of %s\n</tag>
+			<string>第 %d 行  %s 有问题\n</string>
+		</entry>
+		<entry>
+			<tag>Out of space for menu macros at line %d of %s\n</tag>
+			<string>第 %d 行  %s 的菜单宏超出边界\n</string>
+		</entry>
+		<entry>
+			<tag>Error in .mnu file: %s</tag>
+			<string>.mnu 文件 %s 出错</string>
+		</entry>
+		<entry>
+			<tag>Error in .mnu file</tag>
+			<string>.mnu 文件出错</string>
+		</entry>
+		<entry>
+			<tag>Environment variable SCI must be defined\r\n</tag>
+			<string>必须定义环境变量 SCI \r\n</string>
+		</entry>
+		<entry>
+			<tag> Can&apos;t open file %s\r\n</tag>
+			<string>无法打开文件 %s\r\n</string>
+		</entry>
+		<entry>
+			<tag>input file doesn&apos;t need to be changed to epsf \r\n</tag>
+			<string>输入文件不需要变换到 epsf \r\n</string>
+		</entry>
+		<entry>
+			<tag>file %s not found \r\n</tag>
+			<string>文件 %s 没有找到\r\n</string>
+		</entry>
+		<entry>
+			<tag>Parentwndclass Win32 error %ld occured</tag>
+			<string>Parentwndclass 发生 Win32 错误 %ld</string>
+		</entry>
+		<entry>
+			<tag>Couldn&apos;t open parent text window</tag>
+			<string>无法打开父文本窗口</string>
+		</entry>
+		<entry>
+			<tag>Couldn&apos;t open text window</tag>
+			<string>无法打开文本窗口</string>
+		</entry>
+		<entry>
+			<tag>panic</tag>
+			<string>惊恐状态（panic）</string>
+		</entry>
+		<entry>
+			<tag>\nCannot create file. It does not appear to be a valid name\n</tag>
+			<string>\n无法创建文件。估计是文件名无效。\n</string>
+		</entry>
+		<entry>
+			<tag>Error %d invalid number\n</tag>
+			<string>错误 %d，数字无效\n</string>
+		</entry>
+		<entry>
+			<tag>SIGINT Signal detected</tag>
+			<string>检测到 SIGINT 信号</string>
+		</entry>
+		<entry>
+			<tag>SIGILL Signal detected</tag>
+			<string>检测到 SIGILL 信号</string>
+		</entry>
+		<entry>
+			<tag>SIGFPE Signal detected</tag>
+			<string>检测到 SIGFPE 信号</string>
+		</entry>
+		<entry>
+			<tag>SIGSEGV Signal detected</tag>
+			<string>检测到 SIGSEGV 信号</string>
+		</entry>
+		<entry>
+			<tag>SIGTERM Signal detected</tag>
+			<string>检测到	SIGTERM	信号</string>
+		</entry>
+		<entry>
+			<tag>SIGBREAK Signal detected</tag>
+			<string>检测到 SIGBREAK 信号</string>
+		</entry>
+		<entry>
+			<tag>SIGABRT Signal detected</tag>
+			<string>检测到 SIGABRT 信号</string>
+		</entry>
+		<entry>
+			<tag>Unknow Signal detected</tag>
+			<string>检测到未知信号</string>
+		</entry>
+		<entry>
+			<tag>SIGSTP: aborting current computation\r\n</tag>
+			<string>SIGSTP: 终止当前计算\r\n</string>
+		</entry>
+		<entry>
+			<tag>Input line too long</tag>
+			<string>输入的行过长</string>
+		</entry>
+		<entry>
+			<tag>unable to spawn shell</tag>
+			<string>无法新建 shell</string>
+		</entry>
+		<entry>
+			<tag>EnumPrinters() failed, error code = %d</tag>
+			<string>EnumPrinters() 执行失败，错误代码 = %d</string>
+		</entry>
+		<entry>
+			<tag>OpenPrinter() failed for \042%s\042, error code = %d</tag>
+			<string>OpenPrinter() 执行 \042%s\042 失败，错误代码 = %d</string>
+		</entry>
+		<entry>
+			<tag>StartDocPrinter() failed, error code = %d</tag>
+			<string>StartDocPrinter() 执行失败，错误代码 = %d</string>
+		</entry>
+		<entry>
+			<tag>EndDocPrinter() failed, error code = %d</tag>
+			<string>EndDocPrinter() 执行失败，错误代码 = %d</string>
+		</entry>
+		<entry>
+			<tag>ClosePrinter() failed, error code = %d</tag>
+			<string>ClosePrinter() 执行失败，错误代码 = %d</string>
+		</entry>
+		<entry>
+			<tag>out of memory for %s</tag>
+			<string>内存因 %s 耗尽</string>
+		</entry>
+		<entry>
+			<tag>SCI not defined</tag>
+			<string>SCI 未定义</string>
+		</entry>
+		<entry>
+			<tag>Out of memory</tag>
+			<string>内存耗尽</string>
+		</entry>
+		<entry>
+			<tag>Error while printing\r\n</tag>
+			<string>打印过程中出错\r\n</string>
+		</entry>
+		<entry>
+			<tag>-nw or -nwni not found</tag>
+			<string>-nw 或 -nwni 没有找到</string>
+		</entry>
+		<entry>
+			<tag>Error no window num.\n</tag>
+			<string>错误，没有窗口号。\n</string>
+		</entry>
+		<entry>
+			<tag>SCI has been redefined to </tag>
+			<string>SCI 已被重定义为</string>
+		</entry>
+		<entry>
+			<tag>HOME has been redefined.</tag>
+			<string>HOME 已被重定义。</string>
+		</entry>
+		<entry>
+			<tag>TCL_LIBRARY has been redefined to </tag>
+			<string>TCL_LIBRARY 已被重定义为</string>
+		</entry>
+		<entry>
+			<tag>TK_LIBRARY has been redefined to </tag>
+			<string>TK_LIBRARY 已被重定义为</string>
+		</entry>
+		<entry>
+			<tag> an hypermat insertion must have at least 3 args </tag>
+			<string> 一个超矩阵的插入操作必须至少给定 3 个参数 </string>
+		</entry>
+		<entry>
+			<tag>graphic interface disabled -nogui mode.\r\n</tag>
+			<string>图形界面不能工作，当前是 -nogui 模式。\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s:  Inside the Tlist (third argument): The three first arguments have incompatible length \r\n</tag>
+			<string>%s:  在 Tlist (第3个参数)中: 前3个参数的长度不相容 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: grid abscissae of dim %d not in strict increasing order \r\n</tag>
+			<string>%s: 网格的第 %d 维坐标并不是以严格的次序递增 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: the 4 th arg must be a vector with 3 components \r\n</tag>
+			<string>%s: 第 4 个参数必须是一个有 3 个分量的向量 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: bad 5 th arg [kx ky kz]\n\r</tag>
+			<string>%s: 第 5 个参数 [kx ky kz] 错误\n\r</string>
+		</entry>
+		<entry>
+			<tag>%s: first and second arguments have incompatible length\r\n</tag>
+			<string>%s: 第一个和第二个参数的长度不相容\r\n</string>
+		</entry>
+		<entry>
+			<tag>Function StringBox works with only one text handle.\n</tag>
+			<string>函数 StringBox 的当前执行只有一个文本句柄。\n</string>
+		</entry>
+		<entry>
+			<tag>%s: not implemented with new figure style\r\n</tag>
+			<string>%s: 无法用新的图形风格（figure style）来实现\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s:  handle does not reference a sub_window</tag>
+			<string>%s:  当前句柄没有引用一个 sub_window</string>
+		</entry>
+		<entry>
+			<tag>%s: handle %d cannot be glued (invalid type)\r\n</tag>
+			<string>%s: 句柄 %d 无法被粘接 （类型无效）\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: rect has wrong size (%d), 4 expected \r\n</tag>
+			<string>%s: rect 的尺寸大小（%d）错误，应该取为 4 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s :Handles must be relocated under a single parent.\r\n</tag>
+			<string>%s :各句柄必须被重定位在一个共同的父节点下。\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s don&apos;t work for complex arguments \r\n</tag>
+			<string>%s 不能处理复数类型的参数 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: Argument %d: wrong type argument expecting a complex matrix\r\n</tag>
+			<string>%s: 参数 %d：类型错误，应该是一个复数矩阵 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: argument %d &gt;(%d) should be a real or complex matrix\r\n</tag>
+			<string>%s: 参数 %d &gt;(%d) 应该是一个实数或复数矩阵\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: argument %d should be a string matrix\r\n</tag>
+			<string>%s: 参数 %d 应该是一个字符串矩阵\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: argument %d should be a row vector \r\n</tag>
+			<string>%s: 参数 %d 应该是一个行向量 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: argument %d should be a column vector \r\n</tag>
+			<string>%s: 参数 %d 应该是一个列向量 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: argument %d should be a boxed pointer\r\n</tag>
+			<string>%s: 参数 %d 应该是一个加框的（boxed）指针\r\n</string>
+		</entry>
+		<entry>
+			<tag>too many names\r\n</tag>
+			<string>名字过多\r\n</string>
+		</entry>
+		<entry>
+			<tag>stack size exceeded (Use stacksize function to increase it)\r\n</tag>
+			<string>栈的大小越界（请使用 stacksize 函数增大栈的大小）\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: argument %d should be a matrix of handle\r\n</tag>
+			<string>%s:  参数 %d 应该是一个句柄矩阵\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: (createcvar) too many arguments in the stack edit stack.h and enlarge intersiz\r\n</tag>
+			<string>%s: (createcvar) 栈中的参数过多，请编辑 stack.h 并增大 intersiz\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: bad call to createcvar! (1rst argument)\r\n</tag>
+			<string>%s: 调用 createcvar 错误! (第一个参数)\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: (createcvarfrom) too many arguments in the stack edit stack.h and enlarge intersiz\r\n</tag>
+			<string>%s: (createcvarfrom) 栈中的参数过多，请编辑 stack.h 并增大 intersiz\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: bad call to createcvarfrom! (1rst argument)\r\n</tag>
+			<string>%s: 调用 createcvarfrom 错误! (第一个参数)\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: (createlistcvarfromptr) bad third argument!\r\n</tag>
+			<string>%s: (createlistcvarfromptr) 第三个参数错误!\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: argument %d should be a matrix\r\n</tag>
+			<string>%s: 参数 %d 必须是一个矩阵\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: bad call to elementtype! \r\n</tag>
+			<string>%s: 调用 elementtype 错误! \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: argument%d &gt;(%d) should be a complex matrix\r\n</tag>
+			<string>%s: 参数 %d &gt;(%d) 应该是一个复数矩阵\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: bad call to getlistrhscvar! (1rst argument)\r\n</tag>
+			<string>%s: 调用 getlistrhscvar 错误! (第一个参数)\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: (getlistrhscvar) too many arguments in the stack edit stack.h and enlarge intersiz\r\n</tag>
+			<string>%s: (getlistrhscvar) 栈中的参数过多，请编辑 stack.h 并增大 intersiz\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: getlistrhscvar was called with  bad third argument!\r\n</tag>
+			<string>%s: 调用 getlistrhscvar 时，第 3 个参数错误!\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: createcvarfromptr: too many arguments on the stack, enlarge intersiz\r\n</tag>
+			<string>%s: createcvarfromptr: 栈中的参数过多，请增大 intersiz\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: createcvarfromptr was called with bad second argument!\r\n</tag>
+			<string>%s: 调用 createcvarfromptr 时，第二个参数错误!\r\n</string>
+		</entry>
+		<entry>
+			<tag>Too many arguments in the stack edit stack.h and enlarge intersiz\r\n</tag>
+			<string>栈中的参数过多，请编辑 stack.h 并增大 intersiz\r\n</string>
+		</entry>
+		<entry>
+			<tag>%%s: Internal Error \\r\\n</tag>
+			<string>%%s: 内部错误 \\r\\n</string>
+		</entry>
+		<entry>
+			<tag>%s: first argument should be \&quot;stop\&quot; or \&quot;continue\&quot;\r\n</tag>
+			<string>%s: 第一个参数应该为 \&quot;stop\&quot; 或者 \&quot;continue\&quot;\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s Wrong first argument %s\r\n</tag>
+			<string>%s 错误的第一个参数 %s\r\n</string>
+		</entry>
+		<entry>
+			<tag>First argument must be scalar\r\n</tag>
+			<string>第一个参数必须是标量\r\n</string>
+		</entry>
+		<entry>
+			<tag>p must be scalar\r\n</tag>
+			<string>p 必须是标量\r\n</string>
+		</entry>
+		<entry>
+			<tag>Av &lt; 0.0 \r\n</tag>
+			<string>Av &lt; 0.0 \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s : No more memory.\n</tag>
+			<string>%s : 无内存可用。\n</string>
+		</entry>
+		<entry>
+			<tag>%s : Error.\n</tag>
+			<string>%s : 错误。\n</string>
+		</entry>
+		<entry>
+			<tag>sprintf: cannot allocate cannot allocate more memory \r\n</tag>
+			<string>sprintf: 不能分配更多的内存 \r\n</string>
+		</entry>
+		<entry>
+			<tag>Error: in scanf: cannot allocate more memory \r\n</tag>
+			<string>Error: 在 scanf 中: 不能分配更多的内存 \r\n</string>
+		</entry>
+		<entry>
+			<tag>Error:\tscanf unclosed [ directive\r\n</tag>
+			<string>错误:\tscanf 的 [ 命令没有闭合\r\n</string>
+		</entry>
+		<entry>
+			<tag>Parameter(s) incorrect type.\n</tag>
+			<string>参数类型不正确。\n</string>
+		</entry>
+		<entry>
+			<tag>parameter must be a string.</tag>
+			<string>参数必须是一个字符串。</string>
+		</entry>
+		<entry>
+			<tag>Not a path string</tag>
+			<string>不是一个路径字符串</string>
+		</entry>
+		<entry>
+			<tag>parameter type incorrect</tag>
+			<string>参数类型不正确。</string>
+		</entry>
+		<entry>
+			<tag>parameter(s) type incorrect</tag>
+			<string>参数类型不正确。</string>
+		</entry>
+		<entry>
+			<tag>1st parameter incorrect --&gt; see help toprint</tag>
+			<string>第一个参数不正确 --&gt; 参见：help toprint</string>
+		</entry>
+		<entry>
+			<tag>%s :file %s  cannot be opened\r\n</tag>
+			<string>%s : 文件 %s 无法打开。\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s : The handle is not valid.\r\n</tag>
+			<string>%s : 句柄无效。\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s:  no sub_window is selected !!</tag>
+			<string>%s:  没有选择 sub_window !!</string>
+		</entry>
+		<entry>
+			<tag>%s: Argument %d, wrong matrix size (%d,%d) expected\r\n</tag>
+			<string>%s: 参数 %d，错误的矩阵规模大小，应该取为 (%d,%d) \r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: argument %d &gt;(%d) should be a boolean matrix\r\n</tag>
+			<string>%s: 参数 %d &gt;(%d) 应该是一个布尔型矩阵\r\n</string>
+		</entry>
+		<entry>
+			<tag>%s: argument %d should be a sparse matrix\r\n</tag>
+			<string>%s: 参数 %d 应该是一个稀疏矩阵\r\n</string>
+		</entry>
+		<entry>
+			<tag>parameter(s) incorrect --> see help toprint.</tag>
+			<string>参数不正确 --> 参见：help toprint.</string>
+		</entry>
+		<entry>
+			<tag>[] doesn''t work with TCL</tag>
+			<string>[] 不能用于 TCL</string>
+		</entry>
+	</Scierror>
+</Info>
