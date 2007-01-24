@@ -58,9 +58,9 @@ am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(pkglibdir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libscisciexternal_la_LIBADD =
-am_libscisciexternal_la_OBJECTS = foo.lo foo2.lo foo3.lo
-libscisciexternal_la_OBJECTS = $(am_libscisciexternal_la_OBJECTS)
+libsciexternal_la_LIBADD =
+am_libsciexternal_la_OBJECTS = foo.lo foo2.lo foo3.lo
+libsciexternal_la_OBJECTS = $(am_libsciexternal_la_OBJECTS)
 DEFAULT_INCLUDES = -I.@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
@@ -89,8 +89,8 @@ F77LD = $(F77)
 F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libscisciexternal_la_SOURCES)
-DIST_SOURCES = $(libscisciexternal_la_SOURCES)
+SOURCES = $(libsciexternal_la_SOURCES)
+DIST_SOURCES = $(libsciexternal_la_SOURCES)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -212,11 +212,11 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 # The name of the library is not important but must remains the same
-pkglib_LTLIBRARIES = libscisciexternal.la
+pkglib_LTLIBRARIES = libsciexternal.la
 # Fake sources in order to make believe to the autotool that we are going
 # to compile some C/C++, fortran sources.
 # Don't change name or order 
-libscisciexternal_la_SOURCES = foo.c foo2.f foo3.cxx
+libsciexternal_la_SOURCES = foo.c foo2.f foo3.cxx
 all: all-am
 
 .SUFFIXES:
@@ -281,8 +281,8 @@ clean-pkglibLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
-libscisciexternal.la: $(libscisciexternal_la_OBJECTS) $(libscisciexternal_la_DEPENDENCIES) 
-	$(CXXLINK) -rpath $(pkglibdir) $(libscisciexternal_la_OBJECTS) $(libscisciexternal_la_LIBADD) $(LIBS)
+libsciexternal.la: $(libsciexternal_la_OBJECTS) $(libsciexternal_la_DEPENDENCIES) 
+	$(CXXLINK) -rpath $(pkglibdir) $(libsciexternal_la_OBJECTS) $(libsciexternal_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

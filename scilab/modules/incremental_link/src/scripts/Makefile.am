@@ -4,10 +4,10 @@
 ##########
 
 # The name of the library is not important but must remains the same
-pkglib_LTLIBRARIES = libscisciexternal.la
+pkglib_LTLIBRARIES = libsciexternal.la
 # Fake sources in order to make believe to the autotool that we are going
 # to compile some C/C++, fortran sources.
 # Don't change name or order 
-libscisciexternal_la_SOURCES = foo.c foo2.f foo3.cxx
+libsciexternal_la_SOURCES = foo.c foo2.f foo3.cxx
 
 
