@@ -1,5 +1,5 @@
 # Scipad texts in Italian
-# in sync at least with v6.79
+# in sync at least with v6.80
 
 
 # commons
@@ -20,7 +20,7 @@
 # buffernavigation.tcl
 ::msgcat::mcset it "Hide" "Nascondi"
 ::msgcat::mcset it "Close this tile, keep content"\
-                   "Chiudere il pannello, lasciare il file aperto"
+                   "Chiudi il pannello, lascia il file aperto"
 ::msgcat::mcset it "Close this tile" "Chiudi questo pannello"
 ::msgcat::mcset it "Goto Line?" "Vai alla linea?"
 ::msgcat::mcset it "Go to:" "Vai a:"
@@ -203,7 +203,7 @@
                     file with the same name?"\
                    "non esiste più. Creare un nuovo file collo stesso nome?"
 ::msgcat::mcset it "Open file" "Aprire file"
-#::msgcat::mcset fr "The file" "Le fichier" ;# defined in the "commons" section
+#::msgcat::mcset it "The file" "Il file" ;# defined in the "commons" section
 ::msgcat::mcset it "is already opened! Save the current opened file to\
                     another name and reopen it from disk!"\
                    "è già aperto! Salvarlo eventualmente con un altro nome e\
@@ -516,7 +516,7 @@
 ::msgcat::mcset it "&Indentation spaces" "&Spazi di indentazione"
 ::msgcat::mcset it "&Tab size (characters)" "&Numero spazi tabulazione"
 ::msgcat::mcset it "Use &keyword indentation" "&Indentazione automatica"
-::msgcat::mcset it "Com&pletion" "A&utocompletamento"
+::msgcat::mcset it "Com&pletion" "Autocom&pletamento"
 ::msgcat::mcset it "&Tab" "&Tab"
 ::msgcat::mcset it "&Control-Tab" "&Control-Tab"
 ::msgcat::mcset it "&Alt-Tab" "&Alt-Tab"
@@ -529,7 +529,7 @@
 ::msgcat::mcset it "&Full path" "&Percorso completo"
 ::msgcat::mcset it "Full path if &ambiguous" "Percorso completo se &ambiguo"
 ::msgcat::mcset it "&Unambiguous pruned path" "Percorso &ridotto univoco"
-::msgcat::mcset it "Windows menu &sorting" "Or&dine del menu Finestre"
+::msgcat::mcset it "Windows menu &sorting" "Ordine del &menu Finestre"
 ::msgcat::mcset it "&File opening order" "secondo &momento di apertura"
 ::msgcat::mcset it "&Alphabetically" "ordine &alfabetico"
 ::msgcat::mcset it "&Most recently used" "secondo &uso più recente"
@@ -550,11 +550,11 @@
 ::msgcat::mcset it "&Maximize" "&Massimizza"
 ::msgcat::mcset it "&Split" "Dividi in &orizzontale"
 ::msgcat::mcset it "S&plit (side by side)" "Dividi in &verticale"
-::msgcat::mcset it "Sp&lit file" "D&ividi il file"
+::msgcat::mcset it "Sp&lit file" "&Dividi il file in orizz."
 ::msgcat::mcset it "Spl&it file (side by side)"\
-                   "Dividere il file (&fianco a fianco)"
-::msgcat::mcset it "Tile all &vertically" "&Impila tutte"
-::msgcat::mcset it "Tile all &horizontally" "&Affianca tutte"
+                   "Dividi il file (&fianco a fianco)"
+::msgcat::mcset it "Tile all &vertically" "&Impila tutti"
+::msgcat::mcset it "Tile all &horizontally" "Affianca &tutti"
 ::msgcat::mcset it "Space sashes &evenly" "Spezzatura &uniforme"
 ::msgcat::mcset it "Opened Files" "Files aperti"
 
