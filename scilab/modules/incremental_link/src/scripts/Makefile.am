@@ -10,4 +10,4 @@ pkglib_LTLIBRARIES = libscisciexternal.la
 # Don't change name or order 
 libscisciexternal_la_SOURCES = foo.c foo2.f foo3.cxx
 
-include $(top_srcdir)/Makefile.incl.am
+
