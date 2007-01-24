@@ -723,7 +723,7 @@ int InitAxesModel()
 
 int ResetFigureToDefaultValues(sciPointObj * pobj)
 {
-  integer i , m, n;
+  //integer i , m, n;
   integer x[2], verbose=0, narg=0; 
   struct BCG *XGC=NULL;
   int succeed = 0;
@@ -736,41 +736,15 @@ int ResetFigureToDefaultValues(sciPointObj * pobj)
   
   pFIGURE_FEATURE (pobj)->relationship.psons = (sciSons *) NULL;
   pFIGURE_FEATURE (pobj)->relationship.plastsons = (sciSons *) NULL;
-  /*   pFIGURE_FEATURE (pobj)->pScilabXgc = XGC; */
-  
+
   /** Initialize the colormap */
-  n=3;
-  m = pFIGURE_FEATURE (pfiguremdl)->numcolors;
   /* try to install the colormap in the graphic context */
-  C2F(dr)("xset","colormap",&m,&n,&succeed,PI0,PI0,PI0,
-	  pFIGURE_FEATURE(pfiguremdl)->pcolormap,PD0,PD0,PD0,0L,0L);
 
-  if(succeed == 1){ /* failed to allocate or xinit (for Gif driver) was missing */
-    sciprint ("Failed to change colormap : Allocation failed or missing xinit detected\n");
-    return -1;
-  }
-  
-  if((pFIGURE_FEATURE(pobj)->pcolormap = (double *) MALLOC (XGC->Numcolors * n * sizeof (double))) == (double *) NULL)
-    {
-      sciDelHandle (pobj);
-      FREE(pobj->pfeatures);
-      FREE(pobj);
-      return -1;
-    }  
+  pFIGURE_FEATURE (pobj)->pcolormap = NULL ;
+  sciInitNumColors(pobj, 0) ;
 
-  if (XGC->Numcolors == m) { 
-    /* xset('colormap') was  able to install the colormap */
-    for (i=0; i <m*n ; i++) {
-      pFIGURE_FEATURE(pobj)->pcolormap[i] = pFIGURE_FEATURE(pfiguremdl)->pcolormap[i];
-    }
-  }
-  else {
-    m=XGC->Numcolors;
-    for (i=0; i <m*n ; i++)
-      pFIGURE_FEATURE(pobj)->pcolormap[i] = defcolors[i]/255.0;
-  }
+  sciSetColormap( pobj, pFIGURE_FEATURE(pfiguremdl)->pcolormap, sciGetNumColors(pfiguremdl), 3 ) ;
 
-  sciSetNumColors (pobj,m);
    
   /* initialisation de context et mode graphique par defaut (figure model)*/
   if (sciInitGraphicContext (pobj) == -1)

@@ -150,20 +150,20 @@ sciSetColormap ( sciPointObj * pobj, double *rgbmat, integer m, integer n )
 {
   int k,old_m,m1;
   int curWinIndex = sciGetNum( sciGetCurrentFigure() ) ;
-  double *cmap;
+  double * cmap = NULL ;
   int notSucceed = 0 ;
   sciFigure * pFigure = NULL ;
 
   if(n != 3)
   {
     sciprint("colormap : number of colums must be 3\n");
-    return 0;
+    return -1 ;
   }
   
   if(SCI_FIGURE != sciGetEntityType(pobj))
   {
     sciprint("sciSetColormap Error: Object must be a SCI_FIGURE\n");
-    return 0;
+    return -1 ;
   }
   
   pFigure = pFIGURE_FEATURE( pobj ) ;

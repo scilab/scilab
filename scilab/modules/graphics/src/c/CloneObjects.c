@@ -41,15 +41,13 @@ sciCloneColormap (sciPointObj * pobj)
   int i;
 
   if ((rgbmat = MALLOC (m * 3 * sizeof (double))) == NULL)
-    return (double *) NULL;
+  {
+    return NULL;
+  }
 
-  for (i = 0; i < m; i++)
-    {
-      rgbmat[i] = sciGetScilabXgc (pobj)->Red[i];
-      rgbmat[i + m] = sciGetScilabXgc (pobj)->Green[i];
-      rgbmat[i + 2 * m] = sciGetScilabXgc (pobj)->Blue[i];
-    }
-  return (double *) rgbmat;
+  sciGetColormap( pobj, rgbmat ) ;
+
+  return rgbmat;
 }
 
 

@@ -77,13 +77,18 @@ int sci_xget(char *fname,unsigned long fname_len)
   else if ( strcmp(cstk(l1),"colormap") == 0) 
   {
     /*     special case for colormap : must allocate space */
-    int m3=0,n3=3;
+    int nbRow = 0 ;
+    int nbCol = 3 ;
     int verbose = 0 ;
-    C2F(dr)("xget","cmap_size",&verbose,&m3,&x2,&v,&v,&v,&dv,&dv,&dv,&dv,5L,bsiz);
+    sciPointObj * curFig = sciGetCurrentFigure() ;
 
-    if ( m3 == 0) n3=0;
-    CreateVar(Rhs+1,"d",&m3,&n3,&l3);
-    C2F(dr1)("xget",cstk(l1),&flagx,x1,&x2,&v,&v,&v,stk(l3),&dv,&dv,&dv,5L,bsiz);
+    nbRow = sciGetNumColors( curFig ) ;
+    if ( nbRow == 0 ) { nbCol = 0 ; }
+
+    CreateVar(Rhs+1,"d",&nbRow,&nbCol,&l3) ;
+
+    sciGetColormap( curFig, stk(l3) ) ;
+
     LhsVar(1)=Rhs+1;
   }
   else if ( strcmp(cstk(l1),"mark") == 0)

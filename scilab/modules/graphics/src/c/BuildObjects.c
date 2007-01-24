@@ -132,10 +132,11 @@ ConstructFigure (struct BCG *XGC)
 {
  
   sciPointObj *pobj = (sciPointObj *) NULL;
-  integer i , m, n;
   integer x[2], verbose=0, narg=0;
   int succeed = 0;
   sciPointObj * pfiguremdl = getFigureModel() ;
+  sciFigure   * ppFigure = NULL ;
+  sciFigure   * ppModel  = pFIGURE_FEATURE(pfiguremdl) ;
 
   /* memory allocation for the new Figure   affectation du type allocation de la structure */
 
@@ -151,6 +152,8 @@ ConstructFigure (struct BCG *XGC)
     }
   /* add a number in the HandelTable  reallocation de la table + 1 puis affectation de l'indice    */
   
+  ppFigure = pFIGURE_FEATURE(pobj) ;
+
   if (sciAddNewHandle (pobj) == -1)
     {
       FREE(pobj->pfeatures);
@@ -172,59 +175,24 @@ ConstructFigure (struct BCG *XGC)
   
   sciSetCurrentSon (pobj, (sciPointObj *) NULL);
 
-  pFIGURE_FEATURE (pobj)->user_data = (int *) NULL; /* adding 27.06.05 */
-  pFIGURE_FEATURE (pobj)->size_of_user_data = 0;
-  pFIGURE_FEATURE (pobj)->relationship.psons = (sciSons *) NULL;
-  pFIGURE_FEATURE (pobj)->relationship.plastsons = (sciSons *) NULL;
-  pFIGURE_FEATURE (pobj)->pScilabXgc = XGC;
-  
-  /** Initialize the colormap */
-  n=3;
-  m = pFIGURE_FEATURE (getFigureModel())->numcolors;
-  /* try to install the colormap in the graphic context */
-  C2F(dr)("xset","colormap",&m,&n,&succeed,PI0,PI0,PI0,
-	  pFIGURE_FEATURE(getFigureModel())->pcolormap,PD0,PD0,PD0,0L,0L);
-  
-  if(succeed == 1){ /* failed to allocate or xinit (for Gif driver) was missing */
-    sciprint ("Failed to load default colormap : Allocation failed or missing xinit detected\n");
-    return (sciPointObj *) NULL;
-  }
-  
-  if((pFIGURE_FEATURE(pobj)->pcolormap = (double *) MALLOC (XGC->Numcolors * n * sizeof (double))) == (double *) NULL)
-    {
-      sciDelHandle (pobj);
-      FREE(pobj->pfeatures);
-      FREE(pobj);
-      return (sciPointObj *) NULL;
-    }  
+  ppFigure->user_data = (int *) NULL; /* adding 27.06.05 */
+  ppFigure->size_of_user_data = 0;
+  ppFigure->relationship.psons = (sciSons *) NULL;
+  ppFigure->relationship.plastsons = (sciSons *) NULL;
+  ppFigure->pScilabXgc = XGC;
+  XGC->mafigure = pobj ;
 
-  if (XGC->Numcolors == m) { 
-    /* xset('colormap') was  able to install the colormap */
-    for (i=0; i <m*n ; i++) {
-      pFIGURE_FEATURE(pobj)->pcolormap[i] = pFIGURE_FEATURE(pfiguremdl)->pcolormap[i];
-    }
-  }
-  else {
-    m=XGC->Numcolors;
-    for (i=0; i <m*n ; i++)
-      pFIGURE_FEATURE(pobj)->pcolormap[i] = defcolors[i]/255.0;
-  }
-
-  sciInitNumColors (pobj,m);
-   
   /* initialisation de context et mode graphique par defaut (figure model)*/
   if (sciInitGraphicContext (pobj) == -1)
     {
       sciDelHandle (pobj);
-      FREE(pFIGURE_FEATURE(pobj)->pcolormap);
       FREE(pobj->pfeatures);
       FREE(pobj);
       return (sciPointObj *) NULL;
     }
   if (sciInitGraphicMode (pobj) == -1)
     {
-      sciDelHandle (pobj);    
-      FREE(pFIGURE_FEATURE(pobj)->pcolormap);
+      sciDelHandle (pobj);
       FREE(pobj->pfeatures);
       FREE(pobj);
       return (sciPointObj *) NULL;
@@ -241,33 +209,41 @@ ConstructFigure (struct BCG *XGC)
   sciInitNum (pobj, &(XGC->CurWindow));		   
   sciSetName(pobj, sciGetName(pfiguremdl), sciGetNameLength(pfiguremdl));
   sciInitResize((sciPointObj *) pobj,sciGetResize(pobj));
-  pFIGURE_FEATURE(pobj)->windowdimwidth=pFIGURE_FEATURE(pfiguremdl)->windowdimwidth;  
-  pFIGURE_FEATURE(pobj)->windowdimheight=pFIGURE_FEATURE(pfiguremdl)->windowdimheight;
-  C2F(dr)("xset","wdim",&(pFIGURE_FEATURE(pobj)->windowdimwidth),
-	  &(pFIGURE_FEATURE(pobj)->windowdimheight),PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
-  pFIGURE_FEATURE (pobj)->figuredimwidth = pFIGURE_FEATURE (pfiguremdl)->figuredimwidth;
-  pFIGURE_FEATURE (pobj)->figuredimheight = pFIGURE_FEATURE (pfiguremdl)->figuredimheight;
-  C2F(dr)("xset","wpdim",&(pFIGURE_FEATURE(pobj)->figuredimwidth),
-	  &(pFIGURE_FEATURE(pobj)->figuredimheight),PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  ppFigure->windowdimwidth=ppModel->windowdimwidth;  
+  ppFigure->windowdimheight=ppModel->windowdimheight;
+  C2F(dr)("xset","wdim",&(ppFigure->windowdimwidth),
+	  &(ppFigure->windowdimheight),PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
+  ppFigure->figuredimwidth = ppModel->figuredimwidth;
+  ppFigure->figuredimheight = ppModel->figuredimheight;
+  C2F(dr)("xset","wpdim",&(ppFigure->figuredimwidth),
+	  &(ppFigure->figuredimheight),PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xget","wpos",&verbose,x,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,4L);
-  x[0]=(pFIGURE_FEATURE (pfiguremdl)->inrootposx <0)?x[0]:pFIGURE_FEATURE (pfiguremdl)->inrootposx;
-  x[1]=(pFIGURE_FEATURE (pfiguremdl)->inrootposy <0)?x[1]:pFIGURE_FEATURE (pfiguremdl)->inrootposy;
-  x[0]=(pFIGURE_FEATURE (pfiguremdl)->inrootposx <0)?x[0]:pFIGURE_FEATURE (pfiguremdl)->inrootposx;
-  x[1]=(pFIGURE_FEATURE (pfiguremdl)->inrootposy <0)?x[1]:pFIGURE_FEATURE (pfiguremdl)->inrootposy;
+  x[0]=(ppModel->inrootposx <0)?x[0]:ppModel->inrootposx;
+  x[1]=(ppModel->inrootposy <0)?x[1]:ppModel->inrootposy;
+  x[0]=(ppModel->inrootposx <0)?x[0]:ppModel->inrootposx;
+  x[1]=(ppModel->inrootposy <0)?x[1]:ppModel->inrootposy;
   sciInitFigurePos (pobj,x[0],x[1]);
-  pFIGURE_FEATURE (pobj)->isiconified = pFIGURE_FEATURE (pfiguremdl)->isiconified;
-  pFIGURE_FEATURE (pobj)->isselected = pFIGURE_FEATURE (pfiguremdl)->isselected; 
-  pFIGURE_FEATURE (pobj)->rotstyle = pFIGURE_FEATURE (pfiguremdl)->rotstyle;
-  pFIGURE_FEATURE (pobj)->visible = pFIGURE_FEATURE (pfiguremdl)->visible;
-  pFIGURE_FEATURE (pobj)->auto_redraw = pFIGURE_FEATURE (pfiguremdl)->auto_redraw;
+  ppFigure->isiconified = ppModel->isiconified;
+  ppFigure->isselected = ppModel->isselected; 
+  ppFigure->rotstyle = ppModel->rotstyle;
+  ppFigure->visible = ppModel->visible;
+  ppFigure->auto_redraw = ppModel->auto_redraw;
 
-  pFIGURE_FEATURE (pobj)->numsubwinselected = pFIGURE_FEATURE (pfiguremdl)->numsubwinselected;
-  pFIGURE_FEATURE (pobj)->pixmap = pFIGURE_FEATURE (pfiguremdl)->pixmap ; 
-  pFIGURE_FEATURE (pobj)->wshow = pFIGURE_FEATURE (pfiguremdl)->wshow ; 
-  pFIGURE_FEATURE (pobj)->allredraw = pFIGURE_FEATURE (pfiguremdl)->allredraw;
+  ppFigure->numsubwinselected = ppModel->numsubwinselected;
+  ppFigure->pixmap = ppModel->pixmap ; 
+  ppFigure->wshow = ppModel->wshow ; 
+  ppFigure->allredraw = ppModel->allredraw;
 
-  pFIGURE_FEATURE (pobj)->infoMessage = NULL ; /* needed otherwise it will be realloc */
+  ppFigure->infoMessage = NULL ; /* needed otherwise it will be realloc */
   sciSetInfoMessage( pobj, sciGetInfoMessage(pfiguremdl) ) ;
+
+  /** Initialize the colormap */
+  /* try to install the colormap in the graphic context */
+
+  ppFigure->pcolormap = NULL ;
+  sciInitNumColors(pobj, 0) ;
+
+  sciSetColormap( pobj, ppModel->pcolormap, sciGetNumColors(pfiguremdl), 3 ) ;
 
   return pobj;
 }
