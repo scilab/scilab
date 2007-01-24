@@ -1230,7 +1230,8 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_TRUE@	done
 @PVM_TRUE@install-data-local: $(MACROS)
 @PVM_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)
-@PVM_TRUE@	@for dir in $(MACROSDIRS) ; do \
+@PVM_TRUE@	@if test ! -z "$(MACROS)"; then \
+@PVM_TRUE@	for dir in $(MACROSDIRS) ; do \
 @PVM_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 @PVM_TRUE@		if ls -lLd $(srcdir)/$$dir/$(MACROSMASK)  >/dev/null 2>&1; then \
 @PVM_TRUE@		  for file in $(srcdir)/$$dir/$(MACROSMASK) ; do \
@@ -1238,7 +1239,8 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
 @PVM_TRUE@		  done ; \
 @PVM_TRUE@		fi; \
-@PVM_TRUE@	done
+@PVM_TRUE@	done; \
+@PVM_TRUE@	fi
 
 @PVM_TRUE@macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(MACROS)
 @PVM_TRUE@	-@( \

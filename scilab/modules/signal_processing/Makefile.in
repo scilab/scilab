@@ -1298,7 +1298,8 @@ install-html-local:
 	done
 install-data-local: $(MACROS)
 	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)
-	@for dir in $(MACROSDIRS) ; do \
+	@if test ! -z "$(MACROS)"; then \
+	for dir in $(MACROSDIRS) ; do \
 	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 		if ls -lLd $(srcdir)/$$dir/$(MACROSMASK)  >/dev/null 2>&1; then \
 		  for file in $(srcdir)/$$dir/$(MACROSMASK) ; do \
@@ -1306,7 +1307,8 @@ install-data-local: $(MACROS)
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
 		  done ; \
 		fi; \
-	done
+	done; \
+	fi
 
 macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(MACROS)
 	-@( \

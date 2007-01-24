@@ -672,7 +672,8 @@ uninstall-am: uninstall-libscijvm_la_etcDATA \
 @JAVA_TRUE@	done
 @JAVA_TRUE@install-data-local: $(MACROS)
 @JAVA_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)
-@JAVA_TRUE@	@for dir in $(MACROSDIRS) ; do \
+@JAVA_TRUE@	@if test ! -z "$(MACROS)"; then \
+@JAVA_TRUE@	for dir in $(MACROSDIRS) ; do \
 @JAVA_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 @JAVA_TRUE@		if ls -lLd $(srcdir)/$$dir/$(MACROSMASK)  >/dev/null 2>&1; then \
 @JAVA_TRUE@		  for file in $(srcdir)/$$dir/$(MACROSMASK) ; do \
@@ -680,7 +681,8 @@ uninstall-am: uninstall-libscijvm_la_etcDATA \
 @JAVA_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
 @JAVA_TRUE@		  done ; \
 @JAVA_TRUE@		fi; \
-@JAVA_TRUE@	done
+@JAVA_TRUE@	done; \
+@JAVA_TRUE@	fi
 
 @JAVA_TRUE@macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(MACROS)
 @JAVA_TRUE@	-@( \
