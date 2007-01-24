@@ -145,8 +145,11 @@ function tcltk_help(path,key,key1)
 		TCL_EvalStr('set isbrowsehelpinterp [interp exists browsehelp]');
 		if TCL_GetVar("isbrowsehelpinterp")=='0' then    
 		TCL_EvalStr("interp create browsehelp")
-		TCL_EvalStr("load {"+SCI+"/bin/tk84.dll} Tk browsehelp")
+		tcltkver=TCL_GetVersion('numbers');
+		tklibname=SCI+'/bin/tk'+string(tcltkver(1))+string(tcltkver(2))+getdynlibext();
+		TCL_EvalStr("load {"+libname+"} Tk browsehelp")
 		TCL_EvalStr("browsehelp eval {wm withdraw .}")
+		clear tklibname;
 		end
 		TCL_EvalStr("browsehelp eval {set lang "+LANGUAGE+"}")
 		TCL_EvalStr("browsehelp eval {set SciPath """+SCI+"""}")
