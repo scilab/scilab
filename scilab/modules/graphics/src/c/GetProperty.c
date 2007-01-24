@@ -4535,6 +4535,8 @@ int sciType (marker, pobj)
   else if (strcmp(marker,"bounding_rect"      ) == 0) {return 1 ;} /*JBS 16/11/05 */
   else if (strcmp(marker,"hidden_axis_color"  ) == 0) {return 1 ;} /*       03/06 */
   else if (strcmp(marker,"alignment"          ) == 0) {return 10;} /*       05/06 */
+  else if (strcmp(marker,"viewport"           ) == 0) {return 1 ;} /*       01/07 */
+  else if (strcmp(marker,"info_message"       ) == 0) {return 10;} /*       01/07 */
   else {return -1;}
 }
 /*----------------------------------------------------------------------------------------*/
