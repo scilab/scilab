@@ -270,6 +270,9 @@
 /* Define to the version of this package. */
 #undef PACKAGE_VERSION
 
+/* Extension of a shared library */
+#undef SHARED_LIB_EXT
+
 /* Define to 1 if you have the ANSI C header files. */
 #undef STDC_HEADERS
 
