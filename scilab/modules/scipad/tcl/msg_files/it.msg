@@ -184,7 +184,7 @@
 # filecommands.tcl
 ::msgcat::mcset it "New script" "Nuovo testo"
 ::msgcat::mcset it "New view on the same file"\
-                   "Nuova pannello per lo stesso file"
+                   "Nuovo pannello per lo stesso file"
 ::msgcat::mcset it "The contents of" "Il contenuto di"
 ::msgcat::mcset it "may have changed, do you wish to save your changes?"\
                    "potrebbe essere cambiato, registrare le modifiche?"
@@ -550,7 +550,7 @@
 ::msgcat::mcset it "&Maximize" "&Massimizza"
 ::msgcat::mcset it "&Split" "Dividi in &orizzontale"
 ::msgcat::mcset it "S&plit (side by side)" "Dividi in &verticale"
-::msgcat::mcset it "Sp&lit file" "&Dividi il file in orizz."
+::msgcat::mcset it "Sp&lit file" "&Dividi il file in orizzontale"
 ::msgcat::mcset it "Spl&it file (side by side)"\
                    "Dividi il file (&fianco a fianco)"
 ::msgcat::mcset it "Tile all &vertically" "&Impila tutti"
