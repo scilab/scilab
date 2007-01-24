@@ -256,7 +256,9 @@ sci_gateway/c/sci_debug.c \
 sci_gateway/c/gw_core.c \
 sci_gateway/c/sci_error.c \
 sci_gateway/c/sci_sciargs.c \
-sci_gateway/c/sci_with_module.c
+sci_gateway/c/sci_with_module.c \
+sci_gateway/c/sci_getdynlibext.c
+
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_errclear.f \
 sci_gateway/fortran/sci_who.f \

@@ -7,20 +7,29 @@
 
   <TYPE>Scilab Function</TYPE>
 
-  <DATE>$LastChangedDate$</DATE>
+  <DATE>$LastChangedDate: 2006-08-03 16:16:36 +0200 (jeu., 03 août 2006)
+  $</DATE>
 
   <SHORT_DESCRIPTION name="TCL_GetVersion">get the version of the TCL/TK
   library at runtime.</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>TCL_GetVersion()</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>ret=TCL_GetVersion('numbers')</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 
   <DESCRIPTION>
     <P>get the version of the TCL/TK library at runtime.</P>
+
+    <P>ret=TCL_GetVersion('numbers') returns a matrix with the version of the
+    TCL/TK library at runtime.</P>
   </DESCRIPTION>
 
-  <EXAMPLE><![CDATA[TCL_GetVersion() ]]></EXAMPLE>
+  <EXAMPLE><![CDATA[TCL_GetVersion() 
+TCL_GetVersion("numbers") 
+
+]]></EXAMPLE>
 
   <AUTHOR>Allan CORNET</AUTHOR>
 </MAN>

@@ -3,6 +3,7 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include "sci_TCL_GetVersion.h"
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_TCL_GetVersion) _PARAMS((char *fname,unsigned long l))
 {
@@ -15,12 +16,14 @@ int C2F(sci_TCL_GetVersion) _PARAMS((char *fname,unsigned long l))
 	char VersionString[256];
 	char ReleaseType[256];
 
-	CheckRhs(0,0);
+	CheckRhs(0,1);
 	CheckLhs(1,1);
-	
-	Tcl_GetVersion(&major, &minor, &patchLevel, &type);
-	switch (type)
+
+	if (Rhs == 0)
 	{
+		Tcl_GetVersion(&major, &minor, &patchLevel, &type);
+		switch (type)
+		{
 		case TCL_ALPHA_RELEASE:
 			sprintf(ReleaseType,TCL_MSG2);
 			break;
@@ -33,19 +36,58 @@ int C2F(sci_TCL_GetVersion) _PARAMS((char *fname,unsigned long l))
 		default:
 			sprintf(ReleaseType,TCL_MSG5);
 			break;
+		}
+
+		sprintf(VersionString,TCL_MSG6,major,minor,patchLevel,ReleaseType);
+
+		output=(char*)MALLOC((strlen(VersionString)+1)*sizeof(char));
+		sprintf(output,"%s",VersionString);
+		n1=1;
+		CreateVarFromPtr( 1, "c",(m1=(int)strlen(output), &m1),&n1,&output);
+		if (output) {FREE(output);output=NULL;}
+
+		LhsVar(1) = 1;
+		C2F(putlhsvar)();
 	}
+	else 
+	{
+		if (GetType(1) == sci_strings)
+		{
+			char *Param=NULL;
 
-	sprintf(VersionString,TCL_MSG6,major,minor,patchLevel,ReleaseType);
-	
-	output=(char*)MALLOC((strlen(VersionString)+1)*sizeof(char));
-	sprintf(output,"%s",VersionString);
-	n1=1;
-	CreateVarFromPtr( 1, "c",(m1=(int)strlen(output), &m1),&n1,&output);
-	if (output) {FREE(output);output=NULL;}
-			
-	LhsVar(1) = 1;
-	C2F(putlhsvar)();
+			GetRhsVar(1,"c",&m1,&n1,&l1);
+			Param=cstk(l1);
 
+			if (strcmp(Param,"numbers") == 0)
+			{
+				int *VERSIONMATRIX=NULL;
+				VERSIONMATRIX=(int *)MALLOC( (4)*sizeof(int) );
+
+				Tcl_GetVersion(&major, &minor, &patchLevel, &patchLevel);
+
+				VERSIONMATRIX[0]=(int)major;
+				VERSIONMATRIX[1]=(int)minor;
+				VERSIONMATRIX[2]=(int)patchLevel;
+				VERSIONMATRIX[3]=(int)patchLevel; 
+
+				m1=1;
+				n1=4;
+				CreateVarFromPtr(1, "i", &m1, &n1 ,&VERSIONMATRIX);
+				LhsVar(1)=1;
+				PutLhsVar();
+				if (VERSIONMATRIX){	FREE(VERSIONMATRIX); VERSIONMATRIX=NULL;}
+			}
+			else
+			{
+				Scierror(999,"%s: invalid rhs parameter : help TCL_GetVersion.\r\n",fname);
+			}
+		}
+		else
+		{
+			Scierror(999,"%s: invalid rhs parameter : help TCL_GetVersion.\r\n",fname);
+		}
+		
+	}
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

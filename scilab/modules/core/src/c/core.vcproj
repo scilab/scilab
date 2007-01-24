@@ -466,6 +466,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_getdynlibext.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_gethistory.c"
 				>
 			</File>

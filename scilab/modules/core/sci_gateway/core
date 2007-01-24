@@ -70,7 +70,8 @@
 13 	62 warning     	  
 13  63 getcwd         
 13  64 getmodules  
-13  65 with_module   
+13  65 with_module
+13  66 getdynlibext   
 ; --------------------------
 14 1 user
 ; --------------------------
