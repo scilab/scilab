@@ -7,7 +7,7 @@ function tklib=gettklib()
 		// the SCI/bin directory and scilab script add SCI/bin
 		// to the LD_LIBRARY_PATH (or SHLIB_PATH).
 		// So, If libtk8.4.so (or .sl) exists in SCI/bin ... it's ok
-		libname='libtk'+string(tcltkver(1))+string(tcltkver(2));
+		libname='libtk'+string(tcltkver(1))+'.'+string(tcltkver(2));
 		if fileinfo('SCI/bin/'+libname+getdynlibext()) <> [] then
 			tklib=libname+getdynlibext();
 			return;

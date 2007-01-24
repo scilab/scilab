@@ -1060,6 +1060,9 @@ dnl ## substituting variables
 dnl #########################
 AC_SUBST(tcldir)
 
+# Define the standard extension of a dynamic library 
+AC_DEFINE_UNQUOTED([SHARED_LIB_EXT],["$shrext_cmds"],[Extension of a shared library])
+
 ## Faudriat mettre -I/home/sylvestre/dev/scilab5/libs/MALLOC/includes/ juste dans les modules ou c'est necessaire
 
 AC_CONFIG_FILES([ 

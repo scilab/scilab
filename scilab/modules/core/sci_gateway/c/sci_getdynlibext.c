@@ -4,6 +4,7 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include "gw_core.h"
 #include "MALLOC.h"
+#include "machine.h"
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(sci_getdynlibext) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -18,7 +19,7 @@ int C2F(sci_getdynlibext) _PARAMS((char *fname,unsigned long fname_len))
 	#if _MSC_VER
 		sprintf(output,"%s",".dll");
 	#else
-		sprintf(output,"%s",".so");
+		sprintf(output,"%s",SHARED_LIB_EXT);
 	#endif
 
 	n1=1;
