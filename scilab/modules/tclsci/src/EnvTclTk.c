@@ -11,10 +11,8 @@
 
 #include <stdio.h>
 #include "Errors.h"
-#ifdef WITH_TK
-	#include "tcl.h"
-	#include "tk.h"
-#endif
+#include "tcl.h"
+#include "tk.h"
 #include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/
 extern BOOL ConvertPathUnixToWindowsFormat(char *pathunix,char *pathwindows);
@@ -36,9 +34,7 @@ BOOL Set_TCL_LIBRARY_PATH(char *DefaultPath)
 	CopyOfDefaultPath=MALLOC(((int)strlen(DefaultPath)+1)*sizeof(char));
 
 	
-	#ifdef WITH_TK
 	Tcl_GetVersion(&major, &minor, &patchLevel, &type);
-	#endif
 
 	/* to be sure that it's windows format */
 	/* c:\progra~1\scilab-5.0\modules\tclsci\tcl\tcl8.4 */
@@ -86,9 +82,7 @@ BOOL Set_TK_LIBRARY_PATH(char *DefaultPath)
 
 	CopyOfDefaultPath=MALLOC(((int)strlen(DefaultPath)+1)*sizeof(char));
 
-	#ifdef WITH_TK
 	Tcl_GetVersion(&major, &minor, &patchLevel, &type);
-	#endif
 
 	/* to be sure that it's windows format */
 	/* c:\progra~1\scilab-3.1\modules\tclsci\tcl\tk8.4 */
