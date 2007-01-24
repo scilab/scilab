@@ -1225,6 +1225,14 @@ else
 echo "  JAVA disabled"
 fi
 
+echo ""
+echo "Libtool config:"
+echo "  objext           = $objext"
+echo "  libext (static)  = $libext"
+echo "  shrext_cmds      = $shrext_cmds"
+echo "  exeext           = $exeext"
+
+echo ""
 
 echo ""
 echo "Options used to compile and link:"
@@ -1251,4 +1259,4 @@ echo "  TERMCAP_LIB      = $TERMCAP_LIB"
 echo "  TK_INC_PATH      = $TK_INC_PATH"
 echo "  TCL_INC_PATH     = $TCL_INC_PATH"
 echo "  TCLTK_LIBS       = $TCLTK_LIBS"
-echo ""
+echo "" 
