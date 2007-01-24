@@ -7,8 +7,7 @@
 
   <TYPE>Scilab Function</TYPE>
 
-  <DATE>$LastChangedDate: 2006-08-03 16:16:36 +0200 (jeu., 03 août 2006)
-  $</DATE>
+  <DATE>$LastChangedDate: 2006-08-03 16:16:36 +0200 (jeu., 03 août 2006)$</DATE>
 
   <SHORT_DESCRIPTION name="TCL_GetVersion">get the version of the TCL/TK
   library at runtime.</SHORT_DESCRIPTION>
