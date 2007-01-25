@@ -19,7 +19,7 @@
 /*-----------------------------------------------------------------------------------*/
 int sci_delete(char *fname,unsigned long fname_len)
 {
-  integer m1,n1,l1,m2,n2,l2,num,cur,na,verb=0, lw;
+  integer m1,n1,l1,m2,n2,l2,num, lw;
   unsigned long hdl;
   sciPointObj *pobj, *pparentfigure;
 
@@ -53,57 +53,62 @@ int sci_delete(char *fname,unsigned long fname_len)
     break;
   default:
     CheckRhs(0,0);
-    hdl = (unsigned long ) sciGetHandle((sciPointObj *)sciGetCurrentObj());
+    hdl = (unsigned long) sciGetHandle(sciGetCurrentObj());
     break;
   }
 
   pobj = sciGetPointerFromHandle(hdl);
-  if (pobj == (sciPointObj *)NULL) {
+  if (pobj == NULL)
+  {
     Scierror(999,"%s :the handle is not valid\r\n",fname);
     return 0;
   }
-  num= sciGetNumFigure (pobj);
-  SciWin();
-  C2F (dr) ("xget", "window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F (dr) ("xset", "window",&num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  
+  num = sciGetNumFigure( pobj ) ;
 
   if ((Rhs == 2) && (strcmp(cstk(l2),"callback") == 0))
   {
     sciDelCallback((sciPointObj *)pobj);
   }
-  else {
+  else
+  {
 
-    sciEntityType objType    = sciGetEntityType( pobj ) ;
-    BOOL          isSelected = sciGetIsSelected( pobj ) ;
+    sciEntityType objType = sciGetEntityType( pobj ) ;
 
     if (sciGetParentFigure(pobj) != NULL && sciGetEntityType(pobj) != SCI_FIGURE)
-    { /* I added && sciGetEntityType(pobj) != SCI_FIGURE at last !!!!!!!! F.Leray 09.04.04 */
+    {
+      /* I added && sciGetEntityType(pobj) != SCI_FIGURE at last !!!!!!!! F.Leray 09.04.04 */
+      sciPointObj * parentSubWin = sciGetParentSubwin( pobj ) ;
+      BOOL selected = sciGetIsSelected( pobj ) ;
       pparentfigure = sciGetParentFigure(pobj);
-      sciSetCurrentObj((sciPointObj *)sciGetParent((sciPointObj *)pobj)); /* A LAISSER F.Leray 25.03.04*/
-      sciDelGraphicObj((sciPointObj *)pobj);
+      sciSetCurrentObj( sciGetParent(pobj) ) ; /* A LAISSER F.Leray 25.03.04*/
+      sciDelGraphicObj( pobj ) ; /* don't use pobj after this point */
+      pobj = NULL ;
+
+      /* If there is a merge object, we must update the axes */
+      if ( objType != SCI_SUBWIN && pSUBWIN_FEATURE(parentSubWin)->facetmerge )
+      {
+        updateMerge( parentSubWin ) ;
+      }
 
       /* test here: we could have deleted the selected subwindow, we must choose an other */
       /* We must always have one selected subwindow (if at least one subwindow exists) */
-      if ( objType  == SCI_SUBWIN && isSelected )
+      if ( objType == SCI_SUBWIN && selected )
       {
         /* we have to select antoher subwindow if one exists at least */
         sciSelectFirstSubwin( pparentfigure ) ;
       }
 
       /* redraw the window */
-      sciDrawObj((sciPointObj *)pparentfigure);
+      sciDrawObj( pparentfigure ) ;
     }
-    else if(sciGetEntityType(pobj) == SCI_FIGURE) /* F.Leray 13.04.04: We delete the special object Figure !!*/
+    else if( sciGetEntityType(pobj) == SCI_FIGURE ) /* F.Leray 13.04.04: We delete the special object Figure !!*/
     {
       sciDeleteWindow( num );
     }
 
   }
 
-  if(cur != num)
-  {
-    C2F (dr) ("xset", "window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  }
   LhsVar(1)=0;
   return 0;
 }

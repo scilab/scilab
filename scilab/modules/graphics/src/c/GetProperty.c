@@ -3062,6 +3062,11 @@ BOOL
 sciGetRealVisibility (sciPointObj * pobj)
 {
 
+  if ( pobj == NULL )
+  {
+    return FALSE ;
+  }
+
   if ( sciGetEntityType( pobj ) == SCI_FIGURE )
   {
     return sciGetVisibility( pobj ) ;
@@ -5307,3 +5312,4 @@ int sciGetInfoMessageLength( sciPointObj * pObj )
   }
   return -1 ;
 }
+/*-------------------------------------------------------------------------------------------*/
