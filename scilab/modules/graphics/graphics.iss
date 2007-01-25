@@ -34,7 +34,7 @@ Source: modules\{#GRAPHICS}\macros\*.sci; DestDir: {app}\modules\{#GRAPHICS}\mac
 ;
 Source: modules\{#GRAPHICS}\tcl\*.*; DestDir: {app}\modules\{#GRAPHICS}\tcl; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS}
 ;
-Source: modules\{#GRAPHICS}\fonts\*bdf; DestDir: {app}\modules\{#GRAPHICS}\fonts; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS}
+Source: modules\{#GRAPHICS}\fonts\*.bdf; DestDir: {app}\modules\{#GRAPHICS}\fonts; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS}
 ;
 Source: modules\{#GRAPHICS}\demos\*.*; DestDir: {app}\modules\{#GRAPHICS}\demos; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS}
 ;
