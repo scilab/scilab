@@ -6,12 +6,6 @@
 
 #include <math.h>
 
-/* Define for using dld for sunos */
-/* #undef SUNOSDLD */
-
-/* Define if leading underscores */
-/* #undef WLU */
-
 /* Define if trailing underscores */
 #define WTU 1
 
@@ -103,5 +97,7 @@ typedef int BOOL ;
 #ifndef  _PARAMS
 #define  _PARAMS(paramlist)		paramlist
 #endif
+
+#define SHARED_LIB_EXT ".dll"
 
 #endif /* MACHINE_H  */

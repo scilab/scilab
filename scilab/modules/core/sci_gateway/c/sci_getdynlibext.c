@@ -16,12 +16,8 @@ int C2F(sci_getdynlibext) _PARAMS((char *fname,unsigned long fname_len))
 	CheckLhs(1,1);
 
 	output=(char*)MALLOC((nbcharsext+1)*sizeof(char));
-	#if _MSC_VER
-		sprintf(output,"%s",".dll");
-	#else
-		sprintf(output,"%s",SHARED_LIB_EXT);
-	#endif
-
+	sprintf(output,"%s",SHARED_LIB_EXT);
+	
 	n1=1;
 	CreateVarFromPtr( 1, "c",(m1=(int)strlen(output), &m1),&n1,&output);
 	if (output) {FREE(output);output=NULL;}
