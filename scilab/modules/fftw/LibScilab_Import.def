@@ -21,6 +21,8 @@ EXPORTS
  getrhscvar_
  createvarfromptr_
  createvar_
+ gettype_
+ vstk_
 ;
 ;elementaries_functions_f
  dset_

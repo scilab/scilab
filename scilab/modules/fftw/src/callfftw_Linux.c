@@ -22,13 +22,13 @@ BOOL IsLoadedFFTW(void)
 	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/
-BOOL LoadFFTWLibrary(void)
+BOOL LoadFFTWLibrary(char *libraryname)
 {
 	BOOL bOK=FALSE;
 
 	if (hinstLib == NULL)
 	{
-		hinstLib = dlopen(FFTWLIBNAMELINUX, RTLD_NOW | RTLD_GLOBAL); 
+		hinstLib = dlopen(libraryname, RTLD_NOW | RTLD_GLOBAL); 
 		
 		MY_FFTW_EXECUTE_SPLIT_DFT=NULL;
 		MY_FFTW_PLAN_GURU_SPLIT_DFT=NULL;

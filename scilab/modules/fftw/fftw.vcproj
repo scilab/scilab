@@ -204,6 +204,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\fftwlibname.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\gw_fftw.c"
 				>
 			</File>
@@ -255,6 +259,10 @@
 			</File>
 			<File
 				RelativePath=".\src\fftw_utilities.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\fftwlibname.h"
 				>
 			</File>
 			<File
@@ -314,6 +322,10 @@
 		</Filter>
 		<File
 			RelativePath=".\sci_gateway\fftw"
+			>
+		</File>
+		<File
+			RelativePath=".\Makefile.am"
 			>
 		</File>
 		<File

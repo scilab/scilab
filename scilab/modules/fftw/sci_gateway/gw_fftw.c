@@ -8,9 +8,10 @@
 #include <Windows.h>
 #include "ExceptionMessage.h"
 #endif
+#include "Scierror.h"
 #include "sciprint.h"
-/*-----------------------------------------------------------------------------------*/
-extern int  Scierror __PARAMS((int iv,char *fmt,...));
+#include "MALLOC.h"
+#include "fftwlibname.h"
 /*-----------------------------------------------------------------------------------*/
 /* interface for the previous function Table */ 
 /*-----------------------------------------------------------------------------------*/ 
@@ -44,11 +45,19 @@ int C2F(gw_fftw)()
 	{
 		if (!IsLoadedFFTW())
 		{
-			#if _MSC_VER
-			Scierror(999,"FFTW Library %s not found in SCI/bin directory.\r\n",FFTWLIBNAMEWINDOWS);
-			#else
-			Scierror(999,"FFTW Library %s not found in SCI/bin directory.\r\n",FFTWLIBNAMELINUX);
-			#endif
+			char *fftwlibNAME = getfftwlibname();
+
+			if (fftwlibNAME)
+			{
+				Scierror(999,"FFTW Library %s not found.\r\n",fftwlibNAME);
+			}
+			else
+			{
+				Scierror(999,"FFTW Library not found.\r\n");
+			}
+			
+			if (fftwlibNAME) {FREE(fftwlibNAME); fftwlibNAME=NULL;}
+			
 			return 0;
 		}
 	}

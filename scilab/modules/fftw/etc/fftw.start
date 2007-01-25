@@ -2,7 +2,13 @@
 // fftw module initialisation file 
 // Copyright INRIA 2006
 // ====================================================================
-if ( loadfftwlibrary() ) then
+if MSDOS then
+  librarynamefftw = SCI+"/bin/libfftw3-3"+getdynlibext();
+else
+  librarynamefftw = SCI+"/bin/libfftw3"+getdynlibext();
+end
+
+if ( loadfftwlibrary(librarynamefftw) ) then
 
 //Load  functions librarie
 //load('SCI/modules/fftw/macros/lib');
@@ -30,7 +36,8 @@ end
 
 clear pathhelp pathdemos get_absolute_file_path add_help_chapter LANGUAGE;
 
-end // if ( loadfftwlibrary() ) then
+end // if ( loadfftwlibrary(librarynamefftw) ) then
 
+clear librarynamefftw
 
 // ====================================================================
