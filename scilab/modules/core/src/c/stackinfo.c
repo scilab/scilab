@@ -42,7 +42,7 @@ integer C2F(getgstackinfo)(integer *total,integer *used)
 /*-----------------------------------------------------------------------------------*/
 integer C2F(getvariablesinfo)(integer *total,integer *used)
 {
-	*used = C2F(vstk).isiz - C2F(vstk).bot - 1 ;
+	*used = C2F(vstk).isiz - C2F(vstk).bot ;
 	*total = C2F(vstk).isiz - 1;
 	return 0;
 }

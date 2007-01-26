@@ -261,7 +261,6 @@ sci_gateway/c/sci_getdynlibext.c
 
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_errclear.f \
-sci_gateway/fortran/sci_who.f \
 sci_gateway/fortran/sci_c_link.f \
 sci_gateway/fortran/sci_funcprot.f \
 sci_gateway/fortran/sci_global.f \

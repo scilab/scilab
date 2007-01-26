@@ -1,32 +1,55 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
+
   <TITLE>who</TITLE>
+
   <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="who"> listing of variables</SHORT_DESCRIPTION>
+
+  <SHORT_DESCRIPTION name="who">listing of variables</SHORT_DESCRIPTION>
+
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>who</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>who()  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>names=who('local')  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[names,mem]=who('local')  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>names=who('global')  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[names,mem]=who('global')  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>  </CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>who()</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>names=who('local')</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>[names,mem]=who('local')</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>names=who('global')</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>[names,mem]=who('global')</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>who('sorted')</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>names=who('local','sorted')</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>[names,mem]=who('local','sorted')</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>names=who('global','sorted')</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>[names,mem]=who('global','sorted')</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
+
   <DESCRIPTION>
     <P><VERB>who</VERB> displays current variable names.</P>
-    <P><VERB>who('local')</VERB> or <VERB>who('get')</VERB>  Returns current variable names
-    and memory used in double precision worlds.</P>
-    <P><VERB>who('global')</VERB> returns global  variable names
-    and memory used in double precision worlds.</P>
+
+    <P><VERB>who('local')</VERB> or <VERB>who('get')</VERB> Returns current
+    variable names and memory used in double precision worlds.</P>
+
+    <P><VERB>who('global')</VERB> returns global variable names and memory
+    used in double precision worlds.</P>
+    
+    <P><VERB>who('sorted')</VERB> displays in alphabetical order all variables.</P>
   </DESCRIPTION>
+
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>whos</LINK>
     </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>who_user</LINK>
     </SEE_ALSO_ITEM>
