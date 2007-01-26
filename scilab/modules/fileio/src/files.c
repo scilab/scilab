@@ -143,12 +143,11 @@ void C2F(delfile)(integer *fd)
 {
   if (*fd>=0 && *fd<MAXF ) 
     {
-      ftformat[*fd] = (FILE*) 0;
+      ftformat[*fd] = (FILE*) NULL;
       ftswap[*fd] = 0;
       fttype[*fd] = 0;
       ftmode[*fd] = 0;
-      if ( ftname[*fd]!=  (char *)0) FREE(ftname[*fd]);
-      ftname[*fd] = (char *)0;
+      if (ftname[*fd]) { FREE(ftname[*fd]);  ftname[*fd] = NULL; }
     }
 }
 /**************************************
