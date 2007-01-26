@@ -65,8 +65,11 @@ SUBDIRS += .
 
 
 
+#### Target ######
+target=$(datadir)/
+
 #### Basic files ####
-libscilab_la_rootdir = $(datadir)
+libscilab_la_rootdir = $(target)
 libscilab_la_root_DATA = modules
 
 # 

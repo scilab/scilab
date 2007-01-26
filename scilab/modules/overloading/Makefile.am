@@ -754,7 +754,6 @@ macros/%hm_sum.bin \
 macros/%hm_x_hm.bin \
 macros/%hm_x_s.bin \
 macros/%hm_zeros.bin \
-macros/%h_p.bin \
 macros/%h_set.bin \
 macros/%i_and.bin \
 macros/%i_ascii.bin \

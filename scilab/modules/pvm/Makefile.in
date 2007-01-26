@@ -397,7 +397,7 @@ top_srcdir = @top_srcdir@
 
 #### pvm : Scilab macros ###
 @PVM_TRUE@libscipvm_la_macrodir = $(target)/macros
-@PVM_TRUE@libscipvm_la_macro_DATA22 = macros/configure_pvm.sci \
+@PVM_TRUE@MACROS = macros/configure_pvm.sci \
 @PVM_TRUE@macros/with_pvm.sci macros/configure_pvm.bin \
 @PVM_TRUE@macros/with_pvm.bin macros/names macros/lib macros/buildmacros.sce
 
@@ -468,11 +468,11 @@ top_srcdir = @top_srcdir@
 @PVM_TRUE@pkgdocdir = $(target)
 @PVM_TRUE@DOCDIRS = help/fr help/eng
 @PVM_TRUE@DOCMASK = *.htm
+@PVM_TRUE@DOCMASKXML = *.xml
 
 #bhalbhalbha
 @PVM_TRUE@pkgmacrosdir = $(target)
 @PVM_TRUE@MACROSDIRS = macros/
-@PVM_TRUE@MACROSMASK = *.sci
 all: all-am
 
 .SUFFIXES:
@@ -1228,17 +1228,25 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_TRUE@		  done ; \
 @PVM_TRUE@		fi; \
 @PVM_TRUE@	done
+@INSTALL_HELP_XML_TRUE@@PVM_TRUE@	@for dir in $(DOCDIRS) ; do \
+@INSTALL_HELP_XML_TRUE@@PVM_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+@INSTALL_HELP_XML_TRUE@@PVM_TRUE@		if ls -lLd $(srcdir)/$$dir/$(DOCMASKXML) >/dev/null 2>&1; then \
+@INSTALL_HELP_XML_TRUE@@PVM_TRUE@		  for file in $(srcdir)/$$dir/$(DOCMASKXML) ; do \
+@INSTALL_HELP_XML_TRUE@@PVM_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+@INSTALL_HELP_XML_TRUE@@PVM_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+@INSTALL_HELP_XML_TRUE@@PVM_TRUE@		  done ; \
+@INSTALL_HELP_XML_TRUE@@PVM_TRUE@		fi; \
+@INSTALL_HELP_XML_TRUE@@PVM_TRUE@	done
 @PVM_TRUE@install-data-local: $(MACROS)
 @PVM_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)
 @PVM_TRUE@	@if test ! -z "$(MACROS)"; then \
 @PVM_TRUE@	for dir in $(MACROSDIRS) ; do \
 @PVM_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-@PVM_TRUE@		if ls -lLd $(srcdir)/$$dir/$(MACROSMASK)  >/dev/null 2>&1; then \
-@PVM_TRUE@		  for file in $(srcdir)/$$dir/$(MACROSMASK) ; do \
+@PVM_TRUE@			echo "file in "$(srcdir)/$$dir; \
+@PVM_TRUE@		  for file in $(MACROS); do \
 @PVM_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 @PVM_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
 @PVM_TRUE@		  done ; \
-@PVM_TRUE@		fi; \
 @PVM_TRUE@	done; \
 @PVM_TRUE@	fi
 

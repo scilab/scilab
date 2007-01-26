@@ -900,6 +900,15 @@ if test "x$MANGENERATOR" == 'x' -o "x$with_xsltproc" != 'x'; then
    AC_CHECK_MAN_GENERATOR([$with_xsltproc],[xsltproc],[xsltproc])
 fi
 
+
+AC_ARG_WITH(install-help-xml,
+		[  --with-install-help-xml  make install will install XML files ],
+		[with_install_help_xml=$withval], 
+		[with_install_help_xml='']
+		)
+
+AM_CONDITIONAL(INSTALL_HELP_XML, test "$with_install_help_xml" = "yes")
+
 #######################
 ## test for underscores (name mangling issues between C and fortran)
 #######################
@@ -1171,8 +1180,8 @@ echo "Uses local xaw (--with-local-xaw) ............... : $with_local_xaw"
 echo "Use PVM (--with-pvm) ............................ : $with_pvm"
 echo "PVM include (--with-pvm-include) ................ : $PVMINCLUDE"
 echo "PVM library (--with-pvm-library) ................ : $PVMLIBDIR"
-echo "Do not use TCL/TK (--without-tk) ................. : $with_tk"
-echo "Do not compile with Ocaml (--without-ocaml) ...... : $with_ocaml"
+echo "Do not use TCL/TK (--without-tk) ................ : $with_tk"
+echo "Do not compile with Ocaml (--without-ocaml) ..... : $with_ocaml"
 echo "TCL include (--with-tcl-include) ................ : $USER_TCL_INC_PATH"
 echo "TCL library (--with-tcl-library) ................ : $USER_TCL_LIB_PATH"
 echo "TK include (--with-tk-include) .................. : $USER_TK_INC_PATH"
@@ -1180,6 +1189,7 @@ echo "TK library (--with-tk-library) .................. : $USER_TK_LIB_PATH"
 echo "Atlas library (--with-atlas-library) ............ : $USER_ATLAS_LIB_PATH"
 echo "Sablotron processor (--with-sablotron) .......... : $with_sablotron"
 echo "Xsltproc processor (--with-xsltproc) ............ : $with_xsltproc"
+echo "Install XML Help (--with-install-help-xml) ...... : $with_install_help_xml"
 echo "Do not compile Scicos (--without-scicos) ........ : $without_scicos"
 echo ""
 echo "GUI : $GUI"

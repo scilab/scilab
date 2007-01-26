@@ -46,6 +46,7 @@ macrossly:
 pkgdocdir = $(target)
 DOCDIRS = help/fr help/eng
 DOCMASK = *.htm
+DOCMASKXML = *.xml
 install-html-local:
 	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
 	@for dir in $(DOCDIRS) ; do \
@@ -57,11 +58,21 @@ install-html-local:
 		  done ; \
 		fi; \
 	done
+if INSTALL_HELP_XML
+	@for dir in $(DOCDIRS) ; do \
+	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+		if ls -lLd $(srcdir)/$$dir/$(DOCMASKXML) >/dev/null 2>&1; then \
+		  for file in $(srcdir)/$$dir/$(DOCMASKXML) ; do \
+		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+		  done ; \
+		fi; \
+	done
+endif
 
 #bhalbhalbha
 pkgmacrosdir = $(target)
 MACROSDIRS = macros/
-MACROSMASK = *.sci
 install-data-local: $(MACROS)
 	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)
 	@if test ! -z "$(MACROS)"; then \

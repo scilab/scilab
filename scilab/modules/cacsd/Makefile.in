@@ -932,11 +932,11 @@ SUFFIXES = .sci
 pkgdocdir = $(target)
 DOCDIRS = help/fr help/eng
 DOCMASK = *.htm
+DOCMASKXML = *.xml
 
 #bhalbhalbha
 pkgmacrosdir = $(target)
 MACROSDIRS = macros/
-MACROSMASK = *.sci
 all: all-am
 
 .SUFFIXES:
@@ -2058,6 +2058,15 @@ install-html-local:
 		  done ; \
 		fi; \
 	done
+@INSTALL_HELP_XML_TRUE@	@for dir in $(DOCDIRS) ; do \
+@INSTALL_HELP_XML_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+@INSTALL_HELP_XML_TRUE@		if ls -lLd $(srcdir)/$$dir/$(DOCMASKXML) >/dev/null 2>&1; then \
+@INSTALL_HELP_XML_TRUE@		  for file in $(srcdir)/$$dir/$(DOCMASKXML) ; do \
+@INSTALL_HELP_XML_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+@INSTALL_HELP_XML_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+@INSTALL_HELP_XML_TRUE@		  done ; \
+@INSTALL_HELP_XML_TRUE@		fi; \
+@INSTALL_HELP_XML_TRUE@	done
 install-data-local: $(MACROS)
 	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)
 	@if test ! -z "$(MACROS)"; then \

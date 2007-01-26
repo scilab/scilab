@@ -3,6 +3,9 @@
 ### INRIA - Scilab 2006 
 ##########
 
+#### Target ######
+target=$(datadir)/lapack
+
 pkglib_LTLIBRARIES = libscilapack.la 
 
 noinst_LTLIBRARIES = libdummy-lapack.la
