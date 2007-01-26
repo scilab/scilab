@@ -39,7 +39,8 @@ else
 	progbase=`basename "$progname"`
 	run_sci="$curdir/scilab-bin"
 	if test -x "$run_sci"; then # scilab-bin is in the /bin/ directory
-		SCI="$curdir"
+		cd "$curdir/../"
+		SCI=`pwd`
 		found=1
 	else
 		run_sci="$curdir/../scilab-bin"
