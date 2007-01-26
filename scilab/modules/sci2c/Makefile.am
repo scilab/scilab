@@ -11,7 +11,7 @@ libsci2c_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### sci2c : Scilab macros ###
 libsci2c_la_macrodir = $(target)/macros
-libsci2c_la_macro_DATA22 = macros/sci2c.sci  macros/names macros/lib macros/buildmacros.sce
+libsci2c_la_macro_MACROS = macros/sci2c.sci  macros/names macros/lib macros/buildmacros.sce
 
 
 #### sci2c : init scripts #### 

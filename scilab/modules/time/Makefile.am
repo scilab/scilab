@@ -42,7 +42,7 @@ libscitime_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### time : Scilab macros ###
 libscitime_la_macrodir = $(target)/macros
-libscitime_la_macro_DATA22 = macros/etime.sci \
+MACROS = macros/etime.sci \
 macros/now.sci \
 macros/toc.sci \
 macros/calendar.sci \

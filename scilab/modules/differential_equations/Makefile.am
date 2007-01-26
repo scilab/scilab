@@ -1,3 +1,8 @@
+##########
+### Sylvestre Ledru <sylvestre.ledru@inria.fr>
+### INRIA - Scilab 2006 
+##########
+
 DIFFERENTIAL_EQUATIONS_C_SOURCES = src/c/dassl.c
 
 DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES = src/fortran/rscar1.f \
@@ -130,7 +135,7 @@ libscidifferential_equations_la_root_DATA = changelog.txt licence.txt readme.txt
 
 #### differential_equations : Scilab macros ###
 libscidifferential_equations_la_macrodir = $(target)/macros
-libscidifferential_equations_la_macro_DATA22 = macros/odeoptions.sci macros/odeoptions.bin macros/names macros/lib macros/buildmacros.sce
+libscidifferential_equations_la_macro_MACROS = macros/odeoptions.sci macros/odeoptions.bin macros/names macros/lib macros/buildmacros.sce
 
 
 #### differential_equations : init scripts #### 

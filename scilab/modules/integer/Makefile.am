@@ -141,7 +141,7 @@ libsciinteger_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### integer : Scilab macros ###
 libsciinteger_la_macrodir = $(target)/macros
-libsciinteger_la_macro_DATA22 = macros/%i_plot2d1.sci \
+MACROS = macros/%i_plot2d1.sci \
 macros/%i_mfprintf.sci \
 macros/%i_plot2d2.sci \
 macros/%i_contour.sci \

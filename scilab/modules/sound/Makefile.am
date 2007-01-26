@@ -40,7 +40,7 @@ libscisound_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### sound : Scilab macros ###
 libscisound_la_macrodir = $(target)/macros
-libscisound_la_macro_DATA22 = macros/analyze.sci \
+MACROS = macros/analyze.sci \
 macros/soundsec.sci \
 macros/lin2mu.sci \
 macros/mapsound.sci \

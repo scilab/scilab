@@ -1,20 +1,39 @@
-AC_INIT([scilab],[0],[http://scilabsoft.inria.fr/cgi-bin/bugzilla_bug_II/index.cgi])
-AM_INIT_AUTOMAKE([foreign])
-AM_MAINTAINER_MODE
+##########
+### Sylvestre Ledru <sylvestre.ledru@inria.fr>
+### INRIA - Scilab 2006/2007
+##########
+### Configure.ac is used to create the configure file which will be 
+### used by the incremental link to detect compilers, flags, linker...
+### Should be multiplateform
+##########
 
+# Initialise autoconf
+AC_INIT([scilab],[0],[http://scilabsoft.inria.fr/cgi-bin/bugzilla_bug_II/index.cgi])
+
+# Initialise automake (foreign is low strictness)
+AM_INIT_AUTOMAKE([foreign]) 
+
+# Detect C compiler
 AC_PROG_CC
+
+# Detect C++ compiler
 AC_PROG_CXX
+
+# Detect Fortran Compiler (77 and 90)
 AC_PROG_F77
 
+# Initialise libtool
 AC_PROG_LIBTOOL
+
+# Specify which Makefile.in should be "adapted"
 AC_CONFIG_FILES([Makefile])
+
+# Configure the Makefile
 AC_OUTPUT
 
 
 echo ""
 echo "Options used to compile and link:"
-echo "  PREFIX           = $PREFIX_DIR"
-echo "  EXEC-PREFIX      = $EXEC_PREFIX_DIR"
 echo "  CC               = $CC"
 echo "  CFLAGS           = $CFLAGS"
 echo "  CPP              = $CPP"

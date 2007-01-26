@@ -45,7 +45,7 @@ libsciboolean_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### boolean : Scilab macros ###
 libsciboolean_la_macrodir = $(target)/macros
-libsciboolean_la_macro_DATA22 =  macros/buildmacros.sce
+MACROS =  macros/buildmacros.sce
 
 
 #### boolean : init scripts #### 

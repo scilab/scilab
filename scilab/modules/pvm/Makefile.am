@@ -74,7 +74,7 @@ libscipvm_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### pvm : Scilab macros ###
 libscipvm_la_macrodir = $(target)/macros
-libscipvm_la_macro_DATA22 = macros/configure_pvm.sci \
+MACROS = macros/configure_pvm.sci \
 macros/with_pvm.sci macros/configure_pvm.bin \
 macros/with_pvm.bin macros/names macros/lib macros/buildmacros.sce
 

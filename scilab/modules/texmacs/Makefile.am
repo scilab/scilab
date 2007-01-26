@@ -16,7 +16,7 @@ libscitexmacs_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### texmacs : Scilab macros ###
 libscitexmacs_la_macrodir = $(target)/macros
-libscitexmacs_la_macro_DATA22 = macros/%p_p.sci \
+MACROS = macros/%p_p.sci \
 macros/%b_p.sci \
 macros/%r_p.sci \
 macros/%c_p.sci \

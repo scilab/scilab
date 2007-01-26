@@ -15,7 +15,7 @@ libscioverloading_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### overloading : Scilab macros ###
 libscioverloading_la_macrodir = $(target)/macros
-libscioverloading_la_macro_DATA22 = macros/%sp_exp.sci \
+MACROS = macros/%sp_exp.sci \
 macros/%spb_h_spb.sci \
 macros/%c_i_st.sci \
 macros/%s_n_hm.sci \
@@ -458,7 +458,6 @@ macros/%hm_k_s.sci \
 macros/generic_i_s.sci \
 macros/%s_q_r.sci \
 macros/%lss_s_r.sci \
-macros/%h_p.sci \
 macros/%r_y_p.sci \
 macros/%hm_cos.sci \
 macros/%hm_q_hm.sci \

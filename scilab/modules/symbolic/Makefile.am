@@ -37,7 +37,7 @@ libscisymbolic_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### symbolic : Scilab macros ###
 libscisymbolic_la_macrodir = $(target)/macros
-libscisymbolic_la_macro_DATA22 =  macros/buildmacros.sce
+MACROS =  macros/buildmacros.sce
 
 
 #### symbolic : init scripts #### 

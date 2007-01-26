@@ -31,7 +31,7 @@ libscimexlib_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### mexlib : Scilab macros ###
 libscimexlib_la_macrodir = $(target)/macros
-libscimexlib_la_macro_DATA22 = macros/buildmacros.sce
+MACROS = macros/buildmacros.sce
 
 
 #### mexlib : init scripts #### 

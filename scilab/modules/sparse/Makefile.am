@@ -186,7 +186,7 @@ libscisparse_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### sparse : Scilab macros ###
 libscisparse_la_macrodir = $(target)/macros
-libscisparse_la_macro_DATA22 = macros/adj2sp.sci \
+MACROS = macros/adj2sp.sci \
 macros/sp2adj.sci \
 macros/issparse.sci \
 macros/pcg.sci \

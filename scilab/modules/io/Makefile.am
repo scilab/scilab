@@ -102,7 +102,7 @@ libsciio_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### io : Scilab macros ###
 libsciio_la_macrodir = $(target)/macros
-libsciio_la_macro_DATA22 = macros/printf.sci \
+MACROS = macros/printf.sci \
 macros/ssprint.sci \
 macros/getscilabkeywords.sci \
 macros/sprintf.sci \

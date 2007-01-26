@@ -7,9 +7,6 @@
 #### Target ######
 target=$(datadir)/helptools
 
-#SUFFIXES = .bin
-#	SCISCRIPT=$<
-#	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$SCISCRIPT'); save('$SCISCRIPT.bin'); exit;"
 
 #### helptools : Conf files ####
 libscihelptools_la_rootdir = $(target)
@@ -17,7 +14,7 @@ libscihelptools_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### helptools : Scilab macros ###
 libscihelptools_la_macrodir = $(target)/macros
-dist_libscihelptools_la_macro_DATA22 = macros/add_help_chapter.sci \
+MACROS = macros/add_help_chapter.sci \
 macros/browsehelp.sci \
 macros/help_menu.sci \
 macros/make_help_index.sci \
@@ -36,7 +33,6 @@ macros/loaddefaultbrowser.sci \
 macros/xmlfiletohtml.sci \
 macros/xmltohtml.sci \
 macros/clean_help.sci \
-macros/initial_help_chapters.sci \
 macros/help_skeleton.sci \
 macros/change_help_language.sci macros/add_help_chapter.bin \
 macros/apropos.bin \
@@ -54,7 +50,6 @@ macros/gethelpfile.bin \
 macros/help_menu.bin \
 macros/help.bin \
 macros/help_skeleton.bin \
-macros/initial_help_chapters.bin \
 macros/loaddefaultbrowser.bin \
 macros/make_help_index.bin \
 macros/manedit.bin \

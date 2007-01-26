@@ -51,7 +51,7 @@ libsciintersci_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### intersci : Scilab macros ###
 libsciintersci_la_macrodir = $(target)/macros
-libsciintersci_la_macro_DATA22 =   macros/buildmacros.sce
+MACROS =   macros/buildmacros.sce
 
 
 #### intersci : init scripts #### 

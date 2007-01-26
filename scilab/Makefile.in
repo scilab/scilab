@@ -71,7 +71,7 @@ PROGRAMS = $(bin_PROGRAMS)
 am_scilab_bin_OBJECTS = mainsci.$(OBJEXT)
 scilab_bin_OBJECTS = $(am_scilab_bin_OBJECTS)
 am__DEPENDENCIES_1 =
-scilab_bin_DEPENDENCIES = $(top_builddir)/modules/libsciscilab.la \
+scilab_bin_DEPENDENCIES = $(top_builddir)/modules/libscilab.la \
 	$(am__DEPENDENCIES_1)
 binSCRIPT_INSTALL = $(INSTALL_SCRIPT)
 SCRIPTS = $(bin_SCRIPTS)
@@ -263,7 +263,7 @@ ACLOCAL_AMFLAGS = -I m4/
 changelogs = CHANGES
 bin_SCRIPTS = bin/scilab
 scilab_bin_SOURCES = $(top_srcdir)/modules/core/src/fortran/mainsci.f
-scilab_bin_LDADD = $(top_builddir)/modules/libsciscilab.la \
+scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
 	$(X_EXTRA_LIBS) -lXt -lX11 -lSM
 
 sysconf_DATA = $(top_srcdir)/etc/scilab.start \

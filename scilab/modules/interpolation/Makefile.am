@@ -50,7 +50,7 @@ libsciinterpolation_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### interpolation : Scilab macros ###
 libsciinterpolation_la_macrodir = $(target)/macros
-libsciinterpolation_la_macro_DATA22 = macros/buildmacros.sce
+MACROS = macros/buildmacros.sce
 
 
 #### interpolation : init scripts #### 

@@ -588,11 +588,5 @@ libscielementaries_functions_la_include_HEADERS = includes/sci_tools.h \
 includes/gw_elementaries_functions.h \
 includes/elementaries_functions.h
 
-#macrosplop: $(MACROS)
-#	echo "macrosplop"
-
-#install-data-local: macrosplop
-#	echo "rohh"
-
 include $(top_srcdir)/Makefile.incl.am
 

@@ -267,7 +267,7 @@ top_srcdir = @top_srcdir@
 
 #### jvm : Scilab macros ###
 @JAVA_TRUE@libscijvm_la_macrodir = $(target)/macros
-@JAVA_TRUE@libscijvm_la_macro_DATA22 = macros/buildmacros.sce
+@JAVA_TRUE@MACROS = macros/buildmacros.sce
 
 #### jvm : init scripts #### 
 @JAVA_TRUE@libscijvm_la_etcdir = $(target)/etc
@@ -675,12 +675,11 @@ uninstall-am: uninstall-libscijvm_la_etcDATA \
 @JAVA_TRUE@	@if test ! -z "$(MACROS)"; then \
 @JAVA_TRUE@	for dir in $(MACROSDIRS) ; do \
 @JAVA_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-@JAVA_TRUE@		if ls -lLd $(srcdir)/$$dir/$(MACROSMASK)  >/dev/null 2>&1; then \
-@JAVA_TRUE@		  for file in $(srcdir)/$$dir/$(MACROSMASK) ; do \
+@JAVA_TRUE@			echo "file in "$(srcdir)/$$dir; \
+@JAVA_TRUE@		  for file in $(MACROS); do \
 @JAVA_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 @JAVA_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
 @JAVA_TRUE@		  done ; \
-@JAVA_TRUE@		fi; \
 @JAVA_TRUE@	done; \
 @JAVA_TRUE@	fi
 

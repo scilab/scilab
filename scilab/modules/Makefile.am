@@ -65,19 +65,16 @@ SUBDIRS += .
 
 
 
-#### Target ######
-target=$(datadir)
-
 #### Basic files ####
-libsciscilab_la_rootdir = $(target)
-libsciscilab_la_root_DATA = modules
+libscilab_la_rootdir = $(datadir)
+libscilab_la_root_DATA = modules
 
 # 
-pkglib_LTLIBRARIES = libsciscilab.la
-libsciscilab_la_SOURCES = 
+pkglib_LTLIBRARIES = libscilab.la
+libscilab_la_SOURCES = 
 
 # Core modules
-libsciscilab_la_LIBADD = \
+libscilab_la_LIBADD = \
 	$(top_builddir)/modules/mexlib/libscimexlib.la \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
 	$(top_builddir)/modules/boolean/libsciboolean.la \
@@ -110,17 +107,17 @@ libsciscilab_la_LIBADD = \
 	$(top_builddir)/modules/wintools/libsciwintools.la
 
 if PVM
-libsciscilab_la_LIBADD += $(top_builddir)/modules/pvm/libsciscipvm.la
+libscilab_la_LIBADD += $(top_builddir)/modules/pvm/libsciscipvm.la
 endif
 
 if JAVA
-libsciscilab_la_LIBADD += $(top_builddir)/modules/jvm/libsciscijvm.la
+libscilab_la_LIBADD += $(top_builddir)/modules/jvm/libsciscijvm.la
 endif
 
-libsciscilab_la_LIBADD += $(top_builddir)/modules/scicos/libsciscicos.la
+libscilab_la_LIBADD += $(top_builddir)/modules/scicos/libsciscicos.la
 
 ## Libs 
-libsciscilab_la_LIBADD += \
+libscilab_la_LIBADD += \
 $(top_builddir)/libs/blas/libsciblas.la \
 $(top_builddir)/libs/hashtable/libscihashtable.la \
 $(top_builddir)/libs/lapack/libscilapack.la \
@@ -131,3 +128,5 @@ BUILT_SOURCES = modules
 # Generate the module list from the SUBDIRS
 modules:
 	@for module in $(SUBDIRS); do if test $$module != "."; then echo $$module; fi;	done > modules
+
+include $(top_srcdir)/Makefile.incl.am

@@ -144,7 +144,7 @@ libscimetanet_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### metanet : Scilab macros ###
 libscimetanet_la_macrodir = $(target)/macros
-libscimetanet_la_macro_DATA22 = macros/ge_do_replot.sci \
+MACROS = macros/ge_do_replot.sci \
 macros/salesman.sci \
 macros/strong_con_nodes.sci \
 macros/perfect_match.sci \

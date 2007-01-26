@@ -46,7 +46,7 @@ libsciwintools_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### wintools : Scilab macros ###
 libsciwintools_la_macrodir = $(target)/macros
-libsciwintools_la_macro_DATA22 =  macros/buildmacros.sce 
+MACROS =  macros/buildmacros.sce 
 
 
 #### wintools : init scripts #### 

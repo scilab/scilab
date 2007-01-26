@@ -449,7 +449,7 @@ libscigraphics_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### graphics : Scilab macros ###
 libscigraphics_la_macrodir = $(target)/macros
-libscigraphics_la_macro_DATA22 = macros/replot.sci \
+MACROS = macros/replot.sci \
 macros/getlinestyle.sci \
 macros/zlabel.sci \
 macros/checkXYPair.sci \

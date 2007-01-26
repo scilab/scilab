@@ -20,7 +20,7 @@ bin_SCRIPTS			= bin/scilab
 
 scilab_bin_SOURCES		= $(top_srcdir)/modules/core/src/fortran/mainsci.f
 
-scilab_bin_LDADD = $(top_builddir)/modules/libsciscilab.la \
+scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
 	$(X_EXTRA_LIBS) -lXt -lX11 -lSM
 
 sysconf_DATA = $(top_srcdir)/etc/scilab.start \

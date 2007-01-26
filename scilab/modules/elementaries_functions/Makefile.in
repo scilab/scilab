@@ -2888,12 +2888,11 @@ install-data-local: $(MACROS)
 	@if test ! -z "$(MACROS)"; then \
 	for dir in $(MACROSDIRS) ; do \
 	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-		if ls -lLd $(srcdir)/$$dir/$(MACROSMASK)  >/dev/null 2>&1; then \
-		  for file in $(srcdir)/$$dir/$(MACROSMASK) ; do \
+			echo "file in "$(srcdir)/$$dir; \
+		  for file in $(MACROS); do \
 		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
 		  done ; \
-		fi; \
 	done; \
 	fi
 
@@ -2901,12 +2900,6 @@ macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(MACROS)
 	-@( \
 	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
 	$(top_builddir)/bin/scilab -nb -nwni -f $(abs_srcdir)/macros/buildmacros.sce 	)
-
-#macrosplop: $(MACROS)
-#	echo "macrosplop"
-
-#install-data-local: macrosplop
-#	echo "rohh"
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

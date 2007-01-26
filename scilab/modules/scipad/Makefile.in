@@ -225,7 +225,7 @@ libsciscipad_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### scipad : Scilab macros ###
 libsciscipad_la_macrodir = $(target)
-nobase_libsciscipad_la_macro_DATA22 = macros/scipad_internals/lib \
+nobase_MACROS = macros/scipad_internals/lib \
 macros/scipad_internals/LocalizeForScipad.sci \
 macros/scipad_internals/ext_exists.sci \
 macros/scipad_internals/msgdiff.sci \
@@ -516,12 +516,11 @@ install-data-local: $(MACROS)
 	@if test ! -z "$(MACROS)"; then \
 	for dir in $(MACROSDIRS) ; do \
 	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-		if ls -lLd $(srcdir)/$$dir/$(MACROSMASK)  >/dev/null 2>&1; then \
-		  for file in $(srcdir)/$$dir/$(MACROSMASK) ; do \
+			echo "file in "$(srcdir)/$$dir; \
+		  for file in $(MACROS); do \
 		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
 		  done ; \
-		fi; \
 	done; \
 	fi
 

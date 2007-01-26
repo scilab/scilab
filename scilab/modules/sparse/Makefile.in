@@ -471,7 +471,7 @@ libscisparse_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### sparse : Scilab macros ###
 libscisparse_la_macrodir = $(target)/macros
-libscisparse_la_macro_DATA22 = macros/adj2sp.sci \
+MACROS = macros/adj2sp.sci \
 macros/sp2adj.sci \
 macros/issparse.sci \
 macros/pcg.sci \
@@ -1570,12 +1570,11 @@ install-data-local: $(MACROS)
 	@if test ! -z "$(MACROS)"; then \
 	for dir in $(MACROSDIRS) ; do \
 	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-		if ls -lLd $(srcdir)/$$dir/$(MACROSMASK)  >/dev/null 2>&1; then \
-		  for file in $(srcdir)/$$dir/$(MACROSMASK) ; do \
+			echo "file in "$(srcdir)/$$dir; \
+		  for file in $(MACROS); do \
 		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
 		  done ; \
-		fi; \
 	done; \
 	fi
 

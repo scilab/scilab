@@ -34,7 +34,7 @@ libscijvm_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### jvm : Scilab macros ###
 libscijvm_la_macrodir = $(target)/macros
-libscijvm_la_macro_DATA22 =  macros/buildmacros.sce
+MACROS =  macros/buildmacros.sce
 
 
 #### jvm : init scripts #### 

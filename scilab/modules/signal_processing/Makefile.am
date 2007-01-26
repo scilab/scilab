@@ -115,7 +115,7 @@ libscisignal_processing_la_root_DATA = changelog.txt licence.txt readme.txt VERS
 
 #### signal_processing : Scilab macros ###
 libscisignal_processing_la_macrodir = $(target)/macros
-libscisignal_processing_la_macro_DATA22 = macros/srkf.sci \
+libscisignal_processing_la_macro_MACROS = macros/srkf.sci \
 macros/intdec.sci \
 macros/phc.sci \
 macros/lindquist.sci \

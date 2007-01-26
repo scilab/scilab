@@ -16,6 +16,11 @@
 
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
+### INRIA - Scilab 2006 
+##########
+
+##########
+### Sylvestre Ledru <sylvestre.ledru@inria.fr>
 ### INRIA - Scilab 2006 - 2007
 ### 
 ### Makefile included stuff
@@ -400,7 +405,7 @@ libscidifferential_equations_la_root_DATA = changelog.txt licence.txt readme.txt
 
 #### differential_equations : Scilab macros ###
 libscidifferential_equations_la_macrodir = $(target)/macros
-libscidifferential_equations_la_macro_DATA22 = macros/odeoptions.sci macros/odeoptions.bin macros/names macros/lib macros/buildmacros.sce
+libscidifferential_equations_la_macro_MACROS = macros/odeoptions.sci macros/odeoptions.bin macros/names macros/lib macros/buildmacros.sce
 
 #### differential_equations : init scripts #### 
 libscidifferential_equations_la_etcdir = $(target)/etc
@@ -1188,12 +1193,11 @@ install-data-local: $(MACROS)
 	@if test ! -z "$(MACROS)"; then \
 	for dir in $(MACROSDIRS) ; do \
 	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-		if ls -lLd $(srcdir)/$$dir/$(MACROSMASK)  >/dev/null 2>&1; then \
-		  for file in $(srcdir)/$$dir/$(MACROSMASK) ; do \
+			echo "file in "$(srcdir)/$$dir; \
+		  for file in $(MACROS); do \
 		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
 		  done ; \
-		fi; \
 	done; \
 	fi
 

@@ -15,7 +15,7 @@ libsciothers_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### others : Scilab macros ###
 libsciothers_la_macrodir = $(target)/macros
-libsciothers_la_macro_DATA22 = macros/edit.sci macros/edit.bin macros/names macros/lib macros/buildmacros.sce
+MACROS = macros/edit.sci macros/edit.bin macros/names macros/lib macros/buildmacros.sce
 
 
 #### others : init scripts #### 

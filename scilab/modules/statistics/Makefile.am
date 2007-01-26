@@ -116,7 +116,7 @@ libscistatistics_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### statistics : Scilab macros ###
 libscistatistics_la_macrodir = $(target)/macros
-libscistatistics_la_macro_DATA22 = macros/cmoment.sci \
+MACROS = macros/cmoment.sci \
 macros/strange.sci \
 macros/wcenter.sci \
 macros/regress.sci \
