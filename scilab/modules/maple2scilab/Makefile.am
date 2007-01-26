@@ -15,7 +15,7 @@ libmaple2scilab_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### maple2scilab : Scilab macros ###
 libmaple2scilab_la_macrodir = $(target)/macros
-libmaple2scilab_la_macro_MACROS = macros/sci2map.sci macros/sci2map.bin macros/names macros/lib macros/buildmacros.sce
+MACROS = macros/sci2map.sci macros/sci2map.bin macros/names macros/lib macros/buildmacros.sce
 
 
 #### maple2scilab : init scripts #### 

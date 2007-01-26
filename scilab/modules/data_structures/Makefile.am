@@ -70,7 +70,7 @@ libscidata_structures_la_root_DATA = changelog.txt licence.txt readme.txt VERSIO
 
 #### data_structures : Scilab macros ###
 libscidata_structures_la_macrodir = $(target)/macros
-libscidata_structures_la_macro_MACROS = macros/struct.sci \
+MACROS = macros/struct.sci \
 macros/iscell.sci \
 macros/cell.sci \
 macros/isfield.sci \

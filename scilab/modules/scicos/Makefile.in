@@ -713,7 +713,7 @@ MACROSDIRS = macros/ $(am__append_1)
 
 #### scicos : Scilab macros ###
 @SCICOS_TRUE@libsciscicos_la_macrodir = $(target)
-@SCICOS_TRUE@nobase_MACROS = macros/scicos_blocks/Sources/TIME_f.sci \
+@SCICOS_TRUE@MACROS = macros/scicos_blocks/Sources/TIME_f.sci \
 @SCICOS_TRUE@macros/scicos_blocks/Sources/GENSQR_f.sci \
 @SCICOS_TRUE@macros/scicos_blocks/Sources/CLKIN_f.sci \
 @SCICOS_TRUE@macros/scicos_blocks/Sources/READAU_f.sci \

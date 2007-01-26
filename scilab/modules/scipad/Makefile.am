@@ -15,7 +15,7 @@ libsciscipad_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### scipad : Scilab macros ###
 libsciscipad_la_macrodir = $(target)
-nobase_MACROS = macros/scipad_internals/lib \
+MACROS = macros/scipad_internals/lib \
 macros/scipad_internals/LocalizeForScipad.sci \
 macros/scipad_internals/ext_exists.sci \
 macros/scipad_internals/msgdiff.sci \

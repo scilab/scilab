@@ -312,7 +312,7 @@ libscispecial_functions_la_root_DATA = changelog.txt licence.txt readme.txt VERS
 
 #### special_functions : Scilab macros ###
 libscispecial_functions_la_macrodir = $(target)/macros
-libscispecial_functions_la_macro_MACROS = macros/buildmacros.sce
+MACROS = macros/buildmacros.sce
 
 #### special_functions : init scripts #### 
 libscispecial_functions_la_etcdir = $(target)/etc
