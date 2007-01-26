@@ -32,12 +32,8 @@ function genlib(nam,path,force,verbose,names)
   path = pathconvert(path,%t,%t); 
   if exists('names','local')==0 then 
     // list the sci files 
-    if part(getos(),1:6)=='CYGWIN' then
-      // ls *.sci requires less resources than ls path/*.sci
-      files=path+listfiles('*.sci',%f)
-    else
-       files=listfiles(path+'*.sci',%f)
-    end
+    files=listfiles(path+'*.sci',%f)
+    
     if files==[] | files== "" then 
       error('I cannot find any sci files in '+path);
       return ;
