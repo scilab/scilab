@@ -70,7 +70,7 @@ proc execselection {} {
     if {[isscilabbusy 2]} {return}
 
     set textareacur [gettextareacur]
-    set f [gettaseltext $textareacur]
+    set f [gettaseltext $textareacur single] ; # <TODO>: support block selection?
     if {$f != ""} {
         #SciEval does not digest multilines, nor comments. The following hacks are 
         # not optimal - they can produce very long lines, and get confused about 

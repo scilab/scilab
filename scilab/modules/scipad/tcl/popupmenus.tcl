@@ -8,15 +8,15 @@ proc showpopup2 {} {
         tk_popup $pad.filemenu.edit $numx $numy
     } else {
         set ta [gettextareacur]
-        # If there is a selection, and the selected text contains only one active
-        # tag, which is sel, and if the selected trimmed string matches a regexp
-        # (constructed from help names in Scilab) then the selection is probably
-        # a valid variable to watch and the quick add watch menu should pop up
+        # If there is a selection, and if the selected trimmed string matches
+        # a regexp (constructed from help names in Scilab) then the selection
+        # is probably a valid variable to watch and the quick add watch menu
+        # should pop up
+        # about block selections: they are collapsed to their first range
+        # (line) before trying to match them against the regexp
         if {$mouseoversel == "true"} {
-            if {[lsearch [$ta tag names sel.first] "sel"] != -1} {
-                set watchvar [string trim [$ta get sel.first sel.last]]
-                regexp "\\A$snRE\\Z" $watchvar validwatchvar
-            }
+            set watchvar [string trim [gettaseltext $ta single]]
+            regexp "\\A$snRE\\Z" $watchvar validwatchvar
         }
         if {[info exists validwatchvar]} {
             showpopupdebugwsel $validwatchvar

@@ -74,7 +74,7 @@ bind $pad <Control-minus> {set textfontsize [expr {round($textfontsize*0.9)}]; \
                            updatefont all}
 
 
-bind Text <Shift-Control-Button-1> {set ind [%W index current]; showpopupsource $ind}
+bind Text <Shift-Control-Button-3> {set ind [%W index current]; showpopupsource $ind}
 
 bind $pad <Control-Key-1> "$pad.filemenu.wind invoke 1"
 bind $pad <Control-Key-2> "$pad.filemenu.wind invoke 2"

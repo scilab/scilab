@@ -97,7 +97,7 @@ proc dokeyposn {textarea} {
     }
 
     # enable Cut and Copy and Evaluate selection if there is a selection
-    if {[gettaselind $textarea] == {}} {
+    if {[gettaselind $textarea any] == {}} {
         $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "Cu&t"]) -state disabled
         $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "&Copy"]) -state disabled
         $pad.filemenu.exec entryconfigure $MenuEntryId($pad.filemenu.exec.[mcra "&Evaluate selection"]) -state disabled

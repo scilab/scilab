@@ -9,6 +9,7 @@ set winTitle "SciPad"
 #                d. peer text widgets are used when splitting
 #                e. Tk bug 1169429 (relative to cursor blinking) is fixed, workaround hack removed
 #                f. -topmost option of toplevels used also on Linux
+#                g. string reverse (TIP #272) is used during undo/redo, improving performance drastically
 if { [package vcompare $tcl_version 8.5] >= 0 } {
     set Tcl85 1
 } else {
@@ -215,6 +216,16 @@ set progressbarId 0
 
 # Scilab limit for the length of names (see help names)
 set maxcharinascilabname 24
+
+# this variable is used to restore the word wrap mode after a block selection
+set blockseltoggledwordwrap false
+
+# line ending character(s)
+if {$tcl_platform(platform) == "windows"} {
+    set lineend "\n"
+} else {
+    set lineend "\r\n"
+}
 
 ##########################################################################
 # Regular expression patterns

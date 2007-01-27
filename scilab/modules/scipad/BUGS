@@ -240,12 +240,6 @@ Other wishes:
 -"auto smart wrap on": lines exceeding a margin could be truncated at
  word boundaries with .. dots and \n
 
--Block selection, copy/paste, move with dnd, indent/unindent, comment
- and uncomment. See last snapshot in http://www.winedt.com/ for an
- example. Add an option to toggle between line mode (current mode) and
- block mode. In block mode, word wrapping should be disabled. This is
- part of request 179.
-
 -Add an eventual "revert to defaults button" (colors option menu)
 
 -Currently any character typed in the buffer is inserted if there is

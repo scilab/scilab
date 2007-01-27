@@ -2486,7 +2486,7 @@ Francois VOGEL, 05/11/06
  * version --> 6.54
 
 Francois VOGEL, 09/11/06
- * proc srevert (used in undo/redo) prepares use of string reverse (TIP #172)
+ * proc srevert (used in undo/redo) prepares use of string reverse (TIP #272)
    for when Tcl 8.5 will be available
  * Outside of scipad: better help for the debugger. help debug now points
    at help scipad
@@ -2752,3 +2752,17 @@ Francois VOGEL, 23/01/07
  * Horizontal scrollbars are automatically removed when wrapping lines since
    they are useless in this mode
  * version --> 6.80
+
+Francois VOGEL, 27/01/07
+ * First Scipad version with block selection (request 179). Features supported
+   with block selection:
+     . word wrap (automatically temporarily disabled during selection action)
+     . cut/copy/paste
+     . comment/uncomment
+     . indent/unindent
+     . find/replace (in block selection)
+ * Binding for openlibfunsource is now Shift-Control-Button-3 instead of
+   Shift-Control-Button-1
+ * proc srevert (used in undo/redo) really uses string reverse (TIP #272)
+   if Tcl 8.5 is found (this was prepared in Scipad 6.55)
+ * version --> 6.81

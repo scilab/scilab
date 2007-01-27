@@ -122,12 +122,13 @@ proc srevert s {
 # Revert a string, e.g. "abc" becomes "cba"
 # This is an ancillary for undo/redo
 # Source: http://wiki.tcl.tk/44 - Additional string functions
-# TIP #272 (String and List Reversal Operations) should however be part of
-# Tcl8.5, and should be used if available because it's believed to perform
-# quicker - This is prepared here but not yet used because TIP #272 is still
-# in an "Accepted" state, meaning there is no reference implementation yet
+# TIP #272 (String and List Reversal Operations) is however be part of
+# Tcl8.5, and is used if available because it's performing at a
+# tremendously better performance level- TIP #272 is in "Final" state,
+# meaning that the corresponding implementation has been included in
+# the core (this was done 9 Nov. 06)
     global Tcl85
-    if {$Tcl85 && 0 } {
+    if {$Tcl85} {
         return [string reverse $s]
     } else {
         set l [string length $s]

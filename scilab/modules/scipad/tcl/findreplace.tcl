@@ -37,13 +37,13 @@ proc findtextdialog {typ} {
     # selection tag that mimics the real selection (sel tag) could have been
     # a good idea, but it only addresses point 1. above. Moreover, there are
     # currently good reasons for clearing the selection when switching buffers
-    # so that Scipad can have only one selection at a time. Even with the
-    # -inactiveselectbackground option set, there would therefore be no
-    # visible selection in any non focussed buffer
-    set tahasnosel [catch {[gettextareacur] get sel.first sel.last}]
-    if {!$tahasnosel} {
+    # so that Scipad can have only one (possibly block) selection at a time.
+    # Even with the -inactiveselectbackground option set, there would
+    # therefore be no visible selection in any non focussed buffer
+    set seltexts [gettaseltext [gettextareacur] any]
+    if {$seltexts != ""} {
         # there is a selection
-        [gettextareacur] tag add fakeselection sel.first sel.last
+        eval "[gettextareacur] tag add fakeselection [gettaselind [gettextareacur] any]"
         [gettextareacur] tag raise foundtext fakeselection
         [gettextareacur] tag raise replacedtext fakeselection
     }
@@ -324,7 +324,7 @@ proc findtextdialog {typ} {
     $find.l.f4.f1.f1.down invoke
 
     # initial settings for searching in selection
-    if {$tahasnosel} {
+    if {$seltexts == ""} {
         # there is no selection, find in selection must be disabled
         $find.l.f4.f5.cbox4 deselect
         $find.l.f4.f5.cbox4 configure -state disabled
@@ -334,24 +334,28 @@ proc findtextdialog {typ} {
         #   preselect the find in selection box
         # otherwise
         #   use that selection as the string to search for
-        set thesel [[gettextareacur] get fakeselection.first fakeselection.last]
-        if {[regexp {\n} $thesel]} {
+        if {[llength $seltexts] > 1} {
+            # this is a block selection (i.e. multiple ranges)
+            $find.l.f4.f5.cbox4 select
+        } elseif {[regexp {\n} $seltexts]} {
+            # this is a multiline single selection
             $find.l.f4.f5.cbox4 select
         } else {
+            # this is a single line single selection
             $find.l.f4.f5.cbox4 deselect
             $find.u.f1.entry delete 0 end
-            $find.u.f1.entry insert 0 $thesel
+            $find.u.f1.entry insert 0 $seltexts
         }
     }
 
     # this must be done here and not before because the validatecommand is
-    # called and resetfind uses the searchinsel value set by the test on
-    # $tahasnosel above
+    # called and resetfind uses the searchinsel value set by the tests on
+    # $seltexts above
     $find.u.f1.entry configure -validate key \
         -validatecommand {resetfind ; return 1}
 
     # initial settings for searching in multiple files
-    if {!$tahasnosel} {
+    if {$seltexts != ""} {
         $find.l.f4.f5.cbox3 deselect
     }
     if {[llength [filteroutpeers $listoftextarea]] == 1} {
@@ -419,7 +423,7 @@ proc tryrestoreseltag {textarea} {
     if {$searchinsel} {
         set fsrange [$textarea tag ranges fakeselection]
         if {$fsrange != {}} {
-            $textarea tag add sel [lindex $fsrange 0] [lindex $fsrange 1]
+            eval "$textarea tag add sel $fsrange"
         }
     }
 }
@@ -992,7 +996,7 @@ proc replaceit {w pw textarea tosearchfor reg {replacesingle 1}} {
     $textarea tag add replacedtext $mpos  "$mpos + $lenR char"
     # If replacement occurred starting at the first selected character or
     # up to the last selected character, then fakeselection should be extended
-    # by hand since tags have no gravity in tcl
+    # by hand since tags have no gravity in Tcl
     # This is most simply done by always tagging the replaced text as fakeselection
     # for all replace positions located in the selection
     if {[$textarea tag ranges fakeselection] != {}} {
@@ -1151,53 +1155,59 @@ proc searchforallmatches {textarea str cas reg ssel whword listoftags} {
 # and the "whole word" flag
 # the search occurs in the selection if $ssel == 1, or in the full
 # textarea otherwise
+# block selection search is supported
 # all matches are returned in a list, and always in the "forwards" order
 # each element of the return list follows the format described in proc
 # doonesearch
 # an empty $matchlist return result means there is no match in $textarea 
+
     set matchlist {}
 
-    foreach {start stop} [getsearchlimits $textarea $ssel] {}
+    foreach {start stop} [getsearchlimits $textarea $ssel] {
 
-    set match [doonesearch $textarea $start $stop $str "forwards" $cas $reg $whword $listoftags]
-    while {[lindex $match 0] != ""} {
-        lappend matchlist $match
-        set mleng [lindex $match 1]
-        if {$mleng == 0} {
-            # a match was found but its length is zero - can happen while
-            # searching for a regexp, for instance ^ or \A
-            # in that case, let's artificially set match length to 1 (only
-            # in this loop) to avoid endless loop
-            set mleng 1
-        }
-        set start [$textarea index "[lindex $match 0] + $mleng c"]
-        # $ta search with $start == $stop == [$ta index end] wraps around
-        # this is not wanted (and contrary to the Tcl man page for text)
-        # this is Tk bug 1513517
-        # once this bug is fixed, the three lines below can be removed
-        if {[$textarea compare $start == $stop]} {
-            break
-        }
         set match [doonesearch $textarea $start $stop $str "forwards" $cas $reg $whword $listoftags]
+        while {[lindex $match 0] != ""} {
+            lappend matchlist $match
+            set mleng [lindex $match 1]
+            if {$mleng == 0} {
+                # a match was found but its length is zero - can happen while
+                # searching for a regexp, for instance ^ or \A
+                # in that case, let's artificially set match length to 1 (only
+                # in this loop) to avoid endless loop
+                set mleng 1
+            }
+            set start [$textarea index "[lindex $match 0] + $mleng c"]
+            # $ta search with $start == $stop == [$ta index end] wraps around
+            # this is not wanted (and contrary to the Tcl man page for text)
+            # this is Tk bug 1513517
+            # once this bug is fixed, the three lines below can be removed
+            if {[$textarea compare $start == $stop]} {
+                break
+            }
+            set match [doonesearch $textarea $start $stop $str "forwards" $cas $reg $whword $listoftags]
+        }
+
     }
+
     return $matchlist
 }
 
 proc getsearchlimits {textarea ssel} {
 # decide about the start and stop positions of a forwards search:
-# if there is a selection then start = fakeselection.first and
-#                              stop = fakeselection.last
-#                         otherwise start = 1.0 and stop = last char
-# of $textarea
+# if there is no selection, then start = 1.0 and stop = last char of
+# $textarea, and return a 2-elements list with start and stop
+# if there is a selection, then return [$textarea tag ranges fakeselection]
+# block selection is therefore supported as well as single range selection
     if {!$ssel} {
-        # there is no existing selection
+        # there is no existing selection (or the user asked not to search
+        # in selection)
         set sta 1.0
         set sto [$textarea index end]
+        set selranges [list $sta $sto]
     } else {
-        set sta [$textarea index fakeselection.first]
-        set sto [$textarea index fakeselection.last]
+        set selranges [$textarea tag ranges fakeselection]
     }
-    return [list $sta $sto]
+    return $selranges
 }
 
 proc doonesearch {textarea sta sto str dir cas reg whword listoftags} {
@@ -1318,7 +1328,8 @@ proc getnextmatch {textarea dir ssel} {
 # of matches. Only matches that are not yet tagged as already replaced ones
 # are returned
 # direction $dir of searching is taken into account, as well as the possibly
-# existing selection ($ssel is 1 if there is a selection)
+# existing selection ($ssel is 1 if there is a selection and the user asked
+# for searching in it)
 # return value is a list:
 #    { match_position match_length has_wrapped_flag has_looped_flag alreadyreplaced_flag}
 #    has_wrapped_flag is true if and only if to get the next match we had
@@ -1359,7 +1370,8 @@ proc getnextmatchany {textarea dir ssel} {
             #... the insertion cursor if there is no selection
             set pos [$textarea index insert]
         } else {
-            #... the selection start or end if there is a selection
+            #... the selection (first range) start or (last range) end if
+            # there is a selection
             if {$dir == "forwards"} {
                 set pos [$textarea index fakeselection.first]
             } else {
@@ -1528,9 +1540,10 @@ proc cancelfind {} {
         $textarea tag remove foundtext 1.0 end
         $textarea tag remove replacedtext 1.0 end
 
-        if {[$textarea tag ranges fakeselection] != {}} {
+        set fsrange [$textarea tag ranges fakeselection]
+        if {$fsrange != {}} {
             # there was a selection at the time the find dialog was opened, restore it
-            $textarea tag add sel fakeselection.first fakeselection.last 
+            eval "$textarea tag add sel $fsrange"
             $textarea tag remove fakeselection 1.0 end
         }
     }
@@ -1704,10 +1717,13 @@ proc MoveDialogIfTaggedTextHidden {w textarea tagname} {
 # text anymore
 # the dialog is identified by its pathname $w
 # the text area is identified by its textarea name and a tag name, and this tag
-# *must* extend onto a single line
+# *must* extend onto a single line - this is currently not a problem because this
+# proc is called with either $tagname == foundtext or $tagname == replacedtext,
+# and, at least with Tk 8.4 find/replace does not cross newlines for matching -
+# warning: this will change with Tk 8.5
 # it is assumed that only one contiguous portion of text is tagged with $tagname
-# if no character in $textarea is tagged by $tagname, then the text span considered
-# defaults to the insertion cursor location
+# if no character in $textarea is tagged by $tagname, then the text span
+# considered defaults to the insertion cursor location
     global pad textFont
 
     # coordinates of the _d_ialog - left, right, top, bottom - screen coordinate system
@@ -1799,7 +1815,8 @@ proc regexpsforfind {} {
 # in the find entry place
 # note that is is useless to add regexps that would match across text lines
 # because the text widget search -regexp engine does only support matching
-# on single lines of text
+# inside single lines of text (well, this is true for Tk 8.4 and should
+# change with Tk 8.5)
     global scommRE_rep scilabnameREpat dotcontlineRE_rep
     global floatingpointnumberREpat_rep rationalnumberREpat_rep
     return [list \

@@ -202,6 +202,8 @@ proc insertnewline {w} {
     }
 
     # insert a CR char and insert the same indentation as the previous line
+    # note that if there is a block selection, puttext will first collapse
+    # it to its first range (line)
     puttext $w "\n$n"
 
     # remove possible indentation chars located after the insertion above
@@ -262,9 +264,20 @@ proc insertnewline {w} {
 }
 
 proc inserttab {w} {
+# if there is a selection in $w, and if this selection starts at column 0,
+# then indent this selection
+# otherwise insert a "tab", i.e. either (depending on the option selected)
+# a real tab character or a sufficient number of spaces to go to the next
+# tab stop
+# note: block selection is supported: if there is a block selection, the
+# behaviour is always to indent
+
     global indentspaces tabinserts buffermodifiedsincelastsearch
+
     if {[IsBufferEditable] == "No"} {return}
-    set taselind [gettaselind $w]
+
+    set taselind [gettaselind $w any]
+
     if {$taselind != {}} {
         # there is a selection, put 1st column of selection in col
         scan [lindex $taselind 0] "%d.%d" line col
@@ -272,10 +285,13 @@ proc inserttab {w} {
         # there is no selection
         set col -1
     }
-    if {$col == 0} {
-        # there is a selection starting at the 1st column
+
+    if {$col == 0 || [llength $taselind] > 2} {
+        # there is a selection starting at the 1st column, or the
+        # selection is a block selection
         IndentSel
     } else {
+        # there is no selection
         if {$tabinserts == "spaces"} {
             # insert spaces up to the next tab stop
             set curpos [$w index insert]
@@ -292,10 +308,17 @@ proc inserttab {w} {
             puttext $w "\x9"
         }
     }
+
     set buffermodifiedsincelastsearch true
 }
 
 proc puttext {w text} {
+# input text $text in textarea $w
+# note: existing block selection, if any, gets collapsed in the process
+# and then deleted resulting in the apparent (desired) result that the text
+# passed to this proc replaced the first line (range) of the block selection
+# only
+
     global listoffile buffermodifiedsincelastsearch
 
     if {[IsBufferEditable] == "No"} {return}
@@ -324,7 +347,9 @@ proc puttext {w text} {
         $w edit separator
     }
 
-    if {[gettaselind $w] != ""} {
+    # check whether a selection exists, collapse any block selection
+    # and delete it
+    if {[gettaselind $w single] != ""} {
         $w delete sel.first sel.last
     }
 
@@ -360,6 +385,7 @@ proc printtime {} {
     foreach ta [getfullpeerset [gettextareacur]] {
         set listoffile("$ta",redostackdepth) 0
     }
+    [gettextareacur] tag remove sel 1.0 end
     [gettextareacur] insert insert [clock format [clock seconds] \
                     -format "%R %p %D"]
     set buffermodifiedsincelastsearch true

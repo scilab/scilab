@@ -28,7 +28,7 @@ proc tkdndbind {w} {
     dnd bindtarget $w text/plain <Drop> {
         if {[info exists sourcetextarea]} {
             # drag from Scipad, drop in Scipad
-            if {$sourcetextarea == "%W" && [%W tag ranges sel] != ""} {
+            if {$sourcetextarea == "%W" && [gettaselind %W single] != ""} {
                 # drag and drop in the same Scipad buffer
                 #
                 # if the mouse went out of the buffer during drag, and
@@ -125,6 +125,7 @@ proc tkdndbind {w} {
     bind $w <ButtonRelease-1>  { if {$dndinitiated == "true"} { \
                                      set dndinitiated "false" ; \
                                  } else { \
+                                     endblockselection %W ; \
                                      if {[info exists listoffile("%W",fullname)]} { \
                                          focustextarea %W ; \
                                      } \
@@ -135,7 +136,24 @@ proc tkdndbind {w} {
     bind $w <Triple-Button-1>  { if {$dndinitiated == "true"} {break} }
     bind $w <Button1-Motion>   { if {$dndinitiated == "true"} {break} }
 
-    # Nice cursor change when mouse is over the selection
+    # bindings for block selection
+    bind $w <Shift-Control-Button-1> { if {[Button1BindTextArea %W %x %y] == "false"} { \
+                                           startblockselection %W %x %y ; \
+                                           break ; \
+                                       } \
+                                     }
+    bind $w <Shift-Control-Button1-Motion> { if {$dndinitiated == "false"} { \
+                                                 selectblock %W %x %y ; \
+                                                 break ; \
+                                             } \
+                                           }
+    bind $w <Shift-Control-ButtonRelease-1> { if {$dndinitiated == "false"} { \
+                                                 endblockselection %W ; \
+                                                 break ; \
+                                              } \
+                                            }
+
+    # nice cursor change when mouse is over the selection
     $w tag bind sel <Enter> {%W configure -cursor hand2 ; set mouseoversel "true"}
     $w tag bind sel <Leave> {%W configure -cursor xterm ; set mouseoversel "false"}
 
@@ -172,7 +190,8 @@ proc Button1BindTextArea { w x y } {
     $w see insert
 
     set dndreallystarted "false"
-    if {[$w tag ranges sel] != ""} {
+    # block selection not supported: collapse it to its first range
+    if {[gettaselind $w single] != ""} {
         if { [$w compare sel.first <= [$w index @$x,$y]] && \
              [$w compare [$w index @$x,$y] < sel.last] } {
             set dndinitiated "true"

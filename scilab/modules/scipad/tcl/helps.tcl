@@ -31,14 +31,15 @@ proc helpme {} {
 proc helpword {} {
     if {[isscilabbusy 0]} {return}
     set textareacur [gettextareacur]
-    if {[gettaselind $textareacur] == {}} {
+    if {[gettaselind $textareacur any] == {}} {
         # if there is no selection in the current textarea,
         # select the word at the cursor position
         set i1 [$textareacur index insert]
         $textareacur tag add sel [$textareacur index "$i1 wordstart"] \
                                  [$textareacur index "$i1 wordend"]
     }
-    set cursel [string trim [gettaseltext $textareacur]]
+    # if there is a block selection, collapse to its first range
+    set cursel [string trim [gettaseltext $textareacur single]]
     # get only the first word of the selection (or a symbol)
     regexp "(\\A\\w*\\M|\\A\\W)" $cursel curterm
     if {[info exists curterm]} {

@@ -285,7 +285,7 @@ proc focustextarea {textarea} {
     # focustextarea is called after closure of the current file
     set oldta [gettextareacur]
     if {[winfo exists $oldta]} {
-        if {($oldta != $textarea) && [$oldta tag ranges sel] != ""} {
+        if {($oldta != $textarea) && [gettaselind $oldta any] != ""} {
             $oldta tag remove sel 1.0 end
         }
     }
