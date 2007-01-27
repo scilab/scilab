@@ -37,10 +37,10 @@
     <P><VERB>who</VERB> displays current variable names.</P>
 
     <P><VERB>who('local')</VERB> or <VERB>who('get')</VERB> Returns current
-    variable names and memory used in double precision worlds.</P>
+    variable names and memory used in double precision words.</P>
 
     <P><VERB>who('global')</VERB> returns global variable names and memory
-    used in double precision worlds.</P>
+    used in double precision words.</P>
     
     <P><VERB>who('sorted')</VERB> displays in alphabetical order all variables.</P>
   </DESCRIPTION>
