@@ -22,28 +22,28 @@ Source: modules\{#PVM}\sci_gateway\pvm; DestDir: {app}\modules\{#PVM}\sci_gatewa
 Source: modules\{#PVM}\etc\{#PVM}.quit; DestDir: {app}\modules\{#PVM}\etc; Components: {#COMPN_PVM}
 Source: modules\{#PVM}\etc\{#PVM}.start; DestDir: {app}\modules\{#PVM}\etc; Components: {#COMPN_PVM}
 ;
-Source: modules\{#PVM}\help\eng\*.htm; DestDir: {app}\modules\{#PVM}\help\eng; Components: {#COMPN_PVM}
-Source: modules\{#PVM}\help\fr\*.htm; DestDir: {app}\modules\{#PVM}\help\fr; Components: {#COMPN_PVM}
+;Source: modules\{#PVM}\help\eng\*.htm; DestDir: {app}\modules\{#PVM}\help\eng; Components: {#COMPN_PVM}
+;Source: modules\{#PVM}\help\fr\*.htm; DestDir: {app}\modules\{#PVM}\help\fr; Components: {#COMPN_PVM}
 ;
 Source: modules\{#PVM}\macros\buildmacros.sce; DestDir: {app}\modules\{#PVM}\macros; Components: {#COMPN_PVM}
-Source: modules\{#PVM}\macros\*.bin; DestDir: {app}\modules\{#PVM}\macros; Components: {#COMPN_PVM}
+;Source: modules\{#PVM}\macros\*.bin; DestDir: {app}\modules\{#PVM}\macros; Components: {#COMPN_PVM}
 Source: modules\{#PVM}\macros\*.sci; DestDir: {app}\modules\{#PVM}\macros; Components: {#COMPN_PVM}
-Source: modules\{#PVM}\macros\lib; DestDir: {app}\modules\{#PVM}\macros; Components: {#COMPN_PVM}
-Source: modules\{#PVM}\macros\names; DestDir: {app}\modules\{#PVM}\macros; Components: {#COMPN_PVM}
+;Source: modules\{#PVM}\macros\lib; DestDir: {app}\modules\{#PVM}\macros; Components: {#COMPN_PVM}
+;Source: modules\{#PVM}\macros\names; DestDir: {app}\modules\{#PVM}\macros; Components: {#COMPN_PVM}
 ;
 Source: modules\{#PVM}\demos\*.*; DestDir: {app}\modules\{#PVM}\demos; Flags: recursesubdirs; Components: {#COMPN_PVM}
 ;
-Source: modules\{#PVM}\src\pvm3\Readme.Win32; DestDir: {app}\modules\{#PVM}\src\pvm3; Flags: ignoreversion; Components: {#COMPN_PVM}
-Source: modules\{#PVM}\src\pvm3\bin\WIN32\hoster.exe; DestDir: {app}\modules\{#PVM}\src\pvm3\bin\WIN32; Components: {#COMPN_PVM}
-Source: modules\{#PVM}\src\pvm3\bin\WIN32\pvmgs.exe; DestDir: {app}\modules\{#PVM}\src\pvm3\bin\WIN32; Components: {#COMPN_PVM}
-Source: modules\{#PVM}\src\pvm3\include\*.h; DestDir: {app}\modules\{#PVM}\src\pvm3\include; Components: {#COMPN_PVM}
-Source: modules\{#PVM}\src\pvm3\lib\pvm.bat; DestDir: {app}\modules\{#PVM}\src\pvm3\lib; Components: {#COMPN_PVM}
-Source: modules\{#PVM}\src\pvm3\lib\pvmd.bat; DestDir: {app}\modules\{#PVM}\src\pvm3\lib; Components: {#COMPN_PVM}
-Source: modules\{#PVM}\src\pvm3\lib\WIN32\*.lib; DestDir: {app}\modules\{#PVM}\src\pvm3\lib\WIN32; Components: {#COMPN_PVM}
-Source: modules\{#PVM}\src\pvm3\lib\WIN32\*.exe; DestDir: {app}\modules\{#PVM}\src\pvm3\lib\WIN32; Components: {#COMPN_PVM}
-Source: modules\{#PVM}\src\pvm3\lib\WIN32\*.dll; DestDir: {app}\modules\{#PVM}\src\pvm3\lib\WIN32; Components: {#COMPN_PVM}
+;Source: modules\{#PVM}\src\pvm3\Readme.Win32; DestDir: {app}\modules\{#PVM}\src\pvm3; Flags: ignoreversion; Components: {#COMPN_PVM}
+;Source: modules\{#PVM}\src\pvm3\bin\WIN32\hoster.exe; DestDir: {app}\modules\{#PVM}\src\pvm3\bin\WIN32; Components: {#COMPN_PVM}
+;Source: modules\{#PVM}\src\pvm3\bin\WIN32\pvmgs.exe; DestDir: {app}\modules\{#PVM}\src\pvm3\bin\WIN32; Components: {#COMPN_PVM}
+;Source: modules\{#PVM}\src\pvm3\include\*.h; DestDir: {app}\modules\{#PVM}\src\pvm3\include; Components: {#COMPN_PVM}
+;Source: modules\{#PVM}\src\pvm3\lib\pvm.bat; DestDir: {app}\modules\{#PVM}\src\pvm3\lib; Components: {#COMPN_PVM}
+;Source: modules\{#PVM}\src\pvm3\lib\pvmd.bat; DestDir: {app}\modules\{#PVM}\src\pvm3\lib; Components: {#COMPN_PVM}
+;Source: modules\{#PVM}\src\pvm3\lib\WIN32\*.lib; DestDir: {app}\modules\{#PVM}\src\pvm3\lib\WIN32; Components: {#COMPN_PVM}
+;Source: modules\{#PVM}\src\pvm3\lib\WIN32\*.exe; DestDir: {app}\modules\{#PVM}\src\pvm3\lib\WIN32; Components: {#COMPN_PVM}
+;Source: modules\{#PVM}\src\pvm3\lib\WIN32\*.dll; DestDir: {app}\modules\{#PVM}\src\pvm3\lib\WIN32; Components: {#COMPN_PVM}
 ;
-Source: modules\{#PVM}\pvmconf.bat; DestDir: {app}\modules\{#PVM}; Components: {#COMPN_PVM}
-Source: modules\{#PVM}\pvmconf.sce; DestDir: {app}\modules\{#PVM}; Components: {#COMPN_PVM}
+;Source: modules\{#PVM}\pvmconf.bat; DestDir: {app}\modules\{#PVM}; Components: {#COMPN_PVM}
+;Source: modules\{#PVM}\pvmconf.sce; DestDir: {app}\modules\{#PVM}; Components: {#COMPN_PVM}
 ;
 ;--------------------------------------------------------------------------------------------------------------
