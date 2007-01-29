@@ -195,7 +195,7 @@ am__libscicore_la_SOURCES_DIST = src/c/history.c src/c/inffic.c \
 	sci_gateway/c/sci_with_module.c \
 	sci_gateway/c/sci_getdynlibext.c \
 	sci_gateway/fortran/sci_errclear.f \
-	sci_gateway/fortran/sci_who.f sci_gateway/fortran/sci_c_link.f \
+	sci_gateway/fortran/sci_c_link.f \
 	sci_gateway/fortran/sci_funcprot.f \
 	sci_gateway/fortran/sci_global.f \
 	sci_gateway/fortran/sci_mtlb_mode.f \
@@ -324,17 +324,17 @@ am__objects_7 = libscicore_la-sci_savehistory.lo \
 	libscicore_la-sci_error.lo libscicore_la-sci_sciargs.lo \
 	libscicore_la-sci_with_module.lo \
 	libscicore_la-sci_getdynlibext.lo
-am__objects_8 = sci_errclear.lo sci_who.lo sci_c_link.lo \
-	sci_funcprot.lo sci_global.lo sci_mtlb_mode.lo sci_resume.lo \
-	sci_dispbpt.lo sci_useascommand.lo sci_whereis.lo \
-	sci_intppty.lo sci_ieee.lo sci_notify.lo sci_macrovar.lo \
-	sci_lines.lo sci_funptr.lo sci_exists.lo sci_errcatch.lo \
-	sci_clear.lo sci_argn.lo sci_format.lo sci_chdir.lo \
-	sci_link.lo sci_comp.lo sci_havewindow.lo sci_setbpt.lo \
-	sci_predef.lo sci_typnam.lo sci_clearglobal.lo sci_fort.lo \
-	sci_delbpt.lo sci_getcwd.lo where.lo sci_iserror.lo \
-	sci_type.lo sci_mode.lo sci_addinter.lo sci_debug.lo \
-	sci_error.lo sci_sciargs.lo sci_isglobal.lo
+am__objects_8 = sci_errclear.lo sci_c_link.lo sci_funcprot.lo \
+	sci_global.lo sci_mtlb_mode.lo sci_resume.lo sci_dispbpt.lo \
+	sci_useascommand.lo sci_whereis.lo sci_intppty.lo sci_ieee.lo \
+	sci_notify.lo sci_macrovar.lo sci_lines.lo sci_funptr.lo \
+	sci_exists.lo sci_errcatch.lo sci_clear.lo sci_argn.lo \
+	sci_format.lo sci_chdir.lo sci_link.lo sci_comp.lo \
+	sci_havewindow.lo sci_setbpt.lo sci_predef.lo sci_typnam.lo \
+	sci_clearglobal.lo sci_fort.lo sci_delbpt.lo sci_getcwd.lo \
+	where.lo sci_iserror.lo sci_type.lo sci_mode.lo \
+	sci_addinter.lo sci_debug.lo sci_error.lo sci_sciargs.lo \
+	sci_isglobal.lo
 am_libscicore_la_OBJECTS = $(am__objects_3) $(am__objects_6) \
 	$(am__objects_7) $(am__objects_8)
 libscicore_la_OBJECTS = $(am_libscicore_la_OBJECTS)
@@ -651,7 +651,6 @@ sci_gateway/c/sci_with_module.c \
 sci_gateway/c/sci_getdynlibext.c
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_errclear.f \
-sci_gateway/fortran/sci_who.f \
 sci_gateway/fortran/sci_c_link.f \
 sci_gateway/fortran/sci_funcprot.f \
 sci_gateway/fortran/sci_global.f \
@@ -2355,9 +2354,6 @@ fgetarg.lo: src/fortran/fgetarg.f
 
 sci_errclear.lo: sci_gateway/fortran/sci_errclear.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_errclear.lo `test -f 'sci_gateway/fortran/sci_errclear.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_errclear.f
-
-sci_who.lo: sci_gateway/fortran/sci_who.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_who.lo `test -f 'sci_gateway/fortran/sci_who.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_who.f
 
 sci_c_link.lo: sci_gateway/fortran/sci_c_link.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_c_link.lo `test -f 'sci_gateway/fortran/sci_c_link.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_c_link.f
