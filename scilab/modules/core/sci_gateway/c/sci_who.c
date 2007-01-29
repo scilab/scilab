@@ -438,7 +438,7 @@ static int TwoLhs(struct VariableStruct* Vstruct,int lenStructArray,BOOL Sorted)
 	 C2F(putlhsvar)();
 
 	 if (Tab) {FREE(Tab);Tab=NULL;}
-	 if (Size) {FREE(LocalSize);Size=NULL;}
+	 if (Size) {FREE(Size);Size=NULL;}
 	 return 0;
  }
  /*-----------------------------------------------------------------------------------*/
