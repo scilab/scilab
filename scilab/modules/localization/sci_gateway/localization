@@ -1,0 +1,11 @@
+; --------------------------
+; Scilab 
+; Allan CORNET
+; INRIA 2007
+; --------------------------
+; localization module primitives
+; Don't edit if you aren't sure
+; --------------------------
+50 1 setlanguage
+50 2 getlanguage
+; --------------------------

@@ -4,6 +4,7 @@
 	Version="8,00"
 	Name="localization"
 	ProjectGUID="{ECFFEB0C-1EDA-45EE-9A10-B18143852E17}"
+	RootNamespace="localization"
 	>
 	<Platforms>
 		<Platform
@@ -65,14 +66,15 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				CommandLine=""
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n localization.dll %%f &gt;nul&#x0D;&#x0A;copy *.def localizationtmp.def &gt;nul&#x0D;&#x0A;copy ..\localization_header.def+localizationtmp.def  ..\localization.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/fixed:no"
+				AdditionalDependencies="Libscilab.lib"
 				OutputFile="..\..\..\bin\localization.dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile=""
+				ModuleDefinitionFile="localization.def"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="$(TargetDir)$(TargetName).pdb"
 				ImportLibrary="..\..\..\bin\localization.lib"
@@ -156,12 +158,13 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				CommandLine=""
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n localization.dll %%f &gt;nul&#x0D;&#x0A;copy *.def localizationtmp.def &gt;nul&#x0D;&#x0A;copy ..\localization_header.def+localizationtmp.def  ..\localization.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="Libscilab.lib"
 				OutputFile="..\..\..\bin\localization.dll"
-				ModuleDefinitionFile=""
+				ModuleDefinitionFile="localization.def"
 				OptimizeForWindows98="1"
 				SupportUnloadOfDelayLoadedDLL="true"
 				ImportLibrary="..\..\..\bin\localization.lib"
@@ -204,11 +207,27 @@
 				>
 			</File>
 			<File
+				RelativePath="..\sci_gateway\gw_localization.c"
+				>
+			</File>
+			<File
 				RelativePath=".\hashtable_localization.c"
 				>
 			</File>
 			<File
 				RelativePath=".\localization.c"
+				>
+			</File>
+			<File
+				RelativePath="..\sci_gateway\sci_getlanguage.c"
+				>
+			</File>
+			<File
+				RelativePath="..\sci_gateway\sci_setlanguage.c"
+				>
+			</File>
+			<File
+				RelativePath=".\setgetlanguage.c"
 				>
 			</File>
 		</Filter>
@@ -217,6 +236,10 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
+				RelativePath="..\includes\gw_localization.h"
+				>
+			</File>
+			<File
 				RelativePath=".\hashtable_localization.h"
 				>
 			</File>
@@ -224,7 +247,15 @@
 				RelativePath="..\includes\localization.h"
 				>
 			</File>
+			<File
+				RelativePath="..\includes\setgetlanguage.h"
+				>
+			</File>
 		</Filter>
+		<File
+			RelativePath="..\sci_gateway\localization"
+			>
+		</File>
 		<File
 			RelativePath="..\Makefile.am"
 			>

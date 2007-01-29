@@ -1,0 +1,21 @@
+LIBRARY    LibScilab.dll
+
+
+EXPORTS
+ sciprint
+ ExceptionMessage
+ putlhsvar_
+ intersci_
+ Scierror
+ stack_
+ check_scalar
+ getrhsvar_
+ com_
+ checkrhs_
+ checklhs_
+ createvarfromptr_
+ IsAScalar
+ gettype_
+ vstk_
+ createvar_
+ 
