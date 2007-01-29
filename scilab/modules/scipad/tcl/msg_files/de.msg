@@ -8,12 +8,12 @@
 ::msgcat::mcset de "OK" "OK"
 ::msgcat::mcset de "Scilab working" "Scilab arbeitet"
 ::msgcat::mcset de "All files" "Alle Dateien"
-::msgcat::mcset de "Add/Change" "Hinzufügen/Ändern"
-::msgcat::mcset de "Add/Chan&ge" "&Hinzufügen/Ändern"
+::msgcat::mcset de "Add/Change" "HinzufÃ¼gen/Ã„ndern"
+::msgcat::mcset de "Add/Chan&ge" "&HinzufÃ¼gen/Ã„ndern"
 ::msgcat::mcset de "&Remove" "&Entfernen"
 ::msgcat::mcset de "Untitled" "OhneNamen"
-::msgcat::mcset de "Close" "Schließen"
-::msgcat::mcset de "&Close" "S&chließen"
+::msgcat::mcset de "Close" "SchlieÃŸen"
+::msgcat::mcset de "&Close" "S&chlieÃŸen"
 
 
 # buffernavigation.tcl
@@ -24,25 +24,25 @@
 ::msgcat::mcset de "in &function" "der &Funktion"
 ::msgcat::mcset de "in &current file" "der aktuellen &Datei"
 ::msgcat::mcset de "Outside of function definition"\
-                   "Außerhalb der Funktionsdefinition"
+                   "AuÃŸerhalb der Funktionsdefinition"
 
 
 # colorize.tcl
 ::msgcat::mcset de "Wait seconds while recolorizing file"\
-                   "Warten Sie einen Moment während Farben aktualisiert werden"
+                   "Warten Sie einen Moment wÃ¤hrend Farben aktualisiert werden"
 ::msgcat::mcset de "You can't do that while colorization is in progress.\
                     Please try again when finished."\
-                   "Aktion kann während der Aktualsierung der Farben nicht \
-                   ausgeführt werden. Versuchen Sie es später noch einmal."
+                   "Aktion kann wÃ¤hrend der Aktualsierung der Farben nicht \
+                   ausgefÃ¼hrt werden. Versuchen Sie es spÃ¤ter noch einmal."
 ::msgcat::mcset de "Command forbidden during colorization"\
-                   "Befehl kann während der Aktualisierung der Farben nicht \
-                   ausgeührt werden."
+                   "Befehl kann wÃ¤hrend der Aktualisierung der Farben nicht \
+                   ausgeÃ¼hrt werden."
 
 
 # completion.tcl
-::msgcat::mcset de "No possible completion" "Keine Vervollständigung möglich"
-::msgcat::mcset de "possible completions" "mögliche Vervollständigungen"
-::msgcat::mcset de "Possible completions" "Mögliche Vervollständigungen"
+::msgcat::mcset de "No possible completion" "Keine VervollstÃ¤ndigung mÃ¶glich"
+::msgcat::mcset de "possible completions" "mÃ¶gliche VervollstÃ¤ndigungen"
+::msgcat::mcset de "Possible completions" "MÃ¶gliche VervollstÃ¤ndigungen"
 
 
 # db_argsmanagement.tcl
@@ -53,27 +53,27 @@
 
 
 # db_configureexec.tcl
-::msgcat::mcset de "Configure execution" "Ausführung konfigurieren"
+::msgcat::mcset de "Configure execution" "AusfÃ¼hrung konfigurieren"
 ::msgcat::mcset de "Function name:" "Funktionsname :"
-::msgcat::mcset de "&Obtain" "Erhäl&t"
+::msgcat::mcset de "&Obtain" "ErhÃ¤l&t"
 ::msgcat::mcset de "Input arguments:" "Eingabeargumente :"
 ::msgcat::mcset de "Function name or input arguments do not match definition\
                     of the function"\
                    "Funktionsname und Eingabeargumente stimmen nicht mit der\
-                    Funktionsdefinition überein"
+                    Funktionsdefinition Ã¼berein"
 ::msgcat::mcset de "in the file!\n\nCheck function name and arguments\
                     (names, order) in the configuration dialog. \nArguments\
                     order can be changed using drag and drop with right\
                     mouse button in the arguments listbox."\
-                   "In der Datei!\n\n Überprüfen Sie den Funktionsnamen und\
+                   "In der Datei!\n\n ÃœberprÃ¼fen Sie den Funktionsnamen und\
                     die Argumente (Namen, Reihenfolge) im\
                     Konfigurationsdialog. Die Reihenfolge der Argumente kann\
-                    mittels Drag&Drop (rechte Maustaste) verändert werden."
+                    mittels Drag&Drop (rechte Maustaste) verÃ¤ndert werden."
 ::msgcat::mcset de "Error in selected function name or arguments"\
                    "Fehler in markiertem Funktionsnamen oder markierten\
                     Argumenten"
 ::msgcat::mcset de "Debugger is not yet developed for sce scripts!"\
-                   "Debug-Programm kann zur Zeit noch nicht für Skripte\
+                   "Debug-Programm kann zur Zeit noch nicht fÃ¼r Skripte\
                     (*.sce) eingesetzt werden!"
 
 
@@ -81,22 +81,22 @@
 ::msgcat::mcset de "Scilab is working, wait for the prompt to issue a\
                     debugger command."\
                    "Scilab arbeitet! Warten Sie auf die Eingabeaufforderung,\
-                    um einen Debug-Befehl auszuführen."
+                    um einen Debug-Befehl auszufÃ¼hren."
 ::msgcat::mcset de "Cursor position is out of reach!"\
-                   "Eingabezeiger befindet sich außerhalb der Reichweite!"
+                   "Eingabezeiger befindet sich auÃŸerhalb der Reichweite!"
 ::msgcat::mcset de "Cursor must be in a function"\
-                   "Eingabezeiger muß sich innerhalb einer Funktion befinden"
+                   "Eingabezeiger muÃŸ sich innerhalb einer Funktion befinden"
 ::msgcat::mcset de "No effect - The debugged file is not stuck"\
-                   "Keine Wirkung - Die Ausführung der Debug-Datei wurde\
+                   "Keine Wirkung - Die AusfÃ¼hrung der Debug-Datei wurde\
                     nicht unterbrochen"
 ::msgcat::mcset de "Scilab execution error"\
-                   "Fehler bei der Ausführung in Scilab"
+                   "Fehler bei der AusfÃ¼hrung in Scilab"
 ::msgcat::mcset de "The shell reported an error while trying to execute "\
-                   "Die Shell signalisierte einen Fehler bei der Ausführung\
+                   "Die Shell signalisierte einen Fehler bei der AusfÃ¼hrung\
                     von "
 ::msgcat::mcset de "at line " "in Zeile "
 ::msgcat::mcset de " of " " von "
-::msgcat::mcset de "Execution aborted!" "Ausführung abgebrochen!"
+::msgcat::mcset de "Execution aborted!" "AusfÃ¼hrung abgebrochen!"
 
 
 # db_init.tcl
@@ -105,19 +105,19 @@
 
 # db_states.tcl
 ::msgcat::mcset de "Currently no debug session"\
-                   "Im Moment läuft keine Debug-Sitzung"
+                   "Im Moment lÃ¤uft keine Debug-Sitzung"
 ::msgcat::mcset de "Ready to start debug"\
                    "Bereit zum Starten einer Debug-Sitzung"
-::msgcat::mcset de "Debug in progress" "Debug-Vorgang läuft"
+::msgcat::mcset de "Debug in progress" "Debug-Vorgang lÃ¤uft"
 
 
 # db_watch.tcl
 ::msgcat::mcset de "Watch" "Beobachten"
 ::msgcat::mcset de "Watch variables:" "Beobachtete Variablen :"
 ::msgcat::mcset de "Remove" "Entfernen"
-::msgcat::mcset de "Call stack:" "Ausführungsstapel:"
+::msgcat::mcset de "Call stack:" "AusfÃ¼hrungsstapel:"
 ::msgcat::mcset de "Hide watch &variables" "Beobachtete &Variablen verstecken"
-::msgcat::mcset de "Hide call &stack" "Ausführungs&stapel verstecken"
+::msgcat::mcset de "Hide call &stack" "AusfÃ¼hrungs&stapel verstecken"
 ::msgcat::mcset de "Undefined elements are not legal in variable"\
                    "Undefinierte Elemente sind als Variable nicht erlaubt"
 ::msgcat::mcset de ".\nThis variable will not be updated in Scilab."\
@@ -130,54 +130,54 @@
 ::msgcat::mcset de "New script" "Neues Skript"
 ::msgcat::mcset de "The contents of" "Der Inhalt von"
 ::msgcat::mcset de "may have changed, do you wish to save your changes?"\
-                   "wurde verändert. Möchten Sie die Änderungen speichern?"
-::msgcat::mcset de "Save Confirm?" "Speichern bestätigen?"
-::msgcat::mcset de "Open source of..." "Öffnen des Quellcodes von..."
-::msgcat::mcset de "Open source of:" "Öffnen des Quellcodes von :"
+                   "wurde verÃ¤ndert. MÃ¶chten Sie die Ã„nderungen speichern?"
+::msgcat::mcset de "Save Confirm?" "Speichern bestÃ¤tigen?"
+::msgcat::mcset de "Open source of..." "Ã–ffnen des Quellcodes von..."
+::msgcat::mcset de "Open source of:" "Ã–ffnen des Quellcodes von :"
 ::msgcat::mcset de "Weird drag&drop" "Drag&Drop"
 ::msgcat::mcset de "is neither a valid filename nor a valid directory.\
                     Either you're dragging an object of another type, or you\
                     hit a bug of the dnd mechanism."\
-                   "repräsentiert weder einen gültigen Dateinamen, noch\
-                    einen gültigen Dateipfad. Entweder handelt es sich um\
+                   "reprÃ¤sentiert weder einen gÃ¼ltigen Dateinamen, noch\
+                    einen gÃ¼ltigen Dateipfad. Entweder handelt es sich um\
                     ein anderen Objekttyp, oder Sie haben einen Fehler im\
                     Drag&Drop-Mechanismus von SciPad gefunden."
 ::msgcat::mcset de "File not found" "Datei wurde nicht gefunden"
 ::msgcat::mcset de "does not exist anymore. Do you want to create an empty\
                     file with the same name?"\
-                   "existiert nicht mehr. Möchten Sie eine leere Datei mit\
+                   "existiert nicht mehr. MÃ¶chten Sie eine leere Datei mit\
                     dem gleichen Namen erzeugen ?"
-::msgcat::mcset de "Open file" "Datei öffnen"
+::msgcat::mcset de "Open file" "Datei Ã¶ffnen"
 ::msgcat::mcset de "The file" "Die Datei"
 ::msgcat::mcset de "is already opened! Save the current opened file to\
                     another name and reopen it from disk!"\
-                   "wurde bereits geöffnet! Speichern Sie die Datei unter\
-                    einem anderen Namen und öffnen Sie sie wieder!"
+                   "wurde bereits geÃ¶ffnet! Speichern Sie die Datei unter\
+                    einem anderen Namen und Ã¶ffnen Sie sie wieder!"
 ::msgcat::mcset de "File" "Datei"
 ::msgcat::mcset de "saved" "gespeichert"
-::msgcat::mcset de "cannot be written!" "ist schreibgeschützt!"
+::msgcat::mcset de "cannot be written!" "ist schreibgeschÃ¼tzt!"
 ::msgcat::mcset de "The contents of " "Der Inhalt von"
 ::msgcat::mcset de "has changed on disk, save it anyway?"\
-                   "auf der Festplatte hat sich verändert. Möchten Sie\
+                   "auf der Festplatte hat sich verÃ¤ndert. MÃ¶chten Sie\
                     trotzdem abspeichern ?"
 ::msgcat::mcset de "has been modified outside of Scipad. Do you want to\
                     reload it?"\
-                   "wurde außerhalb von Scipad verändert. \
-                   Möchten sie es neu laden?"
-::msgcat::mcset de "File has changed!" "Datei wurde verändert!"
+                   "wurde auÃŸerhalb von Scipad verÃ¤ndert. \
+                   MÃ¶chten sie es neu laden?"
+::msgcat::mcset de "File has changed!" "Datei wurde verÃ¤ndert!"
 ::msgcat::mcset de "Save as" "Speichern unter"
 ::msgcat::mcset de "Scilab files" "Scilab-Dateien"
 ::msgcat::mcset de "Scicos files" "Scicos-Dateien"
 ::msgcat::mcset de "XML files" "XML-Dateien"
 ::msgcat::mcset de "Wait seconds while loading and colorizing file"\
-                   "Bitte warten Sie einen Moment während Datei geöffnet wird"
+                   "Bitte warten Sie einen Moment wÃ¤hrend Datei geÃ¶ffnet wird"
 ::msgcat::mcset de "The contents of this file may have changed, do you wish\
                     to save your changes?"\
-                   "Diese Datei wurde verändert. Möchten Sie ihre Änderungen\
+                   "Diese Datei wurde verÃ¤ndert. MÃ¶chten Sie ihre Ã„nderungen\
                     speichern?"
-::msgcat::mcset de "Revert" "Möchten Sie auf die gespeicherte Version von"
-::msgcat::mcset de "to saved?" "zurückgreifen?"
-::msgcat::mcset de "Revert Confirm?" "Verwerfen bestätigen?"
+::msgcat::mcset de "Revert" "MÃ¶chten Sie auf die gespeicherte Version von"
+::msgcat::mcset de "to saved?" "zurÃ¼ckgreifen?"
+::msgcat::mcset de "Revert Confirm?" "Verwerfen bestÃ¤tigen?"
 ::msgcat::mcset de "Unreadable file" "Unlesbare Datei!"
 ::msgcat::mcset de "exists but is not readable!"\
                    "existiert, ist aber unlesbar!"
@@ -187,13 +187,13 @@
 ::msgcat::mcset de "The string" "Die Zeichenkette"
 ::msgcat::mcset de "could not be found in" "konnte nicht gefunden werden in"
 ::msgcat::mcset de "could not be found in any of the opened files !"\
-                   "konnte in keiner der geöffneten Dateien gefunden werden !"
-::msgcat::mcset de "replacements done" "Ersetzungen ausgeführt"
+                   "konnte in keiner der geÃ¶ffneten Dateien gefunden werden !"
+::msgcat::mcset de "replacements done" "Ersetzungen ausgefÃ¼hrt"
 ::msgcat::mcset de "Find" "Suchen"
 ::msgcat::mcset de "No match found in the selection for" "Die Zeichenkette"
 ::msgcat::mcset de "\nWould you like to look for it in the entire text?"\
                    "konnte im markierten Bereich nicht gefunden\
-                    werden.\nMöchten Sie in der gesamten Datei danach suchen\
+                    werden.\nMÃ¶chten Sie in der gesamten Datei danach suchen\
                     ?"
 ::msgcat::mcset de "You are searching for an empty string!"\
                    "Nach einer leeren Zeichenkette kann nicht gesucht werden!"
@@ -202,13 +202,13 @@
 ::msgcat::mcset de "Replace with:" "Ersetze durch:"
 ::msgcat::mcset de "Find &Next" "Suche &fortsetzen"
 ::msgcat::mcset de "Replace &All" "&Alle Ersetzen"
-::msgcat::mcset de "&Upwards" "&Rückwärts"
-::msgcat::mcset de "&Downwards" "&Vorwärts"
+::msgcat::mcset de "&Upwards" "&RÃ¼ckwÃ¤rts"
+::msgcat::mcset de "&Downwards" "&VorwÃ¤rts"
 ::msgcat::mcset de "Match &whole word only" "Ganzes &Wort"
-::msgcat::mcset de "Match &case" "&Groß-/Kleinschreibung beachten"
-::msgcat::mcset de "&Regular expression" "Reg&ulärer Ausdruck"
+::msgcat::mcset de "Match &case" "&GroÃŸ-/Kleinschreibung beachten"
+::msgcat::mcset de "&Regular expression" "Reg&ulÃ¤rer Ausdruck"
 ::msgcat::mcset de "In all &opened files"\
-                   "In allen geöffneten &Dateien"
+                   "In allen geÃ¶ffneten &Dateien"
 ::msgcat::mcset de "In &selection only" "In &markiertem Bereich"
 ::msgcat::mcset de "In a director&y" "In einem &Verzeichnis"
 ::msgcat::mcset de "Directory r&ecurse search" "Re&kursive Suche"
@@ -221,9 +221,9 @@
 ::msgcat::mcset de "The string to regexp search for cannot be compiled by\
                     Tcl.\nCheck again, maybe certain characters should be\
                     escaped."\
-                   "Der reguläre Ausdruck kann in Tcl nicht interpetiert \
-                   werden. Überprüfen Sie, ob bestimmeten Zeichen ein \
-                   ESC-Zeichen (\\) vorangestellt werden muß."
+                   "Der regulÃ¤re Ausdruck kann in Tcl nicht interpetiert \
+                   werden. ÃœberprÃ¼fen Sie, ob bestimmeten Zeichen ein \
+                   ESC-Zeichen (\\) vorangestellt werden muÃŸ."
 
 
 # findinfiles.tcl
@@ -236,33 +236,33 @@
 ::msgcat::mcset de "Some directories or files could not be open and were\
                     ignored during search.\n You might miss read access to\
                     them.\n\n The following ones were ignored"\
-                    "Einige Verzeichnisse oder Dateien konnten nicht geöffnet \
+                    "Einige Verzeichnisse oder Dateien konnten nicht geÃ¶ffnet \
                     werden. Sie sind von Suchfunktion ignoriert worden.\n \
-                    Möglicherweise besitzen sie keine Leserechte für diese \
+                    MÃ¶glicherweise besitzen sie keine Leserechte fÃ¼r diese \
                     Verzeichnisse/Dateien.\n\n Folgende \
                     Verzeichnisse/Dateien sind ignoriert worden"
 ::msgcat::mcset de "Ignored files" "Ignorierte Dateien"
 ::msgcat::mcset de "Searching in file:" "Suche in Datei :"
 ::msgcat::mcset de "End of file search:" "Ende der Suche :"
-::msgcat::mcset de "matches found" "Übereinstimmungen gefunden"
+::msgcat::mcset de "matches found" "Ãœbereinstimmungen gefunden"
 ::msgcat::mcset de "Constructing file list:"\
                    "Erzeugung der Dateiliste:"
-::msgcat::mcset de "&Previous" "&Zurück"
-::msgcat::mcset de "&Next" "&Vorwärts"
+::msgcat::mcset de "&Previous" "&ZurÃ¼ck"
+::msgcat::mcset de "&Next" "&VorwÃ¤rts"
 ::msgcat::mcset de "Scipad search results" "Ergebnisse der Scipad-Suche"
 
 
 # helps.tcl
-::msgcat::mcset de "About" "Über SciPad"
+::msgcat::mcset de "About" "Ãœber SciPad"
 ::msgcat::mcset de "aboutme_message"\
-                   "\n Ursprüngliche Version von Joseph Acosta,\
-                    joeja@mindspring.com.\n Veränderungen durch das Scilab\
-                    Konsortium.\n Überarbeitung durch Enrico Segre\
+                   "\n UrsprÃ¼ngliche Version von Joseph Acosta,\
+                    joeja@mindspring.com.\n VerÃ¤nderungen durch das Scilab\
+                    Konsortium.\n Ãœberarbeitung durch Enrico Segre\
                     2003-2006.\n Verbesserungen (insbesondere Debugger) von\
-                    François Vogel 2004-2007.\n Schwedische Übersetzung von\
-                    Gunnar Lindholm 2005.\n Norwegische Übersetzung von\
-                    Torbjørn Pettersen 2005.\n Deutsche Übersetzung von Dirk\
-                    Reusch 2005, 2006.\n Polnische Übersetzung von Bartosz\
+                    FranÃ§ois Vogel 2004-2007.\n Schwedische Ãœbersetzung von\
+                    Gunnar Lindholm 2005.\n Norwegische Ãœbersetzung von\
+                    TorbjÃ¸rn Pettersen 2005.\n Deutsche Ãœbersetzung von Dirk\
+                    Reusch 2005, 2006.\n Polnische Ãœbersetzung von Bartosz\
                     Kosiorek 2005."
 
 
@@ -273,22 +273,22 @@
 ::msgcat::mcset de "in" "in"
 ::msgcat::mcset de "Logical line:" "Programmzeile:"
 ::msgcat::mcset de " \[ReadOnly\]" " \[Schreibschutz\]"
-::msgcat::mcset de " (modified)" " (geändert)"
+::msgcat::mcset de " (modified)" " (geÃ¤ndert)"
 
 
 # inputtext.tcl
 ::msgcat::mcset de "No corresponding <" "Keine entsprechende <"
 ::msgcat::mcset de "> found!" "> gefunden!"
 ::msgcat::mcset de "Code editing is not allowed during debug!"\
-                   "Während der Debug-Sitzung kann das Programm nicht\
-                    verändert werden !"
+                   "WÃ¤hrend der Debug-Sitzung kann das Programm nicht\
+                    verÃ¤ndert werden !"
 
 
 # menues.tcl
 ::msgcat::mcset de "&File" "&Datei"
 ::msgcat::mcset de "&Edit" "&Bearbeiten"
 ::msgcat::mcset de "&Search" "&Suchen"
-::msgcat::mcset de "E&xecute" "&Ausführen"
+::msgcat::mcset de "E&xecute" "&AusfÃ¼hren"
 ::msgcat::mcset de "&Debug" "D&ebug"
 ::msgcat::mcset de "S&cheme" "S&chema"
 ::msgcat::mcset de "&Options" "&Optionen"
@@ -297,36 +297,36 @@
 
 # menues.tcl - File menu
 ::msgcat::mcset de "&New" "&Neu"
-::msgcat::mcset de "&Open..." "&Öffnen..."
-::msgcat::mcset de "Open &in new" "Ö&ffnen in neuem Fenster"
+::msgcat::mcset de "&Open..." "&Ã–ffnen..."
+::msgcat::mcset de "Open &in new" "Ã–&ffnen in neuem Fenster"
 ::msgcat::mcset de "&horizontal tile" "&rechts daneben"
 ::msgcat::mcset de "&vertical tile" "&darunter"
-::msgcat::mcset de "Op&en source of..." "Öffn&en des Quellcodes von..."
+::msgcat::mcset de "Op&en source of..." "Ã–ffn&en des Quellcodes von..."
 ::msgcat::mcset de "&Save" "&Speichern"
 ::msgcat::mcset de "Save &as..." "S&peichern unter..."
 ::msgcat::mcset de "&Revert..." "&Verwerfen..."
 ::msgcat::mcset de "Import &Matlab file..." "&Matlab-Datei importieren..."
-::msgcat::mcset de "Create help s&keleton..." "&XML-Skelett für Hilfe-Datei..."
-::msgcat::mcset de "Compile as &help page" "XML-&Hilfe-Datei übersetzen"
+::msgcat::mcset de "Create help s&keleton..." "&XML-Skelett fÃ¼r Hilfe-Datei..."
+::msgcat::mcset de "Compile as &help page" "XML-&Hilfe-Datei Ã¼bersetzen"
 ::msgcat::mcset de "Open &function source" "&Quellcode der Funktion"
 ::msgcat::mcset de "Print Se&tup" "D&rucken einrichten..."
 ::msgcat::mcset de "&Print" "&Drucken"
 ::msgcat::mcset de "E&xit" "&Beenden"
 
 # menues.tcl - Edit menu
-::msgcat::mcset de "&Undo" "&Rückgängig"
+::msgcat::mcset de "&Undo" "&RÃ¼ckgÃ¤ngig"
 ::msgcat::mcset de "&Redo" "&Wiederholen"
 ::msgcat::mcset de "Cu&t" "&Ausschneiden"
 ::msgcat::mcset de "&Copy" "&Kopieren"
-::msgcat::mcset de "&Paste" "&Einfügen"
-::msgcat::mcset de "&Delete" "&Löschen"
+::msgcat::mcset de "&Paste" "&EinfÃ¼gen"
+::msgcat::mcset de "&Delete" "&LÃ¶schen"
 ::msgcat::mcset de "Select &All" "Alles &Markieren"
-::msgcat::mcset de "Insert &Time/Date" "&Zeit/Datum einfügen"
+::msgcat::mcset de "Insert &Time/Date" "&Zeit/Datum einfÃ¼gen"
 ::msgcat::mcset de "Co&mment selection" "Markierter Bereich als &Kommentar"
 ::msgcat::mcset de "U&ncomment selection"\
                    "Markierter Bereich &ohne Kommentarzeichen"
-::msgcat::mcset de "&Indent selection" "Mark&ierten Bereich einrücken"
-::msgcat::mcset de "Unin&dent selection" "Markier&ten Bereich ausrücken"
+::msgcat::mcset de "&Indent selection" "Mark&ierten Bereich einrÃ¼cken"
+::msgcat::mcset de "Unin&dent selection" "Markier&ten Bereich ausrÃ¼cken"
 
 # menues.tcl - Search menu
 ::msgcat::mcset de "&Find..." "&Suchen..."
@@ -336,45 +336,45 @@
 
 # menues.tcl - Exec menu
 ::msgcat::mcset de "&Load into Scilab" "&In Scilab laden"
-::msgcat::mcset de "&Evaluate selection" "&Markierten Bereich ausführen"
+::msgcat::mcset de "&Evaluate selection" "&Markierten Bereich ausfÃ¼hren"
 
 # menues.tcl - Debug menu
-::msgcat::mcset de "&Insert/Remove breakpoint" "&Stoppunkt setzen/löschen"
-::msgcat::mcset de "Remove &all breakpoints" "&Alle Stoppunkte löschen"
-::msgcat::mcset de "&Configure execution..." "A&usführung konfigurieren..."
-::msgcat::mcset de "Go to next b&reakpoint" "&Gehe zu nächstem Stoppunkt"
-::msgcat::mcset de "&Step by step" "S&chritt für Schritt"
+::msgcat::mcset de "&Insert/Remove breakpoint" "&Stoppunkt setzen/lÃ¶schen"
+::msgcat::mcset de "Remove &all breakpoints" "&Alle Stoppunkte lÃ¶schen"
+::msgcat::mcset de "&Configure execution..." "A&usfÃ¼hrung konfigurieren..."
+::msgcat::mcset de "Go to next b&reakpoint" "&Gehe zu nÃ¤chstem Stoppunkt"
+::msgcat::mcset de "&Step by step" "S&chritt fÃ¼r Schritt"
 ::msgcat::mcset de "Step &into" "&Into"
 ::msgcat::mcset de "Step o&ver" "O&ver"
 ::msgcat::mcset de "Step &out" "&Out"
-::msgcat::mcset de "Run to c&ursor" "Ausführen &bis Eingabezeiger"
+::msgcat::mcset de "Run to c&ursor" "AusfÃ¼hren &bis Eingabezeiger"
 ::msgcat::mcset de "G&o on ignoring any breakpoint"\
-                   "Ausführung &ohne Stop fortsetzen"
+                   "AusfÃ¼hrung &ohne Stop fortsetzen"
 ::msgcat::mcset de "Show &watch" "B&eobachten"
 ::msgcat::mcset de "&Break" "U&nterbrechen"
 ::msgcat::mcset de "Cance&l debug" "Abb&rechen"
 
-#    ::msgcat::mcset fr "language scheme" "schéma langage"
+#    ::msgcat::mcset fr "language scheme" "schÃ©ma langage"
 # menues.tcl - Scheme menu
 ::msgcat::mcset de "S&cilab" "S&cilab"
 ::msgcat::mcset de "&XML" "&XML"
 ::msgcat::mcset de "&none" "kei&ns"
 
 # menues.tcl - Options menu
-::msgcat::mcset de "&Font size" "&Schriftgröße"
+::msgcat::mcset de "&Font size" "&SchriftgrÃ¶ÃŸe"
 ::msgcat::mcset de "&micro" " &winzig"
 ::msgcat::mcset de "&small" " &klein"
 ::msgcat::mcset de "m&edium" " &normal"
-::msgcat::mcset de "&large" " &groß"
+::msgcat::mcset de "&large" " &groÃŸ"
 ::msgcat::mcset de "&Colors" "&Farben"
 ::msgcat::mcset de "Colorize \'&strings\'" "Farbige \'&Zeichenketten\'"
 ::msgcat::mcset de "Show c&ontinued lines"\
                    "F&ortgesetzte Zeilen anzeigen"
 ::msgcat::mcset de "Word &wrap" "&Automatischer Zeilenumbruch"
-::msgcat::mcset de "&Tabs and indentation" "&Tabulatoren und Einrücken"
-::msgcat::mcset de "Tab inserts &spaces" "&Tabulator fügt Leerzeichen ein"
-::msgcat::mcset de "&Indentation spaces" "&Leerzeichen für das Einrücken"
-::msgcat::mcset de "Com&pletion" "&Vervollständigung"
+::msgcat::mcset de "&Tabs and indentation" "&Tabulatoren und EinrÃ¼cken"
+::msgcat::mcset de "Tab inserts &spaces" "&Tabulator fÃ¼gt Leerzeichen ein"
+::msgcat::mcset de "&Indentation spaces" "&Leerzeichen fÃ¼r das EinrÃ¼cken"
+::msgcat::mcset de "Com&pletion" "&VervollstÃ¤ndigung"
 ::msgcat::mcset de "&Tab" "&Tab"
 ::msgcat::mcset de "&Control-Tab" "&Strg-Tab"
 ::msgcat::mcset de "&Alt-Tab" "&Alt-Tab"
@@ -384,48 +384,49 @@
 ::msgcat::mcset de "Sh&ift-Alt-Tab" "Shi&ft-Alt-Tab"
 ::msgcat::mcset de "Shi&ft-Control-Alt-Tab" "Shift-Str&g-Alt-Tab"
 ::msgcat::mcset de "File&names" "&Dateinamen"
-::msgcat::mcset de "&Full path" "&Vollständiger Pfad"
+::msgcat::mcset de "&Full path" "&VollstÃ¤ndiger Pfad"
 ::msgcat::mcset de "Full path if &ambiguous"\
-                   "V&ollständiger Pfad (falls mehrdeutig)"
-::msgcat::mcset de "&Unambiguous pruned path" "&Eindeutig abgekürzter Pfad"
-::msgcat::mcset de "&Recent files" "Z&uletzt geöffnete Dateien"
+                   "V&ollstÃ¤ndiger Pfad (falls mehrdeutig)"
+::msgcat::mcset de "&Unambiguous pruned path" "&Eindeutig abgekÃ¼rzter Pfad"
+::msgcat::mcset de "&Recent files" "Z&uletzt geÃ¶ffnete Dateien"
 ::msgcat::mcset de "&Backup files depth" "A&nzahl der Sicherungskopien"
 ::msgcat::mcset de "&Locale" "S&prachumgebung"
 # locale names (common)
 ::msgcat::mcset de "de locale (de)" "Deutsch (de)"
-::msgcat::mcset de "fr locale (fr)" "Français (fr)"
+::msgcat::mcset de "fr locale (fr)" "FranÃ§ais (fr)"
 ::msgcat::mcset de "eng locale (eng)" "English (eng)"
-::msgcat::mcset de "es locale (es)" "Español (es)"
+::msgcat::mcset de "es locale (es)" "EspaÃ±ol (es)"
 ::msgcat::mcset de "it locale (it)" "Italiano (it)"
 ::msgcat::mcset de "no locale (no)" "Norsk (no)"
 ::msgcat::mcset de "pl locale (pl)" "Polski (pl)"
 ::msgcat::mcset de "se locale (se)" "Svenska (se)"
+::msgcat::mcset de "zh_tw locale (zh_tw)" "ä¸­æ–‡ç¹é«” (zh_tw)"
 
 # menues.tcl - Windows menu
 ::msgcat::mcset de "&Maximize" "&Maximieren"
 ::msgcat::mcset de "&Split" "&Teilen"
 ::msgcat::mcset de "S&plit (side by side)" "Teilen (&senkrecht)"
-::msgcat::mcset de "Tile all &vertically" "&Übereinander"
+::msgcat::mcset de "Tile all &vertically" "&Ãœbereinander"
 ::msgcat::mcset de "Tile all &horizontally" "&Nebeneinander"
-::msgcat::mcset de "Space sashes &evenly" "&Gleichmäßige Aufteilung"
+::msgcat::mcset de "Space sashes &evenly" "&GleichmÃ¤ÃŸige Aufteilung"
 ::msgcat::mcset de "Opened Files" "Offene Dateien"
 
 # menues.tcl - Help menu
 ::msgcat::mcset de "&Help..." "&Hilfe..."
 ::msgcat::mcset de "&What's?..." "&Was ist?..."
-::msgcat::mcset de "&About" "Über &SciPad"
-::msgcat::mcset de "Adding &translations..." "&Übersetzungen hinzufügen..."
+::msgcat::mcset de "&About" "Ãœber &SciPad"
+::msgcat::mcset de "Adding &translations..." "&Ãœbersetzungen hinzufÃ¼gen..."
 ::msgcat::mcset de "Adding Scipad Translations..."\
-                   "Scipad Übersetzungen hinzufügen..."
-::msgcat::mcset de "&Bugs \& wishlist" "&Fehler \& Wünsche"
+                   "Scipad Ãœbersetzungen hinzufÃ¼gen..."
+::msgcat::mcset de "&Bugs \& wishlist" "&Fehler \& WÃ¼nsche"
 ::msgcat::mcset de "Scipad Known bugs" "Bekannte Fehler in Scipad"
-::msgcat::mcset de "Change&log" "&Liste der Änderungen"
+::msgcat::mcset de "Change&log" "&Liste der Ã„nderungen"
 ::msgcat::mcset de "Changes in the Scipad codebase"\
-                   "Änderungen im Scipad Programm"
+                   "Ã„nderungen im Scipad Programm"
 
 
 # popupmenus.tcl
-::msgcat::mcset de "Open the source of" "Quellcode öffnen"
+::msgcat::mcset de "Open the source of" "Quellcode Ã¶ffnen"
 ::msgcat::mcset de "AddWatch" "Variable %s beobachten"
 
 
@@ -440,11 +441,11 @@
 ::msgcat::mcset de "Scilab is working, wait for the prompt to load file"\
                    "Scilab arbeitet. Warten Sie auf die Eingabeaufforderung,\
                     um eine Datei zu laden"
-::msgcat::mcset de "Exec done" "Ausführung beendet"
+::msgcat::mcset de "Exec done" "AusfÃ¼hrung beendet"
 ::msgcat::mcset de "Scilab is working, wait for the prompt to execute the\
                     selection."\
                    "Scilab arbeitet. Warten Sie auf die Eingabeaufforderung,\
-                    um den markierten Bereich auszuführen."
+                    um den markierten Bereich auszufÃ¼hren."
 ::msgcat::mcset de "Scilab is working, wait for the prompt to convert a\
                     Matlab file."\
                    "Scilab arbeitet. Warten Sie auf die Eingabeaufforderung,\
@@ -459,33 +460,33 @@
                     offending Matlab file to \
                     http://scilabsoft.inria.fr/bugzilla_bug_II/index.cgi"\
                    "Der Import der Datei ist fehlgeschlagen, siehe\
-                    Scilab-Fenster für weitere Details -- Vielleicht sollten\
+                    Scilab-Fenster fÃ¼r weitere Details -- Vielleicht sollten\
                     die Fehlermeldungen und die verantwortliche Matlab-Datei\
                     an  http://scilabsoft.inria.fr/bugzilla_bug_II/index.cgi\
                     weiterleiten."
 ::msgcat::mcset de "Please select destination path for the xml source of the\
                     help file"\
-                   "Bitte wählen sie einen Zielpfad für die XML-Hilfe-Datei"
-::msgcat::mcset de "Older version of" "Es existiert eine ältere Version von"
+                   "Bitte wÃ¤hlen sie einen Zielpfad fÃ¼r die XML-Hilfe-Datei"
+::msgcat::mcset de "Older version of" "Es existiert eine Ã¤ltere Version von"
 ::msgcat::mcset de "found!" "!"
 ::msgcat::mcset de "An old version of" "Eine alte Version von"
 ::msgcat::mcset de "already exists: open the old file instead?"\
-                   "existiert bereits: Wollen Sie sie öffnen?"
+                   "existiert bereits: Wollen Sie sie Ã¶ffnen?"
 ::msgcat::mcset de "Existing file" "Datei existiert"
-::msgcat::mcset de "New skeleton" "Neues XML-Skelett für Hilfe-Datei"
+::msgcat::mcset de "New skeleton" "Neues XML-Skelett fÃ¼r Hilfe-Datei"
 ::msgcat::mcset de "Scilab is working, wait for the prompt to compile the\
                     help file."\
                    "Scilab arbeitet! Bitte warten Sie auf die\
-                    Eingabeaufforderung, um die Hilfe-Datei zu übersetzen"
+                    Eingabeaufforderung, um die Hilfe-Datei zu Ã¼bersetzen"
 ::msgcat::mcset de "ScilabEval command cannot be passed to Scilab!"\
-                   "Ein \"ScilabEval\"-Befehl kann nicht an Scilab übergeben\
+                   "Ein \"ScilabEval\"-Befehl kann nicht an Scilab Ã¼bergeben\
                     werden!"
 ::msgcat::mcset de "impossibleScilabEval_message"\
-                   "WARNUNG : Ein Befehl konnte nicht an Scilab übertragen\
+                   "WARNUNG : Ein Befehl konnte nicht an Scilab Ã¼bertragen\
                     werden und wurde  deshalb ignoriert.\n\n Die\
-                    wahrscheinlichste Ursache hierfür ist, daß Sie  keine\
-                    Schreibrechte für das Scilab-Verzeichnis TMPDIR\
-                    besitzen.  Unvorhersehbare Ergebnisse können die Folge\
+                    wahrscheinlichste Ursache hierfÃ¼r ist, daÃŸ Sie  keine\
+                    Schreibrechte fÃ¼r das Scilab-Verzeichnis TMPDIR\
+                    besitzen.  Unvorhersehbare Ergebnisse kÃ¶nnen die Folge\
                     sein. Bei dem Befehl handelte  es sich um:\n\n-->"
 
 
@@ -494,7 +495,7 @@
 
 
 # textarea.tcl
-::msgcat::mcset de "Font size" "Schriftgröße"
+::msgcat::mcset de "Font size" "SchriftgrÃ¶ÃŸe"
 
 
 # whichfun.tcl
@@ -543,15 +544,15 @@
 ::msgcat::mcset de "File &name:" "Datei&name:"
 ::msgcat::mcset de "Files of &type:" "Datei&typen:"
 #::msgcat::mcset fr "&Save" "&Enregistrer" # already included
-::msgcat::mcset de "&Open" "&Öffnen"
-::msgcat::mcset de "Open" "Öffnen"
+::msgcat::mcset de "&Open" "&Ã–ffnen"
+::msgcat::mcset de "Open" "Ã–ffnen"
 ::msgcat::mcset de "Save As" "Speichern unter"
 ::msgcat::mcset de "&Cancel" "&Abbrechen"
 ::msgcat::mcset de "&Selection:" "Au&swahl:"
 ::msgcat::mcset de "&Yes" "&Ja"
 ::msgcat::mcset de "&No" "&Nein"
 ::msgcat::mcset de "&Red" "&Rot"
-::msgcat::mcset de "&Green" "&Grün"
+::msgcat::mcset de "&Green" "&GrÃ¼n"
 ::msgcat::mcset de "&Blue" "&Blau"
 ::msgcat::mcset de "Directory \"%1\$s\" does not exist."\
                    "Das Verzeichnis \"%1\$s\" existiert nicht."

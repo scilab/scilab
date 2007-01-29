@@ -2766,3 +2766,8 @@ Francois VOGEL, 27/01/07
  * proc srevert (used in undo/redo) really uses string reverse (TIP #272)
    if Tcl 8.5 is found (this was prepared in Scipad 6.55)
  * version --> 6.81
+
+Francois VOGEL, 29/01/07
+ * Chinese translation added, all msg files are now in UTF-8 encoding to be
+   able to handle chinese characters
+ * version --> 6.82

@@ -105,10 +105,12 @@ ENCODING ISSUES
 
 Localization files could require a particular encoding for displaying
 correctly latin accented characters, or non-latin ones. We have seen that
-ISO-8859-15 and UTF-8 work fine, and we have used consistently ISO-8559-15
+ISO-8859-15 and UTF-8 work fine, and we had used consistently ISO-8559-15
 for French and Italian. As a rule of thumb, everything should be fine for
 Scipad if, opening it, it recognizes the encoding you used. Tcl seems to have
-some ability of doing it by itself. 
+some ability of doing it by itself. Currently all msg files are now in UTF-8
+in order to support the chinese characters displayed in the Options/locale
+menu.
 We also have some tools for transcoding, if needed, though our systems might
 lack the proper fonts.
 

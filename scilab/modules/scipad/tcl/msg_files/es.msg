@@ -8,23 +8,23 @@
 ::msgcat::mcset es "OK" "Aceptar"
 ::msgcat::mcset es "Scilab working" "Scilab trabajando"
 ::msgcat::mcset es "All files" "Todos los archivos"
-::msgcat::mcset es "Add/Change" "AÒadir/modificar"
-::msgcat::mcset es "Add/Chan&ge" "AÒadir/&modificar"
+::msgcat::mcset es "Add/Change" "A√±adir/modificar"
+::msgcat::mcset es "Add/Chan&ge" "A√±adir/&modificar"
 ::msgcat::mcset es "&Remove" "&Remover"
-::msgcat::mcset es "Untitled" "Sin TÌtulo"
+::msgcat::mcset es "Untitled" "Sin T√≠tulo"
 ::msgcat::mcset es "Close" "Cerrar"
 ::msgcat::mcset es "&Close" "&Cerrar"
 
 
 # buffernavigation.tcl
-::msgcat::mcset es "Goto Line?" "Ir a la lÌnea?"
+::msgcat::mcset es "Goto Line?" "Ir a la l√≠nea?"
 ::msgcat::mcset es "Go to:" "Ir a:"
-::msgcat::mcset es "&logical line" "linea &lÛgica"
-::msgcat::mcset es "&physical line" "linea fÌ&sica"
-::msgcat::mcset es "in &function" "en la &funciÛn"
+::msgcat::mcset es "&logical line" "linea &l√≥gica"
+::msgcat::mcset es "&physical line" "linea f√≠&sica"
+::msgcat::mcset es "in &function" "en la &funci√≥n"
 ::msgcat::mcset es "in &current file" "en el archivo &actual"
 ::msgcat::mcset es "Outside of function definition"\
-                   "Fuera de la definiciÛn de la funciÛn"
+                   "Fuera de la definici√≥n de la funci√≥n"
 
 
 # colorize.tcl
@@ -35,7 +35,7 @@
                    "Usted no puede hacer eso mientras se da color al archivo.\
                     Por favor intente de nuevo cuando haya terminado el proceso"
 ::msgcat::mcset es "Command forbidden during colorization"\
-                   "Comando prohibido durante la colorizaciÛn del archivo"
+                   "Comando prohibido durante la colorizaci√≥n del archivo"
 
 
 # completion.tcl
@@ -51,46 +51,46 @@
                    "Obtener el &valor actual de Scilab"
 
 # db_configureexec.tcl
-::msgcat::mcset es "Configure execution" "Configurar la EjecuciÛn"
-::msgcat::mcset es "Function name:" "Nombre de la funciÛn:"
+::msgcat::mcset es "Configure execution" "Configurar la Ejecuci√≥n"
+::msgcat::mcset es "Function name:" "Nombre de la funci√≥n:"
 ::msgcat::mcset es "&Obtain" "&Obtener"
 ::msgcat::mcset es "Input arguments:" "Argumentos de entrada:"
 ::msgcat::mcset es "Function name or input arguments do not match definition\
                     of the function"\
-                   "El nombre de la funciÛn o los argumentos de entrada\
-                    no corresponden con la definiciÛn de la funciÛn"
+                   "El nombre de la funci√≥n o los argumentos de entrada\
+                    no corresponden con la definici√≥n de la funci√≥n"
 ::msgcat::mcset es "in the file!\n\nCheck function name and arguments\
                     (names, order) in the configuration dialog. \nArguments\
                     order can be changed using drag and drop with right\
                     mouse button in the arguments listbox."\
-                   "En el archivo!\n\n Revisar el nombre de la funciÛn y sus\
-                    argumentos (nombre, orden) en el di·logo de configuraciÛn.\
+                   "En el archivo!\n\n Revisar el nombre de la funci√≥n y sus\
+                    argumentos (nombre, orden) en el di√°logo de configuraci√≥n.\
                     \n El orden de los argumentos \
-                    puede ser cambiado arrastrando con el botÛn derecho del ratÛn."
+                    puede ser cambiado arrastrando con el bot√≥n derecho del rat√≥n."
 ::msgcat::mcset es "Error in selected function name or arguments"\
-                   "Error en la funciÛn o argumentos seleccionados"
+                   "Error en la funci√≥n o argumentos seleccionados"
 ::msgcat::mcset es "Debugger is not yet developed for sce scripts!"\
-                   "El depurador para los guiones .sce todavÌa no est· disponible "
+                   "El depurador para los guiones .sce todav√≠a no est√° disponible "
 
 
 # db_debugsession.tcl
 ::msgcat::mcset es "Scilab is working, wait for the prompt to issue a\
                     debugger command."\
-                   "Scilab est· trabajando, espere por el aviso para \
-                    usar el comando de depuraciÛn."
+                   "Scilab est√° trabajando, espere por el aviso para \
+                    usar el comando de depuraci√≥n."
 ::msgcat::mcset es "Cursor position is out of reach!"\
-                   "La posiciÛn del cursor esta fuera de alcance!"
+                   "La posici√≥n del cursor esta fuera de alcance!"
 ::msgcat::mcset es "Cursor must be in a function"\
-                   "El cursor debe estar en una funciÛn"
+                   "El cursor debe estar en una funci√≥n"
 ::msgcat::mcset es "No effect - The debugged file is not stuck"\
                    "No hay efecto - El archivado depurado no esta atascado"
 ::msgcat::mcset es "Scilab execution error"\
-                   "Error de Scilab durante la EjecuciÛn"
+                   "Error de Scilab durante la Ejecuci√≥n"
 ::msgcat::mcset es "The shell reported an error while trying to execute "\
                    "La shell ha reportado un error tratando de ejecutar"
 ::msgcat::mcset es "at line " "a la linea "
 ::msgcat::mcset es " of " " de "
-::msgcat::mcset es "Execution aborted!" "EjecuciÛn abortada!"
+::msgcat::mcset es "Execution aborted!" "Ejecuci√≥n abortada!"
 
 
 # db_init.tcl
@@ -99,9 +99,9 @@
 
 # db_states.tcl
 ::msgcat::mcset es "Currently no debug session"\
-                   "No hay ninguna sesiÛn de depuraciÛn en curso"
-::msgcat::mcset es "Ready to start debug" "Listo para empezar la depuraciÛn"
-::msgcat::mcset es "Debug in progress" "DepuraciÛn en curso"
+                   "No hay ninguna sesi√≥n de depuraci√≥n en curso"
+::msgcat::mcset es "Ready to start debug" "Listo para empezar la depuraci√≥n"
+::msgcat::mcset es "Debug in progress" "Depuraci√≥n en curso"
 
 
 # db_watch.tcl
@@ -120,20 +120,20 @@
 
 
 # filecommands.tcl
-::msgcat::mcset es "New script" "Nuevo guiÛn"
+::msgcat::mcset es "New script" "Nuevo gui√≥n"
 ::msgcat::mcset es "The contents of" "Los contenidos de"
 ::msgcat::mcset es "may have changed, do you wish to save your changes?"\
                    "puede haber cambiado, desea guardar los cambios?"
 ::msgcat::mcset es "Save Confirm?" "Confirma Guardar?"
 ::msgcat::mcset es "Open source of..." "Abrir la fuente de..."
 ::msgcat::mcset es "Open source of:" "Abrir la fuente de:"
-::msgcat::mcset es "Weird drag&drop" "Arras&tre extraÒo"
+::msgcat::mcset es "Weird drag&drop" "Arras&tre extra√±o"
 ::msgcat::mcset es "is neither a valid filename nor a valid directory.\
                     Either you're dragging an object of another type, or you\
                     hit a bug of the dnd mechanism."\
                    "No es ni  nombre de archivo valido ni nombre de\
 		   directorio valido.\
-                    Puede ser que usred estÈ arrastrando un objeto de otro tipo, o usted\
+                    Puede ser que usred est√© arrastrando un objeto de otro tipo, o usted\
                     encontro un error el en mecanismo dnd."
 ::msgcat::mcset es "File not found" "Archivo no encontrado"
 ::msgcat::mcset es "does not exist anymore. Do you want to create an empty\
@@ -165,9 +165,9 @@
                     to save your changes?"\
                    "Los contenidos de este archivo pueden haber cambiado,\
                     desea guardar los cambios?"
-::msgcat::mcset es "Revert" "Regresar a la versiÛn de"
+::msgcat::mcset es "Revert" "Regresar a la versi√≥n de"
 ::msgcat::mcset es "to saved?" "al guardado?"
-::msgcat::mcset es "Revert Confirm?" "Confirma recuperaciÛn?"
+::msgcat::mcset es "Revert Confirm?" "Confirma recuperaci√≥n?"
 ::msgcat::mcset es "Unreadable file" "Archivo ilegible!"
 ::msgcat::mcset es "exists but is not readable!" "Existe pero no es legible!"
 
@@ -181,11 +181,11 @@
 ::msgcat::mcset es "replacements done" "sustituciones efectuadas"
 ::msgcat::mcset es "Find" "Buscar"
 ::msgcat::mcset es "No match found in the selection for"\
-                   "No se encontrÛ nada en la selecciÛn\["
+                   "No se encontr√≥ nada en la selecci√≥n\["
 ::msgcat::mcset es "\nWould you like to look for it in the entire text?"\
                    "\] Quisiera buscarlo en el texto completo\?"
 ::msgcat::mcset es "You are searching for an empty string!"\
-                   "Est· buscando una secuencia vacÌa!"
+                   "Est√° buscando una secuencia vac√≠a!"
 ::msgcat::mcset es "Re&place" "&Sustituir"
 ::msgcat::mcset es "Find what:" "Encontrar:"
 ::msgcat::mcset es "Replace with:" "Reemplazar con:"
@@ -194,42 +194,42 @@
 ::msgcat::mcset es "&Upwards" "&Arriba"
 ::msgcat::mcset es "&Downwards" "A&bajo"
 ::msgcat::mcset es "Match &whole word only" "Buscar solo la palabra &entera"
-::msgcat::mcset es "Match &case" "Respetar &may˙sculas"
-::msgcat::mcset es "&Regular expression" "ExpresiÛn &regular (regexp)"
+::msgcat::mcset es "Match &case" "Respetar &may√∫sculas"
+::msgcat::mcset es "&Regular expression" "Expresi√≥n &regular (regexp)"
 ::msgcat::mcset es "In all &opened files" "En todos los &archivos abiertos"
-::msgcat::mcset es "In &selection only" "SÛlo en la selecc&iÛn"
+::msgcat::mcset es "In &selection only" "S√≥lo en la selecc&i√≥n"
 ::msgcat::mcset es "In a director&y" "En un &directorio:"
 ::msgcat::mcset es "Directory r&ecurse search" "Buscar re&cursivamente"
 ::msgcat::mcset es "In files/file types:" "En archivos/Tipos de archivos"
 ::msgcat::mcset es "In directory:" "En directorio:"
-::msgcat::mcset es "Wrapped around" "Continuado m·s all·"
+::msgcat::mcset es "Wrapped around" "Continuado m√°s all√°"
 #la anterior seguramente esta mal...
 ::msgcat::mcset es "Back at the first file searched!"\
                    "Volver al primer archivo buscado!"
-::msgcat::mcset es "No more matches" "No hay m·s correspondencias"
+::msgcat::mcset es "No more matches" "No hay m√°s correspondencias"
 ::msgcat::mcset es "The string to regexp search for cannot be compiled by\
                     Tcl.\nCheck again, maybe certain characters should be\
                     escaped."\
                    "La cadena de la busqueda regexp no puede ser compilada\
-                    por Tcl. Por favor revÌsela. Quiz·,\
-                    deba quitar alg˙n caracter especial \\."
+                    por Tcl. Por favor rev√≠sela. Quiz√°,\
+                    deba quitar alg√∫n caracter especial \\."
 
 
 # findinfiles.tcl
 ::msgcat::mcset es "Directory access issue" "Problema al accesar el directorio"
 ::msgcat::mcset es "The directory you specified cannot be reached. The\
                     search won't bring any result."\
-                   "El directorio que especificÛ est· fuera de alcance. La\
-                    b˙squeda no arrojÛ ning˙n resultado"
+                   "El directorio que especific√≥ est√° fuera de alcance. La\
+                    b√∫squeda no arroj√≥ ning√∫n resultado"
 ::msgcat::mcset es "Some directories or files could not be open and were\
                     ignored during search.\n You might miss read access to\
                     them.\n\n The following ones were ignored"\
                    "Algunos directorios o archivos no pudieron ser abiertos\
-                    y se ignoraron durante la b˙squeda.\n Quiza no pueda leerlos\
+                    y se ignoraron durante la b√∫squeda.\n Quiza no pueda leerlos\
                     Los siguientes se ignoraron:"
 ::msgcat::mcset es "Ignored files" "Archivos ignorados"
 ::msgcat::mcset es "Searching in file:" "Buscar en el archivo:"
-::msgcat::mcset es "End of file search:" "Fin de la b˙squeda de archivos:"
+::msgcat::mcset es "End of file search:" "Fin de la b√∫squeda de archivos:"
 ::msgcat::mcset es "matches found" "correspondecias encontradas"
 ::msgcat::mcset es "Constructing file list:"\
                    "Construyendo la lista de archivos:"
@@ -244,18 +244,18 @@
                    "\n Originado de tknotepad de Joseph Acosta,\
                     joeja@mindspring.com.\n Modificado por el consorcio\
                     Scilab.\n Mejoras por Enrico Segre 2003-2006\n y por\
-                    FranÁois Vogel (en particular el depurador) 2004-2007.\n\
-                    TraducciÛn: \n   noruego, Torbjrn Pettersen 2005; \n  \
+                    Fran√ßois Vogel (en particular el depurador) 2004-2007.\n\
+                    Traducci√≥n: \n   noruego, Torbjrn Pettersen 2005; \n  \
                     polaco, Bartosz Kosiorek 2005; \n   sueco, Gunnar\
-                    Lindholm 2005; \n   alem·n, Dirk Reusch 2005; \n   espaÒol, Nicol·s Quesada 2006."
+                    Lindholm 2005; \n   alem√°n, Dirk Reusch 2005; \n   espa√±ol, Nicol√°s Quesada 2006."
 
 
 # infomessages.tcl
-::msgcat::mcset es "Line:" "LÌnea:"
+::msgcat::mcset es "Line:" "L√≠nea:"
 ::msgcat::mcset es "Column:" "Columna:"
-::msgcat::mcset es "Line" "LÌnea"
+::msgcat::mcset es "Line" "L√≠nea"
 ::msgcat::mcset es "in" "en"
-::msgcat::mcset es "Logical line:" "LÌnea lÛgica:"
+::msgcat::mcset es "Logical line:" "L√≠nea l√≥gica:"
 ::msgcat::mcset es " \[ReadOnly\]" " \[SoloLectura\]"
 ::msgcat::mcset es " (modified)" " (modificado)"
 
@@ -265,7 +265,7 @@
 #no estoy seguro de la anterior
 ::msgcat::mcset es "> found!" "> encontrado!"
 ::msgcat::mcset es "Code editing is not allowed during debug!"\
-                   "La ediciÛn de cÛdigo no est· permitida durante la depuraciÛn!"
+                   "La edici√≥n de c√≥digo no est√° permitida durante la depuraci√≥n!"
 
 
 # menues.tcl
@@ -285,15 +285,15 @@
 ::msgcat::mcset es "Open &in new" "Abr&ir en una nueva ventana"
 ::msgcat::mcset es "&horizontal tile" "Cuadro &horizontal"
 ::msgcat::mcset es "&vertical tile" "Cuadro &vertical"
-::msgcat::mcset es "Op&en source of..." "A&brir el cÛdigo de..."
+::msgcat::mcset es "Op&en source of..." "A&brir el c√≥digo de..."
 ::msgcat::mcset es "&Save" "&Guardar"
 ::msgcat::mcset es "Save &as..." "Guardar &como..."
 ::msgcat::mcset es "&Revert..." "&Recuperar..."
 ::msgcat::mcset es "Import &Matlab file..." "Importar un archivo de &Matlab..."
 ::msgcat::mcset es "Create help s&keleton..." "Crear un archivo de ayuda &XML..."
-::msgcat::mcset es "Compile as &help page" "Compilar como p·gina de ay&uda"
-::msgcat::mcset es "Open &function source" "Abrir el codigo fuente de la &funciÛn"
-::msgcat::mcset es "Print Se&tup" "Configurar impresiÛn"
+::msgcat::mcset es "Compile as &help page" "Compilar como p√°gina de ay&uda"
+::msgcat::mcset es "Open &function source" "Abrir el codigo fuente de la &funci√≥n"
+::msgcat::mcset es "Print Se&tup" "Configurar impresi√≥n"
 ::msgcat::mcset es "&Print" "Im&primir"
 ::msgcat::mcset es "E&xit" "&Salir"
 
@@ -306,28 +306,28 @@
 ::msgcat::mcset es "&Delete" "&Eliminar"
 ::msgcat::mcset es "Select &All" "Se&leccionar todo"
 ::msgcat::mcset es "Insert &Time/Date" "Insertar dia/&hora"
-::msgcat::mcset es "Co&mment selection" "Co&mentar selecciÛn"
-::msgcat::mcset es "U&ncomment selection" "Descome&ntar la selecciÛn"
+::msgcat::mcset es "Co&mment selection" "Co&mentar selecci√≥n"
+::msgcat::mcset es "U&ncomment selection" "Descome&ntar la selecci√≥n"
 #no se si ese verbo exista, igual con desidentar
-::msgcat::mcset es "&Indent selection" "&Identar la selecciÛn"
-::msgcat::mcset es "Unin&dent selection" "Desiden&tar la selecciÛn"
+::msgcat::mcset es "&Indent selection" "&Identar la selecci√≥n"
+::msgcat::mcset es "Unin&dent selection" "Desiden&tar la selecci√≥n"
 
 # menues.tcl - Search menu
 ::msgcat::mcset es "&Find..." "&Buscar..."
 ::msgcat::mcset es "Find &Next" "Buscar siguie&nte"
 ::msgcat::mcset es "&Replace..." "&Sustituir..."
-::msgcat::mcset es "&Goto Line..." "&Ir a la lÌnea..."
+::msgcat::mcset es "&Goto Line..." "&Ir a la l√≠nea..."
 
 # menues.tcl - Exec menu
 ::msgcat::mcset es "&Load into Scilab" "&Cargar en Scilab"
-::msgcat::mcset es "&Evaluate selection" "&Evaluar la selecciÛn"
+::msgcat::mcset es "&Evaluate selection" "&Evaluar la selecci√≥n"
 
 # menues.tcl - Debug menu
 ::msgcat::mcset es "&Insert/Remove breakpoint" "&Insertar/remover un limite"
 # notese que breakpoint=limite
 ::msgcat::mcset es "Remove &all breakpoints" "Remover &todos los limites"
-::msgcat::mcset es "&Configure execution..." "&Configurar la ejecuciÛn..."
-::msgcat::mcset es "Go to next b&reakpoint" "Ir al si&guinete lÌmite"
+::msgcat::mcset es "&Configure execution..." "&Configurar la ejecuci√≥n..."
+::msgcat::mcset es "Go to next b&reakpoint" "Ir al si&guinete l√≠mite"
 ::msgcat::mcset es "&Step by step" "Pa&so a paso"
 ::msgcat::mcset es "Step &into" "Pasar  a&dentro" 
 #ni 
@@ -336,10 +336,10 @@
 ::msgcat::mcset es "Step &out" "Quedarse a&fuera"
 ::msgcat::mcset es "Run to c&ursor" "Correr con el curso&r"
 ::msgcat::mcset es "G&o on ignoring any breakpoint"\
-                   "Co&ntinuar ignorando cualquier lÌmite"
-::msgcat::mcset es "Show &watch" "Mostrar &observaciÛn"
+                   "Co&ntinuar ignorando cualquier l√≠mite"
+::msgcat::mcset es "Show &watch" "Mostrar &observaci√≥n"
 ::msgcat::mcset es "&Break" "&Parar"
-::msgcat::mcset es "Cance&l debug" "C&ancelar depuraciÛn"
+::msgcat::mcset es "Cance&l debug" "C&ancelar depuraci√≥n"
 
 #    ::msgcat::mcset fr "language scheme" "Esquema de Lenguage"
 # menues.tcl - Scheme menu
@@ -348,20 +348,20 @@
 ::msgcat::mcset es "&none" "&ninguno"
 
 # menues.tcl - Options menu
-::msgcat::mcset es "&Font size" "&TamaÒo de la fuente"
+::msgcat::mcset es "&Font size" "&Tama√±o de la fuente"
 ::msgcat::mcset es "&micro" "&micro"
-::msgcat::mcset es "&small" "&pequeÒa"
+::msgcat::mcset es "&small" "&peque√±a"
 ::msgcat::mcset es "m&edium" "m&ediano"
 ::msgcat::mcset es "&large" "&grande"
 ::msgcat::mcset es "&Colors" "&Color"
 ::msgcat::mcset es "Colorize \'&strings\'" "Dar color \'ca&dena\'"
-::msgcat::mcset es "Show c&ontinued lines" "Mostrar lÌneas continuadas"
+::msgcat::mcset es "Show c&ontinued lines" "Mostrar l√≠neas continuadas"
 ::msgcat::mcset es "Word &wrap" "&Regresar al campo visual"
-# de esta tampoco estoy muy seguro y estoy basandome en la traducciÛn del italiano
-::msgcat::mcset es "&Tabs and indentation" "&TabulaciÛn e identaciÛn"
+# de esta tampoco estoy muy seguro y estoy basandome en la traducci√≥n del italiano
+::msgcat::mcset es "&Tabs and indentation" "&Tabulaci√≥n e identaci√≥n"
 ::msgcat::mcset es "Tab inserts &spaces" "T&ab inserta espacios"
 ::msgcat::mcset es "&Indentation spaces" "E&spacios de identacion"
-::msgcat::mcset es "Com&pletion" "A&utocompletaciÛn"
+::msgcat::mcset es "Com&pletion" "A&utocompletaci√≥n"
 ::msgcat::mcset es "&Tab" "Ta&b"
 ::msgcat::mcset es "&Control-Tab" "C&ontrol-Tab"
 ::msgcat::mcset es "&Alt-Tab" "A&lt-Tab"
@@ -371,21 +371,22 @@
 ::msgcat::mcset es "Sh&ift-Alt-Tab" "Shi&ft-Alt-Tab"
 ::msgcat::mcset es "Shi&ft-Control-Alt-Tab" "Shift-Control-Alt-Tab"
 ::msgcat::mcset es "File&names" "Nombre de los arc&hivos"
-::msgcat::mcset es "&Full path" "DirecciÛn com&pleta"
-::msgcat::mcset es "Full path if &ambiguous" "Toda la direcciÛn si hay &ambiguedad"
-::msgcat::mcset es "&Unambiguous pruned path" "DirecciÛn completa sin lugar a ambiguedad"
+::msgcat::mcset es "&Full path" "Direcci√≥n com&pleta"
+::msgcat::mcset es "Full path if &ambiguous" "Toda la direcci√≥n si hay &ambiguedad"
+::msgcat::mcset es "&Unambiguous pruned path" "Direcci√≥n completa sin lugar a ambiguedad"
 ::msgcat::mcset es "&Recent files" "Archivos recien&tes"
-::msgcat::mcset es "&Backup files depth" "&VersiÛn de las copias de seguridad"
-::msgcat::mcset es "&Locale" "&LocalizaciÛn"
+::msgcat::mcset es "&Backup files depth" "&Versi√≥n de las copias de seguridad"
+::msgcat::mcset es "&Locale" "&Localizaci√≥n"
 # locale names (common)
 ::msgcat::mcset es "de locale (de)" "Deutsch (de)"
-::msgcat::mcset es "fr locale (fr)" "FranÁais (fr)"
+::msgcat::mcset es "fr locale (fr)" "Fran√ßais (fr)"
 ::msgcat::mcset es "eng locale (eng)" "English (eng)"
-::msgcat::mcset es "es locale (es)" "EspaÒol (es)"
+::msgcat::mcset es "es locale (es)" "Espa√±ol (es)"
 ::msgcat::mcset es "it locale (it)" "Italiano (it)"
 ::msgcat::mcset es "no locale (no)" "Norsk (no)"
 ::msgcat::mcset es "pl locale (pl)" "Polski (pl)"
 ::msgcat::mcset es "se locale (se)" "Svenska (se)"
+::msgcat::mcset es "zh_tw locale (zh_tw)" "‰∏≠ÊñáÁπÅÈ´î (zh_tw)"
 
 # menues.tcl - Windows menu
 ::msgcat::mcset es "&Maximize" "&Maximizar"
@@ -400,38 +401,38 @@
 ::msgcat::mcset es "&Help..." "&Ayuda..."
 ::msgcat::mcset es "&What's?..." "&Que es esto..."
 ::msgcat::mcset es "&About" "Acerca &de"
-::msgcat::mcset es "Adding &translations..." "AÒadiendo &Traducciones..."
+::msgcat::mcset es "Adding &translations..." "A√±adiendo &Traducciones..."
 ::msgcat::mcset es "Adding Scipad Translations..."\
-                   "AÒadiendo traducciones de Scipad:"
+                   "A√±adiendo traducciones de Scipad:"
 ::msgcat::mcset es "&Bugs \& wishlist" "&Errores \& Lista de Deseos"
 ::msgcat::mcset es "Scipad Known bugs" "Errores conocidos"
-::msgcat::mcset es "Change&log" "Cronologia de &modificaciÛn"
+::msgcat::mcset es "Change&log" "Cronologia de &modificaci√≥n"
 ::msgcat::mcset es "Changes in the Scipad codebase"\
-                   "Cambios en el cÛdigo base de Scipad"
+                   "Cambios en el c√≥digo base de Scipad"
 
 
 # popupmenus.tcl
 ::msgcat::mcset es "Open the source of" "Abrir la fuente de"
-::msgcat::mcset es "AddWatch" "AÒadir observaciÛn"
+::msgcat::mcset es "AddWatch" "A√±adir observaci√≥n"
 #La anterior probablemente este mala
 
 
 # print.tcl
-::msgcat::mcset es "Print Setup" "Configurar la impresiÛn"
-::msgcat::mcset es "Print Command: " "Comando de impresiÛn:"
+::msgcat::mcset es "Print Setup" "Configurar la impresi√≥n"
+::msgcat::mcset es "Print Command: " "Comando de impresi√≥n:"
 
 
 # scilabexec.tcl
 ::msgcat::mcset es "No point in loading an empty file!"\
-                   "Es in˙til cargar un archivo vacÌo!"
+                   "Es in√∫til cargar un archivo vac√≠o!"
 ::msgcat::mcset es "Scilab is working, wait for the prompt to load file"\
-                   "Scilab est· trabajando, espere por el aviso para cargar el\
+                   "Scilab est√° trabajando, espere por el aviso para cargar el\
                     archivo"
-::msgcat::mcset es "Exec done" "EjecuciÛn terminada"
+::msgcat::mcset es "Exec done" "Ejecuci√≥n terminada"
 ::msgcat::mcset es "Scilab is working, wait for the prompt to execute the\
                     selection."\
                    "Scilab esta trabajando, por favor espere el aviso para\
-		    ejecutar la selecciÛn"
+		    ejecutar la selecci√≥n"
 ::msgcat::mcset es "Scilab is working, wait for the prompt to convert a\
                     Matlab file."\
                    "Scilab esta trabajando, por favor espere el aviso para\
@@ -440,12 +441,12 @@
 ::msgcat::mcset es "Matlab file to convert" "Archivo Matlab a convertir"
 ::msgcat::mcset es "Scilab is converting, please hold on..."\
                    "Scilab esta convirtiendo, por favor espere..."
-::msgcat::mcset es "Matlab file import" "ImportaciÛn de un archivo Matlab"
+::msgcat::mcset es "Matlab file import" "Importaci√≥n de un archivo Matlab"
 ::msgcat::mcset es "Conversion of the file failed, see the Scilab window for\
                     details -- Perhaps report the error text and the\
                     offending Matlab file to \
                     http://scilabsoft.inria.fr/bugzilla_bug_II/index.cgi"\
-		   "La conversiÛn del archivo fallÛ vea la ventana de\
+		   "La conversi√≥n del archivo fall√≥ vea la ventana de\
                     Scilab para ver mas detalles -- Si desea reporte el error a \
                     http://scilabsoft.inria.fr/bugzilla_bug_II/index.cgi\
                     incluyendo el archivo matlab."
@@ -453,11 +454,11 @@
 
 ::msgcat::mcset es "Please select destination path for the xml source of the\
                     help file"\
-                   "Por favor seleccione la ubicaciÛn de la fuente del
+                   "Por favor seleccione la ubicaci√≥n de la fuente del
 		    archivo xml de ayuda"
-::msgcat::mcset es "Older version of" "VersiÛn anteriorde "
+::msgcat::mcset es "Older version of" "Versi√≥n anteriorde "
 ::msgcat::mcset es "found!" "encontrado!"
-::msgcat::mcset es "An old version of" "Una versiÛn anterior de"
+::msgcat::mcset es "An old version of" "Una versi√≥n anterior de"
 ::msgcat::mcset es "already exists: open the old file instead?"\
                    "Ya existe: desea abrir el archivo anterior?"
 ::msgcat::mcset es "Existing file" "Archivo existente"
@@ -470,7 +471,7 @@
                    "Un comando ScilabEval no puede ser pasado  a\
                     Scilab!"
 ::msgcat::mcset es "impossibleScilabEval_message"\
-                   "ATENCI”N : Un comando no ha podido ser pasado a\
+                   "ATENCI√ìN : Un comando no ha podido ser pasado a\
                     Scilab."
 
 
@@ -479,48 +480,48 @@
 
 
 # textarea.tcl
-::msgcat::mcset es "Font size" "TamaÒo de la fuente"
+::msgcat::mcset es "Font size" "Tama√±o de la fuente"
 
 
 # whichfun.tcl
-::msgcat::mcset es "Being at line" "Estando en la lÌnea"
-::msgcat::mcset es ", function" ", la funciÛn"
+::msgcat::mcset es "Being at line" "Estando en la l√≠nea"
+::msgcat::mcset es ", function" ", la funci√≥n"
 ::msgcat::mcset es "begins at" "comienza en"
-::msgcat::mcset es ", and there are" ", y all· estan"
+::msgcat::mcset es ", and there are" ", y all√° estan"
 #como raro
 ::msgcat::mcset es "continued lines, i.e. we are at line"\
-                   "lÌneas continuadas, por ejemplo estamos en la lÌnea"
+                   "l√≠neas continuadas, por ejemplo estamos en la l√≠nea"
 #no cuadra
 ::msgcat::mcset es "of" "de"
-::msgcat::mcset es "Function" "FunciÛn"
-::msgcat::mcset es "line" "lÌnea"
+::msgcat::mcset es "Function" "Funci√≥n"
+::msgcat::mcset es "line" "l√≠nea"
 ::msgcat::mcset es "The cursor is not currently inside a function body."\
-                   "El cursor no esta dentro de una funciÛn"
-::msgcat::mcset es "Which function?" "C˙al funciÛn?"
+                   "El cursor no esta dentro de una funci√≥n"
+::msgcat::mcset es "Which function?" "C√∫al funci√≥n?"
 
 
 #preference variables description
 ::msgcat::mcset es "BGCOLOR" "Fondo"
 ::msgcat::mcset es "FGCOLOR" "Texto simple"
 ::msgcat::mcset es "CURCOLOR" "Cursor"
-::msgcat::mcset es "PARCOLOR" "ParÈntesis ()"
+::msgcat::mcset es "PARCOLOR" "Par√©ntesis ()"
 ::msgcat::mcset es "BRAKCOLOR" "Corchetes \\\[\\\]"
 ::msgcat::mcset es "BRACCOLOR" "Llaves {}"
-::msgcat::mcset es "PUNCOLOR" "PuntuaciÛn"
-::msgcat::mcset es "INTFCOLOR" "FunciÛn interna"
+::msgcat::mcset es "PUNCOLOR" "Puntuaci√≥n"
+::msgcat::mcset es "INTFCOLOR" "Funci√≥n interna"
 ::msgcat::mcset es "COMMCOLOR" "Comando de Scilab"
-::msgcat::mcset es "SCICCOLOR" "FunciÛn de Scicos"
-::msgcat::mcset es "OPCOLOR" "OperaciÛn"
+::msgcat::mcset es "SCICCOLOR" "Funci√≥n de Scicos"
+::msgcat::mcset es "OPCOLOR" "Operaci√≥n"
 ::msgcat::mcset es "QTXTCOLOR" "Cadena de caracteres"
 ::msgcat::mcset es "REMCOLOR" "Comentario"
 ::msgcat::mcset es "XMLCOLOR" "XML"
 ::msgcat::mcset es "NUMCOLOR" "Numero"
-::msgcat::mcset es "SELCOLOR" "Color de selecciÛn"
-::msgcat::mcset es "BREAKPOINTCOLOR" "Punto de lÌmite"
-::msgcat::mcset es "LFUNCOLOR" "FunciÛn de biblioteca"
+::msgcat::mcset es "SELCOLOR" "Color de selecci√≥n"
+::msgcat::mcset es "BREAKPOINTCOLOR" "Punto de l√≠mite"
+::msgcat::mcset es "LFUNCOLOR" "Funci√≥n de biblioteca"
 ::msgcat::mcset es "PDEFCOLOR" "Variable predefinida"
 ::msgcat::mcset es "FOUNDTEXTCOLOR" "Texto encontrado"
-::msgcat::mcset es "CONTLINECOLOR" "LÌnea incompleta"
+::msgcat::mcset es "CONTLINECOLOR" "L√≠nea incompleta"
 
 #overriding tcl-core dialogs (many are actually already found in
 #  TKDIR/msgs/fr.msg)
@@ -532,7 +533,7 @@
 ::msgcat::mcset es "Open" "Abrir"
 ::msgcat::mcset es "Save As" "Guardar como"
 ::msgcat::mcset es "&Cancel" "Ca&ncelar"
-::msgcat::mcset es "&Selection:" "&SelecciÛn:"
+::msgcat::mcset es "&Selection:" "&Selecci√≥n:"
 ::msgcat::mcset es "&Yes" "&Si"
 ::msgcat::mcset es "&No" "&No"
 ::msgcat::mcset es "&Red" "&Rojo"
