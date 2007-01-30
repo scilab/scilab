@@ -6,13 +6,13 @@
 ; fftw module primitives            
 ; Don't edit if you aren't sure         
 ; --------------------------            
-50 1 loadfftwlibrary
-50 2 disposefftwlibrary
-50 3 fftwlibraryisloaded
-50 4 fftw
-50 5 fftw_flags
-50 6 fftw_inplace
-50 7 fftw_norm
-50 8 pushfftw_plan
-50 9 freefftw_plan
+51 1 loadfftwlibrary
+51 2 disposefftwlibrary
+51 3 fftwlibraryisloaded
+51 4 fftw
+51 5 fftw_flags
+51 6 fftw_inplace
+51 7 fftw_norm
+51 8 pushfftw_plan
+51 9 freefftw_plan
 ; --------------------------            

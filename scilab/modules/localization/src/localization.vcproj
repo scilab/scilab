@@ -43,7 +43,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="../includes;../../core/includes;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml"
-				PreprocessorDefinitions="_DLL;STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE;EXPORT_LOCALIZATION_DLL"
+				PreprocessorDefinitions="FORDLL;_DLL;STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE;EXPORT_LOCALIZATION_DLL"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
@@ -134,7 +134,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				AdditionalIncludeDirectories="../includes;../../core/includes;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml"
-				PreprocessorDefinitions="EXPORT_LOCALIZATION_DLL;STRICT;NDEBUG;_CRT_SECURE_NO_DEPRECATE"
+				PreprocessorDefinitions="FORDLL;EXPORT_LOCALIZATION_DLL;STRICT;NDEBUG;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -245,6 +245,14 @@
 			</File>
 			<File
 				RelativePath="..\includes\localization.h"
+				>
+			</File>
+			<File
+				RelativePath="..\sci_gateway\sci_getlanguage.h"
+				>
+			</File>
+			<File
+				RelativePath="..\sci_gateway\sci_setlanguage.h"
 				>
 			</File>
 			<File
