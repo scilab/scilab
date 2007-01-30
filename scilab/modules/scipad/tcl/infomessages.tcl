@@ -130,7 +130,7 @@ proc modifiedtitle {textarea {panesonly "false"}} {
 # Update also the visual indications of the modified state of the buffer.
 # This includes title bar, colorization of the windows menu entry and
 # colorization of an area in the status bar
-    global pad winTitle listoffile
+    global pad winTitle ScipadVersion listoffile
     global MenuEntryId
     set fname $listoffile("$textarea",displayedname)
     set ind [extractindexfromlabel $pad.filemenu.wind $fname]
@@ -157,7 +157,13 @@ proc modifiedtitle {textarea {panesonly "false"}} {
         }
     }
     if {$panesonly == "false"} {
-        wm title $pad "$winTitle - $fname$mod1$mod2"
+        # catched because scan will fail when launched from wish
+        if {[catch {
+            scan $ScipadVersion "%s - %s" ScipadVersionNumber ScipadVersionString
+            wm title $pad "$winTitle $ScipadVersionNumber - $fname$mod1$mod2"
+                   }] } {
+            wm title $pad "$winTitle - $fname$mod1$mod2"
+        }
     }
     if {[isdisplayed $textarea]} {
         [getpaneframename $textarea].panetitle configure \

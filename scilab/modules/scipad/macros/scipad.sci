@@ -21,8 +21,6 @@ function scipad(varargin)
     end;
     clear nwnimode noguimode
 
-    global LANGUAGE
-
     if with_tk() then
         if ~TCL_ExistInterp("scipad") then    
             TCL_EvalStr("interp create scipad")

@@ -102,7 +102,7 @@ proc selectblock {w x y} {
     set cornerpos [$w index @$x,$y]
     $w mark set insert $cornerpos
 
-    # possible cases at this point:
+    # possible cases at this point (A=anchor, C=corner):
     #    A      A     C      C    A    C    AC    CA
     #     C    C       A    A     C    A
     if {[$w compare $cornerpos < $anchorpos]} {

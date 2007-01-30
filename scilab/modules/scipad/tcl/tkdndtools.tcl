@@ -8,9 +8,23 @@ proc tkdndbind {w} {
     # Abort if TkDnD package is not available
     if {$TkDnDloaded != "true"} {
         bind $w <ButtonRelease-1>  { \
+            endblockselection %W ; \
             if {[info exists listoffile("%W",fullname)]} { \
                 focustextarea %W ; \
             } \
+        }
+        # bindings for block selection
+        bind $w <Shift-Control-Button-1> { \
+            startblockselection %W %x %y ; \
+            break ; \
+        }
+        bind $w <Shift-Control-Button1-Motion> { \
+            selectblock %W %x %y ; \
+            break ; \
+        }
+        bind $w <Shift-Control-ButtonRelease-1> { \
+            endblockselection %W ; \
+            break ; \
         }
         return
     }

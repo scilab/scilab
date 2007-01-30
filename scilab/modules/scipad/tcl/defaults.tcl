@@ -220,13 +220,6 @@ set maxcharinascilabname 24
 # this variable is used to restore the word wrap mode after a block selection
 set blockseltoggledwordwrap false
 
-# line ending character(s)
-if {$tcl_platform(platform) == "windows"} {
-    set lineend "\n"
-} else {
-    set lineend "\r\n"
-}
-
 ##########################################################################
 # Regular expression patterns
 # These are globals since used at different places of the code

@@ -2771,3 +2771,10 @@ Francois VOGEL, 29/01/07
  * Chinese translation added, all msg files are now in UTF-8 encoding to be
    able to handle chinese characters
  * version --> 6.82
+
+Francois VOGEL, 30/01/07
+ * Block selection available also when tkdnd package is not found
+ * Fixed: correct line ending characters when cutting or copying a block
+   selection
+ * Added Scipad version number in the title bar
+ * version --> 6.83

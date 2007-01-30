@@ -8,10 +8,12 @@ proc setScipadVersionString {} {
     set comm3   "TCL_EvalStr(\"set ScipadVersion \"\"\"+string(ScipadVer(1))+\".\"+string(ScipadVer(2))+\" - \"+getversion(\"scipad\",\"string_info\")+\"\"\"\",\"scipad\");"
     set comm4 "else"
     set comm5   "TCL_EvalStr(\"set ScipadVersion \"\"\"+string(ScipadVer(1))+\".\"+string(ScipadVer(2))+\".\"+string(ScipadVer(3))+\" - \"+getversion(\"scipad\",\"string_info\")+\"\"\"\",\"scipad\");"
-    set comm6 "end;"
-    # <TODO> SCI_VERSION_REVISION are not used until some automatic way to
+    set comm6 "end;TCL_EvalStr(\" modifiedtitle [gettextareacur]\",\"scipad\");"
+    # update title bar
+    set comm7 "TCL_EvalStr(\"modifiedtitle [gettextareacur]\",\"scipad\");"
+    # <TODO> SCI_VERSION_REVISION is not used until some automatic way to
     #        fill in this field at commit exist
-    set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6]
+    set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6 $comm7]
     ScilabEval_lt $fullcomm "seq"
 }
 

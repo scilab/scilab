@@ -93,7 +93,7 @@ proc cuttext {} {
 # and remove the selected text from the current buffer
 # note: block selection is supported
 
-    global listoffile buffermodifiedsincelastsearch lineend
+    global listoffile buffermodifiedsincelastsearch
 
     if {[IsBufferEditable] == "No"} {return}
 
@@ -114,9 +114,9 @@ proc cuttext {} {
         [$textareacur get [lindex $selindices 0] [lindex $selindices 1]]
     foreach {sta sto} [lreplace $selindices 0 1] {
         # if there is a block selection, split the selected lines with
-        # a lineend in the clipboard
+        # a \n in the clipboard
         clipboard append -displayof $textareacur \
-            "$lineend[$textareacur get $sta $sto]"
+            "\n[$textareacur get $sta $sto]"
     }
     # text deletion must be done at once and not range by range!
 	eval "$textareacur delete $selindices"
@@ -140,8 +140,6 @@ proc copytext {} {
 # copy text procedure: copy current selection into the clipboard
 # note: block selection is supported
 
-    global lineend
-
     set textareacur [gettextareacur]
     set selindices [gettaselind $textareacur any]
 
@@ -156,9 +154,9 @@ proc copytext {} {
         [$textareacur get [lindex $selindices 0] [lindex $selindices 1]]
     foreach {sta sto} [lreplace $selindices 0 1] {
         # if there is a block selection, split the selected lines with
-        # a lineend in the clipboard
+        # a \n in the clipboard
         clipboard append -displayof $textareacur \
-            "$lineend[$textareacur get $sta $sto]"
+            "\n[$textareacur get $sta $sto]"
     }
 
     restorecursorblink ; # see comments in proc puttext
