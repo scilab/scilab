@@ -16,8 +16,8 @@ if LANGUAGE == 'fr' then
 	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/fr',%f,%f);
 	add_help_chapter("Manipulation de fichiers sons",pathhelp);
 	add_demo('Manipulation de fichiers sons',pathdemos);
-elseif LANGUAGE == 'eng' then
-	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/eng',%f,%f);
+elseif LANGUAGE == 'en' then
+	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/en',%f,%f);
 	add_help_chapter("Sound file handling",pathhelp);
 	add_demo('Sound file handling',pathdemos);
 end

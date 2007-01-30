@@ -12,7 +12,7 @@ disposefftwlibrary();
 
 if LANGUAGE == 'fr' then
 //	del_help_chapter("FFTW");
-elseif LANGUAGE == 'eng' then
+elseif LANGUAGE == 'en' then
 //	del_help_chapter("FFTW");
 end
 

@@ -18,7 +18,7 @@ Source: modules\{#INCRLINK}\changelog.txt; DestDir: {app}\modules\{#INCRLINK}; C
 Source: modules\{#INCRLINK}\etc\{#INCRLINK}.quit; DestDir: {app}\modules\{#INCRLINK}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#INCRLINK}\etc\{#INCRLINK}.start; DestDir: {app}\modules\{#INCRLINK}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#INCRLINK}\help\eng\*.htm; DestDir: {app}\modules\{#INCRLINK}\help\eng; Components: {#COMPN_SCILAB}
+Source: modules\{#INCRLINK}\help\en\*.htm; DestDir: {app}\modules\{#INCRLINK}\help\en; Components: {#COMPN_SCILAB}
 Source: modules\{#INCRLINK}\help\fr\*.htm; DestDir: {app}\modules\{#INCRLINK}\help\fr; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#INCRLINK}\src\scripts\Makedll.incl; DestDir: {app}\modules\{#INCRLINK}\src\scripts; Components: {#COMPN_SCILAB}

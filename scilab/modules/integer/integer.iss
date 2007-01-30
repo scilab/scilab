@@ -22,7 +22,7 @@ Source: modules\{#INTEGER}\sci_gateway\integer; DestDir: {app}\modules\{#INTEGER
 Source: modules\{#INTEGER}\etc\{#INTEGER}.quit; DestDir: {app}\modules\{#INTEGER}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#INTEGER}\etc\{#INTEGER}.start; DestDir: {app}\modules\{#INTEGER}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#INTEGER}\help\eng\*.htm; DestDir: {app}\modules\{#INTEGER}\help\eng; Components: {#COMPN_SCILAB}
+Source: modules\{#INTEGER}\help\en\*.htm; DestDir: {app}\modules\{#INTEGER}\help\en; Components: {#COMPN_SCILAB}
 Source: modules\{#INTEGER}\help\fr\*.htm; DestDir: {app}\modules\{#INTEGER}\help\fr; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#INTEGER}\includes\*.h; DestDir: {app}\modules\{#INTEGER}\includes; Components: {#COMPN_SCILAB}

@@ -18,7 +18,7 @@ Source: modules\{#LOCALIZATION}\changelog.txt; DestDir: {app}\modules\{#LOCALIZA
 Source: modules\{#LOCALIZATION}\etc\{#LOCALIZATION}.quit; DestDir: {app}\modules\{#LOCALIZATION}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#LOCALIZATION}\etc\{#LOCALIZATION}.start; DestDir: {app}\modules\{#LOCALIZATION}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#LOCALIZATION}\help\eng\*.htm; DestDir: {app}\modules\{#LOCALIZATION}\help\eng; Components: {#COMPN_SCILAB}
+Source: modules\{#LOCALIZATION}\help\en\*.htm; DestDir: {app}\modules\{#LOCALIZATION}\help\en; Components: {#COMPN_SCILAB}
 Source: modules\{#LOCALIZATION}\help\fr\*.htm; DestDir: {app}\modules\{#LOCALIZATION}\help\fr; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#LOCALIZATION}\includes\*.h; DestDir: {app}\modules\{#LOCALIZATION}\includes; Components: {#COMPN_SCILAB}

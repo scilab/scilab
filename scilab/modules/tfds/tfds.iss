@@ -18,7 +18,7 @@ Source: modules\{#TFDS}\changelog.txt; DestDir: {app}\modules\{#TFDS}; Component
 Source: modules\{#TFDS}\etc\{#TFDS}.quit; DestDir: {app}\modules\{#TFDS}\etc; Components: {#COMPN_TFDS}
 Source: modules\{#TFDS}\etc\{#TFDS}.start; DestDir: {app}\modules\{#TFDS}\etc; Components: {#COMPN_TFDS}
 ;
-Source: modules\{#TFDS}\help\eng\*.htm; DestDir: {app}\modules\{#TFDS}\help\eng; Components: {#COMPN_TFDS}
+Source: modules\{#TFDS}\help\en\*.htm; DestDir: {app}\modules\{#TFDS}\help\en; Components: {#COMPN_TFDS}
 Source: modules\{#TFDS}\help\fr\*.htm; DestDir: {app}\modules\{#TFDS}\help\fr; Components: {#COMPN_TFDS}
 ;
 ;Source: modules\{#TFDS}\includes\*.h; DestDir: {app}\modules\{#TFDS}\includes; Components: {#COMPN_TFDS}

@@ -23,7 +23,7 @@ Source: modules\{#FFTW}\etc\{#FFTW}.start; DestDir: {app}\modules\{#FFTW}\etc; C
 ;
 ;Source: modules\{#FFTW}\demos\*.*; DestDir: {app}\modules\{#FFTW}\demos; Flags: recursesubdirs; Components: {#COMPN_FFTW}
 ;
-;Source: modules\{#FFTW}\help\eng\*.htm; DestDir: {app}\modules\{#FFTW}\help\eng; Components: {#COMPN_FFTW}
+;Source: modules\{#FFTW}\help\en\*.htm; DestDir: {app}\modules\{#FFTW}\help\en; Components: {#COMPN_FFTW}
 ;Source: modules\{#FFTW}\help\fr\*.htm; DestDir: {app}\modules\{#FFTW}\help\fr; Components: {#COMPN_FFTW}
 ;
 Source: modules\{#FFTW}\includes\*.h; Flags: recursesubdirs; DestDir: {app}\modules\{#FFTW}\includes; Components: {#COMPN_FFTW}

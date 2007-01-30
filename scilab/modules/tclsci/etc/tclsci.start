@@ -16,8 +16,8 @@ if LANGUAGE == 'fr' then
 	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/fr',%f,%f);
 	add_help_chapter("Interface Tcl/Tk",pathhelp);
 	add_demo('Interface Tcl/Tk',pathdemos);
-elseif LANGUAGE == 'eng' then
-	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/eng',%f,%f);
+elseif LANGUAGE == 'en' then
+	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/en',%f,%f);
 	add_help_chapter("Tcl/Tk Interface",pathhelp);
 	add_demo('Tcl/Tk Interface',pathdemos);
 end

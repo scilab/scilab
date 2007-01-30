@@ -16,8 +16,8 @@ if LANGUAGE == 'fr' then
 	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/fr',%f,%f);
 	add_help_chapter("Metanet : Graphes & Reseaux",pathhelp);
 	add_demo("Metanet : Graphes & Reseaux",pathdemos);
-elseif LANGUAGE == 'eng' then
-	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/eng',%f,%f);
+elseif LANGUAGE == 'en' then
+	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/en',%f,%f);
 	add_help_chapter("Metanet : Graph and Network toolbox",pathhelp);
 	add_demo("Metanet : Graph and Network toolbox",pathdemos);
 end

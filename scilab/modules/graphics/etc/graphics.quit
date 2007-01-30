@@ -8,7 +8,7 @@ global LANGUAGE
 
 if LANGUAGE == 'fr' then
 	del_help_chapter("Bibliothèque graphique");
-elseif LANGUAGE == 'eng' then
+elseif LANGUAGE == 'en' then
 	del_help_chapter("Graphics Library");
 end
 

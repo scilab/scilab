@@ -13,7 +13,7 @@
 Source: bin\Javasci.dll; DestDir: {app}\bin; Components: {#COMPN_JAVASCI}; Check: set_with_javasci
 Source: bin\{#JAVASCI}\*.class; DestDir: {app}\bin\{#JAVASCI}; Flags: recursesubdirs; Components: {#COMPN_JAVASCI}
 ;
-Source: modules\{#JAVASCI}\help\eng\*.htm; DestDir: {app}\modules\{#JAVASCI}\help\eng; Components: {#COMPN_JAVASCI}
+Source: modules\{#JAVASCI}\help\en\*.htm; DestDir: {app}\modules\{#JAVASCI}\help\en; Components: {#COMPN_JAVASCI}
 Source: modules\{#JAVASCI}\help\fr\*.htm; DestDir: {app}\modules\{#JAVASCI}\help\fr; Components: {#COMPN_JAVASCI}
 Source: modules\{#JAVASCI}\help\images\*.gif; DestDir: {app}\modules\{#JAVASCI}\help\images; Components: {#COMPN_JAVASCI}
 ;

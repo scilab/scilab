@@ -24,7 +24,7 @@ Source: modules\{#METANET}\sci_gateway\metanet; DestDir: {app}\modules\{#METANET
 Source: modules\{#METANET}\etc\{#METANET}.quit; DestDir: {app}\modules\{#METANET}\etc; Components: {#COMPN_METANET}
 Source: modules\{#METANET}\etc\{#METANET}.start; DestDir: {app}\modules\{#METANET}\etc; Components: {#COMPN_METANET}
 ;
-Source: modules\{#METANET}\help\eng\*.htm; DestDir: {app}\modules\{#METANET}\help\eng; Components: {#COMPN_METANET}
+Source: modules\{#METANET}\help\en\*.htm; DestDir: {app}\modules\{#METANET}\help\en; Components: {#COMPN_METANET}
 Source: modules\{#METANET}\help\fr\*.htm; DestDir: {app}\modules\{#METANET}\help\fr; Components: {#COMPN_METANET}
 ;
 Source: modules\{#METANET}\includes\*.h; DestDir: {app}\modules\{#METANET}\includes; Components: {#COMPN_METANET}

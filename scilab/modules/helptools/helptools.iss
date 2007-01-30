@@ -22,7 +22,7 @@ Source: modules\{#HELPTOOLS}\help.dtd; DestDir: {app}\modules\{#HELPTOOLS}; Comp
 Source: modules\{#HELPTOOLS}\etc\{#HELPTOOLS}.quit; DestDir: {app}\modules\{#HELPTOOLS}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#HELPTOOLS}\etc\{#HELPTOOLS}.start; DestDir: {app}\modules\{#HELPTOOLS}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#HELPTOOLS}\help\eng\*.htm; DestDir: {app}\modules\{#HELPTOOLS}\help\eng; Components: {#COMPN_SCILAB}
+Source: modules\{#HELPTOOLS}\help\en\*.htm; DestDir: {app}\modules\{#HELPTOOLS}\help\en; Components: {#COMPN_SCILAB}
 Source: modules\{#HELPTOOLS}\help\fr\*.htm; DestDir: {app}\modules\{#HELPTOOLS}\help\fr; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#HELPTOOLS}\macros\buildmacros.sce; DestDir: {app}\modules\{#HELPTOOLS}\macros; Components: {#COMPN_SCILAB}

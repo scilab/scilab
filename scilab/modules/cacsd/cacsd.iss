@@ -22,7 +22,7 @@ Source: modules\{#CACSD}\sci_gateway\cacsd; DestDir: {app}\modules\{#CACSD}\sci_
 Source: modules\{#CACSD}\etc\{#CACSD}.quit; DestDir: {app}\modules\{#CACSD}\etc; Components: {#COMPN_CACSD}
 Source: modules\{#CACSD}\etc\{#CACSD}.start; DestDir: {app}\modules\{#CACSD}\etc; Components: {#COMPN_CACSD}
 ;
-Source: modules\{#CACSD}\help\eng\*.htm; DestDir: {app}\modules\{#CACSD}\help\eng; Components: {#COMPN_CACSD}
+Source: modules\{#CACSD}\help\en\*.htm; DestDir: {app}\modules\{#CACSD}\help\en; Components: {#COMPN_CACSD}
 Source: modules\{#CACSD}\help\fr\*.htm; DestDir: {app}\modules\{#CACSD}\help\fr; Components: {#COMPN_CACSD}
 ;
 Source: modules\{#CACSD}\includes\*.h; DestDir: {app}\modules\{#CACSD}\includes; Components: {#COMPN_CACSD}

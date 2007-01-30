@@ -18,7 +18,7 @@ Source: modules\{#INTERSCI}\changelog.txt; DestDir: {app}\modules\{#INTERSCI}; C
 Source: modules\{#INTERSCI}\etc\{#INTERSCI}.quit; DestDir: {app}\modules\{#INTERSCI}\etc; Components: {#COMPN_INTERSCI}
 Source: modules\{#INTERSCI}\etc\{#INTERSCI}.start; DestDir: {app}\modules\{#INTERSCI}\etc; Components: {#COMPN_INTERSCI}
 ;
-Source: modules\{#INTERSCI}\help\eng\*.htm; DestDir: {app}\modules\{#INTERSCI}\help\eng; Components: {#COMPN_INTERSCI}
+Source: modules\{#INTERSCI}\help\en\*.htm; DestDir: {app}\modules\{#INTERSCI}\help\en; Components: {#COMPN_INTERSCI}
 Source: modules\{#INTERSCI}\help\fr\*.htm; DestDir: {app}\modules\{#INTERSCI}\help\fr; Components: {#COMPN_INTERSCI}
 ;
 ;Source: modules\{#INTERSCI}\macros\lib; DestDir: {app}\modules\{#INTERSCI}\macros; Components: {#COMPN_INTERSCI}

@@ -19,7 +19,7 @@ Source: modules\{#OVERLOADING}\changelog.txt; DestDir: {app}\modules\{#OVERLOADI
 Source: modules\{#OVERLOADING}\etc\{#OVERLOADING}.quit; DestDir: {app}\modules\{#OVERLOADING}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#OVERLOADING}\etc\{#OVERLOADING}.start; DestDir: {app}\modules\{#OVERLOADING}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#OVERLOADING}\help\eng\*.htm; DestDir: {app}\modules\{#OVERLOADING}\help\eng; Components: {#COMPN_SCILAB}
+Source: modules\{#OVERLOADING}\help\en\*.htm; DestDir: {app}\modules\{#OVERLOADING}\help\en; Components: {#COMPN_SCILAB}
 Source: modules\{#OVERLOADING}\help\fr\*.htm; DestDir: {app}\modules\{#OVERLOADING}\help\fr; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#OVERLOADING}\includes\*.h; DestDir: {app}\modules\{#OVERLOADING}\includes; Components: {#COMPN_SCILAB}

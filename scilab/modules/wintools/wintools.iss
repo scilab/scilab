@@ -20,7 +20,7 @@ Source: modules\{#WINTOOLS}\sci_gateway\wintools; DestDir: {app}\modules\{#WINTO
 Source: modules\{#WINTOOLS}\etc\{#WINTOOLS}.quit; DestDir: {app}\modules\{#WINTOOLS}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#WINTOOLS}\etc\{#WINTOOLS}.start; DestDir: {app}\modules\{#WINTOOLS}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#WINTOOLS}\help\eng\*.htm; DestDir: {app}\modules\{#WINTOOLS}\help\eng; Components: {#COMPN_SCILAB}
+Source: modules\{#WINTOOLS}\help\en\*.htm; DestDir: {app}\modules\{#WINTOOLS}\help\en; Components: {#COMPN_SCILAB}
 Source: modules\{#WINTOOLS}\help\fr\*.htm; DestDir: {app}\modules\{#WINTOOLS}\help\fr; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#WINTOOLS}\includes\*.h; DestDir: {app}\modules\{#WINTOOLS}\includes; Components: {#COMPN_SCILAB}

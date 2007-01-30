@@ -466,7 +466,7 @@ top_srcdir = @top_srcdir@
 # automake needs the html files to be present which is not the case when
 # we are building Scilab
 @PVM_TRUE@pkgdocdir = $(target)
-@PVM_TRUE@DOCDIRS = help/fr help/eng
+@PVM_TRUE@DOCDIRS = help/fr help/en
 @PVM_TRUE@DOCMASK = *.htm
 @PVM_TRUE@DOCMASKXML = *.xml
 

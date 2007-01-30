@@ -14,7 +14,7 @@ Source: modules\{#SIGPROC}\sci_gateway\signal_processing; DestDir: {app}\modules
 Source: modules\{#SIGPROC}\etc\{#SIGPROC}.quit; DestDir: {app}\modules\{#SIGPROC}\etc; Components: {#COMPN_SIGPROC}
 Source: modules\{#SIGPROC}\etc\{#SIGPROC}.start; DestDir: {app}\modules\{#SIGPROC}\etc; Components: {#COMPN_SIGPROC}
 ;
-Source: modules\{#SIGPROC}\help\eng\*.htm; DestDir: {app}\modules\{#SIGPROC}\help\eng; Components: {#COMPN_SIGPROC}
+Source: modules\{#SIGPROC}\help\en\*.htm; DestDir: {app}\modules\{#SIGPROC}\help\en; Components: {#COMPN_SIGPROC}
 Source: modules\{#SIGPROC}\help\fr\*.htm; DestDir: {app}\modules\{#SIGPROC}\help\fr; Components: {#COMPN_SIGPROC}
 ;
 Source: modules\{#SIGPROC}\macros\lib; DestDir: {app}\modules\{#SIGPROC}\macros; Components: {#COMPN_SIGPROC}

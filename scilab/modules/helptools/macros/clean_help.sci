@@ -76,7 +76,7 @@ function clean_help(dirs)
 		
 		select LANGUAGE
 		
-		case 'eng' then
+		case 'en' then
 			if fileinfo(SCI+pathconvert("/modules/helptools/index_eng.htm",%f,%f)) <> [] then
 				mprintf(".");
 				mdelete(SCI+pathconvert("/modules/helptools/index_eng.htm",%f,%f));

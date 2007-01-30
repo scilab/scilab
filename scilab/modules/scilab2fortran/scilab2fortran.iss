@@ -18,7 +18,7 @@ Source: modules\{#SCI2FOR}\changelog.txt; DestDir: {app}\modules\{#SCI2FOR}; Com
 Source: modules\{#SCI2FOR}\etc\{#SCI2FOR}.quit; DestDir: {app}\modules\{#SCI2FOR}\etc; Components: {#COMPN_SCI2FOR}
 Source: modules\{#SCI2FOR}\etc\{#SCI2FOR}.start; DestDir: {app}\modules\{#SCI2FOR}\etc; Components: {#COMPN_SCI2FOR}
 ;
-Source: modules\{#SCI2FOR}\help\eng\*.htm; DestDir: {app}\modules\{#SCI2FOR}\help\eng; Components: {#COMPN_SCI2FOR}
+Source: modules\{#SCI2FOR}\help\en\*.htm; DestDir: {app}\modules\{#SCI2FOR}\help\en; Components: {#COMPN_SCI2FOR}
 Source: modules\{#SCI2FOR}\help\fr\*.htm; DestDir: {app}\modules\{#SCI2FOR}\help\fr; Components: {#COMPN_SCI2FOR}
 ;
 Source: modules\{#SCI2FOR}\macros\lib; DestDir: {app}\modules\{#SCI2FOR}\macros; Components: {#COMPN_SCI2FOR}

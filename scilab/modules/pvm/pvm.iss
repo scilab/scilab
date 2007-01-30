@@ -22,7 +22,7 @@ Source: modules\{#PVM}\sci_gateway\pvm; DestDir: {app}\modules\{#PVM}\sci_gatewa
 Source: modules\{#PVM}\etc\{#PVM}.quit; DestDir: {app}\modules\{#PVM}\etc; Components: {#COMPN_PVM}
 Source: modules\{#PVM}\etc\{#PVM}.start; DestDir: {app}\modules\{#PVM}\etc; Components: {#COMPN_PVM}
 ;
-Source: modules\{#PVM}\help\eng\*.htm; DestDir: {app}\modules\{#PVM}\help\eng; Components: {#COMPN_PVM}
+Source: modules\{#PVM}\help\en\*.htm; DestDir: {app}\modules\{#PVM}\help\en; Components: {#COMPN_PVM}
 Source: modules\{#PVM}\help\fr\*.htm; DestDir: {app}\modules\{#PVM}\help\fr; Components: {#COMPN_PVM}
 ;
 Source: modules\{#PVM}\macros\buildmacros.sce; DestDir: {app}\modules\{#PVM}\macros; Components: {#COMPN_PVM}

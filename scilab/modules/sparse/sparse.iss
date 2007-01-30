@@ -22,7 +22,7 @@ Source: modules\{#SPARSE}\sci_gateway\sparse; DestDir: {app}\modules\{#SPARSE}\s
 Source: modules\{#SPARSE}\etc\{#SPARSE}.quit; DestDir: {app}\modules\{#SPARSE}\etc; Components: {#COMPN_SPARSE}
 Source: modules\{#SPARSE}\etc\{#SPARSE}.start; DestDir: {app}\modules\{#SPARSE}\etc; Components: {#COMPN_SPARSE}
 ;
-Source: modules\{#SPARSE}\help\eng\*.htm; DestDir: {app}\modules\{#SPARSE}\help\eng; Components: {#COMPN_SPARSE}
+Source: modules\{#SPARSE}\help\en\*.htm; DestDir: {app}\modules\{#SPARSE}\help\en; Components: {#COMPN_SPARSE}
 Source: modules\{#SPARSE}\help\fr\*.htm; DestDir: {app}\modules\{#SPARSE}\help\fr; Components: {#COMPN_SPARSE}
 ;
 Source: modules\{#SPARSE}\includes\*.h; DestDir: {app}\modules\{#SPARSE}\includes; Components: {#COMPN_SPARSE}

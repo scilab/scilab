@@ -18,7 +18,7 @@ Source: modules\{#SCIPAD}\changelog.txt; DestDir: {app}\modules\{#SCIPAD}; Compo
 Source: modules\{#SCIPAD}\etc\{#SCIPAD}.quit; DestDir: {app}\modules\{#SCIPAD}\etc; Components: {#COMPN_SCIPAD}
 Source: modules\{#SCIPAD}\etc\{#SCIPAD}.start; DestDir: {app}\modules\{#SCIPAD}\etc; Components: {#COMPN_SCIPAD}
 ;
-Source: modules\{#SCIPAD}\help\eng\*.htm; DestDir: {app}\modules\{#SCIPAD}\help\eng; Components: {#COMPN_SCIPAD}
+Source: modules\{#SCIPAD}\help\en\*.htm; DestDir: {app}\modules\{#SCIPAD}\help\en; Components: {#COMPN_SCIPAD}
 Source: modules\{#SCIPAD}\help\fr\*.htm; DestDir: {app}\modules\{#SCIPAD}\help\fr; Components: {#COMPN_SCIPAD}
 ;
 Source: modules\{#SCIPAD}\macros\lib; DestDir: {app}\modules\{#SCIPAD}\macros; Components: {#COMPN_SCIPAD}

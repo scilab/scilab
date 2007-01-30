@@ -28,7 +28,7 @@ Source: bin\scicos.dll; DestDir: {app}\bin; DestName: scicos.dll
 ;Source: modules\{#SCICOS}\etc\{#SCICOS}.quit; DestDir: {app}\modules\{#SCICOS}\etc; Components: {#COMPN_SCICOS}
 ;Source: modules\{#SCICOS}\etc\{#SCICOS}.start; DestDir: {app}\modules\{#SCICOS}\etc; Components: {#COMPN_SCICOS}
 ;
-;Source: modules\{#SCICOS}\help\eng\*.htm; DestDir: {app}\modules\{#SCICOS}\help\eng; Components: {#COMPN_SCICOS}
+;Source: modules\{#SCICOS}\help\en\*.htm; DestDir: {app}\modules\{#SCICOS}\help\en; Components: {#COMPN_SCICOS}
 ;Source: modules\{#SCICOS}\help\fr\*.htm; DestDir: {app}\modules\{#SCICOS}\help\fr; Components: {#COMPN_SCICOS}
 ;Source: modules\{#SCICOS}\help\images\*.gif; DestDir: {app}\modules\{#SCICOS}\help\images; Components: {#COMPN_SCICOS}
 ;

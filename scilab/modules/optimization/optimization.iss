@@ -20,7 +20,7 @@ Source: modules\{#OPTIMIZATION}\sci_gateway\optimization; DestDir: {app}\modules
 Source: modules\{#OPTIMIZATION}\etc\{#OPTIMIZATION}.quit; DestDir: {app}\modules\{#OPTIMIZATION}\etc; Components: {#COMPN_OPTIM}
 Source: modules\{#OPTIMIZATION}\etc\{#OPTIMIZATION}.start; DestDir: {app}\modules\{#OPTIMIZATION}\etc; Components: {#COMPN_OPTIM}
 ;
-Source: modules\{#OPTIMIZATION}\help\eng\*.htm; DestDir: {app}\modules\{#OPTIMIZATION}\help\eng; Components: {#COMPN_OPTIM}
+Source: modules\{#OPTIMIZATION}\help\en\*.htm; DestDir: {app}\modules\{#OPTIMIZATION}\help\en; Components: {#COMPN_OPTIM}
 Source: modules\{#OPTIMIZATION}\help\fr\*.htm; DestDir: {app}\modules\{#OPTIMIZATION}\help\fr; Components: {#COMPN_OPTIM}
 ;
 Source: modules\{#OPTIMIZATION}\includes\*.h; DestDir: {app}\modules\{#OPTIMIZATION}\includes; Components: {#COMPN_OPTIM}

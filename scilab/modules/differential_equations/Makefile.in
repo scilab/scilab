@@ -430,7 +430,7 @@ SUFFIXES = .sci
 # automake needs the html files to be present which is not the case when
 # we are building Scilab
 pkgdocdir = $(target)
-DOCDIRS = help/fr help/eng
+DOCDIRS = help/fr help/en
 DOCMASK = *.htm
 DOCMASKXML = *.xml
 

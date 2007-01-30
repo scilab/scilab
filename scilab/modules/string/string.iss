@@ -20,7 +20,7 @@ Source: modules\{#STRING}\sci_gateway\string; DestDir: {app}\modules\{#STRING}\s
 Source: modules\{#STRING}\etc\{#STRING}.quit; DestDir: {app}\modules\{#STRING}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#STRING}\etc\{#STRING}.start; DestDir: {app}\modules\{#STRING}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#STRING}\help\eng\*.htm; DestDir: {app}\modules\{#STRING}\help\eng; Components: {#COMPN_SCILAB}
+Source: modules\{#STRING}\help\en\*.htm; DestDir: {app}\modules\{#STRING}\help\en; Components: {#COMPN_SCILAB}
 Source: modules\{#STRING}\help\fr\*.htm; DestDir: {app}\modules\{#STRING}\help\fr; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#STRING}\includes\*.h; DestDir: {app}\modules\{#STRING}\includes; Components: {#COMPN_SCILAB}

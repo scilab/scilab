@@ -20,7 +20,7 @@ Source: modules\{#STATS}\sci_gateway\statistics; DestDir: {app}\modules\{#STATS}
 Source: modules\{#STATS}\etc\{#STATS}.quit; DestDir: {app}\modules\{#STATS}\etc; Components: {#COMPN_STATS}
 Source: modules\{#STATS}\etc\{#STATS}.start; DestDir: {app}\modules\{#STATS}\etc; Components: {#COMPN_STATS}
 ;
-Source: modules\{#STATS}\help\eng\*.htm; DestDir: {app}\modules\{#STATS}\help\eng; Components: {#COMPN_STATS}
+Source: modules\{#STATS}\help\en\*.htm; DestDir: {app}\modules\{#STATS}\help\en; Components: {#COMPN_STATS}
 Source: modules\{#STATS}\help\fr\*.htm; DestDir: {app}\modules\{#STATS}\help\fr; Components: {#COMPN_STATS}
 ;
 Source: modules\{#STATS}\macros\lib; DestDir: {app}\modules\{#STATS}\macros; Components: {#COMPN_STATS}

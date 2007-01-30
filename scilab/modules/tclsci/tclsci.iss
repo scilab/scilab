@@ -23,7 +23,7 @@ Source: modules\{#TCLSCI}\etc\{#TCLSCI}.start; DestDir: {app}\modules\{#TCLSCI}\
 Source: modules\{#TCLSCI}\demos\sciGUI\*.*; DestDir: {app}\modules\{#TCLSCI}\demos\sciGUI; Components: {#COMPN_TCLSCI}
 Source: modules\{#TCLSCI}\demos\tk\*.*; DestDir: {app}\modules\{#TCLSCI}\demos\tk; Components: {#COMPN_TCLSCI}
 ;
-Source: modules\{#TCLSCI}\help\eng\*.htm; DestDir: {app}\modules\{#TCLSCI}\help\eng; Components: {#COMPN_TCLSCI}
+Source: modules\{#TCLSCI}\help\en\*.htm; DestDir: {app}\modules\{#TCLSCI}\help\en; Components: {#COMPN_TCLSCI}
 Source: modules\{#TCLSCI}\help\fr\*.htm; DestDir: {app}\modules\{#TCLSCI}\help\fr; Components: {#COMPN_TCLSCI}
 ;
 Source: modules\{#TCLSCI}\includes\*.h; Flags: recursesubdirs; DestDir: {app}\modules\{#TCLSCI}\includes; Components: {#COMPN_TCLSCI}

@@ -18,7 +18,7 @@ Source: modules\{#FUNCTIONS}\changelog.txt; DestDir: {app}\modules\{#FUNCTIONS};
 Source: modules\{#FUNCTIONS}\etc\{#FUNCTIONS}.quit; DestDir: {app}\modules\{#FUNCTIONS}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#FUNCTIONS}\etc\{#FUNCTIONS}.start; DestDir: {app}\modules\{#FUNCTIONS}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#FUNCTIONS}\help\eng\*.htm; DestDir: {app}\modules\{#FUNCTIONS}\help\eng; Components: {#COMPN_SCILAB}
+Source: modules\{#FUNCTIONS}\help\en\*.htm; DestDir: {app}\modules\{#FUNCTIONS}\help\en; Components: {#COMPN_SCILAB}
 Source: modules\{#FUNCTIONS}\help\fr\*.htm; DestDir: {app}\modules\{#FUNCTIONS}\help\fr; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#FUNCTIONS}\macros\lib; DestDir: {app}\modules\{#FUNCTIONS}\macros; Components: {#COMPN_SCILAB}

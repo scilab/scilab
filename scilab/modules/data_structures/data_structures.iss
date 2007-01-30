@@ -20,7 +20,7 @@ Source: modules\{#DATASTRUCT}\sci_gateway\data_structures; DestDir: {app}\module
 Source: modules\{#DATASTRUCT}\etc\{#DATASTRUCT}.quit; DestDir: {app}\modules\{#DATASTRUCT}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#DATASTRUCT}\etc\{#DATASTRUCT}.start; DestDir: {app}\modules\{#DATASTRUCT}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#DATASTRUCT}\help\eng\*.htm; DestDir: {app}\modules\{#DATASTRUCT}\help\eng; Components: {#COMPN_SCILAB}
+Source: modules\{#DATASTRUCT}\help\en\*.htm; DestDir: {app}\modules\{#DATASTRUCT}\help\en; Components: {#COMPN_SCILAB}
 Source: modules\{#DATASTRUCT}\help\fr\*.htm; DestDir: {app}\modules\{#DATASTRUCT}\help\fr; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#DATASTRUCT}\includes\*.h; DestDir: {app}\modules\{#DATASTRUCT}\includes; Components: {#COMPN_SCILAB}

@@ -8,7 +8,7 @@ global LANGUAGE
 
 if LANGUAGE == 'fr' then
 	del_help_chapter("Scilab vers Fortran");
-elseif LANGUAGE == 'eng' then
+elseif LANGUAGE == 'en' then
 	del_help_chapter("Scilab to Fortran");
 end
 

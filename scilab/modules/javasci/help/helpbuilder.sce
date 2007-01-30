@@ -1,6 +1,6 @@
 mode(-1); //force silent execution
 
-cd 'eng'
+cd 'en'
 exec helpbuildereng.sce
 cd '..'
 

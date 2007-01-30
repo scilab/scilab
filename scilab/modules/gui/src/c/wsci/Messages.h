@@ -136,7 +136,7 @@
 #define MSG_SCIMSG123 "-e Instruction : execute the scilab instruction given in Instruction argument.\n"
 #define MSG_SCIMSG124 "-f File : execute the scilab script given in File argument.\n"
 #define MSG_SCIMSG125 "  '-e' and '-f' options are mutually exclusive.\n\n"
-#define MSG_SCIMSG126 "-l lang : it fixes the user language.\n  The possible lang values are 'fr' for french and 'eng' for english.\n  The default language is english.\n  This default value is fixed the scilab.start file.\n\n" 
+#define MSG_SCIMSG126 "-l lang : it fixes the user language.\n  The possible lang values are 'fr' for french and 'en' for english.\n  The default language is english.\n  This default value is fixed the scilab.start file.\n\n" 
 #define MSG_SCIMSG127 "-mem N : set the initial stacksize.\n"
 #define MSG_SCIMSG128 "-ns : if this option is present the startup file scilab.start is not executed.\n"
 #define MSG_SCIMSG129 "-nb : if this option is present then scilab welcome banner is not displayed.\n"

@@ -24,7 +24,7 @@ Source: modules\{#ARNOLDI}\sci_gateway\arnoldi; DestDir: {app}\modules\{#ARNOLDI
 Source: modules\{#ARNOLDI}\etc\{#ARNOLDI}.quit; DestDir: {app}\modules\{#ARNOLDI}\etc; Components: {#COMPN_ARNOLDI}
 Source: modules\{#ARNOLDI}\etc\{#ARNOLDI}.start; DestDir: {app}\modules\{#ARNOLDI}\etc; Components: {#COMPN_ARNOLDI}
 ;
-Source: modules\{#ARNOLDI}\help\eng\*.htm; DestDir: {app}\modules\{#ARNOLDI}\help\eng; Components: {#COMPN_ARNOLDI}
+Source: modules\{#ARNOLDI}\help\en\*.htm; DestDir: {app}\modules\{#ARNOLDI}\help\en; Components: {#COMPN_ARNOLDI}
 Source: modules\{#ARNOLDI}\help\fr\*.htm; DestDir: {app}\modules\{#ARNOLDI}\help\fr; Components: {#COMPN_ARNOLDI}
 ;
 ;Source: modules\{#ARNOLDI}\includes\*.h; DestDir: {app}\modules\{#ARNOLDI}\includes; Components: {#COMPN_ARNOLDI}

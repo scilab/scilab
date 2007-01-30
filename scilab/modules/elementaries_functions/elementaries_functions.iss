@@ -22,7 +22,7 @@ Source: modules\{#ELEMFUNCTIONS}\sci_gateway\elementaries_functions; DestDir: {a
 Source: modules\{#ELEMFUNCTIONS}\etc\{#ELEMFUNCTIONS}.quit; DestDir: {app}\modules\{#ELEMFUNCTIONS}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#ELEMFUNCTIONS}\etc\{#ELEMFUNCTIONS}.start; DestDir: {app}\modules\{#ELEMFUNCTIONS}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#ELEMFUNCTIONS}\help\eng\*.htm; DestDir: {app}\modules\{#ELEMFUNCTIONS}\help\eng; Components: {#COMPN_SCILAB}
+Source: modules\{#ELEMFUNCTIONS}\help\en\*.htm; DestDir: {app}\modules\{#ELEMFUNCTIONS}\help\en; Components: {#COMPN_SCILAB}
 Source: modules\{#ELEMFUNCTIONS}\help\fr\*.htm; DestDir: {app}\modules\{#ELEMFUNCTIONS}\help\fr; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#ELEMFUNCTIONS}\includes\*.h; DestDir: {app}\modules\{#ELEMFUNCTIONS}\includes; Components: {#COMPN_SCILAB}

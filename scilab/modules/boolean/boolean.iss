@@ -20,7 +20,7 @@ Source: modules\{#BOOLEAN}\sci_gateway\boolean; DestDir: {app}\modules\{#BOOLEAN
 Source: modules\{#BOOLEAN}\etc\{#BOOLEAN}.quit; DestDir: {app}\modules\{#BOOLEAN}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#BOOLEAN}\etc\{#BOOLEAN}.start; DestDir: {app}\modules\{#BOOLEAN}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#BOOLEAN}\help\eng\*.htm; DestDir: {app}\modules\{#BOOLEAN}\help\eng; Components: {#COMPN_SCILAB}
+Source: modules\{#BOOLEAN}\help\en\*.htm; DestDir: {app}\modules\{#BOOLEAN}\help\en; Components: {#COMPN_SCILAB}
 Source: modules\{#BOOLEAN}\help\fr\*.htm; DestDir: {app}\modules\{#BOOLEAN}\help\fr; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#BOOLEAN}\includes\*.h; DestDir: {app}\modules\{#BOOLEAN}\includes; Components: {#COMPN_SCILAB}

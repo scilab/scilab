@@ -398,7 +398,7 @@ void Callback_ENGLISH(void)
 	
 	if (lptw->lpmw->CodeLanguage!=0)
 		{
-			StoreCommand1 ("setlanguage('eng');",0);
+			StoreCommand1 ("setlanguage('en');",0);
 		}
 }
 /*-----------------------------------------------------------------------------------*/
@@ -1998,7 +1998,7 @@ void SetLanguageMenu(char *Language)
 		LPTW lptw=GetTextWinScilab();
 
 		if (strcmp(Language,"fr") == 0) LanguageCode=1;
-		if (strcmp(Language,"eng") == 0) LanguageCode=0;
+		if (strcmp(Language,"en") == 0) LanguageCode=0;
 
 		if (lptw->lpmw->CodeLanguage != LanguageCode)
 		{

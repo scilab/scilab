@@ -21,8 +21,8 @@ if (LANGUAGE=='fr') then
   add_demo("Scicos",pathdemos);
 end
 
-if (LANGUAGE=='eng') then
-  pathhelp=strsubst(path,'/etc/','/help/eng');
+if (LANGUAGE=='en') then
+  pathhelp=strsubst(path,'/etc/','/help/en');
   add_help_chapter("Scicos",pathhelp);
   add_demo("Scicos",pathdemos);
 end

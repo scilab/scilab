@@ -18,7 +18,7 @@ Source: modules\{#MAP2SCI}\changelog.txt; DestDir: {app}\modules\{#MAP2SCI}; Com
 Source: modules\{#MAP2SCI}\etc\{#MAP2SCI}.quit; DestDir: {app}\modules\{#MAP2SCI}\etc; Components: {#COMPN_MAP2SCI}
 Source: modules\{#MAP2SCI}\etc\{#MAP2SCI}.start; DestDir: {app}\modules\{#MAP2SCI}\etc; Components: {#COMPN_MAP2SCI}
 ;
-Source: modules\{#MAP2SCI}\help\eng\*.htm; DestDir: {app}\modules\{#MAP2SCI}\help\eng; Components: {#COMPN_MAP2SCI}
+Source: modules\{#MAP2SCI}\help\en\*.htm; DestDir: {app}\modules\{#MAP2SCI}\help\en; Components: {#COMPN_MAP2SCI}
 Source: modules\{#MAP2SCI}\help\fr\*.htm; DestDir: {app}\modules\{#MAP2SCI}\help\fr; Components: {#COMPN_MAP2SCI}
 ;
 Source: modules\{#MAP2SCI}\src\*.mpl; DestDir: {app}\modules\{#MAP2SCI}\src; Components: {#COMPN_MAP2SCI}

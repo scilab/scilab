@@ -8,7 +8,7 @@ global LANGUAGE
 
 if LANGUAGE == 'fr' then
 	del_help_chapter("Overloading");
-elseif LANGUAGE == 'eng' then
+elseif LANGUAGE == 'en' then
 	del_help_chapter("Overloading");
 end
 

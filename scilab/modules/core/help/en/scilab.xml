@@ -47,7 +47,7 @@
       <DESCRIPTION_ITEM label="-l lang">
 	<SP>:if this option is present it fixes the user
 	  language. The possible <VERB>lang</VERB> values are
-	  <VERB>'fr'</VERB> for french and <VERB>'eng'</VERB> for
+	  <VERB>'fr'</VERB> for french and <VERB>'en'</VERB> for
 	  english. The default language is english. This default
 	  value is fixed the <VERB>scilab.start</VERB> file.</SP>
       </DESCRIPTION_ITEM>

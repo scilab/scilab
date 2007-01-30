@@ -12,7 +12,7 @@ Source: modules\{#TEXMACS}\changelog.txt; DestDir: {app}\modules\{#TEXMACS}; Com
 Source: modules\{#TEXMACS}\etc\{#TEXMACS}.quit; DestDir: {app}\modules\{#TEXMACS}\etc; Components: {#COMPN_TEXMACS}
 Source: modules\{#TEXMACS}\etc\{#TEXMACS}.start; DestDir: {app}\modules\{#TEXMACS}\etc; Components: {#COMPN_TEXMACS}
 ;
-;Source: modules\{#TEXMACS}\help\eng\*.htm; DestDir: {app}\modules\{#TEXMACS}\help\eng; Components: {#COMPN_TEXMACS}
+;Source: modules\{#TEXMACS}\help\en\*.htm; DestDir: {app}\modules\{#TEXMACS}\help\en; Components: {#COMPN_TEXMACS}
 ;Source: modules\{#TEXMACS}\help\fr\*.htm; DestDir: {app}\modules\{#TEXMACS}\help\fr; Components: {#COMPN_TEXMACS}
 ;
 Source: modules\{#TEXMACS}\macros\lib; DestDir: {app}\modules\{#TEXMACS}\macros; Components: {#COMPN_TEXMACS}

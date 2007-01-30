@@ -14,8 +14,8 @@ path = getshortpathname(path);
 if LANGUAGE == 'fr' then
 	path = pathconvert(part(path,1:(length(path)-5))+'/help/fr',%f,%f);
 	add_help_chapter("Heure et date",path);
-elseif LANGUAGE == 'eng' then
-	path = pathconvert(part(path,1:(length(path)-5))+'/help/eng',%f,%f);
+elseif LANGUAGE == 'en' then
+	path = pathconvert(part(path,1:(length(path)-5))+'/help/en',%f,%f);
 	add_help_chapter("Time and Date",path);
 end
 

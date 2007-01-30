@@ -18,7 +18,7 @@ Source: modules\{#OTHERS}\changelog.txt; DestDir: {app}\modules\{#OTHERS}; Compo
 Source: modules\{#OTHERS}\etc\{#OTHERS}.quit; DestDir: {app}\modules\{#OTHERS}\etc; Components: {#COMPN_OTHERS}
 Source: modules\{#OTHERS}\etc\{#OTHERS}.start; DestDir: {app}\modules\{#OTHERS}\etc; Components: {#COMPN_OTHERS}
 ;
-Source: modules\{#OTHERS}\help\eng\*.htm; DestDir: {app}\modules\{#OTHERS}\help\eng; Components: {#COMPN_OTHERS}
+Source: modules\{#OTHERS}\help\en\*.htm; DestDir: {app}\modules\{#OTHERS}\help\en; Components: {#COMPN_OTHERS}
 Source: modules\{#OTHERS}\help\fr\*.htm; DestDir: {app}\modules\{#OTHERS}\help\fr; Components: {#COMPN_OTHERS}
 ;
 ;Source: modules\{#OTHERS}\includes\*.h; DestDir: {app}\modules\{#OTHERS}\includes; Components: {#COMPN_OTHERS}

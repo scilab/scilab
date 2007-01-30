@@ -21,15 +21,14 @@
         <PARAM_NAME>language</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: avec language='fr' or 'eng'</SP>
+          <SP>: avec language='fr' or 'en'</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
   </PARAM>
 
   <DESCRIPTION>
-    <P><VERB>setlanguage(language)</VERB> change la langue courante dans
-    scilab (aide et les menus).</P>
+    <P><VERB>setlanguage(language)</VERB> change la langue courante dans scilab.</P>
   </DESCRIPTION>
 
   <SEE_ALSO>

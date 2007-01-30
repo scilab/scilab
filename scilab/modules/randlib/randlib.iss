@@ -20,7 +20,7 @@ Source: modules\{#RANDLIB}\sci_gateway\randlib; DestDir: {app}\modules\{#RANDLIB
 Source: modules\{#RANDLIB}\etc\{#RANDLIB}.quit; DestDir: {app}\modules\{#RANDLIB}\etc; Components: {#COMPN_RANDLIB}
 Source: modules\{#RANDLIB}\etc\{#RANDLIB}.start; DestDir: {app}\modules\{#RANDLIB}\etc; Components: {#COMPN_RANDLIB}
 ;
-Source: modules\{#RANDLIB}\help\eng\*.htm; DestDir: {app}\modules\{#RANDLIB}\help\eng; Components: {#COMPN_RANDLIB}
+Source: modules\{#RANDLIB}\help\en\*.htm; DestDir: {app}\modules\{#RANDLIB}\help\en; Components: {#COMPN_RANDLIB}
 Source: modules\{#RANDLIB}\help\fr\*.htm; DestDir: {app}\modules\{#RANDLIB}\help\fr; Components: {#COMPN_RANDLIB}
 ;
 Source: modules\{#RANDLIB}\includes\*.h; DestDir: {app}\modules\{#RANDLIB}\includes; Components: {#COMPN_RANDLIB}

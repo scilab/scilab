@@ -20,7 +20,7 @@ Source: modules\{#DIFFEQU}\sci_gateway\differential_equations; DestDir: {app}\mo
 Source: modules\{#DIFFEQU}\etc\{#DIFFEQU}.quit; DestDir: {app}\modules\{#DIFFEQU}\etc; Components: {#COMPN_EQUDIF}
 Source: modules\{#DIFFEQU}\etc\{#DIFFEQU}.start; DestDir: {app}\modules\{#DIFFEQU}\etc; Components: {#COMPN_EQUDIF}
 ;
-Source: modules\{#DIFFEQU}\help\eng\*.htm; DestDir: {app}\modules\{#DIFFEQU}\help\eng; Components: {#COMPN_EQUDIF}
+Source: modules\{#DIFFEQU}\help\en\*.htm; DestDir: {app}\modules\{#DIFFEQU}\help\en; Components: {#COMPN_EQUDIF}
 Source: modules\{#DIFFEQU}\help\fr\*.htm; DestDir: {app}\modules\{#DIFFEQU}\help\fr; Components: {#COMPN_EQUDIF}
 ;
 ;Source: modules\{#DIFFEQU}\includes\*.h; DestDir: {app}\modules\{#DIFFEQU}\includes; Components: {#COMPN_EQUDIF}

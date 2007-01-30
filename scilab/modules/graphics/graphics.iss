@@ -20,7 +20,7 @@ Source: modules\{#GRAPHICS}\sci_gateway\graphics; DestDir: {app}\modules\{#GRAPH
 Source: modules\{#GRAPHICS}\etc\{#GRAPHICS}.quit; DestDir: {app}\modules\{#GRAPHICS}\etc; Components: {#COMPN_GRAPHICS}
 Source: modules\{#GRAPHICS}\etc\{#GRAPHICS}.start; DestDir: {app}\modules\{#GRAPHICS}\etc; Components: {#COMPN_GRAPHICS}
 ;
-Source: modules\{#GRAPHICS}\help\eng\*.htm; DestDir: {app}\modules\{#GRAPHICS}\help\eng; Components: {#COMPN_GRAPHICS}
+Source: modules\{#GRAPHICS}\help\en\*.htm; DestDir: {app}\modules\{#GRAPHICS}\help\en; Components: {#COMPN_GRAPHICS}
 Source: modules\{#GRAPHICS}\help\fr\*.htm; DestDir: {app}\modules\{#GRAPHICS}\help\fr; Components: {#COMPN_GRAPHICS}
 Source: modules\{#GRAPHICS}\help\images\*.gif; DestDir: {app}\modules\{#GRAPHICS}\images; Components: {#COMPN_GRAPHICS}
 ;

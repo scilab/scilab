@@ -20,7 +20,7 @@ Source: modules\{#SPFUNCTIONS}\sci_gateway\special_functions; DestDir: {app}\mod
 Source: modules\{#SPFUNCTIONS}\etc\{#SPFUNCTIONS}.quit; DestDir: {app}\modules\{#SPFUNCTIONS}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#SPFUNCTIONS}\etc\{#SPFUNCTIONS}.start; DestDir: {app}\modules\{#SPFUNCTIONS}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#SPFUNCTIONS}\help\eng\*.htm; DestDir: {app}\modules\{#SPFUNCTIONS}\help\eng; Components: {#COMPN_SCILAB}
+Source: modules\{#SPFUNCTIONS}\help\en\*.htm; DestDir: {app}\modules\{#SPFUNCTIONS}\help\en; Components: {#COMPN_SCILAB}
 Source: modules\{#SPFUNCTIONS}\help\fr\*.htm; DestDir: {app}\modules\{#SPFUNCTIONS}\help\fr; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#SPFUNCTIONS}\includes\*.h; DestDir: {app}\modules\{#SPFUNCTIONS}\includes; Components: {#COMPN_SCILAB}

@@ -24,7 +24,7 @@ Source: modules\{#SOUND}\includes\*.h; DestDir: {app}\modules\{#SOUND}\includes;
 Source: modules\{#SOUND}\etc\{#SOUND}.quit; DestDir: {app}\modules\{#SOUND}\etc; Components: {#COMPN_SOUND}
 Source: modules\{#SOUND}\etc\{#SOUND}.start; DestDir: {app}\modules\{#SOUND}\etc; Components: {#COMPN_SOUND}
 ;
-Source: modules\{#SOUND}\help\eng\*.htm; DestDir: {app}\modules\{#SOUND}\help\eng; Components: {#COMPN_SOUND}
+Source: modules\{#SOUND}\help\en\*.htm; DestDir: {app}\modules\{#SOUND}\help\en; Components: {#COMPN_SOUND}
 Source: modules\{#SOUND}\help\fr\*.htm; DestDir: {app}\modules\{#SOUND}\help\fr; Components: {#COMPN_SOUND}
 ;
 Source: modules\{#SOUND}\macros\buildmacros.sce; DestDir: {app}\modules\{#SOUND}\macros; Components: {#COMPN_SOUND}

@@ -68,7 +68,7 @@ function [provpath]=apropos_gener(key)
 	
 	if found==[] then
 		select LANGUAGE
-		case "eng"
+		case "en"
 			found="<H3>No man found for: "+key+"</H3>";
 		case "fr"
 			found="<H3>Pas de manuel trouvé pour : "+key+"</H3>";

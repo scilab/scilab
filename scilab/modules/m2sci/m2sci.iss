@@ -18,7 +18,7 @@ Source: modules\{#M2SCI}\changelog.txt; DestDir: {app}\modules\{#M2SCI}; Compone
 Source: modules\{#M2SCI}\etc\{#M2SCI}.quit; DestDir: {app}\modules\{#M2SCI}\etc; Components: {#COMPN_M2SCI}
 Source: modules\{#M2SCI}\etc\{#M2SCI}.start; DestDir: {app}\modules\{#M2SCI}\etc; Components: {#COMPN_M2SCI}
 ;
-Source: modules\{#M2SCI}\help\eng\*.htm; DestDir: {app}\modules\{#M2SCI}\help\eng; Components: {#COMPN_M2SCI}
+Source: modules\{#M2SCI}\help\en\*.htm; DestDir: {app}\modules\{#M2SCI}\help\en; Components: {#COMPN_M2SCI}
 Source: modules\{#M2SCI}\help\fr\*.htm; DestDir: {app}\modules\{#M2SCI}\help\fr; Components: {#COMPN_M2SCI}
 ;
 Source: modules\{#M2SCI}\tcl\*.tcl; DestDir: {app}\modules\{#M2SCI}\tcl; Components: {#COMPN_M2SCI}

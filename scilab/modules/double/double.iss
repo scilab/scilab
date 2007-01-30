@@ -18,7 +18,7 @@ Source: modules\{#DOUBLE}\changelog.txt; DestDir: {app}\modules\{#DOUBLE}; Compo
 Source: modules\{#DOUBLE}\etc\{#DOUBLE}.quit; DestDir: {app}\modules\{#DOUBLE}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#DOUBLE}\etc\{#DOUBLE}.start; DestDir: {app}\modules\{#DOUBLE}\etc; Components: {#COMPN_SCILAB}
 ;
-;Source: modules\{#DOUBLE}\help\eng\*.htm; DestDir: {app}\modules\{#DOUBLE}\help\eng; Components: {#COMPN_SCILAB}
+;Source: modules\{#DOUBLE}\help\en\*.htm; DestDir: {app}\modules\{#DOUBLE}\help\en; Components: {#COMPN_SCILAB}
 ;Source: modules\{#DOUBLE}\help\fr\*.htm; DestDir: {app}\modules\{#DOUBLE}\help\fr; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#DOUBLE}\includes\*.h; DestDir: {app}\modules\{#DOUBLE}\includes; Components: {#COMPN_SCILAB}

@@ -25,7 +25,7 @@ Source: modules\{#TIME}\sci_gateway\time; DestDir: {app}\modules\{#TIME}\sci_gat
 Source: modules\{#TIME}\etc\{#TIME}.quit; DestDir: {app}\modules\{#TIME}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#TIME}\etc\{#TIME}.start; DestDir: {app}\modules\{#TIME}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#TIME}\help\eng\*.htm; DestDir: {app}\modules\{#TIME}\help\eng; Components: {#COMPN_SCILAB}
+Source: modules\{#TIME}\help\en\*.htm; DestDir: {app}\modules\{#TIME}\help\en; Components: {#COMPN_SCILAB}
 Source: modules\{#TIME}\help\fr\*.htm; DestDir: {app}\modules\{#TIME}\help\fr; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#TIME}\macros\buildmacros.sce; DestDir: {app}\modules\{#TIME}\macros; Components: {#COMPN_SCILAB}

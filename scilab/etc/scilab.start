@@ -55,11 +55,11 @@ PWD = getcwd()
 // Set LANGUAGE  ======================================================
 // used mainly for on-line help
 global LANGUAGE
-LANGUAGE="eng"
+LANGUAGE="en"
 args=sciargs(); larg=find(args=="-l")
 if larg<>[] & larg<=size(args,"*") then
   L=args(larg+1)
-  if L=="eng" | L=="fr" then
+  if L=="en" | L=="fr" then
     LANGUAGE=L
   else
     write(%io(2),[" "

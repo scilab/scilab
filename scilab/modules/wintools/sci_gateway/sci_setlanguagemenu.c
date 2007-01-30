@@ -27,7 +27,7 @@ int C2F(sci_setlanguagemenu) _PARAMS((char *fname,unsigned long l))
 	lout=LANGUAGE_MAX;
 	C2F(cluni0)(cstk(l1), Language, &out_n,m1*n1,lout);
 
-	if ( (strcmp(Language,"eng")!=0) && (strcmp(Language,"fr")!=0) )
+	if ( (strcmp(Language,"en")!=0) && (strcmp(Language,"fr")!=0) )
 	{
 		sciprint("Unsupported language\n");
 		LhsVar(1)=0;
