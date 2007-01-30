@@ -59,6 +59,7 @@ LANGUAGE="en"
 args=sciargs(); larg=find(args=="-l")
 if larg<>[] & larg<=size(args,"*") then
   L=args(larg+1)
+  if L=="eng" then L=="en",end // compatibility
   if L=="en" | L=="fr" then
     LANGUAGE=L
   else

@@ -43,7 +43,7 @@
       <DESCRIPTION_ITEM label="-l lang">
 	<SP>: Cette option permet de sélectionner la langue de
 	l'utilisateur. Les valeurs possible pour sont <VERB>-l fr</VERB>
-	pour sélectionner le francais et <VERB>-l eng</VERB>
+	pour sélectionner le francais et <VERB>-l en</VERB>
 	pour sélectionner l'anglais. La langue par défaut est l'anglais,
 	ce défaut est fixé dans le fichier <VERB>scilab.start</VERB>.</SP> 
       </DESCRIPTION_ITEM>
