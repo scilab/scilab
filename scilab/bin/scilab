@@ -148,7 +148,7 @@ echo     "      -e Instruction  : execute the scilab instruction given in Instru
 echo     "                        -e and -f options are mutually exclusive."
 echo     "      -f File         : execute the scilab script given in File argument."
 echo     "                        -e and -f options are mutually exclusive."
-echo     "      -l Lang         : set the current language. Lang can be equal to fr or eng."
+echo     "      -l Lang         : set the current language. Lang can be equal to fr or en."
 echo     "      -link <objects> : Is used under Unix/linux to produce a local executable code of Scilab"
 echo     "                        linked with the additional files given by the user in  <objects>."
 echo     "                        the -link option should be used without any other option."
