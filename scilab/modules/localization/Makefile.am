@@ -17,7 +17,7 @@ libscilocalization_la_LDFLAGS = $(XML_LIBS)
 
 pkglib_LTLIBRARIES = libscilocalization.la
 
-libscilocalization_la_SOURCES = $(LOCALIZATION_C_SOURCES) 
+libscilocalization_la_SOURCES = $(LOCALIZATION_C_SOURCES) $(GATEWAY_C_SOURCES)
 
 libscilocalization_la_LIBADD = 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 $(top_builddir)/libs/hashtable/libscihashtable.la
