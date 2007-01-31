@@ -85,7 +85,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 		select LANGUAGE
 		
 		case 'en' then
-			xsl = pathconvert(SCI+"/modules/helptools/help_eng.xsl",%f,%f);
+			xsl = pathconvert(SCI+"/modules/helptools/help_en.xsl",%f,%f);
 			for k=1:size(dirs,'*')
 				directory_language = [directory_language;"en"];
 				language_system = [language_system;%F];
@@ -114,7 +114,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 		select LANGUAGE
 		
 		case 'en' then
-			xsl = pathconvert(SCI+"/modules/helptools/help_eng.xsl",%f,%f);
+			xsl = pathconvert(SCI+"/modules/helptools/help_en.xsl",%f,%f);
 			for k=1:size(dirs,'*')
 				titles = [titles;"Help chapter ("+dirs(k)+")"];
 				language_system = [language_system;%F];
@@ -141,8 +141,8 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 		
 		select LANGUAGE
 		
-		case 'eng' then
-			xsl = pathconvert(SCI+"/modules/helptools/help_eng.xsl",%f,%f);
+		case 'en' then
+			xsl = pathconvert(SCI+"/modules/helptools/help_en.xsl",%f,%f);
 			
 		case 'fr' then
 			xsl = pathconvert(SCI+"/modules/helptools/help_fr.xsl",%f,%f);
@@ -166,7 +166,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 			select LANGUAGE
 			
 			case 'en' then
-				xsl = pathconvert(SCI+"/modules/helptools/help_eng.xsl",%f,%f);
+				xsl = pathconvert(SCI+"/modules/helptools/help_en.xsl",%f,%f);
 				
 			case 'fr' then
 				xsl = pathconvert(SCI+"/modules/helptools/help_fr.xsl",%f,%f);
@@ -191,7 +191,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 			select LANGUAGE
 			
 			case 'en' then
-				xsl = pathconvert(SCI+"/modules/helptools/help_eng.xsl",%f,%f);
+				xsl = pathconvert(SCI+"/modules/helptools/help_en.xsl",%f,%f);
 				
 			case 'fr' then
 				xsl = pathconvert(SCI+"/modules/helptools/help_fr.xsl",%f,%f);
@@ -217,7 +217,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 			select LANGUAGE
 			
 			case 'en' then
-				xsl = pathconvert(SCI+"/modules/helptools/help_eng.xsl",%f,%f);
+				xsl = pathconvert(SCI+"/modules/helptools/help_en.xsl",%f,%f);
 				
 			case 'fr' then
 				xsl = pathconvert(SCI+"/modules/helptools/help_fr.xsl",%f,%f);
@@ -244,7 +244,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 			select LANGUAGE
 			
 			case 'en' then
-				xsl = pathconvert(SCI+"/modules/helptools/help_eng.xsl",%f,%f);
+				xsl = pathconvert(SCI+"/modules/helptools/help_en.xsl",%f,%f);
 				
 			case 'fr' then
 				xsl = pathconvert(SCI+"/modules/helptools/help_fr.xsl",%f,%f);

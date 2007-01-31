@@ -77,14 +77,14 @@ function clean_help(dirs)
 		select LANGUAGE
 		
 		case 'en' then
-			if fileinfo(SCI+pathconvert("/modules/helptools/index_eng.htm",%f,%f)) <> [] then
+			if fileinfo(SCI+pathconvert("/modules/helptools/index_en.htm",%f,%f)) <> [] then
 				mprintf(".");
-				mdelete(SCI+pathconvert("/modules/helptools/index_eng.htm",%f,%f));
+				mdelete(SCI+pathconvert("/modules/helptools/index_en.htm",%f,%f));
 			end
 			
-			if fileinfo(SCI+pathconvert("/modules/helptools/contents_eng.htm",%f,%f)) <> [] then
+			if fileinfo(SCI+pathconvert("/modules/helptools/contents_en.htm",%f,%f)) <> [] then
 				mprintf(".");
-				mdelete(SCI+pathconvert("/modules/helptools/contents_eng.htm",%f,%f));
+				mdelete(SCI+pathconvert("/modules/helptools/contents_en.htm",%f,%f));
 			end
 			
 		case 'fr' then

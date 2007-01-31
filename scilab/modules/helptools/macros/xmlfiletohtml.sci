@@ -40,7 +40,7 @@ function ok = xmlfiletohtml(path,xsl,directory_language,default_language)
 		select LANGUAGE
 		
 		case 'en' then
-			xsl = pathconvert(SCI+"/modules/helptools/help_eng.xsl",%f,%f);
+			xsl = pathconvert(SCI+"/modules/helptools/help_en.xsl",%f,%f);
 		case 'fr' then
 			xsl = pathconvert(SCI+"/modules/helptools/help_fr.xsl",%f,%f);
 		end
