@@ -7,9 +7,9 @@ LOCALIZATION_C_SOURCES = src/hashtable_localization.c \
 src/localization.c\
 src/setgetlanguage.c
 
-GATEWAY_C_SOURCES = sci_gateway/c/gw_localization.c \
-sci_gateway/c/sci_setlanguage.c \
-sci_gateway/c/sci_getlanguage.c
+GATEWAY_C_SOURCES = sci_gateway/gw_localization.c \
+sci_gateway/sci_setlanguage.c \
+sci_gateway/sci_getlanguage.c
 
 libscilocalization_la_CFLAGS=  -Iincludes/ -Isrc/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/ $(XML_FLAGS)
 
