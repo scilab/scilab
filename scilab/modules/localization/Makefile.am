@@ -5,7 +5,7 @@
 
 LOCALIZATION_C_SOURCES = src/hashtable_localization.c \
 src/localization.c\
-src/setlanguage.c
+src/setgetlanguage.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_localization.c \
 sci_gateway/c/sci_setlanguage.c \
@@ -40,12 +40,12 @@ libscilocalization_la_macrodir = $(target)/macros
 MACROS = macros/setlanguage.sci macros/setlanguage.bin macros/names macros/lib macros/buildmacros.sce
 
 
-#### localization : init scripts #### 
+####localization : init scripts #### 
 libscilocalization_la_etcdir = $(target)/etc
 libscilocalization_la_etc_DATA = etc/localization.quit etc/localization.start
 
 
-#### localization : include files ####
+####localization : include files ####
 libscilocalization_la_includedir=$(sciincludedir)/localization
 libscilocalization_la_include_HEADERS = includes/localization.h \
 includes/gw_localization.h

@@ -81,7 +81,7 @@ libscilocalization_la_DEPENDENCIES =  \
 	$(top_builddir)/libs/hashtable/libscihashtable.la
 am__objects_1 = libscilocalization_la-hashtable_localization.lo \
 	libscilocalization_la-localization.lo \
-	libscilocalization_la-setlanguage.lo
+	libscilocalization_la-setgetlanguage.lo
 am__objects_2 = libscilocalization_la-gw_localization.lo \
 	libscilocalization_la-sci_setlanguage.lo \
 	libscilocalization_la-sci_getlanguage.lo
@@ -256,7 +256,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 LOCALIZATION_C_SOURCES = src/hashtable_localization.c \
 src/localization.c\
-src/setlanguage.c
+src/setgetlanguage.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_localization.c \
 sci_gateway/c/sci_setlanguage.c \
@@ -281,11 +281,11 @@ libscilocalization_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 libscilocalization_la_macrodir = $(target)/macros
 MACROS = macros/setlanguage.sci macros/setlanguage.bin macros/names macros/lib macros/buildmacros.sce
 
-#### localization : init scripts #### 
+####localization : init scripts #### 
 libscilocalization_la_etcdir = $(target)/etc
 libscilocalization_la_etc_DATA = etc/localization.quit etc/localization.start
 
-#### localization : include files ####
+####localization : include files ####
 libscilocalization_la_includedir = $(sciincludedir)/localization
 libscilocalization_la_include_HEADERS = includes/localization.h \
 includes/gw_localization.h
@@ -383,7 +383,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilocalization_la-localization.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilocalization_la-sci_getlanguage.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilocalization_la-sci_setlanguage.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilocalization_la-setlanguage.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilocalization_la-setgetlanguage.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -420,12 +420,12 @@ libscilocalization_la-localization.lo: src/localization.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -c -o libscilocalization_la-localization.lo `test -f 'src/localization.c' || echo '$(srcdir)/'`src/localization.c
 
-libscilocalization_la-setlanguage.lo: src/setlanguage.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -MT libscilocalization_la-setlanguage.lo -MD -MP -MF $(DEPDIR)/libscilocalization_la-setlanguage.Tpo -c -o libscilocalization_la-setlanguage.lo `test -f 'src/setlanguage.c' || echo '$(srcdir)/'`src/setlanguage.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscilocalization_la-setlanguage.Tpo $(DEPDIR)/libscilocalization_la-setlanguage.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/setlanguage.c' object='libscilocalization_la-setlanguage.lo' libtool=yes @AMDEPBACKSLASH@
+libscilocalization_la-setgetlanguage.lo: src/setgetlanguage.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -MT libscilocalization_la-setgetlanguage.lo -MD -MP -MF $(DEPDIR)/libscilocalization_la-setgetlanguage.Tpo -c -o libscilocalization_la-setgetlanguage.lo `test -f 'src/setgetlanguage.c' || echo '$(srcdir)/'`src/setgetlanguage.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscilocalization_la-setgetlanguage.Tpo $(DEPDIR)/libscilocalization_la-setgetlanguage.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/setgetlanguage.c' object='libscilocalization_la-setgetlanguage.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -c -o libscilocalization_la-setlanguage.lo `test -f 'src/setlanguage.c' || echo '$(srcdir)/'`src/setlanguage.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -c -o libscilocalization_la-setgetlanguage.lo `test -f 'src/setgetlanguage.c' || echo '$(srcdir)/'`src/setgetlanguage.c
 
 libscilocalization_la-gw_localization.lo: sci_gateway/c/gw_localization.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -MT libscilocalization_la-gw_localization.lo -MD -MP -MF $(DEPDIR)/libscilocalization_la-gw_localization.Tpo -c -o libscilocalization_la-gw_localization.lo `test -f 'sci_gateway/c/gw_localization.c' || echo '$(srcdir)/'`sci_gateway/c/gw_localization.c
