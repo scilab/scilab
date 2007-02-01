@@ -1225,8 +1225,18 @@ int Merge3dDimension(sciPointObj *pparent)
         }
       }
       break;
-    case  SCI_SEGS: 
-      N=pSEGS_FEATURE (psonstmp->pointobj)->Nbr1 / 2 ;
+    case  SCI_SEGS:
+      {
+        sciSegs * ppSegs = pSEGS_FEATURE(psonstmp->pointobj) ;
+        if ( ppSegs->ptype == 0 )
+        { 
+          N = ppSegs->Nbr1 / 2 ;
+        }
+        else
+        {
+          N = ppSegs->Nbr1 * ppSegs->Nbr2 ;
+        }
+      }
       break;
     case  SCI_RECTANGLE: 
       N = 4;
@@ -1312,7 +1322,17 @@ void Merge3dBuildTable(sciPointObj *pparent, int *index_in_entity, long *from_en
       }
       break;
     case  SCI_SEGS: 
-      N=pSEGS_FEATURE (psonstmp->pointobj)->Nbr1/2;
+      {
+        sciSegs * ppSegs = pSEGS_FEATURE(psonstmp->pointobj) ;
+        if ( ppSegs->ptype == 0 )
+        { 
+          N = ppSegs->Nbr1 / 2 ;
+        }
+        else
+        {
+          N = ppSegs->Nbr1 * ppSegs->Nbr2 ;
+        }
+      }
       break;
     case  SCI_RECTANGLE: 
       N = 4;

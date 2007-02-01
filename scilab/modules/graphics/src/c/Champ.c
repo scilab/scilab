@@ -245,15 +245,8 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
   sfy= Cscale.Wscy1;
   sfx2= sfx*sfx;
   sfy2= sfy*sfy;
-  maxx = sfx2*fx[0]*fx[0]+sfy2*fy[0]*fy[0];
-  for (i = 1;  i < (*n1)*(*n2) ; i++)
-    {
-      double maxx1 = sfx2*fx[i]*fx[i]+sfy2*fy[i]*fy[i];
-      if ( maxx1 > maxx) maxx=maxx1;
-    }
-  maxx = ( maxx < SMDOUBLE) ? SMDOUBLE : sqrt(maxx);
+  maxx = getLongestVector( fx, fy, *n1, *n2, sfx, sfy ) ;
   sc=maxx;
-  /*sc= Min(nx,ny)/sc;*/
   sc= sqrt(nx*nx+ny*ny)/sc;
   sfx *= sc;
   sfy *= sc;
@@ -272,10 +265,6 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
       for ( i = 0 ; i < (*n1)*(*n2) ; i++)
 	{
 	  integer x1n,y1n,x2n,y2n,flag1=0;
-	  /* 	  xm[1+2*j]= (int)(sfx*fx[i]/2+xm[2*i]); */
-	  /* 	  xm[2*j]  = (int)(-sfx*fx[i]/2+xm[2*i]); */
-	  /* 	  ym[1+2*j]= (int)(-sfy*fy[i]/2+ym[2*i]); */
-	  /* 	  ym[2*j]  = (int)(sfy*fy[i]/2+ym[2*i]); */
 	  xm[1+2*j2]= (int)(xfacteur*sfx*fx[i]+xm[2*i]);
 	  xm[2*j2]  = (int)(xm[2*i]);
  	  ym[1+2*j2]= (int)(-yfacteur*sfy*fy[i]+ym[2*i]);
@@ -387,15 +376,8 @@ void sciChamp2DRealToPixel( integer * xm         ,
   sfy= Cscale.Wscy1;
   sfx2= sfx*sfx;
   sfy2= sfy*sfy;
-  maxx = sfx2*fx[0]*fx[0]+sfy2*fy[0]*fy[0];
-  for (i = 1;  i < (*n1)*(*n2) ; i++)
-  {
-    double maxx1 = sfx2*fx[i]*fx[i]+sfy2*fy[i]*fy[i];
-    if ( maxx1 > maxx) maxx=maxx1;
-  }
-  maxx = ( maxx < SMDOUBLE) ? SMDOUBLE : sqrt(maxx);
+  maxx = getLongestVector( fx, fy, *n1, *n2, sfx, sfy ) ;
   sc=maxx;
-  /*sc= Min(nx,ny)/sc;*/
   sc= sqrt(nx*nx+ny*ny)/sc;
   sfx *= sc;
   sfy *= sc;
@@ -601,7 +583,74 @@ void getChampDataBounds( double   xCoords[]  ,
 
 }
 /*-------------------------------------------------------------------------------------------*/
+double computeGridMinGap( double gridX[], double gridY[], int nbRow, int nbCol )
+{
+  int i ;
+  double min = 0 ;
+  double minX = Abs( gridX[1] - gridX[0] ) ;
+  double minY = Abs( gridY[1] - gridY[0] ) ;
+
+  for ( i = 1 ; i < nbRow-1 ; i++ )
+  {
+    double tmp = Abs( gridX[i+1] - gridX[i] ) ;
+    if ( tmp < minX )
+    {
+      minX = tmp ;
+    }
+  }
+
+  for ( i = 1 ; i < nbCol-1 ; i++ )
+  {
+    double tmp = Abs( gridY[i+1] - gridY[i] ) ;
+    if ( tmp < minY )
+    {
+      minY = tmp ;
+    }
+  }
 
 
+  min = minX * minX + minY * minY ;
+  min = ( min < SMDOUBLE) ? SMDOUBLE : sqrt(min) ;
 
+  return min ;
+}
+/*-------------------------------------------------------------------------------------------*/
+int computeArrowColor( double gridX[], double gridY[], int nbRow, int nbCol, int index )
+{
+  integer whiteid;
+  int verbose = 0 ;
+  int narg = 0 ;
+  int j2=0 ;
+  int color = 0 ;
+  double scx = Cscale.Wscx1 ;
+  double scy = Cscale.Wscy1 ;
 
+  double nor = sqrt( scx*scx*gridX[index]*gridX[index] + scy*scy*gridY[index]*gridY[index] ) ;
+  double max = getLongestVector( gridX, gridY, nbRow, nbCol, scx, scy ) ;
+  
+  C2F(dr)("xget","lastpattern",&verbose,&whiteid,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  
+  
+  color = inint( (whiteid-1) * (1.0-nor/max) ) + 1 ;
+
+  return color ;
+}
+/*-------------------------------------------------------------------------------------------*/
+double getLongestVector( double vectX[], double vectY[], int nbRow, int nbCol, double scx, double scy )
+{
+  int i ;
+
+  double scx2 = scx * scx ;
+  double scy2 = scy * scy ;
+  double max  = ( scx2 * vectX[0] * vectX[0] ) + ( scy2 * vectY[0] * vectY[0] ) ;
+
+  for ( i = 1 ; i < nbRow * nbCol ; i++ )
+  {
+    double tmp = ( scx2 * vectX[i] * vectX[i] ) + ( scy2 * vectY[i] * vectY[i] ) ;
+    if ( tmp > max ) { max = tmp ; }
+  }
+  max = ( max < SMDOUBLE) ? SMDOUBLE : sqrt(max) ;
+
+  return max ;
+}
+/*-------------------------------------------------------------------------------------------*/

@@ -41,4 +41,10 @@ void sciChamp2DRealToPixel( integer * xm         ,
                            int     * typeofchamp,
                            BOOL      clipping    ) ;
 
+double computeGridMinGap( double gridX[], double gridY[], int nbRow, int nbCol ) ;
+
+int computeArrowColor( double gridX[], double gridY[], int nbRow, int nbCol, int index ) ;
+
+double getLongestVector( double vectX[], double vectY[], int nbRow, int nbCol, double scx, double scy ) ;
+
 #endif

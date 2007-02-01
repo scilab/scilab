@@ -75,9 +75,8 @@ int sci_delete(char *fname,unsigned long fname_len)
 
     sciEntityType objType = sciGetEntityType( pobj ) ;
 
-    if (sciGetParentFigure(pobj) != NULL && sciGetEntityType(pobj) != SCI_FIGURE)
+    if ( sciGetParentFigure(pobj) != NULL && objType != SCI_FIGURE)
     {
-      /* I added && sciGetEntityType(pobj) != SCI_FIGURE at last !!!!!!!! F.Leray 09.04.04 */
       sciPointObj * parentSubWin = sciGetParentSubwin( pobj ) ;
       BOOL selected = sciGetIsSelected( pobj ) ;
       pparentfigure = sciGetParentFigure(pobj);

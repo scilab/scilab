@@ -2355,7 +2355,7 @@ ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy,
 	       integer *style, double arsize, integer colored, double arfact, int typeofchamp) 
 {
   sciPointObj *pobj = (sciPointObj *) NULL;
-  sciSegs *psegs = (sciSegs *) NULL;
+  sciSegs * ppSegs = (sciSegs *) NULL;
   integer i;
 
   if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN)
@@ -2383,143 +2383,149 @@ ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy,
 	  return (sciPointObj *) NULL;
 	}
       sciSetCurrentSon (pobj, (sciPointObj *) NULL);
-      pSEGS_FEATURE (pobj)->user_data = (int *) NULL;
-      pSEGS_FEATURE (pobj)->size_of_user_data = 0;
-      pSEGS_FEATURE (pobj)->relationship.psons = (sciSons *) NULL;
-      pSEGS_FEATURE (pobj)->relationship.plastsons = (sciSons *) NULL;
 
-      pSEGS_FEATURE (pobj)->callback = (char *)NULL;
-      pSEGS_FEATURE (pobj)->callbacklen = 0;
-      pSEGS_FEATURE (pobj)->callbackevent = 100;
+      ppSegs = pSEGS_FEATURE(pobj) ;
+
+      ppSegs->user_data = (int *) NULL;
+      ppSegs->size_of_user_data = 0;
+      ppSegs->relationship.psons = (sciSons *) NULL;
+      ppSegs->relationship.plastsons = (sciSons *) NULL;
+
+      ppSegs->callback = (char *)NULL;
+      ppSegs->callbacklen = 0;
+      ppSegs->callbackevent = 100;
        
-      pSEGS_FEATURE (pobj)->isselected = TRUE;
-      pSEGS_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj)); 
+      ppSegs->isselected = TRUE;
+      ppSegs->visible = sciGetVisibility(sciGetParentSubwin(pobj)); 
 
       /* this must be done prior to the call of sciSetClipping to know */
       /* if the clip_state has been set */
-      pSEGS_FEATURE (pobj)->clip_region_set = 0;
-      /*pSEGS_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); */
+      ppSegs->clip_region_set = 0;
       sciInitIsClipping( pobj, sciGetIsClipping(sciGetParentSubwin(pobj) ));
       sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
-      
-      /*       pSEGS_FEATURE (pobj)->clip_region = (double *) NULL; */
+     
    
-      psegs = pSEGS_FEATURE (pobj); 
-      psegs->ptype = type;
+      ppSegs = pSEGS_FEATURE (pobj); 
+      ppSegs->ptype = type;
 
-      /* psegs->arrowsize = 50.;  */ /* default value F.Leray 25.03.04*/
+      ppSegs->pstyle = NULL ;
           
-      if ((psegs->vx = MALLOC (Nbr1 * sizeof (double))) == NULL)
+      if ((ppSegs->vx = MALLOC (Nbr1 * sizeof (double))) == NULL)
 	{ 
 	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	  sciDelHandle (pobj);
-	  FREE(pSEGS_FEATURE(pobj));
+	  FREE(ppSegs);
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
-      if ((psegs->vy = MALLOC (Nbr2 * sizeof (double))) == NULL)
+      if ((ppSegs->vy = MALLOC (Nbr2 * sizeof (double))) == NULL)
 	{ 
-	  FREE(pSEGS_FEATURE (pobj)->vx);
+	  FREE(ppSegs->vx);
 	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	  sciDelHandle (pobj);
-	  FREE(pSEGS_FEATURE(pobj));
+	  FREE(ppSegs);
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
      
       for (i = 0; i < Nbr1; i++)
 	{
-	  psegs->vx[i] = vx[i];
+	  ppSegs->vx[i] = vx[i];
 	} 
       for (i = 0; i < Nbr2; i++)
 	{
-	  psegs->vy[i] = vy[i];
+	  ppSegs->vy[i] = vy[i];
 	} 
       pSEGS_FEATURE (pobj)->vz=(double *) NULL; /**DJ.Abdemouche 2003**/
-      psegs->ptype = type;
+      ppSegs->ptype = type;
 
       /* F.Leray Test imprortant sur type ici*/
       if (type == 0) /* attention ici type = 0 donc...*/
 	{
-	  psegs->typeofchamp = -1; /* useless property in the case type == 0 */
-	  psegs->arrowsize = arsize /** 100*/;       /* A revoir: F.Leray 06.04.04 */
-	  if ((psegs->pstyle = MALLOC (Nbr1 * sizeof (integer))) == NULL)
+	  ppSegs->typeofchamp = -1; /* useless property in the case type == 0 */
+	  ppSegs->arrowsize = arsize /** 100*/;       /* A revoir: F.Leray 06.04.04 */
+	  if ((ppSegs->pstyle = MALLOC (Nbr1 * sizeof (integer))) == NULL)
 	    {
-	      FREE(pSEGS_FEATURE (pobj)->vx); 
-	      FREE(pSEGS_FEATURE (pobj)->vy); 
+	      FREE(ppSegs->vx); 
+	      FREE(ppSegs->vy); 
 	      sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	      sciDelHandle (pobj);
-	      FREE(pSEGS_FEATURE(pobj));
+	      FREE(ppSegs);
 	      FREE(pobj);
 	      return (sciPointObj *) NULL;
 	    }
 	  if (flag == 1)
 	    {
 	      for (i = 0; i < Nbr1; i++)
-		psegs->pstyle[i] = style[i];
+              {
+		ppSegs->pstyle[i] = style[i];
+              }
 	    }
-	  else {
+	  else 
+          {
 	    for (i = 0; i < Nbr1; i++)
-	      psegs->pstyle[i] =  style[0];
+            {
+	      ppSegs->pstyle[i] = style[0];
+            }
 	  }
 	
-	  psegs->iflag = flag; 
-	  psegs->Nbr1 = Nbr1;
+	  ppSegs->iflag = flag; 
+	  ppSegs->Nbr1 = Nbr1;
 	}	
       else /* Warning here type = 1 so... building comes from champg */
 	{ 
 	  /* Rajout de psegs->arrowsize = arsize; F.Leray 18.02.04*/
-	  psegs->arrowsize = arsize /* * 100 */;
-	  psegs->Nbr1 = Nbr1;   
-	  psegs->Nbr2 = Nbr2;	 
+	  ppSegs->arrowsize = arsize /* * 100 */;
+	  ppSegs->Nbr1 = Nbr1;   
+	  ppSegs->Nbr2 = Nbr2;	 
 	  sciInitForeground(pobj,sciGetForeground(sciGetSelectedSubWin (sciGetCurrentFigure ()))); /* set sciGetForeground(psubwin) as the current foreground */
-	  psegs->typeofchamp = typeofchamp; /* to know if it is a champ or champ1 */
-	  psegs->parfact = arfact;
-	  if ((psegs->vfx = MALLOC ((Nbr1*Nbr2) * sizeof (double))) == NULL)
+	  ppSegs->typeofchamp = typeofchamp; /* to know if it is a champ or champ1 */
+	  ppSegs->parfact = arfact;
+	  if ((ppSegs->vfx = MALLOC ((Nbr1*Nbr2) * sizeof (double))) == NULL)
 	    {
-	      FREE(pSEGS_FEATURE (pobj)->vx); 
-	      FREE(pSEGS_FEATURE (pobj)->vy); 
+	      FREE(ppSegs->vx); 
+	      FREE(ppSegs->vy); 
 	      sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	      sciDelHandle (pobj);
-	      FREE(pSEGS_FEATURE(pobj));
+	      FREE(ppSegs);
 	      FREE(pobj);
 	      return (sciPointObj *) NULL;
 	    }
-	  if ((psegs->vfy = MALLOC ((Nbr1*Nbr2) * sizeof (double))) == NULL)
+	  if ((ppSegs->vfy = MALLOC ((Nbr1*Nbr2) * sizeof (double))) == NULL)
 	    {
-	      FREE(pSEGS_FEATURE (pobj)->vx); 
-	      FREE(pSEGS_FEATURE (pobj)->vy);
-	      FREE(pSEGS_FEATURE (pobj)->vfx); 
+	      FREE(ppSegs->vx); 
+	      FREE(ppSegs->vy);
+	      FREE(ppSegs->vfx); 
 	      sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	      sciDelHandle (pobj);
-	      FREE(pSEGS_FEATURE(pobj));
+	      FREE(ppSegs);
 	      FREE(pobj);
 	      return (sciPointObj *) NULL;
 	    }  
 	  
 	  for (i = 0; i < (Nbr1*Nbr2); i++)
 	    {
-	      psegs->vfx[i] = vfx[i];
-	      psegs->vfy[i] = vfy[i]; 
+	      ppSegs->vfx[i] = vfx[i];
+	      ppSegs->vfy[i] = vfy[i]; 
 	    }
 	  pSEGS_FEATURE (pobj)->vfz=(double *) NULL; /**DJ.Abdemouche 2003**/
 	}	
       if (sciInitGraphicContext (pobj) == -1)
 	{
-	  FREE(pSEGS_FEATURE (pobj)->vx);
-	  FREE(pSEGS_FEATURE (pobj)->vy);  
+	  FREE(ppSegs->vx);
+	  FREE(ppSegs->vy);  
           if (type ==0)
             {
-	      FREE(pSEGS_FEATURE (pobj)->pstyle);
+	      FREE(ppSegs->pstyle);
             }
           else
 	    {
-	      FREE(pSEGS_FEATURE (pobj)->vfx);  
-	      FREE(pSEGS_FEATURE (pobj)->vfy);  
+	      FREE(ppSegs->vfx);  
+	      FREE(ppSegs->vfy);  
             }         
 	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	  sciDelHandle (pobj);
-	  FREE(pSEGS_FEATURE(pobj));
+	  FREE(ppSegs);
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
