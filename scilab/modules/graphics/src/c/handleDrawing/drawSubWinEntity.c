@@ -114,6 +114,10 @@ int drawSubWinEntity( sciPointObj * pObj )
     int v = 0 ;
     double dv = 0.0 ;
     char strFlag[4];
+    double dbox[6] ;
+    double xbox[8] ;
+    double ybox[8] ;
+    double zbox[8] ;
 
 #ifdef _MSC_VER
     flag_DO=MaybeSetWinhdc();
@@ -123,6 +127,7 @@ int drawSubWinEntity( sciPointObj * pObj )
     C2F (dr) ("xset","thickness",&lineWidth,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     C2F (dr) ("xset","mark",&markStyle,&markSize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 
+    sciUpdateScaleAngles( ppsubwin->theta, ppsubwin->alpha ) ; /* for merge objects */
     sci_update_frame_bounds_2d(pObj);
 
 
@@ -144,7 +149,11 @@ int drawSubWinEntity( sciPointObj * pObj )
     curSon = sciGetLastSons( pObj ) ;
     while ( curSon != NULL )
     {
-      sciDrawObj( curSon->pointobj ) ; 
+      if ( !(ppsubwin->facetmerge && sciGetEntityType(curSon->pointobj) == SCI_SEGS) )
+      {
+        sciDrawObj( curSon->pointobj ) ;
+      }
+       
       curSon = curSon->pprev;
     }	  
 

@@ -47,14 +47,17 @@ int setSubWinAngles( sciPointObj *psubwin, double theta, double alpha )
 {
   /**dj20003***/
   sciSubWindow * ppSubWin = pSUBWIN_FEATURE (psubwin) ;
-  if ((alpha == 0.0) && (theta == 270.0))
-  {
-    ppSubWin->is3d = FALSE;
-    return 0;
-  }
-  
+
   ppSubWin->alpha = alpha ;
   ppSubWin->theta = theta ;
+
+  if ((alpha == 0.0) && (theta == 270.0))
+  {
+    ppSubWin->is3d = FALSE ;
+    ppSubWin->project[2]= 0; /* no z to display */
+    return 0;
+  }
+ 
   ppSubWin->is3d  = TRUE  ;
   if ((alpha == 0.0 ) || (alpha == 180.0 ) || (alpha == -180.0 ))  /* DJ.A 30/12 */
   {
@@ -4758,7 +4761,7 @@ int sciInitIs3d(  sciPointObj * pObj, BOOL is3d )
          pSUBWIN_FEATURE (pObj)->project[2]= 0;
        }
        pSUBWIN_FEATURE (pObj)->theta_kp=pSUBWIN_FEATURE (pObj)->theta;
-       pSUBWIN_FEATURE (pObj)->alpha_kp=pSUBWIN_FEATURE (pObj)->alpha;  
+       pSUBWIN_FEATURE (pObj)->alpha_kp=pSUBWIN_FEATURE (pObj)->alpha;
        pSUBWIN_FEATURE (pObj)->alpha  = 0.0;
        pSUBWIN_FEATURE (pObj)->theta  = 270.0;
        if(sciGetCurrentScilabXgc () !=  NULL)
