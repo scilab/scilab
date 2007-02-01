@@ -24,9 +24,6 @@
 #include "MALLOC.h" /* MALLOC */
 
 static double MiniD __PARAMS((double *x,integer n));
-extern void Champ2DRealToPixel __PARAMS((integer *xm,integer *ym,integer *zm,integer *na,
-					 integer *arsize,integer *colored,double *x,double *y,
-                                         double  *fx,double *fy,integer *n1,integer *n2,double *arfact));
 extern void initsubwin();
 /* extern void compute_data_bounds(int cflag,char dataflag,double *x,double *y,int n1,int n2,double *drect); */
 extern void compute_data_bounds2(int cflag,char dataflag,char *logflags,double *x,double *y,int n1,int n2,double *drect);
@@ -209,119 +206,6 @@ static double MiniD(double *x, integer n)
     }
   return(mindx);
 }
-
-
-extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact)
-
-     integer *xm,*ym,*zm;
-     integer *na,*arsize,*colored;
-     integer *n1,*n2;
-     double *x, *y, *fx, *fy;
-     double *arfact;
-{  
- 
-  integer i,j;
-  double  maxx;
-  double  nx,ny,sc,sfx,sfy,sfx2,sfy2;
-  double  arsize1=0.5,arsize2=0.5;
-  /* get default dash for arrows **/
-  integer verbose=0,narg;
-  int xfacteur = 1;
-  int yfacteur = 1;
-
-
-  /* From double to pixels */
-  for ( i = 0 ; i < *n1 ; i++)
-    for ( j =0 ; j < *n2 ; j++)
-      {
-	xm[2*(i +(*n1)*j)]= XScale(x[i]);
-	ym[2*(i +(*n1)*j)]= YScale(y[j]);
-      }
-
-  /** Scaling **/
-  nx=MiniD(x,*n1)*Cscale.Wscx1;
-  ny=MiniD(y,*n2)*Cscale.Wscy1;
-  sfx= Cscale.Wscx1;
-  sfy= Cscale.Wscy1;
-  sfx2= sfx*sfx;
-  sfy2= sfy*sfy;
-  maxx = getLongestVector( fx, fy, *n1, *n2, sfx, sfy ) ;
-  sc=maxx;
-  sc= sqrt(nx*nx+ny*ny)/sc;
-  sfx *= sc;
-  sfy *= sc;
-  /** size of arrow **/
-  arsize1= ((double) Cscale.WIRect1[2])/(5*(*n1));
-  arsize2= ((double) Cscale.WIRect1[3])/(5*(*n2));
-  *arsize=  (arsize1 < arsize2) ? inint(arsize1*10.0) : inint(arsize2*10.0) ;
-  *arsize = (int)((*arsize)*(*arfact));
-
-  set_clip_box(Cscale.WIRect1[0],Cscale.WIRect1[0]+Cscale.WIRect1[2],Cscale.WIRect1[1],
-	       Cscale.WIRect1[1]+Cscale.WIRect1[3]);
-
-  if ( *colored == 0 ) 
-    {
-      int j2=0;
-      for ( i = 0 ; i < (*n1)*(*n2) ; i++)
-	{
-	  integer x1n,y1n,x2n,y2n,flag1=0;
-	  xm[1+2*j2]= (int)(xfacteur*sfx*fx[i]+xm[2*i]);
-	  xm[2*j2]  = (int)(xm[2*i]);
- 	  ym[1+2*j2]= (int)(-yfacteur*sfy*fy[i]+ym[2*i]);
-	  ym[2*j2]  = (int)(ym[2*i]);
-	  clip_line(xm[2*j2],ym[2*j2],xm[2*j2+1],ym[2*j2+1],&x1n,&y1n,&x2n,&y2n,&flag1);
-	  if (flag1 !=0)
-	    {
-	      if (flag1==1||flag1==3) { xm[2*j2]=x1n;ym[2*j2]=y1n;};
-	      if (flag1==2||flag1==3) { xm[2*j2+1]=x2n;ym[2*j2+1]=y2n;};
-	      j2++;
-	    }
-	}
-      *na=2*j2;
-    }
-  else 
-    {
-      integer x1n,y1n,x2n,y2n,flag1=0;
-      integer whiteid;
-      int j2=0;
-      C2F(dr)("xget","lastpattern",&verbose,&whiteid,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      for ( i = 0 ; i < (*n1)*(*n2) ; i++)
-	{
-	  double nor= sqrt(sfx2*fx[i]*fx[i]+sfy2*fy[i]*fy[i]);
-	  zm[j2] = inint( ((double) whiteid - 1)*(1.0 - nor/maxx)) +1;
-	  nor= sqrt(fx[i]*(fx[i])+fy[i]*(fy[i]));
-
-	  /*        modif bruno (juin 2003) to have the "queue" of the arrow positionned
-	   *        at the point (before the arrow was placed such as the corresponding
-	   *        point was at the middle of the arrow)       
-	   *
-	   *        this is the old code :
-	   *
-	   * 	  xm[1+2*j]= (int)(sfx*fx[i]/(2*nor)+xm[2*i]); 
-	   * 	  xm[2*j]  = (int)(-sfx*fx[i]/(2*nor)+xm[2*i]); 
-	   * 	  ym[1+2*j]= (int)(-sfy*fy[i]/(2*nor)+ym[2*i]); 
-	   * 	  ym[2*j]  = (int)(sfy*fy[i]/(2*nor)+ym[2*i]); 
-	   *
-	   *        the new code :
-	   */
-	  xm[1+2*j2]= (int)(xfacteur*sfx*(fx[i])/(nor)+xm[2*i]);
-	  xm[2*j2]  = (int)(xm[2*i]);
-	  ym[1+2*j2]= (int)(-yfacteur*sfy*(fy[i])/(nor)+ym[2*i]);
-	  ym[2*j2]  = (int)(ym[2*i]);
-	  /* end of the modif */
-
-	  clip_line(xm[2*j2],ym[2*j2],xm[2*j2+1],ym[2*j2+1],&x1n,&y1n,&x2n,&y2n,&flag1);
-	  if (flag1 !=0)
-	    {
-	      if (flag1==1||flag1==3) { xm[2*j2]=x1n;ym[2*j2]=y1n;};
-	      if (flag1==2||flag1==3) { xm[2*j2+1]=x2n;ym[2*j2+1]=y2n;};
-	      j2++;
-	    }
-	}
-      *na=2*j2;
-    }
-}
-
 
 
 /* F.Leray 11.03.05 */
