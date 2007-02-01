@@ -35,7 +35,7 @@ proc undoredo {textarea action} {
     set aft [$textarea get 1.0 end]
     set pref [commonPrefix $bef $aft]
     set i1 [$textarea index "1.0 + [string length $pref] chars"]
-    set pref [commonPrefix [srevert $bef] [srevert $aft]]
+    set pref [commonPrefix [sreverse $bef] [sreverse $aft]]
     set i2 [$textarea index "end - [string length $pref] chars"]
     tagcontlines $textarea
     if {[$textarea compare $i2 < $i1]} {
@@ -118,8 +118,8 @@ proc commonPrefix {a b} {
     set res
 }
 
-proc srevert s {
-# Revert a string, e.g. "abc" becomes "cba"
+proc sreverse s {
+# Reverse a string, e.g. "abc" becomes "cba"
 # This is an ancillary for undo/redo
 # Source: http://wiki.tcl.tk/44 - Additional string functions
 # TIP #272 (String and List Reversal Operations) is however be part of
@@ -134,6 +134,25 @@ proc srevert s {
         set l [string length $s]
         set res ""
         while {$l} {append res [string index $s [incr l -1]]}
+        set res
+    }
+}
+
+proc listreverse l {
+# Reverse a list, e.g. {a b c} becomes {c b a}
+# Source: http://wiki.tcl.tk/43 - Additional list functions
+# TIP #272 (String and List Reversal Operations) is however be part of
+# Tcl8.5, and is used if available because it's performing at a
+# tremendously better performance level- TIP #272 is in "Final" state,
+# meaning that the corresponding implementation has been included in
+# the core (this was done 9 Nov. 06)
+    global Tcl85
+    if {$Tcl85} {
+        return [lreverse $l]
+    } else {
+        set res {}
+        set i [llength $l]
+        while {$i} {lappend res [lindex $l [incr i -1]]}
         set res
     }
 }

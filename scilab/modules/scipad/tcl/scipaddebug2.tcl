@@ -25,7 +25,7 @@ if {$debuglog} {
     schememenus setdbmenuentriesstates_bp getdbstate pbind \
     Button1BindTextArea IsBufferEditable changedmodified \
     gettextareacur settextareacur countcontlines reshape_bp \
-    undoredo srevert commonPrefix \
+    undoredo sreverse listreverse commonPrefix \
     iscontinuedline getstartofcontline getendofcontline \
     colorize remalltags tagcontline \
     colorizestringsandcomments_sd colorizestringsandcomments \

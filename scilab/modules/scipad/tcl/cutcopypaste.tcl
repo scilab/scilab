@@ -19,9 +19,8 @@ proc deletetext {} {
         set first [$textareacur index insert]
         set last $first
     } else {
-        foreach {sta sto} $selindices {
-            $textareacur delete $sta $sto
-        }
+        # text deletion must be done at once and not range by range!
+	    eval "$textareacur delete $selindices"
         set first [lindex $selindices 0  ]
         set last  [lindex $selindices end]
     }
@@ -64,9 +63,8 @@ proc backspacetext {} {
         set first [$textareacur index insert]
         set last $first
     } else {
-        foreach {sta sto} $selindices {
-            $textareacur delete $sta $sto
-        }
+        # text deletion must be done at once and not range by range!
+	    eval "$textareacur delete $selindices"
         set first [lindex $selindices 0  ]
         set last  [lindex $selindices end]
     }

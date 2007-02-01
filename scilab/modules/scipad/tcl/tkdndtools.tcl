@@ -13,6 +13,9 @@ proc tkdndbind {w} {
                 focustextarea %W ; \
             } \
         }
+        bind $w <Control-Button-1> { \
+            %W tag remove sel 1.0 end ; \
+        }
         # bindings for block selection
         bind $w <Shift-Control-Button-1> { \
             startblockselection %W %x %y ; \

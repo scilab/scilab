@@ -1,3 +1,17 @@
+proc TextClosestGap_scipad {w x y} {
+# this is a bulletproof wrapper to the Tk private function
+# ::tk::TextClosestGap which is useful for selections
+# since ::tk::TextClosestGap is not part of the public interface
+# of the text widget, a fallback using only public interface
+# functions must exist to guard against private functions changes
+# in Tk
+    if {[catch {::tk::TextClosestGap $w $x $y} ind] != 0} {
+    puts fallback
+        set ind [$w index @$x,$y]
+    }
+    return $ind
+}
+
 proc selectall {} {
     # end position to select is end-1c so that the final \n in the textarea
     # is not selected (it is anyway not part of the actual text entered by
@@ -79,13 +93,16 @@ proc startblockselection {w x y} {
         set blockseltoggledwordwrap false
     }
 
-    $w mark set blockselanchor @$x,$y
+    $w mark set blockselanchor [TextClosestGap_scipad $w $x $y]
     $w tag remove sel 1.0 end
 }
 
 proc endblockselection {w} {
 # finish a block selection
     global pad MenuEntryId blockseltoggledwordwrap
+
+    $w mark unset blockselanchor
+
     # restore word wrapping
     if {$blockseltoggledwordwrap} {
         $pad.filemenu.options invoke $MenuEntryId($pad.filemenu.options.[mcra "Word &wrap"])
@@ -98,8 +115,13 @@ proc selectblock {w x y} {
 # i.e. the point where the mouse was when button-1 was pressed,
 # to the current mouse position
 
+    if {[lsearch [$w mark names] blockselanchor] == -1} {
+        # Shift-Control was hit while a normal selection had started
+        startblockselection $w $x $y
+    }
+
     set anchorpos [$w index blockselanchor]
-    set cornerpos [$w index @$x,$y]
+    set cornerpos [TextClosestGap_scipad $w $x $y]
     $w mark set insert $cornerpos
 
     # possible cases at this point (A=anchor, C=corner):

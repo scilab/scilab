@@ -2778,3 +2778,15 @@ Francois VOGEL, 30/01/07
    selection
  * Added Scipad version number in the title bar
  * version --> 6.83
+
+Francois VOGEL, 01/02/07
+ * Fixed Tcl error when hitting Shift-Control while a normal selection
+   had been started
+ * Better intuitivity in block selection by making use of a bulletproofed
+   TextClosestGap function from the private internals of Tk (with a fallback
+   using only public interface functions in case the private function
+   changes)
+ * Control-Button1 outside of a selection has the same behavior with or
+   without the tkdnd package: delete selection and move cursor to the
+   clicked location
+ * version --> 6.84
