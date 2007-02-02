@@ -69,7 +69,7 @@ extern void    /* 42  */ C2F(gw_pvm)();
 extern void    /* 43  */ C2F(gw_integer)();
 extern void    /* 44  */ C2F(gw_linear_algebra2)();
 
-#if WITHOUT_SCICOS
+#ifdef WITHOUT_SCICOS
 	#define SCICOSINTERF1 C2F(Nogw_scicos)
 	#define SCICOSINTERF2 C2F(Nogw_cscicos)
 #else
