@@ -107,14 +107,20 @@ proc cuttext {} {
 
     # now cut it! note that tk_textCut being designed to work with a
     # single range selection, this command cannot be used here directly
+    set prevsto [lindex $selindices 1]
 	clipboard clear -displayof $textareacur
     clipboard append -displayof $textareacur \
-        [$textareacur get [lindex $selindices 0] [lindex $selindices 1]]
+        [$textareacur get [lindex $selindices 0] $prevsto]
     foreach {sta sto} [lreplace $selindices 0 1] {
         # if there is a block selection, split the selected lines with
-        # a \n in the clipboard
+        # a \n in the clipboard, but only if the selection does not
+        # already have a trailing \n in the previous line
+        if {[$textareacur get "$prevsto-1c" $prevsto] != "\n"} {
+            clipboard append -displayof $textareacur "\n"
+        }
         clipboard append -displayof $textareacur \
-            "\n[$textareacur get $sta $sto]"
+            [$textareacur get $sta $sto]
+        set prevsto $sto
     }
     # text deletion must be done at once and not range by range!
 	eval "$textareacur delete $selindices"
@@ -147,14 +153,20 @@ proc copytext {} {
 
     # now copy it! note that tk_textCopy being designed to work with a
     # single range selection, this command cannot be used here directly
+    set prevsto [lindex $selindices 1]
 	clipboard clear -displayof $textareacur
     clipboard append -displayof $textareacur \
-        [$textareacur get [lindex $selindices 0] [lindex $selindices 1]]
+        [$textareacur get [lindex $selindices 0] $prevsto]
     foreach {sta sto} [lreplace $selindices 0 1] {
         # if there is a block selection, split the selected lines with
-        # a \n in the clipboard
+        # a \n in the clipboard, but only if the selection does not
+        # already have a trailing \n in the previous line
+        if {[$textareacur get "$prevsto-1c" $prevsto] != "\n"} {
+            clipboard append -displayof $textareacur "\n"
+        }
         clipboard append -displayof $textareacur \
-            "\n[$textareacur get $sta $sto]"
+            [$textareacur get $sta $sto]
+        set prevsto $sto
     }
 
     restorecursorblink ; # see comments in proc puttext

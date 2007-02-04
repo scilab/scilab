@@ -83,7 +83,7 @@ proc gettaselind {textarea {supportmultiple "single"}} {
 
 proc startblockselection {w x y} {
 # initiate a block selection
-    global wordWrap pad MenuEntryId blockseltoggledwordwrap
+    global wordWrap pad MenuEntryId blockseltoggledwordwrap blockselanchor
 
     # temporarily force no word wrapping
     if {$wordWrap != "none"} {
@@ -93,15 +93,15 @@ proc startblockselection {w x y} {
         set blockseltoggledwordwrap false
     }
 
-    $w mark set blockselanchor [TextClosestGap_scipad $w $x $y]
+    set blockselanchor [list $x $y]
     $w tag remove sel 1.0 end
 }
 
 proc endblockselection {w} {
 # finish a block selection
-    global pad MenuEntryId blockseltoggledwordwrap
+    global pad MenuEntryId blockseltoggledwordwrap blockselanchor
 
-    $w mark unset blockselanchor
+    unset -nocomplain -- blockselanchor
 
     # restore word wrapping
     if {$blockseltoggledwordwrap} {
@@ -115,71 +115,58 @@ proc selectblock {w x y} {
 # i.e. the point where the mouse was when button-1 was pressed,
 # to the current mouse position
 
-    if {[lsearch [$w mark names] blockselanchor] == -1} {
+    global blockselanchor
+
+    if {![info exists blockselanchor]} {
         # Shift-Control was hit while a normal selection had started
         startblockselection $w $x $y
     }
 
-    set anchorpos [$w index blockselanchor]
-    set cornerpos [TextClosestGap_scipad $w $x $y]
-    $w mark set insert $cornerpos
+    set anchorx [lindex $blockselanchor 0]
+    set anchory [lindex $blockselanchor 1]
+    set cornerx $x
+    set cornery $y
+
+    $w mark set insert [TextClosestGap_scipad $w $cornerx $cornery]
 
     # possible cases at this point (A=anchor, C=corner):
     #    A      A     C      C    A    C    AC    CA
     #     C    C       A    A     C    A
-    if {[$w compare $cornerpos < $anchorpos]} {
-        set temp $cornerpos
-        set cornerpos $anchorpos
-        set anchorpos $temp
+    if {$cornery < $anchory} {
+        set temp $cornery
+        set cornery $anchory
+        set anchory $temp
+    }
+    if {$cornerx < $anchorx} {
+        set temp $cornerx
+        set cornerx $anchorx
+        set anchorx $temp
     }
     # possible cases at this point:
-    #    A      A     A    AC
-    #     C    C      C
-
-    scan $anchorpos "%d.%d" l1 c1
-    scan $cornerpos "%d.%d" l2 c2
-
-    # at this point we always have $l1 < $l2
-    # now arrange for having always $c1 < $c2, so that
-    # $l1.$c1 and $l2.$c2 are the indices of respectively
+    #            anchorx  cornerx    anchorx=cornerx    anchorx  cornerx
+    #
+    # anchory->     A                       A              A        C
+    #
+    # cornery->              C              C
+    #
+    # at this point we always have $anchory <= $cornery
+    # and $anchorx <= $cornerx, so that @$anchory,$anchorx
+    # and @$cornery,$cornerx are the indices of respectively
     # the upper left corner and the lower right corner of
     # the block selection
-    if {$c1 > $c2} {
-        set temp $c1
-        set c1 $c2
-        set c2 $temp
-    }
-    # possible cases at this point:
-    #        c1  c2    c1=c2   c1  c2
-    #
-    # l1->   A         A       A   C
-    #
-    # l2->       C     C
-
-    # make a true block selection, i.e. look for the maximum
-    # selectable column number between lines $l1 and $l2,
-    # this is useful when extending the block selection when the mouse
-    # is in a line that ends at the left of the mouse cursor: lines
-    # between the anchor and the mouse cursor can still be selected if
-    # they continue at least up to the mouse cursor column:
-    # .......Axxxxxx
-    # .......xxxxxxxxxxxxxx...
-    # .......xxx          C
-    set dlinfo [$w dlineinfo @0,0]
-    set lineheight [lindex $dlinfo 3]
-    scan [$w index @0,0] "%d.%d" firstline junk
-    set basey [expr {[lindex $dlinfo 1] + ($l1 - $firstline) * $lineheight }]
-    for {set i 0} {$i < [expr {$l2 - $l1}]} {incr i} {
-        scan [$w index @$x,[expr {$basey + $i * $lineheight}]] "%d.%d" junk linemaxselcol
-        if {$c2 < $linemaxselcol} {
-            set c2 $linemaxselcol
-        }
-    }
 
     # finally, tag the lines!
     $w tag remove sel 1.0 end
-    for {set i $l1} {$i <= $l2} {incr i} {
-        $w tag add sel $i.$c1 $i.$c2
+    set dlinfo [$w dlineinfo @0,0]
+    set lineheight [lindex $dlinfo 3]
+    for {set i $anchory} {$i <= $cornery} {incr i $lineheight} {
+        set sta [TextClosestGap_scipad $w $anchorx $i]
+        set sto [TextClosestGap_scipad $w $cornerx $i]
+        if {[$w compare $sta == $sto]} {
+            set sta "$sta linestart"
+            set sto "$sto + 1l linestart"
+        }
+        $w tag add sel $sta $sto
     }
 }
 

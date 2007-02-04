@@ -2790,3 +2790,8 @@ Francois VOGEL, 01/02/07
    without the tkdnd package: delete selection and move cursor to the
    clicked location
  * version --> 6.84
+
+Francois VOGEL, 04/02/07
+ * Better block selection process, more pixel-like, and now more compatible
+   with tabs, non fixed width fonts, and empty lines as well
+ * version --> 6.85
