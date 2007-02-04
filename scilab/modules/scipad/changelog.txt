@@ -2795,3 +2795,12 @@ Francois VOGEL, 04/02/07
  * Better block selection process, more pixel-like, and now more compatible
    with tabs, non fixed width fonts, and empty lines as well
  * version --> 6.85
+
+Francois VOGEL, 04/02/07
+ * The insertion cursor should no longer be seen after the end of the block
+   selection
+ * A single selection returned by proc gettaseltext could be braced, thus
+   causing some troubles with execselection or helpword for instance. The
+   way the selection text is built and returned has been changed to fix
+   this issue
+ * version --> 6.86

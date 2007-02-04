@@ -44,11 +44,7 @@ proc gettaseltext {textarea {supportmultiple "single"}} {
 # gettaselind
 # the X selection is not used nor changed, it's the sel tag of $textarea
 # that is checked
-    set seltexts [list ]
-    foreach {sta sto} [gettaselind $textarea $supportmultiple] {
-        lappend seltexts [$textarea get $sta $sto]
-    }
-    return $seltexts
+    return [eval "$textarea get [gettaselind $textarea $supportmultiple]"]
 }
 
 proc gettaselind {textarea {supportmultiple "single"}} {
@@ -159,10 +155,11 @@ proc selectblock {w x y} {
     $w tag remove sel 1.0 end
     set dlinfo [$w dlineinfo @0,0]
     set lineheight [lindex $dlinfo 3]
-    for {set i $anchory} {$i <= $cornery} {incr i $lineheight} {
+    for {set i $anchory} {$i <= [expr {$cornery + $lineheight / 2}]} {incr i $lineheight} {
         set sta [TextClosestGap_scipad $w $anchorx $i]
         set sto [TextClosestGap_scipad $w $cornerx $i]
         if {[$w compare $sta == $sto]} {
+            # tag the entire line
             set sta "$sta linestart"
             set sto "$sto + 1l linestart"
         }
