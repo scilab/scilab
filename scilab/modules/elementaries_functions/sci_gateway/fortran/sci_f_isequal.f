@@ -49,7 +49,7 @@ c
       endif
 
       if(typ.gt.14) then
-         call funnam(ids(1,pt+1),'isequal',typ)
+         call funnam(ids(1,pt+1),'isequal',il1)
          fun=-1
          return
       endif
