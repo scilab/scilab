@@ -64,6 +64,7 @@
       integer namecd(nlgh), chcnt, io 
       integer blank, dot, percen, slash, comma,eol
       integer name, num, cmt
+      integer l4,nreal
 
 *     STATEMENTS FUNCTIONS
       integer c
@@ -95,6 +96,7 @@
 
       elseif ( isAlphaNum(char1) .or. char1.eq.percen) then
 *        -> name
+         l4 = lpt(4)-1
          sym = name 
          chcnt = 1
          namecd(chcnt) = char1
@@ -108,8 +110,13 @@
          end do
 *        encoding of the name
          call namstr(syn,namecd,chcnt,0)
-
-
+         nreal=lpt(4)-l4-1
+         if (nreal.gt.chcnt) then
+             call cvstr(nreal,lin(l4),buf,1)
+             buf((1+nreal):)=' has been truncated to it''s'//
+     $            ' first 24 characters'
+             call msgs(9999,0)
+         endif
       else
 *        -> special character (eol, operator, part of an operator, .... 
 *           but in case of a dot following by a digit it is a number)
