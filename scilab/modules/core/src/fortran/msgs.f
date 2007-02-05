@@ -24,6 +24,7 @@ c
      &     201,202,203,204,205,206,207,208,209,210) n
       call basout(io,wte,' Warning:')
       call basout(io,wte,buf(1:lnblnk(buf)))
+      goto 9999
  101  continue
       call  basout(io,wte,' Warning:')
       call basout(io,wte,'  Non convergence in the QZ algorithm.')
