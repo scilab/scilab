@@ -91,18 +91,17 @@ tests = ['algebra.tst';
 		tests(find(tests=='scicos_filesassociation.tst'))=[];
 	end
 	
-	if ~with_tk() then
+	if ~%tk then
 		tests(find(tests=='TCL_SetGet.tst'))=[];
 	end
 	
-	if ~with_pvm() then
+	if ~%pvm then
 		tests(find(tests=='pvm.tst'))=[];
 	end
 	
 	if MSDOS then
 		tests(find(tests=='pvm.tst'))=[];
 	end
-	
 	
 endfunction
 
