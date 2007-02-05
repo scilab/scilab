@@ -43,6 +43,62 @@ JNIEXPORT jboolean JNICALL Java_javasci_SciDoubleArray_Job(JNIEnv *env , jobject
 
 }
 /********************************************************************************************************/
+/* private native int getRowFromScilab(String name); */
+JNIEXPORT jint JNICALL Java_javasci_SciDoubleArray_getRowFromScilab(JNIEnv *env , jobject obj_this, jstring name)
+{
+	int lw; int fin;
+	const char *cname=NULL;
+	jint row=-1;
+
+	/* get the class */
+	jclass class_Mine = (*env)->GetObjectClass(env, obj_this);
+
+	/* get the field value */
+	cname = (*env)->GetStringUTFChars(env, name, NULL);
+
+	if (C2F(objptr)((char*)cname,&lw,&fin,(unsigned long)strlen(cname)))
+	{
+		int cm,cn,lp;
+		if ( C2F(cmatptr)((char *)cname, &cm, &cn, &lp,(unsigned long)strlen(cname))) 
+		{
+			row = cm;
+		}
+	}
+
+	(*env)->ReleaseStringUTFChars(env, name , cname);
+
+	return row;
+
+}
+/********************************************************************************************************/
+/* private native int getColFromScilab(String name); */
+JNIEXPORT jint JNICALL Java_javasci_SciDoubleArray_getColFromScilab(JNIEnv *env , jobject obj_this, jstring name)
+{
+	int lw; int fin;
+	const char *cname=NULL;
+	jint col=-1;
+
+	/* get the class */
+	jclass class_Mine = (*env)->GetObjectClass(env, obj_this);
+
+	/* get the field value */
+	cname = (*env)->GetStringUTFChars(env, name, NULL);
+
+	if (C2F(objptr)((char*)cname,&lw,&fin,(unsigned long)strlen(cname)))
+	{
+		int cm,cn,lp;
+
+		if ( C2F(cmatptr)((char *)cname, &cm, &cn, &lp,(unsigned long)strlen(cname))) 
+		{
+			col = cn;
+		}
+	}
+
+	(*env)->ReleaseStringUTFChars(env, name , cname);
+
+	return col;
+}
+/********************************************************************************************************/
 /*! public native void Get(); */
 JNIEXPORT void JNICALL Java_javasci_SciDoubleArray_Get(JNIEnv *env , jobject obj_this)
 /********************************************************************************************************/
