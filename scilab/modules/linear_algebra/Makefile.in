@@ -47,19 +47,6 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@NON_FREE_SCILAB_TRUE@am__append_1 = src/fortran/SELECT.f \
-@NON_FREE_SCILAB_TRUE@src/fortran/intgschur.f \
-@NON_FREE_SCILAB_TRUE@src/fortran/intzgschur.f \
-@NON_FREE_SCILAB_TRUE@src/fortran/intfschur.f \
-@NON_FREE_SCILAB_TRUE@src/fortran/intozgschur.f \
-@NON_FREE_SCILAB_TRUE@src/fortran/intogschur.f \
-@NON_FREE_SCILAB_TRUE@src/fortran/intzfschur.f
-
-@NON_FREE_SCILAB_TRUE@am__append_2 = src/c/schur.c \
-@NON_FREE_SCILAB_TRUE@src/c/gschur.c
-
-@NON_FREE_SCILAB_TRUE@am__append_3 = sci_gateway/c/sci_schur.c
-@NON_FREE_SCILAB_TRUE@am__append_4 = sci_gateway/fortran/Ex-schur.f
 DIST_COMMON = $(libscilinear_algebra_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
@@ -94,69 +81,21 @@ libscilinear_algebra_la_DEPENDENCIES =  \
 	$(top_builddir)/libs/lapack/libscilapack.la \
 	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la
-am__libscilinear_algebra_la_SOURCES_DIST = src/fortran/intdggbal.f \
-	src/fortran/intzgeqpf4.f src/fortran/intzheev.f \
-	src/fortran/intzgehrd.f src/fortran/intzgesvd1.f \
-	src/fortran/intzgesvd2.f src/fortran/intdgges.f \
-	src/fortran/intdgeev.f src/fortran/intdgesv3.f \
-	src/fortran/intdggev.f src/fortran/intdgesv4.f \
-	src/fortran/DGELSY1.f src/fortran/intdpotrf.f \
-	src/fortran/intdoldsvd.f src/fortran/intdgecon.f \
-	src/fortran/zoldqr.f src/fortran/intzgetrf.f \
-	src/fortran/intoschur.f src/fortran/complexify.f \
-	src/fortran/intzgebal.f src/fortran/intzgetri.f \
-	src/fortran/intzggbal.f src/fortran/intdgees0.f \
-	src/fortran/intdgees1.f src/fortran/intzgges.f \
-	src/fortran/intddet.f src/fortran/intzgeev.f \
-	src/fortran/intzgesv3.f src/fortran/intzgesv4.f \
-	src/fortran/intzggev.f src/fortran/intzpotrf.f \
-	src/fortran/intzgecon.f src/fortran/intzoldsvd.f \
-	src/fortran/intdgelsy.f src/fortran/intdgeqpf3.f \
-	src/fortran/intdsyev.f src/fortran/intdgeqpf4.f \
-	src/fortran/intdgesvd1.f src/fortran/intdgehrd.f \
-	src/fortran/intzgees0.f src/fortran/intdgesvd2.f \
-	src/fortran/intzgees1.f src/fortran/intzdet.f \
-	src/fortran/doldqr.f src/fortran/scischur.f \
-	src/fortran/intdgetrf.f src/fortran/intzgelsy.f \
-	src/fortran/intdgetri.f src/fortran/intdgebal.f \
-	src/fortran/intzschur.f src/fortran/intzgeqpf3.f \
-	src/fortran/SELECT.f src/fortran/intgschur.f \
-	src/fortran/intzgschur.f src/fortran/intfschur.f \
-	src/fortran/intozgschur.f src/fortran/intogschur.f \
-	src/fortran/intzfschur.f src/c/schur.c src/c/gschur.c \
-	sci_gateway/c/sci_backslash.c sci_gateway/c/sci_hess.c \
-	sci_gateway/c/sci_rcond.c sci_gateway/c/sci_bdiag.c \
-	sci_gateway/c/sci_slash.c sci_gateway/c/gw_linear_algebra2.c \
-	sci_gateway/c/sci_det.c sci_gateway/c/sci_lu.c \
-	sci_gateway/c/sci_balanc.c sci_gateway/c/sci_qr.c \
-	sci_gateway/c/sci_chol.c sci_gateway/c/sci_eig.c \
-	sci_gateway/c/gw_linear_algebra.c sci_gateway/c/sci_inv.c \
-	sci_gateway/c/sci_svd.c sci_gateway/c/sci_lsq.c \
-	sci_gateway/c/sci_schur.c sci_gateway/fortran/bschur.f \
-	sci_gateway/fortran/Ex-schur.f
-@NON_FREE_SCILAB_TRUE@am__objects_1 = SELECT.lo intgschur.lo \
-@NON_FREE_SCILAB_TRUE@	intzgschur.lo intfschur.lo \
-@NON_FREE_SCILAB_TRUE@	intozgschur.lo intogschur.lo \
-@NON_FREE_SCILAB_TRUE@	intzfschur.lo
-am__objects_2 = intdggbal.lo intzgeqpf4.lo intzheev.lo intzgehrd.lo \
-	intzgesvd1.lo intzgesvd2.lo intdgges.lo intdgeev.lo \
-	intdgesv3.lo intdggev.lo intdgesv4.lo DGELSY1.lo intdpotrf.lo \
-	intdoldsvd.lo intdgecon.lo zoldqr.lo intzgetrf.lo intoschur.lo \
-	complexify.lo intzgebal.lo intzgetri.lo intzggbal.lo \
-	intdgees0.lo intdgees1.lo intzgges.lo intddet.lo intzgeev.lo \
+am__objects_1 = intdggbal.lo intzgeqpf4.lo intzheev.lo intzgehrd.lo \
+	intzgesvd1.lo intzfschur.lo intzgesvd2.lo intdgges.lo \
+	intdgeev.lo intgschur.lo intdgesv3.lo intdggev.lo intdgesv4.lo \
+	DGELSY1.lo intozgschur.lo intdpotrf.lo intdoldsvd.lo \
+	intdgecon.lo zoldqr.lo intzgetrf.lo intoschur.lo complexify.lo \
+	SELECT.lo intzgebal.lo intzgetri.lo intzggbal.lo intdgees0.lo \
+	intdgees1.lo intogschur.lo intzgges.lo intddet.lo intzgeev.lo \
 	intzgesv3.lo intzgesv4.lo intzggev.lo intzpotrf.lo \
-	intzgecon.lo intzoldsvd.lo intdgelsy.lo intdgeqpf3.lo \
-	intdsyev.lo intdgeqpf4.lo intdgesvd1.lo intdgehrd.lo \
-	intzgees0.lo intdgesvd2.lo intzgees1.lo intzdet.lo doldqr.lo \
-	scischur.lo intdgetrf.lo intzgelsy.lo intdgetri.lo \
-	intdgebal.lo intzschur.lo intzgeqpf3.lo $(am__objects_1)
-@NON_FREE_SCILAB_TRUE@am__objects_3 =  \
-@NON_FREE_SCILAB_TRUE@	libscilinear_algebra_la-schur.lo \
-@NON_FREE_SCILAB_TRUE@	libscilinear_algebra_la-gschur.lo
-am__objects_4 = $(am__objects_3)
-@NON_FREE_SCILAB_TRUE@am__objects_5 =  \
-@NON_FREE_SCILAB_TRUE@	libscilinear_algebra_la-sci_schur.lo
-am__objects_6 = libscilinear_algebra_la-sci_backslash.lo \
+	intzgecon.lo intzgschur.lo intzoldsvd.lo intdgelsy.lo \
+	intdgeqpf3.lo intfschur.lo intdsyev.lo intdgeqpf4.lo \
+	intdgesvd1.lo intdgehrd.lo intzgees0.lo intdgesvd2.lo \
+	intzgees1.lo intzdet.lo doldqr.lo scischur.lo intdgetrf.lo \
+	intzgelsy.lo intdgetri.lo intdgebal.lo intzschur.lo \
+	intzgeqpf3.lo
+am__objects_2 = libscilinear_algebra_la-sci_backslash.lo \
 	libscilinear_algebra_la-sci_hess.lo \
 	libscilinear_algebra_la-sci_rcond.lo \
 	libscilinear_algebra_la-sci_bdiag.lo \
@@ -166,16 +105,16 @@ am__objects_6 = libscilinear_algebra_la-sci_backslash.lo \
 	libscilinear_algebra_la-sci_lu.lo \
 	libscilinear_algebra_la-sci_balanc.lo \
 	libscilinear_algebra_la-sci_qr.lo \
+	libscilinear_algebra_la-sci_schur.lo \
 	libscilinear_algebra_la-sci_chol.lo \
-	libscilinear_algebra_la-sci_eig.lo \
+	libscilinear_algebra_la-sci_spec.lo \
 	libscilinear_algebra_la-gw_linear_algebra.lo \
 	libscilinear_algebra_la-sci_inv.lo \
 	libscilinear_algebra_la-sci_svd.lo \
-	libscilinear_algebra_la-sci_lsq.lo $(am__objects_5)
-@NON_FREE_SCILAB_TRUE@am__objects_7 = Ex-schur.lo
-am__objects_8 = bschur.lo $(am__objects_7)
-am_libscilinear_algebra_la_OBJECTS = $(am__objects_2) $(am__objects_4) \
-	$(am__objects_6) $(am__objects_8)
+	libscilinear_algebra_la-sci_lsq.lo
+am__objects_3 = Ex-schur.lo bschur.lo
+am_libscilinear_algebra_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
+	$(am__objects_3)
 libscilinear_algebra_la_OBJECTS =  \
 	$(am_libscilinear_algebra_la_OBJECTS)
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
@@ -198,7 +137,7 @@ F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libscilinear_algebra_la_SOURCES)
-DIST_SOURCES = $(am__libscilinear_algebra_la_SOURCES_DIST)
+DIST_SOURCES = $(libscilinear_algebra_la_SOURCES)
 libscilinear_algebra_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscilinear_algebra_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscilinear_algebra_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
@@ -351,46 +290,88 @@ tcldir = @tcldir@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 LINEAR_ALGEBRA_FORTRAN_SOURCES = src/fortran/intdggbal.f \
-	src/fortran/intzgeqpf4.f src/fortran/intzheev.f \
-	src/fortran/intzgehrd.f src/fortran/intzgesvd1.f \
-	src/fortran/intzgesvd2.f src/fortran/intdgges.f \
-	src/fortran/intdgeev.f src/fortran/intdgesv3.f \
-	src/fortran/intdggev.f src/fortran/intdgesv4.f \
-	src/fortran/DGELSY1.f src/fortran/intdpotrf.f \
-	src/fortran/intdoldsvd.f src/fortran/intdgecon.f \
-	src/fortran/zoldqr.f src/fortran/intzgetrf.f \
-	src/fortran/intoschur.f src/fortran/complexify.f \
-	src/fortran/intzgebal.f src/fortran/intzgetri.f \
-	src/fortran/intzggbal.f src/fortran/intdgees0.f \
-	src/fortran/intdgees1.f src/fortran/intzgges.f \
-	src/fortran/intddet.f src/fortran/intzgeev.f \
-	src/fortran/intzgesv3.f src/fortran/intzgesv4.f \
-	src/fortran/intzggev.f src/fortran/intzpotrf.f \
-	src/fortran/intzgecon.f src/fortran/intzoldsvd.f \
-	src/fortran/intdgelsy.f src/fortran/intdgeqpf3.f \
-	src/fortran/intdsyev.f src/fortran/intdgeqpf4.f \
-	src/fortran/intdgesvd1.f src/fortran/intdgehrd.f \
-	src/fortran/intzgees0.f src/fortran/intdgesvd2.f \
-	src/fortran/intzgees1.f src/fortran/intzdet.f \
-	src/fortran/doldqr.f src/fortran/scischur.f \
-	src/fortran/intdgetrf.f src/fortran/intzgelsy.f \
-	src/fortran/intdgetri.f src/fortran/intdgebal.f \
-	src/fortran/intzschur.f src/fortran/intzgeqpf3.f \
-	$(am__append_1)
-LINEAR_ALGEBRA_C_SOURCES = $(am__append_2)
+src/fortran/intzgeqpf4.f \
+src/fortran/intzheev.f \
+src/fortran/intzgehrd.f \
+src/fortran/intzgesvd1.f \
+src/fortran/intzfschur.f \
+src/fortran/intzgesvd2.f \
+src/fortran/intdgges.f \
+src/fortran/intdgeev.f \
+src/fortran/intgschur.f \
+src/fortran/intdgesv3.f \
+src/fortran/intdggev.f \
+src/fortran/intdgesv4.f \
+src/fortran/DGELSY1.f \
+src/fortran/intozgschur.f \
+src/fortran/intdpotrf.f \
+src/fortran/intdoldsvd.f \
+src/fortran/intdgecon.f \
+src/fortran/zoldqr.f \
+src/fortran/intzgetrf.f \
+src/fortran/intoschur.f \
+src/fortran/complexify.f \
+src/fortran/SELECT.f \
+src/fortran/intzgebal.f \
+src/fortran/intzgetri.f \
+src/fortran/intzggbal.f \
+src/fortran/intdgees0.f \
+src/fortran/intdgees1.f \
+src/fortran/intogschur.f \
+src/fortran/intzgges.f \
+src/fortran/intddet.f \
+src/fortran/intzgeev.f \
+src/fortran/intzgesv3.f \
+src/fortran/intzgesv4.f \
+src/fortran/intzggev.f \
+src/fortran/intzpotrf.f \
+src/fortran/intzgecon.f \
+src/fortran/intzgschur.f \
+src/fortran/intzoldsvd.f \
+src/fortran/intdgelsy.f \
+src/fortran/intdgeqpf3.f \
+src/fortran/intfschur.f \
+src/fortran/intdsyev.f \
+src/fortran/intdgeqpf4.f \
+src/fortran/intdgesvd1.f \
+src/fortran/intdgehrd.f \
+src/fortran/intzgees0.f \
+src/fortran/intdgesvd2.f \
+src/fortran/intzgees1.f \
+src/fortran/intzdet.f \
+src/fortran/doldqr.f \
+src/fortran/scischur.f \
+src/fortran/intdgetrf.f \
+src/fortran/intzgelsy.f \
+src/fortran/intdgetri.f \
+src/fortran/intdgebal.f \
+src/fortran/intzschur.f \
+src/fortran/intzgeqpf3.f
+
 GATEWAY_C_SOURCES = sci_gateway/c/sci_backslash.c \
-	sci_gateway/c/sci_hess.c sci_gateway/c/sci_rcond.c \
-	sci_gateway/c/sci_bdiag.c sci_gateway/c/sci_slash.c \
-	sci_gateway/c/gw_linear_algebra2.c sci_gateway/c/sci_det.c \
-	sci_gateway/c/sci_lu.c sci_gateway/c/sci_balanc.c \
-	sci_gateway/c/sci_qr.c sci_gateway/c/sci_chol.c \
-	sci_gateway/c/sci_eig.c sci_gateway/c/gw_linear_algebra.c \
-	sci_gateway/c/sci_inv.c sci_gateway/c/sci_svd.c \
-	sci_gateway/c/sci_lsq.c $(am__append_3)
-GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/bschur.f $(am__append_4)
+sci_gateway/c/sci_hess.c \
+sci_gateway/c/sci_rcond.c \
+sci_gateway/c/sci_bdiag.c \
+sci_gateway/c/sci_slash.c \
+sci_gateway/c/gw_linear_algebra2.c \
+sci_gateway/c/sci_det.c \
+sci_gateway/c/sci_lu.c \
+sci_gateway/c/sci_balanc.c \
+sci_gateway/c/sci_qr.c \
+sci_gateway/c/sci_schur.c \
+sci_gateway/c/sci_chol.c \
+sci_gateway/c/sci_spec.c \
+sci_gateway/c/gw_linear_algebra.c \
+sci_gateway/c/sci_inv.c \
+sci_gateway/c/sci_svd.c \
+sci_gateway/c/sci_lsq.c
+
+GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/Ex-schur.f \
+sci_gateway/fortran/bschur.f
+
 libscilinear_algebra_la_CFLAGS = -Iincludes/ 
 pkglib_LTLIBRARIES = libscilinear_algebra.la
-libscilinear_algebra_la_SOURCES = $(LINEAR_ALGEBRA_FORTRAN_SOURCES) $(LINEAR_ALGEBRA_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscilinear_algebra_la_SOURCES = $(LINEAR_ALGEBRA_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libscilinear_algebra_la_LIBADD = $(top_builddir)/libs/lapack/libscilapack.la \
 $(top_builddir)/libs/blas/libsciblas.la \
 $(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la  
@@ -608,16 +589,13 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_la-gschur.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_la-gw_linear_algebra.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_la-gw_linear_algebra2.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_la-schur.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_la-sci_backslash.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_la-sci_balanc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_la-sci_bdiag.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_la-sci_chol.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_la-sci_det.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_la-sci_eig.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_la-sci_hess.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_la-sci_inv.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_la-sci_lsq.Plo@am__quote@
@@ -626,6 +604,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_la-sci_rcond.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_la-sci_schur.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_la-sci_slash.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_la-sci_spec.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_la-sci_svd.Plo@am__quote@
 
 .c.o:
@@ -648,20 +627,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
-
-libscilinear_algebra_la-schur.lo: src/c/schur.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilinear_algebra_la_CFLAGS) $(CFLAGS) -MT libscilinear_algebra_la-schur.lo -MD -MP -MF $(DEPDIR)/libscilinear_algebra_la-schur.Tpo -c -o libscilinear_algebra_la-schur.lo `test -f 'src/c/schur.c' || echo '$(srcdir)/'`src/c/schur.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscilinear_algebra_la-schur.Tpo $(DEPDIR)/libscilinear_algebra_la-schur.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/schur.c' object='libscilinear_algebra_la-schur.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilinear_algebra_la_CFLAGS) $(CFLAGS) -c -o libscilinear_algebra_la-schur.lo `test -f 'src/c/schur.c' || echo '$(srcdir)/'`src/c/schur.c
-
-libscilinear_algebra_la-gschur.lo: src/c/gschur.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilinear_algebra_la_CFLAGS) $(CFLAGS) -MT libscilinear_algebra_la-gschur.lo -MD -MP -MF $(DEPDIR)/libscilinear_algebra_la-gschur.Tpo -c -o libscilinear_algebra_la-gschur.lo `test -f 'src/c/gschur.c' || echo '$(srcdir)/'`src/c/gschur.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscilinear_algebra_la-gschur.Tpo $(DEPDIR)/libscilinear_algebra_la-gschur.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/gschur.c' object='libscilinear_algebra_la-gschur.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilinear_algebra_la_CFLAGS) $(CFLAGS) -c -o libscilinear_algebra_la-gschur.lo `test -f 'src/c/gschur.c' || echo '$(srcdir)/'`src/c/gschur.c
 
 libscilinear_algebra_la-sci_backslash.lo: sci_gateway/c/sci_backslash.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilinear_algebra_la_CFLAGS) $(CFLAGS) -MT libscilinear_algebra_la-sci_backslash.lo -MD -MP -MF $(DEPDIR)/libscilinear_algebra_la-sci_backslash.Tpo -c -o libscilinear_algebra_la-sci_backslash.lo `test -f 'sci_gateway/c/sci_backslash.c' || echo '$(srcdir)/'`sci_gateway/c/sci_backslash.c
@@ -733,6 +698,13 @@ libscilinear_algebra_la-sci_qr.lo: sci_gateway/c/sci_qr.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilinear_algebra_la_CFLAGS) $(CFLAGS) -c -o libscilinear_algebra_la-sci_qr.lo `test -f 'sci_gateway/c/sci_qr.c' || echo '$(srcdir)/'`sci_gateway/c/sci_qr.c
 
+libscilinear_algebra_la-sci_schur.lo: sci_gateway/c/sci_schur.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilinear_algebra_la_CFLAGS) $(CFLAGS) -MT libscilinear_algebra_la-sci_schur.lo -MD -MP -MF $(DEPDIR)/libscilinear_algebra_la-sci_schur.Tpo -c -o libscilinear_algebra_la-sci_schur.lo `test -f 'sci_gateway/c/sci_schur.c' || echo '$(srcdir)/'`sci_gateway/c/sci_schur.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscilinear_algebra_la-sci_schur.Tpo $(DEPDIR)/libscilinear_algebra_la-sci_schur.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_schur.c' object='libscilinear_algebra_la-sci_schur.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilinear_algebra_la_CFLAGS) $(CFLAGS) -c -o libscilinear_algebra_la-sci_schur.lo `test -f 'sci_gateway/c/sci_schur.c' || echo '$(srcdir)/'`sci_gateway/c/sci_schur.c
+
 libscilinear_algebra_la-sci_chol.lo: sci_gateway/c/sci_chol.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilinear_algebra_la_CFLAGS) $(CFLAGS) -MT libscilinear_algebra_la-sci_chol.lo -MD -MP -MF $(DEPDIR)/libscilinear_algebra_la-sci_chol.Tpo -c -o libscilinear_algebra_la-sci_chol.lo `test -f 'sci_gateway/c/sci_chol.c' || echo '$(srcdir)/'`sci_gateway/c/sci_chol.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscilinear_algebra_la-sci_chol.Tpo $(DEPDIR)/libscilinear_algebra_la-sci_chol.Plo
@@ -740,12 +712,12 @@ libscilinear_algebra_la-sci_chol.lo: sci_gateway/c/sci_chol.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilinear_algebra_la_CFLAGS) $(CFLAGS) -c -o libscilinear_algebra_la-sci_chol.lo `test -f 'sci_gateway/c/sci_chol.c' || echo '$(srcdir)/'`sci_gateway/c/sci_chol.c
 
-libscilinear_algebra_la-sci_eig.lo: sci_gateway/c/sci_eig.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilinear_algebra_la_CFLAGS) $(CFLAGS) -MT libscilinear_algebra_la-sci_eig.lo -MD -MP -MF $(DEPDIR)/libscilinear_algebra_la-sci_eig.Tpo -c -o libscilinear_algebra_la-sci_eig.lo `test -f 'sci_gateway/c/sci_eig.c' || echo '$(srcdir)/'`sci_gateway/c/sci_eig.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscilinear_algebra_la-sci_eig.Tpo $(DEPDIR)/libscilinear_algebra_la-sci_eig.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_eig.c' object='libscilinear_algebra_la-sci_eig.lo' libtool=yes @AMDEPBACKSLASH@
+libscilinear_algebra_la-sci_spec.lo: sci_gateway/c/sci_spec.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilinear_algebra_la_CFLAGS) $(CFLAGS) -MT libscilinear_algebra_la-sci_spec.lo -MD -MP -MF $(DEPDIR)/libscilinear_algebra_la-sci_spec.Tpo -c -o libscilinear_algebra_la-sci_spec.lo `test -f 'sci_gateway/c/sci_spec.c' || echo '$(srcdir)/'`sci_gateway/c/sci_spec.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscilinear_algebra_la-sci_spec.Tpo $(DEPDIR)/libscilinear_algebra_la-sci_spec.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_spec.c' object='libscilinear_algebra_la-sci_spec.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilinear_algebra_la_CFLAGS) $(CFLAGS) -c -o libscilinear_algebra_la-sci_eig.lo `test -f 'sci_gateway/c/sci_eig.c' || echo '$(srcdir)/'`sci_gateway/c/sci_eig.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilinear_algebra_la_CFLAGS) $(CFLAGS) -c -o libscilinear_algebra_la-sci_spec.lo `test -f 'sci_gateway/c/sci_spec.c' || echo '$(srcdir)/'`sci_gateway/c/sci_spec.c
 
 libscilinear_algebra_la-gw_linear_algebra.lo: sci_gateway/c/gw_linear_algebra.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilinear_algebra_la_CFLAGS) $(CFLAGS) -MT libscilinear_algebra_la-gw_linear_algebra.lo -MD -MP -MF $(DEPDIR)/libscilinear_algebra_la-gw_linear_algebra.Tpo -c -o libscilinear_algebra_la-gw_linear_algebra.lo `test -f 'sci_gateway/c/gw_linear_algebra.c' || echo '$(srcdir)/'`sci_gateway/c/gw_linear_algebra.c
@@ -775,13 +747,6 @@ libscilinear_algebra_la-sci_lsq.lo: sci_gateway/c/sci_lsq.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilinear_algebra_la_CFLAGS) $(CFLAGS) -c -o libscilinear_algebra_la-sci_lsq.lo `test -f 'sci_gateway/c/sci_lsq.c' || echo '$(srcdir)/'`sci_gateway/c/sci_lsq.c
 
-libscilinear_algebra_la-sci_schur.lo: sci_gateway/c/sci_schur.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilinear_algebra_la_CFLAGS) $(CFLAGS) -MT libscilinear_algebra_la-sci_schur.lo -MD -MP -MF $(DEPDIR)/libscilinear_algebra_la-sci_schur.Tpo -c -o libscilinear_algebra_la-sci_schur.lo `test -f 'sci_gateway/c/sci_schur.c' || echo '$(srcdir)/'`sci_gateway/c/sci_schur.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscilinear_algebra_la-sci_schur.Tpo $(DEPDIR)/libscilinear_algebra_la-sci_schur.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_schur.c' object='libscilinear_algebra_la-sci_schur.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilinear_algebra_la_CFLAGS) $(CFLAGS) -c -o libscilinear_algebra_la-sci_schur.lo `test -f 'sci_gateway/c/sci_schur.c' || echo '$(srcdir)/'`sci_gateway/c/sci_schur.c
-
 .f.o:
 	$(F77COMPILE) -c -o $@ $<
 
@@ -806,6 +771,9 @@ intzgehrd.lo: src/fortran/intzgehrd.f
 intzgesvd1.lo: src/fortran/intzgesvd1.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intzgesvd1.lo `test -f 'src/fortran/intzgesvd1.f' || echo '$(srcdir)/'`src/fortran/intzgesvd1.f
 
+intzfschur.lo: src/fortran/intzfschur.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intzfschur.lo `test -f 'src/fortran/intzfschur.f' || echo '$(srcdir)/'`src/fortran/intzfschur.f
+
 intzgesvd2.lo: src/fortran/intzgesvd2.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intzgesvd2.lo `test -f 'src/fortran/intzgesvd2.f' || echo '$(srcdir)/'`src/fortran/intzgesvd2.f
 
@@ -814,6 +782,9 @@ intdgges.lo: src/fortran/intdgges.f
 
 intdgeev.lo: src/fortran/intdgeev.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intdgeev.lo `test -f 'src/fortran/intdgeev.f' || echo '$(srcdir)/'`src/fortran/intdgeev.f
+
+intgschur.lo: src/fortran/intgschur.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intgschur.lo `test -f 'src/fortran/intgschur.f' || echo '$(srcdir)/'`src/fortran/intgschur.f
 
 intdgesv3.lo: src/fortran/intdgesv3.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intdgesv3.lo `test -f 'src/fortran/intdgesv3.f' || echo '$(srcdir)/'`src/fortran/intdgesv3.f
@@ -826,6 +797,9 @@ intdgesv4.lo: src/fortran/intdgesv4.f
 
 DGELSY1.lo: src/fortran/DGELSY1.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o DGELSY1.lo `test -f 'src/fortran/DGELSY1.f' || echo '$(srcdir)/'`src/fortran/DGELSY1.f
+
+intozgschur.lo: src/fortran/intozgschur.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intozgschur.lo `test -f 'src/fortran/intozgschur.f' || echo '$(srcdir)/'`src/fortran/intozgschur.f
 
 intdpotrf.lo: src/fortran/intdpotrf.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intdpotrf.lo `test -f 'src/fortran/intdpotrf.f' || echo '$(srcdir)/'`src/fortran/intdpotrf.f
@@ -848,6 +822,9 @@ intoschur.lo: src/fortran/intoschur.f
 complexify.lo: src/fortran/complexify.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o complexify.lo `test -f 'src/fortran/complexify.f' || echo '$(srcdir)/'`src/fortran/complexify.f
 
+SELECT.lo: src/fortran/SELECT.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o SELECT.lo `test -f 'src/fortran/SELECT.f' || echo '$(srcdir)/'`src/fortran/SELECT.f
+
 intzgebal.lo: src/fortran/intzgebal.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intzgebal.lo `test -f 'src/fortran/intzgebal.f' || echo '$(srcdir)/'`src/fortran/intzgebal.f
 
@@ -862,6 +839,9 @@ intdgees0.lo: src/fortran/intdgees0.f
 
 intdgees1.lo: src/fortran/intdgees1.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intdgees1.lo `test -f 'src/fortran/intdgees1.f' || echo '$(srcdir)/'`src/fortran/intdgees1.f
+
+intogschur.lo: src/fortran/intogschur.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intogschur.lo `test -f 'src/fortran/intogschur.f' || echo '$(srcdir)/'`src/fortran/intogschur.f
 
 intzgges.lo: src/fortran/intzgges.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intzgges.lo `test -f 'src/fortran/intzgges.f' || echo '$(srcdir)/'`src/fortran/intzgges.f
@@ -887,6 +867,9 @@ intzpotrf.lo: src/fortran/intzpotrf.f
 intzgecon.lo: src/fortran/intzgecon.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intzgecon.lo `test -f 'src/fortran/intzgecon.f' || echo '$(srcdir)/'`src/fortran/intzgecon.f
 
+intzgschur.lo: src/fortran/intzgschur.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intzgschur.lo `test -f 'src/fortran/intzgschur.f' || echo '$(srcdir)/'`src/fortran/intzgschur.f
+
 intzoldsvd.lo: src/fortran/intzoldsvd.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intzoldsvd.lo `test -f 'src/fortran/intzoldsvd.f' || echo '$(srcdir)/'`src/fortran/intzoldsvd.f
 
@@ -895,6 +878,9 @@ intdgelsy.lo: src/fortran/intdgelsy.f
 
 intdgeqpf3.lo: src/fortran/intdgeqpf3.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intdgeqpf3.lo `test -f 'src/fortran/intdgeqpf3.f' || echo '$(srcdir)/'`src/fortran/intdgeqpf3.f
+
+intfschur.lo: src/fortran/intfschur.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intfschur.lo `test -f 'src/fortran/intfschur.f' || echo '$(srcdir)/'`src/fortran/intfschur.f
 
 intdsyev.lo: src/fortran/intdsyev.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intdsyev.lo `test -f 'src/fortran/intdsyev.f' || echo '$(srcdir)/'`src/fortran/intdsyev.f
@@ -944,32 +930,11 @@ intzschur.lo: src/fortran/intzschur.f
 intzgeqpf3.lo: src/fortran/intzgeqpf3.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intzgeqpf3.lo `test -f 'src/fortran/intzgeqpf3.f' || echo '$(srcdir)/'`src/fortran/intzgeqpf3.f
 
-SELECT.lo: src/fortran/SELECT.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o SELECT.lo `test -f 'src/fortran/SELECT.f' || echo '$(srcdir)/'`src/fortran/SELECT.f
-
-intgschur.lo: src/fortran/intgschur.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intgschur.lo `test -f 'src/fortran/intgschur.f' || echo '$(srcdir)/'`src/fortran/intgschur.f
-
-intzgschur.lo: src/fortran/intzgschur.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intzgschur.lo `test -f 'src/fortran/intzgschur.f' || echo '$(srcdir)/'`src/fortran/intzgschur.f
-
-intfschur.lo: src/fortran/intfschur.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intfschur.lo `test -f 'src/fortran/intfschur.f' || echo '$(srcdir)/'`src/fortran/intfschur.f
-
-intozgschur.lo: src/fortran/intozgschur.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intozgschur.lo `test -f 'src/fortran/intozgschur.f' || echo '$(srcdir)/'`src/fortran/intozgschur.f
-
-intogschur.lo: src/fortran/intogschur.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intogschur.lo `test -f 'src/fortran/intogschur.f' || echo '$(srcdir)/'`src/fortran/intogschur.f
-
-intzfschur.lo: src/fortran/intzfschur.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intzfschur.lo `test -f 'src/fortran/intzfschur.f' || echo '$(srcdir)/'`src/fortran/intzfschur.f
+Ex-schur.lo: sci_gateway/fortran/Ex-schur.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o Ex-schur.lo `test -f 'sci_gateway/fortran/Ex-schur.f' || echo '$(srcdir)/'`sci_gateway/fortran/Ex-schur.f
 
 bschur.lo: sci_gateway/fortran/bschur.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o bschur.lo `test -f 'sci_gateway/fortran/bschur.f' || echo '$(srcdir)/'`sci_gateway/fortran/bschur.f
-
-Ex-schur.lo: sci_gateway/fortran/Ex-schur.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o Ex-schur.lo `test -f 'sci_gateway/fortran/Ex-schur.f' || echo '$(srcdir)/'`sci_gateway/fortran/Ex-schur.f
 
 mostlyclean-libtool:
 	-rm -f *.lo

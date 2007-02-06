@@ -8,13 +8,16 @@ src/fortran/intzgeqpf4.f \
 src/fortran/intzheev.f \
 src/fortran/intzgehrd.f \
 src/fortran/intzgesvd1.f \
+src/fortran/intzfschur.f \
 src/fortran/intzgesvd2.f \
 src/fortran/intdgges.f \
 src/fortran/intdgeev.f \
+src/fortran/intgschur.f \
 src/fortran/intdgesv3.f \
 src/fortran/intdggev.f \
 src/fortran/intdgesv4.f \
 src/fortran/DGELSY1.f \
+src/fortran/intozgschur.f \
 src/fortran/intdpotrf.f \
 src/fortran/intdoldsvd.f \
 src/fortran/intdgecon.f \
@@ -22,11 +25,13 @@ src/fortran/zoldqr.f \
 src/fortran/intzgetrf.f \
 src/fortran/intoschur.f \
 src/fortran/complexify.f \
+src/fortran/SELECT.f \
 src/fortran/intzgebal.f \
 src/fortran/intzgetri.f \
 src/fortran/intzggbal.f \
 src/fortran/intdgees0.f \
 src/fortran/intdgees1.f \
+src/fortran/intogschur.f \
 src/fortran/intzgges.f \
 src/fortran/intddet.f \
 src/fortran/intzgeev.f \
@@ -35,9 +40,11 @@ src/fortran/intzgesv4.f \
 src/fortran/intzggev.f \
 src/fortran/intzpotrf.f \
 src/fortran/intzgecon.f \
+src/fortran/intzgschur.f \
 src/fortran/intzoldsvd.f \
 src/fortran/intdgelsy.f \
 src/fortran/intdgeqpf3.f \
+src/fortran/intfschur.f \
 src/fortran/intdsyev.f \
 src/fortran/intdgeqpf4.f \
 src/fortran/intdgesvd1.f \
@@ -55,23 +62,6 @@ src/fortran/intdgebal.f \
 src/fortran/intzschur.f \
 src/fortran/intzgeqpf3.f
 
-if NON_FREE_SCILAB
-LINEAR_ALGEBRA_FORTRAN_SOURCES += src/fortran/SELECT.f \
-src/fortran/intgschur.f \
-src/fortran/intzgschur.f \
-src/fortran/intfschur.f \
-src/fortran/intozgschur.f \
-src/fortran/intogschur.f \
-src/fortran/intzfschur.f
-endif
-
-LINEAR_ALGEBRA_C_SOURCES = 
-
-if NON_FREE_SCILAB
-LINEAR_ALGEBRA_C_SOURCES += src/c/schur.c \
-src/c/gschur.c
-endif
-
 GATEWAY_C_SOURCES = sci_gateway/c/sci_backslash.c \
 sci_gateway/c/sci_hess.c \
 sci_gateway/c/sci_rcond.c \
@@ -82,28 +72,22 @@ sci_gateway/c/sci_det.c \
 sci_gateway/c/sci_lu.c \
 sci_gateway/c/sci_balanc.c \
 sci_gateway/c/sci_qr.c \
+sci_gateway/c/sci_schur.c \
 sci_gateway/c/sci_chol.c \
-sci_gateway/c/sci_eig.c \
+sci_gateway/c/sci_spec.c \
 sci_gateway/c/gw_linear_algebra.c \
 sci_gateway/c/sci_inv.c \
 sci_gateway/c/sci_svd.c \
 sci_gateway/c/sci_lsq.c
 
-if NON_FREE_SCILAB
-GATEWAY_C_SOURCES += sci_gateway/c/sci_schur.c
-endif
-
-GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/bschur.f
-
-if NON_FREE_SCILAB
-GATEWAY_FORTRAN_SOURCES += sci_gateway/fortran/Ex-schur.f
-endif
+GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/Ex-schur.f \
+sci_gateway/fortran/bschur.f
 
 libscilinear_algebra_la_CFLAGS=  -Iincludes/ 
 
 pkglib_LTLIBRARIES = libscilinear_algebra.la
 
-libscilinear_algebra_la_SOURCES = $(LINEAR_ALGEBRA_FORTRAN_SOURCES) $(LINEAR_ALGEBRA_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscilinear_algebra_la_SOURCES = $(LINEAR_ALGEBRA_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 libscilinear_algebra_la_LIBADD = $(top_builddir)/libs/lapack/libscilapack.la \
 $(top_builddir)/libs/blas/libsciblas.la \
