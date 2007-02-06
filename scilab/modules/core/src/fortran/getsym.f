@@ -63,7 +63,7 @@
       double precision syv
       integer namecd(nlgh), chcnt, io 
       integer blank, dot, percen, slash, comma,eol
-      integer name, num, cmt
+      integer name, num, cmt, l4, nreal
 
 *     STATEMENTS FUNCTIONS
       integer c

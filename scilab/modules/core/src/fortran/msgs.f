@@ -180,8 +180,8 @@ c      call error(-1)
  133  continue
       nreal=lpt(4)-lpt(3)
       call cvstr(nreal,lin(lpt(3)-1),buf,1)
-      call basout(io,wte,'Warning Identifier     : '//buf(1:nreal))
-      call basout(io,wte,'  has been truncated to: '//buf(1:nlgh))
+      call basout(io,wte,' Warning: the identifier: '//buf(1:nreal))
+      call basout(io,wte,'   has been truncated to: '//buf(1:nlgh))
       goto 9999
  134  continue
       call basout(io,ierr,'real part')
