@@ -65,7 +65,7 @@ global  xToggle yToggle zToggle red green blue color
 global  xlabel ylabel zlabel tlabel
 global  curvis cubToggle viewToggle
 
-global xlabel_fontforeground ylabel_fontforeground zlabel_fontforeground titlelabel_fontforeground
+global xlabel_fontforeground ylabel_fontforeground zlabel_fontforeground titlelabel_fontforg
 global xlabel_foreground ylabel_foreground zlabel_foreground titlelabel_foreground
 global xlabel_background ylabel_background zlabel_background titlelabel_background
 global Xfillmode Yfillmode Zfillmode Titlefillmode
@@ -1198,7 +1198,7 @@ pack $w.frame.fontsflabel -in $w.frame.fontsf -side left
 pack $w.frame.fontsize  -in  $w.frame.fontsf -side left 
 pack $w.frame.fontforeground  -in  $w.frame.fontsf -side left -expand 1 -fill x -pady 0 -padx $smallPad
 $w.frame.fontsize set $titlelabel_fontsize
-$w.frame.fontforeground set $titlelabel_fontforeground
+$w.frame.fontforeground set $titlelabel_fontforg
 
 #Fonts Style
 frame $w.frame.fontsst  -borderwidth 0
