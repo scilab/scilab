@@ -139,15 +139,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 			language_system = [language_system;%F];
 		end
 		
-		select getlanguage()
-		
-		case 'en' then
-			xsl = pathconvert(SCI+"/modules/helptools/help_en.xsl",%f,%f);
-			
-		case 'fr' then
-			xsl = pathconvert(SCI+"/modules/helptools/help_fr.xsl",%f,%f);
-		
-		end
+		xsl = pathconvert(SCI+"/modules/helptools/help_"+getlanguage()+".xsl",%f,%f);
 
 	// Cas le ou les répertoires ainsi que le ou les titres sont précisés
 	// ainsi que le fichier xsl
@@ -163,15 +155,10 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 		end
 		
 		if ~exists("xsl") | xsl == [] | xsl == "" then
-			select getlanguage()
-			
-			case 'en' then
-				xsl = pathconvert(SCI+"/modules/helptools/help_en.xsl",%f,%f);
-				
-			case 'fr' then
-				xsl = pathconvert(SCI+"/modules/helptools/help_fr.xsl",%f,%f);
-			
-			end
+		
+		xsl = pathconvert(SCI+"/modules/helptools/help_"+getlanguage()+".xsl",%f,%f);
+		
+
 		end
 		
 	// Cas les répertoires,les titres,le fichier xsl et le step sont précisé

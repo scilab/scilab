@@ -36,14 +36,7 @@ function ok = xmlfiletohtml(path,xsl,directory_language,default_language)
 		end
 	
 	elseif rhs == 1 then
-		
-		select getlanguage()
-		
-		case 'en' then
-			xsl = pathconvert(SCI+"/modules/helptools/help_en.xsl",%f,%f);
-		case 'fr' then
-			xsl = pathconvert(SCI+"/modules/helptools/help_fr.xsl",%f,%f);
-		end
+		xsl = pathconvert(SCI+"/modules/helptools/help_"+getlanguage()+".xsl",%f,%f);
 	end
 	
 	//proceed if xml file is newest than htm file
