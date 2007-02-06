@@ -6,21 +6,5 @@
 // load('SCI/modules/randlib/macros/lib');
 // ====================================================================
 //add help chapter
-global LANGUAGE
-
-path = get_absolute_file_path('randlib.start');
-path = getshortpathname(path);
-pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/random.dem',%f,%f);
-
-if LANGUAGE == 'fr' then
-	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/fr',%f,%f);
-	add_help_chapter("randlib",pathhelp);
-	add_demo("randlib",pathdemos);
-elseif LANGUAGE == 'en' then
-	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/en',%f,%f);
-	add_help_chapter("randlib",pathhelp);
-	add_demo("randlib",pathdemos);
-end
-
-clear pathhelp pathdemos get_absolute_file_path add_help_chapter LANGUAGE;
+exec(SCI+'/modules/randlib/help/'+getlanguage()+'/addchapter.sce');
 // ====================================================================

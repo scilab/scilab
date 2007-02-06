@@ -54,21 +54,19 @@ PWD = getcwd()
 
 // Set LANGUAGE  ======================================================
 // used mainly for on-line help
-global LANGUAGE
-LANGUAGE="en"
 args=sciargs(); larg=find(args=="-l")
 if larg<>[] & larg<=size(args,"*") then
-  L=args(larg+1)
-  if L=="eng" then L=="en",end // compatibility
-  if L=="en" | L=="fr" then
-    LANGUAGE=L
-  else
+  L=args(larg+1);
+  if L=="eng" then 
+    L=="en";
+  end // compatibility
+  if (~setlanguage(L)) then
     write(%io(2),[" "
-		  "Unsupported language """+L+"""."+..
-		  "Choosing default language """+LANGUAGE+"""."])
+		              "Unsupported language """+L+"""."+..
+		              "Choosing default language """+getlanguage()+"""."])
   end
 end
-clear  larg L
+clear larg 
 
 // Define Initial demo tables  ========================================
 // demolist is a two column matrix of strings
@@ -121,7 +119,7 @@ if grep(args,'scilex')<>[] then
     end
   end
 end
-clear ans  %b_h_s args with_tk LANGUAGE delmenu addmenu
+clear ans  %b_h_s args with_tk delmenu addmenu
 
 
 // Protect variable previously defined  ================================

@@ -21,6 +21,12 @@ Source: modules\{#FFTW}\sci_gateway\fftw; DestDir: {app}\modules\{#FFTW}\sci_gat
 Source: modules\{#FFTW}\etc\{#FFTW}.quit; DestDir: {app}\modules\{#FFTW}\etc; Components: {#COMPN_FFTW}
 Source: modules\{#FFTW}\etc\{#FFTW}.start; DestDir: {app}\modules\{#FFTW}\etc; Components: {#COMPN_FFTW}
 ;
+Source: modules\{#FFTW}\help\en\addchapter.sce; DestDir: {app}\modules\{#FFTW}\help\en; Components:  {#COMPN_FFTW}
+Source: modules\{#FFTW}\help\en\removechapter.sce; DestDir: {app}\modules\{#FFTW}\help\en; Components: {#COMPN_FFTW}
+;
+Source: modules\{#FFTW}\help\fr\addchapter.sce; DestDir: {app}\modules\{#FFTW}\help\fr; Components:  {#COMPN_FFTW}
+Source: modules\{#FFTW}\help\fr\removechapter.sce; DestDir: {app}\modules\{#FFTW}\help\fr; Components: {#COMPN_FFTW}
+;
 ;Source: modules\{#FFTW}\demos\*.*; DestDir: {app}\modules\{#FFTW}\demos; Flags: recursesubdirs; Components: {#COMPN_FFTW}
 ;
 ;Source: modules\{#FFTW}\help\en\*.htm; DestDir: {app}\modules\{#FFTW}\help\en; Components: {#COMPN_FFTW}

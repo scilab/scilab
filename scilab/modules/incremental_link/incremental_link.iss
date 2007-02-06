@@ -18,6 +18,12 @@ Source: modules\{#INCRLINK}\changelog.txt; DestDir: {app}\modules\{#INCRLINK}; C
 Source: modules\{#INCRLINK}\etc\{#INCRLINK}.quit; DestDir: {app}\modules\{#INCRLINK}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#INCRLINK}\etc\{#INCRLINK}.start; DestDir: {app}\modules\{#INCRLINK}\etc; Components: {#COMPN_SCILAB}
 ;
+Source: modules\{#INCRLINK}\help\en\addchapter.sce; DestDir: {app}\modules\{#INCRLINK}\help\en; Components:  {#COMPN_SCILAB}
+Source: modules\{#INCRLINK}\help\en\removechapter.sce; DestDir: {app}\modules\{#INCRLINK}\help\en; Components: {#COMPN_SCILAB}
+;
+Source: modules\{#INCRLINK}\help\fr\addchapter.sce; DestDir: {app}\modules\{#INCRLINK}\help\fr; Components:  {#COMPN_SCILAB}
+Source: modules\{#INCRLINK}\help\fr\removechapter.sce; DestDir: {app}\modules\{#INCRLINK}\help\fr; Components: {#COMPN_SCILAB}
+;
 Source: modules\{#INCRLINK}\help\en\*.htm; DestDir: {app}\modules\{#INCRLINK}\help\en; Components: {#COMPN_SCILAB}
 Source: modules\{#INCRLINK}\help\fr\*.htm; DestDir: {app}\modules\{#INCRLINK}\help\fr; Components: {#COMPN_SCILAB}
 ;
@@ -34,4 +40,3 @@ Source: modules\{#INCRLINK}\macros\buildmacros.sce; DestDir: {app}\modules\{#INC
 ;Source: modules\{#INCRLINK}\demos\*.*; DestDir: {app}\modules\{#INCRLINK}\demos; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 ;--------------------------------------------------------------------------------------------------------------
-

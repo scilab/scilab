@@ -1,6 +1,5 @@
 function txt=help_skeleton(funname,path,language)
 	
-	global LANGUAGE
 	
 	// Vérification des paramètres
 	// -----------------------------------------------------------------------------------------
@@ -17,7 +16,7 @@ function txt=help_skeleton(funname,path,language)
 	if rhs == 3 then
 		if type(language) <> 10 then error(55,3); end
 	else
-		language = LANGUAGE;
+		language = getlanguage();
 	end
 	
 	txt=[];

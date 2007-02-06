@@ -18,6 +18,12 @@ Source: modules\{#MAP2SCI}\changelog.txt; DestDir: {app}\modules\{#MAP2SCI}; Com
 Source: modules\{#MAP2SCI}\etc\{#MAP2SCI}.quit; DestDir: {app}\modules\{#MAP2SCI}\etc; Components: {#COMPN_MAP2SCI}
 Source: modules\{#MAP2SCI}\etc\{#MAP2SCI}.start; DestDir: {app}\modules\{#MAP2SCI}\etc; Components: {#COMPN_MAP2SCI}
 ;
+Source: modules\{#MAP2SCI}\help\en\addchapter.sce; DestDir: {app}\modules\{#MAP2SCI}\help\en; Components:  {#COMPN_MAP2SCI}
+Source: modules\{#MAP2SCI}\help\en\removechapter.sce; DestDir: {app}\modules\{#MAP2SCI}\help\en; Components: {#COMPN_MAP2SCI}
+;
+Source: modules\{#MAP2SCI}\help\fr\addchapter.sce; DestDir: {app}\modules\{#MAP2SCI}\help\fr; Components:  {#COMPN_MAP2SCI}
+Source: modules\{#MAP2SCI}\help\fr\removechapter.sce; DestDir: {app}\modules\{#MAP2SCI}\help\fr; Components: {#COMPN_MAP2SCI}
+;
 Source: modules\{#MAP2SCI}\help\en\*.htm; DestDir: {app}\modules\{#MAP2SCI}\help\en; Components: {#COMPN_MAP2SCI}
 Source: modules\{#MAP2SCI}\help\fr\*.htm; DestDir: {app}\modules\{#MAP2SCI}\help\fr; Components: {#COMPN_MAP2SCI}
 ;

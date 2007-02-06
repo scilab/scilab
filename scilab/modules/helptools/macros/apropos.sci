@@ -11,7 +11,7 @@ function apropos(key)
 	change_old_man()
 	INDEX=make_help_index()
 	
-	global %helps LANGUAGE INDEX
+	global %helps INDEX
 	global %browsehelp;
 	
 	[lhs,rhs]=argn(0);
@@ -37,7 +37,7 @@ function [provpath]=apropos_gener(key)
 	// generate html file for apropos key
 	// provpath is the path of generated html file
 	
-	global %helps LANGUAGE INDEX
+	global %helps INDEX
 	
 	sep="/";
 	key1=key
@@ -67,7 +67,7 @@ function [provpath]=apropos_gener(key)
 	end
 	
 	if found==[] then
-		select LANGUAGE
+		select getlanguage()
 		case "en"
 			found="<H3>No man found for: "+key+"</H3>";
 		case "fr"

@@ -22,6 +22,12 @@ Source: modules\{#PVM}\sci_gateway\pvm; DestDir: {app}\modules\{#PVM}\sci_gatewa
 Source: modules\{#PVM}\etc\{#PVM}.quit; DestDir: {app}\modules\{#PVM}\etc; Components: {#COMPN_PVM}
 Source: modules\{#PVM}\etc\{#PVM}.start; DestDir: {app}\modules\{#PVM}\etc; Components: {#COMPN_PVM}
 ;
+Source: modules\{#PVM}\help\en\addchapter.sce; DestDir: {app}\modules\{#PVM}\help\en; Components:  {#COMPN_PVM}
+Source: modules\{#PVM}\help\en\removechapter.sce; DestDir: {app}\modules\{#PVM}\help\en; Components: {#COMPN_PVM}
+;
+Source: modules\{#PVM}\help\fr\addchapter.sce; DestDir: {app}\modules\{#PVM}\help\fr; Components:  {#COMPN_PVM}
+Source: modules\{#PVM}\help\fr\removechapter.sce; DestDir: {app}\modules\{#PVM}\help\fr; Components: {#COMPN_PVM}
+;
 Source: modules\{#PVM}\help\en\*.htm; DestDir: {app}\modules\{#PVM}\help\en; Components: {#COMPN_PVM}
 Source: modules\{#PVM}\help\fr\*.htm; DestDir: {app}\modules\{#PVM}\help\fr; Components: {#COMPN_PVM}
 ;

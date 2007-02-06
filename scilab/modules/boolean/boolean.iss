@@ -20,6 +20,12 @@ Source: modules\{#BOOLEAN}\sci_gateway\boolean; DestDir: {app}\modules\{#BOOLEAN
 Source: modules\{#BOOLEAN}\etc\{#BOOLEAN}.quit; DestDir: {app}\modules\{#BOOLEAN}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#BOOLEAN}\etc\{#BOOLEAN}.start; DestDir: {app}\modules\{#BOOLEAN}\etc; Components: {#COMPN_SCILAB}
 ;
+Source: modules\{#BOOLEAN}\help\en\addchapter.sce; DestDir: {app}\modules\{#BOOLEAN}\help\en; Components: {#COMPN_SCILAB}
+Source: modules\{#BOOLEAN}\help\en\removechapter.sce; DestDir: {app}\modules\{#BOOLEAN}\help\en; Components: {#COMPN_SCILAB}
+;
+Source: modules\{#BOOLEAN}\help\fr\addchapter.sce; DestDir: {app}\modules\{#BOOLEAN}\help\fr; Components: {#COMPN_SCILAB}
+Source: modules\{#BOOLEAN}\help\fr\removechapter.sce; DestDir: {app}\modules\{#BOOLEAN}\help\fr; Components: {#COMPN_SCILAB}
+;
 Source: modules\{#BOOLEAN}\help\en\*.htm; DestDir: {app}\modules\{#BOOLEAN}\help\en; Components: {#COMPN_SCILAB}
 Source: modules\{#BOOLEAN}\help\fr\*.htm; DestDir: {app}\modules\{#BOOLEAN}\help\fr; Components: {#COMPN_SCILAB}
 ;
@@ -34,4 +40,3 @@ Source: modules\{#BOOLEAN}\macros\buildmacros.sce; DestDir: {app}\modules\{#BOOL
 ;Source: modules\{#BOOLEAN}\demos\*.*; DestDir: {app}\modules\{#BOOLEAN}\demos; Components: {#COMPN_SCILAB}
 ;
 ;--------------------------------------------------------------------------------------------------------------
-

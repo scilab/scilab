@@ -18,6 +18,12 @@ Source: modules\{#DEVTOOLS}\changelog.txt; DestDir: {app}\modules\{#DEVTOOLS}; C
 Source: modules\{#DEVTOOLS}\etc\{#DEVTOOLS}.quit; DestDir: {app}\modules\{#DEVTOOLS}\etc; Components: {#COMPN_DEVTOOLS}
 Source: modules\{#DEVTOOLS}\etc\{#DEVTOOLS}.start; DestDir: {app}\modules\{#DEVTOOLS}\etc; Components: {#COMPN_DEVTOOLS}
 ;
+Source: modules\{#DEVTOOLS}\help\fr\addchapter.sce; DestDir: {app}\modules\{#DEVTOOLS}\help\fr; Components:  {#COMPN_DEVTOOLS}
+Source: modules\{#DEVTOOLS}\help\fr\removechapter.sce; DestDir: {app}\modules\{#DEVTOOLS}\help\fr; Components:  {#COMPN_DEVTOOLS}
+;
+Source: modules\{#DEVTOOLS}\help\en\addchapter.sce; DestDir: {app}\modules\{#DEVTOOLS}\help\en; Components:  {#COMPN_DEVTOOLS}
+Source: modules\{#DEVTOOLS}\help\en\removechapter.sce; DestDir: {app}\modules\{#DEVTOOLS}\help\en; Components:  {#COMPN_DEVTOOLS}
+;
 ;Source: modules\{#DEVTOOLS}\help\en\*.htm; DestDir: {app}\modules\{#DEVTOOLS}\help\en; Components: {#COMPN_DEVTOOLS}
 ;Source: modules\{#DEVTOOLS}\help\fr\*.htm; DestDir: {app}\modules\{#DEVTOOLS}\help\fr; Components: {#COMPN_DEVTOOLS}
 ;
@@ -32,4 +38,3 @@ Source: modules\{#DEVTOOLS}\macros\buildmacros.sce; DestDir: {app}\modules\{#DEV
 ;Source: modules\{#DEVTOOLS}\demos\*.*; DestDir: {app}\modules\{#DEVTOOLS}\demos; Flags: recursesubdirs; Components: {#COMPN_DEVTOOLS}
 ;
 ;--------------------------------------------------------------------------------------------------------------
-

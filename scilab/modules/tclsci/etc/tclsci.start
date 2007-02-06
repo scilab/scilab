@@ -6,21 +6,5 @@
 load('SCI/modules/tclsci/macros/lib');
 // ====================================================================
 //add help chapter
-global LANGUAGE
-
-path = get_absolute_file_path('tclsci.start');
-path = getshortpathname(path);
-pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/tk/tk.dem',%f,%f);
-
-if LANGUAGE == 'fr' then
-	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/fr',%f,%f);
-	add_help_chapter("Interface Tcl/Tk",pathhelp);
-	add_demo('Interface Tcl/Tk',pathdemos);
-elseif LANGUAGE == 'en' then
-	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/en',%f,%f);
-	add_help_chapter("Tcl/Tk Interface",pathhelp);
-	add_demo('Tcl/Tk Interface',pathdemos);
-end
-
-clear pathhelp pathdemos get_absolute_file_path add_help_chapter LANGUAGE;
+exec(SCI+'/modules/tclsci/help/'+getlanguage()+'/addchapter.sce');
 // ====================================================================

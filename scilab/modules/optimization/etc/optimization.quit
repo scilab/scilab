@@ -4,13 +4,5 @@
 // Copyright INRIA 2006
 // ====================================================================
 // delete help chapter
-global LANGUAGE
-
-if LANGUAGE == 'fr' then
-	del_help_chapter("Optimisation et Simulation");
-elseif LANGUAGE == 'en' then
-	del_help_chapter("Optimization and Simulation");
-end
-
-clear del_help_chapter LANGUAGE;
+exec(SCI+'/modules/optimization/help/'+getlanguage()+'/removechapter.sce');
 // ====================================================================

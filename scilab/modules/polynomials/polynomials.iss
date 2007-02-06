@@ -20,6 +20,12 @@ Source: modules\{#POLYNOMIALS}\sci_gateway\polynomials; DestDir: {app}\modules\{
 Source: modules\{#POLYNOMIALS}\etc\{#POLYNOMIALS}.quit; DestDir: {app}\modules\{#POLYNOMIALS}\etc; Components: {#COMPN_POLY}
 Source: modules\{#POLYNOMIALS}\etc\{#POLYNOMIALS}.start; DestDir: {app}\modules\{#POLYNOMIALS}\etc; Components: {#COMPN_POLY}
 ;
+Source: modules\{#POLYNOMIALS}\help\en\addchapter.sce; DestDir: {app}\modules\{#POLYNOMIALS}\help\en; Components:  {#COMPN_POLY}
+Source: modules\{#POLYNOMIALS}\help\en\removechapter.sce; DestDir: {app}\modules\{#POLYNOMIALS}\help\en; Components: {#COMPN_POLY}
+;
+Source: modules\{#POLYNOMIALS}\help\fr\addchapter.sce; DestDir: {app}\modules\{#POLYNOMIALS}\help\fr; Components:  {#COMPN_POLY}
+Source: modules\{#POLYNOMIALS}\help\fr\removechapter.sce; DestDir: {app}\modules\{#POLYNOMIALS}\help\fr; Components: {#COMPN_POLY}
+;
 Source: modules\{#POLYNOMIALS}\help\en\*.htm; DestDir: {app}\modules\{#POLYNOMIALS}\help\en; Components: {#COMPN_POLY}
 Source: modules\{#POLYNOMIALS}\help\fr\*.htm; DestDir: {app}\modules\{#POLYNOMIALS}\help\fr; Components: {#COMPN_POLY}
 ;

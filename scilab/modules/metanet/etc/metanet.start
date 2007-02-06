@@ -6,21 +6,14 @@
 load('SCI/modules/metanet/macros/lib');
 // ====================================================================
 //add help chapter
-global LANGUAGE
+exec(SCI+'/modules/metanet/help/'+getlanguage()+'/addchapter.sce');
 
+//add demos
 path = get_absolute_file_path('metanet.start');
 path = getshortpathname(path);
 pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/meta.dem',%f,%f);
+add_demo("Metanet",pathdemos);
 
-if LANGUAGE == 'fr' then
-	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/fr',%f,%f);
-	add_help_chapter("Metanet : Graphes & Reseaux",pathhelp);
-	add_demo("Metanet : Graphes & Reseaux",pathdemos);
-elseif LANGUAGE == 'en' then
-	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/en',%f,%f);
-	add_help_chapter("Metanet : Graph and Network toolbox",pathhelp);
-	add_demo("Metanet : Graph and Network toolbox",pathdemos);
-end
+clear path pathdemos get_absolute_file_path ;
 
-clear pathhelp pathdemos get_absolute_file_path add_help_chapter LANGUAGE;
 // ====================================================================

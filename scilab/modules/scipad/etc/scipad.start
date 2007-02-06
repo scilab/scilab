@@ -7,18 +7,5 @@ load('SCI/modules/scipad/macros/lib');
 load('SCI/modules/scipad/macros/scipad_internals/lib');
 // ====================================================================
 //add help chapter
-global LANGUAGE
-
-path = get_absolute_file_path('scipad.start');
-path = getshortpathname(path);
-
-if LANGUAGE == 'fr' then
-    path = pathconvert(part(path,1:(length(path)-5))+'/help/fr',%f,%f);
-    add_help_chapter("Scipad",path);
-elseif LANGUAGE == 'en' then
-    path = pathconvert(part(path,1:(length(path)-5))+'/help/en',%f,%f);
-    add_help_chapter("Scipad",path);
-end
-
-clear path get_absolute_file_path add_help_chapter LANGUAGE;
+exec(SCI+'/modules/scipad/help/'+getlanguage()+'/addchapter.sce');
 // ====================================================================

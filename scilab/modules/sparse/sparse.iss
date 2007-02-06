@@ -22,6 +22,12 @@ Source: modules\{#SPARSE}\sci_gateway\sparse; DestDir: {app}\modules\{#SPARSE}\s
 Source: modules\{#SPARSE}\etc\{#SPARSE}.quit; DestDir: {app}\modules\{#SPARSE}\etc; Components: {#COMPN_SPARSE}
 Source: modules\{#SPARSE}\etc\{#SPARSE}.start; DestDir: {app}\modules\{#SPARSE}\etc; Components: {#COMPN_SPARSE}
 ;
+Source: modules\{#SPARSE}\help\en\addchapter.sce; DestDir: {app}\modules\{#SPARSE}\help\en; Components:  {#COMPN_SPARSE}
+Source: modules\{#SPARSE}\help\en\removechapter.sce; DestDir: {app}\modules\{#SPARSE}\help\en; Components: {#COMPN_SPARSE}
+;
+Source: modules\{#SPARSE}\help\fr\addchapter.sce; DestDir: {app}\modules\{#SPARSE}\help\fr; Components:  {#COMPN_SPARSE}
+Source: modules\{#SPARSE}\help\fr\removechapter.sce; DestDir: {app}\modules\{#SPARSE}\help\fr; Components: {#COMPN_SPARSE}
+;
 Source: modules\{#SPARSE}\help\en\*.htm; DestDir: {app}\modules\{#SPARSE}\help\en; Components: {#COMPN_SPARSE}
 Source: modules\{#SPARSE}\help\fr\*.htm; DestDir: {app}\modules\{#SPARSE}\help\fr; Components: {#COMPN_SPARSE}
 ;
@@ -36,4 +42,3 @@ Source: modules\{#SPARSE}\macros\*.sci; DestDir: {app}\modules\{#SPARSE}\macros;
 ;Source: modules\{#SPARSE}\demos\*.*; DestDir: {app}\modules\{#SPARSE}\demos; Flags: recursesubdirs;  Components: {#COMPN_SPARSE}
 ;
 ;--------------------------------------------------------------------------------------------------------------
-

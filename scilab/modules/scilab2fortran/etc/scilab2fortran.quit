@@ -4,13 +4,5 @@
 // Copyright INRIA 2006
 // ====================================================================
 // delete help chapter
-global LANGUAGE
-
-if LANGUAGE == 'fr' then
-	del_help_chapter("Scilab vers Fortran");
-elseif LANGUAGE == 'en' then
-	del_help_chapter("Scilab to Fortran");
-end
-
-clear del_help_chapter LANGUAGE;
+exec(SCI+'/modules/scilab2fortran/help/'+getlanguage()+'/removechapter.sce');
 // ====================================================================

@@ -22,6 +22,12 @@ Source: modules\{#HELPTOOLS}\help.dtd; DestDir: {app}\modules\{#HELPTOOLS}; Comp
 Source: modules\{#HELPTOOLS}\etc\{#HELPTOOLS}.quit; DestDir: {app}\modules\{#HELPTOOLS}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#HELPTOOLS}\etc\{#HELPTOOLS}.start; DestDir: {app}\modules\{#HELPTOOLS}\etc; Components: {#COMPN_SCILAB}
 ;
+Source: modules\{#HELPTOOLS}\help\en\addchapter.sce; DestDir: {app}\modules\{#HELPTOOLS}\help\en; Components:  {#COMPN_SCILAB}
+Source: modules\{#HELPTOOLS}\help\en\removechapter.sce; DestDir: {app}\modules\{#HELPTOOLS}\help\en; Components: {#COMPN_SCILAB}
+;
+Source: modules\{#HELPTOOLS}\help\fr\addchapter.sce; DestDir: {app}\modules\{#HELPTOOLS}\help\fr; Components:  {#COMPN_SCILAB}
+Source: modules\{#HELPTOOLS}\help\fr\removechapter.sce; DestDir: {app}\modules\{#HELPTOOLS}\help\fr; Components: {#COMPN_SCILAB}
+;
 Source: modules\{#HELPTOOLS}\help\en\*.htm; DestDir: {app}\modules\{#HELPTOOLS}\help\en; Components: {#COMPN_SCILAB}
 Source: modules\{#HELPTOOLS}\help\fr\*.htm; DestDir: {app}\modules\{#HELPTOOLS}\help\fr; Components: {#COMPN_SCILAB}
 ;

@@ -20,6 +20,12 @@ Source: modules\{#OPTIMIZATION}\sci_gateway\optimization; DestDir: {app}\modules
 Source: modules\{#OPTIMIZATION}\etc\{#OPTIMIZATION}.quit; DestDir: {app}\modules\{#OPTIMIZATION}\etc; Components: {#COMPN_OPTIM}
 Source: modules\{#OPTIMIZATION}\etc\{#OPTIMIZATION}.start; DestDir: {app}\modules\{#OPTIMIZATION}\etc; Components: {#COMPN_OPTIM}
 ;
+Source: modules\{#OPTIMIZATION}\help\en\addchapter.sce; DestDir: {app}\modules\{#OPTIMIZATION}\help\en; Components:  {#COMPN_OPTIM}
+Source: modules\{#OPTIMIZATION}\help\en\removechapter.sce; DestDir: {app}\modules\{#OPTIMIZATION}\help\en; Components: {#COMPN_OPTIM}
+;
+Source: modules\{#OPTIMIZATION}\help\fr\addchapter.sce; DestDir: {app}\modules\{#OPTIMIZATION}\help\fr; Components:  {#COMPN_OPTIM}
+Source: modules\{#OPTIMIZATION}\help\fr\removechapter.sce; DestDir: {app}\modules\{#OPTIMIZATION}\help\fr; Components: {#COMPN_OPTIM}
+;
 Source: modules\{#OPTIMIZATION}\help\en\*.htm; DestDir: {app}\modules\{#OPTIMIZATION}\help\en; Components: {#COMPN_OPTIM}
 Source: modules\{#OPTIMIZATION}\help\fr\*.htm; DestDir: {app}\modules\{#OPTIMIZATION}\help\fr; Components: {#COMPN_OPTIM}
 ;

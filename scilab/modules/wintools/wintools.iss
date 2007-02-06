@@ -20,6 +20,12 @@ Source: modules\{#WINTOOLS}\sci_gateway\wintools; DestDir: {app}\modules\{#WINTO
 Source: modules\{#WINTOOLS}\etc\{#WINTOOLS}.quit; DestDir: {app}\modules\{#WINTOOLS}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#WINTOOLS}\etc\{#WINTOOLS}.start; DestDir: {app}\modules\{#WINTOOLS}\etc; Components: {#COMPN_SCILAB}
 ;
+Source: modules\{#WINTOOLS}\help\en\addchapter.sce; DestDir: {app}\modules\{#WINTOOLS}\help\en; Components:  {#COMPN_SCILAB}
+Source: modules\{#WINTOOLS}\help\en\removechapter.sce; DestDir: {app}\modules\{#WINTOOLS}\help\en; Components: {#COMPN_SCILAB}
+;
+Source: modules\{#WINTOOLS}\help\fr\addchapter.sce; DestDir: {app}\modules\{#WINTOOLS}\help\fr; Components:  {#COMPN_SCILAB}
+Source: modules\{#WINTOOLS}\help\fr\removechapter.sce; DestDir: {app}\modules\{#WINTOOLS}\help\fr; Components: {#COMPN_SCILAB}
+;
 Source: modules\{#WINTOOLS}\help\en\*.htm; DestDir: {app}\modules\{#WINTOOLS}\help\en; Components: {#COMPN_SCILAB}
 Source: modules\{#WINTOOLS}\help\fr\*.htm; DestDir: {app}\modules\{#WINTOOLS}\help\fr; Components: {#COMPN_SCILAB}
 ;
@@ -34,4 +40,3 @@ Source: modules\{#WINTOOLS}\macros\buildmacros.sce; DestDir: {app}\modules\{#WIN
 ;Source: modules\{#WINTOOLS}\demos\*.*; DestDir: {app}\modules\{#WINTOOLS}\demos; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 ;--------------------------------------------------------------------------------------------------------------
-

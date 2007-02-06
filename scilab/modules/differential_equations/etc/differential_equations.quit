@@ -4,13 +4,5 @@
 // Copyright INRIA 2006
 // ====================================================================
 // delete help chapter
-global LANGUAGE
-
-if LANGUAGE == 'fr' then
-	del_help_chapter("Equations Differentielles");
-elseif LANGUAGE == 'en' then
-	del_help_chapter("Differential Equations");
-end
-
-clear del_help_chapter LANGUAGE;
+exec(SCI+'/modules/differential_equations/help/'+getlanguage()+'/removechapter.sce');
 // ====================================================================

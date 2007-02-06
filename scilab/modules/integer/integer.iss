@@ -22,6 +22,12 @@ Source: modules\{#INTEGER}\sci_gateway\integer; DestDir: {app}\modules\{#INTEGER
 Source: modules\{#INTEGER}\etc\{#INTEGER}.quit; DestDir: {app}\modules\{#INTEGER}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#INTEGER}\etc\{#INTEGER}.start; DestDir: {app}\modules\{#INTEGER}\etc; Components: {#COMPN_SCILAB}
 ;
+Source: modules\{#INTEGER}\help\en\addchapter.sce; DestDir: {app}\modules\{#INTEGER}\help\en; Components:  {#COMPN_SCILAB}
+Source: modules\{#INTEGER}\help\en\removechapter.sce; DestDir: {app}\modules\{#INTEGER}\help\en; Components: {#COMPN_SCILAB}
+;
+Source: modules\{#INTEGER}\help\fr\addchapter.sce; DestDir: {app}\modules\{#INTEGER}\help\fr; Components:  {#COMPN_SCILAB}
+Source: modules\{#INTEGER}\help\fr\removechapter.sce; DestDir: {app}\modules\{#INTEGER}\help\fr; Components: {#COMPN_SCILAB}
+;
 Source: modules\{#INTEGER}\help\en\*.htm; DestDir: {app}\modules\{#INTEGER}\help\en; Components: {#COMPN_SCILAB}
 Source: modules\{#INTEGER}\help\fr\*.htm; DestDir: {app}\modules\{#INTEGER}\help\fr; Components: {#COMPN_SCILAB}
 ;
@@ -36,4 +42,3 @@ Source: modules\{#INTEGER}\macros\*.sci; DestDir: {app}\modules\{#INTEGER}\macro
 ;Source: modules\{#INTEGER}\demos\*.*; DestDir: {app}\modules\{#INTEGER}\demos; Flags: recursesubdirs;  Components: {#COMPN_SCILAB}
 ;
 ;--------------------------------------------------------------------------------------------------------------
-

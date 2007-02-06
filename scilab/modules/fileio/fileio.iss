@@ -20,6 +20,12 @@ Source: modules\{#FILEIO}\sci_gateway\fileio; DestDir: {app}\modules\{#FILEIO}\s
 Source: modules\{#FILEIO}\etc\{#FILEIO}.quit; DestDir: {app}\modules\{#FILEIO}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#FILEIO}\etc\fileio.start; DestDir: {app}\modules\{#FILEIO}\etc; Components: {#COMPN_SCILAB}
 ;
+Source: modules\{#FILEIO}\help\en\addchapter.sce; DestDir: {app}\modules\{#FILEIO}\help\en; Components:  {#COMPN_SCILAB}
+Source: modules\{#FILEIO}\help\en\removechapter.sce; DestDir: {app}\modules\{#FILEIO}\help\en; Components: {#COMPN_SCILAB}
+;
+Source: modules\{#FILEIO}\help\fr\addchapter.sce; DestDir: {app}\modules\{#FILEIO}\help\fr; Components:  {#COMPN_SCILAB}
+Source: modules\{#FILEIO}\help\fr\removechapter.sce; DestDir: {app}\modules\{#FILEIO}\help\fr; Components: {#COMPN_SCILAB}
+;
 Source: modules\{#FILEIO}\help\en\*.htm; DestDir: {app}\modules\{#FILEIO}\help\en; Components: {#COMPN_SCILAB}
 Source: modules\{#FILEIO}\help\fr\*.htm; DestDir: {app}\modules\{#FILEIO}\help\fr; Components: {#COMPN_SCILAB}
 ;

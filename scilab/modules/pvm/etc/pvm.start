@@ -6,21 +6,13 @@
 load('SCI/modules/pvm/macros/lib');
 // ====================================================================
 //add help chapter
-global LANGUAGE
-
+exec(SCI+'/modules/pvm/help/'+getlanguage()+'/addchapter.sce');
+// ====================================================================
+//add demos
 path = get_absolute_file_path('pvm.start');
 path = getshortpathname(path);
 pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/pvm.dem',%f,%f);
-
-if LANGUAGE == 'fr' then
-	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/fr',%f,%f);
-	add_help_chapter("Calculs Parallele avec PVM",pathhelp);
-	add_demo("Calculs Parallele avec PVM",pathdemos);
-elseif LANGUAGE == 'en' then
-	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/en',%f,%f);
-	add_help_chapter("PVM parallel Toolbox",pathhelp);
-	add_demo("PVM parallel Toolbox",pathdemos);
-end
+add_demo("PVM parallel Toolbox",pathdemos);
 // ====================================================================
 if MSDOS then
   if %pvm then
@@ -29,5 +21,5 @@ if MSDOS then
   end
 end
 // ====================================================================
-clear pathhelp pathdemos get_absolute_file_path add_help_chapter LANGUAGE;
+clear path pathdemos get_absolute_file_path;
 // ====================================================================

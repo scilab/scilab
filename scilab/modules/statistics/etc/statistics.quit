@@ -4,13 +4,5 @@
 // Copyright INRIA 2006
 // ====================================================================
 // delete help chapter
-global LANGUAGE
-
-if LANGUAGE == 'fr' then
-	del_help_chapter("Statistiques");
-elseif LANGUAGE == 'en' then
-	del_help_chapter("Statistics");
-end
-
-clear del_help_chapter LANGUAGE;
+exec(SCI+'/modules/statistics/help/'+getlanguage()+'/removechapter.sce');
 // ====================================================================

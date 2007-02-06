@@ -8,8 +8,8 @@ function show_startupinfo()
   
   settings_file=pathconvert(SCIHOME+'/.scilab_settings',%f,%t)
   w=fileinfo(settings_file);
-  global LANGUAGE
-  if  LANGUAGE=='fr' then
+  
+  if (getlanguage() == 'fr' ) then
     DialogNewGraphic=["Attention:"
 		      " "
 		      "Les versions Scilab 4.x seront les dernières à fonctionner"

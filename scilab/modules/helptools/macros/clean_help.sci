@@ -9,7 +9,7 @@ function clean_help(dirs)
 	// dirs is a set of directories for which html manuals are to be deleted
 	// =========================================================================================
 	
-	global LANGUAGE %helps
+	global %helps
 	
 	ok = %F;
 	
@@ -74,7 +74,7 @@ function clean_help(dirs)
 	
 	if (rhs <= 0) | ((rhs == 1) & (dirs == [])) then
 		
-		select LANGUAGE
+		select getlanguage()
 		
 		case 'en' then
 			if fileinfo(SCI+pathconvert("/modules/helptools/index_en.htm",%f,%f)) <> [] then

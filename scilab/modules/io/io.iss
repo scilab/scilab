@@ -20,6 +20,12 @@ Source: modules\{#IO}\sci_gateway\io; DestDir: {app}\modules\{#IO}\sci_gateway; 
 Source: modules\{#IO}\etc\{#IO}.quit; DestDir: {app}\modules\{#IO}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#IO}\etc\{#IO}.start; DestDir: {app}\modules\{#IO}\etc; Components: {#COMPN_SCILAB}
 ;
+Source: modules\{#IO}\help\en\addchapter.sce; DestDir: {app}\modules\{#IO}\help\en; Components:  {#COMPN_SCILAB}
+Source: modules\{#IO}\help\en\removechapter.sce; DestDir: {app}\modules\{#IO}\help\en; Components: {#COMPN_SCILAB}
+;
+Source: modules\{#IO}\help\fr\addchapter.sce; DestDir: {app}\modules\{#IO}\help\fr; Components:  {#COMPN_SCILAB}
+Source: modules\{#IO}\help\fr\removechapter.sce; DestDir: {app}\modules\{#IO}\help\fr; Components: {#COMPN_SCILAB}
+;
 Source: modules\{#IO}\help\en\*.htm; DestDir: {app}\modules\{#IO}\help\en; Components: {#COMPN_SCILAB}
 Source: modules\{#IO}\help\fr\*.htm; DestDir: {app}\modules\{#IO}\help\fr; Components: {#COMPN_SCILAB}
 ;

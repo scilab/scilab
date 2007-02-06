@@ -5,22 +5,16 @@
 //Load  functions librarie
 load('SCI/modules/core/macros/lib');
 // ====================================================================
-//add help chapter
-global LANGUAGE
 
+//add help chapter
+exec(SCI+'/modules/core/help/'+getlanguage()+'/addchapter.sce');
+
+//add demos
 path = get_absolute_file_path('core.start');
 path = getshortpathname(path);
 pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/intro/dem01.dem',%f,%f);
 
-if LANGUAGE == 'fr' then
-	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/fr',%f,%f);
-	add_help_chapter("Core Module",pathhelp);
-	add_demo('Introduction',pathdemos);
-elseif LANGUAGE == 'en' then
-	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/en',%f,%f);
-	add_help_chapter("Core Module",pathhelp);
-	add_demo('Introduction',pathdemos);
-end
+add_demo('Introduction',pathdemos);
 
-clear pathhelp pathdemos get_absolute_file_path add_help_chapter LANGUAGE;
+clear path pathdemos get_absolute_file_path;
 // ====================================================================

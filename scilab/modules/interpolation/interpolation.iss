@@ -20,6 +20,12 @@ Source: modules\{#INTERPOLATION}\sci_gateway\interpolation; DestDir: {app}\modul
 Source: modules\{#INTERPOLATION}\etc\{#INTERPOLATION}.quit; DestDir: {app}\modules\{#INTERPOLATION}\etc; Components: {#COMPN_INTERP}
 Source: modules\{#INTERPOLATION}\etc\{#INTERPOLATION}.start; DestDir: {app}\modules\{#INTERPOLATION}\etc; Components: {#COMPN_INTERP}
 ;
+Source: modules\{#INTERPOLATION}\help\en\addchapter.sce; DestDir: {app}\modules\{#INTERPOLATION}\help\en; Components:  {#COMPN_INTERP}
+Source: modules\{#INTERPOLATION}\help\en\removechapter.sce; DestDir: {app}\modules\{#INTERPOLATION}\help\en; Components: {#COMPN_INTERP}
+;
+Source: modules\{#INTERPOLATION}\help\fr\addchapter.sce; DestDir: {app}\modules\{#INTERPOLATION}\help\fr; Components:  {#COMPN_INTERP}
+Source: modules\{#INTERPOLATION}\help\fr\removechapter.sce; DestDir: {app}\modules\{#INTERPOLATION}\help\fr; Components: {#COMPN_INTERP}
+;
 Source: modules\{#INTERPOLATION}\help\en\*.htm; DestDir: {app}\modules\{#INTERPOLATION}\help\en; Components: {#COMPN_INTERP}
 Source: modules\{#INTERPOLATION}\help\fr\*.htm; DestDir: {app}\modules\{#INTERPOLATION}\help\fr; Components: {#COMPN_INTERP}
 ;

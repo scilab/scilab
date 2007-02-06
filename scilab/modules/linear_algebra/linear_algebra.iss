@@ -20,6 +20,12 @@ Source: modules\{#LINALG}\sci_gateway\linear_algebra; DestDir: {app}\modules\{#L
 Source: modules\{#LINALG}\etc\{#LINALG}.quit; DestDir: {app}\modules\{#LINALG}\etc; Components: {#COMPN_LINALG}
 Source: modules\{#LINALG}\etc\{#LINALG}.start; DestDir: {app}\modules\{#LINALG}\etc; Components: {#COMPN_LINALG}
 ;
+Source: modules\{#LINALG}\help\en\addchapter.sce; DestDir: {app}\modules\{#LINALG}\help\en; Components:  {#COMPN_LINALG}
+Source: modules\{#LINALG}\help\en\removechapter.sce; DestDir: {app}\modules\{#LINALG}\help\en; Components: {#COMPN_LINALG}
+;
+Source: modules\{#LINALG}\help\fr\addchapter.sce; DestDir: {app}\modules\{#LINALG}\help\fr; Components:  {#COMPN_LINALG}
+Source: modules\{#LINALG}\help\fr\removechapter.sce; DestDir: {app}\modules\{#LINALG}\help\fr; Components: {#COMPN_LINALG}
+;
 Source: modules\{#LINALG}\help\en\*.htm; DestDir: {app}\modules\{#LINALG}\help\en; Components: {#COMPN_LINALG}
 Source: modules\{#LINALG}\help\fr\*.htm; DestDir: {app}\modules\{#LINALG}\help\fr; Components: {#COMPN_LINALG}
 ;

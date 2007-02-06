@@ -4,13 +4,5 @@
 // Copyright INRIA 2006
 // ====================================================================
 // delete help chapter
-global LANGUAGE
-
-if LANGUAGE == 'fr' then
-	del_help_chapter("Entrées/Sorties");
-elseif LANGUAGE == 'en' then
-	del_help_chapter("Input/Output functions");
-end
-
-clear del_help_chapter LANGUAGE;
+exec(SCI+'/modules/io/help/'+getlanguage()+'/removechapter.sce');
 // ====================================================================

@@ -9,24 +9,15 @@ clear  scicos_pal // explicitly clear %helps scicos_pal variables
 load('SCI/modules/scicos/macros/lib')
 // ====================================================================
 //add help chapter
-global LANGUAGE
+exec(SCI+'/modules/scicos/help/'+getlanguage()+'/addchapter.sce');
+// ====================================================================
+//add demos
 path=get_absolute_file_path('scicos.start');
 path=getshortpathname(path);
 path=strsubst(path,'\','/');
 pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/scicos.dem',%f,%f);
-
-if (LANGUAGE=='fr') then
-  pathhelp=strsubst(path,'/etc/','/help/fr');
-  add_help_chapter("Scicos",pathhelp);
-  add_demo("Scicos",pathdemos);
-end
-
-if (LANGUAGE=='en') then
-  pathhelp=strsubst(path,'/etc/','/help/en');
-  add_help_chapter("Scicos",pathhelp);
-  add_demo("Scicos",pathdemos);
-end
-clear pathhelp pathdemos get_absolute_file_path add_help_chapter LANGUAGE;
+add_demo("Scicos",pathdemos);
+clear path pathdemos get_absolute_file_path;
 // Define Scicos data tables ===========================================
  clear  scicos_pal // explicitly clear %helps scicos_pal variables
  if ( ~isdef("scicos_pal") | ~isdef("%scicos_menu") | ..

@@ -5,10 +5,6 @@
 //Load  functions librarie
 load('SCI/modules/helptools/macros/lib');
 // ====================================================================
-
-//add help chapter
-global LANGUAGE
-
 // load temporary functions
 load('SCI/modules/fileio/macros/get_absolute_file_path.bin');
 load('SCI/modules/fileio/macros/pathconvert.bin');
@@ -16,22 +12,12 @@ load('SCI/modules/fileio/macros/isdir.bin');
 load('SCI/modules/string/macros/stripblanks.bin');
 load('SCI/modules/core/macros/add_demo.bin');
 
-path = get_absolute_file_path('helptools.start');
-path = getshortpathname(path);
-
-if LANGUAGE == 'fr' then
-	path = pathconvert(part(path,1:(length(path)-5))+'/help/fr',%f,%f);
-	add_help_chapter("Gestion de l''aide en ligne",path);
-elseif LANGUAGE == 'en' then
-	path = pathconvert(part(path,1:(length(path)-5))+'/help/en',%f,%f);
-	add_help_chapter("Online help management",path);
-end
+//add help chapter
+exec(SCI+'/modules/helptools/help/'+getlanguage()+'/addchapter.sce');
 
 // clear temporary functions
 clear get_absolute_file_path
 clear pathconvert
 clear isdir
 
-
-clear path get_absolute_file_path add_help_chapter LANGUAGE;
 // ====================================================================

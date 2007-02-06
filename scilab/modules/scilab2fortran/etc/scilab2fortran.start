@@ -6,21 +6,12 @@
 load('SCI/modules/scilab2fortran/macros/lib');
 // ====================================================================
 //add help chapter
-global LANGUAGE
-
+exec(SCI+'/modules/scilab2fortran/help/'+getlanguage()+'/addchapter.sce');
+// ====================================================================
+//add demo
 path = get_absolute_file_path('scilab2fortran.start');
 path = getshortpathname(path);
 pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/demotrad.dem',%f,%f);
-
-if LANGUAGE == 'fr' then
-	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/fr',%f,%f);
-	add_help_chapter("Scilab vers Fortran",pathhelp);
-	add_demo("Scilab vers Fortran",pathdemos);
-elseif LANGUAGE == 'en' then
-	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/en',%f,%f);
-	add_help_chapter("Scilab to Fortran",pathhelp);
-	add_demo("Scilab to Fortran",pathdemos);
-end
-
-clear pathhelp pathdemos get_absolute_file_path add_help_chapter LANGUAGE;
+add_demo("Scilab to Fortran",pathdemos);
+clear path pathdemos get_absolute_file_path;
 // ====================================================================

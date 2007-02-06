@@ -22,6 +22,13 @@ Source: modules\{#MEXLIB}\changelog.txt; DestDir: {app}\modules\{#MEXLIB}; Compo
 Source: modules\{#MEXLIB}\etc\{#MEXLIB}.quit; DestDir: {app}\modules\{#MEXLIB}\etc; Components: {#COMPN_MEXLIB}
 Source: modules\{#MEXLIB}\etc\{#MEXLIB}.start; DestDir: {app}\modules\{#MEXLIB}\etc; Components: {#COMPN_MEXLIB}
 ;
+Source: modules\{#MEXLIB}\help\en\addchapter.sce; DestDir: {app}\modules\{#MEXLIB}\help\en; Components:  {#COMPN_MEXLIB}
+Source: modules\{#MEXLIB}\help\en\removechapter.sce; DestDir: {app}\modules\{#MEXLIB}\help\en; Components: {#COMPN_MEXLIB}
+;
+Source: modules\{#MEXLIB}\help\fr\addchapter.sce; DestDir: {app}\modules\{#MEXLIB}\help\fr; Components:  {#COMPN_MEXLIB}
+Source: modules\{#MEXLIB}\help\fr\removechapter.sce; DestDir: {app}\modules\{#MEXLIB}\help\fr; Components: {#COMPN_MEXLIB}
+;
+;
 ;Source: modules\{#MEXLIB}\help\en\*.htm; DestDir: {app}\modules\{#MEXLIB}\help\en; Components: {#COMPN_MEXLIB}
 ;Source: modules\{#MEXLIB}\help\fr\*.htm; DestDir: {app}\modules\{#MEXLIB}\help\fr; Components: {#COMPN_MEXLIB}
 ;

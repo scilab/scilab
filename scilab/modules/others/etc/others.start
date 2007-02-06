@@ -6,24 +6,15 @@
 load('SCI/modules/others/macros/lib');
 // ====================================================================
 //add help chapter
-global LANGUAGE
+exec(SCI+'/modules/others/help/'+getlanguage()+'/addchapter.sce');
 
+//add demos
 path = get_absolute_file_path('others.start');
 path = getshortpathname(path);
 pathdemos1 = pathconvert(part(path,1:(length(path)-5))+'/demos/simulation/simulation.dem',%f,%f);
 pathdemos2 = pathconvert(part(path,1:(length(path)-5))+'/demos/velpic/velpic.dem',%f,%f);
+add_demo("Simulation",pathdemos1);
+add_demo("Others",pathdemos2);
 
-if LANGUAGE == 'fr' then
-	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/fr',%f,%f);
-	add_help_chapter("Autres",pathhelp);
-	add_demo("Simulation",pathdemos1);
-	add_demo("Autres",pathdemos2);
-elseif LANGUAGE == 'en' then
-	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/en',%f,%f);
-	add_help_chapter("Others",pathhelp);
-	add_demo("Simulation",pathdemos1);
-	add_demo("Others",pathdemos2);
-end
-
-clear pathhelp pathdemos1 pathdemos2 get_absolute_file_path add_help_chapter LANGUAGE;
+clear path pathdemos1 pathdemos2 get_absolute_file_path;
 // ====================================================================

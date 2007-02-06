@@ -24,6 +24,12 @@ Source: modules\{#METANET}\sci_gateway\metanet; DestDir: {app}\modules\{#METANET
 Source: modules\{#METANET}\etc\{#METANET}.quit; DestDir: {app}\modules\{#METANET}\etc; Components: {#COMPN_METANET}
 Source: modules\{#METANET}\etc\{#METANET}.start; DestDir: {app}\modules\{#METANET}\etc; Components: {#COMPN_METANET}
 ;
+Source: modules\{#METANET}\help\en\addchapter.sce; DestDir: {app}\modules\{#METANET}\help\en; Components:  {#COMPN_METANET}
+Source: modules\{#METANET}\help\en\removechapter.sce; DestDir: {app}\modules\{#METANET}\help\en; Components: {#COMPN_METANET}
+;
+Source: modules\{#METANET}\help\fr\addchapter.sce; DestDir: {app}\modules\{#METANET}\help\fr; Components:  {#COMPN_METANET}
+Source: modules\{#METANET}\help\fr\removechapter.sce; DestDir: {app}\modules\{#METANET}\help\fr; Components: {#COMPN_METANET}
+;
 Source: modules\{#METANET}\help\en\*.htm; DestDir: {app}\modules\{#METANET}\help\en; Components: {#COMPN_METANET}
 Source: modules\{#METANET}\help\fr\*.htm; DestDir: {app}\modules\{#METANET}\help\fr; Components: {#COMPN_METANET}
 ;

@@ -4,13 +4,5 @@
 // Copyright INRIA 2006
 // ====================================================================
 // delete help chapter
-global LANGUAGE
-
-if LANGUAGE == 'fr' then
-	del_help_chapter("Core Module");
-elseif LANGUAGE == 'en' then
-	del_help_chapter("Core Module");
-end
-
-clear del_help_chapter LANGUAGE;
+exec(SCI+'/modules/core/help/'+getlanguage()+'/removechapter.sce');
 // ====================================================================

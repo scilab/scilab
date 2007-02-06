@@ -1,23 +1,10 @@
 // ====================================================================
-// graphics module initialisation file 
+// fileio module initialisation file 
 // Copyright INRIA 2006
 // ====================================================================
 //Load  functions librarie
 load('SCI/modules/fileio/macros/lib');
 // ====================================================================
 //add help chapter
-global LANGUAGE
-
-path = get_absolute_file_path('fileio.start');
-path = getshortpathname(path);
-
-if LANGUAGE == 'fr' then
-	path = pathconvert(part(path,1:(length(path)-5))+'/help/fr',%f,%f);
-	add_help_chapter("Entrées/Sorties [fichiers]",path);
-elseif LANGUAGE == 'en' then
-	path = pathconvert(part(path,1:(length(path)-5))+'/help/en',%f,%f);
-	add_help_chapter("Input/Output functions [files]",path);
-end
-
-clear path get_absolute_file_path add_help_chapter LANGUAGE;
+exec(SCI+'/modules/fileio/help/'+getlanguage()+'/addchapter.sce');
 // ====================================================================

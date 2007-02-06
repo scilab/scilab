@@ -6,21 +6,12 @@
 load('SCI/modules/sound/macros/lib');
 // ====================================================================
 //add help chapter
-global LANGUAGE
-
+exec(SCI+'/modules/sound/help/'+getlanguage()+'/addchapter.sce');
+// ====================================================================
+//add demos
 path = get_absolute_file_path('sound.start');
 path = getshortpathname(path);
 pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/sound.dem',%f,%f);
-
-if LANGUAGE == 'fr' then
-	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/fr',%f,%f);
-	add_help_chapter("Manipulation de fichiers sons",pathhelp);
-	add_demo('Manipulation de fichiers sons',pathdemos);
-elseif LANGUAGE == 'en' then
-	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/en',%f,%f);
-	add_help_chapter("Sound file handling",pathhelp);
-	add_demo('Sound file handling',pathdemos);
-end
-
-clear pathhelp pathdemos get_absolute_file_path add_help_chapter LANGUAGE;
+add_demo('Sound file handling',pathdemos);
+clear path pathdemos get_absolute_file_path;
 // ====================================================================

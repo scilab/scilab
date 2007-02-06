@@ -6,18 +6,5 @@
 //load('SCI/modules/javasci/macros/lib');
 // ====================================================================
 //add help chapter
-global LANGUAGE
-
-path = get_absolute_file_path('javasci.start');
-path = getshortpathname(path);
-
-if LANGUAGE == 'fr' then
-	path = pathconvert(part(path,1:(length(path)-5))+'/help/fr',%f,%f);
-	add_help_chapter("Interface Java",path);
-elseif LANGUAGE == 'en' then
-	path = pathconvert(part(path,1:(length(path)-5))+'/help/en',%f,%f);
-	add_help_chapter("Java Interface",path);
-end
-
-clear path get_absolute_file_path add_help_chapter LANGUAGE;
+exec(SCI+'/modules/javasci/help/'+getlanguage()+'/addchapter.sce');
 // ====================================================================

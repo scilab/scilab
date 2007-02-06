@@ -3,16 +3,8 @@
 // of a scilab session for scipad module
 // Copyright INRIA 2006
 // ====================================================================
-// delete help chapter
-global LANGUAGE
-
-if LANGUAGE == 'fr' then
-    del_help_chapter("Scipad");
-elseif LANGUAGE == 'en' then
-    del_help_chapter("Scipad");
-end
-
-clear del_help_chapter LANGUAGE;
+//add help chapter
+exec(SCI+'/modules/scipad/help/'+getlanguage()+'/addchapter.sce');
 // ====================================================================
 if (sciargs()<>"-nw")&(sciargs()<>"-nwni")&(sciargs()<>"-nogui") then
     if with_tk() then

@@ -24,6 +24,12 @@ Source: modules\{#ARNOLDI}\sci_gateway\arnoldi; DestDir: {app}\modules\{#ARNOLDI
 Source: modules\{#ARNOLDI}\etc\{#ARNOLDI}.quit; DestDir: {app}\modules\{#ARNOLDI}\etc; Components: {#COMPN_ARNOLDI}
 Source: modules\{#ARNOLDI}\etc\{#ARNOLDI}.start; DestDir: {app}\modules\{#ARNOLDI}\etc; Components: {#COMPN_ARNOLDI}
 ;
+Source: modules\{#ARNOLDI}\help\en\addchapter.sce; DestDir: {app}\modules\{#ARNOLDI}\help\en; Components: {#COMPN_ARNOLDI}
+Source: modules\{#ARNOLDI}\help\en\removechapter.sce; DestDir: {app}\modules\{#ARNOLDI}\help\en; Components: {#COMPN_ARNOLDI}
+;
+Source: modules\{#ARNOLDI}\help\fr\addchapter.sce; DestDir: {app}\modules\{#ARNOLDI}\help\fr; Components: {#COMPN_ARNOLDI}
+Source: modules\{#ARNOLDI}\help\fr\removechapter.sce; DestDir: {app}\modules\{#ARNOLDI}\help\fr; Components: {#COMPN_ARNOLDI}
+;
 Source: modules\{#ARNOLDI}\help\en\*.htm; DestDir: {app}\modules\{#ARNOLDI}\help\en; Components: {#COMPN_ARNOLDI}
 Source: modules\{#ARNOLDI}\help\fr\*.htm; DestDir: {app}\modules\{#ARNOLDI}\help\fr; Components: {#COMPN_ARNOLDI}
 ;
@@ -38,4 +44,3 @@ Source: modules\{#ARNOLDI}\macros\buildmacros.sce; DestDir: {app}\modules\{#ARNO
 ;Source: modules\{#ARNOLDI}\demos\*.*; DestDir: {app}\modules\{#ARNOLDI}\demos; Components: {#COMPN_ARNOLDI}
 ;
 ;--------------------------------------------------------------------------------------------------------------
-

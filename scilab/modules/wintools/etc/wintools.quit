@@ -4,13 +4,5 @@
 // Copyright INRIA 2006
 // ====================================================================
 // delete help chapter
-global LANGUAGE
-
-if LANGUAGE == 'fr' then
-	del_help_chapter("Utilitaires Windows");
-elseif LANGUAGE == 'en' then
-	del_help_chapter("Windows Tools");
-end
-
-clear del_help_chapter LANGUAGE;
+exec(SCI+'/modules/wintools/help/'+getlanguage()+'/removechapter.sce');
 // ====================================================================

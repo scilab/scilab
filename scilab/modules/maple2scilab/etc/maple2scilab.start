@@ -6,18 +6,5 @@
 load('SCI/modules/maple2scilab/macros/lib');
 // ====================================================================
 //add help chapter
-global LANGUAGE
-
-path = get_absolute_file_path('maple2scilab.start');
-path = getshortpathname(path);
-
-if LANGUAGE == 'fr' then
-	path = pathconvert(part(path,1:(length(path)-5))+'/help/fr',%f,%f);
-	add_help_chapter("Interface avec Maple",path);
-elseif LANGUAGE == 'en' then
-	path = pathconvert(part(path,1:(length(path)-5))+'/help/en',%f,%f);
-	add_help_chapter("Maple Interface",path);
-end
-
-clear path get_absolute_file_path add_help_chapter LANGUAGE;
+exec(SCI+'/modules/maple2scilab/help/'+getlanguage()+'/addchapter.sce');
 // ====================================================================

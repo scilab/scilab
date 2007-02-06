@@ -1,6 +1,6 @@
 function browsehelp(path,key)
 	// when %browsehelp is [] a  menu proposes to select a browser
-	global LANGUAGE INDEX %helps
+	global INDEX %helps
 	global %browsehelp
 	
 	browsehelp_configure()
@@ -82,7 +82,7 @@ function run_help(path,key)
 	// the  help browser
 	// browse_modes=['nautilus';'tcltk'];
 	[lhs,rhs]=argn(0);
-	global LANGUAGE INDEX
+	global INDEX
 	global %browsehelp
 	key1=strsubst(key,' ','_') //for temp file and widget name
 	
@@ -111,7 +111,7 @@ function run_help(path,key)
 		if MSDOS then
 			tcltk_help(path,key);
 		else
-			unix(SCI+'/tcl/browsehelpexe '+path+' '+INDEX+' '+LANGUAGE+ '&');
+			unix(SCI+'/tcl/browsehelpexe '+path+' '+INDEX+' '+ '&');
 		end
 	else
 		write(%io(2),mgetl(path))
@@ -134,7 +134,7 @@ endfunction
 
 function tcltk_help(path,key,key1)
 	// the tck tk help browser
-	global LANGUAGE INDEX
+	global INDEX
 	// We must have / in paths, even for Windows
 	path=strsubst(path,"\","/")
 	INDEX=strsubst(INDEX,"\","/")
@@ -151,14 +151,14 @@ function tcltk_help(path,key,key1)
 		TCL_EvalStr("browsehelp eval {wm withdraw .}")
 		clear tklibname;
 		end
-		TCL_EvalStr("browsehelp eval {set lang "+LANGUAGE+"}")
+		TCL_EvalStr("browsehelp eval {set lang "+getlanguage()+"}")
 		TCL_EvalStr("browsehelp eval {set SciPath """+SCI+"""}")
 		TCL_EvalStr("browsehelp eval {set Home """+INDEX+"""}")
 		TCL_EvalStr("browsehelp eval {set sciw .scihelp-"+key1+"}")
 		TCL_EvalStr("browsehelp eval {set manpath """+path+"""}")
 		TCL_EvalStr("browsehelp eval {source ""'+SCI+'/tcl/browsehelp.tcl""}")
 	else
-		TCL_SetVar("lang",LANGUAGE)
+		TCL_SetVar("lang",getlanguage())
 		TCL_SetVar("Home",INDEX)
 		TCL_SetVar("sciw",".scihelp-"+key1+"}")
 		TCL_SetVar("manpath",path)
@@ -170,19 +170,19 @@ endfunction
 function tcltk_apropos(path)
 	// calling the tck tk help browser
 	// for apropos
-	global LANGUAGE INDEX
+	global INDEX
 	// We must have / in paths, even for Windows
 	path=strsubst(path,"\","/")
 	INDEX=strsubst(INDEX,"\","/")
 	if MSDOS then
-		TCL_EvalStr("browsehelp eval {set lang "+LANGUAGE+"}")
+		TCL_EvalStr("browsehelp eval {set lang "+getlanguage()+"}")
 		TCL_EvalStr("browsehelp eval {set SciPath """+SCI+"""}")
 		TCL_EvalStr("browsehelp eval {set Home """+INDEX+"""}")
 		TCL_EvalStr("browsehelp eval {set sciw .sciapropos}")
 		TCL_EvalStr("browsehelp eval {set manpath """+path+"""}")
 		TCL_EvalStr("browsehelp eval {source $SciPath/tcl/browsehelp.tcl}")
 	else
-		TCL_SetVar("lang",LANGUAGE)
+		TCL_SetVar("lang",getlanguage())
 		TCL_SetVar("Home",INDEX)
 		TCL_SetVar("sciw",".sciapropos")
 		TCL_SetVar("manpath",path)

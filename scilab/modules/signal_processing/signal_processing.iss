@@ -1,3 +1,9 @@
+;##############################################################################################################
+; Script d'installation Inno Setup (5.1.7) pour scilab
+; Allan CORNET
+; Version TRUNK
+; Copyright INRIA 2007
+;##############################################################################################################
 ;--------------------------------------------------------------------------------------------------------------
 ; signal_processing module
 ;--------------------------------------------------------------------------------------------------------------
@@ -13,6 +19,12 @@ Source: modules\{#SIGPROC}\sci_gateway\signal_processing; DestDir: {app}\modules
 ;
 Source: modules\{#SIGPROC}\etc\{#SIGPROC}.quit; DestDir: {app}\modules\{#SIGPROC}\etc; Components: {#COMPN_SIGPROC}
 Source: modules\{#SIGPROC}\etc\{#SIGPROC}.start; DestDir: {app}\modules\{#SIGPROC}\etc; Components: {#COMPN_SIGPROC}
+;
+Source: modules\{#SIGPROC}\help\en\addchapter.sce; DestDir: {app}\modules\{#SIGPROC}\help\en; Components: {#COMPN_SIGPROC}
+Source: modules\{#SIGPROC}\help\en\removechapter.sce; DestDir: {app}\modules\{#SIGPROC}\help\en; Components: {#COMPN_SIGPROC}
+;
+Source: modules\{#SIGPROC}\help\fr\addchapter.sce; DestDir: {app}\modules\{#SIGPROC}\help\fr; Components:  {#COMPN_SIGPROC}
+Source: modules\{#SIGPROC}\help\fr\removechapter.sce; DestDir: {app}\modules\{#SIGPROC}\help\fr; Components: {#COMPN_SIGPROC}
 ;
 Source: modules\{#SIGPROC}\help\en\*.htm; DestDir: {app}\modules\{#SIGPROC}\help\en; Components: {#COMPN_SIGPROC}
 Source: modules\{#SIGPROC}\help\fr\*.htm; DestDir: {app}\modules\{#SIGPROC}\help\fr; Components: {#COMPN_SIGPROC}

@@ -18,6 +18,12 @@ Source: modules\{#DOUBLE}\changelog.txt; DestDir: {app}\modules\{#DOUBLE}; Compo
 Source: modules\{#DOUBLE}\etc\{#DOUBLE}.quit; DestDir: {app}\modules\{#DOUBLE}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#DOUBLE}\etc\{#DOUBLE}.start; DestDir: {app}\modules\{#DOUBLE}\etc; Components: {#COMPN_SCILAB}
 ;
+Source: modules\{#DOUBLE}\help\en\addchapter.sce; DestDir: {app}\modules\{#DOUBLE}\help\en; Components:  {#COMPN_SCILAB}
+Source: modules\{#DOUBLE}\help\en\removechapter.sce; DestDir: {app}\modules\{#DOUBLE}\help\en; Components: {#COMPN_SCILAB}
+;
+Source: modules\{#DOUBLE}\help\fr\addchapter.sce; DestDir: {app}\modules\{#DOUBLE}\help\fr; Components:  {#COMPN_SCILAB}
+Source: modules\{#DOUBLE}\help\fr\removechapter.sce; DestDir: {app}\modules\{#DOUBLE}\help\fr; Components: {#COMPN_SCILAB}
+;
 ;Source: modules\{#DOUBLE}\help\en\*.htm; DestDir: {app}\modules\{#DOUBLE}\help\en; Components: {#COMPN_SCILAB}
 ;Source: modules\{#DOUBLE}\help\fr\*.htm; DestDir: {app}\modules\{#DOUBLE}\help\fr; Components: {#COMPN_SCILAB}
 ;
@@ -32,4 +38,3 @@ Source: modules\{#DOUBLE}\macros\buildmacros.sce; DestDir: {app}\modules\{#DOUBL
 ;Source: modules\{#DOUBLE}\demos\*.*; DestDir: {app}\modules\{#DOUBLE}\demos; Flags: recursesubdirs;  Components: {#COMPN_SCILAB}
 ;
 ;--------------------------------------------------------------------------------------------------------------
-

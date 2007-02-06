@@ -35,7 +35,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 	//   - all          : All the previous steps
 	// =========================================================================================
 	
-	global LANGUAGE %helps
+	global %helps
 	
 	//------------------------------------------------------------------------------------------
 	// Sauvegarde du chemin courant et de la variable %helps
@@ -82,7 +82,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 		default_language = [];
 		language_system = [];
 		
-		select LANGUAGE
+		select getlanguage()
 		
 		case 'en' then
 			xsl = pathconvert(SCI+"/modules/helptools/help_en.xsl",%f,%f);
@@ -111,7 +111,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 		language_system = [];
 		titles = [];
 		
-		select LANGUAGE
+		select getlanguage()
 		
 		case 'en' then
 			xsl = pathconvert(SCI+"/modules/helptools/help_en.xsl",%f,%f);
@@ -139,7 +139,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 			language_system = [language_system;%F];
 		end
 		
-		select LANGUAGE
+		select getlanguage()
 		
 		case 'en' then
 			xsl = pathconvert(SCI+"/modules/helptools/help_en.xsl",%f,%f);
@@ -163,7 +163,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 		end
 		
 		if ~exists("xsl") | xsl == [] | xsl == "" then
-			select LANGUAGE
+			select getlanguage()
 			
 			case 'en' then
 				xsl = pathconvert(SCI+"/modules/helptools/help_en.xsl",%f,%f);
@@ -188,7 +188,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 		if ~exists("all") | all == [] | all == "" then step = "all"; end
 		
 		if ~exists("xsl") | xsl == [] | xsl == "" then
-			select LANGUAGE
+			select getlanguage()
 			
 			case 'en' then
 				xsl = pathconvert(SCI+"/modules/helptools/help_en.xsl",%f,%f);
@@ -214,7 +214,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 		if ~exists("all") | all == [] | all == "" then step = "all"; end
 		
 		if ~exists("xsl") | xsl == [] | xsl == "" then
-			select LANGUAGE
+			select getlanguage()
 			
 			case 'en' then
 				xsl = pathconvert(SCI+"/modules/helptools/help_en.xsl",%f,%f);
@@ -241,7 +241,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 		if ~exists("all") | all == [] | all == "" then step = "all"; end
 		
 		if ~exists("xsl") | xsl == [] | xsl == "" then
-			select LANGUAGE
+			select getlanguage()
 			
 			case 'en' then
 				xsl = pathconvert(SCI+"/modules/helptools/help_en.xsl",%f,%f);
@@ -394,7 +394,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 	//------------------------------------------------------------------------------------------
 	
 	if step=='all' | step == 'index' then 
-		index_file = pathconvert(SCI+"/modules/helptools/index_"+LANGUAGE+".htm",%f,%t);
+		index_file = pathconvert(SCI+"/modules/helptools/index_"+getlanguage()+".htm",%f,%t);
 		mprintf("\nCreating %s\n",index_file);
 		gener_index(dirs,titles);
 	end
@@ -404,7 +404,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 	//------------------------------------------------------------------------------------------
 	
 	if step=='all' | step == 'contents' then 
-		contents_file = pathconvert(SCI+"/modules/helptools/contents_"+LANGUAGE+".htm",%f,%t);
+		contents_file = pathconvert(SCI+"/modules/helptools/contents_"+getlanguage()+".htm",%f,%t);
 		mprintf("\nCreating %s\n",contents_file);
 		if rhs <= 0 then 
 			gener_contents() 
@@ -649,7 +649,7 @@ function gener_index(dirs,titles)
 		"	</body>"
 		"</html>"]
 	
-	mputl(line,pathconvert(SCI+"/modules/helptools/index_"+LANGUAGE+".htm",%f,%t));
+	mputl(line,pathconvert(SCI+"/modules/helptools/index_"+getlanguage()+".htm",%f,%t));
 	
 	%helps = saved_help;
 	
@@ -770,7 +770,7 @@ function gener_contents(dirs1)
 	[sv,sk]=sort(full_whatis_name);
 	full_whatis=full_whatis(sk);
 	
-	select LANGUAGE 
+	select getlanguage() 
 		case 'fr' then type_title =  "		<H2>Fonctions Scilab</H2>";
 		case 'en' then type_title =  "		<H2>Scilab functions</H2>";
 	end
@@ -789,7 +789,7 @@ function gener_contents(dirs1)
 		"</html>"
 		];
 	
-	mputl(full_whatis,pathconvert(SCI+"/modules/helptools/contents_"+LANGUAGE+".htm",%f,%t));
+	mputl(full_whatis,pathconvert(SCI+"/modules/helptools/contents_"+getlanguage()+".htm",%f,%t));
   
 endfunction
 

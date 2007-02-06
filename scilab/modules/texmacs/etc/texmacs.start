@@ -7,6 +7,7 @@
    load('SCI/modules/texmacs/macros/lib');
  end
  clear with_texmacs;
-// ====================================================================
-
+ // ====================================================================
+//add help chapter
+exec(SCI+'/modules/texmacs/help/'+getlanguage()+'/addchapter.sce');
 // ====================================================================

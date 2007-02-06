@@ -5,19 +5,6 @@
 //Load  functions librarie
 load('SCI/modules/statistics/macros/lib');
 // ====================================================================
-//add help chapter
-global LANGUAGE
-
-path = get_absolute_file_path('statistics.start');
-path = getshortpathname(path);
-
-if LANGUAGE == 'fr' then
-	path = pathconvert(part(path,1:(length(path)-5))+'/help/fr',%f,%f);
-	add_help_chapter("Statistiques",path);
-elseif LANGUAGE == 'en' then
-	path = pathconvert(part(path,1:(length(path)-5))+'/help/en',%f,%f);
-	add_help_chapter("Statistics",path);
-end
-
-clear path get_absolute_file_path add_help_chapter LANGUAGE;
+///add help chapter
+exec(SCI+'/modules/statistics/help/'+getlanguage()+'/addchapter.sce');
 // ====================================================================

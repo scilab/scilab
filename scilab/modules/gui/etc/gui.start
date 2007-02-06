@@ -5,22 +5,15 @@
 //Load  functions librarie
 load('SCI/modules/gui/macros/lib');
 // ====================================================================
-//add help chapter
-global LANGUAGE
-
 path = get_absolute_file_path('gui.start');
 path = getshortpathname(path);
 pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/dialog.dem',%f,%f);
 
-if LANGUAGE == 'fr' then
-	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/fr',%f,%f);
-	add_help_chapter("IHM",pathhelp);
-	add_demo("IHM",pathdemos);
-elseif LANGUAGE == 'en' then
-	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/en',%f,%f);
-	add_help_chapter("GUI",pathhelp);
-	add_demo("GUI",pathdemos);
-end
+//add help chapter
+exec(SCI+'/modules/gui/help/'+getlanguage()+'/addchapter.sce');
 
-clear pathhelp pathdemos get_absolute_file_path add_help_chapter LANGUAGE;
+//add demos
+add_demo("GUI",pathdemos);
+
+clear path pathdemos get_absolute_file_path;
 // ====================================================================

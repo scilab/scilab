@@ -18,6 +18,12 @@ Source: modules\{#LOCALIZATION}\changelog.txt; DestDir: {app}\modules\{#LOCALIZA
 Source: modules\{#LOCALIZATION}\etc\{#LOCALIZATION}.quit; DestDir: {app}\modules\{#LOCALIZATION}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#LOCALIZATION}\etc\{#LOCALIZATION}.start; DestDir: {app}\modules\{#LOCALIZATION}\etc; Components: {#COMPN_SCILAB}
 ;
+Source: modules\{#LOCALIZATION}\help\en\addchapter.sce; DestDir: {app}\modules\{#LOCALIZATION}\help\en; Components:  {#COMPN_SCILAB}
+Source: modules\{#LOCALIZATION}\help\en\removechapter.sce; DestDir: {app}\modules\{#LOCALIZATION}\help\en; Components: {#COMPN_SCILAB}
+;
+Source: modules\{#LOCALIZATION}\help\fr\addchapter.sce; DestDir: {app}\modules\{#LOCALIZATION}\help\fr; Components:  {#COMPN_SCILAB}
+Source: modules\{#LOCALIZATION}\help\fr\removechapter.sce; DestDir: {app}\modules\{#LOCALIZATION}\help\fr; Components: {#COMPN_SCILAB}
+;
 Source: modules\{#LOCALIZATION}\help\en\*.htm; DestDir: {app}\modules\{#LOCALIZATION}\help\en; Components: {#COMPN_SCILAB}
 Source: modules\{#LOCALIZATION}\help\fr\*.htm; DestDir: {app}\modules\{#LOCALIZATION}\help\fr; Components: {#COMPN_SCILAB}
 ;

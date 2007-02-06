@@ -19,7 +19,7 @@ function ok = xmlfiletohtml(path,xsl,directory_language,default_language)
 	
 	[lhs,rhs] = argn(0);
 	
-	global LANGUAGE %helps
+	global %helps
 	
 	xmlfile = path;
 	needToBeCopied = %F;
@@ -37,7 +37,7 @@ function ok = xmlfiletohtml(path,xsl,directory_language,default_language)
 	
 	elseif rhs == 1 then
 		
-		select LANGUAGE
+		select getlanguage()
 		
 		case 'en' then
 			xsl = pathconvert(SCI+"/modules/helptools/help_en.xsl",%f,%f);

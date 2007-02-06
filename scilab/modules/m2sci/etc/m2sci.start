@@ -7,18 +7,5 @@ load('SCI/modules/m2sci/macros/lib');
 load('SCI/modules/m2sci/macros/mtlb/lib');
 // ====================================================================
 //add help chapter
-global LANGUAGE
-
-path = get_absolute_file_path('m2sci.start');
-path = getshortpathname(path);
-
-if LANGUAGE == 'fr' then
-	path = pathconvert(part(path,1:(length(path)-5))+'/help/fr',%f,%f);
-	add_help_chapter("Aide à la conversion Matlab vers Scilab",path);
-elseif LANGUAGE == 'en' then
-	path = pathconvert(part(path,1:(length(path)-5))+'/help/en',%f,%f);
-	add_help_chapter("Matlab to Scilab Conversion Tips",path);
-end
-
-clear path get_absolute_file_path add_help_chapter LANGUAGE;
+exec(SCI+'/modules/m2sci/help/'+getlanguage()+'/addchapter.sce');
 // ====================================================================

@@ -6,21 +6,12 @@
 load('SCI/modules/signal_processing/macros/lib');
 // ====================================================================
 //add help chapter
-global LANGUAGE
-
+exec(SCI+'/modules/signal_processing/help/'+getlanguage()+'/addchapter.sce');
+// ====================================================================
+//add demos
 path = get_absolute_file_path('signal_processing.start');
 path = getshortpathname(path);
 pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/signal.dem',%f,%f);
-
-if LANGUAGE == 'fr' then
-	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/fr',%f,%f);
-	add_help_chapter("Traitement du Signal",pathhelp);
-	add_demo("Traitement du Signal",pathdemos);
-elseif LANGUAGE == 'en' then
-	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/en',%f,%f);
-	add_help_chapter("Signal Processing",pathhelp);
-	add_demo("Signal Processing",pathdemos);
-end
-
-clear pathhelp pathdemos get_absolute_file_path add_help_chapter LANGUAGE;
+add_demo("Signal Processing",pathdemos);
+clear path pathdemos get_absolute_file_path;
 // ====================================================================

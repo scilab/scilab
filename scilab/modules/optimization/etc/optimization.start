@@ -6,21 +6,15 @@
 load('SCI/modules/optimization/macros/lib');
 // ====================================================================
 //add help chapter
-global LANGUAGE
+exec(SCI+'/modules/optimization/help/'+getlanguage()+'/addchapter.sce');
 
+//add demos
 path = get_absolute_file_path('optimization.start');
 path = getshortpathname(path);
 pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/optimization.dem',%f,%f);
 
-if LANGUAGE == 'fr' then
-	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/fr',%f,%f);
-	add_help_chapter("Optimisation et Simulation",pathhelp);
-	add_demo("Optimisation et Simulation",pathdemos);
-elseif LANGUAGE == 'en' then
-	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/en',%f,%f);
-	add_help_chapter("Optimization and Simulation",pathhelp);
-	add_demo("Optimization and Simulation",pathdemos);
-end
+add_demo("Optimization and Simulation",pathdemos);
 
-clear pathhelp pathdemos get_absolute_file_path add_help_chapter LANGUAGE;
+
+clear path pathdemos get_absolute_file_path;
 // ====================================================================

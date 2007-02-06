@@ -6,21 +6,16 @@
 load('SCI/modules/graphics/macros/lib');
 // ====================================================================
 //add help chapter
-global LANGUAGE
 
 path = get_absolute_file_path('graphics.start');
 path = getshortpathname(path);
 pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/graphics.dem',%f,%f);
 
-if LANGUAGE == 'fr' then
-	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/fr',%f,%f);
-	add_help_chapter("Bibliothèque graphique",pathhelp);
-	add_demo("Bibliothèque graphique",pathdemos);
-elseif LANGUAGE == 'en' then
-	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/en',%f,%f);
-	add_help_chapter("Graphics Library",pathhelp);
-	add_demo("Graphics Library",pathdemos);
-end
+//add help chapter
+exec(SCI+'/modules/graphics/help/'+getlanguage()+'/addchapter.sce');
 
-clear pathhelp pathdemos get_absolute_file_path add_help_chapter LANGUAGE;
+//add demo
+add_demo("Graphics",pathdemos);
+
+clear pathdemos get_absolute_file_path ;
 // ====================================================================

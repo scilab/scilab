@@ -4,14 +4,13 @@ function _result=tk_choose(_items,_title,_button)
 // Use of a namespace makes things easier (no global variables to pass
 // arguments from the Scilab level).
 
-global LANGUAGE
 
 if argn(2)<=1
     _title="";
 end
 if argn(2)<=2
   _button="Cancel"
-  if LANGUAGE=="fr"
+  if getlanguage()=="fr"
     _button="Annuler"
   end
 end

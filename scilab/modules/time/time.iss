@@ -25,6 +25,12 @@ Source: modules\{#TIME}\sci_gateway\time; DestDir: {app}\modules\{#TIME}\sci_gat
 Source: modules\{#TIME}\etc\{#TIME}.quit; DestDir: {app}\modules\{#TIME}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#TIME}\etc\{#TIME}.start; DestDir: {app}\modules\{#TIME}\etc; Components: {#COMPN_SCILAB}
 ;
+Source: modules\{#TIME}\help\en\addchapter.sce; DestDir: {app}\modules\{#TIME}\help\en; Components:  {#COMPN_SCILAB}
+Source: modules\{#TIME}\help\en\removechapter.sce; DestDir: {app}\modules\{#TIME}\help\en; Components: {#COMPN_SCILAB}
+;
+Source: modules\{#TIME}\help\fr\addchapter.sce; DestDir: {app}\modules\{#TIME}\help\fr; Components:  {#COMPN_SCILAB}
+Source: modules\{#TIME}\help\fr\removechapter.sce; DestDir: {app}\modules\{#TIME}\help\fr; Components: {#COMPN_SCILAB}
+;
 Source: modules\{#TIME}\help\en\*.htm; DestDir: {app}\modules\{#TIME}\help\en; Components: {#COMPN_SCILAB}
 Source: modules\{#TIME}\help\fr\*.htm; DestDir: {app}\modules\{#TIME}\help\fr; Components: {#COMPN_SCILAB}
 ;

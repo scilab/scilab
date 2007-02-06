@@ -6,21 +6,14 @@
 load('SCI/modules/cacsd/macros/lib');
 // ====================================================================
 //add help chapter
-global LANGUAGE
+exec(SCI+'/modules/arnoldi/help/'+getlanguage()+'/addchapter.sce');
 
 path = get_absolute_file_path('cacsd.start');
 path = getshortpathname(path);
 pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/control.dem',%f,%f);
 
-if LANGUAGE == 'fr' then
-	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/fr',%f,%f);
-	add_help_chapter("CACSD",pathhelp);
-	add_demo("CACSD",pathdemos);
-elseif LANGUAGE == 'en' then
-	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/en',%f,%f);
-	add_help_chapter("CACSD",pathhelp);
-	add_demo("CACSD",pathdemos);
-end
+// add demos
+add_demo("CACSD",pathdemos);
 
-clear pathhelp pathdemos get_absolute_file_path add_help_chapter LANGUAGE;
+clear pathdemos get_absolute_file_path;
 // ====================================================================

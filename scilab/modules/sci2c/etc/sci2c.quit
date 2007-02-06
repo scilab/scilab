@@ -4,13 +4,5 @@
 // Copyright INRIA 2006
 // ====================================================================
 // delete help chapter
-global LANGUAGE
-
-if LANGUAGE == 'fr' then
-//	del_help_chapter("scilab to C language");
-elseif LANGUAGE == 'en' then
-//	del_help_chapter("scilab to C language");
-end
-
-clear del_help_chapter LANGUAGE;
+//exec(SCI+'/modules/sci2c/help/'+getlanguage()+'/removechapter.sce');
 // ====================================================================

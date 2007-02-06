@@ -20,6 +20,12 @@ Source: modules\{#CORE}\sci_gateway\core; DestDir: {app}\modules\{#CORE}\sci_gat
 Source: modules\{#CORE}\etc\{#CORE}.quit; DestDir: {app}\modules\{#CORE}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\etc\{#CORE}.start; DestDir: {app}\modules\{#CORE}\etc; Components: {#COMPN_SCILAB}
 ;
+Source: modules\{#CORE}\help\en\addchapter.sce; DestDir: {app}\modules\{#CORE}\help\en; Components:  {#COMPN_SCILAB}
+Source: modules\{#CORE}\help\en\removechapter.sce; DestDir: {app}\modules\{#CORE}\help\en; Components:  {#COMPN_SCILAB}
+;
+Source: modules\{#CORE}\help\fr\addchapter.sce; DestDir: {app}\modules\{#CORE}\help\fr; Components:  {#COMPN_SCILAB}
+Source: modules\{#CORE}\help\fr\removechapter.sce; DestDir: {app}\modules\{#CORE}\help\fr; Components:  {#COMPN_SCILAB}
+;
 Source: modules\{#CORE}\help\en\*.htm; DestDir: {app}\modules\{#CORE}\help\en; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\help\fr\*.htm; DestDir: {app}\modules\{#CORE}\help\fr; Components: {#COMPN_SCILAB}
 ;
@@ -34,4 +40,3 @@ Source: modules\{#CORE}\macros\*.sci; DestDir: {app}\modules\{#CORE}\macros; Com
 Source: modules\{#CORE}\demos\*.*; DestDir: {app}\modules\{#CORE}\demos; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 ;--------------------------------------------------------------------------------------------------------------
-

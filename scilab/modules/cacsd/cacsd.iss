@@ -22,6 +22,12 @@ Source: modules\{#CACSD}\sci_gateway\cacsd; DestDir: {app}\modules\{#CACSD}\sci_
 Source: modules\{#CACSD}\etc\{#CACSD}.quit; DestDir: {app}\modules\{#CACSD}\etc; Components: {#COMPN_CACSD}
 Source: modules\{#CACSD}\etc\{#CACSD}.start; DestDir: {app}\modules\{#CACSD}\etc; Components: {#COMPN_CACSD}
 ;
+Source: modules\{#CACSD}\help\en\addchapter.sce; DestDir: {app}\modules\{#CACSD}\help\en; Components: {#COMPN_CACSD}
+Source: modules\{#CACSD}\help\en\removechapter.sce; DestDir: {app}\modules\{#CACSD}\help\en; Components: {#COMPN_CACSD}
+;
+Source: modules\{#CACSD}\help\fr\addchapter.sce; DestDir: {app}\modules\{#CACSD}\help\fr; Components: {#COMPN_CACSD}
+Source: modules\{#CACSD}\help\fr\removechapter.sce; DestDir: {app}\modules\{#CACSD}\help\fr; Components: {#COMPN_CACSD}
+;
 Source: modules\{#CACSD}\help\en\*.htm; DestDir: {app}\modules\{#CACSD}\help\en; Components: {#COMPN_CACSD}
 Source: modules\{#CACSD}\help\fr\*.htm; DestDir: {app}\modules\{#CACSD}\help\fr; Components: {#COMPN_CACSD}
 ;
@@ -36,4 +42,3 @@ Source: modules\{#CACSD}\macros\buildmacros.sce; DestDir: {app}\modules\{#CACSD}
 Source: modules\{#CACSD}\demos\*.*; DestDir: {app}\modules\{#CACSD}\demos; Flags: recursesubdirs; Components: {#COMPN_CACSD}
 ;
 ;--------------------------------------------------------------------------------------------------------------
-

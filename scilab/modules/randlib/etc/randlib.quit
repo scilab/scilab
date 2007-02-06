@@ -4,13 +4,5 @@
 // Copyright INRIA 2006
 // ====================================================================
 // delete help chapter
-global LANGUAGE
-
-if LANGUAGE == 'fr' then
-	del_help_chapter("randlib");
-elseif LANGUAGE == 'en' then
-	del_help_chapter("randlib");
-end
-
-clear del_help_chapter LANGUAGE;
+exec(SCI+'/modules/randlib/help/'+getlanguage()+'/removechapter.sce');
 // ====================================================================

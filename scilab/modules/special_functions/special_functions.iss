@@ -20,6 +20,12 @@ Source: modules\{#SPFUNCTIONS}\sci_gateway\special_functions; DestDir: {app}\mod
 Source: modules\{#SPFUNCTIONS}\etc\{#SPFUNCTIONS}.quit; DestDir: {app}\modules\{#SPFUNCTIONS}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#SPFUNCTIONS}\etc\{#SPFUNCTIONS}.start; DestDir: {app}\modules\{#SPFUNCTIONS}\etc; Components: {#COMPN_SCILAB}
 ;
+Source: modules\{#SPFUNCTIONS}\help\en\addchapter.sce; DestDir: {app}\modules\{#SPFUNCTIONS}\help\en; Components:  {#COMPN_SCILAB}
+Source: modules\{#SPFUNCTIONS}\help\en\removechapter.sce; DestDir: {app}\modules\{#SPFUNCTIONS}\help\en; Components: {#COMPN_SCILAB}
+;
+Source: modules\{#SPFUNCTIONS}\help\fr\addchapter.sce; DestDir: {app}\modules\{#SPFUNCTIONS}\help\fr; Components:  {#COMPN_SCILAB}
+Source: modules\{#SPFUNCTIONS}\help\fr\removechapter.sce; DestDir: {app}\modules\{#SPFUNCTIONS}\help\fr; Components: {#COMPN_SCILAB}
+;
 Source: modules\{#SPFUNCTIONS}\help\en\*.htm; DestDir: {app}\modules\{#SPFUNCTIONS}\help\en; Components: {#COMPN_SCILAB}
 Source: modules\{#SPFUNCTIONS}\help\fr\*.htm; DestDir: {app}\modules\{#SPFUNCTIONS}\help\fr; Components: {#COMPN_SCILAB}
 ;

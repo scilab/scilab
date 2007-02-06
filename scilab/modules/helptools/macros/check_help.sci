@@ -60,11 +60,8 @@ function check_help(dirs)
 	
 	// Gestion du fichier de log
 	//------------------------------------------------------------------------------------------
-	
-	global LANGUAGE;
-	logfile = pathconvert(SCIHOME+"/check_help_"+LANGUAGE+".log",%f,%f);
-	clear LANGUAGE;
-	
+	logfile = pathconvert(SCIHOME+"/check_help_"+getlanguage()+".log",%f,%f);
+		
 	logfile_id = mopen(logfile,"w");
 	mclose(logfile_id);
 	

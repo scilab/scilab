@@ -21,6 +21,12 @@ Source: modules\{#FUNCTIONS}\etc\{#FUNCTIONS}.start; DestDir: {app}\modules\{#FU
 Source: modules\{#FUNCTIONS}\help\en\*.htm; DestDir: {app}\modules\{#FUNCTIONS}\help\en; Components: {#COMPN_SCILAB}
 Source: modules\{#FUNCTIONS}\help\fr\*.htm; DestDir: {app}\modules\{#FUNCTIONS}\help\fr; Components: {#COMPN_SCILAB}
 ;
+Source: modules\{#FUNCTIONS}\help\en\addchapter.sce; DestDir: {app}\modules\{#FUNCTIONS}\help\en; Components:  {#COMPN_SCILAB}
+Source: modules\{#FUNCTIONS}\help\en\removechapter.sce; DestDir: {app}\modules\{#FUNCTIONS}\help\en; Components: {#COMPN_SCILAB}
+;
+Source: modules\{#FUNCTIONS}\help\fr\addchapter.sce; DestDir: {app}\modules\{#FUNCTIONS}\help\fr; Components:  {#COMPN_SCILAB}
+Source: modules\{#FUNCTIONS}\help\fr\removechapter.sce; DestDir: {app}\modules\{#FUNCTIONS}\help\fr; Components: {#COMPN_SCILAB}
+;
 Source: modules\{#FUNCTIONS}\macros\lib; DestDir: {app}\modules\{#FUNCTIONS}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#FUNCTIONS}\macros\names; DestDir: {app}\modules\{#FUNCTIONS}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#FUNCTIONS}\macros\*.bin; DestDir: {app}\modules\{#FUNCTIONS}\macros; Components: {#COMPN_SCILAB}

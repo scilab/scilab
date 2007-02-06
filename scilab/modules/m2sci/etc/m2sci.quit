@@ -4,13 +4,5 @@
 // Copyright INRIA 2006
 // ====================================================================
 // delete help chapter
-global LANGUAGE
-
-if LANGUAGE == 'fr' then
-	del_help_chapter("Aide à la conversion Matlab vers Scilab");
-elseif LANGUAGE == 'en' then
-	del_help_chapter("Matlab to Scilab Conversion Tips");
-end
-
-clear del_help_chapter LANGUAGE;
+exec(SCI+'/modules/m2sci/help/'+getlanguage()+'/removechapter.sce');
 // ====================================================================

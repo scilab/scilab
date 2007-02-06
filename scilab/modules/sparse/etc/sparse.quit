@@ -1,16 +1,8 @@
 // ====================================================================
 // This file contains command to be executed at the end 
-// of a scilab session for wintools module
+// of a scilab session for sparse module
 // Copyright INRIA 2006
 // ====================================================================
 // delete help chapter
-global LANGUAGE
-
-if LANGUAGE == 'fr' then
-	del_help_chapter("Matrices creuses");
-elseif LANGUAGE == 'en' then
-	del_help_chapter("Sparses Matrix");
-end
-
-clear del_help_chapter LANGUAGE;
+exec(SCI+'/modules/sparse/help/'+getlanguage()+'/removechapter.sce');
 // ====================================================================

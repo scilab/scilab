@@ -4,5 +4,7 @@
 // Copyright INRIA 2006
 // ====================================================================
 if %scicos then
+// delete help chapter
+exec(SCI+'/modules/scicos/help/'+getlanguage()+'/removechapter.sce');
 end
 // ====================================================================

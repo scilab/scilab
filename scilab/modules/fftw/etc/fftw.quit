@@ -6,17 +6,9 @@
 if ( fftwlibraryisloaded() ) then
 
 // delete help chapter
-global LANGUAGE
+//exec(SCI+'/modules/fftw/help/'+getlanguage()+'/removechapter.sce');
 
 disposefftwlibrary();
-
-if LANGUAGE == 'fr' then
-//	del_help_chapter("FFTW");
-elseif LANGUAGE == 'en' then
-//	del_help_chapter("FFTW");
-end
-
-clear del_help_chapter LANGUAGE;
 
 end // if ( fftwlibraryisloaded() ) then
 // ====================================================================

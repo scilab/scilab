@@ -20,6 +20,12 @@ Source: modules\{#DATASTRUCT}\sci_gateway\data_structures; DestDir: {app}\module
 Source: modules\{#DATASTRUCT}\etc\{#DATASTRUCT}.quit; DestDir: {app}\modules\{#DATASTRUCT}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#DATASTRUCT}\etc\{#DATASTRUCT}.start; DestDir: {app}\modules\{#DATASTRUCT}\etc; Components: {#COMPN_SCILAB}
 ;
+Source: modules\{#DATASTRUCT}\help\en\addchapter.sce; DestDir: {app}\modules\{#DATASTRUCT}\help\en; Components:  {#COMPN_SCILAB}
+Source: modules\{#DATASTRUCT}\help\en\removechapter.sce; DestDir: {app}\modules\{#DATASTRUCT}\help\en; Components:  {#COMPN_SCILAB}
+;
+Source: modules\{#DATASTRUCT}\help\fr\addchapter.sce; DestDir: {app}\modules\{#DATASTRUCT}\help\fr; Components:  {#COMPN_SCILAB}
+Source: modules\{#DATASTRUCT}\help\fr\removechapter.sce; DestDir: {app}\modules\{#DATASTRUCT}\help\fr; Components:  {#COMPN_SCILAB}
+;
 Source: modules\{#DATASTRUCT}\help\en\*.htm; DestDir: {app}\modules\{#DATASTRUCT}\help\en; Components: {#COMPN_SCILAB}
 Source: modules\{#DATASTRUCT}\help\fr\*.htm; DestDir: {app}\modules\{#DATASTRUCT}\help\fr; Components: {#COMPN_SCILAB}
 ;
