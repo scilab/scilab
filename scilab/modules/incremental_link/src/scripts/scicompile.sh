@@ -31,7 +31,7 @@ done
 # Replace fake filenames to the one we want 
 sed -e "s|libsciexternal_la_SOURCES = foo.c foo2.f foo3.cxx|lib"$LIB"_la_SOURCES = $SOURCES|g" Makefile.orig > Makefile
 
-## Replace  sources by .lo file
+## Replace sources by .lo file
 SOURCES=`echo $SOURCES|sed -e 's|\.c|\.lo|g'`
 SOURCES=`echo $SOURCES|sed -e 's|\.f|\.lo|g'`
 SOURCES=`echo $SOURCES|sed -e 's|\.cxx|\.lo|g'`
