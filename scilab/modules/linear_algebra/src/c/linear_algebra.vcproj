@@ -233,7 +233,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_spec.c"
+				RelativePath="..\..\sci_gateway\c\sci_eig.c"
 				>
 			</File>
 			<File
