@@ -30,7 +30,7 @@ function [HomeDirectory,ScilabHomeDirectory]=sethomedirectory(varargin)
     end
 
     if (ExistScilabHomeDirectory(ScilabHomeDirectory)==%F) then
-      ScilabHomeDirectory=CreateScilabHomeDirectory(HomeDirectory,ScilabHomeDirectory);
+      ScilabHomeDirectory=CreateScilabHomeDir(HomeDirectory,ScilabHomeDirectory);
     end
 
   else
@@ -63,7 +63,7 @@ function bOK=ExistScilabHomeDirectory(SciHome)
   end
 endfunction
 //------------------------------------------------------------------------------
-function ScilabHome=CreateScilabHomeDirectory(Home,SciHome)
+function ScilabHome=CreateScilabHomeDir(Home,SciHome)
   ScilabHome=SciHome
   if MSDOS then
     HomeScilabLvl1=HomeDirectory+'\Scilab';
