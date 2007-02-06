@@ -43,6 +43,7 @@ extern int SendScilabJob(char *job);
 extern void ScilabDoOneEvent(void);
 extern int ExitScilab(void);
 extern int GetLastErrorCode(void);
+extern void *GetDataFromName( char *name );
 /********************************************************************************************************/
 #if _MSC_VER
 extern void start_sci_tcltk();

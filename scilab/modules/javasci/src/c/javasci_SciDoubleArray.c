@@ -58,17 +58,26 @@ JNIEXPORT jint JNICALL Java_javasci_SciDoubleArray_getRowFromScilab(JNIEnv *env 
 
 	if (C2F(objptr)((char*)cname,&lw,&fin,(unsigned long)strlen(cname)))
 	{
-		int cm,cn,lp;
-		if ( C2F(cmatptr)((char *)cname, &cm, &cn, &lp,(unsigned long)strlen(cname))) 
+		#define COMPLEX 1
+		int Cmplx;
+		int *header=NULL; 
+		header = (int *)GetDataFromName((char *)cname);
+		Cmplx=header[3];
+
+		if (Cmplx != COMPLEX)
 		{
-			row = cm;
+			int cm,cn,lp;
+
+			if ( C2F(cmatptr)((char *)cname, &cm, &cn, &lp,(unsigned long)strlen(cname))) 
+			{
+				row = cm;
+			}
 		}
 	}
 
 	(*env)->ReleaseStringUTFChars(env, name , cname);
 
 	return row;
-
 }
 /********************************************************************************************************/
 /* private native int getColFromScilab(String name); */
@@ -86,11 +95,20 @@ JNIEXPORT jint JNICALL Java_javasci_SciDoubleArray_getColFromScilab(JNIEnv *env 
 
 	if (C2F(objptr)((char*)cname,&lw,&fin,(unsigned long)strlen(cname)))
 	{
-		int cm,cn,lp;
+		#define COMPLEX 1
+		int Cmplx;
+		int *header=NULL; 
+		header = (int *)GetDataFromName((char *)cname);
+		Cmplx=header[3];
 
-		if ( C2F(cmatptr)((char *)cname, &cm, &cn, &lp,(unsigned long)strlen(cname))) 
+		if (Cmplx != COMPLEX)
 		{
-			col = cn;
+			int cm,cn,lp;
+
+			if ( C2F(cmatptr)((char *)cname, &cm, &cn, &lp,(unsigned long)strlen(cname))) 
+			{
+				col = cn;
+			}
 		}
 	}
 

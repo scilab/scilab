@@ -19,6 +19,20 @@ public class SciComplexArray implements java.io.Serializable
   /**
   * Initialize Scilab interface
   */
+  
+  private native int getRowFromScilab(String name);
+  /**
+  * internal method to know dim (Row) in scilab 
+  * returns >= 0 OK
+  * returns -1 name not exist
+  */
+  
+  private native int getColFromScilab(String name);
+  /**
+  * internal method to know dim (Col) in scilab
+  * returns >= 0 OK
+  * returns -1 name not exist
+  */
     
   public native boolean Job(String job);
   /**
@@ -80,18 +94,25 @@ public class SciComplexArray implements java.io.Serializable
   {
     this.m = r ;
     this.n = c ;
-    
     this.x = new double[r*c];
     this.y = new double[r*c];
-    
     this.name = name;
-   
-    for ( int i = 0 ; i < r*c ; i++)
+    
+    if ( (Scilab.TypeVar(name) == 1) & 
+         (getRowFromScilab(name) == r) & 
+         (getColFromScilab(name) == c) )
     {
-    	x[i]=0;
-    	y[i]=0;
+		Get();
     }
-    Send();
+    else
+    {
+        for ( int i = 0 ; i < r*c ; i++)
+        {
+    	  x[i]=0;
+    	  y[i]=0;
+        }
+        Send();
+    }
   }
  /********************************************************************************************************/  
   public SciComplexArray(String name,int r,int c,double [] x,double [] y )
