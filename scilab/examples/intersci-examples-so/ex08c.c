@@ -1,12 +1,6 @@
 #include "machine.h"
-
-#ifdef __STDC__ 
 #include <stdlib.h> 
-#else 
-#include <malloc.h> 
-#endif 
-
-extern void sciprint __PARAMS((char *fmt, ...));
+#include "sciprint.h"
 
 /*************************************************************
  * Example of an integer array created by C code

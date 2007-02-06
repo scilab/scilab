@@ -1,5 +1,5 @@
 #include "../../routines/machine.h"
-#include <malloc.h> 
+#include <stdlib.h> 
 
 /*************************************************************
  * Example of a dynamically allocated array of character created here.
