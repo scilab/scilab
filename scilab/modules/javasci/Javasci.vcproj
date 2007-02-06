@@ -4,6 +4,7 @@
 	Version="8,00"
 	Name="Javasci"
 	ProjectGUID="{0BD503EF-5CB6-4277-BAC4-8955C97F247D}"
+	RootNamespace="Javasci"
 	Keyword="Win32Proj"
 	>
 	<Platforms>
@@ -197,7 +198,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\javasci_SciBoolean.c"
+				RelativePath=".\src\c\javasci_SciBooleanArray.c"
 				>
 			</File>
 			<File
