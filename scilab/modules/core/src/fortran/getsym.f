@@ -63,7 +63,7 @@
       double precision syv
       integer namecd(nlgh), chcnt, io 
       integer blank, dot, percen, slash, comma,eol
-      integer name, num, cmt, l4, nreal
+      integer name, num, cmt
 
 *     STATEMENTS FUNCTIONS
       integer c
@@ -109,7 +109,7 @@
          end do
 *        encoding of the name
          call namstr(syn,namecd,chcnt,0)
-         if (lpt(4)-lpt(3).gt.chcnt) call msgs(33,nreal)
+         if (lpt(4)-lpt(3).gt.chcnt) call msgs(33,0) 
       else
 *        -> special character (eol, operator, part of an operator, .... 
 *           but in case of a dot following by a digit it is a number)
