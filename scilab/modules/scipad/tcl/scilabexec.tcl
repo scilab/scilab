@@ -349,8 +349,20 @@ proc scilaberror {funnameargs} {
                    TCL_EvalStr(\"global errnum errline errmsg errfunc; \
                                  set errnum  \"+string(db_n)+\"; \
                                  set errline \"+string(db_l)+\"; \
-                                 set errfunc \"\"\"+strsubst(db_func,\"\"\"\",\"\\\"\"\")+\"\"\"; \
-                                 set errmsg  \"\"\"+strsubst(db_str,\"\"\"\",\"\\\"\"\")+\"\"\" \" , \"scipad\" )" \
+                                 set errfunc \"\"\"+strsubst(
+                                                              db_func,\"\"\"\",\"\\\"\"\")
+                                                   +\"\"\"; \
+                                 set errmsg  \"\"\"+strsubst( \
+                                                    strsubst( \
+                                                    strsubst( \
+                                                    strsubst( \
+                                                    strsubst( \
+                                                               db_str,\"\"\"\",\"\\\"\"\") \
+                                                                     ,\"''\",\"\\''\") \
+                                                                     ,\"$\",\"\\$\") \
+                                                                     ,\"\[\",\"\\\[\") \
+                                                                     ,\"\]\",\"\\\]\") \
+                                                   +\"\"\" \" , \"scipad\" )" \
                   "sync" "seq"
     tk_messageBox -title [mc "Scilab execution error"] \
       -message [concat [mc "The shell reported an error while trying to execute "]\

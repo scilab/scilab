@@ -169,6 +169,10 @@ proc tkdndbind {w} {
                                                  break ; \
                                               } \
                                             }
+    # prevent from extending the block selection by dragging outside
+    # of the visible part of the textarea, since this is not compatible
+    # with the pixel-like block selection process
+    bind $w <Shift-Control-Button1-Leave> { break }
 
     # nice cursor change when mouse is over the selection
     $w tag bind sel <Enter> {%W configure -cursor hand2 ; set mouseoversel "true"}

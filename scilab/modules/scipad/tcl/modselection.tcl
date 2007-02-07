@@ -6,7 +6,6 @@ proc TextClosestGap_scipad {w x y} {
 # functions must exist to guard against private functions changes
 # in Tk
     if {[catch {::tk::TextClosestGap $w $x $y} ind] != 0} {
-    puts fallback
         set ind [$w index @$x,$y]
     }
     return $ind
@@ -153,15 +152,28 @@ proc selectblock {w x y} {
 
     # finally, tag the lines!
     $w tag remove sel 1.0 end
-    set dlinfo [$w dlineinfo @0,0]
-    set lineheight [lindex $dlinfo 3]
-    for {set i $anchory} {$i <= [expr {$cornery + $lineheight / 2}]} {incr i $lineheight} {
+    # note: since $anchory and $corney are pixel coordinates, one could
+    #       have thought of using {incr i $lineheigth} instead of {incr i}
+    #       but this would cause incredible headaches to have the cursor
+    #       never after the end of the selection, and never inside it
+    #       so I forgot any optimization here and run the loop pixel
+    #       by pixel, eventually tagging the same portion of text multiple
+    #       times
+    for {set i $anchory} {$i <= $cornery} {incr i} {
         set sta [TextClosestGap_scipad $w $anchorx $i]
         set sto [TextClosestGap_scipad $w $cornerx $i]
         if {[$w compare $sta == $sto]} {
-            # tag the entire line
-            set sta "$sta linestart"
-            set sto "$sto + 1l linestart"
+            set dlinfo [$w dlineinfo $sta]
+            set linex [lindex $dlinfo 0]
+            set linewidth [lindex $dlinfo 2]
+            if {[expr {$linex+$linewidth}] < $anchorx} {
+                # the line is shorter than the block left limit
+                # in this case, tag the \n at the end of this line
+                # note that the test above works even if the textarea
+                # has been scrolled horizontally: $linex is negative
+                # in this case, and this is what is needed
+                set sto "$sto + 1l linestart"
+            }
         }
         $w tag add sel $sta $sto
     }

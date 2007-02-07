@@ -2804,3 +2804,12 @@ Francois VOGEL, 04/02/07
    way the selection text is built and returned has been changed to fix
    this issue
  * version --> 6.86
+
+Francois VOGEL, 07/02/07
+ * Fixed nasty substitution needs in proc scilaberror (Tcl special characters
+   need to be escaped in the error string)
+ * Fixed overzealous selection of the entire line when this line is shorter
+   than the block margin (block selection)
+ * Really, this time the cursor should no longer be after the end, nor inside
+   the block selection
+ * version --> 6.87
