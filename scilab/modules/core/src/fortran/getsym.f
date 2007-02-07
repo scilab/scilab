@@ -95,7 +95,6 @@
 
       elseif ( isAlphaNum(char1) .or. char1.eq.percen) then
 *        -> name
-         l4 = lpt(4)-1
          sym = name 
          chcnt = 1
          namecd(chcnt) = char1
