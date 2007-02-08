@@ -62,6 +62,8 @@ proc execfile {{buf "current"}} {
 }
 
 proc execselection {} {
+# run the Scipad selection in Scilab
+# note: block selection is supported
     global tcl_platform pad
 
     # execselection cannot be executed since it needs the colorization results
@@ -70,8 +72,9 @@ proc execselection {} {
     if {[isscilabbusy 2]} {return}
 
     set textareacur [gettextareacur]
-    set f [gettaseltext $textareacur single] ; # <TODO>: support block selection?
-    if {$f != ""} {
+    set selindices [gettaselind $textareacur any]
+    if {$selindices != ""} {
+        set f [gettatextstring $textareacur $selindices]
         #SciEval does not digest multilines, nor comments. The following hacks are 
         # not optimal - they can produce very long lines, and get confused about 
         # quoted strings containing //.
@@ -349,8 +352,8 @@ proc scilaberror {funnameargs} {
                    TCL_EvalStr(\"global errnum errline errmsg errfunc; \
                                  set errnum  \"+string(db_n)+\"; \
                                  set errline \"+string(db_l)+\"; \
-                                 set errfunc \"\"\"+strsubst(
-                                                              db_func,\"\"\"\",\"\\\"\"\")
+                                 set errfunc \"\"\"+strsubst( \
+                                                              db_func,\"\"\"\",\"\\\"\"\") \
                                                    +\"\"\"; \
                                  set errmsg  \"\"\"+strsubst( \
                                                     strsubst( \

@@ -40,12 +40,13 @@ proc findtextdialog {typ} {
     # so that Scipad can have only one (possibly block) selection at a time.
     # Even with the -inactiveselectbackground option set, there would
     # therefore be no visible selection in any non focussed buffer
-    set seltexts [gettaseltext [gettextareacur] any]
-    if {$seltexts != ""} {
+    set selindices [gettaselind [gettextareacur] any]
+    if {$selindices != ""} {
         # there is a selection
-        eval "[gettextareacur] tag add fakeselection [gettaselind [gettextareacur] any]"
+        eval "[gettextareacur] tag add fakeselection $selindices"
         [gettextareacur] tag raise foundtext fakeselection
         [gettextareacur] tag raise replacedtext fakeselection
+        set seltexts [gettatextstring [gettextareacur] $selindices]
     }
 
     # entry fields
@@ -334,11 +335,9 @@ proc findtextdialog {typ} {
         #   preselect the find in selection box
         # otherwise
         #   use that selection as the string to search for
-        if {[llength $seltexts] > 1} {
-            # this is a block selection (i.e. multiple ranges)
-            $find.l.f4.f5.cbox4 select
-        } elseif {[regexp {\n} $seltexts]} {
-            # this is a multiline single selection
+        if {[regexp {\n} $seltexts]} {
+            # this is a multiline single selection,
+            # or a block selection (i.e. multiple ranges)
             $find.l.f4.f5.cbox4 select
         } else {
             # this is a single line single selection

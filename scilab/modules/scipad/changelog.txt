@@ -2813,3 +2813,12 @@ Francois VOGEL, 07/02/07
  * Really, this time the cursor should no longer be after the end, nor inside
    the block selection
  * version --> 6.87
+
+Francois VOGEL, 08/02/07
+ * Added missing continuation antislashes in proc scilaberror
+ * Fixed yet another glitch with block selection: when one line ends exactly
+   at the left column of the block, the \n was not selected
+ * Added dnd support for block selection (move and copy modes, without any
+   new binding)
+ * Execute selection supports block selection
+ * version --> 6.88

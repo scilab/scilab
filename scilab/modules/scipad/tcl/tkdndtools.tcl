@@ -2,7 +2,7 @@ proc tkdndbind {w} {
 # Drag and drop feature using TkDnD
 
     global TkDnDloaded pad dndinitiated sourcetextarea
-    global savedsel savedseli1 savedseli2 dnddroppos
+    global savedsel savedseli dnddroppos
     global debuglog logdetailedbindings
 
     # Abort if TkDnD package is not available
@@ -45,7 +45,7 @@ proc tkdndbind {w} {
     dnd bindtarget $w text/plain <Drop> {
         if {[info exists sourcetextarea]} {
             # drag from Scipad, drop in Scipad
-            if {$sourcetextarea == "%W" && [gettaselind %W single] != ""} {
+            if {$sourcetextarea == "%W" && [gettaselind %W any] != ""} {
                 # drag and drop in the same Scipad buffer
                 #
                 # if the mouse went out of the buffer during drag, and
@@ -56,15 +56,26 @@ proc tkdndbind {w} {
                 # were involved (-> else clause of this if above)
                 #
                 # here we didn't fly out of the buffer, sel tag still here
-                if { ! ([%W compare sel.first <= [%W index @%x,%y]] && \
-                        [%W compare [%W index @%x,%y] < sel.last] ) || \
-                        [%W compare sel.first == [%W index @%x,%y]] } {
+                if {![isposinsel %W %x %y]} {
                     # the mouse, in fact the destination mark cursor, is not
-                    # inside the selection
+                    # inside the selection, or if it is, it is at the very
+                    # first position of the selection
                     if {"%A" == "copy"} {
                         %W tag remove sel 1.0 end
+                        puttext %W %D
+                    } else {
+                        set oldSeparator [%W cget -autoseparators]
+                        if {$oldSeparator} {
+                            %W configure -autoseparators 0
+                            %W edit separator
+                        }
+                        deletetext
+                        puttext %W %D
+                        if {$oldSeparator} {
+                            %W edit separator
+                            %W configure -autoseparators 1
+                        }
                     }
-                    puttext %W %D
                 } else {
                     # drop occurs at the same place as drag, do nothing
                 }
@@ -74,7 +85,7 @@ proc tkdndbind {w} {
                 puttext %W %D
                 if {"%A" == "move"} {
                     focustextarea $sourcetextarea
-                    $sourcetextarea tag add sel $savedseli1 $savedseli2
+                    eval "$sourcetextarea tag add sel $savedseli"
                     deletetext
                 }
             }
@@ -193,7 +204,8 @@ proc tkdndbind {w} {
 }
 
 proc Button1BindTextArea { w x y } {
-    global dndinitiated savedsel savedseli1 savedseli2 dndreallystarted
+    global dndinitiated savedsel savedseli dndreallystarted
+    global mouseoversel
 
     # note: when dndreallystarted is "false", the Text class binding fires
     # after this proc (no "break" in the binding that launched this proc),
@@ -212,13 +224,11 @@ proc Button1BindTextArea { w x y } {
 
     set dndreallystarted "false"
     # block selection not supported: collapse it to its first range
-    if {[gettaselind $w single] != ""} {
-        if { [$w compare sel.first <= [$w index @$x,$y]] && \
-             [$w compare [$w index @$x,$y] < sel.last] } {
+    set savedseli [gettaselind $w any]
+    if {$savedseli != ""} {
+        if {$mouseoversel} {
             set dndinitiated "true"
-            set savedseli1 [$w index sel.first]
-            set savedseli2 [$w index sel.last ]
-            set savedsel [$w get sel.first sel.last]
+            set savedsel [gettatextstring $w $savedseli]
             stopcursorblink
             dnd drag $w -actions {copy move}
             # (Windows) dnd drag returns only after the drop action (in case

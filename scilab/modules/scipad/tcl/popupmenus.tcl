@@ -15,7 +15,8 @@ proc showpopup2 {} {
         # about block selections: they are collapsed to their first range
         # (line) before trying to match them against the regexp
         if {$mouseoversel == "true"} {
-            set watchvar [string trim [gettaseltext $ta single]]
+            set selindices [gettaselind $ta single]
+            set watchvar [string trim [gettatextstring $ta $selindices]]
             regexp "\\A$snRE\\Z" $watchvar validwatchvar
         }
         if {[info exists validwatchvar]} {

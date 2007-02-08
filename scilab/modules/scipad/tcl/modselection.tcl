@@ -33,17 +33,24 @@ proc selectline {} {
     return $seltext
 }
 
-proc gettaseltext {textarea {supportmultiple "single"}} {
-# return the selected text if there is one in $textarea, or an empty string
-# if there is none
-# if there are multiple selections (this can only be the case for a block
-# selection), return the list of selected texts if $supportmultiple is
-# not set to "single"
-# about the optional input parameter supportmultiple, see header of proc
-# gettaselind
-# the X selection is not used nor changed, it's the sel tag of $textarea
-# that is checked
-    return [eval "$textarea get [gettaselind $textarea $supportmultiple]"]
+proc gettatextstring {ta indices} {
+# construct a single string from the text identified by $indices in textarea $ta
+# $indices is a list of $start $stop text widget indices
+# warning: this list is supposed to identify contiguous lines, i.e. a block
+#          selection
+    set prevsto [lindex $indices 1]
+    set fullstring [$ta get [lindex $indices 0] $prevsto]
+    foreach {sta sto} [lreplace $indices 0 1] {
+        # if there are multiple ranges, split the selected lines with
+        # a \n in the clipboard, but only if the range does not
+        # already have a trailing \n in the previous line
+        if {[$ta get "$prevsto-1c" $prevsto] != "\n"} {
+            append fullstring "\n"
+        }
+        append fullstring [$ta get $sta $sto]
+        set prevsto $sto
+    }
+    return $fullstring
 }
 
 proc gettaselind {textarea {supportmultiple "single"}} {
@@ -74,6 +81,20 @@ proc gettaselind {textarea {supportmultiple "single"}} {
         }
     }
     return $selranges
+}
+
+proc isposinsel {w x y} {
+# return true if the pixel position @$x,$y in textarea $w is strictly
+# inside the (possibly block) selection of textarea $w
+    set testpos [$w index @$x,$y]
+    set insel false
+    foreach {sta sto} [gettaselind $w any] {
+        if {[$w compare $sta < $testpos] && [$w compare $testpos < $sto]} {
+            set insel true
+            break
+        }
+    }
+    return $insel
 }
 
 proc startblockselection {w x y} {
@@ -166,7 +187,7 @@ proc selectblock {w x y} {
             set dlinfo [$w dlineinfo $sta]
             set linex [lindex $dlinfo 0]
             set linewidth [lindex $dlinfo 2]
-            if {[expr {$linex+$linewidth}] < $anchorx} {
+            if {[$w compare [TextClosestGap_scipad $w [expr {$linex+$linewidth}] $i] <= $sta]} {
                 # the line is shorter than the block left limit
                 # in this case, tag the \n at the end of this line
                 # note that the test above works even if the textarea

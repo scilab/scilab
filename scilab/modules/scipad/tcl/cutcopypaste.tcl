@@ -107,21 +107,8 @@ proc cuttext {} {
 
     # now cut it! note that tk_textCut being designed to work with a
     # single range selection, this command cannot be used here directly
-    set prevsto [lindex $selindices 1]
-	clipboard clear -displayof $textareacur
-    clipboard append -displayof $textareacur \
-        [$textareacur get [lindex $selindices 0] $prevsto]
-    foreach {sta sto} [lreplace $selindices 0 1] {
-        # if there is a block selection, split the selected lines with
-        # a \n in the clipboard, but only if the selection does not
-        # already have a trailing \n in the previous line
-        if {[$textareacur get "$prevsto-1c" $prevsto] != "\n"} {
-            clipboard append -displayof $textareacur "\n"
-        }
-        clipboard append -displayof $textareacur \
-            [$textareacur get $sta $sto]
-        set prevsto $sto
-    }
+    sendtoclipboard $textareacur $selindices
+
     # text deletion must be done at once and not range by range!
 	eval "$textareacur delete $selindices"
 
@@ -153,23 +140,18 @@ proc copytext {} {
 
     # now copy it! note that tk_textCopy being designed to work with a
     # single range selection, this command cannot be used here directly
-    set prevsto [lindex $selindices 1]
-	clipboard clear -displayof $textareacur
-    clipboard append -displayof $textareacur \
-        [$textareacur get [lindex $selindices 0] $prevsto]
-    foreach {sta sto} [lreplace $selindices 0 1] {
-        # if there is a block selection, split the selected lines with
-        # a \n in the clipboard, but only if the selection does not
-        # already have a trailing \n in the previous line
-        if {[$textareacur get "$prevsto-1c" $prevsto] != "\n"} {
-            clipboard append -displayof $textareacur "\n"
-        }
-        clipboard append -displayof $textareacur \
-            [$textareacur get $sta $sto]
-        set prevsto $sto
-    }
+    sendtoclipboard $textareacur $selindices
 
     restorecursorblink ; # see comments in proc puttext
+}
+
+proc sendtoclipboard {ta indices} {
+# copy in the clipboard the text identified by $indices in textarea $ta
+# $indices is a list of $start $stop text widget indices
+# warning: this list is supposed to identify contiguous lines, i.e. a block
+#          selection
+	clipboard clear -displayof $ta
+    clipboard append -displayof $ta [gettatextstring $ta $indices]
 }
 
 proc pastetext {} {
