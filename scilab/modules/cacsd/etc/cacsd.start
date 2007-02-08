@@ -6,7 +6,7 @@
 load('SCI/modules/cacsd/macros/lib');
 // ====================================================================
 //add help chapter
-exec(SCI+'/modules/arnoldi/help/'+getlanguage()+'/addchapter.sce');
+exec(SCI+'/modules/cacsd/help/'+getlanguage()+'/addchapter.sce');
 
 path = get_absolute_file_path('cacsd.start');
 path = getshortpathname(path);
