@@ -7,9 +7,6 @@
 
   <TYPE>Scilab Function</TYPE>
 
-  <DATE>$LastChangedDate: 2006-09-10 20:58:00 +0200 (dim., 10 sept. 2006)
-  $</DATE>
-
   <SHORT_DESCRIPTION name="halt">stop execution</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
@@ -21,6 +18,10 @@
   <DESCRIPTION>
     <P>stops execution until something is entered in the keyboard.</P>
   </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[halt('Press a key')
+
+halt()]]></EXAMPLE>
 
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
