@@ -14,21 +14,21 @@
       <PARAM_ITEM>
         <PARAM_NAME>hypIn</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: hypermatrice ou matrice rÃ©elle.</SP>
+          <SP>: hypermatrice ou matrice réelle.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
         <PARAM_NAME>hypOut</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: hypermatrcex ou matrice rÃ©elle.</SP>
+          <SP>: hypermatrcex ou matrice réelle.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
     <P> Elimine les dimensions de type "singleton" d'une hypermatrice,
-    c'est-Ã -dire toutes les dimensions de taille 1.
-    Les matrices sont quant Ã  elles inchangÃ©es. </P>
+    c'est-à -dire toutes les dimensions de taille 1.
+    Les matrices sont quant à  elles inchangées. </P>
   </DESCRIPTION>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
