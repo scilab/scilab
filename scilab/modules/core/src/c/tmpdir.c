@@ -1,9 +1,9 @@
-/* Copyright INRIA/ENPC */
-
-#include "machine.h"
+/*-----------------------------------------------------------------------------------*/
+/* Scilab */
+/*-----------------------------------------------------------------------------------*/
 #include <stdio.h>
-
-
+#include "machine.h"
+#include "../../../io/includes/createdir.h"
 #include "MALLOC.h" /* MALLOC */
 
 #if _MSC_VER
@@ -28,15 +28,13 @@ extern  char  *getenv();
 #endif
 #include "prompt.h"
 #include "tmpdir.h"
-
+/*-----------------------------------------------------------------------------------*/
 static char tmp_dir[256],buf[256];
-
-
-/****************************
- * creates a tmp dir for a scilab session 
- * and fixes the TMPDIR env variable
- ****************************/
-
+/*-----------------------------------------------------------------------------------*/
+/**
+* creates a tmp dir for a scilab session 
+* and fixes the TMPDIR env variable
+*/
 void C2F(settmpdir)(void)
 {
 #if _MSC_VER
@@ -82,114 +80,29 @@ void C2F(settmpdir)(void)
   }
 #else 
   sprintf(tmp_dir,"/tmp/SD_%d_",(int) getpid());
-  sprintf(buf,"umask 000;if test ! -d %s; then mkdir %s; fi ",tmp_dir,tmp_dir);
-  system(buf);
+  CreateDir(tmp_dir) ;
 #endif 
   sprintf(buf,"TMPDIR=%s",tmp_dir);
   putenv(buf);
     }
 }
-
-/****************************
- * get a reference to tmp_dir 
- ****************************/
-
+/*-----------------------------------------------------------------------------------*/
+/**
+* get a reference to tmp_dir 
+*/
 char *get_sci_tmp_dir(void)
 {
   /* just in case */
   C2F(settmpdir)();
   return tmp_dir;
 }
-
-
-#if _MSC_VER
-/* Remove directory and subdirectories */
-/* A.C INRIA 2005 */
-int DeleteDirectory(char *refcstrRootDirectory)
-{
-	BOOL bDeleteSubdirectories=TRUE;
-	BOOL bSubdirectory = FALSE;
-	HANDLE hFile;
-	char *strFilePath=NULL;
-	char *strPattern=NULL;
-	WIN32_FIND_DATA FileInformation;
-	DWORD dwError;
-
-	strPattern = MALLOC(sizeof(char)*(strlen(refcstrRootDirectory)+5));
-	sprintf(strPattern,"%s\\*.*",refcstrRootDirectory);
-
-	hFile = FindFirstFile(strPattern, &FileInformation);
-	if (strPattern) { FREE(strPattern);strPattern=NULL;}
-
-	if(hFile != INVALID_HANDLE_VALUE)
-	{
-		do
-		{
-			if(FileInformation.cFileName[0] != '.')
-			{
-				if (strFilePath) {FREE(strFilePath);strFilePath=NULL;}
-				strFilePath = MALLOC(sizeof(char)*(strlen(refcstrRootDirectory)+5+strlen(FileInformation.cFileName)));
-				sprintf(strFilePath,"%s\\%s",refcstrRootDirectory,FileInformation.cFileName);
-
-				if(FileInformation.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
-				{
-					if(bDeleteSubdirectories)
-					{
-						int iRC = DeleteDirectory(strFilePath);
-						if(iRC) return iRC;
-					}
-					else bSubdirectory = TRUE;
-				}
-				else
-				{
-					if(SetFileAttributes(strFilePath,FILE_ATTRIBUTE_NORMAL) == FALSE) return GetLastError();
-					if(DeleteFile(strFilePath) == FALSE) return GetLastError();
-				}
-			}
-		} while(FindNextFile(hFile, &FileInformation) == TRUE);
-
-		FindClose(hFile);
-
-		dwError = GetLastError();
-		if(dwError != ERROR_NO_MORE_FILES) return dwError;
-		else
-		{
-			if(!bSubdirectory)
-			{
-				if(SetFileAttributes(refcstrRootDirectory,FILE_ATTRIBUTE_NORMAL) == FALSE) return GetLastError();
-				if(RemoveDirectory(refcstrRootDirectory) == FALSE)	return GetLastError();
-			}
-		}
-	}
-
-	if (strFilePath) {FREE(strFilePath);strFilePath=NULL;}
-	if (strFilePath) {FREE(strFilePath);strFilePath=NULL;}
-
-	return 0;
-}
-#endif
-
-/*************************************************
- * remove TMPDIR and dynamic link temporary files 
- *************************************************/
-
-#if (defined(hppa))
-  extern void hppa_sci_unlink_shared();
-#endif
-
+/*-----------------------------------------------------------------------------------*/
+/**
+* remove TMPDIR directory
+*/
 void C2F(tmpdirc)(void)
 {
   char *tmp_dir2 = get_sci_tmp_dir(); 
-#ifdef _MSC_VER 
-  DeleteDirectory(tmp_dir2);
-#else 
-#if (defined(hppa))
-  hppa_sci_unlink_shared();
-#endif
-  sprintf(buf,"rm -f -r %s >/dev/null  2>/dev/null",tmp_dir2);
-  system(buf);
-  sprintf(buf,"rm -f -r /tmp/%d.metanet.* > /dev/null  2>/dev/null",
-	  (int) getpid());
-  system(buf);
-#endif 
+  RemoveDir(tmp_dir2);
 }
+/*-----------------------------------------------------------------------------------*/
