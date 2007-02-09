@@ -646,6 +646,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\SCIHOME.c"
+				>
+			</File>
+			<File
 				RelativePath=".\scimem.c"
 				>
 			</File>
@@ -832,6 +836,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\Scierror.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\SCIHOME.h"
 				>
 			</File>
 			<File

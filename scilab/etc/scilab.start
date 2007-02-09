@@ -84,8 +84,7 @@ end
 clear stripblanks modules index i add_demo
 
 // Create some configuration variables ================================
-[home,SCIHOME]=sethomedirectory();
-clear sethomedirectory ExistScilabHomeDirectory CreateScilabHomeDirectory
+home=getenv('HOME',SCI);
 if MSDOS then
   // path of scilab main directory for Windows
   WSCI=getlongpathname(pathconvert(SCI,%f,%f,'w'))

@@ -16,6 +16,7 @@
 #include "setgetSCIpath.h"
 #include "MALLOC.h"
 #include "inisci-c.h"
+#include "SCIHOME.h"
 /*************************************************************************************************/
 static BOOL WITH_GUI=TRUE;
 /*************************************************************************************************/
@@ -144,6 +145,39 @@ int C2F(getsci)(char *buf,int *nbuf,long int lbuf)
 	strcpy(buf,pathtmp);
 	*nbuf = strlen(buf);
 	if (pathtmp) {FREE(pathtmp);pathtmp=NULL;}
+	return 0;
+}
+/*************************************************************************************************/
+/**
+* Get the SCIHOME path and initialize the scilab environment path
+*
+*/
+int C2F(getscihome)(char *buf,int *nbuf,long int lbuf)
+{
+	char *pathtmp=NULL;
+	char *SCIHOME=getSCIHOME();
+	if (strcmp(SCIHOME,"empty_SCIHOME")==0)
+	{
+		if (!setSCIHOME())
+		{
+			#if  _MSC_VER
+				MessageBox(NULL,"SCIHOME not defined.","Warning",MB_ICONWARNING);
+			#else
+				printf("SCIHOME not defined.\n");
+			#endif
+			exit(1);
+		}
+		else
+		{
+			if (SCIHOME) {FREE(SCIHOME);SCIHOME=NULL;}
+		}
+	}
+
+	pathtmp=getSCIHOME();
+	strcpy(buf,pathtmp);
+	*nbuf = strlen(buf);
+	if (pathtmp) {FREE(pathtmp);pathtmp=NULL;}
+
 	return 0;
 }
 /*************************************************************************************************/

@@ -51,6 +51,7 @@ c     integer graphicsmodels
       
       character bufcomp*(bsiz)
       character bufsci*(bsiz)
+      character bufscihome*(bsiz)
       character buftmp*(bsiz)
 
 c     
@@ -243,8 +244,8 @@ c     . hard predefined variables
       lstk(gbot)=lstk(gtop+1)+vsizg-1
 c
 c     17 is the number of predefined variables 
-c     18 - 1 blank not include
-      bot=isiz-17
+c     19 - 1 blank not include
+      bot=isiz-18
       bbot=bot
       bot0=bot
 c     memory requested for predefined variables 
@@ -252,10 +253,11 @@ c     mxn bmat -> size : sadr(2+m*n+2)
 c     $        -> size : sadr(10-1) + 2 
 c     mxn mat  -> size : sadr(3)+m*n*(it+1)
 c     string   -> size : sadr(6+nchar)+1
-c     3 strings
+c     4 strings
 c     8 booleans
       call getcomp(bufcomp,nbcomp)
       call getsci(bufsci,nbsci)
+      call getscihome(bufscihome,nbscihome)
       call gettmpdir(buftmp,nbtmpdir)
       lpvar = (sadr(10-1) + 2) 
      $     + 8*sadr(5) 
@@ -263,6 +265,7 @@ c     8 booleans
      $     + 2*(sadr(3)+2)
      $     + 1*(sadr(6+nbcomp)+1)
      $     + 1*(sadr(6+nbsci)+1)
+     $     + 1*(sadr(6+nbscihome)+1)
      $     + 1*(sadr(6+nbtmpdir)+1)
 
       l=vsizr-lpvar
@@ -278,6 +281,11 @@ c     . SCI
       call cvname(idloc,vname,0)
       call cresmatvar(idloc,k,bufsci,nbsci)
       k=k+1
+c     . SCIHOME
+      vname =  "SCIHOME"
+      call cvname(idloc,vname,0)
+      call cresmatvar(idloc,k,bufscihome,nbscihome)
+      k=k+1      
 c     . TMPDIR
       vname = "TMPDIR"
       call cvname(idloc,vname,0)
