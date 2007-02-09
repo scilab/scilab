@@ -6,6 +6,12 @@
 ; cacsd module primitives
 ; Don't edit if you aren't sure
 ; --------------------------
+; Description
+; Columns : 
+; * 1 : Position in the table defined in modules/core/src/c/callinterf.h
+; * 2 : Position in the table defined in modules/<module>/sci_gateway/gw_<module>.c
+; * 3 : name of the Scilab function
+; --------------------------
 ;/* 1 gschur obsolete */
 ;/* 2 gspec obsolete */
 8 3 ereduc
