@@ -332,13 +332,12 @@
     <ITEMIZE>
       <ITEM label="Localisation:">
         <SP>Scipad menues and messages can be translated to several languages.
-        By default, they appear in the language of Scilab, which is either
-        English or French (see <LINK>setlanguage</LINK>), but other languages
+        By default they appear in English, but other languages
         are being added. The localization in effect can be selected with the
         menu Options/Locale, and is remembered across sessions. Currently, the
-        supported languages are: "de" (German) ,"eng" (English), "es"
-        (Spanish), "fr" (French), "it" (Italian), "no" (Norwegian), "pl"
-        (Polish), "se" (Swedish).</SP>
+        supported languages are: "da" (Danish), "de" (German) ,"eng" (English),
+        "es" (Spanish), "fr" (French), "it" (Italian), "no" (Norwegian), "pl"
+        (Polish), "se" (Swedish), "zh_tw" (Chinese-Taiwan).</SP>
 
         <SP>Further languages can be added by creating the proper translation
         file and putting it in <VERB>SCI/modules/scipad/tcl/msg_files/</VERB>.
