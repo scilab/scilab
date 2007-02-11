@@ -7,7 +7,7 @@
 
   <TYPE>Java Interface</TYPE>
 
-  <DATE>$LastChangedDate$</DATE>
+  <DATE>$LastChangedDate: 2006-08-03 16:16:36 +0200 (jeu., 03 août 2006)$</DATE>
 
   <SHORT_DESCRIPTION name="SciStringArray">Classe to use String matrix in
   Scilab.</SHORT_DESCRIPTION>
@@ -21,7 +21,8 @@
     Constructor</P>
 
     <P><VERB>public SciStringArray(String name,int r,int c)</VERB> :
-    Constructor</P>
+    Constructor (if name exists in Scilab and has the same type and
+    dimensions, variable is imported from Scilab)</P>
 
     <P><VERB>public SciStringArray(String name,int r,int c,String [] x
     )</VERB> : Constructor</P>
@@ -49,7 +50,7 @@
     specific element of scilab object</P>
   </DESCRIPTION>
 
-<EXAMPLE><![CDATA[ // See SCI/modules/Javasci/examples directory]]></EXAMPLE>
+  <EXAMPLE><![CDATA[ // See SCI/modules/Javasci/examples directory]]></EXAMPLE>
 
   <SEE_ALSO>
     <SEE_ALSO_ITEM>

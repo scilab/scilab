@@ -12,6 +12,12 @@ extern "C" {
 /*! private static native void Initialize(); */
 JNIEXPORT void JNICALL Java_javasci_SciBooleanArray_Initialize (JNIEnv *env, jclass cl);
 
+/*! private native int getRowFromScilab(String name); */
+JNIEXPORT jint JNICALL Java_javasci_SciBooleanArray_getRowFromScilab(JNIEnv *, jobject, jstring);
+
+/*! private native int getColFromScilab(String name); */
+JNIEXPORT jint JNICALL Java_javasci_SciBooleanArray_getColFromScilab(JNIEnv *, jobject, jstring);
+
 /*! public native boolean Job(String job); */
 JNIEXPORT jboolean JNICALL Java_javasci_SciBooleanArray_Job (JNIEnv *, jobject, jstring);
 

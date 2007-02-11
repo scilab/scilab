@@ -18,6 +18,8 @@ class  Exemple10 {
   	System.out.println("----------------------------------------------------");
   	System.out.println("S= "+s.getRealPartData()+"  "+s.getImaginaryPartData()+"  ");
   	System.out.println("----------------------------------------------------");
+  	SciComplex Ap = new SciComplex("A");
+  	Ap.disp();
   }
 }
 

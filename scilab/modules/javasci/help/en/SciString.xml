@@ -7,22 +7,22 @@
 
   <TYPE>Java Interface</TYPE>
 
-  <DATE>$LastChangedDate$</DATE>
+  <DATE>$LastChangedDate: 2006-08-03 16:16:36 +0200 (jeu., 03 août 2006)$</DATE>
 
   <SHORT_DESCRIPTION name="SciString">Class to use String object in
   Scilab.</SHORT_DESCRIPTION>
 
   <DESCRIPTION>
-    <P>
-      <IMG src="../images/java/SciStringClass.gif" />
-    </P>
+    <P><IMG src="../images/java/SciStringClass.gif"></IMG></P>
 
     <P>Method Summary :</P>
 
     <P><VERB>public SciString(String name,SciString Obj) </VERB> :
     Constructor</P>
 
-    <P><VERB>public SciString(String name) </VERB> : Constructor</P>
+    <P><VERB>public SciString(String name) </VERB> : Constructor (if name
+    exists in Scilab and has the same type, variable is imported from
+    Scilab)</P>
 
     <P><VERB>public String getName()</VERB> : Get Name of scilab object</P>
 

@@ -18,6 +18,20 @@ public class SciBooleanArray implements java.io.Serializable
   /**
   * Initialize Scilab interface
   */
+  
+  private native int getRowFromScilab(String name);
+  /**
+  * internal method to know dim (Row) in scilab 
+  * returns >= 0 OK
+  * returns -1 name not exist
+  */
+  
+  private native int getColFromScilab(String name);
+  /**
+  * internal method to know dim (Col) in scilab
+  * returns >= 0 OK
+  * returns -1 name not exist
+  */
     
   public native boolean Job(String job);
   /**
@@ -70,9 +84,18 @@ public class SciBooleanArray implements java.io.Serializable
     this.n = c ;
     this.x = new boolean[r*c];
     this.name = name;
-   
-    for ( int i = 0 ; i < r*c ; i++)x[i]=false;
-    Send();
+    
+    if ( (Scilab.TypeVar(name) == 4) & 
+         (getRowFromScilab(name) == r) & 
+         (getColFromScilab(name) == c) )
+    {
+		Get();
+    }
+    else
+    {
+        for ( int i = 0 ; i < r*c ; i++)x[i]=false;
+        Send();
+    }
   }
  /********************************************************************************************************/  
   public SciBooleanArray(String name,int r,int c,boolean [] x )

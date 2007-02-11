@@ -58,22 +58,23 @@ JNIEXPORT jint JNICALL Java_javasci_SciComplexArray_getRowFromScilab(JNIEnv *env
 
 	if (C2F(objptr)((char*)cname,&lw,&fin,(unsigned long)strlen(cname)))
 	{
+		#define SCIMATRIXREALORCOMPLEXTYPE 1
 		#define COMPLEX 1
-		int Cmplx;
+
 		int *header=NULL; 
 		header = (int *)GetDataFromName((char *)cname);
-		Cmplx=header[3];
 
-		if (Cmplx == COMPLEX)
+
+		if ( SCIMATRIXREALORCOMPLEXTYPE == header[0] )
 		{
-			int cm,cn,lp;
-			if ( C2F(cmatcptr)((char *)cname, &cm, &cn, &lp, (unsigned long)strlen(cname))) 
+			int Cmplx=header[3];
+
+			if (Cmplx == COMPLEX)
 			{
-				row = cm;
+				row = header[1];
 			}
 		}
 	}
-
 	(*env)->ReleaseStringUTFChars(env, name , cname);
 
 	return row;
@@ -94,18 +95,19 @@ JNIEXPORT jint JNICALL Java_javasci_SciComplexArray_getColFromScilab(JNIEnv *env
 
 	if (C2F(objptr)((char*)cname,&lw,&fin,(unsigned long)strlen(cname)))
 	{
+		#define SCIMATRIXREALORCOMPLEXTYPE 1
 		#define COMPLEX 1
-		int Cmplx;
+
 		int *header=NULL; 
 		header = (int *)GetDataFromName((char *)cname);
-		Cmplx=header[3];
 
-		if (Cmplx == COMPLEX)
+		if ( SCIMATRIXREALORCOMPLEXTYPE == header[0] )
 		{
-			int cm,cn,lp;
-			if ( C2F(cmatcptr)((char *)cname, &cm, &cn, &lp, (unsigned long)strlen(cname))) 
+			int Cmplx=header[3];
+
+			if (Cmplx == COMPLEX)
 			{
-				col = cn;
+				col = header[2];
 			}
 		}
 	}

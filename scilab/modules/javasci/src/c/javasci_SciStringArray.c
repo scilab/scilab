@@ -11,6 +11,64 @@ JNIEXPORT void JNICALL Java_javasci_SciStringArray_Initialize (JNIEnv *env, jcla
 	if ( GetInterfState() == 0) { EnableInterf(); Initialize();} 
 }
 /********************************************************************************************************/
+/* private native int getRowFromScilab(String name); */
+JNIEXPORT jint JNICALL Java_javasci_SciStringArray_getRowFromScilab(JNIEnv *env , jobject obj_this, jstring name)
+{
+	int lw; int fin;
+	const char *cname=NULL;
+	jint row=-1;
+
+	/* get the class */
+	jclass class_Mine = (*env)->GetObjectClass(env, obj_this);
+
+	/* get the field value */
+	cname = (*env)->GetStringUTFChars(env, name, NULL);
+
+	if (C2F(objptr)((char*)cname,&lw,&fin,(unsigned long)strlen(cname)))
+	{
+		#define SCISTRINGTYPE 10
+		int *header=NULL; 
+		header = (int *)GetDataFromName((char *)cname);
+		if (header[0] == SCISTRINGTYPE)
+		{
+			row = header[1];
+		}
+	}
+
+	(*env)->ReleaseStringUTFChars(env, name , cname);
+
+	return row;
+}
+/********************************************************************************************************/
+/* private native int getColFromScilab(String name); */
+JNIEXPORT jint JNICALL Java_javasci_SciStringArray_getColFromScilab(JNIEnv *env , jobject obj_this, jstring name)
+{
+	int lw; int fin;
+	const char *cname=NULL;
+	jint col=-1;
+
+	/* get the class */
+	jclass class_Mine = (*env)->GetObjectClass(env, obj_this);
+
+	/* get the field value */
+	cname = (*env)->GetStringUTFChars(env, name, NULL);
+
+	if (C2F(objptr)((char*)cname,&lw,&fin,(unsigned long)strlen(cname)))
+	{
+		#define SCISTRINGTYPE 10
+		int *header=NULL; 
+		header = (int *)GetDataFromName((char *)cname);
+		if (header[0] == SCISTRINGTYPE)
+		{
+			col = header[2];
+		}
+	}
+
+	(*env)->ReleaseStringUTFChars(env, name , cname);
+
+	return col;
+}
+/********************************************************************************************************/
 /* public native void Job(String job); */
 JNIEXPORT void JNICALL Java_javasci_SciStringArray_Job(JNIEnv *env , jobject obj_this, jstring job)
 /********************************************************************************************************/

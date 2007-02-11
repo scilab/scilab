@@ -16,6 +16,20 @@ public class SciStringArray implements java.io.Serializable
   * Initialize Scilab interface
   */
   
+  private native int getRowFromScilab(String name);
+  /**
+  * internal method to know dim (Row) in scilab 
+  * returns >= 0 OK
+  * returns -1 name not exist
+  */
+  
+  private native int getColFromScilab(String name);
+  /**
+  * internal method to know dim (Col) in scilab
+  * returns >= 0 OK
+  * returns -1 name not exist
+  */
+  
   public native boolean Job(String job);
   /**
   * Execute a command in Scilab
@@ -51,9 +65,18 @@ public class SciStringArray implements java.io.Serializable
     this.n = c ;
     this.x = new String[r*c];
     this.name = name;
-   
-    for ( int i = 0 ; i < m*n ; i++) x[i]="";
-    Send();
+    
+    if ( (Scilab.TypeVar(name) == 10) & 
+         (getRowFromScilab(name) == c) & 
+         (getColFromScilab(name) == r) )
+    {
+		Get();
+    }
+    else
+    {
+        for ( int i = 0 ; i < r*c ; i++)x[i]="";
+        Send();
+    }
   }
  /********************************************************************************************************/  
   public SciStringArray(String name,int r,int c,String [] x )

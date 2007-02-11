@@ -12,6 +12,12 @@ extern "C" {
 /* private static native void Initialize(); */
 JNIEXPORT void JNICALL Java_javasci_SciStringArray_Initialize (JNIEnv *env, jclass cl);
 
+/*! private native int getRowFromScilab(String name); */
+JNIEXPORT jint JNICALL Java_javasci_SciStringArray_getRowFromScilab(JNIEnv *, jobject, jstring);
+
+/*! private native int getColFromScilab(String name); */
+JNIEXPORT jint JNICALL Java_javasci_SciStringArray_getColFromScilab(JNIEnv *, jobject, jstring);
+
 /* public native void Job(String job); */
 JNIEXPORT void JNICALL Java_javasci_SciStringArray_Job (JNIEnv *, jobject, jstring);
 

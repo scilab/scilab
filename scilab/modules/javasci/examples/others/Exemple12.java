@@ -23,6 +23,9 @@ class  Exemple12 {
     Scilab.Exec("P=~D;");
     p.disp();
     System.out.println("----------------------------------------------------");
+    SciBoolean dp = new SciBoolean("D");
+    dp.disp();
+    
     Scilab.Finish();
   }
 }

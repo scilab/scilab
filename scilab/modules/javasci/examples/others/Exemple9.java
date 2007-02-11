@@ -27,6 +27,11 @@ class  Exemple9 {
   	SciComplexArray s = new SciComplexArray("S",1,4,new double [] {1,2,3,4},new double [] {5,6,7,8});
   	s.disp();
   	System.out.println("----------------------------------------------------");
+  	SciComplexArray sp = new SciComplexArray("S",1,4);
+  	sp.disp();
+  	System.out.println("----------------------------------------------------");
+  	Scilab.Finish();
+  	
   }
 }
 

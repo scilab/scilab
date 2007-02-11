@@ -22,6 +22,9 @@ class  Exemple2 {
     // on fait executer une instruction Scilab 
     Scilab.Exec("disp(H)");
     
+    SciDoubleArray hp = new SciDoubleArray("H",2,2);
+    hp.disp();
+    
     Scilab.Finish();
        
   }

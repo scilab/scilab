@@ -47,6 +47,9 @@ class  Exemple5 {
 		SciStringArray D = new SciStringArray("D",2,4,d);
 		D.disp();
 		
+		SciStringArray Dp = new SciStringArray("D",2,4);
+		Dp.disp();
+		
 		Scilab.Finish();
 
   	

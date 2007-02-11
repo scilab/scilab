@@ -25,6 +25,9 @@ class  Exemple3 {
   b.disp();
   c.disp();
   
+  SciDoubleArray d = new SciDoubleArray("C",4,1);
+  d.disp();
+  
   Scilab.Finish();
   
 	}

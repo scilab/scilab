@@ -7,7 +7,7 @@
 
   <TYPE>Java Interface</TYPE>
 
-  <DATE>$LastChangedDate: 2006-08-03 16:16:36 +0200 (jeu., 03 août 2006) $</DATE>
+  <DATE>$LastChangedDate: 2006-08-03 16:16:36 +0200 (jeu., 03 août 2006)  $</DATE>
 
   <SHORT_DESCRIPTION name="SciBoolean">Class to use boolean object with
   scilab</SHORT_DESCRIPTION>
@@ -20,7 +20,9 @@
     <P><VERB>public SciBoolean(String name,SciBoolean Obj)</VERB> :
     Constructor</P>
 
-    <P><VERB>public SciBoolean(String name) </VERB>: Constructor</P>
+    <P><VERB>public SciBoolean(String name) </VERB>: Constructor (if name
+    exists in Scilab and has the same type, variable is imported from
+    Scilab)</P>
 
     <P><VERB>public SciBoolean(String name,boolean Value )</VERB> :
     Constructor</P>
@@ -41,7 +43,7 @@
     <P><VERB>public void disp()</VERB> : disp object</P>
   </DESCRIPTION>
 
-<EXAMPLE><![CDATA[ // See SCI/modules/Javasci/examples directory]]></EXAMPLE>
+  <EXAMPLE><![CDATA[ // See SCI/modules/Javasci/examples directory]]></EXAMPLE>
 
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
@@ -51,7 +53,7 @@
     <SEE_ALSO_ITEM>
       <LINK>SciBooleanArray</LINK>
     </SEE_ALSO_ITEM>
-    
+
     <SEE_ALSO_ITEM>
       <LINK>SciDoubleArray</LINK>
     </SEE_ALSO_ITEM>

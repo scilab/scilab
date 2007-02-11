@@ -7,7 +7,7 @@
 
   <TYPE>Java Interface</TYPE>
 
-  <DATE>$LastChangedDate: 2006-08-03 16:16:36 +0200 (jeu., 03 août 2006) $</DATE>
+  <DATE>$LastChangedDate: 2006-08-03 16:16:36 +0200 (jeu., 03 août 2006)$</DATE>
 
   <SHORT_DESCRIPTION name="SciBooleanArray">Class to use boolean matrix in
   Scilab.</SHORT_DESCRIPTION>
@@ -21,7 +21,8 @@
     Constructor</P>
 
     <P><VERB>public SciBooleanArray(String name,int r,int c)</VERB> :
-    Constructor</P>
+    Constructor (if name exists in Scilab and has the same type and
+    dimensions, variable is imported from Scilab)</P>
 
     <P><VERB>public SciBooleanArray(String name,int r,int c,boolean [] x
     )</VERB> : Constructor</P>
@@ -60,7 +61,7 @@
     <SEE_ALSO_ITEM>
       <LINK>SciBoolean</LINK>
     </SEE_ALSO_ITEM>
-    
+
     <SEE_ALSO_ITEM>
       <LINK>SciDouble</LINK>
     </SEE_ALSO_ITEM>
