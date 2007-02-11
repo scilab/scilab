@@ -47,6 +47,8 @@ proc findtextdialog {typ} {
         [gettextareacur] tag raise foundtext fakeselection
         [gettextareacur] tag raise replacedtext fakeselection
         set seltexts [gettatextstring [gettextareacur] $selindices]
+    } else {
+        set seltexts ""
     }
 
     # entry fields

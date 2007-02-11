@@ -47,6 +47,7 @@ sbind $pad <F3> {findnext}
 sbind Text <Control-w> {cuttext}
 sbind $pad <Alt-w>     {copytext}
 sbind Text <Control-y> {pastetext}
+sbind Text <Control-Y> {bockpastetext}
 sbind Text <Control-d> {deletetext}
 
 #cut-copy-paste for entries
