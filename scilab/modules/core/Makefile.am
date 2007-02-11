@@ -67,7 +67,8 @@ src/c/loadversion.c \
 src/c/version.c \
 src/c/stackinfo.c \
 src/c/scirun.c \
-src/c/SCIHOME.c
+src/c/SCIHOME.c \
+src/c/warningmode.c
 
 
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f \

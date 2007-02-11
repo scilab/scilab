@@ -2,6 +2,8 @@
 // Allan CORNET
 // INRIA 2006
 // ------------------------------------
+//warning('off'); // disable warnings
+// ------------------------------------
 getf(SCI+'/modules/fileio/macros/fileparts.sci');
 getf(SCI+'/modules/core/macros/getshell.sci');
 getf(SCI+'/modules/fileio/macros/pathconvert.sci');

@@ -6,8 +6,15 @@ c     Copyright INRIA
       include 'stack.h'
       character ch*4,line*140
       integer p,sadr
+      integer warningmode
+
 c
       sadr(l)=(l/2)+1
+      
+c     disable messages ? ? ?      
+      call iswarningon(warningmode)
+      if (warningmode .eq. 0) return
+      
 c     
 c     le  message  de numero n correspond a l'etiquette logique 100+n
 c     
