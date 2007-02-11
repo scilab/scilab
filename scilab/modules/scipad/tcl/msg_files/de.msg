@@ -263,7 +263,8 @@
                     Gunnar Lindholm 2005.\n Norwegische Übersetzung von\
                     Torbjørn Pettersen 2005.\n Deutsche Übersetzung von Dirk\
                     Reusch 2005, 2006.\n Polnische Übersetzung von Bartosz\
-                    Kosiorek 2005."
+                    Kosiorek 2005.\n Chinesische Übersetzung von Yung-Jang \
+                    Lee 2007. Dänische Übersetzung von Kim B. Hansen 2007."
 
 
 # infomessages.tcl
