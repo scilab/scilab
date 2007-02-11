@@ -18,11 +18,13 @@
                     German translation by Dirk Reusch 2005.\n\
                     Polish translation by Bartosz Kosiorek 2005.\n\
                     Spanish translation by Juan Nicolás Quesada 2006.\n\
-                    Chinese translation by Yung-Jang Lee 2007."
+                    Chinese translation by Yung-Jang Lee 2007.\n\
+                    Danish translation by Kim B. Hansen 2007."
 
 
 # menues.tcl 
   # locale names (common)
+        ::msgcat::mcset eng "da locale (da)" "Dansk (da)"
         ::msgcat::mcset eng "de locale (de)" "Deutsch (de)"
         ::msgcat::mcset eng "fr locale (fr)" "Français (fr)"
         ::msgcat::mcset eng "eng locale (eng)" "English (eng)"

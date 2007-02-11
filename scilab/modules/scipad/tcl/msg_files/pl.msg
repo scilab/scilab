@@ -383,6 +383,7 @@
 ::msgcat::mcset pl "&Recent files" "O&statnie pliki"
 ::msgcat::mcset pl "&Locale" "&J\u0119zyk"
 # locale names (common)
+::msgcat::mcset pl "da locale (da)" "Dansk (da)"
 ::msgcat::mcset pl "de locale (de)" "Deutsch (de)"
 ::msgcat::mcset pl "fr locale (fr)" "Fran\u00E7ais (fr)"
 ::msgcat::mcset pl "eng locale (eng)" "English (eng)"

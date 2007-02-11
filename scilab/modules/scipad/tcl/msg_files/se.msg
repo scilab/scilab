@@ -281,6 +281,7 @@
     ::msgcat::mcset se "&Recent files" "S&enaste filerna"
     ::msgcat::mcset se "&Locale" "&Språk"
   # locale names (common)
+        ::msgcat::mcset se "da locale (da)" "Dansk (da)"
         ::msgcat::mcset se "de locale (de)" "Deutsch (de)"
         ::msgcat::mcset se "fr locale (fr)" "Français (fr)"
         ::msgcat::mcset se "eng locale (eng)" "English (eng)"

@@ -378,6 +378,7 @@
 ::msgcat::mcset es "&Backup files depth" "&Versión de las copias de seguridad"
 ::msgcat::mcset es "&Locale" "&Localización"
 # locale names (common)
+::msgcat::mcset es "da locale (da)" "Dansk (da)"
 ::msgcat::mcset es "de locale (de)" "Deutsch (de)"
 ::msgcat::mcset es "fr locale (fr)" "Français (fr)"
 ::msgcat::mcset es "eng locale (eng)" "English (eng)"

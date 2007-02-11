@@ -392,6 +392,7 @@
 ::msgcat::mcset de "&Backup files depth" "A&nzahl der Sicherungskopien"
 ::msgcat::mcset de "&Locale" "S&prachumgebung"
 # locale names (common)
+::msgcat::mcset de "da locale (da)" "Dansk (da)"
 ::msgcat::mcset de "de locale (de)" "Deutsch (de)"
 ::msgcat::mcset de "fr locale (fr)" "Français (fr)"
 ::msgcat::mcset de "eng locale (eng)" "English (eng)"

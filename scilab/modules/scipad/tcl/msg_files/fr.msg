@@ -475,6 +475,7 @@
     ::msgcat::mcset fr "&Backup files depth" "Profond&eur de sauvegarde"
     ::msgcat::mcset fr "&Locale" "&Langue"
         # locale names (common)
+        ::msgcat::mcset fr "da locale (da)" "Dansk (da)"
         ::msgcat::mcset fr "de locale (de)" "Deutsch (de)"
         ::msgcat::mcset fr "fr locale (fr)" "Français (fr)"
         ::msgcat::mcset fr "eng locale (eng)" "English (eng)"

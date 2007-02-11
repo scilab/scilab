@@ -396,7 +396,7 @@
                     polacco, Bartosz Kosiorek 2005; \n   svedese, Gunnar\
                     Lindholm 2005; \n   tedesco, Dirk Reusch 2005; \n  \
                     spagnolo, Juan Nicolás Quesada 2006;\n   taiwanese, \
-                    Yung-Jang Lee 2007."
+                    Yung-Jang Lee 2007;\n   danese, Kim B. Hansen, 2007."
 
 
 # infomessages.tcl
@@ -538,6 +538,7 @@
 ::msgcat::mcset it "&Backup files depth" "Numero &versioni backup"
 ::msgcat::mcset it "&Locale" "&Localizzazione"
 # locale names (common)
+::msgcat::mcset it "da locale (da)" "Dansk (da)"
 ::msgcat::mcset it "de locale (de)" "Deutsch (de)"
 ::msgcat::mcset it "fr locale (fr)" "Français (fr)"
 ::msgcat::mcset it "eng locale (eng)" "English (eng)"
