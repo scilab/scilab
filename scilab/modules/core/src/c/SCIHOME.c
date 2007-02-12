@@ -48,7 +48,7 @@ BOOL setSCIHOME(void)
 		#endif
 
 
-		if (ierr) {	return bOK; }
+		if (ierr) {return bOK; }
 		else
 		{
 			sprintf(USERPATHSCILAB,"%s%s%s",USERHOMESYSTEM,DIRSEPARATOR,BASEDIR);

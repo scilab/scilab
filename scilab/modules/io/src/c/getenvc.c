@@ -35,6 +35,7 @@ void C2F(getenvc)(int *ierr,char *var,char *buf,int *buflen,int *iflag)
 	{
 		strncpy(buf,local,*buflen);
 		*buflen = strlen(buf);
+		*ierr=0;
 	}
 	#endif
 }
