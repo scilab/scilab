@@ -46,9 +46,7 @@ BOOL CreateDir(const char* path)
 {
 	BOOL bOK=FALSE;
 	#ifndef _MSC_VER
-		struct stat statBuf;
-
-		if  (!ExistPath(path)) 
+		if  (!ExistDir(path)) 
 		{
 			if (mkdir(path, DIRMODE) == 0) 
 			{
