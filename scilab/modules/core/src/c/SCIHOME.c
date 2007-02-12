@@ -24,6 +24,7 @@ BOOL setSCIHOME(void)
 	int iflag=0;
 	
 	char SCIHOME[MAX_PATH];
+	char USERPATHSCILAB[MAX_PATH];
 	
 	C2F(getenvc)(&ierr,"SCIHOME",SCIHOME,&buflen,&iflag);
 
@@ -50,7 +51,8 @@ BOOL setSCIHOME(void)
 		if (ierr) {	return bOK; }
 		else
 		{
-			sprintf(SCIHOMEPATH,"%s%s%s%s%s",USERHOMESYSTEM,DIRSEPARATOR,BASEDIR,DIRSEPARATOR,SCI_VERSION_STRING);
+			sprintf(USERPATHSCILAB,"%s%s%s",USERHOMESYSTEM,DIRSEPARATOR,BASEDIR);
+			sprintf(SCIHOMEPATH,"%s%s%s",USERPATHSCILAB,DIRSEPARATOR,SCI_VERSION_STRING);
 		}
 	}
 	else
@@ -60,11 +62,12 @@ BOOL setSCIHOME(void)
 
 	if (!ExistDir(SCIHOMEPATH))
 	{
-		if (!CreateDir(SCIHOMEPATH))
+		if(!ExistDir(USERPATHSCILAB)) CreateDir(USERPATHSCILAB);
+		if (CreateDir(SCIHOMEPATH))
 		{
+			bOK=TRUE;
 			return bOK;
 		}
-		else bOK=TRUE;
 	}
 	else bOK=TRUE;
 	
