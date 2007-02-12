@@ -3,6 +3,7 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include <stdio.h>
+#include <string.h>
 #include "SCIHOME.h"
 #include "MALLOC.h"
 #include "version.h"

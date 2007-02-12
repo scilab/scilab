@@ -26,11 +26,7 @@ BOOL ExistDir(char * path)
 	#ifndef _MSC_VER
 		struct stat buf;
 		if (path == NULL) return FALSE;
-
-		if ( (stat (path, &buf)) && (S_ISDIR (buf.st_mode)) )
-		{
-			bOK=TRUE;
-		}
+		if (stat(path, &buf) == 0 && S_ISDIR(buf.st_mode)) bOK=TRUE;
 	#else
 		WIN32_FIND_DATA ffd;
 		HANDLE sh = FindFirstFile(path, &ffd);
