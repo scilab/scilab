@@ -189,7 +189,7 @@
                     Polish translation by Bartosz Kosiorek 2005.\n\
                     Spanish translation by Juan Nicol嫳 Quesada 2006\n\
                     中文繁體版李運璋  2006."
- 
+
 
 # db_watch.tcl
 ::msgcat::mcset zh_tw "Watch" "檢視"

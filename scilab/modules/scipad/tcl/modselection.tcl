@@ -143,15 +143,23 @@ proc selectblock {w x y} {
     set cornerx $x
     set cornery $y
 
-    $w mark set insert [TextClosestGap_scipad $w $cornerx $cornery]
+    # avoid border effects when the mouse goes outside of the textarea
+    if {$cornery < 1} {
+        set cornery 1
+    }
+    if {$cornery > [winfo height $w]} {
+        set cornery [winfo height $w]
+    }
 
     # possible cases at this point (A=anchor, C=corner):
     #    A      A     C      C    A    C    AC    CA
     #     C    C       A    A     C    A
+    set inverted false
     if {$cornery < $anchory} {
         set temp $cornery
         set cornery $anchory
         set anchory $temp
+        set inverted true
     }
     if {$cornerx < $anchorx} {
         set temp $cornerx
@@ -184,19 +192,28 @@ proc selectblock {w x y} {
         set sta [TextClosestGap_scipad $w $anchorx $i]
         set sto [TextClosestGap_scipad $w $cornerx $i]
         if {[$w compare $sta == $sto]} {
-            set dlinfo [$w dlineinfo $sta]
-            set linex [lindex $dlinfo 0]
-            set linewidth [lindex $dlinfo 2]
-            if {[$w compare [TextClosestGap_scipad $w [expr {$linex+$linewidth}] $i] <= $sta]} {
-                # the line is shorter than the block left limit
-                # in this case, tag the \n at the end of this line
-                # note that the test above works even if the textarea
-                # has been scrolled horizontally: $linex is negative
-                # in this case, and this is what is needed
-                set sto "$sto + 1l linestart"
+            if {[$w compare $sta != "end - 1 c"]} {
+                set dlinfo [$w dlineinfo $sta]
+                set linex [lindex $dlinfo 0]
+                set linewidth [lindex $dlinfo 2]
+                if {[$w compare [TextClosestGap_scipad $w [expr {$linex+$linewidth}] $i] <= $sta]} {
+                    # the line is shorter than the block left limit
+                    # in this case, tag the \n at the end of this line
+                    # note that the test above works even if the textarea
+                    # has been scrolled horizontally: $linex is negative
+                    # in this case, and this is what is needed
+                    set sto "$sto + 1l linestart"
+                }
             }
         }
         $w tag add sel $sta $sto
+    }
+
+    # update the insertion cursor position
+    if {$inverted} {
+        catch {$w mark set insert sel.first}
+    } else {
+        catch {$w mark set insert sel.last}
     }
 }
 

@@ -154,13 +154,17 @@ proc sendtoclipboard {ta indices} {
     clipboard append -displayof $ta [gettatextstring $ta $indices]
 }
 
-proc pastetext {} {
+proc pastetext {mode} {
 # paste text procedure: copy clipboard content into the current buffer
 # where the insert cursor is
 # note: block selection is supported (i.e. it is first collapsed
 # to its first range and then replaced by the pasted text)
-# the clipboard content to paste is viewed as a single string that can
-# contain \n
+# if $mode is "normal": usual paste
+#     the clipboard content to paste is viewed as a single string that can
+#     contain \n
+# if $mode is "block": block paste
+#     the clipboard content to paste is viewed as a a number of strings each
+#     separated by \n
 
     global listoffile buffermodifiedsincelastsearch
 
@@ -169,7 +173,7 @@ proc pastetext {} {
     set textareacur [gettextareacur]
 
     # retrieve the clipboard content
-    if {catch {selection get -displayof $textareacur -selection CLIPBOARD]} topaste} {
+    if {[catch {selection get -displayof $textareacur -selection CLIPBOARD} topaste]} {
         return
     }
 
@@ -192,71 +196,26 @@ proc pastetext {} {
 
     # now paste it!
     set i1 [$textareacur index insert]
-    $textareacur insert insert $topaste
-    set  i2 [$textareacur index insert]
-    tagcontlines $textareacur
-    set uplimit [getstartofcolorization $textareacur $i1]
-    set dnlimit [getendofcolorization $textareacur $i2]
-    colorize $textareacur [$textareacur index $uplimit] \
-                          [$textareacur index $dnlimit]
-    backgroundcolorizeuserfun
-    reshape_bp
-    $textareacur see insert
-    if {$oldSeparator} {
-        $textareacur edit separator
-        $textareacur configure -autoseparators 1
-    }
-    keyposn $textareacur
-    set buffermodifiedsincelastsearch true
-    restorecursorblink ; # see comments in proc puttext
-}
-
-proc blockpastetext {} {
-# block paste text procedure: copy clipboard content into the current buffer
-# as a block where the insert cursor is
-# note: block selection is supported (i.e. it is first collapsed
-# to its first range and then replaced by the pasted text)
-# the clipboard content to paste is viewed as a a number of strings each
-# separated by \n
-
-    global listoffile buffermodifiedsincelastsearch
-
-    if {[IsBufferEditable] == "No"} {return}
-
-    set textareacur [gettextareacur]
-
-    # retrieve the clipboard content
-    if {catch {selection get -displayof $textareacur -selection CLIPBOARD]} topaste} {
-        return
-    }
-
-    stopcursorblink ; # see comments in proc puttext
-    foreach ta [getfullpeerset $textareacur] {
-        set listoffile("$ta",redostackdepth) 0
-    }
-    set oldSeparator [$textareacur cget -autoseparators]
-    if {$oldSeparator} {
-        $textareacur configure -autoseparators 0
-        $textareacur edit separator
-    }
-
-    # if there is a selection, delete it before pasting
-    # if the selection is a block selection, collapse it first
-    # down to its first range
-    if {[gettaselind $textareacur single] != {}} {
-        $textareacur delete sel.first sel.last
-    }
-
-    # split into separated strings
-    set listoflines [regexp -inline -line -all -- {(?:^.+$)+} $topaste]
-
-    # now paste it!
-    set i1 [$textareacur index insert]
-    set n 0
-    foreach aline $listoflines {
-        $textareacur insert insert $aline
-        incr n
-        $textareacur mark set insert "$i1 + $n l"
+    if {$mode == "normal"} {
+        # normal paste
+        $textareacur insert insert $topaste
+    } else {
+        # $mode == "block", this is block paste
+        # while the block selection process is a pixel-based one,
+        # this paste is an index-based paste, not a pixel-based one
+        # the difference is only apparent with tabs and/or non fixed width fonts
+        set listoflines [split $topaste "\n"]
+        set n 0
+        foreach aline $listoflines {
+            $textareacur insert insert $aline
+            incr n
+            $textareacur mark set insert "$i1 + $n l"
+            # make room for next line if end of buffer has been reached
+            if {[$textareacur compare insert == "end - 1 c"] && \
+                $n < [llength $listoflines]} {
+                puttext $textareacur "\n"
+            }
+        }
     }
     set  i2 [$textareacur index insert]
     tagcontlines $textareacur
@@ -292,8 +251,8 @@ proc button2copypaste {w x y} {
         clipboard append $ct
         selection clear
         focustextarea $w
-        $w mark set insert @$x,$y
-        pastetext
+        $w mark set insert [TextClosestGap_scipad $w $x $y]
+        pastetext normal
     } else {
         focustextarea $w
     }

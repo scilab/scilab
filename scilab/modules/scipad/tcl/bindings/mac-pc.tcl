@@ -28,8 +28,8 @@ sbind $pad <F3> {findnext}
 
 sbind Text <Control-x> {cuttext}
 sbind $pad <Control-c> {copytext}
-sbind Text <Control-v> {pastetext}
-sbind Text <Control-V> {blockpastetext} ; # binding to Shift-Control-v doesn't work??
+sbind Text <Control-v> {pastetext normal}
+sbind Text <Control-V> {pastetext block} ; # binding to Shift-Control-v doesn't work??
 sbind Text <Delete>    {deletetext}
 
 #cut-copy-paste for entries

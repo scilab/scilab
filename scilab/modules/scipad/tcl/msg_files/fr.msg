@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.82
+# in sync at least with v6.90
 
 
 # commons
@@ -335,7 +335,8 @@
                      . Allemand, Dirk Reusch 2005\n\
                      . Polonais, Bartosz Kosiorek 2005\n\
                      . Espagnol, Juan Nicolás Quesada 2006\n\
-                     . Chinois, Yung-Jang Lee 2007."
+                     . Chinois, Yung-Jang Lee 2007\n\
+                     . Danois, Kim B. Hansen 2007."
 
 
 # infomessages.tcl
@@ -391,6 +392,7 @@
     ::msgcat::mcset fr "Cu&t" "Co&uper"
     ::msgcat::mcset fr "&Copy" "&Copier"
     ::msgcat::mcset fr "&Paste" "Co&ller"
+    ::msgcat::mcset fr "&Block paste" "Coller (mode &bloc)"
     ::msgcat::mcset fr "&Delete" "&Effacer"
     ::msgcat::mcset fr "Select &All" "Sélectionner &tout"
     ::msgcat::mcset fr "Insert &Time/Date" "Insérer Heure/Date"

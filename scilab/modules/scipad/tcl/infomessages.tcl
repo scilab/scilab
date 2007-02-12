@@ -116,10 +116,14 @@ proc dokeyposn {textarea} {
     # enable Paste if the clipboard contains something
     if {[catch {clipboard get}] == 1} {
         $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "&Paste"]) -state disabled
-        binddisable Text pastetext
+        binddisable Text {pastetext normal}
+        $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "&Block paste"]) -state disabled
+        binddisable Text {pastetext block}
     } else {
         $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "&Paste"]) -state normal
-        bindenable Text pastetext
+        bindenable Text {pastetext normal}
+        $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "&Block paste"]) -state normal
+        bindenable Text {pastetext block}
     }
 }
 

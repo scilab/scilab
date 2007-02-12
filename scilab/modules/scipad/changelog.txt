@@ -2827,3 +2827,11 @@ Francois VOGEL, 11/02/07
  * Fixed stupid error in Find/Replace introduced in Scipad 6.88
  * First implementation of block paste, to be continued
  * version --> 6.89
+
+Francois VOGEL, 12/02/07
+ * Fixed issues with the last line of the block selection
+ * Fixed wrong block selection of first or last visible line of the textarea
+   when the mouse goes out of it
+ * Changed insertion cursor positioning scheme during a block selection
+ * Block paste can paste empty lines
+ * version --> 6.90

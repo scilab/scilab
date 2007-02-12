@@ -71,7 +71,8 @@ proc createmenues {} {
     $pad.filemenu.edit add separator
     eval "$pad.filemenu.edit add command [me "Cu&t"] [ca cuttext]"
     eval "$pad.filemenu.edit add command [me "&Copy"] [ca copytext]"
-    eval "$pad.filemenu.edit add command [me "&Paste"] [ca pastetext]"
+    eval "$pad.filemenu.edit add command [me "&Paste"] [ca {pastetext normal}]"
+    eval "$pad.filemenu.edit add command [me "&Block paste"] [ca {pastetext block}]"
     eval "$pad.filemenu.edit add command [me "&Delete"] [ca deletetext]"
     $pad.filemenu.edit add separator
     eval "$pad.filemenu.edit add command [me "Select &All"] [ca selectall]"
