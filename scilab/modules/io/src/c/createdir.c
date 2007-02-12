@@ -24,7 +24,6 @@ BOOL ExistDir(char * path)
 {
 	BOOL bOK=FALSE;
 	#ifndef _MSC_VER
-		BOOL bOK=FALSE;
 		struct stat buf;
 		if (path == NULL) return FALSE;
 
