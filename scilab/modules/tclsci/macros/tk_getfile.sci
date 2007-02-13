@@ -8,34 +8,21 @@ if exists("file_mask","local")==1 then
   arg = arg+" -filetypes $ftypes"
 end;
 if exists("path","local")==1 then
-  if MSDOS then
-    path = pathconvert(path,%f,%t,"w")
-    path = strsubst(path,"\","/")
-    if strindex(path," ")~=[] then
-      path = """"+path+""""
-      arg = arg+" -initialdir "+path
-    else
-      arg = arg+" -initialdir """+path+""""
-    end;
-  else
-    path = pathconvert(path,%f,%t)
-    if strindex(path," ")~=[] then path = """"+path+"""",end;
-    arg = arg+" -initialdir """+path+""""
-  end;
+  path = pathconvert(path,%f,%t)
+  arg = arg+" -initialdir {"+path+"}"
 else
   if MSDOS then
     global("%tk_getfile_defaultpath")
     if exists("%tk_getfile_defaultpath","global")==1 then
-      strsubst(%tk_getfile_defaultpath,"\","/")
-      arg = arg+" -initialdir """+%tk_getfile_defaultpath+""""
+      arg = arg+" -initialdir {"+%tk_getfile_defaultpath+"}"
     end;
   end;
 end;
 if exists("title","local")==1 then
   Title=title
-  arg = arg+" -title """+Title+"""",
+  arg = arg+" -title {"+Title+"}",
 elseif exists("Title","local")==1 then
-  arg = arg+" -title """+Title+"""",
+  arg = arg+" -title {"+Title+"}",
 end;
 if ~exists("multip","local")==1 then
   multip = "0"
@@ -51,10 +38,6 @@ if multip=="1" then
   // since TCL_GetVar does not handle lists,
   // let TCL parse the list output from tk_getOpenFile
   TCL_EvalStr("array set sfpa {};set sfpai 1;foreach sfpae $scifilepath {set sfpa($sfpai,1) $sfpae;incr sfpai};if {$scifilepath==""""} {array unset sfpa;set sfpa """"}")
-
-
-
-
   // and get back a column matrix of string
   p = TCL_GetVar("sfpa")
   TCL_EvalStr("unset -nocomplain sfpa")
