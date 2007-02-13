@@ -20,14 +20,14 @@ Source: modules\{#DATASTRUCT}\sci_gateway\data_structures; DestDir: {app}\module
 Source: modules\{#DATASTRUCT}\etc\{#DATASTRUCT}.quit; DestDir: {app}\modules\{#DATASTRUCT}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#DATASTRUCT}\etc\{#DATASTRUCT}.start; DestDir: {app}\modules\{#DATASTRUCT}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#DATASTRUCT}\help\en\addchapter.sce; DestDir: {app}\modules\{#DATASTRUCT}\help\en; Components:  {#COMPN_SCILAB}
-Source: modules\{#DATASTRUCT}\help\en\removechapter.sce; DestDir: {app}\modules\{#DATASTRUCT}\help\en; Components:  {#COMPN_SCILAB}
+Source: modules\{#DATASTRUCT}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#DATASTRUCT}\help\en_US; Components:  {#COMPN_SCILAB}
+Source: modules\{#DATASTRUCT}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#DATASTRUCT}\help\en_US; Components:  {#COMPN_SCILAB}
 ;
-Source: modules\{#DATASTRUCT}\help\fr\addchapter.sce; DestDir: {app}\modules\{#DATASTRUCT}\help\fr; Components:  {#COMPN_SCILAB}
-Source: modules\{#DATASTRUCT}\help\fr\removechapter.sce; DestDir: {app}\modules\{#DATASTRUCT}\help\fr; Components:  {#COMPN_SCILAB}
+Source: modules\{#DATASTRUCT}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#DATASTRUCT}\help\fr_FR; Components:  {#COMPN_SCILAB}
+Source: modules\{#DATASTRUCT}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#DATASTRUCT}\help\fr_FR; Components:  {#COMPN_SCILAB}
 ;
-Source: modules\{#DATASTRUCT}\help\en\*.htm; DestDir: {app}\modules\{#DATASTRUCT}\help\en; Components: {#COMPN_SCILAB}
-Source: modules\{#DATASTRUCT}\help\fr\*.htm; DestDir: {app}\modules\{#DATASTRUCT}\help\fr; Components: {#COMPN_SCILAB}
+Source: modules\{#DATASTRUCT}\help\en_US\*.htm; DestDir: {app}\modules\{#DATASTRUCT}\help\en_US; Components: {#COMPN_SCILAB}
+Source: modules\{#DATASTRUCT}\help\fr_FR\*.htm; DestDir: {app}\modules\{#DATASTRUCT}\help\fr_FR; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#DATASTRUCT}\includes\*.h; DestDir: {app}\modules\{#DATASTRUCT}\includes; Components: {#COMPN_SCILAB}
 ;

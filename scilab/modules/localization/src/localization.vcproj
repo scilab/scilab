@@ -223,6 +223,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\sci_gateway\sci_getlanguagealias.c"
+				>
+			</File>
+			<File
 				RelativePath="..\sci_gateway\sci_setlanguage.c"
 				>
 			</File>
@@ -257,6 +261,10 @@
 			</File>
 			<File
 				RelativePath="..\includes\setgetlanguage.h"
+				>
+			</File>
+			<File
+				RelativePath=".\tableslanguages.h"
 				>
 			</File>
 		</Filter>

@@ -22,14 +22,14 @@ Source: modules\{#PVM}\sci_gateway\pvm; DestDir: {app}\modules\{#PVM}\sci_gatewa
 Source: modules\{#PVM}\etc\{#PVM}.quit; DestDir: {app}\modules\{#PVM}\etc; Components: {#COMPN_PVM}
 Source: modules\{#PVM}\etc\{#PVM}.start; DestDir: {app}\modules\{#PVM}\etc; Components: {#COMPN_PVM}
 ;
-Source: modules\{#PVM}\help\en\addchapter.sce; DestDir: {app}\modules\{#PVM}\help\en; Components:  {#COMPN_PVM}
-Source: modules\{#PVM}\help\en\removechapter.sce; DestDir: {app}\modules\{#PVM}\help\en; Components: {#COMPN_PVM}
+Source: modules\{#PVM}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#PVM}\help\en_US; Components:  {#COMPN_PVM}
+Source: modules\{#PVM}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#PVM}\help\en_US; Components: {#COMPN_PVM}
 ;
-Source: modules\{#PVM}\help\fr\addchapter.sce; DestDir: {app}\modules\{#PVM}\help\fr; Components:  {#COMPN_PVM}
-Source: modules\{#PVM}\help\fr\removechapter.sce; DestDir: {app}\modules\{#PVM}\help\fr; Components: {#COMPN_PVM}
+Source: modules\{#PVM}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#PVM}\help\fr_FR; Components:  {#COMPN_PVM}
+Source: modules\{#PVM}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#PVM}\help\fr_FR; Components: {#COMPN_PVM}
 ;
-Source: modules\{#PVM}\help\en\*.htm; DestDir: {app}\modules\{#PVM}\help\en; Components: {#COMPN_PVM}
-Source: modules\{#PVM}\help\fr\*.htm; DestDir: {app}\modules\{#PVM}\help\fr; Components: {#COMPN_PVM}
+Source: modules\{#PVM}\help\en_US\*.htm; DestDir: {app}\modules\{#PVM}\help\en_US; Components: {#COMPN_PVM}
+Source: modules\{#PVM}\help\fr_FR\*.htm; DestDir: {app}\modules\{#PVM}\help\fr_FR; Components: {#COMPN_PVM}
 ;
 Source: modules\{#PVM}\macros\buildmacros.sce; DestDir: {app}\modules\{#PVM}\macros; Components: {#COMPN_PVM}
 Source: modules\{#PVM}\macros\*.bin; DestDir: {app}\modules\{#PVM}\macros; Components: {#COMPN_PVM}

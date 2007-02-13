@@ -20,14 +20,14 @@ Source: modules\{#RANDLIB}\sci_gateway\randlib; DestDir: {app}\modules\{#RANDLIB
 Source: modules\{#RANDLIB}\etc\{#RANDLIB}.quit; DestDir: {app}\modules\{#RANDLIB}\etc; Components: {#COMPN_RANDLIB}
 Source: modules\{#RANDLIB}\etc\{#RANDLIB}.start; DestDir: {app}\modules\{#RANDLIB}\etc; Components: {#COMPN_RANDLIB}
 ;
-Source: modules\{#RANDLIB}\help\en\addchapter.sce; DestDir: {app}\modules\{#RANDLIB}\help\en; Components:  {#COMPN_RANDLIB}
-Source: modules\{#RANDLIB}\help\en\removechapter.sce; DestDir: {app}\modules\{#RANDLIB}\help\en; Components: {#COMPN_RANDLIB}
+Source: modules\{#RANDLIB}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#RANDLIB}\help\en_US; Components:  {#COMPN_RANDLIB}
+Source: modules\{#RANDLIB}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#RANDLIB}\help\en_US; Components: {#COMPN_RANDLIB}
 ;
-Source: modules\{#RANDLIB}\help\fr\addchapter.sce; DestDir: {app}\modules\{#RANDLIB}\help\fr; Components:  {#COMPN_RANDLIB}
-Source: modules\{#RANDLIB}\help\fr\removechapter.sce; DestDir: {app}\modules\{#RANDLIB}\help\fr; Components: {#COMPN_RANDLIB}
+Source: modules\{#RANDLIB}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#RANDLIB}\help\fr_FR; Components:  {#COMPN_RANDLIB}
+Source: modules\{#RANDLIB}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#RANDLIB}\help\fr_FR; Components: {#COMPN_RANDLIB}
 ;
-Source: modules\{#RANDLIB}\help\en\*.htm; DestDir: {app}\modules\{#RANDLIB}\help\en; Components: {#COMPN_RANDLIB}
-Source: modules\{#RANDLIB}\help\fr\*.htm; DestDir: {app}\modules\{#RANDLIB}\help\fr; Components: {#COMPN_RANDLIB}
+Source: modules\{#RANDLIB}\help\en_US\*.htm; DestDir: {app}\modules\{#RANDLIB}\help\en_US; Components: {#COMPN_RANDLIB}
+Source: modules\{#RANDLIB}\help\fr_FR\*.htm; DestDir: {app}\modules\{#RANDLIB}\help\fr_FR; Components: {#COMPN_RANDLIB}
 ;
 Source: modules\{#RANDLIB}\includes\*.h; DestDir: {app}\modules\{#RANDLIB}\includes; Components: {#COMPN_RANDLIB}
 ;

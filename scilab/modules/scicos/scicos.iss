@@ -28,14 +28,14 @@ Source: bin\scicos.dll; DestDir: {app}\bin; DestName: scicos.dll
 ;Source: modules\{#SCICOS}\etc\{#SCICOS}.quit; DestDir: {app}\modules\{#SCICOS}\etc; Components: {#COMPN_SCICOS}
 ;Source: modules\{#SCICOS}\etc\{#SCICOS}.start; DestDir: {app}\modules\{#SCICOS}\etc; Components: {#COMPN_SCICOS}
 ;
-;Source: modules\{#SCICOS}\help\en\addchapter.sce; DestDir: {app}\modules\{#SCICOS}\help\en; Components:  {#COMPN_SCICOS}
-;Source: modules\{#SCICOS}\help\en\removechapter.sce; DestDir: {app}\modules\{#SCICOS}\help\en; Components: {#COMPN_SCICOS}
+;Source: modules\{#SCICOS}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#SCICOS}\help\en_US; Components:  {#COMPN_SCICOS}
+;Source: modules\{#SCICOS}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#SCICOS}\help\en_US; Components: {#COMPN_SCICOS}
 ;
-;Source: modules\{#SCICOS}\help\fr\addchapter.sce; DestDir: {app}\modules\{#SCICOS}\help\fr; Components:  {#COMPN_SCICOS}
-;Source: modules\{#SCICOS}\help\fr\removechapter.sce; DestDir: {app}\modules\{#SCICOS}\help\fr; Components: {#COMPN_SCICOS}
+;Source: modules\{#SCICOS}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#SCICOS}\help\fr_FR; Components:  {#COMPN_SCICOS}
+;Source: modules\{#SCICOS}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#SCICOS}\help\fr_FR; Components: {#COMPN_SCICOS}
 ;
-;Source: modules\{#SCICOS}\help\en\*.htm; DestDir: {app}\modules\{#SCICOS}\help\en; Components: {#COMPN_SCICOS}
-;Source: modules\{#SCICOS}\help\fr\*.htm; DestDir: {app}\modules\{#SCICOS}\help\fr; Components: {#COMPN_SCICOS}
+;Source: modules\{#SCICOS}\help\en_US\*.htm; DestDir: {app}\modules\{#SCICOS}\help\en_US; Components: {#COMPN_SCICOS}
+;Source: modules\{#SCICOS}\help\fr_FR\*.htm; DestDir: {app}\modules\{#SCICOS}\help\fr_FR; Components: {#COMPN_SCICOS}
 ;Source: modules\{#SCICOS}\help\images\*.gif; DestDir: {app}\modules\{#SCICOS}\help\images; Components: {#COMPN_SCICOS}
 ;
 ;Source: modules\{#SCICOS}\includes\*.h; DestDir: {app}\modules\{#SCICOS}\includes; Components: {#COMPN_SCICOS}

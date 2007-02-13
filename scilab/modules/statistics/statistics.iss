@@ -20,14 +20,14 @@ Source: modules\{#STATS}\sci_gateway\statistics; DestDir: {app}\modules\{#STATS}
 Source: modules\{#STATS}\etc\{#STATS}.quit; DestDir: {app}\modules\{#STATS}\etc; Components: {#COMPN_STATS}
 Source: modules\{#STATS}\etc\{#STATS}.start; DestDir: {app}\modules\{#STATS}\etc; Components: {#COMPN_STATS}
 ;
-Source: modules\{#STATS}\help\en\addchapter.sce; DestDir: {app}\modules\{#STATS}\help\en; Components:  {#COMPN_STATS}
-Source: modules\{#STATS}\help\en\removechapter.sce; DestDir: {app}\modules\{#STATS}\help\en; Components: {#COMPN_STATS}
+Source: modules\{#STATS}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#STATS}\help\en_US; Components:  {#COMPN_STATS}
+Source: modules\{#STATS}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#STATS}\help\en_US; Components: {#COMPN_STATS}
 ;
-Source: modules\{#STATS}\help\fr\addchapter.sce; DestDir: {app}\modules\{#STATS}\help\fr; Components:  {#COMPN_STATS}
-Source: modules\{#STATS}\help\fr\removechapter.sce; DestDir: {app}\modules\{#STATS}\help\fr; Components: {#COMPN_STATS}
+Source: modules\{#STATS}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#STATS}\help\fr_FR; Components:  {#COMPN_STATS}
+Source: modules\{#STATS}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#STATS}\help\fr_FR; Components: {#COMPN_STATS}
 ;
-Source: modules\{#STATS}\help\en\*.htm; DestDir: {app}\modules\{#STATS}\help\en; Components: {#COMPN_STATS}
-Source: modules\{#STATS}\help\fr\*.htm; DestDir: {app}\modules\{#STATS}\help\fr; Components: {#COMPN_STATS}
+Source: modules\{#STATS}\help\en_US\*.htm; DestDir: {app}\modules\{#STATS}\help\en_US; Components: {#COMPN_STATS}
+Source: modules\{#STATS}\help\fr_FR\*.htm; DestDir: {app}\modules\{#STATS}\help\fr_FR; Components: {#COMPN_STATS}
 ;
 Source: modules\{#STATS}\macros\lib; DestDir: {app}\modules\{#STATS}\macros; Components: {#COMPN_STATS}
 Source: modules\{#STATS}\macros\names; DestDir: {app}\modules\{#STATS}\macros; Components: {#COMPN_STATS}

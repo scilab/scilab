@@ -24,14 +24,14 @@ Source: modules\{#ARNOLDI}\sci_gateway\arnoldi; DestDir: {app}\modules\{#ARNOLDI
 Source: modules\{#ARNOLDI}\etc\{#ARNOLDI}.quit; DestDir: {app}\modules\{#ARNOLDI}\etc; Components: {#COMPN_ARNOLDI}
 Source: modules\{#ARNOLDI}\etc\{#ARNOLDI}.start; DestDir: {app}\modules\{#ARNOLDI}\etc; Components: {#COMPN_ARNOLDI}
 ;
-Source: modules\{#ARNOLDI}\help\en\addchapter.sce; DestDir: {app}\modules\{#ARNOLDI}\help\en; Components: {#COMPN_ARNOLDI}
-Source: modules\{#ARNOLDI}\help\en\removechapter.sce; DestDir: {app}\modules\{#ARNOLDI}\help\en; Components: {#COMPN_ARNOLDI}
+Source: modules\{#ARNOLDI}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#ARNOLDI}\help\en_US; Components: {#COMPN_ARNOLDI}
+Source: modules\{#ARNOLDI}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#ARNOLDI}\help\en_US; Components: {#COMPN_ARNOLDI}
 ;
-Source: modules\{#ARNOLDI}\help\fr\addchapter.sce; DestDir: {app}\modules\{#ARNOLDI}\help\fr; Components: {#COMPN_ARNOLDI}
-Source: modules\{#ARNOLDI}\help\fr\removechapter.sce; DestDir: {app}\modules\{#ARNOLDI}\help\fr; Components: {#COMPN_ARNOLDI}
+Source: modules\{#ARNOLDI}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#ARNOLDI}\help\fr_FR; Components: {#COMPN_ARNOLDI}
+Source: modules\{#ARNOLDI}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#ARNOLDI}\help\fr_FR; Components: {#COMPN_ARNOLDI}
 ;
-Source: modules\{#ARNOLDI}\help\en\*.htm; DestDir: {app}\modules\{#ARNOLDI}\help\en; Components: {#COMPN_ARNOLDI}
-Source: modules\{#ARNOLDI}\help\fr\*.htm; DestDir: {app}\modules\{#ARNOLDI}\help\fr; Components: {#COMPN_ARNOLDI}
+Source: modules\{#ARNOLDI}\help\en_US\*.htm; DestDir: {app}\modules\{#ARNOLDI}\help\en_US; Components: {#COMPN_ARNOLDI}
+Source: modules\{#ARNOLDI}\help\fr_FR\*.htm; DestDir: {app}\modules\{#ARNOLDI}\help\fr_FR; Components: {#COMPN_ARNOLDI}
 ;
 ;Source: modules\{#ARNOLDI}\includes\*.h; DestDir: {app}\modules\{#ARNOLDI}\includes; Components: {#COMPN_ARNOLDI}
 ;

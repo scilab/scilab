@@ -20,14 +20,14 @@ Source: modules\{#DIFFEQU}\sci_gateway\differential_equations; DestDir: {app}\mo
 Source: modules\{#DIFFEQU}\etc\{#DIFFEQU}.quit; DestDir: {app}\modules\{#DIFFEQU}\etc; Components: {#COMPN_EQUDIF}
 Source: modules\{#DIFFEQU}\etc\{#DIFFEQU}.start; DestDir: {app}\modules\{#DIFFEQU}\etc; Components: {#COMPN_EQUDIF}
 ;
-Source: modules\{#DIFFEQU}\help\en\addchapter.sce; DestDir: {app}\modules\{#DIFFEQU}\help\en; Components:  {#COMPN_EQUDIF}
-Source: modules\{#DIFFEQU}\help\en\removechapter.sce; DestDir: {app}\modules\{#DIFFEQU}\help\en; Components:  {#COMPN_EQUDIF}
+Source: modules\{#DIFFEQU}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#DIFFEQU}\help\en_US; Components:  {#COMPN_EQUDIF}
+Source: modules\{#DIFFEQU}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#DIFFEQU}\help\en_US; Components:  {#COMPN_EQUDIF}
 ;
-Source: modules\{#DIFFEQU}\help\fr\addchapter.sce; DestDir: {app}\modules\{#DIFFEQU}\help\fr; Components:  {#COMPN_EQUDIF}
-Source: modules\{#DIFFEQU}\help\fr\removechapter.sce; DestDir: {app}\modules\{#DIFFEQU}\help\fr; Components:  {#COMPN_EQUDIF}
+Source: modules\{#DIFFEQU}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#DIFFEQU}\help\fr_FR; Components:  {#COMPN_EQUDIF}
+Source: modules\{#DIFFEQU}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#DIFFEQU}\help\fr_FR; Components:  {#COMPN_EQUDIF}
 ;
-Source: modules\{#DIFFEQU}\help\en\*.htm; DestDir: {app}\modules\{#DIFFEQU}\help\en; Components: {#COMPN_EQUDIF}
-Source: modules\{#DIFFEQU}\help\fr\*.htm; DestDir: {app}\modules\{#DIFFEQU}\help\fr; Components: {#COMPN_EQUDIF}
+Source: modules\{#DIFFEQU}\help\en_US\*.htm; DestDir: {app}\modules\{#DIFFEQU}\help\en_US; Components: {#COMPN_EQUDIF}
+Source: modules\{#DIFFEQU}\help\fr_FR\*.htm; DestDir: {app}\modules\{#DIFFEQU}\help\fr_FR; Components: {#COMPN_EQUDIF}
 ;
 ;Source: modules\{#DIFFEQU}\includes\*.h; DestDir: {app}\modules\{#DIFFEQU}\includes; Components: {#COMPN_EQUDIF}
 ;

@@ -20,14 +20,14 @@ Source: modules\{#SIGPROC}\sci_gateway\signal_processing; DestDir: {app}\modules
 Source: modules\{#SIGPROC}\etc\{#SIGPROC}.quit; DestDir: {app}\modules\{#SIGPROC}\etc; Components: {#COMPN_SIGPROC}
 Source: modules\{#SIGPROC}\etc\{#SIGPROC}.start; DestDir: {app}\modules\{#SIGPROC}\etc; Components: {#COMPN_SIGPROC}
 ;
-Source: modules\{#SIGPROC}\help\en\addchapter.sce; DestDir: {app}\modules\{#SIGPROC}\help\en; Components: {#COMPN_SIGPROC}
-Source: modules\{#SIGPROC}\help\en\removechapter.sce; DestDir: {app}\modules\{#SIGPROC}\help\en; Components: {#COMPN_SIGPROC}
+Source: modules\{#SIGPROC}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#SIGPROC}\help\en_US; Components: {#COMPN_SIGPROC}
+Source: modules\{#SIGPROC}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#SIGPROC}\help\en_US; Components: {#COMPN_SIGPROC}
 ;
-Source: modules\{#SIGPROC}\help\fr\addchapter.sce; DestDir: {app}\modules\{#SIGPROC}\help\fr; Components:  {#COMPN_SIGPROC}
-Source: modules\{#SIGPROC}\help\fr\removechapter.sce; DestDir: {app}\modules\{#SIGPROC}\help\fr; Components: {#COMPN_SIGPROC}
+Source: modules\{#SIGPROC}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#SIGPROC}\help\fr_FR; Components:  {#COMPN_SIGPROC}
+Source: modules\{#SIGPROC}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#SIGPROC}\help\fr_FR; Components: {#COMPN_SIGPROC}
 ;
-Source: modules\{#SIGPROC}\help\en\*.htm; DestDir: {app}\modules\{#SIGPROC}\help\en; Components: {#COMPN_SIGPROC}
-Source: modules\{#SIGPROC}\help\fr\*.htm; DestDir: {app}\modules\{#SIGPROC}\help\fr; Components: {#COMPN_SIGPROC}
+Source: modules\{#SIGPROC}\help\en_US\*.htm; DestDir: {app}\modules\{#SIGPROC}\help\en_US; Components: {#COMPN_SIGPROC}
+Source: modules\{#SIGPROC}\help\fr_FR\*.htm; DestDir: {app}\modules\{#SIGPROC}\help\fr_FR; Components: {#COMPN_SIGPROC}
 ;
 Source: modules\{#SIGPROC}\macros\lib; DestDir: {app}\modules\{#SIGPROC}\macros; Components: {#COMPN_SIGPROC}
 Source: modules\{#SIGPROC}\macros\names; DestDir: {app}\modules\{#SIGPROC}\macros; Components: {#COMPN_SIGPROC}

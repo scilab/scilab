@@ -18,14 +18,14 @@ Source: modules\{#DOUBLE}\changelog.txt; DestDir: {app}\modules\{#DOUBLE}; Compo
 Source: modules\{#DOUBLE}\etc\{#DOUBLE}.quit; DestDir: {app}\modules\{#DOUBLE}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#DOUBLE}\etc\{#DOUBLE}.start; DestDir: {app}\modules\{#DOUBLE}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#DOUBLE}\help\en\addchapter.sce; DestDir: {app}\modules\{#DOUBLE}\help\en; Components:  {#COMPN_SCILAB}
-Source: modules\{#DOUBLE}\help\en\removechapter.sce; DestDir: {app}\modules\{#DOUBLE}\help\en; Components: {#COMPN_SCILAB}
+Source: modules\{#DOUBLE}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#DOUBLE}\help\en_US; Components:  {#COMPN_SCILAB}
+Source: modules\{#DOUBLE}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#DOUBLE}\help\en_US; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#DOUBLE}\help\fr\addchapter.sce; DestDir: {app}\modules\{#DOUBLE}\help\fr; Components:  {#COMPN_SCILAB}
-Source: modules\{#DOUBLE}\help\fr\removechapter.sce; DestDir: {app}\modules\{#DOUBLE}\help\fr; Components: {#COMPN_SCILAB}
+Source: modules\{#DOUBLE}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#DOUBLE}\help\fr_FR; Components:  {#COMPN_SCILAB}
+Source: modules\{#DOUBLE}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#DOUBLE}\help\fr_FR; Components: {#COMPN_SCILAB}
 ;
-;Source: modules\{#DOUBLE}\help\en\*.htm; DestDir: {app}\modules\{#DOUBLE}\help\en; Components: {#COMPN_SCILAB}
-;Source: modules\{#DOUBLE}\help\fr\*.htm; DestDir: {app}\modules\{#DOUBLE}\help\fr; Components: {#COMPN_SCILAB}
+;Source: modules\{#DOUBLE}\help\en_US\*.htm; DestDir: {app}\modules\{#DOUBLE}\help\en_US; Components: {#COMPN_SCILAB}
+;Source: modules\{#DOUBLE}\help\fr_FR\*.htm; DestDir: {app}\modules\{#DOUBLE}\help\fr_FR; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#DOUBLE}\includes\*.h; DestDir: {app}\modules\{#DOUBLE}\includes; Components: {#COMPN_SCILAB}
 ;

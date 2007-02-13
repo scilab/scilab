@@ -22,14 +22,14 @@ Source: modules\{#HELPTOOLS}\help.dtd; DestDir: {app}\modules\{#HELPTOOLS}; Comp
 Source: modules\{#HELPTOOLS}\etc\{#HELPTOOLS}.quit; DestDir: {app}\modules\{#HELPTOOLS}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#HELPTOOLS}\etc\{#HELPTOOLS}.start; DestDir: {app}\modules\{#HELPTOOLS}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#HELPTOOLS}\help\en\addchapter.sce; DestDir: {app}\modules\{#HELPTOOLS}\help\en; Components:  {#COMPN_SCILAB}
-Source: modules\{#HELPTOOLS}\help\en\removechapter.sce; DestDir: {app}\modules\{#HELPTOOLS}\help\en; Components: {#COMPN_SCILAB}
+Source: modules\{#HELPTOOLS}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#HELPTOOLS}\help\en_US; Components:  {#COMPN_SCILAB}
+Source: modules\{#HELPTOOLS}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#HELPTOOLS}\help\en_US; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#HELPTOOLS}\help\fr\addchapter.sce; DestDir: {app}\modules\{#HELPTOOLS}\help\fr; Components:  {#COMPN_SCILAB}
-Source: modules\{#HELPTOOLS}\help\fr\removechapter.sce; DestDir: {app}\modules\{#HELPTOOLS}\help\fr; Components: {#COMPN_SCILAB}
+Source: modules\{#HELPTOOLS}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#HELPTOOLS}\help\fr_FR; Components:  {#COMPN_SCILAB}
+Source: modules\{#HELPTOOLS}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#HELPTOOLS}\help\fr_FR; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#HELPTOOLS}\help\en\*.htm; DestDir: {app}\modules\{#HELPTOOLS}\help\en; Components: {#COMPN_SCILAB}
-Source: modules\{#HELPTOOLS}\help\fr\*.htm; DestDir: {app}\modules\{#HELPTOOLS}\help\fr; Components: {#COMPN_SCILAB}
+Source: modules\{#HELPTOOLS}\help\en_US\*.htm; DestDir: {app}\modules\{#HELPTOOLS}\help\en_US; Components: {#COMPN_SCILAB}
+Source: modules\{#HELPTOOLS}\help\fr_FR\*.htm; DestDir: {app}\modules\{#HELPTOOLS}\help\fr_FR; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#HELPTOOLS}\macros\buildmacros.sce; DestDir: {app}\modules\{#HELPTOOLS}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#HELPTOOLS}\macros\lib; DestDir: {app}\modules\{#HELPTOOLS}\macros; Components: {#COMPN_SCILAB}

@@ -20,14 +20,14 @@ Source: modules\{#IO}\sci_gateway\io; DestDir: {app}\modules\{#IO}\sci_gateway; 
 Source: modules\{#IO}\etc\{#IO}.quit; DestDir: {app}\modules\{#IO}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#IO}\etc\{#IO}.start; DestDir: {app}\modules\{#IO}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#IO}\help\en\addchapter.sce; DestDir: {app}\modules\{#IO}\help\en; Components:  {#COMPN_SCILAB}
-Source: modules\{#IO}\help\en\removechapter.sce; DestDir: {app}\modules\{#IO}\help\en; Components: {#COMPN_SCILAB}
+Source: modules\{#IO}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#IO}\help\en_US; Components:  {#COMPN_SCILAB}
+Source: modules\{#IO}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#IO}\help\en_US; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#IO}\help\fr\addchapter.sce; DestDir: {app}\modules\{#IO}\help\fr; Components:  {#COMPN_SCILAB}
-Source: modules\{#IO}\help\fr\removechapter.sce; DestDir: {app}\modules\{#IO}\help\fr; Components: {#COMPN_SCILAB}
+Source: modules\{#IO}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#IO}\help\fr_FR; Components:  {#COMPN_SCILAB}
+Source: modules\{#IO}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#IO}\help\fr_FR; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#IO}\help\en\*.htm; DestDir: {app}\modules\{#IO}\help\en; Components: {#COMPN_SCILAB}
-Source: modules\{#IO}\help\fr\*.htm; DestDir: {app}\modules\{#IO}\help\fr; Components: {#COMPN_SCILAB}
+Source: modules\{#IO}\help\en_US\*.htm; DestDir: {app}\modules\{#IO}\help\en_US; Components: {#COMPN_SCILAB}
+Source: modules\{#IO}\help\fr_FR\*.htm; DestDir: {app}\modules\{#IO}\help\fr_FR; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#IO}\includes\*.h; DestDir: {app}\modules\{#IO}\includes; Components: {#COMPN_SCILAB}
 ;

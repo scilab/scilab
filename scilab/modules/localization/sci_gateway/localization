@@ -8,4 +8,5 @@
 ; --------------------------
 50 1 setlanguage
 50 2 getlanguage
+50 3 getlanguagealias
 ; --------------------------

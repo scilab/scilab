@@ -12,7 +12,8 @@
 static LocalizationTable Tab[]=
 {
 	{C2F(sci_setlanguage),"setlanguage"},
-	{C2F(sci_getlanguage),"getlanguage"}
+	{C2F(sci_getlanguage),"getlanguage"},
+	{C2F(sci_getlanguagealias),"getlanguagealias"}
 };
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_localization)()

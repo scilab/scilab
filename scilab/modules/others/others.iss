@@ -18,14 +18,14 @@ Source: modules\{#OTHERS}\changelog.txt; DestDir: {app}\modules\{#OTHERS}; Compo
 Source: modules\{#OTHERS}\etc\{#OTHERS}.quit; DestDir: {app}\modules\{#OTHERS}\etc; Components: {#COMPN_OTHERS}
 Source: modules\{#OTHERS}\etc\{#OTHERS}.start; DestDir: {app}\modules\{#OTHERS}\etc; Components: {#COMPN_OTHERS}
 ;
-Source: modules\{#OTHERS}\help\en\addchapter.sce; DestDir: {app}\modules\{#OTHERS}\help\en; Components:  {#COMPN_OTHERS}
-Source: modules\{#OTHERS}\help\en\removechapter.sce; DestDir: {app}\modules\{#OTHERS}\help\en; Components: {#COMPN_OTHERS}
+Source: modules\{#OTHERS}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#OTHERS}\help\en_US; Components:  {#COMPN_OTHERS}
+Source: modules\{#OTHERS}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#OTHERS}\help\en_US; Components: {#COMPN_OTHERS}
 ;
-Source: modules\{#OTHERS}\help\fr\addchapter.sce; DestDir: {app}\modules\{#OTHERS}\help\fr; Components:  {#COMPN_OTHERS}
-Source: modules\{#OTHERS}\help\fr\removechapter.sce; DestDir: {app}\modules\{#OTHERS}\help\fr; Components: {#COMPN_OTHERS}
+Source: modules\{#OTHERS}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#OTHERS}\help\fr_FR; Components:  {#COMPN_OTHERS}
+Source: modules\{#OTHERS}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#OTHERS}\help\fr_FR; Components: {#COMPN_OTHERS}
 ;
-Source: modules\{#OTHERS}\help\en\*.htm; DestDir: {app}\modules\{#OTHERS}\help\en; Components: {#COMPN_OTHERS}
-Source: modules\{#OTHERS}\help\fr\*.htm; DestDir: {app}\modules\{#OTHERS}\help\fr; Components: {#COMPN_OTHERS}
+Source: modules\{#OTHERS}\help\en_US\*.htm; DestDir: {app}\modules\{#OTHERS}\help\en_US; Components: {#COMPN_OTHERS}
+Source: modules\{#OTHERS}\help\fr_FR\*.htm; DestDir: {app}\modules\{#OTHERS}\help\fr_FR; Components: {#COMPN_OTHERS}
 ;
 ;Source: modules\{#OTHERS}\includes\*.h; DestDir: {app}\modules\{#OTHERS}\includes; Components: {#COMPN_OTHERS}
 ;

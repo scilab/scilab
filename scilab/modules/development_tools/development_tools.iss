@@ -18,14 +18,14 @@ Source: modules\{#DEVTOOLS}\changelog.txt; DestDir: {app}\modules\{#DEVTOOLS}; C
 Source: modules\{#DEVTOOLS}\etc\{#DEVTOOLS}.quit; DestDir: {app}\modules\{#DEVTOOLS}\etc; Components: {#COMPN_DEVTOOLS}
 Source: modules\{#DEVTOOLS}\etc\{#DEVTOOLS}.start; DestDir: {app}\modules\{#DEVTOOLS}\etc; Components: {#COMPN_DEVTOOLS}
 ;
-Source: modules\{#DEVTOOLS}\help\fr\addchapter.sce; DestDir: {app}\modules\{#DEVTOOLS}\help\fr; Components:  {#COMPN_DEVTOOLS}
-Source: modules\{#DEVTOOLS}\help\fr\removechapter.sce; DestDir: {app}\modules\{#DEVTOOLS}\help\fr; Components:  {#COMPN_DEVTOOLS}
+Source: modules\{#DEVTOOLS}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#DEVTOOLS}\help\fr_FR; Components:  {#COMPN_DEVTOOLS}
+Source: modules\{#DEVTOOLS}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#DEVTOOLS}\help\fr_FR; Components:  {#COMPN_DEVTOOLS}
 ;
-Source: modules\{#DEVTOOLS}\help\en\addchapter.sce; DestDir: {app}\modules\{#DEVTOOLS}\help\en; Components:  {#COMPN_DEVTOOLS}
-Source: modules\{#DEVTOOLS}\help\en\removechapter.sce; DestDir: {app}\modules\{#DEVTOOLS}\help\en; Components:  {#COMPN_DEVTOOLS}
+Source: modules\{#DEVTOOLS}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#DEVTOOLS}\help\en_US; Components:  {#COMPN_DEVTOOLS}
+Source: modules\{#DEVTOOLS}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#DEVTOOLS}\help\en_US; Components:  {#COMPN_DEVTOOLS}
 ;
-;Source: modules\{#DEVTOOLS}\help\en\*.htm; DestDir: {app}\modules\{#DEVTOOLS}\help\en; Components: {#COMPN_DEVTOOLS}
-;Source: modules\{#DEVTOOLS}\help\fr\*.htm; DestDir: {app}\modules\{#DEVTOOLS}\help\fr; Components: {#COMPN_DEVTOOLS}
+;Source: modules\{#DEVTOOLS}\help\en_US\*.htm; DestDir: {app}\modules\{#DEVTOOLS}\help\en_US; Components: {#COMPN_DEVTOOLS}
+;Source: modules\{#DEVTOOLS}\help\fr_FR\*.htm; DestDir: {app}\modules\{#DEVTOOLS}\help\fr_FR; Components: {#COMPN_DEVTOOLS}
 ;
 ;Source: modules\{#DEVTOOLS}\includes\*.h; DestDir: {app}\modules\{#DEVTOOLS}\includes; Components: {#COMPN_DEVTOOLS}
 ;

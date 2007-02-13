@@ -20,14 +20,14 @@ Source: modules\{#SPFUNCTIONS}\sci_gateway\special_functions; DestDir: {app}\mod
 Source: modules\{#SPFUNCTIONS}\etc\{#SPFUNCTIONS}.quit; DestDir: {app}\modules\{#SPFUNCTIONS}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#SPFUNCTIONS}\etc\{#SPFUNCTIONS}.start; DestDir: {app}\modules\{#SPFUNCTIONS}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#SPFUNCTIONS}\help\en\addchapter.sce; DestDir: {app}\modules\{#SPFUNCTIONS}\help\en; Components:  {#COMPN_SCILAB}
-Source: modules\{#SPFUNCTIONS}\help\en\removechapter.sce; DestDir: {app}\modules\{#SPFUNCTIONS}\help\en; Components: {#COMPN_SCILAB}
+Source: modules\{#SPFUNCTIONS}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#SPFUNCTIONS}\help\en_US; Components:  {#COMPN_SCILAB}
+Source: modules\{#SPFUNCTIONS}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#SPFUNCTIONS}\help\en_US; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#SPFUNCTIONS}\help\fr\addchapter.sce; DestDir: {app}\modules\{#SPFUNCTIONS}\help\fr; Components:  {#COMPN_SCILAB}
-Source: modules\{#SPFUNCTIONS}\help\fr\removechapter.sce; DestDir: {app}\modules\{#SPFUNCTIONS}\help\fr; Components: {#COMPN_SCILAB}
+Source: modules\{#SPFUNCTIONS}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#SPFUNCTIONS}\help\fr_FR; Components:  {#COMPN_SCILAB}
+Source: modules\{#SPFUNCTIONS}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#SPFUNCTIONS}\help\fr_FR; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#SPFUNCTIONS}\help\en\*.htm; DestDir: {app}\modules\{#SPFUNCTIONS}\help\en; Components: {#COMPN_SCILAB}
-Source: modules\{#SPFUNCTIONS}\help\fr\*.htm; DestDir: {app}\modules\{#SPFUNCTIONS}\help\fr; Components: {#COMPN_SCILAB}
+Source: modules\{#SPFUNCTIONS}\help\en_US\*.htm; DestDir: {app}\modules\{#SPFUNCTIONS}\help\en_US; Components: {#COMPN_SCILAB}
+Source: modules\{#SPFUNCTIONS}\help\fr_FR\*.htm; DestDir: {app}\modules\{#SPFUNCTIONS}\help\fr_FR; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#SPFUNCTIONS}\includes\*.h; DestDir: {app}\modules\{#SPFUNCTIONS}\includes; Components: {#COMPN_SCILAB}
 ;

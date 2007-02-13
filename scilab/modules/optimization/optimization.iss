@@ -20,14 +20,14 @@ Source: modules\{#OPTIMIZATION}\sci_gateway\optimization; DestDir: {app}\modules
 Source: modules\{#OPTIMIZATION}\etc\{#OPTIMIZATION}.quit; DestDir: {app}\modules\{#OPTIMIZATION}\etc; Components: {#COMPN_OPTIM}
 Source: modules\{#OPTIMIZATION}\etc\{#OPTIMIZATION}.start; DestDir: {app}\modules\{#OPTIMIZATION}\etc; Components: {#COMPN_OPTIM}
 ;
-Source: modules\{#OPTIMIZATION}\help\en\addchapter.sce; DestDir: {app}\modules\{#OPTIMIZATION}\help\en; Components:  {#COMPN_OPTIM}
-Source: modules\{#OPTIMIZATION}\help\en\removechapter.sce; DestDir: {app}\modules\{#OPTIMIZATION}\help\en; Components: {#COMPN_OPTIM}
+Source: modules\{#OPTIMIZATION}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#OPTIMIZATION}\help\en_US; Components:  {#COMPN_OPTIM}
+Source: modules\{#OPTIMIZATION}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#OPTIMIZATION}\help\en_US; Components: {#COMPN_OPTIM}
 ;
-Source: modules\{#OPTIMIZATION}\help\fr\addchapter.sce; DestDir: {app}\modules\{#OPTIMIZATION}\help\fr; Components:  {#COMPN_OPTIM}
-Source: modules\{#OPTIMIZATION}\help\fr\removechapter.sce; DestDir: {app}\modules\{#OPTIMIZATION}\help\fr; Components: {#COMPN_OPTIM}
+Source: modules\{#OPTIMIZATION}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#OPTIMIZATION}\help\fr_FR; Components:  {#COMPN_OPTIM}
+Source: modules\{#OPTIMIZATION}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#OPTIMIZATION}\help\fr_FR; Components: {#COMPN_OPTIM}
 ;
-Source: modules\{#OPTIMIZATION}\help\en\*.htm; DestDir: {app}\modules\{#OPTIMIZATION}\help\en; Components: {#COMPN_OPTIM}
-Source: modules\{#OPTIMIZATION}\help\fr\*.htm; DestDir: {app}\modules\{#OPTIMIZATION}\help\fr; Components: {#COMPN_OPTIM}
+Source: modules\{#OPTIMIZATION}\help\en_US\*.htm; DestDir: {app}\modules\{#OPTIMIZATION}\help\en_US; Components: {#COMPN_OPTIM}
+Source: modules\{#OPTIMIZATION}\help\fr_FR\*.htm; DestDir: {app}\modules\{#OPTIMIZATION}\help\fr_FR; Components: {#COMPN_OPTIM}
 ;
 Source: modules\{#OPTIMIZATION}\includes\*.h; DestDir: {app}\modules\{#OPTIMIZATION}\includes; Components: {#COMPN_OPTIM}
 ;

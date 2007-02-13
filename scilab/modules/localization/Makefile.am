@@ -9,7 +9,8 @@ src/setgetlanguage.c
 
 GATEWAY_C_SOURCES = sci_gateway/gw_localization.c \
 sci_gateway/sci_setlanguage.c \
-sci_gateway/sci_getlanguage.c
+sci_gateway/sci_getlanguage.c \
+sci_gateway/sci_getlanguagealias.c
 
 libscilocalization_la_CFLAGS=  -Iincludes/ -Isrc/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/ $(XML_FLAGS)
 

@@ -22,14 +22,14 @@ Source: modules\{#SYMBOLIC}\sci_gateway\symbolic; DestDir: {app}\modules\{#SYMBO
 Source: modules\{#SYMBOLIC}\etc\{#SYMBOLIC}.quit; DestDir: {app}\modules\{#SYMBOLIC}\etc; Components: {#COMPN_SYMB}
 Source: modules\{#SYMBOLIC}\etc\{#SYMBOLIC}.start; DestDir: {app}\modules\{#SYMBOLIC}\etc; Components: {#COMPN_SYMB}
 ;
-Source: modules\{#SYMBOLIC}\help\en\addchapter.sce; DestDir: {app}\modules\{#SYMBOLIC}\help\en; Components:   {#COMPN_SYMB}
-Source: modules\{#SYMBOLIC}\help\en\removechapter.sce; DestDir: {app}\modules\{#SYMBOLIC}\help\en; Components:  {#COMPN_SYMB}
+Source: modules\{#SYMBOLIC}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#SYMBOLIC}\help\en_US; Components:   {#COMPN_SYMB}
+Source: modules\{#SYMBOLIC}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#SYMBOLIC}\help\en_US; Components:  {#COMPN_SYMB}
 ;
-Source: modules\{#SYMBOLIC}\help\fr\addchapter.sce; DestDir: {app}\modules\{#SYMBOLIC}\help\fr; Components:   {#COMPN_SYMB}
-Source: modules\{#SYMBOLIC}\help\fr\removechapter.sce; DestDir: {app}\modules\{#SYMBOLIC}\help\fr; Components:  {#COMPN_SYMB}
+Source: modules\{#SYMBOLIC}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#SYMBOLIC}\help\fr_FR; Components:   {#COMPN_SYMB}
+Source: modules\{#SYMBOLIC}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#SYMBOLIC}\help\fr_FR; Components:  {#COMPN_SYMB}
 ;
-Source: modules\{#SYMBOLIC}\help\en\*.htm; DestDir: {app}\modules\{#SYMBOLIC}\help\en; Components: {#COMPN_SYMB}
-Source: modules\{#SYMBOLIC}\help\fr\*.htm; DestDir: {app}\modules\{#SYMBOLIC}\help\fr; Components: {#COMPN_SYMB}
+Source: modules\{#SYMBOLIC}\help\en_US\*.htm; DestDir: {app}\modules\{#SYMBOLIC}\help\en_US; Components: {#COMPN_SYMB}
+Source: modules\{#SYMBOLIC}\help\fr_FR\*.htm; DestDir: {app}\modules\{#SYMBOLIC}\help\fr_FR; Components: {#COMPN_SYMB}
 ;
 Source: modules\{#SYMBOLIC}\includes\*.h; DestDir: {app}\modules\{#SYMBOLIC}\includes; Components: {#COMPN_SYMB}
 ;

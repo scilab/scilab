@@ -22,14 +22,14 @@ Source: modules\{#SPARSE}\sci_gateway\sparse; DestDir: {app}\modules\{#SPARSE}\s
 Source: modules\{#SPARSE}\etc\{#SPARSE}.quit; DestDir: {app}\modules\{#SPARSE}\etc; Components: {#COMPN_SPARSE}
 Source: modules\{#SPARSE}\etc\{#SPARSE}.start; DestDir: {app}\modules\{#SPARSE}\etc; Components: {#COMPN_SPARSE}
 ;
-Source: modules\{#SPARSE}\help\en\addchapter.sce; DestDir: {app}\modules\{#SPARSE}\help\en; Components:  {#COMPN_SPARSE}
-Source: modules\{#SPARSE}\help\en\removechapter.sce; DestDir: {app}\modules\{#SPARSE}\help\en; Components: {#COMPN_SPARSE}
+Source: modules\{#SPARSE}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#SPARSE}\help\en_US; Components:  {#COMPN_SPARSE}
+Source: modules\{#SPARSE}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#SPARSE}\help\en_US; Components: {#COMPN_SPARSE}
 ;
-Source: modules\{#SPARSE}\help\fr\addchapter.sce; DestDir: {app}\modules\{#SPARSE}\help\fr; Components:  {#COMPN_SPARSE}
-Source: modules\{#SPARSE}\help\fr\removechapter.sce; DestDir: {app}\modules\{#SPARSE}\help\fr; Components: {#COMPN_SPARSE}
+Source: modules\{#SPARSE}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#SPARSE}\help\fr_FR; Components:  {#COMPN_SPARSE}
+Source: modules\{#SPARSE}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#SPARSE}\help\fr_FR; Components: {#COMPN_SPARSE}
 ;
-Source: modules\{#SPARSE}\help\en\*.htm; DestDir: {app}\modules\{#SPARSE}\help\en; Components: {#COMPN_SPARSE}
-Source: modules\{#SPARSE}\help\fr\*.htm; DestDir: {app}\modules\{#SPARSE}\help\fr; Components: {#COMPN_SPARSE}
+Source: modules\{#SPARSE}\help\en_US\*.htm; DestDir: {app}\modules\{#SPARSE}\help\en_US; Components: {#COMPN_SPARSE}
+Source: modules\{#SPARSE}\help\fr_FR\*.htm; DestDir: {app}\modules\{#SPARSE}\help\fr_FR; Components: {#COMPN_SPARSE}
 ;
 Source: modules\{#SPARSE}\includes\*.h; DestDir: {app}\modules\{#SPARSE}\includes; Components: {#COMPN_SPARSE}
 ;

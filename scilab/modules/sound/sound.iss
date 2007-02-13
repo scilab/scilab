@@ -21,17 +21,17 @@ Source: modules\{#SOUND}\sci_gateway\sound; DestDir: {app}\modules\{#SOUND}\sci_
 ;
 Source: modules\{#SOUND}\includes\*.h; DestDir: {app}\modules\{#SOUND}\includes; Components: {#COMPN_SOUND}
 ;
-Source: modules\{#SOUND}\help\en\addchapter.sce; DestDir: {app}\modules\{#SOUND}\help\en; Components:  {#COMPN_SOUND}
-Source: modules\{#SOUND}\help\en\removechapter.sce; DestDir: {app}\modules\{#SOUND}\help\en; Components: {#COMPN_SOUND}
+Source: modules\{#SOUND}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#SOUND}\help\en_US; Components:  {#COMPN_SOUND}
+Source: modules\{#SOUND}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#SOUND}\help\en_US; Components: {#COMPN_SOUND}
 ;
-Source: modules\{#SOUND}\help\fr\addchapter.sce; DestDir: {app}\modules\{#SOUND}\help\fr; Components:  {#COMPN_SOUND}
-Source: modules\{#SOUND}\help\fr\removechapter.sce; DestDir: {app}\modules\{#SOUND}\help\fr; Components: {#COMPN_SOUND}
+Source: modules\{#SOUND}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#SOUND}\help\fr_FR; Components:  {#COMPN_SOUND}
+Source: modules\{#SOUND}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#SOUND}\help\fr_FR; Components: {#COMPN_SOUND}
 ;
 Source: modules\{#SOUND}\etc\{#SOUND}.quit; DestDir: {app}\modules\{#SOUND}\etc; Components: {#COMPN_SOUND}
 Source: modules\{#SOUND}\etc\{#SOUND}.start; DestDir: {app}\modules\{#SOUND}\etc; Components: {#COMPN_SOUND}
 ;
-Source: modules\{#SOUND}\help\en\*.htm; DestDir: {app}\modules\{#SOUND}\help\en; Components: {#COMPN_SOUND}
-Source: modules\{#SOUND}\help\fr\*.htm; DestDir: {app}\modules\{#SOUND}\help\fr; Components: {#COMPN_SOUND}
+Source: modules\{#SOUND}\help\en_US\*.htm; DestDir: {app}\modules\{#SOUND}\help\en_US; Components: {#COMPN_SOUND}
+Source: modules\{#SOUND}\help\fr_FR\*.htm; DestDir: {app}\modules\{#SOUND}\help\fr_FR; Components: {#COMPN_SOUND}
 ;
 Source: modules\{#SOUND}\macros\buildmacros.sce; DestDir: {app}\modules\{#SOUND}\macros; Components: {#COMPN_SOUND}
 Source: modules\{#SOUND}\macros\*.bin; DestDir: {app}\modules\{#SOUND}\macros; Components: {#COMPN_SOUND}

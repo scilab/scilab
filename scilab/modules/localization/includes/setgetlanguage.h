@@ -11,6 +11,7 @@
 BOOL setlanguage(char *lang);
 char *getlanguage(void);
 int getcurrentlanguagecode(void);
+char *getlanguagealias(void);
 
 #endif /* __SETGETLANGUAGE_H__ */
 /*-----------------------------------------------------------------------------------*/ 

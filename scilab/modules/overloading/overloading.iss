@@ -19,14 +19,14 @@ Source: modules\{#OVERLOADING}\changelog.txt; DestDir: {app}\modules\{#OVERLOADI
 Source: modules\{#OVERLOADING}\etc\{#OVERLOADING}.quit; DestDir: {app}\modules\{#OVERLOADING}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#OVERLOADING}\etc\{#OVERLOADING}.start; DestDir: {app}\modules\{#OVERLOADING}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#OVERLOADING}\help\en\addchapter.sce; DestDir: {app}\modules\{#OVERLOADING}\help\en; Components:  {#COMPN_SCILAB}
-Source: modules\{#OVERLOADING}\help\en\removechapter.sce; DestDir: {app}\modules\{#OVERLOADING}\help\en; Components: {#COMPN_SCILAB}
+Source: modules\{#OVERLOADING}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#OVERLOADING}\help\en_US; Components:  {#COMPN_SCILAB}
+Source: modules\{#OVERLOADING}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#OVERLOADING}\help\en_US; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#OVERLOADING}\help\fr\addchapter.sce; DestDir: {app}\modules\{#OVERLOADING}\help\fr; Components:  {#COMPN_SCILAB}
-Source: modules\{#OVERLOADING}\help\fr\removechapter.sce; DestDir: {app}\modules\{#OVERLOADING}\help\fr; Components: {#COMPN_SCILAB}
+Source: modules\{#OVERLOADING}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#OVERLOADING}\help\fr_FR; Components:  {#COMPN_SCILAB}
+Source: modules\{#OVERLOADING}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#OVERLOADING}\help\fr_FR; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#OVERLOADING}\help\en\*.htm; DestDir: {app}\modules\{#OVERLOADING}\help\en; Components: {#COMPN_SCILAB}
-Source: modules\{#OVERLOADING}\help\fr\*.htm; DestDir: {app}\modules\{#OVERLOADING}\help\fr; Components: {#COMPN_SCILAB}
+Source: modules\{#OVERLOADING}\help\en_US\*.htm; DestDir: {app}\modules\{#OVERLOADING}\help\en_US; Components: {#COMPN_SCILAB}
+Source: modules\{#OVERLOADING}\help\fr_FR\*.htm; DestDir: {app}\modules\{#OVERLOADING}\help\fr_FR; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#OVERLOADING}\includes\*.h; DestDir: {app}\modules\{#OVERLOADING}\includes; Components: {#COMPN_SCILAB}
 ;

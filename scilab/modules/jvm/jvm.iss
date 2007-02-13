@@ -25,10 +25,10 @@ Source: modules\{#JVM}\classes\*.class; DestDir: {app}\modules\{#JVM}\classes; C
 Source: modules\{#JVM}\etc\{#JVM}.quit; DestDir: {app}\modules\{#JVM}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#JVM}\etc\{#JVM}.start; DestDir: {app}\modules\{#JVM}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#JVM}\help\en\addchapter.sce; DestDir: {app}\modules\{#JVM}\help\en; Components:  {#COMPN_SCILAB}
-Source: modules\{#JVM}\help\en\removechapter.sce; DestDir: {app}\modules\{#JVM}\help\en; Components: {#COMPN_SCILAB}
+Source: modules\{#JVM}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#JVM}\help\en_US; Components:  {#COMPN_SCILAB}
+Source: modules\{#JVM}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#JVM}\help\en_US; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#JVM}\help\fr\addchapter.sce; DestDir: {app}\modules\{#JVM}\help\fr; Components:  {#COMPN_SCILAB}
-Source: modules\{#JVM}\help\fr\removechapter.sce; DestDir: {app}\modules\{#JVM}\help\fr; Components: {#COMPN_SCILAB}
+Source: modules\{#JVM}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#JVM}\help\fr_FR; Components:  {#COMPN_SCILAB}
+Source: modules\{#JVM}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#JVM}\help\fr_FR; Components: {#COMPN_SCILAB}
 ;
 ;--------------------------------------------------------------------------------------------------------------

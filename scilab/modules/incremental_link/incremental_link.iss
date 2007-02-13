@@ -18,14 +18,14 @@ Source: modules\{#INCRLINK}\changelog.txt; DestDir: {app}\modules\{#INCRLINK}; C
 Source: modules\{#INCRLINK}\etc\{#INCRLINK}.quit; DestDir: {app}\modules\{#INCRLINK}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#INCRLINK}\etc\{#INCRLINK}.start; DestDir: {app}\modules\{#INCRLINK}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#INCRLINK}\help\en\addchapter.sce; DestDir: {app}\modules\{#INCRLINK}\help\en; Components:  {#COMPN_SCILAB}
-Source: modules\{#INCRLINK}\help\en\removechapter.sce; DestDir: {app}\modules\{#INCRLINK}\help\en; Components: {#COMPN_SCILAB}
+Source: modules\{#INCRLINK}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#INCRLINK}\help\en_US; Components:  {#COMPN_SCILAB}
+Source: modules\{#INCRLINK}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#INCRLINK}\help\en_US; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#INCRLINK}\help\fr\addchapter.sce; DestDir: {app}\modules\{#INCRLINK}\help\fr; Components:  {#COMPN_SCILAB}
-Source: modules\{#INCRLINK}\help\fr\removechapter.sce; DestDir: {app}\modules\{#INCRLINK}\help\fr; Components: {#COMPN_SCILAB}
+Source: modules\{#INCRLINK}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#INCRLINK}\help\fr_FR; Components:  {#COMPN_SCILAB}
+Source: modules\{#INCRLINK}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#INCRLINK}\help\fr_FR; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#INCRLINK}\help\en\*.htm; DestDir: {app}\modules\{#INCRLINK}\help\en; Components: {#COMPN_SCILAB}
-Source: modules\{#INCRLINK}\help\fr\*.htm; DestDir: {app}\modules\{#INCRLINK}\help\fr; Components: {#COMPN_SCILAB}
+Source: modules\{#INCRLINK}\help\en_US\*.htm; DestDir: {app}\modules\{#INCRLINK}\help\en_US; Components: {#COMPN_SCILAB}
+Source: modules\{#INCRLINK}\help\fr_FR\*.htm; DestDir: {app}\modules\{#INCRLINK}\help\fr_FR; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#INCRLINK}\src\scripts\Makedll.incl; DestDir: {app}\modules\{#INCRLINK}\src\scripts; Components: {#COMPN_SCILAB}
 ;

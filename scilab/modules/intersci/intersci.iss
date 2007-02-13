@@ -18,14 +18,14 @@ Source: modules\{#INTERSCI}\changelog.txt; DestDir: {app}\modules\{#INTERSCI}; C
 Source: modules\{#INTERSCI}\etc\{#INTERSCI}.quit; DestDir: {app}\modules\{#INTERSCI}\etc; Components: {#COMPN_INTERSCI}
 Source: modules\{#INTERSCI}\etc\{#INTERSCI}.start; DestDir: {app}\modules\{#INTERSCI}\etc; Components: {#COMPN_INTERSCI}
 ;
-Source: modules\{#INTERSCI}\help\en\addchapter.sce; DestDir: {app}\modules\{#INTERSCI}\help\en; Components:  {#COMPN_INTERSCI}
-Source: modules\{#INTERSCI}\help\en\removechapter.sce; DestDir: {app}\modules\{#INTERSCI}\help\en; Components: {#COMPN_INTERSCI}
+Source: modules\{#INTERSCI}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#INTERSCI}\help\en_US; Components:  {#COMPN_INTERSCI}
+Source: modules\{#INTERSCI}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#INTERSCI}\help\en_US; Components: {#COMPN_INTERSCI}
 ;
-Source: modules\{#INTERSCI}\help\fr\addchapter.sce; DestDir: {app}\modules\{#INTERSCI}\help\fr; Components:  {#COMPN_INTERSCI}
-Source: modules\{#INTERSCI}\help\fr\removechapter.sce; DestDir: {app}\modules\{#INTERSCI}\help\fr; Components: {#COMPN_INTERSCI}
+Source: modules\{#INTERSCI}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#INTERSCI}\help\fr_FR; Components:  {#COMPN_INTERSCI}
+Source: modules\{#INTERSCI}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#INTERSCI}\help\fr_FR; Components: {#COMPN_INTERSCI}
 ;
-Source: modules\{#INTERSCI}\help\en\*.htm; DestDir: {app}\modules\{#INTERSCI}\help\en; Components: {#COMPN_INTERSCI}
-Source: modules\{#INTERSCI}\help\fr\*.htm; DestDir: {app}\modules\{#INTERSCI}\help\fr; Components: {#COMPN_INTERSCI}
+Source: modules\{#INTERSCI}\help\en_US\*.htm; DestDir: {app}\modules\{#INTERSCI}\help\en_US; Components: {#COMPN_INTERSCI}
+Source: modules\{#INTERSCI}\help\fr_FR\*.htm; DestDir: {app}\modules\{#INTERSCI}\help\fr_FR; Components: {#COMPN_INTERSCI}
 ;
 ;Source: modules\{#INTERSCI}\macros\lib; DestDir: {app}\modules\{#INTERSCI}\macros; Components: {#COMPN_INTERSCI}
 ;Source: modules\{#INTERSCI}\macros\names; DestDir: {app}\modules\{#INTERSCI}\macros; Components: {#COMPN_INTERSCI}

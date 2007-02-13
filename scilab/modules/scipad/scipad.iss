@@ -18,14 +18,14 @@ Source: modules\{#SCIPAD}\changelog.txt; DestDir: {app}\modules\{#SCIPAD}; Compo
 Source: modules\{#SCIPAD}\etc\{#SCIPAD}.quit; DestDir: {app}\modules\{#SCIPAD}\etc; Components: {#COMPN_SCIPAD}
 Source: modules\{#SCIPAD}\etc\{#SCIPAD}.start; DestDir: {app}\modules\{#SCIPAD}\etc; Components: {#COMPN_SCIPAD}
 ;
-Source: modules\{#SCIPAD}\help\en\addchapter.sce; DestDir: {app}\modules\{#SCIPAD}\help\en; Components:  {#COMPN_SCIPAD}
-Source: modules\{#SCIPAD}\help\en\removechapter.sce; DestDir: {app}\modules\{#SCIPAD}\help\en; Components: {#COMPN_SCIPAD}
+Source: modules\{#SCIPAD}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#SCIPAD}\help\en_US; Components:  {#COMPN_SCIPAD}
+Source: modules\{#SCIPAD}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#SCIPAD}\help\en_US; Components: {#COMPN_SCIPAD}
 ;
-Source: modules\{#SCIPAD}\help\fr\addchapter.sce; DestDir: {app}\modules\{#SCIPAD}\help\fr; Components:  {#COMPN_SCIPAD}
-Source: modules\{#SCIPAD}\help\fr\removechapter.sce; DestDir: {app}\modules\{#SCIPAD}\help\fr; Components: {#COMPN_SCIPAD}
+Source: modules\{#SCIPAD}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#SCIPAD}\help\fr_FR; Components:  {#COMPN_SCIPAD}
+Source: modules\{#SCIPAD}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#SCIPAD}\help\fr_FR; Components: {#COMPN_SCIPAD}
 ;
-Source: modules\{#SCIPAD}\help\en\*.htm; DestDir: {app}\modules\{#SCIPAD}\help\en; Components: {#COMPN_SCIPAD}
-Source: modules\{#SCIPAD}\help\fr\*.htm; DestDir: {app}\modules\{#SCIPAD}\help\fr; Components: {#COMPN_SCIPAD}
+Source: modules\{#SCIPAD}\help\en_US\*.htm; DestDir: {app}\modules\{#SCIPAD}\help\en_US; Components: {#COMPN_SCIPAD}
+Source: modules\{#SCIPAD}\help\fr_FR\*.htm; DestDir: {app}\modules\{#SCIPAD}\help\fr_FR; Components: {#COMPN_SCIPAD}
 ;
 Source: modules\{#SCIPAD}\macros\lib; DestDir: {app}\modules\{#SCIPAD}\macros; Components: {#COMPN_SCIPAD}
 Source: modules\{#SCIPAD}\macros\names; DestDir: {app}\modules\{#SCIPAD}\macros; Components: {#COMPN_SCIPAD}

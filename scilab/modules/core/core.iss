@@ -20,14 +20,14 @@ Source: modules\{#CORE}\sci_gateway\core; DestDir: {app}\modules\{#CORE}\sci_gat
 Source: modules\{#CORE}\etc\{#CORE}.quit; DestDir: {app}\modules\{#CORE}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\etc\{#CORE}.start; DestDir: {app}\modules\{#CORE}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#CORE}\help\en\addchapter.sce; DestDir: {app}\modules\{#CORE}\help\en; Components:  {#COMPN_SCILAB}
-Source: modules\{#CORE}\help\en\removechapter.sce; DestDir: {app}\modules\{#CORE}\help\en; Components:  {#COMPN_SCILAB}
+Source: modules\{#CORE}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#CORE}\help\en_US; Components:  {#COMPN_SCILAB}
+Source: modules\{#CORE}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#CORE}\help\en_US; Components:  {#COMPN_SCILAB}
 ;
-Source: modules\{#CORE}\help\fr\addchapter.sce; DestDir: {app}\modules\{#CORE}\help\fr; Components:  {#COMPN_SCILAB}
-Source: modules\{#CORE}\help\fr\removechapter.sce; DestDir: {app}\modules\{#CORE}\help\fr; Components:  {#COMPN_SCILAB}
+Source: modules\{#CORE}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#CORE}\help\fr_FR; Components:  {#COMPN_SCILAB}
+Source: modules\{#CORE}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#CORE}\help\fr_FR; Components:  {#COMPN_SCILAB}
 ;
-Source: modules\{#CORE}\help\en\*.htm; DestDir: {app}\modules\{#CORE}\help\en; Components: {#COMPN_SCILAB}
-Source: modules\{#CORE}\help\fr\*.htm; DestDir: {app}\modules\{#CORE}\help\fr; Components: {#COMPN_SCILAB}
+Source: modules\{#CORE}\help\en_US\*.htm; DestDir: {app}\modules\{#CORE}\help\en_US; Components: {#COMPN_SCILAB}
+Source: modules\{#CORE}\help\fr_FR\*.htm; DestDir: {app}\modules\{#CORE}\help\fr_FR; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#CORE}\includes\*.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
 ;
