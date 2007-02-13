@@ -227,6 +227,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\sci_gateway\sci_getlanguagestable.c"
+				>
+			</File>
+			<File
 				RelativePath="..\sci_gateway\sci_setlanguage.c"
 				>
 			</File>
