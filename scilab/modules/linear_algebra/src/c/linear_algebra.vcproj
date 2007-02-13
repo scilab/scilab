@@ -181,6 +181,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\schurtable.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_backslash.c"
 				>
 			</File>

@@ -174,17 +174,6 @@ FTAB FTab_foptim[] ={
 {"icsemc", (voidf)  C2F(icsemc)},
 {"topt2", (voidf)  C2F(topt2)},
 {(char *) 0, (voidf) 0}};
-/**************** fschur ***************/
-extern void C2F(folhp)(ARGS_fschur);
-extern void C2F(find)(ARGS_fschur);
-integer * C2F(fschur)(ARGS_fschur);
-void C2F(setfschur)(char *name, int *rep);
-
-FTAB FTab_fschur[] ={
-{"find", (voidf)  C2F(find)},
-{"folhp", (voidf)  C2F(folhp)},
-{(char *) 0, (voidf) 0}};
-
 /**************** fydot2 ***************/
 extern void C2F(fexcd)(ARGS_fydot2);
 extern void C2F(fcd)(ARGS_fydot2);

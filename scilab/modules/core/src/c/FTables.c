@@ -464,34 +464,6 @@ void C2F(setfoptim)(char *name, int *rep)
 
 
 /***********************************
- * Search Table for schur uses : fschur 
- ***********************************/
-
-/** the current function fixed by setsolvf **/
-
-static fschurf fschurfonc ;
-
-/** function call : fschur  **/
-
-integer *C2F(fschur)(integer *lsize, double *alpha, double *beta, double *s, double *p)
-{
-  return((*fschurfonc)(lsize,alpha,beta,s,p));
-}
-
-/** fixes the function associated to name **/
-
-void C2F(setfschur)(char *name, int *rep)
-{
-  if (strncmp(name,"c",1)== 0 || strncmp(name,"cont",3)== 0 )
-      fschurfonc = (fschurf) SetFunction("folhp",rep,FTab_fschur);
-  else if (strncmp(name,"d",1)== 0 || strncmp(name,"disc",4)== 0 )
-      fschurfonc = (fschurf) SetFunction("find",rep,FTab_fschur);
-  else 
-    fschurfonc = (fschurf) SetFunction(name,rep,FTab_fschur);
-}
-
-
-/***********************************
  * Search Table for fydot2
  ***********************************/
 
