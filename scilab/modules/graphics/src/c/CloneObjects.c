@@ -38,7 +38,6 @@ sciCloneColormap (sciPointObj * pobj)
 {
   double *rgbmat;
   int m = sciGetNumColors (pobj);
-  int i;
 
   if ((rgbmat = MALLOC (m * 3 * sizeof (double))) == NULL)
   {
