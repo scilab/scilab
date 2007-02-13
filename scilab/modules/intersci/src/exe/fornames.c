@@ -1,5 +1,5 @@
 #include "intersci-n.h"
-
+#include "fornames.h"
 /*****************************************************************
  * The main function here is FixForNames 
  * FixForNames is used to give C or Fortran Names to Scilab 
@@ -21,9 +21,7 @@ extern  int pass;    /* flag for couting pass on code generation */
 static char str[MAXNAM];
 static char str1[MAXNAM];
 
-void StrGen(strl,var)
-     char *strl;
-     VARPTR var;
+void StrGen(char *strl,VARPTR var)
 {
   if ( var->for_type == EXTERNAL )
     {
@@ -43,7 +41,7 @@ void StrGen(strl,var)
 }
 
 
-void ForMATRIX(var)   VARPTR var ;
+void ForMATRIX(VARPTR var)
 {
   StrGen("m",var);
   AddForName1(var->el[0],str,NULL,var->stack_position);
@@ -52,14 +50,14 @@ void ForMATRIX(var)   VARPTR var ;
 }
 
   
-void ForSTRING(var)   VARPTR var ;
+void ForSTRING(VARPTR var)
 {
   StrGen("m",var);
   AddForName1(var->el[0],str,NULL,var->stack_position);
 }
 
 
-void ForIMATRIX(var)   VARPTR var ;
+void ForIMATRIX(VARPTR var)
 {
   StrGen("m",var);
   AddForName1(var->el[0],str,NULL,var->stack_position);
@@ -69,7 +67,7 @@ void ForIMATRIX(var)   VARPTR var ;
   AddForName1(var->el[2],str,NULL,var->stack_position);
 }
 
-void ForSPARSE(var)   VARPTR var ;
+void ForSPARSE(VARPTR var)
 {
   StrGen("m",var);
   AddForName1(var->el[0],str,NULL,var->stack_position);
@@ -78,19 +76,19 @@ void ForSPARSE(var)   VARPTR var ;
 }
 
 
-void ForROW(var)   VARPTR var ;
+void ForROW(VARPTR var)
 {
   StrGen("n",var);
   AddForName1(var->el[0],str,NULL,var->stack_position);
 }
 
-void ForCOLUMN(var)   VARPTR var ;
+void ForCOLUMN(VARPTR var)
 {
   StrGen("m",var);
   AddForName1(var->el[0],str,NULL,var->stack_position);
 }
 
-void ForVECTOR(var)   VARPTR var ;
+void ForVECTOR(VARPTR var)
 {
   if ( var->for_type == EXTERNAL )
     {
@@ -118,7 +116,7 @@ void ForVECTOR(var)   VARPTR var ;
     }
 }
 
-void ForPOLYNOM(var)   VARPTR var ;
+void ForPOLYNOM(VARPTR var)
 {
   StrGen("m",var);
   AddForName1(var->el[0],str,NULL,var->stack_position);
@@ -127,41 +125,41 @@ void ForPOLYNOM(var)   VARPTR var ;
 /** special case for scalars : we add a for_name to var itself 
   since var can be used as a dimension of other variables **/
 
-void ForSCALAR(var)   VARPTR var ;
+void ForSCALAR(VARPTR var)
 {
   StrGen("m",var);
   AddForName1(var->vpos,str,NULL,var->stack_position);
 }
 
 
-void ForPOINTER(var)   VARPTR var ;
+void ForPOINTER(VARPTR var)
 {
 }
 
-void ForANY(var)   VARPTR var ;{}
+void ForANY(VARPTR var){}
 
-void ForLIST(var)   VARPTR var ;{} 
+void ForLIST(VARPTR var){} 
 
-void ForTLIST(var)   VARPTR var ;{};
+void ForTLIST(VARPTR var){};
 
 
-void ForSEQUENCE(var)   VARPTR var ;
+void ForSEQUENCE(VARPTR var)
 {  
   fprintf(stderr,"Wrong type in For function \n");
 };
 
-void ForEMPTY(var)    VARPTR var ;
+void ForEMPTY(VARPTR var)
 {  
   fprintf(stderr,"Wrong type in For function \n");
 };
 
 
-void ForWORK(var)    VARPTR var ;
+void ForWORK(VARPTR var)
 {  
   fprintf(stderr,"Wrong type in For function \n");
 };
 
-void ForDIMFOREXT(var)    VARPTR var ;
+void ForDIMFOREXT(VARPTR var)
 {  
   
 };

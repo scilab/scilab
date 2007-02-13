@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include "intersci-n.h"
-
+#include "declare.h"
 /* global variables */
 
 extern int indent ; /* incremental counter for code indentation */
@@ -65,9 +65,7 @@ void ResetDeclare()
     }
 }
 
-int  CheckDeclare(type,declaration)
-     int type;
-     char *declaration;
+int  CheckDeclare(int type,char *declaration)
 {
   int j = 0;
   while ( Init[j].type != -1) 
@@ -122,9 +120,7 @@ void AddDeclare1(int type,char *format,...)
   va_end(ap);
 }
 
-void AddDeclare(type,declaration) 
-     int type;
-     char *declaration;
+void AddDeclare(int type,char *declaration) 
 {
   int j = 0;
   if ( declaration[0] == '&' ) return ;
@@ -161,8 +157,7 @@ void AddDeclare(type,declaration)
 }
 
 
-void WriteInitDeclarations(f) 
-     FILE *f;
+void WriteInitDeclarations(FILE *f) 
 {
   int j = 0;
   int i;
@@ -181,8 +176,7 @@ void WriteInitDeclarations(f)
 }
 
 
-void WriteDeclaration(f) 
-     FILE *f;
+void WriteDeclaration(FILE *f)
 {
   int j = 0;
   int i;

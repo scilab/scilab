@@ -491,18 +491,14 @@ void CreANY(f,var)
  * to the interface 
  *******************************************/
 
-void WriteCallRestCheck(f,var,name,iel,flag) 
-     VARPTR var ;
-     FILE *f;
-     char *name;
-     int iel,flag;
+void WriteCallRestCheck(FILE *f,VARPTR var,char *name,int iel,int flag) 
 {
   char sdim[MAXNAM]; 
-  char str[MAXNAM];
+  char lstr[MAXNAM];
   if (variables[var->el[iel]-1]->nfor_name == 0) 
     {
-      strcpy(str,variables[var->el[iel]-1]->name);
-      if (isdigit(str[0]) == 0) 
+      strcpy(lstr,variables[var->el[iel]-1]->name);
+      if (isdigit(lstr[0]) == 0) 
 	{
 	  if ( variables[var->el[iel]-1]->is_sciarg == 1) 
 	    {
@@ -522,7 +518,7 @@ void WriteCallRestCheck(f,var,name,iel,flag)
       else 
 	{
 	  sprintf(sdim,"%s%d",name,var->stack_position);
-	  Fprintf(f,indent,"%s=%s;\n",sdim,str);
+	  Fprintf(f,indent,"%s=%s;\n",sdim,lstr);
 	  AddForName1(var->el[iel],sdim,NULL,var->stack_position);
 	}
     }
@@ -530,9 +526,7 @@ void WriteCallRestCheck(f,var,name,iel,flag)
 
 /** to be finished : Forname2Int is not finished fo C  **/
 
-void GetDim(str,ivar) 
-     IVAR ivar;
-     char *str;
+void GetDim(char *lstr,IVAR ivar) 
 {
   char *s;
   s=Forname2Int(variables[ivar-1],0);
@@ -540,13 +534,13 @@ void GetDim(str,ivar)
        || strncmp(s,"sstk",4)==0 || strncmp(s,"stk",3)==0 || 
        strncmp(s,"cstk",4)==0 )
     {
-      sprintf(str,"%s",s);
+      sprintf(lstr,"%s",s);
       return ;
     }
   else 
     {
       AddDeclare1(DEC_INT,s);
-      sprintf(str,"%s",s);
+      sprintf(lstr,"%s",s);
     }
 }
 

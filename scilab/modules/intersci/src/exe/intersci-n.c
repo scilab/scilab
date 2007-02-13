@@ -27,7 +27,7 @@ char str1[4*MAXNAM];
 char str2[4*MAXNAM];
 
 static void GenBuilder __PARAMS(( char *file,char *files,char *libs ));
-void CheckCreateOrder();
+void CheckCreateOrder(void);
 /* local variables */
 
 int main( int argc,char ** argv)
@@ -83,8 +83,7 @@ int main( int argc,char ** argv)
  * Produce the interface 
  ***************************************************************/
 
-void Generate(file)
-     char *file;
+void Generate(char *file)
 {
   int icrekp;
   FILE *fin, *fout, *foutv;
@@ -142,9 +141,7 @@ void Generate(file)
  * Interface function 
  ***************************************************************/
 
-void WriteMain(f,file)
-     FILE *f;
-     char* file;
+void WriteMain(FILE *f,char *file)
 {
   int i;
   FCprintf(f,"\n/**********************\n");
@@ -168,8 +165,7 @@ void WriteMain(f,file)
  * Code for addinter 
  ***************************************************************/
 
-void WriteAddInter(file) 
-     char *file;
+void WriteAddInter(char *file) 
 {
   FILE *fout;
   int i;
@@ -207,9 +203,7 @@ void Copyright()
   Code generation 
 ***************************************************************/
 
-void WriteHeader(f,fname0,fname)
-     FILE *f;
-     char* fname,*fname0;
+void WriteHeader(FILE *f, char *fname0,char *fname)
 {
   Fprintf(f,indent,"\nint %s%s(fname)\n",fname0,fname);
   Fprintf(f,indent+3,"char *fname;\n");
@@ -217,8 +211,7 @@ void WriteHeader(f,fname0,fname)
   WriteDeclaration(f);
 }
 
-void WriteFunctionCode(f)
-     FILE* f;
+void WriteFunctionCode(FILE *f)
 {
   int i;
   IVAR ivar;
@@ -326,8 +319,7 @@ void WriteFunctionCode(f)
 }
 
 
-void WriteInfoCode(f)
-     FILE* f;
+void WriteInfoCode(FILE *f)
 {
   int i,iout;
   IVAR ivar;
@@ -387,9 +379,7 @@ void WriteInfoCode(f)
  * sequence ( datas on the stack ) 
  ***********************************************************/
 
-void WriteArgCheck(f,i)
-     FILE *f;
-     int i;
+void WriteArgCheck(FILE *f,int i)
 {
   int i1;
   VARPTR var = variables[basfun->in[i]-1];
@@ -423,8 +413,7 @@ void WriteArgCheck(f,i)
  * cross checking dimensions 
  ***********************************************************/
 
-void WriteCrossCheck(f)
-     FILE *f;
+void WriteCrossCheck(FILE *f)
 {
   int i, j;
   VARPTR var;
@@ -480,8 +469,7 @@ void WriteCrossCheck(f)
 
 
 
-void WriteEqualCheck(f)
-     FILE *f;
+void WriteEqualCheck(FILE *f)
 {
   /*Fprintf(f,indent,"/ * cross equal output variable checking\n");
     Fprintf(f,indent,"   not implemented yet* /\n"); */
@@ -491,10 +479,7 @@ void WriteEqualCheck(f)
  * Scilab argument of type list 
  ***************************************************************/
 
-void WriteListAnalysis(f,i,list_type)
-     FILE *f;
-     int i;
-     char *list_type;
+void WriteListAnalysis(FILE *f,int i,char *list_type)
 {
   int k,i1;
   VARPTR var;
@@ -558,8 +543,7 @@ void CheckCreateOrder()
 }
 
 
-void WriteFortranCall(f)
-     FILE *f;
+void WriteFortranCall(FILE *f)
 {
   int i, ind;
   IVAR ivar, iivar;
@@ -685,8 +669,7 @@ void WriteFortranCall(f)
  * for lhs variables creation 
  *****************************************************/
 
-void WriteOutput(f)
-     FILE *f;
+void WriteOutput(FILE *f)
 {
   IVAR iout,ivar;
   VARPTR var,vout;
@@ -749,11 +732,7 @@ void WriteOutput(f)
  *   of the variable in the list 
  ***********************************************/
 
-void WriteVariable(f,var,ivar,insidelist,nel)
-     FILE *f;
-     VARPTR var;
-     IVAR ivar;
-     int insidelist;
+void WriteVariable(FILE *f, VARPTR var,IVAR ivar,int insidelist,int nel)
 {
   IVAR ivar2, barg, farg;
   VARPTR var2;
@@ -883,8 +862,7 @@ void WriteVariable(f,var,ivar,insidelist,nel)
 }
 
 
-int GetNumberInScilabCall(ivar)
-     int ivar;
+int GetNumberInScilabCall(int ivar)
 {
   int j;
   for (j = 0; j < basfun->nin; j++) 
@@ -897,8 +875,7 @@ int GetNumberInScilabCall(ivar)
   return(0);
 }
 
-int GetNumberInFortranCall(ivar)
-     int ivar;
+int GetNumberInFortranCall(int ivar)
 {
   int j;
   for (j = 0; j < forsub->narg; j++) 
@@ -919,9 +896,7 @@ int GetNumberInFortranCall(ivar)
  
 char unknown[]="ukn";
 
-char *Forname2Int(var,i)
-     VARPTR var;
-     int i;
+char *Forname2Int(VARPTR var,int i)
 {
   int l;
   char *p;
@@ -944,9 +919,7 @@ char *Forname2Int(var,i)
   else return var->for_name[i];
 }
 
-void GenFundef(file,interf)
-     char *file;
-     int interf;
+void GenFundef(char *file,int interf)
 {
   FILE *fout;
   char filout[MAXNAM];
@@ -967,9 +940,7 @@ void GenFundef(file,interf)
     }
 }
 
-static void GenBuilder(file,files,libs)
-     char *file;
-     char *files,*libs;
+static void GenBuilder(char *file,char *files,char *libs)
 {
   FILE *fout;
   char filout[MAXNAM];
@@ -1039,40 +1010,26 @@ char sbuf[MAXBUF];
 #include <varargs.h>
 #endif 
 
-#ifdef __STDC__ 
-void  Fprintf(FILE *f,int indent,char *format,...) 
-#else 
-     /*VARARGS0*/
-     void Fprintf(va_alist) va_dcl
-#endif
+void  Fprintf(FILE *f,int indent2,char *format,...) 
 {
   int i;
   static int count=0;
   va_list ap;
-#ifdef __STDC__
   va_start(ap,format);
-#else
-  int indent;
-  char *format;
-  FILE *f;
-  va_start(ap);
-  f = va_arg(ap, FILE *);
-  indent= va_arg(ap, int );
-  format = va_arg(ap, char *);
-#endif
+
   vsprintf(sbuf,format,ap);
 
   for ( i = 0 ; i < (int) strlen(sbuf); i++) 
     {
       if ( count == 0)  
 	{
-	  white(f,indent);
-	  count = indent;
+	  white(f,indent2);
+	  count = indent2;
 	}
       if ( count >= 100 && sbuf[i] != '\n' && (sbuf[i] == ' ' || sbuf[i]== ',' || sbuf[i] == ';' || sbuf[i] == '(' ) ) 
 	{ 
 	  fprintf(f,"\n");
-	  white(f,indent);count=indent;
+	  white(f,indent2);count=indent2;
 	}
       if ( sbuf[i] == '\n') count = -1 ;
       fprintf(f,"%c",sbuf[i]);
@@ -1081,21 +1038,14 @@ void  Fprintf(FILE *f,int indent,char *format,...)
   va_end(ap);
 }
 
-void white(f,ind)
-     FILE *f;
-     int ind;
+void white(FILE *f,int ind)
 {
   int i ;
   for (i =0 ; i < ind ; i++) fprintf(f," ");
 }
 
 
-#ifdef __STDC__ 
 void  FCprintf(FILE *f,char *format,...) 
-#else 
-     /*VARARGS0*/
-     void FCprintf(va_alist) va_dcl
-#endif
 {
   va_list ap;
 #ifdef __STDC__

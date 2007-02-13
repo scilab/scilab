@@ -12,12 +12,10 @@ static  char data[MAXNAM];
  * Optional variables old style 
  ***********************************************/
 
-void WriteOptArg(f,var)
-     VARPTR var;
-     FILE *f;
+void WriteOptArg(FILE *f,VARPTR var)
 {
-  char size[MAXNAM];
-  char data[MAXNAM];
+  char lsize[MAXNAM];
+  char ldata[MAXNAM];
 
   Fprintf(f,indent++,"if( Rhs <= %d) \n", 
 	  var->stack_position-1 );
@@ -39,13 +37,13 @@ void WriteOptArg(f,var)
 		  var->opt_name);
 	  break;
 	case MATRIX:
-	  OptvarGetSize(var->opt_name,size,data);
+	  OptvarGetSize(var->opt_name,lsize,ldata);
 
 	  AddDeclare1(DEC_DATA,"%s dat%d[]= %s",
 		      SGetCDec(var->for_type),
-		      var->stack_position,data);
+		      var->stack_position,ldata);
 	  Fprintf(f,indent,"m%d = 1;n%d = %s;\n",var->stack_position,
-		  var->stack_position,size);
+		  var->stack_position,lsize);
 	  (*(CRERHSTAB[var->type].fonc))(f,var);
 	  AddDeclare1(DEC_INT,"un=1");
 	  Fprintf(f,indent,"C2F(%scopy)(&m%d,dat%d,&un,%s(l%d),&un);\n",
@@ -85,9 +83,7 @@ void WriteOptArg(f,var)
  * first phase : checking arguments 
  ***********************************************/
 
-void WriteOptArgPhase2(f,i)
-     IVAR i;
-     FILE *f;
+void WriteOptArgPhase2(FILE *f,IVAR i)
 {
   VARPTR var = variables[basfun->in[i]-1];
   int opt_posi = basfun->NewMaxOpt - (basfun->nin - var->stack_position)-1;
@@ -139,9 +135,7 @@ void WriteOptArgPhase2(f,i)
 }
 
 
-void OptMATRIX(f,var)
-     FILE *f;
-     VARPTR var;
+void OptMATRIX(FILE *f,VARPTR var)
 {
   int opt_posi = basfun->NewMaxOpt - (basfun->nin - var->stack_position)-1;
   Fprintf(f,indent++,"if ( opts[%d].position == -1 ){\n",opt_posi);
@@ -192,9 +186,7 @@ void OptMATRIX(f,var)
   Fprintf(f,--indent,"} \n");
 }
 
-void OptOpointer(f,var)
-     FILE *f;
-     VARPTR var;
+void OptOpointer(FILE *f,VARPTR var)
 {
 
   Fprintf(f,indent++,"if ( %sok == 0) {\n",var->name);
@@ -214,28 +206,27 @@ void OptOpointer(f,var)
  * and the next characters are stored in data 
  *****************************************/
 
-void OptvarGetSize(optvar,size,data)
-     char *optvar,*size,*data;
+void OptvarGetSize(char *optvar,char *lsize,char *ldata)
 {
   int i,j=0,ok=0;
   for ( i = 0 ; i < (int) strlen(optvar) ; i++ ) 
     {
       if ( optvar[i] == ')' ) 
 	{ 
-	  size[j++] = '\0'; break;
+	  lsize[j++] = '\0'; break;
 	}
-      if ( ok ==1 ) size[j++]= optvar[i];
+      if ( ok ==1 ) lsize[j++]= optvar[i];
       if ( optvar[i] == '(' ) ok =1 ;
     }
-  if ( i < (int) strlen(optvar)) strcpy(data,optvar+i+1);
+  if ( i < (int) strlen(optvar)) strcpy(ldata,optvar+i+1);
   ok=0;
-  for ( i = 0 ; i < (int) strlen(data) ; i++ ) 
-    if ( data[i] == '/' ) 
+  for ( i = 0 ; i < (int) strlen(ldata) ; i++ ) 
+    if ( ldata[i] == '/' ) 
       {
 	if (ok ==0 ) {
-	  data[i]='{';ok=1;}
+	  ldata[i]='{';ok=1;}
 	else
-	  data[i]='}';
+	  ldata[i]='}';
       }
 }
 

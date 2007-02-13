@@ -1,6 +1,7 @@
 #ifndef LIBINTER_SCI
 #define LIBINTER_SCI
 #include "machine.h"
+#include "stack-c.h"
 
 extern void C2F(erro)  __PARAMS ((char *str, unsigned int));
 extern void C2F(out) __PARAMS ((char *str,unsigned int));
@@ -21,6 +22,6 @@ int C2F(stringc) __PARAMS ((int *sciptr, char ***cptr, int *ierr));
 void C2F(dbl2cdbl) __PARAMS ((int *n,double *ip[], double *op));
 void C2F(freeptr)   __PARAMS (( double *ip[]));
 void C2F(int2cint) __PARAMS (( int *n, integer *ip[], integer *op));
-/* int C2F(csparsef) __PARAMS ((Sparse **x, int *mnel,*icol, double *xr,double *xi));*/
 
+int C2F(csparsef)  __PARAMS ((SciSparse **x,int *mnel,int *icol,double *R,double *I));
 #endif 

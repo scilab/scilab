@@ -541,20 +541,16 @@ void Check(f,var,nel)
 
 
 
-void CheckSquare(f,var,str1,str2)
-     FILE *f;
-     VARPTR var;
-     char *str1;
-     char *str2;
+void CheckSquare(FILE *f,VARPTR var,char *str1_,char *str2_)
 {
   if (var->el[0] != var->el[1]) return ;
   if (var->list_el ==0 )
     {
-      Fprintf(f,indent,"CheckSquare(%d,m%s,n%s);\n", var->stack_position,str1,str1);
+      Fprintf(f,indent,"CheckSquare(%d,m%s,n%s);\n", var->stack_position,str1_,str1_);
     }
   else 
     {
-      Fprintf(f,indent,"CheckListSquare(%s,%d,m%s,n%s);\n",str2, var->list_el,str1,str1);
+      Fprintf(f,indent,"CheckListSquare(%s,%d,m%s,n%s);\n",str2_, var->list_el,str1_,str1_);
     }  
 }
 
