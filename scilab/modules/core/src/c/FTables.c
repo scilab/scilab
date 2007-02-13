@@ -8,14 +8,15 @@
 #include "FTables.h"
 #define FTable_H   /* to prevent  a type conflict with GetFuncPtr */ 
 #include "stack-c.h"
+#include "stack2.h"
 #include "sciprint.h"
-
 #include "link.h"
 
 extern int C2F(getcodc) __PARAMS((integer *nd1, integer *iflag1));
 static int SearchComp  __PARAMS((FTAB *Ftab, char *op, void (**realop) ( )));  
 static void Emptyfunc  __PARAMS((void)) {} ;
 
+voidf GetFuncPtr(char *name, int n, FTAB *Table, voidf scifun, int *ifunc, int *lhs, int *rhs);
 voidf SetFunction  __PARAMS((char *name, int *rep, FTAB *table));  
 
 /***********************************
@@ -489,116 +490,6 @@ void C2F(setfschur)(char *name, int *rep)
     fschurfonc = (fschurf) SetFunction(name,rep,FTab_fschur);
 }
 
-/***********************************
- * Search Table for schur uses : schsel
- ***********************************/
-
-/** the current function fixed by setschsel **/
-
-static schself schselfonc ;
-
-/** function call : schsel  **/
-
-integer *C2F(schsel)(double *alpha, double *beta)
-{
-  return((*schselfonc)(alpha,beta));
-}
-
-/** fixes the function associated to name **/
-
-void C2F(setschsel)(int *len, char *name, int *rep)
-{
-  if ( ((strncmp(name,"c",1)== 0 ) && (*len==1)) || strncmp(name,"cont",4)== 0 )
-      schselfonc = (schself) SetFunction("sb02mv",rep,FTab_schsel);
-  else if ( ((strncmp(name,"d",1)== 0) && (*len==1)) || strncmp(name,"disc",4)== 0 )
-      schselfonc = (schself) SetFunction("sb02mw",rep,FTab_schsel);
-  else 
-    schselfonc = (schself) SetFunction(name,rep,FTab_schsel);
-}
-
-
-/***********************************
- * Search Table for schur uses : zchsel
- ***********************************/
-
-/** the current function fixed by setzschsel **/
-
-static zchself zchselfonc ;
-
-/** function call : zchsel  **/
-
-integer *C2F(zchsel)(doublecmplx *alpha)
-{
-  return((*zchselfonc)(alpha));
-}
-
-/** fixes the function associated to name **/
-
-void C2F(setzchsel)(int *len, char *name, int *rep)
-{
-  if ( ((strncmp(name,"c",1)== 0) && (*len==1)) || strncmp(name,"cont",3)== 0 )
-      zchselfonc = (zchself) SetFunction("zb02mv",rep,FTab_zchsel);
-  else if ( ( (strncmp(name,"d",1)== 0) && (*len==1) ) || strncmp(name,"disc",4)== 0 )
-      zchselfonc = (zchself) SetFunction("zb02mw",rep,FTab_zchsel);
-  else 
-    zchselfonc = (zchself) SetFunction(name,rep,FTab_zchsel);
-}
-
-/***********************************
- * Search Table for gschur uses : gshsel
- ***********************************/
-
-/** the current function fixed by setgshsel **/
-
-static gshself gshselfonc ;
-
-/** function call : gshsel  **/
-
-integer *C2F(gshsel)(double *alphar, double *alphai, double *beta)
-{
-  return((*gshselfonc)(alphar,alphai,beta));
-}
-
-/** fixes the function associated to name **/
-
-void C2F(setgshsel)(int *len, char *name, int *rep)
-{
-  if ( ((strncmp(name,"c",1)== 0) && (*len==1)) || strncmp(name,"cont",3)== 0 )
-      gshselfonc = (gshself) SetFunction("sb02ow",rep,FTab_gshsel);
-  else if ( ( (strncmp(name,"d",1)== 0) && (*len==1) ) || strncmp(name,"disc",4)== 0 )
-      gshselfonc = (gshself) SetFunction("sb02ox",rep,FTab_gshsel);
-  else 
-    gshselfonc = (gshself) SetFunction(name,rep,FTab_gshsel);
-}
-
-
-/***********************************
- * Search Table for gschur uses : gzhsel
- ***********************************/
-
-/** the current function fixed by setgzhsel **/
-
-static gzhself gzhselfonc ;
-
-/** function call : gzhsel  **/
-
-integer *C2F(gzhsel)(doublecmplx *alpha, doublecmplx *beta)
-{
-  return((*gzhselfonc)(alpha,beta));
-}
-
-/** fixes the function associated to name **/
-
-void C2F(setgzhsel)(int *len, char *name, int *rep)
-{
-  if ( ((strncmp(name,"c",1)== 0) && (*len==1)) || strncmp(name,"cont",3)== 0 )
-      gzhselfonc = (gzhself) SetFunction("zb02ow",rep,FTab_gzhsel);
-  else if ( ( (strncmp(name,"d",1)== 0) && (*len==1) ) || strncmp(name,"disc",4)== 0 )
-      gzhselfonc = (gzhself) SetFunction("zb02ox",rep,FTab_gzhsel);
-  else 
-    gzhselfonc = (gzhself) SetFunction(name,rep,FTab_gzhsel);
-}
-
 
 /***********************************
  * Search Table for fydot2
@@ -750,7 +641,7 @@ void C2F(interf)(void * x1, void * x2, void * x3, void * x4, void * x5, void * x
 }
 
 
-void C2F(interf1)(char *name)
+void C2F(interf1)(char *name, long int size)
 {
   ((interff1) *interffonc)(name,strlen(name));
 }
@@ -850,8 +741,6 @@ static int SearchComp(FTAB *Ftab, char *op, void (**realop) (/* ??? */))
 
 #define a_chain 10
 #define a_function 13
-
-extern int C2F(vartype) __PARAMS((integer*));
 
 voidf GetFuncPtr(char *name, int n, FTAB *Table, voidf scifun, int *ifunc, int *lhs, int *rhs)
 {
