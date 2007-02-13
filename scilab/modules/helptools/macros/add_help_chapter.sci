@@ -5,20 +5,20 @@ function ok = add_help_chapter(helptitle,path)
 	// Scilab team
 	// Copyright INRIA
 	// Date : August 1st 2006
-	// 
-	// add_help_chapter(title,path)  
-	// 
-	// Parameters 
-	// 
+	//
+	// add_help_chapter(title,path)
+	//
+	// Parameters
+	//
 	// 	title : a character string, the help chapter title 
-	// 	path : a character string, the path of the directory containing the help files. 
-	// 
-	// Description 
-	// 
-	// 	This function adds a new entry in the helps list. The help chapter files are to 
+	// 	path : a character string, the path of the directory containing the help files.
+	//
+	// Description
+	//
+	// 	This function adds a new entry in the helps list. The help chapter files are to
 	// 	be located in a single directory. If the given  title  already exists in the helps
-	// 	list associated with the same path nothing is done. The function checks if the 
-	// 	directory exist. 
+	// 	list associated with the same path nothing is done. The function checks if the
+	// 	directory exist.
 	// =========================================================================================
 	
 	global %helps;

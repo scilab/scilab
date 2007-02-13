@@ -5,7 +5,7 @@ function clean_help(dirs)
 	// Scilab team
 	// Copyright INRIA
 	// Date : August 2st 2006
-	// 
+	//
 	// dirs is a set of directories for which html manuals are to be deleted
 	// =========================================================================================
 	

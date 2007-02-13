@@ -51,7 +51,7 @@ function txt=help_skeleton(funname,path,language)
 	// FRENCH
 	// -----------------------------------------------------------------------------------------
 	
-	case 'fr' then
+	case 'fr_FR' then
 		
 		txt=[
 			"<?xml version=""1.0"" encoding=""ISO-8859-1"" standalone=""no""?>" 

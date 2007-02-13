@@ -5,7 +5,7 @@ function extract_help_examples(dirpaths)
 // this function build in SCI/tests/Examples the files required for
 // testing the examples given in all  xml help files available in the
 // given paths.
-  
+
   logfile=mopen('extract_help_examples.log','w')
   lsave=lines();lines(0)
   if argn(2)<1 then

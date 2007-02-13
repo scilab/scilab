@@ -1,14 +1,14 @@
 function ok = xmlfiletohtml(path,xsl,directory_language,default_language)
 	
 	// =========================================================================================
-	// 
+	//
 	// Authors : Jean-Philippe CHANCELIER, Pierre MARECHAL
 	// Copyright INRIA/Enpc
 	//
-	// given a path on a Scilab help xml file (assumed to respect 
+	// given a path on a Scilab help xml file (assumed to respect
 	// SCI/helptools/help.dtd) this function generates the corresponding htm
 	// file using the wanted xsl file
-	// 
+	//
 	// Private function !!!
 	// =========================================================================================
 	

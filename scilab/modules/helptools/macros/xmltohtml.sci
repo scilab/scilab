@@ -3,14 +3,14 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 	// =========================================================================================
 	// Authors : Jean-Philippe CHANCELIER, Pierre MARECHAL
 	// Copyright INRIA/Enpc
-	// 
+	//
 	// dirs is a set of directories
-	// for which html manuals are to be generated 
-	// + and index and toc file 
+	// for which html manuals are to be generated
+	// + and index and toc file
 	// titles are associated title strings (optional or [])
-	// if dirs is not specified or [] then 
-	// standard scilab man are assumed and titles 
-	// are searched in %helps 
+	// if dirs is not specified or [] then
+	// standard scilab man are assumed and titles
+	// are searched in %helps
 	// updated by HUYNH Olivier on the 9/03/2004
 	// =========================================================================================
 	
@@ -76,28 +76,37 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 		if size(scs,'*') == 1 then dirs_to_build(scs,:)=[]; end
 		// End of patch --------------------------------------------------------------------
 		
-		dirs = dirs_to_build(:,1);
-		titles = dirs_to_build(:,2);
+		dirs               = dirs_to_build(:,1);
+		titles             = dirs_to_build(:,2);
 		directory_language = [];
-		default_language = [];
-		language_system = [];
+		default_language   = [];
+		language_system    = [];
 		
 		select getlanguage()
 		
-		case 'en' then
-			xsl = pathconvert(SCI+"/modules/helptools/help_en.xsl",%f,%f);
+		case 'en_US' then
+			xsl = pathconvert(SCI+"/modules/helptools/help_en_US.xsl",%f,%f);
 			for k=1:size(dirs,'*')
-				directory_language = [directory_language;"en"];
-				language_system = [language_system;%F];
+				directory_language = [directory_language;"en_US"];
+				language_system    = [language_system;%F];
 			end
 		
-		case 'fr' then
-			xsl = pathconvert(SCI+"/modules/helptools/help_fr.xsl",%f,%f);
+		case 'fr_FR' then
+			xsl = pathconvert(SCI+"/modules/helptools/help_fr_FR.xsl",%f,%f);
 			for k=1:size(dirs,'*')
-				directory_language = [directory_language;"fr"];
-				default_language = [default_language;"en"];
-				language_system = [language_system;%T];
+				directory_language = [directory_language;"fr_FR"];
+				default_language   = [default_language;"en_US"];
+				language_system    = [language_system;%T];
 			end
+			
+		else
+			xsl = pathconvert(SCI+"/modules/helptools/help_"+getlanguage()+".xsl",%f,%f);
+			for k=1:size(dirs,'*')
+				directory_language = [directory_language;getlanguage()];
+				default_language   = [default_language;"en_US"];
+				language_system    = [language_system;%T];
+			end
+		
 		end
 		
 		step = "all";
@@ -107,24 +116,33 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 	
 	elseif (rhs == 1) & (dirs <> []) then
 		
-		step = "all";
+		step            = "all";
 		language_system = [];
-		titles = [];
+		titles          = [];
 		
 		select getlanguage()
 		
-		case 'en' then
-			xsl = pathconvert(SCI+"/modules/helptools/help_en.xsl",%f,%f);
+		case 'en_US' then
+			xsl = pathconvert(SCI+"/modules/helptools/help_en_US.xsl",%f,%f);
 			for k=1:size(dirs,'*')
 				titles = [titles;"Help chapter ("+dirs(k)+")"];
 				language_system = [language_system;%F];
 			end
-		case 'fr' then
-			xsl = pathconvert(SCI+"/modules/helptools/help_fr.xsl",%f,%f);
+			
+		case 'fr_FR' then
+			xsl = pathconvert(SCI+"/modules/helptools/help_fr_FR.xsl",%f,%f);
 			for k=1:size(dirs,'*')
 				titles = [titles;"Chapitre de help ("+dirs(k)+")"];
 				language_system = [language_system;%F];
 			end
+			
+		else
+			xsl = pathconvert(SCI+"/modules/helptools/help_"+getlanguage()+".xsl",%f,%f);
+			for k=1:size(dirs,'*')
+				titles = [titles;"Chapitre de help ("+dirs(k)+")"];
+				language_system = [language_system;%F];
+			end
+			
 		end
 		
 	// Cas ou seulement le ou les répertoires ainsi que le ou les titres sont précisés
@@ -177,11 +195,11 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 		if ~exists("xsl") | xsl == [] | xsl == "" then
 			select getlanguage()
 			
-			case 'en' then
-				xsl = pathconvert(SCI+"/modules/helptools/help_en.xsl",%f,%f);
+			case 'en_US' then
+				xsl = pathconvert(SCI+"/modules/helptools/help_en_US.xsl",%f,%f);
 				
-			case 'fr' then
-				xsl = pathconvert(SCI+"/modules/helptools/help_fr.xsl",%f,%f);
+			case 'fr_FR' then
+				xsl = pathconvert(SCI+"/modules/helptools/help_fr_FR.xsl",%f,%f);
 			
 			end
 		end
@@ -203,11 +221,11 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 		if ~exists("xsl") | xsl == [] | xsl == "" then
 			select getlanguage()
 			
-			case 'en' then
-				xsl = pathconvert(SCI+"/modules/helptools/help_en.xsl",%f,%f);
+			case 'en_US' then
+				xsl = pathconvert(SCI+"/modules/helptools/help_en_US.xsl",%f,%f);
 				
-			case 'fr' then
-				xsl = pathconvert(SCI+"/modules/helptools/help_fr.xsl",%f,%f);
+			case 'fr_FR' then
+				xsl = pathconvert(SCI+"/modules/helptools/help_fr_FR.xsl",%f,%f);
 			
 			end
 		end
@@ -230,11 +248,11 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 		if ~exists("xsl") | xsl == [] | xsl == "" then
 			select getlanguage()
 			
-			case 'en' then
-				xsl = pathconvert(SCI+"/modules/helptools/help_en.xsl",%f,%f);
+			case 'en_US' then
+				xsl = pathconvert(SCI+"/modules/helptools/help_en_US.xsl",%f,%f);
 				
-			case 'fr' then
-				xsl = pathconvert(SCI+"/modules/helptools/help_fr.xsl",%f,%f);
+			case 'fr_FR' then
+				xsl = pathconvert(SCI+"/modules/helptools/help_fr_FR.xsl",%f,%f);
 			
 			end
 		end
@@ -394,7 +412,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 		contents_file = pathconvert(SCI+"/modules/helptools/contents_"+getlanguage()+".htm",%f,%t);
 		mprintf("\nCreating %s\n",contents_file);
 		if rhs <= 0 then 
-			gener_contents() 
+			gener_contents()
 		else
 			gener_contents(dirs)
 		end
@@ -402,12 +420,12 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 	
 	//------------------------------------------------------------------------------------------
 	// now help workshop (Only under Windows and only if
-	// we build the scilab man 
+	// we build the scilab man
 	//------------------------------------------------------------------------------------------
 	
 	if MSDOS then
 		if step=='all' | step == 'hw' then
-			if (strindex(dirs(1),'\en\') <> []) | (strindex(dirs(1),'\fr\') <> []) then
+			if (strindex(dirs(1),'\en_US\') <> []) | (strindex(dirs(1),'\fr_FR\') <> []) then
 				mprintf("\nCreating sciman.hh* \n");
 				gener_hh(dirs,titles)
 			end
@@ -477,7 +495,7 @@ function gener_whatis(wtitle)
 	xml = listfiles('*.xml');
 	
 	if MSDOS& xml<>[] then 
-		// on MSDOS listfiles *.xml also 
+		// on MSDOS listfiles *.xml also
 		// returns *.xml* !!!!!
 		ind = grep(xml,'xml2');
 		xml(ind)=[];
@@ -654,7 +672,6 @@ function flag = gener_links()
 	flag=%f
 	
 	// look for .xml files
-	// look for .xml files
 	
 	xml = listfiles('*.xml');
 	for k1=1:size(xml,'*')  // loop on .xml files
@@ -673,7 +690,7 @@ endfunction
 function gener_contents(dirs1)
 	
 	//------------------------------------------------------------------------------------------
-	// contents.htm 
+	// contents.htm
 	//------------------------------------------------------------------------------------------
 	
 	[lhs,rhs]=argn(0)
@@ -703,7 +720,7 @@ function gener_contents(dirs1)
 	full_whatis=[];
 	full_whatis_name=[];
 	
-	if std<>[] then 
+	if std<>[] then
 		for k=std
 			d = dirs(k)+'/'+base(k);
 			[fd,ierr]=mopen(d+"/whatis.htm","r");
@@ -758,10 +775,10 @@ function gener_contents(dirs1)
 	full_whatis=full_whatis(sk);
 	
 	select getlanguage() 
-		case 'fr' then type_title =  "		<H2>Fonctions Scilab</H2>";
-		case 'en' then type_title =  "		<H2>Scilab functions</H2>";
+		case 'fr_FR' then type_title =  "		<H2>Fonctions Scilab</H2>";
+		case 'en_US' then type_title =  "		<H2>Scilab functions</H2>";
 	end
-  
+	
 	full_whatis=["<html>"
 		"	<head>"
 		"		<meta http-equiv=""Content-Type"" content=""text/html; charset=ISO-8859-1"">"
@@ -799,10 +816,10 @@ function gener_hh(dirs,titles)
 	base = dirs 
 	
 	if ( strindex(base(1),'\en\') <> [] ) then
-		manpath = pathconvert(getlongpathname(SCI)+'/man/en/',%t,%f,'w');
+		manpath = pathconvert(getlongpathname(SCI)+'/man/en_US/',%t,%f,'w');
 		doctitle = "Scilab documentation";
 	elseif ( strindex(base(1),'\fr\') <> [] ) then
-		manpath = pathconvert(getlongpathname(SCI)+'/man/fr/',%t,%f,'w');
+		manpath = pathconvert(getlongpathname(SCI)+'/man/fr_FR/',%t,%f,'w');
 		doctitle = "Documentation";
 	end
 	
@@ -844,15 +861,15 @@ function gener_hh(dirs,titles)
 		"</HTML>"];
 		
 	mputl(full_index,'sciman.hhk')
-
+	
 	//------------------------------------------------------------------------------------------
-	// produce a scilab.hhc file 
-	// (contents) 
+	// produce a scilab.hhc file
+	// (contents)
 	//------------------------------------------------------------------------------------------
-    
+	
 	items = [];
 	
-	for k=1:n 
+	for k=1:n
 		
 		names_II = [];
 		items_II = [];
@@ -873,7 +890,7 @@ function gener_hh(dirs,titles)
 		if files_II<>[] then
 			fbase_II = basename(files_II);
 			name_II = strsubst(base(k)+"\"+fbase_II,"\\","/");
-			name_II = strsubst(name_II,manpath,'');			
+			name_II = strsubst(name_II,manpath,'');
 			items_II=[items_II;"					<LI><OBJECT type=""text/sitemap""><param name=""Local"" value=""" + name_II + ".htm""><param name=""Name"" value="""+fbase_II+"""><param name=""ImageNumber"" value=""11""></OBJECT>"];
 			names_II=[names_II;files_II];
 		end
@@ -917,9 +934,9 @@ function gener_hh(dirs,titles)
 	mputl(contents,'sciman.hhc')
 	
 	//------------------------------------------------------------------------------------------
-	// produce a scilab.hhp file 
+	// produce a scilab.hhp file
 	//------------------------------------------------------------------------------------------
-       
+	
 	// Get the index.htm path
 	
 	head=["[OPTIONS]";
@@ -938,10 +955,10 @@ function gener_hh(dirs,titles)
 		"sciman=""Scilab Documentation"",""sciman.hhc"",""sciman.hhk"",""index.htm"",""index.htm"",,,,,0x2520,220,0x384e,[84,16,784,504],,,,0,,,0";
 		"";
 		"[FILES]"];
-
+	
 	items=base+"*.htm";
-       
-	mputl([head;items],'sciman.hhp')  
+	
+	mputl([head;items],'sciman.hhp');
 
 endfunction
 

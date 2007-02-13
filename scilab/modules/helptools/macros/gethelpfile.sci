@@ -43,7 +43,7 @@ function res=findword(str,word)
 	res=strindex(str," "+word)
 	if res==length(str)-length(word) then return; end
 	res=[]
-endfunction	   
+endfunction
 
 
 
@@ -55,7 +55,7 @@ function path=genhelpfromfunc(key)
 	execstr('%fun='+key)
 	if type(%fun)==11 then comp(%fun),end
 	if type(%fun)<> 13 then return,end
-	[status,message]=mkdir(TMPDIR,'localman') 
+	[status,message]=mkdir(TMPDIR,'localman')
 	
 	if and(status<>[1 2]) then return, end
 	if fileinfo(TMPDIR+'/localman/whatis.htm')==[] then

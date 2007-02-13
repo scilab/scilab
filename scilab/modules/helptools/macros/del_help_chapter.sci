@@ -5,16 +5,16 @@ function del_help_chapter(helptitle)
 	// Scilab team
 	// Copyright INRIA
 	// Date : August 1st 2006
-	// 
-	// del_help_chapter(title,path)  
-	// 
-	// Parameters 
-	// 
-	// 	title : a character string, the help chapter title
-	// 
-	// Description 
-	// 
-	// 	This function deletes a entry in the helps list.
+	//
+	// del_help_chapter(title,path)
+	//
+	// Parameters
+	//
+	// title : a character string, the help chapter title
+	//
+	// Description
+	//
+	// This function deletes a entry in the helps list.
 	// =========================================================================================
 	
 	global %helps;
