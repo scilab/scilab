@@ -107,7 +107,7 @@ function check_help(dirs)
 					end
 				end
 				
-				if max_change_date > last_successful_check_value then
+				if max_change_date > last_success_check_val then
 					need_to_be_checked = %T;
 				else
 					need_to_be_checked = %F;
@@ -158,7 +158,7 @@ function check_help(dirs)
 				//------------------------------------------------------------------
 				
 				if nb_badfiles_dir == 0 then
-					dateToPrint = msprintf("last_successful_check_value = %d",getdate('s'));
+					dateToPrint = msprintf("last_success_check_val = %d",getdate('s'));
 					mputl(dateToPrint,pathconvert(".last_successful_check",%f,%f));
 				end
 			end

@@ -82,23 +82,12 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 		default_language   = [];
 		language_system    = [];
 		
-		select getlanguage()
-		
-		case 'en_US' then
+		if getlanguage() == 'en_US' then
 			xsl = pathconvert(SCI+"/modules/helptools/help_en_US.xsl",%f,%f);
 			for k=1:size(dirs,'*')
 				directory_language = [directory_language;"en_US"];
 				language_system    = [language_system;%F];
 			end
-		
-		case 'fr_FR' then
-			xsl = pathconvert(SCI+"/modules/helptools/help_fr_FR.xsl",%f,%f);
-			for k=1:size(dirs,'*')
-				directory_language = [directory_language;"fr_FR"];
-				default_language   = [default_language;"en_US"];
-				language_system    = [language_system;%T];
-			end
-			
 		else
 			xsl = pathconvert(SCI+"/modules/helptools/help_"+getlanguage()+".xsl",%f,%f);
 			for k=1:size(dirs,'*')
@@ -106,7 +95,6 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 				default_language   = [default_language;"en_US"];
 				language_system    = [language_system;%T];
 			end
-		
 		end
 		
 		step = "all";
@@ -120,29 +108,18 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 		language_system = [];
 		titles          = [];
 		
-		select getlanguage()
-		
-		case 'en_US' then
+		if getlanguage() == 'en_US' then
 			xsl = pathconvert(SCI+"/modules/helptools/help_en_US.xsl",%f,%f);
 			for k=1:size(dirs,'*')
 				titles = [titles;"Help chapter ("+dirs(k)+")"];
 				language_system = [language_system;%F];
 			end
-			
-		case 'fr_FR' then
-			xsl = pathconvert(SCI+"/modules/helptools/help_fr_FR.xsl",%f,%f);
-			for k=1:size(dirs,'*')
-				titles = [titles;"Chapitre de help ("+dirs(k)+")"];
-				language_system = [language_system;%F];
-			end
-			
 		else
 			xsl = pathconvert(SCI+"/modules/helptools/help_"+getlanguage()+".xsl",%f,%f);
 			for k=1:size(dirs,'*')
 				titles = [titles;"Chapitre de help ("+dirs(k)+")"];
 				language_system = [language_system;%F];
 			end
-			
 		end
 		
 	// Cas ou seulement le ou les répertoires ainsi que le ou les titres sont précisés
@@ -193,14 +170,10 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 		if ~exists("all") | all == [] | all == "" then step = "all"; end
 		
 		if ~exists("xsl") | xsl == [] | xsl == "" then
-			select getlanguage()
-			
-			case 'en_US' then
+			if getlanguage() == 'en_US' then
 				xsl = pathconvert(SCI+"/modules/helptools/help_en_US.xsl",%f,%f);
-				
-			case 'fr_FR' then
-				xsl = pathconvert(SCI+"/modules/helptools/help_fr_FR.xsl",%f,%f);
-			
+			else
+				xsl = pathconvert(SCI+"/modules/helptools/help_"+getlanguage()+".xsl",%f,%f);
 			end
 		end
 	
@@ -219,14 +192,10 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 		if ~exists("all") | all == [] | all == "" then step = "all"; end
 		
 		if ~exists("xsl") | xsl == [] | xsl == "" then
-			select getlanguage()
-			
-			case 'en_US' then
+			if getlanguage() == 'en_US' then
 				xsl = pathconvert(SCI+"/modules/helptools/help_en_US.xsl",%f,%f);
-				
-			case 'fr_FR' then
-				xsl = pathconvert(SCI+"/modules/helptools/help_fr_FR.xsl",%f,%f);
-			
+			else
+				xsl = pathconvert(SCI+"/modules/helptools/help_"+getlanguage()+".xsl",%f,%f);
 			end
 		end
 	
@@ -246,14 +215,10 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 		if ~exists("all") | all == [] | all == "" then step = "all"; end
 		
 		if ~exists("xsl") | xsl == [] | xsl == "" then
-			select getlanguage()
-			
-			case 'en_US' then
+			if getlanguage() == 'en_US' then
 				xsl = pathconvert(SCI+"/modules/helptools/help_en_US.xsl",%f,%f);
-				
-			case 'fr_FR' then
-				xsl = pathconvert(SCI+"/modules/helptools/help_fr_FR.xsl",%f,%f);
-			
+			else
+				xsl = pathconvert(SCI+"/modules/helptools/help_"+getlanguage()+".xsl",%f,%f);
 			end
 		end
 		
@@ -317,7 +282,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 				else
 					mprintf("\nCopying missing from %s\n",default_language_path);
 				end
-				complete_with_default_language(dirs(k),directory_language(k),default_language(k));
+				complete_with_df_lang(dirs(k),directory_language(k),default_language(k));
 			end
 		end
 	end
@@ -369,7 +334,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 					%helps = saved_helps;
 					return;
 				end
-					
+				
 				xml = listfiles('*.xml');
 				
 				if xml <> [] then 
@@ -452,7 +417,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 				else
 					mprintf("\nDeleting files copied from %s\n",default_language_path);
 				end
-				del_default_language_xml_files(dirs(k),directory_language(k));
+				del_df_lang_xml_files(dirs(k),directory_language(k));
 			end
 		end
 	end
@@ -464,7 +429,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 	if step == 'all' then
 		for k=1:size(dirs,'*');
 			if need_to_be_build_tab(k) then
-				dateToPrint = msprintf("last_successful_build_value = %d",getdate('s'));
+				dateToPrint = msprintf("last_success_build_val = %d",getdate('s'));
 				mputl(dateToPrint,pathconvert(dirs(k)+"/.last_successful_build",%f,%f));
 			end
 		end
@@ -494,17 +459,17 @@ function gener_whatis(wtitle)
 	// look for .xml files
 	xml = listfiles('*.xml');
 	
-	if MSDOS& xml<>[] then 
+	if MSDOS& xml<>[] then
 		// on MSDOS listfiles *.xml also
 		// returns *.xml* !!!!!
 		ind = grep(xml,'xml2');
 		xml(ind)=[];
 	end
 	
-	if rhs == 1 then 
-		whatis_title= wtitle 
+	if rhs == 1 then
+		whatis_title= wtitle
 	else
-		// find the title 
+		// find the title
 		ind=grep(%helps(:,1),getcwd());
 		if ind<>[] then 
 			whatis_title= %helps(ind(1),2)
@@ -641,7 +606,7 @@ function gener_index(dirs,titles)
 // 		if fileinfo(w) ==[] then
 // 			error("file "+w+" not found");
 // 			return 
-// 		end 
+// 		end
 		
 		l=l+1;
 		
@@ -809,11 +774,11 @@ function gener_hh(dirs,titles)
 	//------------------------------------------------------------------------------------------
 	
 	//------------------------------------------------------------------------------------------
-	// first produce a scilab.hhk file 
-	// (index file) 
+	// first produce a scilab.hhk file
+	// (index file)
 	//------------------------------------------------------------------------------------------
 	
-	base = dirs 
+	base = dirs
 	
 	if ( strindex(base(1),'\en\') <> [] ) then
 		manpath = pathconvert(getlongpathname(SCI)+'/man/en_US/',%t,%f,'w');
@@ -823,8 +788,8 @@ function gener_hh(dirs,titles)
 		doctitle = "Documentation";
 	end
 	
-	// help in the std man directory 
-	n=size(dirs,'*')
+	// help in the std man directory
+	n=size(dirs,'*');
 	
 	items=[];
 	names=[];
@@ -964,7 +929,7 @@ endfunction
 
 
 
-function complete_with_default_language(directory,directory_language,default_language)
+function complete_with_df_lang(directory,directory_language,default_language)
 	
 	//------------------------------------------------------------------------------------------
 	// Author : Pierre MARECHAL
@@ -990,7 +955,7 @@ function complete_with_default_language(directory,directory_language,default_lan
 	//------------------------------------------------------------------------------------------
 	
 	if listfiles(pathconvert(directory+"/.list_"+directory_language,%f,%f)) <> [] then
-		del_default_language_xml_files(directory,directory_language);
+		del_df_lang_xml_files(directory,directory_language);
 		mdelete(directory+"/.list_*");
 	end
 	
@@ -999,9 +964,9 @@ function complete_with_default_language(directory,directory_language,default_lan
 	// dans la langue associée au répertoire
 	//------------------------------------------------------------------------------------------
 	
-	directory_language_xml_files = basename(listfiles(directory+"/*.xml"));
-	if directory_language_xml_files <> [] then
-		mputl(directory_language_xml_files,directory+"/.list_"+directory_language);
+	dir_language_xml_files = basename(listfiles(directory+"/*.xml"));
+	if dir_language_xml_files <> [] then
+		mputl(dir_language_xml_files,directory+"/.list_"+directory_language);
 	else
 		mputl('',directory+"/.list_"+directory_language);
 	end
@@ -1014,19 +979,19 @@ function complete_with_default_language(directory,directory_language,default_lan
 	
 	// Tous les fichiers contenus dans <directory>/../<default_language> pour commencer
 	// On afinnera par la suite
-	default_language_xml_files = basename(listfiles(pathconvert(directory+"/../"+default_language+"/*.xml",%f,%f)));
+	df_lang_xml_files = basename(listfiles(pathconvert(directory+"/../"+default_language+"/*.xml",%f,%f)));
 	
-	// On supprime de "default_language_xml_files" tous les élément contenus dans 
-	// "directory_language_xml_files", c'est à dire tous les fichiers déja traduit dans la langue
+	// On supprime de "df_lang_xml_files" tous les élément contenus dans
+	// "dir_language_xml_files", c'est à dire tous les fichiers déja traduit dans la langue
 	// associée au répertoire.
 	
-	for i=1:size(directory_language_xml_files,'*');
-		default_language_xml_files(find(default_language_xml_files==directory_language_xml_files(i)))=[];
+	for i=1:size(dir_language_xml_files,'*');
+		df_lang_xml_files(find(df_lang_xml_files==dir_language_xml_files(i)))=[];
 	end
 	
 	// Création du fichier
-	if default_language_xml_files <> [] then
-		mputl(default_language_xml_files,pathconvert(directory+"/.list_"+default_language,%f,%f));
+	if df_lang_xml_files <> [] then
+		mputl(df_lang_xml_files,pathconvert(directory+"/.list_"+default_language,%f,%f));
 	else
 		mputl('',pathconvert(directory+"/.list_"+default_language,%f,%f));
 	end
@@ -1035,15 +1000,15 @@ function complete_with_default_language(directory,directory_language,default_lan
 	// Copie des fichiers additionnels
 	//------------------------------------------------------------------------------------------
 	
-	for i=1:size(default_language_xml_files,'*');
-		tmp_file = mgetl(pathconvert(directory+"/../"+default_language+"/"+default_language_xml_files(i)+".xml",%f,%f));
-		mputl(tmp_file,pathconvert(directory+"/"+default_language_xml_files(i)+".xml",%f,%f));
+	for i=1:size(df_lang_xml_files,'*');
+		tmp_file = mgetl(pathconvert(directory+"/../"+default_language+"/"+df_lang_xml_files(i)+".xml",%f,%f));
+		mputl(tmp_file,pathconvert(directory+"/"+df_lang_xml_files(i)+".xml",%f,%f));
 	end
 	
 endfunction
 
 
-function del_default_language_xml_files(directory,directory_language)
+function del_df_lang_xml_files(directory,directory_language)
 	
 	//------------------------------------------------------------------------------------------
 	// Author : Pierre MARECHAL
@@ -1063,15 +1028,15 @@ function del_default_language_xml_files(directory,directory_language)
 	if listfiles(pathconvert(directory+"/.list_"+directory_language,%f,%f)) <> [] then
 		
 		// Récupération de la liste des fichiers xml copiés depuis le répertoire de la langue par défaut
-		directory_language_xml_files = mgetl(pathconvert(directory+"/.list_"+directory_language,%f,%f));
+		dir_language_xml_files = mgetl(pathconvert(directory+"/.list_"+directory_language,%f,%f));
 		
 		// Liste de tous les fichiers xml contenu dans le répertoire
 		all_files = basename(listfiles(directory+"/*.xml"));
 		
 		// On retire de "all_files" tous les éléments appartenant à "xml_directory_language_files"
 		// Ce sont les aides en ligne traduite dans la langue associée répertoire
-		for i=1:size(directory_language_xml_files,'*');
-			all_files(find(all_files==directory_language_xml_files(i)))=[];
+		for i=1:size(dir_language_xml_files,'*');
+			all_files(find(all_files==dir_language_xml_files(i)))=[];
 		end
 		
 		// Destruction des fichiers restant dans all_files
@@ -1133,29 +1098,29 @@ function result = need_to_be_build(directory,directory_language,default_language
 			end
 		end
 		
-		if max_change_date > last_successful_build_value then
+		if max_change_date > last_success_build_val then
 			result = %T;
 			return;
 		else
 			if rhs == 3 then
 				
-				default_language_directory_info = fileinfo(pathconvert(directory+"/../"+default_language,%f,%f));
+				df_lang_dir_info = fileinfo(pathconvert(directory+"/../"+default_language,%f,%f));
 				
-				if default_language_directory_info(6) > max_change_date then
-					max_change_date = default_language_directory_info(6);
+				if df_lang_dir_info(6) > max_change_date then
+					max_change_date = df_lang_dir_info(6);
 				end
 				
-				xml_default_language_file_list = listfiles(pathconvert(directory+"/../"+default_language+"/*.xml",%f,%f));
+				xml_df_lang_file_list = listfiles(pathconvert(directory+"/../"+default_language+"/*.xml",%f,%f));
 				
-				for i=1:size(xml_default_language_file_list,'*');
-					file_date = fileinfo(xml_default_language_file_list(i));
+				for i=1:size(xml_df_lang_file_list,'*');
+					file_date = fileinfo(xml_df_lang_file_list(i));
 					if file_date(6) > max_change_date then
 						max_change_date = file_date(6);
 					end
 				end
 			end
 			
-			if max_change_date > last_successful_build_value then
+			if max_change_date > last_success_build_val then
 				result = %T;
 				return;
 			else

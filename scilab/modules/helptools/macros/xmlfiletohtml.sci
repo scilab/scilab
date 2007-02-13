@@ -27,10 +27,10 @@ function ok = xmlfiletohtml(path,xsl,directory_language,default_language)
 	if rhs == 4 then
 		
 		if fileinfo(".list_"+default_language) <> [] then
-			default_language_xml_files = mgetl(".list_"+default_language);
+			df_lang_xml_files = mgetl(".list_"+default_language);
 		end
 		
-		if find( default_language_xml_files == basename(path) ) <> [] then
+		if find( df_lang_xml_files == basename(path) ) <> [] then
 			xmlfile = "../"+default_language+"/"+path;
 			needToBeCopied = %T;
 		end
