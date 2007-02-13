@@ -131,7 +131,7 @@ sciGetPointerToFeature (sciPointObj * pobj)
 
 
 /**sciGetEntityType
- * @memo Gets the type of this Scilab graphic object return -1 if bad param !
+ * Gets the type of this Scilab graphic object return -1 if bad param !
  */
 sciEntityType
 sciGetEntityType (sciPointObj * pobj)
@@ -143,7 +143,7 @@ sciGetEntityType (sciPointObj * pobj)
 
 
 /**sciGetCharEntityType
- * @memo Gets the type of this Scilab graphic object in char format return -1 if bad param !
+ * Gets the type of this Scilab graphic object in char format return -1 if bad param !
  */
 char *
 sciGetCharEntityType (sciPointObj * pobj)
@@ -244,7 +244,7 @@ sciGetCharEntityType (sciPointObj * pobj)
 
  
 /**sciGetGraphicContext
- * @memo Returns the structure of the Graphic Context. Do not use this in the Consturctor Functions !
+ * Returns the structure of the Graphic Context. Do not use this in the Consturctor Functions !
  */
 sciGraphicContext *
 sciGetGraphicContext (sciPointObj * pobj)
@@ -316,7 +316,7 @@ sciGetGraphicContext (sciPointObj * pobj)
 
 
 /**sciGetNumColors
- * @memo This function gets the number of the color defined in colormap
+ * This function gets the number of the color defined in colormap
  */
 int
 sciGetNumColors (sciPointObj * pobj)
@@ -335,7 +335,7 @@ sciGetNumColors (sciPointObj * pobj)
 
 /**sciGetColormap
  * This function gets a colormap from the figure. It's the same for all sons
- * @memo Gets the colormap rgbmat must be a m x 3 double RGB matrix:  
+ * Gets the colormap rgbmat must be a m x 3 double RGB matrix:  
  * a[i] = RED, a[i+m] = GREEN, a[i+2*m] = BLUE 
  */
 int
@@ -367,7 +367,7 @@ int sciGetGoodIndex(sciPointObj * pobj, int colorindex) /* return colorindex or 
 
 
 /**sciGetForeground
- * @memo Gets the color number of the Foreground
+ * Gets the color number of the Foreground
  */
 int
 sciGetForeground (sciPointObj * pobj)
@@ -522,7 +522,7 @@ sciGetForegroundToDisplay (sciPointObj * pobj)
 
 
 /**sciGetBackground
- * @memo Gets the color number of the Background. Be carreful the return of the subwindow 
+ * Gets the color number of the Background. Be carreful the return of the subwindow 
  * is the feature of its parent figure.
  */
 int
@@ -689,7 +689,7 @@ sciGetBackgroundToDisplay (sciPointObj * pobj)
 
 
 /**sciGetMarkForeground
- * @memo Gets the color number of the Marks'Foreground
+ * Gets the color number of the Marks'Foreground
  */
 int
 sciGetMarkForeground (sciPointObj * pobj)
@@ -820,7 +820,7 @@ sciGetMarkForegroundToDisplay (sciPointObj * pobj)
 
 
 /**sciGetMarkBackground
- * @memo Gets the color number of the Marks'Background. Be carreful the return of the subwindow 
+ * Gets the color number of the Marks'Background. Be carreful the return of the subwindow 
  * is the feature of its parent figure.
  */
 int
@@ -952,7 +952,7 @@ sciGetMarkBackgroundToDisplay (sciPointObj * pobj)
 
 
 /**sciGetLineWidth
- * @memo Gets the line width
+ * Gets the line width
  */
 int
 sciGetLineWidth (sciPointObj * pobj)
@@ -1022,7 +1022,7 @@ sciGetLineWidth (sciPointObj * pobj)
 
 
 /**sciGetLineStyle
- * @memo Gets the line style
+ * Gets the line style
  */
 int
 sciGetLineStyle (sciPointObj * pobj)
@@ -1086,7 +1086,7 @@ sciGetLineStyle (sciPointObj * pobj)
 
 
 /**sciGetIsMark
- * @memo Gets the line style
+ * Gets the line style
  */
 BOOL
 sciGetIsMark (sciPointObj * pobj)
@@ -1144,7 +1144,7 @@ sciGetIsMark (sciPointObj * pobj)
 
 
 /**sciGetMarkStyle
- * @memo Gets the mark style
+ * Gets the mark style
  */
 int
 sciGetMarkStyle (sciPointObj * pobj)
@@ -1203,7 +1203,7 @@ sciGetMarkStyle (sciPointObj * pobj)
 
 
 /**sciGetMarkSize
- * @memo Gets the mark size
+ * Gets the mark size
  */
 int
 sciGetMarkSize (sciPointObj * pobj)
@@ -1260,7 +1260,7 @@ sciGetMarkSize (sciPointObj * pobj)
 
 
 /**sciGetMarkSizeUnit
- * @memo Gets the mark size unit
+ * Gets the mark size unit
  * 1 : points, 2 : tabulated
  */
 int
@@ -1317,7 +1317,7 @@ sciGetMarkSizeUnit (sciPointObj * pobj)
 }
 
 /**sciGetIsLine
- * @memo Returns the line drawing existence
+ * Returns the line drawing existence
  */
 BOOL
 sciGetIsLine (sciPointObj * pobj)
@@ -1378,7 +1378,7 @@ sciGetIsLine (sciPointObj * pobj)
 }
 
 /**sciGetIsFilled
- * @memo Returns the filled line existence
+ * Returns the filled line existence
  */
 BOOL
 sciGetIsFilled (sciPointObj * pobj)
@@ -1427,7 +1427,7 @@ sciGetIsFilled (sciPointObj * pobj)
 }
 
 /**sciGetFillStyle
- * @memo Gets the fill style
+ * Gets the fill style
  */
 int
 sciGetFillStyle (sciPointObj * pobj)
@@ -1486,7 +1486,7 @@ sciGetFillStyle (sciPointObj * pobj)
 }
 
 /**sciGetFontContext
- * @memo Returns the structure of the Font Context. Do not use this in the Consturctor Functions !
+ * Returns the structure of the Font Context. Do not use this in the Consturctor Functions !
  * @param sciPointObj * pobj: the pointer to the entity
  * @return the pointer to the font context structure if ok, NULL if not
  */
@@ -1549,7 +1549,7 @@ sciGetFontContext (sciPointObj * pobj)
 
 /****************************************** TEXT ******************************
  **sciGetFontDeciWidth
- * @memo Gets the Font Size
+ * Gets the Font Size
  */
 int
 sciGetFontDeciWidth (sciPointObj * pobj)
@@ -1691,9 +1691,9 @@ sciGetFontOrientation (sciPointObj * pobj)
 
 
 /**sciGetText
- * @memo Gets the Text in TEXT, TITLE or LEGEND. Be Carreful, 
- * @memo this return a unterminated string (without \0)
- * @memo To obtain the length of the text, use sciGetTextLength@param  sciPointObj *pobj
+ * Gets the Text in TEXT, TITLE or LEGEND. Be Carreful, 
+ * this return a unterminated string (without \0)
+ * To obtain the length of the text, use sciGetTextLength@param  sciPointObj *pobj
  * @param sciPointObj * pobj: the pointer to the entity
  * @return  point to char[] if OK or NULL if not 
  */
@@ -1742,7 +1742,7 @@ StringMatrix * sciGetText( sciPointObj * pobj )
 }
 
 /**
- * @memo Get the size of the string matrix of a text object
+ * Get the size of the string matrix of a text object
  * @param nbRow, number of row of the text conatianed in pobj
  *        If an error occures, the value is negative.
  * @param nbCol, same as nbRow for columns.
@@ -1764,7 +1764,7 @@ void sciGetTextSize( sciPointObj * pobj, int * nbRow, int * nbCol )
 
 
 /**sciGetFontBackground
- * @memo Gets the background color
+ * Gets the background color
  * @param sciPointObj * pobj: the pointer to the entity
  * @return  int color if OK, -1 if not 
  */
@@ -1863,7 +1863,7 @@ sciGetFontBackgroundToDisplay (sciPointObj * pobj)
 
 
 /**sciGetFontForeground
- * @memo Gets the foreground color
+ * Gets the foreground color
  * @param sciPointObj * pobj: the pointer to the entity
  * @return  int foregroundcolor if OK, -1 if not
  */
@@ -1962,7 +1962,7 @@ sciGetFontForegroundToDisplay (sciPointObj * pobj)
 
 
 /**sciGetFontStyle
- * @memo Gets the font style 
+ * Gets the font style 
 
  * @param sciPointObj * pobj: the pointer to the entity
  * @return  int 0 OK, -1 if not
@@ -2008,7 +2008,7 @@ sciGetFontStyle (sciPointObj * pobj)
 
 
 /**sciGetFontName
- * @memo Gets the font name
+ * Gets the font name
  * @param sciPointObj * pobj: the pointer to the entity
  * @return  char array of string font name if ok, NULL if not
  */
@@ -2062,7 +2062,7 @@ sciGetFontName (sciPointObj * pobj)
 
 
 /**sciGetFontNameLength
- * @memo Sets size of Text in TEXT, TITLE or LEGEND
+ * Sets size of Text in TEXT, TITLE or LEGEND
  * @param sciPointObj * pobj: the pointer to the entity
  * @return  int > 0 if OK, 0 if not
  */
@@ -2117,7 +2117,7 @@ sciGetFontNameLength (sciPointObj * pobj)
 
 
 /**sciGetTextPosX
- * @memo Sets size of Text in TEXT, TITLE or LEGEND
+ * Sets size of Text in TEXT, TITLE or LEGEND
  * @param sciPointObj * pobj: the pointer to the entity
  * @return  int 0 if not OK, over 0 if ok
  */
@@ -2163,7 +2163,7 @@ sciGetTextPosX (sciPointObj * pobj)
 
 
 /**sciGetTextPosWidth
- * @memo Sets size of Text in TEXT, TITLE or LEGEND
+ * Sets size of Text in TEXT, TITLE or LEGEND
  * @param sciPointObj * pobj: the pointer to the entity
  * @return  int 0 if not OK, over 0 if ok
  */
@@ -2209,7 +2209,7 @@ sciGetTextPosWidth (sciPointObj * pobj)
 
 
 /**sciGetTextPosHeight
- * @memo Sets size of Text in TEXT, TITLE or LEGEND
+ * Sets size of Text in TEXT, TITLE or LEGEND
  * @param sciPointObj * pobj: the pointer to the entity
  * @return  int 0 if not OK, over 0 if ok
  */
@@ -2255,7 +2255,7 @@ sciGetTextPosHeight (sciPointObj * pobj)
 
 
 /**sciGetTextPosY
- * @memo Sets size of Text in TEXT, TITLE or LEGEND
+ * Sets size of Text in TEXT, TITLE or LEGEND
  * @param sciPointObj * pobj: the pointer to the entity
  * @return  int 0 if not OK, over 0 if ok
  */
@@ -2300,7 +2300,7 @@ sciGetTextPosY (sciPointObj * pobj)
 
 
 /**sciGetTitlePos
- * @memo Returns the Title Position in the graphique window. This function is actualy reserved for internal use, not for scilab users
+ * Returns the Title Position in the graphique window. This function is actualy reserved for internal use, not for scilab users
  */
 POINT2D
 sciGetTitlePos (sciPointObj * pobj)
@@ -2320,7 +2320,7 @@ sciGetTitlePos (sciPointObj * pobj)
 
 
 /**sciGetTitlePlace
- * @memo Returns the Title Position
+ * Returns the Title Position
  * @param sciPointObj * pobj: the pointer to the entity
  * @return sciTitlePlace if ok, -1 if not
  */
@@ -2336,7 +2336,7 @@ sciGetTitlePlace (sciPointObj * pobj)
 
 
 /**sciGetLegendPlace
- * @memo Returns the Title place with SCI_TITLE_IN_TOP or SCI_TITLE_IN_BOTTOM and calculate the real position in the window
+ * Returns the Title place with SCI_TITLE_IN_TOP or SCI_TITLE_IN_BOTTOM and calculate the real position in the window
  * @param sciPointObj * pobj: the pointer to the entity
  * @return sciTitlePlace
  */
@@ -2358,7 +2358,7 @@ sciGetLegendPlace (sciPointObj * pobj)
 
 
 /**sciGetLegendPos
- * @memo Returns the Title Position
+ * Returns the Title Position
  */
 POINT2D
 sciGetLegendPos (sciPointObj * pobj)
@@ -2379,7 +2379,7 @@ sciGetLegendPos (sciPointObj * pobj)
 
 
 /**sciGetParentFigure
- * @memo Returns the the Figure parent
+ * Returns the the Figure parent
  */
 sciPointObj *
 sciGetParentFigure (sciPointObj * pobj)
@@ -2432,7 +2432,7 @@ sciGetParentFigure (sciPointObj * pobj)
 }
 /** 19/09/2002 ***/
 /**sciGetParentSubwin
- * @memo Returns the the Subwin parent
+ * Returns the the Subwin parent
  */
 sciPointObj *
 sciGetParentSubwin (sciPointObj * pobj)
@@ -2480,7 +2480,7 @@ sciGetParentSubwin (sciPointObj * pobj)
 }
 
 /**sciGetNumfigure
- * @memo Returns the the Number of parent figure
+ * Returns the the Number of parent figure
  */
 int 
 sciGetNumFigure (sciPointObj * pobj)
@@ -2526,7 +2526,7 @@ sciGetNumFigure (sciPointObj * pobj)
 }
 
 /**sciGetScilabXgc
- * @memo Returns the ScilabXgc of the root recursively...
+ * Returns the ScilabXgc of the root recursively...
  */
 struct BCG *
 sciGetScilabXgc (sciPointObj * pobj)
@@ -2574,7 +2574,7 @@ sciGetScilabXgc (sciPointObj * pobj)
 
  
 /**sciGetGraphicMode
- * @memo Returns the structure of the Graphic Context. Do not use this in the Consturctor Functions !
+ * Returns the structure of the Graphic Context. Do not use this in the Consturctor Functions !
  */
 scigMode *sciGetGraphicMode (sciPointObj * pobj)
 {
@@ -2725,7 +2725,7 @@ sciGetIsClipping (sciPointObj * pobj)
 
 
 /**sciGetClipping
- * @memo Gets the clipping area
+ * Gets the clipping area
  * 29/11/2002
  */
 double *
@@ -2804,7 +2804,7 @@ sciGetClipping (sciPointObj * pobj)
 
 
 /**sciGetHighLight
- * @memo Returns the highlight mode where the object are.
+ * Returns the highlight mode where the object are.
  */
 
 BOOL
@@ -2846,7 +2846,7 @@ sciGetHighLight (sciPointObj * pobj)
 
 
 /**sciGetAddPlot
- * @memo Returns the mode of the adding plot
+ * Returns the mode of the adding plot
  * @param sciPointObj * pobj: the pointer to the entity
  * @return TRUE if yes, FALSE if no 
  * @author Djalel ABDEMOUCHE
@@ -2890,7 +2890,7 @@ sciGetAddPlot (sciPointObj * pobj)
 
 
 /**sciGetAutoScale
- * @memo Returns the mode of the autoscaling
+ * Returns the mode of the autoscaling
  */
 BOOL
 sciGetAutoScale (sciPointObj * pobj)
@@ -2930,7 +2930,7 @@ sciGetAutoScale (sciPointObj * pobj)
 
 
 /**sciGetZooming
- * @memo Returns the zooming state of the object is it or not zoomed.
+ * Returns the zooming state of the object is it or not zoomed.
  */
 BOOL
 sciGetZooming (sciPointObj * pobj)
@@ -2971,7 +2971,7 @@ sciGetZooming (sciPointObj * pobj)
 
 
 /**sciGetGraphicsStyle
- * @memo Returns the graphics style
+ * Returns the graphics style
  */
 BOOL
 sciGetGraphicsStyle (sciPointObj * pobj)
@@ -3011,7 +3011,7 @@ sciGetGraphicsStyle (sciPointObj * pobj)
 }
 
 /**sciGetXorMode
- * @memo Returns the drawing Xor mode
+ * Returns the drawing Xor mode
  * @param sciPointObj * pobj: the pointer to the entity
  * @return 0,1,... 15
  * @author Djalel ABDEMOUCHE
@@ -3153,7 +3153,7 @@ sciGetVisibility (sciPointObj * pobj)
 
 
 /**sciGetResize (replace sciGetwresize()in the next version)
- * @memo Returns if this object is in autoresizing mode (when the window is resized by user)
+ * Returns if this object is in autoresizing mode (when the window is resized by user)
  * @param sciPointObj * pobj: the pointer to the entity
  * @return TRUE if yes, FALSE if no
  */
@@ -3196,7 +3196,7 @@ sciGetResize (sciPointObj * pobj)
 
 
 /**sciGetName
- * @memo Returns the name of the Figure or SubWindow
+ * Returns the name of the Figure or SubWindow
  * @param sciPointObj * pobj: the pointer to the entity
  * @return the pointer to the char name
  */
@@ -3219,7 +3219,7 @@ sciGetName (sciPointObj * pobj)
 
 
 /**sciGetNameLength
- * @memo Returns the length of the name of the Figure or SubWindow
+ * Returns the length of the name of the Figure or SubWindow
  * @param sciPointObj * pobj: the pointer to the entity
  * @return the length of the Name
  */
@@ -3244,7 +3244,7 @@ sciGetNameLength (sciPointObj * pobj)
 
 
 /**sciGetNum
- * @memo Returns the number of the Figure.
+ * Returns the number of the Figure.
  * @param sciPointObj * pobj: the pointer to the entity
  * @return the number of the windows contening this entity
  */
@@ -3269,7 +3269,7 @@ sciGetNum (sciPointObj * pobj)
 
 
 /**sciGetWidth
- * @memo Returns the width in pixel of the figure or subwin
+ * Returns the width in pixel of the figure or subwin
  * @param sciPointObj * pobj: the pointer to the entity
  * @return the width of the dimension of the window or figure 
  * (the visibility dimension) in pixel dimension
@@ -3297,7 +3297,7 @@ sciGetWidth (sciPointObj * pobj)
 
 
 /**sciGetHeight
- * @memo Returns the height in pixel of the figure or subwin
+ * Returns the height in pixel of the figure or subwin
  * @param sciPointObj * pobj: the pointer to the entity
  * @return the height of the dimension of the window or figure (the visibility dimension) in pixel dimension
  */
@@ -3323,7 +3323,7 @@ sciGetHeight (sciPointObj * pobj)
 }
 
 /**sciGetDim
- * @memo Gets the dimension of the Figure or Subwin
+ * Gets the dimension of the Figure or Subwin
  * @param sciPointObj * pobj: the pointer to the entity
  * @param int *pwidth: the return width of the window dimension
  * @param int *pheight: the return height of the window dimension
@@ -3347,7 +3347,7 @@ void sciGetDim( sciPointObj * pobj, int * pWidth, int * pHeight )
 }
 
 /**sciGetFigurePosX
- * @memo Returns the horizontal position of  the FIGURE (the window) in root, in pixels
+ * Returns the horizontal position of  the FIGURE (the window) in root, in pixels
  * @param sciPointObj * pobj
  * @return the position in pixel dimension
  */
@@ -3381,7 +3381,7 @@ sciGetFigurePosX (sciPointObj * pobj)
 
 
 /**sciGetFigurePosY
- * @memo Returns the vertical position of the window in pixels
+ * Returns the vertical position of the window in pixels
  * @param sciPointObj * pobj: the pointer to the entity
  * @return the position in pixel dimension
  */
@@ -3415,7 +3415,7 @@ sciGetFigurePosY (sciPointObj * pobj)
 
 
 /**sciGetIsFigureIconified
- * @memo Determines whether the specified Figure is minimized (iconic). 
+ * Determines whether the specified Figure is minimized (iconic). 
  * @param sciPointObj * pobj: the pointer to the entity
  * @return TRUE if yes, FALSE if no
  */
@@ -3463,7 +3463,7 @@ sciGetSubwindowPosX (sciPointObj * pobj)
 
 
 /**sciGetSubwindowPosY
- * @memo Gets subwindow position; 
+ * Gets subwindow position; 
  * @param sciPointObj * pobj: the pointer to the entity in pixel
  * @return  int vertical position 
  **/
@@ -3488,7 +3488,7 @@ sciGetSubwindowPosY (sciPointObj * pobj)
 
 
 /**sciGetIsSelected
- * @memo Determines wether this object is selected or not.
+ * Determines wether this object is selected or not.
  * @param sciPointObj * pobj: the pointer to the entity
  * @return TRUE if yes, FALSE if not
  */
@@ -3545,7 +3545,7 @@ sciGetIsSelected (sciPointObj * pobj)
 
 
 /**sciGetSelectedSon
- * @memo Determines wether this object is selected or not. 
+ * Determines wether this object is selected or not. 
  * WARNING TO BE DEFINED. No sciSetSelected is coded
  * @param sciPointObj * pparent: the pointer to the entity
  * @return the pointer sciPointObj *poinson of the current selected son
@@ -3577,7 +3577,7 @@ sciGetSelectedSon (sciPointObj * pparent)
 
 
 /**sciGetSelectedSubWin
- * @memo Determines wich SubWin is selected or not. WARNING TO BE DEFINED.
+ * Determines wich SubWin is selected or not. WARNING TO BE DEFINED.
  * @param sciPointObj * pparent: the pointer to the entity
  * @return the pointer sciPointObj *poinson of the current selected son
  */
@@ -3615,7 +3615,7 @@ sciGetSelectedSubWin (sciPointObj * pparent)
 
 
 /**sciIsExistingSubWin
- * @memo Determines if this SubWindow is an existing one in the current SCI_FIGURE 
+ * Determines if this SubWindow is an existing one in the current SCI_FIGURE 
  * in association with the wrect and frect....
  * @param WRect: Window rectangle dimension in double, 
  * @param FRect: window user's scale dimension in double, 
@@ -3713,7 +3713,7 @@ sciPointObj * sciIsExistingFigure( int *value )
 
 
 /**sciGetScrollPosV
- * @memo Returns the vertical scrollbar position
+ * Returns the vertical scrollbar position
  * @param sciPointObj * pobj: the pointer to the entity
  * @return the scroll bar position
  */
@@ -3733,7 +3733,7 @@ sciGetScrollPosV (sciPointObj * pobj)
 
 
 /**sciGetScrollPosH
- * @memo Returns the vertical scrollbar position
+ * Returns the vertical scrollbar position
  * @param sciPointObj * pobj: the pointer to the entity
  * @return the scroll bar position
  */
@@ -3752,7 +3752,7 @@ sciGetScrollPosH (sciPointObj * pobj)
 
 /*-----------------------------------------------------------------------------------*/
 /**
- * @memo as sciGetCurrentFigure but do not create any figure if none exists
+ * as sciGetCurrentFigure but do not create any figure if none exists
  */
 sciPointObj * sciGetCurPointedFigure( void )
 {
@@ -3768,7 +3768,7 @@ sciPointObj * sciGetCurPointedFigure( void )
 
 /*-----------------------------------------------------------------------------------*/
 /**sciGetCurrentFigure
- * @memo Returns the pointer to the current selected figure. 
+ * Returns the pointer to the current selected figure. 
  */
 
 extern void set_cf_type(int val);
@@ -3823,7 +3823,7 @@ sciGetCurrentScilabXgc ()
 
 
 /**sciGetPoint
- * @memo returns pointer to the points of the entity, and a pointer to the number of points. This function allocates memory for the tab of point, so after using the tab don't forget to free it
+ * returns pointer to the points of the entity, and a pointer to the number of points. This function allocates memory for the tab of point, so after using the tab don't forget to free it
  */
 
 /**MAJ pour le 3D DJ.Abdemouche 2003**/
@@ -4084,7 +4084,7 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
 
 
 /**sciGetObjClicked
- * @memo returns the sons' entity wich is cliked on x,y coordinates. If none, then returns this entity
+ * returns the sons' entity wich is cliked on x,y coordinates. If none, then returns this entity
  */
 sciPointObj 
 *sciGetObjClicked (sciPointObj *pthis,int x, int y)
@@ -4114,7 +4114,7 @@ sciPointObj
 
 
 /**sciIsClicked
- * @memo returns true if this entity wich is cliked on x,y coordinates. Here is the algorithm for click detection
+ * returns true if this entity wich is cliked on x,y coordinates. Here is the algorithm for click detection
  */
 /* 06/11/2002 */
 BOOL 
@@ -4258,7 +4258,7 @@ sciGetdrawmode (sciPointObj *pobj)
 }
 
 /**sciGetAxes
- * @memo Gets SUBWIN of this Scilab graphic figure
+ * Gets SUBWIN of this Scilab graphic figure
  * @author Djalel ABDEMOUCHE
  */
 sciPointObj *
@@ -4291,7 +4291,7 @@ sciGetAxes (pparentfigure,psubwin)
 } 
 
 /**sciGetPointerToToUserData
- * @memo Returns the pointer to the user_data and size_of_user_data fields associated with 
+ * Returns the pointer to the user_data and size_of_user_data fields associated with 
    the pobj object 
  */
 void sciGetPointerToUserData (sciPointObj * pobj,int ***user_data_ptr, int **size_ptr)
@@ -4748,7 +4748,7 @@ sciPointObj *sciGetMerge(sciPointObj *psubwin)
 
 
 /**sciGetOriginalSubWin
- * @memo PRIVATE.
+ * PRIVATE.
  * @param sciPointObj * pfigure: the pointer to the parent figure
  * @return the pointer of the original subwindow
  */
@@ -4821,7 +4821,7 @@ EAxesBoxType sciGetBoxType( sciPointObj * pobj )
 
 
 /**sciGetIsBoxed
- * @memo Returns the box existence
+ * Returns the box existence
  */
 BOOL
 sciGetIsBoxed (sciPointObj * pobj)
@@ -4874,7 +4874,7 @@ sciGetInterpVector(sciPointObj * pobj)
 
 
 /**sciGetPosition
- * @memo Returns the position (in pixels) for the label object
+ * Returns the position (in pixels) for the label object
  */
 int
 sciGetPosition (sciPointObj * pobj, double *x, double *y)

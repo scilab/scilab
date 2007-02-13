@@ -46,7 +46,7 @@ extern int CopyUserGrads(double *u_xgrad_SRC, double *u_xgrad_DEST, int dim);
 extern unsigned short defcolors[];
 
 /**ConstructStatusBar
- * @memo this function creates the StatusBar of Figure and the elementaries structures
+ * this function creates the StatusBar of Figure and the elementaries structures
  */
 sciPointObj *
 ConstructStatusBar (sciPointObj * pparentfigure)
@@ -255,7 +255,7 @@ ConstructFigure (struct BCG *XGC)
 
 
 /**ConstructSubWin
- * @memo This function creates the Subwindow (the Axe) and the elementaries structures
+ * This function creates the Subwindow (the Axe) and the elementaries structures
  */
 sciPointObj *
 ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
@@ -1299,7 +1299,7 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
 
 
 /**ConstructArc
- * @memo This function creates an Arc structure
+ * This function creates an Arc structure
  */
 sciPointObj *
 ConstructArc (sciPointObj * pparentsubwin, double x, double y,
@@ -1400,7 +1400,7 @@ ConstructArc (sciPointObj * pparentsubwin, double x, double y,
 
 
 /**ConstructRectangle
- * @memo This function creates Rectangle structure and only this to destroy all sons use DelGraphicsSon
+ * This function creates Rectangle structure and only this to destroy all sons use DelGraphicsSon
  */
 sciPointObj *
 ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
@@ -1510,7 +1510,7 @@ ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
 
 
 /**ConstructSurface
- * @memo This function creates Surface Structure
+ * This function creates Surface Structure
  */
 sciPointObj *
 ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d, 
@@ -1875,7 +1875,7 @@ ConstructMerge (sciPointObj * pparentsubwin,int N,int *index_in_entity,long *fro
 
 /********************** 14/05/2002 *****
  **ConstructGayplot
- * @memo This function creates Grayplot
+ * This function creates Grayplot
  */
 sciPointObj *
 ConstructGrayplot (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
@@ -1995,7 +1995,7 @@ ConstructGrayplot (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
 
 
 /**ConstructAxes
- * @memo This function creates Axes structure
+ * This function creates Axes structure
  * @author Djalel ABDEMOUCHE
  * @see sciSetCurrentObj
  *
@@ -2171,7 +2171,7 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
 
 /********************** 21/05/2002 *****
  **ConstructFec
- * @memo This function creates Grayplot
+ * This function creates Grayplot
  * @author Djalel.ABDEMOUCHE
  * @see sciSetCurrentObj
  */
@@ -2344,7 +2344,7 @@ ConstructFec (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double 
 
 
 /**ConstructSegs
- * @memo This function creates Segments
+ * This function creates Segments
  * @author Djalel.ABDEMOUCHE
  * @version 0.1
  * @see sciSetCurrentObj
@@ -2540,9 +2540,9 @@ ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy,
 
 
 /**sciConstructCompound
- * @memo constructes an Compound of entities
- * @memo do only a association with a parent and a handle reservation !
- * @memo check for valid handle can be done using CheckForCompound
+ * constructes an Compound of entities
+ * do only a association with a parent and a handle reservation !
+ * check for valid handle can be done using CheckForCompound
  */
 sciPointObj *
 ConstructCompound (long *handelsvalue, int number) /* Conflicting types with definition */
@@ -2635,7 +2635,7 @@ ConstructCompound (long *handelsvalue, int number) /* Conflicting types with def
 }
 
 /**sciConstructCompoundSeq
- * @memo constructes an Compound of with the last n entities created in the current subwindow
+ * constructes an Compound of with the last n entities created in the current subwindow
  on entry subwin children list is
  null->s1->s2->...->sn->sn+1->...->null
  on exit it is
@@ -2821,7 +2821,7 @@ ConstructLabel (sciPointObj * pparentsubwin, char *text, int type)
 
 
 /**ConstructMenu
- * @memo This function creates Menu structure
+ * This function creates Menu structure
  */
 sciPointObj *
 ConstructMenu (sciPointObj * pparentfigure, char plabel[], int n)
@@ -2887,8 +2887,8 @@ ConstructMenu (sciPointObj * pparentfigure, char plabel[], int n)
 
 
 /**ConstructMenuContext
- * @memo This function creates MenuContext structure only for tests on Widows system during developpement.
- * @memo ths function may be not incuded in the final version
+ * This function creates MenuContext structure only for tests on Widows system during developpement.
+ * ths function may be not incuded in the final version
  * pour obtenir un menu de contexe vide pour chacune des entites. L'utilisateur specifie avec un addlabel les label et callback necessaire ensuite.
  * @param  sciPointObj * pparentfigure: the parent entity
  */
@@ -2963,7 +2963,7 @@ ConstructMenuContext (sciPointObj * pparentfigure)
 
 
 /**sciAddLabelMenu
- * @memo This function add one label to this menu
+ * This function add one label to this menu
  * @param sciPointObj * pthis: the pointer to the entity
  * @return 0 if ok, -1 if not
  */
@@ -3050,7 +3050,7 @@ sciAttachPopMenu (sciPointObj *pthis, sciPointObj *pPopMenu)
 }
 
 /**ConstructUimenu
- * @memo This function creates Uimenu structure.
+ * This function creates Uimenu structure.
  * @param  sciPointObj *pparentfigure
  * @param  char label[] : intial label string.
  * @param  char callback[] : intial text callback string .

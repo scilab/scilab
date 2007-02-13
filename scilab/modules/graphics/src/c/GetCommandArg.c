@@ -220,7 +220,7 @@ int get_legend_arg(char *fname,int pos,rhs_opts opts[], char ** legend )
 }
 /*-----------------------------------------------------------------------------------*/
 /**
- * @memo retrieve the labels from the command line  and store them into Legend
+ * retrieve the labels from the command line  and store them into Legend
  */
 int get_labels_arg(char *fname,int pos,rhs_opts opts[], char ** labels )
 {

@@ -269,7 +269,7 @@ DestroyFigure (sciPointObj * pthis)
 
 
 /**DestroyStatusBar
- * @memo This function destroies the StatusBar of Figure and the elementaries structures and returns pthis with NULL pointer and only this to destroy all sons use DelGraphicsSon
+ * This function destroies the StatusBar of Figure and the elementaries structures and returns pthis with NULL pointer and only this to destroy all sons use DelGraphicsSon
  * @param sciPointObj * pthis: the pointer to the entity
  */
 int

@@ -2447,7 +2447,7 @@ static void C2F(displaysymbolsPos)(char *str, integer *n, integer *vx, integer *
 
 /*------------------------------------------------------------------------------------------*/
 /**
- * @memo get the minimal and maximal font size
+ * get the minimal and maximal font size
  */
 void C2F(getFontMaxSizePos)(char *str, integer *sizeMin, integer *sizeMax, integer *v1, integer *v2, integer *v3, integer *v4, double *dx1, double *dx2, double *dx3, double *dx4)
 {

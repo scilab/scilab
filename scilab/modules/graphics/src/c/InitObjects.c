@@ -804,7 +804,7 @@ int ResetFigureToDefaultValues(sciPointObj * pobj)
 
 
 /**sciInitGraphicMode
- * @memo Inits the graphic mode of this object with the default value
+ * Inits the graphic mode of this object with the default value
  */
 int
 sciInitGraphicMode (sciPointObj * pobj)

@@ -25,7 +25,7 @@
 #include "MALLOC.h" /* MALLOC */
 
 /**sciAddCallback
- * @memo exec the callback associated with pthis
+ * exec the callback associated with pthis
  */
 int
 sciAddCallback (sciPointObj * pthis,char *code, int len, int mevent )
@@ -172,7 +172,7 @@ sciAddCallback (sciPointObj * pthis,char *code, int len, int mevent )
 
 
 /**sciGetCallback
- * @memo returns the scilab callback code
+ * returns the scilab callback code
  */
 char *sciGetCallback(sciPointObj * pthis)
 {
@@ -350,7 +350,7 @@ int sciSetCallbackMouseEvent(sciPointObj * pthis, int mevent)
 
 
 /**sciGetCallbackLen
- * @memo returns the length of the scilab callback code
+ * returns the length of the scilab callback code
  */
 int
 sciGetCallbackLen (sciPointObj * pthis)
@@ -407,7 +407,7 @@ sciGetCallbackLen (sciPointObj * pthis)
 
 
 /**sciDelCallback
- * @memo returns the length of the scilab callback code
+ * returns the length of the scilab callback code
  */
 int
 sciDelCallback (sciPointObj * pthis)
@@ -486,7 +486,7 @@ sciDelCallback (sciPointObj * pthis)
 
 
 /**sciExecCallback
- * @memo exec the callback associated with pthis
+ * exec the callback associated with pthis
  */
 int
 sciExecCallback (sciPointObj * pthis)

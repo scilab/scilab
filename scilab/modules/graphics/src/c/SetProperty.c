@@ -125,7 +125,7 @@ void Obj_RedrawNewAngle( sciPointObj * pSubWin, double theta, double alpha )
 
 
 /**sciSetEntityType
- * @memo Sets the type of this Scilab graphic object (pobj)
+ * Sets the type of this Scilab graphic object (pobj)
  */
 int
 sciSetEntityType (sciPointObj * pobj, sciEntityType value)
@@ -660,7 +660,7 @@ int sciInitBackground( sciPointObj * pobj, int colorindex )
 }
 
 /**sciSetBackground
- * @memo Sets the number of the Background
+ * Sets the number of the Background
  */
 int
 sciSetBackground (sciPointObj * pobj, int colorindex)
@@ -768,7 +768,7 @@ int sciInitForeground( sciPointObj * pobj, int colorindex )
 }
 
 /**sciSetForeground
- * @memo sets the number of the Foreground
+ * sets the number of the Foreground
  */
 int
 sciSetForeground (sciPointObj * pobj, int colorindex)
@@ -793,7 +793,7 @@ int sciSetLineWidth( sciPointObj * pobj, int linewidth )
 
 
 /**sciSetLineWidth
- * @memo Sets the line width
+ * Sets the line width
  */
 int
 sciInitLineWidth (sciPointObj * pobj, int linewidth)
@@ -888,7 +888,7 @@ int sciSetLineStyle( sciPointObj * pobj, int linestyle )
 }
 
 /**sciSetLineStyle
- * @memo Sets the line style
+ * Sets the line style
  */
 int
 sciInitLineStyle (sciPointObj * pobj, int linestyle)
@@ -1036,7 +1036,7 @@ int sciInitIsMark( sciPointObj * pobj, BOOL ismark )
 }
 
 /**sciSetIsMark
- * @memo Sets the line style
+ * Sets the line style
  */
 int
 sciSetIsMark (sciPointObj * pobj, BOOL ismark)
@@ -1116,7 +1116,7 @@ int sciInitMarkForeground( sciPointObj * pobj, int colorindex )
 }
 
 /**sciSetMarkForeground
- * @memo sets the number of the Marks'Foreground
+ * sets the number of the Marks'Foreground
  */
 int
 sciSetMarkForeground (sciPointObj * pobj, int colorindex)
@@ -1196,7 +1196,7 @@ int sciInitMarkBackground( sciPointObj * pobj, int colorindex )
 }
 
 /**sciSetMarkBackground
- * @memo sets the number of the Marks'Background
+ * sets the number of the Marks'Background
  */
 int
 sciSetMarkBackground (sciPointObj * pobj, int colorindex)
@@ -1289,7 +1289,7 @@ int sciInitMarkStyle( sciPointObj * pobj, int markstyle )
 
 
 /**sciSetMarkStyle
- * @memo Sets the mark style
+ * Sets the mark style
  */
 int
 sciSetMarkStyle (sciPointObj * pobj, int markstyle)
@@ -1379,7 +1379,7 @@ int sciInitMarkSize( sciPointObj * pobj, int marksize )
 }
 
 /**sciSetMarkSize
- * @memo Sets the mark size
+ * Sets the mark size
  */
 int
 sciSetMarkSize (sciPointObj * pobj, int marksize)
@@ -1465,7 +1465,7 @@ int sciInitMarkSizeUnit( sciPointObj * pobj, int marksizeunit )
 }
 
 /**sciSetMarkSizeUnit
- * @memo Sets the mark size unit
+ * Sets the mark size unit
  * 1 : points, 2 : tabulated
  */
 int
@@ -1547,7 +1547,7 @@ int sciInitIsLine( sciPointObj * pobj, BOOL isline )
 }
 
 /**sciSetIsLine
- * @memo Sets the line style existence
+ * Sets the line style existence
  */
 int
 sciSetIsLine (sciPointObj * pobj, BOOL isline)
@@ -1627,7 +1627,7 @@ int sciInitFillStyle( sciPointObj * pobj, int fillstyle )
 }
 
 /**sciSetFillStyle
- * @memo Sets the fillstyle
+ * Sets the fillstyle
  */
 int
 sciSetFillStyle (sciPointObj * pobj, int fillstyle)
@@ -1750,7 +1750,7 @@ int sciInitFontDeciWidth( sciPointObj * pobj, int fontdeciwidth )
 }
 
 /**sciSetFontDeciWidth
- * @memo Sets the font size
+ * Sets the font size
  */
 int
 sciSetFontDeciWidth (sciPointObj * pobj, int fontdeciwidth)
@@ -1842,7 +1842,7 @@ int sciInitFontOrientation( sciPointObj * pobj, int textorientation )
 }
 
 /**sciSetFontOrientation
- * @memo Sets the font Orientation
+ * Sets the font Orientation
  */
 int
 sciSetFontOrientation (sciPointObj * pobj, int textorientation)
@@ -1923,7 +1923,7 @@ int sciSetStrings( sciPointObj * pObjDest, const StringMatrix * pStrings )
 }
 
 /**sciSetText
- * @memo Sets the Text in TEXT, TITLE or LEGEND
+ * Sets the Text in TEXT, TITLE or LEGEND
  * @param sciPointObj * pobj: the pointer to the entity
  * @param char *text[] : the text which has to be put
  * @param int nbRow : the number of row of the text matrix
@@ -2063,7 +2063,7 @@ int sciInitFontBackground( sciPointObj * pobj, int colorindex )
 }
 
 /**sciSetFontBackground
- * @memo Sets the background color
+ * Sets the background color
  * @param sciPointObj * pobj: the pointer to the entity
  * @return  int 0 if OK, -1 if not
  */
@@ -2148,7 +2148,7 @@ int sciInitFontForeground( sciPointObj * pobj, int colorindex )
 }
 
 /**sciSetFontForeground
- * @memo Sets the foreground color
+ * Sets the foreground color
  * @param sciPointObj * pobj: the pointer to the entity
  * @return  int 0 if OK, if not
  */
@@ -2204,7 +2204,7 @@ int sciInitFontStyle( sciPointObj * pobj, int iAttributes )
 }
 
 /**sciSetFontStyle
- * @memo Sets the font style
+ * Sets the font style
  * @param sciPointObj * pobj: the pointer to the entity
  * @param  int iAttributes (a logical mask with SCI_ATTR_BOLD|SCI_ATTR_ITALIC|SCI_ATTR_UNDERLINE|SCI_ATTR_STRIKEOUT)
  * @return  int 0 if OK, -1 if not
@@ -2223,7 +2223,7 @@ sciSetFontStyle (sciPointObj * pobj, int iAttributes )
 
 
 /**sciSetFontName
- * @memo Sets the font name 
+ * Sets the font name 
  * @param sciPointObj * pobj: the pointer to the entity
  * @param  char *fontname
  * @param  int n
@@ -2330,7 +2330,7 @@ int sciInitTextPosX( sciPointObj * pobj, double x )
 }
 
 /**sciSetTextPosX
- * @memo Sets size of Text in TEXT, TITLE or LEGEND
+ * Sets size of Text in TEXT, TITLE or LEGEND
  * @param sciPointObj * pobj: the pointer to the entity
  * @return  int 0 if not OK, over 0 if ok
  */
@@ -2386,7 +2386,7 @@ int sciInitTextPosY( sciPointObj * pobj, double y )
 }
 
 /**sciSetTextPosY
- * @memo Sets size of Text in TEXT, TITLE or LEGEND
+ * Sets size of Text in TEXT, TITLE or LEGEND
  * @param sciPointObj * pobj: the pointer to the entity
  * @return  int 0 if not OK, over 0 if ok
  */
@@ -2405,7 +2405,7 @@ sciSetTextPosY (sciPointObj * pobj, double y)
 
 
 /**sciSetTitlePos
- * @memo Sets the Title Position in the graphique window. This function is actualy private
+ * Sets the Title Position in the graphique window. This function is actualy private
  * @param sciPointObj * pobj: the pointer to the entity
  * @return 0 if ok, -1 if not
  */
@@ -2451,7 +2451,7 @@ sciSetTitlePos (sciPointObj * pobj, int x, int y)
 
 
 /**sciSetTitlePlace
- * @memo Sets the Title Place  with SCI_TITLE_IN_TOP or SCI_TITLE_IN_BOTTOM and calculate the real position in the window
+ * Sets the Title Place  with SCI_TITLE_IN_TOP or SCI_TITLE_IN_BOTTOM and calculate the real position in the window
  * @param sciPointObj * pobj: the pointer to the entity
  * @return 0 if ok, -1 if not
  */
@@ -2498,7 +2498,7 @@ int sciInitLegendPlace( sciPointObj * pobj, sciLegendPlace place )
 }
 
 /**sciSetLegendPlace
- * @memo Sets the Title Place  with SCI_TITLE_IN_TOP or SCI_TITLE_IN_BOTTOM and calculate the real position in the window
+ * Sets the Title Place  with SCI_TITLE_IN_TOP or SCI_TITLE_IN_BOTTOM and calculate the real position in the window
  * @param sciPointObj * pobj: the pointer to the entity
  * @return 0 if ok, -1 if not
  */
@@ -2555,7 +2555,7 @@ int sciInitLegendPos( sciPointObj * pobj, int x, int y )
 }
 
 /**sciSetLegendPos
- * @memo Sets the Legend Position in the window
+ * Sets the Legend Position in the window
  * @param sciPointObj * pobj: the pointer to the entity
  * @return 0 if ok, -1 if not
  */
@@ -2646,7 +2646,7 @@ sciSetIsClipping( sciPointObj * pobj, int value )
 
 
 /**sciSetClipping
- * @memo Sets the clipping area
+ * Sets the clipping area
  * @author Djalel ABDEMOUCHE
  * 29/11/2002
  */
@@ -2759,7 +2759,7 @@ int sciInitHighLight( sciPointObj * pobj, BOOL value )
 }
 
 /**sciSetHighLight
- * @memo Tunrs ON or OFF the highlighting of the objects when there are selected
+ * Tunrs ON or OFF the highlighting of the objects when there are selected
  */
 
 int
@@ -2812,7 +2812,7 @@ int sciInitAddPlot( sciPointObj * pobj, BOOL value )
 }
 
 /**sciSetAddPlot
- * @memo Tunrs ON or OFF the possibility to draw multi plots in one graphic. 
+ * Tunrs ON or OFF the possibility to draw multi plots in one graphic. 
  * If FALSE, plot is cleared before new drawing
  */
 int
@@ -2868,7 +2868,7 @@ int sciInitAutoScale( sciPointObj * pobj, BOOL value )
 }
 
 /**sciSetAutoScale
- * @memo Sets the mode if the plot is in zoom fit mode, or fixed by the user
+ * Sets the mode if the plot is in zoom fit mode, or fixed by the user
  */
 int
 sciSetAutoScale (sciPointObj * pobj, BOOL value)
@@ -2922,7 +2922,7 @@ int sciInitZooming( sciPointObj * pobj, BOOL value )
 }
 
 /**sciSetZooming
- * @memo Sets the zooming state of the object. Is it or not zommed right now
+ * Sets the zooming state of the object. Is it or not zommed right now
  */
 int
 sciSetZooming (sciPointObj * pobj, BOOL value)
@@ -2938,7 +2938,7 @@ sciSetZooming (sciPointObj * pobj, BOOL value)
 
 
 /**sciSetDefaultValue
- * @memo Sets the default values of figure properties
+ * Sets the default values of figure properties
  * (graphics context, graphics mode, and graphics font)
  * @author Djalel ABDEMOUCHE
  */
@@ -2997,7 +2997,7 @@ int sciInitGraphicsStyle( sciPointObj * pobj, BOOL value )
 }
 
 /**sciSetGraphicsStyle
- * @memo Sets the graphics style
+ * Sets the graphics style
  */
 int
 sciSetGraphicsStyle (sciPointObj * pobj, BOOL value)
@@ -3054,7 +3054,7 @@ int sciInitXorMode( sciPointObj * pobj, int value )
 }
 
 /**sciSetXorMode
- * @memo Sets the xor mode
+ * Sets the xor mode
  * @param sciPointObj * pobj: the pointer to the entity
  * @param int value: the value of the xor mode
  * @return 
@@ -3262,7 +3262,7 @@ int sciInitResize( sciPointObj * pobj, BOOL value )
 }
 
 /**sciSetResize
- * @memo Tunrs ON or OFF the autoresizing mode (when the window is resized by user)
+ * Tunrs ON or OFF the autoresizing mode (when the window is resized by user)
  * @param sciPointObj * pobj: the pointer to the entity
  * @param BOOL value: the value of the switch
  */
@@ -3282,7 +3282,7 @@ sciSetResize (sciPointObj * pobj, BOOL value)
 
 
 /**sciSetName 
- * @memo Sets the name of the Figure
+ * Sets the name of the Figure
  * @param sciPointObj * pobj: the pointer to the entity
  * @param char pvalue: a pointer to the string contening name
  * @param int length: the length of the string (without the ending (char)0 ).
@@ -3380,7 +3380,7 @@ int sciInitNum( sciPointObj * pobj, int * value )
 }
 
 /**sciSetNum
- * @memo Sets the number of the Figure.
+ * Sets the number of the Figure.
  * @param sciPointObj * pobj: the pointer to the entity
  * @param int value: the value of the number of the windows
  */
@@ -3426,7 +3426,7 @@ int sciInitDim( sciPointObj * pobj, int * pwidth, int * pheight )
 
 
 /**sciSetDim
- * @memo Sets the dimension of the Figure or Subwin
+ * Sets the dimension of the Figure or Subwin
  * @param sciPointObj * pobj: the pointer to the entity
  * @param int *pwidth: the width of the window dimension
  * @param int *pheight: the height of the window dimension
@@ -3475,7 +3475,7 @@ int sciInitFigurePos( sciPointObj * pobj, int pposx, int pposy )
 }
 
 /**sciSetFigurePos
- * @memo Sets the position of the FIGURE (the window) in root.
+ * Sets the position of the FIGURE (the window) in root.
  */
 int
 sciSetFigurePos (sciPointObj * pobj, int pposx, int pposy)
@@ -3513,7 +3513,7 @@ int sciInitFigureIconify( sciPointObj * pobj, BOOL value )
 }
 
 /**sciSetFigureIconified
- * @memo Minimizes or Restores the window if TRUE or FALSE (useful to get the Window on front)
+ * Minimizes or Restores the window if TRUE or FALSE (useful to get the Window on front)
  * @param sciPointObj * pobj: the pointer to the entity
  * @param BOOL value: TRUE the window will be iconify, FALSE the window will be raise
  * @return 
@@ -3625,7 +3625,7 @@ int sciInitSelectedSubWin( sciPointObj * psubwinobj )
 }
 
 /**sciSetSelectedSubWin
- * @memo Determines wich SubWin is selected or not. WARNING TO BE DEFINED.
+ * Determines wich SubWin is selected or not. WARNING TO BE DEFINED.
  * @param sciPointObj * psubwinobj: the pointer to the entity sub window
  * @return 1 if OK or -1 if NOT OK
  */
@@ -3686,7 +3686,7 @@ int sciSetIsSelected( sciPointObj * pObj, BOOL val )
 /*----------------------------------------------------------------------------------------*/
 
 /**sciSetOriginalSubWin
- * @memo DO NOT USE !!!
+ * DO NOT USE !!!
  * @param sciPointObj * pfigure, the parent figure, 
  * @param sciPointObj * psubwin: the pointer to the entity subwindow
  * @return 0 if OK -1 if not
@@ -3708,7 +3708,7 @@ int sciInitCurrentFigure( sciPointObj * mafigure )
 }
 
 /**sciSetCurrentFigure
- * @memo Sets the pointer to the current selected figure. 
+ * Sets the pointer to the current selected figure. 
  */
 
 int
@@ -3726,7 +3726,7 @@ sciSetCurrentFigure (sciPointObj * mafigure)
 
 
 /**sciSetPoint
- * @memo sets points of the entity, and a pointer to the number of points
+ * sets points of the entity, and a pointer to the number of points
  */
 /** MAJ pour le 3D DJ.Abdemouche 2003**/
 int
@@ -4219,7 +4219,7 @@ int sciSwitchWindow(int *winnum)
 
 /*-------------------------------------------------------------------------------------------*/
 /**
- * @memo In new graphic style, select a window and create one if not already done.
+ * In new graphic style, select a window and create one if not already done.
  */ 
 int sciInitUsedWindow( int winNum )
 {
@@ -4232,7 +4232,7 @@ int sciInitUsedWindow( int winNum )
 
 /*-------------------------------------------------------------------------------------------*/
 /**
- * @memo In new graphic style, select a window and create one if not already done.
+ * In new graphic style, select a window and create one if not already done.
  */
 int sciSetUsedWindow( int winNum )
 {
@@ -4302,7 +4302,7 @@ int sciInitIsFilled( sciPointObj * pobj, BOOL isfilled )
 }
 
 /**sciSetIsFilled
- * @memo Sets the filled line existence
+ * Sets the filled line existence
  */
 int
 sciSetIsFilled (sciPointObj * pobj, BOOL isfilled)
@@ -4412,7 +4412,7 @@ int sciInitIsBoxed( sciPointObj * pobj, BOOL isboxed )
 }
 
 /**sciSetIsBoxed
- * @memo Sets the box existence
+ * Sets the box existence
  */
 int
 sciSetIsBoxed (sciPointObj * pobj, BOOL isboxed)
@@ -4484,7 +4484,7 @@ int sciInitPosition( sciPointObj * pobj, double x, double y )
 }
 
 /**sciSetPosition
- * @memo Sets the position (in pixels) for the label object
+ * Sets the position (in pixels) for the label object
  */
 int
 sciSetPosition (sciPointObj * pobj, double x, double y)

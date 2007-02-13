@@ -41,7 +41,7 @@ int sciRelocateObject( sciPointObj * movedObj, sciPointObj * newParent );
 /*********************************** Handle ******************************************/
 
 /**sciSetHandle
- * @memo Sets the handle to this object used only by sciAddNewHandle !!!
+ * Sets the handle to this object used only by sciAddNewHandle !!!
  */
 void
 sciSetHandle (sciPointObj * pobj, sciHandleTab * pvalue)
@@ -87,7 +87,7 @@ sciHandleTab * sciGetpendofhandletab()
 }
 
 /**sciAddNewHandle
- * @memo Returns a generated handle for this object, and put the handle and the object in the handle table
+ * Returns a generated handle for this object, and put the handle and the object in the handle table
  */
 int
 sciAddNewHandle (sciPointObj * pobj)
@@ -113,7 +113,7 @@ sciAddNewHandle (sciPointObj * pobj)
 
 
 /**sciGetHandleTabPointer
- * @memo Returns the handle's pointer address structure from this object
+ * Returns the handle's pointer address structure from this object
  */
 sciHandleTab *
 sciGetHandleTabPointer (sciPointObj * pobj)
@@ -156,7 +156,7 @@ sciGetHandleTabPointer (sciPointObj * pobj)
 
 
 /**sciDelHandle
- * @memo Removes this pointed handle from the handle table
+ * Removes this pointed handle from the handle table
  */
 extern int sciDelHandle
 (sciPointObj * pobj)
@@ -211,7 +211,7 @@ extern int sciDelHandle
 
 
 /**sciGetHandle
- * @memo Returns the handle 
+ * Returns the handle 
  */
 long sciGetHandle (sciPointObj * pobj)
 {
@@ -253,7 +253,7 @@ long sciGetHandle (sciPointObj * pobj)
 
 
 /**sciGetPointFromHandle
- * @memo Returns the object pointer form the handle argument
+ * Returns the object pointer form the handle argument
  */
 sciPointObj *
 sciGetPointerFromHandle (long handle)
@@ -291,7 +291,7 @@ sciGetPointerFromHandle (long handle)
 
 
 /**sciGetRelationship
- * @memo Returns the structure of the relationship. Do not use this in the Consturctor Functions !
+ * Returns the structure of the relationship. Do not use this in the Consturctor Functions !
  */
 sciRelationShip *
 sciGetRelationship (sciPointObj * pobj)
@@ -382,7 +382,7 @@ sciGetRelationship (sciPointObj * pobj)
 
 
 /**sciSetParent
- * @memo Sets the parent to this object (that have to be the son). 
+ * Sets the parent to this object (that have to be the son). 
  * The parent's FIGURE has to be NULL
  * pson est l'objet courant et *pparent est le parent a lui associer
  */
@@ -475,7 +475,7 @@ sciSetParent (sciPointObj * pson, sciPointObj * pparent)
 
 
 /**sciGetParent
- * @memo Returns the pointer to the parent object
+ * Returns the pointer to the parent object
  */
 sciPointObj *
 sciGetParent (sciPointObj * pobj)
@@ -521,7 +521,7 @@ sciGetParent (sciPointObj * pobj)
 /****************************************** SONS ******************************************/
 
 /**sciSetCurrentSon
- * @memo Sets the selected son to this object (that have to be the parent)
+ * Sets the selected son to this object (that have to be the parent)
  */
 void
 sciSetCurrentSon (sciPointObj * pparent, sciPointObj * pson)
@@ -607,7 +607,7 @@ sciSetCurrentSon (sciPointObj * pparent, sciPointObj * pson)
 
 
 /**sciGetCurrentSon
- * @memo Returns the point to the selected son object
+ * Returns the point to the selected son object
  */
 sciPointObj *
 sciGetCurrentSon (sciPointObj * pobj)
@@ -695,7 +695,7 @@ sciGetCurrentSon (sciPointObj * pobj)
 
 
 /**sciAddThisToItsParent
- * @memo Sets this object to its parent. 
+ * Sets this object to its parent. 
  * The list is pointed from the newer to the older.
  */
 BOOL
@@ -766,7 +766,7 @@ sciAddThisToItsParent (sciPointObj * pthis, sciPointObj * pparent)
 
 
 /**sciDelThisToItsParent
- * @memo deletes this son object to its parent, 
+ * deletes this son object to its parent, 
  * free the son structure, but not the son object structure 
  * (for which its parent is set to null) , 
  * that have to be free manually or packed to another parent
@@ -873,7 +873,7 @@ sciDelThisToItsParent (sciPointObj * pthis, sciPointObj * pparent)
 
 
 /**sciGetSons
- * @memo Returns the pointer to the table of all sons objects. 
+ * Returns the pointer to the table of all sons objects. 
  * There is no SetSons, because a new Son calls sciAddThisToItsParent() it self
  */
 sciSons *
@@ -966,7 +966,7 @@ sciGetSons (sciPointObj * pobj)
 
 
 /**sciGetLastSons
- * @memo Returns the pointer to the last son (in fact the first created and drawn). 
+ * Returns the pointer to the last son (in fact the first created and drawn). 
  * There is no SetSons, because a new Son calls sciAddThisToItsParent() it self
  */
 sciSons *

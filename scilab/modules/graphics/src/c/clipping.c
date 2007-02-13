@@ -390,7 +390,7 @@ void C2F(clipPolyLine)( integer       n     ,
 
 /*-------------------------------------------------------------------------------------*/
 /*
- * @memo get the real clipping (the set one the axe or the window borders) 
+ * get the real clipping (the set one the axe or the window borders) 
  * in pixels of a graphic object
  */
 void getPixelClipping( sciPointObj * pObj, SClipRegion * clipping )

@@ -2306,7 +2306,7 @@ void C2F(drawaxisXfig)(char *str, integer *alpha, integer *nsteps, integer *v2, 
 
 /*------------------------------------------------------------------------------------------*/
 /**
- * @memo get the minimal and maximal font size
+ * get the minimal and maximal font size
  */
 void C2F(getFontMaxSizeXfig)(char *str, integer * sizeMin, integer *sizeMax, integer *v1, integer *v2, integer *v3, integer *v4, double *dx1, double *dx2, double *dx3, double *dx4)
 {

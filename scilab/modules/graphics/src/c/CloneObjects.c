@@ -30,7 +30,7 @@
 /**sciCloneColormap
  * This function clone a colormap from the figure. It must be FREE a lesat.
  * It's the same for all sons
- * @memo Setting the colormap rgbmat must be a m x 3 double RGB matrix:
+ * Setting the colormap rgbmat must be a m x 3 double RGB matrix:
  * a[i] = RED, a[i+m] = GREEN, a[i+2*m] = BLUE
  */
 double *
@@ -53,7 +53,7 @@ sciCloneColormap (sciPointObj * pobj)
 
 
 /**CloneText
- * @memo 
+ * 
  * @param sciPointObj * pthis: the pointer to the entity
  */
 sciPointObj *
@@ -188,7 +188,7 @@ sciCloneObj (sciPointObj * pobj)
 
 
 /**CloneRectangle
- * @memo This function destroies Text structure and only this to destroy all sons use DelGraphicsSon
+ * This function destroies Text structure and only this to destroy all sons use DelGraphicsSon
  * @param sciPointObj * pthis: the pointer to the entity
  */
 sciPointObj *
@@ -246,7 +246,7 @@ CloneRectangle (sciPointObj * pthis)
 
 
 /**ClonePolyline
- * @memo This function destroies Text structure and only this to destroy all sons use DelGraphicsSon
+ * This function destroies Text structure and only this to destroy all sons use DelGraphicsSon
  * @param sciPointObj * pthis: the pointer to the entity
  */
 sciPointObj *
@@ -311,7 +311,7 @@ ClonePolyline (sciPointObj * pthis)
 
 
 /**CloneArc
- * @memo This function destroies Text structure and only this to destroy all sons use DelGraphicsSon
+ * This function destroies Text structure and only this to destroy all sons use DelGraphicsSon
  * @param sciPointObj * pthis: the pointer to the entity
  */
 sciPointObj *
