@@ -4,6 +4,7 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include "InitializeLocalization.h"
 #include "localization.h"
+#include "loadsavelanguage.h"
 #include "setgetSCIpath.h"
 #include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/ 
@@ -14,6 +15,9 @@ BOOL InitializeLocalization(void)
 	char *SCIPATH=NULL;
 	SCIPATH=getSCIpath();
 	InitializeHashTableScilabErrors(SCIPATH);
+
+	loadlanguagepref();
+
 	if (SCIPATH) {FREE(SCIPATH);SCIPATH=NULL;}
 
 	return bOK;

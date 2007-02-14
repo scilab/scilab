@@ -35,7 +35,7 @@ void ReadRegistryTxt (LPTW lptw)
 	DWORD TextColor;
     DWORD BackgroundColor;
   	int Toolbar;
-  	int Language;
+// 	int Language;
   	char TextFontName[MAX_PATH];
   	int TextFontSize;
   	RECT rect;
@@ -166,29 +166,29 @@ void ReadRegistryTxt (LPTW lptw)
 	{
 		lptw->lpmw->ShowToolBar = Toolbar;
 	}
-	
-	if ( RegQueryValueEx(key, "Language", 0, NULL, (LPBYTE)&Language, &size) !=  ERROR_SUCCESS )
-  	{
-		int CodeLanguageInScilabDotStar=GetLanguageCodeInScilabDotStar();
 
-		if (CodeLanguageInScilabDotStar != -1)
-		{
-			lptw->lpmw->CodeLanguage = CodeLanguageInScilabDotStar;
-		}
-		else lptw->lpmw->CodeLanguage = 0; /* English Default*/
-	}
-	else
-	{
-		int CodeLanguageInScilabDotStar=GetLanguageCodeInScilabDotStar();
+	//if ( RegQueryValueEx(key, "Language", 0, NULL, (LPBYTE)&Language, &size) !=  ERROR_SUCCESS )
+ // 	{
+	//	int CodeLanguageInScilabDotStar=GetLanguageCodeInScilabDotStar();
 
-		if (Language != CodeLanguageInScilabDotStar)
-		{
-			lptw->lpmw->CodeLanguage = CodeLanguageInScilabDotStar; 
-		}
-		else
-		if  ( (Language == 0) || (Language == 1) )	lptw->lpmw->CodeLanguage = Language;
-		else lptw->lpmw->CodeLanguage = 0; /* English Default*/
-	}
+	//	if (CodeLanguageInScilabDotStar != -1)
+	//	{
+	//		lptw->lpmw->CodeLanguage = CodeLanguageInScilabDotStar;
+	//	}
+	//	else lptw->lpmw->CodeLanguage = 0; /* English Default*/
+	//}
+	//else
+	//{
+	//	int CodeLanguageInScilabDotStar=GetLanguageCodeInScilabDotStar();
+
+	//	if (Language != CodeLanguageInScilabDotStar)
+	//	{
+	//		lptw->lpmw->CodeLanguage = CodeLanguageInScilabDotStar; 
+	//	}
+	//	else
+	//	if  ( (Language == 0) || (Language == 1) )	lptw->lpmw->CodeLanguage = Language;
+	//	else lptw->lpmw->CodeLanguage = 0; /* English Default*/
+	//}
 		
 	lptw->lpmw->LockToolBar=FALSE;
 
@@ -220,7 +220,7 @@ void WriteRegistryTxt (LPTW lptw)
   	char TextFontName[MAX_PATH];
   	int TextFontSize;
 	BOOL ShowButtons;
-	int LanguageCode;
+//	int LanguageCode;
 	LONG TstRegCreateKeyEx=0;
 
   	wsprintf(Clef,"SOFTWARE\\Scilab\\%s\\Settings",SCI_VERSION_STRING);  	
@@ -259,8 +259,9 @@ void WriteRegistryTxt (LPTW lptw)
 		ShowButtons=lptw->lpmw->ShowToolBar;
 		RegSetValueEx(key, "ToolBar", 0, REG_DWORD, (LPBYTE)&ShowButtons, dwsize);
 
-		LanguageCode=lptw->lpmw->CodeLanguage;
+		/*LanguageCode=lptw->lpmw->CodeLanguage;
 		RegSetValueEx(key, "Language", 0, REG_DWORD, (LPBYTE)&LanguageCode, dwsize);
+		*/
 
 		RegCloseKey(key);
 	}

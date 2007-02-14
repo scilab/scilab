@@ -57,11 +57,7 @@ PWD = getcwd()
 args=sciargs(); larg=find(args=="-l")
 if larg<>[] & larg<=size(args,"*") then
   L=args(larg+1);
-  if (~setlanguage(L)) then
-    write(%io(2),[" "
-		              "Unsupported language """+L+"""."+..
-		              "Choosing default language """+getlanguage()+"""."])
-  end
+  setlanguage(L);
 end
 clear larg 
 

@@ -19,5 +19,7 @@ EXPORTS
  vstk_
  createvar_
  getSCIpath
+ getSCIHOME
+ getWarningMode
  
  

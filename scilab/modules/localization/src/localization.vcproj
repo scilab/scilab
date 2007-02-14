@@ -42,7 +42,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../includes;../../core/includes;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml"
+				AdditionalIncludeDirectories="../src;../includes;../../core/includes;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml"
 				PreprocessorDefinitions="FORDLL;_DLL;STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE;EXPORT_LOCALIZATION_DLL"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
@@ -133,7 +133,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../includes;../../core/includes;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml"
+				AdditionalIncludeDirectories="../src;../includes;../../core/includes;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml"
 				PreprocessorDefinitions="FORDLL;EXPORT_LOCALIZATION_DLL;STRICT;NDEBUG;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -219,6 +219,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\loadsavelanguage.c"
+				>
+			</File>
+			<File
 				RelativePath=".\localization.c"
 				>
 			</File>
@@ -257,6 +261,10 @@
 			</File>
 			<File
 				RelativePath="..\includes\InitializeLocalization.h"
+				>
+			</File>
+			<File
+				RelativePath=".\loadsavelanguage.h"
 				>
 			</File>
 			<File

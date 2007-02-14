@@ -6,6 +6,7 @@
 #include "setgetlanguage.h"
 #include "MALLOC.h"
 #include "tableslanguages.h"
+#include "loadsavelanguage.h"
 /*-----------------------------------------------------------------------------------*/ 
 static char CURRENTLANGUAGESTRING[LengthAlphacode]=SCILABDEFAULTLANGUAGE;
 static int  CURRENTLANGUAGECODE=SCILABDEFAULTLANGUAGECODE;
@@ -53,6 +54,7 @@ BOOL setlanguage(char *lang)
 		{
 			strcpy(CURRENTLANGUAGESTRING,LANGUAGETMP);
 			setlanguagecode(LANGUAGETMP);
+			savelanguagepref();
 			bOK=TRUE;
 		}
 	}
@@ -72,6 +74,28 @@ char *getlanguage(void)
 int getcurrentlanguagecode(void)
 {
 	return CURRENTLANGUAGECODE;
+}
+/*-----------------------------------------------------------------------------------*/ 
+char *getlanguagefromcode(int code)
+{
+	char *RetLanguage=NULL;
+	int i=0;
+
+	for (i=0;i<NumberLanguages;i++)
+	{
+		if (LANGUAGE_COUNTRY_TAB[i].code == code)
+		{
+			RetLanguage=(char*)MALLOC(sizeof(char)*(strlen(LANGUAGE_COUNTRY_TAB[i].alphacode)+1));
+			strcpy(RetLanguage,LANGUAGE_COUNTRY_TAB[i].alphacode);
+			return RetLanguage;
+		}
+	}
+	return RetLanguage;
+}
+/*-----------------------------------------------------------------------------------*/ 
+int getcodefromlanguage(char *language)
+{
+	return FindLanguageCode(language);
 }
 /*-----------------------------------------------------------------------------------*/ 
 static BOOL LanguageIsOK(char *lang)

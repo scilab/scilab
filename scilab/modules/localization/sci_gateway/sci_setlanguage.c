@@ -4,8 +4,10 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include "sci_setlanguage.h"
 #include "setgetlanguage.h"
+#include "tableslanguages.h"
 #include "Scierror.h"
 #include "sciprint.h"
+#include "warningmode.h"
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(sci_setlanguage) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -22,7 +24,12 @@ int C2F(sci_setlanguage) _PARAMS((char *fname,unsigned long fname_len))
 		param=cstk(l1);
 		if (!setlanguage(param))
 		{
-			sciprint("%s is a invalid language. see 'help setlanguage'.\n\n");
+			if (getWarningMode())
+			{
+				sciprint("\nUnsupported language \"%s\".\n",param);
+				sciprint("Choosing default language : \"%s\".\n\n",SCILABDEFAULTLANGUAGE);
+			}
+			
 			CreateVar(Rhs+1, "b", &n1,&n1,&l1);
 			*istk(l1)=(int)(FALSE);
 		}
