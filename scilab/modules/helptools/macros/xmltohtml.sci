@@ -631,7 +631,7 @@ function gener_index(dirs,titles)
 	for k=1:size(dirs,'*')
 		
 		w = pathconvert(dirs(k)+"/whatis.htm",%f,%f);
-		w = strsubst(w,pathconvert(SCI,%t,%t),"");
+		w = strsubst(w,pathconvert(SCI,%t,%t)+"modules/","");
 		w = pathconvert(w,%f,%t);
 		
 		l=l+1;
@@ -696,7 +696,7 @@ function gener_contents(dirs1)
 		dirs(k) = pathconvert(dirs(k),%t,%t);
 		
 		// Construction du nom du répertoire
-		w = strsubst(dirs(k),pathconvert(SCI,%t,%t),"");
+		w = strsubst(dirs(k),pathconvert(SCI,%t,%t)+"modules/","");
 		
 		// Ouverture du fichier whatis.htm
 		[fd,ierr]=mopen(dirs(k)+"whatis.htm","r");
