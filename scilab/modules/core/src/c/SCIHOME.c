@@ -3,6 +3,7 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "SCIHOME.h"
 #include "MALLOC.h"
@@ -11,6 +12,10 @@
 /*-----------------------------------------------------------------------------------*/
 #ifndef MAX_PATH
 #define MAX_PATH 260
+#endif
+#if (defined _MSC_VER) 
+#undef putenv
+#define putenv(x) _putenv(x)
 #endif
 /*-----------------------------------------------------------------------------------*/
 static char SCIHOMEPATH[MAX_PATH*2]="empty_SCIHOME";
@@ -39,6 +44,7 @@ BOOL setSCIHOME(void)
 			#define BASEDIR ".Scilab"
 		#endif
 
+		char env[MAX_PATH+1+10];
 		char USERHOMESYSTEM[MAX_PATH];
 		iflag=1;
 
@@ -55,6 +61,8 @@ BOOL setSCIHOME(void)
 			sprintf(USERPATHSCILAB,"%s%s%s",USERHOMESYSTEM,DIRSEPARATOR,BASEDIR);
 			sprintf(SCIHOMEPATH,"%s%s%s",USERPATHSCILAB,DIRSEPARATOR,SCI_VERSION_STRING);
 		}
+		sprintf(env,"SCIHOME=%s",SCIHOMEPATH);
+		putenv(env);
 	}
 	else
 	{
