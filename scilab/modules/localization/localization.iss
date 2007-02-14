@@ -10,6 +10,8 @@
 ;
 #define LOCALIZATION "localization"
 ;
+Source: bin\localization.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+;
 Source: modules\{#LOCALIZATION}\VERSION; DestDir: {app}\modules\{#LOCALIZATION}; Components: {#COMPN_SCILAB}
 Source: modules\{#LOCALIZATION}\readme.txt; DestDir: {app}\modules\{#LOCALIZATION}; Components: {#COMPN_SCILAB}
 Source: modules\{#LOCALIZATION}\licence.txt; DestDir: {app}\modules\{#LOCALIZATION}; Components: {#COMPN_SCILAB}
@@ -17,6 +19,8 @@ Source: modules\{#LOCALIZATION}\changelog.txt; DestDir: {app}\modules\{#LOCALIZA
 ;
 Source: modules\{#LOCALIZATION}\etc\{#LOCALIZATION}.quit; DestDir: {app}\modules\{#LOCALIZATION}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#LOCALIZATION}\etc\{#LOCALIZATION}.start; DestDir: {app}\modules\{#LOCALIZATION}\etc; Components: {#COMPN_SCILAB}
+;
+Source: modules\{#LOCALIZATION}\sci_gateway\{#LOCALIZATION}; DestDir: {app}\modules\{#LOCALIZATION}\sci_gateway; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#LOCALIZATION}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#LOCALIZATION}\help\en_US; Components:  {#COMPN_SCILAB}
 Source: modules\{#LOCALIZATION}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#LOCALIZATION}\help\en_US; Components: {#COMPN_SCILAB}
