@@ -1,0 +1,85 @@
+/*-----------------------------------------------------------------------------------*/
+/* INRIA */
+/*-----------------------------------------------------------------------------------*/
+#include "machine.h"
+
+typedef void (*voidf)();
+
+typedef struct 
+{
+	char *name;
+	voidf f;
+} FTAB;
+
+extern voidf SetFunction(char *name, int *rep, FTAB *table);
+
+
+/***********************************
+* Search Table for fsolve 
+***********************************/
+
+#define ARGS_fsolvf integer*,double *,double*,integer*
+typedef void (*fsolvff)(ARGS_fsolvf);
+
+#define ARGS_fsolvj integer*,double*,double*,integer*
+typedef void (*fsolvjf)(ARGS_fsolvj);
+
+
+/**************** fsolvf ***************/
+extern void C2F(fsol1)(ARGS_fsolvf);
+void C2F(fsolvf)(ARGS_fsolvf);
+void C2F(setfsolvf)(char *name, int *rep);
+
+FTAB FTab_fsolvf[] ={
+{"fsol1", (voidf)  C2F(fsol1)},
+{(char *) 0, (voidf) 0}};
+/**************** fsolvj ***************/
+extern void C2F(fsolj1)(ARGS_fsolvj);
+void C2F(fsolvj)(ARGS_fsolvj);
+void C2F(setfsolj)(char *name, int *rep);
+void C2F(setfsolvj)(char *name, int *rep);
+
+FTAB FTab_fsolvj[] ={
+{"fsolj1", (voidf)  C2F(fsolj1)},
+{(char *) 0, (voidf) 0}};
+
+/***********************************
+* Search Table for fsolve 
+*    uses : fsolvf and fsolvj 
+***********************************/
+
+/** the current function fixed by setsolvf **/
+
+static fsolvff fsolvffonc ;
+
+/** function call : fsolvf  **/
+
+void C2F(fsolvf)(integer *n, double *x, double *fvec, integer *iflag)
+{
+	(*fsolvffonc)(n,x,fvec,iflag);
+}
+
+/** fixes the function associated to name **/
+
+void C2F(setfsolvf)(char *name, int *rep)
+{
+	fsolvffonc = (fsolvff) SetFunction(name,rep,FTab_fsolvf);
+}
+
+/** the current function fixed by setfsolvj **/
+
+static fsolvjf fsolvjfonc ;
+
+/** function call   **/
+
+void C2F(fsolvj)(integer *n, double *x, double *fjac, integer *iflag)
+{
+	(*fsolvjfonc)(n,x,fjac,iflag);
+}
+
+/** fixes the function associated to name **/
+
+void C2F(setfsolvj)(char *name, int *rep)
+{
+	fsolvjfonc = (fsolvjf) SetFunction(name,rep,FTab_fsolvj);
+}

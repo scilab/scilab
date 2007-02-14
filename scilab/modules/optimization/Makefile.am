@@ -4,7 +4,10 @@
 ##########
 
 OPTIMIZATION_C_SOURCES = src/c/intqld.c \
-src/c/sp.c
+src/c/sp.c \
+src/c/fsolvetable.c \
+src/c/lsqrsolvtable.c \
+src/c/optimtable.c
 
 OPTIMIZATION_FORTRAN_SOURCES = src/fortran/dimp03.f \
 src/fortran/qrfac.f \

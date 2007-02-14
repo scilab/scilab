@@ -173,7 +173,27 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
+				RelativePath=".\colnewtable.c"
+				>
+			</File>
+			<File
 				RelativePath=".\dassl.c"
+				>
+			</File>
+			<File
+				RelativePath=".\dassltable.c"
+				>
+			</File>
+			<File
+				RelativePath=".\fevaltable.c"
+				>
+			</File>
+			<File
+				RelativePath=".\fydot2table.c"
+				>
+			</File>
+			<File
+				RelativePath=".\fydottable.c"
 				>
 			</File>
 			<File
@@ -198,6 +218,22 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\gw_differential_equations6.c"
+				>
+			</File>
+			<File
+				RelativePath=".\impltable.c"
+				>
+			</File>
+			<File
+				RelativePath=".\int2dtable.c"
+				>
+			</File>
+			<File
+				RelativePath=".\int3dtable.c"
+				>
+			</File>
+			<File
+				RelativePath=".\intgtable.c"
 				>
 			</File>
 			<File

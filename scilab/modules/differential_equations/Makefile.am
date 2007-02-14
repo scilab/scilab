@@ -3,7 +3,16 @@
 ### INRIA - Scilab 2006 
 ##########
 
-DIFFERENTIAL_EQUATIONS_C_SOURCES = src/c/dassl.c
+DIFFERENTIAL_EQUATIONS_C_SOURCES = src/c/dassl.c \
+src/c/fevaltable.c \
+src/c/fydottable.c \
+src/c/impltable.c \
+src/c/colnewtable.c \
+src/c/intgtable.c \
+src/c/int2dtable.c \
+src/c/int3dtable.c \
+src/c/fydot2table.c \
+src/c/dassltable.c
 
 DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES = src/fortran/rscar1.f \
 src/fortran/prja.f \

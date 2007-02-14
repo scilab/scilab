@@ -3,6 +3,8 @@
 ### INRIA - Scilab 2006 
 ##########
 
+SIGNAL_PROCESSING_C_SOURCES = src/c/corrtable.c
+
 SIGNAL_PROCESSING_FORTRAN_SOURCES = src/fortran/sci_ffir.f \
 src/fortran/degree.f \
 src/fortran/parcha.f \
@@ -94,7 +96,7 @@ libscisignal_processing_la_CFLAGS=  -Iincludes/
 #-Isrc/c/
 pkglib_LTLIBRARIES = libscisignal_processing.la
 
-libscisignal_processing_la_SOURCES = $(SIGNAL_PROCESSING_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscisignal_processing_la_SOURCES = $(SIGNAL_PROCESSING_FORTRAN_SOURCES) $(SIGNAL_PROCESSING_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 libscisignal_processing_la_LIBADD = \
 	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la 

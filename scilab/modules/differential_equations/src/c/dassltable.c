@@ -1,0 +1,168 @@
+/*-----------------------------------------------------------------------------------*/
+/* INRIA */
+/*-----------------------------------------------------------------------------------*/
+#include "machine.h"
+
+typedef void (*voidf)();
+
+typedef struct 
+{
+	char *name;
+	voidf f;
+} FTAB;
+
+extern voidf SetFunction(char *name, int *rep, FTAB *table);
+
+/***********************************
+* Search Table for dassl 
+***********************************/
+
+#define ARGS_fresd double *,double*,double*,double*,integer*,double*,integer*
+typedef integer * (*fresdf)(ARGS_fresd);
+
+#define ARGS_fjacd double *,double*,double*,double*,double*,double*,integer*
+typedef integer * (*fjacdf)(ARGS_fjacd);
+
+/***********************************
+* Search Table for dasrt 
+***********************************/
+
+#define ARGS_fsurfd integer*,double *,double*,integer*,double*,double*,integer*
+typedef integer * (*fsurfdf)(ARGS_fsurfd);
+
+
+#define ARGS_fsurf integer*,double *,double*,integer*,double*
+typedef integer * (*fsurff)(ARGS_fsurf);
+
+/**************** fresd ***************/
+extern void C2F(dres1)(ARGS_fresd);
+extern void C2F(dres2)(ARGS_fresd);
+extern void C2F(res1)(ARGS_fresd);
+extern void C2F(res2)(ARGS_fresd);
+void C2F(fresd)(ARGS_fresd);
+void C2F(setfresd)(char *name, int *rep);
+
+FTAB FTab_fresd[] =
+{
+	{"dres1", (voidf)  C2F(dres1)},
+	{"dres2", (voidf)  C2F(dres2)},
+	{"res1", (voidf)  C2F(res1)},
+	{"res2", (voidf)  C2F(res2)},
+	{(char *) 0, (voidf) 0}
+};
+
+/**************** fjacd ***************/
+extern void C2F(djac1)(ARGS_fjacd);
+extern void C2F(djac2)(ARGS_fjacd);
+extern void C2F(jac2)(ARGS_fjacd);
+void C2F(fjacd)(ARGS_fjacd);
+void C2F(setfjacd)(char *name, int *rep);
+
+FTAB FTab_fjacd[] =
+{
+	{"djac1", (voidf)  C2F(djac1)},
+	{"djac2", (voidf)  C2F(djac2)},
+	{"jac2", (voidf)  C2F(jac2)},
+	{(char *) 0, (voidf) 0}
+};
+
+
+/**************** fsurf ***************/
+void C2F(fsurf)(ARGS_fsurf);
+void C2F(setfsurf)(char *name, int *rep);
+
+FTAB FTab_fsurf[] ={
+{(char *) 0, (voidf) 0}};
+/**************** fsurfd ***************/
+extern void C2F(gr1)(ARGS_fsurfd);
+extern void C2F(gr2)(ARGS_fsurfd);
+void C2F(fsurfd)(ARGS_fsurfd);
+void C2F(setfsurfd)(char *name, int *rep);
+
+FTAB FTab_fsurfd[] ={
+{"gr1", (voidf)  C2F(gr1)},
+{"gr2", (voidf)  C2F(gr2)},
+{(char *) 0, (voidf) 0}};
+
+/***********************************
+* Search Table for dassl or dassrt 
+***********************************/
+
+/** the current function fixed by setfresd **/
+
+static fresdf fresdfonc ;
+
+/** function call **/
+
+void C2F(fresd)(double *t, double *y, double *ydot, double *res, integer *ires, double *rpar, integer *ipar)
+{
+	(*fresdfonc)(t,y,ydot,res,ires,rpar,ipar);
+}
+
+/** fixes the function associated to name **/
+
+void C2F(setfresd)(char *name, int *rep)
+{
+	fresdfonc = (fresdf) SetFunction(name,rep,FTab_fresd);
+}
+
+
+/** the current function fixed by setfjacd **/
+
+static fjacdf fjacdfonc ;
+
+/** function call **/
+
+void C2F(fjacd)(double *t, double *y, double *ydot, double *pd, double *cj, double *rpar, integer *ipar)
+{
+	(*fjacdfonc)(t,y,ydot,pd,cj,rpar,ipar);
+}
+
+/** fixes the function associated to name **/
+
+void C2F(setfjacd)(char *name, int *rep)
+{
+	fjacdfonc = (fjacdf) SetFunction(name,rep,FTab_fjacd);
+}
+
+
+/** the current function fixed by setfsurfd **/
+
+static fsurfdf fsurfdfonc ;
+
+/** function call **/
+
+
+void C2F(fsurfd)(integer *neq, double *t, double *y, integer *ng, double *gout, double *rpar, integer *ipar)
+{
+	(*fsurfdfonc)(neq,t,y,ng,gout,rpar,ipar);
+}
+
+/** fixes the function associated to name **/
+
+void C2F(setfsurfd)(char *name, int *rep)
+{
+	fsurfdfonc = (fsurfdf) SetFunction(name,rep,FTab_fsurfd);
+}
+
+/***********************************
+* Search Table for dasrt ??? 
+**********************************/
+
+/** the current function fixed by setfsurf **/
+
+static fsurff fsurffonc ;
+
+/** function call **/
+
+void C2F(fsurf)(integer *ny, double *t, double *y, integer *ng, double *gout)
+{
+	(*fsurffonc)(ny, t, y, ng, gout) ;
+}
+
+/** fixes the function associated to name **/
+
+void C2F(setfsurf)(char *name, int *rep)
+{
+	fsurffonc = (fsurff) SetFunction(name,rep,FTab_fsurf);
+}
