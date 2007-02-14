@@ -7,6 +7,8 @@
  *------------------------------------------*/
 #include <string.h>
 #include "stack-c.h"
+#include "stack1.h"
+#include "stack2.h"
 #include "sciprint.h"
 /* Table of constant values */
 
@@ -1638,7 +1640,7 @@ int cre_listsparse_from_ptr(char *fname,integer *lw,integer *numi,integer *stlw,
 
 
 /*------------------------------------------------------------------ 
- * XXXXXXXX : j'en suis la 
+ * TODO : add comments
  * listcrestring 
  *------------------------------------------------------------------ */
 

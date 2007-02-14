@@ -8,7 +8,6 @@
 	#define GETCWD(x,y) _getcwd(x,y)
 #else 
 	#include <unistd.h>
-	extern void sciprint(char *fmt,...);
 	#define GETCWD(x,y) getcwd(x,y)
 #endif 
 

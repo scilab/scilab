@@ -40,7 +40,8 @@ extern void C2F(setfeval) __PARAMS((char *,int *));
 extern int C2F(objvide)  __PARAMS((char *,integer *,unsigned long));
 extern int C2F(fakecresmat2) __PARAMS((integer *lw, integer *nchar, integer *lr));
 /* from stack2.h */
-
+int C2F(isoptlw)(integer *topk,integer  *lw, char *namex, unsigned long name_len);
+integer C2F(numopt)(void);
 integer C2F(overload) __PARAMS(( integer *lw, char *fname, unsigned long l));
 integer C2F(overloadtype) __PARAMS(( integer *lw, char *fname,char *typ));
 
