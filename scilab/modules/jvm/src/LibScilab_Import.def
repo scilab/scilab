@@ -4,3 +4,4 @@ LIBRARY    LibScilab.dll
 EXPORTS
 
 xscion_
+getSCIpath

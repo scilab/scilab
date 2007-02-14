@@ -4,8 +4,9 @@
 ##########
 
 LOCALIZATION_C_SOURCES = src/hashtable_localization.c \
-src/localization.c\
-src/setgetlanguage.c
+src/localization.c \
+src/setgetlanguage.c \
+src/InitializeLocalization.c
 
 GATEWAY_C_SOURCES = sci_gateway/gw_localization.c \
 sci_gateway/sci_setlanguage.c \

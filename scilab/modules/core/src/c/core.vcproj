@@ -286,6 +286,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\InitializeCore.c"
+				>
+			</File>
+			<File
 				RelativePath=".\InitScilab.c"
 				>
 			</File>
@@ -788,6 +792,10 @@
 			</File>
 			<File
 				RelativePath=".\history.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\InitializeCore.h"
 				>
 			</File>
 			<File

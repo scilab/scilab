@@ -43,7 +43,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../bin/jdk/include;../bin/jdk/include/win32;../../core/includes;../../../libs/MALLOC/includes"
+				AdditionalIncludeDirectories="../bin/jdk/include;../bin/jdk/include/win32;../includes;../../core/includes;../../../libs/MALLOC/includes"
 				PreprocessorDefinitions="STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE;EXPORT_LIBJVM_DLL"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
@@ -135,7 +135,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../bin/jdk/include;../bin/jdk/include/win32;../../core/includes;../../../libs/MALLOC/includes"
+				AdditionalIncludeDirectories="../bin/jdk/include;../bin/jdk/include/win32;../includes;../../core/includes;../../../libs/MALLOC/includes"
 				PreprocessorDefinitions="STRICT;NDEBUG;_CRT_SECURE_NO_DEPRECATE;EXPORT_LIBJVM_DLL"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -210,6 +210,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\InitializeJVM.c"
+				>
+			</File>
+			<File
 				RelativePath=".\JVM_CONSOLE.c"
 				>
 			</File>
@@ -226,6 +230,10 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
+			<File
+				RelativePath="..\includes\InitializeJVM.h"
+				>
+			</File>
 			<File
 				RelativePath=".\jvm_common.h"
 				>

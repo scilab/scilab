@@ -12,7 +12,8 @@ src/ScilabEval.c \
 src/TclEvents.c \
 src/setenvtcl.c \
 src/with_tk.c \
-src/TclUiSet.c
+src/TclUiSet.c \
+src/InitializeTclTk.c
 
 # a priori utilisé seulement par windows
 # src/EnvTclTk.c

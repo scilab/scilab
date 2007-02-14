@@ -18,4 +18,6 @@ EXPORTS
  gettype_
  vstk_
  createvar_
+ getSCIpath
+ 
  

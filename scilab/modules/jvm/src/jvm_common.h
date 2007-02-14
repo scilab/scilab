@@ -2,23 +2,9 @@
 /* INRIA 2006 */
 /* Allan CORNET*/
 /*-----------------------------------------------------------------------------------*/ 
-#define JRE_PATH "/modules/jvm/bin/jre"
+#include "exportimport.h"
 /*-----------------------------------------------------------------------------------*/ 
-#ifdef _MSC_VER
-	#ifdef EXPORT_LIBJVM_DLL
-		#define IMPORT_EXPORT_LIBJVM_DLL __declspec(dllexport)
-	#else
-		#define IMPORT_EXPORT_LIBJVM_DLL __declspec(dllimport)
-	#endif
-#else
-	#define IMPORT_EXPORT_LIBJVM_DLL   extern
-#endif
-
-#ifdef _MSC_VER
-	#define IMPORT_DLL __declspec(dllimport)
-#else
-	#define IMPORT_DLL   extern
-#endif
+#define JRE_PATH "/modules/jvm/bin/jre"
 /*-----------------------------------------------------------------------------------*/ 
 #ifdef _MSC_VER
 	#define PATH_SEPARATOR ';'

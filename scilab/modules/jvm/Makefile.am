@@ -7,7 +7,8 @@ if JAVA
 
 JVM_C_SOURCES = src/JVM_CONSOLE.c \
 src/JVM_Unix.c \
-src/jvms.c
+src/jvms.c\
+src/InitializeJVM.c
 
 libsciscijvm_la_CFLAGS=  $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/libs/MALLOC/includes/
 

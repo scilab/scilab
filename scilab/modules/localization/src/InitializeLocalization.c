@@ -1,0 +1,22 @@
+/*-----------------------------------------------------------------------------------*/
+/* INRIA 2007 */
+/* Allan CORNET */
+/*-----------------------------------------------------------------------------------*/ 
+#include "InitializeLocalization.h"
+#include "localization.h"
+#include "setgetSCIpath.h"
+#include "MALLOC.h"
+/*-----------------------------------------------------------------------------------*/ 
+BOOL InitializeLocalization(void)
+{
+	BOOL bOK=FALSE;
+
+	char *SCIPATH=NULL;
+	SCIPATH=getSCIpath();
+	InitializeHashTableScilabErrors(SCIPATH);
+	if (SCIPATH) {FREE(SCIPATH);SCIPATH=NULL;}
+
+	return bOK;
+}
+/*-----------------------------------------------------------------------------------*/ 
+

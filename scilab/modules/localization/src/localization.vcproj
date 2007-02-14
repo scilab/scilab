@@ -215,6 +215,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\InitializeLocalization.c"
+				>
+			</File>
+			<File
 				RelativePath=".\localization.c"
 				>
 			</File>
@@ -249,6 +253,10 @@
 			</File>
 			<File
 				RelativePath=".\hashtable_localization.h"
+				>
+			</File>
+			<File
+				RelativePath="..\includes\InitializeLocalization.h"
 				>
 			</File>
 			<File

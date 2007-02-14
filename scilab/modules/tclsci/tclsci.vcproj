@@ -211,6 +211,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\InitializeTclTk.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\InitTclTk.c"
 				>
 			</File>
@@ -338,6 +342,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\gw_tclsci.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\InitializeTclTk.h"
 				>
 			</File>
 			<File
