@@ -10,7 +10,7 @@ src/JVM_Unix.c \
 src/jvms.c\
 src/InitializeJVM.c
 
-libsciscijvm_la_CFLAGS=  $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/libs/MALLOC/includes/
+libsciscijvm_la_CFLAGS=  $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/libs/MALLOC/includes/ -Iincludes/
 
 libsciscijvm_la_LDFLAGS = $(JAVA_JNI_LIBS) -lpthread -ldl
 
