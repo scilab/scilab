@@ -269,6 +269,14 @@
 				RelativePath="..\..\includes\gw_cacsd3.h"
 				>
 			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_contr.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_rankqr.h"
+				>
+			</File>
 		</Filter>
 		<File
 			RelativePath="..\..\sci_gateway\cacsd"

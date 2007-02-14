@@ -1,10 +1,8 @@
-#include "gw_optim.h"
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #if _MSC_VER
-#include <Windows.h>
 #include "ExceptionMessage.h"
 #endif
 #include "gw_optim.h"

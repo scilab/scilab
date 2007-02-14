@@ -2,9 +2,9 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
+#include "gw_optim.h"
 #include "machine.h"
 #include "stack-c.h"
-#include "gw_optim.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_fsolve) _PARAMS((char *fname,unsigned long fname_len))
 {

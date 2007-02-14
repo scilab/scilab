@@ -1,12 +1,11 @@
-#include "gw_linear_algebra.h"
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
 #if _MSC_VER
-#include <Windows.h>
 #include "ExceptionMessage.h"
 #endif
+#include "gw_linear_algebra.h"
 /*-----------------------------------------------------------------------------------*/ 
 static int C2F(intvoid) _PARAMS((char *fname, unsigned long fname_len))
 {

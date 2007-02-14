@@ -5,10 +5,6 @@
 #ifndef __GW_LINEAR_ALGEBRA__
 #define __GW_LINEAR_ALGEBRA__
 
-#ifdef _MSC_VER
-#include <windows.h>
-#include <stdio.h>
-#endif
 
 #include <string.h>
 

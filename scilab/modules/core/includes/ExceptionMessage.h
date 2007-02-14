@@ -5,6 +5,8 @@
 #ifndef _EXCEPTIONMESSAGE_H_
 #define _EXCEPTIONMESSAGE_H_
 /*-----------------------------------------------------------------------------------*/
+#include <windows.h>
+/*-----------------------------------------------------------------------------------*/
 void ExceptionMessage(DWORD ExceptionCode,char *functionname);
 /*-----------------------------------------------------------------------------------*/
 #endif /* _EXCEPTIONMESSAGE_H_ */
