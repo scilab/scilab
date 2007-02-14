@@ -4,16 +4,7 @@
 #include <string.h>
 #include <stdio.h>
 #include "stack-c.h"
-/*-----------------------------------------------------------------------------------*/
-#define SCI_DOUBLE 1
-#define STRING  10
-#define REAL 0
-#define COMPLEX 1
-#define FUNCTION 13
-#define STRINGREAL 27
-#define STRINGCOMPLEX 12
-#define YES 1
-#define NO 0
+#include "gw_linear_algebra.h"
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(intdgeqpf3) __PARAMS((char *fname, unsigned long fname_len));
 extern int C2F(intzgeqpf3) __PARAMS((char *fname, unsigned long fname_len));
@@ -21,8 +12,7 @@ extern int C2F(intdgeqpf4) __PARAMS((char *fname, unsigned long fname_len));
 extern int C2F(intzgeqpf4) __PARAMS((char *fname, unsigned long fname_len));
 extern int C2F(doldqr) __PARAMS((double *tol,char *fname, unsigned long fname_len));
 extern int C2F(zoldqr) __PARAMS((double *tol,char *fname, unsigned long fname_len));
-/*-----------------------------------------------------------------------------------*/
-int C2F(intqr)(char *fname,unsigned long fname_len);
+
 /*-----------------------------------------------------------------------------------*/
 int C2F(intqr)(char *fname,unsigned long fname_len)
 {

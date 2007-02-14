@@ -4,12 +4,12 @@
 #include "machine.h"
 #include "stack-c.h"
 #include <string.h>
+#include "sci_contr.h"
 /*-----------------------------------------------------------------------------------*/ 
 #define MAX(x,y)	(((x)>(y))?(x):(y))
 /*-----------------------------------------------------------------------------------*/ 
 extern double C2F(dlamch)  __PARAMS((char *CMACH, unsigned long int));
 extern int C2F(ab01od)();
-int intab01od(char* fname);
 /*-----------------------------------------------------------------------------------*/ 
 int intab01od(char* fname)
 { 

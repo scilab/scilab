@@ -29,10 +29,7 @@ int C2F(sci_semidef) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_fsolve) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_sqrsolve) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_qld) _PARAMS((char *fname,unsigned long fname_len));
-#ifdef NON_FREE_SCILAB
 int C2F(sciquapro) _PARAMS((char *fname,unsigned long fname_len));
-#endif
-
 
 #endif /*  __GW_OPTIM__ */
 /*-----------------------------------------------------------------------------------*/

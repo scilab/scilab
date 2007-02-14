@@ -18,7 +18,7 @@
 
 typedef int (*Linear_Algebra2_Interf) __PARAMS((char *fname,unsigned long l));
 
-typedef struct table_struct 
+typedef struct table_struct2
 {
 	Linear_Algebra2_Interf f;    /** function **/
 	char *name;      /** its name **/

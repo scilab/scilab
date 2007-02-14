@@ -6,14 +6,13 @@
 #include <Windows.h>
 #include "ExceptionMessage.h"
 #endif
-
+#include "sci_contr.h"
+#include "sci_rankqr.h"
 #include "../../../mexlib/includes/mex.h"
 /*-----------------------------------------------------------------------------------*/ 
 extern Gatefunc C2F(sident);
 extern Gatefunc C2F(sorder);
 extern Gatefunc C2F(findbd);
-extern int intrankqr(char* fname);
-extern int intab01od(char* fname);
 extern Gatefunc C2F(intmucomp);
 extern Gatefunc C2F(intricc2);
 extern Gatefunc C2F(inthinf);

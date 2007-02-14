@@ -9,7 +9,7 @@
 
 #include "machine.h"
 #include "sciprint.h"
-
+#include "Scierror.h"
 
 #include "addinter.h" /* for DynInterfStart */
 #include "Os_specific.h" /* for DynInterfStart */
@@ -17,7 +17,6 @@
 static  jmp_buf jmp_env; 
 
 extern int  C2F(error) __PARAMS((int *));
-extern int  Scierror __PARAMS((int iv,char *fmt,...));
 
 extern void  errjump(int n);
 extern void  sci_sig_tstp(int n);
@@ -28,32 +27,41 @@ static void  sci_sigint_addinter(int n);
  * interface function 
  ***********************************************************/
 
-static int c_local = 9999;
+static int c_local_interf = 9999;
 
 void C2F(no_gw_tclsci)(void)
 {
   sciprint("TclSci interface not loaded \n");
-  C2F(error)(&c_local);
+  C2F(error)(&c_local_interf);
   return;
 }
 
 void C2F(NoPvm)(void)
 {
   sciprint("pvm interface not loaded \n");
-  C2F(error)(&c_local);
+  C2F(error)(&c_local_interf);
   return;
 }
 
 void C2F(Nogw_scicos)(void)
 {
 	sciprint("scicos interfaces not loaded \n");
-	C2F(error)(&c_local);
+	C2F(error)(&c_local_interf);
 	return;
 }
+
 void C2F(Nogw_cscicos)(void)
 {
 	sciprint("scicos interfaces not loaded \n");
-	C2F(error)(&c_local);
+	C2F(error)(&c_local_interf);
+	return;
+}
+
+
+void C2F(Nogw_slicot)(void)
+{
+	sciprint("Slicot interfaces not loaded \n");
+	C2F(error)(&c_local_interf);
 	return;
 }
 

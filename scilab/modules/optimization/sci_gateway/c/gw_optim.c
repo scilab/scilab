@@ -12,9 +12,7 @@
 static OptimTable Tab[]=
 {
 {C2F(sci_optim),"optim"},
-#ifdef NON_FREE_SCILAB
-{C2F(sciquapro),"qpqpqp"}, /* primitive non documentee utilisee par quapro macro*/
-#endif
+{C2F(sciquapro),"qpqpqp"}, /* undocumented primitive used by quapro macro*/
 {C2F(sci_semidef),"semidef"},
 {C2F(sci_fsolve),"fsolve"},
 {C2F(sci_sqrsolve),"sqrsolve"},

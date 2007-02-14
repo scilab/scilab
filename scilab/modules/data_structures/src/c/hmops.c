@@ -18,6 +18,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include "stack-c.h"
+#include "stack2.h"
 #include "hmops.h"
 
 #if _MSC_VER

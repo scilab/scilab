@@ -62,7 +62,7 @@ void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int
   int three=3;
 
   int i;  /*Variables de boucle*/
-  int hauteur, longueur, capacite;   /*Hauteur, longueur de la feuille,  */
+  int hauteur=0, longueur=0, capacite;   /*Hauteur, longueur de la feuille,  */
   int taille; /*Nombre de types de caractèers a enregistrer*/
   char *sheetname;   /*Nom de la feuille*/
   int rkvalue; /*RK value*/
@@ -491,8 +491,6 @@ static void getString(int *fd,short *PosInRecord, short *RecordLen, int flag,cha
   char OptionFlag=0;
   int sz; /* for extended string data */
   short rt;/* for rich string data */
-  int i=*err;/*for debug*/
-  double pos;/*for debug*/
   int UTFEncoding,extendedString,richString;
   int j,l1;
 

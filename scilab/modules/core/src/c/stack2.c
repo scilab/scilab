@@ -35,7 +35,6 @@ static void intersci_pop();
 static int intersci_push();
 
 /*------------------------------------------------*/
-int C2F(createlistcvarfrom)(integer *lnumber, integer *number, char *typex, integer *it, integer *m,integer *n,integer *lr,integer *lc,integer *lar,integer *lac, unsigned long type_len);
 void strcpy_tws(char *str1,char *str2, int len);
 int C2F(copyvarfromsciptr)(integer lw, integer n,integer l);
 static int intersci_push(void);

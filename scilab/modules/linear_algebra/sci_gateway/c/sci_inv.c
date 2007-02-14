@@ -4,21 +4,10 @@
 #include <string.h>
 #include <stdio.h>
 #include "stack-c.h"
-/*-----------------------------------------------------------------------------------*/
-#define SCI_DOUBLE 1
-#define STRING  10
-#define REAL 0
-#define COMPLEX 1
-#define FUNCTION 13
-#define STRINGREAL 27
-#define STRINGCOMPLEX 12
-#define YES 1
-#define NO 0
+#include "gw_linear_algebra.h"
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(intdgetri) __PARAMS((char *fname, unsigned long fname_len));
 extern int C2F(intzgetri) __PARAMS((char *fname, unsigned long fname_len));
-/*-----------------------------------------------------------------------------------*/
-int C2F(intinv)(char *fname,unsigned long fname_len);
 /*-----------------------------------------------------------------------------------*/
 int C2F(intinv)(char *fname,unsigned long fname_len)
 

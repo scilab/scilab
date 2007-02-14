@@ -7,21 +7,7 @@
 #include <Windows.h>
 #include "ExceptionMessage.h"
 #endif
-/*-----------------------------------------------------------------------------------*/ 
-extern int C2F(intqr) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(intsvd) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(intlsq) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(inteig) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(intinv) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(intrcond) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(intchol) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(intlu) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(intslash) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(intbackslash) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(intschur) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(inthess) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(intdet) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(intbalanc) _PARAMS((char *fname,unsigned long fname_len));
+#include "gw_linear_algebra.h"
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(gw_linear_algebra2)(void);
 /*-----------------------------------------------------------------------------------*/ 

@@ -8,13 +8,6 @@
 #include "ExceptionMessage.h"
 #endif
 /*-----------------------------------------------------------------------------------*/ 
-extern int C2F(inthess) _PARAMS((char *fname, unsigned long fname_len));
-extern int C2F(intschur) _PARAMS((char *fname, unsigned long fname_len));
-extern int C2F(intbdiagr)  _PARAMS((char *fname, unsigned long fname_len));
-extern int C2F(inteig) _PARAMS((char *fname, unsigned long fname_len));
-extern int C2F(intbdiagr) _PARAMS((char *fname, unsigned long fname_len));
-extern int C2F(intbalanc) _PARAMS((char *fname, unsigned long fname_len));
-/*-----------------------------------------------------------------------------------*/ 
 static int C2F(intvoid) _PARAMS((char *fname, unsigned long fname_len))
 {
 	return 0;

@@ -90,6 +90,7 @@ integer C2F(maxvol) __PARAMS((integer *lw, char *type__, unsigned long type_len)
 int  C2F(createlistvarfromptr)  __PARAMS((integer *lnumber, integer *number, char *typex, integer *m, integer *n, void *iptr, long unsigned int type_len));
 
 int C2F(createlistcvarfromptr)  __PARAMS((integer * lnumber,integer * number, char * typex,integer *it,integer * m,integer * n, void *iptr, void * iptc, unsigned long ttype_len));
+int C2F(createlistcvarfrom)(integer *lnumber, integer *number, char *typex, integer *it, integer *m,integer *n,integer *lr,integer *lc,integer *lar,integer *lac, unsigned long type_len);
 
 int C2F(createdata) __PARAMS((integer *lw, integer n));
 

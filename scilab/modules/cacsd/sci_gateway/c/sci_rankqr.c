@@ -8,8 +8,6 @@
 extern int C2F(intmb03od) __PARAMS((char *fname, unsigned long fname_len));
 extern int C2F(intzb03od) __PARAMS((char *fname, unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/ 
-int intrankqr(char* fname);
-/*-----------------------------------------------------------------------------------*/ 
 int intrankqr(char* fname)
 {
 	int *header1;
