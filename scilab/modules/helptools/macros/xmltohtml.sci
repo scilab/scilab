@@ -82,17 +82,17 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 		default_language   = [];
 		language_system    = [];
 		
-		if getlanguage() == 'en_US' then
-			xsl = pathconvert(SCI+"/modules/helptools/help_en_US.xsl",%f,%f);
+		if getlanguage() == getlanguage('LANGUAGE_DEFAULT') then
+			xsl = pathconvert(SCI+"/modules/helptools/help_'+getlanguage('LANGUAGE_DEFAULT')+'.xsl",%f,%f);
 			for k=1:size(dirs,'*')
-				directory_language = [directory_language;"en_US"];
+				directory_language = [directory_language;getlanguage('LANGUAGE_DEFAULT')];
 				language_system    = [language_system;%F];
 			end
 		else
 			xsl = pathconvert(SCI+"/modules/helptools/help_"+getlanguage()+".xsl",%f,%f);
 			for k=1:size(dirs,'*')
 				directory_language = [directory_language;getlanguage()];
-				default_language   = [default_language;"en_US"];
+				default_language   = [default_language;getlanguage('LANGUAGE_DEFAULT')];
 				language_system    = [language_system;%T];
 			end
 		end
@@ -108,8 +108,8 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 		language_system = [];
 		titles          = [];
 		
-		if getlanguage() == 'en_US' then
-			xsl = pathconvert(SCI+"/modules/helptools/help_en_US.xsl",%f,%f);
+		if getlanguage() == getlanguage('LANGUAGE_DEFAULT') then
+			xsl = pathconvert(SCI+"/modules/helptools/help_'+getlanguage('LANGUAGE_DEFAULT')+'.xsl",%f,%f);
 			for k=1:size(dirs,'*')
 				titles = [titles;"Help chapter ("+dirs(k)+")"];
 				language_system = [language_system;%F];
@@ -170,8 +170,8 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 		if ~exists("all") | all == [] | all == "" then step = "all"; end
 		
 		if ~exists("xsl") | xsl == [] | xsl == "" then
-			if getlanguage() == 'en_US' then
-				xsl = pathconvert(SCI+"/modules/helptools/help_en_US.xsl",%f,%f);
+			if getlanguage() == getlanguage('LANGUAGE_DEFAULT') then
+				xsl = pathconvert(SCI+"/modules/helptools/help_'+getlanguage('LANGUAGE_DEFAULT')+'.xsl",%f,%f);
 			else
 				xsl = pathconvert(SCI+"/modules/helptools/help_"+getlanguage()+".xsl",%f,%f);
 			end
@@ -192,8 +192,8 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 		if ~exists("all") | all == [] | all == "" then step = "all"; end
 		
 		if ~exists("xsl") | xsl == [] | xsl == "" then
-			if getlanguage() == 'en_US' then
-				xsl = pathconvert(SCI+"/modules/helptools/help_en_US.xsl",%f,%f);
+			if getlanguage() == getlanguage('LANGUAGE_DEFAULT') then
+				xsl = pathconvert(SCI+"/modules/helptools/help_'+getlanguage('LANGUAGE_DEFAULT')+'.xsl",%f,%f);
 			else
 				xsl = pathconvert(SCI+"/modules/helptools/help_"+getlanguage()+".xsl",%f,%f);
 			end
@@ -215,8 +215,8 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 		if ~exists("all") | all == [] | all == "" then step = "all"; end
 		
 		if ~exists("xsl") | xsl == [] | xsl == "" then
-			if getlanguage() == 'en_US' then
-				xsl = pathconvert(SCI+"/modules/helptools/help_en_US.xsl",%f,%f);
+			if getlanguage() == getlanguage('LANGUAGE_DEFAULT') then
+				xsl = pathconvert(SCI+"/modules/helptools/help_'+getlanguage('LANGUAGE_DEFAULT')+'.xsl",%f,%f);
 			else
 				xsl = pathconvert(SCI+"/modules/helptools/help_"+getlanguage()+".xsl",%f,%f);
 			end
@@ -390,7 +390,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 	
 	if MSDOS then
 		if step=='all' | step == 'hw' then
-			if (strindex(dirs(1),'\en_US\') <> []) | (strindex(dirs(1),'\fr_FR\') <> []) then
+			if (strindex(dirs(1),'\'+getlanguage()+'\') <> []) then
 				mprintf("\nCreating sciman.hh* \n");
 				gener_hh(dirs,titles)
 			end
@@ -741,7 +741,7 @@ function gener_contents(dirs1)
 	
 	select getlanguage() 
 		case 'fr_FR' then type_title =  "		<H2>Fonctions Scilab</H2>";
-		case 'en_US' then type_title =  "		<H2>Scilab functions</H2>";
+		case getlanguage('LANGUAGE_DEFAULT') then type_title =  "		<H2>Scilab functions</H2>";
 	end
 	
 	full_whatis=["<html>"
@@ -780,13 +780,8 @@ function gener_hh(dirs,titles)
 	
 	base = dirs
 	
-	if ( strindex(base(1),'\en\') <> [] ) then
-		manpath = pathconvert(getlongpathname(SCI)+'/man/en_US/',%t,%f,'w');
-		doctitle = "Scilab documentation";
-	elseif ( strindex(base(1),'\fr\') <> [] ) then
-		manpath = pathconvert(getlongpathname(SCI)+'/man/fr_FR/',%t,%f,'w');
-		doctitle = "Documentation";
-	end
+	manpath = pathconvert(getlongpathname(SCI)+'/'+getlanguage()+'/',%t,%f,'w');
+	doctitle = "Documentation";
 	
 	// help in the std man directory
 	n=size(dirs,'*');
