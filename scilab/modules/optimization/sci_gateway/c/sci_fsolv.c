@@ -4,8 +4,7 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include "machine.h"
 #include "stack-c.h"
-/*-----------------------------------------------------------------------------------*/
-extern int C2F(scisolv) _PARAMS((char *fname,unsigned long fname_len));
+#include "gw_optim.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_fsolve) _PARAMS((char *fname,unsigned long fname_len))
 {

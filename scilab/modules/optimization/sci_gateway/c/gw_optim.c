@@ -7,23 +7,18 @@
 #include <Windows.h>
 #include "ExceptionMessage.h"
 #endif
-/*-----------------------------------------------------------------------------------*/
-extern int C2F(sci_optim) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sciquapro) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_semidef) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_fsolve) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_sqrsolve) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_qld) _PARAMS((char *fname,unsigned long fname_len));
-
+#include "gw_optim.h"
 /*-----------------------------------------------------------------------------------*/
 static OptimTable Tab[]=
 {
 {C2F(sci_optim),"optim"},
+#ifdef NON_FREE_SCILAB
 {C2F(sciquapro),"qpqpqp"}, /* primitive non documentee utilisee par quapro macro*/
+#endif
 {C2F(sci_semidef),"semidef"},
 {C2F(sci_fsolve),"fsolve"},
 {C2F(sci_sqrsolve),"sqrsolve"},
-{C2F(sci_qld),"qld"}
+{C2F(sci_qld),"qld"},
 };
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_optim)()
