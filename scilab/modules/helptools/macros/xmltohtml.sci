@@ -376,7 +376,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 	if step=='all' | step == 'contents' then 
 		contents_file = pathconvert(SCI+"/modules/helptools/contents_"+getlanguage()+".htm",%f,%t);
 		mprintf("\nCreating %s\n",contents_file);
-		if rhs <= 0 then 
+		if rhs <= 0 then
 			gener_contents()
 		else
 			gener_contents(dirs)
@@ -561,7 +561,7 @@ endfunction
 function gener_index(dirs,titles)
 
 	//------------------------------------------------------------------------------------------
-	// use %helps to generate an index file 
+	// use %helps to generate an index file
 	//------------------------------------------------------------------------------------------
 	
 	// On ajoute le ou les répertoire
@@ -569,14 +569,14 @@ function gener_index(dirs,titles)
 	saved_help = %helps;
 	
 	[lhs,rhs]=argn(0)
-	 
+	
 	if rhs == 2 then
 		for k=1:size(dirs,'*')
 			add_help_chapter(titles(k),dirs(k));
 		end
 	end
 	
-	dirs = %helps(:,1);
+	dirs   = %helps(:,1);
 	titles = %helps(:,2);
 	
 	lines(0);
@@ -585,37 +585,62 @@ function gener_index(dirs,titles)
 		"	<head>"
 		"		<meta http-equiv=""Content-Type"" content=""text/html; charset=ISO-8859-1"">"
 		"		<title>Index</title>"
-		"		<link href=""../sci_styles.css"" rel=""stylesheet"" type=""text/css"">"
+		"		<style type=""text/css"">"
+		"		<!--"
+		"			body"
+		"			{"
+		"				color: black;"
+		"				background: white;"
+		"				font-family: Verdana,Arial,sans-serif;"
+		"			}"
+		"			a {"
+		"				color: blue;"
+		"				text-decoration:none;"
+		"			}"
+		"			a:visited{"
+		"				color: #00a;"
+		"			}"
+		"			a:active {"
+		"				color: red;"
+		"			}"
+		"			a:hover {"
+		"				text-decoration:underline;"
+		"			}"
+		"			div.menu {"
+		"				background : #ccf;"
+		"				margin     : 0;"
+		"				padding    : 0;"
+		"				border     : thin solid #00A;"
+		"				padding    : 0.5em 0.5em;"
+		"				font-size  : 0.8em;"
+		"			}"
+		"		-->"
+		"		</style>"
 		"	</head>"
-		"	"
-		"	<body bgcolor=""#FFFFFF"">"
-		"		<dl>"];
-  
+		"	<body>"
+		"	<div class=""menu"">"
+		"		<li><a href=""accueil.html"" target=""cel-b-d"">All functions</a></li>"
+		"		<hr />"];
+	
 	l=size(line,'*')
 	
 	//------------------------------------------------------------------------------------------
-	// check for whatis 
+	// check for whatis
 	//------------------------------------------------------------------------------------------
 
 	for k=1:size(dirs,'*')
 		
 		w = pathconvert(dirs(k)+"/whatis.htm",%f,%f);
-		w = strsubst(w,pathconvert(SCI,%f,%t),"../../");
+		w = strsubst(w,pathconvert(SCI,%t,%t),"");
 		w = pathconvert(w,%f,%t);
-		
-// 		if fileinfo(w) ==[] then
-// 			error("file "+w+" not found");
-// 			return 
-// 		end
 		
 		l=l+1;
 		
 		w=pathconvert(getlongpathname(w),%f,%f);
-		line(l)="			<dd><A HREF="""+w+""">"+titles(k)+"</A></dd>";
+		line(l)="			<li><a href="""+w+""" target=""cel-b-d"">"+titles(k)+"</a></li>";
 	end
 	
 	line = [line;
-		"		</dl>"
 		"	</body>"
 		"</html>"]
 	
@@ -648,7 +673,7 @@ function flag = gener_links()
 		end
 	end
 	
-endfunction 
+endfunction
 
 
 
@@ -659,88 +684,53 @@ function gener_contents(dirs1)
 	//------------------------------------------------------------------------------------------
 	
 	[lhs,rhs]=argn(0)
-	 
-	if rhs <= 0 then 
-		dirs = dirname(%helps(:,1));
-		base = basename(%helps(:,1));
-	else
-		dirs = dirname(dirs1)
-		base = basename(dirs1)
+	
+	if rhs <= 0 then
+		dirs = %helps(:,1);
 	end
-	
-	//------------------------------------------------------------------------------------------
-	// help in the std man directory
-	//------------------------------------------------------------------------------------------
-	
-	std= grep(dirs,SCI)
-	n=size(dirs,'*')
-	
-	//------------------------------------------------------------------------------------------	
-	// help in the non std man directory
-	//------------------------------------------------------------------------------------------
-	
-	nstd=1:n;
-	nstd(std)=[];
 	
 	full_whatis=[];
 	full_whatis_name=[];
 	
-	if std<>[] then
-		for k=std
-			d = dirs(k)+'/'+base(k);
-			[fd,ierr]=mopen(d+"/whatis.htm","r");
-			if ierr<>0 then
-				warning(" whatis file missing in "+d+". Directory ignored")
-			else
-				whatis=mgetl(fd);mclose(fd);
-				ind=grep(whatis,'</A>');
-				whatis=whatis(ind);
-				for k1=1:size(whatis,'*')
-					lwhatis = whatis(k1);
-					i=strindex(lwhatis,">"); j=strindex(lwhatis,"</A>");
-					lkey=part(lwhatis,i(2)+1:j-1);
-					full_whatis_name=[full_whatis_name;lkey];
-				end
-				whatis=strsubst(whatis,"HREF=""","HREF="""+base(k)+"/");
-				whatis=strsubst(whatis,'//','/');
-				full_whatis=[full_whatis;whatis];
-			end 
-		end
-	end
-	
-	if nstd<>[] then 
-		for k=nstd
-			d = dirs(k)+'/'+base(k);
-			[fd,ierr]=mopen(d+"/whatis.htm","r");
-			if ierr<>0 then
-				warning(" whatis file missing in "+d+". Directory ignored")
-			else
-				whatis=mgetl(fd);mclose(fd);
-				ind=grep(whatis,'</A>');
-				whatis=whatis(ind);
-				for k1=1:size(whatis,'*')
-					lwhatis = whatis(k1);
-					i=strindex(lwhatis,">"); j=strindex(lwhatis,"</A>");
-					lkey=part(lwhatis,i(2)+1:j-1);
-					full_whatis_name=[full_whatis_name;lkey];
-				end
-				if dirs(k)<>'.' then 
-					d=dirs(k)+'/'+base(k)+"/";
-				else 
-					d=base(k)+"/";
-				end
-				whatis=strsubst(whatis,"HREF=""","HREF="""+d);
-				whatis=strsubst(whatis,'//','/');
-				full_whatis=[full_whatis;whatis];
+	for k=1:size(dirs,'*')
+		dirs(k) = pathconvert(dirs(k),%t,%t);
+		
+		// Construction du nom du répertoire
+		w = strsubst(dirs(k),pathconvert(SCI,%t,%t),"");
+		
+		// Ouverture du fichier whatis.htm
+		[fd,ierr]=mopen(dirs(k)+"whatis.htm","r");
+		
+		if ierr<>0 then
+			warning(" whatis file missing in "+dirs(k)+". Directory ignored")
+		else
+			whatis = mgetl(fd);
+			ind    = grep(whatis,'</A>');
+			whatis = whatis(ind);
+			mclose(fd);
+			
+			for k1=1:size(whatis,'*')
+				lwhatis          = whatis(k1);
+				i                = strindex(lwhatis,">");
+				j                = strindex(lwhatis,"</A>");
+				lkey             = part(lwhatis,i(2)+1:j-1);
+				full_whatis_name = [full_whatis_name;lkey];
 			end
+			
+			whatis      = strsubst(whatis,"HREF=""","HREF="""+w);
+			whatis      = strsubst(whatis,"<dd>","<li>");
+			whatis      = strsubst(whatis,"</dd>","</li>");
+			whatis      = strsubst(whatis,'//','/');
+			full_whatis = [full_whatis;whatis];
 		end
 	end
 	
-	[sv,sk]=sort(full_whatis_name);
-	full_whatis=full_whatis(sk);
+	// Tri alphanumérique
+	[sv,sk]     = sort(full_whatis_name);
+	full_whatis = full_whatis(sk);
 	
-	select getlanguage() 
-		case 'fr_FR' then type_title =  "		<H2>Fonctions Scilab</H2>";
+	select getlanguage()
+		case 'fr_FR'                         then type_title =  "		<H2>Fonctions Scilab</H2>";
 		case getlanguage('LANGUAGE_DEFAULT') then type_title =  "		<H2>Scilab functions</H2>";
 	end
 	
@@ -748,18 +738,49 @@ function gener_contents(dirs1)
 		"	<head>"
 		"		<meta http-equiv=""Content-Type"" content=""text/html; charset=ISO-8859-1"">"
 		"		<title>Scilab General Index</title>"
+		"		<style type=""text/css"">"
+		"		<!--"
+		"			body"
+		"			{"
+		"				color: black;"
+		"				background: white;"
+		"				font-family: Verdana,Arial,sans-serif;"
+		"			}"
+		"			a {"
+		"				color: blue;"
+		"				text-decoration:none;"
+		"			}"
+		"			a:visited{"
+		"				color: #00a;"
+		"			}"
+		"			a:active {"
+		"				color: red;"
+		"			}"
+		"			a:hover {"
+		"				text-decoration:underline;"
+		"			}"
+		"			div.menu {"
+		"				background : #ccf;"
+		"				margin     : 0;"
+		"				padding    : 0;"
+		"				border     : thin solid #00A;"
+		"				padding    : 0.5em 0.5em;"
+		"				font-size  : 0.8em;"
+		"			}"
+		"		-->"
+		"		</style>"
 		"	</head>"
-		"	<body bgcolor=""#FFFFFF"">";
+		"	<body>"
 		type_title;
-		"		<dl>"
+		"		<div class=""menu"">"
 		full_whatis;
-		"		<dl>"
+		"		</div>"
 		"	</body>"
 		"</html>"
-		];
+	];
 	
 	mputl(full_whatis,pathconvert(SCI+"/modules/helptools/contents_"+getlanguage()+".htm",%f,%t));
-  
+
 endfunction
 
 
