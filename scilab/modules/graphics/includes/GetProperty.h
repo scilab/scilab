@@ -19,187 +19,187 @@
 #ifndef __SCI_GET_PROPERTY__
 #define __SCI_GET_PROPERTY__
 
-extern void *sciGetPointerToFeature (sciPointObj * pobj); /* GET */
+void *sciGetPointerToFeature (sciPointObj * pobj); /* GET */
 void sciGetPointerToUserData (sciPointObj * pobj,int ***user_data_ptr, int **size_ptr); /* GET */
-extern sciEntityType sciGetEntityType (sciPointObj * pobj);  /* GET */
-extern char *sciGetCharEntityType (sciPointObj * pobj);  /* GET */
+sciEntityType sciGetEntityType (sciPointObj * pobj);  /* GET */
+char *sciGetCharEntityType (sciPointObj * pobj);  /* GET */
 
 /* Graphic Context Functions */
-extern sciGraphicContext *sciGetGraphicContext (sciPointObj * pobj); /* GET */
-extern int sciGetNumColors (sciPointObj * pobj); /* GET */
-extern int sciGetColormap (sciPointObj * pobj, double *rgbmat); /* GET */
-extern int sciGetNumColors( sciPointObj * pobj ) ; /* GET */
-extern int sciGetGoodIndex(sciPointObj * pobj, int colorindex);  /* GET */
+sciGraphicContext *sciGetGraphicContext (sciPointObj * pobj); /* GET */
+int sciGetNumColors (sciPointObj * pobj); /* GET */
+int sciGetColormap (sciPointObj * pobj, double *rgbmat); /* GET */
+int sciGetNumColors( sciPointObj * pobj ) ; /* GET */
+int sciGetGoodIndex(sciPointObj * pobj, int colorindex);  /* GET */
 
-extern int sciGetForegroundToDisplay (sciPointObj * pobj); /* GET */
-extern int sciGetBackgroundToDisplay (sciPointObj * pobj); /* GET */
+int sciGetForegroundToDisplay (sciPointObj * pobj); /* GET */
+int sciGetBackgroundToDisplay (sciPointObj * pobj); /* GET */
 
-extern int sciGetBackground (sciPointObj * pobj); /* GET */
-extern int sciGetForeground (sciPointObj * pobj); /* GET */
-extern int sciGetLineWidth (sciPointObj * pobj); /* GET */
-extern BOOL sciGetIsLine (sciPointObj * pobj); /* GET */
-extern int sciGetLineStyle (sciPointObj * pobj); /* GET */
-extern BOOL sciGetIsMark (sciPointObj * pobj); /* GET */
-extern BOOL sciGetIsFilled (sciPointObj * pobj); /* GET */
+int sciGetBackground (sciPointObj * pobj); /* GET */
+int sciGetForeground (sciPointObj * pobj); /* GET */
+int sciGetLineWidth (sciPointObj * pobj); /* GET */
+BOOL sciGetIsLine (sciPointObj * pobj); /* GET */
+int sciGetLineStyle (sciPointObj * pobj); /* GET */
+BOOL sciGetIsMark (sciPointObj * pobj); /* GET */
+BOOL sciGetIsFilled (sciPointObj * pobj); /* GET */
 EAxesBoxType sciGetBoxType( sciPointObj * pobj ) ; /* GET */
-extern BOOL sciGetIsBoxed (sciPointObj * pobj); /* GET */
-extern int sciGetMarkStyle (sciPointObj * pobj); /* GET */
-extern int sciGetMarkSize (sciPointObj * pobj); /* GET */
-extern int sciGetMarkSizeUnit (sciPointObj * pobj); /* GET */
-extern int sciGetFillStyle (sciPointObj * pobj); /* GET */
+BOOL sciGetIsBoxed (sciPointObj * pobj); /* GET */
+int sciGetMarkStyle (sciPointObj * pobj); /* GET */
+int sciGetMarkSize (sciPointObj * pobj); /* GET */
+int sciGetMarkSizeUnit (sciPointObj * pobj); /* GET */
+int sciGetFillStyle (sciPointObj * pobj); /* GET */
 
 /* Text Functions */
-extern sciFont *sciGetFontContext (sciPointObj * pobj);  /* GET */
-extern int sciGetFontDeciWidth (sciPointObj * pobj); /* GET */
-extern int sciGetFontOrientation (sciPointObj * pobj); /* GET */
-extern StringMatrix * sciGetText (sciPointObj * pobj); /* GET */
-extern void sciGetTextSize( sciPointObj * pobj, int * nbRow, int * nbCol ) ; /* GET */
-extern unsigned int sciGetTextLength (sciPointObj * pobj); /* GET */
+sciFont *sciGetFontContext (sciPointObj * pobj);  /* GET */
+int sciGetFontDeciWidth (sciPointObj * pobj); /* GET */
+int sciGetFontOrientation (sciPointObj * pobj); /* GET */
+StringMatrix * sciGetText (sciPointObj * pobj); /* GET */
+void sciGetTextSize( sciPointObj * pobj, int * nbRow, int * nbCol ) ; /* GET */
+unsigned int sciGetTextLength (sciPointObj * pobj); /* GET */
 
-extern int sciGetFontBackground (sciPointObj * pobj); /* GET */
-extern int sciGetFontForeground (sciPointObj * pobj); /* GET */
-extern int sciGetMarkBackground (sciPointObj * pobj); /* GET */
-extern int sciGetMarkForeground (sciPointObj * pobj); /* GET */
+int sciGetFontBackground (sciPointObj * pobj); /* GET */
+int sciGetFontForeground (sciPointObj * pobj); /* GET */
+int sciGetMarkBackground (sciPointObj * pobj); /* GET */
+int sciGetMarkForeground (sciPointObj * pobj); /* GET */
 /* F.Leray 09.04.04*/
-extern int sciGetFontBackgroundToDisplay (sciPointObj * pobj); /* GET */
-extern int sciGetFontForegroundToDisplay (sciPointObj * pobj); /* GET */
-extern int sciGetMarkBackgroundToDisplay (sciPointObj * pobj); /* GET */
-extern int sciGetMarkForegroundToDisplay (sciPointObj * pobj); /* GET */
+int sciGetFontBackgroundToDisplay (sciPointObj * pobj); /* GET */
+int sciGetFontForegroundToDisplay (sciPointObj * pobj); /* GET */
+int sciGetMarkBackgroundToDisplay (sciPointObj * pobj); /* GET */
+int sciGetMarkForegroundToDisplay (sciPointObj * pobj); /* GET */
 
-extern int sciGetFontStyle (sciPointObj * pobj); /* GET */
-extern char *sciGetFontName (sciPointObj * pobj); /* GET */
-extern unsigned int sciGetFontNameLength (sciPointObj * pobj); /* GET */
-extern double sciGetTextPosX (sciPointObj * pobj); /* GET */
-extern double sciGetTextPosY (sciPointObj * pobj); /* GET */
-extern double sciGetTextPosWidth (sciPointObj * pobj); /* GET */
-extern double sciGetTextPosHeight (sciPointObj * pobj); /* GET */
+int sciGetFontStyle (sciPointObj * pobj); /* GET */
+char *sciGetFontName (sciPointObj * pobj); /* GET */
+unsigned int sciGetFontNameLength (sciPointObj * pobj); /* GET */
+double sciGetTextPosX (sciPointObj * pobj); /* GET */
+double sciGetTextPosY (sciPointObj * pobj); /* GET */
+double sciGetTextPosWidth (sciPointObj * pobj); /* GET */
+double sciGetTextPosHeight (sciPointObj * pobj); /* GET */
 
 /*Title Functions */
-extern POINT2D sciGetTitlePos (sciPointObj * pobj); /* GET */
-extern sciTitlePlace sciGetTitlePlace (sciPointObj * pobj); /* GET */
+POINT2D sciGetTitlePos (sciPointObj * pobj); /* GET */
+sciTitlePlace sciGetTitlePlace (sciPointObj * pobj); /* GET */
 
 /* Legend */
-extern sciLegendPlace sciGetLegendPlace (sciPointObj * pobj);
-extern POINT2D sciGetLegendPos (sciPointObj * pobj);
+sciLegendPlace sciGetLegendPlace (sciPointObj * pobj);
+POINT2D sciGetLegendPos (sciPointObj * pobj);
 
 /* Figure / Subwin main functions */
-extern sciPointObj *sciGetParentFigure (sciPointObj * pobj); /* GET */
-extern sciPointObj *sciGetParentSubwin (sciPointObj * pobj); /* GET */
-extern int sciGetNumFigure (sciPointObj * pobj); /* GET */
-extern struct BCG *sciGetScilabXgc (sciPointObj * pobj); /* GET */
+sciPointObj *sciGetParentFigure (sciPointObj * pobj); /* GET */
+sciPointObj *sciGetParentSubwin (sciPointObj * pobj); /* GET */
+int sciGetNumFigure (sciPointObj * pobj); /* GET */
+struct BCG *sciGetScilabXgc (sciPointObj * pobj); /* GET */
 
 /* GMODE */
-extern scigMode *sciGetGraphicMode (sciPointObj * pobj);  /* GET */
-extern int sciGetIsClipRegionValuated (sciPointObj * pobj);
-extern int sciGetIsClipping (sciPointObj * pobj); /* GET */
-extern double *sciGetClipping (sciPointObj * pobj); /* GET */
-extern BOOL sciGetHighLight (sciPointObj * pobj);  /* GET */
-extern BOOL sciGetAddPlot (sciPointObj * pobj);  /* GET */
-extern BOOL sciGetAutoScale (sciPointObj * pobj);  /* GET */
-extern BOOL sciGetZooming (sciPointObj * pobj);  /* GET */
-extern BOOL sciGetGraphicsStyle (sciPointObj * pobj);  /* GET */
-extern int sciGetXorMode (sciPointObj * pobj);  /* GET */
-extern BOOL sciGetRealVisibility (sciPointObj * pobj) ; /* GET */
-extern BOOL sciGetVisibility (sciPointObj * pobj);  /* GET */
-extern BOOL sciGetResize (sciPointObj * pobj);  /* GET */
+scigMode *sciGetGraphicMode (sciPointObj * pobj);  /* GET */
+int sciGetIsClipRegionValuated (sciPointObj * pobj);
+int sciGetIsClipping (sciPointObj * pobj); /* GET */
+double *sciGetClipping (sciPointObj * pobj); /* GET */
+BOOL sciGetHighLight (sciPointObj * pobj);  /* GET */
+BOOL sciGetAddPlot (sciPointObj * pobj);  /* GET */
+BOOL sciGetAutoScale (sciPointObj * pobj);  /* GET */
+BOOL sciGetZooming (sciPointObj * pobj);  /* GET */
+BOOL sciGetGraphicsStyle (sciPointObj * pobj);  /* GET */
+int sciGetXorMode (sciPointObj * pobj);  /* GET */
+BOOL sciGetRealVisibility (sciPointObj * pobj) ; /* GET */
+BOOL sciGetVisibility (sciPointObj * pobj);  /* GET */
+BOOL sciGetResize (sciPointObj * pobj);  /* GET */
 
 
 /* Window Functions */
-extern char *sciGetName (sciPointObj * pobj);  /* GET */
-extern int sciGetNameLength (sciPointObj * pobj);  /* GET */
-extern int sciGetNum (sciPointObj * pobj);  /* GET */
-extern double sciGetWidth (sciPointObj * pobj);   /* GET */
-extern double sciGetHeight (sciPointObj * pobj);  /* GET */
-extern void sciGetDim( sciPointObj * pobj, int * pWidth, int * pHeight ) ; /* GET */
-extern int sciGetFigurePosX (sciPointObj * pobj);  /* GET */
-extern int sciGetFigurePosY (sciPointObj * pobj);  /* GET */
-extern BOOL sciGetIsFigureIconified (sciPointObj * pobj);  /* GET */
-extern int sciGetSubwindowPosX (sciPointObj * pobj);  /* GET */
-extern int sciGetSubwindowPosY (sciPointObj * pobj);  /* GET */
-extern BOOL sciGetIsSelected (sciPointObj * pobj);  /* GET */
-extern sciPointObj *sciGetSelectedSon (sciPointObj * pobj);  /* GET */
-extern sciPointObj *sciGetSelectedSubWin (sciPointObj * pparent);  /* GET */
-extern sciPointObj *sciIsExistingSubWin (double *WRect); /* GET */ /* WARNING special case here */
-extern sciPointObj *sciIsExistingFigure(int *value); /* GET */ /* WARNING special case here */
-extern int sciGetScrollPosV (sciPointObj * pobj);  /* GET */
-extern int sciGetScrollPosH (sciPointObj * pobj);  /* GET */
+char *sciGetName (sciPointObj * pobj);  /* GET */
+int sciGetNameLength (sciPointObj * pobj);  /* GET */
+int sciGetNum (sciPointObj * pobj);  /* GET */
+double sciGetWidth (sciPointObj * pobj);   /* GET */
+double sciGetHeight (sciPointObj * pobj);  /* GET */
+void sciGetDim( sciPointObj * pobj, int * pWidth, int * pHeight ) ; /* GET */
+int sciGetFigurePosX (sciPointObj * pobj);  /* GET */
+int sciGetFigurePosY (sciPointObj * pobj);  /* GET */
+BOOL sciGetIsFigureIconified (sciPointObj * pobj);  /* GET */
+int sciGetSubwindowPosX (sciPointObj * pobj);  /* GET */
+int sciGetSubwindowPosY (sciPointObj * pobj);  /* GET */
+BOOL sciGetIsSelected (sciPointObj * pobj);  /* GET */
+sciPointObj *sciGetSelectedSon (sciPointObj * pobj);  /* GET */
+sciPointObj *sciGetSelectedSubWin (sciPointObj * pparent);  /* GET */
+sciPointObj *sciIsExistingSubWin (double *WRect); /* GET */ /* WARNING special case here */
+sciPointObj *sciIsExistingFigure(int *value); /* GET */ /* WARNING special case here */
+int sciGetScrollPosV (sciPointObj * pobj);  /* GET */
+int sciGetScrollPosH (sciPointObj * pobj);  /* GET */
 
-extern sciPointObj * sciGetCurPointedFigure( void ) ; /* GET */
-extern sciPointObj * sciGetCurrentFigure (void); /* GET */
-extern struct BCG *sciGetCurrentScilabXgc (void); /* GET */
-extern BOOL sciGetReplay (void); /* GET */
-
-
-extern double *sciGetPoint (sciPointObj * pthis, int *num, int *numco); /* GET */
-extern sciPointObj *sciGetObjClicked (sciPointObj *pthis,int x, int y); /* GET */ /* unused */
-extern BOOL sciIsClicked(sciPointObj *pthis,int x, int y);  /* GET */
-
-extern BOOL sciGetdrawmode (sciPointObj *pobj); /* GET */
-extern sciPointObj *sciGetAxes (sciPointObj *pparentfigure,sciPointObj *psubwin); /* GET */
+sciPointObj * sciGetCurPointedFigure( void ) ; /* GET */
+sciPointObj * sciGetCurrentFigure (void); /* GET */
+struct BCG *sciGetCurrentScilabXgc (void); /* GET */
+BOOL sciGetReplay (void); /* GET */
 
 
-extern int sciType (char *marker, sciPointObj *pobj); /* GET */
+double *sciGetPoint (sciPointObj * pthis, int *num, int *numco); /* GET */
+sciPointObj *sciGetObjClicked (sciPointObj *pthis,int x, int y); /* GET */ /* unused */
+BOOL sciIsClicked(sciPointObj *pthis,int x, int y);  /* GET */
 
-extern int  sciGetNbFigure( void ) ; /* GET */
-extern void sciGetFiguresId( int figIds[] ) ; /* GET */
-extern void sciGetIdFigure (int *vect, int *id, int *flag); /* GET */
-extern unsigned int sciGetFontNameLength (sciPointObj * pobj); /* GET */
-/* extern struct BCG *sciGetCurrentScilabXgc (); /\* GET *\/ */
+BOOL sciGetdrawmode (sciPointObj *pobj); /* GET */
+sciPointObj *sciGetAxes (sciPointObj *pparentfigure,sciPointObj *psubwin); /* GET */
 
-extern sciPointObj *sciGetSurface(sciPointObj *psubwin); /* GET */
 
-extern sciPointObj *CheckClickedSubwin(integer x, integer y); /* GET */
+int sciType (char *marker, sciPointObj *pobj); /* GET */
 
-/* extern BOOL GetIsAxes(sciPointObj *psubwin); /\* GET *\/ */
-extern BOOL GetIsAxes2D(sciPointObj *psubwin); /* GET */
+int  sciGetNbFigure( void ) ; /* GET */
+void sciGetFiguresId( int figIds[] ) ; /* GET */
+void sciGetIdFigure (int *vect, int *id, int *flag); /* GET */
+unsigned int sciGetFontNameLength (sciPointObj * pobj); /* GET */
+/* struct BCG *sciGetCurrentScilabXgc (); /\* GET *\/ */
 
-extern int CheckForCompound (long *tabpointobj, int number); /* GET */
-extern sciPointObj *sciGetMerge(sciPointObj *psubwin);  /* GET */
+sciPointObj *sciGetSurface(sciPointObj *psubwin); /* GET */
+
+sciPointObj *CheckClickedSubwin(integer x, integer y); /* GET */
+
+/* BOOL GetIsAxes(sciPointObj *psubwin); /\* GET *\/ */
+BOOL GetIsAxes2D(sciPointObj *psubwin); /* GET */
+
+int CheckForCompound (long *tabpointobj, int number); /* GET */
+sciPointObj *sciGetMerge(sciPointObj *psubwin);  /* GET */
 
 /* UNUSED ? */
-extern sciPointObj *sciGetOriginalSubWin (sciPointObj * pfigure);
-extern HMENU sciGethPopMenu (sciPointObj * pthis);
+sciPointObj *sciGetOriginalSubWin (sciPointObj * pfigure);
+HMENU sciGethPopMenu (sciPointObj * pthis);
 
-extern int *sciGetInterpVector(sciPointObj * pobj);
-extern int sciGetPosition (sciPointObj * pobj, double *x, double *y);
+int *sciGetInterpVector(sciPointObj * pobj);
+int sciGetPosition (sciPointObj * pobj, double *x, double *y);
 
-extern BOOL sciGetAutoRotation ( sciPointObj * pObj ) ;
-extern BOOL sciGetAutoPosition ( sciPointObj * pObj ) ;
+BOOL sciGetAutoRotation ( sciPointObj * pObj ) ;
+BOOL sciGetAutoPosition ( sciPointObj * pObj ) ;
 
-extern BOOL sciGetCenterPos( sciPointObj * pObj ) ;
+BOOL sciGetCenterPos( sciPointObj * pObj ) ;
 
-extern BOOL sciGetIs3d( sciPointObj * pObj ) ;
+BOOL sciGetIs3d( sciPointObj * pObj ) ;
 
 /**
  * for a subwindow object, return if the its labels (x,y,z) are all
  *       empty or not.
  * @param pObj the subwindow.
  */
-extern BOOL sciGetLegendDefined( sciPointObj * pObj ) ;
+BOOL sciGetLegendDefined( sciPointObj * pObj ) ;
 
-extern BOOL sciGetAutoSize( sciPointObj * pObj ) ;
-extern sciTextAlignment sciGetAlignment( sciPointObj * pObj ) ;
-extern void sciGetUserSize( sciPointObj * pObj, double * width, double * height ) ;
+BOOL sciGetAutoSize( sciPointObj * pObj ) ;
+sciTextAlignment sciGetAlignment( sciPointObj * pObj ) ;
+void sciGetUserSize( sciPointObj * pObj, double * width, double * height ) ;
 
-extern int sciGetNbChildren( sciPointObj * pObj ) ; /* GET */
+int sciGetNbChildren( sciPointObj * pObj ) ; /* GET */
 
-extern BOOL sciGetIsAccessibleChild( sciPointObj * pObj ) ; /* GET */
+BOOL sciGetIsAccessibleChild( sciPointObj * pObj ) ; /* GET */
 
-extern int sciGetNbAccessibleChildren( sciPointObj * pObj ) ; /* GET */
+int sciGetNbAccessibleChildren( sciPointObj * pObj ) ; /* GET */
 
-extern BOOL GetHandleVisibilityOnUimenu( sciPointObj * pobj ) ; /* GET */
+BOOL GetHandleVisibilityOnUimenu( sciPointObj * pobj ) ; /* GET */
 
-extern int sciGetSubwinNbSurf( sciPointObj * pObj ) ;
+int sciGetSubwinNbSurf( sciPointObj * pObj ) ;
 
-extern int sciGetNbTypedObjects( sciPointObj * pObj, sciEntityType type ) ;
+int sciGetNbTypedObjects( sciPointObj * pObj, sciEntityType type ) ;
 
-extern int sciGetHiddenColor( sciPointObj * pObj ) ;
+int sciGetHiddenColor( sciPointObj * pObj ) ;
 
-extern BOOL sciIsMergeable( sciPointObj * pObj ) ;
+BOOL sciIsMergeable( sciPointObj * pObj ) ;
 
-extern BOOL sciGetIsAutoDrawable( sciPointObj * pobj ) ;
+BOOL sciGetIsAutoDrawable( sciPointObj * pobj ) ;
 
-extern void sciGetGridStyle( sciPointObj * pObj, int * xStyle, int * yStyle, int * zStyle ) ;
+void sciGetGridStyle( sciPointObj * pObj, int * xStyle, int * yStyle, int * zStyle ) ;
 
 void sciGetViewport( sciPointObj * pObj, int * xSize, int * ySize ) ;
 
