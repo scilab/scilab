@@ -59,7 +59,7 @@
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
-g=load_graph(SCI+'/demos/metanet/colored');
+g=load_graph(SCI+'/modules/metanet/demos/colored');
 a=graph_2_mat(g)
 a=graph_2_mat(g,'node-node')
  ]]>
