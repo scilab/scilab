@@ -9,6 +9,8 @@
 #include "sciprint.h"
 #include "warningmode.h"
 /*-----------------------------------------------------------------------------------*/ 
+extern int C2F(syncexec)(char *str, int *ns, int *ierr, int *seq, long int str_len);
+/*-----------------------------------------------------------------------------------*/ 
 int C2F(sci_setlanguage) _PARAMS((char *fname,unsigned long fname_len))
 {
 	static int l1,n1,m1;
@@ -35,6 +37,13 @@ int C2F(sci_setlanguage) _PARAMS((char *fname,unsigned long fname_len))
 		}
 		else
 		{
+			#define UPDATESCILABHELPMACRO "update_scilab_help();" 
+			integer ierr ;
+			integer seq = 1 ;
+			int macroCallLength = (int)strlen(UPDATESCILABHELPMACRO);
+
+			C2F(syncexec)(UPDATESCILABHELPMACRO,&macroCallLength,&ierr,&seq, macroCallLength);
+
 			CreateVar(Rhs+1, "b", &n1,&n1,&l1);
 			*istk(l1)=(int)(TRUE);
 		}

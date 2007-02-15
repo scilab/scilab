@@ -21,5 +21,6 @@ EXPORTS
  getSCIpath
  getSCIHOME
  getWarningMode
+ syncexec_
  
  
