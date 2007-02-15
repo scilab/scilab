@@ -2,6 +2,7 @@
 /* INRIA 2007 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
+#include <stdlib.h>
 #include "InitializeJVM.h"
 #include "jvms.h"
 #include "setgetSCIpath.h"
