@@ -6,9 +6,12 @@
 /* Date : 24 august 2006                                                             */
 /*-----------------------------------------------------------------------------------*/
 
+#include <string.h>
+#include <ctype.h>
 #include "sci_getrelativefilename.h"
 #include "MALLOC.h"
-#include <string.h>
+#include "gw_io.h"
+
 
 /* ================================================================================== */
 // sci_getrelativefilename

@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-
+#include "setenvc.h"
 #include "MALLOC.h" /* MALLOC */
 
 #ifdef _MSC_VER
@@ -15,13 +15,12 @@ int UpdateEnvVar=0;
 /*-----------------------------------------------------------------------------------*/
 extern int setenvtcl(char *string,char *value);
 /*-----------------------------------------------------------------------------------*/
-/* returns 0 if there is a problem else 1 */
 int setenvc(char *string,char *value)
 {
   int ret=0;
   char* env;
 
-#if linux
+#ifdef LINUX
   if ( setenv(string,value,1) ) ret=FALSE;
   else 
     {

@@ -8,12 +8,14 @@
 
 #include "MALLOC.h" /* MALLOC */
 #include "stack-c.h"
+#include "setenvc.h"
+#include "intsetenv.h"
+#include "gw_io.h"
 
 /*-----------------------------------------------------------------------------------*/
-extern int setenvc(char *string,char * value);
 static int ReturnValueSetenv(int value);
 /*-----------------------------------------------------------------------------------*/
-int	C2F(intsetenv) _PARAMS((char *fname))
+int	C2F(intsetenv) _PARAMS((char *fname, unsigned long len))
 {
 	static int l1,n1,m1;
 	int TypeVar1=GetType(1);

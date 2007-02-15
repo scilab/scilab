@@ -10,6 +10,7 @@
 #else 
 extern int getpid();
 #endif
+#include "getpidc.h"
 
 int C2F(getpidc)(int *id1)
 {

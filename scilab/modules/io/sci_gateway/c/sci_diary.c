@@ -5,8 +5,9 @@
 #include <stdio.h>
 #include "machine.h"
 #include "stack-c.h"
-/*-----------------------------------------------------------------------------------*/
-extern FILE *GetFile(integer *fd);
+#include "gw_io.h"
+#include "sci_diary.h"
+#include "../../fileio/src/files.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(intdiary)();
 /*-----------------------------------------------------------------------------------*/
@@ -16,7 +17,7 @@ int C2F(sci_diary) _PARAMS((char *fname,unsigned long fname_len))
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
-int getdiary()
+int getdiary(void)
 {
 	return C2F(iop).wio;
 } 

@@ -10,6 +10,7 @@
 #else
 	#include <Windows.h>
 #endif
+#include "stdlib.h"
 #include <stdio.h>
 #include "createdir.h"
 #include "MALLOC.h"

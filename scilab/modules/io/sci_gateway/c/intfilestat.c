@@ -13,6 +13,7 @@
 #endif
 
 #include "stack-c.h"
+#include "intfilestat.h"
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int name_len,long int nams_len));  
 /*-----------------------------------------------------------------------------------*/

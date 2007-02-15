@@ -2,24 +2,20 @@
 /* Interface with system C function */
 /* Copyright (Allan CORNET) INRIA 2005 */
 /*-----------------------------------------------------------------------------------*/
-#include<stdio.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include "MALLOC.h" /* MALLOC */
 #include "machine.h"
+#include "systemc.h"
 /*-----------------------------------------------------------------------------------*/
-#if _MSC_VER
+#ifdef _MSC_VER
 extern BOOL IsAFile(char *chainefichier);
 BOOL CallWindowsShell(char *command,BOOL WaitInput);
 #endif
 /*-----------------------------------------------------------------------------------*/
-#ifdef __STDC__
-#include <stdlib.h>
-#else
-int system();
-#endif
-/*-----------------------------------------------------------------------------------*/
 int C2F(systemc)(char *command, integer *stat)
 {
-#if _MSC_VER
+#ifdef _MSC_VER
 	{
 		BOOL Status=FALSE;
 		Status=CallWindowsShell(command,FALSE);
@@ -43,7 +39,7 @@ int C2F(systemc)(char *command, integer *stat)
 	return(0);
 }
 /*-----------------------------------------------------------------------------------*/
-#if _MSC_VER
+#ifdef _MSC_VER
 BOOL CallWindowsShell(char *command,BOOL WaitInput)
 {
 	BOOL bReturn=FALSE;
