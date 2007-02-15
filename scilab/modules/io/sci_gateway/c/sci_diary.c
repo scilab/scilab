@@ -3,8 +3,6 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
 #include <stdio.h>
-#include "machine.h"
-#include "stack-c.h"
 #include "gw_io.h"
 #include "sci_diary.h"
 #include "../../fileio/src/files.h"

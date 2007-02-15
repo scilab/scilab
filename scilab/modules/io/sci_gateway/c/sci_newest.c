@@ -5,13 +5,7 @@
 #include <sys/stat.h>
 #include <stdio.h>
 #include <string.h>
-
-#if _MSC_VER
-#include <Windows.h>
-#endif
 /*-----------------------------------------------------------------------------------*/
-#include "machine.h"
-#include "stack-c.h"
 #include "gw_io.h"
 #include "MALLOC.h"
 #include "sciprint.h"

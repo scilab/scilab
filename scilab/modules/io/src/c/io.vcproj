@@ -4,6 +4,7 @@
 	Version="8,00"
 	Name="io"
 	ProjectGUID="{80C0F142-184B-4E08-A8EE-5E71437CF904}"
+	RootNamespace="io"
 	>
 	<Platforms>
 		<Platform
@@ -40,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../core/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../core/includes"
 				PreprocessorDefinitions="_LIB;STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="1"
@@ -116,7 +117,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../core/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../core/includes"
 				PreprocessorDefinitions="NDEBUG;_LIB;STRICT;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="0"

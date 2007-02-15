@@ -2,8 +2,6 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#include "machine.h"
-#include "stack-c.h"
 #include "gw_io.h"
 #include "setenvc.h"
 #include "intsetenv.h"
