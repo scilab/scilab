@@ -16,6 +16,7 @@
 #define TAGLANGUAGE "LANGUAGE"
 /*-----------------------------------------------------------------------------------*/ 
 #ifdef _MSC_VER
+#define SCILABREGISTRYKEY "SOFTWARE\\Scilab\\%s\\Settings"
 static BOOL loadlanguagepref_windows(void);
 static BOOL savelanguagepref_windows(void);
 #else
@@ -139,7 +140,7 @@ static BOOL loadlanguagepref_windows(void)
 	char Clef[LINELENGTHMAX];
 	int LanguageCode=0;
 
-	wsprintf(Clef,"SOFTWARE\\Scilab\\%s\\Settings",SCI_VERSION_STRING);
+	wsprintf(Clef,SCILABREGISTRYKEY,SCI_VERSION_STRING);
 
 	if ( RegOpenKeyEx(HKEY_CURRENT_USER, Clef, 0, KEY_QUERY_VALUE , &key) == ERROR_SUCCESS )
 	{
@@ -183,7 +184,7 @@ static BOOL savelanguagepref_windows(void)
 	LanguageCode=getcodefromlanguage(LANGUAGE);
 	if (LANGUAGE) {FREE(LANGUAGE);LANGUAGE=NULL;}
 
-	wsprintf(Clef,"SOFTWARE\\Scilab\\%s\\Settings",SCI_VERSION_STRING);
+	wsprintf(Clef,SCILABREGISTRYKEY,SCI_VERSION_STRING);
 
 	if (RegCreateKeyEx(HKEY_CURRENT_USER, Clef, 0, NULL, REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, &key, &result) == ERROR_SUCCESS)
 	{
