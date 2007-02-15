@@ -21,7 +21,7 @@ catch
 end
 if ok
   try
-    xmltohtml('SCI/modules/elementaries_functions/help/eng')
+    xmltohtml('SCI/modules/elementaries_functions/help/'+getlanguage())
   catch
     ok=%f
   end 
