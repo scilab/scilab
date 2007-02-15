@@ -18,50 +18,6 @@ typedef struct {
 #define MAXNAME 32
 static char buf[MAXNAME];
 
-
-
-
-
-
-
-/***********************************
- * Search Table for fschur
- ***********************************/
-
-#define ARGS_fschur integer*,double *,double*,double*,double*
-typedef integer * (*fschurf)(ARGS_fschur);
-
-/***********************************
- * Search Table for schsel
- ***********************************/
-
-#define ARGS_schsel double *,double*
-typedef integer * (*schself)(ARGS_schsel);
-
-/***********************************
- * Search Table for zchsel
- ***********************************/
-
-#define ARGS_zchsel doublecmplx *
-typedef integer * (*zchself)(ARGS_zchsel);
-
-/***********************************
- * Search Table for gshsel
- ***********************************/
-
-#define ARGS_gshsel double *,double*,double*
-typedef integer * (*gshself)(ARGS_gshsel);
-
-/***********************************
- * Search Table for gzhsel
- ***********************************/
-
-#define ARGS_gzhsel doublecmplx *,doublecmplx *
-typedef integer * (*gzhself)(ARGS_gzhsel);
-
-
-
-
 /***********************************
  * Search Table for fbutn
  ***********************************/

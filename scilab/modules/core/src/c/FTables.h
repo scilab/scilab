@@ -2,17 +2,7 @@
 #define __FTABLES__
 #include "machine.h"
 /******* Please do not edit *************/
-
-
-
-
-
-
-
-
-
-
-/**************** fbutn ***************/
+/***************** fbutn ***************/
 extern void haltscicos(ARGS_fbutn);
 void C2F(fbutn)(ARGS_fbutn);
 void C2F(setfbutn)(char *name, int *rep);
