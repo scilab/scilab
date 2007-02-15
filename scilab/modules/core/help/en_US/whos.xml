@@ -38,6 +38,7 @@
 	</DESCRIPTION>
 	
 	<EXAMPLE><![CDATA[
+lines(0) 
 whos()
 whos -type boolean
 whos -name %
