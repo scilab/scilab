@@ -27,7 +27,7 @@
   </P>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
-getd('SCI/macros/auto')
+getd('SCI/modules/cacsd/macros')
  ]]></EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>getf</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>lib</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>getcwd</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>pwd</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>chdir</LINK> </SEE_ALSO_ITEM>

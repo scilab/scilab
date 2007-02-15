@@ -26,7 +26,7 @@
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
-getd('SCI/macros/auto')
+getd('SCI/modules/cacsd/macros')
  ]]>
   </EXAMPLE>
   <SEE_ALSO>
