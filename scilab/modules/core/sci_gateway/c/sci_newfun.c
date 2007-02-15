@@ -6,9 +6,9 @@
 #include "machine.h"
 #include "stack-c.h"
 #include "Scierror.h"
+#include "Funtab.h"
 /*-----------------------------------------------------------------------------------*/
 extern int IsAScalar(int RhsNumber);
-extern int C2F(funtab)(int *id, int *fptr, int *job,char *namefunction,unsigned long namefunction_len);
 /*-----------------------------------------------------------------------------------*/
 static BOOL Is_a_correct_function_name(char *functionname);
 /*-----------------------------------------------------------------------------------*/

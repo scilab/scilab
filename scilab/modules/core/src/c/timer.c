@@ -9,6 +9,7 @@
 	#include <sys/time.h>
 #endif
 #include "machine.h"
+#include "timer.h"
 /*-----------------------------------------------------------------------------------*/
 #define DT_TIMER 10000
 /*-----------------------------------------------------------------------------------*/
@@ -16,17 +17,13 @@
 	#define X_GETTIMEOFDAY(t) gettimeofday(t, (struct timezone*)0)
 #endif
 /*-----------------------------------------------------------------------------------*/
-/* returns 1 if interval from last call is greater than 
- * a time interval of dt microsec (dt=10000)
- */
-/*-----------------------------------------------------------------------------------*/
-#if _MSC_VER
+#ifdef _MSC_VER
 static ULARGE_INTEGER ctime_old;
 static BOOL Initialize_ctime_old=TRUE;
 int scilab_timer_check(void)
 {
 	int rep=0;
-	ULARGE_INTEGER ctime;
+	ULARGE_INTEGER lctime;
 	FILETIME ftFileTime;
 
 	if (Initialize_ctime_old)
@@ -37,11 +34,11 @@ int scilab_timer_check(void)
 	}
 
 	GetSystemTimeAsFileTime(&ftFileTime); /* Resolution 100 nsec */
-	ctime.LowPart = ftFileTime.dwLowDateTime; 
-	ctime.HighPart = ftFileTime.dwHighDateTime;
+	lctime.LowPart = ftFileTime.dwLowDateTime; 
+	lctime.HighPart = ftFileTime.dwHighDateTime;
 
-	rep = ( (ctime.QuadPart  - ctime_old.QuadPart)  > DT_TIMER ) ? 1 : 0 ;
-	if (rep) ctime_old=ctime;
+	rep = ( (lctime.QuadPart  - ctime_old.QuadPart)  > DT_TIMER ) ? 1 : 0 ;
+	if (rep) ctime_old=lctime;
 	return rep;
 }
 #else 
@@ -49,10 +46,10 @@ int scilab_timer_check(void)
 {
   int rep;
   static struct timeval ctime_old;
-  struct timeval ctime;
-  X_GETTIMEOFDAY(&ctime);
-  rep = (ctime.tv_sec > ctime_old.tv_sec) ? 1  : ( ctime.tv_usec - ctime_old.tv_usec > DT_TIMER ) ? 1 : 0 ;
-  if (rep) ctime_old=ctime;
+  struct timeval lctime;
+  X_GETTIMEOFDAY(&lctime);
+  rep = (lctime.tv_sec > ctime_old.tv_sec) ? 1  : ( lctime.tv_usec - ctime_old.tv_usec > DT_TIMER ) ? 1 : 0 ;
+  if (rep) ctime_old=lctime;
   return rep;
 }
 #endif /* _MSC_VER */

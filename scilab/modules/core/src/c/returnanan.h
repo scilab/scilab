@@ -1,16 +1,9 @@
 /*-----------------------------------------------------------------------------------*/
-/* INRIA 2006 */
-/* Ledru Sylvestre */
+/* INRIA 2007 */
+/* Sylvestre LEDRU */
 /*-----------------------------------------------------------------------------------*/
-#include "machine.h"
-
-/** 
- * TODO : comment
+/**
+ * Returns a "not a number"
+ * @return the "nan"
  */
-void banner(void);
-
-/** 
- * TODO : comment
- * @param flag
- */
-int C2F(banier)(integer *flag);
+double C2F(returnanan)(void);

@@ -1,16 +1,11 @@
 /*-----------------------------------------------------------------------------------*/
-/* INRIA 2006 */
-/* Ledru Sylvestre */
+/* INRIA 2007 */
+/* Sylvestre LEDRU */
 /*-----------------------------------------------------------------------------------*/
-#include "machine.h"
 
-/** 
- * TODO : comment
- */
-void banner(void);
+/**
+ * a time interval of dt microsec (dt=10000)
+ * @return 1 if interval from last call is greater than 
 
-/** 
- * TODO : comment
- * @param flag
  */
-int C2F(banier)(integer *flag);
+int scilab_timer_check(void);

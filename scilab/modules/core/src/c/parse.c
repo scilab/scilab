@@ -7,6 +7,8 @@
 #include <stdio.h>
 #include "stack-c.h"
 #include "parse.h"
+#include "timer.h"
+
 #undef Lstk
 #undef Infstk
 
@@ -91,7 +93,6 @@ extern int C2F(name2var)();
 extern void C2F(parsecomment)();
 extern int C2F(msgs)();
 extern int C2F(error)();
-extern int scilab_timer_check();
 extern logical C2F(compil)();
 extern logical C2F(eptover)();
 extern logical C2F(Ptover)();

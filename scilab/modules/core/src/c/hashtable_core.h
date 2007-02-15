@@ -35,9 +35,38 @@ typedef enum
 /* for good efficiency of the hash code */
 #define MAXTAB 1536
 /*-----------------------------------------------------------------------------------*/
+/** 
+ * Create the hashtable of Scilab functions
+ * @param nel TODO
+ */
 int	create_hashtable_scilab_functions(unsigned int nel);
-void destroy_hashtable_scilab_functions();
+
+/** 
+ * Destroy the hashtable of Scilab functions
+ */
+void destroy_hashtable_scilab_functions(void);
+
+/** 
+ * Perform an action on the hashtable of Scilab functions
+ * @param key 
+ * @param name
+ * @param data
+ * @param action SCI_HFUNCTIONS_ACTION 
+ * @return result of the operation
+ */
 int action_hashtable_scilab_functions(int *key,char *name, int *data, SCI_HFUNCTIONS_ACTION action);
+
+/** 
+ * Return the list of the functions 
+ * @param[out] sizeList the size of the function list
+ * @return all the functions
+ */
 char **GetFunctionsList(int *sizeList);
+
+/** 
+ * Check if a function exists in the list
+ * @param[in] name the name of the function
+ * @return if there is this function or not
+ */
 BOOL ExistFunction(char *name);
 /*-----------------------------------------------------------------------------------*/

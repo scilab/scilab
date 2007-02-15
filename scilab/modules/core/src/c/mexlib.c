@@ -1265,7 +1265,7 @@ mxArray *mxGetField(const mxArray *ptr, int index, const char *string)
   return (mxArray *) C2F(intersci).iwhere[lw-1];
 }
 
-mxArray *mxGetFieldByNumber(const mxArray *ptr, int index, int field_number)
+mxArray *mxGetFieldByNumber(const mxArray *ptr, int lindex, int field_number)
 {
   int kk,lw,isize,fieldnum;int proddims,k;int is1x1;
   int maxfieldnum, maxindex;
@@ -1277,7 +1277,7 @@ mxArray *mxGetFieldByNumber(const mxArray *ptr, int index, int field_number)
   maxfieldnum = mxGetNumberOfFields(ptr)-1;
   maxindex = mxGetNumberOfElements(ptr)-1;
   if (maxfieldnum < fieldnum) return (mxArray *) NULL;
-  if (maxindex < index) return (mxArray *) NULL; 
+  if (maxindex < lindex) return (mxArray *) NULL; 
 
   proddims=1;
   for (k=0; k<headerdims[1]*headerdims[2]; k++) {
@@ -1291,8 +1291,8 @@ mxArray *mxGetFieldByNumber(const mxArray *ptr, int index, int field_number)
   }
   else {
     headerlist = listentry(header,3+fieldnum);
-    headerobj = listentry(headerlist,index+1);
-    isize=headerlist[index+3]-headerlist[index+2];
+    headerobj = listentry(headerlist,lindex+1);
+    isize=headerlist[lindex+3]-headerlist[lindex+2];
   }
   if (isize==2) return (mxArray *) NULL; /* empty field */
   Nbvars++; lw=Nbvars;
@@ -1713,7 +1713,7 @@ mxArray *UnrefStruct(mxArray *ptr)
 {
   /*   Unreference objects in a struct or cell */
   int number, k;
-  int list, index, offset; int sizeobj;
+  int list, lindex, offset; int sizeobj;
   int nb, nbobj, suite, newbot;
 
   int oldsize, newsize;
@@ -1741,14 +1741,14 @@ mxArray *UnrefStruct(mxArray *ptr)
     for (list=0; list<nb; list++) {
       headerlist= listentry(header, list+3);  /* pointing to the field list */
       nbobj=headerlist[1];   /* number of objects in the field */
-      for (index=0; index < nbobj; index++)
+      for (lindex=0; lindex < nbobj; lindex++)
 	{
-	  headerobj = listentry( headerlist,index+1);  
+	  headerobj = listentry( headerlist,lindex+1);  
 	  /* pointing to the object in the field */
 	  if (headerobj[0] < 0)
 	    sizeobj=headerobj[3];
 	  else
-	    sizeobj=headerlist[index+3]-headerlist[index+2];
+	    sizeobj=headerlist[lindex+3]-headerlist[lindex+2];
 	  newsize += sizeobj;   /* update size of the field */
 	}
       suite++;
@@ -1768,23 +1768,23 @@ mxArray *UnrefStruct(mxArray *ptr)
       headerlistnew[0]= 15;
       headerlistnew[1]= nbobj;
       headerlistnew[2]= 1;
-      for (index=0; index < nbobj; index++)
-	{	headerobj = listentry( headerlist,index+1);
+      for (lindex=0; lindex < nbobj; lindex++)
+	{	headerobj = listentry( headerlist,lindex+1);
 	if (headerobj[0] < 0)
 	  sizeobj=headerobj[3];  /* reference (size of ) */
 	else
-	  sizeobj=headerlist[index+3]-headerlist[index+2];
-	headerlistnew[3+index]=headerlistnew[2+index]+sizeobj;
+	  sizeobj=headerlist[lindex+3]-headerlist[lindex+2];
+	headerlistnew[3+lindex]=headerlistnew[2+lindex]+sizeobj;
 	}
     }
     for (list=0; list<nb; list++) {
       headerlist= listentry(header, list+3);
       headerlistnew=listentry(headernew, list+3);
       nbobj=headerlist[1]; 
-      for (index=0; index < nbobj; index++)
+      for (lindex=0; lindex < nbobj; lindex++)
 	{	
-	  headerobj = listentry( headerlist,index+1);
-	  headerobjnew = listentry( headerlistnew,index+1);	
+	  headerobj = listentry( headerlist,lindex+1);
+	  headerobjnew = listentry( headerlistnew,lindex+1);	
 	  if (headerobj[0] < 0)   /* reference */
 	    {
 	      sizeobj=headerobj[3];
@@ -1792,7 +1792,7 @@ mxArray *UnrefStruct(mxArray *ptr)
 	    }
 	  else
 	    {
-	      sizeobj=headerlist[index+3]-headerlist[index+2];
+	      sizeobj=headerlist[lindex+3]-headerlist[lindex+2];
 	    }
 	  for (k=0; k<2*sizeobj; k++)
 	    headerobjnew[k]=headerobj[k];  /* OUF! */
@@ -2469,9 +2469,9 @@ const char *mxGetClassName(const mxArray *ptr)
   return "unknown";
 }
 
-void mxSetCell(mxArray *array_ptr, int index, mxArray *value)
+void mxSetCell(mxArray *array_ptr, int lindex, mxArray *value)
 {
-  mxSetFieldByNumber(array_ptr, index, 0 , value);
+  mxSetFieldByNumber(array_ptr, lindex, 0 , value);
   return;
 }
 

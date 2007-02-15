@@ -11,10 +11,11 @@
 #endif
 
 #include <string.h>
-
 #include "machine.h"
 #include "stack-c.h"
 #include "sciprint.h"
+
+int C2F(gw_core)(void);
 
 typedef int (*Core_Interf) __PARAMS((char *fname,unsigned long l));
 

@@ -3,9 +3,9 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /* References
-http://nixdoc.net/man-pages/Tru64/man2/getsysinfo.2.html
-http://www.opensource.apple.com/darwinsource/projects/other/gccfast-1621.1/libiberty/physmem.c
-http://lists.gnu.org/archive/html/bug-gnulib/2003-08/msg00102.html
+@sa http://nixdoc.net/man-pages/Tru64/man2/getsysinfo.2.html
+@sa http://www.opensource.apple.com/darwinsource/projects/other/gccfast-1621.1/libiberty/physmem.c
+@sa http://lists.gnu.org/archive/html/bug-gnulib/2003-08/msg00102.html
 */
 #include "getmemory.h"
 

@@ -16,6 +16,7 @@
 #include "sciquit.h"
 #include "stack-c.h"
 #include "run.h"
+#include "timer.h"
 
 #undef Lstk
 #undef Infstk
@@ -80,7 +81,6 @@ extern logical Eptover(int n);
 extern logical Ptover(int n);
 extern void Msgs(int n,int ierr);
 extern void SciError(int n);
-extern int scilab_timer_check(void);
 extern logical C2F(istrue)();
 
 logical Istrue(int n)

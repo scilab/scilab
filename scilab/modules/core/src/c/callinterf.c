@@ -10,17 +10,24 @@
 #include "machine.h"
 #include "sciprint.h"
 #include "Scierror.h"
+#include "csignal.h"
 
 #include "addinter.h" /* for DynInterfStart */
 #include "Os_specific.h" /* for DynInterfStart */
+
 
 static  jmp_buf jmp_env; 
 
 extern int  C2F(error) __PARAMS((int *));
 
-extern void  errjump(int n);
-extern void  sci_sig_tstp(int n);
-extern void  controlC_handler(int n);
+void errjump(int n);
+void C2F(no_gw_tclsci)(void);
+void C2F(NoPvm)(void);
+void C2F(Nogw_scicos)(void);
+void C2F(Nogw_cscicos)(void);
+void C2F(Nogw_slicot)(void);
+int ForceLink(void);
+
 static void  sci_sigint_addinter(int n);
 
 /***********************************************************

@@ -12,14 +12,9 @@
 #endif 
 
 #include "sciprint.h"
-
+#include "scicurdir.h"
 #define FSIZE 1024
 static char     cur_dir[FSIZE];
-
-
-/*******************************
- * Changes scilab current directory 
- *******************************/
 
 int C2F(scichdir)(char *path,int *err)
 {
@@ -41,25 +36,21 @@ int C2F(scichdir)(char *path,int *err)
   return 0;
 }
 
-/*******************************
- * Get scilab current directory 
- *******************************/
-
 int C2F(scigetcwd)(char **path,int *lpath,int *err)
 {
     if (GETCWD(cur_dir, 1024) == (char*) 0)
-      {	/* get current working dir */
-	sciprint("Can't get current directory\r\n");
-	*cur_dir = '\0';
-	*lpath=0;
-	*err=1;
-      }
+		{	/* get current working dir */
+			sciprint("Can't get current directory\r\n");
+			*cur_dir = '\0';
+			*lpath=0;
+			*err=1;
+		}
     else 
-      {
-		*path= cur_dir;
-		*lpath=strlen(cur_dir);
-		*err=0;
-      }
+		{
+			*path= cur_dir;
+			*lpath=strlen(cur_dir);
+			*err=0;
+		}
     return 0;
 }
 

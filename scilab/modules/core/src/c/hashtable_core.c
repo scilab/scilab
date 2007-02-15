@@ -13,6 +13,11 @@ static unsigned   hsize;
 static unsigned   filled;
 /*-----------------------------------------------------------------------------------*/
 static int Equal_id(int *x, int *y);
+
+/**
+ * Check if a number is prime (or not)
+ * @param number the number
+ */
 static int isprime(unsigned int number);
 /*-----------------------------------------------------------------------------------*/
 int create_hashtable_scilab_functions(unsigned int nel)
@@ -168,11 +173,11 @@ static int Equal_id(int *x, int *y)
 /*-----------------------------------------------------------------------------------*/  
 static int isprime(unsigned int number)
 {
-	unsigned div = 3;
+	unsigned div_ = 3;
 
-	while (div*div < number && number%div != 0) div += 2;
+	while (div_*div_ < number && number%div_ != 0) div_ += 2;
 
-	return number%div != 0;
+	return number%div_ != 0;
 }
 /*-----------------------------------------------------------------------------------*/  
 char **GetFunctionsList(int *sizeList)

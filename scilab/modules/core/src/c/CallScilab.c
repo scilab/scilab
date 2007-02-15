@@ -5,9 +5,13 @@
 #include "CallScilab.h"
 #include "MALLOC.h"
 #include "../../../graphics/includes/WindowList.h"
+#include "../../../graphics/includes/GetProperty.h"
 #include "setgetSCIpath.h"
 #include "fromc.h"
 #include "sciquit.h"
+#include "tmpdir.h"
+#include "fromc.h"
+#include "inisci-c.h"
 
 #if _MSC_VER
 #define putenv _putenv
@@ -22,13 +26,8 @@ static int StartScilabIsOK=FALSE;
 /*-----------------------------------------------------------------------------------*/
 extern int setenvc(char *string,char *value);
 extern int C2F(inisci)(int *,int *,int *);
-extern void C2F(settmpdir) (void);
 extern int C2F(scirun)(char * startup, int lstartup);
 extern int C2F(ismenu)();
-extern void SetFromCToON(void);
-extern void sciGetIdFigure (int *vect, int *id, int *flag);
-extern BOOL GetWITH_GUI(void);
-extern void SetWITH_GUI(BOOL ON);
 /*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 extern char *GetScilabDirectory(BOOL UnixStyle);

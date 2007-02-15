@@ -1,16 +1,10 @@
 /*-----------------------------------------------------------------------------------*/
-/* INRIA 2006 */
-/* Ledru Sylvestre */
+/* INRIA 2007 */
+/* Sylvestre LEDRU */
 /*-----------------------------------------------------------------------------------*/
-#include "machine.h"
 
-/** 
- * TODO : comment
+/** C string  var2vec  to scilab
+ *  @param x is supposed to be a fortran image of var2vec result
  */
-void banner(void);
+void str2sci(char** x,int n,int m);
 
-/** 
- * TODO : comment
- * @param flag
- */
-int C2F(banier)(integer *flag);

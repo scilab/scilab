@@ -1,16 +1,19 @@
 /*-----------------------------------------------------------------------------------*/
-/* INRIA 2006 */
-/* Ledru Sylvestre */
+/* INRIA 2007 */
+/* Sylvestre LEDRU */
 /*-----------------------------------------------------------------------------------*/
+#include <signal.h>
 #include "machine.h"
 
 /** 
  * TODO : comment
+ * @param sig
  */
-void banner(void);
+void controlC_handler (int sig);
+
 
 /** 
  * TODO : comment
- * @param flag
  */
-int C2F(banier)(integer *flag);
+int C2F(csignal)(void);
+

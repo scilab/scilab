@@ -10,6 +10,7 @@
 #include "hashtable_core.h"
 #include "getmodules.h"
 #include "setgetSCIpath.h"
+#include "LoadFunctionsTab.h"
 /*-----------------------------------------------------------------------------------*/  
 static int firstentry = 0;
 /*-----------------------------------------------------------------------------------*/  
@@ -21,7 +22,6 @@ static BOOL Load_primitives_from_file(char *filename);
 /*-----------------------------------------------------------------------------------*/  
 void LoadFunctionsTab(void)
 {
-	static int firstentry = 0;
 	struct MODULESLIST *Modules=NULL;
 	char *SciPath=NULL;
 	

@@ -11,6 +11,7 @@
 
 #include "MALLOC.h"
 #include "sciprint.h"
+#include "msgstore.h"
 /*-----------------------------------------------------------------------------------*/ 
 #if _MSC_VER
 	#define vsnprintf _vsnprintf
@@ -24,9 +25,7 @@ extern int C2F(errmds)  __PARAMS((integer *num, integer *imess, integer *imode))
 extern int C2F(depfun)  __PARAMS((integer *lunit, int *trace, int *first));
 extern int C2F(depexec)  __PARAMS((integer *lunit, int *trace, int *first, int *pflag));
 extern int C2F(errloc)  __PARAMS((integer *n));
-extern void C2F(freemsgtable)();
-extern int C2F(msgstore)(char *str,int *n);
-extern int C2F(errstore)(int *n);
+
 static int Scierror_internal __PARAMS((integer *n,char *buffer));
 /*-----------------------------------------------------------------------------------*/ 
 /* Scilab Error at C level */

@@ -1,16 +1,12 @@
 /*-----------------------------------------------------------------------------------*/
-/* INRIA 2006 */
-/* Ledru Sylvestre */
+/* INRIA 2007 */
+/* Sylvestre LEDRU */
 /*-----------------------------------------------------------------------------------*/
-#include "machine.h"
-
-/** 
+/**
  * TODO : comment
+ * @param io
+ * @param lunit
+ * @param str
+ * @param str_len
  */
-void banner(void);
-
-/** 
- * TODO : comment
- * @param flag
- */
-int C2F(banier)(integer *flag);
+int C2F(msgout)(integer *io,integer *lunit,char *str,long int str_len);

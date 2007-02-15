@@ -3,6 +3,7 @@
 /* Scilab */
 /*-----------------------------------------------------------------------------------*/ 
 #include "stack-c.h"
+#include "scirun.h"
 /*-----------------------------------------------------------------------------------*/ 
 extern int C2F(allowptr)(int *);
 extern int C2F(callinterf)(int *, int *);
@@ -14,16 +15,8 @@ extern int C2F(ref2val)(void);
 extern int C2F(isbyref)(int *);
 /*-----------------------------------------------------------------------------------*/ 
 static void str_copy_buf(register char *a, register char *b, long int la, long int lb);
-/*-----------------------------------------------------------------------------------*/ 
+
 int C2F(scirun)(char *bu1, long int bu1_len)
-/**
-Purpose
-	run scilab parser with initial instruction 
-Syntax
-	call scirun(bu1)
-parameters
-	bu1 : character string which contain the initial instruction 
-**/
 {
     static int iflagint = 0;
 	static int k = 0;

@@ -53,6 +53,9 @@ int C2F(getmat)  __PARAMS((char *fname, integer *topk, integer *lw, integer *it,
 int C2F(getmati)  __PARAMS((char *fname, integer *topk, integer *spos, integer *lw, integer *it, integer *m, integer *n, integer *lr, integer *lc, int *inlist__, integer *nel, unsigned long fname_len));
 int C2F(listcremat)  __PARAMS((char *fname, integer *lw, integer *numi, integer *stlw, integer *it, integer *m, integer *n, integer *lrs, integer *lcs, unsigned long fname_len));
 int C2F(cremat)  __PARAMS((char *fname, integer *lw, integer *it, integer *m, integer *n, integer *lr, integer *lc, unsigned long fname_len));
+int C2F(crematvar)  __PARAMS((integer *id, integer *lw, integer *it, integer *m, integer *n, double *rtab, double *itab));
+int C2F(crebmatvar) __PARAMS((integer *id, integer *lw, integer *m, integer *n, integer *val));
+int C2F(cresmatvar) __PARAMS((integer *id, integer *lw, char *str, integer *lstr, unsigned long str_len));
 int C2F(fakecremat)  __PARAMS((integer *lw, integer *it, integer *m, integer *n, integer *lr, integer *lc));
 int C2F(cremati)  __PARAMS((char *fname, integer *stlw, integer *it, integer *m, integer *n, integer *lr, integer *lc, int *flag__, unsigned long fname_len));
 int C2F(getlistbmat)  __PARAMS((char *fname, integer *topk, integer *spos, integer *lnum, integer *m, integer *n, integer *lr, unsigned long fname_len));

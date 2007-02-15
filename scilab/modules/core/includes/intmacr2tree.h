@@ -11,6 +11,7 @@
 #include <math.h>
 #include "machine.h"
 #include "stack-c.h" /* stack-def.h, stack1.h, stack2.h, stack3.h included */
+#include "Funtab.h"
 
 /**********************/
 /* External functions */
@@ -29,11 +30,6 @@ extern void C2F(dtosci)(double *dbleptr,int *nbrows,int *nbcols); /* Write a dou
 extern int C2F(cvnamel)(int *id,char *str,int *jobptr,int *str_len); 
 /* *jobptr==0: Get Scilab codes from C-string */
 /* *jobptr==1: Get C-string from Scilab codes */
-
-/* Defined in SCI/modules/core/src/c/Funtab.c */
-extern int C2F(funtab)(int *id, int *fptr, int *job,char *namefunction,unsigned long namefunction_len); 
-/* *job==1: Find id-name associated to function pointer */
-/* *job==2: Find function pointer associated to id-name */
 
 /* Defined in SCI/routines/system/mklist.f */
 extern int C2F(mklist)(int *nbitems); 

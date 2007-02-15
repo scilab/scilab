@@ -1,10 +1,9 @@
 /* Copyright INRIA/ENPC */
 
-#include <signal.h>
-#include "machine.h"
 #include "banier.h"
+#include "csignal.h"
 
-extern int   C2F(sigbas)(); /*  __PARAMS((integer *));*/
+extern int C2F(sigbas)(); /*  __PARAMS((integer *));*/
 
 void controlC_handler (int sig)
 {

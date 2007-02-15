@@ -1,6 +1,7 @@
 /* Copyright INRIA */
 #ifndef __CALLINTERF__
 #define __CALLINTERF__
+
 /********************************************************
  * Table of hard coded Scilab interface 
  *  to add a new interface add a declaration and a new entry 
@@ -8,7 +9,6 @@
  *  The maximum number of interfaces is bound to DynInterfStart 
  *                                 ( file /core/includes/addinter.h ) 
  ********************************************************/
-
 
 /* 01  C2F(gw_user)(); FREE */
 extern void    /* 02  */ C2F(gw_linear_algebra)();
@@ -84,7 +84,7 @@ extern void    /* 48  */ C2F(gw_time)();
 extern void    /* 49  */ C2F(gw_sound)();
 extern void    /* 50  */ C2F(gw_localization)();
 
-#if _MSC_VER
+#ifdef _MSC_VER
 extern void    /* 51  */ C2F(gw_fftw)();
 #endif
 
@@ -139,7 +139,7 @@ static OpTab Interfaces[] ={
 	/* 48  */ {C2F(gw_time)},
 	/* 49  */ {C2F(gw_sound)},
 	/* 50  */ {C2F(gw_localization)}
-#if _MSC_VER
+#ifdef _MSC_VER
 	,
 	/* 51  */ {C2F(gw_fftw)}
 #endif

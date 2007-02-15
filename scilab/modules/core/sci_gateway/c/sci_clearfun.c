@@ -9,9 +9,9 @@
 #include "MALLOC.h"
 #include "hashtable_core.h"
 #include "Scierror.h"
+#include "Funtab.h"
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(cvnamel)(int *id,char *str,int *jobptr,int *str_len); 
-extern int C2F(funtab)(int *id, int *fptr, int *job,char *namefunction,unsigned long namefunction_len);
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_clearfun) _PARAMS((char *fname,unsigned long fname_len))
 {

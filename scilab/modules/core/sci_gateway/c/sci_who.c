@@ -24,12 +24,14 @@ static BOOL SetVariablesStructs(struct VariableStruct **GVstruct,int *GlenStruct
 static void DispVariables(struct VariableStruct* Vstruct,char *Message,int lenStructArray,int memused,int memtotal,int varused,int vartotal);
 static void SortVarsStructByStrings(struct VariableStruct *Vstruct,int SizeStruct);
 static BOOL FreeVariableStructArray(struct VariableStruct* Vstruct,int lenStructArray);
+int getLocalSizefromId(int n);
+int getGlobalSizefromId(int n);
 /*-----------------------------------------------------------------------------------*/
 static int NoRhs(struct VariableStruct* GVstruct,int GlenStructArray,struct VariableStruct* LVstruct,int LlenStructArray,BOOL Sorted);
 static int OneLhs(struct VariableStruct* Vstruct,int lenStructArray,BOOL Sorted);
 static int TwoLhs(struct VariableStruct* Vstruct,int lenStructArray,BOOL Sorted);
 /*-----------------------------------------------------------------------------------*/
- int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
  {
 	 static int l1,n1,m1;
 

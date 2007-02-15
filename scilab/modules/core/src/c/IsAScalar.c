@@ -6,6 +6,7 @@
 #include <string.h>
 #include "machine.h"
 #include "stack-c.h"
+#include "IsAScalar.h"
 /*-----------------------------------------------------------------------------------*/ 
 int IsAScalar(int RhsNumber)
 {

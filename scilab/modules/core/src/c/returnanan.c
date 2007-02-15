@@ -1,7 +1,8 @@
 /*-----------------------------------------------------------------------------------*/
 #include "machine.h"
+#include "returnanan.h"
 /*-----------------------------------------------------------------------------------*/
-double C2F(returnanan)()
+double C2F(returnanan)(void)
 {
 	static int first = 1;
 	static double nan = 1.0;

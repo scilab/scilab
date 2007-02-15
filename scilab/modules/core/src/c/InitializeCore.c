@@ -2,6 +2,7 @@
 /* INRIA 2007 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
+#include <stdlib.h>
 #include "InitializeCore.h"
 #include "SciEnv.h"
 #include "getmodules.h"

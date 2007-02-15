@@ -28,4 +28,19 @@
    #include <stdio.h>
    #include <string.h>
 #endif /*GETMEMORY*/
+
+/**
+ * Return the size of free memory in megabytes
+ * @return the size of free memory 
+ */
+int getfreememory(void);
+
+
+/**
+ * Return the size of memory in megabytes
+ * @return the size of memory 
+ */
+int getmemorysize(void);
+
+
 /*-----------------------------------------------------------------------------------*/ 

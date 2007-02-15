@@ -49,6 +49,7 @@ void realmain(int nowin,int no_startup_flag_l,char *initial_script,int initial_s
   /* create temp directory */
   C2F(settmpdir)();
   /* signals */
+  #ifdef ENABLESIG
   signal(SIGINT,sci_clear_and_exit);
   #ifdef SIGBUS
   signal(SIGBUS,sci_clear_and_exit);
@@ -70,6 +71,7 @@ void realmain(int nowin,int no_startup_flag_l,char *initial_script,int initial_s
   signal(SIGTERM,sci_clear_and_exit);
   signal(SIGBREAK,sci_clear_and_exit);
   signal(SIGABRT,sci_clear_and_exit);
+  #endif
   #endif
 
   /*  prepare startup script  */

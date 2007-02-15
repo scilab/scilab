@@ -27,10 +27,10 @@
   TW textwin;
 #endif
 /*-----------------------------------------------------------------------------------*/ 
-#if _MSC_VER
+#ifdef _MSC_VER
   extern int PutString(char *Str);
 #else
-  extern int C2F(xscisrn)();
+#include "../../gui/src/c/xsci/x_charproc.h"
 #endif
 extern int getdiary __PARAMS(());
 extern int C2F(xscion)();
@@ -149,7 +149,6 @@ extern void diary_nnl __PARAMS((char *str,int *n));
 	  integer lstr;
 	  va_list ap;
 	  char s_buf[MAXPRINTF];
-	  int count=0;
 #if defined(__STDC__)
 	  va_start(ap,fmt);
 #else
