@@ -2,7 +2,8 @@
 
 mode (-1);
 clear;
- set old_style on;
+// set old_style on;
+// remove old style graphics mode on trunk
 
 x=-25:0.1:25;
 y=x.^2;
