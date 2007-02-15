@@ -198,6 +198,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\coretable.c"
+				>
+			</File>
+			<File
 				RelativePath=".\cs2st.c"
 				>
 			</File>
@@ -760,14 +764,6 @@
 			</File>
 			<File
 				RelativePath=".\fromjava.h"
-				>
-			</File>
-			<File
-				RelativePath="FTables.h"
-				>
-			</File>
-			<File
-				RelativePath="FTables0.h"
 				>
 			</File>
 			<File

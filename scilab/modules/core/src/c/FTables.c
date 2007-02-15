@@ -4,7 +4,6 @@
  **************************************/
 
 #include <string.h>
-#include "FTables0.h"
 #include "FTables.h"
 #define FTable_H   /* to prevent  a type conflict with GetFuncPtr */ 
 #include "stack-c.h"
@@ -18,63 +17,6 @@ static void Emptyfunc  __PARAMS((void)) {} ;
 
 voidf GetFuncPtr(char *name, int n, FTAB *Table, voidf scifun, int *ifunc, int *lhs, int *rhs);
 voidf SetFunction  __PARAMS((char *name, int *rep, FTAB *table));  
-
-
-/***********************************
- * Search Table for fbutn
- **********************************/
-
-/** the current function fixed by setfbutn **/
-
-static fbutnf fbutnfonc ;
-
-/** function call **/
-
-void C2F(fbutn)(char *name, integer *win, integer *entry)
-{
-  (*fbutnfonc)(name,win,entry);
-}
-
-/** fixes the function associated to name **/
-
-void C2F(setfbutn)(char *name, int *rep)
-{
-  fbutnfonc = (fbutnf) SetFunction(name,rep,FTab_fbutn);
-}
-
-
-/***********************************
- * Search Table for interf 
- **********************************/
-
-/** the current function fixed by setinterf **/
-
-static interff interffonc ;
-
-/** function call **/
-
-void C2F(interf)(void * x1, void * x2, void * x3, void * x4, void * x5, void * x6, void * x7, void * x8, void * x9, void * x10, void * x11, void * x12, void * x13, void * x14, void * x15, void * x16, void * x17, void * x18, void * x19, void * x20, void * x21, void * x22, void * x23, void * x24, void * x25, void * x26, void * x27, void * x28, void * x29, void * x30)
-{
-  (*interffonc)(x1 ,x2 ,x3 ,x4 ,x5 ,x6 ,x7 ,x8 ,x9 ,x10,
-	       x11,x12,x13,x14,x15,x16,x17,x18,x19,x20,
-	       x21,x22,x23,x24,x25,x26,x27,x28,x29,x30);
-}
-
-
-void C2F(interf1)(char *name, long int size)
-{
-  ((interff1) *interffonc)(name,strlen(name));
-}
-
-/** fixes the function associated to name **/
-
-void C2F(setinterf)(char *name, int *rep)
-{
-  interffonc = (interff) SetFunction(name,rep,FTab_interf);
-}
-
-/** function call **/
-
 
 /*******************************************
  * General functions 
@@ -136,8 +78,6 @@ static int SearchComp(FTAB *Ftab, char *op, void (**realop) (/* ??? */))
   /* sciprint("\n Unknow function <%s>\r\n",op); */
   return(FAIL);
 }
-
-
 
 
 /*********************************************************

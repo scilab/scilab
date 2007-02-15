@@ -1,17 +1,8 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA */
 /*-----------------------------------------------------------------------------------*/
-#include "machine.h"
+#include "FTables.h"
 
-typedef void (*voidf)();
-
-typedef struct 
-{
-	char *name;
-	voidf f;
-} FTAB;
-
-extern voidf SetFunction(char *name, int *rep, FTAB *table);
 extern int C2F(getcodc) __PARAMS((integer *nd1, integer *iflag1));
 
 /***********************************

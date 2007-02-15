@@ -1,18 +1,7 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA */
 /*-----------------------------------------------------------------------------------*/
-#include "machine.h"
-
-typedef void (*voidf)();
-
-typedef struct 
-{
-	char *name;
-	voidf f;
-} FTAB;
-
-extern voidf SetFunction(char *name, int *rep, FTAB *table);
-
+#include "FTables.h"
 /**************** fydot ***************/
 extern void C2F(fex)(ARGS_fydot);
 extern void C2F(fex2)(ARGS_fydot);

@@ -1,19 +1,7 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA */
 /*-----------------------------------------------------------------------------------*/
-#include "machine.h"
-
-typedef void (*voidf)();
-
-typedef struct 
-{
-	char *name;
-	voidf f;
-} FTAB;
-
-extern voidf SetFunction(char *name, int *rep, FTAB *table);
-
-
+#include "FTables.h"
 /***********************************
 * Search Table for colnew 
 *   corr uses : fcoldg , fcolg, fcoldf,fcolf,fcolgu
@@ -22,10 +10,8 @@ extern voidf SetFunction(char *name, int *rep, FTAB *table);
 #define ARGS_fcoldg integer*,double *,double*
 typedef void (*fcoldgf)(ARGS_fcoldg);
 
-
 #define ARGS_fcolg integer*,double *,double*
 typedef void (*fcolgf)(ARGS_fcolg);
-
 
 #define ARGS_fcoldf double *,double *,double*
 typedef void (*fcoldff)(ARGS_fcoldf);
@@ -33,10 +19,8 @@ typedef void (*fcoldff)(ARGS_fcoldf);
 #define ARGS_fcolf double *,double *,double*
 typedef void (*fcolff)(ARGS_fcolf);
 
-
 #define ARGS_fcolgu double *,double *,double*
 typedef void (*fcolguf)(ARGS_fcolgu);
-
 
 /**************** fcoldg ***************/
 extern void C2F(cndg)(ARGS_fcoldg);

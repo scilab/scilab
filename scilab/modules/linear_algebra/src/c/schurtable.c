@@ -2,28 +2,11 @@
 /* INRIA */
 /*-----------------------------------------------------------------------------------*/
 #include <string.h>
-#include "machine.h"
+#include "FTables.h"
 #include "link.h"
-
-#define OK 1
-#define FAIL 0
-#define MAXNAME 32
-
-static char buf[MAXNAME];
-
-typedef void (*voidf)();
-
-typedef struct 
-{
-	char *name;
-	voidf f;
-} FTAB;
-
-typedef struct { double r, i; } doublecmplx;
 
 static void Emptyfunc  __PARAMS((void)) {} ;
 
-extern voidf SetFunction(char *name, int *rep, FTAB *table);
 /**************** fschur ***************/
 extern void C2F(folhp)(ARGS_fschur);
 extern void C2F(find)(ARGS_fschur);
