@@ -9,12 +9,19 @@ proc insertremove_bp {{buf "current"}} {
         insertremovedebug_bp $textarea
     } elseif {![isnocodeline $textarea insert]} {
         set i1 [getrealstartofcontline $textarea "insert linestart"]
-        set i2 [$textarea index "$i1 lineend"  ]
-        set infun [whichfun [$textarea index $i1] $textarea]
-        if {$infun != {} } {
-            # this test is to prevent from breakpointing the function
-            # definition line (would need to say later setbpt("foo",0)
-            # which is forbidden)
+        set i2 [$textarea index "$i1 lineend"]
+        # the following is to prevent from breakpointing the function
+        # definition line (would need to say later setbpt("foo",0)
+        # which is forbidden)
+        set canbreakpoint true
+        set infun [whichfun [$textarea index "$i1+1c"] $textarea]
+        if {$infun != {}} {
+            set lineinfun [lindex $infun 1]
+            if {$lineinfun == 1} {
+                set canbreakpoint false
+            }
+        }
+        if {$canbreakpoint} {
             set activetags [$textarea tag names $i1]
             if {[lsearch $activetags breakpoint] == -1} {
                 $textarea tag add breakpoint $i1 $i2

@@ -214,6 +214,7 @@ proc pastetext {mode} {
             if {[$textareacur compare insert == "end - 1 c"] && \
                 $n < [llength $listoflines]} {
                 puttext $textareacur "\n"
+                $textareacur mark set insert "$i1 + $n l"
             }
         }
     }

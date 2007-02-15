@@ -192,6 +192,10 @@ proc selectblock {w x y} {
         set sta [TextClosestGap_scipad $w $anchorx $i]
         set sto [TextClosestGap_scipad $w $cornerx $i]
         if {[$w compare $sta == $sto]} {
+            # @$x,$y must be used otherwise empty lines might be forgotten when
+            # block-selecting from farther than the middle of the line
+            set sta [$w index @$anchorx,$i]
+            set sto $sta
             if {[$w compare $sta != "end - 1 c"]} {
                 set dlinfo [$w dlineinfo $sta]
                 set linex [lindex $dlinfo 0]

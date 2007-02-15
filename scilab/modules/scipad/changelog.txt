@@ -2835,3 +2835,13 @@ Francois VOGEL, 12/02/07
  * Changed insertion cursor positioning scheme during a block selection
  * Block paste can paste empty lines
  * version --> 6.90
+
+Francois VOGEL, 15/02/07
+ * Fixed a block paste glitch related to pasting at the end of the buffer
+ * Fixed a block selection glitch: when selecting from farther than the
+   middle of the line, then empty lines could be missed in the selection
+ * Loosened constraint on breakpointable lines: overzealous fix was
+   introduced in 6.40
+ * Fixed Tcl error that popped up when configuring the debug as .sce and
+   then immediately cancelling the debug
+ * version --> 6.91

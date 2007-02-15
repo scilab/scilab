@@ -655,7 +655,10 @@ proc scedebugcleanup_bp {} {
     set funnameargs ""
     set funnames ""
     set debugassce false
-    unset logicallinenumbersranges
+    # -nocomplain to prevent Tcl error when canceling the debug
+    # before the first step (configure as .sce, and then immediately
+    # cancel)
+    unset -nocomplain logicallinenumbersranges
 
     setdbstate "NoDebug"
 
