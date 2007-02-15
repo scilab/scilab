@@ -83,7 +83,10 @@ libscioptimization_la_DEPENDENCIES = $(top_builddir)/modules/elementaries_functi
 	$(top_builddir)/libs/lapack/libscilapack.la \
 	$(top_builddir)/modules/core/libscicore.la
 am__objects_1 = libscioptimization_la-intqld.lo \
-	libscioptimization_la-sp.lo
+	libscioptimization_la-sp.lo \
+	libscioptimization_la-fsolvetable.lo \
+	libscioptimization_la-lsqrsolvtable.lo \
+	libscioptimization_la-optimtable.lo
 am__objects_2 = dimp03.lo qrfac.lo gcbd.lo n1qn2a.lo dogleg.lo \
 	anrs02.lo fuclid.lo fmc11b.lo opvf03.lo ql0001.lo aux003.lo \
 	shanph.lo fajc1.lo majysa.lo fdjac2.lo icsei.lo dipvtf.lo \
@@ -291,7 +294,10 @@ tcldir = @tcldir@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 OPTIMIZATION_C_SOURCES = src/c/intqld.c \
-src/c/sp.c
+src/c/sp.c \
+src/c/fsolvetable.c \
+src/c/lsqrsolvtable.c \
+src/c/optimtable.c
 
 OPTIMIZATION_FORTRAN_SOURCES = src/fortran/dimp03.f \
 src/fortran/qrfac.f \
@@ -624,8 +630,11 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioptimization_la-fsolvetable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioptimization_la-gw_optim.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioptimization_la-intqld.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioptimization_la-lsqrsolvtable.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioptimization_la-optimtable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioptimization_la-sci_fsolv.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioptimization_la-sci_optim.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioptimization_la-sci_qld.Plo@am__quote@
@@ -668,6 +677,27 @@ libscioptimization_la-sp.lo: src/c/sp.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/sp.c' object='libscioptimization_la-sp.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioptimization_la_CFLAGS) $(CFLAGS) -c -o libscioptimization_la-sp.lo `test -f 'src/c/sp.c' || echo '$(srcdir)/'`src/c/sp.c
+
+libscioptimization_la-fsolvetable.lo: src/c/fsolvetable.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioptimization_la_CFLAGS) $(CFLAGS) -MT libscioptimization_la-fsolvetable.lo -MD -MP -MF $(DEPDIR)/libscioptimization_la-fsolvetable.Tpo -c -o libscioptimization_la-fsolvetable.lo `test -f 'src/c/fsolvetable.c' || echo '$(srcdir)/'`src/c/fsolvetable.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscioptimization_la-fsolvetable.Tpo $(DEPDIR)/libscioptimization_la-fsolvetable.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/fsolvetable.c' object='libscioptimization_la-fsolvetable.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioptimization_la_CFLAGS) $(CFLAGS) -c -o libscioptimization_la-fsolvetable.lo `test -f 'src/c/fsolvetable.c' || echo '$(srcdir)/'`src/c/fsolvetable.c
+
+libscioptimization_la-lsqrsolvtable.lo: src/c/lsqrsolvtable.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioptimization_la_CFLAGS) $(CFLAGS) -MT libscioptimization_la-lsqrsolvtable.lo -MD -MP -MF $(DEPDIR)/libscioptimization_la-lsqrsolvtable.Tpo -c -o libscioptimization_la-lsqrsolvtable.lo `test -f 'src/c/lsqrsolvtable.c' || echo '$(srcdir)/'`src/c/lsqrsolvtable.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscioptimization_la-lsqrsolvtable.Tpo $(DEPDIR)/libscioptimization_la-lsqrsolvtable.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/lsqrsolvtable.c' object='libscioptimization_la-lsqrsolvtable.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioptimization_la_CFLAGS) $(CFLAGS) -c -o libscioptimization_la-lsqrsolvtable.lo `test -f 'src/c/lsqrsolvtable.c' || echo '$(srcdir)/'`src/c/lsqrsolvtable.c
+
+libscioptimization_la-optimtable.lo: src/c/optimtable.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioptimization_la_CFLAGS) $(CFLAGS) -MT libscioptimization_la-optimtable.lo -MD -MP -MF $(DEPDIR)/libscioptimization_la-optimtable.Tpo -c -o libscioptimization_la-optimtable.lo `test -f 'src/c/optimtable.c' || echo '$(srcdir)/'`src/c/optimtable.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscioptimization_la-optimtable.Tpo $(DEPDIR)/libscioptimization_la-optimtable.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/optimtable.c' object='libscioptimization_la-optimtable.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioptimization_la_CFLAGS) $(CFLAGS) -c -o libscioptimization_la-optimtable.lo `test -f 'src/c/optimtable.c' || echo '$(srcdir)/'`src/c/optimtable.c
 
 libscioptimization_la-sci_semidef.lo: sci_gateway/c/sci_semidef.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioptimization_la_CFLAGS) $(CFLAGS) -MT libscioptimization_la-sci_semidef.lo -MD -MP -MF $(DEPDIR)/libscioptimization_la-sci_semidef.Tpo -c -o libscioptimization_la-sci_semidef.lo `test -f 'sci_gateway/c/sci_semidef.c' || echo '$(srcdir)/'`sci_gateway/c/sci_semidef.c

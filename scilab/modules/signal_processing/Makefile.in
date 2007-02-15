@@ -90,7 +90,8 @@ am__objects_1 = sci_ffir.lo degree.lo parcha.lo ouch.lo dfftbi.lo \
 	deli1.lo trbipo.lo rpem.lo dfft2.lo dgee01.lo romeg.lo \
 	snell.lo fft842.lo tg02ad.lo remez.lo poles.lo desi00.lo \
 	desi21.lo dfftmx.lo
-am__objects_2 = libscisignal_processing_la-sci_remez.lo \
+am__objects_2 = libscisignal_processing_la-corrtable.lo
+am__objects_3 = libscisignal_processing_la-sci_remez.lo \
 	libscisignal_processing_la-sci_rpem.lo \
 	libscisignal_processing_la-sci_corr.lo \
 	libscisignal_processing_la-sci_ffir.lo \
@@ -100,11 +101,11 @@ am__objects_2 = libscisignal_processing_la-sci_remez.lo \
 	libscisignal_processing_la-sci_delip.lo \
 	libscisignal_processing_la-sci_fft.lo \
 	libscisignal_processing_la-sci_syredi.lo
-am__objects_3 = sci_delip.lo sci_fft.lo sci_syredi.lo sci_remez.lo \
+am__objects_4 = sci_delip.lo sci_fft.lo sci_syredi.lo sci_remez.lo \
 	sci_rpem.lo sci_corr.lo sci_fiir.lo sci_amell.lo bgetx.lo \
 	bgety.lo Ex-corr.lo
 am_libscisignal_processing_la_OBJECTS = $(am__objects_1) \
-	$(am__objects_2) $(am__objects_3)
+	$(am__objects_2) $(am__objects_3) $(am__objects_4)
 libscisignal_processing_la_OBJECTS =  \
 	$(am_libscisignal_processing_la_OBJECTS)
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
@@ -281,6 +282,7 @@ target_alias = @target_alias@
 tcldir = @tcldir@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
+SIGNAL_PROCESSING_C_SOURCES = src/c/corrtable.c
 SIGNAL_PROCESSING_FORTRAN_SOURCES = src/fortran/sci_ffir.f \
 src/fortran/degree.f \
 src/fortran/parcha.f \
@@ -371,7 +373,7 @@ sci_gateway/fortran/Ex-corr.f
 libscisignal_processing_la_CFLAGS = -Iincludes/ 
 #-Isrc/c/
 pkglib_LTLIBRARIES = libscisignal_processing.la
-libscisignal_processing_la_SOURCES = $(SIGNAL_PROCESSING_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscisignal_processing_la_SOURCES = $(SIGNAL_PROCESSING_FORTRAN_SOURCES) $(SIGNAL_PROCESSING_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libscisignal_processing_la_LIBADD = \
 	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la 
 
@@ -632,6 +634,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisignal_processing_la-corrtable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisignal_processing_la-gw_signal.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisignal_processing_la-sci_amell.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisignal_processing_la-sci_corr.Plo@am__quote@
@@ -663,6 +666,13 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
+
+libscisignal_processing_la-corrtable.lo: src/c/corrtable.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisignal_processing_la_CFLAGS) $(CFLAGS) -MT libscisignal_processing_la-corrtable.lo -MD -MP -MF $(DEPDIR)/libscisignal_processing_la-corrtable.Tpo -c -o libscisignal_processing_la-corrtable.lo `test -f 'src/c/corrtable.c' || echo '$(srcdir)/'`src/c/corrtable.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisignal_processing_la-corrtable.Tpo $(DEPDIR)/libscisignal_processing_la-corrtable.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/corrtable.c' object='libscisignal_processing_la-corrtable.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisignal_processing_la_CFLAGS) $(CFLAGS) -c -o libscisignal_processing_la-corrtable.lo `test -f 'src/c/corrtable.c' || echo '$(srcdir)/'`src/c/corrtable.c
 
 libscisignal_processing_la-sci_remez.lo: sci_gateway/c/sci_remez.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisignal_processing_la_CFLAGS) $(CFLAGS) -MT libscisignal_processing_la-sci_remez.lo -MD -MP -MF $(DEPDIR)/libscisignal_processing_la-sci_remez.Tpo -c -o libscisignal_processing_la-sci_remez.lo `test -f 'sci_gateway/c/sci_remez.c' || echo '$(srcdir)/'`sci_gateway/c/sci_remez.c
