@@ -76,9 +76,9 @@ function [y1,...,yn]=foo(x1,...,xm)
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
-getf('SCI/macros/xdess/plot.sci')
+getf('SCI/modules/graphics/macros/plot.sci')
 
-getf SCI/macros/xdess/plot.sci
+getf SCI/modules/graphics/macros/plot.sci
  ]]>
   </EXAMPLE>
   <SEE_ALSO>

@@ -60,9 +60,9 @@ function [y1,...,yn]=foo(x1,...,xm)
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[
-getf('SCI/macros/xdess/plot.sci')
+getf('SCI/modules/graphics/macros/plot.sci')
 
-getf SCI/macros/xdess/plot.sci
+getf SCI/modules/graphics/macros/plot.sci
  ]]></EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>functions</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>function</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>genlib</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>getd</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>exec</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>edit</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>comp</LINK> </SEE_ALSO_ITEM>
