@@ -68,7 +68,7 @@
   <EXAMPLE>
 <![CDATA[
 // To get a graphical explanation of xsetech parameters enter:
-exec('SCI/demos/graphics/xsetechfig.sce');
+exec('SCI/modules/graphics/demos/xsetechfig.sce');
 
 
 // Here xsetech is used to split the graphics window in two parts 
