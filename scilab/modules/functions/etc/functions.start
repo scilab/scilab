@@ -6,5 +6,5 @@
 load('SCI/modules/functions/macros/lib');
 // ====================================================================
 //add help chapter
-exec(SCI+'/modules/functions/help/'+getlanguage()+'/addchapter.sce');
+add_module_help_chapter('functions');
 // ====================================================================

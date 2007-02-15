@@ -6,7 +6,7 @@
 load('SCI/modules/signal_processing/macros/lib');
 // ====================================================================
 //add help chapter
-exec(SCI+'/modules/signal_processing/help/'+getlanguage()+'/addchapter.sce');
+add_module_help_chapter('signal_processing');
 // ====================================================================
 //add demos
 path = get_absolute_file_path('signal_processing.start');

@@ -12,7 +12,7 @@ path = getshortpathname(path);
 pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/graphics.dem',%f,%f);
 
 //add help chapter
-exec(SCI+'/modules/graphics/help/'+getlanguage()+'/addchapter.sce');
+add_module_help_chapter('graphics');
 
 //add demo
 add_demo("Graphics",pathdemos);

@@ -7,7 +7,7 @@ load('SCI/modules/core/macros/lib');
 // ====================================================================
 
 //add help chapter
-exec(SCI+'/modules/core/help/'+getlanguage()+'/addchapter.sce');
+add_module_help_chapter('core');
 
 //add demos
 path = get_absolute_file_path('core.start');

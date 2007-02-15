@@ -9,5 +9,5 @@
  clear with_texmacs;
  // ====================================================================
 //add help chapter
-exec(SCI+'/modules/texmacs/help/'+getlanguage()+'/addchapter.sce');
+add_module_help_chapter('texmacs');
 // ====================================================================

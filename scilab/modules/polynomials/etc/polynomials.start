@@ -6,5 +6,5 @@
 load('SCI/modules/polynomials/macros/lib');
 // ====================================================================
 //add help chapter
-exec(SCI+'/modules/polynomials/help/'+getlanguage()+'/addchapter.sce');
+add_module_help_chapter('polynomials');
 // ====================================================================

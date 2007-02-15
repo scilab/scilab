@@ -6,7 +6,7 @@
 load('SCI/modules/pvm/macros/lib');
 // ====================================================================
 //add help chapter
-exec(SCI+'/modules/pvm/help/'+getlanguage()+'/addchapter.sce');
+add_module_help_chapter('pvm');
 // ====================================================================
 //add demos
 path = get_absolute_file_path('pvm.start');

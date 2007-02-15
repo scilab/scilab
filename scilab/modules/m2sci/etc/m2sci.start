@@ -7,5 +7,5 @@ load('SCI/modules/m2sci/macros/lib');
 load('SCI/modules/m2sci/macros/mtlb/lib');
 // ====================================================================
 //add help chapter
-exec(SCI+'/modules/m2sci/help/'+getlanguage()+'/addchapter.sce');
+add_module_help_chapter('m2sci');
 // ====================================================================

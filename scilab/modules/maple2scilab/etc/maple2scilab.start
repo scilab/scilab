@@ -6,5 +6,5 @@
 load('SCI/modules/maple2scilab/macros/lib');
 // ====================================================================
 //add help chapter
-exec(SCI+'/modules/maple2scilab/help/'+getlanguage()+'/addchapter.sce');
+add_module_help_chapter('maple2scilab');
 // ====================================================================

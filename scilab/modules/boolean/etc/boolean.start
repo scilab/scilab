@@ -6,5 +6,5 @@
 //load('SCI/modules/boolean/macros/lib');
 // ====================================================================
 //add help chapter
-exec(SCI+'/modules/boolean/help/'+getlanguage()+'/addchapter.sce');
+add_module_help_chapter('boolean');
 // ====================================================================

@@ -6,5 +6,5 @@
 load('SCI/modules/sparse/macros/lib');
 // ====================================================================
 //add help chapter
-exec(SCI+'/modules/sparse/help/'+getlanguage()+'/addchapter.sce');
+add_module_help_chapter('sparse');
 // ====================================================================

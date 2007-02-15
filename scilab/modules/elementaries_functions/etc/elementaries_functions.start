@@ -6,5 +6,5 @@
 load('SCI/modules/elementaries_functions/macros/lib');
 // ====================================================================
 //add help chapter
-exec(SCI+'/modules/elementaries_functions/help/'+getlanguage()+'/addchapter.sce');
+add_module_help_chapter('elementaries_functions');
 // ====================================================================

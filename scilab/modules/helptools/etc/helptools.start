@@ -9,15 +9,17 @@ load('SCI/modules/helptools/macros/lib');
 load('SCI/modules/fileio/macros/get_absolute_file_path.bin');
 load('SCI/modules/fileio/macros/pathconvert.bin');
 load('SCI/modules/fileio/macros/isdir.bin');
+load('SCI/modules/fileio/macros/listfiles.bin');
 load('SCI/modules/string/macros/stripblanks.bin');
 load('SCI/modules/core/macros/add_demo.bin');
 
 //add help chapter
-exec(SCI+'/modules/helptools/help/'+getlanguage()+'/addchapter.sce');
+add_module_help_chapter('helptools');
 
 // clear temporary functions
 clear get_absolute_file_path
 clear pathconvert
 clear isdir
+clear listfiles
 
 // ====================================================================

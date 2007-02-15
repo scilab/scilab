@@ -6,7 +6,7 @@
 load('SCI/modules/optimization/macros/lib');
 // ====================================================================
 //add help chapter
-exec(SCI+'/modules/optimization/help/'+getlanguage()+'/addchapter.sce');
+add_module_help_chapter('optimization');
 
 //add demos
 path = get_absolute_file_path('optimization.start');

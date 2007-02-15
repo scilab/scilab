@@ -5,6 +5,6 @@
 // Allan CORNET
 // ====================================================================
 path = SCI+'/modules/jvm/help/'+getlanguage();
-add_help_chapter("jvm",path);
+//add_help_chapter("jvm",path);
 clear path add_help_chapter;
 // ====================================================================

@@ -6,5 +6,5 @@
 //load('SCI/modules/double/macros/lib');
 // ====================================================================
 //add help chapter
-//exec(SCI+'/modules/double/help/'+getlanguage()+'/addchapter.sce');
+add_module_help_chapter('double');
 // ====================================================================

@@ -9,7 +9,7 @@ clear  scicos_pal // explicitly clear %helps scicos_pal variables
 load('SCI/modules/scicos/macros/lib')
 // ====================================================================
 //add help chapter
-exec(SCI+'/modules/scicos/help/'+getlanguage()+'/addchapter.sce');
+add_module_help_chapter('scicos');
 // ====================================================================
 //add demos
 path=get_absolute_file_path('scicos.start');

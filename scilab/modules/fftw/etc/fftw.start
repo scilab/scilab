@@ -18,7 +18,7 @@ clearfun fft;
 fft=fftw;
 
 //add help chapter
-//exec(SCI+'/modules/fftw/help/'+getlanguage()+'/addchapter.sce');
+add_module_help_chapter('fftw');
 
 //add demos
 path = get_absolute_file_path('fftw.start');

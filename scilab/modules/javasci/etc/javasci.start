@@ -6,5 +6,5 @@
 //load('SCI/modules/javasci/macros/lib');
 // ====================================================================
 //add help chapter
-exec(SCI+'/modules/javasci/help/'+getlanguage()+'/addchapter.sce');
+add_module_help_chapter('javasci');
 // ====================================================================

@@ -6,5 +6,5 @@
 load('SCI/modules/integer/macros/lib');
 // ====================================================================
 //add help chapter
-exec(SCI+'/modules/integer/help/'+getlanguage()+'/addchapter.sce');
+add_module_help_chapter('integer');
 // ====================================================================

@@ -6,7 +6,7 @@
 load('SCI/modules/scilab2fortran/macros/lib');
 // ====================================================================
 //add help chapter
-exec(SCI+'/modules/scilab2fortran/help/'+getlanguage()+'/addchapter.sce');
+add_module_help_chapter('scilab2fortran');
 // ====================================================================
 //add demo
 path = get_absolute_file_path('scilab2fortran.start');

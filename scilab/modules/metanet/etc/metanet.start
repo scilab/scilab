@@ -6,7 +6,7 @@
 load('SCI/modules/metanet/macros/lib');
 // ====================================================================
 //add help chapter
-exec(SCI+'/modules/metanet/help/'+getlanguage()+'/addchapter.sce');
+add_module_help_chapter('metanet');
 
 //add demos
 path = get_absolute_file_path('metanet.start');

@@ -10,7 +10,7 @@ path = getshortpathname(path);
 pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/dialog.dem',%f,%f);
 
 //add help chapter
-exec(SCI+'/modules/gui/help/'+getlanguage()+'/addchapter.sce');
+add_module_help_chapter('gui');
 
 //add demos
 add_demo("GUI",pathdemos);
