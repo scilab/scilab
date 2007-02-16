@@ -3,6 +3,19 @@
 /*-----------------------------------------------------------------------------------*/
 #include <string.h>
 #include "FTables.h"
+
+
+/***********************************
+* Search Table for interf
+***********************************/
+
+#define ARGS_interf void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *
+typedef integer * (*interff)(ARGS_interf);
+
+
+#define ARGS_interf1 char *,long int
+typedef integer * (*interff1)(ARGS_interf1);
+
 /**************** interf ***************/
 extern void C2F(foubare)(ARGS_interf);
 extern void C2F(foobar1)(ARGS_interf);
@@ -28,17 +41,6 @@ FTAB FTab_interf[] =
 	{"loset", (voidf)  C2F(loset)},
 	{(char *) 0, (voidf) 0}
 };
-
-/***********************************
-* Search Table for interf
-***********************************/
-
-#define ARGS_interf void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *
-typedef integer * (*interff)(ARGS_interf);
-
-
-#define ARGS_interf1 char *,long int
-typedef integer * (*interff1)(ARGS_interf1);
 
 
 /***********************************
