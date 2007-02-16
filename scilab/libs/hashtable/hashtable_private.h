@@ -24,14 +24,13 @@ struct hashtable {
 };
 
 /*****************************************************************************/
-unsigned int
-hash(struct hashtable *h, void *k);
+unsigned int hash(struct hashtable *h, void *k);
 
 /*****************************************************************************/
 /* indexFor */
 static unsigned int indexFor(unsigned int tablelength, unsigned int hashvalue) {
     return (hashvalue % tablelength);
-};
+}
 
 /* Only works if tablelength == 2^N */
 /*static inline unsigned int
