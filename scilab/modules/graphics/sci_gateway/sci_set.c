@@ -85,8 +85,8 @@ int sci_set(char *fname, unsigned long fname_len)
     {
     case 1: /* tclsci handle */
       lw = 1 + Top - Rhs;
-      C2F(overload)(&lw,"set",3);return 0;
-      return 0;
+      C2F(overload)(&lw,"set",3);
+	  return 0;
       break;
     case 9: /* first is a scalar argument so it's a gset(hdl,"command",[param]) */
       /* F.Leray; INFO: case 9 is considered for a matrix of graphic handles*/

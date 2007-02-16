@@ -124,9 +124,9 @@ int sci_get(char *fname,unsigned long fname_len)
       break;
     default:
       lw = 1 + Top - Rhs;
-      C2F(overload)(&lw,"get",3);return 0;
+      C2F(overload)(&lw,"get",3);
+	  return 0;
       /*Scierror(999,"%s: Incorrect argument\r\n",fname);*/
-      return 0;
       break;
     }
   /* cstk(l2) est la commande, l3 l'indice sur les parametres de la commande */
