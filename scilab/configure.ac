@@ -49,8 +49,15 @@ AC_CANONICAL_HOST
 ## all the --with-* argument help
 #################################
 
+
 AC_ARG_ENABLE(debug,
-   [  --enable-debug           compile with "-g" option and do not optimize ])
+   [  --enable-debug            do not optimize and print warning messages (C/C++/Fortran code)])
+
+AC_ARG_ENABLE(debugC,
+   [  --enable-debug-C          do not optimize and print warning messages (C/C++ code)])
+
+AC_ARG_ENABLE(debugFortran,
+   [  --enable-debug-fortran   do not optimize and print warning messages (Fortran code)])
 
 AC_ARG_WITH(gcc,
     [  --with-gcc              use gcc C compiler ])
@@ -154,14 +161,23 @@ if test -z "$CC"; then
   AC_MSG_ERROR([No C Compiler. Cannot compile Scilab without a C compiler])
 fi
 
-
-
-
 if test "$enable_debug" = yes; then
+   enable_debug_fortran=yes
+   enable_debug_C=yes
+else
+   enable_debug=no
+fi
+
+if test "$enable_debug_fortran" = yes; then
    FFLAGS="`echo "$FFLAGS"| sed -e 's|-O[0-9+]|-O0|'`"
+else
+   enable_debug_fortran=no
+fi
+
+if test "$enable_debug_C" = yes; then
    CFLAGS="`echo "$CFLAGS"| sed -e 's|-O[0-9+]|-O0|'`"
-   echo "C : $CFLAGS"
-   echo "F : $FFLAGS"
+else
+   enable_debug_C=no
 fi
 
 ### C++###
@@ -304,14 +320,18 @@ if test "$with_intelcompilers" = yes; then
 			;;
 		esac
 
-		if test "$enable_debug" = yes; then
+		if test "$enable_debug_C" = yes; then
 			CFLAGS="-g $CFLAGS $EXTRA_OPTIONS"
-			FFLAGS="-g $FFLAGS $EXTRA_OPTIONS"
 		else
 			CFLAGS="-O -DNDEBUG $CFLAGS "
-			FFLAGS="-O $FFLAGS "
-			FFLAGS_O0="$FFLAGS "
 		fi
+
+		if test "$enable_debug_fortran" = yes; then
+			FFLAGS="-g $FFLAGS $EXTRA_OPTIONS"
+		else
+			FFLAGS="-O $FFLAGS "
+		fi		
+	
 		# TODO : voir si obligatoire vu que c'est en partie le boulot de AC_PROG_C
 fi
 
@@ -324,11 +344,11 @@ fi
 
 if test -n "$F77"; then
 # TODOO : il faut peut etre verifier que c'est bien gfortran
-   if test "$enable_debug" != yes; then 
-	  FFLAGS="$FFLAGS -DNDEBUG"
+   if test "$enable_debug_fortran" = yes; then
+	  FFLAGS="$FFLAGS -g -Wall "
 	  # -D_FORTIFY_SOURCE=2
    else
-	  FFLAGS="$FFLAGS -g -Wall "
+	  FFLAGS="$FFLAGS -DNDEBUG"
    fi
 	  case "$host" in
 		 x86_64-*-linux-gnu)
@@ -351,20 +371,20 @@ if test -n "$F77"; then
 			FFLAGS="$FFLAGS +Obb1200 +E4 -Dhpux"
 		;;
 		  *-*-hpux10.*)
-		    if test "$enable_debug" != yes; then 
-	   		    FFLAGS="+O2 +E4 +Z +DAportable -Dhpux"
-			else
+			if test "$enable_debug_fortran" = yes; then
 			    FFLAGS="+E4 +Z +DAportable -Dhpux"
+			else
+	   		    FFLAGS="+O2 +E4 +Z +DAportable -Dhpux"
 			fi
 #		    F77_LDFLAGS="-Wl,+vnocompatwarnings,-E /usr/lib/libdld.sl"
 
 			;;
 		  *-*-hpux11.*)
-		   if test "$enable_debug" != yes; then 
-		      FFLAGS="+O2 +Z +DAportable -Dhpux"
-			 else
+		   if test "$enable_debug_fortran" = yes; then
 			  FFLAGS=" +Z +DAportable -Dhpux"
-		  fi
+			 else
+		      FFLAGS="+O2 +Z +DAportable -Dhpux"
+		   fi
 			  FLIBS="-ldld -lnsl -lU77 -lm"
     #do not call AC_F77_LIBRARY_LDFLAGS because if assumes PA2.0 while Scilab is built with 
     #DAportable=PA1.1
@@ -409,13 +429,14 @@ AM_CONDITIONAL(IS_MIPS_SGI_IRIX, test -n "$MIPS_SGI_IRIX")
 
 if test "$CC" = "gcc"; then
    ## With GNU Compiler
-   if test "$enable_debug" != yes; then 
-	  CFLAGS="$CFLAGS  -DNDEBUG" 
+   if test "$enable_debug_C" = yes; then
+	  CFLAGS="$CFLAGS -Wformat -Wshadow -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations -g -Wall "
 	  # used to be -O
 	  # -D_FORTIFY_SOURCE=2
    else
-	  CFLAGS="$CFLAGS -Wformat -Wshadow -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations -g -Wall "
+	  CFLAGS="$CFLAGS  -DNDEBUG" 
    fi
+
    case "$host" in
    # Linux sparc | Linux, old binary format a.out (NO LONGER SUPPORTED)
 	 sparc-*-linux-gnu|*-pc-linux-gnuaout)
@@ -435,10 +456,10 @@ if test "$CC" = "gcc"; then
 		CFLAGS="$CFLAGS -D_GNU_SOURCE -Dlinux -fwritable-strings"
 	;;
 	 *-*-solaris*)
-	    if test "$enable_debug" != yes; then 
-			 CFLAGS="-O2 -DNDEBUG -DSVR4 -DSYSV -Dsolaris"
-		else
+        if test "$enable_debug_C" = yes; then
 			 CFLAGS="$CFLAGS -DSVR4 -DSYSV -Dsolaris"
+		else
+			 CFLAGS="-O2 -DNDEBUG -DSVR4 -DSYSV -Dsolaris"
 		fi
 	;;
    *-*-freebsd*)
@@ -450,10 +471,10 @@ if test "$CC" = "gcc"; then
 
 	;;
   *-*-cygwin* )
-     if test "$enable_debug" != yes; then 
-	 	 CFLAGS="-O2 -DNDEBUG -mieee-fp "
-	 else
+     if test "$enable_debug_C" = yes; then
 	 	 CFLAGS="$CFLAGS -mieee-fp "
+	 else
+	 	 CFLAGS="-O2 -DNDEBUG -mieee-fp "
 	 fi
 	;;
    *-*-mingw32*)
@@ -461,10 +482,10 @@ if test "$CC" = "gcc"; then
 	;;
 
   *-*-darwin*)
-     if test "$enable_debug" != yes; then 
-	      CFLAGS=" -O2 -DNDEBUG -no-cpp-precomp -I/sw/include -L/sw/lib"
-	 else
+     if test "$enable_debug_C" = yes; then
 	      CFLAGS=" $CFLAGS -I/sw/include -L/sw/lib"
+	 else
+	      CFLAGS=" -O2 -DNDEBUG -no-cpp-precomp -I/sw/include -L/sw/lib"
 	 fi
      LDFLAGS="$LDFLAGS -L/sw/lib"
 	;;
@@ -473,11 +494,10 @@ esac
 else
 
 		## CC compiler (not GCC)
-		if test "$enable_debug" != yes; then 
-		     CFLAGS="$CFLAGS -DNDEBUG" 
-			 # used to be -O
-		else
+        if test "$enable_debug_C" = yes; then 
 		     CFLAGS="$CFLAGS -g"
+		else
+		     CFLAGS="$CFLAGS -DNDEBUG"
 		fi
 
 case "$host" in
@@ -500,7 +520,7 @@ case "$host" in
 	CFLAGS="$CFLAGS -DSYSV -Dhpux"
   ;;
   *-*-hpux10.*) # HP 10
-	if test "$enable_debug" = yes; then 
+    if test "$enable_debug_C" = yes; then 
 	  CFLAGS="$CFLAGS -DSYSV -Dhpux"
     else
 	  CFLAGS="$CFLAGS -DSYSV -Dhpux +Z +DAportable"
@@ -517,26 +537,6 @@ case "$host" in
 esac
 fi
 
-
-### TODO : a confirmer que c'st ok
-## On passe le flag directement pour ces fichiers
-#FFLAGS1=$FFLAGS
-#if test "$WITH_G77" = yes; then
-#  if test "$enable_debug" = yes; then   
-#    FFLAGS1=$FFLAGS
-#  else
-#    FFLAGS1=$FFLAGS_O0
-#  fi
-#fi
-
-### 
-#if test "$WITH_GFORTRAN" = yes; then
-#  if test "$enable_debug" = yes; then   
-#    FFLAGS1=$FFLAGS
-#  else
-#    FFLAGS1=$FFLAGS_O0
-#  fi
-#fi
 
 # flag for possible compilations in configure
 CFLAGS="$CFLAGS -I${SCIDIRFULL}/libs/MALLOC/includes/"
@@ -979,15 +979,13 @@ LT_INIT([shared static dlopen win32-dll])
 
 # Check to see if building shared libraries
 libtool_build_shared_libs='no'
-if test "$enable_shared" = 'yes'
-then
+if test "$enable_shared" = 'yes'; then 
   libtool_build_shared_libs='yes'
 fi
 
 # Check to see if building static libraries
 libtool_build_static_libs='no'
-if test "$enable_static" = 'yes'
-then
+if test "$enable_static" = 'yes'; then
   libtool_build_static_libs='yes'
 fi
 
@@ -1163,11 +1161,12 @@ echo "Host system type : $host"
 echo ""
 echo "                  Option                        Value"
 echo "-------------------------------------------------------------------------"
-echo "Shared libraries..		--enable-shared=$libtool_build_shared_libs	$libtool_build_shared_libs"
-echo "Static libraries..		--enable-static=$libtool_build_static_libs	$libtool_build_static_libs"
-echo "Module support....		--with-modules=$with_modules	$with_modules"
-echo "GNU ld............		--with-gnu-ld=$with_gnu_ld		$lt_cv_prog_gnu_ld"
-echo "Enable debug......		--enable-debug=$enable_debug	$enable_debug"
+echo "Shared libraries.....      --enable-shared=$libtool_build_shared_libs	$libtool_build_shared_libs"
+echo "Static libraries.....      --enable-static=$libtool_build_static_libs	$libtool_build_static_libs"
+echo "GNU ld...............      --with-gnu-ld=$with_gnu_ld		$lt_cv_prog_gnu_ld"
+echo "Enable debug ........      --enable-debug=$enable_debug	$enable_debug"
+echo "Enable debug C/C++...      --enable-debug-C=$enable_debug_C	$enable_debug_C"
+echo "Enable debug Fortran.      --enable-debug-fortran=$enable_debug_fortran	$enable_debug_fortran"
 echo ""
 echo "Compiler Configuration:"
 echo "Intel (--with-intelcompilers) .... :		$with_intelcompilers"
