@@ -49,7 +49,6 @@ BOOL LoadFFTWLibrary(char *libraryname)
 /*-----------------------------------------------------------------------------------*/
 BOOL DisposeFFTWLibrary(void)
 {
-	BOOL fFreeResult;
 	BOOL bOK=FALSE;
 
 	if (hinstLib)
