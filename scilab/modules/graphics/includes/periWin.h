@@ -58,15 +58,13 @@ void C2F(xgetmark)( integer * verbose,  integer *symb, integer * narg, double * 
  extern void getcolordef( integer * screenc ) ;
  extern void setcolordef( integer   screenc ) ;
 
- extern int SwitchWindow( integer * intnum ) ;
+extern int SwitchWindow( integer * intnum ) ;
 
  void C2F(getwins)( integer * Num, integer Ids[] , integer * flag) ;
 
  void wininfo(char *fmt,...) ;
 
 void deletePoints( void ) ;
-
-void SetGHdc(HDC lhdc,int width,int height);
 
 /*-------------------------------------------------------------------------------*/
 int   MaybeSetWinhdc( void ) ;
