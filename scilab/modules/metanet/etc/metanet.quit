@@ -3,10 +3,10 @@
 // of a scilab session for metanet module
 // Copyright INRIA 2006
 // ====================================================================
-// delete help chapter
-exec(SCI+'/modules/metanet/help/'+getlanguage()+'/removechapter.sce');
-// ====================================================================
  if exists('ge_check_before_quit') then
    ge_check_before_quit()
  end
+// ====================================================================
+// delete help chapter
+del_module_help_chapter('metanet');
 // ====================================================================

@@ -4,7 +4,7 @@
 // Copyright INRIA 2007
 // Allan CORNET
 // ====================================================================
-path = SCI+'/modules/tfds/help/'+getlanguage();
+path = SCI+'/modules/tfds/help/'+getlanguage('LANGUAGE_DEFAULT');
 add_help_chapter("Tools For Dynamical Systems",path);
 clear path add_help_chapter;
 // ====================================================================

@@ -56,6 +56,14 @@ PWD = getcwd()
 global demolist
 demolist=[];
 
+// Set LANGUAGE  ======================================================
+// used mainly for on-line help
+args=sciargs(); larg=find(args=="-l")
+if larg<>[] & larg<=size(args,"*") then
+  L=args(larg+1);
+  setlanguage(L);
+end
+clear larg 
 // loads modules ======================================================
 modules=getmodules();
 index=size(modules);
@@ -65,15 +73,6 @@ for i=1:index(1) do
 end  
 
 clear stripblanks modules index i add_demo
-
-// Set LANGUAGE  ======================================================
-// used mainly for on-line help
-args=sciargs(); larg=find(args=="-l")
-if larg<>[] & larg<=size(args,"*") then
-  L=args(larg+1);
-  setlanguage(L);
-end
-clear larg 
 // Create some configuration variables ================================
 home=getenv('HOME',SCI);
 if MSDOS then

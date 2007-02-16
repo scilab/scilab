@@ -4,7 +4,7 @@
 // Copyright INRIA 2007
 // Allan CORNET
 // ====================================================================
-path = SCI+'/modules/data_structures/help/'+getlanguage();
+path = SCI+'/modules/data_structures/help/'+getlanguage('LANGUAGE_DEFAULT');
 add_help_chapter("Data Structures",path);
 clear path add_help_chapter;
 // ====================================================================

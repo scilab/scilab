@@ -1,8 +1,8 @@
 // ====================================================================
 // This file contains command to be executed at the end 
-// of a scilab session for sound module
+// of a scilab session for helptools module
 // Copyright INRIA 2006
 // ====================================================================
 // delete help chapter
-exec(SCI+'/modules/helptools/help/'+getlanguage()+'/removechapter.sce');
+del_module_help_chapter('helptools');
 // ====================================================================

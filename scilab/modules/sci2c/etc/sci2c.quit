@@ -1,8 +1,8 @@
 // ====================================================================
 // This file contains command to be executed at the end 
-// of a scilab session for functions module
+// of a scilab session for sci2c module
 // Copyright INRIA 2006
 // ====================================================================
 // delete help chapter
-//exec(SCI+'/modules/sci2c/help/'+getlanguage()+'/removechapter.sce');
+del_module_help_chapter('sci2c');
 // ====================================================================

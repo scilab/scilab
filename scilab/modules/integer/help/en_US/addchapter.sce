@@ -4,7 +4,7 @@
 // Copyright INRIA 2007
 // Allan CORNET
 // ====================================================================
-path = SCI+'/modules/integer/help/'+getlanguage();
+path = SCI+'/modules/integer/help/'+getlanguage('LANGUAGE_DEFAULT');
 add_help_chapter("Integers",path);
 clear path add_help_chapter;
 // ====================================================================

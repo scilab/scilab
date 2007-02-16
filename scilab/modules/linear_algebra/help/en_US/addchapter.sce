@@ -4,7 +4,7 @@
 // Copyright INRIA 2007
 // Allan CORNET
 // ====================================================================
-path = SCI+'/modules/linear_algebra/help/'+getlanguage();
+path = SCI+'/modules/linear_algebra/help/'+getlanguage('LANGUAGE_DEFAULT');
 add_help_chapter("Linear Algebra",path);
 clear path add_help_chapter;
 // ====================================================================

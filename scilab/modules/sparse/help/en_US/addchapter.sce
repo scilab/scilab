@@ -4,7 +4,7 @@
 // Copyright INRIA 2007
 // Allan CORNET
 // ====================================================================
-path = SCI+'/modules/sparse/help/'+getlanguage();
+path = SCI+'/modules/sparse/help/'+getlanguage('LANGUAGE_DEFAULT');
 add_help_chapter("Sparses Matrix",path);
 clear path add_help_chapter;
 // ====================================================================

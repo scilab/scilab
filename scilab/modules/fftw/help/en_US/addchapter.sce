@@ -4,7 +4,7 @@
 // Copyright INRIA 2007
 // Allan CORNET
 // ====================================================================
-path = SCI+'/modules/fftw/help/'+getlanguage();
+path = SCI+'/modules/fftw/help/'+getlanguage('LANGUAGE_DEFAULT');
 add_help_chapter("FFTW",path);
 clear path add_help_chapter;
 // ====================================================================

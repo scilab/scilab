@@ -6,7 +6,7 @@
 if ( fftwlibraryisloaded() ) then
 
 // delete help chapter
-//exec(SCI+'/modules/fftw/help/'+getlanguage()+'/removechapter.sce');
+del_module_help_chapter('fftw');
 
 disposefftwlibrary();
 

@@ -4,7 +4,7 @@
 // Copyright INRIA 2007
 // Allan CORNET
 // ====================================================================
-path = SCI+'/modules/string/help/'+getlanguage();
+path = SCI+'/modules/string/help/'+getlanguage('LANGUAGE_DEFAULT');
 add_help_chapter("Strings",path);
 clear path add_help_chapter;
 // ====================================================================

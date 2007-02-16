@@ -4,5 +4,5 @@
 // Copyright INRIA 2006
 // ====================================================================
 // delete help chapter
-exec(SCI+'/modules/incremental_link/help/'+getlanguage()+'/removechapter.sce');
+del_module_help_chapter('incremental_link');
 // ====================================================================

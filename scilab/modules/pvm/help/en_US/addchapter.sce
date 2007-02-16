@@ -4,7 +4,7 @@
 // Copyright INRIA 2007
 // Allan CORNET
 // ====================================================================
-path = SCI+'/modules/pvm/help/'+getlanguage();
+path = SCI+'/modules/pvm/help/'+getlanguage('LANGUAGE_DEFAULT');
 add_help_chapter("PVM parallel Toolbox",path);
 clear path add_help_chapter;
 // ====================================================================

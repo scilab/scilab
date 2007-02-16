@@ -4,5 +4,5 @@
 // Copyright INRIA 2006
 // ====================================================================
 // delete help chapter
-exec(SCI+'/modules/localization/help/'+getlanguage()+'/removechapter.sce');
+del_module_help_chapter('localization');
 // ====================================================================

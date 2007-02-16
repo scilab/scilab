@@ -4,7 +4,7 @@
 // Copyright INRIA 2007
 // Allan CORNET
 // ====================================================================
-path = SCI+'/modules/special_functions/help/'+getlanguage();
+path = SCI+'/modules/special_functions/help/'+getlanguage('LANGUAGE_DEFAULT');
 add_help_chapter("Special Functions",path);
 clear path add_help_chapter;
 // ====================================================================

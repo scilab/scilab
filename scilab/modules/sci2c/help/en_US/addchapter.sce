@@ -4,7 +4,7 @@
 // Copyright INRIA 2007
 // Allan CORNET
 // ====================================================================
-path = SCI+'/modules/sci2c/help/'+getlanguage();
+path = SCI+'/modules/sci2c/help/'+getlanguage('LANGUAGE_DEFAULT');
 //add_help_chapter("Scilab to C language",path);
 clear path add_help_chapter;
 // ====================================================================
