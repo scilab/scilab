@@ -27,20 +27,20 @@ static char *getfilenamelanguagepref(void);
 /*-----------------------------------------------------------------------------------*/ 
 BOOL loadlanguagepref(void)
 {
-	#ifdef _MSC_VER
-		return loadlanguagepref_windows();
-	#else
-		return loadlanguagepref_linux();
-	#endif
+#ifdef _MSC_VER
+	return loadlanguagepref_windows();
+#else
+	return loadlanguagepref_linux();
+#endif
 }
 /*-----------------------------------------------------------------------------------*/ 
 BOOL savelanguagepref(void)
 {
-	#ifdef _MSC_VER
-		return savelanguagepref_windows();
-	#else
-		return savelanguagepref_linux();
-	#endif
+#ifdef _MSC_VER
+	return savelanguagepref_windows();
+#else
+	return savelanguagepref_linux();
+#endif
 }
 /*-----------------------------------------------------------------------------------*/ 
 #ifndef _MSC_VER
@@ -59,11 +59,10 @@ static BOOL loadlanguagepref_linux(void)
 		{
 			char *LANGUAGE=NULL;
 			char LINE[LINELENGTHMAX];
-			
-			LANGUAGE=(char*)MALLOC(sizeof(char)*LINELENGTHMAX);
-			fgets(LINE, LINELENGTHMAX, fileR) ;
-			strncpy(LANGUAGE,&LINE[strlen(TAGLANGUAGE)+1],strlen(LINE)-strlen(TAGLANGUAGE)-2);
 
+			LANGUAGE=(char*)MALLOC(sizeof(char)*LINELENGTHMAX);
+			fscanf(fileR, "%[^\n]", LINE); 
+			sscanf(&LINE[strlen(TAGLANGUAGE)+1],"%s",LANGUAGE);
 			setlanguage(LANGUAGE);
 
 			fclose(fileR);
@@ -94,10 +93,11 @@ static BOOL savelanguagepref_linux(void)
 			char LINE[LINELENGTHMAX];
 			char *LANGUAGE=NULL;
 			LANGUAGE=getlanguage();
-			sprintf(LINE,"%s=%s\n",TAGLANGUAGE,LANGUAGE);
+			sprintf(LINE,"%s=%s",TAGLANGUAGE,LANGUAGE);
 			fputs(LINE,fileW);
+			fputs("\n",fileW);
 			fclose(fileW);
-			
+
 			if (LANGUAGE){FREE(LANGUAGE);LANGUAGE=NULL;}
 			bOK=TRUE;
 		}
@@ -109,11 +109,11 @@ static BOOL savelanguagepref_linux(void)
 #ifndef _MSC_VER
 static char *getfilenamelanguagepref(void)
 {
-	#if _MSC_VER
-		#define namelanguagepref "\\language.ini"
-	#else
-		#define namelanguagepref "/.language"
-	#endif
+#if _MSC_VER
+#define namelanguagepref "\\language.ini"
+#else
+#define namelanguagepref "/.language"
+#endif
 
 	char *retFilename=NULL;
 	char *SCIHOME=NULL;
@@ -136,7 +136,7 @@ static BOOL loadlanguagepref_windows(void)
 	"Version" correspondant à la version de Scilab
 	*/
 	HKEY key;
-	
+
 	char Clef[LINELENGTHMAX];
 	int LanguageCode=0;
 
