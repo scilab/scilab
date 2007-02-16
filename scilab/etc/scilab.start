@@ -48,18 +48,8 @@ if verbose then
 end 
 clear verbose
 
-
 // Create some configuration variables ================================
 PWD = getcwd()
-
-// Set LANGUAGE  ======================================================
-// used mainly for on-line help
-args=sciargs(); larg=find(args=="-l")
-if larg<>[] & larg<=size(args,"*") then
-  L=args(larg+1);
-  setlanguage(L);
-end
-clear larg 
 
 // Define Initial demo tables  ========================================
 // demolist is a two column matrix of strings
@@ -76,6 +66,14 @@ end
 
 clear stripblanks modules index i add_demo
 
+// Set LANGUAGE  ======================================================
+// used mainly for on-line help
+args=sciargs(); larg=find(args=="-l")
+if larg<>[] & larg<=size(args,"*") then
+  L=args(larg+1);
+  setlanguage(L);
+end
+clear larg 
 // Create some configuration variables ================================
 home=getenv('HOME',SCI);
 if MSDOS then

@@ -12,12 +12,14 @@ function sciGUIhelp(key)
   update='0';
   
   sciGUI_init();
-  nch=eval(TCL_GetVar('sciGUITable(browsehelp,nchap)'));
-  if (size(%helps,1)~=nch) then	
+  // Reinitialize help index each call
+  //nch=eval(TCL_GetVar('sciGUITable(browsehelp,nchap)'));
+  //if (size(%helps,1)~=nch) then	
     rescan_helps()
     TCL_SetVar('sciGUITable(browsehelp,nchap)',string(size(%helps,1)));
     update='1';
-  end
+  //end
+  
   tmpDir=strsubst(TMPDIR,'\','/');
   if (argn(2)==0|key=='index') then
     TCL_EvalStr('sciGUIBrowseHelp -1 '+update+' ""'+tmpDir+'/browsehelp.txt"" """"');

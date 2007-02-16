@@ -2,9 +2,14 @@ function path=make_help_index()
 //we create a new index file each time to take into account dynamically
 //loaded toolboxes
 // Copyright INRIA   
- // update_scilab_help();
+  if MSDOS then
+    OSseparator='\';
+  else
+    OSseparator='/';
+  end
   global %helps
-  path=TMPDIR+"/index.htm";
+  path=TMPDIR+OSseparator+"index.htm";
+  
   i_lines=["<html>";
 	 "<head>";
 	 "  <meta http-equiv=""Content-Type"" content=""text/html; charset=ISO-8859-1"">";
@@ -15,14 +20,14 @@ function path=make_help_index()
   if %browsehelp == "Old Scilab Browser" then
   	// Scilab Browser
   	i_lines=[i_lines;
-  		"<BR><A HREF="""+%helps(:,1)+"/whatis.htm"">"+%helps(:,2)+"</A>";
+  		"<BR><A HREF="""+%helps(:,1)+OSseparator+"whatis.htm"">"+%helps(:,2)+"</A>";
  		"</body></html>"]
   	else
   			// Default Internet Browser IE,Mozilla, Opera,Nautilus
   			i_lines=[i_lines;
-			"<BR><A HREF=""file:///"+%helps(:,1)+"/whatis.htm"">"+%helps(:,2)+"</A>";
+			"<BR><A HREF=""file:///"+%helps(:,1)+OSseparator+"whatis.htm"">"+%helps(:,2)+"</A>";
 			"</body></html>"]
   	end
-  clear %browsehelp	
+  clear %browsehelp	OSseparator
   mputl(i_lines,path)
 endfunction

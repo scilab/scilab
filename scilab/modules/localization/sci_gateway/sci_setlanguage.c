@@ -37,12 +37,16 @@ int C2F(sci_setlanguage) _PARAMS((char *fname,unsigned long fname_len))
 		}
 		else
 		{
-		/*	#define UPDATESCILABHELPMACRO "update_scilab_help();" 
-			integer ierr ;
-			integer seq = 1 ;
-			int macroCallLength = (int)strlen(UPDATESCILABHELPMACRO);
+			/* Update Scilab help index */
+			/* to move in helptools */
+			{
+				#define UPDATESCILABHELPMACRO "try update_scilab_help();catch end;" 
+				integer ierr ;
+				integer seq = 1 ;
+				int macroCallLength = (int)strlen(UPDATESCILABHELPMACRO);
 
-			C2F(syncexec)(UPDATESCILABHELPMACRO,&macroCallLength,&ierr,&seq, macroCallLength);*/
+				C2F(syncexec)(UPDATESCILABHELPMACRO,&macroCallLength,&ierr,&seq, macroCallLength);
+			}
 
 			CreateVar(Rhs+1, "b", &n1,&n1,&l1);
 			*istk(l1)=(int)(TRUE);
