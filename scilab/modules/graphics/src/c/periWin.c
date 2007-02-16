@@ -375,9 +375,7 @@ void  ReleaseWinHdc()
  * printers or memory hdc 
  ***************************/
 
-void SetGHdc(lhdc,width,height)
-     HDC lhdc;
-     int width,height;
+void SetGHdc(HDC lhdc,int width,int height)
 {
   if ( lhdc != (HDC) 0)
     {

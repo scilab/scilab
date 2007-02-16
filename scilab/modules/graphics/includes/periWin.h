@@ -66,7 +66,7 @@ void C2F(xgetmark)( integer * verbose,  integer *symb, integer * narg, double * 
 
 void deletePoints( void ) ;
 
-void SetGHdc(lhdc,width,height) ;
+void SetGHdc(HDC lhdc,int width,int height);
 
 /*-------------------------------------------------------------------------------*/
 int   MaybeSetWinhdc( void ) ;
