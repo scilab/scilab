@@ -4,12 +4,7 @@ global %helps
 modules=getmodules();
 index=size(modules);
 for i=1:index(1) do 
-  path = SCI+"/modules/"+modules(i)+"/help/"+getlanguage();
-  files_htm=dir(path+'/*.htm');
-  if (files_htm(2) <> []) then
-    exec(path+"/addchapter.sce",-1);
-  end
-  clear path add_help_chapter;
+	add_module_help_chapter(modules(i));
 end
 RescanSciGUIHelp()
 

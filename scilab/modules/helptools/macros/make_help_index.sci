@@ -2,7 +2,7 @@ function path=make_help_index()
 //we create a new index file each time to take into account dynamically
 //loaded toolboxes
 // Copyright INRIA   
-  update_scilab_help();
+ // update_scilab_help();
   global %helps
   path=TMPDIR+"/index.htm";
   i_lines=["<html>";
