@@ -5,58 +5,6 @@
 #include "FTables.h"
 #include "link.h"
 
-static void Emptyfunc  __PARAMS((void)) {} ;
-
-/**************** fschur ***************/
-extern void C2F(folhp)(ARGS_fschur);
-extern void C2F(find)(ARGS_fschur);
-
-FTAB FTab_fschur[] =
-{
-	{"find", (voidf)  C2F(find)},
-	{"folhp", (voidf)  C2F(folhp)},
-	{(char *) 0, (voidf) 0}
-};
-/**************** schsel ***************/
-extern void C2F(sb02mv)(ARGS_schsel);
-extern void C2F(sb02mw)(ARGS_schsel);
-
-FTAB FTab_schsel[] =
-{
-	{"sb02mv", (voidf)  C2F(sb02mv)},
-	{"sb02mw", (voidf)  C2F(sb02mw)},
-	{(char *) 0, (voidf) 0}
-};
-/**************** zchsel ***************/
-extern void C2F(zb02mv)(ARGS_zchsel);
-extern void C2F(zb02mw)(ARGS_zchsel);
-
-FTAB FTab_zchsel[] =
-{
-	{"zb02mv", (voidf)  C2F(zb02mv)},
-	{"zb02mw", (voidf)  C2F(zb02mw)},
-	{(char *) 0, (voidf) 0}
-};
-/**************** gshsel ***************/
-extern void C2F(sb02ow)(ARGS_gshsel);
-extern void C2F(sb02ox)(ARGS_gshsel);
-
-FTAB FTab_gshsel[] =
-{
-	{"sb02ow", (voidf)  C2F(sb02ow)},
-	{"sb02ox", (voidf)  C2F(sb02ox)},
-	{(char *) 0, (voidf) 0}
-};
-/**************** gzhsel ***************/
-extern void C2F(zb02ow)(ARGS_gzhsel);
-extern void C2F(zb02ox)(ARGS_gzhsel);
-
-FTAB FTab_gzhsel[] =
-{
-	{"zb02ow", (voidf)  C2F(zb02ow)},
-	{"zb02ox", (voidf)  C2F(zb02ox)},
-	{(char *) 0, (voidf) 0}
-};
 /***********************************
 * Search Table for fschur
 ***********************************/
@@ -116,6 +64,61 @@ typedef integer * (*gzhself)(ARGS_gzhsel);
 #define ARGS_gzhsel /**/
 typedef integer * (*gzhself)();
 #endif 
+
+/****************  ***************/
+static void Emptyfunc  __PARAMS((void)) {}
+
+/**************** fschur ***************/
+extern void C2F(folhp)(ARGS_fschur);
+extern void C2F(find)(ARGS_fschur);
+
+FTAB FTab_fschur[] =
+{
+	{"find", (voidf)  C2F(find)},
+	{"folhp", (voidf)  C2F(folhp)},
+	{(char *) 0, (voidf) 0}
+};
+/**************** schsel ***************/
+extern void C2F(sb02mv)(ARGS_schsel);
+extern void C2F(sb02mw)(ARGS_schsel);
+
+FTAB FTab_schsel[] =
+{
+	{"sb02mv", (voidf)  C2F(sb02mv)},
+	{"sb02mw", (voidf)  C2F(sb02mw)},
+	{(char *) 0, (voidf) 0}
+};
+/**************** zchsel ***************/
+extern void C2F(zb02mv)(ARGS_zchsel);
+extern void C2F(zb02mw)(ARGS_zchsel);
+
+FTAB FTab_zchsel[] =
+{
+	{"zb02mv", (voidf)  C2F(zb02mv)},
+	{"zb02mw", (voidf)  C2F(zb02mw)},
+	{(char *) 0, (voidf) 0}
+};
+/**************** gshsel ***************/
+extern void C2F(sb02ow)(ARGS_gshsel);
+extern void C2F(sb02ox)(ARGS_gshsel);
+
+FTAB FTab_gshsel[] =
+{
+	{"sb02ow", (voidf)  C2F(sb02ow)},
+	{"sb02ox", (voidf)  C2F(sb02ox)},
+	{(char *) 0, (voidf) 0}
+};
+/**************** gzhsel ***************/
+extern void C2F(zb02ow)(ARGS_gzhsel);
+extern void C2F(zb02ox)(ARGS_gzhsel);
+
+FTAB FTab_gzhsel[] =
+{
+	{"zb02ow", (voidf)  C2F(zb02ow)},
+	{"zb02ox", (voidf)  C2F(zb02ox)},
+	{(char *) 0, (voidf) 0}
+};
+
 
 /***********************************
 * Search Table for schur uses : schsel
