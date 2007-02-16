@@ -10,7 +10,7 @@
 
 typedef void (*voidf)();
 
-typedef struct { double r, i; } doublecmplx;
+typedef struct { double r, i; } doublecmplx; 
 
 typedef struct {
 	char *name;
