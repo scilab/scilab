@@ -187,10 +187,7 @@ int *n;
 
 
 /* filling right permutation */
-GetSigD(Matrix,indsigd,sigd)
-MatrixPtr Matrix;
-double sigd[];
-int indsigd[];
+void GetSigD(MatrixPtr Matrix,int indsigd[],double sigd[])
 {
   int I,J,mc=0,last=0;
   int Size=Matrix->Size;
@@ -224,10 +221,7 @@ if (mc != 0)
 
 /* filling left permutation */
 
-GetSigG(Matrix,indsigg,sigg)
-MatrixPtr Matrix;
-double sigg[];
-int indsigg[];
+void GetSigG(MatrixPtr Matrix,int indsigg[],double sigg[])
 {
   int Size=Matrix->Size;
   int I,J,mc=0,last=0;

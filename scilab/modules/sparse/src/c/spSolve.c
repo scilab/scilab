@@ -48,14 +48,8 @@
  */
 
 #define spINSIDE_SPARSE
-#include "spConfig.h"
-#include "spmatrix.h"
-#include "spDefs.h"
+#include "spSolve.h"
 
-static void SolveComplexMatrix();
-static void SolveComplexTransposedMatrix();
-
-
 /*
  *  SOLVE MATRIX EQUATION
  *
@@ -218,7 +212,7 @@ ElementPtr  pPivot;
 
 
 
-
+
 #if spCOMPLEX
 /*
  *  SOLVE COMPLEX MATRIX EQUATION
@@ -282,10 +276,7 @@ ElementPtr  pPivot;
  */
 
 static void
-SolveComplexMatrix( Matrix, RHS, Solution IMAG_VECTORS )
-
-MatrixPtr  Matrix;
-RealVector  RHS, Solution IMAG_VECTORS;
+SolveComplexMatrix( MatrixPtr Matrix, RealVector RHS, RealVector Solution IMAG_VECTORS )
 {
 register  ElementPtr  pElement;
 register  ComplexVector  Intermediate;
@@ -388,7 +379,7 @@ ComplexNumber  Temp;
 
 
 
-
+
 #if TRANSPOSE
 /*
  *  SOLVE TRANSPOSED MATRIX EQUATION
@@ -453,10 +444,7 @@ ComplexNumber  Temp;
 /*VARARGS3*/
 
 void
-spSolveTransposed( eMatrix, RHS, Solution IMAG_VECTORS )
-
-char *eMatrix;
-RealVector  RHS, Solution IMAG_VECTORS;
+spSolveTransposed( char *eMatrix, RealVector  RHS, RealVector  Solution IMAG_VECTORS )
 {
 MatrixPtr  Matrix = (MatrixPtr)eMatrix;
 register  ElementPtr  pElement;
@@ -535,7 +523,7 @@ RealNumber  Temp;
 
 
 
-
+
 #if TRANSPOSE AND spCOMPLEX
 /*
  *  SOLVE COMPLEX TRANSPOSED MATRIX EQUATION
@@ -602,10 +590,7 @@ RealNumber  Temp;
  */
 
 static void
-SolveComplexTransposedMatrix(Matrix, RHS, Solution IMAG_VECTORS )
-
-MatrixPtr  Matrix;
-RealVector  RHS, Solution IMAG_VECTORS;
+SolveComplexTransposedMatrix(MatrixPtr Matrix, RealVector RHS, RealVector Solution IMAG_VECTORS )
 {
 register  ElementPtr  pElement;
 register  ComplexVector  Intermediate;

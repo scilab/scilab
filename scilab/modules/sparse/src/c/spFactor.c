@@ -57,34 +57,10 @@
  */
 
 #define spINSIDE_SPARSE
-#include "spConfig.h"
-#include "spmatrix.h"
-#include "spDefs.h"
-#include "spmalloc.h"
+#include "spFactor.h"
 
-static FactorComplexMatrix();
-static CreateInternalVectors();
-static CountMarkowitz();
-static MarkowitzProducts();
-static ElementPtr SearchForPivot();
-static ElementPtr  SearchForSingleton();
-static ElementPtr  QuicklySearchDiagonal();
-static ElementPtr  SearchDiagonal();
-static ElementPtr  SearchEntireMatrix();
-static RealNumber FindLargestInCol();
-static RealNumber  FindBiggestInColExclude();
-static ExchangeRowsAndCols();
-static ExchangeColElements();
-static ExchangeRowElements();
-static RealRowColElimination();
-static ComplexRowColElimination();
-static UpdateMarkowitzNumbers();
-static ElementPtr CreateFillin();
-static MatrixIsSingular();
-static ZeroPivot();
-
-
-
+int spcRowExchange( MatrixPtr Matrix, int Row1, int Row2 );
+int spcColExchange( MatrixPtr Matrix, int Col1, int Col2 );
 
 /*
  *  ORDER AND FACTOR MATRIX
@@ -307,7 +283,7 @@ Done:
 
 
 
-
+
 /*
  *  FACTOR MATRIX
  *
@@ -440,7 +416,7 @@ RealNumber Mult;
 
 
 
-
+
 #if spCOMPLEX
 /*
  *  FACTOR COMPLEX MATRIX
@@ -461,9 +437,7 @@ RealNumber Mult;
  */
 
 static int
-FactorComplexMatrix( Matrix )
-
-MatrixPtr  Matrix;
+FactorComplexMatrix( MatrixPtr Matrix )
 {
 register  ElementPtr  pElement;
 register  ElementPtr  pColumn;
@@ -561,7 +535,6 @@ ComplexNumber Mult, Pivot;
 
 
 
-
 /*
  *  PARTITION MATRIX
  *
@@ -600,10 +573,7 @@ ComplexNumber Mult, Pivot;
  */
 
 void
-spPartition( eMatrix, Mode )
-
-char *eMatrix;
-int Mode;
+spPartition( char *eMatrix, int Mode )
 {
 MatrixPtr  Matrix = (MatrixPtr)eMatrix;
 register  ElementPtr  pElement, pColumn;
@@ -730,7 +700,7 @@ SPBOOLEAN *DoRealDirect, *DoCmplxDirect;
 
 
 
-
+
 /*
  *  CREATE INTERNAL VECTORS
  *
@@ -748,10 +718,8 @@ SPBOOLEAN *DoRealDirect, *DoCmplxDirect;
  *  spNO_MEMORY
  */
 
-static
-CreateInternalVectors( Matrix )
-
-MatrixPtr  Matrix;
+static int
+CreateInternalVectors( MatrixPtr Matrix )
 {
 int  Size;
 
@@ -809,7 +777,7 @@ int  Size;
 
 
 
-
+
 /*
  *  COUNT MARKOWITZ
  *
@@ -837,12 +805,7 @@ int  Size;
  *     The size of the matrix.
  */
 
-static
-CountMarkowitz( Matrix, RHS, Step )
-
-MatrixPtr Matrix;
-register RealVector  RHS;
-int Step;
+static int CountMarkowitz( MatrixPtr Matrix, register RealVector RHS, int Step )
 {
 register int  Count, I, Size = Matrix->Size;
 register ElementPtr  pElement;
@@ -918,7 +881,7 @@ int  ExtRow;
 
 
 
-
+
 /*
  *  MARKOWITZ PRODUCTS
  *
@@ -947,11 +910,8 @@ int  ExtRow;
  *      The size of the matrix.
  */
 
-static
-MarkowitzProducts( Matrix, Step )
-
-MatrixPtr Matrix;
-int Step;
+static int
+MarkowitzProducts( MatrixPtr Matrix, int Step )
 {
 register  int  I, *pMarkowitzRow, *pMarkowitzCol;
 register  long  Product, *pMarkowitzProduct;
@@ -994,7 +954,7 @@ double fProduct;
 
 
 
-
+
 /*
  *  SEARCH FOR BEST PIVOT
  *
@@ -1035,10 +995,7 @@ double fProduct;
  */
 
 static ElementPtr
-SearchForPivot( Matrix, Step, DiagPivoting )
-
-MatrixPtr Matrix;
-int Step, DiagPivoting;
+SearchForPivot( MatrixPtr Matrix, int Step, int DiagPivoting )
 {
 register ElementPtr  ChosenPivot;
 
@@ -1094,7 +1051,7 @@ register ElementPtr  ChosenPivot;
 
 
 
-
+
 /*
  *  SEARCH FOR SINGLETON TO USE AS PIVOT
  *
@@ -1132,10 +1089,7 @@ register ElementPtr  ChosenPivot;
  */
 
 static ElementPtr
-SearchForSingleton( Matrix, Step )
-
-MatrixPtr Matrix;
-int Step;
+SearchForSingleton( MatrixPtr Matrix, int Step )
 {
 register  ElementPtr  ChosenPivot;
 register  int  I;
@@ -1271,7 +1225,7 @@ RealNumber  PivotMag, FindBiggestInColExclude();
 
 
 
-
+
 #if DIAGONAL_PIVOTING
 #if MODIFIED_MARKOWITZ
 /*
@@ -1342,10 +1296,7 @@ RealNumber  PivotMag, FindBiggestInColExclude();
  */
 
 static ElementPtr
-QuicklySearchDiagonal( Matrix, Step )
-
-MatrixPtr Matrix;
-int Step;
+QuicklySearchDiagonal( MatrixPtr Matrix, int Step )
 {
 register long  MinMarkowitzProduct, *pMarkowitzProduct;
 register  ElementPtr  pDiag, pOtherInRow, pOtherInCol;
@@ -1488,7 +1439,7 @@ RealNumber  FindBiggestInColExclude();
 
 
 
-
+
 #else /* Not MODIFIED_MARKOWITZ */
 /*
  *  QUICK SEARCH OF DIAGONAL FOR PIVOT WITH CONVENTIONAL MARKOWITZ
@@ -1541,10 +1492,7 @@ RealNumber  FindBiggestInColExclude();
  */
 
 static ElementPtr
-QuicklySearchDiagonal( Matrix, Step )
-
-MatrixPtr Matrix;
-int Step;
+QuicklySearchDiagonal( MatrixPtr Matrix, int Step )
 {
 register long  MinMarkowitzProduct, *pMarkowitzProduct;
 register  ElementPtr  pDiag;
@@ -1654,7 +1602,7 @@ RealNumber  FindBiggestInColExclude();
 
 
 
-
+
 /*
  *  SEARCH DIAGONAL FOR PIVOT WITH MODIFIED MARKOWITZ CRITERION
  *
@@ -1706,10 +1654,7 @@ RealNumber  FindBiggestInColExclude();
  */
 
 static ElementPtr
-SearchDiagonal( Matrix, Step )
-
-MatrixPtr Matrix;
-register int Step;
+SearchDiagonal( MatrixPtr Matrix, register int Step )
 {
 register  int  J;
 register long  MinMarkowitzProduct, *pMarkowitzProduct;
@@ -1778,7 +1723,7 @@ RealNumber  FindBiggestInColExclude();
 
 
 
-
+
 /*
  *  SEARCH ENTIRE MATRIX FOR BEST PIVOT
  *
@@ -1835,10 +1780,7 @@ RealNumber  FindBiggestInColExclude();
  */
 
 static ElementPtr
-SearchEntireMatrix( Matrix, Step )
-
-MatrixPtr Matrix;
-int Step;
+SearchEntireMatrix( MatrixPtr Matrix, int Step )
 {
 register  int  I, Size = Matrix->Size;
 register  ElementPtr  pElement;
@@ -1929,7 +1871,7 @@ RealNumber  FindLargestInCol();
 
 
 
-
+
 /*
  *  DETERMINE THE MAGNITUDE OF THE LARGEST ELEMENT IN A COLUMN
  *
@@ -1959,9 +1901,7 @@ RealNumber  FindLargestInCol();
  */
 
 static RealNumber
-FindLargestInCol( pElement )
-
-register  ElementPtr  pElement;
+FindLargestInCol( register  ElementPtr pElement )
 {
 RealNumber  Magnitude, Largest = 0.0;
 
@@ -1984,7 +1924,7 @@ RealNumber  Magnitude, Largest = 0.0;
 
 
 
-
+
 /*
  *  DETERMINE THE MAGNITUDE OF THE LARGEST ELEMENT IN A COLUMN
  *  EXCLUDING AN ELEMENT
@@ -2025,11 +1965,7 @@ RealNumber  Magnitude, Largest = 0.0;
  */
 
 static RealNumber
-FindBiggestInColExclude( Matrix, pElement, Step )
-
-MatrixPtr Matrix;
-register  ElementPtr  pElement;
-register  int Step;
+FindBiggestInColExclude( MatrixPtr Matrix, register  ElementPtr pElement, register  int Step )
 {
 register  int  Row;
 int  Col;
@@ -2069,7 +2005,7 @@ RealNumber  Largest, Magnitude;
 
 
 
-
+
 /*
  *  EXCHANGE ROWS
  *
@@ -2099,10 +2035,7 @@ RealNumber  Largest, Magnitude;
  *      Pointer to the element in Row2 to be exchanged.
  */
 
-spcRowExchange( Matrix, Row1, Row2 )
-
-MatrixPtr Matrix;
-int  Row1, Row2;
+int spcRowExchange( MatrixPtr Matrix, int Row1, int Row2 )
 {
 register  ElementPtr  Row1Ptr, Row2Ptr;
 int  Column;
@@ -2170,7 +2103,7 @@ ElementPtr  Element1, Element2;
 
 
 
-
+
 /*
  *  EXCHANGE COLUMNS
  *
@@ -2200,10 +2133,7 @@ ElementPtr  Element1, Element2;
  *      Pointer to the element in Col2 to be exchanged.
  */
 
-spcColExchange( Matrix, Col1, Col2 )
-
-MatrixPtr Matrix;
-int  Col1, Col2;
+int spcColExchange( MatrixPtr Matrix, int Col1, int Col2 )
 {
 register  ElementPtr  Col1Ptr, Col2Ptr;
 int  Row;
@@ -2269,7 +2199,7 @@ ElementPtr  Element1, Element2;
 
 
 
-
+
 /*
  *  EXCHANGE ROWS AND COLUMNS
  *
@@ -2301,12 +2231,8 @@ ElementPtr  Element1, Element2;
  *      of the reduced submatrix.
  */
 
-static
-ExchangeRowsAndCols( Matrix, pPivot, Step )
-
-MatrixPtr Matrix;
-ElementPtr  pPivot;
-register int Step;
+static int
+ExchangeRowsAndCols( MatrixPtr Matrix,  ElementPtr pPivot, register int Step )
 {
 register  int   Row, Col;
 long  OldMarkowitzProd_Step, OldMarkowitzProd_Row, OldMarkowitzProd_Col;
@@ -2401,7 +2327,7 @@ ElementPtr spcFindElementInCol();
 
 
 
-
+
 /*
  *  EXCHANGE TWO ELEMENTS IN A COLUMN
  *
@@ -2438,12 +2364,8 @@ ElementPtr spcFindElementInCol();
  *      Pointer used to traverse the column.
  */
 
-static
-ExchangeColElements( Matrix, Row1, Element1, Row2, Element2, Column )
-
-MatrixPtr Matrix;
-register  ElementPtr  Element1, Element2;
-int  Row1, Row2, Column;
+static int
+ExchangeColElements( MatrixPtr Matrix, int Row1, register  ElementPtr Element1, int Row2, register  ElementPtr Element2, int Column )
 {
 ElementPtr  *ElementAboveRow1, *ElementAboveRow2;
 ElementPtr  ElementBelowRow1, ElementBelowRow2;
@@ -2541,7 +2463,7 @@ register  ElementPtr  pElement;
 
 
 
-
+
 /*
  *  EXCHANGE TWO ELEMENTS IN A ROW
  *
@@ -2580,12 +2502,8 @@ register  ElementPtr  pElement;
  *      Pointer used to traverse the row.
  */
 
-static
-ExchangeRowElements( Matrix, Col1, Element1, Col2, Element2, Row )
-
-MatrixPtr Matrix;
-int  Col1, Col2, Row;
-register ElementPtr  Element1, Element2;
+static int 
+ExchangeRowElements( MatrixPtr Matrix, int Col1, register ElementPtr Element1, int Col2, register ElementPtr Element2, int Row )
 {
 ElementPtr  *ElementLeftOfCol1, *ElementLeftOfCol2;
 ElementPtr  ElementRightOfCol1, ElementRightOfCol2;
@@ -2687,7 +2605,7 @@ register   ElementPtr  pElement;
 
 
 
-
+
 /*
  *  PERFORM ROW AND COLUMN ELIMINATION ON REAL MATRIX
  *
@@ -2715,11 +2633,8 @@ register   ElementPtr  pElement;
  *  spNO_MEMORY
  */
 
-static
-RealRowColElimination( Matrix, pPivot )
-
-MatrixPtr Matrix;
-register  ElementPtr  pPivot;
+static int
+RealRowColElimination( MatrixPtr Matrix, register ElementPtr pPivot )
 {
 #if REAL
 register  ElementPtr  pSub;
@@ -2777,7 +2692,7 @@ register  ElementPtr  pLower, pUpper;
 
 
 
-
+
 /*
  *  PERFORM ROW AND COLUMN ELIMINATION ON COMPLEX MATRIX
  *
@@ -2805,11 +2720,8 @@ register  ElementPtr  pLower, pUpper;
  *  spNO_MEMORY
  */
 
-static
-ComplexRowColElimination( Matrix, pPivot )
-
-MatrixPtr Matrix;
-register  ElementPtr  pPivot;
+static int
+ComplexRowColElimination( MatrixPtr Matrix, register ElementPtr pPivot )
 {
 #if spCOMPLEX
 register  ElementPtr  pSub;
@@ -2864,7 +2776,7 @@ register  ElementPtr  pLower, pUpper;
 
 
 
-
+
 /*
  *  UPDATE MARKOWITZ NUMBERS
  *
@@ -2888,11 +2800,8 @@ register  ElementPtr  pLower, pUpper;
  *      Points to matrix element in lower triangular row.
  */
 
-static
-UpdateMarkowitzNumbers( Matrix, pPivot )
-
-MatrixPtr Matrix;
-ElementPtr  pPivot;
+static int
+UpdateMarkowitzNumbers( MatrixPtr Matrix, ElementPtr pPivot )
 {
 register  int  Row, Col;
 register  ElementPtr  ColPtr, RowPtr;
@@ -2946,7 +2855,7 @@ double Product;
 
 
 
-
+
 /*
  *  CREATE FILL-IN
  *
@@ -2977,11 +2886,7 @@ double Product;
  */
 
 static ElementPtr
-CreateFillin( Matrix, Row, Col )
-
-MatrixPtr Matrix;
-register int  Row;
-int  Col;
+CreateFillin( MatrixPtr Matrix, register int Row, int Col )
 {
 register  ElementPtr  pElement, *ppElementAbove;
 ElementPtr  spcCreateElement();
@@ -3021,7 +2926,7 @@ ElementPtr  spcCreateElement();
 
 
 
-
+
 /*
  *  ZERO PIVOT ENCOUNTERED
  *
@@ -3039,10 +2944,7 @@ ElementPtr  spcCreateElement();
  */
 
 static int
-MatrixIsSingular( Matrix, Step )
-
-MatrixPtr  Matrix;
-int  Step;
+MatrixIsSingular( MatrixPtr Matrix, int Step )
 {
 /* Begin `MatrixIsSingular'. */
 
@@ -3053,10 +2955,7 @@ int  Step;
 
 
 static int
-ZeroPivot( Matrix, Step )
-
-MatrixPtr  Matrix;
-int  Step;
+ZeroPivot( MatrixPtr Matrix, int Step )
 {
 /* Begin `ZeroPivot'. */
 
@@ -3071,7 +2970,7 @@ int  Step;
 
 
 #if ANNOTATE == FULL
-
+
 /*
  *
  *  WRITE STATUS
@@ -3079,7 +2978,7 @@ int  Step;
  *  Write a summary of important variables to standard output.
  */
 
-static
+static 
 WriteStatus( Matrix, Step )
 
 MatrixPtr Matrix;
