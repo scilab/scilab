@@ -27,6 +27,5 @@ int get_rotation_style_property( sciPointObj * pobj )
   {
     return sciReturnString( "multiple" ) ;
   }
-  return -1 ;
 }
 /*------------------------------------------------------------------------*/

@@ -23,6 +23,5 @@ int get_bar_width_property( sciPointObj * pobj )
     sciprint("bar_with property does not exist for this handle.\n");
     return -1 ;
   }
-  return -1 ;
 }
 /*------------------------------------------------------------------------*/

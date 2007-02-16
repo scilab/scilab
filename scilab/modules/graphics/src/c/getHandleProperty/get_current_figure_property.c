@@ -38,7 +38,6 @@ int get_current_figure_property( sciPointObj * pobj )
 #endif
   }
   
-  return -1 ;
 
 }
 /*-----------------------------------------------------------------------------------*/

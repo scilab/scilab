@@ -24,6 +24,5 @@ int get_default_axes_property( sciPointObj * pobj )
     sciprint("Default axes do not exist.");
     return -1;
   }
-  return -1 ;
 }
 /*-----------------------------------------------------------------------------------*/

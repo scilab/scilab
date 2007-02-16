@@ -16,7 +16,6 @@ int get_old_style_property( sciPointObj * pobj )
 {
   /* no more old style */
   return sciReturnString( "off" ) ;
-  return 0 ;
 }
 
 /*------------------------------------------------------------------------*/

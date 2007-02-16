@@ -24,6 +24,5 @@ int get_default_figure_property( sciPointObj * pobj )
     sciprint("Default figure does not exist.\n");
     return -1;
   }
-  return -1 ;
 }
 /*-----------------------------------------------------------------------------------*/

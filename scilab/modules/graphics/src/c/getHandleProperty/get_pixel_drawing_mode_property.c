@@ -26,7 +26,6 @@ int get_pixel_drawing_mode_property( sciPointObj * pobj )
     return -1 ;
   }
 
-  return 0 ;
 }
 
 /*------------------------------------------------------------------------*/
