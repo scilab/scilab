@@ -2,22 +2,15 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "machine.h"
 #include "MALLOC.h"
+#include "machine.h"
+#include "paths.h"
 
-
-extern void cerro();
+extern void cerro __PARAMS((char *str));
 
 static char str[80];
 
-/* NodesToPath converts a vector with node numbers into a path:
-   NODES = [Nn,...,N2,N1] =>
-   PATH = [A1,A2,...,An-1] with Ai = (Ni,Ni+1)
-   n = *psize + 1 
-*/
-void NodesToPath(nodes,p,psize,la,lp,ls)
-int *nodes,*psize,*la,*lp,*ls;
-int **p;
+void NodesToPath(int *nodes,int **p,int *psize,int *la,int *lp,int *ls)
 {
   int a,i,j,n1,n2;
   for (i = 1; i <= *psize; i++) {
@@ -37,14 +30,7 @@ int **p;
   }
 }
 
-/* prevn2p_ computes a path from node i to node j from a
-   vector describing the previous nodes in path:
-   node i belongs to path if pln[i] > 0 
-   pln[i] is then the previous node in the sequence 
-*/
-void C2F(prevn2p)(i,j,m,n,la,lp,ls,direct,pln,p,psize)
-int *i,*j,*m,*n,*la,*lp,*ls,*pln,*psize;
-int **p;
+void C2F(prevn2p)(int *i,int *j,int *m,int *n,int *la,int *lp,int *ls,int *direct,int *pln,int **p,int *psize)
 {
   int *nodes;
   int k,nn;
@@ -86,14 +72,7 @@ int **p;
   FREE(nodes);
 }
 
-/* ns2p_ converts a node set into a path:
-   NODES = [N1,N2,...,Nn] =>
-   PATH = [A1,A2,...,An-1] with Ai = (Ni,Ni+1)
-   *psize = *nsize - 1 
-*/
-void C2F(ns2p)(nodes,nsize,p,psize,la,lp,ls,n)
-int *nodes,*nsize,*psize,*la,*lp,*ls,*n;
-int **p;
+void C2F(ns2p)(int *nodes,int *nsize,int **p,int *psize,int *la,int *lp,int *ls,int *n)
 {
   int a,i,j,n1,n2;
   *psize = *nsize - 1;
@@ -129,14 +108,7 @@ int **p;
   }
 }
 
-/* p2ns_ converts a path into a node set:
-   PATH = [A1,A2,...,An] =>
-   NODES = [N1,N2,...,Nn+1] => with Ai = (Ni,Ni+1)
-   with *nsize = *psize + 1 
-*/
-void C2F(p2ns)(p,psize,nodes,nsize,la,lp,ls,direct,m,n)
-int *p,*psize,*nsize,*la,*lp,*ls,*direct,*m,*n;
-int **nodes;
+void C2F(p2ns)(int *p,int *psize,int **nodes,int *nsize,int *la,int *lp,int *ls,int *direct,int *m,int *n)
 {
   int ma,a,i,j,k,n1,n2;
   *nsize = *psize + 1;
@@ -214,12 +186,7 @@ int **nodes;
   }
 }
 
-/* edge2st_ computes a spanning tree (root = node 1) from 
-   an array alpha of connecting edge numbers */
-
-void C2F(edge2st)(n,alpha,tree,treesize)
-int *n,*alpha,*treesize;
-int **tree;
+void C2F(edge2st)(int *n,int *alpha,int **tree,int *treesize)
 {
   int i;
   *treesize = *n - 1;
@@ -236,12 +203,7 @@ int **tree;
   }
 }
 
-/* prevn2st_ computes a spanning tree (root = node i0) from
-   a vector nodes describing the previous nodes in tree */
-
-void C2F(prevn2st)(n,nodes,tree,treesize,la,lp,ls)
-int *n,*nodes,*treesize,*la,*lp,*ls;
-int **tree;
+void C2F(prevn2st)(int *n,int *nodes,int **tree,int *treesize,int *la,int *lp,int *ls)
 {
   int i,in,j,nt,indic;
   *treesize = *n - 1;

@@ -20,7 +20,7 @@
 #define chdir(x) _chdir(x)
 #endif
 
-#if defined(netbsd) || defined(freebsd)
+#if defined(netbsd) || defined(freebsd)|| defined(linux)
 #include <unistd.h>
 #endif
 

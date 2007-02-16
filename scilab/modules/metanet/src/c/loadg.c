@@ -13,6 +13,10 @@
 #include <direct.h> /*_getcwd _chdir*/
 #endif
 
+#if defined(netbsd) || defined(freebsd)|| defined(linux)
+#include <unistd.h>
+#endif
+
 #if (defined _MSC_VER)
 /** only used for x=dir[1024] **/
 #define  getwd(x) _getcwd(x,1024)
@@ -27,7 +31,7 @@
 
 extern char* my_basename();
 extern int CheckGraphName();
-extern void cerro();
+extern void cerro __PARAMS((char *str));
 extern char* dirname();
 extern char *StripGraph();
 

@@ -4,13 +4,13 @@
 #include "machine.h"
 #include "MALLOC.h"
 
-#ifdef _MSC_VER
 extern void cerro __PARAMS((char *str));
+
+#ifdef _MSC_VER
 extern int F2C(frmtrs) ();
 #endif
 
-void C2F(transc)(lp1,lpft,ls1,lsft,m,lsftdim,lpftdim,n)
-int *lp1,**lpft,*ls1,**lsft,*m,*lsftdim,*lpftdim,*n;
+void C2F(transc)(int *lp1,int **lpft,int *ls1,int **lsft,int *m,int *lsftdim,int *lpftdim,int *n)
 {
   int n1,sdim,mftdim;
   int *cfcl,*cfcp,*cw,*inf,nc,*nfcomp,*nn,*num,

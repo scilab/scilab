@@ -3,6 +3,7 @@
 /* INRIA 2006 */
 /*-----------------------------------------------------------------------------------*/ 
 #include <string.h>
+#include <stdlib.h>
 #include "MALLOC.h"
 #include "machine.h"
 #include "hashtable_metanet.h"
@@ -60,12 +61,12 @@ static int equalkeys_string(void *k1, void *k2)
 static int isprime(unsigned number)
 {
 	/* no even number will be passed */
-	unsigned div = 3;
+	unsigned div_ = 3;
 
-	while (div*div < number && number%div != 0)
-		div += 2;
+	while (div_*div_ < number && number%div_ != 0)
+		div_ += 2;
 
-	return number%div != 0;
+	return number%div_ != 0;
 }
 /*-----------------------------------------------------------------------------------*/ 
 int myhcreate(unsigned nel)
