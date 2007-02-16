@@ -13,6 +13,7 @@ typedef void (*ffevalf)(ARGS_ffeval);
 extern void C2F(parab)(ARGS_ffeval);
 extern void C2F(parabc)(ARGS_ffeval);
 void C2F(ffeval)(ARGS_ffeval);
+void C2F(setfeval)(char *name, int *rep);
 
 FTAB FTab_ffeval[] ={
 	{"parab", (voidf)  C2F(parab)},

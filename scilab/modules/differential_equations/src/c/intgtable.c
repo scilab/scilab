@@ -3,6 +3,8 @@
 /*-----------------------------------------------------------------------------------*/
 #include "FTables.h"
 
+#define ARGS_fintg double *
+
 /**************** fintg ***************/
 extern void C2F(intgex)(ARGS_fintg);
 double *C2F(fintg)(ARGS_fintg);
@@ -16,7 +18,6 @@ FTAB FTab_fintg[] ={
 * Search Table for intg 
 ***********************************/
 
-#define ARGS_fintg double *
 typedef double * (*fintgf)(ARGS_fintg);
 
 /***********************************

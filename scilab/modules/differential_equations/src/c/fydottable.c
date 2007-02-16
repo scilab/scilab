@@ -2,6 +2,17 @@
 /* INRIA */
 /*-----------------------------------------------------------------------------------*/
 #include "FTables.h"
+
+	/***********************************
+	* ode   (fydot and fjac ) 
+	***********************************/
+
+#define ARGS_fydot integer*,double *,double *,double *
+	typedef void (*fydotf)(ARGS_fydot);
+
+#define ARGS_fjac integer*,double *,double *,integer*,integer*,double*,integer*
+	typedef void (*fjacf)(ARGS_fjac);
+
 /**************** fydot ***************/
 extern void C2F(fex)(ARGS_fydot);
 extern void C2F(fex2)(ARGS_fydot);
@@ -24,16 +35,6 @@ FTAB FTab_fydot[] ={
 	{"lcomp", (voidf)  C2F(lcomp)},
 	{"loren", (voidf)  C2F(loren)},
 	{(char *) 0, (voidf) 0}};
-
-	/***********************************
-	* ode   (fydot and fjac ) 
-	***********************************/
-
-#define ARGS_fydot integer*,double *,double *,double *
-	typedef void (*fydotf)(ARGS_fydot);
-
-#define ARGS_fjac integer*,double *,double *,integer*,integer*,double*,integer*
-	typedef void (*fjacf)(ARGS_fjac);
 
 /**************** fjac ***************/
 extern void C2F(jex)(ARGS_fjac);
