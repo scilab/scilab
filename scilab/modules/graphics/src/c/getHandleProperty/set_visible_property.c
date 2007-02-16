@@ -36,6 +36,5 @@ int set_visible_property( sciPointObj * pobj, int stackPointer, int valueType, i
     sciprint("Value must be 'on' or 'off'.\n") ;
     return SET_PROPERTY_ERROR ;
   }
-  return SET_PROPERTY_ERROR ;
 }
 /*------------------------------------------------------------------------*/

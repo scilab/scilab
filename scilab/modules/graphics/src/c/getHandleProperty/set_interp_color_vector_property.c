@@ -44,7 +44,6 @@ int set_interp_color_vector_property( sciPointObj * pobj, int stackPointer, int 
     sciprint("Under interpolated color moden the column dimension of the color vector must match the number of points defining the line (which must be 3 or 4).\n") ;
     return SET_PROPERTY_ERROR ;
   }
-  return SET_PROPERTY_ERROR ;
 
 }
 /*------------------------------------------------------------------------*/

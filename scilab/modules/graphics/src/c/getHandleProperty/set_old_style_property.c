@@ -37,6 +37,5 @@ int set_old_style_property( sciPointObj * pobj, int stackPointer, int valueType,
     sciprint("old_style must be 'on' or 'off'.\n");
     return SET_PROPERTY_ERROR ;
   }
-  return SET_PROPERTY_ERROR ;
 }
 /*------------------------------------------------------------------------*/

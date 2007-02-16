@@ -45,6 +45,5 @@ int set_immediate_drawing_property( sciPointObj * pobj, int stackPointer, int va
     return SET_PROPERTY_ERROR ;
   }
   
-  return SET_PROPERTY_ERROR ;
 }
 /*------------------------------------------------------------------------*/
