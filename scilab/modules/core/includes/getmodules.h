@@ -4,11 +4,11 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include "machine.h"
 /*-----------------------------------------------------------------------------------*/ 
-typedef struct 
+typedef struct MODULESLIST
 {
 	char **ModuleList;
 	int numberofModules;
-} MODULESLIST;
+};
 /*-----------------------------------------------------------------------------------*/ 
 struct MODULESLIST *getmodules(void);
 BOOL DisposeModulesInfo(void);
