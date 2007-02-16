@@ -2,9 +2,6 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#include <string.h>
-#include "machine.h"
-#include "stack-c.h"
 #include "gw_sparse.h"
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(intfull) _PARAMS((int *id));
