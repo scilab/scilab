@@ -476,26 +476,26 @@ void GetSEQUENCE(f,var,flag) FILE *f;   VARPTR var ;int flag;
 {  
   fprintf(stderr,"Wrong type in Get function \n");
   exit(1);
-};
+}
 
 void GetEMPTY(f,var,flag)  FILE *f;   VARPTR var ;int flag;
 {  
   fprintf(stderr,"Wrong type in Get function \n");
   exit(1);
-};
+}
 
 void GetWORK(f,var,flag)  FILE *f;   VARPTR var ;int flag;
 {  
   fprintf(stderr,"Wrong type in Get function \n");
   exit(1);
-};
+}
 
 
 void GetDIMFOREXT(f,var,flag)  FILE *f;   VARPTR var ;int flag;
 {  
   fprintf(stderr,"Wrong type in Get function \n");
   exit(1);
-};
+}
 
 /***************************************
  * Utility function for the Getfunctions

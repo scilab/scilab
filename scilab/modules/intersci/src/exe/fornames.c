@@ -140,29 +140,29 @@ void ForANY(VARPTR var){}
 
 void ForLIST(VARPTR var){} 
 
-void ForTLIST(VARPTR var){};
+void ForTLIST(VARPTR var){}
 
 
 void ForSEQUENCE(VARPTR var)
 {  
   fprintf(stderr,"Wrong type in For function \n");
-};
+}
 
 void ForEMPTY(VARPTR var)
 {  
   fprintf(stderr,"Wrong type in For function \n");
-};
+}
 
 
 void ForWORK(VARPTR var)
 {  
   fprintf(stderr,"Wrong type in For function \n");
-};
+}
 
 void ForDIMFOREXT(VARPTR var)
 {  
   
-};
+}
 
 typedef  struct  {
   int type;

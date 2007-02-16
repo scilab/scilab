@@ -309,26 +309,26 @@ void CheckSEQUENCE(f,var,flag) FILE *f;   VARPTR var ;int flag;
 {  
   fprintf(stderr,"Wrong type in Check function \n");
   exit(1);
-};
+}
 
 void CheckEMPTY(f,var,flag)  FILE *f;   VARPTR var ;int flag;
 {  
   fprintf(stderr,"Wrong type in Check function \n");
   exit(1);
-};
+}
 
 void CheckWORK(f,var,flag)  FILE *f;   VARPTR var ;int flag;
 {  
   fprintf(stderr,"Wrong type in Check function \n");
   exit(1);
-};
+}
 
 
 void CheckDIMFOREXT(f,var,flag)  FILE *f;   VARPTR var ;int flag;
 {  
   fprintf(stderr,"Wrong type in Check function \n");
   exit(1);
-};
+}
 
 
 void CheckOptDim(f,var,nel)
