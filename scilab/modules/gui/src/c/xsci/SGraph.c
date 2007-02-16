@@ -17,6 +17,7 @@
 #include "Xcall1.h" /* dr_ */
 #include "WindowList.h"
 #include "Actions.h" /* scig_resize ... */
+#include "periWin.h" /* DeleteSGWin */
 extern int StoreCommand  __PARAMS((char *command));
 
 
