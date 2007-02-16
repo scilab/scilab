@@ -60,6 +60,5 @@ int get_z_ticks_property( sciPointObj * pobj )
     return 0 ;
   }
 
-  return -1 ;
 }
 /*------------------------------------------------------------------------*/

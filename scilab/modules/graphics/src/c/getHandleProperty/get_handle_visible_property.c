@@ -27,7 +27,6 @@ int get_handle_visible_property( sciPointObj * pobj )
   {
     return sciReturnString( "off" ) ;
   }
-  return -1 ;
 
 }
 /*------------------------------------------------------------------------*/

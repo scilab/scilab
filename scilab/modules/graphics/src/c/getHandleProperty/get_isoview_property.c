@@ -27,6 +27,5 @@ int get_isoview_property( sciPointObj * pobj )
   {
     return sciReturnString( "off" ) ;
   }
-  return -1 ;
 }
 /*------------------------------------------------------------------------*/

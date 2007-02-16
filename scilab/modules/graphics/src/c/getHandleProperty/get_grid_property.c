@@ -36,6 +36,5 @@ int get_grid_property( sciPointObj * pobj )
     return sciReturnRowVector( grid, 2 ) ;
   }
 
-  return -1 ;
 }
 /*------------------------------------------------------------------------*/

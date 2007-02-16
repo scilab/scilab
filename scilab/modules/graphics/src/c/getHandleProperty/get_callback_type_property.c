@@ -42,6 +42,5 @@ int get_callback_type_property( sciPointObj * pobj )
     break;
   }
 
-  return -1 ;
 }
 /*------------------------------------------------------------------------*/

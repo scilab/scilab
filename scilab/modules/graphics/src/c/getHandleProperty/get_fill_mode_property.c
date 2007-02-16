@@ -21,6 +21,5 @@ int get_fill_mode_property( sciPointObj * pobj )
   {
     return sciReturnString( "off" ) ;
   }
-  return -1 ;
 }
 /*------------------------------------------------------------------------*/

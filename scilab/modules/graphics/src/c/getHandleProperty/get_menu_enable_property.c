@@ -27,6 +27,5 @@ int get_menu_enable_property( sciPointObj * pobj )
   {
     return sciReturnString( "off" ) ;
   }
-  return -1 ;
 }
 /*------------------------------------------------------------------------*/

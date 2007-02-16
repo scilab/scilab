@@ -27,6 +27,5 @@ int get_pixmap_property( sciPointObj * pobj )
   {
     return sciReturnString( "off" ) ;
   }
-  return -1 ;
 }
 /*------------------------------------------------------------------------*/

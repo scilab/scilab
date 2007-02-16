@@ -32,6 +32,5 @@ int get_x_shift_property( sciPointObj * pobj )
     sciprint( "x_shift property does not exist for this handle.\n") ;
     return -1 ;
   }
-  return -1 ;
 }
 /*------------------------------------------------------------------------*/

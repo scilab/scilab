@@ -21,6 +21,5 @@ int get_clip_box_property( sciPointObj * pobj )
   { 
     return sciReturnEmptyMatrix() ;
   }
-  return -1 ;
 }
 /*------------------------------------------------------------------------*/

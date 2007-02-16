@@ -28,7 +28,6 @@ int get_colored_property( sciPointObj * pobj )
   {	
     return sciReturnString( "off" ) ; 
   }
-  return -1 ;
 
 }
 /*------------------------------------------------------------------------*/

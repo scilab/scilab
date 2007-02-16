@@ -49,6 +49,5 @@ int get_tics_labels_property( sciPointObj * pobj )
     /* str has been previously set once */
     return sciReturnRowStringVector( pAXES_FEATURE(pobj)->str, pAXES_FEATURE (pobj)->nb_tics_labels ) ;
   }
-  return -1 ;
 }
 /*------------------------------------------------------------------------*/

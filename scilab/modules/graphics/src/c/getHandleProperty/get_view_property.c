@@ -29,6 +29,5 @@ int get_view_property( sciPointObj * pobj )
   {
     return sciReturnString( "2d" ) ;
   }
-  return -1 ;
 }
 /*------------------------------------------------------------------------*/

@@ -23,6 +23,5 @@ int get_polyline_style_property( sciPointObj * pobj )
     sciprint( "polyline_style does not exist for this handle.\n" ) ;
     return -1 ;
   }
-  return -1 ;
 }
 /*------------------------------------------------------------------------*/

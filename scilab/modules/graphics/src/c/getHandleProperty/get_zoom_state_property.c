@@ -27,6 +27,5 @@ int get_zoom_state_property( sciPointObj * pobj )
   else {
     return sciReturnString( "off" ) ;
   }
-  return -1 ;
 }
 /*------------------------------------------------------------------------*/

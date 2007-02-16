@@ -29,6 +29,5 @@ int get_tight_limits_property( sciPointObj * pobj )
     return sciReturnString( "off" ) ;
   }
 
-  return -1 ;
 }
 /*------------------------------------------------------------------------*/

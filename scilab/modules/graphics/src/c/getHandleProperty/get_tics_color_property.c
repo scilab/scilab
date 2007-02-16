@@ -28,7 +28,6 @@ int get_tics_color_property( sciPointObj * pobj )
     sciprint("tics_color property does not exist for this handle.\n");
     return -1;
   }
-  return -1 ;
 
 }
 /*------------------------------------------------------------------------*/

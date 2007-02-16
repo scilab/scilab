@@ -48,6 +48,5 @@ int get_children_property( sciPointObj * pobj )
 
     return status ;
   }
-  return 0 ;
 }
 /*-----------------------------------------------------------------------------------*/

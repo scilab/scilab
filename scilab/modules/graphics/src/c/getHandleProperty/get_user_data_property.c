@@ -29,7 +29,6 @@ int get_user_data_property( sciPointObj * pobj )
   {
     return sciReturnUserData( *user_data_ptr, *size_ptr ) ;
   }
-  return -1 ;
 
 }
 /*------------------------------------------------------------------------*/

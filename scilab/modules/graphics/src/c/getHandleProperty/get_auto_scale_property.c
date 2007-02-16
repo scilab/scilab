@@ -21,6 +21,6 @@ int get_auto_scale_property( sciPointObj * pobj )
   {
     return sciReturnString( "off" ) ;
   }
-  return -1 ;
+
 }
 /*------------------------------------------------------------------------*/

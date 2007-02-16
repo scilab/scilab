@@ -32,6 +32,5 @@ int get_surface_mode_property( sciPointObj * pobj )
     sciprint( "Surface_mode value can not be accessed with this object, use line_mode.\n" ) ;
     return -1;
   }
-  return -1 ;
 }
 /*------------------------------------------------------------------------*/

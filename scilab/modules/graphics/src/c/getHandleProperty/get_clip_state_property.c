@@ -25,6 +25,5 @@ int get_clip_state_property( sciPointObj * pobj )
   {   
     return sciReturnString( "off" ) ;
   }
-  return -1 ;
 }
 /*------------------------------------------------------------------------*/

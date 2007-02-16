@@ -28,6 +28,5 @@ int get_zoom_box_property( sciPointObj * pobj )
   {
     return sciReturnEmptyMatrix() ;
   }
-  return -1 ;
 }
 /*------------------------------------------------------------------------*/

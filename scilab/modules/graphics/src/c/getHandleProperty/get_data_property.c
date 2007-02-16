@@ -167,7 +167,6 @@ int get_data_property( sciPointObj * pobj )
 
     return status ;
   }
-  return -1 ;
   
 }
 /*------------------------------------------------------------------------*/

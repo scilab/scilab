@@ -29,6 +29,5 @@ int get_interp_color_vector_property( sciPointObj * pobj )
   {
     return sciReturnEmptyMatrix() ;
   }
-  return -1 ;
 }
 /*-----------------------------------------------------------------------------------*/

@@ -29,7 +29,6 @@ int get_tics_segment_property( sciPointObj * pobj )
   {	
     return sciReturnString( "off" ) ;
   }
-  return -1 ;
 
 }
 /*------------------------------------------------------------------------*/
