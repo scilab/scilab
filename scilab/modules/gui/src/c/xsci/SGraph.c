@@ -16,7 +16,7 @@
 #include "xs2file.h" /* for scig_toPs */
 #include "Xcall1.h" /* dr_ */
 #include "WindowList.h"
-
+#include "Actions.h" /* scig_resize ... */
 extern int StoreCommand  __PARAMS((char *command));
 
 
