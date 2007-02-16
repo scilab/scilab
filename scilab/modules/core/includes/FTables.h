@@ -18,7 +18,6 @@ typedef struct {
 } FTAB;
 
 #define MAXNAME 32
-static char buf[MAXNAME];
 
 voidf SetFunction(char *name, int *rep, FTAB *table);
 
