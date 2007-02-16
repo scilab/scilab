@@ -332,7 +332,6 @@ void xls_open(int *err, int *fd, char ***sst, int *ns, char ***Sheetnames, int**
     }
   }
 
-  return;
  Err2:
   *err=4; /* read problem */
   return;

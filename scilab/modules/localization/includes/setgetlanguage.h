@@ -7,12 +7,37 @@
 
 #include "machine.h"
 
-
+/** TODO
+ * @param lang
+ */
 BOOL setlanguage(char *lang);
+
+
+/** TODO
+ * @return
+ */
 char *getlanguage(void);
+
+/** TODO
+ * @return
+ */
 char *getlanguagealias(void);
+
+/** TODO
+ * @return
+ */
 int getcurrentlanguagecode(void);
+
+/** TODO
+ * @param code
+ * @return
+ */
 char *getlanguagefromcode(int code);
+
+/** TODO
+ * @param language
+ * @return
+ */
 int getcodefromlanguage(char *language);
 
 #endif /* __SETGETLANGUAGE_H__ */

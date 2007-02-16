@@ -11,10 +11,9 @@
 #include "sciprint.h"
 #include "link.h"
 
-static char buf[MAXNAME];
 
-static int SearchComp  __PARAMS((FTAB *Ftab, char *op, void (**realop) ( )));  
-static void Emptyfunc  __PARAMS((void)) {} ;
+static int SearchComp  __PARAMS((FTAB *Ftab, char *op, void (**realop) ( )));
+static void Emptyfunc  __PARAMS((void)) {}
 
 voidf GetFuncPtr(char *name, int n, FTAB *Table, voidf scifun, int *ifunc, int *lhs, int *rhs);
 voidf SetFunction  __PARAMS((char *name, int *rep, FTAB *table));  
@@ -27,8 +26,10 @@ voidf SetFunction(char *name, int *rep, FTAB *table)
 {
   void (*loc)();
   char *s;
+
   strncpy(buf,name,MAXNAME);
-  s=buf ; while ( *s != ' ' && *s != '\0') { s++;};
+  s=buf;
+  while ( *s != ' ' && *s != '\0') { s++;};
   *s= '\0';
   if ( SearchComp(table,buf,&loc) == OK) 
     {

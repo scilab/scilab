@@ -3,6 +3,6 @@
 
 #include "machine.h"
 
-extern void cerro __PARAMS((char *str));
+void cerro __PARAMS((char *str));
 
 #endif /*__CERRO_H__*/
