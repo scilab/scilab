@@ -667,9 +667,7 @@ void RedrawThumbs(ViewportWidget w)
 
 /* move the child of the viewport */
 
-static void MoveChild(viewp, x, y)
-     Widget viewp;
-     Position x, y;
+static void MoveChild(Widget viewp, Position x, Position y)
 {
   ViewportWidget w =   (ViewportWidget) viewp;
   register Widget child = w->viewport.child;
