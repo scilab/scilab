@@ -11,6 +11,7 @@
 #include "sciprint.h"
 #include "link.h"
 
+static char buf[MAXNAME];
 
 static int SearchComp  __PARAMS((FTAB *Ftab, char *op, void (**realop) ( )));  
 static void Emptyfunc  __PARAMS((void)) {} ;
