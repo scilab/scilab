@@ -14,7 +14,7 @@
 char *getLocalNamefromId(int n);
 char *getGlobalNamefromId(int n);
 /*-----------------------------------------------------------------------------------*/
-typedef struct VariableStruct
+struct VariableStruct
 {
  char *NameVariable;
  int SizeVariable;
