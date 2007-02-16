@@ -1113,6 +1113,7 @@ modules/randlib/Makefile
 modules/tclsci/Makefile
 modules/wintools/Makefile
 modules/core/Makefile
+modules/fftw/Makefile
 modules/scicos/Makefile
 modules/scicos/src/ocaml/Makefile
 modules/functions/Makefile

@@ -34,6 +34,7 @@ symbolic \
 tclsci \
 sparse \
 io \
+fftw \
 gui \
 graphics \
 wintools \

@@ -3,6 +3,9 @@
 #### Target ######
 target=$(datadir)/fftw
 
+pkglib_LTLIBRARIES = libscifftw.la
+
+FFTW_C_SOURCES = src/callfftw_Linux.c
 
 #### fftw : Conf files ####
 libscifftw_la_rootdir = $(target)
@@ -21,6 +24,8 @@ libscifftw_la_etc_DATA = etc/fftw.quit etc/fftw.start
 #### fftw : gateway declaration #### 
 libscifftw_la_sci_gatewaydir = $(target)/sci_gateway
 libscifftw_la_sci_gateway_DATA = sci_gateway/fftw
+
+libscifftw_la_SOURCES = $(FFTW_C_SOURCES)
 
 #### fftw : include files ####
 libscifftw_la_includedir=$(sciincludedir)/fftw
