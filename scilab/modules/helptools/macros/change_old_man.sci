@@ -3,8 +3,8 @@ function change_old_man()
   // HTML version located in TMPDIR/man<number>/ where <number> is the
   // index of the chapter in %help
   global %helps
-  global %modules_helps
-  %HELPS=[%modules_helps;%helps];
+  global %helps_modules
+  %HELPS=[%helps_modules;%helps];
   for k=1:size(%HELPS,1)
     flag1 = fileinfo(%HELPS(k,1)+"/whatis.htm");
     flag2 = fileinfo(%HELPS(k,1)+"/whatis");

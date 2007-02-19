@@ -10,8 +10,8 @@ function change_help_language(language)
 	// =========================================================================================
 	
 	global %helps;
-	global %modules_helps;
-	%HELPS=[%modules_helps;%helps];
+	global %helps_modules;
+	%HELPS=[%helps_modules;%helps];
 	// Vérification des paramètres
 	// -----------------------------------------------------------------------------------------
 	[lhs,rhs]=argn(0);

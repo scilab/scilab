@@ -1,8 +1,8 @@
 function path=gethelpfile(key)
 	// copy of gethelpfile contained in help.sci
 	global %helps %browsehelp
-	global %modules_helps
-  %HELPS=[%modules_helps;%helps];
+	global %helps_modules
+  %HELPS=[%helps_modules;%helps];
 	sep="/";
 	key=stripblanks(key)
 	l=length(key)
@@ -52,8 +52,8 @@ endfunction
 function path=genhelpfromfunc(key)
 	
 	global %helps
-	global %modules_helps
-  %HELPS=[%modules_helps;%helps];
+	global %helps_modules
+  %HELPS=[%helps_modules;%helps];
 	path=[]
 	if exists(key)==0 then return,end
 	execstr('%fun='+key)

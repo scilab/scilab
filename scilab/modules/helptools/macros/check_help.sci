@@ -32,8 +32,8 @@ function check_help(dirs)
 	if (rhs <= 0) | ((rhs == 1) & (dirs == [])) then
 		
 		global %helps;
-		global %modules_helps
-    %HELPS=[%modules_helps;%helps];
+		global %helps_modules
+    %HELPS=[%helps_modules;%helps];
     
 		dirs_to_build = %HELPS;
 		clear %HELPS;

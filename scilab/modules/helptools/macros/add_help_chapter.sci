@@ -24,7 +24,7 @@ function ok = add_help_chapter(helptitle,path,modulemode)
 	// =========================================================================================
 	
 	global %helps;
-	global %modules_helps;
+	global %helps_modules;
 	ok = %F;
 	
 	// Vérification des paramètres
@@ -64,7 +64,7 @@ function ok = add_help_chapter(helptitle,path,modulemode)
 	// Vérification que le titre n'est pas déja présent dans %helps
 	// -----------------------------------------------------------------------------------------
 	if (modulemode) then
-	  k1 = find( %modules_helps(:,2) == helptitle);
+	  k1 = find( %helps_modules(:,2) == helptitle);
 	else
 	  k1 = find( %helps(:,2) == helptitle);
 	end
@@ -75,7 +75,7 @@ function ok = add_help_chapter(helptitle,path,modulemode)
 		
 		// Cas où le titre du chapitre n'est pas présent
 		if (modulemode) then
-		  %modules_helps=[%modules_helps;path,helptitle];
+		 %helps_modules=[%helps_modules;path,helptitle];
 		else
 		  %helps=[%helps;path,helptitle];
 		end
@@ -85,7 +85,7 @@ function ok = add_help_chapter(helptitle,path,modulemode)
 	
 	else
 	  if (modulemode) then
-	    k2 = find( %modules_helps(k1,1) == path );
+	    k2 = find( %helps_modules(k1,1) == path );
 	  else
 	    k2 = find( %helps(k1,1) == path );
 	  end
@@ -97,7 +97,7 @@ function ok = add_help_chapter(helptitle,path,modulemode)
 			
 			for i=1:100
 			  if modulemode then
-			    k3 = find( %modules_helps(:,2) == helptitle+' ('+string(i)+')' );
+			    k3 = find( %helps_modules(:,2) == helptitle+' ('+string(i)+')' );
 			  else
 			    k3 = find( %helps(:,2) == helptitle+' ('+string(i)+')' );
 			  end
@@ -105,14 +105,14 @@ function ok = add_help_chapter(helptitle,path,modulemode)
 				if k3 == [] then
 					// On a pas trouvé de "title (i)"
 					if modulemode then
-					  k4 = find( %modules_helps(k3,1) == path );
+					  k4 = find( %helps_modules(k3,1) == path );
 					else
 					  k4 = find( %helps(k3,1) == path );
 					end
 					
 					if k4 == [] then
 					  if modulemode then
-					    %modules_helps=[%modules_helps;path,helptitle+' ('+string(i)+')'];
+					    %helps_modules=[%helps_modules;path,helptitle+' ('+string(i)+')'];
 					  else
 					    %helps=[%helps;path,helptitle+' ('+string(i)+')'];
 					  end
@@ -126,7 +126,7 @@ function ok = add_help_chapter(helptitle,path,modulemode)
 				else
 					// On a trouvé "title (i)"
 					if modulemode then
-					  if find( %modules_helps(k3,1) == path ) <> [] then
+					  if find( %helps_modules(k3,1) == path ) <> [] then
 						  return;
 					  end
 					else

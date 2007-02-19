@@ -93,8 +93,8 @@ endfunction
 function t=getlink(name,absolute_path,path)
 	
 	global %helps;
-	global %modules_helps;
-	%HELPS=[%modules_helps;%helps];
+	global %helps_modules;
+	%HELPS=[%helps_modules;%helps];
 	
 	name=stripblanks(name)
 	

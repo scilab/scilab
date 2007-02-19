@@ -18,7 +18,7 @@ function del_help_chapter(helptitle,modulemode)
 	// =========================================================================================
 	
 	global %helps;
-	global %modules_helps;
+	global %helps_modules;
 	
 	// Vérification des paramètres
 	// -----------------------------------------------------------------------------------------
@@ -31,9 +31,9 @@ function del_help_chapter(helptitle,modulemode)
 	// -----------------------------------------------------------------------------------------
 	
   if modulemode then
-    k1 = find( %modules_helps(:,2) == helptitle);
+    k1 = find( %helps_modules(:,2) == helptitle);
 	  if k1 <> [] then
-		  %modules_helps(k1,:) = [];
+		  %helps_modules(k1,:) = [];
 	  end
   else
     k1 = find( %helps(:,2) == helptitle);
@@ -49,9 +49,9 @@ function del_help_chapter(helptitle,modulemode)
 		
 		for i=1:100
 		  if modulemode then
-		    k2 = find( %modules_helps(:,2) == helptitle+' ('+string(i)+')' );
+		    k2 = find( %helps_modules(:,2) == helptitle+' ('+string(i)+')' );
 			  if k2 <> [] then
-				  %modules_helps(k2,:) = [];
+				  %helps_modules(k2,:) = [];
 			  end
 		  else
 		    k2 = find( %helps(:,2) == helptitle+' ('+string(i)+')' );

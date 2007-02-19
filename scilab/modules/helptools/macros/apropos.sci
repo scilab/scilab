@@ -11,7 +11,7 @@ function apropos(key)
 	change_old_man()
 	INDEX=make_help_index()
 	
-	global %helps %modules_helps INDEX
+	global %helps %helps_modules INDEX
 	global %browsehelp;
 	
 	[lhs,rhs]=argn(0);
@@ -37,8 +37,8 @@ function [provpath]=apropos_gener(key)
 	// generate html file for apropos key
 	// provpath is the path of generated html file
 	
-	global %helps %modules_helps INDEX
-	%HELPS=[%modules_helps,%helps]
+	global %helps %helps_modules INDEX
+	%HELPS=[%helps_modules,%helps]
 	
 	sep="/";
 	key1=key

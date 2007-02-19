@@ -11,8 +11,8 @@ function sciGUIhelp(key)
 //(at your option) any later version.
   update='0';
   global %helps;
-	global %modules_helps;
-  %HELPS=[%modules_helps;%helps];
+	global %helps_modules;
+  %HELPS=[%helps_modules;%helps];
   sciGUI_init();
   // Reinitialize help index each call
   //nch=eval(TCL_GetVar('sciGUITable(browsehelp,nchap)'));
@@ -40,8 +40,8 @@ endfunction
 
 function rescan_helps()
   global %helps;
-	global %modules_helps;
-  %HELPS=[%modules_helps;%helps];
+	global %helps_modules;
+  %HELPS=[%helps_modules;%helps];
   nfil=size(%HELPS,1);
   fid=mopen(TMPDIR+'/browsehelp.txt','w');
   cwindow=progressionbar('Parsing help files ...');

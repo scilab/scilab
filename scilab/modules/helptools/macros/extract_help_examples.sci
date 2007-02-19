@@ -7,8 +7,8 @@ function extract_help_examples(dirpaths)
 // given paths.
 
   global %helps
-  global %modules_helps
-  %HELPS=[%modules_helps;%helps];
+  global %helps_modules
+  %HELPS=[%helps_modules;%helps];
 
   logfile=mopen('extract_help_examples.log','w')
   lsave=lines();lines(0)

@@ -36,8 +36,8 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 	// =========================================================================================
 	
 	global %helps
-	global %modules_helps;
-	%HELPS=[%modules_helps;%helps];
+	global %helps_modules;
+	%HELPS=[%helps_modules;%helps];
 	
 	
 	//------------------------------------------------------------------------------------------

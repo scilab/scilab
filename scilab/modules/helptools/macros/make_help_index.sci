@@ -8,8 +8,8 @@ function path=make_help_index()
     OSseparator='/';
   end
   global %helps
-  global %modules_helps
-  %HELPS=[%modules_helps;%helps];
+  global %helps_modules
+  %HELPS=[%helps_modules;%helps];
   path=TMPDIR+OSseparator+"index.htm";
   
   i_lines=["<html>";

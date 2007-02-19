@@ -10,8 +10,8 @@ function clean_help(dirs)
 	// =========================================================================================
 	
 	global %helps
-	global %modules_helps
-  %HELPS=[%modules_helps;%helps];
+	global %helps_modules
+  %HELPS=[%helps_modules;%helps];
 	
 	ok = %F;
 	

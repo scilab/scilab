@@ -905,8 +905,8 @@ endfunction
 function t=gethtmlref(nm)
 
 global %helps
-global %modules_helps
-%HELPS=[%modules_helps;%helps];
+global %helps_modules
+%HELPS=[%helps_modules;%helps];
 nm=stripblanks(nm)
 if MSDOS then del='\',else del='/',end
 t=emptystr(nm)
