@@ -313,25 +313,9 @@ libsciwintools_la_sci_gateway_DATA = sci_gateway/wintools
 
 #### wintools : include files ####
 libsciwintools_la_includedir = $(sciincludedir)/wintools
-libsciwintools_la_include_HEADERS = includes/sci_dde.h \
-includes/intOEMconvert.h \
-includes/sci_clipboard.h \
-includes/sci_toprint.h \
-includes/sci_toolbar.h \
-includes/sci_printbox.h \
+libsciwintools_la_include_HEADERS = includes/gw_wintools.h \
 includes/interfdde.h \
-includes/TextToPrint.h \
-includes/sci_consoledos.h \
-includes/sci_mcisendstring.h \
-includes/sci_about.h \
-includes/intpathname.h \
-includes/gw_wintools.h \
-includes/sci_winopen.h \
-includes/sci_winqueryreg.h \
-includes/sci_setlanguagemenu.h \
-includes/sci_fileassociationbox.h \
-includes/sci_dos.h \
-includes/intihmcolor.h
+includes/TextToPrint.h
 
 
 # Where headers (*.h) are installed (usually /usr/include/scilab/)

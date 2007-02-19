@@ -2,7 +2,7 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "sci_toolbar.h"
+#include "gw_wintools.h"
 #include "MALLOC.h" /* MALLOC */
 /*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
@@ -38,7 +38,7 @@ int C2F(sci_hidetoolbar) _PARAMS((char *fname,unsigned long l))
  return 0;
 }
 /*-----------------------------------------------------------------------------------*/
-int C2F(sci_toolbar) _PARAMS((char *fname))
+int C2F(sci_toolbar) _PARAMS((char *fname,unsigned long l))
 {
 	static int l1,n1,m1;
 	char *Output=NULL;

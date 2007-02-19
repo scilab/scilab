@@ -2,7 +2,7 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "sci_toprint.h"
+#include "gw_wintools.h"
 #include "MALLOC.h" /* MALLOC */
 #include "sciprint.h"
 /*-----------------------------------------------------------------------------------*/
@@ -24,7 +24,7 @@ int C2F(sci_toprint) _PARAMS((char *fname,unsigned long l))
 	CheckRhs(1,2);
 	CheckLhs(0,1);
 
-	#if _MSC_VER
+#ifdef _MSC_VER
 	if (Rhs == 1)
 	{
 		if (GetType(1) == sci_strings)
@@ -194,9 +194,9 @@ int C2F(sci_toprint) _PARAMS((char *fname,unsigned long l))
 		}
 	}
 
-	#else
+#else
 		*paramoutINT=(int)(FALSE);
-	#endif
+#endif
 
 	n1=1;
 	CreateVarFromPtr(1, "b", &n1, &n1,&paramoutINT);

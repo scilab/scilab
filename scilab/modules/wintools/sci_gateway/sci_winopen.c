@@ -2,7 +2,7 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "sci_winopen.h"
+#include "gw_wintools.h"
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int name_len,long int nams_len)); 
 /* Open Web Browser*/

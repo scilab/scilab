@@ -2,13 +2,13 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "sci_dos.h"
+#include "gw_wintools.h"
 #include "MALLOC.h" /* MALLOC */
 #include "sciprint.h"
 /*-----------------------------------------------------------------------------------*/
 #define BUFSIZE 4096
 /*-----------------------------------------------------------------------------------*/
-#if _MSC_VER
+#ifdef _MSC_VER
 /* globals */
 typedef struct pipeinfo
 {
@@ -18,7 +18,7 @@ typedef struct pipeinfo
 } pipeinfo;
 #endif
 /*-----------------------------------------------------------------------------------*/
-#if _MSC_VER
+#ifdef _MSC_VER
 static DWORD WINAPI ReadFromPipe (LPVOID args);
 static int ClosePipeInfo (pipeinfo pipe);
 static int spawncommand(char *command,BOOL DetachProcess);
@@ -31,12 +31,12 @@ extern BOOL IsAFile(char *chainefichier);
 #endif
 
 /*-----------------------------------------------------------------------------------*/
-#if _MSC_VER
+#ifdef _MSC_VER
 static pipeinfo pipeOut= {INVALID_HANDLE_VALUE, NULL,0};
 static pipeinfo pipeErr= {INVALID_HANDLE_VALUE, NULL,0};
 #endif
 /*-----------------------------------------------------------------------------------*/
-#if _MSC_VER
+#ifdef _MSC_VER
 int C2F(sci_dos) _PARAMS((char *fname,unsigned long l))
 {
 	int m1,n1,l1;

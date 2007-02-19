@@ -2,8 +2,7 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "intihmcolor.h"
-
+#include "gw_wintools.h"
 #include "MALLOC.h" /* MALLOC */
 /*-----------------------------------------------------------------------------------*/
 extern int IsAScalar(int RhsNumber);

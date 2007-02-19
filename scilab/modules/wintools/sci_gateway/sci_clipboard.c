@@ -2,7 +2,7 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "sci_clipboard.h"
+#include "gw_wintools.h"
 /*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
   extern int InterfaceWindowsClipboard _PARAMS((char *fname,unsigned long l));

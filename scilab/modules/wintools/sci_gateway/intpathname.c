@@ -2,7 +2,7 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "intpathname.h"
+#include "gw_wintools.h"
 #include "MALLOC.h" /* MALLOC */
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_getlongpathname) _PARAMS((char *fname,unsigned long l))

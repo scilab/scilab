@@ -2,7 +2,7 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "intOEMconvert.h"
+#include "gw_wintools.h"
 #include "MALLOC.h" /* MALLOC */
 /*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
@@ -10,10 +10,9 @@
 #endif
 /*-----------------------------------------------------------------------------------*/
 
-int C2F(sci_oemtochar) _PARAMS((char *fname))
+int C2F(sci_oemtochar) _PARAMS((char *fname,unsigned long l))
 {
 	static int l1,n1,m1;
-	int bOK=FALSE;
 	char *Output=NULL;
 
 	CheckRhs(1,1);
@@ -54,10 +53,9 @@ int C2F(sci_oemtochar) _PARAMS((char *fname))
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
-int C2F(sci_chartooem) _PARAMS((char *fname))
+int C2F(sci_chartooem) _PARAMS((char *fname,unsigned long l))
 {
 	static int l1,n1,m1;
-	int bOK=FALSE;
 	char *Output=NULL;
 
 	CheckRhs(1,1);

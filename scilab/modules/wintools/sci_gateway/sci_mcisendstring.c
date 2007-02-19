@@ -2,7 +2,7 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "sci_mcisendstring.h"
+#include "gw_wintools.h"
 #include "MALLOC.h" /* MALLOC */
 /*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
@@ -10,9 +10,15 @@
 	#pragma comment(lib, "winmm.lib")
 #endif
 /*-----------------------------------------------------------------------------------*/
+#ifdef _MSC_VER
+int mcisendstringWindowsfunction _PARAMS((char *fname));
+#else
+int mcisendstringUnixfunction _PARAMS((char *fname));
+#endif
+/*-----------------------------------------------------------------------------------*/
 int C2F(sci_mcisendstring) _PARAMS((char *fname,unsigned long l))
 {
-#if _MSC_VER
+#ifdef _MSC_VER
 	mcisendstringWindowsfunction(fname);
 #else
 	mcisendstringUnixfunction(fname);
@@ -20,7 +26,7 @@ int C2F(sci_mcisendstring) _PARAMS((char *fname,unsigned long l))
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
-#if _MSC_VER
+#ifdef _MSC_VER
 int mcisendstringWindowsfunction _PARAMS((char *fname))
 {int m1,n1,l1;
 

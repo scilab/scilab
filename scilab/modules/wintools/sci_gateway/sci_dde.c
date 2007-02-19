@@ -2,7 +2,7 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "sci_dde.h"
+#include "gw_wintools.h"
 /*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
   extern int InterfaceWindowsDDEopen _PARAMS((char *fname));
