@@ -2,13 +2,9 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#include "machine.h"
-#include "stack-c.h"
-#include <string.h>
+#include "gw_elementaries_functions.h"
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(intimult) _PARAMS((int *id));
-/*-----------------------------------------------------------------------------------*/
-int C2F(sci_imult) _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_imult) _PARAMS((char *fname,unsigned long fname_len))
 {
