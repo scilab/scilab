@@ -2,12 +2,9 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#include "machine.h"
-#include "stack-c.h"
+#include "gw_differential_equations4.h"
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(int3d)();
-/*-----------------------------------------------------------------------------------*/
-int C2F(sci_int3d) _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_int3d) _PARAMS((char *fname,unsigned long fname_len))
 {

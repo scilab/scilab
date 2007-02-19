@@ -119,8 +119,7 @@ sci_gateway/fortran/Ex-bvode.f \
 sci_gateway/fortran/bbvode.f \
 sci_gateway/fortran/Ex-feval.f
 
-libscidifferential_equations_la_CFLAGS= 
-# -Iincludes/ 
+libscidifferential_equations_la_CFLAGS=  -Iincludes/ 
 #-Isrc/c/
 pkglib_LTLIBRARIES = libscidifferential_equations.la
 

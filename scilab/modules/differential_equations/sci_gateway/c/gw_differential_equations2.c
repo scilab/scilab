@@ -2,30 +2,9 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#if _MSC_VER
-#include <Windows.h>
-#include "ExceptionMessage.h"
-#endif
 
-#include <string.h>
+#include "gw_differential_equations2.h"
 
-#include "machine.h"
-#include "stack-c.h"
-#include "sciprint.h"
-
-typedef int (*Differential_Equations2_Interf) __PARAMS((char *fname,unsigned long l));
-
-typedef struct table_struct 
-{
-	Differential_Equations2_Interf f;    /** function **/
-	char *name;      /** its name **/
-} DifferentialEquations2Table;
-/*-----------------------------------------------------------------------------------*/
-extern int C2F(sciimpl) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(dassli) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(dasrti) _PARAMS((char *fname,unsigned long fname_len));
-/*-----------------------------------------------------------------------------------*/
-int C2F(gw_differential_equations2)(void);
 /*-----------------------------------------------------------------------------------*/
 static DifferentialEquations2Table Tab[]=
 {

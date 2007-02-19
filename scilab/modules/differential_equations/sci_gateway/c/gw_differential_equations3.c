@@ -2,24 +2,7 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#if _MSC_VER
-#include <Windows.h>
-#include "ExceptionMessage.h"
-#endif
-
-#include <string.h>
-
-#include "machine.h"
-#include "stack-c.h"
-#include "sciprint.h"
-
-typedef int (*Differential_Equations3_Interf) __PARAMS((char *fname,unsigned long l));
-
-typedef struct table_struct 
-{
-	Differential_Equations3_Interf f;    /** function **/
-	char *name;      /** its name **/
-} DifferentialEquations3Table;
+#include "gw_differential_equations3.h"
 /*-----------------------------------------------------------------------------------*/
 static int C2F(sci_odc) _PARAMS((char *fname,unsigned long l))
 {
@@ -27,8 +10,6 @@ static int C2F(sci_odc) _PARAMS((char *fname,unsigned long l))
 	C2F(sciodc)();
 	return 0;
 }
-/*-----------------------------------------------------------------------------------*/
-int C2F(gw_differential_equations3)(void);
 /*-----------------------------------------------------------------------------------*/
 static DifferentialEquations3Table Tab[]=
 {

@@ -2,28 +2,7 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#if _MSC_VER
-#include <Windows.h>
-#include "ExceptionMessage.h"
-#endif
-
-#include <string.h>
-
-#include "machine.h"
-#include "stack-c.h"
-#include "sciprint.h"
-
-typedef int (*Differential_Equations6_Interf) __PARAMS((char *fname,unsigned long fname_len));
-
-typedef struct table_struct 
-{
-	Differential_Equations6_Interf f;    /** function **/
-	char *name;      /** its name **/
-} DifferentialEquations6Table;
-/*-----------------------------------------------------------------------------------*/
-extern int C2F(scibvode) __PARAMS((char *fname,unsigned long fname_len));
-/*-----------------------------------------------------------------------------------*/
-int C2F(gw_differential_equations6)(void);
+#include "gw_differential_equations6.h"
 /*-----------------------------------------------------------------------------------*/
 static DifferentialEquations6Table Tab[]=
 {

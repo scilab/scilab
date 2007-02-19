@@ -2,12 +2,9 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#include "machine.h"
-#include "stack-c.h"
+#include "gw_differential_equations1.h"
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(feval)();
-/*-----------------------------------------------------------------------------------*/
-int C2F(sci_feval) _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_feval) _PARAMS((char *fname,unsigned long fname_len))
 {
