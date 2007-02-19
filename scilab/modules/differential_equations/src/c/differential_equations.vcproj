@@ -265,6 +265,30 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
+			<File
+				RelativePath="..\..\includes\gw_differential_equations1.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\gw_differential_equations2.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\gw_differential_equations3.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\gw_differential_equations4.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\gw_differential_equations5.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\gw_differential_equations6.h"
+				>
+			</File>
 		</Filter>
 		<File
 			RelativePath="..\..\sci_gateway\differential_equations"

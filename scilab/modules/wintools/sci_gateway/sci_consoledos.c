@@ -2,9 +2,14 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
+#include <string.h>
 #include "gw_wintools.h"
 #include "MALLOC.h" /* MALLOC */
 #include "sciprint.h"
+#ifdef _MSC_VER
+#include "WinConsole.h"
+#endif
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_consoledos) _PARAMS((char *fname,unsigned long l))
 {

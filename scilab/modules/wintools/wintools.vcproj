@@ -178,10 +178,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\DDE.h"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\gw_wintools.c"
 				>
 			</File>
@@ -270,6 +266,10 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
+			<File
+				RelativePath=".\src\DDE.h"
+				>
+			</File>
 			<File
 				RelativePath=".\includes\gw_wintools.h"
 				>
