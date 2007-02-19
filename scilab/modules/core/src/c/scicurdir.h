@@ -2,7 +2,8 @@
 /* INRIA 2007 */
 /* Sylvestre LEDRU */
 /*-----------------------------------------------------------------------------------*/
-
+#ifndef __SCICURDIR_H__
+#define __SCICURDIR_H__
 /*******************************
  * Changes scilab current directory 
  * @param path : the path where Scilab should go
@@ -18,3 +19,5 @@ int C2F(scichdir)(char *path,int *err);
  *******************************/
 int C2F(scigetcwd)(char **path,int *lpath,int *err);
 
+#endif /* __SCICURDIR_H__ */
+/*-----------------------------------------------------------------------------------*/
