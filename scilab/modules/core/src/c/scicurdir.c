@@ -34,13 +34,6 @@ int C2F(scichdir)(char *path,int *err)
 		sciprint("Can't go to directory %s \r\n", path); 
 		*err=1;
 	}
-	{
-
-		char cdir[FSIZE];
-		GetCurrentDirectory(FSIZE,cdir);
-		MessageBox(NULL,cdir," ",MB_OK);
-	}
-
 #endif
 	return 0;
 }
