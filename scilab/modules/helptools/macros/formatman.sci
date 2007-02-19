@@ -903,20 +903,22 @@ function t=xmlsubstituteforcdata(t)
 endfunction
 
 function t=gethtmlref(nm)
+
 global %helps
+global %modules_helps
+%HELPS=[%modules_helps;%helps];
 nm=stripblanks(nm)
 if MSDOS then del='\',else del='/',end
 t=emptystr(nm)
 ok=t==nm;
-nh=size(%helps,1)
+nh=size(%HELPS,1)
 k=0
 while ~and(ok)&k<nh
   k=k+1
   for l=1:size(nm,'*')
     if ~ok(l) then
-      //if find(part(mgetl(%helps(k,1)+del+'whatis'),1:length(nm(l)))==nm(l))<>[] then
-      if grep(mgetl(%helps(k,1)+del+'whatis.htm'),'>'+nm(l)+'<')<>[] then
-	t(l)=%helps(k,1)+del+nm(l)
+      if grep(mgetl(%HELPS(k,1)+del+'whatis.htm'),'>'+nm(l)+'<')<>[] then
+	t(l)=%HELPS(k,1)+del+nm(l)
 	ok(l)=%t
       end
     end

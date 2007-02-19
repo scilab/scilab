@@ -4,6 +4,6 @@
 // Copyright INRIA 2007
 // Allan CORNET
 // ====================================================================
-del_help_chapter("Fonctions speciales");
+del_help_chapter("Fonctions speciales",%T);
 clear del_help_chapter;
 // ==================================================================

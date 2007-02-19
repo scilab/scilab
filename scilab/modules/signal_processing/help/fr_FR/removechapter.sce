@@ -4,6 +4,6 @@
 // Copyright INRIA 2007
 // Allan CORNET
 // ====================================================================
-del_help_chapter("Traitement du Signal");
+del_help_chapter("Traitement du Signal",%T);
 clear del_help_chapter;
 // ====================================================================

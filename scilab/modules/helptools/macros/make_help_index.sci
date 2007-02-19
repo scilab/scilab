@@ -8,6 +8,8 @@ function path=make_help_index()
     OSseparator='/';
   end
   global %helps
+  global %modules_helps
+  %HELPS=[%modules_helps;%helps];
   path=TMPDIR+OSseparator+"index.htm";
   
   i_lines=["<html>";
@@ -20,12 +22,12 @@ function path=make_help_index()
   if %browsehelp == "Old Scilab Browser" then
   	// Scilab Browser
   	i_lines=[i_lines;
-  		"<BR><A HREF="""+%helps(:,1)+OSseparator+"whatis.htm"">"+%helps(:,2)+"</A>";
+  		"<BR><A HREF="""+%helps(:,1)+OSseparator+"whatis.htm"">"+%HELPS(:,2)+"</A>";
  		"</body></html>"]
   	else
   			// Default Internet Browser IE,Mozilla, Opera,Nautilus
   			i_lines=[i_lines;
-			"<BR><A HREF=""file:///"+%helps(:,1)+OSseparator+"whatis.htm"">"+%helps(:,2)+"</A>";
+			"<BR><A HREF=""file:///"+%helps(:,1)+OSseparator+"whatis.htm"">"+%HELPS(:,2)+"</A>";
 			"</body></html>"]
   	end
   clear %browsehelp	OSseparator

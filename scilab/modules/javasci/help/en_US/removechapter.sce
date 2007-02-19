@@ -4,6 +4,6 @@
 // Copyright INRIA 2007
 // Allan CORNET
 // ====================================================================
-del_help_chapter("Java Interface");
+del_help_chapter("Java Interface",%T);
 clear del_help_chapter;
 // ====================================================================

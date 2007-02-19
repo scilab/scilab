@@ -5,6 +5,6 @@
 // Allan CORNET
 // ====================================================================
 path = SCI+'/modules/double/help/'+getlanguage();
-//add_help_chapter("Doubles",path);
+//add_help_chapter("Doubles",path,%T);
 clear path add_help_chapter;
 // ====================================================================

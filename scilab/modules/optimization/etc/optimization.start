@@ -7,14 +7,14 @@ load('SCI/modules/optimization/macros/lib');
 // ====================================================================
 //add help chapter
 add_module_help_chapter('optimization');
-
+clear add_module_help_chapter;
+// ====================================================================
 //add demos
 path = get_absolute_file_path('optimization.start');
 path = getshortpathname(path);
 pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/optimization.dem',%f,%f);
 
 add_demo("Optimization and Simulation",pathdemos);
-
 
 clear path pathdemos get_absolute_file_path;
 // ====================================================================

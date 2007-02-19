@@ -5,6 +5,6 @@
 // Allan CORNET
 // ====================================================================
 path = SCI+'/modules/differential_equations/help/'+getlanguage('LANGUAGE_DEFAULT');
-add_help_chapter("Differential Equations",path);
+add_help_chapter("Differential Equations",path,%T);
 clear path add_help_chapter;
 // ====================================================================

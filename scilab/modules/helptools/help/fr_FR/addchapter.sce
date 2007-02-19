@@ -5,6 +5,6 @@
 // Allan CORNET
 // ====================================================================
 path = SCI+'/modules/helptools/help/'+getlanguage();
-add_help_chapter("Gestion de l''aide en ligne",path);
+add_help_chapter("Gestion de l''aide en ligne",path,%T);
 clear path add_help_chapter;
 // ====================================================================

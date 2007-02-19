@@ -5,6 +5,6 @@
 // Allan CORNET
 // ====================================================================
 path = SCI+'/modules/m2sci/help/'+getlanguage();
-add_help_chapter("Aide à la conversion Matlab vers Scilab",path);
+add_help_chapter("Aide à la conversion Matlab vers Scilab",path,%T);
 clear path add_help_chapter;
 // ====================================================================

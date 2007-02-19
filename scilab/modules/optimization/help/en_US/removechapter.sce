@@ -4,6 +4,6 @@
 // Copyright INRIA 2007
 // Allan CORNET
 // ====================================================================
-del_help_chapter("Optimization and Simulation");
+del_help_chapter("Optimization and Simulation",%T);
 clear del_help_chapter;
 // ====================================================================

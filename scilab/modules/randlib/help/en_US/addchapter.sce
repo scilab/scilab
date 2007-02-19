@@ -5,6 +5,6 @@
 // Allan CORNET
 // ====================================================================
 path = SCI+'/modules/randlib/help/'+getlanguage('LANGUAGE_DEFAULT');
-add_help_chapter("randlib",path);
+add_help_chapter("randlib",path,%T);
 clear path add_help_chapter;
 // ====================================================================

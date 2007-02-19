@@ -5,6 +5,6 @@
 // Allan CORNET
 // ====================================================================
 path = SCI+'/modules/fileio/help/'+getlanguage('LANGUAGE_DEFAULT');
-add_help_chapter("Input/Output functions [files]",path);
+add_help_chapter("Input/Output functions [files]",path,%T);
 clear path add_help_chapter;
 // ====================================================================

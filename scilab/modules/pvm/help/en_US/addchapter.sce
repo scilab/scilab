@@ -5,6 +5,6 @@
 // Allan CORNET
 // ====================================================================
 path = SCI+'/modules/pvm/help/'+getlanguage('LANGUAGE_DEFAULT');
-add_help_chapter("PVM parallel Toolbox",path);
+add_help_chapter("PVM parallel Toolbox",path,%T);
 clear path add_help_chapter;
 // ====================================================================

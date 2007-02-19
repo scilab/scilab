@@ -5,6 +5,6 @@
 // Allan CORNET
 // ====================================================================
 path = SCI+'/modules/statistics/help/'+getlanguage();
-add_help_chapter("Statistiques",path);
+add_help_chapter("Statistiques",path,%T);
 clear path add_help_chapter;
 // ====================================================================

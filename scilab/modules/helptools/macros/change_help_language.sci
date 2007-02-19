@@ -10,7 +10,8 @@ function change_help_language(language)
 	// =========================================================================================
 	
 	global %helps;
-	
+	global %modules_helps;
+	%HELPS=[%modules_helps;%helps];
 	// Vérification des paramètres
 	// -----------------------------------------------------------------------------------------
 	[lhs,rhs]=argn(0);
@@ -21,8 +22,8 @@ function change_help_language(language)
 	// -----------------------------------------------------------------------------------------
 	current_directory = pwd();
 	
-	dirs = %helps(:,1);
-	titles = %helps(:,2);
+	dirs = %HELPS(:,1);
+	titles = %HELPS(:,2);
 	
 	// Parcours des répertoires listés dans %helps
 	for k=1:size(dirs,'*')
@@ -48,8 +49,8 @@ function change_help_language(language)
 				new_title = stripblanks(part(whatis(title_row),start_title:end_title));
 				
 				// Modification de %helps
-				%helps(k,1) = new_dir;
-				%helps(k,2) = new_title;
+				%HELPS(k,1) = new_dir;
+				%HELPS(k,2) = new_title;
 			end
 		end
 	end

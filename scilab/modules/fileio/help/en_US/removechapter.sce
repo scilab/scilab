@@ -4,6 +4,6 @@
 // Copyright INRIA 2007
 // Allan CORNET
 // ====================================================================
-del_help_chapter("Input/Output functions [files]");
+del_help_chapter("Input/Output functions [files]",%T);
 clear del_help_chapter;
 // ====================================================================

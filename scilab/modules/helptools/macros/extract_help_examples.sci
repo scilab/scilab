@@ -6,10 +6,14 @@ function extract_help_examples(dirpaths)
 // testing the examples given in all  xml help files available in the
 // given paths.
 
+  global %helps
+  global %modules_helps
+  %HELPS=[%modules_helps;%helps];
+
   logfile=mopen('extract_help_examples.log','w')
   lsave=lines();lines(0)
   if argn(2)<1 then
-    dirpaths=%helps(:,1)';
+    dirpaths=%HELPS(:,1)';
   end
   for d=dirpaths
     helppaths=listfiles(pathconvert(d+'/*.xml',%f,%t))';

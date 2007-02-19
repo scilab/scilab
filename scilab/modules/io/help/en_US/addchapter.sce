@@ -5,6 +5,6 @@
 // Allan CORNET
 // ====================================================================
 path = SCI+'/modules/io/help/'+getlanguage('LANGUAGE_DEFAULT');
-add_help_chapter("Input/Output functions",path);
+add_help_chapter("Input/Output functions",path,%T);
 clear path add_help_chapter;
 // ====================================================================

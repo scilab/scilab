@@ -19,4 +19,5 @@ add_module_help_chapter('helptools');
 clear get_absolute_file_path
 clear pathconvert
 clear isdir
+clear add_module_help_chapter;
 // ====================================================================

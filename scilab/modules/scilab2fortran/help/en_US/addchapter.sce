@@ -5,6 +5,6 @@
 // Allan CORNET
 // ====================================================================
 path = SCI+'/modules/scilab2fortran/help/'+getlanguage('LANGUAGE_DEFAULT');
-add_help_chapter("Scilab to Fortran",path);
+add_help_chapter("Scilab to Fortran",path,%T);
 clear path add_help_chapter;
 // ====================================================================

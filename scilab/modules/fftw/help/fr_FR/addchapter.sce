@@ -5,6 +5,6 @@
 // Allan CORNET
 // ====================================================================
 path = SCI+'/modules/fftw/help/'+getlanguage();
-add_help_chapter("FFTW",path);
+add_help_chapter("FFTW",path,%T);
 clear path add_help_chapter;
 // ====================================================================

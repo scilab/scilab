@@ -5,6 +5,6 @@
 // Allan CORNET
 // ====================================================================
 path = SCI+'/modules/symbolic/help/'+getlanguage();
-add_help_chapter("Calculs formels",path);
+add_help_chapter("Calculs formels",path,%T);
 clear path add_help_chapter;
 // ====================================================================

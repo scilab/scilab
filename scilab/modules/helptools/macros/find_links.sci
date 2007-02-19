@@ -92,7 +92,9 @@ endfunction
 
 function t=getlink(name,absolute_path,path)
 	
-	global %helps
+	global %helps;
+	global %modules_helps;
+	%HELPS=[%modules_helps;%helps];
 	
 	name=stripblanks(name)
 	
@@ -126,9 +128,9 @@ function t=getlink(name,absolute_path,path)
 	
 	if man_found == [] then
 					
-		for k=1:size(%helps,1)
+		for k=1:size(%HELPS,1)
 			
-			current_help_path = %helps(k,1)+sep;
+			current_help_path = %HELPS(k,1)+sep;
 			
 			if fileinfo(current_help_path+'.list_htm') <> [] then
 				
@@ -145,7 +147,7 @@ function t=getlink(name,absolute_path,path)
 		
 			else
 				
-				whatis=mgetl(%helps(k,1)+sep+'whatis.htm')
+				whatis=mgetl(%HELPS(k,1)+sep+'whatis.htm')
 				f=grep(whatis,name)
 				if f<>[] then
 					for k1=f
@@ -171,7 +173,7 @@ function t=getlink(name,absolute_path,path)
 			
 			end // if fileinfo ....
 		
-		end // for k=1:size(%helps,1)
+		end // for k=1:size(%HELPS,1)
 	
 	end // if  man_found == []
 	

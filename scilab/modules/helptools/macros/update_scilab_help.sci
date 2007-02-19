@@ -4,8 +4,8 @@
 // Allan CORNET
 // ====================================================================
 function update_scilab_help()
-  clearglobal %helps
-  global %helps
+  clearglobal %modules_helps
+  global %modules_helps
   modules=getmodules();
   index=size(modules);
   for i=1:index(1) do 

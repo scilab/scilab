@@ -4,6 +4,6 @@
 // Copyright INRIA 2007
 // Allan CORNET
 // ====================================================================
-del_help_chapter("Interpolation");
+del_help_chapter("Interpolation",%T);
 clear del_help_chapter;
 // ====================================================================

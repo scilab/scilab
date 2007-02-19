@@ -4,6 +4,6 @@
 // Copyright INRIA 2007
 // Allan CORNET
 // ====================================================================
-del_help_chapter("Windows Tools");
+del_help_chapter("Windows Tools",%T);
 clear del_help_chapter;
 // ====================================================================

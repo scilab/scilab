@@ -4,6 +4,6 @@
 // Copyright INRIA 2007
 // Allan CORNET
 // ====================================================================
-del_help_chapter("Structures");
+del_help_chapter("Structures",%T);
 clear del_help_chapter;
 // ====================================================================

@@ -4,6 +4,6 @@
 // Copyright INRIA 2007
 // Allan CORNET
 // ====================================================================
-del_help_chapter("Linear Algebra");
+del_help_chapter("Linear Algebra",%T);
 clear del_help_chapter;
 // ====================================================================

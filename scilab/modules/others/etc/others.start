@@ -7,7 +7,8 @@ load('SCI/modules/others/macros/lib');
 // ====================================================================
 //add help chapter
 add_module_help_chapter('others');
-
+clear add_module_help_chapter;
+// ====================================================================
 //add demos
 path = get_absolute_file_path('others.start');
 path = getshortpathname(path);

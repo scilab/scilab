@@ -5,6 +5,6 @@
 // Allan CORNET
 // ====================================================================
 path = SCI+'/modules/tfds/help/'+getlanguage('LANGUAGE_DEFAULT');
-add_help_chapter("Tools For Dynamical Systems",path);
+add_help_chapter("Tools For Dynamical Systems",path,%T);
 clear path add_help_chapter;
 // ====================================================================

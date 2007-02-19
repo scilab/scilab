@@ -5,6 +5,6 @@
 // Allan CORNET
 // ====================================================================
 path = SCI+'/modules/elementaries_functions/help/'+getlanguage();
-add_help_chapter("Fonctions Elementaires",path);
+add_help_chapter("Fonctions Elementaires",path,%T);
 clear path add_help_chapter;
 // ====================================================================

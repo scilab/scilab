@@ -5,6 +5,6 @@
 // Allan CORNET
 // ====================================================================
 path = SCI+'/modules/boolean/help/'+getlanguage();
-add_help_chapter("Booleen",path);
+add_help_chapter("Booleen",path,%T);
 clear path add_help_chapter;
 // ====================================================================

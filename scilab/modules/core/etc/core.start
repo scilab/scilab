@@ -17,4 +17,5 @@ pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/intro/dem01.dem',%
 add_demo('Introduction',pathdemos);
 
 clear path pathdemos get_absolute_file_path;
+clear add_module_help_chapter;
 // ====================================================================

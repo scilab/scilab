@@ -5,6 +5,6 @@
 // Allan CORNET
 // ====================================================================
 path = SCI+'/modules/texmacs/help/'+getlanguage('LANGUAGE_DEFAULT');
-add_help_chapter("texmacs",path);
+add_help_chapter("texmacs",path,%T);
 clear path add_help_chapter;
 // ====================================================================

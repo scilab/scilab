@@ -7,4 +7,5 @@ load('SCI/modules/fileio/macros/lib');
 // ====================================================================
 //add help chapter
 add_module_help_chapter('fileio');
+clear add_module_help_chapter;
 // ====================================================================

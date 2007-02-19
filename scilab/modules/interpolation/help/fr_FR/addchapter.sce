@@ -5,6 +5,6 @@
 // Allan CORNET
 // ====================================================================
 path = SCI+'/modules/interpolation/help/'+getlanguage();
-add_help_chapter("Interpolation",path);
+add_help_chapter("Interpolation",path,%T);
 clear path add_help_chapter;
 // ====================================================================

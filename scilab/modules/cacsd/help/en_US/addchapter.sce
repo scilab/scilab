@@ -5,6 +5,6 @@
 // Allan CORNET
 // ====================================================================
 path = SCI+'/modules/cacsd/help/'+getlanguage('LANGUAGE_DEFAULT');
-add_help_chapter("CACSD",path);
+add_help_chapter("CACSD",path,%T);
 clear path add_help_chapter;
 // ====================================================================

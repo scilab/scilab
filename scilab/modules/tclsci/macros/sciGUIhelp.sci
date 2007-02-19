@@ -10,13 +10,15 @@ function sciGUIhelp(key)
 //the Free Software Foundation; either version 2 of the License, or
 //(at your option) any later version.
   update='0';
-  
+  global %helps;
+	global %modules_helps;
+  %HELPS=[%modules_helps;%helps];
   sciGUI_init();
   // Reinitialize help index each call
   //nch=eval(TCL_GetVar('sciGUITable(browsehelp,nchap)'));
-  //if (size(%helps,1)~=nch) then	
+  //if (size(%HELPS,1)~=nch) then	
     rescan_helps()
-    TCL_SetVar('sciGUITable(browsehelp,nchap)',string(size(%helps,1)));
+    TCL_SetVar('sciGUITable(browsehelp,nchap)',string(size(%HELPS,1)));
     update='1';
   //end
   
@@ -37,16 +39,19 @@ function sciGUIhelp(key)
 endfunction
 
 function rescan_helps()
-  nfil=size(%helps,1);
+  global %helps;
+	global %modules_helps;
+  %HELPS=[%modules_helps;%helps];
+  nfil=size(%HELPS,1);
   fid=mopen(TMPDIR+'/browsehelp.txt','w');
   cwindow=progressionbar('Parsing help files ...');
   cdir=pwd();
   for j=1:nfil,
-    procFile=pathconvert(%helps(j,1),%f);
+    procFile=pathconvert(%HELPS(j,1),%f);
     chdir(procFile);
     procFile=pwd();
-    procFile=pathconvert(%helps(j,1),%f);
-    mfprintf(fid,"%d\n%s\n%s/%s\n%s\n",0,%helps(j,2),procFile,"whatis.htm","");
+    procFile=pathconvert(%HELPS(j,1),%f);
+    mfprintf(fid,"%d\n%s\n%s/%s\n%s\n",0,%HELPS(j,2),procFile,"whatis.htm","");
     dta=mgetl('whatis.htm');
     progressionbar(cwindow);
     for w=1:size(dta,1)

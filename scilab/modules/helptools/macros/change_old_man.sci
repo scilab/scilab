@@ -3,11 +3,13 @@ function change_old_man()
   // HTML version located in TMPDIR/man<number>/ where <number> is the
   // index of the chapter in %help
   global %helps
-  for k=1:size(%helps,1)
-    flag1 = fileinfo(%helps(k,1)+"/whatis.htm");
-    flag2 = fileinfo(%helps(k,1)+"/whatis");
+  global %modules_helps
+  %HELPS=[%modules_helps;%helps];
+  for k=1:size(%HELPS,1)
+    flag1 = fileinfo(%HELPS(k,1)+"/whatis.htm");
+    flag2 = fileinfo(%HELPS(k,1)+"/whatis");
     if flag1 == [] & flag2 <> []  then
-      txt=mgetl(%helps(k,1)+"/whatis")
+      txt=mgetl(%HELPS(k,1)+"/whatis")
       whatispath=TMPDIR+"/man"+string(k);
       p=pathconvert(whatispath);
       if fileinfo(p)==[] then unix_s("mkdir "+p),end
@@ -32,7 +34,7 @@ function change_old_man()
 	      " text/html; charset=ISO-8859-1"">";
 	      "  <title>"+name(i)+"</title>";
 	      "<body>"];
-	pin=pathconvert(%helps(k,1)+"/"+fil(i)+'.cat',%f,%f)
+	pin=pathconvert(%HELPS(k,1)+"/"+fil(i)+'.cat',%f,%f)
 	pout=pathconvert(whatispath+'/'+fil(i)+'.htm',%f,%f)
 	mputl([head;"<pre>";mgetl(pin);"</pre></html></body>"],pout)
 	end
@@ -40,13 +42,13 @@ function change_old_man()
       head=["<html>"
 	    "<head>"
 	    "  <meta http-equiv=""Content-Type"" content=""text/html; charset=ISO-8859-1"">"
-	    "    <title>"+%helps(k,2)+"</title>"
+	    "    <title>"+%HELPS(k,2)+"</title>"
 	    "</head>"
 	    "<body bgcolor=""FFFFFF"">"];
       pout=pathconvert(whatispath+'/whatis.htm',%f,%f)
       mputl([head;"<BR><A HREF="""+fil+".htm"">"+name+"</A> - "+def;
 	     "</body></html>"],pout)
-      %helps(k,1)=whatispath;
+      %HELPS(k,1)=whatispath;
     end
   end
 endfunction

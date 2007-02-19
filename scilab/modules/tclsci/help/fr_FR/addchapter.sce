@@ -5,6 +5,6 @@
 // Allan CORNET
 // ====================================================================
 path = SCI+'/modules/tclsci/help/'+getlanguage();
-add_help_chapter("Interface Tcl/Tk",path);
+add_help_chapter("Interface Tcl/Tk",path,%T);
 clear path add_help_chapter;
 // ====================================================================

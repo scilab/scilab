@@ -5,6 +5,6 @@
 // Allan CORNET
 // ====================================================================
 path = SCI+'/modules/graphics/help/'+getlanguage('LANGUAGE_DEFAULT');
-add_help_chapter("Graphics Library",path);
+add_help_chapter("Graphics Library",path,%T);
 clear path add_help_chapter;
 // ====================================================================

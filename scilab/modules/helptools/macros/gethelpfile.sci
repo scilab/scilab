@@ -1,13 +1,15 @@
 function path=gethelpfile(key)
 	// copy of gethelpfile contained in help.sci
 	global %helps %browsehelp
+	global %modules_helps
+  %HELPS=[%modules_helps;%helps];
 	sep="/";
 	key=stripblanks(key)
 	l=length(key)
-	for k=1:size(%helps,1)
-		[fd,ierr]=mopen(%helps(k,1)+sep+"whatis.htm","r");
+	for k=1:size(%HELPS,1)
+		[fd,ierr]=mopen(%HELPS(k,1)+sep+"whatis.htm","r");
 		if ierr<>0 then
-			warning(" whatis file missing in "+%helps(k,1)+". Directory ignored")
+			warning(" whatis file missing in "+%HELPS(k,1)+". Directory ignored")
 		else
 			whatis=mgetl(fd);mclose(fd)
 			for k2=1:size(whatis,"*")
@@ -18,7 +20,7 @@ function path=gethelpfile(key)
 					// key must be a word in lkey
 					if findword(lkey,key)<>[] then
 						i=strindex(lwhatis,"HREF="); j=strindex(lwhatis,">")
-						path=%helps(k,1)+sep+part(lwhatis,i+6:j(2)-2)
+						path=%HELPS(k,1)+sep+part(lwhatis,i+6:j(2)-2)
 						return
 					end
 				end
@@ -50,6 +52,8 @@ endfunction
 function path=genhelpfromfunc(key)
 	
 	global %helps
+	global %modules_helps
+  %HELPS=[%modules_helps;%helps];
 	path=[]
 	if exists(key)==0 then return,end
 	execstr('%fun='+key)
@@ -70,7 +74,7 @@ function path=genhelpfromfunc(key)
 		mputl(W,TMPDIR+'/localman/whatis.htm')
 	end
 	
-	nh=size(%helps,1)
+	nh=size(%HELPS,1)
 	add_help_chapter('User Functions',TMPDIR+'/localman')
 	l=macr2lst(%fun);l($+1)='99';
 	syntax='['+strcat(l(2),',')+'] = '+key+'('+strcat(l(3),',')+')';
@@ -138,7 +142,7 @@ function path=genhelpfromfunc(key)
 	
 	mputl(W,TMPDIR+'/localman/whatis.htm')
 	
-	if   nh==size(%helps,1)&%browsehelp=='Scilab Browser' then 
+	if   nh==size(%HELPS,1)&%browsehelp=='Scilab Browser' then 
 		//force a rescan
 		TCL_SetVar('sciGUITable(browsehelp,nchap)',string(nh-1))
 	end

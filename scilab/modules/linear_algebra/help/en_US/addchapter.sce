@@ -5,6 +5,6 @@
 // Allan CORNET
 // ====================================================================
 path = SCI+'/modules/linear_algebra/help/'+getlanguage('LANGUAGE_DEFAULT');
-add_help_chapter("Linear Algebra",path);
+add_help_chapter("Linear Algebra",path,%T);
 clear path add_help_chapter;
 // ====================================================================

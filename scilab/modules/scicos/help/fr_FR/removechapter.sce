@@ -4,6 +4,6 @@
 // Copyright INRIA 2007
 // Allan CORNET
 // ====================================================================
-del_help_chapter("scicos");
+del_help_chapter("scicos",%T);
 clear del_help_chapter;
 // ====================================================================

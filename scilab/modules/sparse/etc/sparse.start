@@ -7,4 +7,5 @@ load('SCI/modules/sparse/macros/lib');
 // ====================================================================
 //add help chapter
 add_module_help_chapter('sparse');
+clear add_module_help_chapter;
 // ====================================================================

@@ -4,6 +4,6 @@
 // Copyright INRIA 2007
 // Allan CORNET
 // ====================================================================
-del_help_chapter("Sound file handling");
+del_help_chapter("Sound file handling",%T);
 clear del_help_chapter;
 // ====================================================================

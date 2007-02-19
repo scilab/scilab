@@ -5,6 +5,6 @@
 // Allan CORNET
 // ====================================================================
 path = SCI+'/modules/maple2scilab/help/'+getlanguage('LANGUAGE_DEFAULT');
-add_help_chapter("Maple Interface",path);
+add_help_chapter("Maple Interface",path,%T);
 clear path add_help_chapter;
 // ====================================================================

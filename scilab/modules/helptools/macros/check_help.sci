@@ -32,8 +32,11 @@ function check_help(dirs)
 	if (rhs <= 0) | ((rhs == 1) & (dirs == [])) then
 		
 		global %helps;
-		dirs_to_build = %helps;
-		clear %helps;
+		global %modules_helps
+    %HELPS=[%modules_helps;%helps];
+    
+		dirs_to_build = %HELPS;
+		clear %HELPS;
 		
 		//----------------------------------------------------------------------------------
 		// Patch because scicos is not written in xml

@@ -5,6 +5,6 @@
 // Allan CORNET
 // ====================================================================
 path = SCI+'/modules/scicos/help/'+getlanguage();
-add_help_chapter("scicos",path);
+add_help_chapter("scicos",path,%T);
 clear path add_help_chapter;
 // ====================================================================

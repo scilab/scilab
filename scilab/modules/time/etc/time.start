@@ -7,4 +7,5 @@ load('SCI/modules/time/macros/lib');
 // ====================================================================
 //add help chapter
 add_module_help_chapter('time');
+clear add_module_help_chapter;
 // ====================================================================

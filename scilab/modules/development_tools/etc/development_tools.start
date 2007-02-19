@@ -7,4 +7,5 @@ load('SCI/modules/development_tools/macros/lib');
 // ====================================================================
 //add help chapter
 add_module_help_chapter('development_tools');
+clear add_module_help_chapter;
 // ====================================================================

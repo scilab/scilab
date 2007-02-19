@@ -36,13 +36,16 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 	// =========================================================================================
 	
 	global %helps
+	global %modules_helps;
+	%HELPS=[%modules_helps;%helps];
+	
 	
 	//------------------------------------------------------------------------------------------
 	// Sauvegarde du chemin courant et de la variable %helps
 	//------------------------------------------------------------------------------------------
 	
 	current_directory = pwd();
-	saved_helps = %helps;
+	saved_helps = %HELPS;
 	
 	//to load the subfunction change_old_man this is required to produce the whatis.htm files
 	//associated with old style manuals
@@ -57,7 +60,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 	
 	if rhs > 6 then
 		error(39);
-		%helps = saved_helps;
+		%HELPS = saved_helps;
 		chdir(current_directory);
 		return;
 	end
@@ -67,7 +70,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 	
 	if (rhs <= 0) | ((rhs == 1) & (dirs == [])) then
 		
-		dirs_to_build = %helps;
+		dirs_to_build = %HELPS;
 		
 		//----------------------------------------------------------------------------------
 		// Patch because scicos is not written in xml
@@ -331,7 +334,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 				if fileinfo(xsl) == [] then
 					error("cannot open xsl file"+xsl);
 					chdir(current_directory);
-					%helps = saved_helps;
+					%HELPS = saved_helps;
 					return;
 				end
 				
@@ -347,7 +350,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 						
 						if ~ok then
 							chdir(current_directory);
-							%helps = saved_helps;
+							%HELPS = saved_helps;
 							return;
 						end
 					end
@@ -440,7 +443,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 	//------------------------------------------------------------------------------------------
 	
 	chdir(current_directory);
-	%helps = saved_helps;
+	%HELPS = saved_helps;
 	
 endfunction
 
@@ -470,9 +473,9 @@ function gener_whatis(wtitle)
 		whatis_title= wtitle
 	else
 		// find the title
-		ind=grep(%helps(:,1),getcwd());
+		ind=grep(%HELPS(:,1),getcwd());
 		if ind<>[] then 
-			whatis_title= %helps(ind(1),2)
+			whatis_title= %HELPS(ind(1),2)
 		else
 			whatis_title='Help chapter'
 		end
@@ -566,7 +569,7 @@ function gener_index(dirs,titles)
 	
 	// On ajoute le ou les répertoire
 	
-	saved_help = %helps;
+	saved_help = %HELPS;
 	
 	[lhs,rhs]=argn(0)
 	
@@ -576,8 +579,8 @@ function gener_index(dirs,titles)
 		end
 	end
 	
-	dirs   = %helps(:,1);
-	titles = %helps(:,2);
+	dirs   = %HELPS(:,1);
+	titles = %HELPS(:,2);
 	
 	lines(0);
 	
@@ -646,7 +649,7 @@ function gener_index(dirs,titles)
 	
 	mputl(line,pathconvert(SCI+"/modules/helptools/index_"+getlanguage()+".htm",%f,%t));
 	
-	%helps = saved_help;
+	%HELPS = saved_help;
 	
 endfunction
 
@@ -686,7 +689,7 @@ function gener_contents(dirs1)
 	[lhs,rhs]=argn(0)
 	
 	if rhs <= 0 then
-		dirs = %helps(:,1);
+		dirs = %HELPS(:,1);
 	end
 	
 	full_whatis=[];

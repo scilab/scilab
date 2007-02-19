@@ -5,6 +5,6 @@
 // Allan CORNET
 // ====================================================================
 path = SCI+'/modules/functions/help/'+getlanguage('LANGUAGE_DEFAULT');
-add_help_chapter("Functions",path);
+add_help_chapter("Functions",path,%T);
 clear path add_help_chapter;
 // ====================================================================

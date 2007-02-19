@@ -4,6 +4,6 @@
 // Copyright INRIA 2007
 // Allan CORNET
 // ====================================================================
-del_help_chapter("Entrées/Sorties");
+del_help_chapter("Entrées/Sorties",%T);
 clear del_help_chapter;
 // ====================================================================

@@ -7,4 +7,5 @@ load('SCI/modules/tfds/macros/lib');
 // ====================================================================
 //add help chapter
 add_module_help_chapter('tfds');
+clear add_module_help_chapter;
 // ====================================================================

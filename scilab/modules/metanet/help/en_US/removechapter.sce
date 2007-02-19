@@ -4,6 +4,6 @@
 // Copyright INRIA 2007
 // Allan CORNET
 // ====================================================================
-del_help_chapter("Metanet : Graph and Network toolbox");
+del_help_chapter("Metanet : Graph and Network toolbox",%T);
 clear del_help_chapter;
 // ====================================================================

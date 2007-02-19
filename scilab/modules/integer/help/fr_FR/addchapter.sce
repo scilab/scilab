@@ -5,6 +5,6 @@
 // Allan CORNET
 // ====================================================================
 path = SCI+'/modules/integer/help/'+getlanguage();
-add_help_chapter("Entiers",path);
+add_help_chapter("Entiers",path,%T);
 clear path add_help_chapter;
 // ====================================================================

@@ -5,6 +5,6 @@
 // Allan CORNET
 // ====================================================================
 path = SCI+'/modules/symbolic/help/'+getlanguage('LANGUAGE_DEFAULT');
-add_help_chapter("Symbolic",path);
+add_help_chapter("Symbolic",path,%T);
 clear path add_help_chapter;
 // ====================================================================

@@ -4,6 +4,6 @@
 // Copyright INRIA 2007
 // Allan CORNET
 // ====================================================================
-del_help_chapter("Module Core");
+del_help_chapter("Module Core",%T);
 clear del_help_chapter;
 // ====================================================================

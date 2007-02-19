@@ -5,6 +5,6 @@
 // Allan CORNET
 // ====================================================================
 path = SCI+'/modules/localization/help/'+getlanguage('LANGUAGE_DEFAULT');
-add_help_chapter("Localization",path);
+add_help_chapter("Localization",path,%T);
 clear path add_help_chapter;
 // ====================================================================

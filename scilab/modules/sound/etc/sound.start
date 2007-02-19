@@ -7,6 +7,7 @@ load('SCI/modules/sound/macros/lib');
 // ====================================================================
 //add help chapter
 add_module_help_chapter('sound');
+clear add_module_help_chapter;
 // ====================================================================
 //add demos
 path = get_absolute_file_path('sound.start');

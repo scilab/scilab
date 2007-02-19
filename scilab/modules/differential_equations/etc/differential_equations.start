@@ -7,4 +7,5 @@ load('SCI/modules/differential_equations/macros/lib');
 // ====================================================================
 //add help chapter
 add_module_help_chapter('differential_equations');
+clear add_module_help_chapter;
 // ====================================================================

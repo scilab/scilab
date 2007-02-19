@@ -16,4 +16,5 @@ pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/control.dem',%f,%f
 add_demo("CACSD",pathdemos);
 
 clear pathdemos get_absolute_file_path;
+clear add_module_help_chapter;
 // ====================================================================

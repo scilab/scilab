@@ -4,6 +4,6 @@
 // Copyright INRIA 2007
 // Allan CORNET
 // ====================================================================
-del_help_chapter("randlib");
+del_help_chapter("randlib",%T);
 clear del_help_chapter;
 // ====================================================================

@@ -4,6 +4,6 @@
 // Copyright INRIA 2007
 // Allan CORNET
 // ====================================================================
-del_help_chapter("Signal Processing");
+del_help_chapter("Signal Processing",%T);
 clear del_help_chapter;
 // ====================================================================

@@ -11,7 +11,7 @@ function apropos(key)
 	change_old_man()
 	INDEX=make_help_index()
 	
-	global %helps INDEX
+	global %helps %modules_helps INDEX
 	global %browsehelp;
 	
 	[lhs,rhs]=argn(0);
@@ -37,7 +37,8 @@ function [provpath]=apropos_gener(key)
 	// generate html file for apropos key
 	// provpath is the path of generated html file
 	
-	global %helps INDEX
+	global %helps %modules_helps INDEX
+	%HELPS=[%modules_helps,%helps]
 	
 	sep="/";
 	key1=key
@@ -47,15 +48,15 @@ function [provpath]=apropos_gener(key)
 	l=length(key)
 	found=[];foundkey=[]
 	
-	for k=1:size(%helps,1)
-		[fd,ierr]=mopen(%helps(k,1)+sep+"whatis.htm","r");
+	for k=1:size(%HELPS,1)
+		[fd,ierr]=mopen(%HELPS(k,1)+sep+"whatis.htm","r");
 		if ierr==0 then
 			whatis=mgetl(fd);mclose(fd)
 			ind=grep(whatis,'</A>');
 			whatis=whatis(ind);
 			if whatis<>[] then
 				f=grep(convstr(whatis),key);
-				lwhatis=strsubst(whatis(f),"HREF=""", "HREF="""+%helps(k,1)+sep)
+				lwhatis=strsubst(whatis(f),"HREF=""", "HREF="""+%HELPS(k,1)+sep)
 				found=[found;lwhatis];
 				for k1=f
 					i=strindex(whatis(k1),">"); j=strindex(whatis(k1),"</A>")

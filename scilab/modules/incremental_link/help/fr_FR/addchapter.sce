@@ -5,6 +5,6 @@
 // Allan CORNET
 // ====================================================================
 path = SCI+'/modules/incremental_link/help/'+getlanguage();
-add_help_chapter("Incremental Link",path);
+add_help_chapter("Incremental Link",path,%T);
 clear path add_help_chapter;
 // ====================================================================

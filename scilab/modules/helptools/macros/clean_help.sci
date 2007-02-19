@@ -10,6 +10,8 @@ function clean_help(dirs)
 	// =========================================================================================
 	
 	global %helps
+	global %modules_helps
+  %HELPS=[%modules_helps;%helps];
 	
 	ok = %F;
 	
@@ -31,7 +33,7 @@ function clean_help(dirs)
 	
 	if (rhs <= 0) | ((rhs == 1) & (dirs == [])) then
 		
-		dirs_to_clean = %helps;
+		dirs_to_clean = %HELPS;
 		
 		//----------------------------------------------------------------------------------
 		// Patch because scicos is not written in xml

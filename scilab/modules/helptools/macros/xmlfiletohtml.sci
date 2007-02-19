@@ -20,6 +20,7 @@ function ok = xmlfiletohtml(path,xsl,directory_language,default_language)
 	[lhs,rhs] = argn(0);
 	
 	global %helps
+	global %modules_helps
 	
 	xmlfile = path;
 	needToBeCopied = %F;

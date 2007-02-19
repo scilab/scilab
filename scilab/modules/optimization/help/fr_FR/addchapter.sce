@@ -5,6 +5,6 @@
 // Allan CORNET
 // ====================================================================
 path = SCI+'/modules/optimization/help/'+getlanguage();
-add_help_chapter("Optimisation et Simulation",path);
+add_help_chapter("Optimisation et Simulation",path,%T);
 clear path add_help_chapter;
 // ====================================================================

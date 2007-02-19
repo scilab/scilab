@@ -1,4 +1,4 @@
-function ok = add_help_chapter(helptitle,path)
+function ok = add_help_chapter(helptitle,path,modulemode)
 	
 	// =========================================================================================
 	// Modified by Pierre MARECHAL
@@ -12,6 +12,8 @@ function ok = add_help_chapter(helptitle,path)
 	//
 	// 	title : a character string, the help chapter title 
 	// 	path : a character string, the path of the directory containing the help files.
+	// 	modulemode : a boolean %F by default.
+	//  if %F add to %modules_helps else to %helps.
 	//
 	// Description
 	//
@@ -22,12 +24,15 @@ function ok = add_help_chapter(helptitle,path)
 	// =========================================================================================
 	
 	global %helps;
+	global %modules_helps;
 	ok = %F;
 	
 	// Vérification des paramètres
 	// -----------------------------------------------------------------------------------------
 	[lhs,rhs]=argn(0);
-	if rhs <> 2 then error(39); end
+	if rhs <> 3 then modulemode=%F; end
+	
+	if ( rhs > 3 | rhs < 2 ) then error(39); end
 	if type(helptitle) <> 10 then error(55,1); end
 	if type(path) <> 10 then error(55,2); end
 	
@@ -58,18 +63,32 @@ function ok = add_help_chapter(helptitle,path)
 	
 	// Vérification que le titre n'est pas déja présent dans %helps
 	// -----------------------------------------------------------------------------------------
+	if (modulemode) then
+	  k1 = find( %modules_helps(:,2) == helptitle);
+	else
+	  k1 = find( %helps(:,2) == helptitle);
+	end
 	
-	k1 = find( %helps(:,2) == helptitle);
+	
 	
 	if k1 == [] then
 		
 		// Cas où le titre du chapitre n'est pas présent
-		%helps=[%helps;path,helptitle];
+		if (modulemode) then
+		  %modules_helps=[%modules_helps;path,helptitle];
+		else
+		  %helps=[%helps;path,helptitle];
+		end
+		
 		ok = %T;
 		return;
 	
 	else
-		k2 = find( %helps(k1,1) == path );
+	  if (modulemode) then
+	    k2 = find( %modules_helps(k1,1) == path );
+	  else
+	    k2 = find( %helps(k1,1) == path );
+	  end
 		
 		if k2 <> [] then 
 			// Cas où le path est également le même
@@ -77,12 +96,27 @@ function ok = add_help_chapter(helptitle,path)
 		else
 			
 			for i=1:100
-				k3 = find( %helps(:,2) == helptitle+' ('+string(i)+')' );
+			  if modulemode then
+			    k3 = find( %modules_helps(:,2) == helptitle+' ('+string(i)+')' );
+			  else
+			    k3 = find( %helps(:,2) == helptitle+' ('+string(i)+')' );
+			  end
+				
 				if k3 == [] then
 					// On a pas trouvé de "title (i)"
-					k4 = find( %helps(k3,1) == path );
+					if modulemode then
+					  k4 = find( %modules_helps(k3,1) == path );
+					else
+					  k4 = find( %helps(k3,1) == path );
+					end
+					
 					if k4 == [] then
-						%helps=[%helps;path,helptitle+' ('+string(i)+')'];
+					  if modulemode then
+					    %modules_helps=[%modules_helps;path,helptitle+' ('+string(i)+')'];
+					  else
+					    %helps=[%helps;path,helptitle+' ('+string(i)+')'];
+					  end
+						
 						ok = %T;
 						return;
 					else
@@ -91,9 +125,16 @@ function ok = add_help_chapter(helptitle,path)
 					
 				else
 					// On a trouvé "title (i)"
-					if find( %helps(k3,1) == path ) <> [] then
-						return;
+					if modulemode then
+					  if find( %modules_helps(k3,1) == path ) <> [] then
+						  return;
+					  end
+					else
+					  if find( %helps(k3,1) == path ) <> [] then
+						  return;
+					  end
 					end
+					
 				end
 			end
 		end

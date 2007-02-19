@@ -7,4 +7,5 @@ load('SCI/modules/functions/macros/lib');
 // ====================================================================
 //add help chapter
 add_module_help_chapter('functions');
+clear add_module_help_chapter;
 // ====================================================================

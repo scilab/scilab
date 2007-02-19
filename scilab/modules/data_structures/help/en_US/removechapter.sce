@@ -4,6 +4,6 @@
 // Copyright INRIA 2007
 // Allan CORNET
 // ====================================================================
-del_help_chapter("Data Structures");
+del_help_chapter("Data Structures",%T);
 clear del_help_chapter;
 // ====================================================================

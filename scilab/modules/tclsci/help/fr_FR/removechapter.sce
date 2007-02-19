@@ -4,6 +4,6 @@
 // Copyright INRIA 2007
 // Allan CORNET
 // ====================================================================
-del_help_chapter("Interface Tcl/Tk");
+del_help_chapter("Interface Tcl/Tk",%T);
 clear del_help_chapter;
 // ====================================================================
