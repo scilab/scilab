@@ -77,4 +77,4 @@ rmold:
 $(GENERIC).dll: $(OBJS)
 	@echo Creation of dll $*.dll and import lib 
 	@$(DUMPEXTS) -o "$*.def" "$*.dll" $**
-	@$(LINKER) $(LINKER_FLAGS) $(OBJS) $(SCIIMPLIB) $(XLIBSBIN) $(TERMCAPLIB) /nologo /dll /out:"$*.dll" /implib:"$*.ilib" /def:"$*.def" 
+	@$(LINKER) $(LINKER_FLAGS) $(OBJS) $(SCIIMPLIB) $(XLIBSBIN) $(TERMCAPLIB) /nologo /dll /out:"$*.dll" /implib:"$*.lib" /def:"$*.def" 

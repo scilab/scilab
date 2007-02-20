@@ -59,8 +59,8 @@ function [ok,name,nx,nin,nout,ng,nm,nz]=compile_modelica(fil)
     files=name+'.o';Make=path+'Make'+name;loader=path+name+'.sce'
     //  build the list of external functions libraries
     libs=[];
-    if MSDOS then ext='\*.ilib',else ext='/*.a',end
-    // removing .a or .ilib sufixs
+    if MSDOS then ext='\*.lib',else ext='/*.a',end
+    // removing .a or .lib sufixs
     for k=1:size(mlibs,'*')
       aa=listfiles(mlibs(k)+ext);
       for j=1:size(aa,'*')

@@ -127,7 +127,7 @@ function ilib_gen_Make_win32(name,table,files,libs,Makename,with_gateway,ldflags
   end
   mfprintf(fd,"\n# added libraries \n");
   mfprintf(fd,"OTHERLIBS = ");
-  for x=libs(:)' ; mfprintf(fd," %s.ilib",x);end
+  for x=libs(:)' ; mfprintf(fd," %s.lib",x);end
   mfprintf(fd,"\n");
   mfprintf(fd,"!include $(SCIDIR1)\\Makefile.incl.mak\n");
   mfprintf(fd,"CFLAGS = $(CC_OPTIONS) -DFORDLL -I\""$(SCIDIR)/modules/core/includes\"""+...
@@ -199,7 +199,7 @@ function ilib_gen_Make_lcc(name,table,files,libs,Makename,with_gateway,ldflags,c
   mfprintf(fd,"\n\n# added libraries \n");
   mfprintf(fd,"OTHERLIBS =");
   
-  for x=libs(:)' ; mfprintf(fd," %s.ilib",x);end
+  for x=libs(:)' ; mfprintf(fd," %s.lib",x);end
   mfprintf(fd,"\n");
   
   mfprintf(fd,"\n");

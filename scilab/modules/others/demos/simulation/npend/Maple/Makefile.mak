@@ -21,7 +21,7 @@ $(TEMP)\ener.dll : ener.f
 	@del $*.c 
 	@echo Creation of dll $(DLL) and import lib 
 	@$(DUMPEXTS) -o "$*.def" "ener.dll" $*.obj
-	@$(LINKER) $(LINKER_FLAGS) $*.obj $(SCIIMPLIB) $(XLIBSBIN) $(TERMCAPLIB) /nologo /dll /out:"$*.dll" /implib:"$*.ilib" /def:"$*.def" 
+	@$(LINKER) $(LINKER_FLAGS) $*.obj $(SCIIMPLIB) $(XLIBSBIN) $(TERMCAPLIB) /nologo /dll /out:"$*.dll" /implib:"$*.lib" /def:"$*.def" 
 
 
 $(TEMP)\npend.dll : npend.f 
@@ -30,7 +30,7 @@ $(TEMP)\npend.dll : npend.f
 	@del $*.c 
 	@echo Creation of dll $(DLL) and import lib 
 	@$(DUMPEXTS) -o "$*.def" "npend.dll" $*.obj
-	@$(LINKER) $(LINKER_FLAGS) $*.obj $(SCIIMPLIB) $(XLIBSBIN) $(TERMCAPLIB) /nologo /dll /out:"$*.dll" /implib:"$*.ilib" /def:"$*.def" 
+	@$(LINKER) $(LINKER_FLAGS) $*.obj $(SCIIMPLIB) $(XLIBSBIN) $(TERMCAPLIB) /nologo /dll /out:"$*.dll" /implib:"$*.lib" /def:"$*.def" 
 
 $(TEMP)\np.dll : np.f 
 	@$(F2C) -d$(TEMP) np.f 
@@ -38,7 +38,7 @@ $(TEMP)\np.dll : np.f
 	@del $*.c 
 	@echo Creation of dll $(DLL) and import lib 
 	@$(DUMPEXTS) -o "$*.def" "np.dll" $*.obj
-	@$(LINKER) $(LINKER_FLAGS) $*.obj $(SCIIMPLIB) $(XLIBSBIN) $(TERMCAPLIB) /nologo /dll /out:"$*.dll" /implib:"$*.ilib" /def:"$*.def" 
+	@$(LINKER) $(LINKER_FLAGS) $*.obj $(SCIIMPLIB) $(XLIBSBIN) $(TERMCAPLIB) /nologo /dll /out:"$*.dll" /implib:"$*.lib" /def:"$*.def" 
 
 
 
@@ -48,7 +48,7 @@ clean::
 	-@del $(TEMP)\*.obj 
 	-@del $(TEMP)\*.dll
 	-@del $(TEMP)\*.exp 
-	-@del $(TEMP)\*.ilib 
+	-@del $(TEMP)\*.lib 
 	-@del $(TEMP)\*.ilk 
 	-@del $(TEMP)\*.pdb
 	-@del $(TEMP)\*.def

@@ -114,7 +114,7 @@ clean	::
 	@$(RM) $(LIBRARY).lib
 	@$(RM) *.dll
 	@$(RM) *.def
-	@$(RM) *.ilib
+	@$(RM) *.lib
 	@$(RM) *.exp
 	@$(RM) *.pdb
 
@@ -124,7 +124,7 @@ $(LIBRARY).dll: $(OBJS)
 	@echo Creation of dll $(LIBRARY).dll and import lib from ...
 	@echo $(OBJS)
 	@$(DUMPEXTS) -o "$*.def" "$*.dll" $**
-	@echo $(LINKER) $(LINKER_FLAGS) $(OBJS) $(SCIIMPLIB) $(XLIBSBIN) $(TERMCAPLIB) /nologo /dll /out:"$*.dll" /implib:"$*.ilib" /def:"$*.def" 
-	@$(LINKER) $(LINKER_FLAGS) $(OBJS) $(SCIIMPLIB) $(XLIBSBIN) $(TERMCAPLIB) /nologo /dll /out:"$*.dll" /implib:"$*.ilib" /def:"$*.def" 
+	@echo $(LINKER) $(LINKER_FLAGS) $(OBJS) $(SCIIMPLIB) $(XLIBSBIN) $(TERMCAPLIB) /nologo /dll /out:"$*.dll" /implib:"$*.lib" /def:"$*.def" 
+	@$(LINKER) $(LINKER_FLAGS) $(OBJS) $(SCIIMPLIB) $(XLIBSBIN) $(TERMCAPLIB) /nologo /dll /out:"$*.dll" /implib:"$*.lib" /def:"$*.def" 
 	
 

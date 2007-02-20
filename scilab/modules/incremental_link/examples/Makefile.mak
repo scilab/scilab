@@ -26,7 +26,7 @@ distclean	::
 	@del *.obj 
 	@del *.dia
 	@del *.dll
-	@del *.ilib 
+	@del *.lib 
 	@del *.pdk
 	@del *.pdb
 	@del *.ilk 
