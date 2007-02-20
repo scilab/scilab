@@ -37,4 +37,6 @@ Source: modules\{#INTERSCI}\macros\buildmacros.sce; DestDir: {app}\modules\{#INT
 ;
 Source: modules\{#INTERSCI}\bin\*.exe; DestDir: {app}\modules\{#INTERSCI}\bin; Components: {#COMPN_INTERSCI}
 ;
+;Source: modules\{#INTERSCI}\examples\*.*; DestDir: {app}\modules\{#INTERSCI}\examples; Flags: recursesubdirs; Components: {#COMPN_INTERSCI}
+;
 ;--------------------------------------------------------------------------------------------------------------

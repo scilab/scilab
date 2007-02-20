@@ -1,17 +1,17 @@
 SHELL = /bin/sh
 
-SCIDIR=../..
-SCIDIR1=..\..
+SCIDIR=../../..
+SCIDIR1=..\..\..
 
 DUMPEXTS="$(SCIDIR1)\bin\dumpexts"
 SCIIMPLIB=$(SCIDIR)/bin/LibScilab.lib
-INTERSCI="$(SCIDIR1)\bin\intersci"
+INTERSCI="$(SCIDIR1)\modules\intersci\bin\intersci"
 F2C="$(SCIDIR1)\bin\f2c.exe"
 
-include ../../Makefile.incl.mak 
+include ../../../Makefile.incl.mak 
 
-FFLAGS = $(FC_OPTIONS) -DFORDLL  -I"$(SCIDIR1)\routines"
-CFLAGS = $(CC_OPTIONS) -DFORDLL -I"$(SCIDIR1)\routines" 
+FFLAGS = $(FC_OPTIONS) -DFORDLL INCLUDES=-I"$(SCIDIR)\libs\MALLOC\includes" -I"$(SCIDIR)\modules\core\includes" -I"$(SCIDIR)/libs/f2c" -I"$(SCIDIR)/modules/mexlib/includes" 
+CFLAGS = $(CC_OPTIONS) -DFORDLL INCLUDES=-I"$(SCIDIR)\libs\MALLOC\includes" -I"$(SCIDIR)\modules\core\includes" -I"$(SCIDIR)/libs/f2c" -I"$(SCIDIR)/modules/mexlib/includes" 
 
 all:: info
 
