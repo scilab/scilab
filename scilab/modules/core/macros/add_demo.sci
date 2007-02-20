@@ -12,4 +12,5 @@ function add_demo(demotitle,path)
     k1=find(demolist(k,2)==path)
     if k1==[] then demolist=[demolist;demotitle+' ('+string(size(k,'*'))+')',path],end
   end
+  clear demolist
 endfunction
