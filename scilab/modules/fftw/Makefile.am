@@ -14,7 +14,7 @@ libscifftw_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### fftw : Scilab macros ###
 libscifftw_la_macrodir = $(target)/macros
-MACROS =   macros/names macros/lib macros/buildmacros.sce
+MACROS =  macros/buildmacros.sce
 
 
 #### fftw : init scripts #### 
