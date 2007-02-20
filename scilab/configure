@@ -883,6 +883,9 @@ EGREP
 TERMCAP_LIB
 SCICOS_TRUE
 SCICOS_FALSE
+FFTW3_LIB
+FFTW_TRUE
+FFTW_FALSE
 PVMGETARCH
 PVMARCH
 PVM_LIB
@@ -1529,8 +1532,8 @@ Optional Features:
 			  (and sometimes confusing) to the casual installer
   --disable-dependency-tracking  speeds up one-time build
   --enable-dependency-tracking   do not reject slow dependency extractors
-  --enable-debug            do not optimize and print warning messages (C/C++/Fortran code)
-  --enable-debug-C          do not optimize and print warning messages (C/C++ code)
+  --enable-debug           do not optimize and print warning messages (C/C++/Fortran code)
+  --enable-debug-C         do not optimize and print warning messages (C/C++ code)
   --enable-debug-fortran   do not optimize and print warning messages (Fortran code)
   --enable-shared[=PKGS]  build shared libraries [default=yes]
   --enable-static[=PKGS]  build static libraries [default=yes]
@@ -1552,6 +1555,7 @@ Optional Packages:
   --with-jdk=DIR          use JDK from DIR
   --without-ocaml         do not compile ocaml modules
   --without-scicos        do not compile scicos
+  --with-fftw	           compile with the FFTW 3 library
   --with-pvm	           compile with PVM library
   --with-pvm-include=DIR  PVM include files are in DIR
   --with-pvm-library=DIR  PVM library files are in DIR
@@ -7021,6 +7025,194 @@ echo "$as_me: error: No C Compiler. Cannot compile Scilab without a C compiler" 
    { (exit 1); exit 1; }; }
 fi
 
+# for "subdir-objects"
+
+if test "x$CC" != xcc; then
+  { echo "$as_me:$LINENO: checking whether $CC and cc understand -c and -o together" >&5
+echo $ECHO_N "checking whether $CC and cc understand -c and -o together... $ECHO_C" >&6; }
+else
+  { echo "$as_me:$LINENO: checking whether cc understands -c and -o together" >&5
+echo $ECHO_N "checking whether cc understands -c and -o together... $ECHO_C" >&6; }
+fi
+set dummy $CC; ac_cc=`echo $2 |
+		      sed 's/[^a-zA-Z0-9_]/_/g;s/^[0-9]/_/'`
+if { as_var=ac_cv_prog_cc_${ac_cc}_c_o; eval "test \"\${$as_var+set}\" = set"; }; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+
+int
+main ()
+{
+
+  ;
+  return 0;
+}
+_ACEOF
+# Make sure it works both with $CC and with simple cc.
+# We do the test twice because some compilers refuse to overwrite an
+# existing .o file with -o, though they will create one.
+ac_try='$CC -c conftest.$ac_ext -o conftest2.$ac_objext >&5'
+rm -f conftest2.*
+if { (case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_try") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } &&
+   test -f conftest2.$ac_objext && { (case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_try") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); };
+then
+  eval ac_cv_prog_cc_${ac_cc}_c_o=yes
+  if test "x$CC" != xcc; then
+    # Test first that cc exists at all.
+    if { ac_try='cc -c conftest.$ac_ext >&5'
+  { (case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_try") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; }; then
+      ac_try='cc -c conftest.$ac_ext -o conftest2.$ac_objext >&5'
+      rm -f conftest2.*
+      if { (case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_try") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } &&
+	 test -f conftest2.$ac_objext && { (case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_try") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); };
+      then
+	# cc works too.
+	:
+      else
+	# cc exists but doesn't like -o.
+	eval ac_cv_prog_cc_${ac_cc}_c_o=no
+      fi
+    fi
+  fi
+else
+  eval ac_cv_prog_cc_${ac_cc}_c_o=no
+fi
+rm -f core conftest*
+
+fi
+if eval test \$ac_cv_prog_cc_${ac_cc}_c_o = yes; then
+  { echo "$as_me:$LINENO: result: yes" >&5
+echo "${ECHO_T}yes" >&6; }
+else
+  { echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6; }
+
+cat >>confdefs.h <<\_ACEOF
+#define NO_MINUS_C_MINUS_O 1
+_ACEOF
+
+fi
+
+# FIXME: we rely on the cache variable name because
+# there is no other way.
+set dummy $CC
+ac_cc=`echo $2 | sed 's/[^a-zA-Z0-9_]/_/g;s/^[0-9]/_/'`
+if eval "test \"`echo '$ac_cv_prog_cc_'${ac_cc}_c_o`\" != yes"; then
+   # Losing compiler, so override with the script.
+   # FIXME: It is wrong to rewrite CC.
+   # But if we don't then we get into trouble of one sort or another.
+   # A longer-term fix would be to have automake use am__CC in this case,
+   # and then we could set am__CC="\$(top_srcdir)/compile \$(CC)"
+   CC="$am_aux_dir/compile $CC"
+fi
+
+
+ac_ext=f
+ac_compile='$F77 -c $FFLAGS conftest.$ac_ext >&5'
+ac_link='$F77 -o conftest$ac_exeext $FFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
+ac_compiler_gnu=$ac_cv_f77_compiler_gnu
+{ echo "$as_me:$LINENO: checking whether $F77 understands -c and -o together" >&5
+echo $ECHO_N "checking whether $F77 understands -c and -o together... $ECHO_C" >&6; }
+if test "${ac_cv_prog_f77_c_o+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  cat >conftest.$ac_ext <<_ACEOF
+      program main
+
+      end
+_ACEOF
+# We test twice because some compilers refuse to overwrite an existing
+# `.o' file with `-o', although they will create one.
+ac_try='$F77 $FFLAGS -c conftest.$ac_ext -o conftest2.$ac_objext >&5'
+rm -f conftest2.*
+if { (case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_try") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } &&
+     test -f conftest2.$ac_objext &&
+     { (case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_try") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; then
+  ac_cv_prog_f77_c_o=yes
+else
+  ac_cv_prog_f77_c_o=no
+fi
+rm -f conftest*
+fi
+{ echo "$as_me:$LINENO: result: $ac_cv_prog_f77_c_o" >&5
+echo "${ECHO_T}$ac_cv_prog_f77_c_o" >&6; }
+if test $ac_cv_prog_f77_c_o = no; then
+
+cat >>confdefs.h <<\_ACEOF
+#define F77_NO_MINUS_C_MINUS_O 1
+_ACEOF
+
+fi
+
+ac_ext=c
+ac_cpp='$CPP $CPPFLAGS'
+ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
+ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
+ac_compiler_gnu=$ac_cv_c_compiler_gnu
+
+
 if test "$enable_debug" = yes; then
    enable_debug_fortran=yes
    enable_debug_C=yes
@@ -9194,6 +9386,7 @@ NMOPT=
 
 if test "$with_intelcompilers" = yes; then
 
+
 		CFLAGS=" $CFLAGS -Dlinux -DNARROWPROTO -mp"
 		# -cm remove comments displays, -w90  -w95 remove warnings abort f90 f95 non standard
 
@@ -9220,6 +9413,8 @@ if test "$with_intelcompilers" = yes; then
 		fi
 
 		# TODO : voir si obligatoire vu que c'est en partie le boulot de AC_PROG_C
+
+
 fi
 
 ########### FORTRAN ######################
@@ -9230,7 +9425,7 @@ fi
 ######################
 
 if test -n "$F77"; then
-# TODOO : il faut peut etre verifier que c'est bien gfortran
+# TODO : il faut peut etre verifier que c'est bien gfortran
    if test "$enable_debug_fortran" = yes; then
 	  FFLAGS="$FFLAGS -g -Wall "
 	  # -D_FORTIFY_SOURCE=2
@@ -9907,7 +10102,7 @@ echo "${ECHO_T}$ac_java_classpath" >&6; }
 echo $ECHO_N "checking to see if the java compiler works... $ECHO_C" >&6; }
 
     cat << \EOF > conftest.java
-// #line 9910 "configure"
+// #line 10105 "configure"
 
 
 public class conftest {
@@ -9957,7 +10152,7 @@ echo $ECHO_N "checking type of jvm... $ECHO_C" >&6; }
     if test "x$ac_java_jvm_name" = "x" ; then
 
     cat << \EOF > conftest.java
-// #line 9960 "configure"
+// #line 10155 "configure"
 import gnu.java.io.EncodingManager;
 
 public class conftest {
@@ -10005,7 +10200,7 @@ echo $ECHO_N "checking java API version... $ECHO_C" >&6; }
 
 
     cat << \EOF > conftest.java
-// #line 10008 "configure"
+// #line 10203 "configure"
 import java.nio.charset.Charset;
 
 public class conftest {
@@ -10032,7 +10227,7 @@ EOF
 
 
     cat << \EOF > conftest.java
-// #line 10035 "configure"
+// #line 10230 "configure"
 import java.lang.StringBuilder;
 
 public class conftest {
@@ -13628,6 +13823,247 @@ else
 fi
 
 
+
+#################
+## FFTW
+#################
+
+
+# Check whether --with-fftw was given.
+if test "${with_fftw+set}" = set; then
+  withval=$with_fftw;
+fi
+
+
+if test "$with_fftw" = yes; then
+
+
+       if test "${ac_cv_header_fftw3_h+set}" = set; then
+  { echo "$as_me:$LINENO: checking for fftw3.h" >&5
+echo $ECHO_N "checking for fftw3.h... $ECHO_C" >&6; }
+if test "${ac_cv_header_fftw3_h+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+fi
+{ echo "$as_me:$LINENO: result: $ac_cv_header_fftw3_h" >&5
+echo "${ECHO_T}$ac_cv_header_fftw3_h" >&6; }
+else
+  # Is the header compilable?
+{ echo "$as_me:$LINENO: checking fftw3.h usability" >&5
+echo $ECHO_N "checking fftw3.h usability... $ECHO_C" >&6; }
+cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+$ac_includes_default
+#include <fftw3.h>
+_ACEOF
+rm -f conftest.$ac_objext
+if { (ac_try="$ac_compile"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_compile") 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } && {
+	 test -z "$ac_c_werror_flag" ||
+	 test ! -s conftest.err
+       } && test -s conftest.$ac_objext; then
+  ac_header_compiler=yes
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+	ac_header_compiler=no
+fi
+
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+{ echo "$as_me:$LINENO: result: $ac_header_compiler" >&5
+echo "${ECHO_T}$ac_header_compiler" >&6; }
+
+# Is the header present?
+{ echo "$as_me:$LINENO: checking fftw3.h presence" >&5
+echo $ECHO_N "checking fftw3.h presence... $ECHO_C" >&6; }
+cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+#include <fftw3.h>
+_ACEOF
+if { (ac_try="$ac_cpp conftest.$ac_ext"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_cpp conftest.$ac_ext") 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } >/dev/null && {
+	 test -z "$ac_c_preproc_warn_flag$ac_c_werror_flag" ||
+	 test ! -s conftest.err
+       }; then
+  ac_header_preproc=yes
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+  ac_header_preproc=no
+fi
+
+rm -f conftest.err conftest.$ac_ext
+{ echo "$as_me:$LINENO: result: $ac_header_preproc" >&5
+echo "${ECHO_T}$ac_header_preproc" >&6; }
+
+# So?  What about this header?
+case $ac_header_compiler:$ac_header_preproc:$ac_c_preproc_warn_flag in
+  yes:no: )
+    { echo "$as_me:$LINENO: WARNING: fftw3.h: accepted by the compiler, rejected by the preprocessor!" >&5
+echo "$as_me: WARNING: fftw3.h: accepted by the compiler, rejected by the preprocessor!" >&2;}
+    { echo "$as_me:$LINENO: WARNING: fftw3.h: proceeding with the compiler's result" >&5
+echo "$as_me: WARNING: fftw3.h: proceeding with the compiler's result" >&2;}
+    ac_header_preproc=yes
+    ;;
+  no:yes:* )
+    { echo "$as_me:$LINENO: WARNING: fftw3.h: present but cannot be compiled" >&5
+echo "$as_me: WARNING: fftw3.h: present but cannot be compiled" >&2;}
+    { echo "$as_me:$LINENO: WARNING: fftw3.h:     check for missing prerequisite headers?" >&5
+echo "$as_me: WARNING: fftw3.h:     check for missing prerequisite headers?" >&2;}
+    { echo "$as_me:$LINENO: WARNING: fftw3.h: see the Autoconf documentation" >&5
+echo "$as_me: WARNING: fftw3.h: see the Autoconf documentation" >&2;}
+    { echo "$as_me:$LINENO: WARNING: fftw3.h:     section \"Present But Cannot Be Compiled\"" >&5
+echo "$as_me: WARNING: fftw3.h:     section \"Present But Cannot Be Compiled\"" >&2;}
+    { echo "$as_me:$LINENO: WARNING: fftw3.h: proceeding with the preprocessor's result" >&5
+echo "$as_me: WARNING: fftw3.h: proceeding with the preprocessor's result" >&2;}
+    { echo "$as_me:$LINENO: WARNING: fftw3.h: in the future, the compiler will take precedence" >&5
+echo "$as_me: WARNING: fftw3.h: in the future, the compiler will take precedence" >&2;}
+    ( cat <<\_ASBOX
+## --------------------------------------------------------------------------- ##
+## Report this to http://scilabsoft.inria.fr/cgi-bin/bugzilla_bug_II/index.cgi ##
+## --------------------------------------------------------------------------- ##
+_ASBOX
+     ) | sed "s/^/$as_me: WARNING:     /" >&2
+    ;;
+esac
+{ echo "$as_me:$LINENO: checking for fftw3.h" >&5
+echo $ECHO_N "checking for fftw3.h... $ECHO_C" >&6; }
+if test "${ac_cv_header_fftw3_h+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  ac_cv_header_fftw3_h=$ac_header_preproc
+fi
+{ echo "$as_me:$LINENO: result: $ac_cv_header_fftw3_h" >&5
+echo "${ECHO_T}$ac_cv_header_fftw3_h" >&6; }
+
+fi
+if test $ac_cv_header_fftw3_h = yes; then
+  :
+else
+  { { echo "$as_me:$LINENO: error: Cannot find headers (fftw3.h) of the library fftw. Please install the dev package (Debian : fftw3-dev)" >&5
+echo "$as_me: error: Cannot find headers (fftw3.h) of the library fftw. Please install the dev package (Debian : fftw3-dev)" >&2;}
+   { (exit 1); exit 1; }; }
+fi
+
+
+	   { echo "$as_me:$LINENO: checking for fftw_plan_dft_r2c in -lfftw3" >&5
+echo $ECHO_N "checking for fftw_plan_dft_r2c in -lfftw3... $ECHO_C" >&6; }
+if test "${ac_cv_lib_fftw3_fftw_plan_dft_r2c+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lfftw3  $LIBS"
+cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+#ifdef __cplusplus
+extern "C"
+#endif
+char fftw_plan_dft_r2c ();
+int
+main ()
+{
+return fftw_plan_dft_r2c ();
+  ;
+  return 0;
+}
+_ACEOF
+rm -f conftest.$ac_objext conftest$ac_exeext
+if { (ac_try="$ac_link"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_link") 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } && {
+	 test -z "$ac_c_werror_flag" ||
+	 test ! -s conftest.err
+       } && test -s conftest$ac_exeext &&
+       $as_test_x conftest$ac_exeext; then
+  ac_cv_lib_fftw3_fftw_plan_dft_r2c=yes
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+	ac_cv_lib_fftw3_fftw_plan_dft_r2c=no
+fi
+
+rm -f core conftest.err conftest.$ac_objext conftest_ipa8_conftest.oo \
+      conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ echo "$as_me:$LINENO: result: $ac_cv_lib_fftw3_fftw_plan_dft_r2c" >&5
+echo "${ECHO_T}$ac_cv_lib_fftw3_fftw_plan_dft_r2c" >&6; }
+if test $ac_cv_lib_fftw3_fftw_plan_dft_r2c = yes; then
+  FFTW3_LIB=-lfftw3
+else
+  { { echo "$as_me:$LINENO: error: libfftw3 : library missing. (Cannot find symbol fftw_plan_dft_r2c). Check if libfftw3 is installed and if the version is correct" >&5
+echo "$as_me: error: libfftw3 : library missing. (Cannot find symbol fftw_plan_dft_r2c). Check if libfftw3 is installed and if the version is correct" >&2;}
+   { (exit 1); exit 1; }; }
+
+fi
+
+
+
+cat >>confdefs.h <<\_ACEOF
+#define WITH_FFTW
+_ACEOF
+
+
+fi
+ if test "$with_fftw" = yes; then
+  FFTW_TRUE=
+  FFTW_FALSE='#'
+else
+  FFTW_TRUE='#'
+  FFTW_FALSE=
+fi
+
+
 #################
 ## PVM
 #################
@@ -14420,7 +14856,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 { echo "$as_me:$LINENO: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 echo $ECHO_N "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... $ECHO_C" >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 14423 "configure"
+#line 14859 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -14781,7 +15217,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 echo $ECHO_N "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... $ECHO_C" >&6; }
 
 cat > conftest.$ac_ext <<EOF
-#line 14784 "configure"
+#line 15220 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -16496,13 +16932,13 @@ if test "${lt_cv_nm_interface+set}" = set; then
 else
   lt_cv_nm_interface="BSD nm"
   echo "int some_variable = 0;" > conftest.$ac_ext
-  (eval echo "\"\$as_me:16499: $ac_compile\"" >&5)
+  (eval echo "\"\$as_me:16935: $ac_compile\"" >&5)
   (eval "$ac_compile" 2>conftest.err)
   cat conftest.err >&5
-  (eval echo "\"\$as_me:16502: $NM \\\"conftest.$ac_objext\\\"\"" >&5)
+  (eval echo "\"\$as_me:16938: $NM \\\"conftest.$ac_objext\\\"\"" >&5)
   (eval "$NM \"conftest.$ac_objext\"" 2>conftest.err > conftest.out)
   cat conftest.err >&5
-  (eval echo "\"\$as_me:16505: output\"" >&5)
+  (eval echo "\"\$as_me:16941: output\"" >&5)
   cat conftest.out >&5
   if $GREP 'External.*some_variable' conftest.out > /dev/null; then
     lt_cv_nm_interface="MS dumpbin"
@@ -17588,7 +18024,7 @@ ia64-*-hpux*)
   ;;
 *-*-irix6*)
   # Find out which ABI we are using.
-  echo '#line 17591 "configure"' > conftest.$ac_ext
+  echo '#line 18027 "configure"' > conftest.$ac_ext
   if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   (eval $ac_compile) 2>&5
   ac_status=$?
@@ -19182,11 +19618,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:19185: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:19621: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:19189: \$? = $ac_status" >&5
+   echo "$as_me:19625: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -19504,11 +19940,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:19507: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:19943: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:19511: \$? = $ac_status" >&5
+   echo "$as_me:19947: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -19609,11 +20045,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:19612: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:20048: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:19616: \$? = $ac_status" >&5
+   echo "$as_me:20052: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -19664,11 +20100,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:19667: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:20103: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:19671: \$? = $ac_status" >&5
+   echo "$as_me:20107: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -22413,7 +22849,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 22416 "configure"
+#line 22852 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -22513,7 +22949,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 22516 "configure"
+#line 22952 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -24535,11 +24971,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:24538: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:24974: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:24542: \$? = $ac_status" >&5
+   echo "$as_me:24978: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -24634,11 +25070,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:24637: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:25073: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:24641: \$? = $ac_status" >&5
+   echo "$as_me:25077: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -24686,11 +25122,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:24689: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:25125: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:24693: \$? = $ac_status" >&5
+   echo "$as_me:25129: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -26061,11 +26497,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:26064: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:26500: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:26068: \$? = $ac_status" >&5
+   echo "$as_me:26504: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -26160,11 +26596,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:26163: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:26599: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:26167: \$? = $ac_status" >&5
+   echo "$as_me:26603: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -26212,11 +26648,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:26215: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:26651: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:26219: \$? = $ac_status" >&5
+   echo "$as_me:26655: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -28437,20 +28873,6 @@ _ACEOF
 ac_config_files="$ac_config_files libs/lapack/Makefile libs/blas/Makefile libs/MALLOC/Makefile libs/hashtable/Makefile libs/f2c/Makefile modules/helptools/Makefile modules/data_structures/Makefile modules/differential_equations/Makefile modules/optimization/Makefile modules/elementaries_functions/Makefile modules/special_functions/Makefile modules/io/Makefile modules/jvm/Makefile modules/sound/Makefile modules/statistics/Makefile modules/mexlib/Makefile modules/sparse/Makefile modules/linear_algebra/Makefile modules/polynomials/Makefile modules/symbolic/Makefile modules/signal_processing/Makefile modules/arnoldi/Makefile modules/interpolation/Makefile modules/intersci/Makefile modules/localization/Makefile modules/metanet/Makefile modules/cacsd/Makefile modules/boolean/Makefile modules/integer/Makefile modules/double/Makefile modules/fileio/Makefile modules/string/Makefile modules/time/Makefile modules/graphics/Makefile modules/gui/Makefile modules/pvm/Makefile modules/randlib/Makefile modules/tclsci/Makefile modules/wintools/Makefile modules/core/Makefile modules/fftw/Makefile modules/scicos/Makefile modules/scicos/src/ocaml/Makefile modules/functions/Makefile modules/incremental_link/Makefile modules/others/Makefile modules/overloading/Makefile modules/javasci/Makefile modules/maple2scilab/Makefile modules/m2sci/Makefile modules/texmacs/Makefile modules/tfds/Makefile modules/scipad/Makefile modules/scilab2fortran/Makefile modules/development_tools/Makefile modules/Makefile libs/Makefile Makefile"
 #MAN_FR MAN_ENG
 
-
-#AC_CONFIG_FILES([
-#modules/Makefile
-#Makefile
-#modules/os_specific/os_specific.pc modules/fileio/fileio.pc  modules/default/Makefile modules/os_specific/Makefile modules/graphics/Makefile  modules/console/Makefile  modules/calelm/Makefile modules/menusX/Makefile modules/metanet/Makefile modules/xsci/Makefile modules/scicos/Makefile modules/slicot/Makefile modules/blas/Makefile modules/tclsci/Makefile modules/randlib/Makefile modules/xdr/Makefile modules/wintools/Makefile modules/system/Makefile modules/system2/Makefile modules/signal/Makefile modules/arpack/Makefile modules/sparse/Makefile modules/interf/Makefile modules/int/Makefile modules/integ/Makefile modules/control/Makefile modules/dcd/Makefile modules/dld/Makefile   modules/gd/Makefile modules/fileio/Makefile   modules/lapack/Makefile modules/optim/Makefile modules/version.h  modules/intersci/Makefile modules/gtksci/Makefile  modules/gzvt2/Makefile modules/poly/Makefile modules/Javasci/Makefile modules/pvm/Makefile
-#scripts/Makefile scripts/scilab.g scripts/scilab-gtk.g
-#macros/util/gettklib.sci macros/util/xmlfiletohtml.sci
-#examples/Makefile
-#imp/Makefile
-#Makemex
-#])#MAN_FR MAN_ENG
-#
-# config/Makeso.incl config/Makefile.aix config/Makefile.ultrix no longer used
-
 #for top_builddir in . .. ../.. $ac_auxdir $ac_auxdir/..; do
 #  test -f $top_builddir/configure && break
 #done
@@ -28611,6 +29033,13 @@ if test -z "${SCICOS_TRUE}" && test -z "${SCICOS_FALSE}"; then
   { { echo "$as_me:$LINENO: error: conditional \"SCICOS\" was never defined.
 Usually this means the macro was only invoked conditionally." >&5
 echo "$as_me: error: conditional \"SCICOS\" was never defined.
+Usually this means the macro was only invoked conditionally." >&2;}
+   { (exit 1); exit 1; }; }
+fi
+if test -z "${FFTW_TRUE}" && test -z "${FFTW_FALSE}"; then
+  { { echo "$as_me:$LINENO: error: conditional \"FFTW\" was never defined.
+Usually this means the macro was only invoked conditionally." >&5
+echo "$as_me: error: conditional \"FFTW\" was never defined.
 Usually this means the macro was only invoked conditionally." >&2;}
    { (exit 1); exit 1; }; }
 fi
@@ -29822,6 +30251,9 @@ EGREP!$EGREP$ac_delim
 TERMCAP_LIB!$TERMCAP_LIB$ac_delim
 SCICOS_TRUE!$SCICOS_TRUE$ac_delim
 SCICOS_FALSE!$SCICOS_FALSE$ac_delim
+FFTW3_LIB!$FFTW3_LIB$ac_delim
+FFTW_TRUE!$FFTW_TRUE$ac_delim
+FFTW_FALSE!$FFTW_FALSE$ac_delim
 PVMGETARCH!$PVMGETARCH$ac_delim
 PVMARCH!$PVMARCH$ac_delim
 PVM_LIB!$PVM_LIB$ac_delim
@@ -29865,7 +30297,7 @@ LIBOBJS!$LIBOBJS$ac_delim
 LTLIBOBJS!$LTLIBOBJS$ac_delim
 _ACEOF
 
-  if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 63; then
+  if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 66; then
     break
   elif $ac_last_try; then
     { { echo "$as_me:$LINENO: error: could not make $CONFIG_STATUS" >&5
@@ -31321,6 +31753,8 @@ echo "Sablotron processor (--with-sablotron) .......... : $with_sablotron"
 echo "Xsltproc processor (--with-xsltproc) ............ : $with_xsltproc"
 echo "Install XML Help (--with-install-help-xml) ...... : $with_install_help_xml"
 echo "Do not compile Scicos (--without-scicos) ........ : $without_scicos"
+echo "Use FFTW (--with-fftw) .......................... : $with_fftw"
+
 echo ""
 echo "GUI : $GUI"
 echo ""

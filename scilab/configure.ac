@@ -51,10 +51,10 @@ AC_CANONICAL_HOST
 
 
 AC_ARG_ENABLE(debug,
-   [  --enable-debug            do not optimize and print warning messages (C/C++/Fortran code)])
+   [  --enable-debug           do not optimize and print warning messages (C/C++/Fortran code)])
 
 AC_ARG_ENABLE(debugC,
-   [  --enable-debug-C          do not optimize and print warning messages (C/C++ code)])
+   [  --enable-debug-C         do not optimize and print warning messages (C/C++ code)])
 
 AC_ARG_ENABLE(debugFortran,
    [  --enable-debug-fortran   do not optimize and print warning messages (Fortran code)])
@@ -160,6 +160,11 @@ fi
 if test -z "$CC"; then
   AC_MSG_ERROR([No C Compiler. Cannot compile Scilab without a C compiler])
 fi
+
+# for "subdir-objects"
+
+AM_PROG_CC_C_O
+AC_PROG_F77_C_O
 
 if test "$enable_debug" = yes; then
    enable_debug_fortran=yes
@@ -306,33 +311,7 @@ NMOPT=
 ######################
 
 if test "$with_intelcompilers" = yes; then
-		
-		CFLAGS=" $CFLAGS -Dlinux -DNARROWPROTO -mp"
-		# -cm remove comments displays, -w90  -w95 remove warnings abort f90 f95 non standard
-
-		FFLAGS=" $FFLAGS -cm  -w90 -w95 -mp"
-
-
-		case "$host" in
-		  i*86-*-linux-gnu | *-pc-linux-gnu )
-			# -pc64 : double precision 
-			EXTRA_OPTIONS=" -pc64 -ffnalias -falias"
-			;;
-		esac
-
-		if test "$enable_debug_C" = yes; then
-			CFLAGS="-g $CFLAGS $EXTRA_OPTIONS"
-		else
-			CFLAGS="-O -DNDEBUG $CFLAGS "
-		fi
-
-		if test "$enable_debug_fortran" = yes; then
-			FFLAGS="-g $FFLAGS $EXTRA_OPTIONS"
-		else
-			FFLAGS="-O $FFLAGS "
-		fi		
-	
-		# TODO : voir si obligatoire vu que c'est en partie le boulot de AC_PROG_C
+   SCI_INTEL_COMPILER()
 fi
 
 ########### FORTRAN ######################
@@ -343,7 +322,7 @@ fi
 ######################
 
 if test -n "$F77"; then
-# TODOO : il faut peut etre verifier que c'est bien gfortran
+# TODO : il faut peut etre verifier que c'est bien gfortran
    if test "$enable_debug_fortran" = yes; then
 	  FFLAGS="$FFLAGS -g -Wall "
 	  # -D_FORTIFY_SOURCE=2
@@ -751,6 +730,19 @@ if test "$with_scicos" = yes; then
 fi
 AM_CONDITIONAL(SCICOS, test "$with_scicos" = yes)
 
+
+#################
+## FFTW
+#################
+
+AC_ARG_WITH(fftw,
+    [  --with-fftw	           compile with the FFTW 3 library ])
+
+if test "$with_fftw" = yes; then
+   AC_FFTW()
+fi
+AM_CONDITIONAL(FFTW, test "$with_fftw" = yes)
+
 #################
 ## PVM
 #################
@@ -801,7 +793,7 @@ if test "$with_tk" != no; then
 	saved_ldflags="$LDFLAGS"
 	saved_cppflags="$CPPFLAGS"
 	
-	AC_CHECK_LIB(dl, main,TCLTK_LIBS=" -ldl")
+	AC_CHECK_LIB([dl], [main], [TCLTK_LIBS=" -ldl"])
 	AC_CHECK_TCLTK
 	
 	# set variables
@@ -1133,20 +1125,6 @@ libs/Makefile
 Makefile
 ])#MAN_FR MAN_ENG
 
-
-#AC_CONFIG_FILES([ 
-#modules/Makefile 
-#Makefile
-#modules/os_specific/os_specific.pc modules/fileio/fileio.pc  modules/default/Makefile modules/os_specific/Makefile modules/graphics/Makefile  modules/console/Makefile  modules/calelm/Makefile modules/menusX/Makefile modules/metanet/Makefile modules/xsci/Makefile modules/scicos/Makefile modules/slicot/Makefile modules/blas/Makefile modules/tclsci/Makefile modules/randlib/Makefile modules/xdr/Makefile modules/wintools/Makefile modules/system/Makefile modules/system2/Makefile modules/signal/Makefile modules/arpack/Makefile modules/sparse/Makefile modules/interf/Makefile modules/int/Makefile modules/integ/Makefile modules/control/Makefile modules/dcd/Makefile modules/dld/Makefile   modules/gd/Makefile modules/fileio/Makefile   modules/lapack/Makefile modules/optim/Makefile modules/version.h  modules/intersci/Makefile modules/gtksci/Makefile  modules/gzvt2/Makefile modules/poly/Makefile modules/Javasci/Makefile modules/pvm/Makefile 
-#scripts/Makefile scripts/scilab.g scripts/scilab-gtk.g
-#macros/util/gettklib.sci macros/util/xmlfiletohtml.sci
-#examples/Makefile
-#imp/Makefile
-#Makemex
-#])#MAN_FR MAN_ENG
-#
-# config/Makeso.incl config/Makefile.aix config/Makefile.ultrix no longer used 
-
 #for top_builddir in . .. ../.. $ac_auxdir $ac_auxdir/..; do
 #  test -f $top_builddir/configure && break
 #done
@@ -1191,6 +1169,8 @@ echo "Sablotron processor (--with-sablotron) .......... : $with_sablotron"
 echo "Xsltproc processor (--with-xsltproc) ............ : $with_xsltproc"
 echo "Install XML Help (--with-install-help-xml) ...... : $with_install_help_xml"
 echo "Do not compile Scicos (--without-scicos) ........ : $without_scicos"
+echo "Use FFTW (--with-fftw) .......................... : $with_fftw"
+
 echo ""
 echo "GUI : $GUI"
 echo ""
