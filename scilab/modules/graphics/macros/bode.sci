@@ -159,7 +159,7 @@ xgrid(4);
 //  now the curves
 plot2d1( "oln",frq',phi' ) ;
 axes = gca() ;
-axes.data_bounds = rect ;zzz a.log_flags = "lnn" ;
+axes.data_bounds = rect ;a.log_flags = "lnn" ;
 
 
 if type(dom)==1 then
