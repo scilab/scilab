@@ -869,7 +869,6 @@ uninstall-am: uninstall-libscifftw_la_etcDATA \
 @FFTW_TRUE@	@if test ! -z "$(MACROS)"; then \
 @FFTW_TRUE@	for dir in $(MACROSDIRS) ; do \
 @FFTW_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-@FFTW_TRUE@			echo "file in "$(srcdir)/$$dir; \
 @FFTW_TRUE@		  for file in $(MACROS); do \
 @FFTW_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 @FFTW_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
