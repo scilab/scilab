@@ -1,5 +1,5 @@
 //------------------------------------
 // Allan CORNET INRIA 2005
 //------------------------------------
-//genlib('specfunlib','SCI/modules/special_functions/macros');
+//genlib('special_functionslib','SCI/modules/special_functions/macros');
 //------------------------------------

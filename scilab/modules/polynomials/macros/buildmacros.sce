@@ -1,5 +1,5 @@
 //------------------------------------
 // Allan CORNET INRIA 2005
 //------------------------------------
-genlib('polylib','SCI/modules/polynomials/macros');
+genlib('polynomialslib','SCI/modules/polynomials/macros');
 //------------------------------------

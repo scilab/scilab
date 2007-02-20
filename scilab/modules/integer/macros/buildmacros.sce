@@ -1,5 +1,5 @@
 //------------------------------------
 // Allan CORNET INRIA 2005
 //------------------------------------
-genlib('intlib','SCI/modules/integer/macros');
+genlib('integerlib','SCI/modules/integer/macros');
 //------------------------------------

@@ -1,7 +1,7 @@
 //------------------------------------
 // Allan CORNET INRIA 2005
 //------------------------------------
-genlib('libm2sci','SCI/modules/m2sci/macros');
+genlib('m2scilib','SCI/modules/m2sci/macros');
 //------------------------------------
 mprintf(" -- Creation of [SCI/modules/m2sci/macros/m2sci] (Macros) --\n");
 chdir('SCI/modules/m2sci/macros/m2sci');

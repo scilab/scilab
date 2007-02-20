@@ -1,5 +1,5 @@
 //------------------------------------
 // Allan CORNET INRIA 2005
 //------------------------------------
-genlib('diffequlib','SCI/modules/differential_equations/macros');
+genlib('differential_equationlib','SCI/modules/differential_equations/macros');
 //------------------------------------

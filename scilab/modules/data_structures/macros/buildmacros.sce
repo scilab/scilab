@@ -1,5 +1,5 @@
 //------------------------------------
 // Allan CORNET INRIA 2005
 //------------------------------------
-genlib('dstructlib','SCI/modules/data_structures/macros');
+genlib('data_structureslib','SCI/modules/data_structures/macros');
 //------------------------------------

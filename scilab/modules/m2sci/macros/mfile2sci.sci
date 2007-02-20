@@ -22,9 +22,9 @@ if part(res_path,length(res_path))<>"/" then
   res_path=res_path+"/"
 end
 // Loads libraries related to m2sci
-if exists("m2skernellib")==0 then load("SCI/modules/m2sci/macros/m2sci/kernel/lib"),end
-if exists("m2spercentlib")==0 then load("SCI/modules/m2sci/macros/m2sci/percent/lib"),end
-if exists("m2ssci_fileslib")==0 then load("SCI/modules/m2sci/macros/m2sci/sci_files/lib"),end
+if exists("m2scikernellib")==0 then load("SCI/modules/m2sci/macros/m2sci/kernel/lib"),end
+if exists("m2scipercentlib")==0 then load("SCI/modules/m2sci/macros/m2sci/percent/lib"),end
+if exists("m2scisci_fileslib")==0 then load("SCI/modules/m2sci/macros/m2sci/sci_files/lib"),end
 
 if multi_fun_file(fil,res_path,Recmode,only_double,verbose_mode,prettyprint) then
   res=1

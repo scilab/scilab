@@ -1,5 +1,5 @@
 //------------------------------------
 // Allan CORNET INRIA 2006
 //------------------------------------
-genlib('alglib','SCI/modules/linear_algebra/macros');
+genlib('linear_algebralib','SCI/modules/linear_algebra/macros');
 //------------------------------------

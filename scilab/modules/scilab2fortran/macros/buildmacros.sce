@@ -1,5 +1,5 @@
 //------------------------------------
 // Allan CORNET INRIA 2005
 //------------------------------------
-genlib('s2flib','SCI/modules/scilab2fortran/macros');
+genlib('scilab2fortranlib','SCI/modules/scilab2fortran/macros');
 //------------------------------------

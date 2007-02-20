@@ -1,5 +1,5 @@
 //------------------------------------
 // Allan CORNET INRIA 2005
 //------------------------------------
-genlib('optlib','SCI/modules/optimization/macros');
+genlib('optimizationlib','SCI/modules/optimization/macros');
 //------------------------------------

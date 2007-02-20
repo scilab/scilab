@@ -1,5 +1,5 @@
 //------------------------------------
 // Allan CORNET INRIA 2005
 //------------------------------------
-genlib('siglib','SCI/modules/signal_processing/macros');
+genlib('signal_processinglib','SCI/modules/signal_processing/macros');
 //------------------------------------
