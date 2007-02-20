@@ -1,6 +1,8 @@
 function scipad(varargin)
 // start Scipad editor
 
+    if ~exists('scipadinternalslib') then load('SCI/modules/scipad/macros/scipad_internals/lib');end;
+
     global SCIPADISSTARTING
     // ensure that no concurrent launching occurs
     // this fixes the issue that shows up when quickly
