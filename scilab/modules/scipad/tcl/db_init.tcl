@@ -17,12 +17,12 @@ set errmsg ""
 set errnum 0
 set errline 0
 set errfunc ""
-set uabpt_opened_a_file false ;# see proc updateactivebreakpointtag
+set uabpt_opened_a_file false ;# see proc updateactbreakpointtag
 array set cursorsinwidgets {}
 set debuggerbusycursor false
 set initprevdbpauselevel 4                  ;# see proc checkendofdebug_bp
 set prevdbpauselevel $initprevdbpauselevel
-set afilewasjustopenedbyuabpt false         ;# see proc checkendofdebug_bp
+set afilewasopenedbyuabpt false             ;# see proc checkendofdebug_bp
 
 # list of functions names that cannot be debugged
 # because they are debugger ancillaries

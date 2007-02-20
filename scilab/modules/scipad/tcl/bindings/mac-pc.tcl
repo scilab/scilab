@@ -26,10 +26,11 @@ sbind $pad <Control-f> {findtextdialog find}
 sbind $pad <Control-r> {findtextdialog replace}
 sbind $pad <F3> {findnext}
 
-sbind Text <Control-x> {cuttext}
+sbind Text <Control-x> {cuttext normal}
+sbind Text <Control-X> {cuttext block}
 sbind $pad <Control-c> {copytext}
 sbind Text <Control-v> {pastetext normal}
-sbind Text <Control-V> {pastetext block} ; # binding to Shift-Control-v doesn't work??
+sbind Text <Control-V> {pastetext block}
 sbind Text <Delete>    {deletetext}
 
 #cut-copy-paste for entries

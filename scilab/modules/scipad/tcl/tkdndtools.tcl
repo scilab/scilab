@@ -45,6 +45,7 @@ proc tkdndbind {w} {
     dnd bindtarget $w text/plain <Drop> {
         if {[info exists sourcetextarea]} {
             # drag from Scipad, drop in Scipad
+
             if {$sourcetextarea == "%W" && [gettaselind %W any] != ""} {
                 # drag and drop in the same Scipad buffer
                 #
@@ -62,15 +63,16 @@ proc tkdndbind {w} {
                     # first position of the selection
                     if {"%A" == "copy"} {
                         %W tag remove sel 1.0 end
-                        puttext %W %D
+                        dnd_putorpastetext %W %D
                     } else {
+                        # "%A" == "move"
                         set oldSeparator [%W cget -autoseparators]
                         if {$oldSeparator} {
                             %W configure -autoseparators 0
                             %W edit separator
                         }
                         deletetext
-                        puttext %W %D
+                        dnd_putorpastetext %W %D
                         if {$oldSeparator} {
                             %W edit separator
                             %W configure -autoseparators 1
@@ -79,10 +81,12 @@ proc tkdndbind {w} {
                 } else {
                     # drop occurs at the same place as drag, do nothing
                 }
+
             } else {
                 # drag from a Scipad buffer, drop in another Scipad buffer
                 %W tag remove sel 1.0 end
-                puttext %W %D
+                focustextarea %W ; # needed if next command is actually paste (which performs in current textarea)
+                dnd_putorpastetext %W %D
                 if {"%A" == "move"} {
                     focustextarea $sourcetextarea
                     eval "$sourcetextarea tag add sel $savedseli"
@@ -90,11 +94,13 @@ proc tkdndbind {w} {
                 }
             }
             unset sourcetextarea
+
         } else {
             # drag from outside of Scipad, drop in Scipad
             %W tag remove sel 1.0 end
             puttext %W %D   
         }
+ 
         restorecursorblink ; # needed for drags from the outside
         set dndinitiated "false"
         if {[info exists dnddroppos]} {
@@ -205,7 +211,7 @@ proc tkdndbind {w} {
 
 proc Button1BindTextArea { w x y } {
     global dndinitiated savedsel savedseli dndreallystarted
-    global mouseoversel
+    global mouseoversel dnd_issourceblocksel
 
     # note: when dndreallystarted is "false", the Text class binding fires
     # after this proc (no "break" in the binding that launched this proc),
@@ -223,12 +229,12 @@ proc Button1BindTextArea { w x y } {
     $w see insert
 
     set dndreallystarted "false"
-    # block selection not supported: collapse it to its first range
     set savedseli [gettaselind $w any]
     if {$savedseli != ""} {
         if {$mouseoversel} {
             set dndinitiated "true"
             set savedsel [gettatextstring $w $savedseli]
+            set dnd_issourceblocksel [expr {[llength $savedseli] != 2}]
             stopcursorblink
             dnd drag $w -actions {copy move}
             # (Windows) dnd drag returns only after the drop action (in case
@@ -245,6 +251,19 @@ proc Button1BindTextArea { w x y } {
     after idle "$w see insert"
 
     return $dndreallystarted
+}
+
+proc dnd_putorpastetext {w toput} {
+# puttext if the source selection was a single sel,
+# or pastetext as block otherwise
+    global dnd_issourceblocksel
+    if {!$dnd_issourceblocksel} {
+        # single selection
+        puttext $w $toput
+    } else {
+        # multirange selection, i.e. block selection
+        pastetext block $toput
+    }
 }
 
 ############################

@@ -99,16 +99,20 @@ proc dokeyposn {textarea} {
     # enable Cut and Copy and Evaluate selection if there is a selection
     if {[gettaselind $textarea any] == {}} {
         $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "Cu&t"]) -state disabled
+        $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "B&lock cut"]) -state disabled
         $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "&Copy"]) -state disabled
         $pad.filemenu.exec entryconfigure $MenuEntryId($pad.filemenu.exec.[mcra "&Evaluate selection"]) -state disabled
-        binddisable Text cuttext
+        binddisable Text {cuttext normal}
+        binddisable Text {cuttext block}
         binddisable $pad copytext
         binddisable $pad execselection
     } else {
         $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "Cu&t"]) -state normal
+        $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "B&lock cut"]) -state normal
         $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "&Copy"]) -state normal
         $pad.filemenu.exec entryconfigure $MenuEntryId($pad.filemenu.exec.[mcra "&Evaluate selection"]) -state normal
-        bindenable Text cuttext
+        bindenable Text {cuttext normal}
+        bindenable Text {cuttext block}
         bindenable $pad copytext
         bindenable $pad execselection
    }
@@ -116,13 +120,13 @@ proc dokeyposn {textarea} {
     # enable Paste if the clipboard contains something
     if {[catch {clipboard get}] == 1} {
         $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "&Paste"]) -state disabled
-        binddisable Text {pastetext normal}
         $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "&Block paste"]) -state disabled
+        binddisable Text {pastetext normal}
         binddisable Text {pastetext block}
     } else {
         $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "&Paste"]) -state normal
-        bindenable Text {pastetext normal}
         $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "&Block paste"]) -state normal
+        bindenable Text {pastetext normal}
         bindenable Text {pastetext block}
     }
 }

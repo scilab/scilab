@@ -5,15 +5,15 @@ proc updateactivebreakpoint { {itemno 3} } {
     # to avoid TCL_EvalStr to try to evaluate string(db_m($itemno))
     # this is useful for instance when the function name where the
     # breakpoint stop occurs starts with a dollar sign $
-    set comm3 "TCL_EvalStr(\"updateactivebreakpointtag \"+string(db_l($itemno))+\" {\"+string(db_m($itemno))+\"} \",\"scipad\");"
+    set comm3 "TCL_EvalStr(\"updateactbreakpointtag \"+string(db_l($itemno))+\" {\"+string(db_m($itemno))+\"} \",\"scipad\");"
     set comm4 "else"
-    set comm5 "TCL_EvalStr(\"updateactivebreakpointtag 0 \"\"\"\" \",\"scipad\");"
+    set comm5 "TCL_EvalStr(\"updateactbreakpointtag 0 \"\"\"\" \",\"scipad\");"
     set comm6 "end;"
     set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6]
     ScilabEval_lt "$fullcomm" "seq"
 }
 
-proc updateactivebreakpointtag {{activeline -1} {activemacro -1}} {
+proc updateactbreakpointtag {{activeline -1} {activemacro -1}} {
 # Show the active breakpoint
 # This is done by using proc dogotoline
 # <TODO> this might fail if the same function name can be found in more
@@ -22,7 +22,7 @@ proc updateactivebreakpointtag {{activeline -1} {activemacro -1}} {
     # uabpt_opened is used to prevent more than one recursive call
     global backgroundtasksallowed
     global uabpt_opened_a_file       ; # used only in this proc, to differentiate between the possible two successive executions
-    global afilewasjustopenedbyuabpt ; # used indirectly in proc checkendofdebug_bp
+    global afilewasopenedbyuabpt     ; # used indirectly in proc checkendofdebug_bp
 
     removeallactive_bp
 
@@ -36,15 +36,15 @@ proc updateactivebreakpointtag {{activeline -1} {activemacro -1}} {
             # ancillary (can happen while stepping into)
             # open the adequate file first (no background colorization,
             # so that colorization is finished when calling dogotoline
-            # in the next call to updateactivebreakpointtag)
+            # in the next call to updateactbreakpointtag)
             # and try again to update the activebreakpoint tag
             # note: this must be done the way below because it makes use
             # of the queueing ScilabEval "seq" instructions
-            set afilewasjustopenedbyuabpt true
+            set afilewasopenedbyuabpt true
             set uabpt_opened_a_file true
             set backgroundtasksallowed false
             doopenfunsource "libfun" $activemacro
-            set comm1 "TCL_EvalStr(\"updateactivebreakpointtag $activeline $activemacro;\",\"scipad\");"
+            set comm1 "TCL_EvalStr(\"updateactbreakpointtag $activeline $activemacro;\",\"scipad\");"
             set comm2 "TCL_EvalStr(\"set backgroundtasksallowed true\",\"scipad\");"
             set fullcomm [concat $comm1 $comm2]
             ScilabEval_lt "$fullcomm" "seq"
@@ -66,11 +66,11 @@ proc updateactivebreakpointtag {{activeline -1} {activemacro -1}} {
     }
 }
 
-proc closecurifjustopenedbyuabpt {} {
-# as it says, this proc closes the current buffer if proc updateactivebreakpointtag
+proc closecurifopenedbyuabpt {} {
+# as it says, this proc closes the current buffer if proc updateactbreakpointtag
 # did just open a libfun - this is used in proc checkendofdebug_bp
-    global afilewasjustopenedbyuabpt
-    if {$afilewasjustopenedbyuabpt} {
+    global afilewasopenedbyuabpt
+    if {$afilewasopenedbyuabpt} {
         closecur
     }
 }

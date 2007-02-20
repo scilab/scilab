@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.90
+# in sync at least with v6.92
 
 
 # commons
@@ -390,6 +390,7 @@
     ::msgcat::mcset fr "&Undo" "&Annuler"
     ::msgcat::mcset fr "&Redo" "&Répéter"
     ::msgcat::mcset fr "Cu&t" "Co&uper"
+    ::msgcat::mcset fr "B&lock cut" "Couper (mode bl&oc)"
     ::msgcat::mcset fr "&Copy" "&Copier"
     ::msgcat::mcset fr "&Paste" "Co&ller"
     ::msgcat::mcset fr "&Block paste" "Coller (mode &bloc)"

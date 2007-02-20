@@ -508,7 +508,7 @@ Francois VOGEL, 20/10/04
  * Implemented a workaround for bug 633 (workspace erased after abort of a callback). This
    was required to fix the command "Cancel debug".
  * Suppressed the temporary file getwatchcomm.sce and replaced by successive ScilabEvals.
- * Proc updateactivebreakpointtag bullet-proofed against values of $activeline. Scipad hangs
+ * Proc updateactbreakpointtag bullet-proofed against values of $activeline. Scipad hangs
    no more if $activeline is 0 or less, or greater than the length of $activemacro.
  * Now a debug session seems to work fully (tested on Windows only however). The main issue
    was that ScilabEval "sync" was called during a paused ScilabEval "seq". Currently, the
@@ -536,21 +536,21 @@ Francois VOGEL, 27/10/04
    level, i.e. the ScilabEval call to the breakpointed function to debug.
  * Fixed bug: When the function to debug returned before the first breakpoint, the debugger
    state did not go back to "NoDebug". 
- * Line 1 of a function can now be tagged by proc updateactivebreakpointtag.
+ * Line 1 of a function can now be tagged by proc updateactbreakpointtag.
  * version --> 3.7
 
 Francois VOGEL, 29/10/04
- * Fixed bug in proc updateactivebreakpointtag. This proc could spit 'TK_EvalStr, bad text
+ * Fixed bug in proc updateactbreakpointtag. This proc could spit 'TK_EvalStr, bad text
    index "" at line 1' when launched from the Scilab command line by TK_EvalStr("scipad eval
-   {updateactivebreakpointtag 1 foo}"). This occurred when the commented word "function" was
+   {updateactbreakpointtag 1 foo}"). This occurred when the commented word "function" was
    present in the buffer and function foo was not defined in that buffer.
  * version --> 3.8
 
 Francois VOGEL, 01/11/04
- * Fixed further bug in proc updateactivebreakpointtag. The first line of the function
+ * Fixed further bug in proc updateactbreakpointtag. The first line of the function
    defined just after the function searched for could be tagged.
  * The insertion cursor is now positioned at the beginning of the active breakpoint on an
-   update of its position. This is an option of proc updateactivebreakpointtag.
+   update of its position. This is an option of proc updateactbreakpointtag.
  * Simplified the debugger. Start debug (CTRL-F11) and Go to next breakpoint (F11) merged
    into one single command.
  * Improved proc scilaberror following ES' suggestions
@@ -1275,7 +1275,7 @@ Francois VOGEL, 18/07/05
       widget size was very small - Scipad now clips the text widget first, 
       until there is nothing else to do than to clip the scrollbar
     - Drag and drop works between panes - major rewrite of the dnd procs
- * Fixed: initialisation of funtogoto was missing in updateactivebreakpointtag
+ * Fixed: initialisation of funtogoto was missing in updateactbreakpointtag
  * version --> 5.19
 
 Francois VOGEL, 18/07/05
@@ -1994,7 +1994,7 @@ Francois VOGEL, 19/02/06
        This case is handled like Scilab handles it: the last varargin is
        ignored and the previous varargin is a normal argument
  * Proc dogotoline accepts the destination parameters as inputs. Simplified
-   proc updateactivebreakpointtag as a consequence
+   proc updateactbreakpointtag as a consequence
  * Speed up of proc getallfunsintextarea (up to 70 times faster, especially
    for large buffers containing many functions) by removing the need to use
    proc whichfun - Ditto for proc checkarglist
@@ -2845,3 +2845,12 @@ Francois VOGEL, 15/02/07
  * Fixed Tcl error that popped up when configuring the debug as .sce and
    then immediately cancelling the debug
  * version --> 6.91
+
+Francois VOGEL, 20/02/07
+ * Shortened the name of certain variables of the debugger that produced
+   truncation warnings in Scilab since Scilab now warns the user about
+   names having more than 24 characters
+ * First implementation of block cut
+ * dnd uses block paste when moving or copying a block selection, the drag
+   source being the same buffer as the drop target or not
+ * version --> 6.92

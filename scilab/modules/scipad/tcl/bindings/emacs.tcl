@@ -44,7 +44,8 @@ sbind Text <Control-Z> {redo [gettextareacur]}
 sbind $pad <Alt-percent> {findtextdialog replace}
 sbind $pad <F3> {findnext}
 
-sbind Text <Control-w> {cuttext}
+sbind Text <Control-w> {cuttext normal}
+sbind Text <Control-W> {cuttext block}
 sbind $pad <Alt-w>     {copytext}
 sbind Text <Control-y> {pastetext normal}
 sbind Text <Control-Y> {pastetext block}

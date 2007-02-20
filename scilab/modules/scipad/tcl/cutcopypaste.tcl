@@ -86,10 +86,17 @@ proc backspacetext {} {
     restorecursorblink ; # see comments in proc puttext
 }
 
-proc cuttext {} {
+proc cuttext {mode} {
 # cut text procedure: copy current selection into the clipboard,
 # and remove the selected text from the current buffer
 # note: block selection is supported
+# if $mode is "normal": usual cut
+#     all the text tagged with sel is sent to the clipboard and is deleted
+#     from the textarea
+# if $mode is "block": block cut
+#     all the text tagged with sel is sent to the clipboard, but deletion
+#     of the tagged text occurs only for line selections having more than
+#     a single \n
 
     global listoffile buffermodifiedsincelastsearch
 
@@ -105,12 +112,36 @@ proc cuttext {} {
         set listoffile("$ta",redostackdepth) 0
     }
 
-    # now cut it! note that tk_textCut being designed to work with a
-    # single range selection, this command cannot be used here directly
     sendtoclipboard $textareacur $selindices
 
+    # save first sel position, so that the cursor can be placed there
+    # after the cut - this position being before everything selected
+    # (that will be deleted), it won't change in the following process
+    # therefore no adjustment is needed when placing the cursor there
+    set firstselpos [lindex $selindices 0]
+
+    # now cut it! note that tk_textCut being designed to work with a
+    # single range selection, this command cannot be used here directly
     # text deletion must be done at once and not range by range!
-	eval "$textareacur delete $selindices"
+    if {$mode == "normal"} {
+        # normal cut
+	    eval "$textareacur delete $selindices"
+    } else {
+        # $mode == "block", this is block cut
+        set selindicestodelete [list ]
+        foreach {sta sto} $selindices {
+            # a selected line must be deleted if and only if it does not
+            # contain only a \n - the test below works even if there are
+            # many consecutive empty lines, i.e. $sta to $sto contain a
+            # certain number of \n but no other character
+            if {[regexp -- {[^\n]} [$textareacur get $sta $sto]]} {
+                lappend selindicestodelete $sta $sto
+            }
+        }
+        if {$selindicestodelete != {}} {
+	        eval "$textareacur delete $selindicestodelete"
+	    }
+    }
 
     $textareacur tag remove sel 1.0 end
     $textareacur see insert
@@ -122,6 +153,7 @@ proc cuttext {} {
                           [$textareacur index $dnlimit]
     backgroundcolorizeuserfun
     reshape_bp
+    $textareacur mark set insert $firstselpos
     keyposn $textareacur
     set buffermodifiedsincelastsearch true
     restorecursorblink ; # see comments in proc puttext
@@ -154,7 +186,7 @@ proc sendtoclipboard {ta indices} {
     clipboard append -displayof $ta [gettatextstring $ta $indices]
 }
 
-proc pastetext {mode} {
+proc pastetext {mode {topasteinblockmode ""}} {
 # paste text procedure: copy clipboard content into the current buffer
 # where the insert cursor is
 # note: block selection is supported (i.e. it is first collapsed
@@ -165,6 +197,9 @@ proc pastetext {mode} {
 # if $mode is "block": block paste
 #     the clipboard content to paste is viewed as a a number of strings each
 #     separated by \n
+# the second argument topasteinblockmode is optional and can only be given
+# when $mode=="block". If it is given, it contains the text to paste,
+# otherwise the text to paste is extracted from the clipboard
 
     global listoffile buffermodifiedsincelastsearch
 
@@ -172,9 +207,13 @@ proc pastetext {mode} {
 
     set textareacur [gettextareacur]
 
-    # retrieve the clipboard content
-    if {[catch {selection get -displayof $textareacur -selection CLIPBOARD} topaste]} {
-        return
+    if {$mode == "block" && $topasteinblockmode != ""} {
+        set topaste $topasteinblockmode
+    } else {
+        # retrieve the clipboard content, if there is none, simply return
+        if {[catch {selection get -displayof $textareacur -selection CLIPBOARD} topaste]} {
+            return
+        }
     }
 
     stopcursorblink ; # see comments in proc puttext

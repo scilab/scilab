@@ -69,13 +69,16 @@ proc createmenues {} {
     eval "$pad.filemenu.edit add command [me "&Redo"] \
                [ca {redo [gettextareacur]}]"
     $pad.filemenu.edit add separator
-    eval "$pad.filemenu.edit add command [me "Cu&t"] [ca cuttext]"
+    eval "$pad.filemenu.edit add command [me "Cu&t"] [ca {cuttext normal}]"
+    eval "$pad.filemenu.edit add command [me "B&lock cut"] [ca {cuttext block}]"
     eval "$pad.filemenu.edit add command [me "&Copy"] [ca copytext]"
     eval "$pad.filemenu.edit add command [me "&Paste"] [ca {pastetext normal}]"
     eval "$pad.filemenu.edit add command [me "&Block paste"] [ca {pastetext block}]"
     eval "$pad.filemenu.edit add command [me "&Delete"] [ca deletetext]"
     $pad.filemenu.edit add separator
     eval "$pad.filemenu.edit add command [me "Select &All"] [ca selectall]"
+    # warning when uncommenting this: the underlines of all the Edit menu should
+    # be reviewed, currently there is a duplicate on letter t
     #    eval "$pad.filemenu.edit add command [me "Insert &Time/Date"] \
     #               -command \"printtime\" "
     $pad.filemenu.edit add separator
