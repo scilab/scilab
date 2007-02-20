@@ -1,10 +1,11 @@
-      SUBROUTINE DGGES( JOBVSL, JOBVSR, SORT, SELCTG, N, A, LDA, B, LDB,
+      SUBROUTINE DGGES( JOBVSL, JOBVSR, SORT, DELCTG, N, A, LDA, B, LDB,
      $                  SDIM, ALPHAR, ALPHAI, BETA, VSL, LDVSL, VSR,
      $                  LDVSR, WORK, LWORK, BWORK, INFO )
 *
-*  -- LAPACK driver routine (version 3.1) --
-*     Univ. of Tennessee, Univ. of California Berkeley and NAG Ltd..
-*     November 2006
+*  -- LAPACK driver routine (version 3.0) --
+*     Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
+*     Courant Institute, Argonne National Lab, and Rice University
+*     June 30, 1999
 *
 *     .. Scalar Arguments ..
       CHARACTER          JOBVSL, JOBVSR, SORT
@@ -17,8 +18,8 @@
      $                   VSR( LDVSR, * ), WORK( * )
 *     ..
 *     .. Function Arguments ..
-      LOGICAL            SELCTG
-      EXTERNAL           SELCTG
+      LOGICAL            DELCTG
+      EXTERNAL           DELCTG
 *     ..
 *
 *  Purpose
@@ -73,20 +74,20 @@
 *          Specifies whether or not to order the eigenvalues on the
 *          diagonal of the generalized Schur form.
 *          = 'N':  Eigenvalues are not ordered;
-*          = 'S':  Eigenvalues are ordered (see SELCTG);
+*          = 'S':  Eigenvalues are ordered (see DELZTG);
 *
-*  SELCTG  (external procedure) LOGICAL FUNCTION of three DOUBLE PRECISION arguments
-*          SELCTG must be declared EXTERNAL in the calling subroutine.
-*          If SORT = 'N', SELCTG is not referenced.
-*          If SORT = 'S', SELCTG is used to select eigenvalues to sort
+*  DELZTG  (input) LOGICAL FUNCTION of three DOUBLE PRECISION arguments
+*          DELZTG must be declared EXTERNAL in the calling subroutine.
+*          If SORT = 'N', DELZTG is not referenced.
+*          If SORT = 'S', DELZTG is used to select eigenvalues to sort
 *          to the top left of the Schur form.
 *          An eigenvalue (ALPHAR(j)+ALPHAI(j))/BETA(j) is selected if
-*          SELCTG(ALPHAR(j),ALPHAI(j),BETA(j)) is true; i.e. if either
+*          DELZTG(ALPHAR(j),ALPHAI(j),BETA(j)) is true; i.e. if either
 *          one of a complex conjugate pair of eigenvalues is selected,
 *          then both complex eigenvalues are selected.
 *
 *          Note that in the ill-conditioned case, a selected complex
-*          eigenvalue may no longer satisfy SELCTG(ALPHAR(j),ALPHAI(j),
+*          eigenvalue may no longer satisfy DELZTG(ALPHAR(j),ALPHAI(j),
 *          BETA(j)) = .TRUE. after ordering. INFO is to be set to N+2
 *          in this case.
 *
@@ -112,8 +113,8 @@
 *  SDIM    (output) INTEGER
 *          If SORT = 'N', SDIM = 0.
 *          If SORT = 'S', SDIM = number of eigenvalues (after sorting)
-*          for which SELCTG is true.  (Complex conjugate pairs for which
-*          SELCTG is true for either eigenvalue count as 2.)
+*          for which DELZTG is true.  (Complex conjugate pairs for which
+*          DELZTG is true for either eigenvalue count as 2.)
 *
 *  ALPHAR  (output) DOUBLE PRECISION array, dimension (N)
 *  ALPHAI  (output) DOUBLE PRECISION array, dimension (N)
@@ -151,13 +152,11 @@
 *          The leading dimension of the matrix VSR. LDVSR >= 1, and
 *          if JOBVSR = 'V', LDVSR >= N.
 *
-*  WORK    (workspace/output) DOUBLE PRECISION array, dimension (MAX(1,LWORK))
+*  WORK    (workspace/output) DOUBLE PRECISION array, dimension (LWORK)
 *          On exit, if INFO = 0, WORK(1) returns the optimal LWORK.
 *
 *  LWORK   (input) INTEGER
-*          The dimension of the array WORK.
-*          If N = 0, LWORK >= 1, else LWORK >= 8*N+16.
-*          For good performance , LWORK must generally be larger.
+*          The dimension of the array WORK.  LWORK >= 8*N+16.
 *
 *          If LWORK = -1, then a workspace query is assumed; the routine
 *          only calculates the optimal size of the WORK array, returns
@@ -178,7 +177,7 @@
 *                =N+2: after reordering, roundoff changed values of
 *                      some complex eigenvalues so that leading
 *                      eigenvalues in the Generalized Schur form no
-*                      longer satisfy SELCTG=.TRUE.  This could also
+*                      longer satisfy DELZTG=.TRUE.  This could also
 *                      be caused due to scaling.
 *                =N+3: reordering failed in DTGSEN.
 *
@@ -272,27 +271,20 @@
 *       NB refers to the optimal block size for the immediately
 *       following subroutine, as returned by ILAENV.)
 *
-      IF( INFO.EQ.0 ) THEN
-         IF( N.GT.0 )THEN
-            MINWRK = MAX( 8*N, 6*N + 16 )
-            MAXWRK = MINWRK - N +
-     $               N*ILAENV( 1, 'DGEQRF', ' ', N, 1, N, 0 )
-            MAXWRK = MAX( MAXWRK, MINWRK - N +
-     $                    N*ILAENV( 1, 'DORMQR', ' ', N, 1, N, -1 ) )
-            IF( ILVSL ) THEN
-               MAXWRK = MAX( MAXWRK, MINWRK - N +
-     $                       N*ILAENV( 1, 'DORGQR', ' ', N, 1, N, -1 ) )
-            END IF
-         ELSE
-            MINWRK = 1
-            MAXWRK = 1
+      MINWRK = 1
+      IF( INFO.EQ.0 .AND. ( LWORK.GE.1 .OR. LQUERY ) ) THEN
+         MINWRK = 7*( N+1 ) + 16
+         MAXWRK = 7*( N+1 ) + N*ILAENV( 1, 'DGEQRF', ' ', N, 1, N, 0 ) +
+     $            16
+         IF( ILVSL ) THEN
+            MAXWRK = MAX( MAXWRK, 7*( N+1 )+N*
+     $               ILAENV( 1, 'DORGQR', ' ', N, 1, N, -1 ) )
          END IF
          WORK( 1 ) = MAXWRK
-*
-         IF( LWORK.LT.MINWRK .AND. .NOT.LQUERY )
-     $      INFO = -19
       END IF
 *
+      IF( LWORK.LT.MINWRK .AND. .NOT.LQUERY )
+     $   INFO = -19
       IF( INFO.NE.0 ) THEN
          CALL XERBLA( 'DGGES ', -INFO )
          RETURN
@@ -375,10 +367,8 @@
 *
       IF( ILVSL ) THEN
          CALL DLASET( 'Full', N, N, ZERO, ONE, VSL, LDVSL )
-         IF( IROWS.GT.1 ) THEN
-            CALL DLACPY( 'L', IROWS-1, IROWS-1, B( ILO+1, ILO ), LDB,
-     $                   VSL( ILO+1, ILO ), LDVSL )
-         END IF
+         CALL DLACPY( 'L', IROWS-1, IROWS-1, B( ILO+1, ILO ), LDB,
+     $                VSL( ILO+1, ILO ), LDVSL )
          CALL DORGQR( IROWS, IROWS, IROWS, VSL( ILO, ILO ), LDVSL,
      $                WORK( ITAU ), WORK( IWRK ), LWORK+1-IWRK, IERR )
       END IF
@@ -418,7 +408,7 @@
       SDIM = 0
       IF( WANTST ) THEN
 *
-*        Undo scaling on eigenvalues before SELCTGing
+*        Undo scaling on eigenvalues before DELZTGing
 *
          IF( ILASCL ) THEN
             CALL DLASCL( 'G', 0, 0, ANRMTO, ANRM, N, 1, ALPHAR, N,
@@ -432,7 +422,7 @@
 *        Select eigenvalues
 *
          DO 10 I = 1, N
-            BWORK( I ) = SELCTG( ALPHAR( I ), ALPHAI( I ), BETA( I ) )
+            BWORK( I ) = DELCTG( ALPHAR( I ), ALPHAI( I ), BETA( I ) )
    10    CONTINUE
 *
          CALL DTGSEN( 0, ILVSL, ILVSR, BWORK, N, A, LDA, B, LDB, ALPHAR,
@@ -517,7 +507,7 @@
          SDIM = 0
          IP = 0
          DO 40 I = 1, N
-            CURSL = SELCTG( ALPHAR( I ), ALPHAI( I ), BETA( I ) )
+            CURSL = DELCTG( ALPHAR( I ), ALPHAI( I ), BETA( I ) )
             IF( ALPHAI( I ).EQ.ZERO ) THEN
                IF( CURSL )
      $            SDIM = SDIM + 1
