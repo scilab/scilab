@@ -605,6 +605,7 @@ if  Err(rcond(eye(50,50)*(1+%i))-1)>10*%eps then pause,end
 //==========================================================================
 //==============================    schur     ============================== 
 //==========================================================================
+clear sel
 function t=sel(R),t=real(R)<0 ,endfunction
 //Empty matrix
 A=[];
@@ -851,6 +852,7 @@ if Err(As-Q'*A*Z) >200*%eps then pause,end
 if Err(Es-Q'*E*Z) >200*%eps then pause,end
 
 //ordered sel
+clear sel
 function t=sel(Alpha,Beta),t=real(Alpha)>-0.2*real(Beta) ,endfunction
 
 dim=schur(A,E,sel);
@@ -917,6 +919,7 @@ if Err(As-Q'*A*Z) >200*%eps then pause,end
 if Err(Es-Q'*E*Z) >200*%eps then pause,end
 
 //ordered sel
+clear sel
 function t=sel(Alpha,Beta),t=imag(Alpha)>0 ,endfunction
 
 dim=schur(A,E,sel);
@@ -986,9 +989,10 @@ if Err(As-Q'*A*Z) >200*%eps then pause,end
 if Err(Es-Q'*E*Z) >200*%eps then pause,end
 
 //ordered sel
+clear sel
 function t=sel(Alpha,Beta),t=real(Alpha)>-0.2*real(Beta) ,endfunction
 
-dim=schur(A,E,sel);
+dim=schur(A,E,sel); // plante ici DGGES LAPACK 3.1
 if dim<>12 then pause,end
 [Z,dim]=schur(A,E,sel);
 if Err(Z*Z'-eye(Z)) >200*%eps then pause,end
@@ -1052,6 +1056,7 @@ if Err(As-Q'*A*Z) >1000*%eps then pause,end
 if Err(Es-Q'*E*Z) >1000*%eps then pause,end
 
 //ordered sel
+clear sel
 function t=sel(Alpha,Beta),t=imag(Alpha)>0 ,endfunction
 
 dim=schur(A,E,sel);

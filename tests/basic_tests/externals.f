@@ -1,4 +1,6 @@
+c     -------------------------------------------      
       subroutine ext1f(n,a,b,c)
+c     -------------------------------------------
 c     (very) simple example 1
 c     -->link('ext1f.o','ext1f');
 c     -->a=[1,2,3];b=[4,5,6];n=3;
@@ -10,7 +12,10 @@ c     c=a+b
  1    continue
       return
       end
+c
+c     -------------------------------------------      
       subroutine ext2f(n,a,b,c)
+c     -------------------------------------------      
 c     simple example 2 (using sin and cos)
 c     -->link('ext2f.o','ext2f');
 c     -->a=[1,2,3];b=[4,5,6];n=3;
@@ -22,8 +27,10 @@ c     -->c=sin(a)+cos(b)
  1    continue
       return
       end
+c      
+c     -------------------------------------------      
       subroutine ext3f(ch,n,a,b,c)
-c     ----------------------------
+c     -------------------------------------------
 c     example 3 (passing a chain)
 c     -->link('ext3f.o','ext3f');
 c     -->a=[1,2,3];b=[4,5,6];n=3;
@@ -43,7 +50,10 @@ c     -------------------------------------
       endif
       return
       end
+c      
+c     -------------------------------------------
       subroutine ext4f(n,a,b,c)
+c     -------------------------------------------      
 c     example 4 (reading a chain)
 c     -->link('ext4f.o','ext4f');
 c     -->a=[1,2,3];b=[4,5,6];n=3;yes='yes'
@@ -72,8 +82,10 @@ c     *********************************
       endif
       return
       end
-      
+c      
+c     -------------------------------------------      
       subroutine ext5f(b,c)
+c     -------------------------------------------      
 c     example 5
 c     reading a vector in scilab internal stack using creadmat
 c     (see SCIDIR/system2/creadmat.f)
@@ -94,7 +106,10 @@ c     If 'a' exists reads it else return
  1    continue
       return
       end
+c      
+c     -------------------------------------------      
       subroutine ext6f(aname,b,c)
+c     -------------------------------------------      
 c     example 6
 c     reading a vector in scilab internal stack using readmat interface
 c     -->link('ext6f.o','ext6f')
@@ -114,7 +129,10 @@ c     [m,n]=size(a)  here m=1 n=3
  1    continue
       return
       end
+c      
+c     -------------------------------------------      
       subroutine ext7f(a,b)
+c     -------------------------------------------      
 c     example 7
 c     creating vector c in scilab internal stack
 c     -->link('ext7f.o','ext7f')
@@ -135,26 +153,10 @@ c     sending string 'test' (size 4) to Scilab variable d
       if (.not.cwritechain('d'//char(0),4,'test')) return
       return
       end
-      subroutine ext8f(y)
-c     -------------------------------------------
-c     same example with call to cmatptr
-c     -->param=[1,2,3];         
-c     -->link('ext8c.o','ext8c','C');     
-c     -->y=call('ext8c','out',size(param),1,'d');
-      logical cmatptr
-      double precision y(*)
-      include 'stack.h'
-c     If variable 'param' exists gets its pointer in 
-c     internal stack else return
-      if(.not.cmatptr('param'//char(0),m,n,lp)) return
-c     ********************************
-c     param entries are in stk(lp+i),i=0,m*n
-      do 10 i=1,m*n
-         y(i) = stk(lp+i-1)
- 10   continue
-      return
-      end
-      subroutine ext9f(n, t, y, ydot)
+c      
+c     -------------------------------------------      
+      subroutine ext8f(n, t, y, ydot)
+c     -------------------------------------------      
 c     argument function for ode
 c     input variables n, t, y
 c     n = dimension of state vector y
@@ -169,12 +171,12 @@ c          ...
 c     i.e. ydot vector of derivative of state y
 c
 c     Example:
-c     call this ext9f routine: 
+c     call this ext8f routine: 
 c     ode([1;0;0],0,[0.4,4],'ext9f')
 c
 c     With dynamic link: 
-c     -->link('ext9f.o','ext9f')
-c     -->ode([1;0;0],0,[0.4,4],'ext9f')
+c     -->link('ext8f.o','ext8f')
+c     -->ode([1;0;0],0,[0.4,4],'ext8f')
 c
       double precision t, y, ydot
       dimension y(3), ydot(3)
@@ -182,8 +184,10 @@ c
       ydot(3) = 3.0d+7*y(2)*y(2)
       ydot(2) = -ydot(1) - ydot(3)
       end
-
-      subroutine ext10f(n, t, y, ydot)
+c      
+c     -------------------------------------------
+      subroutine ext9f(n, t, y, ydot)
+c     -------------------------------------------      
 c     external fonction for ode
 c     input variables n, t, y
 c     n = dimension of state vector y
@@ -198,9 +202,9 @@ c          ...
 c     i.e. ydot vector of derivative of state y
 c
 c     With dynamic link: 
-c     link('ext10f.o','ext10f')
+c     link('ext9f.o','ext9f')
 c
-c     passing a parameter to ext10f routine by a list:
+c     passing a parameter to ext9f routine by a list:
 c     -->param=[0.04,10000,3d+7];    
 c     -->y=ode([1;0;0],0,[0.4,4],list('ext10f',param))
 c     param is retrieved in ext10f by:
@@ -217,12 +221,14 @@ c
       ydot(3) = param(3)*y(2)*y(2)
       ydot(2) = -ydot(1) - ydot(3)
       end
-      subroutine ext11f(neq, t, y, ydot)
+c
+c     -------------------------------------------      
+      subroutine ext10f(neq, t, y, ydot)
 c     -------------------------------------------
 c     exemple with a call to readmat routine
 c     -->param=[0.04,10000,3d+7];
-c     -->link('ext11f.o','ext11f')
-c     -->y=ode([1;0;0],0,[0.4,4],'ext11f')
+c     -->link('ext10f.o','ext10f')
+c     -->y=ode([1;0;0],0,[0.4,4],'ext10f')
 c     param must be defined as a scilab variable
       double precision t, y, ydot, param
       logical creadmat
@@ -237,46 +243,23 @@ c     ***********************************
       ydot(2) = -ydot(1) - ydot(3)
       return
       end
-      subroutine ext12f(neq, t, y, ydot)
-c     -------------------------------------------
-c     same example with call to cmatptr
-c     param must be defined as a scilab variable
-c     exemple with a call to cmatptr function
-c     -->param=[0.04,10000,3d+7];
-c     -->link('ext12f.o','ext12f')
-c     -->y=ode([1;0;0],0,[0.4,4],'ext12f')
-      double precision t, y, ydot
-      logical cmatptr
-      dimension y(3), ydot(3)
-c
-      include 'stack.h'
-c
-
-c     If variable 'param' exists gets its pointer in 
-c     internal stack else return
-      if(.not.cmatptr('param'//char(0),m,n,lp)) return
-c     ********************************
-c     param entries are in stk(lp),stk(lp+1),stk(lp+2)
-c     i.e. param(1)= stk(lp), ...
-c     m,n = dimensions of param = 3,1 (or 1,3 if row v.)
-
-c     (note that vector param not used in this example)
-      ydot(1) = -stk(lp)*y(1) + stk(lp+1)*y(2)*y(3)
-      ydot(3) = stk(lp+2)*y(2)*y(2)
-      ydot(2) = -ydot(1) - ydot(3)
-      return
-      end
-
-      subroutine ext13f(n,a)
+c      
+c     -------------------------------------------            
+      subroutine ext11f(n,a)
+c     -------------------------------------------                  
       common/cmntest/b(10)
       real a(*)
       do 1 k=1,max(n,10)
  1       b(k)=a(k)
       end
-      subroutine ext14f(n,c)
+c      
+c     -------------------------------------------      
+      subroutine ext12f(n,c)
+c     -------------------------------------------      
       common/cmntest/b(10)
       real c(*)
       do 1 k=1,max(n,10)
  1    c(k)=b(k)
       end
-
+c     -------------------------------------------
+c
