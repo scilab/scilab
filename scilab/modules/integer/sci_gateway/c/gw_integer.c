@@ -1,40 +1,13 @@
-#include "gw_integer.h"
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
+#include "gw_integer.h"
 #if _MSC_VER
 #include <Windows.h>
 #include "ExceptionMessage.h"
 #endif
 /*-----------------------------------------------------------------------------------*/
-extern int C2F(sciint32) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sciint16) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sciint8) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sciinttype) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(scidouble) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sciuint32) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sciuint16) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sciuint8) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(scimgeti) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sciimput) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sciiconvert) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sciiabs) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sciidiag) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sciitriu) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sciitril) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sciisum) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sciicumsum) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sciimax) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sciimin) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sciimaxi) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sciimini) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sciip) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sciiconvert) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sciimatrix) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sciiprod) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sciicumprod) _PARAMS((char *fname,unsigned long fname_len));
-/*-----------------------------------------------------------------------------------*/	
 static int C2F(scivoid) _PARAMS((char *fname,unsigned long fname_len))
 {
 	return 0;

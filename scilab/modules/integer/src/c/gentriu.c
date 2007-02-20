@@ -1,4 +1,5 @@
 #include "machine.h"
+#include "gentriu.h"
 typedef signed char integer1;
 typedef short integer2;
 /*     Copyright INRIA */
@@ -28,12 +29,7 @@ Type *DX;\
     }\
  }
 
-int C2F(gentriu)(typ,m,n,k,dx) 
-integer *n;
-integer *m;
-integer *k;
-integer *typ;
-int *dx;
+int C2F(gentriu)(integer *typ,integer *m,integer *n,integer *k,int *dx) 
 {
   static integer kk, l, ls, ll, j, i, nn;
 
