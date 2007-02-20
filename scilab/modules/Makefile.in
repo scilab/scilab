@@ -150,10 +150,10 @@ DIST_SUBDIRS = intersci polynomials cacsd elementaries_functions \
 	signal_processing fileio core metanet optimization \
 	interpolation localization sound statistics time integer \
 	special_functions double randlib data_structures mexlib \
-	symbolic tclsci sparse io fftw gui graphics wintools functions \
+	symbolic tclsci sparse io gui graphics wintools functions \
 	incremental_link others overloading maple2scilab m2sci texmacs \
 	tfds scipad scilab2fortran development_tools helptools scicos \
-	jvm javasci pvm .
+	fftw jvm javasci pvm .
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
@@ -303,7 +303,7 @@ SUBDIRS = intersci polynomials cacsd elementaries_functions arnoldi \
 	signal_processing fileio core metanet optimization \
 	interpolation localization sound statistics time integer \
 	special_functions double randlib data_structures mexlib \
-	symbolic tclsci sparse io fftw gui graphics wintools functions \
+	symbolic tclsci sparse io gui graphics wintools functions \
 	incremental_link others overloading maple2scilab m2sci texmacs \
 	tfds scipad scilab2fortran development_tools helptools scicos \
 	$(am__append_1) $(am__append_2) $(am__append_3) .
