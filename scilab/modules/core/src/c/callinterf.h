@@ -1,7 +1,7 @@
 /* Copyright INRIA */
 #ifndef __CALLINTERF__
 #define __CALLINTERF__
-
+#
 /********************************************************
  * Table of hard coded Scilab interface 
  *  to add a new interface add a declaration and a new entry 
@@ -84,7 +84,7 @@ extern void    /* 48  */ C2F(gw_time)();
 extern void    /* 49  */ C2F(gw_sound)();
 extern void    /* 50  */ C2F(gw_localization)();
 
-#ifdef _MSC_VER
+#ifdef WITH_FFTW
 extern void    /* 51  */ C2F(gw_fftw)();
 #endif
 
@@ -139,7 +139,8 @@ static OpTab Interfaces[] ={
 	/* 48  */ {C2F(gw_time)},
 	/* 49  */ {C2F(gw_sound)},
 	/* 50  */ {C2F(gw_localization)}
-#ifdef _MSC_VER
+
+#ifdef WITH_FFTW
 	,
 	/* 51  */ {C2F(gw_fftw)}
 #endif

@@ -14,6 +14,9 @@
 /* Define C2F without Trailing Underscore */
 #undef F2C
 
+/* Define to 1 if your Fortran compiler doesn't accept -c and -o together. */
+#undef F77_NO_MINUS_C_MINUS_O
+
 /* uses G95 fortran */
 #undef G95_FORTRAN
 
@@ -252,6 +255,9 @@
    */
 #undef LT_OBJDIR
 
+/* Define to 1 if your C compiler doesn't accept -c and -o together. */
+#undef NO_MINUS_C_MINUS_O
+
 /* Name of package */
 #undef PACKAGE
 
@@ -284,6 +290,9 @@
 
 /* With the Atlas Lib */
 #undef WITH_ATLAS
+
+/* With FFTW */
+#undef WITH_FFTW
 
 /* With OCAML */
 #undef WITH_OCAML
