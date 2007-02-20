@@ -1,5 +1,5 @@
 function a=%cblock_f_cblock(a,b)
-  if na==1 then a=b,return,end
+  if length(a)==1 then a=b,return,end
   if length(b)==1 then return,end
 
   if length(a)<>length(b) then error(6),end
