@@ -84,7 +84,7 @@ extern void    /* 48  */ C2F(gw_time)();
 extern void    /* 49  */ C2F(gw_sound)();
 extern void    /* 50  */ C2F(gw_localization)();
 
-#ifdef WITH_FFTW
+#if defined(WITH_FFTW) || defined(_MSC_VER)
 extern void    /* 51  */ C2F(gw_fftw)();
 #endif
 
@@ -140,7 +140,7 @@ static OpTab Interfaces[] ={
 	/* 49  */ {C2F(gw_sound)},
 	/* 50  */ {C2F(gw_localization)}
 
-#ifdef WITH_FFTW
+#if defined(WITH_FFTW) || defined(_MSC_VER)
 	,
 	/* 51  */ {C2F(gw_fftw)}
 #endif
