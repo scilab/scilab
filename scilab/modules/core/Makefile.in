@@ -22,9 +22,9 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
 ### INRIA - Scilab 2006 - 2007
-### 
-### Makefile included stuff
-### Target, variable, suffixes which are supposed to be usefull in every makefile.am
+### 
+### Makefile included stuff
+### Target, variable, suffixes which are supposed to be usefull in every makefile.am
 ##########
 
 
@@ -721,43 +721,6 @@ target = $(datadir)/core
 libscicore_la_rootdir = $(target)
 libscicore_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
-#### core : Scilab macros ###
-libscicore_la_macrodir = $(target)/macros
-MACROS = macros/perl.sci \
-macros/typeof.sci \
-macros/getshell.sci \
-macros/with_tk.sci \
-macros/with_javasci.sci \
-macros/toolboxes.sci \
-macros/with_gtk.sci \
-macros/whos.sci \
-macros/scilab_demos.sci \
-macros/OS_Version.sci \
-macros/sethomedirectory.sci \
-macros/who_user.sci \
-macros/add_demo.sci \
-macros/with_macros_source.sci \
-macros/with_atlas.sci \
-macros/with_texmacs.sci \
-macros/whereami.sci macros/add_demo.bin \
-macros/getshell.bin \
-macros/OS_Version.bin \
-macros/perl.bin \
-macros/scilab_demos.bin \
-macros/sethomedirectory.bin \
-macros/toolboxes.bin \
-macros/typeof.bin \
-macros/whereami.bin \
-macros/whos.bin \
-macros/who_user.bin \
-macros/with_atlas.bin \
-macros/with_gtk.bin \
-macros/with_javasci.bin \
-macros/with_macros_source.bin \
-macros/with_texmacs.bin \
-macros/with_tk.bin macros/names macros/lib macros/buildmacros.sce
-
-
 #### core : init scripts #### 
 libscicore_la_etcdir = $(target)/etc
 libscicore_la_etc_DATA = etc/core.quit etc/core.start
@@ -824,13 +787,17 @@ SUFFIXES = .sci
 # automake needs the html files to be present which is not the case when
 # we are building Scilab
 pkgdocdir = $(target)
-DOCDIRS = help/fr help/en
+DOCDIRS = help/fr_FR help/en_US
 DOCMASK = *.htm
 DOCMASKXML = *.xml
 
-#bhalbhalbha
+# Install macros
 pkgmacrosdir = $(target)
-MACROSDIRS = macros/
+MACRODIRS = macros/
+MACROMASK = *.sci
+MACROBUILDMASK = *.sce
+MACROBINMASK = *.bin
+FUNCTION_NAMES = macros/names
 all: all-am
 
 .SUFFIXES:
@@ -2847,18 +2814,21 @@ install-html-local:
 @INSTALL_HELP_XML_TRUE@		  done ; \
 @INSTALL_HELP_XML_TRUE@		fi; \
 @INSTALL_HELP_XML_TRUE@	done
-install-data-local: $(MACROS)
+install-data-local:
 	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)
-	@if test ! -z "$(MACROS)"; then \
-	for dir in $(MACROSDIRS) ; do \
+	@if test -f $(FUNCTION_NAMES); then \
+		echo "$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/"; \
+		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/; \
+	fi; \
+	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-			echo "file in "$(srcdir)/$$dir; \
-		  for file in $(MACROS); do \
+		if test -d $(srcdir)/$$dir/; then \
+		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/lib 2>/dev/null`; do \
 		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
-		  done ; \
-	done; \
-	fi
+		  done \
+		fi; \
+	done
 
 macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(MACROS)
 	-@( \

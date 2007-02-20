@@ -22,9 +22,9 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
 ### INRIA - Scilab 2006 - 2007
-### 
-### Makefile included stuff
-### Target, variable, suffixes which are supposed to be usefull in every makefile.am
+### 
+### Makefile included stuff
+### Target, variable, suffixes which are supposed to be usefull in every makefile.am
 ##########
 
 
@@ -397,13 +397,6 @@ top_srcdir = @top_srcdir@
 @PVM_TRUE@libscipvm_la_rootdir = $(target)
 @PVM_TRUE@libscipvm_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
-#### pvm : Scilab macros ###
-@PVM_TRUE@libscipvm_la_macrodir = $(target)/macros
-@PVM_TRUE@MACROS = macros/configure_pvm.sci \
-@PVM_TRUE@macros/with_pvm.sci macros/configure_pvm.bin \
-@PVM_TRUE@macros/with_pvm.bin macros/names macros/lib macros/buildmacros.sce
-
-
 #### pvm : init scripts #### 
 @PVM_TRUE@libscipvm_la_etcdir = $(target)/etc
 @PVM_TRUE@libscipvm_la_etc_DATA = etc/pvm.quit etc/pvm.start
@@ -468,13 +461,17 @@ top_srcdir = @top_srcdir@
 # automake needs the html files to be present which is not the case when
 # we are building Scilab
 @PVM_TRUE@pkgdocdir = $(target)
-@PVM_TRUE@DOCDIRS = help/fr help/en
+@PVM_TRUE@DOCDIRS = help/fr_FR help/en_US
 @PVM_TRUE@DOCMASK = *.htm
 @PVM_TRUE@DOCMASKXML = *.xml
 
-#bhalbhalbha
+# Install macros
 @PVM_TRUE@pkgmacrosdir = $(target)
-@PVM_TRUE@MACROSDIRS = macros/
+@PVM_TRUE@MACRODIRS = macros/
+@PVM_TRUE@MACROMASK = *.sci
+@PVM_TRUE@MACROBUILDMASK = *.sce
+@PVM_TRUE@MACROBINMASK = *.bin
+@PVM_TRUE@FUNCTION_NAMES = macros/names
 all: all-am
 
 .SUFFIXES:
@@ -1239,18 +1236,21 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @INSTALL_HELP_XML_TRUE@@PVM_TRUE@		  done ; \
 @INSTALL_HELP_XML_TRUE@@PVM_TRUE@		fi; \
 @INSTALL_HELP_XML_TRUE@@PVM_TRUE@	done
-@PVM_TRUE@install-data-local: $(MACROS)
+@PVM_TRUE@install-data-local:
 @PVM_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)
-@PVM_TRUE@	@if test ! -z "$(MACROS)"; then \
-@PVM_TRUE@	for dir in $(MACROSDIRS) ; do \
+@PVM_TRUE@	@if test -f $(FUNCTION_NAMES); then \
+@PVM_TRUE@		echo "$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/"; \
+@PVM_TRUE@		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/; \
+@PVM_TRUE@	fi; \
+@PVM_TRUE@	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 @PVM_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-@PVM_TRUE@			echo "file in "$(srcdir)/$$dir; \
-@PVM_TRUE@		  for file in $(MACROS); do \
+@PVM_TRUE@		if test -d $(srcdir)/$$dir/; then \
+@PVM_TRUE@		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/lib 2>/dev/null`; do \
 @PVM_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 @PVM_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
-@PVM_TRUE@		  done ; \
-@PVM_TRUE@	done; \
-@PVM_TRUE@	fi
+@PVM_TRUE@		  done \
+@PVM_TRUE@		fi; \
+@PVM_TRUE@	done
 
 @PVM_TRUE@macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(MACROS)
 @PVM_TRUE@	-@( \

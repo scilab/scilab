@@ -96,11 +96,6 @@ libsciarnoldi_la_rootdir = $(target)
 libsciarnoldi_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
-#### arnoldi : Scilab macros ###
-libsciarnoldi_la_macrodir = $(target)/macros
-MACROS =  macros/buildmacros.sce
-
-
 #### arnoldi : init scripts #### 
 libsciarnoldi_la_etcdir = $(target)/etc
 libsciarnoldi_la_etc_DATA = etc/arnoldi.quit etc/arnoldi.start

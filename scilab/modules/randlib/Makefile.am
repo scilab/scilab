@@ -65,11 +65,6 @@ libscirandlib_la_rootdir = $(target)
 libscirandlib_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
-#### randlib : Scilab macros ###
-libscirandlib_la_macrodir = $(target)/macros
-MACROS =  macros/buildmacros.sce
-
-
 #### randlib : init scripts #### 
 libscirandlib_la_etcdir = $(target)/etc
 libscirandlib_la_etc_DATA = etc/randlib.quit etc/randlib.start

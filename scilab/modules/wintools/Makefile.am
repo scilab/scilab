@@ -43,12 +43,6 @@ target=$(datadir)/wintools
 libsciwintools_la_rootdir = $(target)
 libsciwintools_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
-
-#### wintools : Scilab macros ###
-libsciwintools_la_macrodir = $(target)/macros
-MACROS =  macros/buildmacros.sce 
-
-
 #### wintools : init scripts #### 
 libsciwintools_la_etcdir = $(target)/etc
 libsciwintools_la_etc_DATA = etc/wintools.quit etc/wintools.start 

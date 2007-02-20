@@ -13,11 +13,6 @@ libsciothers_la_rootdir = $(target)
 libsciothers_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
-#### others : Scilab macros ###
-libsciothers_la_macrodir = $(target)/macros
-MACROS = macros/edit.sci macros/edit.bin macros/names macros/lib macros/buildmacros.sce
-
-
 #### others : init scripts #### 
 libsciothers_la_etcdir = $(target)/etc
 libsciothers_la_etc_DATA = etc/others.quit etc/others.start

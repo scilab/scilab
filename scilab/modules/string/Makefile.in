@@ -22,9 +22,9 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
 ### INRIA - Scilab 2006 - 2007
-### 
-### Makefile included stuff
-### Target, variable, suffixes which are supposed to be usefull in every makefile.am
+### 
+### Makefile included stuff
+### Target, variable, suffixes which are supposed to be usefull in every makefile.am
 ##########
 
 
@@ -330,33 +330,6 @@ target = $(datadir)/string
 libscistring_la_rootdir = $(target)
 libscistring_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
-#### string : Scilab macros ###
-libscistring_la_macrodir = $(target)/macros
-MACROS = macros/dec2hex.sci \
-macros/hex2dec.sci \
-macros/tokenpos.sci \
-macros/evstr.sci \
-macros/oct2dec.sci \
-macros/eval.sci \
-macros/base2dec.sci \
-macros/stripblanks.sci \
-macros/justify.sci \
-macros/arobasestring2strings.sci \
-macros/ascii2string.sci \
-macros/fun2string.sci macros/arobasestring2strings.bin \
-macros/ascii2string.bin \
-macros/base2dec.bin \
-macros/dec2hex.bin \
-macros/eval.bin \
-macros/evstr.bin \
-macros/fun2string.bin \
-macros/hex2dec.bin \
-macros/justify.bin \
-macros/oct2dec.bin \
-macros/stripblanks.bin \
-macros/tokenpos.bin macros/names macros/lib macros/buildmacros.sce
-
-
 #### string : init scripts #### 
 libscistring_la_etcdir = $(target)/etc
 libscistring_la_etc_DATA = etc/string.quit etc/string.start
@@ -382,13 +355,17 @@ SUFFIXES = .sci
 # automake needs the html files to be present which is not the case when
 # we are building Scilab
 pkgdocdir = $(target)
-DOCDIRS = help/fr help/en
+DOCDIRS = help/fr_FR help/en_US
 DOCMASK = *.htm
 DOCMASKXML = *.xml
 
-#bhalbhalbha
+# Install macros
 pkgmacrosdir = $(target)
-MACROSDIRS = macros/
+MACRODIRS = macros/
+MACROMASK = *.sci
+MACROBUILDMASK = *.sce
+MACROBINMASK = *.bin
+FUNCTION_NAMES = macros/names
 all: all-am
 
 .SUFFIXES:
@@ -1002,18 +979,21 @@ install-html-local:
 @INSTALL_HELP_XML_TRUE@		  done ; \
 @INSTALL_HELP_XML_TRUE@		fi; \
 @INSTALL_HELP_XML_TRUE@	done
-install-data-local: $(MACROS)
+install-data-local:
 	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)
-	@if test ! -z "$(MACROS)"; then \
-	for dir in $(MACROSDIRS) ; do \
+	@if test -f $(FUNCTION_NAMES); then \
+		echo "$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/"; \
+		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/; \
+	fi; \
+	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-			echo "file in "$(srcdir)/$$dir; \
-		  for file in $(MACROS); do \
+		if test -d $(srcdir)/$$dir/; then \
+		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/lib 2>/dev/null`; do \
 		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
-		  done ; \
-	done; \
-	fi
+		  done \
+		fi; \
+	done
 
 macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(MACROS)
 	-@( \

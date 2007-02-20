@@ -40,33 +40,6 @@ libscitime_la_rootdir = $(target)
 libscitime_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
-#### time : Scilab macros ###
-libscitime_la_macrodir = $(target)/macros
-MACROS = macros/etime.sci \
-macros/now.sci \
-macros/toc.sci \
-macros/calendar.sci \
-macros/weekday.sci \
-macros/clock.sci \
-macros/datevec.sci \
-macros/date.sci \
-macros/datenum.sci \
-macros/eomday.sci \
-macros/isLeapYear.sci \
-macros/tic.sci macros/calendar.bin \
-macros/clock.bin \
-macros/datenum.bin \
-macros/date.bin \
-macros/datevec.bin \
-macros/eomday.bin \
-macros/etime.bin \
-macros/isLeapYear.bin \
-macros/now.bin \
-macros/tic.bin \
-macros/toc.bin \
-macros/weekday.bin macros/names macros/lib macros/buildmacros.sce
-
-
 #### time : init scripts #### 
 libscitime_la_etcdir = $(target)/etc
 libscitime_la_etc_DATA = etc/time.quit etc/time.start

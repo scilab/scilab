@@ -46,11 +46,6 @@ libscidouble_la_rootdir = $(target)
 libscidouble_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
-#### double : Scilab macros ###
-libscidouble_la_macrodir = $(target)/macros
-MACROS = macros/buildmacros.sce
-
-
 #### double : init scripts #### 
 libscidouble_la_etcdir = $(target)/etc
 libscidouble_la_etc_DATA = etc/double.quit etc/double.start

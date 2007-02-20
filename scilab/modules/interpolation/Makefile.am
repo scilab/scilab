@@ -48,11 +48,6 @@ libsciinterpolation_la_rootdir = $(target)
 libsciinterpolation_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
-#### interpolation : Scilab macros ###
-libsciinterpolation_la_macrodir = $(target)/macros
-MACROS = macros/buildmacros.sce
-
-
 #### interpolation : init scripts #### 
 libsciinterpolation_la_etcdir = $(target)/etc
 libsciinterpolation_la_etc_DATA = etc/interpolation.quit etc/interpolation.start

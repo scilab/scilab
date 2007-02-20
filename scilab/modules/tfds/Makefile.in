@@ -22,9 +22,9 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
 ### INRIA - Scilab 2006 - 2007
-### 
-### Makefile included stuff
-### Target, variable, suffixes which are supposed to be usefull in every makefile.am
+### 
+### Makefile included stuff
+### Target, variable, suffixes which are supposed to be usefull in every makefile.am
 ##########
 
 VPATH = @srcdir@
@@ -225,55 +225,6 @@ target = $(datadir)/tfds
 libscitfds_la_rootdir = $(target)
 libscitfds_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
-#### tfds : Scilab macros ###
-libscitfds_la_macrodir = $(target)/macros
-MACROS = macros/artest.sci \
-macros/logr.sci \
-macros/bifish.sci \
-macros/portrait.sci \
-macros/BInit.sci \
-macros/systems.sci \
-macros/finit.sci \
-macros/boucle.sci \
-macros/lotest.sci \
-macros/mineInit.sci \
-macros/comric.sci \
-macros/gaincom.sci \
-macros/recur.sci \
-macros/obsric.sci \
-macros/gainobs.sci \
-macros/chaintest.sci \
-macros/test_d.sci \
-macros/obscont1.sci \
-macros/gpeche.sci \
-macros/tdinit.sci \
-macros/portr3d.sci \
-macros/exemple.sci \
-macros/tangent.sci macros/artest.bin \
-macros/bifish.bin \
-macros/BInit.bin \
-macros/boucle.bin \
-macros/chaintest.bin \
-macros/comric.bin \
-macros/exemple.bin \
-macros/finit.bin \
-macros/gaincom.bin \
-macros/gainobs.bin \
-macros/gpeche.bin \
-macros/logr.bin \
-macros/lotest.bin \
-macros/mineInit.bin \
-macros/obscont1.bin \
-macros/obsric.bin \
-macros/portr3d.bin \
-macros/portrait.bin \
-macros/recur.bin \
-macros/systems.bin \
-macros/tangent.bin \
-macros/tdinit.bin \
-macros/test_d.bin macros/names macros/lib macros/buildmacros.sce
-
-
 #### tfds : init scripts #### 
 libscitfds_la_etcdir = $(target)/etc
 libscitfds_la_etc_DATA = etc/tfds.quit etc/tfds.start
@@ -289,13 +240,17 @@ SUFFIXES = .sci
 # automake needs the html files to be present which is not the case when
 # we are building Scilab
 pkgdocdir = $(target)
-DOCDIRS = help/fr help/en
+DOCDIRS = help/fr_FR help/en_US
 DOCMASK = *.htm
 DOCMASKXML = *.xml
 
-#bhalbhalbha
+# Install macros
 pkgmacrosdir = $(target)
-MACROSDIRS = macros/
+MACRODIRS = macros/
+MACROMASK = *.sci
+MACROBUILDMASK = *.sce
+MACROBINMASK = *.bin
+FUNCTION_NAMES = macros/names
 all: all-am
 
 .SUFFIXES:
@@ -551,18 +506,21 @@ install-html-local:
 @INSTALL_HELP_XML_TRUE@		  done ; \
 @INSTALL_HELP_XML_TRUE@		fi; \
 @INSTALL_HELP_XML_TRUE@	done
-install-data-local: $(MACROS)
+install-data-local:
 	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)
-	@if test ! -z "$(MACROS)"; then \
-	for dir in $(MACROSDIRS) ; do \
+	@if test -f $(FUNCTION_NAMES); then \
+		echo "$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/"; \
+		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/; \
+	fi; \
+	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-			echo "file in "$(srcdir)/$$dir; \
-		  for file in $(MACROS); do \
+		if test -d $(srcdir)/$$dir/; then \
+		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/lib 2>/dev/null`; do \
 		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
-		  done ; \
-	done; \
-	fi
+		  done \
+		fi; \
+	done
 
 macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(MACROS)
 	-@( \

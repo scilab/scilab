@@ -22,9 +22,9 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
 ### INRIA - Scilab 2006 - 2007
-### 
-### Makefile included stuff
-### Target, variable, suffixes which are supposed to be usefull in every makefile.am
+### 
+### Makefile included stuff
+### Target, variable, suffixes which are supposed to be usefull in every makefile.am
 ##########
 
 
@@ -423,107 +423,6 @@ target = $(datadir)/integer
 libsciinteger_la_rootdir = $(target)
 libsciinteger_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
-#### integer : Scilab macros ###
-libsciinteger_la_macrodir = $(target)/macros
-MACROS = macros/%i_plot2d1.sci \
-macros/%i_mfprintf.sci \
-macros/%i_plot2d2.sci \
-macros/%i_contour.sci \
-macros/%i_sign.sci \
-macros/%i_j_i.sci \
-macros/%i_msprintf.sci \
-macros/%i_a_s.sci \
-macros/%s_a_i.sci \
-macros/%i_plot2d.sci \
-macros/%i_d_s.sci \
-macros/%s_d_i.sci \
-macros/%i_string.sci \
-macros/%i_p_i.sci \
-macros/%i_champ1.sci \
-macros/%s_i_i.sci \
-macros/%i_j_s.sci \
-macros/%s_j_i.sci \
-macros/%i_l_s.sci \
-macros/%s_l_i.sci \
-macros/%i_m_s.sci \
-macros/%s_m_i.sci \
-macros/%i_n_s.sci \
-macros/%i_mprintf.sci \
-macros/%i_contour2d.sci \
-macros/%s_n_i.sci \
-macros/%i_o_s.sci \
-macros/%i_Matplot.sci \
-macros/%s_o_i.sci \
-macros/%i_p_s.sci \
-macros/%s_p_i.sci \
-macros/%i_q_s.sci \
-macros/%i_1_s.sci \
-macros/%s_1_i.sci \
-macros/%s_q_i.sci \
-macros/%i_r_s.sci \
-macros/%i_2_s.sci \
-macros/%s_2_i.sci \
-macros/%s_r_i.sci \
-macros/%i_s_s.sci \
-macros/%i_3_s.sci \
-macros/%s_3_i.sci \
-macros/%s_s_i.sci \
-macros/%i_4_s.sci \
-macros/%s_4_i.sci \
-macros/%i_champ.sci \
-macros/%i_x_s.sci \
-macros/%s_x_i.sci \
-macros/%i_fft.sci macros/%i_1_s.bin \
-macros/%i_2_s.bin \
-macros/%i_3_s.bin \
-macros/%i_4_s.bin \
-macros/%i_a_s.bin \
-macros/%i_champ1.bin \
-macros/%i_champ.bin \
-macros/%i_contour2d.bin \
-macros/%i_contour.bin \
-macros/%i_d_s.bin \
-macros/%i_fft.bin \
-macros/%i_j_i.bin \
-macros/%i_j_s.bin \
-macros/%i_l_s.bin \
-macros/%i_Matplot.bin \
-macros/%i_mfprintf.bin \
-macros/%i_mprintf.bin \
-macros/%i_msprintf.bin \
-macros/%i_m_s.bin \
-macros/%i_n_s.bin \
-macros/%i_o_s.bin \
-macros/%i_p_i.bin \
-macros/%i_plot2d1.bin \
-macros/%i_plot2d2.bin \
-macros/%i_plot2d.bin \
-macros/%i_p_s.bin \
-macros/%i_q_s.bin \
-macros/%i_r_s.bin \
-macros/%i_sign.bin \
-macros/%i_s_s.bin \
-macros/%i_string.bin \
-macros/%i_x_s.bin \
-macros/%s_1_i.bin \
-macros/%s_2_i.bin \
-macros/%s_3_i.bin \
-macros/%s_4_i.bin \
-macros/%s_a_i.bin \
-macros/%s_d_i.bin \
-macros/%s_i_i.bin \
-macros/%s_j_i.bin \
-macros/%s_l_i.bin \
-macros/%s_m_i.bin \
-macros/%s_n_i.bin \
-macros/%s_o_i.bin \
-macros/%s_p_i.bin \
-macros/%s_q_i.bin \
-macros/%s_r_i.bin \
-macros/%s_s_i.bin \
-macros/%s_x_i.bin macros/names macros/lib macros/buildmacros.sce
-
-
 #### integer : init scripts #### 
 libsciinteger_la_etcdir = $(target)/etc
 libsciinteger_la_etc_DATA = etc/integer.quit etc/integer.start
@@ -549,13 +448,17 @@ SUFFIXES = .sci
 # automake needs the html files to be present which is not the case when
 # we are building Scilab
 pkgdocdir = $(target)
-DOCDIRS = help/fr help/en
+DOCDIRS = help/fr_FR help/en_US
 DOCMASK = *.htm
 DOCMASKXML = *.xml
 
-#bhalbhalbha
+# Install macros
 pkgmacrosdir = $(target)
-MACROSDIRS = macros/
+MACRODIRS = macros/
+MACROMASK = *.sci
+MACROBUILDMASK = *.sce
+MACROBINMASK = *.bin
+FUNCTION_NAMES = macros/names
 all: all-am
 
 .SUFFIXES:
@@ -1528,18 +1431,21 @@ install-html-local:
 @INSTALL_HELP_XML_TRUE@		  done ; \
 @INSTALL_HELP_XML_TRUE@		fi; \
 @INSTALL_HELP_XML_TRUE@	done
-install-data-local: $(MACROS)
+install-data-local:
 	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)
-	@if test ! -z "$(MACROS)"; then \
-	for dir in $(MACROSDIRS) ; do \
+	@if test -f $(FUNCTION_NAMES); then \
+		echo "$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/"; \
+		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/; \
+	fi; \
+	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-			echo "file in "$(srcdir)/$$dir; \
-		  for file in $(MACROS); do \
+		if test -d $(srcdir)/$$dir/; then \
+		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/lib 2>/dev/null`; do \
 		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
-		  done ; \
-	done; \
-	fi
+		  done \
+		fi; \
+	done
 
 macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(MACROS)
 	-@( \

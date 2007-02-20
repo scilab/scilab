@@ -22,9 +22,9 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
 ### INRIA - Scilab 2006 - 2007
-### 
-### Makefile included stuff
-### Target, variable, suffixes which are supposed to be usefull in every makefile.am
+### 
+### Makefile included stuff
+### Target, variable, suffixes which are supposed to be usefull in every makefile.am
 ##########
 
 
@@ -389,139 +389,6 @@ target = $(datadir)/signal_processing
 libscisignal_processing_la_rootdir = $(target)
 libscisignal_processing_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
-#### signal_processing : Scilab macros ###
-libscisignal_processing_la_macrodir = $(target)/macros
-MACROS = macros/srkf.sci \
-macros/intdec.sci \
-macros/phc.sci \
-macros/lindquist.sci \
-macros/system.sci \
-macros/detrend.sci \
-macros/ifft.sci \
-macros/jmat.sci \
-macros/mfft.sci \
-macros/group.sci \
-macros/sincd.sci \
-macros/czt.sci \
-macros/cheb2mag.sci \
-macros/casc.sci \
-macros/eqiir.sci \
-macros/hilb.sci \
-macros/faurre.sci \
-macros/lev.sci \
-macros/%asn.sci \
-macros/zpell.sci \
-macros/trans.sci \
-macros/zpbutt.sci \
-macros/wiener.sci \
-macros/yulewalk.sci \
-macros/find_freq.sci \
-macros/findm.sci \
-macros/iirgroup.sci \
-macros/analpf.sci \
-macros/lgfft.sci \
-macros/cepstrum.sci \
-macros/buttmag.sci \
-macros/sskf.sci \
-macros/wfir.sci \
-macros/cheb1mag.sci \
-macros/frfit.sci \
-macros/fsfirlin.sci \
-macros/dft.sci \
-macros/iirlp.sci \
-macros/mrfit.sci \
-macros/cspect.sci \
-macros/lattn.sci \
-macros/iirmod.sci \
-macros/kalm.sci \
-macros/convol.sci \
-macros/srfaur.sci \
-macros/ffilt.sci \
-macros/eqfir.sci \
-macros/window.sci \
-macros/chepol.sci \
-macros/levin.sci \
-macros/fftshift.sci \
-macros/hank.sci \
-macros/ell1mag.sci \
-macros/iir.sci \
-macros/remezb.sci \
-macros/zpch1.sci \
-macros/%sn.sci \
-macros/zpch2.sci \
-macros/mese.sci \
-macros/bilt.sci \
-macros/wigner.sci \
-macros/frmag.sci \
-macros/pspect.sci \
-macros/%k.sci \
-macros/fft2.sci macros/analpf.bin \
-macros/%asn.bin \
-macros/bilt.bin \
-macros/buttmag.bin \
-macros/casc.bin \
-macros/cepstrum.bin \
-macros/cheb1mag.bin \
-macros/cheb2mag.bin \
-macros/chepol.bin \
-macros/convol.bin \
-macros/cspect.bin \
-macros/czt.bin \
-macros/detrend.bin \
-macros/dft.bin \
-macros/ell1mag.bin \
-macros/eqfir.bin \
-macros/eqiir.bin \
-macros/faurre.bin \
-macros/ffilt.bin \
-macros/fft2.bin \
-macros/fftshift.bin \
-macros/find_freq.bin \
-macros/findm.bin \
-macros/frfit.bin \
-macros/frmag.bin \
-macros/fsfirlin.bin \
-macros/group.bin \
-macros/hank.bin \
-macros/hilb.bin \
-macros/ifft.bin \
-macros/iirgroup.bin \
-macros/iirlp.bin \
-macros/iirmod.bin \
-macros/iir.bin \
-macros/intdec.bin \
-macros/jmat.bin \
-macros/kalm.bin \
-macros/%k.bin \
-macros/lattn.bin \
-macros/levin.bin \
-macros/lev.bin \
-macros/lgfft.bin \
-macros/lindquist.bin \
-macros/mese.bin \
-macros/mfft.bin \
-macros/mrfit.bin \
-macros/phc.bin \
-macros/pspect.bin \
-macros/remezb.bin \
-macros/sincd.bin \
-macros/%sn.bin \
-macros/srfaur.bin \
-macros/srkf.bin \
-macros/sskf.bin \
-macros/system.bin \
-macros/trans.bin \
-macros/wfir.bin \
-macros/wiener.bin \
-macros/wigner.bin \
-macros/window.bin \
-macros/yulewalk.bin \
-macros/zpbutt.bin \
-macros/zpch1.bin \
-macros/zpch2.bin \
-macros/zpell.bin macros/names macros/lib macros/buildmacros.sce
-
-
 #### signal_processing : init scripts #### 
 libscisignal_processing_la_etcdir = $(target)/etc
 libscisignal_processing_la_etc_DATA = etc/signal_processing.quit etc/signal_processing.start
@@ -560,13 +427,17 @@ SUFFIXES = .sci
 # automake needs the html files to be present which is not the case when
 # we are building Scilab
 pkgdocdir = $(target)
-DOCDIRS = help/fr help/en
+DOCDIRS = help/fr_FR help/en_US
 DOCMASK = *.htm
 DOCMASKXML = *.xml
 
-#bhalbhalbha
+# Install macros
 pkgmacrosdir = $(target)
-MACROSDIRS = macros/
+MACRODIRS = macros/
+MACROMASK = *.sci
+MACROBUILDMASK = *.sce
+MACROBINMASK = *.bin
+FUNCTION_NAMES = macros/names
 all: all-am
 
 .SUFFIXES:
@@ -1317,18 +1188,21 @@ install-html-local:
 @INSTALL_HELP_XML_TRUE@		  done ; \
 @INSTALL_HELP_XML_TRUE@		fi; \
 @INSTALL_HELP_XML_TRUE@	done
-install-data-local: $(MACROS)
+install-data-local:
 	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)
-	@if test ! -z "$(MACROS)"; then \
-	for dir in $(MACROSDIRS) ; do \
+	@if test -f $(FUNCTION_NAMES); then \
+		echo "$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/"; \
+		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/; \
+	fi; \
+	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-			echo "file in "$(srcdir)/$$dir; \
-		  for file in $(MACROS); do \
+		if test -d $(srcdir)/$$dir/; then \
+		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/lib 2>/dev/null`; do \
 		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
-		  done ; \
-	done; \
-	fi
+		  done \
+		fi; \
+	done
 
 macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(MACROS)
 	-@( \

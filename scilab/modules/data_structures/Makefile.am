@@ -68,19 +68,6 @@ libscidata_structures_la_rootdir = $(target)
 libscidata_structures_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
-#### data_structures : Scilab macros ###
-libscidata_structures_la_macrodir = $(target)/macros
-MACROS = macros/struct.sci \
-macros/iscell.sci \
-macros/cell.sci \
-macros/isfield.sci \
-macros/isstruct.sci macros/cell.bin \
-macros/iscell.bin \
-macros/isfield.bin \
-macros/isstruct.bin \
-macros/struct.bin macros/names macros/lib macros/buildmacros.sce
-
-
 #### data_structures : init scripts #### 
 libscidata_structures_la_etcdir = $(target)/etc
 libscidata_structures_la_etc_DATA = etc/data_structures.quit etc/data_structures.start

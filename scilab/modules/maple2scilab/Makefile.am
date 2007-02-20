@@ -13,11 +13,6 @@ libmaple2scilab_la_rootdir = $(target)
 libmaple2scilab_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
-#### maple2scilab : Scilab macros ###
-libmaple2scilab_la_macrodir = $(target)/macros
-MACROS = macros/sci2map.sci macros/sci2map.bin macros/names macros/lib macros/buildmacros.sce
-
-
 #### maple2scilab : init scripts #### 
 libmaple2scilab_la_etcdir = $(target)/etc
 libmaple2scilab_la_etc_DATA = etc/maple2scilab.quit etc/maple2scilab.start

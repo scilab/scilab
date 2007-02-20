@@ -345,43 +345,6 @@ libscicore_la_rootdir = $(target)
 libscicore_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
-#### core : Scilab macros ###
-libscicore_la_macrodir = $(target)/macros
-MACROS = macros/perl.sci \
-macros/typeof.sci \
-macros/getshell.sci \
-macros/with_tk.sci \
-macros/with_javasci.sci \
-macros/toolboxes.sci \
-macros/with_gtk.sci \
-macros/whos.sci \
-macros/scilab_demos.sci \
-macros/OS_Version.sci \
-macros/sethomedirectory.sci \
-macros/who_user.sci \
-macros/add_demo.sci \
-macros/with_macros_source.sci \
-macros/with_atlas.sci \
-macros/with_texmacs.sci \
-macros/whereami.sci macros/add_demo.bin \
-macros/getshell.bin \
-macros/OS_Version.bin \
-macros/perl.bin \
-macros/scilab_demos.bin \
-macros/sethomedirectory.bin \
-macros/toolboxes.bin \
-macros/typeof.bin \
-macros/whereami.bin \
-macros/whos.bin \
-macros/who_user.bin \
-macros/with_atlas.bin \
-macros/with_gtk.bin \
-macros/with_javasci.bin \
-macros/with_macros_source.bin \
-macros/with_texmacs.bin \
-macros/with_tk.bin macros/names macros/lib macros/buildmacros.sce
-
-
 #### core : init scripts #### 
 libscicore_la_etcdir = $(target)/etc
 libscicore_la_etc_DATA = etc/core.quit etc/core.start

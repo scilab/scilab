@@ -28,12 +28,6 @@ target=$(datadir)/mexlib
 libscimexlib_la_rootdir = $(target)
 libscimexlib_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
-
-#### mexlib : Scilab macros ###
-libscimexlib_la_macrodir = $(target)/macros
-MACROS = macros/buildmacros.sce
-
-
 #### mexlib : init scripts #### 
 libscimexlib_la_etcdir = $(target)/etc
 libscimexlib_la_etc_DATA = etc/mexlib.quit etc/mexlib.start

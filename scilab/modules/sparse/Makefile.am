@@ -184,21 +184,6 @@ libscisparse_la_rootdir = $(target)
 libscisparse_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
-#### sparse : Scilab macros ###
-libscisparse_la_macrodir = $(target)/macros
-MACROS = macros/adj2sp.sci \
-macros/sp2adj.sci \
-macros/issparse.sci \
-macros/pcg.sci \
-macros/gmres.sci \
-macros/qmr.sci macros/adj2sp.bin \
-macros/gmres.bin \
-macros/issparse.bin \
-macros/pcg.bin \
-macros/qmr.bin \
-macros/sp2adj.bin macros/names macros/lib macros/buildmacros.sce
-
-
 #### sparse : init scripts #### 
 libscisparse_la_etcdir = $(target)/etc
 libscisparse_la_etc_DATA = etc/sparse.quit etc/sparse.start

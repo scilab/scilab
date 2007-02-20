@@ -67,34 +67,6 @@ target=$(datadir)/string
 libscistring_la_rootdir = $(target)
 libscistring_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
-
-#### string : Scilab macros ###
-libscistring_la_macrodir = $(target)/macros
-MACROS = macros/dec2hex.sci \
-macros/hex2dec.sci \
-macros/tokenpos.sci \
-macros/evstr.sci \
-macros/oct2dec.sci \
-macros/eval.sci \
-macros/base2dec.sci \
-macros/stripblanks.sci \
-macros/justify.sci \
-macros/arobasestring2strings.sci \
-macros/ascii2string.sci \
-macros/fun2string.sci macros/arobasestring2strings.bin \
-macros/ascii2string.bin \
-macros/base2dec.bin \
-macros/dec2hex.bin \
-macros/eval.bin \
-macros/evstr.bin \
-macros/fun2string.bin \
-macros/hex2dec.bin \
-macros/justify.bin \
-macros/oct2dec.bin \
-macros/stripblanks.bin \
-macros/tokenpos.bin macros/names macros/lib macros/buildmacros.sce
-
-
 #### string : init scripts #### 
 libscistring_la_etcdir = $(target)/etc
 libscistring_la_etc_DATA = etc/string.quit etc/string.start

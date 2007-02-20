@@ -128,31 +128,6 @@ libscigui_la_rootdir = $(target)
 libscigui_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
-#### gui : Scilab macros ###
-libscigui_la_macrodir = $(target)/macros
-MACROS = macros/unsetmenu.sci \
-macros/x_choices.sci \
-macros/savedefaultbrowser.sci \
-macros/delmenu.sci \
-macros/menubar.sci \
-macros/x_matrix.sci \
-macros/getvalue.sci \
-macros/addmenu.sci \
-macros/show_startupinfo.sci \
-macros/clipboard.sci \
-macros/setmenu.sci macros/addmenu.bin \
-macros/clipboard.bin \
-macros/delmenu.bin \
-macros/getvalue.bin \
-macros/menubar.bin \
-macros/savedefaultbrowser.bin \
-macros/setmenu.bin \
-macros/show_startupinfo.bin \
-macros/unsetmenu.bin \
-macros/x_choices.bin \
-macros/x_matrix.bin macros/names macros/lib macros/buildmacros.sce
-
-
 #### gui : init scripts #### 
 libscigui_la_etcdir = $(target)/etc
 libscigui_la_etc_DATA = etc/gui.quit etc/gui.start

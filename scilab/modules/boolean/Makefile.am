@@ -43,11 +43,6 @@ libsciboolean_la_rootdir = $(target)
 libsciboolean_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
-#### boolean : Scilab macros ###
-libsciboolean_la_macrodir = $(target)/macros
-MACROS =  macros/buildmacros.sce
-
-
 #### boolean : init scripts #### 
 libsciboolean_la_etcdir = $(target)/etc
 libsciboolean_la_etc_DATA = etc/boolean.quit etc/boolean.start

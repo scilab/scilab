@@ -102,37 +102,6 @@ libsciio_la_rootdir = $(target)
 libsciio_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
-#### io : Scilab macros ###
-libsciio_la_macrodir = $(target)/macros
-MACROS = macros/printf.sci \
-macros/ssprint.sci \
-macros/getscilabkeywords.sci \
-macros/sprintf.sci \
-macros/unix_s.sci \
-macros/fprintf.sci \
-macros/halt.sci \
-macros/unix_g.sci \
-macros/unix_w.sci \
-macros/unix_x.sci \
-macros/readc_.sci \
-macros/sscanf.sci \
-macros/input.sci \
-macros/fscanf.sci macros/fprintf.bin \
-macros/fscanf.bin \
-macros/getscilabkeywords.bin \
-macros/halt.bin \
-macros/input.bin \
-macros/printf.bin \
-macros/readc_.bin \
-macros/sprintf.bin \
-macros/sscanf.bin \
-macros/ssprint.bin \
-macros/unix_g.bin \
-macros/unix_s.bin \
-macros/unix_w.bin \
-macros/unix_x.bin macros/names macros/lib macros/buildmacros.sce
-
-
 #### io : init scripts #### 
 libsciio_la_etcdir = $(target)/etc
 libsciio_la_etc_DATA = etc/io.quit etc/io.start

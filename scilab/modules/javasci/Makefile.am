@@ -11,12 +11,6 @@ target=$(datadir)/javasci
 libscijavasci_la_rootdir = $(target)
 libscijavasci_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
-
-#### javasci : Scilab macros ###
-libscijavasci_la_macrodir = $(target)/macros
-MACROS =  macros/buildmacros.sce
-
-
 #### javasci : init scripts #### 
 libscijavasci_la_etcdir = $(target)/etc
 libscijavasci_la_etc_DATA = etc/javasci.quit etc/javasci.start

@@ -140,15 +140,6 @@ target=$(datadir)/differential_equations
 libscidifferential_equations_la_rootdir = $(target)
 libscidifferential_equations_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
-
-#### differential_equations : Scilab macros ###
-libscidifferential_equations_la_macrodir = $(target)/macros
-MACROS = macros/odeoptions.sci \
-macros/odeoptions.bin \
-macros/names macros/lib \
-macros/buildmacros.sce
-
-
 #### differential_equations : init scripts #### 
 libscidifferential_equations_la_etcdir = $(target)/etc
 libscidifferential_equations_la_etc_DATA = etc/differential_equations.quit etc/differential_equations.start

@@ -22,9 +22,9 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
 ### INRIA - Scilab 2006 - 2007
-### 
-### Makefile included stuff
-### Target, variable, suffixes which are supposed to be usefull in every makefile.am
+### 
+### Makefile included stuff
+### Target, variable, suffixes which are supposed to be usefull in every makefile.am
 ##########
 
 
@@ -388,111 +388,6 @@ target = $(datadir)/linear_algebra
 libscilinear_algebra_la_rootdir = $(target)
 libscilinear_algebra_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
-#### linear_algebra : Scilab macros ###
-libscilinear_algebra_la_macrodir = $(target)/macros
-MACROS = macros/spaninter.sci \
-macros/WritemiMatrix.sci \
-macros/penlaur.sci \
-macros/ndims.sci \
-macros/norm.sci \
-macros/pinv.sci \
-macros/coff.sci \
-macros/randpencil.sci \
-macros/kernel.sci \
-macros/pbig.sci \
-macros/im_inv.sci \
-macros/householder.sci \
-macros/companion.sci \
-macros/cond.sci \
-macros/projspec.sci \
-macros/quaskro.sci \
-macros/classmarkov.sci \
-macros/ReadmiMatrix.sci \
-macros/hypermat.sci \
-macros/sva.sci \
-macros/fullrf.sci \
-macros/linsolve.sci \
-macros/kroneck.sci \
-macros/colcomp.sci \
-macros/range.sci \
-macros/rref.sci \
-macros/gspec.sci \
-macros/chsolve.sci \
-macros/rowshuff.sci \
-macros/nlev.sci \
-macros/pencan.sci \
-macros/fullrfk.sci \
-macros/spanplus.sci \
-macros/eigenmarkov.sci \
-macros/diff.sci \
-macros/pen2ea.sci \
-macros/proj.sci \
-macros/orth.sci \
-macros/polar.sci \
-macros/aff2ab.sci \
-macros/glever.sci \
-macros/rowcomp.sci \
-macros/sqroot.sci \
-macros/chfact.sci \
-macros/psmall.sci \
-macros/genmarkov.sci \
-macros/gschur.sci \
-macros/givens.sci \
-macros/rank.sci \
-macros/spantwo.sci \
-macros/trace.sci macros/aff2ab.bin \
-macros/chfact.bin \
-macros/chsolve.bin \
-macros/classmarkov.bin \
-macros/coff.bin \
-macros/colcomp.bin \
-macros/companion.bin \
-macros/cond.bin \
-macros/diff.bin \
-macros/eigenmarkov.bin \
-macros/fullrfk.bin \
-macros/fullrf.bin \
-macros/genmarkov.bin \
-macros/givens.bin \
-macros/glever.bin \
-macros/gschur.bin \
-macros/gspec.bin \
-macros/householder.bin \
-macros/hypermat.bin \
-macros/im_inv.bin \
-macros/kernel.bin \
-macros/kroneck.bin \
-macros/linsolve.bin \
-macros/ndims.bin \
-macros/nlev.bin \
-macros/norm.bin \
-macros/orth.bin \
-macros/pbig.bin \
-macros/pen2ea.bin \
-macros/pencan.bin \
-macros/penlaur.bin \
-macros/pinv.bin \
-macros/polar.bin \
-macros/proj.bin \
-macros/projspec.bin \
-macros/psmall.bin \
-macros/quaskro.bin \
-macros/randpencil.bin \
-macros/range.bin \
-macros/rank.bin \
-macros/ReadmiMatrix.bin \
-macros/rowcomp.bin \
-macros/rowshuff.bin \
-macros/rref.bin \
-macros/spaninter.bin \
-macros/spanplus.bin \
-macros/spantwo.bin \
-macros/sqroot.bin \
-macros/sva.bin \
-macros/trace.bin \
-macros/WritemiMatrix.bin macros/names macros/lib macros/buildmacros.sce
-
-
 #### linear_algebra : init scripts #### 
 libscilinear_algebra_la_etcdir = $(target)/etc
 libscilinear_algebra_la_etc_DATA = etc/linear_algebra.quit etc/linear_algebra.start
@@ -517,13 +412,17 @@ SUFFIXES = .sci
 # automake needs the html files to be present which is not the case when
 # we are building Scilab
 pkgdocdir = $(target)
-DOCDIRS = help/fr help/en
+DOCDIRS = help/fr_FR help/en_US
 DOCMASK = *.htm
 DOCMASKXML = *.xml
 
-#bhalbhalbha
+# Install macros
 pkgmacrosdir = $(target)
-MACROSDIRS = macros/
+MACRODIRS = macros/
+MACROMASK = *.sci
+MACROBUILDMASK = *.sce
+MACROBINMASK = *.bin
+FUNCTION_NAMES = macros/names
 all: all-am
 
 .SUFFIXES:
@@ -1265,18 +1164,21 @@ install-html-local:
 @INSTALL_HELP_XML_TRUE@		  done ; \
 @INSTALL_HELP_XML_TRUE@		fi; \
 @INSTALL_HELP_XML_TRUE@	done
-install-data-local: $(MACROS)
+install-data-local:
 	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)
-	@if test ! -z "$(MACROS)"; then \
-	for dir in $(MACROSDIRS) ; do \
+	@if test -f $(FUNCTION_NAMES); then \
+		echo "$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/"; \
+		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/; \
+	fi; \
+	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-			echo "file in "$(srcdir)/$$dir; \
-		  for file in $(MACROS); do \
+		if test -d $(srcdir)/$$dir/; then \
+		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/lib 2>/dev/null`; do \
 		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
-		  done ; \
-	done; \
-	fi
+		  done \
+		fi; \
+	done
 
 macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(MACROS)
 	-@( \

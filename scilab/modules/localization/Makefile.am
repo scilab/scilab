@@ -34,11 +34,6 @@ libscilocalization_la_rootdir = $(target)
 libscilocalization_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
-#### localization : Scilab macros ###
-libscilocalization_la_macrodir = $(target)/macros
-MACROS = macros/setlanguage.sci macros/setlanguage.bin macros/names macros/lib macros/buildmacros.sce
-
-
 ####localization : init scripts #### 
 libscilocalization_la_etcdir = $(target)/etc
 libscilocalization_la_etc_DATA = etc/localization.quit etc/localization.start

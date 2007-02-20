@@ -22,9 +22,9 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
 ### INRIA - Scilab 2006 - 2007
-### 
-### Makefile included stuff
-### Target, variable, suffixes which are supposed to be usefull in every makefile.am
+### 
+### Makefile included stuff
+### Target, variable, suffixes which are supposed to be usefull in every makefile.am
 ##########
 
 
@@ -387,97 +387,6 @@ target = $(datadir)/statistics
 libscistatistics_la_rootdir = $(target)
 libscistatistics_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
-#### statistics : Scilab macros ###
-libscistatistics_la_macrodir = $(target)/macros
-MACROS = macros/cmoment.sci \
-macros/strange.sci \
-macros/wcenter.sci \
-macros/regress.sci \
-macros/nfreq.sci \
-macros/geomean.sci \
-macros/harmean.sci \
-macros/trimmean.sci \
-macros/nanmean.sci \
-macros/center.sci \
-macros/mvvacov.sci \
-macros/sample.sci \
-macros/nanstdev.sci \
-macros/ftest.sci \
-macros/stdev.sci \
-macros/correl.sci \
-macros/variance.sci \
-macros/perctl.sci \
-macros/mvcorrel.sci \
-macros/nanmedian.sci \
-macros/quart.sci \
-macros/variancef.sci \
-macros/moment.sci \
-macros/mad.sci \
-macros/ftuneq.sci \
-macros/pca.sci \
-macros/nand2mean.sci \
-macros/nancumsum.sci \
-macros/tabul.sci \
-macros/covar.sci \
-macros/nanmin.sci \
-macros/mean.sci \
-macros/nanmax.sci \
-macros/nanmeanf.sci \
-macros/msd.sci \
-macros/meanf.sci \
-macros/samplef.sci \
-macros/st_deviation.sci \
-macros/samwr.sci \
-macros/iqr.sci \
-macros/stdevf.sci \
-macros/median.sci \
-macros/thrownan.sci \
-macros/nansum.sci macros/center.bin \
-macros/cmoment.bin \
-macros/correl.bin \
-macros/covar.bin \
-macros/ftest.bin \
-macros/ftuneq.bin \
-macros/geomean.bin \
-macros/harmean.bin \
-macros/iqr.bin \
-macros/mad.bin \
-macros/meanf.bin \
-macros/mean.bin \
-macros/median.bin \
-macros/moment.bin \
-macros/msd.bin \
-macros/mvcorrel.bin \
-macros/mvvacov.bin \
-macros/nancumsum.bin \
-macros/nand2mean.bin \
-macros/nanmax.bin \
-macros/nanmeanf.bin \
-macros/nanmean.bin \
-macros/nanmedian.bin \
-macros/nanmin.bin \
-macros/nanstdev.bin \
-macros/nansum.bin \
-macros/nfreq.bin \
-macros/pca.bin \
-macros/perctl.bin \
-macros/quart.bin \
-macros/regress.bin \
-macros/samplef.bin \
-macros/sample.bin \
-macros/samwr.bin \
-macros/stdevf.bin \
-macros/st_deviation.bin \
-macros/stdev.bin \
-macros/strange.bin \
-macros/tabul.bin \
-macros/thrownan.bin \
-macros/trimmean.bin \
-macros/variancef.bin \
-macros/variance.bin \
-macros/wcenter.bin macros/names macros/lib macros/buildmacros.sce
-
-
 #### statistics : init scripts #### 
 libscistatistics_la_etcdir = $(target)/etc
 libscistatistics_la_etc_DATA = etc/statistics.quit etc/statistics.start
@@ -501,13 +410,17 @@ SUFFIXES = .sci
 # automake needs the html files to be present which is not the case when
 # we are building Scilab
 pkgdocdir = $(target)
-DOCDIRS = help/fr help/en
+DOCDIRS = help/fr_FR help/en_US
 DOCMASK = *.htm
 DOCMASKXML = *.xml
 
-#bhalbhalbha
+# Install macros
 pkgmacrosdir = $(target)
-MACROSDIRS = macros/
+MACRODIRS = macros/
+MACROMASK = *.sci
+MACROBUILDMASK = *.sce
+MACROBINMASK = *.bin
+FUNCTION_NAMES = macros/names
 all: all-am
 
 .SUFFIXES:
@@ -1247,18 +1160,21 @@ install-html-local:
 @INSTALL_HELP_XML_TRUE@		  done ; \
 @INSTALL_HELP_XML_TRUE@		fi; \
 @INSTALL_HELP_XML_TRUE@	done
-install-data-local: $(MACROS)
+install-data-local:
 	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)
-	@if test ! -z "$(MACROS)"; then \
-	for dir in $(MACROSDIRS) ; do \
+	@if test -f $(FUNCTION_NAMES); then \
+		echo "$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/"; \
+		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/; \
+	fi; \
+	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-			echo "file in "$(srcdir)/$$dir; \
-		  for file in $(MACROS); do \
+		if test -d $(srcdir)/$$dir/; then \
+		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/lib 2>/dev/null`; do \
 		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
-		  done ; \
-	done; \
-	fi
+		  done \
+		fi; \
+	done
 
 macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(MACROS)
 	-@( \

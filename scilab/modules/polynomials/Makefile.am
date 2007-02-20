@@ -128,67 +128,6 @@ libscipolynomials_la_rootdir = $(target)
 libscipolynomials_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
-#### polynomials : Scilab macros ###
-libscipolynomials_la_macrodir = $(target)/macros
-MACROS = macros/denom.sci \
-macros/pdiv.sci \
-macros/systmat.sci \
-macros/pol2str.sci \
-macros/diophant.sci \
-macros/htrianr.sci \
-macros/pol2des.sci \
-macros/rowcompr.sci \
-macros/hrmt.sci \
-macros/lcm.sci \
-macros/cmndred.sci \
-macros/colcompr.sci \
-macros/invr.sci \
-macros/determ.sci \
-macros/pfactors.sci \
-macros/coffg.sci \
-macros/routh_t.sci \
-macros/sylm.sci \
-macros/numer.sci \
-macros/hermit.sci \
-macros/polfact.sci \
-macros/horner.sci \
-macros/gcd.sci \
-macros/pol2tex.sci \
-macros/inv_coeff.sci \
-macros/detr.sci \
-macros/derivat.sci \
-macros/lcmdiag.sci \
-macros/factors.sci macros/cmndred.bin \
-macros/coffg.bin \
-macros/colcompr.bin \
-macros/denom.bin \
-macros/derivat.bin \
-macros/determ.bin \
-macros/detr.bin \
-macros/diophant.bin \
-macros/factors.bin \
-macros/gcd.bin \
-macros/hermit.bin \
-macros/horner.bin \
-macros/hrmt.bin \
-macros/htrianr.bin \
-macros/inv_coeff.bin \
-macros/invr.bin \
-macros/lcmdiag.bin \
-macros/lcm.bin \
-macros/numer.bin \
-macros/pdiv.bin \
-macros/pfactors.bin \
-macros/pol2des.bin \
-macros/pol2str.bin \
-macros/pol2tex.bin \
-macros/polfact.bin \
-macros/routh_t.bin \
-macros/rowcompr.bin \
-macros/sylm.bin \
-macros/systmat.bin macros/names macros/lib macros/buildmacros.sce
-
-
 #### polynomials : init scripts #### 
 libscipolynomials_la_etcdir = $(target)/etc
 libscipolynomials_la_etc_DATA = etc/polynomials.quit etc/polynomials.start

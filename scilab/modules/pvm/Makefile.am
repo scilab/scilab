@@ -71,14 +71,6 @@ target=$(datadir)/modules/pvm
 libscipvm_la_rootdir = $(target)
 libscipvm_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
-
-#### pvm : Scilab macros ###
-libscipvm_la_macrodir = $(target)/macros
-MACROS = macros/configure_pvm.sci \
-macros/with_pvm.sci macros/configure_pvm.bin \
-macros/with_pvm.bin macros/names macros/lib macros/buildmacros.sce
-
-
 #### pvm : init scripts #### 
 libscipvm_la_etcdir = $(target)/etc
 libscipvm_la_etc_DATA = etc/pvm.quit etc/pvm.start

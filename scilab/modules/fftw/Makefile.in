@@ -23,9 +23,9 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
 ### INRIA - Scilab 2006 - 2007
-### 
-### Makefile included stuff
-### Target, variable, suffixes which are supposed to be usefull in every makefile.am
+### 
+### Makefile included stuff
+### Target, variable, suffixes which are supposed to be usefull in every makefile.am
 ##########
 
 
@@ -305,10 +305,6 @@ top_srcdir = @top_srcdir@
 @FFTW_TRUE@libscifftw_la_rootdir = $(target)
 @FFTW_TRUE@libscifftw_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
-#### fftw : Scilab macros ###
-@FFTW_TRUE@libscifftw_la_macrodir = $(target)/macros
-@FFTW_TRUE@MACROS = macros/buildmacros.sce
-
 #### fftw : init scripts #### 
 @FFTW_TRUE@libscifftw_la_etcdir = $(target)/etc
 @FFTW_TRUE@libscifftw_la_etc_DATA = etc/fftw.quit etc/fftw.start
@@ -345,13 +341,17 @@ top_srcdir = @top_srcdir@
 # automake needs the html files to be present which is not the case when
 # we are building Scilab
 @FFTW_TRUE@pkgdocdir = $(target)
-@FFTW_TRUE@DOCDIRS = help/fr help/en
+@FFTW_TRUE@DOCDIRS = help/fr_FR help/en_US
 @FFTW_TRUE@DOCMASK = *.htm
 @FFTW_TRUE@DOCMASKXML = *.xml
 
-#bhalbhalbha
+# Install macros
 @FFTW_TRUE@pkgmacrosdir = $(target)
-@FFTW_TRUE@MACROSDIRS = macros/
+@FFTW_TRUE@MACRODIRS = macros/
+@FFTW_TRUE@MACROMASK = *.sci
+@FFTW_TRUE@MACROBUILDMASK = *.sce
+@FFTW_TRUE@MACROBINMASK = *.bin
+@FFTW_TRUE@FUNCTION_NAMES = macros/names
 all: all-am
 
 .SUFFIXES:
@@ -864,17 +864,21 @@ uninstall-am: uninstall-libscifftw_la_etcDATA \
 @FFTW_TRUE@@INSTALL_HELP_XML_TRUE@		  done ; \
 @FFTW_TRUE@@INSTALL_HELP_XML_TRUE@		fi; \
 @FFTW_TRUE@@INSTALL_HELP_XML_TRUE@	done
-@FFTW_TRUE@install-data-local: $(MACROS)
+@FFTW_TRUE@install-data-local:
 @FFTW_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)
-@FFTW_TRUE@	@if test ! -z "$(MACROS)"; then \
-@FFTW_TRUE@	for dir in $(MACROSDIRS) ; do \
+@FFTW_TRUE@	@if test -f $(FUNCTION_NAMES); then \
+@FFTW_TRUE@		echo "$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/"; \
+@FFTW_TRUE@		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/; \
+@FFTW_TRUE@	fi; \
+@FFTW_TRUE@	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 @FFTW_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-@FFTW_TRUE@		  for file in $(MACROS); do \
+@FFTW_TRUE@		if test -d $(srcdir)/$$dir/; then \
+@FFTW_TRUE@		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/lib 2>/dev/null`; do \
 @FFTW_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 @FFTW_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
-@FFTW_TRUE@		  done ; \
-@FFTW_TRUE@	done; \
-@FFTW_TRUE@	fi
+@FFTW_TRUE@		  done \
+@FFTW_TRUE@		fi; \
+@FFTW_TRUE@	done
 
 @FFTW_TRUE@macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(MACROS)
 @FFTW_TRUE@	-@( \

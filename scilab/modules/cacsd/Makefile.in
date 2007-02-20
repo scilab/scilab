@@ -22,9 +22,9 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
 ### INRIA - Scilab 2006 - 2007
-### 
-### Makefile included stuff
-### Target, variable, suffixes which are supposed to be usefull in every makefile.am
+### 
+### Makefile included stuff
+### Target, variable, suffixes which are supposed to be usefull in every makefile.am
 ##########
 
 
@@ -588,299 +588,6 @@ target = $(datadir)/cacsd
 libscicacsd_la_rootdir = $(target)
 libscicacsd_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
-#### cacsd : Scilab macros ###
-libscicacsd_la_macrodir = $(target)/macros
-MACROS = macros/krac2.sci \
-macros/sysdiag.sci \
-macros/linfn.sci \
-macros/sm2ss.sci \
-macros/parrot.sci \
-macros/noisegen.sci \
-macros/bloc2ss.sci \
-macros/armax.sci \
-macros/time_id.sci \
-macros/ric_desc.sci \
-macros/arsimul.sci \
-macros/bloc2exp.sci \
-macros/syslin.sci \
-macros/findAC.sci \
-macros/dbphi.sci \
-macros/observer.sci \
-macros/dhnorm.sci \
-macros/dscr.sci \
-macros/p_margin.sci \
-macros/freson.sci \
-macros/gfrancis.sci \
-macros/findx0BD.sci \
-macros/abinv.sci \
-macros/arl2.sci \
-macros/fspec.sci \
-macros/des2ss.sci \
-macros/mps2linpro.sci \
-macros/prbs_a.sci \
-macros/cont_frm.sci \
-macros/fspecg.sci \
-macros/bstap.sci \
-macros/obsv_mat.sci \
-macros/trianfml.sci \
-macros/equil.sci \
-macros/sensi.sci \
-macros/lqe.sci \
-macros/zeropen.sci \
-macros/lqg.sci \
-macros/ui_observer.sci \
-macros/unobs.sci \
-macros/minreal.sci \
-macros/lincos.sci \
-macros/des2tf.sci \
-macros/svplot.sci \
-macros/copfac.sci \
-macros/trfmod.sci \
-macros/colinout.sci \
-macros/ctr_gram.sci \
-macros/cainv.sci \
-macros/markp2ss.sci \
-macros/repfreq.sci \
-macros/cont_mat.sci \
-macros/frep2tf.sci \
-macros/gamitg.sci \
-macros/colregul.sci \
-macros/ss2ss.sci \
-macros/reglin.sci \
-macros/rowinout.sci \
-macros/solve.sci \
-macros/obs_gram.sci \
-macros/h_inf_st.sci \
-macros/bilin.sci \
-macros/entropy.sci \
-macros/ss2tf.sci \
-macros/balreal.sci \
-macros/leqr.sci \
-macros/dtsi.sci \
-macros/sysconv.sci \
-macros/lyap.sci \
-macros/h2norm.sci \
-macros/rowregul.sci \
-macros/obscont.sci \
-macros/calfrq.sci \
-macros/pfss.sci \
-macros/hankelsv.sci \
-macros/inistate.sci \
-macros/h_inf.sci \
-macros/armac.sci \
-macros/phasemag.sci \
-macros/kpure.sci \
-macros/fourplan.sci \
-macros/linf.sci \
-macros/csim.sci \
-macros/sylv.sci \
-macros/epred.sci \
-macros/st_ility.sci \
-macros/augment.sci \
-macros/invrs.sci \
-macros/lqg_ltr.sci \
-macros/h_cl.sci \
-macros/nehari.sci \
-macros/cls2dls.sci \
-macros/ddp.sci \
-macros/sysfact.sci \
-macros/h_norm.sci \
-macros/arma2p.sci \
-macros/gfare.sci \
-macros/macglov.sci \
-macros/abcd.sci \
-macros/acf.sci \
-macros/dsimul.sci \
-macros/invsyslin.sci \
-macros/canon.sci \
-macros/findR.sci \
-macros/gtild.sci \
-macros/stabil.sci \
-macros/riccati.sci \
-macros/lin.sci \
-macros/g_margin.sci \
-macros/smga.sci \
-macros/specfact.sci \
-macros/minss.sci \
-macros/narsimul.sci \
-macros/lqr.sci \
-macros/cmb_lin.sci \
-macros/imrep2ss.sci \
-macros/trisolve.sci \
-macros/flts.sci \
-macros/obsvss.sci \
-macros/dt_ility.sci \
-macros/lft.sci \
-macros/leqe.sci \
-macros/armax1.sci \
-macros/sdiff.sci \
-macros/lqg2stan.sci \
-macros/contrss.sci \
-macros/dcf.sci \
-macros/sm2des.sci \
-macros/ccontrg.sci \
-macros/equil1.sci \
-macros/findBDK.sci \
-macros/tf2ss.sci \
-macros/ss2des.sci \
-macros/cfspec.sci \
-macros/arhnk.sci \
-macros/lcf.sci \
-macros/fstabst.sci \
-macros/trzeros.sci \
-macros/projsl.sci \
-macros/syssize.sci \
-macros/statgain.sci \
-macros/gcare.sci \
-macros/tf2des.sci \
-macros/ssrand.sci \
-macros/findABCD.sci macros/abcd.bin \
-macros/abinv.bin \
-macros/acf.bin \
-macros/arhnk.bin \
-macros/arl2.bin \
-macros/arma2p.bin \
-macros/armac.bin \
-macros/armax1.bin \
-macros/armax.bin \
-macros/arsimul.bin \
-macros/augment.bin \
-macros/balreal.bin \
-macros/bilin.bin \
-macros/bloc2exp.bin \
-macros/bloc2ss.bin \
-macros/bstap.bin \
-macros/cainv.bin \
-macros/calfrq.bin \
-macros/canon.bin \
-macros/ccontrg.bin \
-macros/cfspec.bin \
-macros/cls2dls.bin \
-macros/cmb_lin.bin \
-macros/colinout.bin \
-macros/colregul.bin \
-macros/cont_frm.bin \
-macros/cont_mat.bin \
-macros/contrss.bin \
-macros/copfac.bin \
-macros/csim.bin \
-macros/ctr_gram.bin \
-macros/dbphi.bin \
-macros/dcf.bin \
-macros/ddp.bin \
-macros/des2ss.bin \
-macros/des2tf.bin \
-macros/dhnorm.bin \
-macros/dscr.bin \
-macros/dsimul.bin \
-macros/dt_ility.bin \
-macros/dtsi.bin \
-macros/entropy.bin \
-macros/epred.bin \
-macros/equil1.bin \
-macros/equil.bin \
-macros/findABCD.bin \
-macros/findAC.bin \
-macros/findBDK.bin \
-macros/findR.bin \
-macros/findx0BD.bin \
-macros/flts.bin \
-macros/fourplan.bin \
-macros/frep2tf.bin \
-macros/freson.bin \
-macros/fspecg.bin \
-macros/fspec.bin \
-macros/fstabst.bin \
-macros/gamitg.bin \
-macros/gcare.bin \
-macros/gfare.bin \
-macros/gfrancis.bin \
-macros/g_margin.bin \
-macros/gtild.bin \
-macros/h2norm.bin \
-macros/hankelsv.bin \
-macros/h_cl.bin \
-macros/h_inf.bin \
-macros/h_inf_st.bin \
-macros/h_norm.bin \
-macros/imrep2ss.bin \
-macros/inistate.bin \
-macros/invrs.bin \
-macros/invsyslin.bin \
-macros/kpure.bin \
-macros/krac2.bin \
-macros/lcf.bin \
-macros/leqe.bin \
-macros/leqr.bin \
-macros/lft.bin \
-macros/lincos.bin \
-macros/linfn.bin \
-macros/linf.bin \
-macros/lin.bin \
-macros/lqe.bin \
-macros/lqg2stan.bin \
-macros/lqg_ltr.bin \
-macros/lqg.bin \
-macros/lqr.bin \
-macros/lyap.bin \
-macros/macglov.bin \
-macros/markp2ss.bin \
-macros/minreal.bin \
-macros/minss.bin \
-macros/mps2linpro.bin \
-macros/narsimul.bin \
-macros/nehari.bin \
-macros/noisegen.bin \
-macros/obscont.bin \
-macros/observer.bin \
-macros/obs_gram.bin \
-macros/obsv_mat.bin \
-macros/obsvss.bin \
-macros/parrot.bin \
-macros/pfss.bin \
-macros/phasemag.bin \
-macros/p_margin.bin \
-macros/prbs_a.bin \
-macros/projsl.bin \
-macros/reglin.bin \
-macros/repfreq.bin \
-macros/riccati.bin \
-macros/ric_desc.bin \
-macros/rowinout.bin \
-macros/rowregul.bin \
-macros/sdiff.bin \
-macros/sensi.bin \
-macros/sm2des.bin \
-macros/sm2ss.bin \
-macros/smga.bin \
-macros/solve.bin \
-macros/specfact.bin \
-macros/ss2des.bin \
-macros/ss2ss.bin \
-macros/ss2tf.bin \
-macros/ssrand.bin \
-macros/stabil.bin \
-macros/statgain.bin \
-macros/st_ility.bin \
-macros/svplot.bin \
-macros/sylv.bin \
-macros/sysconv.bin \
-macros/sysdiag.bin \
-macros/sysfact.bin \
-macros/syslin.bin \
-macros/syssize.bin \
-macros/tf2des.bin \
-macros/tf2ss.bin \
-macros/time_id.bin \
-macros/trfmod.bin \
-macros/trianfml.bin \
-macros/trisolve.bin \
-macros/trzeros.bin \
-macros/ui_observer.bin \
-macros/unobs.bin \
-macros/zeropen.bin macros/names macros/lib macros/buildmacros.sce
-
-
 #### cacsd : init scripts #### 
 libscicacsd_la_etcdir = $(target)/etc
 libscicacsd_la_etc_DATA = etc/cacsd.quit etc/cacsd.start
@@ -932,13 +639,17 @@ SUFFIXES = .sci
 # automake needs the html files to be present which is not the case when
 # we are building Scilab
 pkgdocdir = $(target)
-DOCDIRS = help/fr help/en
+DOCDIRS = help/fr_FR help/en_US
 DOCMASK = *.htm
 DOCMASKXML = *.xml
 
-#bhalbhalbha
+# Install macros
 pkgmacrosdir = $(target)
-MACROSDIRS = macros/
+MACRODIRS = macros/
+MACROMASK = *.sci
+MACROBUILDMASK = *.sce
+MACROBINMASK = *.bin
+FUNCTION_NAMES = macros/names
 all: all-am
 
 .SUFFIXES:
@@ -2069,18 +1780,21 @@ install-html-local:
 @INSTALL_HELP_XML_TRUE@		  done ; \
 @INSTALL_HELP_XML_TRUE@		fi; \
 @INSTALL_HELP_XML_TRUE@	done
-install-data-local: $(MACROS)
+install-data-local:
 	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)
-	@if test ! -z "$(MACROS)"; then \
-	for dir in $(MACROSDIRS) ; do \
+	@if test -f $(FUNCTION_NAMES); then \
+		echo "$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/"; \
+		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/; \
+	fi; \
+	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-			echo "file in "$(srcdir)/$$dir; \
-		  for file in $(MACROS); do \
+		if test -d $(srcdir)/$$dir/; then \
+		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/lib 2>/dev/null`; do \
 		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
-		  done ; \
-	done; \
-	fi
+		  done \
+		fi; \
+	done
 
 macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(MACROS)
 	-@( \

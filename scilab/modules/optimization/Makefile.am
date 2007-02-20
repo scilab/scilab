@@ -161,45 +161,6 @@ libscioptimization_la_rootdir = $(target)
 libscioptimization_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
-#### optimization : Scilab macros ###
-libscioptimization_la_macrodir = $(target)/macros
-MACROS = macros/derivative.sci \
-macros/linpro.sci \
-macros/quapro.sci \
-macros/fit_dat.sci \
-macros/pencost.sci \
-macros/karmarkar.sci \
-macros/lmisolver.sci \
-macros/leastsq.sci \
-macros/datafit.sci \
-macros/pack.sci \
-macros/lmitool.sci \
-macros/unpack.sci \
-macros/bvodeS.sci \
-macros/numdiff.sci \
-macros/NDcost.sci \
-macros/list2vec.sci \
-macros/vec2list.sci \
-macros/aplat.sci macros/aplat.bin \
-macros/bvodeS.bin \
-macros/datafit.bin \
-macros/derivative.bin \
-macros/fit_dat.bin \
-macros/karmarkar.bin \
-macros/leastsq.bin \
-macros/linpro.bin \
-macros/list2vec.bin \
-macros/lmisolver.bin \
-macros/lmitool.bin \
-macros/NDcost.bin \
-macros/numdiff.bin \
-macros/pack.bin \
-macros/pencost.bin \
-macros/quapro.bin \
-macros/unpack.bin \
-macros/vec2list.bin macros/names macros/lib macros/buildmacros.sce
-
-
 #### optimization : init scripts #### 
 libscioptimization_la_etcdir = $(target)/etc
 libscioptimization_la_etc_DATA = etc/optimization.quit etc/optimization.start

@@ -12,38 +12,6 @@ target=$(datadir)/incremental_link
 libincremental_link_la_rootdir = $(target)
 libincremental_link_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
-
-#### incremental_link : Scilab macros ###
-libincremental_link_la_macrodir = $(target)/macros
-MACROS = macros/ilib_for_link.sci \
-macros/G_make.sci \
-macros/VCtoLCCLib.sci \
-macros/findmsvccompiler.sci \
-macros/ilib_unix_soname.sci \
-macros/ilib_gen_Make.sci \
-macros/ilib_compile.sci \
-macros/ilib_mex_build.sci \
-macros/configure_msvc.sci \
-macros/ilib_gen_gateway.sci \
-macros/with_lcc.sci \
-macros/ilib_build.sci \
-macros/ilib_gen_loader.sci \
-macros/haveacompiler.sci macros/configure_msvc.bin \
-macros/findmsvccompiler.bin \
-macros/G_make.bin \
-macros/haveacompiler.bin \
-macros/ilib_build.bin \
-macros/ilib_compile.bin \
-macros/ilib_for_link.bin \
-macros/ilib_gen_gateway.bin \
-macros/ilib_gen_loader.bin \
-macros/ilib_gen_Make.bin \
-macros/ilib_mex_build.bin \
-macros/ilib_unix_soname.bin \
-macros/VCtoLCCLib.bin \
-macros/with_lcc.bin macros/names macros/lib macros/buildmacros.sce
-
-
 #### incremental_link : init scripts #### 
 libincremental_link_la_etcdir = $(target)/etc
 libincremental_link_la_etc_DATA = etc/incremental_link.quit etc/incremental_link.start

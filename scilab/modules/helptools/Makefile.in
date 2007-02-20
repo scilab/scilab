@@ -22,9 +22,9 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
 ### INRIA - Scilab 2006 - 2007
-### 
-### Makefile included stuff
-### Target, variable, suffixes which are supposed to be usefull in every makefile.am
+### 
+### Makefile included stuff
+### Target, variable, suffixes which are supposed to be usefull in every makefile.am
 ##########
 
 VPATH = @srcdir@
@@ -225,51 +225,6 @@ target = $(datadir)/helptools
 libscihelptools_la_rootdir = $(target)
 libscihelptools_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
-#### helptools : Scilab macros ###
-libscihelptools_la_macrodir = $(target)/macros
-MACROS = macros/add_help_chapter.sci \
-macros/browsehelp.sci \
-macros/help_menu.sci \
-macros/make_help_index.sci \
-macros/change_old_man.sci \
-macros/find_links.sci \
-macros/extract_help_examples.sci \
-macros/manedit.sci \
-macros/del_help_chapter.sci \
-macros/apropos.sci \
-macros/formatman.sci \
-macros/dehtmlize.sci \
-macros/check_help.sci \
-macros/help.sci \
-macros/gethelpfile.sci \
-macros/loaddefaultbrowser.sci \
-macros/xmlfiletohtml.sci \
-macros/xmltohtml.sci \
-macros/clean_help.sci \
-macros/help_skeleton.sci \
-macros/change_help_language.sci macros/add_help_chapter.bin \
-macros/apropos.bin \
-macros/browsehelp.bin \
-macros/change_help_language.bin \
-macros/change_old_man.bin \
-macros/check_help.bin \
-macros/clean_help.bin \
-macros/dehtmlize.bin \
-macros/del_help_chapter.bin \
-macros/extract_help_examples.bin \
-macros/find_links.bin \
-macros/formatman.bin \
-macros/gethelpfile.bin \
-macros/help_menu.bin \
-macros/help.bin \
-macros/help_skeleton.bin \
-macros/loaddefaultbrowser.bin \
-macros/make_help_index.bin \
-macros/manedit.bin \
-macros/xmlfiletohtml.bin \
-macros/xmltohtml.bin macros/names macros/lib macros/buildmacros.sce
-
-
 #### helptools : init scripts #### 
 libscihelptools_la_etcdir = $(target)/etc
 libscihelptools_la_etc_DATA = etc/helptools.quit etc/helptools.start
@@ -285,13 +240,17 @@ SUFFIXES = .sci
 # automake needs the html files to be present which is not the case when
 # we are building Scilab
 pkgdocdir = $(target)
-DOCDIRS = help/fr help/en
+DOCDIRS = help/fr_FR help/en_US
 DOCMASK = *.htm
 DOCMASKXML = *.xml
 
-#bhalbhalbha
+# Install macros
 pkgmacrosdir = $(target)
-MACROSDIRS = macros/
+MACRODIRS = macros/
+MACROMASK = *.sci
+MACROBUILDMASK = *.sce
+MACROBINMASK = *.bin
+FUNCTION_NAMES = macros/names
 all: all-am
 
 .SUFFIXES:
@@ -547,18 +506,21 @@ install-html-local:
 @INSTALL_HELP_XML_TRUE@		  done ; \
 @INSTALL_HELP_XML_TRUE@		fi; \
 @INSTALL_HELP_XML_TRUE@	done
-install-data-local: $(MACROS)
+install-data-local:
 	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)
-	@if test ! -z "$(MACROS)"; then \
-	for dir in $(MACROSDIRS) ; do \
+	@if test -f $(FUNCTION_NAMES); then \
+		echo "$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/"; \
+		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/; \
+	fi; \
+	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-			echo "file in "$(srcdir)/$$dir; \
-		  for file in $(MACROS); do \
+		if test -d $(srcdir)/$$dir/; then \
+		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/lib 2>/dev/null`; do \
 		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
-		  done ; \
-	done; \
-	fi
+		  done \
+		fi; \
+	done
 
 macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(MACROS)
 	-@( \

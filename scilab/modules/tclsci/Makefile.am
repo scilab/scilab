@@ -65,65 +65,6 @@ libscitclsci_la_rootdir = $(target)
 libscitclsci_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
-#### tclsci : Scilab macros ###
-libscitclsci_la_macrodir = $(target)/macros
-MACROS = macros/TK_SetVar.sci \
-macros/IsAScalar.sci \
-macros/uimenu.sci \
-macros/config.sci \
-macros/gettklib.sci \
-macros/sciGUI_init.sci \
-macros/demoplay.sci \
-macros/browsevar.sci \
-macros/tk_getdir.sci \
-macros/GetUiControlValueType.sci \
-macros/tk_getfile.sci \
-macros/TK_EvalStr.sci \
-macros/tk_choose.sci \
-macros/uicontrol.sci \
-macros/figure.sci \
-macros/winclose.sci \
-macros/GetUiControlPropertyName.sci \
-macros/TK_EvalFile.sci \
-macros/TK_GetVar.sci \
-macros/waitbar.sci \
-macros/winlist.sci \
-macros/buttondialog.sci \
-macros/sciGUIhelp.sci \
-macros/tk_savefile.sci \
-macros/editvar_get.sci \
-macros/editvar.sci \
-macros/progressionbar.sci \
-macros/GetUiControlStyleName.sci macros/browsevar.bin \
-macros/buttondialog.bin \
-macros/config.bin \
-macros/demoplay.bin \
-macros/editvar_get.bin \
-macros/editvar.bin \
-macros/figure.bin \
-macros/gettklib.bin \
-macros/GetUiControlPropertyName.bin \
-macros/GetUiControlStyleName.bin \
-macros/GetUiControlValueType.bin \
-macros/IsAScalar.bin \
-macros/progressionbar.bin \
-macros/sciGUIhelp.bin \
-macros/sciGUI_init.bin \
-macros/tk_choose.bin \
-macros/TK_EvalFile.bin \
-macros/TK_EvalStr.bin \
-macros/tk_getdir.bin \
-macros/tk_getfile.bin \
-macros/TK_GetVar.bin \
-macros/tk_savefile.bin \
-macros/TK_SetVar.bin \
-macros/uicontrol.bin \
-macros/uimenu.bin \
-macros/waitbar.bin \
-macros/winclose.bin \
-macros/winlist.bin macros/names macros/lib macros/buildmacros.sce
-
-
 ### TCL macros ###
 libscitclsci_la_tcldir = $(target)
 nobase_libscitclsci_la_tcl_DATA = tcl/utils/tk_choose.tcl \

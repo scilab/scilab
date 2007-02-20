@@ -59,12 +59,6 @@ target=$(datadir)/special_functions
 libscispecial_functions_la_rootdir = $(target)
 libscispecial_functions_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
-
-#### special_functions : Scilab macros ###
-libscispecial_functions_la_macrodir = $(target)/macros
-MACROS =  macros/buildmacros.sce
-
-
 #### special_functions : init scripts #### 
 libscispecial_functions_la_etcdir = $(target)/etc
 libscispecial_functions_la_etc_DATA = etc/special_functions.quit etc/special_functions.start

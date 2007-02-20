@@ -38,31 +38,6 @@ libscisound_la_rootdir = $(target)
 libscisound_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
-#### sound : Scilab macros ###
-libscisound_la_macrodir = $(target)/macros
-MACROS = macros/analyze.sci \
-macros/soundsec.sci \
-macros/lin2mu.sci \
-macros/mapsound.sci \
-macros/mu2lin.sci \
-macros/sound.sci \
-macros/wavwrite.sci \
-macros/wavread.sci \
-macros/playsnd.sci \
-macros/auwrite.sci \
-macros/auread.sci macros/analyze.bin \
-macros/auread.bin \
-macros/auwrite.bin \
-macros/lin2mu.bin \
-macros/mapsound.bin \
-macros/mu2lin.bin \
-macros/playsnd.bin \
-macros/sound.bin \
-macros/soundsec.bin \
-macros/wavread.bin \
-macros/wavwrite.bin macros/names macros/lib macros/buildmacros.sce
-
-
 #### sound : init scripts #### 
 libscisound_la_etcdir = $(target)/etc
 libscisound_la_etc_DATA = etc/sound.quit etc/sound.start

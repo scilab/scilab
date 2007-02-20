@@ -22,9 +22,9 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
 ### INRIA - Scilab 2006 - 2007
-### 
-### Makefile included stuff
-### Target, variable, suffixes which are supposed to be usefull in every makefile.am
+### 
+### Makefile included stuff
+### Target, variable, suffixes which are supposed to be usefull in every makefile.am
 ##########
 
 
@@ -233,37 +233,6 @@ target = $(datadir)/incremental_link
 libincremental_link_la_rootdir = $(target)
 libincremental_link_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
-#### incremental_link : Scilab macros ###
-libincremental_link_la_macrodir = $(target)/macros
-MACROS = macros/ilib_for_link.sci \
-macros/G_make.sci \
-macros/VCtoLCCLib.sci \
-macros/findmsvccompiler.sci \
-macros/ilib_unix_soname.sci \
-macros/ilib_gen_Make.sci \
-macros/ilib_compile.sci \
-macros/ilib_mex_build.sci \
-macros/configure_msvc.sci \
-macros/ilib_gen_gateway.sci \
-macros/with_lcc.sci \
-macros/ilib_build.sci \
-macros/ilib_gen_loader.sci \
-macros/haveacompiler.sci macros/configure_msvc.bin \
-macros/findmsvccompiler.bin \
-macros/G_make.bin \
-macros/haveacompiler.bin \
-macros/ilib_build.bin \
-macros/ilib_compile.bin \
-macros/ilib_for_link.bin \
-macros/ilib_gen_gateway.bin \
-macros/ilib_gen_loader.bin \
-macros/ilib_gen_Make.bin \
-macros/ilib_mex_build.bin \
-macros/ilib_unix_soname.bin \
-macros/VCtoLCCLib.bin \
-macros/with_lcc.bin macros/names macros/lib macros/buildmacros.sce
-
-
 #### incremental_link : init scripts #### 
 libincremental_link_la_etcdir = $(target)/etc
 libincremental_link_la_etc_DATA = etc/incremental_link.quit etc/incremental_link.start
@@ -297,13 +266,17 @@ SUFFIXES = .sci
 # automake needs the html files to be present which is not the case when
 # we are building Scilab
 pkgdocdir = $(target)
-DOCDIRS = help/fr help/en
+DOCDIRS = help/fr_FR help/en_US
 DOCMASK = *.htm
 DOCMASKXML = *.xml
 
-#bhalbhalbha
+# Install macros
 pkgmacrosdir = $(target)
-MACROSDIRS = macros/
+MACRODIRS = macros/
+MACROMASK = *.sci
+MACROBUILDMASK = *.sce
+MACROBINMASK = *.bin
+FUNCTION_NAMES = macros/names
 all: all-am
 
 .SUFFIXES:
@@ -605,18 +578,21 @@ install-html-local:
 @INSTALL_HELP_XML_TRUE@		  done ; \
 @INSTALL_HELP_XML_TRUE@		fi; \
 @INSTALL_HELP_XML_TRUE@	done
-install-data-local: $(MACROS)
+install-data-local:
 	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)
-	@if test ! -z "$(MACROS)"; then \
-	for dir in $(MACROSDIRS) ; do \
+	@if test -f $(FUNCTION_NAMES); then \
+		echo "$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/"; \
+		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/; \
+	fi; \
+	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-			echo "file in "$(srcdir)/$$dir; \
-		  for file in $(MACROS); do \
+		if test -d $(srcdir)/$$dir/; then \
+		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/lib 2>/dev/null`; do \
 		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
-		  done ; \
-	done; \
-	fi
+		  done \
+		fi; \
+	done
 
 macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(MACROS)
 	-@( \

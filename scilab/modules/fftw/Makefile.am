@@ -31,12 +31,6 @@ GATEWAY_C_SOURCES = sci_gateway/gw_fftw.c \
 libscifftw_la_rootdir = $(target)
 libscifftw_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
-
-#### fftw : Scilab macros ###
-libscifftw_la_macrodir = $(target)/macros
-MACROS =  macros/buildmacros.sce
-
-
 #### fftw : init scripts #### 
 libscifftw_la_etcdir = $(target)/etc
 libscifftw_la_etc_DATA = etc/fftw.quit etc/fftw.start

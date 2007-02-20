@@ -22,9 +22,9 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
 ### INRIA - Scilab 2006 - 2007
-### 
-### Makefile included stuff
-### Target, variable, suffixes which are supposed to be usefull in every makefile.am
+### 
+### Makefile included stuff
+### Target, variable, suffixes which are supposed to be usefull in every makefile.am
 ##########
 
 
@@ -269,10 +269,6 @@ top_srcdir = @top_srcdir@
 @JAVA_TRUE@libscijvm_la_rootdir = $(target)
 @JAVA_TRUE@libscijvm_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
-#### jvm : Scilab macros ###
-@JAVA_TRUE@libscijvm_la_macrodir = $(target)/macros
-@JAVA_TRUE@MACROS = macros/buildmacros.sce
-
 #### jvm : init scripts #### 
 @JAVA_TRUE@libscijvm_la_etcdir = $(target)/etc
 @JAVA_TRUE@libscijvm_la_etc_DATA = etc/jvm.quit etc/jvm.start
@@ -288,13 +284,17 @@ top_srcdir = @top_srcdir@
 # automake needs the html files to be present which is not the case when
 # we are building Scilab
 @JAVA_TRUE@pkgdocdir = $(target)
-@JAVA_TRUE@DOCDIRS = help/fr help/en
+@JAVA_TRUE@DOCDIRS = help/fr_FR help/en_US
 @JAVA_TRUE@DOCMASK = *.htm
 @JAVA_TRUE@DOCMASKXML = *.xml
 
-#bhalbhalbha
+# Install macros
 @JAVA_TRUE@pkgmacrosdir = $(target)
-@JAVA_TRUE@MACROSDIRS = macros/
+@JAVA_TRUE@MACRODIRS = macros/
+@JAVA_TRUE@MACROMASK = *.sci
+@JAVA_TRUE@MACROBUILDMASK = *.sce
+@JAVA_TRUE@MACROBINMASK = *.bin
+@JAVA_TRUE@FUNCTION_NAMES = macros/names
 all: all-am
 
 .SUFFIXES:
@@ -691,18 +691,21 @@ uninstall-am: uninstall-libscijvm_la_etcDATA \
 @INSTALL_HELP_XML_TRUE@@JAVA_TRUE@		  done ; \
 @INSTALL_HELP_XML_TRUE@@JAVA_TRUE@		fi; \
 @INSTALL_HELP_XML_TRUE@@JAVA_TRUE@	done
-@JAVA_TRUE@install-data-local: $(MACROS)
+@JAVA_TRUE@install-data-local:
 @JAVA_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)
-@JAVA_TRUE@	@if test ! -z "$(MACROS)"; then \
-@JAVA_TRUE@	for dir in $(MACROSDIRS) ; do \
+@JAVA_TRUE@	@if test -f $(FUNCTION_NAMES); then \
+@JAVA_TRUE@		echo "$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/"; \
+@JAVA_TRUE@		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/; \
+@JAVA_TRUE@	fi; \
+@JAVA_TRUE@	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 @JAVA_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-@JAVA_TRUE@			echo "file in "$(srcdir)/$$dir; \
-@JAVA_TRUE@		  for file in $(MACROS); do \
+@JAVA_TRUE@		if test -d $(srcdir)/$$dir/; then \
+@JAVA_TRUE@		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/lib 2>/dev/null`; do \
 @JAVA_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 @JAVA_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
-@JAVA_TRUE@		  done ; \
-@JAVA_TRUE@	done; \
-@JAVA_TRUE@	fi
+@JAVA_TRUE@		  done \
+@JAVA_TRUE@		fi; \
+@JAVA_TRUE@	done
 
 @JAVA_TRUE@macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(MACROS)
 @JAVA_TRUE@	-@( \

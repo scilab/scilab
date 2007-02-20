@@ -58,59 +58,6 @@ libscifileio_la_rootdir = $(target)
 libscifileio_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
-#### fileio : Scilab macros ###
-libscifileio_la_macrodir = $(target)/macros
-MACROS = macros/fullfile.sci \
-macros/readxls.sci \
-macros/mkdir.sci \
-macros/isdir.sci \
-macros/copyfile.sci \
-macros/listvarinfile.sci \
-macros/basename.sci \
-macros/rmdir.sci \
-macros/dir.sci \
-macros/ls.sci \
-macros/dirname.sci \
-macros/mdelete.sci \
-macros/excel2sci.sci \
-macros/sci2excel.sci \
-macros/dispfiles.sci \
-macros/cd.sci \
-macros/format_txt.sci \
-macros/get_absolute_file_path.sci \
-macros/fileparts.sci \
-macros/get_file_path.sci \
-macros/scanf.sci \
-macros/pathconvert.sci \
-macros/listfiles.sci \
-macros/savematfile.sci \
-macros/mputl.sci macros/basename.bin \
-macros/cd.bin \
-macros/copyfile.bin \
-macros/dirname.bin \
-macros/dir.bin \
-macros/dispfiles.bin \
-macros/excel2sci.bin \
-macros/fileparts.bin \
-macros/format_txt.bin \
-macros/fullfile.bin \
-macros/get_absolute_file_path.bin \
-macros/get_file_path.bin \
-macros/isdir.bin \
-macros/listfiles.bin \
-macros/listvarinfile.bin \
-macros/ls.bin \
-macros/mdelete.bin \
-macros/mkdir.bin \
-macros/mputl.bin \
-macros/pathconvert.bin \
-macros/readxls.bin \
-macros/rmdir.bin \
-macros/savematfile.bin \
-macros/scanf.bin \
-macros/sci2excel.bin macros/names macros/lib macros/buildmacros.sce
-
-
 #### fileio : init scripts #### 
 libscifileio_la_etcdir = $(target)/etc
 libscifileio_la_etc_DATA = etc/fileio.quit etc/fileio.start
