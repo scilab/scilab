@@ -1,9 +1,15 @@
 dnl Macros which process ./configure arguments
+
+
 dnl Fortran Macros
+dnl ------------------------------------------------------
 dnl Copyright INRIA
 dnl Sylvestre Ledru - June 2006
-
+dnl 
+dnl ------------------------------------------------------
+dnl AC_CHECK_UNDERSCORE_FORTRAN
 dnl Look for trailing or leading underscores
+dnl 
 AC_DEFUN([AC_CHECK_UNDERSCORE_FORTRAN],[
 AC_MSG_CHECKING([for leading underscores with Fortran])
 cat << EOF > pipof.f
@@ -87,4 +93,5 @@ else
 	AC_DEFINE([F2C(name)], [name],[Define C2F without Trailing Underscore])
 fi
 
-])
+])dnl AC_CHECK_UNDERSCORE_FORTRAN
+

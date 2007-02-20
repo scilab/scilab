@@ -10,15 +10,15 @@ src/JVM_Unix.c \
 src/jvms.c\
 src/InitializeJVM.c
 
-libsciscijvm_la_CFLAGS=  $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/libs/MALLOC/includes/ -Iincludes/
+libscijvm_la_CFLAGS=  $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/libs/MALLOC/includes/ -Iincludes/
 
-libsciscijvm_la_LDFLAGS = $(JAVA_JNI_LIBS) -lpthread -ldl
+libscijvm_la_LDFLAGS = $(JAVA_JNI_LIBS) -lpthread -ldl
 
-pkglib_LTLIBRARIES = libsciscijvm.la
+pkglib_LTLIBRARIES = libscijvm.la
 
-libsciscijvm_la_SOURCES = $(JVM_C_SOURCES)
+libscijvm_la_SOURCES = $(JVM_C_SOURCES)
 
-libsciscijvm_la_LIBADD = \
+libscijvm_la_LIBADD = \
 $(top_builddir)/modules/gui/libscigui.la
 
 

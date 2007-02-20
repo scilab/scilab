@@ -6,6 +6,7 @@
 #include "callfftw.h"
 #include "Scierror.h"
 #include "fftwlibname.h"
+#include "gw_fftw.h"
 /*-----------------------------------------------------------------------------------*/ 
 int sci_loadfftwlibrary __PARAMS((char *fname,unsigned long fname_len))
 {

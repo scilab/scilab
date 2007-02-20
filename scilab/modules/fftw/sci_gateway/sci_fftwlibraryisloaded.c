@@ -4,6 +4,7 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include "sci_fftwlibraryisloaded.h"
 #include "callfftw.h"
+#include "gw_fftw.h"
 /*-----------------------------------------------------------------------------------*/ 
 int sci_fftwlibraryisloaded __PARAMS((char *fname,unsigned long fname_len))
 {

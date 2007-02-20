@@ -12,18 +12,6 @@
 #include "sciprint.h"
 #include "MALLOC.h"
 #include "fftwlibname.h"
-/*-----------------------------------------------------------------------------------*/
-/* interface for the previous function Table */ 
-/*-----------------------------------------------------------------------------------*/ 
-extern int sci_fftw __PARAMS((char *fname,unsigned long fname_len));
-extern int sci_fftw_flags __PARAMS((char *fname,unsigned long fname_len));
-extern int sci_fftw_inplace __PARAMS((char *fname,unsigned long fname_len));
-extern int sci_fftw_norm __PARAMS((char *fname,unsigned long fname_len));
-extern int sci_pushfftw_plan __PARAMS((char *fname,unsigned long fname_len));
-extern int sci_freefftw_plan __PARAMS((char *fname,unsigned long fname_len));
-extern int sci_loadfftwlibrary __PARAMS((char *fname,unsigned long fname_len));
-extern int sci_disposefftwlibrary __PARAMS((char *fname,unsigned long fname_len));
-extern int sci_fftwlibraryisloaded __PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/ 
 static intFFTWTable Tab[]={
 { sci_loadfftwlibrary,"loadfftwlibrary"},

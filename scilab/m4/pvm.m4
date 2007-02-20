@@ -1,10 +1,12 @@
-#  Check if PVM is usable
-# INPUTS :
-#  Nothing
-#
-# OUTPUTS
-#  PVM_OK : 1 if it is possible to use it
-#  
+dnl AC_PVM
+dnl ------------------------------------------------------
+dnl  Check if PVM is usable
+dnl INPUTS :
+dnl   Nothing
+dnl 
+dnl OUTPUTS
+dnl   PVM_OK : 1 if it is possible to use it
+dnl  
 AC_DEFUN([AC_PVM], [
 
    AC_MSG_CHECKING([for PVM])

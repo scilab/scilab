@@ -1,6 +1,6 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
+### INRIA - Scilab 2006/2007
 ##########
 
 # The order DOES matter !!!
@@ -52,6 +52,10 @@ development_tools \
 helptools
 
 SUBDIRS += scicos 
+
+if FFTW
+SUBDIRS += fftw
+endif
 
 if JAVA
 SUBDIRS += jvm \
@@ -111,11 +115,15 @@ libscilab_la_LIBADD = \
 	$(top_builddir)/modules/wintools/libsciwintools.la
 
 if PVM
-libscilab_la_LIBADD += $(top_builddir)/modules/pvm/libsciscipvm.la
+libscilab_la_LIBADD += $(top_builddir)/modules/pvm/libscipvm.la
+endif
+
+if FFTW
+libscilab_la_LIBADD += $(top_builddir)/modules/fftw/libscifftw.la
 endif
 
 if JAVA
-libscilab_la_LIBADD += $(top_builddir)/modules/jvm/libsciscijvm.la
+libscilab_la_LIBADD += $(top_builddir)/modules/jvm/libscijvm.la
 endif
 
 libscilab_la_LIBADD += $(top_builddir)/modules/scicos/libsciscicos.la

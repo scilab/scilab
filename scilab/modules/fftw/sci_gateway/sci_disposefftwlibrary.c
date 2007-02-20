@@ -4,6 +4,7 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include "sci_disposefftwlibrary.h"
 #include "callfftw.h"
+#include "gw_fftw.h"
 /*-----------------------------------------------------------------------------------*/ 
 int sci_disposefftwlibrary __PARAMS((char *fname,unsigned long fname_len))
 {

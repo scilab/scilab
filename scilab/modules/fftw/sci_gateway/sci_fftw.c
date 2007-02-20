@@ -7,6 +7,7 @@
 #include "fftw_utilities.h"
 #include "callfftw.h"
 #include "MALLOC.h"
+#include "gw_fftw.h"
 /*-----------------------------------------------------------------------------------*/ 
 extern FFTW_Plan_struct Sci_Plan;
 /*-----------------------------------------------------------------------------------*/ 
