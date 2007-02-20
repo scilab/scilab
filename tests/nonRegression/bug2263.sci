@@ -16,7 +16,7 @@ T=T&and(out==mlist(["st","dims","a"],int32([1,1]),..
 clear out
 [out.a.t1,t2,out.a.t3,t4]=test();
 T=T&and(out==mlist(["st","dims","a"],int32([1,1]),..
-		   mlist(["st","dims","t3","t1"],int32([1,1]),3,1)))&t1==1&t4==4;
+		   mlist(["st","dims","t3","t1"],int32([1,1]),3,1)))&t2==2&t4==4;
 
 clear a
 [a.t1,a.t2,a.t3,a.t4]=test();
