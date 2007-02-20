@@ -39,4 +39,5 @@ Source: modules\{#INCRLINK}\macros\buildmacros.sce; DestDir: {app}\modules\{#INC
 ;
 ;Source: modules\{#INCRLINK}\demos\*.*; DestDir: {app}\modules\{#INCRLINK}\demos; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
+Source: modules\{#INCRLINK}\examples\*.*; DestDir: {app}\modules\{#INCRLINK}\examples; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;--------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,26 @@
+// Demo file for ext7f example 
+
+// builder code for ext7f.c 
+link_name = 'ext7f';    // functions to be added to the call table 
+flag  = "f";		 // ext7f is a C function 
+files = ['ext7f.o' ];   // objects files for ext7f 
+libs  = [];		 // other libs needed for linking 
+
+// the next call generates files (Makelib,loader.sce) used
+// for compiling and loading ext7f and performs the compilation
+
+ilib_for_link(link_name,files,libs,flag);
+
+// load new function code in the scope of call 
+// using the previously generated loader 
+exec loader.sce; 
+
+// test new function through the ode function 
+// Passing a parameter to argument funtion of ode
+
+param=[0.04,10000,3d+7];
+y=ode([1;0;0],0,[0.4,4],'ext7f')
+//param must be defined as a scilab variable upon calling ode
+
+
+
