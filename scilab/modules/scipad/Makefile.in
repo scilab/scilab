@@ -509,9 +509,10 @@ install-html-local:
 @INSTALL_HELP_XML_TRUE@	done
 install-data-local:
 	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)
+	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS)
 	@if test -f $(FUNCTION_NAMES); then \
 		echo "$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/"; \
-		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/; \
+		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
 	fi; \
 	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \

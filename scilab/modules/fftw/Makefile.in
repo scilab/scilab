@@ -866,9 +866,10 @@ uninstall-am: uninstall-libscifftw_la_etcDATA \
 @FFTW_TRUE@@INSTALL_HELP_XML_TRUE@	done
 @FFTW_TRUE@install-data-local:
 @FFTW_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)
+@FFTW_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS)
 @FFTW_TRUE@	@if test -f $(FUNCTION_NAMES); then \
 @FFTW_TRUE@		echo "$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/"; \
-@FFTW_TRUE@		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/; \
+@FFTW_TRUE@		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
 @FFTW_TRUE@	fi; \
 @FFTW_TRUE@	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 @FFTW_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \

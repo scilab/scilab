@@ -148,7 +148,7 @@ function ilib_link_gen_Make_unix(names,files,libs,Makename,libname, ...
 	filelist=""
 	for x=files(:)' ; filelist = filelist +" " +x;end
 
-        printf(""+commandpath+"/scicompile.sh "+libname+ " " +filelist);
+    printf(""+commandpath+"/scicompile.sh "+libname+ " " +filelist);
 	printf("Modification of the makefile in " + linkpath+"\n");
 	unix_w(""+commandpath+"/scicompile.sh "+libname+ " " +filelist);
 // on devrait catcher le code de retour du script et gere/afficher l'erreur

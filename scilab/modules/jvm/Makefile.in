@@ -693,9 +693,10 @@ uninstall-am: uninstall-libscijvm_la_etcDATA \
 @INSTALL_HELP_XML_TRUE@@JAVA_TRUE@	done
 @JAVA_TRUE@install-data-local:
 @JAVA_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)
+@JAVA_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS)
 @JAVA_TRUE@	@if test -f $(FUNCTION_NAMES); then \
 @JAVA_TRUE@		echo "$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/"; \
-@JAVA_TRUE@		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/; \
+@JAVA_TRUE@		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
 @JAVA_TRUE@	fi; \
 @JAVA_TRUE@	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 @JAVA_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \

@@ -1238,9 +1238,10 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @INSTALL_HELP_XML_TRUE@@PVM_TRUE@	done
 @PVM_TRUE@install-data-local:
 @PVM_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)
+@PVM_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS)
 @PVM_TRUE@	@if test -f $(FUNCTION_NAMES); then \
 @PVM_TRUE@		echo "$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/"; \
-@PVM_TRUE@		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/; \
+@PVM_TRUE@		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
 @PVM_TRUE@	fi; \
 @PVM_TRUE@	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 @PVM_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
