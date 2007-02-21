@@ -19,8 +19,9 @@ exec loader.sce;
 // Passing a parameter to argument funtion of ode
 
 param=[0.04,10000,3d+7];
-y=ode([1;0;0],0,[0.4,4],'ext7f')
+y=ode([1;0;0],0,[0.4,4],'ext7f');
 //param must be defined as a scilab variable upon calling ode
-
+yref  = [  1.,1.;4.693D-119,8.989D-111  ;- 1.638D-317,9.942D-311];
+if norm(y-yref) > %eps then pause,end
 
 
