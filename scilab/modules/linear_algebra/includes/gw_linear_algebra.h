@@ -24,6 +24,9 @@
 #define NO 0
 
 /*-----------------------------------------------------------------------------------*/
+int C2F(gw_linear_algebra)(void);
+
+
 typedef int (*Linear_Algebra_Interf) __PARAMS((char *fname,unsigned long l));
 
 typedef struct table_struct 
