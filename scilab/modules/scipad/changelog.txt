@@ -2854,3 +2854,8 @@ Francois VOGEL, 20/02/07
  * dnd uses block paste when moving or copying a block selection, the drag
    source being the same buffer as the drop target or not
  * version --> 6.92
+
+ES 21/2/07
+ * locale names in their native language, in the file $msgsdir/localenames.tcl
+ * version --> 6.93
+
