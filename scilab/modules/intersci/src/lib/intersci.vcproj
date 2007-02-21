@@ -197,10 +197,6 @@
 				RelativePath="libinter.h"
 				>
 			</File>
-			<File
-				RelativePath="sparse.h"
-				>
-			</File>
 		</Filter>
 		<File
 			RelativePath="..\..\Makefile.am"

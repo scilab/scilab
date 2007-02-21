@@ -126,7 +126,7 @@ int F2C(ext14cd)(it1,m1,n1,nel1,mnel1,icol1,ar1,ai1,
 /*******************************************
  * Test for intersci with external sparse (spt10 in ex14fi.desc) 
  * 
- * sparse.h defines a Sparse structure which can be used 
+ * a Sparse structure is defined in stack-c.h which can be used 
  * for storing external Sparse matrices which can be 
  * copied back to scilab sparse matrices ( by csparsef ) 
  * 
@@ -157,7 +157,7 @@ int F2C(ext14cd)(it1,m1,n1,nel1,mnel1,icol1,ar1,ai1,
  *
  *******************************************/
 
-#include "../../routines/intersci/sparse.h"
+#include "../../routines/intersci/libinter.h"
 
 int F2C(ext14ce)(it,m,n,nel,mnel,icol,ar,ai,x,mx,nx,nelx,itx,err)
      int *n,*m,*it,*nel,*mnel,*icol;

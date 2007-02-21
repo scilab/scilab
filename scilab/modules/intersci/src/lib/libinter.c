@@ -7,11 +7,8 @@
 
 #include "libinter.h"
 #include "cerro.h"
-#include "sparse.h"
 
 extern int C2F(cvstr)  __PARAMS((integer *n, integer *line, char *str, integer *job, unsigned long str_len));
-extern void C2F(erro)();
-extern void C2F(out)();
 
 /*--------------------------------------------------------------
  * A set of functions used with intersci 
@@ -23,10 +20,7 @@ extern void C2F(out)();
  *                 char ** -> int * 
  *--------------------------------------------------------------*/
 
-void C2F(cchar)(n,ip,op)
-     int *n;
-     char **ip;
-     int *op;
+void C2F(cchar)(int *n, char **ip,int *op)
 {
   int i = 0;
   F2C(cvstr)(n,op,*ip,&i,*n);
@@ -174,8 +168,7 @@ void C2F(cboolf)(n,ip,op)
  * cerro : just call erro 
  *--------------------------------------------------------------*/
 
-void cerro(str)
-     char *str;
+void cerro(char *str)
 {
   C2F(erro)(str, strlen(str) + 1);
 }
@@ -184,8 +177,7 @@ void cerro(str)
  * Cout : call to out 
  *--------------------------------------------------------------*/
 
-void Cout(str)
-     char *str;
+void Cout(char *str)
 {
   C2F(out)(str,strlen(str) + 1);
 }
@@ -306,10 +298,14 @@ void C2F(int2cint)(n,ip,op)
   for (i = 0; i < *n; i++)  (*ip)[i]=op[i];
 }
 
-/*--------------------------------------------------------------
+/**
  * New Sparse matrix 
- *--------------------------------------------------------------*/
-
+ * @param it
+ * @param m
+ * @param n
+ * @param nel
+ * @return 
+ */
 SciSparse *NewSparse(int *it,int *m,int *n,int *nel)
 {
   SciSparse *loc;
@@ -359,10 +355,10 @@ SciSparse *NewSparse(int *it,int *m,int *n,int *nel)
   return(loc);
 }
 
-/*-------------------------------------------------
+/**
  * FreeSparse : free memory  associated to a sparse 
- *-------------------------------------------------*/
-
+ * @param x
+ */
 void FreeSparse(SciSparse *x)
 {
   if ( x->it == 1 ) FREE(x->I);
