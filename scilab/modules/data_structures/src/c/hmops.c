@@ -66,8 +66,9 @@ typedef struct sci_bool_sparse {
 } SciBoolSparse;
 
 
-#if _MSC_VER
+
 extern int C2F(ddmpev)();
+#if _MSC_VER
 int C2F(createlistcvarfrom)();
 #endif
 

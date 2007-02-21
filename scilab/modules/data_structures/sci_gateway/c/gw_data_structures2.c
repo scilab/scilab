@@ -8,7 +8,7 @@
 #include "ExceptionMessage.h"
 #endif
 /*-----------------------------------------------------------------------------------*/
-extern C2F(error)();
+extern int C2F(error)();
 /*-----------------------------------------------------------------------------------*/	
 static int C2F(sci_getfield) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -32,7 +32,7 @@ static DataStructures2Table Tab[]=
 	{C2F(sci_setfield),"setfield"}
 };
 /*-----------------------------------------------------------------------------------*/
-int C2F(gwdatastructures2)()
+int C2F(gwdatastructures2)(void)
 { 
 	Rhs=Max(Rhs,0);
 	if (C2F(vstk).top - C2F(com).rhs + C2F(com).lhs + 1 >= C2F(vstk).bot) 

@@ -8,17 +8,7 @@
 #include "ExceptionMessage.h"
 #endif
 /*-----------------------------------------------------------------------------------*/
-extern int C2F(sci_glist) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_scilist) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_lsslist) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_rlist) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_scitlist) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_lstcat) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_scimlist) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_definedfields) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_lstsize) _PARAMS((char *fname,unsigned long fname_len));
-/*-----------------------------------------------------------------------------------*/	
-extern C2F(error)();
+extern int C2F(error)();
 /*-----------------------------------------------------------------------------------*/
 static DataStructures1Table Tab[]=
 {
