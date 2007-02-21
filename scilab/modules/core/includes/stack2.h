@@ -37,7 +37,6 @@ extern void C2F(cbool) __PARAMS ((     int *n,     int *ip[],     int *op));
 /* from somewhere (maybe stack1.h) */
 
 extern void C2F(setfeval) __PARAMS((char *,int *)); 
-extern int C2F(objvide)  __PARAMS((char *,integer *,unsigned long));
 extern int C2F(fakecresmat2) __PARAMS((integer *lw, integer *nchar, integer *lr));
 /* from stack2.h */
 int C2F(isoptlw)(integer *topk,integer  *lw, char *namex, unsigned long name_len);
@@ -71,9 +70,9 @@ int C2F(getlistrhscvar) __PARAMS((integer *lnumber, integer *number, char *type_
 
 
 int C2F(createvarfromptr) __PARAMS((integer *number, char *type__, integer *m, integer *n,void *iptr, unsigned long type_len)); 
-/*
-extern int C2F(createcvarfromptr) __PARAMS((integer *number, char *type__, integer *it, integer *m, integer *n, integer *iptr, integer *iptc, unsigned long type_len));
-*/
+
+int C2F(createcvarfromptr) __PARAMS((integer *number, char *type__, integer *it, integer *m, integer *n, double *iptr, double *iptc, unsigned long type_len));
+
 int C2F(mklistfromvars) __PARAMS((integer *pos, integer *n));
 int C2F(mktlistfromvars) __PARAMS((integer *pos, integer *n));
 int C2F(mkmlistfromvars) __PARAMS((integer *pos, integer *n));

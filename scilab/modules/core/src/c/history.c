@@ -6,7 +6,7 @@
 
 #include "MALLOC.h"  /* malloc */
 
-#include  "stack-c.h"
+#include "stack-c.h"
 
 #ifndef Max 
 #define Max(x,y)	(((x)>(y))?(x):(y))

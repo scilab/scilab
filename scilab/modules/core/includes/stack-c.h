@@ -4,17 +4,16 @@
 #ifndef STACK_SCI 
 #define STACK_SCI 
 
+#include <string.h>
+
 #if  !(defined __LCC__) && ( !(defined __MATH__)  || (defined __APPLE__) || (defined aix) ) 
 #include "core_math.h"
 #else
 #include "machine.h"
-#define Min(x,y)	(((x)<(y))?(x):(y))
-#define Max(x,y)	(((x)>(y))?(x):(y))
 #endif
 
-#include <string.h>
-
 #include "stack-def.h"
+
 
 /*-------------------------------------------------
  * types 
@@ -37,22 +36,20 @@ typedef enum {
   sci_mlist= 17
 } sci_types; 
 
-/*-------------------------------------------------
- * structure used for sparse matrix 
- * -------------------------------------------------*/
 
+/** 
+ * Structure used for sparse matrix 
+ */
 typedef struct scisparse { 
-  integer m,n,it,nel ; /* nel : number of non nul elements */
-  integer *mnel,*icol; /* mnel[i]: number of non nul elements of row i, size m 
-		    * icol[j]: column of the j-th non nul element, size nel 
-		    */
-  double *R,*I ; /* R[j]: real value of the j-th non nul element, size nel 
-		  * I[j]: imag value of the j-th non nul element, size nel 
-		  */
+	integer m;
+	integer n;
+	integer it;
+	integer nel; /**< number of non nul elements */
+	integer *mnel;/**< mnel[i]: number of non nul elements of row i, size m */
+	integer *icol; /**< icol[j]: column of the j-th non nul element, size nel */
+	double *R; /**< R[j]: real value of the j-th non nul element, size nel */
+	double *I ; /**< I[j]: imag value of the j-th non nul element, size nel */
 } SciSparse ; 
-
-extern SciSparse* NewSparse __PARAMS((int *it,int *m,int *n,int*nel));
-extern void FreeSparse __PARAMS((     SciSparse *x));
 
 /*-------------------------------------------------
  * structure used for int matrix 
@@ -76,10 +73,14 @@ extern void FreeSparse __PARAMS((     SciSparse *x));
 #define IC_UINT16(x)   ((unsigned short int *) (x))
 #define IC_UINT32(x)  ((unsigned int *) (x))
 
+/**
+ * sciintmat
+ */
 typedef struct sciintmat { 
-  integer m,n,it ; /* it : 1,2,4,11,12,14  */
-  integer l;       /* if l != -1 then istk(l) == D */
-  void *D;         /* data : should be casted according to it */
+	integer m,n;
+	integer it ; /**< it : 1,2,4,11,12,14  */
+	integer l;   /**< if l != -1 then istk(l) == D */
+	void *D;     /**< data : should be casted according to it */
 } SciIntMat ; 
 
 
@@ -358,18 +359,6 @@ int get_optionals __PARAMS((char *name,rhs_opts opts[]));
  *-----------------------------*/
 
 extern int C2F(error) __PARAMS((int *));
-extern int C2F(getmatdims) __PARAMS((integer *, integer *, integer *));
-extern int C2F(getrhsvar) __PARAMS((integer *, char *type, integer *, integer *, integer *, unsigned long));
-extern int C2F(getrhscvar) __PARAMS((integer *, char *type,integer*,integer*, integer *, integer *, integer *, unsigned long));
-
-extern int C2F(createvar) __PARAMS((integer *, char *, integer *, integer *, integer *, unsigned long ));
-extern int C2F(createcvar) __PARAMS((integer *, char *,integer *,integer*, integer *, integer *, integer *, unsigned long ));
-
-extern int C2F(putlhsvar) __PARAMS((void));
-extern int C2F(cmatptr) __PARAMS((char *,integer *,integer *,integer *,unsigned long));
-extern int C2F(createcvarfromptr) __PARAMS((integer *,char *,integer*, integer *, integer *,double *,double *, unsigned long));
-
-extern int C2F(scifunction) __PARAMS ((integer *,integer *,integer *,integer*));
 
 extern int C2F(firstopt) __PARAMS((void));
 extern int C2F(findopt) __PARAMS((char *, rhs_opts *));
