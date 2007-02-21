@@ -3,6 +3,7 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
 #include <string.h>
+#include <stdlib.h>
 #include "setgetlanguage.h"
 #include "MALLOC.h"
 #include "tableslanguages.h"
