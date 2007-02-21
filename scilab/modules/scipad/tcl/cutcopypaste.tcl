@@ -128,19 +128,7 @@ proc cuttext {mode} {
 	    eval "$textareacur delete $selindices"
     } else {
         # $mode == "block", this is block cut
-        set selindicestodelete [list ]
-        foreach {sta sto} $selindices {
-            # a selected line must be deleted if and only if it does not
-            # contain only a \n - the test below works even if there are
-            # many consecutive empty lines, i.e. $sta to $sto contain a
-            # certain number of \n but no other character
-            if {[regexp -- {[^\n]} [$textareacur get $sta $sto]]} {
-                lappend selindicestodelete $sta $sto
-            }
-        }
-        if {$selindicestodelete != {}} {
-	        eval "$textareacur delete $selindicestodelete"
-	    }
+        blockcuttext $textareacur $selindices
     }
 
     $textareacur tag remove sel 1.0 end
@@ -157,6 +145,30 @@ proc cuttext {mode} {
     keyposn $textareacur
     set buffermodifiedsincelastsearch true
     restorecursorblink ; # see comments in proc puttext
+}
+
+proc blockcuttext {w selindices} {
+# deletes the characters identified by the selindices list, but do this in
+# "block-style", i.e. do not cut empty lines
+    set selindicestodelete [list ]
+    foreach {sta sto} $selindices {
+        # a selected line must be deleted if and only if it does not
+        # contain only a \n
+        set lines [split [$w get $sta $sto] "\n"]
+        set charcount 0
+        foreach lineoftext $lines {
+            set linelength [string length $lineoftext]
+            if {$linelength != 0} {
+                set sta1 [$w index "$sta + $charcount c"]
+                set sto1 [$w index "$sta1 + $linelength c"]
+                lappend selindicestodelete $sta1 $sto1
+            }
+            incr charcount [expr {$linelength + 1}]
+        }
+    }
+    if {$selindicestodelete != {}} {
+        eval "$w delete $selindicestodelete"
+    }
 }
 
 proc copytext {} {

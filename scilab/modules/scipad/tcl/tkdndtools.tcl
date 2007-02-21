@@ -71,7 +71,7 @@ proc tkdndbind {w} {
                             %W configure -autoseparators 0
                             %W edit separator
                         }
-                        deletetext
+                        dnd_deleteorblockcuttext %W $savedseli
                         dnd_putorpastetext %W %D
                         if {$oldSeparator} {
                             %W edit separator
@@ -84,14 +84,15 @@ proc tkdndbind {w} {
 
             } else {
                 # drag from a Scipad buffer, drop in another Scipad buffer
+                if {"%A" == "move"} {
+                    focustextarea $sourcetextarea
+                    $sourcetextarea tag remove sel 1.0 end
+                    eval "$sourcetextarea tag add sel $savedseli"
+                    dnd_deleteorblockcuttext $sourcetextarea $savedseli
+                }
                 %W tag remove sel 1.0 end
                 focustextarea %W ; # needed if next command is actually paste (which performs in current textarea)
                 dnd_putorpastetext %W %D
-                if {"%A" == "move"} {
-                    focustextarea $sourcetextarea
-                    eval "$sourcetextarea tag add sel $savedseli"
-                    deletetext
-                }
             }
             unset sourcetextarea
 
@@ -263,6 +264,19 @@ proc dnd_putorpastetext {w toput} {
     } else {
         # multirange selection, i.e. block selection
         pastetext block $toput
+    }
+}
+
+proc dnd_deleteorblockcuttext {w selindices} {
+# deletetext if the source selection was a single sel,
+# or blockcuttext otherwise
+    global dnd_issourceblocksel
+    if {!$dnd_issourceblocksel} {
+        # single selection
+        deletetext
+    } else {
+        # multirange selection, i.e. block selection
+        blockcuttext $w $selindices
     }
 }
 

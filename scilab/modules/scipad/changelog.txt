@@ -2859,3 +2859,9 @@ ES 21/2/07
  * locale names in their native language, in the file $msgsdir/localenames.tcl
  * version --> 6.93
 
+Francois VOGEL, 21/02/07
+ * Fixed a block cut bug when the block selection starts column 1 and includes
+   empty lines
+ * dnd uses block cut and block paste when moving or copying a block
+   selection, the drag source being the same buffer as the drop target or not
+ * version --> 6.94
