@@ -280,17 +280,6 @@
         ::msgcat::mcset se "&Unambiguous pruned path" "&Entydig sökväg"
     ::msgcat::mcset se "&Recent files" "S&enaste filerna"
     ::msgcat::mcset se "&Locale" "&Språk"
-  # locale names (common)
-        ::msgcat::mcset se "da locale (da)" "Dansk (da)"
-        ::msgcat::mcset se "de locale (de)" "Deutsch (de)"
-        ::msgcat::mcset se "fr locale (fr)" "Français (fr)"
-        ::msgcat::mcset se "eng locale (eng)" "English (eng)"
-        ::msgcat::mcset se "es locale (es)" "Español (es)"
-        ::msgcat::mcset se "it locale (it)" "Italiano (it)"
-        ::msgcat::mcset se "no locale (no)" "Norsk (no)"
-        ::msgcat::mcset se "pl locale (pl)" "Polski (pl)"
-        ::msgcat::mcset se "se locale (se)" "Svenska (se)"
-        ::msgcat::mcset se "zh_tw locale (zh_tw)" "中文繁體 (zh_tw)"
 
     # menues.tcl - Windows menu
     ::msgcat::mcset se "Opened Files" "Öppna filer"

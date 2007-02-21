@@ -22,18 +22,6 @@
                     Danish translation by Kim B. Hansen 2007."
 
 
-# menues.tcl 
-  # locale names (common)
-        ::msgcat::mcset eng "da locale (da)" "Dansk (da)"
-        ::msgcat::mcset eng "de locale (de)" "Deutsch (de)"
-        ::msgcat::mcset eng "fr locale (fr)" "Français (fr)"
-        ::msgcat::mcset eng "eng locale (eng)" "English (eng)"
-        ::msgcat::mcset eng "es locale (es)" "Español (es)"
-        ::msgcat::mcset eng "it locale (it)" "Italiano (it)"
-        ::msgcat::mcset eng "no locale (no)" "Norsk (no)"
-        ::msgcat::mcset eng "pl locale (pl)" "Polski (pl)"
-        ::msgcat::mcset eng "se locale (se)" "Svenska (se)"
-        ::msgcat::mcset eng "zh_tw locale (zh_tw)" "中文繁體 (zh_tw)"
 
 
 # popupmenus.tcl

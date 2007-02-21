@@ -392,17 +392,7 @@
 ::msgcat::mcset de "&Recent files" "Z&uletzt geöffnete Dateien"
 ::msgcat::mcset de "&Backup files depth" "A&nzahl der Sicherungskopien"
 ::msgcat::mcset de "&Locale" "S&prachumgebung"
-# locale names (common)
-::msgcat::mcset de "da locale (da)" "Dansk (da)"
-::msgcat::mcset de "de locale (de)" "Deutsch (de)"
-::msgcat::mcset de "fr locale (fr)" "Français (fr)"
-::msgcat::mcset de "eng locale (eng)" "English (eng)"
-::msgcat::mcset de "es locale (es)" "Español (es)"
-::msgcat::mcset de "it locale (it)" "Italiano (it)"
-::msgcat::mcset de "no locale (no)" "Norsk (no)"
-::msgcat::mcset de "pl locale (pl)" "Polski (pl)"
-::msgcat::mcset de "se locale (se)" "Svenska (se)"
-::msgcat::mcset de "zh_tw locale (zh_tw)" "中文繁體 (zh_tw)"
+
 
 # menues.tcl - Windows menu
 ::msgcat::mcset de "&Maximize" "&Maximieren"

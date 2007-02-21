@@ -334,16 +334,6 @@
     ::msgcat::mcset da "&Recent files" "&Seneste filer"
     ::msgcat::mcset da "&Backup files depth" "Dybde af &backup-filer"
     ::msgcat::mcset da "&Locale" "S&prog"
-        # locale names (common)
-        ::msgcat::mcset da "da locale (da)" "Dansk (da)"
-        ::msgcat::mcset da "de locale (de)" "Deutsch (de)"
-        ::msgcat::mcset da "fr locale (fr)" "Français (fr)"
-        ::msgcat::mcset da "eng locale (eng)" "English (eng)"
-        ::msgcat::mcset da "es locale (es)" "Español (es)"
-        ::msgcat::mcset da "it locale (it)" "Italiano (it)"
-        ::msgcat::mcset da "no locale (no)" "Norsk (no)"
-        ::msgcat::mcset da "pl locale (pl)" "Polski (pl)"
-        ::msgcat::mcset da "se locale (se)" "Svenska (se)"
 
     # menues.tcl - Windows menu
     ::msgcat::mcset da "&Maximize" "&Maksimer"

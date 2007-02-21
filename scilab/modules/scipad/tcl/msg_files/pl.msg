@@ -382,17 +382,6 @@
                    "&Jednoznaczna obci\u0119ta \u015Bcie\u017Cka"
 ::msgcat::mcset pl "&Recent files" "O&statnie pliki"
 ::msgcat::mcset pl "&Locale" "&J\u0119zyk"
-# locale names (common)
-::msgcat::mcset pl "da locale (da)" "Dansk (da)"
-::msgcat::mcset pl "de locale (de)" "Deutsch (de)"
-::msgcat::mcset pl "fr locale (fr)" "Fran\u00E7ais (fr)"
-::msgcat::mcset pl "eng locale (eng)" "English (eng)"
-::msgcat::mcset pl "es locale (es)" "Español (es)"
-::msgcat::mcset pl "it locale (it)" "Italiano (it)"
-::msgcat::mcset pl "no locale (no)" "Norsk (no)"
-::msgcat::mcset pl "pl locale (pl)" "Polski (pl)"
-::msgcat::mcset pl "se locale (se)" "Svenska (se)"
-::msgcat::mcset pl "zh_tw locale (zh_tw)" "中文繁體 (zh_tw)"
 
 # menues.tcl - Windows menu
 ::msgcat::mcset pl "&Maximize" "&Maksymalizuj"

@@ -377,17 +377,6 @@
 ::msgcat::mcset es "&Recent files" "Archivos recien&tes"
 ::msgcat::mcset es "&Backup files depth" "&Versión de las copias de seguridad"
 ::msgcat::mcset es "&Locale" "&Localización"
-# locale names (common)
-::msgcat::mcset es "da locale (da)" "Dansk (da)"
-::msgcat::mcset es "de locale (de)" "Deutsch (de)"
-::msgcat::mcset es "fr locale (fr)" "Français (fr)"
-::msgcat::mcset es "eng locale (eng)" "English (eng)"
-::msgcat::mcset es "es locale (es)" "Español (es)"
-::msgcat::mcset es "it locale (it)" "Italiano (it)"
-::msgcat::mcset es "no locale (no)" "Norsk (no)"
-::msgcat::mcset es "pl locale (pl)" "Polski (pl)"
-::msgcat::mcset es "se locale (se)" "Svenska (se)"
-::msgcat::mcset es "zh_tw locale (zh_tw)" "中文繁體 (zh_tw)"
 
 # menues.tcl - Windows menu
 ::msgcat::mcset es "&Maximize" "&Maximizar"
