@@ -32,12 +32,6 @@
 #endif
 
 #include "machine.h"
-#include "x_ptyxP.h"
-#include "x_VTparse.h"
-#include "x_data.h"
-#include "x_error.h"
-#include "x_menu.h"
-#include "x_main.h"
 #include <X11/Xos.h>
 #include <X11/Xatom.h>
 #include <X11/Xutil.h>
@@ -58,6 +52,13 @@
 #include <string.h> /* in case of dmalloc */ 
 #include <stdlib.h>
 
+
+#include "x_ptyxP.h"
+#include "x_VTparse.h"
+#include "x_data.h"
+#include "x_error.h"
+#include "x_menu.h"
+#include "x_main.h"
 
 #ifdef WITH_TK
 #include "TCL_Global.h"

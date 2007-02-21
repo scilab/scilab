@@ -14,6 +14,8 @@
 
 #if _MSC_VER
 #include "../../gui/src/c/wsci/wgnuplib.h"
+#else
+#include "../../gui/src/c/xsci/x_charproc.h"
 #endif
 
 #include "machine.h"
@@ -166,7 +168,7 @@ extern void diary_nnl __PARAMS((char *str,int *n));
 	  }
 	  else 
 	  {
-#ifdef linux
+#ifdef LINUX
 		  retval= vsnprintf (s_buf,MAXPRINTF-1, fmt, ap);
 		  if (retval == -1)
 		  {
@@ -182,7 +184,7 @@ extern void diary_nnl __PARAMS((char *str,int *n));
 
 	  if (getdiary()) 
 	  {
-#ifdef linux
+#ifdef LINUX
 		  retval= vsnprintf (s_buf,MAXPRINTF-1, fmt, ap);
 		  if (retval == -1)
 		  {
