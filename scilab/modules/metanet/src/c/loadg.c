@@ -13,9 +13,7 @@
 #include <direct.h> /*_getcwd _chdir*/
 #endif
 
-#if defined(netbsd) || defined(freebsd)|| defined(linux)
 #include <unistd.h>
-#endif
 
 #if (defined _MSC_VER)
 /** only used for x=dir[1024] **/
