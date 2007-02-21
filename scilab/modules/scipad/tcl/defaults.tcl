@@ -146,6 +146,11 @@ if {[catch {package require msgcat}] == 0} {
     # package is present and loaded
     namespace import -force msgcat::*
     ::msgcat::mclocale "$lang"
+# the names of the locales are common for all languages (each one is the
+# native language name), and are defined in a separate file.
+# the common definition can anyway be overridden by a definition in the
+# $msgsdir/$lang.msg file
+    source [file join "$msgsdir" "localenames.tcl"]
     ::msgcat::mcload $msgsdir
 } else {
     # package is not present, define default fallbacks

@@ -92,6 +92,11 @@ global lang msgsdir
 # the Options/Locale menu
     global pad listoftextarea
     ::msgcat::mclocale $lang
+# the names of the locales are common for all languages (each one is the
+# native language name), and are defined in a separate file.
+# the common definition can anyway be overridden by a definition in the
+# $msgsdir/$lang.msg file
+    source [file join "$msgsdir" "localenames.tcl"]
     ::msgcat::mcload $msgsdir
     createmenues
     setdbmenuentriesstates_bp
