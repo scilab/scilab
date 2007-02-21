@@ -59,6 +59,7 @@
 #include "x_error.h"
 #include "x_menu.h"
 #include "x_main.h"
+#include "csignal.h"
 
 #ifdef WITH_TK
 #include "TCL_Global.h"
