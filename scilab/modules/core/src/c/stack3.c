@@ -9,6 +9,7 @@
  *------------------------------------------------------*/
 
 #include <string.h>
+#include "stack3.h"
 #include "stack-c.h"
 
 extern int C2F(dmcopy)  __PARAMS((double *a, integer *na, double *b, integer *nb, integer *m, integer *n));
