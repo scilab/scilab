@@ -8,7 +8,10 @@
 #include "SCIHOME.h"
 #include "MALLOC.h"
 #include "version.h"
+#include "machine.h"
+
 #include "../../../io/includes/createdir.h"
+#include "../../../io/includes/getenvc.h"
 /*-----------------------------------------------------------------------------------*/
 #ifndef MAX_PATH
 #define MAX_PATH 260
@@ -19,8 +22,6 @@
 #endif
 /*-----------------------------------------------------------------------------------*/
 static char SCIHOMEPATH[MAX_PATH*2]="empty_SCIHOME";
-/*-----------------------------------------------------------------------------------*/
-extern void C2F(getenvc)(int *ierr,char *var,char *buf,int *buflen,int *iflag);
 /*-----------------------------------------------------------------------------------*/
 BOOL setSCIHOME(void)
 {
@@ -36,7 +37,7 @@ BOOL setSCIHOME(void)
 
 	if (ierr) /* SCIHOME not define */
 	{
-		#if _MSC_VER
+		#ifdef _MSC_VER
 			#define DIRSEPARATOR "\\"
 			#define BASEDIR "Scilab"
 		#else
@@ -48,7 +49,7 @@ BOOL setSCIHOME(void)
 		char USERHOMESYSTEM[MAX_PATH];
 		iflag=1;
 
-		#if _MSC_VER
+		#ifdef _MSC_VER
 			C2F(getenvc)(&ierr,"USERPROFILE",USERHOMESYSTEM,&buflen,&iflag);
 		#else
 			C2F(getenvc)(&ierr,"HOME",USERHOMESYSTEM,&buflen,&iflag);
