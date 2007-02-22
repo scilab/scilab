@@ -11,9 +11,11 @@
 
 #ifdef _MSC_VER
 #include <direct.h> /*_getcwd _chdir*/
+#else
+#include <unistd.h>
 #endif
 
-#include <unistd.h>
+
 
 #if (defined _MSC_VER)
 /** only used for x=dir[1024] **/
