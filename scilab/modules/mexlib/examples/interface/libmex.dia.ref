@@ -1,0 +1,24 @@
+ 
+// load the shared library
+ 
+ 
+exec loader.sce ;
+shared archive loaded
+Link done
+shared archive loaded
+ 
+ 
+if f1(89)<>89+2 then bugmes();quit;end
+ 
+if f2(89)<>89+3 then bugmes();quit;end
+ 
+if f3(89)<>89 then bugmes();quit;end
+ 
+if f4(89)<>89+5 then bugmes();quit;end
+ 
+ 
+ 
+ 
+ 
+ 
+ 

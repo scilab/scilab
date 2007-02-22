@@ -37,7 +37,7 @@ distclean::
 
 
 tests	: 
-	@"$(SCIDIR1)\bin\scilex.exe" -nwni -nb -e exec('builder.sce',-1);quit;
+	@"$(SCIDIR1)\bin\scilex.exe" -nwni -nb -e exec('builder.sce',-1);quit; >NUL
 	@"$(SCIDIR1)\bin\scilex.exe" -nwni -nb -e scitest('libmex.tst',%t);quit;
 
 message:
