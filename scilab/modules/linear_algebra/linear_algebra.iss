@@ -39,4 +39,6 @@ Source: modules\{#LINALG}\macros\*.sci; DestDir: {app}\modules\{#LINALG}\macros;
 ;
 ;Source: modules\{#LINALG}\demos\*.*; DestDir: {app}\modules\{#LINALG}\demos; Flags: recursesubdirs;  Components: {#COMPN_LINALG}
 ;
+Source: modules\{#LINALG}\examples\*.*; DestDir: {app}\modules\{#LINALG}\examples; Flags: recursesubdirs;  Components: {#COMPN_LINALG}
+;
 ;--------------------------------------------------------------------------------------------------------------
