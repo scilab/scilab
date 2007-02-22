@@ -1,7 +1,0 @@
-CAUTION: Use integer*8 for integers containing pointers
-         on DEC Alpha machines (64 bits arch).
-
-mexFunction should be mexfunction (all lower case) in fortran routine.
-
-
-
