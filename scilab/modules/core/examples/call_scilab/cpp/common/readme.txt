@@ -1,0 +1,26 @@
+	
+	How to make calls to Scilab interpreter 
+	from a C++ program 
+	
+In this directory we provide small examples of C++ calls to the Scilab 
+interpreter. 
+
+[1] Unix ( soure are myprog.c and ccmatrix1.cc )
+To make it run you have to edit the Makefile 
+and change the SCIDIR variable to fit your local Scilab installation 
+
+Then type 
+	make distclean 
+	make all 
+	./myprog 
+
+[2] Windows (soure are myprog.c and ccmatrix1.cpp )
+	nmake /f Makefile.mak all /a
+	
+	You have to set SCI to the Scilab directory 
+	set SCI=c:\program files\scilab-4.0
+	then run prog.exe in a console 
+	to make the program run 
+	..\..\..\bin\prog.exe
+
+Update INRIA 2006
