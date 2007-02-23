@@ -894,7 +894,7 @@ AC_CHECK_MAN_GENERATOR([$with_sablotron],[Sablotron],[sabcmd])
 if test "x$MANGENERATOR" == 'x' -o "x$with_xsltproc" != 'x'; then
    AC_CHECK_MAN_GENERATOR([$with_xsltproc],[xsltproc],[xsltproc])
 fi
-
+AC_SUBST(MANGENERATOR)
 
 AC_ARG_WITH(install-help-xml,
 		[  --with-install-help-xml  make install will install XML files ],
@@ -1126,6 +1126,7 @@ modules/development_tools/Makefile
 modules/Makefile
 libs/Makefile 
 Makefile
+modules/helptools/macros/xmlfiletohtml.sci
 ])#MAN_FR MAN_ENG
 
 #for top_builddir in . .. ../.. $ac_auxdir $ac_auxdir/..; do
