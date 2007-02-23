@@ -1,5 +1,5 @@
-SCIDIR =../../../..
-SCIDIR1 =..\..\..\..
+SCIDIR =../../../../..
+SCIDIR1 =..\..\..\..\..
 
 #LIBRARY = name of the dll (without extension).
 LIBRARY = examples
