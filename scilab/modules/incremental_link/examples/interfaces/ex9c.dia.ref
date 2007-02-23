@@ -1,0 +1,10 @@
+ 
+shared archive loaded
+ 
+//a's to o's
+ 
+x=ex9c('gaad');
+character string length 4
+ 
+if x<>'good' then bugmes();quit;end
+ 
