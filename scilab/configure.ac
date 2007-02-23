@@ -600,6 +600,9 @@ if test "$with_java" != no; then
 		AC_JAVA_JNI_LIBS		
 		JAVA_JNI_LIBS=$ac_java_jvm_jni_lib_flags
 		JAVA_JNI_LIBS_PRELOAD=$ac_java_jvm_ld_preload
+		AC_JAVA_CLASSPATH
+		JAVA_CLASSPATH=$ac_java_classpath
+		AC_JAVA_TOOLS
 		JAVA_OK=1
 	else
 		AC_MSG_WARN([Sun javac not found: I will not build the java interface])
@@ -1177,10 +1180,10 @@ echo ""
 echo "X11 Configuration:"
 if test "$have_x" != 'no'
 then
-  echo "X_CFLAGS .... : $X_CFLAGS"
-  echo "X_PRE_LIBS .. : $X_PRE_LIBS"
-  echo "X_LIBS ...... : $X_LIBS"
-  echo "X_EXTRA_LIBS  : $X_EXTRA_LIBS"
+  echo "X_CFLAGS ............ = $X_CFLAGS"
+  echo "X_PRE_LIBS .......... = $X_PRE_LIBS"
+  echo "X_LIBS .............. = $X_LIBS"
+  echo "X_EXTRA_LIBS ........ = $X_EXTRA_LIBS"
 else
   echo ""
   echo "Not using X11."
@@ -1189,9 +1192,9 @@ fi
 echo ""
 if test ! -z "$PVM_INCLUDE"; then
    echo "PVM Configuration:"
-   echo "PVM Architecture : $PVMARCH"
-   echo "PVM INCLUDE .... : $PVM_INCLUDE"
-   echo "PVM LIBS ....... : $PVM_LIB"
+   echo "PVM Architecture ... = $PVMARCH"
+   echo "PVM INCLUDE ........ = $PVM_INCLUDE"
+   echo "PVM LIBS ........... = $PVM_LIB"
 else
    echo "Not using PVM"
 fi
@@ -1199,7 +1202,7 @@ fi
 echo ""
 if test ! -z "$MANGENERATOR"; then
    echo "XSL Processor Configuration:"
-   echo "XSL Processor .. : $MANGENERATOR"
+   echo "XSL Processor ...... = $MANGENERATOR"
 else
    echo "No documentation generated"
 fi
@@ -1207,23 +1210,26 @@ fi
 echo ""
 echo "Java Configuration:"
 if test ! -z "$JAVAC"; then
-echo "  JAVA_HOME        = $JAVA_HOME"
-echo "  JAVAC            = $JAVAC"
-echo "  JAVA_VERSION     = $JAVA_VERSION"
-echo "  JAVAC_FLAGS      = $JAVAC_FLAGS"
-echo "  JAVA_JNI_INCLUDE = $JAVA_JNI_INCLUDE"
-echo "  JAVA_JNI_LIBS    = $JAVA_JNI_LIBS"
+echo "  JAVA_HOME ........... = $JAVA_HOME"
+echo "  JAVAC ............... = $JAVAC"
+echo "  JAVA_CLASSPATH ...... = $JAVA_CLASSPATH"
+echo "  JAVA_VERSION ........ = $JAVA_VERSION"
+echo "  JAVAC_FLAGS ......... = $JAVAC_FLAGS"
+echo "  JAVA_JNI_INCLUDE .... = $JAVA_JNI_INCLUDE"
+echo "  JAVA_JNI_LIBS ....... = $JAVA_JNI_LIBS"
 echo "  JAVA_JNI_LIBS_PRELOAD = $JAVA_JNI_LIBS_PRELOAD"
+echo "  JAVA ................ = $JAVA"
+echo "  JAR ................. = $JAR"
 else
 echo "  JAVA disabled"
 fi
 
 echo ""
 echo "Libtool config:"
-echo "  objext           = $objext"
-echo "  libext (static)  = $libext"
-echo "  shrext_cmds      = $shrext_cmds"
-echo "  exeext           = $exeext"
+echo "  objext .............. = $objext"
+echo "  libext (static) ..... = $libext"
+echo "  shrext_cmds ......... = $shrext_cmds"
+echo "  exeext .............. = $exeext"
 
 echo ""
 
