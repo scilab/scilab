@@ -4,12 +4,12 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include "gw_elementaries_functions.h"
 /*-----------------------------------------------------------------------------------*/
-extern int C2F(intrand) _PARAMS((char *fname,int *id));
+extern int C2F(intrand) _PARAMS((char *fname,int *id, unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_rand) _PARAMS((char *fname,unsigned long fname_len))
 {
 	static int id[6];
-	C2F(intrand)(fname,id);
+	C2F(intrand)(fname,id, fname_len);
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
