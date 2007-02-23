@@ -185,8 +185,8 @@ c find two vertices of the convex hull for the initial partition
 2       maxe=.false.
         mx=i
         kx=j
-        CRES=x(1,j)-x(1,kn)
-3       if (CRES .lt. 0) goto 5
+3       CRES=x(1,j)-x(1,kn)
+        if (CRES .lt. 0) goto 5
         if (CRES .eq. 0) goto 4
         goto 6
 4       mine=.true.
