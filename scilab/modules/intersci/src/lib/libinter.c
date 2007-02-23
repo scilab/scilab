@@ -282,7 +282,7 @@ void C2F(dbl2cdbl)(n,ip,op)
 void C2F(freeptr)(ip)
      double *ip[];
 { 
-  FREE((char *)(*ip));
+  if (ip) FREE((char *)(*ip));
 }
 
 /*--------------------------------------------------------------
@@ -386,4 +386,20 @@ int C2F(csparsef)(SciSparse **x,int *mnel,int *icol,double *R,double *I)
   FreeSparse(*x);
   return 0;
 }
+/*-----------------------------------------------------------------------------------*/
+void FreeRhsSVar(char **ptrStr)
+{
+	int i=0;
 
+	if (ptrStr)
+	{
+		while ( ptrStr[i] != NULL) 
+		{ 
+			FREE(ptrStr[i]);
+			i++;
+		};
+		FREE(ptrStr);
+		ptrStr=NULL;
+	}
+};
+/*-----------------------------------------------------------------------------------*/

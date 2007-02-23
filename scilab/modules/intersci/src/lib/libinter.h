@@ -26,5 +26,6 @@ void C2F(int2cint) __PARAMS (( int *n, integer *ip[], integer *op));
 int C2F(csparsef)  __PARAMS ((SciSparse **x,int *mnel,int *icol,double *R,double *I));
 SciSparse *NewSparse __PARAMS((int *,int *,int *,int *));
 void FreeSparse(SciSparse *x);
+void FreeRhsSVar(char **ptrStr);
 
 #endif 

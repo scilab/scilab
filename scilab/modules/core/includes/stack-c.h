@@ -181,8 +181,6 @@ extern  void * GetFuncPtr __PARAMS((char *,int,void *,void (*f)(),int *,int*,int
 
 #define FreePtr(lx) C2F(freeptr)((double **) lx)
 
-#define FreeRhsSVar(S) { c_local =0; while ( S[c_local] != 0) { FREE(S[c_local]);c_local++;}; FREE(S);} 
-
 #define GetType(n)   C2F(gettype)((c_local = n +Top - Rhs, &c_local))
 
 #define VarType(n)   C2F(vartype)((c_local=n,&c_local))
@@ -195,7 +193,6 @@ extern  void * GetFuncPtr __PARAMS((char *,int,void *,void (*f)(),int *,int*,int
 
 #define CreateVar(n,ct,mx,nx,lx) if(! C2F(createvar)((c_local=n,&c_local),ct,mx,nx,(void *)lx, 1L))\
         { return 0;  }
-
 
 #define CreateWork(n,mx,lx) if(! C2F(creatework)((c_local=n,&c_local),mx,(void *)lx))\
         { return 0;  }
