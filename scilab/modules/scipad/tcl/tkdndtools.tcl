@@ -71,7 +71,7 @@ proc tkdndbind {w} {
                             %W configure -autoseparators 0
                             %W edit separator
                         }
-                        dnd_deleteorblockcuttext %W $savedseli
+                        dnd_deleteorblockcuttext $savedseli
                         dnd_putorpastetext %W %D
                         if {$oldSeparator} {
                             %W edit separator
@@ -88,7 +88,7 @@ proc tkdndbind {w} {
                     focustextarea $sourcetextarea
                     $sourcetextarea tag remove sel 1.0 end
                     eval "$sourcetextarea tag add sel $savedseli"
-                    dnd_deleteorblockcuttext $sourcetextarea $savedseli
+                    dnd_deleteorblockcuttext $savedseli
                 }
                 %W tag remove sel 1.0 end
                 focustextarea %W ; # needed if next command is actually paste (which performs in current textarea)
@@ -101,7 +101,7 @@ proc tkdndbind {w} {
             %W tag remove sel 1.0 end
             puttext %W %D   
         }
- 
+
         restorecursorblink ; # needed for drags from the outside
         set dndinitiated "false"
         if {[info exists dnddroppos]} {
@@ -267,7 +267,7 @@ proc dnd_putorpastetext {w toput} {
     }
 }
 
-proc dnd_deleteorblockcuttext {w selindices} {
+proc dnd_deleteorblockcuttext {selindices} {
 # deletetext if the source selection was a single sel,
 # or blockcuttext otherwise
     global dnd_issourceblocksel
@@ -276,7 +276,7 @@ proc dnd_deleteorblockcuttext {w selindices} {
         deletetext
     } else {
         # multirange selection, i.e. block selection
-        blockcuttext $w $selindices
+        cuttext block $selindices
     }
 }
 

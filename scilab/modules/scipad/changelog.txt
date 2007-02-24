@@ -2865,3 +2865,11 @@ Francois VOGEL, 21/02/07
  * dnd uses block cut and block paste when moving or copying a block
    selection, the drag source being the same buffer as the drop target or not
  * version --> 6.94
+
+Francois VOGEL, 24/02/07
+ * Rewrote proc fileunreadable and created proc fileunwritable to work around
+   Tcl bugs with file readable (1394972 and 1613456) and file writable
+   (1613456), and Scilab bug 2243 and 2319
+ * Fixed missing colorization after cut, block cut, or dnd move when these
+   commands were acting on a block selection
+ * version --> 6.95

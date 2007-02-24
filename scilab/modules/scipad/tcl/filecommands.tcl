@@ -750,8 +750,7 @@ proc notopenedfile {file} {
     setlistoffile_colorize "$pad.new$winopened" $listoffile("$pad.new$winopened",fullname)
     set listoffile("$pad.new$winopened",new) 0
     if {[file exists $file]} {
-        set listoffile("$pad.new$winopened",readonly) \
-             [expr {[file writable $file] == 0}]
+        set listoffile("$pad.new$winopened",readonly) [fileunwritable $file]
     } else {
         set listoffile("$pad.new$winopened",readonly) 0
     }
@@ -961,9 +960,9 @@ proc writesave {textarea nametosave} {
     # if it doesn't, check if the directory is writable
     # (case of Save as...) (non existent files return 0 to writable)
     if {[file exists $nametosave]} {
-        set readonlyflag [expr {[file writable $nametosave] == 0}]
+        set readonlyflag [fileunwritable $nametosave]
     } else {
-        set readonlyflag [expr {[file writable [file dirname $nametosave]] == 0}]
+        set readonlyflag [fileunwritable [file dirname $nametosave]]
     }
     if {$readonlyflag==0} {
         # writefileondisk catched to deal with unexpected errors (should
@@ -1211,46 +1210,104 @@ proc direxists {dir} {
 }
 
 proc fileunreadable {file} {
-# make sure that the file, if it exists, can be read at all   
+# check readability of $file, and tell the user if $file is not readable
+# (but keep silent if it is readable)
+# $file might be a file name or a directory name, but if it is a directory
+# name the return value will always be 1 (normally a directory is never given
+# to proc fileunreadable in Scipad so this doesn't matter)
 # return value:
 #   1  $file exists and is not readable
-#   0  otherwise ($file does not exist or if it exists it is readable)
-    if {[file exists $file]}  {
-        if {[file readable $file]==0} {
+#   0  otherwise (either $file does not exist or if it exists it is readable)
+# note that this proc will answer 0 (not unreadable, i.e. readable), any time
+# $file does not exist, and this is the intended behaviour
+# comments about the way readability is checked:
+#   The instruction file readable has a number of bugs in Tcl:
+#     - Tcl bug 1394972: file readable answers 1 or 0 but the file is
+#       locked therefore cannot actually be read
+#       Note: this bug has been marked as WONTFIX in the Tcl tracker
+#       since it is an OS limitation. On Windows there is no way to
+#       know before trying to open a file that it is locked.
+#       A test with constraint "knownBug" has been added in fCmd.test
+#       (in the Tcl test suite)
+#     - Tcl bug 1613456: file readable checks wrong permissions on a
+#       Samba share - this bug has been filed in the Tcl tracked because
+#       it is the root cause for Scilab bug 2243, at least for the part
+#       of this bug related to readability (there is also a writability
+#       issue reported in bug 2243)
+#   The quest for a reliable way to check readability of a file has
+# therefore led to directly trying to read the file and see whether it
+# works or not. This approach still suffers from possible race conditions
+# (but there would be such races anyway with file readable) but is
+# believed to be better than to wait for the above bugs be possibly fixed
+
+    if {![file exists $file]}  {
+        return 0
+    } else {
+        if {[catch {set fileid [open $file r]}] == 0} {
+            # the file can really be read
+            close $fileid
+            return 0
+        } else {
+            # the file cannot be read
             tk_messageBox -title [mc "Unreadable file"] \
                 -message [concat [mc "The file"] $file \
                          [mc "exists but is not readable!"]] \
                 -icon warning -type ok
             return 1
-        } else {
-            # try to actually read the file from disk
-            # if this fails then the file is probably locked by another
-            # process - file readable should have reported this (this is
-            # Tcl bug 1394972) and when it will correctly answer 0 this
-            # code should be removed and just replaced by
-            # return 0
-            # Note: this bug has been marked as WONTFIX in the Tcl tracker
-            # since it is an OS limitation. On Windows there is no way to
-            # know before trying to open a file that it is locked.
-            # A test with constraint "knownBug" has been added in fCmd.test
-            # (in the Tcl test suite)
-            if {[catch {set fileid [open $file r]}] == 0} {
-                # the file readable answers true and file can really be read
-                # this is the usual case
-                close $fileid
-                return 0
-            } else {
-                # the file cannot be read despite file readable answers true
-                # meaning that the file is probably locked
-                tk_messageBox -title [mc "Unreadable file"] \
-                    -message [concat [mc "The file"] $file \
-                             [mc "exists but is not readable!"]] \
-                    -icon warning -type ok
-                return 1
-            }
         }
+    }
+}
+
+proc fileunwritable {file} {
+# check writability of $file
+# $file might be a file name or a directory name
+# return value:
+#   1  $file is not writable
+#   0  otherwise
+# note that this proc may answer 0 (not unwritable, i.e. writable), even
+# if $file does not exist, and this is the intended behaviour: a new
+# file can be written somewhere as soon as sufficient permissions exist
+# comments about the way writability is checked:
+#   The instruction file writable has a number of bugs in Tcl:
+#     - Tcl bug 1613456: file writable checks wrong permissions on a
+#       Samba share - this bug has been filed in the Tcl tracked because
+#       it is the root cause for Scilab bug 2243, at least for the part
+#       of this bug related to writability (there is also a readability
+#       issue reported in bug 2243)
+#     - Scilab bug 2319 seems to be also a writability problem on a
+#       special distributed filesystem (DFS)
+#   The quest for a reliable way to check writability of a file has
+# therefore led to directly trying to write the file and see whether it
+# works or not. This approach still suffers from possible race conditions
+# (but there would be such races anyway with file writable) but is
+# believed to be better than to wait for the above bugs be possibly fixed
+#   If $file is a directory, then a test file is created in $file to
+# check for writability in directory $file
+#   Test files are immediately deleted after creation
+
+    if {[file isdirectory $file]} {
+        set file [file join $file Scipadwritabilitytestfile.txt ]
+    }
+
+    if {[file exists $file]}  {
+        set preexistingfile true
     } else {
+        set preexistingfile false
+    }
+
+    if {[catch {set fileid [open $file a]}] == 0} {
+        # the file can really be written
+        close $fileid
+        if {!$preexistingfile} {
+            # if the file did not exist before trying to open it in
+            # append mode, then the open command created it above
+            # the file should then be suppressed
+            file delete -- $file
+        }
         return 0
+    } else {
+        # the file cannot be written
+        return 1
     }
 }
 

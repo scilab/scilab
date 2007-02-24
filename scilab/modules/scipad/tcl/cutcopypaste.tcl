@@ -86,7 +86,7 @@ proc backspacetext {} {
     restorecursorblink ; # see comments in proc puttext
 }
 
-proc cuttext {mode} {
+proc cuttext {mode {tocutinblockmode ""}} {
 # cut text procedure: copy current selection into the clipboard,
 # and remove the selected text from the current buffer
 # note: block selection is supported
@@ -94,31 +94,50 @@ proc cuttext {mode} {
 #     all the text tagged with sel is sent to the clipboard and is deleted
 #     from the textarea
 # if $mode is "block": block cut
-#     all the text tagged with sel is sent to the clipboard, but deletion
-#     of the tagged text occurs only for line selections having more than
-#     a single \n
+#     all the text tagged with sel is sent to the clipboard (unless
+#     $tocutinblockmode is not empty), but deletion of the tagged
+#     text occurs only for line selections having more than a single \n
+# the second argument tocutinblockmode is optional and can only be given
+# when $mode=="block". If it is given, it contains the indices of the text
+# to cut in the current textarea, otherwise the text to cut is extracted
+# from the selection. If it is given, the text is not sent to the clipboard
+# (it is simply deleted from the current textarea)
 
     global listoffile buffermodifiedsincelastsearch
 
     if {[IsBufferEditable] == "No"} {return}
 
     set textareacur [gettextareacur]
-    set selindices [gettaselind $textareacur any]
 
-    if {$selindices == {}} {return}
+    if {$mode == "block" && $tocutinblockmode != ""} {
+        set dndmode true
+    } else {
+        set dndmode false
+    }
+    
+    if {$dndmode} {
+        set selindices $tocutinblockmode
+    } else {
+        set selindices [gettaselind $textareacur any]
+        if {$selindices == {}} {return}
+    }
 
     stopcursorblink ; # see comments in proc puttext
     foreach ta [getfullpeerset $textareacur] {
         set listoffile("$ta",redostackdepth) 0
     }
 
-    sendtoclipboard $textareacur $selindices
+    if {!$dndmode} {
+        sendtoclipboard $textareacur $selindices
+    }
 
     # save first sel position, so that the cursor can be placed there
     # after the cut - this position being before everything selected
     # (that will be deleted), it won't change in the following process
     # therefore no adjustment is needed when placing the cursor there
     set firstselpos [lindex $selindices 0]
+    set i1 $firstselpos
+    set i2 [lindex $selindices end] ; # an overkill, but how else?
 
     # now cut it! note that tk_textCut being designed to work with a
     # single range selection, this command cannot be used here directly
@@ -132,16 +151,17 @@ proc cuttext {mode} {
     }
 
     $textareacur tag remove sel 1.0 end
-    $textareacur see insert
-    set i1 [$textareacur index insert]
     tagcontlines $textareacur
     set uplimit [getstartofcolorization $textareacur $i1]
-    set dnlimit [getendofcolorization $textareacur $i1]
+    set dnlimit [getendofcolorization $textareacur $i2]
     colorize $textareacur [$textareacur index $uplimit] \
                           [$textareacur index $dnlimit]
     backgroundcolorizeuserfun
     reshape_bp
-    $textareacur mark set insert $firstselpos
+    if {!$dndmode} {
+       $textareacur mark set insert $firstselpos
+    }
+    $textareacur see insert
     keyposn $textareacur
     set buffermodifiedsincelastsearch true
     restorecursorblink ; # see comments in proc puttext
