@@ -160,7 +160,15 @@ int sci_fftw_flags __PARAMS((char *fname,unsigned long fname_len))
      }
     }
     Sci_Plan.flags = flagv;
-    FreeRhsSVar(Str1);
+	if (Str1) for (i = 0; i<m1*n1 ;i++)
+	{
+		if (Str1[i]) 
+		{
+			FREE(Str1[i]);
+			Str1[i]=NULL;
+		}
+	}
+	if (Str1) {FREE(Str1); Str1=NULL;}
    }
 
    else

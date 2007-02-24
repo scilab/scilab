@@ -54,6 +54,7 @@ int C2F(sci_TCL_SetVar) _PARAMS((char *fname,unsigned long l))
 	{
 		char *VarName=NULL;
 		char **Str=NULL;
+		int i=0;
 		
 		GetRhsVar(1,"c",&m1,&n1,&l1);
 		VarName=cstk(l1);
@@ -71,7 +72,15 @@ int C2F(sci_TCL_SetVar) _PARAMS((char *fname,unsigned long l))
 		{
 			*paramoutINT=SetVarStrings(TCLinterpreter,VarName,Str,m1,n1);
 		}
-		FreeRhsSVar(Str);
+		if (Str) for (i = 0; i<m1*n1 ;i++)
+		{
+			if (Str[i]) 
+			{
+				FREE(Str[i]);
+				Str[i]=NULL;
+			}
+		}
+		if (Str) {FREE(Str); Str=NULL;}
 	}
 	else
 	if ( (GetType(1) == sci_strings) && (GetType(2) == sci_matrix) )

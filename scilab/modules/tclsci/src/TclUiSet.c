@@ -51,6 +51,7 @@ int InterfaceScilabToUiSet(int Handle,int RhsPropertieField,int RhsPropertieValu
 				{
 					char **Str=NULL;
 					char VarName[64];
+					int i=0;
 
 					GetRhsVar(RhsPropertieValue,"S",&m1,&n1,&Str);
 					sprintf(VarName,"USERDATA_%d",Handle);
@@ -66,7 +67,15 @@ int InterfaceScilabToUiSet(int Handle,int RhsPropertieField,int RhsPropertieValu
 					{
 						SetVarStrings(TCLinterp,VarName,Str,m1,n1);
 					}
-					FreeRhsSVar(Str);
+					if (Str) for (i = 0; i<m1*n1 ;i++)
+					{
+						if (Str[i]) 
+						{
+							FREE(Str[i]);
+							Str[i]=NULL;
+						}
+					}
+					if (Str) {FREE(Str); Str=NULL;}
 				}
 				else if (GetType(RhsPropertieValue)==sci_matrix)
 				{
@@ -105,6 +114,7 @@ int InterfaceScilabToUiSet(int Handle,int RhsPropertieField,int RhsPropertieValu
 					{
 						char **Str=NULL;
 						char VarName[64];
+						int i=0;
 
 						GetRhsVar(RhsPropertieValue,"S",&m1,&n1,&Str);
 						sprintf(VarName,"STRING_%d",Handle);
@@ -153,7 +163,15 @@ int InterfaceScilabToUiSet(int Handle,int RhsPropertieField,int RhsPropertieValu
 								}
 							}
 						}
-						FreeRhsSVar(Str);
+						if (Str) for (i = 0; i<m1*n1 ;i++)
+						{
+							if (Str[i]) 
+							{
+								FREE(Str[i]);
+								Str[i]=NULL;
+							}
+						}
+						if (Str) {FREE(Str); Str=NULL;}
 						bOK=1;
 					}
 					else

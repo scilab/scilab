@@ -71,7 +71,15 @@ int C2F(sci_TCL_EvalStr) _PARAMS((char *fname,unsigned long l))
 				{
 					Scierror(999,TCL_ERROR11,fname,TCLinterpreter->result,i+1,(char *)trace);
 				}
-				FreeRhsSVar(Str);
+				if (Str) for (i = 0; i<m1*n1 ;i++)
+				{
+					if (Str[i]) 
+					{
+						FREE(Str[i]);
+						Str[i]=NULL;
+					}
+				}
+				if (Str) {FREE(Str); Str=NULL;}
 				return 0;
             } else {
                 /* return result of the successful evaluation of the script */
