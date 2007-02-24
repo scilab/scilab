@@ -62,8 +62,6 @@ lusolve1_
 ;
 ; io_f
 v2unit_
-; intersci
-erro_
 ;polynomials_f
 fmt_
 ;

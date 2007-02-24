@@ -32,13 +32,6 @@ getlistvectrow_
 getlistscalar_
 getilist_
 ;
-;intersci
-erro_
-out_
-cintf_
-cdoublef_
-cchar_
-;
 ;elementaries_functions_f
 int2db_
 entier_

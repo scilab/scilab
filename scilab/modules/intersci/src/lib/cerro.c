@@ -5,10 +5,8 @@
 
 extern void C2F(erro)();
 
-#define STRLEN 4096
 
-void cerro(str)
-char *str;
+void cerro(char *str)
 {
   int l;
   l = strlen(str) + 1;
