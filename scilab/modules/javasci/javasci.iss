@@ -34,7 +34,7 @@ Source: modules\{#JAVASCI}\macros\buildmacros.sce; DestDir: {app}\modules\{#JAVA
 ;
 Source: modules\{#JAVASCI}\includes\*.h; DestDir: {app}\modules\{#JAVASCI}\includes; Components: {#COMPN_JAVASCI}
 ;
-Source: modules\{#JAVASCI}\src\java\*.*; DestDir: {app}\modules\{#JAVASCI}\src\java; Components: {#COMPN_JAVASCI}
+Source: modules\{#JAVASCI}\src\java\javasci\*.*; DestDir: {app}\modules\{#JAVASCI}\src\java\javasci; Components: {#COMPN_JAVASCI}
 ;
 Source: modules\{#JAVASCI}\examples\*.*; DestDir: {app}\modules\{#JAVASCI}\examples; Flags: recursesubdirs; Components: {#COMPN_JAVASCI}
 ;

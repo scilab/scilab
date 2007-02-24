@@ -95,7 +95,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd src\java&#x0D;&#x0A;MakeJavaClass.bat&#x0D;&#x0A;cd ..\..&#x0D;&#x0A;"
+				CommandLine="cd src\java\javasci&#x0D;&#x0A;MakeJavaClass.bat&#x0D;&#x0A;cd ..\..\.."
 			/>
 		</Configuration>
 		<Configuration
@@ -177,7 +177,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd src\java&#x0D;&#x0A;MakeJavaClass.bat&#x0D;&#x0A;cd ..\..&#x0D;&#x0A;"
+				CommandLine="cd src\java\javasci&#x0D;&#x0A;MakeJavaClass.bat&#x0D;&#x0A;cd ..\..\.."
 			/>
 		</Configuration>
 	</Configurations>
