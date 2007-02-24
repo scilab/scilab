@@ -12,19 +12,23 @@
  *     -->c=a+2*b 
  ******************************************/
 
-static int c1 = 1;
-static int c3 = 3;
 
 int ext7c(double *a, double *b)
 {
-  double c[3],w;
-  int k,f=4;
-  for (k = 0; k < 3; ++k) 
-    c[k] = a[k] + b[k] * 2.;
+	static int c1 = 1;
+  static int c3 = 3;
+	static char str[] ="test";
+	int strl;
+	
+  double c[3];
+  int k=0;
+  for (k = 0; k < 3; k++) c[k] = a[k] + b[k] * 2.;
   /** sending c[] to scilab variable c (size [1,3]) **/
   WriteMatrix("c",&c1,&c3,c);
   /** sending f characters of "test" to Scilab variable d **/
-  WriteString("d",&f,"test");
+  strl=strlen(str);
+  /* Creating the Scilab variable d from str */
+  WriteString("d", &strl, str);
   return(0);
 }
 
