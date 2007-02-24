@@ -49,7 +49,20 @@ int sci_xlfont( char * fname, unsigned long fname_len )
     } 
     S[m]= (char *) 0;
     CreateVarFromPtr(1,"S",&one,&m,S);
-    FreeRhsSVar(S);
+	if (S)
+	{
+		int i=0;
+		for(i=0;i<m+1;i++)
+		{
+			if (S[i])
+			{
+				FREE(S[i]);
+				S[i]=NULL;
+			}
+		}
+		FREE(S);
+		S=NULL;
+	}
     LhsVar(1)=1;
     return 0;
   }

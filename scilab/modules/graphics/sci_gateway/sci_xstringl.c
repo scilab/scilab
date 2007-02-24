@@ -66,7 +66,20 @@ int sci_xstringl( char *fname, unsigned long fname_len )
     else 
       y += rect[3];
   }
-  FreeRhsSVar(Str);
+  if (Str)
+  {
+	  int i=0;
+	  for(i=0;i<m3*n3;i++)
+	  {
+		  if (Str[i])
+		  {
+			  FREE(Str[i]);
+			  Str[i]=NULL;
+		  }
+	  }
+	  FREE(Str);
+	  Str=NULL;
+  }
   CreateVar(Rhs+1,"d",&un,&quatre,&l4);
   *stk(l4) = x; 
   *stk(l4+1) = y;

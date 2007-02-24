@@ -96,7 +96,20 @@ int sci_xtitle( char * fname, unsigned long fname_len )
       strcat(C2F(cha1).buf,"@"); 
       strcat(C2F(cha1).buf,Str[i]);
     }
-    FreeRhsSVar(Str);
+
+	if (Str)
+	{
+		for ( i= 1 ; i < m*n ; i++) 
+		{
+			if (Str[i])
+			{
+				FREE(Str[i]);
+				Str[i]=NULL;
+			}
+		}
+		FREE(Str);
+		Str=NULL;
+	}
 
     switch(narg)
     {

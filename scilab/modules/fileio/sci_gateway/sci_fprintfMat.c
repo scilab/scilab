@@ -92,7 +92,22 @@ int int_objfprintfMat(char *fname,unsigned long fname_len)
 	}
 	fclose(f);
 	LhsVar(1)=0 ; /** no return value **/
-	if ( Rhs >= 4) FreeRhsSVar(Str2);
+	if ( Rhs >= 4) 
+	{
+		if (Str2)
+		{
+			for ( i=0 ; i < mS*nS ; i++) 
+			{
+				if (Str2[i])
+				{
+					FREE(Str2[i]);
+					Str2[i]=NULL;
+				}
+			}
+			FREE(Str2);
+			Str2=NULL;
+		}
+	}
 	PutLhsVar();
 	return 0;
 }  

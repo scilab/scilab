@@ -42,11 +42,34 @@ int inteval_cshep2d(char *fname,unsigned long fname_len)
   GetListRhsVar(3, 1, "S", &m1,  &n1, &Str);    /* m1 = 1, n1 = 8 ? a verifier */
   if ( strcmp(Str[0],"cshep2d") != 0) 
     {
-      FreeRhsSVar(Str);
+		/* Free Str */
+		if (Str)
+		{
+			int i=0;
+			while ( Str[i] != NULL) 
+			{ 
+				FREE(Str[i]);
+				i++;
+			};
+			FREE(Str);
+			Str=NULL;
+		}
+
       Scierror(999,"%s: Argument 2 is not an cshep2d tlist\r\n", fname);
       return 0;
     }
-  FreeRhsSVar(Str);  
+  /* Free Str */
+  if (Str)
+  {
+	  int i=0;
+	  while ( Str[i] != NULL) 
+	  { 
+		  FREE(Str[i]);
+		  i++;
+	  };
+	  FREE(Str);
+	  Str=NULL;
+  }
   GetListRhsVar(3, 2, "d", &m2, &n2,  &lxyz);   /* m2 = n , n2 = 3  */
   GetListRhsVar(3, 3, "I", &m3, &n3,  (int *)&Cell);  /* m3 = nr, n3 = nr */
   GetListRhsVar(3, 4, "I", &m4, &n4,  (int *)&Next);  /* m4 = 1 , n4 = n  */

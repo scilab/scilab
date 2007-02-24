@@ -31,10 +31,39 @@ int intspvm_config(char *fname)
   CreateListVarFromPtr(1,2,"i",&un,&un,(work=&narch,&work));
   CreateListVarFromPtr(1,3,"i",&un,&ne3,&pdtid);
   FREE(pdtid);
+
   CreateListVarFromPtr(1,4,"S",&ne3,&un,pname);
-  FreeRhsSVar(pname); 
+  if (pname)
+  {
+	  int i=0;
+	  for(i=0;i<ne3;i++)
+	  {
+		  if (pname[i])
+		  {
+			  FREE(pname[i]);
+			  pname[i]=NULL;
+		  }
+	  }
+	  FREE(pname);
+	  pname=NULL;
+  }
+
   CreateListVarFromPtr(1,5,"S",&ne3,&un,parch);
-  FreeRhsSVar(parch); 
+  if (parch)
+  {
+	  int i=0;
+	  for(i=0;i<ne3;i++)
+	  {
+		  if (parch[i])
+		  {
+			  FREE(parch[i]);
+			  parch[i]=NULL;
+		  }
+	  }
+	  FREE(parch);
+	  parch=NULL;
+  }
+
   CreateListVarFromPtr(1,6,"i",&un,&ne3,&pspeed);
   FREE(pspeed);
   CreateListVarFromPtr(1,7,"i",&un,&un,(work=&info,&work));

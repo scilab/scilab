@@ -72,7 +72,20 @@ int sci_xstringb(char *fname,unsigned long fname_len)
 
   LhsVar(1)=0;
 
-  FreeRhsSVar(Str); 
+  if (Str)
+  {
+	  int i=0;
+	  for(i=0;i<m3*n3;i++)
+	  {
+		  if (Str[i])
+		  {
+			  FREE(Str[i]);
+			  Str[i]=NULL;
+		  }
+	  }
+	  FREE(Str);
+	  Str=NULL;
+  } 
 
   return 0;
 

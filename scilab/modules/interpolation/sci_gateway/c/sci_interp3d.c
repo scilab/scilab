@@ -58,11 +58,34 @@ int intinterp3d(char *fname,unsigned long fname_len)
   GetListRhsVar(4, 1, "S", &m1,  &n1, &Str);
   if ( strcmp(Str[0],"tensbs3d") != 0) 
     {
-      FreeRhsSVar(Str);
+		/* Free Str */
+		if (Str)
+		{
+			int i=0;
+			while ( Str[i] != NULL) 
+			{ 
+				FREE(Str[i]);
+				i++;
+			};
+			FREE(Str);
+			Str=NULL;
+		}
+
       Scierror(999,"%s: 4 th argument is not an tensbs3d tlist \r\n", fname);
       return 0;
     }
-  FreeRhsSVar(Str);
+  /* Free Str */
+  if (Str)
+  {
+	  int i=0;
+	  while ( Str[i] != NULL) 
+	  { 
+		  FREE(Str[i]);
+		  i++;
+	  };
+	  FREE(Str);
+	  Str=NULL;
+  }
   GetListRhsVar(4, 2, "d", &mtx, &n,  &ltx);
   GetListRhsVar(4, 3, "d", &mty, &n,  &lty);
   GetListRhsVar(4, 4, "d", &mtz, &n,  &ltz);

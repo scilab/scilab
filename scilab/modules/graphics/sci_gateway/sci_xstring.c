@@ -61,7 +61,20 @@ int sci_xstring( char *fname, unsigned long fname_len )
 
 
   /* we must free Str memory */ 
-  FreeRhsSVar(Str);
+  if (Str)
+  {
+	  int i=0;
+	  for(i=0;i<m3*n3;i++)
+	  {
+		  if (Str[i])
+		  {
+			  FREE(Str[i]);
+			  Str[i]=NULL;
+		  }
+	  }
+	  FREE(Str);
+	  Str=NULL;
+  }
 
   LhsVar(1)=0;
   return 0;

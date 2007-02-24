@@ -45,23 +45,32 @@ int C2F(intstrcat) (char* fname)
 	return 0;
       }
     }
-    switch ( typ ) {
+    switch ( typ ) 
+	{
     case '*' : 
       /* just return one string */ 
-      for ( i = 0 ; i < mn ; i++ ) 
-	nchars += strlen(Str[i]);
+      for ( i = 0 ; i < mn ; i++ ) nchars += strlen(Str[i]);
       nchars += (mn-1)*strlen(sep);
       CreateVar(Rhs+1,"c",&un,&nchars,&l3);
       k=0;
       for ( i = 0 ; i < mn ; i++ ) 
-	{
-	  for ( j =0 ; j < (int)strlen(Str[i]) ; j++ ) 
-	    *cstk(l3+ k++) = Str[i][j];
-	  if ( i != mn-1) 
-	    for ( j =0 ; j < (int)strlen(sep) ; j++ ) 
-	      *cstk(l3+ k++) = sep[j];
-	}
-      FreeRhsSVar(Str);
+	  {
+		  for ( j =0 ; j < (int)strlen(Str[i]) ; j++ ) *cstk(l3+ k++) = Str[i][j];
+		  if ( i != mn-1) for ( j =0 ; j < (int)strlen(sep) ; j++ ) *cstk(l3+ k++) = sep[j];
+	  }
+	  if (Str)
+	  {
+		  for ( i = 0 ; i < mn ; i++ )
+		  {
+			if (Str[i])
+			{
+				FREE(Str[i]);
+				Str[i]=NULL;
+			}
+		  }
+		  FREE(Str);
+		  Str=NULL;
+	  }
       LhsVar(1) = Rhs+1  ;
       break;
     case 'c': 
@@ -75,8 +84,7 @@ int C2F(intstrcat) (char* fname)
       for (i= 0 ; i < m1 ; i++) {
 	/* length of row i */ 
 	nchars = 0;
-	for ( j = 0 ; j < n1 ; j++ ) 
-	  nchars += strlen(Str[i+ m1*j]);
+	for ( j = 0 ; j < n1 ; j++ ) nchars += strlen(Str[i+ m1*j]);
 	nchars += (n1-1)*strlen(sep);
 	if ( (Str1[i]=MALLOC((nchars+1)*sizeof(char)))==NULL) 
 	  {
@@ -85,15 +93,41 @@ int C2F(intstrcat) (char* fname)
 	  }
 	/* fill the string */ 
 	strcpy(Str1[i],Str[i]); 
-	for ( j = 1 ; j < n1 ; j++ ) {
+	for ( j = 1 ; j < n1 ; j++ ) 
+	{
 	  strcat(Str1[i],sep);
 	  strcat(Str1[i],Str[i+ m1*j]);
 	}
       }
       CreateVarFromPtr(Rhs+1,"S", &m1, &un, Str1);
-      FreeRhsSVar(Str);
+	  if (Str)
+	  {
+		  for ( i = 0 ; i < mn ; i++ )
+		  {
+			  if (Str[i])
+			  {
+				  FREE(Str[i]);
+				  Str[i]=NULL;
+			  }
+		  }
+		  FREE(Str);
+		  Str=NULL;
+	  }
       LhsVar(1) = Rhs+1  ;
-      FreeRhsSVar(Str1);
+	  if (Str1)
+	  {
+		  int i=0;
+		  for (i=0;i<m1+1;i++)
+		  {
+			  if (Str1[i])
+			  {
+				  FREE(Str1[i]);
+				  Str1[i]=NULL;
+			  }
+		  }
+		  FREE(Str1);
+		  Str1=NULL;
+	  }
       break;
     case 'r': 
       /* return a row matrix */ 
@@ -122,8 +156,33 @@ int C2F(intstrcat) (char* fname)
 	}
       }
       CreateVarFromPtr(Rhs+1,"S", &un, &n1, Str1);
-      FreeRhsSVar(Str);
-      FreeRhsSVar(Str1);
+	  if (Str)
+	  {
+		  for ( i = 0 ; i < mn ; i++ )
+		  {
+			  if (Str[i])
+			  {
+				  FREE(Str[i]);
+				  Str[i]=NULL;
+			  }
+		  }
+		  FREE(Str);
+		  Str=NULL;
+	  }
+	  if (Str1)
+	  {
+		  int i=0;
+		  for (i=0;i<n1+1;i++)
+		  {
+			  if (Str1[i])
+			  {
+				  FREE(Str1[i]);
+				  Str1[i]=NULL;
+			  }
+		  }
+		  FREE(Str1);
+		  Str1=NULL;
+	  }
       LhsVar(1) = Rhs+1  ;
       break;
     }

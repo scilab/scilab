@@ -43,7 +43,21 @@ int intspvm_tasks(char *fname)
   CreateListVarFromPtr(Rhs+1,4,"i",&un,&ne3,&pflag);
   FREE(pflag);
   CreateListVarFromPtr(Rhs+1,5,"S",&ne3,&un,pname);
-  FreeRhsSVar(pname); 
+  if (pname)
+  {
+	  int i=0;
+	  for(i=0;i<ne3;i++)
+	  {
+		  if (pname[i])
+		  {
+			  FREE(pname[i]);
+			  pname[i]=NULL;
+		  }
+	  }
+	  FREE(pname);
+	  pname=NULL;
+  }
+
   CreateListVarFromPtr(Rhs+1,6,"i",&un,&un,(work=&ntask,&work));
   CreateListVarFromPtr(Rhs+1,7,"i",&un,&un,(work=&info,&work));
   LhsVar(1)= Rhs+1;
