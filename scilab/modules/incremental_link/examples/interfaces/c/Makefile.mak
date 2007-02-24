@@ -35,7 +35,7 @@ OBJSF = $(FORTRANINTERFACES) $(OTHERFOBJS)
 OBJSC = $(CINTERFACES) $(OTHERCOBJS)
 
 
-all::  CLEAROLD  $(OTHEROBJECTS) $(LIBRARY)_gateway.c $(LIBRARY)_gateway.obj $(LIBRARY).dll $(LIBRARY).sce message
+all::  $(OTHEROBJECTS) $(LIBRARY)_gateway.c $(LIBRARY)_gateway.obj $(LIBRARY).dll $(LIBRARY).sce message
 
 OBJS = $(OBJSF) $(OBJSC) $(OTHEROBJECTS) $(LIBRARY)_gateway.obj
 
@@ -138,4 +138,4 @@ $(CFUNCTIONS).dotest:
 to_do: $(CFUNCTIONS).dotest
  
 
-tests	: $(OTHEROBJECTS) $(LIBRARY)_gateway.c $(LIBRARY)_gateway.obj $(LIBRARY).dll $(LIBRARY).sce to_do
+tests	: to_do

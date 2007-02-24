@@ -33,7 +33,7 @@ OBJSF = $(FORTRANINTERFACES) $(OTHERFOBJS)
 OBJSC = $(CINTERFACES) $(OTHERCOBJS)
 
 
-all::  CLEAROLD  $(OTHEROBJECTS) $(LIBRARY)_gateway.c $(LIBRARY)_gateway.obj $(LIBRARY).dll $(LIBRARY).sce message
+all::  $(OTHEROBJECTS) $(LIBRARY)_gateway.c $(LIBRARY)_gateway.obj $(LIBRARY).dll $(LIBRARY).sce message
 
 OBJS = $(OBJSF) $(OBJSC) $(OTHEROBJECTS) $(LIBRARY)_gateway.obj
 
@@ -123,7 +123,6 @@ distclean:: 	clean
 
 $(LIBRARY).dll: $(OBJS)
 	@echo Creation of dll $(LIBRARY).dll and import lib from ...
-	@echo $(OBJS)
 	@$(DUMPEXTS) -o "$*.def" "$*.dll" $**
 	@$(LINKER) $(LINKER_FLAGS) $(OBJS) $(SCIIMPLIB) $(XLIBSBIN) /nologo /dll /out:"$*.dll" /implib:"$*.lib" /def:"$*.def" 
 
@@ -136,4 +135,4 @@ $(FFUNCTIONS).dotest:
 to_do: $(FFUNCTIONS).dotest
  
 
-tests	: $(OTHEROBJECTS) $(LIBRARY)_gateway.c $(LIBRARY)_gateway.obj $(LIBRARY).dll $(LIBRARY).sce to_do
+tests	: to_do

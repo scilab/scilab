@@ -34,7 +34,7 @@ OBJSF = $(FORTRANINTERFACES) $(OTHERFOBJS)
 
 OBJSC = $(CINTERFACES) $(OTHERCOBJS)
 
-all::  CLEAROLD  $(OTHEROBJECTS) $(LIBRARY)_gateway.c $(LIBRARY)_gateway.obj $(LIBRARY).dll $(LIBRARY).sce message
+all::  $(OTHEROBJECTS) $(LIBRARY)_gateway.c $(LIBRARY)_gateway.obj $(LIBRARY).dll $(LIBRARY).sce message
 
 OBJS = $(OBJSF) $(OBJSC) $(OTHEROBJECTS) $(LIBRARY)_gateway.obj
 
@@ -121,7 +121,7 @@ clean	::
 
 distclean:: 	clean
 
-tests:: $(OTHEROBJECTS) $(LIBRARY)_gateway.c $(LIBRARY)_gateway.obj $(LIBRARY).dll $(LIBRARY).sce
+tests:: 
   @"$(SCIDIR1)\bin\scilex.exe" -nwni -nb -e scitest('lapackscilab.tst',%t);quit; 
 
 $(LIBRARY).dll: $(OBJS)
