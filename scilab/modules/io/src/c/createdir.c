@@ -6,19 +6,21 @@
 	#include <sys/stat.h>
 	#include <sys/types.h>
 	#include <fcntl.h>
-	#include <unistd.h> 
+	#include <unistd.h>
+	#include <dirent.h>
 #else
 	#include <Windows.h>
 #endif
-#include "stdlib.h"
+#include <stdlib.h>
 #include <stdio.h>
 #include "createdir.h"
 #include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/ 
 #define DIRMODE 0777
 /*-----------------------------------------------------------------------------------*/ 
-#if _MSC_VER
 int DeleteDirectory(char *refcstrRootDirectory);
+#ifndef _MSC_VER
+static void removefile(char *filename);
 #endif
 /*-----------------------------------------------------------------------------------*/ 
 BOOL ExistDir(char * path)
@@ -61,22 +63,8 @@ BOOL RemoveDir(char *path)
 	BOOL bOK=FALSE;
 	if (ExistDir(path))
 	{
-		#ifndef _MSC_VER
-			
-			if (rmdir(path) == 0 ) 
-			{
-				bOK=TRUE;
-			}
-			else
-			{
-				char buf[1024];
-				sprintf(buf,"rm -rf %s >/dev/null  2>/dev/null",path);
-				system(buf);
-			}
-		#else
-			DeleteDirectory(path); 
-			if (!ExistDir(path)) bOK=TRUE;
-		#endif
+		DeleteDirectory(path);
+		if (!ExistDir(path)) bOK=TRUE; 
 	}
 	return bOK;
 }
@@ -145,4 +133,45 @@ int DeleteDirectory(char *refcstrRootDirectory)
 	return 0;
 }
 #endif
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
+#ifndef _MSC_VER
+static void removefile(char *filename)
+{
+	FILE *f = fopen(filename, "r") ;
+	if (! f) return ;
+	fclose(f) ;
+	chmod(filename, S_IWRITE) ;
+	remove(filename) ;
+}
+#endif 
+/*-----------------------------------------------------------------------------------*/
+#ifndef _MSC_VER
+int DeleteDirectory(char *refcstrRootDirectory)
+{
+	DIR *dir;
+	struct dirent *ent;
+
+	dir = opendir(refcstrRootDirectory) ;
+
+	if (!dir)
+	{
+		removefile(refcstrRootDirectory) ;
+	} 
+	else
+	{
+		while((ent = readdir(dir)) != NULL)
+		{
+			char *filename = NULL;
+			if (ent->d_name[0] == '.') continue ;
+
+			filename = MALLOC(strlen(refcstrRootDirectory) + 1 + strlen(ent->d_name) + 1 + 1) ;
+			sprintf(filename,"%s/%s",refcstrRootDirectory,ent->d_name);
+			removefile(filename);
+			if (filename) {FREE(filename);filename=NULL;}
+		}
+		rmdir(refcstrRootDirectory);
+	}
+	return 0;
+}
+#endif
+/*-----------------------------------------------------------------------------------*/
