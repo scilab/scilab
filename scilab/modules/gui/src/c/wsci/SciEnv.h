@@ -16,10 +16,6 @@
 /*-----------------------------------------------------------------------------------*/
 /* Les Definitions */
 /*-----------------------------------------------------------------------------------*/
-#define LCCEXE		"\\lcc\\bin\\lcc.exe" 
-#define LCCBIN		"\\lcc\\bin" 
-#define LCCINCLUDE	"\\lcc\\include" 
-#define LCCLIB		"\\lcc\\lib" 
 #define MAXSTR 256
 /*-----------------------------------------------------------------------------------*/
 void SciEnvForWindows(void);
@@ -29,8 +25,6 @@ BOOL ConvertPathWindowsToUnixFormat(char *pathwindows,char *pathunix);
 BOOL ConvertPathUnixToWindowsFormat(char *pathunix,char *pathwindows);
 BOOL Set_SCI_PATH(char *DefaultPath);
 BOOL Set_HOME_PATH(char *DefaultPath);
-
-BOOL Set_LCC_PATH(char *DefaultPath);
 BOOL Set_SOME_ENVIRONMENTS_VARIABLES_FOR_SCILAB(void);
 BOOL IsTheGoodShell(void);
 BOOL Set_Shell(void);

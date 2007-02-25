@@ -51,7 +51,6 @@ void set_sci_env(char *DefaultSCIPATH)
 			Set_TCL_LIBRARY_PATH(DefaultSCIPATH);
 			Set_TK_LIBRARY_PATH(DefaultSCIPATH);
 		#endif
-		Set_LCC_PATH(DefaultSCIPATH);
 		Set_SOME_ENVIRONMENTS_VARIABLES_FOR_SCILAB();
 	}
 	else
@@ -270,56 +269,6 @@ BOOL Set_HOME_PATH(char *DefaultPath)
 	else
 	{
 		bOK=TRUE;
-	}
-
-	return bOK;
-}
-/*-----------------------------------------------------------------------------------*/
-BOOL Set_LCC_PATH(char *DefaultPath)
-{
-	BOOL bOK=FALSE;
-	char *PathTemp=NULL;
-
-	PathTemp=getenv ("PATH");
-	if (PathTemp)
-	{
-		char *NewPath=NULL;
-		char *PathWsci= getSCIpath();
-
-		if ( PathWsci == NULL )
-		{
-			MessageBox(NULL,MSG_ERROR76,MSG_ERROR20,MB_ICONWARNING);
-			exit(1);
-		}
-		else
-		{
-			char PathsLCC[1024];
-			char LCCFILE[MAX_PATH];
-
-			wsprintf(LCCFILE,"%s%s",PathWsci,LCCEXE);
-			if ( IsAFile(LCCFILE) )
-			{
-				wsprintf(PathsLCC,"%s%s;%s%s;%s%s",PathWsci,LCCBIN,PathWsci,LCCINCLUDE,PathWsci,LCCLIB);
-				NewPath=(char*)MALLOC( (strlen("PATH=;;")+strlen(PathTemp)+strlen(PathsLCC)+1)*sizeof(char));
-				wsprintf(NewPath,"PATH=%s;%s;",PathTemp,PathsLCC);
-
-				if (_putenv (NewPath))
-				{
-					bOK=FALSE;
-				}
-				else
-				{
-					bOK=TRUE;
-				}
-				if (NewPath){ FREE(NewPath); NewPath=NULL; }
-			}
-		}
-		if (PathWsci) {FREE(PathWsci);PathWsci=NULL;}
-	}
-	else
-	{
-		MessageBox(NULL,MSG_ERROR24,MSG_ERROR20,MB_ICONWARNING);
-		exit(1);
 	}
 
 	return bOK;
