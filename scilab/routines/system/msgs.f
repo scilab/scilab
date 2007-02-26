@@ -24,6 +24,7 @@ c
      &     201,202,203,204,205,206,207,208,209,210) n
       call basout(io,wte,' Warning:')
       call basout(io,wte,buf(1:lnblnk(buf)))
+      goto 9999
  101  continue
       call  basout(io,wte,' Warning:')
       call basout(io,wte,'  Non convergence in the QZ algorithm.')
@@ -177,6 +178,10 @@ c      call error(-1)
      &              //' in function '//buf(1:l)//' :')
       goto 9999
  133  continue
+      nreal=lpt(4)-lpt(3)
+      call cvstr(nreal,lin(lpt(3)-1),buf,1)
+      call basout(io,wte,'Warning Identifier     : '//buf(1:nreal))
+      call basout(io,wte,'  has been truncated to: '//buf(1:nlgh))
       goto 9999
  134  continue
       call basout(io,ierr,'real part')
