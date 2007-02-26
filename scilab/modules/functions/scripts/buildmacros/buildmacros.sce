@@ -4,18 +4,18 @@
 // ------------------------------------
 //warning('off'); // disable warnings
 // ------------------------------------
-getf(SCI+'/modules/fileio/macros/fileparts.sci');
-getf(SCI+'/modules/core/macros/getshell.sci');
-getf(SCI+'/modules/fileio/macros/pathconvert.sci');
-getf(SCI+'/modules/string/macros/stripblanks.sci');
-getf(SCI+'/modules/fileio/macros/listfiles.sci');
-getf(SCI+'/modules/io/macros/unix_g.sci');
-getf(SCI+'/modules/core/macros/OS_Version.sci');
-getf(SCI+'/modules/fileio/macros/isdir.sci');
-getf(SCI+'/modules/overloading/macros/%c_a_c.sci');
-getf(SCI+'/modules/fileio/macros/basename.sci');
-getf(SCI+'/modules/fileio/macros/mputl.sci');
-getf(SCI+'/modules/functions/macros/genlib.sci');
+exec(SCI+'/modules/fileio/macros/fileparts.sci');
+exec(SCI+'/modules/core/macros/getshell.sci');
+exec(SCI+'/modules/fileio/macros/pathconvert.sci');
+exec(SCI+'/modules/string/macros/stripblanks.sci');
+exec(SCI+'/modules/fileio/macros/listfiles.sci');
+exec(SCI+'/modules/io/macros/unix_g.sci');
+exec(SCI+'/modules/core/macros/OS_Version.sci');
+exec(SCI+'/modules/fileio/macros/isdir.sci');
+exec(SCI+'/modules/overloading/macros/%c_a_c.sci');
+exec(SCI+'/modules/fileio/macros/basename.sci');
+exec(SCI+'/modules/fileio/macros/mputl.sci');
+exec(SCI+'/modules/functions/macros/genlib.sci');
 // ------------------------------------
 lines(0);
 Directories=[];
