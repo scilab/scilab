@@ -7,11 +7,6 @@
 /*-----------------------------------------------------------------------------------*/
 #define MEMDISPO (MEM_RESERVE | MEM_COMMIT | MEM_TOP_DOWN)
 /*-----------------------------------------------------------------------------------*/
-extern int IsFromC(void);
-/* When you call scilab dynamically (LoadLibrary,FreeLibrary) (DLL) don't use HeapAlloc or VirtualAlloc
-  problem with process caller
-*/
-/*-----------------------------------------------------------------------------------*/
 LPVOID MyHeapRealloc(LPVOID lpAddress,SIZE_T dwSize,char *fichier,int ligne)
 {
 
@@ -20,14 +15,14 @@ LPVOID MyHeapRealloc(LPVOID lpAddress,SIZE_T dwSize,char *fichier,int ligne)
 
  if (lpAddress)
  {
-	 if ( IsFromC() )
-	 {
-		 NewPointer=realloc(lpAddress,dwSize);
-	 }
-	 else
-	 {
-		 NewPointer=HeapReAlloc(GetProcessHeap(),HEAP_ZERO_MEMORY,lpAddress,dwSize);
-	 }
+	_try
+	{
+		NewPointer=HeapReAlloc(GetProcessHeap(),HEAP_ZERO_MEMORY,lpAddress,dwSize);
+	}
+	_except (EXCEPTION_EXECUTE_HANDLER)
+	{
+	}
+
  }
  else
  {
@@ -37,14 +32,15 @@ LPVOID MyHeapRealloc(LPVOID lpAddress,SIZE_T dwSize,char *fichier,int ligne)
 		MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
 		//exit(1);
 	#endif
-		if ( IsFromC() )
-		{
-			NewPointer=malloc(dwSize);
-		}
-		else
+		_try
 		{
 			NewPointer=HeapAlloc(GetProcessHeap(),HEAP_ZERO_MEMORY,dwSize);
 		}
+		_except (EXCEPTION_EXECUTE_HANDLER)
+		{
+		}
+
+
 
 	if (NewPointer==NULL)
 	{
@@ -66,13 +62,12 @@ LPVOID MyHeapAlloc(SIZE_T dwSize,char *fichier,int ligne)
 
 	if (dwSize>0)
 	{
-		if ( IsFromC() )
-		{
-			NewPointer=malloc(dwSize);
-		}
-		else
+		_try
 		{
 			NewPointer=HeapAlloc(GetProcessHeap(),HEAP_ZERO_MEMORY,dwSize);
+		}
+		_except (EXCEPTION_EXECUTE_HANDLER)
+		{
 		}
 
 		if (NewPointer==NULL)
@@ -87,20 +82,21 @@ LPVOID MyHeapAlloc(SIZE_T dwSize,char *fichier,int ligne)
 	}
 	else
 	{
-			#ifdef _DEBUG
-				char MsgError[1024];
-				wsprintf(MsgError,"MALLOC (2) Error File %s Line %d ",fichier,ligne);
-				MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
-				//exit(1);
-			#endif
-				if ( IsFromC() )
-				{
-					NewPointer=malloc(dwSize);
-				}
-				else
-				{
-					NewPointer=HeapAlloc(GetProcessHeap(),HEAP_ZERO_MEMORY,dwSize);
-				}
+	#ifdef _DEBUG
+		char MsgError[1024];
+		wsprintf(MsgError,"MALLOC (2) Error File %s Line %d ",fichier,ligne);
+		MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
+		//exit(1);
+	#endif
+		_try
+		{
+			NewPointer=HeapAlloc(GetProcessHeap(),HEAP_ZERO_MEMORY,dwSize);
+		}
+		_except (EXCEPTION_EXECUTE_HANDLER)
+		{
+		}
+
+
 	}
     //printf("MyHeapAlloc %d %s %d\n",NewPointer,fichier,ligne);
 	return NewPointer;
@@ -108,30 +104,17 @@ LPVOID MyHeapAlloc(SIZE_T dwSize,char *fichier,int ligne)
 /*-----------------------------------------------------------------------------------*/
 void MyHeapFree(LPVOID lpAddress,char *fichier,int ligne)
 {
-	if ( IsFromC() )
+	_try
 	{
-		_try
-		{
-			free(lpAddress);
-		}
-		_except (EXCEPTION_EXECUTE_HANDLER)
-		{
-		}
+		HeapFree(GetProcessHeap(),HEAP_NO_SERIALIZE,lpAddress);
 	}
-	else
+	_except (EXCEPTION_EXECUTE_HANDLER)
 	{
-		_try
-		{
-			HeapFree(GetProcessHeap(),HEAP_NO_SERIALIZE,lpAddress);
-		}
-		_except (EXCEPTION_EXECUTE_HANDLER)
-		{
-			#ifdef _DEBUG
-				char MsgError[1024];
-				wsprintf(MsgError,"FREE Error File %s Line %d ",fichier,ligne);
-				MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
-			#endif
-		}
+		#ifdef _DEBUG
+			char MsgError[1024];
+			wsprintf(MsgError,"FREE Error File %s Line %d ",fichier,ligne);
+			MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
+		#endif
 	}
 	 //printf("MyHeapFree %d %s %d\n",lpAddress,fichier,ligne);
 }
@@ -142,13 +125,12 @@ LPVOID MyVirtualAlloc(SIZE_T dwSize,char *fichier,int ligne)
 
 	if (dwSize>0)
 	{
-		if ( IsFromC() )
-		{
-			NewPointer=malloc(dwSize);
-		}
-		else
+		_try
 		{
 			NewPointer=VirtualAlloc(NULL,((unsigned) dwSize),MEMDISPO,PAGE_READWRITE);
+		}
+		_except (EXCEPTION_EXECUTE_HANDLER)
+		{
 		}
 
 		if (NewPointer==NULL)
@@ -170,14 +152,14 @@ LPVOID MyVirtualAlloc(SIZE_T dwSize,char *fichier,int ligne)
 		//exit(1);
 		#endif
 
-		if ( IsFromC() )
-		{
-			NewPointer=malloc(dwSize);
-		}
-		else
+		_try
 		{
 			NewPointer=VirtualAlloc(NULL,((unsigned) dwSize),MEMDISPO,PAGE_READWRITE);
 		}
+		_except (EXCEPTION_EXECUTE_HANDLER)
+		{
+		}
+
 	}
 
 	//printf("MyVirtualAlloc %d %s %d\n",NewPointer,fichier,ligne);
@@ -187,14 +169,16 @@ LPVOID MyVirtualAlloc(SIZE_T dwSize,char *fichier,int ligne)
 /*-----------------------------------------------------------------------------------*/
 void MyVirtualFree(LPVOID lpAddress,char *fichier,int ligne)
 {
-	if ( IsFromC() )
+	if (lpAddress) 
 	{
-		free(lpAddress);
+		_try
+		{
+			VirtualFree(lpAddress,0,MEM_RELEASE);
+		}
+		_except (EXCEPTION_EXECUTE_HANDLER)
+		{
+		}
 	}
-	else
-	{
-		VirtualFree(lpAddress,0,MEM_RELEASE);
-	}
-	//printf("MyVirtualFree %d %s %d\n",lpAddress,fichier,ligne);
+
 }
 /*-----------------------------------------------------------------------------------*/

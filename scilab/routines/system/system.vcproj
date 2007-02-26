@@ -739,6 +739,9 @@ cd .. &gt;nul
 				RelativePath=".\scicurdir.c">
 			</File>
 			<File
+				RelativePath=".\SendScilabJobs.c">
+			</File>
+			<File
 				RelativePath=".\Sparse.c">
 			</File>
 			<File

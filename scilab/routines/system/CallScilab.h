@@ -37,6 +37,34 @@ int SendScilabJob(char *job);
 /* Send a job to scilab */
 /* returns error code operation */
 
+int SendScilabJobs(char **jobs,int numberjobs);
+/**
+Send jobs to scilab 
+returns last error code operation 0 : OK
+Example :
+	jobs[0] : a = 1;
+	jobs[1] : b = 3;
+	jobs[2] : c = a + b;
+	SendScilabJobs(jobs,3);
+**/
+
+int GetLastJob(char *JOB,int nbcharsJOB);
+/**
+Returns last job send to scilab by SendScilabJobs or SendScilabJob
+Example :
+jobs[0] : a = 1;
+jobs[1] : b = V_NOT_EXIST;
+jobs[2] : c = a + b;
+if (SendScilabJobs(jobs,3))
+{
+	char lastjob[4096]; // bsiz in scilab 
+	if (GetLastJob(lastjob,4096))
+	{
+		printf("%s\n",lastjob);
+	}
+}
+**/
+
 void ScilabDoOneEvent(void);
 /* This procedure is the entry point to Scilab's event loop */
 

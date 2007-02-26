@@ -692,6 +692,124 @@ int C2F(objptr)(namex, lp, fin, name_len)
     return  TRUE_;
 }
 
+/*-----------------------------------------------------------------------------------*/
+/* read and write a boolean matrix in scilab stack */
+/*-----------------------------------------------------------------------------------*/
+int C2F(creadbmat)(char *namex, integer *m, integer *n, int *scimat, unsigned long name_len)
+{
+	integer l = 0;
+	integer id[nsiz];
+	int c_x = 1;
+	int N = 0;
+
+	C2F(str2name)(namex, id, name_len);
+	/* read   : from scilab stack -> fortran variable */
+	Fin = -1;
+	C2F(stackg)(id);
+	if (Err > 0) return FALSE_ ; 
+	if (Fin == 0) {
+		Scierror(4,"Undefined variable %s\r\n",get_fname(namex,name_len));
+		return FALSE_;
+	}
+	if ( *Infstk(Fin ) == 2)  Fin = *istk(iadr(*Lstk(Fin )) + 1 +1);
+
+	/* get matrix data pointer */
+	if (! C2F(getbmat)("creadbmat", &Fin, &Fin, m, n, &l , 9L))	return FALSE_;
+
+	N = *n * *m;
+	C2F(icopy)(&N,istk(l),&c_x,scimat,&c_x);
+
+	return TRUE_;
+}
+/*-----------------------------------------------------------------------------------*/
+int C2F(cwritebmat)(char *namex, integer *m, integer *n,  int *mat, unsigned long name_len)
+{
+	integer   ix1 = *m * *n;
+	integer Rhs_k = Rhs , Top_k = Top ;
+	integer l4, id[nsiz], lr;
+
+	C2F(str2name)(namex, id, name_len);
+	Top = Top + Nbvars + 1; 
+	if (! C2F(crebmat)("cwritebmat", &Top, m, n, &lr, 10L)) return  FALSE_;
+
+	C2F(icopy)(&ix1, mat, &cx1, istk(lr ), &cx1);
+	Rhs = 0;
+	l4 = C2F(iop).lct[3];
+	C2F(iop).lct[3] = -1;
+	C2F(stackp)(id, &cx0);
+	C2F(iop).lct[3] = l4;
+	Top = Top_k;
+	Rhs = Rhs_k;
+	if (Err > 0)  return FALSE_;
+	return TRUE_;
+
+}
+/*-----------------------------------------------------------------------------------*/
+int C2F(cmatbptr)(char *namex, integer *m,integer *n,integer *lp, unsigned long name_len)
+{
+	integer id[nsiz];
+	C2F(str2name)(namex, id, name_len);
+	/* get the position in fin */
+	Fin = -1;
+	C2F(stackg)(id);
+	if (Fin == 0) 
+	{
+		Scierror(4,"Undefined variable %s\r\n",get_fname(namex,name_len));
+		*m = -1;
+		*n = -1;
+		return FALSE_;
+	}
+	/* get data */
+	if (*Infstk(Fin ) == 2) 
+	{
+		Fin = *istk(iadr(*Lstk(Fin )) + 1 +1);
+	}
+
+	if (! C2F(getbmat)("creadbmat", &Fin, &Fin, m, n, lp , 9L))	return FALSE_;
+	
+	return TRUE_ ;
+}
+/*-----------------------------------------------------------------------------------*/
+/**
+	returns length of a "chain variable" in scilab
+	example :
+	in scilab --> str = "abcdefghijklmnopqrstuvwxyz";
+	in C getlengthchain("str") returns 26
+	error returns -1 
+*/ 
+int getlengthchain(char *namex)
+{
+	int retLength = -1;
+
+	integer m1, n1;
+	integer id[nsiz];
+	integer lr1;
+	integer nlr1;
+	unsigned long name_len= strlen(namex);
+
+	Err = 0;
+	C2F(str2name)(namex, id, name_len);
+	Fin = -1;
+	C2F(stackg)(id);
+	if (Err > 0)  return -1;
+	if (Fin == 0) return -1;
+
+
+	if (*Infstk(Fin ) == 2) 
+	{
+		Fin = *istk(iadr(*Lstk(Fin )) + 1 +1);
+	}
+
+	if (! C2F(getsmat)("getlengthchain", &Fin, &Fin, &m1, &n1, &cx1, &cx1, &lr1, &nlr1, 14L)) return -1;
+
+	if (m1 * n1 != 1)  return -1;
+	retLength = nlr1;
+
+	return retLength;
+
+}
+/*-----------------------------------------------------------------------------------*/
+
 
 
 
