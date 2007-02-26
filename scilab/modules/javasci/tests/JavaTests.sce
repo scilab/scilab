@@ -9,11 +9,12 @@ function ret=BuildJava(filename)
 	if MSDOS then
 		Command='javac -deprecation -d '+SCI+'\bin -classpath '+SCI+'\bin '+filename;
 	else
-		Command='javac -deprecation -d '+SCI+'/bin -classpath '+SCI+'/bin '+filename;
+		Command='javac -deprecation -classpath ../javasci.jar '+filename;
 	end
 	[rep,stat]=unix_g(Command);
 	if ~(stat==0) then
-		disp('error compilation '+filename);
+		disp('Error in the compilation '+filename);
+		disp('Command was : '+Command);
 		ret=%F;
 	else
 		ret=%T;
@@ -24,11 +25,12 @@ endfunction
 function ExecJava(filename,buildref)
 	currentdir=pwd();
 	repfilename='';
-	chdir(SCI+'\bin');
 	if ~MSDOS then
 		setenv('LD_LIBRARY_PATH','$LD_LIBRARY_PATH:'+pwd());
 		setenv('CLASSPATH','$CLASSPATH:'+pwd()+':.');
 		setenv('SHLIB_PATH','$SHLIB_PATH:'+pwd()+':.');
+	else 
+		chdir(SCI+'\bin');
 	end
 	[path,fname,extension]=fileparts(filename);
 	if (buildref == %T) then
@@ -48,9 +50,9 @@ function ExecJava(filename,buildref)
 	if MSDOS then
 	  commandline='..\modules\jvm\bin\jre\bin\java '+fname +' > '+repfilename;
 	else
-	  commandline='../modules/jvm/bin/jre/bin/java '+fname +' > '+repfilename;
+	  commandline='java -classpath ../javasci.jar:. -Djava.library.path=../.libs/ '+fname +' > '+repfilename;
 	end
-
+	disp("Trying to run : "+commandline);
 	unix(commandline);
 	chdir(currentdir);
 endfunction
