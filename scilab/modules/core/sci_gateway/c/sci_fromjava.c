@@ -6,7 +6,7 @@
 #include "machine.h"
 #include "stack-c.h"
 #include "MALLOC.h"
-#include "../../src/c/fromjava.h"
+#include "fromjava.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(intfromjava) _PARAMS((char *fname));
 /*-----------------------------------------------------------------------------------*/
