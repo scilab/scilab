@@ -15,6 +15,10 @@
 #include "machine.h"
 #include "stack-c.h"
 #include "tmpdir.h"
+#include "scirun.h"
+#include "sciquit.h"
+#include "CallScilab.h"
+#include "fromjava.h"
 
 #include "MALLOC.h"
 
@@ -25,27 +29,46 @@
 /********************************************************************************************************/
 #define MAX_STR 512
 /********************************************************************************************************/
-void EnableInterf();
-void DisableInterf();
-int GetInterfState();
+/**
+ * Enable the Interface
+ *
+ */
+void EnableInterf(void);
+
+/**
+ * Disable the Interface
+ *
+ */
+void DisableInterf(void);
+
+/**
+ * Return the state of the Interface
+ * @return int the state (1 or 0)
+ */
+int GetInterfState(void);
+
+/**
+ * Send a Scilab Job
+ * @param the Job
+ * @return the result of the process
+ */
 int send_scilab_job(char *job) ;
-void Initialize() ;
+
+/**
+ * Initialisation of Scilab
+ *
+ */
+void Initialize(void) ;
 /********************************************************************************************************/
 extern void C2F(banier)(int *x) ;
 extern void initTCLTK();
 extern int C2F(inisci)(int *,int *,int *);
-extern int C2F (sciquit) (void);
-extern int C2F(scirun)(char * startup, int lstartup);
 extern void C2F(storeversion)(char *str,int n);
 extern void sciGetIdFigure (int *vect, int *id, int *flag);
-extern void SetFromJavaToON(void);
-extern int SendScilabJob(char *job); 
-extern void ScilabDoOneEvent(void);
-extern int ExitScilab(void);
 extern int GetLastErrorCode(void);
 extern void *GetDataFromName( char *name );
 /********************************************************************************************************/
-#if _MSC_VER
+#ifdef _MSC_VER
 extern void start_sci_tcltk();
 extern void add_sci_argv();
 extern void add_sci_argv();

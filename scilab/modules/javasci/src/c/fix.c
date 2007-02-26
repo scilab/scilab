@@ -1,3 +1,6 @@
+/* TODO : Add explanation about this stuff */
+
+
 static void init(){}
 static void fini(){}
 static void preinit(){}

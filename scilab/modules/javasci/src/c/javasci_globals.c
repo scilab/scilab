@@ -1,4 +1,5 @@
 #include "javasci_globals.h"
+#include "setgetSCIpath.h"
 /********************************************************************************************************/
 /* Allan CORNET */
 /* INRIA 2005 */
@@ -20,9 +21,9 @@ int GetInterfState()
 	return init;
 }
 /********************************************************************************************************/
-/*   Initialisation de Scilab */
+/*   Initialisation of Scilab */
 /********************************************************************************************************/
-void Initialize() 
+void Initialize(void) 
 {
   static char env[1024];
   static char initstr[]="exec(\"SCI/etc/scilab.start\",-1);quit;";
@@ -113,11 +114,4 @@ int send_scilab_job(char *job)
 {
   return (int) SendScilabJob(job); 
 }
-/********************************************************************************************************/
-#ifndef _MSC_VER
-int MAIN__() 
-{
-	return 0;
-}
-#endif
 /********************************************************************************************************/

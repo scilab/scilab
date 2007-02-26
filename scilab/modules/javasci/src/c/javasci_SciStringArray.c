@@ -5,6 +5,9 @@
 /********************************************************************************************************/
 #define DefaultMaxlenString 1024
 /********************************************************************************************************/
+JNIEXPORT jstring JNICALL Java_javasci_SciStringArray_GetElement(JNIEnv *env , jobject obj_this,jint indrarg, jint indcarg);
+
+/********************************************************************************************************/
 /* private static native void Initialize(); */
 JNIEXPORT void JNICALL Java_javasci_SciStringArray_Initialize (JNIEnv *env, jclass cl)
 {
@@ -17,9 +20,6 @@ JNIEXPORT jint JNICALL Java_javasci_SciStringArray_getRowFromScilab(JNIEnv *env 
 	int lw; int fin;
 	const char *cname=NULL;
 	jint row=-1;
-
-	/* get the class */
-	jclass class_Mine = (*env)->GetObjectClass(env, obj_this);
 
 	/* get the field value */
 	cname = (*env)->GetStringUTFChars(env, name, NULL);
@@ -47,9 +47,6 @@ JNIEXPORT jint JNICALL Java_javasci_SciStringArray_getColFromScilab(JNIEnv *env 
 	const char *cname=NULL;
 	jint col=-1;
 
-	/* get the class */
-	jclass class_Mine = (*env)->GetObjectClass(env, obj_this);
-
 	/* get the field value */
 	cname = (*env)->GetStringUTFChars(env, name, NULL);
 
@@ -74,9 +71,6 @@ JNIEXPORT void JNICALL Java_javasci_SciStringArray_Job(JNIEnv *env , jobject obj
 /********************************************************************************************************/
 {
 	const char *cjob;
-
-	/* get the class */
-	jclass class_Mine = (*env)->GetObjectClass(env, obj_this);
 
 	/* get the field value */
 	cjob = (*env)->GetStringUTFChars(env, job, NULL);
@@ -110,14 +104,14 @@ JNIEXPORT jstring JNICALL Java_javasci_SciStringArray_GetElement(JNIEnv *env , j
    /* get the field value */
   jstring jname = (jstring) (*env)->GetObjectField(env, obj_this, id_name);
   jint jm = (*env)->GetIntField(env, obj_this, id_m);
-  jint jn = (*env)->GetIntField(env, obj_this, id_n);
+  jint jn2 = (*env)->GetIntField(env, obj_this, id_n);
 
   jstring StrReturn;
   
   cname = (*env)->GetStringUTFChars(env, jname, NULL);
 
   cm=jm;
-  cn=jn;
+  cn=jn2;
   
   indx= indrarg;
   indy = indcarg;

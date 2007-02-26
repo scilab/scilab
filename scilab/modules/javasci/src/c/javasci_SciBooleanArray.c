@@ -16,9 +16,6 @@ JNIEXPORT jint JNICALL Java_javasci_SciBooleanArray_getRowFromScilab(JNIEnv *env
 	const char *cname=NULL;
 	jint row=-1;
 
-	/* get the class */
-	jclass class_Mine = (*env)->GetObjectClass(env, obj_this);
-
 	/* get the field value */
 	cname = (*env)->GetStringUTFChars(env, name, NULL);
 	if (C2F(objptr)((char*)cname,&lw,&fin,(unsigned long)strlen(cname)))
@@ -43,9 +40,6 @@ JNIEXPORT jint JNICALL Java_javasci_SciBooleanArray_getColFromScilab(JNIEnv *env
 	int lw; int fin;
 	const char *cname=NULL;
 	jint col=-1;
-
-	/* get the class */
-	jclass class_Mine = (*env)->GetObjectClass(env, obj_this);
 
 	/* get the field value */
 	cname = (*env)->GetStringUTFChars(env, name, NULL);
@@ -72,9 +66,6 @@ JNIEXPORT jboolean JNICALL Java_javasci_SciBooleanArray_Job(JNIEnv *env , jobjec
 {
 	const char *cjob = NULL;
 	jboolean bOK=0;
-
-	/* get the class */
-	jclass class_Mine = (*env)->GetObjectClass(env, obj_this);
 
 	/* get the field value */
 	cjob = (*env)->GetStringUTFChars(env, job, NULL);
@@ -122,14 +113,14 @@ JNIEXPORT void JNICALL Java_javasci_SciBooleanArray_Get(JNIEnv *env , jobject ob
   jstring jname = (jstring) (*env)->GetObjectField(env, obj_this, id_name);
 
   jint jm = (*env)->GetIntField(env, obj_this, id_m);
-  jint jn = (*env)->GetIntField(env, obj_this, id_n);
+  jint jn2 = (*env)->GetIntField(env, obj_this, id_n);
   jboolean *cx = (*env)->GetBooleanArrayElements(env,jx,NULL);
 
-  int *CX = (int*) MALLOC(sizeof(int)*(jm*jn));
+  int *CX = (int*) MALLOC(sizeof(int)*(jm*jn2));
 
   cname = (*env)->GetStringUTFChars(env, jname, NULL);
 
-  cm=jm;cn=jn;
+  cm=jm;cn=jn2;
   
   if ( ! C2F(cmatbptr)((char *)cname, &cm, &cn, &lp,(unsigned long)strlen(cname))) 
   {
@@ -176,14 +167,14 @@ JNIEXPORT void JNICALL Java_javasci_SciBooleanArray_Send(JNIEnv *env , jobject o
   jstring jname = (jstring) (*env)->GetObjectField(env, obj_this, id_name);
 
   jint jm = (*env)->GetIntField(env, obj_this, id_m);
-  jint jn = (*env)->GetIntField(env, obj_this, id_n);
+  jint jn2 = (*env)->GetIntField(env, obj_this, id_n);
   jboolean *cx = (*env)->GetBooleanArrayElements(env,jx,NULL);
-  int *CX = (int*) MALLOC(sizeof(int)*(jm*jn));
+  int *CX = (int*) MALLOC(sizeof(int)*(jm*jn2));
 
   cname = (*env)->GetStringUTFChars(env, jname, NULL);
 
 
-  cm=jm;cn=jn;
+  cm=jm;cn=jn2;
 
   for(i=0;i<cm*cn;i++)
   {
@@ -221,13 +212,13 @@ JNIEXPORT jboolean JNICALL Java_javasci_SciBooleanArray_GetElement(JNIEnv *env ,
   jstring jname = (jstring) (*env)->GetObjectField(env, obj_this, id_name);
 
   jint jm = (*env)->GetIntField(env, obj_this, id_m);
-  jint jn = (*env)->GetIntField(env, obj_this, id_n);
+  jint jn2 = (*env)->GetIntField(env, obj_this, id_n);
   jboolean *cx = (*env)->GetBooleanArrayElements(env,jx,NULL);
-  int *CX = (int*) MALLOC(sizeof(int)*(jm*jn));
+  int *CX = (int*) MALLOC(sizeof(int)*(jm*jn2));
 
   cname = (*env)->GetStringUTFChars(env, jname, NULL);
 
-  cm=jm;cn=jn;
+  cm=jm;cn=jn2;
 
   if ( ! C2F(cmatbptr)((char *)cname, &cm, &cn, &lp,(unsigned long)strlen(cname))) 
   {
@@ -257,7 +248,7 @@ JNIEXPORT jboolean JNICALL Java_javasci_SciBooleanArray_GetElement(JNIEnv *env ,
 	return 0;
   }
 
-  if ( (indrarg>jm) || (indcarg>jn) )
+  if ( (indrarg>jm) || (indcarg>jn2) )
   {
 	  fprintf(stderr,"Error with int indr & int indc.\n");
 	  return 0;

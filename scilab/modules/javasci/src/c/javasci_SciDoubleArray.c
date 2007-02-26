@@ -16,9 +16,6 @@ JNIEXPORT jboolean JNICALL Java_javasci_SciDoubleArray_Job(JNIEnv *env , jobject
 	const char *cjob;
 	jboolean bOK=0;
 
-	/* get the class */
-	jclass class_Mine = (*env)->GetObjectClass(env, obj_this);
-
 	/* get the field value */
 	cjob = (*env)->GetStringUTFChars(env, job, NULL);
 
@@ -50,8 +47,6 @@ JNIEXPORT jint JNICALL Java_javasci_SciDoubleArray_getRowFromScilab(JNIEnv *env 
 	const char *cname=NULL;
 	jint row=-1;
 
-	/* get the class */
-	jclass class_Mine = (*env)->GetObjectClass(env, obj_this);
 
 	/* get the field value */
 	cname = (*env)->GetStringUTFChars(env, name, NULL);
@@ -87,9 +82,6 @@ JNIEXPORT jint JNICALL Java_javasci_SciDoubleArray_getColFromScilab(JNIEnv *env 
 	int lw; int fin;
 	const char *cname=NULL;
 	jint col=-1;
-
-	/* get the class */
-	jclass class_Mine = (*env)->GetObjectClass(env, obj_this);
 
 	/* get the field value */
 	cname = (*env)->GetStringUTFChars(env, name, NULL);
@@ -138,11 +130,11 @@ JNIEXPORT void JNICALL Java_javasci_SciDoubleArray_Get(JNIEnv *env , jobject obj
   jstring jname = (jstring) (*env)->GetObjectField(env, obj_this, id_name);
 
   jint jm = (*env)->GetIntField(env, obj_this, id_m);
-  jint jn = (*env)->GetIntField(env, obj_this, id_n);
+  jint jn2 = (*env)->GetIntField(env, obj_this, id_n);
   double *cx = (*env)->GetDoubleArrayElements(env,jx,NULL);
   cname = (*env)->GetStringUTFChars(env, jname, NULL);
 
-  cm=jm;cn=jn;
+  cm=jm;cn=jn2;
   
   if ( ! C2F(cmatptr)((char *)cname, &cm, &cn, &lp,(unsigned long)strlen(cname))) 
   {
@@ -181,11 +173,11 @@ JNIEXPORT void JNICALL Java_javasci_SciDoubleArray_Send(JNIEnv *env , jobject ob
   jstring jname = (jstring) (*env)->GetObjectField(env, obj_this, id_name);
 
   jint jm = (*env)->GetIntField(env, obj_this, id_m);
-  jint jn = (*env)->GetIntField(env, obj_this, id_n);
+  jint jn2= (*env)->GetIntField(env, obj_this, id_n);
   double *cx = (*env)->GetDoubleArrayElements(env,jx,NULL);
   cname = (*env)->GetStringUTFChars(env, jname, NULL);
 
-  cm=jm;cn=jn;
+  cm=jm;cn=jn2;
   if (!C2F(cwritemat)((char *)cname,&cm,&cn,cx,(unsigned long)strlen(cname))) 
   {
   	fprintf(stderr,"Error in Java_javasci_SciDoubleArray_Send.\n");
@@ -216,11 +208,11 @@ JNIEXPORT jdouble JNICALL Java_javasci_SciDoubleArray_GetElement(JNIEnv *env , j
   jstring jname = (jstring) (*env)->GetObjectField(env, obj_this, id_name);
 
   jint jm = (*env)->GetIntField(env, obj_this, id_m);
-  jint jn = (*env)->GetIntField(env, obj_this, id_n);
+  jint jn2 = (*env)->GetIntField(env, obj_this, id_n);
   double *cx = (*env)->GetDoubleArrayElements(env,jx,NULL);
   cname = (*env)->GetStringUTFChars(env, jname, NULL);
 
-  cm=jm;cn=jn;
+  cm=jm;cn=jn2;
 
   if ( ! C2F(cmatptr)((char *)cname, &cm, &cn, &lp,(unsigned long)strlen(cname))) 
   {
@@ -240,7 +232,7 @@ JNIEXPORT jdouble JNICALL Java_javasci_SciDoubleArray_GetElement(JNIEnv *env , j
 	return 0.0;
   }
 
-  if ( (indrarg>jm) || (indcarg>jn) )
+  if ( (indrarg>jm) || (indcarg>jn2) )
   {
 	  fprintf(stderr,"Error with int indr & int indc.\n");
 	  return 0.0;

@@ -10,6 +10,10 @@
 /********************************************************************************************************/
 #define MAX_String 1024
 /********************************************************************************************************/
+// Declaration only used localy
+jobject getDoubleMatrix(JNIEnv *env,  jclass cl, jstring name, jint nbRow, jint nbCol);
+jobject getStringMatrix(JNIEnv *env,  jclass cl, jstring name, jint nbRow, jint nbCol);
+/********************************************************************************************************/
 JNIEXPORT void JNICALL Java_javasci_Scilab_initialize(JNIEnv *env, jclass cl)
 {
 	if ( GetInterfState() == 0) { EnableInterf(); Initialize();} 
@@ -107,7 +111,7 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_sendStringMatrix (JNIEnv *env, jclass
   #define MAX_String 1024
   const char *cname;
   int nbRow, nbCol;
-  int i, j, max=MAX_String;
+  int i, j;
   jstring jelement;
   const char *element;
   char job[MAX_String*4];
