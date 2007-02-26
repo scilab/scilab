@@ -74,5 +74,5 @@ includes/javasci_SciDoubleArray.h \
 includes/javasci_SciBooleanArray.h
 
 
-tests:: $(JARFILE)
+tests:: $(JARFILE) $(JAVAFILES)
 	@(cd tests; make tests)
