@@ -15,17 +15,17 @@ function tklib=gettklib()
 		currentwarningmode=warning('query');
 		warning('off');
 		cmd ="link(''"+libname+getdynlibext()+"'')";
-		execstr(cmd, 'errcatch')
+		ierr=execstr(cmd, 'errcatch');
 		warning(currentwarningmode);
-		if ans == 0 then
+		if (ierr == 0) then
 			tklib=libname+getdynlibext();
 		else
 			currentwarningmode=warning('query');
 			warning('off');
 		  cmd ="link(''"+libname+getdynlibext()+".0'')";
-			execstr(cmd, 'errcatch')
+			ierr=execstr(cmd, 'errcatch')
 			warning(currentwarningmode);
-			if ans == 0 then
+			if (ierr== 0) then
 				tklib=libname+getdynlibext()+'.0';
 			else
 				mprintf('Warning: Error loading '+libname+getdynlibext()+' :""'+lasterror()+'""')
