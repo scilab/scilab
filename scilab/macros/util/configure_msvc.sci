@@ -154,7 +154,7 @@ if MSDOS then
   if (err == %F) then bOK=%F,return,end
   
   LIB=getenv('LIB',''); 
-  LIB=MSVCDir+'LIB;'+MSVSDir+'\SDK\v2.0\lib;'+W2003SDK+'Lib;'+LIB;
+  LIB=MSVCDir+'\LIB;'+MSVSDir+'\SDK\v2.0\lib;'+W2003SDK+'Lib;'+LIB;
   err=setenv("LIB",LIB);
   if (err == %F) then bOK=%F,return,end
   
