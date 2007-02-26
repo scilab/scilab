@@ -100,6 +100,10 @@ char * ArgsPosition __PARAMS((int i,int j));
 int IsRef __PARAMS((int lw));
 int Ref2val __PARAMS((int from , int to )) ; 
 
+void *GetData __PARAMS((int lw));
+void *GetRawData __PARAMS((int lw));
+int GetDataSize __PARAMS((int lw));
+void *GetDataFromName __PARAMS(( char *name ));
 void ConvertData __PARAMS(( char *type, int size,int l));
 int C2F(createreffromname) __PARAMS((int number, char *name ));
 int C2F(createreference) __PARAMS(( int number, int pointed ));

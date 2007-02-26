@@ -369,14 +369,6 @@ extern int C2F(checklhs)  __PARAMS((char *fname, integer *imin, integer *imax, u
 
 extern void C2F(freeptr) __PARAMS((double *ip[]));
 
-extern void *GetData __PARAMS((int lw));
-
-extern void *GetRawData __PARAMS((int lw));
-
-extern void *GetDataFromName __PARAMS(( char *name));
-
-extern int GetDataSize __PARAMS((int lw));
-
 #endif /*  STACK_SCI  */
 
 
