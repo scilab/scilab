@@ -170,7 +170,7 @@ void C2F(cboolf)(n,ip,op)
 
 void cerro(char *str)
 {
-  C2F(erro)(str, strlen(str) + 1);
+  C2F(erro)(str, (unsigned int)(strlen(str) + 1));
 }
 
 /*--------------------------------------------------------------
@@ -179,7 +179,7 @@ void cerro(char *str)
 
 void Cout(char *str)
 {
-  C2F(out)(str,strlen(str) + 1);
+  C2F(out)(str,(unsigned int)(strlen(str) + 1));
 }
 
 /*--------------------------------------------------------------
@@ -211,7 +211,7 @@ void C2F(cstringf)(ip,sciptr,m,n,max,ierr)
   ie=0;
   for (j = 0; j < *n; j++) {
     for (i = 0; i < *m; i++) {
-      l=strlen((*ip)[ie]);
+      l=(int)strlen((*ip)[ie]);
       sciptr[ie+5]=sciptr[ie+4]+l;
       if (5 + *m * *n + sciptr[ie+5] > *max) {
         *ierr = 1;
