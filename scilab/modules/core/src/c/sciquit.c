@@ -22,11 +22,12 @@
 #include "tmpdir.h" /* tmpdirc */
 #include "realmain.h" /* Get_no_startup_flag */
 #include "inffic.h" /* get_sci_data_strings */
+#include "scirun.h" /* scirun */
+
 #include "../../../graphics/includes/DestroyObjects.h"
 #include "../../../graphics/includes/graphicModuleLoad.h"
 /*-----------------------------------------------------------------------------------*/ 
 extern int C2F(deletewin)(integer *number);
-extern int C2F(scirun)(char * startup, int lstartup);
 
 #ifdef _MSC_VER
 extern LPTW GetTextWinScilab(void);
@@ -44,7 +45,6 @@ extern int CloseTCLsci(void);
 static int CloseConsoleGUI(void);
 static int CloseConsoleGUI(void);
 
-int ExitScilab(void);
 int C2F(sciquit)(void);
 void sci_exit(int n);
 /*-----------------------------------------------------------------------------------*/ 

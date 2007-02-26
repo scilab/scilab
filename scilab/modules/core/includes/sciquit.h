@@ -11,8 +11,22 @@
 #include "stack-c.h"
 #include "version.h"
 
+/**
+ * TODO : comment
+ * @return 
+ */
 int C2F(sciquit)(void);
+
+/**
+ * TODO : comment
+ * @return 
+ */
 int ExitScilab(void);
+
+/**
+ * TODO : comment
+ * @param n
+ */
 void sci_exit(int n);
 
 #endif /*__SCIQUIT__*/
