@@ -4,8 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include "CallScilab.h"
 #include "MALLOC.h"
-/*-----------------------------------------------------------------------------------*/
-extern int C2F(scirun)(char * startup, int lstartup);
+#include "scirun.h"
 /*-----------------------------------------------------------------------------------*/
 static BOOL RemoveCharsFromEOL(char *line,char CharToRemove);
 static BOOL RemoveComments(char *line);

@@ -14,71 +14,79 @@
 #include "stack-c.h"
 #include "version.h"
 /*-----------------------------------------------------------------------------------*/
+/**
+ * Disable TCL/TK and graphic interfaces 
+ * Scilab no GUI no TCL/TK "kernel mode" 
+*/
 void DisableInteractiveMode(void);
-/**
-Disable TCL/TK and graphic interfaces 
-Scilab no GUI no TCL/TK "kernel mode" 
-**/
 
+/**
+ * Initialize Scilab
+ * @param SCIpath define SCI environment variable : Default --> NULL
+ * @param ScilabStartup path & filename of scilab.start : Default --> NULL 
+ * @param Stacksize : Default --> NULL 
+ * @return TRUE if it is OK else FALSE
+*/
 int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize);
-/**
-Initialize Scilab
-returns TRUE if it is OK else FALSE
-SCIpath define SCI environment variable : Default --> NULL
-ScilabStartup path & filename of scilab.start : Default --> NULL 
-Stacksize : Default --> NULL 
-**/
 
+/**
+ * Terminate Scilab
+ * @param ScilabQuit path & filename of scilab.quit : Default --> NULL 
+ * @return TRUE if it is OK else FALSE 
+*/
 int TerminateScilab(char *ScilabQuit);
-/**
-Terminate Scilab
-returns TRUE if it is OK else FALSE 
-ScilabQuit path & filename of scilab.quit : Default --> NULL 
-**/
 
+/**
+ * Send a job to scilab 
+ * @param job the Scilab Job
+ * @return error code operation 0 : OK
+*/
 int SendScilabJob(char *job); 
-/**
-Send a job to scilab 
-returns error code operation 0 : OK
-**/
 
+/**
+ * Send jobs to scilab 
+ * @code 
+ * 	jobs[0] : a = 1;
+ * 	jobs[1] : b = 3;
+ *	jobs[2] : c = a + b;
+ *	SendScilabJobs(jobs,3);
+ * @endcode
+ * @return last error code operation 0 : OK
+**/
 int SendScilabJobs(char **jobs,int numberjobs);
-/**
-Send jobs to scilab 
-returns last error code operation 0 : OK
-Example :
-	jobs[0] : a = 1;
-	jobs[1] : b = 3;
-	jobs[2] : c = a + b;
-	SendScilabJobs(jobs,3);
-**/
 
+/**
+ * Returns last job send to scilab by SendScilabJobs or SendScilabJob
+ * @param[out] JOB the last job
+ * @param[out] nbcharsJOB the size of JOB
+ * @code
+ * Example :
+ * jobs[0] : a = 1;
+ * jobs[1] : b = V_NOT_EXIST;
+ * jobs[2] : c = a + b;
+ * if (SendScilabJobs(jobs,3))
+ * {
+ * 	char lastjob[4096]; // bsiz in scilab 
+ *	if (GetLastJob(lastjob,4096))
+ *	{
+ *		printf("%s\n",lastjob);
+ *	}
+ * }
+ * @endcode
+ * @return 
+**/
 BOOL GetLastJob(char *JOB,int nbcharsJOB);
-/**
-Returns last job send to scilab by SendScilabJobs or SendScilabJob
-Example :
-jobs[0] : a = 1;
-jobs[1] : b = V_NOT_EXIST;
-jobs[2] : c = a + b;
-if (SendScilabJobs(jobs,3))
-{
-	char lastjob[4096]; // bsiz in scilab 
-	if (GetLastJob(lastjob,4096))
-	{
-		printf("%s\n",lastjob);
-	}
-}
-**/
 
+/**
+ * This procedure is the entry point to Scilab's event loop 
+*/
 void ScilabDoOneEvent(void);
-/**
-This procedure is the entry point to Scilab's event loop 
-**/
 
-int ScilabHaveAGraph(void);
 /**
-Returns TRUE if a graphic windows is opened 
-**/
+ * Get the information is a graphic windows is opened or not
+ * @Return Returns TRUE if a graphic windows is opened 
+*/
+int ScilabHaveAGraph(void);
 
 /*-----------------------------------------------------------------------------------*/
 #endif /* __CALLSCILAB__ */
