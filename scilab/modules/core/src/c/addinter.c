@@ -14,6 +14,7 @@
 #include "MALLOC.h" /* MALLOC */
 #include "sciprint.h"
 #include "Funtab.h"
+#include "warningmode.h"
 
 #ifdef _MSC_VER
 #include "ExceptionMessage.h"
@@ -262,7 +263,7 @@ void C2F(userlk)(integer *k)
   int imes = 9999;
   if ( k1 >= LastInterf || k1 < 0 ) 
     {
-      sciprint("Invalid interface number %d",k1);
+      if (getWarningMode()) sciprint("Invalid interface number %d",k1);
       C2F(error)(&imes);
       return;
     }
@@ -287,7 +288,7 @@ void C2F(userlk)(integer *k)
   }
   else 
     {
-      sciprint("Interface %s not linked\r\n",DynInterf[k1].name);
+      if (getWarningMode()) sciprint("Interface %s not linked\r\n",DynInterf[k1].name);
       C2F(error)(&imes);
       return;
     }
@@ -320,8 +321,8 @@ int  SciLibLoad(int num_names, char **names, char **files, int *nums, int *err)
       /** Linking Files and add entry point name iname */
       if ( inum >=  MAXINTERF ) 
 	{
-	  sciprint("Maximum number of dynamic interfaces %d\r\n",MAXINTERF);
-	  sciprint("has been reached\r\n");
+	  if (getWarningMode()) sciprint("Maximum number of dynamic interfaces %d\r\n",MAXINTERF);
+	  if (getWarningMode()) sciprint("has been reached\r\n");
 	  *err=1;
 	  return -1 ;
 	}
@@ -341,7 +342,7 @@ int  SciLibLoad(int num_names, char **names, char **files, int *nums, int *err)
       DynInterf[nums[j]].Nshared = ilib;
       if ( SearchInDynLinks(names[0],&DynInterf[nums[j]].func) < 0 ) 
 	{
-	  sciprint("addinter failed for %s Not  found!\r\n",names[j]);
+	  if (getWarningMode()) sciprint("addinter failed for %s Not  found!\r\n",names[j]);
 	  return -1;
 	}
       else
@@ -379,7 +380,7 @@ void CallDynInterf(int *pos, int num_names, int namepos, char **names,
     (*DynInterf[*pos].func)();
   else 
     {
-      sciprint("Interface %s not linked\r\n",DynInterf[*pos].name);
+      if (getWarningMode()) sciprint("Interface %s not linked\r\n",DynInterf[*pos].name);
       C2F(error)(&imes);
     }
 }  

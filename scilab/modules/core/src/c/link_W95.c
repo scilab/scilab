@@ -8,6 +8,7 @@
 #include <string.h>
 #include <windows.h>
 #include "stack-def.h"
+#include "warningmode.h"
 
 #ifdef round
 	#undef round
@@ -44,7 +45,10 @@ void SciLink(int iflag,int *rhs,int *ilib,char *files[],char *en_names[],char *s
 	*ilib  = Sci_dlopen(files,0);
     }
   if (*ilib  == -1 ) return;
-  if ( iflag == 0) sciprint("shared archive loaded\r\n");
+  if ( iflag == 0) 
+  {
+	  if (getWarningMode()) sciprint("shared archive loaded\r\n");
+  }
   if ( *rhs >= 2) 
     {
       i=0 ;
@@ -95,12 +99,12 @@ int Sci_dlopen( char *loaded_files[], int global)
   while ( loaded_files[count] != NULL) count++;
   if ( count != 1 ) 
     {
-      sciprint("link: first argument must be a unique dll name\r\n");
+      if (getWarningMode()) sciprint("link: first argument must be a unique dll name\r\n");
     }
   hd1 =   LoadLibrary (loaded_files[0]);
   if ( hd1 == NULL ) 
     {
-      sciprint("link failed for dll %s\r\n",loaded_files[0]);
+      if (getWarningMode()) sciprint("link failed for dll %s\r\n",loaded_files[0]);
       return(-1);
     }
   for ( i = 0 ; i < Nshared ; i++ ) 
@@ -115,7 +119,7 @@ int Sci_dlopen( char *loaded_files[], int global)
   
   if ( Nshared == ENTRYMAX ) 
     {
-      sciprint("You can't open shared files maxentry %d reached\r\n",ENTRYMAX);
+      if (getWarningMode()) sciprint("You can't open shared files maxentry %d reached\r\n",ENTRYMAX);
       return(FAIL);
     }
 
@@ -144,25 +148,25 @@ int Sci_dlsym(char *ename,int ishared,char *strf)
   /* lookup the address of the function to be called */
   if ( NEpoints == ENTRYMAX ) 
     {
-      sciprint("You can't link more functions maxentry %d reached\r\n",ENTRYMAX);
+      if (getWarningMode()) sciprint("You can't link more functions maxentry %d reached\r\n",ENTRYMAX);
       return(FAIL);
     }
   if ( hd[ish].ok == FAIL ) 
     {
-      sciprint("Shared lib %d does not exists\r\n",ish);
+      if (getWarningMode()) sciprint("Shared lib %d does not exists\r\n",ish);
       return(FAIL);
     }
   /** entry was previously loaded **/
   if ( SearchFandS(ename,ish) >= 0 ) 
     {
-      sciprint("Entry name %s is already loaded from lib %d\r\n",ename,ish);
+      if (getWarningMode()) sciprint("Entry name %s is already loaded from lib %d\r\n",ename,ish);
       return(OK);
     }
   hd1 = (HINSTANCE)  hd[ish].shl;
   EP[NEpoints].epoint = (function) GetProcAddress (hd1,enamebuf);
   if ( EP[NEpoints].epoint == NULL )
     {
-      sciprint("%s is not an entry point \r\n",enamebuf);
+      if (getWarningMode()) sciprint("%s is not an entry point \r\n",enamebuf);
       return(FAIL);
     }
   else 
