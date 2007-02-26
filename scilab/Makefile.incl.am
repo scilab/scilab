@@ -1,6 +1,6 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 - 2007
+### INRIA - Scilab 2006/2007
 ### 
 ### Makefile included stuff
 ### Target, variable, suffixes which are supposed to be usefull in every makefile.am
@@ -13,15 +13,40 @@ sciincludedir=${includedir}/scilab
 datadir=${prefix}/modules
 
 #SUFFIXES = .xml .sci .htm
-SUFFIXES = .sci
+SUFFIXES = .sci .java .class .jar
 
+############ JAVA #################
+# Replace all the .java by .class in JAVAFILES
+CLASSFILES = $(JAVAFILES:.java=.class)
+# Create path without src/java and rename .java  by .class (needed by the jar 
+# creation)
+CLASSFILESRELATIVE = `echo "$(JAVAFILES)"| sed -e 's|src/java/||g'|sed -e 's|\.java|\.class|g'`
+
+BUILT_SOURCES=$(CLASSFILES)
+
+# Compilation of Java
+%.class:%.java
+	@echo; \
+	echo "Compiling Java source :" $<
+	$(JAVAC) -classpath "$(CLASSPATH):$(JAVA_CLASSPATH)" $(JAVAC_FLAGS) $<
+
+# creation of the jar
+%.jar: $(CLASSFILES)
+	@(echo; \
+	echo "Creation of the jar archive :"; \
+	cd $(CLASSPATH); \
+	$(JAR) cvf ../../$(JARFILE) $(CLASSFILESRELATIVE)	)
+
+CLEANFILES=$(CLASSFILES)
+
+################ MACROS ######################"
 # Rule to build a macro
 .sci.bin:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \
 	echo "Error : Cannot build $< : Scilab has not been build"; \
 	else \
 	echo "Creating $@"; \
-	$(top_builddir)/bin/scilab -ns -nwni -e "getf('$(abs_srcdir)/$<');save('$(abs_srcdir)/$@');exit;"; \
+	$(top_builddir)/bin/scilab -ns -nwni -e "exec('$(abs_srcdir)/$<');save('$(abs_srcdir)/$@');exit;"; \
 	fi )
 
 ## Test purpose

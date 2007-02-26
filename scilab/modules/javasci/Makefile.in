@@ -21,11 +21,12 @@
 
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 - 2007
+### INRIA - Scilab 2006/2007
 ### 
 ### Makefile included stuff
 ### Target, variable, suffixes which are supposed to be usefull in every makefile.am
 ##########
+
 
 
 VPATH = @srcdir@
@@ -46,9 +47,8 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = $(libscijavasci_la_include_HEADERS) \
-	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
-	$(top_srcdir)/Makefile.incl.am
+DIST_COMMON = $(libjavasci_la_include_HEADERS) $(srcdir)/Makefile.am \
+	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
 subdir = modules/javasci
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
@@ -64,22 +64,52 @@ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/modules/core/includes/machine.h
 CONFIG_CLEAN_FILES =
-SOURCES =
-DIST_SOURCES =
 am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
 am__vpath_adj = case $$p in \
     $(srcdir)/*) f=`echo "$$p" | sed "s|^$$srcdirstrip/||"`;; \
     *) f=$$p;; \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
-am__installdirs = "$(DESTDIR)$(libscijavasci_la_etcdir)" \
-	"$(DESTDIR)$(libscijavasci_la_rootdir)" \
-	"$(DESTDIR)$(libscijavasci_la_includedir)"
-libscijavasci_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libscijavasci_la_rootDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libscijavasci_la_etc_DATA) $(libscijavasci_la_root_DATA)
-libscijavasci_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
-HEADERS = $(libscijavasci_la_include_HEADERS)
+am__installdirs = "$(DESTDIR)$(pkglibdir)" \
+	"$(DESTDIR)$(libjavasci_la_etcdir)" \
+	"$(DESTDIR)$(libjavasci_la_rootdir)" \
+	"$(DESTDIR)$(libjavasci_la_includedir)"
+pkglibLTLIBRARIES_INSTALL = $(INSTALL)
+LTLIBRARIES = $(pkglib_LTLIBRARIES)
+libjavasci_la_DEPENDENCIES =  \
+	$(top_builddir)/libs/MALLOC/libscimalloc.la \
+	$(top_builddir)/modules/libscilab.la
+am__objects_1 = libjavasci_la-javasci_Scilab2.lo \
+	libjavasci_la-javasci_globals.lo \
+	libjavasci_la-javasci_SciStringArray.lo \
+	libjavasci_la-javasci_SciComplexArray.lo libjavasci_la-fix.lo \
+	libjavasci_la-javasci_SciDoubleArray.lo \
+	libjavasci_la-javasci_Scilab.lo \
+	libjavasci_la-javasci_SciBooleanArray.lo
+am_libjavasci_la_OBJECTS = $(am__objects_1)
+libjavasci_la_OBJECTS = $(am_libjavasci_la_OBJECTS)
+libjavasci_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libjavasci_la_CFLAGS) \
+	$(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
+DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
+depcomp = $(SHELL) $(top_srcdir)/config/depcomp
+am__depfiles_maybe = depfiles
+COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
+	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
+LTCOMPILE = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
+	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
+CCLD = $(CC)
+LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
+	$(LDFLAGS) -o $@
+SOURCES = $(libjavasci_la_SOURCES)
+DIST_SOURCES = $(libjavasci_la_SOURCES)
+libjavasci_la_etcDATA_INSTALL = $(INSTALL_DATA)
+libjavasci_la_rootDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(libjavasci_la_etc_DATA) $(libjavasci_la_root_DATA)
+libjavasci_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
+HEADERS = $(libjavasci_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -118,10 +148,15 @@ INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
 INSTALL_SCRIPT = @INSTALL_SCRIPT@
 INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
+JAR = @JAR@
+JAVA = @JAVA@
 JAVAC = @JAVAC@
+JAVAH = @JAVAH@
+JAVA_G = @JAVA_G@
 JAVA_HOME = @JAVA_HOME@
 JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
 JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
+JDB = @JDB@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
 LIBOBJS = @LIBOBJS@
@@ -131,6 +166,7 @@ LN_S = @LN_S@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
+MANGENERATOR = @MANGENERATOR@
 MKDIR_P = @MKDIR_P@
 NM = @NM@
 OBJEXT = @OBJEXT@
@@ -225,33 +261,18 @@ tcldir = @tcldir@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
-#### Target ######
-target = $(datadir)/javasci
-
-#### javasci : Conf files ####
-libscijavasci_la_rootdir = $(target)
-libscijavasci_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
-
-#### javasci : init scripts #### 
-libscijavasci_la_etcdir = $(target)/etc
-libscijavasci_la_etc_DATA = etc/javasci.quit etc/javasci.start
-
-#### javasci : include files ####
-libscijavasci_la_includedir = $(sciincludedir)/javasci
-libscijavasci_la_include_HEADERS = includes/javasci_Scilab.h \
-includes/javasci_Scilab2.h \
-includes/javasci_globals.h \
-includes/javasci_SciStringArray.h \
-includes/javasci_SciComplexArray.h \
-includes/javasci_SciDoubleArray.h \
-includes/javasci_SciBooleanArray.h
-
-
 # Where headers (*.h) are installed (usually /usr/include/scilab/)
 sciincludedir = ${includedir}/scilab
 
 #SUFFIXES = .xml .sci .htm
-SUFFIXES = .sci
+SUFFIXES = .sci .java .class .jar
+
+############ JAVA #################
+# Replace all the .java by .class in JAVAFILES
+CLASSFILES = $(JAVAFILES:.java=.class)
+CLASSFILESRELATIVE = `echo "$(JAVAFILES)"| sed -e 's|src/java/||g'|sed -e 's|\.java|\.class|g'`
+BUILT_SOURCES = $(CLASSFILES)
+CLEANFILES = $(CLASSFILES)
 
 # Install HTML files into the right target
 # We do not use the automake mechanism (libxxxx_la_help_fr_DATA) because
@@ -269,10 +290,71 @@ MACROMASK = *.sci
 MACROBUILDMASK = *.sce
 MACROBINMASK = *.bin
 FUNCTION_NAMES = macros/names
-all: all-am
+
+#### Target ######
+target = $(datadir)/javasci
+
+#### Java sources ####
+JAVAFILES = src/java/javasci/BadDataArgumentException.java \
+	src/java/javasci/SciDoubleArray.java \
+	src/java/javasci/SciBooleanArray.java \
+	src/java/javasci/SciDouble.java \
+	src/java/javasci/SciBoolean.java \
+	src/java/javasci/Scilab.java \
+	src/java/javasci/SciComplexArray.java \
+	src/java/javasci/SciStringArray.java \
+	src/java/javasci/SciComplex.java \
+	src/java/javasci/SciString.java
+
+
+#### Where are the sources (mandatory) ####
+CLASSPATH = src/java/
+
+#### javasci : jar file #### 
+javasci_la_jardir = $(target)/jar
+JARFILE = javasci.jar
+
+#### Javasci : sources ####
+JAVASCI_C_SOURCES = src/c/javasci_Scilab2.c \
+src/c/javasci_globals.c \
+src/c/javasci_SciStringArray.c \
+src/c/javasci_SciComplexArray.c \
+src/c/fix.c \
+src/c/javasci_SciDoubleArray.c \
+src/c/javasci_Scilab.c \
+src/c/javasci_SciBooleanArray.c
+
+pkglib_LTLIBRARIES = libjavasci.la
+libjavasci_la_SOURCES = $(JAVASCI_C_SOURCES)
+libjavasci_la_CFLAGS = -Iincludes/ $(JAVA_JNI_INCLUDE)
+libjavasci_la_LIBADD = \
+	$(top_builddir)/libs/MALLOC/libscimalloc.la \
+	$(top_builddir)/modules/libscilab.la
+
+
+#### javasci : Conf files ####
+libjavasci_la_rootdir = $(target)
+libjavasci_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+
+#### javasci : init scripts #### 
+libjavasci_la_etcdir = $(target)/etc
+libjavasci_la_etc_DATA = etc/javasci.quit etc/javasci.start
+
+#### javasci : include files ####
+libjavasci_la_includedir = $(sciincludedir)/javasci
+libjavasci_la_include_HEADERS = includes/javasci_Scilab.h \
+includes/javasci_Scilab2.h \
+includes/javasci_globals.h \
+includes/javasci_SciStringArray.h \
+includes/javasci_SciComplexArray.h \
+includes/javasci_SciDoubleArray.h \
+includes/javasci_SciBooleanArray.h
+
+all: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) all-am
 
 .SUFFIXES:
-.SUFFIXES: .sci .bin
+.SUFFIXES: .sci .java .class .jar .bin .c .lo .o .obj
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -302,62 +384,183 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+install-pkglibLTLIBRARIES: $(pkglib_LTLIBRARIES)
+	@$(NORMAL_INSTALL)
+	test -z "$(pkglibdir)" || $(MKDIR_P) "$(DESTDIR)$(pkglibdir)"
+	@list='$(pkglib_LTLIBRARIES)'; for p in $$list; do \
+	  if test -f $$p; then \
+	    f=$(am__strip_dir) \
+	    echo " $(LIBTOOL) --mode=install $(pkglibLTLIBRARIES_INSTALL) $(INSTALL_STRIP_FLAG) '$$p' '$(DESTDIR)$(pkglibdir)/$$f'"; \
+	    $(LIBTOOL) --mode=install $(pkglibLTLIBRARIES_INSTALL) $(INSTALL_STRIP_FLAG) "$$p" "$(DESTDIR)$(pkglibdir)/$$f"; \
+	  else :; fi; \
+	done
+
+uninstall-pkglibLTLIBRARIES:
+	@$(NORMAL_UNINSTALL)
+	@list='$(pkglib_LTLIBRARIES)'; for p in $$list; do \
+	  p=$(am__strip_dir) \
+	  echo " $(LIBTOOL) --mode=uninstall rm -f '$(DESTDIR)$(pkglibdir)/$$p'"; \
+	  $(LIBTOOL) --mode=uninstall rm -f "$(DESTDIR)$(pkglibdir)/$$p"; \
+	done
+
+clean-pkglibLTLIBRARIES:
+	-test -z "$(pkglib_LTLIBRARIES)" || rm -f $(pkglib_LTLIBRARIES)
+	@list='$(pkglib_LTLIBRARIES)'; for p in $$list; do \
+	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
+	  test "$$dir" != "$$p" || dir=.; \
+	  echo "rm -f \"$${dir}/so_locations\""; \
+	  rm -f "$${dir}/so_locations"; \
+	done
+libjavasci.la: $(libjavasci_la_OBJECTS) $(libjavasci_la_DEPENDENCIES) 
+	$(libjavasci_la_LINK) -rpath $(pkglibdir) $(libjavasci_la_OBJECTS) $(libjavasci_la_LIBADD) $(LIBS)
+
+mostlyclean-compile:
+	-rm -f *.$(OBJEXT)
+
+distclean-compile:
+	-rm -f *.tab.c
+
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libjavasci_la-fix.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libjavasci_la-javasci_SciBooleanArray.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libjavasci_la-javasci_SciComplexArray.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libjavasci_la-javasci_SciDoubleArray.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libjavasci_la-javasci_SciStringArray.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libjavasci_la-javasci_Scilab.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libjavasci_la-javasci_Scilab2.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libjavasci_la-javasci_globals.Plo@am__quote@
+
+.c.o:
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(COMPILE) -c $<
+
+.c.obj:
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(COMPILE) -c `$(CYGPATH_W) '$<'`
+
+.c.lo:
+@am__fastdepCC_TRUE@	$(LTCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
+
+libjavasci_la-javasci_Scilab2.lo: src/c/javasci_Scilab2.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci_la_CFLAGS) $(CFLAGS) -MT libjavasci_la-javasci_Scilab2.lo -MD -MP -MF $(DEPDIR)/libjavasci_la-javasci_Scilab2.Tpo -c -o libjavasci_la-javasci_Scilab2.lo `test -f 'src/c/javasci_Scilab2.c' || echo '$(srcdir)/'`src/c/javasci_Scilab2.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libjavasci_la-javasci_Scilab2.Tpo $(DEPDIR)/libjavasci_la-javasci_Scilab2.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/javasci_Scilab2.c' object='libjavasci_la-javasci_Scilab2.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci_la_CFLAGS) $(CFLAGS) -c -o libjavasci_la-javasci_Scilab2.lo `test -f 'src/c/javasci_Scilab2.c' || echo '$(srcdir)/'`src/c/javasci_Scilab2.c
+
+libjavasci_la-javasci_globals.lo: src/c/javasci_globals.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci_la_CFLAGS) $(CFLAGS) -MT libjavasci_la-javasci_globals.lo -MD -MP -MF $(DEPDIR)/libjavasci_la-javasci_globals.Tpo -c -o libjavasci_la-javasci_globals.lo `test -f 'src/c/javasci_globals.c' || echo '$(srcdir)/'`src/c/javasci_globals.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libjavasci_la-javasci_globals.Tpo $(DEPDIR)/libjavasci_la-javasci_globals.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/javasci_globals.c' object='libjavasci_la-javasci_globals.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci_la_CFLAGS) $(CFLAGS) -c -o libjavasci_la-javasci_globals.lo `test -f 'src/c/javasci_globals.c' || echo '$(srcdir)/'`src/c/javasci_globals.c
+
+libjavasci_la-javasci_SciStringArray.lo: src/c/javasci_SciStringArray.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci_la_CFLAGS) $(CFLAGS) -MT libjavasci_la-javasci_SciStringArray.lo -MD -MP -MF $(DEPDIR)/libjavasci_la-javasci_SciStringArray.Tpo -c -o libjavasci_la-javasci_SciStringArray.lo `test -f 'src/c/javasci_SciStringArray.c' || echo '$(srcdir)/'`src/c/javasci_SciStringArray.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libjavasci_la-javasci_SciStringArray.Tpo $(DEPDIR)/libjavasci_la-javasci_SciStringArray.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/javasci_SciStringArray.c' object='libjavasci_la-javasci_SciStringArray.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci_la_CFLAGS) $(CFLAGS) -c -o libjavasci_la-javasci_SciStringArray.lo `test -f 'src/c/javasci_SciStringArray.c' || echo '$(srcdir)/'`src/c/javasci_SciStringArray.c
+
+libjavasci_la-javasci_SciComplexArray.lo: src/c/javasci_SciComplexArray.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci_la_CFLAGS) $(CFLAGS) -MT libjavasci_la-javasci_SciComplexArray.lo -MD -MP -MF $(DEPDIR)/libjavasci_la-javasci_SciComplexArray.Tpo -c -o libjavasci_la-javasci_SciComplexArray.lo `test -f 'src/c/javasci_SciComplexArray.c' || echo '$(srcdir)/'`src/c/javasci_SciComplexArray.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libjavasci_la-javasci_SciComplexArray.Tpo $(DEPDIR)/libjavasci_la-javasci_SciComplexArray.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/javasci_SciComplexArray.c' object='libjavasci_la-javasci_SciComplexArray.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci_la_CFLAGS) $(CFLAGS) -c -o libjavasci_la-javasci_SciComplexArray.lo `test -f 'src/c/javasci_SciComplexArray.c' || echo '$(srcdir)/'`src/c/javasci_SciComplexArray.c
+
+libjavasci_la-fix.lo: src/c/fix.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci_la_CFLAGS) $(CFLAGS) -MT libjavasci_la-fix.lo -MD -MP -MF $(DEPDIR)/libjavasci_la-fix.Tpo -c -o libjavasci_la-fix.lo `test -f 'src/c/fix.c' || echo '$(srcdir)/'`src/c/fix.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libjavasci_la-fix.Tpo $(DEPDIR)/libjavasci_la-fix.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/fix.c' object='libjavasci_la-fix.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci_la_CFLAGS) $(CFLAGS) -c -o libjavasci_la-fix.lo `test -f 'src/c/fix.c' || echo '$(srcdir)/'`src/c/fix.c
+
+libjavasci_la-javasci_SciDoubleArray.lo: src/c/javasci_SciDoubleArray.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci_la_CFLAGS) $(CFLAGS) -MT libjavasci_la-javasci_SciDoubleArray.lo -MD -MP -MF $(DEPDIR)/libjavasci_la-javasci_SciDoubleArray.Tpo -c -o libjavasci_la-javasci_SciDoubleArray.lo `test -f 'src/c/javasci_SciDoubleArray.c' || echo '$(srcdir)/'`src/c/javasci_SciDoubleArray.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libjavasci_la-javasci_SciDoubleArray.Tpo $(DEPDIR)/libjavasci_la-javasci_SciDoubleArray.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/javasci_SciDoubleArray.c' object='libjavasci_la-javasci_SciDoubleArray.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci_la_CFLAGS) $(CFLAGS) -c -o libjavasci_la-javasci_SciDoubleArray.lo `test -f 'src/c/javasci_SciDoubleArray.c' || echo '$(srcdir)/'`src/c/javasci_SciDoubleArray.c
+
+libjavasci_la-javasci_Scilab.lo: src/c/javasci_Scilab.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci_la_CFLAGS) $(CFLAGS) -MT libjavasci_la-javasci_Scilab.lo -MD -MP -MF $(DEPDIR)/libjavasci_la-javasci_Scilab.Tpo -c -o libjavasci_la-javasci_Scilab.lo `test -f 'src/c/javasci_Scilab.c' || echo '$(srcdir)/'`src/c/javasci_Scilab.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libjavasci_la-javasci_Scilab.Tpo $(DEPDIR)/libjavasci_la-javasci_Scilab.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/javasci_Scilab.c' object='libjavasci_la-javasci_Scilab.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci_la_CFLAGS) $(CFLAGS) -c -o libjavasci_la-javasci_Scilab.lo `test -f 'src/c/javasci_Scilab.c' || echo '$(srcdir)/'`src/c/javasci_Scilab.c
+
+libjavasci_la-javasci_SciBooleanArray.lo: src/c/javasci_SciBooleanArray.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci_la_CFLAGS) $(CFLAGS) -MT libjavasci_la-javasci_SciBooleanArray.lo -MD -MP -MF $(DEPDIR)/libjavasci_la-javasci_SciBooleanArray.Tpo -c -o libjavasci_la-javasci_SciBooleanArray.lo `test -f 'src/c/javasci_SciBooleanArray.c' || echo '$(srcdir)/'`src/c/javasci_SciBooleanArray.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libjavasci_la-javasci_SciBooleanArray.Tpo $(DEPDIR)/libjavasci_la-javasci_SciBooleanArray.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/javasci_SciBooleanArray.c' object='libjavasci_la-javasci_SciBooleanArray.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci_la_CFLAGS) $(CFLAGS) -c -o libjavasci_la-javasci_SciBooleanArray.lo `test -f 'src/c/javasci_SciBooleanArray.c' || echo '$(srcdir)/'`src/c/javasci_SciBooleanArray.c
 
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libscijavasci_la_etcDATA: $(libscijavasci_la_etc_DATA)
+install-libjavasci_la_etcDATA: $(libjavasci_la_etc_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libscijavasci_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libscijavasci_la_etcdir)"
-	@list='$(libscijavasci_la_etc_DATA)'; for p in $$list; do \
+	test -z "$(libjavasci_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libjavasci_la_etcdir)"
+	@list='$(libjavasci_la_etc_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libscijavasci_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscijavasci_la_etcdir)/$$f'"; \
-	  $(libscijavasci_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscijavasci_la_etcdir)/$$f"; \
+	  echo " $(libjavasci_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libjavasci_la_etcdir)/$$f'"; \
+	  $(libjavasci_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libjavasci_la_etcdir)/$$f"; \
 	done
 
-uninstall-libscijavasci_la_etcDATA:
+uninstall-libjavasci_la_etcDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libscijavasci_la_etc_DATA)'; for p in $$list; do \
+	@list='$(libjavasci_la_etc_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscijavasci_la_etcdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscijavasci_la_etcdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libjavasci_la_etcdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libjavasci_la_etcdir)/$$f"; \
 	done
-install-libscijavasci_la_rootDATA: $(libscijavasci_la_root_DATA)
+install-libjavasci_la_rootDATA: $(libjavasci_la_root_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libscijavasci_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libscijavasci_la_rootdir)"
-	@list='$(libscijavasci_la_root_DATA)'; for p in $$list; do \
+	test -z "$(libjavasci_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libjavasci_la_rootdir)"
+	@list='$(libjavasci_la_root_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libscijavasci_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscijavasci_la_rootdir)/$$f'"; \
-	  $(libscijavasci_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscijavasci_la_rootdir)/$$f"; \
+	  echo " $(libjavasci_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libjavasci_la_rootdir)/$$f'"; \
+	  $(libjavasci_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libjavasci_la_rootdir)/$$f"; \
 	done
 
-uninstall-libscijavasci_la_rootDATA:
+uninstall-libjavasci_la_rootDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libscijavasci_la_root_DATA)'; for p in $$list; do \
+	@list='$(libjavasci_la_root_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscijavasci_la_rootdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscijavasci_la_rootdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libjavasci_la_rootdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libjavasci_la_rootdir)/$$f"; \
 	done
-install-libscijavasci_la_includeHEADERS: $(libscijavasci_la_include_HEADERS)
+install-libjavasci_la_includeHEADERS: $(libjavasci_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
-	test -z "$(libscijavasci_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscijavasci_la_includedir)"
-	@list='$(libscijavasci_la_include_HEADERS)'; for p in $$list; do \
+	test -z "$(libjavasci_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libjavasci_la_includedir)"
+	@list='$(libjavasci_la_include_HEADERS)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libscijavasci_la_includeHEADERS_INSTALL) '$$d$$p' '$(DESTDIR)$(libscijavasci_la_includedir)/$$f'"; \
-	  $(libscijavasci_la_includeHEADERS_INSTALL) "$$d$$p" "$(DESTDIR)$(libscijavasci_la_includedir)/$$f"; \
+	  echo " $(libjavasci_la_includeHEADERS_INSTALL) '$$d$$p' '$(DESTDIR)$(libjavasci_la_includedir)/$$f'"; \
+	  $(libjavasci_la_includeHEADERS_INSTALL) "$$d$$p" "$(DESTDIR)$(libjavasci_la_includedir)/$$f"; \
 	done
 
-uninstall-libscijavasci_la_includeHEADERS:
+uninstall-libjavasci_la_includeHEADERS:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libscijavasci_la_include_HEADERS)'; for p in $$list; do \
+	@list='$(libjavasci_la_include_HEADERS)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscijavasci_la_includedir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscijavasci_la_includedir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libjavasci_la_includedir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libjavasci_la_includedir)/$$f"; \
 	done
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
@@ -435,13 +638,15 @@ distdir: $(DISTFILES)
 	  fi; \
 	done
 check-am: all-am
-check: check-am
-all-am: Makefile $(DATA) $(HEADERS)
+check: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) check-am
+all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libscijavasci_la_etcdir)" "$(DESTDIR)$(libscijavasci_la_rootdir)" "$(DESTDIR)$(libscijavasci_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libjavasci_la_etcdir)" "$(DESTDIR)$(libjavasci_la_rootdir)" "$(DESTDIR)$(libjavasci_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
-install: install-am
+install: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) install-am
 install-exec: install-exec-am
 install-data: install-data-am
 uninstall: uninstall-am
@@ -458,6 +663,7 @@ install-strip:
 mostlyclean-generic:
 
 clean-generic:
+	-test -z "$(CLEANFILES)" || rm -f $(CLEANFILES)
 
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
@@ -465,13 +671,17 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
+	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
 clean: clean-am
 
-clean-am: clean-generic clean-libtool mostlyclean-am
+clean-am: clean-generic clean-libtool clean-pkglibLTLIBRARIES \
+	mostlyclean-am
 
 distclean: distclean-am
+	-rm -rf ./$(DEPDIR)
 	-rm -f Makefile
-distclean-am: clean-am distclean-generic distclean-tags
+distclean-am: clean-am distclean-compile distclean-generic \
+	distclean-tags
 
 dvi: dvi-am
 
@@ -483,13 +693,13 @@ info: info-am
 
 info-am:
 
-install-data-am: install-data-local install-libscijavasci_la_etcDATA \
-	install-libscijavasci_la_includeHEADERS \
-	install-libscijavasci_la_rootDATA
+install-data-am: install-data-local install-libjavasci_la_etcDATA \
+	install-libjavasci_la_includeHEADERS \
+	install-libjavasci_la_rootDATA
 
 install-dvi: install-dvi-am
 
-install-exec-am:
+install-exec-am: install-pkglibLTLIBRARIES
 
 install-html: install-html-am
 
@@ -506,12 +716,14 @@ install-ps: install-ps-am
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
+	-rm -rf ./$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
 mostlyclean: mostlyclean-am
 
-mostlyclean-am: mostlyclean-generic mostlyclean-libtool
+mostlyclean-am: mostlyclean-compile mostlyclean-generic \
+	mostlyclean-libtool
 
 pdf: pdf-am
 
@@ -521,38 +733,54 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libscijavasci_la_etcDATA \
-	uninstall-libscijavasci_la_includeHEADERS \
-	uninstall-libscijavasci_la_rootDATA
+uninstall-am: uninstall-libjavasci_la_etcDATA \
+	uninstall-libjavasci_la_includeHEADERS \
+	uninstall-libjavasci_la_rootDATA uninstall-pkglibLTLIBRARIES
 
 .MAKE: install-am install-strip
 
 .PHONY: CTAGS GTAGS all all-am check check-am clean clean-generic \
-	clean-libtool ctags distclean distclean-generic \
-	distclean-libtool distclean-tags distdir dvi dvi-am html \
-	html-am info info-am install install-am install-data \
-	install-data-am install-data-local install-dvi install-dvi-am \
-	install-exec install-exec-am install-html install-html-am \
+	clean-libtool clean-pkglibLTLIBRARIES ctags distclean \
+	distclean-compile distclean-generic distclean-libtool \
+	distclean-tags distdir dvi dvi-am html html-am info info-am \
+	install install-am install-data install-data-am \
+	install-data-local install-dvi install-dvi-am install-exec \
+	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
-	install-libscijavasci_la_etcDATA \
-	install-libscijavasci_la_includeHEADERS \
-	install-libscijavasci_la_rootDATA install-man install-pdf \
-	install-pdf-am install-ps install-ps-am install-strip \
-	installcheck installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-generic \
+	install-libjavasci_la_etcDATA \
+	install-libjavasci_la_includeHEADERS \
+	install-libjavasci_la_rootDATA install-man install-pdf \
+	install-pdf-am install-pkglibLTLIBRARIES install-ps \
+	install-ps-am install-strip installcheck installcheck-am \
+	installdirs maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-compile mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
-	uninstall-am uninstall-libscijavasci_la_etcDATA \
-	uninstall-libscijavasci_la_includeHEADERS \
-	uninstall-libscijavasci_la_rootDATA
+	uninstall-am uninstall-libjavasci_la_etcDATA \
+	uninstall-libjavasci_la_includeHEADERS \
+	uninstall-libjavasci_la_rootDATA uninstall-pkglibLTLIBRARIES
 
 
+# Compilation of Java
+%.class:%.java
+	@echo; \
+	echo "Compiling Java source :" $<
+	$(JAVAC) -classpath "$(CLASSPATH):$(JAVA_CLASSPATH)" $(JAVAC_FLAGS) $<
+
+# creation of the jar
+%.jar: $(CLASSFILES)
+	@(echo; \
+	echo "Creation of the jar archive :"; \
+	cd $(CLASSPATH); \
+	$(JAR) cvf ../../$(JARFILE) $(CLASSFILESRELATIVE)	)
+
+################ MACROS ######################"
 # Rule to build a macro
 .sci.bin:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \
 	echo "Error : Cannot build $< : Scilab has not been build"; \
 	else \
 	echo "Creating $@"; \
-	$(top_builddir)/bin/scilab -ns -nwni -e "getf('$(abs_srcdir)/$<');save('$(abs_srcdir)/$@');exit;"; \
+	$(top_builddir)/bin/scilab -ns -nwni -e "exec('$(abs_srcdir)/$<');save('$(abs_srcdir)/$@');exit;"; \
 	fi )
 
 macrossly:

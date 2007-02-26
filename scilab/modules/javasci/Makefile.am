@@ -3,22 +3,69 @@
 ### INRIA - Scilab 2006 
 ##########
 
+include $(top_srcdir)/Makefile.incl.am
+
 
 #### Target ######
 target=$(datadir)/javasci
 
+
+#### Java sources ####
+JAVAFILES = src/java/javasci/BadDataArgumentException.java \
+	src/java/javasci/SciDoubleArray.java \
+	src/java/javasci/SciBooleanArray.java \
+	src/java/javasci/SciDouble.java \
+	src/java/javasci/SciBoolean.java \
+	src/java/javasci/Scilab.java \
+	src/java/javasci/SciComplexArray.java \
+	src/java/javasci/SciStringArray.java \
+	src/java/javasci/SciComplex.java \
+	src/java/javasci/SciString.java
+
+#### Where are the sources (mandatory) ####
+CLASSPATH = src/java/
+
+#### javasci : jar file #### 
+javasci_la_jardir = $(target)/jar
+JARFILE = javasci.jar
+
+
+
+
+#### Javasci : sources ####
+JAVASCI_C_SOURCES = src/c/javasci_Scilab2.c \
+src/c/javasci_globals.c \
+src/c/javasci_SciStringArray.c \
+src/c/javasci_SciComplexArray.c \
+src/c/fix.c \
+src/c/javasci_SciDoubleArray.c \
+src/c/javasci_Scilab.c \
+src/c/javasci_SciBooleanArray.c
+
+
+
+pkglib_LTLIBRARIES = libjavasci.la
+
+libjavasci_la_SOURCES = $(JAVASCI_C_SOURCES)
+
+libjavasci_la_CFLAGS = -Iincludes/ $(JAVA_JNI_INCLUDE)
+
+libjavasci_la_LIBADD = \
+	$(top_builddir)/libs/MALLOC/libscimalloc.la \
+	$(top_builddir)/modules/libscilab.la
+
 #### javasci : Conf files ####
-libscijavasci_la_rootdir = $(target)
-libscijavasci_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libjavasci_la_rootdir = $(target)
+libjavasci_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### javasci : init scripts #### 
-libscijavasci_la_etcdir = $(target)/etc
-libscijavasci_la_etc_DATA = etc/javasci.quit etc/javasci.start
+libjavasci_la_etcdir = $(target)/etc
+libjavasci_la_etc_DATA = etc/javasci.quit etc/javasci.start
 
 
 #### javasci : include files ####
-libscijavasci_la_includedir=$(sciincludedir)/javasci
-libscijavasci_la_include_HEADERS = includes/javasci_Scilab.h \
+libjavasci_la_includedir=$(sciincludedir)/javasci
+libjavasci_la_include_HEADERS = includes/javasci_Scilab.h \
 includes/javasci_Scilab2.h \
 includes/javasci_globals.h \
 includes/javasci_SciStringArray.h \
@@ -27,4 +74,3 @@ includes/javasci_SciDoubleArray.h \
 includes/javasci_SciBooleanArray.h
 
 
-include $(top_srcdir)/Makefile.incl.am

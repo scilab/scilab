@@ -21,7 +21,7 @@
 
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 - 2007
+### INRIA - Scilab 2006/2007
 ### 
 ### Makefile included stuff
 ### Target, variable, suffixes which are supposed to be usefull in every makefile.am
@@ -142,10 +142,15 @@ INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
 INSTALL_SCRIPT = @INSTALL_SCRIPT@
 INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
+JAR = @JAR@
+JAVA = @JAVA@
 JAVAC = @JAVAC@
+JAVAH = @JAVAH@
+JAVA_G = @JAVA_G@
 JAVA_HOME = @JAVA_HOME@
 JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
 JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
+JDB = @JDB@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
 LIBOBJS = @LIBOBJS@
@@ -155,6 +160,7 @@ LN_S = @LN_S@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
+MANGENERATOR = @MANGENERATOR@
 MKDIR_P = @MKDIR_P@
 NM = @NM@
 OBJEXT = @OBJEXT@
@@ -277,7 +283,14 @@ top_srcdir = @top_srcdir@
 @JAVA_TRUE@sciincludedir = ${includedir}/scilab
 
 #SUFFIXES = .xml .sci .htm
-@JAVA_TRUE@SUFFIXES = .sci
+@JAVA_TRUE@SUFFIXES = .sci .java .class .jar
+
+############ JAVA #################
+# Replace all the .java by .class in JAVAFILES
+@JAVA_TRUE@CLASSFILES = $(JAVAFILES:.java=.class)
+@JAVA_TRUE@CLASSFILESRELATIVE = `echo "$(JAVAFILES)"| sed -e 's|src/java/||g'|sed -e 's|\.java|\.class|g'`
+@JAVA_TRUE@BUILT_SOURCES = $(CLASSFILES)
+@JAVA_TRUE@CLEANFILES = $(CLASSFILES)
 
 # Install HTML files into the right target
 # We do not use the automake mechanism (libxxxx_la_help_fr_DATA) because
@@ -295,10 +308,11 @@ top_srcdir = @top_srcdir@
 @JAVA_TRUE@MACROBUILDMASK = *.sce
 @JAVA_TRUE@MACROBINMASK = *.bin
 @JAVA_TRUE@FUNCTION_NAMES = macros/names
-all: all-am
+all: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) all-am
 
 .SUFFIXES:
-.SUFFIXES: .sci .bin .c .lo .o .obj
+.SUFFIXES: .sci .java .class .jar .bin .c .lo .o .obj
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -533,13 +547,15 @@ distdir: $(DISTFILES)
 	  fi; \
 	done
 check-am: all-am
-check: check-am
+check: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA)
 installdirs:
 	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscijvm_la_etcdir)" "$(DESTDIR)$(libscijvm_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
-install: install-am
+install: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) install-am
 install-exec: install-exec-am
 install-data: install-data-am
 uninstall: uninstall-am
@@ -556,6 +572,7 @@ install-strip:
 mostlyclean-generic:
 
 clean-generic:
+	-test -z "$(CLEANFILES)" || rm -f $(CLEANFILES)
 
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
@@ -563,6 +580,7 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
+	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
 @JAVA_FALSE@install-data-local:
 @JAVA_FALSE@install-html-local:
 clean: clean-am
@@ -649,13 +667,27 @@ uninstall-am: uninstall-libscijvm_la_etcDATA \
 	uninstall-pkglibLTLIBRARIES
 
 
+# Compilation of Java
+@JAVA_TRUE@%.class:%.java
+@JAVA_TRUE@	@echo; \
+@JAVA_TRUE@	echo "Compiling Java source :" $<
+@JAVA_TRUE@	$(JAVAC) -classpath "$(CLASSPATH):$(JAVA_CLASSPATH)" $(JAVAC_FLAGS) $<
+
+# creation of the jar
+@JAVA_TRUE@%.jar: $(CLASSFILES)
+@JAVA_TRUE@	@(echo; \
+@JAVA_TRUE@	echo "Creation of the jar archive :"; \
+@JAVA_TRUE@	cd $(CLASSPATH); \
+@JAVA_TRUE@	$(JAR) cvf ../../$(JARFILE) $(CLASSFILESRELATIVE)	)
+
+################ MACROS ######################"
 # Rule to build a macro
 @JAVA_TRUE@.sci.bin:
 @JAVA_TRUE@	-@( if test ! -x $(top_builddir)/scilab-bin; then \
 @JAVA_TRUE@	echo "Error : Cannot build $< : Scilab has not been build"; \
 @JAVA_TRUE@	else \
 @JAVA_TRUE@	echo "Creating $@"; \
-@JAVA_TRUE@	$(top_builddir)/bin/scilab -ns -nwni -e "getf('$(abs_srcdir)/$<');save('$(abs_srcdir)/$@');exit;"; \
+@JAVA_TRUE@	$(top_builddir)/bin/scilab -ns -nwni -e "exec('$(abs_srcdir)/$<');save('$(abs_srcdir)/$@');exit;"; \
 @JAVA_TRUE@	fi )
 
 @JAVA_TRUE@macrossly:

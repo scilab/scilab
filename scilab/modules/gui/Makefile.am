@@ -3,6 +3,8 @@
 ### INRIA - Scilab 2006 
 ##########
 
+include $(top_srcdir)/Makefile.incl.am
+
 GUI_C_SOURCES = \
 src/c/xsci/wf_w_util.c \
 src/c/xsci/utils.c \
@@ -84,19 +86,20 @@ sci_gateway/fortran/sci_delmenu_old.f
 
 GUI_JAVA_SOURCES = src/c/SciGUIConsole/SciGUIConsole.c
 
-BUILT_SOURCES = $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
+BUILT_SOURCES += $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
 
 $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h: $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad src/c/xsci/x_main.c
 	$(top_srcdir)/modules/gui/src/c/xsci/ad2c.sh $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad > $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
 
-CLEANFILES=$(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
+CLEANFILES += $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
 
 libscigui_la_CFLAGS=  -Iincludes/    -I$(top_srcdir)/modules/graphics/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/core/src/c/ -I$(top_srcdir)/modules/string/includes/ -I$(top_srcdir)/modules/tclsci/includes/ -I$(top_srcdir)/modules/gui/src/c/xsci/ $(TCL_INC_PATH) $(Tk_INC_PATH) 
+
 if JAVA
 libscigui_la_CFLAGS += $(JAVA_JNI_INCLUDE)
 endif
 
-libscigui_la_LDFLAGS = $(X_LIBS) $(TERMCAP_LIB)
+libscigui_la_LDFLAGS = $(X_LIBS) $(TERMCAP_LIB) $(X_EXTRA_LIBS)
 
 pkglib_LTLIBRARIES = libscigui.la
 
@@ -153,4 +156,4 @@ includes/GraphicWindow.h
 libscigui_la_demosdir=$(target)/demos/
 libscigui_la_demos_DATA = demos/dialog.dem
 
-include $(top_srcdir)/Makefile.incl.am
+

@@ -1,8 +1,16 @@
+########### 
+## Unitary tests of Scilab features
+## Java tests
+## INRIA
+## Authors : 
+## * Pierre MARECHAL
+## * Allan CORNET
+##
+## Update Sylvestre LEDRU 2007
+##
+###########
+
 SHELL = /bin/sh
-
-SCIDIR = ../..
-
-include ../../Makefile.incl
 
 info:
 	@echo "Type \"make tests\" in tests directory"
@@ -10,7 +18,11 @@ info:
 	@echo " SEE THE README FILE (IMPORTANT) "
 
 tests: 
-	$(SCIDIR)/bin/scilab -nwni -nb -f JavaTests.sce
+	@if test -z "$SCI"; then \
+		echo "SCI must be defined"; \
+		exit 1; \
+	fi; \
+	$(SCI)/bin/scilab -nwni -nb -f JavaTests.sce
 
 clean ::
 	$(RM) *.dia

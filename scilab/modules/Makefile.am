@@ -134,10 +134,11 @@ $(top_builddir)/libs/hashtable/libscihashtable.la \
 $(top_builddir)/libs/lapack/libscilapack.la \
 $(top_builddir)/libs/MALLOC/libscimalloc.la 
 
-BUILT_SOURCES = modules
+#BUILT_SOURCES = modules
 
 # Generate the module list from the SUBDIRS
-modules:
-	@for module in $(SUBDIRS); do if test $$module != "."; then echo $$module; fi;	done > modules
+# COMMENTED : because it should be hardcoded (the order does matter)
+#modules:
+#	@for module in $(SUBDIRS); do if test $$module != "."; then echo $$module; fi;	done > modules
 
 include $(top_srcdir)/Makefile.incl.am
