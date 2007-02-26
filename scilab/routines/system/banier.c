@@ -17,7 +17,7 @@ void banner(void)
 	#endif
 
     sciprint("                         %s\r\n\n",VERSION);
-    sciprint("                  Copyright (c) 1989-2006          \r\n");
+    sciprint("                  Copyright (c) 1989-2007          \r\n");
     sciprint("              Consortium Scilab (INRIA, ENPC)      \r\n");
 
   #ifdef WIN32
