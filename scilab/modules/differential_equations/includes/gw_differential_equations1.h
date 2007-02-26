@@ -17,6 +17,10 @@
 #include "stack-c.h"
 #include "sciprint.h"
 
+#ifdef _MSC_VER
+#include "ExceptionMessage.h"
+#endif
+
 int C2F(gw_differential_equations1)(void);
 
 typedef int (*Differential_Equations1_Interf) __PARAMS((char *fname,unsigned long l));
