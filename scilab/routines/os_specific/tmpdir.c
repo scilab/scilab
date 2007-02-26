@@ -168,7 +168,6 @@ int DeleteDirectory(char *refcstrRootDirectory)
 	}
 
 	if (strFilePath) {FREE(strFilePath);strFilePath=NULL;}
-	if (strFilePath) {FREE(strFilePath);strFilePath=NULL;}
 
 	return 0;
 }
