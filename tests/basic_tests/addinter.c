@@ -10,7 +10,7 @@ void fun1(double *x,double *y)
   *y=fun2(*x)/(*x); 
 } 
 
-double fun2(double x)
+static double fun2(double x)
 { 
   return( sin(x+1));
 }
