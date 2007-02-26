@@ -2,6 +2,8 @@
 /* Copyright INRIA 2006                                                   */
 /* Authors : Sylvestre ledru                                              */
 /*------------------------------------------------------------------------*/
+#ifndef __FILES_H__
+#define __FILES_H__
 #include "machine.h"
 
 void C2F(getfiledesc)(integer *fd);
@@ -55,3 +57,5 @@ void C2F(mgetstr) (integer *fd, char **start, integer *n, integer *ierr);
 void C2F(mgetstr1) (integer *fd, char *start, integer *n, integer *ierr);
 
 void C2F(mputstr) (int *fd, char *str, double *res, int *ierr);
+
+#endif /* __FILES_H__ */

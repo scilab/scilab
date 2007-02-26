@@ -2,6 +2,8 @@
 /* Copyright INRIA 2006                                                   */
 /* Authors : Sylvestre ledru                                              */
 /*------------------------------------------------------------------------*/
+#ifndef __QSORT_H__
+#define __QSORT_H__
 
 void sciqsort(char *a, char *tab,int flag, int n, int es, int es1, int (*cmp) (),int (*swapcode) (), int (*swapcodeind) ());
 int swapcodeint(char * parmi,char * parmj,int n,int incr);
@@ -16,3 +18,4 @@ int swapcodeint(char * parmi,char * parmj,int n,int incr);
    (cmp(a, c) < 0 ? (res=c,tabres=xc) : (res=a,tabres=xa) ))		\
     :(cmp(b, c) > 0 ? (res=b,tabres=xb) : (cmp(a, c) < 0 ? (res=a,tabres=xa) : (res=c,tabres=xc) ))
 
+#endif /* __QSORT_H__ */

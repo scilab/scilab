@@ -2,6 +2,8 @@
 /* Copyright INRIA 2006                                                   */
 /* Authors : Sylvestre ledru                                              */
 /*------------------------------------------------------------------------*/
+#ifndef __RIPOLE_H__
+#define __RIPOLE_H__
 
 struct ripOLE_object {
 	int debug;
@@ -21,3 +23,5 @@ int ROLE_init(struct ripOLE_object *role);
 int ROLE_done(struct ripOLE_object *role);
 int ROLE_validate(struct ripOLE_object *role );
 int ripole(char *inputfile, char *outputdir, int debug, int verbose);
+
+#endif /* #define __RIPOLE_H__ */
