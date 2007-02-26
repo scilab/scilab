@@ -150,14 +150,10 @@ function ilib_gen_Make_lcc(name,table,files,libs,Makename,with_gateway,ldflags,c
   mfprintf(fd,"SCIDIR =%s\n",SCI);
   mfprintf(fd,"SCIDIR1 =%s\n",pathconvert(SCI,%f,%f,'w'));
   mfprintf(fd,"DUMPEXTS=""$(SCIDIR1)\\bin\\dumpexts""\n");
-  if ( with_atlas()==%T ) then
-  	mfprintf(fd,"SCIIMPLIB=$(SCIDIR1)\\bin\\LibScilabLCC.lib $(SCIDIR1)\\bin\\atlaslcc.lib $(SCIDIR1)\\bin\\libf2clcc.lib $(SCIDIR1)\\bin\\arpacklcc.lib $(SCIDIR1)\\bin\\lapacklcc.lib\n\n");
-  else
-  	mfprintf(fd,"SCIIMPLIB=$(SCIDIR1)\\bin\\LibScilabLCC.lib\n\n");
-  end
+ 	mfprintf(fd,"SCIIMPLIB=$(SCIDIR1)\\bin\\LibScilabLCC.lib $(SCIDIR1)\\bin\\atlaslcc.lib $(SCIDIR1)\\bin\\libf2clcc.lib $(SCIDIR1)\\bin\\interscilcc.lib $(SCIDIR1)\\bin\\lapacklcc.lib $(SCIDIR1)\\bin\\scicoslcc.lib\n\n");
   mfprintf(fd,"CC=lcc\n");
   mfprintf(fd,"LINKER=lcclnk\n");
-  mfprintf(fd,"CFLAGS= -s -ansic msvcrt.lib -I""$(SCIDIR)/routines"" -I""$(SCIDIR)/routines/f2c"" -Dmexfunction_=mex$*_ -DmexFunction=mex_$* -DWIN32 -DSTRICT -DFORDLL -D__STDC__ "+ cflags +" \n"); 
+  mfprintf(fd,"CFLAGS= -ansic msvcrt.lib -I""$(SCIDIR)/modules/core/includes"" -I""$(SCIDIR)/libs/f2c"" -I""$(SCIDIR)/modules/mexlib/includes"" -Dmexfunction_=mex$*_ -DmexFunction=mex_$* -DWIN32 -DSTRICT -DFORDLL -D__STDC__ "+ cflags +" \n"); 
   
   mfprintf(fd,"LINKER_FLAGS=-dll -nounderscores\n");
   mfprintf(fd,"EXTRA_LDFLAGS = "+ ldflags+"\n");

@@ -6,7 +6,7 @@
 
 #include <string.h>
 
-#if  !(defined __LCC__) && ( !(defined __MATH__)  || (defined __APPLE__) || (defined aix) ) 
+#if  ( !(defined __MATH__)  || (defined __APPLE__) || (defined aix) ) 
 #include "core_math.h"
 #else
 #include "machine.h"

@@ -9,12 +9,11 @@ if with_lcc()==%t then
 		chdir(WSCI+'\bin');
 	
 		Exportalibrary('LibScilab');
-		if ( with_atlas() == %T ) then
-			ExportAtlasLibrary();
-			Exportalibrary('arpack');
-			Exportalibrary('lapack');
-			Exportalibrary('libf2c');
-		end
+		ExportAtlasLibrary();
+		Exportalibrary('lapack');
+		Exportalibrary('scicos');
+		Exportalibrary('libf2c');
+		Exportalibrary('intersci');
 	
 		chdir(DirCur);
 	end
