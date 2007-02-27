@@ -5,6 +5,7 @@
 #include "TCL_Global.h"
 #include "ScilabEval.h"
 #include "sciprint.h"
+#include "tksynchro.h"
 /*-----------------------------------------------------------------------------------*/
 /* what's the max number of commands in the queue ??*/
 #define arbitrary_max_queued_callbacks 20
@@ -16,7 +17,6 @@ extern void SetCommandflag(int flag) ;
 extern void C2F(syncexec)(char * str, int *ns, int *ierr, int *seq);
 extern int GetCommand(char *str);
 extern int StoreCommand ( char *command); 
-extern int C2F(tksynchro)();
 extern integer C2F (ismenu)(void); 
 /*-----------------------------------------------------------------------------------*/
 int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONST char ** argv)

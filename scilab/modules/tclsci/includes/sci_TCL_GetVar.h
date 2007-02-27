@@ -5,10 +5,12 @@
 #ifndef __SCI_TCL_GETVAR__
 #define __SCI_TCL_GETVAR__
 
-#include "TCL_Global.h"
+int TCL_ArrayExist(Tcl_Interp *TCLinterpreter,char *VarName);
+int TCL_ArraySize(Tcl_Interp *TCLinterpreter,char *VarName);
+int TCL_ArrayDim(Tcl_Interp *TCLinterpreter,char *VarName,int *m,int *n);
+char *TCL_ArrayGetVar(Tcl_Interp *TCLinterpreter,char *VarName,int i,int j);
 
 
-int C2F(sci_TCL_GetVar) _PARAMS((char *fname,unsigned long l));
 
 #endif /* __SCI_TCL_GETVAR__ */
 /*-----------------------------------------------------------------------------------*/ 

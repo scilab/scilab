@@ -2,10 +2,11 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "sci_TCL_EvalFile.h"
+#include "TCL_Global.h"
+#include "gw_tclsci.h"
 #include "sciprint.h"
 /*-----------------------------------------------------------------------------------*/
-extern BOOL FileExist(char *filename);
+extern BOOL FileExist(char *filename); /* From module fileio */
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_TCL_EvalFile) _PARAMS((char *fname,unsigned long l))
 {

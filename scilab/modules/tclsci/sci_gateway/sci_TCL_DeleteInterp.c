@@ -2,10 +2,9 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "sci_TCL_DeleteInterp.h"
-/*-----------------------------------------------------------------------------------*/
-extern int CloseTCLsci(void);
-extern void initTCLTK(void);
+#include "TCL_Global.h"
+#include "gw_tclsci.h"
+#include "InitTclTk.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_TCL_DeleteInterp) _PARAMS((char *fname,unsigned long l))
 {

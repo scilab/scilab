@@ -2,9 +2,10 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "sci_set.h"
-/*-----------------------------------------------------------------------------------*/
-extern void flushTKEvents(void);
+#include "TCL_Global.h"
+#include "gw_tclsci.h"
+#include "TclUiSet.h" /* InterfaceScilabToUiSet */
+#include "TclEvents.h" /* flushTKEvents */
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_TCL_set) _PARAMS((char *fname,unsigned long l))
 {

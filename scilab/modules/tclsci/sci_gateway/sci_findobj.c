@@ -2,7 +2,8 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "sci_findobj.h"
+#include "TCL_Global.h"
+#include "gw_tclsci.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_findobj) _PARAMS((char *fname,unsigned long l))
 {

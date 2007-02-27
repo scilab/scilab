@@ -3,14 +3,9 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include "TclUiGet.h"
+#include "sci_TCL_GetVar.h"
 /*-----------------------------------------------------------------------------------*/
 extern int GetScreenProperty(char *prop, char *value);
-extern int TCL_ArrayExist(Tcl_Interp *TCLinterpreter,char *VarName);
-/*
-extern int TCL_ArraySize(Tcl_Interp *TCLinterpreter,char *VarName);
-*/
-extern int TCL_ArrayDim(Tcl_Interp *TCLinterpreter,char *VarName,int *m,int *n);
-extern char *TCL_ArrayGetVar(Tcl_Interp *TCLinterpreter,char *VarName,int i,int j);
 /*-----------------------------------------------------------------------------------*/
 int TCL_UiGet(int  Handle,int RhsPropertieField)
 {
@@ -62,11 +57,11 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 		{
 			if (GetType(RhsPropertieField)==sci_strings)
 			{
-				static int l1,n1,m1;
+				static int local_l1,local_n1,local_m1;
 				char *StrField=NULL;
 
-				GetRhsVar(RhsPropertieField,"c",&m1,&n1,&l1);
-				StrField=cstk(l1);
+				GetRhsVar(RhsPropertieField,"c",&local_m1,&local_n1,&local_l1);
+				StrField=cstk(local_l1);
 				nocase(StrField);
 
 				if (strcmp(StrField,"userdata")==0)

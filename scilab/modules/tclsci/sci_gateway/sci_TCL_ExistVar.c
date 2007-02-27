@@ -2,7 +2,8 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "sci_TCL_ExistVar.h"
+#include "TCL_Global.h"
+#include "gw_tclsci.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_TCL_ExistVar) _PARAMS((char *fname,unsigned long l))
 {

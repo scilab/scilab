@@ -131,7 +131,6 @@ int InterfaceScilabToUiSet(int Handle,int RhsPropertieField,int RhsPropertieValu
 							{
 								#define CommandLenMax 2048	
 							
-								int LenStr=0;
 
 								char MyTclCommand[CommandLenMax];
 								sprintf(MyTclCommand,"SetField %d \"%s\" \"%s\"",Handle,StrField,Str[0]);
@@ -150,8 +149,6 @@ int InterfaceScilabToUiSet(int Handle,int RhsPropertieField,int RhsPropertieValu
 							/* Block inutil apres modifications dans set.tcl */
 							{
 								#define CommandLenMax 2048	
-								int bOK=0;
-								int LenStr=0;
 
 								char MyTclCommand[CommandLenMax];
 								sprintf(MyTclCommand,"SetField %d \"%s\" \"%s\"",Handle,StrField,Str[0]);

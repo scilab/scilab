@@ -3,17 +3,17 @@
 ### INRIA - Scilab 2006 
 ##########
 
-TCLSCI_C_SOURCES = src/GedManagement.c \
-src/TclUiGet.c \
-src/TCL_Global.c \
-src/tksynchro.c \
-src/InitTclTk.c \
-src/ScilabEval.c \
-src/TclEvents.c \
-src/setenvtcl.c \
-src/with_tk.c \
-src/TclUiSet.c \
-src/InitializeTclTk.c
+TCLSCI_C_SOURCES = src/c/GedManagement.c \
+src/c/TclUiGet.c \
+src/c/TCL_Global.c \
+src/c/tksynchro.c \
+src/c/InitTclTk.c \
+src/c/ScilabEval.c \
+src/c/TclEvents.c \
+src/c/setenvtcl.c \
+src/c/with_tk.c \
+src/c/TclUiSet.c \
+src/c/InitializeTclTk.c
 
 # a priori utilisé seulement par windows
 # src/EnvTclTk.c
@@ -50,11 +50,6 @@ libscitclsci_la_LIBADD = \
 	$(top_builddir)/modules/intersci/libsciintersci.la \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
-
-
-
-
-
 
 #### Target ######
 target=$(datadir)/tclsci
@@ -267,36 +262,19 @@ libscitclsci_la_sci_gateway_DATA = sci_gateway/tclsci
 
 #### tclsci : include files ####
 libscitclsci_la_includedir=$(sciincludedir)/tclsci
-libscitclsci_la_include_HEADERS = includes/sci_set.h \
-includes/sci_TCL_ExistArray.h \
+libscitclsci_la_include_HEADERS = includes/sci_TCL_GetVar.h \
 includes/TclUiSet.h \
 includes/GedManagement.h \
-includes/sci_TCL_UpVar.h \
-includes/sci_TCL_CreateSlave.h \
-includes/sci_opentk.h \
-includes/sci_TCL_gcf.h \
 includes/TCL_Global.h \
-includes/sci_close.h \
-includes/sci_TCL_SetVar.h \
 includes/ScilabEval.h \
 includes/InitTclTk.h \
-includes/sci_TCL_ExistVar.h \
-includes/sci_TCL_DoOneEvent.h \
 includes/TclEvents.h \
 includes/Messages.h \
-includes/sci_TCL_UnsetVar.h \
-includes/sci_findobj.h \
 includes/Errors.h \
-includes/sci_get.h \
 includes/gw_tclsci.h \
-includes/sci_TCL_ExistInterp.h \
-includes/sci_TCL_EvalStr.h \
 includes/TclUiGet.h \
-includes/sci_TCL_DeleteInterp.h \
-includes/sci_TCL_GetVersion.h \
-includes/sci_TCL_EvalFile.h \
 includes/Warnings.h \
-includes/sci_TCL_GetVar.h
+includes/InitializeTclTk.h
 
 
 #### tclsci : demos files sciGUI ####

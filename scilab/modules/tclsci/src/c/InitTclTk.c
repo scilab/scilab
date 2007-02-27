@@ -61,7 +61,7 @@ int OpenTCLsci(void)
   Display *XTKdisplay;
 #endif
 
-  FILE *tmpfile=NULL;
+  FILE *tmpfile2=NULL;
 
 #ifdef TCL_MAJOR_VERSION
   #ifdef TCL_MINOR_VERSION
@@ -85,13 +85,13 @@ int OpenTCLsci(void)
   strcpy(TkScriptpath, SciPath);
   strcat(TkScriptpath, "/modules/tclsci/tcl/TK_Scilab.tcl");
 
-  tmpfile = fopen(TkScriptpath,"r");
-  if (tmpfile==NULL) 
+  tmpfile2 = fopen(TkScriptpath,"r");
+  if (tmpfile2==NULL) 
     {
       sciprint(TCL_WARNING2);
       return(1);
     }
-  else fclose(tmpfile);
+  else fclose(tmpfile2);
 #else
   tmpdir=opendir(SciPath);
   if (tmpdir==NULL) 
@@ -102,13 +102,13 @@ int OpenTCLsci(void)
   else closedir(tmpdir);
   strcpy(TkScriptpath,SciPath);
   strcat(TkScriptpath, "/modules/tclsci/tcl/TK_Scilab.tcl");
-  tmpfile = fopen(TkScriptpath,"r");
-  if (tmpfile==NULL) 
+  tmpfile2 = fopen(TkScriptpath,"r");
+  if (tmpfile2==NULL) 
     {
       sciprint(TCL_WARNING2);
       return(1);
     }
-  else fclose(tmpfile);
+  else fclose(tmpfile2);
 #endif /* _MSC_VER */ 
   
   if (TCLinterp == NULL) 

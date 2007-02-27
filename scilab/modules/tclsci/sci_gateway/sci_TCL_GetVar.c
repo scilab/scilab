@@ -2,12 +2,9 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
+#include "TCL_Global.h"
+#include "gw_tclsci.h"
 #include "sci_TCL_GetVar.h"
-/*-----------------------------------------------------------------------------------*/
-int TCL_ArrayExist(Tcl_Interp *TCLinterpreter,char *VarName);
-int TCL_ArraySize(Tcl_Interp *TCLinterpreter,char *VarName);
-int TCL_ArrayDim(Tcl_Interp *TCLinterpreter,char *VarName,int *m,int *n);
-char *TCL_ArrayGetVar(Tcl_Interp *TCLinterpreter,char *VarName,int i,int j);
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_TCL_GetVar) _PARAMS((char *fname,unsigned long l))
 {

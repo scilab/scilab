@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include "machine.h"
 #include "TCL_Global.h"
+#include "tksynchro.h"
 /*-----------------------------------------------------------------------------------*/
 void C2F(tksynchro)( int *l)
 {

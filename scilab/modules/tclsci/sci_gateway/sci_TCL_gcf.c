@@ -2,12 +2,14 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "sci_TCL_gcf.h"
+#include "TCL_Global.h"
+#include "gw_tclsci.h"
+#include "TclEvents.h"
+
 /*-----------------------------------------------------------------------------------*/
 int GetTclCurrentFigure(void);
 int SetTclCurrentFigure(int num);
 /*-----------------------------------------------------------------------------------*/
-extern void flushTKEvents(void);
 extern void set_cf_type(int val);
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_TCL_gcf) _PARAMS((char *fname,unsigned long l))

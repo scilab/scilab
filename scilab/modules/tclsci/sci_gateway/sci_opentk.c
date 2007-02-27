@@ -2,7 +2,9 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "sci_opentk.h"
+
+#include "TCL_Global.h"
+#include "gw_tclsci.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_opentk) _PARAMS((char *fname,unsigned long l))
 {

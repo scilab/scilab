@@ -2,7 +2,8 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "sci_TCL_UnsetVar.h"
+#include "TCL_Global.h"
+#include "gw_tclsci.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_TCL_UnsetVar) _PARAMS((char *fname,unsigned long l))
 {
@@ -19,7 +20,6 @@ int C2F(sci_TCL_UnsetVar) _PARAMS((char *fname,unsigned long l))
 		int *paramoutINT=(int*)MALLOC(sizeof(int));
 
 		char *VarName=NULL;
-		char *RetStr=NULL;
 
 		GetRhsVar(1,"c",&m1,&n1,&l1);
 		VarName=cstk(l1);

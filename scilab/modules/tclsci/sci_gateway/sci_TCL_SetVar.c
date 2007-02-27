@@ -2,7 +2,8 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "sci_TCL_SetVar.h"
+#include "TCL_Global.h"
+#include "gw_tclsci.h"
 /*-----------------------------------------------------------------------------------*/
 int SetVarStrings(Tcl_Interp *TCLinterpreter,char *VarName,char **Str,int m,int n);
 int SetVarAString(Tcl_Interp *TCLinterpreter,char *VarName,char **Str);

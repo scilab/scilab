@@ -2,7 +2,8 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "sci_close.h"
+#include "TCL_Global.h"
+#include "gw_tclsci.h"
 #include "sciprint.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_close) _PARAMS((char *fname,unsigned long l))

@@ -7,8 +7,21 @@
 
 #include "TCL_Global.h"
 
+/**
+ * TODO : comment 
+ */
 void initTCLTK(void);
+
+/**
+ * TODO : comment 
+ * @return 
+ */
 int OpenTCLsci(void);
+
+/**
+ * TODO : comment 
+ * @return
+ */
 int CloseTCLsci(void);
 
 #endif /* __INITTCLTK__ */
