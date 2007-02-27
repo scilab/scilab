@@ -1,4 +1,4 @@
-*      subroutine error(n)
+      subroutine error(n)
 c     -------------------------
 c     error display and handling
 c     n : the error number
