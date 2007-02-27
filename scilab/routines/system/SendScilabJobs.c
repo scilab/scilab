@@ -246,7 +246,7 @@ int SendScilabJobs(char **jobs,int numberjobs)
 static int RemoveCharsFromEOL(char *line,char CharToRemove)
 {
 	int l=0;
-	BOOL bOK=0;
+	int bOK=0;
 	int len=0;
 
 	len=strlen(line);
@@ -265,7 +265,7 @@ static int RemoveCharsFromEOL(char *line,char CharToRemove)
 static int RemoveComments(char *line)
 {
 	int l=0;
-	BOOL bOK=0;
+	int bOK=0;
 	int len=0;
 	int idx=-1;
 
