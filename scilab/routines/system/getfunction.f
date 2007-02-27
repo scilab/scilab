@@ -153,13 +153,13 @@ c     statements of the function
 
  71   continue
       psym=sym
-      call getsym1(strcnt)
+      call getsym
       if(sym.eq.quote) then
          if(strcnt.ne.0) then
             qcount=0
  311        qcount=qcount+1
             if(abs(char1).ne.quote) goto 312
-            call getsym1(strcnt)
+            call getsym
             goto 311
  312        continue
             if(2*int(qcount/2).ne.qcount)  strcnt=0

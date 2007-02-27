@@ -1,8 +1,4 @@
       subroutine getsym
-      call getsym1(0)
-      end
-
-      subroutine getsym1(opt)
 *
 *     PURPOSE 
 *       get the next symbol (a name, a number, an operator, ...)
@@ -64,7 +60,6 @@
 *
       implicit none
       include '../stack.h'
-      integer opt
       double precision syv
       integer namecd(nlgh), chcnt, io 
       integer blank, dot, percen, slash, comma,eol
@@ -113,7 +108,8 @@
          end do
 *        encoding of the name
          call namstr(syn,namecd,chcnt,0)
-         if (opt.eq.0.and.(lpt(4)-lpt(3).gt.chcnt)) call msgs(33,0)
+
+
       else
 *        -> special character (eol, operator, part of an operator, .... 
 *           but in case of a dot following by a digit it is a number)
@@ -152,6 +148,7 @@
       endif
 
       end
+
 
 
 
