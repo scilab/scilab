@@ -150,16 +150,16 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
 
 		if ( vl > 0 ) 
 		{
-			int i=0;
+			int i2=0;
 			CreateVarFromPtr(Rhs+2,"S",&vl,&un,Str);
 			if (Str)
 			{
-				for (i=0;i<vl;i++)
+				for (i2=0;i2<vl;i2++)
 				{
-					if (Str[i])
+					if (Str[i2])
 					{
-						FREE(Str[i]);
-						Str[i]=NULL;
+						FREE(Str[i2]);
+						Str[i2]=NULL;
 					}
 				}
 				FREE(Str);
