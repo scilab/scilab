@@ -116,13 +116,13 @@ int C2F(intstrcat) (char* fname)
       LhsVar(1) = Rhs+1  ;
 	  if (Str1)
 	  {
-		  int i=0;
-		  for (i=0;i<m1+1;i++)
+		  int i2=0;
+		  for (i2=0;i2<m1+1;i2++)
 		  {
-			  if (Str1[i])
+			  if (Str1[i2])
 			  {
-				  FREE(Str1[i]);
-				  Str1[i]=NULL;
+				  FREE(Str1[i2]);
+				  Str1[i2]=NULL;
 			  }
 		  }
 		  FREE(Str1);
@@ -171,13 +171,13 @@ int C2F(intstrcat) (char* fname)
 	  }
 	  if (Str1)
 	  {
-		  int i=0;
-		  for (i=0;i<n1+1;i++)
+		  int i2=0;
+		  for (i2=0;i2<n1+1;i2++)
 		  {
-			  if (Str1[i])
+			  if (Str1[i2])
 			  {
-				  FREE(Str1[i]);
-				  Str1[i]=NULL;
+				  FREE(Str1[i2]);
+				  Str1[i2]=NULL;
 			  }
 		  }
 		  FREE(Str1);
