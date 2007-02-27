@@ -7,7 +7,7 @@
   <DATE>April 1993</DATE>
   <SHORT_DESCRIPTION name="input"> prompt for user input</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[x]=input(message,[&quot;string&quot;])     </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>x=input(message [, &quot;string&quot;])     </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
@@ -20,13 +20,15 @@
       <PARAM_ITEM>
         <PARAM_NAME>&quot;string&quot;  </PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: the character string <VERB>&quot;string&quot;</VERB> (may be abbreviated to <VERB>&quot;s&quot;</VERB>)</SP>
+          <SP>: the character string <VERB>&quot;string&quot;</VERB> (may be
+	    abbreviated to <VERB>&quot;s&quot;</VERB>)</SP> 
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
         <PARAM_NAME>x</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: real number (or character string if <VERB>&quot;string&quot;</VERB> is in the calling sequence)</SP>
+          <SP>: real number (or character string if
+	    <VERB>&quot;string&quot;</VERB> is in the calling sequence)</SP> 
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
@@ -42,7 +44,8 @@
     <P>
     Invoked with two arguments, the output is a character string which is the
     expression entered at keyboard.  If nothing but a carriage return is
-    entered at the prompt <VERB>input(message)</VERB> returns an empty string
+    entered at the prompt <VERB>input(message)</VERB> returns  a single white
+      space  <VERB>&quot; &quot;</VERB>. 
     </P>
   </DESCRIPTION>
   <EXAMPLE>
