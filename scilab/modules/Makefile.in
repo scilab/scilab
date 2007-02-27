@@ -49,6 +49,9 @@ host_triplet = @host@
 @JAVA_TRUE@am__append_1 = jvm
 @FFTW_TRUE@am__append_2 = fftw
 @PVM_TRUE@am__append_3 = pvm
+
+# javasci should be compile at the end because it needs libscilab.la
+# Don't forget that the order in subdirs does matter !!!
 @JAVA_TRUE@am__append_4 = javasci
 @PVM_TRUE@am__append_5 = $(top_builddir)/modules/pvm/libscipvm.la
 @FFTW_TRUE@am__append_6 = $(top_builddir)/modules/fftw/libscifftw.la
