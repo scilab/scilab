@@ -9,6 +9,7 @@
 #include "../menusX/men_scilab.h" 
 #include "All-extern-x1.h" 
 #include "All-extern.h" 
+#include "sciquit.h"
      
 extern int main  __PARAMS((int argc, char **argv));  
 extern int C2F (dsort) __PARAMS((void));  
@@ -27,7 +28,6 @@ extern void C2F (sigbas) __PARAMS((int *i));
 extern void check_win  __PARAMS((void));  
 extern void C2F (setfbutn) __PARAMS((char *name, int *rep));  
 extern int C2F (scilines) __PARAMS((int *nl, int *nc));  
-extern int C2F (sciquit) __PARAMS((void));  
 extern void plot  __PARAMS((void));  
 extern void cerro  __PARAMS((char *str));  
 extern void cout  __PARAMS((char *str));  
