@@ -52,13 +52,12 @@ helptools
 
 SUBDIRS += scicos 
 
-if FFTW
-SUBDIRS += fftw
+if JAVA
+SUBDIRS += jvm
 endif
 
-if JAVA
-SUBDIRS += jvm \
-javasci
+if FFTW
+SUBDIRS += fftw
 endif
 
 if PVM
@@ -66,6 +65,10 @@ SUBDIRS += pvm
 endif
 
 SUBDIRS += .
+
+if JAVA
+SUBDIRS += javasci
+endif
 
 
 
