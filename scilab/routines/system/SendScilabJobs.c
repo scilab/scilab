@@ -3,7 +3,11 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include "CallScilab.h"
-#include "MALLOC.h"
+#ifdef WIN32
+  #include "../os_specific/win_mem_alloc.h" /* MALLOC */
+#else
+  #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
+#endif
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(scirun)(char * startup, int lstartup);
 /*-----------------------------------------------------------------------------------*/
