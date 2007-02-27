@@ -28,6 +28,7 @@
 #include "version.h"
 #include "realmain.h" /* realmain */
 #include "scimem.h" /* nofpex */
+#include "getarg.h"
 
 #include "DestroyObjects.h"
 #include "periScreen.h"
@@ -93,7 +94,6 @@ extern void exit();
 char *ProgramName;
 /*-----------------------------------------------------------------------------------*/
 extern void sci_clear_and_exit (int);
-extern int C2F(scigetarg) (int *,char *,long int l);
 extern char *strindex (register char *s1, register char *s2);
 extern void do_hangup(void);
 extern void do_kill(Widget gw, caddr_t closure, caddr_t data);
