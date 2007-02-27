@@ -480,6 +480,7 @@ int int_objscanf(char *fname,unsigned long fname_len)
 
   /* create Scilab variables with each column of data */
   err=Sci_Store(rowcount,ncol,data,type_s,retval_s);
+  Free_Scan(rowcount,ncol,type_s,&data);
   if (err==MEM_LACK) { Scierror(999,"Error: in sscanf: cannot allocate more memory \r\n");}
   return 0;
 } 
@@ -582,7 +583,7 @@ int int_objsscanf(char *fname,unsigned long fname_len)
 
   /* create Scilab variables with each column of data */
   err=Sci_Store(rowcount,ncol,data,type_s,retval_s);
-
+  Free_Scan(rowcount,ncol,type_s,&data);
   if (err==MEM_LACK) { Scierror(999,"Error: in sscanf: cannot allocate more memory \r\n");}
   return 0;
 }
@@ -675,6 +676,7 @@ int int_objfscanf(char *fname,unsigned long fname_len)
 
   /* create Scilab variable with each column of data */
   err=Sci_Store(rowcount,ncol,data,type_s,retval_s);
+  Free_Scan(rowcount,ncol,type_s,&data);
   if (err==MEM_LACK) { Scierror(999,"Error: in sscanf: cannot allocate more memory \r\n");}
   return 0;
 }  
@@ -1923,7 +1925,7 @@ static int Sci_Store(int nrow, int ncol, entry *data, sfdir *type, int retval_s)
 	for (j=0;j<nrow;j++) temp[k++]=data[i+ncol*j].s;
 	CreateVarFromPtr(++iarg, "S", &nrow, &one, temp);
 	FREE(temp);
-	for (j=0;j<nrow;j++) FREE(data[i+ncol*j].s);
+	/*	for (j=0;j<nrow;j++) FREE(data[i+ncol*j].s);*/
       }
       else {
 	CreateVar(++iarg, "d", &nrow, &one, &l);
@@ -1933,7 +1935,7 @@ static int Sci_Store(int nrow, int ncol, entry *data, sfdir *type, int retval_s)
 
       LhsVar(i+2)=iarg;
     }
-    FREE(data);
+    /*FREE(data);*/
     /** we must complete the returned arguments up to Lhs **/
   Complete:
     for ( i = ncol+2; i <= Lhs ; i++) 
@@ -1977,8 +1979,8 @@ static int Sci_Store(int nrow, int ncol, entry *data, sfdir *type, int retval_s)
 	      for (j=0;j<nrow;j++) temp[k++]=data[i1+ncol*j].s;
 	    CreateVarFromPtr(++iarg, "S", &nrow, &colcount,temp);
 	    FREE(temp);
-	    for (i1=cur_i;i1<i;i1++)
-	      for (j=0;j<nrow;j++) FREE(data[i1+ncol*j].s);
+	    /*	    for (i1=cur_i;i1<i;i1++)
+		    for (j=0;j<nrow;j++) FREE(data[i1+ncol*j].s);*/
 	  }
 	  else {
 	    CreateVar(++iarg, "d", &nrow, &colcount, &l);
@@ -2013,8 +2015,8 @@ static int Sci_Store(int nrow, int ncol, entry *data, sfdir *type, int retval_s)
 	  for (j=0;j<nrow;j++) temp[k++]=data[i1+ncol*j].s;
 	CreateVarFromPtr(Rhs+1, "S", &nrow, &ncol, temp);
 	FREE(temp);
-	for (i1=0;i1<ncol;i1++)
-	  for (j=0;j<nrow;j++) FREE(data[i1+ncol*j].s);
+	/*for (i1=0;i1<ncol;i1++)
+	  for (j=0;j<nrow;j++) FREE(data[i1+ncol*j].s);*/
       }
       else {
 	CreateVar(Rhs+1, "d", &nrow, &ncol, &l);

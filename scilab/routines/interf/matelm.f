@@ -5315,7 +5315,7 @@ c     Interface for isequal:
       INCLUDE '../stack.h'
 
       integer id(nsiz)
-      integer typ,m,n,l,il,il1,ilk,k,topk,top1,srhs,k1
+      integer typ,m,n,l,il,il1,ilk,k,topk,top1,srhs,k1,it
 
 c     EXTERNAL API FUNCTIONS
       logical  checkrhs, checklhs
@@ -5355,11 +5355,10 @@ c
       endif
 
       if(typ.gt.14) then
-         call funnam(ids(1,pt+1),'isequal',typ)
+         call funnam(ids(1,pt+1),'isequal',il1)
          fun=-1
          return
       endif
-
 
 c first check the dimensions
       il=iadr(lstk(top-rhs+1))
@@ -5371,6 +5370,19 @@ c first check the dimensions
          if(istk(il).lt.0) il=iadr(istk(il+1))
          if(m.ne.istk(il+1).or.n.ne.istk(il+2)) goto 60
  20   continue
+
+      if(typ.eq.1.or.typ.eq.2.or.typ.eq.8.or.typ.eq.5) then
+c     checking sub_type
+         il=iadr(lstk(top-rhs+1))
+         if(istk(il).lt.0) il=iadr(istk(il+1))
+         it=istk(il+3)
+         do 21 k=2,rhs
+            il=iadr(lstk(top-rhs+k))
+            if(istk(il).lt.0) il=iadr(istk(il+1))
+            if(it.ne.istk(il+3)) goto 60
+ 21   continue
+      endif
+
 
       srhs=rhs
 

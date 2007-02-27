@@ -1216,6 +1216,15 @@ c
             return
          endif
          m=int(stk(sadr(il+4)))
+         if (m.eq.0.or.n.eq.0) then
+            il=iadr(lstk(top))
+            istk(il)=1
+            istk(il+1)=0
+            istk(il+2)=0
+            istk(il+3)=0
+            lstk(top+1)=sadr(il+4)
+            goto 999
+         endif
       elseif(rhs.eq.1) then
          il=iadr(lstk(top))
          ilr=il

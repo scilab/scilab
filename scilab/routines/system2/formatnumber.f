@@ -15,9 +15,8 @@
           if(a.lt.0.0d0) fl=fl+1
           write(form,120) n1,n2
           write(str(1:n1),form) a
-C     workaround to fix gfortran4.0 bug: 0.999999999--> 0
-c     print *,form, '['//str(1:n1)//']'
-          if (str(2:n1).eq.'0.'.and.a.gt.0.9999d0) str(2:2)='1'
+c     workaround to fix gfortran4.0 bug: 0.999999999--> 0
+          if (str(1:n1).eq.' 0.'.and.a.gt.0.9999d0) str(2:2)='1'
        elseif (ifmt .eq. -1) then
 C     Inf
           fl = 3

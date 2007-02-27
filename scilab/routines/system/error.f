@@ -1433,6 +1433,7 @@ c Bug 1417 corrected - Francois VOGEL May 2005
       integer mode(2),lunit,ll
 
       ll=lct(5)
+      call whatln(lpt(1),lpt(2),lpt(6),nlc,l1,ifin)
       if(rio.ne.rte) then
 c     exec
          k=lpt(1)-(13+nsiz)
@@ -1449,6 +1450,7 @@ c
             else
                buf='line '
                m=6
+c               nlc=0
             endif
             write(buf(m+1:m+5),'(i4)') lct(8)-nlc
             m=m+4

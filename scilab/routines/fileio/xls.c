@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include <string.h>
 #include "../machine.h"
+#include "../graphics/Math.h"
+
 #ifdef WIN32
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
@@ -34,9 +36,9 @@ void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int
 void xls_open(int *err, int *fd, char ***sst, int *ns, char ***Sheetnames, int** Abspos,int *nsheets);
 static double NumFromRk2(long rk);
 static void getBoundsheets(int * fd,char ***Sheetnames, int** Abspos, int *nsheets,int *cur_pos,int *err);
-static void getSST(int *fd,int BIFF,int *ns,char ***sst,int *err);
+static void getSST(int *fd,short Len,int BIFF,int *ns,char ***sst,int *err);
 static void getBOF(int *fd ,int* Data, int *err);
-static void getString(int *fd, int flag,char **str,int *err);
+static void getString(int *fd,short *count, short *Len, int flag,char **str,int *err);
 static int get_oleheader(int *fd);
 /*------------------------------------------------------------------*/
 /*------------------------------------------------------------------*/
@@ -280,7 +282,6 @@ void xls_open(int *err, int *fd, char ***sst, int *ns, char ***Sheetnames, int**
   int BOFData[7]; /*[BIFF  Version DataType Identifier Year HistoryFlags LowestXlsVersion]*/
   *nsheets=0;
   *err=0;
-
   /*---------------Déclaration Des Variables*--------------------*/
   cur_pos=0;
 
@@ -318,6 +319,7 @@ void xls_open(int *err, int *fd, char ***sst, int *ns, char ***Sheetnames, int**
     if (*err > 0) goto Err2;
     C2F(mgetnc) (fd, &Len, &one, typ_ushort, err);
     if (*err > 0) goto Err2;
+
     switch(Opcode) {
     case 10: /*EOF*/
       cur_pos=cur_pos+4+Len;
@@ -328,7 +330,7 @@ void xls_open(int *err, int *fd, char ***sst, int *ns, char ***Sheetnames, int**
       if (*err > 0) return;
       break;
     case 252: /* SST= Shared String table*/
-      getSST(fd,BOFData[0],ns,sst,err);
+      getSST(fd,Len,BOFData[0],ns,sst,err);
       if (*err > 0) return;
       cur_pos=cur_pos+4+Len;
       break;
@@ -336,6 +338,7 @@ void xls_open(int *err, int *fd, char ***sst, int *ns, char ***Sheetnames, int**
       cur_pos=cur_pos+4+Len;
     }
   }
+
   return;
  Err2:
   *err=4; /* read problem */
@@ -441,17 +444,17 @@ static void getBOF(int *fd ,int* Data, int *err)
 
 }
 
-static void getSST(int *fd,int BIFF,int *ns,char ***sst,int *err)
+static void getSST(int *fd,short Len,int BIFF,int *ns,char ***sst,int *err)
 {
   int i,one=1;
   /* SST data */
   int ntot; /*total number of strings */
   int nm;/*Number of following strings*/
+  short count=0;
 
   char *transfert;  /*temp*/
   transfert=(char *)NULL;
   *ns=0;
-
   *sst=NULL;
 
   if(BIFF==8) {
@@ -461,12 +464,15 @@ static void getSST(int *fd,int BIFF,int *ns,char ***sst,int *err)
     C2F(mgetnc) (fd, (void*)&nm, &one, typ_int, err);
     if (*err > 0) goto ErrL;
     *ns=nm;
+    count+=8;
     if (nm !=0) {
       if( (*sst=(char **)MALLOC(nm*sizeof(char*)))==NULL)  goto ErrL;
       for (i=0;i<nm;i++) (*sst)[i]=NULL;
       for(i=0;i<nm;i++) {/* LOOP ON STRINGS */
-	getString(fd,1,&((*sst)[i]),err);
+	*err=i;/*for debug*/
+	getString(fd,&count,&Len,1,&((*sst)[i]),err);
 	if (*err > 0) goto ErrL;
+	/*printf("i=%d, %s\n",i,(*sst)[i]);*/
       }
     }
   }
@@ -484,108 +490,174 @@ static void getSST(int *fd,int BIFF,int *ns,char ***sst,int *err)
     *err=4; /* read problem */
 }
 
-static void getString(int *fd, int flag,char **str,int *err)
+static void getString(int *fd,short *PosInRecord, short *RecordLen, int flag,char **str,int *err)
 {
-  short ln;
-  int longueur,one=1;
-  char OptionFlag;
-  int compressed,fareast,rich;
-  int *list; /*formatting runs */
+  short ln=0;
+  short Opcode;/* to store tag information */
+  int BytesToBeRead,one=1,strindex;
+  char OptionFlag=0;
+  int sz; /* for extended string data */
+  short rt;/* for rich string data */
+  int i=*err;/*for debug*/
+  double pos;/*for debug*/
+  int UTFEncoding,extendedString,richString;
+  int j,l1;
 
   *str=(char *)NULL;
-  list= (int *)NULL;
   *err=0;
   ln=0;
-  if (flag)
-    C2F(mgetnc) (fd, (void*)&ln, &one, typ_short, err);
-  else
-    C2F(mgetnc) (fd, (void*)&ln, &one, typ_char, err);
 
-  if (*err > 0) goto ErrL;
+  /*check for continue tag */
+ if (flag&&(*PosInRecord==*RecordLen)) {/* data limit encountered */
+    /*check for continue tag */
+      /*lecture de l'Opcode et de la RecordLen du tag*/
+      C2F(mgetnc) (fd, &Opcode, &one, typ_ushort, err);
+      if ((*err > 0)||(Opcode!=60)) goto ErrL;
+      C2F(mgetnc) (fd, RecordLen, &one, typ_ushort, err);
+      if (*err > 0) goto ErrL;
+      *PosInRecord=0;
+  }
+
+ /* get the number of characters included in the string (number of bytes or number of couple of bytes) */
+  if (flag){  /* getString called by getSST */
+    C2F(mgetnc) (fd, (void*)&ln, &one, typ_short, err);
+    if (*err > 0) goto ErrL;
+    *PosInRecord+=2;
+  }
+  else { /* getString called by getBoundsheets */
+    C2F(mgetnc) (fd, (void*)&ln, &one, typ_char, err);
+    if (*err > 0) goto ErrL;
+    *PosInRecord+=1;
+  }
+
+  /*get the encoding options */
   C2F(mgetnc) (fd, (void*)&OptionFlag, &one, typ_char, err);
   if (*err > 0) goto ErrL;
-  compressed=(int)(OptionFlag&0x01);
-  fareast=(int)(OptionFlag&0x04);
-  rich=(int)(OptionFlag&0x08);
+  *PosInRecord+=1;
 
-  if(compressed==0)
-    longueur=ln;
-  else if(compressed==1)
-    longueur=2*ln;
-		
-  if(rich==0 && fareast==0) {
-    /*Enregistrement du character array*/
-    if ((*str= (char*) MALLOC((longueur+1)*sizeof(char)))==NULL)  goto ErrL;
-    C2F(mgetnc) (fd, (void*)*str, &longueur, typ_char, err);
-    if (*err > 0) goto ErrL;
-    (*str)[longueur]='\0';
+  UTFEncoding = (OptionFlag&0x01) == 1;
+  extendedString = (OptionFlag & 0x04) != 0;
+  richString = (OptionFlag & 0x08) != 0;
 
-  }
-  else if(rich!=0 && fareast==0)  {
-    short rt;/*number of rich Text formatting runs*/
-    int listlength;
+ if (richString) { /*richString*/
     C2F(mgetnc) (fd, (void*)&rt, &one, typ_short, err);
+    *PosInRecord+=2;
     if (*err > 0) goto ErrL;
-    listlength=4*rt;
-    /*Enregistrement du character array*/
-    if ((*str= (char*) MALLOC((longueur+1)*sizeof(char)))==NULL)  goto ErrL;
-    C2F(mgetnc) (fd, (void*)*str, &longueur, typ_char, err);
-    if (*err > 0) goto ErrL;
-    (*str)[longueur]='\0';
-    if ((list= (int *) MALLOC(listlength*sizeof(int)))==NULL)  goto ErrL;
-    C2F(mgetnc) (fd, (void*)list, &listlength, typ_int, err);
-    if (*err > 0) goto ErrL;
-    FREE(list);list=(int *)NULL;
   }
-  else if(rich==0 && fareast!=0) {
-    int sz; /* fareast data size */
-    char *asian;
+
+  if (extendedString) {/* extendedString */
     C2F(mgetnc) (fd, (void*)&sz, &one, typ_int, err);
     if (*err > 0) goto ErrL;
-    /*Enregistrement du character array*/
-    if ((*str= (char*) MALLOC((longueur+1)*sizeof(char)))==NULL)  goto ErrL;
-    C2F(mgetnc) (fd, (void*)*str, &longueur, typ_char, err);
-    if (*err > 0) goto ErrL;
-    (*str)[longueur]='\0';
-    /*asian phonetics*/
-    if ((asian = (char *) MALLOC(sz*sizeof(char)))==NULL)  goto ErrL;
-    C2F(mgetnc) (fd, (void*)asian, &sz, typ_char, err);
-    if (*err > 0) goto ErrL;
-    FREE(asian);asian=(char *)NULL;
+    *PosInRecord+=4;
   }
-  else if(rich!=0 && fareast!=0) {
-    short rt;
-    int sz; /* fareast data size */
-    char *asian;
-    int listlength;/*list of rt formatting runs*/
-    C2F(mgetnc) (fd, (void*)&rt, &one, typ_short, err);
+
+  /* number of bytes to be read */
+  BytesToBeRead = (UTFEncoding)? ln*2 : ln;
+
+
+  if ((*str= (char*) MALLOC((BytesToBeRead+1)*sizeof(char)))==NULL)  goto ErrL;
+  /* read the bytes */
+
+  if (!flag||(*PosInRecord+BytesToBeRead<=*RecordLen)) {	
+    /* all bytes are in the same record */
+    C2F(mgetnc) (fd, (void*)*str, &BytesToBeRead, typ_char, err);
     if (*err > 0) goto ErrL;
-    listlength=4*rt;
-    C2F(mgetnc) (fd, (void*)&sz, &one, typ_int, err);
-    if (*err > 0) goto ErrL;
-    if ((*str= (char*) MALLOC((longueur+1)*sizeof(char)))==NULL)  goto ErrL;
-    C2F(mgetnc) (fd, (void*)*str, &longueur, typ_char, err);
-    if (*err > 0) goto ErrL;
-    (*str)[longueur]='\0';
-    if ((list= (int *) MALLOC(listlength*sizeof(int)))==NULL)  goto ErrL;
-    C2F(mgetnc) (fd, (void*)list, &listlength, typ_int, err);
-    if (*err > 0) goto ErrL;
-    FREE(list);list=(int *)NULL;
-    /*asian phonetics*/
-    if ((asian= (char *) MALLOC(sz*sizeof(char)))==NULL)  goto ErrL;
-    C2F(mgetnc) (fd, (void*)asian, &sz, typ_char, err);
-    if (*err > 0) goto ErrL;
-    FREE(asian);asian=(char *)NULL;
+    *PosInRecord+=BytesToBeRead;
   }
-  else{
-    sciprint("Unhandled case");
-    goto ErrL;
+  else {/* char stream contains at least one "continue" */
+    int bytesRead = *RecordLen-*PosInRecord; /* number of bytes before continue */
+    strindex=0; /*current position in str*/
+    /* read bytes before the "continue"  */
+    /* according to documentation  bytesRead should be strictly positive */
+    C2F(mgetnc) (fd, (void*)(*str+strindex), &bytesRead, typ_char, err);
+    if (*err > 0) goto ErrL;
+    strindex+=bytesRead;
+    *PosInRecord+=bytesRead;
+    while (BytesToBeRead-bytesRead > 0){
+      /*"continue" tag assumed, verify */
+      C2F(mgetnc) (fd, &Opcode, &one, typ_ushort, err);
+      if ((*err > 0)||(Opcode!=60)) goto ErrL;
+      C2F(mgetnc) (fd, RecordLen, &one, typ_ushort, err);
+      if (*err > 0) goto ErrL;
+      *PosInRecord=0;
+      /* encoding option may change !!!! */
+      C2F(mgetnc) (fd, (void*)&OptionFlag, &one, typ_char, err);
+      if (*err > 0) goto ErrL;
+      *PosInRecord+=1;
+
+      if ((!UTFEncoding && (OptionFlag == 0))||(UTFEncoding && (OptionFlag != 0))) {
+	/*string encoding does not change */
+	l1=Min(BytesToBeRead-bytesRead,*RecordLen-*PosInRecord);
+	C2F(mgetnc) (fd, (void*)(*str+strindex), &l1, typ_char, err);
+	if (*err > 0) goto ErrL;
+	bytesRead+=l1;
+	strindex+=l1;
+	*PosInRecord+=l1;
+      }
+      else if (UTFEncoding && (OptionFlag  == 0)) {
+	/* character  encoding changes from twobytes to a single byte*/
+        /* may this happen ???? */
+	l1=Min(BytesToBeRead-bytesRead,*RecordLen-*PosInRecord);
+	for (j=0;j<l1;j++){
+	  C2F(mgetnc) (fd, (void*)(*str+strindex), &one, typ_char, err);
+	  if (*err > 0) goto ErrL;
+	  (*str)[strindex+1]='\0';
+	  strindex+=2;
+	  *PosInRecord+=2;
+	  UTFEncoding =0;
+	}
+      }
+      else {
+	/* character encoding changes from a single byte to two bytes */
+	/* first, convert read characters to two bytes*/
+	char *str1=*str;
+        strindex=0;
+	if ((str= (char*) MALLOC((2*BytesToBeRead+1)*sizeof(char)))==NULL)  goto ErrL;
+	for (j=0;j<bytesRead;j++) {
+	  (*str)[strindex]=str1[j];
+	  (*str)[strindex+1]='\0';
+	  strindex+=2;
+	}
+	FREE(str1);
+	BytesToBeRead=BytesToBeRead*2;
+	bytesRead=bytesRead*2;
+	/* read following two bytes characters */
+	l1=Min((BytesToBeRead-bytesRead)*2,*RecordLen-*PosInRecord);
+	C2F(mgetnc) (fd, (void*)(*str+strindex), &l1, typ_char, err);
+	if (*err > 0) goto ErrL;
+	bytesRead+=l1;
+	strindex+=l1;
+	*PosInRecord+=l1;
+	UTFEncoding =1;
+      }
+
+    }
+
+  } /*all character read */
+
+  /* For extended strings, skip over the extended string data*/
+  /* may continuation records appear here? */
+  l1=4*rt;
+  if (richString) {C2F(mseek) (fd, &l1, "cur", err);*PosInRecord+=l1;}
+  if (extendedString) {C2F(mseek) (fd, &sz, "cur", err);*PosInRecord+=sz;}
+
+  /* add string terminaison */
+  if (UTFEncoding) {
+    /* Scilab currently do not support unicode, so we remove the second byte*/
+    strindex=0;
+    for (j=0;j<BytesToBeRead;j+=2) {
+      (*str)[strindex]=(*str)[j];
+      strindex++;
+    }
+    BytesToBeRead=BytesToBeRead/2;
   }
+  (*str)[BytesToBeRead]='\0';
+
+
   return;
  ErrL:
-  if (*err==0) {
+  if (*err == 0) {
     FREE(*str);
-    FREE(list);
     *err=3; /* malloc problem */
   }
   else
@@ -654,9 +726,10 @@ static void getBoundsheets(int * fd,char ***Sheetnames, int** Abspos, int *nshee
        if (*err > 0) goto ErrL;
        C2F(mgetnc) (fd, (void*)&sheettype, &one, typ_char, err);
        if (sheettype==0) {/* worksheet */
+	 short count=0;
 	 i++;
 	 (*Abspos)[i]=abspos;
-	 getString(fd, 0,&((*Sheetnames)[i]),err);
+	 getString(fd,&count,&Len, 0,&((*Sheetnames)[i]),err);
 	 if (*err > 0) goto ErrL;
        }
        *cur_pos=*cur_pos+4+Len;
