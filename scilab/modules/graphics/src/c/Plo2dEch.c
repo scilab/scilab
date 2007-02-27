@@ -25,13 +25,13 @@
 #include "sciprint.h"
 #include "periScreen.h"
 #include "Format.h"
+#include "scirun.h"
 
 #include "MALLOC.h" /* MALLOC */
 
 extern void xgetmouse2(char *fname, char *str, integer *ibutton, integer *iflag, integer *x1, integer *yy1, integer *x6, integer *x7, double *x, double *y, double *dx3, double *dx4, integer lx0, integer lx1);
 extern void xclick_2(char *fname, char *str, integer *ibutton, integer *iflag, integer *istr, integer *x1, integer *yy1, integer *x7, double *x, double *y, double *dx3, double *dx4, integer lx0, integer lx1);
 extern int StoreCommand( char *command);
-extern int C2F(scirun)(char * startup, int lstartup);
 
 /*----------------------------------------------
  * A List for storing Window scaling information 

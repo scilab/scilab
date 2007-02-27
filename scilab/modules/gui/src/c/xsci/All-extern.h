@@ -8,6 +8,8 @@
 #endif
 #endif
 
+#include "scirun.h"
+
 /*** elsewhere **/
 
 extern int C2F (scilab) __PARAMS((int *nostartup));  
@@ -15,7 +17,6 @@ extern int C2F (scilines) __PARAMS((int *nl, int *nc));
 extern int C2F (sciquit) __PARAMS((void));  
 extern void C2F(setfbutn)  __PARAMS((char *name,int *rep));
 extern int C2F(inisci) __PARAMS( (int *,int *,int *));
-extern int C2F(scirun)  __PARAMS((char * startup, int lstartup));
 extern int sci_exit __PARAMS((int n));
 extern int  Scierror  __PARAMS((int iv,char *fmt,...));
 

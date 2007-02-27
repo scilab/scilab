@@ -12,6 +12,7 @@
 #include "tmpdir.h"
 #include "fromc.h"
 #include "inisci-c.h"
+#include "scirun.h"
 
 #if _MSC_VER
 #define putenv _putenv
@@ -26,7 +27,6 @@ static int StartScilabIsOK=FALSE;
 /*-----------------------------------------------------------------------------------*/
 extern int setenvc(char *string,char *value);
 extern int C2F(inisci)(int *,int *,int *);
-extern int C2F(scirun)(char * startup, int lstartup);
 extern int C2F(ismenu)();
 /*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
