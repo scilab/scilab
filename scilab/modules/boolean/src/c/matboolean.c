@@ -8,12 +8,11 @@
 #include "machine.h"
 #include "stack-c.h"
 #include "core_math.h"
-/*-----------------------------------------------------------------------------------*/
-int C2F(matlog)();
+#include "matboolean.h"
 /*-----------------------------------------------------------------------------------*/
 #define ISTK ((integer *)&C2F(stack))
 /*-----------------------------------------------------------------------------------*/
-int C2F(matlog)()
+int C2F(matlog)(void)
 {
     static integer ou = 57;
     static integer non = 61;
