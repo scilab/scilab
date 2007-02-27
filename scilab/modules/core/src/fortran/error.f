@@ -1,4 +1,4 @@
-      subroutine error(n)
+*      subroutine error(n)
 c     -------------------------
 c     error display and handling
 c     n : the error number
@@ -177,6 +177,7 @@ c Bug 1417 corrected - Francois VOGEL May 2005
       integer mode(2),lunit,ll
 
       ll=lct(5)
+      call whatln(lpt(1),lpt(2),lpt(6),nlc,l1,ifin)
       if(rio.ne.rte) then
 c     exec
          k=lpt(1)-(13+nsiz)
