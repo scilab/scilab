@@ -195,15 +195,15 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\src\c\DllMainTclsci.c"
+				RelativePath=".\src\DllMainTclsci.c"
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\EnvTclTk.c"
+				RelativePath=".\src\EnvTclTk.c"
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\GedManagement.c"
+				RelativePath=".\src\GedManagement.c"
 				>
 			</File>
 			<File
@@ -211,11 +211,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\InitializeTclTk.c"
+				RelativePath=".\src\InitializeTclTk.c"
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\InitTclTk.c"
+				RelativePath=".\src\InitTclTk.c"
 				>
 			</File>
 			<File
@@ -295,35 +295,35 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\ScilabEval.c"
+				RelativePath=".\src\ScilabEval.c"
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\setenvtcl.c"
+				RelativePath=".\src\setenvtcl.c"
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\TCL_Global.c"
+				RelativePath=".\src\TCL_Global.c"
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\TclEvents.c"
+				RelativePath=".\src\TclEvents.c"
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\TclUiGet.c"
+				RelativePath=".\src\TclUiGet.c"
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\TclUiSet.c"
+				RelativePath=".\src\TclUiSet.c"
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\tksynchro.c"
+				RelativePath=".\src\tksynchro.c"
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\with_tk.c"
+				RelativePath=".\src\with_tk.c"
 				>
 			</File>
 		</Filter>
@@ -357,7 +357,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\resource.h"
+				RelativePath=".\src\resource.h"
 				>
 			</File>
 			<File
@@ -467,7 +467,7 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 			<File
-				RelativePath=".\src\c\tclsci.rc"
+				RelativePath=".\src\tclsci.rc"
 				>
 			</File>
 		</Filter>
