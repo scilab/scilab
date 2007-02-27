@@ -9,6 +9,7 @@
 #ifndef _MSC_VER
 	#include <pthread.h>
 #endif
+#include "stdlib.h"
 #include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/ 
 static JavaVM *jvm_CONSOLE=NULL;
