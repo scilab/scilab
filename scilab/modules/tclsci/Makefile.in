@@ -288,17 +288,17 @@ target_alias = @target_alias@
 tcldir = @tcldir@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-TCLSCI_C_SOURCES = src/c/GedManagement.c \
-src/c/TclUiGet.c \
-src/c/TCL_Global.c \
-src/c/tksynchro.c \
-src/c/InitTclTk.c \
-src/c/ScilabEval.c \
-src/c/TclEvents.c \
-src/c/setenvtcl.c \
-src/c/with_tk.c \
-src/c/TclUiSet.c \
-src/c/InitializeTclTk.c
+TCLSCI_C_SOURCES = src/GedManagement.c \
+src//TclUiGet.c \
+src//TCL_Global.c \
+src//tksynchro.c \
+src//InitTclTk.c \
+src//ScilabEval.c \
+src//TclEvents.c \
+src//setenvtcl.c \
+src//with_tk.c \
+src//TclUiSet.c \
+src//InitializeTclTk.c
 
 
 # a priori utilisé seulement par windows
@@ -742,82 +742,82 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
-libscitclsci_la-GedManagement.lo: src/c/GedManagement.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-GedManagement.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-GedManagement.Tpo -c -o libscitclsci_la-GedManagement.lo `test -f 'src/c/GedManagement.c' || echo '$(srcdir)/'`src/c/GedManagement.c
+libscitclsci_la-GedManagement.lo: src/GedManagement.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-GedManagement.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-GedManagement.Tpo -c -o libscitclsci_la-GedManagement.lo `test -f 'src/GedManagement.c' || echo '$(srcdir)/'`src/GedManagement.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscitclsci_la-GedManagement.Tpo $(DEPDIR)/libscitclsci_la-GedManagement.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/GedManagement.c' object='libscitclsci_la-GedManagement.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/GedManagement.c' object='libscitclsci_la-GedManagement.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-GedManagement.lo `test -f 'src/c/GedManagement.c' || echo '$(srcdir)/'`src/c/GedManagement.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-GedManagement.lo `test -f 'src/GedManagement.c' || echo '$(srcdir)/'`src/GedManagement.c
 
-libscitclsci_la-TclUiGet.lo: src/c/TclUiGet.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-TclUiGet.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-TclUiGet.Tpo -c -o libscitclsci_la-TclUiGet.lo `test -f 'src/c/TclUiGet.c' || echo '$(srcdir)/'`src/c/TclUiGet.c
+libscitclsci_la-TclUiGet.lo: src//TclUiGet.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-TclUiGet.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-TclUiGet.Tpo -c -o libscitclsci_la-TclUiGet.lo `test -f 'src//TclUiGet.c' || echo '$(srcdir)/'`src//TclUiGet.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscitclsci_la-TclUiGet.Tpo $(DEPDIR)/libscitclsci_la-TclUiGet.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/TclUiGet.c' object='libscitclsci_la-TclUiGet.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src//TclUiGet.c' object='libscitclsci_la-TclUiGet.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-TclUiGet.lo `test -f 'src/c/TclUiGet.c' || echo '$(srcdir)/'`src/c/TclUiGet.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-TclUiGet.lo `test -f 'src//TclUiGet.c' || echo '$(srcdir)/'`src//TclUiGet.c
 
-libscitclsci_la-TCL_Global.lo: src/c/TCL_Global.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-TCL_Global.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-TCL_Global.Tpo -c -o libscitclsci_la-TCL_Global.lo `test -f 'src/c/TCL_Global.c' || echo '$(srcdir)/'`src/c/TCL_Global.c
+libscitclsci_la-TCL_Global.lo: src//TCL_Global.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-TCL_Global.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-TCL_Global.Tpo -c -o libscitclsci_la-TCL_Global.lo `test -f 'src//TCL_Global.c' || echo '$(srcdir)/'`src//TCL_Global.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscitclsci_la-TCL_Global.Tpo $(DEPDIR)/libscitclsci_la-TCL_Global.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/TCL_Global.c' object='libscitclsci_la-TCL_Global.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src//TCL_Global.c' object='libscitclsci_la-TCL_Global.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-TCL_Global.lo `test -f 'src/c/TCL_Global.c' || echo '$(srcdir)/'`src/c/TCL_Global.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-TCL_Global.lo `test -f 'src//TCL_Global.c' || echo '$(srcdir)/'`src//TCL_Global.c
 
-libscitclsci_la-tksynchro.lo: src/c/tksynchro.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-tksynchro.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-tksynchro.Tpo -c -o libscitclsci_la-tksynchro.lo `test -f 'src/c/tksynchro.c' || echo '$(srcdir)/'`src/c/tksynchro.c
+libscitclsci_la-tksynchro.lo: src//tksynchro.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-tksynchro.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-tksynchro.Tpo -c -o libscitclsci_la-tksynchro.lo `test -f 'src//tksynchro.c' || echo '$(srcdir)/'`src//tksynchro.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscitclsci_la-tksynchro.Tpo $(DEPDIR)/libscitclsci_la-tksynchro.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/tksynchro.c' object='libscitclsci_la-tksynchro.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src//tksynchro.c' object='libscitclsci_la-tksynchro.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-tksynchro.lo `test -f 'src/c/tksynchro.c' || echo '$(srcdir)/'`src/c/tksynchro.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-tksynchro.lo `test -f 'src//tksynchro.c' || echo '$(srcdir)/'`src//tksynchro.c
 
-libscitclsci_la-InitTclTk.lo: src/c/InitTclTk.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-InitTclTk.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-InitTclTk.Tpo -c -o libscitclsci_la-InitTclTk.lo `test -f 'src/c/InitTclTk.c' || echo '$(srcdir)/'`src/c/InitTclTk.c
+libscitclsci_la-InitTclTk.lo: src//InitTclTk.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-InitTclTk.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-InitTclTk.Tpo -c -o libscitclsci_la-InitTclTk.lo `test -f 'src//InitTclTk.c' || echo '$(srcdir)/'`src//InitTclTk.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscitclsci_la-InitTclTk.Tpo $(DEPDIR)/libscitclsci_la-InitTclTk.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/InitTclTk.c' object='libscitclsci_la-InitTclTk.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src//InitTclTk.c' object='libscitclsci_la-InitTclTk.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-InitTclTk.lo `test -f 'src/c/InitTclTk.c' || echo '$(srcdir)/'`src/c/InitTclTk.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-InitTclTk.lo `test -f 'src//InitTclTk.c' || echo '$(srcdir)/'`src//InitTclTk.c
 
-libscitclsci_la-ScilabEval.lo: src/c/ScilabEval.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-ScilabEval.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-ScilabEval.Tpo -c -o libscitclsci_la-ScilabEval.lo `test -f 'src/c/ScilabEval.c' || echo '$(srcdir)/'`src/c/ScilabEval.c
+libscitclsci_la-ScilabEval.lo: src//ScilabEval.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-ScilabEval.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-ScilabEval.Tpo -c -o libscitclsci_la-ScilabEval.lo `test -f 'src//ScilabEval.c' || echo '$(srcdir)/'`src//ScilabEval.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscitclsci_la-ScilabEval.Tpo $(DEPDIR)/libscitclsci_la-ScilabEval.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/ScilabEval.c' object='libscitclsci_la-ScilabEval.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src//ScilabEval.c' object='libscitclsci_la-ScilabEval.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-ScilabEval.lo `test -f 'src/c/ScilabEval.c' || echo '$(srcdir)/'`src/c/ScilabEval.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-ScilabEval.lo `test -f 'src//ScilabEval.c' || echo '$(srcdir)/'`src//ScilabEval.c
 
-libscitclsci_la-TclEvents.lo: src/c/TclEvents.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-TclEvents.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-TclEvents.Tpo -c -o libscitclsci_la-TclEvents.lo `test -f 'src/c/TclEvents.c' || echo '$(srcdir)/'`src/c/TclEvents.c
+libscitclsci_la-TclEvents.lo: src//TclEvents.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-TclEvents.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-TclEvents.Tpo -c -o libscitclsci_la-TclEvents.lo `test -f 'src//TclEvents.c' || echo '$(srcdir)/'`src//TclEvents.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscitclsci_la-TclEvents.Tpo $(DEPDIR)/libscitclsci_la-TclEvents.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/TclEvents.c' object='libscitclsci_la-TclEvents.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src//TclEvents.c' object='libscitclsci_la-TclEvents.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-TclEvents.lo `test -f 'src/c/TclEvents.c' || echo '$(srcdir)/'`src/c/TclEvents.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-TclEvents.lo `test -f 'src//TclEvents.c' || echo '$(srcdir)/'`src//TclEvents.c
 
-libscitclsci_la-setenvtcl.lo: src/c/setenvtcl.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-setenvtcl.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-setenvtcl.Tpo -c -o libscitclsci_la-setenvtcl.lo `test -f 'src/c/setenvtcl.c' || echo '$(srcdir)/'`src/c/setenvtcl.c
+libscitclsci_la-setenvtcl.lo: src//setenvtcl.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-setenvtcl.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-setenvtcl.Tpo -c -o libscitclsci_la-setenvtcl.lo `test -f 'src//setenvtcl.c' || echo '$(srcdir)/'`src//setenvtcl.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscitclsci_la-setenvtcl.Tpo $(DEPDIR)/libscitclsci_la-setenvtcl.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/setenvtcl.c' object='libscitclsci_la-setenvtcl.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src//setenvtcl.c' object='libscitclsci_la-setenvtcl.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-setenvtcl.lo `test -f 'src/c/setenvtcl.c' || echo '$(srcdir)/'`src/c/setenvtcl.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-setenvtcl.lo `test -f 'src//setenvtcl.c' || echo '$(srcdir)/'`src//setenvtcl.c
 
-libscitclsci_la-with_tk.lo: src/c/with_tk.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-with_tk.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-with_tk.Tpo -c -o libscitclsci_la-with_tk.lo `test -f 'src/c/with_tk.c' || echo '$(srcdir)/'`src/c/with_tk.c
+libscitclsci_la-with_tk.lo: src//with_tk.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-with_tk.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-with_tk.Tpo -c -o libscitclsci_la-with_tk.lo `test -f 'src//with_tk.c' || echo '$(srcdir)/'`src//with_tk.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscitclsci_la-with_tk.Tpo $(DEPDIR)/libscitclsci_la-with_tk.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/with_tk.c' object='libscitclsci_la-with_tk.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src//with_tk.c' object='libscitclsci_la-with_tk.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-with_tk.lo `test -f 'src/c/with_tk.c' || echo '$(srcdir)/'`src/c/with_tk.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-with_tk.lo `test -f 'src//with_tk.c' || echo '$(srcdir)/'`src//with_tk.c
 
-libscitclsci_la-TclUiSet.lo: src/c/TclUiSet.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-TclUiSet.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-TclUiSet.Tpo -c -o libscitclsci_la-TclUiSet.lo `test -f 'src/c/TclUiSet.c' || echo '$(srcdir)/'`src/c/TclUiSet.c
+libscitclsci_la-TclUiSet.lo: src//TclUiSet.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-TclUiSet.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-TclUiSet.Tpo -c -o libscitclsci_la-TclUiSet.lo `test -f 'src//TclUiSet.c' || echo '$(srcdir)/'`src//TclUiSet.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscitclsci_la-TclUiSet.Tpo $(DEPDIR)/libscitclsci_la-TclUiSet.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/TclUiSet.c' object='libscitclsci_la-TclUiSet.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src//TclUiSet.c' object='libscitclsci_la-TclUiSet.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-TclUiSet.lo `test -f 'src/c/TclUiSet.c' || echo '$(srcdir)/'`src/c/TclUiSet.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-TclUiSet.lo `test -f 'src//TclUiSet.c' || echo '$(srcdir)/'`src//TclUiSet.c
 
-libscitclsci_la-InitializeTclTk.lo: src/c/InitializeTclTk.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-InitializeTclTk.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-InitializeTclTk.Tpo -c -o libscitclsci_la-InitializeTclTk.lo `test -f 'src/c/InitializeTclTk.c' || echo '$(srcdir)/'`src/c/InitializeTclTk.c
+libscitclsci_la-InitializeTclTk.lo: src//InitializeTclTk.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-InitializeTclTk.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-InitializeTclTk.Tpo -c -o libscitclsci_la-InitializeTclTk.lo `test -f 'src//InitializeTclTk.c' || echo '$(srcdir)/'`src//InitializeTclTk.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscitclsci_la-InitializeTclTk.Tpo $(DEPDIR)/libscitclsci_la-InitializeTclTk.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/InitializeTclTk.c' object='libscitclsci_la-InitializeTclTk.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src//InitializeTclTk.c' object='libscitclsci_la-InitializeTclTk.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-InitializeTclTk.lo `test -f 'src/c/InitializeTclTk.c' || echo '$(srcdir)/'`src/c/InitializeTclTk.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-InitializeTclTk.lo `test -f 'src//InitializeTclTk.c' || echo '$(srcdir)/'`src//InitializeTclTk.c
 
 libscitclsci_la-sci_TCL_CreateSlave.lo: sci_gateway/sci_TCL_CreateSlave.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-sci_TCL_CreateSlave.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-sci_TCL_CreateSlave.Tpo -c -o libscitclsci_la-sci_TCL_CreateSlave.lo `test -f 'sci_gateway/sci_TCL_CreateSlave.c' || echo '$(srcdir)/'`sci_gateway/sci_TCL_CreateSlave.c
