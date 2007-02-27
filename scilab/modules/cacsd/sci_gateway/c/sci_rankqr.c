@@ -1,9 +1,10 @@
 /*-----------------------------------------------------------------------------------*/ 
 /* INRIA */
 /*-----------------------------------------------------------------------------------*/ 
+#include <string.h>
 #include "machine.h"
 #include "stack-c.h"
-#include <string.h>
+#include "sci_rankqr.h"
 /*-----------------------------------------------------------------------------------*/ 
 extern int C2F(intmb03od) __PARAMS((char *fname, unsigned long fname_len));
 extern int C2F(intzb03od) __PARAMS((char *fname, unsigned long fname_len));
