@@ -237,7 +237,7 @@ function ilib_link_gen_Make_lcc(names,files,libs,Makename,libname,ldflags,cflags
   mfprintf(fd,"SCIDIR =%s\n",SCI);
   mfprintf(fd,"SCIDIR1 =%s\n",pathconvert(SCI,%f,%f,'w'));
   mfprintf(fd,"DUMPEXTS=""$(SCIDIR1)\\bin\\dumpexts""\n");
-  mfprintf(fd,"SCIIMPLIB=$(SCIDIR1)\\bin\\LibScilabLCC.lib $(SCIDIR1)\\bin\\atlaslcc.lib $(SCIDIR1)\\bin\\libf2clcc.lib $(SCIDIR1)\\bin\\interscilcc.lib $(SCIDIR1)\\bin\\lapacklcc.lib $(SCIDIR1)\\bin\\scicoslcc.lib\n\n");
+  mfprintf(fd,"SCIIMPLIB=$(SCIDIR1)\\bin\\lcclib\\LibScilab.lib $(SCIDIR1)\\bin\\lcclib\\blasplus.lib $(SCIDIR1)\\bin\\lcclib\\libf2c.lib $(SCIDIR1)\\bin\\lcclib\\intersci.lib $(SCIDIR1)\\bin\\lapack.lib $(SCIDIR1)\\bin\\scicos.lib\n\n");
   mfprintf(fd,"CC=lcc\n");
   mfprintf(fd,"LINKER=lcclnk\n");
   mfprintf(fd,"CFLAGS=-I""$(SCIDIR)/modules/core/includes"" -I""$(SCIDIR)/libs/f2c"" -I""$(SCIDIR)/modules/mexlib/includes"" -Dmexfunction_=mex$*_ -DmexFunction=mex_$* -DWIN32 -DSTRICT -DFORDLL -D__STDC__ "+ cflags +" \n"); 

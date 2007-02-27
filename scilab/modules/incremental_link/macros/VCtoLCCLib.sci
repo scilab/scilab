@@ -7,6 +7,7 @@ if with_lcc()==%t then
 	if MSDOS==%t then
 		DirCur=pwd();
 		chdir(WSCI+'\bin');
+		mkdir('lcclib');
 	
 		Exportalibrary('LibScilab');
 		ExportAtlasLibrary();
@@ -45,7 +46,7 @@ function bOK=Exportalibrary(libraryname)
 	mclose(fr);
 	
 	printf('\nBuild '+libraryname+'.lib (Please waiting).\n');
-	command='buildLib ""'+TMPDIR+'\'+libraryname+'.exp""'+' ""'+WSCI+'\bin\'+libraryname+'lcc.lib""';
+	command='buildLib ""'+TMPDIR+'\'+libraryname+'.exp""'+' ""'+WSCI+'\bin\lcclib\'+libraryname+'.lib""';
 	unix(command);
 	bOK=%T;
 endfunction
@@ -76,7 +77,7 @@ function ExportAtlasLibrary()
 	mclose(fw);
 	mclose(fr);
 	
-	printf('\nBuild Atlaslcc.lib\n');
-	unix('buildLib ""'+TMPDIR+'\Atlaslcc.exp""'+' ""'+WSCI+'\bin\'+'Atlaslcc.lib""');
+	printf('\nBuild Atlas.lib\n');
+	unix('buildLib ""'+TMPDIR+'\Atlaslcc.exp""'+' ""'+WSCI+'\bin\lcclib\'+'blasplus.lib""');
 endfunction
 //-------------------------------------------------------------------

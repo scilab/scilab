@@ -150,7 +150,7 @@ function ilib_gen_Make_lcc(name,table,files,libs,Makename,with_gateway,ldflags,c
   mfprintf(fd,"SCIDIR =%s\n",SCI);
   mfprintf(fd,"SCIDIR1 =%s\n",pathconvert(SCI,%f,%f,'w'));
   mfprintf(fd,"DUMPEXTS=""$(SCIDIR1)\\bin\\dumpexts""\n");
- 	mfprintf(fd,"SCIIMPLIB=$(SCIDIR1)\\bin\\LibScilabLCC.lib $(SCIDIR1)\\bin\\atlaslcc.lib $(SCIDIR1)\\bin\\libf2clcc.lib $(SCIDIR1)\\bin\\interscilcc.lib $(SCIDIR1)\\bin\\lapacklcc.lib $(SCIDIR1)\\bin\\scicoslcc.lib\n\n");
+ 	mfprintf(fd,"SCIIMPLIB=$(SCIDIR1)\\bin\\lcclib\\LibScilab.lib $(SCIDIR1)\\bin\\lcclib\\atlas.lib $(SCIDIR1)\\bin\\lcclib\\libf2c.lib $(SCIDIR1)\\bin\\interscilcc.lib $(SCIDIR1)\\bin\\lcclib\\lapack.lib $(SCIDIR1)\\bin\\lcclib\\scicos.lib\n\n");
   mfprintf(fd,"CC=lcc\n");
   mfprintf(fd,"LINKER=lcclnk\n");
   mfprintf(fd,"CFLAGS= -ansic msvcrt.lib -I""$(SCIDIR)/modules/core/includes"" -I""$(SCIDIR)/libs/f2c"" -I""$(SCIDIR)/modules/mexlib/includes"" -Dmexfunction_=mex$*_ -DmexFunction=mex_$* -DWIN32 -DSTRICT -DFORDLL -D__STDC__ "+ cflags +" \n"); 
