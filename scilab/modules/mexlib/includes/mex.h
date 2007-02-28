@@ -1,3 +1,7 @@
+/*-----------------------------------------------------------------------------------*/
+/* INRIA/ENPC */
+/*-----------------------------------------------------------------------------------*/
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -107,17 +111,9 @@ void *mxGetImagData __PARAMS((const mxArray *ptr));
 extern void diary_nnl __PARAMS((char *str,int *n));
 extern int getdiary __PARAMS(());
 
-extern int C2F(createptr) __PARAMS((char *type,integer * m,integer * n, integer *it,integer * lr,integer *ptr, long int type_len));
-extern int C2F(createstkptr) __PARAMS((integer *m, vraiptrst *ptr));
-extern int C2F(endmex)  __PARAMS((integer *nlhs,mxArray *plhs[],integer *nrhs,mxArray *prhs[]));
-
 void clear_mex(integer nlhs, mxArray **plhs, integer nrhs, mxArray **prhs);
 
-extern int C2F(getrhsvar) __PARAMS((integer *, char *, integer *, integer *, integer *, long unsigned int));
-extern int C2F(initmex) __PARAMS((integer *nlhs,mxArray *plhs[],integer *nrhs,mxArray *prhs[]));
-extern int C2F(putlhsvar) __PARAMS((void));
 extern void errjump __PARAMS((void));
-extern vraiptrst C2F(locptr) __PARAMS(( void *x));
 int  C2F(mxgetm)  __PARAMS((mxArray *ptr));
 int  C2F(mxgetn)  __PARAMS((mxArray *ptr));
 int  C2F(mxgetstring)  __PARAMS((mxArray *ptr, char *str, int *strl));
@@ -128,10 +124,50 @@ int  C2F(mxissparse)  __PARAMS((mxArray *ptr));
 int  C2F(mxisstring)  __PARAMS((mxArray *ptr));
 int *mxGetIr __PARAMS((const mxArray *ptr));
 int *mxGetJc __PARAMS((const mxArray *ptr));
+
+/**
+ * TODO : comment
+ * @param type
+ * @param m
+ * @param n
+ * @param it
+ * @param lr
+ * @param ptr
+ * @param type_len
+ * @return
+*/
 int C2F(createptr)  __PARAMS((char *type, int *m, int *n, int *it, int *lr, int *ptr, long int type_len));
+
+/**
+ * TODO : comment
+ * @param m
+ * @param ptr
+ * @return
+*/
 int C2F(createstkptr)  __PARAMS((integer *m, vraiptrst *ptr));
+
+
+/**
+ * TODO : comment
+ * @param nlhs
+ * @param plhs
+ * @param nrhs
+ * @param prhs
+ * @return
+*/
 int C2F(endmex)  __PARAMS((integer *nlhs, mxArray **plhs, integer *nrhs, mxArray **prhs));
+
+
+/**
+ * TODO : comment
+ * @param nlhs
+ * @param plhs
+ * @param nrhs
+ * @param prhs
+ * @return
+*/
 int C2F(initmex)  __PARAMS((integer *nlhs, mxArray **plhs, integer *nrhs, mxArray **prhs));
+
 int C2F(mexcallscilab)  __PARAMS((integer *nlhs, mxArray **plhs, integer *nrhs, mxArray **prhs, char *name, int namelen));
 int C2F(mxcopyptrtoreal8)  __PARAMS((mxArray *ptr, double *y, integer *n));
 int C2F(mxcopyreal8toptr)  __PARAMS((double *y, mxArray *ptr, integer *n));
@@ -189,7 +225,6 @@ void  C2F(mexprintf)  __PARAMS((char *error_msg, int len));
 
 void *mxCalloc __PARAMS((size_t n, size_t size));
 void *mxMalloc __PARAMS((size_t nsize));
-/*  void *mxRealloc(void *ptr, size_t size);  */
 
 void *mxCalloc_m __PARAMS((unsigned int n, unsigned int size));
 void *mxMalloc_m __PARAMS((unsigned int nsize));
@@ -214,6 +249,12 @@ mxArray *mxGetFieldByNumber __PARAMS((const mxArray *ptr, int index, int field_n
 const char *mxGetFieldNameByNumber __PARAMS((const mxArray *array_ptr, int field_number));
 mxLOGICAL *mxGetLogicals __PARAMS((mxArray *array_ptr));
 
+
+/**
+ * TODO : comment
+ * @param x
+ * @return
+*/
 vraiptrst C2F(locptr) __PARAMS((void *x));
 
 typedef enum {

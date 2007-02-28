@@ -33,22 +33,22 @@
  *                 values)
  *     values = vector of doubles or int8-16-32 or char
  --------------------------------------------------------------------------*/
+#include <string.h>
+#include <stdio.h>
+#include <stdarg.h>
+
+#ifdef _MSC_VER
+	#include <stdlib.h> /* for exit()*/
+#endif
+
 
 #include "stack-c.h"
 #include "../../elementaries_functions/includes/elementaries_functions.h"
 
 #include "mex.h"
-#include <string.h>
-#include <stdio.h>
- 
-
-#include <stdarg.h>
-
-#ifdef _MSC_VER
-	#include <stdlib.h> /*pour exit()*/
-#endif
 
 #include "MALLOC.h" /* MALLOC */
+#include "mexlib.h"
 
 #if _MSC_VER
 	#define __STDC__ 
@@ -90,7 +90,7 @@ extern int IsReference  __PARAMS((mxArray *array_ptr));
 /* i2sadr: header adress to value adress */
 #define i2sadr(l) ( ( (l)/2 ) +1 )
 
-vraiptrst  stkptr(long int ptr_lstk)
+vraiptrst stkptr(long int ptr_lstk)
 {
   vraiptrst ptr =  C2F(locptr)(stk((long int)(ptr_lstk))); 
   return ptr;
@@ -1002,7 +1002,7 @@ mxArray *mxCreateStructMatrix(int m, int n, int nfields, const char **field_name
   return (mxArray *) C2F(vstk).lstk[lw + Top - Rhs - 1 ];
 }
 
-void mxSetFieldByNumber(mxArray *array_ptr, int index, int field_number, mxArray *value)
+void mxSetFieldByNumber(mxArray *array_ptr, int lindex, int field_number, mxArray *value)
 {
   int pointed, point_ed;int proddims,k;int is1x1;
   int *headerobj; int *headervalue;
@@ -1018,7 +1018,7 @@ void mxSetFieldByNumber(mxArray *array_ptr, int index, int field_number, mxArray
   if (is1x1) {
     headerobj = listentry( header, field_number+3);}
   else {
-    headerobj = listentry( listentry(header, field_number+3)  ,index+1);}
+    headerobj = listentry( listentry(header, field_number+3)  ,lindex+1);}
   if (IsReference(value))
     {
       headervalue = RawHeader(value);
@@ -1038,11 +1038,11 @@ void mxSetFieldByNumber(mxArray *array_ptr, int index, int field_number, mxArray
     }
 }
 
-void mxSetField(mxArray *array_ptr, int index, const char *field_name, mxArray *value)
+void mxSetField(mxArray *array_ptr, int lindex, const char *field_name, mxArray *value)
 {
   int field_num;
   field_num = mxGetFieldNumber(array_ptr, field_name);
-  mxSetFieldByNumber(array_ptr, index, field_num, value);
+  mxSetFieldByNumber(array_ptr, lindex, field_num, value);
 }
 
 const char *mxGetFieldNameByNumber(const mxArray *array_ptr, int field_number)
@@ -1172,7 +1172,7 @@ mxArray *mxCreateCellMatrix(int nrows, int ncols)
   return mxCreateCellArray(two, dims);
 }
 
-mxArray *mxGetCell(const mxArray *ptr, int index)
+mxArray *mxGetCell(const mxArray *ptr, int lindex)
 {
   int kk,lw,isize;int proddims,k;int is1x1;
   int *headerlist,*headerobj,*headerobjcopy;
@@ -1186,13 +1186,13 @@ mxArray *mxGetCell(const mxArray *ptr, int index)
   is1x1= (int) proddims==1;
 
   if (is1x1) {
-    headerobj = listentry( header, index+1);
+    headerobj = listentry( header, lindex+1);
     isize = header[5]- header[4];
   }
   else {
     headerlist = listentry(header,3);
-    headerobj = listentry(headerlist,index+1);
-    isize=headerlist[index+3]-headerlist[index+2];
+    headerobj = listentry(headerlist,lindex+1);
+    isize=headerlist[lindex+3]-headerlist[lindex+2];
   }
   Nbvars++;  lw=Nbvars;
   CreateData(lw,isize*sizeof(double));
@@ -1225,7 +1225,7 @@ int mxGetFieldNumber(const mxArray *ptr, const char *string)
   return retval;
 }
 
-mxArray *mxGetField(const mxArray *ptr, int index, const char *string)
+mxArray *mxGetField(const mxArray *ptr, int lindex, const char *string)
 {
   int kk,lw,isize,fieldnum;int proddims,k;int is1x1;
   int *headerlist, *headerobj, *headerobjcopy;
@@ -1247,8 +1247,8 @@ mxArray *mxGetField(const mxArray *ptr, int index, const char *string)
   }
   else {
     headerlist = listentry(header,3+fieldnum);
-    headerobj = listentry(headerlist,index+1);
-    isize=headerlist[index+3]-headerlist[index+2];
+    headerobj = listentry(headerlist,lindex+1);
+    isize=headerlist[lindex+3]-headerlist[lindex+2];
   }
 
   Nbvars++; lw=Nbvars;
@@ -1260,7 +1260,7 @@ mxArray *mxGetField(const mxArray *ptr, int index, const char *string)
   return (mxArray *) C2F(intersci).iwhere[lw-1];
 }
 
-mxArray *mxGetFieldByNumber(const mxArray *ptr, int index, int field_number)
+mxArray *mxGetFieldByNumber(const mxArray *ptr, int lindex, int field_number)
 {
   int kk,lw,isize,fieldnum;int proddims,k;int is1x1;
   int maxfieldnum, maxindex;
@@ -1272,7 +1272,7 @@ mxArray *mxGetFieldByNumber(const mxArray *ptr, int index, int field_number)
   maxfieldnum = mxGetNumberOfFields(ptr)-1;
   maxindex = mxGetNumberOfElements(ptr)-1;
   if (maxfieldnum < fieldnum) return (mxArray *) NULL;
-  if (maxindex < index) return (mxArray *) NULL; 
+  if (maxindex < lindex) return (mxArray *) NULL; 
 
   proddims=1;
   for (k=0; k<headerdims[1]*headerdims[2]; k++) {
@@ -1286,8 +1286,8 @@ mxArray *mxGetFieldByNumber(const mxArray *ptr, int index, int field_number)
   }
   else {
     headerlist = listentry(header,3+fieldnum);
-    headerobj = listentry(headerlist,index+1);
-    isize=headerlist[index+3]-headerlist[index+2];
+    headerobj = listentry(headerlist,lindex+1);
+    isize=headerlist[lindex+3]-headerlist[lindex+2];
   }
   if (isize==2) return (mxArray *) NULL; /* empty field */
   Nbvars++; lw=Nbvars;
@@ -1708,7 +1708,7 @@ mxArray *UnrefStruct(mxArray *ptr)
 {
   /*   Unreference objects in a struct or cell */
   int number, k;
-  int list, index, offset; int sizeobj;
+  int list, lindex, offset; int sizeobj;
   int nb, nbobj, suite, newbot;
 
   int oldsize, newsize;
@@ -1736,14 +1736,14 @@ mxArray *UnrefStruct(mxArray *ptr)
     for (list=0; list<nb; list++) {
       headerlist= listentry(header, list+3);  /* pointing to the field list */
       nbobj=headerlist[1];   /* number of objects in the field */
-      for (index=0; index < nbobj; index++)
+      for (lindex=0; lindex < nbobj; lindex++)
 	{
-	  headerobj = listentry( headerlist,index+1);  
+	  headerobj = listentry( headerlist,lindex+1);  
 	  /* pointing to the object in the field */
 	  if (headerobj[0] < 0)
 	    sizeobj=headerobj[3];
 	  else
-	    sizeobj=headerlist[index+3]-headerlist[index+2];
+	    sizeobj=headerlist[lindex+3]-headerlist[lindex+2];
 	  newsize += sizeobj;   /* update size of the field */
 	}
       suite++;
@@ -1763,23 +1763,23 @@ mxArray *UnrefStruct(mxArray *ptr)
       headerlistnew[0]= 15;
       headerlistnew[1]= nbobj;
       headerlistnew[2]= 1;
-      for (index=0; index < nbobj; index++)
-	{	headerobj = listentry( headerlist,index+1);
+      for (lindex=0; lindex < nbobj; lindex++)
+	{	headerobj = listentry( headerlist,lindex+1);
 	if (headerobj[0] < 0)
 	  sizeobj=headerobj[3];  /* reference (size of ) */
 	else
-	  sizeobj=headerlist[index+3]-headerlist[index+2];
-	headerlistnew[3+index]=headerlistnew[2+index]+sizeobj;
+	  sizeobj=headerlist[lindex+3]-headerlist[lindex+2];
+	headerlistnew[3+lindex]=headerlistnew[2+lindex]+sizeobj;
 	}
     }
     for (list=0; list<nb; list++) {
       headerlist= listentry(header, list+3);
       headerlistnew=listentry(headernew, list+3);
       nbobj=headerlist[1]; 
-      for (index=0; index < nbobj; index++)
+      for (lindex=0; lindex < nbobj; lindex++)
 	{	
-	  headerobj = listentry( headerlist,index+1);
-	  headerobjnew = listentry( headerlistnew,index+1);	
+	  headerobj = listentry( headerlist,lindex+1);
+	  headerobjnew = listentry( headerlistnew,lindex+1);	
 	  if (headerobj[0] < 0)   /* reference */
 	    {
 	      sizeobj=headerobj[3];
@@ -1787,7 +1787,7 @@ mxArray *UnrefStruct(mxArray *ptr)
 	    }
 	  else
 	    {
-	      sizeobj=headerlist[index+3]-headerlist[index+2];
+	      sizeobj=headerlist[lindex+3]-headerlist[lindex+2];
 	    }
 	  for (k=0; k<2*sizeobj; k++)
 	    headerobjnew[k]=headerobj[k];  /* OUF! */
@@ -2464,9 +2464,9 @@ const char *mxGetClassName(const mxArray *ptr)
   return "unknown";
 }
 
-void mxSetCell(mxArray *array_ptr, int index, mxArray *value)
+void mxSetCell(mxArray *array_ptr, int lindex, mxArray *value)
 {
-  mxSetFieldByNumber(array_ptr, index, 0 , value);
+  mxSetFieldByNumber(array_ptr, lindex, 0 , value);
   return;
 }
 
