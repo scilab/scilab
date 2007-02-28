@@ -368,13 +368,11 @@ includes/xscion.h \
 includes/stack.h \
 includes/setgetSCIpath.h \
 includes/getmodules.h \
-includes/machine.h \.in
 includes/callinter.h \
 includes/InitScilab.h \
 includes/sciquit.h \
 includes/msg_errors.h \
 includes/intgetmemory.h \
-includes/machine.vc
 includes/gw_core.h \
 includes/stack-c.h \
 includes/version.h \
