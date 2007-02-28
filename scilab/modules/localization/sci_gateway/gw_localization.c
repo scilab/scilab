@@ -20,7 +20,7 @@ static LocalizationTable Tab[]=
 int C2F(gw_localization)()
 {  
 	Rhs = Max(0, Rhs);
-#if _MSC_VER
+#ifdef _MSC_VER
 #ifndef _DEBUG
 	_try
 	{

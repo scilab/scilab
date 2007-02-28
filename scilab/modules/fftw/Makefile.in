@@ -342,7 +342,14 @@ top_srcdir = @top_srcdir@
 #SUFFIXES = .xml .sci .htm
 @FFTW_TRUE@SUFFIXES = .sci .java .class .jar
 
-############ JAVA #################
+########################### JAVA ######################################
+#### We had to create those rules because autotools does NOT provide
+#### a kind of mechanism like C or Fortran sources :
+#### libsciboolean_la_SOURCES = plop.c plip.f 
+####
+#### It is why those rules exist.
+#######################################################################
+
 # Replace all the .java by .class in JAVAFILES
 @FFTW_TRUE@CLASSFILES = $(JAVAFILES:.java=.class)
 # Create path without src/java and rename .java  by .class (needed by the jar 
