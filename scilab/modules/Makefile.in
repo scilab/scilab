@@ -83,8 +83,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscilab_la_rootdir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libscilab_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/mexlib/libscimexlib.la \
+libscilab_la_DEPENDENCIES = $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
 	$(top_builddir)/modules/boolean/libsciboolean.la \
 	$(top_builddir)/modules/cacsd/libscicacsd.la \
@@ -329,7 +328,7 @@ pkglib_LTLIBRARIES = libscilab.la
 libscilab_la_SOURCES = 
 
 # Core modules
-libscilab_la_LIBADD = $(top_builddir)/modules/mexlib/libscimexlib.la \
+libscilab_la_LIBADD = $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
 	$(top_builddir)/modules/boolean/libsciboolean.la \
 	$(top_builddir)/modules/cacsd/libscicacsd.la \

@@ -87,7 +87,7 @@ libscilab_la_SOURCES =
 
 # Core modules
 libscilab_la_LIBADD = \
-	$(top_builddir)/modules/mexlib/libscimexlib.la \
+	$(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
 	$(top_builddir)/modules/boolean/libsciboolean.la \
 	$(top_builddir)/modules/cacsd/libscicacsd.la \
