@@ -2789,8 +2789,6 @@ includes/Scierror.h \
 includes/realmain.h \
 includes/stack3.h \
 includes/machine.h \
-includes/stamp-h1
-includes/machine.h \.in~
 includes/ExceptionMessage.h \
 includes/prompt.h \
 includes/loadversion.h \
