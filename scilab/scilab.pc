@@ -8,5 +8,5 @@ Description: Scilab Library
 URL: http://www.scilab.org
 Version: 5.0
 Requires: libxml-2.0
-Libs: -L${libdir} -lsciarnoldi -lsciblas -lsciboolean -lscicacsd -lscicore -lscidata_structures -lscidifferential_equations -lscidouble -lscielementaries_functions -lscifileio -lscigraphics -lscigui -lscihashtable -lsciinteger -lsciinterpolation -lsciintersci -lsciio -lscilapack -lscilinear_algebra -lscilocalization -lscimalloc -lscimetanet -lscioptimization -lscipolynomials -lsciscicos -lscisignal_processing -lscisound -lscisparse -lscispecial_functions -lscistatistics -lscistring -lscisymbolic -lscitclsci -lscitime -lsciwintools
+Libs: -L${libdir} -lscilab
 Cflags: -I${includedir} -lieee -lXaw3d -lXmu -lXt -lX11 -lSM -lncurses -ltk8.4 -ltcl8.4 -ldl
