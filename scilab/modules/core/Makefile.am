@@ -392,7 +392,6 @@ includes/ExceptionMessage.h \
 includes/prompt.h \
 includes/loadversion.h \
 includes/tmpdir.h \
-includes/#machine.h \#
 includes/SCIHOME.h \
 includes/warningmode.h \
 includes/InitializeCore.h \
