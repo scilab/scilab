@@ -3,7 +3,7 @@
 ### INRIA - Scilab 2006 
 ##########
 
-MEXLIB_C_SOURCES = src/mexlib.c
+MEXLIB_C_SOURCES = src/c/mexlib.c
 
 libscimexlib_la_CFLAGS=  -Iincludes/ 
 
