@@ -41,7 +41,7 @@ libscifftw_la_sci_gateway_DATA = sci_gateway/fftw
 
 libscifftw_la_SOURCES = $(FFTW_C_SOURCES) $(GATEWAY_C_SOURCES)
 
-libscifftw_la_CFLAGS=  -Iincludes/  -Isrc/
+libscifftw_la_CFLAGS=  -Iincludes/  -Isrc/c/
 
 libscifftw_la_LDFLAGS = $(FFTW3_LIB)
 
