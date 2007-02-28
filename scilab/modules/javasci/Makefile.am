@@ -26,7 +26,6 @@ JAVAFILES = src/java/javasci/BadDataArgumentException.java \
 CLASSPATH = src/java/
 
 #### javasci : jar file #### 
-javasci_la_jardir = $(target)/jar
 JARFILE = javasci.jar
 
 
@@ -41,8 +40,6 @@ src/c/fix.c \
 src/c/javasci_SciDoubleArray.c \
 src/c/javasci_Scilab.c \
 src/c/javasci_SciBooleanArray.c
-
-
 
 pkglib_LTLIBRARIES = libjavasci.la
 
@@ -76,3 +73,6 @@ includes/javasci_SciBooleanArray.h
 
 tests:: $(JARFILE) $(JAVAFILES)
 	@(cd tests; make tests)
+
+install-data-local: $(JARFILE)
+	$(INSTALL_DATA) $(JARFILE) $(DESTDIR)$(pkglibdir)/

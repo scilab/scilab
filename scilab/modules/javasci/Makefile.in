@@ -267,7 +267,14 @@ sciincludedir = ${includedir}/scilab
 #SUFFIXES = .xml .sci .htm
 SUFFIXES = .sci .java .class .jar
 
-############ JAVA #################
+########################### JAVA ######################################
+#### We had to create those rules because autotools does NOT provide
+#### a kind of mechanism like C or Fortran sources :
+#### libsciboolean_la_SOURCES = plop.c plip.f 
+####
+#### It is why those rules exist.
+#######################################################################
+
 # Replace all the .java by .class in JAVAFILES
 CLASSFILES = $(JAVAFILES:.java=.class)
 # Create path without src/java and rename .java  by .class (needed by the jar 
@@ -313,7 +320,6 @@ JAVAFILES = src/java/javasci/BadDataArgumentException.java \
 CLASSPATH = src/java/
 
 #### javasci : jar file #### 
-javasci_la_jardir = $(target)/jar
 JARFILE = javasci.jar
 
 #### Javasci : sources ####
@@ -842,6 +848,9 @@ macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(MACROS)
 
 tests:: $(JARFILE) $(JAVAFILES)
 	@(cd tests; make tests)
+
+install-data-local: $(JARFILE)
+	$(INSTALL_DATA) $(JARFILE) $(DESTDIR)$(pkglibdir)/
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
