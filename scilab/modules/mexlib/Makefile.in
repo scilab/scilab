@@ -47,7 +47,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = $(libscimexlib_la_include_HEADERS) $(srcdir)/Makefile.am \
+DIST_COMMON = $(libmex_la_include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
 subdir = modules/mexlib
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -71,20 +71,32 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
-	"$(DESTDIR)$(libscimexlib_la_etcdir)" \
-	"$(DESTDIR)$(libscimexlib_la_rootdir)" \
-	"$(DESTDIR)$(libscimexlib_la_includedir)"
+	"$(DESTDIR)$(libmex_la_etcdir)" \
+	"$(DESTDIR)$(libmex_la_rootdir)" \
+	"$(DESTDIR)$(libmex_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libscimexlib_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/modules/data_structures/libscidata_structures.la
-am__objects_1 = libscimexlib_la-mexlib.lo
-am_libscimexlib_la_OBJECTS = $(am__objects_1)
-libscimexlib_la_OBJECTS = $(am_libscimexlib_la_OBJECTS)
-libscimexlib_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libscimexlib_la_CFLAGS) \
+libmat_la_DEPENDENCIES = $(MEXLIB_DEP)
+am__objects_1 = libmat_la-mexlib.lo
+am_libmat_la_OBJECTS = $(am__objects_1)
+libmat_la_OBJECTS = $(am_libmat_la_OBJECTS)
+libmat_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libmat_la_CFLAGS) \
 	$(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
+libmex_la_DEPENDENCIES = $(MEXLIB_DEP)
+am__objects_2 = libmex_la-mexlib.lo
+am_libmex_la_OBJECTS = $(am__objects_2)
+libmex_la_OBJECTS = $(am_libmex_la_OBJECTS)
+libmex_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libmex_la_CFLAGS) \
+	$(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
+libmx_la_DEPENDENCIES = $(MEXLIB_DEP)
+am__objects_3 = libmx_la-mexlib.lo
+am_libmx_la_OBJECTS = $(am__objects_3)
+libmx_la_OBJECTS = $(am_libmx_la_OBJECTS)
+libmx_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=link $(CCLD) $(libmx_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
+	$(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -97,13 +109,15 @@ CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libscimexlib_la_SOURCES)
-DIST_SOURCES = $(libscimexlib_la_SOURCES)
-libscimexlib_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libscimexlib_la_rootDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libscimexlib_la_etc_DATA) $(libscimexlib_la_root_DATA)
-libscimexlib_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
-HEADERS = $(libscimexlib_la_include_HEADERS)
+SOURCES = $(libmat_la_SOURCES) $(libmex_la_SOURCES) \
+	$(libmx_la_SOURCES)
+DIST_SOURCES = $(libmat_la_SOURCES) $(libmex_la_SOURCES) \
+	$(libmx_la_SOURCES)
+libmex_la_etcDATA_INSTALL = $(INSTALL_DATA)
+libmex_la_rootDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(libmex_la_etc_DATA) $(libmex_la_root_DATA)
+libmex_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
+HEADERS = $(libmex_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -255,30 +269,37 @@ tcldir = @tcldir@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 MEXLIB_C_SOURCES = src/c/mexlib.c
-libscimexlib_la_CFLAGS = -Iincludes/ 
-pkglib_LTLIBRARIES = libscimexlib.la
-libscimexlib_la_SOURCES = $(MEXLIB_C_SOURCES)
-libscimexlib_la_LIBADD = \
-	$(top_builddir)/modules/core/libscicore.la \
+MEXLIB_FLAGS = -Iincludes/ 
+MEXLIB_DEP = $(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/data_structures/libscidata_structures.la 
 
 #	$(top_builddir)/libs/blas/libsciblas.la \
 #	$(top_builddir)/modules/arnoldi/libsciarnoldi.la
+pkglib_LTLIBRARIES = libmat.la libmex.la libmx.la
+libmex_la_SOURCES = $(MEXLIB_C_SOURCES)
+libmex_la_LIBADD = $(MEXLIB_DEP)
+libmex_la_CFLAGS = $(MEXLIB_FLAGS)
+libmat_la_SOURCES = $(MEXLIB_C_SOURCES)
+libmat_la_LIBADD = $(MEXLIB_DEP)
+libmat_la_CFLAGS = $(MEXLIB_FLAGS)
+libmx_la_SOURCES = $(MEXLIB_C_SOURCES)
+libmx_la_LIBADD = $(MEXLIB_DEP)
+libmx_la_CFLAGS = $(MEXLIB_FLAGS)
 
 #### Target ######
 target = $(datadir)/mexlib
 
 #### mexlib : Conf files ####
-libscimexlib_la_rootdir = $(target)
-libscimexlib_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libmex_la_rootdir = $(target)
+libmex_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### mexlib : init scripts #### 
-libscimexlib_la_etcdir = $(target)/etc
-libscimexlib_la_etc_DATA = etc/mexlib.quit etc/mexlib.start
+libmex_la_etcdir = $(target)/etc
+libmex_la_etc_DATA = etc/mexlib.quit etc/mexlib.start
 
 #### mexlib : include files ####
-libscimexlib_la_includedir = $(sciincludedir)/mexlib
-libscimexlib_la_include_HEADERS = includes/mex.h
+libmex_la_includedir = $(sciincludedir)/mexlib
+libmex_la_include_HEADERS = includes/mex.h
 
 # Where headers (*.h) are installed (usually /usr/include/scilab/)
 sciincludedir = ${includedir}/scilab
@@ -372,8 +393,12 @@ clean-pkglibLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
-libscimexlib.la: $(libscimexlib_la_OBJECTS) $(libscimexlib_la_DEPENDENCIES) 
-	$(libscimexlib_la_LINK) -rpath $(pkglibdir) $(libscimexlib_la_OBJECTS) $(libscimexlib_la_LIBADD) $(LIBS)
+libmat.la: $(libmat_la_OBJECTS) $(libmat_la_DEPENDENCIES) 
+	$(libmat_la_LINK) -rpath $(pkglibdir) $(libmat_la_OBJECTS) $(libmat_la_LIBADD) $(LIBS)
+libmex.la: $(libmex_la_OBJECTS) $(libmex_la_DEPENDENCIES) 
+	$(libmex_la_LINK) -rpath $(pkglibdir) $(libmex_la_OBJECTS) $(libmex_la_LIBADD) $(LIBS)
+libmx.la: $(libmx_la_OBJECTS) $(libmx_la_DEPENDENCIES) 
+	$(libmx_la_LINK) -rpath $(pkglibdir) $(libmx_la_OBJECTS) $(libmx_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -381,7 +406,9 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimexlib_la-mexlib.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmat_la-mexlib.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmex_la-mexlib.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmx_la-mexlib.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -404,68 +431,82 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
-libscimexlib_la-mexlib.lo: src/c/mexlib.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimexlib_la_CFLAGS) $(CFLAGS) -MT libscimexlib_la-mexlib.lo -MD -MP -MF $(DEPDIR)/libscimexlib_la-mexlib.Tpo -c -o libscimexlib_la-mexlib.lo `test -f 'src/c/mexlib.c' || echo '$(srcdir)/'`src/c/mexlib.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscimexlib_la-mexlib.Tpo $(DEPDIR)/libscimexlib_la-mexlib.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/mexlib.c' object='libscimexlib_la-mexlib.lo' libtool=yes @AMDEPBACKSLASH@
+libmat_la-mexlib.lo: src/c/mexlib.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmat_la_CFLAGS) $(CFLAGS) -MT libmat_la-mexlib.lo -MD -MP -MF $(DEPDIR)/libmat_la-mexlib.Tpo -c -o libmat_la-mexlib.lo `test -f 'src/c/mexlib.c' || echo '$(srcdir)/'`src/c/mexlib.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libmat_la-mexlib.Tpo $(DEPDIR)/libmat_la-mexlib.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/mexlib.c' object='libmat_la-mexlib.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimexlib_la_CFLAGS) $(CFLAGS) -c -o libscimexlib_la-mexlib.lo `test -f 'src/c/mexlib.c' || echo '$(srcdir)/'`src/c/mexlib.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmat_la_CFLAGS) $(CFLAGS) -c -o libmat_la-mexlib.lo `test -f 'src/c/mexlib.c' || echo '$(srcdir)/'`src/c/mexlib.c
+
+libmex_la-mexlib.lo: src/c/mexlib.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmex_la_CFLAGS) $(CFLAGS) -MT libmex_la-mexlib.lo -MD -MP -MF $(DEPDIR)/libmex_la-mexlib.Tpo -c -o libmex_la-mexlib.lo `test -f 'src/c/mexlib.c' || echo '$(srcdir)/'`src/c/mexlib.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libmex_la-mexlib.Tpo $(DEPDIR)/libmex_la-mexlib.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/mexlib.c' object='libmex_la-mexlib.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmex_la_CFLAGS) $(CFLAGS) -c -o libmex_la-mexlib.lo `test -f 'src/c/mexlib.c' || echo '$(srcdir)/'`src/c/mexlib.c
+
+libmx_la-mexlib.lo: src/c/mexlib.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmx_la_CFLAGS) $(CFLAGS) -MT libmx_la-mexlib.lo -MD -MP -MF $(DEPDIR)/libmx_la-mexlib.Tpo -c -o libmx_la-mexlib.lo `test -f 'src/c/mexlib.c' || echo '$(srcdir)/'`src/c/mexlib.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libmx_la-mexlib.Tpo $(DEPDIR)/libmx_la-mexlib.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/mexlib.c' object='libmx_la-mexlib.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmx_la_CFLAGS) $(CFLAGS) -c -o libmx_la-mexlib.lo `test -f 'src/c/mexlib.c' || echo '$(srcdir)/'`src/c/mexlib.c
 
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libscimexlib_la_etcDATA: $(libscimexlib_la_etc_DATA)
+install-libmex_la_etcDATA: $(libmex_la_etc_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libscimexlib_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libscimexlib_la_etcdir)"
-	@list='$(libscimexlib_la_etc_DATA)'; for p in $$list; do \
+	test -z "$(libmex_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libmex_la_etcdir)"
+	@list='$(libmex_la_etc_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libscimexlib_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscimexlib_la_etcdir)/$$f'"; \
-	  $(libscimexlib_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscimexlib_la_etcdir)/$$f"; \
+	  echo " $(libmex_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libmex_la_etcdir)/$$f'"; \
+	  $(libmex_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libmex_la_etcdir)/$$f"; \
 	done
 
-uninstall-libscimexlib_la_etcDATA:
+uninstall-libmex_la_etcDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libscimexlib_la_etc_DATA)'; for p in $$list; do \
+	@list='$(libmex_la_etc_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscimexlib_la_etcdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscimexlib_la_etcdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libmex_la_etcdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libmex_la_etcdir)/$$f"; \
 	done
-install-libscimexlib_la_rootDATA: $(libscimexlib_la_root_DATA)
+install-libmex_la_rootDATA: $(libmex_la_root_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libscimexlib_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libscimexlib_la_rootdir)"
-	@list='$(libscimexlib_la_root_DATA)'; for p in $$list; do \
+	test -z "$(libmex_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libmex_la_rootdir)"
+	@list='$(libmex_la_root_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libscimexlib_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscimexlib_la_rootdir)/$$f'"; \
-	  $(libscimexlib_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscimexlib_la_rootdir)/$$f"; \
+	  echo " $(libmex_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libmex_la_rootdir)/$$f'"; \
+	  $(libmex_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libmex_la_rootdir)/$$f"; \
 	done
 
-uninstall-libscimexlib_la_rootDATA:
+uninstall-libmex_la_rootDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libscimexlib_la_root_DATA)'; for p in $$list; do \
+	@list='$(libmex_la_root_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscimexlib_la_rootdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscimexlib_la_rootdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libmex_la_rootdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libmex_la_rootdir)/$$f"; \
 	done
-install-libscimexlib_la_includeHEADERS: $(libscimexlib_la_include_HEADERS)
+install-libmex_la_includeHEADERS: $(libmex_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
-	test -z "$(libscimexlib_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscimexlib_la_includedir)"
-	@list='$(libscimexlib_la_include_HEADERS)'; for p in $$list; do \
+	test -z "$(libmex_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libmex_la_includedir)"
+	@list='$(libmex_la_include_HEADERS)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libscimexlib_la_includeHEADERS_INSTALL) '$$d$$p' '$(DESTDIR)$(libscimexlib_la_includedir)/$$f'"; \
-	  $(libscimexlib_la_includeHEADERS_INSTALL) "$$d$$p" "$(DESTDIR)$(libscimexlib_la_includedir)/$$f"; \
+	  echo " $(libmex_la_includeHEADERS_INSTALL) '$$d$$p' '$(DESTDIR)$(libmex_la_includedir)/$$f'"; \
+	  $(libmex_la_includeHEADERS_INSTALL) "$$d$$p" "$(DESTDIR)$(libmex_la_includedir)/$$f"; \
 	done
 
-uninstall-libscimexlib_la_includeHEADERS:
+uninstall-libmex_la_includeHEADERS:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libscimexlib_la_include_HEADERS)'; for p in $$list; do \
+	@list='$(libmex_la_include_HEADERS)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscimexlib_la_includedir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscimexlib_la_includedir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libmex_la_includedir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libmex_la_includedir)/$$f"; \
 	done
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
@@ -547,7 +588,7 @@ check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscimexlib_la_etcdir)" "$(DESTDIR)$(libscimexlib_la_rootdir)" "$(DESTDIR)$(libscimexlib_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libmex_la_etcdir)" "$(DESTDIR)$(libmex_la_rootdir)" "$(DESTDIR)$(libmex_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -598,9 +639,8 @@ info: info-am
 
 info-am:
 
-install-data-am: install-data-local install-libscimexlib_la_etcDATA \
-	install-libscimexlib_la_includeHEADERS \
-	install-libscimexlib_la_rootDATA
+install-data-am: install-data-local install-libmex_la_etcDATA \
+	install-libmex_la_includeHEADERS install-libmex_la_rootDATA
 
 install-dvi: install-dvi-am
 
@@ -638,9 +678,9 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libscimexlib_la_etcDATA \
-	uninstall-libscimexlib_la_includeHEADERS \
-	uninstall-libscimexlib_la_rootDATA uninstall-pkglibLTLIBRARIES
+uninstall-am: uninstall-libmex_la_etcDATA \
+	uninstall-libmex_la_includeHEADERS \
+	uninstall-libmex_la_rootDATA uninstall-pkglibLTLIBRARIES
 
 .MAKE: install-am install-strip
 
@@ -652,17 +692,16 @@ uninstall-am: uninstall-libscimexlib_la_etcDATA \
 	install-data-local install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
-	install-libscimexlib_la_etcDATA \
-	install-libscimexlib_la_includeHEADERS \
-	install-libscimexlib_la_rootDATA install-man install-pdf \
+	install-libmex_la_etcDATA install-libmex_la_includeHEADERS \
+	install-libmex_la_rootDATA install-man install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
 	installdirs maintainer-clean maintainer-clean-generic \
 	mostlyclean mostlyclean-compile mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
-	uninstall-am uninstall-libscimexlib_la_etcDATA \
-	uninstall-libscimexlib_la_includeHEADERS \
-	uninstall-libscimexlib_la_rootDATA uninstall-pkglibLTLIBRARIES
+	uninstall-am uninstall-libmex_la_etcDATA \
+	uninstall-libmex_la_includeHEADERS \
+	uninstall-libmex_la_rootDATA uninstall-pkglibLTLIBRARIES
 
 
 # Compilation of Java
