@@ -360,6 +360,12 @@ sciAddThisToItsParent (sciPointObj * pthis, sciPointObj * pparent)
     return FALSE ;
   }
 
+  if ( pparent == NULL )
+  {
+    /* nothing more to do */
+    return TRUE ;
+  }
+
   /* Si c'est null alors il n'y a pas encore de fils d'affecte */
   if ( sciGetRelationship (pparent)->psons != NULL )
   {			
@@ -390,12 +396,17 @@ sciAddThisToItsParent (sciPointObj * pthis, sciPointObj * pparent)
  * (for which its parent is set to null) , 
  * that have to be free manually or packed to another parent
  */
-BOOL
-sciDelThisToItsParent (sciPointObj * pthis, sciPointObj * pparent)
+BOOL sciDelThisToItsParent (sciPointObj * pthis, sciPointObj * pparent)
 {
-  int tmp = 0;
-  sciSons *OneSon = (sciSons *) NULL;
-  sciSons *OneSonprev = (sciSons *) NULL;
+  int tmp = 0 ;
+  sciSons *OneSon     = NULL ;
+  sciSons *OneSonprev = NULL ;
+
+  if ( pparent == NULL )
+  {
+    /* nothing to do */
+    return TRUE ;
+  }
 
   /* recherche de l'objet a effacer*/
   OneSon = (sciGetRelationship (pparent)->psons);
