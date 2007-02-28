@@ -12,12 +12,12 @@
 #include "inffic.h" /* get_sci_data_strings */
 #include "scirun.h"
 #include "sciquit.h"
+#include "getarg.h"
 /*-----------------------------------------------------------------------------------*/
 extern void C2F (settmpdir)(void);
 extern void sci_clear_and_exit(int n);
 extern int C2F(inisci)(int *,int *,int *);
 extern void sci_usr1_signal(int n);
-extern int C2F(sciiargc) (void);
 #ifdef _MSC_VER
 #include "ExceptionMessage.h"
 #else

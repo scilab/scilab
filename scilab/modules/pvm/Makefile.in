@@ -82,9 +82,10 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 @PVM_TRUE@libsciscipvm_la_DEPENDENCIES =  \
 @PVM_TRUE@	$(top_builddir)/modules/core/libscicore.la \
 @PVM_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la
-am__libsciscipvm_la_SOURCES_DIST = src/pvm_proc_ctrl.c src/sci_tools.c \
-	src/pvm_recv.c src/scipvmf77.c src/varpack.c src/pvm_grp.c \
-	src/pvm_send.c src/pvm_info.c sci_gateway/sci_pvm_get_timer.c \
+am__libsciscipvm_la_SOURCES_DIST = src/c/pvm_proc_ctrl.c \
+	src/c/sci_tools.c src/c/pvm_recv.c src/c/scipvmf77.c \
+	src/c/varpack.c src/c/pvm_grp.c src/c/pvm_send.c \
+	src/c/pvm_info.c sci_gateway/sci_pvm_get_timer.c \
 	sci_gateway/sci_pvm_gettid.c sci_gateway/sci_pvm_gsize.c \
 	sci_gateway/sci_pvm_sci2f77.c sci_gateway/sci_pvm_f772sci.c \
 	sci_gateway/sci_pvm_delhosts.c sci_gateway/sci_pvm_spawn.c \
@@ -342,14 +343,14 @@ target_alias = @target_alias@
 tcldir = @tcldir@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-@PVM_TRUE@PVM_C_SOURCES = src/pvm_proc_ctrl.c \
-@PVM_TRUE@src/sci_tools.c \
-@PVM_TRUE@src/pvm_recv.c \
-@PVM_TRUE@src/scipvmf77.c \
-@PVM_TRUE@src/varpack.c \
-@PVM_TRUE@src/pvm_grp.c \
-@PVM_TRUE@src/pvm_send.c \
-@PVM_TRUE@src/pvm_info.c
+@PVM_TRUE@PVM_C_SOURCES = src/c/pvm_proc_ctrl.c \
+@PVM_TRUE@src/c/sci_tools.c \
+@PVM_TRUE@src/c/pvm_recv.c \
+@PVM_TRUE@src/c/scipvmf77.c \
+@PVM_TRUE@src/c/varpack.c \
+@PVM_TRUE@src/c/pvm_grp.c \
+@PVM_TRUE@src/c/pvm_send.c \
+@PVM_TRUE@src/c/pvm_info.c
 
 @PVM_TRUE@GATEWAY_C_SOURCES = sci_gateway/sci_pvm_get_timer.c \
 @PVM_TRUE@sci_gateway/sci_pvm_gettid.c \
@@ -465,6 +466,8 @@ top_srcdir = @top_srcdir@
 ############ JAVA #################
 # Replace all the .java by .class in JAVAFILES
 @PVM_TRUE@CLASSFILES = $(JAVAFILES:.java=.class)
+# Create path without src/java and rename .java  by .class (needed by the jar 
+# creation)
 @PVM_TRUE@CLASSFILESRELATIVE = `echo "$(JAVAFILES)"| sed -e 's|src/java/||g'|sed -e 's|\.java|\.class|g'`
 @PVM_TRUE@BUILT_SOURCES = $(CLASSFILES)
 @PVM_TRUE@CLEANFILES = $(CLASSFILES)
@@ -619,61 +622,61 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
-libsciscipvm_la-pvm_proc_ctrl.lo: src/pvm_proc_ctrl.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-pvm_proc_ctrl.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-pvm_proc_ctrl.Tpo -c -o libsciscipvm_la-pvm_proc_ctrl.lo `test -f 'src/pvm_proc_ctrl.c' || echo '$(srcdir)/'`src/pvm_proc_ctrl.c
+libsciscipvm_la-pvm_proc_ctrl.lo: src/c/pvm_proc_ctrl.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-pvm_proc_ctrl.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-pvm_proc_ctrl.Tpo -c -o libsciscipvm_la-pvm_proc_ctrl.lo `test -f 'src/c/pvm_proc_ctrl.c' || echo '$(srcdir)/'`src/c/pvm_proc_ctrl.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscipvm_la-pvm_proc_ctrl.Tpo $(DEPDIR)/libsciscipvm_la-pvm_proc_ctrl.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/pvm_proc_ctrl.c' object='libsciscipvm_la-pvm_proc_ctrl.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/pvm_proc_ctrl.c' object='libsciscipvm_la-pvm_proc_ctrl.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-pvm_proc_ctrl.lo `test -f 'src/pvm_proc_ctrl.c' || echo '$(srcdir)/'`src/pvm_proc_ctrl.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-pvm_proc_ctrl.lo `test -f 'src/c/pvm_proc_ctrl.c' || echo '$(srcdir)/'`src/c/pvm_proc_ctrl.c
 
-libsciscipvm_la-sci_tools.lo: src/sci_tools.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_tools.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_tools.Tpo -c -o libsciscipvm_la-sci_tools.lo `test -f 'src/sci_tools.c' || echo '$(srcdir)/'`src/sci_tools.c
+libsciscipvm_la-sci_tools.lo: src/c/sci_tools.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_tools.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_tools.Tpo -c -o libsciscipvm_la-sci_tools.lo `test -f 'src/c/sci_tools.c' || echo '$(srcdir)/'`src/c/sci_tools.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscipvm_la-sci_tools.Tpo $(DEPDIR)/libsciscipvm_la-sci_tools.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/sci_tools.c' object='libsciscipvm_la-sci_tools.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/sci_tools.c' object='libsciscipvm_la-sci_tools.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_tools.lo `test -f 'src/sci_tools.c' || echo '$(srcdir)/'`src/sci_tools.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_tools.lo `test -f 'src/c/sci_tools.c' || echo '$(srcdir)/'`src/c/sci_tools.c
 
-libsciscipvm_la-pvm_recv.lo: src/pvm_recv.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-pvm_recv.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-pvm_recv.Tpo -c -o libsciscipvm_la-pvm_recv.lo `test -f 'src/pvm_recv.c' || echo '$(srcdir)/'`src/pvm_recv.c
+libsciscipvm_la-pvm_recv.lo: src/c/pvm_recv.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-pvm_recv.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-pvm_recv.Tpo -c -o libsciscipvm_la-pvm_recv.lo `test -f 'src/c/pvm_recv.c' || echo '$(srcdir)/'`src/c/pvm_recv.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscipvm_la-pvm_recv.Tpo $(DEPDIR)/libsciscipvm_la-pvm_recv.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/pvm_recv.c' object='libsciscipvm_la-pvm_recv.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/pvm_recv.c' object='libsciscipvm_la-pvm_recv.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-pvm_recv.lo `test -f 'src/pvm_recv.c' || echo '$(srcdir)/'`src/pvm_recv.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-pvm_recv.lo `test -f 'src/c/pvm_recv.c' || echo '$(srcdir)/'`src/c/pvm_recv.c
 
-libsciscipvm_la-scipvmf77.lo: src/scipvmf77.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-scipvmf77.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-scipvmf77.Tpo -c -o libsciscipvm_la-scipvmf77.lo `test -f 'src/scipvmf77.c' || echo '$(srcdir)/'`src/scipvmf77.c
+libsciscipvm_la-scipvmf77.lo: src/c/scipvmf77.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-scipvmf77.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-scipvmf77.Tpo -c -o libsciscipvm_la-scipvmf77.lo `test -f 'src/c/scipvmf77.c' || echo '$(srcdir)/'`src/c/scipvmf77.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscipvm_la-scipvmf77.Tpo $(DEPDIR)/libsciscipvm_la-scipvmf77.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/scipvmf77.c' object='libsciscipvm_la-scipvmf77.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/scipvmf77.c' object='libsciscipvm_la-scipvmf77.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-scipvmf77.lo `test -f 'src/scipvmf77.c' || echo '$(srcdir)/'`src/scipvmf77.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-scipvmf77.lo `test -f 'src/c/scipvmf77.c' || echo '$(srcdir)/'`src/c/scipvmf77.c
 
-libsciscipvm_la-varpack.lo: src/varpack.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-varpack.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-varpack.Tpo -c -o libsciscipvm_la-varpack.lo `test -f 'src/varpack.c' || echo '$(srcdir)/'`src/varpack.c
+libsciscipvm_la-varpack.lo: src/c/varpack.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-varpack.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-varpack.Tpo -c -o libsciscipvm_la-varpack.lo `test -f 'src/c/varpack.c' || echo '$(srcdir)/'`src/c/varpack.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscipvm_la-varpack.Tpo $(DEPDIR)/libsciscipvm_la-varpack.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/varpack.c' object='libsciscipvm_la-varpack.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/varpack.c' object='libsciscipvm_la-varpack.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-varpack.lo `test -f 'src/varpack.c' || echo '$(srcdir)/'`src/varpack.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-varpack.lo `test -f 'src/c/varpack.c' || echo '$(srcdir)/'`src/c/varpack.c
 
-libsciscipvm_la-pvm_grp.lo: src/pvm_grp.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-pvm_grp.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-pvm_grp.Tpo -c -o libsciscipvm_la-pvm_grp.lo `test -f 'src/pvm_grp.c' || echo '$(srcdir)/'`src/pvm_grp.c
+libsciscipvm_la-pvm_grp.lo: src/c/pvm_grp.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-pvm_grp.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-pvm_grp.Tpo -c -o libsciscipvm_la-pvm_grp.lo `test -f 'src/c/pvm_grp.c' || echo '$(srcdir)/'`src/c/pvm_grp.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscipvm_la-pvm_grp.Tpo $(DEPDIR)/libsciscipvm_la-pvm_grp.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/pvm_grp.c' object='libsciscipvm_la-pvm_grp.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/pvm_grp.c' object='libsciscipvm_la-pvm_grp.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-pvm_grp.lo `test -f 'src/pvm_grp.c' || echo '$(srcdir)/'`src/pvm_grp.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-pvm_grp.lo `test -f 'src/c/pvm_grp.c' || echo '$(srcdir)/'`src/c/pvm_grp.c
 
-libsciscipvm_la-pvm_send.lo: src/pvm_send.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-pvm_send.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-pvm_send.Tpo -c -o libsciscipvm_la-pvm_send.lo `test -f 'src/pvm_send.c' || echo '$(srcdir)/'`src/pvm_send.c
+libsciscipvm_la-pvm_send.lo: src/c/pvm_send.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-pvm_send.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-pvm_send.Tpo -c -o libsciscipvm_la-pvm_send.lo `test -f 'src/c/pvm_send.c' || echo '$(srcdir)/'`src/c/pvm_send.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscipvm_la-pvm_send.Tpo $(DEPDIR)/libsciscipvm_la-pvm_send.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/pvm_send.c' object='libsciscipvm_la-pvm_send.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/pvm_send.c' object='libsciscipvm_la-pvm_send.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-pvm_send.lo `test -f 'src/pvm_send.c' || echo '$(srcdir)/'`src/pvm_send.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-pvm_send.lo `test -f 'src/c/pvm_send.c' || echo '$(srcdir)/'`src/c/pvm_send.c
 
-libsciscipvm_la-pvm_info.lo: src/pvm_info.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-pvm_info.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-pvm_info.Tpo -c -o libsciscipvm_la-pvm_info.lo `test -f 'src/pvm_info.c' || echo '$(srcdir)/'`src/pvm_info.c
+libsciscipvm_la-pvm_info.lo: src/c/pvm_info.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-pvm_info.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-pvm_info.Tpo -c -o libsciscipvm_la-pvm_info.lo `test -f 'src/c/pvm_info.c' || echo '$(srcdir)/'`src/c/pvm_info.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscipvm_la-pvm_info.Tpo $(DEPDIR)/libsciscipvm_la-pvm_info.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/pvm_info.c' object='libsciscipvm_la-pvm_info.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/pvm_info.c' object='libsciscipvm_la-pvm_info.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-pvm_info.lo `test -f 'src/pvm_info.c' || echo '$(srcdir)/'`src/pvm_info.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-pvm_info.lo `test -f 'src/c/pvm_info.c' || echo '$(srcdir)/'`src/c/pvm_info.c
 
 libsciscipvm_la-sci_pvm_get_timer.lo: sci_gateway/sci_pvm_get_timer.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_get_timer.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_get_timer.Tpo -c -o libsciscipvm_la-sci_pvm_get_timer.lo `test -f 'sci_gateway/sci_pvm_get_timer.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_get_timer.c

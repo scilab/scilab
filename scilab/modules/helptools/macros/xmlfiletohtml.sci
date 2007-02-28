@@ -1,14 +1,14 @@
 function ok = xmlfiletohtml(path,xsl,directory_language,default_language)
 	
 	// =========================================================================================
-	//
+	// 
 	// Authors : Jean-Philippe CHANCELIER, Pierre MARECHAL
 	// Copyright INRIA/Enpc
 	//
-	// given a path on a Scilab help xml file (assumed to respect
+	// given a path on a Scilab help xml file (assumed to respect 
 	// SCI/helptools/help.dtd) this function generates the corresponding htm
 	// file using the wanted xsl file
-	//
+	// 
 	// Private function !!!
 	// =========================================================================================
 	
@@ -19,8 +19,7 @@ function ok = xmlfiletohtml(path,xsl,directory_language,default_language)
 	
 	[lhs,rhs] = argn(0);
 	
-	global %helps
-	global %helps_modules
+	global LANGUAGE %helps
 	
 	xmlfile = path;
 	needToBeCopied = %F;
@@ -37,7 +36,7 @@ function ok = xmlfiletohtml(path,xsl,directory_language,default_language)
 		end
 	
 	elseif rhs == 1 then
-		xsl = pathconvert(SCI+"/modules/helptools/help_"+getlanguage()+".xsl",%f,%f);
+		xsl = pathconvert(SCI+"/modules/helptools/help_"+getlanguagealias()+".xsl",%f,%f);
 	end
 	
 	//proceed if xml file is newest than htm file

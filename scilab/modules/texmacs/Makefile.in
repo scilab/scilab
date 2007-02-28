@@ -244,6 +244,8 @@ SUFFIXES = .sci .java .class .jar
 ############ JAVA #################
 # Replace all the .java by .class in JAVAFILES
 CLASSFILES = $(JAVAFILES:.java=.class)
+# Create path without src/java and rename .java  by .class (needed by the jar 
+# creation)
 CLASSFILESRELATIVE = `echo "$(JAVAFILES)"| sed -e 's|src/java/||g'|sed -e 's|\.java|\.class|g'`
 BUILT_SOURCES = $(CLASSFILES)
 CLEANFILES = $(CLASSFILES)
