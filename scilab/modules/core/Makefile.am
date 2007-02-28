@@ -368,11 +368,13 @@ includes/xscion.h \
 includes/stack.h \
 includes/setgetSCIpath.h \
 includes/getmodules.h \
+includes/machine.h \.in
 includes/callinter.h \
 includes/InitScilab.h \
 includes/sciquit.h \
 includes/msg_errors.h \
 includes/intgetmemory.h \
+includes/machine.vc
 includes/gw_core.h \
 includes/stack-c.h \
 includes/version.h \
@@ -384,10 +386,21 @@ includes/Scierror.h \
 includes/realmain.h \
 includes/stack3.h \
 includes/machine.h \
+includes/stamp-h1
+includes/machine.h \.in~
 includes/ExceptionMessage.h \
 includes/prompt.h \
 includes/loadversion.h \
-includes/tmpdir.h
+includes/tmpdir.h \
+includes/#machine.h \#
+includes/SCIHOME.h \
+includes/warningmode.h \
+includes/InitializeCore.h \
+includes/FTables.h \
+includes/scirun.h \
+includes/fromjava.h \
+includes/getarg.h \
+includes/inisci-c.h
 
 #### core : demos files ####
 libscicore_la_demosintrodir=$(target)/demos/intro/
