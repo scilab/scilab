@@ -3,7 +3,7 @@
 ### INRIA - Scilab 2006 
 ##########
 
-TCLSCI_C_SOURCES = src/GedManagement.c \
+TCLSCI_C_SOURCES = src/c/GedManagement.c \
 src/c/TclUiGet.c \
 src/c/TCL_Global.c \
 src/c/tksynchro.c \
