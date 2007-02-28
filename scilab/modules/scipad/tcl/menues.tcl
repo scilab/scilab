@@ -332,7 +332,7 @@ proc createmenues {} {
     menu $pad.filemenu.options.locale -tearoff 0
     eval "$pad.filemenu.options add cascade [me "&Locale"] \
            -menu $pad.filemenu.options.locale "
-    set msgFiles [lsort [glob -nocomplain -tails -directory $msgsdir *.msg]]
+    set msgFiles [lsort [globtails $msgsdir *.msg]]
     foreach m $msgFiles {
         set l [file rootname $m]
         # for some reason $l might be empty under cygwin
@@ -347,7 +347,7 @@ proc createmenues {} {
     menu $pad.filemenu.options.bindings -tearoff 0
     eval "$pad.filemenu.options add cascade [me "&Bindings style"] \
            -menu $pad.filemenu.options.bindings "
-    set BindFiles [lsort [glob -nocomplain -tails -directory $binddir *.tcl]]
+    set BindFiles [lsort [globtails $binddir *.tcl]]
     foreach m $BindFiles {
         set l [file rootname $m]
         # for some reason $l might be empty under cygwin

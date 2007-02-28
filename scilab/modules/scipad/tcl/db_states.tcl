@@ -373,7 +373,7 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
     #    the debugger goes out of nestedfun and enters the libfun ancillary
     #    from the line that called nestedfun, i.e. the same depth level is
     #    kept, which is the exact purpose of step over
-    set stoppedonarealbpt "TCL_EvalStr(\"lsearch \[getreallybreakpointedlines \" + db_m(3) + \"\] \" + string(db_l(3)-1) + \"\",\"scipad\") <> string(-1)"
+    set stoppedonarealbpt "TCL_EvalStr(\"lsearch \[getreallybptedlines \" + db_m(3) + \"\] \" + string(db_l(3)-1) + \"\",\"scipad\") <> string(-1)"
     switch -- $stepmode {
         "nostep"   { set steppedininsteadofover "%f" }
         "into"     { set steppedininsteadofover "%f" }

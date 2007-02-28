@@ -11,10 +11,12 @@ proc pbind {w events action} {
 } 
 
 
-#procedures for supporting several switchable sets of bindings 
+##################################################
+# procedures for supporting several switchable sets of bindings
+##################################################
 proc loadbindings {} {
     global binddir bindentry pad
-    set BindFiles [lsort [glob -nocomplain -tails -directory $binddir *.tcl]]
+    set BindFiles [lsort [globtails $binddir *.tcl]]
     foreach m $BindFiles {
         set bindentry [file rootname $m]
         # for some reason $bindentry might be empty under cygwin
@@ -25,7 +27,6 @@ proc loadbindings {} {
         }
     }
 }
-
 
 #each binding file contains sbind as a drop-in replacement of bind
 proc sbind {scope event action} {
@@ -61,7 +62,6 @@ proc rebind {} {
     createmenues
     setdbmenuentriesstates_bp
 }
-
 
 proc findbinding {command} {
     global bindset bindstyle

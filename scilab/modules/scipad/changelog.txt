@@ -2049,7 +2049,7 @@ Francois VOGEL, 22/02/06
  * version --> 6.6
 
 Francois VOGEL, 25/02/06
- * Variable varagin can again be watched thanks to addition of a new option
+ * Variable varargin can again be watched thanks to addition of a new option
    "nolocal" to the Scilab exists function - WARNING: works only with a cvs
    version dated 24 Feb. 06 or later
  * Fixed: Tcl Error 0 when trying to open function source through the file
@@ -2873,3 +2873,13 @@ Francois VOGEL, 24/02/07
  * Fixed missing colorization after cut, block cut, or dnd move when these
    commands were acting on a block selection
  * version --> 6.95
+
+Francois VOGEL, 28/02/07
+ * Worked around an old Tcl bug with glob -tails that does not work with
+   Tcl/Tk 8.4.1 embedded in some cygwin versions
+ * Added missing translation for line numbers foreground in eng.msg
+ * Shortened the name of certain variables of the debugger that produced
+   truncation warnings in Scilab since Scilab now warns the user about
+   names having more than 24 characters
+ * Improved line numbers alignment during debugger use
+ * version --> 6.96

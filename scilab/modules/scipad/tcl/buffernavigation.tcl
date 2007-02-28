@@ -1205,19 +1205,14 @@ proc updatelinenumbersmargin {ta} {
     scan $endindex "%d.%d" yend xend
     set nbyendchar [string length [expr {$yend - 1}]]
 
-    # find out the display line height, which will be the increment in the
-    # loop below, and the height of the textarea, which will be the upper
-    # bound in that same loop
-    set dlinfo [$ta dlineinfo @0,0]
-    set topinpix [lindex $dlinfo 1]
-    set lineheightinpix [lindex $dlinfo 3]
+    # find out the height of the textarea, which will be the upper bound in
+    # the loop below
     set winfoheight [winfo height $ta]
 
     # initialization values
     set prevstop_p1 [$ta index @0,0]
     scan $prevstop_p1 "%d.%d" prevstop_p1 junk
-    set i 1
-    set curheight [expr {$topinpix + $lineheightinpix * ($i - 1)}]
+    set curheight 1
     set spacepad ""
 
     while {$curheight <= $winfoheight} {
@@ -1238,8 +1233,11 @@ proc updatelinenumbersmargin {ta} {
             # spacepad is the empty string
         }
         $tamargin insert end "$spacepad$linenum\n"
-        incr i
-        set curheight [expr {$topinpix + $lineheightinpix * ($i - 1)}]
+        # line height might be different for each line, therefore it cannot
+        # be seen as a constant in this while loop
+        set dlinfo [$ta dlineinfo @0,$curheight]
+        set lineheightinpix [lindex $dlinfo 3]
+        incr curheight $lineheightinpix
     }
 
     # end of modification of margin content
@@ -1254,6 +1252,8 @@ proc updatelinenumbersmargin {ta} {
     # textarea is never clipped by the top of the textarea
     # in 8.5 $topinpix might be negative, indicating a clipping of the first
     # displayed line
+    set dlinfo [$ta dlineinfo @0,0]
+    set topinpix [lindex $dlinfo 1]
     if {$topinpix < 0} {
         set hiddenpartof1stline [expr {- $topinpix}]
         set marginheight [winfo height $tamargin]

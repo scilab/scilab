@@ -202,7 +202,7 @@ proc countallbreakpointedmacros {} {
     return $N
 }
 
-proc getreallybreakpointedlines {fnam} {
+proc getreallybptedlines {fnam} {
 # parse $setbptonreallybreakpointedlinescmd to extract the list of all the
 # breakpointed lines of function named $fnam
 # all the occurrences of $fnam in $setbptonreallybreakpointedlinescmd are

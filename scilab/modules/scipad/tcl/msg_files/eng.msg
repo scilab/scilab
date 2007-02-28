@@ -46,6 +46,7 @@
 ::msgcat::mcset eng "BGCOLOR" "Edit area background"
 ::msgcat::mcset eng "BGLNMARGCOLOR" "Line numbers background"
 ::msgcat::mcset eng "FGCOLOR" "Plain text"
+::msgcat::mcset eng "FGLNMARGCOLOR" "Line numbers foreground"
 ::msgcat::mcset eng "CURCOLOR" "Cursor"
 ::msgcat::mcset eng "PARCOLOR" "Parentheses ()"
 ::msgcat::mcset eng "BRAKCOLOR" "Brackets \\\[\\\]"

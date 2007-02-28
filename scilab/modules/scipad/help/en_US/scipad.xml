@@ -331,6 +331,8 @@
   <SECTION label="Remarks">
     <ITEMIZE>
       <ITEM label="Localisation:">
+        <P></P>
+
         <SP>Scipad menues and messages can be translated to several languages.
         By default they appear in English, but other languages
         are being added. The localization in effect can be selected with the
@@ -350,6 +352,8 @@
       </ITEM>
 
       <ITEM label="Drag and drop:">
+        <P></P>
+
         <SP>DnD has been implemented in Scipad for moving around text, for
         dropping selected text from and to external applications, and for
         opening a file or a list of files.</SP>
@@ -379,9 +383,9 @@
         tkdnd-1.0-b2.i386.rpm). Install it with rpm -U (may have to force
         --nodeps if it doesn't recognize an existing Tcl installation). If you
         have a source version of Scilab and an installation of Tcl/Tk, check
-        where they are installed (e.g. /usr/share/) and move the newly created
-        directory /usr/lib/tkdnd1.0/ to there. If you have a binary version of
-        Scilab, move tkdnd1.0/ to SCI/modules/tclsci/tcl/, where the supplied
+        where they are installed (e.g. <VERB>/usr/share/</VERB>) and move the newly created
+        directory <VERB>/usr/lib/tkdnd1.0/</VERB> to there. If you have a binary version of
+        Scilab, move <VERB>tkdnd1.0/</VERB> to <VERB>SCI/modules/tclsci/tcl/</VERB>, where the supplied
         Tcl/Tk binaries are.</P>
 
         <P></P>
@@ -397,11 +401,28 @@
       </ITEM>
 
       <ITEM label="Bugs:">
+        <P></P>
+
         <SP>There are still a few... Details can be found in file
         <VERB>SCI/modules/scipad/BUGS</VERB>. Officially reported bugs are filed in the
         Bugzilla http://scilabsoft.inria.fr/cgi-bin/bugzilla_bug_II/index.cgi
         and can be easily retrieved by filtering entries wrt the "Scipad
         Editor" element.</SP>
+
+        <P></P>
+      </ITEM>
+ 
+      <ITEM label="Additional features in Scipad and most recent developments:">
+        <P></P>
+
+        <SP>Currently Scilab is shipped with Tcl/Tk 8.4. However, Scipad
+        offers a handful of quite handy features that are available as soon
+        as Tcl/Tk 8.5 is running in its background. For instance, peer text
+        widgets are available from Tk 8.5, and this capability is used in
+        Scipad to allow for displaying more than one contiguous area of an
+        opened file at a time in tile mode. Instructions about how to upgrade
+        to Tcl/Tk 8.5 can be found on the Scilab wiki:
+        http://wiki.scilab.org/Linking_Scilab_with_Tcl/Tk_8.5 .</SP>
 
         <P></P>
       </ITEM>

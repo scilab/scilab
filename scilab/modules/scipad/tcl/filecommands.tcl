@@ -1461,6 +1461,18 @@ proc iswindowsshortcut {filename} {
     }
 }
 
+proc globtails {directoryname pat} {
+# this is a replacement for the construct
+#     glob -nocomplain -tails -directory $directoryname $pat
+# because there is a Tcl bug with the -tails option with old
+# Tcl versions
+    set matchfiles [glob -nocomplain -directory $directoryname $pat]
+    for {set i 0} {$i < [llength $matchfiles]} {incr i} {
+        set matchfiles [lreplace $matchfiles $i $i [file tail [lindex $matchfiles $i]]]
+    }
+    return $matchfiles
+}
+
 ##################################################
 # procedures dealing with pruned file names
 ##################################################

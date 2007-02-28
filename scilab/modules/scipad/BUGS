@@ -98,6 +98,26 @@ endfunction
  This is Tk bug #1638905 (which is a duplicate of #1599877), which is fixed
  in both 8.4.15 and 8.5a6 versions of Tcl/Tk.
 
+-Line numbers of lines located after the active breakpoint are slightly
+ misaligned with the lines they're facing. This is due to the font of the
+ active breakpoint tag ($actbptextFont), which has a slightly larger size
+ than $textFont, the latter being used for the line numbers.
+ A general scheme should be derived so that line numbers support different
+ font sizes in the text they face. The algorithm could be something like:
+   . Check what tags has the line in front of the line number
+   . Retrieve the -font option of the highest priority tag
+   . If this is not empty, extract the -size attribute of the font and tag
+     the line number with a modified $textFont having this -size
+   . Otherwise (the -font option of the higest priority tag is an empty
+     list) check out the tag that is of priority just below the highest
+     and run the game again
+   . When there is no tag left, use the $textFont -size value as a fallback
+ Beware of performance issues here! This must be done for each line!
+ Moreover, this would still not be perfect: mixed sizes inside single lines
+ would not be supported (but such complications are anyway not used in
+ Scipad currently)
+ Easier fix: use the same size for all the fonts displayed in textareas!
+
 
 Old bugs/whishes which have been hacked but could have been done better:
 ------------------------------------------------------------------------
