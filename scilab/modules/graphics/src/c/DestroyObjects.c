@@ -244,12 +244,9 @@ int C2F(scigerase)( void )
  * This function destroies the parents window (manager) and the elementaries structures and only this to destroy all sons use DelGraphicsSon
  * @param sciPointObj * pthis: the pointer to the entity
  */
-int
-DestroyFigure (sciPointObj * pthis)
+int DestroyFigure (sciPointObj * pthis)
 {
-  /* there is no needed for 
-   * sciDelThisToItsParent(pthis, );
-   */
+  sciDelThisToItsParent(pthis, sciGetParent(pthis) ) ;
   if (sciDelHandle (pthis) == -1)
     return -1;
   /* This code has to be validated on all systems
@@ -1008,4 +1005,14 @@ void CleanPlots(char *unused, integer *winnumber, integer *v3, integer *v4, inte
   }
 }
 
+/*-----------------------------------------------------------------------------------------*/
+int DestroyConsole( sciPointObj * pthis )
+{
+  clearUserData( pthis ) ;
+  sciDelThisToItsParent( pthis, sciGetParent(pthis) ) ;
+  if (sciDelHandle (pthis) == -1) { return -1 ; }
+  FREE( sciGetPointerToFeature(pthis) ) ;
+  FREE(pthis) ;
+  return 0 ;
+}
 /*-----------------------------------------------------------------------------------------*/

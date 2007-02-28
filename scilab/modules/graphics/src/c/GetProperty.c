@@ -208,7 +208,7 @@ sciGetCharEntityType (sciPointObj * pobj)
       return "Panner";
       break;
     case SCI_SBH:
-      return "Scollbar_hor    ";
+      return "Scollbar_hor";
       break;
     case SCI_SBV:
       return "Scollbar_ver";
@@ -231,10 +231,24 @@ sciGetCharEntityType (sciPointObj * pobj)
     case SCI_LABEL: /* F.Leray 27.05.04 */
       return "Label";
       break;
-	case SCI_UIMENU: 
-		return "Uimenu";
-		break;
-
+    case SCI_UIMENU: 
+      return "Uimenu";
+      break;
+    case SCI_CONSOLE:
+      return "Console" ;
+      break ;
+    case SCI_FRAME:
+      return "Frame" ;
+      break ;
+    case SCI_WINDOW:
+      return "Window" ;
+      break ;
+    case SCI_WINDOWFRAME:
+      return "WindowFrame" ;
+      break ;
+    case SCI_SCREEN:
+      return "Screen" ;
+      break ;
     default:
       return (char *)NULL;
       break;
@@ -2384,12 +2398,6 @@ sciGetLegendPos (sciPointObj * pobj)
 sciPointObj *
 sciGetParentFigure (sciPointObj * pobj)
 {
-  /* if ( (pobj == pfiguremdl) || (pobj == paxesmdl) */
-/*        || (pobj == pSUBWIN_FEATURE(paxesmdl)->mon_title) */
-/*        || (pobj == pSUBWIN_FEATURE(paxesmdl)->mon_x_label) */
-/*        || (pobj == pSUBWIN_FEATURE(paxesmdl)->mon_y_label) */
-/*        || (pobj == pSUBWIN_FEATURE(paxesmdl)->mon_z_label) ) /\* Addings F.Leray 10.06.04 *\/ */
-/*     return (sciPointObj *) pfiguremdl; */
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
@@ -2418,13 +2426,11 @@ sciGetParentFigure (sciPointObj * pobj)
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
       {
-        /* sciPointObj * figure ; */
-/*         figure = sciGetScilabXgc ((sciPointObj *) pobj)->mafigure; */
-/*         return sciGetScilabXgc ((sciPointObj *) pobj)->mafigure; */
         return sciGetParentFigure( sciGetParent( pobj ) ) ; /* jbs 06/2006 */
       }  
       break;
-    default:  
+    default:
+      sciprint("Object is not a son of any Figure.\n") ;
       return NULL;
       break;
     }
@@ -2472,8 +2478,9 @@ sciGetParentSubwin (sciPointObj * pobj)
 	subwin=sciGetParent(subwin);      
       return (sciPointObj *) subwin;  
       break;                                                     
-    default:  
-      return (sciPointObj *) NULL;
+    default:
+      sciprint("Object is not a son of any SubWindow.\n") ;
+      return NULL;
       break;
     }
   return (sciPointObj *) NULL;
@@ -2558,7 +2565,7 @@ sciGetScilabXgc (sciPointObj * pobj)
     case SCI_AGREG:
     case SCI_MERGE:  
     case SCI_LABEL: /* F.Leray 28.05.04 */
-	case SCI_UIMENU:
+    case SCI_UIMENU:
       /* on recherche la root par recursivite 
 	 puisque scilabxgc n'est connu que par le parent */
       return (struct BCG *) sciGetScilabXgc (sciGetParent (pobj));	
@@ -2731,10 +2738,6 @@ sciGetIsClipping (sciPointObj * pobj)
 double *
 sciGetClipping (sciPointObj * pobj)
 {
-  /*   int index; */
-
-  /*   index = sciGetIsClipping (pobj); */
-  /*   return ptabclip[index].clip; */
   switch (sciGetEntityType (pobj))
     {
    
@@ -2762,25 +2765,6 @@ sciGetClipping (sciPointObj * pobj)
     case SCI_AXES: 
       return pAXES_FEATURE (pobj)->clip_region;
       break;
-      /* not used for now 04.04.2005 */
-/*     case SCI_SURFACE: */
-/*       return pSURFACE_FEATURE (pobj)->clip_region; */
-/*       break; */
-/*     case SCI_LEGEND:  */
-/*       return pLEGEND_FEATURE (pobj)->clip_region; */
-/*       break; */
-/*     case SCI_TITLE:   */
-/*       return pTITLE_FEATURE (pobj)->clip_region; */
-/*       break; */
-/*     case SCI_AGREG:  */
-/*       return pAGREG_FEATURE (pobj)->clip_region; */
-/*       break; */
-/*     case SCI_FEC:  */
-/*       return pFEC_FEATURE (pobj)->clip_region; */
-/*       break; */
-/*     case SCI_GRAYPLOT: */
-/*       return pGRAYPLOT_FEATURE (pobj)->clip_region; */
-/*       break; */
     case SCI_LABEL:
       return sciGetClipping( pLABEL_FEATURE(pobj)->text ) ;
       break;
@@ -2970,46 +2954,6 @@ sciGetZooming (sciPointObj * pobj)
 }
 
 
-/**sciGetGraphicsStyle
- * Returns the graphics style
- */
-BOOL
-sciGetGraphicsStyle (sciPointObj * pobj)
-{
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_FIGURE:
-      return (sciGetGraphicMode (pobj))->oldstyle;
-      break;
-    case SCI_SUBWIN: 
-      /* the value is inhirated by the parent */
-      return sciGetGraphicsStyle (sciGetParentFigure (pobj));
-      break;
-    case SCI_TEXT:
-    case SCI_TITLE:
-    case SCI_LEGEND:
-    case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
-    case SCI_POLYLINE:
-    case SCI_RECTANGLE:
-    case SCI_SURFACE:
-    case SCI_LIGHT:
-    case SCI_AXES:  
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
-    case SCI_AGREG:
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-	case SCI_UIMENU:
-    default:
-      sciprint ("\r\nNothing to do\n");
-      return FALSE;
-      break;
-    }
-  return FALSE;
-}
-
 /**sciGetXorMode
  * Returns the drawing Xor mode
  * @param sciPointObj * pobj: the pointer to the entity
@@ -3067,7 +3011,7 @@ sciGetRealVisibility (sciPointObj * pobj)
     return FALSE ;
   }
 
-  if ( sciGetEntityType( pobj ) == SCI_FIGURE )
+  if ( sciGetEntityType( pobj ) == SCI_FIGURE || sciGetEntityType(pobj) == SCI_SCREEN )
   {
     return sciGetVisibility( pobj ) ;
   }
@@ -3135,9 +3079,24 @@ sciGetVisibility (sciPointObj * pobj)
     case SCI_LABEL: /* F.Leray 28.05.04 */
       return sciGetVisibility ( pLABEL_FEATURE (pobj)->text ) ;
       break;
-	case SCI_UIMENU:
-	  return pUIMENU_FEATURE (pobj)->visible;
-	  break;
+    case SCI_UIMENU:
+      return pUIMENU_FEATURE (pobj)->visible;
+      break;
+    case SCI_CONSOLE:
+      return pCONSOLE_FEATURE(pobj)->visible ;
+      break ;
+    case SCI_FRAME:
+      return pFRAME_FEATURE(pobj)->visible ;
+      break ;
+    case SCI_WINDOW:
+      return pWINDOW_FEATURE(pobj)->visible ;
+      break ;
+    case SCI_WINDOWFRAME:
+      return pWINDOWFRAME_FEATURE(pobj)->visible ;
+      break ;
+    case SCI_SCREEN:
+      return pSCREEN_FEATURE(pobj)->visible ;
+      break ;
     case SCI_SBH:   
     case SCI_PANNER:
     case SCI_SBV:
@@ -3274,8 +3233,7 @@ sciGetNum (sciPointObj * pobj)
  * @return the width of the dimension of the window or figure 
  * (the visibility dimension) in pixel dimension
  */
-double
-sciGetWidth (sciPointObj * pobj)
+int sciGetWidth (sciPointObj * pobj)
 {
   struct BCG *Xgc;
   switch (sciGetEntityType (pobj))
@@ -3288,8 +3246,19 @@ sciGetWidth (sciPointObj * pobj)
     case SCI_SUBWIN:
        return pSUBWIN_FEATURE (pobj)->windimwidth;
       break;
+    case SCI_CONSOLE:
+      return -1 ;
+      break ;
+    case SCI_FRAME:
+      return -1 ;
+    case SCI_WINDOW:
+      return -1 ;
+    case SCI_WINDOWFRAME:
+      return -1 ;
+    case SCI_SCREEN:
+      return -1 ;
     default:
-      sciprint ("Only Figure is physical dimensioned\n");
+      sciprint ("Object does not have a width.\n");
       return -1;
       break;
     }
@@ -3301,8 +3270,7 @@ sciGetWidth (sciPointObj * pobj)
  * @param sciPointObj * pobj: the pointer to the entity
  * @return the height of the dimension of the window or figure (the visibility dimension) in pixel dimension
  */
-double 
-sciGetHeight (sciPointObj * pobj)
+int sciGetHeight (sciPointObj * pobj)
 {
   struct BCG *Xgc;
   switch (sciGetEntityType (pobj))
@@ -3315,8 +3283,18 @@ sciGetHeight (sciPointObj * pobj)
     case SCI_SUBWIN:
        return pSUBWIN_FEATURE (pobj)->windimheight;
       break;
+    case SCI_CONSOLE:
+      return -1 ;
+    case SCI_FRAME:
+      return -1 ;
+    case SCI_WINDOW:
+      return -1 ;
+    case SCI_WINDOWFRAME:
+      return -1 ;
+    case SCI_SCREEN:
+      return -1 ;
     default:
-      sciprint ("Only Figure is physical dimensioned\n");
+      sciprint ("Object does not have a height.\n");
       return -1;
       break;
     }
@@ -3345,74 +3323,6 @@ void sciGetDim( sciPointObj * pobj, int * pWidth, int * pHeight )
       break;
     }
 }
-
-/**sciGetFigurePosX
- * Returns the horizontal position of  the FIGURE (the window) in root, in pixels
- * @param sciPointObj * pobj
- * @return the position in pixel dimension
- */
-int
-sciGetFigurePosX (sciPointObj * pobj)
-{
-  integer x[2],y=0,cur,num,na;
-  double d=0;
-  
-  switch (sciGetEntityType (pobj))
-    { 
-    case SCI_FIGURE:
-      /* synchronize figure position with its actual value */
-      num=pFIGURE_FEATURE(pobj)->number;
-      C2F(dr)("xget","window",&y,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
-      C2F(dr)("xset","window",&num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-
-      C2F(dr)("xget","wpos",&y,x,&na,PI0,PI0,PI0,&d,PD0,PD0,PD0,4L,4L);
-      C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-
-      pFIGURE_FEATURE (pobj)->inrootposx=x[0];
-      return pFIGURE_FEATURE (pobj)->inrootposx;
-      break;
-    case SCI_AGREG:
-    default:
-      sciprint ("Only Figure can return position\n");
-      return -1;
-      break;
-    }
-}
-
-
-/**sciGetFigurePosY
- * Returns the vertical position of the window in pixels
- * @param sciPointObj * pobj: the pointer to the entity
- * @return the position in pixel dimension
- */
-int
-sciGetFigurePosY (sciPointObj * pobj)
-{  
-  integer x[2],y=0,cur,num,na;
-  double d=0;
-  
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_FIGURE:
-      /* synchronize figure position with its actual value */
-      num=pFIGURE_FEATURE(pobj)->number; /* Adding this line to dix bug scf() F.Leray 08.12.04 */
-      C2F(dr)("xget","window",&y,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
-      C2F(dr)("xset","window",&num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-
-      C2F(dr)("xget","wpos",&y,x,&y,PI0,PI0,PI0,&d,PD0,PD0,PD0,4L,4L);
-      C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-
-      pFIGURE_FEATURE (pobj)->inrootposy=x[1];
-      return pFIGURE_FEATURE (pobj)->inrootposy;
-      break;
-    case SCI_AGREG:
-    default:
-      sciprint ("Only Figure can return position\n");
-      return -1;
-      break;
-    }
-}
-
 
 /**sciGetIsFigureIconified
  * Determines whether the specified Figure is minimized (iconic). 
@@ -3792,7 +3702,8 @@ sciPointObj *sciGetCurrentFigure ()
   if(pfigure == (sciPointObj *) NULL )
     {
       /* it would mean that we have change the driver to GIF,Pos or PPM and perform a xinit F.Leray 22.07.04 */
-      if ((mafigure = ConstructFigure (moncurScilabXgc)) != NULL)
+      /* for now, no higher entities than figure */
+      if ((mafigure = ConstructFigure( NULL, moncurScilabXgc)) != NULL)
 	{
 	  sciSetCurrentObj (mafigure); 
 	  moncurScilabXgc->mafigure = mafigure;
@@ -3834,16 +3745,20 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
   switch (sciGetEntityType (pthis))
     {
     case SCI_FIGURE:
-      *numrow = 2;
-      *numcol = 2;
-      if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
-	return (double*)NULL;
-      tab[0] = (double) sciGetFigurePosX (pthis);
-      tab[1] = (double) sciGetFigurePosY (pthis);
-      tab[2] = (double)sciGetWidth (pthis);
-      tab[3] = (double)sciGetHeight (pthis);
-      return (double*)tab;
-      break;
+      {
+        int posX ;
+        int posY ;
+        *numrow = 2;
+        *numcol = 2;
+        if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
+	  return (double*)NULL;
+        sciGetScreenPosition( pthis, &posX, &posY ) ;
+        tab[0] = (double) posX ;
+        tab[1] = (double) posY ;
+        tab[2] = (double)sciGetWidth (pthis);
+        tab[3] = (double)sciGetHeight (pthis);
+        return tab;
+      }
     case SCI_SUBWIN:
       *numrow = 3;
       *numcol = 2;
@@ -4391,6 +4306,22 @@ void sciGetPointerToUserData (sciPointObj * pobj,int ***user_data_ptr, int **siz
     case SCI_LABEL:
       sciGetPointerToUserData ( pLABEL_FEATURE(pobj)->text, user_data_ptr, size_ptr ) ;
       break;
+    case SCI_CONSOLE:
+      *user_data_ptr = &(pCONSOLE_FEATURE (pobj)->user_data);
+      *size_ptr=&(pCONSOLE_FEATURE (pobj)->size_of_user_data);
+    case SCI_FRAME:
+      *user_data_ptr = &(pFRAME_FEATURE (pobj)->user_data);
+      *size_ptr=&(pFRAME_FEATURE (pobj)->size_of_user_data);
+    case SCI_WINDOW:
+      *user_data_ptr = &(pWINDOW_FEATURE (pobj)->user_data);
+      *size_ptr=&(pWINDOW_FEATURE (pobj)->size_of_user_data);
+    case SCI_WINDOWFRAME:
+      *user_data_ptr = &(pWINDOWFRAME_FEATURE (pobj)->user_data);
+      *size_ptr=&(pWINDOWFRAME_FEATURE (pobj)->size_of_user_data);
+    case SCI_SCREEN:
+      *user_data_ptr = &(pSCREEN_FEATURE (pobj)->user_data);
+      *size_ptr=&(pSCREEN_FEATURE (pobj)->size_of_user_data);
+      break;
 
 	case SCI_UIMENU:
     default:
@@ -4403,7 +4334,7 @@ void sciGetPointerToUserData (sciPointObj * pobj,int ***user_data_ptr, int **siz
 
 /**
  * Don't use this ugly function !!!! (Jb Silvy)
- * 130 strcmp for to know the type of a parameter
+ * 130 strcmp to know the type of a parameter
  */
 int sciType (marker, pobj)
      char *marker;
@@ -5311,5 +5242,37 @@ int sciGetInfoMessageLength( sciPointObj * pObj )
     return -1 ;
   }
   return -1 ;
+}
+/*-------------------------------------------------------------------------------------------*/
+void sciGetScreenPosition( sciPointObj * pObj, int * posX, int * posY )
+{
+  switch ( sciGetEntityType(pObj) )
+  {
+  case SCI_FIGURE:
+    {
+      int num = sciGetNum(pObj) ;
+      int cur = sciGetNum(sciGetCurrentFigure()) ;
+      int verbose = 0 ;
+      int na = 0 ;
+      int pos[2] ;  
+      sciSetUsedWindow( num ) ;
+      C2F(dr)("xget","wpos",&verbose,pos,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,4L);
+      sciSetUsedWindow( cur ) ;
+      *posX = pos[0] ;
+      *posY = pos[1] ;
+    }
+    break ;
+  case SCI_CONSOLE:
+    *posX = -1 ;
+    *posY = -1 ;
+  case SCI_WINDOW:
+    *posX = -1 ;
+    *posY = -1 ;
+    break ;
+  default:
+    sciprint( "This object has no position property.\n" ) ;
+    *posX = -1 ;
+    *posY = -1 ;
+  }
 }
 /*-------------------------------------------------------------------------------------------*/

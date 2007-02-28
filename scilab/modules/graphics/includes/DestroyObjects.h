@@ -54,7 +54,7 @@ extern int sciDelGraphicObj (sciPointObj * pthis); /* DESTROY */
 
 extern int DestroyLabel (sciPointObj * pthis); /* DESTROY */
 extern int DestroyUimenu (sciPointObj * pthis); /* DESTROY */
-
+int DestroyConsole( sciPointObj * pthis ) ; /* DESTROY */
 /* UNUSED : */
 
 extern int sciDelLabelsMenu (sciPointObj * pthis);

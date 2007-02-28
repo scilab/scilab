@@ -97,7 +97,6 @@ BOOL sciGetHighLight (sciPointObj * pobj);  /* GET */
 BOOL sciGetAddPlot (sciPointObj * pobj);  /* GET */
 BOOL sciGetAutoScale (sciPointObj * pobj);  /* GET */
 BOOL sciGetZooming (sciPointObj * pobj);  /* GET */
-BOOL sciGetGraphicsStyle (sciPointObj * pobj);  /* GET */
 int sciGetXorMode (sciPointObj * pobj);  /* GET */
 BOOL sciGetRealVisibility (sciPointObj * pobj) ; /* GET */
 BOOL sciGetVisibility (sciPointObj * pobj);  /* GET */
@@ -108,11 +107,9 @@ BOOL sciGetResize (sciPointObj * pobj);  /* GET */
 char *sciGetName (sciPointObj * pobj);  /* GET */
 int sciGetNameLength (sciPointObj * pobj);  /* GET */
 int sciGetNum (sciPointObj * pobj);  /* GET */
-double sciGetWidth (sciPointObj * pobj);   /* GET */
-double sciGetHeight (sciPointObj * pobj);  /* GET */
+int sciGetWidth (sciPointObj * pobj);   /* GET */
+int sciGetHeight (sciPointObj * pobj);  /* GET */
 void sciGetDim( sciPointObj * pobj, int * pWidth, int * pHeight ) ; /* GET */
-int sciGetFigurePosX (sciPointObj * pobj);  /* GET */
-int sciGetFigurePosY (sciPointObj * pobj);  /* GET */
 BOOL sciGetIsFigureIconified (sciPointObj * pobj);  /* GET */
 int sciGetSubwindowPosX (sciPointObj * pobj);  /* GET */
 int sciGetSubwindowPosY (sciPointObj * pobj);  /* GET */
@@ -206,5 +203,7 @@ void sciGetViewport( sciPointObj * pObj, int * xSize, int * ySize ) ;
 char * sciGetInfoMessage( sciPointObj * pObj ) ;
 
 int sciGetInfoMessageLength( sciPointObj * pObj ) ;
+
+void sciGetScreenPosition( sciPointObj * pObj, int * posX, int * posY ) ;
 
 #endif /* __SCI_GET_PROPERTY__ */

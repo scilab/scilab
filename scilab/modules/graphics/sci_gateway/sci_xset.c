@@ -266,7 +266,7 @@ int sci_xset( char *fname, unsigned long fname_len )
         }
       }
       else if ( strcmp(cstk(l1),"wpos") == 0) {
-        sciSetFigurePos (sciGetParent(subwin), x[0], x[1]);
+        sciSetScreenPosition(sciGetParent(subwin), x[0], x[1]);
 
       }
       else if ( strcmp(cstk(l1),"wpdim") == 0) {

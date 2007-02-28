@@ -788,7 +788,7 @@ int ResetFigureToDefaultValues(sciPointObj * pobj)
   x[1]=(pFIGURE_FEATURE (pfiguremdl)->inrootposy <0)?x[1]:pFIGURE_FEATURE (pfiguremdl)->inrootposy;
   x[0]=(pFIGURE_FEATURE (pfiguremdl)->inrootposx <0)?x[0]:pFIGURE_FEATURE (pfiguremdl)->inrootposx;
   x[1]=(pFIGURE_FEATURE (pfiguremdl)->inrootposy <0)?x[1]:pFIGURE_FEATURE (pfiguremdl)->inrootposy;
-  sciSetFigurePos (pobj,x[0],x[1]);
+  sciSetScreenPosition(pobj,x[0],x[1]);
   pFIGURE_FEATURE (pobj)->isiconified = pFIGURE_FEATURE (pfiguremdl)->isiconified;
   pFIGURE_FEATURE (pobj)->isselected = pFIGURE_FEATURE (pfiguremdl)->isselected; 
   pFIGURE_FEATURE (pobj)->rotstyle = pFIGURE_FEATURE (pfiguremdl)->rotstyle;
@@ -818,7 +818,6 @@ sciInitGraphicMode (sciPointObj * pobj)
 	  (sciGetGraphicMode (pobj))->addplot = TRUE;
 	  (sciGetGraphicMode (pobj))->autoscaling = TRUE;
 	  (sciGetGraphicMode (pobj))->zooming = FALSE;
-	  (sciGetGraphicMode (pobj))->oldstyle = FALSE;
 	  (sciGetGraphicMode (pobj))->xormode = 3;
 	}
       else
@@ -827,7 +826,6 @@ sciInitGraphicMode (sciPointObj * pobj)
 	  (sciGetGraphicMode (pobj))->addplot = (sciGetGraphicMode (pfiguremdl))->addplot;
 	  (sciGetGraphicMode (pobj))->autoscaling = (sciGetGraphicMode (pfiguremdl))->autoscaling;
 	  (sciGetGraphicMode (pobj))->zooming = (sciGetGraphicMode (pfiguremdl))->zooming;
-	  (sciGetGraphicMode (pobj))->oldstyle = (sciGetGraphicMode (pfiguremdl))->oldstyle;
 	  (sciGetGraphicMode (pobj))->xormode = (sciGetGraphicMode (pfiguremdl))->xormode;
 	}
       break;
@@ -838,7 +836,6 @@ sciInitGraphicMode (sciPointObj * pobj)
 	  (sciGetGraphicMode (pobj))->addplot =sciGetAddPlot (sciGetParent (pobj));
 	  (sciGetGraphicMode (pobj))->autoscaling =sciGetAutoScale (sciGetParent (pobj));
 	  (sciGetGraphicMode (pobj))->zooming =sciGetZooming (sciGetParent (pobj));
-	  (sciGetGraphicMode (pobj))->oldstyle =sciGetGraphicsStyle (sciGetParent (pobj)); 
 	  (sciGetGraphicMode (pobj))->xormode =sciGetXorMode (sciGetParent (pobj));
       	}
       else
@@ -846,7 +843,6 @@ sciInitGraphicMode (sciPointObj * pobj)
 	  (sciGetGraphicMode (pobj))->addplot =(sciGetGraphicMode (paxesmdl))->addplot;
 	  (sciGetGraphicMode (pobj))->autoscaling = (sciGetGraphicMode (paxesmdl))->autoscaling;
 	  (sciGetGraphicMode (pobj))->zooming =(sciGetGraphicMode (paxesmdl))->zooming;
-	  (sciGetGraphicMode (pobj))->oldstyle =(sciGetGraphicMode (paxesmdl))->oldstyle;
 	  (sciGetGraphicMode (pobj))->xormode =(sciGetGraphicMode (paxesmdl))->xormode;
       	}
       break;

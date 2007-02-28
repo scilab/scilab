@@ -75,10 +75,13 @@
 #define pMENU_FEATURE(pointobj)        ((sciMenu          *)pointobj->pfeatures)/** */
 #define pAGREG_FEATURE(pointobj)       ((sciAgreg         *)pointobj->pfeatures)/** */
 #define pSEGS_FEATURE(pointobj)        ((sciSegs          *)pointobj->pfeatures)/** */
-
 #define pLABEL_FEATURE(pointobj)       ((sciLabel         *)pointobj->pfeatures)/** */
-
-#define pUIMENU_FEATURE(pointobj)       ((sciUimenu       *)pointobj->pfeatures)/** */
+#define pUIMENU_FEATURE(pointobj)      ((sciUimenu        *)pointobj->pfeatures)/** */
+#define pCONSOLE_FEATURE(pointobj)     ((sciConsole       *)pointobj->pfeatures)/** */
+#define pFRAME_FEATURE(pointobj)       ((sciFrame         *)pointobj->pfeatures)/** */
+#define pWINDOW_FEATURE(pointobj)      ((sciWindow        *)pointobj->pfeatures)/** */
+#define pWINDOWFRAME_FEATURE(pointobj) ((sciWindowFrame   *)pointobj->pfeatures)/** */
+#define pSCREEN_FEATURE(pointobj)      ((sciScreen        *)pointobj->pfeatures)/** */
 
 #ifndef _MSC_VER
 typedef unsigned short HMENU;
@@ -175,7 +178,17 @@ typedef enum
     /**Entity type LABEL created by F.Leray 26.05.04 */
     SCI_LABEL,
     /**Entity type UIMENU created by A.C 28.09.05 **/
-    SCI_UIMENU
+    SCI_UIMENU,
+    /** Entity type CONSOLE created by JB Silvy 27/02/07 */
+    SCI_CONSOLE,
+    /** Entity type FRAME created by JB Silvy 27/02/07 */
+    SCI_FRAME,
+    /** Entity type WINDOW created by JB Silvy 27/02/07 */
+    SCI_WINDOW,
+    /** Entity type WINDOWFRAME created by JB Silvy 27/02/07 */
+    SCI_WINDOWFRAME,
+    /** Entity type SCREEN created by JB Silvy 27/02/07 */
+    SCI_SCREEN
   }
 /**Struct of Entity type*/
 sciEntityType;	
@@ -375,8 +388,6 @@ typedef struct
   BOOL zooming; 
   /** Is the graphic automatically resized to fill the graphics window */
   BOOL wresize;	    
-  /** Is old style                                                     */
-  BOOL oldstyle;
   /** drawing xor mode                                                         */
   int xormode;
   	       	       
@@ -630,14 +641,6 @@ typedef struct
 
   /** */
   BOOL isselected;
-  /** specifies if this object is visible  */
-  /* BOOL visible; */
-  /* int isclip; */
-/*   double clip_region[4]; */
-/*   int clip_region_set; */
-/*   int * user_data; /\* adding 27.06.05 *\/ */
-/*   int size_of_user_data; */
-  /*BOOL isfilled;*/ /* to know if a label has a colored frame as background */
   BOOL auto_position; /* automatic or manual position selection for label */
   BOOL auto_rotation; /* automatic or manual rotation selection for label (depends on the current view mode 2d or 3d mainly for y and z labels) */
                       /* not implemented for titles */
@@ -1379,5 +1382,75 @@ typedef struct
   int size_of_user_data;
 }
 sciAgreg;  /** */
+
+/**
+ * Console window Object
+ */
+typedef struct 
+{
+  sciRelationShip relationship ;
+
+  BOOL visible ;
+
+  int * user_data ;
+  int size_of_user_data;
+
+} sciConsole ;
+
+/**
+ * Frame Object
+ */
+typedef struct 
+{
+  sciRelationShip relationship ;
+
+  BOOL visible ;
+
+  int * user_data ;
+  int size_of_user_data;
+
+} sciFrame ;
+
+/**
+ * Window object
+ */
+typedef struct 
+{
+  sciRelationShip relationship ;
+
+  BOOL visible ;
+
+  int * user_data ;
+  int size_of_user_data;
+
+} sciWindow ;
+
+/**
+* WindowFrame object
+*/
+typedef struct 
+{
+  sciRelationShip relationship ;
+
+  BOOL visible ;
+
+  int * user_data ;
+  int size_of_user_data;
+
+} sciWindowFrame ;
+
+/**
+* Screen object
+*/
+typedef struct 
+{
+  sciRelationShip relationship ;
+
+  BOOL visible ;
+
+  int * user_data ;
+  int size_of_user_data;
+
+} sciScreen ;
 
 #endif /*__SCI_OBJECT_STRUCTURE__ */

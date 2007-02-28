@@ -156,6 +156,8 @@ sciCloneObj (sciPointObj * pobj)
     case SCI_RECTANGLE:
       return CloneRectangle(pobj);
       break;
+    case SCI_CONSOLE:
+      return CloneConsole(pobj) ;
     case SCI_AGREG:
 
     case SCI_SEGS: 
@@ -390,6 +392,36 @@ int cloneGraphicContext( sciPointObj * pObjSource, sciPointObj * pObjDest )
   return 0 ;
 }
 /*--------------------------------------------------------------------------*/
+int cloneUserData( sciPointObj * pObjSource, sciPointObj * pObjDest )
+{
+  int ** srcUserData ;
+  int *  srcSize   ;
+  int ** dstUserData ;
+  int *  dstSize     ;
+  sciGetPointerToUserData( pObjSource, &srcUserData, &srcSize ) ;
+  sciGetPointerToUserData( pObjDest  , &dstUserData, &dstSize ) ;
+  if ( *srcSize > 0 )
+  {
+    *dstSize = *srcSize ;
+    if ( *dstUserData != NULL ) { FREE(*dstUserData) ; }
+    *dstUserData = MALLOC( *srcSize * sizeof(int) ) ;
+    if ( *dstUserData == NULL )
+    {
+      sciprint("Error allocating user_data, memory full.\n") ;
+      *dstSize     = 0 ;
+      *srcUserData = NULL ;
+      return -1 ;
+    }
+    memcpy( *dstUserData, *srcUserData, *srcSize ) ;
+  }
+  else
+  {
+    *dstSize     = 0 ;
+    *srcUserData = NULL ;
+  }
+  return 0 ;
+}
+/*--------------------------------------------------------------------------*/
 int cloneFontContext( sciPointObj * pObjSource, sciPointObj * pObjDest )
 {
   
@@ -423,5 +455,23 @@ int cloneFontContext( sciPointObj * pObjSource, sciPointObj * pObjDest )
   destFC->fontdeciwidth   = sourceFC->fontdeciwidth   ;
   destFC->textorientation = sourceFC->textorientation ;
   return 0 ;
+}
+/*--------------------------------------------------------------------------*/
+sciPointObj * CloneConsole( sciPointObj * pthis )
+{
+  sciPointObj * newObj = NULL ;
+  int posX ;
+  int posY ;
+
+  newObj = ConstructConsole( sciGetParent(pthis) ) ;
+
+  sciInitVisibility( newObj, sciGetVisibility(pthis) ) ;
+  sciGetScreenPosition( pthis, &posX, &posY ) ;
+  sciInitScreenPosition( newObj, posX, posY ) ;
+
+  /* copy user_data */
+  cloneUserData( pthis, newObj ) ;
+
+  return newObj ;
 }
 /*--------------------------------------------------------------------------*/

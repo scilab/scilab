@@ -23,6 +23,6 @@ int set_figure_position_property( sciPointObj * pobj, int stackPointer, int valu
     return SET_PROPERTY_ERROR ;
   }
 
-  return sciSetFigurePos( pobj, (int)values[0], (int)values[1]);
+  return sciSetScreenPosition( pobj, (int)values[0], (int)values[1]);
 }
 /*------------------------------------------------------------------------*/

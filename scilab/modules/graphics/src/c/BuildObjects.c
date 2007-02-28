@@ -127,8 +127,7 @@ int C2F(sciwin)( void )
  * This function creates the parents window (manager) and the elementaries structures
  */
 /************ 18/01/2002 ***********/
-sciPointObj *
-ConstructFigure (struct BCG *XGC) 
+sciPointObj * ConstructFigure( sciPointObj * pparent, struct BCG * XGC ) 
 {
  
   sciPointObj *pobj = (sciPointObj *) NULL;
@@ -154,24 +153,24 @@ ConstructFigure (struct BCG *XGC)
   
   ppFigure = pFIGURE_FEATURE(pobj) ;
 
-  if (sciAddNewHandle (pobj) == -1)
-    {
-      FREE(pobj->pfeatures);
-      FREE(pobj);
-      return (sciPointObj *) NULL;
-    }
+  if ( sciAddNewHandle (pobj) == -1 )
+  {
+    FREE(pobj->pfeatures);
+    FREE(pobj);
+    return NULL;
+  }
  
   /*  le seul parent est la root (l'ecran, le bureau quoi !) Pour l'instant il n'y a pas de fils selectionne */
   /*sciSetParent (pobj, (sciPointObj *) NULL); */
   /* il n'y a pas de parents !!!*/
   
-  if (!(sciAddThisToItsParent(pobj, (sciPointObj *)NULL))) 
-    {
-      sciDelHandle (pobj);
-      FREE(pobj->pfeatures);
-      FREE(pobj);
-      return (sciPointObj *) NULL;
-    }
+  if (!(sciAddThisToItsParent( pobj, pparent ))) 
+  {
+    sciDelHandle (pobj);
+    FREE(pobj->pfeatures);
+    FREE(pobj);
+    return NULL ;
+  }
   
   sciSetCurrentSon (pobj, (sciPointObj *) NULL);
 
@@ -222,7 +221,7 @@ ConstructFigure (struct BCG *XGC)
   x[1]=(ppModel->inrootposy <0)?x[1]:ppModel->inrootposy;
   x[0]=(ppModel->inrootposx <0)?x[0]:ppModel->inrootposx;
   x[1]=(ppModel->inrootposy <0)?x[1]:ppModel->inrootposy;
-  sciInitFigurePos (pobj,x[0],x[1]);
+  sciInitScreenPosition(pobj,x[0],x[1]);
   ppFigure->isiconified = ppModel->isiconified;
   ppFigure->isselected = ppModel->isselected; 
   ppFigure->rotstyle = ppModel->rotstyle;
@@ -3080,7 +3079,7 @@ sciPointObj * ConstructUimenu (sciPointObj * pparent, char *label,char *callback
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
-      /*  sciSetParent (pobj, pparentsubwin); */
+
       if (!(sciAddThisToItsParent (pobj, pparent)))
 	{
 	  sciDelHandle (pobj);
@@ -3130,4 +3129,53 @@ sciPointObj * ConstructUimenu (sciPointObj * pparent, char *label,char *callback
       return (sciPointObj *) NULL;
     }
 }
+/*-------------------------------------------------------------------------------------*/
+sciPointObj * ConstructConsole( sciPointObj * pparent )
+{
+  sciPointObj * pObj      = NULL ;
+  sciConsole  * ppConsole = NULL ;
 
+  pObj = MALLOC(sizeof(sciConsole)) ;
+  if ( pObj == NULL )
+  {
+    sciprint("Unable to allocate new object, memory full.\n") ;
+    return NULL ;
+  }
+
+  sciSetEntityType( pObj, SCI_CONSOLE ) ;
+
+  pObj->pfeatures = MALLOC(sizeof(sciConsole)) ;
+  if ( pObj->pfeatures == NULL )
+  {
+    sciprint("Unable to allocate new object, memory full.\n") ;
+    FREE(pObj) ;
+    return NULL ;
+  }
+
+  ppConsole = pCONSOLE_FEATURE(pObj) ;
+
+  if ( sciAddNewHandle(pObj) == -1 )
+  {
+    FREE(ppConsole) ;
+    FREE(pObj) ;
+    return NULL;
+  }
+
+  /* No parent for console for now */
+  if ( !sciAddThisToItsParent( pObj, pparent ) ) 
+  {
+    sciDelHandle(pObj);
+    FREE(ppConsole) ;
+    FREE(pObj) ;
+    return NULL ;
+  }
+
+  sciSetCurrentSon ( pObj, NULL ) ;
+
+  ppConsole->user_data         = NULL ;
+  ppConsole->size_of_user_data = 0    ;
+
+  return pObj ;
+
+}
+/*-------------------------------------------------------------------------------------*/

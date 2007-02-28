@@ -2959,57 +2959,6 @@ sciSetDefaultValues (void)
   }
 }
 
-int sciInitGraphicsStyle( sciPointObj * pobj, BOOL value )
-{
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_FIGURE:
-      (sciGetGraphicMode (pobj))->oldstyle = value;
-      break;
-    case SCI_SUBWIN: 
-      /* the value is inhirated by the parent */
-      sciSetGraphicsStyle (sciGetParentFigure (pobj), value);
-      break;
-    case SCI_TEXT:
-    case SCI_TITLE:
-    case SCI_LEGEND:
-    case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
-    case SCI_POLYLINE:
-    case SCI_RECTANGLE:
-    case SCI_SURFACE:
-    case SCI_LIGHT:
-    case SCI_AXES:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
-    case SCI_AGREG:
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-    case SCI_UIMENU:
-    default:
-      sciprint ("\r\nNothing to do\n");
-      return -1 ;
-      break;
-    }
-
-  return 0 ;
-}
-
-/**sciSetGraphicsStyle
- * Sets the graphics style
- */
-int
-sciSetGraphicsStyle (sciPointObj * pobj, BOOL value)
-{
-  if ( sciGetGraphicsStyle( pobj ) == value )
-  {
-    /* nothing to do */
-    return 1 ;
-  }
-  return sciInitGraphicsStyle( pobj, value ) ;
-  
-}
 
 
 int sciInitXorMode( sciPointObj * pobj, int value )
@@ -3085,22 +3034,12 @@ int sciInitVisibility( sciPointObj * pobj, BOOL value )
 			{
 			pFIGURE_FEATURE (pobj)->visible = value;
 			}
-      /*       while ((psonstmp != (sciSons *) NULL) && (psonstmp->pointobj != (sciPointObj *)NULL)) */
-      /* 	{ */
-      /* 	  sciSetVisibility ((sciPointObj *)psonstmp->pointobj,value);  */
-      /* 	  psonstmp = psonstmp->pnext; */
-      /* 	} */
       break;
     case SCI_SUBWIN:
 		if (pSUBWIN_FEATURE (pobj)->visible != value)
 			{
 			pSUBWIN_FEATURE (pobj)->visible = value;
 			}
-      /*       while ((psonstmp != (sciSons *) NULL) && (psonstmp->pointobj != (sciPointObj *)NULL)) */
-      /* 	{ */
-      /* 	  sciSetVisibility ((sciPointObj *)psonstmp->pointobj,value);  */
-      /* 	  psonstmp = psonstmp->pnext; */
-      /* 	} */
       break;
     case SCI_TITLE:
 		if (pTITLE_FEATURE (pobj)->visible != value)
@@ -3190,6 +3129,22 @@ int sciInitVisibility( sciPointObj * pobj, BOOL value )
 			pUIMENU_FEATURE(pobj)->visible=value;
 			}
       break;
+    case SCI_CONSOLE:
+      pCONSOLE_FEATURE(pobj)->visible = value ;
+      break;
+    case SCI_FRAME:
+      pFRAME_FEATURE(pobj)->visible = value ;
+      break;
+    case SCI_WINDOW:
+      pWINDOW_FEATURE(pobj)->visible = value ;
+      break;
+    case SCI_WINDOWFRAME:
+      pWINDOWFRAME_FEATURE(pobj)->visible = value ;
+      break;
+    case SCI_SCREEN:
+      pSCREEN_FEATURE(pobj)->visible = value ;
+      break;
+
     case SCI_SBH:   
     case SCI_PANNER:
     case SCI_SBV:
@@ -3402,12 +3357,8 @@ int sciInitDim( sciPointObj * pobj, int * pwidth, int * pheight )
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
-      /* selectionner le xgc correspondant puis */
       pFIGURE_FEATURE (pobj)->figuredimwidth = *pwidth;
       pFIGURE_FEATURE (pobj)->figuredimheight = *pheight;
-
-      /* GPopupResize (sciGetScilabXgc (pobj), pwidth, pheight); commented out SS 03/01/03 */
-
       break;
     case SCI_SUBWIN:
       pSUBWIN_FEATURE (pobj)->windimwidth = *pwidth;
@@ -3415,9 +3366,12 @@ int sciInitDim( sciPointObj * pobj, int * pwidth, int * pheight )
       if (pobj != getAxesModel())
 	C2F(dr)("xset","wdim",pwidth, pheight,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,4L);
       break;
+    case SCI_CONSOLE:
+      /* TODO */
+      break;
     case SCI_AGREG:
     default:
-      sciprint ("Only Figure or Subwin can be sized\n");
+      sciprint ("Object can not have a size.\n");
       return -1 ;
       break;
     }
@@ -3447,7 +3401,7 @@ sciSetDim (sciPointObj * pobj, int *pwidth, int *pheight)
   
 }
 
-int sciInitFigurePos( sciPointObj * pobj, int pposx, int pposy )
+int sciInitScreenPosition( sciPointObj * pobj, int pposx, int pposy )
 {
   integer y=0,cur,num,na ;
   switch (sciGetEntityType (pobj))
@@ -3465,7 +3419,21 @@ int sciInitFigurePos( sciPointObj * pobj, int pposx, int pposy )
       pFIGURE_FEATURE (pobj)->inrootposy = pposy;
       return 0;
       break;
-    case SCI_AGREG:
+    case SCI_CONSOLE:
+      /* nothing for now */
+      break ;
+    case SCI_FRAME:
+      /* nothing for now */
+      break ;
+    case SCI_WINDOW:
+      /* nothing for now */
+      break ;
+    case SCI_WINDOWFRAME:
+      /* nothing for now */
+      break ;
+    case SCI_SCREEN:
+      /* nothing for now */
+      break ;
     default:
       sciprint ("Only Figure can return position\n");
       return -1;
@@ -3474,19 +3442,21 @@ int sciInitFigurePos( sciPointObj * pobj, int pposx, int pposy )
   return 0;
 }
 
-/**sciSetFigurePos
+/**sciSetScreenPosition
  * Sets the position of the FIGURE (the window) in root.
  */
 int
-sciSetFigurePos (sciPointObj * pobj, int pposx, int pposy)
+sciSetScreenPosition(sciPointObj * pobj, int pposx, int pposy)
 {
-
-  if ( sciGetFigurePosX( pobj ) == pposx && sciGetFigurePosY( pobj ) == pposy )
+  int posX ;
+  int posY ;
+  sciGetScreenPosition( pobj, &posX, &posY ) ;
+  if ( posX == pposx && posY == pposy )
   {
     /* nothing to do */
     return 1 ;
   }
-  return sciInitFigurePos( pobj, pposx, pposy ) ;
+  return sciInitScreenPosition( pobj, pposx, pposy ) ;
   
 }
 
@@ -3496,14 +3466,6 @@ int sciInitFigureIconify( sciPointObj * pobj, BOOL value )
     {
     case SCI_FIGURE:
       pFIGURE_FEATURE (pobj)->isiconified = value;
-      /* hWndParent de Type HWND (BCG) "WIN" */
-      /*     if (value)
-	     ShowWindow ((sciGetScilabXgc (pobj))->hWndParent, SW_MINIMIZE);
-	     else
-	     {
-	     ShowWindow ((sciGetScilabXgc (pobj))->hWndParent, SW_SHOWNORMAL); 
-	     BringWindowToTop ((sciGetScilabXgc (pobj))->hWndParent);
-	     } */
       break;
     default:
       return sciSetFigureIconify(sciGetCurrentFigure(), value);
@@ -4197,8 +4159,8 @@ int sciSwitchWindow(int *winnum)
       /** Figure winnum don't exist **/
       /** Create Figure **/ 
       C2F(dr)("xget","gc",&v,&v,&v,&v,&v,&v,(double *)&CurXGC,&dv,&dv,&dv,5L,10L);/* ????? SS*/
-      /*    if ((mafigure = ConstructFigure (CurXGC)) != NULL)*/ /*F.Leray 24.03.04 */
-      if ((mafigure = ConstructFigure (CurXGC)) != NULL)
+      /* For now, no higher entities than figure */
+      if ((mafigure = ConstructFigure(NULL, CurXGC)) != NULL)
 	{
 	  sciSetCurrentObj (mafigure); /* F.Leray 25.03.04*/
 	  CurXGC->mafigure = mafigure;

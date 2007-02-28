@@ -47,37 +47,9 @@ void
 sciSetHandle (sciPointObj * pobj, sciHandleTab * pvalue)
 {
   if ( (pobj != getFigureModel()) && (pobj != getAxesModel()))
-    switch (sciGetEntityType (pobj))
-      {
-      case SCI_FIGURE:
-      case SCI_SUBWIN:
-      case SCI_TEXT:
-      case SCI_TITLE:
-      case SCI_LEGEND:
-      case SCI_ARC:
-      case SCI_SEGS: 
-      case SCI_FEC: 
-      case SCI_GRAYPLOT: 
-      case SCI_POLYLINE:
-      case SCI_RECTANGLE:
-      case SCI_SURFACE:
-      case SCI_LIGHT:
-      case SCI_AXES:
-      case SCI_PANNER:
-      case SCI_SBH:
-      case SCI_SBV:
-      case SCI_MENU:
-      case SCI_MENUCONTEXT:
-      case SCI_STATUSB:
-      case SCI_AGREG:
-      case SCI_MERGE:
-      case SCI_LABEL: /* F.Leray 28.05.04 */
-      case SCI_UIMENU:
-	(sciGetRelationship (pobj))->phandle = pvalue;		/** put the new index handle */
-	break;
-      default:
-	break;
-      }
+  {
+    sciGetRelationship(pobj)->phandle = pvalue ; /** put the new index handle */
+  }
 }
 
 
@@ -115,41 +87,9 @@ sciAddNewHandle (sciPointObj * pobj)
 /**sciGetHandleTabPointer
  * Returns the handle's pointer address structure from this object
  */
-sciHandleTab *
-sciGetHandleTabPointer (sciPointObj * pobj)
+sciHandleTab * sciGetHandleTabPointer (sciPointObj * pobj)
 {
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_FIGURE:
-    case SCI_SUBWIN:
-    case SCI_TEXT:
-    case SCI_TITLE:
-    case SCI_LEGEND:
-    case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
-    case SCI_POLYLINE:
-    case SCI_RECTANGLE:
-    case SCI_SURFACE:
-    case SCI_LIGHT:
-    case SCI_AXES:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
-    case SCI_STATUSB:
-    case SCI_AGREG:
-    case SCI_MERGE: 
-    case SCI_LABEL:
-    case SCI_UIMENU:
-      return (sciHandleTab *) ((sciGetRelationship (pobj))->phandle);
-    default:
-      return (sciHandleTab *) NULL;
-      break;
-    }
-  return (sciHandleTab *) NULL;
+  return sciGetRelationship (pobj)->phandle ;
 }
 
 
@@ -215,39 +155,7 @@ extern int sciDelHandle
  */
 long sciGetHandle (sciPointObj * pobj)
 {
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_FIGURE:
-    case SCI_SUBWIN:
-    case SCI_TEXT:
-    case SCI_TITLE:
-    case SCI_LEGEND:
-    case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
-    case SCI_POLYLINE:
-    case SCI_RECTANGLE:
-    case SCI_SURFACE:
-    case SCI_LIGHT:
-    case SCI_AXES:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
-    case SCI_STATUSB:
-    case SCI_AGREG:
-    case SCI_MERGE:  
-    case SCI_LABEL: /* F.Leray 27.05.04 */
-    case SCI_UIMENU:
-      return (sciGetRelationship (pobj))->phandle->index;
-      break;
-    default:
-      return 0 ; /* handle NULL */
-      break;
-    }
-  return 0 ;
+  return (sciGetRelationship(pobj))->phandle->index ;
 }
 
 
@@ -326,7 +234,6 @@ sciGetRelationship (sciPointObj * pobj)
     case SCI_GRAYPLOT:
       return  &(pGRAYPLOT_FEATURE (pobj)->relationship);
       break;
-  
     case SCI_POLYLINE:
       return  &(pPOLYLINE_FEATURE (pobj)->relationship);
       break;
@@ -373,6 +280,21 @@ sciGetRelationship (sciPointObj * pobj)
       tmp=&(pUIMENU_FEATURE (pobj)->label.relationship);
       return  &(pUIMENU_FEATURE (pobj)->label.relationship);
       break;
+    case SCI_CONSOLE:
+      return  &(pCONSOLE_FEATURE (pobj)->relationship);
+      break;
+    case SCI_FRAME:
+      return  &(pFRAME_FEATURE (pobj)->relationship);
+      break;
+    case SCI_WINDOW:
+      return  &(pWINDOW_FEATURE (pobj)->relationship);
+      break;
+    case SCI_WINDOWFRAME:
+      return  &(pWINDOWFRAME_FEATURE (pobj)->relationship);
+      break;
+    case SCI_SCREEN:
+      return  &(pSCREEN_FEATURE (pobj)->relationship);
+      break;
     default:
       return (sciRelationShip *) NULL;
       break;
@@ -386,90 +308,9 @@ sciGetRelationship (sciPointObj * pobj)
  * The parent's FIGURE has to be NULL
  * pson est l'objet courant et *pparent est le parent a lui associer
  */
-int
-sciSetParent (sciPointObj * pson, sciPointObj * pparent)
-{	
-  switch (sciGetEntityType (pson))
-    {
-    case SCI_FIGURE:
-      /* the figure has no parent */
-      if (pparent != (sciPointObj *)NULL)
-	return -1;
-      (sciGetRelationship (pson))->pparent = pparent;
-      break;
-    case SCI_SUBWIN:
-      (sciGetRelationship (pson))->pparent = pparent;
-      break;
-    case SCI_TEXT:
-      (sciGetRelationship (pson))->pparent = pparent;
-      break;
-    case SCI_TITLE:
-      (sciGetRelationship (pson))->pparent = pparent;
-      break;
-    case SCI_LEGEND:
-      (sciGetRelationship (pson))->pparent = pparent;
-      break;
-    case SCI_ARC:
-      (sciGetRelationship (pson))->pparent = pparent;
-      break;
-    case SCI_SEGS:  
-      (sciGetRelationship (pson))->pparent = pparent;
-      break;
-    case SCI_FEC: 
-      (sciGetRelationship (pson))->pparent = pparent;
-      break; 
-    case SCI_GRAYPLOT:
-      (sciGetRelationship (pson))->pparent = pparent;
-      break; 
-    case SCI_POLYLINE:
-      (sciGetRelationship (pson))->pparent = pparent;
-      break;
-    case SCI_RECTANGLE:
-      (sciGetRelationship (pson))->pparent = pparent;
-      break;
-    case SCI_SURFACE:
-      (sciGetRelationship (pson))->pparent = pparent;
-      break;
-    case SCI_LIGHT:
-      (sciGetRelationship (pson))->pparent = pparent;
-      break;
-    case SCI_AXES:
-      (sciGetRelationship (pson))->pparent = pparent;
-      break;
-    case SCI_PANNER:
-      (sciGetRelationship (pson))->pparent = pparent;
-      break;
-    case SCI_SBH:
-      (sciGetRelationship (pson))->pparent = pparent;
-      break;
-    case SCI_SBV:
-      (sciGetRelationship (pson))->pparent = pparent;
-      break;
-    case SCI_MENU:
-      (sciGetRelationship (pson))->pparent = pparent;
-      break;
-    case SCI_MENUCONTEXT:
-      (sciGetRelationship (pson))->pparent = pparent;
-      break;
-    case SCI_STATUSB:
-      (sciGetRelationship (pson))->pparent = pparent;
-      break;
-    case SCI_AGREG:
-      (sciGetRelationship (pson))->pparent = pparent;
-      break;
-    case SCI_MERGE:
-      (sciGetRelationship (pson))->pparent = pparent;
-      break;
-    case SCI_LABEL: /* F.Leray 27.05.04 */
-      (sciGetRelationship (pson))->pparent = pparent;
-      break;
-    case SCI_UIMENU: 
-      (sciGetRelationship (pson))->pparent = pparent;
-      break;
-    default:
-      return -1;
-      break;
-    }
+int sciSetParent (sciPointObj * pson, sciPointObj * pparent)
+{
+  sciGetRelationship(pson)->pparent = pparent ;
   return 0;
 }
 
@@ -477,44 +318,9 @@ sciSetParent (sciPointObj * pson, sciPointObj * pparent)
 /**sciGetParent
  * Returns the pointer to the parent object
  */
-sciPointObj *
-sciGetParent (sciPointObj * pobj)
+sciPointObj * sciGetParent (sciPointObj * pobj)
 {
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_LEGEND:
-      return (sciPointObj *) (pLEGEND_FEATURE (pobj)->text.relationship).pparent;
-      break;
-    case SCI_FIGURE:
-    case SCI_SUBWIN:
-    case SCI_TEXT:
-    case SCI_TITLE:
-    case SCI_ARC:
-    case SCI_SEGS:  
-    case SCI_FEC: 
-    case SCI_GRAYPLOT:
-    case SCI_POLYLINE:
-    case SCI_RECTANGLE:
-    case SCI_SURFACE:
-    case SCI_LIGHT:
-    case SCI_AXES:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
-    case SCI_STATUSB:
-    case SCI_AGREG:
-    case SCI_MERGE:
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-    case SCI_UIMENU:
-      return sciGetRelationship (pobj)->pparent;
-      break; 
-	
-    default:
-      break;
-    }
-  return NULL;
+  return sciGetRelationship(pobj)->pparent ;
 }
 
 
@@ -526,83 +332,7 @@ sciGetParent (sciPointObj * pobj)
 void
 sciSetCurrentSon (sciPointObj * pparent, sciPointObj * pson)
 {
-  switch (sciGetEntityType (pparent))
-    {
-    case SCI_FIGURE:
-      (sciGetRelationship (pparent))->pcurrentson = pson;
-      break;
-    case SCI_SUBWIN:
-      (sciGetRelationship (pparent))->pcurrentson = pson;
-      break;
-    case SCI_TEXT:
-      (sciGetRelationship (pparent))->pcurrentson = pson;
-      break;
-    case SCI_TITLE:
-      (sciGetRelationship (pparent))->pcurrentson = pson;
-      break;
-    case SCI_LEGEND:
-      (sciGetRelationship (pparent))->pcurrentson = pson;
-      break;
-    case SCI_ARC:
-      (sciGetRelationship (pparent))->pcurrentson = pson;
-      break;
-    case SCI_SEGS: 
-      (sciGetRelationship (pparent))->pcurrentson = pson;
-      break;   
-    case SCI_FEC:
-      (sciGetRelationship (pparent))->pcurrentson = pson;
-      break;  
-    case SCI_GRAYPLOT:
-      (sciGetRelationship (pparent))->pcurrentson = pson;
-      break; 
-    case SCI_POLYLINE:
-      (sciGetRelationship (pparent))->pcurrentson = pson;
-      break;
-    case SCI_RECTANGLE:
-      (sciGetRelationship (pparent))->pcurrentson = pson;
-      break;
-    case SCI_SURFACE:
-      (sciGetRelationship (pparent))->pcurrentson = pson;
-      break;
-    case SCI_LIGHT:
-      (sciGetRelationship (pparent))->pcurrentson = pson;
-      break;
-    case SCI_AXES:
-      (sciGetRelationship (pparent))->pcurrentson = pson;
-      break;
-    case SCI_PANNER:
-      (sciGetRelationship (pparent))->pcurrentson = pson;
-      break;
-    case SCI_SBH:
-      (sciGetRelationship (pparent))->pcurrentson = pson;
-      break;
-    case SCI_SBV:
-      (sciGetRelationship (pparent))->pcurrentson = pson;
-      break;
-    case SCI_MENU:
-      (sciGetRelationship (pparent))->pcurrentson = pson;
-      break;
-    case SCI_MENUCONTEXT:
-      (sciGetRelationship (pparent))->pcurrentson = pson;
-      break;
-    case SCI_STATUSB:
-      (sciGetRelationship (pparent))->pcurrentson = pson;
-      break;
-    case SCI_AGREG:
-      (sciGetRelationship (pparent))->pcurrentson = pson;
-      break;
-    case SCI_MERGE:
-      (sciGetRelationship (pparent))->pcurrentson = pson;
-      break;  
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-      (sciGetRelationship (pparent))->pcurrentson = pson;
-      break; 
-    case SCI_UIMENU:
-      (sciGetRelationship (pparent))->pcurrentson = pson;
-      break; 
-    default:
-      break;
-    }
+  sciGetRelationship(pparent)->pcurrentson = pson;
 }
 
 
@@ -612,85 +342,7 @@ sciSetCurrentSon (sciPointObj * pparent, sciPointObj * pson)
 sciPointObj *
 sciGetCurrentSon (sciPointObj * pobj)
 {
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_FIGURE:
-      return (sciPointObj *) (sciGetRelationship (pobj))->pcurrentson;
-      break;
-    case SCI_SUBWIN:
-      return (sciPointObj *) (sciGetRelationship (pobj))->pcurrentson;
-      break;
-    case SCI_TEXT:
-      return (sciPointObj *) (sciGetRelationship (pobj))->pcurrentson;
-      break;
-    case SCI_TITLE:
-      return (sciPointObj *) (sciGetRelationship (pobj))->pcurrentson;
-      break;
-    case SCI_LEGEND:
-      return (sciPointObj *) (sciGetRelationship (pobj))->pcurrentson;
-      break;
-    case SCI_ARC:
-      return (sciPointObj *) (sciGetRelationship (pobj))->pcurrentson;
-      break;
-    case SCI_SEGS:  
-      return (sciPointObj *) (sciGetRelationship (pobj))->pcurrentson;
-      break;
-    case SCI_FEC: 
-      return (sciPointObj *) (sciGetRelationship (pobj))->pcurrentson;
-      break;
-    case SCI_GRAYPLOT: 
-      return (sciPointObj *) (sciGetRelationship (pobj))->pcurrentson;
-      break;
-    case SCI_POLYLINE:
-      return (sciPointObj *) (sciGetRelationship (pobj))->pcurrentson;
-      break;
-    case SCI_RECTANGLE:
-      return (sciPointObj *) (sciGetRelationship (pobj))->pcurrentson;
-      break;
-    case SCI_SURFACE:
-      return (sciPointObj *) (sciGetRelationship (pobj))->pcurrentson;
-      break;
-    case SCI_LIGHT:
-      return (sciPointObj *) (sciGetRelationship (pobj))->pcurrentson;
-      break;
-    case SCI_AXES:
-      return (sciPointObj *) (sciGetRelationship (pobj))->pcurrentson;
-      break;
-    case SCI_PANNER:
-      return (sciPointObj *) (sciGetRelationship (pobj))->pcurrentson;
-      break;
-    case SCI_SBH:
-      return (sciPointObj *) (sciGetRelationship (pobj))->pcurrentson;
-      break;
-    case SCI_SBV:
-      return (sciPointObj *) (sciGetRelationship (pobj))->pcurrentson;
-      break;
-    case SCI_MENU:
-      return (sciPointObj *) (sciGetRelationship (pobj))->pcurrentson;
-      break;
-    case SCI_MENUCONTEXT:
-      return (sciPointObj *) (sciGetRelationship (pobj))->pcurrentson;
-      break;
-    case SCI_STATUSB:
-      return (sciPointObj *) (sciGetRelationship (pobj))->pcurrentson;
-      break;
-    case SCI_AGREG:
-      return (sciPointObj *) (sciGetRelationship (pobj))->pcurrentson;
-      break;
-    case SCI_MERGE:
-      return (sciPointObj *) (sciGetRelationship (pobj))->pcurrentson;
-      break;
-    case SCI_LABEL: /* F.Leray 28.05.04 : normally useless... */
-      return (sciPointObj *) (sciGetRelationship (pobj))->pcurrentson;
-      break;
-    case SCI_UIMENU:
-      return (sciPointObj *) (sciGetRelationship (pobj))->pcurrentson;
-      break;
-    default:
-      return (sciPointObj *) NULL;
-      break;
-    }
-  return (sciPointObj *) NULL;
+  return (sciPointObj *) (sciGetRelationship (pobj))->pcurrentson;
 }
 
 
@@ -701,67 +353,34 @@ sciGetCurrentSon (sciPointObj * pobj)
 BOOL
 sciAddThisToItsParent (sciPointObj * pthis, sciPointObj * pparent)
 {
-  sciSons *OneSon = (sciSons *) NULL;
+  sciSons * OneSon = NULL ;
   
-  if (sciSetParent(pthis, pparent) == -1)
-    return FALSE;
+  if ( sciSetParent(pthis, pparent) == -1 )
+  {
+    return FALSE ;
+  }
 
-  switch (sciGetEntityType (pthis))
-    {
-    case SCI_FIGURE:		
-      /* on ne fait rien puisqu'il ne peut y avoir un parent dans ce cas */
-      return TRUE;
-    case SCI_SUBWIN:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
-    case SCI_STATUSB:
-    case SCI_TITLE:
-    case SCI_TEXT:
-    case SCI_LEGEND:
-    case SCI_RECTANGLE:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
-    case SCI_POLYLINE:
-    case SCI_SURFACE:
-    case SCI_LIGHT:
-    case SCI_AXES:
-    case SCI_ARC:
-    case SCI_AGREG:
-    case SCI_MERGE: 
-    case SCI_LABEL: /* F.Leray 27.05.04 */
-    case SCI_UIMENU:
-      /* Si c'est null alors il n'y a pas encore de fils d'affecte */
-      if ((sciSons *) (sciGetRelationship (pparent)->psons) != NULL)
-	{			
-	  /* Il existe au moins un fils d'affecte */
-	  /* on cree la nouvelle variable */
-	  if ((OneSon = MALLOC ((sizeof (sciSons)))) == NULL)
-	    return FALSE;
-	  OneSon->pnext = (sciSons *)(sciGetRelationship (pparent)->psons);
-	  OneSon->pprev = (sciSons *)NULL;
-	  (sciGetRelationship (pparent)->psons)->pprev = (sciSons *)OneSon;
-	}
-      else
-	{			/* C'est tout neuf alors on cree la variable */
-	  if ((OneSon = MALLOC ((sizeof (sciSons)))) == NULL)
-	    return FALSE;
-	  OneSon->pnext = (sciSons *)NULL;
-	  OneSon->pprev = (sciSons *)NULL;
-	  sciGetRelationship (pparent)->plastsons = (sciSons *)OneSon;
-	}
-      OneSon->pointobj = pthis;
-      sciGetRelationship (pparent)->psons = (sciSons *)OneSon;
-      return TRUE;
-      break;
-    default:
-      return FALSE;
-      break;
-    }
-  return FALSE;
+  /* Si c'est null alors il n'y a pas encore de fils d'affecte */
+  if ( sciGetRelationship (pparent)->psons != NULL )
+  {			
+    /* Il existe au moins un fils d'affecte */
+    /* on cree la nouvelle variable */
+    if ( (OneSon = MALLOC(sizeof(sciSons))) == NULL ) { return FALSE ; }
+    OneSon->pnext = sciGetRelationship (pparent)->psons ;
+    OneSon->pprev = NULL;
+    sciGetRelationship(pparent)->psons->pprev = OneSon ;
+  }
+  else
+  {
+    /* C'est tout neuf alors on cree la variable */
+    if ( (OneSon = MALLOC( sizeof(sciSons) )) == NULL ) {return FALSE ; }
+    OneSon->pnext = NULL ;
+    OneSon->pprev = NULL ;
+    sciGetRelationship(pparent)->plastsons = OneSon ;
+  }
+  OneSon->pointobj = pthis ;
+  sciGetRelationship(pparent)->psons = OneSon;
+  return TRUE;
 }
 
 
@@ -778,97 +397,63 @@ sciDelThisToItsParent (sciPointObj * pthis, sciPointObj * pparent)
   sciSons *OneSon = (sciSons *) NULL;
   sciSons *OneSonprev = (sciSons *) NULL;
 
-  switch (sciGetEntityType (pthis))
-    {
+  /* recherche de l'objet a effacer*/
+  OneSon = (sciGetRelationship (pparent)->psons);
+  OneSonprev = OneSon;
+  while ( (OneSon != NULL) &&  (OneSon->pointobj != pthis) )
+  {
+    OneSonprev = OneSon ; 
+    OneSon = OneSon->pnext;
+  }
 
-    case SCI_FIGURE:
-      /* on ne fait rien puisqu'il ne peut y avoir un parent dans ce cas */
+  /* dans quel cas de figure somme nous ? */
+  if ( OneSon == NULL )
+  {
+    tmp++ ;
+  }
+  else 
+  {
+    if ( OneSon->pprev == NULL ) { tmp += 2 ; }
+    if ( OneSon->pnext == NULL ) { tmp += 4 ; }
+  }
+
+  switch(tmp)
+  {
+    case 0:/* ok<-OneSon->ok     */
+      (OneSon->pnext)->pprev = (OneSon->pprev);
+      (OneSon->pprev)->pnext = (OneSon->pnext);
+      FREE(OneSon);
       return TRUE;
-    case SCI_POLYLINE:
-      /*      printf("je vais detruire le lien entre polyline et subwin\n"); fflush(NULL); */
-    case SCI_AGREG:
-    case SCI_SUBWIN:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
-    case SCI_STATUSB:
-    case SCI_TITLE:
-    case SCI_TEXT:
-    case SCI_LEGEND:
-    case SCI_RECTANGLE:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
-
-    case SCI_SURFACE:
-    case SCI_LIGHT:
-    case SCI_AXES:
-    case SCI_ARC:
-    case SCI_MERGE:
-    case SCI_LABEL:
-    case SCI_UIMENU:
-      /* recherche de l'objet a effacer*/
-      OneSon = (sciGetRelationship (pparent)->psons);
-      OneSonprev = OneSon;
-      tmp = 0;
-      while ( (OneSon != NULL) &&  (OneSon->pointobj != pthis) )
-	{
-	  OneSonprev = OneSon;/* on garde une trace du precedent*/
-	  OneSon = (sciSons *) OneSon->pnext;
-	}/* fin du while */
-      /* dans quel cas de figure somme nous ? */
-      if (OneSon == (sciSons *)NULL)
-	tmp += 1;
-      else 
-	{
-	  if (OneSon->pprev == (sciSons *)NULL)
-	    tmp += 2;
-	  if (OneSon->pnext == (sciSons *)NULL)
-	    tmp += 4;
-	}
-      switch(tmp)
-	{
-	case 0:/* ok<-OneSon->ok     */
-	  (OneSon->pnext)->pprev = (OneSon->pprev);
-	  (OneSon->pprev)->pnext = (OneSon->pnext);
-	  FREE(OneSon);
-	  return TRUE;
-	  break;
-	case 2:/* ok<-OneSon->NULL   */
-	  (sciGetRelationship (pparent)->psons) = OneSon->pnext;
-	  (sciGetRelationship (pparent)->psons)->pprev = (sciSons *)NULL;
-	  FREE(OneSon);
-	  return TRUE;
-	  break;
-	case 4:/* NULL<-OneSon->ok   */
-	  sciGetRelationship (pparent)->plastsons = OneSon->pprev;
-	  (sciGetRelationship (pparent)->plastsons)->pnext = (sciSons *)NULL;
-	  FREE(OneSon);
-	  return TRUE;
-	  break;
-	case 6:/* NULL<-OneSon->NULL */
-	  sciGetRelationship (pparent)->plastsons = NULL;
-	  sciGetRelationship (pparent)->psons = NULL;
-	  FREE(OneSon);
-	  return TRUE;
-	  break;
-	case 1:/* OneSon == NULL     */
-	case 3:
-	case 5:
-	case 7:
-	default :
-	  sciprint ("There is no Son in this Parent!!!!\n");
-	  return FALSE;
-	  break;
-	}
       break;
-    default:
+    case 2:/* ok<-OneSon->NULL   */
+      (sciGetRelationship (pparent)->psons) = OneSon->pnext;
+      (sciGetRelationship (pparent)->psons)->pprev = NULL ;
+      FREE(OneSon);
+      return TRUE;
+      break;
+    case 4:/* NULL<-OneSon->ok   */
+      sciGetRelationship (pparent)->plastsons = OneSon->pprev;
+      (sciGetRelationship (pparent)->plastsons)->pnext = NULL;
+      FREE(OneSon);
+      return TRUE;
+      break;
+    case 6:/* NULL<-OneSon->NULL */
+      sciGetRelationship (pparent)->plastsons = NULL;
+      sciGetRelationship (pparent)->psons = NULL;
+      FREE(OneSon);
+      return TRUE;
+      break;
+    case 1:/* OneSon == NULL     */
+    case 3:
+    case 5:
+    case 7:
+    default :
+      sciprint ("There is no Son in this Parent!!!!\n");
       return FALSE;
       break;
     }
-  return FALSE;
+
+  return FALSE ;
 }
 
 
@@ -876,92 +461,9 @@ sciDelThisToItsParent (sciPointObj * pthis, sciPointObj * pparent)
  * Returns the pointer to the table of all sons objects. 
  * There is no SetSons, because a new Son calls sciAddThisToItsParent() it self
  */
-sciSons *
-sciGetSons (sciPointObj * pobj)
+sciSons * sciGetSons (sciPointObj * pobj)
 {
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_FIGURE:
-      return (sciSons *) (sciGetRelationship (pobj)->psons);
-      break;
-    case SCI_SUBWIN:
-      return (sciSons *) (sciGetRelationship (pobj)->psons);
-      break;
-    case SCI_TEXT:
-      return (sciSons *) (sciGetRelationship (pobj)->psons);
-      break;
-    case SCI_TITLE:
-      return (sciSons *) (sciGetRelationship (pobj)->psons);
-      break;
-    case SCI_LEGEND:
-      return (sciSons *) (sciGetRelationship (pobj)->psons);
-      break;
-    case SCI_ARC:
-      return (sciSons *) (sciGetRelationship (pobj)->psons);
-      break;
-    case SCI_SEGS: 
-      return (sciSons *) (sciGetRelationship (pobj)->psons);
-      break;  
-    case SCI_FEC:  
-      return (sciSons *) (sciGetRelationship (pobj)->psons);
-      break; 
-    case SCI_GRAYPLOT: 
-      return (sciSons *) (sciGetRelationship (pobj)->psons);
-      break; 
-    case SCI_POLYLINE:
-      return (sciSons *) (sciGetRelationship (pobj)->psons);
-      break;
-    case SCI_RECTANGLE:
-      return (sciSons *) (sciGetRelationship (pobj)->psons);
-      break;
-    case SCI_SURFACE:
-      return (sciSons *) (sciGetRelationship (pobj)->psons);
-      break;
-    case SCI_LIGHT:
-      return (sciSons *) (sciGetRelationship (pobj)->psons);
-      break;
-    case SCI_AXES:
-      return (sciSons *) (sciGetRelationship (pobj)->psons);
-      break;
-    case SCI_PANNER:
-      return (sciSons *) (sciGetRelationship (pobj)->psons);
-      break;
-    case SCI_SBH:
-      return (sciSons *) (sciGetRelationship (pobj)->psons);
-      break;
-    case SCI_SBV:
-      return (sciSons *) (sciGetRelationship (pobj)->psons);
-      break;
-    case SCI_MENU:
-      return (sciSons *) (sciGetRelationship (pobj)->psons);
-      break;
-    case SCI_MENUCONTEXT:
-      return (sciSons *) (sciGetRelationship (pobj)->psons);
-      break;
-    case SCI_STATUSB:
-      return (sciSons *) (sciGetRelationship (pobj)->psons);
-      break;
-    case SCI_AGREG:
-      return (sciSons *) (sciGetRelationship (pobj)->psons);
-      break;
-    case SCI_MERGE:
-      return (sciSons *) (sciGetRelationship (pobj)->psons);
-      break;
-    case SCI_LABEL: /* F.Leray 28.05.04  */
-      
-      /*printf("(sciGetRelationship (pobj)->psons = %d\n", (sciGetRelationship (pobj)->psons));*/
-      
-      return (sciSons *) (sciGetRelationship (pobj)->psons);
-      break;
-    case SCI_UIMENU:
-      return (sciSons *) (sciGetRelationship (pobj)->psons);
-      break;
-
-    default:
-      return (sciSons *) NULL;
-      break;
-    }
-  return (sciSons *) NULL;
+  return (sciSons *) (sciGetRelationship (pobj)->psons);
 }
 
 
@@ -969,88 +471,9 @@ sciGetSons (sciPointObj * pobj)
  * Returns the pointer to the last son (in fact the first created and drawn). 
  * There is no SetSons, because a new Son calls sciAddThisToItsParent() it self
  */
-sciSons *
-sciGetLastSons (sciPointObj * pobj)
+sciSons * sciGetLastSons (sciPointObj * pobj)
 {
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_FIGURE:
-      return (sciSons *)sciGetRelationship (pobj)->plastsons;
-      break;
-    case SCI_SUBWIN:
-      return (sciSons *)sciGetRelationship (pobj)->plastsons;
-      break;
-    case SCI_TEXT:
-      return (sciSons *)sciGetRelationship (pobj)->plastsons;
-      break;
-    case SCI_TITLE:
-      return (sciSons *)sciGetRelationship (pobj)->plastsons;
-      break;
-    case SCI_LEGEND:
-      return (sciSons *)sciGetRelationship (pobj)->plastsons;
-      break;
-    case SCI_ARC:
-      return (sciSons *)sciGetRelationship (pobj)->plastsons;
-      break;
-    case SCI_SEGS: 
-      return (sciSons *)sciGetRelationship (pobj)->plastsons;
-      break;
-    case SCI_FEC: 
-      return (sciSons *)sciGetRelationship (pobj)->plastsons;
-      break;
-    case SCI_GRAYPLOT:  
-      return (sciSons *)sciGetRelationship (pobj)->plastsons;
-      break;
-    case SCI_POLYLINE:
-      return (sciSons *)sciGetRelationship (pobj)->plastsons;
-      break;
-    case SCI_RECTANGLE:
-      return (sciSons *)sciGetRelationship (pobj)->plastsons;
-      break;
-    case SCI_SURFACE:
-      return (sciSons *)sciGetRelationship (pobj)->plastsons;
-      break;
-    case SCI_LIGHT:
-      return (sciSons *)sciGetRelationship (pobj)->plastsons;
-      break;
-    case SCI_AXES:
-      return (sciSons *)sciGetRelationship (pobj)->plastsons;
-      break;
-    case SCI_PANNER:
-      return (sciSons *)sciGetRelationship (pobj)->plastsons;
-      break;
-    case SCI_SBH:
-      return (sciSons *)sciGetRelationship (pobj)->plastsons;
-      break;
-    case SCI_SBV:
-      return (sciSons *)sciGetRelationship (pobj)->plastsons;
-      break;
-    case SCI_MENU:
-      return (sciSons *)sciGetRelationship (pobj)->plastsons;
-      break;
-    case SCI_MENUCONTEXT:
-      return (sciSons *)sciGetRelationship (pobj)->plastsons;
-      break;
-    case SCI_STATUSB:
-      return (sciSons *)sciGetRelationship (pobj)->plastsons;
-      break;
-    case SCI_AGREG:
-      return (sciSons *)sciGetRelationship (pobj)->plastsons;
-      break;
-    case SCI_MERGE:
-      return (sciSons *)sciGetRelationship (pobj)->plastsons;
-      break;
-    case SCI_LABEL: /* F.Leray 28.05.04 : normally useless... */
-      return (sciSons *)sciGetRelationship (pobj)->plastsons;
-      break;
-    case SCI_UIMENU:
-      return (sciSons *)sciGetRelationship (pobj)->plastsons;
-      break;
-    default:
-      return (sciSons *) NULL;
-      break;
-    }
-  return (sciSons *) NULL;
+  return (sciSons *)sciGetRelationship (pobj)->plastsons ;
 }
 /*-----------------------------------------------------------------------------------*/
 /**
@@ -1225,9 +648,18 @@ BOOL sciCanBeSonOf( sciPointObj * son, sciPointObj * parent )
   parentType = sciGetEntityType( parent ) ;
   switch ( sciGetEntityType( son ) )
   {
-  case SCI_FIGURE:
-    /* figure can not have parents */
+  case SCI_SCREEN:
     return FALSE ;
+  case SCI_WINDOWFRAME:
+    return ( parentType == SCI_SCREEN ) ;
+  case SCI_WINDOW:
+    return ( parentType == SCI_WINDOWFRAME ) ;
+  case SCI_FRAME:
+    return ( parentType == SCI_WINDOW || parentType == SCI_FRAME ) ;
+  case SCI_CONSOLE:
+    return ( parentType == SCI_FRAME ) ;
+  case SCI_FIGURE:
+    return ( parentType == SCI_FRAME ) ;
   case SCI_SUBWIN:
     /* axes can only have figure parents */
     return ( parentType == SCI_FIGURE ) ;

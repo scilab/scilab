@@ -24,14 +24,17 @@ int get_figure_position_property( sciPointObj * pobj )
     return -1;
   }
 
-  if ((sciPointObj *) pobj != getFigureModel())
+  if ( pobj != getFigureModel())
   {
+    int posX ;
+    int posY ;
+    sciGetScreenPosition( pobj, &posX, &posY ) ;
 #if _MSC_VER /* Correction pour figure_position (Windows) Allan CORNET Mai 2004 */
-    figurePos[0] = sciGetFigurePosX( pobj ) ; 
-    figurePos[1] = sciGetFigurePosY( pobj ) ;
+    figurePos[0] = (double) posX ; 
+    figurePos[1] = (double) posY ;
 #else
-    figurePos[0] = sciGetFigurePosX( pobj ) - 4 ; 
-    figurePos[1] = sciGetFigurePosY( pobj ) - 20 ;
+    figurePos[0] = (double) posX - 4 ; 
+    figurePos[1] = (double) posY - 20 ;
 #endif
   }
   else

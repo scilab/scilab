@@ -142,9 +142,6 @@ extern int sciSetAutoScale (sciPointObj * pobj, BOOL value); /* SET */
 extern int sciInitZooming(sciPointObj * pobj, BOOL value);
 extern int sciSetZooming (sciPointObj * pobj, BOOL value); /* SET */
 
-extern int sciSetGraphicsStyle (sciPointObj * pobj, BOOL value);
-extern int sciSetGraphicsStyle (sciPointObj * pobj, BOOL value); /* SET */
-
 extern int sciInitXorMode(sciPointObj * pobj, int value);
 extern int sciSetXorMode (sciPointObj * pobj, int value); /* SET */
 
@@ -165,8 +162,8 @@ extern int sciSetNum ( sciPointObj * pobj, int * value ) ; /* SET */
 extern int sciInitDim(sciPointObj * pobj, int * pwidth, int * pheight) ;
 extern int sciSetDim (sciPointObj * pobj, int * pwidth, int * pheight) ; /* SET */
 
-extern int sciInitFigurePos(sciPointObj * pobj, int pposx, int pposy);
-extern int sciSetFigurePos (sciPointObj * pobj, int pposx, int pposy); /* SET */
+extern int sciInitScreenPosition(sciPointObj * pobj, int pposx, int pposy);
+extern int sciSetScreenPosition(sciPointObj * pobj, int pposx, int pposy); /* SET */
 
 extern int sciInitFigureIconify(sciPointObj * pobj, BOOL value);
 extern int sciSetFigureIconify (sciPointObj * pobj, BOOL value); /* SET */

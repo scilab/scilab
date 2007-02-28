@@ -23,9 +23,9 @@ extern sciPointObj *sciCloneObj (sciPointObj * pobj); /* CLONE */
 extern sciPointObj *CloneRectangle (sciPointObj * pthis);
 extern sciPointObj *ClonePolyline (sciPointObj * pthis);
 extern sciPointObj *CloneArc (sciPointObj * pthis);
+sciPointObj * CloneConsole( sciPointObj * pthis ) ;
 
-
-extern sciPointObj *sciCopyObj (sciPointObj * pobj, sciPointObj * psubwinparenttarget ); /* CLONE */
+extern sciPointObj * sciCopyObj (sciPointObj * pobj, sciPointObj * psubwinparenttarget ); /* CLONE */
 
 /*--------------------------------------------------------------------------*/
 /**
@@ -43,6 +43,12 @@ extern int cloneGraphicContext( sciPointObj * pObjSource, sciPointObj * pObjDest
  * @return 0 if the copy is ok, -1 otherwise.
  */
 extern int cloneFontContext( sciPointObj * pObjSource, sciPointObj * pObjDest ) ;
+/*--------------------------------------------------------------------------*/
+/**
+ * copy the user data of an object to an other.
+ * @return 0 if the copy is ok, -1 otherwise.
+ */
+int cloneUserData( sciPointObj * pObjSource, sciPointObj * pObjDest ) ;
 /*--------------------------------------------------------------------------*/
 
 #endif /* __SCI_CLONE__ */
