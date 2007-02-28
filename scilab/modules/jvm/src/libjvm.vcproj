@@ -206,23 +206,23 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath=".\Dllmainjvm.c"
+				RelativePath=".\c\Dllmainjvm.c"
 				>
 			</File>
 			<File
-				RelativePath=".\InitializeJVM.c"
+				RelativePath=".\c\InitializeJVM.c"
 				>
 			</File>
 			<File
-				RelativePath=".\JVM_CONSOLE.c"
+				RelativePath=".\c\JVM_CONSOLE.c"
 				>
 			</File>
 			<File
-				RelativePath=".\JVM_Windows.c"
+				RelativePath=".\c\JVM_Windows.c"
 				>
 			</File>
 			<File
-				RelativePath=".\jvms.c"
+				RelativePath=".\c\jvms.c"
 				>
 			</File>
 		</Filter>
@@ -235,19 +235,19 @@
 				>
 			</File>
 			<File
-				RelativePath=".\jvm_common.h"
+				RelativePath=".\c\jvm_common.h"
 				>
 			</File>
 			<File
-				RelativePath=".\JVM_CONSOLE.h"
+				RelativePath=".\c\JVM_CONSOLE.h"
 				>
 			</File>
 			<File
-				RelativePath=".\JVM_Windows.h"
+				RelativePath=".\c\JVM_Windows.h"
 				>
 			</File>
 			<File
-				RelativePath=".\jvms.h"
+				RelativePath=".\c\jvms.h"
 				>
 			</File>
 		</Filter>

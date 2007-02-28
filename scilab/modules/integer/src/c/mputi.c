@@ -8,7 +8,7 @@
 #include "machine.h"
 #include "mputi.h"
 
-#include "../../../fileio/src/misc.h"
+#include "../../../fileio/src/c/misc.h"
 #include "sciprint.h"
 
 struct soundstream ftf;

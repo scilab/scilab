@@ -5,10 +5,10 @@
 
 if JAVA
 
-JVM_C_SOURCES = src/JVM_CONSOLE.c \
-src/JVM_Unix.c \
-src/jvms.c\
-src/InitializeJVM.c
+JVM_C_SOURCES = src/c/JVM_CONSOLE.c \
+src/c/JVM_Unix.c \
+src/c/jvms.c\
+src/c/InitializeJVM.c
 
 libscijvm_la_CFLAGS=  $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/libs/MALLOC/includes/ -Iincludes/
 

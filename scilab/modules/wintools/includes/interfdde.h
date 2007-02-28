@@ -6,7 +6,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include <Windows.h>
 #include "stack-c.h"
-#include "../src/DDE.h"
+#include "../src/c/DDE.h"
 /*-----------------------------------------------------------------------------------*/
 int	InterfaceWindowsDDEopen _PARAMS((char *fname));
 int	InterfaceWindowsDDEclose _PARAMS((char *fname));

@@ -42,7 +42,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../src;../includes;../../core/includes;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml"
+				AdditionalIncludeDirectories="../src/c;../includes;../../core/includes;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml"
 				PreprocessorDefinitions="FORDLL;_DLL;STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE;EXPORT_LOCALIZATION_DLL"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
@@ -133,7 +133,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../src;../includes;../../core/includes;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml"
+				AdditionalIncludeDirectories="../src/c;../includes;../../core/includes;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml"
 				PreprocessorDefinitions="FORDLL;EXPORT_LOCALIZATION_DLL;STRICT;NDEBUG;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -203,7 +203,7 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath=".\DllmainLocalization.c"
+				RelativePath=".\c\DllmainLocalization.c"
 				>
 			</File>
 			<File
@@ -211,19 +211,19 @@
 				>
 			</File>
 			<File
-				RelativePath=".\hashtable_localization.c"
+				RelativePath=".\c\hashtable_localization.c"
 				>
 			</File>
 			<File
-				RelativePath=".\InitializeLocalization.c"
+				RelativePath=".\c\InitializeLocalization.c"
 				>
 			</File>
 			<File
-				RelativePath=".\loadsavelanguage.c"
+				RelativePath=".\c\loadsavelanguage.c"
 				>
 			</File>
 			<File
-				RelativePath=".\localization.c"
+				RelativePath=".\c\localization.c"
 				>
 			</File>
 			<File
@@ -243,7 +243,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\setgetlanguage.c"
+				RelativePath=".\c\setgetlanguage.c"
 				>
 			</File>
 		</Filter>
@@ -256,7 +256,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\hashtable_localization.h"
+				RelativePath=".\c\hashtable_localization.h"
 				>
 			</File>
 			<File
@@ -264,7 +264,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\loadsavelanguage.h"
+				RelativePath=".\c\loadsavelanguage.h"
 				>
 			</File>
 			<File

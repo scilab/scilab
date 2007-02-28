@@ -3,11 +3,11 @@
 ### INRIA - Scilab 2006 
 ##########
 
-SOUND_C_SOURCES = src/raw.c \
-src/sox.c \
-src/libst.c \
-src/wav.c \
-src/misc.c
+SOUND_C_SOURCES = src/c/raw.c \
+src/c/sox.c \
+src/c/libst.c \
+src/c/wav.c \
+src/c/misc.c
 
 GATEWAY_C_SOURCES = sci_gateway/sci_savewave.c \
 sci_gateway/sci_loadwave.c \
@@ -16,7 +16,7 @@ sci_gateway/sci_beep.c \
 sci_gateway/sci_PlaySound.c
 
 
-libscisound_la_CFLAGS=  -Iincludes/ -Isrc/ -I$(top_srcdir)/libs/MALLOC/includes/
+libscisound_la_CFLAGS=  -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/
 
 pkglib_LTLIBRARIES = libscisound.la
 

@@ -4,7 +4,7 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include "sci_getlanguage.h"
 #include "setgetlanguage.h"
-#include "../src/tableslanguages.h"
+#include "../src/c/tableslanguages.h"
 #include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(sci_getlanguagestable) _PARAMS((char *fname,unsigned long fname_len))

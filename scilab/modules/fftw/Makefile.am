@@ -11,9 +11,9 @@ target=$(datadir)/fftw
 
 pkglib_LTLIBRARIES = libscifftw.la
 
-FFTW_C_SOURCES = src/callfftw_Linux.c \
-src/fftwlibname.c \
-src/fftw_utilities.c
+FFTW_C_SOURCES = src/c/callfftw_Linux.c \
+src/c/fftwlibname.c \
+src/c/fftw_utilities.c
 
 GATEWAY_C_SOURCES = sci_gateway/gw_fftw.c \
 	sci_gateway/sci_fftwlibraryisloaded.c \

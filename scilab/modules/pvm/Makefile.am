@@ -5,14 +5,14 @@
 
 if PVM
 
-PVM_C_SOURCES = src/pvm_proc_ctrl.c \
-src/sci_tools.c \
-src/pvm_recv.c \
-src/scipvmf77.c \
-src/varpack.c \
-src/pvm_grp.c \
-src/pvm_send.c \
-src/pvm_info.c
+PVM_C_SOURCES = src/c/pvm_proc_ctrl.c \
+src/c/sci_tools.c \
+src/c/pvm_recv.c \
+src/c/scipvmf77.c \
+src/c/varpack.c \
+src/c/pvm_grp.c \
+src/c/pvm_send.c \
+src/c/pvm_info.c
 
 GATEWAY_C_SOURCES = sci_gateway/sci_pvm_get_timer.c \
 sci_gateway/sci_pvm_gettid.c \

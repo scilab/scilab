@@ -4,9 +4,9 @@
 ##########
 
 ###  SOURCES ###
-TIME_C_SOURCES = src/realtime.c \
-src/timer.c \
-src/getdate.c
+TIME_C_SOURCES = src/c/realtime.c \
+src/c/timer.c \
+src/c/getdate.c
 
 GATEWAY_C_SOURCES = sci_gateway/sci_realtime.c \
 sci_gateway/sci_timer.c \
@@ -16,7 +16,7 @@ sci_gateway/sci_sleep.c \
 sci_gateway/sci_getdate.c \
 sci_gateway/gw_time.c
 
-libscitime_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/ -Isrc/
+libscitime_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/ -Isrc/c/
 
 pkglib_LTLIBRARIES = libscitime.la
 

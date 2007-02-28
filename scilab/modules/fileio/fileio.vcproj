@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../libs/MALLOC/includes;../core/includes;includes;src;sci_gateway"
+				AdditionalIncludeDirectories="../../libs/MALLOC/includes;../core/includes;includes;src/c;sci_gateway"
 				PreprocessorDefinitions="_LIB;STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="1"
@@ -116,7 +116,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../../libs/MALLOC/includes;../core/includes;includes;src;sci_gateway"
+				AdditionalIncludeDirectories="../../libs/MALLOC/includes;../core/includes;includes;src/c;sci_gateway"
 				PreprocessorDefinitions="NDEBUG;_LIB;STRICT;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="0"
@@ -173,31 +173,31 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath=".\src\bt-int.c"
+				RelativePath=".\src\c\bt-int.c"
 				>
 			</File>
 			<File
-				RelativePath=".\src\bytedecoders.c"
+				RelativePath=".\src\c\bytedecoders.c"
 				>
 			</File>
 			<File
-				RelativePath=".\src\do_xxprintf.c"
+				RelativePath=".\src\c\do_xxprintf.c"
 				>
 			</File>
 			<File
-				RelativePath=".\src\do_xxscanf.c"
+				RelativePath=".\src\c\do_xxscanf.c"
 				>
 			</File>
 			<File
-				RelativePath=".\src\FileExist.c"
+				RelativePath=".\src\c\FileExist.c"
 				>
 			</File>
 			<File
-				RelativePath=".\src\fileio.c"
+				RelativePath=".\src\c\fileio.c"
 				>
 			</File>
 			<File
-				RelativePath=".\src\files.c"
+				RelativePath=".\src\c\files.c"
 				>
 			</File>
 			<File
@@ -209,27 +209,27 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\logger.c"
+				RelativePath=".\src\c\logger.c"
 				>
 			</File>
 			<File
-				RelativePath=".\src\misc.c"
+				RelativePath=".\src\c\misc.c"
 				>
 			</File>
 			<File
-				RelativePath=".\src\ole.c"
+				RelativePath=".\src\c\ole.c"
 				>
 			</File>
 			<File
-				RelativePath=".\src\olestream-unwrap.c"
+				RelativePath=".\src\c\olestream-unwrap.c"
 				>
 			</File>
 			<File
-				RelativePath=".\src\pldstr.c"
+				RelativePath=".\src\c\pldstr.c"
 				>
 			</File>
 			<File
-				RelativePath=".\src\ripole.c"
+				RelativePath=".\src\c\ripole.c"
 				>
 			</File>
 			<File
@@ -281,7 +281,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\xls.c"
+				RelativePath=".\src\c\xls.c"
 				>
 			</File>
 		</Filter>
@@ -290,19 +290,19 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath=".\src\bt-int.h"
+				RelativePath=".\src\c\bt-int.h"
 				>
 			</File>
 			<File
-				RelativePath=".\src\bytedecoders.h"
+				RelativePath=".\src\c\bytedecoders.h"
 				>
 			</File>
 			<File
-				RelativePath=".\src\do_xxprintf.h"
+				RelativePath=".\src\c\do_xxprintf.h"
 				>
 			</File>
 			<File
-				RelativePath=".\src\do_xxscanf.h"
+				RelativePath=".\src\c\do_xxscanf.h"
 				>
 			</File>
 			<File
@@ -318,23 +318,23 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\logger.h"
+				RelativePath=".\src\c\logger.h"
 				>
 			</File>
 			<File
-				RelativePath=".\src\misc.h"
+				RelativePath=".\src\c\misc.h"
 				>
 			</File>
 			<File
-				RelativePath=".\src\ole.h"
+				RelativePath=".\src\c\ole.h"
 				>
 			</File>
 			<File
-				RelativePath=".\src\olestream-unwrap.h"
+				RelativePath=".\src\c\olestream-unwrap.h"
 				>
 			</File>
 			<File
-				RelativePath=".\src\pldstr.h"
+				RelativePath=".\src\c\pldstr.h"
 				>
 			</File>
 			<File

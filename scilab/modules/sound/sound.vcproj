@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;src;../core/includes;../../libs/MALLOC/includes"
+				AdditionalIncludeDirectories="includes;src/c;../core/includes;../../libs/MALLOC/includes"
 				PreprocessorDefinitions="FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;SOUND_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -125,7 +125,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="includes;src;../core/includes;../../libs/MALLOC/includes"
+				AdditionalIncludeDirectories="includes;src/c;../core/includes;../../libs/MALLOC/includes"
 				PreprocessorDefinitions="FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;SOUND_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -200,15 +200,15 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\libst.c"
+				RelativePath=".\src\c\libst.c"
 				>
 			</File>
 			<File
-				RelativePath=".\src\misc.c"
+				RelativePath=".\src\c\misc.c"
 				>
 			</File>
 			<File
-				RelativePath=".\src\raw.c"
+				RelativePath=".\src\c\raw.c"
 				>
 			</File>
 			<File
@@ -228,11 +228,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\sox.c"
+				RelativePath=".\src\c\sox.c"
 				>
 			</File>
 			<File
-				RelativePath=".\src\wav.c"
+				RelativePath=".\src\c\wav.c"
 				>
 			</File>
 		</Filter>
@@ -246,15 +246,15 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\libst.h"
+				RelativePath=".\src\c\libst.h"
 				>
 			</File>
 			<File
-				RelativePath=".\src\misc.h"
+				RelativePath=".\src\c\misc.h"
 				>
 			</File>
 			<File
-				RelativePath=".\src\resource.h"
+				RelativePath=".\src\c\resource.h"
 				>
 			</File>
 			<File
@@ -274,15 +274,15 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\sox.h"
+				RelativePath=".\src\c\sox.h"
 				>
 			</File>
 			<File
-				RelativePath=".\src\st.h"
+				RelativePath=".\src\c\st.h"
 				>
 			</File>
 			<File
-				RelativePath=".\src\wav.h"
+				RelativePath=".\src\c\wav.h"
 				>
 			</File>
 		</Filter>
@@ -292,7 +292,7 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 			<File
-				RelativePath=".\src\sound.rc"
+				RelativePath=".\src\c\sound.rc"
 				>
 			</File>
 		</Filter>

@@ -178,23 +178,23 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\pvm_grp.c"
+				RelativePath=".\src\c\pvm_grp.c"
 				>
 			</File>
 			<File
-				RelativePath=".\src\pvm_info.c"
+				RelativePath=".\src\c\pvm_info.c"
 				>
 			</File>
 			<File
-				RelativePath=".\src\pvm_proc_ctrl.c"
+				RelativePath=".\src\c\pvm_proc_ctrl.c"
 				>
 			</File>
 			<File
-				RelativePath=".\src\pvm_recv.c"
+				RelativePath=".\src\c\pvm_recv.c"
 				>
 			</File>
 			<File
-				RelativePath=".\src\pvm_send.c"
+				RelativePath=".\src\c\pvm_send.c"
 				>
 			</File>
 			<File
@@ -330,15 +330,15 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\sci_tools.c"
+				RelativePath=".\src\c\sci_tools.c"
 				>
 			</File>
 			<File
-				RelativePath=".\src\scipvmf77.c"
+				RelativePath=".\src\c\scipvmf77.c"
 				>
 			</File>
 			<File
-				RelativePath=".\src\varpack.c"
+				RelativePath=".\src\c\varpack.c"
 				>
 			</File>
 		</Filter>
@@ -351,7 +351,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\sci_pvm.h"
+				RelativePath=".\src\c\sci_pvm.h"
 				>
 			</File>
 			<File
@@ -487,7 +487,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\sci_tools.h"
+				RelativePath=".\src\c\sci_tools.h"
 				>
 			</File>
 		</Filter>

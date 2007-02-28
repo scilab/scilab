@@ -3,11 +3,11 @@
 ### INRIA - Scilab 2006 
 ##########
 
-LOCALIZATION_C_SOURCES = src/hashtable_localization.c \
-src/localization.c \
-src/setgetlanguage.c \
-src/InitializeLocalization.c \
-src/loadsavelanguage.c
+LOCALIZATION_C_SOURCES = src/c/hashtable_localization.c \
+src/c/localization.c \
+src/c/setgetlanguage.c \
+src/c/InitializeLocalization.c \
+src/c/loadsavelanguage.c
 
 GATEWAY_C_SOURCES = sci_gateway/gw_localization.c \
 sci_gateway/sci_setlanguage.c \

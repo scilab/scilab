@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;src;../core/includes;../../libs/MALLOC/includes"
+				AdditionalIncludeDirectories="includes;src/c;../core/includes;../../libs/MALLOC/includes"
 				PreprocessorDefinitions="FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;SOUND_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -126,7 +126,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="includes;src;../core/includes;../../libs/MALLOC/includes"
+				AdditionalIncludeDirectories="includes;src/c;../core/includes;../../libs/MALLOC/includes"
 				PreprocessorDefinitions="FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;SOUND_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -197,7 +197,7 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\src\getdate.c"
+				RelativePath=".\src\c\getdate.c"
 				>
 			</File>
 			<File
@@ -205,7 +205,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\realtime.c"
+				RelativePath=".\src\c\realtime.c"
 				>
 			</File>
 			<File
@@ -233,7 +233,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\timer.c"
+				RelativePath=".\src\c\timer.c"
 				>
 			</File>
 		</Filter>
@@ -247,7 +247,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\resource.h"
+				RelativePath=".\src\c\resource.h"
 				>
 			</File>
 			<File
@@ -281,7 +281,7 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 			<File
-				RelativePath=".\src\time.rc"
+				RelativePath=".\src\c\time.rc"
 				>
 			</File>
 		</Filter>

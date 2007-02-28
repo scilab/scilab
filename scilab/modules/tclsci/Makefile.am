@@ -4,19 +4,17 @@
 ##########
 
 TCLSCI_C_SOURCES = src/GedManagement.c \
-src//TclUiGet.c \
-src//TCL_Global.c \
-src//tksynchro.c \
-src//InitTclTk.c \
-src//ScilabEval.c \
-src//TclEvents.c \
-src//setenvtcl.c \
-src//with_tk.c \
-src//TclUiSet.c \
-src//InitializeTclTk.c
+src/c/TclUiGet.c \
+src/c/TCL_Global.c \
+src/c/tksynchro.c \
+src/c/InitTclTk.c \
+src/c/ScilabEval.c \
+src/c/TclEvents.c \
+src/c/setenvtcl.c \
+src/c/with_tk.c \
+src/c/TclUiSet.c \
+src/c/InitializeTclTk.c
 
-# a priori utilisé seulement par windows
-# src/EnvTclTk.c
 
 GATEWAY_C_SOURCES =  sci_gateway/sci_TCL_CreateSlave.c \
 sci_gateway/sci_opentk.c \

@@ -3,20 +3,20 @@
 ### INRIA - Scilab 2006 
 ##########
 
-FILEIO_SOURCES = src/FileExist.c \
-src/files.c \
-src/xls.c \
-src/fileio.c \
-src/olestream-unwrap.c \
-src/pldstr.c \
-src/ole.c \
-src/bytedecoders.c \
-src/logger.c \
-src/ripole.c \
-src/misc.c \
-src/bt-int.c \
-src/do_xxprintf.c \
-src/do_xxscanf.c
+FILEIO_SOURCES = src/c/FileExist.c \
+src/c/files.c \
+src/c/xls.c \
+src/c/fileio.c \
+src/c/olestream-unwrap.c \
+src/c/pldstr.c \
+src/c/ole.c \
+src/c/bytedecoders.c \
+src/c/logger.c \
+src/c/ripole.c \
+src/c/misc.c \
+src/c/bt-int.c \
+src/c/do_xxprintf.c \
+src/c/do_xxscanf.c
 
 GATEWAY_SOURCES = \
 	sci_gateway/sci_xls_read.c \
@@ -35,7 +35,7 @@ GATEWAY_SOURCES = \
 	sci_gateway/sci_fscanfMat.c
 
 
-libscifileio_la_CFLAGS=-Iincludes/ -Isrc/ -I$(top_srcdir)/libs/MALLOC/includes/ 
+libscifileio_la_CFLAGS=-Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ 
 
 pkglib_LTLIBRARIES = libscifileio.la
 

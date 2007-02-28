@@ -198,7 +198,7 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\src\DllmainArnoldi.c"
+				RelativePath=".\src\c\DllmainArnoldi.c"
 				>
 			</File>
 			<File
@@ -236,7 +236,7 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath=".\src\resource.h"
+				RelativePath=".\src\c\resource.h"
 				>
 			</File>
 		</Filter>
@@ -246,7 +246,7 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 			<File
-				RelativePath=".\src\arnoldi.rc"
+				RelativePath=".\src\c\arnoldi.rc"
 				>
 			</File>
 		</Filter>

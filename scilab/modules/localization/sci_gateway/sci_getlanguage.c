@@ -4,7 +4,7 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include "sci_getlanguage.h"
 #include "setgetlanguage.h"
-#include "../src/tableslanguages.h"
+#include "../src/c/tableslanguages.h"
 #include "Scierror.h"
 #include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/ 

@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;src;../core/includes;../../libs/MALLOC/includes"
+				AdditionalIncludeDirectories="includes;src/c;../core/includes;../../libs/MALLOC/includes"
 				PreprocessorDefinitions="FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;SOUND_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -125,7 +125,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="includes;src;../core/includes;../../libs/MALLOC/includes"
+				AdditionalIncludeDirectories="includes;src/c;../core/includes;../../libs/MALLOC/includes"
 				PreprocessorDefinitions="FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;SOUND_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -196,15 +196,15 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\src\callfftw_windows.c"
+				RelativePath=".\src\c\callfftw_windows.c"
 				>
 			</File>
 			<File
-				RelativePath=".\src\fftw_utilities.c"
+				RelativePath=".\src\c\fftw_utilities.c"
 				>
 			</File>
 			<File
-				RelativePath=".\src\fftwlibname.c"
+				RelativePath=".\src\c\fftwlibname.c"
 				>
 			</File>
 			<File
@@ -254,15 +254,15 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath=".\src\callfftw.h"
+				RelativePath=".\src\c\callfftw.h"
 				>
 			</File>
 			<File
-				RelativePath=".\src\fftw_utilities.h"
+				RelativePath=".\src\c\fftw_utilities.h"
 				>
 			</File>
 			<File
-				RelativePath=".\src\fftwlibname.h"
+				RelativePath=".\src\c\fftwlibname.h"
 				>
 			</File>
 			<File
@@ -270,7 +270,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\resource.h"
+				RelativePath=".\src\c\resource.h"
 				>
 			</File>
 			<File
@@ -316,7 +316,7 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 			<File
-				RelativePath=".\src\fftw.rc"
+				RelativePath=".\src\c\fftw.rc"
 				>
 			</File>
 		</Filter>
