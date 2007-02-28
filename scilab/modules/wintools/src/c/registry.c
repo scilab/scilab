@@ -14,35 +14,39 @@ HKEY GetHkeyrootFromString(char *string);
 BOOL WindowsQueryRegistry(char *ParamIn1,char *ParamIn2,char *ParamIn3,char *ParamOut1,int *ParamOut2,BOOL *OuputIsREG_SZ)
 {
 	BOOL bOK=TRUE;
-
 	HKEY key;
-	DWORD Length=MAX_PATH;
 	HKEY hKeyToOpen=NULL;
 
 	hKeyToOpen =GetHkeyrootFromString(ParamIn1);
 
 	if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, KEY_QUERY_VALUE , &key) == ERROR_SUCCESS )
 	{
-		DWORD size=4;
-		char Line[MAX_PATH];
-		int  Num=0;
+		DWORD type=0;
 
-		if ( RegQueryValueEx(key, ParamIn3, NULL, NULL, (LPBYTE)&Num, &size) == ERROR_SUCCESS )
+		if ( RegQueryValueEx(key, ParamIn3, NULL, &type, NULL, NULL) == ERROR_SUCCESS )
 		{
-			*ParamOut2=Num;
-			*OuputIsREG_SZ=FALSE;
-		}
-		else if ( RegQueryValueEx(key, ParamIn3, NULL, NULL, (LPBYTE)&Line, &Length) == ERROR_SUCCESS )
-		{
-			wsprintf(ParamOut1,"%s",Line);
-			*OuputIsREG_SZ=TRUE;
-		}
-		else
-		{
-			bOK=FALSE;
+			if ( (type == REG_EXPAND_SZ) || (type == REG_SZ) )
+			{
+				DWORD Length=MAX_PATH;
+				char Line[MAX_PATH];
+				if (RegQueryValueEx(key, ParamIn3, NULL, &type, (LPBYTE)&Line, &Length) == ERROR_SUCCESS )
+				{
+					wsprintf(ParamOut1,"%s",Line);
+					*OuputIsREG_SZ=TRUE;
+				}
+			}
+			else
+			{
+				DWORD size=4;
+				int Num=0;
+				if (RegQueryValueEx(key, ParamIn3, NULL, &type, (LPBYTE)&Num, &size) == ERROR_SUCCESS )
+				{
+					*ParamOut2=Num;
+					*OuputIsREG_SZ=FALSE;
+				}
+			}
 		}
 		RegCloseKey(key);
-
 	}
 	else bOK=FALSE;
 
