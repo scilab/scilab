@@ -3,11 +3,10 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
 #include "jvms.h"
+#include "JVM_CONSOLE.h"
 /*-----------------------------------------------------------------------------------*/ 
-extern int StartJVM_CONSOLE(char *SCILAB_PATH);
 extern int StartJVM_SCILAB(char *SCILAB_PATH);
 extern int StartJVM_GRAPHIC(char *SCILAB_PATH);
-extern int TerminateJVM_CONSOLE(void);
 extern int TerminateJVM_SCILAB(void);
 extern int TerminateJVM_GRAPHIC(void);
 #ifdef _MSC_VER
