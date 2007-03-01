@@ -11,13 +11,9 @@
 #include "MALLOC.h"
 #include "with_module.h"
 #include "loadversion.h"
+#include "inisci-c.h"
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(withtk)(int *rep);
-extern int C2F(withpvm)(int *rep);
-extern int C2F(withgtk)(int *rep);
-extern int C2F(withmodelicac)(int *rep);
-extern int C2F(withjavasci)(int *rep);
-extern int C2F(getcomp)(char *buf,int *nbuf,long int lbuf);
 /*-----------------------------------------------------------------------------------*/
 static int getversion_no_rhs(void);
 static int getversion_one_rhs(void);
@@ -64,9 +60,16 @@ static int getversion_no_rhs(void)
 		char pvm[]="pvm";
 		char modelicac[]="modelicac";
 		char javasci[]="javasci";
+
+		#ifdef WITH_ATLAS
 		char atlas[]="atlas";
-		char debugmode[]="debug";
+		#endif
+
+		#ifdef NDEBUG
 		char releasemode[]="release";
+		#else
+		char debugmode[]="debug";
+		#endif 
 
 		#ifdef __TIME__
 			char TimeBuild[]=__TIME__;
