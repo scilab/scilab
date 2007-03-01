@@ -63,23 +63,11 @@ ConstructStatusBar (sciPointObj * pparentfigure)
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
-      if (sciAddNewHandle (pobj) == -1)
-	{
-	  FREE(pobj->pfeatures);
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      /*sciSetParent (pobj, pparentfigure);*/
-      if (!(sciAddThisToItsParent (pobj, pparentfigure)))
-	{
-	  sciDelHandle (pobj);
-	  FREE(pobj->pfeatures);
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      sciSetCurrentSon (pobj, (sciPointObj *) NULL);
-      pSTATUSB_FEATURE (pobj)->relationship.psons = (sciSons *) NULL;
-      pSTATUSB_FEATURE (pobj)->relationship.plastsons = (sciSons *) NULL;
+      if ( sciStandrardBuildOperations( pobj, pparentfigure ) == NULL )
+      {
+        return NULL ;
+      }
+
       if (sciInitGraphicContext (pobj) == -1)
 	{
 	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
@@ -153,31 +141,11 @@ sciPointObj * ConstructFigure( sciPointObj * pparent, struct BCG * XGC )
   
   ppFigure = pFIGURE_FEATURE(pobj) ;
 
-  if ( sciAddNewHandle (pobj) == -1 )
+  if ( sciStandrardBuildOperations( pobj, pparent ) == NULL )
   {
-    FREE(pobj->pfeatures);
-    FREE(pobj);
-    return NULL;
-  }
- 
-  /*  le seul parent est la root (l'ecran, le bureau quoi !) Pour l'instant il n'y a pas de fils selectionne */
-  /*sciSetParent (pobj, (sciPointObj *) NULL); */
-  /* il n'y a pas de parents !!!*/
-  
-  if (!(sciAddThisToItsParent( pobj, pparent ))) 
-  {
-    sciDelHandle (pobj);
-    FREE(pobj->pfeatures);
-    FREE(pobj);
     return NULL ;
   }
-  
-  sciSetCurrentSon (pobj, (sciPointObj *) NULL);
 
-  ppFigure->user_data = (int *) NULL; /* adding 27.06.05 */
-  ppFigure->size_of_user_data = 0;
-  ppFigure->relationship.psons = (sciSons *) NULL;
-  ppFigure->relationship.plastsons = (sciSons *) NULL;
   ppFigure->pScilabXgc = XGC;
   XGC->mafigure = pobj ;
 
@@ -279,31 +247,17 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
-      if (sciAddNewHandle (pobj) == -1)
-	{
-	  FREE(pobj->pfeatures);
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
       
-      if (!(sciAddThisToItsParent (pobj, pparentfigure)))
-	{
-	  sciDelHandle (pobj);
-	  FREE(pobj->pfeatures);
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
+      if ( sciStandrardBuildOperations( pobj, pparentfigure ) == NULL )
+      {
+        return NULL ;
+      }
       
       ppsubwin =  pSUBWIN_FEATURE (pobj); /* debug */
 
       ppsubwin->vertices_list = (Vertices*) NULL;
 
       
-      ppsubwin->user_data = (int *) NULL; /* adding 27.06.05 */
-      ppsubwin->size_of_user_data = 0;
-      sciSetCurrentSon (pobj, (sciPointObj *) NULL);
-      ppsubwin->relationship.psons = (sciSons *) NULL;
-      ppsubwin->relationship.plastsons = (sciSons *) NULL;
       ppsubwin->callback = (char *)NULL;
       ppsubwin->callbacklen = 0;
       ppsubwin->callbackevent = 100;
@@ -613,23 +567,10 @@ ConstructScrollV (sciPointObj * pparentfigure)
 	  FREE(pobjsbv);
 	  return (sciPointObj *) NULL;
 	}
-      if (sciAddNewHandle (pobjsbv) == -1)
-	{
-	  FREE(pobjsbv->pfeatures);
-	  FREE(pobjsbv);
-	  return (sciPointObj *) NULL;
-	}
-      /*sciSetParent (pobjsbv, pparentfigure);*/
-      if (!(sciAddThisToItsParent (pobjsbv, pparentfigure)))
-	{
-	  sciDelHandle (pobjsbv);
-	  FREE(pobjsbv->pfeatures);
-	  FREE(pobjsbv);
-	  return (sciPointObj *) NULL;
-	}
-      sciSetCurrentSon (pobjsbv, (sciPointObj *) NULL);
-      pSBH_FEATURE (pobjsbv)->relationship.psons = (sciSons *) NULL;
-      pSBH_FEATURE (pobjsbv)->relationship.plastsons = (sciSons *) NULL;
+      if ( sciStandrardBuildOperations( pobjsbv, pparentfigure ) == NULL )
+      {
+        return NULL ;
+      }
       return pobjsbv;
     }
   else
@@ -661,23 +602,10 @@ ConstructScrollH (sciPointObj * pparentfigure)
 	  FREE(pobjsbh);
 	  return (sciPointObj *) NULL;
 	}
-      if (sciAddNewHandle (pobjsbh) == -1)
-	{
-	  FREE(pobjsbh->pfeatures);
-	  FREE(pobjsbh);
-	  return (sciPointObj *) NULL;
-	}
-      /*sciSetParent (pobjsbh, pparentfigure);*/
-      if (!(sciAddThisToItsParent (pobjsbh, pparentfigure)))
-	{
-	  sciDelHandle (pobjsbh);
-	  FREE(pobjsbh->pfeatures);
-	  FREE(pobjsbh);
-	  return (sciPointObj *) NULL;
-	}
-      sciSetCurrentSon (pobjsbh, (sciPointObj *) NULL);
-      pSBH_FEATURE (pobjsbh)->relationship.psons = (sciSons *) NULL;
-      pSBH_FEATURE (pobjsbh)->relationship.plastsons = (sciSons *) NULL;
+      if ( sciStandrardBuildOperations( pobjsbh, pparentfigure ) == NULL )
+      {
+        return NULL ;
+      }
       return pobjsbh;
     }
   else
@@ -884,24 +812,10 @@ ConstructTitle (sciPointObj * pparentsubwin, char text[], int type)
       
       ppTitle = pTITLE_FEATURE(pobj) ;
 
-      if (sciAddNewHandle (pobj) == -1)
-	{
-	  FREE(ppTitle);
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      /*sciSetParent (pobj, pparentsubwin);*/
-      if (!(sciAddThisToItsParent (pobj, pparentsubwin)))
-	{
-	  sciDelHandle (pobj);
-	  FREE(ppTitle);
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      sciSetCurrentSon (pobj, (sciPointObj *) NULL);
-      
-      ppTitle->text.relationship.psons = (sciSons *) NULL;
-      ppTitle->text.relationship.plastsons = (sciSons *) NULL;
+      if ( sciStandrardBuildOperations( pobj, pparentsubwin ) == NULL )
+      {
+        return NULL ;
+      }
 
       ppTitle->text.callback = (char *)NULL;
       ppTitle->text.callbacklen = 0; 
@@ -990,23 +904,11 @@ ConstructLegend (sciPointObj * pparentsubwin, char text[], int n, int nblegends,
       /* get the pointer on the features */
       ppLegend = pLEGEND_FEATURE( pobj );
 
-      if (sciAddNewHandle (pobj) == -1)
-	{
-	  FREE(ppLegend);
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      /*sciSetParent (pobj, pparentsubwin);*/
-      if (!(sciAddThisToItsParent (pobj, pparentsubwin)))
-	{
-	  sciDelHandle (pobj);
-	  FREE(ppLegend);
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      sciSetCurrentSon (pobj, (sciPointObj *) NULL);
-      ppLegend->user_data = (int *) NULL;
-      ppLegend->size_of_user_data = 0;
+      if ( sciStandrardBuildOperations( pobj, pparentsubwin ) == NULL )
+      {
+        return NULL ;
+      }
+
       ppLegend->text.relationship.psons = (sciSons *) NULL;
       ppLegend->text.relationship.plastsons = (sciSons *) NULL;
       ppLegend->text.callback = (char *)NULL;
@@ -1130,28 +1032,14 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
-      if (sciAddNewHandle (pobj) == -1)
-	{
-	  FREE(pPOLYLINE_FEATURE(pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      if (!(sciAddThisToItsParent (pobj, pparentsubwin)))
-	{
-	  sciDelHandle (pobj);
-	  FREE(pPOLYLINE_FEATURE(pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      sciSetCurrentSon (pobj, (sciPointObj *) NULL);
+      if ( sciStandrardBuildOperations( pobj, pparentsubwin ) == NULL )
+      {
+        return NULL ;
+      }
       pPOLYLINE_FEATURE (pobj)->x_shift = (double *) NULL;
       pPOLYLINE_FEATURE (pobj)->y_shift = (double *) NULL;
       pPOLYLINE_FEATURE (pobj)->z_shift = (double *) NULL;
       pPOLYLINE_FEATURE (pobj)->bar_width = 0.;
-      pPOLYLINE_FEATURE (pobj)->user_data = (int *) NULL;
-      pPOLYLINE_FEATURE (pobj)->size_of_user_data = 0;
-      pPOLYLINE_FEATURE (pobj)->relationship.psons = (sciSons *) NULL;
-      pPOLYLINE_FEATURE (pobj)->relationship.plastsons = (sciSons *) NULL;
 
       pPOLYLINE_FEATURE (pobj)->callback = (char *)NULL;
       pPOLYLINE_FEATURE (pobj)->callbacklen = 0; 
@@ -1322,25 +1210,10 @@ ConstructArc (sciPointObj * pparentsubwin, double x, double y,
       /* get the pointer to features */
       ppArc = pobj->pfeatures ;
 
-      if (sciAddNewHandle (pobj) == -1)
-	{
-	  FREE(ppArc);
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      /*sciSetParent (pobj, pparentsubwin);*/
-      if (!(sciAddThisToItsParent (pobj, pparentsubwin)))
-	{
-	  sciDelHandle (pobj);
-	  FREE(ppArc);
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      sciSetCurrentSon (pobj, (sciPointObj *) NULL);
-      ppArc->user_data = (int *) NULL;
-      ppArc->size_of_user_data = 0;
-      ppArc->relationship.psons = (sciSons *) NULL;
-      ppArc->relationship.plastsons = (sciSons *) NULL;
+      if ( sciStandrardBuildOperations( pobj, pparentsubwin ) == NULL )
+      {
+        return NULL ;
+      }
 
       ppArc->callback = (char *)NULL;
       ppArc->callbacklen = 0;
@@ -1425,25 +1298,10 @@ ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
-      if (sciAddNewHandle (pobj) == -1)
-	{
-	  FREE(pRECTANGLE_FEATURE (pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      /*sciSetParent (pobj, pparentsubwin);*/
-      if (!(sciAddThisToItsParent (pobj, pparentsubwin)))
-	{
-	  sciDelHandle (pobj);
-	  FREE(pRECTANGLE_FEATURE (pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      sciSetCurrentSon (pobj, (sciPointObj *) NULL);
-      pRECTANGLE_FEATURE (pobj)->user_data = (int *) NULL;
-      pRECTANGLE_FEATURE (pobj)->size_of_user_data = 0;
-      pRECTANGLE_FEATURE (pobj)->relationship.psons = (sciSons *) NULL;
-      pRECTANGLE_FEATURE (pobj)->relationship.plastsons = (sciSons *) NULL;
+      if ( sciStandrardBuildOperations( pobj, pparentsubwin ) == NULL )
+      {
+        return NULL ;
+      }
 
       pRECTANGLE_FEATURE (pobj)->callback = (char *)NULL;
       pRECTANGLE_FEATURE (pobj)->callbacklen = 0;
@@ -1488,14 +1346,6 @@ ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
       
       if(background != NULL)
 	sciInitBackground(pobj,(*background));
-      
-      /*       if (pRECTANGLE_FEATURE (pobj)->fillcolor < 0) */
-      /* 	sciSetForeground (pobj,-(pRECTANGLE_FEATURE (pobj)->fillcolor)); */
-      /*       else	 */
-      /* 	if (pRECTANGLE_FEATURE (pobj)->fillcolor > 0) */
-      /* 	  sciSetForeground (pobj,pRECTANGLE_FEATURE (pobj)->fillcolor); */
-      /* 	else  */
-      /* 	  sciSetForeground (pobj,sciGetForeground (sciGetParent (pobj)) ); */
       
       return pobj;
     }
@@ -1565,25 +1415,10 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
 	}
       /*debug F.Leray*/
       psurf = pSURFACE_FEATURE (pobj);
-      if (sciAddNewHandle (pobj) == -1)
-	{
-	  FREE(psurf);
-	  FREE(pobj); pobj = NULL;
-	  return (sciPointObj *) NULL;
-	}
-      /*sciSetParent (pobj, pparentsubwin);*/
-      if (!(sciAddThisToItsParent (pobj, pparentsubwin)))
-	{
-	  sciDelHandle (pobj);
-	  FREE(psurf);
-	  FREE(pobj); pobj = NULL;
-	  return (sciPointObj *) NULL;
-	}
-      sciSetCurrentSon (pobj, (sciPointObj *) NULL);
-      psurf->user_data = (int *) NULL;
-      psurf->size_of_user_data = 0;
-      psurf->relationship.psons = (sciSons *) NULL;
-      psurf->relationship.plastsons = (sciSons *) NULL;
+      if ( sciStandrardBuildOperations( pobj, pparentsubwin ) == NULL )
+      {
+        return NULL ;
+      }
 
       psurf->callback = (char *)NULL;
       psurf->callbacklen = 0;
@@ -1677,26 +1512,6 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
       psurf->zcol = NULL;
       psurf->color = NULL;
       
-      /*
-	if (izc !=0&&nc>0 ) {
-	if (((psurf->zcol = MALLOC ((nc * sizeof (integer)))) == NULL))
-	{
-	FREE(psurf->pvecy); psurf->pvecy = NULL;
-	FREE(psurf->pvecx); psurf->pvecx = NULL;
-	FREE(psurf->pvecz); psurf->pvecz = NULL;
-	sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	sciDelHandle (pobj);
-	FREE(psurf);
-	FREE(pobj); pobj = NULL;
-	return (sciPointObj *) NULL;
-	}
-	else
-	{
-	if (izcol !=0)
-	for (j = 0;j < nc; j++)  
-	psurf->zcol[j]= zcol[j];  */ /* DJ.A 2003 */
-      /*}
-	} */
       
       /*-------Replaced by: --------*/
 
@@ -1844,30 +1659,19 @@ ConstructMerge (sciPointObj * pparentsubwin,int N,int *index_in_entity,long *fro
 	FREE(pobj);
 	return (sciPointObj *) NULL;
       }
-      if (sciAddNewHandle (pobj) == -1) {
-	FREE(pMERGE_FEATURE (pobj));
-	FREE(pobj);
-	return (sciPointObj *) NULL;
+      if ( sciStandrardBuildOperations( pobj, pparentsubwin ) == NULL )
+      {
+        return NULL ;
       }
-      if (!(sciAddThisToItsParent (pobj, pparentsubwin))){
-	sciDelHandle (pobj);
-	FREE(pMERGE_FEATURE (pobj));
-	FREE(pobj);
-	return (sciPointObj *) NULL;
-      }
-
-      sciSetCurrentSon (pobj, (sciPointObj *) NULL);
-      pMERGE_FEATURE (pobj)->user_data = (int *) NULL;
-      pMERGE_FEATURE (pobj)->size_of_user_data = 0;
-      pMERGE_FEATURE (pobj)->relationship.psons = (sciSons *) NULL;
-      pMERGE_FEATURE (pobj)->relationship.plastsons = (sciSons *) NULL;
       pMERGE_FEATURE (pobj)->index_in_entity=index_in_entity;
       pMERGE_FEATURE (pobj)->from_entity=from_entity;
       pMERGE_FEATURE (pobj)->N=N;
       return pobj;
     }
   else
-    return (sciPointObj *) NULL;
+  {
+    return NULL;
+  }
 }
 
 
@@ -1894,25 +1698,10 @@ ConstructGrayplot (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
-      if (sciAddNewHandle (pobj) == -1)
-	{
-	  FREE(pGRAYPLOT_FEATURE(pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      /*sciSetParent (pobj, pparentsubwin);*/
-      if (!(sciAddThisToItsParent (pobj, pparentsubwin)))
-	{
-	  sciDelHandle (pobj);
-	  FREE(pGRAYPLOT_FEATURE(pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      sciSetCurrentSon (pobj, (sciPointObj *) NULL);
-      pGRAYPLOT_FEATURE (pobj)->user_data = (int *) NULL;
-      pGRAYPLOT_FEATURE (pobj)->size_of_user_data = 0;
-      pGRAYPLOT_FEATURE (pobj)->relationship.psons = (sciSons *) NULL;
-      pGRAYPLOT_FEATURE (pobj)->relationship.plastsons = (sciSons *) NULL;
+      if ( sciStandrardBuildOperations( pobj, pparentsubwin ) == NULL )
+      {
+        return NULL ;
+      }
 
       pGRAYPLOT_FEATURE (pobj)->callback = (char *)NULL;
       pGRAYPLOT_FEATURE (pobj)->callbacklen = 0; 
@@ -2018,25 +1807,10 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
-      if (sciAddNewHandle (pobj) == -1)
-	{
-	  FREE(pAXES_FEATURE (pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      /*sciSetParent (pobj, pparentsubwin);*/
-      if (!(sciAddThisToItsParent (pobj, pparentsubwin)))
-	{
-	  sciDelHandle (pobj);
-	  FREE(pAXES_FEATURE (pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      sciSetCurrentSon (pobj, (sciPointObj *) NULL);
-      pAXES_FEATURE (pobj)->user_data = (int *) NULL;
-      pAXES_FEATURE (pobj)->size_of_user_data = 0;
-      pAXES_FEATURE (pobj)->relationship.psons = (sciSons *) NULL;
-      pAXES_FEATURE (pobj)->relationship.plastsons = (sciSons *) NULL;
+      if ( sciStandrardBuildOperations( pobj, pparentsubwin ) == NULL )
+      {
+        return NULL ;
+      }
 
       pAXES_FEATURE (pobj)->callback = (char *)NULL;
       pAXES_FEATURE (pobj)->callbacklen = 0;
@@ -2193,25 +1967,10 @@ ConstructFec (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double 
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
-      if (sciAddNewHandle (pobj) == -1)
-	{
-	  FREE(pFEC_FEATURE(pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      /*sciSetParent (pobj, pparentsubwin);*/
-      if (!(sciAddThisToItsParent (pobj, pparentsubwin)))
-	{
-	  sciDelHandle (pobj);
-	  FREE(pFEC_FEATURE(pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      sciSetCurrentSon (pobj, (sciPointObj *) NULL);
-      pFEC_FEATURE (pobj)->user_data = (int *) NULL;
-      pFEC_FEATURE (pobj)->size_of_user_data = 0;
-      pFEC_FEATURE (pobj)->relationship.psons = (sciSons *) NULL;
-      pFEC_FEATURE (pobj)->relationship.plastsons = (sciSons *) NULL;
+      if ( sciStandrardBuildOperations( pobj, pparentsubwin ) == NULL )
+      {
+        return NULL ;
+      }
 
       pFEC_FEATURE (pobj)->callback = (char *)NULL;
       pFEC_FEATURE (pobj)->callbacklen = 0;
@@ -2367,28 +2126,12 @@ ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy,
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
-      if (sciAddNewHandle (pobj) == -1)
-	{
-	  FREE(pSEGS_FEATURE(pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      /*sciSetParent (pobj, pparentsubwin);*/
-      if (!(sciAddThisToItsParent (pobj, pparentsubwin)))
-	{
-	  sciDelHandle (pobj);
-	  FREE(pSEGS_FEATURE(pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      sciSetCurrentSon (pobj, (sciPointObj *) NULL);
+      if ( sciStandrardBuildOperations( pobj, pparentsubwin ) == NULL )
+      {
+        return NULL ;
+      }
 
       ppSegs = pSEGS_FEATURE(pobj) ;
-
-      ppSegs->user_data = (int *) NULL;
-      ppSegs->size_of_user_data = 0;
-      ppSegs->relationship.psons = (sciSons *) NULL;
-      ppSegs->relationship.plastsons = (sciSons *) NULL;
 
       ppSegs->callback = (char *)NULL;
       ppSegs->callbacklen = 0;
@@ -2563,21 +2306,10 @@ ConstructCompound (long *handelsvalue, int number) /* Conflicting types with def
   /* get the pointer on features */
   ppCompound = pAGREG_FEATURE (pobj) ;
 
-  if (sciAddNewHandle (pobj) == -1)
-    {
-      sciprint("no handle to allocate\n");
-      return (sciPointObj *) NULL;
-    }
-
-  /* the parent of the Compound will be the parent of the sons entities */
-  if (!(sciAddThisToItsParent (pobj, (sciPointObj *)sciGetParent(
-                                 sciGetPointerFromHandle((long) handelsvalue[0])))))
-    return NULL;
-
-  sciSetCurrentSon (pobj, (sciPointObj *) NULL);
-  ppCompound->user_data = (int *) NULL;
-  ppCompound->size_of_user_data = 0;
-  ppCompound->relationship.psons = (sciSons *) NULL;
+  if ( sciStandrardBuildOperations( pobj, sciGetParent(sciGetPointerFromHandle( (long) handelsvalue[0])) ) == NULL )
+  {
+    return NULL ;
+  }
 
   ppCompound->callback = (char *)NULL;
   ppCompound->callbacklen = 0;
@@ -2589,30 +2321,6 @@ ConstructCompound (long *handelsvalue, int number) /* Conflicting types with def
   xtmp = (long) handelsvalue[0];
   for ( i = 0 ; i < number ; i++ )
     {
-      /* if ((sons = MALLOC ((sizeof (sciSons)))) == NULL) */
-/* 	return (sciPointObj *)NULL; */
-      /* if (i == 0) */
-/*         ppCompound->relationship.plastsons = (sciSons *)sons; */
-
-      /* xtmp = handelsvalue[i]; */
-      /* sons->pointobj = sciGetPointerFromHandle(xtmp); */
-
-      /* Nous changeons le parent de l'entite qui devient alors l'Compound */
-      /* if (sons->pointobj != NULL) */
-/* 	{ */
-/* 	  sciDelThisToItsParent (sons->pointobj, sciGetParent(temp)); */
-/* 	  sciAddThisToItsParent (sons->pointobj, pobj); */
-/* 	} */
-
-      /* sons->pprev         = (sciSons *)NULL; */
-/*       sons->pnext         = sonsnext; */
-
-/*       if (sonsnext != NULL ) */
-/*       { */
-/*         sonsnext->pprev = sons; */
-/*       } */
-
-/*       sonsnext            = sons; */
 
 
       /* jb Silvy 10/01/06 */
@@ -2837,23 +2545,11 @@ ConstructMenu (sciPointObj * pparentfigure, char plabel[], int n)
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
-      if (sciAddNewHandle (pobj) == -1)
-	{
-	  FREE(pMENU_FEATURE (pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      /*sciSetParent (pobj, pparentfigure);*/
-      if (!(sciAddThisToItsParent (pobj, pparentfigure)))
-	{
-	  sciDelHandle (pobj);
-	  FREE(pMENU_FEATURE (pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      sciSetCurrentSon (pobj, (sciPointObj *) NULL);
-      pMENU_FEATURE (pobj)->relationship.psons = (sciSons *) NULL;
-      pMENU_FEATURE (pobj)->relationship.plastsons = (sciSons *) NULL;
+
+      if ( sciStandrardBuildOperations( pobj, pparentfigure ) == NULL )
+      {
+        return NULL ;
+      }
 
       if (sciAddLabelMenu (pobj, plabel, n) == -1)
 	{
@@ -2906,25 +2602,10 @@ ConstructMenuContext (sciPointObj * pparentfigure)
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
-      if (sciAddNewHandle (pobj) == -1)
-	{
-	  FREE(pMENUCONTEXT_FEATURE (pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      /*sciSetParent (pobj, pparentfigure);*/
-      if (!(sciAddThisToItsParent (pobj, pparentfigure)))
-	{
-	  sciDelHandle (pobj);
-	  FREE(pMENUCONTEXT_FEATURE (pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      sciSetCurrentSon (pobj, (sciPointObj *) NULL);
-      /*if (sciAddLabelMenu (pobj, plabel, n) == -1)
-	return (sciPointObj *) NULL;*/
-      pMENUCONTEXT_FEATURE (pobj)->relationship.psons = (sciSons *) NULL;
-      pMENUCONTEXT_FEATURE (pobj)->relationship.plastsons = (sciSons *) NULL;
+      if ( sciStandrardBuildOperations( pobj, pparentfigure ) == NULL )
+      {
+        return NULL ;
+      }
 
       if (sciInitGraphicContext (pobj) == -1)
 	{
@@ -3073,25 +2754,10 @@ sciPointObj * ConstructUimenu (sciPointObj * pparent, char *label,char *callback
 	  return (sciPointObj *) NULL;
 	}
       ppobj=pUIMENU_FEATURE (pobj);
-      if (sciAddNewHandle (pobj) == -1)
-	{
-	  FREE(pobj->pfeatures);
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-
-      if (!(sciAddThisToItsParent (pobj, pparent)))
-	{
-	  sciDelHandle (pobj);
-	  FREE(pobj->pfeatures);
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-
-      sciSetCurrentSon (pobj, (sciPointObj *) NULL);
-		
-      pUIMENU_FEATURE (pobj)->label.relationship.psons = (sciSons *) NULL;
-      pUIMENU_FEATURE (pobj)->label.relationship.plastsons = (sciSons *) NULL;
+      if ( sciStandrardBuildOperations( pobj, pparent ) == NULL )
+      {
+        return NULL ;
+      }
 
       if ((pUIMENU_FEATURE (pobj)->label.callback = CALLOC(strlen(callback)+1,sizeof(char))) == NULL )
 	{
@@ -3130,12 +2796,11 @@ sciPointObj * ConstructUimenu (sciPointObj * pparent, char *label,char *callback
     }
 }
 /*-------------------------------------------------------------------------------------*/
-sciPointObj * ConstructConsole( sciPointObj * pparent )
+sciPointObj * sciConstructConsole( sciPointObj * pparent )
 {
-  sciPointObj * pObj      = NULL ;
-  sciConsole  * ppConsole = NULL ;
+  sciPointObj * pObj = NULL ;
 
-  pObj = MALLOC(sizeof(sciConsole)) ;
+  pObj = MALLOC(sizeof(sciPointObj)) ;
   if ( pObj == NULL )
   {
     sciprint("Unable to allocate new object, memory full.\n") ;
@@ -3150,30 +2815,166 @@ sciPointObj * ConstructConsole( sciPointObj * pparent )
     sciprint("Unable to allocate new object, memory full.\n") ;
     FREE(pObj) ;
     return NULL ;
+
   }
 
-  ppConsole = pCONSOLE_FEATURE(pObj) ;
+  pObj = sciStandrardBuildOperations( pObj, pparent ) ;
 
+  return pObj ;
+
+}
+/*-------------------------------------------------------------------------------------*/
+/**
+ * contains the functions always called when creating an object
+ * pObj should have just been allocated.
+ * @return the modified object. Should be the same as pObj, unless an error occured.
+ *         then it is NULL.
+ */
+sciPointObj * sciStandrardBuildOperations( sciPointObj * pObj, sciPointObj * parent )
+{
+  int ** userData = NULL ;
+  int *  udSize   = NULL ;
+
+  /* add the handle in the handle list */
   if ( sciAddNewHandle(pObj) == -1 )
   {
-    FREE(ppConsole) ;
-    FREE(pObj) ;
-    return NULL;
-  }
-
-  /* No parent for console for now */
-  if ( !sciAddThisToItsParent( pObj, pparent ) ) 
-  {
-    sciDelHandle(pObj);
-    FREE(ppConsole) ;
-    FREE(pObj) ;
+    FREE( pObj->pfeatures ) ;
+    FREE( pObj ) ;
     return NULL ;
   }
 
-  sciSetCurrentSon ( pObj, NULL ) ;
+  /* connect the object under its parent in the hierarchy */
+  if ( !sciAddThisToItsParent( pObj, parent) )
+  {
+    sciDelHandle(pObj) ;
+    FREE( pObj->pfeatures ) ;
+    FREE( pObj ) ;
+    return NULL ;
+  }
 
-  ppConsole->user_data         = NULL ;
-  ppConsole->size_of_user_data = 0    ;
+  /* no sons for now */
+  sciSetCurrentSon( pObj, NULL ) ;
+
+  sciGetRelationship(pObj)->psons     = NULL ;
+  sciGetRelationship(pObj)->plastsons = NULL ;
+
+  sciSetVisibility( pObj, TRUE ) ;
+
+  sciGetPointerToUserData( pObj, &userData, &udSize ) ;
+  *userData = NULL ;
+  *udSize   = 0    ;
+
+  return pObj ;
+
+}
+/*-------------------------------------------------------------------------------------*/
+sciPointObj * sciConstructFrame( sciPointObj * pparent )
+{
+  sciPointObj * pObj = NULL ;
+
+  pObj = MALLOC(sizeof(sciPointObj)) ;
+  if ( pObj == NULL )
+  {
+    sciprint("Unable to allocate new object, memory full.\n") ;
+    return NULL ;
+  }
+
+  sciSetEntityType( pObj, SCI_FRAME ) ;
+
+  pObj->pfeatures = MALLOC(sizeof(sciFrame)) ;
+  if ( pObj->pfeatures == NULL )
+  {
+    sciprint("Unable to allocate new object, memory full.\n") ;
+    FREE(pObj) ;
+    return NULL ;
+
+  }
+
+  pObj = sciStandrardBuildOperations( pObj, pparent ) ;
+
+  return pObj ;
+
+}
+/*-------------------------------------------------------------------------------------*/
+sciPointObj * sciConstructWindow( sciPointObj * pparent )
+{
+  sciPointObj * pObj = NULL ;
+
+  pObj = MALLOC(sizeof(sciPointObj)) ;
+  if ( pObj == NULL )
+  {
+    sciprint("Unable to allocate new object, memory full.\n") ;
+    return NULL ;
+  }
+
+  sciSetEntityType( pObj, SCI_WINDOW ) ;
+
+  pObj->pfeatures = MALLOC(sizeof(sciWindow)) ;
+  if ( pObj->pfeatures == NULL )
+  {
+    sciprint("Unable to allocate new object, memory full.\n") ;
+    FREE(pObj) ;
+    return NULL ;
+
+  }
+
+  pObj = sciStandrardBuildOperations( pObj, pparent ) ;
+
+  return pObj ;
+
+}
+/*-------------------------------------------------------------------------------------*/
+sciPointObj * sciConstructWindowFrame( sciPointObj * pparent )
+{
+  sciPointObj * pObj = NULL ;
+
+  pObj = MALLOC(sizeof(sciPointObj)) ;
+  if ( pObj == NULL )
+  {
+    sciprint("Unable to allocate new object, memory full.\n") ;
+    return NULL ;
+  }
+
+  sciSetEntityType( pObj, SCI_WINDOWFRAME ) ;
+
+  pObj->pfeatures = MALLOC(sizeof(sciWindowFrame)) ;
+  if ( pObj->pfeatures == NULL )
+  {
+    sciprint("Unable to allocate new object, memory full.\n") ;
+    FREE(pObj) ;
+    return NULL ;
+
+  }
+
+  pObj = sciStandrardBuildOperations( pObj, pparent ) ;
+
+  return pObj ;
+
+}
+/*-------------------------------------------------------------------------------------*/
+sciPointObj * sciConstructScreen( sciPointObj * pparent )
+{
+  sciPointObj * pObj = NULL ;
+
+  pObj = MALLOC(sizeof(sciPointObj)) ;
+  if ( pObj == NULL )
+  {
+    sciprint("Unable to allocate new object, memory full.\n") ;
+    return NULL ;
+  }
+
+  sciSetEntityType( pObj, SCI_SCREEN ) ;
+
+  pObj->pfeatures = MALLOC(sizeof(sciScreen)) ;
+  if ( pObj->pfeatures == NULL )
+  {
+    sciprint("Unable to allocate new object, memory full.\n") ;
+    FREE(pObj) ;
+    return NULL ;
+
+  }
+
+  pObj = sciStandrardBuildOperations( pObj, pparent ) ;
 
   return pObj ;
 

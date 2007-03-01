@@ -54,13 +54,16 @@ extern int sciDelGraphicObj (sciPointObj * pthis); /* DESTROY */
 
 extern int DestroyLabel (sciPointObj * pthis); /* DESTROY */
 extern int DestroyUimenu (sciPointObj * pthis); /* DESTROY */
-int DestroyConsole( sciPointObj * pthis ) ; /* DESTROY */
+int sciDestroyConsole(     sciPointObj * pthis ) ; /* DESTROY */
+int sciDestroyFrame(       sciPointObj * pThis ) ;
+int sciDestroyWindow(      sciPointObj * pThis ) ;
+int sciDestroyWindowFrame( sciPointObj * pThis ) ;
+int sciDestroyScreen(      sciPointObj * pThis ) ;
 /* UNUSED : */
 
 extern int sciDelLabelsMenu (sciPointObj * pthis);
 extern int DestroyMenuContext (sciPointObj * pthis);
 extern int DestroySciMenu (sciPointObj * pthis);
-
 
 /* ADDED */
 
@@ -74,5 +77,7 @@ extern void sciDeleteWindow( int winNum ) ;
 extern int updateMerge( sciPointObj * pSubwin ) ;
 
 void CleanPlots(char *unused, integer *winnumber, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dx1, double *dx2, double *dx3, double *dx4) ;
+
+int sciStandardDestroyOperations( sciPointObj * pThis ) ;
 
 #endif /* __SCI_DESTROY__ */

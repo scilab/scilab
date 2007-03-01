@@ -156,6 +156,21 @@ DestroyAllGraphicsSons (sciPointObj * pthis)
       DestroyUimenu (pthis);
       return 0;
       break;
+    case SCI_CONSOLE:
+      sciDestroyConsole( pthis ) ;
+      return 0 ;
+    case SCI_FRAME:
+      sciDestroyFrame( pthis ) ;
+      return 0 ;
+    case SCI_WINDOW:
+      sciDestroyWindow(pthis) ;
+      return 0 ;
+    case SCI_WINDOWFRAME:
+      sciDestroyWindowFrame(pthis) ;
+      return 0 ;
+    case SCI_SCREEN:
+      sciDestroyScreen(pthis) ;
+      return 0 ;
     default:
       sciprint ("Entity with type %d cannot be destroyed\n",sciGetEntityType (pthis));
       return -1;
@@ -196,6 +211,12 @@ sciDelGraphicObj (sciPointObj * pthis)
     case SCI_MERGE: 
     case SCI_LABEL:
     case SCI_UIMENU:
+    case SCI_FIGURE:
+    case SCI_CONSOLE:
+    case SCI_FRAME:
+    case SCI_WINDOW:
+    case SCI_WINDOWFRAME:
+    case SCI_SCREEN:
       DestroyAllGraphicsSons (pthis);
       return 0;
       break;
@@ -206,7 +227,6 @@ sciDelGraphicObj (sciPointObj * pthis)
         DestroyAllGraphicsSons (pthis);
       return 0;
       break;         
-    case SCI_FIGURE:
     case SCI_LIGHT:
     case SCI_PANNER:
     case SCI_SBH:
@@ -246,19 +266,13 @@ int C2F(scigerase)( void )
  */
 int DestroyFigure (sciPointObj * pthis)
 {
-  sciDelThisToItsParent(pthis, sciGetParent(pthis) ) ;
-  if (sciDelHandle (pthis) == -1)
-    return -1;
   /* This code has to be validated on all systems
    * because sciGetPointerToFeature returns a void
    */
   FREE ((sciGetFontContext(pthis))->pfontname);
   FREE(pFIGURE_FEATURE(pthis)->pcolormap);
   FREE( pFIGURE_FEATURE(pthis)->infoMessage ) ;
-  FREE(pFIGURE_FEATURE(pthis)->user_data);
-  pFIGURE_FEATURE(pthis)->size_of_user_data = 0;
-  FREE (sciGetPointerToFeature (pthis));
-  FREE (pthis);
+  sciStandardDestroyOperations(pthis) ;
   /* delete windows() */
   return 0;
 }
@@ -272,14 +286,9 @@ int DestroyFigure (sciPointObj * pthis)
 int
 DestroyStatusBar (sciPointObj * pthis)
 {
-  sciDelThisToItsParent (pthis, sciGetParent (pthis));
-  if (sciDelHandle (pthis) == -1)
-    return -1;
+  sciDelThisToItsParent(pthis, sciGetParent (pthis));
   FREE ((sciGetFontContext(pthis))->pfontname);
-  FREE (sciGetPointerToFeature (pthis));
-  FREE (pthis);
-  /* on peut alors destroyer la figure parente */
-  return 0;
+  return sciStandardDestroyOperations(pthis) ;
 }
 
 
@@ -316,20 +325,12 @@ DestroySubWin (sciPointObj * pthis)
   ppsubwin->axes.nxgrads = 0;
   ppsubwin->axes.nygrads = 0;
   ppsubwin->axes.nzgrads = 0;
-
-  FREE(ppsubwin->user_data);
-  ppsubwin->size_of_user_data = 0;
-
-  sciDelThisToItsParent (pthis, sciGetParent (pthis));
-  if (sciDelHandle (pthis) == -1)
-    return -1;
+  
   if ( sciGetCallback(pthis) != (char *)NULL)
     FREE(sciGetCallback(pthis));
 
   FREE ((sciGetFontContext(pthis))->pfontname);
-  FREE (sciGetPointerToFeature (pthis));
-  FREE (pthis); 
-  return 0;
+  return sciStandardDestroyOperations(pthis) ;
 }
 
 
@@ -341,13 +342,7 @@ DestroySubWin (sciPointObj * pthis)
 int
 DestroyScrollV (sciPointObj * pthis)
 {
-  sciDelThisToItsParent (pthis, sciGetParent (pthis));
-  if (sciDelHandle (pthis) == -1)
-    return -1;
-  FREE (sciGetPointerToFeature (pthis));
-  FREE (pthis);
-  /* on peut alors destroyer la figure parente */
-  return 0;
+   return sciStandardDestroyOperations(pthis) ;
 }
 
 
@@ -359,13 +354,7 @@ DestroyScrollV (sciPointObj * pthis)
 int
 DestroyScrollH (sciPointObj * pthis)
 {
-  sciDelThisToItsParent (pthis, sciGetParent (pthis));
-  if (sciDelHandle (pthis) == -1)
-    return -1;
-  FREE (sciGetPointerToFeature (pthis));
-  FREE (pthis);
-  /* on peut alors destroyer la figure parente */
-  return 0;
+  return sciStandardDestroyOperations(pthis) ;
 }
 
 /**
@@ -388,21 +377,11 @@ int deallocateText( sciPointObj * pthis )
  * This function destroies Text structure and only this to destroy all sons use DelGraphicsSon
  * @param sciPointObj * pthis: the pointer to the entity
  */
-int
-DestroyText (sciPointObj * pthis)
+int DestroyText (sciPointObj * pthis)
 {
   deleteMatrix( pTEXT_FEATURE(pthis)->pStrings ) ;
-  FREE (pTEXT_FEATURE (pthis)->user_data);
-  pTEXT_FEATURE (pthis)->size_of_user_data = 0;
-  
-  sciDelThisToItsParent (pthis, sciGetParent (pthis));
-  if (sciDelHandle (pthis) == -1)
-    return -1;
   FREE ((sciGetFontContext(pthis))->pfontname);
-  FREE (sciGetPointerToFeature (pthis));
-  FREE (pthis);
-  /* on peut alors destroyer le parent */
-  return 0;
+  return sciStandardDestroyOperations(pthis) ;
 }
 
 
@@ -416,14 +395,8 @@ int
 DestroyTitle (sciPointObj * pthis)
 {
   deleteMatrix( pTITLE_FEATURE (pthis)->text.pStrings ) ;
-  sciDelThisToItsParent (pthis, sciGetParent (pthis));
-  if (sciDelHandle (pthis) == -1)
-    return -1;
   FREE ((sciGetFontContext(pthis))->pfontname);
-  FREE (sciGetPointerToFeature (pthis));
-  FREE (pthis);
-  /* on peut alors destroyer le parent */
-  return 0;
+  return sciStandardDestroyOperations(pthis) ;
 }
 
 
@@ -440,17 +413,10 @@ DestroyLegend (sciPointObj * pthis)
   FREE ( ppLegend->pptabofpointobj );
   FREE ( ppLegend->pstyle ) ;
   deleteMatrix( ppLegend->text.pStrings ) ;
-  FREE ( ppLegend->user_data);
-  ppLegend->size_of_user_data = 0;
 
-  sciDelThisToItsParent (pthis, sciGetParent (pthis));
-  if (sciDelHandle (pthis) == -1)
-    return -1;
   FREE ((sciGetFontContext(pthis))->pfontname);
-  FREE (sciGetPointerToFeature (pthis));
-  FREE (pthis);
+  return sciStandardDestroyOperations(pthis) ;
   /* on peut alors destroyer le parent */
-  return 0;
 }
 
 
@@ -464,18 +430,10 @@ DestroyPolyline (sciPointObj * pthis)
 {
   FREE (pPOLYLINE_FEATURE (pthis)->pvx);
   FREE (pPOLYLINE_FEATURE (pthis)->pvy);
-  FREE (pPOLYLINE_FEATURE (pthis)->user_data);
-  pPOLYLINE_FEATURE (pthis)->size_of_user_data = 0;
 
   if (pPOLYLINE_FEATURE (pthis)->pvz != NULL) /**DJ.Abdemouche 2003**/
     FREE (pPOLYLINE_FEATURE (pthis)->pvz);
-  sciDelThisToItsParent (pthis, sciGetParent (pthis));
-  if (sciDelHandle (pthis) == -1)
-    return -1;
-  FREE (sciGetPointerToFeature (pthis));
-  FREE (pthis);
-  /* on peut alors destroyer le parent */
-  return 0;
+  return sciStandardDestroyOperations(pthis) ;
 }
 
 
@@ -486,16 +444,8 @@ DestroyPolyline (sciPointObj * pthis)
 int
 DestroyArc (sciPointObj * pthis)
 {
-  FREE (pARC_FEATURE (pthis)->user_data);
-  pARC_FEATURE (pthis)->size_of_user_data = 0;
-  sciDelThisToItsParent (pthis, sciGetParent (pthis));
-  if (sciDelHandle (pthis) == -1)
-    return -1;
   FREE(pARC_FEATURE (pthis)->callback);
-  FREE (sciGetPointerToFeature (pthis));
-  FREE (pthis);
-  /* on peut alors destroyer le parent */
-  return 0;
+  return sciStandardDestroyOperations(pthis) ;
 }
 
 
@@ -507,15 +457,7 @@ DestroyArc (sciPointObj * pthis)
 int
 DestroyRectangle (sciPointObj * pthis)
 {
-  FREE (pRECTANGLE_FEATURE (pthis)->user_data);
-  pRECTANGLE_FEATURE (pthis)->size_of_user_data = 0;
-  sciDelThisToItsParent (pthis, sciGetParent (pthis));
-  if (sciDelHandle (pthis) == -1)
-    return -1;
-  FREE (sciGetPointerToFeature (pthis));
-  FREE (pthis);
-  /* on peut alors destroyer le parent */
-  return 0;
+  return sciStandardDestroyOperations(pthis) ;
 }
 
 
@@ -530,12 +472,10 @@ DestroySurface (sciPointObj * pthis)
   sciPointObj * psubwin ;
   sciSubWindow * ppSubWin ;
   sciSurface * ppSurface = pSURFACE_FEATURE (pthis) ;
+  int res = -1 ;
   
   psubwin  = sciGetParentSubwin(pthis) ;
   ppSubWin = pSUBWIN_FEATURE ( psubwin ) ;
-
-  FREE (ppSurface->user_data);
-  ppSurface->size_of_user_data = 0;
 
   FREE(ppSurface->pvecz);
   FREE(ppSurface->pvecy);
@@ -549,35 +489,22 @@ DestroySurface (sciPointObj * pthis)
   }
   ppSubWin->surfcounter-- ;
   /* DJ.A 2003 */
-  sciDelThisToItsParent (pthis, sciGetParent (pthis));
-  if (sciDelHandle (pthis) == -1)
-  {
-    return -1;
-  }
-  FREE (sciGetPointerToFeature (pthis));
-  FREE (pthis);
+  res = sciStandardDestroyOperations(pthis) ;
 
   /* delete the merge object if needed */
   /* Jb Silvy 07/2006 */
   updateMerge( psubwin ) ;
 
-  return 0;
+  return res;
 }
 
 
 int DestroyMerge (sciPointObj * pthis)
 {
   pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->facetmerge = FALSE;
-  FREE (pMERGE_FEATURE (pthis)->user_data);
-  pMERGE_FEATURE (pthis)->size_of_user_data = 0;
   FREE(pMERGE_FEATURE (pthis)->index_in_entity);
   FREE(pMERGE_FEATURE (pthis)->from_entity);
-  sciDelThisToItsParent (pthis, sciGetParent (pthis));
-  if (sciDelHandle (pthis) == -1)
-    return -1;
-  FREE (sciGetPointerToFeature (pthis));
-  FREE (pthis);
-  return 0;
+  return sciStandardDestroyOperations(pthis) ;
 }
 
 
@@ -591,18 +518,11 @@ int
 DestroyGrayplot (sciPointObj * pthis)
 {
   FREE (pGRAYPLOT_FEATURE (pthis)->pvecx);
-  FREE (pGRAYPLOT_FEATURE (pthis)->user_data);
-  pGRAYPLOT_FEATURE (pthis)->size_of_user_data = 0;
   if (pGRAYPLOT_FEATURE (pthis)->type != 2)
     FREE (pGRAYPLOT_FEATURE (pthis)->pvecy);
   FREE (pGRAYPLOT_FEATURE (pthis)->pvecz);
-  sciDelThisToItsParent (pthis, sciGetParent (pthis));
-  if (sciDelHandle (pthis) == -1)
-    return -1;
-  FREE (sciGetPointerToFeature (pthis));
-  FREE (pthis);
-  /* on peut alors destroyer le parent */
-  return 0;
+  return sciStandardDestroyOperations(pthis) ;
+
 }
 
 
@@ -615,22 +535,13 @@ DestroyAxes (sciPointObj * pthis)
   int i;
   char **str;
 
-  FREE (pAXES_FEATURE (pthis)->user_data);
-  pAXES_FEATURE (pthis)->size_of_user_data = 0;
-  
-  sciDelThisToItsParent (pthis, sciGetParent (pthis));
-  if (sciDelHandle (pthis) == -1)
-    return -1;
   FREE (pAXES_FEATURE(pthis)->vx);
   FREE (pAXES_FEATURE(pthis)->vy);
   str=pAXES_FEATURE(pthis)->str;
   for (i=Max(pAXES_FEATURE(pthis)->nx,pAXES_FEATURE(pthis)->ny)-1;i<0;i--) 
     FREE (pAXES_FEATURE(pthis)->str); 
   FREE (pAXES_FEATURE(pthis)->str);
-  FREE (sciGetPointerToFeature (pthis));
-  FREE (pthis);
-  /* on peut alors destroyer le parent, le vecteur 3d et 2d */
-  return 0;
+  return sciStandardDestroyOperations(pthis) ;
 }
 
 /**DestroyGrayplot
@@ -643,8 +554,6 @@ DestroyAxes (sciPointObj * pthis)
 int
 DestroyFec (sciPointObj * pthis)
 {
-  FREE (pFEC_FEATURE (pthis)->user_data);
-  pFEC_FEATURE (pthis)->size_of_user_data = 0;
   FREE (pFEC_FEATURE (pthis)->pvecx);
   FREE (pFEC_FEATURE (pthis)->pvecy);
   FREE (pFEC_FEATURE (pthis)->pnoeud); 
@@ -652,13 +561,7 @@ DestroyFec (sciPointObj * pthis)
   FREE (pFEC_FEATURE (pthis)->zminmax);  
   FREE (pFEC_FEATURE (pthis)->colminmax);
   FREE (pFEC_FEATURE (pthis)->colout);
-  sciDelThisToItsParent (pthis, sciGetParent (pthis));
-  if (sciDelHandle (pthis) == -1)
-    return -1;
-  FREE (sciGetPointerToFeature (pthis));
-  FREE (pthis);
-  /* on peut alors destroyer le parent */
-  return 0;
+  return sciStandardDestroyOperations(pthis) ;
 }
 
 
@@ -672,9 +575,6 @@ DestroyFec (sciPointObj * pthis)
 int
 DestroySegs (sciPointObj * pthis)
 {  
-  
-  FREE (pSEGS_FEATURE (pthis)->user_data);
-  pSEGS_FEATURE (pthis)->size_of_user_data = 0;
   FREE (pSEGS_FEATURE (pthis)->vx);
   FREE (pSEGS_FEATURE (pthis)->vy); 
   if (pSEGS_FEATURE (pthis)->vz != (double *)NULL) 
@@ -689,31 +589,15 @@ DestroySegs (sciPointObj * pthis)
       FREE(pSEGS_FEATURE (pthis)->vfy); pSEGS_FEATURE (pthis)->vfy = NULL;
       FREE(pSEGS_FEATURE (pthis)->vfz); pSEGS_FEATURE (pthis)->vfz = NULL;
     } 
-  sciDelThisToItsParent (pthis, sciGetParent (pthis)); 
-  if (sciDelHandle (pthis) == -1)
-    return -1;
-  FREE (sciGetPointerToFeature (pthis));
-  FREE (pthis);
-  /* on peut alors destroyer le parent */
-  return 0;
+  return sciStandardDestroyOperations(pthis) ;
 }
 
 /**DestroyCompound
  * @memo This function destroies the Compound and the elementaries structures and only this to destroy all sons use DelGraphicsSon
  */
-int
-DestroyCompound (sciPointObj * pthis)
+int DestroyCompound (sciPointObj * pthis)
 {
-  sciAgreg * ppagreg = pAGREG_FEATURE (pthis);
-
-  FREE (ppagreg->user_data);
-  pAGREG_FEATURE (pthis)->size_of_user_data = 0;
-
-  sciDelThisToItsParent (pthis, sciGetParent (pthis));
-  if (sciDelHandle (pthis) == -1) return -1;
-  FREE (sciGetPointerToFeature (pthis));
-  FREE (pthis);
-  return 0;
+  return sciStandardDestroyOperations(pthis) ;
 }
 
 void DeleteObjs(integer win_num)
@@ -779,17 +663,17 @@ int DestroyLabel (sciPointObj * pthis)
   sciLabel * ppLabel = pLABEL_FEATURE (pthis);
   int textStatus = -1 ;
  
-  sciDelThisToItsParent (pthis, sciGetParent (pthis));
-  if (sciDelHandle (pthis) == -1) { return -1 ; }
+  sciDelThisToItsParent( pthis, sciGetParent(pthis) ) ;
+  if ( sciDelHandle(pthis) == -1 ) { return -1 ; }
   textStatus = deallocateText( ppLabel->text ) ;
   if ( textStatus != 0 )
   {
     return textStatus ;
   }
-  FREE (sciGetPointerToFeature (pthis));
-  FREE (pthis);
-  
-  return 0;
+  ppLabel->text = NULL ;
+  FREE(ppLabel) ;
+  FREE(pthis) ;
+  return 0 ;
 }
 
 int DestroyUimenu (sciPointObj * pthis)
@@ -797,12 +681,7 @@ int DestroyUimenu (sciPointObj * pthis)
   deleteMatrix( pUIMENU_FEATURE (pthis)->label.pStrings ) ;
   FREE (pUIMENU_FEATURE (pthis)->label.callback);
 
-  sciDelThisToItsParent (pthis, sciGetParent (pthis));
-  if (sciDelHandle (pthis) == -1) return -1;
-  FREE (sciGetPointerToFeature (pthis));
-  FREE (pthis);
-  /* on peut alors destroyer le parent */
-  return 0;
+  return sciStandardDestroyOperations(pthis) ;
 }
 
 
@@ -852,14 +731,7 @@ int
 DestroyMenuContext (sciPointObj * pthis)
 {
   sciDelLabelsMenu (pthis);
-  sciDelThisToItsParent (pthis, sciGetParent (pthis));
-  if (sciDelHandle (pthis) == -1)
-    return -1;
-  FREE ((sciGetFontContext(pthis))->pfontname);
-  FREE (sciGetPointerToFeature (pthis));
-  FREE (pthis);
-  /* on peut alors destroyer le parent, le vecteur 3d et 2d */
-  return 0;
+  return sciStandardDestroyOperations(pthis) ;
 }
 
 
@@ -872,14 +744,8 @@ int
 DestroySciMenu (sciPointObj * pthis)
 {
   sciDelLabelsMenu (pthis);
-  sciDelThisToItsParent (pthis, sciGetParent (pthis));
-  if (sciDelHandle (pthis) == -1)
-    return -1;
   FREE ((sciGetFontContext(pthis))->pfontname);
-  FREE (sciGetPointerToFeature (pthis));
-  FREE (pthis);
-  /* on peut alors destroyer le parent, le vecteur 3d et 2d */
-  return 0;
+  return sciStandardDestroyOperations(pthis) ;
 }
 
 
@@ -925,9 +791,12 @@ void clearUserData( sciPointObj * pObj )
   int ** pUserData ;
   int *  pSizeUD   ;
   sciGetPointerToUserData( pObj, &pUserData, &pSizeUD ) ;
-  FREE( *pUserData ) ;
-  *pUserData = NULL ;
-  *pSizeUD = 0 ;
+  if ( pUserData != NULL && *pUserData != NULL )
+  {
+    FREE( *pUserData ) ;
+    *pUserData = NULL ;
+    *pSizeUD = 0 ;
+  }
 }
 /*------------------------------------------------------------------------------------*/
 extern int C2F(deletewin)(integer *number);
@@ -1006,13 +875,42 @@ void CleanPlots(char *unused, integer *winnumber, integer *v3, integer *v4, inte
 }
 
 /*-----------------------------------------------------------------------------------------*/
-int DestroyConsole( sciPointObj * pthis )
+int sciDestroyConsole( sciPointObj * pThis )
 {
-  clearUserData( pthis ) ;
-  sciDelThisToItsParent( pthis, sciGetParent(pthis) ) ;
-  if (sciDelHandle (pthis) == -1) { return -1 ; }
-  FREE( sciGetPointerToFeature(pthis) ) ;
-  FREE(pthis) ;
-  return 0 ;
+  return sciStandardDestroyOperations( pThis ) ;
+}
+/*-----------------------------------------------------------------------------------------*/
+/**
+ * Recurrent destroying actions for objects
+ */
+int sciStandardDestroyOperations( sciPointObj * pThis )
+{
+  int res = 0 ;
+  clearUserData( pThis ) ;
+  sciDelThisToItsParent( pThis, sciGetParent(pThis) ) ;
+  if ( sciDelHandle(pThis) == -1 ) { res = -1 ; }
+  FREE( pThis->pfeatures ) ;
+  FREE( pThis ) ;
+  return res ;
+}
+/*-----------------------------------------------------------------------------------------*/
+int sciDestroyFrame( sciPointObj * pThis )
+{
+  return sciStandardDestroyOperations( pThis ) ;
+}
+/*-----------------------------------------------------------------------------------------*/
+int sciDestroyWindow( sciPointObj * pThis )
+{
+  return sciStandardDestroyOperations( pThis ) ;
+}
+/*-----------------------------------------------------------------------------------------*/
+int sciDestroyWindowFrame( sciPointObj * pThis )
+{
+  return sciStandardDestroyOperations( pThis ) ;
+}
+/*-----------------------------------------------------------------------------------------*/
+int sciDestroyScreen( sciPointObj * pThis )
+{
+  return sciStandardDestroyOperations( pThis ) ;
 }
 /*-----------------------------------------------------------------------------------------*/

@@ -342,7 +342,7 @@ sciSetCurrentSon (sciPointObj * pparent, sciPointObj * pson)
 sciPointObj *
 sciGetCurrentSon (sciPointObj * pobj)
 {
-  return (sciPointObj *) (sciGetRelationship (pobj))->pcurrentson;
+  return sciGetRelationship(pobj)->pcurrentson;
 }
 
 
@@ -486,6 +486,7 @@ sciSons * sciGetLastSons (sciPointObj * pobj)
 {
   return (sciSons *)sciGetRelationship (pobj)->plastsons ;
 }
+
 /*-----------------------------------------------------------------------------------*/
 /**
  * return the next son in the sons list which is accessible, ie which can be seen in the

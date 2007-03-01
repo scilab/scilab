@@ -157,7 +157,15 @@ sciCloneObj (sciPointObj * pobj)
       return CloneRectangle(pobj);
       break;
     case SCI_CONSOLE:
-      return CloneConsole(pobj) ;
+      return sciCloneConsole(pobj) ;
+    case SCI_FRAME:
+      return sciCloneFrame(pobj) ;
+    case SCI_WINDOW:
+      return sciCloneWindow(pobj) ;
+    case SCI_WINDOWFRAME:
+      return sciCloneWindowFrame(pobj) ;
+    case SCI_SCREEN:
+      return sciCloneScreen(pobj) ;
     case SCI_AGREG:
 
     case SCI_SEGS: 
@@ -457,13 +465,85 @@ int cloneFontContext( sciPointObj * pObjSource, sciPointObj * pObjDest )
   return 0 ;
 }
 /*--------------------------------------------------------------------------*/
-sciPointObj * CloneConsole( sciPointObj * pthis )
+sciPointObj * sciCloneConsole( sciPointObj * pthis )
 {
   sciPointObj * newObj = NULL ;
   int posX ;
   int posY ;
 
-  newObj = ConstructConsole( sciGetParent(pthis) ) ;
+  newObj = sciConstructConsole( sciGetParent(pthis) ) ;
+
+  sciInitVisibility( newObj, sciGetVisibility(pthis) ) ;
+  sciGetScreenPosition( pthis, &posX, &posY ) ;
+  sciInitScreenPosition( newObj, posX, posY ) ;
+
+  /* copy user_data */
+  cloneUserData( pthis, newObj ) ;
+
+  return newObj ;
+}
+/*--------------------------------------------------------------------------*/
+sciPointObj * sciCloneFrame( sciPointObj * pthis )
+{
+  sciPointObj * newObj = NULL ;
+  int posX ;
+  int posY ;
+
+  newObj = sciConstructFrame( sciGetParent(pthis) ) ;
+
+  sciInitVisibility( newObj, sciGetVisibility(pthis) ) ;
+  sciGetScreenPosition( pthis, &posX, &posY ) ;
+  sciInitScreenPosition( newObj, posX, posY ) ;
+
+  /* copy user_data */
+  cloneUserData( pthis, newObj ) ;
+
+  return newObj ;
+}
+/*--------------------------------------------------------------------------*/
+sciPointObj * sciCloneWindow( sciPointObj * pthis )
+{
+  sciPointObj * newObj = NULL ;
+  int posX ;
+  int posY ;
+
+  newObj = sciConstructWindow( sciGetParent(pthis) ) ;
+
+  sciInitVisibility( newObj, sciGetVisibility(pthis) ) ;
+  sciGetScreenPosition( pthis, &posX, &posY ) ;
+  sciInitScreenPosition( newObj, posX, posY ) ;
+
+  /* copy user_data */
+  cloneUserData( pthis, newObj ) ;
+
+  return newObj ;
+}
+/*--------------------------------------------------------------------------*/
+sciPointObj * sciCloneWindowFrame( sciPointObj * pthis )
+{
+  sciPointObj * newObj = NULL ;
+  int posX ;
+  int posY ;
+
+  newObj = sciConstructWindowFrame( sciGetParent(pthis) ) ;
+
+  sciInitVisibility( newObj, sciGetVisibility(pthis) ) ;
+  sciGetScreenPosition( pthis, &posX, &posY ) ;
+  sciInitScreenPosition( newObj, posX, posY ) ;
+
+  /* copy user_data */
+  cloneUserData( pthis, newObj ) ;
+
+  return newObj ;
+}
+/*--------------------------------------------------------------------------*/
+sciPointObj * sciCloneScreen( sciPointObj * pthis )
+{
+  sciPointObj * newObj = NULL ;
+  int posX ;
+  int posY ;
+
+  newObj = sciConstructScreen( sciGetParent(pthis) ) ;
 
   sciInitVisibility( newObj, sciGetVisibility(pthis) ) ;
   sciGetScreenPosition( pthis, &posX, &posY ) ;
