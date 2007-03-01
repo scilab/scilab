@@ -66,7 +66,7 @@ static BOOL loadlanguagepref_linux(void)
 			LANGUAGE=(char*)MALLOC(sizeof(char)*LINELENGTHMAX);
 			fscanf(fileR, "%[^\n]", LINE); 
 			sscanf(&LINE[strlen(TAGLANGUAGE)+1],"%s",LANGUAGE);
-			setlanguage(LANGUAGE);
+			setlanguage(LANGUAGE,FALSE,TRUE);
 
 			fclose(fileR);
 
