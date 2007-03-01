@@ -12,7 +12,7 @@
 /* Open Print DialogBox*/
 int C2F(sci_printsetupbox) _PARAMS((char *fname,unsigned long l))
 {
-	static int l1,n1,m1;
+	static int n1;
 	int *paramoutINT=(int*)MALLOC(sizeof(int));
 
 	CheckRhs(0,0);
