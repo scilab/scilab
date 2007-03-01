@@ -8,7 +8,7 @@ src/c/localization.c \
 src/c/setgetlanguage.c \
 src/c/InitializeLocalization.c \
 src/c/loadsavelanguage.c \
-src/c/getentrieshatable.c \
+src/c/getentrieshashtable.c \
 src/c/loadhashtableslocalization.c \
 src/c/TerminateLocalization.c
 
