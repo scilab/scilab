@@ -112,11 +112,12 @@ am__libscicore_la_SOURCES_DIST = src/c/history.c src/c/inffic.c \
 	src/c/returnanan.c src/c/LoadFunctionsTab.c \
 	src/c/with_module.c src/c/loadversion.c src/c/version.c \
 	src/c/stackinfo.c src/c/scirun.c src/c/SCIHOME.c \
-	src/c/warningmode.c src/c/InitializeCore.c src/c/coretable.c \
-	src/c/getarg-hpux.c src/c/getarg.c src/fortran/algebre.f \
-	src/fortran/clunit.f src/fortran/complexify.f \
-	src/fortran/allowptr.f src/fortran/dldsp.f src/fortran/bcol.f \
-	src/fortran/msgs.f src/fortran/getlin.f src/fortran/isany.f \
+	src/c/warningmode.c src/c/InitializeCore.c \
+	src/c/TerminateCore.c src/c/coretable.c src/c/getarg-hpux.c \
+	src/c/getarg.c src/fortran/algebre.f src/fortran/clunit.f \
+	src/fortran/complexify.f src/fortran/allowptr.f \
+	src/fortran/dldsp.f src/fortran/bcol.f src/fortran/msgs.f \
+	src/fortran/getlin.f src/fortran/isany.f \
 	src/fortran/hmcreate.f src/fortran/nextj.f \
 	src/fortran/scilab.f src/fortran/functionsforbasout.f \
 	src/fortran/setgetmode.f src/fortran/errmsgf.f \
@@ -267,7 +268,8 @@ am__objects_3 = libscicore_la-history.lo libscicore_la-inffic.lo \
 	libscicore_la-version.lo libscicore_la-stackinfo.lo \
 	libscicore_la-scirun.lo libscicore_la-SCIHOME.lo \
 	libscicore_la-warningmode.lo libscicore_la-InitializeCore.lo \
-	libscicore_la-coretable.lo $(am__objects_1) $(am__objects_2)
+	libscicore_la-TerminateCore.lo libscicore_la-coretable.lo \
+	$(am__objects_1) $(am__objects_2)
 @IS_HPUX_TRUE@am__objects_4 = fgetarg-hpux.lo
 @IS_HPUX_FALSE@am__objects_5 = fgetarg.lo
 am__objects_6 = algebre.lo clunit.lo complexify.lo allowptr.lo \
@@ -544,8 +546,9 @@ CORE_C_SOURCES = src/c/history.c src/c/inffic.c src/c/cs2st.c \
 	src/c/returnanan.c src/c/LoadFunctionsTab.c \
 	src/c/with_module.c src/c/loadversion.c src/c/version.c \
 	src/c/stackinfo.c src/c/scirun.c src/c/SCIHOME.c \
-	src/c/warningmode.c src/c/InitializeCore.c src/c/coretable.c \
-	$(am__append_2) $(am__append_4)
+	src/c/warningmode.c src/c/InitializeCore.c \
+	src/c/TerminateCore.c src/c/coretable.c $(am__append_2) \
+	$(am__append_4)
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f src/fortran/clunit.f \
 	src/fortran/complexify.f src/fortran/allowptr.f \
 	src/fortran/dldsp.f src/fortran/bcol.f src/fortran/msgs.f \
@@ -909,6 +912,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-SciEnv.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-Scierror.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-SendScilabJobs.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-TerminateCore.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-addinter.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-banier.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-basout.Plo@am__quote@
@@ -1518,6 +1522,13 @@ libscicore_la-InitializeCore.lo: src/c/InitializeCore.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/InitializeCore.c' object='libscicore_la-InitializeCore.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-InitializeCore.lo `test -f 'src/c/InitializeCore.c' || echo '$(srcdir)/'`src/c/InitializeCore.c
+
+libscicore_la-TerminateCore.lo: src/c/TerminateCore.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-TerminateCore.lo -MD -MP -MF $(DEPDIR)/libscicore_la-TerminateCore.Tpo -c -o libscicore_la-TerminateCore.lo `test -f 'src/c/TerminateCore.c' || echo '$(srcdir)/'`src/c/TerminateCore.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-TerminateCore.Tpo $(DEPDIR)/libscicore_la-TerminateCore.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/TerminateCore.c' object='libscicore_la-TerminateCore.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-TerminateCore.lo `test -f 'src/c/TerminateCore.c' || echo '$(srcdir)/'`src/c/TerminateCore.c
 
 libscicore_la-coretable.lo: src/c/coretable.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-coretable.lo -MD -MP -MF $(DEPDIR)/libscicore_la-coretable.Tpo -c -o libscicore_la-coretable.lo `test -f 'src/c/coretable.c' || echo '$(srcdir)/'`src/c/coretable.c
