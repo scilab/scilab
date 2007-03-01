@@ -1,0 +1,15 @@
+<!ELEMENT LOCALIZATION (entry*)>
+
+<!ELEMENT META (#PCDATA)  	 >
+
+<!ATTLIST META 
+CATEGORY 	CDATA 	"Scilab localization " 	 
+VERSION_SCI 	CDATA 	"5.0" 	 
+VERSION_DOC 	CDATA 	"1.0" 	 
+AUTHOR 	CDATA 	"Allan CORNET INNRIA 2007" 	 
+ >
+
+<!ELEMENT entry (tag,string) >
+
+<!ELEMENT tag (#PCDATA)>
+<!ELEMENT string (#PCDATA)>

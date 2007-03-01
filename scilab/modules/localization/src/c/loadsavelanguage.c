@@ -2,7 +2,7 @@
 /* INRIA 2007 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#ifdef _MSC_VER
+#if _MSC_VER
 #include <Windows.h>
 #include "version.h"
 #endif 
@@ -13,6 +13,7 @@
 #include "setgetlanguage.h"
 #include "SCIHOME.h"
 #include "MALLOC.h"
+#include "iconv.h"
 /*-----------------------------------------------------------------------------------*/ 
 #define LINELENGTHMAX 1024
 #define TAGLANGUAGE "LANGUAGE"
@@ -111,7 +112,7 @@ static BOOL savelanguagepref_linux(void)
 #ifndef _MSC_VER
 static char *getfilenamelanguagepref(void)
 {
-#ifdef _MSC_VER
+#if _MSC_VER
 #define namelanguagepref "\\language.ini"
 #else
 #define namelanguagepref "/.language"
@@ -129,7 +130,7 @@ static char *getfilenamelanguagepref(void)
 }
 #endif
 /*-----------------------------------------------------------------------------------*/ 
-#ifdef _MSC_VER
+#if _MSC_VER
 static BOOL loadlanguagepref_windows(void)
 {
 	BOOL bOK=FALSE;
@@ -154,7 +155,7 @@ static BOOL loadlanguagepref_windows(void)
 
 			if (LANGUAGE)
 			{
-				setlanguage(LANGUAGE);
+				setlanguage(LANGUAGE,FALSE,TRUE);
 				bOK=TRUE;
 				FREE(LANGUAGE);
 				LANGUAGE=NULL;
@@ -166,7 +167,7 @@ static BOOL loadlanguagepref_windows(void)
 }
 #endif
 /*-----------------------------------------------------------------------------------*/ 
-#ifdef _MSC_VER
+#if _MSC_VER
 static BOOL savelanguagepref_windows(void)
 {
 	BOOL bOK=FALSE;
@@ -180,7 +181,6 @@ static BOOL savelanguagepref_windows(void)
 	char Clef[LINELENGTHMAX];
 	char *LANGUAGE=NULL;
 	int LanguageCode=0;
-	LONG TstRegCreateKeyEx=0;
 
 	LANGUAGE=getlanguage();
 	LanguageCode=getcodefromlanguage(LANGUAGE);

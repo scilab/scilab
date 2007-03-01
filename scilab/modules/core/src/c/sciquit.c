@@ -7,111 +7,39 @@
 	#include <sys/ieeefp.h>
 	#endif
 #endif
-
-#ifdef _MSC_VER
-#include "wtext.h"
-#endif
-
-#include "xscion.h"
-#include "MALLOC.h"
 #include "sciquit.h"
-#include "getmodules.h"
-#include "scimem.h" /* freegmem */
-#include "fromjava.h" /* IsFromJava */
-#include "hashtable_core.h" /* destroy_hashtable_scilab_functions */
-#include "tmpdir.h" /* tmpdirc */
-#include "realmain.h" /* Get_no_startup_flag */
-#include "inffic.h" /* get_sci_data_strings */
-#include "scirun.h" /* scirun */
-
-#include "../../../graphics/includes/DestroyObjects.h"
-#include "../../../graphics/includes/graphicModuleLoad.h"
 /*-----------------------------------------------------------------------------------*/ 
-extern int C2F(deletewin)(integer *number);
-
-#ifdef _MSC_VER
-extern LPTW GetTextWinScilab(void);
-extern BOOL IsWindowInterface(void);
-extern void RestoreConsoleColors(void);
-extern int TerminateJVMs(void);
-extern int DisposeHashTableScilabErrors(void);
-extern int IsFromC(void);
-#endif
-
+#include "TerminateCore.h"
+#include "../../../graphics/includes/TerminateGraphics.h"
 #ifdef WITH_TK
-extern int CloseTCLsci(void);
+#include "../../../tclsci/includes/TerminateTclTk.h"
+#endif
+#include "../../../gui/includes/TerminateGui.h"
+#include "../../../localization/includes/TerminateLocalization.h"
+/*-----------------------------------------------------------------------------------*/ 
+#ifdef _MSC_VER
+extern int TerminateJVMs(void);
 #endif
 /*-----------------------------------------------------------------------------------*/ 
-static int CloseConsoleGUI(void);
-static int CloseConsoleGUI(void);
-
-int C2F(sciquit)(void);
-void sci_exit(int n);
-/*-----------------------------------------------------------------------------------*/ 
-static int CloseConsoleGUI(void)
-{
-	#ifdef _MSC_VER
-	LPTW lptw=GetTextWinScilab();
-	TextClose (lptw);
-	TextMessage ();		/* process messages */
-	#else
-
-	#endif
-	return 0;
-}
-/*-----------------------------------------------------------------------------------*/
 int ExitScilab(void)
 {
-    if ( Get_no_startup_flag() == 0) 
-    {
-      char *quit_script =  get_sci_data_strings(5);
-      C2F(scirun)(quit_script,strlen(quit_script));
-    }
+	TerminateCorePart1();
 
-    closeGraphicModule() ;
+	TerminateGraphics();
 
-
-	#ifdef _MSC_VER
-		if ( IsWindowInterface() ) 
-		{
-			CloseConsoleGUI();
-		}
-		else
-		{
-			if ( !IsFromC() && !IsFromJava() )  RestoreConsoleColors();
-		}
-	#else
-        {
-          int i = 0 ;
-	  C2F (xscion) (&i);
-	  if (i != 0) CloseConsoleGUI();
-        }
-	#endif
-	
-	#ifdef _MSC_VER /* Bug sous Linux lors de la liberation memoire */
-		C2F(freegmem)();
-		C2F(freemem)();
-	#endif
-
+	TerminateGUI();
+  
 	#ifdef WITH_TK
-		CloseTCLsci();
+	TerminateTclTk();
 	#endif
 
 	#ifdef _MSC_VER
-		TerminateJVMs();
+	TerminateJVMs();
 	#endif
 
-	DisposeModulesInfo();
+	TerminateLocalization();
 
-	#ifdef _MSC_VER
-	DisposeHashTableScilabErrors();
-	#endif
-
-	destroy_hashtable_scilab_functions();
-
-
-	/** clean tmpfiles **/
-	C2F(tmpdirc)();
+	TerminateCorePart2();
 
 	return 0;
 }

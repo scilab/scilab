@@ -1,9 +1,9 @@
-#include "gw_localization.h"
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#ifdef _MSC_VER
+#include "gw_localization.h"
+#if _MSC_VER
 #include <Windows.h>
 #include "ExceptionMessage.h"
 #endif
@@ -14,13 +14,16 @@ static LocalizationTable Tab[]=
 	{C2F(sci_setlanguage),"setlanguage"},
 	{C2F(sci_getlanguage),"getlanguage"},
 	{C2F(sci_getlanguagealias),"getlanguagealias"},
-	{C2F(sci_getlanguagestable),"getlanguagestable"}
+	{C2F(sci_getlanguagestable),"getlanguagestable"},
+	{C2F(sci_gettext),"gettext"},
+	{C2F(sci_addtext),"addtext"},
+	{C2F(sci_removetext),"removetext"}
 };
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_localization)()
 {  
 	Rhs = Max(0, Rhs);
-#ifdef _MSC_VER
+#if _MSC_VER
 #ifndef _DEBUG
 	_try
 	{

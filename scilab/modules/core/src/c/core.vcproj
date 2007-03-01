@@ -702,6 +702,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\TerminateCore.c"
+				>
+			</File>
+			<File
 				RelativePath=".\texmacs.c"
 				>
 			</File>
@@ -884,6 +888,10 @@
 			</File>
 			<File
 				RelativePath=".\stackinfo.h"
+				>
+			</File>
+			<File
+				RelativePath=".\TerminateCore.h"
 				>
 			</File>
 			<File

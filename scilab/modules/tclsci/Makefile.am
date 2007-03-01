@@ -13,7 +13,8 @@ src/c/TclEvents.c \
 src/c/setenvtcl.c \
 src/c/with_tk.c \
 src/c/TclUiSet.c \
-src/c/InitializeTclTk.c
+src/c/InitializeTclTk.c \
+src/c/TerminateTclTk.c
 
 
 GATEWAY_C_SOURCES =  sci_gateway/sci_TCL_CreateSlave.c \

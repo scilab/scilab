@@ -8,6 +8,7 @@
 #include "MALLOC.h"
 #include "tableslanguages.h"
 #include "loadsavelanguage.h"
+#include "loadhashtableslocalization.h"
 /*-----------------------------------------------------------------------------------*/ 
 static char CURRENTLANGUAGESTRING[LengthAlphacode]=SCILABDEFAULTLANGUAGE;
 static int  CURRENTLANGUAGECODE=SCILABDEFAULTLANGUAGECODE;
@@ -18,45 +19,45 @@ static BOOL setlanguagecode(char *lang);
 static char *FindAlias(char *lang);
 static char *GetLanguageFromAlias(char *langAlias);
 /*-----------------------------------------------------------------------------------*/ 
-BOOL setlanguage(char *lang)
+extern int C2F(syncexec)(char *str, int *ns, int *ierr, int *seq, long int str_len);
+/*-----------------------------------------------------------------------------------*/ 
+BOOL setlanguage(char *lang,BOOL updateHelpIndex, BOOL updateMenus)
 {
 	BOOL bOK=FALSE;
 	if (lang)
 	{
-		char LANGUAGETMP[LengthAlphacode];
-		if (strlen(lang)==2)
+		if ( LanguageIsOK(lang) )
 		{
-			char *ptrLang=NULL;
-			ptrLang=GetLanguageFromAlias(lang);
-			if (ptrLang)
+			if (needtochangelanguage(lang))
 			{
-				strcpy(LANGUAGETMP,ptrLang);
-				FREE(ptrLang);
-				ptrLang=NULL;
-			}
-		}
-		else if (strcmp(lang,"eng")==0) /* compatibility previous scilab */
-		{
-			char *ptrLang=NULL;
-			ptrLang=GetLanguageFromAlias("en");
-			if (ptrLang)
-			{
-				strcpy(LANGUAGETMP,ptrLang);
-				FREE(ptrLang);
-				ptrLang=NULL;
-			}
-		}
-		else
-		{
-			strcpy(LANGUAGETMP,lang);
-		}
+				/* change language */
+				strcpy(CURRENTLANGUAGESTRING,lang);
+				setlanguagecode(lang);
 
-		if ( LanguageIsOK(LANGUAGETMP) )
-		{
-			strcpy(CURRENTLANGUAGESTRING,LANGUAGETMP);
-			setlanguagecode(LANGUAGETMP);
-			savelanguagepref();
-			bOK=TRUE;
+				if (updateHelpIndex)
+				{
+					#define UPDATESCILABHELPMACRO "try update_scilab_help();catch end;" 
+					integer ierr ;
+					integer seq = 1 ;
+					int macroCallLength=0;
+
+					/* update help index */
+					macroCallLength = (int)strlen(UPDATESCILABHELPMACRO);
+					C2F(syncexec)(UPDATESCILABHELPMACRO,&macroCallLength,&ierr,&seq, macroCallLength);
+				}
+
+				/* save language pref. */
+				savelanguagepref();
+
+				/* update hash tables messages , errors , menus */
+				LoadHashTablesLocalization(lang);
+
+				if (updateMenus)
+				{
+					/* changes menus : to do after */
+				}
+				bOK=TRUE;
+			}
 		}
 	}
 	return bOK;
@@ -179,5 +180,39 @@ static char *GetLanguageFromAlias(char *langAlias)
 char *getlanguagealias(void)
 {
 	return FindAlias(CURRENTLANGUAGESTRING);
+}
+/*-----------------------------------------------------------------------------------*/ 
+int comparelanguages(char *language1,char *language2)
+{
+	return strcmp(language1,language2);
+}
+/*-----------------------------------------------------------------------------------*/ 
+BOOL needtochangelanguage(char *language)
+{
+	BOOL bOK=FALSE;
+	char *currentlanguage=NULL;
+
+	currentlanguage=getlanguage();
+
+	if (comparelanguages(language,currentlanguage)) bOK=TRUE;
+
+	if (currentlanguage) {FREE(currentlanguage);currentlanguage=NULL;}
+
+	return bOK;
+}
+/*-----------------------------------------------------------------------------------*/ 
+char *convertlanguagealias(char *strlanguage)
+{
+	char *correctlanguage=NULL;
+
+	if (strlen(strlanguage)==2)
+	{
+		correctlanguage=GetLanguageFromAlias(strlanguage);
+	}
+	else if (strcmp(strlanguage,"eng")==0) /* compatibility previous scilab */
+	{
+		correctlanguage=GetLanguageFromAlias("en");
+	}
+	return correctlanguage;
 }
 /*-----------------------------------------------------------------------------------*/ 

@@ -54,7 +54,8 @@ src/c/xmen_dialog.c \
 src/c/xmen_Utils.c \
 src/c/men_choice.c \
 src/c/men_print.c \
-src/c/guitable.c
+src/c/guitable.c \
+src/c/TerminateGui.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_x_choice.c \
 sci_gateway/c/sci_clc.c \

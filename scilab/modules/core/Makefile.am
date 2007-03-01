@@ -70,6 +70,7 @@ src/c/scirun.c \
 src/c/SCIHOME.c \
 src/c/warningmode.c \
 src/c/InitializeCore.c \
+src/c/TerminateCore.c \
 src/c/coretable.c
 
 

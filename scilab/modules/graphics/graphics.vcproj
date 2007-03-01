@@ -1794,6 +1794,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\TerminateGraphics.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\Vect2Matrix.c"
 				>
 			</File>
@@ -2464,6 +2468,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\StringMatrix.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\TerminateGraphics.h"
 				>
 			</File>
 			<File

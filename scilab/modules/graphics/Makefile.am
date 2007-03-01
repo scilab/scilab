@@ -331,7 +331,8 @@ src/c/handleDrawing/drawRectangleEntity.c \
 src/c/handleDrawing/drawSegsEntity.c \
 src/c/handleDrawing/drawSubWinEntity.c \
 src/c/handleDrawing/drawSurfaceEntity.c \
-src/c/handleDrawing/drawTextEntity.c
+src/c/handleDrawing/drawTextEntity.c \
+src/c/TerminateGraphics.c
 
 
 GATEWAY_C_SOURCES = sci_gateway/sci_swap_handles.c \

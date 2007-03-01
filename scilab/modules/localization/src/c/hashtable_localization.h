@@ -6,6 +6,7 @@
 #define __HASHTABLE_LOCALIZATION_H__
 /*-----------------------------------------------------------------------------------*/ 
 #include "hashtable.h"
+#include "machine.h" /* BOOL */
 #include "MALLOC.h"
 #include <stdlib.h>
 
@@ -32,6 +33,8 @@ char *SearchHashtable_string(struct hashtable *hash_table, const char* key);
 /* Insert a element in Hashtable */
 int InsertHashtable_string(struct hashtable *hash_table,struct key_string *k, struct value_string *v);
 
+/* Remove a element in Hastable */
+BOOL RemoveHastable_string(struct hashtable *hash_table, const char* key);
 /*-----------------------------------------------------------------------------------*/ 
 #endif /* __HASHTABLE_LOCALIZATION_H__ */
 /*-----------------------------------------------------------------------------------*/ 

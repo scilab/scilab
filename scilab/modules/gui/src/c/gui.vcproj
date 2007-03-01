@@ -270,6 +270,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\TerminateGui.c"
+				>
+			</File>
+			<File
 				RelativePath=".\wmen_choice.c"
 				>
 			</File>
@@ -328,6 +332,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\sci_tohome.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\TerminateGui.h"
 				>
 			</File>
 			<File

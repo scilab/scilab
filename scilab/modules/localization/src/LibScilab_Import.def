@@ -22,5 +22,9 @@ EXPORTS
  getSCIHOME
  getWarningMode
  syncexec_
+ FileExist
+ getmodules
+ 
+ 
  
  

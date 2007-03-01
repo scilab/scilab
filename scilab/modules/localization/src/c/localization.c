@@ -3,209 +3,99 @@
 /* HUANG Xu */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
+#include <stdio.h>
 #include "localization.h"
 #include "MALLOC.h" /* MALLOC */
-
 /*-----------------------------------------------------------------------------------*/ 
-#define LENGTH_OUTPUT 1024
 static int count=0;//count the number of the #text and type==3 node 
-
 static char *Key_String=NULL;
 static char *Key_Value=NULL;
 
-static char strBufOut[LENGTH_OUTPUT];
-
 static struct hashtable *Table_Scilab_Errors=NULL;
+static struct hashtable *Table_Scilab_Messages=NULL;
+static struct hashtable *Table_Scilab_Menus=NULL;
 
 static char *ReplaceChars(char *s1, char *s2, char *s3);
-char* ConvertEncoding(char *encodingFrom, char *encodingTo, char* inputStr);
-void ProcessNode(xmlTextReaderPtr reader, struct hashtable *table, char *encoding);
-char *GetXmlFileEncoding(const char *filename);
-
+static char *QueryString(struct hashtable *Table,char *Tag);
 /*-----------------------------------------------------------------------------------*/ 
-char* ConvertEncoding(char *encodingFrom, char *encodingTo, char* inputStr)
+BOOL AppendHashTableLocalization(struct hashtable *Table,char *Tag,char* MsgStr)
 {
+	BOOL bOK=FALSE;
+	struct key_string *k=NULL;
+	struct value_string *v=NULL;
+	char *Key_Tag=NULL;
+	char *Key_Value=NULL;
 
-  char * outputStr;
-  size_t inputLen, outputLen, result;
+	k=(struct key_string*)MALLOC(sizeof(struct key_string));
+	v=(struct value_string*)MALLOC(sizeof(struct value_string));
 
-  iconv_t c_pt;
-  if ((c_pt = iconv_open(encodingTo, encodingFrom)) == (iconv_t)(-1))
-  {
-    printf("iconv_open failed!\n");
-    return NULL;
-  }
-  iconv(c_pt, NULL, NULL, NULL, NULL);
+	Key_Tag=(char*)MALLOC(sizeof(char)*(strlen(Tag)+1));
+	Key_Value=(char*)MALLOC(sizeof(char)*(strlen(MsgStr)+1));
 
-  inputLen = strlen(inputStr) + 1;
-  outputLen = LENGTH_OUTPUT;
-  outputStr = strBufOut;
-  result = iconv(c_pt, &inputStr, &inputLen, &outputStr, &outputLen);
-
-  if (result == -1)
-  {
-    return NULL;
-  }
-  
-  iconv_close(c_pt);
-  return strBufOut;
-}
-/*-----------------------------------------------------------------------------------*/ 
-void ProcessNode(xmlTextReaderPtr reader, struct hashtable *table, char *encoding) 
-{
-	if(xmlTextReaderNodeType(reader)==3)//to get all nodes whose type is 3(#text node)
+	if (k && v && Key_Tag && Key_Value)
 	{
+		strcpy(Key_Tag,Tag);
+		strcpy(Key_Value,MsgStr);
 
-		
-		const char *node_value;
-		count++;
-		
-		if((strcmp("utf-8", encoding)==0)||(strcmp("UTF-8", encoding)==0))
-		{
-			node_value=(const char *)xmlTextReaderConstValue(reader);
-		}
-		else
-		{
-			node_value=ConvertEncoding("UTF-8",encoding,(char *)xmlTextReaderConstValue(reader));
-		}
-		
-		if((count%2)!=0)//odd, tag
-		{
-			Key_String=(char *)MALLOC(strlen(node_value)+1);
-			strcpy(Key_String,node_value);
-		}
-		else//even, string
-		{
-			struct key_string *k;
-			struct value_string *v;
+		k->Key_String=Key_Tag;
+		v->Value_String=Key_Value;
 
-			Key_Value=(char *)MALLOC(strlen(node_value)+1);
-			strcpy(Key_Value,node_value);
+		if (InsertHashtable_string(Table,k, v)) bOK=TRUE;
 
-			k=(struct key_string*)MALLOC(sizeof(struct key_string));
-			v=(struct value_string*)MALLOC(sizeof(struct value_string));
-
-			k->Key_String=Key_String;
-			v->Value_String=Key_Value;
-		
-			InsertHashtable_string(table,k, v);
-		}
 	}
-}
-/*-----------------------------------------------------------------------------------*/
-char *GetXmlFileEncoding(const char *filename)
-{
-	FILE *stream;
-	char *encoding;
-	encoding=(char *)MALLOC(sizeof(char)*32);
-	
-	if( (stream  = fopen(filename, "r" )) != NULL ) // C4996
-	{
-		char FirstLine[256];
-		if( fgets( FirstLine, 256, stream ) == NULL)
-		{
-	        printf( "fgets error\n" );
-			return NULL;
-		}
-	    else
-		{
-			char *pEncodingStart;
-			char *pQuotationStart;
-			char *pQuotationEnd;
-			char *pTemp;
-			size_t length;
-
-			pEncodingStart=strstr(FirstLine, "encoding");
-			pQuotationStart=strchr(pEncodingStart,'"');
-			pTemp=pQuotationStart+1;
-			pQuotationEnd=strchr(pTemp,'"');
-			length=pQuotationEnd-pTemp;
-			strncpy(encoding, pTemp, length);
-			strcpy(encoding+length,"\0");
-		}
-		fclose( stream );
-	}
-	else
-	{
-		printf( "ERROR:xmlfile %s was not opened or xmlfile %s doesn't exist\n", filename, filename);//what to add to exit the whole program???
-	}
-
-	if(encoding==NULL)
-	{
-		strcpy(encoding,"utf-8");
-	}
-	return encoding;
-
-}
-/*-----------------------------------------------------------------------------------*/
-IMPORT_EXPORT_LOCALIZATION_DLL int AppendXmlFile(const char *filename, struct hashtable *table)
-{
-	int bOK=0;
-    xmlTextReaderPtr reader;
-    int ret;
-	char *encoding=GetXmlFileEncoding(filename);
-
-	reader = xmlReaderForFile(filename, encoding, 0);
-
-    if (reader != NULL) 
-	{
-        ret = xmlTextReaderRead(reader);
-        while (ret == 1)
-		{
-            ProcessNode(reader, table, encoding);
-            ret = xmlTextReaderRead(reader);
-        }
-
-        xmlFreeTextReader(reader);
-		/*
-		* Cleanup function for the XML library.
-		*/
-		xmlCleanupParser();
-		/*
-		* this is to debug memory for regression tests
-		*/
-		xmlMemoryDump();
-
-        if (ret != 0) 
-		{
-            bOK=0;
-		}
-		else
-		{
-			bOK=1;
-		}
-	}
-	else 
-	{
-		bOK=0;
-	}
-	if (encoding) {FREE(encoding);encoding=NULL;}
 	return bOK;
-	
+
 }
-/*-----------------------------------------------------------------------------------*/ 
-IMPORT_EXPORT_LOCALIZATION_DLL struct hashtable *GetHashTableScilabErrors(void)
+/*-----------------------------------------------------------------------------------*/
+struct hashtable *GetHashTableScilabErrors(void)
 {
 	return Table_Scilab_Errors;
 }
 /*-----------------------------------------------------------------------------------*/ 
-IMPORT_EXPORT_LOCALIZATION_DLL int InitializeHashTableScilabErrors(char* SCIPATH)
+struct hashtable *GetHashTableScilabMessages(void)
 {
-	char *FileLanguage=NULL;
-	Table_Scilab_Errors=CreateHashtable_string();
-
-	FileLanguage=(char*)MALLOC( (strlen(SCIPATH)+strlen("/modules/localization/xml/errors.xml")+1)*sizeof(char));
-	strcpy(FileLanguage,SCIPATH);
-	strcat(FileLanguage,"/modules/localization/xml/errors.xml");
-
-	AppendXmlFile(FileLanguage, Table_Scilab_Errors);
-
-	FREE(FileLanguage);
-	
-	return 0;
+	return Table_Scilab_Messages;
 }
 /*-----------------------------------------------------------------------------------*/ 
-IMPORT_EXPORT_LOCALIZATION_DLL int DisposeHashTableScilabErrors(void)
+struct hashtable *GetHashTableScilabMenus(void)
+{
+	return Table_Scilab_Menus;
+}
+/*-----------------------------------------------------------------------------------*/ 
+BOOL InitializeHashTableScilabErrors(void)
+{
+	BOOL bOK=FALSE;
+
+	Table_Scilab_Errors=CreateHashtable_string();
+	if (Table_Scilab_Errors) bOK=TRUE;
+	else bOK=FALSE;
+
+	return bOK;
+}
+/*-----------------------------------------------------------------------------------*/ 
+BOOL InitializeHashTableScilabMessages(void)
+{
+	BOOL bOK=FALSE;
+
+	Table_Scilab_Messages=CreateHashtable_string();
+	if (Table_Scilab_Messages) bOK=TRUE;
+	else bOK=FALSE;
+
+	return bOK;
+}
+/*-----------------------------------------------------------------------------------*/ 
+BOOL InitializeHashTableScilabMenus(void)
+{
+	BOOL bOK=FALSE;
+
+	Table_Scilab_Menus=CreateHashtable_string();
+	if (Table_Scilab_Menus) bOK=TRUE;
+	else bOK=FALSE;
+
+	return bOK;
+}
+/*-----------------------------------------------------------------------------------*/ 
+int DisposeHashTableScilabErrors(void)
 {
 	if (Table_Scilab_Errors)
 	{
@@ -215,11 +105,68 @@ IMPORT_EXPORT_LOCALIZATION_DLL int DisposeHashTableScilabErrors(void)
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 
+int DisposeHashTableScilabMessages(void)
+{
+	if (Table_Scilab_Messages)
+	{
+		hashtable_destroy( Table_Scilab_Messages, 0 ) ;
+		Table_Scilab_Messages=NULL;
+	}
+	return 0;
+}
+/*-----------------------------------------------------------------------------------*/ 
+int DisposeHashTableScilabMenus(void)
+{
+	if (Table_Scilab_Menus)
+	{
+		hashtable_destroy(Table_Scilab_Menus, 0 ) ;
+		Table_Scilab_Menus=NULL;
+	}
+	return 0;
+}
+/*-----------------------------------------------------------------------------------*/ 
 IMPORT_EXPORT_LOCALIZATION_DLL char *QueryStringError(char *Tag)
 {	
+	return QueryString(Table_Scilab_Errors,Tag);
+}
+/*-----------------------------------------------------------------------------------*/ 
+IMPORT_EXPORT_LOCALIZATION_DLL char *QueryStringMessage(char *Tag)
+{
+	return QueryString(Table_Scilab_Messages,Tag);
+}
+/*-----------------------------------------------------------------------------------*/ 
+IMPORT_EXPORT_LOCALIZATION_DLL char *QueryStringMenu(char *Tag)
+{
+	return QueryString(Table_Scilab_Menus,Tag);
+}
+/*-----------------------------------------------------------------------------------*/ 
+static char *ReplaceChars(char *S1, char *S2, char *S3) 
+{
+	char *buffer=NULL;
+
+	if ( (S1) && (strlen(S1)>0) )
+	{
+		char *p=NULL;
+		buffer = (char*)MALLOC((strlen(S1)*2)*sizeof(char));
+		if(!(p = strstr(S1, S2))) 
+		{
+			sprintf(buffer,"%s",S1);
+			return buffer;
+		}
+
+		strncpy(buffer, S1, p-S1);
+		buffer[p-S1] = '\0';
+
+		sprintf(buffer+(p-S1), "%s%s", S3, p+strlen(S2));
+	}
+	return buffer;
+}
+/*-----------------------------------------------------------------------------------*/ 
+static char *QueryString(struct hashtable *Table,char *Tag)
+{
 	char oldpiece[8];
 	char newpiece[8];
-	char *StringError=NULL;
+	char *RetString=NULL;
 	char *StringWithoutSomeChars=NULL;
 
 	if (strcmp(Tag,"\r\n"))
@@ -229,41 +176,22 @@ IMPORT_EXPORT_LOCALIZATION_DLL char *QueryStringError(char *Tag)
 		strcpy(newpiece,"\\r\\n");
 		StringWithoutSomeChars=ReplaceChars( Tag,oldpiece,newpiece);
 
-		StringError=SearchHashtable_string(Table_Scilab_Errors,StringWithoutSomeChars);
-		if (StringWithoutSomeChars) FREE(StringWithoutSomeChars);
-
-		if (StringError)
+		if (StringWithoutSomeChars)
 		{
-			/* Replace \\r\\n by \r\n */
-			strcpy(oldpiece,"\\r\\n");
-			strcpy(newpiece,"\r\n");
-			StringWithoutSomeChars=ReplaceChars(StringError,oldpiece,newpiece);
-			if (StringError) FREE(StringError);
-			StringError = StringWithoutSomeChars;
+			RetString=SearchHashtable_string(Table,StringWithoutSomeChars);
+			if (StringWithoutSomeChars) FREE(StringWithoutSomeChars);
+
+			if (RetString)
+			{
+				/* Replace \\r\\n by \r\n */
+				strcpy(oldpiece,"\\r\\n");
+				strcpy(newpiece,"\r\n");
+				StringWithoutSomeChars=ReplaceChars(RetString,oldpiece,newpiece);
+				if (RetString) FREE(RetString);
+				RetString = StringWithoutSomeChars;
+			}
 		}
 	}
-	
-	return StringError;
-}
-/*-----------------------------------------------------------------------------------*/ 
-static char *ReplaceChars(char *S1, char *S2, char *S3) 
-{
-	char *buffer=NULL;
-	char *p=NULL;
-
-	buffer = (char*)MALLOC((strlen(S1)*2)*sizeof(char));
-
-	if(!(p = strstr(S1, S2))) 
-	{
-		sprintf(buffer,"%s",S1);
-		return buffer;
-	}
-
-	strncpy(buffer, S1, p-S1);
-	buffer[p-S1] = '\0';
-
-	sprintf(buffer+(p-S1), "%s%s", S3, p+strlen(S2));
-
-	return buffer;
+	return RetString;
 }
 /*-----------------------------------------------------------------------------------*/ 

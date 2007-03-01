@@ -1,13 +1,11 @@
 /*-----------------------------------------------------------------------------------*/ 
 /* INRIA 2006 */
 /* HUANG Xu */
+/* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
 #ifndef __LOCALIZATION_H__
 #define __LOCALIZATION_H__
 /*-----------------------------------------------------------------------------------*/ 
-#include "libxml/xmlreader.h"
-#include <string.h>
-#include <iconv.h>
 #include "hashtable_localization.h"
 /*-----------------------------------------------------------------------------------*/ 
 #ifdef _MSC_VER
@@ -20,13 +18,23 @@
 	#define IMPORT_EXPORT_LOCALIZATION_DLL extern 
 #endif
 /*-----------------------------------------------------------------------------------*/ 
-/*load the xmlfile into the hashtable*/
-IMPORT_EXPORT_LOCALIZATION_DLL int AppendXmlFile(const char *filename, struct hashtable *table);
-/*return pointer on HashTable Scilab Errors*/
-IMPORT_EXPORT_LOCALIZATION_DLL struct hashtable *GetHashTableScilabErrors(void);
-IMPORT_EXPORT_LOCALIZATION_DLL int InitializeHashTableScilabErrors(char* SCIPATH);
-IMPORT_EXPORT_LOCALIZATION_DLL int DisposeHashTableScilabErrors(void);
 IMPORT_EXPORT_LOCALIZATION_DLL char *QueryStringError(char *Tag);
+IMPORT_EXPORT_LOCALIZATION_DLL char *QueryStringMessage(char *Tag);
+IMPORT_EXPORT_LOCALIZATION_DLL char *QueryStringMenu(char *Tag);
+/*-----------------------------------------------------------------------------------*/ 
+struct hashtable *GetHashTableScilabErrors(void);
+struct hashtable *GetHashTableScilabMessages(void);
+struct hashtable *GetHashTableScilabMenus(void);
+/*-----------------------------------------------------------------------------------*/ 
+BOOL InitializeHashTableScilabErrors(void);
+BOOL InitializeHashTableScilabMessages(void);
+BOOL InitializeHashTableScilabMenus(void);
+/*-----------------------------------------------------------------------------------*/ 
+int DisposeHashTableScilabErrors(void);
+int DisposeHashTableScilabMessages(void);
+int DisposeHashTableScilabMenus(void);
+/*-----------------------------------------------------------------------------------*/ 
+BOOL AppendHashTableLocalization(struct hashtable *Table,char *Tag,char* MsgStr);
 /*-----------------------------------------------------------------------------------*/ 
 #endif /* __LOCALIZATION_H__ */
 /*-----------------------------------------------------------------------------------*/ 

@@ -207,6 +207,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\c\getentrieshashtable.c"
+				>
+			</File>
+			<File
 				RelativePath="..\sci_gateway\gw_localization.c"
 				>
 			</File>
@@ -219,11 +223,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\c\loadhashtableslocalization.c"
+				>
+			</File>
+			<File
 				RelativePath=".\c\loadsavelanguage.c"
 				>
 			</File>
 			<File
 				RelativePath=".\c\localization.c"
+				>
+			</File>
+			<File
+				RelativePath="..\sci_gateway\sci_addtext.c"
 				>
 			</File>
 			<File
@@ -239,6 +251,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\sci_gateway\sci_gettext.c"
+				>
+			</File>
+			<File
+				RelativePath="..\sci_gateway\sci_removetext.c"
+				>
+			</File>
+			<File
 				RelativePath="..\sci_gateway\sci_setlanguage.c"
 				>
 			</File>
@@ -246,11 +266,19 @@
 				RelativePath=".\c\setgetlanguage.c"
 				>
 			</File>
+			<File
+				RelativePath=".\c\TerminateLocalization.c"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
+			<File
+				RelativePath=".\c\getentrieshashtable.h"
+				>
+			</File>
 			<File
 				RelativePath="..\includes\gw_localization.h"
 				>
@@ -261,6 +289,10 @@
 			</File>
 			<File
 				RelativePath="..\includes\InitializeLocalization.h"
+				>
+			</File>
+			<File
+				RelativePath=".\c\loadhashtableslocalization.h"
 				>
 			</File>
 			<File
@@ -285,6 +317,10 @@
 			</File>
 			<File
 				RelativePath=".\tableslanguages.h"
+				>
+			</File>
+			<File
+				RelativePath="..\includes\TerminateLocalization.h"
 				>
 			</File>
 		</Filter>

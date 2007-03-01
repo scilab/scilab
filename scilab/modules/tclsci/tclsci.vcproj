@@ -319,6 +319,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\TerminateTclTk.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\tksynchro.c"
 				>
 			</File>
@@ -454,6 +458,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\TclUiSet.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\TerminateTclTk.h"
 				>
 			</File>
 			<File

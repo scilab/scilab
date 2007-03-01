@@ -16,10 +16,9 @@ static unsigned int hashfromkey_string(void *ky)
 	int c;
 		
 	k =	(struct key_string *)ky;
-	str=k->Key_String;
+	str=(unsigned char*)k->Key_String;
 
-	while ((c = *str++))
-		hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
+	while ((c = *str++)) hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
 
 	return hash;
 
@@ -74,5 +73,30 @@ char *SearchHashtable_string(struct hashtable *hash_table, const char* key)
 int InsertHashtable_string(struct hashtable *hash_table,struct key_string *k, struct value_string *v)
 {
 	return hashtable_insert(hash_table,k,v);
+}
+/*-----------------------------------------------------------------------------------*/ 
+BOOL RemoveHastable_string(struct hashtable *hash_table, const char* key)
+{
+	BOOL bOK=FALSE;
+	struct value_string *kElem=NULL;
+	struct key_string *k;
+
+	k=(struct key_string*)MALLOC(sizeof(struct key_string));
+	k->Key_String=MALLOC((strlen(key)+1)*sizeof(char));
+	strcpy(k->Key_String,key);
+
+	kElem=hashtable_remove(hash_table,k);
+	FREE(k);
+
+	if (kElem)
+	{
+		bOK=TRUE;
+		FREE(kElem);
+	}
+	else
+	{
+		bOK=FALSE;
+	}
+	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/ 
