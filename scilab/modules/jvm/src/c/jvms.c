@@ -20,7 +20,8 @@ IMPORT_DLL int C2F(xscion)(int *i);
  IMPORT_EXPORT_LIBJVM_DLL int StartJVMs(char *SCILAB_PATH)
 {
 	int bOK=FALSE;
-	int b1=FALSE,b2=FALSE,b3=FALSE;
+	int b1=FALSE;
+	/*,b2=FALSE,b3=FALSE;*/
 	int WithGUIConsole=FALSE;
 	
 	#ifdef _MSC_VER
@@ -44,7 +45,8 @@ IMPORT_DLL int C2F(xscion)(int *i);
 IMPORT_EXPORT_LIBJVM_DLL int TerminateJVMs(void)
 {
 	int bOK=FALSE;
-	int b1=FALSE,b2=FALSE,b3=FALSE;
+	int b1=FALSE;
+	/*,b2=FALSE,b3=FALSE;*/
 	int WithGUIConsole=FALSE;
 	
 	C2F(xscion)(&WithGUIConsole);
