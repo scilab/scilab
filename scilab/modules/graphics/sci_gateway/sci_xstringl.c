@@ -68,13 +68,13 @@ int sci_xstringl( char *fname, unsigned long fname_len )
   }
   if (Str)
   {
-	  int i=0;
-	  for(i=0;i<m3*n3;i++)
+	  int li=0;
+	  for(li=0;li<m3*n3;li++)
 	  {
-		  if (Str[i])
+		  if (Str[li])
 		  {
-			  FREE(Str[i]);
-			  Str[i]=NULL;
+			  FREE(Str[li]);
+			  Str[li]=NULL;
 		  }
 	  }
 	  FREE(Str);
