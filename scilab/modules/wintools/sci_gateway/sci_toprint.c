@@ -18,7 +18,10 @@
 /* Print from scilab (Windows) for Scipad and figure */
 int C2F(sci_toprint) _PARAMS((char *fname,unsigned long l))
 {
-	static int l1,n1,m1;
+	static int n1;
+#ifdef _MSC_VER
+	static int l1,m1;
+#endif
 	int *paramoutINT=(int*)MALLOC(sizeof(int));
 
 	CheckRhs(1,2);
