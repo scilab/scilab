@@ -33,7 +33,7 @@ extern int GetWITH_GUI(void);
 int C2F(checkevts)(int *i)
 {
   
-  #if WITH_TK
+  #ifdef WITH_TK
   *i= Max(getINXscilab(),1);
   #else
   *i= getINXscilab();

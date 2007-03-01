@@ -83,7 +83,7 @@ extern "C" {
 Cextern int unlink Argdcl((const char *));
 Cextern int fork Argdcl((void)), getpid Argdcl((void)), wait Argdcl((int*));
 
-#if _MSC_VER
+#ifdef _MSC_VER
 	#define unlink _unlink
 #endif
 

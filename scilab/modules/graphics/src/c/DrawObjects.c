@@ -61,7 +61,7 @@
 #include "../../../tclsci/includes/GedManagement.h"
 #endif
 
-#if _MSC_VER
+#ifdef _MSC_VER
 extern HDC TryToGetDC(HWND hWnd);
 #endif
 

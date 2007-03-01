@@ -50,7 +50,7 @@
 #include "MALLOC.h" /* MALLOC */
 #include "mexlib.h"
 
-#if _MSC_VER
+#ifdef _MSC_VER
 	#define __STDC__ 
 #endif
 
@@ -2026,7 +2026,7 @@ void  mexPrintf (va_alist) va_dcl
     }
   else 
     {
-	#if _MSC_VER
+	#ifdef _MSC_VER
 		sciprint("%s",buf);
 		
 	#else

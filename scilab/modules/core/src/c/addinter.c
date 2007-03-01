@@ -269,7 +269,7 @@ void C2F(userlk)(integer *k)
     }
   if ( DynInterf[k1].ok == 1 ) 
   {
-	#if _MSC_VER
+	#ifdef _MSC_VER
 	  #ifndef _DEBUG
 		_try
 		{

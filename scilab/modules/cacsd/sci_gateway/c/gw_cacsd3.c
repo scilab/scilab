@@ -3,7 +3,7 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#if _MSC_VER
+#ifdef _MSC_VER
 #include <Windows.h>
 #include "ExceptionMessage.h"
 #endif
@@ -24,7 +24,7 @@ static Cacsd3Table Tab[]=
 int C2F(gw_cacsd3)(void)
 {  
 	if ( Fin-1 > 2) return 0;
-#if _MSC_VER
+#ifdef _MSC_VER
 	#ifndef _DEBUG
 		_try
 		{

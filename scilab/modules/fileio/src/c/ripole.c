@@ -15,7 +15,7 @@
 
 #include "MALLOC.h"
 
-#if _MSC_VER
+#ifdef _MSC_VER
 #define strdup _strdup
 #endif
 

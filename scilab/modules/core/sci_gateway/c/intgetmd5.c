@@ -5,7 +5,7 @@
 #include "intgetmd5.h"
 #include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/
-#if _MSC_VER
+#ifdef _MSC_VER
 #define stricmp _stricmp
 #endif
 /*-----------------------------------------------------------------------------------*/
@@ -72,7 +72,7 @@ int C2F(intgetmd5) __PARAMS((char *fname,unsigned long fname_len))
 				GetRhsVar(2,"c",&m1,&n1,&l1);
 				Param2=cstk(l1);
 
-				#if _MSC_VER
+				#ifdef _MSC_VER
 				if ( stricmp(Param2,"string")==0 )
 				#else
 				if ( strcmp(Param2,"string")==0 )

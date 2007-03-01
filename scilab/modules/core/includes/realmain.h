@@ -8,7 +8,7 @@
 #include <signal.h>
 #include <stdio.h>
 #include <string.h>
-#if _MSC_VER
+#ifdef _MSC_VER
 #include <Windows.h>
 #endif
 

@@ -29,7 +29,7 @@ void Initialize(void)
   static char initstr[]="exec(\"SCI/etc/scilab.start\",-1);quit;";
   static int iflag=-1, stacksize = 1000000, ierr=0;
 
-  #if _MSC_VER
+  #ifdef _MSC_VER
     static char JavaSciInterf[]="javasci";
     static char nw[]="-nw";
     static char nb[]="-nb";
@@ -39,13 +39,13 @@ void Initialize(void)
   char *p1 = (char*)getenv ("SCI");
   
   
-  #if _MSC_VER
+  #ifdef _MSC_VER
   /* Supprime le mode windows et la baniere */
     add_sci_argv(JavaSciInterf);
     add_sci_argv(nb);
   #endif
   
-  #if _MSC_VER 
+  #ifdef _MSC_VER 
     if ( p1== NULL )
     {
 		/* Detection Scilab path */
@@ -98,7 +98,7 @@ void Initialize(void)
 
 
   /* Initialisation fenetre graphique */
-  #if _MSC_VER
+  #ifdef _MSC_VER
     InitWindowGraphDll();
   #endif
 

@@ -6,7 +6,7 @@
 #include "MALLOC.h" /* MALLOC */
 #include "sciprint.h"
 /*-----------------------------------------------------------------------------------*/
-#if _MSC_VER
+#ifdef _MSC_VER
 	extern void PrintFile(char *filename);
 	extern void PrintString(char *lines,char *Entete);
 	extern BOOL FileExist(char *filename);

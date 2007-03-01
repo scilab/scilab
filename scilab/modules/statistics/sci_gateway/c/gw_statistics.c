@@ -3,7 +3,7 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#if _MSC_VER
+#ifdef _MSC_VER
 #include <Windows.h>
 #include "ExceptionMessage.h"
 #endif
@@ -38,7 +38,7 @@ static StatisticsTable Tab[]=
 int C2F(gw_statistics)()
 {  
 	Rhs = Max(0, Rhs);
-#if _MSC_VER
+#ifdef _MSC_VER
 	#ifndef _DEBUG
 		_try
 		{

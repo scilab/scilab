@@ -2031,7 +2031,7 @@ void  mexPrintf (va_alist) va_dcl
     }
   else 
     {
-	#if _MSC_VER
+	#ifdef _MSC_VER
 		sciprint("%s",buf);
 		
 	#else

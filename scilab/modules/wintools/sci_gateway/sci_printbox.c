@@ -5,7 +5,7 @@
 #include "gw_wintools.h"
 #include "MALLOC.h" /* MALLOC */
 /*-----------------------------------------------------------------------------------*/
-#if _MSC_VER
+#ifdef _MSC_VER
 	extern BOOL ConfigurePrinterDialogBox(void);
 #endif
 /*-----------------------------------------------------------------------------------*/
@@ -18,7 +18,7 @@ int C2F(sci_printsetupbox) _PARAMS((char *fname,unsigned long l))
 	CheckRhs(0,0);
 	CheckLhs(0,1);
 
-	#if _MSC_VER
+	#ifdef _MSC_VER
 		if (ConfigurePrinterDialogBox())
 		{
 			*paramoutINT=(int)(TRUE);

@@ -12,7 +12,7 @@
 
 #include <stdio.h>
 
-#if _MSC_VER
+#ifdef _MSC_VER
 #include "../../gui/src/c/wsci/wgnuplib.h"
 #else
 #include "../../gui/src/c/xsci/x_charproc.h"
@@ -23,7 +23,7 @@
 #include "sciprint.h"
 #include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/ 
-#if _MSC_VER
+#ifdef _MSC_VER
   #define vsnprintf _vsnprintf
   extern char *QueryStringError(char *Tag);
   TW textwin;
@@ -65,7 +65,7 @@ extern void diary_nnl __PARAMS((char *str,int *n));
 #if defined(linux) || defined(_MSC_VER)
 //	count = vsnprintf (s_buf,MAXPRINTF-1, fmt, ap );
 {
-	#if _MSC_VER
+	#ifdef _MSC_VER
 		char *LocalizedString=QueryStringError(fmt);
 		if (LocalizedString)
 		{
@@ -96,7 +96,7 @@ extern void diary_nnl __PARAMS((char *str,int *n));
 	}
 	else 
 	{
-		#if _MSC_VER
+		#ifdef _MSC_VER
 		 TextPutS (&textwin,s_buf);
 		 PutString(s_buf);
 		#else
@@ -109,7 +109,7 @@ extern void diary_nnl __PARAMS((char *str,int *n));
 }
 /*-----------------------------------------------------------------------------------*/ 
 /* as sciprint but with an added first argument which is ignored (used in do_printf) */
-#if _MSC_VER
+#ifdef _MSC_VER
   int sciprint2 (int iv, char *fmt,...)
   {
 	  int i, count,lstr;
@@ -336,7 +336,7 @@ extern void diary_nnl __PARAMS((char *str,int *n));
 	}
 	else 
 	{
-		#if _MSC_VER
+		#ifdef _MSC_VER
 		 TextPutS (&textwin,s_buf);
 		 PutString(s_buf);
 		#else

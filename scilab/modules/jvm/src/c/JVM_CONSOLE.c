@@ -131,7 +131,7 @@ int Terminate_JVM_Thread_CONSOLE(void)
 	vm_args.nOptions = 3;
 	vm_args.ignoreUnrecognized = TRUE;
 
-  #if _MSC_VER
+  #ifdef _MSC_VER
 		status = MyJNI_CreateJavaVM(&jvm_CONSOLE, (void**) &env, &vm_args);
 	#else
 		status = JNI_CreateJavaVM(&jvm_CONSOLE, (void**) &env, &vm_args);

@@ -37,7 +37,7 @@ void SciEnv ()
     if ( ( p1 = getenv("SCI"))  == (char *) 0 )
 	{
 		sprintf(env,"SCI=%s",p);
-		#if _MSC_VER
+		#ifdef _MSC_VER
 			_putenv(env);
 		#else
 			putenv(env);

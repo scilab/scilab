@@ -7,7 +7,7 @@
 /*-----------------------------------------------------------------------------------*/
 extern int IsAScalar(int RhsNumber);
 /*-----------------------------------------------------------------------------------*/
-#if _MSC_VER
+#ifdef _MSC_VER
 	extern BOOL SetIhmSystemDefaultTextBackgroundColor(void);
 	extern BOOL SetIhmSystemDefaultTextColor(void);
 	extern BOOL SetIhmTextBackgroundColor(int R,int G,int B);
@@ -25,7 +25,7 @@ int C2F(sci_settextcolor) _PARAMS((char *fname,unsigned long l))
 
 	if (Rhs == 0)
 	{
-		#if _MSC_VER
+		#ifdef _MSC_VER
 		if (IsWindowInterface()) *paramoutINT=(int)SetIhmSystemDefaultTextColor();
 		else *paramoutINT=(int)FALSE;
 		#else
@@ -55,7 +55,7 @@ int C2F(sci_settextcolor) _PARAMS((char *fname,unsigned long l))
 					(G>=0) && (G<256) &&
 					(B>=0) && (B<256) )
 				{
-					#if _MSC_VER
+					#ifdef _MSC_VER
 					if (IsWindowInterface()) *paramoutINT=(int)SetIhmTextColor(R,G,B);
 					else *paramoutINT=(int)FALSE;
 					#else
@@ -100,7 +100,7 @@ int C2F(sci_settextbackgroundcolor) _PARAMS((char *fname,unsigned long l))
 
 	if (Rhs == 0)
 	{
-		#if _MSC_VER
+		#ifdef _MSC_VER
 		if (IsWindowInterface()) *paramoutINT=(int)SetIhmSystemDefaultTextBackgroundColor();
 		else *paramoutINT=(int)FALSE;
 		#else
@@ -129,7 +129,7 @@ int C2F(sci_settextbackgroundcolor) _PARAMS((char *fname,unsigned long l))
 					 (G>=0) && (G<256) &&
 					 (B>=0) && (B<256) )
 				{
-					#if _MSC_VER
+					#ifdef _MSC_VER
 					if (IsWindowInterface()) *paramoutINT=(int)SetIhmTextBackgroundColor(R,G,B);
 					else *paramoutINT=(int)FALSE;
 					#else

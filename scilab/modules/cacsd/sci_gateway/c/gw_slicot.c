@@ -2,7 +2,7 @@
 #include <math.h>
 #include <string.h>
 /*-----------------------------------------------------------------------------------*/ 
-#if _MSC_VER
+#ifdef _MSC_VER
 #include <Windows.h>
 #include "ExceptionMessage.h"
 #endif
@@ -37,7 +37,7 @@ static GenericTable Tab[]={
 int C2F(gw_slicot)(void)
 {
 	Rhs = Max(0, Rhs);
-	#if _MSC_VER
+	#ifdef _MSC_VER
 		#ifndef _DEBUG
 		_try
 		{

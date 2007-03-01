@@ -65,7 +65,7 @@ BOOL ON_ABOUT_WM_INITDIALOG(HWND hDlg,HWND hwndFocus, LPARAM lParam)
 	}
 	else
 	{
-		#if _DEBUG
+		#ifdef _DEBUG
 			strcpy(buffer,MSG_SCIMSG60);
 			strcat(buffer,MSG_SCIMSG61);
 		#else

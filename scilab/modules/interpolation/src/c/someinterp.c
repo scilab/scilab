@@ -12,7 +12,7 @@
 enum {NOT_A_KNOT, NATURAL, CLAMPED, PERIODIC, FAST, FAST_PERIODIC, 
       MONOTONE, BY_ZERO, C0, LINEAR, BY_NAN};
 
-#if _MSC_VER
+#ifdef _MSC_VER
 extern int C2F(isanan)();
 extern double C2F(returnanan)();
 #endif

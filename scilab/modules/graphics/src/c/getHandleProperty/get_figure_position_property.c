@@ -29,7 +29,7 @@ int get_figure_position_property( sciPointObj * pobj )
     int posX ;
     int posY ;
     sciGetScreenPosition( pobj, &posX, &posY ) ;
-#if _MSC_VER /* Correction pour figure_position (Windows) Allan CORNET Mai 2004 */
+#ifdef _MSC_VER /* Correction pour figure_position (Windows) Allan CORNET Mai 2004 */
     figurePos[0] = (double) posX ; 
     figurePos[1] = (double) posY ;
 #else

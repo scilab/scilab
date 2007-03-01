@@ -2,7 +2,7 @@
 /* INRIA 2007 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#if _MSC_VER
+#ifdef _MSC_VER
 #include <Windows.h>
 #include "version.h"
 #endif 
@@ -111,7 +111,7 @@ static BOOL savelanguagepref_linux(void)
 #ifndef _MSC_VER
 static char *getfilenamelanguagepref(void)
 {
-#if _MSC_VER
+#ifdef _MSC_VER
 #define namelanguagepref "\\language.ini"
 #else
 #define namelanguagepref "/.language"
@@ -129,7 +129,7 @@ static char *getfilenamelanguagepref(void)
 }
 #endif
 /*-----------------------------------------------------------------------------------*/ 
-#if _MSC_VER
+#ifdef _MSC_VER
 static BOOL loadlanguagepref_windows(void)
 {
 	BOOL bOK=FALSE;
@@ -166,7 +166,7 @@ static BOOL loadlanguagepref_windows(void)
 }
 #endif
 /*-----------------------------------------------------------------------------------*/ 
-#if _MSC_VER
+#ifdef _MSC_VER
 static BOOL savelanguagepref_windows(void)
 {
 	BOOL bOK=FALSE;

@@ -14,7 +14,7 @@
 #include "inisci-c.h"
 #include "scirun.h"
 
-#if _MSC_VER
+#ifdef _MSC_VER
 #define putenv _putenv
 #endif
 
@@ -130,7 +130,7 @@ int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
       return bOK;
     }
 
-#if _MSC_VER
+#ifdef _MSC_VER
 	InitWindowGraphDll();
 #endif
 
@@ -167,7 +167,7 @@ void ScilabDoOneEvent(void)
 {
 	if ( GetWITH_GUI() )
 	{
-		#if _MSC_VER
+		#ifdef _MSC_VER
 			TextMessage1 (1);
 		#else 
 			C2F(sxevents)();

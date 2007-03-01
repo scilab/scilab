@@ -24,7 +24,7 @@ static LinearAlgebraTable Tab[]={
 int C2F(gw_linear_algebra)()
 {  
 	Rhs = Max(0, Rhs);
-	#if _MSC_VER
+	#ifdef _MSC_VER
 		#ifndef _DEBUG
 			_try
 			{

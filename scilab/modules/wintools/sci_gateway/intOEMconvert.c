@@ -26,7 +26,7 @@ int C2F(sci_oemtochar) _PARAMS((char *fname,unsigned long l))
 		OEMstring=cstk(l1);
 		
 		Output=(char*)MALLOC((strlen(OEMstring)+1)*sizeof(char));
-	#if _MSC_VER
+	#ifdef _MSC_VER
 		if (IsWindowInterface())
 		{
 				OemToChar(OEMstring,Output);
@@ -69,7 +69,7 @@ int C2F(sci_chartooem) _PARAMS((char *fname,unsigned long l))
 		Charstring=cstk(l1);
 
 		Output=(char*)MALLOC((strlen(Charstring)+1)*sizeof(char));
-	#if _MSC_VER
+	#ifdef _MSC_VER
 		if (IsWindowInterface())
 		{
 			CharToOem(Charstring,Output);

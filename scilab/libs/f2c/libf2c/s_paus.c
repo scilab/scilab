@@ -51,7 +51,7 @@ s_1paus(FILE *fin)
 		}
 	}
 
-#if _MSC_VER
+#ifdef _MSC_VER
 #define fileno _fileno
 #endif
 

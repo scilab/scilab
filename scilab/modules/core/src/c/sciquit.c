@@ -50,7 +50,7 @@ void sci_exit(int n);
 /*-----------------------------------------------------------------------------------*/ 
 static int CloseConsoleGUI(void)
 {
-	#if _MSC_VER
+	#ifdef _MSC_VER
 	LPTW lptw=GetTextWinScilab();
 	TextClose (lptw);
 	TextMessage ();		/* process messages */

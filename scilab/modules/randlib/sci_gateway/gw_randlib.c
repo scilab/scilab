@@ -2,7 +2,7 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#if _MSC_VER
+#ifdef _MSC_VER
 #include <Windows.h>
 #include "ExceptionMessage.h"
 #endif
@@ -19,7 +19,7 @@ static TabF Tab[]={
 int C2F(gw_randlib)(void)
 {
 	Rhs = Max(0, Rhs);
-#if _MSC_VER
+#ifdef _MSC_VER
 #ifndef _DEBUG
 	_try
 	{

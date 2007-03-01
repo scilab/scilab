@@ -5,7 +5,7 @@
 #include "gw_graphics.h"
 #include "graphicModuleLoad.h"
 #include <string.h>
-#if _MSC_VER
+#ifdef _MSC_VER
 #include "ExceptionMessage.h"
 #endif
 /*-----------------------------------------------------------------------------------*/ 
@@ -114,7 +114,7 @@ int C2F(gw_graphics)(void)
   {
     /* create needed data structure if not already created */
     loadGraphicModule() ;
-#if _MSC_VER
+#ifdef _MSC_VER
 #ifndef _DEBUG
 	  _try
 	  {

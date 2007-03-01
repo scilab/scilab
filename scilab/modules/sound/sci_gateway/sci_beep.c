@@ -63,7 +63,7 @@ int sci_Beep __PARAMS((char *fname,unsigned long fname_len))
 /*-----------------------------------------------------------------------------------*/ 
 void BeepLinuxWindows(void)
 {
-	#if _MSC_VER
+	#ifdef _MSC_VER
 		MessageBeep(-1);
 	#else
 		system("echo -en \"\a\"");

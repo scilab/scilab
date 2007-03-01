@@ -592,7 +592,7 @@ x_rsne(cilist *a)
 		}
 	}
 
-#if _MSC_VER
+#ifdef _MSC_VER
  #define un_getc ungetc
 #endif
 

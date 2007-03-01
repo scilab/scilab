@@ -2,7 +2,7 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#if _MSC_VER
+#ifdef _MSC_VER
 #include <Windows.h>
 #else
 #include <stdio.h>
@@ -13,7 +13,7 @@ BOOL FileExist(char *filename)
 {
 	BOOL retour=FALSE;	
 
-	#if _MSC_VER
+	#ifdef _MSC_VER
 		WIN32_FIND_DATA FindFileData;
 		HANDLE handle = FindFirstFile (filename, &FindFileData);
 		if (handle != INVALID_HANDLE_VALUE)

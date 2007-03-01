@@ -21,7 +21,7 @@
 #include "stack2.h"
 #include "hmops.h"
 
-#if _MSC_VER
+#ifdef _MSC_VER
 #undef min
 #undef max
 #endif
@@ -68,7 +68,7 @@ typedef struct sci_bool_sparse {
 
 
 extern int C2F(ddmpev)();
-#if _MSC_VER
+#ifdef _MSC_VER
 int C2F(createlistcvarfrom)();
 #endif
 

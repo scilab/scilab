@@ -19,7 +19,7 @@ static DifferentialEquations3Table Tab[]=
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_differential_equations3)(void)
 {  
-#if _MSC_VER
+#ifdef _MSC_VER
 #ifndef _DEBUG
 	_try
 	{

@@ -1,6 +1,6 @@
 #include "f2c.h"
 #include "fio.h"
-#if _MSC_VER
+#ifdef _MSC_VER
 #include <stdio.h>
 #endif
 /* Compile with -DF8X_NML_ELIDE_QUOTES to permit eliding quotation */

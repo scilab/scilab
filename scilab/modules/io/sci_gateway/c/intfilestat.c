@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#if _MSC_VER
+#ifdef _MSC_VER
 #include <Windows.h>
 #endif
 
@@ -25,7 +25,7 @@ int C2F(intfilestat)(char * fname)
    struct stat buf;
 #endif
    int result, m1, n1, l1 , l2,one=1,n;
-#if _MSC_VER
+#ifdef _MSC_VER
    char DriveTemp[MAX_PATH];
 #endif
    CheckRhs(1,1);
@@ -56,7 +56,7 @@ int C2F(intfilestat)(char * fname)
    /* Check if statistics are valid: */
    if( result != 0 ) 
    {
-#if _MSC_VER
+#ifdef _MSC_VER
 	 if ( (strlen(DriveTemp)==2) ||(strlen(DriveTemp)==3) )
 	 {
 		 UINT DriveType=GetDriveType(DriveTemp);

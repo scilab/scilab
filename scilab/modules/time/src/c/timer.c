@@ -18,7 +18,7 @@
 
 
 /*-----------------------------------------------------------------------------------*/
-#if _MSC_VER
+#ifdef _MSC_VER
 	static __int64 i64UserTick1;
 	static LARGE_INTEGER   Tick1;
 #else
@@ -29,7 +29,7 @@ static int init_clock = 1;
 /*-----------------------------------------------------------------------------------*/
 int C2F(timer)(double *etime)
 {
-#if _MSC_VER 
+#ifdef _MSC_VER 
   /* NT */
 	/* Return CPU Time */
 	FILETIME  ftCreation, ftExit, ftKernel,  ftUser;

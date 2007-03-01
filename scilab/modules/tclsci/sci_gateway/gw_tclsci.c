@@ -3,7 +3,7 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#if _MSC_VER
+#ifdef _MSC_VER
 	#include <Windows.h>
 	#include "ExceptionMessage.h"
 #endif
@@ -44,7 +44,7 @@ int C2F(gw_tclsci)()
 		if (TK_Started)
 		{
 			Rhs = Max(0, Rhs);
-#if _MSC_VER
+#ifdef _MSC_VER
 #ifndef _DEBUG
 			_try
 			{

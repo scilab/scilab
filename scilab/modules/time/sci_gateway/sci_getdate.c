@@ -8,7 +8,7 @@
 #include <locale.h>
 #include <stdio.h>
 
-#if _MSC_VER
+#ifdef _MSC_VER
 #include <sys/types.h> 
 #include <sys/timeb.h>
 #else

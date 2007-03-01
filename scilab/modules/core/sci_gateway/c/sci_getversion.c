@@ -119,7 +119,7 @@ static int getversion_no_rhs(void)
 		#endif
 
 		#ifdef _MSC_VER
-			#if _DEBUG
+			#ifdef _DEBUG
 			{
 			Str[n1]=debugmode;
 			n1++;

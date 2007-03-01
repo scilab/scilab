@@ -17,7 +17,7 @@ extern int IsAScalar(int RhsNumber);
 int sci_xs2emf( char * fname, unsigned long fname_len )
 {
   int bOK=0;
-#if _MSC_VER
+#ifdef _MSC_VER
 
   CheckLhs(0,1);
   CheckRhs(2,2);

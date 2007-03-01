@@ -14,7 +14,7 @@ static DifferentialEquations4Table Tab[]=
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_differential_equations4)(void)
 {  
-#if _MSC_VER
+#ifdef _MSC_VER
 #ifndef _DEBUG
 	_try
 	{

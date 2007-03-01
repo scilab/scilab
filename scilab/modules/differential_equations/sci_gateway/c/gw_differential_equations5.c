@@ -21,7 +21,7 @@ static DifferentialEquations5Table Tab[]=
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_differential_equations5)(void)
 {  
-#if _MSC_VER
+#ifdef _MSC_VER
 #ifndef _DEBUG
 	_try
 	{

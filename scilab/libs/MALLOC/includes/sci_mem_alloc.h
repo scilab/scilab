@@ -5,7 +5,7 @@
 
 #undef Top
 
-#if _MSC_VER
+#ifdef _MSC_VER
 #include <stdlib.h>
 #endif
 

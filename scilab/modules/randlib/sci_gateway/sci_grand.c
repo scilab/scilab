@@ -7,7 +7,7 @@
  *
  --------------------------------------------------------------------------*/
 #include <string.h>
-#if _MSC_VER
+#ifdef _MSC_VER
 #include <Windows.h>
 #include "MALLOC.h"
 extern char *GetExceptionString(DWORD ExceptionCode);

@@ -125,7 +125,7 @@ opn_err(int m, char *s, olist *a)
 	f__fatal(m, s);
 	}
 
-#if _MSC_VER
+#ifdef _MSC_VER
 #define  access _access
 #endif
 

@@ -259,7 +259,7 @@ int C2F(sci_dos) _PARAMS((char *fname,unsigned long l))
 }
 #endif
 /*-----------------------------------------------------------------------------------*/
-#if _MSC_VER
+#ifdef _MSC_VER
 static int spawncommand(char *command,BOOL DetachProcess)
 {
 	char shellCmd[_MAX_PATH];
@@ -370,7 +370,7 @@ static int spawncommand(char *command,BOOL DetachProcess)
 }
 #endif
 /*-----------------------------------------------------------------------------------*/
-#if _MSC_VER
+#ifdef _MSC_VER
 static int ClosePipeInfo (pipeinfo pipe)
 {
 	CloseHandle(pipe.pipe);
@@ -384,7 +384,7 @@ static int ClosePipeInfo (pipeinfo pipe)
 }
 #endif
 /*-----------------------------------------------------------------------------------*/
-#if _MSC_VER
+#ifdef _MSC_VER
 static DWORD WINAPI ReadFromPipe (LPVOID args)
 {
 	pipeinfo *pi = (pipeinfo *) args;
@@ -414,7 +414,7 @@ static DWORD WINAPI ReadFromPipe (LPVOID args)
 }
 #endif
 /*-----------------------------------------------------------------------------------*/
-#if _MSC_VER
+#ifdef _MSC_VER
 static int GetNumberOfLines(char *lines)
 {
 	int NumberOfLines=0;
@@ -432,7 +432,7 @@ static int GetNumberOfLines(char *lines)
 }
 #endif
 /*-----------------------------------------------------------------------------------*/
-#if _MSC_VER
+#ifdef _MSC_VER
 static char **CreateOuput(pipeinfo *pipe,BOOL DetachProcess)
 {
 	char **OuputStrings=NULL;
@@ -483,7 +483,7 @@ static char **CreateOuput(pipeinfo *pipe,BOOL DetachProcess)
 }
 #endif
 /*-----------------------------------------------------------------------------------*/
-#if _MSC_VER
+#ifdef _MSC_VER
 static int PrintOuput(char **ouput,int nbrlines)
 {
 	BOOL bOK=FALSE;
@@ -500,7 +500,7 @@ static int PrintOuput(char **ouput,int nbrlines)
 }
 #endif
 /*-----------------------------------------------------------------------------------*/
-#if _MSC_VER
+#ifdef _MSC_VER
 static BOOL DetectDetachProcessInCommandLine(char *command)
 {
 	BOOL bOK=FALSE;

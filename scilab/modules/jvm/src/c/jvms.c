@@ -10,7 +10,7 @@ extern int StartJVM_GRAPHIC(char *SCILAB_PATH);
 extern int TerminateJVM_CONSOLE(void);
 extern int TerminateJVM_SCILAB(void);
 extern int TerminateJVM_GRAPHIC(void);
-#if _MSC_VER
+#ifdef _MSC_VER
 extern int GetJVMDll(char *SCILAB_PATH);
 extern int FreeJVMDll(void);
 #endif
@@ -23,7 +23,7 @@ IMPORT_DLL int C2F(xscion)(int *i);
 	int b1=FALSE,b2=FALSE,b3=FALSE;
 	int WithGUIConsole=FALSE;
 	
-	#if _MSC_VER
+	#ifdef _MSC_VER
 	GetJVMDll(SCILAB_PATH);
 	#endif
 
@@ -56,7 +56,7 @@ IMPORT_EXPORT_LIBJVM_DLL int TerminateJVMs(void)
 	/*b2=TerminateJVM_SCILAB();
 	b3=TerminateJVM_GRAPHIC();*/
 	
-	#if _MSC_VER
+	#ifdef _MSC_VER
 	FreeJVMDll();
 	#endif
 	

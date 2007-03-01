@@ -3,7 +3,7 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#if _MSC_VER
+#ifdef _MSC_VER
 #include <Windows.h>
 #include "ExceptionMessage.h"
 #endif
@@ -31,7 +31,7 @@ int C2F(gw_symbolic)()
 		Scierror(39,"incorrect number of arguments.\r\n");
 		return 0;
 	}
-#if _MSC_VER
+#ifdef _MSC_VER
 	#ifndef _DEBUG
 		_try
 		{

@@ -3,7 +3,7 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#if _MSC_VER
+#ifdef _MSC_VER
 #include <Windows.h>
 #include "ExceptionMessage.h"
 #endif
@@ -33,7 +33,7 @@ int C2F(gwdatastructures1)()
 		return 0;
 	}
 
-#if _MSC_VER
+#ifdef _MSC_VER
 #ifndef _DEBUG
 	_try
 	{

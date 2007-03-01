@@ -661,7 +661,7 @@ typedef struct
   int MenuPosition;
   int CallbackType;
 
-  #if _MSC_VER
+  #ifdef _MSC_VER
 	HMENU hMenu;
 	int IDM_this;
   #endif

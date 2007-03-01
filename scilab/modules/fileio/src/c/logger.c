@@ -36,7 +36,7 @@ struct LOGGER_globals {
 
 static struct LOGGER_globals LOGGER_glb={ 0, 0 };
 
-#if _MSC_VER
+#ifdef _MSC_VER
 	#define vsnprintf _vsnprintf
 #endif
 

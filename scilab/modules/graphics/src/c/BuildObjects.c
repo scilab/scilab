@@ -20,7 +20,7 @@
 #include <stdarg.h>
 #include <time.h>
 
-#if _MSC_VER
+#ifdef _MSC_VER
 #include <windows.h>
 #endif
 

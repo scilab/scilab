@@ -7,7 +7,7 @@
 #include <math.h>
 #include <stdio.h> 
 #include <string.h>
-#if _MSC_VER
+#ifdef _MSC_VER
   #include <windows.h>
   #pragma comment(lib, "User32.lib")
 #endif

@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include "machine.h"
 #include "realtime.h"
-#if _MSC_VER
+#ifdef _MSC_VER
 	#include <windows.h>
 #else
 	#include <sys/time.h>
@@ -15,7 +15,7 @@
 	#endif
 #endif
 /*-----------------------------------------------------------------------------------*/ 
-#if _MSC_VER
+#ifdef _MSC_VER
 	static double simulation_start = 0;
 	static double simulation_scale = 0;
 	static __int64 realtime_start = 0;

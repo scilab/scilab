@@ -14,7 +14,7 @@ int C2F(sci_about) _PARAMS((char *fname,unsigned long l))
 	CheckRhs(0,0) ;
 	CheckLhs(0,1) ;
 
-	#if _MSC_VER
+	#ifdef _MSC_VER
 		Callback_ABOUT();
 	#else
 	   /* A voir sous Unix */

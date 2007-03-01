@@ -120,7 +120,7 @@ int SetSci()
 
 	if ( ierr== 1) 
 	{
-		#if  _MSC_VER
+		#ifdef  _MSC_VER
 		MessageBox(NULL,"SCI not defined.","Warning",MB_ICONWARNING);
 		#else
 		printf("SCI not defined.\n");
@@ -160,7 +160,7 @@ int C2F(getscihome)(char *buf,int *nbuf,long int lbuf)
 	{
 		if (!setSCIHOME())
 		{
-			#if  _MSC_VER
+			#ifdef  _MSC_VER
 				MessageBox(NULL,"SCIHOME not defined.","Warning",MB_ICONWARNING);
 			#else
 				printf("SCIHOME not defined.\n");
@@ -187,7 +187,7 @@ int C2F(gettmpdir)(char *buf,int *nbuf,long int lbuf)
 	C2F(getenvc)(&ierr,"TMPDIR",buf,&l1buf,&iflag);
 	if ( ierr== 1) 
 	{
-#if  _MSC_VER
+#ifdef  _MSC_VER
 		MessageBox(NULL,"TMPDIR not defined.","Warning",MB_ICONWARNING);
 #else
 		printf("TMPDIR not defined.\n");
@@ -207,7 +207,7 @@ BOOL ExistModelicac(void)
 	char *SCIPATH = (char*)getSCIpath();
 	char *fullpathModelicac=NULL;
 	
-	#if _MSC_VER
+	#ifdef _MSC_VER
 		fullpathModelicac=(char*)MALLOC((strlen(SCIPATH)+strlen(ModelicacNameWindows)+1)*sizeof(char));
 		sprintf(fullpathModelicac,"%s%s",SCIPATH,ModelicacNameWindows);
 	#else

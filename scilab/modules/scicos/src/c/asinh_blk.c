@@ -1,7 +1,7 @@
 #include "scicos_block.h"
 #include <math.h>
 
-#if _MSC_VER
+#ifdef _MSC_VER
 extern double asinh(double x);
 extern double acosh(double x);
 extern double atanh(double x);

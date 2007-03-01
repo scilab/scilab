@@ -6,7 +6,7 @@
 #include "../../../io/includes/createdir.h"
 #include "MALLOC.h" /* MALLOC */
 
-#if _MSC_VER
+#ifdef _MSC_VER
 #include <windows.h>
 #endif
 #if defined(__STDC__) || defined(_MSC_VER)
@@ -37,7 +37,7 @@ static char tmp_dir[256],buf[256];
 */
 void C2F(settmpdir)(void)
 {
-#if _MSC_VER
+#ifdef _MSC_VER
 	#define PATH_MAX 1024
 	char TmpDirDefault[PATH_MAX];
 #endif

@@ -39,7 +39,7 @@ int C2F(intgetos) _PARAMS((char *fname))
 	CheckRhs(0,0);
 	CheckLhs(1,2);
 
-#if _MSC_VER
+#ifdef _MSC_VER
 
 
 	sprintf(OperatinSystem,"%s","Windows");

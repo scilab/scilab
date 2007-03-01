@@ -10,7 +10,7 @@
 #ifndef USE_F2C
 	#pragma comment(lib,"ifconsol.lib")
 	#pragma comment(lib,"libifport.lib")
-	#if _DEBUG
+	#ifdef _DEBUG
 		#pragma comment(lib,"libifcoremdd.lib")
 		#pragma comment(lib,"libmmdd.lib")
 	#else
@@ -20,7 +20,7 @@
 	#pragma comment(lib,"libirc.lib")
 #endif
 /*-----------------------------------------------------------------------------------*/ 
-#if WITH_PVM
+#ifdef WITH_PVM
 #pragma comment(lib,"../../pvm3/lib/WIN32/libpvm3.lib")
 #pragma comment(lib,"../../pvm3/lib/WIN32/libgpvm3.lib")
 #pragma comment(lib,"../../libs/pvm_f.lib")
@@ -76,7 +76,7 @@ int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)
 /*-----------------------------------------------------------------------------------*/ 
 BOOL BuildWithVS8ExpressF2C(void)
 {
-	#if USE_F2C
+	#ifdef USE_F2C
 		return TRUE;
 	#else
 		return FALSE;

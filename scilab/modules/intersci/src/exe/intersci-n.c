@@ -6,7 +6,7 @@
 #include "getrhs.h" 
 #include "crerhs.h" 
 
-#if _MSC_VER
+#ifdef _MSC_VER
   #define __STDC__
 #endif
 

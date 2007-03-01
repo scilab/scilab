@@ -25,7 +25,7 @@ struct OLE10_header{
 	size_t attach_start_offset;
 };
 
-#if _MSC_VER
+#ifdef _MSC_VER
 	#define strdup _strdup
 #endif
 

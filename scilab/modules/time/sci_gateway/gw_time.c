@@ -4,7 +4,7 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include "sciprint.h"
-#if _MSC_VER
+#ifdef _MSC_VER
 #include "ExceptionMessage.h"
 #endif
 #include "gw_time.h"
@@ -22,7 +22,7 @@ static intTimeTable Tab[]={
 int C2F(gw_time)()
 {  
 	Rhs = Max(0, Rhs);
-	#if _MSC_VER
+	#ifdef _MSC_VER
 		#ifndef _DEBUG
 		_try
 		{

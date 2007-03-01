@@ -142,12 +142,8 @@ typedef struct { double r, i; } doublecomplex;
 #define Infstk(x) (((integer *) C2F(vstk).infstk) + x-1 )
 
 /* to retreive handles on the stack */
-#if _MSC_VER
-#if _MSC_VER <=1200
-#define hstk(x) ((C2F(stack).Stk) + x-1 ) 	
-#else
+#ifdef _MSC_VER
 #define hstk(x) (((long long *) C2F(stack).Stk) + x-1 )
-#endif
 #else
 #define hstk(x) (((long long *) C2F(stack).Stk) + x-1 )
 #endif

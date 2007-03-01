@@ -69,7 +69,7 @@ BOOL RemoveDir(char *path)
 	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/ 
-#if _MSC_VER
+#ifdef _MSC_VER
 int DeleteDirectory(char *refcstrRootDirectory)
 {
 	BOOL bDeleteSubdirectories=TRUE;

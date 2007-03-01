@@ -13,7 +13,7 @@
 #include "sciprint.h"
 #include "msgstore.h"
 /*-----------------------------------------------------------------------------------*/ 
-#if _MSC_VER
+#ifdef _MSC_VER
 	#define vsnprintf _vsnprintf
 	extern char *QueryStringError(char *Tag);
 #endif
@@ -56,7 +56,7 @@ static int Scierror_internal __PARAMS((integer *n,char *buffer));
 
 #if defined (vsnprintf) || defined (linux)
 {
-	#if _MSC_VER
+	#ifdef _MSC_VER
 		char *LocalizedString=QueryStringError(fmt);
 		if (LocalizedString)
 		{

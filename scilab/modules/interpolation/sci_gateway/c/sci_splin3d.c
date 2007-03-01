@@ -2,7 +2,7 @@
 /* INRIA */
 /* AUTHOR : Bruno Pincon */
 /*-----------------------------------------------------------------------------------*/ 
-#if _MSC_VER
+#ifdef _MSC_VER
 #include <Windows.h>
 #endif
 #include <string.h>

@@ -2,7 +2,7 @@
 /* INRIA 2006 */
 /* Scilab */
 /*-----------------------------------------------------------------------------------*/ 
-#if _MSC_VER
+#ifdef _MSC_VER
 	#include <Windows.h> /* GetEnvironmentVariable */
 #else
 	#include <stdlib.h> /* getenv */

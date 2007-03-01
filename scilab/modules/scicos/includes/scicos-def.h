@@ -9,7 +9,7 @@
 #if _LCC_ & FORDLL 
 	#define IMPORT __declspec (dllimport)
 #else
-	#if SCICOS_EXPORTS
+	#ifdef SCICOS_EXPORTS
 		#define IMPORT 
 	#else
 		#ifdef FORDLL 

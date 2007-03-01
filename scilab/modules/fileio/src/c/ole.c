@@ -1,4 +1,4 @@
-#if WIN32
+#ifdef _MSC_VER
 #include <Windows.h>
 #endif
 #include <stdio.h>

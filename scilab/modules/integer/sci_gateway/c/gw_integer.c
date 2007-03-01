@@ -3,7 +3,7 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include "gw_integer.h"
-#if _MSC_VER
+#ifdef _MSC_VER
 #include <Windows.h>
 #include "ExceptionMessage.h"
 #endif
@@ -44,7 +44,7 @@ static IntegerTable Tab[]=
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_integer)()
 {  
-#if _MSC_VER
+#ifdef _MSC_VER
 	#ifndef _DEBUG
 		_try
 		{

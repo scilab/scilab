@@ -12,7 +12,7 @@
 
 #include "MALLOC.h"
 
-#if _MSC_VER
+#ifdef _MSC_VER
 	#define vsnprintf _vsnprintf
 	#define strdup _strdup
 #endif

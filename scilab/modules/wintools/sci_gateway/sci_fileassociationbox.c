@@ -12,7 +12,7 @@ int C2F(sci_filesassociationbox) _PARAMS((char *fname,unsigned long l))
 	CheckRhs(0,0) ;
 	CheckLhs(0,1) ;
 
-	#if _MSC_VER
+	#ifdef _MSC_VER
 		Callback_FILESASSOCIATIONBOX();
 	#endif
 	LhsVar(1)=0;
