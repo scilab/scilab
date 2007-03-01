@@ -32,6 +32,9 @@ Source: modules\{#TCLSCI}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{
 Source: modules\{#TCLSCI}\help\en_US\*.htm; DestDir: {app}\modules\{#TCLSCI}\help\en_US; Components: {#COMPN_TCLSCI}
 Source: modules\{#TCLSCI}\help\fr_FR\*.htm; DestDir: {app}\modules\{#TCLSCI}\help\fr_FR; Components: {#COMPN_TCLSCI}
 ;
+Source: modules\{#TCLSCI}\languages\en_US\*.xml; DestDir: {app}\modules\{#TCLSCI}\languages\en_US; Components: {#COMPN_TCLSCI}
+Source: modules\{#TCLSCI}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#TCLSCI}\languages\fr_FR; Components: {#COMPN_TCLSCI}
+;
 Source: modules\{#TCLSCI}\includes\*.h; Flags: recursesubdirs; DestDir: {app}\modules\{#TCLSCI}\includes; Components: {#COMPN_TCLSCI}
 ;
 Source: modules\{#TCLSCI}\macros\lib; DestDir: {app}\modules\{#TCLSCI}\macros; Components: {#COMPN_TCLSCI}

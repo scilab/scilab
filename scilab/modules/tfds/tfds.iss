@@ -27,6 +27,9 @@ Source: modules\{#TFDS}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#T
 Source: modules\{#TFDS}\help\en_US\*.htm; DestDir: {app}\modules\{#TFDS}\help\en_US; Components: {#COMPN_TFDS}
 Source: modules\{#TFDS}\help\fr_FR\*.htm; DestDir: {app}\modules\{#TFDS}\help\fr_FR; Components: {#COMPN_TFDS}
 ;
+Source: modules\{#TFDS}\languages\en_US\*.xml; DestDir: {app}\modules\{#TFDS}\languages\en_US; Components: {#COMPN_TFDS}
+Source: modules\{#TFDS}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#TFDS}\languages\fr_FR; Components: {#COMPN_TFDS}
+;
 ;Source: modules\{#TFDS}\includes\*.h; DestDir: {app}\modules\{#TFDS}\includes; Components: {#COMPN_TFDS}
 ;
 Source: modules\{#TFDS}\macros\lib; DestDir: {app}\modules\{#TFDS}\macros; Components: {#COMPN_TFDS}

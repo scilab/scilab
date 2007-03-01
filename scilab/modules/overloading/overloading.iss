@@ -28,6 +28,9 @@ Source: modules\{#OVERLOADING}\help\fr_FR\removechapter.sce; DestDir: {app}\modu
 Source: modules\{#OVERLOADING}\help\en_US\*.htm; DestDir: {app}\modules\{#OVERLOADING}\help\en_US; Components: {#COMPN_SCILAB}
 Source: modules\{#OVERLOADING}\help\fr_FR\*.htm; DestDir: {app}\modules\{#OVERLOADING}\help\fr_FR; Components: {#COMPN_SCILAB}
 ;
+Source: modules\{#OVERLOADING}\languages\en_US\*.xml; DestDir: {app}\modules\{#OVERLOADING}\languages\en_US; Components: {#COMPN_SCILAB}
+Source: modules\{#OVERLOADING}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#OVERLOADING}\languages\fr_FR; Components: {#COMPN_SCILAB}
+;
 ;Source: modules\{#OVERLOADING}\includes\*.h; DestDir: {app}\modules\{#OVERLOADING}\includes; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#OVERLOADING}\macros\buildmacros.sce; DestDir: {app}\modules\{#OVERLOADING}\macros; Components: {#COMPN_SCILAB}

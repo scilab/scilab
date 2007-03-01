@@ -29,6 +29,9 @@ Source: modules\{#SPFUNCTIONS}\help\fr_FR\removechapter.sce; DestDir: {app}\modu
 Source: modules\{#SPFUNCTIONS}\help\en_US\*.htm; DestDir: {app}\modules\{#SPFUNCTIONS}\help\en_US; Components: {#COMPN_SCILAB}
 Source: modules\{#SPFUNCTIONS}\help\fr_FR\*.htm; DestDir: {app}\modules\{#SPFUNCTIONS}\help\fr_FR; Components: {#COMPN_SCILAB}
 ;
+Source: modules\{#SPFUNCTIONS}\languages\en_US\*.xml; DestDir: {app}\modules\{#SPFUNCTIONS}\languages\en_US; Components: {#COMPN_SCILAB}
+Source: modules\{#SPFUNCTIONS}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#SPFUNCTIONS}\languages\fr_FR; Components: {#COMPN_SCILAB}
+;
 ;Source: modules\{#SPFUNCTIONS}\includes\*.h; DestDir: {app}\modules\{#SPFUNCTIONS}\includes; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#SPFUNCTIONS}\macros\lib; DestDir: {app}\modules\{#SPFUNCTIONS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}

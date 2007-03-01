@@ -31,6 +31,9 @@ Source: modules\{#SYMBOLIC}\help\fr_FR\removechapter.sce; DestDir: {app}\modules
 Source: modules\{#SYMBOLIC}\help\en_US\*.htm; DestDir: {app}\modules\{#SYMBOLIC}\help\en_US; Components: {#COMPN_SYMB}
 Source: modules\{#SYMBOLIC}\help\fr_FR\*.htm; DestDir: {app}\modules\{#SYMBOLIC}\help\fr_FR; Components: {#COMPN_SYMB}
 ;
+Source: modules\{#SYMBOLIC}\languages\en_US\*.xml; DestDir: {app}\modules\{#SYMBOLIC}\languages\en_US; Components: {#COMPN_SYMB}
+Source: modules\{#SYMBOLIC}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#SYMBOLIC}\languages\fr_FR; Components: {#COMPN_SYMB}
+;
 Source: modules\{#SYMBOLIC}\includes\*.h; DestDir: {app}\modules\{#SYMBOLIC}\includes; Components: {#COMPN_SYMB}
 ;
 ;Source: modules\{#SYMBOLIC}\macros\lib; DestDir: {app}\modules\{#SYMBOLIC}\macros; Flags: recursesubdirs; Components: {#COMPN_SYMB}

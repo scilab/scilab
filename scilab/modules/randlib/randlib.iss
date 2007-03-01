@@ -29,6 +29,9 @@ Source: modules\{#RANDLIB}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\
 Source: modules\{#RANDLIB}\help\en_US\*.htm; DestDir: {app}\modules\{#RANDLIB}\help\en_US; Components: {#COMPN_RANDLIB}
 Source: modules\{#RANDLIB}\help\fr_FR\*.htm; DestDir: {app}\modules\{#RANDLIB}\help\fr_FR; Components: {#COMPN_RANDLIB}
 ;
+Source: modules\{#RANDLIB}\languages\en_US\*.xml; DestDir: {app}\modules\{#RANDLIB}\languages\en_US; Components: {#COMPN_RANDLIB}
+Source: modules\{#RANDLIB}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#RANDLIB}\languages\fr_FR; Components: {#COMPN_RANDLIB}
+;
 Source: modules\{#RANDLIB}\includes\*.h; DestDir: {app}\modules\{#RANDLIB}\includes; Components: {#COMPN_RANDLIB}
 ;
 ;Source: modules\{#RANDLIB}\macros\lib; DestDir: {app}\modules\{#RANDLIB}\macros; Flags: recursesubdirs; Components: {#COMPN_RANDLIB}

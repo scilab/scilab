@@ -27,6 +27,9 @@ Source: modules\{#INCRLINK}\help\fr_FR\removechapter.sce; DestDir: {app}\modules
 Source: modules\{#INCRLINK}\help\en_US\*.htm; DestDir: {app}\modules\{#INCRLINK}\help\en_US; Components: {#COMPN_SCILAB}
 Source: modules\{#INCRLINK}\help\fr_FR\*.htm; DestDir: {app}\modules\{#INCRLINK}\help\fr_FR; Components: {#COMPN_SCILAB}
 ;
+Source: modules\{#INCRLINK}\languages\en_US\*.xml; DestDir: {app}\modules\{#INCRLINK}\languages\en_US; Components: {#COMPN_SCILAB}
+Source: modules\{#INCRLINK}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#INCRLINK}\languages\fr_FR; Components: {#COMPN_SCILAB}
+;
 Source: modules\{#INCRLINK}\src\scripts\Makedll.incl; DestDir: {app}\modules\{#INCRLINK}\src\scripts; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#INCRLINK}\includes\*.h; DestDir: {app}\modules\{#INCRLINK}\includes; Components: {#COMPN_SCILAB}

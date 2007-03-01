@@ -29,6 +29,9 @@ Source: modules\{#INTERPOLATION}\help\fr_FR\removechapter.sce; DestDir: {app}\mo
 Source: modules\{#INTERPOLATION}\help\en_US\*.htm; DestDir: {app}\modules\{#INTERPOLATION}\help\en_US; Components: {#COMPN_INTERP}
 Source: modules\{#INTERPOLATION}\help\fr_FR\*.htm; DestDir: {app}\modules\{#INTERPOLATION}\help\fr_FR; Components: {#COMPN_INTERP}
 ;
+Source: modules\{#INTERPOLATION}\languages\en_US\*.xml; DestDir: {app}\modules\{#INTERPOLATION}\languages\en_US; Components: {#COMPN_INTERP}
+Source: modules\{#INTERPOLATION}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#INTERPOLATION}\languages\fr_FR; Components: {#COMPN_INTERP}
+;
 Source: modules\{#INTERPOLATION}\includes\*.h; DestDir: {app}\modules\{#INTERPOLATION}\includes; Components: {#COMPN_INTERP}
 ;
 ;Source: modules\{#INTERPOLATION}\macros\lib; DestDir: {app}\modules\{#INTERPOLATION}\macros; Flags: recursesubdirs; Components: {#COMPN_INTERP}

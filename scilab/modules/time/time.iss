@@ -34,6 +34,9 @@ Source: modules\{#TIME}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#T
 Source: modules\{#TIME}\help\en_US\*.htm; DestDir: {app}\modules\{#TIME}\help\en_US; Components: {#COMPN_SCILAB}
 Source: modules\{#TIME}\help\fr_FR\*.htm; DestDir: {app}\modules\{#TIME}\help\fr_FR; Components: {#COMPN_SCILAB}
 ;
+Source: modules\{#TIME}\languages\en_US\*.xml; DestDir: {app}\modules\{#TIME}\languages\en_US; Components: {#COMPN_SCILAB}
+Source: modules\{#TIME}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#TIME}\languages\fr_FR; Components: {#COMPN_SCILAB}
+;
 Source: modules\{#TIME}\macros\buildmacros.sce; DestDir: {app}\modules\{#TIME}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#TIME}\macros\*.bin; DestDir: {app}\modules\{#TIME}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#TIME}\macros\*.sci; DestDir: {app}\modules\{#TIME}\macros; Components: {#COMPN_SCILAB}

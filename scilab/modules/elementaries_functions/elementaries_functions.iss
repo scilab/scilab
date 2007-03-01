@@ -31,6 +31,9 @@ Source: modules\{#ELEMFUNCTIONS}\help\fr_FR\removechapter.sce; DestDir: {app}\mo
 Source: modules\{#ELEMFUNCTIONS}\help\en_US\*.htm; DestDir: {app}\modules\{#ELEMFUNCTIONS}\help\en_US; Components: {#COMPN_SCILAB}
 Source: modules\{#ELEMFUNCTIONS}\help\fr_FR\*.htm; DestDir: {app}\modules\{#ELEMFUNCTIONS}\help\fr_FR; Components: {#COMPN_SCILAB}
 ;
+Source: modules\{#ELEMFUNCTIONS}\languages\en_US\*.xml; DestDir: {app}\modules\{#ELEMFUNCTIONS}\languages\en_US; Components: {#COMPN_SCILAB}
+Source: modules\{#ELEMFUNCTIONS}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#ELEMFUNCTIONS}\languages\fr_FR; Components: {#COMPN_SCILAB}
+;
 Source: modules\{#ELEMFUNCTIONS}\includes\*.h; DestDir: {app}\modules\{#ELEMFUNCTIONS}\includes; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#ELEMFUNCTIONS}\macros\buildmacros.sce; DestDir: {app}\modules\{#ELEMFUNCTIONS}\macros; Components: {#COMPN_SCILAB}

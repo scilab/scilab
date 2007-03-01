@@ -31,4 +31,6 @@ Source: modules\{#JVM}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#JV
 Source: modules\{#JVM}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#JVM}\help\fr_FR; Components:  {#COMPN_SCILAB}
 Source: modules\{#JVM}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#JVM}\help\fr_FR; Components: {#COMPN_SCILAB}
 ;
+Source: modules\{#JVM}\languages\en_US\*.xml; DestDir: {app}\modules\{#JVM}\languages\en_US; Components: {#COMPN_SCILAB}
+Source: modules\{#JVM}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#JVM}\languages\fr_FR; Components: {#COMPN_SCILAB}
 ;--------------------------------------------------------------------------------------------------------------

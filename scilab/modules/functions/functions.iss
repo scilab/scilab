@@ -21,6 +21,9 @@ Source: modules\{#FUNCTIONS}\etc\{#FUNCTIONS}.start; DestDir: {app}\modules\{#FU
 Source: modules\{#FUNCTIONS}\help\en_US\*.htm; DestDir: {app}\modules\{#FUNCTIONS}\help\en_US; Components: {#COMPN_SCILAB}
 Source: modules\{#FUNCTIONS}\help\fr_FR\*.htm; DestDir: {app}\modules\{#FUNCTIONS}\help\fr_FR; Components: {#COMPN_SCILAB}
 ;
+Source: modules\{#FUNCTIONS}\languages\en_US\*.xml; DestDir: {app}\modules\{#FUNCTIONS}\languages\en_US; Components: {#COMPN_SCILAB}
+Source: modules\{#FUNCTIONS}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#FUNCTIONS}\languages\fr_FR; Components: {#COMPN_SCILAB}
+;
 Source: modules\{#FUNCTIONS}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#FUNCTIONS}\help\en_US; Components:  {#COMPN_SCILAB}
 Source: modules\{#FUNCTIONS}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#FUNCTIONS}\help\en_US; Components: {#COMPN_SCILAB}
 ;

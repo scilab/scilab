@@ -29,6 +29,9 @@ Source: modules\{#WINTOOLS}\help\fr_FR\removechapter.sce; DestDir: {app}\modules
 Source: modules\{#WINTOOLS}\help\en_US\*.htm; DestDir: {app}\modules\{#WINTOOLS}\help\en_US; Components: {#COMPN_SCILAB}
 Source: modules\{#WINTOOLS}\help\fr_FR\*.htm; DestDir: {app}\modules\{#WINTOOLS}\help\fr_FR; Components: {#COMPN_SCILAB}
 ;
+Source: modules\{#WINTOOLS}\languages\en_US\*.xml; DestDir: {app}\modules\{#WINTOOLS}\languages\en_US; Components: {#COMPN_SCILAB}
+Source: modules\{#WINTOOLS}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#WINTOOLS}\languages\fr_FR; Components: {#COMPN_SCILAB}
+;
 Source: modules\{#WINTOOLS}\includes\*.h; DestDir: {app}\modules\{#WINTOOLS}\includes; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#WINTOOLS}\macros\lib; DestDir: {app}\modules\{#WINTOOLS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}

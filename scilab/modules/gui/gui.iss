@@ -29,6 +29,9 @@ Source: modules\{#GUI}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#GU
 Source: modules\{#GUI}\help\en_US\*.htm; DestDir: {app}\modules\{#GUI}\help\en_US; Components: {#COMPN_SCILAB}
 Source: modules\{#GUI}\help\fr_FR\*.htm; DestDir: {app}\modules\{#GUI}\help\fr_FR; Components: {#COMPN_SCILAB}
 ;
+Source: modules\{#GUI}\languages\en_US\*.xml; DestDir: {app}\modules\{#GUI}\languages\en_US; Components: {#COMPN_SCILAB}
+Source: modules\{#GUI}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#GUI}\languages\fr_FR; Components: {#COMPN_SCILAB}
+;
 Source: modules\{#GUI}\includes\*.h; DestDir: {app}\modules\{#GUI}\includes; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#GUI}\macros\lib; DestDir: {app}\modules\{#GUI}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}

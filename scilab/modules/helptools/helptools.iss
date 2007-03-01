@@ -28,6 +28,9 @@ Source: modules\{#HELPTOOLS}\help\en_US\removechapter.sce; DestDir: {app}\module
 Source: modules\{#HELPTOOLS}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#HELPTOOLS}\help\fr_FR; Components:  {#COMPN_SCILAB}
 Source: modules\{#HELPTOOLS}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#HELPTOOLS}\help\fr_FR; Components: {#COMPN_SCILAB}
 ;
+Source: modules\{#HELPTOOLS}\languages\en_US\*.xml; DestDir: {app}\modules\{#HELPTOOLS}\languages\en_US; Components: {#COMPN_SCILAB}
+Source: modules\{#HELPTOOLS}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#HELPTOOLS}\languages\fr_FR; Components: {#COMPN_SCILAB}
+;
 Source: modules\{#HELPTOOLS}\help\en_US\*.htm; DestDir: {app}\modules\{#HELPTOOLS}\help\en_US; Components: {#COMPN_SCILAB}
 Source: modules\{#HELPTOOLS}\help\fr_FR\*.htm; DestDir: {app}\modules\{#HELPTOOLS}\help\fr_FR; Components: {#COMPN_SCILAB}
 ;

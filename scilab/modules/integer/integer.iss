@@ -31,6 +31,9 @@ Source: modules\{#INTEGER}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\
 Source: modules\{#INTEGER}\help\en_US\*.htm; DestDir: {app}\modules\{#INTEGER}\help\en_US; Components: {#COMPN_SCILAB}
 Source: modules\{#INTEGER}\help\fr_FR\*.htm; DestDir: {app}\modules\{#INTEGER}\help\fr_FR; Components: {#COMPN_SCILAB}
 ;
+Source: modules\{#INTEGER}\languages\en_US\*.xml; DestDir: {app}\modules\{#INTEGER}\languages\en_US; Components: {#COMPN_SCILAB}
+Source: modules\{#INTEGER}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#INTEGER}\languages\fr_FR; Components: {#COMPN_SCILAB}
+;
 Source: modules\{#INTEGER}\includes\*.h; DestDir: {app}\modules\{#INTEGER}\includes; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#INTEGER}\macros\buildmacros.sce; DestDir: {app}\modules\{#INTEGER}\macros; Components: {#COMPN_SCILAB}

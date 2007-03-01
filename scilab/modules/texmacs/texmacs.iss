@@ -21,6 +21,9 @@ Source: modules\{#TEXMACS}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\
 Source: modules\{#TEXMACS}\help\en_US\*.htm; DestDir: {app}\modules\{#TEXMACS}\help\en_US; Components: {#COMPN_TEXMACS}
 Source: modules\{#TEXMACS}\help\fr_FR\*.htm; DestDir: {app}\modules\{#TEXMACS}\help\fr_FR; Components: {#COMPN_TEXMACS}
 ;
+Source: modules\{#TEXMACS}\languages\en_US\*.xml; DestDir: {app}\modules\{#TEXMACS}\languages\en_US; Components: {#COMPN_TEXMACS}
+Source: modules\{#TEXMACS}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#TEXMACS}\languages\fr_FR; Components: {#COMPN_TEXMACS}
+;
 Source: modules\{#TEXMACS}\macros\lib; DestDir: {app}\modules\{#TEXMACS}\macros; Components: {#COMPN_TEXMACS}
 Source: modules\{#TEXMACS}\macros\names; DestDir: {app}\modules\{#TEXMACS}\macros; Components: {#COMPN_TEXMACS}
 Source: modules\{#TEXMACS}\macros\*.bin; DestDir: {app}\modules\{#TEXMACS}\macros; Components: {#COMPN_TEXMACS}

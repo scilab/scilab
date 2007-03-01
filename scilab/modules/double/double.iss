@@ -27,6 +27,9 @@ Source: modules\{#DOUBLE}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{
 ;Source: modules\{#DOUBLE}\help\en_US\*.htm; DestDir: {app}\modules\{#DOUBLE}\help\en_US; Components: {#COMPN_SCILAB}
 ;Source: modules\{#DOUBLE}\help\fr_FR\*.htm; DestDir: {app}\modules\{#DOUBLE}\help\fr_FR; Components: {#COMPN_SCILAB}
 ;
+Source: modules\{#DOUBLE}\languages\en_US\*.xml; DestDir: {app}\modules\{#DOUBLE}\languages\en_US; Components: {#COMPN_SCILAB}
+Source: modules\{#DOUBLE}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#DOUBLE}\languages\fr_FR; Components: {#COMPN_SCILAB}
+;
 ;Source: modules\{#DOUBLE}\includes\*.h; DestDir: {app}\modules\{#DOUBLE}\includes; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#DOUBLE}\macros\buildmacros.sce; DestDir: {app}\modules\{#DOUBLE}\macros; Components: {#COMPN_SCILAB}

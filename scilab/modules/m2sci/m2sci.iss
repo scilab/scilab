@@ -27,6 +27,9 @@ Source: modules\{#M2SCI}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#
 Source: modules\{#M2SCI}\help\en_US\*.htm; DestDir: {app}\modules\{#M2SCI}\help\en_US; Components: {#COMPN_M2SCI}
 Source: modules\{#M2SCI}\help\fr_FR\*.htm; DestDir: {app}\modules\{#M2SCI}\help\fr_FR; Components: {#COMPN_M2SCI}
 ;
+Source: modules\{#M2SCI}\languages\en_US\*.xml; DestDir: {app}\modules\{#M2SCI}\languages\en_US; Components: {#COMPN_M2SCI}
+Source: modules\{#M2SCI}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#M2SCI}\languages\fr_FR; Components: {#COMPN_M2SCI}
+;
 Source: modules\{#M2SCI}\tcl\*.tcl; DestDir: {app}\modules\{#M2SCI}\tcl; Components: {#COMPN_M2SCI}
 ;
 Source: modules\{#M2SCI}\macros\lib; DestDir: {app}\modules\{#M2SCI}\macros; Flags: recursesubdirs; Components: {#COMPN_M2SCI}

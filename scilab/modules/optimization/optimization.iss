@@ -29,6 +29,9 @@ Source: modules\{#OPTIMIZATION}\help\fr_FR\removechapter.sce; DestDir: {app}\mod
 Source: modules\{#OPTIMIZATION}\help\en_US\*.htm; DestDir: {app}\modules\{#OPTIMIZATION}\help\en_US; Components: {#COMPN_OPTIM}
 Source: modules\{#OPTIMIZATION}\help\fr_FR\*.htm; DestDir: {app}\modules\{#OPTIMIZATION}\help\fr_FR; Components: {#COMPN_OPTIM}
 ;
+Source: modules\{#OPTIMIZATION}\languages\en_US\*.xml; DestDir: {app}\modules\{#OPTIMIZATION}\languages\en_US; Components: {#COMPN_OPTIM}
+Source: modules\{#OPTIMIZATION}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#OPTIMIZATION}\languages\fr_FR; Components: {#COMPN_OPTIM}
+;
 Source: modules\{#OPTIMIZATION}\includes\*.h; DestDir: {app}\modules\{#OPTIMIZATION}\includes; Components: {#COMPN_OPTIM}
 ;
 Source: modules\{#OPTIMIZATION}\macros\buildmacros.sce; DestDir: {app}\modules\{#OPTIMIZATION}\macros; Components: {#COMPN_OPTIM}

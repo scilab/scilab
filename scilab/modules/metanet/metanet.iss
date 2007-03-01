@@ -33,6 +33,9 @@ Source: modules\{#METANET}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\
 Source: modules\{#METANET}\help\en_US\*.htm; DestDir: {app}\modules\{#METANET}\help\en_US; Components: {#COMPN_METANET}
 Source: modules\{#METANET}\help\fr_FR\*.htm; DestDir: {app}\modules\{#METANET}\help\fr_FR; Components: {#COMPN_METANET}
 ;
+Source: modules\{#METANET}\languages\en_US\*.xml; DestDir: {app}\modules\{#METANET}\languages\en_US; Components: {#COMPN_METANET}
+Source: modules\{#METANET}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#METANET}\languages\fr_FR; Components: {#COMPN_METANET}
+;
 Source: modules\{#METANET}\includes\*.h; DestDir: {app}\modules\{#METANET}\includes; Components: {#COMPN_METANET}
 ;
 Source: modules\{#METANET}\macros\lib; DestDir: {app}\modules\{#METANET}\macros; Components: {#COMPN_METANET}

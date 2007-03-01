@@ -30,6 +30,9 @@ Source: modules\{#GRAPHICS}\help\en_US\*.htm; DestDir: {app}\modules\{#GRAPHICS}
 Source: modules\{#GRAPHICS}\help\fr_FR\*.htm; DestDir: {app}\modules\{#GRAPHICS}\help\fr_FR; Components: {#COMPN_GRAPHICS}
 Source: modules\{#GRAPHICS}\help\images\*.gif; DestDir: {app}\modules\{#GRAPHICS}\images; Components: {#COMPN_GRAPHICS}
 ;
+Source: modules\{#GRAPHICS}\languages\en_US\*.xml; DestDir: {app}\modules\{#GRAPHICS}\languages\en_US; Components: {#COMPN_GRAPHICS}
+Source: modules\{#GRAPHICS}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#GRAPHICS}\languages\fr_FR; Components: {#COMPN_GRAPHICS}
+;
 Source: modules\{#GRAPHICS}\includes\*.h; DestDir: {app}\modules\{#GRAPHICS}\includes; Components: {#COMPN_GRAPHICS}
 ;
 Source: modules\{#GRAPHICS}\macros\buildmacros.sce; DestDir: {app}\modules\{#GRAPHICS}\macros; Components: {#COMPN_GRAPHICS}

@@ -33,6 +33,9 @@ Source: modules\{#SOUND}\etc\{#SOUND}.start; DestDir: {app}\modules\{#SOUND}\etc
 Source: modules\{#SOUND}\help\en_US\*.htm; DestDir: {app}\modules\{#SOUND}\help\en_US; Components: {#COMPN_SOUND}
 Source: modules\{#SOUND}\help\fr_FR\*.htm; DestDir: {app}\modules\{#SOUND}\help\fr_FR; Components: {#COMPN_SOUND}
 ;
+Source: modules\{#SOUND}\languages\en_US\*.xml; DestDir: {app}\modules\{#SOUND}\languages\en_US; Components: {#COMPN_SOUND}
+Source: modules\{#SOUND}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#SOUND}\languages\fr_FR; Components: {#COMPN_SOUND}
+;
 Source: modules\{#SOUND}\macros\buildmacros.sce; DestDir: {app}\modules\{#SOUND}\macros; Components: {#COMPN_SOUND}
 Source: modules\{#SOUND}\macros\*.bin; DestDir: {app}\modules\{#SOUND}\macros; Components: {#COMPN_SOUND}
 Source: modules\{#SOUND}\macros\*.sci; DestDir: {app}\modules\{#SOUND}\macros; Components: {#COMPN_SOUND}

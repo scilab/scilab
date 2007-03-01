@@ -29,6 +29,9 @@ Source: modules\{#POLYNOMIALS}\help\fr_FR\removechapter.sce; DestDir: {app}\modu
 Source: modules\{#POLYNOMIALS}\help\en_US\*.htm; DestDir: {app}\modules\{#POLYNOMIALS}\help\en_US; Components: {#COMPN_POLY}
 Source: modules\{#POLYNOMIALS}\help\fr_FR\*.htm; DestDir: {app}\modules\{#POLYNOMIALS}\help\fr_FR; Components: {#COMPN_POLY}
 ;
+Source: modules\{#POLYNOMIALS}\languages\en_US\*.xml; DestDir: {app}\modules\{#POLYNOMIALS}\languages\en_US; Components: {#COMPN_POLY}
+Source: modules\{#POLYNOMIALS}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#POLYNOMIALS}\languages\fr_FR; Components: {#COMPN_POLY}
+;
 Source: modules\{#POLYNOMIALS}\includes\*.h; DestDir: {app}\modules\{#POLYNOMIALS}\includes; Components: {#COMPN_POLY}
 ;
 Source: modules\{#POLYNOMIALS}\macros\buildmacros.sce; DestDir: {app}\modules\{#POLYNOMIALS}\macros; Components: {#COMPN_POLY}

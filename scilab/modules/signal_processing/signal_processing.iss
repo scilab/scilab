@@ -29,6 +29,9 @@ Source: modules\{#SIGPROC}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\
 Source: modules\{#SIGPROC}\help\en_US\*.htm; DestDir: {app}\modules\{#SIGPROC}\help\en_US; Components: {#COMPN_SIGPROC}
 Source: modules\{#SIGPROC}\help\fr_FR\*.htm; DestDir: {app}\modules\{#SIGPROC}\help\fr_FR; Components: {#COMPN_SIGPROC}
 ;
+Source: modules\{#SIGPROC}\languages\en_US\*.xml; DestDir: {app}\modules\{#SIGPROC}\languages\en_US; Components: {#COMPN_SIGPROC}
+Source: modules\{#SIGPROC}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#SIGPROC}\languages\fr_FR; Components: {#COMPN_SIGPROC}
+;
 Source: modules\{#SIGPROC}\macros\lib; DestDir: {app}\modules\{#SIGPROC}\macros; Components: {#COMPN_SIGPROC}
 Source: modules\{#SIGPROC}\macros\names; DestDir: {app}\modules\{#SIGPROC}\macros; Components: {#COMPN_SIGPROC}
 Source: modules\{#SIGPROC}\macros\*.bin; DestDir: {app}\modules\{#SIGPROC}\macros; Components: {#COMPN_SIGPROC}

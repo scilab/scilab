@@ -31,6 +31,9 @@ Source: modules\{#LOCALIZATION}\help\fr_FR\removechapter.sce; DestDir: {app}\mod
 Source: modules\{#LOCALIZATION}\help\en_US\*.htm; DestDir: {app}\modules\{#LOCALIZATION}\help\en_US; Components: {#COMPN_SCILAB}
 Source: modules\{#LOCALIZATION}\help\fr_FR\*.htm; DestDir: {app}\modules\{#LOCALIZATION}\help\fr_FR; Components: {#COMPN_SCILAB}
 ;
+Source: modules\{#LOCALIZATION}\languages\en_US\*.xml; DestDir: {app}\modules\{#LOCALIZATION}\languages\en_US; Components: {#COMPN_SCILAB}
+Source: modules\{#LOCALIZATION}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#LOCALIZATION}\hlanguages\fr_FR; Components: {#COMPN_SCILAB}
+;
 Source: modules\{#LOCALIZATION}\includes\*.h; DestDir: {app}\modules\{#LOCALIZATION}\includes; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#LOCALIZATION}\macros\lib; DestDir: {app}\modules\{#LOCALIZATION}\macros; Components: {#COMPN_SCILAB}
@@ -39,7 +42,7 @@ Source: modules\{#LOCALIZATION}\macros\*.bin; DestDir: {app}\modules\{#LOCALIZAT
 Source: modules\{#LOCALIZATION}\macros\*.sci; DestDir: {app}\modules\{#LOCALIZATION}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#LOCALIZATION}\macros\buildmacros.sce; DestDir: {app}\modules\{#LOCALIZATION}\macros; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#LOCALIZATION}\xml\*.xml; DestDir: {app}\modules\{#LOCALIZATION}\xml; Components: {#COMPN_SCILAB}
+Source: modules\{#LOCALIZATION}\xml\*.dtd; DestDir: {app}\modules\{#LOCALIZATION}\xml; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#LOCALIZATION}\demos\*.*; DestDir: {app}\modules\{#LOCALIZATION}\demos; Components: {#COMPN_SCILAB}
 ;

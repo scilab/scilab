@@ -32,6 +32,9 @@ Source: modules\{#FFTW}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#F
 ;Source: modules\{#FFTW}\help\en_US\*.htm; DestDir: {app}\modules\{#FFTW}\help\en_US; Components: {#COMPN_FFTW}
 ;Source: modules\{#FFTW}\help\fr_FR\*.htm; DestDir: {app}\modules\{#FFTW}\help\fr_FR; Components: {#COMPN_FFTW}
 ;
+Source: modules\{#FFTW}\languages\en_US\*.xml; DestDir: {app}\modules\{#FFTW}\languages\en_US; Components: {#COMPN_FFTW}
+Source: modules\{#FFTW}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#FFTW}\languages\fr_FR; Components: {#COMPN_FFTW}
+;
 Source: modules\{#FFTW}\includes\*.h; Flags: recursesubdirs; DestDir: {app}\modules\{#FFTW}\includes; Components: {#COMPN_FFTW}
 ;
 ;Source: modules\{#FFTW}\macros\lib; DestDir: {app}\modules\{#FFTW}\macros; Components: {#COMPN_FFTW}

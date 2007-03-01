@@ -29,6 +29,9 @@ Source: modules\{#STATS}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#
 Source: modules\{#STATS}\help\en_US\*.htm; DestDir: {app}\modules\{#STATS}\help\en_US; Components: {#COMPN_STATS}
 Source: modules\{#STATS}\help\fr_FR\*.htm; DestDir: {app}\modules\{#STATS}\help\fr_FR; Components: {#COMPN_STATS}
 ;
+Source: modules\{#STATS}\languages\en_US\*.xml; DestDir: {app}\modules\{#STATS}\languages\en_US; Components: {#COMPN_STATS}
+Source: modules\{#STATS}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#STATS}\languages\fr_FR; Components: {#COMPN_STATS}
+;
 Source: modules\{#STATS}\macros\lib; DestDir: {app}\modules\{#STATS}\macros; Components: {#COMPN_STATS}
 Source: modules\{#STATS}\macros\names; DestDir: {app}\modules\{#STATS}\macros; Components: {#COMPN_STATS}
 Source: modules\{#STATS}\macros\*.bin; DestDir: {app}\modules\{#STATS}\macros; Components: {#COMPN_STATS}

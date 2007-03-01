@@ -33,6 +33,9 @@ Source: modules\{#ARNOLDI}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\
 Source: modules\{#ARNOLDI}\help\en_US\*.htm; DestDir: {app}\modules\{#ARNOLDI}\help\en_US; Components: {#COMPN_ARNOLDI}
 Source: modules\{#ARNOLDI}\help\fr_FR\*.htm; DestDir: {app}\modules\{#ARNOLDI}\help\fr_FR; Components: {#COMPN_ARNOLDI}
 ;
+Source: modules\{#ARNOLDI}\languages\en_US\*.xml; DestDir: {app}\modules\{#ARNOLDI}\languages\en_US; Components: {#COMPN_ARNOLDI}
+Source: modules\{#ARNOLDI}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#ARNOLDI}\languages\fr_FR; Components: {#COMPN_ARNOLDI}
+;
 ;Source: modules\{#ARNOLDI}\includes\*.h; DestDir: {app}\modules\{#ARNOLDI}\includes; Components: {#COMPN_ARNOLDI}
 ;
 ;Source: modules\{#ARNOLDI}\macros\lib; DestDir: {app}\modules\{#ARNOLDI}\macros; Components: {#COMPN_ARNOLDI}

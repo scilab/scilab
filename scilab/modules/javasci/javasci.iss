@@ -23,6 +23,9 @@ Source: modules\{#JAVASCI}\help\en_US\*.htm; DestDir: {app}\modules\{#JAVASCI}\h
 Source: modules\{#JAVASCI}\help\fr_FR\*.htm; DestDir: {app}\modules\{#JAVASCI}\help\fr_FR; Components: {#COMPN_JAVASCI}
 Source: modules\{#JAVASCI}\help\images\*.gif; DestDir: {app}\modules\{#JAVASCI}\help\images; Components: {#COMPN_JAVASCI}
 ;
+Source: modules\{#JAVASCI}\languages\en_US\*.xml; DestDir: {app}\modules\{#JAVASCI}\languages\en_US; Components: {#COMPN_JAVASCI}
+Source: modules\{#JAVASCI}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#JAVASCI}\languages\fr_FR; Components: {#COMPN_JAVASCI}
+;
 Source: modules\{#JAVASCI}\etc\{#JAVASCI}.quit; DestDir: {app}\modules\{#JAVASCI}\etc; Components: {#COMPN_JAVASCI}
 Source: modules\{#JAVASCI}\etc\{#JAVASCI}.start; DestDir: {app}\modules\{#JAVASCI}\etc; Components: {#COMPN_JAVASCI}
 ;

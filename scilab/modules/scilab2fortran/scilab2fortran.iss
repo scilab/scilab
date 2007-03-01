@@ -27,6 +27,9 @@ Source: modules\{#SCI2FOR}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\
 Source: modules\{#SCI2FOR}\help\en_US\*.htm; DestDir: {app}\modules\{#SCI2FOR}\help\en_US; Components: {#COMPN_SCI2FOR}
 Source: modules\{#SCI2FOR}\help\fr_FR\*.htm; DestDir: {app}\modules\{#SCI2FOR}\help\fr_FR; Components: {#COMPN_SCI2FOR}
 ;
+Source: modules\{#SCI2FOR}\languages\en_US\*.xml; DestDir: {app}\modules\{#SCI2FOR}\languages\en_US; Components: {#COMPN_SCI2FOR}
+Source: modules\{#SCI2FOR}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#SCI2FOR}\languages\fr_FR; Components: {#COMPN_SCI2FOR}
+;
 Source: modules\{#SCI2FOR}\macros\lib; DestDir: {app}\modules\{#SCI2FOR}\macros; Components: {#COMPN_SCI2FOR}
 Source: modules\{#SCI2FOR}\macros\names; DestDir: {app}\modules\{#SCI2FOR}\macros; Components: {#COMPN_SCI2FOR}
 Source: modules\{#SCI2FOR}\macros\*.bin; DestDir: {app}\modules\{#SCI2FOR}\macros; Components: {#COMPN_SCI2FOR}

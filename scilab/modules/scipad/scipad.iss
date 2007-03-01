@@ -27,6 +27,9 @@ Source: modules\{#SCIPAD}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{
 Source: modules\{#SCIPAD}\help\en_US\*.htm; DestDir: {app}\modules\{#SCIPAD}\help\en_US; Components: {#COMPN_SCIPAD}
 Source: modules\{#SCIPAD}\help\fr_FR\*.htm; DestDir: {app}\modules\{#SCIPAD}\help\fr_FR; Components: {#COMPN_SCIPAD}
 ;
+Source: modules\{#SCIPAD}\languages\en_US\*.xml; DestDir: {app}\modules\{#SCIPAD}\languages\en_US; Components: {#COMPN_SCIPAD}
+Source: modules\{#SCIPAD}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#SCIPAD}\languages\fr_FR; Components: {#COMPN_SCIPAD}
+;
 Source: modules\{#SCIPAD}\macros\lib; DestDir: {app}\modules\{#SCIPAD}\macros; Components: {#COMPN_SCIPAD}
 Source: modules\{#SCIPAD}\macros\names; DestDir: {app}\modules\{#SCIPAD}\macros; Components: {#COMPN_SCIPAD}
 Source: modules\{#SCIPAD}\macros\*.bin; DestDir: {app}\modules\{#SCIPAD}\macros; Components: {#COMPN_SCIPAD}

@@ -31,6 +31,9 @@ Source: modules\{#CACSD}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#
 Source: modules\{#CACSD}\help\en_US\*.htm; DestDir: {app}\modules\{#CACSD}\help\en_US; Components: {#COMPN_CACSD}
 Source: modules\{#CACSD}\help\fr_FR\*.htm; DestDir: {app}\modules\{#CACSD}\help\fr_FR; Components: {#COMPN_CACSD}
 ;
+Source: modules\{#CACSD}\languages\en_US\*.xml; DestDir: {app}\modules\{#CACSD}\languages\en_US; Components: {#COMPN_CACSD}
+Source: modules\{#CACSD}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#CACSD}\languages\fr_FR; Components: {#COMPN_CACSD}
+;
 Source: modules\{#CACSD}\includes\*.h; DestDir: {app}\modules\{#CACSD}\includes; Components: {#COMPN_CACSD}
 ;
 Source: modules\{#CACSD}\macros\lib; DestDir: {app}\modules\{#CACSD}\macros; Components: {#COMPN_CACSD}

@@ -31,6 +31,9 @@ Source: modules\{#PVM}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#PV
 Source: modules\{#PVM}\help\en_US\*.htm; DestDir: {app}\modules\{#PVM}\help\en_US; Components: {#COMPN_PVM}
 Source: modules\{#PVM}\help\fr_FR\*.htm; DestDir: {app}\modules\{#PVM}\help\fr_FR; Components: {#COMPN_PVM}
 ;
+Source: modules\{#PVM}\languages\en_US\*.xml; DestDir: {app}\modules\{#PVM}\languages\en_US; Components: {#COMPN_PVM}
+Source: modules\{#PVM}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#PVM}\languages\fr_FR; Components: {#COMPN_PVM}
+;
 Source: modules\{#PVM}\macros\buildmacros.sce; DestDir: {app}\modules\{#PVM}\macros; Components: {#COMPN_PVM}
 Source: modules\{#PVM}\macros\*.bin; DestDir: {app}\modules\{#PVM}\macros; Components: {#COMPN_PVM}
 Source: modules\{#PVM}\macros\*.sci; DestDir: {app}\modules\{#PVM}\macros; Components: {#COMPN_PVM}

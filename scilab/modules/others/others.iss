@@ -27,6 +27,9 @@ Source: modules\{#OTHERS}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{
 Source: modules\{#OTHERS}\help\en_US\*.htm; DestDir: {app}\modules\{#OTHERS}\help\en_US; Components: {#COMPN_OTHERS}
 Source: modules\{#OTHERS}\help\fr_FR\*.htm; DestDir: {app}\modules\{#OTHERS}\help\fr_FR; Components: {#COMPN_OTHERS}
 ;
+Source: modules\{#OTHERS}\languages\en_US\*.xml; DestDir: {app}\modules\{#OTHERS}\languages\en_US; Components: {#COMPN_OTHERS}
+Source: modules\{#OTHERS}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#OTHERS}\languages\fr_FR; Components: {#COMPN_OTHERS}
+;
 ;Source: modules\{#OTHERS}\includes\*.h; DestDir: {app}\modules\{#OTHERS}\includes; Components: {#COMPN_OTHERS}
 ;
 Source: modules\{#OTHERS}\macros\lib; DestDir: {app}\modules\{#OTHERS}\macros; Flags: recursesubdirs; Components: {#COMPN_OTHERS}

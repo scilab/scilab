@@ -32,6 +32,9 @@ Source: modules\{#MEXLIB}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{
 ;Source: modules\{#MEXLIB}\help\en_US\*.htm; DestDir: {app}\modules\{#MEXLIB}\help\en_US; Components: {#COMPN_MEXLIB}
 ;Source: modules\{#MEXLIB}\help\fr_FR\*.htm; DestDir: {app}\modules\{#MEXLIB}\help\fr_FR; Components: {#COMPN_MEXLIB}
 ;
+Source: modules\{#MEXLIB}\languages\en_US\*.xml; DestDir: {app}\modules\{#MEXLIB}\languages\en_US; Components: {#COMPN_MEXLIB}
+Source: modules\{#MEXLIB}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#MEXLIB}\languages\fr_FR; Components: {#COMPN_MEXLIB}
+;
 Source: modules\{#MEXLIB}\includes\*.h; DestDir: {app}\modules\{#MEXLIB}\includes; Components: {#COMPN_MEXLIB}
 ;
 ;Source: modules\{#MEXLIB}\macros\lib; DestDir: {app}\modules\{#MEXLIB}\macros; Components: {#COMPN_MEXLIB}

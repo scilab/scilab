@@ -29,6 +29,9 @@ Source: modules\{#CORE}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#C
 Source: modules\{#CORE}\help\en_US\*.htm; DestDir: {app}\modules\{#CORE}\help\en_US; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\help\fr_FR\*.htm; DestDir: {app}\modules\{#CORE}\help\fr_FR; Components: {#COMPN_SCILAB}
 ;
+Source: modules\{#CORE}\languages\en_US\*.xml; DestDir: {app}\modules\{#CORE}\languages\en_US; Components: {#COMPN_SCILAB}
+Source: modules\{#CORE}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#CORE}\languages\fr_FR; Components: {#COMPN_SCILAB}
+;
 Source: modules\{#CORE}\includes\*.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#CORE}\macros\buildmacros.sce; DestDir: {app}\modules\{#CORE}\macros; Components: {#COMPN_SCILAB}

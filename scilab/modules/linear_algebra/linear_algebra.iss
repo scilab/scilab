@@ -29,6 +29,9 @@ Source: modules\{#LINALG}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{
 Source: modules\{#LINALG}\help\en_US\*.htm; DestDir: {app}\modules\{#LINALG}\help\en_US; Components: {#COMPN_LINALG}
 Source: modules\{#LINALG}\help\fr_FR\*.htm; DestDir: {app}\modules\{#LINALG}\help\fr_FR; Components: {#COMPN_LINALG}
 ;
+Source: modules\{#LINALG}\languages\en_US\*.xml; DestDir: {app}\modules\{#LINALG}\languages\en_US; Components: {#COMPN_LINALG}
+Source: modules\{#LINALG}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#LINALG}\languages\fr_FR; Components: {#COMPN_LINALG}
+;
 Source: modules\{#LINALG}\includes\*.h; DestDir: {app}\modules\{#LINALG}\includes; Components: {#COMPN_LINALG}
 ;
 Source: modules\{#LINALG}\macros\buildmacros.sce; DestDir: {app}\modules\{#LINALG}\macros; Components: {#COMPN_LINALG}

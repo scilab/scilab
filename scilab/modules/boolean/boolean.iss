@@ -29,6 +29,9 @@ Source: modules\{#BOOLEAN}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\
 Source: modules\{#BOOLEAN}\help\en_US\*.htm; DestDir: {app}\modules\{#BOOLEAN}\help\en_US; Components: {#COMPN_SCILAB}
 Source: modules\{#BOOLEAN}\help\fr_FR\*.htm; DestDir: {app}\modules\{#BOOLEAN}\help\fr_FR; Components: {#COMPN_SCILAB}
 ;
+Source: modules\{#BOOLEAN}\languages\en_US\*.xml; DestDir: {app}\modules\{#BOOLEAN}\languages\en_US; Components: {#COMPN_SCILAB}
+Source: modules\{#BOOLEAN}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#BOOLEAN}\languages\fr_FR; Components: {#COMPN_SCILAB}
+;
 Source: modules\{#BOOLEAN}\includes\*.h; DestDir: {app}\modules\{#BOOLEAN}\includes; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#BOOLEAN}\macros\lib; DestDir: {app}\modules\{#BOOLEAN}\macros; Components: {#COMPN_SCILAB}

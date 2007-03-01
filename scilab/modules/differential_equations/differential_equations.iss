@@ -29,6 +29,9 @@ Source: modules\{#DIFFEQU}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\
 Source: modules\{#DIFFEQU}\help\en_US\*.htm; DestDir: {app}\modules\{#DIFFEQU}\help\en_US; Components: {#COMPN_EQUDIF}
 Source: modules\{#DIFFEQU}\help\fr_FR\*.htm; DestDir: {app}\modules\{#DIFFEQU}\help\fr_FR; Components: {#COMPN_EQUDIF}
 ;
+Source: modules\{#DIFFEQU}\languages\en_US\*.xml; DestDir: {app}\modules\{#DIFFEQU}\languages\en_US; Components: {#COMPN_EQUDIF}
+Source: modules\{#DIFFEQU}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#DIFFEQU}\languages\fr_FR; Components: {#COMPN_EQUDIF}
+;
 ;Source: modules\{#DIFFEQU}\includes\*.h; DestDir: {app}\modules\{#DIFFEQU}\includes; Components: {#COMPN_EQUDIF}
 ;
 Source: modules\{#DIFFEQU}\macros\lib; DestDir: {app}\modules\{#DIFFEQU}\macros; Flags: recursesubdirs; Components: {#COMPN_EQUDIF}
