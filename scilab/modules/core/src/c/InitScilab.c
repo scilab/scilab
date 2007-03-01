@@ -16,8 +16,9 @@ int C2F(initscilab)(void)
 
 	InitializeTclTk();
 
-	#ifdef _MSC_VER
+	
 	InitializeLocalization();
+	#ifdef _MSC_VER
 	InitializeJVM();
 	#endif
 	
