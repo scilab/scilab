@@ -95,7 +95,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd src\java\javasci&#x0D;&#x0A;MakeJavaClass.bat&#x0D;&#x0A;cd ..\..\.."
+				CommandLine="cd src\java\javasci&#x0D;&#x0A;MakeJavaClass.bat&#x0D;&#x0A;cd ..\..\..&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -177,7 +177,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd src\java\javasci&#x0D;&#x0A;MakeJavaClass.bat&#x0D;&#x0A;cd ..\..\.."
+				CommandLine="cd src\java\javasci&#x0D;&#x0A;MakeJavaClass.bat&#x0D;&#x0A;cd ..\..\..&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>
@@ -266,47 +266,47 @@
 			Name="Java Class"
 			>
 			<File
-				RelativePath=".\src\java\BadDataArgumentException.java"
+				RelativePath=".\src\java\javasci\BadDataArgumentException.java"
 				>
 			</File>
 			<File
-				RelativePath=".\src\java\MakeJavaClass.bat"
+				RelativePath=".\src\java\javasci\MakeJavaClass.bat"
 				>
 			</File>
 			<File
-				RelativePath=".\src\java\SciBoolean.java"
+				RelativePath=".\src\java\javasci\SciBoolean.java"
 				>
 			</File>
 			<File
-				RelativePath=".\src\java\SciBooleanArray.java"
+				RelativePath=".\src\java\javasci\SciBooleanArray.java"
 				>
 			</File>
 			<File
-				RelativePath=".\src\java\SciComplex.java"
+				RelativePath=".\src\java\javasci\SciComplex.java"
 				>
 			</File>
 			<File
-				RelativePath=".\src\java\SciComplexArray.java"
+				RelativePath=".\src\java\javasci\SciComplexArray.java"
 				>
 			</File>
 			<File
-				RelativePath=".\src\java\SciDouble.java"
+				RelativePath=".\src\java\javasci\SciDouble.java"
 				>
 			</File>
 			<File
-				RelativePath=".\src\java\SciDoubleArray.java"
+				RelativePath=".\src\java\javasci\SciDoubleArray.java"
 				>
 			</File>
 			<File
-				RelativePath=".\src\java\Scilab.java"
+				RelativePath=".\src\java\javasci\Scilab.java"
 				>
 			</File>
 			<File
-				RelativePath=".\src\java\SciString.java"
+				RelativePath=".\src\java\javasci\SciString.java"
 				>
 			</File>
 			<File
-				RelativePath=".\src\java\SciStringArray.java"
+				RelativePath=".\src\java\javasci\SciStringArray.java"
 				>
 			</File>
 		</Filter>
