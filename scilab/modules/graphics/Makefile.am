@@ -333,7 +333,7 @@ src/c/handleDrawing/drawSubWinEntity.c \
 src/c/handleDrawing/drawSurfaceEntity.c \
 src/c/handleDrawing/drawTextEntity.c \
 src/c/TerminateGraphics.c \
-src/c/CurrentObjectsManagemet.c \
+src/c/CurrentObjectsManagement.c \
 src/c/ObjectSelection.c
 
 
@@ -593,7 +593,7 @@ includes/sci_drawnow.h \
 includes/giffonts.h \
 includes/sci_param3d.h \
 includes/periGif.h \
-includes/CurrentObjectsManagement.c \
+includes/CurrentObjectsManagement.h \
 includes/ObjectSelection.h
 
 
