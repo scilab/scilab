@@ -115,8 +115,7 @@ histplot(40, X, style=2)
 x = linspace(0,max(Xmax),100)';
 plot2d(x,lambda*exp(-lambda*x),strf="000",style=5)
 legend(["exponential random sample histogram" "exact density curve"]);
-// Note: if you use the old graphic mode use instead 
-// legends(["exponential random sample histogram" "exact density curve"],[2 5],"ur");
+
   ]]></EXAMPLE>
 
   <SEE_ALSO>

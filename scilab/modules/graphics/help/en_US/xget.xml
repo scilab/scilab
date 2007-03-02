@@ -39,8 +39,8 @@
   </PARAM>
 
   <DESCRIPTION>
-    <P><VERB>Warning : </VERB>Scilab 4.x versions family will be the last
-    versions working with the old graphics mode. </P>
+    <P>Warning this function is obsolsolete. Use the Scilab graphic objetcs representation
+    instead</P>
 
     <P>This function is used to get values from the graphics context on the
     topic specified by the string <VERB>str</VERB>. When called with no

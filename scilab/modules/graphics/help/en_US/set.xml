@@ -84,7 +84,6 @@
 
 
    clf()
-   set("figure_style","new") //create a figure
    set("auto_clear","off") ;
    // Exemple of a Plot 2D
    x=[-.2:0.1:2*%pi]';

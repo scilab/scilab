@@ -19,10 +19,9 @@
   capacities</SHORT_DESCRIPTION>
 
   <DESCRIPTION>
-    <P>As explained in the <VERB>graphics_entities</VERB> help file, Scilab
-    graphics is now based on a brent new graphics mode. This mode allows the
-    user to have more interaction with graphics before and after having them
-    drawn. In the <VERB>"new"</VERB> mode, each graphics window and the
+    <P>Scilab graphics allow the
+    user to have interaction with graphics before and after having them
+    drawn. Each graphics window and the
     drawing it contains are represented by hierchical entities. The hierachy
     top level is the Figure. Each Figure defines at least one child of type
     Axes. Each Axes entity contains a set of leaf entities which are the basic
@@ -61,16 +60,14 @@
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="Redraw figure: ">
-        <SP>Redraw the content of the graphics window (only useful for
-        old_style mode).</SP>
+        <SP>Redraw the content of the graphics window.</SP>
 
         <P></P>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="Erase figure: ">
         <SP>Erase the content of the graphics window. Its action corresponds
-        to a <VERB>xbasc</VERB> (old graphic style) or <VERB>clf</VERB> (new
-        graphic style) command.</SP>
+        to <VERB>clf</VERB> routine.</SP>
 
         <P></P>
 

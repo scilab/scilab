@@ -39,8 +39,8 @@
   </PARAM>
 
   <DESCRIPTION>
-    <P><VERB>Remarque Importante : </VERB>Les versions Scilab 4.x seront les
-    dernières à  fonctionner avec l'ancien mode graphique.</P>
+    <P><VERB>Remarque Importante : </VERB>Cette fonction est obsolotète.
+    Utilisez de préférence la représentation objet des graphiques Scilab</P>
 
     <P><VERB>xset</VERB> est utilisée pour changer des valeurs du contexte
     graphique de la fenêtre graphique courante.</P>

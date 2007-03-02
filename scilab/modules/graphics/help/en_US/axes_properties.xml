@@ -541,7 +541,6 @@
 
   <EXAMPLE><![CDATA[  
    lines(0) // disables vertical paging 
-   set("figure_style","new") //create a figure
    a=get("current_axes")//get the handle of the newly created axes
    a.axes_visible="on"; // makes the axes visible
    a.font_size=3; //set the tics label font size

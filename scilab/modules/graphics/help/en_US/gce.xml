@@ -34,7 +34,6 @@
 
   <EXAMPLE><![CDATA[
    
-    set("figure_style","new") //create a figure entity
     a=gca() //get the handle of the newly created axes
     a.data_bounds=[1,1;10,10];
     a.axes_visible = 'on' ;

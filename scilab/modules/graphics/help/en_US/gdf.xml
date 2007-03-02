@@ -45,7 +45,6 @@
 
   <EXAMPLE><![CDATA[
    
-   set old_style off
    f=gdf() // get the handle of the model figure 
    // setting its' properties
    f.background=7;

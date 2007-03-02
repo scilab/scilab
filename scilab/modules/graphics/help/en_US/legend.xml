@@ -110,7 +110,6 @@
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
-set figure_style new
 t=0:0.1:2*%pi;
 a=gca();a.data_bounds=[t(1) -1.8;t($) 1.8];
 

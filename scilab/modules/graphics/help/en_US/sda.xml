@@ -33,7 +33,6 @@
   <EXAMPLE><![CDATA[
    
   x=[0:0.1:2*%pi]';
-  set old_style off
   f=get("default_figure"); // get the handle of the model figure 
   a=get("default_axes"); // get the handle of the model axes 
     // setting its' properties

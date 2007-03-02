@@ -35,7 +35,6 @@
 
   <EXAMPLE><![CDATA[
   //Example :  one axes / one figure
-  set("figure_style","new") // select entity based graphics
   drawlater(); 
   xfarc(.25,.55,.1,.15,0,64*360);
   xfarc(.55,.55,.1,.15,0,64*360);

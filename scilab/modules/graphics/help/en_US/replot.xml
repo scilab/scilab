@@ -53,24 +53,19 @@
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[backupstyle='?'
-if (get('old_style')=='off') then
-  set('old_style','on');
-  backupstyle='off'
-end
 
-// under old graphics mode
+// First Example
 x=[0:0.1:2*%pi]';
 plot2d(x,sin(x)) 
 replot([-1,-1,10,2]) 
 
-// under new graphics mode
-set old_style off
+// Second Example
 xdel(winsid());
 plot() // plot demo
 f=gcf();
 replot([-1,-1,10,2],f.children(1)) // specify axes handle's value
 replot([-3,-2,8,4],f.children(2)) 
-if (backupstyle =='off') then set('old_style',backupstyle);end;
+
  
   ]]></EXAMPLE>
 

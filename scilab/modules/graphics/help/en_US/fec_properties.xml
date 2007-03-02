@@ -74,9 +74,6 @@
 
   <EXAMPLE><![CDATA[
 
-
-   set("figure_style","new"); //create a figure
-
    x=-10:10; y=-10:10;m =rand(21,21);
    Sgrayplot(x,y,m);
    a=get("current_axes");

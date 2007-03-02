@@ -101,7 +101,6 @@ colorbar(-1,1)
 Sgrayplot(t,t,m, strf="041")
 
 // example #3: an animation display cos(t)*sin(x)sin(y).
-// (Remark: this animation uses the old mode)
 n = 30;
 nt = 100;
 x = linspace(0,2*%pi,n);

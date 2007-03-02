@@ -31,11 +31,9 @@
           </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM label="figure_style: ">
-            <SP>The value of this field defines the figure style, it should be
-            <VERB>"old"</VERB> or <VERB>"new"</VERB>. The <VERB>"new"</VERB>
-            value sets the entity based style. The <VERB>"old"</VERB> value
-            represents the old Scilab graphic mode. In this case
-            <VERB>figure_style</VERB> is the only defined property.</SP>
+            <SP>The value of this field defines the figure style.
+            Scince Scilab 5.0, old graphic mode has been disable.
+            This property is kept for compatibility but can not be modified.</SP>
           </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM label="figure_position: ">
@@ -185,7 +183,6 @@
   <EXAMPLE><![CDATA[
    lines(0) // disables vertical paging 
   //Example 1
-   set("figure_style","new") //create a figure and set the figure as the current selected one
    f=get("current_figure") //get the handle of the current figure : 
                                            //if none exists, create a figure and return the corresponding handle
    f.figure_position

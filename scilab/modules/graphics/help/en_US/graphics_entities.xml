@@ -15,16 +15,8 @@
   <SHORT_DESCRIPTION name="new graphics ">description of the graphics entities
   data structures</SHORT_DESCRIPTION>
 
-  <SHORT_DESCRIPTION name="figure_style ">description of the graphics entities
-  data structures</SHORT_DESCRIPTION>
-
-  <SHORT_DESCRIPTION name="old_style ">description of the graphics entities
-  data structures</SHORT_DESCRIPTION>
-
   <DESCRIPTION>
-    <P>Scilab graphics is based on two differents modes. In the
-    <VERB>"old"</VERB> mode, the graphics functions are stored to enable
-    redisplay, zoom and rotations. In the <VERB>"new"</VERB> mode, each
+    <P> In Scilab,
     graphics window and the drawing it contains are represented by hierchical
     entities. The hierachy top level is the Figure. Each Figure defines at
     least one child of type Axes. Each Axes entity contains a set of leaf
@@ -43,17 +35,6 @@
     be possible to reach entities' properties through "set" and "get"
     routines. The handles are also used to manipulate graphics objects, to
     move them, to make copies or delete them.</P>
-
-    <P></P>
-
-    <P>To set the current graphics window mode we can use these following
-    instructions: <VERB>set("figure_style","new") </VERB> to have a graphics
-    window under the "new" mode or <VERB>set("figure_style","old ")</VERB> for
-    the "old" mode.</P>
-
-    <P>The instructions <VERB>set("old_style","off")</VERB> and
-    <VERB>set("old_style","on")</VERB> are used to set the default mode to be
-    used when a new graphics window is created.</P>
 
     <P></P>
 
@@ -261,7 +242,7 @@
 
   //Play this example line per line
 
-  set("figure_style","new") //create a figure in entity mode
+  scf() //create a figure in entity mode
 
   //get the handle on the Figure entity and display its properties
   f=get("current_figure") 

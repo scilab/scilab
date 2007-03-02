@@ -31,7 +31,6 @@
 
   <EXAMPLE><![CDATA[
    
-    set("figure_style","new") //create a figure
     subplot(211)
     a=gca() //get the current axes
     a.box="off";

@@ -73,7 +73,7 @@
   </DESCRIPTION>
   <EXAMPLE>
     <![CDATA[
-    set('figure_style','new')
+    
     a=gca();a.data_bounds=[0,-10;210,40];a.foreground=color('red');
     x1=[0,10,20,30,20,10,0]';
     y1=[15,30,30,15,0,0,15]';

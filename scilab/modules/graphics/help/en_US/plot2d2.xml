@@ -56,8 +56,7 @@ x=[0:0.1:2*%pi]';
 clf()
 plot2d2(x,[sin(x) sin(2*x) sin(3*x)])
   // In New graphics only
-clf()
-set("figure_style","new")
+clf();
 plot2d(x,[sin(x) sin(2*x) sin(3*x)])
 e=gce();
 e.children(1).polyline_style=2;

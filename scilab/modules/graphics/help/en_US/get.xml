@@ -84,10 +84,7 @@
   <EXAMPLE><![CDATA[
   // for graphics entities
     clf()
-    get("old_style") // check the state of the graphics' style
-    set("figure_style","new") //create a figure
-    get("figure_style") // check the style of the graphics' figure
-
+    
     // simple graphics objects  
     subplot(121);
     x=[-.2:0.1:2*%pi]';

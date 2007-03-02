@@ -55,7 +55,6 @@
     a.x_location="top";
 
     //now used the model axes for drawing
-    set("figure_style","new")
     subplot(211) //create an axes entity
     plot2d() 
 

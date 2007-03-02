@@ -22,12 +22,11 @@
   graphique</SHORT_DESCRIPTION>
 
   <DESCRIPTION>
-    <P>Comme explicité dans le fichier d'aide <VERB>graphics_entities</VERB>,
-    le graphique Scilab possède désormais un nouveau mode. Ce mode facilite
-    les intéractions entre l'utilisateur et le graphique aussi bien avant
-    qu'après sa création. Dans ce <VERB>"nouveau</VERB>", chaque fenêtre
+    <P>La module graphique de Scilab permet de nombreuses intéractions
+    entre l'utilisateur et le graphique aussi bien avant
+    qu'après sa création. Chaque fenêtre
     graphique et les dessins qu'elle contient sont représentés sous forme
-    d'entités hiérarchiques. Le plus haut niveaui de la hiérarchie est
+    d'entités hiérarchiques. Le plus haut niveau de la hiérarchie est
     toujours l'entité Figure. Chaque Figure définit au moins un enfant de type
     Axes. Chaque entité Axes contient un ensemble d'entités feuilles (entités
     terminales de la hiérarchie - elles n'ont pas de fils) qui sont les objets
@@ -68,16 +67,14 @@
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="Redraw figure: ">
-        <SP>Redessinne le contenu de la figure (seulement utile en ancien mode
-        (old_style mode on)).</SP>
+        <SP>Redessinne le contenu de la figure.</SP>
 
         <P></P>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="Erase figure: ">
         <SP>Efface le contenu de la figure. Son action correspond à &#160; un
-        appel à &#160;<VERB>xbasc</VERB> (ancienne syntaxe) ou <VERB>clf</VERB>
-        (nouveau mode graphique).</SP>
+        appel à <VERB>clf</VERB>.</SP>
 
         <P></P>
 

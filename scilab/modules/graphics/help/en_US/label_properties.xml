@@ -110,7 +110,6 @@
 
   <EXAMPLE><![CDATA[   
 
-   set("figure_style","new") //create a figure
    a=get("current_axes");
    a.title
    type(a.title)

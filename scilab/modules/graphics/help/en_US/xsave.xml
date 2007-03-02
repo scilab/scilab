@@ -49,7 +49,6 @@
   <EXAMPLE><![CDATA[
 
     //new style
-    set figure_style new
     t=0:0.01:10;
     subplot(211),plot2d(t,sin(t))
     subplot(212),plot2d(t,sin(3*t))
@@ -63,18 +62,6 @@
     delete(curve)
     load(TMPDIR+'/foo.scg')
     
-
-    //old style
-    set figure_style old
-    t=0:0.01:10;
-    subplot(211),plot2d(t,sin(t))
-    subplot(212),plot2d(t,sin(3*t))
-    xsave(TMPDIR+'/foo.scg')
-    xbasc()
-    set figure_style old
-    xload(TMPDIR+'/foo.scg')
-
-
  
   ]]></EXAMPLE>
 

@@ -47,7 +47,6 @@
   <EXAMPLE><![CDATA[
 
 //--- first example
-set figure_style new;
 clf();
 ax=gca();//get current axes handle
 ax.data_bounds=[0,0;10,10];//set the data_bounds
@@ -62,7 +61,7 @@ Matplot1(a,[5,6,7,8])
 //--- second example  (animation)
 n=100;
 
-set figure_style new;
+
 clf();
 f=gcf();//get current figure handle
 f.pixmap='on';//double buffer mode
