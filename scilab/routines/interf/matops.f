@@ -2364,6 +2364,7 @@ c
       logical isany
       integer top0
       integer iadr,sadr
+      double precision xr,xi
 c     
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
@@ -2479,8 +2480,14 @@ c     .  arg3(:)=arg2
             istk(ilrs+2)=n3
             istk(ilrs+3)=it2
             l1=sadr(ilrs+4)
-            call dset(mn3,stk(l2),stk(l1),1)
-            if(it2.eq.1) call dset(mn3,stk(l2+1),stk(l1+mn3),1)
+            if (it2.eq.1) then
+               xr=stk(l2)
+               xi=stk(l2+1)
+               call dset(mn3,xr,stk(l1),1)
+               call dset(mn3,xi,stk(l1+mn3),1)
+            else
+               call dset(mn3,stk(l2),stk(l1),1)
+            endif
             lstk(top+1)=l1+mn3*(it2+1)
             return
          else
