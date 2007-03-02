@@ -1106,7 +1106,7 @@ static void
 Save(Widget w, XtPointer number, XtPointer client_data)
 {
   char *filename;
-  integer win_num = (integer) number ;
+  //  integer win_num = (integer) number ;
   int ierr=0,rep;
   static char *init ="*.scg";
   rep=GetFileWindow(init,&filename,".",0,&ierr,"Save Graphic File");
