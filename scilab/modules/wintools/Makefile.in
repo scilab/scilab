@@ -96,7 +96,8 @@ am__objects_1 = libsciwintools_la-sci_mcisendstring.lo \
 	libsciwintools_la-sci_dde.lo \
 	libsciwintools_la-intOEMconvert.lo \
 	libsciwintools_la-sci_toprint.lo \
-	libsciwintools_la-sci_clipboard.lo
+	libsciwintools_la-sci_clipboard.lo \
+	libsciwintools_la-sci_findfileassociation.lo
 am_libsciwintools_la_OBJECTS = $(am__objects_1)
 libsciwintools_la_OBJECTS = $(am_libsciwintools_la_OBJECTS)
 libsciwintools_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
@@ -290,7 +291,8 @@ sci_gateway/intihmcolor.c \
 sci_gateway/sci_dde.c \
 sci_gateway/intOEMconvert.c \
 sci_gateway/sci_toprint.c \
-sci_gateway/sci_clipboard.c
+sci_gateway/sci_clipboard.c \
+sci_gateway/sci_findfileassociation.c
 
 libsciwintools_la_CFLAGS = -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 pkglib_LTLIBRARIES = libsciwintools.la
@@ -440,6 +442,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciwintools_la-sci_dde.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciwintools_la-sci_dos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciwintools_la-sci_fileassociationbox.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciwintools_la-sci_findfileassociation.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciwintools_la-sci_mcisendstring.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciwintools_la-sci_printbox.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciwintools_la-sci_setlanguagemenu.Plo@am__quote@
@@ -587,6 +590,13 @@ libsciwintools_la-sci_clipboard.lo: sci_gateway/sci_clipboard.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_clipboard.c' object='libsciwintools_la-sci_clipboard.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciwintools_la_CFLAGS) $(CFLAGS) -c -o libsciwintools_la-sci_clipboard.lo `test -f 'sci_gateway/sci_clipboard.c' || echo '$(srcdir)/'`sci_gateway/sci_clipboard.c
+
+libsciwintools_la-sci_findfileassociation.lo: sci_gateway/sci_findfileassociation.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciwintools_la_CFLAGS) $(CFLAGS) -MT libsciwintools_la-sci_findfileassociation.lo -MD -MP -MF $(DEPDIR)/libsciwintools_la-sci_findfileassociation.Tpo -c -o libsciwintools_la-sci_findfileassociation.lo `test -f 'sci_gateway/sci_findfileassociation.c' || echo '$(srcdir)/'`sci_gateway/sci_findfileassociation.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciwintools_la-sci_findfileassociation.Tpo $(DEPDIR)/libsciwintools_la-sci_findfileassociation.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_findfileassociation.c' object='libsciwintools_la-sci_findfileassociation.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciwintools_la_CFLAGS) $(CFLAGS) -c -o libsciwintools_la-sci_findfileassociation.lo `test -f 'sci_gateway/sci_findfileassociation.c' || echo '$(srcdir)/'`sci_gateway/sci_findfileassociation.c
 
 mostlyclean-libtool:
 	-rm -f *.lo
