@@ -13,6 +13,8 @@
 #include "InitObjects.h"
 #include "BuildObjects.h"
 #include "gw_graphics.h"
+#include "CurrentObjectsManagement.h"
+#include "CurrentObjectsManagement.h"
 
 #include "../src/c/getHandleProperty/GetHashTable.h"
 
@@ -111,7 +113,7 @@ int sci_get(char *fname,unsigned long fname_len)
               }
               else
               {
-                hdl = (unsigned long ) sciGetHandle(sciGetSelectedSubWin (sciGetCurrentFigure ()));/* on recupere le pointeur d'objet par le handle */
+                hdl = (unsigned long ) sciGetHandle(sciGetCurrentSubWin());/* on recupere le pointeur d'objet par le handle */
               }
 
 	    }/* DJ.A 08/01/04 */

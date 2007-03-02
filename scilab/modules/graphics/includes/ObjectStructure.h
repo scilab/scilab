@@ -23,6 +23,7 @@
 #include "stack-c.h"
 #include "StringMatrix.h"
 #include "machine.h"
+#include "../../data_structures/includes/DoublyLinkedList.h" /* REORGANISATION TEMPORAIRE */
 
 
 #ifndef _MSC_VER
@@ -257,16 +258,17 @@ sciSons;
  * Used to determine the hierarchy
  */
 typedef struct
-{/** is the scilab handle of THIS */
-  sciHandleTab *phandle;       
-  /** points to the parent structures    */
-  sciPointObj *pparent;	       
-  /** points to the sons structures      */
-  sciSons *psons;	       
+{
+  /** is the scilab handle of THIS */
+  sciHandleTab * phandle;       
+  /** points to the parent structures */
+  sciPointObj * pparent;	       
+  /** points to the sons structures */
+  sciSons * psons;	       
   /** the last sciSons of the list (the first created!) */
-  sciSons *plastsons;			
-  /** points to the current son          */
-  sciPointObj *pcurrentson;    
+  sciSons * plastsons;
+  /** the set of selected sons. List of lists for each type. Not to be used directly.*/
+  DoublyLinkedList * pSelectedSon ;
 }/** */
 sciRelationShip;  
 
@@ -737,7 +739,7 @@ typedef struct
   /** specifies the number for this window                   */
   int number;			
   /** specifies if this subwindow is selected                */
-  BOOL isselected;			 
+  /*BOOL isselected;*/			 
   /** specifies the position in the parent figure            */
   int infigureposx;			 
   /** specifies the position in the parent figure            */

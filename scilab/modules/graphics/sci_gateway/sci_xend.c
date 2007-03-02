@@ -16,6 +16,7 @@
 #include "GetProperty.h"
 #include "DrawObjects.h"
 #include "graphicSession.h"
+#include "CurrentObjectsManagement.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_xend(char *fname,unsigned long fname_len)

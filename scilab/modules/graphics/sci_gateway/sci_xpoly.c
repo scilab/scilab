@@ -15,6 +15,7 @@
 #include "SetProperty.h"
 #include "BuildObjects.h"
 #include "gw_graphics.h"
+#include "CurrentObjectsManagement.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_xpoly( char * fname, unsigned long fname_len )
@@ -56,7 +57,7 @@ int sci_xpoly( char * fname, unsigned long fname_len )
   /* NG beg */
 
   
-  psubwin = sciGetSelectedSubWin( sciGetCurrentFigure() ) ;
+  psubwin = sciGetCurrentSubWin() ;
 
   Objpoly (stk(l1),stk(l2),mn2,close,mark,&hdl);
 

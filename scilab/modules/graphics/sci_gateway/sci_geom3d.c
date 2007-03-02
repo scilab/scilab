@@ -13,13 +13,14 @@
 #include "PloEch.h"
 #include "GetProperty.h"
 #include "axesScale.h"
+#include "CurrentObjectsManagement.h"
 
 /*-----------------------------------------------------------------------------------*/
 int geom3d(double *x, double *y, double *z, integer *n)
 {
   integer j;
 
-  sciPointObj * psubwin = sciGetSelectedSubWin(sciGetCurrentFigure());
+  sciPointObj * psubwin = sciGetCurrentSubWin();
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
 
   if(ppsubwin->logflags[0] =='l')

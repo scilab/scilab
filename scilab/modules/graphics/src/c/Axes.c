@@ -24,6 +24,7 @@
 #include "Format.h"
 #include "Plo3d.h"
 #include "axesScale.h"
+#include "CurrentObjectsManagement.h"
 
 
 #include "MALLOC.h" /* MALLOC */
@@ -72,7 +73,7 @@ void axis_draw(char strflag[])
   C2F(dr)("xset","color",&fg,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
 
 
-  psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+  psubwin = sciGetCurrentSubWin();
   
   /* F.Leray test on color here*/
   color=sciGetBackground(psubwin);
@@ -125,7 +126,7 @@ void axis_draw2(char strflag[])
   C2F(dr)("xget","color",&verbose,xz+1,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","color",&fg,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
   
-  psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+  psubwin = sciGetCurrentSubWin();
   
   /* F.Leray test on color here*/
   color=sciGetBackground(psubwin);
@@ -163,7 +164,7 @@ void DrawAxesBackground( void )
   C2F(dr)("xget","color",&verbose,xz+1,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","color",&fg,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
 
-  psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+  psubwin = sciGetCurrentSubWin();
     
   /* F.Leray test on color here*/
   color=sciGetBackground(psubwin);
@@ -242,7 +243,7 @@ void Sci_Axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny,
 
   fontid[0]= fontstyle;
 
-  psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+  psubwin = sciGetCurrentSubWin();
 
   C2F(dr)("xget","font",&verbose,fontid,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   fontsize_kp = fontid[1] ;
@@ -376,7 +377,7 @@ void Sci_Axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny,
       if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     }
     /******* 01/07/2002  -> 11.05.04 **********/
-    psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+    psubwin = sciGetCurrentSubWin();
     if ((pSUBWIN_FEATURE (psubwin)->tight_limits == TRUE || pSUBWIN_FEATURE (psubwin)->isoview == TRUE )
       && axisbuild_flag == 0){{ 
         xmax=Cscale.frect[2];
@@ -532,7 +533,7 @@ void Sci_Axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny,
         }
       } 
       /***   01/07/2002  -> 11.05.04 ****/
-      psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+      psubwin = sciGetCurrentSubWin();
       if ( (pSUBWIN_FEATURE (psubwin)->tight_limits || pSUBWIN_FEATURE (psubwin)->isoview )
         && axisbuild_flag == 0)
       {  
@@ -597,7 +598,7 @@ void Sci_Axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny,
     }
 
     /***   01/07/2002 -> 11 and 12.05.04 ****/
-    psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+    psubwin = sciGetCurrentSubWin();
     if ((pSUBWIN_FEATURE (psubwin)->tight_limits == TRUE || pSUBWIN_FEATURE (psubwin)->isoview == TRUE )
       && axisbuild_flag == 0){  
         ymax=Cscale.frect[3];
@@ -750,7 +751,7 @@ void Sci_Axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny,
         }
       }
       /***   01/07/2002 -> 12.05.04 ****/
-      psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+      psubwin = sciGetCurrentSubWin();
       if ( (pSUBWIN_FEATURE (psubwin)->tight_limits == TRUE || pSUBWIN_FEATURE (psubwin)->isoview == TRUE )
         && axisbuild_flag == 0){
           if ( i == 0 )  
@@ -2242,7 +2243,7 @@ void initSubWinBounds( sciPointObj * pSubWin )
 BOOL checkRedrawing( void )
 {
   
-  sciPointObj * pSubWin = sciGetSelectedSubWin( sciGetCurrentFigure() ) ;
+  sciPointObj * pSubWin = sciGetCurrentSubWin() ;
   if ( !sciGetAddPlot( pSubWin ) )
   {
       /* redraw the axis */
@@ -3188,7 +3189,7 @@ void DrawAxis(double xbox[8], double ybox[8], integer Indices[4], integer style)
   C2F(dr)("xget","line style",&verbose,lstyle,&narg_,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
   /**DJ.Abdemouche 2003**/
 
-  psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
+  psubwin = sciGetCurrentSubWin(); 
   hiddencolor = pSUBWIN_FEATURE (psubwin)->hiddencolor;
   j = sciGetLineStyle (psubwin) ;
 
@@ -3225,7 +3226,7 @@ int Axes3dStrings2( integer * ixbox, integer * iybox, integer * xind )
   int maxTicksLabelSize[2] ; /* for each axis the maximum size of ticks label */
 
 
-  psubwin= (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+  psubwin= sciGetCurrentSubWin();
   ppsubwin = pSUBWIN_FEATURE (psubwin);
 
   /** le cot\'e gauche ( c'est tjrs un axe des Z **/

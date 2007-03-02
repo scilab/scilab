@@ -2,7 +2,8 @@
 #include "GetProperty.h"
 #include "SetProperty.h"
 #include "Xcall1.h"
-
+#include "CurrentObjectsManagement.h"
+#include "ObjectSelection.h"
 
 #include "MALLOC.h" /* MALLOC */
 
@@ -229,7 +230,7 @@ int C2F(xsetg)(char * str,char * str1,integer lx0,integer lx1)
     }
   else if ( strcmp(str,"auto clear")==0) 
     {
-      sciPointObj * subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
+      sciPointObj * subwin = sciGetFirstTypedSelectedSon(sciGetCurrentFigure(), SCI_SUBWIN);
       if (strcmp(str1,"on")==0 )
       {
 	sciSetAddPlot( subwin,FALSE);
@@ -259,7 +260,7 @@ int C2F(xgetg)( char * str, char * str1, integer * len,integer  lx0,integer lx1)
   else if ( strcmp(str,"auto clear")==0) 
   {
     int autoclear;
-    sciPointObj * subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
+    sciPointObj * subwin = sciGetFirstTypedSelectedSon( sciGetCurrentFigure(), SCI_SUBWIN ) ;
     autoclear = !(sciGetAddPlot(subwin));
     if (autoclear == 1) 
     {

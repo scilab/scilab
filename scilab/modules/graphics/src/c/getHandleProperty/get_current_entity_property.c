@@ -9,6 +9,7 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
+#include "CurrentObjectsManagement.h"
 
 /*-----------------------------------------------------------------------------------*/
 int get_current_entity_property( sciPointObj * pobj )

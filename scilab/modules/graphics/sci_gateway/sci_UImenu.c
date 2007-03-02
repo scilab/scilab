@@ -16,6 +16,7 @@
 #include "stack-c.h"
 #include "GetProperty.h"
 #include "sciprint.h"
+#include "CurrentObjectsManagement.h"
 /*-----------------------------------------------------------------------------------*/
 int sci_UImenu( char *fname,unsigned long fname_len )
 {

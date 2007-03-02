@@ -11,6 +11,7 @@
 #include "SetProperty.h"
 #include "GetProperty.h"
 #include "sciCall.h"
+#include "CurrentObjectsManagement.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_xarcs(char *fname,unsigned long fname_len)
@@ -52,7 +53,7 @@ int sci_xarcs(char *fname,unsigned long fname_len)
     m2=1,n2=n1; CreateVar(2,"i",&m2,&n2,&l2);
     for (i2 = 0; i2 < n2; ++i2)
     { 
-      *istk(l2 + i2) =  sciGetForeground(sciGetSelectedSubWin(sciGetCurrentFigure ()));
+      *istk(l2 + i2) =  sciGetForeground(sciGetCurrentSubWin() );
     }
   }  
   /* NG beg */

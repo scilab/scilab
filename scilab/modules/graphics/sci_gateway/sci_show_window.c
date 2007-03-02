@@ -14,6 +14,7 @@
 #include "SetProperty.h"
 #include "GetProperty.h"
 #include "InitObjects.h"
+#include "CurrentObjectsManagement.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_show_window( char *fname,unsigned long fname_len )

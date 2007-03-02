@@ -23,7 +23,7 @@
 #include "bcg.h"
 #include "SetProperty.h"
 #include "sciprint.h"
-
+#include "CurrentObjectsManagement.h"
 
 #include "MALLOC.h" /* MALLOC */
 

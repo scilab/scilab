@@ -21,6 +21,7 @@
 #include "BasicAlgos.h"
 #include "clipping.h"
 #include "sciprint.h"
+#include "CurrentObjectsManagement.h"
 
 #include "MALLOC.h" /* MALLOC */
 
@@ -103,7 +104,7 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
   BOOL bounds_changed = FALSE;
   BOOL axes_properties_changed = FALSE;
 
-  psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+  psubwin = sciGetCurrentSubWin();
   ppsubwin = pSUBWIN_FEATURE(psubwin);
 
   /* check if the auto_clear property is on and then erase everything */
@@ -232,14 +233,14 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
       sciPointObj * pobj = NULL;
       if (style[jj] > 0) { 
 	sciSetCurrentObj (ConstructPolyline
-			  ((sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure()),&(x[jj*(*n2)]),
+			  (sciGetCurrentSubWin(),&(x[jj*(*n2)]),
 			   &(y[jj*(*n2)]),PD0,closeflag,*n2,*n1,ptype,
 			   &style[jj],NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE));
       }
       else {
 	int minusstyle = -style[jj];
 	sciSetCurrentObj (ConstructPolyline
-			  ((sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure()),&(x[jj*(*n2)]),
+			  (sciGetCurrentSubWin(),&(x[jj*(*n2)]),
 			   &(y[jj*(*n2)]),PD0,closeflag,*n2,*n1,ptype,
 			   NULL,NULL,&minusstyle,NULL,NULL,FALSE,FALSE,TRUE,FALSE));
       }
@@ -260,7 +261,7 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
     /*---- Drawing the Legends ----*/
     if (with_leg) {
       sciSetCurrentObj (ConstructLegend
-                        ((sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure()),
+                        (sciGetCurrentSubWin(),
 			 legend, strlen(legend), *n1, style, pptabofpointobj)); 
       hdl=sciGetHandle(sciGetCurrentObj ());   
       hdltab[cmpt]=hdl;
@@ -274,7 +275,6 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
     if ( containsSurface ) {
       Merge3d(psubwin);
       sciDrawObj(sciGetCurrentFigure ());
-      /*       sciDrawObj(sciGetSelectedSubWin (sciGetCurrentFigure ())); */
     }
     return(0);
   }

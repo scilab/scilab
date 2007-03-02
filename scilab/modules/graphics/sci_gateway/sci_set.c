@@ -20,6 +20,7 @@
 #include "gw_graphics.h"
 #include "DrawObjects.h"
 #include "Xcall1.h"
+#include "CurrentObjectsManagement.h"
 
 #include "getHandleProperty/SetHashTable.h"
 #include "getHandleProperty/setHandleProperty.h"
@@ -32,8 +33,6 @@
 /**@name int sciset(sciPointObj *pobj,char *marker, long *x, long *y, long *w, long *h)
 * Sets the value to the object
 */
-int sciSet(sciPointObj *pobj, char *marker, int *value, int valueType, int *numrow, int *numcol);
-/*-----------------------------------------------------------------------------------*/
 int sciSet(sciPointObj *pobj, char *marker, int *value, int valueType, int *numrow, int *numcol)
 {
 
@@ -178,7 +177,7 @@ int sci_set(char *fname, unsigned long fname_len)
               }
 		else
               {
-		hdl = (unsigned long ) sciGetHandle(sciGetSelectedSubWin (sciGetCurrentFigure ()));
+		hdl = (unsigned long ) sciGetHandle(sciGetCurrentSubWin());
               }
 
 	      if (hdl == (unsigned long)0 )

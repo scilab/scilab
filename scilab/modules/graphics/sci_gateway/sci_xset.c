@@ -20,6 +20,7 @@
 #include "InitObjects.h"
 #include "XsetXgetParameters.h"
 #include "periScreen.h"
+#include "CurrentObjectsManagement.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_xset( char *fname, unsigned long fname_len )
@@ -112,18 +113,18 @@ int sci_xset( char *fname, unsigned long fname_len )
   else if ( strcmp(cstk(l1),"mark size") == 0) {
     C2F(dr1)("xget","mark",&verb,mark,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,5L);
 
-    subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
+    subwin = sciGetCurrentSubWin() ;
     sciSetMarkSizeUnit(subwin,2); /* force switch to tabulated mode : old syntax */
 
 
     mark[1]=(int)xx[0];
-    subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
+    subwin = sciGetCurrentSubWin();
     sciSetMarkSize(subwin,mark[1]);
     
   }
   else if ( strcmp(cstk(l1),"mark") == 0)
   {
-    subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
+    subwin = sciGetCurrentSubWin();
     sciSetMarkSizeUnit(subwin,2); /* force switch to tabulated mode : old syntax */
     sciSetMarkStyle(subwin,(int) xx[0]);
     sciSetMarkSize(subwin,(int) xx[1]);
@@ -158,17 +159,17 @@ int sci_xset( char *fname, unsigned long fname_len )
   }
   else if( strcmp(cstk(l1),"clipgrf") == 0 ) {
     /* special treatement for xset("cligrf") */
-    sciPointObj * psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+    sciPointObj * psubwin = sciGetCurrentSubWin();
     sciSetIsClipping(psubwin,0);
   }
   else if( strcmp(cstk(l1),"clipoff") == 0 ) {
     /* special treatement for xset("clipoff") */
-    sciPointObj * psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+    sciPointObj * psubwin = sciGetCurrentSubWin();
     sciSetIsClipping(psubwin,-1);
   }
   else if( strcmp(cstk(l1),"hidden3d") == 0 ) {
     /* special treatement for xset("hidden3d") */
-    sciPointObj * psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+    sciPointObj * psubwin = sciGetCurrentSubWin();
     pSUBWIN_FEATURE(psubwin)->hiddencolor = x[0];
   }
   else 
@@ -181,7 +182,7 @@ int sci_xset( char *fname, unsigned long fname_len )
 
     if ( strcmp(cstk(l1),"wshow") != 0 )
     {
-      subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
+      subwin = sciGetCurrentSubWin();
       if (( strcmp(cstk(l1),"foreground") == 0) || (strcmp(cstk(l1),"color") == 0) ||( strcmp(cstk(l1),"pattern") == 0) ) {
         sciSetForeground(subwin, x[0]); 
         if (sciGetSons((sciPointObj *) subwin) == (sciSons *)NULL) {/* added SS 20.04.04 */

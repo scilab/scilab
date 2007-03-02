@@ -27,6 +27,8 @@
 #include "sciprint.h"
 #include "PloEch.h"
 #include "../../gui/includes/GraphicWindow.h"
+#include "CurrentObjectsManagement.h"
+#include "ObjectSelection.h"
 
 #include "MALLOC.h" /* MALLOC */
 
@@ -2449,7 +2451,7 @@ sciGetParentSubwin (sciPointObj * pobj)
   switch (sciGetEntityType (pobj))
     { 
     case SCI_FIGURE:
-      return (sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure ());
+      return sciGetFirstTypedSelectedSon( pobj, SCI_SUBWIN );
       break;
     case SCI_SUBWIN:
     case SCI_TEXT:
@@ -3396,134 +3398,6 @@ sciGetSubwindowPosY (sciPointObj * pobj)
 }
 
 
-
-/**sciGetIsSelected
- * Determines wether this object is selected or not.
- * @param sciPointObj * pobj: the pointer to the entity
- * @return TRUE if yes, FALSE if not
- */
-BOOL
-sciGetIsSelected (sciPointObj * pobj)
-{
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_FIGURE:
-      return pFIGURE_FEATURE (pobj)->isselected;
-      break;
-    case SCI_SUBWIN:
-      return pSUBWIN_FEATURE (pobj)->isselected;
-      break;
-    case SCI_TITLE:
-      return pTITLE_FEATURE (pobj)->isselected;
-      break;
-    case SCI_LEGEND:
-      return pLEGEND_FEATURE (pobj)->isselected;
-      break;
-    case SCI_ARC:
-      return pARC_FEATURE (pobj)->isselected;
-      break;
-    case SCI_POLYLINE:
-      return pPOLYLINE_FEATURE (pobj)->isselected;
-      break;
-    case SCI_RECTANGLE:
-      return pRECTANGLE_FEATURE (pobj)->isselected;
-      break;
-    case SCI_SURFACE:
-      return pSURFACE_FEATURE (pobj)->isselected;
-      break;    
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
-    case SCI_TEXT:
-    case SCI_LIGHT:
-    case SCI_AXES: 
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
-    case SCI_STATUSB:
-    case SCI_AGREG:
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-	case SCI_UIMENU:
-    default:
-      return FALSE;
-      break;
-    }
-}
-
-
-
-/**sciGetSelectedSon
- * Determines wether this object is selected or not. 
- * WARNING TO BE DEFINED. No sciSetSelected is coded
- * @param sciPointObj * pparent: the pointer to the entity
- * @return the pointer sciPointObj *poinson of the current selected son
- */
-sciPointObj *
-sciGetSelectedSon (sciPointObj * pparent)
-{
-  sciSons *psonstmp;
-
-  psonstmp = sciGetSons (pparent);
-  /* init */
-  if (psonstmp != (sciSons *) NULL)
-    {
-      /* on peut commencer sur le next */
-      /* tant que le fils  */
-      while ((psonstmp->pnext != (sciSons *) NULL)
-	     && (sciGetIsSelected (psonstmp->pointobj) != TRUE))
-	psonstmp = psonstmp->pnext;
-      if (sciGetIsSelected (psonstmp->pointobj) == FALSE)
-	return (sciPointObj *) NULL;
-      else
-	return (sciPointObj *) psonstmp->pointobj;
-    }
-  else
-    return (sciPointObj *) NULL;
-
-}
-
-
-
-/**sciGetSelectedSubWin
- * Determines wich SubWin is selected or not. WARNING TO BE DEFINED.
- * @param sciPointObj * pparent: the pointer to the entity
- * @return the pointer sciPointObj *poinson of the current selected son
- */
-sciPointObj *
-sciGetSelectedSubWin (sciPointObj * pparent)
-{
-  sciSons *psonstmp;
-  if (sciGetEntityType (pparent) != SCI_FIGURE)
-    {	  
-      /* sciprint("This Handle is not a Figure\n"); */
-      return (sciPointObj *)NULL;
-    }
-  psonstmp = sciGetSons (pparent);
-  /* init */
-  if (psonstmp != (sciSons *) NULL)
-    {
-      /* on peut commencer sur le next */
-      /* tant que le fils  */
-      while ((psonstmp->pnext != (sciSons *) NULL)
-	     && ((sciGetIsSelected (psonstmp->pointobj) != TRUE) 
-		 || (sciGetEntityType (psonstmp->pointobj) != SCI_SUBWIN)))
-	psonstmp = psonstmp->pnext;
-      if (sciGetIsSelected (psonstmp->pointobj) == FALSE) {
-	/*printf("cas 1 : (pSUBWIN_FEATURE(psonstmp->pointobj))->isselected = %d\n",(pSUBWIN_FEATURE(psonstmp->pointobj))->isselected); */ /* BUG The Hnadle is not a SubWindow passes through here F.Leray 23.07.04 */
-	return (sciPointObj *) NULL;}
-      else 
-	if (sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN) {
-	/*   printf("cas 2 : (pSUBWIN_FEATURE(psonstmp->pointobj))->isselected = %d\n",(pSUBWIN_FEATURE(psonstmp->pointobj))->isselected); */
-	  return (sciPointObj *) psonstmp->pointobj;}
-	else return (sciPointObj *) NULL;
-    }
-  else
-    return (sciPointObj *) NULL;
-}
-
-
 /**sciIsExistingSubWin
  * Determines if this SubWindow is an existing one in the current SCI_FIGURE 
  * in association with the wrect and frect....
@@ -3548,8 +3422,10 @@ sciIsExistingSubWin (WRect)
     WRectTmp[i] = 0.;
 
   pparentfigure = (sciPointObj *)sciGetCurrentFigure();
-  if (sciGetEntityType (pparentfigure) != SCI_FIGURE)
-    return (sciPointObj *)NULL;
+  if (pparentfigure == NULL)
+  {
+    return NULL;
+  }
 
   /**  15/03/2002 **/
   if ((WRect[0] == 0.)&&(WRect[1] == 0.)&&(WRect[2] == 1.)&&(WRect[3] == 1.))
@@ -3659,78 +3535,7 @@ sciGetScrollPosH (sciPointObj * pobj)
       break;
     }
 }
-
 /*-----------------------------------------------------------------------------------*/
-/**
- * as sciGetCurrentFigure but do not create any figure if none exists
- */
-sciPointObj * sciGetCurPointedFigure( void )
-{
-  if ( sciGetCurrentScilabXgc() != NULL )
-  {
-    return sciGetCurrentScilabXgc()->mafigure ;
-  }
-  else
-  {
-    return NULL ;
-  }
-}
-
-/*-----------------------------------------------------------------------------------*/
-/**sciGetCurrentFigure
- * Returns the pointer to the current selected figure. 
- */
-
-extern void set_cf_type(int val);
-
-sciPointObj *sciGetCurrentFigure ()
-{ 
-  /* debug F.Leray 22.07.04 */
-  BCG * moncurScilabXgc = NULL;
-  sciPointObj * pfigure = NULL;
-
-  
-  static sciPointObj *mafigure;
-  static sciPointObj *masousfen;  
-
-  moncurScilabXgc = sciGetCurrentScilabXgc();
-  if(moncurScilabXgc == (struct BCG *) NULL)
-	  return (sciPointObj *) NULL;
-
-  pfigure = (sciPointObj *) (moncurScilabXgc->mafigure);
-
-  if(pfigure == (sciPointObj *) NULL )
-    {
-      /* it would mean that we have change the driver to GIF,Pos or PPM and perform a xinit F.Leray 22.07.04 */
-      /* for now, no higher entities than figure */
-      if ((mafigure = ConstructFigure( NULL, moncurScilabXgc)) != NULL)
-	{
-	  sciSetCurrentObj (mafigure); 
-	  moncurScilabXgc->mafigure = mafigure;
-	  if ((masousfen = ConstructSubWin (mafigure, moncurScilabXgc->CurWindow)) != NULL) {
-	    sciSetCurrentObj (masousfen);
-	    sciSetOriginalSubWin (mafigure, masousfen);
-	    set_cf_type(1);/* current figure is a graphic one */
-	  }
-	}
-    }
-  
-  return (sciPointObj *) sciGetCurrentScilabXgc ()->mafigure  ;
-  set_cf_type(1);/* current figure is a graphic one */
-}                                                               
-
-
-struct BCG *
-sciGetCurrentScilabXgc ()
-{ 
-  integer v=0;
-  double *XGC, dv=0;
-  struct BCG *CurrentScilabXgc = (struct BCG *) NULL;
-  
-  C2F(dr)("xget","gc",&v,&v,&v,&v,&v,&v,(double *)&XGC,&dv,&dv,&dv,5L,10L); /* ajout cast ???*/
-  CurrentScilabXgc=(struct BCG *)XGC;
-  return (struct BCG *) CurrentScilabXgc;
-}
 
 
 /**sciGetPoint

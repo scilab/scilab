@@ -21,6 +21,7 @@
 #include "BasicAlgos.h"
 #include "sciprint.h"
 #include "clipping.h"
+#include "CurrentObjectsManagement.h"
 
 /* Add those lines for FD algo on Theticks */
 #define ROUND(x) (x<0?ceil((x)-0.5):floor((x)+0.5))
@@ -877,7 +878,7 @@ int ComputeC_format(sciPointObj * pobj, char * c_format)
   int *nx = NULL;
   int *ny = NULL;
   char * format = NULL;
-  sciPointObj * psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+  sciPointObj * psubwin = sciGetCurrentSubWin();
   int  xpassed = 0, ypassed = 0, Nx, Ny, x3, y3;
 
 

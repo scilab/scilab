@@ -14,6 +14,7 @@
 #include "DrawObjects.h"
 #include "sciCall.h"
 #include "GetProperty.h"
+#include "CurrentObjectsManagement.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_xfpoly(char *fname,unsigned long fname_len)
@@ -38,18 +39,17 @@ int sci_xfpoly(char *fname,unsigned long fname_len)
   mn1 = m1 * n1;
 
 
-  psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+  psubwin = sciGetCurrentSubWin();
 
   if(close == 0)
   {
-    close = sciGetForeground(sciGetSelectedSubWin(sciGetCurrentFigure ()));
+    close = sciGetForeground(sciGetCurrentSubWin());
   }
   Objfpoly (stk(l1),stk(l2),mn1,&close,&hdl,0);
 
   if ( sciGetSubwinNbSurf( psubwin ) > 0 )
   {
     Merge3d(psubwin); /* an addtomerge function should be much more efficient */
-    /*    EraseAndOrRedraw(sciGetSelectedSubWin (sciGetCurrentFigure ()));} /\* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 *\/ */
     sciDrawObj(sciGetCurrentFigure ());}
   else
   {

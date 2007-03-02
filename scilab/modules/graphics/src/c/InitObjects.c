@@ -28,6 +28,8 @@
 #include "BuildObjects.h"
 #include "Xcall1.h"
 #include "sciprint.h"
+#include "CurrentObjectsManagement.h"
+#include "ObjectSelection.h"
 
 #include "MALLOC.h" /* MALLOC */
 
@@ -89,7 +91,7 @@ int C2F(graphicsmodels) (void)
       return 0;
     }
   
-  sciSetCurrentSon (pfiguremdl, (sciPointObj *) NULL);
+  sciInitSelectedSons( pfiguremdl ) ;
 
   pFIGURE_FEATURE (pfiguremdl)->relationship.psons = (sciSons *) NULL;
   pFIGURE_FEATURE (pfiguremdl)->relationship.plastsons = (sciSons *) NULL;
@@ -143,7 +145,7 @@ int C2F(graphicsmodels) (void)
   
   ppaxesmdl =  pSUBWIN_FEATURE (paxesmdl);
 
-  sciSetCurrentSon (paxesmdl, (sciPointObj *) NULL);
+  sciInitSelectedSons( paxesmdl ) ;
   ppaxesmdl->relationship.psons = (sciSons *) NULL;
   ppaxesmdl->relationship.plastsons = (sciSons *) NULL;
   
@@ -433,7 +435,7 @@ void initsubwin()  /* Interesting / F.Leray 05.04.04 */
   
 
   Cscale2default(); 
-  psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+  psubwin = sciGetCurrentSubWin();
   ppSubWin = pSUBWIN_FEATURE (psubwin) ;
 
 
@@ -646,7 +648,6 @@ int InitAxesModel()
   ppaxesmdl->FRect[3]   = 1.0; /* ymax */
   ppaxesmdl->FRect[4]   = -1.0;/* zmin */
   ppaxesmdl->FRect[5]   = 1.0;   /* zmax */
-  ppaxesmdl->isselected = FALSE;
   ppaxesmdl->visible = sciGetVisibility(pfiguremdl); 
   /* /\*   ppaxesmdl->drawlater = sciGetDrawLater(pfiguremdl); *\/ */
   /*   ppaxesmdl->drawlater = FALSE; */
@@ -927,7 +928,7 @@ sciPointObj * initLabel( sciPointObj * pParentObj )
     return NULL ;
   }
 
-  sciSetCurrentSon( newLabel, NULL ) ;
+  sciInitSelectedSons( newLabel ) ;
 
   ppLabel->auto_position = TRUE;
   ppLabel->auto_rotation = TRUE;

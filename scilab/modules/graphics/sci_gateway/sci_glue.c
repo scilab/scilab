@@ -12,6 +12,7 @@
 #include "MALLOC.h"
 #include "GetProperty.h"
 #include "../../elementaries_functions/includes/elementaries_functions.h"
+#include "CurrentObjectsManagement.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_glue( char * fname, unsigned long fname_len )

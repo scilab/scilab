@@ -26,6 +26,7 @@
 #include "periScreen.h"
 #include "Format.h"
 #include "scirun.h"
+#include "CurrentObjectsManagement.h"
 
 #include "MALLOC.h" /* MALLOC */
 
@@ -519,7 +520,7 @@ int C2F(Nsetscale2d)( double    WRect[4],
   else WRect = Cscale.subwin_rect; 
   if (FRect != NULL)
   {
-    masousfen=sciGetSelectedSubWin(sciGetCurrentFigure());
+    masousfen=sciGetCurrentSubWin();
     pSUBWIN_FEATURE (masousfen)->SRect[0]   = FRect[0];
     pSUBWIN_FEATURE (masousfen)->SRect[2]   = FRect[1];
     pSUBWIN_FEATURE (masousfen)->SRect[1]   = FRect[2];
@@ -530,7 +531,7 @@ int C2F(Nsetscale2d)( double    WRect[4],
 
   if (ARect != NULL)
   {
-    masousfen=sciGetSelectedSubWin(sciGetCurrentFigure());
+    masousfen=sciGetCurrentSubWin();
     pSUBWIN_FEATURE (masousfen)->ARect[0]   = ARect[0];
     pSUBWIN_FEATURE (masousfen)->ARect[1]   = ARect[1];
     pSUBWIN_FEATURE (masousfen)->ARect[2]   = ARect[2];
@@ -707,7 +708,7 @@ void set_scale( char    flag[6]        ,
       /* Upgrading constants for 2D transformation */
       double scx,scy,xoff,yoff,val;
 
-      sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
+      sciPointObj *pobj = sciGetCurrentSubWin();
       sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
 
       scx =  ((double) Cscale.wdim[0]*Cscale.subwin_rect[2]-Cscale.wdim[0]*Cscale.subwin_rect[2]
@@ -1166,7 +1167,7 @@ int zoom_box(double *bbox,int *x_pixel, int *y_pixel)
   box[3]= Max(YDouble2Pixel(bbox[1]),YDouble2Pixel(bbox[3]));
 
   pfigure = sciGetCurrentFigure();
-  tmpsousfen= (sciPointObj *) sciGetSelectedSubWin (pfigure);
+  tmpsousfen= sciGetCurrentSubWin();
   psonstmp = sciGetSons (sciGetCurrentFigure());
   while (psonstmp != (sciSons *) NULL)
   {
@@ -1473,7 +1474,7 @@ void Gr_Rescale(char *logFlags, double *FRectI, integer *Xdec, integer *Ydec, in
   int i;
 
   /** 18/06/2002 **/
-    psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+    psubwin = sciGetCurrentSubWin();
     for (i=0;i<4 ; i++)
       pSUBWIN_FEATURE (psubwin)->axes.limits[i+1]=FRectI[i];
      
@@ -1523,7 +1524,7 @@ int XScale(double x)
 {
   /*F.Leray 12.10.04 : MODIF named scale_modification*/
 
-  sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
+  sciPointObj *pobj = sciGetCurrentSubWin();
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
 
   if(ppsubwin->axes.reverse[0]==TRUE && ppsubwin->is3d == FALSE)
@@ -1553,7 +1554,7 @@ int XLogScale(double x)
 {
   /*F.Leray 12.10.04 : MODIF named scale_modification*/
 
-  sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
+  sciPointObj *pobj = sciGetCurrentSubWin();
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
 
   if(ppsubwin->axes.reverse[0]==TRUE && ppsubwin->is3d == FALSE)
@@ -1573,7 +1574,7 @@ int YScale(double y)
 {
   /*F.Leray 12.10.04 : MODIF named scale_modification*/
 
-  sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
+  sciPointObj *pobj = sciGetCurrentSubWin();
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
 
   if( ppsubwin->axes.reverse[1] && !ppsubwin->is3d )
@@ -1596,7 +1597,7 @@ int YScale(double y)
 int YLogScale(double y)
 {
   /*F.Leray 12.10.04 : MODIF named scale_modification*/
-  sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
+  sciPointObj *pobj = sciGetCurrentSubWin();
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
 
   if(ppsubwin->axes.reverse[1]==TRUE && ppsubwin->is3d == FALSE)
@@ -1616,7 +1617,7 @@ double XPi2R(int x)
 {
   /*F.Leray 12.10.04 : MODIF named scale_modification*/
 
-  sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
+  sciPointObj *pobj = sciGetCurrentSubWin();
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
 
   if(ppsubwin->axes.reverse[0]==TRUE && ppsubwin->is3d == FALSE)
@@ -1633,7 +1634,7 @@ double XPi2R(int x)
 double YPi2R(int y)
 {
   /*F.Leray 12.10.04 : MODIF named scale_modification*/
-  sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
+  sciPointObj *pobj = sciGetCurrentSubWin();
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
 
   if(ppsubwin->axes.reverse[1]==TRUE && ppsubwin->is3d == FALSE)
@@ -1649,7 +1650,7 @@ double YPi2R(int y)
 double XDPi2R( double x )
 {
   /*F.Leray 12.10.04 : MODIF named scale_modification*/
-  sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
+  sciPointObj *pobj = sciGetCurrentSubWin();
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
 
   if(ppsubwin->axes.reverse[0]==TRUE && ppsubwin->is3d == FALSE)
@@ -1666,7 +1667,7 @@ double XDPi2R( double x )
 double YDPi2R( double y )
 {
   /*F.Leray 12.10.04 : MODIF named scale_modification*/
-  sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
+  sciPointObj *pobj = sciGetCurrentSubWin();
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
 
   if(ppsubwin->axes.reverse[1]==TRUE && ppsubwin->is3d == FALSE)
@@ -1683,7 +1684,7 @@ double YDPi2R( double y )
 double Zoom3d_XPi2R(int x)
 {
   /*F.Leray 12.10.04 : MODIF named scale_modification*/
-  sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
+  sciPointObj *pobj = sciGetCurrentSubWin();
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
 
   if(ppsubwin->axes.reverse[0]==TRUE) /* difference is HERE */
@@ -1701,7 +1702,7 @@ double Zoom3d_YPi2R(int y)
 {
   /*F.Leray 12.10.04 : MODIF named scale_modification*/
 
-  sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
+  sciPointObj *pobj = sciGetCurrentSubWin();
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
 
   if(ppsubwin->axes.reverse[1]==TRUE) /* difference is HERE */
@@ -2062,7 +2063,7 @@ void Plo2d3RealToPixel(integer *n1, integer *n2, double *x, double *y, integer *
   integer i,j;
   /** Computing y-values **/
   double y_zero = 0.;
-  sciPointObj *  psubwin =  sciGetSelectedSubWin (sciGetCurrentFigure ());
+  sciPointObj *  psubwin =  sciGetCurrentSubWin();
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
 
   if(ppsubwin->logflags[1]=='l')

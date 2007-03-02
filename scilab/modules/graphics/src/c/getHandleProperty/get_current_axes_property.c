@@ -9,10 +9,11 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
+#include "CurrentObjectsManagement.h"
 
 /*------------------------------------------------------------------------*/
 int get_current_axes_property( sciPointObj * pobj )
 {
-  return sciReturnHandle( sciGetHandle( sciGetSelectedSubWin( sciGetCurrentFigure() ) ) ) ;
+  return sciReturnHandle( sciGetHandle( sciGetCurrentSubWin() ) ) ;
 }
 /*------------------------------------------------------------------------*/

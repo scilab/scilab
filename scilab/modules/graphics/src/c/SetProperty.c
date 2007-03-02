@@ -35,6 +35,8 @@
 #include "math_graphics.h" /* GET_NB_DIGITS */
 #include "sciprint.h"
 #include "../../gui/includes/GraphicWindow.h"
+#include "CurrentObjectsManagement.h"
+#include "ObjectSelection.h"
 
 #include "MALLOC.h"
 
@@ -2836,7 +2838,7 @@ int sciInitAutoScale( sciPointObj * pobj, BOOL value )
       if (pobj == getFigureModel())
 	(sciGetGraphicMode (pobj))->autoscaling = value;
       else
-	sciSetAutoScale(sciGetSelectedSubWin (pobj),value);
+	sciSetAutoScale(sciGetFirstTypedSelectedSon(pobj, SCI_SUBWIN),value);
       break;
     case SCI_SUBWIN:
       (sciGetGraphicMode (pobj))->autoscaling = value;
@@ -3554,7 +3556,7 @@ void sciSelectFirstSubwin( sciPointObj * parentFigure )
     }
     else
     {
-      sciSetSelectedSubWin((sciPointObj *) NULL);
+      sciSetSelectedSubWin(NULL);
     }
   }
 }
@@ -3562,21 +3564,9 @@ void sciSelectFirstSubwin( sciPointObj * parentFigure )
 
 int sciInitSelectedSubWin( sciPointObj * psubwinobj )
 {
-  sciPointObj  * pselectedsubwin ;
   sciSubWindow * ppSubWin = pSUBWIN_FEATURE ( psubwinobj ) ;
-  
-  /* sinon on recherche la sous fenetre deja selectionnee */
-  /* dans l'ensemble des sous fenetres du parent SCI_FIGURE */
-  pselectedsubwin = sciGetSelectedSubWin( sciGetParent( psubwinobj ) ) ;
-  if ( pselectedsubwin != (sciPointObj *) NULL )
-  {
-    /* puis on la deselectionne */
-    pSUBWIN_FEATURE (pselectedsubwin)->isselected = FALSE;
-  }
 
-  /* puis on selectionne la sous fenetre passee en argument */
-  ppSubWin->isselected = TRUE;
-
+  sciInitSelectedObject( psubwinobj ) ;
 
   set_scale ("tttftt", ppSubWin->WRect,
 	     ppSubWin->FRect, NULL,
@@ -3604,7 +3594,7 @@ sciSetSelectedSubWin (sciPointObj * psubwinobj)
   }
 
   /* on verifie que la sous fenetre donnee n'est pas deja selectionnee */
-  if (sciGetIsSelected (psubwinobj))
+  if (sciGetIsSelected(psubwinobj))
   {
     /* nothing to do then */
     return 1 ;
@@ -3614,36 +3604,24 @@ sciSetSelectedSubWin (sciPointObj * psubwinobj)
 }
 
 /*----------------------------------------------------------------------------------------*/
-/**
- * change the isSelected value of an object. Can only be used on subwindows.
- * If val is TRUE, the subwindow is considered as the selected one under its parent figure.
- * Be careful when using this function, there can only be one selected subwin under a figure.
- */
-int sciInitIsSelected( sciPointObj * pObj, BOOL val )
+int sciInitSelectedObject( sciPointObj * pObj )
 {
-  switch ( sciGetEntityType( pObj ) )
-  {
-  case SCI_SUBWIN:
-    pSUBWIN_FEATURE( pObj )->isselected = val ;
-    return 0 ;
-  default:
-    sciprint( "This object can not be selected.\n" ) ;
-    return -1 ;
-  }
+  sciAddUniqueSelectedSon(sciGetParent(pObj), pObj ) ;
   return 0 ;
 }
 /*----------------------------------------------------------------------------------------*/
 /**
- * change the isSelected propety of a subwindow if needed.
+ * The object become selected within its siblings
+ * For subwin object, use sciSetSelectedSubWin instead.
  */
-int sciSetIsSelected( sciPointObj * pObj, BOOL val )
+int sciSetSelectedObject( sciPointObj * pObj )
 {
-  if ( sciGetIsSelected( pObj ) == val )
+  if ( sciGetIsSelected(pObj) )
   {
     /* nothing to do */
     return 1 ;
   }
-  return sciInitIsSelected( pObj, val ) ;
+  return sciInitSelectedObject( pObj ) ;
 }
 /*----------------------------------------------------------------------------------------*/
 
@@ -3659,33 +3637,6 @@ sciSetOriginalSubWin (sciPointObj * pfigure, sciPointObj * psubwin)
   pFIGURE_FEATURE(pfigure)->originalsubwin0011 = psubwin; 
   return 0;   
 }
-
-extern void set_cf_type(int val);
-
-int sciInitCurrentFigure( sciPointObj * mafigure )
-{
-  sciGetCurrentScilabXgc ()->mafigure = mafigure ;
-  set_cf_type(1);/* current figure is a graphic one */
-  return 0 ;
-}
-
-/**sciSetCurrentFigure
- * Sets the pointer to the current selected figure. 
- */
-
-int
-sciSetCurrentFigure (sciPointObj * mafigure)
-{
-  if ( sciGetCurPointedFigure() == mafigure )
-  {
-    /* nothing to do */
-    return 1 ;
-  }
-  return sciInitCurrentFigure( mafigure ) ;
-  
-}                                                               
-
-
 
 /**sciSetPoint
  * sets points of the entity, and a pointer to the number of points
@@ -4123,7 +4074,7 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 int sciInitdrawmode( BOOL mode )
 {
   static sciPointObj * pobj ;
-  pobj = (sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure ());
+  pobj = sciGetFirstTypedSelectedSon(sciGetCurrentFigure(), SCI_SUBWIN);
   pSUBWIN_FEATURE(pobj)->visible = mode ;	
   sciDrawObj(sciGetCurrentFigure ());
   return 0;
@@ -4133,7 +4084,7 @@ int
 sciSetdrawmode (BOOL mode)
 { 
   static sciPointObj * pobj ;
-  pobj = (sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure ());
+  pobj = sciGetFirstTypedSelectedSon(sciGetCurrentFigure(), SCI_SUBWIN);
   if ( sciGetdrawmode( pobj ) == mode )
   {
     /* nothing to do */
@@ -4142,8 +4093,6 @@ sciSetdrawmode (BOOL mode)
   return sciInitdrawmode( mode ) ;
   
 }
-
-
 
 int sciSwitchWindow(int *winnum)
 { 

@@ -10,6 +10,7 @@
 #include "GetCommandArg.h"
 #include "GetProperty.h"
 #include "DefaultCommandArg.h"
+#include "CurrentObjectsManagement.h"
 
 static char logFlagsCpy[3] ; /* real logflags may use either this or the stack */
 
@@ -237,7 +238,7 @@ int get_labels_arg(char *fname,int pos,rhs_opts opts[], char ** labels )
 
       /* jb silvy 03/2006 */
       /* do not change the legend if one already exists */
-      sciPointObj * pSubWin = sciGetSelectedSubWin( sciGetCurrentFigure() ) ;
+      sciPointObj * pSubWin = sciGetCurrentSubWin() ;
       if ( sciGetLegendDefined( pSubWin ) )
       {
         *labels = NULL ;
@@ -258,7 +259,7 @@ int get_labels_arg(char *fname,int pos,rhs_opts opts[], char ** labels )
 
     /* jb silvy 03/2006 */
     /* do not change the legend if one already exists */
-    sciPointObj * pSubWin = sciGetSelectedSubWin( sciGetCurrentFigure() ) ;
+    sciPointObj * pSubWin = sciGetCurrentSubWin() ;
     if ( sciGetLegendDefined( pSubWin ) )
     {
       *labels = NULL ;

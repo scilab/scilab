@@ -13,6 +13,7 @@
 #include "DrawObjects.h"
 #include "GetProperty.h"
 #include "SetProperty.h"
+#include "CurrentObjectsManagement.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_xrects( char *fname, unsigned long fname_len )
@@ -47,7 +48,7 @@ int sci_xrects( char *fname, unsigned long fname_len )
     for (i = 0; i < n2; ++i)  { *istk(l2 + i) = 0; }
   }  
   
-  psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+  psubwin = sciGetCurrentSubWin();
 
   for (i = 0; i < n1; ++i) { 
     /*       j = (i==0) ? 0 : 1; */
@@ -77,7 +78,6 @@ int sci_xrects( char *fname, unsigned long fname_len )
 
   if (pSUBWIN_FEATURE(psubwin)->surfcounter>0) {
     Merge3d(psubwin); /* an addtomerge function should be much more efficient */
-    /*     EraseAndOrRedraw(sciGetSelectedSubWin (sciGetCurrentFigure ()));} */ /* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 */
     sciDrawObj(sciGetCurrentFigure ());
   }
   else

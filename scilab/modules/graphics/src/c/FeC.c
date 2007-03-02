@@ -26,6 +26,7 @@ for entities handling
 #include "MALLOC.h"
 #include "sciprint.h"
 #include "clipping.h"
+#include "CurrentObjectsManagement.h"
 
 
 /* functions used by the modified version : */
@@ -90,7 +91,7 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
   BOOL axes_properties_changed = FALSE;
 
 
-  psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+  psubwin = sciGetCurrentSubWin();
 
   checkRedrawing() ;
 
@@ -178,7 +179,7 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
 
   sciSetCurrentObj (ConstructFec 
     ((sciPointObj *)
-    sciGetSelectedSubWin (sciGetCurrentFigure ()),
+    sciGetCurrentSubWin(),
     x,y,triangles,func,*Nnode,*Ntr,zminmax,colminmax,colout, with_mesh)); 
 
   /* retrieve the created object : fec */
@@ -192,7 +193,7 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
   {
     n1=1; styl[0]=1;styl[1]=0;
     sciSetCurrentObj (ConstructLegend
-      ((sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure ()),
+      (sciGetCurrentSubWin(),
       legend, strlen(legend), n1, styl, &pptabofpointobj)); 
 
     /*       sciSetMarkSizeUnit(sciGetCurrentObj(),2); /\* force switch to tabulated mode : old syntax *\/ */

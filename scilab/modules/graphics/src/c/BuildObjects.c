@@ -35,6 +35,8 @@
 #include "StringMatrix.h"
 #include "Xcall1.h"
 #include "sciprint.h"
+#include "CurrentObjectsManagement.h"
+#include "ObjectSelection.h"
 
 #include "MALLOC.h" /* MALLOC */
 
@@ -419,8 +421,6 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
       ppsubwin->FRect[4]   = ppaxesmdl->FRect[4] ;
       ppsubwin->FRect[5]   = ppaxesmdl->FRect[5];
      
-
-      ppsubwin->isselected = ppaxesmdl->isselected;  
       ppsubwin->visible = ppaxesmdl->visible;
             
       ppsubwin->clip_region_set = 0 ;
@@ -656,7 +656,7 @@ sciPointObj * allocateText( sciPointObj       * pparentsubwin,
 
   ppText->user_data = (int *) NULL;
   ppText->size_of_user_data = 0;
-  sciSetCurrentSon (pObj, NULL);
+  sciInitSelectedSons( pObj ) ;
   ppText->relationship.psons = NULL;
   ppText->relationship.plastsons = NULL;
 
@@ -2220,7 +2220,7 @@ ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy,
 	  ppSegs->arrowsize = arsize /* * 100 */;
 	  ppSegs->Nbr1 = Nbr1;   
 	  ppSegs->Nbr2 = Nbr2;	 
-	  sciInitForeground(pobj,sciGetForeground(sciGetSelectedSubWin (sciGetCurrentFigure ()))); /* set sciGetForeground(psubwin) as the current foreground */
+	  sciInitForeground(pobj,sciGetForeground(sciGetCurrentSubWin())); /* set sciGetForeground(psubwin) as the current foreground */
 	  ppSegs->typeofchamp = typeofchamp; /* to know if it is a champ or champ1 */
 	  ppSegs->parfact = arfact;
 	  if ((ppSegs->vfx = MALLOC ((Nbr1*Nbr2) * sizeof (double))) == NULL)
@@ -2361,7 +2361,7 @@ ConstructCompoundSeq (int number)
   sciSubWindow *ppsubwin;
   sciAgreg     *ppagr;
   
-  psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+  psubwin = sciGetCurrentSubWin();
   ppsubwin=pSUBWIN_FEATURE(psubwin);
 
   /* initialize the A Compound data structure */
@@ -2415,7 +2415,7 @@ ConstructCompoundSeq (int number)
     FREE(pobj->pfeatures);FREE(pobj);
     return (sciPointObj *) NULL;
   }
-  sciSetCurrentSon (pobj, (sciPointObj *) NULL);
+  sciInitSelectedSons(pobj);
   /* the subwin children list is now null->A->sn+1->...->null */
 
   /* set Compound properties*/
@@ -2501,7 +2501,7 @@ ConstructLabel (sciPointObj * pparentsubwin, char *text, int type)
       return NULL;
     }
     
-    sciSetCurrentSon (pobj, (sciPointObj *) NULL);
+    sciInitSelectedSons(pobj);
     sciInitIsFilled(pobj,FALSE); /* by default a simple text is display (if existing) */
     
     sciInitIs3d( pobj, FALSE ) ; /* the text of labels is displayed using 2d scale */
@@ -2853,10 +2853,11 @@ sciPointObj * sciStandrardBuildOperations( sciPointObj * pObj, sciPointObj * par
   }
 
   /* no sons for now */
-  sciSetCurrentSon( pObj, NULL ) ;
+  sciInitSelectedSons( pObj ) ;
 
-  sciGetRelationship(pObj)->psons     = NULL ;
-  sciGetRelationship(pObj)->plastsons = NULL ;
+  sciGetRelationship(pObj)->psons        = NULL ;
+  sciGetRelationship(pObj)->plastsons    = NULL ;
+  sciGetRelationship(pObj)->pSelectedSon = NULL ;
 
   sciSetVisibility( pObj, TRUE ) ;
 

@@ -11,6 +11,7 @@
 #include "gw_graphics.h"
 #include "GetProperty.h"
 #include "ObjectStructure.h"
+#include "CurrentObjectsManagement.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_drawlater( char * fname, unsigned long fname_len )

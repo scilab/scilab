@@ -15,6 +15,7 @@
 #include "SetProperty.h"
 #include "GetProperty.h"
 #include "DrawObjects.h"
+#include "CurrentObjectsManagement.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_xfpolys( char *fname, unsigned long fname_len )
@@ -64,7 +65,7 @@ int sci_xfpolys( char *fname, unsigned long fname_len )
     for (ix = 0 ; ix < n2 ; ++ix) *istk(l3+ix) = 0;
     m3 = n3 = 1;
   }
-  psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+  psubwin = sciGetCurrentSubWin();
   for (i = 0; i < n1; ++i) {
     if(m3 == 1 || n3 == 1) /* color vector specified */
     {
@@ -86,7 +87,6 @@ int sci_xfpolys( char *fname, unsigned long fname_len )
 
   if (pSUBWIN_FEATURE(psubwin)->surfcounter>0) {
     Merge3d(psubwin); /* an addtomerge function should be much more efficient */
-    /*    EraseAndOrRedraw(sciGetSelectedSubWin (sciGetCurrentFigure ()));} /\* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 *\/ */
     sciDrawObj(sciGetCurrentFigure ());
   }
   else

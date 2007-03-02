@@ -12,6 +12,7 @@
 #include "stack-c.h"
 #include "BuildObjects.h"
 #include "gw_graphics.h"
+#include "CurrentObjectsManagement.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_xsegs(char *fname,unsigned long fname_len)
@@ -42,7 +43,7 @@ int sci_xsegs(char *fname,unsigned long fname_len)
   }
   mn2 = m2 * n2; 
 
-  psubwin = sciGetSelectedSubWin(sciGetCurrentFigure ());
+  psubwin = sciGetCurrentSubWin();
 
   if (Rhs == 3 && m3 * n3 != 1)
   {
@@ -65,7 +66,6 @@ int sci_xsegs(char *fname,unsigned long fname_len)
   if ( pSUBWIN_FEATURE(psubwin)->surfcounter > 0 )
   {
     Merge3d(psubwin); /* an addtomerge function should be much more efficient */
-    /*     EraseAndOrRedraw(sciGetSelectedSubWin (sciGetCurrentFigure ()));} /\* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 *\/ */
     sciDrawObj(sciGetCurrentFigure ());}
   else
   {

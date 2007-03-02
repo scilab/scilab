@@ -12,6 +12,7 @@
 #include "BuildObjects.h"
 #include "gw_graphics.h"
 #include "HandleManagement.h"
+#include "CurrentObjectsManagement.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_draw( char * fname, unsigned long fname_len )
@@ -43,7 +44,7 @@ int sci_draw( char * fname, unsigned long fname_len )
   }
   if (pobj != NULL )
   {  
-    tmpsubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
+    tmpsubwin = sciGetCurrentSubWin(); 
     psubwin = sciGetParentSubwin(pobj);
     if ( psubwin != NULL )
     {

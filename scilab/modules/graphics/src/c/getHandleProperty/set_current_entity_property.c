@@ -11,6 +11,7 @@
 #include "getPropertyAssignedValue.h"
 #include "sciprint.h"
 #include "SetPropertyStatus.h"
+#include "CurrentObjectsManagement.h"
 
 /*------------------------------------------------------------------------*/
 int set_current_entity_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
@@ -30,7 +31,7 @@ int set_current_entity_property( sciPointObj * pobj, int stackPointer, int value
     sciprint( "Object is not valid.\n" ) ;
     return SET_PROPERTY_ERROR ;
   }
-  
-  return sciSetCurrentObj( curEntity ) ;
+  sciSetCurrentObj( curEntity ) ;
+  return SET_PROPERTY_SUCCEED ;
 }
 /*------------------------------------------------------------------------*/

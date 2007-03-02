@@ -11,6 +11,7 @@
 #include "stack-c.h"
 #include "BuildObjects.h"
 #include "gw_graphics.h"
+#include "CurrentObjectsManagement.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_xarc(char *fname,unsigned long fname_len)
@@ -27,7 +28,7 @@ int sci_xarc(char *fname,unsigned long fname_len)
   GetRhsVar(4,"d",&m1,&n1,&l4);CheckScalar(4,m1,n1);
   GetRhsVar(5,"i",&m1,&n1,&l5);CheckScalar(5,m1,n1);
   GetRhsVar(6,"i",&m1,&n1,&l6);CheckScalar(6,m1,n1);
-  curcolor = sciGetForeground(sciGetSelectedSubWin(sciGetCurrentFigure ())); /* current color equivalent for new graphics mode */
+  curcolor = sciGetForeground(sciGetCurrentSubWin()); /* current color equivalent for new graphics mode */
   if ( strcmp(fname,"xarc") == 0 )
   {
     Objarc (istk(l5),istk(l6),stk(l1),stk(l2),stk(l3),stk(l4),&curcolor,NULL,FALSE,TRUE,&hdl);

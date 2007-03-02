@@ -20,6 +20,7 @@
 #include "Xcall1.h"
 #include "Gray.h"
 #include "sciprint.h"
+#include "CurrentObjectsManagement.h"
 
 
 #include "MALLOC.h" /* MALLOC */
@@ -65,7 +66,7 @@ int C2F(xgray)(double *x, double *y, double *z, integer *n1, integer *n2, char *
   
     
   /* Adding F.Leray 22.04.04 */
-  psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+  psubwin = sciGetCurrentSubWin();
 
   isRedrawn = checkRedrawing() ;
 
@@ -145,7 +146,7 @@ int C2F(xgray)(double *x, double *y, double *z, integer *n1, integer *n2, char *
 
   sciSetCurrentObj (ConstructGrayplot 
     ((sciPointObj *)
-    sciGetSelectedSubWin (sciGetCurrentFigure ()),
+    sciGetCurrentSubWin(),
     x,y,z,*n1,*n2,0));
   /* if the auto_clear is on we must redraw everything */
   if ( isRedrawn )
@@ -227,7 +228,7 @@ int C2F(xgray1)(double *z, integer *n1, integer *n2, char *strflag, double *brec
   yy[0]=0.5;yy[1]= *n1+0.5;
   
   /* Adding F.Leray 22.04.04 */
-  psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+  psubwin = sciGetCurrentSubWin();
 
   isRedrawn = checkRedrawing() ;
 
@@ -306,7 +307,7 @@ int C2F(xgray1)(double *z, integer *n1, integer *n2, char *strflag, double *brec
 
   sciSetCurrentObj (ConstructGrayplot 
     ((sciPointObj *)
-    sciGetSelectedSubWin (sciGetCurrentFigure ()),
+    sciGetCurrentSubWin(),
     NULL,NULL,z,*n1 + 1,*n2 + 1,1));
   /* if the auto_clear is on we must redraw everything */
   if ( isRedrawn )
@@ -339,13 +340,13 @@ int C2F(xgray2)(double *z, integer *n1, integer *n2, double *xrect)
   isRedrawn = checkRedrawing() ;
 
   /*---- Boundaries of the frame ----*/
-  psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
+  psubwin = sciGetCurrentSubWin(); 
   sciSetIsClipping (psubwin,0); 
 
-  sciDrawObj(sciGetSelectedSubWin (sciGetCurrentFigure ())); 
+  sciDrawObj(psubwin); 
   sciSetCurrentObj (ConstructGrayplot 
     ((sciPointObj *)
-    sciGetSelectedSubWin (sciGetCurrentFigure ()),
+    sciGetCurrentSubWin(),
     xrect,&y,z,*n1+1,*n2+1,2));
   /* if the auto_clear is on we must redraw everything */
   if ( isRedrawn )

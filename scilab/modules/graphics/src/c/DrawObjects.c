@@ -47,6 +47,7 @@
 #include "PloEch.h"
 #include "axesScale.h"
 #include "sciprint.h"
+#include "CurrentObjectsManagement.h"
 
 #include "math_graphics.h"
 #include "graphicSession.h"
@@ -108,18 +109,6 @@ unsigned short defcolors[] = {
   255, 215,   0  /* Gold */
 };
 
-int cf_type = 1 ;
-
-int get_cf_type(void)
-{
-	return cf_type;
-}
-
-void set_cf_type(int val)
-{
-	cf_type=val;
-}
-
 
 
 
@@ -169,7 +158,7 @@ void sciXclear()
   static sciPointObj *masousfen, *tmpsousfen;
   sciSons *psonstmp; 
      
-  tmpsousfen= (sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure());
+  tmpsousfen= sciGetCurrentSubWin();
   psonstmp = sciGetSons (sciGetCurrentFigure());
   
   while (psonstmp != (sciSons *) NULL)	
@@ -1062,7 +1051,7 @@ void UpdateSubwinScale(sciPointObj * pobj)
   double xbox[8],ybox[8],zbox[8];
   static integer InsideU[4],InsideD[4];
   	
-  currentsubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+  currentsubwin = sciGetCurrentSubWin();
 
   sciSetSelectedSubWin(pobj); 
   
@@ -1119,11 +1108,11 @@ int Gen3DPoints(integer type,integer *polyx, integer *polyy, integer *fill, inte
   sciPointObj *pobj;
   int facteur = 1;
 
-  sciPointObj *psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+  sciPointObj *psubwin = sciGetCurrentSubWin();
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
   sciSurface * ppsurface = pSURFACE_FEATURE (psurface);
   
-  pobj = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
+  pobj = sciGetCurrentSubWin(); 
   if (trans3d(pobj ,1, &(polyx[  5*jj1]),&(polyy[  5*jj1]),&(x[i]),&(y[j]),&(z[i+(*p)*j]))==0) return 0; 
   if (trans3d(pobj ,1, &(polyx[1+  5*jj1]),&(polyy[1+  5*jj1]),&(x[i]),&(y[j+1]),&(z[i+(*p)*(j+1)]))==0) return 0; 
   if (trans3d(pobj ,1, &(polyx[2+  5*jj1]),&(polyy[2+  5*jj1]),&(x[i+1]),&(y[j+1]),&(z[(i+1)+(*p)*(j+1)]))==0) return 0; 
@@ -1485,8 +1474,7 @@ sciDrawObjIfRequired (sciPointObj * pobj)
 int
 sciDrawObj (sciPointObj * pobj)
 {
-  
-  /*sciPointObj * curSubWin = sciGetSelectedSubWin( sciGetCurrentFigure() ) ;*/
+ 
   
   /* driver test */  
   if((GetDriverId() != 0) && ( isGraphicSessionOpened() )){

@@ -113,17 +113,12 @@ void sciGetDim( sciPointObj * pobj, int * pWidth, int * pHeight ) ; /* GET */
 BOOL sciGetIsFigureIconified (sciPointObj * pobj);  /* GET */
 int sciGetSubwindowPosX (sciPointObj * pobj);  /* GET */
 int sciGetSubwindowPosY (sciPointObj * pobj);  /* GET */
-BOOL sciGetIsSelected (sciPointObj * pobj);  /* GET */
-sciPointObj *sciGetSelectedSon (sciPointObj * pobj);  /* GET */
-sciPointObj *sciGetSelectedSubWin (sciPointObj * pparent);  /* GET */
 sciPointObj *sciIsExistingSubWin (double *WRect); /* GET */ /* WARNING special case here */
 sciPointObj *sciIsExistingFigure(int *value); /* GET */ /* WARNING special case here */
 int sciGetScrollPosV (sciPointObj * pobj);  /* GET */
 int sciGetScrollPosH (sciPointObj * pobj);  /* GET */
 
 sciPointObj * sciGetCurPointedFigure( void ) ; /* GET */
-sciPointObj * sciGetCurrentFigure (void); /* GET */
-struct BCG *sciGetCurrentScilabXgc (void); /* GET */
 BOOL sciGetReplay (void); /* GET */
 
 

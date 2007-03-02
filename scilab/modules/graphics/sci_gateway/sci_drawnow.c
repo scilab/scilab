@@ -12,6 +12,7 @@
 #include "GetProperty.h"
 #include "ObjectStructure.h"
 #include "DrawObjects.h"
+#include "CurrentObjectsManagement.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_drawnow(char *fname,unsigned long fname_len)

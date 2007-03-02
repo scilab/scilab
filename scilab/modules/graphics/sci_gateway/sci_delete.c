@@ -15,6 +15,8 @@
 #include "DrawObjects.h"
 #include "Xcall1.h"
 #include "Interaction.h"
+#include "CurrentObjectsManagement.h"
+#include "ObjectSelection.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_delete(char *fname,unsigned long fname_len)

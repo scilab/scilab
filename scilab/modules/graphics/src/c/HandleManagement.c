@@ -28,12 +28,13 @@
 #include "WindowList.h"
 #include "../../../data_structures/includes/DoublyLinkedList.h" /* REORGANISATION TEMPORAIRE */
 #include "sciprint.h"
+#include "CurrentObjectsManagement.h"
+#include "ObjectSelection.h"
 
 
 #include "MALLOC.h" /* MALLOC */
 
 sciHandleTab * PENDOFHANDLETAB;
-sciPointObj * PCURRENTPOBJ;
 
 int sciSwapObjects( sciPointObj * firstObject, sciPointObj * secondObject );
 int sciRelocateObject( sciPointObj * movedObj, sciPointObj * newParent );
@@ -326,25 +327,6 @@ sciPointObj * sciGetParent (sciPointObj * pobj)
 
 /****************************************** SONS ******************************************/
 
-/**sciSetCurrentSon
- * Sets the selected son to this object (that have to be the parent)
- */
-void
-sciSetCurrentSon (sciPointObj * pparent, sciPointObj * pson)
-{
-  sciGetRelationship(pparent)->pcurrentson = pson;
-}
-
-
-/**sciGetCurrentSon
- * Returns the point to the selected son object
- */
-sciPointObj *
-sciGetCurrentSon (sciPointObj * pobj)
-{
-  return sciGetRelationship(pobj)->pcurrentson;
-}
-
 
 /**sciAddThisToItsParent
  * Sets this object to its parent. 
@@ -530,42 +512,9 @@ sciSons * sciFindSon( sciPointObj * searchedObj, sciPointObj * parentObj )
   }
   return curSon ;
 }
+/*-----------------------------------------------------------------------------------*/
 
 /************************************ END SONS **************************************/
-
-
-/**
- * returns the handle of the current object
- */
-long
-sciGetCurrentHandle ()
-{
-  return sciGetHandle (sciGetCurrentObj ());
-}
-
-
-
-
-/**
- * Returns the pointer to the current selected object (actualy figure object). Duplicated in the peri*.c files.
- */
-sciPointObj *
-sciGetCurrentObj ()
-{
-  return (sciPointObj *) PCURRENTPOBJ;
-}
-
-
-
-/**
- * sets the pointer to the current selected object (actualy figure object). Used after contructor function.
- */
-int
-sciSetCurrentObj (sciPointObj * pobj)
-{
-  PCURRENTPOBJ = pobj;
-  return 0;
-}
 /*-----------------------------------------------------------------------------------*/
 /**
  * move a graphic object from its position in the hierarchy to an other place.
@@ -603,8 +552,6 @@ int sciRelocateObject( sciPointObj * movedObj, sciPointObj * newParent )
       sciSetOriginalSubWin( oldParent, newSubWin ) ;
       sciInitSelectedSubWin( newSubWin ) ;
     }
-    /* there should already exists a selected subwin */
-    sciSetIsSelected( movedObj, FALSE ) ;
   }
   else if ( sciGetEntityType( movedObj ) == SCI_SURFACE )
   {

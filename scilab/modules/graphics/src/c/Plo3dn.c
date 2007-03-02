@@ -18,6 +18,7 @@
 #include "axesScale.h"
 #include "drawMarks.h"
 #include "sciprint.h"
+#include "CurrentObjectsManagement.h"
 
 
 #include "MALLOC.h" /* MALLOC */
@@ -38,7 +39,7 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
   static integer cache;
   static double zmin, zmax;
   integer i, j, flagcolor;
-  sciPointObj *psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); /* a laisser!!!!!!!! */
+  sciPointObj *psubwin = sciGetCurrentSubWin(); /* a laisser!!!!!!!! */
   sciSubWindow *ppsubwin = pSUBWIN_FEATURE (psubwin);
   int xx[4]; /* used to load the object foreground and dashes color */
   integer v=0;
@@ -674,7 +675,7 @@ void C2F (fac3dn) (sciPointObj * pobj, double *x, double *y, double *z,
   double *ytmp = NULL;
   double *ztmp = NULL;
 
-  psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+  psubwin = sciGetCurrentSubWin();
   ppsubwin = pSUBWIN_FEATURE (psubwin);
 
   zmin = pSUBWIN_FEATURE (psubwin)->SRect[4];   /*zmin */

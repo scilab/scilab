@@ -14,6 +14,7 @@
 #include "ObjectStructure.h"
 #include "BuildObjects.h"
 #include "gw_graphics.h"
+#include "CurrentObjectsManagement.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_xget(char *fname,unsigned long fname_len)
@@ -94,7 +95,7 @@ int sci_xget(char *fname,unsigned long fname_len)
   else if ( strcmp(cstk(l1),"mark") == 0)
   {
     int i2;
-    sciPointObj * subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
+    sciPointObj * subwin = sciGetCurrentSubWin();
     x1[0] = sciGetMarkStyle(subwin);
     x1[1] = sciGetMarkSize(subwin);
     x2=2;
@@ -106,7 +107,7 @@ int sci_xget(char *fname,unsigned long fname_len)
   else if ( strcmp(cstk(l1),"mark size") == 0)
   {
     int i2;
-    sciPointObj * subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
+    sciPointObj * subwin = sciGetCurrentSubWin();
     x1[0] = x1[1] = sciGetMarkSize(subwin);
 
     x1[0]=x1[1];
@@ -117,7 +118,7 @@ int sci_xget(char *fname,unsigned long fname_len)
   }
   else if ( strcmp(cstk(l1),"line style") == 0)
   {
-    sciPointObj * subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
+    sciPointObj * subwin = sciGetCurrentSubWin();
     x1[0] = sciGetLineStyle(subwin);
   
     x2=1;
@@ -136,7 +137,7 @@ int sci_xget(char *fname,unsigned long fname_len)
   else 
   {
     int i2;
-    sciPointObj *psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+    sciPointObj *psubwin = sciGetCurrentSubWin();
     x2=0;
     if(strcmp(cstk(l1),"font")==0){
       x1[0] = sciGetFontStyle(psubwin);

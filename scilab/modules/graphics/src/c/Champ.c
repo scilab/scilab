@@ -19,6 +19,7 @@
 #include "Champ.h"
 #include "sciprint.h"
 #include "periScreen.h"
+#include "CurrentObjectsManagement.h"
 
 
 #include "MALLOC.h" /* MALLOC */
@@ -82,7 +83,7 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
   getChampDataBounds( x, y, fx, fy, *n1, *n2,typeofchamp,  &(xx[0]), &(xx[1]), &(yy[0]), &(yy[1]) ) ;
   
       
-  psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+  psubwin = sciGetCurrentSubWin() ;
   checkRedrawing() ;
 
   /* Force psubwin->is3d to FALSE: we are in 2D mode */
@@ -237,7 +238,7 @@ void sciChamp2DRealToPixel( integer * xm         ,
   int xfacteur = 1;
   int yfacteur = 1;
 
-  sciPointObj * psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+  sciPointObj * psubwin = sciGetCurrentSubWin();
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE (psubwin);
 
   if ( ppsubwin->axes.reverse[0] ) { xfacteur = -1 ; }

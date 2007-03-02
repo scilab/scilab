@@ -12,6 +12,7 @@
 #include "SetProperty.h"
 #include "GetProperty.h"
 #include "DrawObjects.h"
+#include "CurrentObjectsManagement.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_xgrid(char *fname,unsigned long fname_len)
@@ -26,7 +27,7 @@ int sci_xgrid(char *fname,unsigned long fname_len)
   }
   SciWin();
   LhsVar(1)=0;
-  status = sciSetGridStyle( sciGetSelectedSubWin(sciGetCurrentFigure()), style, style, style ) ;
+  status = sciSetGridStyle( sciGetCurrentSubWin(), style, style, style ) ;
   if ( status == 0 )
   {
     sciDrawObj( sciGetCurrentFigure() ) ;

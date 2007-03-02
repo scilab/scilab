@@ -217,6 +217,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\CurrentObjectsManagement.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\DefaultCommandArg.c"
 				>
 			</File>
@@ -854,6 +858,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\nues1.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\ObjectsSelection.c"
 				>
 			</File>
 			<File
@@ -1879,6 +1887,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\CurrentObjectsManagement.h"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\DefaultCommandArg.h"
 				>
 			</File>
@@ -2044,6 +2056,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\math_graphics.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\ObjectSelection.h"
 				>
 			</File>
 			<File

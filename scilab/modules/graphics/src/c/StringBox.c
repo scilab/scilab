@@ -13,6 +13,8 @@
 #include "math_graphics.h"
 #include "PloEch.h"
 #include "MALLOC.h"
+#include "CurrentObjectsManagement.h"
+#include "ObjectSelection.h"
 
 /*----------------------------------------------------------------------------------------*/
 void getStringBbox( char * string, int center[2], int rect[4] )
@@ -22,7 +24,7 @@ void getStringBbox( char * string, int center[2], int rect[4] )
 /*----------------------------------------------------------------------------------------*/
 void callXstringL( char * string, int posX, int posY, int boundingRect[4] )
 {
-  sciPointObj * parentSubWin = sciGetSelectedSubWin ( sciGetCurrentFigure () ) ;
+  sciPointObj * parentSubWin = sciGetFirstTypedSelectedSon( sciGetCurrentFigure(), SCI_SUBWIN ) ;
 
   updateScaleIfRequired( parentSubWin ) ;
 

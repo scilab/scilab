@@ -20,6 +20,7 @@
 #include "sciprint.h"
 #include "Fec.h"
 #include "GrayPlot.h"
+#include "CurrentObjectsManagement.h"
 
 #include "MALLOC.h" /* MALLOC */
 
@@ -51,7 +52,7 @@ void Objrect ( double * x         ,
   sciPointObj * newObj = NULL ;
   BOOL redraw = FALSE ;
   sciPointObj *psubwin;
-  psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+  psubwin = sciGetCurrentSubWin();
   
   /* check if the auto_clear property is on and then erase everything */
   redraw = checkRedrawing() ;
@@ -96,7 +97,7 @@ void Objarc( int    * angle1    ,
 { 
   BOOL redraw = FALSE ;
   sciPointObj *psubwin, *pobj;
-  psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+  psubwin = sciGetCurrentSubWin() ;
 
   redraw = checkRedrawing() ;
   
@@ -133,7 +134,7 @@ void Objpoly ( double  * x     ,
 { 
   BOOL redraw = FALSE ;
   sciPointObj *psubwin, *pobj;
-  psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());  
+  psubwin = sciGetCurrentSubWin();  
 
   redraw = checkRedrawing() ;
   
@@ -174,7 +175,7 @@ void Objfpoly ( double  * x    ,
   int fillcolor, contourcolor;
   sciPointObj *psubwin, *pobj;
   int closed = 1; /* we close the polyline by default */
-  psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+  psubwin = sciGetCurrentSubWin();
   
   redraw = checkRedrawing() ;
 
@@ -230,7 +231,7 @@ void Objsegs ( integer * style,
   integer type=0,n2, colored=0;
   double *fx,*fy,arfact=1.0;
   int typeofchamp = -1; /* no champ here, only segs ; this info is useless */
-  sciPointObj *psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+  sciPointObj *psubwin = sciGetCurrentSubWin();
 
   redraw = checkRedrawing() ;
 
@@ -277,7 +278,7 @@ void Objstring( char            ** fname      ,
   sciPointObj *psubwin, *pobj;
   
    
-  psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+  psubwin = sciGetCurrentSubWin();
 
   redraw = checkRedrawing() ;
 
@@ -328,8 +329,7 @@ void Objtitle( char * str,
   BOOL redraw = FALSE ;
   redraw = checkRedrawing() ;
   sciSetCurrentObj (ConstructTitle
-  		((sciPointObj *)
-             		 sciGetSelectedSubWin (sciGetCurrentFigure ()),str,n));
+  		(sciGetCurrentSubWin(),str,n));
   
   *hdl=sciGetHandle(sciGetCurrentObj ());
   if ( redraw )
@@ -465,7 +465,7 @@ void Objplot3d ( char    * fname ,
    * Force SubWindow properties according to arguments 
    * ================================================= */
 
-  psubwin= (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+  psubwin= sciGetCurrentSubWin();
 
   checkRedrawing() ;
   
@@ -733,30 +733,26 @@ void Objplot3d ( char    * fname ,
 	   Question 1: Are these properties accessible from a SCI_PARAM3D1 ?
 	   Question 2: Is "flag" obsolete and replaced by "color_mode"?*/
 
-	/* 	sciSetCurrentObj (ConstructPolyline */
-	/* 			  ((sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ()), */
-	/* 			   &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,1,1));   */
-
 	if ((*n > 0) && (zcol != (double *)NULL)) {
 	  if ((int) zcol[i] > 0){
 	    int intzcol = (int) zcol[i];
 	    sciSetCurrentObj (ConstructPolyline
-			      ((sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ()),
+			      (sciGetCurrentSubWin(),
 			       &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,*n,1,
 			       &intzcol,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE));  
 	  }
 	  else {
 	    int intzcol = (int) -zcol[i];
 	    sciSetCurrentObj (ConstructPolyline
-			      ((sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ()),
+			      (sciGetCurrentSubWin(),
 			       &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,*n,1,
 			       NULL,NULL,&intzcol,NULL,NULL,FALSE,FALSE,TRUE,FALSE));  
 	  }
 	}
 	else { /* default case, nothing is given */
-	  int curcolor = sciGetForeground(sciGetSelectedSubWin(sciGetCurrentFigure ())); /* current color equivalent for new graphics mode */
+	  int curcolor = sciGetForeground(sciGetCurrentSubWin()); /* current color equivalent for new graphics mode */
 	  sciSetCurrentObj (ConstructPolyline
-			    ((sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ()),
+			    (sciGetCurrentSubWin(),
 			     &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,*n,1,
 			     &curcolor,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE));  
 	}
@@ -786,7 +782,6 @@ void Objplot3d ( char    * fname ,
    * ================================================= */
 
   sciDrawObj(sciGetCurrentFigure ());
-  /*   EraseAndOrRedraw(sciGetSelectedSubWin (sciGetCurrentFigure ())); /\* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 *\/ */
   pSUBWIN_FEATURE(psubwin)->FirstPlot=FALSE;
    
   FREE(loc); loc = NULL;
@@ -816,7 +811,7 @@ void Objdrawaxis ( char     dir    ,
   redraw = checkRedrawing() ;
   sciSetCurrentObj (ConstructAxes 
 		    ((sciPointObj *)
-		     sciGetSelectedSubWin (sciGetCurrentFigure ()),
+		     sciGetCurrentSubWin(),
 		     dir,tics,x,*nx,y,*ny,val,subint,format,font,textcol,ticscol,flag,seg,nb_tics_labels));  
   sciDrawObjIfRequired(sciGetCurrentObj ());
   

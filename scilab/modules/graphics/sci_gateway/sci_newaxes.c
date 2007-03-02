@@ -12,6 +12,7 @@
 #include "GetProperty.h"
 #include "Scierror.h"
 #include "SetProperty.h"
+#include "CurrentObjectsManagement.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_newaxes( char * fname,unsigned long fname_len )

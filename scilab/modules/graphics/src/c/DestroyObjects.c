@@ -30,6 +30,8 @@
 #include "WindowList.h"
 #include "PloEch.h"
 #include "sciprint.h"
+#include "CurrentObjectsManagement.h"
+#include "ObjectSelection.h"
 
 #ifdef WITH_TK
 #include "../../../tclsci/includes/GedManagement.h"
@@ -662,7 +664,7 @@ int DestroyLabel (sciPointObj * pthis)
 {
   sciLabel * ppLabel = pLABEL_FEATURE (pthis);
   int textStatus = -1 ;
- 
+  sciUnselectSons( pthis ) ;
   sciDelThisToItsParent( pthis, sciGetParent(pthis) ) ;
   if ( sciDelHandle(pthis) == -1 ) { return -1 ; }
   textStatus = deallocateText( ppLabel->text ) ;
@@ -887,6 +889,7 @@ int sciStandardDestroyOperations( sciPointObj * pThis )
 {
   int res = 0 ;
   clearUserData( pThis ) ;
+  sciUnselectSons( pThis ) ;
   sciDelThisToItsParent( pThis, sciGetParent(pThis) ) ;
   if ( sciDelHandle(pThis) == -1 ) { res = -1 ; }
   FREE( pThis->pfeatures ) ;

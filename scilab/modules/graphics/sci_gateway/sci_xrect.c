@@ -12,6 +12,7 @@
 #include "sciCall.h"
 #include "DrawObjects.h"
 #include "GetProperty.h"
+#include "CurrentObjectsManagement.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_xrect( char *fname, unsigned long fname_len )
@@ -23,7 +24,7 @@ int sci_xrect( char *fname, unsigned long fname_len )
   SciWin();
   CheckRhs(1,4);
 
-  psubwin = sciGetSelectedSubWin( sciGetCurrentFigure() ) ;
+  psubwin = sciGetCurrentSubWin() ;
 
   switch ( Rhs ) 
   {

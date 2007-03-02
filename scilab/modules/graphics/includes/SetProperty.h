@@ -217,8 +217,8 @@ extern int sciSetCenterPos(  sciPointObj * pObj, BOOL newCP ) ;
 extern int sciInitIs3d( sciPointObj * pObj, BOOL is3d ) ;
 extern int sciSetIs3d(  sciPointObj * pObj, BOOL is3d ) ;
 
-extern int sciInitIsSelected( sciPointObj * pObj, BOOL is3d ) ;
-extern int sciSetIsSelected(  sciPointObj * pObj, BOOL is3d ) ;
+extern int sciInitSelectedObject( sciPointObj * pObj ) ;
+extern int sciSetSelectObject(    sciPointObj * pObj ) ;
 
 extern int sciInitHiddenColor( sciPointObj * pObj, int newColor ) ;
 extern int sciSetHiddenColor(  sciPointObj * pObj, int newColor ) ;

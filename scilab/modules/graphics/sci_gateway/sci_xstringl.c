@@ -16,6 +16,7 @@
 #include "DrawObjects.h"
 #include "Axes.h"
 #include "GetProperty.h"
+#include "CurrentObjectsManagement.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_xstringl( char *fname, unsigned long fname_len )
@@ -46,7 +47,7 @@ int sci_xstringl( char *fname, unsigned long fname_len )
 
   C2F(dr1)("xset","font",&font_[0],&font_[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 
-  updateScaleIfRequired( sciGetSelectedSubWin ( sciGetCurrentFigure () ) ) ;
+  updateScaleIfRequired( sciGetCurrentSubWin() ) ;
 
 
   wc = 0.;

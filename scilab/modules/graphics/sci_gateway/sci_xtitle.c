@@ -18,6 +18,7 @@
 #include "SetProperty.h"
 #include "DrawObjects.h"
 #include "MALLOC.h"
+#include "CurrentObjectsManagement.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_xtitle( char * fname, unsigned long fname_len )
@@ -78,7 +79,7 @@ int sci_xtitle( char * fname, unsigned long fname_len )
 
   SciWin();
 
-  psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+  psubwin = sciGetCurrentSubWin();
 
 
   for ( narg = 1 ; narg <= nbLabels ; narg++)

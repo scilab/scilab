@@ -19,6 +19,7 @@
 #include "sciprint.h"
 #include "Format.h"
 #include "periScreen.h"
+#include "CurrentObjectsManagement.h"
 
 #include "MALLOC.h" /* MALLOC */
 
@@ -56,7 +57,7 @@ int C2F(box3d)(double *xbox, double *ybox, double *zbox)
 
 
 
-  psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+  psubwin = sciGetCurrentSubWin();
   ppsubwin = pSUBWIN_FEATURE (psubwin);
 
   legx = getStrMatElement( sciGetText(ppsubwin->mon_x_label), 0, 0 ) ;
@@ -668,7 +669,7 @@ int I3dRotation(void)
   alpha0=alpha;
 
   ibutton=-1;
-  tmpsubwin = sciGetSelectedSubWin( sciGetCurrentFigure() ) ;   
+  tmpsubwin = sciGetCurrentSubWin() ;   
   if ( pFIGURE_FEATURE(sciGetCurrentFigure())->rotstyle == 0)    
   {
     psubwin = CheckClickedSubwin(xr,yr);
@@ -761,7 +762,7 @@ int I3dRotation(void)
 #endif
 
   if (pFIGURE_FEATURE((sciPointObj *)sciGetCurrentFigure())->rotstyle == 0){
-    pold = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+    pold = sciGetCurrentSubWin();
     sciSetSelectedSubWin(psubwin);
     Obj_RedrawNewAngle(psubwin,theta,alpha);
     sciSetSelectedSubWin(pold);
@@ -772,7 +773,7 @@ int I3dRotation(void)
     while (psonstmp != (sciSons *) NULL)	
     {  
       if(sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN){
-        pold = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+        pold = sciGetCurrentSubWin();
         sciSetSelectedSubWin(psonstmp->pointobj);
         Obj_RedrawNewAngle(psonstmp->pointobj,theta,alpha);
         sciSetSelectedSubWin(pold);

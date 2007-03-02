@@ -27,8 +27,6 @@ extern sciPointObj *sciGetPointerFromHandle (long handle);
 extern sciRelationShip *sciGetRelationship (sciPointObj * pobj); /* HANDLE MANAGEMENT */
 extern int sciSetParent (sciPointObj * pson, sciPointObj * pparent); /* HANDLE MANAGEMENT */
 extern sciPointObj *sciGetParent (sciPointObj * pobj); /* HANDLE MANAGEMENT */
-extern void sciSetCurrentSon (sciPointObj * pparent, sciPointObj * pson); /* HANDLE MANAGEMENT */
-extern sciPointObj *sciGetCurrentSon (sciPointObj * pobj); /* HANDLE MANAGEMENT */
 extern BOOL sciAddThisToItsParent (sciPointObj * pthis,  sciPointObj * pparent); /* HANDLE MANAGEMENT */
 extern BOOL sciDelThisToItsParent (sciPointObj * pthis, sciPointObj * pparent); /* HANDLE MANAGEMENT */
 extern sciSons *sciGetSons (sciPointObj * pobj); /* HANDLE MANAGEMENT */
@@ -36,9 +34,6 @@ extern sciSons *sciGetLastSons (sciPointObj * pobj); /* HANDLE MANAGEMENT */
 extern sciSons * sciGetNextAccessibleSon( sciSons * son ) ; /* HANDLE MANAGEMENT */
 extern sciSons * sciGetFirstAccessibleSon( sciPointObj * pObj ) ; /* HANDLE MANAGEMENT */
 extern sciSons * sciFindSon( sciPointObj * searchedObj, sciPointObj * parentObj ) ;
-extern long sciGetCurrentHandle (void); /* HANDLE MANAGEMENT */
-extern sciPointObj *sciGetCurrentObj (void);  /* HANDLE MANAGEMENT */
-extern int sciSetCurrentObj (sciPointObj * pobj); /* HANDLE MANAGEMENT */
 extern int sciGetNbFigures( void ) ;
 extern int sciRelocateHandles( unsigned long handles[], int nbHandles, unsigned long newParentHandle ) ;
 extern BOOL sciCanBeSonOf( sciPointObj * son, sciPointObj * parent ) ;

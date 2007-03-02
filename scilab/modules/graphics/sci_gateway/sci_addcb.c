@@ -11,6 +11,7 @@
 #include "Interaction.h"
 #include "BuildObjects.h"
 #include "gw_graphics.h"
+#include "CurrentObjectsManagement.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_addcb(char *fname,unsigned long fname_len)
@@ -34,7 +35,7 @@ int sci_addcb(char *fname,unsigned long fname_len)
     GetRhsVar(3,"i",&m2,&n2,&l2); /* Gets the mouse event */
     break;
   case 10:/* first is a string argument so it's a sciset("str1",....)*/
-    hdl = (unsigned long ) sciGetHandle(sciGetSelectedSubWin(sciGetCurrentFigure())); /* Gets the figure handle value if it ones (the phather)*/
+    hdl = (unsigned long ) sciGetHandle(sciGetCurrentSubWin()); /* Gets the figure handle value if it ones (the phather)*/
     CheckRhs(2,2);
     GetRhsVar(1,"c",&m1,&n1,&l1); /* Gets the command name    */
     GetRhsVar(2,"i",&m2,&n2,&l2); /* Gets the mouse event */
