@@ -332,7 +332,9 @@ src/c/handleDrawing/drawSegsEntity.c \
 src/c/handleDrawing/drawSubWinEntity.c \
 src/c/handleDrawing/drawSurfaceEntity.c \
 src/c/handleDrawing/drawTextEntity.c \
-src/c/TerminateGraphics.c
+src/c/TerminateGraphics.c \
+src/c/CurrentObjectsManagemet.c \
+src/c/ObjectSelection.c
 
 
 GATEWAY_C_SOURCES = sci_gateway/sci_swap_handles.c \
@@ -590,7 +592,9 @@ includes/math_graphics.h \
 includes/sci_drawnow.h \
 includes/giffonts.h \
 includes/sci_param3d.h \
-includes/periGif.h
+includes/periGif.h \
+includes/CurrentObjectsManagement.c \
+includes/ObjectSelection.h
 
 
 #### graphics : demos files ####
