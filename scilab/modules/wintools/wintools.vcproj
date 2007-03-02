@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;../core/includes;../../libs/MALLOC/includes;../gui/src/c/wsci"
+				AdditionalIncludeDirectories="src/c;includes;../core/includes;../../libs/MALLOC/includes;../gui/src/c/wsci"
 				PreprocessorDefinitions="_LIB;STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="1"
@@ -117,7 +117,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="includes;../core/includes;../../libs/MALLOC/includes;../gui/src/c/wsci"
+				AdditionalIncludeDirectories="src/c;includes;../core/includes;../../libs/MALLOC/includes;../gui/src/c/wsci"
 				PreprocessorDefinitions="NDEBUG;_LIB;STRICT;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="0"
@@ -178,6 +178,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\FindFileAssociation.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\gw_wintools.c"
 				>
 			</File>
@@ -226,6 +230,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_findfileassociation.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_mcisendstring.c"
 				>
 			</File>
@@ -268,6 +276,10 @@
 			>
 			<File
 				RelativePath=".\src\DDE.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\FindFileAssociation.h"
 				>
 			</File>
 			<File

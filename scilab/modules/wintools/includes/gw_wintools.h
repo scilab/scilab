@@ -48,13 +48,19 @@ int C2F(sci_settextcolor) _PARAMS((char *fname,unsigned long l));
 int C2F(sci_settextbackgroundcolor) _PARAMS((char *fname,unsigned long l));
 int C2F(sci_filesassociationbox) _PARAMS((char *fname,unsigned long l));
 int C2F(sci_dos) _PARAMS((char *fname,unsigned long l));
+int C2F(sci_findfileassociation) _PARAMS((char *fname,unsigned long l));
 
 #ifndef MAX_PATH
 #define MAX_PATH 512
 #endif
-#define MAX_PATH_LONG 32767
-#define MAX_PATH_SHORT 260
 
+#ifndef MAX_PATH_LONG
+#define MAX_PATH_LONG 32767
+#endif
+
+#ifndef MAX_PATH_SHORT
+#define MAX_PATH_SHORT 260
+#endif
 
 #endif /*  __MATWINTOOLS__ */
 /*-----------------------------------------------------------------------------------*/

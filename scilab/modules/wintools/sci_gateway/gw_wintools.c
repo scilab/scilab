@@ -1,8 +1,8 @@
-#include "gw_wintools.h"
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
+#include "gw_wintools.h"
 #ifdef _MSC_VER
   #include <Windows.h>
   #include "ExceptionMessage.h"
@@ -34,7 +34,8 @@
   {C2F(sci_settextcolor),"settextcolor"},
   {C2F(sci_settextbackgroundcolor),"settextbackgroundcolor"},
   {C2F(sci_filesassociationbox),"filesassociationbox"},
-	{C2F(sci_dos),"dos"}
+  {C2F(sci_dos),"dos"},
+  {C2F(sci_findfileassociation),"findfileassociation"}
  };
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_wintools)()

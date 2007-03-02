@@ -20,7 +20,8 @@ sci_gateway/intihmcolor.c \
 sci_gateway/sci_dde.c \
 sci_gateway/intOEMconvert.c \
 sci_gateway/sci_toprint.c \
-sci_gateway/sci_clipboard.c
+sci_gateway/sci_clipboard.c \
+sci_gateway/sci_findfileassociation.c
 
 libsciwintools_la_CFLAGS= -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 
