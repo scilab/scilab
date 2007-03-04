@@ -18,7 +18,7 @@ public class  Exemple7A {
  		
  		System.out.println("Exemple 7 A Serialize");
  		System.out.println("----------------------------------------------------");
-  	for(r=0;r<=(a.getRow()*a.getCol())-1;r++)
+  	for(r=0;r<=(a.getNumberOfRows()*a.getNumberOfCols())-1;r++)
     {
        System.out.print(""+b[r]+"  ");
     }

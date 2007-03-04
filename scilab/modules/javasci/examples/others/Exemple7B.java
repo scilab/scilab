@@ -23,7 +23,7 @@ class  Exemple7B {
       
       System.out.println("Exemple 7 B DeSerialize");
       System.out.println("----------------------------------------------------");
-  		for(r=0;r<=(a.getRow()*a.getCol())-1;r++)
+  		for(r=0;r<=(a.getNumberOfRows()*a.getNumberOfCols())-1;r++)
       {
          System.out.print(""+b[r]+"  ");
       }

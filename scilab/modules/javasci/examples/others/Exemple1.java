@@ -15,9 +15,9 @@ class  Exemple1 {
   	System.out.println("----------------------------------------------------");
   	a.disp();
   	System.out.println("----------------------------------------------------");
-  	for(r=1;r<=a.getRow();r++)
+  	for(r=1;r<=a.getNumberOfRows();r++)
     {
-     for(c=1;c<=a.getCol();c++)
+     for(c=1;c<=a.getNumberOfCols();c++)
      {
      	System.out.print("A("+(r)+","+(c)+")="+a.GetElement(r,c)+"  ");
      }
