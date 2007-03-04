@@ -140,23 +140,28 @@ static int OneRhs_gettext(void)
 				}
 				else
 				{
+					
 					m=numberselemTAGS;
 					n=1;
 
 					CreateVarFromPtr(Rhs+1, "S", &m, &n,Tags);
 					LhsVar(1) = Rhs+1;
 
-					m=numberselemSTRINGS;
-					n=1;
+					if (Lhs == 2)
+					{
+						m=numberselemSTRINGS;
+						n=1;
 
-					CreateVarFromPtr(Rhs+2, "S", &m, &n, Strings);
-					LhsVar(2) = Rhs+2;
+						CreateVarFromPtr(Rhs+2, "S", &m, &n, Strings);
+						LhsVar(2) = Rhs+2;
+					}
 
 					C2F(putlhsvar)();
-
-					FreeElmsArray(Tags,numberselemTAGS);
-					FreeElmsArray(Strings,numberselemSTRINGS);
 				}
+
+				FreeElmsArray(Tags,numberselemTAGS);
+				FreeElmsArray(Strings,numberselemSTRINGS);
+
 			}
 			else
 			{
