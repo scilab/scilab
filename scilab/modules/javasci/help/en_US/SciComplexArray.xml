@@ -27,9 +27,13 @@
     <P><VERB>public SciComplexArray(String name,int r,int c,double []
     realpart,double [] imaginarypart)</VERB> : Constructor</P>
 
-    <P><VERB>public int getRow()</VERB> : Get number of rows</P>
+  	<P><VERB>public int getNumbersOfRows()</VERB> : Get number of rows</P>
 
-    <P><VERB>public int getCol() </VERB> : Get number of colons</P>
+    <P><VERB>public int getNumbersOfCols() </VERB> : Get number of colons</P>
+    
+    <P><VERB>public int getRow()</VERB> : (deprecated) Get number of rows</P>
+
+    <P><VERB>public int getCol() </VERB> : (deprecated) Get number of colons</P>
 
     <P><VERB>public String getName()</VERB> : Get Name of scilab object</P>
 
@@ -41,7 +45,7 @@
 
     <P><VERB>public void disp() </VERB> : disp object</P>
 
-    <P><VERB>public boolean Job(String job)</VERB> : Execute a job in
+    <P><VERB>public boolean Job(String job)</VERB> : (deprecated see Scilab.Exec) Execute a job in
     scilab</P>
 
     <P><VERB>public void Get()</VERB> : Get in java object , value of scilab

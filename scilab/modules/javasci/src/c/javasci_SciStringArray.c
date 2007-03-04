@@ -15,7 +15,7 @@ JNIEXPORT void JNICALL Java_javasci_SciStringArray_Initialize (JNIEnv *env, jcla
 }
 /********************************************************************************************************/
 /* private native int getRowFromScilab(String name); */
-JNIEXPORT jint JNICALL Java_javasci_SciStringArray_getRowFromScilab(JNIEnv *env , jobject obj_this, jstring name)
+JNIEXPORT jint JNICALL Java_javasci_SciStringArray_getNumberOfRowsFromScilab(JNIEnv *env , jobject obj_this, jstring name)
 {
 	int lw; int fin;
 	const char *cname=NULL;
@@ -41,7 +41,7 @@ JNIEXPORT jint JNICALL Java_javasci_SciStringArray_getRowFromScilab(JNIEnv *env 
 }
 /********************************************************************************************************/
 /* private native int getColFromScilab(String name); */
-JNIEXPORT jint JNICALL Java_javasci_SciStringArray_getColFromScilab(JNIEnv *env , jobject obj_this, jstring name)
+JNIEXPORT jint JNICALL Java_javasci_SciStringArray_getNumberOfColsFromScilab(JNIEnv *env , jobject obj_this, jstring name)
 {
 	int lw; int fin;
 	const char *cname=NULL;

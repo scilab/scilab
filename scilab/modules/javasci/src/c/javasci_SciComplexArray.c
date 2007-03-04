@@ -41,7 +41,7 @@ JNIEXPORT jboolean JNICALL Java_javasci_SciComplexArray_Job(JNIEnv *env , jobjec
 }
 /********************************************************************************************************/
 /* private native int getRowFromScilab(String name); */
-JNIEXPORT jint JNICALL Java_javasci_SciComplexArray_getRowFromScilab(JNIEnv *env , jobject obj_this, jstring name)
+JNIEXPORT jint JNICALL Java_javasci_SciComplexArray_getNumberOfRowsFromScilab(JNIEnv *env , jobject obj_this, jstring name)
 {
 	int lw; int fin;
 	const char *cname=NULL;
@@ -75,7 +75,7 @@ JNIEXPORT jint JNICALL Java_javasci_SciComplexArray_getRowFromScilab(JNIEnv *env
 }
 /********************************************************************************************************/
 /* private native int getColFromScilab(String name); */
-JNIEXPORT jint JNICALL Java_javasci_SciComplexArray_getColFromScilab(JNIEnv *env , jobject obj_this, jstring name)
+JNIEXPORT jint JNICALL Java_javasci_SciComplexArray_getNumberOfColsFromScilab(JNIEnv *env , jobject obj_this, jstring name)
 {
 	int lw; int fin;
 	const char *cname=NULL;

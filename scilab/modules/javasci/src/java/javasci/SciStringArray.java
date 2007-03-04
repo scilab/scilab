@@ -6,145 +6,163 @@ package javasci ;
 public class SciStringArray implements java.io.Serializable  
 {
 /********************************************************************************************************/
-  private String [] x ;
-  private int m, n;
-  private String name; 
+ private String [] x ;
+ private int m, n;
+ private String name; 
 /********************************************************************************************************/  
+/**
+ * Initialize Scilab interface
+ */
+ private static native void Initialize();
 
-  private static native void Initialize();
-  /**
-  * Initialize Scilab interface
-  */
+/**
+ * internal method to know dim (Row) in scilab 
+ * returns >= 0 OK
+ * returns -1 name not exist
+ */
+ private native int getNumberOfRowsFromScilab(String name);
+
+/**
+ * internal method to know dim (Col) in scilab
+ * returns >= 0 OK
+ * returns -1 name not exist
+ */
+ private native int getNumberOfColsFromScilab(String name);
+
+/**
+ * Deprecated.  Use Scilab.Exec instead.
+ * Execute a command in Scilab
+ */  
+ public native boolean Job(String job);
   
-  private native int getRowFromScilab(String name);
-  /**
-  * internal method to know dim (Row) in scilab 
-  * returns >= 0 OK
-  * returns -1 name not exist
-  */
+ public native String GetElement(int indr, int indc);
   
-  private native int getColFromScilab(String name);
-  /**
-  * internal method to know dim (Col) in scilab
-  * returns >= 0 OK
-  * returns -1 name not exist
-  */
+ private native void SendString(String str,int indr, int indc);
   
-  public native boolean Job(String job);
-  /**
-  * Execute a command in Scilab
-  */
-  
-  public native String GetElement(int indr, int indc);
-  private native void SendString(String str,int indr, int indc);
-  
-  /**
-  * See SCI/examples/callsci/callsciJava/others for some simple examples
-  */
+/**
+ * See SCI/modules/javasci/examples/others for some simple examples
+ */
 /********************************************************************************************************/  
-  static 
-  {
-    System.loadLibrary("javasci");
-    Initialize();
-  }
+ static 
+ {
+	System.loadLibrary("javasci");
+	Initialize();
+ }
 /********************************************************************************************************/  
-  public SciStringArray(String name,SciStringArray Obj) 
-  {
-    this.name = name;
-    this.m = Obj.getRow() ;
-    this.n = Obj.getCol();
-    this.x = new String[m*n];
+ public SciStringArray(String name,SciStringArray Obj) 
+ {
+	this.name = name;
+	this.m = Obj.getNumberOfRows() ;
+	this.n = Obj.getNumberOfCols();
+	this.x = new String[m*n];
    
-    this.x =Obj.getData() ;
-    Send();
-  }
+	this.x =Obj.getData() ;
+	Send();
+ }
 /********************************************************************************************************/  
-  public SciStringArray(String name,int r,int c) 
-  {
-    this.m = r ;
-    this.n = c ;
-    this.x = new String[r*c];
-    this.name = name;
+ public SciStringArray(String name,int r,int c) 
+ {
+	this.m = r ;
+	this.n = c ;
+	this.x = new String[r*c];
+	this.name = name;
     
-    if ( (Scilab.TypeVar(name) == 10) & 
-         (getRowFromScilab(name) == c) & 
-         (getColFromScilab(name) == r) )
-    {
+	if ( (Scilab.TypeVar(name) == 10) & 
+         (getNumberOfRowsFromScilab(name) == c) & 
+         (getNumberOfColsFromScilab(name) == r) )
+	{
 		Get();
-    }
-    else
-    {
-        for ( int i = 0 ; i < r*c ; i++)x[i]="";
-        Send();
-    }
-  }
+	}
+	else
+	{
+		for ( int i = 0 ; i < r*c ; i++)x[i]="";
+		Send();
+	}
+ }
  /********************************************************************************************************/  
-  public SciStringArray(String name,int r,int c,String [] x )
-  {
-    if ( r*c != x.length) 
-    {
-     throw new BadDataArgumentException("Bad Matrix call, size of third argument is wrong");
-    }
-    this.m = r ;
-    this.n = c;
-    this.x = x;
-    this.name = name;
-    Send();
-  }
+ public SciStringArray(String name,int r,int c,String [] x )
+ {
+	if ( r*c != x.length) 
+	{
+		throw new BadDataArgumentException("Bad Matrix call, size of third argument is wrong");
+	}
+	this.m = r ;
+	this.n = c;
+	this.x = x;
+	this.name = name;
+	Send();
+ }
 /********************************************************************************************************/
-  public int getRow() 
-  {
-   return m;
-  }
+ public int getNumberOfRows() 
+ {
+	return m;
+ }
 /********************************************************************************************************/  
-  public int getCol() 
-  {
-   return n;
-  }
+ public int getNumberOfCols()
+ {
+	return n;
+ }
+/********************************************************************************************************/
+/**
+ * @deprecated 
+ * Deprecated.  Use getNumberOfRows() instead.
+ */
+ public int getRow() 
+ {
+	return m;
+ }
 /********************************************************************************************************/  
-  public String getName()
-  {
-   return name;
-  }
+/**
+ * @deprecated 
+ * Deprecated.  Use getNumberOfCols() instead.
+ */
+ public int getCol()  
+ {
+	return n;
+ }
 /********************************************************************************************************/  
-  public String[] getData() 
-  {
-   Get();
-   return x;
-  }
+ public String getName()
+ {
+	return name;
+ }
 /********************************************************************************************************/  
-  public void Get() 
-  {
-  	int indr, indc;
-  	
-    for(indr=1;indr<=m;indr++)
-    {
-     for(indc=1;indc<=n;indc++)
-     {
-     	x[(indc-1)*m+(indr-1)]=GetElement(indr,indc);
-     }
-     
-    }
-  }
-/********************************************************************************************************/  
-  public void Send() 
-  {
-  	int indx, indy;
-  	
-    for(indx=0;indx<m;indx++)
-    {
-      for(indy=0;indy<n;indy++)
-      {
-	     SendString(x[indx+indy*m],indx,indy);
-      }
-    }
-  }
-/********************************************************************************************************/  
-  public void disp() 
-  {
+ public String[] getData() 
+ {
 	Get();
-    System.out.println("Matrix "+ getName() +"=");
-    Job( "disp(" + getName() +");");
-  }
+	return x;
+ }
+/********************************************************************************************************/  
+ public void Get() 
+ {
+	int indr, indc;
+  	
+	for(indr=1;indr<=m;indr++)
+	{
+		for(indc=1;indc<=n;indc++)
+		{
+			x[(indc-1)*m+(indr-1)]=GetElement(indr,indc);
+		}
+	}
+ }
+/********************************************************************************************************/  
+ public void Send() 
+ {
+	int indx, indy;
+  	
+	for(indx=0;indx<m;indx++)
+	{
+		for(indy=0;indy<n;indy++)
+		{
+			SendString(x[indx+indy*m],indx,indy);
+		}
+	}
+ }
+/********************************************************************************************************/  
+ public void disp() 
+ {
+	Get();
+	System.out.println("Matrix "+ getName() +"=");
+	Scilab.Exec( "disp(" + getName() +");");
+ }
 }
 /********************************************************************************************************/

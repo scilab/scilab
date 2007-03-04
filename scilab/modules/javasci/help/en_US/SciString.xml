@@ -36,7 +36,7 @@
 
     <P><VERB>public void disp() </VERB> : disp object</P>
 
-    <P><VERB>public boolean Job(String job)</VERB> : Execute a job in
+    <P><VERB>public boolean Job(String job)</VERB> : (deprecated see Scilab.Exec) Execute a job in
     scilab</P>
   </DESCRIPTION>
 

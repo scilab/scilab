@@ -6,165 +6,184 @@ package javasci ;
 public class SciComplexArray implements java.io.Serializable  
 {
 /********************************************************************************************************/
-  private double [] x ; /* Real part */
-  private double [] y ; /* Imaginary part */
+ private double [] x ; /* Real part */
+ private double [] y ; /* Imaginary part */
   
-  private int m, n;
-  /* m number of rows */
-  /* n number of colons */
+ private int m, n;
+ /* m number of rows */
+ /* n number of colons */
   
-  private String name; 
+ private String name; 
 /********************************************************************************************************/
-  private static native void Initialize();
-  /**
-  * Initialize Scilab interface
-  */
+/**
+ * Initialize Scilab interface
+ */
+ private static native void Initialize();
   
-  private native int getRowFromScilab(String name);
-  /**
-  * internal method to know dim (Row) in scilab 
-  * returns >= 0 OK
-  * returns -1 name not exist
-  */
-  
-  private native int getColFromScilab(String name);
-  /**
-  * internal method to know dim (Col) in scilab
-  * returns >= 0 OK
-  * returns -1 name not exist
-  */
-    
-  public native boolean Job(String job);
-  /**
-  * Execute a command in Scilab 
-  */
-  
-  public native void Get();
-  /**
-  * Get Matrix from Scilab
-  */
-  
-  public native void Send();
-  /**
-  * Send Matrix to Scilab 
-  */
-  
-  public native double GetRealPartElement(int indr,int indc);
-  /**
-  * Get only ONE element from Scilab Matrix 
-  * indr AND indc are indices in scilab 
-  * Get Real Part
-  */
+/**
+ * internal method to know dim (Row) in scilab 
+ * returns >= 0 OK
+ * returns -1 name not exist
+ */
+ private native int getNumberOfRowsFromScilab(String name);
 
+/**
+ * internal method to know dim (Col) in scilab
+ * returns >= 0 OK
+ * returns -1 name not exist
+ */
+ private native int getNumberOfColsFromScilab(String name);
+ 
+/**
+ * @deprecated 
+ * Deprecated.  Use Scilab.Exec instead.
+ * Execute a command in Scilab 
+ */   
+ public native boolean Job(String job);
+ 
+/**
+ * Get Matrix from Scilab
+ */  
+ public native void Get();
 
-  public native double GetImaginaryPartElement(int indr,int indc);
-  /**
-  * Get only ONE element from Scilab Matrix 
-  * indr AND indc are indices in scilab 
-  * Get Imaginary Part
-  */
+/**
+ * Send Matrix to Scilab 
+ */
+ public native void Send();
 
-  
-  /**
-  * See SCI/examples/callsci/callsciJava/others for some simple examples 
-  */
+/**
+ * Get only ONE element from Scilab Matrix 
+ * indr AND indc are indices in scilab 
+ * Get Real Part
+ */
+ public native double GetRealPartElement(int indr,int indc);
+ 
+
+/**
+ * Get only ONE element from Scilab Matrix 
+ * indr AND indc are indices in scilab 
+ * Get Imaginary Part
+ */
+ public native double GetImaginaryPartElement(int indr,int indc);
+
+/**
+ * See SCI/modules/javasci/examples/others for some simple examples 
+ */
 /********************************************************************************************************/  
-  static 
-  {
-    System.loadLibrary("javasci");
-    Initialize();
-  }
+ static 
+ {
+	System.loadLibrary("javasci");
+	Initialize();
+ }
 /********************************************************************************************************/  
-  public SciComplexArray(String name,SciComplexArray Obj) 
-  {
-    this.name = name;
-    this.m = Obj.getRow() ;
-    this.n = Obj.getCol();
+ public SciComplexArray(String name,SciComplexArray Obj) 
+ {
+	this.name = name;
+	this.m = Obj.getNumberOfRows() ;
+	this.n = Obj.getNumberOfCols();
     
-    this.x = new double[m*n];
-    this.x =Obj.getRealPartData() ;
+	this.x = new double[m*n];
+	this.x =Obj.getRealPartData() ;
     
-    this.y = new double[m*n];
-    this.y =Obj.getImaginaryPartData() ;
+	this.y = new double[m*n];
+	this.y =Obj.getImaginaryPartData() ;
     
-    Send();
-  }
+	Send();
+ }
 /********************************************************************************************************/  
-  public SciComplexArray(String name,int r,int c) 
-  {
-    this.m = r ;
-    this.n = c ;
-    this.x = new double[r*c];
-    this.y = new double[r*c];
-    this.name = name;
+ public SciComplexArray(String name,int r,int c) 
+ {
+	this.m = r ;
+	this.n = c ;
+	this.x = new double[r*c];
+	this.y = new double[r*c];
+	this.name = name;
     
-    if ( (Scilab.TypeVar(name) == 1) & 
-         (getRowFromScilab(name) == r) & 
-         (getColFromScilab(name) == c) )
-    {
+	if ( (Scilab.TypeVar(name) == 1) & 
+		(getNumberOfRowsFromScilab(name) == r) & 
+		(getNumberOfColsFromScilab(name) == c) )
+	{
 		Get();
-    }
-    else
-    {
-        for ( int i = 0 ; i < r*c ; i++)
-        {
-    	  x[i]=0;
-    	  y[i]=0;
-        }
-        Send();
-    }
-  }
- /********************************************************************************************************/  
-  public SciComplexArray(String name,int r,int c,double [] x,double [] y )
-  {
-    if ( (r*c != x.length) && (r*c != y.length) )
-    {
-     throw new BadDataArgumentException("Bad Matrix call, size of third argument is wrong");
-    }
+	}
+	else
+	{
+		for ( int i = 0 ; i < r*c ; i++)
+		{
+			x[i]=0;
+			y[i]=0;
+		}
+		Send();
+	}
+ }
+/********************************************************************************************************/  
+ public SciComplexArray(String name,int r,int c,double [] x,double [] y )
+ {
+	if ( (r*c != x.length) && (r*c != y.length) )
+	{
+		throw new BadDataArgumentException("Bad Matrix call, size of third argument is wrong");
+	}
     
-    this.m = r ;
-    this.n = c;
+	this.m = r ;
+	this.n = c;
     
-    this.x = x;
-    this.y = y;
+	this.x = x;
+	this.y = y;
     
-    this.name = name;
+	this.name = name;
     
-    Send();
-  }
+	Send();
+ }
 /********************************************************************************************************/
-  public int getRow() 
-  {
-   return m;
-  }
+ public int getNumberOfRows() 
+ {
+	return m;
+ }
 /********************************************************************************************************/  
-  public int getCol() 
-  {
-   return n;
-  }
-/********************************************************************************************************/  
-  public String getName()
-  {
-   return name;
-  }
-/********************************************************************************************************/  
-  public double[] getRealPartData() 
-  {
-   Get();
-   return x;
-  }
+ public int getNumberOfCols() 
+ {
+	return n;
+ }
 /********************************************************************************************************/    
-  public double[] getImaginaryPartData() 
-  {
-   Get();
-   return y;
-  }
+/**
+ * @deprecated 
+ * Deprecated.  Use getNumberOfRows() instead.
+ */
+ public int getRow() 
+ {
+	return m;
+ }
 /********************************************************************************************************/  
-  public void disp() 
-  {
-    Get();
-    System.out.println("Matrix "+ getName() +"=");
-    Job( "disp(" + getName() +");");
-  }
+/**
+ * @deprecated 
+ * Deprecated.  Use getNumberOfCols() instead.
+ */
+ public int getCol() 
+ {
+	return n;
+ }
+/********************************************************************************************************/  
+ public String getName()
+ {
+	return name;
+ }
+/********************************************************************************************************/  
+ public double[] getRealPartData() 
+ {
+	Get();
+	return x;
+ }
+/********************************************************************************************************/    
+ public double[] getImaginaryPartData() 
+ {
+	Get();
+	return y;
+ }
+/********************************************************************************************************/  
+ public void disp() 
+ {
+	Get();
+	System.out.println("Matrix "+ getName() +"=");
+	Scilab.Exec( "disp(" + getName() +");");
+ }
 }
 /********************************************************************************************************/

@@ -10,7 +10,7 @@ JNIEXPORT void JNICALL Java_javasci_SciBooleanArray_Initialize (JNIEnv *env, jcl
 }
 /********************************************************************************************************/
 /* private native int getRowFromScilab(String name); */
-JNIEXPORT jint JNICALL Java_javasci_SciBooleanArray_getRowFromScilab(JNIEnv *env , jobject obj_this, jstring name)
+JNIEXPORT jint JNICALL Java_javasci_SciBooleanArray_getNumberOfRowsFromScilab(JNIEnv *env , jobject obj_this, jstring name)
 {
 	int lw; int fin;
 	const char *cname=NULL;
@@ -35,7 +35,7 @@ JNIEXPORT jint JNICALL Java_javasci_SciBooleanArray_getRowFromScilab(JNIEnv *env
 }
 /********************************************************************************************************/
 /* private native int getColFromScilab(String name); */
-JNIEXPORT jint JNICALL Java_javasci_SciBooleanArray_getColFromScilab(JNIEnv *env , jobject obj_this, jstring name)
+JNIEXPORT jint JNICALL Java_javasci_SciBooleanArray_getNumberOfColsFromScilab(JNIEnv *env , jobject obj_this, jstring name)
 {
 	int lw; int fin;
 	const char *cname=NULL;
