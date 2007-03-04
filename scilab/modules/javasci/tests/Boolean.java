@@ -18,7 +18,6 @@ class  Boolean {
     
   	System.out.println("----------------------------------------------------");
  	  SciBoolean d = new SciBoolean("D",true);
- 	  d.Send();
  	  SciBoolean p = new SciBoolean("P");
     Scilab.Exec("P=~D;");
     p.disp();

@@ -52,7 +52,6 @@ function ExecJava(filename,buildref)
 	else
 	  commandline='java -classpath ../javasci.jar:. -Djava.library.path=../.libs/ '+fname +' > '+repfilename;
 	end
-	disp("Trying to run : "+commandline);
 	unix(commandline);
 	chdir(currentdir);
 endfunction

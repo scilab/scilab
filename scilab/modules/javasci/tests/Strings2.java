@@ -33,7 +33,6 @@ public class Strings2
     }
     
     SciStringArray sSA=new SciStringArray("A",s.length,1,s);
-    //sSA.disp();
     Scilab.Exec("Sa=size(A);");
     Scilab.Exec("disp(Sa);");
     
@@ -41,7 +40,6 @@ public class Strings2
     Scilab.Exec("B=A+string([1:"+s.length+"]);");
         
   	ssB.Get();
-  	//ssB.disp();
 	
   	
   	Scilab.Exec("Sb=size(B);");
