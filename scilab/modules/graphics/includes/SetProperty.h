@@ -159,8 +159,8 @@ extern int sciSetName (sciPointObj * pobj, char *pvalue, int length); /* SET */
 extern int sciInitNum( sciPointObj * pobj, int * value ) ;
 extern int sciSetNum ( sciPointObj * pobj, int * value ) ; /* SET */
 
-extern int sciInitDim(sciPointObj * pobj, int * pwidth, int * pheight) ;
-extern int sciSetDim (sciPointObj * pobj, int * pwidth, int * pheight) ; /* SET */
+extern int sciInitDimension( sciPointObj * pobj, int newWidth, int newHeight ) ;
+extern int sciSetDimension ( sciPointObj * pobj, int newWidth, int newHeight ) ; /* SET */
 
 extern int sciInitScreenPosition(sciPointObj * pobj, int pposx, int pposy);
 extern int sciSetScreenPosition(sciPointObj * pobj, int pposx, int pposy); /* SET */

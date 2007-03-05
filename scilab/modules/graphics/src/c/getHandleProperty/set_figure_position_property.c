@@ -15,14 +15,6 @@
 /*------------------------------------------------------------------------*/
 int set_figure_position_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
-  double * values = getDoubleMatrixFromStack( stackPointer ) ;
-
-  if ( !isParameterDoubleMatrix( valueType ) )
-  {
-    sciprint("Incompatible type for property figure_position.\n") ;
-    return SET_PROPERTY_ERROR ;
-  }
-
-  return sciSetScreenPosition( pobj, (int)values[0], (int)values[1]);
+  return set_screen_position_property( pobj, stackPointer, valueType, nbRow, nbCol ) ;
 }
 /*------------------------------------------------------------------------*/

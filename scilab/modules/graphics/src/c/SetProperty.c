@@ -3354,23 +3354,44 @@ sciSetNum (sciPointObj * pobj, int *value )
   
 }
 
-int sciInitDim( sciPointObj * pobj, int * pwidth, int * pheight )
+int sciInitDimension( sciPointObj * pobj, int newWidth, int newHeight )
 {
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
-      pFIGURE_FEATURE (pobj)->figuredimwidth = *pwidth;
-      pFIGURE_FEATURE (pobj)->figuredimheight = *pheight;
+      {
+        int verbose   = 0 ;
+        int curFigNum = 0 ;
+        int na        = 0 ;
+        int figNum    = sciGetNum( pobj ) ;
+
+        pFIGURE_FEATURE (pobj)->figuredimwidth  = newWidth  ;
+        pFIGURE_FEATURE (pobj)->figuredimheight = newHeight ;
+
+        C2F(dr)("xget","window",&verbose,&curFigNum,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
+        C2F(dr)("xset","window",&figNum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+        C2F(dr)("xset","wpdim",
+          &(pFIGURE_FEATURE( pobj )->figuredimwidth),
+          &(pFIGURE_FEATURE( pobj )->figuredimheight),
+          PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+        C2F(dr)("xset","window",&curFigNum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      }
       break;
     case SCI_SUBWIN:
-      pSUBWIN_FEATURE (pobj)->windimwidth = *pwidth;
-      pSUBWIN_FEATURE (pobj)->windimheight = *pheight;
+      pSUBWIN_FEATURE (pobj)->windimwidth = newWidth ;
+      pSUBWIN_FEATURE (pobj)->windimheight = newHeight;
       if (pobj != getAxesModel())
-	C2F(dr)("xset","wdim",pwidth, pheight,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,4L);
+	C2F(dr)("xset","wdim",&newWidth, &newHeight,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,4L);
       break;
     case SCI_CONSOLE:
       /* TODO */
       break;
+    case SCI_WINDOW:
+      /* TODO */
+      break ;
+    case SCI_WINDOWFRAME:
+      /* TODO */
+      break ;
     case SCI_AGREG:
     default:
       sciprint ("Object can not have a size.\n");
@@ -3388,18 +3409,17 @@ int sciInitDim( sciPointObj * pobj, int * pwidth, int * pheight )
  * @param int *pheight: the height of the window dimension
  * @return 
  */
-int
-sciSetDim (sciPointObj * pobj, int *pwidth, int *pheight)
+int sciSetDimension( sciPointObj * pobj, int newWidth, int newHeight )
 {
 
   int width ;
   int height ;
   sciGetDim( pobj, &width, &height ) ;
-  if ( width == *pwidth && height == *pheight )
+  if ( width == newWidth && height == newHeight )
   {
     return 1 ;
   }
-  return sciInitDim( pobj, pwidth, pheight ) ;
+  return sciInitDimension( pobj, newWidth, newHeight ) ;
   
 }
 

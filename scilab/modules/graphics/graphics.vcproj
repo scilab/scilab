@@ -461,6 +461,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\get_dimension_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\get_figure_id_property.c"
 				>
 			</File>
@@ -642,6 +646,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\getHandleProperty\get_rotation_style_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_screen_position_property.c"
 				>
 			</File>
 			<File
@@ -1454,6 +1462,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\set_dimension_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\set_figure_id_property.c"
 				>
 			</File>
@@ -1631,6 +1643,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\getHandleProperty\set_rotation_style_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_screen_position_property.c"
 				>
 			</File>
 			<File

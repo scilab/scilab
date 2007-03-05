@@ -10,7 +10,7 @@
 #include "setHandleProperty.h"
 #include "sciprint.h"
 
-/**
+/** 
 * use for the singleton to know if the hashtable has already be created.
 */
 static BOOL setHashTableCreated = FALSE ;
@@ -35,7 +35,7 @@ typedef struct
 * don't forget to modify it each time the propertyTable
 * is modified.
 */
-#define NB_PROPERTIES 122
+#define NB_PROPERTIES 124
 
 /**
 * list of all property names and associated functions in scilab
@@ -163,7 +163,9 @@ static setHashTableCouple propertyTable[NB_PROPERTIES] =
   { "y_ticks"            , set_y_ticks_property             },
   { "z_ticks"            , set_z_ticks_property             },
   { "viewport"           , set_viewport_property            },
-  { "info_message"       , set_info_message_property        }
+  { "info_message"       , set_info_message_property        },
+  { "screen_position"    , set_screen_position_property     },
+  { "dimension"          , set_dimension_property           }
 } ;
 
 /*-----------------------------------------------------------------------------------*/

@@ -1,8 +1,8 @@
 /*------------------------------------------------------------------------*/
-/* file: set_figure_size_property.c                                       */
+/* file: set_figure_position_property.c                                   */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Allan Cornet, Jean-Baptiste Silvy             */
-/* desc : function to modify in Scilab the figure_size field of           */
+/* desc : function to modify in Scilab the screen_position field of       */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
@@ -10,19 +10,25 @@
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
 #include "sciprint.h"
-#include "Xcall1.h"
-#include "GetProperty.h"
-#include "InitObjects.h"
 #include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_figure_size_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
+int set_screen_position_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
-  if ( sciGetEntityType(pobj) != SCI_FIGURE )
+  double * values = getDoubleMatrixFromStack( stackPointer ) ;
+ 
+  if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint("figure_size property undefined for this object" ) ;
+    sciprint("Incompatible type for property figure_position.\n") ;
     return SET_PROPERTY_ERROR ;
   }
-  return set_dimension_property( pobj, stackPointer, valueType, nbRow, nbCol ) ;
+
+  if ( nbRow * nbCol != 2 )
+  {
+    sciprint("Wrong size for screen_position property, argument should be a vector of size 2.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
+  return sciSetScreenPosition( pobj, (int)values[0], (int)values[1]);
 }
 /*------------------------------------------------------------------------*/
