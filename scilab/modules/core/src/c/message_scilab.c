@@ -3,7 +3,9 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include <stdarg.h>
+#ifdef _MSC_VER
 #include "message_scilab.h"
+#endif
 #include "MALLOC.h"
 #include "sciprint.h"
 #include "../../../localization/includes/QueryStringMessage.h"
