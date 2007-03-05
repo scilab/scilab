@@ -837,7 +837,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\gw_graphics.c"
+				RelativePath=".\sci_gateway\c\gw_graphics.c"
 				>
 			</File>
 			<File
@@ -962,335 +962,335 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_addcb.c"
+				RelativePath=".\sci_gateway\c\sci_addcb.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_champ.c"
+				RelativePath=".\sci_gateway\c\sci_champ.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_contour2di.c"
+				RelativePath=".\sci_gateway\c\sci_contour2di.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_copy.c"
+				RelativePath=".\sci_gateway\c\sci_copy.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_delete.c"
+				RelativePath=".\sci_gateway\c\sci_delete.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_demo.c"
+				RelativePath=".\sci_gateway\c\sci_demo.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_draw.c"
+				RelativePath=".\sci_gateway\c\sci_draw.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_drawaxis.c"
+				RelativePath=".\sci_gateway\c\sci_drawaxis.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_drawlater.c"
+				RelativePath=".\sci_gateway\c\sci_drawlater.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_drawnow.c"
+				RelativePath=".\sci_gateway\c\sci_drawnow.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_driver.c"
+				RelativePath=".\sci_gateway\c\sci_driver.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_fec.c"
+				RelativePath=".\sci_gateway\c\sci_fec.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_geom3d.c"
+				RelativePath=".\sci_gateway\c\sci_geom3d.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_get.c"
+				RelativePath=".\sci_gateway\c\sci_get.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_glue.c"
+				RelativePath=".\sci_gateway\c\sci_glue.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_grayplot.c"
+				RelativePath=".\sci_gateway\c\sci_grayplot.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_help_gtk.c"
+				RelativePath=".\sci_gateway\c\sci_help_gtk.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_matplot.c"
+				RelativePath=".\sci_gateway\c\sci_matplot.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_matplot1.c"
+				RelativePath=".\sci_gateway\c\sci_matplot1.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_move.c"
+				RelativePath=".\sci_gateway\c\sci_move.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_newaxes.c"
+				RelativePath=".\sci_gateway\c\sci_newaxes.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_param3d.c"
+				RelativePath=".\sci_gateway\c\sci_param3d.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_param3d1.c"
+				RelativePath=".\sci_gateway\c\sci_param3d1.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_plot2d.c"
+				RelativePath=".\sci_gateway\c\sci_plot2d.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_plot2d1.c"
+				RelativePath=".\sci_gateway\c\sci_plot2d1.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_plot3d.c"
+				RelativePath=".\sci_gateway\c\sci_plot3d.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_readgif.c"
+				RelativePath=".\sci_gateway\c\sci_readgif.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_readxbm.c"
+				RelativePath=".\sci_gateway\c\sci_readxbm.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_relocate_handle.c"
+				RelativePath=".\sci_gateway\c\sci_relocate_handle.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_set.c"
+				RelativePath=".\sci_gateway\c\sci_set.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_set_posfig_dim.c"
+				RelativePath=".\sci_gateway\c\sci_set_posfig_dim.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_seteventhandler.c"
+				RelativePath=".\sci_gateway\c\sci_seteventhandler.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_show_window.c"
+				RelativePath=".\sci_gateway\c\sci_show_window.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_showalluimenushandles.c"
+				RelativePath=".\sci_gateway\c\sci_showalluimenushandles.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_StringBox.c"
+				RelativePath=".\sci_gateway\c\sci_StringBox.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_swap_handles.c"
+				RelativePath=".\sci_gateway\c\sci_swap_handles.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_UImenu.c"
+				RelativePath=".\sci_gateway\c\sci_UImenu.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_unglue.c"
+				RelativePath=".\sci_gateway\c\sci_unglue.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_unzoom.c"
+				RelativePath=".\sci_gateway\c\sci_unzoom.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_winsid.c"
+				RelativePath=".\sci_gateway\c\sci_winsid.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xarc.c"
+				RelativePath=".\sci_gateway\c\sci_xarc.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xarcs.c"
+				RelativePath=".\sci_gateway\c\sci_xarcs.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xarrows.c"
+				RelativePath=".\sci_gateway\c\sci_xarrows.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xaxis.c"
+				RelativePath=".\sci_gateway\c\sci_xaxis.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xchange.c"
+				RelativePath=".\sci_gateway\c\sci_xchange.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xclea.c"
+				RelativePath=".\sci_gateway\c\sci_xclea.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xclear.c"
+				RelativePath=".\sci_gateway\c\sci_xclear.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xclick.c"
+				RelativePath=".\sci_gateway\c\sci_xclick.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xdel.c"
+				RelativePath=".\sci_gateway\c\sci_xdel.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xend.c"
+				RelativePath=".\sci_gateway\c\sci_xend.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xfarcs.c"
+				RelativePath=".\sci_gateway\c\sci_xfarcs.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xfpoly.c"
+				RelativePath=".\sci_gateway\c\sci_xfpoly.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xfpolys.c"
+				RelativePath=".\sci_gateway\c\sci_xfpolys.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xg2ps.c"
+				RelativePath=".\sci_gateway\c\sci_xg2ps.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xget.c"
+				RelativePath=".\sci_gateway\c\sci_xget.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xgetech.c"
+				RelativePath=".\sci_gateway\c\sci_xgetech.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xgetmouse.c"
+				RelativePath=".\sci_gateway\c\sci_xgetmouse.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xgraduate.c"
+				RelativePath=".\sci_gateway\c\sci_xgraduate.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xgrid.c"
+				RelativePath=".\sci_gateway\c\sci_xgrid.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xinit.c"
+				RelativePath=".\sci_gateway\c\sci_xinit.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xlfont.c"
+				RelativePath=".\sci_gateway\c\sci_xlfont.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xname.c"
+				RelativePath=".\sci_gateway\c\sci_xname.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xpoly.c"
+				RelativePath=".\sci_gateway\c\sci_xpoly.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xpolys.c"
+				RelativePath=".\sci_gateway\c\sci_xpolys.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xrect.c"
+				RelativePath=".\sci_gateway\c\sci_xrect.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xrects.c"
+				RelativePath=".\sci_gateway\c\sci_xrects.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xs2bmp.c"
+				RelativePath=".\sci_gateway\c\sci_xs2bmp.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xs2emf.c"
+				RelativePath=".\sci_gateway\c\sci_xs2emf.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xs2fig.c"
+				RelativePath=".\sci_gateway\c\sci_xs2fig.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xs2gif.c"
+				RelativePath=".\sci_gateway\c\sci_xs2gif.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xs2ppm.c"
+				RelativePath=".\sci_gateway\c\sci_xs2ppm.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xs2ps.c"
+				RelativePath=".\sci_gateway\c\sci_xs2ps.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xsegs.c"
+				RelativePath=".\sci_gateway\c\sci_xsegs.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xset.c"
+				RelativePath=".\sci_gateway\c\sci_xset.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xsetech.c"
+				RelativePath=".\sci_gateway\c\sci_xsetech.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xsnative.c"
+				RelativePath=".\sci_gateway\c\sci_xsnative.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xsort.c"
+				RelativePath=".\sci_gateway\c\sci_xsort.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xstring.c"
+				RelativePath=".\sci_gateway\c\sci_xstring.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xstringb.c"
+				RelativePath=".\sci_gateway\c\sci_xstringb.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xstringl.c"
+				RelativePath=".\sci_gateway\c\sci_xstringl.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xtape.c"
+				RelativePath=".\sci_gateway\c\sci_xtape.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xtitle.c"
+				RelativePath=".\sci_gateway\c\sci_xtitle.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_zoom_rect.c"
+				RelativePath=".\sci_gateway\c\sci_zoom_rect.c"
 				>
 			</File>
 			<File
