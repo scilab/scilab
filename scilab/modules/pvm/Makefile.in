@@ -85,24 +85,29 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 am__libsciscipvm_la_SOURCES_DIST = src/c/pvm_proc_ctrl.c \
 	src/c/sci_tools.c src/c/pvm_recv.c src/c/scipvmf77.c \
 	src/c/varpack.c src/c/pvm_grp.c src/c/pvm_send.c \
-	src/c/pvm_info.c sci_gateway/sci_pvm_get_timer.c \
-	sci_gateway/sci_pvm_gettid.c sci_gateway/sci_pvm_gsize.c \
-	sci_gateway/sci_pvm_sci2f77.c sci_gateway/sci_pvm_f772sci.c \
-	sci_gateway/sci_pvm_delhosts.c sci_gateway/sci_pvm_spawn.c \
-	sci_gateway/sci_pvm_send.c sci_gateway/sci_pvm_parent.c \
-	sci_gateway/sci_pvm_error.c sci_gateway/sci_pvm_set_timer.c \
-	sci_gateway/sci_pvm_kill.c sci_gateway/sci_pvm_bcast.c \
-	sci_gateway/sci_pvm_recv.c sci_gateway/sci_pvm_reduce.c \
-	sci_gateway/gw_pvm.c sci_gateway/sci_pvm_spawn_independent.c \
-	sci_gateway/sci_pvm_probe.c sci_gateway/sci_pvm_addhosts.c \
-	sci_gateway/sci_pvm_joingroup.c sci_gateway/sci_pvm_getinst.c \
-	sci_gateway/sci_pvm_tidtohost.c sci_gateway/sci_pvm_tasks.c \
-	sci_gateway/sci_pvm_mytid.c sci_gateway/sci_pvm_barrier.c \
-	sci_gateway/sci_pvm_halt.c sci_gateway/sci_pvm_bufinfo.c \
-	sci_gateway/sci_pvm_error_mode.c sci_gateway/sci_pvm_start.c \
-	sci_gateway/sci_pvm_lvgroup.c sci_gateway/sci_pvm_send_var.c \
-	sci_gateway/sci_pvm_config.c sci_gateway/sci_pvm_recv_var.c \
-	sci_gateway/sci_pvm_exit.c
+	src/c/pvm_info.c sci_gateway/c/sci_pvm_get_timer.c \
+	sci_gateway/c/sci_pvm_gettid.c sci_gateway/c/sci_pvm_gsize.c \
+	sci_gateway/c/sci_pvm_sci2f77.c \
+	sci_gateway/c/sci_pvm_f772sci.c \
+	sci_gateway/c/sci_pvm_delhosts.c sci_gateway/c/sci_pvm_spawn.c \
+	sci_gateway/c/sci_pvm_send.c sci_gateway/c/sci_pvm_parent.c \
+	sci_gateway/c/sci_pvm_error.c \
+	sci_gateway/c/sci_pvm_set_timer.c sci_gateway/c/sci_pvm_kill.c \
+	sci_gateway/c/sci_pvm_bcast.c sci_gateway/c/sci_pvm_recv.c \
+	sci_gateway/c/sci_pvm_reduce.c sci_gateway/c/gw_pvm.c \
+	sci_gateway/c/sci_pvm_spawn_independent.c \
+	sci_gateway/c/sci_pvm_probe.c sci_gateway/c/sci_pvm_addhosts.c \
+	sci_gateway/c/sci_pvm_joingroup.c \
+	sci_gateway/c/sci_pvm_getinst.c \
+	sci_gateway/c/sci_pvm_tidtohost.c \
+	sci_gateway/c/sci_pvm_tasks.c sci_gateway/c/sci_pvm_mytid.c \
+	sci_gateway/c/sci_pvm_barrier.c sci_gateway/c/sci_pvm_halt.c \
+	sci_gateway/c/sci_pvm_bufinfo.c \
+	sci_gateway/c/sci_pvm_error_mode.c \
+	sci_gateway/c/sci_pvm_start.c sci_gateway/c/sci_pvm_lvgroup.c \
+	sci_gateway/c/sci_pvm_send_var.c \
+	sci_gateway/c/sci_pvm_config.c \
+	sci_gateway/c/sci_pvm_recv_var.c sci_gateway/c/sci_pvm_exit.c
 @PVM_TRUE@am__objects_1 = libsciscipvm_la-pvm_proc_ctrl.lo \
 @PVM_TRUE@	libsciscipvm_la-sci_tools.lo \
 @PVM_TRUE@	libsciscipvm_la-pvm_recv.lo \
@@ -352,40 +357,40 @@ top_srcdir = @top_srcdir@
 @PVM_TRUE@src/c/pvm_send.c \
 @PVM_TRUE@src/c/pvm_info.c
 
-@PVM_TRUE@GATEWAY_C_SOURCES = sci_gateway/sci_pvm_get_timer.c \
-@PVM_TRUE@sci_gateway/sci_pvm_gettid.c \
-@PVM_TRUE@sci_gateway/sci_pvm_gsize.c \
-@PVM_TRUE@sci_gateway/sci_pvm_sci2f77.c \
-@PVM_TRUE@sci_gateway/sci_pvm_f772sci.c \
-@PVM_TRUE@sci_gateway/sci_pvm_delhosts.c \
-@PVM_TRUE@sci_gateway/sci_pvm_spawn.c \
-@PVM_TRUE@sci_gateway/sci_pvm_send.c \
-@PVM_TRUE@sci_gateway/sci_pvm_parent.c \
-@PVM_TRUE@sci_gateway/sci_pvm_error.c \
-@PVM_TRUE@sci_gateway/sci_pvm_set_timer.c \
-@PVM_TRUE@sci_gateway/sci_pvm_kill.c \
-@PVM_TRUE@sci_gateway/sci_pvm_bcast.c \
-@PVM_TRUE@sci_gateway/sci_pvm_recv.c \
-@PVM_TRUE@sci_gateway/sci_pvm_reduce.c \
-@PVM_TRUE@sci_gateway/gw_pvm.c \
-@PVM_TRUE@sci_gateway/sci_pvm_spawn_independent.c \
-@PVM_TRUE@sci_gateway/sci_pvm_probe.c \
-@PVM_TRUE@sci_gateway/sci_pvm_addhosts.c \
-@PVM_TRUE@sci_gateway/sci_pvm_joingroup.c \
-@PVM_TRUE@sci_gateway/sci_pvm_getinst.c \
-@PVM_TRUE@sci_gateway/sci_pvm_tidtohost.c \
-@PVM_TRUE@sci_gateway/sci_pvm_tasks.c \
-@PVM_TRUE@sci_gateway/sci_pvm_mytid.c \
-@PVM_TRUE@sci_gateway/sci_pvm_barrier.c \
-@PVM_TRUE@sci_gateway/sci_pvm_halt.c \
-@PVM_TRUE@sci_gateway/sci_pvm_bufinfo.c \
-@PVM_TRUE@sci_gateway/sci_pvm_error_mode.c \
-@PVM_TRUE@sci_gateway/sci_pvm_start.c \
-@PVM_TRUE@sci_gateway/sci_pvm_lvgroup.c \
-@PVM_TRUE@sci_gateway/sci_pvm_send_var.c \
-@PVM_TRUE@sci_gateway/sci_pvm_config.c \
-@PVM_TRUE@sci_gateway/sci_pvm_recv_var.c \
-@PVM_TRUE@sci_gateway/sci_pvm_exit.c
+@PVM_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/sci_pvm_get_timer.c \
+@PVM_TRUE@sci_gateway/c/sci_pvm_gettid.c \
+@PVM_TRUE@sci_gateway/c/sci_pvm_gsize.c \
+@PVM_TRUE@sci_gateway/c/sci_pvm_sci2f77.c \
+@PVM_TRUE@sci_gateway/c/sci_pvm_f772sci.c \
+@PVM_TRUE@sci_gateway/c/sci_pvm_delhosts.c \
+@PVM_TRUE@sci_gateway/c/sci_pvm_spawn.c \
+@PVM_TRUE@sci_gateway/c/sci_pvm_send.c \
+@PVM_TRUE@sci_gateway/c/sci_pvm_parent.c \
+@PVM_TRUE@sci_gateway/c/sci_pvm_error.c \
+@PVM_TRUE@sci_gateway/c/sci_pvm_set_timer.c \
+@PVM_TRUE@sci_gateway/c/sci_pvm_kill.c \
+@PVM_TRUE@sci_gateway/c/sci_pvm_bcast.c \
+@PVM_TRUE@sci_gateway/c/sci_pvm_recv.c \
+@PVM_TRUE@sci_gateway/c/sci_pvm_reduce.c \
+@PVM_TRUE@sci_gateway/c/gw_pvm.c \
+@PVM_TRUE@sci_gateway/c/sci_pvm_spawn_independent.c \
+@PVM_TRUE@sci_gateway/c/sci_pvm_probe.c \
+@PVM_TRUE@sci_gateway/c/sci_pvm_addhosts.c \
+@PVM_TRUE@sci_gateway/c/sci_pvm_joingroup.c \
+@PVM_TRUE@sci_gateway/c/sci_pvm_getinst.c \
+@PVM_TRUE@sci_gateway/c/sci_pvm_tidtohost.c \
+@PVM_TRUE@sci_gateway/c/sci_pvm_tasks.c \
+@PVM_TRUE@sci_gateway/c/sci_pvm_mytid.c \
+@PVM_TRUE@sci_gateway/c/sci_pvm_barrier.c \
+@PVM_TRUE@sci_gateway/c/sci_pvm_halt.c \
+@PVM_TRUE@sci_gateway/c/sci_pvm_bufinfo.c \
+@PVM_TRUE@sci_gateway/c/sci_pvm_error_mode.c \
+@PVM_TRUE@sci_gateway/c/sci_pvm_start.c \
+@PVM_TRUE@sci_gateway/c/sci_pvm_lvgroup.c \
+@PVM_TRUE@sci_gateway/c/sci_pvm_send_var.c \
+@PVM_TRUE@sci_gateway/c/sci_pvm_config.c \
+@PVM_TRUE@sci_gateway/c/sci_pvm_recv_var.c \
+@PVM_TRUE@sci_gateway/c/sci_pvm_exit.c
 
 @PVM_TRUE@libsciscipvm_la_CFLAGS = -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 @PVM_TRUE@pkglib_LTLIBRARIES = libsciscipvm.la
@@ -685,243 +690,243 @@ libsciscipvm_la-pvm_info.lo: src/c/pvm_info.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-pvm_info.lo `test -f 'src/c/pvm_info.c' || echo '$(srcdir)/'`src/c/pvm_info.c
 
-libsciscipvm_la-sci_pvm_get_timer.lo: sci_gateway/sci_pvm_get_timer.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_get_timer.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_get_timer.Tpo -c -o libsciscipvm_la-sci_pvm_get_timer.lo `test -f 'sci_gateway/sci_pvm_get_timer.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_get_timer.c
+libsciscipvm_la-sci_pvm_get_timer.lo: sci_gateway/c/sci_pvm_get_timer.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_get_timer.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_get_timer.Tpo -c -o libsciscipvm_la-sci_pvm_get_timer.lo `test -f 'sci_gateway/c/sci_pvm_get_timer.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_get_timer.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscipvm_la-sci_pvm_get_timer.Tpo $(DEPDIR)/libsciscipvm_la-sci_pvm_get_timer.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_pvm_get_timer.c' object='libsciscipvm_la-sci_pvm_get_timer.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_pvm_get_timer.c' object='libsciscipvm_la-sci_pvm_get_timer.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_get_timer.lo `test -f 'sci_gateway/sci_pvm_get_timer.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_get_timer.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_get_timer.lo `test -f 'sci_gateway/c/sci_pvm_get_timer.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_get_timer.c
 
-libsciscipvm_la-sci_pvm_gettid.lo: sci_gateway/sci_pvm_gettid.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_gettid.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_gettid.Tpo -c -o libsciscipvm_la-sci_pvm_gettid.lo `test -f 'sci_gateway/sci_pvm_gettid.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_gettid.c
+libsciscipvm_la-sci_pvm_gettid.lo: sci_gateway/c/sci_pvm_gettid.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_gettid.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_gettid.Tpo -c -o libsciscipvm_la-sci_pvm_gettid.lo `test -f 'sci_gateway/c/sci_pvm_gettid.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_gettid.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscipvm_la-sci_pvm_gettid.Tpo $(DEPDIR)/libsciscipvm_la-sci_pvm_gettid.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_pvm_gettid.c' object='libsciscipvm_la-sci_pvm_gettid.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_pvm_gettid.c' object='libsciscipvm_la-sci_pvm_gettid.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_gettid.lo `test -f 'sci_gateway/sci_pvm_gettid.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_gettid.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_gettid.lo `test -f 'sci_gateway/c/sci_pvm_gettid.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_gettid.c
 
-libsciscipvm_la-sci_pvm_gsize.lo: sci_gateway/sci_pvm_gsize.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_gsize.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_gsize.Tpo -c -o libsciscipvm_la-sci_pvm_gsize.lo `test -f 'sci_gateway/sci_pvm_gsize.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_gsize.c
+libsciscipvm_la-sci_pvm_gsize.lo: sci_gateway/c/sci_pvm_gsize.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_gsize.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_gsize.Tpo -c -o libsciscipvm_la-sci_pvm_gsize.lo `test -f 'sci_gateway/c/sci_pvm_gsize.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_gsize.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscipvm_la-sci_pvm_gsize.Tpo $(DEPDIR)/libsciscipvm_la-sci_pvm_gsize.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_pvm_gsize.c' object='libsciscipvm_la-sci_pvm_gsize.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_pvm_gsize.c' object='libsciscipvm_la-sci_pvm_gsize.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_gsize.lo `test -f 'sci_gateway/sci_pvm_gsize.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_gsize.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_gsize.lo `test -f 'sci_gateway/c/sci_pvm_gsize.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_gsize.c
 
-libsciscipvm_la-sci_pvm_sci2f77.lo: sci_gateway/sci_pvm_sci2f77.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_sci2f77.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_sci2f77.Tpo -c -o libsciscipvm_la-sci_pvm_sci2f77.lo `test -f 'sci_gateway/sci_pvm_sci2f77.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_sci2f77.c
+libsciscipvm_la-sci_pvm_sci2f77.lo: sci_gateway/c/sci_pvm_sci2f77.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_sci2f77.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_sci2f77.Tpo -c -o libsciscipvm_la-sci_pvm_sci2f77.lo `test -f 'sci_gateway/c/sci_pvm_sci2f77.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_sci2f77.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscipvm_la-sci_pvm_sci2f77.Tpo $(DEPDIR)/libsciscipvm_la-sci_pvm_sci2f77.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_pvm_sci2f77.c' object='libsciscipvm_la-sci_pvm_sci2f77.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_pvm_sci2f77.c' object='libsciscipvm_la-sci_pvm_sci2f77.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_sci2f77.lo `test -f 'sci_gateway/sci_pvm_sci2f77.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_sci2f77.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_sci2f77.lo `test -f 'sci_gateway/c/sci_pvm_sci2f77.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_sci2f77.c
 
-libsciscipvm_la-sci_pvm_f772sci.lo: sci_gateway/sci_pvm_f772sci.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_f772sci.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_f772sci.Tpo -c -o libsciscipvm_la-sci_pvm_f772sci.lo `test -f 'sci_gateway/sci_pvm_f772sci.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_f772sci.c
+libsciscipvm_la-sci_pvm_f772sci.lo: sci_gateway/c/sci_pvm_f772sci.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_f772sci.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_f772sci.Tpo -c -o libsciscipvm_la-sci_pvm_f772sci.lo `test -f 'sci_gateway/c/sci_pvm_f772sci.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_f772sci.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscipvm_la-sci_pvm_f772sci.Tpo $(DEPDIR)/libsciscipvm_la-sci_pvm_f772sci.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_pvm_f772sci.c' object='libsciscipvm_la-sci_pvm_f772sci.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_pvm_f772sci.c' object='libsciscipvm_la-sci_pvm_f772sci.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_f772sci.lo `test -f 'sci_gateway/sci_pvm_f772sci.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_f772sci.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_f772sci.lo `test -f 'sci_gateway/c/sci_pvm_f772sci.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_f772sci.c
 
-libsciscipvm_la-sci_pvm_delhosts.lo: sci_gateway/sci_pvm_delhosts.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_delhosts.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_delhosts.Tpo -c -o libsciscipvm_la-sci_pvm_delhosts.lo `test -f 'sci_gateway/sci_pvm_delhosts.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_delhosts.c
+libsciscipvm_la-sci_pvm_delhosts.lo: sci_gateway/c/sci_pvm_delhosts.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_delhosts.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_delhosts.Tpo -c -o libsciscipvm_la-sci_pvm_delhosts.lo `test -f 'sci_gateway/c/sci_pvm_delhosts.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_delhosts.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscipvm_la-sci_pvm_delhosts.Tpo $(DEPDIR)/libsciscipvm_la-sci_pvm_delhosts.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_pvm_delhosts.c' object='libsciscipvm_la-sci_pvm_delhosts.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_pvm_delhosts.c' object='libsciscipvm_la-sci_pvm_delhosts.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_delhosts.lo `test -f 'sci_gateway/sci_pvm_delhosts.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_delhosts.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_delhosts.lo `test -f 'sci_gateway/c/sci_pvm_delhosts.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_delhosts.c
 
-libsciscipvm_la-sci_pvm_spawn.lo: sci_gateway/sci_pvm_spawn.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_spawn.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_spawn.Tpo -c -o libsciscipvm_la-sci_pvm_spawn.lo `test -f 'sci_gateway/sci_pvm_spawn.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_spawn.c
+libsciscipvm_la-sci_pvm_spawn.lo: sci_gateway/c/sci_pvm_spawn.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_spawn.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_spawn.Tpo -c -o libsciscipvm_la-sci_pvm_spawn.lo `test -f 'sci_gateway/c/sci_pvm_spawn.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_spawn.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscipvm_la-sci_pvm_spawn.Tpo $(DEPDIR)/libsciscipvm_la-sci_pvm_spawn.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_pvm_spawn.c' object='libsciscipvm_la-sci_pvm_spawn.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_pvm_spawn.c' object='libsciscipvm_la-sci_pvm_spawn.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_spawn.lo `test -f 'sci_gateway/sci_pvm_spawn.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_spawn.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_spawn.lo `test -f 'sci_gateway/c/sci_pvm_spawn.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_spawn.c
 
-libsciscipvm_la-sci_pvm_send.lo: sci_gateway/sci_pvm_send.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_send.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_send.Tpo -c -o libsciscipvm_la-sci_pvm_send.lo `test -f 'sci_gateway/sci_pvm_send.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_send.c
+libsciscipvm_la-sci_pvm_send.lo: sci_gateway/c/sci_pvm_send.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_send.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_send.Tpo -c -o libsciscipvm_la-sci_pvm_send.lo `test -f 'sci_gateway/c/sci_pvm_send.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_send.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscipvm_la-sci_pvm_send.Tpo $(DEPDIR)/libsciscipvm_la-sci_pvm_send.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_pvm_send.c' object='libsciscipvm_la-sci_pvm_send.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_pvm_send.c' object='libsciscipvm_la-sci_pvm_send.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_send.lo `test -f 'sci_gateway/sci_pvm_send.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_send.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_send.lo `test -f 'sci_gateway/c/sci_pvm_send.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_send.c
 
-libsciscipvm_la-sci_pvm_parent.lo: sci_gateway/sci_pvm_parent.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_parent.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_parent.Tpo -c -o libsciscipvm_la-sci_pvm_parent.lo `test -f 'sci_gateway/sci_pvm_parent.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_parent.c
+libsciscipvm_la-sci_pvm_parent.lo: sci_gateway/c/sci_pvm_parent.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_parent.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_parent.Tpo -c -o libsciscipvm_la-sci_pvm_parent.lo `test -f 'sci_gateway/c/sci_pvm_parent.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_parent.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscipvm_la-sci_pvm_parent.Tpo $(DEPDIR)/libsciscipvm_la-sci_pvm_parent.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_pvm_parent.c' object='libsciscipvm_la-sci_pvm_parent.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_pvm_parent.c' object='libsciscipvm_la-sci_pvm_parent.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_parent.lo `test -f 'sci_gateway/sci_pvm_parent.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_parent.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_parent.lo `test -f 'sci_gateway/c/sci_pvm_parent.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_parent.c
 
-libsciscipvm_la-sci_pvm_error.lo: sci_gateway/sci_pvm_error.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_error.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_error.Tpo -c -o libsciscipvm_la-sci_pvm_error.lo `test -f 'sci_gateway/sci_pvm_error.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_error.c
+libsciscipvm_la-sci_pvm_error.lo: sci_gateway/c/sci_pvm_error.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_error.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_error.Tpo -c -o libsciscipvm_la-sci_pvm_error.lo `test -f 'sci_gateway/c/sci_pvm_error.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_error.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscipvm_la-sci_pvm_error.Tpo $(DEPDIR)/libsciscipvm_la-sci_pvm_error.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_pvm_error.c' object='libsciscipvm_la-sci_pvm_error.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_pvm_error.c' object='libsciscipvm_la-sci_pvm_error.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_error.lo `test -f 'sci_gateway/sci_pvm_error.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_error.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_error.lo `test -f 'sci_gateway/c/sci_pvm_error.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_error.c
 
-libsciscipvm_la-sci_pvm_set_timer.lo: sci_gateway/sci_pvm_set_timer.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_set_timer.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_set_timer.Tpo -c -o libsciscipvm_la-sci_pvm_set_timer.lo `test -f 'sci_gateway/sci_pvm_set_timer.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_set_timer.c
+libsciscipvm_la-sci_pvm_set_timer.lo: sci_gateway/c/sci_pvm_set_timer.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_set_timer.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_set_timer.Tpo -c -o libsciscipvm_la-sci_pvm_set_timer.lo `test -f 'sci_gateway/c/sci_pvm_set_timer.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_set_timer.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscipvm_la-sci_pvm_set_timer.Tpo $(DEPDIR)/libsciscipvm_la-sci_pvm_set_timer.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_pvm_set_timer.c' object='libsciscipvm_la-sci_pvm_set_timer.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_pvm_set_timer.c' object='libsciscipvm_la-sci_pvm_set_timer.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_set_timer.lo `test -f 'sci_gateway/sci_pvm_set_timer.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_set_timer.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_set_timer.lo `test -f 'sci_gateway/c/sci_pvm_set_timer.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_set_timer.c
 
-libsciscipvm_la-sci_pvm_kill.lo: sci_gateway/sci_pvm_kill.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_kill.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_kill.Tpo -c -o libsciscipvm_la-sci_pvm_kill.lo `test -f 'sci_gateway/sci_pvm_kill.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_kill.c
+libsciscipvm_la-sci_pvm_kill.lo: sci_gateway/c/sci_pvm_kill.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_kill.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_kill.Tpo -c -o libsciscipvm_la-sci_pvm_kill.lo `test -f 'sci_gateway/c/sci_pvm_kill.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_kill.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscipvm_la-sci_pvm_kill.Tpo $(DEPDIR)/libsciscipvm_la-sci_pvm_kill.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_pvm_kill.c' object='libsciscipvm_la-sci_pvm_kill.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_pvm_kill.c' object='libsciscipvm_la-sci_pvm_kill.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_kill.lo `test -f 'sci_gateway/sci_pvm_kill.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_kill.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_kill.lo `test -f 'sci_gateway/c/sci_pvm_kill.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_kill.c
 
-libsciscipvm_la-sci_pvm_bcast.lo: sci_gateway/sci_pvm_bcast.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_bcast.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_bcast.Tpo -c -o libsciscipvm_la-sci_pvm_bcast.lo `test -f 'sci_gateway/sci_pvm_bcast.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_bcast.c
+libsciscipvm_la-sci_pvm_bcast.lo: sci_gateway/c/sci_pvm_bcast.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_bcast.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_bcast.Tpo -c -o libsciscipvm_la-sci_pvm_bcast.lo `test -f 'sci_gateway/c/sci_pvm_bcast.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_bcast.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscipvm_la-sci_pvm_bcast.Tpo $(DEPDIR)/libsciscipvm_la-sci_pvm_bcast.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_pvm_bcast.c' object='libsciscipvm_la-sci_pvm_bcast.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_pvm_bcast.c' object='libsciscipvm_la-sci_pvm_bcast.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_bcast.lo `test -f 'sci_gateway/sci_pvm_bcast.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_bcast.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_bcast.lo `test -f 'sci_gateway/c/sci_pvm_bcast.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_bcast.c
 
-libsciscipvm_la-sci_pvm_recv.lo: sci_gateway/sci_pvm_recv.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_recv.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_recv.Tpo -c -o libsciscipvm_la-sci_pvm_recv.lo `test -f 'sci_gateway/sci_pvm_recv.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_recv.c
+libsciscipvm_la-sci_pvm_recv.lo: sci_gateway/c/sci_pvm_recv.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_recv.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_recv.Tpo -c -o libsciscipvm_la-sci_pvm_recv.lo `test -f 'sci_gateway/c/sci_pvm_recv.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_recv.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscipvm_la-sci_pvm_recv.Tpo $(DEPDIR)/libsciscipvm_la-sci_pvm_recv.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_pvm_recv.c' object='libsciscipvm_la-sci_pvm_recv.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_pvm_recv.c' object='libsciscipvm_la-sci_pvm_recv.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_recv.lo `test -f 'sci_gateway/sci_pvm_recv.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_recv.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_recv.lo `test -f 'sci_gateway/c/sci_pvm_recv.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_recv.c
 
-libsciscipvm_la-sci_pvm_reduce.lo: sci_gateway/sci_pvm_reduce.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_reduce.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_reduce.Tpo -c -o libsciscipvm_la-sci_pvm_reduce.lo `test -f 'sci_gateway/sci_pvm_reduce.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_reduce.c
+libsciscipvm_la-sci_pvm_reduce.lo: sci_gateway/c/sci_pvm_reduce.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_reduce.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_reduce.Tpo -c -o libsciscipvm_la-sci_pvm_reduce.lo `test -f 'sci_gateway/c/sci_pvm_reduce.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_reduce.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscipvm_la-sci_pvm_reduce.Tpo $(DEPDIR)/libsciscipvm_la-sci_pvm_reduce.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_pvm_reduce.c' object='libsciscipvm_la-sci_pvm_reduce.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_pvm_reduce.c' object='libsciscipvm_la-sci_pvm_reduce.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_reduce.lo `test -f 'sci_gateway/sci_pvm_reduce.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_reduce.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_reduce.lo `test -f 'sci_gateway/c/sci_pvm_reduce.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_reduce.c
 
-libsciscipvm_la-gw_pvm.lo: sci_gateway/gw_pvm.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-gw_pvm.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-gw_pvm.Tpo -c -o libsciscipvm_la-gw_pvm.lo `test -f 'sci_gateway/gw_pvm.c' || echo '$(srcdir)/'`sci_gateway/gw_pvm.c
+libsciscipvm_la-gw_pvm.lo: sci_gateway/c/gw_pvm.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-gw_pvm.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-gw_pvm.Tpo -c -o libsciscipvm_la-gw_pvm.lo `test -f 'sci_gateway/c/gw_pvm.c' || echo '$(srcdir)/'`sci_gateway/c/gw_pvm.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscipvm_la-gw_pvm.Tpo $(DEPDIR)/libsciscipvm_la-gw_pvm.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/gw_pvm.c' object='libsciscipvm_la-gw_pvm.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/gw_pvm.c' object='libsciscipvm_la-gw_pvm.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-gw_pvm.lo `test -f 'sci_gateway/gw_pvm.c' || echo '$(srcdir)/'`sci_gateway/gw_pvm.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-gw_pvm.lo `test -f 'sci_gateway/c/gw_pvm.c' || echo '$(srcdir)/'`sci_gateway/c/gw_pvm.c
 
-libsciscipvm_la-sci_pvm_spawn_independent.lo: sci_gateway/sci_pvm_spawn_independent.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_spawn_independent.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_spawn_independent.Tpo -c -o libsciscipvm_la-sci_pvm_spawn_independent.lo `test -f 'sci_gateway/sci_pvm_spawn_independent.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_spawn_independent.c
+libsciscipvm_la-sci_pvm_spawn_independent.lo: sci_gateway/c/sci_pvm_spawn_independent.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_spawn_independent.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_spawn_independent.Tpo -c -o libsciscipvm_la-sci_pvm_spawn_independent.lo `test -f 'sci_gateway/c/sci_pvm_spawn_independent.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_spawn_independent.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscipvm_la-sci_pvm_spawn_independent.Tpo $(DEPDIR)/libsciscipvm_la-sci_pvm_spawn_independent.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_pvm_spawn_independent.c' object='libsciscipvm_la-sci_pvm_spawn_independent.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_pvm_spawn_independent.c' object='libsciscipvm_la-sci_pvm_spawn_independent.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_spawn_independent.lo `test -f 'sci_gateway/sci_pvm_spawn_independent.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_spawn_independent.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_spawn_independent.lo `test -f 'sci_gateway/c/sci_pvm_spawn_independent.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_spawn_independent.c
 
-libsciscipvm_la-sci_pvm_probe.lo: sci_gateway/sci_pvm_probe.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_probe.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_probe.Tpo -c -o libsciscipvm_la-sci_pvm_probe.lo `test -f 'sci_gateway/sci_pvm_probe.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_probe.c
+libsciscipvm_la-sci_pvm_probe.lo: sci_gateway/c/sci_pvm_probe.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_probe.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_probe.Tpo -c -o libsciscipvm_la-sci_pvm_probe.lo `test -f 'sci_gateway/c/sci_pvm_probe.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_probe.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscipvm_la-sci_pvm_probe.Tpo $(DEPDIR)/libsciscipvm_la-sci_pvm_probe.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_pvm_probe.c' object='libsciscipvm_la-sci_pvm_probe.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_pvm_probe.c' object='libsciscipvm_la-sci_pvm_probe.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_probe.lo `test -f 'sci_gateway/sci_pvm_probe.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_probe.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_probe.lo `test -f 'sci_gateway/c/sci_pvm_probe.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_probe.c
 
-libsciscipvm_la-sci_pvm_addhosts.lo: sci_gateway/sci_pvm_addhosts.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_addhosts.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_addhosts.Tpo -c -o libsciscipvm_la-sci_pvm_addhosts.lo `test -f 'sci_gateway/sci_pvm_addhosts.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_addhosts.c
+libsciscipvm_la-sci_pvm_addhosts.lo: sci_gateway/c/sci_pvm_addhosts.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_addhosts.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_addhosts.Tpo -c -o libsciscipvm_la-sci_pvm_addhosts.lo `test -f 'sci_gateway/c/sci_pvm_addhosts.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_addhosts.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscipvm_la-sci_pvm_addhosts.Tpo $(DEPDIR)/libsciscipvm_la-sci_pvm_addhosts.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_pvm_addhosts.c' object='libsciscipvm_la-sci_pvm_addhosts.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_pvm_addhosts.c' object='libsciscipvm_la-sci_pvm_addhosts.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_addhosts.lo `test -f 'sci_gateway/sci_pvm_addhosts.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_addhosts.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_addhosts.lo `test -f 'sci_gateway/c/sci_pvm_addhosts.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_addhosts.c
 
-libsciscipvm_la-sci_pvm_joingroup.lo: sci_gateway/sci_pvm_joingroup.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_joingroup.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_joingroup.Tpo -c -o libsciscipvm_la-sci_pvm_joingroup.lo `test -f 'sci_gateway/sci_pvm_joingroup.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_joingroup.c
+libsciscipvm_la-sci_pvm_joingroup.lo: sci_gateway/c/sci_pvm_joingroup.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_joingroup.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_joingroup.Tpo -c -o libsciscipvm_la-sci_pvm_joingroup.lo `test -f 'sci_gateway/c/sci_pvm_joingroup.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_joingroup.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscipvm_la-sci_pvm_joingroup.Tpo $(DEPDIR)/libsciscipvm_la-sci_pvm_joingroup.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_pvm_joingroup.c' object='libsciscipvm_la-sci_pvm_joingroup.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_pvm_joingroup.c' object='libsciscipvm_la-sci_pvm_joingroup.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_joingroup.lo `test -f 'sci_gateway/sci_pvm_joingroup.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_joingroup.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_joingroup.lo `test -f 'sci_gateway/c/sci_pvm_joingroup.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_joingroup.c
 
-libsciscipvm_la-sci_pvm_getinst.lo: sci_gateway/sci_pvm_getinst.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_getinst.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_getinst.Tpo -c -o libsciscipvm_la-sci_pvm_getinst.lo `test -f 'sci_gateway/sci_pvm_getinst.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_getinst.c
+libsciscipvm_la-sci_pvm_getinst.lo: sci_gateway/c/sci_pvm_getinst.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_getinst.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_getinst.Tpo -c -o libsciscipvm_la-sci_pvm_getinst.lo `test -f 'sci_gateway/c/sci_pvm_getinst.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_getinst.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscipvm_la-sci_pvm_getinst.Tpo $(DEPDIR)/libsciscipvm_la-sci_pvm_getinst.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_pvm_getinst.c' object='libsciscipvm_la-sci_pvm_getinst.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_pvm_getinst.c' object='libsciscipvm_la-sci_pvm_getinst.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_getinst.lo `test -f 'sci_gateway/sci_pvm_getinst.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_getinst.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_getinst.lo `test -f 'sci_gateway/c/sci_pvm_getinst.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_getinst.c
 
-libsciscipvm_la-sci_pvm_tidtohost.lo: sci_gateway/sci_pvm_tidtohost.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_tidtohost.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_tidtohost.Tpo -c -o libsciscipvm_la-sci_pvm_tidtohost.lo `test -f 'sci_gateway/sci_pvm_tidtohost.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_tidtohost.c
+libsciscipvm_la-sci_pvm_tidtohost.lo: sci_gateway/c/sci_pvm_tidtohost.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_tidtohost.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_tidtohost.Tpo -c -o libsciscipvm_la-sci_pvm_tidtohost.lo `test -f 'sci_gateway/c/sci_pvm_tidtohost.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_tidtohost.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscipvm_la-sci_pvm_tidtohost.Tpo $(DEPDIR)/libsciscipvm_la-sci_pvm_tidtohost.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_pvm_tidtohost.c' object='libsciscipvm_la-sci_pvm_tidtohost.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_pvm_tidtohost.c' object='libsciscipvm_la-sci_pvm_tidtohost.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_tidtohost.lo `test -f 'sci_gateway/sci_pvm_tidtohost.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_tidtohost.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_tidtohost.lo `test -f 'sci_gateway/c/sci_pvm_tidtohost.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_tidtohost.c
 
-libsciscipvm_la-sci_pvm_tasks.lo: sci_gateway/sci_pvm_tasks.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_tasks.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_tasks.Tpo -c -o libsciscipvm_la-sci_pvm_tasks.lo `test -f 'sci_gateway/sci_pvm_tasks.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_tasks.c
+libsciscipvm_la-sci_pvm_tasks.lo: sci_gateway/c/sci_pvm_tasks.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_tasks.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_tasks.Tpo -c -o libsciscipvm_la-sci_pvm_tasks.lo `test -f 'sci_gateway/c/sci_pvm_tasks.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_tasks.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscipvm_la-sci_pvm_tasks.Tpo $(DEPDIR)/libsciscipvm_la-sci_pvm_tasks.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_pvm_tasks.c' object='libsciscipvm_la-sci_pvm_tasks.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_pvm_tasks.c' object='libsciscipvm_la-sci_pvm_tasks.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_tasks.lo `test -f 'sci_gateway/sci_pvm_tasks.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_tasks.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_tasks.lo `test -f 'sci_gateway/c/sci_pvm_tasks.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_tasks.c
 
-libsciscipvm_la-sci_pvm_mytid.lo: sci_gateway/sci_pvm_mytid.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_mytid.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_mytid.Tpo -c -o libsciscipvm_la-sci_pvm_mytid.lo `test -f 'sci_gateway/sci_pvm_mytid.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_mytid.c
+libsciscipvm_la-sci_pvm_mytid.lo: sci_gateway/c/sci_pvm_mytid.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_mytid.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_mytid.Tpo -c -o libsciscipvm_la-sci_pvm_mytid.lo `test -f 'sci_gateway/c/sci_pvm_mytid.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_mytid.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscipvm_la-sci_pvm_mytid.Tpo $(DEPDIR)/libsciscipvm_la-sci_pvm_mytid.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_pvm_mytid.c' object='libsciscipvm_la-sci_pvm_mytid.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_pvm_mytid.c' object='libsciscipvm_la-sci_pvm_mytid.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_mytid.lo `test -f 'sci_gateway/sci_pvm_mytid.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_mytid.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_mytid.lo `test -f 'sci_gateway/c/sci_pvm_mytid.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_mytid.c
 
-libsciscipvm_la-sci_pvm_barrier.lo: sci_gateway/sci_pvm_barrier.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_barrier.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_barrier.Tpo -c -o libsciscipvm_la-sci_pvm_barrier.lo `test -f 'sci_gateway/sci_pvm_barrier.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_barrier.c
+libsciscipvm_la-sci_pvm_barrier.lo: sci_gateway/c/sci_pvm_barrier.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_barrier.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_barrier.Tpo -c -o libsciscipvm_la-sci_pvm_barrier.lo `test -f 'sci_gateway/c/sci_pvm_barrier.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_barrier.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscipvm_la-sci_pvm_barrier.Tpo $(DEPDIR)/libsciscipvm_la-sci_pvm_barrier.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_pvm_barrier.c' object='libsciscipvm_la-sci_pvm_barrier.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_pvm_barrier.c' object='libsciscipvm_la-sci_pvm_barrier.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_barrier.lo `test -f 'sci_gateway/sci_pvm_barrier.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_barrier.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_barrier.lo `test -f 'sci_gateway/c/sci_pvm_barrier.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_barrier.c
 
-libsciscipvm_la-sci_pvm_halt.lo: sci_gateway/sci_pvm_halt.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_halt.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_halt.Tpo -c -o libsciscipvm_la-sci_pvm_halt.lo `test -f 'sci_gateway/sci_pvm_halt.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_halt.c
+libsciscipvm_la-sci_pvm_halt.lo: sci_gateway/c/sci_pvm_halt.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_halt.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_halt.Tpo -c -o libsciscipvm_la-sci_pvm_halt.lo `test -f 'sci_gateway/c/sci_pvm_halt.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_halt.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscipvm_la-sci_pvm_halt.Tpo $(DEPDIR)/libsciscipvm_la-sci_pvm_halt.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_pvm_halt.c' object='libsciscipvm_la-sci_pvm_halt.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_pvm_halt.c' object='libsciscipvm_la-sci_pvm_halt.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_halt.lo `test -f 'sci_gateway/sci_pvm_halt.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_halt.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_halt.lo `test -f 'sci_gateway/c/sci_pvm_halt.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_halt.c
 
-libsciscipvm_la-sci_pvm_bufinfo.lo: sci_gateway/sci_pvm_bufinfo.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_bufinfo.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_bufinfo.Tpo -c -o libsciscipvm_la-sci_pvm_bufinfo.lo `test -f 'sci_gateway/sci_pvm_bufinfo.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_bufinfo.c
+libsciscipvm_la-sci_pvm_bufinfo.lo: sci_gateway/c/sci_pvm_bufinfo.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_bufinfo.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_bufinfo.Tpo -c -o libsciscipvm_la-sci_pvm_bufinfo.lo `test -f 'sci_gateway/c/sci_pvm_bufinfo.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_bufinfo.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscipvm_la-sci_pvm_bufinfo.Tpo $(DEPDIR)/libsciscipvm_la-sci_pvm_bufinfo.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_pvm_bufinfo.c' object='libsciscipvm_la-sci_pvm_bufinfo.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_pvm_bufinfo.c' object='libsciscipvm_la-sci_pvm_bufinfo.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_bufinfo.lo `test -f 'sci_gateway/sci_pvm_bufinfo.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_bufinfo.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_bufinfo.lo `test -f 'sci_gateway/c/sci_pvm_bufinfo.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_bufinfo.c
 
-libsciscipvm_la-sci_pvm_error_mode.lo: sci_gateway/sci_pvm_error_mode.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_error_mode.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_error_mode.Tpo -c -o libsciscipvm_la-sci_pvm_error_mode.lo `test -f 'sci_gateway/sci_pvm_error_mode.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_error_mode.c
+libsciscipvm_la-sci_pvm_error_mode.lo: sci_gateway/c/sci_pvm_error_mode.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_error_mode.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_error_mode.Tpo -c -o libsciscipvm_la-sci_pvm_error_mode.lo `test -f 'sci_gateway/c/sci_pvm_error_mode.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_error_mode.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscipvm_la-sci_pvm_error_mode.Tpo $(DEPDIR)/libsciscipvm_la-sci_pvm_error_mode.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_pvm_error_mode.c' object='libsciscipvm_la-sci_pvm_error_mode.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_pvm_error_mode.c' object='libsciscipvm_la-sci_pvm_error_mode.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_error_mode.lo `test -f 'sci_gateway/sci_pvm_error_mode.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_error_mode.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_error_mode.lo `test -f 'sci_gateway/c/sci_pvm_error_mode.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_error_mode.c
 
-libsciscipvm_la-sci_pvm_start.lo: sci_gateway/sci_pvm_start.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_start.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_start.Tpo -c -o libsciscipvm_la-sci_pvm_start.lo `test -f 'sci_gateway/sci_pvm_start.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_start.c
+libsciscipvm_la-sci_pvm_start.lo: sci_gateway/c/sci_pvm_start.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_start.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_start.Tpo -c -o libsciscipvm_la-sci_pvm_start.lo `test -f 'sci_gateway/c/sci_pvm_start.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_start.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscipvm_la-sci_pvm_start.Tpo $(DEPDIR)/libsciscipvm_la-sci_pvm_start.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_pvm_start.c' object='libsciscipvm_la-sci_pvm_start.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_pvm_start.c' object='libsciscipvm_la-sci_pvm_start.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_start.lo `test -f 'sci_gateway/sci_pvm_start.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_start.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_start.lo `test -f 'sci_gateway/c/sci_pvm_start.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_start.c
 
-libsciscipvm_la-sci_pvm_lvgroup.lo: sci_gateway/sci_pvm_lvgroup.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_lvgroup.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_lvgroup.Tpo -c -o libsciscipvm_la-sci_pvm_lvgroup.lo `test -f 'sci_gateway/sci_pvm_lvgroup.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_lvgroup.c
+libsciscipvm_la-sci_pvm_lvgroup.lo: sci_gateway/c/sci_pvm_lvgroup.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_lvgroup.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_lvgroup.Tpo -c -o libsciscipvm_la-sci_pvm_lvgroup.lo `test -f 'sci_gateway/c/sci_pvm_lvgroup.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_lvgroup.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscipvm_la-sci_pvm_lvgroup.Tpo $(DEPDIR)/libsciscipvm_la-sci_pvm_lvgroup.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_pvm_lvgroup.c' object='libsciscipvm_la-sci_pvm_lvgroup.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_pvm_lvgroup.c' object='libsciscipvm_la-sci_pvm_lvgroup.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_lvgroup.lo `test -f 'sci_gateway/sci_pvm_lvgroup.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_lvgroup.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_lvgroup.lo `test -f 'sci_gateway/c/sci_pvm_lvgroup.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_lvgroup.c
 
-libsciscipvm_la-sci_pvm_send_var.lo: sci_gateway/sci_pvm_send_var.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_send_var.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_send_var.Tpo -c -o libsciscipvm_la-sci_pvm_send_var.lo `test -f 'sci_gateway/sci_pvm_send_var.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_send_var.c
+libsciscipvm_la-sci_pvm_send_var.lo: sci_gateway/c/sci_pvm_send_var.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_send_var.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_send_var.Tpo -c -o libsciscipvm_la-sci_pvm_send_var.lo `test -f 'sci_gateway/c/sci_pvm_send_var.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_send_var.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscipvm_la-sci_pvm_send_var.Tpo $(DEPDIR)/libsciscipvm_la-sci_pvm_send_var.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_pvm_send_var.c' object='libsciscipvm_la-sci_pvm_send_var.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_pvm_send_var.c' object='libsciscipvm_la-sci_pvm_send_var.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_send_var.lo `test -f 'sci_gateway/sci_pvm_send_var.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_send_var.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_send_var.lo `test -f 'sci_gateway/c/sci_pvm_send_var.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_send_var.c
 
-libsciscipvm_la-sci_pvm_config.lo: sci_gateway/sci_pvm_config.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_config.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_config.Tpo -c -o libsciscipvm_la-sci_pvm_config.lo `test -f 'sci_gateway/sci_pvm_config.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_config.c
+libsciscipvm_la-sci_pvm_config.lo: sci_gateway/c/sci_pvm_config.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_config.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_config.Tpo -c -o libsciscipvm_la-sci_pvm_config.lo `test -f 'sci_gateway/c/sci_pvm_config.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_config.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscipvm_la-sci_pvm_config.Tpo $(DEPDIR)/libsciscipvm_la-sci_pvm_config.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_pvm_config.c' object='libsciscipvm_la-sci_pvm_config.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_pvm_config.c' object='libsciscipvm_la-sci_pvm_config.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_config.lo `test -f 'sci_gateway/sci_pvm_config.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_config.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_config.lo `test -f 'sci_gateway/c/sci_pvm_config.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_config.c
 
-libsciscipvm_la-sci_pvm_recv_var.lo: sci_gateway/sci_pvm_recv_var.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_recv_var.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_recv_var.Tpo -c -o libsciscipvm_la-sci_pvm_recv_var.lo `test -f 'sci_gateway/sci_pvm_recv_var.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_recv_var.c
+libsciscipvm_la-sci_pvm_recv_var.lo: sci_gateway/c/sci_pvm_recv_var.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_recv_var.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_recv_var.Tpo -c -o libsciscipvm_la-sci_pvm_recv_var.lo `test -f 'sci_gateway/c/sci_pvm_recv_var.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_recv_var.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscipvm_la-sci_pvm_recv_var.Tpo $(DEPDIR)/libsciscipvm_la-sci_pvm_recv_var.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_pvm_recv_var.c' object='libsciscipvm_la-sci_pvm_recv_var.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_pvm_recv_var.c' object='libsciscipvm_la-sci_pvm_recv_var.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_recv_var.lo `test -f 'sci_gateway/sci_pvm_recv_var.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_recv_var.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_recv_var.lo `test -f 'sci_gateway/c/sci_pvm_recv_var.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_recv_var.c
 
-libsciscipvm_la-sci_pvm_exit.lo: sci_gateway/sci_pvm_exit.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_exit.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_exit.Tpo -c -o libsciscipvm_la-sci_pvm_exit.lo `test -f 'sci_gateway/sci_pvm_exit.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_exit.c
+libsciscipvm_la-sci_pvm_exit.lo: sci_gateway/c/sci_pvm_exit.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -MT libsciscipvm_la-sci_pvm_exit.lo -MD -MP -MF $(DEPDIR)/libsciscipvm_la-sci_pvm_exit.Tpo -c -o libsciscipvm_la-sci_pvm_exit.lo `test -f 'sci_gateway/c/sci_pvm_exit.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_exit.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscipvm_la-sci_pvm_exit.Tpo $(DEPDIR)/libsciscipvm_la-sci_pvm_exit.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_pvm_exit.c' object='libsciscipvm_la-sci_pvm_exit.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_pvm_exit.c' object='libsciscipvm_la-sci_pvm_exit.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_exit.lo `test -f 'sci_gateway/sci_pvm_exit.c' || echo '$(srcdir)/'`sci_gateway/sci_pvm_exit.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscipvm_la_CFLAGS) $(CFLAGS) -c -o libsciscipvm_la-sci_pvm_exit.lo `test -f 'sci_gateway/c/sci_pvm_exit.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_exit.c
 
 mostlyclean-libtool:
 	-rm -f *.lo

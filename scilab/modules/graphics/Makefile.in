@@ -971,90 +971,90 @@ src/c/TerminateGraphics.c \
 src/c/CurrentObjectsManagement.c \
 src/c/ObjectSelection.c
 
-GATEWAY_C_SOURCES = sci_gateway/sci_swap_handles.c \
-sci_gateway/sci_readgif.c \
-sci_gateway/sci_grayplot.c \
-sci_gateway/sci_matplot1.c \
-sci_gateway/sci_xfpolys.c \
-sci_gateway/sci_xget.c \
-sci_gateway/sci_newaxes.c \
-sci_gateway/sci_xlfont.c \
-sci_gateway/sci_xgraduate.c \
-sci_gateway/sci_xgrid.c \
-sci_gateway/sci_xclick.c \
-sci_gateway/sci_xclear.c \
-sci_gateway/sci_geom3d.c \
-sci_gateway/sci_xsort.c \
-sci_gateway/sci_xtape.c \
-sci_gateway/sci_xset.c \
-sci_gateway/sci_set_posfig_dim.c \
-sci_gateway/sci_xgetech.c \
-sci_gateway/sci_unzoom.c \
-sci_gateway/sci_xs2ppm.c \
-sci_gateway/sci_xs2bmp.c \
-sci_gateway/sci_xs2emf.c \
-sci_gateway/sci_xsegs.c \
-sci_gateway/sci_xaxis.c \
-sci_gateway/sci_seteventhandler.c \
-sci_gateway/sci_glue.c \
-sci_gateway/sci_xarc.c \
-sci_gateway/sci_xpolys.c \
-sci_gateway/sci_xstring.c \
-sci_gateway/sci_xstringb.c \
-sci_gateway/sci_xs2gif.c \
-sci_gateway/sci_xsetech.c \
-sci_gateway/sci_show_window.c \
-sci_gateway/sci_param3d1.c \
-sci_gateway/sci_xname.c \
-sci_gateway/sci_xstringl.c \
-sci_gateway/sci_xpoly.c \
-sci_gateway/sci_xchange.c \
-sci_gateway/sci_UImenu.c \
-sci_gateway/sci_matplot.c \
-sci_gateway/sci_readxbm.c \
-sci_gateway/sci_drawaxis.c \
-sci_gateway/sci_demo.c \
-sci_gateway/sci_plot2d1.c \
-sci_gateway/sci_xrect.c \
-sci_gateway/sci_xclea.c \
-sci_gateway/sci_draw.c \
-sci_gateway/sci_xg2ps.c \
-sci_gateway/sci_xarrows.c \
-sci_gateway/sci_plot3d.c \
-sci_gateway/sci_move.c \
-sci_gateway/sci_copy.c \
-sci_gateway/sci_relocate_handle.c \
-sci_gateway/sci_get.c \
-sci_gateway/sci_xs2ps.c \
-sci_gateway/sci_xarcs.c \
-sci_gateway/sci_xfpoly.c \
-sci_gateway/sci_drawlater.c \
-sci_gateway/sci_champ.c \
-sci_gateway/sci_xinit.c \
-sci_gateway/sci_help_gtk.c \
-sci_gateway/sci_set.c \
-sci_gateway/sci_showalluimenushandles.c \
-sci_gateway/sci_xend.c \
-sci_gateway/sci_unglue.c \
-sci_gateway/gw_graphics.c \
-sci_gateway/sci_xsnative.c \
-sci_gateway/sci_zoom_rect.c \
-sci_gateway/sci_delete.c \
-sci_gateway/sci_xs2fig.c \
-sci_gateway/sci_plot2d.c \
-sci_gateway/sci_xrects.c \
-sci_gateway/sci_xtitle.c \
-sci_gateway/sci_StringBox.c \
-sci_gateway/sci_xgetmouse.c \
-sci_gateway/sci_drawnow.c \
-sci_gateway/sci_xfarcs.c \
-sci_gateway/sci_param3d.c \
-sci_gateway/sci_contour2di.c \
-sci_gateway/sci_driver.c \
-sci_gateway/sci_xdel.c \
-sci_gateway/sci_winsid.c \
-sci_gateway/sci_addcb.c \
-sci_gateway/sci_fec.c
+GATEWAY_C_SOURCES = sci_gateway/c/sci_swap_handles.c \
+sci_gateway/c/sci_readgif.c \
+sci_gateway/c/sci_grayplot.c \
+sci_gateway/c/sci_matplot1.c \
+sci_gateway/c/sci_xfpolys.c \
+sci_gateway/c/sci_xget.c \
+sci_gateway/c/sci_newaxes.c \
+sci_gateway/c/sci_xlfont.c \
+sci_gateway/c/sci_xgraduate.c \
+sci_gateway/c/sci_xgrid.c \
+sci_gateway/c/sci_xclick.c \
+sci_gateway/c/sci_xclear.c \
+sci_gateway/c/sci_geom3d.c \
+sci_gateway/c/sci_xsort.c \
+sci_gateway/c/sci_xtape.c \
+sci_gateway/c/sci_xset.c \
+sci_gateway/c/sci_set_posfig_dim.c \
+sci_gateway/c/sci_xgetech.c \
+sci_gateway/c/sci_unzoom.c \
+sci_gateway/c/sci_xs2ppm.c \
+sci_gateway/c/sci_xs2bmp.c \
+sci_gateway/c/sci_xs2emf.c \
+sci_gateway/c/sci_xsegs.c \
+sci_gateway/c/sci_xaxis.c \
+sci_gateway/c/sci_seteventhandler.c \
+sci_gateway/c/sci_glue.c \
+sci_gateway/c/sci_xarc.c \
+sci_gateway/c/sci_xpolys.c \
+sci_gateway/c/sci_xstring.c \
+sci_gateway/c/sci_xstringb.c \
+sci_gateway/c/sci_xs2gif.c \
+sci_gateway/c/sci_xsetech.c \
+sci_gateway/c/sci_show_window.c \
+sci_gateway/c/sci_param3d1.c \
+sci_gateway/c/sci_xname.c \
+sci_gateway/c/sci_xstringl.c \
+sci_gateway/c/sci_xpoly.c \
+sci_gateway/c/sci_xchange.c \
+sci_gateway/c/sci_UImenu.c \
+sci_gateway/c/sci_matplot.c \
+sci_gateway/c/sci_readxbm.c \
+sci_gateway/c/sci_drawaxis.c \
+sci_gateway/c/sci_demo.c \
+sci_gateway/c/sci_plot2d1.c \
+sci_gateway/c/sci_xrect.c \
+sci_gateway/c/sci_xclea.c \
+sci_gateway/c/sci_draw.c \
+sci_gateway/c/sci_xg2ps.c \
+sci_gateway/c/sci_xarrows.c \
+sci_gateway/c/sci_plot3d.c \
+sci_gateway/c/sci_move.c \
+sci_gateway/c/sci_copy.c \
+sci_gateway/c/sci_relocate_handle.c \
+sci_gateway/c/sci_get.c \
+sci_gateway/c/sci_xs2ps.c \
+sci_gateway/c/sci_xarcs.c \
+sci_gateway/c/sci_xfpoly.c \
+sci_gateway/c/sci_drawlater.c \
+sci_gateway/c/sci_champ.c \
+sci_gateway/c/sci_xinit.c \
+sci_gateway/c/sci_help_gtk.c \
+sci_gateway/c/sci_set.c \
+sci_gateway/c/sci_showalluimenushandles.c \
+sci_gateway/c/sci_xend.c \
+sci_gateway/c/sci_unglue.c \
+sci_gateway/c/gw_graphics.c \
+sci_gateway/c/sci_xsnative.c \
+sci_gateway/c/sci_zoom_rect.c \
+sci_gateway/c/sci_delete.c \
+sci_gateway/c/sci_xs2fig.c \
+sci_gateway/c/sci_plot2d.c \
+sci_gateway/c/sci_xrects.c \
+sci_gateway/c/sci_xtitle.c \
+sci_gateway/c/sci_StringBox.c \
+sci_gateway/c/sci_xgetmouse.c \
+sci_gateway/c/sci_drawnow.c \
+sci_gateway/c/sci_xfarcs.c \
+sci_gateway/c/sci_param3d.c \
+sci_gateway/c/sci_contour2di.c \
+sci_gateway/c/sci_driver.c \
+sci_gateway/c/sci_xdel.c \
+sci_gateway/c/sci_winsid.c \
+sci_gateway/c/sci_addcb.c \
+sci_gateway/c/sci_fec.c
 
 libscigraphics_la_CFLAGS = -Iincludes/ -Isrc/c/ -Isrc/gd/  -Isrc/gd/gdfonts/ $(TCL_INC_PATH) $(TK_INC_PATH) -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/
 libscigraphics_la_LDFLAGS = $(TCLTK_LIBS) $(X_LIBS)
@@ -4147,593 +4147,593 @@ libscigraphics_la-ObjectSelection.lo: src/c/ObjectSelection.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-ObjectSelection.lo `test -f 'src/c/ObjectSelection.c' || echo '$(srcdir)/'`src/c/ObjectSelection.c
 
-libscigraphics_la-sci_swap_handles.lo: sci_gateway/sci_swap_handles.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_swap_handles.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_swap_handles.Tpo -c -o libscigraphics_la-sci_swap_handles.lo `test -f 'sci_gateway/sci_swap_handles.c' || echo '$(srcdir)/'`sci_gateway/sci_swap_handles.c
+libscigraphics_la-sci_swap_handles.lo: sci_gateway/c/sci_swap_handles.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_swap_handles.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_swap_handles.Tpo -c -o libscigraphics_la-sci_swap_handles.lo `test -f 'sci_gateway/c/sci_swap_handles.c' || echo '$(srcdir)/'`sci_gateway/c/sci_swap_handles.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_swap_handles.Tpo $(DEPDIR)/libscigraphics_la-sci_swap_handles.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_swap_handles.c' object='libscigraphics_la-sci_swap_handles.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_swap_handles.c' object='libscigraphics_la-sci_swap_handles.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_swap_handles.lo `test -f 'sci_gateway/sci_swap_handles.c' || echo '$(srcdir)/'`sci_gateway/sci_swap_handles.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_swap_handles.lo `test -f 'sci_gateway/c/sci_swap_handles.c' || echo '$(srcdir)/'`sci_gateway/c/sci_swap_handles.c
 
-libscigraphics_la-sci_readgif.lo: sci_gateway/sci_readgif.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_readgif.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_readgif.Tpo -c -o libscigraphics_la-sci_readgif.lo `test -f 'sci_gateway/sci_readgif.c' || echo '$(srcdir)/'`sci_gateway/sci_readgif.c
+libscigraphics_la-sci_readgif.lo: sci_gateway/c/sci_readgif.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_readgif.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_readgif.Tpo -c -o libscigraphics_la-sci_readgif.lo `test -f 'sci_gateway/c/sci_readgif.c' || echo '$(srcdir)/'`sci_gateway/c/sci_readgif.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_readgif.Tpo $(DEPDIR)/libscigraphics_la-sci_readgif.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_readgif.c' object='libscigraphics_la-sci_readgif.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_readgif.c' object='libscigraphics_la-sci_readgif.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_readgif.lo `test -f 'sci_gateway/sci_readgif.c' || echo '$(srcdir)/'`sci_gateway/sci_readgif.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_readgif.lo `test -f 'sci_gateway/c/sci_readgif.c' || echo '$(srcdir)/'`sci_gateway/c/sci_readgif.c
 
-libscigraphics_la-sci_grayplot.lo: sci_gateway/sci_grayplot.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_grayplot.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_grayplot.Tpo -c -o libscigraphics_la-sci_grayplot.lo `test -f 'sci_gateway/sci_grayplot.c' || echo '$(srcdir)/'`sci_gateway/sci_grayplot.c
+libscigraphics_la-sci_grayplot.lo: sci_gateway/c/sci_grayplot.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_grayplot.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_grayplot.Tpo -c -o libscigraphics_la-sci_grayplot.lo `test -f 'sci_gateway/c/sci_grayplot.c' || echo '$(srcdir)/'`sci_gateway/c/sci_grayplot.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_grayplot.Tpo $(DEPDIR)/libscigraphics_la-sci_grayplot.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_grayplot.c' object='libscigraphics_la-sci_grayplot.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_grayplot.c' object='libscigraphics_la-sci_grayplot.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_grayplot.lo `test -f 'sci_gateway/sci_grayplot.c' || echo '$(srcdir)/'`sci_gateway/sci_grayplot.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_grayplot.lo `test -f 'sci_gateway/c/sci_grayplot.c' || echo '$(srcdir)/'`sci_gateway/c/sci_grayplot.c
 
-libscigraphics_la-sci_matplot1.lo: sci_gateway/sci_matplot1.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_matplot1.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_matplot1.Tpo -c -o libscigraphics_la-sci_matplot1.lo `test -f 'sci_gateway/sci_matplot1.c' || echo '$(srcdir)/'`sci_gateway/sci_matplot1.c
+libscigraphics_la-sci_matplot1.lo: sci_gateway/c/sci_matplot1.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_matplot1.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_matplot1.Tpo -c -o libscigraphics_la-sci_matplot1.lo `test -f 'sci_gateway/c/sci_matplot1.c' || echo '$(srcdir)/'`sci_gateway/c/sci_matplot1.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_matplot1.Tpo $(DEPDIR)/libscigraphics_la-sci_matplot1.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_matplot1.c' object='libscigraphics_la-sci_matplot1.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_matplot1.c' object='libscigraphics_la-sci_matplot1.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_matplot1.lo `test -f 'sci_gateway/sci_matplot1.c' || echo '$(srcdir)/'`sci_gateway/sci_matplot1.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_matplot1.lo `test -f 'sci_gateway/c/sci_matplot1.c' || echo '$(srcdir)/'`sci_gateway/c/sci_matplot1.c
 
-libscigraphics_la-sci_xfpolys.lo: sci_gateway/sci_xfpolys.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xfpolys.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xfpolys.Tpo -c -o libscigraphics_la-sci_xfpolys.lo `test -f 'sci_gateway/sci_xfpolys.c' || echo '$(srcdir)/'`sci_gateway/sci_xfpolys.c
+libscigraphics_la-sci_xfpolys.lo: sci_gateway/c/sci_xfpolys.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xfpolys.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xfpolys.Tpo -c -o libscigraphics_la-sci_xfpolys.lo `test -f 'sci_gateway/c/sci_xfpolys.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xfpolys.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xfpolys.Tpo $(DEPDIR)/libscigraphics_la-sci_xfpolys.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_xfpolys.c' object='libscigraphics_la-sci_xfpolys.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xfpolys.c' object='libscigraphics_la-sci_xfpolys.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xfpolys.lo `test -f 'sci_gateway/sci_xfpolys.c' || echo '$(srcdir)/'`sci_gateway/sci_xfpolys.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xfpolys.lo `test -f 'sci_gateway/c/sci_xfpolys.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xfpolys.c
 
-libscigraphics_la-sci_xget.lo: sci_gateway/sci_xget.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xget.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xget.Tpo -c -o libscigraphics_la-sci_xget.lo `test -f 'sci_gateway/sci_xget.c' || echo '$(srcdir)/'`sci_gateway/sci_xget.c
+libscigraphics_la-sci_xget.lo: sci_gateway/c/sci_xget.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xget.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xget.Tpo -c -o libscigraphics_la-sci_xget.lo `test -f 'sci_gateway/c/sci_xget.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xget.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xget.Tpo $(DEPDIR)/libscigraphics_la-sci_xget.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_xget.c' object='libscigraphics_la-sci_xget.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xget.c' object='libscigraphics_la-sci_xget.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xget.lo `test -f 'sci_gateway/sci_xget.c' || echo '$(srcdir)/'`sci_gateway/sci_xget.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xget.lo `test -f 'sci_gateway/c/sci_xget.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xget.c
 
-libscigraphics_la-sci_newaxes.lo: sci_gateway/sci_newaxes.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_newaxes.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_newaxes.Tpo -c -o libscigraphics_la-sci_newaxes.lo `test -f 'sci_gateway/sci_newaxes.c' || echo '$(srcdir)/'`sci_gateway/sci_newaxes.c
+libscigraphics_la-sci_newaxes.lo: sci_gateway/c/sci_newaxes.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_newaxes.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_newaxes.Tpo -c -o libscigraphics_la-sci_newaxes.lo `test -f 'sci_gateway/c/sci_newaxes.c' || echo '$(srcdir)/'`sci_gateway/c/sci_newaxes.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_newaxes.Tpo $(DEPDIR)/libscigraphics_la-sci_newaxes.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_newaxes.c' object='libscigraphics_la-sci_newaxes.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_newaxes.c' object='libscigraphics_la-sci_newaxes.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_newaxes.lo `test -f 'sci_gateway/sci_newaxes.c' || echo '$(srcdir)/'`sci_gateway/sci_newaxes.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_newaxes.lo `test -f 'sci_gateway/c/sci_newaxes.c' || echo '$(srcdir)/'`sci_gateway/c/sci_newaxes.c
 
-libscigraphics_la-sci_xlfont.lo: sci_gateway/sci_xlfont.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xlfont.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xlfont.Tpo -c -o libscigraphics_la-sci_xlfont.lo `test -f 'sci_gateway/sci_xlfont.c' || echo '$(srcdir)/'`sci_gateway/sci_xlfont.c
+libscigraphics_la-sci_xlfont.lo: sci_gateway/c/sci_xlfont.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xlfont.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xlfont.Tpo -c -o libscigraphics_la-sci_xlfont.lo `test -f 'sci_gateway/c/sci_xlfont.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xlfont.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xlfont.Tpo $(DEPDIR)/libscigraphics_la-sci_xlfont.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_xlfont.c' object='libscigraphics_la-sci_xlfont.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xlfont.c' object='libscigraphics_la-sci_xlfont.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xlfont.lo `test -f 'sci_gateway/sci_xlfont.c' || echo '$(srcdir)/'`sci_gateway/sci_xlfont.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xlfont.lo `test -f 'sci_gateway/c/sci_xlfont.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xlfont.c
 
-libscigraphics_la-sci_xgraduate.lo: sci_gateway/sci_xgraduate.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xgraduate.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xgraduate.Tpo -c -o libscigraphics_la-sci_xgraduate.lo `test -f 'sci_gateway/sci_xgraduate.c' || echo '$(srcdir)/'`sci_gateway/sci_xgraduate.c
+libscigraphics_la-sci_xgraduate.lo: sci_gateway/c/sci_xgraduate.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xgraduate.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xgraduate.Tpo -c -o libscigraphics_la-sci_xgraduate.lo `test -f 'sci_gateway/c/sci_xgraduate.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xgraduate.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xgraduate.Tpo $(DEPDIR)/libscigraphics_la-sci_xgraduate.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_xgraduate.c' object='libscigraphics_la-sci_xgraduate.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xgraduate.c' object='libscigraphics_la-sci_xgraduate.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xgraduate.lo `test -f 'sci_gateway/sci_xgraduate.c' || echo '$(srcdir)/'`sci_gateway/sci_xgraduate.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xgraduate.lo `test -f 'sci_gateway/c/sci_xgraduate.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xgraduate.c
 
-libscigraphics_la-sci_xgrid.lo: sci_gateway/sci_xgrid.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xgrid.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xgrid.Tpo -c -o libscigraphics_la-sci_xgrid.lo `test -f 'sci_gateway/sci_xgrid.c' || echo '$(srcdir)/'`sci_gateway/sci_xgrid.c
+libscigraphics_la-sci_xgrid.lo: sci_gateway/c/sci_xgrid.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xgrid.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xgrid.Tpo -c -o libscigraphics_la-sci_xgrid.lo `test -f 'sci_gateway/c/sci_xgrid.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xgrid.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xgrid.Tpo $(DEPDIR)/libscigraphics_la-sci_xgrid.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_xgrid.c' object='libscigraphics_la-sci_xgrid.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xgrid.c' object='libscigraphics_la-sci_xgrid.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xgrid.lo `test -f 'sci_gateway/sci_xgrid.c' || echo '$(srcdir)/'`sci_gateway/sci_xgrid.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xgrid.lo `test -f 'sci_gateway/c/sci_xgrid.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xgrid.c
 
-libscigraphics_la-sci_xclick.lo: sci_gateway/sci_xclick.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xclick.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xclick.Tpo -c -o libscigraphics_la-sci_xclick.lo `test -f 'sci_gateway/sci_xclick.c' || echo '$(srcdir)/'`sci_gateway/sci_xclick.c
+libscigraphics_la-sci_xclick.lo: sci_gateway/c/sci_xclick.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xclick.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xclick.Tpo -c -o libscigraphics_la-sci_xclick.lo `test -f 'sci_gateway/c/sci_xclick.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xclick.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xclick.Tpo $(DEPDIR)/libscigraphics_la-sci_xclick.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_xclick.c' object='libscigraphics_la-sci_xclick.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xclick.c' object='libscigraphics_la-sci_xclick.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xclick.lo `test -f 'sci_gateway/sci_xclick.c' || echo '$(srcdir)/'`sci_gateway/sci_xclick.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xclick.lo `test -f 'sci_gateway/c/sci_xclick.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xclick.c
 
-libscigraphics_la-sci_xclear.lo: sci_gateway/sci_xclear.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xclear.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xclear.Tpo -c -o libscigraphics_la-sci_xclear.lo `test -f 'sci_gateway/sci_xclear.c' || echo '$(srcdir)/'`sci_gateway/sci_xclear.c
+libscigraphics_la-sci_xclear.lo: sci_gateway/c/sci_xclear.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xclear.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xclear.Tpo -c -o libscigraphics_la-sci_xclear.lo `test -f 'sci_gateway/c/sci_xclear.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xclear.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xclear.Tpo $(DEPDIR)/libscigraphics_la-sci_xclear.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_xclear.c' object='libscigraphics_la-sci_xclear.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xclear.c' object='libscigraphics_la-sci_xclear.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xclear.lo `test -f 'sci_gateway/sci_xclear.c' || echo '$(srcdir)/'`sci_gateway/sci_xclear.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xclear.lo `test -f 'sci_gateway/c/sci_xclear.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xclear.c
 
-libscigraphics_la-sci_geom3d.lo: sci_gateway/sci_geom3d.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_geom3d.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_geom3d.Tpo -c -o libscigraphics_la-sci_geom3d.lo `test -f 'sci_gateway/sci_geom3d.c' || echo '$(srcdir)/'`sci_gateway/sci_geom3d.c
+libscigraphics_la-sci_geom3d.lo: sci_gateway/c/sci_geom3d.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_geom3d.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_geom3d.Tpo -c -o libscigraphics_la-sci_geom3d.lo `test -f 'sci_gateway/c/sci_geom3d.c' || echo '$(srcdir)/'`sci_gateway/c/sci_geom3d.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_geom3d.Tpo $(DEPDIR)/libscigraphics_la-sci_geom3d.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_geom3d.c' object='libscigraphics_la-sci_geom3d.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_geom3d.c' object='libscigraphics_la-sci_geom3d.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_geom3d.lo `test -f 'sci_gateway/sci_geom3d.c' || echo '$(srcdir)/'`sci_gateway/sci_geom3d.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_geom3d.lo `test -f 'sci_gateway/c/sci_geom3d.c' || echo '$(srcdir)/'`sci_gateway/c/sci_geom3d.c
 
-libscigraphics_la-sci_xsort.lo: sci_gateway/sci_xsort.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xsort.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xsort.Tpo -c -o libscigraphics_la-sci_xsort.lo `test -f 'sci_gateway/sci_xsort.c' || echo '$(srcdir)/'`sci_gateway/sci_xsort.c
+libscigraphics_la-sci_xsort.lo: sci_gateway/c/sci_xsort.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xsort.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xsort.Tpo -c -o libscigraphics_la-sci_xsort.lo `test -f 'sci_gateway/c/sci_xsort.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xsort.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xsort.Tpo $(DEPDIR)/libscigraphics_la-sci_xsort.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_xsort.c' object='libscigraphics_la-sci_xsort.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xsort.c' object='libscigraphics_la-sci_xsort.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xsort.lo `test -f 'sci_gateway/sci_xsort.c' || echo '$(srcdir)/'`sci_gateway/sci_xsort.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xsort.lo `test -f 'sci_gateway/c/sci_xsort.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xsort.c
 
-libscigraphics_la-sci_xtape.lo: sci_gateway/sci_xtape.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xtape.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xtape.Tpo -c -o libscigraphics_la-sci_xtape.lo `test -f 'sci_gateway/sci_xtape.c' || echo '$(srcdir)/'`sci_gateway/sci_xtape.c
+libscigraphics_la-sci_xtape.lo: sci_gateway/c/sci_xtape.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xtape.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xtape.Tpo -c -o libscigraphics_la-sci_xtape.lo `test -f 'sci_gateway/c/sci_xtape.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xtape.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xtape.Tpo $(DEPDIR)/libscigraphics_la-sci_xtape.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_xtape.c' object='libscigraphics_la-sci_xtape.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xtape.c' object='libscigraphics_la-sci_xtape.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xtape.lo `test -f 'sci_gateway/sci_xtape.c' || echo '$(srcdir)/'`sci_gateway/sci_xtape.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xtape.lo `test -f 'sci_gateway/c/sci_xtape.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xtape.c
 
-libscigraphics_la-sci_xset.lo: sci_gateway/sci_xset.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xset.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xset.Tpo -c -o libscigraphics_la-sci_xset.lo `test -f 'sci_gateway/sci_xset.c' || echo '$(srcdir)/'`sci_gateway/sci_xset.c
+libscigraphics_la-sci_xset.lo: sci_gateway/c/sci_xset.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xset.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xset.Tpo -c -o libscigraphics_la-sci_xset.lo `test -f 'sci_gateway/c/sci_xset.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xset.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xset.Tpo $(DEPDIR)/libscigraphics_la-sci_xset.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_xset.c' object='libscigraphics_la-sci_xset.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xset.c' object='libscigraphics_la-sci_xset.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xset.lo `test -f 'sci_gateway/sci_xset.c' || echo '$(srcdir)/'`sci_gateway/sci_xset.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xset.lo `test -f 'sci_gateway/c/sci_xset.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xset.c
 
-libscigraphics_la-sci_set_posfig_dim.lo: sci_gateway/sci_set_posfig_dim.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_set_posfig_dim.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_set_posfig_dim.Tpo -c -o libscigraphics_la-sci_set_posfig_dim.lo `test -f 'sci_gateway/sci_set_posfig_dim.c' || echo '$(srcdir)/'`sci_gateway/sci_set_posfig_dim.c
+libscigraphics_la-sci_set_posfig_dim.lo: sci_gateway/c/sci_set_posfig_dim.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_set_posfig_dim.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_set_posfig_dim.Tpo -c -o libscigraphics_la-sci_set_posfig_dim.lo `test -f 'sci_gateway/c/sci_set_posfig_dim.c' || echo '$(srcdir)/'`sci_gateway/c/sci_set_posfig_dim.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_set_posfig_dim.Tpo $(DEPDIR)/libscigraphics_la-sci_set_posfig_dim.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_set_posfig_dim.c' object='libscigraphics_la-sci_set_posfig_dim.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_set_posfig_dim.c' object='libscigraphics_la-sci_set_posfig_dim.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_set_posfig_dim.lo `test -f 'sci_gateway/sci_set_posfig_dim.c' || echo '$(srcdir)/'`sci_gateway/sci_set_posfig_dim.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_set_posfig_dim.lo `test -f 'sci_gateway/c/sci_set_posfig_dim.c' || echo '$(srcdir)/'`sci_gateway/c/sci_set_posfig_dim.c
 
-libscigraphics_la-sci_xgetech.lo: sci_gateway/sci_xgetech.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xgetech.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xgetech.Tpo -c -o libscigraphics_la-sci_xgetech.lo `test -f 'sci_gateway/sci_xgetech.c' || echo '$(srcdir)/'`sci_gateway/sci_xgetech.c
+libscigraphics_la-sci_xgetech.lo: sci_gateway/c/sci_xgetech.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xgetech.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xgetech.Tpo -c -o libscigraphics_la-sci_xgetech.lo `test -f 'sci_gateway/c/sci_xgetech.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xgetech.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xgetech.Tpo $(DEPDIR)/libscigraphics_la-sci_xgetech.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_xgetech.c' object='libscigraphics_la-sci_xgetech.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xgetech.c' object='libscigraphics_la-sci_xgetech.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xgetech.lo `test -f 'sci_gateway/sci_xgetech.c' || echo '$(srcdir)/'`sci_gateway/sci_xgetech.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xgetech.lo `test -f 'sci_gateway/c/sci_xgetech.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xgetech.c
 
-libscigraphics_la-sci_unzoom.lo: sci_gateway/sci_unzoom.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_unzoom.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_unzoom.Tpo -c -o libscigraphics_la-sci_unzoom.lo `test -f 'sci_gateway/sci_unzoom.c' || echo '$(srcdir)/'`sci_gateway/sci_unzoom.c
+libscigraphics_la-sci_unzoom.lo: sci_gateway/c/sci_unzoom.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_unzoom.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_unzoom.Tpo -c -o libscigraphics_la-sci_unzoom.lo `test -f 'sci_gateway/c/sci_unzoom.c' || echo '$(srcdir)/'`sci_gateway/c/sci_unzoom.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_unzoom.Tpo $(DEPDIR)/libscigraphics_la-sci_unzoom.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_unzoom.c' object='libscigraphics_la-sci_unzoom.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_unzoom.c' object='libscigraphics_la-sci_unzoom.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_unzoom.lo `test -f 'sci_gateway/sci_unzoom.c' || echo '$(srcdir)/'`sci_gateway/sci_unzoom.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_unzoom.lo `test -f 'sci_gateway/c/sci_unzoom.c' || echo '$(srcdir)/'`sci_gateway/c/sci_unzoom.c
 
-libscigraphics_la-sci_xs2ppm.lo: sci_gateway/sci_xs2ppm.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xs2ppm.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xs2ppm.Tpo -c -o libscigraphics_la-sci_xs2ppm.lo `test -f 'sci_gateway/sci_xs2ppm.c' || echo '$(srcdir)/'`sci_gateway/sci_xs2ppm.c
+libscigraphics_la-sci_xs2ppm.lo: sci_gateway/c/sci_xs2ppm.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xs2ppm.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xs2ppm.Tpo -c -o libscigraphics_la-sci_xs2ppm.lo `test -f 'sci_gateway/c/sci_xs2ppm.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xs2ppm.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xs2ppm.Tpo $(DEPDIR)/libscigraphics_la-sci_xs2ppm.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_xs2ppm.c' object='libscigraphics_la-sci_xs2ppm.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xs2ppm.c' object='libscigraphics_la-sci_xs2ppm.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xs2ppm.lo `test -f 'sci_gateway/sci_xs2ppm.c' || echo '$(srcdir)/'`sci_gateway/sci_xs2ppm.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xs2ppm.lo `test -f 'sci_gateway/c/sci_xs2ppm.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xs2ppm.c
 
-libscigraphics_la-sci_xs2bmp.lo: sci_gateway/sci_xs2bmp.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xs2bmp.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xs2bmp.Tpo -c -o libscigraphics_la-sci_xs2bmp.lo `test -f 'sci_gateway/sci_xs2bmp.c' || echo '$(srcdir)/'`sci_gateway/sci_xs2bmp.c
+libscigraphics_la-sci_xs2bmp.lo: sci_gateway/c/sci_xs2bmp.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xs2bmp.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xs2bmp.Tpo -c -o libscigraphics_la-sci_xs2bmp.lo `test -f 'sci_gateway/c/sci_xs2bmp.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xs2bmp.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xs2bmp.Tpo $(DEPDIR)/libscigraphics_la-sci_xs2bmp.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_xs2bmp.c' object='libscigraphics_la-sci_xs2bmp.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xs2bmp.c' object='libscigraphics_la-sci_xs2bmp.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xs2bmp.lo `test -f 'sci_gateway/sci_xs2bmp.c' || echo '$(srcdir)/'`sci_gateway/sci_xs2bmp.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xs2bmp.lo `test -f 'sci_gateway/c/sci_xs2bmp.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xs2bmp.c
 
-libscigraphics_la-sci_xs2emf.lo: sci_gateway/sci_xs2emf.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xs2emf.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xs2emf.Tpo -c -o libscigraphics_la-sci_xs2emf.lo `test -f 'sci_gateway/sci_xs2emf.c' || echo '$(srcdir)/'`sci_gateway/sci_xs2emf.c
+libscigraphics_la-sci_xs2emf.lo: sci_gateway/c/sci_xs2emf.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xs2emf.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xs2emf.Tpo -c -o libscigraphics_la-sci_xs2emf.lo `test -f 'sci_gateway/c/sci_xs2emf.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xs2emf.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xs2emf.Tpo $(DEPDIR)/libscigraphics_la-sci_xs2emf.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_xs2emf.c' object='libscigraphics_la-sci_xs2emf.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xs2emf.c' object='libscigraphics_la-sci_xs2emf.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xs2emf.lo `test -f 'sci_gateway/sci_xs2emf.c' || echo '$(srcdir)/'`sci_gateway/sci_xs2emf.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xs2emf.lo `test -f 'sci_gateway/c/sci_xs2emf.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xs2emf.c
 
-libscigraphics_la-sci_xsegs.lo: sci_gateway/sci_xsegs.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xsegs.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xsegs.Tpo -c -o libscigraphics_la-sci_xsegs.lo `test -f 'sci_gateway/sci_xsegs.c' || echo '$(srcdir)/'`sci_gateway/sci_xsegs.c
+libscigraphics_la-sci_xsegs.lo: sci_gateway/c/sci_xsegs.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xsegs.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xsegs.Tpo -c -o libscigraphics_la-sci_xsegs.lo `test -f 'sci_gateway/c/sci_xsegs.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xsegs.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xsegs.Tpo $(DEPDIR)/libscigraphics_la-sci_xsegs.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_xsegs.c' object='libscigraphics_la-sci_xsegs.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xsegs.c' object='libscigraphics_la-sci_xsegs.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xsegs.lo `test -f 'sci_gateway/sci_xsegs.c' || echo '$(srcdir)/'`sci_gateway/sci_xsegs.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xsegs.lo `test -f 'sci_gateway/c/sci_xsegs.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xsegs.c
 
-libscigraphics_la-sci_xaxis.lo: sci_gateway/sci_xaxis.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xaxis.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xaxis.Tpo -c -o libscigraphics_la-sci_xaxis.lo `test -f 'sci_gateway/sci_xaxis.c' || echo '$(srcdir)/'`sci_gateway/sci_xaxis.c
+libscigraphics_la-sci_xaxis.lo: sci_gateway/c/sci_xaxis.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xaxis.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xaxis.Tpo -c -o libscigraphics_la-sci_xaxis.lo `test -f 'sci_gateway/c/sci_xaxis.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xaxis.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xaxis.Tpo $(DEPDIR)/libscigraphics_la-sci_xaxis.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_xaxis.c' object='libscigraphics_la-sci_xaxis.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xaxis.c' object='libscigraphics_la-sci_xaxis.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xaxis.lo `test -f 'sci_gateway/sci_xaxis.c' || echo '$(srcdir)/'`sci_gateway/sci_xaxis.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xaxis.lo `test -f 'sci_gateway/c/sci_xaxis.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xaxis.c
 
-libscigraphics_la-sci_seteventhandler.lo: sci_gateway/sci_seteventhandler.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_seteventhandler.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_seteventhandler.Tpo -c -o libscigraphics_la-sci_seteventhandler.lo `test -f 'sci_gateway/sci_seteventhandler.c' || echo '$(srcdir)/'`sci_gateway/sci_seteventhandler.c
+libscigraphics_la-sci_seteventhandler.lo: sci_gateway/c/sci_seteventhandler.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_seteventhandler.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_seteventhandler.Tpo -c -o libscigraphics_la-sci_seteventhandler.lo `test -f 'sci_gateway/c/sci_seteventhandler.c' || echo '$(srcdir)/'`sci_gateway/c/sci_seteventhandler.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_seteventhandler.Tpo $(DEPDIR)/libscigraphics_la-sci_seteventhandler.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_seteventhandler.c' object='libscigraphics_la-sci_seteventhandler.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_seteventhandler.c' object='libscigraphics_la-sci_seteventhandler.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_seteventhandler.lo `test -f 'sci_gateway/sci_seteventhandler.c' || echo '$(srcdir)/'`sci_gateway/sci_seteventhandler.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_seteventhandler.lo `test -f 'sci_gateway/c/sci_seteventhandler.c' || echo '$(srcdir)/'`sci_gateway/c/sci_seteventhandler.c
 
-libscigraphics_la-sci_glue.lo: sci_gateway/sci_glue.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_glue.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_glue.Tpo -c -o libscigraphics_la-sci_glue.lo `test -f 'sci_gateway/sci_glue.c' || echo '$(srcdir)/'`sci_gateway/sci_glue.c
+libscigraphics_la-sci_glue.lo: sci_gateway/c/sci_glue.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_glue.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_glue.Tpo -c -o libscigraphics_la-sci_glue.lo `test -f 'sci_gateway/c/sci_glue.c' || echo '$(srcdir)/'`sci_gateway/c/sci_glue.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_glue.Tpo $(DEPDIR)/libscigraphics_la-sci_glue.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_glue.c' object='libscigraphics_la-sci_glue.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_glue.c' object='libscigraphics_la-sci_glue.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_glue.lo `test -f 'sci_gateway/sci_glue.c' || echo '$(srcdir)/'`sci_gateway/sci_glue.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_glue.lo `test -f 'sci_gateway/c/sci_glue.c' || echo '$(srcdir)/'`sci_gateway/c/sci_glue.c
 
-libscigraphics_la-sci_xarc.lo: sci_gateway/sci_xarc.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xarc.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xarc.Tpo -c -o libscigraphics_la-sci_xarc.lo `test -f 'sci_gateway/sci_xarc.c' || echo '$(srcdir)/'`sci_gateway/sci_xarc.c
+libscigraphics_la-sci_xarc.lo: sci_gateway/c/sci_xarc.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xarc.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xarc.Tpo -c -o libscigraphics_la-sci_xarc.lo `test -f 'sci_gateway/c/sci_xarc.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xarc.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xarc.Tpo $(DEPDIR)/libscigraphics_la-sci_xarc.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_xarc.c' object='libscigraphics_la-sci_xarc.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xarc.c' object='libscigraphics_la-sci_xarc.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xarc.lo `test -f 'sci_gateway/sci_xarc.c' || echo '$(srcdir)/'`sci_gateway/sci_xarc.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xarc.lo `test -f 'sci_gateway/c/sci_xarc.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xarc.c
 
-libscigraphics_la-sci_xpolys.lo: sci_gateway/sci_xpolys.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xpolys.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xpolys.Tpo -c -o libscigraphics_la-sci_xpolys.lo `test -f 'sci_gateway/sci_xpolys.c' || echo '$(srcdir)/'`sci_gateway/sci_xpolys.c
+libscigraphics_la-sci_xpolys.lo: sci_gateway/c/sci_xpolys.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xpolys.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xpolys.Tpo -c -o libscigraphics_la-sci_xpolys.lo `test -f 'sci_gateway/c/sci_xpolys.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xpolys.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xpolys.Tpo $(DEPDIR)/libscigraphics_la-sci_xpolys.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_xpolys.c' object='libscigraphics_la-sci_xpolys.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xpolys.c' object='libscigraphics_la-sci_xpolys.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xpolys.lo `test -f 'sci_gateway/sci_xpolys.c' || echo '$(srcdir)/'`sci_gateway/sci_xpolys.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xpolys.lo `test -f 'sci_gateway/c/sci_xpolys.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xpolys.c
 
-libscigraphics_la-sci_xstring.lo: sci_gateway/sci_xstring.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xstring.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xstring.Tpo -c -o libscigraphics_la-sci_xstring.lo `test -f 'sci_gateway/sci_xstring.c' || echo '$(srcdir)/'`sci_gateway/sci_xstring.c
+libscigraphics_la-sci_xstring.lo: sci_gateway/c/sci_xstring.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xstring.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xstring.Tpo -c -o libscigraphics_la-sci_xstring.lo `test -f 'sci_gateway/c/sci_xstring.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xstring.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xstring.Tpo $(DEPDIR)/libscigraphics_la-sci_xstring.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_xstring.c' object='libscigraphics_la-sci_xstring.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xstring.c' object='libscigraphics_la-sci_xstring.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xstring.lo `test -f 'sci_gateway/sci_xstring.c' || echo '$(srcdir)/'`sci_gateway/sci_xstring.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xstring.lo `test -f 'sci_gateway/c/sci_xstring.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xstring.c
 
-libscigraphics_la-sci_xstringb.lo: sci_gateway/sci_xstringb.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xstringb.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xstringb.Tpo -c -o libscigraphics_la-sci_xstringb.lo `test -f 'sci_gateway/sci_xstringb.c' || echo '$(srcdir)/'`sci_gateway/sci_xstringb.c
+libscigraphics_la-sci_xstringb.lo: sci_gateway/c/sci_xstringb.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xstringb.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xstringb.Tpo -c -o libscigraphics_la-sci_xstringb.lo `test -f 'sci_gateway/c/sci_xstringb.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xstringb.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xstringb.Tpo $(DEPDIR)/libscigraphics_la-sci_xstringb.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_xstringb.c' object='libscigraphics_la-sci_xstringb.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xstringb.c' object='libscigraphics_la-sci_xstringb.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xstringb.lo `test -f 'sci_gateway/sci_xstringb.c' || echo '$(srcdir)/'`sci_gateway/sci_xstringb.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xstringb.lo `test -f 'sci_gateway/c/sci_xstringb.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xstringb.c
 
-libscigraphics_la-sci_xs2gif.lo: sci_gateway/sci_xs2gif.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xs2gif.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xs2gif.Tpo -c -o libscigraphics_la-sci_xs2gif.lo `test -f 'sci_gateway/sci_xs2gif.c' || echo '$(srcdir)/'`sci_gateway/sci_xs2gif.c
+libscigraphics_la-sci_xs2gif.lo: sci_gateway/c/sci_xs2gif.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xs2gif.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xs2gif.Tpo -c -o libscigraphics_la-sci_xs2gif.lo `test -f 'sci_gateway/c/sci_xs2gif.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xs2gif.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xs2gif.Tpo $(DEPDIR)/libscigraphics_la-sci_xs2gif.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_xs2gif.c' object='libscigraphics_la-sci_xs2gif.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xs2gif.c' object='libscigraphics_la-sci_xs2gif.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xs2gif.lo `test -f 'sci_gateway/sci_xs2gif.c' || echo '$(srcdir)/'`sci_gateway/sci_xs2gif.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xs2gif.lo `test -f 'sci_gateway/c/sci_xs2gif.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xs2gif.c
 
-libscigraphics_la-sci_xsetech.lo: sci_gateway/sci_xsetech.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xsetech.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xsetech.Tpo -c -o libscigraphics_la-sci_xsetech.lo `test -f 'sci_gateway/sci_xsetech.c' || echo '$(srcdir)/'`sci_gateway/sci_xsetech.c
+libscigraphics_la-sci_xsetech.lo: sci_gateway/c/sci_xsetech.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xsetech.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xsetech.Tpo -c -o libscigraphics_la-sci_xsetech.lo `test -f 'sci_gateway/c/sci_xsetech.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xsetech.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xsetech.Tpo $(DEPDIR)/libscigraphics_la-sci_xsetech.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_xsetech.c' object='libscigraphics_la-sci_xsetech.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xsetech.c' object='libscigraphics_la-sci_xsetech.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xsetech.lo `test -f 'sci_gateway/sci_xsetech.c' || echo '$(srcdir)/'`sci_gateway/sci_xsetech.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xsetech.lo `test -f 'sci_gateway/c/sci_xsetech.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xsetech.c
 
-libscigraphics_la-sci_show_window.lo: sci_gateway/sci_show_window.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_show_window.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_show_window.Tpo -c -o libscigraphics_la-sci_show_window.lo `test -f 'sci_gateway/sci_show_window.c' || echo '$(srcdir)/'`sci_gateway/sci_show_window.c
+libscigraphics_la-sci_show_window.lo: sci_gateway/c/sci_show_window.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_show_window.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_show_window.Tpo -c -o libscigraphics_la-sci_show_window.lo `test -f 'sci_gateway/c/sci_show_window.c' || echo '$(srcdir)/'`sci_gateway/c/sci_show_window.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_show_window.Tpo $(DEPDIR)/libscigraphics_la-sci_show_window.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_show_window.c' object='libscigraphics_la-sci_show_window.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_show_window.c' object='libscigraphics_la-sci_show_window.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_show_window.lo `test -f 'sci_gateway/sci_show_window.c' || echo '$(srcdir)/'`sci_gateway/sci_show_window.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_show_window.lo `test -f 'sci_gateway/c/sci_show_window.c' || echo '$(srcdir)/'`sci_gateway/c/sci_show_window.c
 
-libscigraphics_la-sci_param3d1.lo: sci_gateway/sci_param3d1.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_param3d1.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_param3d1.Tpo -c -o libscigraphics_la-sci_param3d1.lo `test -f 'sci_gateway/sci_param3d1.c' || echo '$(srcdir)/'`sci_gateway/sci_param3d1.c
+libscigraphics_la-sci_param3d1.lo: sci_gateway/c/sci_param3d1.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_param3d1.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_param3d1.Tpo -c -o libscigraphics_la-sci_param3d1.lo `test -f 'sci_gateway/c/sci_param3d1.c' || echo '$(srcdir)/'`sci_gateway/c/sci_param3d1.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_param3d1.Tpo $(DEPDIR)/libscigraphics_la-sci_param3d1.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_param3d1.c' object='libscigraphics_la-sci_param3d1.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_param3d1.c' object='libscigraphics_la-sci_param3d1.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_param3d1.lo `test -f 'sci_gateway/sci_param3d1.c' || echo '$(srcdir)/'`sci_gateway/sci_param3d1.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_param3d1.lo `test -f 'sci_gateway/c/sci_param3d1.c' || echo '$(srcdir)/'`sci_gateway/c/sci_param3d1.c
 
-libscigraphics_la-sci_xname.lo: sci_gateway/sci_xname.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xname.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xname.Tpo -c -o libscigraphics_la-sci_xname.lo `test -f 'sci_gateway/sci_xname.c' || echo '$(srcdir)/'`sci_gateway/sci_xname.c
+libscigraphics_la-sci_xname.lo: sci_gateway/c/sci_xname.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xname.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xname.Tpo -c -o libscigraphics_la-sci_xname.lo `test -f 'sci_gateway/c/sci_xname.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xname.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xname.Tpo $(DEPDIR)/libscigraphics_la-sci_xname.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_xname.c' object='libscigraphics_la-sci_xname.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xname.c' object='libscigraphics_la-sci_xname.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xname.lo `test -f 'sci_gateway/sci_xname.c' || echo '$(srcdir)/'`sci_gateway/sci_xname.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xname.lo `test -f 'sci_gateway/c/sci_xname.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xname.c
 
-libscigraphics_la-sci_xstringl.lo: sci_gateway/sci_xstringl.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xstringl.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xstringl.Tpo -c -o libscigraphics_la-sci_xstringl.lo `test -f 'sci_gateway/sci_xstringl.c' || echo '$(srcdir)/'`sci_gateway/sci_xstringl.c
+libscigraphics_la-sci_xstringl.lo: sci_gateway/c/sci_xstringl.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xstringl.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xstringl.Tpo -c -o libscigraphics_la-sci_xstringl.lo `test -f 'sci_gateway/c/sci_xstringl.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xstringl.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xstringl.Tpo $(DEPDIR)/libscigraphics_la-sci_xstringl.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_xstringl.c' object='libscigraphics_la-sci_xstringl.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xstringl.c' object='libscigraphics_la-sci_xstringl.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xstringl.lo `test -f 'sci_gateway/sci_xstringl.c' || echo '$(srcdir)/'`sci_gateway/sci_xstringl.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xstringl.lo `test -f 'sci_gateway/c/sci_xstringl.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xstringl.c
 
-libscigraphics_la-sci_xpoly.lo: sci_gateway/sci_xpoly.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xpoly.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xpoly.Tpo -c -o libscigraphics_la-sci_xpoly.lo `test -f 'sci_gateway/sci_xpoly.c' || echo '$(srcdir)/'`sci_gateway/sci_xpoly.c
+libscigraphics_la-sci_xpoly.lo: sci_gateway/c/sci_xpoly.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xpoly.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xpoly.Tpo -c -o libscigraphics_la-sci_xpoly.lo `test -f 'sci_gateway/c/sci_xpoly.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xpoly.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xpoly.Tpo $(DEPDIR)/libscigraphics_la-sci_xpoly.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_xpoly.c' object='libscigraphics_la-sci_xpoly.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xpoly.c' object='libscigraphics_la-sci_xpoly.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xpoly.lo `test -f 'sci_gateway/sci_xpoly.c' || echo '$(srcdir)/'`sci_gateway/sci_xpoly.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xpoly.lo `test -f 'sci_gateway/c/sci_xpoly.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xpoly.c
 
-libscigraphics_la-sci_xchange.lo: sci_gateway/sci_xchange.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xchange.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xchange.Tpo -c -o libscigraphics_la-sci_xchange.lo `test -f 'sci_gateway/sci_xchange.c' || echo '$(srcdir)/'`sci_gateway/sci_xchange.c
+libscigraphics_la-sci_xchange.lo: sci_gateway/c/sci_xchange.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xchange.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xchange.Tpo -c -o libscigraphics_la-sci_xchange.lo `test -f 'sci_gateway/c/sci_xchange.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xchange.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xchange.Tpo $(DEPDIR)/libscigraphics_la-sci_xchange.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_xchange.c' object='libscigraphics_la-sci_xchange.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xchange.c' object='libscigraphics_la-sci_xchange.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xchange.lo `test -f 'sci_gateway/sci_xchange.c' || echo '$(srcdir)/'`sci_gateway/sci_xchange.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xchange.lo `test -f 'sci_gateway/c/sci_xchange.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xchange.c
 
-libscigraphics_la-sci_UImenu.lo: sci_gateway/sci_UImenu.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_UImenu.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_UImenu.Tpo -c -o libscigraphics_la-sci_UImenu.lo `test -f 'sci_gateway/sci_UImenu.c' || echo '$(srcdir)/'`sci_gateway/sci_UImenu.c
+libscigraphics_la-sci_UImenu.lo: sci_gateway/c/sci_UImenu.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_UImenu.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_UImenu.Tpo -c -o libscigraphics_la-sci_UImenu.lo `test -f 'sci_gateway/c/sci_UImenu.c' || echo '$(srcdir)/'`sci_gateway/c/sci_UImenu.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_UImenu.Tpo $(DEPDIR)/libscigraphics_la-sci_UImenu.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_UImenu.c' object='libscigraphics_la-sci_UImenu.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_UImenu.c' object='libscigraphics_la-sci_UImenu.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_UImenu.lo `test -f 'sci_gateway/sci_UImenu.c' || echo '$(srcdir)/'`sci_gateway/sci_UImenu.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_UImenu.lo `test -f 'sci_gateway/c/sci_UImenu.c' || echo '$(srcdir)/'`sci_gateway/c/sci_UImenu.c
 
-libscigraphics_la-sci_matplot.lo: sci_gateway/sci_matplot.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_matplot.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_matplot.Tpo -c -o libscigraphics_la-sci_matplot.lo `test -f 'sci_gateway/sci_matplot.c' || echo '$(srcdir)/'`sci_gateway/sci_matplot.c
+libscigraphics_la-sci_matplot.lo: sci_gateway/c/sci_matplot.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_matplot.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_matplot.Tpo -c -o libscigraphics_la-sci_matplot.lo `test -f 'sci_gateway/c/sci_matplot.c' || echo '$(srcdir)/'`sci_gateway/c/sci_matplot.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_matplot.Tpo $(DEPDIR)/libscigraphics_la-sci_matplot.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_matplot.c' object='libscigraphics_la-sci_matplot.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_matplot.c' object='libscigraphics_la-sci_matplot.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_matplot.lo `test -f 'sci_gateway/sci_matplot.c' || echo '$(srcdir)/'`sci_gateway/sci_matplot.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_matplot.lo `test -f 'sci_gateway/c/sci_matplot.c' || echo '$(srcdir)/'`sci_gateway/c/sci_matplot.c
 
-libscigraphics_la-sci_readxbm.lo: sci_gateway/sci_readxbm.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_readxbm.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_readxbm.Tpo -c -o libscigraphics_la-sci_readxbm.lo `test -f 'sci_gateway/sci_readxbm.c' || echo '$(srcdir)/'`sci_gateway/sci_readxbm.c
+libscigraphics_la-sci_readxbm.lo: sci_gateway/c/sci_readxbm.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_readxbm.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_readxbm.Tpo -c -o libscigraphics_la-sci_readxbm.lo `test -f 'sci_gateway/c/sci_readxbm.c' || echo '$(srcdir)/'`sci_gateway/c/sci_readxbm.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_readxbm.Tpo $(DEPDIR)/libscigraphics_la-sci_readxbm.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_readxbm.c' object='libscigraphics_la-sci_readxbm.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_readxbm.c' object='libscigraphics_la-sci_readxbm.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_readxbm.lo `test -f 'sci_gateway/sci_readxbm.c' || echo '$(srcdir)/'`sci_gateway/sci_readxbm.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_readxbm.lo `test -f 'sci_gateway/c/sci_readxbm.c' || echo '$(srcdir)/'`sci_gateway/c/sci_readxbm.c
 
-libscigraphics_la-sci_drawaxis.lo: sci_gateway/sci_drawaxis.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_drawaxis.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_drawaxis.Tpo -c -o libscigraphics_la-sci_drawaxis.lo `test -f 'sci_gateway/sci_drawaxis.c' || echo '$(srcdir)/'`sci_gateway/sci_drawaxis.c
+libscigraphics_la-sci_drawaxis.lo: sci_gateway/c/sci_drawaxis.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_drawaxis.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_drawaxis.Tpo -c -o libscigraphics_la-sci_drawaxis.lo `test -f 'sci_gateway/c/sci_drawaxis.c' || echo '$(srcdir)/'`sci_gateway/c/sci_drawaxis.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_drawaxis.Tpo $(DEPDIR)/libscigraphics_la-sci_drawaxis.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_drawaxis.c' object='libscigraphics_la-sci_drawaxis.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_drawaxis.c' object='libscigraphics_la-sci_drawaxis.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_drawaxis.lo `test -f 'sci_gateway/sci_drawaxis.c' || echo '$(srcdir)/'`sci_gateway/sci_drawaxis.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_drawaxis.lo `test -f 'sci_gateway/c/sci_drawaxis.c' || echo '$(srcdir)/'`sci_gateway/c/sci_drawaxis.c
 
-libscigraphics_la-sci_demo.lo: sci_gateway/sci_demo.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_demo.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_demo.Tpo -c -o libscigraphics_la-sci_demo.lo `test -f 'sci_gateway/sci_demo.c' || echo '$(srcdir)/'`sci_gateway/sci_demo.c
+libscigraphics_la-sci_demo.lo: sci_gateway/c/sci_demo.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_demo.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_demo.Tpo -c -o libscigraphics_la-sci_demo.lo `test -f 'sci_gateway/c/sci_demo.c' || echo '$(srcdir)/'`sci_gateway/c/sci_demo.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_demo.Tpo $(DEPDIR)/libscigraphics_la-sci_demo.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_demo.c' object='libscigraphics_la-sci_demo.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_demo.c' object='libscigraphics_la-sci_demo.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_demo.lo `test -f 'sci_gateway/sci_demo.c' || echo '$(srcdir)/'`sci_gateway/sci_demo.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_demo.lo `test -f 'sci_gateway/c/sci_demo.c' || echo '$(srcdir)/'`sci_gateway/c/sci_demo.c
 
-libscigraphics_la-sci_plot2d1.lo: sci_gateway/sci_plot2d1.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_plot2d1.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_plot2d1.Tpo -c -o libscigraphics_la-sci_plot2d1.lo `test -f 'sci_gateway/sci_plot2d1.c' || echo '$(srcdir)/'`sci_gateway/sci_plot2d1.c
+libscigraphics_la-sci_plot2d1.lo: sci_gateway/c/sci_plot2d1.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_plot2d1.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_plot2d1.Tpo -c -o libscigraphics_la-sci_plot2d1.lo `test -f 'sci_gateway/c/sci_plot2d1.c' || echo '$(srcdir)/'`sci_gateway/c/sci_plot2d1.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_plot2d1.Tpo $(DEPDIR)/libscigraphics_la-sci_plot2d1.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_plot2d1.c' object='libscigraphics_la-sci_plot2d1.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_plot2d1.c' object='libscigraphics_la-sci_plot2d1.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_plot2d1.lo `test -f 'sci_gateway/sci_plot2d1.c' || echo '$(srcdir)/'`sci_gateway/sci_plot2d1.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_plot2d1.lo `test -f 'sci_gateway/c/sci_plot2d1.c' || echo '$(srcdir)/'`sci_gateway/c/sci_plot2d1.c
 
-libscigraphics_la-sci_xrect.lo: sci_gateway/sci_xrect.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xrect.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xrect.Tpo -c -o libscigraphics_la-sci_xrect.lo `test -f 'sci_gateway/sci_xrect.c' || echo '$(srcdir)/'`sci_gateway/sci_xrect.c
+libscigraphics_la-sci_xrect.lo: sci_gateway/c/sci_xrect.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xrect.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xrect.Tpo -c -o libscigraphics_la-sci_xrect.lo `test -f 'sci_gateway/c/sci_xrect.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xrect.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xrect.Tpo $(DEPDIR)/libscigraphics_la-sci_xrect.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_xrect.c' object='libscigraphics_la-sci_xrect.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xrect.c' object='libscigraphics_la-sci_xrect.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xrect.lo `test -f 'sci_gateway/sci_xrect.c' || echo '$(srcdir)/'`sci_gateway/sci_xrect.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xrect.lo `test -f 'sci_gateway/c/sci_xrect.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xrect.c
 
-libscigraphics_la-sci_xclea.lo: sci_gateway/sci_xclea.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xclea.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xclea.Tpo -c -o libscigraphics_la-sci_xclea.lo `test -f 'sci_gateway/sci_xclea.c' || echo '$(srcdir)/'`sci_gateway/sci_xclea.c
+libscigraphics_la-sci_xclea.lo: sci_gateway/c/sci_xclea.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xclea.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xclea.Tpo -c -o libscigraphics_la-sci_xclea.lo `test -f 'sci_gateway/c/sci_xclea.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xclea.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xclea.Tpo $(DEPDIR)/libscigraphics_la-sci_xclea.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_xclea.c' object='libscigraphics_la-sci_xclea.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xclea.c' object='libscigraphics_la-sci_xclea.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xclea.lo `test -f 'sci_gateway/sci_xclea.c' || echo '$(srcdir)/'`sci_gateway/sci_xclea.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xclea.lo `test -f 'sci_gateway/c/sci_xclea.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xclea.c
 
-libscigraphics_la-sci_draw.lo: sci_gateway/sci_draw.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_draw.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_draw.Tpo -c -o libscigraphics_la-sci_draw.lo `test -f 'sci_gateway/sci_draw.c' || echo '$(srcdir)/'`sci_gateway/sci_draw.c
+libscigraphics_la-sci_draw.lo: sci_gateway/c/sci_draw.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_draw.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_draw.Tpo -c -o libscigraphics_la-sci_draw.lo `test -f 'sci_gateway/c/sci_draw.c' || echo '$(srcdir)/'`sci_gateway/c/sci_draw.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_draw.Tpo $(DEPDIR)/libscigraphics_la-sci_draw.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_draw.c' object='libscigraphics_la-sci_draw.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_draw.c' object='libscigraphics_la-sci_draw.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_draw.lo `test -f 'sci_gateway/sci_draw.c' || echo '$(srcdir)/'`sci_gateway/sci_draw.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_draw.lo `test -f 'sci_gateway/c/sci_draw.c' || echo '$(srcdir)/'`sci_gateway/c/sci_draw.c
 
-libscigraphics_la-sci_xg2ps.lo: sci_gateway/sci_xg2ps.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xg2ps.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xg2ps.Tpo -c -o libscigraphics_la-sci_xg2ps.lo `test -f 'sci_gateway/sci_xg2ps.c' || echo '$(srcdir)/'`sci_gateway/sci_xg2ps.c
+libscigraphics_la-sci_xg2ps.lo: sci_gateway/c/sci_xg2ps.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xg2ps.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xg2ps.Tpo -c -o libscigraphics_la-sci_xg2ps.lo `test -f 'sci_gateway/c/sci_xg2ps.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xg2ps.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xg2ps.Tpo $(DEPDIR)/libscigraphics_la-sci_xg2ps.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_xg2ps.c' object='libscigraphics_la-sci_xg2ps.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xg2ps.c' object='libscigraphics_la-sci_xg2ps.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xg2ps.lo `test -f 'sci_gateway/sci_xg2ps.c' || echo '$(srcdir)/'`sci_gateway/sci_xg2ps.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xg2ps.lo `test -f 'sci_gateway/c/sci_xg2ps.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xg2ps.c
 
-libscigraphics_la-sci_xarrows.lo: sci_gateway/sci_xarrows.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xarrows.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xarrows.Tpo -c -o libscigraphics_la-sci_xarrows.lo `test -f 'sci_gateway/sci_xarrows.c' || echo '$(srcdir)/'`sci_gateway/sci_xarrows.c
+libscigraphics_la-sci_xarrows.lo: sci_gateway/c/sci_xarrows.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xarrows.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xarrows.Tpo -c -o libscigraphics_la-sci_xarrows.lo `test -f 'sci_gateway/c/sci_xarrows.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xarrows.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xarrows.Tpo $(DEPDIR)/libscigraphics_la-sci_xarrows.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_xarrows.c' object='libscigraphics_la-sci_xarrows.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xarrows.c' object='libscigraphics_la-sci_xarrows.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xarrows.lo `test -f 'sci_gateway/sci_xarrows.c' || echo '$(srcdir)/'`sci_gateway/sci_xarrows.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xarrows.lo `test -f 'sci_gateway/c/sci_xarrows.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xarrows.c
 
-libscigraphics_la-sci_plot3d.lo: sci_gateway/sci_plot3d.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_plot3d.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_plot3d.Tpo -c -o libscigraphics_la-sci_plot3d.lo `test -f 'sci_gateway/sci_plot3d.c' || echo '$(srcdir)/'`sci_gateway/sci_plot3d.c
+libscigraphics_la-sci_plot3d.lo: sci_gateway/c/sci_plot3d.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_plot3d.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_plot3d.Tpo -c -o libscigraphics_la-sci_plot3d.lo `test -f 'sci_gateway/c/sci_plot3d.c' || echo '$(srcdir)/'`sci_gateway/c/sci_plot3d.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_plot3d.Tpo $(DEPDIR)/libscigraphics_la-sci_plot3d.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_plot3d.c' object='libscigraphics_la-sci_plot3d.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_plot3d.c' object='libscigraphics_la-sci_plot3d.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_plot3d.lo `test -f 'sci_gateway/sci_plot3d.c' || echo '$(srcdir)/'`sci_gateway/sci_plot3d.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_plot3d.lo `test -f 'sci_gateway/c/sci_plot3d.c' || echo '$(srcdir)/'`sci_gateway/c/sci_plot3d.c
 
-libscigraphics_la-sci_move.lo: sci_gateway/sci_move.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_move.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_move.Tpo -c -o libscigraphics_la-sci_move.lo `test -f 'sci_gateway/sci_move.c' || echo '$(srcdir)/'`sci_gateway/sci_move.c
+libscigraphics_la-sci_move.lo: sci_gateway/c/sci_move.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_move.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_move.Tpo -c -o libscigraphics_la-sci_move.lo `test -f 'sci_gateway/c/sci_move.c' || echo '$(srcdir)/'`sci_gateway/c/sci_move.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_move.Tpo $(DEPDIR)/libscigraphics_la-sci_move.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_move.c' object='libscigraphics_la-sci_move.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_move.c' object='libscigraphics_la-sci_move.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_move.lo `test -f 'sci_gateway/sci_move.c' || echo '$(srcdir)/'`sci_gateway/sci_move.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_move.lo `test -f 'sci_gateway/c/sci_move.c' || echo '$(srcdir)/'`sci_gateway/c/sci_move.c
 
-libscigraphics_la-sci_copy.lo: sci_gateway/sci_copy.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_copy.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_copy.Tpo -c -o libscigraphics_la-sci_copy.lo `test -f 'sci_gateway/sci_copy.c' || echo '$(srcdir)/'`sci_gateway/sci_copy.c
+libscigraphics_la-sci_copy.lo: sci_gateway/c/sci_copy.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_copy.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_copy.Tpo -c -o libscigraphics_la-sci_copy.lo `test -f 'sci_gateway/c/sci_copy.c' || echo '$(srcdir)/'`sci_gateway/c/sci_copy.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_copy.Tpo $(DEPDIR)/libscigraphics_la-sci_copy.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_copy.c' object='libscigraphics_la-sci_copy.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_copy.c' object='libscigraphics_la-sci_copy.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_copy.lo `test -f 'sci_gateway/sci_copy.c' || echo '$(srcdir)/'`sci_gateway/sci_copy.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_copy.lo `test -f 'sci_gateway/c/sci_copy.c' || echo '$(srcdir)/'`sci_gateway/c/sci_copy.c
 
-libscigraphics_la-sci_relocate_handle.lo: sci_gateway/sci_relocate_handle.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_relocate_handle.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_relocate_handle.Tpo -c -o libscigraphics_la-sci_relocate_handle.lo `test -f 'sci_gateway/sci_relocate_handle.c' || echo '$(srcdir)/'`sci_gateway/sci_relocate_handle.c
+libscigraphics_la-sci_relocate_handle.lo: sci_gateway/c/sci_relocate_handle.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_relocate_handle.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_relocate_handle.Tpo -c -o libscigraphics_la-sci_relocate_handle.lo `test -f 'sci_gateway/c/sci_relocate_handle.c' || echo '$(srcdir)/'`sci_gateway/c/sci_relocate_handle.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_relocate_handle.Tpo $(DEPDIR)/libscigraphics_la-sci_relocate_handle.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_relocate_handle.c' object='libscigraphics_la-sci_relocate_handle.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_relocate_handle.c' object='libscigraphics_la-sci_relocate_handle.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_relocate_handle.lo `test -f 'sci_gateway/sci_relocate_handle.c' || echo '$(srcdir)/'`sci_gateway/sci_relocate_handle.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_relocate_handle.lo `test -f 'sci_gateway/c/sci_relocate_handle.c' || echo '$(srcdir)/'`sci_gateway/c/sci_relocate_handle.c
 
-libscigraphics_la-sci_get.lo: sci_gateway/sci_get.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_get.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_get.Tpo -c -o libscigraphics_la-sci_get.lo `test -f 'sci_gateway/sci_get.c' || echo '$(srcdir)/'`sci_gateway/sci_get.c
+libscigraphics_la-sci_get.lo: sci_gateway/c/sci_get.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_get.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_get.Tpo -c -o libscigraphics_la-sci_get.lo `test -f 'sci_gateway/c/sci_get.c' || echo '$(srcdir)/'`sci_gateway/c/sci_get.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_get.Tpo $(DEPDIR)/libscigraphics_la-sci_get.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_get.c' object='libscigraphics_la-sci_get.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_get.c' object='libscigraphics_la-sci_get.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_get.lo `test -f 'sci_gateway/sci_get.c' || echo '$(srcdir)/'`sci_gateway/sci_get.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_get.lo `test -f 'sci_gateway/c/sci_get.c' || echo '$(srcdir)/'`sci_gateway/c/sci_get.c
 
-libscigraphics_la-sci_xs2ps.lo: sci_gateway/sci_xs2ps.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xs2ps.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xs2ps.Tpo -c -o libscigraphics_la-sci_xs2ps.lo `test -f 'sci_gateway/sci_xs2ps.c' || echo '$(srcdir)/'`sci_gateway/sci_xs2ps.c
+libscigraphics_la-sci_xs2ps.lo: sci_gateway/c/sci_xs2ps.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xs2ps.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xs2ps.Tpo -c -o libscigraphics_la-sci_xs2ps.lo `test -f 'sci_gateway/c/sci_xs2ps.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xs2ps.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xs2ps.Tpo $(DEPDIR)/libscigraphics_la-sci_xs2ps.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_xs2ps.c' object='libscigraphics_la-sci_xs2ps.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xs2ps.c' object='libscigraphics_la-sci_xs2ps.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xs2ps.lo `test -f 'sci_gateway/sci_xs2ps.c' || echo '$(srcdir)/'`sci_gateway/sci_xs2ps.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xs2ps.lo `test -f 'sci_gateway/c/sci_xs2ps.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xs2ps.c
 
-libscigraphics_la-sci_xarcs.lo: sci_gateway/sci_xarcs.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xarcs.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xarcs.Tpo -c -o libscigraphics_la-sci_xarcs.lo `test -f 'sci_gateway/sci_xarcs.c' || echo '$(srcdir)/'`sci_gateway/sci_xarcs.c
+libscigraphics_la-sci_xarcs.lo: sci_gateway/c/sci_xarcs.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xarcs.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xarcs.Tpo -c -o libscigraphics_la-sci_xarcs.lo `test -f 'sci_gateway/c/sci_xarcs.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xarcs.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xarcs.Tpo $(DEPDIR)/libscigraphics_la-sci_xarcs.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_xarcs.c' object='libscigraphics_la-sci_xarcs.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xarcs.c' object='libscigraphics_la-sci_xarcs.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xarcs.lo `test -f 'sci_gateway/sci_xarcs.c' || echo '$(srcdir)/'`sci_gateway/sci_xarcs.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xarcs.lo `test -f 'sci_gateway/c/sci_xarcs.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xarcs.c
 
-libscigraphics_la-sci_xfpoly.lo: sci_gateway/sci_xfpoly.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xfpoly.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xfpoly.Tpo -c -o libscigraphics_la-sci_xfpoly.lo `test -f 'sci_gateway/sci_xfpoly.c' || echo '$(srcdir)/'`sci_gateway/sci_xfpoly.c
+libscigraphics_la-sci_xfpoly.lo: sci_gateway/c/sci_xfpoly.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xfpoly.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xfpoly.Tpo -c -o libscigraphics_la-sci_xfpoly.lo `test -f 'sci_gateway/c/sci_xfpoly.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xfpoly.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xfpoly.Tpo $(DEPDIR)/libscigraphics_la-sci_xfpoly.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_xfpoly.c' object='libscigraphics_la-sci_xfpoly.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xfpoly.c' object='libscigraphics_la-sci_xfpoly.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xfpoly.lo `test -f 'sci_gateway/sci_xfpoly.c' || echo '$(srcdir)/'`sci_gateway/sci_xfpoly.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xfpoly.lo `test -f 'sci_gateway/c/sci_xfpoly.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xfpoly.c
 
-libscigraphics_la-sci_drawlater.lo: sci_gateway/sci_drawlater.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_drawlater.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_drawlater.Tpo -c -o libscigraphics_la-sci_drawlater.lo `test -f 'sci_gateway/sci_drawlater.c' || echo '$(srcdir)/'`sci_gateway/sci_drawlater.c
+libscigraphics_la-sci_drawlater.lo: sci_gateway/c/sci_drawlater.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_drawlater.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_drawlater.Tpo -c -o libscigraphics_la-sci_drawlater.lo `test -f 'sci_gateway/c/sci_drawlater.c' || echo '$(srcdir)/'`sci_gateway/c/sci_drawlater.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_drawlater.Tpo $(DEPDIR)/libscigraphics_la-sci_drawlater.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_drawlater.c' object='libscigraphics_la-sci_drawlater.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_drawlater.c' object='libscigraphics_la-sci_drawlater.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_drawlater.lo `test -f 'sci_gateway/sci_drawlater.c' || echo '$(srcdir)/'`sci_gateway/sci_drawlater.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_drawlater.lo `test -f 'sci_gateway/c/sci_drawlater.c' || echo '$(srcdir)/'`sci_gateway/c/sci_drawlater.c
 
-libscigraphics_la-sci_champ.lo: sci_gateway/sci_champ.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_champ.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_champ.Tpo -c -o libscigraphics_la-sci_champ.lo `test -f 'sci_gateway/sci_champ.c' || echo '$(srcdir)/'`sci_gateway/sci_champ.c
+libscigraphics_la-sci_champ.lo: sci_gateway/c/sci_champ.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_champ.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_champ.Tpo -c -o libscigraphics_la-sci_champ.lo `test -f 'sci_gateway/c/sci_champ.c' || echo '$(srcdir)/'`sci_gateway/c/sci_champ.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_champ.Tpo $(DEPDIR)/libscigraphics_la-sci_champ.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_champ.c' object='libscigraphics_la-sci_champ.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_champ.c' object='libscigraphics_la-sci_champ.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_champ.lo `test -f 'sci_gateway/sci_champ.c' || echo '$(srcdir)/'`sci_gateway/sci_champ.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_champ.lo `test -f 'sci_gateway/c/sci_champ.c' || echo '$(srcdir)/'`sci_gateway/c/sci_champ.c
 
-libscigraphics_la-sci_xinit.lo: sci_gateway/sci_xinit.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xinit.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xinit.Tpo -c -o libscigraphics_la-sci_xinit.lo `test -f 'sci_gateway/sci_xinit.c' || echo '$(srcdir)/'`sci_gateway/sci_xinit.c
+libscigraphics_la-sci_xinit.lo: sci_gateway/c/sci_xinit.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xinit.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xinit.Tpo -c -o libscigraphics_la-sci_xinit.lo `test -f 'sci_gateway/c/sci_xinit.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xinit.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xinit.Tpo $(DEPDIR)/libscigraphics_la-sci_xinit.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_xinit.c' object='libscigraphics_la-sci_xinit.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xinit.c' object='libscigraphics_la-sci_xinit.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xinit.lo `test -f 'sci_gateway/sci_xinit.c' || echo '$(srcdir)/'`sci_gateway/sci_xinit.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xinit.lo `test -f 'sci_gateway/c/sci_xinit.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xinit.c
 
-libscigraphics_la-sci_help_gtk.lo: sci_gateway/sci_help_gtk.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_help_gtk.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_help_gtk.Tpo -c -o libscigraphics_la-sci_help_gtk.lo `test -f 'sci_gateway/sci_help_gtk.c' || echo '$(srcdir)/'`sci_gateway/sci_help_gtk.c
+libscigraphics_la-sci_help_gtk.lo: sci_gateway/c/sci_help_gtk.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_help_gtk.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_help_gtk.Tpo -c -o libscigraphics_la-sci_help_gtk.lo `test -f 'sci_gateway/c/sci_help_gtk.c' || echo '$(srcdir)/'`sci_gateway/c/sci_help_gtk.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_help_gtk.Tpo $(DEPDIR)/libscigraphics_la-sci_help_gtk.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_help_gtk.c' object='libscigraphics_la-sci_help_gtk.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_help_gtk.c' object='libscigraphics_la-sci_help_gtk.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_help_gtk.lo `test -f 'sci_gateway/sci_help_gtk.c' || echo '$(srcdir)/'`sci_gateway/sci_help_gtk.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_help_gtk.lo `test -f 'sci_gateway/c/sci_help_gtk.c' || echo '$(srcdir)/'`sci_gateway/c/sci_help_gtk.c
 
-libscigraphics_la-sci_set.lo: sci_gateway/sci_set.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_set.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_set.Tpo -c -o libscigraphics_la-sci_set.lo `test -f 'sci_gateway/sci_set.c' || echo '$(srcdir)/'`sci_gateway/sci_set.c
+libscigraphics_la-sci_set.lo: sci_gateway/c/sci_set.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_set.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_set.Tpo -c -o libscigraphics_la-sci_set.lo `test -f 'sci_gateway/c/sci_set.c' || echo '$(srcdir)/'`sci_gateway/c/sci_set.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_set.Tpo $(DEPDIR)/libscigraphics_la-sci_set.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_set.c' object='libscigraphics_la-sci_set.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_set.c' object='libscigraphics_la-sci_set.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_set.lo `test -f 'sci_gateway/sci_set.c' || echo '$(srcdir)/'`sci_gateway/sci_set.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_set.lo `test -f 'sci_gateway/c/sci_set.c' || echo '$(srcdir)/'`sci_gateway/c/sci_set.c
 
-libscigraphics_la-sci_showalluimenushandles.lo: sci_gateway/sci_showalluimenushandles.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_showalluimenushandles.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_showalluimenushandles.Tpo -c -o libscigraphics_la-sci_showalluimenushandles.lo `test -f 'sci_gateway/sci_showalluimenushandles.c' || echo '$(srcdir)/'`sci_gateway/sci_showalluimenushandles.c
+libscigraphics_la-sci_showalluimenushandles.lo: sci_gateway/c/sci_showalluimenushandles.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_showalluimenushandles.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_showalluimenushandles.Tpo -c -o libscigraphics_la-sci_showalluimenushandles.lo `test -f 'sci_gateway/c/sci_showalluimenushandles.c' || echo '$(srcdir)/'`sci_gateway/c/sci_showalluimenushandles.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_showalluimenushandles.Tpo $(DEPDIR)/libscigraphics_la-sci_showalluimenushandles.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_showalluimenushandles.c' object='libscigraphics_la-sci_showalluimenushandles.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_showalluimenushandles.c' object='libscigraphics_la-sci_showalluimenushandles.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_showalluimenushandles.lo `test -f 'sci_gateway/sci_showalluimenushandles.c' || echo '$(srcdir)/'`sci_gateway/sci_showalluimenushandles.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_showalluimenushandles.lo `test -f 'sci_gateway/c/sci_showalluimenushandles.c' || echo '$(srcdir)/'`sci_gateway/c/sci_showalluimenushandles.c
 
-libscigraphics_la-sci_xend.lo: sci_gateway/sci_xend.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xend.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xend.Tpo -c -o libscigraphics_la-sci_xend.lo `test -f 'sci_gateway/sci_xend.c' || echo '$(srcdir)/'`sci_gateway/sci_xend.c
+libscigraphics_la-sci_xend.lo: sci_gateway/c/sci_xend.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xend.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xend.Tpo -c -o libscigraphics_la-sci_xend.lo `test -f 'sci_gateway/c/sci_xend.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xend.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xend.Tpo $(DEPDIR)/libscigraphics_la-sci_xend.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_xend.c' object='libscigraphics_la-sci_xend.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xend.c' object='libscigraphics_la-sci_xend.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xend.lo `test -f 'sci_gateway/sci_xend.c' || echo '$(srcdir)/'`sci_gateway/sci_xend.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xend.lo `test -f 'sci_gateway/c/sci_xend.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xend.c
 
-libscigraphics_la-sci_unglue.lo: sci_gateway/sci_unglue.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_unglue.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_unglue.Tpo -c -o libscigraphics_la-sci_unglue.lo `test -f 'sci_gateway/sci_unglue.c' || echo '$(srcdir)/'`sci_gateway/sci_unglue.c
+libscigraphics_la-sci_unglue.lo: sci_gateway/c/sci_unglue.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_unglue.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_unglue.Tpo -c -o libscigraphics_la-sci_unglue.lo `test -f 'sci_gateway/c/sci_unglue.c' || echo '$(srcdir)/'`sci_gateway/c/sci_unglue.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_unglue.Tpo $(DEPDIR)/libscigraphics_la-sci_unglue.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_unglue.c' object='libscigraphics_la-sci_unglue.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_unglue.c' object='libscigraphics_la-sci_unglue.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_unglue.lo `test -f 'sci_gateway/sci_unglue.c' || echo '$(srcdir)/'`sci_gateway/sci_unglue.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_unglue.lo `test -f 'sci_gateway/c/sci_unglue.c' || echo '$(srcdir)/'`sci_gateway/c/sci_unglue.c
 
-libscigraphics_la-gw_graphics.lo: sci_gateway/gw_graphics.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-gw_graphics.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-gw_graphics.Tpo -c -o libscigraphics_la-gw_graphics.lo `test -f 'sci_gateway/gw_graphics.c' || echo '$(srcdir)/'`sci_gateway/gw_graphics.c
+libscigraphics_la-gw_graphics.lo: sci_gateway/c/gw_graphics.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-gw_graphics.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-gw_graphics.Tpo -c -o libscigraphics_la-gw_graphics.lo `test -f 'sci_gateway/c/gw_graphics.c' || echo '$(srcdir)/'`sci_gateway/c/gw_graphics.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-gw_graphics.Tpo $(DEPDIR)/libscigraphics_la-gw_graphics.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/gw_graphics.c' object='libscigraphics_la-gw_graphics.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/gw_graphics.c' object='libscigraphics_la-gw_graphics.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-gw_graphics.lo `test -f 'sci_gateway/gw_graphics.c' || echo '$(srcdir)/'`sci_gateway/gw_graphics.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-gw_graphics.lo `test -f 'sci_gateway/c/gw_graphics.c' || echo '$(srcdir)/'`sci_gateway/c/gw_graphics.c
 
-libscigraphics_la-sci_xsnative.lo: sci_gateway/sci_xsnative.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xsnative.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xsnative.Tpo -c -o libscigraphics_la-sci_xsnative.lo `test -f 'sci_gateway/sci_xsnative.c' || echo '$(srcdir)/'`sci_gateway/sci_xsnative.c
+libscigraphics_la-sci_xsnative.lo: sci_gateway/c/sci_xsnative.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xsnative.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xsnative.Tpo -c -o libscigraphics_la-sci_xsnative.lo `test -f 'sci_gateway/c/sci_xsnative.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xsnative.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xsnative.Tpo $(DEPDIR)/libscigraphics_la-sci_xsnative.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_xsnative.c' object='libscigraphics_la-sci_xsnative.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xsnative.c' object='libscigraphics_la-sci_xsnative.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xsnative.lo `test -f 'sci_gateway/sci_xsnative.c' || echo '$(srcdir)/'`sci_gateway/sci_xsnative.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xsnative.lo `test -f 'sci_gateway/c/sci_xsnative.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xsnative.c
 
-libscigraphics_la-sci_zoom_rect.lo: sci_gateway/sci_zoom_rect.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_zoom_rect.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_zoom_rect.Tpo -c -o libscigraphics_la-sci_zoom_rect.lo `test -f 'sci_gateway/sci_zoom_rect.c' || echo '$(srcdir)/'`sci_gateway/sci_zoom_rect.c
+libscigraphics_la-sci_zoom_rect.lo: sci_gateway/c/sci_zoom_rect.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_zoom_rect.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_zoom_rect.Tpo -c -o libscigraphics_la-sci_zoom_rect.lo `test -f 'sci_gateway/c/sci_zoom_rect.c' || echo '$(srcdir)/'`sci_gateway/c/sci_zoom_rect.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_zoom_rect.Tpo $(DEPDIR)/libscigraphics_la-sci_zoom_rect.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_zoom_rect.c' object='libscigraphics_la-sci_zoom_rect.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_zoom_rect.c' object='libscigraphics_la-sci_zoom_rect.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_zoom_rect.lo `test -f 'sci_gateway/sci_zoom_rect.c' || echo '$(srcdir)/'`sci_gateway/sci_zoom_rect.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_zoom_rect.lo `test -f 'sci_gateway/c/sci_zoom_rect.c' || echo '$(srcdir)/'`sci_gateway/c/sci_zoom_rect.c
 
-libscigraphics_la-sci_delete.lo: sci_gateway/sci_delete.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_delete.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_delete.Tpo -c -o libscigraphics_la-sci_delete.lo `test -f 'sci_gateway/sci_delete.c' || echo '$(srcdir)/'`sci_gateway/sci_delete.c
+libscigraphics_la-sci_delete.lo: sci_gateway/c/sci_delete.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_delete.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_delete.Tpo -c -o libscigraphics_la-sci_delete.lo `test -f 'sci_gateway/c/sci_delete.c' || echo '$(srcdir)/'`sci_gateway/c/sci_delete.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_delete.Tpo $(DEPDIR)/libscigraphics_la-sci_delete.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_delete.c' object='libscigraphics_la-sci_delete.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_delete.c' object='libscigraphics_la-sci_delete.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_delete.lo `test -f 'sci_gateway/sci_delete.c' || echo '$(srcdir)/'`sci_gateway/sci_delete.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_delete.lo `test -f 'sci_gateway/c/sci_delete.c' || echo '$(srcdir)/'`sci_gateway/c/sci_delete.c
 
-libscigraphics_la-sci_xs2fig.lo: sci_gateway/sci_xs2fig.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xs2fig.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xs2fig.Tpo -c -o libscigraphics_la-sci_xs2fig.lo `test -f 'sci_gateway/sci_xs2fig.c' || echo '$(srcdir)/'`sci_gateway/sci_xs2fig.c
+libscigraphics_la-sci_xs2fig.lo: sci_gateway/c/sci_xs2fig.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xs2fig.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xs2fig.Tpo -c -o libscigraphics_la-sci_xs2fig.lo `test -f 'sci_gateway/c/sci_xs2fig.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xs2fig.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xs2fig.Tpo $(DEPDIR)/libscigraphics_la-sci_xs2fig.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_xs2fig.c' object='libscigraphics_la-sci_xs2fig.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xs2fig.c' object='libscigraphics_la-sci_xs2fig.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xs2fig.lo `test -f 'sci_gateway/sci_xs2fig.c' || echo '$(srcdir)/'`sci_gateway/sci_xs2fig.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xs2fig.lo `test -f 'sci_gateway/c/sci_xs2fig.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xs2fig.c
 
-libscigraphics_la-sci_plot2d.lo: sci_gateway/sci_plot2d.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_plot2d.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_plot2d.Tpo -c -o libscigraphics_la-sci_plot2d.lo `test -f 'sci_gateway/sci_plot2d.c' || echo '$(srcdir)/'`sci_gateway/sci_plot2d.c
+libscigraphics_la-sci_plot2d.lo: sci_gateway/c/sci_plot2d.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_plot2d.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_plot2d.Tpo -c -o libscigraphics_la-sci_plot2d.lo `test -f 'sci_gateway/c/sci_plot2d.c' || echo '$(srcdir)/'`sci_gateway/c/sci_plot2d.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_plot2d.Tpo $(DEPDIR)/libscigraphics_la-sci_plot2d.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_plot2d.c' object='libscigraphics_la-sci_plot2d.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_plot2d.c' object='libscigraphics_la-sci_plot2d.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_plot2d.lo `test -f 'sci_gateway/sci_plot2d.c' || echo '$(srcdir)/'`sci_gateway/sci_plot2d.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_plot2d.lo `test -f 'sci_gateway/c/sci_plot2d.c' || echo '$(srcdir)/'`sci_gateway/c/sci_plot2d.c
 
-libscigraphics_la-sci_xrects.lo: sci_gateway/sci_xrects.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xrects.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xrects.Tpo -c -o libscigraphics_la-sci_xrects.lo `test -f 'sci_gateway/sci_xrects.c' || echo '$(srcdir)/'`sci_gateway/sci_xrects.c
+libscigraphics_la-sci_xrects.lo: sci_gateway/c/sci_xrects.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xrects.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xrects.Tpo -c -o libscigraphics_la-sci_xrects.lo `test -f 'sci_gateway/c/sci_xrects.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xrects.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xrects.Tpo $(DEPDIR)/libscigraphics_la-sci_xrects.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_xrects.c' object='libscigraphics_la-sci_xrects.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xrects.c' object='libscigraphics_la-sci_xrects.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xrects.lo `test -f 'sci_gateway/sci_xrects.c' || echo '$(srcdir)/'`sci_gateway/sci_xrects.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xrects.lo `test -f 'sci_gateway/c/sci_xrects.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xrects.c
 
-libscigraphics_la-sci_xtitle.lo: sci_gateway/sci_xtitle.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xtitle.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xtitle.Tpo -c -o libscigraphics_la-sci_xtitle.lo `test -f 'sci_gateway/sci_xtitle.c' || echo '$(srcdir)/'`sci_gateway/sci_xtitle.c
+libscigraphics_la-sci_xtitle.lo: sci_gateway/c/sci_xtitle.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xtitle.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xtitle.Tpo -c -o libscigraphics_la-sci_xtitle.lo `test -f 'sci_gateway/c/sci_xtitle.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xtitle.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xtitle.Tpo $(DEPDIR)/libscigraphics_la-sci_xtitle.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_xtitle.c' object='libscigraphics_la-sci_xtitle.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xtitle.c' object='libscigraphics_la-sci_xtitle.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xtitle.lo `test -f 'sci_gateway/sci_xtitle.c' || echo '$(srcdir)/'`sci_gateway/sci_xtitle.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xtitle.lo `test -f 'sci_gateway/c/sci_xtitle.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xtitle.c
 
-libscigraphics_la-sci_StringBox.lo: sci_gateway/sci_StringBox.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_StringBox.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_StringBox.Tpo -c -o libscigraphics_la-sci_StringBox.lo `test -f 'sci_gateway/sci_StringBox.c' || echo '$(srcdir)/'`sci_gateway/sci_StringBox.c
+libscigraphics_la-sci_StringBox.lo: sci_gateway/c/sci_StringBox.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_StringBox.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_StringBox.Tpo -c -o libscigraphics_la-sci_StringBox.lo `test -f 'sci_gateway/c/sci_StringBox.c' || echo '$(srcdir)/'`sci_gateway/c/sci_StringBox.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_StringBox.Tpo $(DEPDIR)/libscigraphics_la-sci_StringBox.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_StringBox.c' object='libscigraphics_la-sci_StringBox.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_StringBox.c' object='libscigraphics_la-sci_StringBox.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_StringBox.lo `test -f 'sci_gateway/sci_StringBox.c' || echo '$(srcdir)/'`sci_gateway/sci_StringBox.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_StringBox.lo `test -f 'sci_gateway/c/sci_StringBox.c' || echo '$(srcdir)/'`sci_gateway/c/sci_StringBox.c
 
-libscigraphics_la-sci_xgetmouse.lo: sci_gateway/sci_xgetmouse.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xgetmouse.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xgetmouse.Tpo -c -o libscigraphics_la-sci_xgetmouse.lo `test -f 'sci_gateway/sci_xgetmouse.c' || echo '$(srcdir)/'`sci_gateway/sci_xgetmouse.c
+libscigraphics_la-sci_xgetmouse.lo: sci_gateway/c/sci_xgetmouse.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xgetmouse.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xgetmouse.Tpo -c -o libscigraphics_la-sci_xgetmouse.lo `test -f 'sci_gateway/c/sci_xgetmouse.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xgetmouse.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xgetmouse.Tpo $(DEPDIR)/libscigraphics_la-sci_xgetmouse.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_xgetmouse.c' object='libscigraphics_la-sci_xgetmouse.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xgetmouse.c' object='libscigraphics_la-sci_xgetmouse.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xgetmouse.lo `test -f 'sci_gateway/sci_xgetmouse.c' || echo '$(srcdir)/'`sci_gateway/sci_xgetmouse.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xgetmouse.lo `test -f 'sci_gateway/c/sci_xgetmouse.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xgetmouse.c
 
-libscigraphics_la-sci_drawnow.lo: sci_gateway/sci_drawnow.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_drawnow.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_drawnow.Tpo -c -o libscigraphics_la-sci_drawnow.lo `test -f 'sci_gateway/sci_drawnow.c' || echo '$(srcdir)/'`sci_gateway/sci_drawnow.c
+libscigraphics_la-sci_drawnow.lo: sci_gateway/c/sci_drawnow.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_drawnow.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_drawnow.Tpo -c -o libscigraphics_la-sci_drawnow.lo `test -f 'sci_gateway/c/sci_drawnow.c' || echo '$(srcdir)/'`sci_gateway/c/sci_drawnow.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_drawnow.Tpo $(DEPDIR)/libscigraphics_la-sci_drawnow.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_drawnow.c' object='libscigraphics_la-sci_drawnow.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_drawnow.c' object='libscigraphics_la-sci_drawnow.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_drawnow.lo `test -f 'sci_gateway/sci_drawnow.c' || echo '$(srcdir)/'`sci_gateway/sci_drawnow.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_drawnow.lo `test -f 'sci_gateway/c/sci_drawnow.c' || echo '$(srcdir)/'`sci_gateway/c/sci_drawnow.c
 
-libscigraphics_la-sci_xfarcs.lo: sci_gateway/sci_xfarcs.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xfarcs.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xfarcs.Tpo -c -o libscigraphics_la-sci_xfarcs.lo `test -f 'sci_gateway/sci_xfarcs.c' || echo '$(srcdir)/'`sci_gateway/sci_xfarcs.c
+libscigraphics_la-sci_xfarcs.lo: sci_gateway/c/sci_xfarcs.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xfarcs.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xfarcs.Tpo -c -o libscigraphics_la-sci_xfarcs.lo `test -f 'sci_gateway/c/sci_xfarcs.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xfarcs.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xfarcs.Tpo $(DEPDIR)/libscigraphics_la-sci_xfarcs.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_xfarcs.c' object='libscigraphics_la-sci_xfarcs.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xfarcs.c' object='libscigraphics_la-sci_xfarcs.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xfarcs.lo `test -f 'sci_gateway/sci_xfarcs.c' || echo '$(srcdir)/'`sci_gateway/sci_xfarcs.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xfarcs.lo `test -f 'sci_gateway/c/sci_xfarcs.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xfarcs.c
 
-libscigraphics_la-sci_param3d.lo: sci_gateway/sci_param3d.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_param3d.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_param3d.Tpo -c -o libscigraphics_la-sci_param3d.lo `test -f 'sci_gateway/sci_param3d.c' || echo '$(srcdir)/'`sci_gateway/sci_param3d.c
+libscigraphics_la-sci_param3d.lo: sci_gateway/c/sci_param3d.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_param3d.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_param3d.Tpo -c -o libscigraphics_la-sci_param3d.lo `test -f 'sci_gateway/c/sci_param3d.c' || echo '$(srcdir)/'`sci_gateway/c/sci_param3d.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_param3d.Tpo $(DEPDIR)/libscigraphics_la-sci_param3d.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_param3d.c' object='libscigraphics_la-sci_param3d.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_param3d.c' object='libscigraphics_la-sci_param3d.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_param3d.lo `test -f 'sci_gateway/sci_param3d.c' || echo '$(srcdir)/'`sci_gateway/sci_param3d.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_param3d.lo `test -f 'sci_gateway/c/sci_param3d.c' || echo '$(srcdir)/'`sci_gateway/c/sci_param3d.c
 
-libscigraphics_la-sci_contour2di.lo: sci_gateway/sci_contour2di.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_contour2di.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_contour2di.Tpo -c -o libscigraphics_la-sci_contour2di.lo `test -f 'sci_gateway/sci_contour2di.c' || echo '$(srcdir)/'`sci_gateway/sci_contour2di.c
+libscigraphics_la-sci_contour2di.lo: sci_gateway/c/sci_contour2di.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_contour2di.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_contour2di.Tpo -c -o libscigraphics_la-sci_contour2di.lo `test -f 'sci_gateway/c/sci_contour2di.c' || echo '$(srcdir)/'`sci_gateway/c/sci_contour2di.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_contour2di.Tpo $(DEPDIR)/libscigraphics_la-sci_contour2di.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_contour2di.c' object='libscigraphics_la-sci_contour2di.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_contour2di.c' object='libscigraphics_la-sci_contour2di.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_contour2di.lo `test -f 'sci_gateway/sci_contour2di.c' || echo '$(srcdir)/'`sci_gateway/sci_contour2di.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_contour2di.lo `test -f 'sci_gateway/c/sci_contour2di.c' || echo '$(srcdir)/'`sci_gateway/c/sci_contour2di.c
 
-libscigraphics_la-sci_driver.lo: sci_gateway/sci_driver.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_driver.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_driver.Tpo -c -o libscigraphics_la-sci_driver.lo `test -f 'sci_gateway/sci_driver.c' || echo '$(srcdir)/'`sci_gateway/sci_driver.c
+libscigraphics_la-sci_driver.lo: sci_gateway/c/sci_driver.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_driver.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_driver.Tpo -c -o libscigraphics_la-sci_driver.lo `test -f 'sci_gateway/c/sci_driver.c' || echo '$(srcdir)/'`sci_gateway/c/sci_driver.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_driver.Tpo $(DEPDIR)/libscigraphics_la-sci_driver.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_driver.c' object='libscigraphics_la-sci_driver.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_driver.c' object='libscigraphics_la-sci_driver.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_driver.lo `test -f 'sci_gateway/sci_driver.c' || echo '$(srcdir)/'`sci_gateway/sci_driver.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_driver.lo `test -f 'sci_gateway/c/sci_driver.c' || echo '$(srcdir)/'`sci_gateway/c/sci_driver.c
 
-libscigraphics_la-sci_xdel.lo: sci_gateway/sci_xdel.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xdel.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xdel.Tpo -c -o libscigraphics_la-sci_xdel.lo `test -f 'sci_gateway/sci_xdel.c' || echo '$(srcdir)/'`sci_gateway/sci_xdel.c
+libscigraphics_la-sci_xdel.lo: sci_gateway/c/sci_xdel.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xdel.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xdel.Tpo -c -o libscigraphics_la-sci_xdel.lo `test -f 'sci_gateway/c/sci_xdel.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xdel.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xdel.Tpo $(DEPDIR)/libscigraphics_la-sci_xdel.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_xdel.c' object='libscigraphics_la-sci_xdel.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xdel.c' object='libscigraphics_la-sci_xdel.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xdel.lo `test -f 'sci_gateway/sci_xdel.c' || echo '$(srcdir)/'`sci_gateway/sci_xdel.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xdel.lo `test -f 'sci_gateway/c/sci_xdel.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xdel.c
 
-libscigraphics_la-sci_winsid.lo: sci_gateway/sci_winsid.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_winsid.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_winsid.Tpo -c -o libscigraphics_la-sci_winsid.lo `test -f 'sci_gateway/sci_winsid.c' || echo '$(srcdir)/'`sci_gateway/sci_winsid.c
+libscigraphics_la-sci_winsid.lo: sci_gateway/c/sci_winsid.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_winsid.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_winsid.Tpo -c -o libscigraphics_la-sci_winsid.lo `test -f 'sci_gateway/c/sci_winsid.c' || echo '$(srcdir)/'`sci_gateway/c/sci_winsid.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_winsid.Tpo $(DEPDIR)/libscigraphics_la-sci_winsid.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_winsid.c' object='libscigraphics_la-sci_winsid.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_winsid.c' object='libscigraphics_la-sci_winsid.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_winsid.lo `test -f 'sci_gateway/sci_winsid.c' || echo '$(srcdir)/'`sci_gateway/sci_winsid.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_winsid.lo `test -f 'sci_gateway/c/sci_winsid.c' || echo '$(srcdir)/'`sci_gateway/c/sci_winsid.c
 
-libscigraphics_la-sci_addcb.lo: sci_gateway/sci_addcb.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_addcb.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_addcb.Tpo -c -o libscigraphics_la-sci_addcb.lo `test -f 'sci_gateway/sci_addcb.c' || echo '$(srcdir)/'`sci_gateway/sci_addcb.c
+libscigraphics_la-sci_addcb.lo: sci_gateway/c/sci_addcb.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_addcb.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_addcb.Tpo -c -o libscigraphics_la-sci_addcb.lo `test -f 'sci_gateway/c/sci_addcb.c' || echo '$(srcdir)/'`sci_gateway/c/sci_addcb.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_addcb.Tpo $(DEPDIR)/libscigraphics_la-sci_addcb.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_addcb.c' object='libscigraphics_la-sci_addcb.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_addcb.c' object='libscigraphics_la-sci_addcb.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_addcb.lo `test -f 'sci_gateway/sci_addcb.c' || echo '$(srcdir)/'`sci_gateway/sci_addcb.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_addcb.lo `test -f 'sci_gateway/c/sci_addcb.c' || echo '$(srcdir)/'`sci_gateway/c/sci_addcb.c
 
-libscigraphics_la-sci_fec.lo: sci_gateway/sci_fec.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_fec.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_fec.Tpo -c -o libscigraphics_la-sci_fec.lo `test -f 'sci_gateway/sci_fec.c' || echo '$(srcdir)/'`sci_gateway/sci_fec.c
+libscigraphics_la-sci_fec.lo: sci_gateway/c/sci_fec.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_fec.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_fec.Tpo -c -o libscigraphics_la-sci_fec.lo `test -f 'sci_gateway/c/sci_fec.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fec.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_fec.Tpo $(DEPDIR)/libscigraphics_la-sci_fec.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_fec.c' object='libscigraphics_la-sci_fec.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_fec.c' object='libscigraphics_la-sci_fec.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_fec.lo `test -f 'sci_gateway/sci_fec.c' || echo '$(srcdir)/'`sci_gateway/sci_fec.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_fec.lo `test -f 'sci_gateway/c/sci_fec.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fec.c
 
 mostlyclean-libtool:
 	-rm -f *.lo

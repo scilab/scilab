@@ -281,14 +281,14 @@ src/c/getentrieshashtable.c \
 src/c/loadhashtableslocalization.c \
 src/c/TerminateLocalization.c
 
-GATEWAY_C_SOURCES = sci_gateway/gw_localization.c \
-sci_gateway/sci_setlanguage.c \
-sci_gateway/sci_getlanguage.c \
-sci_gateway/sci_getlanguagealias.c \
-sci_gateway/sci_getlanguagestable.c \
-sci_gateway/sci_addtext.c \
-sci_gateway/sci_removetext.c \
-sci_gateway/sci_gettext.c
+GATEWAY_C_SOURCES = sci_gateway/c/gw_localization.c \
+sci_gateway/c/sci_setlanguage.c \
+sci_gateway/c/sci_getlanguage.c \
+sci_gateway/c/sci_getlanguagealias.c \
+sci_gateway/c/sci_getlanguagestable.c \
+sci_gateway/c/sci_addtext.c \
+sci_gateway/c/sci_removetext.c \
+sci_gateway/c/sci_gettext.c
 
 libscilocalization_la_CFLAGS = -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/ $(XML_FLAGS)
 libscilocalization_la_LDFLAGS = $(XML_LIBS)
@@ -517,61 +517,61 @@ libscilocalization_la-TerminateLocalization.lo: src/c/TerminateLocalization.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -c -o libscilocalization_la-TerminateLocalization.lo `test -f 'src/c/TerminateLocalization.c' || echo '$(srcdir)/'`src/c/TerminateLocalization.c
 
-libscilocalization_la-gw_localization.lo: sci_gateway/gw_localization.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -MT libscilocalization_la-gw_localization.lo -MD -MP -MF $(DEPDIR)/libscilocalization_la-gw_localization.Tpo -c -o libscilocalization_la-gw_localization.lo `test -f 'sci_gateway/gw_localization.c' || echo '$(srcdir)/'`sci_gateway/gw_localization.c
+libscilocalization_la-gw_localization.lo: sci_gateway/c/gw_localization.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -MT libscilocalization_la-gw_localization.lo -MD -MP -MF $(DEPDIR)/libscilocalization_la-gw_localization.Tpo -c -o libscilocalization_la-gw_localization.lo `test -f 'sci_gateway/c/gw_localization.c' || echo '$(srcdir)/'`sci_gateway/c/gw_localization.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscilocalization_la-gw_localization.Tpo $(DEPDIR)/libscilocalization_la-gw_localization.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/gw_localization.c' object='libscilocalization_la-gw_localization.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/gw_localization.c' object='libscilocalization_la-gw_localization.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -c -o libscilocalization_la-gw_localization.lo `test -f 'sci_gateway/gw_localization.c' || echo '$(srcdir)/'`sci_gateway/gw_localization.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -c -o libscilocalization_la-gw_localization.lo `test -f 'sci_gateway/c/gw_localization.c' || echo '$(srcdir)/'`sci_gateway/c/gw_localization.c
 
-libscilocalization_la-sci_setlanguage.lo: sci_gateway/sci_setlanguage.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -MT libscilocalization_la-sci_setlanguage.lo -MD -MP -MF $(DEPDIR)/libscilocalization_la-sci_setlanguage.Tpo -c -o libscilocalization_la-sci_setlanguage.lo `test -f 'sci_gateway/sci_setlanguage.c' || echo '$(srcdir)/'`sci_gateway/sci_setlanguage.c
+libscilocalization_la-sci_setlanguage.lo: sci_gateway/c/sci_setlanguage.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -MT libscilocalization_la-sci_setlanguage.lo -MD -MP -MF $(DEPDIR)/libscilocalization_la-sci_setlanguage.Tpo -c -o libscilocalization_la-sci_setlanguage.lo `test -f 'sci_gateway/c/sci_setlanguage.c' || echo '$(srcdir)/'`sci_gateway/c/sci_setlanguage.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscilocalization_la-sci_setlanguage.Tpo $(DEPDIR)/libscilocalization_la-sci_setlanguage.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_setlanguage.c' object='libscilocalization_la-sci_setlanguage.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_setlanguage.c' object='libscilocalization_la-sci_setlanguage.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -c -o libscilocalization_la-sci_setlanguage.lo `test -f 'sci_gateway/sci_setlanguage.c' || echo '$(srcdir)/'`sci_gateway/sci_setlanguage.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -c -o libscilocalization_la-sci_setlanguage.lo `test -f 'sci_gateway/c/sci_setlanguage.c' || echo '$(srcdir)/'`sci_gateway/c/sci_setlanguage.c
 
-libscilocalization_la-sci_getlanguage.lo: sci_gateway/sci_getlanguage.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -MT libscilocalization_la-sci_getlanguage.lo -MD -MP -MF $(DEPDIR)/libscilocalization_la-sci_getlanguage.Tpo -c -o libscilocalization_la-sci_getlanguage.lo `test -f 'sci_gateway/sci_getlanguage.c' || echo '$(srcdir)/'`sci_gateway/sci_getlanguage.c
+libscilocalization_la-sci_getlanguage.lo: sci_gateway/c/sci_getlanguage.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -MT libscilocalization_la-sci_getlanguage.lo -MD -MP -MF $(DEPDIR)/libscilocalization_la-sci_getlanguage.Tpo -c -o libscilocalization_la-sci_getlanguage.lo `test -f 'sci_gateway/c/sci_getlanguage.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getlanguage.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscilocalization_la-sci_getlanguage.Tpo $(DEPDIR)/libscilocalization_la-sci_getlanguage.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_getlanguage.c' object='libscilocalization_la-sci_getlanguage.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_getlanguage.c' object='libscilocalization_la-sci_getlanguage.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -c -o libscilocalization_la-sci_getlanguage.lo `test -f 'sci_gateway/sci_getlanguage.c' || echo '$(srcdir)/'`sci_gateway/sci_getlanguage.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -c -o libscilocalization_la-sci_getlanguage.lo `test -f 'sci_gateway/c/sci_getlanguage.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getlanguage.c
 
-libscilocalization_la-sci_getlanguagealias.lo: sci_gateway/sci_getlanguagealias.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -MT libscilocalization_la-sci_getlanguagealias.lo -MD -MP -MF $(DEPDIR)/libscilocalization_la-sci_getlanguagealias.Tpo -c -o libscilocalization_la-sci_getlanguagealias.lo `test -f 'sci_gateway/sci_getlanguagealias.c' || echo '$(srcdir)/'`sci_gateway/sci_getlanguagealias.c
+libscilocalization_la-sci_getlanguagealias.lo: sci_gateway/c/sci_getlanguagealias.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -MT libscilocalization_la-sci_getlanguagealias.lo -MD -MP -MF $(DEPDIR)/libscilocalization_la-sci_getlanguagealias.Tpo -c -o libscilocalization_la-sci_getlanguagealias.lo `test -f 'sci_gateway/c/sci_getlanguagealias.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getlanguagealias.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscilocalization_la-sci_getlanguagealias.Tpo $(DEPDIR)/libscilocalization_la-sci_getlanguagealias.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_getlanguagealias.c' object='libscilocalization_la-sci_getlanguagealias.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_getlanguagealias.c' object='libscilocalization_la-sci_getlanguagealias.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -c -o libscilocalization_la-sci_getlanguagealias.lo `test -f 'sci_gateway/sci_getlanguagealias.c' || echo '$(srcdir)/'`sci_gateway/sci_getlanguagealias.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -c -o libscilocalization_la-sci_getlanguagealias.lo `test -f 'sci_gateway/c/sci_getlanguagealias.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getlanguagealias.c
 
-libscilocalization_la-sci_getlanguagestable.lo: sci_gateway/sci_getlanguagestable.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -MT libscilocalization_la-sci_getlanguagestable.lo -MD -MP -MF $(DEPDIR)/libscilocalization_la-sci_getlanguagestable.Tpo -c -o libscilocalization_la-sci_getlanguagestable.lo `test -f 'sci_gateway/sci_getlanguagestable.c' || echo '$(srcdir)/'`sci_gateway/sci_getlanguagestable.c
+libscilocalization_la-sci_getlanguagestable.lo: sci_gateway/c/sci_getlanguagestable.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -MT libscilocalization_la-sci_getlanguagestable.lo -MD -MP -MF $(DEPDIR)/libscilocalization_la-sci_getlanguagestable.Tpo -c -o libscilocalization_la-sci_getlanguagestable.lo `test -f 'sci_gateway/c/sci_getlanguagestable.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getlanguagestable.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscilocalization_la-sci_getlanguagestable.Tpo $(DEPDIR)/libscilocalization_la-sci_getlanguagestable.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_getlanguagestable.c' object='libscilocalization_la-sci_getlanguagestable.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_getlanguagestable.c' object='libscilocalization_la-sci_getlanguagestable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -c -o libscilocalization_la-sci_getlanguagestable.lo `test -f 'sci_gateway/sci_getlanguagestable.c' || echo '$(srcdir)/'`sci_gateway/sci_getlanguagestable.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -c -o libscilocalization_la-sci_getlanguagestable.lo `test -f 'sci_gateway/c/sci_getlanguagestable.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getlanguagestable.c
 
-libscilocalization_la-sci_addtext.lo: sci_gateway/sci_addtext.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -MT libscilocalization_la-sci_addtext.lo -MD -MP -MF $(DEPDIR)/libscilocalization_la-sci_addtext.Tpo -c -o libscilocalization_la-sci_addtext.lo `test -f 'sci_gateway/sci_addtext.c' || echo '$(srcdir)/'`sci_gateway/sci_addtext.c
+libscilocalization_la-sci_addtext.lo: sci_gateway/c/sci_addtext.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -MT libscilocalization_la-sci_addtext.lo -MD -MP -MF $(DEPDIR)/libscilocalization_la-sci_addtext.Tpo -c -o libscilocalization_la-sci_addtext.lo `test -f 'sci_gateway/c/sci_addtext.c' || echo '$(srcdir)/'`sci_gateway/c/sci_addtext.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscilocalization_la-sci_addtext.Tpo $(DEPDIR)/libscilocalization_la-sci_addtext.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_addtext.c' object='libscilocalization_la-sci_addtext.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_addtext.c' object='libscilocalization_la-sci_addtext.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -c -o libscilocalization_la-sci_addtext.lo `test -f 'sci_gateway/sci_addtext.c' || echo '$(srcdir)/'`sci_gateway/sci_addtext.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -c -o libscilocalization_la-sci_addtext.lo `test -f 'sci_gateway/c/sci_addtext.c' || echo '$(srcdir)/'`sci_gateway/c/sci_addtext.c
 
-libscilocalization_la-sci_removetext.lo: sci_gateway/sci_removetext.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -MT libscilocalization_la-sci_removetext.lo -MD -MP -MF $(DEPDIR)/libscilocalization_la-sci_removetext.Tpo -c -o libscilocalization_la-sci_removetext.lo `test -f 'sci_gateway/sci_removetext.c' || echo '$(srcdir)/'`sci_gateway/sci_removetext.c
+libscilocalization_la-sci_removetext.lo: sci_gateway/c/sci_removetext.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -MT libscilocalization_la-sci_removetext.lo -MD -MP -MF $(DEPDIR)/libscilocalization_la-sci_removetext.Tpo -c -o libscilocalization_la-sci_removetext.lo `test -f 'sci_gateway/c/sci_removetext.c' || echo '$(srcdir)/'`sci_gateway/c/sci_removetext.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscilocalization_la-sci_removetext.Tpo $(DEPDIR)/libscilocalization_la-sci_removetext.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_removetext.c' object='libscilocalization_la-sci_removetext.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_removetext.c' object='libscilocalization_la-sci_removetext.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -c -o libscilocalization_la-sci_removetext.lo `test -f 'sci_gateway/sci_removetext.c' || echo '$(srcdir)/'`sci_gateway/sci_removetext.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -c -o libscilocalization_la-sci_removetext.lo `test -f 'sci_gateway/c/sci_removetext.c' || echo '$(srcdir)/'`sci_gateway/c/sci_removetext.c
 
-libscilocalization_la-sci_gettext.lo: sci_gateway/sci_gettext.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -MT libscilocalization_la-sci_gettext.lo -MD -MP -MF $(DEPDIR)/libscilocalization_la-sci_gettext.Tpo -c -o libscilocalization_la-sci_gettext.lo `test -f 'sci_gateway/sci_gettext.c' || echo '$(srcdir)/'`sci_gateway/sci_gettext.c
+libscilocalization_la-sci_gettext.lo: sci_gateway/c/sci_gettext.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -MT libscilocalization_la-sci_gettext.lo -MD -MP -MF $(DEPDIR)/libscilocalization_la-sci_gettext.Tpo -c -o libscilocalization_la-sci_gettext.lo `test -f 'sci_gateway/c/sci_gettext.c' || echo '$(srcdir)/'`sci_gateway/c/sci_gettext.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscilocalization_la-sci_gettext.Tpo $(DEPDIR)/libscilocalization_la-sci_gettext.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_gettext.c' object='libscilocalization_la-sci_gettext.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_gettext.c' object='libscilocalization_la-sci_gettext.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -c -o libscilocalization_la-sci_gettext.lo `test -f 'sci_gateway/sci_gettext.c' || echo '$(srcdir)/'`sci_gateway/sci_gettext.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -c -o libscilocalization_la-sci_gettext.lo `test -f 'sci_gateway/c/sci_gettext.c' || echo '$(srcdir)/'`sci_gateway/c/sci_gettext.c
 
 mostlyclean-libtool:
 	-rm -f *.lo
