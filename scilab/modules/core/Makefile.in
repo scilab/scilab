@@ -113,8 +113,9 @@ am__libscicore_la_SOURCES_DIST = src/c/history.c src/c/inffic.c \
 	src/c/with_module.c src/c/loadversion.c src/c/version.c \
 	src/c/stackinfo.c src/c/scirun.c src/c/SCIHOME.c \
 	src/c/warningmode.c src/c/InitializeCore.c \
-	src/c/TerminateCore.c src/c/coretable.c src/c/getarg-hpux.c \
-	src/c/getarg.c src/fortran/algebre.f src/fortran/clunit.f \
+	src/c/TerminateCore.c src/c/coretable.c src/c/error_scilab.c \
+	src/c/message_scilab.c src/c/getarg-hpux.c src/c/getarg.c \
+	src/fortran/algebre.f src/fortran/clunit.f \
 	src/fortran/complexify.f src/fortran/allowptr.f \
 	src/fortran/dldsp.f src/fortran/bcol.f src/fortran/msgs.f \
 	src/fortran/getlin.f src/fortran/isany.f \
@@ -269,6 +270,7 @@ am__objects_3 = libscicore_la-history.lo libscicore_la-inffic.lo \
 	libscicore_la-scirun.lo libscicore_la-SCIHOME.lo \
 	libscicore_la-warningmode.lo libscicore_la-InitializeCore.lo \
 	libscicore_la-TerminateCore.lo libscicore_la-coretable.lo \
+	libscicore_la-error_scilab.lo libscicore_la-message_scilab.lo \
 	$(am__objects_1) $(am__objects_2)
 @IS_HPUX_TRUE@am__objects_4 = fgetarg-hpux.lo
 @IS_HPUX_FALSE@am__objects_5 = fgetarg.lo
@@ -547,8 +549,8 @@ CORE_C_SOURCES = src/c/history.c src/c/inffic.c src/c/cs2st.c \
 	src/c/with_module.c src/c/loadversion.c src/c/version.c \
 	src/c/stackinfo.c src/c/scirun.c src/c/SCIHOME.c \
 	src/c/warningmode.c src/c/InitializeCore.c \
-	src/c/TerminateCore.c src/c/coretable.c $(am__append_2) \
-	$(am__append_4)
+	src/c/TerminateCore.c src/c/coretable.c src/c/error_scilab.c \
+	src/c/message_scilab.c $(am__append_2) $(am__append_4)
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f src/fortran/clunit.f \
 	src/fortran/complexify.f src/fortran/allowptr.f \
 	src/fortran/dldsp.f src/fortran/bcol.f src/fortran/msgs.f \
@@ -779,7 +781,8 @@ includes/FTables.h \
 includes/scirun.h \
 includes/fromjava.h \
 includes/getarg.h \
-includes/inisci-c.h
+includes/inisci-c.h \
+includes/error_scilab.h
 
 
 #### core : demos files ####
@@ -923,6 +926,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-csignal.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-cvstr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-dynamic_menus.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-error_scilab.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-flags.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-fromc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-fromjava.Plo@am__quote@
@@ -945,6 +949,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-matus2.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-matusr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-md5.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-message_scilab.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-mexlib.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-msgout.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-msgstore.Plo@am__quote@
@@ -1536,6 +1541,20 @@ libscicore_la-coretable.lo: src/c/coretable.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/coretable.c' object='libscicore_la-coretable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-coretable.lo `test -f 'src/c/coretable.c' || echo '$(srcdir)/'`src/c/coretable.c
+
+libscicore_la-error_scilab.lo: src/c/error_scilab.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-error_scilab.lo -MD -MP -MF $(DEPDIR)/libscicore_la-error_scilab.Tpo -c -o libscicore_la-error_scilab.lo `test -f 'src/c/error_scilab.c' || echo '$(srcdir)/'`src/c/error_scilab.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-error_scilab.Tpo $(DEPDIR)/libscicore_la-error_scilab.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/error_scilab.c' object='libscicore_la-error_scilab.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-error_scilab.lo `test -f 'src/c/error_scilab.c' || echo '$(srcdir)/'`src/c/error_scilab.c
+
+libscicore_la-message_scilab.lo: src/c/message_scilab.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-message_scilab.lo -MD -MP -MF $(DEPDIR)/libscicore_la-message_scilab.Tpo -c -o libscicore_la-message_scilab.lo `test -f 'src/c/message_scilab.c' || echo '$(srcdir)/'`src/c/message_scilab.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-message_scilab.Tpo $(DEPDIR)/libscicore_la-message_scilab.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/message_scilab.c' object='libscicore_la-message_scilab.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-message_scilab.lo `test -f 'src/c/message_scilab.c' || echo '$(srcdir)/'`src/c/message_scilab.c
 
 libscicore_la-getarg-hpux.lo: src/c/getarg-hpux.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-getarg-hpux.lo -MD -MP -MF $(DEPDIR)/libscicore_la-getarg-hpux.Tpo -c -o libscicore_la-getarg-hpux.lo `test -f 'src/c/getarg-hpux.c' || echo '$(srcdir)/'`src/c/getarg-hpux.c
