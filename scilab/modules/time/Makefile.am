@@ -8,13 +8,13 @@ TIME_C_SOURCES = src/c/realtime.c \
 src/c/timer.c \
 src/c/getdate.c
 
-GATEWAY_C_SOURCES = sci_gateway/sci_realtime.c \
-sci_gateway/sci_timer.c \
-sci_gateway/sci_calendar.c \
-sci_gateway/sci_xpause.c \
-sci_gateway/sci_sleep.c \
-sci_gateway/sci_getdate.c \
-sci_gateway/gw_time.c
+GATEWAY_C_SOURCES = sci_gateway/c/sci_realtime.c \
+sci_gateway/c/sci_timer.c \
+sci_gateway/c/sci_calendar.c \
+sci_gateway/c/sci_xpause.c \
+sci_gateway/c/sci_sleep.c \
+sci_gateway/c/sci_getdate.c \
+sci_gateway/c/gw_time.c
 
 libscitime_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/ -Isrc/c/
 

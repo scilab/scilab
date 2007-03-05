@@ -174,7 +174,7 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath=".\sci_gateway\gw_pvm.c"
+				RelativePath=".\sci_gateway\c\gw_pvm.c"
 				>
 			</File>
 			<File
@@ -198,135 +198,135 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_pvm_addhosts.c"
+				RelativePath=".\sci_gateway\c\sci_pvm_addhosts.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_pvm_barrier.c"
+				RelativePath=".\sci_gateway\c\sci_pvm_barrier.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_pvm_bcast.c"
+				RelativePath=".\sci_gateway\c\sci_pvm_bcast.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_pvm_bufinfo.c"
+				RelativePath=".\sci_gateway\c\sci_pvm_bufinfo.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_pvm_config.c"
+				RelativePath=".\sci_gateway\c\sci_pvm_config.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_pvm_delhosts.c"
+				RelativePath=".\sci_gateway\c\sci_pvm_delhosts.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_pvm_error.c"
+				RelativePath=".\sci_gateway\c\sci_pvm_error.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_pvm_error_mode.c"
+				RelativePath=".\sci_gateway\c\sci_pvm_error_mode.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_pvm_exit.c"
+				RelativePath=".\sci_gateway\c\sci_pvm_exit.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_pvm_f772sci.c"
+				RelativePath=".\sci_gateway\c\sci_pvm_f772sci.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_pvm_get_timer.c"
+				RelativePath=".\sci_gateway\c\sci_pvm_get_timer.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_pvm_getinst.c"
+				RelativePath=".\sci_gateway\c\sci_pvm_getinst.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_pvm_gettid.c"
+				RelativePath=".\sci_gateway\c\sci_pvm_gettid.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_pvm_gsize.c"
+				RelativePath=".\sci_gateway\c\sci_pvm_gsize.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_pvm_halt.c"
+				RelativePath=".\sci_gateway\c\sci_pvm_halt.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_pvm_joingroup.c"
+				RelativePath=".\sci_gateway\c\sci_pvm_joingroup.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_pvm_kill.c"
+				RelativePath=".\sci_gateway\c\sci_pvm_kill.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_pvm_lvgroup.c"
+				RelativePath=".\sci_gateway\c\sci_pvm_lvgroup.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_pvm_mytid.c"
+				RelativePath=".\sci_gateway\c\sci_pvm_mytid.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_pvm_parent.c"
+				RelativePath=".\sci_gateway\c\sci_pvm_parent.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_pvm_probe.c"
+				RelativePath=".\sci_gateway\c\sci_pvm_probe.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_pvm_recv.c"
+				RelativePath=".\sci_gateway\c\sci_pvm_recv.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_pvm_recv_var.c"
+				RelativePath=".\sci_gateway\c\sci_pvm_recv_var.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_pvm_reduce.c"
+				RelativePath=".\sci_gateway\c\sci_pvm_reduce.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_pvm_sci2f77.c"
+				RelativePath=".\sci_gateway\c\sci_pvm_sci2f77.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_pvm_send.c"
+				RelativePath=".\sci_gateway\c\sci_pvm_send.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_pvm_send_var.c"
+				RelativePath=".\sci_gateway\c\sci_pvm_send_var.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_pvm_set_timer.c"
+				RelativePath=".\sci_gateway\c\sci_pvm_set_timer.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_pvm_spawn.c"
+				RelativePath=".\sci_gateway\c\sci_pvm_spawn.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_pvm_spawn_independent.c"
+				RelativePath=".\sci_gateway\c\sci_pvm_spawn_independent.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_pvm_start.c"
+				RelativePath=".\sci_gateway\c\sci_pvm_start.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_pvm_tasks.c"
+				RelativePath=".\sci_gateway\c\sci_pvm_tasks.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_pvm_tidtohost.c"
+				RelativePath=".\sci_gateway\c\sci_pvm_tidtohost.c"
 				>
 			</File>
 			<File

@@ -9,11 +9,11 @@ src/c/libst.c \
 src/c/wav.c \
 src/c/misc.c
 
-GATEWAY_C_SOURCES = sci_gateway/sci_savewave.c \
-sci_gateway/sci_loadwave.c \
-sci_gateway/gw_sound.c \
-sci_gateway/sci_beep.c \
-sci_gateway/sci_PlaySound.c
+GATEWAY_C_SOURCES = sci_gateway/c/sci_savewave.c \
+sci_gateway/c/sci_loadwave.c \
+sci_gateway/c/gw_sound.c \
+sci_gateway/c/sci_beep.c \
+sci_gateway/c/sci_PlaySound.c
 
 
 libscisound_la_CFLAGS=  -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/

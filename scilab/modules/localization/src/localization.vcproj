@@ -211,7 +211,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\sci_gateway\gw_localization.c"
+				RelativePath="..\sci_gateway\c\gw_localization.c"
 				>
 			</File>
 			<File
@@ -235,31 +235,31 @@
 				>
 			</File>
 			<File
-				RelativePath="..\sci_gateway\sci_addtext.c"
+				RelativePath="..\sci_gateway\c\sci_addtext.c"
 				>
 			</File>
 			<File
-				RelativePath="..\sci_gateway\sci_getlanguage.c"
+				RelativePath="..\sci_gateway\c\sci_getlanguage.c"
 				>
 			</File>
 			<File
-				RelativePath="..\sci_gateway\sci_getlanguagealias.c"
+				RelativePath="..\sci_gateway\c\sci_getlanguagealias.c"
 				>
 			</File>
 			<File
-				RelativePath="..\sci_gateway\sci_getlanguagestable.c"
+				RelativePath="..\sci_gateway\c\sci_getlanguagestable.c"
 				>
 			</File>
 			<File
-				RelativePath="..\sci_gateway\sci_gettext.c"
+				RelativePath="..\sci_gateway\c\sci_gettext.c"
 				>
 			</File>
 			<File
-				RelativePath="..\sci_gateway\sci_removetext.c"
+				RelativePath="..\sci_gateway\c\sci_removetext.c"
 				>
 			</File>
 			<File
-				RelativePath="..\sci_gateway\sci_setlanguage.c"
+				RelativePath="..\sci_gateway\c\sci_setlanguage.c"
 				>
 			</File>
 			<File
@@ -304,11 +304,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\sci_gateway\sci_getlanguage.h"
+				RelativePath="..\sci_gateway\c\sci_getlanguage.h"
 				>
 			</File>
 			<File
-				RelativePath="..\sci_gateway\sci_setlanguage.h"
+				RelativePath="..\sci_gateway\c\sci_setlanguage.h"
 				>
 			</File>
 			<File

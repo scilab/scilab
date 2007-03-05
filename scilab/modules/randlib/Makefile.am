@@ -36,8 +36,8 @@ src/fortran/genmul.f \
 src/fortran/genprm.f \
 src/fortran/gennor.f
 
-GATEWAY_C_SOURCES = sci_gateway/gw_randlib.c \
-sci_gateway/sci_grand.c
+GATEWAY_C_SOURCES = sci_gateway/c/gw_randlib.c \
+sci_gateway/c/sci_grand.c
 
 libscirandlib_la_CFLAGS=  -Iincludes/ 
 #-Isrc/c/

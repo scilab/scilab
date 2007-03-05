@@ -202,31 +202,31 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\gw_arnoldi.c"
+				RelativePath=".\sci_gateway\c\gw_arnoldi.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_dnaupd.c"
+				RelativePath=".\sci_gateway\c\sci_dnaupd.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_dneupd.c"
+				RelativePath=".\sci_gateway\c\sci_dneupd.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_dsaupd.c"
+				RelativePath=".\sci_gateway\c\sci_dsaupd.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_dseupd.c"
+				RelativePath=".\sci_gateway\c\sci_dseupd.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_znaupd.c"
+				RelativePath=".\sci_gateway\c\sci_znaupd.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_zneupd.c"
+				RelativePath=".\sci_gateway\c\sci_zneupd.c"
 				>
 			</File>
 		</Filter>

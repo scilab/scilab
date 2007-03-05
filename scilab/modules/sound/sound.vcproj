@@ -196,7 +196,7 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\sci_gateway\gw_sound.c"
+				RelativePath=".\sci_gateway\c\gw_sound.c"
 				>
 			</File>
 			<File
@@ -212,19 +212,19 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_beep.c"
+				RelativePath=".\sci_gateway\c\sci_beep.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_loadwave.c"
+				RelativePath=".\sci_gateway\c\sci_loadwave.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_PlaySound.c"
+				RelativePath=".\sci_gateway\c\sci_PlaySound.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_savewave.c"
+				RelativePath=".\sci_gateway\c\sci_savewave.c"
 				>
 			</File>
 			<File

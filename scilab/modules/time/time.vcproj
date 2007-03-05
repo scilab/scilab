@@ -201,7 +201,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\gw_time.c"
+				RelativePath=".\sci_gateway\c\gw_time.c"
 				>
 			</File>
 			<File
@@ -209,27 +209,27 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_calendar.c"
+				RelativePath=".\sci_gateway\c\sci_calendar.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_getdate.c"
+				RelativePath=".\sci_gateway\c\sci_getdate.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_realtime.c"
+				RelativePath=".\sci_gateway\c\sci_realtime.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_sleep.c"
+				RelativePath=".\sci_gateway\c\sci_sleep.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_timer.c"
+				RelativePath=".\sci_gateway\c\sci_timer.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xpause.c"
+				RelativePath=".\sci_gateway\c\sci_xpause.c"
 				>
 			</File>
 			<File

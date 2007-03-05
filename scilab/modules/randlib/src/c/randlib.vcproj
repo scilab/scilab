@@ -185,7 +185,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\gw_randlib.c"
+				RelativePath="..\..\sci_gateway\c\gw_randlib.c"
 				>
 			</File>
 			<File
@@ -201,7 +201,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\sci_grand.c"
+				RelativePath="..\..\sci_gateway\c\sci_grand.c"
 				>
 			</File>
 			<File

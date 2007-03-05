@@ -208,43 +208,43 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\gw_fftw.c"
+				RelativePath=".\sci_gateway\c\gw_fftw.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_disposefftwlibrary.c"
+				RelativePath=".\sci_gateway\c\sci_disposefftwlibrary.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_fftw.c"
+				RelativePath=".\sci_gateway\c\sci_fftw.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_fftw_flags.c"
+				RelativePath=".\sci_gateway\c\sci_fftw_flags.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_fftw_inplace.c"
+				RelativePath=".\sci_gateway\c\sci_fftw_inplace.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_fftw_norm.c"
+				RelativePath=".\sci_gateway\c\sci_fftw_norm.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_fftwlibraryisloaded.c"
+				RelativePath=".\sci_gateway\c\sci_fftwlibraryisloaded.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_freefftw_plan.c"
+				RelativePath=".\sci_gateway\c\sci_freefftw_plan.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_loadfftwlibrary.c"
+				RelativePath=".\sci_gateway\c\sci_loadfftwlibrary.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_pushfftw_plan.c"
+				RelativePath=".\sci_gateway\c\sci_pushfftw_plan.c"
 				>
 			</File>
 		</Filter>

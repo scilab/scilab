@@ -12,14 +12,14 @@ src/c/getentrieshashtable.c \
 src/c/loadhashtableslocalization.c \
 src/c/TerminateLocalization.c
 
-GATEWAY_C_SOURCES = sci_gateway/gw_localization.c \
-sci_gateway/sci_setlanguage.c \
-sci_gateway/sci_getlanguage.c \
-sci_gateway/sci_getlanguagealias.c \
-sci_gateway/sci_getlanguagestable.c \
-sci_gateway/sci_addtext.c \
-sci_gateway/sci_removetext.c \
-sci_gateway/sci_gettext.c
+GATEWAY_C_SOURCES = sci_gateway/c/gw_localization.c \
+sci_gateway/c/sci_setlanguage.c \
+sci_gateway/c/sci_getlanguage.c \
+sci_gateway/c/sci_getlanguagealias.c \
+sci_gateway/c/sci_getlanguagestable.c \
+sci_gateway/c/sci_addtext.c \
+sci_gateway/c/sci_removetext.c \
+sci_gateway/c/sci_gettext.c
 
 
 libscilocalization_la_CFLAGS=  -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/ $(XML_FLAGS)

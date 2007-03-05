@@ -4,24 +4,24 @@
 ##########
 
 
-GATEWAY_C_SOURCES = sci_gateway/sci_mcisendstring.c \
-sci_gateway/sci_toolbar.c \
-sci_gateway/sci_printbox.c \
-sci_gateway/sci_consoledos.c \
-sci_gateway/intpathname.c \
-sci_gateway/sci_about.c \
-sci_gateway/sci_winqueryreg.c \
-sci_gateway/gw_wintools.c \
-sci_gateway/sci_winopen.c \
-sci_gateway/sci_setlanguagemenu.c \
-sci_gateway/sci_fileassociationbox.c \
-sci_gateway/sci_dos.c \
-sci_gateway/intihmcolor.c \
-sci_gateway/sci_dde.c \
-sci_gateway/intOEMconvert.c \
-sci_gateway/sci_toprint.c \
-sci_gateway/sci_clipboard.c \
-sci_gateway/sci_findfileassociation.c
+GATEWAY_C_SOURCES = sci_gateway/c/sci_mcisendstring.c \
+sci_gateway/c/sci_toolbar.c \
+sci_gateway/c/sci_printbox.c \
+sci_gateway/c/sci_consoledos.c \
+sci_gateway/c/intpathname.c \
+sci_gateway/c/sci_about.c \
+sci_gateway/c/sci_winqueryreg.c \
+sci_gateway/c/gw_wintools.c \
+sci_gateway/c/sci_winopen.c \
+sci_gateway/c/sci_setlanguagemenu.c \
+sci_gateway/c/sci_fileassociationbox.c \
+sci_gateway/c/sci_dos.c \
+sci_gateway/c/intihmcolor.c \
+sci_gateway/c/sci_dde.c \
+sci_gateway/c/intOEMconvert.c \
+sci_gateway/c/sci_toprint.c \
+sci_gateway/c/sci_clipboard.c \
+sci_gateway/c/sci_findfileassociation.c
 
 libsciwintools_la_CFLAGS= -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 

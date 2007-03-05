@@ -207,7 +207,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\gw_tclsci.c"
+				RelativePath=".\sci_gateway\c\gw_tclsci.c"
 				>
 			</File>
 			<File
@@ -219,79 +219,79 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_close.c"
+				RelativePath=".\sci_gateway\c\sci_close.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_findobj.c"
+				RelativePath=".\sci_gateway\c\sci_findobj.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_get.c"
+				RelativePath=".\sci_gateway\c\sci_get.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_opentk.c"
+				RelativePath=".\sci_gateway\c\sci_opentk.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_set.c"
+				RelativePath=".\sci_gateway\c\sci_set.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_TCL_CreateSlave.c"
+				RelativePath=".\sci_gateway\c\sci_TCL_CreateSlave.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_TCL_DeleteInterp.c"
+				RelativePath=".\sci_gateway\c\sci_TCL_DeleteInterp.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_TCL_DoOneEvent.c"
+				RelativePath=".\sci_gateway\c\sci_TCL_DoOneEvent.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_TCL_EvalFile.c"
+				RelativePath=".\sci_gateway\c\sci_TCL_EvalFile.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_TCL_EvalStr.c"
+				RelativePath=".\sci_gateway\c\sci_TCL_EvalStr.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_TCL_ExistArray.c"
+				RelativePath=".\sci_gateway\c\sci_TCL_ExistArray.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_TCL_ExistInterp.c"
+				RelativePath=".\sci_gateway\c\sci_TCL_ExistInterp.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_TCL_ExistVar.c"
+				RelativePath=".\sci_gateway\c\sci_TCL_ExistVar.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_TCL_gcf.c"
+				RelativePath=".\sci_gateway\c\sci_TCL_gcf.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_TCL_GetVar.c"
+				RelativePath=".\sci_gateway\c\sci_TCL_GetVar.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_TCL_GetVersion.c"
+				RelativePath=".\sci_gateway\c\sci_TCL_GetVersion.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_TCL_SetVar.c"
+				RelativePath=".\sci_gateway\c\sci_TCL_SetVar.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_TCL_UnsetVar.c"
+				RelativePath=".\sci_gateway\c\sci_TCL_UnsetVar.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_TCL_UpVar.c"
+				RelativePath=".\sci_gateway\c\sci_TCL_UpVar.c"
 				>
 			</File>
 			<File

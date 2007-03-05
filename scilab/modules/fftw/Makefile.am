@@ -15,16 +15,16 @@ FFTW_C_SOURCES = src/c/callfftw_Linux.c \
 src/c/fftwlibname.c \
 src/c/fftw_utilities.c
 
-GATEWAY_C_SOURCES = sci_gateway/gw_fftw.c \
-	sci_gateway/sci_fftwlibraryisloaded.c \
-	sci_gateway/sci_disposefftwlibrary.c \
-	sci_gateway/sci_fftw_norm.c \
-	sci_gateway/sci_fftw.c \
-	sci_gateway/sci_freefftw_plan.c \
-	sci_gateway/sci_fftw_flags.c \
-	sci_gateway/sci_loadfftwlibrary.c \
-	sci_gateway/sci_fftw_inplace.c \
-	sci_gateway/sci_pushfftw_plan.c
+GATEWAY_C_SOURCES = sci_gateway/c/gw_fftw.c \
+	sci_gateway/c/sci_fftwlibraryisloaded.c \
+	sci_gateway/c/sci_disposefftwlibrary.c \
+	sci_gateway/c/sci_fftw_norm.c \
+	sci_gateway/c/sci_fftw.c \
+	sci_gateway/c/sci_freefftw_plan.c \
+	sci_gateway/c/sci_fftw_flags.c \
+	sci_gateway/c/sci_loadfftwlibrary.c \
+	sci_gateway/c/sci_fftw_inplace.c \
+	sci_gateway/c/sci_pushfftw_plan.c
 
 
 #### fftw : Conf files ####

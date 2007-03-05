@@ -201,11 +201,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\gw_fileio.c"
+				RelativePath=".\sci_gateway\c\gw_fileio.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\intreadxls.c"
+				RelativePath=".\sci_gateway\c\intreadxls.c"
 				>
 			</File>
 			<File
@@ -233,51 +233,51 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_fileio.c"
+				RelativePath=".\sci_gateway\c\sci_fileio.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_fprintfMat.c"
+				RelativePath=".\sci_gateway\c\sci_fprintfMat.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_fscanfMat.c"
+				RelativePath=".\sci_gateway\c\sci_fscanfMat.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_mfprintf.c"
+				RelativePath=".\sci_gateway\c\sci_mfprintf.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_mfscanf.c"
+				RelativePath=".\sci_gateway\c\sci_mfscanf.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_mprintf.c"
+				RelativePath=".\sci_gateway\c\sci_mprintf.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_mscanf.c"
+				RelativePath=".\sci_gateway\c\sci_mscanf.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_msprintf.c"
+				RelativePath=".\sci_gateway\c\sci_msprintf.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_msscanf.c"
+				RelativePath=".\sci_gateway\c\sci_msscanf.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_NumTokens.c"
+				RelativePath=".\sci_gateway\c\sci_NumTokens.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xls_open.c"
+				RelativePath=".\sci_gateway\c\sci_xls_open.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_xls_read.c"
+				RelativePath=".\sci_gateway\c\sci_xls_read.c"
 				>
 			</File>
 			<File
@@ -314,7 +314,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\intreadxls.h"
+				RelativePath=".\sci_gateway\c\intreadxls.h"
 				>
 			</File>
 			<File

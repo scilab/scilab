@@ -19,20 +19,20 @@ src/c/do_xxprintf.c \
 src/c/do_xxscanf.c
 
 GATEWAY_SOURCES = \
-	sci_gateway/sci_xls_read.c \
-	sci_gateway/gw_fileio.c \
-	sci_gateway/sci_fileio.c \
-	sci_gateway/sci_xls_open.c \
-	sci_gateway/intreadxls.c \
-	sci_gateway/sci_mfprintf.c \
-	sci_gateway/sci_mprintf.c \
-	sci_gateway/sci_msprintf.c \
-	sci_gateway/sci_mscanf.c \
-	sci_gateway/sci_msscanf.c \
-	sci_gateway/sci_mfscanf.c \
-	sci_gateway/sci_fprintfMat.c \
-	sci_gateway/sci_NumTokens.c \
-	sci_gateway/sci_fscanfMat.c
+	sci_gateway/c/sci_xls_read.c \
+	sci_gateway/c/gw_fileio.c \
+	sci_gateway/c/sci_fileio.c \
+	sci_gateway/c/sci_xls_open.c \
+	sci_gateway/c/intreadxls.c \
+	sci_gateway/c/sci_mfprintf.c \
+	sci_gateway/c/sci_mprintf.c \
+	sci_gateway/c/sci_msprintf.c \
+	sci_gateway/c/sci_mscanf.c \
+	sci_gateway/c/sci_msscanf.c \
+	sci_gateway/c/sci_mfscanf.c \
+	sci_gateway/c/sci_fprintfMat.c \
+	sci_gateway/c/sci_NumTokens.c \
+	sci_gateway/c/sci_fscanfMat.c
 
 
 libscifileio_la_CFLAGS=-Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ 

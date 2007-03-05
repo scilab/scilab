@@ -14,40 +14,40 @@ src/c/pvm_grp.c \
 src/c/pvm_send.c \
 src/c/pvm_info.c
 
-GATEWAY_C_SOURCES = sci_gateway/sci_pvm_get_timer.c \
-sci_gateway/sci_pvm_gettid.c \
-sci_gateway/sci_pvm_gsize.c \
-sci_gateway/sci_pvm_sci2f77.c \
-sci_gateway/sci_pvm_f772sci.c \
-sci_gateway/sci_pvm_delhosts.c \
-sci_gateway/sci_pvm_spawn.c \
-sci_gateway/sci_pvm_send.c \
-sci_gateway/sci_pvm_parent.c \
-sci_gateway/sci_pvm_error.c \
-sci_gateway/sci_pvm_set_timer.c \
-sci_gateway/sci_pvm_kill.c \
-sci_gateway/sci_pvm_bcast.c \
-sci_gateway/sci_pvm_recv.c \
-sci_gateway/sci_pvm_reduce.c \
-sci_gateway/gw_pvm.c \
-sci_gateway/sci_pvm_spawn_independent.c \
-sci_gateway/sci_pvm_probe.c \
-sci_gateway/sci_pvm_addhosts.c \
-sci_gateway/sci_pvm_joingroup.c \
-sci_gateway/sci_pvm_getinst.c \
-sci_gateway/sci_pvm_tidtohost.c \
-sci_gateway/sci_pvm_tasks.c \
-sci_gateway/sci_pvm_mytid.c \
-sci_gateway/sci_pvm_barrier.c \
-sci_gateway/sci_pvm_halt.c \
-sci_gateway/sci_pvm_bufinfo.c \
-sci_gateway/sci_pvm_error_mode.c \
-sci_gateway/sci_pvm_start.c \
-sci_gateway/sci_pvm_lvgroup.c \
-sci_gateway/sci_pvm_send_var.c \
-sci_gateway/sci_pvm_config.c \
-sci_gateway/sci_pvm_recv_var.c \
-sci_gateway/sci_pvm_exit.c
+GATEWAY_C_SOURCES = sci_gateway/c/sci_pvm_get_timer.c \
+sci_gateway/c/sci_pvm_gettid.c \
+sci_gateway/c/sci_pvm_gsize.c \
+sci_gateway/c/sci_pvm_sci2f77.c \
+sci_gateway/c/sci_pvm_f772sci.c \
+sci_gateway/c/sci_pvm_delhosts.c \
+sci_gateway/c/sci_pvm_spawn.c \
+sci_gateway/c/sci_pvm_send.c \
+sci_gateway/c/sci_pvm_parent.c \
+sci_gateway/c/sci_pvm_error.c \
+sci_gateway/c/sci_pvm_set_timer.c \
+sci_gateway/c/sci_pvm_kill.c \
+sci_gateway/c/sci_pvm_bcast.c \
+sci_gateway/c/sci_pvm_recv.c \
+sci_gateway/c/sci_pvm_reduce.c \
+sci_gateway/c/gw_pvm.c \
+sci_gateway/c/sci_pvm_spawn_independent.c \
+sci_gateway/c/sci_pvm_probe.c \
+sci_gateway/c/sci_pvm_addhosts.c \
+sci_gateway/c/sci_pvm_joingroup.c \
+sci_gateway/c/sci_pvm_getinst.c \
+sci_gateway/c/sci_pvm_tidtohost.c \
+sci_gateway/c/sci_pvm_tasks.c \
+sci_gateway/c/sci_pvm_mytid.c \
+sci_gateway/c/sci_pvm_barrier.c \
+sci_gateway/c/sci_pvm_halt.c \
+sci_gateway/c/sci_pvm_bufinfo.c \
+sci_gateway/c/sci_pvm_error_mode.c \
+sci_gateway/c/sci_pvm_start.c \
+sci_gateway/c/sci_pvm_lvgroup.c \
+sci_gateway/c/sci_pvm_send_var.c \
+sci_gateway/c/sci_pvm_config.c \
+sci_gateway/c/sci_pvm_recv_var.c \
+sci_gateway/c/sci_pvm_exit.c
 
 libsciscipvm_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 

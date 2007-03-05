@@ -182,23 +182,23 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\gw_wintools.c"
+				RelativePath=".\sci_gateway\c\gw_wintools.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\interfdde.C"
+				RelativePath=".\sci_gateway\c\interfdde.C"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\intihmcolor.c"
+				RelativePath=".\sci_gateway\c\intihmcolor.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\intOEMconvert.c"
+				RelativePath=".\sci_gateway\c\intOEMconvert.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\intpathname.c"
+				RelativePath=".\sci_gateway\c\intpathname.c"
 				>
 			</File>
 			<File
@@ -206,59 +206,59 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_about.c"
+				RelativePath=".\sci_gateway\c\sci_about.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_clipboard.c"
+				RelativePath=".\sci_gateway\c\sci_clipboard.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_consoledos.c"
+				RelativePath=".\sci_gateway\c\sci_consoledos.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_dde.c"
+				RelativePath=".\sci_gateway\c\sci_dde.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_dos.c"
+				RelativePath=".\sci_gateway\c\sci_dos.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_fileassociationbox.c"
+				RelativePath=".\sci_gateway\c\sci_fileassociationbox.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_findfileassociation.c"
+				RelativePath=".\sci_gateway\c\sci_findfileassociation.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_mcisendstring.c"
+				RelativePath=".\sci_gateway\c\sci_mcisendstring.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_printbox.c"
+				RelativePath=".\sci_gateway\c\sci_printbox.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_setlanguagemenu.c"
+				RelativePath=".\sci_gateway\c\sci_setlanguagemenu.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_toolbar.c"
+				RelativePath=".\sci_gateway\c\sci_toolbar.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_toprint.c"
+				RelativePath=".\sci_gateway\c\sci_toprint.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_winopen.c"
+				RelativePath=".\sci_gateway\c\sci_winopen.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_winqueryreg.c"
+				RelativePath=".\sci_gateway\c\sci_winqueryreg.c"
 				>
 			</File>
 			<File

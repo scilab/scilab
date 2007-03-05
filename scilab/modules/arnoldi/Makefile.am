@@ -56,13 +56,13 @@ src/arpack/dgetv0.f \
 src/arpack/dnaup2.f \
 src/arpack/dsapps.f
 
-GATEWAY_C_SOURCES = sci_gateway/sci_dsaupd.c \
-sci_gateway/sci_znaupd.c \
-sci_gateway/sci_dseupd.c \
-sci_gateway/sci_zneupd.c \
-sci_gateway/gw_arnoldi.c \
-sci_gateway/sci_dnaupd.c \
-sci_gateway/sci_dneupd.c
+GATEWAY_C_SOURCES = sci_gateway/c/sci_dsaupd.c \
+sci_gateway/c/sci_znaupd.c \
+sci_gateway/c/sci_dseupd.c \
+sci_gateway/c/sci_zneupd.c \
+sci_gateway/c/gw_arnoldi.c \
+sci_gateway/c/sci_dnaupd.c \
+sci_gateway/c/sci_dneupd.c
 
 
 libsciarnoldi_la_includedir=$(sciincludedir)/arnoldi
