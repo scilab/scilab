@@ -7,7 +7,8 @@
 	#include <Windows.h>
 	#include "ExceptionMessage.h"
 #endif
-#include "sciprint.h"
+#include "message_scilab.h"
+#include "error_scilab.h"
 #include "gw_tclsci.h"
 #include "inisci-c.h"
 /*-----------------------------------------------------------------------------------*/
@@ -63,12 +64,12 @@ int C2F(gw_tclsci)()
 		}
 		else
 		{
-			sciprint(TCL_WARNING6);
+			message_scilab("tclsci_message_1");
 		}
 	}
 	else
 	{
-		Scierror(999,"Tcl/TK interface disabled in -nogui mode.\r\n");
+		error_scilab(999,"tclsci_error_1");
 		return 0;
 	}
 	

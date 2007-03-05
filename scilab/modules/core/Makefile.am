@@ -71,7 +71,9 @@ src/c/SCIHOME.c \
 src/c/warningmode.c \
 src/c/InitializeCore.c \
 src/c/TerminateCore.c \
-src/c/coretable.c
+src/c/coretable.c \
+src/c/error_scilab.c \
+src/c/message_scilab.c
 
 
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f \
@@ -396,7 +398,8 @@ includes/FTables.h \
 includes/scirun.h \
 includes/fromjava.h \
 includes/getarg.h \
-includes/inisci-c.h
+includes/inisci-c.h \
+includes/error_scilab.h
 
 #### core : demos files ####
 libscicore_la_demosintrodir=$(target)/demos/intro/

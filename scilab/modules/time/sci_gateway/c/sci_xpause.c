@@ -6,7 +6,7 @@
 #ifdef HAVE_USLEEP
 #include <unistd.h>
 #endif
-
+#include "error_scilab.h"
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(sci_xpause) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -21,7 +21,7 @@ int C2F(sci_xpause) _PARAMS((char *fname,unsigned long fname_len))
 		sec = (integer) *stk(l1);
 		if (sec <=0)
 		{
-			Scierror(999,"xpause: error time must be >0.\r\n");
+			error_scilab(999,"time_error_6",fname);
 			return 0;
 		}
 	

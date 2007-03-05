@@ -15,7 +15,6 @@
 /*-----------------------------------------------------------------------------------*/ 
 #ifdef _MSC_VER
 	#define vsnprintf _vsnprintf
-	extern char *QueryStringError(char *Tag);
 #endif
 /*-----------------------------------------------------------------------------------*/ 
 extern int C2F(error)  __PARAMS((integer *n));
@@ -56,21 +55,7 @@ static int Scierror_internal __PARAMS((integer *n,char *buffer));
 
 #if defined (vsnprintf) || defined (linux)
 {
-	#ifdef _MSC_VER
-		char *LocalizedString=QueryStringError(fmt);
-		if (LocalizedString)
-		{
-			retval= vsnprintf(s_buf,bsiz-1, LocalizedString, ap );
-			if (LocalizedString) {FREE(LocalizedString);LocalizedString=NULL;}
-		}
-		else
-		{
-			retval= vsnprintf(s_buf,bsiz-1, fmt, ap );
-		}
-	#else
-		retval= vsnprintf(s_buf,bsiz-1, fmt, ap );
-	#endif
-	
+	retval= vsnprintf(s_buf,bsiz-1, fmt, ap );
 }
 #else
 	retval= vsprintf(s_buf,fmt, ap );
@@ -115,8 +100,7 @@ static int Scierror_internal(integer *n,char *buffer)
 		C2F(msgstore)(buffer,&len);
 		if (C2F(iop).lct[0] != -1)
 		{
-//			sciprint(buffer);
-			sciprint_l(buffer);
+			sciprint(buffer);
 		}
 		C2F(iop).lct[0] = 0;
 	}

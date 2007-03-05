@@ -10,15 +10,14 @@
 #include <locale.h>
 #include <stdio.h>
 
-#include "machine.h"
-#include "sciprint.h"
-
 #ifdef _MSC_VER
 	#include <sys/types.h> 
 	#include <sys/timeb.h>
 #else
 	#include <sys/time.h> 
 #endif
+#include "machine.h"
+#include "message_scilab.h"
 /*-----------------------------------------------------------------------------------*/
 #define ISO_WEEK_START_WDAY 1 /* Monday */
 #define ISO_WEEK1_WDAY 4 /* Thursday */
@@ -85,9 +84,9 @@ void C2F(convertdate)(time_t *dt,int w[10])
 		w[7] = 0;
 		w[8] = 0;
 		w[9] = 0;
-		if (*dt<0)	sciprint("dt=getdate(x) x must be > 0.\n");
+		if (*dt<0)	message_scilab("time_message_1");
 		#ifdef _MSC_VER
-		else sciprint("dt=getdate(x) x must be < %d.\n",_MAX__TIME64_T);
+		else message_scilab("time_message_2",_MAX__TIME64_T);
 		#endif
 	}
 	else

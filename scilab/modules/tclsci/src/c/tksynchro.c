@@ -6,6 +6,7 @@
 #include "machine.h"
 #include "TCL_Global.h"
 #include "tksynchro.h"
+#include "error_scilab.h"
 /*-----------------------------------------------------------------------------------*/
 void C2F(tksynchro)( int *l)
 {
@@ -20,7 +21,7 @@ void C2F(tksynchro)( int *l)
       RET = Tcl_Eval(TCLinterp,"set isscipadinterp [interp exists scipad]");
       if (RET==TCL_ERROR)
 	  {
-		Scierror(999,"Error : tksynchro %s \r\n",TCLinterp->result);
+		  error_scilab(999,"tclsci_error_22",TCLinterp->result);
       }
       if(strcmp((char*) Tcl_GetVar(TCLinterp,"isscipadinterp", TCL_GLOBAL_ONLY),"1")==0)
 	  {
@@ -29,7 +30,7 @@ void C2F(tksynchro)( int *l)
 	  
 		if (RET==TCL_ERROR)
 	    {
-	      Scierror(999,"Error : tksynchro %s \r\n",TCLinterp->result);
+		  error_scilab(999,"tclsci_error_22",TCLinterp->result);
 	    }
 	  }
     }

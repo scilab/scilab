@@ -6,7 +6,6 @@ EXPORTS
  ExceptionMessage
  putlhsvar_
  intersci_
- Scierror
  stack_
  check_scalar
  getrhsvar_
@@ -18,4 +17,6 @@ EXPORTS
  gettype_
  vstk_
  createvar_
+ error_scilab
+ message_scilab
  

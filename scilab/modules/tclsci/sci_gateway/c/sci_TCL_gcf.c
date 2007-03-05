@@ -5,7 +5,7 @@
 #include "TCL_Global.h"
 #include "gw_tclsci.h"
 #include "TclEvents.h"
-
+#include "error_scilab.h"
 /*-----------------------------------------------------------------------------------*/
 int GetTclCurrentFigure(void);
 int SetTclCurrentFigure(int num);
@@ -41,7 +41,7 @@ int GetTclCurrentFigure(void)
 
 	if ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  )
     {
-		Scierror(999,"Tcl Error %s\r\n",TCLinterp->result);
+		error_scilab(999,"tclsci_error_5",TCLinterp->result);
 		return 0;
 	}
 
@@ -49,7 +49,7 @@ int GetTclCurrentFigure(void)
 
 	if ( StrHandle == NULL  )
     {
-		Scierror(999,TCL_ERROR15);
+		error_scilab(999,"tclsci_error_23");
 		return 0;
 	}
 
@@ -80,7 +80,7 @@ int C2F(sci_TCL_scf) _PARAMS((char *fname,unsigned long l))
 	}
 	else
 	{
-		Scierror(999,TCL_ERROR8);
+		error_scilab(999,"tclsci_error_8");
 		return 0;
 	}
 	
@@ -104,7 +104,7 @@ int SetTclCurrentFigure(int num)
 
 	if ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  )
     {
-		Scierror(999,"Tcl Error %s\r\n",TCLinterp->result);
+		error_scilab(999,"tclsci_error_5",TCLinterp->result);
 		return 0;
 	}
 
@@ -112,7 +112,7 @@ int SetTclCurrentFigure(int num)
 
 	if ( StrHandle == NULL  )
     {
-		Scierror(999,TCL_ERROR16);
+		error_scilab(999,"tclsci_error_24");
 		return 0;
 	}
 	

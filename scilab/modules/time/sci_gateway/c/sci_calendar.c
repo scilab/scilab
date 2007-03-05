@@ -4,6 +4,7 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include "MALLOC.h"
 #include "sci_calendar.h"
+#include "error_scilab.h"
 /*-----------------------------------------------------------------------------------*/
 extern int IsAScalar(int RhsNumber);
 /*-----------------------------------------------------------------------------------*/
@@ -44,20 +45,19 @@ int C2F(sci_calendar) _PARAMS((char *fname,unsigned long fname_len))
 
 		if ( (year<1800) || (year>3000) )
 		{
-			Scierror(999,"Error : year (1800 - 3000).\n");
+			error_scilab(999,"time_error_1");
 			return 0;
 		}
 				
 		if ( (month<1) || (month>12) )
 		{
-			Scierror(999,"Error : month (1 - 12).\n");
+			error_scilab(999,"time_error_2");
 			return 0;
 		}
-				
 	}
 	else
 	{
-		Scierror(999,"Invalid argument(s) type.\n");
+		error_scilab(999,"time_error_3");
 		return 0;
 	}
 	CALMONTH=(int *)MALLOC( (NBRDAY*NBRWEEK)*sizeof(int) );

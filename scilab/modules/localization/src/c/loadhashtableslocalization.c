@@ -113,7 +113,8 @@ BOOL LoadHashTableLocalization(struct hashtable *table,char *filenamexml)
 						node_value=ConvertEncoding("UTF-8",encoding,(char *)xmlTextReaderConstValue(reader));
 					}
 
-					TAGVALUE=(char*)node_value;
+					TAGVALUE=(char*)MALLOC(sizeof(char)*(strlen(node_value)+1));
+					strcpy(TAGVALUE,node_value);
 				}
 			}
 
@@ -133,7 +134,8 @@ BOOL LoadHashTableLocalization(struct hashtable *table,char *filenamexml)
 						node_value=ConvertEncoding("UTF-8",encoding,(char *)xmlTextReaderConstValue(reader));
 					}
 
-					STRINGVALUE=(char*)node_value;
+					STRINGVALUE=(char*)MALLOC(sizeof(char)*(strlen(node_value)+1));
+					strcpy(STRINGVALUE,node_value);
 				}
 			}
 		}
@@ -145,18 +147,8 @@ BOOL LoadHashTableLocalization(struct hashtable *table,char *filenamexml)
 			{
 				AppendHashTableLocalization(table,TAGVALUE,STRINGVALUE);
 			}
-			if (bUTF_8_Mode)
-			{
-				TAGVALUE=NULL;
-				STRINGVALUE=NULL;
-			}
-			else
-			{
-				FREE(TAGVALUE);
-				FREE(STRINGVALUE);
-				TAGVALUE=NULL;
-				STRINGVALUE=NULL;
-			}
+			if (TAGVALUE) {FREE(TAGVALUE);TAGVALUE=NULL;}
+			if (STRINGVALUE) {FREE(STRINGVALUE);STRINGVALUE=NULL;}
 		}
 		
 		ret = xmlTextReaderRead (reader);

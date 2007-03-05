@@ -4,6 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include "TCL_Global.h"
 #include "gw_tclsci.h"
+#include "error_scilab.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_findobj) _PARAMS((char *fname,unsigned long l))
 {
@@ -36,7 +37,7 @@ int C2F(sci_findobj) _PARAMS((char *fname,unsigned long l))
 		sprintf(MyTclCommand, "set TclScilabTmpVar [FindObj \"%s\" \"%s\"];", field, value);
 		if ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  )
 		{
-			Scierror(999,"Tcl Error %s\r\n",TCLinterp->result);
+			error_scilab(999,"tclsci_error_5",TCLinterp->result);
 			return 0;
 		}
 		StrHandle = (char*)Tcl_GetVar(TCLinterp, "TclScilabTmpVar", TCL_GLOBAL_ONLY);
@@ -63,7 +64,7 @@ int C2F(sci_findobj) _PARAMS((char *fname,unsigned long l))
 	}
 	else
 	{
-		Scierror(999,TCL_ERROR8);
+		error_scilab(999,"tclsci_error_8");
 		return 0;
 	}
 	

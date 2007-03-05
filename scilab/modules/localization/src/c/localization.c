@@ -126,17 +126,17 @@ int DisposeHashTableScilabMenus(void)
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 
-IMPORT_EXPORT_LOCALIZATION_DLL char *QueryStringError(char *Tag)
+char *QueryStringError(char *Tag)
 {	
 	return QueryString(Table_Scilab_Errors,Tag);
 }
 /*-----------------------------------------------------------------------------------*/ 
-IMPORT_EXPORT_LOCALIZATION_DLL char *QueryStringMessage(char *Tag)
+char *QueryStringMessage(char *Tag)
 {
 	return QueryString(Table_Scilab_Messages,Tag);
 }
 /*-----------------------------------------------------------------------------------*/ 
-IMPORT_EXPORT_LOCALIZATION_DLL char *QueryStringMenu(char *Tag)
+char *QueryStringMenu(char *Tag)
 {
 	return QueryString(Table_Scilab_Menus,Tag);
 }

@@ -28,8 +28,9 @@ EXPORTS
  checkrhs_
  intersci_
  createvarfromptr_
- Scierror
  ExceptionMessage
  set_cf_type
  getSCIpath
  FileExist
+ error_scilab
+ message_scilab

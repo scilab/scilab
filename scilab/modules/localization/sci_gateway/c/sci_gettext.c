@@ -5,6 +5,9 @@
 #include "machine.h"
 #include "stack-c.h"
 #include "localization.h"
+#include "QueryStringError.h"
+#include "QueryStringMenu.h"
+#include "QueryStringMessage.h"
 #include "hashtable.h"
 #include "getentrieshashtable.h"
 /*-----------------------------------------------------------------------------------*/

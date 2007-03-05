@@ -8,20 +8,6 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include "hashtable_localization.h"
 /*-----------------------------------------------------------------------------------*/ 
-#ifdef _MSC_VER
-	#ifdef EXPORT_LOCALIZATION_DLL
-		#define IMPORT_EXPORT_LOCALIZATION_DLL __declspec(dllexport)
-	#else
-		#define IMPORT_EXPORT_LOCALIZATION_DLL __declspec(dllimport)
-	#endif
-#else
-	#define IMPORT_EXPORT_LOCALIZATION_DLL extern 
-#endif
-/*-----------------------------------------------------------------------------------*/ 
-IMPORT_EXPORT_LOCALIZATION_DLL char *QueryStringError(char *Tag);
-IMPORT_EXPORT_LOCALIZATION_DLL char *QueryStringMessage(char *Tag);
-IMPORT_EXPORT_LOCALIZATION_DLL char *QueryStringMenu(char *Tag);
-/*-----------------------------------------------------------------------------------*/ 
 struct hashtable *GetHashTableScilabErrors(void);
 struct hashtable *GetHashTableScilabMessages(void);
 struct hashtable *GetHashTableScilabMenus(void);

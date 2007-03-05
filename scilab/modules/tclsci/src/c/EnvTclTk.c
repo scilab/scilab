@@ -10,10 +10,10 @@
 #endif
 
 #include <stdio.h>
-#include "Errors.h"
 #include "tcl.h"
 #include "tk.h"
 #include "MALLOC.h"
+#include "../../localization/includes/QueryStringError.h"
 /*-----------------------------------------------------------------------------------*/
 extern BOOL ConvertPathUnixToWindowsFormat(char *pathunix,char *pathwindows);
 /*-----------------------------------------------------------------------------------*/
@@ -40,8 +40,12 @@ BOOL Set_TCL_LIBRARY_PATH(char *DefaultPath)
 	/* c:\progra~1\scilab-5.0\modules\tclsci\tcl\tcl8.4 */
 	if (GetShortPathName(DefaultPath,ShortPath,MAX_PATH)==0)
 	{
-		fprintf(stderr,"\n%s\n%s%s.\n",TCL_ERROR35,TCL_ERROR37,DefaultPath);
+		char *msg1=QueryStringError("tclsci_error_40");
+		char *msg2=QueryStringError("tclsci_error_43");
+		fprintf(stderr,"\n%s\n%s%s.\n",msg1,msg2,DefaultPath);
 		if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
+		if (msg1) {FREE(msg1);msg1=NULL;}
+		if (msg2) {FREE(msg2);msg2=NULL;}
 
 		ConvertPathUnixToWindowsFormat(ShortPath,CopyOfDefaultPath);
 		wsprintf (env, "TCL_LIBRARY=%s\\modules\\tclsci\\tcl\\tcl%d.%d",CopyOfDefaultPath,major,minor);
@@ -88,8 +92,12 @@ BOOL Set_TK_LIBRARY_PATH(char *DefaultPath)
 	/* c:\progra~1\scilab-3.1\modules\tclsci\tcl\tk8.4 */
 	if (GetShortPathName(DefaultPath,ShortPath,MAX_PATH)==0)
 	{
-		fprintf(stderr,"\n%s\n%s%s.\n",TCL_ERROR36,TCL_ERROR38,DefaultPath);
+		char *msg1=QueryStringError("tclsci_error_41");
+		char *msg2=QueryStringError("tclsci_error_42");
+		fprintf(stderr,"\n%s\n%s%s.\n",msg1,msg2,DefaultPath);
 		if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
+		if (msg1){FREE(msg1);msg1=NULL;}
+		if (msg2){FREE(msg2);msg2=NULL;}
 
 		ConvertPathUnixToWindowsFormat(ShortPath,CopyOfDefaultPath);
 		wsprintf (env, "TK_LIBRARY=%s\\modules\\tclsci\\tcl\\tk%d.%d",CopyOfDefaultPath,major,minor);

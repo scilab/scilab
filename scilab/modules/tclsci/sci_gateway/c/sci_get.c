@@ -6,6 +6,7 @@
 #include "gw_tclsci.h"
 #include "TclEvents.h"
 #include "TclUiGet.h"
+#include "error_scilab.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_TCL_get) _PARAMS((char *fname,unsigned long l))
 {
@@ -24,7 +25,7 @@ int C2F(sci_TCL_get) _PARAMS((char *fname,unsigned long l))
 		sprintf(VarName,"Win(%d)",Handle);
 		if ( ! Tcl_GetVar(TCLinterp, VarName, TCL_GLOBAL_ONLY) )
 		{
-			Scierror(999,TCL_ERROR27,Handle);
+			error_scilab(999,"tclsci_error_9",Handle);
 			return 0;
 		}
 
@@ -33,7 +34,7 @@ int C2F(sci_TCL_get) _PARAMS((char *fname,unsigned long l))
 	}
 	else
 	{
-		Scierror(999,TCL_ERROR8);
+		error_scilab(999,"tclsci_error_8");
 		return 0;
 	}
 

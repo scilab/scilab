@@ -18,10 +18,6 @@
 #include "tcl.h"
 #include "tk.h"
 
-#include "Errors.h"
-#include "Warnings.h"
-#include "Messages.h"
-
 #include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/
 extern Tcl_Interp *TCLinterp;

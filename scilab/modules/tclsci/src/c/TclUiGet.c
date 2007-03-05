@@ -4,6 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include "TclUiGet.h"
 #include "sci_TCL_GetVar.h"
+#include "error_scilab.h"
 /*-----------------------------------------------------------------------------------*/
 extern int GetScreenProperty(char *prop, char *value);
 /*-----------------------------------------------------------------------------------*/
@@ -39,7 +40,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 			else
 			{
 				if (StrValue) {FREE(StrValue); StrValue=NULL;}
-				Scierror(999,TCL_ERROR30,StrField);
+				error_scilab(999,"tclsci_error_33",StrField);
 				return 0;
 			}
 			if (StrValue) {FREE(StrValue); StrValue=NULL;}
@@ -47,7 +48,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 		}
 		else
 		{
-			Scierror(999,TCL_ERROR8);
+			error_scilab(999,"tclsci_error_8");
 			return 0;
 		}
 	}
@@ -120,7 +121,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 						}
 						else
 						{
-							Scierror(999,TCL_ERROR18);
+							error_scilab(999,"tclsci_error_25");
 							return 0;
 						}
 					}
@@ -182,7 +183,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 							}
 							else
 							{
-								Scierror(999,TCL_ERROR18);
+								error_scilab(999,"tclsci_error_25");
 								return 0;
 							}
 						}
@@ -194,7 +195,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 
 							if ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  )
 							{
-								Scierror(999,TCL_ERROR4,TCLinterp->result);
+								error_scilab(999,"tclsci_error_5",TCLinterp->result);
 								return 0;
 							}
 
@@ -213,7 +214,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 							}
 							else
 							{
-								Scierror(999,TCL_ERROR31);
+								error_scilab(999,"tclsci_error_34");
 								return 0;
 							}
 						}
@@ -225,7 +226,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 
 						if ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  )
 						{
-							Scierror(999,TCL_ERROR4,TCLinterp->result);
+							error_scilab(999,"tclsci_error_5",TCLinterp->result);
 							return 0;
 						}
 						StrValue = (char*)Tcl_GetVar(TCLinterp, "TclScilabTmpVar", TCL_GLOBAL_ONLY);
@@ -258,7 +259,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 						}
 						else
 						{
-							Scierror(999,TCL_ERROR30,StrField);
+							error_scilab(999,"tclsci_error_33",StrField);
 							return 0;
 						}
 						if (AsciiFromUTF8){FREE(AsciiFromUTF8);AsciiFromUTF8=NULL;}
@@ -267,7 +268,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 					}
 						else
 						{
-							Scierror(999,TCL_ERROR31);
+							error_scilab(999,"tclsci_error_34");
 							return 0;
 						}
 					}
@@ -275,13 +276,13 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 		}
 			else
 			{
-				Scierror(999,TCL_ERROR8);
+				error_scilab(999,"tclsci_error_8");
 				return 0;
 			}
 		}
 		else
 		{
-			Scierror(999,TCL_ERROR34);
+			error_scilab(999,"tclsci_error_35");
 			return 0;
 		}
 	}

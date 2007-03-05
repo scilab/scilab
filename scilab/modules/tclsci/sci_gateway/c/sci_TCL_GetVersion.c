@@ -4,7 +4,8 @@
 /*-----------------------------------------------------------------------------------*/
 #include "TCL_Global.h"
 #include "gw_tclsci.h"
-#include "Scierror.h"
+#include "error_scilab.h"
+#include "../../localization/includes/QueryStringMessage.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_TCL_GetVersion) _PARAMS((char *fname,unsigned long l))
 {
@@ -16,6 +17,7 @@ int C2F(sci_TCL_GetVersion) _PARAMS((char *fname,unsigned long l))
 	char *output=NULL ;
 	char VersionString[256];
 	char ReleaseType[256];
+	char *msg_=NULL;
 
 	CheckRhs(0,1);
 	CheckLhs(1,1);
@@ -26,20 +28,38 @@ int C2F(sci_TCL_GetVersion) _PARAMS((char *fname,unsigned long l))
 		switch (type)
 		{
 		case TCL_ALPHA_RELEASE:
-			sprintf(ReleaseType,TCL_MSG2);
+			{
+				char *msg=QueryStringMessage("tclsci_message_17");
+				sprintf(ReleaseType,msg);
+				if (msg) {FREE(msg);msg=NULL;}
+			}
 			break;
 		case TCL_BETA_RELEASE:
-			sprintf(ReleaseType,TCL_MSG3);
+			{
+				char *msg=QueryStringMessage("tclsci_message_18");
+				sprintf(ReleaseType,msg);
+				if (msg) {FREE(msg);msg=NULL;}
+			}
 			break;
 		case TCL_FINAL_RELEASE:
-			sprintf(ReleaseType,TCL_MSG4);
+			{
+				char *msg=QueryStringMessage("tclsci_message_19");
+				sprintf(ReleaseType,msg);
+				if (msg) {FREE(msg);msg=NULL;}
+			}
 			break;
 		default:
-			sprintf(ReleaseType,TCL_MSG5);
+			{
+				char *msg=QueryStringMessage("tclsci_message_20");
+				sprintf(ReleaseType,msg);
+				if (msg) {FREE(msg);msg=NULL;}
+			}
 			break;
 		}
 
-		sprintf(VersionString,TCL_MSG6,major,minor,patchLevel,ReleaseType);
+		msg_=QueryStringMessage("tclsci_message_21");
+		sprintf(VersionString,msg_,major,minor,patchLevel,ReleaseType);
+		if (msg_) {FREE(msg_);msg_=NULL;}
 
 		output=(char*)MALLOC((strlen(VersionString)+1)*sizeof(char));
 		sprintf(output,"%s",VersionString);
@@ -80,12 +100,12 @@ int C2F(sci_TCL_GetVersion) _PARAMS((char *fname,unsigned long l))
 			}
 			else
 			{
-				Scierror(999,"%s: invalid rhs parameter : help TCL_GetVersion.\r\n",fname);
+				error_scilab(999,"tclsci_error_26",fname);
 			}
 		}
 		else
 		{
-			Scierror(999,"%s: invalid rhs parameter : help TCL_GetVersion.\r\n",fname);
+			error_scilab(999,"tclsci_error_26",fname);
 		}
 		
 	}

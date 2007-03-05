@@ -304,6 +304,18 @@
 				>
 			</File>
 			<File
+				RelativePath="..\includes\QueryStringError.h"
+				>
+			</File>
+			<File
+				RelativePath="..\includes\QueryStringMenu.h"
+				>
+			</File>
+			<File
+				RelativePath="..\includes\QueryStringMessage.h"
+				>
+			</File>
+			<File
 				RelativePath="..\sci_gateway\c\sci_getlanguage.h"
 				>
 			</File>

@@ -3,18 +3,33 @@
 <LOCALIZATION>
 
 <entry>
-	<tag></tag>
-	<string></string>
+	<tag>time_error_1</tag>
+	<string>Error : year (1800 - 3000).</string>
 </entry>	
 
 <entry>
-	<tag></tag>
-	<string></string>
+	<tag>time_error_2</tag>
+	<string>Error : month (1 - 12).</string>
 </entry>	
 		
 <entry>
-	<tag></tag>
-	<string></string>
-</entry>	
+	<tag>time_error_3</tag>
+	<string>Invalid argument(s) type.</string>
+</entry>
+
+<entry>
+	<tag>time_error_4</tag>
+	<string>Impossible to get the date...</string>
+</entry>
+
+<entry>
+	<tag>time_error_5</tag>
+	<string>Parameter must be a "s" or a integer.</string>
+</entry>
+
+<entry>
+	<tag>time_error_6</tag>
+	<string>%s : error time must be &gt;0.</string>
+</entry>
 
 </LOCALIZATION>

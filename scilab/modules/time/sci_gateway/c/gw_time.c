@@ -3,7 +3,6 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "sciprint.h"
 #ifdef _MSC_VER
 #include "ExceptionMessage.h"
 #endif

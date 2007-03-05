@@ -5,6 +5,7 @@
 #include "TCL_Global.h"
 #include "gw_tclsci.h"
 #include "sci_TCL_GetVar.h"
+#include "error_scilab.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_TCL_GetVar) _PARAMS((char *fname,unsigned long l))
 {
@@ -25,7 +26,7 @@ int C2F(sci_TCL_GetVar) _PARAMS((char *fname,unsigned long l))
 
 		if (TCLinterp == NULL)
 		{
-			Scierror(999,TCL_ERROR13,fname);
+			error_scilab(999,"tclsci_error_12",fname);
 			return 0;
 		}
 
@@ -38,14 +39,14 @@ int C2F(sci_TCL_GetVar) _PARAMS((char *fname,unsigned long l))
 				TCLinterpreter=Tcl_GetSlave(TCLinterp,cstk(l2));
 				if (TCLinterpreter==NULL)
 				{
-					Scierror(999,TCL_ERROR17,fname);
+					error_scilab(999,"tclsci_error_16",fname);
 					return 0;
 				}
 			}
 			else
 			{
-				 Scierror(999,TCL_ERROR14,fname);
-				 return 0;
+				error_scilab(999,"tclsci_error_15",fname);
+				return 0;
 			}
 		}
 		else
@@ -109,15 +110,15 @@ int C2F(sci_TCL_GetVar) _PARAMS((char *fname,unsigned long l))
 			}
 			else
 			{
-				Scierror(999,TCL_ERROR18);
+				error_scilab(999,"tclsci_error_25");
 				return 0;
 			}
 		}
 	}
 	else
 	{
-		 Scierror(999,TCL_ERROR14,fname);
-		 return 0;
+		error_scilab(999,"tclsci_error_15",fname);
+		return 0;
 	}
 	
 	return 0;
@@ -136,7 +137,7 @@ int TCL_ArrayExist(Tcl_Interp *TCLinterpreter,char *VarName)
 
 		if ( Tcl_Eval(TCLinterpreter,MyTclCommand) == TCL_ERROR  )
 		{
-			Scierror(999,"Tcl Error %s\r\n",TCLinterpreter->result);
+			error_scilab(999,"tclsci_error_5",TCLinterpreter->result);
 			return 0;
 		}
 
@@ -165,7 +166,7 @@ int TCL_ArraySize(Tcl_Interp *TCLinterpreter,char *VarName)
 
 		if ( Tcl_Eval(TCLinterpreter,MyTclCommand) == TCL_ERROR  )
 		{
-			Scierror(999,"Tcl Error %s\r\n",TCLinterpreter->result);
+			error_scilab(999,"tclsci_error_5",TCLinterpreter->result);
 			return 0;
 		}
 
@@ -194,7 +195,7 @@ int TCL_ArrayDim(Tcl_Interp *TCLinterpreter,char *VarName,int *m,int *n)
 
 		if ( Tcl_Eval(TCLinterpreter,MyTclCommand) == TCL_ERROR  )
 		{
-			Scierror(999,"Tcl Error %s\r\n",TCLinterpreter->result);
+			error_scilab(999,"tclsci_error_5",TCLinterpreter->result);
 			return 0;
 		}
 

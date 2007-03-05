@@ -15,10 +15,6 @@
 #include "machine.h"
 #include "stack-c.h"
 
-#include "Errors.h"
-#include "Warnings.h"
-#include "Messages.h"
-
 int C2F(gw_tclsci)(void);
 
 typedef int (*TCLSci_Interf) __PARAMS((char *fname,unsigned long l));

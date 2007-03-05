@@ -14,7 +14,7 @@
 #else
 #include <sys/time.h> 
 #endif
-
+#include "error_scilab.h"
 #include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/
 extern void C2F(convertdate)();
@@ -40,7 +40,7 @@ int C2F(sci_getdate) _PARAMS((char *fname,unsigned long fname_len))
 		C2F(scigetdate)(&dt,&ierr);
 		if (ierr)
 		{
-			Scierror(999,"Impossible to get the date...");
+			error_scilab(999,"time_error_4");
 			return 0;
 		}
 		else
@@ -72,7 +72,7 @@ int C2F(sci_getdate) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
-				Scierror(999,"Parameter must be a \"s\" or a integer.");
+				error_scilab(999,"time_error_5");
 				return 0;
 			}
 		}
@@ -128,7 +128,7 @@ int C2F(sci_getdate) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
-				Scierror(999,"Parameter must be a \"s\" or a integer.");
+				error_scilab(999,"time_error_5");
 				return 0;
 			}
 		}

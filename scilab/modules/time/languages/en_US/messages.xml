@@ -3,13 +3,13 @@
 <LOCALIZATION>
 
 <entry>
-	<tag></tag>
-	<string></string>
+	<tag>time_message_1</tag>
+	<string>dt=getdate(x) x must be &gt; 0.</string>
 </entry>	
 
 <entry>
-	<tag></tag>
-	<string></string>
+	<tag>time_message_2</tag>
+	<string>dt=getdate(x) x must be &lt; %d.</string>
 </entry>	
 		
 <entry>

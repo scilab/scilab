@@ -218,6 +218,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\error_scilab.c"
+				>
+			</File>
+			<File
 				RelativePath=".\ExceptionMessage.c"
 				>
 			</File>
@@ -339,6 +343,10 @@
 			</File>
 			<File
 				RelativePath=".\md5.c"
+				>
+			</File>
+			<File
+				RelativePath=".\message_scilab.c"
 				>
 			</File>
 			<File
@@ -759,6 +767,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\error_scilab.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\ExceptionMessage.h"
 				>
 			</File>
@@ -828,6 +840,10 @@
 			</File>
 			<File
 				RelativePath=".\md5.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\message_scilab.h"
 				>
 			</File>
 			<File

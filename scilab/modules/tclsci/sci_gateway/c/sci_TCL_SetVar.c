@@ -4,6 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include "TCL_Global.h"
 #include "gw_tclsci.h"
+#include "error_scilab.h"
 /*-----------------------------------------------------------------------------------*/
 int SetVarStrings(Tcl_Interp *TCLinterpreter,char *VarName,char **Str,int m,int n);
 int SetVarAString(Tcl_Interp *TCLinterpreter,char *VarName,char **Str);
@@ -22,7 +23,7 @@ int C2F(sci_TCL_SetVar) _PARAMS((char *fname,unsigned long l))
 
 	if (TCLinterp == NULL)
 	{
-		Scierror(999,TCL_ERROR13,fname);
+		error_scilab(999,"tclsci_error_12",fname);
 		return 0;
 	}
 
@@ -35,14 +36,14 @@ int C2F(sci_TCL_SetVar) _PARAMS((char *fname,unsigned long l))
 			TCLinterpreter=Tcl_GetSlave(TCLinterp,cstk(l2));
 			if (TCLinterpreter==NULL)
 			{
-				Scierror(999,TCL_ERROR17,fname);
+				error_scilab(999,"tclsci_error_16",fname);
 				return 0;
 			}
 		}
 		else
 		{
-			 Scierror(999,TCL_ERROR14,fname);
-			 return 0;
+			error_scilab(999,"tclsci_error_15",fname);
+			return 0;
 		}
 	}
 	else
@@ -94,7 +95,7 @@ int C2F(sci_TCL_SetVar) _PARAMS((char *fname,unsigned long l))
 		header = (int *) GetData(2);   Cmplx=header[3];
 		if (Cmplx==COMPLEX)
 		{
-			Scierror(999,"doesn't work with Complex");
+			error_scilab(999,"tclsci_error_27");
 			return 0;
 		}
 		
@@ -105,7 +106,7 @@ int C2F(sci_TCL_SetVar) _PARAMS((char *fname,unsigned long l))
 
 		if ( (m1==0) && (n1==0) )
 		{
-			Scierror(999,"[] doesn't work with TCL");
+			error_scilab(999,"tclsci_error_31");
 			return 0;
 		}
 
@@ -121,7 +122,7 @@ int C2F(sci_TCL_SetVar) _PARAMS((char *fname,unsigned long l))
 	else
 	{
 		if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}
-		Scierror(999,TCL_ERROR24,fname);
+		error_scilab(999,"tclsci_error_28",fname);
 		return 0;
 	}
 	
@@ -171,13 +172,13 @@ int SetVarMatrix(Tcl_Interp *TCLinterpreter,char *VarName,int ptrValues,int m,in
 
 			if ( (bOKsprintf1 == -1) || (bOKsprintf2 == -1) )
 			{
-				Scierror(999,"Variable too long");
+				error_scilab(999,"tclsci_error_29");
 				return 0;
 			}
 
 			if (TCLinterpreter == NULL)
 			{
-				Scierror(999,TCL_ERROR23);
+				error_scilab(999,"tclsci_error_30");
 				return 0;
 			}
 
@@ -202,7 +203,7 @@ int SetVarScalar(Tcl_Interp *TCLinterpreter,char *VarName,double VarValue)
 
 	if (TCLinterpreter == NULL)
 	{
-		Scierror(999,TCL_ERROR23);
+		error_scilab(999,"tclsci_error_30");
 		return 0;
 	}
 
@@ -230,7 +231,7 @@ int SetVarStrings(Tcl_Interp *TCLinterpreter,char *VarName,char **Str,int m,int 
 
 	if (TCLinterpreter == NULL)
 	{
-		Scierror(999,TCL_ERROR23);
+		error_scilab(999,"tclsci_error_30");
 		return 0;
 	}
 
@@ -261,7 +262,7 @@ int SetVarAString(Tcl_Interp *TCLinterpreter,char *VarName,char **Str)
 
 	if (TCLinterpreter == NULL)
 	{
-		Scierror(999,TCL_ERROR23);
+		error_scilab(999,"tclsci_error_30");
 		return 0;
 	}
 

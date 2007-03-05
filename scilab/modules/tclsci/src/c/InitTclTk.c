@@ -2,6 +2,7 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
+#include "error_scilab.h"
 #include "InitTclTk.h"
 #include "TclEvents.h"
 #ifndef _MSC_VER
@@ -17,7 +18,7 @@
  #include <ctype.h>
 #endif
 #include "setgetSCIpath.h"
-#include "sciprint.h"
+#include "message_scilab.h"
 /*-----------------------------------------------------------------------------------*/ 
 extern int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONST char ** argv);
 extern int GetWITH_GUI(void);
@@ -76,10 +77,10 @@ int OpenTCLsci(void)
   
   /* test SCI validity */
   if (SciPath==NULL)
-    {
-      sciprint(TCL_WARNING1);
-      return(1);
-    }
+  {
+	message_scilab("tclsci_message_2");
+    return(1);
+  }
 
 #ifdef _MSC_VER
   strcpy(TkScriptpath, SciPath);
@@ -87,16 +88,16 @@ int OpenTCLsci(void)
 
   tmpfile2 = fopen(TkScriptpath,"r");
   if (tmpfile2==NULL) 
-    {
-      sciprint(TCL_WARNING2);
-      return(1);
-    }
+  {
+	message_scilab("tclsci_message_3");
+    return(1);
+  }
   else fclose(tmpfile2);
 #else
   tmpdir=opendir(SciPath);
   if (tmpdir==NULL) 
     {
-      sciprint(TCL_WARNING1);
+      message_scilab("tclsci_message_2");
       return(1);
     }
   else closedir(tmpdir);
@@ -105,7 +106,7 @@ int OpenTCLsci(void)
   tmpfile2 = fopen(TkScriptpath,"r");
   if (tmpfile2==NULL) 
     {
-      sciprint(TCL_WARNING2);
+      message_scilab("tclsci_message_3");
       return(1);
     }
   else fclose(tmpfile2);
@@ -116,19 +117,19 @@ int OpenTCLsci(void)
       TCLinterp = Tcl_CreateInterp();
 	  if ( TCLinterp == NULL )
 	  {
-	    Scierror(999,TCL_ERROR1);
+		error_scilab(999,"tclsci_error_2");
 		return (1);
 	  }
 
       if ( Tcl_Init(TCLinterp) == TCL_ERROR)
 	  {
-		Scierror(999,TCL_ERROR2);
+		error_scilab(999,"tclsci_error_3");
 		return (1);
 	  }
 
       if ( Tk_Init(TCLinterp) == TCL_ERROR)
 	  {
-		Scierror(999,TCL_ERROR3);
+		error_scilab(999,"tclsci_error_4");
 		return (1);
 	  }
 
@@ -136,7 +137,7 @@ int OpenTCLsci(void)
       
 	  if ( Tcl_Eval(TCLinterp,MyCommand) == TCL_ERROR  )
 	  {
-		Scierror(999,TCL_ERROR4,TCLinterp->result);
+		error_scilab(999,"tclsci_error_5",TCLinterp->result);
 		return (1);
 	  }
       
@@ -155,7 +156,7 @@ int OpenTCLsci(void)
 
   	  if ( Tcl_EvalFile(TCLinterp,TkScriptpath) == TCL_ERROR  )
 	  {
-		Scierror(999,TCL_ERROR4,TCLinterp->result);
+		error_scilab(999,"tclsci_error_5",TCLinterp->result);
 		return (1);
 	  }
 

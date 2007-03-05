@@ -3,6 +3,7 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include "TclUiSet.h"
+#include "error_scilab.h"
 /*-----------------------------------------------------------------------------------*/
 #define NBRSTYLE 9
 char *UiStyleInternalName[NBRSTYLE] = {"button",
@@ -87,7 +88,7 @@ int InterfaceScilabToUiSet(int Handle,int RhsPropertieField,int RhsPropertieValu
 
 					if ( (m1==0) && (n1==0) )
 					{
-						Scierror(999,"[] doesn''t work with TCL");
+						error_scilab(999,"tclsci_error_31");
 						return 0;
 					}
 
@@ -102,7 +103,7 @@ int InterfaceScilabToUiSet(int Handle,int RhsPropertieField,int RhsPropertieValu
 				}
 				else
 				{
-					Scierror(999,TCL_ERROR8);
+					error_scilab(999,"tclsci_error_8");
 					return 0;
 				}
 			}
@@ -137,7 +138,7 @@ int InterfaceScilabToUiSet(int Handle,int RhsPropertieField,int RhsPropertieValu
 
 								if ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  )
 								{
-									Scierror(999,TCL_ERROR4,TCLinterp->result);
+									error_scilab(999,"tclsci_error_5",TCLinterp->result);
 									return 0;
 								}
 							}
@@ -155,7 +156,7 @@ int InterfaceScilabToUiSet(int Handle,int RhsPropertieField,int RhsPropertieValu
 
 								if ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  )
 								{
-									Scierror(999,TCL_ERROR4,TCLinterp->result);
+									error_scilab(999,"tclsci_error_5",TCLinterp->result);
 									return 0;
 								}
 							}
@@ -174,7 +175,7 @@ int InterfaceScilabToUiSet(int Handle,int RhsPropertieField,int RhsPropertieValu
 					else
 					{
 						/* doit une chaine ou matrice de chaine */
-						Scierror(999,TCL_ERROR9);
+						error_scilab(999,"tclsci_error_36");
 						return 0;
 					}
 
@@ -205,7 +206,7 @@ int InterfaceScilabToUiSet(int Handle,int RhsPropertieField,int RhsPropertieValu
 					}
 					else
 					{
-						Scierror(999,TCL_ERROR8);
+						error_scilab(999,"tclsci_error_8");
 						return 0;
 					}
 					bOK=TCL_UiSet(Handle,PropertieField,PropertieValue);
@@ -218,14 +219,14 @@ int InterfaceScilabToUiSet(int Handle,int RhsPropertieField,int RhsPropertieValu
 		else
 		{
 			/* champ propertie doit etre une chaine */
-			Scierror(999,TCL_ERROR22);
+			error_scilab(999,"tclsci_error_11");
 			return 0;
 		}
 	}
 	else
 	{
 		/* Handle numero incorrect */
-		Scierror(999,TCL_ERROR34);
+		error_scilab(999,"tclsci_error_35");
 		return 0;
 	}
 	return bOK;
@@ -243,7 +244,7 @@ int TCL_UiSet(int Handle,char *PropertieField,char *PropertieValue)
 
 	if (LenStr >= CommandLenMax)
 	{
-		Scierror(999,TCL_ERROR32,CommandLenMax);
+		error_scilab(999,"tclsci_error_37",CommandLenMax);
 		return 0;
 	}
 	nocase(PropertieField);
@@ -261,7 +262,7 @@ int TCL_UiSet(int Handle,char *PropertieField,char *PropertieValue)
 			}
 			else
 			{
-				Scierror(999,TCL_ERROR33);
+				error_scilab(999,"tclsci_error_38");
 				return 0;
 			}
 		}
@@ -272,14 +273,14 @@ int TCL_UiSet(int Handle,char *PropertieField,char *PropertieValue)
 
 		if ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  )
 		{
-			Scierror(999,TCL_ERROR4,TCLinterp->result);
+			error_scilab(999,"tclsci_error_5",TCLinterp->result);
 			return 0;
 		}
 		bOK=1;
 	}
 	else
 	{
-		Scierror(999,TCL_ERROR30,PropertieField);
+		error_scilab(999,"tclsci_error_33",PropertieField);
 		return 0;
 	}
 	

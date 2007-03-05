@@ -4,6 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include "TCL_Global.h"
 #include "gw_tclsci.h"
+#include "error_scilab.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_TCL_ExistInterp) _PARAMS((char *fname,unsigned long l))
 {
@@ -26,7 +27,7 @@ int C2F(sci_TCL_ExistInterp) _PARAMS((char *fname,unsigned long l))
 
 		if (TCLinterp == NULL)
 		{
-			Scierror(999,TCL_ERROR13,fname);
+			error_scilab(999,"tclsci_error_12",fname);
 			return 0;
 		}
 
@@ -49,8 +50,8 @@ int C2F(sci_TCL_ExistInterp) _PARAMS((char *fname,unsigned long l))
 	}
 	else
 	{
-		 Scierror(999,TCL_ERROR14,fname);
-		 return 0;
+		error_scilab(999,"tclsci_error_15",fname);
+		return 0;
 	}
 	
 	return 0;

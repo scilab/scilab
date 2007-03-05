@@ -2,7 +2,6 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /* Francois VOGEL  sciprint_full function */
-/* HUANG Xu */
 /*-----------------------------------------------------------------------------------*/ 
 #if defined (__STDC__) || defined(_MSC_VER)
   #include <stdarg.h>
@@ -25,7 +24,6 @@
 /*-----------------------------------------------------------------------------------*/ 
 #ifdef _MSC_VER
   #define vsnprintf _vsnprintf
-  extern char *QueryStringError(char *Tag);
   TW textwin;
 #endif
 /*-----------------------------------------------------------------------------------*/ 
@@ -63,22 +61,8 @@ extern void diary_nnl __PARAMS((char *str,int *n));
 #endif
 
 #if defined(linux) || defined(_MSC_VER)
-//	count = vsnprintf (s_buf,MAXPRINTF-1, fmt, ap );
 {
-	#ifdef _MSC_VER
-		char *LocalizedString=QueryStringError(fmt);
-		if (LocalizedString)
-		{
-			count= vsnprintf(s_buf,MAXPRINTF-1, LocalizedString, ap );
-			if (LocalizedString) {FREE(LocalizedString);LocalizedString=NULL;}
-		}
-		else
-		{
-			count= vsnprintf(s_buf,MAXPRINTF-1, fmt, ap );
-		}
-	#else
-		count= vsnprintf(s_buf,MAXPRINTF-1, fmt, ap );
-	#endif
+	count= vsnprintf(s_buf,MAXPRINTF-1, fmt, ap );
 	if (count == -1)
 	{
 		s_buf[MAXPRINTF-1]='\0';
@@ -296,55 +280,3 @@ extern void diary_nnl __PARAMS((char *str,int *n));
 
 }
 /*-----------------------------------------------------------------------------------*/ 
-/* sciprint_l is used especially in Scierror, for it would not search the hashtable  */
-/* in fact, it is the former version of sciprint									 */
-/* changed by HUANG Xu									 */
-#if defined(__STDC__) || defined(_MSC_VER)
-  void  sciprint_l(char *fmt,...) 
-#else 
-  void sciprint_l(va_alist) va_dcl
-#endif 
-{
-	int i;
-	integer lstr;
-	va_list ap;
-	char s_buf[MAXPRINTF];
-	int count=0;
-#if defined(__STDC__) || defined(_MSC_VER)
-	va_start(ap,fmt);
-#else
-	char *fmt;
-	va_start(ap);
-	fmt = va_arg(ap, char *);
-#endif
-
-#if defined(linux) || defined(_MSC_VER)
-	count = vsnprintf (s_buf,MAXPRINTF-1, fmt, ap );
-	if (count == -1)
-	{
-		s_buf[MAXPRINTF-1]='\0';
-	}
-#else
-	(void )vsprintf(s_buf, fmt, ap );
-#endif
-	lstr=strlen(s_buf);
-
-	C2F(xscion)(&i);
-	if (i == 0) 
-	{
-		printf("%s",s_buf); 
-	}
-	else 
-	{
-		#ifdef _MSC_VER
-		 TextPutS (&textwin,s_buf);
-		 PutString(s_buf);
-		#else
-		 C2F(xscisrn)(s_buf,&lstr,0L);
-		#endif
-		
-	}
-	if (getdiary()) diary_nnl(s_buf,&lstr);
-	va_end(ap);
-}
-/*-----------------------------------------------------------------------------------*/

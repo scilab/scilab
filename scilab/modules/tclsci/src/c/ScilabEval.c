@@ -5,7 +5,10 @@
 #include "TCL_Global.h"
 #include "ScilabEval.h"
 #include "sciprint.h"
+#include "message_scilab.h"
 #include "tksynchro.h"
+#include "error_scilab.h"
+#include "../../localization/includes/QueryStringMessage.h"
 /*-----------------------------------------------------------------------------------*/
 /* what's the max number of commands in the queue ??*/
 #define arbitrary_max_queued_callbacks 20
@@ -33,13 +36,15 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
 	/* trace for debugging */
     int argc=1;
 	char *AsciiFromUTF8=NULL;
+	char *msg=QueryStringMessage("tclsci_message_11");
 
 	AsciiFromUTF8=MALLOC(sizeof(char)*(strlen(argv[1])+AddCharacters));
 
     /* UTF to ANSI */
 	Tcl_UtfToExternal(theinterp, NULL, argv[1], (int)strlen(argv[1]), 0, NULL, AsciiFromUTF8, (int)(strlen(argv[1])+AddCharacters), NULL, NULL,NULL);
 
-    sciprint_full(TCL_MSG7,AsciiFromUTF8);
+    sciprint_full(msg,AsciiFromUTF8);
+	if (msg) {FREE(msg);msg=NULL;}
 
     while (argv[++argc]) sciprint(" %s",argv[argc]);
     sciprint("\n");
@@ -60,20 +65,20 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
       command = (char *) MALLOC (bsiz * sizeof (char));
       if (command == (char *) 0)
       {
-        sciprint(TCL_ERROR28);
+		message_scilab("tclsci_message_6");
         return TCL_ERROR;
       }
       memset(command,'\0',bsiz);
       strncpy(command,AsciiFromUTF8,bsiz-1);
-      sciprint(TCL_WARNING4,bsiz-1);
+	  message_scilab("tclsci_message_7",bsiz-1);
     }
 	else
 	{
       command = (char *) MALLOC ((strlen (AsciiFromUTF8) + 1) * sizeof (char));
       if (command == (char *) 0)
       {
-        sciprint(TCL_ERROR28);
-        return TCL_ERROR;
+		  message_scilab("tclsci_message_6");
+          return TCL_ERROR;
       }
       strcpy(command,AsciiFromUTF8);
     }
@@ -85,28 +90,38 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
       C2F(tksynchro)(&c_n1);  /* set sciprompt to -1 (scilab busy) */
       seq= ( (argv[3] != (char *)0) && (strncmp(argv[3],"seq",3)==0) );
       ns=(int)strlen(command); 
-      if (C2F(iop).ddt==-1) sciprint_full(TCL_MSG8,command);
+      if (C2F(iop).ddt==-1)
+	  {
+		  char *msg=QueryStringMessage("tclsci_message_12");
+		  sciprint_full(msg,command);
+		  if (msg){FREE(msg);msg=NULL;}
+	  }
       C2F(syncexec)(command,&ns,&ierr,&seq);
-      if (C2F(iop).ddt==-1) sciprint_full(TCL_MSG9,command);
+      if (C2F(iop).ddt==-1)
+	  {
+		  char *msg=QueryStringMessage("tclsci_message_13");
+		  sciprint_full(msg,command);
+		  if (msg){FREE(msg);msg=NULL;}
+	  }
       C2F(tksynchro)(&C2F(recu).paus);
       if (ierr != 0) return TCL_ERROR;
     }
     else if (strncmp(command,"flush",5)==0)
 	{
       /* flush */
-      if (C2F(iop).ddt==-1) sciprint(TCL_MSG10);
+      if (C2F(iop).ddt==-1) message_scilab("tclsci_message_8");
       while (C2F(ismenu)() && ncomm<arbitrary_max_queued_callbacks-1)
 	  {
         ncomm++;
         comm[ncomm] = (char *) MALLOC (bsiz+1);
         if (comm[ncomm] == (char *) 0)
         {
-          sciprint (TCL_ERROR28);
-          return TCL_ERROR;
+			message_scilab("tclsci_message_6");
+			return TCL_ERROR;
         }
         seqf[ncomm]=GetCommand (comm[ncomm]);
       }
-      if (C2F(ismenu)()) sciprint(TCL_WARNING5);
+      if (C2F(ismenu)()) message_scilab("tclsci_message_9");
       for (nc = 0 ; nc <= ncomm ; nc++ )
 	  {
         C2F(tksynchro)(&c_n1);  /* set sciprompt to -1 (scilab busy) */
@@ -114,24 +129,30 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
         {
 	      if (seqf[nc]==0)
 		  {
-			  sciprint_full(TCL_MSG11,comm[nc]);
+			  char *msg=QueryStringMessage("tclsci_message_14");
+			  sciprint_full(msg,comm[nc]);
+			  if (msg){FREE(msg);msg=NULL;}
 		  }
 	      else
 		  {
-			  sciprint_full(TCL_MSG12,comm[nc]);
+			  char *msg=QueryStringMessage("tclsci_message_15");
+			  sciprint_full(msg,comm[nc]);
+			  if (msg){FREE(msg);msg=NULL;}
 		  }
         }
         ns=(int)strlen(comm[nc]);
         C2F(syncexec)(comm[nc],&ns,&ierr,&(seqf[nc]));
         if (C2F(iop).ddt==-1)
         {
-          sciprint_full(TCL_MSG13,comm[nc]);
+			char *msg=QueryStringMessage("tclsci_message_16");
+			sciprint_full(msg,comm[nc]);
+			if (msg){FREE(msg);msg=NULL;}
         }
         FREE(comm[nc]);
         C2F(tksynchro)(&C2F(recu).paus);
         if (ierr != 0) return TCL_ERROR;
       }
-      if (C2F(iop).ddt==-1) sciprint(TCL_MSG14);
+      if (C2F(iop).ddt==-1) message_scilab("tclsci_message_10");
     }
     else
 	{
@@ -154,7 +175,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
   else
   {
 	/* ScilabEval called without argument */
-    Scierror(999,TCL_ERROR29);
+	error_scilab(999,"tclsci_error_39");
   }
 
   return TCL_OK;

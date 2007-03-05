@@ -337,10 +337,6 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath=".\includes\Errors.h"
-				>
-			</File>
-			<File
 				RelativePath=".\includes\GedManagement.h"
 				>
 			</File>
@@ -462,10 +458,6 @@
 			</File>
 			<File
 				RelativePath=".\includes\TerminateTclTk.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\Warnings.h"
 				>
 			</File>
 		</Filter>

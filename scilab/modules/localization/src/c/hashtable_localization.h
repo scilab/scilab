@@ -9,7 +9,6 @@
 #include "machine.h" /* BOOL */
 #include "MALLOC.h"
 #include <stdlib.h>
-
 /*-----------------------------------------------------------------------------------*/ 
 struct key_string
 {

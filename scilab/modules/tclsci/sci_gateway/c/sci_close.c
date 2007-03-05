@@ -4,7 +4,8 @@
 /*-----------------------------------------------------------------------------------*/
 #include "TCL_Global.h"
 #include "gw_tclsci.h"
-#include "sciprint.h"
+#include "message_scilab.h"
+#include "error_scilab.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_close) _PARAMS((char *fname,unsigned long l))
 {
@@ -43,32 +44,32 @@ int C2F(sci_close) _PARAMS((char *fname,unsigned long l))
 					}
 					else
 					{
-						Scierror(999,TCL_ERROR5);
+						error_scilab(999,"tclsci_error_6");
 						return 0;
 					}
 				}
 				else
 				{
 					DoCloseFigure=FALSE;
-					sciprint(TCL_WARNING3,Handle);
+					message_scilab("tclsci_message_4",Handle);
 				}
 			}
 			else
 			{
-				Scierror(999,TCL_ERROR6);
+				error_scilab(999,"tclsci_error_7");
 				return 0;
 			}
 		}
 		else
 		{
-			Scierror(999,TCL_ERROR7);
+			error_scilab(999,"tclsci_error_7");
 			return 0;
 		}
 	}
 	
     if ( DoCloseFigure && ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  ) )
     {
-		Scierror(999,TCL_ERROR4,TCLinterp->result);
+		error_scilab(999,"tclsci_error_5",TCLinterp->result);
 		return 0;
 	}
 	else
