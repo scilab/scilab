@@ -29,9 +29,23 @@ function [N,S] = weekday(D,form)
 	bissextile_year = [0,31,60,91,121,152,182,213,244,274,305,335,366];
 	week_numbers = [7,1,2,3,4,5,6];
 	
-	week_strings_short = ['Sat','Sun','Mon','Tue','Wed','Thu','Fri'];
-	week_strings_long = ['Saturday','Sunday','Monday','Tuesday','Wednesday','Thursday','Friday'];
+	week_strings_short = [gettext('messages','time_message_3'), ..
+	gettext('messages','time_message_4'), ..
+	gettext('messages','time_message_5'), ..
+	gettext('messages','time_message_6'), ..
+	gettext('messages','time_message_7'), ..
+	gettext('messages','time_message_8'), ..
+	gettext('messages','time_message_9')];
 	
+	week_strings_long = [gettext('messages','time_message_10'), ..
+	gettext('messages','time_message_11'), ..
+	gettext('messages','time_message_12'), ..
+	gettext('messages','time_message_13'), ..
+	gettext('messages','time_message_14'), ..
+	gettext('messages','time_message_15'), ..
+	gettext('messages','time_message_16'), ..
+	gettext('messages','time_message_17')];
+		
 	if rhs==2 then
 		if form == 'long' then
 			week_strings = week_strings_long;

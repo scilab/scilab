@@ -15,11 +15,11 @@ function E=eomday(Y,M)
 	leap_year = [31,29,31,30,31,30,31,31,30,31,30,31];
 	
 	if size(Y) <> size(M) then
-		error("Both parameters must have the same size.");
+		error(gettext('errors','time_error_8'));
 	end
 	
 	if rhs <> 2 then
-		error("Number of parameters incorrect.");
+		error(gettext('errors','time_error_9'));
 	end
 	
 	[nr,nc] = size(Y);
@@ -29,15 +29,15 @@ function E=eomday(Y,M)
 		for j=1:nc
 			
 			if (type(Y(i,j)) <> 1) | (type(M(i,j)) <> 1) then
-				error("Parameters must be integers");
+				error(gettext('errors','time_error_10'));
 			end
 			
 			if (floor(Y(i,j))<>Y(i,j)) | (floor(M(i,j))<>M(i,j)) then
-				error("Parameters must be integers");
+				error(gettext('errors','time_error_10'));
 			end
 			
 			if (M(i,j) < 1) | (M(i,j) > 12) then
-				error("The second parameter must be between 1 and 12");
+			  error(gettext('errors','time_error_11'));
 			end
 			
 			if isLeapYear(Y(i,j)) then

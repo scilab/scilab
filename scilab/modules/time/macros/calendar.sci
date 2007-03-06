@@ -18,21 +18,31 @@ function listcal = calendar(varargin)
       M=varargin(2);
       if (size(Y) == [1,1]) & (size(M) == [1,1]) then
       else
-        error('Y and M must be scalars.');
+        error(gettext('errors','time_error_20'));
       end
-      if (M < 1) | (M > 12) then error('M must contain values between 1 and 12.'),end
+      if (M < 1) | (M > 12) then error(gettext('errors','time_error_21'));,end
       c=[Y,M,1];
     break
   else
-     error('Number of parameters incorrect.');
+     error(gettext('errors','time_error_22'));
   end
 
   
-  mths = ['Jan';'Feb';'Mar';'Apr';'May';'Jun';'Jul';
-          'Aug';'Sep';'Oct';'Nov';'Dec'];
+  mths = [gettext('messages','time_message_17'); ..
+	gettext('messages','time_message_18'); ..
+	gettext('messages','time_message_19'); ..
+	gettext('messages','time_message_20'); ..
+	gettext('messages','time_message_21'); ..
+	gettext('messages','time_message_22'); ..
+	gettext('messages','time_message_23'); ..
+	gettext('messages','time_message_24'); ..
+	gettext('messages','time_message_25'); ..
+	gettext('messages','time_message_26'); ..
+	gettext('messages','time_message_27'); ..
+	gettext('messages','time_message_28')];
           
   mth = mths(c(:,2),:);
   cal=Calendar(c(2),c(1));
-  listcal=list(sprintf('%s %d',mth,c(1)),'   M      Tu     W      Th     F     Sat     Sun',cal);
+  listcal=list(sprintf('%s %d',mth,c(1)),gettext('messages','time_message_29'),cal);
 endfunction
 //------------------------------------------------------------------------
