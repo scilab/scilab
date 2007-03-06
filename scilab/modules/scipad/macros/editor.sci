@@ -1,9 +1,9 @@
 function editor()
   [lhs,rhs]=argn(0)
   if rhs<>0 then error(39), end // (??)
-  if funptr("TCL_EvalStr")==0 then
-    write(%io(2),["Editor works only with Tcl/Tk.";],"(a)")
-    return
+  if (~%tk)
+    write(%io(2),[gettext('messages','scipad_messsage_7');],"(a)")
+  return
   else
     scipad()
   end

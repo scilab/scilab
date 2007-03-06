@@ -16,7 +16,7 @@ function scipad(varargin)
     noguimode=find(sciargs()=="-nogui");
     if (nwnimode <>[] | noguimode <>[]) then
         clear nwnimode noguimode
-        warning(" Scilab in no window no interactive mode : Scipad unavailable");
+        warning(gettext('messages','scipad_messsage_1'));
         abort;
     end;
     clear nwnimode noguimode
@@ -73,12 +73,12 @@ function scipad(varargin)
 //                          //the correspondance between function and file name it is tacitly assumed
 //                          filetoopen=pathconvert(libpath+funname+".sci",%f)
 //                      else
-//                          warning("Function "+funname+"is not contained in a loaded library, "..
-//                                  +"Scipad doesn''t know where to find its source")
+//                          warning(gettext('messages','scipad_messsage_2')+funname+gettext('messages','scipad_messsage_3') ..
+//                                  +gettext('messages','scipad_messsage_4'))
 //                      end
 //                  end
                 else
-                    warning("Scipad cannot open a "+typeof(f)+" object!")
+                    warning(gettext('messages','scipad_messsage_5')+typeof(f)+gettext('messages','scipad_messsage_6'))
                 end
                 if validfile then 
                     filetoopen=pathconvert(filetoopen,%f,%t);
@@ -97,7 +97,7 @@ function scipad(varargin)
     else 
         // with_tk() is %f
         clearglobal SCIPADISSTARTING
-        error(" Scilab has not been built with Tcl/Tk: Scipad unavailable")
+        error(gettext('errors','scipad_error_1'))
     end
     clearglobal SCIPADISSTARTING
 endfunction

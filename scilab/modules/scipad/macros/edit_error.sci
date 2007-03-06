@@ -3,20 +3,20 @@ function answ=edit_error(clearerror)
   [str,n,line,func]=lasterror(clearerror)
   if n>0 then
     if func=="" then
-      answ="the last error did not occur inside a library function"
+      answ=gettext('messages','scipad_messsage_8');
     else
-      p=get_function_path(func)
+      p=get_function_path(func);
       if p<>[] then
-        scipad(p)
-        TCL_EvalStr("blinkline "+string(line)+" "+func,"scipad")
-        answ="opening file "+p+" on line "+string(line)+" of function "+func
+        scipad(p);
+        TCL_EvalStr("blinkline "+string(line)+" "+func,"scipad");
+        answ=gettext('messages','scipad_messsage_9')+p+gettext('messages','scipad_messsage_10')+string(line)+gettext('messages','scipad_messsage_11')+func;
       else
-        answ="the source file of the function "+func+...
-              " was not found in any library path"
+        answ=gettext('messages','scipad_messsage_11')+func+ ..
+              gettext('messages','scipad_messsage_12');
       end
     end
   else
-    answ="no pending error recorded!"
+    answ=gettext('messages','scipad_messsage_12');
   end
 endfunction
 
