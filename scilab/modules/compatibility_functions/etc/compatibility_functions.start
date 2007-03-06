@@ -1,11 +1,11 @@
 // ====================================================================
-// m2sci module initialisation file 
-// Copyright INRIA 2006
+// compatibility_functions module initialisation file 
+// Copyright INRIA 2007
 // ====================================================================
 //Load  functions librarie
-load('SCI/modules/m2sci/macros/lib');
+load('SCI/modules/compatibility_functions/macros/lib');
 // ====================================================================
 //add help chapter
-add_module_help_chapter('m2sci');
+add_module_help_chapter('compatibility_functions');
 clear add_module_help_chapter;
 // ====================================================================

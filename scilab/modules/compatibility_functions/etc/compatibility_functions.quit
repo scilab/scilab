@@ -1,0 +1,8 @@
+// ====================================================================
+// This file contains command to be executed at the end 
+// of a scilab session for compatibility_functions module
+// Copyright INRIA 2007
+// ====================================================================
+// delete help chapter
+del_module_help_chapter('compatibility_functions');
+// ====================================================================

@@ -47,7 +47,7 @@ build_triplet = @build@
 host_triplet = @host@
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-subdir = modules/m2sci
+subdir = modules/compatibility_functions
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
 	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/intel_compiler.m4 \
@@ -70,11 +70,13 @@ am__vpath_adj = case $$p in \
     *) f=$$p;; \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
-am__installdirs = "$(DESTDIR)$(libm2sci_la_etcdir)" \
-	"$(DESTDIR)$(libm2sci_la_rootdir)"
-libm2sci_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libm2sci_la_rootDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libm2sci_la_etc_DATA) $(libm2sci_la_root_DATA)
+am__installdirs =  \
+	"$(DESTDIR)$(libscicompatibility_functions_la_etcdir)" \
+	"$(DESTDIR)$(libscicompatibility_functions_la_rootdir)"
+libscicompatibility_functions_la_etcDATA_INSTALL = $(INSTALL_DATA)
+libscicompatibility_functions_la_rootDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(libscicompatibility_functions_la_etc_DATA) \
+	$(libscicompatibility_functions_la_root_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
@@ -225,21 +227,15 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 #### Target ######
-target = $(datadir)/m2sci
+target = $(datadir)/compatibility_functions
 
-#### m2sci : Conf files ####
-libm2sci_la_rootdir = $(target)
-libm2sci_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+#### compatibility_functions : Conf files ####
+libscicompatibility_functions_la_rootdir = $(target)
+libscicompatibility_functions_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
-#### m2sci : Macros ####
-MACROSDIRSEXT = macros/m2sci/kernel/ \
-macros/m2sci/percent/ \
-macros/m2sci/sci_files/
-
-
-#### m2sci : init scripts #### 
-libm2sci_la_etcdir = $(target)/etc
-libm2sci_la_etc_DATA = etc/m2sci.quit etc/m2sci.start
+#### compatibility_functions : init scripts #### 
+libscicompatibility_functions_la_etcdir = $(target)/etc
+libscicompatibility_functions_la_etc_DATA = etc/compatibility_functions.quit etc/compatibility_functions.start
 
 # Where headers (*.h) are installed (usually /usr/include/scilab/)
 sciincludedir = ${includedir}/scilab
@@ -293,9 +289,9 @@ $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir
 	      exit 1;; \
 	  esac; \
 	done; \
-	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign  modules/m2sci/Makefile'; \
+	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign  modules/compatibility_functions/Makefile'; \
 	cd $(top_srcdir) && \
-	  $(AUTOMAKE) --foreign  modules/m2sci/Makefile
+	  $(AUTOMAKE) --foreign  modules/compatibility_functions/Makefile
 .PRECIOUS: Makefile
 Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	@case '$?' in \
@@ -319,39 +315,39 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libm2sci_la_etcDATA: $(libm2sci_la_etc_DATA)
+install-libscicompatibility_functions_la_etcDATA: $(libscicompatibility_functions_la_etc_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libm2sci_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libm2sci_la_etcdir)"
-	@list='$(libm2sci_la_etc_DATA)'; for p in $$list; do \
+	test -z "$(libscicompatibility_functions_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libscicompatibility_functions_la_etcdir)"
+	@list='$(libscicompatibility_functions_la_etc_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libm2sci_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libm2sci_la_etcdir)/$$f'"; \
-	  $(libm2sci_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libm2sci_la_etcdir)/$$f"; \
+	  echo " $(libscicompatibility_functions_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscicompatibility_functions_la_etcdir)/$$f'"; \
+	  $(libscicompatibility_functions_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscicompatibility_functions_la_etcdir)/$$f"; \
 	done
 
-uninstall-libm2sci_la_etcDATA:
+uninstall-libscicompatibility_functions_la_etcDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libm2sci_la_etc_DATA)'; for p in $$list; do \
+	@list='$(libscicompatibility_functions_la_etc_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libm2sci_la_etcdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libm2sci_la_etcdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscicompatibility_functions_la_etcdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscicompatibility_functions_la_etcdir)/$$f"; \
 	done
-install-libm2sci_la_rootDATA: $(libm2sci_la_root_DATA)
+install-libscicompatibility_functions_la_rootDATA: $(libscicompatibility_functions_la_root_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libm2sci_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libm2sci_la_rootdir)"
-	@list='$(libm2sci_la_root_DATA)'; for p in $$list; do \
+	test -z "$(libscicompatibility_functions_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libscicompatibility_functions_la_rootdir)"
+	@list='$(libscicompatibility_functions_la_root_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libm2sci_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libm2sci_la_rootdir)/$$f'"; \
-	  $(libm2sci_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libm2sci_la_rootdir)/$$f"; \
+	  echo " $(libscicompatibility_functions_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscicompatibility_functions_la_rootdir)/$$f'"; \
+	  $(libscicompatibility_functions_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscicompatibility_functions_la_rootdir)/$$f"; \
 	done
 
-uninstall-libm2sci_la_rootDATA:
+uninstall-libscicompatibility_functions_la_rootDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libm2sci_la_root_DATA)'; for p in $$list; do \
+	@list='$(libscicompatibility_functions_la_root_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libm2sci_la_rootdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libm2sci_la_rootdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libscicompatibility_functions_la_rootdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscicompatibility_functions_la_rootdir)/$$f"; \
 	done
 tags: TAGS
 TAGS:
@@ -391,7 +387,7 @@ check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(libm2sci_la_etcdir)" "$(DESTDIR)$(libm2sci_la_rootdir)"; do \
+	for dir in "$(DESTDIR)$(libscicompatibility_functions_la_etcdir)" "$(DESTDIR)$(libscicompatibility_functions_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -439,8 +435,9 @@ info: info-am
 
 info-am:
 
-install-data-am: install-data-local install-libm2sci_la_etcDATA \
-	install-libm2sci_la_rootDATA
+install-data-am: install-data-local \
+	install-libscicompatibility_functions_la_etcDATA \
+	install-libscicompatibility_functions_la_rootDATA
 
 install-dvi: install-dvi-am
 
@@ -476,8 +473,8 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libm2sci_la_etcDATA \
-	uninstall-libm2sci_la_rootDATA
+uninstall-am: uninstall-libscicompatibility_functions_la_etcDATA \
+	uninstall-libscicompatibility_functions_la_rootDATA
 
 .MAKE: install-am install-strip
 
@@ -487,13 +484,16 @@ uninstall-am: uninstall-libm2sci_la_etcDATA \
 	install-data install-data-am install-data-local install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
-	install-info-am install-libm2sci_la_etcDATA \
-	install-libm2sci_la_rootDATA install-man install-pdf \
-	install-pdf-am install-ps install-ps-am install-strip \
-	installcheck installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am uninstall uninstall-am \
-	uninstall-libm2sci_la_etcDATA uninstall-libm2sci_la_rootDATA
+	install-info-am \
+	install-libscicompatibility_functions_la_etcDATA \
+	install-libscicompatibility_functions_la_rootDATA install-man \
+	install-pdf install-pdf-am install-ps install-ps-am \
+	install-strip installcheck installcheck-am installdirs \
+	maintainer-clean maintainer-clean-generic mostlyclean \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	uninstall uninstall-am \
+	uninstall-libscicompatibility_functions_la_etcDATA \
+	uninstall-libscicompatibility_functions_la_rootDATA
 
 
 # Compilation of Java

@@ -12,11 +12,10 @@ target=$(datadir)/m2sci
 libm2sci_la_rootdir = $(target)
 libm2sci_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
-# VOIR macros/mtlb/lib 
+#### m2sci : Macros ####
 MACROSDIRSEXT =  macros/m2sci/kernel/ \
 macros/m2sci/percent/ \
-macros/m2sci/sci_files/ \
-macros/mtlb/
+macros/m2sci/sci_files/
 
 #### m2sci : init scripts #### 
 libm2sci_la_etcdir = $(target)/etc
