@@ -1,6 +1,6 @@
 // Allan CORNET
 // INRIA 2005
 function TK_EvalStr(Str)
-  printf('\nWarning TK_EvalStr obsolete please use TCL_EvalStr.\n');
+  printf(gettext('messages','tclsci_message_29'));
   TCL_EvalStr(Str)
 endfunction

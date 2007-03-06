@@ -28,6 +28,12 @@ int C2F(sci_setlanguage) _PARAMS((char *fname,unsigned long fname_len))
 
 		newlanguage=convertlanguagealias(param);
 
+		if ( LanguageIsOK(param) && (newlanguage == NULL) )
+		{
+			newlanguage=(char*)MALLOC(sizeof(char)*strlen(param)+1);
+			strcpy(newlanguage,param);
+		}
+
 		if (newlanguage)
 		{
 			if (needtochangelanguage(newlanguage))

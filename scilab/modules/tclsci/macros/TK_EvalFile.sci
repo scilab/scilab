@@ -1,6 +1,6 @@
 // Allan CORNET
 // INRIA 2005
 function TK_EvalFile(f1)
-  printf('\nWarning TK_EvalFile obsolete please use TCL_EvalFile.\n');
+  printf(gettext('messages','tclsci_message_28'));
   TCL_EvalFile(f1)
 endfunction

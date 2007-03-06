@@ -220,6 +220,40 @@
 	<string>TCL_LIBRARY has been redefined to </string>
 </entry>		
 
+<entry>
+	<tag>tclsci_error_44</tag>
+	<string>Tcl/Tk interface not defined.</string>
+</entry>		
+
+<entry>
+	<tag>tclsci_error_45</tag>
+	<string>Too many input arguments.</string>
+</entry>		
+
+<entry>
+	<tag>tclsci_error_46</tag>
+	<string> Value must be numeric.</string>
+</entry>		
+
+<entry>
+	<tag>tclsci_error_47</tag>
+	<string>Incorrect property </string>
+</entry>		
+
+<entry>
+	<tag>tclsci_error_48</tag>
+	<string>figure : invalid value type.</string>
+</entry>		
+
+<entry>
+	<tag>tclsci_error_49</tag>
+	<string> Value must be a string.</string>
+</entry>		
+
+<entry>
+	<tag>tclsci_error_50</tag>
+	<string>Error in Property specification : bad argument specified.</string>
+</entry>		
 
 
 </LOCALIZATION>

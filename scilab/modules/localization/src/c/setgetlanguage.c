@@ -13,7 +13,6 @@
 static char CURRENTLANGUAGESTRING[LengthAlphacode]=SCILABDEFAULTLANGUAGE;
 static int  CURRENTLANGUAGECODE=SCILABDEFAULTLANGUAGECODE;
 /*-----------------------------------------------------------------------------------*/ 
-static BOOL LanguageIsOK(char *lang);
 static int FindLanguageCode(char *lang);
 static BOOL setlanguagecode(char *lang);
 static char *FindAlias(char *lang);
@@ -100,7 +99,7 @@ int getcodefromlanguage(char *language)
 	return FindLanguageCode(language);
 }
 /*-----------------------------------------------------------------------------------*/ 
-static BOOL LanguageIsOK(char *lang)
+BOOL LanguageIsOK(char *lang)
 {
 	BOOL bOK=FALSE;
 	int i=0;

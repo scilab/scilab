@@ -328,7 +328,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\tableslanguages.h"
+				RelativePath=".\c\tableslanguages.h"
 				>
 			</File>
 			<File

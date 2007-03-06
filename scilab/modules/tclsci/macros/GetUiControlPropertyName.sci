@@ -32,7 +32,7 @@
   k=find(part(TableProperties,1:length(str))==str);
 
   if (k == []) then
-    disp("Error in Property specification : bad argument specified");
+    disp(gettext('errors','tclsci_error_50'));
     PName='';
     return;
   end

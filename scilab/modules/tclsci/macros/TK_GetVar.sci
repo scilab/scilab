@@ -1,6 +1,6 @@
 // Allan CORNET
 // INRIA 2005
 function ret=TK_GetVar(Var)
-  printf('\nWarning TK_GetVar obsolete please use TCL_GetVar.\n');
+  printf(gettext('messages','tclsci_message_22'));
   ret=TCL_GetVar(Var)
 endfunction

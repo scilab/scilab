@@ -18,7 +18,7 @@ function SName=GetUiControlStyleName(StyleName)
   k=find(part(TableStyle,1:length(str))==str);
 
   if (k == []) then
-    disp("Error in Property specification : bad argument specified");
+    disp(gettext('errors','tclsci_error_50'));
     SName='';
     return;
   end

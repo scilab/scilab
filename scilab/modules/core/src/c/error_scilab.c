@@ -3,9 +3,7 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include <stdarg.h>
-#ifdef _MSC_VER
 #include "error_scilab.h"
-#endif
 #include "MALLOC.h"
 #include "Scierror.h"
 #include "sciprint.h"

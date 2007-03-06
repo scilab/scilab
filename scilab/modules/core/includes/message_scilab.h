@@ -5,7 +5,7 @@
 #ifndef __MESSAGE_SCILAB_H__ 
 #define __MESSAGE_SCILAB_H__
 
-int message_scilab(char *Tag,...);
+int message_scilab();
 
 #endif /*__MESSAGE_SCILAB_H__*/
 /*-----------------------------------------------------------------------------------*/

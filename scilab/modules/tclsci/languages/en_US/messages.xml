@@ -113,5 +113,45 @@
 	<string>TCL/TK %d.%d.%d %s</string>
 </entry>	
 
+<entry>
+	<tag>tclsci_message_22</tag>
+	<string>Warning TK_GetVar obsolete please use TCL_GetVar.</string>
+</entry>	
+
+<entry>
+	<tag>tclsci_message_23</tag>
+	<string>Warning TK_SetVar obsolete please use TCL_SetVar.</string>
+</entry>	
+
+<entry>
+	<tag>tclsci_message_24</tag>
+	<string>This is an example</string>
+</entry>	
+
+<entry>
+	<tag>tclsci_message_25</tag>
+	<string>Warning: Error loading </string>
+</entry>	
+
+<entry>
+	<tag>tclsci_message_26</tag>
+	<string>Progression bar</string>
+</entry>	
+
+<entry>
+	<tag>tclsci_message_27</tag>
+	<string>Parsing help files ...</string>
+</entry>	
+
+<entry>
+	<tag>tclsci_message_28</tag>
+	<string>Warning TK_EvalFile obsolete please use TCL_EvalFile.</string>
+</entry>	
+
+<entry>
+	<tag>tclsci_message_29</tag>
+	<string>Warning TK_EvalStr obsolete please use TCL_EvalStr.</string>
+</entry>	
+
 
 </LOCALIZATION>

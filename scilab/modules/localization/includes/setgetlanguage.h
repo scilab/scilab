@@ -69,6 +69,13 @@ BOOL needtochangelanguage(char *language);
 */
 char *convertlanguagealias(char *strlanguage);
 
+/** TODO
+* test if lang is defined language
+* @param lang
+* @return TRUE or FALSE
+*/
+BOOL LanguageIsOK(char *lang);
+
 
 #endif /* __SETGETLANGUAGE_H__ */
 /*-----------------------------------------------------------------------------------*/ 

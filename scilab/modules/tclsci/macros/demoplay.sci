@@ -14,7 +14,7 @@ function demoplay(filename)
 
   goon=%f;
   if (argn(2)==0) then
-    filename=SCI+'/demos/sciGUI/test_demoplay.dpf';
+    filename=SCI+'/modules/tclsci/demos/sciGUI/test_demoplay.dpf';
     goon=%t;
   end
 

@@ -5,7 +5,9 @@
 #ifndef __ERROR_SCILAB_H__ 
 #define __ERROR_SCILAB_H__
 
-int error_scilab(int iv,char *Tag,...);
+
+int error_scilab();
+
 
 #endif /*__ERROR_SCILAB_H__*/
 /*-----------------------------------------------------------------------------------*/
