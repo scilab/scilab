@@ -3,107 +3,107 @@
 <LOCALIZATION>
 
 <entry>
-	<tag>scipad_messsage_1</tag>
+	<tag>scipad_message_1</tag>
 	<string> Scilab in no window no interactive mode : Scipad unavailable.</string>
 </entry>	
 
 <entry>
-	<tag>scipad_messsage_2</tag>
+	<tag>scipad_message_2</tag>
 	<string>Function </string>
 </entry>	
 		
 <entry>
-	<tag>scipad_messsage_3</tag>
+	<tag>scipad_message_3</tag>
 	<string>is not contained in a loaded library, </string>
 </entry>	
 
 <entry>
-	<tag>scipad_messsage_4</tag>
+	<tag>scipad_message_4</tag>
 	<string>Scipad doesn't know where to find its source</string>
 </entry>	
 
 <entry>
-	<tag>scipad_messsage_5</tag>
+	<tag>scipad_message_5</tag>
 	<string>Scipad cannot open a </string>
 </entry>	
 
 <entry>
-	<tag>scipad_messsage_6</tag>
+	<tag>scipad_message_6</tag>
 	<string> object!</string>
 </entry>	
 
 <entry>
-	<tag>scipad_messsage_7</tag>
+	<tag>scipad_message_7</tag>
 	<string>Editor works only with Tcl/Tk.</string>
 </entry>	
 
 <entry>
-	<tag>scipad_messsage_8</tag>
+	<tag>scipad_message_8</tag>
 	<string>the last error did not occur inside a library function.</string>
 </entry>	
 
 <entry>
-	<tag>scipad_messsage_9</tag>
+	<tag>scipad_message_9</tag>
 	<string>opening file </string>
 </entry>	
 
 <entry>
-	<tag>scipad_messsage_10</tag>
+	<tag>scipad_message_10</tag>
 	<string> on line </string>
 </entry>	
 
 <entry>
-	<tag>scipad_messsage_11</tag>
+	<tag>scipad_message_11</tag>
 	<string>the source file of the function </string>
 </entry>	
 
 <entry>
-	<tag>scipad_messsage_12</tag>
+	<tag>scipad_message_12</tag>
 	<string> was not found in any library path</string>
 </entry>	
 
 <entry>
-	<tag>scipad_messsage_13</tag>
+	<tag>scipad_message_13</tag>
 	<string>no pending error recorded!</string>
 </entry>	
 
 <entry>
-	<tag>scipad_messsage_14</tag>
+	<tag>scipad_message_14</tag>
 	<string>Finding missing entries in </string>
 </entry>	
 
 <entry>
-	<tag>scipad_messsage_15</tag>
+	<tag>scipad_message_15</tag>
 	<string> and writing the result...</string>
 </entry>	
 
 <entry>
-	<tag>scipad_messsage_16</tag>
+	<tag>scipad_message_16</tag>
 	<string>Translations missing in file </string>
 </entry>	
 
 <entry>
-	<tag>scipad_messsage_17</tag>
+	<tag>scipad_message_17</tag>
 	<string>Finding unused entries in </string>
 </entry>	
 
 <entry>
-	<tag>scipad_messsage_18</tag>
+	<tag>scipad_message_18</tag>
 	<string>Unused strings in file </string>
 </entry>	
 
 <entry>
-	<tag>scipad_messsage_19</tag>
+	<tag>scipad_message_19</tag>
 	<string>Parsing file </string>
 </entry>	
 
 <entry>
-	<tag>scipad_messsage_20</tag>
+	<tag>scipad_message_20</tag>
 	<string>, be patient...</string>
 </entry>	
 
 <entry>
-	<tag>scipad_messsage_21</tag>
+	<tag>scipad_message_21</tag>
 	<string>WARNING: THE FOLLOWING LINE SEEMS WRONG HERE AND WILL BE IGNORED</string>
 </entry>	
 

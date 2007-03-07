@@ -16,7 +16,7 @@ function scipad(varargin)
     noguimode=find(sciargs()=="-nogui");
     if (nwnimode <>[] | noguimode <>[]) then
         clear nwnimode noguimode
-        warning(gettext('messages','scipad_messsage_1'));
+        warning(gettext('messages','scipad_message_1'));
         abort;
     end;
     clear nwnimode noguimode
@@ -73,12 +73,12 @@ function scipad(varargin)
 //                          //the correspondance between function and file name it is tacitly assumed
 //                          filetoopen=pathconvert(libpath+funname+".sci",%f)
 //                      else
-//                          warning(gettext('messages','scipad_messsage_2')+funname+gettext('messages','scipad_messsage_3') ..
-//                                  +gettext('messages','scipad_messsage_4'))
+//                          warning(gettext('messages','scipad_message_2')+funname+gettext('messages','scipad_message_3') ..
+//                                  +gettext('messages','scipad_message_4'))
 //                      end
 //                  end
                 else
-                    warning(gettext('messages','scipad_messsage_5')+typeof(f)+gettext('messages','scipad_messsage_6'))
+                    warning(gettext('messages','scipad_message_5')+typeof(f)+gettext('messages','scipad_message_6'))
                 end
                 if validfile then 
                     filetoopen=pathconvert(filetoopen,%f,%t);
