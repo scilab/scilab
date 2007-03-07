@@ -245,6 +245,8 @@ function %h_p(h)
 	 "background =  "+string(h.background)
 	 "visible = "+sci2exp(h.visible)
 	 "rotation_style = "+sci2exp(h.rotation_style)
+       "event_handler = " + sci2exp( h.event_handler ) ;
+       "event_handler_enable = " + sci2exp( h.event_handler_enable ) ;
 	 "user_data = "+fmtuser_data(u)
 	]
     case "Grayplot"
