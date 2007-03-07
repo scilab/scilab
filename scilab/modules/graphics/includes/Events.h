@@ -1,4 +1,6 @@
 
+#define SCI_EVENT_HANDLER_NAME_LENGTH 25
+
 typedef int (*Scig_click_handler) (int,int,int,int,int,int);
 typedef void (*Scig_deletegwin_handler) (int);
 
@@ -15,8 +17,6 @@ extern void scig_deletegwin_handler_none (int win);
 extern void scig_deletegwin_handler_sci (int win);
 extern Scig_deletegwin_handler set_scig_deletegwin_handler (Scig_deletegwin_handler f);
 extern void reset_scig_deletegwin_handler (void);
-
-extern void seteventhandler(int *win_num,char *name,int *ierr);
 
 extern void set_delete_win_mode(void);
 extern void set_no_delete_win_mode(void);

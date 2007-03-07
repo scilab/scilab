@@ -70,7 +70,6 @@ static MatdesTable Tab[]={
 	{sci_xgraduate,"xgraduate"},
 	{sci_xname,"xname"},
 	{sci_xaxis,"xaxis"},
-	{sci_seteventhandler,"seteventhandler"},
 	{sci_xs2gif,"xs2gif"},
 	{sci_xs2ppm,"xs2ppm"},
 	{sci_xs2ps,"xs2ps"},

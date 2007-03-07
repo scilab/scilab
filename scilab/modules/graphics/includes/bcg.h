@@ -7,6 +7,7 @@
 #define __BCG__
 
 #include "machine.h" /* to be sure that WITH_XXX are defined */
+#include "Events.h"
 
 #ifndef _MSC_VER
 #include <X11/Xlib.h>
@@ -94,7 +95,6 @@ typedef struct BCG
   int NumBackground;  /* number of Background */
   int NumForeground; /* number of Foreground in the color table */
   int NumHidden3d;  /* color for hidden 3d facets **/
-  char EventHandler[25]; /* name of window event handler */
   int EventHandlerType; /* does the event handler removes the normal event handling*/
   /* NG beg */
   int CWindowWidthView;	 /** graphic window width **/

@@ -465,6 +465,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\get_event_handler_enable_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_event_handler_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\get_figure_id_property.c"
 				>
 			</File>
@@ -1094,10 +1102,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_seteventhandler.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\c\sci_show_window.c"
 				>
 			</File>
@@ -1463,6 +1467,14 @@
 			</File>
 			<File
 				RelativePath=".\src\c\getHandleProperty\set_dimension_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_event_handler_enable_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_event_handler_property.c"
 				>
 			</File>
 			<File
@@ -2252,10 +2264,6 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_set_posfig_dim.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_seteventhandler.h"
 				>
 			</File>
 			<File

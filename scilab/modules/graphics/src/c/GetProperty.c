@@ -5081,3 +5081,35 @@ void sciGetScreenPosition( sciPointObj * pObj, int * posX, int * posY )
   }
 }
 /*-------------------------------------------------------------------------------------------*/
+BOOL sciGetIsEventHandlerEnable( sciPointObj * pObj )
+{
+  switch ( sciGetEntityType(pObj) )
+  {
+  case SCI_FIGURE:
+    {
+      return pFIGURE_FEATURE( pObj )->isEventHandlerEnable ;
+    }
+    break ;
+  default:
+    sciprint( "This object has no event_handler property.\n" ) ;
+    return FALSE ;
+  }
+  return FALSE ;
+}
+/*-------------------------------------------------------------------------------------------*/
+char * sciGetEventHandler( sciPointObj * pObj )
+{
+  switch ( sciGetEntityType(pObj) )
+  {
+  case SCI_FIGURE:
+    {
+      return pFIGURE_FEATURE(pObj)->eventHandler ;
+    }
+    break ;
+  default:
+    sciprint( "This object has no event_handler property.\n" ) ;
+    return NULL ;
+  }
+  return NULL ;
+}
+/*-------------------------------------------------------------------------------------------*/

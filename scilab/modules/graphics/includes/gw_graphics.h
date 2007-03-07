@@ -82,7 +82,6 @@ extern int sci_matplot1                   _PARAMS((char *fname, unsigned long fn
 extern int sci_xgraduate                  _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xname                      _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xaxis                      _PARAMS((char *fname, unsigned long fname_len));
-extern int sci_seteventhandler            _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_help_gtk                   _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_set                        _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_get                        _PARAMS((char *fname, unsigned long fname_len));

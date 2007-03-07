@@ -4859,3 +4859,79 @@ int sciSetInfoMessage( sciPointObj * pObj, const char * newMessage )
   }
 }
 /*--------------------------------------------------------------------------------------------*/
+int sciInitEventHandler( sciPointObj * pObj, char * name )
+{
+  switch( sciGetEntityType( pObj ) )
+  {
+  case SCI_FIGURE:
+    {
+      int nameLength = strlen( name ) + 1 ;
+      sciFigure * ppFigure = pFIGURE_FEATURE(pObj) ;
+      if ( ppFigure->eventHandler != NULL )
+      {
+        ppFigure->eventHandler = REALLOC( ppFigure->eventHandler, nameLength * sizeof(char) ) ;
+      }
+      else
+      {
+        ppFigure->eventHandler = MALLOC( nameLength * sizeof(char) ) ;
+      }
+
+      if ( ppFigure == NULL )
+      {
+        sciprint("Error setting event handler name, memory full.\n") ;
+        return -1 ;
+      }
+
+      strcpy( ppFigure->eventHandler, name ) ;
+
+      if ( strcmp( name, "" ) == 0 )
+      {
+        sciInitIsEventHandlerEnable( pObj, FALSE ) ;
+      }
+
+      return 0 ;
+    }
+  default:
+    sciprint( "This object has no event_handler property.\n" ) ;
+    return -1 ;
+  }
+
+}
+/*--------------------------------------------------------------------------------------------*/
+int sciSetEventHandler( sciPointObj * pObj, char * name )
+{
+  if ( strcmp( sciGetName(pObj), name ) == 0 )
+  {
+    /* nothing to do */
+    return 1 ;
+  }
+
+  return sciInitEventHandler( pObj, name ) ;
+}
+/*--------------------------------------------------------------------------------------------*/
+int sciInitIsEventHandlerEnable( sciPointObj * pObj, BOOL enable )
+{
+  switch( sciGetEntityType( pObj ) )
+  {
+  case SCI_FIGURE:
+    {
+      pFIGURE_FEATURE(pObj)->isEventHandlerEnable = enable ;
+      return 0 ;
+    }
+  default:
+    sciprint( "This object has no event_handler property.\n" ) ;
+    return -1 ;
+  }
+}
+/*--------------------------------------------------------------------------------------------*/
+int sciSetIsEventHandlerEnable( sciPointObj * pObj, BOOL enable )
+{
+  if ( sciGetIsEventHandlerEnable(pObj) == enable )
+  {
+    /* nothing to do */
+    return 1 ;
+  }
+
+  return sciInitIsEventHandlerEnable( pObj, enable ) ;
+}
+/*--------------------------------------------------------------------------------------------*/

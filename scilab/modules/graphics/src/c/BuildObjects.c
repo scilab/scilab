@@ -206,6 +206,9 @@ sciPointObj * ConstructFigure( sciPointObj * pparent, struct BCG * XGC )
   ppFigure->infoMessage = NULL ; /* needed otherwise it will be realloc */
   sciSetInfoMessage( pobj, sciGetInfoMessage(pfiguremdl) ) ;
 
+  sciSetEventHandler( pobj, sciGetEventHandler( pfiguremdl ) ) ;
+  sciSetIsEventHandlerEnable( pobj, sciGetIsEventHandlerEnable( pfiguremdl ) ) ;
+
   /** Initialize the colormap */
   /* try to install the colormap in the graphic context */
 

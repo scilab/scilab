@@ -41,15 +41,18 @@ int scig_click_handler_none (int win,int x,int y,int ibut,
 int scig_click_handler_sci (int win,int x,int y,int ibut,int motion,int release)
 {
   static char buf[256];
-  struct BCG *SciGc = (struct BCG *) NULL;
+  struct BCG  * SciGc = (struct BCG *) NULL;
+  sciPointObj * pFigure = NULL ;
 
   SciGc = getWindowXgcNumber(win);
 
   if(SciGc == (struct BCG *) NULL) 
 	  return 0;
 
-  if (strlen(SciGc->EventHandler)!=0) {
-    sprintf(buf,"%s(%d,%d,%d,%d)",SciGc->EventHandler,win,x,y,ibut);
+  pFigure = SciGc->mafigure ;
+
+  if (sciGetIsEventHandlerEnable(pFigure) && strlen(sciGetEventHandler(pFigure)) > 0 ) {
+    sprintf(buf,"%s(%d,%d,%d,%d)",sciGetEventHandler(pFigure),win,x,y,ibut);
     StoreCommand1(buf,0);
     return 1;}
   else
@@ -81,11 +84,12 @@ void scig_deletegwin_handler_none (int win)
 void scig_deletegwin_handler_sci (int win)
 {
   static char buf[256];
-  struct BCG *SciGc;
+  struct BCG  * SciGc;
+  sciPointObj * pFigure = SciGc->mafigure ;
 
   SciGc = getWindowXgcNumber(win);
-  if (strlen(SciGc->EventHandler)!=0) {
-    sprintf(buf,"%s(%d,0,0,-1000)",SciGc->EventHandler,win);
+  if (sciGetIsEventHandlerEnable(pFigure) && strlen(sciGetEventHandler(pFigure)) > 0 ) {
+    sprintf(buf,"%s(%d,0,0,-1000)",sciGetEventHandler(pFigure),win);
     StoreCommand1(buf,0);
   }
 }
@@ -217,17 +221,6 @@ int ClearClickQueue(int win)
     }
   lastc=0;
   return(0);
-}
-/*-----------------------------------------------------------------------------------*/
-
-void seteventhandler(int *win_num,char *name,int *ierr)
-{  
-  struct BCG *SciGc;
-  /*ButtonPressMask|PointerMotionMask|ButtonReleaseMask|KeyPressMask */
-  *ierr = 0;
-  SciGc = getWindowXgcNumber(*win_num);
-  if ( SciGc ==  NULL ) {*ierr=1;return;}
-  strncpy(SciGc->EventHandler,name,24);
 }
 /*-----------------------------------------------------------------------------------*/
 void set_wait_click(int val)

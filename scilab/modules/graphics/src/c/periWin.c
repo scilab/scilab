@@ -3647,7 +3647,6 @@ struct BCG *AddNewWindowToList()
   newWin->Blue = (float *) 0;
   newWin->Colors = (COLORREF *) 0;
   newWin->CmapFlag  = 1;
-  newWin->EventHandler[0]='\0'; 
   newWin->lpgw = &graphwin;
   newWin->hPen  = (HPEN) 0;
   newWin->hBrush  = (HBRUSH) 0;

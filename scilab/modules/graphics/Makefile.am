@@ -365,7 +365,6 @@ sci_gateway/c/sci_xs2bmp.c \
 sci_gateway/c/sci_xs2emf.c \
 sci_gateway/c/sci_xsegs.c \
 sci_gateway/c/sci_xaxis.c \
-sci_gateway/c/sci_seteventhandler.c \
 sci_gateway/c/sci_glue.c \
 sci_gateway/c/sci_xarc.c \
 sci_gateway/c/sci_xpolys.c \
@@ -556,7 +555,6 @@ includes/sci_xsort.h \
 includes/sci_xtape.h \
 includes/sci_xset.h \
 includes/sci_xgetech.h \
-includes/sci_seteventhandler.h \
 includes/sci_glue.h \
 includes/sci_xstringb.h \
 includes/sci_xs2emf.h \

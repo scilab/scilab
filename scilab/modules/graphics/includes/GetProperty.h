@@ -201,4 +201,7 @@ int sciGetInfoMessageLength( sciPointObj * pObj ) ;
 
 void sciGetScreenPosition( sciPointObj * pObj, int * posX, int * posY ) ;
 
+BOOL sciGetIsEventHandlerEnable( sciPointObj * pObj ) ;
+char * sciGetEventHandler( sciPointObj * pObj ) ;
+
 #endif /* __SCI_GET_PROPERTY__ */

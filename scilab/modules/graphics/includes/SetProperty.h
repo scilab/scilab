@@ -236,11 +236,16 @@ int sciSetViewport(  sciPointObj * pObj, int xSize, int ySize ) ; /* SET */
 
 int sciSetInfoMessage( sciPointObj * pObj, const char * newMessage ) ; /* SET */
 
+int sciInitEventHandler( sciPointObj * pObj, char * name ) ;
+int sciSetEventHandler(  sciPointObj * pObj, char * name ) ;
+
+int sciInitIsEventHandlerEnable( sciPointObj * pObj, BOOL enable ) ;
+int sciSetIsEventHandlerEnable(  sciPointObj * pObj, BOOL enable ) ;
+
 /*---------------------------------------------------------------------------*/
 /* return 0 if the string contains any % character, 1 if a %d has been found */
 /* and -1 otherwise. */
 extern int checkPercent( char * string ) ;
 /*---------------------------------------------------------------------------*/
-
 
 #endif /* __SCI_SET_PROPERTY__ */
