@@ -300,7 +300,7 @@ void DrawMerge3d( sciPointObj * psubwin, sciPointObj * pmerge, int * DPI )
         }
       }
       break;
-    case  SCI_SEGS:
+    case SCI_SEGS:
       {
         sciSegs * ppSegs = pSEGS_FEATURE(pobj) ;
         p = 2;

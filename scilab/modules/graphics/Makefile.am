@@ -136,6 +136,8 @@ src/c/getHandleProperty/setGetHashTable.c \
 src/c/getHandleProperty/get_segs_color_property.c \
 src/c/getHandleProperty/get_screen_position_property.c \
 src/c/getHandleProperty/get_dimension_property.c \
+src/c/getHandleProperty/get_event_handler_property.c \
+src/c/getHandleProperty/get_event_handler_enable_property.c \
 src/c/getHandleProperty/GetHashTable.c \
 src/c/graphicModuleLoad.c \
 src/c/getHandleProperty/set_old_style_property.c \
@@ -264,6 +266,8 @@ src/c/getHandleProperty/set_viewport_property.c \
 src/c/getHandleProperty/set_info_message_property.c \
 src/c/getHandleProperty/set_screen_position_property.c \
 src/c/getHandleProperty/set_dimension_property.c \
+src/c/getHandleProperty/set_event_handler_property.c \
+src/c/getHandleProperty/set_event_handler_enable_property.c \
 src/c/DefaultCommandArg.c \
 src/c/periPos.c \
 src/c/periX11.c \

@@ -215,6 +215,8 @@ am__objects_1 = libscigraphics_la-GetCommandArg.lo \
 	libscigraphics_la-get_segs_color_property.lo \
 	libscigraphics_la-get_screen_position_property.lo \
 	libscigraphics_la-get_dimension_property.lo \
+	libscigraphics_la-get_event_handler_property.lo \
+	libscigraphics_la-get_event_handler_enable_property.lo \
 	libscigraphics_la-GetHashTable.lo \
 	libscigraphics_la-graphicModuleLoad.lo \
 	libscigraphics_la-set_old_style_property.lo \
@@ -343,6 +345,8 @@ am__objects_1 = libscigraphics_la-GetCommandArg.lo \
 	libscigraphics_la-set_info_message_property.lo \
 	libscigraphics_la-set_screen_position_property.lo \
 	libscigraphics_la-set_dimension_property.lo \
+	libscigraphics_la-set_event_handler_property.lo \
+	libscigraphics_la-set_event_handler_enable_property.lo \
 	libscigraphics_la-DefaultCommandArg.lo \
 	libscigraphics_la-periPos.lo libscigraphics_la-periX11.lo \
 	libscigraphics_la-graphicSession.lo \
@@ -414,10 +418,8 @@ am__objects_2 = libscigraphics_la-sci_swap_handles.lo \
 	libscigraphics_la-sci_xs2ppm.lo \
 	libscigraphics_la-sci_xs2bmp.lo \
 	libscigraphics_la-sci_xs2emf.lo libscigraphics_la-sci_xsegs.lo \
-	libscigraphics_la-sci_xaxis.lo \
-	libscigraphics_la-sci_seteventhandler.lo \
-	libscigraphics_la-sci_glue.lo libscigraphics_la-sci_xarc.lo \
-	libscigraphics_la-sci_xpolys.lo \
+	libscigraphics_la-sci_xaxis.lo libscigraphics_la-sci_glue.lo \
+	libscigraphics_la-sci_xarc.lo libscigraphics_la-sci_xpolys.lo \
 	libscigraphics_la-sci_xstring.lo \
 	libscigraphics_la-sci_xstringb.lo \
 	libscigraphics_la-sci_xs2gif.lo \
@@ -775,6 +777,8 @@ src/c/getHandleProperty/setGetHashTable.c \
 src/c/getHandleProperty/get_segs_color_property.c \
 src/c/getHandleProperty/get_screen_position_property.c \
 src/c/getHandleProperty/get_dimension_property.c \
+src/c/getHandleProperty/get_event_handler_property.c \
+src/c/getHandleProperty/get_event_handler_enable_property.c \
 src/c/getHandleProperty/GetHashTable.c \
 src/c/graphicModuleLoad.c \
 src/c/getHandleProperty/set_old_style_property.c \
@@ -903,6 +907,8 @@ src/c/getHandleProperty/set_viewport_property.c \
 src/c/getHandleProperty/set_info_message_property.c \
 src/c/getHandleProperty/set_screen_position_property.c \
 src/c/getHandleProperty/set_dimension_property.c \
+src/c/getHandleProperty/set_event_handler_property.c \
+src/c/getHandleProperty/set_event_handler_enable_property.c \
 src/c/DefaultCommandArg.c \
 src/c/periPos.c \
 src/c/periX11.c \
@@ -1003,7 +1009,6 @@ sci_gateway/c/sci_xs2bmp.c \
 sci_gateway/c/sci_xs2emf.c \
 sci_gateway/c/sci_xsegs.c \
 sci_gateway/c/sci_xaxis.c \
-sci_gateway/c/sci_seteventhandler.c \
 sci_gateway/c/sci_glue.c \
 sci_gateway/c/sci_xarc.c \
 sci_gateway/c/sci_xpolys.c \
@@ -1186,7 +1191,6 @@ includes/sci_xsort.h \
 includes/sci_xtape.h \
 includes/sci_xset.h \
 includes/sci_xgetech.h \
-includes/sci_seteventhandler.h \
 includes/sci_glue.h \
 includes/sci_xstringb.h \
 includes/sci_xs2emf.h \
@@ -1498,6 +1502,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_default_axes_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_default_figure_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_dimension_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_event_handler_enable_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_event_handler_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_figure_id_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_figure_name_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_figure_position_property.Plo@am__quote@
@@ -1638,7 +1644,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_relocate_handle.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_set.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_set_posfig_dim.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_seteventhandler.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_show_window.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_showalluimenushandles.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_swap_handles.Plo@am__quote@
@@ -1728,6 +1733,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_data_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_default_values_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_dimension_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_event_handler_enable_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_event_handler_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_figure_id_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_figure_name_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_figure_position_property.Plo@am__quote@
@@ -2766,6 +2773,20 @@ libscigraphics_la-get_dimension_property.lo: src/c/getHandleProperty/get_dimensi
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-get_dimension_property.lo `test -f 'src/c/getHandleProperty/get_dimension_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_dimension_property.c
 
+libscigraphics_la-get_event_handler_property.lo: src/c/getHandleProperty/get_event_handler_property.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-get_event_handler_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-get_event_handler_property.Tpo -c -o libscigraphics_la-get_event_handler_property.lo `test -f 'src/c/getHandleProperty/get_event_handler_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_event_handler_property.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-get_event_handler_property.Tpo $(DEPDIR)/libscigraphics_la-get_event_handler_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/get_event_handler_property.c' object='libscigraphics_la-get_event_handler_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-get_event_handler_property.lo `test -f 'src/c/getHandleProperty/get_event_handler_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_event_handler_property.c
+
+libscigraphics_la-get_event_handler_enable_property.lo: src/c/getHandleProperty/get_event_handler_enable_property.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-get_event_handler_enable_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-get_event_handler_enable_property.Tpo -c -o libscigraphics_la-get_event_handler_enable_property.lo `test -f 'src/c/getHandleProperty/get_event_handler_enable_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_event_handler_enable_property.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-get_event_handler_enable_property.Tpo $(DEPDIR)/libscigraphics_la-get_event_handler_enable_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/get_event_handler_enable_property.c' object='libscigraphics_la-get_event_handler_enable_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-get_event_handler_enable_property.lo `test -f 'src/c/getHandleProperty/get_event_handler_enable_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_event_handler_enable_property.c
+
 libscigraphics_la-GetHashTable.lo: src/c/getHandleProperty/GetHashTable.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-GetHashTable.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-GetHashTable.Tpo -c -o libscigraphics_la-GetHashTable.lo `test -f 'src/c/getHandleProperty/GetHashTable.c' || echo '$(srcdir)/'`src/c/getHandleProperty/GetHashTable.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-GetHashTable.Tpo $(DEPDIR)/libscigraphics_la-GetHashTable.Plo
@@ -3662,6 +3683,20 @@ libscigraphics_la-set_dimension_property.lo: src/c/getHandleProperty/set_dimensi
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-set_dimension_property.lo `test -f 'src/c/getHandleProperty/set_dimension_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_dimension_property.c
 
+libscigraphics_la-set_event_handler_property.lo: src/c/getHandleProperty/set_event_handler_property.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-set_event_handler_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-set_event_handler_property.Tpo -c -o libscigraphics_la-set_event_handler_property.lo `test -f 'src/c/getHandleProperty/set_event_handler_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_event_handler_property.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-set_event_handler_property.Tpo $(DEPDIR)/libscigraphics_la-set_event_handler_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/set_event_handler_property.c' object='libscigraphics_la-set_event_handler_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-set_event_handler_property.lo `test -f 'src/c/getHandleProperty/set_event_handler_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_event_handler_property.c
+
+libscigraphics_la-set_event_handler_enable_property.lo: src/c/getHandleProperty/set_event_handler_enable_property.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-set_event_handler_enable_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-set_event_handler_enable_property.Tpo -c -o libscigraphics_la-set_event_handler_enable_property.lo `test -f 'src/c/getHandleProperty/set_event_handler_enable_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_event_handler_enable_property.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-set_event_handler_enable_property.Tpo $(DEPDIR)/libscigraphics_la-set_event_handler_enable_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/set_event_handler_enable_property.c' object='libscigraphics_la-set_event_handler_enable_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-set_event_handler_enable_property.lo `test -f 'src/c/getHandleProperty/set_event_handler_enable_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_event_handler_enable_property.c
+
 libscigraphics_la-DefaultCommandArg.lo: src/c/DefaultCommandArg.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-DefaultCommandArg.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DefaultCommandArg.Tpo -c -o libscigraphics_la-DefaultCommandArg.lo `test -f 'src/c/DefaultCommandArg.c' || echo '$(srcdir)/'`src/c/DefaultCommandArg.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DefaultCommandArg.Tpo $(DEPDIR)/libscigraphics_la-DefaultCommandArg.Plo
@@ -4354,13 +4389,6 @@ libscigraphics_la-sci_xaxis.lo: sci_gateway/c/sci_xaxis.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xaxis.c' object='libscigraphics_la-sci_xaxis.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xaxis.lo `test -f 'sci_gateway/c/sci_xaxis.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xaxis.c
-
-libscigraphics_la-sci_seteventhandler.lo: sci_gateway/c/sci_seteventhandler.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_seteventhandler.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_seteventhandler.Tpo -c -o libscigraphics_la-sci_seteventhandler.lo `test -f 'sci_gateway/c/sci_seteventhandler.c' || echo '$(srcdir)/'`sci_gateway/c/sci_seteventhandler.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_seteventhandler.Tpo $(DEPDIR)/libscigraphics_la-sci_seteventhandler.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_seteventhandler.c' object='libscigraphics_la-sci_seteventhandler.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_seteventhandler.lo `test -f 'sci_gateway/c/sci_seteventhandler.c' || echo '$(srcdir)/'`sci_gateway/c/sci_seteventhandler.c
 
 libscigraphics_la-sci_glue.lo: sci_gateway/c/sci_glue.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_glue.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_glue.Tpo -c -o libscigraphics_la-sci_glue.lo `test -f 'sci_gateway/c/sci_glue.c' || echo '$(srcdir)/'`sci_gateway/c/sci_glue.c

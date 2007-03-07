@@ -1,4 +1,7 @@
 
+#ifndef _EVENTS_H_
+#define _EVENTS_H_
+
 #define SCI_EVENT_HANDLER_NAME_LENGTH 25
 
 typedef int (*Scig_click_handler) (int,int,int,int,int,int);
@@ -30,3 +33,4 @@ Scig_deletegwin_handler scig_deletegwin_handler;
 extern void set_event_select(int val);
 extern int get_event_select(void);
 
+#endif /* _EVENTS_H_  */

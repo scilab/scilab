@@ -76,9 +76,45 @@ int C2F(sedeco)( int * flag ) ;
 
 void CPixmapResize1(void) ;
 
+void CPixmapResize(int x, int y) ;
+
 void SwitchWindow(integer *intnum) ;
 
 int C2F(store_points)(integer n, integer *vx, integer *vy, integer onemore) ;
+
+void C2F(xendgraphic)(void) ;
+
+void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int getmouse, int getrelease, int dyn_men, char *str, integer *lstr) ;
+
+void set_c(integer col) ;
+
+int get_pixel(int i) ;
+
+void C2F(drawline)(integer *x1, integer *yy1, integer *x2, integer *y2) ;
+
+void fill_grid_rectangles(integer *x, integer *y, double *z, integer n1, integer n2) ;
+
+void fill_grid_rectangles1(integer *x, integer *y, double *z, integer n1, integer n2) ;
+
+void DeleteWindowToList(integer num) ;
+
+void DeleteSGWin(integer intnum) ;
+
+#ifdef __STDC__ 
+void wininfo(char *format,...) ;
+#else 
+void wininfo(va_alist) va_dcl ;
+#endif 
+
+void C2F(bitmap)(char *string, integer w, integer h) ;
+
+int C2F(CurSymbXOffset)(void) ;
+
+int C2F(CurSymbYOffset)(void) ;
+
+integer first_in(integer n, integer ideb, integer *vx, integer *vy) ;
+
+integer first_out(integer n, integer ideb, integer *vx, integer *vy) ;
 
 /*---------------------END------------------------------*/
 #endif /* __PERIX11_H__ */

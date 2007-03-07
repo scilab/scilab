@@ -3310,7 +3310,6 @@ struct BCG *AddNewWindowToList(void)
   newWin->Cmap = (Colormap) 0 ;
   newWin->CmapFlag  = 1;
   newWin->Cdrawable_flag = 0; 
-  newWin->EventHandler[0] = '\0';
 
   return newWin ;
 
@@ -3531,8 +3530,6 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4, integ
 			ScilabXgc->CWindow=Tk_WindowId(win);
 			ScilabXgc->CBGWindow=(Window)0;
 			ScilabXgc->popup=(Widget)0;
-			
-			/*	Tk_CreateEventHandler(win, ExposureMask, (Tk_EventProc *) redrawProc,NULL);*/
 			
 		}
     }

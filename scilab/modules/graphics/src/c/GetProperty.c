@@ -5047,6 +5047,7 @@ int sciGetInfoMessageLength( sciPointObj * pObj )
     return -1 ;
   }
   return -1 ;
+
 }
 /*-------------------------------------------------------------------------------------------*/
 void sciGetScreenPosition( sciPointObj * pObj, int * posX, int * posY )

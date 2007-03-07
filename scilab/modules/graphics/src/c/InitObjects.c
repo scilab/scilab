@@ -521,6 +521,7 @@ int InitFigureModel( void )
   pFIGURE_FEATURE(pfiguremdl)->infoMessage = NULL ;
   sciSetInfoMessage( pfiguremdl, "" ) ;
   sciInitIsEventHandlerEnable( pfiguremdl, FALSE ) ;
+  pFIGURE_FEATURE(pfiguremdl)->eventHandler = NULL ;
   sciInitEventHandler( pfiguremdl, "" ) ;
 
   return 0;
