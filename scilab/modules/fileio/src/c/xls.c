@@ -601,8 +601,9 @@ static void getString(int *fd,short *PosInRecord, short *RecordLen, int flag,cha
 	/* character encoding changes from a single byte to two bytes */
 	/* first, convert read characters to two bytes*/
 	char *str1=*str;
-        strindex=0;
-	if ((str= (char*) MALLOC((2*BytesToBeRead+1)*sizeof(char)))==NULL)  goto ErrL;
+    strindex=0;
+	str = (char**) MALLOC((2*BytesToBeRead+1)*sizeof(char*));
+	if (str == NULL)  goto ErrL;
 	for (j=0;j<bytesRead;j++) {
 	  (*str)[strindex]=str1[j];
 	  (*str)[strindex+1]='\0';
