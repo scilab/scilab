@@ -129,9 +129,10 @@
   will be equivalent as calling fooHandler( 0, 100, 150, 3 ).
   </P>
 
-  See <LINK>figure_property</LINK> or <LINK>seteventhandler</LINK> for information on
+  <P>
+  See <LINK>figure_properties</LINK> or <LINK>seteventhandler</LINK> for information on
   how to specify the event_handler name.
-           
+  </P>         
         
     </DESCRIPTION>
   <EXAMPLE>
@@ -158,7 +159,10 @@
   </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
-      <LINK>figure_property</LINK>
+      <LINK>figure_properties</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>seteventhandler</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>xgetmouse</LINK>
@@ -166,9 +170,6 @@
     <SEE_ALSO_ITEM>
       <LINK>xclick</LINK>
     </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>seteventhandler</LINK>
-    </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR> Jean-Baptiste Silvy <AUTHOR>
+  <AUTHOR> Jean-Baptiste Silvy </AUTHOR>
 </MAN>

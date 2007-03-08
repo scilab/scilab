@@ -28,14 +28,10 @@
     the current graphic window. <VERB>seteventhandler('') </VERB>
     removes the handler.
     </P>
-    <P>
-    The event handler is defined by a Scilab function whose calling
-    sequence must be <VERB>function sfun_name(win,x,y,ibut)</VERB>, where
-    </P>
 
     <P>
     For more information about event handler functions see the
-    <LINK>event handler function</LINK> help.
+    <LINK>event handler functions</LINK> help.
     </P>
     
   </DESCRIPTION>
@@ -73,7 +69,10 @@
       <LINK>xchange</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
-      <LINK>envent handler functions</LINK>
+      <LINK>event handler functions</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>figure_properties</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>
