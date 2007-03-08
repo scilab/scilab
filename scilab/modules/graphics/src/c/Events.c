@@ -87,9 +87,10 @@ void scig_deletegwin_handler_sci (int win)
 {
   static char buf[256];
   struct BCG  * SciGc;
+  sciPointObj * pFigure = NULL ;
 
   SciGc = getWindowXgcNumber(win);
-  sciPointObj * pFigure = SciGc->mafigure ;
+  pFigure = SciGc->mafigure ;
   if (sciGetIsEventHandlerEnable(pFigure) && strlen(sciGetEventHandler(pFigure)) > 0 ) {
     sprintf(buf,"%s(%d,0,0,-1000)",sciGetEventHandler(pFigure),win);
     StoreCommand1(buf,0);
