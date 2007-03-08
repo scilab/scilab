@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8,00"
-	Name="atlas_f2c_DLL"
+	Name="blasplus_f2c_DLL"
 	ProjectGUID="{78BD64CE-181D-4D3F-9254-5C4F55C1EDC9}"
 	RootNamespace="blas_f2c"
 	Keyword="Win32Proj"
