@@ -3,9 +3,11 @@
  *    jpc@cermics.enpc.fr 
  --------------------------------------------------------------------------*/
 #include <stdio.h>
+#include <string.h>
 #include "bcg.h"
 #include "WindowList.h"
 #include "Events.h"
+#include "GetProperty.h"
 
 typedef struct but
 { int win; /* graphic window containing the locator */
@@ -85,9 +87,9 @@ void scig_deletegwin_handler_sci (int win)
 {
   static char buf[256];
   struct BCG  * SciGc;
-  sciPointObj * pFigure = SciGc->mafigure ;
 
   SciGc = getWindowXgcNumber(win);
+  sciPointObj * pFigure = SciGc->mafigure ;
   if (sciGetIsEventHandlerEnable(pFigure) && strlen(sciGetEventHandler(pFigure)) > 0 ) {
     sprintf(buf,"%s(%d,0,0,-1000)",sciGetEventHandler(pFigure),win);
     StoreCommand1(buf,0);

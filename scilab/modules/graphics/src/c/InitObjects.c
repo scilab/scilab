@@ -730,7 +730,6 @@ int ResetFigureToDefaultValues(sciPointObj * pobj)
   //integer i , m, n;
   integer x[2], verbose=0, narg=0; 
   struct BCG *XGC=NULL;
-  int succeed = 0;
   
 
   if(sciGetEntityType(pobj)!=SCI_FIGURE) /* MUST BE used for figure entities only */

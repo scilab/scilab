@@ -122,7 +122,6 @@ sciPointObj * ConstructFigure( sciPointObj * pparent, struct BCG * XGC )
  
   sciPointObj *pobj = (sciPointObj *) NULL;
   integer x[2], verbose=0, narg=0;
-  int succeed = 0;
   sciPointObj * pfiguremdl = getFigureModel() ;
   sciFigure   * ppFigure = NULL ;
   sciFigure   * ppModel  = pFIGURE_FEATURE(pfiguremdl) ;

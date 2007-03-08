@@ -68,5 +68,69 @@ void InitScilabGCPos(integer *v1, integer *v2, integer *v3, integer *v4) ;
 
 void setposfig( integer * i, integer * j ) ;
 
+void C2F(xendgraphicPos)(void) ;
+
+void C2F(getwindowposPos)(integer *verbose, integer *x, integer *narg, double *dummy) ;
+
+void C2F(setwindowposPos)(integer *x, integer *y, integer *v3, integer *v4) ;
+
+void C2F(getwindowdimPos)(integer *verbose, integer *x, integer *narg, double *dummy) ;
+
+void C2F(setwindowdimPos)(integer *x, integer *y, integer *v3, integer *v4) ;
+
+void C2F(setcurwinPos)(integer *intnum, integer *v2, integer *v3, integer *v4) ;
+
+void C2F(getcurwinPos)(integer *verbose, integer *intnum, integer *narg, double *dummy) ;
+
+void C2F(setclipPos)(integer *x, integer *y, integer *w, integer *h) ;
+
+void C2F(unsetclipPos)(integer *v1, integer *v2, integer *v3, integer *v4) ;
+
+void C2F(getclipPos)(integer *verbose, integer *x, integer *narg, double *dummy) ;
+
+void C2F(setabsourelPos)(integer *num, integer *v2, integer *v3, integer *v4) ;
+
+void C2F(getabsourelPos)(integer *verbose, integer *num, integer *narg, double *dummy) ;
+
+void C2F(setalufunctionPos)(char *string) ;
+
+void C2F(setalufunction1Pos)(integer *num, integer *v2, integer *v3, integer *v4) ;
+
+void C2F(getalufunctionPos)(integer *verbose, integer *value, integer *narg, double *dummy) ;
+
+void C2F(setthicknessPos)(integer *value, integer *v2, integer *v3, integer *v4) ;
+
+void C2F(getthicknessPos)(integer *verbose, integer *value, integer *narg, double *dummy) ;
+
+void C2F(setpatternPos)(integer *num, integer *v2, integer *v3, integer *v4) ;
+
+void C2F(getpatternPos)(integer *verbose, integer *num, integer *narg, double *dummy) ;
+
+void C2F(getlastPos)(integer *verbose, integer *num, integer *narg, double *dummy) ;
+
+void C2F(setdashPos)(integer *value, integer *v2, integer *v3, integer *v4) ;
+
+void C2F(usecolorPos)(integer *num, integer *v2, integer *v3, integer *v4) ;
+
+void C2F(getusecolorPos)(integer *verbose, integer *num, integer *narg, double *dummy) ;
+
+void C2F(setcolormapPos)(integer *v1, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, double *a) ;
+
+void ColorInit(void) ;
+
+void C2F(getbackgroundPos)(integer *verbose, integer *num, integer *narg, double *dummy) ;
+
+void C2F(getforegroundPos)(integer *verbose, integer *num, integer *narg, double *dummy) ;
+
+void C2F(sethidden3dPos)(integer *num, integer *v2, integer *v3, integer *v4) ;
+
+void C2F(gethidden3dPos)(integer *verbose, integer *num, integer *narg, double *dummy) ;
+
+void C2F(semptyPos)(integer *v1, integer *v2, integer *v3, integer *v4) ;
+
+void C2F(gemptyPos)(integer *verbose, integer *v2, integer *v3, double *dummy) ;
+
+void C2F(drawlinePos)(integer *xx1, integer *yy1, integer *x2, integer *y2) ;
+
 #endif /*__PERIPOS_H__*/
 

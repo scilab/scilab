@@ -21,7 +21,7 @@ int sci_xlfont( char * fname, unsigned long fname_len )
   double dv;
 
   SciWin();
-  if (Rhs <= 0) 
+  if (Rhs <= 0)
   {
     int one = 1 ;
     char **S;
@@ -51,13 +51,13 @@ int sci_xlfont( char * fname, unsigned long fname_len )
     CreateVarFromPtr(1,"S",&one,&m,S);
 	if (S)
 	{
-		int i=0;
-		for(i=0;i<m+1;i++)
+		int j=0;
+		for(j=0;j<m+1;j++)
 		{
-			if (S[i])
+			if (S[j])
 			{
-				FREE(S[i]);
-				S[i]=NULL;
+				FREE(S[j]);
+				S[j]=NULL;
 			}
 		}
 		FREE(S);

@@ -505,7 +505,6 @@ int computeArrowColor( double gridX[], double gridY[], int nbRow, int nbCol, int
   integer whiteid;
   int verbose = 0 ;
   int narg = 0 ;
-  int j2=0 ;
   int color = 0 ;
   double scx = Cscale.Wscx1 ;
   double scy = Cscale.Wscy1 ;

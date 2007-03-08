@@ -80,7 +80,6 @@ int sci_xget(char *fname,unsigned long fname_len)
     /*     special case for colormap : must allocate space */
     int nbRow = 0 ;
     int nbCol = 3 ;
-    int verbose = 0 ;
     sciPointObj * curFig = sciGetCurrentFigure() ;
 
     nbRow = sciGetNumColors( curFig ) ;
