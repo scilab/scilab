@@ -192,5 +192,15 @@
 	<string>The sixth argument must be between 0 and 59.</string>
 </entry>
 
+<entry>
+	<tag>time_error_39</tag>
+	<string>The first argument must a real constant matrix.</string>
+</entry>
+
+<entry>
+	<tag>time_error_40</tag>
+	<string>The second parameter must be the string 'long' or 'short'.</string>
+</entry>
+
 
 </LOCALIZATION>
