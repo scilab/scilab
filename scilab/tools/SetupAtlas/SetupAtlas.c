@@ -316,7 +316,7 @@ char *GetDLLFilenameAtlas(void)
 BOOL CopyAtlas(char *AtlasSourceFilename)
 {
 	#define PathAtlas	  "Atlas"
-	#define AtlasFilename "atlas.dll"
+	#define AtlasFilename "blasplus.dll"
 	BOOL bOK=FALSE;
 	char *PathOfThisExe=NULL;
 	char *FullDestinationFilenameAtlas=NULL;

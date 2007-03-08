@@ -53,16 +53,16 @@ endfunction
 //-------------------------------------------------------------------
 function ExportAtlasLibrary()
 	
-	printf('\nExports from atlas.dll\n')
-	unix('pedump /exp atlas.dll >'+TMPDIR+'\atlas.lcc');
+	printf('\nExports from blasplus.dll\n')
+	unix('pedump /exp blasplus.dll >'+TMPDIR+'\blasplus.lcc');
 	printf('Converting Library');
 	
-	fw=mopen(TMPDIR+'\atlaslcc.exp',"w");
-	fr=mopen(TMPDIR+'\atlas.lcc',"r");
+	fw=mopen(TMPDIR+'\blaspluslcc.exp',"w");
+	fr=mopen(TMPDIR+'\blasplus.lcc',"r");
 
 	if (meof(fr) == 0) then 
 		line=mfscanf(1,fr,"%s");
-		mfprintf(fw,"atlas.dll\n");
+		mfprintf(fw,"blasplus.dll\n");
 	end
 
 	i=1;

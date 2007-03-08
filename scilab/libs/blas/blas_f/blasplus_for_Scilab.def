@@ -1,4 +1,4 @@
-LIBRARY    atlas.dll
+LIBRARY    blasplus.dll
 
 EXPORTS
  dasum_       	   @1

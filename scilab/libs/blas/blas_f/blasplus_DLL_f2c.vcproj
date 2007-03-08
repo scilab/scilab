@@ -81,7 +81,7 @@
 				Name="VCLinkerTool"
 				ExecutionBucket="10"
 				AdditionalOptions="/fixed:no"
-				OutputFile="../../../bin/atlas.dll"
+				OutputFile="../../../bin/blasplus.dll"
 				ModuleDefinitionFile="blasplus_for_Scilab.def"
 				ImportLibrary="../../../bin/blasplus.lib"
 			/>
@@ -178,7 +178,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				ExecutionBucket="10"
-				OutputFile="../../../bin/atlas.dll"
+				OutputFile="../../../bin/blasplus.dll"
 				ModuleDefinitionFile="blasplus_for_Scilab.def"
 				ImportLibrary="../../../bin/blasplus.lib"
 			/>
