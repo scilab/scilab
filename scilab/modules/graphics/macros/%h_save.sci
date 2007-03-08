@@ -49,6 +49,11 @@ function save_graphichandle(h,fd)
     mput(length(h.rotation_style),'c',fd); // rotation style
     mput(ascii(h.rotation_style),'c',fd);
     
+    mput(length(h.event_handler),'c',fd); // event_handler 
+    mput(ascii(h.event_handler),'c',fd);
+    mput(length(h.event_handler_enable),'c',fd); // even_handler_enable
+    mput(ascii(h.event_handler_enable),'c',fd); // need to be put after event_handler
+    
     // children
     c=h.children;
     n=size(c,'*')

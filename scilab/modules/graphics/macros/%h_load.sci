@@ -92,9 +92,15 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       immediate_drawing=toggle(mget(1,'c',fd)); // immediate_drawing  // init. global variable immediate_drawing
       h.immediate_drawing = 'off'; // set it to 'off' to pass useless redraw due to several 'set' calls
       h.background=mget(1,'il',fd); // background
-      h.rotation_style=ascii(mget(mget(1,'c',fd),'c',fd)) // rotation_style
+      h.rotation_style = ascii(mget(mget(1,'c',fd),'c',fd)) ; // rotation_style
       
     end
+    
+    if ( is_higher_than([4 1 0 0]) ) then
+      h.event_handler = ascii(mget(mget(1,'c',fd),'c',fd)) ; // event_handler
+      h.event_handler_enable = ascii(mget(mget(1,'c',fd),'c',fd)) ; // event_handler_enable
+    end
+    
     // children
     n_axes=mget(1,'il',fd);
     if n_axes==1 then
