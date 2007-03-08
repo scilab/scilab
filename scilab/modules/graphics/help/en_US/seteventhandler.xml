@@ -32,87 +32,12 @@
     The event handler is defined by a Scilab function whose calling
     sequence must be <VERB>function sfun_name(win,x,y,ibut)</VERB>, where
     </P>
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM>
-        <P><VERB>win</VERB> represents the number of the window where the
-    event had occured.
-   </P>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM>
-        <P><VERB>x,y</VERB> are the coordinates of the pointer (in pixels), when the event
-    has occured
+
+    <P>
+    For more information about event handler functions see the
+    <LINK>event handler function</LINK> help.
     </P>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM>
-        <P><VERB>ibut</VERB>is the event type:</P>
-        <ITEMIZE>
-          <ITEM label="ibut==0">
-            <SP>: Left mouse button has been pressed</SP>
-          </ITEM>
-	  <ITEM label="ibut==1">
-            <SP>: Middle mouse button has been pressed</SP>
-          </ITEM>
-	  <ITEM label="ibut==2">
-            <SP>: Right mouse button has been pressed</SP>
-	    <P></P>
-          </ITEM>
-
-	  <ITEM label="ibut==3">
-            <SP>: Left mouse button has been clicked</SP>
-          </ITEM>
-	  <ITEM label="ibut==4">
-            <SP>: Middle mouse button has been clicked</SP>
-          </ITEM>
-	  <ITEM label="ibut==5">
-            <SP>: Right mouse button has been clicked</SP>
-	    <P></P>
-          </ITEM>
-
-	  <ITEM label="ibut==10">
-            <SP>: Left mouse button has been double-clicked</SP>
-          </ITEM>
-	  <ITEM label="ibut==11">
-            <SP>: Middle mouse button has been double-clicked</SP>
-          </ITEM>
-	  <ITEM label="ibut==12">
-            <SP>: Right mouse button has been double-clicked</SP>
-	    <P></P>
-          </ITEM>
-
-          <ITEM label="ibut==-5">
-            <SP>: Left mouse button has been released</SP>
-          </ITEM>
-          <ITEM label="ibut==-4">
-            <SP>: Middle mouse button has been released</SP>
-          </ITEM>
-          <ITEM label="ibut==-3">
-            <SP>: Right mouse button has been released</SP>
-	    <P></P>
-          </ITEM>
-
-          <ITEM label="ibut==-1">
-            <SP>: pointer has moved</SP>
-	    <P></P>
-          </ITEM>
-
-          <ITEM label="ibut &gt; =32">
-            <SP>: key with ascii code ascii(ibut) has been pressed</SP>
-          </ITEM>
-          <ITEM label="ibut &lt; =-32">
-            <SP>: key with ascii code ascii(-ibut)   has been released</SP>
-	    <P></P>
-          </ITEM>
-	
-          <ITEM label="ibut &gt; =1000+32">
-            <SP>: key with ascii code ascii(ibut-1000) has been pressed while CTRL
-	    key pressed</SP>
-          </ITEM>
-          <ITEM label="ibut==-1000">
-            <SP>: graphic window has been closed</SP>
-          </ITEM>
-        </ITEMIZE>
-      </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+    
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
@@ -146,6 +71,9 @@
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>xchange</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>envent handler functions</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

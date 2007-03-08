@@ -137,6 +137,18 @@
             <SP>This property controls the figure window background color. It
             takes as value an index relative to the current colormap.</SP>
           </DESCRIPTION_ITEM>
+          
+          <DESCRIPTION_ITEM label="event_handler">
+            <SP>A character string. The name of the Scilab function which is intended
+            to handle the events. Not that setting an empty string will disable
+            the event handler. For more information about event handler functions see the
+            <LINK>event handler function</LINK> help.</SP>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="event_handler_enable">
+            <SP>Enable or disable the event handler. Its value must be either
+            "on" or "off".</SP>
+          </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM label="user_data: ">
             <SP>This field can be use to store any scilab variable in the
@@ -256,6 +268,11 @@
     <SEE_ALSO_ITEM>
       <LINK>hotcolormap</LINK>
     </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>event_handler_functions</LINK>
+    </SEE_ALSO_ITEM>
+
   </SEE_ALSO>
 
   <AUTHOR>Djalel ABDEMOUCHE</AUTHOR>
