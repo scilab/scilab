@@ -149,6 +149,12 @@ JNIEXPORT void JNICALL Java_javasci_SciAbstractArray_Get(JNIEnv *env, jobject ob
   const char *cname=NULL; 
   char *signatureType=detectSignatureTypeFromObjectName(env, obj_this);
   jfieldID id_x;
+  jfieldID id_name;
+  jfieldID id_m;
+  jfieldID id_n;
+  jstring jname;
+  jint jm;
+  jint jn2;
 
   /* get the class */
   jclass class_Mine = (*env)->GetObjectClass(env, obj_this);
@@ -157,19 +163,22 @@ JNIEXPORT void JNICALL Java_javasci_SciAbstractArray_Get(JNIEnv *env, jobject ob
   char *signatureType2=MALLOC(sizeof(char)*4);
   strcpy(signatureType2,"[");
   strcat(signatureType2, signatureType);
-  if (strcmp(signatureType,"CO")==0){ // Complex
+  if (strcmp(signatureType,"CO")==0)
+  { // Complex
 	  id_x = (*env)->GetFieldID(env, class_Mine, "x", "[D");
-  }else{
+  }
+  else
+  {
 	  id_x = (*env)->GetFieldID(env, class_Mine, "x", signatureType2);
   }
-  jfieldID id_name =  (*env)->GetFieldID(env, class_Mine, "name","Ljava/lang/String;");
-  jfieldID id_m = (*env)->GetFieldID(env, class_Mine, "m", "I");
-  jfieldID id_n = (*env)->GetFieldID(env, class_Mine, "n", "I");
+  id_name =  (*env)->GetFieldID(env, class_Mine, "name","Ljava/lang/String;");
+  id_m = (*env)->GetFieldID(env, class_Mine, "m", "I");
+  id_n = (*env)->GetFieldID(env, class_Mine, "n", "I");
 
 
-  jstring jname = (jstring) (*env)->GetObjectField(env, obj_this, id_name);
-  jint jm = (*env)->GetIntField(env, obj_this, id_m);
-  jint jn2 = (*env)->GetIntField(env, obj_this, id_n);
+  jname = (jstring) (*env)->GetObjectField(env, obj_this, id_name);
+  jm = (*env)->GetIntField(env, obj_this, id_m);
+  jn2 = (*env)->GetIntField(env, obj_this, id_n);
   cname = (*env)->GetStringUTFChars(env, jname, NULL);
 
   cm=jm;cn=jn2;
@@ -321,6 +330,14 @@ JNIEXPORT void JNICALL Java_javasci_SciAbstractArray_Send(JNIEnv *env, jobject o
 
   /* get the class */
   jclass class_Mine = (*env)->GetObjectClass(env, obj_this);
+
+  jfieldID id_name;
+  jfieldID id_m;
+  jfieldID id_n;
+
+  jstring jname;
+  jint jm;
+  jint jn2;
 	
   /* get the fields i.e x,m,n,name  */
   char signatureType2[4];
@@ -334,15 +351,15 @@ JNIEXPORT void JNICALL Java_javasci_SciAbstractArray_Send(JNIEnv *env, jobject o
   }else{
 	  id_x = (*env)->GetFieldID(env, class_Mine, "x", signatureType2);
   }
-  jfieldID id_name =  (*env)->GetFieldID(env, class_Mine, "name","Ljava/lang/String;");
-  jfieldID id_m = (*env)->GetFieldID(env, class_Mine, "m", "I");
-  jfieldID id_n = (*env)->GetFieldID(env, class_Mine, "n", "I");
+  id_name =  (*env)->GetFieldID(env, class_Mine, "name","Ljava/lang/String;");
+  id_m = (*env)->GetFieldID(env, class_Mine, "m", "I");
+  id_n = (*env)->GetFieldID(env, class_Mine, "n", "I");
 
 
   /* get the field value */
-  jstring jname = (jstring) (*env)->GetObjectField(env, obj_this, id_name);
-  jint jm = (*env)->GetIntField(env, obj_this, id_m);
-  jint jn2= (*env)->GetIntField(env, obj_this, id_n);
+  jname = (jstring) (*env)->GetObjectField(env, obj_this, id_name);
+  jm = (*env)->GetIntField(env, obj_this, id_m);
+  jn2= (*env)->GetIntField(env, obj_this, id_n);
 
   cname = (*env)->GetStringUTFChars(env, jname, NULL);
   cm=jm;cn=jn2;
@@ -421,7 +438,7 @@ JNIEXPORT void JNICALL Java_javasci_SciAbstractArray_Send(JNIEnv *env, jobject o
 		  }
 
 	  if (CX){FREE(CX);CX=NULL;}
-	  (*env)->ReleaseBooleanArrayElements(env,jx,cx,0);
+	  (*env)->ReleaseBooleanArrayElements(env,jx,(jboolean*)cx,0);
   }
 
 
