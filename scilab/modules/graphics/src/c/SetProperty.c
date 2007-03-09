@@ -3031,104 +3031,55 @@ int sciInitVisibility( sciPointObj * pobj, BOOL value )
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
-		if (pFIGURE_FEATURE (pobj)->visible != value)
-			{
-			pFIGURE_FEATURE (pobj)->visible = value;
-			}
+      pFIGURE_FEATURE (pobj)->visible = value;
       break;
     case SCI_SUBWIN:
-		if (pSUBWIN_FEATURE (pobj)->visible != value)
-			{
-			pSUBWIN_FEATURE (pobj)->visible = value;
-			}
+      pSUBWIN_FEATURE (pobj)->visible = value;
       break;
     case SCI_TITLE:
-		if (pTITLE_FEATURE (pobj)->visible != value)
-			{
-			pTITLE_FEATURE (pobj)->visible = value;
-			}
+      pTITLE_FEATURE (pobj)->visible = value;
       break;
     case SCI_LEGEND:
-		if (pLEGEND_FEATURE (pobj)->visible != value)
-			{
-			pLEGEND_FEATURE (pobj)->visible = value;
-			}
+      pLEGEND_FEATURE (pobj)->visible = value;
       break;
     case SCI_ARC:
-		if (pARC_FEATURE (pobj)->visible != value)
-			{
-			pARC_FEATURE (pobj)->visible = value;
-			}
+      pARC_FEATURE (pobj)->visible = value;
       break;
     case SCI_POLYLINE:
-		if (pPOLYLINE_FEATURE (pobj)->visible != value)
-			{
-			pPOLYLINE_FEATURE (pobj)->visible = value;
-			}
+      pPOLYLINE_FEATURE (pobj)->visible = value;
       break;
     case SCI_RECTANGLE:
-		if (pRECTANGLE_FEATURE (pobj)->visible != value)
-			{
-			pRECTANGLE_FEATURE (pobj)->visible = value;
-			}
+      pRECTANGLE_FEATURE (pobj)->visible = value;
       break;
     case SCI_SURFACE:
-		if (pSURFACE_FEATURE (pobj)->visible != value)
-			{
-			pSURFACE_FEATURE (pobj)->visible = value;
-			}
+      pSURFACE_FEATURE (pobj)->visible = value;
       break;    
     case SCI_SEGS: 
-		if (pSEGS_FEATURE (pobj)->visible != value)
-			{
-			pSEGS_FEATURE (pobj)->visible = value;
-			}
+      pSEGS_FEATURE (pobj)->visible = value;
       break;    
     case SCI_FEC: 
-		if (pFEC_FEATURE (pobj)->visible != value)
-			{
-			pFEC_FEATURE (pobj)->visible = value;
-			}
+      pFEC_FEATURE (pobj)->visible = value;
       break;    
     case SCI_GRAYPLOT: 
-		if (pGRAYPLOT_FEATURE (pobj)->visible != value)
-			{
-			pGRAYPLOT_FEATURE (pobj)->visible = value;
-			}
+      pGRAYPLOT_FEATURE (pobj)->visible = value;
       break;    
     case SCI_TEXT: 
-		if (pTEXT_FEATURE (pobj)->visible != value)
-			{
-			pTEXT_FEATURE (pobj)->visible = value;
-			}
+      pTEXT_FEATURE (pobj)->visible = value;
       break;   
     case SCI_LIGHT: 
-		if(pLIGHT_FEATURE (pobj)->visible != value)
-			{
-			pLIGHT_FEATURE (pobj)->visible = value;
-			}
-      
+      pLIGHT_FEATURE (pobj)->visible = value;
       break;
     case SCI_AXES: 
-		if (pAXES_FEATURE (pobj)->visible != value)
-			{
-			pAXES_FEATURE (pobj)->visible = value;
-			}
+      pAXES_FEATURE (pobj)->visible = value;
       break;    
     case SCI_AGREG: 
-		if (pAGREG_FEATURE (pobj)->visible != value )
-			{
-			pAGREG_FEATURE (pobj)->visible = value; 
-			}
+      pAGREG_FEATURE (pobj)->visible = value; 
       break;
     case SCI_LABEL: /* F.Leray 28.05.04 */
       return sciInitVisibility( pLABEL_FEATURE(pobj)->text, value ) ;
       break;
     case SCI_UIMENU:
-		if (pUIMENU_FEATURE(pobj)->visible != value)
-			{
-			pUIMENU_FEATURE(pobj)->visible=value;
-			}
+      pUIMENU_FEATURE(pobj)->visible=value;	
       break;
     case SCI_CONSOLE:
       pCONSOLE_FEATURE(pobj)->visible = value ;
@@ -4899,7 +4850,7 @@ int sciInitEventHandler( sciPointObj * pObj, char * name )
 /*--------------------------------------------------------------------------------------------*/
 int sciSetEventHandler( sciPointObj * pObj, char * name )
 {
-  if ( strcmp( sciGetName(pObj), name ) == 0 )
+  if ( strcmp( sciGetEventHandler(pObj), name ) == 0 )
   {
     /* nothing to do */
     return 1 ;
