@@ -1,7 +1,10 @@
 import javasci.* ; 
 
-
-class  clf 
+/**
+ * Test the functions disp and clf
+ * @author INRIA
+ */
+class Clf 
 {
 
   public static void main(String[] args) 

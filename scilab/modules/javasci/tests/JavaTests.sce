@@ -2,7 +2,7 @@
 //---------------------------------------------------------------
 // Tests Interface Scilab Java
 //---------------------------------------------------------------
-tests = ['clf.java';'disp.java';'Exec.java';'Real1.java';'Real2.java';'Real3.java';'String1.java';'Strings1.java';'Strings2.java';'Boolean.java';'BooleanArray.java'];
+tests = ['Clf.java';'Disp.java';'Exec.java';'Real1.java';'Real2.java';'Real3.java';'String1.java';'Strings1.java';'Strings2.java';'Boolean.java';'BooleanArray.java'];
 //---------------------------------------------------------------
 // Compilation du fichier Java
 function ret=BuildJava(filename)
@@ -83,7 +83,7 @@ function CompareDiary(filename)
 	ref=strsubst(ref,' ','');
 	
 	if or(ref<>dia) then
-		disp('Test Failed SEE : diff -w  '+fname+'.dia '+fname+'.dia.ref ');
+		disp('Test Failed SEE : diff -wu  '+fname+'.dia '+fname+'.dia.ref ');
 	else
 		disp('Test '+fname+' passed');
 	end

@@ -13,12 +13,12 @@ class  Boolean {
   	a.disp();
   	System.out.println("----------------------------------------------------");
   	b=a.getData();
-  	
+		
   	System.out.println(b);
     
   	System.out.println("----------------------------------------------------");
- 	  SciBoolean d = new SciBoolean("D",true);
- 	  SciBoolean p = new SciBoolean("P");
+	SciBoolean d = new SciBoolean("D",true);
+	SciBoolean p = new SciBoolean("P");
     Scilab.Exec("P=~D;");
     p.disp();
     System.out.println("----------------------------------------------------");
