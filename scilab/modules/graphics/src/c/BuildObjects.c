@@ -2862,7 +2862,7 @@ sciPointObj * sciStandrardBuildOperations( sciPointObj * pObj, sciPointObj * par
   sciGetRelationship(pObj)->plastsons    = NULL ;
   sciGetRelationship(pObj)->pSelectedSon = NULL ;
 
-  sciSetVisibility( pObj, TRUE ) ;
+  sciInitVisibility( pObj, TRUE ) ;
 
   sciGetPointerToUserData( pObj, &userData, &udSize ) ;
   *userData = NULL ;

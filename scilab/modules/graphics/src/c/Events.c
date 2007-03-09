@@ -53,7 +53,10 @@ int scig_click_handler_sci (int win,int x,int y,int ibut,int motion,int release)
 
   pFigure = SciGc->mafigure ;
 
-  if (sciGetIsEventHandlerEnable(pFigure) && strlen(sciGetEventHandler(pFigure)) > 0 ) {
+  if (   pFigure != NULL
+      && sciGetIsEventHandlerEnable(pFigure)
+      && strlen(sciGetEventHandler(pFigure)) > 0 )
+  {
     sprintf(buf,"%s(%d,%d,%d,%d)",sciGetEventHandler(pFigure),win,x,y,ibut);
     StoreCommand1(buf,0);
     return 1;}
@@ -91,7 +94,10 @@ void scig_deletegwin_handler_sci (int win)
 
   SciGc = getWindowXgcNumber(win);
   pFigure = SciGc->mafigure ;
-  if (sciGetIsEventHandlerEnable(pFigure) && strlen(sciGetEventHandler(pFigure)) > 0 ) {
+  if (   pFigure != NULL
+      && sciGetIsEventHandlerEnable(pFigure)
+      && strlen(sciGetEventHandler(pFigure)) > 0 )
+  {
     sprintf(buf,"%s(%d,0,0,-1000)",sciGetEventHandler(pFigure),win);
     StoreCommand1(buf,0);
   }

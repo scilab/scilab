@@ -271,6 +271,8 @@ int DestroyFigure (sciPointObj * pthis)
   /* This code has to be validated on all systems
    * because sciGetPointerToFeature returns a void
    */
+  sciSetIsEventHandlerEnable(pthis, FALSE ) ;
+  FREE( pFIGURE_FEATURE(pthis)->eventHandler ) ;
   FREE ((sciGetFontContext(pthis))->pfontname);
   FREE(pFIGURE_FEATURE(pthis)->pcolormap);
   FREE( pFIGURE_FEATURE(pthis)->infoMessage ) ;

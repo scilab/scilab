@@ -3027,7 +3027,6 @@ sciSetXorMode (sciPointObj * pobj, int value)
 
 int sciInitVisibility( sciPointObj * pobj, BOOL value )
 {
-  /* sciSons * psonstmp = sciGetSons ((sciPointObj *) pobj); */
   
   switch (sciGetEntityType (pobj))
     {
