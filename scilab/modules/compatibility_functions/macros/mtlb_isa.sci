@@ -33,6 +33,6 @@ case "sparse"
 case "lti"
    r=typeof(OBJ)=="state-space"
 else
-  error("Unhandled class: "+class)
+  error(msprintf(gettext("errors","compatibility_functions_error_52"),class));
 end
 endfunction

@@ -24,7 +24,7 @@ if rhs>0 then
   for krhs=1:rhs
     if type(listvar(krhs))==1 then
         if size(listvar(krhs),1)>1 & size(listvar(krhs),2)>1 then
-	  error("a.data_bounds must be a vector")
+	  error(gettext("errors","compatibility_functions_error_30"));
 	end
         listvar(krhs) = matrix(listvar(krhs),1,-1);
 	
@@ -39,10 +39,10 @@ if rhs>0 then
 	set(gca(),"axes_visible",'on')
       // axis([xmin xmax ymin ymax zmin zmax cmin cmax]) 
       elseif size(listvar(krhs),2)==8 then
-	error("a.data_bounds=[xmin xmax ymin ymax zmin zmax cmin cmax] not implemented!");
+	error(gettext("errors","compatibility_functions_error_31"));
       // Unknown column number for listvar(krhs)
       else
-	error("Bad affectation for a.data_bounds!");
+	error(gettext("errors","compatibility_functions_error_32"));
       end
       
     elseif type(listvar(krhs))==10 then
@@ -61,7 +61,7 @@ if rhs>0 then
 	
 	// axis fill
       elseif listvar(krhs)=="fill" then
-	error("axis fill not implemented!");
+	error(gettext("errors","compatibility_functions_error_33"));
 
 	// axis ij
       elseif listvar(krhs)=="ij" then
@@ -77,12 +77,12 @@ if rhs>0 then
 	
 	// axis image
       elseif listvar(krhs)=="image" then
-	error("axis image not implemented!");
+	error(gettext("errors","compatibility_functions_error_34"));
 
 	// axis square
       elseif listvar(krhs)=="square" then
 	if a.view=="2d" then
-	  warning("cube_scaling only used in 3d mode");
+	  warning(gettext("messages","compatibility_functions_message_4"));
 	end
 	a.cube_scaling="on"
 	
@@ -92,7 +92,7 @@ if rhs>0 then
 	
 	// axis normal
       elseif listvar(krhs)=="normal" then
-	error("axis normal not implemented!");
+	error(gettext("errors","compatibility_functions_error_35"));
 	
 	// axis on
       elseif listvar(krhs)=="on" then
@@ -117,7 +117,7 @@ if rhs>0 then
 	end
 	// Unknown character string
       else
-	error("axis "+listvar(krhs)+" not implemented!");
+	error(msprintf(gettext("errors","compatibility_functions_error_36"),listvar(krhs)));
       end
       
     // axis(axes_handles,...)
@@ -133,7 +133,7 @@ if rhs>0 then
       end
     // Wrong type for listvar(krhs)
     else
-	error("Argument of type "+string(type(listvar(krhs)))+" not implemented!");
+	error(msprintf(gettext("errors","compatibility_functions_error_37"),type(listvar(krhs))));
     end
     varargout(1)=matrix(a.data_bounds,1,-1);
   end

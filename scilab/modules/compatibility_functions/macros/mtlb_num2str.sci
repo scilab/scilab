@@ -15,7 +15,7 @@ else
   if type(f)==10 then
     s=msprintf(f,x)
   else
-    error("Not implemented")
+    error(gettext("errors","compatibility_functions_error_5"))
   end
 end
 endfunction

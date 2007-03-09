@@ -8,7 +8,7 @@ function [fid,mess]=mtlb_fopen(filename,permission)
 [fid,err]=mopen(filename,permission,0)
 if err<0 then
   fid=-1
-  mess="Cannot open file!"
+  mess=gettext("messages","compatibility_functions_message_19");
 else
   mess=""
 end

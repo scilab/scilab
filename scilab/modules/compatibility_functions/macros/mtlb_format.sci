@@ -47,9 +47,9 @@ end
 
 
 if unk then
-  error("Unknown type in mtlb_format() !");
+  error(gettext("errors","compatibility_functions_error_41"))
 elseif ratf|loose|compact|bank|hex then
-  warning("Unknown type "+type+" in mtlb_format(): INGNORED !")
+  warning(msprintf(gettext("messages","compatibility_functions_message_20"),type));
 else
   if rhs1==1 then
     format(d+1)

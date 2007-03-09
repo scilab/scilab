@@ -11,9 +11,9 @@ elseif rhs==1 then
   if prec=="double" then
     val=number_properties("tiny");
   else
-    error("Not yet implemented");
+    error(gettext("errors","compatibility_functions_error_2"));
   end
 else
-  error("Wrong number of inputs");
+  error(gettext("errors","compatibility_functions_error_58"));
 end
 endfunction

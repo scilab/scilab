@@ -17,7 +17,7 @@ elseif rhs==2 then
 	indexlist=list((1:size(A,1))');
 	
 	if size(cls,2)>1 then
-		error("second input argument must be a column vector")
+		error(gettext("errors","compatibility_functions_error_63"))
 	end
 
 	if type(A)==10 then

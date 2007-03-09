@@ -11,7 +11,7 @@ end
 
 dims=varargin(1)
 if prod(dims)<>lstsize(varargin)-1 then
-  error("Dimensions and entries do not match");
+  error(gettext("errors","compatibility_functions_error_27"));
 end
 
 if prod(dims)==1 then

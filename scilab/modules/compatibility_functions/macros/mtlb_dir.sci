@@ -35,7 +35,19 @@ for k=1:n
   if ( (x == []) & (ierr== -1) ) then [x,ierr]=fileinfo(files(k)),end
   if x<>[] then
     w=getdate(x(6))
-    month=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+    month=[gettext("messages","compatibility_functions_message_7"),..
+	    gettext("messages","compatibility_functions_message_8"),..
+	    gettext("messages","compatibility_functions_message_9"),..
+	    gettext("messages","compatibility_functions_message_10"),..
+	    gettext("messages","compatibility_functions_message_11"),..
+	    gettext("messages","compatibility_functions_message_12"),..
+	    gettext("messages","compatibility_functions_message_13"),..
+	    gettext("messages","compatibility_functions_message_14"),..
+	    gettext("messages","compatibility_functions_message_15"),..
+	    gettext("messages","compatibility_functions_message_16"),..
+	    gettext("messages","compatibility_functions_message_17"),..
+	    gettext("messages","compatibility_functions_message_18")];
+
     ldate(k)=string(w(6))+"-"+month(w(2))+"-"+string(w(1))+" "+string(w(7))+":"+string(w(8))+":"+string(w(9))
     lbytes(k)=x(1);
     lisdir(k)=double(int32(x(2)) & mask) == dirtype

@@ -12,42 +12,42 @@ else
   case 'colormap' then
     v=xget('colormap')
   case 'currentaxes' then
-    error('mtlb_get, no equivalent to property :'+property)
+    error(msprintf(gettext("errors","compatibility_functions_error_49"),property));
   case 'currentcharacter' then
-    error('mtlb_get, no equivalent to property :'+property)
+    error(msprintf(gettext("errors","compatibility_functions_error_49"),property));
   case 'currentmenu' then
-    error('mtlb_get, no equivalent to property :'+property)
+    error(msprintf(gettext("errors","compatibility_functions_error_49"),property));
   case 'currentobject' then
-    error('mtlb_get, no equivalent to property :'+property)
+    error(msprintf(gettext("errors","compatibility_functions_error_49"),property));
   case 'currentpoint' then
-    error('mtlb_get, no equivalent to property :'+property)
+    error(msprintf(gettext("errors","compatibility_functions_error_49"),property));
   case 'fixedcolors' then
-    error('mtlb_get, no equivalent to property :'+property)
+    error(msprintf(gettext("errors","compatibility_functions_error_49"),property));
   case 'inverthardcopy' then
-    error('mtlb_get, no equivalent to property :'+property)
+    error(msprintf(gettext("errors","compatibility_functions_error_49"),property));
   case 'keypressfcn' then
-    error('mtlb_get, no equivalent to property :'+property)
+    error(msprintf(gettext("errors","compatibility_functions_error_49"),property));
   case 'menubar' then
-    error('mtlb_get, no equivalent to property :'+property)
+    error(msprintf(gettext("errors","compatibility_functions_error_49"),property));
   case 'mincolormap' then
     v=xget('colormap')
     v=size(v,1)
   case 'name' then
-    error('mtlb_get, no equivalent to property :'+property)
+    error(msprintf(gettext("errors","compatibility_functions_error_49"),property));
   case 'nextplot' then
-    error('mtlb_get, no equivalent to property :'+property)
+    error(msprintf(gettext("errors","compatibility_functions_error_49"),property));
   case 'numbertitle' then
-    error('mtlb_get, no equivalent to property :'+property)
+    error(msprintf(gettext("errors","compatibility_functions_error_49"),property));
   case 'paperunits' then
-    error('mtlb_get, no equivalent to property :'+property)
+    error(msprintf(gettext("errors","compatibility_functions_error_49"),property));
   case 'paperorientation' then
-    error('mtlb_get, no equivalent to property :'+property)
+    error(msprintf(gettext("errors","compatibility_functions_error_49"),property));
   case 'paperposition' then
-    error('mtlb_get, no equivalent to property :'+property)
+    error(msprintf(gettext("errors","compatibility_functions_error_49"),property));
   case 'papersize' then
-    error('mtlb_get, no equivalent to property :'+property)
+    error(msprintf(gettext("errors","compatibility_functions_error_49"),property));
   case 'papertype' then
-    error('mtlb_get, no equivalent to property :'+property)
+    error(msprintf(gettext("errors","compatibility_functions_error_49"),property));
   case 'pointer' then
     v='arrow'
   case 'position' then
@@ -57,34 +57,34 @@ else
   case 'resize' then
     v='on'
   case 'resizefcn' then
-    error('mtlb_get, no equivalent to property :'+property)
+    error(msprintf(gettext("errors","compatibility_functions_error_49"),property));
   case 'selectiontype' then
-    error('mtlb_get, no equivalent to property :'+property)
+    error(msprintf(gettext("errors","compatibility_functions_error_49"),property));
   case 'sharecolors' then
-    error('mtlb_get, no equivalent to property :'+property)
+    error(msprintf(gettext("errors","compatibility_functions_error_49"),property));
   case 'units' then
-    error('mtlb_get, no equivalent to property :'+property)
+    error(msprintf(gettext("errors","compatibility_functions_error_49"),property));
   case 'windowbuttondownfcn' then
-    error('mtlb_get, no equivalent to property :'+property)
+    error(msprintf(gettext("errors","compatibility_functions_error_49"),property));
   case 'windowbuttonmotionfcn' then
-    error('mtlb_get, no equivalent to property :'+property)
+    error(msprintf(gettext("errors","compatibility_functions_error_49"),property));
   case 'windowbuttonupfcn' then
-    error('mtlb_get, no equivalent to property :'+property)
+    error(msprintf(gettext("errors","compatibility_functions_error_49"),property));
   case 'buttondownfcn' then
-    error('mtlb_get, no equivalent to property :'+property)
+    error(msprintf(gettext("errors","compatibility_functions_error_49"),property));
   case 'children' then
-    error('mtlb_get, no equivalent to property :'+property)
+    error(msprintf(gettext("errors","compatibility_functions_error_49"),property));
   case 'clipping' then
     v=xget('clipping')
     if v(1)<>0 then v='on',else v='off',end
   case 'interruptible' then
-    error('mtlb_get, no equivalent to property :'+property)
+    error(msprintf(gettext("errors","compatibility_functions_error_49"),property));
   case 'parent' then
-    error('mtlb_get, no equivalent to property :'+property)
+    error(msprintf(gettext("errors","compatibility_functions_error_49"),property));
   case 'type' then
     v='figure'
   case 'userdata' then
-    error('mtlb_get, no equivalent to property :'+property)
+    error(msprintf(gettext("errors","compatibility_functions_error_49"),property));
   case 'visible' then    
     v='on'
   end   

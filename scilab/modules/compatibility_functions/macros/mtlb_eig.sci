@@ -15,6 +15,6 @@ if rhs==1 then
     end
   end  
 else
-  error("mtlb_eig() used with 2 rhs: not yet implemented !")
+  error(gettext("errors","compatibility_functions_error_40"));
 end
 endfunction

@@ -21,7 +21,7 @@ elseif varargin(1)=='position'
 elseif type(varargin(1))==1 then
   xsetech(AXES_T(k)(varargin(1),:))
 else
-  error('mtlb_axes: This case is not yet implemented')
+  error(gettext("errors","compatibility_functions_error_2"))
 end
   
   

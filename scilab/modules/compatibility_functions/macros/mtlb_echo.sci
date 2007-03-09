@@ -13,9 +13,9 @@ elseif rhs==1 then
   elseif arg1=="off" then
     mode(0);
   else
-    error("Not yet implemented");
+    error(gettext("errors","compatibility_functions_error_2"));
   end
 else
-  error("Not yet implemented");
+    error(gettext("errors","compatibility_functions_error_2"));
 end
 endfunction

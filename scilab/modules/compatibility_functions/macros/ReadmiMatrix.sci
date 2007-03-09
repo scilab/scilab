@@ -8,8 +8,7 @@ function [value,ArrayName]=ReadmiMatrix(fd)
   [DataType,NumberOfBytes,Compressed]=ReadTag(fd);
   if meof(fd) then value=[],ArrayName="",return,end
   if DataType<>miMatrix then 
-    error('Found Datatype='+string(DataType)+', expecting '+ ...
-	  string(miMatrix))
+    error(msprintf(gettext("errors","compatibility_functions_error_10"),DataType,miMatrix));
   end
   if NumberOfBytes==0 then value=[],return,end
   [Flags,Class,NnzMax]=ReadArrayFlags(fd);
@@ -142,7 +141,7 @@ function [value,ArrayName]=ReadmiMatrix(fd)
     if RowIndex<>[] then RowIndex=RowIndex(:)+1,end
     value=sparse([col(:),RowIndex],value(:),DimensionArray([2 1])).'
   else
-    error('Unknown Class')
+    error(gettext("errors","compatibility_functions_error_11"));
   end
 endfunction
 
@@ -234,8 +233,7 @@ function value=ReadSimpleElement(fd,NumberOfValues,Class)
     mseek(pse,fd)
     [value,ArrayName]=ReadmiMatrix(fd)
   else
-    disp("Not implemented DataType: "+string(DataType));
-    pause
+    error(msprintf(gettext("errors","compatibility_functions_error_12"),DataType));
   end
   padding()
 
@@ -292,7 +290,7 @@ function [head,version,swap]=matfile_header(fd)
   else
     mclose(fd);
     // This line has to be mofified according to message in 'loadmatfile' function
-    error('Invalid level 5 binary MAT-file!') 
+    error(gettext("errors","compatibility_functions_error_13")); 
   end
 endfunction
 

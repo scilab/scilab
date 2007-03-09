@@ -16,6 +16,6 @@ case 0 then
 case 1 then
   flag="end" 
 else
-  error("mseek : Unknown reference flag")
+  error(gettext("errors","compatibility_functions_error_8"));
 end
 endfunction
