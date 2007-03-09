@@ -20,7 +20,7 @@ JNIEXPORT void JNICALL Java_javasci_SciAbstractArray_Initialize
  * Method:    getRowFromScilab
  * Signature: (Ljava/lang/String;)I
  */
-JNIEXPORT jint JNICALL Java_javasci_SciAbstractArray_getRowFromScilab
+JNIEXPORT jint JNICALL Java_javasci_SciAbstractArray_getNumberOfRowsFromScilab
   (JNIEnv *, jobject, jstring);
 
 /*
@@ -28,7 +28,7 @@ JNIEXPORT jint JNICALL Java_javasci_SciAbstractArray_getRowFromScilab
  * Method:    getColFromScilab
  * Signature: (Ljava/lang/String;)I
  */
-JNIEXPORT jint JNICALL Java_javasci_SciAbstractArray_getColFromScilab
+JNIEXPORT jint JNICALL Java_javasci_SciAbstractArray_getNumberOfColsFromScilab
   (JNIEnv *, jobject, jstring);
 
 /*

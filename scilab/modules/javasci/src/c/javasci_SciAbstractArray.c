@@ -281,7 +281,8 @@ JNIEXPORT void JNICALL Java_javasci_SciAbstractArray_Get(JNIEnv *env, jobject ob
 
 
 /**
- *
+ * Detect which Scilab object we are dealing with
+ * might need some cleaning
  * @return Scilab Type of the object we are dealing with
  */
 char* detectSignatureTypeFromObjectName(JNIEnv *env, jobject obj_this){
@@ -289,18 +290,15 @@ char* detectSignatureTypeFromObjectName(JNIEnv *env, jobject obj_this){
 	char *signatureType=MALLOC(sizeof(char)*3);
 	
 	if((*env)->IsInstanceOf(env, obj_this,  (*env)->FindClass(env,"javasci/SciDoubleArray")) == JNI_TRUE){
-		strcpy(signatureType, "D");
-		return signatureType;
+		return "D";
 	}
 
 	if((*env)->IsInstanceOf(env, obj_this,  (*env)->FindClass(env,"javasci/SciBooleanArray")) == JNI_TRUE){
-		strcpy(signatureType, "Z");
-		return signatureType;
+		return "Z";
 	}
 
 	if((*env)->IsInstanceOf(env, obj_this,  (*env)->FindClass(env,"javasci/SciComplexArray")) == JNI_TRUE){
-		strcpy(signatureType, "CO");
-		return signatureType;
+		return "CO";
 	}
 
 	return signatureType;
