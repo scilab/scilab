@@ -323,10 +323,11 @@ JNIEXPORT void JNICALL Java_javasci_SciAbstractArray_Send(JNIEnv *env, jobject o
   jclass class_Mine = (*env)->GetObjectClass(env, obj_this);
 	
   /* get the fields i.e x,m,n,name  */
-  char *signatureType2=MALLOC(sizeof(char)*4);
-  strcpy(signatureType2,"[");
+  char signatureType2[4];
+  signatureType2[0]='[';
+  signatureType2[1]='\0';
   strcat(signatureType2, signatureType);
-
+  
 
   if (strcmp(signatureType,"CO")==0){ // Complex
 	  id_x = (*env)->GetFieldID(env, class_Mine, "x", "[D");
