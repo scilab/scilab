@@ -1,17 +1,17 @@
 package javasci ;
-/********************************************************************************************************/
-/* Allan CORNET */
-/* INRIA 2005 */
-/********************************************************************************************************/
 /**
-* With this class, exceptions can be managed in the constructor of SciDoubleArray , SciStringArray 
-*/
-/********************************************************************************************************/
-public class BadDataArgumentException  extends RuntimeException 
+ * This class manages exceptions from the construction of SciDoubleArray , SciStringArray 
+ * @author Allan Cornet - INRIA 2005
+ */
+public class BadDataArgumentException extends RuntimeException 
 {
-	BadDataArgumentException(String s) 
-	{
-		super(s);
-	}
+	/**
+	 * Constructor of the exception
+	 * @param s the error message
+	 */
+  BadDataArgumentException(String s) 
+  {
+    super(s);
+  }
 }
-/********************************************************************************************************/
+

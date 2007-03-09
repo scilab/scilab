@@ -1,74 +1,68 @@
 package javasci ;
-/********************************************************************************************************/
-/* Allan CORNET */
-/* INRIA 2006 */
-/********************************************************************************************************/
-public class SciDouble implements java.io.Serializable  
-{
-/********************************************************************************************************/
- private SciDoubleArray pObjSciDouble;
- private double[] pTmpDoubleArray;
-/********************************************************************************************************/  
 /**
-* See SCI/modules/javasci/examples/others for some simple examples 
-*/
-/********************************************************************************************************/  
- public SciDouble(String name,SciDouble Obj) 
- {
-	pTmpDoubleArray=new double[1];
-	pTmpDoubleArray[0]=Obj.getData();
-	pObjSciDouble = new SciDoubleArray(name,1,1,pTmpDoubleArray);
+ * Scilab Double object
+ * See SCI/modules/javasci/examples/others for some simple examples 
+ * @author Allan CORNET - INRIA 2006
+ * @author Sylvestre LEDRU - INRIA 2007
+ */
+public class SciDouble extends SciAbstractDataType implements java.io.Serializable  
+{
+	private String typeDescription="double";
+	
+	/**
+	 * Constructs a Scilab Double from a other SciDouble
+	 * @param name the name of the Scilab variable
+	 * @param Obj the SciDouble you want to copy
+	 */
+  public SciDouble(String name,SciDouble Obj) 
+  {
+	  double[] pTmpDoubleArray=new double[1];
+	  pTmpDoubleArray[0]=Obj.getData();
+	  sciArray = new SciDoubleArray(name,1,1,pTmpDoubleArray);
  }
-/********************************************************************************************************/  
+
+	/**
+	 * Constructs a Scilab Double 
+	 * initialized to 0
+	 * @param name  the name of the Scilab Variable 
+	 */ 
  public SciDouble(String name) 
  {
-	pTmpDoubleArray=new double[1];
-	pObjSciDouble = new SciDoubleArray(name,1,1);
+	double[] pTmpDoubleArray=new double[1];
+	sciArray = new SciDoubleArray(name,1,1);
  }
- /********************************************************************************************************/  
- public SciDouble(String name,double Value )
- {
-	pTmpDoubleArray=new double[1];
-	pTmpDoubleArray[0]=Value;
-	pObjSciDouble = new SciDoubleArray(name,1,1,pTmpDoubleArray);
+
+	/**
+	 * Constructs a Scilab Double from a Java Double
+	 * @param name the name of the Scilab Variable 
+	 * @param value the value
+	 */ 
+  public SciDouble(String name,double value )
+  {
+	double[] pTmpDoubleArray=new double[1];
+  	pTmpDoubleArray[0]=value;
+	sciArray = new SciDoubleArray(name,1,1,pTmpDoubleArray);
  }
-/********************************************************************************************************/
- public String getName()
- {
-	return pObjSciDouble.getName();
- }
-/********************************************************************************************************/  
- public double getData() 
- {
-	Get();
-	pTmpDoubleArray=pObjSciDouble.getData();
-	return pTmpDoubleArray[0];
- }
-/********************************************************************************************************/  
- public void Get() 
- {
-	pObjSciDouble.Get();
- }
-/********************************************************************************************************/
-/** 
- * @deprecated 
- * Deprecated.  Use Scilab.Exec instead.
- */       
- public boolean Job(String job)
- {
-	return pObjSciDouble.Job(job);
- }
-/********************************************************************************************************/     
- public void Send()
- {
-	pObjSciDouble.Send();
- }
-/********************************************************************************************************/    
- public void disp() 
- {
-	Get();
-	System.out.println("double "+ getName() +"=");
-	Scilab.Exec( "disp(" + getName() +");");
- }
+
+	/**
+	 * Return the double
+	 * @return the double
+	 */
+  public double getData()
+  {
+    Get();
+    double[] pTmpDoubleArray=((SciDoubleArray)sciArray).getData();
+    return pTmpDoubleArray[0];
+  }
+
+	/**
+	 * Return the description of the DataType
+	 * Description must set in any class which extends SciAbstractDataType
+	 * @return the Description
+	 *
+	 */
+	public String getTypeDescription(){
+		return this.typeDescription;
+	}
+
 }
-/********************************************************************************************************/  

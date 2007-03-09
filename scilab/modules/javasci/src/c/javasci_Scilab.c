@@ -76,15 +76,15 @@ JNIEXPORT jboolean JNICALL Java_javasci_Scilab_Finish (JNIEnv *env , jobject obj
 	return bOK;
 }
 /********************************************************************************************************/
-/* public static native boolean ExistVar(String VarName); */
-JNIEXPORT jboolean JNICALL Java_javasci_Scilab_ExistVar(JNIEnv *env , jclass cl, jstring VarName)
+/* public static native boolean ExistVar(String varName); */
+JNIEXPORT jboolean JNICALL Java_javasci_Scilab_ExistVar(JNIEnv *env , jclass cl, jstring varName)
 {
   jboolean bOK=0;
-  const char *cVarName;
+  const char *cvarName;
 
-  cVarName = (*env)->GetStringUTFChars(env, VarName, NULL);
+  cvarName = (*env)->GetStringUTFChars(env, varName, NULL);
 
-  if (strlen(cVarName) >= MAX_STR)
+  if (strlen(cvarName) >= MAX_STR)
   {
 	  fprintf(stderr,"Error in Java_javasci_Scilab_ExistVar routine (line too long).\n");
 	  bOK=0;
@@ -93,7 +93,7 @@ JNIEXPORT jboolean JNICALL Java_javasci_Scilab_ExistVar(JNIEnv *env , jclass cl,
   {
 	  int lw; int fin;
 	  
-	  if (C2F(objptr)((char*)cVarName,&lw,&fin,(unsigned long)strlen(cVarName)))
+	  if (C2F(objptr)((char*)cvarName,&lw,&fin,(unsigned long)strlen(cvarName)))
 	  {
 		  bOK=1;
 	  }
@@ -103,20 +103,20 @@ JNIEXPORT jboolean JNICALL Java_javasci_Scilab_ExistVar(JNIEnv *env , jclass cl,
 	  }
   }
 
-  (*env)->ReleaseStringUTFChars(env, VarName , cVarName);
+  (*env)->ReleaseStringUTFChars(env, varName , cvarName);
 
   return bOK;
 }
 /********************************************************************************************************/
-/* public static native int TypeVar(String VarName); */
-JNIEXPORT jint JNICALL Java_javasci_Scilab_TypeVar(JNIEnv *env , jclass cl, jstring VarName)
+/* public static native int TypeVar(String varName); */
+JNIEXPORT jint JNICALL Java_javasci_Scilab_TypeVar(JNIEnv *env , jclass cl, jstring varName)
 {
   jint type=-1;
-  const char *cVarName;
+  const char *cvarName;
 
-  cVarName = (*env)->GetStringUTFChars(env, VarName, NULL);
+  cvarName = (*env)->GetStringUTFChars(env, varName, NULL);
 
-  if (strlen(cVarName) >= MAX_STR)
+  if (strlen(cvarName) >= MAX_STR)
   {
 	  fprintf(stderr,"Error in Java_javasci_Scilab_ExistVar routine (line too long).\n");
 	  type=-1;
@@ -125,10 +125,10 @@ JNIEXPORT jint JNICALL Java_javasci_Scilab_TypeVar(JNIEnv *env , jclass cl, jstr
   {
 	  int lw; int fin;
 	  
-	  if (C2F(objptr)((char*)cVarName,&lw,&fin,(unsigned long)strlen(cVarName)))
+	  if (C2F(objptr)((char*)cvarName,&lw,&fin,(unsigned long)strlen(cvarName)))
 	  {
 		  int *header=NULL; 
-		  header = (int *)GetDataFromName((char *)cVarName);
+		  header = (int *)GetDataFromName((char *)cvarName);
 		  type = header[0];
 	  }
 	  else
@@ -138,7 +138,7 @@ JNIEXPORT jint JNICALL Java_javasci_Scilab_TypeVar(JNIEnv *env , jclass cl, jstr
 	  }
   }
 
-  (*env)->ReleaseStringUTFChars(env, VarName , cVarName);
+  (*env)->ReleaseStringUTFChars(env, varName , cvarName);
 
   return type;
 }

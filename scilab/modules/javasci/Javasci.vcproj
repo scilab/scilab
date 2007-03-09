@@ -221,6 +221,10 @@
 				RelativePath=".\src\c\javasci_SciStringArray.c"
 				>
 			</File>
+			<File
+				RelativePath=".\src\c\javasci_SciAbstractArray.c"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -253,6 +257,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\javasci_SciStringArray.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\javasci_SciAbstractArray.h"
 				>
 			</File>
 		</Filter>
@@ -307,6 +315,14 @@
 			</File>
 			<File
 				RelativePath=".\src\java\javasci\SciStringArray.java"
+				>
+			</File>
+			<File
+				RelativePath=".\src\java\javasci\SciAbstractDataType.java"
+				>
+			</File>
+			<File
+				RelativePath=".\src\java\javasci\SciAbstractArray.java"
 				>
 			</File>
 		</Filter>

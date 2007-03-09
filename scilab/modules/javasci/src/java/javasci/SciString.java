@@ -1,76 +1,71 @@
 package javasci ;
-/********************************************************************************************************/
-/* Allan CORNET */
-/* INRIA 2006 */
-/********************************************************************************************************/
-public class SciString implements java.io.Serializable  
-{
-/********************************************************************************************************/
- private SciStringArray pObjSciString;
- private String[] pTmpStringArray;
-/********************************************************************************************************/  
 /**
-* See SCI/modules/javasci/examples/others for some simple examples
-*/
-/********************************************************************************************************/  
- public SciString(String name,SciString Obj) 
- {
-	pTmpStringArray=new String[1];
-	pTmpStringArray[0]=Obj.getData();
-	pObjSciString = new SciStringArray(name,1,1,pTmpStringArray);
+ * Scilab String object
+ * See SCI/modules/javasci/examples/others for some simple examples 
+ * @author Allan CORNET - INRIA 2006
+ * @author Sylvestre LEDRU - INRIA 2007
+ */
+public class SciString extends SciAbstractDataType implements java.io.Serializable  
+{
+	private String typeDescription="String";
+
+	/**
+	 * Constructs a Scilab String from a other SciString
+	 * @param name the name of the Scilab variable
+	 * @param Obj the SciString you want to copy
+	 */
+  public SciString(String name,SciString Obj) 
+  {
+  	String[] pTmpStringArray=new String[1];
+  	pTmpStringArray[0]=Obj.getData();
+	sciArray = new SciStringArray(name,1,1,pTmpStringArray);
  }
-/********************************************************************************************************/  
- public SciString(String name) 
- {
-	pTmpStringArray=new String[1];
-	pObjSciString = new SciStringArray(name,1,1);
+
+	/**
+	 * Constructs a Scilab String
+	 * initialized to ""
+	 * @param name the name of the Scilab Variable 
+	 */ 
+  public SciString(String name) 
+  {
+  	String[] pTmpStringArray=new String[1];
+	sciArray = new SciStringArray(name,1,1);
  }
- /********************************************************************************************************/  
- public SciString(String name,String StrValue )
- {
-	pTmpStringArray=new String[1];
-	pTmpStringArray[0]=StrValue;
-	pObjSciString = new SciStringArray(name,1,1,pTmpStringArray);
+
+	/**
+	 * Constructs a Scilab String from a Java String
+	 * @param name the name of the Scilab Variable 
+	 * @param strValue the value
+	 */ 
+  public SciString(String name,String strValue )
+  {
+  	String[] pTmpStringArray=new String[1];
+  	pTmpStringArray[0]=strValue;
+	sciArray = new SciStringArray(name,1,1,pTmpStringArray);
  }
-/********************************************************************************************************/
- public String getName()
- {
-	return pObjSciString.getName();
- }
-/********************************************************************************************************/  
- public void Get() 
- {
-	pObjSciString.Get();
- }
-/********************************************************************************************************/
- public String getData() 
- {
-	Get();
-	pTmpStringArray=pObjSciString.getData();
-	return pTmpStringArray[0];
- }
- /********************************************************************************************************/          
- public void Send()
- {
- 	pObjSciString.Send();
- }
-/********************************************************************************************************/    
- public void disp() 
- {
-	Get();
-	System.out.println("String "+ getName() +"=");
-	Scilab.Exec( "disp(" + getName() +");");
- }
-/********************************************************************************************************/
-/** 
- * @deprecated 
- * Deprecated.  Use Scilab.Exec instead.
- */     
- public boolean Job(String job)
- {
-	return pObjSciString.Job(job);
- }
-/********************************************************************************************************/    
+
+	/**
+	 * Return the string
+	 * @return the String
+	 */
+  public String getData() 
+  {
+    Get();
+    String[] pTmpStringArray=((SciStringArray)sciArray).getData();
+    return pTmpStringArray[0];
+  }
+
+	
+	/**
+	 * Return the description of the DataType
+	 * Description must set in any class which extends SciAbstractDataType
+	 * @return the Description
+	 *
+	 */
+	public String getTypeDescription(){
+		return this.typeDescription;
+	}
+
 }
 /********************************************************************************************************/  
   

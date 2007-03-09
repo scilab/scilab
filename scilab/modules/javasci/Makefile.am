@@ -5,18 +5,18 @@
 
 include $(top_srcdir)/Makefile.incl.am
 
-
 #### Target ######
 target=$(datadir)/javasci
 
-
 #### Java sources ####
-JAVAFILES = src/java/javasci/BadDataArgumentException.java \
+JAVAFILES = src/java/javasci/Scilab.java \
+	src/java/javasci/BadDataArgumentException.java \
+	src/java/javasci/SciAbstractArray.java \
+	src/java/javasci/SciAbstractDataType.java \
 	src/java/javasci/SciDoubleArray.java \
 	src/java/javasci/SciBooleanArray.java \
 	src/java/javasci/SciDouble.java \
 	src/java/javasci/SciBoolean.java \
-	src/java/javasci/Scilab.java \
 	src/java/javasci/SciComplexArray.java \
 	src/java/javasci/SciStringArray.java \
 	src/java/javasci/SciComplex.java \
@@ -28,12 +28,12 @@ CLASSPATH = src/java/
 #### javasci : jar file #### 
 JARFILE = javasci.jar
 
-
-
+BUILT_SOURCES+=$(JARFILE)
 
 #### Javasci : sources ####
 JAVASCI_C_SOURCES = src/c/javasci_Scilab2.c \
 src/c/javasci_globals.c \
+src/c/javasci_SciAbstractArray.c \
 src/c/javasci_SciStringArray.c \
 src/c/javasci_SciComplexArray.c \
 src/c/fix.c \
@@ -68,7 +68,8 @@ includes/javasci_globals.h \
 includes/javasci_SciStringArray.h \
 includes/javasci_SciComplexArray.h \
 includes/javasci_SciDoubleArray.h \
-includes/javasci_SciBooleanArray.h
+includes/javasci_SciBooleanArray.h \
+includes/javasci_SciAbstractArray.h
 
 
 tests:: $(JARFILE) $(JAVAFILES)

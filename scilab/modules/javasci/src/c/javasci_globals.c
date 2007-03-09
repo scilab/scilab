@@ -20,9 +20,9 @@ int GetInterfState()
 {
 	return init;
 }
-/********************************************************************************************************/
-/*   Initialisation of Scilab */
-/********************************************************************************************************/
+/**
+ * Initialisation of Scilab 
+ */
 void Initialize(void) 
 {
   static char env[1024];
@@ -40,7 +40,7 @@ void Initialize(void)
   
   
   #ifdef _MSC_VER
-  /* Supprime le mode windows et la baniere */
+  /* Delete the windows mode and the banner */
     add_sci_argv(JavaSciInterf);
     add_sci_argv(nb);
   #endif

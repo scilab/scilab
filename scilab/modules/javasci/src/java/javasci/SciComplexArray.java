@@ -1,87 +1,49 @@
 package javasci ;
-/********************************************************************************************************/
-/* Allan CORNET */
-/* INRIA 2006 */
-/********************************************************************************************************/
-public class SciComplexArray implements java.io.Serializable  
+
+import java.lang.NoSuchMethodException;
+/**
+ * Scilab Array of Complex Object
+ * See SCI/modules/javasci/examples/others for some simple examples 
+ * @author Allan CORNET - INRIA 2006
+ * @author Sylvestre LEDRU - INRIA 2007
+ */
+public class SciComplexArray extends javasci.SciAbstractArray implements java.io.Serializable
 {
 /********************************************************************************************************/
  private double [] x ; /* Real part */
  private double [] y ; /* Imaginary part */
+
+  /**
+  * Get only ONE element from Scilab Matrix 
+  * Get Real Part
+  * @param indr row indice in scilab 
+  * @param indc column indice in scilab 
+  * @return the Real Part
+  */
+  public native double GetRealPartElement(int indr,int indc);
+
+  /**
+  * Get only ONE element from Scilab Matrix 
+  * Get Real Part
+  * @param indr row indice in scilab 
+  * @param indc column indice in scilab 
+  * @return the Imaginary Part 
+  */
+
+  public native double GetImaginaryPartElement(int indr,int indc);
   
- private int m, n;
- /* m number of rows */
- /* n number of colons */
-  
- private String name; 
-/********************************************************************************************************/
-/**
- * Initialize Scilab interface
- */
- private static native void Initialize();
-  
-/**
- * internal method to know dim (Row) in scilab 
- * returns >= 0 OK
- * returns -1 name not exist
- */
- private native int getNumberOfRowsFromScilab(String name);
+	/**
+	 * Constructs a Scilab Complex Array from a other SciComplexArray
+	 * @param name the name of the Scilab variable
+	 * @param Obj the SciComplexArray Array you want to copy
+	 */
 
-/**
- * internal method to know dim (Col) in scilab
- * returns >= 0 OK
- * returns -1 name not exist
- */
- private native int getNumberOfColsFromScilab(String name);
- 
-/**
- * @deprecated 
- * Deprecated.  Use Scilab.Exec instead.
- * Execute a command in Scilab 
- */   
- public native boolean Job(String job);
- 
-/**
- * Get Matrix from Scilab
- */  
- public native void Get();
+  public SciComplexArray(String name,SciComplexArray Obj) 
+  {
+    this.name = name;
+    this.m = Obj.getNumberOfRows() ;
+    this.n = Obj.getNumberOfCols();
 
-/**
- * Send Matrix to Scilab 
- */
- public native void Send();
-
-/**
- * Get only ONE element from Scilab Matrix 
- * indr AND indc are indices in scilab 
- * Get Real Part
- */
- public native double GetRealPartElement(int indr,int indc);
- 
-
-/**
- * Get only ONE element from Scilab Matrix 
- * indr AND indc are indices in scilab 
- * Get Imaginary Part
- */
- public native double GetImaginaryPartElement(int indr,int indc);
-
-/**
- * See SCI/modules/javasci/examples/others for some simple examples 
- */
-/********************************************************************************************************/  
- static 
- {
-	System.loadLibrary("javasci");
-	Initialize();
- }
-/********************************************************************************************************/  
- public SciComplexArray(String name,SciComplexArray Obj) 
- {
-	this.name = name;
-	this.m = Obj.getNumberOfRows() ;
-	this.n = Obj.getNumberOfCols();
-    
 	this.x = new double[m*n];
 	this.x =Obj.getRealPartData() ;
     
@@ -90,39 +52,56 @@ public class SciComplexArray implements java.io.Serializable
     
 	Send();
  }
-/********************************************************************************************************/  
- public SciComplexArray(String name,int r,int c) 
- {
-	this.m = r ;
-	this.n = c ;
-	this.x = new double[r*c];
-	this.y = new double[r*c];
-	this.name = name;
+
+	/**
+	 * Constructs a ScilabComplexArray 
+	 * All cells are initialized to 0
+	 * @param name  the name of the Scilab Variable 
+	 * @param r number of rows
+	 * @param c number of columns
+	 */
+  public SciComplexArray(String name,int row,int col) 
+  {
+    this.m = row ;
+    this.n = col ;
+    this.x = new double[row*col];
+    this.y = new double[row*col];
+    this.name = name;
     
-	if ( (Scilab.TypeVar(name) == 1) & 
-		(getNumberOfRowsFromScilab(name) == r) & 
-		(getNumberOfColsFromScilab(name) == c) )
-	{
+    if ( (Scilab.TypeVar(name) == 1) &  // real or complex constant matrix. 
+         (getNumberOfRowsFromScilab(name) == row) & // has the same number of rows
+         (getNumberOfColsFromScilab(name) == col) ) // has the same number of columns
+    {
+		// load it from Scilab
 		Get();
-	}
-	else
-	{
-		for ( int i = 0 ; i < r*c ; i++)
-		{
-			x[i]=0;
-			y[i]=0;
-		}
-		Send();
-	}
- }
-/********************************************************************************************************/  
- public SciComplexArray(String name,int r,int c,double [] x,double [] y )
- {
-	if ( (r*c != x.length) && (r*c != y.length) )
-	{
-		throw new BadDataArgumentException("Bad Matrix call, size of third argument is wrong");
-	}
-    
+
+    }
+    else
+    {
+        for ( int i = 0 ; i < row*col ; i++)
+        {
+    	  x[i]=0;
+    	  y[i]=0;
+        }
+		// send it to scilab
+        Send();
+    }
+  }
+	/**
+	 * Constructs a Scilab Boolean Complex  from two java double array
+	 * @param name  the name of the Scilab Variable
+	 * @param r number of rows
+	 * @param c number of columns
+	 * @param x the array of double with want to copy into the Real Part
+	 * @param y the array of double with want to copy into the Imaginary Part
+	 */
+  public SciComplexArray(String name,int r,int c,double [] x,double [] y )
+  {
+    if ( (r*c != x.length) && (r*c != y.length) )
+    {
+     throw new BadDataArgumentException("Bad Matrix call, size of third argument is wrong");
+    }
+
 	this.m = r ;
 	this.n = c;
     
@@ -133,35 +112,21 @@ public class SciComplexArray implements java.io.Serializable
     
 	Send();
  }
-/********************************************************************************************************/
- public int getNumberOfRows() 
- {
-	return m;
- }
-/********************************************************************************************************/  
- public int getNumberOfCols() 
- {
-	return n;
- }
-/********************************************************************************************************/    
-/**
- * @deprecated 
- * Deprecated.  Use getNumberOfRows() instead.
- */
- public int getRow() 
- {
-	return m;
- }
-/********************************************************************************************************/  
-/**
- * @deprecated 
- * Deprecated.  Use getNumberOfCols() instead.
- */
- public int getCol() 
- {
-	return n;
- }
-/********************************************************************************************************/  
+
+	/**
+	 * Should not be called (this method is only here for polymorphism reason)
+	 * @deprecated
+	 * @see #getRealPartData()
+	 * @see #getImaginaryPartData()
+	 */
+	public double[] getData() throws NoSuchMethodException{
+		throw new NoSuchMethodException("Cannot call getData on a Complex Data. See getRealPartData() / getImaginaryPartData() .");
+	}
+
+	/**
+	 * Return the Real part of the data
+	 * @return the real part of the data 
+	 */
  public String getName()
  {
 	return name;
@@ -172,18 +137,15 @@ public class SciComplexArray implements java.io.Serializable
 	Get();
 	return x;
  }
-/********************************************************************************************************/    
+	
+	/**
+	 * Return the Imaginary part of the data
+	 * @return the Imaginary part of the data 
+	 */
  public double[] getImaginaryPartData() 
  {
 	Get();
 	return y;
- }
-/********************************************************************************************************/  
- public void disp() 
- {
-	Get();
-	System.out.println("Matrix "+ getName() +"=");
-	Scilab.Exec( "disp(" + getName() +");");
  }
 }
 /********************************************************************************************************/

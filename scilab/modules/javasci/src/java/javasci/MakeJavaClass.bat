@@ -1,9 +1,10 @@
 @echo off
 SET JAVAC="../../../../jvm/bin/jdk/bin/javac.exe"
 SET JAVASCIPATH="..\..\..\..\..\bin"
-rem Compilation des classes Java d'interfaces
+rem Compilation of the Scilab/Java interface
 
 %JAVAC% -classpath %JAVASCIPATH% -d %JAVASCIPATH% BadDataArgumentException.java
+%JAVAC% -classpath %JAVASCIPATH% -d %JAVASCIPATH% SciAbstractArray.java
 %JAVAC% -classpath %JAVASCIPATH% -d %JAVASCIPATH% Scilab.java
 %JAVAC% -classpath %JAVASCIPATH% -d %JAVASCIPATH% SciDoubleArray.java
 %JAVAC% -classpath %JAVASCIPATH% -d %JAVASCIPATH% SciDouble.java

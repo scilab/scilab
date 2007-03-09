@@ -1,89 +1,14 @@
 #include "javasci_SciStringArray.h"
 /********************************************************************************************************/
-/* Allan CORNET */
-/* INRIA 2006 */
+/* Sylvestre LEDRU */
+/* INRIA 2007 */
 /********************************************************************************************************/
 #define DefaultMaxlenString 1024
 /********************************************************************************************************/
 JNIEXPORT jstring JNICALL Java_javasci_SciStringArray_GetElement(JNIEnv *env , jobject obj_this,jint indrarg, jint indcarg);
 
 /********************************************************************************************************/
-/* private static native void Initialize(); */
-JNIEXPORT void JNICALL Java_javasci_SciStringArray_Initialize (JNIEnv *env, jclass cl)
-{
-	if ( GetInterfState() == 0) { EnableInterf(); Initialize();} 
-}
-/********************************************************************************************************/
-/* private native int getRowFromScilab(String name); */
-JNIEXPORT jint JNICALL Java_javasci_SciStringArray_getNumberOfRowsFromScilab(JNIEnv *env , jobject obj_this, jstring name)
-{
-	int lw; int fin;
-	const char *cname=NULL;
-	jint row=-1;
 
-	/* get the field value */
-	cname = (*env)->GetStringUTFChars(env, name, NULL);
-
-	if (C2F(objptr)((char*)cname,&lw,&fin,(unsigned long)strlen(cname)))
-	{
-		#define SCISTRINGTYPE 10
-		int *header=NULL; 
-		header = (int *)GetDataFromName((char *)cname);
-		if (header[0] == SCISTRINGTYPE)
-		{
-			row = header[1];
-		}
-	}
-
-	(*env)->ReleaseStringUTFChars(env, name , cname);
-
-	return row;
-}
-/********************************************************************************************************/
-/* private native int getColFromScilab(String name); */
-JNIEXPORT jint JNICALL Java_javasci_SciStringArray_getNumberOfColsFromScilab(JNIEnv *env , jobject obj_this, jstring name)
-{
-	int lw; int fin;
-	const char *cname=NULL;
-	jint col=-1;
-
-	/* get the field value */
-	cname = (*env)->GetStringUTFChars(env, name, NULL);
-
-	if (C2F(objptr)((char*)cname,&lw,&fin,(unsigned long)strlen(cname)))
-	{
-		#define SCISTRINGTYPE 10
-		int *header=NULL; 
-		header = (int *)GetDataFromName((char *)cname);
-		if (header[0] == SCISTRINGTYPE)
-		{
-			col = header[2];
-		}
-	}
-
-	(*env)->ReleaseStringUTFChars(env, name , cname);
-
-	return col;
-}
-/********************************************************************************************************/
-/* public native void Job(String job); */
-JNIEXPORT void JNICALL Java_javasci_SciStringArray_Job(JNIEnv *env , jobject obj_this, jstring job)
-/********************************************************************************************************/
-{
-	const char *cjob;
-
-	/* get the field value */
-	cjob = (*env)->GetStringUTFChars(env, job, NULL);
-
-	if (send_scilab_job((char*)cjob))
-	{
-		fprintf(stderr,"Error in Java_javasci_SciStringArray_Job routine.\n");
-	}
-
-	(*env)->ReleaseStringUTFChars(env, job , cjob);
-
-}
-/********************************************************************************************************/
 /*! public native String GetElement(int indr, int indc); */
 JNIEXPORT jstring JNICALL Java_javasci_SciStringArray_GetElement(JNIEnv *env , jobject obj_this,jint indrarg, jint indcarg)
 /********************************************************************************************************/
