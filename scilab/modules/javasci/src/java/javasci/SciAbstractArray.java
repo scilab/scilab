@@ -4,7 +4,7 @@ package javasci;
  * Defines the basic method that very ScilabXXXXArray should implement
  * @author Sylvestre LEDRU - INRIA 2007
  */
-public abstract class SciAbstractArray {
+public abstract class SciAbstractArray implements java.io.Serializable {
 
 	/** m number of rows */
 	protected int m;
