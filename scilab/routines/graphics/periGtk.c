@@ -6,11 +6,6 @@
 /*--------------------------------------------------------------------------
  *    Gtk  Driver.
  *--------------------------------------------------------------------------*/
-
-#ifndef nsp 
-#define Sciprintf sciprint
-#endif 
-
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
@@ -166,7 +161,7 @@ static int XgcAllocColors(struct BCG *xgc, int m)
        || (!(xgc->Green = (float *) MALLOC(mm*sizeof(float))))
        || (!(xgc->Blue = (float *) MALLOC(mm*sizeof(float)))) ) 
     {
-      Sciprintf("XgcAllocColors: unable to alloc\n");
+      sciprint("XgcAllocColors: unable to alloc\n");
       FREE(xgc->Red);FREE(xgc->Green);FREE(xgc->Blue);
       return 0;
     }
@@ -212,7 +207,7 @@ void CPixmapResize(int x, int y)
   GdkDrawable *temp = (GdkDrawable *) gdk_pixmap_new(ScilabXgc->drawing->window,x,y,-1);
   if ( temp  == NULL ) 
     {
-      Sciprintf("No more space to create Pixmaps\r\n");
+      sciprint("No more space to create Pixmaps\r\n");
       return;
     }
   gdk_pixmap_unref((GdkPixmap *) ScilabXgc->Cdrawable);
@@ -699,7 +694,7 @@ void C2F(xclick)(char *str, integer *ibutton, integer *x1,
     {
       if (*ibutton == -2) 
 	{
-	  /*	  Sciprintf("Menu activated %s %d",str,lstr);*/
+	  /*	  sciprint("Menu activated %s %d",str,lstr);*/
 	  *istr = lstr;
 	}
       else
@@ -860,7 +855,7 @@ static void xget_windowpos(integer *verbose, integer *x, integer *narg, double *
   gdk_window_get_position (ScilabXgc->window->window,&xx,&yy);
   *narg = 2; x[0]=xx;x[1]=yy;
   if (*verbose == 1) 
-    Sciprintf("\n ScilabXgc->CWindow position :%d,%d\r\n",x[0],x[1]);
+    sciprint("\n ScilabXgc->CWindow position :%d,%d\r\n",x[0],x[1]);
 }
 
 
@@ -890,7 +885,7 @@ static void xget_windowdim(integer *verbose, integer *x, integer *narg, double *
   x[0]= ScilabXgc->CWindowWidth;
   x[1]= ScilabXgc->CWindowHeight;
   if (*verbose == 1) 
-    Sciprintf("\n ScilabXgc->CWindow dim :%d,%d\r\n",(int) x[0],(int) x[1]);
+    sciprint("\n ScilabXgc->CWindow dim :%d,%d\r\n",(int) x[0],(int) x[1]);
 } 
 
 /*
@@ -918,7 +913,7 @@ static void xget_popupdim(integer *verbose, integer *x, integer *narg, double *d
   gdk_window_get_size (ScilabXgc->window->window,&xx,&yy);
   *narg = 2;  x[0]= xx ;   x[1]= yy ; 
   if (*verbose == 1) 
-    Sciprintf("\n ScilabXgc->CWindow dim :%d,%d\r\n",(int) x[0],(int) x[1]);
+    sciprint("\n ScilabXgc->CWindow dim :%d,%d\r\n",(int) x[0],(int) x[1]);
 } 
 
 /** To change the popup window size  **/
@@ -947,7 +942,7 @@ static void xget_viewport(integer *verbose, integer *x, integer *narg, double *d
       x[0]=x[1]=0;
     }
   if (*verbose == 1) 
-    Sciprintf("\n Viewport position:%d,%d\r\n",(int) x[0],(int) x[1]);
+    sciprint("\n Viewport position:%d,%d\r\n",(int) x[0],(int) x[1]);
 } 
 
 /** To change the window size  **/
@@ -1041,7 +1036,7 @@ static void xget_curwin(integer *verbose, integer *intnum, integer *narg, double
   *narg =1 ;
   *intnum = (ScilabXgc != (struct BCG *) 0) ? ScilabXgc->CurWindow : 0;
   if (*verbose == 1) 
-    Sciprintf("\nCurrent Graphic Window :%d\r\n",(int) *intnum);
+    sciprint("\nCurrent Graphic Window :%d\r\n",(int) *intnum);
 }
 
 /** Set a clip zone (rectangle ) **/
@@ -1083,13 +1078,13 @@ static void xget_clip(integer *verbose, integer *x, integer *narg, double *dummy
   if (*verbose == 1)
     {
       if (ScilabXgc->ClipRegionSet == 1)
-	Sciprintf("\nThere's a Clip Region :x:%d,y:%d,w:%d,h:%d\r\n",
+	sciprint("\nThere's a Clip Region :x:%d,y:%d,w:%d,h:%d\r\n",
 		 ScilabXgc->CurClipRegion[0],
 		 ScilabXgc->CurClipRegion[1],
 		 ScilabXgc->CurClipRegion[2],
 		 ScilabXgc->CurClipRegion[3]);
       else 
-	Sciprintf("\nNo Clip Region");
+	sciprint("\nNo Clip Region");
     }
 }
 
@@ -1121,9 +1116,9 @@ static void xget_absourel(integer *verbose, integer *num, integer *narg, double 
   if (*verbose == 1) 
     {
       if (ScilabXgc->CurVectorStyle == CoordModeOrigin)
-	Sciprintf("\nTrace Absolu");
+	sciprint("\nTrace Absolu");
       else 
-	Sciprintf("\nTrace Relatif");
+	sciprint("\nTrace Relatif");
     }
 }
 
@@ -1161,9 +1156,9 @@ static void idfromname(char *name1, integer *num)
    if (strcmp(AluStruc_[i].name,name1)== 0)  *num=i;
  if (*num == -1 ) 
    {
-     Sciprintf("\n Use the following keys (integer in scilab");
+     sciprint("\n Use the following keys (integer in scilab");
      for ( i=0 ; i < 16 ; i++)
-       Sciprintf("\nkey %s   -> %s\r\n",AluStruc_[i].name,
+       sciprint("\nkey %s   -> %s\r\n",AluStruc_[i].name,
 		AluStruc_[i].info);
    }
 }
@@ -1219,7 +1214,7 @@ static void xget_alufunction(integer *verbose, integer *value, integer *narg, do
   *value = ScilabXgc->CurDrawFunction ;
   if (*verbose ==1 ) 
     { 
-      Sciprintf("\nThe Alufunction is %s -> <%s>\r\n",
+      sciprint("\nThe Alufunction is %s -> <%s>\r\n",
 	       AluStruc_[*value].name,
 	       AluStruc_[*value].info);
     }
@@ -1247,7 +1242,7 @@ static void xget_thickness(integer *verbose, integer *value, integer *narg, doub
   *narg =1 ;
   *value = ScilabXgc->CurLineWidth ;
   if (*verbose ==1 ) 
-    Sciprintf("\nLine Width:%d\r\n", ScilabXgc->CurLineWidth ) ;
+    sciprint("\nLine Width:%d\r\n", ScilabXgc->CurLineWidth ) ;
 }
 
 /** To set grey level for filing areas **/
@@ -1319,7 +1314,7 @@ static void xget_pattern(integer *verbose, integer *num, integer *narg, double *
   else 
     *num = ScilabXgc->CurPattern + 1;
   if (*verbose == 1) 
-    Sciprintf("\n Pattern : %d\r\n",ScilabXgc->CurPattern + 1);
+    sciprint("\n Pattern : %d\r\n",ScilabXgc->CurPattern + 1);
 }
 
 /** To get the id of the last pattern **/
@@ -1330,13 +1325,13 @@ static void xget_last(integer *verbose, integer *num, integer *narg, double *dum
     {
       *num = ScilabXgc->IDLastPattern + 1;
       if (*verbose == 1) 
-	Sciprintf("\n Id of Last Color %d\r\n",(int)*num);
+	sciprint("\n Id of Last Color %d\r\n",(int)*num);
     }
   else 
     {
       *num = ScilabXgc->IDLastPattern + 1;
       if (*verbose == 1) 
-	Sciprintf("\n Id of Last Pattern %d\r\n",(int)*num);
+	sciprint("\n Id of Last Pattern %d\r\n",(int)*num);
     }
   *narg=1;
 }
@@ -1435,7 +1430,7 @@ static void xget_dash_or_color(integer *verbose, integer *value, integer *narg, 
     {
       *narg =1 ;
       *value = ScilabXgc->CurColor + 1;
-      if (*verbose == 1) Sciprintf("Color %d",(int)*value);
+      if (*verbose == 1) sciprint("Color %d",(int)*value);
       return;
     }
   xget_dash(verbose, value, narg,dummy);
@@ -1447,7 +1442,7 @@ static void xget_dash(integer *verbose, integer *value, integer *narg, double *d
   *narg =1 ;
   *value = ScilabXgc->CurDashStyle + 1;
   if (*value == 1) 
-    { if (*verbose == 1) Sciprintf("\nLine style = Line Solid");}
+    { if (*verbose == 1) sciprint("\nLine style = Line Solid");}
   else 
     {
       value[1]=4;
@@ -1455,10 +1450,10 @@ static void xget_dash(integer *verbose, integer *value, integer *narg, double *d
       for (i = 0 ; i < value[1]; i++) value[i+2]=DashTab[*value-2][i];
       if (*verbose ==1) 
 	{
-	  Sciprintf("\nDash Style %d:<",(int)*value - 1);
+	  sciprint("\nDash Style %d:<",(int)*value - 1);
 	  for (i = 0 ; i < value[1]; i++)
-	    Sciprintf("%d ",(int)value[i+2]);
-	  Sciprintf(">\n");
+	    sciprint("%d ",(int)value[i+2]);
+	  sciprint(">\n");
 	}
     }
 }
@@ -1514,7 +1509,7 @@ static void xget_usecolor(integer *verbose, integer *num, integer *narg, double 
 {
   *num = ScilabXgc->CurColorStatus;
   if (*verbose == 1) 
-    Sciprintf("\n Use color %d\r\n",(int)*num);
+    sciprint("\n Use color %d\r\n",(int)*num);
   *narg=1;
 }
 
@@ -1561,7 +1556,7 @@ static void xget_pixmapOn(integer *verbose, integer *value, integer *narg, doubl
 {
   *value=ScilabXgc->CurPixmapStatus;
   *narg =1 ;
-  if (*verbose == 1) Sciprintf("Pixmap status %d",(int)*value);
+  if (*verbose == 1) sciprint("Pixmap status %d",(int)*value);
 }
 
 /* Change the status of a Graphic Window
@@ -1590,7 +1585,7 @@ static void xget_wresize(integer *verbose, integer *value, integer *narg, double
 {
   *value=ScilabXgc->CurResizeStatus;
   *narg =1 ;
-  if (*verbose == 1) Sciprintf("Resize status %d",(int)*value);
+  if (*verbose == 1) sciprint("Resize status %d",(int)*value);
 }
 
 /* setting the default colormap with colors defined in color.h */
@@ -1621,7 +1616,7 @@ void set_default_colormap(void)
   */
   if (set_default_colormap_flag == 0) return;
   if (DEFAULTNUMCOLORS > maxcol) {
-    Sciprintf("Not enough colors for default colormap. Maximum is %d\r\n",
+    sciprint("Not enough colors for default colormap. Maximum is %d\r\n",
 	     maxcol);
     return;
   }
@@ -1711,7 +1706,7 @@ void setcolormapg(struct  BCG *XGC,integer *v1,integer *v2, double *a, integer *
   for (i = 0; i < m; i++) {
     if (a[i] < 0 || a[i] > 1 || a[i+m] < 0 || a[i+m] > 1 ||
 	a[i+2*m] < 0 || a[i+2*m]> 1) {
-      Sciprintf("RGB values must be between 0 and 1\n");
+      sciprint("RGB values must be between 0 and 1\n");
       XGC->Red = r;
       XGC->Green = g;
       XGC->Blue = b;
@@ -1765,7 +1760,7 @@ static void xget_colormap(integer *verbose, integer *num, integer *narg, double 
     val[i+m] = (double)ScilabXgc->Green[i]/255.0;
     val[i+2*m] = (double)ScilabXgc->Blue[i]/255.0;
   }
-  if (*verbose == 1) Sciprintf("Size of colormap: %d colors\r\n",m);
+  if (*verbose == 1) sciprint("Size of colormap: %d colors\r\n",m);
 }
 
 /** set and get the number of the background or foreground */
@@ -1798,7 +1793,7 @@ static void xget_background(integer *verbose, integer *num, integer *narg, doubl
   *narg=1;
   *num = ( ScilabXgc->CurColorStatus == 1 ) ? ScilabXgc->NumBackground + 1 : 1;
   if (*verbose == 1) 
-    Sciprintf("\n Background : %d\r\n",*num);
+    sciprint("\n Background : %d\r\n",*num);
 }
 
 /* set and get the number of the background or foreground */
@@ -1831,7 +1826,7 @@ static void xget_foreground(integer *verbose, integer *num, integer *narg, doubl
       *num = 1; /** the foreground is a solid line style in b&w */
     }
   if (*verbose == 1) 
-    Sciprintf("\n Foreground : %d\r\n",*num);
+    sciprint("\n Foreground : %d\r\n",*num);
 }
 
 /** set and get the number of the hidden3d color */
@@ -1858,7 +1853,7 @@ static void xget_hidden3d(integer *verbose, integer *num, integer *narg, double 
       *num = 1; /** the hidden3d is a solid line style in b&w */
     }
   if (*verbose == 1) 
-    Sciprintf("\n Hidden3d : %d\r\n",*num);
+    sciprint("\n Hidden3d : %d\r\n",*num);
 }
 
 /**********************************************************
@@ -1941,12 +1936,12 @@ static void SetGraphicsVersion();
 
 static void xset_empty(integer *verbose, integer *v2, integer *v3, integer *v4)
 {
-  if ( *verbose ==1 ) Sciprintf("\n No operation ");
+  if ( *verbose ==1 ) sciprint("\n No operation ");
 }
 
 static void xget_empty(integer *verbose, integer *v2, integer *v3, double *dummy)
 {
-  if ( *verbose ==1 ) Sciprintf("\n No operation ");
+  if ( *verbose ==1 ) sciprint("\n No operation ");
 }
 
 #define NUMSETFONC 33
@@ -2014,7 +2009,7 @@ void C2F(MissileGCGetorSet)(char *str, integer flag, integer *verbose, integer *
       j = strcmp(str,MissileGCTab_[i].name);
       if ( j == 0 ) 
 	{ if (*verbose == 1)
-	  Sciprintf("\nGettting Info on %s\r\n",str);
+	  sciprint("\nGettting Info on %s\r\n",str);
 	if (flag == 1)
 	  (MissileGCTab_[i].getfonc)(verbose,x1,x2,dv1);
 	else 
@@ -2023,7 +2018,7 @@ void C2F(MissileGCGetorSet)(char *str, integer flag, integer *verbose, integer *
       else 
 	{ if ( j <= 0)
 	  {
-	    Sciprintf("\nUnknow X operator <%s>\r\n",str);
+	    sciprint("\nUnknow X operator <%s>\r\n",str);
 	    if ( flag == 1) 
 	      {
 		/** set x1 and x2 they are used in scixget 
@@ -2034,7 +2029,7 @@ void C2F(MissileGCGetorSet)(char *str, integer flag, integer *verbose, integer *
 	  }
 	}
     }
-  Sciprintf("\n Unknow X operator <%s>\r\n",str);
+  sciprint("\n Unknow X operator <%s>\r\n",str);
   *x1=1;*x2=0;
 }
 
@@ -2651,7 +2646,7 @@ static struct BCG *AddNewWindow(WindowList **listptr)
       *listptr = (WindowList *) MALLOC (sizeof(WindowList));
       if ( listptr == 0) 
 	{
-	  Sciprintf("AddNewWindow No More Place ");
+	  sciprint("AddNewWindow No More Place ");
 	  return((struct BCG *) 0);
 	}
       else 
@@ -2859,7 +2854,7 @@ int GetWinsMaxId(void)
       Num = Max(listptr->winxgc.CurWindow,Num);
       listptr =  (WindowList *)listptr->next;
     }
-  /* Sciprintf("Max Id : %d \r\n",Num); */
+  /* sciprint("Max Id : %d \r\n",Num); */
   return(Num);
 }
 
@@ -2931,7 +2926,7 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4,
   NewXgc = AddNewWindowToList();
   if ( NewXgc == (struct BCG *) 0) 
     {
-      Sciprintf("initgraphics: unable to alloc\n");
+      sciprint("initgraphics: unable to alloc\n");
       return;
     }
   else 
@@ -3304,8 +3299,8 @@ static void xset_font(integer *fontid, integer *fontsize, integer *v3, integer *
 	}
       else
 	{
-	  Sciprintf(" The Font Id %d is not affected \r\n",(int)i);
-	  Sciprintf(" use xlfont to set it \n");
+	  sciprint(" The Font Id %d is not affected \r\n",(int)i);
+	  sciprint(" use xlfont to set it \n");
 	  return;
 	}
     }
@@ -3327,8 +3322,8 @@ static void  xget_font(integer *verbose, integer *font, integer *nargs, double *
   font[1] =ScilabXgc->FontSize ;
   if (*verbose == 1) 
     {
-      Sciprintf("\nFontId : %d ", ScilabXgc->FontId );
-      Sciprintf("--> %s at size %s pts\r\n",
+      sciprint("\nFontId : %d ", ScilabXgc->FontId );
+      sciprint("--> %s at size %s pts\r\n",
 	       FontInfoTab_[ScilabXgc->FontId].fname,
 	       size_[ScilabXgc->FontSize]);
     }
@@ -3351,8 +3346,8 @@ static void xget_mark(integer *verbose, integer *symb, integer *narg, double *du
   symb[1] = ScilabXgc->CurHardSymbSize ;
   if (*verbose == 1) 
     {
-      Sciprintf("\nMark : %d ",ScilabXgc->CurHardSymb);
-      Sciprintf("at size %s pts\r\n", size_[ScilabXgc->CurHardSymbSize]);
+      sciprint("\nMark : %d ",ScilabXgc->CurHardSymb);
+      sciprint("at size %s pts\r\n", size_[ScilabXgc->CurHardSymbSize]);
     }
 }
 
@@ -3407,13 +3402,13 @@ void C2F(loadfamily)(char *name, integer *j, integer *v3, integer *v4, integer *
 	  if  (FontsList_[*j][i]== NULL)
 	    { 
 	      flag=0;
-	      Sciprintf("\n Unknown font : %s",name1);
-	      Sciprintf("\n I'll use font: fixed ");
+	      sciprint("\n Unknown font : %s",name1);
+	      sciprint("\n I'll use font: fixed ");
 	      FontsList_[*j][i]=  gdk_font_load(name1);
 	      if  (FontsList_[*j][i]== NULL)
 		{
-		  Sciprintf("\n Unknown font : %s\r\n","fixed");
-		  Sciprintf("Please call an X Wizard !");
+		  sciprint("\n Unknown font : %s\r\n","fixed");
+		  sciprint("Please call an X Wizard !");
 		}
 	    }
 	}
@@ -3438,13 +3433,13 @@ static void C2F(loadfamily_n)(char *name, integer *j)
       if  (FontsList_[*j][i]== NULL)
 	{ 
 	  flag=0;
-	  Sciprintf("\n Unknown font : %s",name1);
-	  Sciprintf("\n I'll use font: fixed ");
+	  sciprint("\n Unknown font : %s",name1);
+	  sciprint("\n I'll use font: fixed ");
 	  FontsList_[*j][i]= gdk_font_load(name1);
 	  if  (FontsList_[*j][i]== NULL)
 	    {
-	      Sciprintf("\n Unknown font : %s\r\n","fixed");
-	      Sciprintf("  Please call an X Wizard !");
+	      sciprint("\n Unknown font : %s\r\n","fixed");
+	      sciprint("  Please call an X Wizard !");
 	    }
 	}
     }
@@ -3598,7 +3593,7 @@ static int GtkReallocVector(integer n)
 {
   if (( gtk_points = graphic_alloc(8,n,sizeof(GdkPoint))) == 0) 
     { 
-      Sciprintf(MESSAGE5); return 0;
+      sciprint(MESSAGE5); return 0;
     }
   return 1;
 }
@@ -3787,7 +3782,7 @@ static void My2draw(integer j, integer *vx, integer *vy)
   if (flag == 3 && gtk_store_points(npts,vxn,vyn,(integer)0L))
     {
 #ifdef DEBUG
-      Sciprintf("segment out mais intersecte en (%d,%d),(%d,%d)\r\n",
+      sciprint("segment out mais intersecte en (%d,%d),(%d,%d)\r\n",
 	       vxn[0],vyn[0],vxn[1],vyn[1]);
 #endif 
       XDroutine((int)npts);
@@ -3808,7 +3803,7 @@ integer first_in(integer n, integer ideb, integer *vx, integer *vy)
       if (vx[i]>= xleft && vx[i] <= xright  && vy[i] >= ybot && vy[i] <= ytop)
 	{
 #ifdef DEBUG
-	  Sciprintf("first in %d->%d=(%d,%d)\r\n",ideb,i,vx[i],vy[i]);
+	  sciprint("first in %d->%d=(%d,%d)\r\n",ideb,i,vx[i],vy[i]);
 #endif
 	  return(i);
 	}
@@ -3830,7 +3825,7 @@ integer first_out(integer n, integer ideb, integer *vx, integer *vy)
       if ( vx[i]< xleft || vx[i]> xright  || vy[i] < ybot || vy[i] > ytop) 
 	{
 #ifdef DEBUG
-	  Sciprintf("first out %d->%d=(%d,%d)\r\n",ideb,i,vx[i],vy[i]);
+	  sciprint("first out %d->%d=(%d,%d)\r\n",ideb,i,vx[i],vy[i]);
 #endif
 	  return(i);
 	}
@@ -3851,7 +3846,7 @@ static void C2F(analyze_points)(integer n, integer *vx, integer *vy, integer one
 		 (unsigned)ytop-ybot);
 #endif
 #ifdef DEBUG 
-  Sciprintf("inside analyze\r\n");
+  sciprint("inside analyze\r\n");
 #endif
   while (1) 
     { integer j;
@@ -3859,7 +3854,7 @@ static void C2F(analyze_points)(integer n, integer *vx, integer *vy, integer one
     if (iib == -1) 
       { 
 #ifdef DEBUG
-	Sciprintf("[%d,end=%d] polyline out\r\n",(int)ideb,(int)n);
+	sciprint("[%d,end=%d] polyline out\r\n",(int)ideb,(int)n);
 	/* all points are out but segments can cross the box */
 #endif 
 	for (j=ideb+1; j < n; j++) My2draw(j,vx,vy);
@@ -3892,7 +3887,7 @@ static void C2F(analyze_points)(integer n, integer *vx, integer *vy, integer one
       break;
     }
 #ifdef DEBUG
-    Sciprintf("Analysed : [%d,%d]\r\n",(int)iib,(int)iif);
+    sciprint("Analysed : [%d,%d]\r\n",(int)iib,(int)iif);
 #endif 
     MyDraw(iib,iif,vx,vy);
     ideb=iif;
