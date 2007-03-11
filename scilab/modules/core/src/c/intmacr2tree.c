@@ -8,6 +8,7 @@
 
 #include "intmacr2tree.h"
 #include "sciprint.h"
+#include "error_scilab.h"
 /* Table to store variable names */
 static char varnames[isizt][nlgh+1];
 
@@ -81,7 +82,7 @@ int C2F(macr2tree) _PARAMS((char *fname,unsigned long fname_len))
 
   if (stkdata[0] > 0) /* Not a reference to variable */
     {
-      Scierror(999,"macr2tree: input argument must be a named variable\r\n");
+	  error_scilab(999,"core_error_152");
       return 0;
     }
   else
@@ -92,19 +93,19 @@ int C2F(macr2tree) _PARAMS((char *fname,unsigned long fname_len))
   /* Verify good type for input: must be a compiled macro (type 13) */
   if(stkdata[0] != 13)
     {
-      Scierror(999,"macr2tree: Wrong input type (must be a compiled macro)!\r\n");
+	  error_scilab(999,"core_error_153");
       return 0;
     }
 
   /* Memory allocation */
   if((name=CALLOC(1,sizeof(char)))==NULL)
     {
-      Scierror(999,"macr2tree: No more memory available\r\n");
+	  error_scilab(999,"core_error_154");
       return 0;
     }
   if((name[0]=(char *)CALLOC(1,sizeof(char)*(nlgh+1)))==NULL)
     {
-      Scierror(999,"macr2tree: No more memory available\r\n");
+	  error_scilab(999,"core_error_155");
       return 0;
     }
   (name[0])[nlgh]='\0';
@@ -153,8 +154,8 @@ int C2F(macr2tree) _PARAMS((char *fname,unsigned long fname_len))
   /* Make a copy variable passed as reference */
   /* Memory allocation */
   if((data=(int *)CALLOC(1,sizeof(int)*(codelength+ilt+1)))==NULL)
-    {
-      Scierror(999,"macr2tree: No more memory available\r\n");
+  {
+	  error_scilab(999,"core_error_154");
       return 0;
     }
   /* Copy */
@@ -178,8 +179,9 @@ int C2F(macr2tree) _PARAMS((char *fname,unsigned long fname_len))
   *Lstk(Top+1) = sadr(il+3+nbstat);
   
   /* Error handling (S. Steer */
-  if (*Lstk(Top+1) >= *Lstk(Bot)) {
-    Scierror(17,"macr2tree: stack size exceeded (Use stacksize function to increase it)\r\n");
+  if (*Lstk(Top+1) >= *Lstk(Bot)) 
+  {
+	error_scilab(17,"core_error_17");
 
     /* Free memory */
     FREE(name[0]);
@@ -230,8 +232,8 @@ int C2F(macr2tree) _PARAMS((char *fname,unsigned long fname_len))
 
 	  cod_ind++;
 	  if(cod_ind>codelength+ilt+1)
-	    {
-	      Scierror(999,"macr2tree: Out of code\r\n");
+	  {
+		  error_scilab(999,"core_error_155");
  
 	      /* Free memory */
 	      FREE(name[0]);
@@ -241,11 +243,13 @@ int C2F(macr2tree) _PARAMS((char *fname,unsigned long fname_len))
 	      FREE(data);
 	      
 	      return 0;
-	    }
+	  }
 
 	}
-      if(TopSave!=Top-1) {
-	Scierror(999,"macr2tree: wrong Top value %d instead of %d\r\n",Top,TopSave+1);
+      if(TopSave!=Top-1) 
+	  {
+		  error_scilab(999,"core_error_156",Top,TopSave+1);
+
 
 	/* Free memory */
 	FREE(name[0]);
@@ -319,12 +323,12 @@ static int CreateEOLList(void)
   /* Memory allocation */
   if((eol=CALLOC(1,sizeof(char)))==NULL)
     {
-      Scierror(999,"CreateEOLList: No more memory available\r\n");
+	  error_scilab(999,"core_error_157","CreateEOLList");
       return 0;
     }
   if((eol[0]=(char *)CALLOC(1,sizeof(char)*(strlen("EOL")+1)))==NULL)
     {
-      Scierror(999,"CreateEOLList: No more memory available\r\n");
+      error_scilab(999,"core_error_157","CreateEOLList");
       return 0;
     }
   (eol[0])[3]='\0';
@@ -406,12 +410,12 @@ static int GetInstruction(int *data,int *index2,int *nblines,int *addinstr)
   /* Memory allocation */
   if((name=CALLOC(1,sizeof(char)))==NULL)
     {
-      Scierror(999,"GetInstruction: No more memory available\r\n");
-      return 0;
+		error_scilab(999,"core_error_157","GetInstruction");
+        return 0;
     }
   if((name[0]=(char *)CALLOC(1,sizeof(char)*(nlgh+1)))==NULL)
     {
-      Scierror(999,"GetInstruction: No more memory available\r\n");
+      error_scilab(999,"core_error_157","GetInstruction");
       return 0;
     }
   (name[0])[nlgh]='\0';
@@ -542,17 +546,17 @@ static int GetInstruction(int *data,int *index2,int *nblines,int *addinstr)
     CreateCsteTList("code23",data,index2);
     break;
   case 24: /* Create an object with type 0 */
-    Scierror(999,"GetInstruction: code %d not yet implemented\r\n",data[*index2]);
+    error_scilab(999,"core_error_158","GetInstruction",data[*index2]);
     break;
   case 25: /* Compute profiling data */
  /* This code is ignored */
     *index2 += 2;
     break;
   case 26: /* Vector of strings */
-    Scierror(999,"GetInstruction: code %d not yet implemented\r\n",data[*index2]);
+    error_scilab(999,"core_error_158","GetInstruction",data[*index2]);
     break;
   case 27: /* varfunptr */
-    Scierror(999,"GetInstruction: code %d not yet implemented\r\n",data[*index2]);
+    error_scilab(999,"core_error_158","GetInstruction",data[*index2]);
     break;
   case 28: /* continue */
     CreateFuncallTList("datacode",data,index2);
@@ -583,7 +587,7 @@ static int GetInstruction(int *data,int *index2,int *nblines,int *addinstr)
       }
     else
       {
-	Scierror(999,"GetInstruction: unknown code %d at index2 %d \r\n",data[*index2],*index2 );
+	error_scilab(999,"core_error_159",data[*index2],*index2 );
 	return 0;
       }
     break;
@@ -672,12 +676,12 @@ static int GetControlInstruction(int *data,int *index2,int *nblines)
       /* Memory allocation */
       if((name=CALLOC(1,sizeof(char)))==NULL)
 	{
-	  Scierror(999,"GetControlInstruction: No more memory available\r\n");
+	  error_scilab(999,"core_error_157","GetControlInstruction");
 	  return 0;
 	}
       if((name[0]=(char *)CALLOC(1,sizeof(char)*(nlgh+1)))==NULL)
 	{
-	  Scierror(999,"GetControlInstruction: No more memory available\r\n");
+	  error_scilab(999,"core_error_157","GetControlInstruction");
 	  return 0;
 	}
       (name[0])[nlgh]='\0';
@@ -772,7 +776,7 @@ static int GetControlInstruction(int *data,int *index2,int *nblines)
 	{
 	  /* This part will not be written */
 	  /* No more used */
-	  Scierror(999,"GetControlInstruction: old version of if and while not yet implemented\r\n");
+	  error_scilab(999,"core_error_160");
 	  return 0;
 	}
       else
@@ -981,17 +985,17 @@ static int CreateCsteTList(char *type,int *data,int *index2)
       /* Memory allocation */
       if((str=CALLOC(1,sizeof(char)))==NULL)
 	{
-	  Scierror(999,"CreateCsteTList: No more memory available\r\n");
+	  error_scilab(999,"core_error_157","CreateCsteTList");
 	  return 0;
 	}
       if((str[0]=(char *)CALLOC(1,sizeof(char)*(strlgth+1)))==NULL)
 	{
-	  Scierror(999,"CreateCsteTList: No more memory available\r\n");
+	  error_scilab(999,"core_error_157","CreateCsteTList");
 	  return 0;
 	}
       if((int_str=(int *)CALLOC(1,sizeof(int)*(strlgth+1)))==NULL)
 	{
-	  Scierror(999,"CreateCsteTList: No more memory available\r\n");
+	  error_scilab(999,"core_error_157","CreateCsteTList");
 	  return 0;
 	}
       /* Fill int_str */
@@ -1019,12 +1023,12 @@ static int CreateCsteTList(char *type,int *data,int *index2)
       /* Memory allocation */
       if((str=CALLOC(1,sizeof(char)))==NULL)
 	{
-	  Scierror(999,"CreateCsteTList: No more memory available\r\n");
+	  error_scilab(999,"core_error_157","CreateCsteTList");
 	  return 0;
 	}
       if((str[0]=(char *)CALLOC(1,sizeof(char)*(strlgth+1)))==NULL)
 	{
-	  Scierror(999,"CreateCsteTList: No more memory available\r\n");
+	  error_scilab(999,"core_error_157","CreateCsteTList");
 	  return 0;
 	}
 
@@ -1047,7 +1051,7 @@ static int CreateCsteTList(char *type,int *data,int *index2)
       /* Memory allocation */
       if((value=(double *)CALLOC(1,sizeof(double)))==NULL)
 	{
-	  Scierror(999,"CreateCsteTList: No more memory available\r\n");
+	  error_scilab(999,"core_error_157","CreateCsteTList");
 	  return 0;
 	}
       ivalue = (int*) value;
@@ -1080,7 +1084,7 @@ static int CreateCsteTList(char *type,int *data,int *index2)
     }
   else /* Should never happen */
     {
-      Scierror(999,"CreateCsteTList: wrong type value %s\r\n",type);
+	  error_scilab(999,"core_error_161",type);
       return 0;
     }
   
@@ -1125,12 +1129,12 @@ static int CreateOperationTList(int *data,int *index2)
   /* Memory allocation */
   if((operator=CALLOC(1,sizeof(char)))==NULL)
     {
-      Scierror(999,"CreateOperationTList: No more memory available\r\n");
+	  error_scilab(999,"core_error_157","CreateOperationTList");
       return 0;
     }
   if((operator[0]=(char *)CALLOC(1,sizeof(char)*max_op_lgth+1))==NULL)
     {
-      Scierror(999,"CreateOperationTList: No more memory available\r\n");
+      error_scilab(999,"core_error_157","CreateOperationTList");
       return 0;
     }
   (operator[0])[max_op_lgth] = '\0';
@@ -1156,7 +1160,7 @@ static int CreateOperationTList(int *data,int *index2)
 	}
     }
   if(operator_index2<0) {
-    Scierror(999,"CreateOperationTList: unknown operator %d\r\n",operator_num);
+	  error_scilab(999,"core_error_162",operator_num);
     return 0;
   }
 
@@ -1257,12 +1261,12 @@ static int CreateFuncallTList(char *fromwhat,int *data,int *index2)
   /* Memory allocation */
   if((funname=CALLOC(1,sizeof(char)))==NULL)
     {
-      Scierror(999,"CreateFuncallTList: No more memory available\r\n");
+	  error_scilab(999,"core_error_157","CreateFuncallTList");
       return 0;
     }
   if((funname[0]=(char *)CALLOC(1,sizeof(char)*(nlgh+1)))==NULL)
     {
-      Scierror(999,"CreateFuncallTList: No more memory available\r\n");
+	  error_scilab(999,"core_error_157","CreateFuncallTList");
       return 0;
     }
   (funname[0])[nlgh]='\0';
@@ -1334,7 +1338,7 @@ static int CreateFuncallTList(char *fromwhat,int *data,int *index2)
     }
   else /* Should never happen */
     {
-      Scierror(999,"CreateFuncallTList: wrong fromwhat value %s\r\n",fromwhat);
+	  error_scilab(999,"core_error_163",fromwhat);
       return 0;
     }
 
@@ -1423,24 +1427,24 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index2)
   /* Memory allocation */
   if((name=CALLOC(1,sizeof(char)))==NULL)
     {
-      Scierror(999,"CreateEqualTList: No more memory available\r\n");
+   	  error_scilab(999,"core_error_157","CreateEqualTList");
       return 0;
     }
   if((name[0]=(char *)CALLOC(1,sizeof(char)*(nlgh+1)))==NULL)
     {
-      Scierror(999,"CreateEqualTList: No more memory available\r\n");
+   	  error_scilab(999,"core_error_157","CreateEqualTList");
       return 0;
     }
   (name[0])[nlgh] = '\0';
 
   if((operator=CALLOC(1,sizeof(char)))==NULL)
     {
-      Scierror(999,"CreateEqualTList: No more memory available\r\n");
+      error_scilab(999,"core_error_157","CreateEqualTList");
       return 0;
     }
   if((operator[0]=(char *)CALLOC(1,sizeof(char)*4))==NULL)
     {
-      Scierror(999,"CreateEqualTList: No more memory available\r\n");
+      error_scilab(999,"core_error_157","CreateEqualTList");
       return 0;
     }
   strcpy(operator[0],"ins");
@@ -1469,12 +1473,12 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index2)
 	{
 	  if((endsymbol=CALLOC(1,sizeof(char)))==NULL)
 	    {
-	      Scierror(999,"CreateEqualTList: No more memory available\r\n");
+	      error_scilab(999,"core_error_157","CreateEqualTList");
 	      return 0;
 	    }
 	  if((endsymbol[0]=(char *)CALLOC(1,sizeof(char)*2))==NULL)
 	    {
-	      Scierror(999,"CreateEqualTList: No more memory available\r\n");
+   	      error_scilab(999,"core_error_157","CreateEqualTList");
 	      return 0;
 	    }
 	  strcpy(endsymbol[0],";");
@@ -1484,12 +1488,12 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index2)
 	{
 	  if((endsymbol=CALLOC(1,sizeof(char)))==NULL)
 	    {
-	      Scierror(999,"CreateEqualTList: No more memory available\r\n");
+	      error_scilab(999,"core_error_157","CreateEqualTList");
 	      return 0;
 	    }
 	  if((endsymbol[0]=(char *)CALLOC(1,sizeof(char)*2))==NULL)
 	    {
-	      Scierror(999,"CreateEqualTList: No more memory available\r\n");
+   	      error_scilab(999,"core_error_157","CreateEqualTList");
 	      return 0;
 	    }
 	  strcpy(endsymbol[0],",");
@@ -1499,12 +1503,12 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index2)
 	{
 	  if((endsymbol=CALLOC(1,sizeof(char)))==NULL)
 	    {
-	      Scierror(999,"CreateEqualTList: No more memory available\r\n");
+   	      error_scilab(999,"core_error_157","CreateEqualTList");
 	      return 0;
 	    }
 	  if((endsymbol[0]=(char *)CALLOC(1,sizeof(char)*1))==NULL)
 	    {
-	      Scierror(999,"CreateEqualTList: No more memory available\r\n");
+	      error_scilab(999,"core_error_157","CreateEqualTList");
 	      return 0;
 	    }
 	  (endsymbol[0])[0] = '\0';
@@ -1598,12 +1602,12 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index2)
       /* Symbol */
       if((endsymbol=CALLOC(1,sizeof(char)))==NULL)
 	{
-	  Scierror(999,"CreateEqualTList: No more memory available\r\n");
+	  error_scilab(999,"core_error_157","CreateEqualTList");
 	  return 0;
 	}
       if((endsymbol[0]=(char *)CALLOC(1,sizeof(char)*1))==NULL)
 	{
-	  Scierror(999,"CreateEqualTList: No more memory available\r\n");
+	  error_scilab(999,"core_error_157","CreateEqualTList");
 	  return 0;
 	}
       (endsymbol[0])[0] = '\0';
@@ -1641,12 +1645,12 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index2)
       /* Symbol */
       if((endsymbol=CALLOC(1,sizeof(char)))==NULL)
 	{
-	  Scierror(999,"CreateEqualTList: No more memory available\r\n");
+	  error_scilab(999,"core_error_157","CreateEqualTList");
 	  return 0;
 	}
       if((endsymbol[0]=(char *)CALLOC(1,sizeof(char)*1))==NULL)
 	{
-	  Scierror(999,"CreateEqualTList: No more memory available\r\n");
+	  error_scilab(999,"core_error_157","CreateEqualTList");
 	  return 0;
 	}
       (endsymbol[0])[0] = '\0';
@@ -1674,12 +1678,12 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index2)
       /* Symbol */
       if((endsymbol=CALLOC(1,sizeof(char)))==NULL)
 	{
-	  Scierror(999,"CreateEqualTList: No more memory available\r\n");
+	  error_scilab(999,"core_error_157","CreateEqualTList");
 	  return 0;
 	}
       if((endsymbol[0]=(char *)CALLOC(1,sizeof(char)*1))==NULL)
 	{
-	  Scierror(999,"CreateEqualTList: No more memory available\r\n");
+	  error_scilab(999,"core_error_157","CreateEqualTList");
 	  return 0;
 	}
       (endsymbol[0])[0] = '\0';
@@ -1695,7 +1699,7 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index2)
     }
   else /* Should not happen */
     {
-      Scierror(999,"CreateEqualTList: wrong fromwhat value %s\r\n",fromwhat);
+	  error_scilab(999,"core_error_163",fromwhat);
       return 0;
     }
 
@@ -1741,7 +1745,7 @@ static int CreateCommentTList(int *data,int *index2)
   /* Memory allocation */
   if((text=(char *)CALLOC(1,sizeof(char)*(strlgth+1)))==NULL)
     {
-      Scierror(999,"CreateCsteTList: No more memory available\r\n");
+      error_scilab(999,"core_error_157","CreateCsteTList");
       return 0;
     }
   CvStr(&strlgth,&(data[*index2]),text,&job1,strlgth);

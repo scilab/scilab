@@ -9,6 +9,7 @@
 #include "sciprint.h"
 #include "warningmode.h"
 #include "MALLOC.h"
+#include "error_scilab.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_warning) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -67,7 +68,7 @@ int C2F(sci_warning) _PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
-		Scierror(999,"Parameter must be a string.\r\n");
+		error_scilab(999,"core_error_177");
 		return 0;
 	}
 	LhsVar(1)=0;

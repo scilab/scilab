@@ -5,6 +5,7 @@
 #include "gw_core.h"
 #include "machine.h"
 #include "stack-c.h"
+#include "error_scilab.h"
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(where)();
 /*-----------------------------------------------------------------------------------*/
@@ -12,13 +13,13 @@ int C2F(sci_where) _PARAMS((char *fname,unsigned long fname_len))
 {
 	if (Rhs > 0)
 	{
-		Scierror(39,"incorrect number of arguments.\n");
+		error_scilab(39,"core_error_39");
 		return 0;
 	}
 
 	if (Lhs != 2)
 	{
-		Scierror(41,"incompatible LHS.\n");
+		error_scilab(41,"core_error_41");
 		return 0;
 	}
 

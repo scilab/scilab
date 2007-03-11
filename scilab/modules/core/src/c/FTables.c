@@ -4,6 +4,7 @@
  **************************************/
 
 #include <string.h>
+#include "error_scilab.h"
 #include "FTables.h"
 #define FTable_H   /* to prevent  a type conflict with GetFuncPtr */ 
 #include "stack-c.h"
@@ -117,20 +118,12 @@ voidf GetFuncPtr(char *name, int n, FTAB *Table, voidf scifun, int *ifunc, int *
       f = SetFunction(cstk(*ifunc),&rep,Table);
       if ( rep == 1 )
         {
-	  Scierror(999,"%s: external %s not found \r\n",name,cstk(*ifunc));
+		  error_scilab(999,"core_error_146",name,cstk(*ifunc));
           return (voidf) 0;
         }  
       return f ;
     case  a_function :
       GetRhsVar(n, "f", &nlhs,&nrhs, ifunc);
-      /*
-      if ( nlhs != *lhs || nrhs != *rhs ) 
-	{
-	  Scierror(999,"%s: given external has wrong (lhs,rhs) values (%d,%d), (%d,%d) required\r\n",name,
-		   nlhs,nrhs,*lhs,*rhs);
-	  return (voidf) 0 ;
-	}
-      */
       return (voidf) scifun ;
     default:
       sciprint("Wrong parameter in %s ! (number %d)\r\n",name,n);

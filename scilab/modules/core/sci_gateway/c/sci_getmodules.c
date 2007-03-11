@@ -7,6 +7,7 @@
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "getmodules.h"
+#include "error_scilab.h"
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(sci_getmodules) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -18,7 +19,7 @@ int C2F(sci_getmodules) _PARAMS((char *fname,unsigned long fname_len))
 	Modules=getmodules();
 	if (!Modules)
 	{
-		Scierror(999,"Warning : Problems with %s.\n",fname);
+		error_scilab(999,"core_error_165",fname);
 		return 0;
 	}
 

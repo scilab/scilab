@@ -3,6 +3,7 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include "intgetmd5.h"
+#include "error_scilab.h"
 #include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
@@ -51,12 +52,12 @@ int C2F(intgetmd5) __PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
-				Scierror(999,"file %s doesn't exist.",Param1);
+				error_scilab(999,"core_error_148",Param1);
 			}
 		}
 		else
 		{
-			Scierror(999,"Invalid type parameter. it must be a string (a filename).");
+			error_scilab(999,"core_error_149");
 		}
 	}
 	else /* Rhs == 2 */
@@ -94,12 +95,12 @@ int C2F(intgetmd5) __PARAMS((char *fname,unsigned long fname_len))
 				}
 				else
 				{
-					Scierror(999,"Invalid second parameter. It must be \"string\".");
+					error_scilab(999,"core_error_150");
 				}
 		}
 		else
 		{
-			Scierror(999,"Invalid type parameter. parameters must be strings.");
+			error_scilab(999,"core_error_151");
 		}
 	}
 	return 0;

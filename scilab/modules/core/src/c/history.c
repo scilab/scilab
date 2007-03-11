@@ -8,6 +8,8 @@
 
 #include "stack-c.h"
 
+#include "error_scilab.h"
+
 #ifndef Max 
 #define Max(x,y)	(((x)>(y))?(x):(y))
 #endif
@@ -432,9 +434,9 @@ int CreSmatFromHist(char *fname, int number, sci_hist *Parcours)
   il = iadr(*Lstk(lw));
   ix1 = il + 4 + (nnchar + 1) + (indice + 1);
   Err = sadr(ix1) - *Lstk(Bot );
-  if (Err > 0) {
-    Scierror(17,"%s: stack size exceeded (Use stacksize function to increase it)\r\n",
-	     fname);
+  if (Err > 0) 
+  {
+    error_scilab(17,"core_error_17",fname);
     return  FALSE_;
   } ;
   /* create the variable header */
@@ -498,8 +500,7 @@ static int CreSmatFromHist(char *fname, int number, int from_line, int count)
   ix1 = il + 4 + (nnchar + 1) + (indice + 1);
   Err = sadr(ix1) - *Lstk(Bot );
   if (Err > 0) {
-    Scierror(17,"%s: stack size exceeded (Use stacksize function to increase it)\r\n",
-	     fname);
+	  error_scilab(17,"core_error_17",fname);
     return FALSE_;
   } ;
   /* create the variable header */

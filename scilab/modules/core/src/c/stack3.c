@@ -11,6 +11,7 @@
 #include <string.h>
 #include "stack3.h"
 #include "stack-c.h"
+#include "error_scilab.h"
 
 extern int C2F(dmcopy)  __PARAMS((double *a, integer *na, double *b, integer *nb, integer *m, integer *n));
 extern int C2F(stackg)  __PARAMS((integer *id));
@@ -69,7 +70,7 @@ int C2F(creadmat)(char *namex, integer *m, integer *n, double *scimat, unsigned 
     C2F(stackg)(id);
     if (Err > 0) return FALSE_ ; 
     if (Fin == 0) {
-      Scierror(4,"Undefined variable %s\r\n",get_fname(namex,name_len));
+      error_scilab(4,"core_error_4",get_fname(namex,name_len));
       return FALSE_;
     }
     if ( *Infstk(Fin ) == 2)  Fin = *istk(iadr(*Lstk(Fin )) + 1 +1);
@@ -118,7 +119,7 @@ int C2F(creadcmat)(char *namex, integer *m, integer *n, double *scimat, unsigned
     C2F(stackg)(id);
     if (Err > 0) return FALSE_ ; 
     if (Fin == 0) {
-      Scierror(4,"Undefined variable %s\r\n",get_fname(namex,name_len));
+      error_scilab(4,"core_error_4",get_fname(namex,name_len));
       return FALSE_;
     }
     if ( *Infstk(Fin ) == 2)  Fin = *istk(iadr(*Lstk(Fin )) + 1 +1);
@@ -259,7 +260,7 @@ int C2F(creadchain)(char *namex,  integer *itslen,  char *chai,  unsigned long n
     C2F(stackg)(id);
     if (Err > 0) return FALSE_ ;
     if (Fin == 0) {
-      Scierror(4,"Undefined variable %s\r\n",get_fname(namex,name_len));
+      error_scilab(4,"core_error_4",get_fname(namex,name_len));
       return FALSE_ ;
     }
     if (*Infstk(Fin ) == 2) {
@@ -269,7 +270,7 @@ int C2F(creadchain)(char *namex,  integer *itslen,  char *chai,  unsigned long n
 	return FALSE_;
     }
     if (m1 * n1 != 1) {
-      Scierror(999,"creadchain: argument must be a string\r\n");
+      error_scilab(999,"core_error_267");
       return FALSE_ ;
     }
 
@@ -316,7 +317,7 @@ int C2F(creadchains)(char *namex, integer *ir, integer *ic, integer *itslen, cha
     if (Err > 0) return FALSE_ ;
 
     if (Fin == 0) {
-      Scierror(4,"Undefined variable %s\r\n",get_fname(namex,name_len));
+      error_scilab(4,"core_error_4",get_fname(namex,name_len));
       return FALSE_ ;
     }
 
@@ -417,7 +418,7 @@ int C2F(cmatptr)(char *namex, integer *m,integer *n,integer *lp, unsigned long n
     Fin = -1;
     C2F(stackg)(id);
     if (Fin == 0) {
-      Scierror(4,"Undefined variable %s\r\n",get_fname(namex,name_len));
+      error_scilab(4,"core_error_4",get_fname(namex,name_len));
       *m = -1;
       *n = -1;
       return FALSE_;
@@ -469,7 +470,7 @@ int C2F(cmatcptr)(char *namex, integer *m, integer *n, integer *lp, unsigned lon
     Fin = -1;
     C2F(stackg)(id);
     if (Fin == 0) {
-      Scierror(4,"Undefined variable %s\r\n",get_fname(namex,name_len));
+      error_scilab(4,"core_error_4",get_fname(namex,name_len));
       *m = -1;
       *n = -1;
       return FALSE_;
@@ -515,7 +516,7 @@ int C2F(cmatsptr)(char *namex, integer *m, integer *n,integer *ix,integer *j,int
     Fin = -1;
     C2F(stackg)(id);
     if (Fin == 0) {
-      Scierror(4,"Undefined variable %s\r\n",get_fname(namex,name_len));
+      error_scilab(4,"core_error_4",get_fname(namex,name_len));
       *m = -1;
       *n = -1;
       return FALSE_;
@@ -545,7 +546,7 @@ void *Name2ptr(char *namex)
   Fin = -1;
   C2F(stackg)(id);
   if (Fin == 0) {
-    Scierror(4,"Undefined variable %s\r\n",get_fname(namex,strlen(namex)));
+    error_scilab(4,"core_error_4",get_fname(namex,strlen(namex)));
     return 0;
   }
   /* get data */
@@ -581,8 +582,9 @@ int Name2where(char *namex)
   /* get the position in fin */
   Fin = -1;
   C2F(stackg)(id);
-  if (Fin == 0) {
-    Scierror(4,"Undefined variable %s\r\n",get_fname(namex,strlen(namex)));
+  if (Fin == 0) 
+  {
+	error_scilab(4,"core_error_4",get_fname(namex,strlen(namex)));
     return 0;
   }
   loci = *Lstk(Fin);
@@ -653,7 +655,7 @@ int C2F(creadbmat)(char *namex, integer *m, integer *n, int *scimat, unsigned lo
 	C2F(stackg)(id);
 	if (Err > 0) return FALSE_ ; 
 	if (Fin == 0) {
-		Scierror(4,"Undefined variable %s\r\n",get_fname(namex,name_len));
+		error_scilab(4,"core_error_4",get_fname(namex,name_len));
 		return FALSE_;
 	}
 	if ( *Infstk(Fin ) == 2)  Fin = *istk(iadr(*Lstk(Fin )) + 1 +1);
@@ -699,7 +701,7 @@ int C2F(cmatbptr)(char *namex, integer *m,integer *n,integer *lp, unsigned long 
 	C2F(stackg)(id);
 	if (Fin == 0) 
 	{
-		Scierror(4,"Undefined variable %s\r\n",get_fname(namex,name_len));
+		error_scilab(4,"core_error_4",get_fname(namex,name_len));
 		*m = -1;
 		*n = -1;
 		return FALSE_;

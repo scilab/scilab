@@ -7,7 +7,7 @@
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "stackinfo.h"
-#include "Scierror.h"
+#include "error_scilab.h"
 /*-----------------------------------------------------------------------------------*/
 #define LengthNameVariableScilabMax 24
 /*-----------------------------------------------------------------------------------*/
@@ -98,7 +98,7 @@ int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
 				 FreeVariableStructArray(GlobalVariables,NbrVarsGlobal);
 				 FreeVariableStructArray(LocalVariables,NbrVarsLocal);
 
-				 Scierror(999,"first parameter must be 'local' , 'get' , 'global' or 'sorted'.\r\n");
+				 error_scilab(999,"core_error_179");
 				 return 0;
 			 }
 		 }
@@ -107,7 +107,7 @@ int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
 			 FreeVariableStructArray(GlobalVariables,NbrVarsGlobal);
 			 FreeVariableStructArray(LocalVariables,NbrVarsLocal);
 
-			 Scierror(999,"first parameter must be 'local' , 'get' , 'global' or 'sorted'.\r\n");
+			 error_scilab(999,"core_error_179");
 			 return 0;
 		 }
 	 }
@@ -130,7 +130,7 @@ int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
 				  FreeVariableStructArray(GlobalVariables,NbrVarsGlobal);
 				  FreeVariableStructArray(LocalVariables,NbrVarsLocal);
 
-				  Scierror(999,"second parameter must be 'sorted'.\r\n");
+				  error_scilab(999,"core_error_180");
 				  return 0;
 			  }
 			  else
@@ -167,7 +167,7 @@ int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
 					FreeVariableStructArray(GlobalVariables,NbrVarsGlobal);
 					FreeVariableStructArray(LocalVariables,NbrVarsLocal);
 
-					Scierror(999,"first parameter must be 'local' , 'get' or 'global'.\r\n");
+					error_scilab(999,"core_error_181");
 					return 0;
 				 }
 			  }
@@ -177,7 +177,7 @@ int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
 			 FreeVariableStructArray(GlobalVariables,NbrVarsGlobal);
 			 FreeVariableStructArray(LocalVariables,NbrVarsLocal);
 
-			 Scierror(999,"first parameter must be 'local' , 'get' , 'global' and second parameter must be 'sorted'.\r\n");
+			 error_scilab(999,"core_error_182");
 			 return 0;
 		 }
 	 }

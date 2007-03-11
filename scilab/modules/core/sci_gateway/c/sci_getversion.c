@@ -12,6 +12,7 @@
 #include "with_module.h"
 #include "loadversion.h"
 #include "inisci-c.h"
+#include "error_scilab.h"
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(withtk)(int *rep);
 /*-----------------------------------------------------------------------------------*/
@@ -208,13 +209,13 @@ static int getversion_one_rhs(void)
 			}
 			else
 			{
-				Scierror(999,"Error : file VERSION in \"%s\".\n",Param);
+				error_scilab(999,"core_error_166",Param);
 				return 0;
 			}
 		}
 		else
 		{
-			Scierror(999,"Error : incorrect module name \"%s\".\n",Param);
+			error_scilab(999,"core_error_167",Param);
 			return 0;
 		}
 		m1=1;
@@ -226,7 +227,7 @@ static int getversion_one_rhs(void)
 	}
 	else
 	{
-		Scierror(999,"invalid argument.\n");
+		error_scilab(999,"core_error_168");
 		return 0;
 	}
 	return 0;
@@ -290,25 +291,25 @@ static int getversion_two_rhs(void)
 				}
 				else
 				{
-					Scierror(999,"Error : file VERSION in \"%s\".\n",ParamRhs1);
+					error_scilab(999,"core_error_166",ParamRhs1);
 					return 0;
 				}
 			}
 			else
 			{
-				Scierror(999,"Error : incorrect module name \"%s\".\n",ParamRhs1);
+				error_scilab(999,"core_error_167",ParamRhs1);
 				return 0;
 			}
 		}
 		else
 		{
-			Scierror(999,"incorrect second parameter.\n");
+			error_scilab(999,"core_error_169");
 			return 0;
 		}
 	}
 	else
 	{
-		Scierror(999,"invalid argument(s).\n");
+		error_scilab(999,"core_error_170");
 		return 0;
 	}
 }

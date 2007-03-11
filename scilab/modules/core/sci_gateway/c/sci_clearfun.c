@@ -8,7 +8,7 @@
 #include "stack-def.h"
 #include "MALLOC.h"
 #include "hashtable_core.h"
-#include "Scierror.h"
+#include "error_scilab.h"
 #include "Funtab.h"
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(cvnamel)(int *id,char *str,int *jobptr,int *str_len); 
@@ -54,7 +54,7 @@ int C2F(sci_clearfun) _PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
-		Scierror(999,"must be a name of function in scilab.\n");
+		error_scilab(999,"core_error_164");
 		return 0;
 	}
 

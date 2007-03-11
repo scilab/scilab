@@ -5,6 +5,7 @@
 #include "gw_core.h"
 #include "with_module.h"
 #include "MALLOC.h"
+#include "error_scilab.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_with_module) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -34,7 +35,7 @@ int C2F(sci_with_module) _PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
-		Scierror(999,"parameter must be a string.\n");
+		error_scilab(999,"core_error_177");
 		return 0;
 	}
 

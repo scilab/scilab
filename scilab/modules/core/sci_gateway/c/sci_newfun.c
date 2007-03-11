@@ -5,7 +5,7 @@
 #include "gw_core.h"
 #include "machine.h"
 #include "stack-c.h"
-#include "Scierror.h"
+#include "error_scilab.h"
 #include "Funtab.h"
 /*-----------------------------------------------------------------------------------*/
 extern int IsAScalar(int RhsNumber);
@@ -47,19 +47,19 @@ int C2F(sci_newfun) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
-				Scierror(999,"function-name is incorrect.\n");
+				error_scilab(999,"core_error_173");
 				return 0;
 			}
 		}
 		else
 		{
-			Scierror(999,"nameptr argument must be >0.\n");
+			error_scilab(999,"core_error_174");
 			return 0;
 		}
 	}
 	else
 	{
-		Scierror(999,"See help newfun.\n");
+		error_scilab(999,"core_error_178");
 		return 0;
 	}
 	return 0;

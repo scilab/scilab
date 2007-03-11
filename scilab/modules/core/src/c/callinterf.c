@@ -9,12 +9,12 @@
 
 #include "machine.h"
 #include "sciprint.h"
-#include "Scierror.h"
 #include "csignal.h"
 
 #include "addinter.h" /* for DynInterfStart */
 #include "Os_specific.h" /* for DynInterfStart */
 
+#include "error_scilab.h"
 
 static  jmp_buf jmp_env; 
 
@@ -98,7 +98,7 @@ int C2F(callinterf) ( int *k, int * iflagint)
       if (( returned_from_longjump = setjmp(jmp_env)) != 0 )
 	{
 	  if (sig_ok) signal(SIGINT, controlC_handler);
-	  Scierror(999,"SIGSTP: aborting current computation\r\n");
+	  error_scilab(999,"core_error_147");
 	  count = 0;
 	  return 0;
 	}

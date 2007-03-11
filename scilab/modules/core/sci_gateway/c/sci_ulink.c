@@ -6,6 +6,7 @@
 #include "gw_core.h"
 #include "machine.h"
 #include "stack-c.h"
+#include "error_scilab.h"
 /*-----------------------------------------------------------------------------------*/
 extern void ulinkall(void);
 extern void C2F(isciulink)(integer *i) ;
@@ -46,7 +47,7 @@ int C2F(intulink) __PARAMS((char *fname,unsigned long fname_len))
 		}
 		else
 		{
-			Scierror(999,"Parameter must be a integer.\r\n");
+			error_scilab(999,"core_error_176");
 			return 0;
 		}
 	}
