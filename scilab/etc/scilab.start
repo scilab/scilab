@@ -116,7 +116,6 @@ predef('all')
 
 // Graphic mode and Startup info ======================================
 if %gui then 
-  set old_style off
   verbose=sciargs()<>"-nb"
   if verbose then
 	  show_startupinfo();
