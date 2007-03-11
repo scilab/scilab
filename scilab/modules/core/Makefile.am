@@ -87,7 +87,6 @@ src/fortran/getlin.f \
 src/fortran/isany.f \
 src/fortran/hmcreate.f \
 src/fortran/nextj.f \
-src/fortran/scilab.f \
 src/fortran/functionsforbasout.f \
 src/fortran/setgetmode.f \
 src/fortran/errmsgf.f \
