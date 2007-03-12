@@ -305,17 +305,28 @@ top_srcdir = @top_srcdir@
 # We do not use the automake mechanism (libxxxx_la_help_fr_DATA) because
 # automake needs the html files to be present which is not the case when
 # we are building Scilab
+
+# Where it should be installed
 @JAVA_TRUE@pkgdocdir = $(target)
+# Which directories we have to install
 @JAVA_TRUE@DOCDIRS = help/fr_FR help/en_US
+# What is the mask of the help output
 @JAVA_TRUE@DOCMASK = *.htm
+# What is the mask of the help source
 @JAVA_TRUE@DOCMASKXML = *.xml
 
 # Install macros
+# Where it should be installed
 @JAVA_TRUE@pkgmacrosdir = $(target)
+# Which directory we process
 @JAVA_TRUE@MACRODIRS = macros/
+# Mask of the Scilab sources macros
 @JAVA_TRUE@MACROMASK = *.sci
+# Mask of the Scilab executable sources macros
 @JAVA_TRUE@MACROBUILDMASK = *.sce
+# Mask of the Scilab compiled macros
 @JAVA_TRUE@MACROBINMASK = *.bin
+# List of the function of a module
 @JAVA_TRUE@FUNCTION_NAMES = macros/names
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
@@ -715,6 +726,7 @@ uninstall-am: uninstall-libscijvm_la_etcDATA \
 @JAVA_TRUE@install-html-local:
 @JAVA_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
 @JAVA_TRUE@	@for dir in $(DOCDIRS) ; do \
+@JAVA_TRUE@	 if test -d $(DOCDIRS); then \
 @JAVA_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
 @JAVA_TRUE@		if ls -lLd $(srcdir)/$$dir/$(DOCMASK) >/dev/null 2>&1; then \
 @JAVA_TRUE@		  for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
@@ -722,8 +734,11 @@ uninstall-am: uninstall-libscijvm_la_etcDATA \
 @JAVA_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
 @JAVA_TRUE@		  done ; \
 @JAVA_TRUE@		fi; \
+@JAVA_TRUE@	 fi; \
 @JAVA_TRUE@	done
+# If the user wants the help sources to be installed
 @INSTALL_HELP_XML_TRUE@@JAVA_TRUE@	@for dir in $(DOCDIRS) ; do \
+@INSTALL_HELP_XML_TRUE@@JAVA_TRUE@	 if test -d $(DOCDIRS); then \
 @INSTALL_HELP_XML_TRUE@@JAVA_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
 @INSTALL_HELP_XML_TRUE@@JAVA_TRUE@		if ls -lLd $(srcdir)/$$dir/$(DOCMASKXML) >/dev/null 2>&1; then \
 @INSTALL_HELP_XML_TRUE@@JAVA_TRUE@		  for file in $(srcdir)/$$dir/$(DOCMASKXML) ; do \
@@ -731,6 +746,7 @@ uninstall-am: uninstall-libscijvm_la_etcDATA \
 @INSTALL_HELP_XML_TRUE@@JAVA_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
 @INSTALL_HELP_XML_TRUE@@JAVA_TRUE@		  done ; \
 @INSTALL_HELP_XML_TRUE@@JAVA_TRUE@		fi; \
+@INSTALL_HELP_XML_TRUE@@JAVA_TRUE@	 fi; \
 @INSTALL_HELP_XML_TRUE@@JAVA_TRUE@	done
 @JAVA_TRUE@install-data-local:
 @JAVA_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)

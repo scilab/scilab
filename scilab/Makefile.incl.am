@@ -75,13 +75,19 @@ macrossly:
 # We do not use the automake mechanism (libxxxx_la_help_fr_DATA) because
 # automake needs the html files to be present which is not the case when
 # we are building Scilab
+
+# Where it should be installed
 pkgdocdir = $(target)
+# Which directories we have to install
 DOCDIRS = help/fr_FR help/en_US
+# What is the mask of the help output
 DOCMASK = *.htm
+# What is the mask of the help source
 DOCMASKXML = *.xml
 install-html-local:
 	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
 	@for dir in $(DOCDIRS) ; do \
+	 if test -d $(DOCDIRS); then \
 	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
 		if ls -lLd $(srcdir)/$$dir/$(DOCMASK) >/dev/null 2>&1; then \
 		  for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
@@ -89,9 +95,12 @@ install-html-local:
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
 		  done ; \
 		fi; \
+	 fi; \
 	done
-if INSTALL_HELP_XML
+if INSTALL_HELP_XML 
+# If the user wants the help sources to be installed
 	@for dir in $(DOCDIRS) ; do \
+	 if test -d $(DOCDIRS); then \
 	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
 		if ls -lLd $(srcdir)/$$dir/$(DOCMASKXML) >/dev/null 2>&1; then \
 		  for file in $(srcdir)/$$dir/$(DOCMASKXML) ; do \
@@ -99,15 +108,22 @@ if INSTALL_HELP_XML
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
 		  done ; \
 		fi; \
+	 fi; \
 	done
 endif
 
 # Install macros
+# Where it should be installed
 pkgmacrosdir = $(target)
+# Which directory we process
 MACRODIRS = macros/
+# Mask of the Scilab sources macros
 MACROMASK = *.sci
+# Mask of the Scilab executable sources macros
 MACROBUILDMASK = *.sce
+# Mask of the Scilab compiled macros
 MACROBINMASK = *.bin
+# List of the function of a module
 FUNCTION_NAMES=macros/names
 install-data-local:
 	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)
@@ -125,8 +141,6 @@ install-data-local:
 		  done \
 		fi; \
 	done
-
-
 
 macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(MACROS)
 	-@( \
