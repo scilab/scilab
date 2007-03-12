@@ -75,16 +75,16 @@
 <entry>
 	<tag>core_message_125</tag>
 	<string>Warning !!!
-	Scilab has found a critical error (%s)
-	with "%s" function.
-	Save your data and restart Scilab.</string>
+Scilab has found a critical error (%s)
+with "%s" function.
+Save your data and restart Scilab.</string>
 </entry>	
 
 <entry>
 	<tag>core_message_126</tag>
 	<string>Warning !!!
-	Scilab has found a critical error (%s).
-	Save your data and restart Scilab.</string>
+Scilab has found a critical error (%s).
+Save your data and restart Scilab.</string>
 </entry>	
 
 <entry>
@@ -235,6 +235,151 @@
 <entry>
 	<tag>core_message_156</tag>
 	<string>and %s.</string>
+</entry>	
+
+<entry>
+	<tag>core_message_157</tag>
+	<string>User variables are:</string>
+</entry>	
+
+<entry>
+	<tag>core_message_158</tag>
+	<string>using </string>
+</entry>	
+
+<entry>
+	<tag>core_message_159</tag>
+	<string> elements out of </string>
+</entry>	
+
+<entry>
+	<tag>core_message_160</tag>
+	<string> called at line </string>
+</entry>	
+
+<entry>
+	<tag>core_message_161</tag>
+	<string> of exec_file.</string>
+</entry>	
+
+<entry>
+	<tag>core_message_162</tag>
+	<string> of execstr instruction.</string>
+</entry>	
+
+<entry>
+	<tag>core_message_163</tag>
+	<string> of macro </string>
+</entry>	
+
+<entry>
+	<tag>core_message_164</tag>
+	<string>constant</string>
+</entry>	
+
+<entry>
+	<tag>core_message_165</tag>
+	<string>polynomial</string>
+</entry>	
+
+<entry>
+	<tag>core_message_166</tag>
+	<string>boolean</string>
+</entry>	
+
+<entry>
+	<tag>core_message_167</tag>
+	<string>sparse</string>
+</entry>	
+
+<entry>
+	<tag>core_message_168</tag>
+	<string>boolean sparse</string>
+</entry>	
+
+<entry>
+	<tag>core_message_169</tag>
+	<string>Matlab sparse</string>
+</entry>	
+
+<entry>
+	<tag>core_message_170</tag>
+	<string>handle</string>
+</entry>	
+
+<entry>
+	<tag>core_message_171</tag>
+	<string>string</string>
+</entry>	
+
+<entry>
+	<tag>core_message_172</tag>
+	<string>function</string>
+</entry>	
+
+<entry>
+	<tag>core_message_173</tag>
+	<string>library</string>
+</entry>	
+
+<entry>
+	<tag>core_message_174</tag>
+	<string>pointer</string>
+</entry>	
+
+<entry>
+	<tag>core_message_175</tag>
+	<string>size implicit</string>
+</entry>	
+
+<entry>
+	<tag>core_message_176</tag>
+	<string>list</string>
+</entry>	
+
+<entry>
+	<tag>core_message_177</tag>
+	<string>rational</string>
+</entry>	
+
+<entry>
+	<tag>core_message_178</tag>
+	<string>state-space</string>
+</entry>	
+
+<entry>
+	<tag>core_message_179</tag>
+	<string>hypermat</string>
+</entry>	
+
+<entry>
+	<tag>core_message_180</tag>
+	<string>unknown</string>
+</entry>	
+
+<entry>
+	<tag>core_message_181</tag>
+	<string> is already compiled.</string>
+</entry>	
+
+<entry>
+	<tag>core_message_182</tag>
+	<string> Obsolete: Define SCIHOME and HOME before to launch Scilab.</string>
+</entry>	
+
+<entry>
+	<tag>core_message_183</tag>
+	<string>error(s) : see help powershell';'verify your script without scilab.</string>
+</entry>	
+
+<entry>
+	<tag>core_message_184</tag>
+	<string>only for Windows.</string>
+</entry>	
+
+<entry>
+	<tag>core_message_185</tag>
+	<string>Powershell not found.</string>
 </entry>	
 
 

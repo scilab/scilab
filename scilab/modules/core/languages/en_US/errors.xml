@@ -631,4 +631,74 @@
 	<string>%s : internal error, info=%d.</string>
 </entry>
 
+<entry>
+	<tag>core_error_270</tag>
+	<string>whos requires zeros or two arguments.</string>
+</entry>
+
+<entry>
+	<tag>core_error_271</tag>
+	<string>First argument must be "-name" or "-type".</string>
+</entry>
+
+<entry>
+	<tag>core_error_272</tag>
+	<string>Argument must be a string.</string>
+</entry>
+
+<entry>
+	<tag>core_error_273</tag>
+	<string>second argument should give the path to a scilab script file.</string>
+</entry>
+
+<entry>
+	<tag>core_error_274</tag>
+	<string>file: </string>
+</entry>
+
+<entry>
+	<tag>core_error_275</tag>
+	<string> do not exist.</string>
+</entry>
+
+<entry>
+	<tag>core_error_276</tag>
+	<string>Unable to find Perl file: </string>
+</entry>
+
+<entry>
+	<tag>core_error_277</tag>
+	<string>All input arguments must be strings.</string>
+</entry>
+
+<entry>
+	<tag>core_error_278</tag>
+	<string>No perl command specified.</string>
+</entry>
+
+<entry>
+	<tag>core_error_279</tag>
+	<string>Unable to find Perl in: </string>
+</entry>
+
+<entry>
+	<tag>core_error_280</tag>
+	<string>Unable to find Perl.</string>
+</entry>
+
+<entry>
+	<tag>core_error_281</tag>
+	<string>System error: </string>
+</entry>
+
+<entry>
+	<tag>core_error_282</tag>
+	<string> Command executed: </string>
+</entry>
+
+<entry>
+	<tag>core_error_283</tag>
+	<string>First input argument must be a Perl File.</string>
+</entry>
+
 </LOCALIZATION>

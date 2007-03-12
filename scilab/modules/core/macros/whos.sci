@@ -5,11 +5,11 @@ function whos(%_opt,%_sel)
 //get the variables
   [%_nams,%_vol]=who('get');
   [%_lhs,%_rhs]=argn();
-  if %_rhs==1 then error('whos requires zeros or two arguments'),end
+  if %_rhs==1 then error(gettext('errors','core_error_270')),end
   if %_rhs==2 then 
     %_nams($-1:$)=[],
     if %_opt<>'-type'&%_opt<>'-name' then 
-      error('First argument must be ""-name"" or ""-type""')
+      error(gettext('errors','core_error_271'))
     end
   end
   //write the display header

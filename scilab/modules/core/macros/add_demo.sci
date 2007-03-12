@@ -1,9 +1,9 @@
 function add_demo(demotitle,path)
   global demolist
   path=pathconvert(path,%f,%t)
-  if fileinfo(path)==[] then  error('file: '+path+' do not exist'),end
+  if fileinfo(path)==[] then  error(gettext('errors','core_error_274')+path+gettext('errors','core_error_275')),end
   if isdir(path) then 
-    error('second argument should give the path to a scilab script file'),
+    error(gettext('errors','core_error_273'));
   end
   k=find(demolist(:,1)==demotitle)
   if k==[] then

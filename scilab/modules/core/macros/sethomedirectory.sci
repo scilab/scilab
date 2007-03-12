@@ -8,7 +8,7 @@ function [HomeDirectory,ScilabHomeDirectory]=sethomedirectory(varargin)
 	HomeDirectory=getenv('HOME',SCI);
 
   if nv==1 then // to set Scilab home with a path
-    warning(' Obsolete: Define SCIHOME & HOME before to launch Scilab.');
+    warning(gettext('messages','core_message_182'));
   end
 endfunction
 //------------------------------------------------------------------------------
