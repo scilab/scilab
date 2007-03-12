@@ -9,6 +9,8 @@
 #include "intmacr2tree.h"
 #include "sciprint.h"
 #include "error_scilab.h"
+#include "message_scilab.h"
+
 /* Table to store variable names */
 static char varnames[isizt][nlgh+1];
 
@@ -1973,7 +1975,7 @@ int complexity(int *data,int *index2,int *lgth)
 	    }
 	  else
 	    {
-	      sciprint("complexity: wrong code %d\r\n",data[cur_ind]);
+	      message_scilab("core_message_129",data[cur_ind]);
 	      return -1;
 	    }
 	  break;

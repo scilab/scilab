@@ -5,7 +5,7 @@
 #include "MALLOC.h"
 #include "GetExceptionCode.h"
 #include "ExceptionMessage.h"
-#include "sciprint.h"
+#include "message_scilab.h"
 /*-----------------------------------------------------------------------------------*/
 extern char *GetExceptionString(DWORD ExceptionCode);
 /*-----------------------------------------------------------------------------------*/
@@ -14,11 +14,11 @@ void ExceptionMessage(DWORD ExceptionCode,char *functionname)
 	char *ExceptionString=GetExceptionString(ExceptionCode);
 	if (functionname)
 	{
-		sciprint("Warning !!!\nScilab has found a critical error (%s)\nwith \"%s\" function.\nSave your data and restart Scilab.\n",ExceptionString,functionname);
+		message_scilab("core_message_125",ExceptionString,functionname);
 	}
 	else
 	{
-		sciprint("Warning !!!\nScilab has found a critical error (%s).\nSave your data and restart Scilab.\n",ExceptionString);
+		message_scilab("core_message_126",ExceptionString);
 	}
 	if (ExceptionString) {FREE(ExceptionString);ExceptionString=NULL;}
 }

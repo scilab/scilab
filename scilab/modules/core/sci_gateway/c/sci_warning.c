@@ -10,6 +10,7 @@
 #include "warningmode.h"
 #include "MALLOC.h"
 #include "error_scilab.h"
+#include "message_scilab.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_warning) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -62,7 +63,7 @@ int C2F(sci_warning) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else if ( getWarningMode() )
 			{
-				sciprint("WARNING:%s\r\n",Param);
+				message_scilab("core_message_137",Param);
 			}
 		}
 	}

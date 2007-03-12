@@ -11,6 +11,7 @@
 #include "stack2.h"
 #include "sciprint.h"
 #include "link.h"
+#include "message_scilab.h"
 
 static char buf[MAXNAME];
 
@@ -45,7 +46,6 @@ voidf SetFunction(char *name, int *rep, FTAB *table)
     }
   loc = Emptyfunc;
   *rep = 1;
-  /* sciprint(" Function %s not found\r\n",name); */
   return(loc);
 }
 
@@ -73,13 +73,11 @@ static int SearchComp(FTAB *Ftab, char *op, void (**realop) (/* ??? */))
          { 
 	   if ( j <= 0)
              {
-               /* sciprint("\nUnknow function <%s>\r\n",op); */
                return(FAIL);
              }
 	   else i++;
          }
      }
-  /* sciprint("\n Unknow function <%s>\r\n",op); */
   return(FAIL);
 }
 
@@ -126,7 +124,7 @@ voidf GetFuncPtr(char *name, int n, FTAB *Table, voidf scifun, int *ifunc, int *
       GetRhsVar(n, "f", &nlhs,&nrhs, ifunc);
       return (voidf) scifun ;
     default:
-      sciprint("Wrong parameter in %s ! (number %d)\r\n",name,n);
+      message_scilab("core_message_127",name,n);
       Error(999);
       return (voidf) 0 ;
     }

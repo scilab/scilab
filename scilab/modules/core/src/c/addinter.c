@@ -15,6 +15,7 @@
 #include "sciprint.h"
 #include "Funtab.h"
 #include "warningmode.h"
+#include "message_scilab.h"
 
 #ifdef _MSC_VER
 #include "ExceptionMessage.h"
@@ -115,8 +116,6 @@ void C2F(addinter)(int *iflag,int *descla, int *ptrdescla, int *nvla, char *inam
 
   if ( inum >=  MAXINTERF ) 
     {
-      /* sciprint("Maximum number of dynamic interfaces %d\r\n",MAXINTERF);
-         sciprint("has been reached\r\n");*/
       *err=1;
       return;
     }
@@ -143,7 +142,6 @@ void C2F(addinter)(int *iflag,int *descla, int *ptrdescla, int *nvla, char *inam
 
   if ( SearchInDynLinks(names[0],&DynInterf[inum].func) < 0 ) 
     {
-      /*sciprint("addinter failed for %s Not  found!\r\n",iname);*/
       *err=2;
       return;
     }
@@ -221,7 +219,7 @@ static void ShowInterf(void)
   for ( i = 0 ; i < LastInterf ; i++ ) 
     {
       if ( DynInterf[i].ok == 1 ) 
-	if (debug) sciprint("Interface %d %s\r\n",i,DynInterf[i].name);
+	if (debug) message_scilab("core_message_112",i,DynInterf[i].name);
     }
 }
 
@@ -263,7 +261,7 @@ void C2F(userlk)(integer *k)
   int imes = 9999;
   if ( k1 >= LastInterf || k1 < 0 ) 
     {
-      if (getWarningMode()) sciprint("Invalid interface number %d",k1);
+      if (getWarningMode()) message_scilab("core_message_11",k1);
       C2F(error)(&imes);
       return;
     }
@@ -288,7 +286,7 @@ void C2F(userlk)(integer *k)
   }
   else 
     {
-      if (getWarningMode()) sciprint("Interface %s not linked\r\n",DynInterf[k1].name);
+      if (getWarningMode()) message_scilab("core_message_114",DynInterf[k1].name);
       C2F(error)(&imes);
       return;
     }
@@ -321,8 +319,8 @@ int  SciLibLoad(int num_names, char **names, char **files, int *nums, int *err)
       /** Linking Files and add entry point name iname */
       if ( inum >=  MAXINTERF ) 
 	{
-	  if (getWarningMode()) sciprint("Maximum number of dynamic interfaces %d\r\n",MAXINTERF);
-	  if (getWarningMode()) sciprint("has been reached\r\n");
+	  if (getWarningMode()) message_scilab("core_message_115",MAXINTERF);
+	  if (getWarningMode()) message_scilab("core_message_116");
 	  *err=1;
 	  return -1 ;
 	}
@@ -342,7 +340,7 @@ int  SciLibLoad(int num_names, char **names, char **files, int *nums, int *err)
       DynInterf[nums[j]].Nshared = ilib;
       if ( SearchInDynLinks(names[0],&DynInterf[nums[j]].func) < 0 ) 
 	{
-	  if (getWarningMode()) sciprint("addinter failed for %s Not  found!\r\n",names[j]);
+	  if (getWarningMode()) message_scilab("core_message_117",names[j]);
 	  return -1;
 	}
       else
@@ -380,7 +378,7 @@ void CallDynInterf(int *pos, int num_names, int namepos, char **names,
     (*DynInterf[*pos].func)();
   else 
     {
-      if (getWarningMode()) sciprint("Interface %s not linked\r\n",DynInterf[*pos].name);
+      if (getWarningMode()) message_scilab("core_message_118",DynInterf[*pos].name);
       C2F(error)(&imes);
     }
 }  

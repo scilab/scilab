@@ -11,6 +11,8 @@
 #include "stack2.h"
 #include "sciprint.h"
 #include "error_scilab.h"
+#include "message_scilab.h"
+
 /* Table of constant values */
 
 static integer cx0 = 0;
@@ -2501,7 +2503,7 @@ int C2F(getpointeri)(char *fname,integer *topk,integer *spos,integer *lw,integer
   il = iadr(*lw);
   if (*istk(il ) < 0) il = iadr(*istk(il +1));
   if (*istk(il ) != 128) {
-    sciprint("----%d\r\n",*istk(il));
+    message_scilab("----%d",*istk(il));
     if (*inlistx) 
       error_scilab(197,"core_error_197",get_fname(fname,fname_len), Rhs + (*spos - *topk), *nel);
     else 
@@ -2780,11 +2782,9 @@ int C2F(stackinfo)(integer *lw,integer *typ)
   m = *istk(il +1);
   n = *istk(il + 1 +1);
 
-  sciprint("-----------------stack-info-----------------\r\n");
-  sciprint("lw=%d -[istk]-> il lw+1 -[istk]-> %d \r\n",
-	   *lw,iadr(*Lstk(*lw+1)));
-  sciprint("istk(%d:..) ->[%d %d %d %d ....]\r\n",
-	   il, istk(il),istk(il+1),istk(il+2),istk(il+3) );
+  message_scilab("core_message_149");
+  message_scilab("core_message_150",*lw,iadr(*Lstk(*lw+1)));
+  message_scilab("core_message_151",il, istk(il),istk(il+1),istk(il+2),istk(il+3) );
   if (*typ == 1) {
     l = sadr(il+4);
     nn = Min(m*n,3);
@@ -2798,7 +2798,8 @@ int C2F(stackinfo)(integer *lw,integer *typ)
       sciprint("%5d  ",istk(l + ix ));
     }
   }
-  sciprint("\r\n-----------------stack-info-----------------\r\n");
+  sciprint("\n");
+  message_scilab("core_message_152");
   return 0;
 }
 

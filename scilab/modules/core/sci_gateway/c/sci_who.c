@@ -8,6 +8,7 @@
 #include "MALLOC.h"
 #include "stackinfo.h"
 #include "error_scilab.h"
+#include "message_scilab.h"
 /*-----------------------------------------------------------------------------------*/
 #define LengthNameVariableScilabMax 24
 /*-----------------------------------------------------------------------------------*/
@@ -317,8 +318,8 @@ int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
 	 }
 
 	 sciprint("\n\n");
-	 sciprint(" using %10d elements out of  %10d.\n",memused,memtotal);
-	 sciprint(" and   %10d variables out of %10d.\n",varused,vartotal);
+	 message_scilab("core_message_140",memused,memtotal);
+	 message_scilab("core_message_141",varused,vartotal);
 
  }
  /*-----------------------------------------------------------------------------------*/

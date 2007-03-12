@@ -41,7 +41,7 @@
 
 <entry>
 	<tag>core_error_77</tag>
-	<string>%s: wrong number of rhs arguments</string>
+	<string>%s : wrong number of rhs arguments</string>
 </entry>	
 
 <entry>
@@ -243,12 +243,12 @@
 
 <entry>
 	<tag>core_error_184</tag>
-	<string>%s: argument %d &gt;(%d) should be a real or complex matrix.</string>
+	<string>%s : argument %d &gt;(%d) should be a real or complex matrix.</string>
 </entry>	
 
 <entry>
 	<tag>core_error_185</tag>
-	<string>%s: argument %d should be a list of size at least %d.</string>
+	<string>%s : argument %d should be a list of size at least %d.</string>
 </entry>	
 
 
@@ -383,72 +383,72 @@
 
 <entry>
 	<tag>core_error_221</tag>
-	<string>%s: argument %d &gt;(%d) should be an int matrix.</string>
+	<string>%s : argument %d &gt;(%d) should be an int matrix.</string>
 </entry>	
 
 <entry>
 	<tag>core_error_222</tag>
-	<string>%s: argument %d should be a list of size at least %d.</string>
+	<string>%s : argument %d should be a list of size at least %d.</string>
 </entry>	
 
 <entry>
 	<tag>core_error_223</tag>
-	<string>%s: argument %d &gt;(%d) should be a boolean matrix.</string>
+	<string>%s : argument %d &gt;(%d) should be a boolean matrix.</string>
 </entry>	
 
 <entry>
 	<tag>core_error_224</tag>
-	<string>%s: argument %d &gt;(%d) should be a sparse matrix.</string>
+	<string>%s : argument %d &gt;(%d) should be a sparse matrix.</string>
 </entry>	
 
 <entry>
 	<tag>core_error_225</tag>
-	<string>%s: argument %d should be a sparse matrix.</string>
+	<string>%s : argument %d should be a sparse matrix.</string>
 </entry>	
 
 <entry>
 	<tag>core_error_226</tag>
-	<string>%s: argument %d &gt; (%d) should be a vector.</string>
+	<string>%s : argument %d &gt; (%d) should be a vector.</string>
 </entry>	
 
 <entry>
 	<tag>core_error_227</tag>
-	<string>%s: argument %d &gt; (%d) should be a scalar.</string>
+	<string>%s : argument %d &gt; (%d) should be a scalar.</string>
 </entry>	
 
 <entry>
 	<tag>core_error_228</tag>
-	<string>%s: argument %d &gt;(%d) should be a matrix of strings.</string>
+	<string>%s : argument %d &gt;(%d) should be a matrix of strings.</string>
 </entry>	
 
 <entry>
 	<tag>core_error_229</tag>
-	<string>%s: argument %d &gt;(%d) should be a row vector.</string>
+	<string>%s : argument %d &gt;(%d) should be a row vector.</string>
 </entry>	
 
 <entry>
 	<tag>core_error_230</tag>
-	<string>%s: argument %d should be a row vector.</string>
+	<string>%s : argument %d should be a row vector.</string>
 </entry>	
 
 <entry>
 	<tag>core_error_231</tag>
-	<string>%s: argument %d >(%d) should be a column vector.</string>
+	<string>%s : argument %d >(%d) should be a column vector.</string>
 </entry>	
 
 <entry>
 	<tag>core_error_232</tag>
-	<string>%s: argument %d should be a column vector.</string>
+	<string>%s : argument %d should be a column vector.</string>
 </entry>	
 
 <entry>
 	<tag>core_error_233</tag>
-	<string>%s: incompatible sizes.</string>
+	<string>%s : incompatible sizes.</string>
 </entry>	
 
 <entry>
 	<tag>core_error_234</tag>
-	<string>%s: optional argument %d not given and default value %s not found.</string>
+	<string>%s : optional argument %d not given and default value %s not found.</string>
 </entry>	
 
 <entry>
@@ -458,12 +458,12 @@
 
 <entry>
 	<tag>core_error_236</tag>
-	<string>%s: argument %d &gt;(%d) should be a matrix of handle.</string>
+	<string>%s : argument %d &gt;(%d) should be a matrix of handle.</string>
 </entry>	
 
 <entry>
 	<tag>core_error_237</tag>
-	<string>%s: optional arguments name=val must be at the end.</string>
+	<string>%s : optional arguments name=val must be at the end.</string>
 </entry>	
 
 <entry>
@@ -473,37 +473,37 @@
 
 <entry>
 	<tag>core_error_239</tag>
-	<string>%s: (%s) too many arguments in the stack edit stack.h and enlarge intersiz.</string>
+	<string>%s : (%s) too many arguments in the stack edit stack.h and enlarge intersiz.</string>
 </entry>	
 
 <entry>
 	<tag>core_error_240</tag>
-	<string>%s: bad call to %s! (1rst argument).</string>
+	<string>%s : bad call to %s! (1rst argument).</string>
 </entry>	
 
 <entry>
 	<tag>core_error_241</tag>
-	<string>%s: (createlistvar) bad third argument!</string>
+	<string>%s : (createlistvar) bad third argument!</string>
 </entry>	
 
 <entry>
 	<tag>core_error_242</tag>
-	<string>%s: (createlistcvar) bad third argument!</string>
+	<string>%s : (createlistcvar) bad third argument!</string>
 </entry>	
 
 <entry>
 	<tag>core_error_242</tag>
-	<string>%s: (createlistvarfromptr) bad third argument!</string>
+	<string>%s : (createlistvarfromptr) bad third argument!</string>
 </entry>	
 
 <entry>
 	<tag>core_error_243</tag>
-	<string>%s: (createlistcvarfromptr) bad third argument!</string>
+	<string>%s : (createlistcvarfromptr) bad third argument!</string>
 </entry>	
 
 <entry>
 	<tag>core_error_244</tag>
-	<string>%s: bad call to %s! (1rst argument).</string>
+	<string>%s : bad call to %s! (1rst argument).</string>
 </entry>	
 
 <entry>
@@ -513,42 +513,42 @@
 
 <entry>
 	<tag>core_error_246</tag>
-	<string>%s: bad call to elementtype!</string>
+	<string>%s : bad call to elementtype!</string>
 </entry>	
 
 <entry>
 	<tag>core_error_247</tag>
-	<string>%s: argument %d &gt;(%d) should be a complex matrix.</string>
+	<string>%s : argument %d &gt;(%d) should be a complex matrix.</string>
 </entry>	
 
 <entry>
 	<tag>core_error_248</tag>
-	<string>%s: getlistrhsvar was called with bad third argument (%c).</string>
+	<string>%s : getlistrhsvar was called with bad third argument (%c).</string>
 </entry>	
 
 <entry>
 	<tag>core_error_249</tag>
-	<string>%s: bad call to getlistrhscvar! (1rst argument).</string>
+	<string>%s : bad call to getlistrhscvar! (1rst argument).</string>
 </entry>	
 
 <entry>
 	<tag>core_error_250</tag>
-	<string>%s: getlistrhscvar was called with bad third argument!</string>
+	<string>%s : getlistrhscvar was called with bad third argument!</string>
 </entry>	
 
 <entry>
 	<tag>core_error_251</tag>
-	<string>%s: createvarfromptr was called with bad second argument!</string>
+	<string>%s : createvarfromptr was called with bad second argument!</string>
 </entry>	
 
 <entry>
 	<tag>core_error_252</tag>
-	<string>%s: createcvarfromptr: too many arguments on the stack, enlarge intersiz.</string>
+	<string>%s : createcvarfromptr: too many arguments on the stack, enlarge intersiz.</string>
 </entry>	
 
 <entry>
 	<tag>core_error_253</tag>
-	<string>%s: createcvarfromptr was called with bad second argument!</string>
+	<string>%s : createcvarfromptr was called with bad second argument!</string>
 </entry>	
 
 <entry>
@@ -568,42 +568,42 @@
 
 <entry>
 	<tag>core_error_257</tag>
-	<string>%s: %s has wrong dimensions (%d,%d), expecting (%d,%d).</string>
+	<string>%s : %s has wrong dimensions (%d,%d), expecting (%d,%d).</string>
 </entry>	
 
 <entry>
 	<tag>core_error_258</tag>
-	<string>%s: %s has wrong %s dimension (%d), expecting (%d).</string>
+	<string>%s : %s has wrong %s dimension (%d), expecting (%d).</string>
 </entry>	
 
 <entry>
 	<tag>core_error_259</tag>
-	<string>%s: %s has wrong length %d, expecting (%d).</string>
+	<string>%s : %s has wrong length %d, expecting (%d).</string>
 </entry>	
 
 <entry>
 	<tag>core_error_260</tag>
-	<string>%s: %s have incompatible dimensions (%dx%d) # (%dx%d)</string>
+	<string>%s : %s have incompatible dimensions (%dx%d) # (%dx%d)</string>
 </entry>	
 
 <entry>
 	<tag>core_error_261</tag>
-	<string>%s: %s have incompatible dimensions.</string>
+	<string>%s : %s have incompatible dimensions.</string>
 </entry>	
 
 <entry>
 	<tag>core_error_262</tag>
-	<string>%s: %s should be a list with %d-element being %s.</string>
+	<string>%s : %s should be a list with %d-element being %s.</string>
 </entry>	
 
 <entry>
 	<tag>core_error_263</tag>
-	<string>%s: argument %d(%d) has wrong %s dimension (%d), expecting (%d).</string>
+	<string>%s : argument %d(%d) has wrong %s dimension (%d), expecting (%d).</string>
 </entry>	
 
 <entry>
 	<tag>core_error_264</tag>
-	<string>%s: bad call to createdata! (1rst argument).</string>
+	<string>%s : bad call to createdata! (1rst argument).</string>
 </entry>	
 
 <entry>
@@ -623,12 +623,12 @@
 
 <entry>
 	<tag>core_error_268</tag>
-	<string>%s: argument should be a polygon.</string>
+	<string>%s : argument should be a polygon.</string>
 </entry>	
 
 <entry>
 	<tag>core_error_269</tag>
-	<string>%s: internal error, info=%d.</string>
+	<string>%s : internal error, info=%d.</string>
 </entry>
 
 </LOCALIZATION>

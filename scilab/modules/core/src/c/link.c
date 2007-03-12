@@ -21,6 +21,7 @@
 #include "machine.h"
 #include "stack-c.h"
 #include "warningmode.h"
+#include "message_scilab.h"
 
 static void Underscores __PARAMS((int isfor,char *ename,char *ename1));
 static int SearchFandS  __PARAMS( ( char *,int ));
@@ -147,15 +148,11 @@ void C2F(iscilink)(int *descla, int *ptrdescla, int *nvla, int *desc, int *ptrde
     {
       ScilabMStr2CM(descla,nvla,ptrdescla,&files,&ierr);
       if ( ierr == 1) return;
-      /** for ( i=0 ; i < *nvla ; i++ )
-	sciprint("file %d : %s \r\n",i, files[i]); **/
     }
   if ( *rhs >= 2) 
     {
       ScilabMStr2CM(desc,nv,ptrdesc,&en_names,&ierr);
       if ( ierr == 1) return;
-      /** for ( i=0 ; i < *nv ; i++ )
-	sciprint("name %d : %s \r\n",i, en_names[i]); **/
     }
 
   SciLinkInit();
@@ -182,7 +179,7 @@ void C2F(iscilink)(int *descla, int *ptrdescla, int *nvla, int *desc, int *ptrde
     }
   if (*ilib >= 0) 
   {
-	  if (getWarningMode()) sciprint("Link done\r\n");
+	  if (getWarningMode()) message_scilab("core_message_130");
   }
 }
 
@@ -221,14 +218,14 @@ void SciLink(iflag,rhs,ilib,files,en_names,strf)
      int iflag,*ilib,*rhs;
      char *files[],*en_names[],*strf;
 {
-  if (getWarningMode()) sciprint("Sorry : Dynamic linking is not implemented  \r\n");
+  if (getWarningMode()) message_scilab("core_message_131");
 }
 
 
 void C2F(isciulink)(i) 
      integer *i;
 {
-  if (getWarningMode()) sciprint("Sorry : Unlinking is not implemented \r\n");
+  if (getWarningMode()) message_scilab("core_message_132");
 }
 
 #endif
@@ -366,14 +363,14 @@ static int SearchFandS(char *op, int ilib)
 void  ShowDynLinks(void)
 {
   int i=0,count=0;
-  if (getWarningMode()) sciprint("Number of entry points %d\r\n",NEpoints);
-  if (getWarningMode()) sciprint("Shared libs : [");
+  if (getWarningMode()) message_scilab("core_message_133",NEpoints);
+  if (getWarningMode()) message_scilab("core_message_134");
   for ( i = 0 ; i < Nshared ; i++) 
     if ( hd[i].ok == OK) { if (getWarningMode())sciprint("%d ",i);count++;}
-  if (getWarningMode()) sciprint("] : %d libs\r\n",count);
+  if (getWarningMode()) message_scilab("core_message_135",count);
   for ( i = NEpoints-1 ; i >=0 ; i--) 
     {
-      if (getWarningMode()) sciprint("Entry point %s in shared lib %d\r\n",EP[i].name,EP[i].Nshared);
+      if (getWarningMode()) message_scilab("core_message_136",EP[i].name,EP[i].Nshared);
     }
 }
 

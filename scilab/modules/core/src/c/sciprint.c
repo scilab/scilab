@@ -21,6 +21,7 @@
 #include "stack-c.h"
 #include "sciprint.h"
 #include "MALLOC.h"
+#include "message_scilab.h"
 /*-----------------------------------------------------------------------------------*/ 
 #ifdef _MSC_VER
   #define vsnprintf _vsnprintf
@@ -207,7 +208,7 @@ extern void diary_nnl __PARAMS((char *str,int *n));
   s_buf=MALLOC(sizeof(char)*(MAXCHARSSCIPRINT_FULL+1));
   if (s_buf == (char *) 0)
   {
-     sciprint("sciprint_full: No more memory\r\n");
+     message_scilab("core_message_145");
      return;
   }
 
@@ -225,7 +226,7 @@ extern void diary_nnl __PARAMS((char *str,int *n));
   split_s_buf=MALLOC(sizeof(char)*(colwidth+1));
   if (split_s_buf == (char *) 0)
   {
-     sciprint("sciprint_full: No more memory\r\n");
+     message_scilab("core_message_145");
      return;
   }
 
@@ -267,12 +268,12 @@ extern void diary_nnl __PARAMS((char *str,int *n));
         strncpy(split_s_buf,s_buf+p_s,colwidth-1);
         split_s_buf[colwidth]='\0';
         p_s=p_s+colwidth-1;
-        sciprint("  (cont'd) %s",split_s_buf);
-        sciprint("\n");
+        message_scilab("core_message_146",split_s_buf);
+        
      }
      strncpy(split_s_buf,s_buf+p_s,lstr-p_s);
      split_s_buf[lstr-p_s]='\0';
-     sciprint("     (end) %s",split_s_buf);
+     message_scilab("core_message_147",split_s_buf);
   }
 
   if (s_buf){FREE(s_buf);s_buf=NULL;}

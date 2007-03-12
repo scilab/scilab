@@ -9,9 +9,9 @@
 #include "machine.h"
 #include "stack-c.h"
 #include "MALLOC.h"
-
 #include "dynamic_menus.h"
 #include "sciprint.h"
+#include "message_scilab.h"
 
 /*-----------------------------------------------------------------------------------*/
 /*
@@ -114,7 +114,7 @@ int StoreCommand1 (char *command,int flag)
 			  p = (CommandRec *) MALLOC (sizeof (CommandRec));
 			  if (p == (CommandRec *) 0)
 				{
-					sciprint ("send_command : No more memory \r\n");
+					message_scilab("core_message_124");
 					return (1);
 				}
 			  p->flag = 0;
@@ -122,7 +122,7 @@ int StoreCommand1 (char *command,int flag)
 			  if (p->command == (char *) 0)
 				{
 				  FREE(p);
-				  sciprint ("send_command : No more memory \r\n");
+				  message_scilab("core_message_124");
 				  return (1);
 				}
 			  strcpy (p->command, command);

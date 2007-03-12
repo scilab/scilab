@@ -8,7 +8,7 @@
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "sciprint.h"
-
+#include "message_scilab.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(intwhat) _PARAMS((char *fname));
 /*-----------------------------------------------------------------------------------*/
@@ -93,7 +93,9 @@ static void DispInternalFunctions(void)
 {
 	int i=0;
 
-	sciprint("\n Internal Functions: \n\n");
+	sciprint("\n");
+	message_scilab("core_message_138");
+	sciprint("\n");
 	for (i=1;i<SizeLocalFunctionsTab-1;i++)
 	{
 		sciprint("%+24s ",LocalFunctionsTab[i-1]);
@@ -105,8 +107,9 @@ static void DispInternalFunctions(void)
 static void DispCommands(void)
 {
 	int i=0;
-
-	sciprint("\n Commands: \n\n");
+	sciprint("\n");
+	message_scilab("core_message_139");
+	sciprint("\n");
 	for (i=1;i<nbrCommands+1;i++)
 	{
 		sciprint("%+24s ",CommandWords[i-1]);

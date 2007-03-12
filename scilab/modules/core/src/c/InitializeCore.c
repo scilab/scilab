@@ -10,6 +10,7 @@
 #include "sciprint.h"
 #include "LoadFunctionsTab.h"
 #include "prompt.h"
+#include "message_scilab.h"
 /*-----------------------------------------------------------------------------------*/ 
 BOOL InitializeCore(void)
 {
@@ -22,7 +23,7 @@ BOOL InitializeCore(void)
 
 	if ( create_hashtable_scilab_functions(MAXTAB) == 0 ) 
 	{
-		sciprint("Fatal Error : Can't create table for scilab functions \n");
+		message_scilab("core_message_128");
 		exit(1);
 	}
 

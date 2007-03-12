@@ -41,7 +41,6 @@ int C2F(cluni0)(char *in_name, char *out_name, int *out_n, long int lin, long in
 	strncpy(out_name,in_name,(size_t)lin);
 	out_name[lin]='\0';
       }
-  /*strncpy(out_name,in_name,lout); */
   *out_n = strlen(out_name);
 #if defined(_MSC_VER)
   for (k=0 ; k < *out_n ;k++) if ( out_name[k]=='/') out_name[k]='\\';
@@ -49,8 +48,6 @@ int C2F(cluni0)(char *in_name, char *out_name, int *out_n, long int lin, long in
   for (k=0 ; k < *out_n ;k++) if ( out_name[k]=='\\') out_name[k]='/';
 #endif
 
-
-  /** sciprint( "out [%s] [%d]\r\n",out_name,*out_n); **/
   return(0);
 }
 

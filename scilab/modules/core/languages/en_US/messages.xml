@@ -4,17 +4,238 @@
 
 <entry>
 	<tag>core_message_111</tag>
-	<string></string>
+	<string>Error in function %s.</string>
 </entry>	
 
 <entry>
-	<tag></tag>
-	<string></string>
+	<tag>core_message_112</tag>
+	<string>Interface %d.</string>
 </entry>	
 		
 <entry>
-	<tag></tag>
-	<string></string>
+	<tag>core_message_113</tag>
+	<string>Invalid interface number %d.</string>
 </entry>	
+
+<entry>
+	<tag>core_message_114</tag>
+	<string>Interface %s not linked.</string>
+</entry>	
+
+<entry>
+	<tag>core_message_115</tag>
+	<string>Maximum number of dynamic interfaces %d</string>
+</entry>	
+
+<entry>
+	<tag>core_message_116</tag>
+	<string>has been reached</string>
+</entry>	
+
+<entry>
+	<tag>core_message_117</tag>
+	<string>addinter failed for %s Not  found!</string>
+</entry>	
+
+<entry>
+	<tag>core_message_118</tag>
+	<string>Interface %s not linked.</string>
+</entry>	
+
+<entry>
+	<tag>core_message_119</tag>
+	<string>                 Copyright (c) 1989-2007                   </string>
+</entry>	
+
+<entry>
+	<tag>core_message_120</tag>
+	<string>              Consortium Scilab (INRIA, ENPC)              </string>
+</entry>	
+
+<entry>
+	<tag>core_message_121</tag>
+	<string>%s interface not loaded.</string>
+</entry>	
+
+<entry>
+	<tag>core_message_122</tag>
+	<string>Trying to stop scilab in the middle of an interface.</string>
+</entry>	
+
+<entry>
+	<tag>core_message_123</tag>
+	<string>Do you really want to abort computation (y or n ?) </string>
+</entry>	
+
+<entry>
+	<tag>core_message_124</tag>
+	<string>send_command : No more memory</string>
+</entry>	
+
+<entry>
+	<tag>core_message_125</tag>
+	<string>Warning !!!
+	Scilab has found a critical error (%s)
+	with "%s" function.
+	Save your data and restart Scilab.</string>
+</entry>	
+
+<entry>
+	<tag>core_message_126</tag>
+	<string>Warning !!!
+	Scilab has found a critical error (%s).
+	Save your data and restart Scilab.</string>
+</entry>	
+
+<entry>
+	<tag>core_message_127</tag>
+	<string>Wrong parameter in %s ! (number %d).</string>
+</entry>	
+
+<entry>
+	<tag>core_message_128</tag>
+	<string>Fatal Error : Can't create table for scilab functions.</string>
+</entry>	
+
+<entry>
+	<tag>core_message_129</tag>
+	<string>complexity: wrong code %d.</string>
+</entry>	
+
+<entry>
+	<tag>core_message_130</tag>
+	<string>Link done.</string>
+</entry>	
+
+<entry>
+	<tag>core_message_131</tag>
+	<string>Sorry : Dynamic linking is not implemented.</string>
+</entry>	
+
+<entry>
+	<tag>core_message_132</tag>
+	<string>Sorry : Unlinking is not implemented.</string>
+</entry>	
+
+<entry>
+	<tag>core_message_133</tag>
+	<string>Number of entry points %d.</string>
+</entry>	
+
+<entry>
+	<tag>core_message_134</tag>
+	<string>Shared libs : [</string>
+</entry>	
+
+<entry>
+	<tag>core_message_135</tag>
+	<string>] : %d libs.</string>
+</entry>	
+
+<entry>
+	<tag>core_message_136</tag>
+	<string>Entry point %s in shared lib %d.</string>
+</entry>	
+
+<entry>
+	<tag>core_message_137</tag>
+	<string>WARNING : %s</string>
+</entry>	
+
+<entry>
+	<tag>core_message_138</tag>
+	<string>Internal Functions: </string>
+</entry>	
+
+<entry>
+	<tag>core_message_139</tag>
+	<string>Commands: </string>
+</entry>	
+
+<entry>
+	<tag>core_message_140</tag>
+	<string> using %10d elements out of  %10d.</string>
+</entry>	
+
+<entry>
+	<tag>core_message_141</tag>
+	<string> and   %10d variables out of %10d.</string>
+</entry>	
+
+<entry>
+	<tag>core_message_142</tag>
+	<string>Can't go to directory %s.</string>
+</entry>	
+
+<entry>
+	<tag>core_message_143</tag>
+	<string>Can't get current directory.</string>
+</entry>	
+
+<entry>
+	<tag>core_message_144</tag>
+	<string>No space to allocate Scilab stack.</string>
+</entry>	
+
+<entry>
+	<tag>core_message_145</tag>
+	<string>sciprint_full : No more memory.</string>
+</entry>	
+
+<entry>
+	<tag>core_message_146</tag>
+	<string>  (cont'd) %s</string>
+</entry>	
+
+<entry>
+	<tag>core_message_147</tag>
+	<string>     (end) %s</string>
+</entry>	
+
+<entry>
+	<tag>core_message_148</tag>
+	<string>----%d</string>
+</entry>	
+
+<entry>
+	<tag>core_message_149</tag>
+	<string>-----------------stack-info-----------------</string>
+</entry>	
+
+<entry>
+	<tag>core_message_150</tag>
+	<string>lw=%d -[istk]-> il lw+1 -[istk]-> %d.</string>
+</entry>	
+
+<entry>
+	<tag>core_message_151</tag>
+	<string>istk(%d:..) ->[%d %d %d %d ....]</string>
+</entry>	
+
+<entry>
+	<tag>core_message_152</tag>
+	<string>-----------------stack-info-----------------</string>
+</entry>	
+
+<entry>
+	<tag>core_message_153</tag>
+	<string>%s : unrecognized optional arguments %s.</string>
+</entry>	
+
+<entry>
+	<tag>core_message_154</tag>
+	<string>optional argument list is empty.</string>
+</entry>	
+
+<entry>
+	<tag>core_message_155</tag>
+	<string>optional arguments list: </string>
+</entry>	
+
+<entry>
+	<tag>core_message_156</tag>
+	<string>and %s.</string>
+</entry>	
+
 
 </LOCALIZATION>

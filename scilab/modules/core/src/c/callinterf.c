@@ -15,6 +15,7 @@
 #include "Os_specific.h" /* for DynInterfStart */
 
 #include "error_scilab.h"
+#include "message_scilab.h"
 
 static  jmp_buf jmp_env; 
 
@@ -38,28 +39,28 @@ static int c_local_interf = 9999;
 
 void C2F(no_gw_tclsci)(void)
 {
-  sciprint("TclSci interface not loaded \n");
+  message_scilab("core_message_121","tclsci");
   C2F(error)(&c_local_interf);
   return;
 }
 
 void C2F(NoPvm)(void)
 {
-  sciprint("pvm interface not loaded \n");
+  message_scilab("core_message_121","pvm");
   C2F(error)(&c_local_interf);
   return;
 }
 
 void C2F(Nogw_scicos)(void)
 {
-	sciprint("scicos interfaces not loaded \n");
+	message_scilab("core_message_121","scicos");
 	C2F(error)(&c_local_interf);
 	return;
 }
 
 void C2F(Nogw_cscicos)(void)
 {
-	sciprint("scicos interfaces not loaded \n");
+	message_scilab("core_message_121","scicos");
 	C2F(error)(&c_local_interf);
 	return;
 }
@@ -67,7 +68,7 @@ void C2F(Nogw_cscicos)(void)
 
 void C2F(Nogw_slicot)(void)
 {
-	sciprint("Slicot interfaces not loaded \n");
+	message_scilab("core_message_121","slicot");
 	C2F(error)(&c_local_interf);
 	return;
 }
@@ -118,8 +119,8 @@ int C2F(callinterf) ( int *k, int * iflagint)
 static void sci_sigint_addinter(int n)
 {
   int c;
-  sciprint("Trying to stop scilab in the middle of an interface\n");
-  sciprint("Do you really want to abort computation (y n  ?) ");
+  message_scilab("core_message_122");
+  message_scilab("core_message_123");
   c = getchar();
   if ( c == 'y' ) errjump(n);
 }

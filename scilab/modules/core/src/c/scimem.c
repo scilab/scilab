@@ -5,6 +5,7 @@
 #include "stack-c.h"
 #include "scimem.h"
 #include "sciprint.h"
+#include "message_scilab.h"
 /*-----------------------------------------------------------------------------------*/
 static char *the_p=NULL;
 static char *the_ps=NULL;
@@ -30,7 +31,7 @@ integer C2F(scimem)(integer *n, integer *ptr)
     {
 		if (the_p == NULL) 
 		{
-			sciprint("No space to allocate Scilab stack\r\n");
+			message_scilab("core_message_144");
 			exit(1); 
 		}
 		*ptr=0;
@@ -57,7 +58,7 @@ integer C2F(scigmem)(integer *n, integer *ptr)
     {
 		if (the_gp == NULL) 
 		{
-			sciprint("No space to allocate Scilab stack\r\n");
+			message_scilab("core_message_144");
 			exit(1); 
 		}
 		*ptr=0;

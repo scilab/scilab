@@ -18,6 +18,7 @@
 #include "stack2.h"
 #include "../../../string/includes/men_Sutils.h" 
 #include "error_scilab.h"
+#include "message_scilab.h"
 
 
 #ifdef _MSC_VER
@@ -309,7 +310,7 @@ int get_optionals(char *fname ,rhs_opts opts[])
 	    }
 	  else 
 	    {
-	      sciprint("%s: unrecognized optional arguments %s\r\n",fname,name);
+	      message_scilab("core_message_153",fname,name);
 	      rhs_opt_print_names(opts) ;
 	      Error(999); 
 	      return(0);
@@ -351,16 +352,16 @@ void rhs_opt_print_names(rhs_opts opts[])
   int i=0;
   if ( opts[i].name == NULL )
     {
-      sciprint("optional argument list is empty\r\n");
+      message_scilab("core_message_154");
       return;
     }
-  sciprint("optional arguments list: ");
+  message_scilab("core_message_155");
   while ( opts[i+1].name != NULL ) 
     {
       sciprint("%s, ",opts[i].name);
       i++;
     }
-  sciprint("and %s.\r\n",opts[i].name);
+  message_scilab("core_message_156",opts[i].name);
   return ;
 }
 
@@ -2410,7 +2411,6 @@ static int Check_references()
 						{
 							int m,n,it,size;
 							/* back conversion if necessary of a reference */ 
-							/* sciprint("%d: is a reference\r\n",ivar);  */
 							if ( *istk(il) < 0)  il = iadr(*istk(il +1));
 							m =*istk(il +1);
 							n =*istk(il +2);
@@ -2435,7 +2435,6 @@ static int Check_references()
 				}
 			else 
 				{
-					/* sciprint("%d: is of type $ \n",ivar);  */
 				}
 		}
 	return TRUE_; 
