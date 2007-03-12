@@ -4,6 +4,7 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include "sci_getlanguage.h"
 #include "setgetlanguage.h"
+#include "gw_localization.h"
 #include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(sci_getlanguagealias) _PARAMS((char *fname,unsigned long fname_len))

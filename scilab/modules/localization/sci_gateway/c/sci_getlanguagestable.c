@@ -4,12 +4,13 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include "sci_getlanguage.h"
 #include "setgetlanguage.h"
-#include "../src/c/tableslanguages.h"
+#include "gw_localization.h"
+#include "tableslanguages.h"
 #include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(sci_getlanguagestable) _PARAMS((char *fname,unsigned long fname_len))
 {
-	static int l1,n1,m1;
+	static int n1,m1;
 	char **Output=NULL;
 
 	int i=0;

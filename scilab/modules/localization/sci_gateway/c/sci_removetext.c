@@ -4,6 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include "machine.h"
 #include "stack-c.h"
+#include "gw_localization.h"
 #include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_removetext) _PARAMS((char *fname,unsigned long fname_len))

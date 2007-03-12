@@ -5,6 +5,7 @@
 #ifndef __GETENTRIESHASHTABLE_H__
 #define __GETENTRIESHASHTABLE_H__
 
+#include <string.h>
 #include "hashtable.h"
 
 /* get a array of strings from hastable tableIN */

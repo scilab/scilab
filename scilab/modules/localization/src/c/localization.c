@@ -6,11 +6,13 @@
 #include <stdio.h>
 #include <string.h>
 #include "localization.h"
+#include "QueryStringError.h"
+#include "QueryStringMessage.h"
+#include "QueryStringMenu.h"
 #include "MALLOC.h" /* MALLOC */
 /*-----------------------------------------------------------------------------------*/ 
 static int count=0;//count the number of the #text and type==3 node 
 static char *Key_String=NULL;
-static char *Key_Value=NULL;
 
 static struct hashtable *Table_Scilab_Errors=NULL;
 static struct hashtable *Table_Scilab_Messages=NULL;

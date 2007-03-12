@@ -5,6 +5,7 @@
 #include "machine.h"
 #include "stack-c.h"
 #include "localization.h"
+#include "gw_localization.h"
 #include "Scierror.h"
 #include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/
@@ -13,8 +14,8 @@ static struct hashtable *GetLocalizationHashTable(char *param1);
 int C2F(sci_addtext) _PARAMS((char *fname,unsigned long fname_len))
 {
 	static int l1,n1,m1;
-	static int l2,n2,m2;
-	static int l3,n3,m3;
+	static int n2,m2;
+	static int n3,m3;
 
 	CheckRhs(3,3);
 	CheckLhs(0,1);
