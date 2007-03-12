@@ -137,12 +137,14 @@ libscilab_la_LIBADD += \
 $(top_builddir)/libs/blas/libsciblas.la \
 $(top_builddir)/libs/hashtable/libscihashtable.la \
 $(top_builddir)/libs/lapack/libscilapack.la \
-$(top_builddir)/libs/MALLOC/libscimalloc.la 
+$(top_builddir)/libs/MALLOC/libscimalloc.la  \
+$(top_builddir)/libs/libst/libscilibst.la
+
 
 #BUILT_SOURCES = modules
 
 # Generate the module list from the SUBDIRS
-# COMMENTED : because it should be hardcoded (the order does matter)
+# COMMENTED : because it must be hardcoded (the order does matter)
 #modules:
 #	@for module in $(SUBDIRS); do if test $$module != "."; then echo $$module; fi;	done > modules
 

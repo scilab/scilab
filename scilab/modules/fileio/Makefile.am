@@ -13,7 +13,6 @@ src/c/ole.c \
 src/c/bytedecoders.c \
 src/c/logger.c \
 src/c/ripole.c \
-src/c/misc.c \
 src/c/bt-int.c \
 src/c/do_xxprintf.c \
 src/c/do_xxscanf.c
@@ -42,7 +41,9 @@ pkglib_LTLIBRARIES = libscifileio.la
 libscifileio_la_SOURCES = $(FILEIO_SOURCES) $(GATEWAY_SOURCES)
 
 libscifileio_la_LIBADD = \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la
+	$(top_builddir)/libs/MALLOC/libscimalloc.la \
+    $(top_builddir)/libs/libst/libscilibst.la
+
 # cyclic deps
 #	$(top_builddir)/modules/core/libscicore.la
 

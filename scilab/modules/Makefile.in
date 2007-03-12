@@ -118,7 +118,8 @@ libscilab_la_DEPENDENCIES = $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/libs/hashtable/libscihashtable.la \
 	$(top_builddir)/libs/lapack/libscilapack.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la
+	$(top_builddir)/libs/MALLOC/libscimalloc.la \
+	$(top_builddir)/libs/libst/libscilibst.la
 am_libscilab_la_OBJECTS =
 libscilab_la_OBJECTS = $(am_libscilab_la_OBJECTS)
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
@@ -363,7 +364,8 @@ libscilab_la_LIBADD = $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/libs/hashtable/libscihashtable.la \
 	$(top_builddir)/libs/lapack/libscilapack.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la
+	$(top_builddir)/libs/MALLOC/libscimalloc.la \
+	$(top_builddir)/libs/libst/libscilibst.la
 
 # Where headers (*.h) are installed (usually /usr/include/scilab/)
 sciincludedir = ${includedir}/scilab
@@ -885,7 +887,7 @@ macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(MACROS)
 #BUILT_SOURCES = modules
 
 # Generate the module list from the SUBDIRS
-# COMMENTED : because it should be hardcoded (the order does matter)
+# COMMENTED : because it must be hardcoded (the order does matter)
 #modules:
 #	@for module in $(SUBDIRS); do if test $$module != "."; then echo $$module; fi;	done > modules
 # Tell versions [3.59,3.63) of GNU make to not export all variables.

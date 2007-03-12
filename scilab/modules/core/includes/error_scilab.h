@@ -13,7 +13,7 @@
  * @return 
  */
  
-int error_scilab(int iv,char *Tag, ...);
+int error_scilab();
 
 
 #endif /*__ERROR_SCILAB_H__*/

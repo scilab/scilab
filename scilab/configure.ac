@@ -1073,6 +1073,7 @@ libs/blas/Makefile
 libs/MALLOC/Makefile
 libs/hashtable/Makefile
 libs/f2c/Makefile
+libs/libst/Makefile
 modules/helptools/Makefile
 modules/data_structures/Makefile
 modules/differential_equations/Makefile

@@ -5,9 +5,7 @@
 
 SOUND_C_SOURCES = src/c/raw.c \
 src/c/sox.c \
-src/c/libst.c \
-src/c/wav.c \
-src/c/misc.c
+src/c/wav.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_savewave.c \
 sci_gateway/c/sci_loadwave.c \
@@ -24,6 +22,7 @@ libscisound_la_SOURCES = $(SOUND_C_SOURCES) $(GATEWAY_C_SOURCES)
 
 libscisound_la_LIBADD = \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
+    $(top_builddir)/libs/libst/libscilibst.la \
 	$(top_builddir)/modules/core/libscicore.la
 
 
