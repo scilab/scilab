@@ -7,7 +7,7 @@
  *  to add a new interface add a declaration and a new entry 
  *  at the end of the Interfaces array 
  *  The maximum number of interfaces is bound to DynInterfStart 
- *                                 ( file /core/includes/addinter.h ) 
+ *                                 ( file /core/src/c/addinter.h ) 
  ********************************************************/
 
 /* 01  C2F(gw_user)(); FREE */
