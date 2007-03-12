@@ -365,17 +365,28 @@ top_srcdir = @top_srcdir@
 # We do not use the automake mechanism (libxxxx_la_help_fr_DATA) because
 # automake needs the html files to be present which is not the case when
 # we are building Scilab
+
+# Where it should be installed
 @FFTW_TRUE@pkgdocdir = $(target)
+# Which directories we have to install
 @FFTW_TRUE@DOCDIRS = help/fr_FR help/en_US
+# What is the mask of the help output
 @FFTW_TRUE@DOCMASK = *.htm
+# What is the mask of the help source
 @FFTW_TRUE@DOCMASKXML = *.xml
 
 # Install macros
+# Where it should be installed
 @FFTW_TRUE@pkgmacrosdir = $(target)
+# Which directory we process
 @FFTW_TRUE@MACRODIRS = macros/
+# Mask of the Scilab sources macros
 @FFTW_TRUE@MACROMASK = *.sci
+# Mask of the Scilab executable sources macros
 @FFTW_TRUE@MACROBUILDMASK = *.sce
+# Mask of the Scilab compiled macros
 @FFTW_TRUE@MACROBINMASK = *.bin
+# List of the function of a module
 @FFTW_TRUE@FUNCTION_NAMES = macros/names
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
@@ -891,6 +902,7 @@ uninstall-am: uninstall-libscifftw_la_etcDATA \
 @FFTW_TRUE@install-html-local:
 @FFTW_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
 @FFTW_TRUE@	@for dir in $(DOCDIRS) ; do \
+@FFTW_TRUE@	 if test -d $(DOCDIRS); then \
 @FFTW_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
 @FFTW_TRUE@		if ls -lLd $(srcdir)/$$dir/$(DOCMASK) >/dev/null 2>&1; then \
 @FFTW_TRUE@		  for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
@@ -898,8 +910,11 @@ uninstall-am: uninstall-libscifftw_la_etcDATA \
 @FFTW_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
 @FFTW_TRUE@		  done ; \
 @FFTW_TRUE@		fi; \
+@FFTW_TRUE@	 fi; \
 @FFTW_TRUE@	done
+# If the user wants the help sources to be installed
 @FFTW_TRUE@@INSTALL_HELP_XML_TRUE@	@for dir in $(DOCDIRS) ; do \
+@FFTW_TRUE@@INSTALL_HELP_XML_TRUE@	 if test -d $(DOCDIRS); then \
 @FFTW_TRUE@@INSTALL_HELP_XML_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
 @FFTW_TRUE@@INSTALL_HELP_XML_TRUE@		if ls -lLd $(srcdir)/$$dir/$(DOCMASKXML) >/dev/null 2>&1; then \
 @FFTW_TRUE@@INSTALL_HELP_XML_TRUE@		  for file in $(srcdir)/$$dir/$(DOCMASKXML) ; do \
@@ -907,6 +922,7 @@ uninstall-am: uninstall-libscifftw_la_etcDATA \
 @FFTW_TRUE@@INSTALL_HELP_XML_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
 @FFTW_TRUE@@INSTALL_HELP_XML_TRUE@		  done ; \
 @FFTW_TRUE@@INSTALL_HELP_XML_TRUE@		fi; \
+@FFTW_TRUE@@INSTALL_HELP_XML_TRUE@	 fi; \
 @FFTW_TRUE@@INSTALL_HELP_XML_TRUE@	done
 @FFTW_TRUE@install-data-local:
 @FFTW_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)
