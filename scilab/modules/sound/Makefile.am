@@ -48,11 +48,7 @@ libscisound_la_sci_gateway_DATA = sci_gateway/sound
 
 #### sound : include files ####
 libscisound_la_includedir=$(sciincludedir)/sound
-libscisound_la_include_HEADERS = includes/sci_beep.h \
-includes/sci_PlaySound.h \
-includes/sci_savewave.h \
-includes/sci_loadwave.h \
-includes/gw_sound.h
+libscisound_la_include_HEADERS = includes/gw_sound.h
 
 
 #### sound : demos files ####

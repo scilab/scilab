@@ -1,8 +1,7 @@
-#include "sci_loadwave.h"
+#include "gw_sound.h"
 #include "sox.h" 
 /*-----------------------------------------------------------------------------------*/ 
 extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int name_len,long int nams_len));  
-extern int C2F(loadwave)(char * filename,double *res, integer * size_res,integer flag,WavInfo *Wi, integer *ierr);
 /*-----------------------------------------------------------------------------------*/ 
 /* FILENAME_MAX is set to 14 on hp */
 #ifdef hppa 
@@ -12,7 +11,7 @@ extern int C2F(loadwave)(char * filename,double *res, integer * size_res,integer
 /*-----------------------------------------------------------------------------------*/ 
 static char filename[FILENAME_MAX];
 static int out_n;
-static long int lin,lout;
+static long int lout;
 /*-----------------------------------------------------------------------------------*/ 
 /* SCILAB function : loadwave */
 /*-----------------------------------------------------------------------------------*/ 

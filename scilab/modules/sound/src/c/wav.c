@@ -298,6 +298,7 @@ int wavread(ft_t ft, long int *buf, long int len)
  * Don't close input file! 
  */
 /*-----------------------------------------------------------------------------------*/ 
+void wavstopread(ft_t ft);
 void wavstopread(ft_t ft)
 {
 }

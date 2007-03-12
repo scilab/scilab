@@ -2,6 +2,7 @@
 #define SCI_SOX 
 
 #include "wav.h" 
+#include "machine.h"
 
 /* Allan CORNET 18/01/2004 */
 int C2F(playsound) __PARAMS((char *filename,char *command,unsigned long fname_len));

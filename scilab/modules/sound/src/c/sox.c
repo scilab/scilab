@@ -266,37 +266,37 @@ void cleanup(void)
 }
 /*-----------------------------------------------------------------------------------*/ 
 /* check that all settings have been given */
-static void checkformat(ft_t ft)
+static void checkformat(ft_t lft)
 {
-  if (ft->info.rate == 0)
+  if (lft->info.rate == 0)
     {
-      sciprint("Sampling rate for %s file was not given\r\n", ft->filename);
-      ft->ierr=1;
+      sciprint("Sampling rate for %s file was not given\r\n", lft->filename);
+      lft->ierr=1;
       return;
     }
-  if ((ft->info.rate < 100) || (ft->info.rate > 50000))
+  if ((lft->info.rate < 100) || (lft->info.rate > 50000))
     {
       sciprint("Sampling rate %lu for %s file is bogus\r\n", 
-	   ft->info.rate, ft->filename);
-      ft->ierr=1;
+	   lft->info.rate, lft->filename);
+      lft->ierr=1;
       return;
     }
 
-  if (ft->info.size == -1)
+  if (lft->info.size == -1)
     {
-      sciprint("Data size was not given for %s file\r\n", ft->filename);
-      ft->ierr=1;
+      sciprint("Data size was not given for %s file\r\n", lft->filename);
+      lft->ierr=1;
       return;
     }
-  if (ft->info.style == -1 && ft->info.size != FLOATSCI)
+  if (lft->info.style == -1 && lft->info.size != FLOATSCI)
     {
-      sciprint("Data style was not given for %s file\r\n", ft->filename);
-      ft->ierr=1;
+      sciprint("Data style was not given for %s file\r\n", lft->filename);
+      lft->ierr=1;
       return;
     }
   /* it's so common, might as well default */
-  if (ft->info.channels == -1)
-    ft->info.channels = 1;
+  if (lft->info.channels == -1)
+    lft->info.channels = 1;
 }
 /*-----------------------------------------------------------------------------------*/ 
 

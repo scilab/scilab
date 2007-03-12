@@ -292,20 +292,6 @@ double swapd(double df)
   return (sdf);
 }
 /*-----------------------------------------------------------------------------------*/
-/* here for linear interp.  might be useful for other things */
-long gcd(long int a, long int b)
-{
-  if (b == 0)
-    return a;
-  else
-    return gcd(b, a % b);
-}
-/*-----------------------------------------------------------------------------------*/
-long lcm(long int a, long int b)
-{
-  return (a * b) / gcd(a, b);
-}
-/*-----------------------------------------------------------------------------------*/
 #ifndef HAVE_STRERROR
 /* strerror function */
 char *strerror(int errcode)

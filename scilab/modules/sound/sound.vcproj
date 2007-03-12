@@ -258,22 +258,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\sci_beep.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_loadwave.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_PlaySound.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_savewave.h"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\sox.h"
 				>
 			</File>

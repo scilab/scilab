@@ -1,5 +1,5 @@
-#include "sci_PlaySound.h"
 /*-----------------------------------------------------------------------------------*/ 
+#include "gw_sound.h"
 #ifdef _MSC_VER
 	#pragma comment(lib, "winmm.lib")
 #endif
@@ -14,7 +14,7 @@ extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int n
 /*-----------------------------------------------------------------------------------*/ 
 static char filename[FILENAME_MAX];
 static int out_n;
-static long int lin,lout;
+static long int lout;
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(playsound)(char *fname,char *command,unsigned long fname_len);
 /*-----------------------------------------------------------------------------------*/ 

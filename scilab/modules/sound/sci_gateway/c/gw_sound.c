@@ -8,13 +8,7 @@
 #include "ExceptionMessage.h"
 #endif
 #include "sciprint.h"
-/*-----------------------------------------------------------------------------------*/
-/* interface for the previous function Table */ 
-/*-----------------------------------------------------------------------------------*/ 
-extern int sci_Beep __PARAMS((char *fname,unsigned long fname_len));
-extern int sci_Playsound __PARAMS((char *fname,unsigned long fname_len));
-extern int sci_savewave __PARAMS((char *fname,unsigned long fname_len));
-extern int sci_loadwave __PARAMS((char *fname,unsigned long fname_len));
+#include "gw_sound.h"
 
 /*-----------------------------------------------------------------------------------*/ 
 static intSoundTable Tab[]={
