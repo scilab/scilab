@@ -16,21 +16,12 @@
 
 #include "error_scilab.h"
 #include "message_scilab.h"
+#include "callinterf.h"
 
 static  jmp_buf jmp_env; 
 
-extern int  C2F(error) __PARAMS((int *));
+extern int C2F(error) __PARAMS((int *));
 
-void errjump(int n);
-void C2F(no_gw_tclsci)(void);
-void C2F(NoPvm)(void);
-void C2F(Nogw_scicos)(void);
-void C2F(Nogw_cscicos)(void);
-void C2F(Nogw_slicot)(void);
-void C2F(Nogw_fftw)(void);
-int ForceLink(void);
-
-static void  sci_sigint_addinter(int n);
 
 /***********************************************************
  * interface function 
@@ -81,14 +72,6 @@ void C2F(Nogw_fftw)(void)
 	C2F(error)(&c_local_interf);
 	return;
 }
-/** table of interfaces **/
-
-typedef  struct  {
-  void  (*fonc)();} OpTab ;
-
-#include "callinterf.h"
-
-
 
 static int sig_ok = 0;
 
@@ -100,7 +83,7 @@ static int sig_ok = 0;
  * @param iflagint obsolete (no longer used)
  * @return 
  */
-int C2F(callinterf) ( int *k, int * iflagint)
+int C2F(callinterf) (int *k)
 {
   int returned_from_longjump ;
   static int count = 0;

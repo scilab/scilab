@@ -6,7 +6,7 @@
 #include "scirun.h"
 /*-----------------------------------------------------------------------------------*/ 
 extern int C2F(allowptr)(int *);
-extern int C2F(callinterf)(int *, int *);
+extern int C2F(callinterf)(int *);
 extern int C2F(iset)(int *, int *, int *, int *);
 extern int C2F(funs)(int *);
 extern int C2F(parse)(void);
@@ -18,7 +18,6 @@ static void str_copy_buf(register char *a, register char *b, long int la, long i
 
 int C2F(scirun)(char *bu1, long int bu1_len)
 {
-    static int iflagint = 0;
 	static int k = 0;
 	static int ir = 0;
 
@@ -82,7 +81,6 @@ L60:
 		{
 			goto L89;
 		}
-		iflagint = 0;
 		goto L95;
     }
 
@@ -130,7 +128,7 @@ L95:
 		C2F(ref2val)();
     }
     C2F(recu).krec = k;
-    C2F(callinterf)(&k, &iflagint);
+    C2F(callinterf)(&k);
     C2F(recu).krec = -1;
     if (C2F(com).fun >= 0) 
 	{

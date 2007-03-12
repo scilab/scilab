@@ -22,7 +22,7 @@ extern int C2F(parse) __PARAMS((void));
 extern int C2F(allowptr) __PARAMS((integer *));
 extern int C2F(ref2val) __PARAMS((void));
 extern int C2F(allops) __PARAMS((void));
-extern int C2F(callinterf) __PARAMS((integer *,integer *));
+extern int C2F(callinterf) __PARAMS((integer *));
 extern int C2F(putfunnam) __PARAMS((char *fname,integer *lw, unsigned long));
 
 

@@ -1835,7 +1835,7 @@ int C2F(callscifun)(char *string,unsigned long string_len)
 int C2F(scifunction)(integer *number,integer *ptr,integer *mlhs,integer *mrhs)
 {
   integer cx26 = 26;
-  integer ix1, krec, iflagint, ix, k, intop, il, ir, lw;
+  integer ix1, krec, ix, k, intop, il, ir, lw;
   
   if ( intersci_push() == 0 ) 
     {
@@ -1891,7 +1891,6 @@ int C2F(scifunction)(integer *number,integer *ptr,integer *mlhs,integer *mrhs)
     } else {
       goto L89;
     }
-    iflagint = 0;
     goto L95;
   }
 
@@ -1924,13 +1923,12 @@ int C2F(scifunction)(integer *number,integer *ptr,integer *mlhs,integer *mrhs)
   }
   if (k == 2) {
     il = iadr( *Lstk(Top + 1 - Rhs));
-    iflagint = *istk(il + 3);
   }
  L95:
   if (! C2F(allowptr)(&k)) {
     C2F(ref2val)();
   }
-  C2F(callinterf)(&k, &iflagint);
+  C2F(callinterf)(&k);
   if (C2F(com).fun >= 0) {
     goto L90;
   }
@@ -2071,7 +2069,7 @@ integer C2F(getopcode)(char *string,unsigned long string_len)
 
 int C2F(scibuiltin)(integer *number,integer *ifun,integer *ifin,integer *mlhs,integer *mrhs)
 {
-  integer krec, srhs, slhs, iflagint;
+  integer krec, srhs, slhs;
   integer ix, k, intop, il, ir, lw, pt0;
   intop = Top;
   
@@ -2120,7 +2118,6 @@ int C2F(scibuiltin)(integer *number,integer *ifun,integer *ifin,integer *mlhs,in
     } else {
       goto L89;
     }
-    iflagint = 0;
     goto L95;
   }
  L89:
@@ -2155,13 +2152,12 @@ int C2F(scibuiltin)(integer *number,integer *ifun,integer *ifin,integer *mlhs,in
   }
   if (k == 2) {
     il = iadr(*Lstk(Top + 1 - Rhs));
-    iflagint = *istk(il + 3);
   }
   if (! C2F(allowptr)(&k)) {
     C2F(ref2val)();
   }
  L95:
-  C2F(callinterf)(&k, &iflagint);
+  C2F(callinterf)(&k);
   if (C2F(recu).icall != 0) {
     goto L60;
   }

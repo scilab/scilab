@@ -1,7 +1,8 @@
 /* Copyright INRIA */
 #ifndef __CALLINTERF__
 #define __CALLINTERF__
-#
+#include "machine.h"
+
 /********************************************************
  * Table of hard coded Scilab interface 
  *  to add a new interface add a declaration and a new entry 
@@ -9,6 +10,25 @@
  *  The maximum number of interfaces is bound to DynInterfStart 
  *                                 ( file /core/src/c/addinter.h ) 
  ********************************************************/
+
+/** table of interfaces **/
+
+typedef  struct  {
+  void  (*fonc)();
+} OpTab ;
+
+
+void errjump(int n);
+void C2F(no_gw_tclsci)(void);
+void C2F(NoPvm)(void);
+void C2F(Nogw_scicos)(void);
+void C2F(Nogw_cscicos)(void);
+void C2F(Nogw_slicot)(void);
+void C2F(Nogw_fftw)(void);
+int ForceLink(void);
+
+static void  sci_sigint_addinter(int n);
+
 
 /* 01  C2F(gw_user)(); FREE */
 extern void    /* 02  */ C2F(gw_linear_algebra)(void);
@@ -84,7 +104,6 @@ extern void    /* 48  */ C2F(gw_time)(void);
 extern void    /* 49  */ C2F(gw_sound)(void);
 extern void    /* 50  */ C2F(gw_localization)(void);
 
-
 #if defined(WITH_FFTW) || defined(_MSC_VER)
 extern void    /* 51  */ C2F(gw_fftw)(void);
 #define FFTWINTERF C2F(gw_fftw)
@@ -92,7 +111,7 @@ extern void    /* 51  */ C2F(gw_fftw)(void);
 #define FFTWINTERF C2F(Nogw_fftw)
 #endif
 
-static OpTab Interfaces[] ={
+static OpTab Interfaces[] = {
     /* 01  */ {C2F(gw_user)}, /* free position may be used */
 	/* 02  */ {C2F(gw_linear_algebra)},
 	/* 03  */ {C2F(gw_user)}, /* free position may be used */
@@ -151,9 +170,8 @@ static OpTab Interfaces[] ={
  * call the apropriate interface according to the value of k 
  * iflagint is no more used here ....
  * @param k the number of the interface
- * @param iflagint obsolete (no longer used)
  * @return 
  */
-int C2F(callinterf) ( int *k, int * iflagint);
+int C2F(callinterf) (int *k);
 
 #endif /*__CALLINTERF__*/

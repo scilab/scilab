@@ -8,11 +8,10 @@
 #include "stack-c.h"
 #include "parse.h"
 #include "timer.h"
+#include "callinterf.h"
 
 #undef Lstk
 #undef Infstk
-
-
 
 #ifdef _MSC_VER
 #define abs(x) ((x) >= 0 ? (x) : -(x)) /* pour abs  C2F(parse)() line 1393 */
@@ -1528,8 +1527,7 @@ int C2F(syncexec)(char *str, int *ns, int *ierr, int *seq, long int str_len)
   /* Local variables */
   int Pts, Tops;
   extern int C2F(iset)();
-  extern int C2F(callinterf)(), C2F(ref2val)();
-  static int iflagint;
+  extern int C2F(ref2val)();
   static int k;
   static int ir;
 
@@ -1590,7 +1588,6 @@ int C2F(syncexec)(char *str, int *ns, int *ierr, int *seq, long int str_len)
     } else {
       goto L89;
     }
-    iflagint = 0;
     goto L95;
   }
 
@@ -1626,7 +1623,7 @@ int C2F(syncexec)(char *str, int *ns, int *ierr, int *seq, long int str_len)
     C2F(ref2val)();
   }
   C2F(recu).krec = k;
-  C2F(callinterf)(&k, &iflagint);
+  C2F(callinterf)(&k);
   /*      if (k.eq.krec) krec=99999 */
   C2F(recu).krec = -1;
   if (C2F(com).fun >= 0) {
