@@ -8,7 +8,7 @@
 #include "machine.h"
 #include "mgeti.h"
 #include "sciprint.h"
-#include "../../../fileio/src/c/misc.h"
+#include "../../../../libs/libst/misc.h"
 
 struct soundstream ftf;
 extern FILE *GetFile();

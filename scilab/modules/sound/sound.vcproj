@@ -200,14 +200,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\libst.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\misc.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\raw.c"
 				>
 			</File>
@@ -243,14 +235,6 @@
 			>
 			<File
 				RelativePath=".\includes\gw_sound.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\libst.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\misc.h"
 				>
 			</File>
 			<File

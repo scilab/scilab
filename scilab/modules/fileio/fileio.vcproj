@@ -213,10 +213,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\misc.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\ole.c"
 				>
 			</File>
@@ -319,10 +315,6 @@
 			</File>
 			<File
 				RelativePath=".\src\c\logger.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\misc.h"
 				>
 			</File>
 			<File

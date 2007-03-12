@@ -23,7 +23,8 @@
 #include "MALLOC.h"
 
 #include "stack-c.h" 
-#include "misc.h"
+#include "..\..\..\libs\libst\misc.h"
+#include "sciprint.h"
 
 
 #if (defined(sun) && !defined(SYSV)) 
