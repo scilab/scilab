@@ -23,7 +23,7 @@
 #include "MALLOC.h"
 
 #include "stack-c.h" 
-#include "..\..\..\libs\libst\misc.h"
+#include "../../../libs/libst/misc.h"
 #include "sciprint.h"
 
 
