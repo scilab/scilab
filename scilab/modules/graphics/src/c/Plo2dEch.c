@@ -19,6 +19,7 @@
 #include "DrawObjects.h"
 #include "Xcall1.h"
 #include "Plo2dEch.h"
+#include "PloEch.h"
 #include "Vertices.h"
 #include "GraphicZoom.h"
 #include "axesScale.h"
@@ -46,6 +47,12 @@ static WCScaleList *new_wcscale __PARAMS(( WCScaleList *val));
 static WCScaleList *check_subwin_wcscale __PARAMS((WCScaleList *listptr, double *));
 static int same_subwin __PARAMS((double lsubwin_rect[4],double subwin_rect[4]));
 static void set_window_scale __PARAMS((integer i,WCScaleList  *scale));
+int C2F(setscale2d)(double WRect[4],double FRect[4], char * logscale, integer l1) ;
+void get_margin_in_pixel(integer Margin[]) ;
+int C2F(xechelle2d)(double x[], integer x1[], integer *  n1,char dir[],integer lstr) ;
+int C2F(yechelle2d)(double y[], integer yy1[], integer * n2,char dir[], integer lstr) ;
+int zoom_get_rectangle(double *bbox,int *x_pixel, int *y_pixel) ;
+void Gr_Rescale(char *logFlags, double *FRectI, integer *Xdec, integer *Ydec, integer *xnax, integer *ynax) ;
 
 /* The scale List : one for each graphic window */
 
@@ -419,10 +426,7 @@ static void show_scales(listptr)
  *            quarter of the window 
  *-------------------------------------------*/
 
-int C2F(setscale2d)(WRect,FRect,logscale,l1)
-     double FRect[4], WRect[4];
-     char *logscale;
-     integer l1;
+int C2F(setscale2d)(double WRect[4],double FRect[4], char * logscale, integer l1)
 {
   static integer aaint[]={2,10,2,10};
   if (logscale[0]=='l') 
@@ -790,11 +794,7 @@ void get_cwindow_dims(int wdims[2])
 
 /* for x only */
 
-int C2F(xechelle2d)(x,x1,n1,dir,lstr)
-double x[];
-integer x1[],*n1;
-char dir[];
-integer lstr;
+int C2F(xechelle2d)(double x[], integer x1[], integer *  n1,char dir[],integer lstr)
 {
   integer i;
   if (strcmp("f2i",dir)==0) 
@@ -820,11 +820,7 @@ integer lstr;
 
 /* for y only */
 
-int C2F(yechelle2d)(y,yy1,n2,dir,lstr)
-double y[];
-integer yy1[],*n2;
-char dir[];
-integer lstr;
+int C2F(yechelle2d)(double y[], integer yy1[], integer * n2,char dir[], integer lstr)
 {
   integer i;
   if (strcmp("f2i",dir)==0) 

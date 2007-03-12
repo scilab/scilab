@@ -49,6 +49,10 @@ extern int CreatePrettyGradsFromNax(sciPointObj * psubwin,int * Nax);
 
 void get_frame_in_pixel(integer WIRect[]);
 
+int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nnode, integer *Ntr, 
+	     char *strflag, char *legend, double *brect, integer *aaint, double *zminmax, 
+	     integer *colminmax, integer *colout, BOOL with_mesh, BOOL flagNax, integer lstr1, integer lstr2) ;
+
 /*------------------------------------------------------------
  *  Iso contour with grey level or colors 
  *  for a function defined by finite elements 

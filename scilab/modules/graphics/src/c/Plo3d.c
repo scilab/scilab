@@ -36,6 +36,12 @@ extern int scilab_shade(integer *polyx, integer *polyy, integer *fill, integer p
 
 static void dbox __PARAMS((void));
 
+void UpNext(integer ind1, integer *ind2, integer *ind3) ;
+void DownNext(integer ind1, integer *ind2, integer *ind3) ;
+void C2F(TDdrawaxis)(double size, double FPval, double LPval, integer *nax, integer *FPoint, integer *LPoint, integer *Ticsdir);
+void TDAxis(integer flag, double FPval, double LPval, integer *nax, integer *FPoint, integer *LPoint, integer *Ticsdir) ;
+int I3dRotation(void) ;
+
 /*-------------------------------------------------------------------
  * box3d 
  *-------------------------------------------------------------------*/

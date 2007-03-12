@@ -242,6 +242,8 @@ int sciSetEventHandler(  sciPointObj * pObj, char * name ) ;
 int sciInitIsEventHandlerEnable( sciPointObj * pObj, BOOL enable ) ;
 int sciSetIsEventHandlerEnable(  sciPointObj * pObj, BOOL enable ) ;
 
+int sciSetSelectedObject( sciPointObj * pObj ) ;
+
 /*---------------------------------------------------------------------------*/
 /* return 0 if the string contains any % character, 1 if a %d has been found */
 /* and -1 otherwise. */

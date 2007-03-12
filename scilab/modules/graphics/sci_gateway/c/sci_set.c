@@ -28,6 +28,9 @@
 
 
 #include "MALLOC.h" /* MALLOC */
+
+int sciSet(sciPointObj *pobj, char *marker, int *value, int valueType, int *numrow, int *numcol) ;
+
 /*-----------------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------------*/
 /**@name int sciset(sciPointObj *pobj,char *marker, long *x, long *y, long *w, long *h)

@@ -54,7 +54,7 @@ static int  gradu2   __PARAMS((double *xmax, double *thewidth, double *scal));
 static void grds     __PARAMS((double *xminv, double *xmaxv, double *gr, int *nticks, double *thewidth, int *tst0, double *scal));
 static int  agrandir __PARAMS((double *xmin, double *xmax, double *xlow, double *xup));
 
-
+int C2F(theticks)( double * xminv, double * xmaxv, double * grads, int * ngrads) ;
 
 void ChoixFormatE(char *fmt, double xmin, double xmax, double xpas)
 {
@@ -728,9 +728,7 @@ void correctBounds( double min, double max, double * lBound, double * uBound )
   }
 }
 
-int C2F(theticks)(xminv, xmaxv, grads, ngrads)
-     double *xminv, *xmaxv, *grads;
-     int *ngrads;
+int C2F(theticks)( double * xminv, double * xmaxv, double * grads, int * ngrads)
 /*   Function used to calculate ticks locations for plotting    *
  *   real values located between xminv and xmaxv.               *
  *   grads is a vector with at most 20 components such that     *

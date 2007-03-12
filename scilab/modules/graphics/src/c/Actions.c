@@ -17,6 +17,7 @@
 #include "Xcall1.h"
 #include "sciprint.h"
 #include "periScreen.h"
+#include "Actions.h"
 
 extern int xinitxend_flag;
 
@@ -46,6 +47,8 @@ typedef int (*Scig_handler) __PARAMS((int));
 
 void reset_scig_handler(void);
 int scig_handler_none(int win_num);
+
+void scig_savesg( int win_num, char * filename ) ;
 
 /********************************************************
  * A handler which can be dynamically set to custiomize 

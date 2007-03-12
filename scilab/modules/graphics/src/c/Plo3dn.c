@@ -19,6 +19,7 @@
 #include "drawMarks.h"
 #include "sciprint.h"
 #include "CurrentObjectsManagement.h"
+#include "Plo3dn.h"
 
 
 #include "MALLOC.h" /* MALLOC */

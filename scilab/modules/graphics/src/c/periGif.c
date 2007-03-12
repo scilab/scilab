@@ -157,6 +157,32 @@ static int col_index[gdMaxColors];
 static int fillpolylines_closeflag = 0;
 
 extern char *getSCIpath();
+void C2F(xendgraphicGif)(void) ;
+void C2F(getwindowposGif)(integer *verbose, integer *x, integer *narg, double *dummy) ;
+void C2F(setwindowposGif)(integer *x, integer *y, integer *v3, integer *v4) ;
+void C2F(getwindowdimGif)(integer *verbose, integer *x, integer *narg, double *dummy) ;
+void C2F(setwindowdimGif)(integer *x, integer *y, integer *v3, integer *v4) ;
+void C2F(setcurwinGif)(integer *intnum, integer *v2, integer *v3, integer *v4) ;
+void C2F(getcurwinGif)(integer *verbose, integer *intnum, integer *narg, double *dummy) ;
+void C2F(setclipGif)(integer *x, integer *y, integer *w, integer *h) ;
+void C2F(getclipGif)(integer *verbose, integer *x, integer *narg, double *dummy) ;
+void C2F(setabsourelGif)(integer *num, integer *v2, integer *v3, integer *v4) ;
+void C2F(getabsourelGif)(integer *verbose, integer *num, integer *narg, double *dummy) ;
+void C2F(setalufunctionGif)(char *string) ;
+void C2F(getalufunctionGif)(integer *verbose, integer *value, integer *narg, double *dummy) ;
+void C2F(getthicknessGif)(integer *verbose, integer *value, integer *narg, double *dummy) ;
+void C2F(getpatternGif)(integer *verbose, integer *num, integer *narg, double *dummy) ;
+void C2F(getlastGif)(integer *verbose, integer *num, integer *narg, double *dummy) ;
+void C2F(getusecolorGif)(integer *verbose, integer *num, integer *narg, double *dummy) ;
+void C2F(setcolormapGif)(integer *v1, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, double *a) ;
+void C2F(getbackgroundGif)(integer *verbose, integer *num, integer *narg, double *dummy) ;
+void C2F(getforegroundGif)(integer *verbose, integer *num, integer *narg, double *dummy) ;
+void C2F(sethidden3dGif)(integer *num, integer *v2, integer *v3, integer *v4) ;
+void C2F(semptyGif)(integer *v1, integer *v2, integer *v3, integer *v4) ;
+void C2F(gemptyGif)(integer *verbose, integer *v2, integer *v3, double *dummy) ;
+void C2F(drawlineGif)(integer *xx1, integer *yy1, integer *x2, integer *y2) ;
+void C2F(setalufunction1Gif)(integer *num, integer *v2, integer *v3, integer *v4) ;
+void C2F(gethidden3dGif)(integer *verbose, integer *num, integer *narg, double *dummy) ;
 
 /*-----------------------------------------------------
 \encadre{General routines}

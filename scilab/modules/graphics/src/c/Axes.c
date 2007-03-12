@@ -55,6 +55,8 @@ static void XGradPosition(sciPointObj * psubwin, int yy, int rect3);
 
 int SciDrawLines(char pos, sciPointObj * psubwin, double xy, int textcolor,int ticscolor);
 
+void axis_draw(char strflag[]) ;
+
 /*--------------------------------------------------------------
  * Draw Axis or only rectangle
  *----------------------------------------------------------------*/

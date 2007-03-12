@@ -15,6 +15,8 @@
 #include "axesScale.h"
 #include "CurrentObjectsManagement.h"
 
+int geom3d(double *x, double *y, double *z, integer *n) ;
+
 /*-----------------------------------------------------------------------------------*/
 int geom3d(double *x, double *y, double *z, integer *n)
 {

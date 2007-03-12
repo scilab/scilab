@@ -21,6 +21,7 @@
 #include "Gray.h"
 #include "sciprint.h"
 #include "CurrentObjectsManagement.h"
+#include "GrayPlot.h"
 
 
 #include "MALLOC.h" /* MALLOC */

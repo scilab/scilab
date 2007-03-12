@@ -17,6 +17,7 @@
 #include "Plo3d.h"
 #include "Champ.h"
 #include "handleDrawing/drawSegsEntity.h"
+#include "ObjectStructure.h"
 
 /*-------------------------------------------------------------------------------------*/
 int drawMergeEntity( sciPointObj * pObj )
@@ -35,7 +36,7 @@ int drawMergeEntity( sciPointObj * pObj )
 extern double C2F(dsort)() ;
 void DrawMerge3d( sciPointObj * psubwin, sciPointObj * pmerge, int * DPI )
 {
-  int N,i,j,index,p,max_p,n1,npoly;
+  int N,i,j,ind,p,max_p,n1,npoly;
   double * dist;
   double X[5],Y[5],Z[5];
   double * Zoriginal = NULL; /* used to conserve Z wether or not z axis is reversed ! (see plo3dn.c) */
@@ -89,7 +90,7 @@ void DrawMerge3d( sciPointObj * psubwin, sciPointObj * pmerge, int * DPI )
   max_p=0; /* the maximum number of edge in a facet */
   for ( i =0 ; i < N ; i++) { /* loop on element*/
     pobj=(sciPointObj *) sciGetPointerFromHandle (ppMerge->from_entity[i]);
-    index = ppMerge->index_in_entity[i];
+    ind = ppMerge->index_in_entity[i];
 
     /*compute element coordinates */
     switch (sciGetEntityType (pobj)) {  
@@ -99,8 +100,8 @@ void DrawMerge3d( sciPointObj * psubwin, sciPointObj * pmerge, int * DPI )
 
         n1_= pSURFACE_FEATURE (pobj)->dimzx;
         n2= pSURFACE_FEATURE (pobj)->dimzy;
-        l=(int)(index/(n1_-1));
-        k=index-l*(n1_-1);
+        l=(int)(ind/(n1_-1));
+        k=ind-l*(n1_-1);
 
         xtmp[0] = pSURFACE_FEATURE (pobj)->pvecx[k];
         xtmp[1] = pSURFACE_FEATURE (pobj)->pvecx[k+1];
@@ -196,7 +197,7 @@ void DrawMerge3d( sciPointObj * psubwin, sciPointObj * pmerge, int * DPI )
           return ;
         }
 
-        retrieveFacetVertices( pobj, index, verticesX, verticesY, verticesZ, &Zoriginal ) ;
+        retrieveFacetVertices( pobj, ind, verticesX, verticesY, verticesZ, &Zoriginal ) ;
 
         x = verticesX ;
         y = verticesY ;
@@ -214,29 +215,29 @@ void DrawMerge3d( sciPointObj * psubwin, sciPointObj * pmerge, int * DPI )
 
         if ( ppPolyLine->plot != 2 && sciGetIsMark(pobj) == 1 )
         {
-          xtmp[0] = ppPolyLine->pvx[index];
+          xtmp[0] = ppPolyLine->pvx[ind];
           xtmp[1] = xtmp[0] ;
 
-          ytmp[0] = ppPolyLine->pvy[index];
+          ytmp[0] = ppPolyLine->pvy[ind];
           ytmp[1] = ytmp[0] ; /* used by trans3d + drawing : case 0,1 and 4 */
 
           if( ppPolyLine->pvz != NULL )
           {
-            ztmp[0] = ppPolyLine->pvz[index];
+            ztmp[0] = ppPolyLine->pvz[ind];
             ztmp[1] = ztmp[0];
           }
         }
         else
         {
-          xtmp[0] = ppPolyLine->pvx[index];
-          xtmp[1] = ppPolyLine->pvx[index+1];
+          xtmp[0] = ppPolyLine->pvx[ind];
+          xtmp[1] = ppPolyLine->pvx[ind+1];
 
-          ytmp[0] = ppPolyLine->pvy[index];
-          ytmp[1] = ppPolyLine->pvy[index+1]; /* used by trans3d + drawing : case 0,1 and 4 */
+          ytmp[0] = ppPolyLine->pvy[ind];
+          ytmp[1] = ppPolyLine->pvy[ind+1]; /* used by trans3d + drawing : case 0,1 and 4 */
           if( ppPolyLine->pvz != NULL )
           {
-            ztmp[0] = ppPolyLine->pvz[index];
-            ztmp[1] = ppPolyLine->pvz[(index+1)%n1];
+            ztmp[0] = ppPolyLine->pvz[ind];
+            ztmp[1] = ppPolyLine->pvz[(ind+1)%n1];
           }
         }
 
@@ -307,24 +308,24 @@ void DrawMerge3d( sciPointObj * psubwin, sciPointObj * pmerge, int * DPI )
       /***************/
         if ( ppSegs->ptype == 0 )
         {
-          xtmp[0] = ppSegs->vx[2*index];
-          xtmp[1] = ppSegs->vx[2*index+1];
+          xtmp[0] = ppSegs->vx[2*ind];
+          xtmp[1] = ppSegs->vx[2*ind+1];
 
-          ytmp[0] = ppSegs->vy[2*index];
-          ytmp[1] = ppSegs->vy[2*index+1];
+          ytmp[0] = ppSegs->vy[2*ind];
+          ytmp[1] = ppSegs->vy[2*ind+1];
 
           if( ppSegs->vz != NULL )
           {
-            ztmp[0] = ppSegs->vz[2*index];
-            ztmp[1] = ppSegs->vz[2*index+1];
+            ztmp[0] = ppSegs->vz[2*ind];
+            ztmp[1] = ppSegs->vz[2*ind+1];
           }
 
         }
         else
         {
           /* vx is size n1, vy n2 and vfx and vfy n1 x n2 */
-          int column = index / ppSegs->Nbr1 ;
-          int row    = index - column * ppSegs->Nbr1 ; 
+          int column = ind / ppSegs->Nbr1 ;
+          int row    = ind - column * ppSegs->Nbr1 ; 
           double maxGap = 0.707 * computeGridMinGap( ppSegs->vx, ppSegs->vy, ppSegs->Nbr1, ppSegs->Nbr2 ) ;
 
           xtmp[0] = ppSegs->vx[row] ;
@@ -333,22 +334,22 @@ void DrawMerge3d( sciPointObj * psubwin, sciPointObj * pmerge, int * DPI )
           if (ppSegs->typeofchamp == 0 )
           {
             double maxNorm = getLongestVector( ppSegs->vfx, ppSegs->vfy, ppSegs->Nbr1, ppSegs->Nbr2, 1.0, 1.0 ) ;
-            xtmp[1] = ppSegs->vx[row]    + maxGap * ppSegs->vfx[index] / maxNorm ;
-            ytmp[1] = ppSegs->vy[column] + maxGap * ppSegs->vfy[index] / maxNorm ;
+            xtmp[1] = ppSegs->vx[row]    + maxGap * ppSegs->vfx[ind] / maxNorm ;
+            ytmp[1] = ppSegs->vy[column] + maxGap * ppSegs->vfy[ind] / maxNorm ;
           }
           else
           {
             /* colored */
-            double norm = sqrt( ppSegs->vfx[index] * ppSegs->vfx[index] + ppSegs->vfy[index] * ppSegs->vfy[index] ) ;
-            xtmp[1] = ppSegs->vx[row]    + maxGap * ppSegs->vfx[index] / norm ;
-            ytmp[1] = ppSegs->vy[column] + maxGap * ppSegs->vfy[index] / norm ; ;
+            double norm = sqrt( ppSegs->vfx[ind] * ppSegs->vfx[ind] + ppSegs->vfy[ind] * ppSegs->vfy[ind] ) ;
+            xtmp[1] = ppSegs->vx[row]    + maxGap * ppSegs->vfx[ind] / norm ;
+            ytmp[1] = ppSegs->vy[column] + maxGap * ppSegs->vfy[ind] / norm ; ;
           }
 
 
           if( ppSegs->vz != NULL )
           {
             ztmp[0] = ppSegs->vz[row] ;
-            ztmp[1] = ppSegs->vz[row] + ppSegs->vfz[index] ;
+            ztmp[1] = ppSegs->vz[row] + ppSegs->vfz[ind] ;
           }
 
         }
@@ -454,7 +455,7 @@ void DrawMerge3d( sciPointObj * psubwin, sciPointObj * pmerge, int * DPI )
   for ( i = N ; i>0 ; i--) { /* loop on elements */
     int j2,nok;
     j2=locindex[i-1]-1;
-    index= ppMerge->index_in_entity[j2];
+    ind= ppMerge->index_in_entity[j2];
     pobj=(sciPointObj *) sciGetPointerFromHandle (ppMerge->from_entity[j2]);
     if ( sciGetRealVisibility(pobj) ) {
       /* build the element coordinates */
@@ -465,8 +466,8 @@ void DrawMerge3d( sciPointObj * psubwin, sciPointObj * pmerge, int * DPI )
 
           n1_= pSURFACE_FEATURE (pobj)->dimzx;
           n2= pSURFACE_FEATURE (pobj)->dimzy;
-          l=(int)(index/(n1_-1));
-          k=index-l*(n1_-1);
+          l=(int)(ind/(n1_-1));
+          k=ind-l*(n1_-1);
 
           xtmp[0] = pSURFACE_FEATURE (pobj)->pvecx[k];
           xtmp[1] = pSURFACE_FEATURE (pobj)->pvecx[k+1];
@@ -561,7 +562,7 @@ void DrawMerge3d( sciPointObj * psubwin, sciPointObj * pmerge, int * DPI )
             return ;
           }
 
-          retrieveFacetVertices( pobj, index, verticesX, verticesY, verticesZ, &Zoriginal ) ;
+          retrieveFacetVertices( pobj, ind, verticesX, verticesY, verticesZ, &Zoriginal ) ;
 
           x = verticesX ;
           y = verticesY ;
@@ -579,29 +580,29 @@ void DrawMerge3d( sciPointObj * psubwin, sciPointObj * pmerge, int * DPI )
           /* check if we want to draw segments or marks */
           if ( ppPolyLine->plot != 2 && sciGetIsMark(pobj) == 1 )
           {
-            xtmp[0] = ppPolyLine->pvx[index];
+            xtmp[0] = ppPolyLine->pvx[ind];
             xtmp[1] = xtmp[0] ;
 
-            ytmp[0] = ppPolyLine->pvy[index];
+            ytmp[0] = ppPolyLine->pvy[ind];
             ytmp[1] = ytmp[0] ; /* used by trans3d + drawing : case 0,1 and 4 */
             if(ppPolyLine->pvz != NULL)
             {
-              ztmp[0] = ppPolyLine->pvz[index];
+              ztmp[0] = ppPolyLine->pvz[ind];
               ztmp[1] = ztmp[0] ;
             }
           }
           else
           {
-            xtmp[0] = ppPolyLine->pvx[index];
-            xtmp[1] = ppPolyLine->pvx[index+1];
+            xtmp[0] = ppPolyLine->pvx[ind];
+            xtmp[1] = ppPolyLine->pvx[ind+1];
 
-            ytmp[0] = ppPolyLine->pvy[index];
-            ytmp[1] = ppPolyLine->pvy[index+1]; /* used by trans3d + drawing : case 0,1 and 4 */
+            ytmp[0] = ppPolyLine->pvy[ind];
+            ytmp[1] = ppPolyLine->pvy[ind+1]; /* used by trans3d + drawing : case 0,1 and 4 */
 
             if(ppPolyLine->pvz != NULL)
             {
-              ztmp[0] = ppPolyLine->pvz[index];
-              ztmp[1] = ppPolyLine->pvz[(index+1)%n1];
+              ztmp[0] = ppPolyLine->pvz[ind];
+              ztmp[1] = ppPolyLine->pvz[(ind+1)%n1];
             }
           }
 
@@ -669,7 +670,7 @@ void DrawMerge3d( sciPointObj * psubwin, sciPointObj * pmerge, int * DPI )
           if (ppSegs->ptype == 0) /* ptype == 0 F.Leray : This is NOT A champ */
           {  
             if (ppSegs->iflag == 1) {
-              pstyle=sciGetGoodIndex(pobj, ppSegs->pstyle[index]);
+              pstyle=sciGetGoodIndex(pobj, ppSegs->pstyle[ind]);
             }
             else{
               pstyle=sciGetGoodIndex(pobj, ppSegs->pstyle[0]);
@@ -685,24 +686,24 @@ void DrawMerge3d( sciPointObj * psubwin, sciPointObj * pmerge, int * DPI )
           /***************/
           if ( ppSegs->ptype == 0 )
           {
-            xtmp[0] = ppSegs->vx[2*index];
-            xtmp[1] = ppSegs->vx[2*index+1];
+            xtmp[0] = ppSegs->vx[2*ind];
+            xtmp[1] = ppSegs->vx[2*ind+1];
 
-            ytmp[0] = ppSegs->vy[2*index];
-            ytmp[1] = ppSegs->vy[2*index+1];
+            ytmp[0] = ppSegs->vy[2*ind];
+            ytmp[1] = ppSegs->vy[2*ind+1];
 
             if( ppSegs->vz != NULL )
             {
-              ztmp[0] = ppSegs->vz[2*index];
-              ztmp[1] = ppSegs->vz[2*index+1];
+              ztmp[0] = ppSegs->vz[2*ind];
+              ztmp[1] = ppSegs->vz[2*ind+1];
             }
 
           }
           else
           {
             /* vx is size n1, vy n2 and vfx and vfy n1 x n2 */
-            int column = index / ppSegs->Nbr1 ;
-            int row    = index - column * ppSegs->Nbr1 ;
+            int column = ind / ppSegs->Nbr1 ;
+            int row    = ind - column * ppSegs->Nbr1 ;
             double maxGap = 0.707 * computeGridMinGap( ppSegs->vx, ppSegs->vy, ppSegs->Nbr1, ppSegs->Nbr2 ) ;
 
             xtmp[0] = ppSegs->vx[row] ;
@@ -711,22 +712,22 @@ void DrawMerge3d( sciPointObj * psubwin, sciPointObj * pmerge, int * DPI )
             if (ppSegs->typeofchamp == 0 )
             {
               double maxNorm = getLongestVector( ppSegs->vfx, ppSegs->vfy, ppSegs->Nbr1, ppSegs->Nbr2, 1.0, 1.0 ) ;
-              xtmp[1] = ppSegs->vx[row]    + maxGap * ppSegs->vfx[index] / maxNorm ;
-              ytmp[1] = ppSegs->vy[column] + maxGap * ppSegs->vfy[index] / maxNorm ;
+              xtmp[1] = ppSegs->vx[row]    + maxGap * ppSegs->vfx[ind] / maxNorm ;
+              ytmp[1] = ppSegs->vy[column] + maxGap * ppSegs->vfy[ind] / maxNorm ;
             }
             else
             {
               /* colored */
-              double norm = sqrt( ppSegs->vfx[index] * ppSegs->vfx[index] + ppSegs->vfy[index] * ppSegs->vfy[index] ) ;
-              xtmp[1] = ppSegs->vx[row]    + maxGap * ppSegs->vfx[index] / norm ;
-              ytmp[1] = ppSegs->vy[column] + maxGap * ppSegs->vfy[index] / norm ; ;
+              double norm = sqrt( ppSegs->vfx[ind] * ppSegs->vfx[ind] + ppSegs->vfy[ind] * ppSegs->vfy[ind] ) ;
+              xtmp[1] = ppSegs->vx[row]    + maxGap * ppSegs->vfx[ind] / norm ;
+              ytmp[1] = ppSegs->vy[column] + maxGap * ppSegs->vfy[ind] / norm ; ;
             }
 
 
             if( ppSegs->vz != NULL )
             {
               ztmp[0] = ppSegs->vz[row] ;
-              ztmp[1] = ppSegs->vz[row] + ppSegs->vfz[index] ;
+              ztmp[1] = ppSegs->vz[row] + ppSegs->vfz[ind] ;
             }
           }
 
@@ -876,7 +877,7 @@ void DrawMerge3d( sciPointObj * psubwin, sciPointObj * pmerge, int * DPI )
                 DrawMarks3D(pobj,5*npoly,polyx,polyy,DPI);
               break;
             case 2:
-              fill[0]= (int) pSURFACE_FEATURE (pobj)->color[index];
+              fill[0]= (int) pSURFACE_FEATURE (pobj)->color[ind];
               if ( flag < 0 ) fill[0]=-fill[0];
               if(sciGetIsLine(pobj)){
                 C2F (dr) ("xset", "dashes",     context,   context,   context+3, context+3, context+3, PI0, PD0, PD0, PD0, PD0, 5L, 6L);
@@ -908,14 +909,14 @@ void DrawMerge3d( sciPointObj * psubwin, sciPointObj * pmerge, int * DPI )
                 C2F (dr) ("xset", "dashes",     context,   context,   context+3, context+3, context+3, PI0, PD0, PD0, PD0, PD0, 5L, 6L);
                 C2F (dr) ("xset", "foreground", context,   context,   context+3, context+3, context+3, PI0, PD0, PD0, PD0, PD0, 5L, 10L);
 
-                scilab_shade(polyx,polyy,&(cvect[p*index]),p,ppsurface->flag[0]);
+                scilab_shade(polyx,polyy,&(cvect[p*ind]),p,ppsurface->flag[0]);
                 FREE(cvect); cvect = NULL;
                 if (sciGetIsMark (pobj))
                   DrawMarks3D (pobj, p,polyx,polyy,DPI);
               }
               break;
             case 4: /* new case for "flat" mode matlab compatibility */
-              fill[0]= (int) pSURFACE_FEATURE (pobj)->color[index];
+              fill[0]= (int) pSURFACE_FEATURE (pobj)->color[ind];
               if ( flag < 0 ) fill[0]=-fill[0];
               if(sciGetIsLine(pobj)){
                 C2F (dr) ("xset", "dashes",     context,   context,   context+3, context+3, context+3, PI0, PD0, PD0, PD0, PD0, 5L, 6L);
@@ -976,7 +977,7 @@ void DrawMerge3d( sciPointObj * psubwin, sciPointObj * pmerge, int * DPI )
               else
               {
                 int sflag = 1 ; /* colored */
-                int arrowColor = computeArrowColor( ppSegs->vfx, ppSegs->vfy, ppSegs->Nbr1, ppSegs->Nbr2, index ) ;
+                int arrowColor = computeArrowColor( ppSegs->vfx, ppSegs->vfy, ppSegs->Nbr1, ppSegs->Nbr2, ind ) ;
                 C2F(dr)("xarrow","v",polyx,polyy,&p,&arrowSize,&arrowColor,&sflag,PD0,PD0,PD0,PD0,0L,0L);
               }
             } 
@@ -1102,7 +1103,7 @@ void retrieveFacetVertices( sciPointObj *  pobj       ,
                            double         verticesZ[],
                            double      ** zOriginal   )
 {
-  int nbFacets = pSURFACE_FEATURE (pobj)->dimzx ;
+  int nbFacets = pSURFACE_FEATURE(pobj)->dimzx ;
   int i ;
 
   for ( i = 0 ; i < nbFacets ; i++ )

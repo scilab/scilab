@@ -500,7 +500,7 @@ double computeGridMinGap( double gridX[], double gridY[], int nbRow, int nbCol )
   return min ;
 }
 /*-------------------------------------------------------------------------------------------*/
-int computeArrowColor( double gridX[], double gridY[], int nbRow, int nbCol, int index )
+int computeArrowColor( double gridX[], double gridY[], int nbRow, int nbCol, int ind )
 {
   integer whiteid;
   int verbose = 0 ;
@@ -509,7 +509,7 @@ int computeArrowColor( double gridX[], double gridY[], int nbRow, int nbCol, int
   double scx = Cscale.Wscx1 ;
   double scy = Cscale.Wscy1 ;
 
-  double nor = sqrt( scx*scx*gridX[index]*gridX[index] + scy*scy*gridY[index]*gridY[index] ) ;
+  double nor = sqrt( scx*scx*gridX[ind]*gridX[ind] + scy*scy*gridY[ind]*gridY[ind] ) ;
   double max = getLongestVector( gridX, gridY, nbRow, nbCol, scx, scy ) ;
   
   C2F(dr)("xget","lastpattern",&verbose,&whiteid,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);

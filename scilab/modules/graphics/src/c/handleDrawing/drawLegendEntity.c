@@ -13,6 +13,7 @@
 #include "sciprint.h"
 #include "PloEch.h"
 
+void Legends( integer * style, integer * n1, char * legend ) ;
 
 /*----------------------------------------------------------------------------------------*/
 /**

@@ -117,6 +117,70 @@ static void C2F(FileInitFromScreenXfig) __PARAMS((void));
 static void set_dash  __PARAMS((int dash,int *l_style,int *_val));
 static void set_color  __PARAMS((int c,int *color));
 
+void C2F(xselgraphicXfig)(char *v1, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dx1, double *dx2, double *dx3, double *dx4) ;
+void C2F(xendgraphicXfig)(void) ;
+void C2F(xendXfig)(char *v1, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dx1, double *dx2, double *dx3, double *dx4) ;
+void C2F(clearwindowXfig)(char *v1, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dx1, double *dx2, double *dx3, double *dx4) ;
+void C2F(viderbuffXfig)(void) ;
+void C2F(setwindowdimXfig)(integer *x, integer *y, integer *v3, integer *v4) ;
+void C2F(getwindowposXfig)(integer *verbose, integer *x, integer *narg, double *dummy) ;
+void C2F(setwindowposXfig)(integer *x, integer *y, integer *v3, integer *v4) ;
+void C2F(xclickXfig)(char *str, integer *ibutton, integer *xx1, integer *yy1, integer *v5, integer *v6, integer *v7, double *dx1, double *dx2, double *dx3, double *dx4) ;
+void C2F(xclick_anyXfig)(char *str, integer *ibutton, integer *xx1, integer *yy1, integer *v5, integer *v6, integer *v7, double *dx1, double *dx2, double *dx3, double *dx4) ;
+void C2F(xgetmouseXfig)(char *str, integer *ibutton, integer *xx1, integer *yy1, integer *v5, integer *v6, integer *v7, double *dx1, double *dx2, double *dx3, double *dx4) ;
+void C2F(clearareaXfig)(char *str, integer *x, integer *y, integer *w, integer *h, integer *v6, integer *v7, double *dx1, double *dx2, double *dx3, double *dx4) ;
+void C2F(setcurwinXfig)(integer *intnum, integer *v2, integer *v3, integer *v4) ;
+void C2F(getcurwinXfig)(integer *verbose, integer *intnum, integer *narg, double *dummy) ;
+void C2F(setclipXfig)(integer *x, integer *y, integer *w, integer *h) ;
+void C2F(unsetclipXfig)(integer *v1, integer *v2, integer *v3, integer *v4) ;
+void C2F(getclipXfig)(integer *verbose, integer *x, integer *narg, double *dummy) ;
+void C2F(absourelXfig)(integer *num, integer *v2, integer *v3, integer *v4) ;
+void C2F(getabsourelXfig)(integer *verbose, integer *num, integer *narg, double *dummy) ;
+void C2F(setalufunctionXfig)(char *string) ;
+void C2F(setalufunction1Xfig)(integer *num, integer *v2, integer *v3, integer *v4) ;
+void C2F(getalufunctionXfig)(integer *verbose, integer *value, integer *narg, double *dummy) ;
+void C2F(setthicknessXfig)(integer *value, integer *v2, integer *v3, integer *v4) ;
+void C2F(getthicknessXfig)(integer *verbose, integer *value, integer *narg, double *dummy) ;
+void C2F(setpatternXfig)(integer *num, integer *v2, integer *v3, integer *v4) ;
+void C2F(getpatternXfig)(integer *verbose, integer *num, integer *narg, double *dummy) ;
+void C2F(getlastXfig)(integer *verbose, integer *num, integer *narg, double *dummy) ;
+void C2F(setdashXfig)(integer *value, integer *v2, integer *v3, integer *v4) ;
+void C2F(usecolorXfig)(integer *num, integer *v2, integer *v3, integer *v4) ;
+void C2F(getusecolorXfig)(integer *verbose, integer *num, integer *narg, double *dummy) ;
+void C2F(setcolormapXfig)(integer *v1, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, double *a) ;
+void C2F(getbackgroundXfig)(integer *verbose, integer *num, integer *narg, double *dummy) ;
+void C2F(getforegroundXfig)(integer *verbose, integer *num, integer *narg, double *dummy) ;
+void C2F(sethidden3dXfig)(integer *num, integer *v2, integer *v3, integer *v4) ;
+void C2F(gethidden3dXfig)(integer *verbose, integer *num, integer *narg, double *dummy) ;
+void C2F(xsetfontXfig)(integer *fontid, integer *fontsize, integer *v3, integer *v4) ;
+void C2F(xgetfontXfig)(integer *verbose, integer *font, integer *nargs, double *dummy) ;
+void C2F(setcursymbolXfig)(integer *number, integer *size, integer *v3, integer *v4) ;
+void C2F(getcursymbolXfig)(integer *verbose, integer *symb, integer *narg, double *dummy) ;
+void C2F(semptyXfig)(integer *verbose, integer *v2, integer *v3, integer *v4) ;
+void C2F(gemptyXfig)(integer *verbose, integer *v2, integer *v3, double *dummy) ;
+void C2F(scilabgcgetXfig)(char *str, integer *verbose, integer *x1, integer *x2, integer *x3, integer *x4, integer *x5, double *dx1, double *dx2, double *dx3, double *dx4) ;
+void C2F(scilabgcsetXfig)(char *str, integer *x2, integer *x3, integer *x4, integer *x5, integer *x6, integer *x7, double *dx1, double *dx2, double *dx3, double *dx4) ;
+void C2F(displaystringXfig)(char *string, integer *x, integer *y, integer *v1, integer *flag, integer *v6, integer *v7, double *angle, double *dv2, double *dv3, double *dv4) ;
+void C2F(drawlineXfig)(integer *x1, integer *yy1, integer *x2, integer *y2) ;
+void C2F(drawsegmentsXfig)(char *str, integer *vx, integer *vy, integer *n, integer *style, integer *iflag, integer *v7, double *dx1, double *dx2, double *dx3, double *dx4) ;
+void C2F(drawarrowsXfig)(char *str, integer *vx, integer *vy, integer *n, integer *as, integer *style, integer *iflag, double *dx1, double *dx2, double *dx3, double *dx4) ;
+void C2F(drawrectangleXfig)(char *str, integer *x, integer *y, integer *width, integer *height, integer *v6, integer *v7, double *dx1, double *dx2, double *dx3, double *dx4) ;
+void C2F(fillrectangleXfig)(char *str, integer *x, integer *y, integer *width, integer *height, integer *v6, integer *v7, double *dx1, double *dx2, double *dx3, double *dx4) ;
+void C2F(drawrectanglesXfig)(char *str, integer *vects, integer *fillvect, integer *n, integer *v5, integer *v6, integer *v7, double *dx1, double *dx2, double *dx3, double *dx4) ;
+void C2F(fillarcsXfig)(char *str, integer *vects, integer *fillvect, integer *n, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4) ;
+void C2F(drawarcsXfig)(char *str, integer *vects, integer *style, integer *n, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4) ;
+void C2F(drawarcXfig)(char *str, integer *x, integer *y, integer *width, integer *height, integer *angle1, integer *angle2, double *dv1, double *dv2, double *dv3, double *dv4) ;
+void C2F(fillarcXfig)(char *str, integer *x, integer *y, integer *width, integer *height, integer *angle1, integer *angle2, double *dv1, double *dv2, double *dv3, double *dv4) ;
+void C2F(drawpolymarkXfig)(char *str, integer *n, integer *vx, integer *vy, integer *v5, integer *v6, integer *v7, double *dx1, double *dx2, double *dx3, double *dx4) ;
+void C2F(drawpolylinesXfig)(char *str, integer *vectsx, integer *vectsy, integer *drawvect, integer *n, integer *p, integer *v7, double *dx1, double *dx2, double *dx3, double *dx4 ) ;
+void C2F(fillpolylinesXfig)(char *str, integer *vectsx, integer *vectsy, integer *fillvect, integer *n, integer *p, integer *v7, double *dx1, double *dx2, double *dx3, double *dx4) ;
+void C2F(initgraphicXfig)(char *string, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dx1, double *dx2, double *dx3, double *dx4) ;
+void C2F(loadfamilyXfig)(char *name, integer *j, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dx1, double *dx2, double *dx3, double *dx4) ;
+void C2F(drawaxisXfig)(char *str, integer *alpha, integer *nsteps, integer *v2, integer *initpoint, integer *v6, integer *v7, double *size, double *dx2, double *dx3, double *dx4) ;
+void C2F(displaynumbersXfig)(char *str, integer *x, integer *y, integer *v1, integer *v2, integer *n, integer *flag, double *z, double *alpha, double *dx3, double *dx4) ;
+void set_pattern_or_color(int pat, int *areafill, int *color) ;
+void C2F(drawpolylineXfig)(char *str, integer *n, integer *vx, integer *vy, integer *closeflag, integer *v6, integer *v7, double *dx1, double *dx2, double *dx3, double *dx4) ;
+void C2F(fillpolylineXfig)(char *str, integer *n, integer *vx, integer *vy, integer *closeareaflag, integer *v6, integer *v7, double *dx1, double *dx2, double *dx3, double *dx4) ;
 
 /** Structure to keep the graphic state  **/
 
@@ -2043,16 +2107,6 @@ void C2F(drawpolylineXfig)(char *str, integer *n, integer *vx, integer *vy, inte
   FREE(vxtmp); vxtmp = NULL;
   FREE(vytmp); vytmp = NULL;
 
-  /*   if (*closeflag == 1 ) */
-  /*     FPRINTF((file,"#/closeflag true def\n")); */
-  /*   else  */
-  /*     FPRINTF((file,"#/closeflag false def\n")); */
-  /*   if (ScilabGCXfig.ClipRegionSet ==1 ) */
-  /*     { */
-  /*       C2F(analyze_pointsXfig)(*n, vx, vy, *closeflag); */
-  /*     } */
-  /*   else  */
-  /*     C2F(fillpolylinesXfig)(str,vx,vy,&fvect,&i,n,PI0,PD0,PD0,PD0,PD0); */
 }
 
 /** Fill the polygon **/
