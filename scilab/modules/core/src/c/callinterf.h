@@ -87,7 +87,7 @@ extern void    /* 50  */ C2F(gw_localization)(void);
 
 #if defined(WITH_FFTW) || defined(_MSC_VER)
 extern void    /* 51  */ C2F(gw_fftw)(void);
-#define FFTWINTERF C2F(gw_fftw)(void);
+#define FFTWINTERF C2F(gw_fftw)
 #else 
 #define FFTWINTERF C2F(Nogw_fftw)
 #endif
