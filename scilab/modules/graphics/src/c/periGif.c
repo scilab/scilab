@@ -49,6 +49,7 @@ extern  char  *getenv();
 #include "bcg.h" /* NG */
 
 #include "MALLOC.h" /* MALLOC */
+#include "setgetSCIpath.h"
 
 #include "prompt.h"
 #include "Xcall1.h"
@@ -156,7 +157,6 @@ struct BCG  ScilabGCGif ;
 static int col_index[gdMaxColors];
 static int fillpolylines_closeflag = 0;
 
-extern char *getSCIpath();
 void C2F(xendgraphicGif)(void) ;
 void C2F(getwindowposGif)(integer *verbose, integer *x, integer *narg, double *dummy) ;
 void C2F(setwindowposGif)(integer *x, integer *y, integer *v3, integer *v4) ;
