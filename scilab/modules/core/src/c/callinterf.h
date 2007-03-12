@@ -11,81 +11,85 @@
  ********************************************************/
 
 /* 01  C2F(gw_user)(); FREE */
-extern void    /* 02  */ C2F(gw_linear_algebra)();
+extern void    /* 02  */ C2F(gw_linear_algebra)(void);
 /* 03  C2F(gw_user)(); FREE */
 /* 04  C2F(gw_user)(); FREE */
-extern void    /* 05  */ C2F(gw_io)();
-extern void    /* 06  */ C2F(gw_elementaries_functions)();
-extern void    /* 07  */ C2F(gw_graphics)();
-extern void    /* 08  */ C2F(gw_cacsd0)();
-extern void    /* 09  */ C2F(gw_cacsd1)();
-extern void    /* 10  */ C2F(gw_cacsd2)();
-extern void    /* 11  */ C2F(gw_optim)();
-extern void    /* 12  */ C2F(gw_differential_equations1)();
-extern void    /* 13  */ C2F(gw_core)();
-extern void    /* 14  */ C2F(gw_user)();
-extern void    /* 15  */ C2F(gw_metanet)();
-extern void    /* 16  */ C2F(gw_polynomials)();
-extern void    /* 17  */ C2F(gwdatastructures1)();
-extern void    /* 18  */ C2F(gw_signal)();
-extern void    /* 19  */ C2F(gw_interpolation)();
-extern void    /* 20  */ C2F(gw_cacsd3)();
-extern void    /* 21  */ C2F(gw_string)();
-extern void    /* 22  */ C2F(gw_symbolic)();
-extern void    /* 23  */ C2F(gw_boolean)();
-extern void    /* 24  */ C2F(gw_user2)();
-extern void    /* 25  */ C2F(gw_gui)();
-extern void    /* 26  */ C2F(gw_differential_equations2)();
-extern void    /* 27  */ C2F(gw_sparse)();
-extern void    /* 28  */ C2F(gw_slicot)();
-extern void    /* 29  */ C2F(gw_differential_equations3)();
-extern void    /* 30  */ C2F(gw_differential_equations4)();
-extern void    /* 31  */ C2F(gw_differential_equations5)();
-extern void    /* 32  */ C2F(gw_differential_equations6)();
+extern void    /* 05  */ C2F(gw_io)(void);
+extern void    /* 06  */ C2F(gw_elementaries_functions)(void);
+extern void    /* 07  */ C2F(gw_graphics)(void);
+extern void    /* 08  */ C2F(gw_cacsd0)(void);
+extern void    /* 09  */ C2F(gw_cacsd1)(void);
+extern void    /* 10  */ C2F(gw_cacsd2)(void);
+extern void    /* 11  */ C2F(gw_optim)(void);
+extern void    /* 12  */ C2F(gw_differential_equations1)(void);
+extern void    /* 13  */ C2F(gw_core)(void);
+extern void    /* 14  */ C2F(gw_user)(void);
+extern void    /* 15  */ C2F(gw_metanet)(void);
+extern void    /* 16  */ C2F(gw_polynomials)(void);
+extern void    /* 17  */ C2F(gwdatastructures1)(void);
+extern void    /* 18  */ C2F(gw_signal)(void);
+extern void    /* 19  */ C2F(gw_interpolation)(void);
+extern void    /* 20  */ C2F(gw_cacsd3)(void);
+extern void    /* 21  */ C2F(gw_string)(void);
+extern void    /* 22  */ C2F(gw_symbolic)(void);
+extern void    /* 23  */ C2F(gw_boolean)(void);
+extern void    /* 24  */ C2F(gw_user2)(void);
+extern void    /* 25  */ C2F(gw_gui)(void);
+extern void    /* 26  */ C2F(gw_differential_equations2)(void);
+extern void    /* 27  */ C2F(gw_sparse)(void);
+extern void    /* 28  */ C2F(gw_slicot)(void);
+extern void    /* 29  */ C2F(gw_differential_equations3)(void);
+extern void    /* 30  */ C2F(gw_differential_equations4)(void);
+extern void    /* 31  */ C2F(gw_differential_equations5)(void);
+extern void    /* 32  */ C2F(gw_differential_equations6)(void);
 /* 33  */ /* FREE */
-extern void    /* 34  */ C2F(gw_fileio)();
-extern void    /* 35  */ C2F(gw_arnoldi)();
-extern void    /* 36  */ C2F(gw_special_functions1)();
-extern void    /* 37  */ C2F(gw_statistics)();
-extern void    /* 38  */ C2F(gw_randlib)();
-extern void    /* 39  */ C2F(gw_special_functions2)();
+extern void    /* 34  */ C2F(gw_fileio)(void);
+extern void    /* 35  */ C2F(gw_arnoldi)(void);
+extern void    /* 36  */ C2F(gw_special_functions1)(void);
+extern void    /* 37  */ C2F(gw_statistics)(void);
+extern void    /* 38  */ C2F(gw_randlib)(void);
+extern void    /* 39  */ C2F(gw_special_functions2)(void);
 
 #ifdef WITH_TK
-extern void    /* 40  */ C2F(gw_tclsci)();
+extern void    /* 40  */ C2F(gw_tclsci)(void);
 #define TCLINTERF C2F(gw_tclsci)
 #else 
 #define TCLINTERF C2F(no_gw_tclsci)
 #endif
 
-extern void    /* 41  */ C2F(gwdatastructures2)();
+extern void    /* 41  */ C2F(gwdatastructures2)(void);
 
 #ifdef WITH_PVM
-extern void    /* 42  */ C2F(gw_pvm)();
+extern void    /* 42  */ C2F(gw_pvm)(void);
 #define PVMINTERF C2F(gw_pvm)
 #else 
 #define PVMINTERF C2F(NoPvm)
 #endif
 
-extern void    /* 43  */ C2F(gw_integer)();
-extern void    /* 44  */ C2F(gw_linear_algebra2)();
+extern void    /* 43  */ C2F(gw_integer)(void);
+extern void    /* 44  */ C2F(gw_linear_algebra2)(void);
 
 #ifdef WITHOUT_SCICOS
 	#define SCICOSINTERF1 C2F(Nogw_scicos)
 	#define SCICOSINTERF2 C2F(Nogw_cscicos)
 #else
-	extern void    /* 45  */ C2F(gw_scicos)();
+	extern void    /* 45  */ C2F(gw_scicos)(void);
 	#define SCICOSINTERF1 C2F(gw_scicos)
-	extern void    /* 46  */ C2F(gw_cscicos)();
+	extern void    /* 46  */ C2F(gw_cscicos)(void);
 	#define SCICOSINTERF2 C2F(gw_cscicos)
 #endif
 
-extern void    /* 47  */ C2F(gw_wintools)();
-extern void    /* 48  */ C2F(gw_time)();
-extern void    /* 49  */ C2F(gw_sound)();
-extern void    /* 50  */ C2F(gw_localization)();
+extern void    /* 47  */ C2F(gw_wintools)(void);
+extern void    /* 48  */ C2F(gw_time)(void);
+extern void    /* 49  */ C2F(gw_sound)(void);
+extern void    /* 50  */ C2F(gw_localization)(void);
+
 
 #if defined(WITH_FFTW) || defined(_MSC_VER)
-extern void    /* 51  */ C2F(gw_fftw)();
+extern void    /* 51  */ C2F(gw_fftw)(void);
+#define FFTWINTERF C2F(gw_fftw)(void);
+#else 
+#define FFTWINTERF C2F(Nogw_fftw)
 #endif
 
 static OpTab Interfaces[] ={
@@ -138,12 +142,18 @@ static OpTab Interfaces[] ={
 	/* 47  */ {C2F(gw_wintools)},
 	/* 48  */ {C2F(gw_time)},
 	/* 49  */ {C2F(gw_sound)},
-	/* 50  */ {C2F(gw_localization)}
-
-#if defined(WITH_FFTW) || defined(_MSC_VER)
-	,
-	/* 51  */ {C2F(gw_fftw)}
-#endif
+	/* 50  */ {C2F(gw_localization)},
+	/* 51  */ {FFTWINTERF}
 };
+
+
+/**
+ * call the apropriate interface according to the value of k 
+ * iflagint is no more used here ....
+ * @param k the number of the interface
+ * @param iflagint obsolete (no longer used)
+ * @return 
+ */
+int C2F(callinterf) ( int *k, int * iflagint);
 
 #endif /*__CALLINTERF__*/

@@ -27,6 +27,7 @@ void C2F(NoPvm)(void);
 void C2F(Nogw_scicos)(void);
 void C2F(Nogw_cscicos)(void);
 void C2F(Nogw_slicot)(void);
+void C2F(Nogw_fftw)(void);
 int ForceLink(void);
 
 static void  sci_sigint_addinter(int n);
@@ -73,6 +74,13 @@ void C2F(Nogw_slicot)(void)
 	return;
 }
 
+
+void C2F(Nogw_fftw)(void)
+{
+	message_scilab("core_message_121","fftw");
+	C2F(error)(&c_local_interf);
+	return;
+}
 /** table of interfaces **/
 
 typedef  struct  {
@@ -81,14 +89,17 @@ typedef  struct  {
 #include "callinterf.h"
 
 
-/***********************************************************
- * call the apropriate interface according to the value of k 
- * iflagint is no more used here ....
- ***********************************************************/
-
 
 static int sig_ok = 0;
 
+
+/**
+ * call the apropriate interface according to the value of k 
+ * iflagint is no more used here ....
+ * @param k the number of the interface
+ * @param iflagint obsolete (no longer used)
+ * @return 
+ */
 int C2F(callinterf) ( int *k, int * iflagint)
 {
   int returned_from_longjump ;
