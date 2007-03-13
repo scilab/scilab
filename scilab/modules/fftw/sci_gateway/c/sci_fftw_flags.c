@@ -38,7 +38,6 @@ int sci_fftw_flags __PARAMS((char *fname,unsigned long fname_len))
 
   static int l2, m2, n2;
 
-  static int l3, m3, n3;
   char **Str3=NULL;
   int len;
 
