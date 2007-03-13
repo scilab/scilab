@@ -2350,6 +2350,15 @@ macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODI
 @SCICOS_TRUE@	for file in $(SCICOS_FORTRAN_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.f|\1|';done > build/Fblocknames 
 @SCICOS_TRUE@	for file in $(SCICOS_C_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.c|\1|' ;done > build/Cblocknames
 @SCICOS_TRUE@	$(top_srcdir)/modules/scicos/src/c/GenBlocks.sh build/Fblocknames build/Cblocknames includes/blocks.h
+
+#### WORKAROUND ####
+# Do not use the global clean-local rule because Scicos help is not managed
+# like the rest of Scilab
+clean-local:
+	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
+		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \
+        rm -f $(srcdir)/$$dir/$(MACROBINMASK); \
+    done; 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
