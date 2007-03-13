@@ -228,7 +228,6 @@ char *sciGetCallback(sciPointObj * pthis)
       return (char *)NULL;
       break;
     }
-  return (char *)NULL;
 }
 
 /* 07/11/2002*/
@@ -287,10 +286,12 @@ int sciGetCallbackMouseEvent(sciPointObj * pthis)
       return 100;
       break;
     }
-  return 100;
-}/**sciSetCallbackMouseEvent
-  * @author Djalel Abdemouche
-  */
+
+}
+
+/**sciSetCallbackMouseEvent
+ * @author Djalel Abdemouche
+ */
 int sciSetCallbackMouseEvent(sciPointObj * pthis, int mevent)
 {
   switch (sciGetEntityType (pthis))
@@ -401,7 +402,6 @@ sciGetCallbackLen (sciPointObj * pthis)
       return -1;
       break;
     }
-  return -1;
 }
 
 
@@ -538,7 +538,6 @@ sciExecCallback (sciPointObj * pthis)
       return -1;
       break;
     }
-  return -1;
 }
 
 /************************************ End of callback Functions ************************************/
@@ -549,11 +548,7 @@ sciExecCallback (sciPointObj * pthis)
 /* move a handle in the graphic window                                                             */
 /*-------------------------------------------------------------------------------------------------*/
 
-int Objmove (hdl,d,m,opt)
-     long *hdl;
-     double* d;
-     int m;
-     BOOL opt;
+int Objmove (long *hdl, double *d, int m,BOOL opt)
 {   
   long tmphdl;
   double x,y,z;
@@ -729,10 +724,7 @@ int Objmove (hdl,d,m,opt)
 }
 
 
-BOOL sciIsAreaZoom(box,box1,section)
-     integer box[4];
-     integer box1[4];
-     integer section[4];
+BOOL sciIsAreaZoom(integer box[4],integer box1[4],integer section[4])
 {
   if ( (box[0]<=box1[0]) && (box[2]>box1[0]) && (box[2]<=box1[2]) 
        && (box[1]<box1[1]) && (box[3]>box1[1]) && (box[3]<=box1[3]) )
