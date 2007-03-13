@@ -202,9 +202,13 @@ int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
 	 C2F(cvname)(&id[n * 6 + 1], Name, &c__1,LengthNameVariableScilabMax);
 
 	 Name[LengthNameVariableScilabMax]='\0';
-	 for (i=0;i<LengthNameVariableScilabMax+1;i++)
+	 for (i=0;i<LengthNameVariableScilabMax;i++)
 	 {
-		 if (Name[i] == ' ')
+		 if (Name[i] == '\0')
+		 {
+			return Name;
+		 }
+		 else if (Name[i] == ' ')
 		 {
 			 Name[i] = '\0';
 			 return Name;
@@ -227,9 +231,13 @@ int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
 
 	 Name[LengthNameVariableScilabMax]='\0';
 
-	 for (i=0;i<LengthNameVariableScilabMax+1;i++)
+	 for (i=0;i<LengthNameVariableScilabMax;i++)
 	 {
-		 if (Name[i] == ' ')
+		 if (Name[i] == '\0')
+		 {
+			 return Name;
+		 }
+		 else if (Name[i] == ' ')
 		 {
 			 Name[i] = '\0';
 			 return Name;
@@ -424,7 +432,7 @@ int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
 
 	 for (i=0;i<lenStructArray;i++)
 	 {
-		 Tab[i] = (char*)MALLOC(sizeof(char)*strlen(Vstruct[i].NameVariable));
+		 Tab[i] = (char*)MALLOC(sizeof(char)*(strlen(Vstruct[i].NameVariable)+1));
 		 sprintf(Tab[i],"%s",Vstruct[i].NameVariable);
 		 Size[i]=Vstruct[i].SizeVariable;
 	 }
@@ -440,7 +448,19 @@ int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
 
 	 C2F(putlhsvar)();
 
-	 if (Tab) {FREE(Tab);Tab=NULL;}
+	 if (Tab) 
+	 {
+		 for (i=0;i<lenStructArray;i++)
+		 {
+			 if (Tab[i])
+			 {
+				 FREE(Tab[i]);
+				 Tab[i]=NULL;
+			 }
+		 }
+		 FREE(Tab);
+		 Tab=NULL;
+	 }
 	 if (Size) {FREE(Size);Size=NULL;}
 	 return 0;
  }
@@ -471,14 +491,19 @@ int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
 	 CreateVarFromPtr(Rhs+1, "S", &m, &n,LocalTab);
 	 LhsVar(1)=Rhs+1;
 
-
-	 for (i=0;i<lenStructArray;i++) 
-	 { 
-		 FREE(LocalTab[i]);
-		 LocalTab[i]=NULL; 
+	 if (LocalTab)
+	 {
+		 for (i=0;i<lenStructArray;i++) 
+		 { 
+			 if (LocalTab[i])
+			 {
+				 FREE(LocalTab[i]);
+				 LocalTab[i]=NULL; 
+			 }
+		 }
+		 FREE(LocalTab);
+		 LocalTab=NULL; 
 	 }
-	 FREE(LocalTab);
-
 	 C2F(putlhsvar)();
 	 return 0;
  }
