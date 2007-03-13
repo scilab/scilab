@@ -260,6 +260,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "randlib", "modules\randlib\
 EndProject
 Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "randlib_f", "modules\randlib\src\fortran\randlib_f.vfproj", "{BB8D4E6F-F09E-49FC-8BCB-9F496F639F60}"
 	ProjectSection(ProjectDependencies) = postProject
+		{78BD64CE-181D-4D3F-9254-5C4F55C1EDC9} = {78BD64CE-181D-4D3F-9254-5C4F55C1EDC9}
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject
@@ -632,6 +633,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libst", "libs\libst\libst.v
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nosound", "modules\sound\src\nosound\nosound.vcproj", "{B2A7F55B-8449-47FE-A1BB-5E77EC18DE43}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "norandlib", "modules\randlib\src\norandlib\norandlib.vcproj", "{E5038304-761D-448C-B358-48CA2883778A}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
@@ -1064,6 +1070,10 @@ Global
 		{B2A7F55B-8449-47FE-A1BB-5E77EC18DE43}.Debug|Win32.Build.0 = Debug|Win32
 		{B2A7F55B-8449-47FE-A1BB-5E77EC18DE43}.Release|Win32.ActiveCfg = Release|Win32
 		{B2A7F55B-8449-47FE-A1BB-5E77EC18DE43}.Release|Win32.Build.0 = Release|Win32
+		{E5038304-761D-448C-B358-48CA2883778A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E5038304-761D-448C-B358-48CA2883778A}.Debug|Win32.Build.0 = Debug|Win32
+		{E5038304-761D-448C-B358-48CA2883778A}.Release|Win32.ActiveCfg = Release|Win32
+		{E5038304-761D-448C-B358-48CA2883778A}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
