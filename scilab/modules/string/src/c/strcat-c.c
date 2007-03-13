@@ -49,8 +49,8 @@ int C2F(intstrcat) (char* fname)
 	{
     case '*' : 
       /* just return one string */ 
-      for ( i = 0 ; i < mn ; i++ ) nchars += strlen(Str[i]);
-      nchars += (mn-1)*strlen(sep);
+      for ( i = 0 ; i < mn ; i++ ) nchars += (int)strlen(Str[i]);
+      nchars += (mn-1)*(int)strlen(sep);
       CreateVar(Rhs+1,"c",&un,&nchars,&l3);
       k=0;
       for ( i = 0 ; i < mn ; i++ ) 
@@ -84,8 +84,8 @@ int C2F(intstrcat) (char* fname)
       for (i= 0 ; i < m1 ; i++) {
 	/* length of row i */ 
 	nchars = 0;
-	for ( j = 0 ; j < n1 ; j++ ) nchars += strlen(Str[i+ m1*j]);
-	nchars += (n1-1)*strlen(sep);
+	for ( j = 0 ; j < n1 ; j++ ) nchars += (int)strlen(Str[i+ m1*j]);
+	nchars += (n1-1)*(int)strlen(sep);
 	if ( (Str1[i]=MALLOC((nchars+1)*sizeof(char)))==NULL) 
 	  {
 	    Scierror(999,"%s: Out of memory\r\n",fname);
@@ -141,8 +141,8 @@ int C2F(intstrcat) (char* fname)
 	/* length of col j */ 
 	nchars = 0;
 	for ( i = 0 ; i < m1 ; i++ ) 
-	  nchars += strlen(Str[i+ m1*j]);
-	nchars += (m1-1)*strlen(sep);
+	  nchars += (int)strlen(Str[i+ m1*j]);
+	nchars += (m1-1)*(int)strlen(sep);
 	if ( (Str1[j]=MALLOC((nchars+1)*sizeof(char)))==NULL) 
 	  {
 	    Scierror(999,"%s: Out of memory\r\n",fname);

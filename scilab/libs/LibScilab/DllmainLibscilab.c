@@ -36,6 +36,7 @@
 #pragma comment(lib,"../../bin/integer_f.lib")
 #pragma comment(lib,"../../bin/slicot_f.lib")
 #pragma comment(lib,"../../bin/slatec_f.lib")
+#pragma comment(lib,"../../bin/string_f.lib")
 
 #pragma comment(lib,"../../libs/interpolation_f.lib")
 #pragma comment(lib,"../../libs/interpolation_f.lib")
@@ -53,7 +54,6 @@
 #pragma comment(lib,"../../libs/optim_f.lib")
 #pragma comment(lib,"../../libs/randlib_f.lib")
 #pragma comment(lib,"../../libs/signal_f.lib")
-#pragma comment(lib,"../../libs/string_f.lib")
 #pragma comment(lib,"../../libs/polynomials_f.lib")
 #pragma comment(lib,"../../libs/cacsd_f.lib")
 #endif

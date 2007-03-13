@@ -21,11 +21,6 @@ c
 c 
       op=fin
 c
-      if (ddt .eq. 4) then
-         write(buf(1:4),'(i4)') fin
-         call basout(io,wte,' strops '//buf(1:4))
-      endif
-c
       fun=0
 c
       top0=top

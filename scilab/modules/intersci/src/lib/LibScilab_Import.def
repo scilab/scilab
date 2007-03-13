@@ -7,5 +7,3 @@ EXPORTS
   iop_
 	basout_
 	cvstr_
-; string
-  ScilabStr2C

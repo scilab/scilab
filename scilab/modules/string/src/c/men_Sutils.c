@@ -152,7 +152,7 @@ void ScilabC2MStr2(int *res, int *nr, int *ptrres, char *str, int *ierr, int max
   int job=0,li=0,n,i,ni;
   *nr=0;
   ptrres[0]=1;
-  n=strlen(str);
+  n=(int)strlen(str);
   if (n <= maxchars) 
     {
       str[n]='\n';
@@ -218,7 +218,7 @@ void ScilabCM2MStr(char **str, int nv, int *res, int *ptrres, int maxchars, int 
       /** cvstr changes \n to ! : we suppress \r in str **/
       squash_r(str[i]);
 #endif 
-      ni=strlen(str[i]);
+      ni=(int)strlen(str[i]);
       ntot += ni;
       if ( ntot > maxchars ) 
 	{
