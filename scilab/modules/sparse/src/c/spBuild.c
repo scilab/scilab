@@ -47,7 +47,7 @@
 
 
 
-/*
+/**
  *  IMPORTS
  *
  *  >>> Import descriptions:
@@ -64,15 +64,11 @@
 #include "spmatrix.h"
 #include "spDefs.h"
 #include "spmalloc.h"
+#include "spBuild.h"
 
 
-static void Translate();
-static EnlargeMatrix();
-static ExpandTranslationArrays();
 
-
-
-/*
+/**
  *  CLEAR MATRIX
  *
  *  Sets every element of the matrix to zero and clears the error flag.
@@ -87,9 +83,7 @@ static ExpandTranslationArrays();
  */
 
 void
-spClear( eMatrix )
-
-char *eMatrix;
+spClear( char *eMatrix )
 {
 MatrixPtr  Matrix = (MatrixPtr)eMatrix;
 register  ElementPtr  pElement;
@@ -136,16 +130,7 @@ register  int  I;
 }
 
 
-
-
-
-
-
-
-
-
-
-/*
+/**
  *  SINGLE ELEMENT ADDITION TO MATRIX BY INDEX
  *
  *  Finds element [Row,Col] and returns a pointer to it.  If element is
@@ -181,10 +166,7 @@ register  int  I;
  */
 
 RealNumber *
-spGetElement( eMatrix, Row, Col )
-
-char *eMatrix;
-int  Row, Col;
+spGetElement( char *eMatrix, int Row, int Col )
 {
 MatrixPtr  Matrix = (MatrixPtr)eMatrix;
 RealNumber  *pElement;
@@ -247,14 +229,7 @@ ElementPtr spcFindElementInCol();
 
 
 
-
-
-
-
-
-
-
-/*
+/**
  *  FIND ELEMENT BY SEARCHING COLUMN
  *
  *  Searches column starting at element specified at PtrAddr and finds element
@@ -287,13 +262,7 @@ ElementPtr spcFindElementInCol();
  */
 
 ElementPtr
-spcFindElementInCol( Matrix, LastAddr, Row, Col, CreateIfMissing )
-
-MatrixPtr Matrix;
-register ElementPtr *LastAddr;
-register int  Row;
-int  Col;
-SPBOOLEAN  CreateIfMissing;
+spcFindElementInCol( MatrixPtr Matrix, register ElementPtr *LastAddr, register int Row, int Col, SPBOOLEAN CreateIfMissing )
 {
 register  ElementPtr  pElement;
 ElementPtr  spcCreateElement();
@@ -325,14 +294,9 @@ ElementPtr  spcCreateElement();
 
 
 
-
-
-
-
-
 #if TRANSLATE
-
-/*
+
+/**
  *  TRANSLATE EXTERNAL INDICES TO INTERNAL
  *
  *  Convert internal row and column numbers to internal row and column numbers.
@@ -365,10 +329,7 @@ ElementPtr  spcCreateElement();
  */
 
 static void
-Translate( Matrix, Row, Col )
-
-MatrixPtr Matrix;
-int  *Row, *Col;
+Translate( MatrixPtr Matrix, int *Row, int *Col )
 {
 register int IntRow, IntCol, ExtRow, ExtCol;
 
@@ -437,12 +398,8 @@ register int IntRow, IntCol, ExtRow, ExtCol;
 #endif
 
 
-
-
-
-
 #if QUAD_ELEMENT
-/*
+/**
  *  ADDITION OF ADMITTANCE TO MATRIX BY INDEX
  *
  *  Performs same function as spGetElement except rather than one
@@ -504,15 +461,8 @@ struct  spTemplate  *Template;
 #endif /* QUAD_ELEMENT */
 
 
-
-
-
-
-
-
-
 #if QUAD_ELEMENT
-/*
+/**
  *  ADDITION OF FOUR ELEMENTS TO MATRIX BY INDEX
  *
  *  Similar to spGetAdmittance, except that spGetAdmittance only
@@ -591,15 +541,8 @@ struct  spTemplate  *Template;
 #endif /* QUAD_ELEMENT */
 
 
-
-
-
-
-
-
-
 #if QUAD_ELEMENT
-/*
+/**
  *  ADDITION OF FOUR STRUCTURAL ONES TO MATRIX BY INDEX
  *
  *  Performs similar function to spGetQuad() except this routine is
@@ -664,12 +607,7 @@ struct  spTemplate  *Template;
 #endif /* QUAD_ELEMENT */
 
 
-
-
-
-
-
-/*
+/**
  *
  *  CREATE AND SPLICE ELEMENT INTO MATRIX
  *
@@ -710,13 +648,7 @@ struct  spTemplate  *Template;
  */
 
 ElementPtr
-spcCreateElement( Matrix, Row, Col, LastAddr, Fillin )
-
-MatrixPtr Matrix;
-int  Row;
-register int  Col;
-register ElementPtr  *LastAddr;
-SPBOOLEAN Fillin;
+spcCreateElement( MatrixPtr Matrix, int Row, register int Col, register ElementPtr  * LastAddr, SPBOOLEAN Fillin )
 {
 register  ElementPtr  pElement, pLastElement;
 ElementPtr  pCreatedElement, spcGetElement(), spcGetFillin();
@@ -824,13 +756,7 @@ ElementPtr  pCreatedElement, spcGetElement(), spcGetFillin();
 }
 
 
-
-
-
-
-
-
-/*
+/**
  *
  *  LINK ROWS
  *
@@ -856,9 +782,7 @@ ElementPtr  pCreatedElement, spcGetElement(), spcGetFillin();
  *      Column currently being operated upon.
  */
 
-spcLinkRows( Matrix )
-
-MatrixPtr Matrix;
+int spcLinkRows( MatrixPtr Matrix )
 {
 register  ElementPtr  pElement, *FirstInRowEntry;
 register  ArrayOfElementPtrs  FirstInRowArray;
@@ -885,12 +809,7 @@ register  int  Col;
 
 
 
-
-
-
-
-
-/*
+/**
  *  ENLARGE MATRIX
  *
  *  Increases the size of the matrix.
@@ -906,11 +825,7 @@ register  int  Col;
  *     The allocated size of the matrix before it is expanded.
  */
 
-static
-EnlargeMatrix( Matrix, NewSize )
-
-MatrixPtr Matrix;
-register int  NewSize;
+static int EnlargeMatrix( MatrixPtr Matrix, register int NewSize )
 {
 register int I, OldAllocatedSize = Matrix->AllocatedSize;
 
@@ -977,8 +892,8 @@ register int I, OldAllocatedSize = Matrix->AllocatedSize;
 
 
 #if TRANSLATE
-
-/*
+
+/**
  *  EXPAND TRANSLATION ARRAYS
  *
  *  Increases the size arrays that are used to translate external to internal
@@ -995,11 +910,8 @@ register int I, OldAllocatedSize = Matrix->AllocatedSize;
  *     The allocated size of the translation arrays before being expanded.
  */
 
-static
-ExpandTranslationArrays( Matrix, NewSize )
-
-MatrixPtr Matrix;
-register int  NewSize;
+static int 
+ExpandTranslationArrays( MatrixPtr Matrix, register int NewSize )
 {
 register int I, OldAllocatedSize = Matrix->AllocatedExtSize;
 
@@ -1039,9 +951,9 @@ register int I, OldAllocatedSize = Matrix->AllocatedExtSize;
 
 
 
-
+
 #if INITIALIZE
-/*
+/**
  *   INITIALIZE MATRIX
  *
  *   With the INITIALIZE compiler option (see spConfig.h) set true,

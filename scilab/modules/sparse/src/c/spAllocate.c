@@ -65,14 +65,8 @@
 #include "spmatrix.h"
 #include "spDefs.h"
 #include "spmalloc.h"
+#include "spAllocate.h"
 
-static InitializeElementBlocks();
-static RecordAllocation();
-static AllocateBlockOfAllocationList();
-
-
-
-
 /*
  *  MATRIX SPALLOCATION
  *
@@ -303,10 +297,7 @@ MemoryError:
  *  spNO_MEMORY
  */
 
-ElementPtr
-spcGetElement( Matrix )
-
-MatrixPtr Matrix;
+ElementPtr spcGetElement( MatrixPtr Matrix ) 
 {
 ElementPtr  pElement;
 
@@ -364,12 +355,9 @@ ElementPtr  pElement;
  *  spNO_MEMORY
  */
 
-static
-InitializeElementBlocks( Matrix, InitialNumberOfElements,
-                         NumberOfFillinsExpected )
-
-MatrixPtr Matrix;
-int  InitialNumberOfElements, NumberOfFillinsExpected;
+static int 
+InitializeElementBlocks( MatrixPtr  Matrix, int InitialNumberOfElements,
+                         int NumberOfFillinsExpected )
 {
 ElementPtr  pElement;
 
@@ -430,10 +418,7 @@ ElementPtr  pElement;
  *  spNO_MEMORY
  */
 
-ElementPtr
-spcGetFillin( Matrix )
-
-MatrixPtr Matrix;
+ElementPtr spcGetFillin( MatrixPtr  Matrix )
 {
 struct FillinListNodeStruct *pListNode;
 ElementPtr  pFillins;
@@ -507,11 +492,8 @@ ElementPtr  pFillins;
  *  spNO_MEMORY
  */
 
-static
-RecordAllocation( Matrix, AllocatedPtr )
-
-MatrixPtr Matrix;
-char  *AllocatedPtr;
+static int
+RecordAllocation( MatrixPtr Matrix, char *AllocatedPtr )
 {
 /* Begin `RecordAllocation'. */
 /*
@@ -564,10 +546,8 @@ char  *AllocatedPtr;
  *  spNO_MEMORY
  */
 
-static
-AllocateBlockOfAllocationList( Matrix )
-
-MatrixPtr Matrix;
+static int
+AllocateBlockOfAllocationList( MatrixPtr Matrix )
 {
 register  int  I;
 register  AllocationListPtr  ListPtr;
