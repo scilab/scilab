@@ -7,6 +7,7 @@
 #include "MALLOC.h" /* MALLOC */
 #include "machine.h"
 #include "systemc.h"
+#include "tmpdir.h"
 /*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 extern BOOL IsAFile(char *chainefichier);
@@ -79,8 +80,13 @@ BOOL CallWindowsShell(char *command,BOOL WaitInput)
 	siStartInfo.hStdError = GetStdHandle(STD_ERROR_HANDLE);
 
 	GetEnvironmentVariable("ComSpec", shellCmd, _MAX_PATH);
-	TMPDir=getenv("TMPDIR");
+	TMPDir=getTMPDIR();
 	sprintf(FileTMPDir,"%s\\DOS.OK",TMPDir);
+	if (TMPDir) 
+	{
+		FREE(TMPDir);
+		TMPDir=NULL;
+	}
 
 	CmdLine=(char*)MALLOC( (strlen(shellCmd)+strlen(command)+strlen(FileTMPDir)+strlen("%s /a /c %s && echo DOS>%s")+1)*sizeof(char) );
 	sprintf(CmdLine,"%s /a /c %s && echo DOS>%s",shellCmd,command,FileTMPDir);

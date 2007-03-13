@@ -12,7 +12,8 @@ src/c/createdir.c
 
 IO_FORTRAN_SOURCES = src/fortran/v2unit.f \
 src/fortran/newsave.f \
-src/fortran/v2cunit.f
+src/fortran/v2cunit.f \
+src/fortran/writebuf.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_execstr.c \
 sci_gateway/c/sci_read4b.c \

@@ -5,7 +5,6 @@
 #include <stdio.h> 
 #include <string.h> 
 
-
 #include "MALLOC.h" /* MALLOC */
 #include "stack-c.h"
 #include "setenvc.h"

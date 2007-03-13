@@ -5,6 +5,7 @@
 #include "gw_wintools.h"
 #include "MALLOC.h" /* MALLOC */
 #include "sciprint.h"
+#include "tmpdir.h"
 /*-----------------------------------------------------------------------------------*/
 #define BUFSIZE 4096
 /*-----------------------------------------------------------------------------------*/
@@ -109,8 +110,13 @@ int C2F(sci_dos) _PARAMS((char *fname,unsigned long l))
 		char *TMPDir=NULL;
 		char FileTMPDir[MAX_PATH];
 
-		TMPDir=getenv("TMPDIR");
+		TMPDir=getTMPDIR();
 		sprintf(FileTMPDir,"%s\\DOS.OK",TMPDir);
+		if (TMPDir)
+		{
+			FREE(TMPDir);
+			TMPDir=NULL;
+		}
 
 		if (IsAFile(FileTMPDir))
 		{
@@ -314,8 +320,13 @@ static int spawncommand(char *command,BOOL DetachProcess)
 		char *TMPDir=NULL;
 		char FileTMPDir[MAX_PATH];
 
-		TMPDir=getenv("TMPDIR");
+		TMPDir=getTMPDIR();
 		sprintf(FileTMPDir,"%s\\DOS.OK",TMPDir);
+		if (TMPDir)
+		{
+			FREE(TMPDir);
+			TMPDir=NULL;
+		}
 		if (IsAFile(FileTMPDir)) DeleteFile(FileTMPDir);
 
 		CmdLine=(char*)MALLOC( (strlen(shellCmd)+strlen(command)+strlen("%s /A /C %s && echo DOS>%s")+strlen(FileTMPDir)+1)*sizeof(char) );

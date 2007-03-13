@@ -124,7 +124,7 @@ c     acces sequentiel
                if(fin.gt.0) then
                   buf=' '
                   nv=lct(5)/18
-                  write(chaine,'(''('',i2,''(1x,1pd17.10))'')') nv
+                  call writebufw(chaine,nv)
                   do 64 k1=1,n,nv
                      k2=min(n,k1+nv-1)
                      write(buf,chaine,err=139) 

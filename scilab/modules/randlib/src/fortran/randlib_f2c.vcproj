@@ -311,10 +311,6 @@
 				RelativePath=".\spofa.c"
 				>
 			</File>
-			<File
-				RelativePath=".\strord.c"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"

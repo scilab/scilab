@@ -19,7 +19,7 @@ c
       sadr(l)=(l/2)+1
 c     
       if (ddt .eq. 4) then
-         write(buf(1:4),'(i4)') fin
+         call writebufio(buf,fin)
          call basout(io,wte,' matio '//buf(1:4))
       endif
 c     

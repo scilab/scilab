@@ -9,6 +9,7 @@
 #include "files.h"
 #include "gw_fileio.h"
 #include "intreadxls.h"
+#include "tmpdir.h"
 
 /*---------------------------------------------------------------
   Authors Pierrick Mode, Serge Steer INRIA 2005, Copyright INRIA
@@ -110,6 +111,7 @@ int C2F(intopenxls)(char *fname, long lfn)
   int nsheets;
   char IN[256],TMP[256];
   char sep[2];
+  char *TMPDIR=NULL;
 #ifdef _MSC_VER
   sep[0]='\\';
 #else
@@ -124,7 +126,9 @@ int C2F(intopenxls)(char *fname, long lfn)
   GetRhsVar(1,"c",&m1,&n1,&l1);
   C2F(cluni0)(cstk(l1), IN, &ns,(long int) (m1*n1),256L);
 
-  strcpy(TMP,getenv("TMPDIR"));
+  TMPDIR=getTMPDIR();
+  strcpy(TMP,TMPDIR);
+  if (TMPDIR){FREE(TMPDIR);TMPDIR=NULL;}
   
   strcat(TMP,sep);
   strcat(TMP,xls_basename(IN));

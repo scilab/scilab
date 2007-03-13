@@ -106,3 +106,12 @@ void C2F(tmpdirc)(void)
   RemoveDir(tmp_dir2);
 }
 /*-----------------------------------------------------------------------------------*/
+char *getTMPDIR(void)
+{
+	char *TMPDIR=NULL;
+	TMPDIR=(char*)MALLOC(sizeof(char)*(strlen(tmp_dir)+1));
+	strcpy(TMPDIR,tmp_dir);
+
+	return TMPDIR;
+}
+/*-----------------------------------------------------------------------------------*/
