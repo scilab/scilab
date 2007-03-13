@@ -124,7 +124,7 @@ static void sci_sigint_addinter(int n)
  * Unused function just here to force linker to load some 
  * functions 
  ***********************************************************/
-
+#ifndef _MSC_VER
 extern int   Blas_contents __PARAMS((int));
 extern int   Lapack_contents __PARAMS((int));
 extern int   Calelm_contents __PARAMS((int));
@@ -134,7 +134,6 @@ extern int   System_contents __PARAMS((int));
 extern int   Intersci_contents __PARAMS((int));
 extern int   Sparse_contents __PARAMS((int));
 
-#ifndef _MSC_VER
 int ForceLink(void)
 {
 	/*  
