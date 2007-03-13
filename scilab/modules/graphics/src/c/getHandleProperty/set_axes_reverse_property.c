@@ -80,6 +80,5 @@ int set_axes_reverse_property( sciPointObj * pobj, int stackPointer, int valueTy
     sciprint("Number of the second argument must be taken between 1 to 3.\n") ;
     return SET_PROPERTY_ERROR ;
   }
-  return SET_PROPERTY_ERROR ;
 }
 /*------------------------------------------------------------------------*/
