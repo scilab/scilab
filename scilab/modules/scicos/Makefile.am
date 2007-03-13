@@ -303,8 +303,6 @@ demos/live.dat \
 demos/fibo.cosf \
 demos/Controller.cosf
 
-
-
 MACROSDIRSEXT= macros/scicos_blocks \
 macros/scicos_blocks/Sources \
 macros/scicos_blocks/Events \

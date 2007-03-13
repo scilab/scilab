@@ -690,8 +690,8 @@ maintainer-clean-generic:
 	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
 clean: clean-am
 
-clean-am: clean-generic clean-libtool clean-pkglibLTLIBRARIES \
-	mostlyclean-am
+clean-am: clean-generic clean-libtool clean-local \
+	clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
@@ -759,12 +759,12 @@ uninstall-am: uninstall-libscisymbolic_la_etcDATA \
 .MAKE: install-am install-strip
 
 .PHONY: CTAGS GTAGS all all-am check check-am clean clean-generic \
-	clean-libtool clean-pkglibLTLIBRARIES ctags distclean \
-	distclean-compile distclean-generic distclean-libtool \
-	distclean-tags distdir dvi dvi-am html html-am info info-am \
-	install install-am install-data install-data-am \
-	install-data-local install-dvi install-dvi-am install-exec \
-	install-exec-am install-html install-html-am \
+	clean-libtool clean-local clean-pkglibLTLIBRARIES ctags \
+	distclean distclean-compile distclean-generic \
+	distclean-libtool distclean-tags distdir dvi dvi-am html \
+	html-am info info-am install install-am install-data \
+	install-data-am install-data-local install-dvi install-dvi-am \
+	install-exec install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
 	install-libscisymbolic_la_etcDATA \
 	install-libscisymbolic_la_includeHEADERS \
@@ -822,7 +822,7 @@ macrossly:
 install-html-local:
 	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
 	@for dir in $(DOCDIRS) ; do \
-	 if test -d $(DOCDIRS); then \
+	 if test -d $$dir; then \
 	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
 		if ls -lLd $(srcdir)/$$dir/$(DOCMASK) >/dev/null 2>&1; then \
 		  for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
@@ -834,7 +834,7 @@ install-html-local:
 	done
 # If the user wants the help sources to be installed
 @INSTALL_HELP_XML_TRUE@	@for dir in $(DOCDIRS) ; do \
-@INSTALL_HELP_XML_TRUE@	 if test -d $(DOCDIRS); then \
+@INSTALL_HELP_XML_TRUE@	 if test -d $$dir; then \
 @INSTALL_HELP_XML_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
 @INSTALL_HELP_XML_TRUE@		if ls -lLd $(srcdir)/$$dir/$(DOCMASKXML) >/dev/null 2>&1; then \
 @INSTALL_HELP_XML_TRUE@		  for file in $(srcdir)/$$dir/$(DOCMASKXML) ; do \
@@ -857,11 +857,26 @@ install-data-local:
 		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/lib 2>/dev/null`; do \
 		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
-		  done \
+		  done; \
 		fi; \
 	done
 
-macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(MACROS)
+# Clean macros and help (generated automatically by Scilab)
+clean-local:
+# Removes macros (*.bin generated from .sci)
+# and then removes documentation (*.htm generated from .xml) 
+	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
+		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \
+		rm -f $(srcdir)/$$dir/$(MACROBINMASK); \
+	done; \
+	for dir in $(DOCDIRS) ; do \
+		 if test -d $$dir; then \
+			echo "rm -f $(srcdir)/$$dir/$(DOCMASK)"; \
+			rm -f $(srcdir)/$$dir/$(DOCMASK); \
+		fi; \
+	done
+
+macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODIRS)/$(MACROMASK)
 	-@( \
 	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
 	$(top_builddir)/bin/scilab -nb -nwni -f $(abs_srcdir)/macros/buildmacros.sce 	)

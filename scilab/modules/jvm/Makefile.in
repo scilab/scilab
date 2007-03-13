@@ -603,10 +603,11 @@ maintainer-clean-generic:
 	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
 @JAVA_FALSE@install-data-local:
 @JAVA_FALSE@install-html-local:
+@JAVA_FALSE@clean-local:
 clean: clean-am
 
-clean-am: clean-generic clean-libtool clean-pkglibLTLIBRARIES \
-	mostlyclean-am
+clean-am: clean-generic clean-libtool clean-local \
+	clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
@@ -669,12 +670,12 @@ uninstall-am: uninstall-libscijvm_la_etcDATA \
 .MAKE: install-am install-strip
 
 .PHONY: CTAGS GTAGS all all-am check check-am clean clean-generic \
-	clean-libtool clean-pkglibLTLIBRARIES ctags distclean \
-	distclean-compile distclean-generic distclean-libtool \
-	distclean-tags distdir dvi dvi-am html html-am info info-am \
-	install install-am install-data install-data-am \
-	install-data-local install-dvi install-dvi-am install-exec \
-	install-exec-am install-html install-html-am \
+	clean-libtool clean-local clean-pkglibLTLIBRARIES ctags \
+	distclean distclean-compile distclean-generic \
+	distclean-libtool distclean-tags distdir dvi dvi-am html \
+	html-am info info-am install install-am install-data \
+	install-data-am install-data-local install-dvi install-dvi-am \
+	install-exec install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
 	install-libscijvm_la_etcDATA install-libscijvm_la_rootDATA \
 	install-man install-pdf install-pdf-am \
@@ -726,7 +727,7 @@ uninstall-am: uninstall-libscijvm_la_etcDATA \
 @JAVA_TRUE@install-html-local:
 @JAVA_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
 @JAVA_TRUE@	@for dir in $(DOCDIRS) ; do \
-@JAVA_TRUE@	 if test -d $(DOCDIRS); then \
+@JAVA_TRUE@	 if test -d $$dir; then \
 @JAVA_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
 @JAVA_TRUE@		if ls -lLd $(srcdir)/$$dir/$(DOCMASK) >/dev/null 2>&1; then \
 @JAVA_TRUE@		  for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
@@ -738,7 +739,7 @@ uninstall-am: uninstall-libscijvm_la_etcDATA \
 @JAVA_TRUE@	done
 # If the user wants the help sources to be installed
 @INSTALL_HELP_XML_TRUE@@JAVA_TRUE@	@for dir in $(DOCDIRS) ; do \
-@INSTALL_HELP_XML_TRUE@@JAVA_TRUE@	 if test -d $(DOCDIRS); then \
+@INSTALL_HELP_XML_TRUE@@JAVA_TRUE@	 if test -d $$dir; then \
 @INSTALL_HELP_XML_TRUE@@JAVA_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
 @INSTALL_HELP_XML_TRUE@@JAVA_TRUE@		if ls -lLd $(srcdir)/$$dir/$(DOCMASKXML) >/dev/null 2>&1; then \
 @INSTALL_HELP_XML_TRUE@@JAVA_TRUE@		  for file in $(srcdir)/$$dir/$(DOCMASKXML) ; do \
@@ -761,11 +762,26 @@ uninstall-am: uninstall-libscijvm_la_etcDATA \
 @JAVA_TRUE@		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/lib 2>/dev/null`; do \
 @JAVA_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 @JAVA_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
-@JAVA_TRUE@		  done \
+@JAVA_TRUE@		  done; \
 @JAVA_TRUE@		fi; \
 @JAVA_TRUE@	done
 
-@JAVA_TRUE@macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(MACROS)
+# Clean macros and help (generated automatically by Scilab)
+@JAVA_TRUE@clean-local:
+# Removes macros (*.bin generated from .sci)
+# and then removes documentation (*.htm generated from .xml) 
+@JAVA_TRUE@	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
+@JAVA_TRUE@		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \
+@JAVA_TRUE@		rm -f $(srcdir)/$$dir/$(MACROBINMASK); \
+@JAVA_TRUE@	done; \
+@JAVA_TRUE@	for dir in $(DOCDIRS) ; do \
+@JAVA_TRUE@		 if test -d $$dir; then \
+@JAVA_TRUE@			echo "rm -f $(srcdir)/$$dir/$(DOCMASK)"; \
+@JAVA_TRUE@			rm -f $(srcdir)/$$dir/$(DOCMASK); \
+@JAVA_TRUE@		fi; \
+@JAVA_TRUE@	done
+
+@JAVA_TRUE@macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODIRS)/$(MACROMASK)
 @JAVA_TRUE@	-@( \
 @JAVA_TRUE@	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
 @JAVA_TRUE@	$(top_builddir)/bin/scilab -nb -nwni -f $(abs_srcdir)/macros/buildmacros.sce 	)
