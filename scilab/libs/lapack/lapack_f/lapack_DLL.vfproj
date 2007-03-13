@@ -8,33 +8,33 @@
 				<Tool Name="VFPreBuildEventTool" CommandLine="cd $(IntDir) &gt;nul
 del *.def &gt;nul
 cd.. &gt;nul"/>
-				<Tool Name="VFPostBuildEventTool"/>
 				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/dll " SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizeBlended" F77RuntimeCompatibility="true" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" Traceback="true" RuntimeLibrary="rtMultiThreadedDebugDLL" CompileOnly="true"/>
+				<Tool Name="VFPostBuildEventTool"/>
 				<Tool Name="VFCustomBuildTool"/>
 				<Tool Name="VFLinkerTool" OutputFile="../../../bin/lapack.dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="../../../bin/lapack.def" GenerateDebugInformation="true" ProgramDatabaseFile="$(OUTDIR)/lapack.pdb" SubSystem="subSystemWindows" ImportLibrary="../../../bin/lapack.lib" LinkDLL="true"/>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
 				<Tool Name="VFPreLinkEventTool" CommandLine="cd $(IntDir) &gt;nul
 for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n lapack.dll %%f &gt;nul
 copy *.def lapack1.def &gt;nul
 copy  ..\lapack.def+lapack1.def ..\..\..\..\bin\lapack.def &gt;nul
 del *.def &gt;nul
-cd.. &gt;nul" Description="Build Lapack.def file"/>
-				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration>
+cd.. &gt;nul" Description="Build Lapack.def file"/></Configuration>
 		<Configuration Name="Release|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFPreBuildEventTool" CommandLine="cd $(IntDir) &gt;nul
 del *.def &gt;nul
 cd.. &gt;nul"/>
-				<Tool Name="VFPostBuildEventTool"/>
 				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/dll " SuppressStartupBanner="true" OptimizeForProcessor="procOptimizePentiumProThruIII" UseProcessorExtensions="codeForStreamingSIMD" RequireProcessorExtensions="codeExclusivelyStreamingSIMD" F77RuntimeCompatibility="true" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDLL" CompileOnly="true"/>
+				<Tool Name="VFPostBuildEventTool"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFLinkerTool" MustRebuild="true" OutputFile="../../../bin/lapack.dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="../../../bin/lapack.def" SubSystem="subSystemWindows" SupportUnloadOfDelayLoadedDLL="true" ImportLibrary="../../../bin/lapack.lib" LinkDLL="true"/>
+				<Tool Name="VFLinkerTool" OutputFile="../../../bin/lapack.dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="../../../bin/lapack.def" SubSystem="subSystemWindows" SupportUnloadOfDelayLoadedDLL="true" ImportLibrary="../../../bin/lapack.lib" LinkDLL="true"/>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
 				<Tool Name="VFPreLinkEventTool" CommandLine="cd $(IntDir) &gt;nul
 for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n lapack.dll %%f &gt;nul
 copy *.def lapack1.def &gt;nul
 copy  ..\lapack.def+lapack1.def ..\..\..\..\bin\lapack.def &gt;nul
 del *.def &gt;nul
-cd.. &gt;nul" Description="Build Lapack.def file"/>
-				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration></Configurations>
+cd.. &gt;nul" Description="Build Lapack.def file"/></Configuration></Configurations>
 	<Files>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath="..\dbdsqr.f"/>
