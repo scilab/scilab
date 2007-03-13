@@ -6,6 +6,7 @@
 #define __CREATEDIR_H__
 /*-----------------------------------------------------------------------------------*/ 
 #include "machine.h"
+#include "string.h"
 /*-----------------------------------------------------------------------------------*/ 
 BOOL CreateDir(const char *path);
 BOOL ExistDir(char *path);
