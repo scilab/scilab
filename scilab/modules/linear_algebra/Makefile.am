@@ -63,7 +63,9 @@ src/fortran/intdgetri.f \
 src/fortran/intdgebal.f \
 src/fortran/intzschur.f \
 src/fortran/intzgeqpf3.f \
-src/fortran/writebuf.f
+src/fortran/writebuf.f \
+src/fortran/issymmetric.f
+
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_backslash.c \
 sci_gateway/c/sci_hess.c \
