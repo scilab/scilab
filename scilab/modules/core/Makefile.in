@@ -125,18 +125,17 @@ am__libscicore_la_SOURCES_DIST = src/c/history.c src/c/inffic.c \
 	src/fortran/scilines.f src/fortran/misops.f \
 	src/fortran/iseye.f src/fortran/chkvar.f \
 	src/fortran/setippty.f src/fortran/compil.f \
-	src/fortran/funnam.f src/fortran/issymmetric.f \
-	src/fortran/isnum.f src/fortran/cmdstr.f src/fortran/logops.f \
-	src/fortran/atome.f src/fortran/hndlops.f src/fortran/cmplxt.f \
-	src/fortran/skpins.f src/fortran/folhp.f src/fortran/cvname.f \
-	src/fortran/funs.f src/fortran/fact.f src/fortran/inibrk.f \
-	src/fortran/typ2cod.f src/fortran/prompt.f \
-	src/fortran/intstr.f src/fortran/createref.f \
-	src/fortran/btof.f src/fortran/matzs.f src/fortran/getnum.f \
-	src/fortran/btofm.f src/fortran/ctrlc.f src/fortran/getsym.f \
-	src/fortran/findequal.f src/fortran/stackg.f \
-	src/fortran/find.f src/fortran/israt.f src/fortran/stack0.f \
-	src/fortran/setlnb.f src/fortran/mrknmd.f \
+	src/fortran/funnam.f src/fortran/isnum.f src/fortran/cmdstr.f \
+	src/fortran/logops.f src/fortran/atome.f src/fortran/hndlops.f \
+	src/fortran/cmplxt.f src/fortran/skpins.f src/fortran/folhp.f \
+	src/fortran/cvname.f src/fortran/funs.f src/fortran/fact.f \
+	src/fortran/inibrk.f src/fortran/typ2cod.f \
+	src/fortran/prompt.f src/fortran/intstr.f \
+	src/fortran/createref.f src/fortran/btof.f src/fortran/matzs.f \
+	src/fortran/getnum.f src/fortran/btofm.f src/fortran/ctrlc.f \
+	src/fortran/getsym.f src/fortran/findequal.f \
+	src/fortran/stackg.f src/fortran/find.f src/fortran/israt.f \
+	src/fortran/stack0.f src/fortran/setlnb.f src/fortran/mrknmd.f \
 	src/fortran/stackgl.f src/fortran/allops.f src/fortran/print.f \
 	src/fortran/mname.f src/fortran/prntid.f src/fortran/comand.f \
 	src/fortran/ref2val.f src/fortran/namstr.f src/fortran/stack.f \
@@ -278,24 +277,24 @@ am__objects_6 = algebre.lo clunit.lo complexify.lo allowptr.lo \
 	dldsp.lo bcol.lo msgs.lo getlin.lo isany.lo hmcreate.lo \
 	nextj.lo functionsforbasout.lo setgetmode.lo errmsgf.lo \
 	showstack.lo scilines.lo misops.lo iseye.lo chkvar.lo \
-	setippty.lo compil.lo funnam.lo issymmetric.lo isnum.lo \
-	cmdstr.lo logops.lo atome.lo hndlops.lo cmplxt.lo skpins.lo \
-	folhp.lo cvname.lo funs.lo fact.lo inibrk.lo typ2cod.lo \
-	prompt.lo intstr.lo createref.lo btof.lo matzs.lo getnum.lo \
-	btofm.lo ctrlc.lo getsym.lo findequal.lo stackg.lo find.lo \
-	israt.lo stack0.lo setlnb.lo mrknmd.lo stackgl.lo allops.lo \
-	print.lo mname.lo prntid.lo comand.lo ref2val.lo namstr.lo \
-	stack.lo isbrk.lo majmin.lo dmdspf.lo xerbla.lo bashos.lo \
-	dtosci.lo bexec.lo varfunptr.lo getfun.lo savlod.lo error.lo \
-	cvdm.lo tradsl.lo mkindx.lo whatln.lo errmgr.lo defmat.lo \
-	mklist.lo dmdsp.lo sigbas.lo indxg.lo matz.lo istrue.lo \
-	terme.lo inisci.lo expr.lo ptover.lo Ex-fort.lo getfunction.lo \
-	stackp.lo getpro.lo dbasin.lo macro.lo lspdsp.lo extlarg.lo \
-	getstr.lo cvwm.lo storeglobal.lo lst2vars.lo fmttyp.lo \
-	basnms.lo matc.lo ptrback.lo getch.lo ftob.lo seteol.lo \
-	basin.lo clause.lo compcl.lo termf.lo expsum.lo eqid.lo \
-	copyvar.lo putid.lo itosci.lo formatnumber.lo wmdsp.lo \
-	$(am__objects_4) $(am__objects_5)
+	setippty.lo compil.lo funnam.lo isnum.lo cmdstr.lo logops.lo \
+	atome.lo hndlops.lo cmplxt.lo skpins.lo folhp.lo cvname.lo \
+	funs.lo fact.lo inibrk.lo typ2cod.lo prompt.lo intstr.lo \
+	createref.lo btof.lo matzs.lo getnum.lo btofm.lo ctrlc.lo \
+	getsym.lo findequal.lo stackg.lo find.lo israt.lo stack0.lo \
+	setlnb.lo mrknmd.lo stackgl.lo allops.lo print.lo mname.lo \
+	prntid.lo comand.lo ref2val.lo namstr.lo stack.lo isbrk.lo \
+	majmin.lo dmdspf.lo xerbla.lo bashos.lo dtosci.lo bexec.lo \
+	varfunptr.lo getfun.lo savlod.lo error.lo cvdm.lo tradsl.lo \
+	mkindx.lo whatln.lo errmgr.lo defmat.lo mklist.lo dmdsp.lo \
+	sigbas.lo indxg.lo matz.lo istrue.lo terme.lo inisci.lo \
+	expr.lo ptover.lo Ex-fort.lo getfunction.lo stackp.lo \
+	getpro.lo dbasin.lo macro.lo lspdsp.lo extlarg.lo getstr.lo \
+	cvwm.lo storeglobal.lo lst2vars.lo fmttyp.lo basnms.lo matc.lo \
+	ptrback.lo getch.lo ftob.lo seteol.lo basin.lo clause.lo \
+	compcl.lo termf.lo expsum.lo eqid.lo copyvar.lo putid.lo \
+	itosci.lo formatnumber.lo wmdsp.lo $(am__objects_4) \
+	$(am__objects_5)
 am__objects_7 = libscicore_la-sci_savehistory.lo \
 	libscicore_la-sci_stacksize.lo libscicore_la-sci_resume.lo \
 	libscicore_la-sci_mtlb_mode.lo libscicore_la-intgetmd5.lo \
@@ -561,18 +560,17 @@ CORE_FORTRAN_SOURCES = src/fortran/algebre.f src/fortran/clunit.f \
 	src/fortran/scilines.f src/fortran/misops.f \
 	src/fortran/iseye.f src/fortran/chkvar.f \
 	src/fortran/setippty.f src/fortran/compil.f \
-	src/fortran/funnam.f src/fortran/issymmetric.f \
-	src/fortran/isnum.f src/fortran/cmdstr.f src/fortran/logops.f \
-	src/fortran/atome.f src/fortran/hndlops.f src/fortran/cmplxt.f \
-	src/fortran/skpins.f src/fortran/folhp.f src/fortran/cvname.f \
-	src/fortran/funs.f src/fortran/fact.f src/fortran/inibrk.f \
-	src/fortran/typ2cod.f src/fortran/prompt.f \
-	src/fortran/intstr.f src/fortran/createref.f \
-	src/fortran/btof.f src/fortran/matzs.f src/fortran/getnum.f \
-	src/fortran/btofm.f src/fortran/ctrlc.f src/fortran/getsym.f \
-	src/fortran/findequal.f src/fortran/stackg.f \
-	src/fortran/find.f src/fortran/israt.f src/fortran/stack0.f \
-	src/fortran/setlnb.f src/fortran/mrknmd.f \
+	src/fortran/funnam.f src/fortran/isnum.f src/fortran/cmdstr.f \
+	src/fortran/logops.f src/fortran/atome.f src/fortran/hndlops.f \
+	src/fortran/cmplxt.f src/fortran/skpins.f src/fortran/folhp.f \
+	src/fortran/cvname.f src/fortran/funs.f src/fortran/fact.f \
+	src/fortran/inibrk.f src/fortran/typ2cod.f \
+	src/fortran/prompt.f src/fortran/intstr.f \
+	src/fortran/createref.f src/fortran/btof.f src/fortran/matzs.f \
+	src/fortran/getnum.f src/fortran/btofm.f src/fortran/ctrlc.f \
+	src/fortran/getsym.f src/fortran/findequal.f \
+	src/fortran/stackg.f src/fortran/find.f src/fortran/israt.f \
+	src/fortran/stack0.f src/fortran/setlnb.f src/fortran/mrknmd.f \
 	src/fortran/stackgl.f src/fortran/allops.f src/fortran/print.f \
 	src/fortran/mname.f src/fortran/prntid.f src/fortran/comand.f \
 	src/fortran/ref2val.f src/fortran/namstr.f src/fortran/stack.f \
@@ -2131,9 +2129,6 @@ compil.lo: src/fortran/compil.f
 
 funnam.lo: src/fortran/funnam.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o funnam.lo `test -f 'src/fortran/funnam.f' || echo '$(srcdir)/'`src/fortran/funnam.f
-
-issymmetric.lo: src/fortran/issymmetric.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o issymmetric.lo `test -f 'src/fortran/issymmetric.f' || echo '$(srcdir)/'`src/fortran/issymmetric.f
 
 isnum.lo: src/fortran/isnum.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o isnum.lo `test -f 'src/fortran/isnum.f' || echo '$(srcdir)/'`src/fortran/isnum.f
