@@ -3,6 +3,11 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include "gw_differential_equations4.h"
+#ifdef _MSC_VER
+#ifndef _DEBUG
+#include "ExceptionMessage.h"
+#endif
+#endif
 /*-----------------------------------------------------------------------------------*/
 static DifferentialEquations4Table Tab[]=
 {

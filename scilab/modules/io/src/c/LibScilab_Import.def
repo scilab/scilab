@@ -24,3 +24,4 @@ createvarfromptr_
 iop_
 GetFile
 getTMPDIR
+ExceptionMessage
