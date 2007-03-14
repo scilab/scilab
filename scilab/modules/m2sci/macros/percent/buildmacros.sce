@@ -1,5 +1,5 @@
 //------------------------------------
 // Allan CORNET INRIA 2005
 //------------------------------------
-genlib('mtlblib','SCI/modules/m2sci/macros/mtlb');
+genlib('m2scipercentlib','SCI/modules/m2sci/macros/percent');
 //------------------------------------
