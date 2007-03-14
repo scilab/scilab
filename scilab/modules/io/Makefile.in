@@ -90,7 +90,7 @@ libsciio_la_DEPENDENCIES = libdummy-io.la \
 am__objects_1 = libsciio_la-getpidc.lo libsciio_la-setenvc.lo \
 	libsciio_la-systemc.lo libsciio_la-getenvc.lo \
 	libsciio_la-createdir.lo
-am__objects_2 = v2unit.lo newsave.lo v2cunit.lo
+am__objects_2 = v2unit.lo newsave.lo v2cunit.lo writebuf.lo
 am__objects_3 = libsciio_la-sci_execstr.lo libsciio_la-sci_read4b.lo \
 	libsciio_la-sci_deff.lo libsciio_la-sci_lib.lo \
 	libsciio_la-sci_getio.lo libsciio_la-sci_readb.lo \
@@ -302,7 +302,8 @@ src/c/createdir.c
 
 IO_FORTRAN_SOURCES = src/fortran/v2unit.f \
 src/fortran/newsave.f \
-src/fortran/v2cunit.f
+src/fortran/v2cunit.f \
+src/fortran/writebuf.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_execstr.c \
 sci_gateway/c/sci_read4b.c \
@@ -868,6 +869,9 @@ newsave.lo: src/fortran/newsave.f
 
 v2cunit.lo: src/fortran/v2cunit.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o v2cunit.lo `test -f 'src/fortran/v2cunit.f' || echo '$(srcdir)/'`src/fortran/v2cunit.f
+
+writebuf.lo: src/fortran/writebuf.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o writebuf.lo `test -f 'src/fortran/writebuf.f' || echo '$(srcdir)/'`src/fortran/writebuf.f
 
 oldloadsave.lo: sci_gateway/fortran/oldloadsave.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o oldloadsave.lo `test -f 'sci_gateway/fortran/oldloadsave.f' || echo '$(srcdir)/'`sci_gateway/fortran/oldloadsave.f
