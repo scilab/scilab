@@ -4,6 +4,7 @@ c     Copyright INRIA/ENPC
       integer    lch
       parameter (lch=1024)
       character chaine*(lch)
+      character chainebis*(lch)
 c     
       integer top2,id(nlgh),h(nsiz)
       integer ftyp,fmttyp,mode(2)
@@ -127,8 +128,9 @@ c     acces sequentiel
                   call writebufw(chaine,nv)
                   do 64 k1=1,n,nv
                      k2=min(n,k1+nv-1)
-                     write(buf,chaine,err=139) 
+                     write(chainebis,chaine,err=139) 
      &                    (stk(li+(j-1)*m),j=k1,k2)
+                     call writeiotobuf(chainebis)
                      lc=18*(k2-k1+1)
                      call basout(io,wte,buf(1:lc))
  64               continue
