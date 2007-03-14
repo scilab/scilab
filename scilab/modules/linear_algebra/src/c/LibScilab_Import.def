@@ -30,6 +30,7 @@ intersci_
 createvar_
 checklhs_
 checkrhs_
+ExceptionMessage
 ;
 ;core_f
 ;
