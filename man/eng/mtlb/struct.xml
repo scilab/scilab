@@ -9,7 +9,7 @@
 
   <DATE>October 2006</DATE>
 
-  <SHORT_DESCRIPTION name="cell">create a struct</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="struct">create a struct</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>st=struct(field1,value1,field2,value2...)</CALLING_SEQUENCE_ITEM>
