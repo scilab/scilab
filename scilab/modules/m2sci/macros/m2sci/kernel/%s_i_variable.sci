@@ -7,6 +7,6 @@ elseif field=="property" then
 elseif field=="contents" then
   var.infer.contents=cste
 else
-  error("Not yet implemented...")
+  error(gettext("errors","m2sci_error_2"))
 end
 endfunction

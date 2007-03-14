@@ -7,7 +7,7 @@ function [tree]=sci_lookfor(tree)
 // V.C.
 
 if rhs==2 then
-  no_equiv("-all option ignored")
+  no_equiv(gettext("messages","m2sci_message_114"))
   tree.rhs(2)=null()
 end
 

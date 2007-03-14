@@ -16,9 +16,9 @@ end
 
 for k=1:rhs
   if typeof(tree.rhs(k))=="cste" & tree.rhs(k).value=="-regexp" then
-    set_infos(["Option -regexp not yet handled: will be ignored"],2);
+    set_infos(gettext("messages","m2sci_message_110"),2);
   elseif typeof(tree.rhs(k))=="cste" & tree.rhs(k).value=="-append" then
-    set_infos(["Option -regexp not yet handled: will be ignored"],2);
+    set_infos(gettext("messages","m2sci_message_111"),2);
   end
 end
 

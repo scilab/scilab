@@ -23,7 +23,7 @@ if typeof(origin)=="cste" then
   case 1 then
     flag="end"
   else
-    set_infos("Not enough information on "+expression2code(origin)+" to set the proper flag",1)
+    set_infos(msprintf(gettext("messages","m2sci_message_104"),expression2code(origin)),1)
     flag=Funcall("fseek_origin",1,list(origin),list())
   end
 else
@@ -34,7 +34,7 @@ else
       end
     end
   else
-    set_infos("Not enough information on "+expression2code(origin)+" to set the proper flag",1)
+    set_infos(msprintf(gettext("messages","m2sci_message_104"),expression2code(origin)),1)
     flag=Funcall("fseek_origin",1,list(origin),list())
   end
 end

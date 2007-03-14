@@ -79,7 +79,7 @@ if rhs==1 then
 	if is_empty(from) then // Clear element: A(p)=[]
 	  // Nothing done
 	else // Change type of variable
-	  error("Not yet implemented");
+	  error(gettext("errors","m2sci_error_2"))
 	end
       end
     end

@@ -56,12 +56,12 @@ m2sci_infos=[%f %f]
 
 margin=part(" ",ones(1,3*(Reclevel-1)))
 margin="  "
-rec="OFF"
-dble="NO"
-pretty="NO"
-if prettyprint then pretty="YES";end
-if Recmode then rec="ON";end
-if only_double then dble="YES";end
+rec=gettext("messages","m2sci_message_3");
+dble=gettext("messages","m2sci_message_1");
+pretty=gettext("messages","m2sci_message_1");
+if prettyprint then pretty=gettext("messages","m2sci_message_2");end
+if Recmode then rec=gettext("messages","m2sci_message_4");end
+if only_double then dble=gettext("messages","m2sci_message_2");end
 
 res=[]
 
@@ -100,43 +100,43 @@ fnam=part(base_name,k($)+1:ke) // File name without extension
 
 // logfile initialisation
 if exists("logfile")==0 then
-  [tempfd1,ierr1]=file('open',pathconvert(TMPDIR)+"logfile.dat","old")
+  [tempfd1,ierr1]=file('open',pathconvert(TMPDIR)+gettext("messages","m2sci_message_5"),"old")
   if ierr1==0 then
-    load(pathconvert(TMPDIR)+"logfile.dat")
+    load(pathconvert(TMPDIR)+gettext("messages","m2sci_message_5"))
     file('close',tempfd1)
     file('close',logfile)
-    mdelete(pathconvert(TMPDIR)+"logfile.dat")
+    mdelete(pathconvert(TMPDIR)+gettext("messages","m2sci_message_5"))
   end
-  logfile=file('open',res_path+"m2sci_"+fnam+'.log','unknown')
-  save(pathconvert(TMPDIR)+"logfile.dat",logfile)
+  logfile=file('open',res_path+"m2sci_"+fnam+".log","unknown")
+  save(pathconvert(TMPDIR)+gettext("messages","m2sci_message_5"),logfile)
 end
 
 // Output beginning message
-mss=["****** Beginning of mfile2sci() session ******";
-    "File to convert: "+fil;
-    "Result file path: "+res_path;
-    "Recursive mode: "+rec;
-    "Only double values used in M-file: "+dble;
-    "Verbose mode: "+string(verbose_mode);
-    "Generate formated code: "+pretty]
+mss=[gettext("messages","m2sci_message_6");
+    gettext("messages","m2sci_message_7")+" "+fil;
+    gettext("messages","m2sci_message_8")+" "+res_path;
+    gettext("messages","m2sci_message_9")+" "+rec;
+    gettext("messages","m2sci_message_10")+" "+dble;
+    gettext("messages","m2sci_message_11")+" "+string(verbose_mode);
+    gettext("messages","m2sci_message_12")+" "+pretty]
 m2sci_info(mss,-1);
 
 // Read in the file as text
-m2sci_info("M-file reading...",-1);
+m2sci_info(gettext("messages","m2sci_message_13"),-1);
 txt=mgetl(fil);
-m2sci_info("M-file reading: Done",-1);
+m2sci_info(gettext("messages","m2sci_message_14"),-1);
 
 //Replace TAB by SPACE
 txt=strsubst(txt,code2str(-40),"")
 
 if txt==[] then
-  m2sci_infos("File "+fil+"is an empty file ! Nothing done...",-1);
+  m2sci_infos(msprintf(gettext("messages","m2sci_message_15"),fil),-1);
   return
 end
 tmptxt=txt
 
 // Make minor changes on syntax
-m2sci_info("Syntax modification...",-1);
+m2sci_info(gettext("messages","m2sci_message_16"),-1);
 ierr=execstr("load(''"+pathconvert(TMPDIR)+fnam+ ".tree'',''txt'',''helppart'',''batch'')",'errcatch','n')
 if ierr<>0 | exists('txt')==0 | exists('batch')==0 & strindex(res_path,TMPDIR)==[] then
   [helppart,txt,batch]=m2sci_syntax(txt)
@@ -144,7 +144,7 @@ elseif ierr==0 & newest(fil,pathconvert(TMPDIR)+fnam+ ".tree")==1 then
     [helppart,txt,batch]=m2sci_syntax(tmptxt)
 end
 
-m2sci_info("Syntax modification: Done",-1);
+m2sci_info(gettext("messages","m2sci_message_17"),-1);
 
 // Write .cat file and update whatis
 if helppart<>[] then
@@ -194,8 +194,7 @@ if txt~=[] then
   mname=w(1);
   nametbl=[nametbl;mname]
   if fnam<>mname & ~batch then // warning is not displayed for a batch file
-    mss=["Warning: file "+fil+" defines function "+mname+" instead of "+fnam;
-	"         "+mname+".sci, "+mname+".cat and sci_"+mname+".sci will be generated !"]
+    mss=msprintf(gettext("messages","m2sci_message_18"),fil,mname,fnam,mname,mname,mname);
     m2sci_info(mss,-1);
   end
 
@@ -204,7 +203,7 @@ if txt~=[] then
   funcprot(fprot)
 
   // Get Scilab pseudo code of the function
-  m2sci_info("Macro to tree conversion...",-1); 
+  m2sci_info(gettext("messages","m2sci_message_19"),-1); 
   macr=evstr(mname)
   mtlbtree=macr2tree(macr);
   if ~batch then
@@ -230,15 +229,15 @@ if txt~=[] then
  // if mtlbref_fun<>[]|not_mtlb_fun<>[]|mtlbtool_fun<>[] then
     //resume_logfile initialisation
     if exists("resume_logfile")==0 then
-      [tempfd2,ierr2]=file('open',pathconvert(TMPDIR)+"resumelogfile.dat","old")
+      [tempfd2,ierr2]=file('open',pathconvert(TMPDIR)+gettext("messages","m2sci_message_20"),"old")
       if ierr2==0 then
-        load(pathconvert(TMPDIR)+"resumelogfile.dat")
+        load(pathconvert(TMPDIR)+gettext("messages","m2sci_message_20"))
         file('close',tempfd2)
         file('close',resume_logfile)
-        mdelete(pathconvert(TMPDIR)+"resumelogfile.dat")
+        mdelete(pathconvert(TMPDIR)+gettext("messages","m2sci_message_20"))
       end
-      resume_logfile=file('open',res_path+"resume_m2sci_"+fnam+".log",'unknown')
-      save(pathconvert(TMPDIR)+"resumelogfile.dat",resume_logfile)
+      resume_logfile=file('open',res_path+gettext("messages","m2sci_message_21")+"_m2sci_"+fnam+".log",'unknown')
+      save(pathconvert(TMPDIR)+gettext("messages","m2sci_message_20"),resume_logfile)
     end
        
     //number of matlab reference functions, matlab toolboxes functions, not matlab functions
@@ -256,24 +255,24 @@ if txt~=[] then
       not_mtlb_fun(:,1)=""""+not_mtlb_fun(:,1)+""""
     end
 
-    info_resume=["****** " + fnam + ": Functions of mfile2sci() session ******";
+    info_resume=[msprintf(gettext("messages","m2sci_message_22"),fnam);
 	"*";
-	string(size1)+" Matlab Function(s) not yet converted, original calling sequence used : ";
+	msprintf(gettext("messages","m2sci_message_23"),size1);
 	mtlbref_fun(:,1)+mtlbref_fun(:,2);
 	"*";
-	string(size2)+" Matlab Toolbox(es) Functions, original calling sequence used :";
+	msprintf(gettext("messages","m2sci_message_24"),size2);
 	mtlbtool_fun(:,1)+mtlbtool_fun(:,2);
 	"*";
-	string(size3)+" Unknown Function(s), original calling sequence used :";
+	msprintf(gettext("messages","m2sci_message_25"),size3);
 	not_mtlb_fun(:,1)+not_mtlb_fun(:,2);
 	"*"]
 
     write(resume_logfile,margin+info_resume)
     file("close",resume_logfile)
-    mdelete(pathconvert(TMPDIR)+"resumelogfile.dat")
+    mdelete(pathconvert(TMPDIR)+gettext("messages","m2sci_message_20"))
   //end
   
-  m2sci_info("Macro to tree conversion: Done",-1);
+  m2sci_info(gettext("messages","m2sci_message_26"),-1);
 
   crp(1)=""; // Delete function prototype
   if isempty(firstline) then
@@ -308,21 +307,20 @@ if txt~=[] then
   // Output summary information
   infos=[]
   if m2sci_infos(1) then
-    infos=["Translation may be improved: see the //! comments and for all mtlb_<funname> function call"
-	"  Type help mtlb_<funname> in Scilab command window to get information about improvements"]
+    infos=gettext("messages","m2sci_message_27");
   end
   if m2sci_infos(2) then
-    infos=[infos;"Translation may be wrong (see the //!! comments)"]
+    infos=[infos;gettext("messages","m2sci_message_28")]
   end
 
   nametbl($)=[]
 
 else
-  infos="File contain no instruction, no translation made..."
+  infos=gettext("messages","m2sci_message_29");
 end
 
 // End of translation messages
-mss="****** End of mfile2sci() session ******"
+mss=gettext("messages","m2sci_message_30");
 
 m2sci_info([infos;mss],-1);
 
@@ -338,6 +336,6 @@ clearglobal not_mtlb_fun
 // For execution called by translatepaths()
 //nametbl=resume(nametbl)
 mdelete(pathconvert(TMPDIR)+fnam+ ".tree")
-mdelete(pathconvert(TMPDIR)+"logfile.dat")
+mdelete(pathconvert(TMPDIR)+gettext("messages","m2sci_message_5"))
 
 endfunction

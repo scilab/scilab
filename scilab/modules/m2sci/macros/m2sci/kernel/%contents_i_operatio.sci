@@ -5,6 +5,6 @@ function operation=%contents_i_operatio(field,contlist,operation)
 if field=="contents" then
   operation.out(1).infer.contents=contlist
 else
-  error("Not yet implemented...")
+  error(gettext("errors","m2sci_error_2"))
 end
 endfunction

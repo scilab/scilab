@@ -72,7 +72,7 @@ else
         getf(sci_file)
 	ierr=execstr("[sci_equiv]=sci_"+mtlb_expr.name+"(mtlb_expr)","errcatch");
 	if ierr<>0 then
-	  error("funcall2sci: Error while executing : [sci_equiv]=sci_"+mtlb_expr.name+"(mtlb_expr)");
+	  error(msprintf(gettext("errors","m2sci_error_29"),mtlb_expr.name));
 	end
      else
 	sci_equiv=default_trad(mtlb_expr)

@@ -28,7 +28,7 @@ if to.vtype<>Struct then
       [bval,index]=isdefinedvar(to)
       varslist(index).infer.type.vtype=Cell
     else
-      error("%i_ce2sci: destination variable is not a cell: "+to.name+" is of type "+string(to.vtype))
+      error(msprintf(gettext("errors","m2sci_error_49"),to.name,string(to.vtype)))
     end
   elseif to.vtype==Unknown then
     insert(Equal(list(to),Funcall("cell",1,list(),list(to))))
@@ -55,7 +55,7 @@ if rhs==1 then
 	  tree.out(1).contents.index($+1)=list(tree.operands(2),Cste("entries"))
 	  tree.out(1).contents.data($+1)=from.contents.data(1)
 	else
-	  error("Not yet implemented");
+	  error(gettext("errors","m2sci_error_2"))
 	end
       else
 	tree.out(1).infer=from.infer
@@ -158,7 +158,7 @@ if lstsize(from.contents.index)==1 then
 elseif lstsize(from.contents.index)==0 then
   tree.out(1).contents=Contents()
 else
-  error("Not yet implemented")
+  error(gettext("errors","m2sci_error_2"))
 end
 end
 endfunction

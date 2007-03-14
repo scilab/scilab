@@ -7,9 +7,9 @@ function [tree]=sci_exist(tree)
 // Emulation function: mtlb_exist()
 // V.C.
 
-no_equiv("Matlab exist(), mtlb_exist() is called")
+no_equiv(gettext("messages","m2sci_message_92"))
 
-set_infos("mtlb_exist() is just a partial emulation of Matlab exist() function !",2)
+set_infos(gettext("messages","m2sci_message_93"),2)
 
 scitree.name="mtlb_exist"
 

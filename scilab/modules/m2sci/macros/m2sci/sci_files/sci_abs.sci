@@ -8,7 +8,7 @@ function [tree]=sci_abs(tree)
 // V.C.
 
 A=getrhs(tree)
-//A=convert2double(A)
+A=convert2double(A)
 tree.rhs=Rhs(A)
 
 tree.lhs(1).dims=A.dims

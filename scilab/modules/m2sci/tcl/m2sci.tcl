@@ -8,7 +8,10 @@
 # Scilab specification
 toplevel .m2sci
 
-wm title .m2sci {Matlab to Scilab conversion tool}
+ScilabEval TCL_SetVar("localizedtitle",gettext("menus","m2sci_menu_2"))
+wm title .m2sci $localizedtitle
+
+
 bind .m2sci <Destroy> {cancelConversionCross}
 ######################################################################
 # Gets the directory to convert, and initialize the eTranslatePath
@@ -102,21 +105,25 @@ global rFlagWhatToConvert
 frame .m2sci.mainframe
 
 # FILES SELECTION
-label .m2sci.mainframe.lFileSelect -text "FILES SELECTION" -background lightblue
+ScilabEval TCL_SetVar("localizedLabelFiles",gettext("menus","m2sci_menu_3"))
+label .m2sci.mainframe.lFileSelect -textvariable localizedLabelFiles -background lightblue
 
 grid .m2sci.mainframe.lFileSelect -column 0 -columnspan 4 -row 1 -sticky news
 
 # Whole directory
 radiobutton .m2sci.mainframe.rDir -variable rFlagWhatToConvert -value 0 
-label .m2sci.mainframe.lDir -text "Convert a whole directory"
+ScilabEval TCL_SetVar("localizedlDir",gettext("menus","m2sci_menu_4"))
+label .m2sci.mainframe.lDir -textvariable localizedlDir
 
 grid .m2sci.mainframe.rDir -column 0 -row 2
 grid .m2sci.mainframe.lDir -column 1 -columnspan 3 -row 2 -sticky w
 
-label .m2sci.mainframe.lDirName -text "Directory name: "
+ScilabEval TCL_SetVar("localizedlDirName",gettext("menus","m2sci_menu_5"))
+label .m2sci.mainframe.lDirName -textvariable localizedlDirName
 entry .m2sci.mainframe.eDirName -textvariable ePathToConvert -width 50
 bind .m2sci.mainframe.eDirName <FocusIn> {set rFlagWhatToConvert 0}
-button .m2sci.mainframe.bBrowseDir -text "Browse" -command {setPathToConvert}
+ScilabEval TCL_SetVar("localizedBrowse",gettext("menus","m2sci_menu_6"))
+button .m2sci.mainframe.bBrowseDir -textvariable localizedBrowse -command {setPathToConvert}
 
 grid .m2sci.mainframe.lDirName -column 1 -row 3
 grid .m2sci.mainframe.eDirName -column 2 -row 3
@@ -124,43 +131,53 @@ grid .m2sci.mainframe.bBrowseDir -column 3 -row 3
 
 # Single file
 radiobutton .m2sci.mainframe.rFile -variable rFlagWhatToConvert -value 1
-label .m2sci.mainframe.lFile -text "Convert a single file"
+ScilabEval TCL_SetVar("localizedlFile",gettext("menus","m2sci_menu_7"))
+label .m2sci.mainframe.lFile -textvariable localizedlFile  
 
 grid .m2sci.mainframe.rFile -column 0 -row 4
 grid .m2sci.mainframe.lFile -column 1 -columnspan 3 -row 4 -sticky w
 
-label .m2sci.mainframe.lFileName -text "File name:"
+ScilabEval TCL_SetVar("localizedlFileName",gettext("menus","m2sci_menu_8"))
+label .m2sci.mainframe.lFileName -textvariable localizedlFileName
 entry .m2sci.mainframe.eFileName -textvariable eFileToConvert -width 50
 bind .m2sci.mainframe.eFileName <FocusIn> {set rFlagWhatToConvert 1}
-button .m2sci.mainframe.bBrowseFile -text "Browse" -command {setFileToConvert} 
+button .m2sci.mainframe.bBrowseFile -textvariable localizedBrowse -command {setFileToConvert} 
 
 grid .m2sci.mainframe.lFileName -column 1 -row 5
 grid .m2sci.mainframe.eFileName -column 2 -row 5
 grid .m2sci.mainframe.bBrowseFile -column 3 -row 5
 
 # RESULTING FILES DIRECTORY
-label .m2sci.mainframe.lResDirSelect -text "OUTPUT FILES DIRECTORY" -background lightblue
+ScilabEval TCL_SetVar("localizedlResDirSelect",gettext("menus","m2sci_menu_9"))
+label .m2sci.mainframe.lResDirSelect -textvariable localizedlResDirSelect -background lightblue
 
 grid .m2sci.mainframe.lResDirSelect -column 0 -columnspan 4 -row 6 -sticky news
 
-label .m2sci.mainframe.lResDirName -text "Directory name:"
+ScilabEval TCL_SetVar("localizedlResDirName",gettext("menus","m2sci_menu_10"))
+label .m2sci.mainframe.lResDirName -textvariable localizedlResDirName
 entry .m2sci.mainframe.eResDirName -textvariable eResDirName -width 50
-button .m2sci.mainframe.bBrowseResDir -text "Browse" -command {setResDirName}
+button .m2sci.mainframe.bBrowseResDir -textvariable localizedBrowse -command {setResDirName}
 
 grid .m2sci.mainframe.lResDirName -column 1 -row 7
 grid .m2sci.mainframe.eResDirName -column 2 -row 7
 grid .m2sci.mainframe.bBrowseResDir -column 3 -row 7
 
 # OPTIONS
-label .m2sci.mainframe.lOptions -text "CONVERSION OPTIONS" -background lightblue
+ScilabEval TCL_SetVar("localizedlOptions",gettext("menus","m2sci_menu_11"))
+label .m2sci.mainframe.lOptions -textvariable localizedlOptions -background lightblue
 
 grid .m2sci.mainframe.lOptions -column 0 -columnspan 4 -row 8 -sticky news
 
 # RecMode
-label .m2sci.mainframe.lRecMode -text "Recursive conversion:"
+ScilabEval TCL_SetVar("localizedlRecMode",gettext("menus","m2sci_menu_12"))
+label .m2sci.mainframe.lRecMode -textvariable localizedlRecMode
 frame .m2sci.mainframe.fRecMode
-radiobutton .m2sci.mainframe.fRecMode.rRecModeYES -text "Yes" -variable rRecMode -value "YES"  
-radiobutton .m2sci.mainframe.fRecMode.rRecModeNO -text "No" -variable rRecMode -value "NO" 
+ScilabEval TCL_SetVar("localizedYes",gettext("menus","m2sci_menu_13"))
+ScilabEval TCL_SetVar("localizedNo",gettext("menus","m2sci_menu_14"))
+ScilabEval TCL_SetVar("localizedYES",gettext("menus","m2sci_menu_15"))
+ScilabEval TCL_SetVar("localizedNO",gettext("menus","m2sci_menu_16"))
+radiobutton .m2sci.mainframe.fRecMode.rRecModeYES -textvariable localizedYes -variable rRecMode -value $localizedYES
+radiobutton .m2sci.mainframe.fRecMode.rRecModeNO -textvariable localizedNo -variable rRecMode -value $localizedNO 
 		   
 pack configure  .m2sci.mainframe.fRecMode.rRecModeYES \
 		.m2sci.mainframe.fRecMode.rRecModeNO  \
@@ -170,10 +187,11 @@ grid .m2sci.mainframe.lRecMode -column 0 -columnspan 2 -row 9
 grid .m2sci.mainframe.fRecMode -column 1 -columnspan 2 -row 9 
 
 # OnlyDouble
-label .m2sci.mainframe.lOnlyDouble -text "Only double values used:"
+ScilabEval TCL_SetVar("localizedlOnlyDouble",gettext("menus","m2sci_menu_17"))
+label .m2sci.mainframe.lOnlyDouble -textvariable localizedlOnlyDouble
 frame .m2sci.mainframe.fOnlyDouble
-radiobutton .m2sci.mainframe.fOnlyDouble.rOnlyDoubleYES -text "Yes" -variable rOnlyDouble -value "YES"  
-radiobutton .m2sci.mainframe.fOnlyDouble.rOnlyDoubleNO -text "No" -variable rOnlyDouble -value "NO" 
+radiobutton .m2sci.mainframe.fOnlyDouble.rOnlyDoubleYES -textvariable localizedYes -variable rOnlyDouble -value $localizedYES  
+radiobutton .m2sci.mainframe.fOnlyDouble.rOnlyDoubleNO -textvariable localizedNo -variable rOnlyDouble -value $localizedNO
 		   
 pack configure  .m2sci.mainframe.fOnlyDouble.rOnlyDoubleYES \
 		.m2sci.mainframe.fOnlyDouble.rOnlyDoubleNO  \
@@ -183,7 +201,8 @@ grid .m2sci.mainframe.lOnlyDouble -column 0 -columnspan 2 -row 10
 grid .m2sci.mainframe.fOnlyDouble -column 1 -columnspan 2 -row 10
 
 # VerbMode
-label .m2sci.mainframe.lVerbMode -text "Verbose Mode:"
+ScilabEval TCL_SetVar("localizedlVerbMode",gettext("menus","m2sci_menu_18"))
+label .m2sci.mainframe.lVerbMode -textvariable localizedlVerbMode
 frame .m2sci.mainframe.fVerbMode
 radiobutton .m2sci.mainframe.fVerbMode.rVerbMode0 -text "0" -variable rVerbMode -value 0  
 radiobutton .m2sci.mainframe.fVerbMode.rVerbMode1 -text "1" -variable rVerbMode -value 1 
@@ -200,10 +219,11 @@ grid .m2sci.mainframe.lVerbMode -column 0 -columnspan 2 -row 11
 grid .m2sci.mainframe.fVerbMode -column 1 -columnspan 2 -row 11
 
 # PrettyPrint
-label .m2sci.mainframe.lPrettyPrint -text "Generate pretty printed code:"
+ScilabEval TCL_SetVar("localizedlPrettyPrint",gettext("menus","m2sci_menu_19"))
+label .m2sci.mainframe.lPrettyPrint -textvariable localizedlPrettyPrint
 frame .m2sci.mainframe.fPrettyPrint
-radiobutton .m2sci.mainframe.fPrettyPrint.rPrettyPrintYES -text "Yes" -variable rPrettyPrint -value "YES"  
-radiobutton .m2sci.mainframe.fPrettyPrint.rPrettyPrintNO -text "No" -variable rPrettyPrint -value "NO" 
+radiobutton .m2sci.mainframe.fPrettyPrint.rPrettyPrintYES -textvariable localizedYes -variable rPrettyPrint -value $localizedYES  
+radiobutton .m2sci.mainframe.fPrettyPrint.rPrettyPrintNO -textvariable localizedNo -variable rPrettyPrint -value $localizedNO
 		   
 pack configure  .m2sci.mainframe.fPrettyPrint.rPrettyPrintYES \
 		.m2sci.mainframe.fPrettyPrint.rPrettyPrintNO  \
@@ -213,13 +233,16 @@ grid .m2sci.mainframe.lPrettyPrint -column 0 -columnspan 2 -row 12
 grid .m2sci.mainframe.fPrettyPrint -column 1 -columnspan 2 -row 12
 
 # VALIDATION
-label .m2sci.mainframe.lButtons -text "VALIDATION" -background lightblue
+ScilabEval TCL_SetVar("localizedlButtons",gettext("menus","m2sci_menu_20"))
+label .m2sci.mainframe.lButtons -textvariable localizedlButtons -background lightblue
 
 grid .m2sci.mainframe.lButtons -column 0 -columnspan 4 -row 13 -sticky news
 
 frame .m2sci.mainframe.fButtons
-button .m2sci.mainframe.fButtons.bConvert -text "Convert" -command {launchConversion} 
-button .m2sci.mainframe.fButtons.bCancel -text "Cancel" -command {cancelConversion} 
+ScilabEval TCL_SetVar("localizedbConvert",gettext("menus","m2sci_menu_21"))
+button .m2sci.mainframe.fButtons.bConvert -textvariable localizedbConvert -command {launchConversion} 
+ScilabEval TCL_SetVar("localizedbCancel",gettext("menus","m2sci_menu_22"))
+button .m2sci.mainframe.fButtons.bCancel -textvariable localizedbCancel -command {cancelConversion} 
 
 pack configure  .m2sci.mainframe.fButtons.bCancel  \
 		.m2sci.mainframe.fButtons.bConvert \

@@ -100,14 +100,13 @@ case "list"
     elseif typeof(mtlb_expr(k))=="funcall" then
       [mtlb_expr(k)]=expression2sci(mtlb_expr(k),lhslist)
     else
-      error("expression2sci: recursive extraction with one index of type "+..
-	  typeof(mtlb_expr(k))+" is not yet implemented!")
+      error(msprintf(gettext("errors","m2sci_error_28"),typeof(mtlb_expr(k))))
     end
   end
   sci_expr=mtlb_expr
 // --- Expression is a not tolerated tlist ---
 else
-  error("expression2sci: "+typeof(mtlb_expr)+" is not yet implemented !")
+  error(msprintf(gettext("errors","m2sci_error_22"),typeof(mtlb_expr)))
 end
 
 // Verify if flag for translation improvements has to be set

@@ -14,10 +14,17 @@ if rhs==1 then
 
   // Because %b_cumsum and %C_cumsum are not defined
   A = convert2double(A)
-  tree.rhs=Rhs(A,"m")
+  tree.rhs=Rhs(A)
   
+  dim=first_non_singleton(A)
+
   tree.lhs(1).dims=A.dims
   
+  if dim>0 then
+    tree.rhs=Rhs(A,dim)
+  elseif dim==-1 then
+    tree.rhs=Rhs(A,Funcall("firstnonsingleton",1,list(A),list()))
+  end
   if is_real(A) then
     tree.lhs(1).type=Type(Double,Real)
   else
@@ -42,7 +49,7 @@ else
 	A.out=tree.lhs
       end
       tree=A;
-      set_infos("Scilab cumsum() does not work when dim input argument is greater than number of dims of first rhs...",1)
+      set_infos(msprintf(gettext("messages","m2sci_message_76"),"cumsum"),1)
       return
     end
   end

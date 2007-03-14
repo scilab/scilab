@@ -23,7 +23,7 @@ x = convert2double(x)
 tree.rhs=Rhs(x)
 
 if is_complex(x) then
-  set_infos("Scilab uint16() does not work with Complex values: uint16() call IGNORED !",2);
+  set_infos(msprintf(gettext("messages","m2sci_message_78"),"uint16","uint16"),2);
   if typeof(x)=="operation" then
     x.out=tree.lhs
   elseif typeof(x)=="funcall" then
@@ -31,8 +31,8 @@ if is_complex(x) then
   end
   tree=x
 elseif ~is_real(x) then
-  set_infos("Scilab uint16() does not work with Complex values: uint16() call IGNORED !",2);
-  repl_poss(x,tree,x,"is real")
+  set_infos(msprintf(gettext("messages","m2sci_message_78"),"uint16","uint16"),2);
+  repl_poss(x,tree,x,gettext("messages","m2sci_message_77"))
   if typeof(x)=="operation" then
     x.out=tree.lhs
   elseif typeof(x)=="funcall" then

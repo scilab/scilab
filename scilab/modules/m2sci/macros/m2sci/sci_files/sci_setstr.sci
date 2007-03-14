@@ -10,9 +10,7 @@ function [tree]=sci_setstr(tree)
 X = getrhs(tree)
 
 if X.vtype==String then
-  set_infos([
-      "In "+expression2code(tree)+" "+expression2code(X)+" is a String"
-      "So result is set to "+expression2code(X)],0)
+  set_infos(msprintf(gettext("messages","m2sci_message_121"),expression2code(tree),expression2code(X),expression2code(X)),0)
   // Because of String concatenation
   if typeof(X)=="operation" then
     X.out(1)=tree.lhs(1)

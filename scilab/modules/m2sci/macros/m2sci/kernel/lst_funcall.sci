@@ -59,7 +59,7 @@ if bval then
   end
   mkdir(pathconvert(TMPDIR),fnam)
   
-  write(%io(2)," -- File "+fil+" contains more than one function -- ");
+  write(%io(2),msprintf(gettext("messages","m2sci_message_48"),fil));
   // First split file into as many files as function declared
   funcdecl=[funcdecl size(txt,"*")+1] 
   tmpfiles=[]
@@ -89,8 +89,8 @@ if bval then
       mputl(functxt,pathconvert(TMPDIR)+pathconvert(fnam)+tmpfiles($)+".m")
     end
   end
-  write(%io(2)," -- Each function converted separately: "+strcat(tmpfiles," ")+" -- ");
-  write(%io(2)," -- Temporary files put in: "+pathconvert(TMPDIR));
+  write(%io(2),msprintf(gettext("messages","m2sci_message_49"),strcat(tmpfiles," ")));
+  write(%io(2),msprintf(gettext("messages","m2sci_message_50"),pathconvert(TMPDIR)));
   
   // Conversion of each file
   //for k=1:size(tmpfiles,"*")

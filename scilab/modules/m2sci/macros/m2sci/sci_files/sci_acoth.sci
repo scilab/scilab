@@ -9,8 +9,7 @@ function tree=sci_acoth(tree)
 X=getrhs(tree)
 //X=convert2double(X)
 
-set_infos(["If "+expression2code(X)+" is outside [-1,1]"
-    "   complex part of output of "+expression2code(tree)+" will be the opposite of Matlab one."],2)
+set_infos(msprintf(gettext("messages","m2sci_message_74"),expression2code(X),expression2code(tree)),2)
 
 tree.name="atanh"
 Op=Operation("./",list(Cste(1),X),list())

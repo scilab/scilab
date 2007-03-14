@@ -4,6 +4,6 @@ function funcall=%type_i_funcall(field,inslist,funcall)
 if field=="type" then
   funcall.lhs(1).type=inslist
 else
-  error("%type_i_funcall(): not yet implemented...")
+  error(gettext("errors","m2sci_error_2"))
 end
 endfunction

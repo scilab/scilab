@@ -7,7 +7,7 @@ function [tree]=sci_type(tree)
 // Emulation function: mtlb_type()
 // V.C.
 
-set_infos(["No simple Scilab equivalent for call to type(), mtlb_type() is called"],0);
+set_infos(msprintf(gettext("messages","m2sci_message_102"),"mtlb_type"),0);
 tree.name="mtlb_type"
 
 endfunction

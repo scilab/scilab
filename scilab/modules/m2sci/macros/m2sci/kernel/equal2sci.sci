@@ -32,7 +32,7 @@ for k=1:size(mtlb_instr.lhs)
     lhslist($+1)=Variable(mtlb_instr.lhs(k).name,INFER)
   elseif typeof(mtlb_instr.lhs(k))=="operation" then
     if mtlb_instr.lhs(k).operator<>"ins" then
-      error("equal2sci(): lhs cannot be a "+mtlb_instr.lhs(k).operator+" operation")
+      error(msprintf(gettext("errors","m2sci_error_26"),mtlb_instr.lhs(k).operator))
     end
     
     [bval,index]=isdefinedvar(mtlb_instr.lhs(k).operands(1))
@@ -46,7 +46,7 @@ for k=1:size(mtlb_instr.lhs)
 	mtlb_instr.lhs(k).operands,..
 	list(Variable(mtlb_instr.lhs(k).operands(1).name,INFER)))
   else
-    error("equal2sci(): lhs cannot be a "+typeof(mtlb_instr.lhs(k)))
+    error(msprintf(gettext("errors","m2sci_error_27"),typeof(mtlb_instr.lhs(k))))
   end
 end
 
@@ -78,7 +78,7 @@ else
     sci_instr.lhs(1).dims=sci_expr.dims;
     sci_instr.lhs(1).type=sci_expr.type;
   else
-    error("equal2sci: "+typeof(sci_instr.expression)+" is not implemented !");
+    error(msprintf(gettext("errors","m2sci_error_22"),typeof(sci_instr.expression)));
   end
  
   // If lhs are insertion operation, they also have to be converted

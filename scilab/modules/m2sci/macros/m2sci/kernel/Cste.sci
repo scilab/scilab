@@ -5,7 +5,7 @@ function const=Cste(value)
 rhs=argn(2)
 
 if rhs~=1 then
-  error("Cste: wrong number of rhs arguments !")
+  error(gettext("errors","m2sci_error_5"));
 end
 
 dims=list()

@@ -18,7 +18,7 @@ m2sci_to_insert_a=list()
 tmpvarnb=0
 
 if typeof(mtlbtree)<>"program" then
-  error("mtlbtree2sci(): wrong type of input !")
+  error(gettext("errors","m2sci_error_33"))
 end
 
 // Init Scilab tree
@@ -31,7 +31,7 @@ else
   nblines=1 // Number of converted lines
 end
 
-m2sci_info("Conversion of M-tree...",-1);
+m2sci_info(gettext("messages","m2sci_message_65"),-1);
 
 // Default value
 rhs = argn(2);
@@ -108,7 +108,7 @@ if scitree.name<>"" then // Not a batch file
   crp=cat_code(crp,"");
 end
 
-m2sci_info("Conversion of M-tree: Done",-1);
+m2sci_info(gettext("messages","m2sci_message_66"),-1);
 
 
 clearglobal("m2sci_to_insert_b")

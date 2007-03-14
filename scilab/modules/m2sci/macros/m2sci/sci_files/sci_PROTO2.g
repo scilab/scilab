@@ -49,7 +49,7 @@ else
 	A.out=tree.lhs
       end
       tree=A;
-      set_infos("Scilab SFUN() does not work when dim input argument is greater than number of dims of first rhs...",1)
+      set_infos(msprintf(gettext("messages","m2sci_message_76"),"SFUN"),1)
       return
     end
   end

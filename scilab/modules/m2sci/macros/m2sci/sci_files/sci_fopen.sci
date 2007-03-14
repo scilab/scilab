@@ -19,18 +19,18 @@ end
 
 if typeof(filename)=="cste" then
   if filename.value=="all" then
-    no_equiv("fopen(""all"") has no translation")
+    no_equiv(gettext("messages","m2sci_message_98"))
     return
   end
 elseif filename.vtype==Double then
-  no_equiv(expression2code(tree)+" (See fileinfo() function)")
+  no_equiv(msprintf(gettext("messages","m2sci_message_99"),expression2code(tree)))
   return
 end
 
 // Options 'W' and 'A' are unknown for Scilab
 if typeof(permission)=="cste" then
   if or(permission.value==["W","A"]) then
-    no_equiv("W and A permission parameters");
+    no_equiv(gettext("messages","m2sci_message_100"));
     return
   end
 end
@@ -49,6 +49,6 @@ elseif lhs==2 then
   tree.lhs(2).type=Type(String,Real)
 // [fid,mess,machineformat]=fopen(filename) and so on
 else
-  no_equiv("fopen used with three outputs...")
+  no_equiv(gettext("messages","m2sci_message_101"))
 end
 endfunction

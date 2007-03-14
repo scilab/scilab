@@ -19,7 +19,7 @@ if lhs==1 then
     x = Funcall("abs",1,list(x),list(Variable("",x.infer)))
   elseif ~is_real(x) then
     newx = Funcall("abs",1,list(x),list(Variable("",x.infer)))
-    repl_poss(newx,x,x,"is real");
+    repl_poss(newx,x,x,gettext("messages","m2sci_message_77"));
     x=newx
   end
   tree.rhs=Rhs(x)
@@ -48,7 +48,7 @@ elseif lhs==2 then
     x = Funcall("abs",1,list(x),list(Variable("",x.infer)))
   elseif ~is_real(x) then
     newx = Funcall("abs",1,list(x),list(Variable("",x.infer)))
-    repl_poss(newx,x,x,"is real");
+    repl_poss(newx,x,x,gettext("messages","m2sci_message_77"));
     x=newx
   end
   tree.rhs=Rhs(x)

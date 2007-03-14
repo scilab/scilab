@@ -7,7 +7,7 @@ function  [tree]=sci_besseli(tree)
 // F.B
 
 if size(tree.lhs)==2 then // [y,ierr]=besseli(alpha,x)
-  error("Bessel function is not implemented for 2 outputs arguments")
+  error(gettext("errors","m2sci_error_43"))
 end
 
 if rhs==2 then

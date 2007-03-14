@@ -46,7 +46,7 @@ if rhs==1 then
 
       [bval,index]=isdefinedvar(var)
       if ~bval then
-	error("M2SCI bug: extraction from unknown variable "+var.name+" in varslist")
+	error(msprintf(gettext("errors","m2sci_error_47"),var.name))
       else
 	tmp=get_contents_infer(var,infertree);
 	tree.out(1).dims=tmp.dims
@@ -151,7 +151,7 @@ else
   
   [bval,index]=isdefinedvar(var)
   if ~bval then
-    error("M2SCI bug: extraction from unknown variable "+var.name+" in varslist")
+    error(msprintf(gettext("errors","m2sci_error_47"),var.name))
   else
     tmp=get_contents_infer(var,list(infertree,Cste("entries")));
     if is_a_scalar(tree.out(1)) then 

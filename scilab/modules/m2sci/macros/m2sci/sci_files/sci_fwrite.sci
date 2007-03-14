@@ -7,10 +7,10 @@ function [tree]=sci_fwrite(tree)
 // Emulation function: mtlb_fwrite()
 // V.C.
 
-set_infos(["No simple equivalent, so mtlb_fwrite() is called"],0);
+set_infos(msprintf(gettext("messages","m2sci_message_3"),"mtlb_fwrite"),0);
 
 if rhs==4 then
-  no_equiv("fread() called with skip parameter");
+  no_equiv(msprintf(gettext("messages","m2sci_message_103"),"fwrite"));
 end
 
 tree.name="mtlb_fwrite"

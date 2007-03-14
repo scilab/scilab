@@ -24,7 +24,7 @@ elseif rhs==1 then
       tree.name="set";
       tree.rhs=Rhs(ax,"grid",off);
     else
-      set_infos("No minor grid in Scilab",2);
+      set_infos(gettext("messages","m2sci_message_106"),2);
       tree.name="mtlb_grid";
     end
   else
@@ -41,7 +41,7 @@ else
       insert(Equal(list(Operation("ins",list(ax,Cste("grid")),list())),off))
       tree=list()
     else
-      set_infos("No minor grid in Scilab",2);
+      set_infos(gettext("messages","m2sci_message_106"),2);
       tree.name="mtlb_grid";
     end
   else

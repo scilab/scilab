@@ -5,13 +5,13 @@ function var=Variable(name,infer)
 rhs=argn(2)
 
 if rhs<>2 then
-  error("Variable(): wrong number if inputs !")
+  error(gettext("errors","m2sci_error_5"))
 end
 
 if typeof(name)~="string" then
-  error("Variable(): name must be a string instead of a: "+typeof(name))
+  error(msprintf(gettext("errors","m2sci_error_9"),typeof(name)))
 elseif typeof(infer)~="infer" then
-  error("Variable(): infer must be an ''infer'' tlist instead of a: "+typeof(infer))
+  error(msprintf(gettext("errors","m2sci_error_18"),typeof(infer)))
 end
 
 var=tlist(["variable","name","infer"],name,infer)

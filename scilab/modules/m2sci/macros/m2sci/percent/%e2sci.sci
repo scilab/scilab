@@ -66,7 +66,7 @@ if rhs==1 then
 	end
       end
     end
-    error("%e2sci: recursive extraction from a variable "+var.name+" of type "+string(var.vtype))
+    error(msprintf(gettext("erros","m2sci_error_45"),var.name,string(var.vtype)))
   elseif var.vtype==String then // Character string extraction
     tree=Funcall("part",1,Rhs(var,ind),tree.out)
     if is_a_scalar(ind) then
@@ -154,7 +154,7 @@ else
       tree.lhs(1).dims=list(dims(1:2))
       tree.lhs(1).type=var.type
     else
-      error("%e2sci(): Extraction from strings with more than two indexes not implemented!")
+      error(gettext("errors","m2sci_error_46"))
     end
   else
     tree.out(1).dims=dims

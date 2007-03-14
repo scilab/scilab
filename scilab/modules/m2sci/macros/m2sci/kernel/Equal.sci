@@ -6,20 +6,20 @@ function eq=Equal(lhslist,expression,endsymbol)
 rhs=argn(2)
 
 if rhs<2 then
-  error("Equal(): wrong number of inputs!")
+  error(gettext("errors","m2sci_error_5"))
 end
 if rhs<3 then
   endsymbol=";"
 end
 if typeof(lhslist)<>"list" then
-  error("Equal(): lhslist should be a list and not a: "+typeof(lhslist))
+  error(msprintf(gettext("errors","m2sci_error_6"),typeof(lhslist)));
 end 
 if and(typeof(expression)<>["funcall","cste","operation","variable"]) then
   disp(expression)
-  error("Equal(): expression can not be a: "+typeof(expression))
+  error(msprintf(gettext("errors","m2sci_error_7"),typeof(expression)))
 end 
 if type(endsymbol)<>10 then
-  error("Equal(): endsymbol should be a character string and not a: "+typeof(lhslist))
+  error(msprintf(gettext("errors","m2sci_error_8"),typeof(lhslist)));
 end 
 
 eq=tlist(["equal","lhs","expression","endsymbol"],lhslist,expression,endsymbol)

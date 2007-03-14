@@ -15,7 +15,7 @@ if lhs>=2 then
 end
 
 if lhs==3 then
-  no_equiv(expression2code(tree)+" when called with three outputs.");
+  no_equiv(msprintf(gettext("messages","m2sci_message_115"),expression2code(tree)));
 end
 
 endfunction

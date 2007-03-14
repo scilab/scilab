@@ -9,10 +9,10 @@ function [tree]=sci_fread(tree)
 
 RHS=[]
 
-set_infos(["No simple equivalent, so mtlb_fread() is called"],0);
+set_infos(msprintf(gettext("messages","m2sci_message_102"),"mtlb_fread"),0);
 
 if rhs==4 then
-  no_equiv("fread() called with skip parameter");
+  no_equiv(msprintf(gettext("messages","m2sci_message_103"),"fread"));
 end
 
 tree.name="mtlb_fread"

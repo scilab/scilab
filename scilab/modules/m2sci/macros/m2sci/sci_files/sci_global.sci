@@ -21,7 +21,7 @@ for k=1:rhs
     end
     if exist==%F then
       varslist($+1)=M2scivar(nam,nam,Infer(list(Unknown,Unknown),Type(Unknown,Unknown)))
-      write(%io(2),"Global variable "+nam+" added to M2SCI variable list.")
+      write(%io(2),msprintf(gettext("messages","m2sci_message_105"),nam))
     end
   end
 end

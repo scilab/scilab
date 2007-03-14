@@ -15,7 +15,7 @@ end
 
 if verb_mode>0 then
   if exists("m2sci_to_insert_b")==0 then
-    write(%io(2),"loginfos: verb_mode 0 should not be used in this context, information ignored !");
+    write(%io(2),gettext("messages","m2sci_message_63"));
     return
   end
   global("m2sci_to_insert_b")
