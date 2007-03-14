@@ -10,7 +10,7 @@ function [tree]=sci_fwrite(tree)
 set_infos(["No simple equivalent, so mtlb_fwrite() is called"],0);
 
 if rhs==4 then
-  no_equiv("fread() called with skip parameter");
+  no_equiv("fwrite() called with skip parameter");
 end
 
 tree.name="mtlb_fwrite"
