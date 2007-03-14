@@ -10,12 +10,12 @@ function [tree]=sci_warning(tree)
 if rhs==0 then
   // s = warning
   if lhs==1 then
-    tree=Cste("on")
+    tree.rhs(1)=Cste("query")
   // [s,f] = warning
   else
-    insert(Equal(list(tree.lhs(1)),Cste("on")))
     insert(Equal(list(tree.lhs(2)),Cste("once")))
-    tree=list()
+    tree.rhs(1)=Cste("query");
+    tree.lhs(2)=null();
   end
 elseif rhs<=2 then
   if rhs==2 then
