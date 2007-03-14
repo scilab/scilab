@@ -21,9 +21,9 @@ if rhs<2 then res_path="./",end
 if rhs<1 then m2sci_gui();return;end
 
 // Loads libraries related to m2sci
-if exists("m2skernellib")==0 then load("SCI/modules/m2sci/macros/m2sci/kernel/lib"),end
-if exists("m2spercentlib")==0 then load("SCI/modules/m2sci/macros/m2sci/percent/lib"),end
-if exists("m2ssci_fileslib")==0 then load("SCI/modules/m2sci/macros/m2sci/sci_files/lib"),end
+if exists("m2skernellib")==0 then load("SCI/modules/m2sci/macros/kernel/lib"),end
+if exists("m2spercentlib")==0 then load("SCI/modules/m2sci/macros/percent/lib"),end
+if exists("m2ssci_fileslib")==0 then load("SCI/modules/m2sci/macros/sci_files/lib"),end
 
 // Convert paths so that they can be used according to the platform
 
