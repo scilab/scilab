@@ -95,7 +95,7 @@ am__objects_1 = intdggbal.lo intzgeqpf4.lo intzheev.lo intzgehrd.lo \
 	intdgesvd1.lo intdgehrd.lo intzgees0.lo intdgesvd2.lo \
 	intzgees1.lo intzdet.lo doldqr.lo scischur.lo intdgetrf.lo \
 	intzgelsy.lo intdgetri.lo intdgebal.lo intzschur.lo \
-	intzgeqpf3.lo
+	intzgeqpf3.lo writebuf.lo
 am__objects_2 = libscilinear_algebra_la-schurtable.lo
 am__objects_3 = libscilinear_algebra_la-sci_backslash.lo \
 	libscilinear_algebra_la-sci_hess.lo \
@@ -356,7 +356,8 @@ src/fortran/intzgelsy.f \
 src/fortran/intdgetri.f \
 src/fortran/intdgebal.f \
 src/fortran/intzschur.f \
-src/fortran/intzgeqpf3.f
+src/fortran/intzgeqpf3.f \
+src/fortran/writebuf.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_backslash.c \
 sci_gateway/c/sci_hess.c \
@@ -874,6 +875,9 @@ intzschur.lo: src/fortran/intzschur.f
 
 intzgeqpf3.lo: src/fortran/intzgeqpf3.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intzgeqpf3.lo `test -f 'src/fortran/intzgeqpf3.f' || echo '$(srcdir)/'`src/fortran/intzgeqpf3.f
+
+writebuf.lo: src/fortran/writebuf.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o writebuf.lo `test -f 'src/fortran/writebuf.f' || echo '$(srcdir)/'`src/fortran/writebuf.f
 
 Ex-schur.lo: sci_gateway/fortran/Ex-schur.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o Ex-schur.lo `test -f 'sci_gateway/fortran/Ex-schur.f' || echo '$(srcdir)/'`sci_gateway/fortran/Ex-schur.f
