@@ -136,6 +136,35 @@ typedef struct {
 IMPORT LSA001_struct C2F(lsa001);
 
 
+typedef struct {
+    integer iero;
+} IERINV_struct;
+
+IMPORT IERINV_struct C2F(ierinv);
+
+
+typedef struct {
+    integer lf, nfree, nf;
+} SCIGSCH_struct;
+
+IMPORT SCIGSCH_struct C2F(scigsch);
+
+typedef struct {
+    integer lf, nx, nf;
+} SCISCH_struct;
+
+IMPORT SCISCH_struct C2F(scisch);
+
+typedef union {
+    struct {
+	integer lf, nfree, nf;
+    } _1;
+    struct {
+	integer lf, nx, nf;
+    } _2;
+} SCIZGSCH_union;
+
+IMPORT SCIZGSCH_union C2F(scizgsch);
 
 
 #endif /** STACK_DEF  **/

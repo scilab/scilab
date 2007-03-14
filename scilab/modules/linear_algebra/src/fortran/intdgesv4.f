@@ -107,7 +107,7 @@ c
                return
             endif
          endif
-         write(buf(1:13),'(1pd13.4)') RCOND
+         call writebufdgesv4(buf,RCOND)
          call msgs(5,1)
       endif
 c     

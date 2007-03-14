@@ -83,7 +83,7 @@ c     SUBROUTINE ZLACPY( UPLO, M, N, A, LDA, B, LDB )
                return
             else
 c     .        ill conditioned problem
-               write(buf(1:13),'(1pd13.4)') RCOND
+               call writebufzgesv3(buf,RCOND)
                call msgs(5,1)
             endif
          endif

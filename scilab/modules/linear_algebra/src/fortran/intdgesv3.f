@@ -81,7 +81,7 @@ c     SUBROUTINE DLACPY( UPLO, M, N, A, LDA, B, LDB )
                return
             endif
          endif
-         write(buf(1:13),'(1pd13.4)') RCOND
+         call writebufdgesv3(buf,RCOND)
          call msgs(5,1)
       endif
 c     

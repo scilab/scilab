@@ -59,7 +59,7 @@ c     SUBROUTINE ZGETRF( M, N, A, LDA, IPIV, INFO )
       call ZGECON( '1', N, zstk(lA), N, ANORM, RCOND, zstk(lDWORK),
      $     stk(lRWORK), INFO )
       if(RCOND.le.sqrt(dlamch('eps'))) then
-         write(buf(1:13),'(1pd13.4)') RCOND
+         call writebufzgetri(buf,RCOND)
 c     .  ill conditionned problem
          call msgs(5,0)
       endif

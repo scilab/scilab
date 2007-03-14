@@ -473,10 +473,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\issymmetric.c"
-				>
-			</File>
-			<File
 				RelativePath=".\istrue.c"
 				>
 			</File>
@@ -1130,10 +1126,6 @@
 			</File>
 			<File
 				RelativePath=".\israt.f"
-				>
-			</File>
-			<File
-				RelativePath=".\issymmetric.f"
 				>
 			</File>
 			<File

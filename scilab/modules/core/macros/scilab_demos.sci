@@ -11,7 +11,7 @@ global demolist
 // Demos list is defined in scilab.start
 deff('[]=demoex(num)','exec(demolist(num,2),-1)')
 while %t then
-  num=tk_choose(demolist(:,1),[gettext('messages','core_menu_2')]);
+  num=tk_choose(demolist(:,1),[gettext('menus','core_menu_2')]);
   if num==0 then 
      lines(oldln(1))
      return

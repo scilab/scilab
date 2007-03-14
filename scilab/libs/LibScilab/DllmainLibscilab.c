@@ -29,6 +29,7 @@
 #pragma comment(lib,"../../bin/blasplus.lib")
 #pragma comment(lib,"../../bin/arpack.lib")
 #pragma comment(lib,"../../bin/lapack.lib")
+#pragma comment(lib,"../../bin/linear_algebra_f.lib")
 /*-----------------------------------------------------------------------------------*/ 
 #ifndef USE_F2C
 #pragma comment(lib,"../../bin/sparse_f.lib")
@@ -46,7 +47,7 @@
 #pragma comment(lib,"../../libs/double_f.lib")
 #pragma comment(lib,"../../libs/differential_equations_f.lib")
 #pragma comment(lib,"../../libs/special_functions_f.lib")
-#pragma comment(lib,"../../libs/linear_algebra_f.lib")
+
 #pragma comment(lib,"../../libs/elementaries_functions_f.lib")
 #pragma comment(lib,"../../libs/gui_f.lib")
 #pragma comment(lib,"../../libs/dcd_f.lib")

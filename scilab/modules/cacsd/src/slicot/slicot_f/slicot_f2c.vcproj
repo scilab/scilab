@@ -31,8 +31,8 @@
 			/>
 			<Tool
 				Name="VCPreBuildEventTool"
-				Description="Build Libscilab.lib (dependencies)"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL"
+				Description="Build linear_algebra_f.lib (dependencies)"
+				CommandLine="lib /DEF:&quot;$(InputDir)linear_algebra_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)linear_algebra_f.lib&quot; 1&gt;NUL 2&gt;NUL"
 				ExecutionBucket="2"
 			/>
 			<Tool
@@ -81,7 +81,7 @@
 				Name="VCLinkerTool"
 				ExecutionBucket="10"
 				AdditionalOptions="/fixed:no"
-				AdditionalDependencies="Libscilab.lib"
+				AdditionalDependencies="linear_algebra_f.lib"
 				OutputFile="$(SolutionDir)bin\slicot_f.dll"
 				LinkIncremental="2"
 				ModuleDefinitionFile="slicot_f.def"
@@ -174,7 +174,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Libscilab.lib"
+				AdditionalDependencies="linear_algebra_f.lib"
 				OutputFile="$(SolutionDir)bin\slicot_f.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="slicot_f.def"

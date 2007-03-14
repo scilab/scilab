@@ -350,11 +350,19 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\PICKER.ico"
+				>
+			</File>
+			<File
 				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\POLYLINE.ico"
 				>
 			</File>
 			<File
 				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\PRINT.ico"
+				>
+			</File>
+			<File
+				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\puffin.ico"
 				>
 			</File>
 			<File

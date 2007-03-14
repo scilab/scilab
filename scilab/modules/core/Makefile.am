@@ -98,7 +98,6 @@ src/fortran/chkvar.f \
 src/fortran/setippty.f \
 src/fortran/compil.f \
 src/fortran/funnam.f \
-src/fortran/issymmetric.f \
 src/fortran/isnum.f \
 src/fortran/cmdstr.f \
 src/fortran/logops.f \

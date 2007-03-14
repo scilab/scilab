@@ -110,7 +110,7 @@ c
                return
             endif
          endif
-         write(buf(1:13),'(1pd13.4)') RCOND
+         call writebufzgesv4(buf,RCOND)
 c     .  ill conditionned problem
          call msgs(5,1)
       endif

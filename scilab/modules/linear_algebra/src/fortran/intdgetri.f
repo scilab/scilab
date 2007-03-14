@@ -58,7 +58,7 @@ c     SUBROUTINE DGETRF( M, N, A, LDA, IPIV, INFO )
       call DGECON( '1', N, stk(lA), N, ANORM, RCOND, stk(lDWORK),
      $     istk(lIWORK), INFO )
       if(RCOND.le.sqrt(dlamch('eps'))) then
-         write(buf(1:13),'(1pd13.4)') RCOND
+         call writebufdgetri(buf,RCOND)
 c     .  ill conditionned problem
          call msgs(5,0)
       endif

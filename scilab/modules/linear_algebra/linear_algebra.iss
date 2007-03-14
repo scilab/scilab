@@ -10,6 +10,9 @@
 ;
 #define LINALG "linear_algebra"
 ;
+Source: bin\linear_algebra.dll; DestDir: {app}\bin; Components: {#COMPN_LINALG}
+Source: bin\linear_algebra_f.dll; DestDir: {app}\bin; Components: {#COMPN_LINALG}
+;
 Source: modules\{#LINALG}\VERSION; DestDir: {app}\modules\{#LINALG}; Components: {#COMPN_LINALG}; Check: set_with_linear_algebra
 Source: modules\{#LINALG}\readme.txt; DestDir: {app}\modules\{#LINALG}; Components: {#COMPN_LINALG}
 Source: modules\{#LINALG}\licence.txt; DestDir: {app}\modules\{#LINALG}; Components: {#COMPN_LINALG}

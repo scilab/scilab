@@ -12,6 +12,12 @@
 ;intersci  
  	intersci_ 
 ;
+;linear_algebra
+ierinv_
+scigsch_
+scisch_
+scizgsch_
+;
 ;differential_equations_f	
 	lsr001_
   lsa001_
