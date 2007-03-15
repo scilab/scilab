@@ -9,7 +9,10 @@ function mdelete(filename)
 	// Date : 2006-06-29
 	// Fix the bug2041
 	
-	rhs=argn(2)
+	// Date : 2007-01-16
+	// Fix the bug2288 (Thanks to M. Dubois, http://dubois.ensae.net )
+	
+	rhs=argn(2);
 	if rhs<>1 then
 		error(77);
 	end
@@ -20,36 +23,30 @@ function mdelete(filename)
 	
 	// Handle file path
 	if MSDOS then
-		filename=strsubst(filename,"\","/")
+		filename=strsubst(filename,"\","/");
 	end
 	
 	// File path
-	k=strindex(filename,"/")
+	k=strindex(filename,"/");
 	
 	if k==[] then
-		file_path="./"
+		file_path="./";
 	else
-		file_path=part(filename,1:k($))
-		filename=part(filename,k($)+1:length(filename))
-	end
-	
-	if strindex(filename," ")<>[] | strindex(file_path," ")<>[] then
-		file_path=""""+file_path
-		filename=filename+""""
+		file_path = part(filename,1:k($));
+		filename  = part(filename,k($)+1:length(filename));
 	end
 	
 	if MSDOS then
-		fullfilename=strsubst(file_path+filename,"/","\");
-		lst_files=listfiles(fullfilename);
+		fullfilename = strsubst(file_path+filename,"/","\");
+		lst_files    = listfiles(fullfilename);
 		if lst_files<>[] then
-			cmd="del "+fullfilename;
+			cmd="del """+fullfilename+"""";
 			unix(cmd);
 		end
 	else
-		cmd="rm -f "+file_path+filename;
-		lst_files=listfiles(file_path+filename)
+		lst_files=listfiles(file_path+filename);
 		if lst_files<>[] then
-			cmd="rm -f "+file_path+filename;
+			cmd="rm -f """+file_path+filename+"""";
 			unix(cmd);
 		end
 	end
