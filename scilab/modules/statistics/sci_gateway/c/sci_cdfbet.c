@@ -2,10 +2,10 @@
 /* INRIA 2006 */
 /*-----------------------------------------------------------------------------------*/ 
 #include <string.h>
+#include "gw_statistics.h"
 #include "machine.h"
 #include "stack-c.h"
 #include "CdfBase.h"
-#include "gw_statistics.h"
 /*-----------------------------------------------------------------------------------*/ 
 extern int C2F(cdfbet) __PARAMS((int *,double *,double *,double *,double *,double *,double *, int *,double *));
 /*-----------------------------------------------------------------------------------*/ 

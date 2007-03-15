@@ -3,9 +3,9 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include <string.h>
 #include "machine.h"
+#include "gw_statistics.h"
 #include "stack-c.h"
 #include "CdfBase.h"
-#include "gw_statistics.h"
 /*-----------------------------------------------------------------------------------*/ 
 extern int C2F(cdfchi) __PARAMS((int *,double *,double *,double *,double *, int *,double *));
 /*-----------------------------------------------------------------------------------*/ 
