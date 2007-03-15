@@ -91,8 +91,8 @@ char* getrelativefilename(char *currentDirectory, char *absoluteFilename)
 	int levels = 0;
 	char *relativeFilename= (char*)MALLOC(MAX_FILENAME_LEN*sizeof(char));
 	
-	cdLen = strlen(currentDirectory);
-	afLen = strlen(absoluteFilename);
+	cdLen = (int)strlen(currentDirectory);
+	afLen = (int)strlen(absoluteFilename);
 	
 	// make sure the names are not too short
 	if( cdLen < ABSOLUTE_NAME_START+1 || afLen < ABSOLUTE_NAME_START+1)

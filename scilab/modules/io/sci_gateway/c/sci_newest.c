@@ -160,8 +160,8 @@ int GetIndexLastModifiedFileInList(char **ListFilename,int numberelemnts)
 		int resultstat=0;
 		char *FileName=NULL;
 		int out_n;
-		long int lin=strlen(ListFilename[i]);
-		long int lout=strlen(ListFilename[i])+MAX_ENV;
+		long int lin=(long int)strlen(ListFilename[i]);
+		long int lout=(long int)strlen(ListFilename[i])+MAX_ENV;
 
 		FileName=(char*)MALLOC(sizeof(char)*(lout+1));
 		C2F(cluni0)(ListFilename[i], FileName, &out_n,lin,lout);

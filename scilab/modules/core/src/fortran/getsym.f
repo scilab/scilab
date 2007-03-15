@@ -138,7 +138,7 @@
       if (ddt .lt. 3) return
 
       if (sym .eq. num) then
-         write(buf(1:11),'(1x,e10.3))') syv
+         write(buf(1:11),'(1x,e10.3)') syv
          call basout(io,wte,buf(1:11))
       else if (sym .eq. name) then
          call prntid(syn(1),1,wte)
