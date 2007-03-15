@@ -1,4 +1,4 @@
-function sd=stdev(x,cr)
+function sd=stdev(x,o)
 //
 //This function computes  the  standard deviation  of  the values  of  a
 //vector or matrix x.
@@ -18,31 +18,26 @@ function sd=stdev(x,cr)
 //
 //date: 1999-05-12
 //
-  if argn(2)<2 then cr='*',end
+  if argn(2)<2 then o='*',end
   if x == [] then sd=%nan;return ;end 
-  if typeof(x)=='hypermat' then sd=%hm_st_deviation(x,cr),return,end
-  [m,n]=size(x);
-  if cr=='*' then
-    n=m*n
-    select n
-      case 0 then sd=%nan
-      case 1 then sd=0
-    else 
-      sd=sqrt(sum((x-mean(x)).^2)/(n-1));
-    end
-  elseif cr=='c'|cr==2
-    if n==1 then
-      sd=zeros(m,1)
-    else
-      sd=sqrt(sum((x-mean(x,'c')*ones(x(1,:))).^2,'c')/(n-1));
-    end
-  elseif cr=='r'|cr==1
-    if m==1 then
-      sd=zeros(1,n)
-    else
-      sd=sqrt(sum((x-ones(x(:,1))*mean(x,'r')).^2,'r')/(m-1));
-    end
+  
+  if typeof(x)=='hypermat' then sd=%hm_st_deviation(x,o),return,end
+
+  // remove the mean
+  if o=='*' then
+    y=x - mean(x)
+  elseif o=='c'|o==2 then
+    y=x - mean(x,'c')*ones(x(1,:))
+  elseif o=='r'|o==1 then
+    y=x - ones(x(:,1))*mean(x,'r')
   else
-    error('Optional 2nd argument cr must be equal to ''*'', ''c'' or 2, ''r'' or 1');
+    error('Optional 2nd argument must be equal to ''*'', ''c'' or 2, ''r'' or 1');
   end
+  
+  if size(x,o)==1 then
+    sd=0*y
+  else
+    sd=sqrt(sum(y.^2,o)/(size(x,o)-1));
+  end
+
 endfunction
