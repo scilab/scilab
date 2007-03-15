@@ -114,7 +114,7 @@ function n=datenum(varargin)
 					end
 					
 					if DayIn(i,j)<1 | DayIn(i,j)>31 then
-						error('The third argument must be between 1 and 12');
+						error('The third argument must be between 1 and 31');
 					end
 					
 					Y(compteur,1) = YearIn(i,j);
