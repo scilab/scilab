@@ -11,14 +11,6 @@
 #include "LoadFunctionsTab.h"
 #include "prompt.h"
 #include "message_scilab.h"
-
-#ifdef _MSC_VER
-/* Force some definitions (linear_algebra)*/
-/* may be not the best place ... */
-SCIGSCH_struct C2F(scigsch);
-SCISCH_struct C2F(scisch);
-SCIZGSCH_union C2F(scizgsch);
-#endif
 /*-----------------------------------------------------------------------------------*/ 
 BOOL InitializeCore(void)
 {
