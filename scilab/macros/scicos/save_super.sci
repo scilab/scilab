@@ -81,7 +81,8 @@ txt=[
    bl(ones(size(t1,1),1))+t1;
 '  gr_i=''xstringb(orig(1),orig(2),'''''+nam+''''',sz(1),sz(2),''''fill'''')'';'
 '  x=standard_define([2 2],model,[],gr_i)';
-'end']
+'end'
+'endfunction']
 path=stripblanks(fpath)+'/'+nam+'.sci'
 [u,err]=file('open',path,'unknown')
 if err<>0 then

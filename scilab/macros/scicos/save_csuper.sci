@@ -148,7 +148,8 @@ function path=save_csuper(scs_m,fpath)
   t1=[strsubst(t1,sci2exp('%scs_m_1'),'scs_m_1')
       '  gr_i=''xstringb(orig(1),orig(2),'''''+nam+''''',sz(1),sz(2),''''fill'''')'';'
       '  x=standard_define([2 2],model,[],gr_i)';
-      'end']
+      'end'
+      'endfunction']
   write(u,t1,'(a)')
   file('close',u)
 endfunction
