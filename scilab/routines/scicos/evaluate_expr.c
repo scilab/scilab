@@ -229,13 +229,13 @@ void evaluate_expr(scicos_block *block,int flag)
 	  break;
 
 	case 30:
+	  if(block->ng>0) nzcr=nzcr+1;
 	  if (flag==9) {
 	    block->g[nzcr]=stack[bottom];
 	    if(phase==1) {
 	      block->mode[nzcr]=(0.0==stack[bottom]);
 	    }
 	  }
-	  if(block->ng>0) nzcr=nzcr+1;
 	  if(phase==1||block->ng==0){
 	    i=(stack[bottom]==0.0);
 	  }else{
