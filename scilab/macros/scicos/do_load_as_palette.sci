@@ -29,7 +29,7 @@ function [palettes,windows]=do_load_as_palette(palettes,windows)
      // French
   	delmenu(curwin,'&Editer')
   	delmenu(curwin,'&Outils')
-  	delmenu(win,'&Inserer')
+  	delmenu(curwin,'&Inserer')
      // English
   	delmenu(curwin,'&Edit')
   	delmenu(curwin,'&Tools')
