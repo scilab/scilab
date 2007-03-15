@@ -431,13 +431,13 @@ int RandI(char *fname,unsigned long fname_len)
 	}
       else if (strcmp("getgen",cstk(ls))==0) 
 	{
-	  int un=1;
+	  int l_un=1;
 	  if ( Rhs != 1) 
 	    {
 	      Scierror(999,"Rhs should be 1 for 'getgen' option\n\r");
 	      return 0;
 	    }
-	  CreateVarFromPtr( 2, "S", &un, &un, &names_gen[current_gen]);
+	  CreateVarFromPtr( 2, "S", &l_un, &l_un, &names_gen[current_gen]);
 	  LhsVar(1) = 2;
 	  PutLhsVar();
 	  return 0;
@@ -517,7 +517,7 @@ int RandI(char *fname,unsigned long fname_len)
     }
   else if ( strcmp(cstk(ls),"mul")==0) 
     {
-      int i,nn,ncat;
+      int l_i,nn,ncat;
       double ptot;
       if ( suite != 3 || ResL*ResC != 1)
 	{ Scierror(999,"First argument for 'mul' option must be the number of random deviate \r\n");
@@ -547,28 +547,28 @@ int RandI(char *fname,unsigned long fname_len)
 	  return 0;
 	}
       ptot = 0.0;
-      for ( i= 0 ; i < ncat -1 ; i++ )
+      for ( l_i= 0 ; l_i < ncat -1 ; l_i++ )
 	{
-	  if ( *stk(lb+i) < 0 ) 
+	  if ( *stk(lb+l_i) < 0 ) 
 	    {
-	      Scierror(999,"P(%d) < 0 \r\n",i+1);
+	      Scierror(999,"P(%d) < 0 \r\n",l_i+1);
 	      return 0;
 	    }
-	  if ( *stk(lb+i) > 1 ) 
+	  if ( *stk(lb+l_i) > 1 ) 
 	    {
-	      Scierror(999,"P(%d) > 1 \r\n",i+1);
+	      Scierror(999,"P(%d) > 1 \r\n",l_i+1);
 	      return 0;
 	    }
-	  ptot += *stk(lb+i);
+	  ptot += *stk(lb+l_i);
 	}
       if ( ptot > 0.99999) 
 	{
 	  Scierror(999,"Sum of P(i) > 1 \r\n");
 	  return 0;
 	}
-      for ( i=0 ; i < nn ; i++) 
+      for ( l_i=0 ; l_i < nn ; l_i++) 
 	{
-	  C2F(genmul)(istk(la),stk(lb),&ncat,istk(lr+ncat*i));
+	  C2F(genmul)(istk(la),stk(lb),&ncat,istk(lr+ncat*l_i));
 	}
       LhsVar(1) = suite+2;
       PutLhsVar();
