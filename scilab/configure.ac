@@ -1125,6 +1125,7 @@ modules/tfds/Makefile
 modules/scipad/Makefile
 modules/scilab2fortran/Makefile
 modules/development_tools/Makefile
+modules/module_skeleton/Makefile
 modules/Makefile
 libs/Makefile 
 Makefile
