@@ -9,7 +9,7 @@
 /*-----------------------------------------------------------------------------------*/ 
 #define spINSIDE_SPARSE
 #include "../../sparse/includes/spConfig.h"
-#include "machine.h"
+#include "ipmpar1.h"
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(largestint)()
 {

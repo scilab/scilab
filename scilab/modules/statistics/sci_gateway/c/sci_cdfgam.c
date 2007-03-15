@@ -4,8 +4,9 @@
 #include <string.h>
 #include "machine.h"
 #include "stack-c.h"
+#include "CdfBase.h"
+#include "gw_statistics.h"
 /*-----------------------------------------------------------------------------------*/ 
-extern int CdfBase __PARAMS((char *fname,int inarg,int oarg,int *callpos,char *option,char *errnames,int which,int (*fonc)(),void (*foncErr)()));
 extern int C2F(cdfgam) __PARAMS((int *,double *,double *,double*,double *,double *, int *,double *));
 /*-----------------------------------------------------------------------------------*/ 
 static void cdfgamErr(int status,double bound);

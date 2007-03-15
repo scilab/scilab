@@ -90,7 +90,7 @@ sci_gateway/c/sci_cdfbet.c \
 sci_gateway/c/sci_cdfnbn.c \
 sci_gateway/c/sci_cdfnor.c
 
-libscistatistics_la_CFLAGS=  -Iincludes/
+libscistatistics_la_CFLAGS=  -Iincludes/ -Isrc/c/
 #-Isrc/c/
 pkglib_LTLIBRARIES = libscistatistics.la
 

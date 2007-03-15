@@ -8,18 +8,6 @@
 #include "ExceptionMessage.h"
 #endif
 /*-----------------------------------------------------------------------------------*/
-extern int cdfbetI(char* fname,unsigned long l);
-extern int cdfbinI(char* fname,unsigned long l);
-extern int cdfchiI(char* fname,unsigned long l);
-extern int cdfchnI(char* fname,unsigned long l);
-extern int cdffI(char* fname,unsigned long l);
-extern int cdffncI(char* fname,unsigned long l);
-extern int cdfgamI(char* fname,unsigned long l);
-extern int cdfnbnI(char* fname,unsigned long l);
-extern int cdfnorI(char* fname,unsigned long l);
-extern int cdfpoiI(char* fname,unsigned long l);
-extern int cdftI(char* fname,unsigned long l);
-/*-----------------------------------------------------------------------------------*/
 static StatisticsTable Tab[]=
 { 
 	{cdfbetI, "cdfbet"},

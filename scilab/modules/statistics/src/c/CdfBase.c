@@ -4,6 +4,7 @@
 #include <string.h>
 #include "machine.h"
 #include "stack-c.h"
+#include "CdfBase.h"
 /*-----------------------------------------------------------------------------------*/ 
 int  CdfBase(char *fname,int inarg,int oarg,int *callpos,char *option,char *errnames,int which,int (*fonc)(),void (*foncErr)() )
 {
