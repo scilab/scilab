@@ -10,6 +10,7 @@
 ;
 #define SYMBOLIC "symbolic"
 ;
+Source: bin\symbolic.dll; DestDir: {app}\bin; DestName: symbolic.dll; Components: {#COMPN_SYMB}
 Source: bin\symbolic_f.dll; DestDir: {app}\bin; DestName: symbolic_f.dll; Components: {#COMPN_SYMB}
 ;
 Source: modules\{#SYMBOLIC}\VERSION; DestDir: {app}\modules\{#SYMBOLIC}; Components: {#COMPN_SYMB}; Check: set_with_symbolic
