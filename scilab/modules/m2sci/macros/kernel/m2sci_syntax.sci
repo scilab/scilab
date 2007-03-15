@@ -494,6 +494,33 @@ else
     end
     txt=[txt(first_ncl);txt(1:first_ncl(1)-1);txt(first_ncl($)+1:$)]
   end
+  // Beginning of BUG 2341 fix: function prototype with no comma between output parameters names
+  begb=strindex(txt(1),"[");
+  endb=strindex(txt(1),"]");
+  if ~isempty(begb) & ~isempty(endb)
+    outputparams = stripblanks(part(txt(1),(begb+1):(endb-1)));
+    k=0;
+    while k<length(outputparams)
+      k=k+1;
+      while and(part(outputparams,k)<>[","," "]) // skip identifier
+	k=k+1;
+      end
+      while part(outputparams,k)==" " // skip spaces before comma
+	k=k+1;
+      end
+      if part(outputparams,k)<>","
+	outputparams=part(outputparams,1:(k-1))+","+part(outputparams,k:length(outputparams));
+	k=k+1;
+      else
+	k=k+1;
+      end
+      while part(outputparams,k)==" " // skip spaces after comma
+	k=k+1;
+      end
+    end
+    txt(1)=part(txt(1),1:begb)+outputparams+part(txt(1),endb:length(txt(1)));
+  end
+  // END of BUG 2341 fix: function prototype with no comma between output parameters names
 end
 
 endfunction
