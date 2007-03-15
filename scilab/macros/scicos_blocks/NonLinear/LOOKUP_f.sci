@@ -18,7 +18,7 @@ case 'set' then
   xx=rpar(1:n);yy=rpar(n+1:2*n)
   while %t do
     [ln,fun]=where();  
-    if (fun(3) == "clickin") then // cas standard  
+    if or(fun == "clickin") then // cas standard 
       old_win=xget('window')
       win=maxi(winsid())+1
       xset('window',win);xsetech([0 0 1 1])
