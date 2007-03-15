@@ -55,15 +55,15 @@ scs_m.objs(4)=mlist(["Block","graphics","model","gui","doc"],..
               mlist(..
               ["graphics","orig","sz","flip","exprs","pin","pout","pein","peout",..
               "gr_i","id","in_implicit","out_implicit"],[230,0],[60,40],%t,..
-              ["0";"0";"1";"2113248"],[],0,0,[],..
+              ["0";"0";"1";"2211"],[],0,0,[],..
               list(..
               ["txt=[''random'';''generator''];";
               "xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')"],8),"",[],"E"),..
               mlist(..
               ["model","sim","in","out","evtin","evtout","state","dstate","rpar",..
               "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..
-              "equations"],"rndblk",[],1,1,[],[],[2113248;0],[0;1],0,"d",[],..
-              [%f,%f],"",0,0,list()),"RAND_f",list())
+              "equations"],"rndblk",[],1,1,[],[],[2211;0],[0;1],0,"d",[],[%f,%f],..
+              "",0,0,list()),"RAND_f",list())
 scs_m.objs(5)=mlist(["Block","graphics","model","gui","doc"],..
               mlist(..
               ["graphics","orig","sz","flip","exprs","pin","pout","pein","peout",..
@@ -175,7 +175,7 @@ scs_m_1.objs(1)=mlist(["Block","graphics","model","gui","doc"],..
                 ["model","sim","in","out","evtin","evtout","state","dstate",..
                 "rpar","ipar","blocktype","firing","dep_ut","label","nzcross",..
                 "nmode","equations"],list("step_func",4),[],1,1,1,[],[],[0;1],[],..
-                "c",1,[%f,%f],"",0,0,list()),"STEP",list())
+                "c",1,[%f,%t],"",0,0,list()),"STEP",list())
 scs_m_1.objs(2)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
                 [102.2306;102.2306;63.708992;63.708992;102.2306;102.2306],..
                 [646.96701;622.2884;622.2884;711.98452;711.98452;698.39559],..

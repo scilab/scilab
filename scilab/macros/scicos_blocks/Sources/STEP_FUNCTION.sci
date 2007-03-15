@@ -103,7 +103,7 @@ case 'define' then
   mlist(..
   ['model','sim','in','out','evtin','evtout','state','dstate','rpar','ipar','blocktype',..
   'firing','dep_ut','label','nzcross','nmode','equations'],list('step_func',4),[],1,1,1,[],..
-  [],[0;1],[],'c',1,[%f,%f],emptystr(),0,0,list()),'STEP',list()),..
+  [],[0;1],[],'c',1,[%f,%t],emptystr(),0,0,list()),'STEP',list()),..
   mlist(['Link','xx','yy','id','thick','ct','from','to'],..
   [102.2306;102.2306;63.708992;63.708992;102.2306;102.2306],..
   [646.96701;622.2884;622.2884;711.98452;711.98452;698.39559],'drawlink',[0,0],[5,-1],..
