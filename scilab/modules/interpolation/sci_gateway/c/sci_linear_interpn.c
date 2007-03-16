@@ -3,12 +3,13 @@
 /* AUTHOR : Bruno Pincon */
 /*-----------------------------------------------------------------------------------*/ 
 #include <string.h>
+#include "gw_interpolation.h"
 #include "stack-c.h"
 #include "interpolation.h"
+#include "someinterp.h"
 /*-----------------------------------------------------------------------------------*/
 extern int get_type(TableType *Tab, int dim_table, int *scistr, int strlength);
 extern int good_order(double x[], int n);
-extern void nlinear_interp(double **x , double val[], int dim[], int n, double **xp, double yp[], int np, int outmode,double u[], double v[], int ad[], int k[]);
 /*-----------------------------------------------------------------------------------*/
 #define NB_OUTMODE 6
 static TableType OutModeTable[NB_OUTMODE] = {

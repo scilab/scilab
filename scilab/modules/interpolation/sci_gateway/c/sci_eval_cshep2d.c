@@ -4,6 +4,7 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include <string.h>
 #include "stack-c.h"
+#include "gw_interpolation.h"
 #include "interpolation.h"
 #include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/ 
@@ -45,10 +46,10 @@ int inteval_cshep2d(char *fname,unsigned long fname_len)
 		/* Free Str */
 		if (Str)
 		{
-			int i=0;
-			while ( Str[i] != NULL) 
+			int li=0;
+			while ( Str[li] != NULL) 
 			{ 
-				FREE(Str[i]);
+				FREE(Str[li]);
 				i++;
 			};
 			FREE(Str);
@@ -61,10 +62,10 @@ int inteval_cshep2d(char *fname,unsigned long fname_len)
   /* Free Str */
   if (Str)
   {
-	  int i=0;
-	  while ( Str[i] != NULL) 
+	  int li=0;
+	  while ( Str[li] != NULL) 
 	  { 
-		  FREE(Str[i]);
+		  FREE(Str[li]);
 		  i++;
 	  };
 	  FREE(Str);

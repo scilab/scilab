@@ -6,8 +6,9 @@
  *    Bruno Pincon <Bruno.Pincon@iecn.u-nancy.fr>
  */
 
-#include "stack-c.h"
 #include <math.h>
+#include "stack-c.h"
+#include "someinterp.h"
 
 enum {NOT_A_KNOT, NATURAL, CLAMPED, PERIODIC, FAST, FAST_PERIODIC, 
       MONOTONE, BY_ZERO, C0, LINEAR, BY_NAN};
@@ -211,11 +212,3 @@ void nlinear_interp(double **x , double val[], int dim[], int n,
     
     }
 }
-
-
-
-
-	
-	      
-	    
-  

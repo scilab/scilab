@@ -6,6 +6,7 @@
 #include <Windows.h>
 #endif
 #include <string.h>
+#include "gw_interpolation.h"
 #include "stack-c.h"
 #include "interpolation.h"
 #include "MALLOC.h"
@@ -32,7 +33,7 @@ int intinterp3d(char *fname,unsigned long fname_len)
   int minrhs=4, maxrhs=5, minlhs=1, maxlhs=4;
 
   int mxp, nxp, lxp, myp, nyp, lyp, mzp, nzp, lzp, mt, nt, lt, np;
-  int zero=0, one=1, kx, ky, kz;
+  int one=1, kx, ky, kz;
   int nx, ny, nz, nxyz, mtx, mty, mtz, m, n, ltx, lty, ltz, lbcoef, mwork, lwork, lfp;
   int lxyzminmax, nsix, outmode, ns, *str_outmode;
   int /*i,*/ m1, n1, ldfpdx, ldfpdy, ldfpdz;

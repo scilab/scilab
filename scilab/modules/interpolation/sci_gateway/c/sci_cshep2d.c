@@ -6,6 +6,7 @@
 #include <Windows.h>
 #endif
 #include <string.h>
+#include "gw_interpolation.h"
 #include "stack-c.h"
 #include "interpolation.h"
 /*-----------------------------------------------------------------------------------*/ 

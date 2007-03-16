@@ -26,7 +26,7 @@ sci_gateway/c/sci_bsplin3val.c \
 sci_gateway/c/sci_eval_cshep2d.c
 
 libsciinterpolation_la_FFLAGS=  -Iincludes/
-libsciinterpolation_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
+libsciinterpolation_la_CFLAGS=  -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/
 
 pkglib_LTLIBRARIES = libsciinterpolation.la
 
