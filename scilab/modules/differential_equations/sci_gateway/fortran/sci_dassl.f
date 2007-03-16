@@ -192,7 +192,7 @@ c     --   subvariable imode(info) --
 c     
 c     --   subvariable band(info) --
       il8e3=iadr(l8+istk(il8+1+3)-1)
-      m8e3 =istk(il8e3+2)*istk(il8e3+2)
+      m8e3 =istk(il8e3+1)*istk(il8e3+2)
       l8e3 = sadr(il8e3+4)
       if(m8e3.eq.0) then
          info(6)=0
@@ -208,7 +208,7 @@ c     --   subvariable band(info) --
 c     
 c     --   subvariable maxstep(info) --
       il8e4=iadr(l8+istk(il8+1+4)-1)
-      m8e4 =istk(il8e4+2)*istk(il8e4+2)
+      m8e4 =istk(il8e4+1)*istk(il8e4+2)
       l8e4 = sadr(il8e4+4)
       if(m8e4.eq.0) then
          info(7)=0
@@ -220,7 +220,7 @@ c     --   subvariable maxstep(info) --
 c     
 c     --   subvariable stepin(info) --
       il8e5=iadr(l8+istk(il8+1+5)-1)
-      m8e5 =istk(il8e5+2)*istk(il8e5+2)
+      m8e5 =istk(il8e5+1)*istk(il8e5+2)
       l8e5 = sadr(il8e5+4)
       if(m8e5.eq.0) then
          info(8)=0
@@ -305,7 +305,7 @@ c
       endif
       if(info(6).eq.1) then
          istk(iadr(liwork))=ml
-         istk(iadr(liwork+1))=mu
+         istk(iadr(liwork)+1)=mu
       endif
 c     structure d'info pour les externals
       top=topw
