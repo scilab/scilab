@@ -16,6 +16,8 @@
 #include "stack-c.h"
 #include "sciprint.h"
 
+int C2F(gw_optim)(void);
+
 typedef int (*Optim_Interf) __PARAMS((char *fname,unsigned long l));
 
 typedef struct table_struct 
@@ -30,6 +32,8 @@ int C2F(sci_fsolve) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_sqrsolve) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_qld) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sciquapro) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_quapro) _PARAMS((char *fname,unsigned long fname_len));
+
 int C2F(intqld)_PARAMS((char *fname,unsigned long fname_len));
 int C2F(intlsqrsolve) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(scioptim) _PARAMS((char *fname,unsigned long fname_len));
