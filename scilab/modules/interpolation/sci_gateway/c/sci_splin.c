@@ -38,7 +38,7 @@ int intsplin(char *fname,unsigned long fname_len)
   GetRhsVar(1,"d", &mx, &nx, &lx);
   GetRhsVar(2,"d", &my, &ny, &ly);
 
-  if ( mx != my  ||  nx != ny  ||  mx != 1  &&  nx != 1 ) 
+  if ( mx != my  ||  nx != ny  ||  (mx != 1  &&  nx != 1) ) 
     { 
       Scierror(999,"%s: arg1 and arg2 must be 2 vectors with same size\r\n", fname);
       return 0;

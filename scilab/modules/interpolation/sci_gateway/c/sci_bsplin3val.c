@@ -23,7 +23,7 @@ int intbsplin3val(char *fname,unsigned long fname_len)
   int minrhs=5, maxrhs=5, minlhs=1, maxlhs=1;
 
   int mxp, nxp, lxp, myp, nyp, lyp, mzp, nzp, lzp, mt, nt, lt, m1, n1, np;
-  int zero=0, one=1, kx, ky, kz;
+  int one=1, kx, ky, kz;
   int nx, ny, nz, nxyz, mtx, mty, mtz, m, n, ltx, lty, ltz, lbcoef, mwork, lwork, lfp;
   int lxyzminmax, nsix;
   int i, mder,nder,lder, ox, oy, oz;
@@ -53,10 +53,10 @@ int intbsplin3val(char *fname,unsigned long fname_len)
       /* Free Str */
 	  if (Str)
 	  {
-		  int i=0;
-		  while ( Str[i] != NULL) 
+		  int li=0;
+		  while ( Str[li] != NULL) 
 		  { 
-			  FREE(Str[i]);
+			  FREE(Str[li]);
 			  i++;
 		  };
 		  FREE(Str);
@@ -69,11 +69,11 @@ int intbsplin3val(char *fname,unsigned long fname_len)
   /* Free Str */
   if (Str)
   {
-	  int i=0;
-	  while ( Str[i] != NULL) 
+	  int li=0;
+	  while ( Str[li] != NULL) 
 	  { 
-		  FREE(Str[i]);
-		  i++;
+		  FREE(Str[li]);
+		  li++;
 	  };
 	  FREE(Str);
 	  Str=NULL;

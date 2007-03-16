@@ -34,7 +34,7 @@ int intinterp1(char *fname,unsigned long fname_len)
   GetRhsVar(3,"d", &my, &ny, &ly);
   GetRhsVar(4,"d", &md, &nd, &ld);
 
-  if ( mx != my  ||  nx != ny  ||  md != mx || nd != nx || mx != 1  &&  nx != 1 || mx*nx < 2) 
+  if ( mx != my  ||  nx != ny  ||  md != mx || nd != nx || (mx != 1  &&  nx != 1) || mx*nx < 2) 
     { 
       Scierror(999,"%s: bad inputs \r\n", fname);
       return 0;
