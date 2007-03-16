@@ -41,7 +41,8 @@ static unsigned int hashfromkey_string(void *ky)
 	k =	(struct key_string *)ky;
 	str=k->Key_String;
 
-	while (c = *str++) 	hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
+	while ((c = *(str++)))	
+		hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
 
 	return hash;
 }
