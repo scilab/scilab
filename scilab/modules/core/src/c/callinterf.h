@@ -25,9 +25,8 @@ void C2F(Nogw_scicos)(void);
 void C2F(Nogw_cscicos)(void);
 void C2F(Nogw_slicot)(void);
 void C2F(Nogw_fftw)(void);
-int ForceLink(void);
 
-static void  sci_sigint_addinter(int n);
+static void sci_sigint_addinter(int n);
 
 
 /* 01  C2F(gw_user)(); FREE */

@@ -26,6 +26,7 @@ extern int   System_contents __PARAMS((int));
 extern int   Intersci_contents __PARAMS((int));
 extern int   Sparse_contents __PARAMS((int));
 
+int ForceLink(void);
 int ForceLink(void)
 {
 	/*  

@@ -74,8 +74,9 @@ src/c/TerminateCore.c \
 src/c/coretable.c \
 src/c/error_scilab.c \
 src/c/message_scilab.c \
-src/c/force_link.c
-
+src/c/force_link.c \
+src/c/returnProperty.c \
+src/c/returnPropertyList.c
 
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f \
 src/fortran/clunit.f \

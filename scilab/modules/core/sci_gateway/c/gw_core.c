@@ -83,7 +83,8 @@ int C2F(gw_core)()
 	Rhs = Max(0, Rhs);
 
 	/**
-	* recursion depuis intdeff
+	* recursion from intdeff
+	* TODO : need more informations
 	*/
 	if ( C2F(recu).rstk[C2F(recu).pt-1] == 901) 
 	{

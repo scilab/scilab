@@ -114,11 +114,12 @@ am__libscicore_la_SOURCES_DIST = src/c/history.c src/c/inffic.c \
 	src/c/stackinfo.c src/c/scirun.c src/c/SCIHOME.c \
 	src/c/warningmode.c src/c/InitializeCore.c \
 	src/c/TerminateCore.c src/c/coretable.c src/c/error_scilab.c \
-	src/c/message_scilab.c src/c/force_link.c src/c/getarg-hpux.c \
-	src/c/getarg.c src/fortran/algebre.f src/fortran/clunit.f \
-	src/fortran/complexify.f src/fortran/allowptr.f \
-	src/fortran/dldsp.f src/fortran/bcol.f src/fortran/msgs.f \
-	src/fortran/getlin.f src/fortran/isany.f \
+	src/c/message_scilab.c src/c/force_link.c \
+	src/c/returnProperty.c src/c/returnPropertyList.c \
+	src/c/getarg-hpux.c src/c/getarg.c src/fortran/algebre.f \
+	src/fortran/clunit.f src/fortran/complexify.f \
+	src/fortran/allowptr.f src/fortran/dldsp.f src/fortran/bcol.f \
+	src/fortran/msgs.f src/fortran/getlin.f src/fortran/isany.f \
 	src/fortran/hmcreate.f src/fortran/nextj.f \
 	src/fortran/functionsforbasout.f src/fortran/setgetmode.f \
 	src/fortran/errmsgf.f src/fortran/showstack.f \
@@ -270,7 +271,9 @@ am__objects_3 = libscicore_la-history.lo libscicore_la-inffic.lo \
 	libscicore_la-warningmode.lo libscicore_la-InitializeCore.lo \
 	libscicore_la-TerminateCore.lo libscicore_la-coretable.lo \
 	libscicore_la-error_scilab.lo libscicore_la-message_scilab.lo \
-	libscicore_la-force_link.lo $(am__objects_1) $(am__objects_2)
+	libscicore_la-force_link.lo libscicore_la-returnProperty.lo \
+	libscicore_la-returnPropertyList.lo $(am__objects_1) \
+	$(am__objects_2)
 @IS_HPUX_TRUE@am__objects_4 = fgetarg-hpux.lo
 @IS_HPUX_FALSE@am__objects_5 = fgetarg.lo
 am__objects_6 = algebre.lo clunit.lo complexify.lo allowptr.lo \
@@ -549,8 +552,9 @@ CORE_C_SOURCES = src/c/history.c src/c/inffic.c src/c/cs2st.c \
 	src/c/stackinfo.c src/c/scirun.c src/c/SCIHOME.c \
 	src/c/warningmode.c src/c/InitializeCore.c \
 	src/c/TerminateCore.c src/c/coretable.c src/c/error_scilab.c \
-	src/c/message_scilab.c src/c/force_link.c $(am__append_2) \
-	$(am__append_4)
+	src/c/message_scilab.c src/c/force_link.c \
+	src/c/returnProperty.c src/c/returnPropertyList.c \
+	$(am__append_2) $(am__append_4)
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f src/fortran/clunit.f \
 	src/fortran/complexify.f src/fortran/allowptr.f \
 	src/fortran/dldsp.f src/fortran/bcol.f src/fortran/msgs.f \
@@ -969,6 +973,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-prompt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-readline.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-realmain.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-returnProperty.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-returnPropertyList.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-returnanan.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-run.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_addinter.Plo@am__quote@
@@ -1573,6 +1579,20 @@ libscicore_la-force_link.lo: src/c/force_link.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/force_link.c' object='libscicore_la-force_link.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-force_link.lo `test -f 'src/c/force_link.c' || echo '$(srcdir)/'`src/c/force_link.c
+
+libscicore_la-returnProperty.lo: src/c/returnProperty.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-returnProperty.lo -MD -MP -MF $(DEPDIR)/libscicore_la-returnProperty.Tpo -c -o libscicore_la-returnProperty.lo `test -f 'src/c/returnProperty.c' || echo '$(srcdir)/'`src/c/returnProperty.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-returnProperty.Tpo $(DEPDIR)/libscicore_la-returnProperty.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/returnProperty.c' object='libscicore_la-returnProperty.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-returnProperty.lo `test -f 'src/c/returnProperty.c' || echo '$(srcdir)/'`src/c/returnProperty.c
+
+libscicore_la-returnPropertyList.lo: src/c/returnPropertyList.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-returnPropertyList.lo -MD -MP -MF $(DEPDIR)/libscicore_la-returnPropertyList.Tpo -c -o libscicore_la-returnPropertyList.lo `test -f 'src/c/returnPropertyList.c' || echo '$(srcdir)/'`src/c/returnPropertyList.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-returnPropertyList.Tpo $(DEPDIR)/libscicore_la-returnPropertyList.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/returnPropertyList.c' object='libscicore_la-returnPropertyList.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-returnPropertyList.lo `test -f 'src/c/returnPropertyList.c' || echo '$(srcdir)/'`src/c/returnPropertyList.c
 
 libscicore_la-getarg-hpux.lo: src/c/getarg-hpux.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-getarg-hpux.lo -MD -MP -MF $(DEPDIR)/libscicore_la-getarg-hpux.Tpo -c -o libscicore_la-getarg-hpux.lo `test -f 'src/c/getarg-hpux.c' || echo '$(srcdir)/'`src/c/getarg-hpux.c
