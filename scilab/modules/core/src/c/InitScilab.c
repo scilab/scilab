@@ -5,8 +5,8 @@
 #include "InitScilab.h"
 #include "InitializeCore.h"
 #include "../../tclsci/includes/InitializeTclTk.h"
-#ifdef _MSC_VER
 #include "../../localization/includes/InitializeLocalization.h"
+#ifdef _MSC_VER
 #include "../../jvm/includes/InitializeJVM.h"
 #endif
 /*-----------------------------------------------------------------------------------*/

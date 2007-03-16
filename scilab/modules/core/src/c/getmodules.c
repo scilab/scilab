@@ -17,7 +17,6 @@ extern BOOL FileExist(char *filename);
 /*-----------------------------------------------------------------------------------*/ 
 static struct MODULESLIST *ScilabModules=NULL;
 /*-----------------------------------------------------------------------------------*/ 
-static BOOL AddModules(void);
 static BOOL ReadModulesFile(void);
 static int GetNumberOfLinesInFile(char *filename);
 static BOOL AppendModules(char *filename);

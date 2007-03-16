@@ -3,12 +3,13 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include <stdarg.h>
+#include <stdlib.h>
 #include "message_scilab.h"
 #include "MALLOC.h"
 #include "sciprint.h"
 #include "../../../localization/includes/QueryStringMessage.h"
 /*-----------------------------------------------------------------------------------*/
-int message_scilab(char *Tag,va_list argptr)
+int message_scilab(char *Tag, va_list argptr)
 {
 	int ret=0;
 	char *LocalizedString=QueryStringMessage(Tag);

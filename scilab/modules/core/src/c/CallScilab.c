@@ -19,9 +19,11 @@
 #endif
 
 /*-----------------------------------------------------------------------------------*/
+
 static char DefaultScilabStartup[]="SCI/etc/scilab.start";
-static char DefaultScilabQuit[]="SCI/etc/scilab.quit";
-static char DefaultSCIenv[]="../..";
+// not used at the moment
+//static char DefaultScilabQuit[]="SCI/etc/scilab.quit";
+//static char DefaultSCIenv[]="../..";
 static int DefaultStacksize=1000000;
 static int StartScilabIsOK=FALSE;
 /*-----------------------------------------------------------------------------------*/

@@ -22,6 +22,7 @@ static  jmp_buf jmp_env;
 
 extern int C2F(error) __PARAMS((int *));
 
+static void sci_sigint_addinter(int n);
 
 /***********************************************************
  * interface function 

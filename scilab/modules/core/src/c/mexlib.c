@@ -1007,7 +1007,7 @@ mxArray *mxCreateStructMatrix(int m, int n, int nfields, const char **field_name
   return (mxArray *) C2F(vstk).lstk[lw + Top - Rhs - 1 ];
 }
 
-void mxSetFieldByNumber(mxArray *array_ptr, int index, int field_number, mxArray *value)
+void mxSetFieldByNumber(mxArray *array_ptr, int lindex, int field_number, mxArray *value)
 {
   int pointed, point_ed;int proddims,k;int is1x1;
   int *headerobj; int *headervalue;
@@ -1023,7 +1023,7 @@ void mxSetFieldByNumber(mxArray *array_ptr, int index, int field_number, mxArray
   if (is1x1) {
     headerobj = listentry( header, field_number+3);}
   else {
-    headerobj = listentry( listentry(header, field_number+3)  ,index+1);}
+    headerobj = listentry( listentry(header, field_number+3)  ,lindex+1);}
   if (IsReference(value))
     {
       headervalue = RawHeader(value);
@@ -1043,11 +1043,11 @@ void mxSetFieldByNumber(mxArray *array_ptr, int index, int field_number, mxArray
     }
 }
 
-void mxSetField(mxArray *array_ptr, int index, const char *field_name, mxArray *value)
+void mxSetField(mxArray *array_ptr, int lindex, const char *field_name, mxArray *value)
 {
   int field_num;
   field_num = mxGetFieldNumber(array_ptr, field_name);
-  mxSetFieldByNumber(array_ptr, index, field_num, value);
+  mxSetFieldByNumber(array_ptr, lindex, field_num, value);
 }
 
 const char *mxGetFieldNameByNumber(const mxArray *array_ptr, int field_number)
@@ -1177,7 +1177,7 @@ mxArray *mxCreateCellMatrix(int nrows, int ncols)
   return mxCreateCellArray(two, dims);
 }
 
-mxArray *mxGetCell(const mxArray *ptr, int index)
+mxArray *mxGetCell(const mxArray *ptr, int lindex)
 {
   int kk,lw,isize;int proddims,k;int is1x1;
   int *headerlist,*headerobj,*headerobjcopy;
@@ -1191,13 +1191,13 @@ mxArray *mxGetCell(const mxArray *ptr, int index)
   is1x1= (int) proddims==1;
 
   if (is1x1) {
-    headerobj = listentry( header, index+1);
+    headerobj = listentry( header, lindex+1);
     isize = header[5]- header[4];
   }
   else {
     headerlist = listentry(header,3);
-    headerobj = listentry(headerlist,index+1);
-    isize=headerlist[index+3]-headerlist[index+2];
+    headerobj = listentry(headerlist,lindex+1);
+    isize=headerlist[lindex+3]-headerlist[lindex+2];
   }
   Nbvars++;  lw=Nbvars;
   CreateData(lw,isize*sizeof(double));
@@ -1230,7 +1230,7 @@ int mxGetFieldNumber(const mxArray *ptr, const char *string)
   return retval;
 }
 
-mxArray *mxGetField(const mxArray *ptr, int index, const char *string)
+mxArray *mxGetField(const mxArray *ptr, int lindex, const char *string)
 {
   int kk,lw,isize,fieldnum;int proddims,k;int is1x1;
   int *headerlist, *headerobj, *headerobjcopy;
@@ -1252,8 +1252,8 @@ mxArray *mxGetField(const mxArray *ptr, int index, const char *string)
   }
   else {
     headerlist = listentry(header,3+fieldnum);
-    headerobj = listentry(headerlist,index+1);
-    isize=headerlist[index+3]-headerlist[index+2];
+    headerobj = listentry(headerlist,lindex+1);
+    isize=headerlist[lindex+3]-headerlist[lindex+2];
   }
 
   Nbvars++; lw=Nbvars;

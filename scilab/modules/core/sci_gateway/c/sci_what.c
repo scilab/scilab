@@ -35,7 +35,6 @@ static char **LocalFunctionsTab=NULL;
 static int SizeLocalFunctionsTab=0;
 /*-----------------------------------------------------------------------------------*/
 static int CreateLocalFunctionsTab(void);
-static int GetFunTabSizes(int *MaxSize,int *MaxSizeWithoutCommands);
 static int IsACommand(char *primitive);
 static void DispInternalFunctions(void);
 static void DispCommands(void);

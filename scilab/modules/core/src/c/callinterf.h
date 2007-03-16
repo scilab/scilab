@@ -26,9 +26,6 @@ void C2F(Nogw_cscicos)(void);
 void C2F(Nogw_slicot)(void);
 void C2F(Nogw_fftw)(void);
 
-static void sci_sigint_addinter(int n);
-
-
 /* 01  C2F(gw_user)(); FREE */
 extern void    /* 02  */ C2F(gw_linear_algebra)(void);
 /* 03  C2F(gw_user)(); FREE */
