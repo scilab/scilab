@@ -15,7 +15,6 @@ src/c/getHandleProperty/get_old_style_property.c \
 src/c/getHandleProperty/get_figures_id_property.c \
 src/c/getHandleProperty/get_figure_style_property.c \
 src/c/getHandleProperty/get_pixel_drawing_mode_property.c \
-src/c/getHandleProperty/returnProperty.c \
 src/c/getHandleProperty/get_line_mode_property.c \
 src/c/getHandleProperty/get_axes_size_property.c \
 src/c/getHandleProperty/get_thickness_property.c \
@@ -127,7 +126,6 @@ src/c/getHandleProperty/get_colored_property.c \
 src/c/getHandleProperty/get_triangles_property.c \
 src/c/getHandleProperty/get_viewport_property.c \
 src/c/getHandleProperty/get_info_message_property.c \
-src/c/getHandleProperty/returnPropertyList.c \
 src/c/getHandleProperty/get_y_ticks_property.c \
 src/c/getHandleProperty/get_z_ticks_property.c \
 src/c/getHandleProperty/get_x_ticks_property.c \
