@@ -49,15 +49,7 @@ int sci_xrect( char *fname, unsigned long fname_len )
       return -1 ;
     }
 
-    if (pSUBWIN_FEATURE(psubwin)->surfcounter>0)
-    {
-      Merge3d(psubwin); /* an addtomerge function should be much more efficient */
-      sciDrawObj(sciGetCurrentFigure ());
-    }
-    else
-    {
-      sciDrawObjIfRequired(sciGetCurrentObj ());
-    }
+    sciDrawObjIfRequired(sciGetCurrentObj ());
 
     break;
   case 4 :
@@ -83,14 +75,7 @@ int sci_xrect( char *fname, unsigned long fname_len )
       return -1 ;
     }
 
-    if (pSUBWIN_FEATURE(psubwin)->surfcounter>0)
-    {
-      Merge3d(psubwin); /* an addtomerge function should be much more efficient */
-      sciDrawObj(sciGetCurrentFigure ());}
-    else
-    {
-      sciDrawObjIfRequired(sciGetCurrentObj ());
-    }
+    sciDrawObjIfRequired(sciGetCurrentObj ());
 
     break;
   default :

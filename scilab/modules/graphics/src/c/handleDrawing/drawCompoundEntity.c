@@ -13,7 +13,6 @@
 int drawCompoundEntity( sciPointObj * pObj )
 {
   sciSons * curSon = NULL ;
-  BOOL isMerging = pSUBWIN_FEATURE(sciGetParentSubwin(pObj))->facetmerge ;
   
   if ( !sciGetVisibility(pObj) ) { return 0 ; }
 
@@ -21,11 +20,7 @@ int drawCompoundEntity( sciPointObj * pObj )
   curSon = sciGetLastSons( pObj ) ;
   while ( curSon != NULL )
   {
-    /* draw only objects which are not already included in a merge objects */
-    if ( !isMerging || !sciIsMergeable(curSon->pointobj) )
-    {
-      sciDrawObj( curSon->pointobj ) ;
-    }
+    sciDrawObj( curSon->pointobj ) ;
     curSon = curSon->pprev ;
   }
 

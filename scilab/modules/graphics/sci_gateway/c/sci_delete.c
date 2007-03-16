@@ -86,12 +86,6 @@ int sci_delete(char *fname,unsigned long fname_len)
       sciDelGraphicObj( pobj ) ; /* don't use pobj after this point */
       pobj = NULL ;
 
-      /* If there is a merge object, we must update the axes */
-      if ( objType != SCI_SUBWIN && pSUBWIN_FEATURE(parentSubWin)->facetmerge )
-      {
-        updateMerge( parentSubWin ) ;
-      }
-
       /* test here: we could have deleted the selected subwindow, we must choose an other */
       /* We must always have one selected subwindow (if at least one subwindow exists) */
       if ( objType == SCI_SUBWIN && selected )

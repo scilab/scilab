@@ -21,7 +21,6 @@ int drawSurfaceEntity( sciPointObj * pObj )
   int markStyle = sciGetMarkStyle( pObj ) ;
   int DPI[2] ;
 
-  if ( pSUBWIN_FEATURE(parentSubWin)->facetmerge ) { return 0 ; }  
   if (!sciGetVisibility(pObj)) { return 0 ; }
     
   GetDPIFromDriver(DPI) ;

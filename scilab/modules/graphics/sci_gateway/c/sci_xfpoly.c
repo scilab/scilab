@@ -47,15 +47,7 @@ int sci_xfpoly(char *fname,unsigned long fname_len)
   }
   Objfpoly (stk(l1),stk(l2),mn1,&close,&hdl,0);
 
-  if ( sciGetSubwinNbSurf( psubwin ) > 0 )
-  {
-    Merge3d(psubwin); /* an addtomerge function should be much more efficient */
-    sciDrawObj(sciGetCurrentFigure ());}
-  else
-  {
-    sciDrawObjIfRequired(sciGetCurrentObj ());
-  }
-
+  sciDrawObjIfRequired(sciGetCurrentObj ());
 
   LhsVar(1)=0;
   return 0;

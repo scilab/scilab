@@ -114,15 +114,11 @@ extern int ComputeXIntervals(sciPointObj *pobj, char xy_type, double **vector, i
 /**DJ.Abdemouche 2003**/
 
 extern int Gen3DPoints (integer type,integer *polyx,integer *polyy,integer *fill,integer whiteid,double zmin,double zmax,double *,double *,double *,integer i,integer j,integer jj1,integer *p,integer dc,integer fg, sciPointObj *psurface); /* DRAWINGS */
-extern void Merge3d(sciPointObj *psubwin);/*DJ.A merge*/   /* DRAWINGS */
-extern void Merge3dBuildTable(sciPointObj *pparent, int *index_in_entity, long *from_entity, int *pos);
-extern int Merge3dDimension(sciPointObj *pparent);
 
 extern int CheckPixelStatus(void);
 
 extern int GetDPIFromDriver(int * DPI);
 extern int ChooseFormatForOneGrad(char *c_format, double *grad);
-extern int ChildrenCounter(sciPointObj *pparent);
 extern int GetBarNumber(sciPointObj * pobj);
 extern double FindWidth(sciPointObj * pobj, int n1, int bar_number, double *x);
 

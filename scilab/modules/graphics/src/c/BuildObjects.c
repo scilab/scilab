@@ -406,7 +406,6 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
       ppsubwin->hiddencolor= ppaxesmdl->hiddencolor;
       ppsubwin->hiddenstate= ppaxesmdl->hiddenstate;
       ppsubwin->isoview= ppaxesmdl->isoview;
-      ppsubwin->facetmerge = ppaxesmdl->facetmerge; 
       ppsubwin->WRect[0]   = ppaxesmdl->WRect[0];
       ppsubwin->WRect[1]   = ppaxesmdl->WRect[1];
       ppsubwin->WRect[2]   = ppaxesmdl->WRect[2];
@@ -535,7 +534,6 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
       cloneGraphicContext( ppaxesmdl->mon_title  , ppsubwin->mon_title   ) ;
                   
       ppsubwin->pPopMenu = (sciPointObj *)NULL;/* initialisation of popup menu*/
-      ppsubwin->surfcounter = 0;
       return (sciPointObj *)pobj;
       
     }
@@ -1636,7 +1634,6 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
-      pSUBWIN_FEATURE(pparentsubwin)->surfcounter++;
       return pobj;
     }
   else
@@ -1645,39 +1642,6 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
       return (sciPointObj *) NULL;
     }
 }
-
-
-
-sciPointObj *
-ConstructMerge (sciPointObj * pparentsubwin,int N,int *index_in_entity,long *from_entity)
-{
-  sciPointObj *pobj = (sciPointObj *) NULL;
- 
-  if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN)
-    {
-      if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL) return (sciPointObj *) NULL;
-  
-      sciSetEntityType (pobj, SCI_MERGE);
-      if ((pobj->pfeatures = MALLOC ((sizeof (sciMerge)))) == NULL) {
-	FREE(pobj);
-	return (sciPointObj *) NULL;
-      }
-      if ( sciStandrardBuildOperations( pobj, pparentsubwin ) == NULL )
-      {
-        return NULL ;
-      }
-      pMERGE_FEATURE (pobj)->index_in_entity=index_in_entity;
-      pMERGE_FEATURE (pobj)->from_entity=from_entity;
-      pMERGE_FEATURE (pobj)->N=N;
-      return pobj;
-    }
-  else
-  {
-    return NULL;
-  }
-}
-
-
 
 /********************** 14/05/2002 *****
  **ConstructGayplot

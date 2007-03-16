@@ -114,9 +114,6 @@ sciGetPointerToFeature (sciPointObj * pobj)
     case SCI_AGREG:
       return (sciAgreg *) pAGREG_FEATURE (pobj);
       break;
-    case SCI_MERGE:
-      return (sciMerge *) pMERGE_FEATURE (pobj);
-      break;
     case SCI_LABEL:
       return (sciLabel *) pLABEL_FEATURE (pobj);
       break;
@@ -226,9 +223,6 @@ sciGetCharEntityType (sciPointObj * pobj)
       break;
     case SCI_AGREG:
       return "Compound";
-      break;
-    case SCI_MERGE:
-      return "Merge";
       break;
     case SCI_LABEL: /* F.Leray 27.05.04 */
       return "Label";
@@ -2424,7 +2418,6 @@ sciGetParentFigure (sciPointObj * pobj)
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_AGREG:
-    case SCI_MERGE:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
       {
@@ -2473,7 +2466,6 @@ sciGetParentSubwin (sciPointObj * pobj)
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_AGREG:
-    case SCI_MERGE:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
       while (sciGetEntityType(subwin) != SCI_SUBWIN)
@@ -2565,7 +2557,6 @@ sciGetScilabXgc (sciPointObj * pobj)
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_AGREG:
-    case SCI_MERGE:  
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
       /* on recherche la root par recursivite 
@@ -4104,10 +4095,6 @@ void sciGetPointerToUserData (sciPointObj * pobj,int ***user_data_ptr, int **siz
       *user_data_ptr = &(((sciAgreg *) pAGREG_FEATURE (pobj))->user_data);
       *size_ptr =  &(((sciAgreg *) pAGREG_FEATURE (pobj))->size_of_user_data);
       break;
-    case SCI_MERGE:
-      *user_data_ptr = &(((sciMerge *) pMERGE_FEATURE (pobj))->user_data);
-      *size_ptr =  &(((sciMerge *) pMERGE_FEATURE (pobj))->size_of_user_data);
-      break;
     case SCI_LABEL:
       sciGetPointerToUserData ( pLABEL_FEATURE(pobj)->text, user_data_ptr, size_ptr ) ;
       break;
@@ -4466,22 +4453,6 @@ int CheckForCompound(long *handelsvalue, int number)
     }
   return 0;
 }
-
-
-sciPointObj *sciGetMerge(sciPointObj *psubwin)
-{
-  sciSons *psonstmp;
-  
-  psonstmp = sciGetSons (psubwin);
-  while (psonstmp != (sciSons *) NULL)	
-    {   
-      if(sciGetEntityType (psonstmp->pointobj) == SCI_MERGE) 
-	return (sciPointObj *) psonstmp->pointobj;
-      psonstmp = psonstmp->pnext;
-    }
-  return (sciPointObj *) NULL;
-}
-
 
 /**sciGetOriginalSubWin
  * PRIVATE.
@@ -4862,8 +4833,7 @@ int sciGetNbChildren( sciPointObj * pObj )
  */
 BOOL sciGetIsAccessibleChild( sciPointObj * pObj )
 {
-  return    sciGetEntityType( pObj ) != SCI_MERGE
-	 && sciGetEntityType( pObj ) != SCI_LABEL
+  return sciGetEntityType( pObj ) != SCI_LABEL
          && GetHandleVisibilityOnUimenu( pObj ) ;
 }
 /*--------------------------------------------------------------------------------------------*/
@@ -4889,15 +4859,6 @@ BOOL GetHandleVisibilityOnUimenu( sciPointObj * pobj )
   if (sciGetEntityType(pobj)!=SCI_UIMENU) { return TRUE ; }
   
   return pUIMENU_FEATURE(pobj)->handle_visible;
-}
-/*--------------------------------------------------------------------------------------------*/
-/**
- * return the number of surfaces among the descendants of a subWindow.
- */
-int sciGetSubwinNbSurf( sciPointObj * pSubwin )
-{
-  /* for subwindow, the number of surfaces is already know */
-  return pSUBWIN_FEATURE( pSubwin )->surfcounter ;
 }
 /*--------------------------------------------------------------------------------------------*/
 /**
@@ -4940,32 +4901,6 @@ int sciGetHiddenColor( sciPointObj * pObj )
     return -10 ;
   }
   return -10 ;
-}
-/*--------------------------------------------------------------------------------------------*/
-/**
- * return if an object can be added to a merge object and then can be sorted for correct
- * drawing.
- * Normaly, each object should be mergeable. But it needs some development.
- */
-BOOL sciIsMergeable( sciPointObj * pObj )
-{
-  switch (sciGetEntityType (pObj))
-  {
-  case SCI_SURFACE:
-    return TRUE ;
-  case SCI_POLYLINE:
-    return TRUE ;
-  case SCI_SEGS:
-    return TRUE ;
-  case SCI_RECTANGLE:
-    return TRUE ;
-  case SCI_MERGE:
-    return TRUE ;
-  default:
-    return FALSE;
-    break;
-  }
-  return FALSE;
 }
 /*-------------------------------------------------------------------------------------------*/
 /**

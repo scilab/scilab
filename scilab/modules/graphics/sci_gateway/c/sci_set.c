@@ -273,11 +273,6 @@ int sci_set(char *fname, unsigned long fname_len)
 	C2F (dr) ("xget", "window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	C2F (dr) ("xset", "window",&num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
 
-        if ( sciIsMergeable( pobj ) && sciGetMerge( sciGetParentSubwin(pobj)) )
-        {
-          Merge3d( sciGetParentSubwin(pobj) ) ;
-        }
-
 	sciDrawObj(sciGetParentFigure(pobj)); /* F.Leray we redraw here */
 
 	C2F (dr) ("xset", "window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);

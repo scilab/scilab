@@ -85,20 +85,10 @@ int drawSubWinEntity( sciPointObj * pObj )
     axis_3ddraw( pObj,xbox,ybox,zbox,InsideU,InsideD); /* TEST on sciGetVisibility inside : REMOVED F.Leray 21.01.05 */
     /* because axis_3ddraw displays 3d axes BUT ALSO compute + reset the 3d scale BEFORE !! */
 
-    /* merge object is drawn first  since it might conceal other objects */
-    /* which are not merged. */
-    if ( ppsubwin->facetmerge )
-    {
-      sciDrawObj( sciGetMerge( pObj ) ) ;
-    }
-
     curSon = sciGetLastSons (pObj);
     while ( curSon != NULL)
     {
-      if ( !(ppsubwin->facetmerge && sciIsMergeable(curSon->pointobj))  )
-      {
-        sciDrawObj( curSon->pointobj ) ;
-      }
+      sciDrawObj( curSon->pointobj ) ;
       curSon = curSon->pprev;
     }
 
@@ -137,19 +127,10 @@ int drawSubWinEntity( sciPointObj * pObj )
     DrawAxesBackground();
 
     drawAxesGrid( pObj ) ;
-
-    /* there is a bug here */
-    /* We should make a check for merge objects here */
-    /* But merge object has been only created only for 3d */
-    /* so sometimes it works, sometime not */
     curSon = sciGetLastSons( pObj ) ;
     while ( curSon != NULL )
     {
-      if ( !(ppsubwin->facetmerge && sciGetEntityType(curSon->pointobj) == SCI_SEGS) )
-      {
-        sciDrawObj( curSon->pointobj ) ;
-      }
-       
+      sciDrawObj( curSon->pointobj ) ;
       curSon = curSon->pprev;
     }	  
 

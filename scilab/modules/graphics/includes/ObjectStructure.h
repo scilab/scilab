@@ -61,7 +61,6 @@
 #define pPOLYLINE_FEATURE(pointobj)    ((sciPolyline      *)pointobj->pfeatures)/** */
 #define pARC_FEATURE(pointobj)         ((sciArc           *)pointobj->pfeatures)/** */
 #define pRECTANGLE_FEATURE(pointobj)   ((sciRectangle     *)pointobj->pfeatures)/** */
-#define pMERGE_FEATURE(pointobj)       ((sciMerge         *)pointobj->pfeatures)/* DJ.A 30/12 */
 #define pSURFACE_FEATURE(pointobj)     ((sciSurface       *)pointobj->pfeatures)/** */
 #define pLIGHT_FEATURE(pointobj)       ((sciLightSource   *)pointobj->pfeatures)/** */ 
 /*#define pAXIS_FEATURE(pointobj)        ((sciAxis          *)pointobj->pfeatures)*/ /** */
@@ -148,8 +147,6 @@ typedef enum
     SCI_RECTANGLE,    
     /**Entity type SURFACE*/
     SCI_SURFACE,
-    /**Entity type MERGE*/  /* DJ.A 30/12 */
-    SCI_MERGE,
     /**Entity type LIGHT*/
     SCI_LIGHT,		
     /**Entity type AXIS*/
@@ -794,7 +791,6 @@ typedef struct
   BOOL isoview; 
   int hiddencolor;
   int hiddenstate;
-  BOOL facetmerge; 
   int with_leg; /* Adding F.Leray 07.05.04 */ /* for strflag[0] support : not needed today */
   BOOL cube_scaling; /* Matlab like view in 3D when one or two range is/are preferential */
   BOOL FirstPlot; /* An internal state used to indicated that high level functions must not use SRect*/
@@ -807,7 +803,6 @@ typedef struct
 
   /*  An internal state used as subtics flag (auto == FALSE, TRUE == manual) named flagNax */
   BOOL flagNax;
-  int surfcounter; /* used to merge 3d objects */
   int * user_data; /* adding 27.06.05 */
   int size_of_user_data;
   
@@ -1039,22 +1034,6 @@ typedef struct
   int size_of_user_data;
 }
 sciSurface;  /** */
-
-
-/**@name merge DJ.A 30/12
- * Structure used to specify 
- */
-
-typedef struct
-{
-  sciRelationShip relationship;
-  long *from_entity; /* vector of handles on the facet or segment entity*/
-  int *index_in_entity;/*index of facet or segment in its entity*/
-  int N; /* number of facets or segments */
-  int * user_data; /* adding 27.06.05 */
-  int size_of_user_data;
-}
-sciMerge;  /** */
 
 
 /**@name LightSource

@@ -146,10 +146,6 @@ DestroyAllGraphicsSons (sciPointObj * pthis)
       DestroyCompound (pthis);
       return 0;
       break; 
-    case SCI_MERGE:
-      DestroyMerge (pthis);
-      return 0;
-      break;
     case SCI_LABEL: /* F.Leray 28.05.04 */
       DestroyLabel (pthis);
       return 0;
@@ -210,7 +206,6 @@ sciDelGraphicObj (sciPointObj * pthis)
     case SCI_MENUCONTEXT:
     case SCI_AGREG:
     case SCI_TEXT:
-    case SCI_MERGE: 
     case SCI_LABEL:
     case SCI_UIMENU:
     case SCI_FIGURE:
@@ -491,27 +486,12 @@ DestroySurface (sciPointObj * pthis)
   { 
     FREE(ppSurface->zcol);
   }
-  ppSubWin->surfcounter-- ;
   /* DJ.A 2003 */
   res = sciStandardDestroyOperations(pthis) ;
 
-  /* delete the merge object if needed */
-  /* Jb Silvy 07/2006 */
-  updateMerge( psubwin ) ;
 
   return res;
 }
-
-
-int DestroyMerge (sciPointObj * pthis)
-{
-  pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->facetmerge = FALSE;
-  FREE(pMERGE_FEATURE (pthis)->index_in_entity);
-  FREE(pMERGE_FEATURE (pthis)->from_entity);
-  return sciStandardDestroyOperations(pthis) ;
-}
-
-
 
 /**DestroyGrayplot
  * @memo This function destroies Grayplot and the elementaries structures and only this to destroy all sons use DelGraphicsSon
@@ -810,31 +790,6 @@ extern int C2F(deletewin)(integer *number);
 void sciDeleteWindow( int winNum )
 {
   C2F(deletewin)( &winNum ) ;
-}
-/*------------------------------------------------------------------------------------*/
-/**
- * Update the merge object of a subwindow. If there is not anymore surface in the descendants
- * then object is cleared. Otherwise a new merge3d is created. This function should be called
- * after a modifications of the graphic hierarchy related with surfaces.
- * @return 0 if the call was successful, -1 otherwise.
- */
-int updateMerge( sciPointObj * pSubwin )
-{
-  if ( sciGetSubwinNbSurf( pSubwin ) == 0 )
-  {
-    sciPointObj * merge = sciGetMerge( pSubwin ) ;
-    if ( merge != NULL )
-    {
-      DestroyMerge( merge ) ;
-    }
-    pSUBWIN_FEATURE( pSubwin )->facetmerge = FALSE ;
-  }
-  else
-  {
-    /* the merge 3d is updated */
-    Merge3d( pSubwin ) ;
-  }
-  return 0 ;
 }
 /*-----------------------------------------------------------------------------------------*/
 void AllGraphWinDelete( void )

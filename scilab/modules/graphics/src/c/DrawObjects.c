@@ -5,7 +5,7 @@
  *    Matthieu PHILIPPE,   INRIA 2001-2002
  *    Djalel ABDEMOUCHE,   INRIA 2002-2004
  *    Fabrice Leray,       INRIA 2004-2006
- *    Jean-Baptiste Silvy, INRIA 2006-xxxxdrawmerge
+ *    Jean-Baptiste Silvy, INRIA 2006-xxxx
  *    Comment:
  *    This file contains all functions used to Draw the content of a window.
  *    The main functions is sciDrawObj that draws the objects recursively.
@@ -41,7 +41,6 @@
 #include "handleDrawing/drawArcEntity.h"
 #include "handleDrawing/drawRectangleEntity.h"
 #include "handleDrawing/drawAxesEntity.h"
-#include "handleDrawing/drawMergeEntity.h"
 #include "handleDrawing/drawSurfaceEntity.h"
 #include "periScreen.h" /* to be removed */
 #include "PloEch.h"
@@ -68,7 +67,6 @@ extern HDC TryToGetDC(HWND hWnd);
 
 #define		round(a)	(int)(((a)<0.0)?(a)-.5:(a)+.5)
 
-extern double C2F(dsort)();/*DJ.A merge*/ 
 extern int scilab_shade(integer *polyx, integer *polyy, integer *fill, integer polysize, integer flag);
 
 void GradFixedlog( double minVal, double maxVal, double * ticks, int nbGrads );
@@ -1167,235 +1165,6 @@ int Gen3DPoints(integer type,integer *polyx, integer *polyy, integer *fill, inte
 }
 
 
-
-int Merge3dDimension(sciPointObj *pparent)
-{
-  integer N,q; 
-  sciSons *psonstmp;
-
-  /* ========================================================================
-   * Compute the number of facets, segments,... included in all the subwin 
-   * children
-   * Each entities to merge; is decomposed in a set of basic elements 
-   *  (facet, segment, point,...)
-   * Each basic element is represented in the Merge structure by the handle of its entity and an 
-   *   index within this entity
-   * ========================================================================*/
-
-  q=0;
-  psonstmp = sciGetSons (pparent);
-  while (psonstmp != (sciSons *) NULL) {   
-    switch (sciGetEntityType (psonstmp->pointobj)) {  
-    case SCI_SURFACE:
-      if (pSURFACE_FEATURE (psonstmp->pointobj)->typeof3d == SCI_PLOT3D) 
-	N=(pSURFACE_FEATURE (psonstmp->pointobj)->dimzx-1)*(pSURFACE_FEATURE (psonstmp->pointobj)->dimzy-1);
-      else
-	N = pSURFACE_FEATURE (psonstmp->pointobj)->dimzy;
-      break;
-
-    case  SCI_POLYLINE:
-      {
-        if ( pPOLYLINE_FEATURE(psonstmp->pointobj)->n1 == 0 )
-        {
-          N = 0 ;
-        }
-        else if (pPOLYLINE_FEATURE (psonstmp->pointobj)->plot != 5)
-        {/*polyline*/
-          N = pPOLYLINE_FEATURE (psonstmp->pointobj)->n1-1;
-          if ((pPOLYLINE_FEATURE (psonstmp->pointobj)->plot != 2) && 
-            (sciGetIsMark((sciPointObj *)psonstmp->pointobj) == 1))
-          {
-            N = N + 1 ;
-          }
-        }
-        else /* patch */
-        {
-          N = 1 ;
-        }
-      }
-      break;
-    case  SCI_SEGS:
-      {
-        sciSegs * ppSegs = pSEGS_FEATURE(psonstmp->pointobj) ;
-        if ( ppSegs->ptype == 0 )
-        { 
-          N = ppSegs->Nbr1 / 2 ;
-        }
-        else
-        {
-          N = ppSegs->Nbr1 * ppSegs->Nbr2 ;
-        }
-      }
-      break;
-    case  SCI_RECTANGLE: 
-      N = 4;
-      break;
-    case SCI_AGREG:
-      N =  Merge3dDimension(psonstmp->pointobj);
-      break;
-    default:
-      N=0;
-    }
-    q+=N;
-    psonstmp = psonstmp->pnext;
-  }
-
-  return q;
-}
-
-int ChildrenCounter(sciPointObj *pparent)
-{
-  int N,q=0;
-  sciSons * psonstmp = sciGetSons (pparent);
-  
-  while (psonstmp != (sciSons *) NULL) {   
-    switch (sciGetEntityType (psonstmp->pointobj)) {  
-    case SCI_SURFACE:
-      N=1;
-      break;
-    case  SCI_POLYLINE:
-      N = 1; 
-      break;
-    case  SCI_SEGS: 
-      N=1;
-      break;
-    case  SCI_RECTANGLE: 
-      N = 1;
-      break;
-    case SCI_AGREG:
-      N = ChildrenCounter(psonstmp->pointobj);
-      break;
-    default:
-      N=0;
-    }
-    q+=N;
-    psonstmp = psonstmp->pnext;
-  }
-
-  return q;
-}
-
-
-void Merge3dBuildTable(sciPointObj *pparent, int *index_in_entity, long *from_entity, int *pos)
-{
-  sciSons *psonstmp;
-  int i,N;
-
-  psonstmp = sciGetSons (pparent);
-
-  while (psonstmp != (sciSons *) NULL) {   
-    switch (sciGetEntityType (psonstmp->pointobj)) {  
-    case SCI_SURFACE:
-      if (pSURFACE_FEATURE (psonstmp->pointobj)->typeof3d == SCI_PLOT3D) 
-	N=(pSURFACE_FEATURE (psonstmp->pointobj)->dimzx-1)*(pSURFACE_FEATURE (psonstmp->pointobj)->dimzy-1);
-      else
-	N = pSURFACE_FEATURE (psonstmp->pointobj)->dimzy;
-      break;
-    case  SCI_POLYLINE:
-      if ( pPOLYLINE_FEATURE(psonstmp->pointobj)->n1 == 0 )
-      {
-        N = 0 ;
-      }
-      else if (pPOLYLINE_FEATURE (psonstmp->pointobj)->plot != 5)
-      {/*polyline*/
-	N = pPOLYLINE_FEATURE (psonstmp->pointobj)->n1-1;
-	if ((pPOLYLINE_FEATURE (psonstmp->pointobj)->plot != 2) && 
-	    (sciGetIsMark((sciPointObj *)psonstmp->pointobj) == 1))
-        {
-	  N = N + 1 ;
-        }
-      }
-      else /* patch */
-      {
-	N = 1 ;
-      }
-      break;
-    case  SCI_SEGS: 
-      {
-        sciSegs * ppSegs = pSEGS_FEATURE(psonstmp->pointobj) ;
-        if ( ppSegs->ptype == 0 )
-        { 
-          N = ppSegs->Nbr1 / 2 ;
-        }
-        else
-        {
-          N = ppSegs->Nbr1 * ppSegs->Nbr2 ;
-        }
-      }
-      break;
-    case  SCI_RECTANGLE: 
-      N = 4;
-      break;
-    case SCI_AGREG:
-      Merge3dBuildTable(psonstmp->pointobj, index_in_entity, from_entity, pos);
-      break;
-    default:
-      N = 0;
-    }
-    if (sciGetEntityType (psonstmp->pointobj) != SCI_AGREG)
-      for (i=0 ; i<N; i++) {
-	index_in_entity[*pos]=i;
-	from_entity[*pos]=(long) sciGetHandle (psonstmp->pointobj);
-	*pos=*pos+1;
-      }
-    psonstmp = psonstmp->pnext;
-  }
-}
-
-
-void Merge3d(sciPointObj *psubwin)
-{
-  integer q,k; 
-  sciPointObj *pmerge; 
-  int *index_in_entity;
-  long *from_entity;
-  
-  if(sciGetEntityType (psubwin) != SCI_SUBWIN) return; 
-  if ((pmerge= sciGetMerge(psubwin)) != (sciPointObj *) NULL)
-    DestroyMerge(pmerge); 
-  
-  /* ========================================================================
-   * Compute the number of facets, segments,... included in all the subwin 
-   * children
-   * ========================================================================*/
-  
-  
-  q =  Merge3dDimension(psubwin);
-  
-  
-  /* ========================================================================
-   * allocate tables for index and handles
-   * ========================================================================*/
-  
-  /* q now contains the total number of elements */
-  if ((index_in_entity = (int *) MALLOC (q * sizeof (int))) == (int *)NULL) {
-    sciprint("Merge3d : not enough memory to allocate \n");
-    return;
-  }
-  if ((from_entity   = (long *) MALLOC (q * sizeof (long))) == (long *) NULL) {
-    sciprint("Merge3d : not enough memory to allocate \n");
-    FREE(index_in_entity);
-  }
-  
-  /* ========================================================================
-   * fill the index and handles tables
-   * ========================================================================*/
-  k=0;
-  Merge3dBuildTable(psubwin, index_in_entity, from_entity, &k);
-  
-  /* ========================================================================
-   * create the Merge data structure
-   * ========================================================================*/
-  
-  if ((pmerge=ConstructMerge ((sciPointObj *) psubwin,q,index_in_entity,from_entity)) == (sciPointObj *) NULL) {
-    FREE(index_in_entity);
-    FREE(from_entity);
-    sciprint ("\r\n No merge supported");}
-  else /* inform the subwindow to display Merge instead of individual children */
-    pSUBWIN_FEATURE (psubwin)->facetmerge = TRUE;
-  
-}
-
 /*------------------------------------------------------------------------------------------*/
 /**
  * draw the figure number numFigure.
@@ -1519,9 +1288,6 @@ sciDrawObj (sciPointObj * pobj)
     case SCI_AXES:
       return drawAxesEntity(pobj) ;
       break;
-    case SCI_MERGE:
-      return drawMergeEntity(pobj) ;
-      break ;
     case SCI_SURFACE:
       return drawSurfaceEntity(pobj) ;
       break;

@@ -146,7 +146,6 @@ sciPointObj *CheckClickedSubwin(integer x, integer y); /* GET */
 BOOL GetIsAxes2D(sciPointObj *psubwin); /* GET */
 
 int CheckForCompound (long *tabpointobj, int number); /* GET */
-sciPointObj *sciGetMerge(sciPointObj *psubwin);  /* GET */
 
 /* UNUSED ? */
 sciPointObj *sciGetOriginalSubWin (sciPointObj * pfigure);
@@ -181,13 +180,9 @@ int sciGetNbAccessibleChildren( sciPointObj * pObj ) ; /* GET */
 
 BOOL GetHandleVisibilityOnUimenu( sciPointObj * pobj ) ; /* GET */
 
-int sciGetSubwinNbSurf( sciPointObj * pObj ) ;
-
 int sciGetNbTypedObjects( sciPointObj * pObj, sciEntityType type ) ;
 
 int sciGetHiddenColor( sciPointObj * pObj ) ;
-
-BOOL sciIsMergeable( sciPointObj * pObj ) ;
 
 BOOL sciGetIsAutoDrawable( sciPointObj * pobj ) ;
 

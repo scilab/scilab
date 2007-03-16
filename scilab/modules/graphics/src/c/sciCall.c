@@ -573,11 +573,6 @@ void Objplot3d ( char    * fname ,
 
   pSUBWIN_FEATURE (psubwin)->alpha  = *alpha;
   pSUBWIN_FEATURE (psubwin)->theta  = *theta; 
-
-  if ( ChildrenCounter(psubwin) > 0 )
-  { 
-    needMerge = TRUE ;
-  }
   
   if ((sciGetGraphicMode (psubwin)->autoscaling)) {
     /* compute and merge new specified bounds with psubwin->Srect */
@@ -767,15 +762,6 @@ void Objplot3d ( char    * fname ,
       if ( *n>1 ) sciSetCurrentObj (ConstructCompound (hdltab, *n));  
       FREE(hdltab);
     }
-
-  /* =================================================
-   * Merge with previous 3D plots (build a set of facets)
-   * ================================================= */
-
-  if ( needMerge )
-  {
-    Merge3d( psubwin ) ;
-  }
 
   /* =================================================
    * Redraw Figure

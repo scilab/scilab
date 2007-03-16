@@ -2188,8 +2188,6 @@ void reinitSubWin( sciPointObj * pSubWin )
   
   initSubWinAngles( pSubWin ) ;
   
-  ppSubWin->surfcounter = 0 ;
-  
   ppSubWin->FirstPlot = TRUE;
   
 

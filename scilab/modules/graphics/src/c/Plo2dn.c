@@ -96,7 +96,6 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
   long hdl;
   long *hdltab;
   int cmpt=0/*,i*/;
-  BOOL containsSurface = FALSE ;
   int with_leg;
   double drect[6];
   char dataflag/*,frameflag*/;
@@ -109,11 +108,6 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
 
   /* check if the auto_clear property is on and then erase everything */
   checkRedrawing() ;
-  
-  if ( sciGetSurface(psubwin) !=  NULL ) 
-  {
-    containsSurface = TRUE ;
-  }
   
   if (sciGetSurface(psubwin) == (sciPointObj *) NULL) /* F.Leray 18.05.04 */
     {
@@ -272,10 +266,6 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
     /*---- construct Compound ----*/
     sciSetCurrentObj(ConstructCompound (hdltab, cmpt)); 
     FREE(hdltab);
-    if ( containsSurface ) {
-      Merge3d(psubwin);
-      sciDrawObj(sciGetCurrentFigure ());
-    }
     return(0);
   }
   

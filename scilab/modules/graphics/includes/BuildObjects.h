@@ -77,8 +77,6 @@ extern sciPointObj *ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D t
 				      integer *m3, integer *n3, integer *m3n, integer *n3n); /* BUILD */
 
 
-extern sciPointObj *ConstructMerge (sciPointObj * pparentsubwin,int N,int *index_in_entity,long *from_entity);  /* BUILD */
-
 extern sciPointObj *ConstructGrayplot (sciPointObj * pparentfigure,double *vx,double *vy, 
                                    double *vz,int nx,int ny, int type); /* BUILD */
 

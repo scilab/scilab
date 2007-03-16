@@ -271,9 +271,6 @@ sciGetRelationship (sciPointObj * pobj)
     case SCI_AGREG:
       return  &(pAGREG_FEATURE (pobj)->relationship);
       break; 
-    case SCI_MERGE:
-      return  &(pMERGE_FEATURE (pobj)->relationship);
-      break;
     case SCI_LABEL: /* F.Leray 27.05.04 */
       return  sciGetRelationship( pLABEL_FEATURE (pobj)->text ) ;
       break;
@@ -553,23 +550,6 @@ int sciRelocateObject( sciPointObj * movedObj, sciPointObj * newParent )
       sciInitSelectedSubWin( newSubWin ) ;
     }
   }
-  else if ( sciGetEntityType( movedObj ) == SCI_SURFACE )
-  {
-    /* we must take care of the merge objects */
-    sciPointObj * oldParentSubwin = sciGetParentSubwin( oldParent ) ;
-    sciPointObj * newParentSubwin = sciGetParentSubwin( newParent ) ;
-
-    /* the merge object will be the same if the surfaces are in the same subwin */
-    if ( oldParentSubwin != newParentSubwin )
-    {
-      pSUBWIN_FEATURE(oldParent)->surfcounter-- ;
-      pSUBWIN_FEATURE(newParent)->surfcounter++ ;
-      
-      /* reccompute the merge objects */
-      updateMerge( oldParentSubwin ) ;
-      updateMerge( newParentSubwin ) ;
-    }
-  }
 
   return 0 ;
 }
@@ -776,32 +756,6 @@ int sciSwapObjects( sciPointObj * firstObject, sciPointObj * secondObject )
   /* change their parents */
   sciSetParent( firstObject , secondParent ) ;
   sciSetParent( secondObject, firstParent  ) ;
-
-
-  /* In the case of surface handles we must take care of merge objects */
-  if (    sciGetEntityType( firstObject ) == SCI_SURFACE
-       || sciGetEntityType( secondObject ) == SCI_SURFACE )
-  {
-    sciPointObj * firstParentSubwin  = sciGetParentSubwin( firstObject  ) ;
-    sciPointObj * secondParentSubwin = sciGetParentSubwin( secondObject ) ;
-
-    /* update the number of figure for each objects */
-    if ( sciGetEntityType( firstObject ) == SCI_SURFACE )
-    {
-      /* beware, the objects have already been moved to their new parents */
-      pSUBWIN_FEATURE( firstParentSubwin  )->surfcounter++ ;
-      pSUBWIN_FEATURE( secondParentSubwin )->surfcounter-- ;
-    }
-
-    if ( sciGetEntityType( secondObject ) == SCI_SURFACE )
-    {
-      pSUBWIN_FEATURE( secondParentSubwin )->surfcounter++ ;
-      pSUBWIN_FEATURE( firstParentSubwin  )->surfcounter-- ;
-    }
-
-    updateMerge( firstParentSubwin  ) ;
-    updateMerge( secondParentSubwin ) ;
-  }
   
 
   return 0 ;

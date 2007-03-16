@@ -63,14 +63,7 @@ int sci_xsegs(char *fname,unsigned long fname_len)
 
   Objsegs (style,flag,mn2,stk(l1),stk(l2),arsize);
 
-  if ( pSUBWIN_FEATURE(psubwin)->surfcounter > 0 )
-  {
-    Merge3d(psubwin); /* an addtomerge function should be much more efficient */
-    sciDrawObj(sciGetCurrentFigure ());}
-  else
-  {
-    sciDrawObjIfRequired(sciGetCurrentObj ());
-  }
+  sciDrawObjIfRequired(sciGetCurrentObj ());
     
 
   LhsVar(1)=0;

@@ -58,15 +58,7 @@ int sci_xpolys(char *fname,unsigned long fname_len)
   /** construct Compound and make it current object**/
   sciSetCurrentObj (ConstructCompoundSeq (n1));
 
-  if (pSUBWIN_FEATURE(psubwin)->surfcounter>0)
-  {
-    Merge3d(psubwin); /* an addtomerge function should be much more efficient */
-    sciDrawObj(sciGetCurrentFigure ());
-  }
-  else
-  {
-    sciDrawObjIfRequired(sciGetCurrentObj ());
-  }
+  sciDrawObjIfRequired(sciGetCurrentObj ());
 
   LhsVar(1)=0;
   return 0;

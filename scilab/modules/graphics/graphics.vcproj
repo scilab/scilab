@@ -261,10 +261,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\handleDrawing\drawMergeEntity.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\DrawObjects.c"
 				>
 			</File>
@@ -1948,10 +1944,6 @@
 			</File>
 			<File
 				RelativePath=".\src\c\drawMarks.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\handleDrawing\drawMergeEntity.h"
 				>
 			</File>
 			<File

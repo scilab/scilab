@@ -640,7 +640,6 @@ int InitAxesModel()
   ppaxesmdl->hiddenstate=0; 
   ppaxesmdl->isoview= FALSE;/*TRUE;*/
  
-  ppaxesmdl->facetmerge = FALSE; 
   ppaxesmdl->WRect[0]   = 0;
   ppaxesmdl->WRect[1]   = 0;
   ppaxesmdl->WRect[2]   = 1;

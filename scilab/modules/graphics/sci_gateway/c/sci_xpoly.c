@@ -77,13 +77,8 @@ int sci_xpoly( char * fname, unsigned long fname_len )
     sciSetForeground (pobj, sciGetForeground (psubwin));
   }
 
-  if (pSUBWIN_FEATURE(psubwin)->surfcounter>0){
-    Merge3d(psubwin); /* an addtomerge function should be much more efficient */
-    sciDrawObj(sciGetCurrentFigure ());}
-  else
-  {
-    sciDrawObjIfRequired(pobj);
-  }
+  sciDrawObjIfRequired(pobj);
+
   /* NG end */
   LhsVar(1)=0;
   return 0;

@@ -40,7 +40,6 @@ extern int DestroyPolyline (sciPointObj * pthis); /* DESTROY */
 extern int DestroyArc (sciPointObj * pthis); /* DESTROY */
 extern int DestroyRectangle (sciPointObj * pthis); /* DESTROY */
 extern int DestroySurface (sciPointObj * pthis); /* DESTROY */
-extern int DestroyMerge (sciPointObj * pthis); /* DESTROY */
 extern int DestroyGrayplot (sciPointObj * pthis); /* DESTROY */
 extern int DestroyAxes (sciPointObj * pthis); /* DESTROY */
 extern int DestroyFec (sciPointObj * pthis); /* DESTROY */
