@@ -331,7 +331,6 @@ src/c/handleDrawing/drawFecEntity.c \
 src/c/handleDrawing/drawFigureEntity.c \
 src/c/handleDrawing/drawGrayplotEntity.c \
 src/c/handleDrawing/drawLegendEntity.c \
-src/c/handleDrawing/drawMergeEntity.c \
 src/c/handleDrawing/drawPolylineEntity.c \
 src/c/handleDrawing/drawRectangleEntity.c \
 src/c/handleDrawing/drawSegsEntity.c \

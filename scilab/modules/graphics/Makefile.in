@@ -388,7 +388,6 @@ am__objects_1 = libscigraphics_la-GetCommandArg.lo \
 	libscigraphics_la-drawFigureEntity.lo \
 	libscigraphics_la-drawGrayplotEntity.lo \
 	libscigraphics_la-drawLegendEntity.lo \
-	libscigraphics_la-drawMergeEntity.lo \
 	libscigraphics_la-drawPolylineEntity.lo \
 	libscigraphics_la-drawRectangleEntity.lo \
 	libscigraphics_la-drawSegsEntity.lo \
@@ -970,7 +969,6 @@ src/c/handleDrawing/drawFecEntity.c \
 src/c/handleDrawing/drawFigureEntity.c \
 src/c/handleDrawing/drawGrayplotEntity.c \
 src/c/handleDrawing/drawLegendEntity.c \
-src/c/handleDrawing/drawMergeEntity.c \
 src/c/handleDrawing/drawPolylineEntity.c \
 src/c/handleDrawing/drawRectangleEntity.c \
 src/c/handleDrawing/drawSegsEntity.c \
@@ -1455,7 +1453,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-drawGrayplotEntity.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-drawLegendEntity.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-drawMarks.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-drawMergeEntity.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-drawPolylineEntity.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-drawRectangleEntity.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-drawSegsEntity.Plo@am__quote@
@@ -4142,13 +4139,6 @@ libscigraphics_la-drawLegendEntity.lo: src/c/handleDrawing/drawLegendEntity.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/handleDrawing/drawLegendEntity.c' object='libscigraphics_la-drawLegendEntity.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-drawLegendEntity.lo `test -f 'src/c/handleDrawing/drawLegendEntity.c' || echo '$(srcdir)/'`src/c/handleDrawing/drawLegendEntity.c
-
-libscigraphics_la-drawMergeEntity.lo: src/c/handleDrawing/drawMergeEntity.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-drawMergeEntity.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-drawMergeEntity.Tpo -c -o libscigraphics_la-drawMergeEntity.lo `test -f 'src/c/handleDrawing/drawMergeEntity.c' || echo '$(srcdir)/'`src/c/handleDrawing/drawMergeEntity.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-drawMergeEntity.Tpo $(DEPDIR)/libscigraphics_la-drawMergeEntity.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/handleDrawing/drawMergeEntity.c' object='libscigraphics_la-drawMergeEntity.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-drawMergeEntity.lo `test -f 'src/c/handleDrawing/drawMergeEntity.c' || echo '$(srcdir)/'`src/c/handleDrawing/drawMergeEntity.c
 
 libscigraphics_la-drawPolylineEntity.lo: src/c/handleDrawing/drawPolylineEntity.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-drawPolylineEntity.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-drawPolylineEntity.Tpo -c -o libscigraphics_la-drawPolylineEntity.lo `test -f 'src/c/handleDrawing/drawPolylineEntity.c' || echo '$(srcdir)/'`src/c/handleDrawing/drawPolylineEntity.c
