@@ -65,9 +65,6 @@ typedef integer * (*gzhself)(ARGS_gzhsel);
 typedef integer * (*gzhself)();
 #endif 
 
-/****************  ***************/
-static void Emptyfunc  __PARAMS((void)) {}
-
 /**************** fschur ***************/
 extern void C2F(folhp)(ARGS_fschur);
 extern void C2F(find)(ARGS_fschur);
