@@ -1105,6 +1105,7 @@ modules/time/Makefile
 modules/graphics/Makefile
 modules/gui/Makefile
 modules/pvm/Makefile
+modules/mpi/Makefile
 modules/randlib/Makefile
 modules/tclsci/Makefile
 modules/wintools/Makefile
@@ -1125,7 +1126,6 @@ modules/tfds/Makefile
 modules/scipad/Makefile
 modules/scilab2fortran/Makefile
 modules/development_tools/Makefile
-modules/module_skeleton/Makefile
 modules/Makefile
 libs/Makefile 
 Makefile

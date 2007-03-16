@@ -50,10 +50,6 @@ scilab2fortran \
 development_tools \
 helptools
 
-# Uncomment this line and add a backslash ( \ ) on the line upper
-# in you want to add your own library
-#module_skeleton
-
 SUBDIRS += scicos 
 
 if JAVA
@@ -121,10 +117,6 @@ libscilab_la_LIBADD = \
 	$(top_builddir)/modules/statistics/libscistatistics.la \
 	$(top_builddir)/modules/time/libscitime.la \
 	$(top_builddir)/modules/wintools/libsciwintools.la
-
-# Uncomment this line and add a backslash ( \ ) on the line upper
-# in you want to add your own library
-# $(top_builddir)/modules/module_skeleton/libsciskeleton.la
 
 
 if PVM
