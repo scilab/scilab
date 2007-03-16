@@ -970,14 +970,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\getHandleProperty\returnProperty.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\getHandleProperty\returnPropertyList.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\c\sci_addcb.c"
 				>
 			</File>
@@ -2132,14 +2124,6 @@
 			</File>
 			<File
 				RelativePath=".\includes\PloEch.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\getHandleProperty\returnProperty.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\getHandleProperty\returnPropertyList.h"
 				>
 			</File>
 			<File

@@ -390,6 +390,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\returnProperty.c"
+				>
+			</File>
+			<File
+				RelativePath=".\returnPropertyList.c"
+				>
+			</File>
+			<File
 				RelativePath=".\run.c"
 				>
 			</File>
@@ -864,6 +872,14 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\realmain.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\returnProperty.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\returnPropertyList.h"
 				>
 			</File>
 			<File
