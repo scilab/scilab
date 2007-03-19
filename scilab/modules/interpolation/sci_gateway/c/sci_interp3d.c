@@ -11,7 +11,6 @@
 #include "interpolation.h"
 #include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/ 
-extern int get_type(TableType *Tab, int dim_table, int *scistr, int strlength);
 extern int C2F(driverdb3valwithgrad)();
 extern int C2F(driverdb3val)();
 /*-----------------------------------------------------------------------------------*/

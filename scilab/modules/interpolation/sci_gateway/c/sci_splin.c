@@ -7,8 +7,6 @@
 #include "stack-c.h"
 #include "interpolation.h"
 /*-----------------------------------------------------------------------------------*/ 
-extern int good_order(double x[], int n);
-extern int get_type(TableType *Tab, int dim_table, int *scistr, int strlength);
 extern int C2F(derivd) (double *x, double *y, double *d, int *n, int *inc, int *type);
 extern int C2F(dpchim) (int *n, double *x, double *y, double *d, int *inc);
 extern int C2F(splinecub) (double *x, double *y, double *d, int *n, int *type,double *wk1, double *wk2, double *wk3, double *wk4);

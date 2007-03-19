@@ -12,8 +12,7 @@
 #include <string.h>
 #include "interpolation.h"
 #include "stack-c.h"
-/*-----------------------------------------------------------------------------------*/
-extern integer C2F(getfastcode)(unsigned char *c, unsigned long c_len);
+#include "cvstr.h" /* getfastcode */
 /*-----------------------------------------------------------------------------------*/
 int good_order(double x[], int n)
 {

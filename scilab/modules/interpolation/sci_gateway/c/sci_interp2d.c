@@ -7,7 +7,6 @@
 #include "stack-c.h"
 #include "interpolation.h"
 /*-----------------------------------------------------------------------------------*/ 
-extern int get_type(TableType *Tab, int dim_table, int *scistr, int strlength);
 extern int C2F(bicubicinterp)(double *x, double *y, double *C, int *nx, int *ny,double *x_eval, double *y_eval, double *z_eval, int *m,int *outmode);
 extern int C2F(bicubicinterpwithgradandhes)();
 extern int C2F(bicubicinterpwithgrad)();

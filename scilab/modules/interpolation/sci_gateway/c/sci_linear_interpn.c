@@ -8,9 +8,6 @@
 #include "interpolation.h"
 #include "someinterp.h"
 /*-----------------------------------------------------------------------------------*/
-extern int get_type(TableType *Tab, int dim_table, int *scistr, int strlength);
-extern int good_order(double x[], int n);
-/*-----------------------------------------------------------------------------------*/
 #define NB_OUTMODE 6
 static TableType OutModeTable[NB_OUTMODE] = {
 	{ "C0"        , C0         },

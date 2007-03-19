@@ -10,8 +10,6 @@
 #include "stack-c.h"
 #include "interpolation.h"
 /*-----------------------------------------------------------------------------------*/ 
-extern int good_order(double x[], int n);
-extern int get_type(TableType *Tab, int dim_table, int *scistr, int strlength);
 extern int C2F(bicubicsubspline)(double *x, double *y, double *z, int *nx, int *ny,double *C, double *p, double *q, double *r, int *spline_type);
 extern int C2F(bicubicspline)(double *x, double *y, double *u, int *nx, int *ny,double *C, double *p, double *q, double *r, double *A_d, double *A_sd, double *d, double *ll,double *qdu, double *u_temp, int *spline_type);
 /*-----------------------------------------------------------------------------------*/

@@ -22,3 +22,31 @@ extern int get_rhs_scalar_string(int num, int *length, int **tabchar);
 extern int get_rhs_real_hmat(int num, RealHyperMat *H);
 #define GetRhsRealHMat(pos,H) if (!get_rhs_real_hmat(pos,H)) { return 0;}
 /*-----------------------------------------------------------------------------------*/
+
+/**
+ * TODO : comment
+ * @param x
+ * @param n
+ * @return 
+ */
+int good_order(double x[], int n);
+
+/**
+ * TODO : comment
+ * @param Tab
+ * @param dim_table
+ * @param scistr
+ * @param strlength
+ * @return 
+ */
+int get_type(TableType *Tab, int dim_table, int *scistr, int strlength);
+
+
+/**
+ * TODO : comment
+ * @param length
+ * @param scistr
+ * @param str
+ * @return 
+ */
+int equal_scistring_and_string(int length, int *scistr,  char *str);

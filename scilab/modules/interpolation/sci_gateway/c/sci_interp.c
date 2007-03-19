@@ -7,7 +7,6 @@
 #include "stack-c.h"
 #include "interpolation.h"
 /*-----------------------------------------------------------------------------------*/ 
-extern int get_type(TableType *Tab, int dim_table, int *scistr, int strlength);
 extern int C2F(evalpwhermite) (double *t, double *st, double *dst, double *ddst, double *dddst,int *m, double *x, double *y, double *d, int *n, int *outmode);
 /*-----------------------------------------------------------------------------------*/
 #define NB_OUTMODE 6
