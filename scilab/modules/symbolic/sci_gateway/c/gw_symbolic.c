@@ -8,13 +8,6 @@
 #include "ExceptionMessage.h"
 #endif
 /*-----------------------------------------------------------------------------------*/
-
-extern int C2F(sci_addf) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_subf) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_mulf) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_ldivf) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_rdivf) _PARAMS((char *fname,unsigned long fname_len));
-/*-----------------------------------------------------------------------------------*/
 static SymbolicTable Tab[]=
 {
 {C2F(sci_addf),"addf"},

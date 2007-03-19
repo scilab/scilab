@@ -16,6 +16,8 @@
 #include "stack-c.h"
 #include "sciprint.h"
 
+int C2F(gw_symbolic)(void);
+
 typedef int (*Symbolic_Interf) __PARAMS((char *fname,unsigned long l));
 
 typedef struct table_struct 
@@ -23,6 +25,13 @@ typedef struct table_struct
   Symbolic_Interf f;    /** function **/
   char *name;      /** its name **/
 } SymbolicTable;
+
+
+int C2F(sci_addf) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_subf) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_mulf) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_ldivf) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_rdivf) _PARAMS((char *fname,unsigned long fname_len));
 
 #endif /*  __GW_SYMBOLIC__ */
 /*-----------------------------------------------------------------------------------*/
