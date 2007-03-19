@@ -1,6 +1,5 @@
 #include "machine.h"
-typedef signed char integer1;
-typedef short integer2;
+#include "genvmul.h"
 /*     Copyright INRIA */
 
 #define VMUL(Type) {\
@@ -25,13 +24,7 @@ Type *DY;\
 }
 
 
-int C2F(genvmul)(typ,n, dx, incx, dy, incy)
-integer *typ;
-integer *n;
-integer1 *dx;
-integer *incx;
-integer1 *dy;
-integer *incy;
+int C2F(genvmul)(integer *typ,integer *n, integer1 *dx, integer *incx, integer1 *dy, integer *incy)
 {
   integer i1;
   static integer i, ix, iy;

@@ -1,10 +1,8 @@
 #include "machine.h"
-typedef signed char integer1;
-typedef short integer2;
+#include "gendot.h"
+#include "genmmul.h"
 /*     Copyright INRIA */
 static integer c1 = 1;
-
-extern int C2F(gendot)(integer *typ,integer *n,void *dx,integer *incx,void *dy,integer *incy); /* Defined in SCI/routines/int/gendot.c */
 
 #define MMUL(Type) {\
 Type *A;\
@@ -24,12 +22,7 @@ Type *C;\
     }\
 }
 
-int C2F(genmmul)(typ, a, na, b, nb, c, nc, l, m, n)
-integer *na, *nb, *nc, *m, *n, *l;
-integer *typ;
-int *a;
-int *b;
-int *c;
+int C2F(genmmul)(integer *typ, int *a, integer *na, int *b, integer *nb, int *c, integer *nc, integer *l, integer *m, integer *n)
 {
   static integer i1, i2;
   static integer i, j, ib, ic;

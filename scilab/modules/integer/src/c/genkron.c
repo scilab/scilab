@@ -1,6 +1,5 @@
 #include "machine.h"
-typedef signed char integer1;
-typedef short integer2;
+#include "genkron.h"
 /*     Copyright INRIA */
 
 #define KRON(Type) {\
@@ -31,14 +30,7 @@ Type *DR;\
 }
 
 
-int C2F(genkron)(typ,dx,incx,mx,nx,dy,incy,my,ny,dr,incr)
-integer *incx, *mx, *nx;
-integer *incy, *my, *ny;
-integer *incr;
-integer *typ;
-int *dx;
-int *dy;
-int *dr;
+int C2F(genkron)(integer *typ,int *dx,integer *incx,integer *mx,integer *nx,int *dy,integer *incy,integer *my,integer *ny,int *dr,integer *incr)
 {
   static integer i, ix, iy, ir, jx, jy, l, kk1, kx1, kk, kx, ky;
   ix = *incx;

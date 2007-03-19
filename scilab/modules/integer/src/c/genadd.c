@@ -1,6 +1,5 @@
 #include "machine.h"
-typedef signed char integer1;
-typedef short integer2;
+#include "genadd.h"
 /*     Copyright INRIA */
 
 #define ADD(Type) {\
@@ -24,13 +23,7 @@ Type *DY;\
     }\
 }
 
-int C2F(genadd1)(typ, n, dx, incx, dy, incy)
-integer *n;
-integer *incx;
-integer *incy;
-integer *typ;
-int *dx;
-int *dy;
+int C2F(genadd1)(integer *typ, integer *n, int *dx, integer *incx, int *dy, integer *incy)
 {
   static integer i, ix, iy, nv;
   nv=*n;

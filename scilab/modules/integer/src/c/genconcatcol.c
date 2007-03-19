@@ -1,7 +1,6 @@
 #include "machine.h"
 #include "genconcatcol.h"
-typedef signed char integer1;
-typedef short integer2;
+
 /*     Copyright INRIA */
 
 #define COLCONC(Type) {\

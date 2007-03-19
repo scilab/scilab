@@ -1,6 +1,5 @@
 #include "machine.h"
-typedef signed char integer1;
-typedef short integer2;
+#include "gensubst.h"
 /*     Copyright INRIA */
 
 #define SUBST(Type) {\
@@ -26,13 +25,7 @@ Type *DY;\
 
 
 
-int C2F(gensubst)(typ, n, dx, incx, dy, incy)
-integer *n;
-integer *incx;
-integer *incy;
-integer *typ;
-int *dx;
-int *dy;
+int C2F(gensubst)(integer *typ, integer *n, int *dx, integer *incx, int *dy, integer *incy)
 {
   static integer i, ix, iy, i1;
 

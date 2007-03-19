@@ -1,7 +1,5 @@
 #include "machine.h"
 #include "genmax2.h"
-typedef signed char integer1;
-typedef short integer2;
 /*     Author: Serge Steer, Copyright INRIA */
 
 #define MAX2(Xtype,Ytype) {\

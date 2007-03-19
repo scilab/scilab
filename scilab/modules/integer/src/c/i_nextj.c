@@ -1,11 +1,9 @@
+/*     Copyright INRIA */
 #include "machine.h"
 #include "i_nextj.h"
-typedef signed char integer1;
-typedef short integer2;
-/*     Copyright INRIA */
 #include "stack-c.h"
+
 extern integer C2F(memused)(integer  *it,integer *n);
-int gengetcol(integer typ, integer j,integer m,integer n,integer *a,integer *b);
 
 #define GETCOL(Type) {\
 Type *A;\

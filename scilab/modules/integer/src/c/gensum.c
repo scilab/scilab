@@ -1,6 +1,5 @@
 #include "machine.h"
-typedef signed char integer1;
-typedef short integer2;
+#include "gensum.h"
 /*     Copyright INRIA */
 
 #define SUM(Type) {\
@@ -16,8 +15,7 @@ Type *DX;\
  }\
 }
 
-integer C2F(gensum)(typ, n, dx, incx)
-integer *typ,*n, *dx, *incx;
+integer C2F(gensum)(integer *typ, integer *n, integer *dx, integer *incx)
 {
     integer  i1, i2;
     static integer i, dtemp;

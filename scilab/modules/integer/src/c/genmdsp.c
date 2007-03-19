@@ -1,12 +1,9 @@
-#include "machine.h"
 #include <math.h>
 #include <string.h>
 #include <stdio.h>
-
-typedef signed char integer1;
-typedef short integer2;
-#define Abs(x) ( ( (x) >= 0) ? (x) : -( x) )
-#define Max(x,y)	(((x)>(y))?(x):(y))
+#include "machine.h"
+#include "core_math.h"
+#include "genmdsp.h"
 
 #define DSP(Type,Fmt) {\
 Type *X;\
@@ -69,12 +66,7 @@ X=(Type *)x;\
     }\
 }
 
-int C2F(genmdsp)(typ, x, nx, mm, nn, ll, lunit, cw, iw, cw_len)
-integer *typ;
-integer *x;
-integer *nx, *mm, *nn, *ll, *lunit,*iw;
-char cw[];
-int cw_len;
+int C2F(genmdsp)(integer *typ, integer *x, integer *nx, integer *mm, integer *nn, integer *ll, integer *lunit, char cw[], integer *iw, int cw_len)
 {
   static integer k, l, m, n, s, lbloc, nbloc, k1, l1, k2, ib;
   static char dl;

@@ -2,5 +2,6 @@
 /* INRIA 2006 */
 /* Sylvestre Ledru */
 /*-----------------------------------------------------------------------------------*/
+#include "def.h"
 
 integer C2F(genprod)(integer *typ, integer *n, integer *dx, integer *incx);

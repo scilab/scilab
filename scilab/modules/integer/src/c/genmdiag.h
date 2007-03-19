@@ -2,5 +2,6 @@
 /* INRIA 2007 */
 /* Ledru Sylvestre */
 /*-----------------------------------------------------------------------------------*/
+#include "def.h"
 
 int C2F(genmdiag)(integer *typ,integer *m,integer *n,integer *k,int *dx,int *dy);

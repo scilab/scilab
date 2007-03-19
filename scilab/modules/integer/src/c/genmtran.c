@@ -1,6 +1,5 @@
 #include "machine.h"
-typedef signed char integer1;
-typedef short integer2;
+#include "genmtran.h"
 /*     Copyright INRIA */
 
 #define MTRAN(Type) {\
@@ -23,11 +22,7 @@ Type *B;\
 }
 
 
-int C2F(genmtran)(typ,a, na, b, nb, m, n)
-integer *na, *nb, *m, *n;
-integer *typ;
-int *a;
-int *b;
+int C2F(genmtran)(integer *typ,int *a, integer *na, int *b, integer *nb, integer *m, integer *n)
 {
   integer i1, i2;
   static integer i, j, ia, ib;

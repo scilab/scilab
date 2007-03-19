@@ -1,8 +1,9 @@
 #include "machine.h"
-typedef signed char integer1;
-typedef short integer2;
+#include "genmmin.h"
 /*     Copyright INRIA */
 
+
+/// NEED COMMENTS !!!!
 #define MMIN(Type) {\
 Type *DX;\
 Type *DY;\
@@ -33,15 +34,7 @@ Type *DY;\
 }
 
 
-int C2F(genmmin)(typ, job, m, n, dx, incx, dy, dk, incy)
-integer *m, *n;
-integer *incx;
-integer *incy;
-integer *typ;
-integer *job;
-int *dx;
-int *dy;
-int *dk;
+int C2F(genmmin)(integer *typ, integer *job, integer *m, integer *n, int *dx, integer *incx, int *dy, int *dk, integer *incy)
 {
   static integer ix, iy, l, k, kk, *DK;
 

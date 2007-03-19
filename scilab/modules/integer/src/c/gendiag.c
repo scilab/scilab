@@ -1,9 +1,8 @@
 #include "machine.h"
-typedef signed char integer1;
-typedef short integer2;
+#include "gendiag.h"
+#include "core_math.h"
 /*     Copyright INRIA */
 
-#define Abs(x) ( ( (x) >= 0) ? (x) : -( x) )
 
 #define DIAG(Type) {\
 Type *DX;\
@@ -21,12 +20,7 @@ Type *DY;\
        DY[iy+i*(nn+1)] = DX[i];}\
  }
 
-int C2F(gendiag)(typ,n,k,dx,dy) 
-integer *n;
-integer *k;
-integer *typ;
-int *dx;
-int *dy;
+int C2F(gendiag)(integer *typ,integer *n,integer *k,int *dx,int *dy) 
 {
   static integer i, iy, nn;
 

@@ -1,6 +1,5 @@
 #include "machine.h"
-typedef signed char integer1;
-typedef short integer2;
+#include "genisany.h"
 /*     Copyright INRIA */
 
 #define ISANY(Type) {\
@@ -16,8 +15,7 @@ Type *DX;\
  }\
 }
 
-integer C2F(genisany)(typ, n, dx, incx)
-integer *typ,*n, *dx, *incx;
+integer C2F(genisany)(integer *typ, integer *n, integer *dx, integer *incx)
 {
     integer  i1, i2;
     static integer i, dtemp;

@@ -1,6 +1,5 @@
 #include "machine.h"
-typedef signed char integer1;
-typedef short integer2;
+#include "genconcatrow.h"
 /*     Copyright INRIA */
 #define RCONC(Type) {\
 Type *X1;\
@@ -14,10 +13,7 @@ Type *X2;\
 	 X1[i] = X2[i];}
 
 
-int C2F(genconcatrow)(typ,x1,m1,n1,x2,m2,n2)
-integer *m1, *n1, *m2, *n2;
-integer *x1, *x2;
-integer *typ;
+int C2F(genconcatrow)(integer *typ,integer *x1,integer *m1,integer *n1,integer *x2,integer *m2,integer *n2)
 {
   static integer i;
   switch (*typ) {

@@ -1,6 +1,5 @@
 #include "machine.h"
-typedef signed char integer1;
-typedef short integer2;
+#include "geninsert1.h"
 /*     Copyright INRIA */
 
 #define INSERT1(Type) {\
@@ -14,13 +13,7 @@ Type *TO;\
 	 TO[indx[i]] = FROM[1+(i-1)*(*inc2)];\
 }
 
-int C2F(geninsert1)(typ,mi,indx,to,from,inc2)
-integer *typ;
-integer *mi;
-integer *indx;
-integer *from;
-integer *to;
-integer *inc2;
+int C2F(geninsert1)(integer *typ,integer *mi,integer *indx,integer *to,integer *from,integer *inc2)
 {
 
   static integer i;

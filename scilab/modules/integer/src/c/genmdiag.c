@@ -1,10 +1,7 @@
 #include "machine.h"
 #include "genmdiag.h"
-typedef signed char integer1;
-typedef short integer2;
+#include "core_math.h"
 /*     Copyright INRIA */
-#define Min(x,y)	(((x)<(y))?(x):(y))
-#define Max(x,y)	(((x)>(y))?(x):(y))
 
 #define MDIAG(Type) {\
 Type *DX;\
@@ -21,13 +18,7 @@ Type *DY;\
  }
 
 
-int C2F(genmdiag)(typ,m,n,k,dx,dy) 
-integer *n;
-integer *m;
-integer *k;
-integer *typ;
-int *dx;
-int *dy;
+int C2F(genmdiag)(integer *typ,integer *m,integer *n,integer *k,int *dx,int *dy) 
 {
   static integer i, ix, mn;
 

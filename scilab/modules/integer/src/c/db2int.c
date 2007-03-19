@@ -1,6 +1,5 @@
 #include "machine.h"
-typedef signed char integer1;
-typedef short integer2;
+#include "db2int.h"
 /*     Copyright INRIA */
 
 #define CONV(Type) {\
@@ -20,13 +19,7 @@ Type *DY;\
    }\
 }
 
-int C2F(db2int)(typ, n, dx, incx, dy, incy)
-integer *n;
-integer *incx;
-integer *incy;
-integer *typ;
-double *dx;
-int *dy;
+int C2F(db2int)(integer *typ, integer *n, double *dx, integer *incx, int *dy, integer *incy)
 {
   integer i1;
   static integer i, ix, iy;

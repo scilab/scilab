@@ -1,7 +1,5 @@
 #include "machine.h"
 #include "genextrac1.h"
-typedef signed char integer1;
-typedef short integer2;
 /*     Copyright INRIA */
 
 #define EXTRAC1(Type) {\

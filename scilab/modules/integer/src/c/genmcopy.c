@@ -1,6 +1,5 @@
 #include "machine.h"
-typedef signed char integer1;
-typedef short integer2;
+#include "genmcopy.h"
 /*     Copyright INRIA */
 
 #define MCOPY(Type) {\
@@ -22,13 +21,7 @@ Type *B;\
     }\
     }\
 }
-int C2F(genmcopy)(typ,a, na, b, nb, m, n)
-integer *typ;
-int *a;
-integer *na;
-int *b;
-integer *nb;
-integer *m, *n;
+int C2F(genmcopy)(integer *typ,int *a, integer *na, int *b, integer *nb, integer *m, integer *n)
 {
   static integer i, j, ia, ib, mn;
   switch (*typ) {

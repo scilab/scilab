@@ -1,6 +1,5 @@
 #include "machine.h"
-typedef signed char integer1;
-typedef short integer2;
+#include "gencusum.h"
 /*     Copyright INRIA */
 
 #define CUSUM(Type) {\
@@ -14,8 +13,7 @@ Type *W;\
 }
 
 
-int C2F(gencusum)(typ,n, w, iw)
-integer *typ, *n, *w, *iw;
+int C2F(gencusum)(integer *typ,integer *n, integer *w, integer *iw)
 {
   integer k, kk, t;
 

@@ -1,6 +1,5 @@
 #include "machine.h"
-typedef signed char integer1;
-typedef short integer2;
+#include "genimpl.h"
 /*     Copyright INRIA */
 
 #define IMPL2(Type) {\

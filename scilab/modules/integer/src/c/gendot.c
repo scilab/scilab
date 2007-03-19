@@ -1,6 +1,5 @@
 #include "machine.h"
-typedef signed char integer1;
-typedef short integer2;
+#include "gendot.h"
 /*     Copyright INRIA */
 
 #define DOT(Type) {\
@@ -24,11 +23,7 @@ Type C;\
     return C;\
 }
 
-int C2F(gendot)(typ,n, dx, incx, dy, incy)
-integer *n, *incx, *incy;
-integer *typ;
-int *dx;
-int *dy;
+int C2F(gendot)(integer *typ,integer *n, int *dx, integer *incx, int *dy, integer *incy)
 {
   integer i1;
   static integer i, itemp, ix, iy;

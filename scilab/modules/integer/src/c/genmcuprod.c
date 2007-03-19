@@ -1,6 +1,6 @@
 #include "machine.h"
-typedef signed char integer1;
-typedef short integer2;
+#include "genmcuprod.h"
+#include "gencuprod.h"
 /*     Copyright INRIA */
 static integer c__1 = 1;
 #define MCUPROD(Type) {\
@@ -20,10 +20,8 @@ Type *A;\
     }\
 }
 
-int C2F(genmcuprod)(typ,job, a, na, m, n)
-     integer *typ, *job, *a, *na, *m, *n;
+int C2F(genmcuprod)(integer *typ,integer *job,integer * a,integer * na,integer * m,integer * n)
 {
-  extern integer  C2F(gencuprod)();
   static integer  i, j, mn;
 
   mn=(*m)*(*n);

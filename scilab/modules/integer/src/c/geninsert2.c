@@ -1,6 +1,5 @@
 #include "machine.h"
-typedef signed char integer1;
-typedef short integer2;
+#include "geninsert2.h"
 /*     Copyright INRIA */
 
 #define INSERT2(Type) {\
@@ -20,12 +19,7 @@ Type *TO;\
     }\
 }
 
-int C2F(geninsert2)(typ,mj,mi,indxj,indxi,to,mr,from,m3,inc3)
-integer *typ;
-integer *mi,*mj,*mr,*m3,*inc3;
-integer *indxi,*indxj;
-integer *from;
-integer *to;
+int C2F(geninsert2)(integer *typ,integer *mj,integer *mi,integer *indxj,integer *indxi,integer *to,integer *mr,integer *from,integer *m3,integer *inc3)
 {
   integer i1, i2;
   static integer i, j, ljj,jj;

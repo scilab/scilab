@@ -1,9 +1,7 @@
 #include "machine.h"
 #include "genabs.h"
-typedef signed char integer1;
-typedef short integer2;
+#include "core_math.h"
 /*     Copyright INRIA */
-#define Abs(x) ( ( (x) >= 0) ? (x) : -( x) )
 
 #define ABS(Type) {\
 Type *DX;\

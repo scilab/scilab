@@ -1,6 +1,5 @@
 #include "machine.h"
-typedef signed char integer1;
-typedef short integer2;
+#include "genbitops.h"
 /*     Copyright INRIA */
 
 #define BIT2(Type,Op) {\
@@ -41,14 +40,7 @@ Type *DX;\
     }\
 }
 
-int C2F(genbitops)(typ,op, n, dx, incx, dy, incy)
-integer *n;
-integer *incx;
-integer *incy;
-integer *typ;
-integer *op;
-int *dx;
-int *dy;
+int C2F(genbitops)(integer *typ,integer *op,integer * n,int * dx,integer * incx,int * dy,integer * incy)
 {
   static integer i, ix, iy, nv;
   nv=*n;

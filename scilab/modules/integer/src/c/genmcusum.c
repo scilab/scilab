@@ -1,6 +1,6 @@
 #include "machine.h"
-typedef signed char integer1;
-typedef short integer2;
+#include "genmcusum.h"
+
 /*     Copyright INRIA */
 static integer c__1 = 1;
 #define MCUSUM(Type) {\
@@ -20,8 +20,7 @@ Type *A;\
     }\
 }
 
-int C2F(genmcusum)(typ,job, a, na, m, n)
-     integer *typ, *job, *a, *na, *m, *n;
+int C2F(genmcusum)(integer *typ,integer *job,integer * a,integer * na,integer * m,integer * n)
 {
   extern integer  C2F(gencusum)();
   static integer  i, j, mn;
