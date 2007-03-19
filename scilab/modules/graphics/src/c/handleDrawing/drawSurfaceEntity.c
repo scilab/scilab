@@ -15,7 +15,6 @@
 int drawSurfaceEntity( sciPointObj * pObj )
 {
   sciSurface  * ppSurface = pSURFACE_FEATURE(pObj) ;
-  sciPointObj * parentSubWin = sciGetParentSubwin(pObj) ;
   int lineWidth = sciGetLineWidth( pObj ) ;
   int lineStyle = sciGetLineStyle( pObj ) ;
   int markStyle = sciGetMarkStyle( pObj ) ;
