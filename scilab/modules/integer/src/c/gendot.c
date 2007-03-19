@@ -23,7 +23,7 @@ Type C;\
     return C;\
 }
 
-int C2F(gendot)(integer *typ,integer *n, int *dx, integer *incx, int *dy, integer *incy)
+int C2F(gendot)(integer *typ,integer *n, void *dx, integer *incx, void *dy, integer *incy)
 {
   integer i1;
   static integer i, itemp, ix, iy;

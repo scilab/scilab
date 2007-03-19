@@ -8,8 +8,8 @@
  * TODO : comment 
  * @param typ
  * @param n
- * @param dx
+ * @param dx be carreful using this parameter (crappy way of doing polymorphism)
  * @param incx
  * @return 
  */
-integer C2F(gensum)(integer *typ, integer *n, integer *dx, integer *incx);
+integer C2F(gensum)(integer *typ, integer *n, void *dx, integer *incx);

@@ -13,7 +13,7 @@ Type *W;\
 }
 
 
-int C2F(gencuprod)(integer *typ,integer *n, integer *w, integer *iw)
+int C2F(gencuprod)(integer *typ,integer *n, void *w, integer *iw)
 {
   integer k, kk, t;
 

@@ -8,10 +8,10 @@
  * TODO : comment 
  * @param typ
  * @param n
- * @param dx
+ * @param dx be carreful using this parameter (crappy way of doing polymorphism)
  * @param incx
- * @param dy
+ * @param dy be carreful using this parameter (crappy way of doing polymorphism)
  * @param incy
  * @return 
  */
-int C2F(gendot)(integer *typ,integer *n, int *dx, integer *incx, int *dy, integer *incy);
+int C2F(gendot)(integer *typ,integer *n, void *dx, integer *incx, void *dy, integer *incy);
