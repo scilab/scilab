@@ -1,5 +1,6 @@
 #include "stack-c.h"
 #include "core_math.h"
+#include "cvstr.h"
 #define TRUE_ 1
 #define FALSE_ 0
 
@@ -7,8 +8,6 @@
 
 static integer cx1 = 1;
 static integer c_n1 = -1;
-
-integer C2F(getfastcode)(unsigned char *c, unsigned long c_len) ;
 
 /*------------------------------------------------
  *   converts from ascii to Scilab internal coding 
@@ -153,13 +152,6 @@ static integer taba2s[128] =
   13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
   23, 24, 25, 26, 27, 28, 29, 30, 31, 32,
   33, 34, 35,-54, 57,-55, 61,227 };
-
-/*--------------------------------------------------
- * Convert one ascii char to Scilab internal code 
- *     Copyright INRIA/ENPC 
- *      Modified by Bruno Pincon 
- *     the big table (pure) ascii -> scilab code 
- *--------------------------------------------------*/
 
 integer C2F(getfastcode)(unsigned char *c, unsigned long c_len) 
 {
