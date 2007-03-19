@@ -7,15 +7,6 @@
 	#include "ExceptionMessage.h"
 #endif
 /*-----------------------------------------------------------------------------------*/
-extern int C2F(sci_oldbesseli) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_oldbesselj) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_oldbesselk) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_oldbessely) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_gamma) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_lgamma) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_dlgamma) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_calerf) _PARAMS((char *fname,unsigned long fname_len));
-/*-----------------------------------------------------------------------------------*/
 static SpecialFunctionsTable Tab[]={ 
   {C2F(sci_oldbesseli),"oldbesseli"},
   {C2F(sci_oldbesselj), "oldbesselj"},

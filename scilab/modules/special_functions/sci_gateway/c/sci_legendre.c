@@ -2,6 +2,7 @@
 /* INRIA */
 /*-----------------------------------------------------------------------------------*/
 #include <string.h>
+#include "gw_special_functions2.h"
 #ifdef _MSC_VER
 	#include <Windows.h>
 #endif
@@ -9,7 +10,7 @@
 /*-----------------------------------------------------------------------------------*/
 extern void C2F(dxlegf)(double *dnu1, int *nudiff, int *mu1, int *mu2, double *x,int *id, double *pqa, int *ipqa, int *ierror);
 /*-----------------------------------------------------------------------------------*/
-static double return_an_inf();
+static double return_an_inf(void);
 static int verify_cstr(double x[], int nb_elt, int *xmin, int *xmax);
 /*-----------------------------------------------------------------------------------*/
 int sci_legendre(char *fname,unsigned long fname_len)

@@ -33,10 +33,11 @@ sci_gateway/fortran/sci_f_calerf.f
 
 libscispecial_functions_la_includedir=$(sciincludedir)/special_functions
 
-#libscispecial_functions_la_include_HEADERS = includes/gw_special_functions.h
+libscispecial_functions_la_include_HEADERS = includes/gw_special_functions1.h \
+includes/gw_special_functions2.h
 
-#libscispecial_functions_la_CFLAGS=  -Iincludes/ 
-#-Isrc/c/
+libscispecial_functions_la_CFLAGS=  -Iincludes/ 
+
 pkglib_LTLIBRARIES = libscispecial_functions.la
 
 libscispecial_functions_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)

@@ -2,6 +2,7 @@
 /* INRIA */
 /*-----------------------------------------------------------------------------------*/
 #include <string.h>
+#include "gw_special_functions2.h"
 #include "stack-c.h"
 /*-----------------------------------------------------------------------------------*/
 extern void C2F(msgs)(int *n, int* ierr);
@@ -88,30 +89,30 @@ int sci_bessely(char *fname,unsigned long fname_len)
       C2F(zbesyv) (stk(l2),stk(l2i),&nx,stk(l1),&na,&kode,stk(lr),stk(li),wr,wi,&ierr);
   }
   else if (m2*n2 == 1) { /* bessely(matrix,scalar) */
-    int lwr,lwi,nw;
+    int llwr,llwi,nw;
     mr=m1;
     nr=n1;   
     CreateCVar(lpos+1,"d",&itr,&mr,&nr,&lr,&li);
     nx=1;
     na=m1*n1;
     nw=3*na;
-    CreateCVar(lpos+2,"d",&itr,&nx,&nw,&lwr,&lwi);
+    CreateCVar(lpos+2,"d",&itr,&nx,&nw,&llwr,&llwi);
     if (itr==0)
-      C2F(dbesyv) (stk(l2),&nx,stk(l1),&na,&kode,stk(lr),stk(lwr),&ierr);
+      C2F(dbesyv) (stk(l2),&nx,stk(l1),&na,&kode,stk(lr),stk(llwr),&ierr);
     else
-      C2F(zbesyv) (stk(l2),stk(l2i),&nx,stk(l1),&na,&kode,stk(lr),stk(li),stk(lwr),stk(lwi),&ierr);
+      C2F(zbesyv) (stk(l2),stk(l2i),&nx,stk(l1),&na,&kode,stk(lr),stk(li),stk(llwr),stk(llwi),&ierr);
 
     LhsVar(1)=lpos+1;
   }
   else if ((m1==1 && n2==1)|| (n1==1 && m2==1)) { /* bessely(row,col) or bessely(col,row) */
-    int un=1,nw;
+    int lun=1,nw;
     mr=m2*n2;
     nr=m1*n1;
     CreateCVar(lpos+1,"d",&itr,&mr,&nr,&lr,&li);
     nx=m2*n2;
     na=m1*n1;
     nw=3*na;
-    CreateCVar(lpos+2,"d",&itr,&un,&nw,&lwr,&lwi);
+    CreateCVar(lpos+2,"d",&itr,&lun,&nw,&lwr,&lwi);
     if (itr==0)
       C2F(dbesyv) (stk(l2),&nx,stk(l1),&na,&kode,stk(lr),stk(lwr),&ierr);
     else

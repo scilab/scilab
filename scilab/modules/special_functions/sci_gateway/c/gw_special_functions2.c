@@ -4,6 +4,7 @@
 #include <string.h> /*pour strcmp */
 #include <math.h>
 #include <setjmp.h>
+#include "gw_special_functions2.h"
 /*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 	#include <Windows.h>
@@ -13,13 +14,7 @@
 #include "sciprint.h"
 /*-----------------------------------------------------------------------------------*/
 extern jmp_buf slatec_jmp_env; 
-extern int sci_besselh(char *fname,unsigned long fname_len);
-extern int sci_besseli(char *fname,unsigned long fname_len);
-extern int sci_besselj(char *fname,unsigned long fname_len);
-extern int sci_besselk(char *fname,unsigned long fname_len);
-extern int sci_bessely(char *fname,unsigned long fname_len);
-extern int sci_beta(char *fname,unsigned long fname_len);
-extern int sci_legendre(char *fname,unsigned long fname_len);
+
 /*-----------------------------------------------------------------------------------*/
 static TabF Tab[]={ 
   {sci_legendre, "legendre"},
