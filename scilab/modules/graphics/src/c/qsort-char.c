@@ -128,7 +128,7 @@ void GlobalSortchar(char *a,int *ind,int flag,int n,int p,char dir)
 /******************************************************
  * Column sort of a matrix 
  ******************************************************/
-void ColSortuchar(char *a,int *ind,int flag,int n,int p,char dir)
+void ColSortuchar(unsigned char *a,int *ind,int flag,int n,int p,char dir)
 {
   int i,j;
   if ( flag == 1) 
@@ -151,7 +151,7 @@ void ColSortuchar(char *a,int *ind,int flag,int n,int p,char dir)
 /******************************************************
  * Row sort of a matrix 
  ******************************************************/
-void RowSortuchar(char *a,int *ind,int flag,int n,int p,char dir)
+void RowSortuchar(unsigned char *a,int *ind,int flag,int n,int p,char dir)
 {  
   int i,j;
   if ( flag == 1) 
@@ -176,7 +176,7 @@ void RowSortuchar(char *a,int *ind,int flag,int n,int p,char dir)
 /******************************************************
  * Global sort of a Matrix
  ******************************************************/
-void GlobalSortuchar(char *a,int *ind,int flag,int n,int p,char dir)
+void GlobalSortuchar(unsigned char *a,int *ind,int flag,int n,int p,char dir)
 {  
   int i;
   if ( flag == 1) 

@@ -11,55 +11,12 @@
 #include "../../../string/includes/men_Sutils.h"
 #include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/ 
-extern void sciqsort();
-
-extern void GlobalSortstring(char * *a,int *ind,int flag,int n,int p,char dir);
-extern void LexiColstring(char * *a,int *ind,int flag,int n,int p,char dir);
-extern void LexiRowstring(char * *a,int *ind,int flag,int n,int p,char dir);
-extern void RowSortstring(char * *a,int *ind,int flag,int n,int p,char dir);
-extern void ColSortstring(char * *a,int *ind,int flag,int n,int p,char dir);
-
-extern void GlobalSortdouble(double *a,int *ind,int flag,int n,int p,char dir);
-extern void RowSortdouble(double *a,int *ind,int flag,int n,int p,char dir);
-extern void ColSortdouble(double *a,int *ind,int flag,int n,int p,char dir);
-extern void LexiColdouble(double *a,int *ind,int flag,int n,int p,char dir);
-extern void LexiRowdouble(double *a,int *ind,int flag,int n,int p,char dir);
-
-extern void GlobalSortint(int *a,int *ind,int flag,int n,int p,char dir);
-extern void RowSortint(int *a,int *ind,int flag,int n,int p,char dir);
-extern void ColSortint(int *a,int *ind,int flag,int n,int p,char dir);
-extern void LexiColint(int *a,int *ind,int flag,int n,int p,char dir);
-extern void LexiRowint(int *a,int *ind,int flag,int n,int p,char dir);
-
-extern void GlobalSortuint(unsigned int *a,int *ind,int flag,int n,int p,char dir);
-extern void RowSortuint(unsigned int *a,int *ind,int flag,int n,int p,char dir);
-extern void ColSortuint(unsigned int *a,int *ind,int flag,int n,int p,char dir);
-extern void LexiColuint(unsigned int *a,int *ind,int flag,int n,int p,char dir);
-extern void LexiRowuint(unsigned int *a,int *ind,int flag,int n,int p,char dir);
-
-extern void GlobalSortshort(short *a,int *ind,int flag,int n,int p,char dir);
-extern void RowSortshort(short *a,int *ind,int flag,int n,int p,char dir);
-extern void ColSortshort(short *a,int *ind,int flag,int n,int p,char dir);
-extern void LexiColshort(short *a,int *ind,int flag,int n,int p,char dir);
-extern void LexiRowshort(short *a,int *ind,int flag,int n,int p,char dir);
-
-extern void GlobalSortushort(unsigned short *a,int *ind,int flag,int n,int p,char dir);
-extern void RowSortushort(unsigned short *a,int *ind,int flag,int n,int p,char dir);
-extern void ColSortushort(unsigned short *a,int *ind,int flag,int n,int p,char dir);
-extern void LexiColushort(unsigned short *a,int *ind,int flag,int n,int p,char dir);
-extern void LexiRowushort(unsigned short *a,int *ind,int flag,int n,int p,char dir);
-
-extern void GlobalSortchar(char *a,int *ind,int flag,int n,int p,char dir);
-extern void RowSortchar(char *a,int *ind,int flag,int n,int p,char dir);
-extern void ColSortchar(char *a,int *ind,int flag,int n,int p,char dir);
-extern void LexiColchar(char *a,int *ind,int flag,int n,int p,char dir);
-extern void LexiRowchar(char *a,int *ind,int flag,int n,int p,char dir);
-
-extern void GlobalSortuchar(unsigned char *a,int *ind,int flag,int n,int p,char dir);
-extern void RowSortuchar(unsigned char *a,int *ind,int flag,int n,int p,char dir);
-extern void ColSortuchar(unsigned char *a,int *ind,int flag,int n,int p,char dir);
-extern void LexiColuchar(unsigned char *a,int *ind,int flag,int n,int p,char dir);
-extern void LexiRowuchar(unsigned char *a,int *ind,int flag,int n,int p,char dir);
+#include "qsort.h"
+#include "qsort-string.h"
+#include "qsort-short.h"
+#include "qsort-int.h"
+#include "qsort-double.h"
+#include "qsort-char.h"
 
 /*-----------------------------------------------------------------------------------*/ 
 /******************************************************

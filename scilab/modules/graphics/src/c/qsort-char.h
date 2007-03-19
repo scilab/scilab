@@ -10,10 +10,10 @@ void RowSortchar(char *a,int *ind,int flag,int n,int p,char dir);
 
 void GlobalSortchar(char *a,int *ind,int flag,int n,int p,char dir);
 
-void ColSortuchar(char *a,int *ind,int flag,int n,int p,char dir);
-void RowSortuchar(char *a,int *ind,int flag,int n,int p,char dir);
+void ColSortuchar(unsigned char *a,int *ind,int flag,int n,int p,char dir);
+void RowSortuchar(unsigned char *a,int *ind,int flag,int n,int p,char dir);
 
-void GlobalSortuchar(char *a,int *ind,int flag,int n,int p,char dir);
+void GlobalSortuchar(unsigned char *a,int *ind,int flag,int n,int p,char dir);
 
 
 void LexiColuchar(unsigned char *a,int *ind,int flag,int n,int p,char dir);

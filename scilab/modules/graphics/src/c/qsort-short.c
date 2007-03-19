@@ -127,7 +127,7 @@ void GlobalSortshort(short *a,int *ind,int flag,int n,int p,char dir)
 /******************************************************
  * Column sort of a matrix 
  ******************************************************/
-void ColSortushort(short *a,int *ind,int flag,int n,int p,char dir)
+void ColSortushort(unsigned short *a,int *ind,int flag,int n,int p,char dir)
 {
   int i,j;
   if ( flag == 1) 
@@ -150,7 +150,7 @@ void ColSortushort(short *a,int *ind,int flag,int n,int p,char dir)
 /******************************************************
  * Row sort of a matrix 
  ******************************************************/
-void RowSortushort(short *a,int *ind,int flag,int n,int p,char dir)
+void RowSortushort(unsigned short *a,int *ind,int flag,int n,int p,char dir)
 {  
   int i,j;
   if ( flag == 1) 
@@ -175,7 +175,7 @@ void RowSortushort(short *a,int *ind,int flag,int n,int p,char dir)
 /******************************************************
  * Global sort of a Matrix
  ******************************************************/
-void GlobalSortushort(short *a,int *ind,int flag,int n,int p,char dir)
+void GlobalSortushort(unsigned short *a,int *ind,int flag,int n,int p,char dir)
 {  
   int i;
   if ( flag == 1) 
