@@ -382,6 +382,7 @@ includes/version.h \
 includes/Os_specific.h \
 includes/stack1.h \
 includes/SciEnv.h \
+includes/returnanan.h \
 includes/stack2.h \
 includes/Scierror.h \
 includes/realmain.h \
