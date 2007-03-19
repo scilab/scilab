@@ -4,6 +4,7 @@
 
 #include "core_math.h"
 #include "Os_specific.h"
+#include "../io/includes/setenvc.h"
 
 #define MAX_ENV 256 
 
@@ -13,8 +14,7 @@ static char *TMP_a[] = {  "TMPDIR/", "tmpdir/","TMPDIR\\", "tmpdir\\", "$TMPDIR"
 void GetenvB __PARAMS(( char *name,char *env, int len));
 static int Cluni0 __PARAMS((char *env,char **alias,char* in_name,char *out_name, long int lin));
 
-extern int getUpdateEnvVar(void);
-extern void setUpdateEnvVar(int val);
+
 static int n=0;
 /************************************************
  * expand  in_name to produce out_name 
