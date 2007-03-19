@@ -171,6 +171,10 @@ static char *QueryString(struct hashtable *Table,char *Tag)
 	char newpiece[8];
 	char *RetString=NULL;
 	char *StringWithoutSomeChars=NULL;
+	
+	// table empty (happen for example when no localization xml file has been found)
+	if (Table==NULL)
+		return NULL;
 
 	if (strcmp(Tag,"\r\n"))
 	{
