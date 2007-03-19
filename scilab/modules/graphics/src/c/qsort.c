@@ -63,8 +63,7 @@
  * Qsort routine from Bentley & McIlroy's "Engineering a Sort Function".
  */
 /*-----------------------------------------------------------------------------------*/ 
-void sciqsort(char *a, char *tab, int flag, int n, int es, int es1, int (*cmp)(), int (*swapcode)(),
-	      int (*swapcodeind)())
+void sciqsort(char *a, char *tab, int flag, int n, int es, int es1, int (*cmp)(), int (*swapcode)(), int (*lswapcodeind)())
 {
   char *pa, *pb, *pc, *pd, *pl, *pm, *pn;
   char *taba, *tabb, *tabc, *tabd, *tabl, *tabm, *tabn;
@@ -169,7 +168,7 @@ void sciqsort(char *a, char *tab, int flag, int n, int es, int es1, int (*cmp)()
   vecswapind(tabb, tabn - r1, r1);
 
   if ((r = pb - pa) > es )
-    sciqsort(a, tab,flag, r / es, es, es1, cmp,swapcode,swapcodeind);
+    sciqsort(a, tab,flag, r / es, es, es1, cmp,swapcode,lswapcodeind);
   if ((r = pd - pc) > es) { 
     /* Iterate rather than recurse to save stack space */
     a = pn - r;
