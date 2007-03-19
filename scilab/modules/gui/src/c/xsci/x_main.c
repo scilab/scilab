@@ -572,6 +572,8 @@ int kill_process_group(pid, sig)
  * Syntax 
  */
 /*----------------------------------------------------------------------------------*/
+/*
+is not used at the moment (easy to say that because of the static)
 static void Syntax(char *badOption)
 {
   struct _options *opt;
@@ -583,9 +585,9 @@ static void Syntax(char *badOption)
   fprintf (stderr, "usage:  %s", ProgramName);
   col = 8 + strlen(ProgramName);
   for (opt = options; opt->opt; opt++) {
-    int len = 3 + strlen(opt->opt);	 /* space [ string ] */
+  int len = 3 + strlen(opt->opt);	 // space [ string ] 
     if (col + len > 79) {
-      fprintf (stderr, "\r\n   ");  /* 3 spaces */
+	fprintf (stderr, "\r\n   ");  // 3 spaces 
       col = 3;
     }
     fprintf (stderr, " [%s]", opt->opt);
@@ -595,7 +597,7 @@ static void Syntax(char *badOption)
   fprintf (stderr, "\r\n\nType %s -help for a full description.\r\n\n",
 	   ProgramName);
   exit (1);
-}
+}*/
 /*----------------------------------------------------------------------------------*/
 /** V.C 04/2004 
  * Function used to know if we are in window mode (returned value is 1)
