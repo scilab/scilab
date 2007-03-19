@@ -9,14 +9,10 @@
 #include <math.h>
 #include "stack-c.h"
 #include "someinterp.h"
-
+#include "Os_specific.h" /* isanan */
+#include "returnanan.h"
 enum {NOT_A_KNOT, NATURAL, CLAMPED, PERIODIC, FAST, FAST_PERIODIC, 
       MONOTONE, BY_ZERO, C0, LINEAR, BY_NAN};
-
-#ifdef _MSC_VER
-extern int C2F(isanan)();
-extern double C2F(returnanan)();
-#endif
 
 static int isearch(double t, double x[], int n) 
 {
