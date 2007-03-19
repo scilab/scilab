@@ -16,9 +16,8 @@
 #endif
 #include "error_scilab.h"
 #include "MALLOC.h"
+#include "getdate.h"
 /*-----------------------------------------------------------------------------------*/
-extern void C2F(convertdate)();
-extern void C2F(scigetdate)();
 extern int *InversionMatrixInt(int W,int L,int *Matrix);
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_getdate) _PARAMS((char *fname,unsigned long fname_len))
@@ -80,7 +79,7 @@ int C2F(sci_getdate) _PARAMS((char *fname,unsigned long fname_len))
 		{
 			if ( GetType(1) == sci_matrix )
 			{
-				int i=0;
+				int li=0;
 				int k=0;
 				int l=0;
 				double *param=NULL;
@@ -95,20 +94,20 @@ int C2F(sci_getdate) _PARAMS((char *fname,unsigned long fname_len))
 				DATEARRAY=(int *)MALLOC( (l)*sizeof(int) );
 				for (k=0;k<l;k++) DATEARRAY[k]=0;
 			
-				for(i=0;i<m1*n1;i++)
+				for(li=0;li<m1*n1;li++)
 				{
 					int j=0;
-					int paramtemp=(int)param[i];
-					double millisecondes=param[i]-paramtemp;
+					int paramtemp=(int)param[li];
+					double millisecondes=param[li]-paramtemp;
 					C2F(convertdate)(&paramtemp,DATEMATRIX);
 					for (j=0;j<10;j++)
 					{
-						DATEARRAY[(i*10)+j]=DATEMATRIX[j];
+						DATEARRAY[(li*10)+j]=DATEMATRIX[j];
 					}
 					if (millisecondes>0)
 					{
 						if (millisecondes>0.999) millisecondes=0.999;
-						DATEARRAY[(i*10)+9]=(int)(millisecondes*1000);
+						DATEARRAY[(li*10)+9]=(int)(millisecondes*1000);
 					}
 				}
 

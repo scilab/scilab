@@ -9,13 +9,13 @@
 #include <time.h>
 #include <locale.h>
 #include <stdio.h>
-
 #ifdef _MSC_VER
 	#include <sys/types.h> 
 	#include <sys/timeb.h>
 #else
 	#include <sys/time.h> 
 #endif
+#include "getdate.h"
 #include "machine.h"
 #include "message_scilab.h"
 /*-----------------------------------------------------------------------------------*/
@@ -38,8 +38,7 @@ except every 100th isn't, and every 400th is).  */
 /*-----------------------------------------------------------------------------------*/
 
 static int week_number __PARAMS ((struct tm *tp));
-void C2F(scigetdate) __PARAMS ((time_t *dt, int *ierr));
-void C2F(convertdate) __PARAMS ((time_t *dt, int w[]));
+
 /*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
     static struct __timeb64 timebufferW;
