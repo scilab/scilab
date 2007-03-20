@@ -440,6 +440,7 @@ proc disablemenuesbinds {} {
 # facility to avoid hangs - the user can always escape out
     global pad nbrecentfiles FirstBufferNameInWindowsMenu listoftextarea
     global tileprocalreadyrunning
+    global Tk85
     set tileprocalreadyrunning true
     # File/Close
     set iClose [expr {[GetFirstRecentInd] + $nbrecentfiles + 1}]
@@ -449,7 +450,13 @@ proc disablemenuesbinds {} {
     set lasttoset [expr {$FirstBufferNameInWindowsMenu - 2}]
     for {set i 1} {$i<=$lasttoset} {incr i} {
         $pad.filemenu.wind entryconfigure $i -state disabled
-        bind $pad <Control-Key-$i> ""
+    }
+    bind $pad <Control-Key-1> ""
+    bind $pad <Control-Key-2> ""
+    bind $pad <Control-Key-3> ""
+    if {$Tk85} {
+        bind $pad <Control-Alt-Key-2> ""
+        bind $pad <Control-Alt-Key-3> ""
     }
     # Close and hide buttons in the tile titles
     foreach ta $listoftextarea {
@@ -464,6 +471,7 @@ proc restoremenuesbinds {} {
 # Restore menu entries and bindings disabled previously by proc disablemenuesbinds
     global pad nbrecentfiles FirstBufferNameInWindowsMenu listoftextarea
     global tileprocalreadyrunning
+    global Tk85
     # File/Close
     set iClose [expr {[GetFirstRecentInd] + $nbrecentfiles + 1}]
     $pad.filemenu.files entryconfigure $iClose -state normal
@@ -472,7 +480,13 @@ proc restoremenuesbinds {} {
     set lasttoset [expr {$FirstBufferNameInWindowsMenu - 2}]
     for {set i 1} {$i<=$lasttoset} {incr i} {
         $pad.filemenu.wind entryconfigure $i -state normal
-        bind $pad <Control-Key-$i> "$pad.filemenu.wind invoke $i"
+    }
+    bind $pad <Control-Key-1> "$pad.filemenu.wind invoke 1"
+    bind $pad <Control-Key-2> "$pad.filemenu.wind invoke 2"
+    bind $pad <Control-Key-3> "$pad.filemenu.wind invoke 3"
+    if {$Tk85} {
+        bind $pad <Control-Alt-Key-2> "$pad.filemenu.wind invoke 4"
+        bind $pad <Control-Alt-Key-3> "$pad.filemenu.wind invoke 5"
     }
     # Close and hide buttons in the tile titles
     foreach ta $listoftextarea {

@@ -55,12 +55,6 @@ function test
   a=1
 endfunction
 
--anything can happen during debug if the same function name can be found more
- than once among the opened buffers, for instance the wrong buffer may become
- the active one to show the active breakpoint - same issue in configureexec:
- if a function is defined in more than one buffer, proc checkarglist may
- detect the wrong one and prevent correct configuration of the debugger
-
 -watching some very large variable content looks like the variable is empty
  This is Tk bug 1449858.
 
@@ -83,11 +77,8 @@ endfunction
  it is not yet committed in the Tcl source code. There is also bug 1578519
  about special dirs on Windows, still for tk_getOpenFile.
 
--There is something strange with the scrollbars linked to the textarea. In
- some not yet well understood situations they do not reflect the width or
- height of the text contained in the textarea, and/or are located at the
- wrong place. When there are wrapped lines of varying lengths, as the user
- scrolls, the length of the scroll box changes. 
+-When there are wrapped lines of varying lengths, as the user scrolls, the
+length of the scroll box changes. 
  This is actually fixed in Tk 8.5: http://www.tcl.tk/cgi-bin/tct/tip/155.html
  No workaround available in 8.4, this is a deep Tk core issue.
 
@@ -161,6 +152,15 @@ Old bugs/whishes which have been hacked but could have been done better:
  configure execution will propose too long names. Scipad or the debugger
  is not limited to 24 chars, but Scilab still is. Let's wait for Scilab
  improvement instead of restraining the debugger!
+
+-anything could happen during debug if the same function name can be found more
+ than once among the opened buffers, for instance the wrong buffer could become
+ the active one to show the active breakpoint - same issue in configureexec:
+ if a function is defined in more than one buffer, proc checkarglist may
+ detect the wrong one and prevent correct configuration of the debugger
+ Since duplicate function definitions are not supported by the debugger, a
+ warning is issued to the user, and the debugger refuses to execute
+ To let the debugger support this would perhaps be desirable
 
 
 Wishes:

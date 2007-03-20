@@ -114,7 +114,7 @@ proc cuttext {mode {tocutinblockmode ""}} {
     } else {
         set dndmode false
     }
-    
+
     if {$dndmode} {
         set selindices $tocutinblockmode
     } else {

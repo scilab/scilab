@@ -2883,3 +2883,20 @@ Francois VOGEL, 28/02/07
    names having more than 24 characters
  * Improved line numbers alignment during debugger use
  * version --> 6.96
+
+Francois VOGEL, 20/03/07
+ * Extended XML scheme to .xsd and .dtd files
+ * Fixed bug 2334: line numbers display bug that showed up on Suse Linux
+   because on this platform [lindex [$ta dlineinfo @0,0] 1] is 2 instead of 1
+ * Cleaned proc updatelinenumbersmargin
+ * Fixed bug 2335: binding bug with Ctrl-4 and Ctrl-5 (Open in new...)
+ * The first debug command to be issued now execs any non level zero code from
+   all Scilab buffers (provided they are colorized), instead of only the
+   current one and the one containing the configured function. This allows to
+   debug as .sce (i.e. with no wrapper function) mixed .sce/.sci files
+   containing a level zero call to a function defined in that same buffer, for
+   instance dynamickeywords.sce
+ * Fixed update of the scrollbars by textareas that are no longer displayed:
+   the -x/yscrollcommand must be emptied when the textarea is unpacked
+ * Added duplicate function definition check/warning the debugger
+ * version --> 6.97

@@ -13,6 +13,10 @@ proc configurefoo_bp {} {
     # off in the current buffer
     if {[iscurrentbufnotcolorized]} {return}
 
+    # warn the user about duplicate function names possibly found
+    # configure won't execute in that case
+    if {[checkforduplicatefunnames]} {return}
+
     set conf $pad.conf
     catch {destroy $conf}
     toplevel $conf
@@ -153,7 +157,7 @@ proc configurefoo_bp {} {
             # the function is the wrapper - this must not be shown to
             # the user, and anyway the dialog has already been closed
             # at the end of proc OKconf_bp called by proc Obtainall_bp
-            # nothing more tho do here
+            # nothing more to do here
         }
     }
 }
@@ -686,4 +690,66 @@ proc hasvarargin {arglist} {
         # the returned argument list is what was given as input
     }
     return [list $hasvarin $arglist]
+}
+
+proc checkforduplicatefunnames {} {
+# check if the opened buffers define duplicate function names
+# if it is the case, then warn the user through a message box
+# and return true
+# otherwise (no duplicate found), return false
+
+    global listoffile
+
+    set allfuns [getallfunsinalltextareas]
+
+    set listoffunnames [list ]
+
+    foreach {textarea funsinthatta} $allfuns {
+        set funsto 1.0
+        foreach {funnam funlin funsta} $funsinthatta {
+            if {$funnam == "0NoFunInBuf"} {
+                break
+            }
+            if {[$textarea compare $funsta >= $funsto]} {
+                set funsto [getendfunctionpos $textarea $funsta]
+                if {$funsto == -1} {
+                    # unterminated function (i.e. function keyword with
+                    # no balanced endfunction keyword) -> ignore it
+                    continue
+                }
+                lappend listoffunnames $funnam "$listoffile(\"$textarea\",fullname)\n"
+            } else {
+                # this {funnam funlin funsta} item denotes a function
+                # nested in another one already copied -> ignore it
+            }
+        }
+    }
+
+    set dupfunfilesstr ""
+    foreach {funnam funfile} $listoffunnames {
+        set duppos [lsearch -all -exact $listoffunnames $funnam]
+        if {[llength $duppos] > 1} {
+            # duplicate function name found among the opened buffers
+            append dupfunfilesstr [mc "\n--> Definition of function "] $funnam [mc " found in:\n"]
+            foreach dupind $duppos {
+                append dupfunfilesstr [lindex $listoffunnames [expr {$dupind + 1}] ]
+            }
+            foreach dupind [listreverse $duppos] {
+                set listoffunnames [lreplace $listoffunnames $dupind [expr {$dupind + 1}]]
+            }
+        }
+    }
+
+    if {$dupfunfilesstr != ""} {
+        set mes ""
+        append mes [mc "Warning!\n\n \
+                 One or more function is defined more than once in the currently opened files.\n \
+                 The debugger cannot cope with multiple copies of functions.\n \
+                 The following duplicates were detected:\n"] $dupfunfilesstr
+        set tit [mc "Duplicate function definitions found"]
+        tk_messageBox -message $mes -icon warning -title $tit
+        return true
+    } else {
+        return false
+    }
 }

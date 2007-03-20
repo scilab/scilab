@@ -1,4 +1,9 @@
 proc tonextbreakpoint_bp {{checkbusyflag 1} {stepmode "nostep"}} {
+
+    # warn the user about duplicate function names possibly found
+    # the debugger won't execute in that case
+    if {[checkforduplicatefunnames]} {return}
+
     if {[getdbstate] == "ReadyForDebug"} {
         clearscilaberror
         execfile_bp $stepmode
@@ -33,30 +38,58 @@ proc execfile_bp {{stepmode "nostep"}} {
         }
     }
 
-    # exec the required file(s), which are the current one
-    # and the one containing the function to debug
+    # exec any non level zero code, i.e. everything that is in a function
+    # definition and launch the debug (i.e. run the configured function)
     if {$funnameargs != ""} {
         setdebuggerbusycursor
+
+        # copy any non level zero code from all scilab scheme buffers
+        # into a string
+        # <TODO>: getallfunsinalltextareas only returns functions from
+        #         buffers 1) tagged as scilab buffers and 2) colorized
+        #         Maybe a warning to the user about the non exec-ing of
+        #         scilab not colorized buffers would be a good idea...
+        # <TODO>: if the same function name can be found in more than one
+        #         buffer, then the last found will be the one known by
+        #         Scilab during debug - the user receives a message box
+        #         but it would be better to support it (i.e. let the user
+        #         select which function he wants to use)
+        set allfuntexts ""
+        set allfuns [getallfunsinalltextareas]
+        foreach {textarea funsinthatta} $allfuns {
+            set funsto 1.0
+            foreach {funnam funlin funsta} $funsinthatta {
+                if {$funnam == "0NoFunInBuf"} {
+                    break
+                }
+                if {[$textarea compare $funsta >= $funsto]} {
+                    set funsto [getendfunctionpos $textarea $funsta]
+                    if {$funsto == -1} {
+                        # unterminated function (i.e. function keyword with
+                        # no balanced endfunction keyword) -> ignore it
+                        continue
+                    }
+                    set funsto [$textarea index "$funsto wordend"]
+                    set funtext [$textarea get $funsta $funsto]
+                    append allfuntexts $funtext "\n"
+                } else {
+                    # this {funnam funlin funsta} item denotes a function
+                    # nested in another one already copied -> ignore it
+                }
+            }
+        }
+
+        # create a new buffer, exec it and then destroy it
+        # doing this, there is not even a flash in the display
+        filesetasnew
+        [gettextareacur] insert 1.0 $allfuntexts
         if {[execfile "current"] == -1} {
             # in case execing the file produced an error, restore the cursors
             unsetdebuggerbusycursor
         }
-        # exec file containing the function to debug
-        # <TODO> this fails if the same function name can be found in more
-        #        than one single buffer
-        # note : we can't exec *all* buffers because some might contain
-        # non-Scilab scripts, which is not checked by execfile
-        set funname [string range $funnameargs 0 [expr {[string first "(" $funnameargs] - 1}]]
-        foreach textarea [filteroutpeers $listoftextarea] {
-            if {[info exists funsinbuffer($textarea)]} {
-                if {[lsearch $funsinbuffer($textarea) $funname] != -1 && \
-                     $textarea != [gettextareacur]} {
-                    if {[execfile $textarea] == -1} {
-                        unsetdebuggerbusycursor
-                    }
-                }
-            }
-        }
+        closecur "NoSaveQuestion"
+
+        # run the debug, i.e. launch the configured function
         set setbptonreallybreakpointedlinescmd $setbpcomm
         setdbstate "DebugInProgress"
         set commnvars [createsetinscishellcomm $watchvars]
@@ -117,6 +150,10 @@ proc stepbystep_bp {checkbusyflag stepmode rescanbuffers} {
     global funnameargs
     global logicallinenumbersranges previousstepscope
     global CurBreakpointedMacros CurBreakpointedLines ; # globality mandatory, and only used while skipping lines
+
+    # warn the user about duplicate function names possibly found
+    # the debugger won't execute in that case
+    if {[checkforduplicatefunnames]} {return}
 
     if {[getdbstate] == "ReadyForDebug"} {
         # always a busy check - this code part cannot be entered
@@ -481,6 +518,10 @@ proc runtocursor_bp {{checkbusyflag 1} {skipbptmode 0}} {
         if {[isscilabbusy 5]} {return}
     }
 
+    # warn the user about duplicate function names possibly found
+    # the debugger won't execute in that case
+    if {[checkforduplicatefunnames]} {return}
+
     set textarea [gettextareacur]
 
     # if the cursor is in the wrapper code (.sce files case), move it out
@@ -533,6 +574,10 @@ proc resume_bp {{checkbusyflag 1} {stepmode "nostep"}} {
         if {[isscilabbusy 5]} {return}
     }
 
+    # warn the user about duplicate function names possibly found
+    # the debugger won't execute in that case
+    if {[checkforduplicatefunnames]} {return}
+
     showinfo $waitmessage
     if {$funnameargs != ""} {
         setdebuggerbusycursor
@@ -558,6 +603,10 @@ proc goonwo_bp {} {
     global funnameargs waitmessage
 
     if {[isscilabbusy 5]} {return}
+
+    # warn the user about duplicate function names possibly found
+    # the debugger won't execute in that case
+    if {[checkforduplicatefunnames]} {return}
 
     showinfo $waitmessage
     if {$funnameargs != ""} {
@@ -647,6 +696,10 @@ proc canceldebug_bp {} {
     global funnameargs waitmessage
 
     if {[isscilabbusy 5]} {return}
+
+    # warn the user about duplicate function names possibly found
+    # the debugger won't execute in that case
+    if {[checkforduplicatefunnames]} {return}
 
     if {[getdbstate] == "DebugInProgress"} {
         showinfo $waitmessage

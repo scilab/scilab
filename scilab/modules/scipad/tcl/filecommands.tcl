@@ -28,6 +28,9 @@
 #       Contains the list of the above opened textarea names.
 #       Order of the elements matters (increasing order mandatory,
 #       i.e. $pad.newX must be placed before $pad.newY if X < Y)
+#       The order of the buffers in $listoftextarea is actually the
+#       order of opening of the buffers (note: the order in the
+#       Windows menu is only a display order)
 #
 #
 #   A textarea name $ta can be used as a pointer to file or buffer
@@ -1177,7 +1180,7 @@ proc knowntypes {} {
     set allfiles [mc "All files"]
     set types [concat "{\"$scifiles\"" "{*.sce *.sci *.tst *.dem}}" \
                       "{\"$cosfiles\"" "{*.cosf}}" \
-                      "{\"$xmlfiles\"" "{*.xml}}" \
+                      "{\"$xmlfiles\"" "{*.xml *.xsd *.dtd}}" \
                       "{\"$allfiles\"" "{*.* *}}" ]
     return $types
 }
@@ -1185,7 +1188,7 @@ proc knowntypes {} {
 proc extenstolang {file} {
 # given a file extension, return the associated language scheme
     set extens [string tolower [file extension $file]] 
-    if {$extens == ".xml"} {
+    if {$extens == ".xml" | $extens == ".xsd" | $extens == ".dtd"} {
         return "xml"
     } elseif {$extens == ".sce" | $extens == ".sci" | $extens == ".cosf" | \
               $extens == ".tst" | $extens == ".dem"} {
@@ -1465,7 +1468,7 @@ proc globtails {directoryname pat} {
 # this is a replacement for the construct
 #     glob -nocomplain -tails -directory $directoryname $pat
 # because there is a Tcl bug with the -tails option with old
-# Tcl versions
+# Tcl versions (for instance with 8.4.1, at least on cygwin)
     set matchfiles [glob -nocomplain -directory $directoryname $pat]
     for {set i 0} {$i < [llength $matchfiles]} {incr i} {
         set matchfiles [lreplace $matchfiles $i $i [file tail [lindex $matchfiles $i]]]

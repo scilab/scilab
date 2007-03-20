@@ -346,6 +346,9 @@ proc getallfunsinalltextareas {} {
 #  textarea2 { $funname21 $funline21 $precfun21  ... }
 #  ...
 # "
+# The order of the buffers in the output is the order in $listoftextarea,
+# which is always the order of opening of the buffers (the order in the
+# Windows menu is only a display order)
     global listoftextarea
     set hitslist ""
     foreach textarea [filteroutpeers $listoftextarea] {
@@ -370,6 +373,11 @@ proc getallfunsintextarea {{buf "current"}} {
 #       $funname   : function name
 #       $funline   : definition line of the function, e.g. [a,b]=foo(c,d)
 #       $precfun   : physical line number where $funname is defined in $buf
+# Note further that the order of the functions returned is the order of their
+# definition in the buffer, i.e. the order of the function definition lines
+# when reading the buffer from its start to its end (nested functions are not
+# special in any respect). This order is important becasue it is used in
+# proc execfile_bp to eliminate nested functions from the list
 
     global listoffile
     global funlineREpat1 funlineREpat2 scilabnameREpat

@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.92
+# in sync at least with v6.97
 
 
 # commons
@@ -117,6 +117,17 @@
     ::msgcat::mcset fr "possible breakpoints in Scilab (see help setbpt)." \
                        "points d'arrêt (voir help setbpt)."
 ::msgcat::mcset fr "No breakpoint here!" "Pas de point d'arrêt ici !"
+::msgcat::mcset fr "Warning!\n\n \
+                 One or more function is defined more than once in the currently opened files.\n \
+                 The debugger cannot cope with multiple copies of functions.\n \
+                 The following duplicates were detected:\n" \
+                   "Attention !\n\n \
+                 Une ou plusieurs fonctions sont définies plus d'une fois dans les fichiers actuellement ouverts.\n \
+                 Le débuggueur ne supporte pas les copies multiples de fonctions.\n \
+                 Les doublons suivants ont été détectés :\n"
+::msgcat::mcset fr "\n--> Definition of function " "\n--> Définition de la fonction "
+::msgcat::mcset fr " found in:\n" " trouvée dans :\n"
+::msgcat::mcset fr "Duplicate function definitions found" "Fonctions en doublon identifiées"
 
 
 # db_init.tcl

@@ -201,6 +201,14 @@ proc packbuffer {textarea} {
 # the text widget is packed in the frame that contained the current textarea
     global pad pwframe wordWrap
 
+    # remove scrollbars commands so that an unpacked textarea does not later
+    # update the scrollbar, which depending on the order these commands are
+    # launched, can lead to wrong scrollbars sizes and scrollbars flashes
+    if {[winfo exists [gettextareacur]]} {
+        [gettextareacur] configure -xscrollcommand ""
+        [gettextareacur] configure -yscrollcommand ""
+    }
+
     pack forget [gettextareacur]
     set curtapwfr [getpaneframename [gettextareacur]]
     unset pwframe([gettextareacur])
@@ -677,6 +685,12 @@ proc destroypaneframe {textarea {hierarchy "destroyit"}} {
 # the conatining panedwindow itself if there is no remaining pane
     global pad pwframe
 
+    # remove scrollbars commands so that an unpacked textarea does not
+    # update the scrollbar, which depending on the order these commands
+    # are launched, can lead to wrong scrollbars sizes and scrollbars flashes
+    $textarea configure -xscrollcommand ""
+    $textarea configure -yscrollcommand ""
+
     set tapwfr [getpaneframename $textarea]
     set pwname [getpwname $tapwfr]
     $pwname forget $tapwfr
@@ -1142,9 +1156,9 @@ proc managescroll {scrbar a b} {
 # this catch is required because the text widget may trigger scroll commands
 # automatically when it is not packed in a pane,
 # e.g. on $textarea configure -someoption
-# note: this seems to happen because textareas are never destroyed, they
-# are just unpacked. Therefore the binding to the scrollbar might still
-# be alive for hidden or closed textareas
+# note: this seems to happen because textareas are not yet destroyed when they
+# have just been unpacked. Therefore the binding to the scrollbar might still
+# be alive at this point for hidden textareas
 # 2nd benefit, thanks to this proc, updating the margin does not need
 # to redefine a lot of bindings relative to the textarea view adjustment
 # such as MouseWheel, Key-Return, Key-Down, etc - quick and elegant
@@ -1210,23 +1224,17 @@ proc updatelinenumbersmargin {ta} {
     set winfoheight [winfo height $ta]
 
     # initialization values
-    set prevstop_p1 [$ta index @0,0]
-    scan $prevstop_p1 "%d.%d" prevstop_p1 junk
-    set curheight 1
+    scan [$ta index @0,0] "%d.%d" prevline_p1 junk
+    set curheight [lindex [$ta dlineinfo @0,0] 1]
     set spacepad ""
 
     while {$curheight <= $winfoheight} {
-        set stop [$ta index @0,$curheight]
-        scan $stop "%d.%d" stop junk
-        if {$stop == $prevstop_p1} {
-            scan $stop "%d.%d" linenum dropthis
-            # floor() needed because $prevstop_p1 might be
-            # fractional during the first iteration only
-            set prevstop_p1 [expr {floor($stop) + 1}]
-       } else {
+        scan [$ta index @0,$curheight] "%d.%d" linenum dropthis
+        if {$linenum == $prevline_p1} {
+            set prevline_p1 [expr {$linenum + 1}]
+        } else {
             set linenum ""
-            incr yend
-       }
+        }
         if {$linenumbersmargins == "right"} {
             set spacepad [string repeat " " [expr {$nbyendchar - [string length $linenum]}]]
         } else {
@@ -1235,8 +1243,7 @@ proc updatelinenumbersmargin {ta} {
         $tamargin insert end "$spacepad$linenum\n"
         # line height might be different for each line, therefore it cannot
         # be seen as a constant in this while loop
-        set dlinfo [$ta dlineinfo @0,$curheight]
-        set lineheightinpix [lindex $dlinfo 3]
+        set lineheightinpix [lindex [$ta dlineinfo @0,$curheight] 3]
         incr curheight $lineheightinpix
     }
 
@@ -1252,8 +1259,7 @@ proc updatelinenumbersmargin {ta} {
     # textarea is never clipped by the top of the textarea
     # in 8.5 $topinpix might be negative, indicating a clipping of the first
     # displayed line
-    set dlinfo [$ta dlineinfo @0,0]
-    set topinpix [lindex $dlinfo 1]
+    set topinpix [lindex [$ta dlineinfo @0,0] 1]
     if {$topinpix < 0} {
         set hiddenpartof1stline [expr {- $topinpix}]
         set marginheight [winfo height $tamargin]
