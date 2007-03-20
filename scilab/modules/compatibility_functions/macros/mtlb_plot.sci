@@ -145,6 +145,11 @@ else
 end
 a=gca()
 a.auto_clear="on"
+// Log axis ?
+global mtlb_log_mod
+if ~isempty(mtlb_log_mod)
+  a.log_flags = mtlb_log_mod;
+end
 h=a.children
 endfunction
 
