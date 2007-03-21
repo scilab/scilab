@@ -3102,6 +3102,11 @@ BOOL
 sciGetRealVisibility (sciPointObj * pobj)
 {
 
+  if ( pobj == NULL )
+  {
+    return FALSE ;
+  }
+
   if ( sciGetEntityType( pobj) == SCI_FIGURE )
   {
     return sciGetVisibility( pobj ) ;
@@ -4995,5 +5000,29 @@ BOOL sciIsMergeable( sciPointObj * pObj )
 BOOL sciGetIsAutoDrawable( sciPointObj * pobj )
 {
   return pFIGURE_FEATURE(sciGetParentFigure(pobj))->auto_redraw ;
+}
+/*-------------------------------------------------------------------------------------------*/
+/**
+ * return the number of object of a certain type which can be found among the descendants
+ * of an object.
+ * To get the number of surfaces of a subwindow, it is much faster to use the
+ * sciGetSubwinNbSurf funtion.
+ */
+int sciGetNbTypedObjects( sciPointObj * pObj, sciEntityType type )
+{
+  int nbFound = 0 ;
+  sciSons * curSon ;
+
+  curSon = sciGetSons( pObj ) ;
+  while( curSon != NULL )
+  {
+    if ( sciGetEntityType( curSon->pointobj ) == type )
+    {
+      nbFound++ ;
+    }
+    nbFound += sciGetNbTypedObjects( curSon->pointobj, type ) ;
+    curSon = curSon->pnext ;
+  }
+  return nbFound ;
 }
 /*-------------------------------------------------------------------------------------------*/

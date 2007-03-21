@@ -242,11 +242,10 @@ long sciGetHandle (sciPointObj * pobj)
       return (sciGetRelationship (pobj))->phandle->index;
       break;
     default:
-      sciprint("no handle for this object !\n");
-      return -1;
+      return 0 ; /* handle NULL */
       break;
     }
-  return -1;
+  return 0 ;
 }
 
 

@@ -1175,10 +1175,10 @@ typedef struct
   sciGraphicContext graphiccontext; 
   double *vx;  /** vx vector of size Nbr **/ /*F.Leray 18.02.04 ...of size Nbr1 ? No depending on the type ptype*/
   double *vy;  /** vy vector of size Nbr **/ /*F.Leray 18.02.04 ...of size Nbr2 ? No depending on the type ptype*/
-  double *vfx;
-  double *vfy;
-  integer Nbr1;   
-  integer Nbr2;
+  double *vfx; /**< size Nbr1 * Nbr2 */
+  double *vfy; /**< size Nbr1 * Nbr2 */
+  integer Nbr1; /**< size of vx and vy id segs handle, or size of vx if champ */ 
+  integer Nbr2; /**< size of vy if champ handle */
   integer *pstyle;
   integer iflag;      /**0 or 1, flag which control the drawing of the segment  **/
   double arrowsize;  /*F.Leray units : hundreds (i.e. 100, 150,...)*/

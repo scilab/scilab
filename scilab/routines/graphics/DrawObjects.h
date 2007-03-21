@@ -213,4 +213,6 @@ void updateScale3d( sciPointObj * pobj    ,
 
 extern BOOL sci_update_frame_bounds_2d( sciPointObj * pobj ) ;
 
+extern void sciUpdateScaleAngles( double theta, double alpha ) ;
+
 #endif /* __SCI_DRAWINGS__ */

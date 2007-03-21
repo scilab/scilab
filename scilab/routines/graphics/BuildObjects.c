@@ -2349,7 +2349,7 @@ ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy,
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
-      /*sciSetParent (pobj, pparentsubwin);*/
+
       if (!(sciAddThisToItsParent (pobj, pparentsubwin)))
 	{
 	  sciDelHandle (pobj);
@@ -2373,16 +2373,14 @@ ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy,
       /* this must be done prior to the call of sciSetClipping to know */
       /* if the clip_state has been set */
       pSEGS_FEATURE (pobj)->clip_region_set = 0;
-      /*pSEGS_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); */
       sciSetIsClipping( pobj, sciGetIsClipping(sciGetParentSubwin(pobj) ));
       sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
       
-      /*       pSEGS_FEATURE (pobj)->clip_region = (double *) NULL; */
-   
       psegs = pSEGS_FEATURE (pobj); 
       psegs->ptype = type;
 
-      /* psegs->arrowsize = 50.;  */ /* default value F.Leray 25.03.04*/
+
+      psegs->pstyle = NULL ;
           
       if ((psegs->vx = MALLOC (Nbr1 * sizeof (double))) == NULL)
 	{ 

@@ -14,6 +14,11 @@ function plotframe(rect,axisdata,options,legs,subwindow)
 // Copyright INRIA
 [lhs,rhs]=argn(0)
 
+if rhs < 1 then 
+  error('Wrong number of arguments ');
+  return ;
+end
+
 f_subwin   = %f ;
 f_flags   = %f ;
 f_captions = %f ;
@@ -39,7 +44,7 @@ if exists('subwin','local') == 1 then
   f_subwin = %t ;
 end
 
-if ~f_subwin & ~f_captions & ~f_flags & ~f_tics then
+if rhs >= 2 & ~f_subwin & ~f_captions & ~f_flags & ~f_tics then
 // no optionnal argument specified we use the old syntax
 // with 2,3,4 or five parameters
 
@@ -65,10 +70,6 @@ if ~f_subwin & ~f_captions & ~f_flags & ~f_tics then
     case 4 , flags    = options, f_flags    = %t ;
     case 10, captions = options, f_captions = %t ;
     end
-  end
-  if rhs <= 1 then 
-    error('Wrong number of arguments ');
-    return ;
   end
 
 end

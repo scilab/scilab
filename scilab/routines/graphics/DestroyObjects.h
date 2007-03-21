@@ -61,5 +61,6 @@ extern int DestroySciMenu (sciPointObj * pthis);
 
 extern void delete_sgwin_entities(int win_num,int v_flag);
 
+int updateMerge( sciPointObj * pSubwin ) ;
 
 #endif /* __SCI_DESTROY__ */

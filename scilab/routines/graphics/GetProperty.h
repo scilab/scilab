@@ -162,4 +162,6 @@ extern BOOL sciIsMergeable( sciPointObj * pObj ) ;
 
 extern BOOL sciGetIsAutoDrawable( sciPointObj * pobj ) ; /* GET */
 
+int sciGetNbTypedObjects( sciPointObj * pObj, sciEntityType type ) ; /* GET */
+
 #endif /* __SCI_GET_PROPERTY__ */

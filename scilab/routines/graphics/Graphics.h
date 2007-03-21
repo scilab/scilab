@@ -692,5 +692,9 @@ extern void ReleaseWinHdc  __PARAMS((void));
 extern integer first_in __PARAMS(( integer,integer,integer *,integer*));
 extern integer first_out __PARAMS(( integer,integer,integer *,integer*));
 
+extern double computeGridMinGap( double gridX[], double gridY[], int nbRow, int nbCol ) ;
+extern int computeArrowColor( double gridX[], double gridY[], int nbRow, int nbCol, int index ) ;
+extern double getLongestVector( double vectX[], double vectY[], int nbRow, int nbCol, double scx, double scy ) ;
+
 #endif /** SCIG_PROTO **/
 
