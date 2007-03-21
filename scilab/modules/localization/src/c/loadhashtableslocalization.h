@@ -8,5 +8,4 @@
 * load hash tables for localization
 */
 BOOL LoadHashTablesLocalization(char *language);
-
 /*-----------------------------------------------------------------------------------*/ 
