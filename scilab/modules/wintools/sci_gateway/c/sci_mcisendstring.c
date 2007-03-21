@@ -119,7 +119,7 @@ int mcisendstringWindowsfunction _PARAMS((char *fname))
 /*-----------------------------------------------------------------------------------*/
 int mcisendstringUnixfunction _PARAMS((char *fname))
 {
-	int m1,n1,l1;
+	int m1,n1;
 
 	char *Output=NULL;
 	int *BoolOutput=NULL;

@@ -313,7 +313,7 @@ build_vendor = @build_vendor@
 builddir = @builddir@
 
 # Where all the Scilab stuff is installed (macros, help, ...)
-@PVM_TRUE@datadir = ${prefix}/modules
+@PVM_TRUE@datadir = ${datarootdir}/scilab/modules
 datadir = @datadir@
 datarootdir = @datarootdir@
 docdir = @docdir@
@@ -484,6 +484,7 @@ top_srcdir = @top_srcdir@
 @PVM_TRUE@BUILT_SOURCES = $(CLASSFILES)
 @PVM_TRUE@CLEANFILES = $(CLASSFILES)
 
+########### INSTALL DOCUMENTATION ###################
 # Install HTML files into the right target
 # We do not use the automake mechanism (libxxxx_la_help_fr_DATA) because
 # automake needs the html files to be present which is not the case when
@@ -498,6 +499,7 @@ top_srcdir = @top_srcdir@
 # What is the mask of the help source
 @PVM_TRUE@DOCMASKXML = *.xml
 
+########### INSTALL DATA ###################
 # Install macros
 # Where it should be installed
 @PVM_TRUE@pkgmacrosdir = $(target)
@@ -511,6 +513,10 @@ top_srcdir = @top_srcdir@
 @PVM_TRUE@MACROBINMASK = *.bin
 # List of the function of a module
 @PVM_TRUE@FUNCTION_NAMES = macros/names
+# Localisation directory name
+@PVM_TRUE@LOCALISATIONDIRS = languages/fr_FR/ languages/en_US/
+# List of the localisation (languages) files
+@PVM_TRUE@LOCALISATIONFILES = errors.xml menus.xml messages.xml
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
@@ -1306,8 +1312,9 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_TRUE@	@if test -f $(FUNCTION_NAMES); then \
 @PVM_TRUE@		echo "$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/"; \
 @PVM_TRUE@		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
-@PVM_TRUE@	fi; \
-@PVM_TRUE@	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
+@PVM_TRUE@	fi
+# Install the macros
+@PVM_TRUE@	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 @PVM_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 @PVM_TRUE@		if test -d $(srcdir)/$$dir/; then \
 @PVM_TRUE@		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/lib 2>/dev/null`; do \
@@ -1316,16 +1323,27 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_TRUE@		  done; \
 @PVM_TRUE@		fi; \
 @PVM_TRUE@	done
+# Install the localisation files
+@PVM_TRUE@	@for dir in $(LOCALISATIONDIRS) ; do \
+@PVM_TRUE@	 if test -d $$dir; then \
+@PVM_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+@PVM_TRUE@		  for file in $(LOCALISATIONFILES) ; do \
+@PVM_TRUE@		    echo "$(INSTALL_DATA) $$dir/$$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+@PVM_TRUE@	    	$(INSTALL_DATA) "$$dir/$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+@PVM_TRUE@		  done ; \
+@PVM_TRUE@	 fi; \
+@PVM_TRUE@	done
 
+########### CLEAN ###################
 # Clean macros and help (generated automatically by Scilab)
 @PVM_TRUE@clean-local:
 # Removes macros (*.bin generated from .sci)
-# and then removes documentation (*.htm generated from .xml) 
 @PVM_TRUE@	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 @PVM_TRUE@		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \
 @PVM_TRUE@		rm -f $(srcdir)/$$dir/$(MACROBINMASK); \
-@PVM_TRUE@	done; \
-@PVM_TRUE@	for dir in $(DOCDIRS) ; do \
+@PVM_TRUE@	done
+# Removes documentation (*.htm generated from .xml) 
+@PVM_TRUE@	@for dir in $(DOCDIRS) ; do \
 @PVM_TRUE@		 if test -d $$dir; then \
 @PVM_TRUE@			echo "rm -f $(srcdir)/$$dir/$(DOCMASK)"; \
 @PVM_TRUE@			rm -f $(srcdir)/$$dir/$(DOCMASK); \

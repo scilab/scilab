@@ -220,7 +220,7 @@ build_vendor = @build_vendor@
 builddir = @builddir@
 
 # Where all the Scilab stuff is installed (macros, help, ...)
-@JAVA_TRUE@datadir = ${prefix}/modules
+@JAVA_TRUE@datadir = ${datarootdir}/scilab/modules
 datadir = @datadir@
 datarootdir = @datarootdir@
 docdir = @docdir@
@@ -301,6 +301,7 @@ top_srcdir = @top_srcdir@
 @JAVA_TRUE@BUILT_SOURCES = $(CLASSFILES)
 @JAVA_TRUE@CLEANFILES = $(CLASSFILES)
 
+########### INSTALL DOCUMENTATION ###################
 # Install HTML files into the right target
 # We do not use the automake mechanism (libxxxx_la_help_fr_DATA) because
 # automake needs the html files to be present which is not the case when
@@ -315,6 +316,7 @@ top_srcdir = @top_srcdir@
 # What is the mask of the help source
 @JAVA_TRUE@DOCMASKXML = *.xml
 
+########### INSTALL DATA ###################
 # Install macros
 # Where it should be installed
 @JAVA_TRUE@pkgmacrosdir = $(target)
@@ -328,6 +330,10 @@ top_srcdir = @top_srcdir@
 @JAVA_TRUE@MACROBINMASK = *.bin
 # List of the function of a module
 @JAVA_TRUE@FUNCTION_NAMES = macros/names
+# Localisation directory name
+@JAVA_TRUE@LOCALISATIONDIRS = languages/fr_FR/ languages/en_US/
+# List of the localisation (languages) files
+@JAVA_TRUE@LOCALISATIONFILES = errors.xml menus.xml messages.xml
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
@@ -755,8 +761,9 @@ uninstall-am: uninstall-libscijvm_la_etcDATA \
 @JAVA_TRUE@	@if test -f $(FUNCTION_NAMES); then \
 @JAVA_TRUE@		echo "$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/"; \
 @JAVA_TRUE@		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
-@JAVA_TRUE@	fi; \
-@JAVA_TRUE@	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
+@JAVA_TRUE@	fi
+# Install the macros
+@JAVA_TRUE@	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 @JAVA_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 @JAVA_TRUE@		if test -d $(srcdir)/$$dir/; then \
 @JAVA_TRUE@		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/lib 2>/dev/null`; do \
@@ -765,16 +772,27 @@ uninstall-am: uninstall-libscijvm_la_etcDATA \
 @JAVA_TRUE@		  done; \
 @JAVA_TRUE@		fi; \
 @JAVA_TRUE@	done
+# Install the localisation files
+@JAVA_TRUE@	@for dir in $(LOCALISATIONDIRS) ; do \
+@JAVA_TRUE@	 if test -d $$dir; then \
+@JAVA_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+@JAVA_TRUE@		  for file in $(LOCALISATIONFILES) ; do \
+@JAVA_TRUE@		    echo "$(INSTALL_DATA) $$dir/$$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+@JAVA_TRUE@	    	$(INSTALL_DATA) "$$dir/$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+@JAVA_TRUE@		  done ; \
+@JAVA_TRUE@	 fi; \
+@JAVA_TRUE@	done
 
+########### CLEAN ###################
 # Clean macros and help (generated automatically by Scilab)
 @JAVA_TRUE@clean-local:
 # Removes macros (*.bin generated from .sci)
-# and then removes documentation (*.htm generated from .xml) 
 @JAVA_TRUE@	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 @JAVA_TRUE@		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \
 @JAVA_TRUE@		rm -f $(srcdir)/$$dir/$(MACROBINMASK); \
-@JAVA_TRUE@	done; \
-@JAVA_TRUE@	for dir in $(DOCDIRS) ; do \
+@JAVA_TRUE@	done
+# Removes documentation (*.htm generated from .xml) 
+@JAVA_TRUE@	@for dir in $(DOCDIRS) ; do \
 @JAVA_TRUE@		 if test -d $$dir; then \
 @JAVA_TRUE@			echo "rm -f $(srcdir)/$$dir/$(DOCMASK)"; \
 @JAVA_TRUE@			rm -f $(srcdir)/$$dir/$(DOCMASK); \

@@ -255,7 +255,7 @@ build_vendor = @build_vendor@
 builddir = @builddir@
 
 # Where all the Scilab stuff is installed (macros, help, ...)
-@FFTW_TRUE@datadir = ${prefix}/modules
+@FFTW_TRUE@datadir = ${datarootdir}/scilab/modules
 datadir = @datadir@
 datarootdir = @datarootdir@
 docdir = @docdir@
@@ -361,6 +361,7 @@ top_srcdir = @top_srcdir@
 @FFTW_TRUE@BUILT_SOURCES = $(CLASSFILES)
 @FFTW_TRUE@CLEANFILES = $(CLASSFILES)
 
+########### INSTALL DOCUMENTATION ###################
 # Install HTML files into the right target
 # We do not use the automake mechanism (libxxxx_la_help_fr_DATA) because
 # automake needs the html files to be present which is not the case when
@@ -375,6 +376,7 @@ top_srcdir = @top_srcdir@
 # What is the mask of the help source
 @FFTW_TRUE@DOCMASKXML = *.xml
 
+########### INSTALL DATA ###################
 # Install macros
 # Where it should be installed
 @FFTW_TRUE@pkgmacrosdir = $(target)
@@ -388,6 +390,10 @@ top_srcdir = @top_srcdir@
 @FFTW_TRUE@MACROBINMASK = *.bin
 # List of the function of a module
 @FFTW_TRUE@FUNCTION_NAMES = macros/names
+# Localisation directory name
+@FFTW_TRUE@LOCALISATIONDIRS = languages/fr_FR/ languages/en_US/
+# List of the localisation (languages) files
+@FFTW_TRUE@LOCALISATIONFILES = errors.xml menus.xml messages.xml
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
@@ -931,8 +937,9 @@ uninstall-am: uninstall-libscifftw_la_etcDATA \
 @FFTW_TRUE@	@if test -f $(FUNCTION_NAMES); then \
 @FFTW_TRUE@		echo "$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/"; \
 @FFTW_TRUE@		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
-@FFTW_TRUE@	fi; \
-@FFTW_TRUE@	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
+@FFTW_TRUE@	fi
+# Install the macros
+@FFTW_TRUE@	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 @FFTW_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 @FFTW_TRUE@		if test -d $(srcdir)/$$dir/; then \
 @FFTW_TRUE@		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/lib 2>/dev/null`; do \
@@ -941,16 +948,27 @@ uninstall-am: uninstall-libscifftw_la_etcDATA \
 @FFTW_TRUE@		  done; \
 @FFTW_TRUE@		fi; \
 @FFTW_TRUE@	done
+# Install the localisation files
+@FFTW_TRUE@	@for dir in $(LOCALISATIONDIRS) ; do \
+@FFTW_TRUE@	 if test -d $$dir; then \
+@FFTW_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+@FFTW_TRUE@		  for file in $(LOCALISATIONFILES) ; do \
+@FFTW_TRUE@		    echo "$(INSTALL_DATA) $$dir/$$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+@FFTW_TRUE@	    	$(INSTALL_DATA) "$$dir/$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+@FFTW_TRUE@		  done ; \
+@FFTW_TRUE@	 fi; \
+@FFTW_TRUE@	done
 
+########### CLEAN ###################
 # Clean macros and help (generated automatically by Scilab)
 @FFTW_TRUE@clean-local:
 # Removes macros (*.bin generated from .sci)
-# and then removes documentation (*.htm generated from .xml) 
 @FFTW_TRUE@	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 @FFTW_TRUE@		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \
 @FFTW_TRUE@		rm -f $(srcdir)/$$dir/$(MACROBINMASK); \
-@FFTW_TRUE@	done; \
-@FFTW_TRUE@	for dir in $(DOCDIRS) ; do \
+@FFTW_TRUE@	done
+# Removes documentation (*.htm generated from .xml) 
+@FFTW_TRUE@	@for dir in $(DOCDIRS) ; do \
 @FFTW_TRUE@		 if test -d $$dir; then \
 @FFTW_TRUE@			echo "rm -f $(srcdir)/$$dir/$(DOCMASK)"; \
 @FFTW_TRUE@			rm -f $(srcdir)/$$dir/$(DOCMASK); \

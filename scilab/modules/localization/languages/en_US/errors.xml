@@ -3,13 +3,13 @@
 <LOCALIZATION>
 
 <entry>
-	<tag></tag>
-	<string></string>
+	<tag>tag1</tag>
+	<string>string1</string>
 </entry>	
 
 <entry>
-	<tag></tag>
-	<string></string>
+	<tag>tag2</tag>
+	<string>string2</string>
 </entry>	
 		
 <entry>

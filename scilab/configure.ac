@@ -21,7 +21,7 @@ dnl Process this file with autoconf to produce a configure script.
 #                +- increment if interfaces have been added, removed or changed
 
 AC_REVISION($Revision: 1.132.2.6 $)dnl
-AC_INIT([scilab],[0],[http://scilabsoft.inria.fr/cgi-bin/bugzilla_bug_II/index.cgi])
+AC_INIT([scilab],[0],[http://www.scilab.org/cgi-bin/bugzilla_bug_II/index.cgi])
 AC_PREREQ(2.60)
 
 
@@ -202,22 +202,11 @@ AC_PROG_CXX
 #fi
 
 #
-eval "eval PREFIX_DIR=${prefix}"
-eval "eval EXEC_PREFIX_DIR=${exec_prefix}"
+#eval "eval PREFIX_DIR=${prefix}"
+#eval "eval EXEC_PREFIX_DIR=${exec_prefix}"
 
 # default prefix
-ac_default_prefix=/usr
-
-
-#################################
-## check this is a source version
-#################################
-
-if test -f .binary; then
-  echo "Humm... this is a binary version";
-  echo "  you'd better read the README file first."
-  exit
-fi
+ac_default_prefix=/usr/local/
 
 ###############################
 ## creating Path.incl if needed
@@ -1101,6 +1090,7 @@ modules/integer/Makefile
 modules/double/Makefile
 modules/fileio/Makefile
 modules/string/Makefile
+modules/string_V2/Makefile
 modules/time/Makefile
 modules/graphics/Makefile
 modules/gui/Makefile

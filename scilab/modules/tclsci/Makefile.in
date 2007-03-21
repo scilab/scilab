@@ -255,7 +255,7 @@ build_vendor = @build_vendor@
 builddir = @builddir@
 
 # Where all the Scilab stuff is installed (macros, help, ...)
-datadir = ${prefix}/modules
+datadir = ${datarootdir}/scilab/modules
 datarootdir = @datarootdir@
 docdir = @docdir@
 dvidir = @dvidir@
@@ -606,6 +606,7 @@ CLASSFILESRELATIVE = `echo "$(JAVAFILES)"| sed -e 's|src/java/||g'|sed -e 's|\.j
 BUILT_SOURCES = $(CLASSFILES)
 CLEANFILES = $(CLASSFILES)
 
+########### INSTALL DOCUMENTATION ###################
 # Install HTML files into the right target
 # We do not use the automake mechanism (libxxxx_la_help_fr_DATA) because
 # automake needs the html files to be present which is not the case when
@@ -620,6 +621,7 @@ DOCMASK = *.htm
 # What is the mask of the help source
 DOCMASKXML = *.xml
 
+########### INSTALL DATA ###################
 # Install macros
 # Where it should be installed
 pkgmacrosdir = $(target)
@@ -633,6 +635,10 @@ MACROBUILDMASK = *.sce
 MACROBINMASK = *.bin
 # List of the function of a module
 FUNCTION_NAMES = macros/names
+# Localisation directory name
+LOCALISATIONDIRS = languages/fr_FR/ languages/en_US/
+# List of the localisation (languages) files
+LOCALISATIONFILES = errors.xml menus.xml messages.xml
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
@@ -1391,8 +1397,9 @@ install-data-local:
 	@if test -f $(FUNCTION_NAMES); then \
 		echo "$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/"; \
 		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
-	fi; \
-	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
+	fi
+# Install the macros
+	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 		if test -d $(srcdir)/$$dir/; then \
 		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/lib 2>/dev/null`; do \
@@ -1401,16 +1408,27 @@ install-data-local:
 		  done; \
 		fi; \
 	done
+# Install the localisation files
+	@for dir in $(LOCALISATIONDIRS) ; do \
+	 if test -d $$dir; then \
+	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+		  for file in $(LOCALISATIONFILES) ; do \
+		    echo "$(INSTALL_DATA) $$dir/$$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+	    	$(INSTALL_DATA) "$$dir/$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+		  done ; \
+	 fi; \
+	done
 
+########### CLEAN ###################
 # Clean macros and help (generated automatically by Scilab)
 clean-local:
 # Removes macros (*.bin generated from .sci)
-# and then removes documentation (*.htm generated from .xml) 
 	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \
 		rm -f $(srcdir)/$$dir/$(MACROBINMASK); \
-	done; \
-	for dir in $(DOCDIRS) ; do \
+	done
+# Removes documentation (*.htm generated from .xml) 
+	@for dir in $(DOCDIRS) ; do \
 		 if test -d $$dir; then \
 			echo "rm -f $(srcdir)/$$dir/$(DOCMASK)"; \
 			rm -f $(srcdir)/$$dir/$(DOCMASK); \

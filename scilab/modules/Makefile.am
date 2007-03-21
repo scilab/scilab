@@ -48,6 +48,7 @@ tfds \
 scipad \
 scilab2fortran \
 development_tools \
+compatibility_functions \
 helptools
 
 SUBDIRS += scicos 
