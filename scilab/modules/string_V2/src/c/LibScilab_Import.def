@@ -1,0 +1,22 @@
+	LIBRARY    Libscilab.dll
+
+
+EXPORTS
+;core
+com_
+sciprint
+ExceptionMessage
+cvstr_
+putlhsvar_
+overload_
+vstk_
+createvarfromptr_
+createvar_
+Scierror
+stack_
+getrhsvar_
+vartype_
+checklhs_
+checkrhs_
+intersci_
+;
