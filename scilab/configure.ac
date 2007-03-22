@@ -747,6 +747,36 @@ if test "$with_pvm" = yes; then
 fi
 AM_CONDITIONAL(PVM, test "$PVM_OK" = "1")
 
+#######################
+## Test for libxml
+#######################
+
+AC_ARG_WITH(libxml2,
+		[  --with-libxml2=PREFIX    set the path to your libxml2 installation],
+		[with_libxml2=$withval], 
+		[with_libxml2='yes']
+		)
+
+AC_LIBXML2()
+
+
+#######################
+## Test for PCRE
+#######################
+
+AC_ARG_WITH(pcre,
+		[  --with-pcre=PREFIX    set the path to your pcre (Perl 5 Compatible Regular Expression Library) installation],
+		[with_pcre=$withval], 
+		[with_pcre='yes']
+		)
+
+AC_PCRE()
+
+AC_ARG_WITH(cong-string,
+    [  --with-cong-string	           Use Cong Wu work on the string ])
+
+AM_CONDITIONAL(STRINGV2, test "$with_cong_string" = yes)
+
 #################
 ## Tcl/Tk library
 #################
@@ -897,61 +927,6 @@ AM_CONDITIONAL(INSTALL_HELP_XML, test "$with_install_help_xml" = "yes")
 ## test for underscores (name mangling issues between C and fortran)
 #######################
 AC_CHECK_UNDERSCORE_FORTRAN()
-
-#######################
-## Test for libxml
-#######################
-
-AC_ARG_WITH(libxml2,
-		[  --with-libxml2=PREFIX    set the path to your libxml2 installation],
-		[with_libxml2=$withval], 
-		[with_libxml2='yes']
-		)
-
-if test "$with_libxml2" != 'yes' -a "$with_libxml2" != 'no'; then
-   # Look if xml-config xml2_config (which provides cflags and ldflags) is available
-   AC_MSG_CHECKING([libxml2, for xml-config])
-   XML2_CONFIG="$with_libxml2/bin/xml2-config" 
-        if test -x "$XML_CONFIG"; then
-                AC_MSG_RESULT([$XML_CONFIG])
-        else
-                AC_MSG_ERROR([Unable to find $XML_CONFIG. Please check the path you provided])
-		fi
-else
-		AC_CHECK_PROGS(XML_CONFIG,xml2-config,no)
-		if test "x$XML_CONFIG" = "xno"; then
-				AC_MSG_ERROR([Unable to find xml2-config in the path. Please check your installation of libxml2])
-		fi
-		saved_cflags=$CFLAGS
-
-		
-		XML_FLAGS=`$XML_CONFIG --cflags`
-		XML_LIBS=`$XML_CONFIG --libs`
-
-		CFLAGS="$XML_FLAGS $CFLAGS"
-
-		AC_CHECK_LIB([xml2], [xmlReaderForFile],
-               [LIBXML=-lxml2],
-               [AC_MSG_ERROR([libxml2 : library missing. (Cannot find symbol xmlReaderForFile). Check if libxml2 is installed and if the version is correct])]
-               )
-
-#		AC_CHECK_HEADERS([libxml/parser.h])
-#		AC_CHECK_HEADERS([libxml/tree.h])
-#		AC_CHECK_HEADERS([libxml/xmlreader.h])
-#		AC_CHECK_HEADERS([libxml/xpath.h])
-#		AC_CHECK_HEADERS([libxml/xpathInternals.h])
-
-		CFLAGS=$saved_cflags
-		AC_SUBST(XML_FLAGS)
-		AC_SUBST(XML_LIBS)
-
-#		CFLAGS="$CFLAGS $XML_FLAGS"
-#		AC_CHECK_LIB(xml2,xmlInitParserCtxt,,[AC_MSG_ERROR([libxml2 : library missing])])
-
-
-#		AC_CHECK_HEADERS([libxml/tree.h],,[AC_MSG_ERROR([libxml2 : library missing missing])])	
-fi
-# Gets compilation and library flags
 
 #########################
 ## libtool 
@@ -1247,6 +1222,8 @@ echo "  FFLAGS           = $FFLAGS"
 echo "  F77_LDFLAGS      = $F77_LDFLAGS"
 echo "  XML_FLAGS        = $XML_FLAGS"
 echo "  XML_LIBS         = $XML_LIBS"
+echo "  PCRE_CFLAGS      = $PCRE_CFLAGS"
+echo "  PCRE_LIBS        = $PCRE_LIBS"
 echo "  TERMCAP_LIB      = $TERMCAP_LIB"
 echo "  TK_INC_PATH      = $TK_INC_PATH"
 echo "  TCL_INC_PATH     = $TCL_INC_PATH"

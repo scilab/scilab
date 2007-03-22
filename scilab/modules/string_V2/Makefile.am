@@ -3,8 +3,8 @@
 ### INRIA - Scilab 2006 
 ##########
 
-#STRING_C_SOURCES = src/c/strcat-c.c \
-#src/c/men_Sutils.c
+STRING_C_SOURCES = src/c/strcat-c.c \
+src/c/men_Sutils.c
 
 STRING_FORTRAN_SOURCES =src/fortran/strord.f src/fortran/strdsp.f
 
@@ -49,12 +49,13 @@ sci_gateway/fortran/sci_ascii.f \
 sci_gateway/fortran/sci_strsubst.f \
 sci_gateway/fortran/strops.f
 
-libscistring_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
+libscistring_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/ $(PCRE_FLAGS)
+libscistring_la_LDFLAGS = $(PCRE_LIBS)
 
 pkglib_LTLIBRARIES = libscistring.la
 
-libscistring_la_SOURCES =  $(STRING_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-#$(STRING_C_SOURCES)
+libscistring_la_SOURCES =  $(STRING_C_SOURCES) $(STRING_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+
 libscistring_la_LIBADD = \
 	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/modules/polynomials/libscipolynomials.la \

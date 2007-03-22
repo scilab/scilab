@@ -53,9 +53,11 @@ host_triplet = @host@
 # javasci should be compile at the end because it needs libscilab.la
 # Don't forget that the order in subdirs does matter !!!
 @JAVA_TRUE@am__append_4 = javasci
-@PVM_TRUE@am__append_5 = $(top_builddir)/modules/pvm/libscipvm.la
-@FFTW_TRUE@am__append_6 = $(top_builddir)/modules/fftw/libscifftw.la
-@JAVA_TRUE@am__append_7 = $(top_builddir)/modules/jvm/libscijvm.la
+@STRINGV2_TRUE@am__append_5 = $(top_builddir)/modules/string_V2/libscistring.la
+@STRINGV2_FALSE@am__append_6 = $(top_builddir)/modules/string/libscistring.la
+@PVM_TRUE@am__append_7 = $(top_builddir)/modules/pvm/libscipvm.la
+@FFTW_TRUE@am__append_8 = $(top_builddir)/modules/fftw/libscifftw.la
+@JAVA_TRUE@am__append_9 = $(top_builddir)/modules/jvm/libscijvm.la
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 subdir = modules
@@ -63,9 +65,10 @@ ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
 	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
-	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
-	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
-	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pvm.m4 \
+	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/libxml2.m4 \
+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/ocaml.m4 \
+	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pvm.m4 \
 	$(top_srcdir)/m4/sciman.m4 $(top_srcdir)/m4/tcltk.m4 \
 	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
@@ -114,6 +117,7 @@ libscilab_la_DEPENDENCIES = $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/time/libscitime.la \
 	$(top_builddir)/modules/wintools/libsciwintools.la \
 	$(am__append_5) $(am__append_6) $(am__append_7) \
+	$(am__append_8) $(am__append_9) \
 	$(top_builddir)/modules/scicos/libsciscicos.la \
 	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/libs/hashtable/libscihashtable.la \
@@ -149,7 +153,7 @@ ETAGS = etags
 CTAGS = ctags
 DIST_SUBDIRS = intersci polynomials cacsd elementaries_functions \
 	arnoldi boolean linear_algebra differential_equations string \
-	signal_processing fileio core metanet optimization \
+	string_V2 signal_processing fileio core metanet optimization \
 	interpolation localization sound statistics time integer \
 	special_functions double randlib data_structures mexlib \
 	symbolic tclsci sparse io gui graphics wintools functions \
@@ -225,6 +229,9 @@ PACKAGE_STRING = @PACKAGE_STRING@
 PACKAGE_TARNAME = @PACKAGE_TARNAME@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
+PCRE_CONFIG = @PCRE_CONFIG@
+PCRE_FLAGS = @PCRE_FLAGS@
+PCRE_LIBS = @PCRE_LIBS@
 PVMARCH = @PVMARCH@
 PVMGETARCH = @PVMGETARCH@
 PVM_INCLUDE = @PVM_INCLUDE@
@@ -308,7 +315,7 @@ top_srcdir = @top_srcdir@
 
 # The order DOES matter !!!
 SUBDIRS = intersci polynomials cacsd elementaries_functions arnoldi \
-	boolean linear_algebra differential_equations string \
+	boolean linear_algebra differential_equations string string_V2 \
 	signal_processing fileio core metanet optimization \
 	interpolation localization sound statistics time integer \
 	special_functions double randlib data_structures mexlib \
@@ -361,6 +368,7 @@ libscilab_la_LIBADD = $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/time/libscitime.la \
 	$(top_builddir)/modules/wintools/libsciwintools.la \
 	$(am__append_5) $(am__append_6) $(am__append_7) \
+	$(am__append_8) $(am__append_9) \
 	$(top_builddir)/modules/scicos/libsciscicos.la \
 	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/libs/hashtable/libscihashtable.la \

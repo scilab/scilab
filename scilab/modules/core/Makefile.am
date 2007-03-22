@@ -332,11 +332,14 @@ libscicore_la_LIBADD = \
 	$(top_builddir)/modules/differential_equations/libscidifferential_equations.la \
 	$(top_builddir)/modules/polynomials/libscipolynomials.la \
 	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la \
-	$(top_builddir)/modules/string/libscistring.la \
 	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
 	$(top_builddir)/modules/fileio/libscifileio.la
 
-
+if STRINGV2
+	libscicore_la_LIBADD +=	$(top_builddir)/modules/string_V2/libscistring.la
+else
+	libscicore_la_LIBADD +=	$(top_builddir)/modules/string/libscistring.la
+endif
 
 
 #### Target ######
