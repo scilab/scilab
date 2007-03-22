@@ -358,11 +358,11 @@ libscistring_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### string : init scripts #### 
 libscistring_la_etcdir = $(target)/etc
-libscistring_la_etc_DATA = etc/string.quit etc/string.start
+libscistring_la_etc_DATA = etc/string_V2.quit etc/string_V2.start
 
 #### string : gateway declaration #### 
 libscistring_la_sci_gatewaydir = $(target)/sci_gateway
-libscistring_la_sci_gateway_DATA = sci_gateway/string
+libscistring_la_sci_gateway_DATA = sci_gateway/string_V2
 
 #### string : include files ####
 libscistring_la_includedir = $(sciincludedir)/string
