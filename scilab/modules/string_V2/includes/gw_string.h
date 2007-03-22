@@ -39,6 +39,12 @@ int C2F(sci_ascii) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_grep) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_tokens) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_strsplit) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_length1) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_strindex1) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_strsubst1) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_grep1) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_regexppri) _PARAMS((char *fname,unsigned long fname_len));
 
 #endif /*  __GW_STRING__ */
 /*-----------------------------------------------------------------------------------*/

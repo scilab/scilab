@@ -17,8 +17,9 @@
 #include "returnProperty.h"
 #include "machine.h"
 #include "MALLOC.h" 
+#ifdef _MSC_VER
 #pragma comment(lib,"../../../../pcre.lib")
-
+#endif
 /*-------------------------------------------------------------------------------------*/
 
 static char* newstr(const char*str, unsigned start, unsigned end, char*newstr1)
@@ -100,8 +101,8 @@ char typ = '*';
 			int outIndex2= Rhs +x+1 ;
 			int numRow   = 1 ;
             int numCol   = 1 ;
-            int outIndex = 0 ;
-            CreateVar(Rhs+1+x,"c",&numRow,&numCol,&outIndex);
+            int loutIndex = 0 ;
+            CreateVar(Rhs+1+x,"c",&numRow,&numCol,&loutIndex);
   			LhsVar(x+1) = outIndex2 ;
 			continue;
 		}
@@ -109,9 +110,9 @@ char typ = '*';
 		    int outIndex2= Rhs +x+1 ;
 			int numRow   = 1 ;
             int numCol   = strlen( newstr(Str[x], pm[x1].rm_so, pm[x1].rm_eo,*Str3)) ;
-            int outIndex = 0 ;
-			CreateVar(Rhs+1+x,"c",&numRow,&numCol,&outIndex);
-            strncpy(cstk(outIndex),newstr(Str[x], pm[x1].rm_so, pm[x1].rm_eo,*Str3), numCol);
+            int loutIndex = 0 ;
+			CreateVar(Rhs+1+x,"c",&numRow,&numCol,&loutIndex);
+            strncpy(cstk(loutIndex),newstr(Str[x], pm[x1].rm_so, pm[x1].rm_eo,*Str3), numCol);
 			LhsVar(x+1) = outIndex2 ;
 
         }     
