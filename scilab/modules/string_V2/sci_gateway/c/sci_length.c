@@ -12,6 +12,10 @@ extern int C2F(intlength) _PARAMS((int *id));
 int C2F(sci_length) _PARAMS((char *fname,unsigned long fname_len))
 {
 	static int id[6];
+   
+
+
+
 	C2F(intlength)(id);
 	return 0;
 }
