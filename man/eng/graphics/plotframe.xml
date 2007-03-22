@@ -14,6 +14,9 @@
 
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>plotframe(rect,tics,[arg_opt1,arg_opt2,arg_opt3])</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>plotframe(rect,&lt;opts_args&gt;)
+    </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 
   <PARAM>

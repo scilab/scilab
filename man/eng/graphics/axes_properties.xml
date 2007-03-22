@@ -280,6 +280,14 @@
             (in degree).</SP>
           </DESCRIPTION_ITEM>
 
+          <DESCRIPTION_ITEM label="log_flags: ">
+            <SP> 3 character string that sets the scale (linear or logarithmic) along the axes.
+            Each character speficfies the scale for respectivgly the X, Y and Z axes.
+            They should take a value between <VERB>'n'</VERB> for linear scale or
+            <VERB>'l'</VERB> for logarithmic scale.
+            </SP>
+          </DESCRIPTION_ITEM>
+
           <DESCRIPTION_ITEM label="tight_limits: ">
             <SP>If this property value is <VERB>"on"</VERB> axes adapt to fit
             exactly with the minima and maxima values of the
@@ -521,7 +529,8 @@
     </DESCRIPTION_INDENT>
   </DESCRIPTION>
 
-  <EXAMPLE><![CDATA[   lines(0) // disables vertical paging 
+  <EXAMPLE><![CDATA[  
+   lines(0) // disables vertical paging 
    set("figure_style","new") //create a figure
    a=get("current_axes")//get the handle of the newly created axes
    a.axes_visible="on"; // makes the axes visible
@@ -532,6 +541,7 @@
    a.labels_font_color=5;
    a.grid=[2,2];
    a.box="off";
+
    // Example with 3D axes
    clf(); //clear the graphics window
    x=0.1:0.1:2*%pi;plot2d(x-.3,sin(x)*7+.2);
@@ -564,9 +574,15 @@
    a.rotation_angles=[0 260];
    delete(a.children(2)); 
    delete(); // delete current object
+   
    a.labels_font_size=1;
    a.auto_clear= "on";
    x=0:0.1:2.5*%pi;plot2d(10*cos(x),sin(x));
+
+   a.data_bounds(:,1) = [1;15] ; // set positive bounds for X axe
+   a.log_flags = "lnn" ; // set X axes to logarithmic scale
+   a.log_flags = "nnn" ; // switch back to linear scale
+
    a=gca(); 
    a.rotation_angles=[45 45];
    a.data_bounds=[-20,-3,-2;20 3 ,2];
@@ -587,6 +603,7 @@
    a.data_bounds //the boundary values for the x,y and z coordinates
    a.view="2d";
    a.data_bounds=[-10,-1; 10,1]; // set the boundary values for the two-dimensional views
+   
    // Example on axes model
    da=gda() // get the handle on axes model to view and edit the fields
    // title by default

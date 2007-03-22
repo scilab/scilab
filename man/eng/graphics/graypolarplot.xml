@@ -18,20 +18,20 @@
 
   <PARAM>
     <PARAM_INDENT>
+      
       <PARAM_ITEM>
-        <PARAM_NAME>rho</PARAM_NAME>
-
+        <PARAM_NAME>theta</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: a vector with size n1, the discretization of the radius</SP>
+          <SP>: a vector with size n1, the discretization of the the
+          angle in radian.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
       <PARAM_ITEM>
-        <PARAM_NAME>theta</PARAM_NAME>
+        <PARAM_NAME>rho</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: a vector with size n2, the discretization of the the
-          angle.</SP>
+          <SP>: a vector with size n2, the discretization of the radius</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -40,7 +40,7 @@
 
         <PARAM_DESCRIPTION>
           <SP>: real matrix of size (n1,n2). <VERB>z(i,j)</VERB> is the value
-          of the surface at the point (rho(i),theta(j)).</SP>
+          of the surface at the point (theta(i),rho(j)).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
