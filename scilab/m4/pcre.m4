@@ -38,9 +38,9 @@ AC_CHECK_LIB([pcre], [pcre_compile],
                [AC_MSG_ERROR([pcre : library missing. (Cannot find symbol pcre_compile). Check if pcre is installed and if the version is correct])]
                )
 
-AC_CHECK_LIB([pcreposix], [pcreposix_regexec],
+AC_CHECK_LIB([pcreposix], [regexec],
                [],
-               [AC_MSG_ERROR([pcre : library missing. (Cannot find symbol pcre_compile). Check if pcre is installed and if the version is correct])]
+               [AC_MSG_ERROR([pcreposix : library missing. (Cannot find symbol regexec). Check if pcre is installed and if the version is correct])]
                )
 AC_CHECK_HEADERS([pcre.h])
 

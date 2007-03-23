@@ -188,25 +188,11 @@ fi
 ### C++###
 AC_PROG_CXX
 
-#
-# Evaluate shell variable equivalents to Makefile directory variables
-#
-#if test "x$prefix" = xNONE
-#then
-#  prefix=$ac_default_prefix
-#fi
-# Let make expand exec_prefix.
-#if test "x$exec_prefix" = xNONE
-#then
-#  exec_prefix='${prefix}'
-#fi
 
-#
-#eval "eval PREFIX_DIR=${prefix}"
-#eval "eval EXEC_PREFIX_DIR=${exec_prefix}"
 
-# default prefix
-ac_default_prefix=/usr/local/
+if test "x${prefix}" = "xNONE"; then
+  prefix="${ac_default_prefix}"
+fi
 
 ###############################
 ## creating Path.incl if needed
@@ -1203,8 +1189,8 @@ echo ""
 
 echo ""
 echo "Options used to compile and link:"
-echo "  PREFIX           = $PREFIX_DIR"
-echo "  EXEC-PREFIX      = $EXEC_PREFIX_DIR"
+echo "  PREFIX           = $prefix"
+echo "  DESTDIR          = $DESTDIR"
 echo "  VERSION          = $PACKAGE_VERSION"
 echo "  CC               = $CC"
 echo "  CFLAGS           = $CFLAGS"
