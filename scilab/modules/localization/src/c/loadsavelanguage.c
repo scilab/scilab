@@ -74,7 +74,7 @@ static BOOL loadlanguagepref_linux(void)
 			bOK=TRUE;
 		}
 	}
-
+	// TODO : if this file is not available load the locale of the system for the language
 	return bOK;
 }
 #endif

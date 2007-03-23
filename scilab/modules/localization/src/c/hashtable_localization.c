@@ -2,8 +2,8 @@
 /* CORNET Allan */
 /* INRIA 2006 */
 /*-----------------------------------------------------------------------------------*/ 
-#include "hashtable_localization.h"
 #include <string.h>
+#include "hashtable_localization.h"
 /*-----------------------------------------------------------------------------------*/ 
 /* see http://www.cse.yorku.ca/~oz/hash.html */
 /* I choose djb2 algo. for strings */
@@ -72,7 +72,7 @@ char *SearchHashtable_string(struct hashtable *hash_table, const char* key)
 /*-----------------------------------------------------------------------------------*/ 
 int InsertHashtable_string(struct hashtable *hash_table,struct key_string *k, struct value_string *v)
 {
-	return hashtable_insert(hash_table,k,v);
+ 	return hashtable_insert(hash_table,k,v);
 }
 /*-----------------------------------------------------------------------------------*/ 
 BOOL RemoveHastable_string(struct hashtable *hash_table, const char* key)

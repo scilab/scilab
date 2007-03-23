@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "localization.h"
+#include "hashtable_localization.h"
 #include "QueryStringError.h"
 #include "QueryStringMessage.h"
 #include "QueryStringMenu.h"
@@ -67,35 +68,23 @@ struct hashtable *GetHashTableScilabMenus(void)
 /*-----------------------------------------------------------------------------------*/ 
 BOOL InitializeHashTableScilabErrors(void)
 {
-	BOOL bOK=FALSE;
-
 	Table_Scilab_Errors=CreateHashtable_string();
-	if (Table_Scilab_Errors) bOK=TRUE;
-	else bOK=FALSE;
-
-	return bOK;
+	if (Table_Scilab_Errors) return TRUE;
+	else return FALSE;
 }
 /*-----------------------------------------------------------------------------------*/ 
 BOOL InitializeHashTableScilabMessages(void)
 {
-	BOOL bOK=FALSE;
-
 	Table_Scilab_Messages=CreateHashtable_string();
-	if (Table_Scilab_Messages) bOK=TRUE;
-	else bOK=FALSE;
-
-	return bOK;
+	if (Table_Scilab_Messages) return TRUE;
+	else return FALSE;
 }
 /*-----------------------------------------------------------------------------------*/ 
 BOOL InitializeHashTableScilabMenus(void)
 {
-	BOOL bOK=FALSE;
-
 	Table_Scilab_Menus=CreateHashtable_string();
-	if (Table_Scilab_Menus) bOK=TRUE;
-	else bOK=FALSE;
-
-	return bOK;
+	if (Table_Scilab_Menus) return TRUE;
+	else return FALSE;
 }
 /*-----------------------------------------------------------------------------------*/ 
 int DisposeHashTableScilabErrors(void)

@@ -16,7 +16,7 @@
 #define FILEMENUS "menus"
 #define FILEFORMATPATH "%s/modules/%s/languages/%s/%s.xml"
 /*-----------------------------------------------------------------------------------*/ 
-BOOL LoadHashTableLocalization(struct hashtable *table,char *filenamexml);
+static BOOL LoadHashTableLocalization(struct hashtable *table,char *filenamexml);
 static char *GetXmlFileEncoding(const char *filename);
 static unsigned char* ConvertEncoding(char *encodingFrom, char *encodingTo, char* inputStr);
 /*-----------------------------------------------------------------------------------*/ 
@@ -40,10 +40,10 @@ BOOL LoadHashTablesLocalization(char *language)
 	SciPath=getSCIpath();
 	
 	for(i=0;i<moduleslist->numberofModules;i++)
-	{
-		char *full_filename_errors=NULL;
-		char *full_filename_messages=NULL;
-		char *full_filename_menus=NULL;
+		{
+               char *full_filename_errors=NULL;
+               char *full_filename_messages=NULL;
+               char *full_filename_menus=NULL;
 
 		full_filename_errors=(char*)MALLOC(sizeof(char)*(strlen(SciPath)+strlen(FILEFORMATPATH)+strlen(moduleslist->ModuleList[i])+strlen(FILEERRORS)+strlen(language)+1));
 		full_filename_messages=(char*)MALLOC(sizeof(char)*(strlen(SciPath)+strlen(FILEFORMATPATH)+strlen(moduleslist->ModuleList[i])+strlen(FILEMSGS)+strlen(language)+1));
@@ -75,99 +75,70 @@ BOOL LoadHashTableLocalization(struct hashtable *table,char *filenamexml)
 
 	char *TAGVALUE=NULL;
 	char *STRINGVALUE=NULL;
+	xmlNodePtr node;
+	xmlDocPtr doc;
 
-	xmlTextReaderPtr reader;
-	int ret=0;
 	char *encoding=GetXmlFileEncoding(filenamexml);
 
+	// Don't care about line return / empty line
+	xmlKeepBlanksDefault(0);
+
+	// check if the XML file has been encoded with utf8 (unicode) or not
 	if((strcmp("utf-8", encoding)==0)||(strcmp("UTF-8", encoding)==0)) bUTF_8_Mode=TRUE;
 	else bUTF_8_Mode=FALSE;
 
-	reader = xmlReaderForFile(filenamexml, encoding, 0);
-
-	ret = xmlTextReaderRead (reader);
-
-	while (ret == 1)
-	{
-		const xmlChar *balise=NULL;
-		xmlReaderTypes type;
-
-		type = xmlTextReaderNodeType (reader);
-		if (type ==  XML_READER_TYPE_ELEMENT )
-		{
-			balise = xmlTextReaderConstName (reader);
-
-			if (xmlStrEqual (balise, (const xmlChar *)"tag"))
-			{
-				ret = xmlTextReaderRead (reader);
-				type = xmlTextReaderNodeType (reader);
-				if (type ==  XML_READER_TYPE_TEXT )
-				{
-					const xmlChar *node_value;
-					if (bUTF_8_Mode)
-					{
-						node_value=(const xmlChar *)xmlTextReaderConstValue(reader);
-					}
-					else
-					{
-						node_value=ConvertEncoding("UTF-8",encoding,(char *)xmlTextReaderConstValue(reader));
-					}
-
-					TAGVALUE=(char*)MALLOC(sizeof(char)*(strlen(node_value)+1));
-					strcpy(TAGVALUE,node_value);
+	doc = xmlParseFile (filenamexml);
+	
+    if (doc == NULL) {
+        printf("Error: could not parse file %s\n", filenamexml);
+		return bOK;
+    }
+	
+	node = doc->children;
+	if (!xmlStrEqual(node->name,(const xmlChar*)"LOCALIZATION")){ // Check if the first tag is valid
+		printf("Error : Not a valid localization file %s (should start with <LOCALIZATION>)\n", filenamexml);
+		return bOK;
+	}
+		
+	// browse all the <entry>
+	for (node = node->next->children; node != NULL; node = node->next){
+		xmlNodePtr child=node->children;
+		
+		// browse element in <entry>
+		while (child != NULL){
+			if (child->children!=NULL){ // No value found between <xmltag></xmltag>
+				if (xmlStrEqual (child->name, (const xmlChar*) "tag")){ // we found <tag>
+					const char *tag=(const char*)child->children->content;
+					TAGVALUE=(char*)MALLOC(sizeof(char)*(strlen(tag)+1));
+					strcpy(TAGVALUE,tag);
+				}else if (xmlStrEqual (child->name, (const xmlChar*)"string")){ // we found <string>
+					const char *str=(const char*)child->children->content;
+					STRINGVALUE=(char*)MALLOC(sizeof(char)*(strlen((const char*)str)+1));
+					strcpy(STRINGVALUE,str);
 				}
 			}
-
-			if (xmlStrEqual (balise, (const xmlChar *)"string"))
-			{
-				ret = xmlTextReaderRead (reader);
-				type = xmlTextReaderNodeType (reader);
-				if (type ==  XML_READER_TYPE_TEXT )
-				{
-					const xmlChar *node_value;
-					if (bUTF_8_Mode)
-					{
-						node_value=(const xmlChar *)xmlTextReaderConstValue(reader);
-					}
-					else
-					{
-						node_value=ConvertEncoding("UTF-8",encoding,(char *)xmlTextReaderConstValue(reader));
-					}
-
-					STRINGVALUE=(char*)MALLOC(sizeof(char)*(strlen(node_value)+1));
-					strcpy(STRINGVALUE,node_value);
-				}
-			}
+			child = child->next;
 		}
 
 		if ( (TAGVALUE) && (STRINGVALUE))
-		{
-			/* remove case TAGVALUE=''  STRINGVALUE='' */
-			if ( (strlen(TAGVALUE)>0) & (strlen(STRINGVALUE)>0) ) 
 			{
-				AppendHashTableLocalization(table,TAGVALUE,STRINGVALUE);
+				/* remove case TAGVALUE=''  STRINGVALUE='' */
+				if ( (strlen(TAGVALUE)>0) & (strlen(STRINGVALUE)>0) ) 
+					{
+						AppendHashTableLocalization(table,TAGVALUE,STRINGVALUE);
+					}
+				if (TAGVALUE) {FREE(TAGVALUE);TAGVALUE=NULL;}
+				if (STRINGVALUE) {FREE(STRINGVALUE);STRINGVALUE=NULL;}
 			}
-			if (TAGVALUE) {FREE(TAGVALUE);TAGVALUE=NULL;}
-			if (STRINGVALUE) {FREE(STRINGVALUE);STRINGVALUE=NULL;}
-		}
 		
-		ret = xmlTextReaderRead (reader);
 	}
 
-	if (bUTF_8_Mode)
-	{
-		TAGVALUE=NULL;
-		STRINGVALUE=NULL;
-	}
-	else
-	{
-		FREE(TAGVALUE);
-		FREE(STRINGVALUE);
-		TAGVALUE=NULL;
-		STRINGVALUE=NULL;
-	}
+	FREE(TAGVALUE);
+	FREE(STRINGVALUE);
+	TAGVALUE=NULL;
+	STRINGVALUE=NULL;
+	xmlFreeDoc (doc);
 
-	xmlFreeTextReader(reader);
 	/*
 	* Cleanup function for the XML library.
 	*/
@@ -221,8 +192,10 @@ static char *GetXmlFileEncoding(const char *filename)
 
 }
 /*-----------------------------------------------------------------------------------*/ 
+/// TODO : check if it is still usefull (xmlchar is by default in UTF8 format)
 static unsigned char* ConvertEncoding(char *encodingFrom, char *encodingTo, char* inputStr)
 {
+	
 	unsigned char *strBufOut=NULL;
 	unsigned char *outputStr=NULL;
 	size_t inputLen, outputLen, result;

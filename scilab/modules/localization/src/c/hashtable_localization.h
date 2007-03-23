@@ -5,10 +5,10 @@
 #ifndef __HASHTABLE_LOCALIZATION_H__
 #define __HASHTABLE_LOCALIZATION_H__
 /*-----------------------------------------------------------------------------------*/ 
+#include <stdlib.h>
 #include "hashtable.h"
 #include "machine.h" /* BOOL */
 #include "MALLOC.h"
-#include <stdlib.h>
 /*-----------------------------------------------------------------------------------*/ 
 struct key_string
 {
@@ -20,7 +20,9 @@ struct value_string
 	char *Value_String;
 };
 /*-----------------------------------------------------------------------------------*/ 
-/* create a hashtable and return it */
+/**
+ * create a hashtable and return it 
+ */
 struct hashtable *CreateHashtable_string(void);
 
 /* destroy the hashtable and clean the resources used */
