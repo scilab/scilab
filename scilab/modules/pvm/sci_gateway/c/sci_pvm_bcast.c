@@ -4,14 +4,13 @@
 /* Jean-Philippe Chancelier July 2002  */
 /* Modified by Allan Cornet  INRIA 2006 */
 /*-----------------------------------------------------------------------------------*/ 
-#include "sci_pvm_bcast.h"
-/*-----------------------------------------------------------------------------------*/ 
-extern void pvm_error_check(char *fname,int err);
+#include "gw_pvm.h"
+#include "sci_pvm.h"
 /*-----------------------------------------------------------------------------------*/ 
 /******************************************
  * SCILAB function : pvm_bcast, fin = 7
  ******************************************/
-int intspvm_bcast(char *fname)
+int intspvm_bcast _PARAMS((char *fname,unsigned long fname_len))
 {
   int m1,n1,l1,m3,n3,l3,un=1,l4,size,l5,used,ierr;
   int *Ipack,address,*header;
@@ -42,7 +41,7 @@ int intspvm_bcast(char *fname)
   }
   C2F(scipvmbcast)(cstk(l1),&m1,Ipack,&used,(double *)header,istk(l3),istk(l4));
   LhsVar(1)= 4;
-  pvm_error_check(fname,*istk(l4));
+  pvm_error_check(fname,*istk(l4),fname_len);
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

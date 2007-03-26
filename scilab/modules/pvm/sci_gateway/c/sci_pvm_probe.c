@@ -4,12 +4,14 @@
 /* Jean-Philippe Chancelier July 2002  */
 /* Modified by Allan Cornet  INRIA 2006 */
 /*-----------------------------------------------------------------------------------*/ 
-#include "sci_pvm_probe.h"
+#include "gw_pvm.h"
+#include "sci_pvm.h"
+
 /*-----------------------------------------------------------------------------------*/ 
 /******************************************
  * SCILAB function : pvm_probe 
  ******************************************/
-int intspvm_probe(char *fname)
+int intspvm_probe _PARAMS((char *fname,unsigned long fname_len))
 {
   int m1,n1,l1,m2,n2,l2,un=1;
   int res;

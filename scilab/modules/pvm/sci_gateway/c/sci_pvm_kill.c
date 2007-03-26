@@ -4,14 +4,13 @@
 /* Jean-Philippe Chancelier July 2002  */
 /* Modified by Allan Cornet  INRIA 2006 */
 /*-----------------------------------------------------------------------------------*/ 
-#include "sci_pvm_kill.h"
-/*-----------------------------------------------------------------------------------*/ 
-extern void pvm_error_check(char *fname,int err);
+#include "gw_pvm.h"
+#include "sci_pvm.h"
 /*-----------------------------------------------------------------------------------*/ 
 /******************************************
  * SCILAB function : pvm_kill, fin = 18
  ******************************************/
-int intspvm_kill(char *fname)
+int intspvm_kill _PARAMS((char *fname,unsigned long fname_len))
 {
   int m1,n1,l1,mn1,un=1,mn2,l2,i;
   CheckRhs(1,1);
@@ -23,7 +22,7 @@ int intspvm_kill(char *fname)
   CreateVar(2,"i",(un=1,&un),(mn2=n1,&mn2),&l2);/* named: res */
   for (i = 0; i < n1; ++i) {
     istk(l2)[i] = pvm_kill( istk(l1)[i]);
-    pvm_error_check(fname,istk(l2)[i]);
+    pvm_error_check(fname,istk(l2)[i],fname_len);
   }
   LhsVar(1)= 2;
   return 0;

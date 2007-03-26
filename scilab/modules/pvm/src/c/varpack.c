@@ -145,7 +145,7 @@ static int  pak_object_info(int ilk,int stk_pos, int *pack, int *np, int *nMax)
 
 /* utilities */ 
 
-int C2F(allignf)(int *n, int *m)
+static int C2F(allignf)(int *n, int *m)
 {
   int rest= *n % *m ; 
   if ( rest == 0 ) 

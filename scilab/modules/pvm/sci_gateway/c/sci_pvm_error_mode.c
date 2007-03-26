@@ -4,15 +4,15 @@
 /* Jean-Philippe Chancelier July 2002  */
 /* Modified by Allan Cornet  INRIA 2006 */
 /*-----------------------------------------------------------------------------------*/ 
-#include "sci_pvm_error_mode.h"
-/*-----------------------------------------------------------------------------------*/ 
+#include "gw_pvm.h"
+#include "sci_pvm.h"
 /******************************************
  * SCILAB function : pvm_error_mode
  ******************************************/
 /*-----------------------------------------------------------------------------------*/ 
 static int pvm_error = 0;
 /*-----------------------------------------------------------------------------------*/ 
-int intspvm_error_mode(char *fname)
+int intspvm_error_mode _PARAMS((char *fname,unsigned long fname_len))
 { 
   char *loc;
   static char stop[]="stop"; 
@@ -48,7 +48,7 @@ int intspvm_error_mode(char *fname)
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 
-void pvm_error_check(char *fname,int err) 
+void pvm_error_check _PARAMS((char *fname,int err, unsigned long fname_len))
 {
   if ( pvm_error == 1 && err != 0 ) 
     {

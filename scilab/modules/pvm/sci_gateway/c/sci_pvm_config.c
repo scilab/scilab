@@ -4,15 +4,14 @@
 /* Jean-Philippe Chancelier July 2002  */
 /* Modified by Allan Cornet  INRIA 2006 */
 /*-----------------------------------------------------------------------------------*/ 
-#include "sci_pvm_config.h"
+#include "gw_pvm.h"
 #include "MALLOC.h"
-/*-----------------------------------------------------------------------------------*/ 
-extern void pvm_error_check(char *fname,int err);
+#include "sci_pvm.h"
 /*-----------------------------------------------------------------------------------*/ 
 /******************************************
  * SCILAB function : pvm_config, fin = 9
  ******************************************/
-int intspvm_config(char *fname)
+int intspvm_config _PARAMS((char *fname,unsigned long fname_len))
 {
   int un=1;
   int nhost,narch,*pdtid,*pspeed,ne3,info,*work;
@@ -68,7 +67,7 @@ int intspvm_config(char *fname)
   FREE(pspeed);
   CreateListVarFromPtr(1,7,"i",&un,&un,(work=&info,&work));
   LhsVar(1)= 1;
-  pvm_error_check(fname,info);
+  pvm_error_check(fname,info,fname_len);
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

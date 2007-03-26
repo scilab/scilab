@@ -4,14 +4,13 @@
 /* Jean-Philippe Chancelier July 2002  */
 /* Modified by Allan Cornet  INRIA 2006 */
 /*-----------------------------------------------------------------------------------*/ 
-#include "sci_pvm_spawn.h"
-/*-----------------------------------------------------------------------------------*/ 
-extern void pvm_error_check(char *fname,int err);
+#include "gw_pvm.h"
+#include "sci_pvm.h"
 /*-----------------------------------------------------------------------------------*/ 
 /******************************************
  * SCILAB function : pvm_spawn, fin = 19
  ******************************************/
-int intspvm_spawn(char *fname)
+int intspvm_spawn _PARAMS((char *fname,unsigned long fname_len))
 {
   char *nw, *where ; 
   static char def_nw[]=""; 
@@ -45,7 +44,7 @@ int intspvm_spawn(char *fname)
   C2F(scipvmspawn)(cstk(l1),&mn1,nw,&lnw,where,&lwhere,istk(l2),istk(tids),istk(res));
   LhsVar(1)= Rhs+1;
   LhsVar(2)= Rhs+2;
-  pvm_error_check(fname,*istk(res));
+  pvm_error_check(fname,*istk(res),fname_len);
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

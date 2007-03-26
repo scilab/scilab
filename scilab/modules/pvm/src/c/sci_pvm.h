@@ -1,6 +1,12 @@
 #ifndef SCI_PVM 
 #define SCI_PVM 
 
+#ifdef _MSC_VER
+  #include "pvm3/include/pvm3.h"
+#else
+  #include "pvm3.h"
+#endif
+
 void C2F(scipvmbcast)(char *group, int *l, 
 		      int *pack, int *n, 
 		      double *buff,
@@ -58,5 +64,8 @@ void C2F(ccomplexf)(int *n, double **ip, double *op);
 void SciToF77(double *ptr, int size, int lda);
 void F77ToSci(double *ptr, int size, int lda);
 int C2F(varpak)(int *k, int *pack, int *n, int *nMax, int *ierr); 
+
+char *pvm_geterror(int n);
+void pvm_error_check(char *fname,int err, unsigned long fname_len);
 
 #endif 

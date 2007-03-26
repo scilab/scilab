@@ -4,14 +4,13 @@
 /* Jean-Philippe Chancelier July 2002  */
 /* Modified by Allan Cornet  INRIA 2006 */
 /*-----------------------------------------------------------------------------------*/ 
-#include "sci_pvm_send.h"
-/*-----------------------------------------------------------------------------------*/ 
-extern void pvm_error_check(char *fname,int err);
+#include "gw_pvm.h"
+#include "sci_pvm.h"
 /*-----------------------------------------------------------------------------------*/ 
 /******************************************
  * SCILAB function : pvm_send, fin = 22
  ******************************************/
-int intspvm_send(char *fname)
+int intspvm_send _PARAMS((char *fname,unsigned long fname_len))
 {
   int *Ipack,*header,address;
   int m1,n1,l1,mn1,m3,n3,l3,un=1,l4,size,l5,used,ierr;
@@ -44,7 +43,7 @@ int intspvm_send(char *fname)
 
   C2F(scipvmsend)(istk(l1),&n1,Ipack,&used,(double *)header,istk(l3),istk(l4));
   LhsVar(1)= 4;
-  pvm_error_check(fname,*istk(l4));
+  pvm_error_check(fname,*istk(l4),fname_len);
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

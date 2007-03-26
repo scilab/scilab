@@ -143,13 +143,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#ifdef _MSC_VER
-  #include "pvm3/include/pvm3.h"
-#else
-  #include "pvm3.h"
-#endif
+
 #include "machine.h"
 #include "sci_pvm.h"
+#include "setgetSCIpath.h"
 
 #ifndef _MSC_VER 
 #include <unistd.h>
@@ -163,8 +160,12 @@
 #endif /** _MSC_VER **/
 
 /* stat function */
-#if (defined _MSC_VER)
+#ifdef _MSC_VER
 #define stat _stat 
+#endif 
+
+#ifndef _MSC_VER
+#include "../../gui/src/c/xsci/x_charproc.h"
 #endif 
 
 #include <stdarg.h>
@@ -203,7 +204,7 @@ static strings Scipvm_error[]= {
       "no such task",
       "no such (group,instance)",
       "(group,instance) already exists",
-      "Unknow error",
+      "Unknown error",
 };
 
 /*--------------------------------------------------

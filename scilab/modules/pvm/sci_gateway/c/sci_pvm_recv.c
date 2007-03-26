@@ -4,14 +4,13 @@
 /* Jean-Philippe Chancelier July 2002  */
 /* Modified by Allan Cornet  INRIA 2006 */
 /*-----------------------------------------------------------------------------------*/ 
-#include "sci_pvm_recv.h"
-/*-----------------------------------------------------------------------------------*/ 
-extern void pvm_error_check(char *fname,int err);
+#include "gw_pvm.h"
+#include "sci_pvm.h"
 /*-----------------------------------------------------------------------------------*/ 
 /******************************************
  * SCILAB function : pvm_recv, fin = 21
  ******************************************/
-int intspvm_recv(char *fname)
+int intspvm_recv _PARAMS((char *fname,unsigned long fname_len))
 {
   int m1,n1,l1,m2,n2,l2,un=1,l3,used,size,l5,count=5,l,tid,tag;
   CheckRhs(2,2);
@@ -51,7 +50,7 @@ int intspvm_recv(char *fname)
     *istk(l)=tag;
     LhsVar(4)=count;
   }
-  pvm_error_check(fname,*istk(l3));
+  pvm_error_check(fname,*istk(l3),fname_len);
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

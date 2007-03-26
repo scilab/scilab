@@ -4,14 +4,13 @@
 /* Jean-Philippe Chancelier July 2002  */
 /* Modified by Allan Cornet  INRIA 2006 */
 /*-----------------------------------------------------------------------------------*/ 
-#include "sci_pvm_joingroup.h"
-/*-----------------------------------------------------------------------------------*/ 
-extern void pvm_error_check(char *fname,int err);
+#include "gw_pvm.h"
+#include "sci_pvm.h"
 /*-----------------------------------------------------------------------------------*/ 
 /******************************************
  * SCILAB function : pvm_joingroup, fin = 1
  ******************************************/
-int intspvm_joingroup(char *fname)
+int intspvm_joingroup _PARAMS((char *fname,unsigned long fname_len))
 {
   int m1,n1,l1,un=1,l2;
   CheckRhs(1,1);
@@ -22,7 +21,7 @@ int intspvm_joingroup(char *fname)
   CreateVar(2,"i",&un,&un,&l2);/* named: inum */
   *istk(l2) = pvm_joingroup(cstk(l1));
   LhsVar(1)= 2;
-  pvm_error_check(fname,*istk(l2));
+  pvm_error_check(fname,*istk(l2),fname_len);
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

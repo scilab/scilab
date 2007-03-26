@@ -4,14 +4,13 @@
 /* Jean-Philippe Chancelier July 2002  */
 /* Modified by Allan Cornet  INRIA 2006 */
 /*-----------------------------------------------------------------------------------*/ 
-#include "sci_pvm_halt.h"
-/*-----------------------------------------------------------------------------------*/ 
-extern void pvm_error_check(char *fname,int err);
+#include "gw_pvm.h"
+#include "sci_pvm.h"
 /*-----------------------------------------------------------------------------------*/ 
 /******************************************
  * SCILAB function : pvm_halt 
  ******************************************/
-int intspvm_halt(char *fname)
+int intspvm_halt _PARAMS((char *fname,unsigned long fname_len))
 {
   int res,un=1;
   CheckRhs(0,0);
@@ -19,7 +18,7 @@ int intspvm_halt(char *fname)
   CreateVar(1,"i",&un,&un,&res);
   C2F(scipvmhalt)(istk(res));
   LhsVar(1)=1;
-  pvm_error_check(fname,*istk(res));
+  pvm_error_check(fname,*istk(res),fname_len);
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

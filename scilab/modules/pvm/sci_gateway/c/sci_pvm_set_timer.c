@@ -4,12 +4,13 @@
 /* Jean-Philippe Chancelier July 2002  */
 /* Modified by Allan Cornet  INRIA 2006 */
 /*-----------------------------------------------------------------------------------*/ 
-#include "sci_pvm_set_timer.h"
+#include "gw_pvm.h"
+#include "sci_pvm.h"
 /*-----------------------------------------------------------------------------------*/ 
 /******************************************
  * SCILAB function : pvm_set_timer, fin = 14
  ******************************************/
-int intspvm_set_timer(char *fname)
+int intspvm_set_timer _PARAMS((char *fname,unsigned long fname_len))
 {
   int un=1,l1;
   CheckRhs(0,0);

@@ -14,11 +14,7 @@
 
 #include <stdio.h>
 #include <string.h>
-#ifdef _MSC_VER
-  #include "pvm3/include/pvm3.h"
-#else
-  #include "pvm3.h"
-#endif
+
 #include "machine.h"
 #include "sci_tools.h"
 #include "sci_pvm.h"

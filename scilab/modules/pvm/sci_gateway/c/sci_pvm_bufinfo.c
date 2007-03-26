@@ -4,14 +4,13 @@
 /* Jean-Philippe Chancelier July 2002  */
 /* Modified by Allan Cornet  INRIA 2006 */
 /*-----------------------------------------------------------------------------------*/ 
-#include "sci_pvm_bufinfo.h"
-/*-----------------------------------------------------------------------------------*/ 
-extern void pvm_error_check(char *fname,int err);
+#include "gw_pvm.h"
+#include "sci_pvm.h"
 /*-----------------------------------------------------------------------------------*/ 
 /******************************************
  * SCILAB function : pvm_bufinfo
  ******************************************/
-int intspvm_bufinfo(char *fname)
+int intspvm_bufinfo _PARAMS((char *fname,unsigned long fname_len))
 {
   int m1,n1,l1,un=1;
   int bytes,msgtag,tid,res,i;
@@ -26,9 +25,7 @@ int intspvm_bufinfo(char *fname)
   C2F(scipvmbufinfo)(istk(l1), istk(bytes), istk(msgtag), istk(tid), istk(res)); 
   for ( i = 1 ; i <= Lhs ; i++) 
     LhsVar(i)= i+1; 
-  pvm_error_check(fname,*istk(res));
+  pvm_error_check(fname,*istk(res),fname_len);
   return 0;  
 }
-/*-----------------------------------------------------------------------------------*/ 
-
- 
+/*-----------------------------------------------------------------------------------*/

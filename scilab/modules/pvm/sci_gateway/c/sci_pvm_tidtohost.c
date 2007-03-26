@@ -4,12 +4,13 @@
 /* Jean-Philippe Chancelier July 2002  */
 /* Modified by Allan Cornet  INRIA 2006 */
 /*-----------------------------------------------------------------------------------*/ 
-#include "sci_pvm_tidtohost.h"
+#include "gw_pvm.h"
+#include "sci_pvm.h"
 /*-----------------------------------------------------------------------------------*/ 
 /******************************************
  * SCILAB function : pvm_tidtohost, fin = 13
  ******************************************/
-int intspvm_tidtohost(char *fname)
+int intspvm_tidtohost _PARAMS((char *fname,unsigned long fname_len))
 {
   int m1,n1,l1,un=1,l2;
   CheckRhs(1,1);

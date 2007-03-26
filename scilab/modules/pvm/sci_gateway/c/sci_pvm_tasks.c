@@ -4,15 +4,14 @@
 /* Jean-Philippe Chancelier July 2002  */
 /* Modified by Allan Cornet  INRIA 2006 */
 /*-----------------------------------------------------------------------------------*/ 
-#include "sci_pvm_tasks.h"
+#include "gw_pvm.h"
 #include "MALLOC.h"
-/*-----------------------------------------------------------------------------------*/ 
-extern void pvm_error_check(char *fname,int err);
+#include "sci_pvm.h"
 /*-----------------------------------------------------------------------------------*/ 
 /******************************************
  * SCILAB function : pvm_tasks, fin = 8
  ******************************************/
-int intspvm_tasks(char *fname)
+int intspvm_tasks _PARAMS((char *fname,unsigned long fname_len))
 {
   int un=1,m1,n1,l1,where=0; 
   char  **pname;
@@ -61,7 +60,7 @@ int intspvm_tasks(char *fname)
   CreateListVarFromPtr(Rhs+1,6,"i",&un,&un,(work=&ntask,&work));
   CreateListVarFromPtr(Rhs+1,7,"i",&un,&un,(work=&info,&work));
   LhsVar(1)= Rhs+1;
-  pvm_error_check(fname,info);
+  pvm_error_check(fname,info,fname_len);
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

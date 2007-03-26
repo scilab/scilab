@@ -18,11 +18,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#ifdef _MSC_VER
-  #include "pvm3/include/pvm3.h"
-#else
-  #include "pvm3.h"
-#endif
 #include "machine.h"
 #include "stack-c.h"
 #include "sci_tools.h"

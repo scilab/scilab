@@ -4,12 +4,13 @@
 /* Jean-Philippe Chancelier July 2002  */
 /* Modified by Allan Cornet  INRIA 2006 */
 /*-----------------------------------------------------------------------------------*/ 
-#include "sci_pvm_error.h"
+#include "gw_pvm.h"
+#include "sci_pvm.h"
 /*-----------------------------------------------------------------------------------*/ 
 /******************************************
  * SCILAB function : pvm_error
  ******************************************/
-int intspvm_error(char *fname)
+int intspvm_error _PARAMS((char *fname,unsigned long fname_len))
 {
   int m1,n1,l1,mres,nres=1;
   char *res; 

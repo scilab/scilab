@@ -4,14 +4,13 @@
 /* Jean-Philippe Chancelier July 2002  */
 /* Modified by Allan Cornet  INRIA 2006 */
 /*-----------------------------------------------------------------------------------*/ 
-#include "sci_pvm_reduce.h"
-/*-----------------------------------------------------------------------------------*/ 
-extern void pvm_error_check(char *fname,int err);
+#include "gw_pvm.h"
+#include "sci_pvm.h"
 /*-----------------------------------------------------------------------------------*/ 
 /******************************************
  * SCILAB function : pvm_reduce 
  ******************************************/
-int intspvm_reduce(char *fname)
+int intspvm_reduce _PARAMS((char *fname,unsigned long fname_len))
 {
   int m1,n1,l1,mn1,m2,n2,l2,m3,n3,l3,un=1,m4,n4,l4,mn4,res;
   int m5,n5,l5;
@@ -33,7 +32,7 @@ int intspvm_reduce(char *fname)
   C2F(scipvmreduce)(cstk(l1),&mn1,stk(l2),&m2,&n2,istk(l3),cstk(l4),&mn4,istk(l5),istk(res));
   LhsVar(1)= 2;
   LhsVar(2)= 6;
-  pvm_error_check(fname,*istk(res));
+  pvm_error_check(fname,*istk(res),fname_len);
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

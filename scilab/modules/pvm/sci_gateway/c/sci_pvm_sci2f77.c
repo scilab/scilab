@@ -4,12 +4,13 @@
 /* Jean-Philippe Chancelier July 2002  */
 /* Modified by Allan Cornet  INRIA 2006 */
 /*-----------------------------------------------------------------------------------*/ 
-#include "sci_pvm_sci2f77.h"
+#include "gw_pvm.h"
+#include "sci_pvm.h"
 /*-----------------------------------------------------------------------------------*/ 
 /******************************************
  * SCILAB function : pvm_sci2f77
  ******************************************/
-int intspvm_sci2f77(char *fname)
+int intspvm_sci2f77 _PARAMS((char *fname,unsigned long fname_len))
 {
   int *header;
   CheckRhs(1,1);
