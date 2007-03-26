@@ -2,6 +2,9 @@
 /* INRIA 2006 */
 /* Sylvestre Ledru */
 /*-----------------------------------------------------------------------------------*/
+#ifndef __GENCOPY_H__
+#define __GENCOPY_H__
+#include "machine.h"
 #include "def.h"
 
 /**
@@ -15,3 +18,4 @@
  * @return
  */
 int C2F(gencopy)(integer *typ,integer *n, int *dx, integer *incx, int *dy, integer *incy);
+#endif /* __GENCOPY_H__ */

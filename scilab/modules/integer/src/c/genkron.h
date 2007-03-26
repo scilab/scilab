@@ -2,6 +2,9 @@
 /* INRIA 2007 */
 /* Sylvestre LEDRU */
 /*-----------------------------------------------------------------------------------*/
+#ifndef __GENKRON_H__
+#define __GENKRON_H__
+#include "machine.h"
 #include "def.h"
 
 /**
@@ -20,3 +23,4 @@
  * @return 
  */
 int C2F(genkron)(integer *typ,int *dx,integer *incx,integer *mx,integer *nx,int *dy,integer *incy,integer *my,integer *ny,int *dr,integer *incr);
+#endif /* __GENKRON_H__ */

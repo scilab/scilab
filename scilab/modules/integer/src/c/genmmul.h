@@ -2,6 +2,9 @@
 /* INRIA 2007 */
 /* Sylvestre LEDRU */
 /*-----------------------------------------------------------------------------------*/
+#ifndef __GENMMUL_H__
+#define __GENMMUL_H__
+#include "machine.h"
 #include "def.h"
 
 /**
@@ -19,3 +22,5 @@
  * @return 
  */
 int C2F(genmmul)(integer *typ, int *a, integer *na, int *b, integer *nb, int *c, integer *nc, integer *l, integer *m, integer *n);
+
+#endif /* __GENMMUL_H__ */

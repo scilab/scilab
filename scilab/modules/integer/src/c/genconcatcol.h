@@ -2,6 +2,9 @@
 /* INRIA 2006 */
 /* Sylvestre Ledru */
 /*-----------------------------------------------------------------------------------*/
+#ifndef __GENCONCATCOL_H__
+#define __GENCONCATCOL_H__
+#include "machine.h"
 #include "def.h"
 
 /**
@@ -17,3 +20,5 @@
  * @return
  */
 int C2F(genconcatcol)(integer *typ,integer *x1,integer *m1,integer *n1,integer *x2,integer *m2,integer *n2,integer *xr);
+
+#endif /* __GENCONCATCOL_H__ */

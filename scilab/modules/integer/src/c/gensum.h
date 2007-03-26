@@ -2,6 +2,9 @@
 /* INRIA 2007 */
 /* Sylvestre LEDRU */
 /*-----------------------------------------------------------------------------------*/
+#ifndef __GENSUM_H__
+#define __GENSUM_H__
+#include "machine.h"
 #include "def.h"
 
 /**
@@ -13,3 +16,5 @@
  * @return 
  */
 integer C2F(gensum)(integer *typ, integer *n, void *dx, integer *incx);
+
+#endif /* __GENSUM_H__ */

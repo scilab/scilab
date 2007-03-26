@@ -2,6 +2,9 @@
 /* INRIA 2007 */
 /* Sylvestre LEDRU */
 /*-----------------------------------------------------------------------------------*/
+#ifndef __GENCONCATROW_H__
+#define __GENCONCATROW_H__
+#include "machine.h"
 #include "def.h"
 
 /**
@@ -16,3 +19,5 @@
  * @return 
  */
 int C2F(genconcatrow)(integer *typ,integer *x1,integer *m1,integer *n1,integer *x2,integer *m2,integer *n2);
+
+#endif /* __GENCONCATROW_H__ */

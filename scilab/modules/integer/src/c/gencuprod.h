@@ -2,6 +2,9 @@
 /* INRIA 2007 */
 /* Sylvestre LEDRU */
 /*-----------------------------------------------------------------------------------*/
+#ifndef __GENCUPROD_H__
+#define __GENCUPROD_H__
+#include "machine.h"
 #include "def.h"
 
 /**
@@ -13,3 +16,5 @@
  * @return 
  */
 int C2F(gencuprod)(integer *typ,integer *n, void *w, integer *iw);
+
+#endif /* __GENCUPROD_H__ */
