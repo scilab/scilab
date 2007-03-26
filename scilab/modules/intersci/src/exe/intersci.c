@@ -1154,8 +1154,7 @@ FType[] = {
 /* Type Fortran:  renvoit un codage du type en nombre entier etant donne une chaine */
 /* convert string to integer FORTRAN type */
 
-int GetForType(type)
-     char *type;
+int GetForType(char *type)
 {
   int i=0;
   while ( FType[i].fname != (char *) NULL)
@@ -1178,8 +1177,7 @@ int GetForType(type)
 
 /* Type Scilab :  Renvoit la description (string) d'un type a partir de son code */
 
-char *SGetForType(type)
-     int type;
+char *SGetForType(int type)
 {
   int i=0;
   while ( FType[i].code  != -1 ) 
@@ -1197,9 +1195,7 @@ char *SGetForType(type)
 ***************************************************************/
 
 
-void WriteMainHeader(f,fname)
-     FILE *f;
-     char* fname;
+void WriteMainHeader(FILE *f,char *fname)
 {
   char *scidir;
   Fprintf(f,indent,"subroutine %s\n",fname);
