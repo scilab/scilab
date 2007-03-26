@@ -60,8 +60,7 @@ static  char str2[MAXNAM];
  *   f(..... x=val) 
  ***********************************************/
 
-void GetMATRIX(f,var,flag) 
-     FILE *f;   VARPTR var ;int flag;
+void GetMATRIX(FILE *f,VARPTR var,int flag) 
 {
   GetCom(f,var,flag);
   /** str1 was set by GetCom */
@@ -72,8 +71,7 @@ void GetMATRIX(f,var,flag)
 
 /** common function for different data types */
 
-void GetCom(f,var,flag) 
-     FILE *f;   VARPTR var ;int flag;
+void GetCom(FILE *f,VARPTR var,int flag) 
 {
   static char C[]="GetRhsVar(%s,\"%s\",&m%d,&n%d,&l%d);\n";
   static char LC[]="GetListRhsVar(%s,%d,\"%s\",&m%s,&n%s,&l%s);\n";
@@ -110,7 +108,7 @@ void GetCom(f,var,flag)
  * STRING : OK
  ***********************************************/
   
-void GetSTRING(f,var,flag) FILE *f;   VARPTR var ;int flag;
+void GetSTRING(FILE *f,VARPTR var,int flag)
 {
   if (var->for_type != CHAR) 
     {
@@ -127,8 +125,8 @@ void GetSTRING(f,var,flag) FILE *f;   VARPTR var ;int flag;
  ***********************************************/
 
 
-void GetBMATRIX(f,var,flag) 
-     FILE *f;   VARPTR var ;int flag;
+void GetBMATRIX(FILE *f, VARPTR var, int flag)
+     
 {
   if (var->for_type != INT && var->for_type != BOOLEAN)
     {
@@ -148,8 +146,7 @@ void GetBMATRIX(f,var,flag)
  * Complex Matrix 
  ***********************************************/
 
-void GetIMATRIX(f,var,flag) 
-     FILE *f;   VARPTR var ;int flag;
+void GetIMATRIX(FILE *f,VARPTR var,int flag)
 {
   static char C[]="GetRhsCVar(%s,\"%s\",&it%d,&m%d,&n%d,&lr%d,&lc%d);\n";
   static char LC[]="GetListRhsCVar(%s,%d,\"%s\",&it%s,&m%s,&n%s,&lr%s,&lc%s,&lar%s,&lac%s);\n";
@@ -200,8 +197,7 @@ void GetIMATRIX(f,var,flag)
  * Sparse Matrix 
  ***********************************************/
 
-void GetSPARSE(f,var,flag) 
-     FILE *f;   VARPTR var ;int flag;
+void GetSPARSE(FILE *f,VARPTR var,int flag)
 {
   static char C[]="GetRhsVar(%s,\"s\",&m%d,&n%d,&S%d);\n";
   static char LC[]="GetListRhsVar(%s,%d,\"s\",&m%s,&n%s,&S%s);\n";
@@ -244,7 +240,7 @@ void GetSPARSE(f,var,flag)
  * Stringmat 
  ***********************************************/
 
-void GetSTRINGMAT(f,var,flag) FILE *f;   VARPTR var ;int flag;
+void GetSTRINGMAT(FILE *f,VARPTR var,int flag)
 {
   int i1= var->stack_position;
   if ( flag == 1 ) 
@@ -287,7 +283,7 @@ void GetSTRINGMAT(f,var,flag) FILE *f;   VARPTR var ;int flag;
  * Row 
  ***********************************************/
 
-void GetROW(f,var,flag) FILE *f;   VARPTR var ;int flag;
+void GetROW(FILE *f,VARPTR var,int flag)	 
 {
   int i1= var->stack_position;
   GetCom(f,var,flag);
@@ -312,7 +308,7 @@ void GetROW(f,var,flag) FILE *f;   VARPTR var ;int flag;
  * Column 
  ***********************************************/
 
-void GetCOLUMN(f,var,flag) FILE *f;   VARPTR var ;int flag;
+void GetCOLUMN(FILE *f,VARPTR var,int flag)
 {
   int i1= var->stack_position;
   GetCom(f,var,flag);
@@ -336,7 +332,7 @@ void GetCOLUMN(f,var,flag) FILE *f;   VARPTR var ;int flag;
  * Vector 
  ***********************************************/
 
-void GetVECTOR(f,var,flag) FILE *f;   VARPTR var ;int flag;
+void GetVECTOR(FILE *f,VARPTR var,int flag)
 {
   int i1= var->stack_position;
   GetCom(f,var,flag);
@@ -360,7 +356,7 @@ void GetVECTOR(f,var,flag) FILE *f;   VARPTR var ;int flag;
  * Polynom 
  ***********************************************/
 
-void GetPOLYNOM(f,var,flag) FILE *f;   VARPTR var ;int flag;
+void GetPOLYNOM(FILE *f,VARPTR var,int flag)
 {
   int i1= var->stack_position;
   if (var->list_el ==0 )
@@ -409,7 +405,7 @@ void GetPOLYNOM(f,var,flag) FILE *f;   VARPTR var ;int flag;
  * Scalar 
  ***********************************************/
 
-void GetSCALAR(f,var,flag) FILE *f;   VARPTR var ;int flag;
+void GetSCALAR(FILE *f,VARPTR var,int flag)
 {
   int i1= var->stack_position;
   GetCom(f,var,flag);
@@ -429,8 +425,7 @@ void GetSCALAR(f,var,flag) FILE *f;   VARPTR var ;int flag;
  * Pointers 
  ***********************************************/
 
-void GetPOINTER(f,var,flag) 
-     FILE *f;   VARPTR var ;int flag;
+void GetPOINTER(FILE *f,VARPTR var,int flag)
 {
   static char C[]="GetRhsOPointer(%s,&lr%d);\n";
   int i1= var->stack_position;
@@ -457,41 +452,44 @@ void GetPOINTER(f,var,flag)
 }
 
 
-void GetANY(f,var,flag) FILE *f;   VARPTR var ;int flag;{
+void GetANY(FILE *f,VARPTR var,int flag)
+{
   fprintf(stderr,"Wrong type in Get function \n");
   exit(1);
 }
 
-void GetLIST(f,var,flag) FILE *f;   VARPTR var ;int flag;{
+void GetLIST(FILE *f,VARPTR var,int flag)
+{
   fprintf(stderr,"Wrong type in Get function \n");
   exit(1);
 }
 
-void GetTLIST(f,var,flag) FILE *f;   VARPTR var ;int flag;{
+void GetTLIST(FILE *f,VARPTR var,int flag)
+{
   fprintf(stderr,"Wrong type in Get function \n");
   exit(1);
 }
 
-void GetSEQUENCE(f,var,flag) FILE *f;   VARPTR var ;int flag;
+void GetSEQUENCE(FILE *f,VARPTR var,int flag)
 {  
   fprintf(stderr,"Wrong type in Get function \n");
   exit(1);
 }
 
-void GetEMPTY(f,var,flag)  FILE *f;   VARPTR var ;int flag;
+void GetEMPTY(FILE *f,VARPTR var,int flag)
 {  
   fprintf(stderr,"Wrong type in Get function \n");
   exit(1);
 }
 
-void GetWORK(f,var,flag)  FILE *f;   VARPTR var ;int flag;
+void GetWORK(FILE *f,VARPTR var,int flag)
 {  
   fprintf(stderr,"Wrong type in Get function \n");
   exit(1);
 }
 
 
-void GetDIMFOREXT(f,var,flag)  FILE *f;   VARPTR var ;int flag;
+void GetDIMFOREXT(FILE *f,VARPTR var,int flag)
 {  
   fprintf(stderr,"Wrong type in Get function \n");
   exit(1);
@@ -502,10 +500,7 @@ void GetDIMFOREXT(f,var,flag)  FILE *f;   VARPTR var ;int flag;
  * Check for fixed sized dimensions 
  ***************************************/
 
-void Check(f,var,nel)
-     FILE *f;
-     int nel;
-     VARPTR var;
+void Check(FILE *f,VARPTR var,int nel)
 {
   VARPTR var1 = variables[var->el[nel]-1];
   if ( var1->nfor_name == 0) 

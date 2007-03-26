@@ -6,8 +6,7 @@
  *Reading the intersci description file 
  **********************************************************/
   
-int ReadFunction(f)
-     FILE *f;
+int ReadFunction(FILE *f)
 {
   int i, j, l, type, ftype;
   char s[MAXLINE];
@@ -354,8 +353,7 @@ int ReadFunction(f)
  * "[f v]" => 1 word "[f v\n" 
  **************************************************************************/
 
-int ParseScilabLine(s,words)
-     char *s, *words[];
+int ParseScilabLine(char *s,char *words[])
 {
   char w[MAXNAM];
   int nwords = 0;
@@ -425,8 +423,7 @@ int ParseScilabLine(s,words)
 
 /* put the words of line "s" in "words" and return the number of words */
 
-int ParseLine(s,words)
-     char *s, *words[];
+int ParseLine(char *s,char *words[])
 {
   char w[MAXNAM];
   int nwords = 0;
@@ -460,11 +457,7 @@ int ParseLine(s,words)
  **************************************************************************/
 
 
-void ReadListFile(listname,varlistname,ivar,stack_position)
-     char *listname;
-     char *varlistname;
-     IVAR ivar;
-     int stack_position ;
+void ReadListFile(char *listname,char *varlistname,IVAR ivar,int stack_position)
 {
   FILE *fin;
   char filin[MAXNAM];
@@ -489,12 +482,7 @@ void ReadListFile(listname,varlistname,ivar,stack_position)
   fclose(fin);
 }
 
-int ReadListElement(f,varlistname,iivar,nel,stack_position)
-     FILE *f;
-     char *varlistname;
-     int nel;
-     IVAR iivar;
-     int stack_position;
+int ReadListElement(FILE *f,char *varlistname,IVAR iivar,int nel,int stack_position)
 {
   char s[MAXLINE];
   char *words[MAXLINE];

@@ -65,7 +65,7 @@ void ResetDeclare()
     }
 }
 
-int  CheckDeclare(int type,char *declaration)
+int CheckDeclare(int type,char *declaration)
 {
   int j = 0;
   while ( Init[j].type != -1) 

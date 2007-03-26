@@ -507,8 +507,7 @@ int ReadFunction(f)
   "[f v]" => 1 word "[f v\n" 
   */
 
-int ParseScilabLine(s,words)
-     char *s, *words[];
+int ParseScilabLine(char *s,char *words[])
 {
   char w[MAXNAM];
   int nwords = 0;
@@ -1214,19 +1213,13 @@ void WriteMainHeader(f,fname)
 }
 
 
-void WriteHeader(f,fname0,fname)
-     FILE *f;
-     char* fname,*fname0;
+void WriteHeader(FILE *f,char *fname0,char *fname)
 {
   char *scidir;
   Fprintf(f,indent,"subroutine %s%s(fname)\n",fname0,fname);
   FCprintf(f,"c\n"); 
   Fprintf(f,indent,"character*(*) fname\n");
-  scidir = getenv("SCI");
-  if ( scidir != NULL) 
-    Fprintf(f,indent,"include '%s/routines/stack.h'\n",scidir);
-  else 
-    Fprintf(f,indent,"include 'SCIDIR/routines/stack.h'\n");
+  Fprintf(f,indent,"include 'stack.h'\n");
   FCprintf(f,"c\n");
   Fprintf(f,indent,"integer iadr, sadr\n");
   WriteDeclaration(f);
@@ -1236,8 +1229,7 @@ void WriteHeader(f,fname0,fname)
   FCprintf(f,"c\n");
 }
 
-void WriteFunctionCode(f)
-     FILE* f;
+void WriteFunctionCode(FILE *f)
 {
   int i;
   IVAR ivar;

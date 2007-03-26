@@ -1,3 +1,4 @@
+#include "machine.h"
 /* VERSION et DATE */
 #define VERSION "2.2"
 #define DATE "September 2006" 
@@ -148,16 +149,6 @@ int maxOpt; /* maximal number of optional variables */
 char *funNames[MAXFUN]; /* array of function names */
 
 /** functions **/
-
-#ifdef __STDC__
-#ifndef  __PARAMS
-#define  __PARAMS(paramlist)		paramlist
-#endif
-#else	
-#ifndef  __PARAMS
-#define  __PARAMS(paramlist)		()
-#endif
-#endif
 
 void WriteInfoCode __PARAMS((FILE *f));
 int GetNumberInScilabCall __PARAMS((int ivar));

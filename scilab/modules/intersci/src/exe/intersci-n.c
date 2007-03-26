@@ -205,8 +205,7 @@ void Copyright()
 
 void WriteHeader(FILE *f, char *fname0,char *fname)
 {
-  Fprintf(f,indent,"\nint %s%s(fname)\n",fname0,fname);
-  Fprintf(f,indent+3,"char *fname;\n");
+  Fprintf(f,indent,"\nint %s%s(char *fname)\n",fname0,fname);
   Fprintf(f,indent,"{\n");indent++;
   WriteDeclaration(f);
 }
