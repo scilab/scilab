@@ -84,7 +84,7 @@ int C2F(gw_core)()
 
 	/**
 	* recursion from intdeff
-	* TODO : need more informations
+	* TODO : need more comment
 	*/
 	if ( C2F(recu).rstk[C2F(recu).pt-1] == 901) 
 	{
