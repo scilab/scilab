@@ -89,14 +89,7 @@ typedef int BOOL ;
 #endif
 #define FALSE 0
 
-/*  params.h */
-#ifndef  __PARAMS
-#define  __PARAMS(paramlist)		paramlist
-#endif
-
-#ifndef  _PARAMS
-#define  _PARAMS(paramlist)		paramlist
-#endif
+#include "PARAMS.h"
 
 #define SHARED_LIB_EXT ".dll"
 

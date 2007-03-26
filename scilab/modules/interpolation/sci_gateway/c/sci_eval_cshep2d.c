@@ -50,7 +50,7 @@ int inteval_cshep2d(char *fname,unsigned long fname_len)
 			while ( Str[li] != NULL) 
 			{ 
 				FREE(Str[li]);
-				i++;
+				li++;
 			};
 			FREE(Str);
 			Str=NULL;
@@ -66,7 +66,7 @@ int inteval_cshep2d(char *fname,unsigned long fname_len)
 	  while ( Str[li] != NULL) 
 	  { 
 		  FREE(Str[li]);
-		  i++;
+		  li++;
 	  };
 	  FREE(Str);
 	  Str=NULL;

@@ -1,4 +1,5 @@
-#include "machine.h"
+#include "PARAMS.h"
+
 /* VERSION et DATE */
 #define VERSION "2.2"
 #define DATE "September 2006" 

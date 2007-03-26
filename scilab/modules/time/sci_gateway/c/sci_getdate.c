@@ -99,7 +99,7 @@ int C2F(sci_getdate) _PARAMS((char *fname,unsigned long fname_len))
 					int j=0;
 					int paramtemp=(int)param[li];
 					double millisecondes=param[li]-paramtemp;
-					C2F(convertdate)(&paramtemp,DATEMATRIX);
+					C2F(convertdate)((time_t*)&paramtemp,DATEMATRIX);
 					for (j=0;j<10;j++)
 					{
 						DATEARRAY[(li*10)+j]=DATEMATRIX[j];

@@ -9,12 +9,6 @@
 #include <time.h>
 #include <locale.h>
 #include <stdio.h>
-#ifdef _MSC_VER
-	#include <sys/types.h> 
-	#include <sys/timeb.h>
-#else
-	#include <sys/time.h> 
-#endif
 #include "getdate.h"
 #include "machine.h"
 #include "message_scilab.h"

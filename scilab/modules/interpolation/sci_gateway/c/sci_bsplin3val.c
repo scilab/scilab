@@ -58,7 +58,7 @@ int intbsplin3val(char *fname,unsigned long fname_len)
 		  while ( Str[li] != NULL) 
 		  { 
 			  FREE(Str[li]);
-			  i++;
+			  li++;
 		  };
 		  FREE(Str);
 		  Str=NULL;
