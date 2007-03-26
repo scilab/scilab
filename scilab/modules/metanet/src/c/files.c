@@ -1,5 +1,5 @@
 #include <stdio.h>
-#if !(defined _MSC_VER)
+#ifndef _MSC_VER
 	#if defined(netbsd) || defined(freebsd)
 		#include <sys/types.h>
 	#endif
