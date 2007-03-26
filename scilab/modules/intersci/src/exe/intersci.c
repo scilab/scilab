@@ -1215,7 +1215,6 @@ void WriteMainHeader(f,fname)
 
 void WriteHeader(FILE *f,char *fname0,char *fname)
 {
-  char *scidir;
   Fprintf(f,indent,"subroutine %s%s(fname)\n",fname0,fname);
   FCprintf(f,"c\n"); 
   Fprintf(f,indent,"character*(*) fname\n");
