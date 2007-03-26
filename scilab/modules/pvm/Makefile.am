@@ -49,17 +49,17 @@ sci_gateway/c/sci_pvm_config.c \
 sci_gateway/c/sci_pvm_recv_var.c \
 sci_gateway/c/sci_pvm_exit.c
 
-libsciscipvm_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
+libscipvm_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/ -Isrc/c/
 
-pkglib_LTLIBRARIES = libsciscipvm.la
+pkglib_LTLIBRARIES = libscipvm.la
 
-libsciscipvm_la_SOURCES = $(PVM_C_SOURCES) $(GATEWAY_C_SOURCES)
+libscipvm_la_SOURCES = $(PVM_C_SOURCES) $(GATEWAY_C_SOURCES)
 
-libsciscipvm_la_LIBADD = \
+libscipvm_la_LIBADD = \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
 
-libsciscipvm_la_LDFLAGS = $(PVM_LIB)
+libscipvm_la_LDFLAGS = $(PVM_LIB)
 
 
 
@@ -81,41 +81,7 @@ libscipvm_la_sci_gateway_DATA = sci_gateway/pvm
 
 #### pvm : include files ####
 libscipvm_la_includedir=$(sciincludedir)/pvm
-libscipvm_la_include_HEADERS = includes/sci_pvm_exit.h \
-includes/sci_pvm_get_timer.h \
-includes/sci_pvm_gettid.h \
-includes/sci_pvm_gsize.h \
-includes/sci_pvm_sci2f77.h \
-includes/sci_pvm_f772sci.h \
-includes/sci_pvm_delhosts.h \
-includes/sci_pvm_spawn.h \
-includes/sci_pvm_send.h \
-includes/sci_pvm_parent.h \
-includes/sci_pvm_error.h \
-includes/sci_pvm_set_timer.h \
-includes/sci_pvm_kill.h \
-includes/sci_pvm_bcast.h \
-includes/sci_pvm_recv.h \
-includes/sci_pvm_spawn_independent.h \
-includes/sci_pvm_reduce.h \
-includes/sci_pvm_probe.h \
-includes/sci_pvm_addhosts.h \
-includes/sci_pvm_joingroup.h \
-includes/sci_pvm_getinst.h \
-includes/gw_pvm.h \
-includes/sci_pvm_tidtohost.h \
-includes/sci_pvm_tasks.h \
-includes/sci_pvm_mytid.h \
-includes/sci_pvm_barrier.h \
-includes/sci_pvm_bufinfo.h \
-includes/sci_pvm_halt.h \
-includes/sci_pvm_start.h \
-includes/sci_pvm_error_mode.h \
-includes/sci_pvm_lvgroup.h \
-includes/sci_pvm_send_var.h \
-includes/sci_pvm_config.h \
-includes/sci_pvm_recv_var.h
-
+libscipvm_la_include_HEADERS = includes/gw_pvm.h
 
 #### pvm : demos files ####
 libscipvm_la_demosdir=$(target)/demos/

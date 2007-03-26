@@ -598,8 +598,12 @@ AM_CONDITIONAL(JAVA, test "$with_java" != no)
 
 # Provided by unistd.h
 AC_CHECK_FUNCS([sleep] [usleep] [dup2] [getcwd] [getpagesize] [getpass])
+AC_CHECK_FUNCS([rmdir])
 
 AC_CHECK_FUNC([getwd],AC_DEFINE([HAVE_GETWD],[1],[Define to 1 if you have the `getwd' function. ]),[AC_DEFINE([getwd(x)],[getcwd(x,1024)],[Don't use getwd but getcwd])])
+
+# Provided by <regex.h>
+AC_CHECK_FUNCS([regcomp]) 
 
 # Provided by stdlib.h
 AC_CHECK_FUNCS([atexit] [putenv] [setenv])
@@ -651,6 +655,15 @@ AC_CHECK_FUNCS([uname])
 # Provided by wtloop.c
 AC_CHECK_FUNCS([setlocale])
 
+# Function memcmp used in modules/fileio/src/c/xls.c
+AC_FUNC_MEMCMP
+
+# function stat used in modules/core/src/c/link_std.c
+AC_FUNC_STAT
+
+# function strtod used in modules/core/src/c/getval.c
+AC_FUNC_STRTOD
+
 ########################
 ## test for header files
 ########################
@@ -661,13 +674,38 @@ AC_CHECK_HEADERS([fcntl.h float.h locale.h malloc.h netdb.h netinet/in.h nlist.h
 
 AC_CHECK_HEADERS([X11/IntrinsicP.h],[],[AC_MSG_ERROR([Cannot find headers of the library Xt. Please install the dev package (Debian : libxt-dev)])])
 
+# check header dirent
+AC_HEADER_DIRENT
 
+# static struct timeval defined or not | used in modules/core/src/c/timer.c
+AC_HEADER_TIME
+
+# check if the specific header is available or not | used in modules/core/src/c/link_SYSV.c
+AC_HEADER_SYS_WAIT
 
 #######################
 ## Test for structures ##
 #######################
 AC_CHECK_MEMBERS([struct stat.st_blksize])
 AC_CHECK_MEMBERS([struct stat.st_rdev])
+
+
+#######################
+## MISC Test 
+#######################
+
+# function closedir used in modules/metanet/src/c/files.c
+AC_FUNC_CLOSEDIR_VOID
+
+# Signals used in modules/core/src/c/realmain.c
+AC_TYPE_SIGNAL
+
+# struct tm used in modules/core/src/c/history.c
+AC_STRUCT_TM
+
+# st_blocks in the struct in modules/io/sci_gateway/c/intfilestat.c
+AC_STRUCT_ST_BLOCKS
+
 
 ##################
 ## termcap library
@@ -720,6 +758,18 @@ if test "$with_fftw" = yes; then
    AC_FFTW()
 fi
 AM_CONDITIONAL(FFTW, test "$with_fftw" = yes)
+
+#################
+## MPI
+#################
+
+AC_ARG_WITH(mpi,
+    [  --with-mpi	           compile with MPI library ])
+
+if test "$with_mpi" = yes; then
+   ACX_MPI()
+fi
+AM_CONDITIONAL(MPI, test "$MPI_OK" = "1")
 
 #################
 ## PVM
@@ -1154,6 +1204,18 @@ else
 fi
 
 echo ""
+
+if test "$with_mpi" = yes; then
+   echo "MPI Configuration:"
+   echo "MPI libs ........... = $MPILIBS"
+   echo "MPI C Compiler ..... = $MPICC"
+   echo "MPI C++ Compiler ... = $MPICXX"
+   echo "MPI F77 Compiler ... = $MPIF77"
+else
+   echo "Not using MPI"
+fi
+
+echo ""
 if test ! -z "$MANGENERATOR"; then
    echo "XSL Processor Configuration:"
    echo "XSL Processor ...... = $MANGENERATOR"
@@ -1190,7 +1252,6 @@ echo ""
 echo ""
 echo "Options used to compile and link:"
 echo "  PREFIX           = $prefix"
-echo "  DESTDIR          = $DESTDIR"
 echo "  VERSION          = $PACKAGE_VERSION"
 echo "  CC               = $CC"
 echo "  CFLAGS           = $CFLAGS"
