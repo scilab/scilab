@@ -13,8 +13,8 @@
 #include "scirun.h"
 #include "sciquit.h"
 #include "getarg.h"
+#include "tmpdir.h"
 /*-----------------------------------------------------------------------------------*/
-extern void C2F (settmpdir)(void);
 extern void sci_clear_and_exit(int n);
 extern int C2F(inisci)(int *,int *,int *);
 extern void sci_usr1_signal(int n);
