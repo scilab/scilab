@@ -2,7 +2,7 @@
 // Copyright INRIA
 // Scilab Project - Vincent COUVERT
 
-mode(-1);
+//mode(-1);
 clear;
 
 MFILE=TMPDIR+"/bug2341.m"
@@ -18,7 +18,7 @@ fd=mopen(MFILE,"w");
 mputl(MFILECONTENTS,fd);
 mclose(fd);
 
-ierr=execstr("mfile2sci("""+MFILE+""","""+TMPDIR+""")","errcatch");
+ierr=execstr("mfile2sci("""+MFILE+""","""+TMPDIR+""")","errcatch")
 correct=correct&ierr==0;
 
 // TEST2: commas OK without spaces
@@ -29,7 +29,7 @@ fd=mopen(MFILE,"w");
 mputl(MFILECONTENTS,fd);
 mclose(fd);
 
-ierr=execstr("mfile2sci("""+MFILE+""","""+TMPDIR+""")","errcatch");
+ierr=execstr("mfile2sci("""+MFILE+""","""+TMPDIR+""")","errcatch")
 correct=correct&ierr==0;
 
 // TEST3: commas OK with spaces before
@@ -40,10 +40,10 @@ fd=mopen(MFILE,"w");
 mputl(MFILECONTENTS,fd);
 mclose(fd);
 
-ierr=execstr("mfile2sci("""+MFILE+""","""+TMPDIR+""")","errcatch");
+ierr=execstr("mfile2sci("""+MFILE+""","""+TMPDIR+""")","errcatch")
 correct=correct&ierr==0;
 
-// TEST3: commas OK with spaces after
+// TEST4: commas OK with spaces after
 MFILECONTENTS=["function [a, b,  c,  d]=bug2341";
 "a=1;b=2;c=3;d=4"]
 
@@ -51,10 +51,10 @@ fd=mopen(MFILE,"w");
 mputl(MFILECONTENTS,fd);
 mclose(fd);
 
-ierr=execstr("mfile2sci("""+MFILE+""","""+TMPDIR+""")","errcatch");
+ierr=execstr("mfile2sci("""+MFILE+""","""+TMPDIR+""")","errcatch")
 correct=correct&ierr==0;
 
-// TEST4: commas OK with spaces after and before
+// TEST5: commas OK with spaces after and before
 MFILECONTENTS=["function [a  , b,  c ,d]=bug2341";
 "a=1;b=2;c=3;d=4"]
 
@@ -62,10 +62,10 @@ fd=mopen(MFILE,"w");
 mputl(MFILECONTENTS,fd);
 mclose(fd);
 
-ierr=execstr("mfile2sci("""+MFILE+""","""+TMPDIR+""")","errcatch");
+ierr=execstr("mfile2sci("""+MFILE+""","""+TMPDIR+""")","errcatch")
 correct=correct&ierr==0;
 
-// TEST4: commas OK or KO
+// TEST6: commas OK or KO
 MFILECONTENTS=["function [a   b,  c   d]=bug2341";
 "a=1;b=2;c=3;d=4"]
 
@@ -73,7 +73,29 @@ fd=mopen(MFILE,"w");
 mputl(MFILECONTENTS,fd);
 mclose(fd);
 
-ierr=execstr("mfile2sci("""+MFILE+""","""+TMPDIR+""")","errcatch");
+ierr=execstr("mfile2sci("""+MFILE+""","""+TMPDIR+""")","errcatch")
+correct=correct&ierr==0;
+
+// TEST7: one output
+MFILECONTENTS=["function [a]=bug2341";
+"a=1;"]
+
+fd=mopen(MFILE,"w");
+mputl(MFILECONTENTS,fd);
+mclose(fd);
+
+ierr=execstr("mfile2sci("""+MFILE+""","""+TMPDIR+""")","errcatch")
+correct=correct&ierr==0;
+
+// TEST8: one output with blanks
+MFILECONTENTS=["function [ a ]=bug2341";
+"a=1;"]
+
+fd=mopen(MFILE,"w");
+mputl(MFILECONTENTS,fd);
+mclose(fd);
+
+ierr=execstr("mfile2sci("""+MFILE+""","""+TMPDIR+""")","errcatch")
 correct=correct&ierr==0;
 
 affich_result(correct,2341);
