@@ -498,27 +498,27 @@ else
   begb=strindex(txt(1),"[");
   endb=strindex(txt(1),"]");
   if ~isempty(begb) & ~isempty(endb)
-    outputparams = stripblanks(part(txt(1),(begb+1):(endb-1)));
+    outputparams = stripblanks(part(txt(1),(begb+1):(endb-1)))+"   ";
     k=0;
     while k<length(outputparams)
       k=k+1;
-      while and(part(outputparams,k)<>[","," "]) // skip identifier
+      while (and(part(outputparams,k)<>[","," "])) & (k<length(outputparams)) // skip identifier
 	k=k+1;
       end
-      while part(outputparams,k)==" " // skip spaces before comma
+      while (part(outputparams,k)==" ") & (k<length(outputparams)) // skip spaces before comma (or next identifier)
 	k=k+1;
       end
-      if part(outputparams,k)<>","
+      if (part(outputparams,k)<>",") & (k<length(outputparams))
 	outputparams=part(outputparams,1:(k-1))+","+part(outputparams,k:length(outputparams));
 	k=k+1;
       else
 	k=k+1;
-      end
-      while part(outputparams,k)==" " // skip spaces after comma
-	k=k+1;
+	while (part(outputparams,k)==" ") & (k<length(outputparams)) // skip spaces after comma
+	  k=k+1;
+	end
       end
     end
-    txt(1)=part(txt(1),1:begb)+outputparams+part(txt(1),endb:length(txt(1)));
+    txt(1)=stripblanks(part(txt(1),1:begb)+outputparams+part(txt(1),endb:length(txt(1))));
   end
   // END of BUG 2341 fix: function prototype with no comma between output parameters names
 end
