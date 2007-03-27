@@ -2,6 +2,14 @@
 /* INRIA */
 /*-----------------------------------------------------------------------------------*/
 #include "FTables.h"
+/***********************************
+* Search Table for fbutn
+***********************************/
+
+
+#define ARGS_fbutn char *,integer*,integer*
+typedef integer * (*fbutnf)(ARGS_fbutn);
+
 /***************** fbutn ***************/
 extern void haltscicos(ARGS_fbutn);
 void C2F(fbutn)(ARGS_fbutn);
@@ -13,13 +21,6 @@ FTAB FTab_fbutn[] =
 	{(char *) 0, (voidf) 0}
 };
 
-/***********************************
-* Search Table for fbutn
-***********************************/
-
-
-#define ARGS_fbutn char *,integer*,integer*
-typedef integer * (*fbutnf)(ARGS_fbutn);
 
 
 
