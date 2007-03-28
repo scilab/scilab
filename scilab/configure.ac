@@ -1106,7 +1106,6 @@ modules/time/Makefile
 modules/graphics/Makefile
 modules/gui/Makefile
 modules/pvm/Makefile
-modules/mpi/Makefile
 modules/randlib/Makefile
 modules/tclsci/Makefile
 modules/wintools/Makefile
