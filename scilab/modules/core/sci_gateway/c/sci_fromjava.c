@@ -19,7 +19,7 @@ int C2F(sci_fromjava) _PARAMS((char *fname,unsigned long fname_len))
 int C2F(intfromjava) _PARAMS((char *fname))
 {
 	static int n1;
-	int *paramoutINT=(int*)MALLOC(sizeof(int));
+	int *paramoutINT=(int*)MALLOC(sizeof(int)+1);
 
 	Rhs = Max(0, Rhs);
 	CheckRhs(0,0);
