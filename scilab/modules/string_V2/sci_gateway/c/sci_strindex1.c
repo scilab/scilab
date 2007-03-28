@@ -51,7 +51,7 @@ char typ = '*';
 
 
 
-  regex_t **out1;
+  regex_t *out1[10];
   Rhs = Max(0, Rhs);
 
   CheckRhs(1,2);
