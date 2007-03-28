@@ -37,10 +37,9 @@ int C2F(sci_grep1) _PARAMS((char *fname,unsigned long fname_len))
 char typ = '*';
 
   char **Str,**Str2;
-  static char def_sep[] ="";
-  char *sep = def_sep;
-  static int un=1;
-  int y,x,m1,n1,mn,mn2,i,m2,n2,nchars=0;
+
+
+  int y,x,m1,n1,mn,mn2,i,m2,n2=0;
   unsigned x1;
   int lenth=0;
   int lenthrow=1;
@@ -56,7 +55,7 @@ char typ = '*';
   int position[10];
   int nbposition=0;
   int numRow   = 1 ;
-  int numCol   = 1 ;
+
  
   regmatch_t pm[10];
 
