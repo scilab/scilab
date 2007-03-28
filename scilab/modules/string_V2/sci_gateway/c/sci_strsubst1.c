@@ -17,9 +17,6 @@
 #include "returnProperty.h"
 #include "machine.h"
 #include "MALLOC.h" 
-#ifdef _MSC_VER
-#pragma comment(lib,"../../../../pcre.lib")
-#endif
 /*-------------------------------------------------------------------------------------*/
 
 static char* newstr(const char*str, unsigned start, unsigned end, char*newstr1)

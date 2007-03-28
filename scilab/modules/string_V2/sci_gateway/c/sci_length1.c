@@ -71,7 +71,7 @@ char typ = '*';
 	    for ( j =0 ; j < (int)strlen(sep) ; j++ ) 
 	      *cstk(l3+ k++) = sep[j];
 	}
-      FreeRhsSVar(Str);
+     // FreeRhsSVar(Str);
       LhsVar(1) = Rhs+1  ;
       break;
     
@@ -80,7 +80,7 @@ char typ = '*';
 	case 'p':
 		lenth=strlen(Str[0]);
 		sciReturnInt(lenth);
-		FreeRhsSVar(Str);
+		//FreeRhsSVar(Str);
 		LhsVar(1) = Rhs+1  ;
 
 
@@ -89,7 +89,7 @@ char typ = '*';
 	case 'a':
 		text=*Str;
 		sciReturnString(text);
-		FreeRhsSVar(Str);
+		//FreeRhsSVar(Str);
 		LhsVar(1) = Rhs+1  ;
 
 

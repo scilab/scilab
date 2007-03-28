@@ -17,7 +17,6 @@
 #include "returnProperty.h"
 #include "machine.h"
 #include "MALLOC.h" 
-#pragma comment(lib,"../../../../pcre.lib")
 
 /*-----------------------------------------------------------------------------------*/
 

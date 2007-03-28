@@ -19,4 +19,8 @@ vartype_
 checklhs_
 checkrhs_
 intersci_
+; graphics
+sciReturnInt
+sciReturnString
+sciReturnRowVectorFromInt
 ;

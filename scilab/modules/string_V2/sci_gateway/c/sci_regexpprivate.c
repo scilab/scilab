@@ -16,7 +16,7 @@
 #include "returnProperty.h"
 #include "machine.h"
 #include "MALLOC.h" /* MALLOC */
-#pragma comment(lib,"../../../../pcre.lib")
+
 static char* substr(const char*str, unsigned start, unsigned end)
 
 {
