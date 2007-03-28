@@ -6,7 +6,7 @@
   <TYPE>Scilab Function</TYPE>
   <DATE> 2002</DATE>
   <SHORT_DESCRIPTION name="unglue"> 
-   unglue an agragation and replace it by individual children.
+   unglue a coumpound object and replace it by individual children.
   </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>unglue(h) </CALLING_SEQUENCE_ITEM>
