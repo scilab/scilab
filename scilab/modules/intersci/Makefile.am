@@ -37,9 +37,6 @@ libsciintersci_la_CFLAGS = -I$(top_srcdir)/libs/MALLOC/includes/
 libsciintersci_la_LIBADD = \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
 
-
-
-
 #### Target ######
 target=$(datadir)/intersci
 

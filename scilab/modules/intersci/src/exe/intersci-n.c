@@ -55,7 +55,10 @@ int main( int argc,char ** argv)
       libs = argv[3];
       break;
     default:
-      printf("usage:  intersci <interface file> 'files' 'libs' \n");
+		printf("Usage:  intersci <interface file> 'files' 'libs'\n");
+		printf("intersci is a program for building an interface file between Scilab\n");
+		printf("and C/Fortran subroutines functions.\n");
+		printf("See : http://www.scilab.org/doc/intersci.pdf\n");
       exit(1);
       break;
     }
@@ -75,9 +78,10 @@ int main( int argc,char ** argv)
   exit(0);
 }
 
-/***************************************************************
+/**
  * Produce the interface 
- ***************************************************************/
+ * @param file
+ */
 
 void Generate(char *file)
 {
@@ -88,7 +92,7 @@ void Generate(char *file)
   sprintf(filin,"%s.desc",file);
   fin = fopen(filin,"r");
   if (fin == 0) {
-    printf("interface file \"%s\" does not exist\n",filin);
+    printf("Interface file \"%s\" does not exist\n",filin);
     exit(1);
   }
   Copyright();
@@ -127,8 +131,8 @@ void Generate(char *file)
   }
   /* WriteMain(fout,file); */ 
   printf("C file \"%s.c\" has been created\n",file);
-  /* WriteAddInter(file) ; */
-  printf("Scilab file \"%s.sce\" has been created\n",file);
+  /* WriteAddInter(file) ; 
+	 printf("Scilab file \"%s.sce\" has been created\n",file);*/
   fclose(fout);
   fclose(fin);
 }
