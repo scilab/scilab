@@ -11,9 +11,7 @@
 #include <math.h>
 #include "machine.h"
 
-#ifdef __STDC__
 #include <stdlib.h>
-#endif
 
 
 

@@ -9,13 +9,8 @@
  * Search Table for gzhsel
  ***********************************/
 
-#if defined(__STDC__)
 #define ARGS_gzhsel doublecmplx *,doublecmplx *
 typedef integer * (*gzhself)(ARGS_gzhsel);
-#else
-#define ARGS_gzhsel /**/
-typedef integer * (*gzhself)();
-#endif 
 
 /**************** gzhsel ***************/
 extern void C2F(zb02ow)(ARGS_gzhsel);
@@ -31,13 +26,8 @@ FTAB FTab_gzhsel[] ={
  * Search Table for gshsel
  ***********************************/
 
-#if defined(__STDC__)
 #define ARGS_gshsel double *,double*,double*
 typedef integer * (*gshself)(ARGS_gshsel);
-#else
-#define ARGS_gshsel /**/
-typedef integer * (*gshself)();
-#endif 
 
 
 /**************** gshsel ***************/

@@ -28,7 +28,7 @@ extern	char	*my_strdup();
 #endif
 #include <sys/stat.h>
 
-#if defined(__convex__) && defined(__STDC__)
+#if defined(__convex__)
 #define S_IFDIR _S_IFDIR
 #define S_IWRITE _S_IWRITE
 #endif
@@ -271,7 +271,6 @@ int bcmp();
 #endif  /* X_NOT_STDC_ENV */
 
 #if defined(SYSV) && defined(SYSV386)
-#if defined(__STDC__)
 #ifdef ISC
 extern double atof(char const *);
 #endif  /* ISC */
@@ -284,9 +283,6 @@ extern double atof(const char *);
 #else  /* NOT SCO */
 extern double atof();
 #endif /* SCO */
-#else  /* NOT __STDC__ */
-extern double atof();
-#endif /* __STDC__ */
 #else  /* NOT defined(SYSV) && defined(SYSV386) */
 #ifdef X_NOT_STDC_ENV
 #if defined(ultrix) || defined(sun) && !defined(sparc) || defined(titan) || \

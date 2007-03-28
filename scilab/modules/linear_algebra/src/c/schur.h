@@ -9,13 +9,8 @@
  * Search Table for schsel
  ***********************************/
 
-#if defined(__STDC__)
 #define ARGS_schsel double *,double*
 typedef integer * (*schself)(ARGS_schsel);
-#else
-#define ARGS_schsel /**/
-typedef integer * (*schself)();
-#endif 
 
 
 /**************** schsel ***************/
@@ -32,13 +27,8 @@ FTAB FTab_schsel[] ={
  * Search Table for zchsel
  ***********************************/
 
-#if defined(__STDC__)
 #define ARGS_zchsel doublecmplx *
 typedef integer * (*zchself)(ARGS_zchsel);
-#else
-#define ARGS_zchsel /**/
-typedef integer * (*zchself)();
-#endif 
 
 
 /**************** zchsel ***************/

@@ -35,11 +35,7 @@
 #include <math.h>
 #include <string.h>
 
-#ifdef __STDC__
 #include <stdlib.h>
-#else
-extern  char  *getenv();
-#endif
 
 #include "math_graphics.h"
 #include "periGif.h"

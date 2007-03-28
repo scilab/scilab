@@ -131,19 +131,7 @@ void C2F(scipvmsend)(int *tids, int *p,
 
 
 
-#ifdef __STDC__
-void 
-C2F(scipvmsendvar)(int *tids, int *p, char *buff, 
-		   int *msgtag, int *res)
-#else
-void 
-C2F(scipvmsendvar)(tids, p, buff, msgtag, res)
-  int *tids;
-  int *p;
-  char *buff;
-  int *msgtag;
-  int *res;
-#endif 
+void C2F(scipvmsendvar)(int *tids, int *p, char *buff, int *msgtag, int *res)
 {
   int info, bufid, type;
   int mx, nx, type_x, ptr_x;

@@ -4,13 +4,8 @@
 #define	PRIVSIZE	100
 #define NLOOPS		8
 
-#if	defined(__STDC__) || defined(ARM)
 #define	P1(x) x
 #define	P2(x,y) x, y
-#else
-#define P1(x)
-#define P2(x,y)
-#endif
 
 /*-----------------------------------------------------------------------------------*/
 double 	       swapd(P1(double d));			/* Swap double */

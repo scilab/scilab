@@ -382,30 +382,14 @@ void ForNameClean()
 #define FORNAME 128
 
 
-#ifdef __STDC__
 #include <stdarg.h>
-#else
-#include <varargs.h>
-#endif 
 
-#ifdef __STDC__ 
 void ChangeForName2(VARPTR varptr,char * format ,...)
-#else 
-     /*VARARGS0*/
-     void ChangeForName2(va_alist) va_dcl
-#endif
 {
   char forbuf[FORNAME];
   va_list ap;
-#ifdef __STDC__ 
   va_start(ap,format);
-#else 
-  char *format;
-  VARPTR varptr;
-  va_start(ap);
-  varptr = va_arg(ap, VARPTR );
-  format = va_arg(ap, char *);
-#endif
+
   vsprintf(forbuf,format,ap);
   ChangeForName1(varptr,forbuf);
   va_end(ap);

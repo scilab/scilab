@@ -24,12 +24,7 @@ typedef union
   double value;
 } ieee_double_shape_type;
 
-#ifdef __STDC__
 int finite(double x)
-#else
-int finite(x)
-double x;
-#endif
 {
   int hx;
   ieee_double_shape_type gh_u;

@@ -123,7 +123,7 @@ typedef struct soundstream *ft_t;
 
 IMPORT char *sizes[], *styles[];
 
-#if	defined(__STDC__) || defined(ARM)
+#if	defined(ARM)
 #define	P1(x) x
 #define	P2(x,y) x, y
 #define	P3(x,y,z) x, y, z

@@ -1580,13 +1580,7 @@ static int set_verbose(void)
 
 #endif
 
-#ifdef __STDC__
 static const char *binformat(unsigned int v, int nbits)
-#else
-static char *binformat(v, nbits)
-     unsigned int v;
-     int nbits;
-#endif
 {
  static char bufs[8][64];
  static int bhand = 0;

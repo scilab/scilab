@@ -511,7 +511,7 @@ clear_ieee_warnings()
 #endif 
 
 /* following include needed for solaris */
-#if defined(solaris) && defined(__STDC__) 
+#ifdef solaris
 #include <stropts.h>
 #include <poll.h>
 #endif

@@ -3,9 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#ifndef __STDC__
 #include <stdlib.h>
-#endif 
 #include <stdio.h>
 
 #if defined(netbsd)

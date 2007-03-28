@@ -55,7 +55,7 @@
 extern char *malloc();
 extern char *getenv();
 #endif
-#if defined(macII) && !defined(__STDC__)	/* stdlib.h fails to define
+#ifdef macII	/* stdlib.h fails to define
 						 * these */
 char *malloc();
 #endif	 /* macII */

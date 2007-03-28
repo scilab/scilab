@@ -2,10 +2,8 @@
 #include <string.h>
 #include "machine.h"
 #include "men_Sutils.h"
-
-#ifdef __STDC__
 #include <stdlib.h>
-#endif
+
 
 
 #include "MALLOC.h" /* MALLOC */

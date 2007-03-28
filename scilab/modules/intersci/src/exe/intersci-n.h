@@ -168,16 +168,9 @@ typedef struct forsub {
 
 /** functions **/
 
-#ifdef __STDC__
 #ifndef  __PARAMS
 #define  __PARAMS(paramlist)		paramlist
 #endif
-#else	
-#ifndef  __PARAMS
-#define  __PARAMS(paramlist)		()
-#endif
-#endif
-
 
 extern VARPTR VarAlloc  __PARAMS((void));
 extern BASFUNPTR BasfunAlloc  __PARAMS((void));

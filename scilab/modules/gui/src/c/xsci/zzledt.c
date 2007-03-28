@@ -19,10 +19,8 @@ static char Sci_Prompt[10];
 #include <string.h>
 #include <signal.h> /* for SIGINT */
 
-#ifdef __STDC__
 #include <stdlib.h>
 #include <unistd.h>
-#endif
 #include <sys/ioctl.h>
 
 #ifdef aix

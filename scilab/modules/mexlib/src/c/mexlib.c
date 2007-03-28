@@ -50,10 +50,6 @@
 #include "MALLOC.h" /* MALLOC */
 #include "mexlib.h"
 
-#ifdef _MSC_VER
-	#define __STDC__ 
-#endif
-
 static char *the_current_mex_name;
 
 extern void cerro __PARAMS((char *str));
@@ -1947,20 +1943,10 @@ bool mxIsLogicalScalar(mxArray *pa)
 
 
 /*
-#ifdef __STDC__ 
 void  C2F(mexprintf)(char *fmt,...) 
-#else 
-void  C2F(mexprintf)(va_alist) va_dcl
-#endif 
 {
   int i;  integer lstr;  va_list ap;  char s_buf[1024];
-#ifdef __STDC__
   va_start(ap,fmt);
-#else
-  char *fmt;
-  va_start(ap);
-  fmt = va_arg(ap, char *);
-#endif
   C2F(xscion)(&i);
   if (i == 0) 
     {
@@ -2000,23 +1986,14 @@ void  mexPrintf(char *fmt,...)
 
 /* Modification pour Compilation sous Windows */
 /* Allan CORNET 27 avril 2004 */
-#ifdef __STDC__ 
 void mexPrintf __PARAMS((char *fmt,...))
-#else 
-void  mexPrintf (va_alist) va_dcl
-#endif
 {
   int i, lstr;
   va_list args;
   char buf[2048];
 
-  #ifdef __STDC__ 
   va_start(args,fmt);
-  #else
-	char *fmt;
-	va_start(args);
-	fmt = va_arg(args, char *);
-  #endif 
+
   (void ) vsprintf(buf, fmt, args );
   lstr=strlen(buf);
   C2F(xscion)(&i);

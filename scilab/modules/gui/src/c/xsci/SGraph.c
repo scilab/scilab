@@ -22,13 +22,8 @@ extern int StoreCommand  __PARAMS((char *command));
 
 
 /** getpid **/
-#ifdef __STDC__
 #include <sys/types.h>
 #include <unistd.h>
-#else 
-extern char * getenv();
-extern int getpid();
-#endif
 
 #include "math.h"
 #include "men_Sutils.h"

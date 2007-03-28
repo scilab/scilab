@@ -27,11 +27,7 @@
 
 #include "x_VTparse.h"
 
-#if __STDC__
 #define Const const
-#else
-#define Const /**/
-#endif
 
 /*
  * Stupid Apollo C preprocessor can't handle long lines.  So... To keep

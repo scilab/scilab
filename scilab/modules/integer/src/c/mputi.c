@@ -2,9 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#ifdef __STDC__
 #include <stdlib.h>
-#endif
 #include "machine.h"
 #include "mputi.h"
 

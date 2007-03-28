@@ -3,14 +3,8 @@
 #define ALL_EXTERN_X
 
 
-#ifdef __STDC__
 #ifndef  __PARAMS
 #define  __PARAMS(paramlist)		paramlist
-#endif
-#else	
-#ifndef  __PARAMS
-#define  __PARAMS(paramlist)		()
-#endif
 #endif
 
 #include "x_ptyxP.h"

@@ -147,16 +147,7 @@ void C2F(scipvmrecv)(double *beginvar, int *maxsize, int *size,
 } /* scipvmrecv */
 
 
-void 
-#ifdef __STDC__
 C2F(scipvmrecvvar)(int *tid,  int *tag, char *buff, int *res)
-#else
-C2F(scipvmrecvvar)(tid, tag, buff, res)
-  int *tid; 
-  int *tag;
-  char *buff;
-  int *res;
-#endif 
 {
   int bufid;
   int info;

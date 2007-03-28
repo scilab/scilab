@@ -1,14 +1,10 @@
 /* Copyright INRIA/ENPC */
 #include "machine.h"
 
-#ifdef __STDC__
 #include <stdlib.h>
 #ifndef _MSC_VER
 #include <sys/types.h>
 #include <unistd.h>
-#endif
-#else 
-extern int getpid();
 #endif
 #include "getpidc.h"
 

@@ -100,11 +100,7 @@ void DeleteWindowToList(integer num) ;
 
 void DeleteSGWin(integer intnum) ;
 
-#ifdef __STDC__ 
 void wininfo(char *format,...) ;
-#else 
-void wininfo(va_alist) va_dcl ;
-#endif 
 
 void C2F(bitmap)(char *string, integer w, integer h) ;
 

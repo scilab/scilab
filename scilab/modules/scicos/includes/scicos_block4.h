@@ -1,9 +1,7 @@
 #ifndef __SCICOS_BLOCK_H__
 #define __SCICOS_BLOCK_H__
 
-#ifdef __STDC__
 #include <stdlib.h>
-#endif
 
 typedef void (*voidg)();
 

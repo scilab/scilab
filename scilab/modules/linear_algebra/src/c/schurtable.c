@@ -9,61 +9,37 @@
 * Search Table for fschur
 ***********************************/
 
-#if defined(__STDC__)
 #define ARGS_fschur integer*,double *,double*,double*,double*
 typedef integer * (*fschurf)(ARGS_fschur);
-#else
-#define ARGS_fschur /**/
-typedef integer * (*fschurf)();
-#endif 
 
 /***********************************
 * Search Table for schsel
 ***********************************/
 
-#if defined(__STDC__)
 #define ARGS_schsel double *,double*
 typedef integer * (*schself)(ARGS_schsel);
-#else
-#define ARGS_schsel /**/
-typedef integer * (*schself)();
-#endif 
 
 /***********************************
 * Search Table for zchsel
 ***********************************/
 
-#if defined(__STDC__)
 #define ARGS_zchsel doublecmplx *
 typedef integer *(*zchself)(ARGS_zchsel);
-#else
-#define ARGS_zchsel /**/
-typedef integer * (*zchself)();
-#endif 
+
 
 /***********************************
 * Search Table for gshsel
 ***********************************/
 
-#if defined(__STDC__)
 #define ARGS_gshsel double *,double*,double*
 typedef integer * (*gshself)(ARGS_gshsel);
-#else
-#define ARGS_gshsel /**/
-typedef integer * (*gshself)();
-#endif 
 
 /***********************************
 * Search Table for gzhsel
 ***********************************/
 
-#if defined(__STDC__)
 #define ARGS_gzhsel doublecmplx *,doublecmplx *
 typedef integer * (*gzhself)(ARGS_gzhsel);
-#else
-#define ARGS_gzhsel /**/
-typedef integer * (*gzhself)();
-#endif 
 
 /**************** fschur ***************/
 extern void C2F(folhp)(ARGS_fschur);

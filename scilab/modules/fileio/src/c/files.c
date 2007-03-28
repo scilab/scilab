@@ -5,14 +5,11 @@
  * Copyright ENPC/ Chancelier 
  *********************************************/
 #include <stdio.h>
-#ifdef __STDC__
 #include <stdlib.h>
-#endif
 #include <string.h>
 #include <math.h>
-#ifdef __STDC__
 #include <float.h>
-#endif
+
 #include <limits.h>
 #include <ctype.h>
 

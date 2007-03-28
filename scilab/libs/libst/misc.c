@@ -256,14 +256,12 @@ unsigned int swapi(unsigned int ul)
   return (ul >> 24) | ((ul >> 8) & 0xff00) | ((ul << 8) & 0xff0000) | (ul << 24);
 }
 /*-----------------------------------------------------------------------------------*/
-/* return swapped 32-bit float */
-float
-#if	defined(__STDC__) || defined(ARM)
-swapf(float uf)
-#else
-     swapf(uf)
-     float uf;
-#endif
+/**
+ * return swapped 32-bit float 
+ * @param uf
+ * @return 
+ */
+float swapf(float uf)
 {
   if (sizeof(long) == sizeof(float)){
     union {

@@ -91,30 +91,14 @@ int CheckDeclare(int type,char *declaration)
 
 #define DECLAREBUF 128
 
-#ifdef __STDC__
 #include <stdarg.h>
-#else
-#include <varargs.h>
-#endif 
 
-#ifdef __STDC__ 
 void AddDeclare1(int type,char *format,...) 
-#else 
-     /*VARARGS0*/
-     void AddDeclare1(va_alist) va_dcl
-#endif
 {
   char decbuf[DECLAREBUF];
   va_list ap;
-#ifdef __STDC__
   va_start(ap,format);
-#else 
-  int type;
-  char *format;
-  va_start(ap);
-  type = va_arg(ap, int );
-  format = va_arg(ap, char *);
-#endif 
+
   vsprintf(decbuf,format,ap);
   AddDeclare(type,decbuf);
   va_end(ap);

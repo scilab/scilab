@@ -6,10 +6,6 @@
 #include "getrhs.h" 
 #include "crerhs.h" 
 
-#ifdef _MSC_VER
-  #define __STDC__
-#endif
-
 /* global variables */
 
 int icre=1;     /* incremental counter for variable creation */
@@ -1003,11 +999,7 @@ static void GenBuilder(char *file,char *files,char *libs)
 #define MAXBUF 4096 
 char sbuf[MAXBUF];
 
-#ifdef __STDC__
 #include <stdarg.h>
-#else
-#include <varargs.h>
-#endif 
 
 void  Fprintf(FILE *f,int indent2,char *format,...) 
 {
@@ -1047,15 +1039,8 @@ void white(FILE *f,int ind)
 void  FCprintf(FILE *f,char *format,...) 
 {
   va_list ap;
-#ifdef __STDC__
   va_start(ap,format);
-#else 
-  FILE *f;
-  char *format;
-  va_start(ap);
-  f = va_arg(ap, FILE *);
-  format = va_arg(ap, char *);
-#endif
+
   vfprintf(f,format,ap);
   va_end(ap);
 }

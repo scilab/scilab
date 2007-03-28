@@ -1,12 +1,8 @@
 /* Copyright INRIA/ENPC */
 #include <string.h>
+#include <stdlib.h>
 #include "machine.h"
 #include "men_Sutils.h"
-
-#ifdef __STDC__
-#include <stdlib.h>
-#endif
-
 
 #include "MALLOC.h" /* MALLOC */
 

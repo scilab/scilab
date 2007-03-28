@@ -1,12 +1,6 @@
 /* Copyright ENPC/Chancelier Jean-Philippe */
 
-#ifdef __STDC__
-# include <stdarg.h>
-#else
-# include <varargs.h>
-
-char *getenv();
-#endif 
+#include <stdarg.h>
 
 #include <stdlib.h>
 #include <string.h>
@@ -86,8 +80,6 @@ int main(int argc, char **argv)
 }
 
 
-#ifdef __STDC__
-
 void sciprint(char *fmt, ...)
 {
   va_list args;
@@ -95,19 +87,6 @@ void sciprint(char *fmt, ...)
   vfprintf(stdout, fmt, args );
   va_end(args);
 }
-#else 
-
-/*VARARGS0*/
-void sciprint(va_alist) va_dcl
-{
-  va_list ap;
-  char *format;
-  va_start(ap);
-  format = va_arg(ap, char *);
-  (void)  vfprintf(stdout, format, ap );
-  va_end(ap);
-}
-#endif 
 
 
 static  void dos2win32(char *filename, char *filename1)
