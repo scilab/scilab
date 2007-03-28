@@ -3,14 +3,8 @@
 /* Allan CORNET */
 /* Francois VOGEL  sciprint_full function */
 /*-----------------------------------------------------------------------------------*/ 
-#if defined (__STDC__) || defined(_MSC_VER)
-  #include <stdarg.h>
-#else
-  #include <varargs.h>
-#endif 
-
 #include <stdio.h>
-
+#include "sciprint.h"
 #ifdef _MSC_VER
 #include "../../gui/src/c/wsci/wgnuplib.h"
 #else
@@ -19,7 +13,6 @@
 
 #include "machine.h"
 #include "stack-c.h"
-#include "sciprint.h"
 #include "MALLOC.h"
 #include "message_scilab.h"
 /*-----------------------------------------------------------------------------------*/ 
@@ -37,29 +30,15 @@ extern int getdiary __PARAMS(());
 extern int C2F(xscion)();
 extern void diary_nnl __PARAMS((char *str,int *n));
 /*-----------------------------------------------------------------------------------*/ 
-/* any string of length greater than MAXPRINTF gets truncated in sciprint */
-#define MAXPRINTF 512
-/* MAXCHARSSCIPRINT_FULL is for sciprint_full - more than this gets truncated */
-#define MAXCHARSSCIPRINT_FULL 5000  /* */
-/*-----------------------------------------------------------------------------------*/ 
-#if defined(__STDC__) || defined(_MSC_VER)
-  void  sciprint(char *fmt,...) 
-#else 
-  void sciprint(va_alist) va_dcl
-#endif 
+void  sciprint(char *fmt,...) 
 {
 	int i;
 	integer lstr;
 	va_list ap;
 	char s_buf[MAXPRINTF];
 	int count=0;
-#if defined(__STDC__) || defined(_MSC_VER)
+
 	va_start(ap,fmt);
-#else
-	char *fmt;
-	va_start(ap);
-	fmt = va_arg(ap, char *);
-#endif
 
 #if defined(linux) || defined(_MSC_VER)
 {
@@ -126,25 +105,14 @@ extern void diary_nnl __PARAMS((char *str,int *n));
 	  return count;
   }
 #else
-#if defined(__STDC__)
-  int  sciprint2(int iv,char *fmt,...) 
-#else 
-  int sciprint2(va_alist) va_dcl
-#endif 
-  {
+int  sciprint2(int iv,char *fmt,...) 
+{
 	  int i,retval;
 	  integer lstr;
 	  va_list ap;
 	  char s_buf[MAXPRINTF];
-#if defined(__STDC__)
+
 	  va_start(ap,fmt);
-#else
-	  int iv;
-	  char *fmt;
-	  va_start(ap);
-	  iv = va_arg(ap,int);
-	  fmt = va_arg(ap, char *);
-#endif
 
 	  C2F(xscion)(&i);
 	  if (i == 0) 
@@ -191,11 +159,7 @@ extern void diary_nnl __PARAMS((char *str,int *n));
 /* sciprint geared towards long strings (>MAXPRINTF) */
 /* the long string is splitted in elements of length equal to the number of columns  */
 /* from lines()                                                                      */
-#if defined(__STDC__) || defined(_MSC_VER)
-  void sciprint_full(char *fmt,...) 
-#else 
-  void sciprint_full(va_alist) va_dcl
-#endif 
+void sciprint_full(char *fmt,...) 
 {
   integer lstr;
   va_list ap;
@@ -230,13 +194,7 @@ extern void diary_nnl __PARAMS((char *str,int *n));
      return;
   }
 
-#if defined(__STDC__) || defined(_MSC_VER)
 	va_start(ap,fmt);
-#else
-	char *fmt;
-	va_start(ap);
-	fmt = va_arg(ap, char *);
-#endif
 
 #if defined(linux) || defined(_MSC_VER)
 	count = vsnprintf (s_buf,MAXCHARSSCIPRINT_FULL-1, fmt, ap );

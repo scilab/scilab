@@ -5,7 +5,10 @@
 #ifndef __MESSAGE_SCILAB_H__ 
 #define __MESSAGE_SCILAB_H__
 
-int message_scilab();
+#include <stdio.h>
+#include <stdarg.h>
+
+int message_scilab(char *Tag, ...);
 
 #endif /*__MESSAGE_SCILAB_H__*/
 /*-----------------------------------------------------------------------------------*/

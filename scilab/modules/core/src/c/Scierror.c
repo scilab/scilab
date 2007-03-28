@@ -1,14 +1,8 @@
 /*-----------------------------------------------------------------------------------*/ 
 /* INRIA 2006 */
 /*-----------------------------------------------------------------------------------*/ 
+#include <stdarg.h>
 #include "Scierror.h"
-
-#if defined  (__STDC__) || defined  (_MSC_VER)
-	#include <stdarg.h>
-#else
-	#include <varargs.h>
-#endif
-
 #include "MALLOC.h"
 #include "sciprint.h"
 #include "msgstore.h"

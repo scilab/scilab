@@ -45,15 +45,10 @@
 #define __STDC__
 #endif
  
-#ifdef __STDC__
-#include <stdarg.h>
-#else
-#include <varargs.h>
-#endif 
 
-#ifdef _MSC_VER
-	#include <stdlib.h> /*pour exit()*/
-#endif
+#include <stdarg.h>
+#include <stdlib.h> /*pour exit()*/
+
 
 
 #include "sci_mem_alloc.h" /* MALLOC */
