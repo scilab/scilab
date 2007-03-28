@@ -769,7 +769,7 @@ AC_ARG_WITH(mpi,
 if test "$with_mpi" = yes; then
    ACX_MPI()
 fi
-AM_CONDITIONAL(MPI, test "$MPI_OK" = "1")
+AM_CONDITIONAL(MPI, test "$with_mpi" = yes)
 
 #################
 ## PVM
@@ -1106,6 +1106,7 @@ modules/time/Makefile
 modules/graphics/Makefile
 modules/gui/Makefile
 modules/pvm/Makefile
+modules/mpi/Makefile
 modules/randlib/Makefile
 modules/tclsci/Makefile
 modules/wintools/Makefile

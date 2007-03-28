@@ -14,11 +14,23 @@ AC_DEFUN([AC_PCRE], [
 if test "$with_pcre" != 'yes' -a "$with_pcre" != 'no'; then
    # Look if pcre-config (which provides cflags and ldflags) is available
    AC_MSG_CHECKING([pcre, for pcre-config])
+   PCRE_FOUND=0
    PCRE_CONFIG="$with_pcre/bin/pcre-config" 
         if test -x "$PCRE_CONFIG"; then
                 AC_MSG_RESULT([$PCRE_CONFIG])
-        else
+				PCRE_FOUND=1
+		fi
+   if test PCRE_FOUND -eq 0; then
+   PCRE_CONFIG="$with_pcre/pcre-config" 
+        if test -x "$PCRE_CONFIG"; then
+				PCRE_FOUND=1
+                AC_MSG_RESULT([$PCRE_CONFIG])
+        fi
+   fi
+		if test PCRE_FOUND -eq 0; then
                 AC_MSG_ERROR([Unable to find $PCRE_CONFIG. Please check the path you provided])
+		else
+			unset PCRE_FOUND
 		fi
 else
 		AC_CHECK_PROGS(PCRE_CONFIG,pcre-config,no)
