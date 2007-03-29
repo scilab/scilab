@@ -64,7 +64,12 @@ sciPointObj * sciGetFirstTypedSelectedSon( sciPointObj * pObj, sciEntityType obj
 /*-----------------------------------------------------------------------------------*/
 DoublyLinkedList * sciGetTypedSelectedSons( sciPointObj * pObj, sciEntityType objType )
 {
-  return sciGetTypedList( pObj, objType )->typedSons ;
+  TypedSonsList * curList = sciGetTypedList( pObj, objType ) ;
+  if ( curList == NULL )
+  {
+    return NULL ;
+  }
+  return curList->typedSons ;
 }
 /*-----------------------------------------------------------------------------------*/
 int sciRemoveSelectedSon( sciPointObj * pParent, sciPointObj * pObj )
@@ -98,7 +103,7 @@ void sciUnselectTypedSons( sciPointObj * pParent, sciEntityType sonsType )
 BOOL sciGetIsSelected( sciPointObj * pObj )
 {
   DoublyLinkedList * curList = sciGetTypedSelectedSons( sciGetParent(pObj), sciGetEntityType(pObj) ) ;
-  return ( List_find( curList, pObj ) != NULL ) ;
+  return ( curList != NULL && List_find( curList, pObj ) != NULL ) ;
 }
 /*-----------------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------------*/
@@ -114,7 +119,9 @@ static BOOL hasSameType( void * typedSonsList1, void * typedSonsList2 )
 TypedSonsList * sciGetTypedList( sciPointObj * pObj, sciEntityType objType )
 {
   TypedSonsList refType = { objType, NULL } ; /* just for comparison with type */
-  return (TypedSonsList *) List_data(List_find_full( sciGetRelationship(pObj)->pSelectedSon, &refType, hasSameType ) ) ;
+  DoublyLinkedList * foundList = List_find_full( sciGetRelationship(pObj)->pSelectedSon, &refType, hasSameType ) ;
+  if ( foundList == NULL ) { return NULL ; }
+  return (TypedSonsList *) List_data( foundList ) ;
 }
 /*-----------------------------------------------------------------------------------*/
 TypedSonsList * newTypedSonList( sciEntityType type, DoublyLinkedList * typedSons )

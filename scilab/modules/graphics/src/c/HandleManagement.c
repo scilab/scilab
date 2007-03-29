@@ -364,7 +364,8 @@ sciAddThisToItsParent (sciPointObj * pthis, sciPointObj * pparent)
     sciGetRelationship(pparent)->plastsons = OneSon ;
   }
   OneSon->pointobj = pthis ;
-  sciGetRelationship(pparent)->psons = OneSon;
+  sciGetRelationship(pparent)->psons = OneSon ;
+
   return TRUE;
 }
 
