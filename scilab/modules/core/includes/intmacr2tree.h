@@ -243,22 +243,6 @@ static int CreateFuncallTList(char *fromwhat,int *data,int *index);
 static int CreateEqualTList(char *fromwhat,int *data,int *index);
 
 /****************************************************************
- Function name: CreateRecursiveIndexList
- Decription: 
-  Create on Scilab stack a list for recursive insertion or extraction
-  First list item is a matrix which contains number of row/column indexes
- Input:
-  - data: pointer to compiled macro code
-  - index: index of current integer in data
- Output:
-  - No output
- Returned value:
-  - 0 if execution succeeds
-  - not null if execution fails
-****************************************************************/
-
-static int CreateCommentTList(int *data,int *index);
-/****************************************************************
  Function name:  CreateCommentTList
  Decription: 
   Create on Scilab stack a "comment" tlist:
@@ -271,9 +255,8 @@ static int CreateCommentTList(int *data,int *index);
  Returned value:
   - 0 if execution succeeds
   - not null if execution fails
-
-****************************************************************/
-static int CreateRecursiveIndexList(int *data,int *index);
+*/
+static int CreateCommentTList(int *data,int *index);
 
 /****************************************************************
 
