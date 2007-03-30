@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>help  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>$LastChangedDate$</DATE>
+  <SHORT_DESCRIPTION name="help"> commande d&apos;aide en ligne  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>help(key)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>key</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Une chaîne de caractères. Donne le nom de la page d'aide à visualiser.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>help</VERB> sans argument, visualise la page hypertexte contenat la
+      liste des chapitres d'aide.</P>
+
+    <P><VERB>help(key)</VERB> visualise la page d'aide associé avec le nom
+      donné par <VERB>key</VERB>. S'il n'y a pas de page d'aide, <VERB>help(key)</VERB>
+      appele automatiquement <VERB>apropos(key)</VERB>.</P>
+
+    <P> Scilab comprend son propre browser html écrit en  TCL/TK. Il est
+      possible de choisir un autre browser. La variable globale
+      <VERB>%browsehelp</VERB> contient une chaîne de caractères définissant
+      quel browser doit être utilisé. Sa valeur initiale est fixée par le
+      fichier startup <VERB>scilab.start</VERB> est peut être changée. </P>
+
+
+      <P>Si cette variable est affectée à la matrice vide ( <VERB>global
+	%browsehelp; %browsehelp=[]</VERB>) alors une fenêtre de dialogue
+      apparait au lancement du help et permet de  choisir le browser
+      désiré. Attention, les differents browsers on des synatxes d'appel
+      différentes. Aussi si vous souhaitez ajouter un nouveau browser à la
+      liste vous devrez modifier la fonction Scilab <VERB>browsehelp</VERB>
+      dont le code source est dans  <VERB>SCI/macros/util/browsehelp.sci</VERB>.</P>
+
+
+    <P> Voir  <LINK>man</LINK> pour apprendre à écrire de nouvelles pages d'aide.</P> 
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>apropos</LINK> </SEE_ALSO_ITEM>   
+     <SEE_ALSO_ITEM> <LINK>man</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,317 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Compilation</TITLE>
+<META NAME="description" CONTENT="Compilation">
+<META NAME="keywords" CONTENT="main">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="main.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html1045"
+  HREF="scicos_cpr.htm#SECTION00314100000000000000">scicos_cpr (<EM>cpr</EM>)</A>
+<LI><A NAME="tex2html1046"
+  HREF="scicos_cpr.htm#SECTION00314200000000000000">scicos_state (<EM>xcs</EM>)</A>
+<LI><A NAME="tex2html1047"
+  HREF="scicos_cpr.htm#SECTION00314300000000000000">scicos_sim (<EM>scs</EM>)</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H2><A NAME="SECTION00314000000000000000">
+Compilation</A>
+</H2>
+
+<H3><font color="blue"><A NAME="SECTION00314100000000000000">
+scicos_cpr (<EM>cpr</EM>)</A></font></H3>Scilab Data structure of compilation result
+    with fieds:
+<UL>
+<LI><B><font color="maroon">state:</font></B> Scilab object of type scicos_state 
+</LI>
+<LI><B><font color="maroon">sim:</font></B> Scilab object of type scicos_sim 
+</LI>
+<LI><B><font color="maroon">cor:</font></B> It is a list with same recursive structure as scs_m each leaf contains the index of associated block in sim data structure. 
+
+</LI>
+<LI><B><font color="maroon">corinv:</font></B> corinv(i) is the path of i th block defined in sim data structure in the scs_m data structure. 
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00314200000000000000">
+scicos_state </A></font></H3> System state data structure with fields
+<UL>
+<LI><B><font color="maroon">x:</font></B> continuous state vector. 
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>[]</code>
+</FONT>
+</LI>
+<LI><B><font color="maroon">z:</font></B> discrete state vector. 
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>[]</code>
+</FONT>
+</LI>
+<LI><B><font color="maroon">iz:</font></B> unused
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>[]</code>
+</FONT>
+</LI>
+<LI><B><font color="maroon">tevts:</font></B> vector of event dates. 
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>[]</code>
+</FONT>
+</LI>
+<LI><B><font color="maroon">evtspt:</font></B>vector of event pointers . 
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>[]</code>
+</FONT>
+</LI>
+<LI><B><font color="maroon">pointi:</font></B>pointer to next event. 
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>1</code>
+</FONT>
+</LI>
+<LI><B><font color="maroon">outtb:</font></B>vector of inputs/outputs values . 
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>[]</code>
+</FONT>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00314300000000000000">
+scicos_sim </A>
+</font></H3>
+
+<UL>
+<LI><B><font color="maroon">funs:</font></B>l ist of character strings containing the names of each block simulation function (a linked C or Fortran procedure or a Scilab function).
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>[]</code>
+</FONT>
+</LI>
+<LI><B><font color="maroon">xptr:</font></B> (nblk+1) x 1 vector of integers, cpr.state.x(cpr.sim.xptr(i):cpr.sim.xptr(i+1)-1) is the continuous state vector of the ith block (see scicos_cpr and scicos_state). 
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>[]</code>
+</FONT>
+</LI>
+<LI><B><font color="maroon">zptr:</font></B> (nblk+1) x 1 vector of integers, cpr.state.z(cpr.sim.zptr(i):cpr.sim.zptr(i+1)-1) is the discrete state vector of the ith block.
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>[]</code>
+</FONT>
+</LI>
+<LI><B><font color="maroon">zcptr:</font></B> . 
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>[]</code>
+</FONT>
+</LI>
+<LI><B><font color="maroon">inpptr:</font></B>(nblk+1) x 1 vector of integers, (cpr.sim.inpptr(i+1)-cpr.sim.inpptr(i)) gives the number of input ports. inpptr(i)th points to the beginning of ith block inputs within the indirection table inplnk. 
+
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>[]</code>
+</FONT>
+</LI>
+<LI><B><font color="maroon">outptr:</font></B>(nblk+1) x 1 vector of integers, (cpr.sim.outptr(i+1)-cpr.sim.outptr(i)) gives the number of output ports. outptr(i)th points to the beginning of ith block outputs within the indirection table outlnk. 
+</LI>
+<LI><B><font color="maroon">inplnk:</font></B>nblink x 1 vector of integers, (cpr.sim.inplnk(cpr.sim.inpptr(i)-1+j)) is the index of the link connected to the jth input port of the ith block. where j goes from 1 to (cpr.sim.inpptr(i+1)-cpr.sim.inpptr(i)). 
+</LI>
+<LI><B><font color="maroon">outlnk:</font></B> nblink x 1 vector of integers, (cpr.sim.outlnk(cpr.sim.outptr(i)-1+j)) is the index of the link connected to the jth output port of the ith block. where j goes from 1 to (cpr.sim.outptr(i+1)-cpr.sim.outptr(i)). 
+/LI>
+<LI><B><font color="maroon">lnkptr:</font></B>  (nblink+1) x 1 vector of integers, kth entry points to the beginning of region within outtb dedicated to link indexed k. 
+/LI>
+<LI><B><font color="maroon">rpar:</font></B>vector of blocks' floating point parameters . 
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>[]</code>
+</FONT>
+</LI>
+<LI><B><font color="maroon">rpptr:</font></B> (nblk+1) x 1 vector of integers, cpr.sim.rpar(cpr.sim.rpptr(i):cpr.sim.rpptr(i+1)-1) is the vector of floating point parameters of the ith block. 
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>[]</code>
+</FONT>
+</LI>
+<LI><B><font color="maroon">ipar:</font></B>vector of blocks' integer parameters  . 
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>[]</code>
+</FONT>
+</LI>
+<LI><B><font color="maroon">ipptr:</font></B> (nblk+1) x 1 vector of integers, cpr.sim.ipar(cpr.sim.ipptr(i):cpr.sim.ipptr(i+1)-1) is the vector of integer parameters of the ith block. 
+
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>[]</code>
+</FONT>
+</LI>
+<LI><B><font color="maroon">clkptr:</font></B> (nblk+1) x 1 vector of integers, (cpr.sim.clkptr(i):cpr.sim.clkptr(i+1)-1) gives the number of output event ports. 
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>[]</code>
+</FONT>
+</LI>
+<LI><B><font color="maroon">ordptr:</font></B>1 vector of integers, (cpr.sim.ordptr(i):cpr.sim.ordptr(i+1)-1) points to the region within ordclk indicates the number of blocks activated by the output event ports numbered i. 
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>[]</code>
+</FONT>
+</LI>
+<LI><B><font color="maroon">execlk:</font></B> unused. 
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>[]</code>
+</FONT>
+</LI>
+<LI><B><font color="maroon">ordclk:</font></B> two-column matrix of integers, the first indicates the number of activated blocks and the second indicates the number of the corresponding input event port. 
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>[]</code>
+</FONT>
+</LI>
+<LI><B><font color="maroon">cord:</font></B> two-column matrix of integers, the first indicates the number of permanently (continuous time) activated blocks and the second indicates the number of the corresponding input event port. 
+
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>[]</code>
+</FONT>
+</LI>
+<LI><B><font color="maroon">oord:</font></B> two-column matrix of integers, subset of cord whose outputs affect computation of continuous state derivatives. 
+
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>[]</code>
+</FONT>
+</LI>
+<LI><B><font color="maroon">zord:</font></B>two-column matrix of integers, subset of cord whose outputs affect computation of zero-crossing surfaces.
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>[]</code>
+</FONT>
+</LI>
+<LI><B><font color="maroon">critev:</font></B>1 vector of integers . 
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>[]</code>
+</FONT>
+</LI>
+<LI><B><font color="maroon">nb:</font></B>unused . 
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>[]</code>
+</FONT>
+</LI>
+<LI><B><font color="maroon">ztyp:</font></B>(nblk+1) x 1 vector of integers, (cpr.sim.ztyp(i) is coded 1 if the block numbered i is from Zcross type (0 if else). 
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>[]</code>
+</FONT>
+</LI>
+<LI><B><font color="maroon">nblk:</font></B>number of blocks (unused)  . 
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>[]</code>
+</FONT>
+</LI>
+<LI><B><font color="maroon">ndcblk:</font></B>unused  . 
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>[]</code>
+</FONT>
+</LI>
+<LI><B><font color="maroon">subscr:</font></B> . 
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>[]</code>
+</FONT>
+</LI>
+<LI><B><font color="maroon">funtyp:</font></B> (nblk+1) x 1 vector of integers, indicates the routine type of blocks . 
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>[]</code>
+</FONT>
+</LI>
+<LI><B><font color="maroon">iord:</font></B>two-column matrix of integers, the first contains all the numbers of blocks to be updated in the initialization of the simulation among which the continuous blocks. The second column indicates the number of the corresponding input event port. 
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>[]</code>
+</FONT>
+</LI>
+<LI><B><font color="maroon">labels:</font></B>(nblk+1) x 1 vector of character strings, contains the label (if any) associated to each block.
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>[]</code>
+</FONT>
+</LI>
+<LI><B><font color="maroon">modptr:</font></B> . 
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>[]</code>
+</FONT>
+</LI>
+</UL>
+<HR>
+
+<ADDRESS>
+Ramine Nikoukhah
+2004-06-22
+</ADDRESS>
+</BODY>
+</HTML>

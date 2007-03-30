@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<MAN>
+	<LANGUAGE>fr</LANGUAGE>
+	<TITLE>now</TITLE>
+	<TYPE>Fonction Scilab</TYPE>
+	<DATE>$LastChangedDate$</DATE>
+	
+	<SHORT_DESCRIPTION name="now">Retourne la date courrante sous la forme d'un vecteur de date</SHORT_DESCRIPTION>
+	
+	<CALLING_SEQUENCE>
+		<CALLING_SEQUENCE_ITEM>t = now()</CALLING_SEQUENCE_ITEM>
+	</CALLING_SEQUENCE>
+	
+	<DESCRIPTION>
+		<P>t = now() la date et l'heure courante en un nombre lui correspondant (Voir <LINK>datenum</LINK>)</P>
+	</DESCRIPTION>
+	
+	<EXAMPLE><![CDATA[
+realtimeinit(1);
+realtime(0);
+t1 = now()
+datevec(t1)
+realtime(10);
+t1 = now()
+datevec(t1)
+	]]></EXAMPLE>
+	
+	<SEE_ALSO>
+		<SEE_ALSO_ITEM>
+			<LINK>now</LINK>
+		</SEE_ALSO_ITEM>
+		
+		<SEE_ALSO_ITEM>
+			<LINK>datenum</LINK>
+		</SEE_ALSO_ITEM>
+		
+		<SEE_ALSO_ITEM>
+			<LINK>datevec</LINK>
+		</SEE_ALSO_ITEM>
+	</SEE_ALSO>
+	
+	<AUTHORS>
+		<AUTHORS_ITEM>P.M</AUTHORS_ITEM>
+	</AUTHORS>
+</MAN>
