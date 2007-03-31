@@ -6,6 +6,10 @@
 #include "gw_wintools.h"
 #include "MALLOC.h" 
 #include "Scierror.h"
+#ifndef MAX_PATH
+#define MAX_PATH 512
+#endif
+
 /*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 #include "FindFileAssociation.h"
