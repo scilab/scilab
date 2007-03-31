@@ -70,7 +70,7 @@ libsciarnoldi_la_includedir=$(sciincludedir)/arnoldi
 libsciarnoldi_la_include_HEADERS = 
 
 
-libsciarnoldi_la_CFLAGS= -I$(top_srcdir)/libs/MALLOC/includes/ 
+libsciarnoldi_la_CFLAGS= -I$(top_srcdir)/libs/MALLOC/includes/ -Iincludes/
 libsciarnoldi_la_FFLAGS= -Isrc/arpack/
 
 pkglib_LTLIBRARIES = libsciarnoldi.la
