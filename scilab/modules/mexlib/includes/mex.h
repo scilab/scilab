@@ -18,7 +18,11 @@ extern "C" {
 
 typedef int Matrix;
 typedef unsigned long int vraiptrst;
+#ifndef __DEF_MXARRAY__
+#define __DEF_MXARRAY__
 typedef int mxArray;
+typedef int Gatefunc __PARAMS((int nlhs,mxArray *plhs[],int nrhs,mxArray *prhs[]));
+#endif
 
 typedef int (*GatefuncH) __PARAMS((int nlhs,mxArray *plhs[],int nrhs,
                                  mxArray *prhs[]));
@@ -26,7 +30,6 @@ typedef int (*GatefuncH) __PARAMS((int nlhs,mxArray *plhs[],int nrhs,
 typedef int (*FGatefuncH) __PARAMS((int *nlhs,mxArray *plhs[],int *nrhs,
                                  mxArray *prhs[]));
 
-typedef int Gatefunc __PARAMS((int nlhs,mxArray *plhs[],int nrhs,mxArray *prhs[]));
 typedef int (*GatefuncS) __PARAMS((char *fname, int l));
 typedef int (*Myinterfun) __PARAMS((char *, GatefuncH F));
 
