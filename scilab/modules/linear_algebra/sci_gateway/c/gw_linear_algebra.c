@@ -2,10 +2,20 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
+#include <string.h>
 #ifdef _MSC_VER
+#include <Windows.h>
 #include "ExceptionMessage.h"
 #endif
+#include "stack-c.h"
 #include "gw_linear_algebra.h"
+/*-----------------------------------------------------------------------------------*/ 
+typedef int (*Linear_Algebra_Interf) __PARAMS((char *fname,unsigned long l));
+typedef struct table_struct 
+{
+	Linear_Algebra_Interf f;    /** function **/
+	char *name;      /** its name **/
+} LinearAlgebraTable;
 /*-----------------------------------------------------------------------------------*/ 
 static int C2F(intvoid) _PARAMS((char *fname, unsigned long fname_len))
 {

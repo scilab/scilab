@@ -1,12 +1,21 @@
-#include "gw_sparse.h"
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
+#include <string.h>
 #ifdef _MSC_VER
 #include <Windows.h>
 #include "ExceptionMessage.h"
 #endif
+#include "gw_sparse.h"
+#include "stack-c.h"
+/*-----------------------------------------------------------------------------------*/
+typedef int (*Sparse_Interf) __PARAMS((char *fname,unsigned long l));
+typedef struct table_struct 
+{
+	Sparse_Interf f;    /** function **/
+	char *name;      /** its name **/
+} SparseTable;
 /*-----------------------------------------------------------------------------------*/
 static SparseTable Tab[]=
 {

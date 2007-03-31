@@ -13,7 +13,7 @@
 #include "DestroyObjects.h"
 #include "GetProperty.h"
 #include "sciCall.h"
-
+#include "sciprint.h"
 /*------------------------------------------------------------------------*/
 int sci_param3d( char * fname, unsigned long fname_len )
 {

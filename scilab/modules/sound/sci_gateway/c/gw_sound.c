@@ -1,15 +1,20 @@
-#include "gw_sound.h"
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
+#include <string.h>
 #ifdef _MSC_VER
 #include <Windows.h>
 #include "ExceptionMessage.h"
 #endif
-#include "sciprint.h"
 #include "gw_sound.h"
-
+#include "stack-c.h"
+/*-----------------------------------------------------------------------------------*/ 
+typedef int (*sound_interf) __PARAMS((char *fname,unsigned long fname_len));
+typedef struct table_struct {
+	sound_interf f;    /** function **/
+	char *name;      /** its name **/
+} intSoundTable;
 /*-----------------------------------------------------------------------------------*/ 
 static intSoundTable Tab[]={
 	{ sci_savewave, "savewave"},

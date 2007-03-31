@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include "gw_io.h"
 #include "sci_diary.h"
+#include "stack-c.h"
 #include "../../fileio/src/c/files.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(intdiary)();

@@ -1,31 +1,24 @@
-#include "gw_data_structures2.h"
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
+#include <string.h>
 #ifdef _MSC_VER
 #include <Windows.h>
 #include "ExceptionMessage.h"
 #endif
+#include "gw_data_structures2.h"
+#include "stack-c.h"
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(error)();
+/*-----------------------------------------------------------------------------------*/
+typedef int (*Data_structures2_Interf) __PARAMS((char *fname,unsigned long fname_len));
+typedef struct table_struct 
+{
+	Data_structures2_Interf f;    /** function **/
+	char *name;      /** its name **/
+} DataStructures2Table;
 /*-----------------------------------------------------------------------------------*/	
-static int C2F(sci_getfield) _PARAMS((char *fname,unsigned long fname_len))
-{
-	extern int C2F(intgetfield)();
-	
-	C2F(intgetfield)();
-	return 0;
-}
-/*-----------------------------------------------------------------------------------*/
-static int C2F(sci_setfield) _PARAMS((char *fname,unsigned long fname_len))
-{
-	extern int C2F(intsetfield)();
-	
-	C2F(intsetfield)();
-	return 0;
-}
-/*-----------------------------------------------------------------------------------*/
 static DataStructures2Table Tab[]=
 {
 	{C2F(sci_getfield),"getfield"},

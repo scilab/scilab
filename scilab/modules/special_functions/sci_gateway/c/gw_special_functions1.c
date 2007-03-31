@@ -1,11 +1,21 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA */
 /*-----------------------------------------------------------------------------------*/
-#include "gw_special_functions1.h"
+#include <string.h>
 /*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
+	#include <windows.h>
 	#include "ExceptionMessage.h"
 #endif
+#include "gw_special_functions1.h"
+#include "stack-c.h"
+/*-----------------------------------------------------------------------------------*/
+typedef int (*Special_Functions_Interf) __PARAMS((char *fname,unsigned long l));
+typedef struct table_struct 
+{
+	Special_Functions_Interf f;    /** function **/
+	char *name;      /** its name **/
+} SpecialFunctionsTable;
 /*-----------------------------------------------------------------------------------*/
 static SpecialFunctionsTable Tab[]={ 
   {C2F(sci_oldbesseli),"oldbesseli"},

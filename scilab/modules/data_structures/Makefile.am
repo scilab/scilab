@@ -25,6 +25,8 @@ GATEWAY_C_SOURCES = sci_gateway/c/sci_lsslist.c \
 sci_gateway/c/sci_glist.c \
 sci_gateway/c/sci_mlist.c \
 sci_gateway/c/sci_definedfields.c \
+sci_gateway/c/sci_getfield.c \
+sci_gateway/c/sci_setfield.c \
 sci_gateway/c/sci_lstcat.c \
 sci_gateway/c/sci_list.c \
 sci_gateway/c/gw_data_structures1.c \

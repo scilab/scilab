@@ -2,11 +2,20 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "gw_integer.h"
+#include <string.h>
 #ifdef _MSC_VER
 #include <Windows.h>
 #include "ExceptionMessage.h"
 #endif
+#include "gw_integer.h"
+#include "stack-c.h"
+/*-----------------------------------------------------------------------------------*/
+typedef int (*Integer_Interf) __PARAMS((char *fname,unsigned long fname_len));
+typedef struct table_struct 
+{
+	Integer_Interf f;    /** function **/
+	char *name;      /** its name **/
+} IntegerTable;
 /*-----------------------------------------------------------------------------------*/
 static int C2F(scivoid) _PARAMS((char *fname,unsigned long fname_len))
 {

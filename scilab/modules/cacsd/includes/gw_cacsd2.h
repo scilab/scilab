@@ -4,26 +4,17 @@
 /*-----------------------------------------------------------------------------------*/ 
 #ifndef __GW_CACSD2__
 #define __GW_CACSD2__
-
-#ifdef _MSC_VER
-  #include <windows.h>
-  #include <stdio.h>
-#endif
-
-#include <string.h>
-
+/*-----------------------------------------------------------------------------------*/ 
 #include "machine.h"
-#include "stack-c.h"
-#include "sciprint.h"
-
-typedef int (*Cacsd2_Interf) __PARAMS((char *fname,unsigned long l));
-
-typedef struct table_struct 
-{
-  Cacsd2_Interf f;    /** function **/
-  char *name;      /** its name **/
-} Cacsd2Table;
-
+/*-----------------------------------------------------------------------------------*/ 
+int C2F(gw_cacsd2)(void);
+/*-----------------------------------------------------------------------------------*/ 
+int C2F(sci_ppol) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_tzer) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_freq) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_ltitr) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_rtitr) _PARAMS((char *fname,unsigned long fname_len));
+/*-----------------------------------------------------------------------------------*/
 #endif /*  __GW_GW_CACSD2__ */
 /*-----------------------------------------------------------------------------------*/
 

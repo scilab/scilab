@@ -1,19 +1,23 @@
-#include "gw_cacsd0.h"
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
+#include <string.h>
 #ifdef _MSC_VER
 #include <Windows.h>
 #include "ExceptionMessage.h"
 #endif
 /*-----------------------------------------------------------------------------------*/
-extern int C2F(sci_gschur) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_gspec) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_ereduc) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_fstair) _PARAMS((char *fname,unsigned long fname_len));
+#include "gw_cacsd0.h"
+#include "stack-c.h"
+#include "sciprint.h"
 /*-----------------------------------------------------------------------------------*/
-int C2F(gw_cacsd0)(void);
+typedef int (*Cacsd0_Interf) __PARAMS((char *fname,unsigned long l));
+typedef struct table_struct 
+{
+	Cacsd0_Interf f;    /** function **/
+	char *name;      /** its name **/
+} Cacsd0Table;
 /*-----------------------------------------------------------------------------------*/
 static Cacsd0Table Tab[]=
 {

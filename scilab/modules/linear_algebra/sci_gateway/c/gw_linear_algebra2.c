@@ -1,15 +1,22 @@
-#include "gw_linear_algebra2.h"
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
+#include <string.h>
 #ifdef _MSC_VER
 #include <Windows.h>
 #include "ExceptionMessage.h"
 #endif
 #include "gw_linear_algebra.h"
+#include "gw_linear_algebra2.h"
+#include "stack-c.h"
 /*-----------------------------------------------------------------------------------*/ 
-int C2F(gw_linear_algebra2)(void);
+typedef int (*Linear_Algebra2_Interf) __PARAMS((char *fname,unsigned long l));
+typedef struct table_struct2
+{
+	Linear_Algebra2_Interf f;    /** function **/
+	char *name;      /** its name **/
+} LinearAlgebra2Table;
 /*-----------------------------------------------------------------------------------*/ 
 static LinearAlgebra2Table Tab[]={
 	{C2F(intqr),"qr"},

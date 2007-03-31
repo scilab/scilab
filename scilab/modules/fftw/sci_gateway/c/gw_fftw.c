@@ -1,5 +1,3 @@
-#include "gw_fftw.h"
-#include "callfftw.h"
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2006 */
 /* Allan CORNET */
@@ -8,10 +6,19 @@
 #include <Windows.h>
 #include "ExceptionMessage.h"
 #endif
+#include "callfftw.h"
 #include "Scierror.h"
 #include "sciprint.h"
 #include "MALLOC.h"
 #include "fftwlibname.h"
+#include "gw_fftw.h"
+#include "stack-c.h"
+/*-----------------------------------------------------------------------------------*/ 
+typedef int (*fftw_interf) __PARAMS((char *fname,unsigned long fname_len));
+typedef struct table_struct {
+	fftw_interf f;    /** function **/
+	char *name;      /** its name **/
+} intFFTWTable;
 /*-----------------------------------------------------------------------------------*/ 
 static intFFTWTable Tab[]={
 { sci_loadfftwlibrary,"loadfftwlibrary"},

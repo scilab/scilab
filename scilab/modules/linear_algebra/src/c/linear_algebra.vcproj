@@ -283,6 +283,14 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
+			<File
+				RelativePath="..\..\includes\gw_linear_algebra.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\gw_linear_algebra2.h"
+				>
+			</File>
 		</Filter>
 		<File
 			RelativePath="..\..\sci_gateway\linear_algebra"

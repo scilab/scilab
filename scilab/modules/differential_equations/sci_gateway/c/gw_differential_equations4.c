@@ -2,12 +2,21 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "gw_differential_equations4.h"
+#include <string.h>
 #ifdef _MSC_VER
-#ifndef _DEBUG
+#include <windows.h>
+#include <stdio.h>
 #include "ExceptionMessage.h"
 #endif
-#endif
+#include "gw_differential_equations4.h"
+#include "stack-c.h"
+/*-----------------------------------------------------------------------------------*/
+typedef int (*Differential_Equations4_Interf) __PARAMS((char *fname,unsigned long l));
+typedef struct table_struct 
+{
+	Differential_Equations4_Interf f;    /** function **/
+	char *name;      /** its name **/
+} DifferentialEquations4Table;
 /*-----------------------------------------------------------------------------------*/
 static DifferentialEquations4Table Tab[]=
 {
@@ -15,7 +24,6 @@ static DifferentialEquations4Table Tab[]=
 	{C2F(sci_int2d),"int2d"},
 	{C2F(sci_int3d),"int3d"}
 };
-
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_differential_equations4)(void)
 {  

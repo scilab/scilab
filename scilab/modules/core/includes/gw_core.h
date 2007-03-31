@@ -4,27 +4,11 @@
 /*-----------------------------------------------------------------------------------*/ 
 #ifndef __GW_CORE__
 #define __GW_CORE__
-
-#ifdef _MSC_VER
-  #include <windows.h>
-  #include <stdio.h>
-#endif
-
-#include <string.h>
+/*-----------------------------------------------------------------------------------*/ 
 #include "machine.h"
-#include "stack-c.h"
-#include "sciprint.h"
-
+/*-----------------------------------------------------------------------------------*/ 
 int C2F(gw_core)(void);
-
-typedef int (*Core_Interf) __PARAMS((char *fname,unsigned long l));
-
-typedef struct table_struct 
-{
-  Core_Interf f;    /** function **/
-  char *name;      /** its name **/
-} CoreTable;
-
+/*-----------------------------------------------------------------------------------*/ 
 int C2F(sci_debug) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_lines) _PARAMS((char *fname,unsigned long fname_len));
@@ -91,8 +75,7 @@ int C2F(sci_warning) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_getmodules) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_with_module) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_getdynlibext) _PARAMS((char *fname,unsigned long fname_len));
-
-
+/*-----------------------------------------------------------------------------------*/ 
 #endif /*  __GW_CORE__ */
 /*-----------------------------------------------------------------------------------*/
 

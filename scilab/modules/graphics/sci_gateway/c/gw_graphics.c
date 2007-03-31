@@ -2,14 +2,22 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#include "gw_graphics.h"
-#include "graphicModuleLoad.h"
 #include <string.h>
 #ifdef _MSC_VER
+#include <Windows.h>
 #include "ExceptionMessage.h"
 #endif
+#include "gw_graphics.h"
+#include "stack-c.h"
+#include "graphicModuleLoad.h"
 /*-----------------------------------------------------------------------------------*/ 
 extern int GetWITH_GUI(void);
+/*-----------------------------------------------------------------------------------*/ 
+typedef int (*des_interf) __PARAMS((char *fname,unsigned long l));
+typedef struct table_struct {
+	des_interf f;    /** function **/
+	char *name;      /** its name **/
+} MatdesTable;
 /*-----------------------------------------------------------------------------------*/ 
 static MatdesTable Tab[]={
 	{sci_champ,"champ"},	

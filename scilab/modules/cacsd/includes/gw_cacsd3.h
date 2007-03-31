@@ -4,26 +4,15 @@
 /*-----------------------------------------------------------------------------------*/ 
 #ifndef __GW_CACSD3__
 #define __GW_CACSD3__
-
-#ifdef _MSC_VER
-  #include <windows.h>
-  #include <stdio.h>
-#endif
-
-#include <string.h>
-
+/*-----------------------------------------------------------------------------------*/
 #include "machine.h"
-#include "stack-c.h"
-#include "sciprint.h"
-
-typedef int (*Cacsd3_Interf) __PARAMS((char *fname,unsigned long l));
-
-typedef struct table_struct 
-{
-  Cacsd3_Interf f;    /** function **/
-  char *name;      /** its name **/
-} Cacsd3Table;
-
+/*-----------------------------------------------------------------------------------*/
+int C2F(gw_cacsd3)(void);
+/*-----------------------------------------------------------------------------------*/
+extern int C2F(sci_arl2) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(sci_residu) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(sci_ldiv) _PARAMS((char *fname,unsigned long fname_len));
+/*-----------------------------------------------------------------------------------*/
 #endif /*  __GW_CACSD3__ */
 /*-----------------------------------------------------------------------------------*/
 

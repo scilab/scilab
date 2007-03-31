@@ -7,7 +7,7 @@
 #include <ctype.h>
 #include <signal.h>
 
-#include "machine.h"
+
 #include "sciprint.h"
 #include "csignal.h"
 
@@ -17,6 +17,8 @@
 #include "error_scilab.h"
 #include "message_scilab.h"
 #include "callinterf.h"
+
+#include "machine.h"
 
 static  jmp_buf jmp_env; 
 
@@ -111,6 +113,8 @@ int C2F(callinterf) (int *k)
   return 0;
 }
 
+
+
 static void sci_sigint_addinter(int n)
 {
   int c;
@@ -119,6 +123,8 @@ static void sci_sigint_addinter(int n)
   c = getchar();
   if ( c == 'y' ) errjump(n);
 }
+
+
 
 /*-------------------------------------
  * long jump to stop interface computation 

@@ -1,12 +1,21 @@
-#include "gw_gui.h"
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
+#include <string.h>
 #ifdef _MSC_VER
 #include <Windows.h>
 #include "ExceptionMessage.h"
 #endif
+#include "gw_gui.h"
+#include "stack-c.h"
+/*-----------------------------------------------------------------------------------*/
+typedef int (*Gui_Interf) __PARAMS((char *fname,unsigned long l));
+typedef struct table_struct 
+{
+	Gui_Interf f;    /** function **/
+	char *name;      /** its name **/
+} GuiTable;
 /*-----------------------------------------------------------------------------------*/
 static GuiTable Tab[]=
 {

@@ -1,8 +1,8 @@
-#include "gw_tclsci.h"
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
+#include <string.h>
 #ifdef _MSC_VER
 	#include <Windows.h>
 	#include "ExceptionMessage.h"
@@ -10,7 +10,15 @@
 #include "message_scilab.h"
 #include "error_scilab.h"
 #include "gw_tclsci.h"
+#include "stack-c.h"
 #include "inisci-c.h"
+/*-----------------------------------------------------------------------------------*/
+typedef int (*TCLSci_Interf) __PARAMS((char *fname,unsigned long l));
+typedef struct table_struct 
+{
+	TCLSci_Interf f;    /** function **/
+	char *name;      /** its name **/
+} TCLSCITable;
 /*-----------------------------------------------------------------------------------*/
 extern int TK_Started;
 /*-----------------------------------------------------------------------------------*/

@@ -4,27 +4,9 @@
 /*-----------------------------------------------------------------------------------*/ 
 #ifndef __GW_SPARSE__
 #define __GW_SPARSE__
-
-#ifdef _MSC_VER
-  #include <windows.h>
-  #include <stdio.h>
-#endif
-
-#include <string.h>
-
 #include "machine.h"
-#include "stack-c.h"
-#include "sciprint.h"
-
+/*-----------------------------------------------------------------------------------*/
 int C2F(gw_sparse)(void);
-
-typedef int (*Sparse_Interf) __PARAMS((char *fname,unsigned long l));
-
-typedef struct table_struct 
-{
-  Sparse_Interf f;    /** function **/
-  char *name;      /** its name **/
-} SparseTable;
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_sparsefunc) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_spget) _PARAMS((char *fname,unsigned long fname_len));
@@ -52,7 +34,7 @@ int C2F(sci_bfinit) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_msparse) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_mspget) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_mfull) _PARAMS((char *fname,unsigned long fname_len));
-
+/*-----------------------------------------------------------------------------------*/
 #endif /*  __GW_SPARSE__ */
 /*-----------------------------------------------------------------------------------*/
 

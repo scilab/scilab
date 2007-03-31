@@ -270,6 +270,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\gw_slicot.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_contr.h"
 				>
 			</File>

@@ -19,7 +19,7 @@
 #include "sciCall.h"
 #include "DefaultCommandArg.h"
 #include "sci_plot2d.h"
-
+#include "sciprint.h"
 /*------------------------------------------------------------------------*/
 int sci_plot2d( char * fname, unsigned long fname_len )
 {

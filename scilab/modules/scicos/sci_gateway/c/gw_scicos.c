@@ -1,28 +1,22 @@
-#include "gw_scicos.h"
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
+#include <string.h>
 #ifdef _MSC_VER
 #include <Windows.h>
 #include "ExceptionMessage.h"
 #endif
-/*-----------------------------------------------------------------------------------*/
-/* interface for the previous function Table */ 
+#include "gw_scicos.h"
+#include "stack-c.h"
 /*-----------------------------------------------------------------------------------*/ 
-extern int C2F(sci_var2vec) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_vec2var) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_curblock) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_getblocklabel) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_scicos_debug) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_scicos_debug_count) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_sctree) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_sci_tree2) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_sci_tree3) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_sci_tree4) _PARAMS((char *fname,unsigned long fname_len));
+typedef int (*scicos_interf) __PARAMS((char *fname,unsigned long l));
+typedef struct table_struct {
+	scicos_interf f;    /** function **/
+	char *name;      /** its name **/
+} intscicosTable;
 /*-----------------------------------------------------------------------------------*/ 
 static intscicosTable Tab[]={
-	
 {C2F(sci_var2vec),"var2vec"},
 {C2F(sci_vec2var),"vec2var"},
 {C2F(sci_curblock),"curblock"},

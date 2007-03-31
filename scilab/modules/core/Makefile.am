@@ -24,7 +24,6 @@ src/c/IsAScalar.c \
 src/c/texmacs.c \
 src/c/userf2.c \
 src/c/msgstxt.c \
-src/c/matusr.c \
 src/c/sciquit.c \
 src/c/readline.c \
 src/c/stack1.c \
@@ -51,7 +50,6 @@ src/c/banier.c \
 src/c/callinterf.c \
 src/c/isanan.c \
 src/c/parse.c \
-src/c/matus2.c \
 src/c/timer.c \
 src/c/stack2.c \
 src/c/Scierror.c \
@@ -261,6 +259,8 @@ sci_gateway/c/sci_iserror.c \
 sci_gateway/c/sci_getversion.c \
 sci_gateway/c/sci_debug.c \
 sci_gateway/c/gw_core.c \
+sci_gateway/c/gw_user.c \
+sci_gateway/c/gw_user2.c \
 sci_gateway/c/sci_error.c \
 sci_gateway/c/sci_sciargs.c \
 sci_gateway/c/sci_with_module.c \

@@ -282,6 +282,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\gw_user.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\gw_user2.c"
+				>
+			</File>
+			<File
 				RelativePath=".\hashtable_core.c"
 				>
 			</File>
@@ -335,14 +343,6 @@
 			</File>
 			<File
 				RelativePath=".\loadversion.c"
-				>
-			</File>
-			<File
-				RelativePath=".\matus2.c"
-				>
-			</File>
-			<File
-				RelativePath=".\matusr.c"
 				>
 			</File>
 			<File
@@ -808,6 +808,14 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\gw_core.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\gw_user.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\gw_user2.h"
 				>
 			</File>
 			<File

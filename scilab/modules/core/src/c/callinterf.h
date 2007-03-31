@@ -8,104 +8,104 @@
  *  to add a new interface add a declaration and a new entry 
  *  at the end of the Interfaces array 
  *  The maximum number of interfaces is bound to DynInterfStart 
- *                                 ( file /core/src/c/addinter.h ) 
+ *  ( file /core/src/c/addinter.h ) 
  ********************************************************/
+
+/* 01  C2F(gw_user)(); FREE */	#include "gw_user.h" 
+/* 02 */						#include "../../../linear_algebra/includes/gw_linear_algebra.h" 
+/* 03  C2F(gw_user)(); FREE */
+/* 04  C2F(gw_user)(); FREE */
+/* 05 */						#include "../../../io/includes/gw_io.h" 
+/* 06 */						#include "../../../elementaries_functions/includes/gw_elementaries_functions.h"
+/* 07 */						#include "../../../graphics/includes/gw_graphics.h"
+/* 08 */						#include "../../../cacsd/includes/gw_cacsd0.h"
+/* 09 */						#include "../../../cacsd/includes/gw_cacsd1.h"
+/* 10 */						#include "../../../cacsd/includes/gw_cacsd2.h"
+/* 11 */						#include "../../../optimization/includes/gw_optim.h"
+/* 12 */						#include "../../../differential_equations/includes/gw_differential_equations1.h"
+/* 13 */						#include "gw_core.h"
+/* 14  C2F(gw_user)(); FREE */
+/* 15 */						#include "../../../metanet/includes/gw_metanet.h"
+/* 16 */						#include "../../../polynomials/includes/gw_polynomials.h"
+/* 17 */						#include "../../../data_structures/includes/gw_data_structures1.h"
+/* 18 */						#include "../../../signal_processing/includes/gw_signal.h"
+/* 19 */						#include "../../../interpolation/includes/gw_interpolation.h"
+/* 20 */						#include "../../../cacsd/includes/gw_cacsd3.h"
+/* 21 */						#include "../../../string/includes/gw_string.h"
+/* 22 */						#include "../../../symbolic/includes/gw_symbolic.h"
+/* 23 */						#include "../../../boolean/includes/gw_boolean.h"
+/* 24  C2F(gw_user2)(); FREE */	#include "gw_user2.h" 
+/* 25 */						#include "../../../gui/includes/gw_gui.h"
+/* 26 */						#include "../../../differential_equations/includes/gw_differential_equations2.h"
+/* 27 */						#include "../../../sparse/includes/gw_sparse.h"
+/* 28 */						#include "../../../cacsd/includes/gw_slicot.h"
+/* 29 */						#include "../../../differential_equations/includes/gw_differential_equations3.h"
+/* 30 */						#include "../../../differential_equations/includes/gw_differential_equations4.h"
+/* 31 */						#include "../../../differential_equations/includes/gw_differential_equations5.h"
+/* 32 */						#include "../../../differential_equations/includes/gw_differential_equations6.h"
+/* 33  C2F(gw_user)(); FREE */
+/* 34 */						#include "../../../fileio/includes/gw_fileio.h"
+/* 35 */						#include "../../../arnoldi/includes/gw_arnoldi.h"
+/* 36 */						#include "../../../special_functions/includes/gw_special_functions1.h"
+/* 37 */						#include "../../../statistics/includes/gw_statistics.h"
+/* 38 */						#include "../../../randlib/includes/gw_randlib.h"
+/* 39 */						#include "../../../special_functions/includes/gw_special_functions2.h"
+
+#if defined(WITH_TK) || defined(_MSC_VER)
+/* 40 */						#include "../../../tclsci/includes/gw_tclsci.h"
+#define TCLINTERF C2F(gw_tclsci)
+#else 
+void C2F(no_gw_tclsci)(void);
+#define TCLINTERF C2F(no_gw_tclsci)
+#endif
+
+/* 41 */						#include "../../../data_structures/includes/gw_data_structures2.h"
+
+#ifdef WITH_PVM
+/* 42 */						#include "../../../pvm/includes/gw_pvm.h"
+#define PVMINTERF C2F(gw_pvm)
+#else 
+void C2F(NoPvm)(void);
+#define PVMINTERF C2F(NoPvm)
+#endif
+
+/* 43 */						#include "../../../integer/includes/gw_integer.h"
+/* 44 */						#include "../../../linear_algebra/includes/gw_linear_algebra2.h" 
+
+#ifdef WITHOUT_SCICOS
+void C2F(Nogw_scicos)(void);
+void C2F(Nogw_cscicos)(void);
+#define SCICOSINTERF1 C2F(Nogw_scicos)
+#define SCICOSINTERF2 C2F(Nogw_cscicos)
+#else
+/* 45 */						#include "../../../scicos/includes/gw_scicos.h"
+#define SCICOSINTERF1 C2F(gw_scicos)
+/* 46 */						#include "../../../scicos/includes/gw_cscicos.h"
+#define SCICOSINTERF2 C2F(gw_cscicos)
+#endif
+
+/* 47 */						#include "../../../wintools/includes/gw_wintools.h"
+/* 48 */						#include "../../../time/includes/gw_time.h"
+/* 49 */						#include "../../../sound/includes/gw_sound.h"
+/* 50 */						#include "../../../localization/includes/gw_localization.h"
+
+#if defined(WITH_FFTW) || defined(_MSC_VER)
+/* 51 */						#include "../../../fftw/includes/gw_fftw.h"
+#define FFTWINTERF C2F(gw_fftw)
+#else 
+void C2F(Nogw_fftw)(void);
+#define FFTWINTERF C2F(Nogw_fftw)
+#endif
+
+void errjump (int n);
+
 
 /** table of interfaces **/
 
 typedef  struct  {
-  void  (*fonc)();
+	void  (*fonc)();
 } OpTab ;
 
-
-void errjump(int n);
-void C2F(no_gw_tclsci)(void);
-void C2F(NoPvm)(void);
-void C2F(Nogw_scicos)(void);
-void C2F(Nogw_cscicos)(void);
-void C2F(Nogw_slicot)(void);
-void C2F(Nogw_fftw)(void);
-
-/* 01  C2F(gw_user)(); FREE */
-extern void    /* 02  */ C2F(gw_linear_algebra)(void);
-/* 03  C2F(gw_user)(); FREE */
-/* 04  C2F(gw_user)(); FREE */
-extern void    /* 05  */ C2F(gw_io)(void);
-extern void    /* 06  */ C2F(gw_elementaries_functions)(void);
-extern void    /* 07  */ C2F(gw_graphics)(void);
-extern void    /* 08  */ C2F(gw_cacsd0)(void);
-extern void    /* 09  */ C2F(gw_cacsd1)(void);
-extern void    /* 10  */ C2F(gw_cacsd2)(void);
-extern void    /* 11  */ C2F(gw_optim)(void);
-extern void    /* 12  */ C2F(gw_differential_equations1)(void);
-extern void    /* 13  */ C2F(gw_core)(void);
-extern void    /* 14  */ C2F(gw_user)(void);
-extern void    /* 15  */ C2F(gw_metanet)(void);
-extern void    /* 16  */ C2F(gw_polynomials)(void);
-extern void    /* 17  */ C2F(gwdatastructures1)(void);
-extern void    /* 18  */ C2F(gw_signal)(void);
-extern void    /* 19  */ C2F(gw_interpolation)(void);
-extern void    /* 20  */ C2F(gw_cacsd3)(void);
-extern void    /* 21  */ C2F(gw_string)(void);
-extern void    /* 22  */ C2F(gw_symbolic)(void);
-extern void    /* 23  */ C2F(gw_boolean)(void);
-extern void    /* 24  */ C2F(gw_user2)(void);
-extern void    /* 25  */ C2F(gw_gui)(void);
-extern void    /* 26  */ C2F(gw_differential_equations2)(void);
-extern void    /* 27  */ C2F(gw_sparse)(void);
-extern void    /* 28  */ C2F(gw_slicot)(void);
-extern void    /* 29  */ C2F(gw_differential_equations3)(void);
-extern void    /* 30  */ C2F(gw_differential_equations4)(void);
-extern void    /* 31  */ C2F(gw_differential_equations5)(void);
-extern void    /* 32  */ C2F(gw_differential_equations6)(void);
-/* 33  */ /* FREE */
-extern void    /* 34  */ C2F(gw_fileio)(void);
-extern void    /* 35  */ C2F(gw_arnoldi)(void);
-extern void    /* 36  */ C2F(gw_special_functions1)(void);
-extern void    /* 37  */ C2F(gw_statistics)(void);
-extern void    /* 38  */ C2F(gw_randlib)(void);
-extern void    /* 39  */ C2F(gw_special_functions2)(void);
-
-#ifdef WITH_TK
-extern void    /* 40  */ C2F(gw_tclsci)(void);
-#define TCLINTERF C2F(gw_tclsci)
-#else 
-#define TCLINTERF C2F(no_gw_tclsci)
-#endif
-
-extern void    /* 41  */ C2F(gwdatastructures2)(void);
-
-#ifdef WITH_PVM
-extern void    /* 42  */ C2F(gw_pvm)(void);
-#define PVMINTERF C2F(gw_pvm)
-#else 
-#define PVMINTERF C2F(NoPvm)
-#endif
-
-extern void    /* 43  */ C2F(gw_integer)(void);
-extern void    /* 44  */ C2F(gw_linear_algebra2)(void);
-
-#ifdef WITHOUT_SCICOS
-	#define SCICOSINTERF1 C2F(Nogw_scicos)
-	#define SCICOSINTERF2 C2F(Nogw_cscicos)
-#else
-	extern void    /* 45  */ C2F(gw_scicos)(void);
-	#define SCICOSINTERF1 C2F(gw_scicos)
-	extern void    /* 46  */ C2F(gw_cscicos)(void);
-	#define SCICOSINTERF2 C2F(gw_cscicos)
-#endif
-
-extern void    /* 47  */ C2F(gw_wintools)(void);
-extern void    /* 48  */ C2F(gw_time)(void);
-extern void    /* 49  */ C2F(gw_sound)(void);
-extern void    /* 50  */ C2F(gw_localization)(void);
-
-#if defined(WITH_FFTW) || defined(_MSC_VER)
-extern void    /* 51  */ C2F(gw_fftw)(void);
-#define FFTWINTERF C2F(gw_fftw)
-#else 
-#define FFTWINTERF C2F(Nogw_fftw)
-#endif
 
 static OpTab Interfaces[] = {
     /* 01  */ {C2F(gw_user)}, /* free position may be used */

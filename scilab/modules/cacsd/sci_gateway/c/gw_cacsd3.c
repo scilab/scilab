@@ -1,4 +1,3 @@
-#include "gw_cacsd3.h"
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2006 */
 /* Allan CORNET */
@@ -7,12 +6,15 @@
 #include <Windows.h>
 #include "ExceptionMessage.h"
 #endif
+#include "gw_cacsd3.h"
+#include "stack-c.h"
 /*-----------------------------------------------------------------------------------*/
-extern int C2F(sci_arl2) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_residu) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_ldiv) _PARAMS((char *fname,unsigned long fname_len));
-/*-----------------------------------------------------------------------------------*/
-int C2F(gw_cacsd3)(void);
+typedef int (*Cacsd3_Interf) __PARAMS((char *fname,unsigned long l));
+typedef struct table_struct 
+{
+	Cacsd3_Interf f;    /** function **/
+	char *name;      /** its name **/
+} Cacsd3Table;
 /*-----------------------------------------------------------------------------------*/
 static Cacsd3Table Tab[]=
 {

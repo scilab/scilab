@@ -9,7 +9,6 @@ extern "C" {
 #ifndef SCI_MEX 
 #define SCI_MEX 
 
-
 #ifdef WIN32
 	#include <stddef.h> /*for LCC */
 #endif
@@ -27,18 +26,20 @@ typedef int (*GatefuncH) __PARAMS((int nlhs,mxArray *plhs[],int nrhs,
 typedef int (*FGatefuncH) __PARAMS((int *nlhs,mxArray *plhs[],int *nrhs,
                                  mxArray *prhs[]));
 
-typedef int Gatefunc __PARAMS((int nlhs,mxArray *plhs[],int nrhs,
-                                 mxArray *prhs[]));
+typedef int Gatefunc __PARAMS((int nlhs,mxArray *plhs[],int nrhs,mxArray *prhs[]));
 typedef int (*GatefuncS) __PARAMS((char *fname, int l));
 typedef int (*Myinterfun) __PARAMS((char *, GatefuncH F));
 
 typedef int (*GT) ();
 
+#ifndef __DEF_TABLE_STRUCT__
+#define __DEF_TABLE_STRUCT__
 typedef struct table_struct {
-  Myinterfun f;    /** interface **/
-  GT F;     /** function **/
-  char *name;      /** its name **/
+	Myinterfun f;    /** interface **/
+	GT F;     /** function **/
+	char *name;      /** its name **/
 } GenericTable;
+#endif
 
 #define mxLOGICAL int
 #define mxLogical int
@@ -109,7 +110,7 @@ extern int getdiary __PARAMS(());
 
 void clear_mex(integer nlhs, mxArray **plhs, integer nrhs, mxArray **prhs);
 
-extern void errjump __PARAMS((void));
+extern void errjump __PARAMS((int n));
 int  C2F(mxgetm)  __PARAMS((mxArray *ptr));
 int  C2F(mxgetn)  __PARAMS((mxArray *ptr));
 int  C2F(mxgetstring)  __PARAMS((mxArray *ptr, char *str, int *strl));

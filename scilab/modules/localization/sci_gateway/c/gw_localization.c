@@ -2,12 +2,20 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "gw_localization.h"
+#include <string.h>
 #if _MSC_VER
 #include <Windows.h>
 #include "ExceptionMessage.h"
 #endif
-#include "sciprint.h"
+#include "gw_localization.h"
+#include "stack-c.h"
+/*-----------------------------------------------------------------------------------*/ 
+typedef int (*localization_interf) __PARAMS((char *fname,unsigned long fname_len));
+typedef struct table_struct 
+{
+	localization_interf f;    /** function **/
+	char *name;      /** its name **/
+} LocalizationTable;
 /*-----------------------------------------------------------------------------------*/
 static LocalizationTable Tab[]=
 {

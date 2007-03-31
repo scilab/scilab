@@ -2,18 +2,16 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
+#include <string.h>
 #ifdef _MSC_VER
 #include <Windows.h>
 #include "ExceptionMessage.h"
 #endif
-
+#include "gw_randlib.h"
 #include "stack-c.h"
-#include "sciprint.h"
-/*-----------------------------------------------------------------------------------*/
-extern int RandI(char *fname,unsigned long fname_len);
 /*-----------------------------------------------------------------------------------*/
 static TabF Tab[]={ 
-	{RandI, "Rand"},
+	{sci_Rand, "Rand"},
 };
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_randlib)(void)

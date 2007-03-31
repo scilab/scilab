@@ -14,6 +14,7 @@
 #include "GetProperty.h"
 #include "axesScale.h"
 #include "CurrentObjectsManagement.h"
+#include "sciprint.h"
 
 int geom3d(double *x, double *y, double *z, integer *n) ;
 

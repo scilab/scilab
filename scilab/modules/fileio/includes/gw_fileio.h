@@ -4,14 +4,11 @@
 /*-----------------------------------------------------------------------------------*/ 
 #ifndef __INTFILEIO__
 #define __INTFILEIO__
-
-#ifdef _MSC_VER
-	#include <stdio.h>
-#endif
-
+/*-----------------------------------------------------------------------------------*/ 
 #include "machine.h"
-
-
+/*-----------------------------------------------------------------------------------*/ 
+int C2F(gw_fileio)(void);
+/*-----------------------------------------------------------------------------------*/ 
 int intsmeof __PARAMS((char *fname,unsigned long fname_len));
 int intsmopen __PARAMS((char *fname,unsigned long fname_len));
 int intsmputstr __PARAMS((char *fname,unsigned long fname_len));
@@ -37,9 +34,6 @@ int int_objprintf __PARAMS((char *fname,unsigned long fname_len));
 int intsmopen __PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_xls_read) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_xls_open) _PARAMS((char *fname,unsigned long fname_len));
-
-
-int C2F(gw_fileio)(void);
-
+/*-----------------------------------------------------------------------------------*/ 
 #endif /*  __INTFILEIO__ */
 /*-----------------------------------------------------------------------------------*/

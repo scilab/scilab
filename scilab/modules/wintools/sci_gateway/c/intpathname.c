@@ -4,6 +4,18 @@
 /*-----------------------------------------------------------------------------------*/
 #include "gw_wintools.h"
 #include "MALLOC.h" /* MALLOC */
+/*-----------------------------------------------------------------------------------*/ 
+#ifndef MAX_PATH
+#define MAX_PATH 512
+#endif
+
+#ifndef MAX_PATH_LONG
+#define MAX_PATH_LONG 32767
+#endif
+
+#ifndef MAX_PATH_SHORT
+#define MAX_PATH_SHORT 260
+#endif
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_getlongpathname) _PARAMS((char *fname,unsigned long l))
 {

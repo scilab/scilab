@@ -2,20 +2,11 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#include "gw_core.h"
-#include "machine.h"
-#include "stack-c.h"
 #include "../../src/c/history.h"
-/*-----------------------------------------------------------------------------------*/
-extern int C2F(savehistory) _PARAMS((char *fname));
+#include "gw_core.h"
+#include "stack-c.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_savehistory) _PARAMS((char *fname,unsigned long fname_len))
-{
-	C2F(savehistory)(fname);
-	return 0;
-}
-/*-----------------------------------------------------------------------------------*/
-int C2F(savehistory) _PARAMS((char *fname))
 {
 	char  line[MAXBUF];
 	char *Path;

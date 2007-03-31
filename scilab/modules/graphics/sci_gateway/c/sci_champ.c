@@ -15,7 +15,7 @@
 #include "DefaultCommandArg.h"
 #include "Champ.h"
 #include "GetProperty.h"
-
+#include "sciprint.h"
 /*-----------------------------------------------------------------------------------*/
 int sci_champ (char *fname,unsigned long fname_len)
 {

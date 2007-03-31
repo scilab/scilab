@@ -2,8 +2,22 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
+#include <string.h>
+#ifdef _MSC_VER
+#include <windows.h>
+	#include <stdio.h>
+	#include "ExceptionMessage.h"
+#endif
+/*-----------------------------------------------------------------------------------*/
 #include "gw_differential_equations1.h"
-
+#include "stack-c.h"
+/*-----------------------------------------------------------------------------------*/
+typedef int (*Differential_Equations1_Interf) __PARAMS((char *fname,unsigned long l));
+typedef struct table_struct 
+{
+	Differential_Equations1_Interf f;    /** function **/
+	char *name;      /** its name **/
+} DifferentialEquations1Table;
 /*-----------------------------------------------------------------------------------*/
 static int C2F(sci_none_empty) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -18,7 +32,6 @@ static DifferentialEquations1Table Tab[]=
 	{C2F(sci_feval),"feval"},
 	{C2F(sci_bvode),"bvode"}
 };
-
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_differential_equations1)(void)
 {  

@@ -1,14 +1,21 @@
-#include "gw_string.h"
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
+#include <string.h>
 #ifdef _MSC_VER
 #include <Windows.h>
 #include "ExceptionMessage.h"
 #endif
+#include "gw_string.h"
+#include "stack-c.h"
 /*-----------------------------------------------------------------------------------*/
-int C2F(gw_string)(void);
+typedef int (*String_Interf) __PARAMS((char *fname,unsigned long l));
+typedef struct table_struct 
+{
+	String_Interf f;    /** function **/
+	char *name;      /** its name **/
+} StringTable;
 /*-----------------------------------------------------------------------------------*/
 static StringTable Tab[]=
 {
@@ -27,7 +34,6 @@ static StringTable Tab[]=
 	{C2F(sci_grep),"grep"},
 	{C2F(sci_tokens),"tokens"},
 	{C2F(sci_strsplit),"strsplit"}
-
 };
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_string)(void)

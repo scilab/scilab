@@ -193,6 +193,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_getfield.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_glist.c"
 				>
 			</File>
@@ -218,6 +222,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_rlist.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_setfield.c"
 				>
 			</File>
 			<File

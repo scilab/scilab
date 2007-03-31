@@ -2,9 +2,10 @@
 /* INRIA 2007 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#include "gw_core.h"
 #include "MALLOC.h"
 #include "machine.h"
+#include "stack-c.h"
+#include "gw_core.h"
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(sci_getdynlibext) _PARAMS((char *fname,unsigned long fname_len))
 {

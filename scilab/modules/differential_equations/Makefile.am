@@ -72,6 +72,7 @@ sci_gateway/c/sci_int2d.c \
 sci_gateway/c/sci_int3d.c \
 sci_gateway/c/sci_intg.c \
 sci_gateway/c/sci_ode.c \
+sci_gateway/c/sci_odc.c \
 sci_gateway/c/sci_feval.c \
 sci_gateway/c/gw_differential_equations1.c \
 sci_gateway/c/gw_differential_equations2.c \

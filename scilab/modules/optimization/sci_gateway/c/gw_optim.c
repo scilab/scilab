@@ -2,10 +2,20 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
+#include <string.h>
 #ifdef _MSC_VER
+#include <Windows.h>
 #include "ExceptionMessage.h"
 #endif
 #include "gw_optim.h"
+#include "stack-c.h"
+/*-----------------------------------------------------------------------------------*/
+typedef int (*Optim_Interf) __PARAMS((char *fname,unsigned long l));
+typedef struct table_struct 
+{
+	Optim_Interf f;    /** function **/
+	char *name;      /** its name **/
+} OptimTable;
 /*-----------------------------------------------------------------------------------*/
 static OptimTable Tab[]=
 {

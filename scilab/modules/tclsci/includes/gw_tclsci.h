@@ -4,28 +4,11 @@
 /*-----------------------------------------------------------------------------------*/ 
 #ifndef __GW_TCLSCI__
 #define __GW_TCLSCI__
-
-#ifdef _MSC_VER
-  #include <windows.h>
-  #include <stdio.h>
-#endif
-
-#include <string.h>
-
+/*-----------------------------------------------------------------------------------*/ 
 #include "machine.h"
-#include "stack-c.h"
-
+/*-----------------------------------------------------------------------------------*/ 
 int C2F(gw_tclsci)(void);
-
-typedef int (*TCLSci_Interf) __PARAMS((char *fname,unsigned long l));
-
-typedef struct table_struct 
-{
-  TCLSci_Interf f;    /** function **/
-  char *name;      /** its name **/
-} TCLSCITable;
-
-
+/*-----------------------------------------------------------------------------------*/ 
 int C2F(sci_TCL_DoOneEvent) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_TCL_EvalFile) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_TCL_EvalStr) _PARAMS((char *fname,unsigned long fname_len));
@@ -46,7 +29,7 @@ int C2F(sci_TCL_DeleteInterp) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_TCL_CreateSlave) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_TCL_ExistInterp) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_TCL_ExistArray) _PARAMS((char *fname,unsigned long fname_len));
-
+/*-----------------------------------------------------------------------------------*/ 
 #endif /*  __GW_TCLSCI__ */
 /*-----------------------------------------------------------------------------------*/
 

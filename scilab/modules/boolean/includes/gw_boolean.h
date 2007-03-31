@@ -4,25 +4,15 @@
 /*-----------------------------------------------------------------------------------*/ 
 #ifndef __GW_BOOLEAN__
 #define __GW_BOOLEAN__
-
-#ifdef _MSC_VER
-#include <windows.h>
-#include <stdio.h>
-#endif
-
-#include <string.h>
-
+/*-----------------------------------------------------------------------------------*/
 #include "machine.h"
-#include "stack-c.h"
-#include "sciprint.h"
-
-typedef int (*Boolean_Interf) __PARAMS((char *fname,unsigned long l));
-
-typedef struct table_struct 
-{
-	Boolean_Interf f;    /** function **/
-	char *name;      /** its name **/
-} BooleanTable;
-
+/*-----------------------------------------------------------------------------------*/
+int C2F(gw_boolean)(void);
+/*-----------------------------------------------------------------------------------*/
+int C2F(intor) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(intand) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_find) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_bool2s) _PARAMS((char *fname,unsigned long fname_len));
+/*-----------------------------------------------------------------------------------*/
 #endif /*  __GW_BOOLEAN__ */
 /*-----------------------------------------------------------------------------------*/

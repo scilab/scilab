@@ -12,6 +12,8 @@ src/fortran/find.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_and.c \
 sci_gateway/c/sci_or.c \
+sci_gateway/c/sci_find.c \
+sci_gateway/c/sci_bool2s.c \
 sci_gateway/c/gw_boolean.c
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_bool2s.f \

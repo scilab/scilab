@@ -1,8 +1,10 @@
 /*-----------------------------------------------------------------------------------*/ 
-#include "gw_sound.h"
 #ifdef _MSC_VER
+	#include <Windows.h>
 	#pragma comment(lib, "winmm.lib")
 #endif
+#include "gw_sound.h"
+#include "stack-c.h"
 /*-----------------------------------------------------------------------------------*/ 
 extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int name_len,long int nams_len));  
 /*-----------------------------------------------------------------------------------*/ 

@@ -1,20 +1,24 @@
-#include "gw_boolean.h"
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2006 */
 /* Allan CORNET */
+/*-----------------------------------------------------------------------------------*/
+#include <string.h>
 /*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 #include <Windows.h>
 #include "ExceptionMessage.h"
 #endif
 /*-----------------------------------------------------------------------------------*/
-static int C2F(sci_find) _PARAMS((char *fname,unsigned long fname_len));
-static int C2F(sci_bool2s) _PARAMS((char *fname,unsigned long fname_len));
+#include "gw_boolean.h"
+#include "stack-c.h"
+#include "sciprint.h"
 /*-----------------------------------------------------------------------------------*/
-extern int C2F(intor) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(intand) _PARAMS((char *fname,unsigned long fname_len));
-/*-----------------------------------------------------------------------------------*/
-int C2F(gw_boolean)(void);
+typedef int (*Boolean_Interf) __PARAMS((char *fname,unsigned long l));
+typedef struct table_struct 
+{
+	Boolean_Interf f;    /** function **/
+	char *name;      /** its name **/
+} BooleanTable;
 /*-----------------------------------------------------------------------------------*/
 static BooleanTable Tab[]=
 {
@@ -42,20 +46,6 @@ int C2F(gw_boolean)()
 #else
 	(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
 #endif
-	return 0;
-}
-/*-----------------------------------------------------------------------------------*/
-static int C2F(sci_find) _PARAMS((char *fname,unsigned long fname_len))
-{
-	extern int C2F(intfind)();
-	C2F(intfind)();
-	return 0;
-}
-/*-----------------------------------------------------------------------------------*/
-static int C2F(sci_bool2s) _PARAMS((char *fname,unsigned long fname_len))
-{
-	extern int C2F(intsbool2s)();
-	C2F(intsbool2s)();
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

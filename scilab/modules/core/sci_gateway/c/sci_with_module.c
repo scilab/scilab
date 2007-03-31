@@ -3,6 +3,7 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include "gw_core.h"
+#include "stack-c.h"
 #include "with_module.h"
 #include "MALLOC.h"
 #include "error_scilab.h"

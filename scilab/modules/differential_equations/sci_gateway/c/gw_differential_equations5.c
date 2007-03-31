@@ -2,17 +2,22 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-
+#include <string.h>
+#ifdef _MSC_VER
+#include <windows.h>
+#include <stdio.h>
+#include "ExceptionMessage.h"
+#endif
 #include "gw_differential_equations5.h"
-
+#include "stack-c.h"
 /*-----------------------------------------------------------------------------------*/
-static int C2F(sci_feval) _PARAMS((char *fname,unsigned long fname_len))
+typedef int (*Differential_Equations5_Interf) __PARAMS((char *fname,unsigned long l));
+typedef struct table_struct 
 {
-	extern int C2F(feval)();
-	C2F(feval)();
-	return 0;
-}
-/*-----------------------------------------------------------------------------------*/
+	Differential_Equations5_Interf f;    /** function **/
+	char *name;      /** its name **/
+} DifferentialEquations5Table;
+/*-----------------------------------------------------------------------------------*/ 
 static DifferentialEquations5Table Tab[]=
 {
 	{C2F(sci_feval),"feval"}

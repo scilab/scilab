@@ -11,23 +11,14 @@
 #endif
 #include "stack-c.h"
 #include "sciprint.h"
+#include "gw_arnoldi.h"
 /*-----------------------------------------------------------------------------------*/
 typedef int (*Arpack_Interf) __PARAMS((char *fname,unsigned long l));
-
 typedef struct table_struct 
 {
 	Arpack_Interf f;    /** function **/
 	char *name;      /** its name **/
 } ArpackTable;
-/*-----------------------------------------------------------------------------------*/
-extern int C2F(intdsaupd) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(intdnaupd) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(intznaupd) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(intdseupd) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(intdneupd) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(intzneupd) _PARAMS((char *fname,unsigned long fname_len));
-/*-----------------------------------------------------------------------------------*/
-int C2F(gw_arnoldi)(void);
 /*-----------------------------------------------------------------------------------*/
 static ArpackTable Tab[]={
   {C2F(intdsaupd),"dsaupd"},

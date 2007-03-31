@@ -2,11 +2,19 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "gw_wintools.h"
+#include <string.h>
 #ifdef _MSC_VER
   #include <Windows.h>
   #include "ExceptionMessage.h"
 #endif
+#include "gw_wintools.h"
+#include "stack-c.h"
+/*-----------------------------------------------------------------------------------*/
+typedef int (*Wintools_Interf) __PARAMS((char *fname,unsigned long l));
+typedef struct table_struct {
+	Wintools_Interf f;    /** function **/
+	char *name;      /** its name **/
+} WintoolsTable;
 /*-----------------------------------------------------------------------------------*/
  static WintoolsTable Tab[]=
  {

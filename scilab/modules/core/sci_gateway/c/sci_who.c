@@ -9,6 +9,7 @@
 #include "stackinfo.h"
 #include "error_scilab.h"
 #include "message_scilab.h"
+#include "sciprint.h"
 /*-----------------------------------------------------------------------------------*/
 #define LengthNameVariableScilabMax 24
 /*-----------------------------------------------------------------------------------*/
@@ -314,8 +315,8 @@ int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
 	 }
  }
  /*-----------------------------------------------------------------------------------*/
-  static void DispVariables(struct VariableStruct* Vstruct,char *Message,int lenStructArray,int memused,int memtotal,int varused,int vartotal)
- {
+static void DispVariables(struct VariableStruct* Vstruct,char *Message,int lenStructArray,int memused,int memtotal,int varused,int vartotal)
+{
 	 int i=0;
 
 	 sciprint("\n%s\n\n",Message);
@@ -329,9 +330,9 @@ int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
 	 message_scilab("core_message_140",memused,memtotal);
 	 message_scilab("core_message_141",varused,vartotal);
 
- }
- /*-----------------------------------------------------------------------------------*/
- static BOOL FreeVariableStructArray(struct VariableStruct* Vstruct,int lenStructArray)
+}
+/*-----------------------------------------------------------------------------------*/
+static BOOL FreeVariableStructArray(struct VariableStruct* Vstruct,int lenStructArray)
  {
 	 BOOL bOK=FALSE;
 	 if (Vstruct)

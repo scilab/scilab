@@ -113,7 +113,7 @@ double C2F(ignuin)(double *a, double *b)
  *  hand written interface for the randlib 
  ***********************************************************************/
 
-int RandI(char *fname,unsigned long fname_len)
+int sci_Rand(char *fname,unsigned long fname_len)
 { 
   int minrhs = 1,maxrhs = 10,minlhs=1,maxlhs=2;
   int ResL,ResC,suite,m2,n2,l2,m1,n1,l1,ls,ms,ns,la,lr,lb,lc;

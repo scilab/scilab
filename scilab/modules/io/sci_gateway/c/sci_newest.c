@@ -9,6 +9,7 @@
 #include "gw_io.h"
 #include "MALLOC.h"
 #include "sciprint.h"
+#include "stack-c.h"
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(cluni0)(char *in_name, char *out_name, int *out_n, long int lin, long int lout);
 /*-----------------------------------------------------------------------------------*/

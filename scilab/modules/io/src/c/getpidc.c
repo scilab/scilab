@@ -2,9 +2,12 @@
 #include "machine.h"
 
 #include <stdlib.h>
-#ifndef _MSC_VER
-#include <sys/types.h>
-#include <unistd.h>
+#ifdef _MSC_VER
+	#include <process.h>
+	#define getpid _getpid
+#else
+	#include <sys/types.h>
+	#include <unistd.h>
 #endif
 #include "getpidc.h"
 

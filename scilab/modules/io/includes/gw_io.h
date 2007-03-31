@@ -4,26 +4,11 @@
 /*-----------------------------------------------------------------------------------*/ 
 #ifndef __GW_IO__
 #define __GW_IO__
-
-#ifdef _MSC_VER
-  #include <windows.h>
-  #include <stdio.h>
-#endif
-
-#include <string.h>
+/*-----------------------------------------------------------------------------------*/
 #include "machine.h"
-#include "stack-c.h"
-#include "sciprint.h"
-
+/*-----------------------------------------------------------------------------------*/
 int C2F(gw_io)(void);
-
-typedef int (*Io_Interf) __PARAMS((char *fname,unsigned long l));
-
-typedef struct table_struct 
-{
-  Io_Interf f;    /** function **/
-  char *name;      /** its name **/
-} IoTable;
+/*-----------------------------------------------------------------------------------*/
 int C2F(sci_oldload) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_read) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_getf) _PARAMS((char *fname,unsigned long fname_len));
@@ -61,7 +46,7 @@ int C2F(intdisp)();
 int C2F(intexec)();
 int C2F(sci_getrelativefilename) _PARAMS((char *fname,unsigned long l));
 int C2F(sci_newest) _PARAMS((char *fname,unsigned long l));
-
+/*-----------------------------------------------------------------------------------*/
 #endif /*  __GW_IO__ */
 /*-----------------------------------------------------------------------------------*/
 

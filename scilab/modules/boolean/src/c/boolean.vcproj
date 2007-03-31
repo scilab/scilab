@@ -41,7 +41,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../../libs/MALLOC/includes;"
-				PreprocessorDefinitions="_LIB;STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
+				PreprocessorDefinitions="_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="1"
 				UsePrecompiledHeader="0"
@@ -117,7 +117,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../../libs/MALLOC/includes;"
-				PreprocessorDefinitions="NDEBUG;_LIB;STRICT;_CRT_SECURE_NO_DEPRECATE"
+				PreprocessorDefinitions="NDEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
@@ -182,6 +182,14 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_and.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_bool2s.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_find.c"
 				>
 			</File>
 			<File

@@ -1,30 +1,20 @@
-#include "gw_cscicos.h"
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
+#include <string.h>
 #ifdef _MSC_VER
 #include <Windows.h>
 #include "ExceptionMessage.h"
 #endif
-/*-----------------------------------------------------------------------------------*/
-/* interface for the previous function Table */ 
+#include "gw_cscicos.h"
+#include "stack-c.h"
 /*-----------------------------------------------------------------------------------*/ 
-extern int inttimescicos _PARAMS((char *fname,unsigned long l));
-extern int intduplicate _PARAMS((char *fname,unsigned long l));
-extern int intdiffobjs _PARAMS((char *fname,unsigned long l));
-extern int intxproperty _PARAMS((char *fname,unsigned long l));
-extern int intphasesim _PARAMS((char *fname,unsigned long l));
-extern int intsetxproperty _PARAMS((char *fname,unsigned long l));
-extern int intcpass2 _PARAMS((char *fname,unsigned long l));
-extern int intsetblockerror _PARAMS((char *fname,unsigned long l));
-extern int inttree2 _PARAMS((char *fname,unsigned long l));
-extern int inttree3 _PARAMS((char *fname,unsigned long l));
-extern int inttree4 _PARAMS((char *fname,unsigned long l));
-extern int intscicosimc _PARAMS((char *fname, unsigned long l));
-extern int intgetscicosvarsc _PARAMS((char *fname, unsigned long l));
-extern int intcurblkc _PARAMS((char *fname, unsigned long l));
-extern int intbuildouttb _PARAMS((char *fname));
+typedef int (*scicosc_interf) __PARAMS((char *fname,unsigned long l));
+typedef struct table_struct {
+	scicosc_interf f;    /** function **/
+	char *name;      /** its name **/
+} intcscicosTable;
 /*-----------------------------------------------------------------------------------*/ 
 static intcscicosTable Tab[]={
   {inttimescicos,"scicos_time"},

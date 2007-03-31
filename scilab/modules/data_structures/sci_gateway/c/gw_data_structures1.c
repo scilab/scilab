@@ -1,12 +1,21 @@
-#include "gw_data_structures1.h"
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
+#include <string.h>
 #ifdef _MSC_VER
 #include <Windows.h>
 #include "ExceptionMessage.h"
 #endif
+#include "gw_data_structures1.h"
+#include "stack-c.h"
+/*-----------------------------------------------------------------------------------*/
+typedef int (*Data_structures1_Interf) __PARAMS((char *fname,unsigned long fname_len));
+typedef struct table_struct 
+{
+	Data_structures1_Interf f;    /** function **/
+	char *name;      /** its name **/
+} DataStructures1Table;
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(error)();
 /*-----------------------------------------------------------------------------------*/

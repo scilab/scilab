@@ -14,7 +14,7 @@
 #include "DestroyObjects.h"
 #include "GetProperty.h"
 #include "sciCall.h"
-
+#include "sciprint.h"
 /*-----------------------------------------------------------------------------------*/
 int sci_matplot(char *fname,unsigned long fname_len)
 {

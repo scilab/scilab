@@ -4,28 +4,10 @@
 /*-----------------------------------------------------------------------------------*/ 
 #ifndef __GW_METANET__
 #define __GW_METANET__
-
-#ifdef _MSC_VER
-  #include <windows.h>
-  #include <stdio.h>
-#endif
-
-#include <string.h>
-
+/*-----------------------------------------------------------------------------------*/
 #include "machine.h"
-#include "stack-c.h"
-#include "sciprint.h"
-
+/*-----------------------------------------------------------------------------------*/
 int C2F(gw_metanet)(void);
-
-typedef int (*Metanet_Interf) __PARAMS((char *fname,unsigned long l));
-
-typedef struct table_struct 
-{
-  Metanet_Interf f;    /** function **/
-  char *name;      /** its name **/
-} MetanetTable;
-
 /*-----------------------------------------------------------------------------------*/
 int C2F(intsm6loadg) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(intsm6saveg) _PARAMS((char *fname,unsigned long fname_len));
@@ -77,7 +59,7 @@ int C2F(intsm6deumesh) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(intsm6bandred) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(intsm6meshmesh) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(intsm6ford) _PARAMS((char *fname,unsigned long fname_len));
-
+/*-----------------------------------------------------------------------------------*/
 #endif /*  __GW_METANET__ */
 /*-----------------------------------------------------------------------------------*/
 

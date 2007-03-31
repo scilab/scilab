@@ -4,17 +4,22 @@
 #include <string.h> /*pour strcmp */
 #include <math.h>
 #include <setjmp.h>
-#include "gw_special_functions2.h"
 /*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 	#include <Windows.h>
 	#include "ExceptionMessage.h"
 #endif
+#include "gw_special_functions2.h"
 #include "stack-c.h"
-#include "sciprint.h"
 /*-----------------------------------------------------------------------------------*/
 extern jmp_buf slatec_jmp_env; 
-
+/*-----------------------------------------------------------------------------------*/
+typedef int (*Special_Functions2_Interf) __PARAMS((char *fname,unsigned long l));
+typedef struct table_struct 
+{
+	Special_Functions2_Interf f;    /** function **/
+	char *name;      /** its name **/
+} SpecialFunctions2Table;
 /*-----------------------------------------------------------------------------------*/
 static TabF Tab[]={ 
   {sci_legendre, "legendre"},

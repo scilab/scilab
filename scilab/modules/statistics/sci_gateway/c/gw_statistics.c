@@ -1,12 +1,21 @@
-#include "gw_statistics.h"
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
+#include <string.h>
 #ifdef _MSC_VER
 #include <Windows.h>
 #include "ExceptionMessage.h"
 #endif
+#include "gw_statistics.h"
+#include "stack-c.h"
+/*-----------------------------------------------------------------------------------*/
+typedef int (*Statistics_Interf) __PARAMS((char *fname,unsigned long l));
+typedef struct table_struct 
+{
+	Statistics_Interf f;    /** function **/
+	char *name;      /** its name **/
+} StatisticsTable;
 /*-----------------------------------------------------------------------------------*/
 static StatisticsTable Tab[]=
 { 

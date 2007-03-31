@@ -5,10 +5,11 @@
 /* *------------------------------------------------------------------ */
 #include <string.h>
 #include <stdio.h>
-#include "stack-c.h"
-#include "parse.h"
 #include "timer.h"
-#include "callinterf.h"
+#include "stack-c.h"
+
+#include "parse.h"
+
 
 #undef Lstk
 #undef Infstk
@@ -95,6 +96,7 @@ extern int C2F(error)();
 extern logical C2F(compil)();
 extern logical C2F(eptover)();
 extern logical C2F(Ptover)();
+extern int C2F(callinterf) (int *k);
 
 void handle_onprompt(int *n);
 

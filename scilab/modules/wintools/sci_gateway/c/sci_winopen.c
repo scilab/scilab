@@ -2,6 +2,10 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
+#ifdef _MSC_VER
+#include <Windows.h>
+#endif
+
 #include "gw_wintools.h"
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int name_len,long int nams_len)); 

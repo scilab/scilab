@@ -21,7 +21,7 @@
 #include "XsetXgetParameters.h"
 #include "periScreen.h"
 #include "CurrentObjectsManagement.h"
-
+#include "sciprint.h"
 /*-----------------------------------------------------------------------------------*/
 int sci_xset( char *fname, unsigned long fname_len )
 {

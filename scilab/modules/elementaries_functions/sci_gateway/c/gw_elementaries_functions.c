@@ -7,7 +7,15 @@
 #include <Windows.h>
 #include "ExceptionMessage.h"
 #endif
-
+#include "gw_elementaries_functions.h"
+#include "stack-c.h"
+/*-----------------------------------------------------------------------------------*/
+typedef int (*Elementaries_Functions_Interf) __PARAMS((char *fname,unsigned long l));
+typedef struct table_struct 
+{
+	Elementaries_Functions_Interf f;    /** function **/
+	char *name;      /** its name **/
+} ElementariesFunctionsTable;
 /*-----------------------------------------------------------------------------------*/
 static ElementariesFunctionsTable Tab[]=
 {

@@ -244,6 +244,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\gw_randlib.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\others_generators.h"
 				>
 			</File>

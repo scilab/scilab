@@ -17,6 +17,7 @@
 #include "sciCall.h"
 #include "GetProperty.h"
 #include "DefaultCommandArg.h"
+#include "sciprint.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_fec(char *fname,unsigned long fname_len)

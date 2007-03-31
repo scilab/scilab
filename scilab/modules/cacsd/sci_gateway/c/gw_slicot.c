@@ -6,20 +6,11 @@
 #include <Windows.h>
 #include "ExceptionMessage.h"
 #endif
-#include "sci_contr.h"
-#include "sci_rankqr.h"
 #include "../../../mexlib/includes/mex.h"
-/*-----------------------------------------------------------------------------------*/ 
-extern Gatefunc C2F(sident);
-extern Gatefunc C2F(sorder);
-extern Gatefunc C2F(findbd);
-extern Gatefunc C2F(intmucomp);
-extern Gatefunc C2F(intricc2);
-extern Gatefunc C2F(inthinf);
-extern Gatefunc C2F(intdhinf);
-extern Gatefunc C2F(intlinmeq);
-/*-----------------------------------------------------------------------------------*/ 
-int C2F(gw_slicot)(void);
+#include "sci_rankqr.h"
+#include "sci_contr.h"
+#include "gw_slicot.h"
+
 /*-----------------------------------------------------------------------------------*/ 
 static GenericTable Tab[]={
   {(Myinterfun) fortran_mex_gateway, C2F(sident),"sident"},
