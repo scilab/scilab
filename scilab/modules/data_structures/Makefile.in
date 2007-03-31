@@ -94,6 +94,8 @@ am__objects_3 = libscidata_structures_la-sci_lsslist.lo \
 	libscidata_structures_la-sci_glist.lo \
 	libscidata_structures_la-sci_mlist.lo \
 	libscidata_structures_la-sci_definedfields.lo \
+	libscidata_structures_la-sci_getfield.lo \
+	libscidata_structures_la-sci_setfield.lo \
 	libscidata_structures_la-sci_lstcat.lo \
 	libscidata_structures_la-sci_list.lo \
 	libscidata_structures_la-gw_data_structures1.lo \
@@ -313,6 +315,8 @@ GATEWAY_C_SOURCES = sci_gateway/c/sci_lsslist.c \
 sci_gateway/c/sci_glist.c \
 sci_gateway/c/sci_mlist.c \
 sci_gateway/c/sci_definedfields.c \
+sci_gateway/c/sci_getfield.c \
+sci_gateway/c/sci_setfield.c \
 sci_gateway/c/sci_lstcat.c \
 sci_gateway/c/sci_list.c \
 sci_gateway/c/gw_data_structures1.c \
@@ -494,6 +498,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidata_structures_la-gw_data_structures2.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidata_structures_la-hmops.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidata_structures_la-sci_definedfields.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidata_structures_la-sci_getfield.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidata_structures_la-sci_glist.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidata_structures_la-sci_list.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidata_structures_la-sci_lsslist.Plo@am__quote@
@@ -501,6 +506,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidata_structures_la-sci_lstsize.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidata_structures_la-sci_mlist.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidata_structures_la-sci_rlist.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidata_structures_la-sci_setfield.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidata_structures_la-sci_tlist.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidata_structures_la-stcreate.Plo@am__quote@
 
@@ -573,6 +579,20 @@ libscidata_structures_la-sci_definedfields.lo: sci_gateway/c/sci_definedfields.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_definedfields.c' object='libscidata_structures_la-sci_definedfields.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidata_structures_la_CFLAGS) $(CFLAGS) -c -o libscidata_structures_la-sci_definedfields.lo `test -f 'sci_gateway/c/sci_definedfields.c' || echo '$(srcdir)/'`sci_gateway/c/sci_definedfields.c
+
+libscidata_structures_la-sci_getfield.lo: sci_gateway/c/sci_getfield.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidata_structures_la_CFLAGS) $(CFLAGS) -MT libscidata_structures_la-sci_getfield.lo -MD -MP -MF $(DEPDIR)/libscidata_structures_la-sci_getfield.Tpo -c -o libscidata_structures_la-sci_getfield.lo `test -f 'sci_gateway/c/sci_getfield.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getfield.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscidata_structures_la-sci_getfield.Tpo $(DEPDIR)/libscidata_structures_la-sci_getfield.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_getfield.c' object='libscidata_structures_la-sci_getfield.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidata_structures_la_CFLAGS) $(CFLAGS) -c -o libscidata_structures_la-sci_getfield.lo `test -f 'sci_gateway/c/sci_getfield.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getfield.c
+
+libscidata_structures_la-sci_setfield.lo: sci_gateway/c/sci_setfield.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidata_structures_la_CFLAGS) $(CFLAGS) -MT libscidata_structures_la-sci_setfield.lo -MD -MP -MF $(DEPDIR)/libscidata_structures_la-sci_setfield.Tpo -c -o libscidata_structures_la-sci_setfield.lo `test -f 'sci_gateway/c/sci_setfield.c' || echo '$(srcdir)/'`sci_gateway/c/sci_setfield.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscidata_structures_la-sci_setfield.Tpo $(DEPDIR)/libscidata_structures_la-sci_setfield.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_setfield.c' object='libscidata_structures_la-sci_setfield.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidata_structures_la_CFLAGS) $(CFLAGS) -c -o libscidata_structures_la-sci_setfield.lo `test -f 'sci_gateway/c/sci_setfield.c' || echo '$(srcdir)/'`sci_gateway/c/sci_setfield.c
 
 libscidata_structures_la-sci_lstcat.lo: sci_gateway/c/sci_lstcat.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidata_structures_la_CFLAGS) $(CFLAGS) -MT libscidata_structures_la-sci_lstcat.lo -MD -MP -MF $(DEPDIR)/libscidata_structures_la-sci_lstcat.Tpo -c -o libscidata_structures_la-sci_lstcat.lo `test -f 'sci_gateway/c/sci_lstcat.c' || echo '$(srcdir)/'`sci_gateway/c/sci_lstcat.c

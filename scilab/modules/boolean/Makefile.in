@@ -87,6 +87,7 @@ am__objects_1 = libsciboolean_la-matboolean.lo \
 	libsciboolean_la-vect_or.lo libsciboolean_la-vect_and.lo
 am__objects_2 = logic.lo find.lo
 am__objects_3 = libsciboolean_la-sci_and.lo libsciboolean_la-sci_or.lo \
+	libsciboolean_la-sci_find.lo libsciboolean_la-sci_bool2s.lo \
 	libsciboolean_la-gw_boolean.lo
 am__objects_4 = sci_bool2s.lo sci_find.lo
 am_libsciboolean_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
@@ -285,6 +286,8 @@ src/fortran/find.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_and.c \
 sci_gateway/c/sci_or.c \
+sci_gateway/c/sci_find.c \
+sci_gateway/c/sci_bool2s.c \
 sci_gateway/c/gw_boolean.c
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_bool2s.f \
@@ -451,6 +454,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciboolean_la-gw_boolean.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciboolean_la-matboolean.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciboolean_la-sci_and.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciboolean_la-sci_bool2s.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciboolean_la-sci_find.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciboolean_la-sci_or.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciboolean_la-vect_and.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciboolean_la-vect_or.Plo@am__quote@
@@ -510,6 +515,20 @@ libsciboolean_la-sci_or.lo: sci_gateway/c/sci_or.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_or.c' object='libsciboolean_la-sci_or.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciboolean_la_CFLAGS) $(CFLAGS) -c -o libsciboolean_la-sci_or.lo `test -f 'sci_gateway/c/sci_or.c' || echo '$(srcdir)/'`sci_gateway/c/sci_or.c
+
+libsciboolean_la-sci_find.lo: sci_gateway/c/sci_find.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciboolean_la_CFLAGS) $(CFLAGS) -MT libsciboolean_la-sci_find.lo -MD -MP -MF $(DEPDIR)/libsciboolean_la-sci_find.Tpo -c -o libsciboolean_la-sci_find.lo `test -f 'sci_gateway/c/sci_find.c' || echo '$(srcdir)/'`sci_gateway/c/sci_find.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciboolean_la-sci_find.Tpo $(DEPDIR)/libsciboolean_la-sci_find.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_find.c' object='libsciboolean_la-sci_find.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciboolean_la_CFLAGS) $(CFLAGS) -c -o libsciboolean_la-sci_find.lo `test -f 'sci_gateway/c/sci_find.c' || echo '$(srcdir)/'`sci_gateway/c/sci_find.c
+
+libsciboolean_la-sci_bool2s.lo: sci_gateway/c/sci_bool2s.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciboolean_la_CFLAGS) $(CFLAGS) -MT libsciboolean_la-sci_bool2s.lo -MD -MP -MF $(DEPDIR)/libsciboolean_la-sci_bool2s.Tpo -c -o libsciboolean_la-sci_bool2s.lo `test -f 'sci_gateway/c/sci_bool2s.c' || echo '$(srcdir)/'`sci_gateway/c/sci_bool2s.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciboolean_la-sci_bool2s.Tpo $(DEPDIR)/libsciboolean_la-sci_bool2s.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_bool2s.c' object='libsciboolean_la-sci_bool2s.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciboolean_la_CFLAGS) $(CFLAGS) -c -o libsciboolean_la-sci_bool2s.lo `test -f 'sci_gateway/c/sci_bool2s.c' || echo '$(srcdir)/'`sci_gateway/c/sci_bool2s.c
 
 libsciboolean_la-gw_boolean.lo: sci_gateway/c/gw_boolean.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciboolean_la_CFLAGS) $(CFLAGS) -MT libsciboolean_la-gw_boolean.lo -MD -MP -MF $(DEPDIR)/libsciboolean_la-gw_boolean.Tpo -c -o libsciboolean_la-gw_boolean.lo `test -f 'sci_gateway/c/gw_boolean.c' || echo '$(srcdir)/'`sci_gateway/c/gw_boolean.c
