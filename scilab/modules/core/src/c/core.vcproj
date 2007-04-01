@@ -678,6 +678,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\scilabmode.c"
+				>
+			</File>
+			<File
 				RelativePath=".\scimem.c"
 				>
 			</File>
@@ -896,6 +900,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\SCIHOME.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\scilabmode.h"
 				>
 			</File>
 			<File
