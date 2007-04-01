@@ -13,7 +13,6 @@
 #include "setgetlanguage.h"
 #include "SCIHOME.h"
 #include "MALLOC.h"
-#include "iconv.h"
 /*-----------------------------------------------------------------------------------*/ 
 #define LINELENGTHMAX 1024
 #define TAGLANGUAGE "LANGUAGE"
