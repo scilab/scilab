@@ -22,7 +22,7 @@ BOOL Set_TCL_LIBRARY_PATH(char *DefaultPath)
 	BOOL bOK=FALSE;
 	
 	int major=8;
-	int minor=4; // Par defaut
+	int minor=4; /* Par defaut */
 	int patchLevel=0;
 	int type=0;
 	
@@ -80,7 +80,7 @@ BOOL Set_TK_LIBRARY_PATH(char *DefaultPath)
 	char *CopyOfDefaultPath=NULL;
 
 	int major=8;
-	int minor=4; // Par defaut
+	int minor=4; /* Par defaut */
 	int patchLevel=0;
 	int type=0;
 

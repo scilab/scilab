@@ -181,7 +181,7 @@ int C2F(sci_gstacksize) _PARAMS((char *fname,unsigned long fname_len))
 					}
 					else
 					{
-						// Add 3000 security for the stack
+						/* Add 3000 security for the stack */
 						newmingstack = memgstackused+3000;
 					}
 

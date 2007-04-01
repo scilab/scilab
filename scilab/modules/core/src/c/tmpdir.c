@@ -62,7 +62,7 @@ void C2F(settmpdir)(void)
 
 		if (attribs & FILE_ATTRIBUTE_DIRECTORY)
 		{
-		  // Repertoire existant
+		  /* Repertoire existant */
 		}
 		else
 		{

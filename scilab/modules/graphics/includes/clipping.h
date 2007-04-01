@@ -129,4 +129,4 @@ void frame_clip_on(  void ) ;
 void frame_clip_off( void ) ;
 /*----------------------------------------------------------------------------------------*/
 
-#endif // __SCI_CLIPPING__
+#endif /* __SCI_CLIPPING__ */

@@ -389,12 +389,12 @@ char *md5_str(char *p)
 	char *hex_output = (char *)MALLOC(33);
 	int di;
 
-	//hashage
+	/* hashage */
 	md5_init(&state);
 	md5_append(&state, (const md5_byte_t *)p, (int)strlen(p));
 	md5_finish(&state, digest);
 
-	//output
+	/* output */
 	for (di = 0; di < 16; di++)
 	{
 		sprintf(hex_output + di * 2, "%02x", digest[di]);
@@ -413,7 +413,7 @@ char *md5_file(FILE *fp)
 	size_t ln;
 	char *hex_output = (char *)MALLOC(33);
 
-	//hashage
+	/* hashage */
 	md5_init(&state);
 	while(!feof(fp))
 	{
@@ -422,7 +422,7 @@ char *md5_file(FILE *fp)
 	}
 	md5_finish(&state, digest);
 
-	//output
+	/* output */
 	for (di = 0; di < 16; di++)
 	{
 		sprintf(hex_output + di * 2, "%02x", digest[di]);

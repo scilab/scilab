@@ -3,7 +3,7 @@
 /*     Copyright INRIA */
 
 
-/// NEED COMMENTS !!!!
+/* NEED COMMENTS !!!! */
 #define MMIN(Type) {\
 Type *DX;\
 Type *DY;\

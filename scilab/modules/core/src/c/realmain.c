@@ -41,8 +41,6 @@ void realmain(int nowin,int no_startup_flag_l,char *initial_script,int initial_s
   static int ini=-1;
   int ierr=0;
   char *startup=(char*)MALLOC(sizeof(char)*PATH_MAX+1);
-	  //[256];
-
   Set_no_startup_flag(no_startup_flag_l);
 
   /* create temp directory */
