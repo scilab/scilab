@@ -182,6 +182,26 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 		</Filter>
+		<Filter
+			Name="localization"
+			>
+			<File
+				RelativePath="..\..\languages\en_US\errors.xml"
+				>
+			</File>
+			<File
+				RelativePath="..\..\languages\en_US\menus.xml"
+				>
+			</File>
+			<File
+				RelativePath="..\..\languages\en_US\messages.xml"
+				>
+			</File>
+		</Filter>
+		<File
+			RelativePath="..\..\double.iss"
+			>
+		</File>
 		<File
 			RelativePath="..\..\Makefile.am"
 			>

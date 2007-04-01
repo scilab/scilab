@@ -355,12 +355,32 @@
 				>
 			</File>
 		</Filter>
+		<Filter
+			Name="localization"
+			>
+			<File
+				RelativePath=".\languages\en_US\errors.xml"
+				>
+			</File>
+			<File
+				RelativePath=".\languages\en_US\menus.xml"
+				>
+			</File>
+			<File
+				RelativePath=".\languages\en_US\messages.xml"
+				>
+			</File>
+		</Filter>
 		<File
 			RelativePath=".\Makefile.am"
 			>
 		</File>
 		<File
 			RelativePath=".\sci_gateway\pvm"
+			>
+		</File>
+		<File
+			RelativePath=".\pvm.iss"
 			>
 		</File>
 	</Files>

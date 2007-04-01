@@ -198,6 +198,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\javasci_SciAbstractArray.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\javasci_SciBooleanArray.c"
 				>
 			</File>
@@ -221,10 +225,6 @@
 				RelativePath=".\src\c\javasci_SciStringArray.c"
 				>
 			</File>
-			<File
-				RelativePath=".\src\c\javasci_SciAbstractArray.c"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -233,6 +233,10 @@
 			>
 			<File
 				RelativePath=".\includes\javasci_globals.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\javasci_SciAbstractArray.h"
 				>
 			</File>
 			<File
@@ -259,10 +263,6 @@
 				RelativePath=".\includes\javasci_SciStringArray.h"
 				>
 			</File>
-			<File
-				RelativePath=".\includes\javasci_SciAbstractArray.h"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Resource Files"
@@ -279,6 +279,14 @@
 			</File>
 			<File
 				RelativePath=".\src\java\javasci\MakeJavaClass.bat"
+				>
+			</File>
+			<File
+				RelativePath=".\src\java\javasci\SciAbstractArray.java"
+				>
+			</File>
+			<File
+				RelativePath=".\src\java\javasci\SciAbstractDataType.java"
 				>
 			</File>
 			<File
@@ -317,15 +325,27 @@
 				RelativePath=".\src\java\javasci\SciStringArray.java"
 				>
 			</File>
+		</Filter>
+		<Filter
+			Name="localization"
+			>
 			<File
-				RelativePath=".\src\java\javasci\SciAbstractDataType.java"
+				RelativePath=".\languages\en_US\errors.xml"
 				>
 			</File>
 			<File
-				RelativePath=".\src\java\javasci\SciAbstractArray.java"
+				RelativePath=".\languages\en_US\menus.xml"
+				>
+			</File>
+			<File
+				RelativePath=".\languages\en_US\messages.xml"
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath=".\javasci.iss"
+			>
+		</File>
 		<File
 			RelativePath=".\Makefile.am"
 			>

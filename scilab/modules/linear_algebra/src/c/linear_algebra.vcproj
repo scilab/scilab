@@ -292,8 +292,28 @@
 				>
 			</File>
 		</Filter>
+		<Filter
+			Name="localization"
+			>
+			<File
+				RelativePath="..\..\languages\en_US\errors.xml"
+				>
+			</File>
+			<File
+				RelativePath="..\..\languages\en_US\menus.xml"
+				>
+			</File>
+			<File
+				RelativePath="..\..\languages\en_US\messages.xml"
+				>
+			</File>
+		</Filter>
 		<File
 			RelativePath="..\..\sci_gateway\linear_algebra"
+			>
+		</File>
+		<File
+			RelativePath="..\..\linear_algebra.iss"
 			>
 		</File>
 		<File

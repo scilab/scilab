@@ -471,12 +471,32 @@
 				>
 			</File>
 		</Filter>
+		<Filter
+			Name="localization"
+			>
+			<File
+				RelativePath=".\languages\en_US\errors.xml"
+				>
+			</File>
+			<File
+				RelativePath=".\languages\en_US\menus.xml"
+				>
+			</File>
+			<File
+				RelativePath=".\languages\en_US\messages.xml"
+				>
+			</File>
+		</Filter>
 		<File
 			RelativePath=".\Makefile.am"
 			>
 		</File>
 		<File
 			RelativePath=".\sci_gateway\tclsci"
+			>
+		</File>
+		<File
+			RelativePath=".\tclsci.iss"
 			>
 		</File>
 		<File
