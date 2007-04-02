@@ -74,13 +74,13 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
   
   [critev]=critical_events(connectmat,clkconnect,dep_t,typ_r,..
 			   typ_l,typ_zx,outoin,outoinptr,clkptr)
-  
+
   [clkconnect,exe_cons]=pak_ersi(connectmat,clkconnect,typ_r,..
 				 typ_l,outoin,outoinptr,tblock,typ_cons,clkptr)
   //end
   
   if or(typ_l) then
-    
+
     clkconnecttmp=clkconnect(find(clkconnect(:,1)<>0),:);
     n_clkco=size(clkconnecttmp,1)
     for i=1:n_clkco
@@ -89,7 +89,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
 	cpr=list();return
       end
     end 
-    
+
     [ordclk,ordptr,cord,ordoclk,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
      dep_uptr,corinv,clkptr,cliptr,critev,ok]=paksazi(typ_l,clkconnect,..
      connectmat,bllst,dep_t,dep_u,dep_uptr,corinv,clkptr,cliptr,critev)
@@ -1360,7 +1360,6 @@ function [bouclalg,vec,primary]=ordo2(blk,port,clkconnect,connectmat,..
 
   counter2=0
   oldvec2=[]
-  blk_duplicated=[]
   done=%f
   fromfixe=%f
   bouclalg=%f
@@ -1381,21 +1380,6 @@ function [bouclalg,vec,primary]=ordo2(blk,port,clkconnect,connectmat,..
   //on met les enfants à 1
   vec(primary(:,1))=1
 
-  //on enlève blk de primary (cas des clk)
-  f1=find(primary(:,1)==blk)
-  n_f1=size(f1,2)
-  if n_f1>0 then
-    for i1=1:n_f1
-      if primary(f1(i1),2)==port then
-	primary(f1(i1),:)=[]
-      end
-    end
-  end
-  // To fix the problem with algebraic loops when blk is typ_l
-  if blk>0 then  // exclude the block "always active"
-    if typ_l(blk) then primary=[primary;blk,1],end
-  end
-  
   n_p=size(primary,1)
   if n_p>0 then
     gap=%f
@@ -1404,34 +1388,39 @@ function [bouclalg,vec,primary]=ordo2(blk,port,clkconnect,connectmat,..
 	primary1=primary(i,1)
         if typ_l(primary1) then   //RN
 	  w=get_allchildren2port(primary1)
+	  if w<>[] then
+	    vec(w(:,1))=max(max(vec(w(:,1))),vec(primary1))
+	  end
 	else
 	  w=[]
         end
 	w=[primary(i,:);w]
 	//on cherche d'où vient l'entrée des blocs: g
-
-	//if dep_ut(primary1,1) then
-	indport=find(dep_u(dep_uptr(primary1):dep_uptr(primary1+1)-1));
-	g=[];
-	if ( indport ~= [] ) then
-	  wu=[primary1*ones(size(indport','*'),1) indport'];	
+        wu = []
+        for i1=1:size(w,1)
+          indport=find(dep_u(dep_uptr(w(i1,1)):dep_uptr(w(i1,1)+1)-1));
+	  wu=[wu;w(i1,1)*ones(size(indport','*'),1) indport'];	
+        end
+        g= []	
+        if wu~=[] then
   	  for i=1:size(wu,1)
             f=find(connectmat(:,3)==wu(i,1) & connectmat(:,4)==wu(i,2))'
             g=[g;connectmat(f,1)]
           end
-	  //g=connectmat(find(connectmat(:,3)==primary1),1)
 	  //on garde dans g les termes >-1
 	  //i.e. les blocs activés par l'horloge clk
 	  g=g(find(vec(g)>-1))
 	  if g~=[] then
-	    vec(primary1)=max(vec(primary1),max(vec(g))+1)
+	    vec(w(:,1))=vec(w(:,1))-1
+	    vec(w(:,1))=max(vec(w(:,1)),max(vec(g)))+1
+//	    vec(primary1)=max(max(vec(w(:,1))),max(vec(g))+1)
 	  end
-	end
-	vec(w(:,1))=vec(primary1)
+      	end
+//	vec(w(:,1))=vec(primary1)
       end
 
       gap=find_gap(vec(primary(:,1)))
-      
+
       if vec==oldvec2 then
 	fromfixe=%t
       else
@@ -1519,9 +1508,27 @@ function [bouclalg,vec,primary,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
           cliptr,critev)
 
   bouclalg=%f
-  nblock=size(typ_l)
+  nblock=size(typ_l,1)
   vec=-ones(nblock)
   //on cherche les enfants directs: primary
+
+  // To detect algebraic loops when blk is typ_l
+  if blk>0 then  // exclude the block "always active"
+    if typ_l(blk) then 
+      w=get_allchildrenport(blk,port)
+      wu = [blk,1]
+      f=find(connectmat(:,3)==blk & connectmat(:,4)==1)'
+      g=connectmat(f,1)
+
+      g($+1)=blk  // detect loop on events
+      if intersect(g,w(:,1))<>[] then
+	bouclalg=%t
+	disp('Algebric loop detected in ini_ordo')
+        return
+      end
+    end
+  end
+
   primary=get_childrenport([],blk,port)
   vec(primary(:,1))=1
   //on enlève blk de primary (cas des clk)
@@ -1535,6 +1542,8 @@ function [bouclalg,vec,primary,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
     end
   end
   n_p=size(primary,1)
+
+
   if n_p>0 then
     //on regarde s'il y a plus d'un bloc logique dans primary
     logic=0
@@ -1543,6 +1552,7 @@ function [bouclalg,vec,primary,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
 	logic=logic+1
       end
     end
+
     if logic<2 then
       [bouclalg,vec,primary]=ordo2(blk,port,clkconnect,connectmat,..
                                    primary,dep_t,dep_u,dep_uptr)
@@ -1606,7 +1616,6 @@ function [bouclalg,vec,primary,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
 	  w(del1',:)=[]
 	end
 	w=[w0;w]
-        //wu=unique(w(find(dep_ut(w(:,1),1)),1))
 
 	wu=[];
 	for i=1:size(w,1)
@@ -1618,9 +1627,6 @@ function [bouclalg,vec,primary,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
 
         //on cherche d'où vient l'entrée des blocs: g
         if (wu ~=[]) then
-	  //ind=dsearch(connectmat(:,3:4),wu,'d')
-	  //h=connectmat(find(ind),1)
-
 	  h=[];
   	  for i=1:size(wu,1)
             f=find(connectmat(:,3)==wu(i,1) & connectmat(:,4)==wu(i,2))'
@@ -1980,7 +1986,7 @@ function [ordclk,ordptr,cord,ordoclk,typ_l,clkconnect,connectmat,bllst,dep_t,dep
      corinv,blk_duplicated,clkptr,cliptr,critev]=ini_ordo(0,0,clkconnect,connectmat,..
      bllst,typ_l,dep_t,dep_u,dep_uptr,corinv,clkptr,cliptr,critev);
     if bouclalg then
-      message('Algebrique  loop detected; cannot be compiled.');
+      message('Algeraic loop detected; cannot be compiled.');
       ok=%f
       disp('activation traitée: bloc 0 - port0')
       return,
@@ -2021,7 +2027,7 @@ function [ordclk,ordptr,cord,ordoclk,typ_l,clkconnect,connectmat,bllst,dep_t,dep
          clkconnect,connectmat,bllst,typ_l,dep_t,dep_u,dep_uptr,corinv,clkptr,..
          cliptr,critev);
 	if bouclalg then
-	  message('Algebrique  loop detected; cannot be compiled.');
+	  message('Algebraic  loop detected; cannot be compiled.');
 	  ok=%f
 	  disp('activation traitée: bloc '+string(ordoclk(k,1))+' - port '+string(j))
 	  return,
