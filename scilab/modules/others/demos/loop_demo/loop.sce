@@ -2,11 +2,8 @@
 // Authors Serge Steer, Jean-Baptiste Silvy Copyright INRIA
 // Update 16/11/2005
 // Update 02/04/2007 : Bruno
+// Udpate 02/04/2007 : Allan 
 //------------------------------------------------------------
-
-// Default language
-global lang
-lang='FR'
 
 // default window size;
 wSize = [850,920];
@@ -14,12 +11,6 @@ wSize = [850,920];
 // window size for the image demo
 wSize_Small = [850,492] ;
 
-// set firefox has help viewer
-global %browsehelp
-%browsehelp = 'firefox'
-
-global INDEX
-INDEX = make_help_index()
 
 titles=['Scilab','Arbre genealogique', ..
 	'Visualisation scientifique',..
@@ -57,18 +48,18 @@ nbDemos = nbDemos(2) ;
 
 //------------------------------------------------------------
 function demo_help(key)
-  browsehelp=browsehelp;
-  global lang;
-  lang=lang;
-  //if MSDOS then
-    browsehelp(gethelpfile(key+'_'+lang),key)
-  //else
-    //tcltk_help(gethelpfile(key),key,'demo')
-  //end
+  path=get_absolute_file_path("loop.sce");
+  pathhtml=strsubst(path+'html/'+getlanguage(),'\','/')
+  [x,ierr]=fileinfo(pathhtml);
+  if (x == []) then
+  pathhtml=strsubst(path+'html/'+getlanguage('LANGUAGE_DEFAULT'),'\','/')
+  end
+  filehmtl=strsubst(pathhtml+'/'+key+'.htm','\','/') ;
+  browsehelp(filehmtl,key);
   // wait for people to read
   realtimeinit(1.0);
   for i=1:1
-//    realtime(i);
+    realtime(i);
   end ;
 endfunction
 //------------------------------------------------------------
@@ -129,9 +120,8 @@ global %browsehelp;
 if MSDOS then
   %browsehelp='Default Windows Browser';
 else
-  //%browsehelp='mozilla/netscape (gnome-moz-remote)';
+  %browsehelp='firefox';
 end
-%helps=[%helps;path "Demos"];
 
 
 Maxfiles=size(filesdemos);
@@ -140,8 +130,7 @@ Maxfiles=size(filesdemos);
    exec(filesdemos(i));
  end
 
-//while %t
-  loopdemos(nbDemos);
-//  loopnumber=loopnumber+1;
-//end
+
+loopdemos(nbDemos);
+
 exit

@@ -1,10 +1,10 @@
-cd(SCI+'/demos/loop_demo');
+cd(SCI+'/modules/others/demos/loop_demo');
 if MSDOS then
   while %t
-    unix_g(SCI+'/bin/Wscilex -ng -f loop.sce');
+    unix_g(SCI+'/bin/Wscilex -nb -f loop.sce');
   end 
 else
   while %t
-    unix_g(SCI+'/bin/scilex -ng -f loop.sce');
+    unix_g(SCI+'/bin/scilex -nb -f loop.sce');
   end
 end
