@@ -2,12 +2,9 @@
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-
   <TITLE>configure_lcc</TITLE>
-
   <TYPE>Scilab Function</TYPE>
-
-
+  <DATE>$LastChangedDate: 2006-08-30 13:26:08 +0200 (mer, 30 aoû 2006) $</DATE>
   <SHORT_DESCRIPTION name="configure_lcc">set environments variables for LCC-Win32 C Compiler.</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>

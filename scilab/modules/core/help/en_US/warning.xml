@@ -2,31 +2,23 @@
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-
   <TITLE>warning</TITLE>
-
   <TYPE>Scilab Function</TYPE>
-
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="warning">warning messages</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>warning('string')</CALLING_SEQUENCE_ITEM>
-
     <CALLING_SEQUENCE_ITEM>warning('off')</CALLING_SEQUENCE_ITEM>
-
     <CALLING_SEQUENCE_ITEM>warning('on')</CALLING_SEQUENCE_ITEM>
-
     <CALLING_SEQUENCE_ITEM>mode = warning('query')</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 
   <DESCRIPTION>
     <P>prints the character string <VERB>'string'</VERB> in a warning
     message</P>
-
     <P><VERB>'on'</VERB> enable warning messages.</P>
-
     <P><VERB>'off'</VERB> disable warning messages.</P>
-
     <P><VERB>'query'</VERB> get state 'on' or 'off'.</P>
   </DESCRIPTION>
 

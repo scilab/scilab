@@ -2,13 +2,10 @@
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-
   <TITLE>sethomedirectory</TITLE>
-
   <TYPE>Scilab Function</TYPE>
-
-  <SHORT_DESCRIPTION name="sethomedirectory">Set Scilab home
-  directory</SHORT_DESCRIPTION>
+  <DATE>$LastChangedDate$</DATE>
+  <SHORT_DESCRIPTION name="sethomedirectory">Set Scilab home directory</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[home,scilabhome]=sethomedirectory()</CALLING_SEQUENCE_ITEM>

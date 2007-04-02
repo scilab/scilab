@@ -54,7 +54,8 @@
   </P>
 
   <P>
-  The <VERB>ibut</VERB> parameter takes one of the following value depending on event type:
+    The <VERB>ibut</VERB> parameter takes one of the following value depending on event type:
+  </P>
   <ITEMIZE>
     <ITEM label="ibut==0">
       <SP>: Left mouse button has been pressed</SP>
@@ -121,7 +122,6 @@
       <SP>: graphic window has been closed</SP>
     </ITEM>
   </ITEMIZE>
-  </P>
 
   <P>
   For example, let say that the name of the event handler function is fooHandler
