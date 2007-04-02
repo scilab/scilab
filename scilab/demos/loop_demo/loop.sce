@@ -3,6 +3,10 @@
 // Update 16/11/2005
 //------------------------------------------------------------
 
+// Default language
+global lang
+lang='FR'
+
 // default window size;
 wSize = [850,920];
 
@@ -26,7 +30,7 @@ titles=['Scilab','Arbre genealogique', ..
         'Modelisation et simulation d''un pendule glissant', ..
         'Programmation lineaire 2', ..
         'Optimisation non lineaire','Spline'];
-          
+
 demos=['demo_scilab();','demo_geneal();',..
        'demo_isoSurf()',..
        'demo_riemann();','demo_3dplot()',..
@@ -45,16 +49,18 @@ filesdemos=['demo_scilab.sci','Geneal.sci', ..
             'truck.sci','n_pendulum.sci', ..
 	    'sliding_pendulum.sci', ..
 	    'optloc.sci', ..
-            'datafit.sci','spline.sci'];    
-    
+            'datafit.sci','spline.sci'];
+
 nbDemos = size(filesdemos);
 nbDemos = nbDemos(2) ;
- 
+
 //------------------------------------------------------------
 function demo_help(key)
   browsehelp=browsehelp;
+  global lang;
+  lang=lang;
   //if MSDOS then
-    browsehelp(gethelpfile(key),key)
+    browsehelp(gethelpfile(key+'_'+lang),key)
   //else
     //tcltk_help(gethelpfile(key),key,'demo')
   //end
@@ -67,7 +73,7 @@ endfunction
 //------------------------------------------------------------
 function demotodo(demoname,title)
   clc();
-  printf('Demo '+title+' \n'); 
+  printf('Demo '+title+' \n');
   execstr(demoname);
   xdel();
   clear ;
@@ -75,11 +81,11 @@ function demotodo(demoname,title)
 endfunction
 //------------------------------------------------------------
 function loopdemos(n)
-  
+
 // Max=size(demos,"*");
- 
+
  for i=1:n do
-   demotodo(demos(i),titles(i)); 
+   demotodo(demos(i),titles(i));
  end
 
 endfunction
@@ -122,13 +128,13 @@ global %browsehelp;
 if MSDOS then
   %browsehelp='Default Windows Browser';
 else
-  //%browsehelp='mozilla/netscape (gnome-moz-remote)';  
+  //%browsehelp='mozilla/netscape (gnome-moz-remote)';
 end
 %helps=[%helps;path "Demos"];
 
 
 Maxfiles=size(filesdemos);
- 
+
  for i=1:1:Maxfiles(2) do
    exec(filesdemos(i));
  end
