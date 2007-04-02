@@ -1,6 +1,7 @@
 /*-----------------------------------------------------------------------------------*/ 
 /* INRIA 2007 */
 /* Allan CORNET */
+/* Update : Sylvestre Ledru 2007 */
 /*-----------------------------------------------------------------------------------*/ 
 #include <string.h> /* strcmp */
 #include "loadhashtableslocalization.h"
@@ -103,7 +104,7 @@ BOOL LoadHashTableLocalization(struct hashtable *table,char *filenamexml)
 		{
 			xmlNodePtr child=node->children;
 
-			/* browse element in <entry> */
+			/* browse elements in <entry> */
 			while (child != NULL)
 			{
 				if (child->children!=NULL)
@@ -151,7 +152,7 @@ BOOL LoadHashTableLocalization(struct hashtable *table,char *filenamexml)
 	}
 	else
 	{
-		printf("Error : Not a valid localization file %s ( encoding not 'utf-8')\n", filenamexml);
+		printf("Error : Not a valid localization file %s (encoding not 'utf-8') Encoding '%s' found\n", filenamexml, encoding);
 	}
 
 	if (encoding) {FREE(encoding);encoding=NULL;}
