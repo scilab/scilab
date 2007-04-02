@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
 
@@ -20,35 +20,35 @@
       <PARAM_ITEM>
         <PARAM_NAME>mat</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: matrice d'entrÃ©e Ã  partir de laquelle la matrice redimensionnÃ©e sera crÃ©Ã©e.</SP>
+          <SP>: matrice d'entrée à  partir de laquelle la matrice redimensionnée sera créée.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
       <PARAM_ITEM>
         <PARAM_NAME>nbRow</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: nombre de lignes de la matrice redimensionnÃ©e.</SP>
+          <SP>: nombre de lignes de la matrice redimensionnée.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
       <PARAM_ITEM>
         <PARAM_NAME>nbCol</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: nombre de colonnes de la matrice redimensionnÃ©e.</SP>
+          <SP>: nombre de colonnes de la matrice redimensionnée.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
       <PARAM_ITEM>
         <PARAM_NAME>typeOfMat</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: chaÃ®ne de caractÃ¨res spÃ©cifiant le type de la matrice redimensionnÃ©e.</SP>
+          <SP>: chaîne de caractères spécifiant le type de la matrice redimensionnée.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
       <PARAM_ITEM>
         <PARAM_NAME>resMat</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: matrice redimensionnÃ©e.</SP>
+          <SP>: matrice redimensionnée.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -56,22 +56,22 @@
   </PARAM>
 
   <DESCRIPTION>
-    <P> CrÃ©e une matrice de taille <VERB>nbRow</VERB> x<VERB> nbCol</VERB> dont les Ã©lÃ©ments 
+    <P> Crée une matrice de taille <VERB>nbRow</VERB> x<VERB> nbCol</VERB> dont les éléments 
     <VERB>(i,j)</VERB> sont
-    <VERB>mat(i,j)</VERB> si <VERB>(i,j)</VERB> est infÃ©rieur Ã  la taille de la matrice.
-    Sinon les Ã©lÃ©ments <VERB>(i,j)</VERB> sont <VERB>0</VERB> pour les matrices de rÃ©els ou
+    <VERB>mat(i,j)</VERB> si <VERB>(i,j)</VERB> est inférieur à  la taille de la matrice.
+    Sinon les éléments <VERB>(i,j)</VERB> sont <VERB>0</VERB> pour les matrices de réels ou
     d'entier,
-    <VERB>%f</VERB> pour les matrices de boolÃ©ens et une chaÃ®ne vide pour les matrices
-    de chaÃ®nes de caractÃ¨res.
+    <VERB>%f</VERB> pour les matrices de booléens et une chaîne vide pour les matrices
+    de chaînes de caractères.
     </P>
     <P>
-    Le type de la matrice de sortie peut Ãªtre spÃ©cifiÃ© par l'argument
-    <VERB>typeOfMat</VERB>. Dans ce cas, le type doit Ãªtre compatible avec celui de la
-    matrice d'entrÃ©e.
+    Le type de la matrice de sortie peut être spécifié par l'argument
+    <VERB>typeOfMat</VERB>. Dans ce cas, le type doit être compatible avec celui de la
+    matrice d'entrée.
     </P>
     <P>
-    Pour l'instant, seules les matrices de rÃ©els, d'entiers, de boolÃ©ens et de chaÃ®nes
-    de caractÃ¨res sont supportÃ©es. Ainsi, l'argument <VERB>typeOfMat</VERB> doit prendre
+    Pour l'instant, seules les matrices de réels, d'entiers, de booléens et de chaînes
+    de caractères sont supportées. Ainsi, l'argument <VERB>typeOfMat</VERB> doit prendre
     une valeur parmis : 'constant', 'boolean', 'string' ou un type entier
     ('int8', 'int16',...).
      </P>
@@ -81,13 +81,13 @@
 
   // matrice de chiffres
   myMat = 5 * rand( 3, 4 )
-  myMat = resize_matrix( myMat, 3, 3 ) // rÃ©duction de la taille de la matrice
-  // crÃ©ation d'une matrice d'entiers
+  myMat = resize_matrix( myMat, 3, 3 ) // réduction de la taille de la matrice
+  // création d'une matrice d'entiers
   myMatInteger = resize_matrix( myMat, 4, 4, 'int32' )
   myMatBoolean = resize_matrix( myMat, 2, 2, 'boolean' )
   myMatBoolean = resize_matrix( myMatBoolean, 3, 5 )
 
-  // matrice de chaÃ®nes de caractÃ¨res
+  // matrice de chaînes de caractères
   myMatString = ["Scilab","the";"Open Source","Scientific";"Software","Package"]
   myMatString = resize_matrix( myMatString, 3, 1 )
  
