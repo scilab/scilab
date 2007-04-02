@@ -18,17 +18,12 @@ Source: modules\{#TFDS}\changelog.txt; DestDir: {app}\modules\{#TFDS}; Component
 Source: modules\{#TFDS}\etc\{#TFDS}.quit; DestDir: {app}\modules\{#TFDS}\etc; Components: {#COMPN_TFDS}
 Source: modules\{#TFDS}\etc\{#TFDS}.start; DestDir: {app}\modules\{#TFDS}\etc; Components: {#COMPN_TFDS}
 ;
-Source: modules\{#TFDS}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#TFDS}\help\en_US; Components:  {#COMPN_TFDS}
-Source: modules\{#TFDS}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#TFDS}\help\en_US; Components: {#COMPN_TFDS}
+Source: modules\{#TFDS}\help\addchapter.sce; DestDir: {app}\modules\{#TFDS}\help; Flags: recursesubdirs; Components:  {#COMPN_TFDS}
+Source: modules\{#TFDS}\help\removechapter.sce; DestDir: {app}\modules\{#TFDS}\help; Flags: recursesubdirs; Components: {#COMPN_TFDS}
 ;
-Source: modules\{#TFDS}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#TFDS}\help\fr_FR; Components:  {#COMPN_TFDS}
-Source: modules\{#TFDS}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#TFDS}\help\fr_FR; Components: {#COMPN_TFDS}
+Source: modules\{#TFDS}\help\*.htm; DestDir: {app}\modules\{#TFDS}\help; Flags: recursesubdirs; Components: {#COMPN_TFDS}
 ;
-Source: modules\{#TFDS}\help\en_US\*.htm; DestDir: {app}\modules\{#TFDS}\help\en_US; Components: {#COMPN_TFDS}
-Source: modules\{#TFDS}\help\fr_FR\*.htm; DestDir: {app}\modules\{#TFDS}\help\fr_FR; Components: {#COMPN_TFDS}
-;
-Source: modules\{#TFDS}\languages\en_US\*.xml; DestDir: {app}\modules\{#TFDS}\languages\en_US; Components: {#COMPN_TFDS}
-Source: modules\{#TFDS}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#TFDS}\languages\fr_FR; Components: {#COMPN_TFDS}
+Source: modules\{#TFDS}\languages\*.xml; DestDir: {app}\modules\{#TFDS}\languages; Flags: recursesubdirs; Components: {#COMPN_TFDS}
 ;
 ;Source: modules\{#TFDS}\includes\*.h; DestDir: {app}\modules\{#TFDS}\includes; Components: {#COMPN_TFDS}
 ;

@@ -25,12 +25,8 @@ Source: modules\{#JVM}\classes\*.class; DestDir: {app}\modules\{#JVM}\classes; C
 Source: modules\{#JVM}\etc\{#JVM}.quit; DestDir: {app}\modules\{#JVM}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#JVM}\etc\{#JVM}.start; DestDir: {app}\modules\{#JVM}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#JVM}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#JVM}\help\en_US; Components:  {#COMPN_SCILAB}
-Source: modules\{#JVM}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#JVM}\help\en_US; Components: {#COMPN_SCILAB}
+Source: modules\{#JVM}\help\addchapter.sce; DestDir: {app}\modules\{#JVM}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
+Source: modules\{#JVM}\help\removechapter.sce; DestDir: {app}\modules\{#JVM}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#JVM}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#JVM}\help\fr_FR; Components:  {#COMPN_SCILAB}
-Source: modules\{#JVM}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#JVM}\help\fr_FR; Components: {#COMPN_SCILAB}
-;
-Source: modules\{#JVM}\languages\en_US\*.xml; DestDir: {app}\modules\{#JVM}\languages\en_US; Components: {#COMPN_SCILAB}
-Source: modules\{#JVM}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#JVM}\languages\fr_FR; Components: {#COMPN_SCILAB}
+Source: modules\{#JVM}\languages\*.xml; DestDir: {app}\modules\{#JVM}\languages; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;--------------------------------------------------------------------------------------------------------------

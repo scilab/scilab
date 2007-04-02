@@ -20,17 +20,12 @@ Source: modules\{#SCI2C}\sci_gateway\SCI2C; DestDir: {app}\modules\{#SCI2C}\sci_
 Source: modules\{#SCI2C}\etc\{#SCI2C}.quit; DestDir: {app}\modules\{#SCI2C}\etc; Components: {#COMPN_SCI2C}
 Source: modules\{#SCI2C}\etc\{#SCI2C}.start; DestDir: {app}\modules\{#SCI2C}\etc; Components: {#COMPN_SCI2C}
 ;
-Source: modules\{#SCI2C}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#SCI2C}\help\en_US; Components:  {#COMPN_SCI2C}
-Source: modules\{#SCI2C}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#SCI2C}\help\en_US; Components: {#COMPN_SCI2C}
+Source: modules\{#SCI2C}\help\addchapter.sce; DestDir: {app}\modules\{#SCI2C}\help; Flags: recursesubdirs; Components:  {#COMPN_SCI2C}
+Source: modules\{#SCI2C}\help\removechapter.sce; DestDir: {app}\modules\{#SCI2C}\help; Flags: recursesubdirs; Components: {#COMPN_SCI2C}
 ;
-Source: modules\{#SCI2C}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#SCI2C}\help\fr_FR; Components:  {#COMPN_SCI2C}
-Source: modules\{#SCI2C}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#SCI2C}\help\fr_FR; Components: {#COMPN_SCI2C}
+Source: modules\{#SCI2C}\help\*.htm; DestDir: {app}\modules\{#SCI2C}\help; Flags: recursesubdirs; Components: {#COMPN_SCI2C}
 ;
-Source: modules\{#SCI2C}\help\en_US\*.htm; DestDir: {app}\modules\{#SCI2C}\help\en_US; Components: {#COMPN_SCI2C}
-Source: modules\{#SCI2C}\help\fr_FR\*.htm; DestDir: {app}\modules\{#SCI2C}\help\fr_FR; Components: {#COMPN_SCI2C}
-;
-Source: modules\{#SCI2C}\languages\en_US\*.xml; DestDir: {app}\modules\{#SCI2C}\languages\en_US; Components: {#COMPN_SCI2C}
-Source: modules\{#SCI2C}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#SCI2C}\languages\fr_FR; Components: {#COMPN_SCI2C}
+Source: modules\{#SCI2C}\languages\*.xml; DestDir: {app}\modules\{#SCI2C}\languages; Flags: recursesubdirs; Components: {#COMPN_SCI2C}
 ;
 Source: modules\{#SCI2C}\includes\*.h; DestDir: {app}\modules\{#SCI2C}\includes; Components: {#COMPN_SCI2C}
 ;

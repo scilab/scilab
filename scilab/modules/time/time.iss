@@ -25,17 +25,12 @@ Source: modules\{#TIME}\sci_gateway\time; DestDir: {app}\modules\{#TIME}\sci_gat
 Source: modules\{#TIME}\etc\{#TIME}.quit; DestDir: {app}\modules\{#TIME}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#TIME}\etc\{#TIME}.start; DestDir: {app}\modules\{#TIME}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#TIME}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#TIME}\help\en_US; Components:  {#COMPN_SCILAB}
-Source: modules\{#TIME}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#TIME}\help\en_US; Components: {#COMPN_SCILAB}
+Source: modules\{#TIME}\help\addchapter.sce; DestDir: {app}\modules\{#TIME}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
+Source: modules\{#TIME}\help\removechapter.sce; DestDir: {app}\modules\{#TIME}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#TIME}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#TIME}\help\fr_FR; Components:  {#COMPN_SCILAB}
-Source: modules\{#TIME}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#TIME}\help\fr_FR; Components: {#COMPN_SCILAB}
+Source: modules\{#TIME}\help\*.htm; DestDir: {app}\modules\{#TIME}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#TIME}\help\en_US\*.htm; DestDir: {app}\modules\{#TIME}\help\en_US; Components: {#COMPN_SCILAB}
-Source: modules\{#TIME}\help\fr_FR\*.htm; DestDir: {app}\modules\{#TIME}\help\fr_FR; Components: {#COMPN_SCILAB}
-;
-Source: modules\{#TIME}\languages\en_US\*.xml; DestDir: {app}\modules\{#TIME}\languages\en_US; Components: {#COMPN_SCILAB}
-Source: modules\{#TIME}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#TIME}\languages\fr_FR; Components: {#COMPN_SCILAB}
+Source: modules\{#TIME}\languages\*.xml; DestDir: {app}\modules\{#TIME}\languages; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#TIME}\macros\buildmacros.sce; DestDir: {app}\modules\{#TIME}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#TIME}\macros\*.bin; DestDir: {app}\modules\{#TIME}\macros; Components: {#COMPN_SCILAB}

@@ -12,17 +12,12 @@ Source: modules\{#TEXMACS}\changelog.txt; DestDir: {app}\modules\{#TEXMACS}; Com
 Source: modules\{#TEXMACS}\etc\{#TEXMACS}.quit; DestDir: {app}\modules\{#TEXMACS}\etc; Components: {#COMPN_TEXMACS}
 Source: modules\{#TEXMACS}\etc\{#TEXMACS}.start; DestDir: {app}\modules\{#TEXMACS}\etc; Components: {#COMPN_TEXMACS}
 ;
-Source: modules\{#TEXMACS}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#TEXMACS}\help\en_US; Components:  {#COMPN_TEXMACS}
-Source: modules\{#TEXMACS}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#TEXMACS}\help\en_US; Components: {#COMPN_TEXMACS}
+Source: modules\{#TEXMACS}\help\addchapter.sce; DestDir: {app}\modules\{#TEXMACS}\help; Flags: recursesubdirs; Components:  {#COMPN_TEXMACS}
+Source: modules\{#TEXMACS}\help\removechapter.sce; DestDir: {app}\modules\{#TEXMACS}\help; Flags: recursesubdirs; Components: {#COMPN_TEXMACS}
 ;
-Source: modules\{#TEXMACS}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#TEXMACS}\help\fr_FR; Components:  {#COMPN_TEXMACS}
-Source: modules\{#TEXMACS}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#TEXMACS}\help\fr_FR; Components: {#COMPN_TEXMACS}
+Source: modules\{#TEXMACS}\help\*.htm; DestDir: {app}\modules\{#TEXMACS}\help; Flags: recursesubdirs; Components: {#COMPN_TEXMACS}
 ;
-Source: modules\{#TEXMACS}\help\en_US\*.htm; DestDir: {app}\modules\{#TEXMACS}\help\en_US; Components: {#COMPN_TEXMACS}
-Source: modules\{#TEXMACS}\help\fr_FR\*.htm; DestDir: {app}\modules\{#TEXMACS}\help\fr_FR; Components: {#COMPN_TEXMACS}
-;
-Source: modules\{#TEXMACS}\languages\en_US\*.xml; DestDir: {app}\modules\{#TEXMACS}\languages\en_US; Components: {#COMPN_TEXMACS}
-Source: modules\{#TEXMACS}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#TEXMACS}\languages\fr_FR; Components: {#COMPN_TEXMACS}
+Source: modules\{#TEXMACS}\languages\*.xml; DestDir: {app}\modules\{#TEXMACS}\languages; Flags: recursesubdirs; Components: {#COMPN_TEXMACS}
 ;
 Source: modules\{#TEXMACS}\macros\lib; DestDir: {app}\modules\{#TEXMACS}\macros; Components: {#COMPN_TEXMACS}
 Source: modules\{#TEXMACS}\macros\names; DestDir: {app}\modules\{#TEXMACS}\macros; Components: {#COMPN_TEXMACS}

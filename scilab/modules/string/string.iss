@@ -20,20 +20,15 @@ Source: modules\{#STRING}\changelog.txt; DestDir: {app}\modules\{#STRING}; Compo
 ;
 Source: modules\{#STRING}\sci_gateway\string; DestDir: {app}\modules\{#STRING}\sci_gateway; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#STRING}\etc\{#STRING}.quit; DestDir: {app}\modules\{#STRING}\etc; Components: {#COMPN_SCILAB}
-Source: modules\{#STRING}\etc\{#STRING}.start; DestDir: {app}\modules\{#STRING}\etc; Components: {#COMPN_SCILAB}
+Source: modules\{#STRING}\etc\{#STRING}.quit; DestDir: {app}\modules\{#STRING}\etc; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+Source: modules\{#STRING}\etc\{#STRING}.start; DestDir: {app}\modules\{#STRING}\etc; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#STRING}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#STRING}\help\en_US; Components:  {#COMPN_SCILAB}
-Source: modules\{#STRING}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#STRING}\help\en_US; Components: {#COMPN_SCILAB}
+Source: modules\{#STRING}\help\addchapter.sce; DestDir: {app}\modules\{#STRING}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
+Source: modules\{#STRING}\help\removechapter.sce; DestDir: {app}\modules\{#STRING}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#STRING}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#STRING}\help\fr_FR; Components:  {#COMPN_SCILAB}
-Source: modules\{#STRING}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#STRING}\help\fr_FR; Components: {#COMPN_SCILAB}
+Source: modules\{#STRING}\help\*.htm; DestDir: {app}\modules\{#STRING}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#STRING}\help\en_US\*.htm; DestDir: {app}\modules\{#STRING}\help\en_US; Components: {#COMPN_SCILAB}
-Source: modules\{#STRING}\help\fr_FR\*.htm; DestDir: {app}\modules\{#STRING}\help\fr_FR; Components: {#COMPN_SCILAB}
-;
-Source: modules\{#STRING}\languages\en_US\*.xml; DestDir: {app}\modules\{#STRING}\languages\en_US; Components: {#COMPN_SCILAB}
-Source: modules\{#STRING}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#STRING}\languages\fr_FR; Components: {#COMPN_SCILAB}
+Source: modules\{#STRING}\languages\*.xml; DestDir: {app}\modules\{#STRING}\languages; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#STRING}\includes\*.h; DestDir: {app}\modules\{#STRING}\includes; Components: {#COMPN_SCILAB}
 ;

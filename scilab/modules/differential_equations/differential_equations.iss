@@ -20,17 +20,12 @@ Source: modules\{#DIFFEQU}\sci_gateway\differential_equations; DestDir: {app}\mo
 Source: modules\{#DIFFEQU}\etc\{#DIFFEQU}.quit; DestDir: {app}\modules\{#DIFFEQU}\etc; Components: {#COMPN_EQUDIF}
 Source: modules\{#DIFFEQU}\etc\{#DIFFEQU}.start; DestDir: {app}\modules\{#DIFFEQU}\etc; Components: {#COMPN_EQUDIF}
 ;
-Source: modules\{#DIFFEQU}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#DIFFEQU}\help\en_US; Components:  {#COMPN_EQUDIF}
-Source: modules\{#DIFFEQU}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#DIFFEQU}\help\en_US; Components:  {#COMPN_EQUDIF}
+Source: modules\{#DIFFEQU}\help\addchapter.sce; DestDir: {app}\modules\{#DIFFEQU}\help; Flags: recursesubdirs; Components:  {#COMPN_EQUDIF}
+Source: modules\{#DIFFEQU}\help\removechapter.sce; DestDir: {app}\modules\{#DIFFEQU}\help; Flags: recursesubdirs; Components:  {#COMPN_EQUDIF}
 ;
-Source: modules\{#DIFFEQU}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#DIFFEQU}\help\fr_FR; Components:  {#COMPN_EQUDIF}
-Source: modules\{#DIFFEQU}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#DIFFEQU}\help\fr_FR; Components:  {#COMPN_EQUDIF}
+Source: modules\{#DIFFEQU}\help\*.htm; DestDir: {app}\modules\{#DIFFEQU}\help; Flags: recursesubdirs; Components: {#COMPN_EQUDIF}
 ;
-Source: modules\{#DIFFEQU}\help\en_US\*.htm; DestDir: {app}\modules\{#DIFFEQU}\help\en_US; Components: {#COMPN_EQUDIF}
-Source: modules\{#DIFFEQU}\help\fr_FR\*.htm; DestDir: {app}\modules\{#DIFFEQU}\help\fr_FR; Components: {#COMPN_EQUDIF}
-;
-Source: modules\{#DIFFEQU}\languages\en_US\*.xml; DestDir: {app}\modules\{#DIFFEQU}\languages\en_US; Components: {#COMPN_EQUDIF}
-Source: modules\{#DIFFEQU}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#DIFFEQU}\languages\fr_FR; Components: {#COMPN_EQUDIF}
+Source: modules\{#DIFFEQU}\languages\*.xml; DestDir: {app}\modules\{#DIFFEQU}\languages; Flags: recursesubdirs; Components: {#COMPN_EQUDIF}
 ;
 ;Source: modules\{#DIFFEQU}\includes\*.h; DestDir: {app}\modules\{#DIFFEQU}\includes; Components: {#COMPN_EQUDIF}
 ;

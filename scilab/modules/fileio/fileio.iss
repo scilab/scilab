@@ -20,17 +20,12 @@ Source: modules\{#FILEIO}\sci_gateway\fileio; DestDir: {app}\modules\{#FILEIO}\s
 Source: modules\{#FILEIO}\etc\{#FILEIO}.quit; DestDir: {app}\modules\{#FILEIO}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#FILEIO}\etc\fileio.start; DestDir: {app}\modules\{#FILEIO}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#FILEIO}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#FILEIO}\help\en_US; Components:  {#COMPN_SCILAB}
-Source: modules\{#FILEIO}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#FILEIO}\help\en_US; Components: {#COMPN_SCILAB}
+Source: modules\{#FILEIO}\help\addchapter.sce; DestDir: {app}\modules\{#FILEIO}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
+Source: modules\{#FILEIO}\help\removechapter.sce; DestDir: {app}\modules\{#FILEIO}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#FILEIO}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#FILEIO}\help\fr_FR; Components:  {#COMPN_SCILAB}
-Source: modules\{#FILEIO}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#FILEIO}\help\fr_FR; Components: {#COMPN_SCILAB}
+Source: modules\{#FILEIO}\help\*.htm; DestDir: {app}\modules\{#FILEIO}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#FILEIO}\help\en_US\*.htm; DestDir: {app}\modules\{#FILEIO}\help\en_US; Components: {#COMPN_SCILAB}
-Source: modules\{#FILEIO}\help\fr_FR\*.htm; DestDir: {app}\modules\{#FILEIO}\help\fr_FR; Components: {#COMPN_SCILAB}
-;
-Source: modules\{#FILEIO}\languages\en_US\*.xml; DestDir: {app}\modules\{#FILEIO}\languages\en_US; Components: {#COMPN_SCILAB}
-Source: modules\{#FILEIO}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#FILEIO}\languages\fr_FR; Components: {#COMPN_SCILAB}
+Source: modules\{#FILEIO}\languages\*.xml; DestDir: {app}\modules\{#FILEIO}\languages; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#FILEIO}\includes\*.h; DestDir: {app}\modules\{#FILEIO}\includes; Components: {#COMPN_SCILAB}
 ;

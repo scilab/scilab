@@ -20,17 +20,12 @@ Source: modules\{#DATASTRUCT}\sci_gateway\data_structures; DestDir: {app}\module
 Source: modules\{#DATASTRUCT}\etc\{#DATASTRUCT}.quit; DestDir: {app}\modules\{#DATASTRUCT}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#DATASTRUCT}\etc\{#DATASTRUCT}.start; DestDir: {app}\modules\{#DATASTRUCT}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#DATASTRUCT}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#DATASTRUCT}\help\en_US; Components:  {#COMPN_SCILAB}
-Source: modules\{#DATASTRUCT}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#DATASTRUCT}\help\en_US; Components:  {#COMPN_SCILAB}
+Source: modules\{#DATASTRUCT}\help\addchapter.sce; DestDir: {app}\modules\{#DATASTRUCT}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
+Source: modules\{#DATASTRUCT}\help\removechapter.sce; DestDir: {app}\modules\{#DATASTRUCT}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
 ;
-Source: modules\{#DATASTRUCT}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#DATASTRUCT}\help\fr_FR; Components:  {#COMPN_SCILAB}
-Source: modules\{#DATASTRUCT}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#DATASTRUCT}\help\fr_FR; Components:  {#COMPN_SCILAB}
+Source: modules\{#DATASTRUCT}\help\*.htm; DestDir: {app}\modules\{#DATASTRUCT}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#DATASTRUCT}\help\en_US\*.htm; DestDir: {app}\modules\{#DATASTRUCT}\help\en_US; Components: {#COMPN_SCILAB}
-Source: modules\{#DATASTRUCT}\help\fr_FR\*.htm; DestDir: {app}\modules\{#DATASTRUCT}\help\fr_FR; Components: {#COMPN_SCILAB}
-;
-Source: modules\{#DATASTRUCT}\languages\en_US\*.xml; DestDir: {app}\modules\{#DATASTRUCT}\languages\en_US; Components: {#COMPN_SCILAB}
-Source: modules\{#DATASTRUCT}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#DATASTRUCT}\languages\fr_FR; Components: {#COMPN_SCILAB}
+Source: modules\{#DATASTRUCT}\languages\*.xml; DestDir: {app}\modules\{#DATASTRUCT}\languages; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#DATASTRUCT}\includes\*.h; DestDir: {app}\modules\{#DATASTRUCT}\includes; Components: {#COMPN_SCILAB}
 ;

@@ -20,17 +20,12 @@ Source: modules\{#SIGPROC}\sci_gateway\signal_processing; DestDir: {app}\modules
 Source: modules\{#SIGPROC}\etc\{#SIGPROC}.quit; DestDir: {app}\modules\{#SIGPROC}\etc; Components: {#COMPN_SIGPROC}
 Source: modules\{#SIGPROC}\etc\{#SIGPROC}.start; DestDir: {app}\modules\{#SIGPROC}\etc; Components: {#COMPN_SIGPROC}
 ;
-Source: modules\{#SIGPROC}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#SIGPROC}\help\en_US; Components: {#COMPN_SIGPROC}
-Source: modules\{#SIGPROC}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#SIGPROC}\help\en_US; Components: {#COMPN_SIGPROC}
+Source: modules\{#SIGPROC}\help\addchapter.sce; DestDir: {app}\modules\{#SIGPROC}\help; Flags: recursesubdirs; Components: {#COMPN_SIGPROC}
+Source: modules\{#SIGPROC}\help\removechapter.sce; DestDir: {app}\modules\{#SIGPROC}\help; Flags: recursesubdirs; Components: {#COMPN_SIGPROC}
 ;
-Source: modules\{#SIGPROC}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#SIGPROC}\help\fr_FR; Components:  {#COMPN_SIGPROC}
-Source: modules\{#SIGPROC}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#SIGPROC}\help\fr_FR; Components: {#COMPN_SIGPROC}
+Source: modules\{#SIGPROC}\help\*.htm; DestDir: {app}\modules\{#SIGPROC}\help;Flags: recursesubdirs; Components: {#COMPN_SIGPROC}
 ;
-Source: modules\{#SIGPROC}\help\en_US\*.htm; DestDir: {app}\modules\{#SIGPROC}\help\en_US; Components: {#COMPN_SIGPROC}
-Source: modules\{#SIGPROC}\help\fr_FR\*.htm; DestDir: {app}\modules\{#SIGPROC}\help\fr_FR; Components: {#COMPN_SIGPROC}
-;
-Source: modules\{#SIGPROC}\languages\en_US\*.xml; DestDir: {app}\modules\{#SIGPROC}\languages\en_US; Components: {#COMPN_SIGPROC}
-Source: modules\{#SIGPROC}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#SIGPROC}\languages\fr_FR; Components: {#COMPN_SIGPROC}
+Source: modules\{#SIGPROC}\languages\*.xml; DestDir: {app}\modules\{#SIGPROC}\languages; Flags: recursesubdirs; Components: {#COMPN_SIGPROC}
 ;
 Source: modules\{#SIGPROC}\macros\lib; DestDir: {app}\modules\{#SIGPROC}\macros; Components: {#COMPN_SIGPROC}
 Source: modules\{#SIGPROC}\macros\names; DestDir: {app}\modules\{#SIGPROC}\macros; Components: {#COMPN_SIGPROC}

@@ -22,17 +22,12 @@ Source: modules\{#PVM}\sci_gateway\pvm; DestDir: {app}\modules\{#PVM}\sci_gatewa
 Source: modules\{#PVM}\etc\{#PVM}.quit; DestDir: {app}\modules\{#PVM}\etc; Components: {#COMPN_PVM}
 Source: modules\{#PVM}\etc\{#PVM}.start; DestDir: {app}\modules\{#PVM}\etc; Components: {#COMPN_PVM}
 ;
-Source: modules\{#PVM}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#PVM}\help\en_US; Components:  {#COMPN_PVM}
-Source: modules\{#PVM}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#PVM}\help\en_US; Components: {#COMPN_PVM}
+Source: modules\{#PVM}\help\addchapter.sce; DestDir: {app}\modules\{#PVM}\help; Flags: recursesubdirs; Components:  {#COMPN_PVM}
+Source: modules\{#PVM}\help\removechapter.sce; DestDir: {app}\modules\{#PVM}\help; Flags: recursesubdirs; Components: {#COMPN_PVM}
 ;
-Source: modules\{#PVM}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#PVM}\help\fr_FR; Components:  {#COMPN_PVM}
-Source: modules\{#PVM}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#PVM}\help\fr_FR; Components: {#COMPN_PVM}
+Source: modules\{#PVM}\help\*.htm; DestDir: {app}\modules\{#PVM}\help; Flags: recursesubdirs; Components: {#COMPN_PVM}
 ;
-Source: modules\{#PVM}\help\en_US\*.htm; DestDir: {app}\modules\{#PVM}\help\en_US; Components: {#COMPN_PVM}
-Source: modules\{#PVM}\help\fr_FR\*.htm; DestDir: {app}\modules\{#PVM}\help\fr_FR; Components: {#COMPN_PVM}
-;
-Source: modules\{#PVM}\languages\en_US\*.xml; DestDir: {app}\modules\{#PVM}\languages\en_US; Components: {#COMPN_PVM}
-Source: modules\{#PVM}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#PVM}\languages\fr_FR; Components: {#COMPN_PVM}
+Source: modules\{#PVM}\languages\*.xml; DestDir: {app}\modules\{#PVM}\languages; Flags: recursesubdirs; Components: {#COMPN_PVM}
 ;
 Source: modules\{#PVM}\macros\buildmacros.sce; DestDir: {app}\modules\{#PVM}\macros; Components: {#COMPN_PVM}
 Source: modules\{#PVM}\macros\*.bin; DestDir: {app}\modules\{#PVM}\macros; Components: {#COMPN_PVM}

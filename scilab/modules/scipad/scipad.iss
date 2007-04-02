@@ -18,17 +18,12 @@ Source: modules\{#SCIPAD}\changelog.txt; DestDir: {app}\modules\{#SCIPAD}; Compo
 Source: modules\{#SCIPAD}\etc\{#SCIPAD}.quit; DestDir: {app}\modules\{#SCIPAD}\etc; Components: {#COMPN_SCIPAD}
 Source: modules\{#SCIPAD}\etc\{#SCIPAD}.start; DestDir: {app}\modules\{#SCIPAD}\etc; Components: {#COMPN_SCIPAD}
 ;
-Source: modules\{#SCIPAD}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#SCIPAD}\help\en_US; Components:  {#COMPN_SCIPAD}
-Source: modules\{#SCIPAD}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#SCIPAD}\help\en_US; Components: {#COMPN_SCIPAD}
+Source: modules\{#SCIPAD}\help\addchapter.sce; DestDir: {app}\modules\{#SCIPAD}\help; Flags: recursesubdirs; Components:  {#COMPN_SCIPAD}
+Source: modules\{#SCIPAD}\help\removechapter.sce; DestDir: {app}\modules\{#SCIPAD}\help; Flags: recursesubdirs; Components: {#COMPN_SCIPAD}
 ;
-Source: modules\{#SCIPAD}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#SCIPAD}\help\fr_FR; Components:  {#COMPN_SCIPAD}
-Source: modules\{#SCIPAD}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#SCIPAD}\help\fr_FR; Components: {#COMPN_SCIPAD}
+Source: modules\{#SCIPAD}\help\*.htm; DestDir: {app}\modules\{#SCIPAD}\help; Flags: recursesubdirs; Components: {#COMPN_SCIPAD}
 ;
-Source: modules\{#SCIPAD}\help\en_US\*.htm; DestDir: {app}\modules\{#SCIPAD}\help\en_US; Components: {#COMPN_SCIPAD}
-Source: modules\{#SCIPAD}\help\fr_FR\*.htm; DestDir: {app}\modules\{#SCIPAD}\help\fr_FR; Components: {#COMPN_SCIPAD}
-;
-Source: modules\{#SCIPAD}\languages\en_US\*.xml; DestDir: {app}\modules\{#SCIPAD}\languages\en_US; Components: {#COMPN_SCIPAD}
-Source: modules\{#SCIPAD}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#SCIPAD}\languages\fr_FR; Components: {#COMPN_SCIPAD}
+Source: modules\{#SCIPAD}\languages\*.xml; DestDir: {app}\modules\{#SCIPAD}\languages; Flags: recursesubdirs; Components: {#COMPN_SCIPAD}
 ;
 Source: modules\{#SCIPAD}\macros\lib; DestDir: {app}\modules\{#SCIPAD}\macros; Components: {#COMPN_SCIPAD}
 Source: modules\{#SCIPAD}\macros\names; DestDir: {app}\modules\{#SCIPAD}\macros; Components: {#COMPN_SCIPAD}

@@ -18,19 +18,14 @@ Source: modules\{#DEVTOOLS}\changelog.txt; DestDir: {app}\modules\{#DEVTOOLS}; C
 Source: modules\{#DEVTOOLS}\etc\{#DEVTOOLS}.quit; DestDir: {app}\modules\{#DEVTOOLS}\etc; Components: {#COMPN_DEVTOOLS}
 Source: modules\{#DEVTOOLS}\etc\{#DEVTOOLS}.start; DestDir: {app}\modules\{#DEVTOOLS}\etc; Components: {#COMPN_DEVTOOLS}
 ;
-Source: modules\{#DEVTOOLS}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#DEVTOOLS}\help\fr_FR; Components:  {#COMPN_DEVTOOLS}
-Source: modules\{#DEVTOOLS}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#DEVTOOLS}\help\fr_FR; Components:  {#COMPN_DEVTOOLS}
+Source: modules\{#DEVTOOLS}\help\addchapter.sce; DestDir: {app}\modules\{#DEVTOOLS}\help; Flags: recursesubdirs; Components:  {#COMPN_DEVTOOLS}
+Source: modules\{#DEVTOOLS}\help\removechapter.sce; DestDir: {app}\modules\{#DEVTOOLS}\help; Flags: recursesubdirs; Components:  {#COMPN_DEVTOOLS}
 ;
-Source: modules\{#DEVTOOLS}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#DEVTOOLS}\help\en_US; Components:  {#COMPN_DEVTOOLS}
-Source: modules\{#DEVTOOLS}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#DEVTOOLS}\help\en_US; Components:  {#COMPN_DEVTOOLS}
+;Source: modules\{#DEVTOOLS}\help\*.htm; DestDir: {app}\modules\{#DEVTOOLS}\help; Flags: recursesubdirs; Components: {#COMPN_DEVTOOLS}
 ;
-;Source: modules\{#DEVTOOLS}\help\en_US\*.htm; DestDir: {app}\modules\{#DEVTOOLS}\help\en_US; Components: {#COMPN_DEVTOOLS}
-;Source: modules\{#DEVTOOLS}\help\fr_FR\*.htm; DestDir: {app}\modules\{#DEVTOOLS}\help\fr_FR; Components: {#COMPN_DEVTOOLS}
+Source: modules\{#DEVTOOLS}\languages\*.xml; DestDir: {app}\modules\{#DEVTOOLS}\languages; Flags: recursesubdirs; Components: {#COMPN_DEVTOOLS}
 ;
-Source: modules\{#DEVTOOLS}\languages\en_US\*.xml; DestDir: {app}\modules\{#DEVTOOLS}\languages\en_US; Components: {#COMPN_DEVTOOLS}
-Source: modules\{#DEVTOOLS}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#DEVTOOLS}\languages\fr_FR; Components: {#COMPN_DEVTOOLS}
-;
-;Source: modules\{#DEVTOOLS}\includes\*.h; DestDir: {app}\modules\{#DEVTOOLS}\includes; Components: {#COMPN_DEVTOOLS}
+;Source: modules\{#DEVTOOLS}\includes\*.h; DestDir: {app}\modules\{#DEVTOOLS}\includes; Flags: recursesubdirs; Components: {#COMPN_DEVTOOLS}
 ;
 Source: modules\{#DEVTOOLS}\macros\lib; DestDir: {app}\modules\{#DEVTOOLS}\macros; Components: {#COMPN_DEVTOOLS}
 Source: modules\{#DEVTOOLS}\macros\names; DestDir: {app}\modules\{#DEVTOOLS}\macros; Components: {#COMPN_DEVTOOLS}

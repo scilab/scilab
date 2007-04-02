@@ -18,17 +18,12 @@ Source: modules\{#COMPATFUNCTIONS}\changelog.txt; DestDir: {app}\modules\{#COMPA
 Source: modules\{#COMPATFUNCTIONS}\etc\{#COMPATFUNCTIONS}.quit; DestDir: {app}\modules\{#COMPATFUNCTIONS}\etc; Components: {#COMPN_COMPATFUNCTIONS}
 Source: modules\{#COMPATFUNCTIONS}\etc\{#COMPATFUNCTIONS}.start; DestDir: {app}\modules\{#COMPATFUNCTIONS}\etc; Components: {#COMPN_COMPATFUNCTIONS}
 ;
-Source: modules\{#COMPATFUNCTIONS}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#COMPATFUNCTIONS}\help\en_US; Components:  {#COMPN_COMPATFUNCTIONS}
-Source: modules\{#COMPATFUNCTIONS}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#COMPATFUNCTIONS}\help\en_US; Components: {#COMPN_COMPATFUNCTIONS}
+Source: modules\{#COMPATFUNCTIONS}\help\addchapter.sce; DestDir: {app}\modules\{#COMPATFUNCTIONS}\help; Flags: recursesubdirs; Components:  {#COMPN_COMPATFUNCTIONS}
+Source: modules\{#COMPATFUNCTIONS}\help\removechapter.sce; DestDir: {app}\modules\{#COMPATFUNCTIONS}\help; Flags: recursesubdirs; Components: {#COMPN_COMPATFUNCTIONS}
 ;
-Source: modules\{#COMPATFUNCTIONS}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#COMPATFUNCTIONS}\help\fr_FR; Components:  {#COMPN_COMPATFUNCTIONS}
-Source: modules\{#COMPATFUNCTIONS}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#COMPATFUNCTIONS}\help\fr_FR; Components: {#COMPN_COMPATFUNCTIONS}
+Source: modules\{#COMPATFUNCTIONS}\help\*.htm; DestDir: {app}\modules\{#COMPATFUNCTIONS}\help; Flags: recursesubdirs; Components: {#COMPN_COMPATFUNCTIONS}
 ;
-Source: modules\{#COMPATFUNCTIONS}\help\en_US\*.htm; DestDir: {app}\modules\{#COMPATFUNCTIONS}\help\en_US; Components: {#COMPN_COMPATFUNCTIONS}
-Source: modules\{#COMPATFUNCTIONS}\help\fr_FR\*.htm; DestDir: {app}\modules\{#COMPATFUNCTIONS}\help\fr_FR; Components: {#COMPN_COMPATFUNCTIONS}
-;
-Source: modules\{#COMPATFUNCTIONS}\languages\en_US\*.xml; DestDir: {app}\modules\{#COMPATFUNCTIONS}\languages\en_US; Components: {#COMPN_COMPATFUNCTIONS}
-Source: modules\{#COMPATFUNCTIONS}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#COMPATFUNCTIONS}\languages\fr_FR; Components: {#COMPN_COMPATFUNCTIONS}
+Source: modules\{#COMPATFUNCTIONS}\languages\*.xml; DestDir: {app}\modules\{#COMPATFUNCTIONS}\languages; Flags: recursesubdirs; Components: {#COMPN_COMPATFUNCTIONS}
 ;
 ;Source: modules\{#COMPATFUNCTIONS}\includes\*.h; DestDir: {app}\modules\{#COMPATFUNCTIONS}\includes; Components: {#COMPN_COMPATFUNCTIONS}
 ;

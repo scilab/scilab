@@ -22,17 +22,12 @@ Source: modules\{#ELEMFUNCTIONS}\sci_gateway\elementaries_functions; DestDir: {a
 Source: modules\{#ELEMFUNCTIONS}\etc\{#ELEMFUNCTIONS}.quit; DestDir: {app}\modules\{#ELEMFUNCTIONS}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#ELEMFUNCTIONS}\etc\{#ELEMFUNCTIONS}.start; DestDir: {app}\modules\{#ELEMFUNCTIONS}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#ELEMFUNCTIONS}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#ELEMFUNCTIONS}\help\en_US; Components:  {#COMPN_SCILAB}
-Source: modules\{#ELEMFUNCTIONS}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#ELEMFUNCTIONS}\help\en_US; Components: {#COMPN_SCILAB}
+Source: modules\{#ELEMFUNCTIONS}\help\addchapter.sce; DestDir: {app}\modules\{#ELEMFUNCTIONS}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
+Source: modules\{#ELEMFUNCTIONS}\help\removechapter.sce; DestDir: {app}\modules\{#ELEMFUNCTIONS}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#ELEMFUNCTIONS}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#ELEMFUNCTIONS}\help\fr_FR; Components:  {#COMPN_SCILAB}
-Source: modules\{#ELEMFUNCTIONS}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#ELEMFUNCTIONS}\help\fr_FR; Components: {#COMPN_SCILAB}
+Source: modules\{#ELEMFUNCTIONS}\help\*.htm; DestDir: {app}\modules\{#ELEMFUNCTIONS}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#ELEMFUNCTIONS}\help\en_US\*.htm; DestDir: {app}\modules\{#ELEMFUNCTIONS}\help\en_US; Components: {#COMPN_SCILAB}
-Source: modules\{#ELEMFUNCTIONS}\help\fr_FR\*.htm; DestDir: {app}\modules\{#ELEMFUNCTIONS}\help\fr_FR; Components: {#COMPN_SCILAB}
-;
-Source: modules\{#ELEMFUNCTIONS}\languages\en_US\*.xml; DestDir: {app}\modules\{#ELEMFUNCTIONS}\languages\en_US; Components: {#COMPN_SCILAB}
-Source: modules\{#ELEMFUNCTIONS}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#ELEMFUNCTIONS}\languages\fr_FR; Components: {#COMPN_SCILAB}
+Source: modules\{#ELEMFUNCTIONS}\languages\*.xml; DestDir: {app}\modules\{#ELEMFUNCTIONS}\languages; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#ELEMFUNCTIONS}\includes\*.h; DestDir: {app}\modules\{#ELEMFUNCTIONS}\includes; Components: {#COMPN_SCILAB}
 ;

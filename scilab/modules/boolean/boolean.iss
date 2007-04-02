@@ -20,17 +20,12 @@ Source: modules\{#BOOLEAN}\sci_gateway\boolean; DestDir: {app}\modules\{#BOOLEAN
 Source: modules\{#BOOLEAN}\etc\{#BOOLEAN}.quit; DestDir: {app}\modules\{#BOOLEAN}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#BOOLEAN}\etc\{#BOOLEAN}.start; DestDir: {app}\modules\{#BOOLEAN}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#BOOLEAN}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#BOOLEAN}\help\en_US; Components: {#COMPN_SCILAB}
-Source: modules\{#BOOLEAN}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#BOOLEAN}\help\en_US; Components: {#COMPN_SCILAB}
+Source: modules\{#BOOLEAN}\help\addchapter.sce; DestDir: {app}\modules\{#BOOLEAN}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+Source: modules\{#BOOLEAN}\help\removechapter.sce; DestDir: {app}\modules\{#BOOLEAN}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#BOOLEAN}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#BOOLEAN}\help\fr_FR; Components: {#COMPN_SCILAB}
-Source: modules\{#BOOLEAN}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#BOOLEAN}\help\fr_FR; Components: {#COMPN_SCILAB}
+Source: modules\{#BOOLEAN}\help\*.htm; DestDir: {app}\modules\{#BOOLEAN}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#BOOLEAN}\help\en_US\*.htm; DestDir: {app}\modules\{#BOOLEAN}\help\en_US; Components: {#COMPN_SCILAB}
-Source: modules\{#BOOLEAN}\help\fr_FR\*.htm; DestDir: {app}\modules\{#BOOLEAN}\help\fr_FR; Components: {#COMPN_SCILAB}
-;
-Source: modules\{#BOOLEAN}\languages\en_US\*.xml; DestDir: {app}\modules\{#BOOLEAN}\languages\en_US; Components: {#COMPN_SCILAB}
-Source: modules\{#BOOLEAN}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#BOOLEAN}\languages\fr_FR; Components: {#COMPN_SCILAB}
+Source: modules\{#BOOLEAN}\languages\*.xml; DestDir: {app}\modules\{#BOOLEAN}\languages; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#BOOLEAN}\includes\*.h; DestDir: {app}\modules\{#BOOLEAN}\includes; Components: {#COMPN_SCILAB}
 ;

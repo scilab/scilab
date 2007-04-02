@@ -20,18 +20,13 @@ Source: modules\{#GRAPHICS}\sci_gateway\graphics; DestDir: {app}\modules\{#GRAPH
 Source: modules\{#GRAPHICS}\etc\{#GRAPHICS}.quit; DestDir: {app}\modules\{#GRAPHICS}\etc; Components: {#COMPN_GRAPHICS}
 Source: modules\{#GRAPHICS}\etc\{#GRAPHICS}.start; DestDir: {app}\modules\{#GRAPHICS}\etc; Components: {#COMPN_GRAPHICS}
 ;
-Source: modules\{#GRAPHICS}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#GRAPHICS}\help\en_US; Components:  {#COMPN_GRAPHICS}
-Source: modules\{#GRAPHICS}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#GRAPHICS}\help\en_US; Components: {#COMPN_GRAPHICS}
+Source: modules\{#GRAPHICS}\help\addchapter.sce; DestDir: {app}\modules\{#GRAPHICS}\help; Flags: recursesubdirs; Components:  {#COMPN_GRAPHICS}
+Source: modules\{#GRAPHICS}\help\removechapter.sce; DestDir: {app}\modules\{#GRAPHICS}\help; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS}
 ;
-Source: modules\{#GRAPHICS}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#GRAPHICS}\help\fr_FR; Components:  {#COMPN_GRAPHICS}
-Source: modules\{#GRAPHICS}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#GRAPHICS}\help\fr_FR; Components: {#COMPN_GRAPHICS}
-;
-Source: modules\{#GRAPHICS}\help\en_US\*.htm; DestDir: {app}\modules\{#GRAPHICS}\help\en_US; Components: {#COMPN_GRAPHICS}
-Source: modules\{#GRAPHICS}\help\fr_FR\*.htm; DestDir: {app}\modules\{#GRAPHICS}\help\fr_FR; Components: {#COMPN_GRAPHICS}
+Source: modules\{#GRAPHICS}\help\*.htm; DestDir: {app}\modules\{#GRAPHICS}\help; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS}
 Source: modules\{#GRAPHICS}\help\images\*.gif; DestDir: {app}\modules\{#GRAPHICS}\images; Components: {#COMPN_GRAPHICS}
 ;
-Source: modules\{#GRAPHICS}\languages\en_US\*.xml; DestDir: {app}\modules\{#GRAPHICS}\languages\en_US; Components: {#COMPN_GRAPHICS}
-Source: modules\{#GRAPHICS}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#GRAPHICS}\languages\fr_FR; Components: {#COMPN_GRAPHICS}
+Source: modules\{#GRAPHICS}\languages\*.xml; DestDir: {app}\modules\{#GRAPHICS}\languages; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS}
 ;
 Source: modules\{#GRAPHICS}\includes\*.h; DestDir: {app}\modules\{#GRAPHICS}\includes; Components: {#COMPN_GRAPHICS}
 ;

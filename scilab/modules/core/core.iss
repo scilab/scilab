@@ -20,17 +20,12 @@ Source: modules\{#CORE}\sci_gateway\core; DestDir: {app}\modules\{#CORE}\sci_gat
 Source: modules\{#CORE}\etc\{#CORE}.quit; DestDir: {app}\modules\{#CORE}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\etc\{#CORE}.start; DestDir: {app}\modules\{#CORE}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#CORE}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#CORE}\help\en_US; Components:  {#COMPN_SCILAB}
-Source: modules\{#CORE}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#CORE}\help\en_US; Components:  {#COMPN_SCILAB}
+Source: modules\{#CORE}\help\addchapter.sce; DestDir: {app}\modules\{#CORE}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
+Source: modules\{#CORE}\help\removechapter.sce; DestDir: {app}\modules\{#CORE}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
 ;
-Source: modules\{#CORE}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#CORE}\help\fr_FR; Components:  {#COMPN_SCILAB}
-Source: modules\{#CORE}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#CORE}\help\fr_FR; Components:  {#COMPN_SCILAB}
+Source: modules\{#CORE}\help\*.htm; DestDir: {app}\modules\{#CORE}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#CORE}\help\en_US\*.htm; DestDir: {app}\modules\{#CORE}\help\en_US; Components: {#COMPN_SCILAB}
-Source: modules\{#CORE}\help\fr_FR\*.htm; DestDir: {app}\modules\{#CORE}\help\fr_FR; Components: {#COMPN_SCILAB}
-;
-Source: modules\{#CORE}\languages\en_US\*.xml; DestDir: {app}\modules\{#CORE}\languages\en_US; Components: {#COMPN_SCILAB}
-Source: modules\{#CORE}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#CORE}\languages\fr_FR; Components: {#COMPN_SCILAB}
+Source: modules\{#CORE}\languages\*.xml; DestDir: {app}\modules\{#CORE}\languages; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#CORE}\includes\*.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
 ;

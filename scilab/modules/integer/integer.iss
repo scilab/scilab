@@ -22,17 +22,12 @@ Source: modules\{#INTEGER}\sci_gateway\integer; DestDir: {app}\modules\{#INTEGER
 Source: modules\{#INTEGER}\etc\{#INTEGER}.quit; DestDir: {app}\modules\{#INTEGER}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#INTEGER}\etc\{#INTEGER}.start; DestDir: {app}\modules\{#INTEGER}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#INTEGER}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#INTEGER}\help\en_US; Components:  {#COMPN_SCILAB}
-Source: modules\{#INTEGER}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#INTEGER}\help\en_US; Components: {#COMPN_SCILAB}
+Source: modules\{#INTEGER}\help\addchapter.sce; DestDir: {app}\modules\{#INTEGER}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
+Source: modules\{#INTEGER}\help\removechapter.sce; DestDir: {app}\modules\{#INTEGER}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#INTEGER}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#INTEGER}\help\fr_FR; Components:  {#COMPN_SCILAB}
-Source: modules\{#INTEGER}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#INTEGER}\help\fr_FR; Components: {#COMPN_SCILAB}
+Source: modules\{#INTEGER}\help\*.htm; DestDir: {app}\modules\{#INTEGER}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#INTEGER}\help\en_US\*.htm; DestDir: {app}\modules\{#INTEGER}\help\en_US; Components: {#COMPN_SCILAB}
-Source: modules\{#INTEGER}\help\fr_FR\*.htm; DestDir: {app}\modules\{#INTEGER}\help\fr_FR; Components: {#COMPN_SCILAB}
-;
-Source: modules\{#INTEGER}\languages\en_US\*.xml; DestDir: {app}\modules\{#INTEGER}\languages\en_US; Components: {#COMPN_SCILAB}
-Source: modules\{#INTEGER}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#INTEGER}\languages\fr_FR; Components: {#COMPN_SCILAB}
+Source: modules\{#INTEGER}\languages\*.xml; DestDir: {app}\modules\{#INTEGER}\languages; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#INTEGER}\includes\*.h; DestDir: {app}\modules\{#INTEGER}\includes; Components: {#COMPN_SCILAB}
 ;

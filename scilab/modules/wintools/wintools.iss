@@ -20,17 +20,12 @@ Source: modules\{#WINTOOLS}\sci_gateway\wintools; DestDir: {app}\modules\{#WINTO
 Source: modules\{#WINTOOLS}\etc\{#WINTOOLS}.quit; DestDir: {app}\modules\{#WINTOOLS}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#WINTOOLS}\etc\{#WINTOOLS}.start; DestDir: {app}\modules\{#WINTOOLS}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#WINTOOLS}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#WINTOOLS}\help\en_US; Components:  {#COMPN_SCILAB}
-Source: modules\{#WINTOOLS}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#WINTOOLS}\help\en_US; Components: {#COMPN_SCILAB}
+Source: modules\{#WINTOOLS}\help\addchapter.sce; DestDir: {app}\modules\{#WINTOOLS}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
+Source: modules\{#WINTOOLS}\help\removechapter.sce; DestDir: {app}\modules\{#WINTOOLS}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#WINTOOLS}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#WINTOOLS}\help\fr_FR; Components:  {#COMPN_SCILAB}
-Source: modules\{#WINTOOLS}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#WINTOOLS}\help\fr_FR; Components: {#COMPN_SCILAB}
+Source: modules\{#WINTOOLS}\help\*.htm; DestDir: {app}\modules\{#WINTOOLS}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#WINTOOLS}\help\en_US\*.htm; DestDir: {app}\modules\{#WINTOOLS}\help\en_US; Components: {#COMPN_SCILAB}
-Source: modules\{#WINTOOLS}\help\fr_FR\*.htm; DestDir: {app}\modules\{#WINTOOLS}\help\fr_FR; Components: {#COMPN_SCILAB}
-;
-Source: modules\{#WINTOOLS}\languages\en_US\*.xml; DestDir: {app}\modules\{#WINTOOLS}\languages\en_US; Components: {#COMPN_SCILAB}
-Source: modules\{#WINTOOLS}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#WINTOOLS}\languages\fr_FR; Components: {#COMPN_SCILAB}
+Source: modules\{#WINTOOLS}\languages\*.xml; DestDir: {app}\modules\{#WINTOOLS}\languages; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#WINTOOLS}\includes\*.h; DestDir: {app}\modules\{#WINTOOLS}\includes; Components: {#COMPN_SCILAB}
 ;

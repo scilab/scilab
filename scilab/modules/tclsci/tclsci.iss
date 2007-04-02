@@ -23,17 +23,12 @@ Source: modules\{#TCLSCI}\etc\{#TCLSCI}.start; DestDir: {app}\modules\{#TCLSCI}\
 Source: modules\{#TCLSCI}\demos\sciGUI\*.*; DestDir: {app}\modules\{#TCLSCI}\demos\sciGUI; Components: {#COMPN_TCLSCI}
 Source: modules\{#TCLSCI}\demos\tk\*.*; DestDir: {app}\modules\{#TCLSCI}\demos\tk; Components: {#COMPN_TCLSCI}
 ;
-Source: modules\{#TCLSCI}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#TCLSCI}\help\en_US; Components:  {#COMPN_TCLSCI}
-Source: modules\{#TCLSCI}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#TCLSCI}\help\en_US; Components: {#COMPN_TCLSCI}
+Source: modules\{#TCLSCI}\help\addchapter.sce; DestDir: {app}\modules\{#TCLSCI}\help; Flags: recursesubdirs; Components:  {#COMPN_TCLSCI}
+Source: modules\{#TCLSCI}\help\removechapter.sce; DestDir: {app}\modules\{#TCLSCI}\help; Flags: recursesubdirs; Components: {#COMPN_TCLSCI}
 ;
-Source: modules\{#TCLSCI}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#TCLSCI}\help\fr_FR; Components:  {#COMPN_TCLSCI}
-Source: modules\{#TCLSCI}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#TCLSCI}\help\fr_FR; Components: {#COMPN_TCLSCI}
+Source: modules\{#TCLSCI}\help\*.htm; DestDir: {app}\modules\{#TCLSCI}\help; Flags: recursesubdirs; Components: {#COMPN_TCLSCI}
 ;
-Source: modules\{#TCLSCI}\help\en_US\*.htm; DestDir: {app}\modules\{#TCLSCI}\help\en_US; Components: {#COMPN_TCLSCI}
-Source: modules\{#TCLSCI}\help\fr_FR\*.htm; DestDir: {app}\modules\{#TCLSCI}\help\fr_FR; Components: {#COMPN_TCLSCI}
-;
-Source: modules\{#TCLSCI}\languages\en_US\*.xml; DestDir: {app}\modules\{#TCLSCI}\languages\en_US; Components: {#COMPN_TCLSCI}
-Source: modules\{#TCLSCI}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#TCLSCI}\languages\fr_FR; Components: {#COMPN_TCLSCI}
+Source: modules\{#TCLSCI}\languages\*.xml; DestDir: {app}\modules\{#TCLSCI}\languages; Flags: recursesubdirs; Components: {#COMPN_TCLSCI}
 ;
 Source: modules\{#TCLSCI}\includes\*.h; Flags: recursesubdirs; DestDir: {app}\modules\{#TCLSCI}\includes; Components: {#COMPN_TCLSCI}
 ;

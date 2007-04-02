@@ -28,18 +28,13 @@ Source: bin\scicos.dll; DestDir: {app}\bin; DestName: scicos.dll
 ;Source: modules\{#SCICOS}\etc\{#SCICOS}.quit; DestDir: {app}\modules\{#SCICOS}\etc; Components: {#COMPN_SCICOS}
 ;Source: modules\{#SCICOS}\etc\{#SCICOS}.start; DestDir: {app}\modules\{#SCICOS}\etc; Components: {#COMPN_SCICOS}
 ;
-;Source: modules\{#SCICOS}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#SCICOS}\help\en_US; Components:  {#COMPN_SCICOS}
-;Source: modules\{#SCICOS}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#SCICOS}\help\en_US; Components: {#COMPN_SCICOS}
+;Source: modules\{#SCICOS}\help\addchapter.sce; DestDir: {app}\modules\{#SCICOS}\help; Flags: recursesubdirs; Components:  {#COMPN_SCICOS}
+;Source: modules\{#SCICOS}\help\removechapter.sce; DestDir: {app}\modules\{#SCICOS}\help; Flags: recursesubdirs; Components: {#COMPN_SCICOS}
 ;
-;Source: modules\{#SCICOS}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#SCICOS}\help\fr_FR; Components:  {#COMPN_SCICOS}
-;Source: modules\{#SCICOS}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#SCICOS}\help\fr_FR; Components: {#COMPN_SCICOS}
-;
-;Source: modules\{#SCICOS}\help\en_US\*.htm; DestDir: {app}\modules\{#SCICOS}\help\en_US; Components: {#COMPN_SCICOS}
-;Source: modules\{#SCICOS}\help\fr_FR\*.htm; DestDir: {app}\modules\{#SCICOS}\help\fr_FR; Components: {#COMPN_SCICOS}
+;Source: modules\{#SCICOS}\help\*.htm; DestDir: {app}\modules\{#SCICOS}\help; Flags: recursesubdirs ;Components: {#COMPN_SCICOS}
 ;Source: modules\{#SCICOS}\help\images\*.gif; DestDir: {app}\modules\{#SCICOS}\help\images; Components: {#COMPN_SCICOS}
 ;
-Source: modules\{#SCICOS}\languages\en_US\*.xml; DestDir: {app}\modules\{#SCICOS}\languages\en_US; Components: {#COMPN_SCICOS}
-Source: modules\{#SCICOS}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#SCICOS}\languages\fr_FR; Components: {#COMPN_SCICOS}
+;Source: modules\{#SCICOS}\languages\*.xml; DestDir: {app}\modules\{#SCICOS}\languages; Flags: recursesubdirs; Components: {#COMPN_SCICOS}
 ;
 ;Source: modules\{#SCICOS}\includes\*.h; DestDir: {app}\modules\{#SCICOS}\includes; Components: {#COMPN_SCICOS}
 ;

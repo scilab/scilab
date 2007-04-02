@@ -18,17 +18,12 @@ Source: modules\{#SCI2FOR}\changelog.txt; DestDir: {app}\modules\{#SCI2FOR}; Com
 Source: modules\{#SCI2FOR}\etc\{#SCI2FOR}.quit; DestDir: {app}\modules\{#SCI2FOR}\etc; Components: {#COMPN_SCI2FOR}
 Source: modules\{#SCI2FOR}\etc\{#SCI2FOR}.start; DestDir: {app}\modules\{#SCI2FOR}\etc; Components: {#COMPN_SCI2FOR}
 ;
-Source: modules\{#SCI2FOR}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#SCI2FOR}\help\en_US; Components:  {#COMPN_SCI2FOR}
-Source: modules\{#SCI2FOR}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#SCI2FOR}\help\en_US; Components: {#COMPN_SCI2FOR}
+Source: modules\{#SCI2FOR}\help\addchapter.sce; DestDir: {app}\modules\{#SCI2FOR}\help; Flags: recursesubdirs; Components:  {#COMPN_SCI2FOR}
+Source: modules\{#SCI2FOR}\help\removechapter.sce; DestDir: {app}\modules\{#SCI2FOR}\help; Flags: recursesubdirs; Components: {#COMPN_SCI2FOR}
 ;
-Source: modules\{#SCI2FOR}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#SCI2FOR}\help\fr_FR; Components:  {#COMPN_SCI2FOR}
-Source: modules\{#SCI2FOR}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#SCI2FOR}\help\fr_FR; Components: {#COMPN_SCI2FOR}
+Source: modules\{#SCI2FOR}\help\*.htm; DestDir: {app}\modules\{#SCI2FOR}\help; Flags: recursesubdirs; Components: {#COMPN_SCI2FOR}
 ;
-Source: modules\{#SCI2FOR}\help\en_US\*.htm; DestDir: {app}\modules\{#SCI2FOR}\help\en_US; Components: {#COMPN_SCI2FOR}
-Source: modules\{#SCI2FOR}\help\fr_FR\*.htm; DestDir: {app}\modules\{#SCI2FOR}\help\fr_FR; Components: {#COMPN_SCI2FOR}
-;
-Source: modules\{#SCI2FOR}\languages\en_US\*.xml; DestDir: {app}\modules\{#SCI2FOR}\languages\en_US; Components: {#COMPN_SCI2FOR}
-Source: modules\{#SCI2FOR}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#SCI2FOR}\languages\fr_FR; Components: {#COMPN_SCI2FOR}
+Source: modules\{#SCI2FOR}\languages\*.xml; DestDir: {app}\modules\{#SCI2FOR}\languages; Flags: recursesubdirs; Components: {#COMPN_SCI2FOR}
 ;
 Source: modules\{#SCI2FOR}\macros\lib; DestDir: {app}\modules\{#SCI2FOR}\macros; Components: {#COMPN_SCI2FOR}
 Source: modules\{#SCI2FOR}\macros\names; DestDir: {app}\modules\{#SCI2FOR}\macros; Components: {#COMPN_SCI2FOR}

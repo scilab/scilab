@@ -13,18 +13,13 @@
 Source: bin\Javasci.dll; DestDir: {app}\bin; Components: {#COMPN_JAVASCI}; Check: set_with_javasci
 Source: bin\{#JAVASCI}\*.class; DestDir: {app}\bin\{#JAVASCI}; Flags: recursesubdirs; Components: {#COMPN_JAVASCI}
 ;
-Source: modules\{#JAVASCI}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#JAVASCI}\help\en_US; Components:  {#COMPN_JAVASCI}
-Source: modules\{#JAVASCI}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#JAVASCI}\help\en_US; Components: {#COMPN_JAVASCI}
+Source: modules\{#JAVASCI}\help\addchapter.sce; DestDir: {app}\modules\{#JAVASCI}\help; Flags: recursesubdirs; Components:  {#COMPN_JAVASCI}
+Source: modules\{#JAVASCI}\help\removechapter.sce; DestDir: {app}\modules\{#JAVASCI}\help; Flags: recursesubdirs; Components: {#COMPN_JAVASCI}
 ;
-Source: modules\{#JAVASCI}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#JAVASCI}\help\fr_FR; Components:  {#COMPN_JAVASCI}
-Source: modules\{#JAVASCI}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#JAVASCI}\help\fr_FR; Components: {#COMPN_JAVASCI}
-;
-Source: modules\{#JAVASCI}\help\en_US\*.htm; DestDir: {app}\modules\{#JAVASCI}\help\en_US; Components: {#COMPN_JAVASCI}
-Source: modules\{#JAVASCI}\help\fr_FR\*.htm; DestDir: {app}\modules\{#JAVASCI}\help\fr_FR; Components: {#COMPN_JAVASCI}
+Source: modules\{#JAVASCI}\help\*.htm; DestDir: {app}\modules\{#JAVASCI}\help; Flags: recursesubdirs; Components: {#COMPN_JAVASCI}
 Source: modules\{#JAVASCI}\help\images\*.gif; DestDir: {app}\modules\{#JAVASCI}\help\images; Components: {#COMPN_JAVASCI}
 ;
-Source: modules\{#JAVASCI}\languages\en_US\*.xml; DestDir: {app}\modules\{#JAVASCI}\languages\en_US; Components: {#COMPN_JAVASCI}
-Source: modules\{#JAVASCI}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#JAVASCI}\languages\fr_FR; Components: {#COMPN_JAVASCI}
+Source: modules\{#JAVASCI}\languages\*.xml; DestDir: {app}\modules\{#JAVASCI}\languages; Flags: recursesubdirs; Components: {#COMPN_JAVASCI}
 ;
 Source: modules\{#JAVASCI}\etc\{#JAVASCI}.quit; DestDir: {app}\modules\{#JAVASCI}\etc; Components: {#COMPN_JAVASCI}
 Source: modules\{#JAVASCI}\etc\{#JAVASCI}.start; DestDir: {app}\modules\{#JAVASCI}\etc; Components: {#COMPN_JAVASCI}

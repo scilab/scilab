@@ -22,17 +22,12 @@ Source: modules\{#LOCALIZATION}\etc\{#LOCALIZATION}.start; DestDir: {app}\module
 ;
 Source: modules\{#LOCALIZATION}\sci_gateway\{#LOCALIZATION}; DestDir: {app}\modules\{#LOCALIZATION}\sci_gateway; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#LOCALIZATION}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#LOCALIZATION}\help\en_US; Components:  {#COMPN_SCILAB}
-Source: modules\{#LOCALIZATION}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#LOCALIZATION}\help\en_US; Components: {#COMPN_SCILAB}
+Source: modules\{#LOCALIZATION}\help\addchapter.sce; DestDir: {app}\modules\{#LOCALIZATION}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
+Source: modules\{#LOCALIZATION}\help\removechapter.sce; DestDir: {app}\modules\{#LOCALIZATION}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#LOCALIZATION}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#LOCALIZATION}\help\fr_FR; Components:  {#COMPN_SCILAB}
-Source: modules\{#LOCALIZATION}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#LOCALIZATION}\help\fr_FR; Components: {#COMPN_SCILAB}
+Source: modules\{#LOCALIZATION}\help\*.htm; DestDir: {app}\modules\{#LOCALIZATION}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#LOCALIZATION}\help\en_US\*.htm; DestDir: {app}\modules\{#LOCALIZATION}\help\en_US; Components: {#COMPN_SCILAB}
-Source: modules\{#LOCALIZATION}\help\fr_FR\*.htm; DestDir: {app}\modules\{#LOCALIZATION}\help\fr_FR; Components: {#COMPN_SCILAB}
-;
-Source: modules\{#LOCALIZATION}\languages\en_US\*.xml; DestDir: {app}\modules\{#LOCALIZATION}\languages\en_US; Components: {#COMPN_SCILAB}
-Source: modules\{#LOCALIZATION}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#LOCALIZATION}\hlanguages\fr_FR; Components: {#COMPN_SCILAB}
+Source: modules\{#LOCALIZATION}\languages\*.xml; DestDir: {app}\modules\{#LOCALIZATION}\languages; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#LOCALIZATION}\includes\*.h; DestDir: {app}\modules\{#LOCALIZATION}\includes; Components: {#COMPN_SCILAB}
 ;

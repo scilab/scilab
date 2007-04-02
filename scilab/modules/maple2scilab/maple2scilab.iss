@@ -18,17 +18,12 @@ Source: modules\{#MAP2SCI}\changelog.txt; DestDir: {app}\modules\{#MAP2SCI}; Com
 Source: modules\{#MAP2SCI}\etc\{#MAP2SCI}.quit; DestDir: {app}\modules\{#MAP2SCI}\etc; Components: {#COMPN_MAP2SCI}
 Source: modules\{#MAP2SCI}\etc\{#MAP2SCI}.start; DestDir: {app}\modules\{#MAP2SCI}\etc; Components: {#COMPN_MAP2SCI}
 ;
-Source: modules\{#MAP2SCI}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#MAP2SCI}\help\en_US; Components:  {#COMPN_MAP2SCI}
-Source: modules\{#MAP2SCI}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#MAP2SCI}\help\en_US; Components: {#COMPN_MAP2SCI}
+Source: modules\{#MAP2SCI}\help\addchapter.sce; DestDir: {app}\modules\{#MAP2SCI}\help; Flags: recursesubdirs; Components:  {#COMPN_MAP2SCI}
+Source: modules\{#MAP2SCI}\help\removechapter.sce; DestDir: {app}\modules\{#MAP2SCI}\help; Flags: recursesubdirs; Components: {#COMPN_MAP2SCI}
 ;
-Source: modules\{#MAP2SCI}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#MAP2SCI}\help\fr_FR; Components:  {#COMPN_MAP2SCI}
-Source: modules\{#MAP2SCI}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#MAP2SCI}\help\fr_FR; Components: {#COMPN_MAP2SCI}
+Source: modules\{#MAP2SCI}\help\*.htm; DestDir: {app}\modules\{#MAP2SCI}\help; Flags: recursesubdirs; Components: {#COMPN_MAP2SCI}
 ;
-Source: modules\{#MAP2SCI}\help\en_US\*.htm; DestDir: {app}\modules\{#MAP2SCI}\help\en_US; Components: {#COMPN_MAP2SCI}
-Source: modules\{#MAP2SCI}\help\fr_FR\*.htm; DestDir: {app}\modules\{#MAP2SCI}\help\fr_FR; Components: {#COMPN_MAP2SCI}
-;
-Source: modules\{#MAP2SCI}\languages\en_US\*.xml; DestDir: {app}\modules\{#MAP2SCI}\languages\en_US; Components: {#COMPN_MAP2SCI}
-Source: modules\{#MAP2SCI}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#MAP2SCI}\languages\fr_FR; Components: {#COMPN_MAP2SCI}
+Source: modules\{#MAP2SCI}\languages\*.xml; DestDir: {app}\modules\{#MAP2SCI}\languages; Flags: recursesubdirs; Components: {#COMPN_MAP2SCI}
 ;
 Source: modules\{#MAP2SCI}\src\maple\*.mpl; DestDir: {app}\modules\{#MAP2SCI}\src\maple; Components: {#COMPN_MAP2SCI}
 ;

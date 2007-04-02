@@ -18,17 +18,12 @@ Source: modules\{#FUNCTIONS}\changelog.txt; DestDir: {app}\modules\{#FUNCTIONS};
 Source: modules\{#FUNCTIONS}\etc\{#FUNCTIONS}.quit; DestDir: {app}\modules\{#FUNCTIONS}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#FUNCTIONS}\etc\{#FUNCTIONS}.start; DestDir: {app}\modules\{#FUNCTIONS}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#FUNCTIONS}\help\en_US\*.htm; DestDir: {app}\modules\{#FUNCTIONS}\help\en_US; Components: {#COMPN_SCILAB}
-Source: modules\{#FUNCTIONS}\help\fr_FR\*.htm; DestDir: {app}\modules\{#FUNCTIONS}\help\fr_FR; Components: {#COMPN_SCILAB}
+Source: modules\{#FUNCTIONS}\help\*.htm; DestDir: {app}\modules\{#FUNCTIONS}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#FUNCTIONS}\languages\en_US\*.xml; DestDir: {app}\modules\{#FUNCTIONS}\languages\en_US; Components: {#COMPN_SCILAB}
-Source: modules\{#FUNCTIONS}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#FUNCTIONS}\languages\fr_FR; Components: {#COMPN_SCILAB}
+Source: modules\{#FUNCTIONS}\languages\*.xml; DestDir: {app}\modules\{#FUNCTIONS}\languages; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#FUNCTIONS}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#FUNCTIONS}\help\en_US; Components:  {#COMPN_SCILAB}
-Source: modules\{#FUNCTIONS}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#FUNCTIONS}\help\en_US; Components: {#COMPN_SCILAB}
-;
-Source: modules\{#FUNCTIONS}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#FUNCTIONS}\help\fr_FR; Components:  {#COMPN_SCILAB}
-Source: modules\{#FUNCTIONS}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#FUNCTIONS}\help\fr_FR; Components: {#COMPN_SCILAB}
+Source: modules\{#FUNCTIONS}\help\addchapter.sce; DestDir: {app}\modules\{#FUNCTIONS}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
+Source: modules\{#FUNCTIONS}\help\removechapter.sce; DestDir: {app}\modules\{#FUNCTIONS}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#FUNCTIONS}\macros\lib; DestDir: {app}\modules\{#FUNCTIONS}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#FUNCTIONS}\macros\names; DestDir: {app}\modules\{#FUNCTIONS}\macros; Components: {#COMPN_SCILAB}

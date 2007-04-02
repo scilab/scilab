@@ -18,17 +18,12 @@ Source: modules\{#DOUBLE}\changelog.txt; DestDir: {app}\modules\{#DOUBLE}; Compo
 Source: modules\{#DOUBLE}\etc\{#DOUBLE}.quit; DestDir: {app}\modules\{#DOUBLE}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#DOUBLE}\etc\{#DOUBLE}.start; DestDir: {app}\modules\{#DOUBLE}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#DOUBLE}\help\en_US\addchapter.sce; DestDir: {app}\modules\{#DOUBLE}\help\en_US; Components:  {#COMPN_SCILAB}
-Source: modules\{#DOUBLE}\help\en_US\removechapter.sce; DestDir: {app}\modules\{#DOUBLE}\help\en_US; Components: {#COMPN_SCILAB}
+Source: modules\{#DOUBLE}\help\addchapter.sce; DestDir: {app}\modules\{#DOUBLE}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
+Source: modules\{#DOUBLE}\help\removechapter.sce; DestDir: {app}\modules\{#DOUBLE}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#DOUBLE}\help\fr_FR\addchapter.sce; DestDir: {app}\modules\{#DOUBLE}\help\fr_FR; Components:  {#COMPN_SCILAB}
-Source: modules\{#DOUBLE}\help\fr_FR\removechapter.sce; DestDir: {app}\modules\{#DOUBLE}\help\fr_FR; Components: {#COMPN_SCILAB}
+;Source: modules\{#DOUBLE}\help\*.htm; DestDir: {app}\modules\{#DOUBLE}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-;Source: modules\{#DOUBLE}\help\en_US\*.htm; DestDir: {app}\modules\{#DOUBLE}\help\en_US; Components: {#COMPN_SCILAB}
-;Source: modules\{#DOUBLE}\help\fr_FR\*.htm; DestDir: {app}\modules\{#DOUBLE}\help\fr_FR; Components: {#COMPN_SCILAB}
-;
-Source: modules\{#DOUBLE}\languages\en_US\*.xml; DestDir: {app}\modules\{#DOUBLE}\languages\en_US; Components: {#COMPN_SCILAB}
-Source: modules\{#DOUBLE}\languages\fr_FR\*.xml; DestDir: {app}\modules\{#DOUBLE}\languages\fr_FR; Components: {#COMPN_SCILAB}
+Source: modules\{#DOUBLE}\languages\*.xml; DestDir: {app}\modules\{#DOUBLE}\languages; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#DOUBLE}\includes\*.h; DestDir: {app}\modules\{#DOUBLE}\includes; Components: {#COMPN_SCILAB}
 ;
