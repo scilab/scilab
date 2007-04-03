@@ -107,9 +107,6 @@ Any comments or request : scilab.developpers@inria.fr
         </module>
         <module name="PackageDeclaration"/>
         <module name="ParameterAssignment"/>
-        <module name="RequireThis">
-            <property name="severity" value="info"/>
-        </module>
         <module name="ReturnCount">
             <property name="max" value="4"/>
         </module>
