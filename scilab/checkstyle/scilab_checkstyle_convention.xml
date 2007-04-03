@@ -22,7 +22,9 @@ Any comments or request : scilab.developpers@inria.fr
         <module name="JavadocVariable">
             <property name="severity" value="info"/>
         </module>
-        <module name="JavadocStyle"/>
+        <module name="JavadocStyle">
+            <property name="checkFirstSentence" value="false"/>
+        </module>
         <module name="ConstantName"/>
         <module name="LocalFinalVariableName"/>
         <module name="LocalVariableName"/>
