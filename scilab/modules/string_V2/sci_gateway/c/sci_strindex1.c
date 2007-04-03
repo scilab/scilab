@@ -19,6 +19,12 @@
 #include "machine.h"
 #include "MALLOC.h" 
 int next[20];
+/**
+ * The KMP method to search in a string.
+ * @S[] is  the input of the main string.
+ * @T[] is  the input of substring.
+ * @return  the start point of the substring or 0.
+ */
 int kmp(char S[],char T[],int pos)
     {int i,j,lenS,lenT;
      lenS=strlen(S);          /*The length of the main string*/
@@ -45,7 +51,11 @@ int kmp(char S[],char T[],int pos)
 
     }
 
-
+/**
+ * To get the next value of the substring of the KMP method.
+ * @*next is the pointer to the next value.
+ * @T[] is  the input of substring.
+ */
 void getnext(char T[],int *next)  /*To get the next value of the substring*/
        {int i,j,lenT;
         i=0;
