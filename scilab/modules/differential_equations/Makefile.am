@@ -12,7 +12,8 @@ src/c/intgtable.c \
 src/c/int2dtable.c \
 src/c/int3dtable.c \
 src/c/fydot2table.c \
-src/c/dassltable.c
+src/c/dassltable.c \
+src/c/feval.c
 
 DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES = src/fortran/rscar1.f \
 src/fortran/prja.f \
@@ -118,7 +119,7 @@ sci_gateway/fortran/Ex-dasrt.f \
 sci_gateway/fortran/Ex-dassl.f \
 sci_gateway/fortran/Ex-bvode.f \
 sci_gateway/fortran/bbvode.f \
-sci_gateway/fortran/Ex-feval.f
+
 
 libscidifferential_equations_la_CFLAGS=  -Iincludes/ 
 #-Isrc/c/

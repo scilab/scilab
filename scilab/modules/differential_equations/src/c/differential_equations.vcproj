@@ -185,6 +185,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\feval.c"
+				>
+			</File>
+			<File
 				RelativePath=".\fevaltable.c"
 				>
 			</File>
@@ -269,6 +273,10 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
+			<File
+				RelativePath=".\feval.h"
+				>
+			</File>
 			<File
 				RelativePath="..\..\includes\gw_differential_equations1.h"
 				>
