@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	This configuration file was written by the eclipse-cs plugin configuration editor
+-->
+<!--
+Checkstyle-Configuration: Scilab convention coding style
+Description:
+Scilab convention of Coding.
+
+Any comments or request : scilab.developpers@inria.fr
+-->
+<!DOCTYPE module PUBLIC "-//Puppy Crawl//DTD Check Configuration 1.2//EN" "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
+<module name="Checker">
+    <property name="severity" value="warning"/>
+    <module name="TreeWalker">
+        <module name="JavadocMethod">
+            <property name="severity" value="error"/>
+        </module>
+        <module name="JavadocType">
+            <property name="severity" value="error"/>
+        </module>
+        <module name="JavadocVariable">
+            <property name="severity" value="info"/>
+        </module>
+        <module name="JavadocStyle"/>
+        <module name="ConstantName"/>
+        <module name="LocalFinalVariableName"/>
+        <module name="LocalVariableName"/>
+        <module name="MemberName"/>
+        <module name="MethodName"/>
+        <module name="PackageName"/>
+        <module name="ParameterName"/>
+        <module name="StaticVariableName"/>
+        <module name="TypeName"/>
+        <module name="AvoidStarImport"/>
+        <module name="IllegalImport"/>
+        <module name="RedundantImport"/>
+        <module name="UnusedImports"/>
+        <module name="FileLength"/>
+        <module name="LineLength">
+            <property name="max" value="150"/>
+        </module>
+        <module name="MethodLength"/>
+        <module name="ParameterNumber"/>
+        <module name="EmptyForIteratorPad"/>
+        <module name="MethodParamPad"/>
+        <module name="NoWhitespaceAfter"/>
+        <module name="NoWhitespaceBefore"/>
+        <module name="ParenPad"/>
+        <module name="TypecastParenPad"/>
+        <module name="TabCharacter"/>
+        <module name="WhitespaceAfter"/>
+        <module name="WhitespaceAround"/>
+        <module name="ModifierOrder"/>
+        <module name="RedundantModifier"/>
+        <module name="AvoidNestedBlocks"/>
+        <module name="EmptyBlock"/>
+        <module name="LeftCurly"/>
+        <module name="NeedBraces"/>
+        <module name="RightCurly"/>
+        <module name="AvoidInlineConditionals"/>
+        <module name="DoubleCheckedLocking"/>
+        <module name="EmptyStatement"/>
+        <module name="EqualsHashCode"/>
+        <module name="HiddenField"/>
+        <module name="IllegalInstantiation"/>
+        <module name="InnerAssignment"/>
+        <module name="MagicNumber"/>
+        <module name="MissingSwitchDefault"/>
+        <module name="RedundantThrows"/>
+        <module name="SimplifyBooleanExpression"/>
+        <module name="SimplifyBooleanReturn"/>
+        <module name="DesignForExtension"/>
+        <module name="FinalClass"/>
+        <module name="HideUtilityClassConstructor"/>
+        <module name="InterfaceIsType"/>
+        <module name="VisibilityModifier"/>
+        <module name="ArrayTypeStyle"/>
+        <module name="FinalParameters"/>
+        <module name="GenericIllegalRegexp">
+            <property name="format" value="\s+$"/>
+            <property name="message" value="Line has trailing spaces."/>
+        </module>
+        <module name="TodoComment"/>
+        <module name="UpperEll"/>
+        <module name="OperatorWrap">
+            <property name="severity" value="error"/>
+        </module>
+        <module name="DefaultComesLast"/>
+        <module name="DeclarationOrder"/>
+        <module name="ExplicitInitialization"/>
+        <module name="FallThrough"/>
+        <module name="IllegalCatch"/>
+        <module name="IllegalThrows"/>
+        <module name="IllegalType">
+            <property name="tokens" value="METHOD_DEF,PARAMETER_DEF,VARIABLE_DEF"/>
+        </module>
+        <module name="MissingCtor"/>
+        <module name="ModifiedControlVariable"/>
+        <module name="MultipleStringLiterals"/>
+        <module name="MultipleVariableDeclarations"/>
+        <module name="NestedIfDepth">
+            <property name="max" value="3"/>
+        </module>
+        <module name="NestedTryDepth">
+            <property name="max" value="2"/>
+        </module>
+        <module name="PackageDeclaration"/>
+        <module name="ParameterAssignment"/>
+        <module name="RequireThis">
+            <property name="severity" value="info"/>
+        </module>
+        <module name="ReturnCount">
+            <property name="max" value="4"/>
+        </module>
+        <module name="StringLiteralEquality"/>
+        <module name="SuperClone"/>
+        <module name="SuperFinalize"/>
+        <module name="BooleanExpressionComplexity">
+            <property name="max" value="4"/>
+        </module>
+        <module name="ClassDataAbstractionCoupling"/>
+        <module name="ClassFanOutComplexity"/>
+        <module name="CyclomaticComplexity"/>
+        <module name="JavaNCSS"/>
+        <module name="NPathComplexity"/>
+        <module name="Indentation"/>
+    </module>
+    <module name="PackageHtml"/>
+    <module name="NewlineAtEndOfFile"/>
+    <module name="Translation"/>
+    <module name="StrictDuplicateCode">
+        <property name="severity" value="info"/>
+    </module>
+</module>
