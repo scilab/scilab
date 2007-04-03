@@ -84,6 +84,7 @@ libscidifferential_equations_la_DEPENDENCIES =  \
 	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la
 am__objects_1 = libscidifferential_equations_la-dassl.lo \
+	libscidifferential_equations_la-feval.lo \
 	libscidifferential_equations_la-fevaltable.lo \
 	libscidifferential_equations_la-fydottable.lo \
 	libscidifferential_equations_la-impltable.lo \
@@ -121,7 +122,7 @@ am__objects_4 = Ex-ode-more.lo sci_dasrt.lo sci_feval.lo sci_odedc.lo \
 	bjacd.lo badd.lo bj2.lo bfeval.lo int2d.lo bint2d.lo bint3d.lo \
 	bintg.lo int3d.lo intg.lo Ex-odedc.lo Ex-ode.lo Ex-impl.lo \
 	Ex-int2d.lo Ex-int3d.lo Ex-intg.lo Ex-dasrt.lo Ex-dassl.lo \
-	Ex-bvode.lo bbvode.lo Ex-feval.lo
+	Ex-bvode.lo bbvode.lo
 am_libscidifferential_equations_la_OBJECTS = $(am__objects_1) \
 	$(am__objects_2) $(am__objects_3) $(am__objects_4)
 libscidifferential_equations_la_OBJECTS =  \
@@ -334,6 +335,7 @@ sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 tcldir = @tcldir@
 DIFFERENTIAL_EQUATIONS_C_SOURCES = src/c/dassl.c \
+src/c/feval.c \
 src/c/fevaltable.c \
 src/c/fydottable.c \
 src/c/impltable.c \
@@ -447,8 +449,7 @@ sci_gateway/fortran/Ex-intg.f \
 sci_gateway/fortran/Ex-dasrt.f \
 sci_gateway/fortran/Ex-dassl.f \
 sci_gateway/fortran/Ex-bvode.f \
-sci_gateway/fortran/bbvode.f \
-sci_gateway/fortran/Ex-feval.f
+sci_gateway/fortran/bbvode.f
 
 libscidifferential_equations_la_CFLAGS = -Iincludes/ 
 #-Isrc/c/
@@ -602,6 +603,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_la-colnewtable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_la-dassl.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_la-dassltable.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_la-feval.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_la-fevaltable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_la-fydot2table.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_la-fydottable.Plo@am__quote@
@@ -650,6 +652,13 @@ libscidifferential_equations_la-dassl.lo: src/c/dassl.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/dassl.c' object='libscidifferential_equations_la-dassl.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_la_CFLAGS) $(CFLAGS) -c -o libscidifferential_equations_la-dassl.lo `test -f 'src/c/dassl.c' || echo '$(srcdir)/'`src/c/dassl.c
+
+libscidifferential_equations_la-feval.lo: src/c/feval.c
+@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_la_CFLAGS) $(CFLAGS) -MT libscidifferential_equations_la-feval.lo -MD -MP -MF "$(DEPDIR)/libscidifferential_equations_la-feval.Tpo" -c -o libscidifferential_equations_la-feval.lo `test -f 'src/c/feval.c' || echo '$(srcdir)/'`src/c/feval.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libscidifferential_equations_la-feval.Tpo" "$(DEPDIR)/libscidifferential_equations_la-feval.Plo"; else rm -f "$(DEPDIR)/libscidifferential_equations_la-feval.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/feval.c' object='libscidifferential_equations_la-feval.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_la_CFLAGS) $(CFLAGS) -c -o libscidifferential_equations_la-feval.lo `test -f 'src/c/feval.c' || echo '$(srcdir)/'`src/c/feval.c
 
 libscidifferential_equations_la-fevaltable.lo: src/c/fevaltable.c
 @am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_la_CFLAGS) $(CFLAGS) -MT libscidifferential_equations_la-fevaltable.lo -MD -MP -MF "$(DEPDIR)/libscidifferential_equations_la-fevaltable.Tpo" -c -o libscidifferential_equations_la-fevaltable.lo `test -f 'src/c/fevaltable.c' || echo '$(srcdir)/'`src/c/fevaltable.c; \
@@ -1074,9 +1083,6 @@ Ex-bvode.lo: sci_gateway/fortran/Ex-bvode.f
 
 bbvode.lo: sci_gateway/fortran/bbvode.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o bbvode.lo `test -f 'sci_gateway/fortran/bbvode.f' || echo '$(srcdir)/'`sci_gateway/fortran/bbvode.f
-
-Ex-feval.lo: sci_gateway/fortran/Ex-feval.f
-	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o Ex-feval.lo `test -f 'sci_gateway/fortran/Ex-feval.f' || echo '$(srcdir)/'`sci_gateway/fortran/Ex-feval.f
 
 mostlyclean-libtool:
 	-rm -f *.lo
