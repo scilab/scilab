@@ -1,8 +1,8 @@
 function demo_riemann()
   //demo_help demo_riemann
   xbasc();
-  fs = get('figure_style');
-  set figure_style old;
+  //fs = get('figure_style');
+  //set figure_style old;
   xselect()
   C=hotcolormap(200);C=C(1:$-40,:); 
   xset('wdim', 597,634);w=xget('window')
@@ -22,7 +22,7 @@ function demo_riemann()
     end
 
   end
-  set('figure_style',fs);
+  //set('figure_style',fs);
   xdel(xget('window'))
 endfunction
 

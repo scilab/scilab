@@ -11,37 +11,56 @@ wSize = [850,920];
 // window size for the image demo
 wSize_Small = [850,492] ;
 
-
-titles=['Scilab','Arbre genealogique', ..
-	'Visualisation scientifique',..
-	'Visualisation de surface Riemann','Surfaces 3D',..
-        'Traitement d''image','Complex Functions', ..
-        'Traitement du signal','Stationnement d''une voiture', ..
+titles=['Scilab',..
+        'Arbre genealogique', ..
+	      'Visualisation scientifique',..
+	      'Visualisation de surface Riemann',..
+	      'Surfaces 3D',..
+        'Traitement d''image',..
+        'Complex Functions', ..
+        'Traitement du signal',..
+        'Stationnement d''une voiture', ..
         'Stationnement d''un semi remorque',..
-	'Modelisation et simulation d''une chaine', ..
         'Modelisation et simulation d''un pendule glissant', ..
         'Programmation lineaire 2', ..
-        'Optimisation non lineaire','Spline'];
+        'Optimisation non lineaire',..
+        'Spline'];
 
-demos=['demo_scilab();','demo_geneal();',..
-       'demo_isoSurf()',..
-       'demo_riemann();','demo_3dplot()',..
-       'demo_image()','demo_cmplxfun();', ..
-       'demo_signal();','demo_car();', ..
-       'demo_truck();','demo_pendulum();', ..
+demos=['demo_scilab();',..
+       'demo_geneal();',..
+       'demo_isoSurf();',..
+       'demo_riemann();',..
+       'demo_3dplot();',..
+       'demo_image();',..
+       'demo_cmplxfun();', ..
+       'demo_signal();',..
+       'demo_car();', ..
+       'demo_truck();',..
        'demo_sliding_pendulum();', ..
-       'demo_optloc();', ..
-       'demo_datafit();','demo_spline();'];
+       'demo_optloc();',..
+       'demo_datafit();',..
+       'demo_spline();'];
 
-filesdemos=['demo_scilab.sci','Geneal.sci', ..
-	    'demo_isoSurf.sci',..
-	    'riemann.sci','demo_3dplot.sci',..
-            'demo_image.sci','cmplxfun.sci', ..
-            'demo_signal.sci','car.sci', ..
-            'truck.sci','n_pendulum.sci', ..
-	    'sliding_pendulum.sci', ..
-	    'optloc.sci', ..
-            'datafit.sci','spline.sci'];
+filesdemos=['demo_scilab.sci',..
+            'Geneal.sci', ..
+	          'demo_isoSurf.sci',..
+	          'riemann.sci',..
+	          'demo_3dplot.sci',..
+            'demo_image.sci',..
+            'cmplxfun.sci', ..
+            'demo_signal.sci',..
+            'car.sci', ..
+            'truck.sci',..
+	          'sliding_pendulum.sci', ..
+	          'optloc.sci', ..
+            'datafit.sci',..
+            'spline.sci'];
+            
+if haveacompiler() then
+  titles=[titles,'Modelisation et simulation d''une chaine'];
+  demos=[demos,'demo_pendulum();'];
+  filesdemos=[filesdemos,'n_pendulum.sci'];
+end            
 
 nbDemos = size(filesdemos);
 nbDemos = nbDemos(2) ;
@@ -52,7 +71,7 @@ function demo_help(key)
   pathhtml=strsubst(path+'html/'+getlanguage(),'\','/')
   [x,ierr]=fileinfo(pathhtml);
   if (x == []) then
-  pathhtml=strsubst(path+'html/'+getlanguage('LANGUAGE_DEFAULT'),'\','/')
+    pathhtml=strsubst(path+'html/'+getlanguage('LANGUAGE_DEFAULT'),'\','/')
   end
   filehmtl=strsubst(pathhtml+'/'+key+'.htm','\','/') ;
   browsehelp(filehmtl,key);
@@ -73,13 +92,9 @@ function demotodo(demoname,title)
 endfunction
 //------------------------------------------------------------
 function loopdemos(n)
-
-// Max=size(demos,"*");
-
  for i=1:n do
    demotodo(demos(i),titles(i));
  end
-
 endfunction
 //------------------------------------------------------------
 function SetPosition
@@ -122,7 +137,6 @@ if MSDOS then
 else
   %browsehelp='firefox';
 end
-
 
 Maxfiles=size(filesdemos);
 

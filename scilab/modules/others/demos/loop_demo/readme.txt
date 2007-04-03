@@ -1,4 +1,4 @@
-This directory contains the material for an animated demo (french version)
+This directory contains the material for an animated demo. 
 to start it execute
 exec loop_demo.sce
 

@@ -1,47 +1,35 @@
 function demo_riemann()
-  set('old_style','on');
-  demo_help demo_riemann
+  //demo_help demo_riemann
   xbasc();
-  xselect();
+  toolbar(0,'off');
+  //fs = get('figure_style');
+  //set figure_style old;
+  xselect()
   C=hotcolormap(200);C=C(1:$-40,:); 
-  //xset("wpos",1,1);
-  //xset('wdim',700 ,900);
-  SetPosition_old() ;
-  //
-  w=xget('window');
-  //SetPosition();
-  //toolbar(0,'off');
-  xset('colormap',C);xset('color',30);//fond();
+  xset('wdim', 597,634);w=xget('window')
+  xset('colormap',C);xset('color',30);fond();
   
-  [z,s]=cplxroot(4,25) //compute
+  [z,s]=cplxroot(4,35) //compute
   xset('pixmap',1)
   cplxmap(z,s,163,69)  //draw
   xset('wshow')
-  realtimeinit(0.001)
-  for i=1:100,
-    k = 2 * i ;
-    realtime(k),
-    //if modulo(k,10)==0 then
+  for k=1:300,
+    if modulo(k,20)==0 then
       xset('wwpc')
-      
       cplxmap(z,s,163+k/10,69+k/20)  //draw
-      
-
       xset('wshow')
-    //end
+    end
 
   end
+  //set('figure_style',fs);
   xdel(xget('window'))
-  set('old_style','off');
 endfunction
 
 function fond()
-  n=size(xget('colormap'),1) ;
-  xset('background',n+1) ; 
+  n=size(xget('colormap'),1)
+  xset('background',n+1), 
   xset('foreground',n+2);
 endfunction
-
-
 
 function cplxmap(z,w,varargin)
 //cplxmap(z,w,T,A,leg,flags,ebox)
@@ -60,8 +48,6 @@ Colors = int((ncols-1)*Colors/max(Colors)+1);
 plot3d(X,Y,list(U,Colors),varargin(:))
 endfunction
 
-
-
 function [z,s]=cplxroot(n,m)
 //cplxroot(n,m,T,A,leg,flags,ebox)
 //CPLXROOT Riemann surface for the n-th root.
@@ -79,4 +65,3 @@ theta = - %pi*(-n*m:n*m)/m;
 z = r * exp(%i*theta);
 s = r.^(1/n) * exp(%i*theta/n);
 endfunction
-
