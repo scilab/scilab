@@ -197,6 +197,11 @@ me=3;
     <AUTHORS_ITEM label="Eduardo Casas  Renteria">, Universidad de Cantabria,</AUTHORS_ITEM>
     <AUTHORS_ITEM label="Cecilia Pola Mendez"> , Universidad de Cantabria</AUTHORS_ITEM>
   </AUTHORS>
+  <BIBLIO>
+    <SP>E. Casas and C. Pola, An algorithm for indefinite quadratic
+      programming based on a partial Cholesky factorization, RAIRO-Recherche
+      OpŽérationnelle/Operations Research, 27 (1993), 401-426. </SP>
+  </BIBLIO>
   <USED_FUNCTIONS>
     <P>
 in routines/optim directory (authors E.Casas, C. Pola Mendez):</P>
