@@ -17,7 +17,16 @@
 #include "returnProperty.h"
 #include "machine.h"
 #include "MALLOC.h" 
+int next[20];
 /*-------------------------------------------------------------------------------------*/
+
+
+
+
+
+
+
+
 
 static char* newstr(const char*str, unsigned start, unsigned end, char*newstr1)
 
@@ -58,7 +67,7 @@ char typ = '*';
   static char def_sep[] ="";
   char *sep = def_sep;
   static int un=1;
-  int x,m1,n1,mn,mn2,mn3,m2,n2,m3,n3,nchars=0;
+  int x,m1,n1,mn,mn2,mn3,m2,n2,m3,n3,m4,n4,l4,nchars=0;
   unsigned x1;
   int lenth=0;
   int lenthrow=1;
@@ -68,11 +77,13 @@ char typ = '*';
   char *lbuf;
   const size_t nmatch = 10;
   char *pattern;
+  int w;
+  int pos=0;
   int  z, lno = 0, cflags = 0;
   regmatch_t pm[10];
   regex_t *out1;
   Rhs = Max(0, Rhs);
-  CheckRhs(1,3);
+  CheckRhs(1,4);
 
   switch ( VarType(1)) {
   case 10 :
@@ -84,36 +95,69 @@ char typ = '*';
     mn3 = m3*n3; 
 	lbuf=*Str;
 	pattern=*Str2;
-	out1=(regex_t *)malloc(sizeof(regex_t));
-    z = regcomp(out1, pattern, cflags);
-	if (z != 0){
-		regerror(z, out1, ebuf, sizeof(ebuf));
-		Scierror(999, "%s: pattern '%s' \n", ebuf, pattern);
-		return 1;
+    if (Rhs >= 4) {
+           GetRhsVar(4,"c",&m4,&n4,&l4);
+           if ( m4*n4 != 0) 
+	         typ = cstk(l4)[0];
+           if (typ == 'r' ) {  
+
+
+				out1=(regex_t *)malloc(sizeof(regex_t));
+				z = regcomp(out1, pattern, cflags);
+				if (z != 0){
+					regerror(z, out1, ebuf, sizeof(ebuf));
+					Scierror(999, "%s: pattern '%s' \n", ebuf, pattern);
+					return 1;
+				}
+
+				for (x = 0; x < mn;++x){
+					z = regexec(out1, Str[x], nmatch, pm, 0);
+					if (z == REG_NOMATCH) { 
+						int outIndex2= Rhs +x+1 ;
+						int numRow   = 1 ;
+						int numCol   = 1 ;
+						int loutIndex = 0 ;
+						CreateVar(Rhs+1+x,"c",&numRow,&numCol,&loutIndex);
+  						LhsVar(x+1) = outIndex2 ;
+						continue;
+					}
+					for (x1 = 0; x1 < nmatch && pm[x1].rm_so != -1; ++ x1) {
+						int outIndex2= Rhs +x+1 ;
+						int numRow   = 1 ;
+						int numCol   = strlen( newstr(Str[x], pm[x1].rm_so, pm[x1].rm_eo,*Str3)) ;
+						int loutIndex = 0 ;
+						CreateVar(Rhs+1+x,"c",&numRow,&numCol,&loutIndex);
+						strncpy(cstk(loutIndex),newstr(Str[x], pm[x1].rm_so, pm[x1].rm_eo,*Str3), numCol);
+						LhsVar(x+1) = outIndex2 ;
+
+					}    
+			
+              }
+		   }
 	}
-
-	for (x = 0; x < mn;++x){
-		z = regexec(out1, Str[x], nmatch, pm, 0);
-		if (z == REG_NOMATCH) { 
-			int outIndex2= Rhs +x+1 ;
-			int numRow   = 1 ;
-            int numCol   = 1 ;
-            int loutIndex = 0 ;
-            CreateVar(Rhs+1+x,"c",&numRow,&numCol,&loutIndex);
-  			LhsVar(x+1) = outIndex2 ;
-			continue;
+   else { 
+		for (x=0;x<mn;++x){
+		if (strlen(Str2[x])==0) {
+			Scierror(999, "2th argument must not be an empty string");
+			return 1;
 		}
-		for (x1 = 0; x1 < nmatch && pm[x1].rm_so != -1; ++ x1) {
-		    int outIndex2= Rhs +x+1 ;
-			int numRow   = 1 ;
-            int numCol   = strlen( newstr(Str[x], pm[x1].rm_so, pm[x1].rm_eo,*Str3)) ;
-            int loutIndex = 0 ;
-			CreateVar(Rhs+1+x,"c",&numRow,&numCol,&loutIndex);
-            strncpy(cstk(loutIndex),newstr(Str[x], pm[x1].rm_so, pm[x1].rm_eo,*Str3), numCol);
-			LhsVar(x+1) = outIndex2 ;
+		getnext(Str2[0],next); 
+		w=kmp(Str[x],Str2[0],pos);
+		if (w!=0) {
+             int outIndex2= Rhs +x+1 ;
+			 int numRow   = 1 ;
+			 int numCol   = strlen( newstr(Str[x], w, w+strlen(Str2[0]),*Str3)) ;
+			 int loutIndex = 0 ;
+			 CreateVar(Rhs+1+x,"c",&numRow,&numCol,&loutIndex);
+			 strncpy(cstk(loutIndex),newstr(Str[x], w, w+strlen(Str2[0]),*Str3), numCol);
+			 LhsVar(x+1) = outIndex2 ;
 
-        }     
-    }
+		
+		} 	 
+		}
+   }
+	
+
   }
   C2F(putlhsvar)();
   return 0;
