@@ -75,9 +75,8 @@ void getnext(char T[],int *next)  /*To get the next value of the substring*/
              }
        }
 
-/*-----------------------------------------------------------------------------------*/
 
-/*-----------------------------------------------------------------------------------*/
+
 int C2F(sci_strindex1) _PARAMS((char *fname,unsigned long fname_len))
 {
 char typ = '*';
@@ -122,7 +121,7 @@ char typ = '*';
 	   GetRhsVar(1,"S",&m1,&n1,&Str);
 	   mn = m1*n1;  
 	   if (mn != 1) {
-		   // give an error message that the first is not correct.
+		   /*give an error message that the first is not correct.*/
 		   return 1;
 	   }
 	   GetRhsVar(2,"S",&m2,&n2,&Str2);
@@ -132,8 +131,8 @@ char typ = '*';
            GetRhsVar(3,"c",&m3,&n3,&l3);
            if ( m3*n3 != 0) 
 	         typ = cstk(l3)[0];
-           if (typ == 'r' ) {            //When we use the regexp;
-			   for (i=0;i<mn2;++i){      //  To compile the regexp pattern;
+           if (typ == 'r' ) {            /*When we use the regexp;*/
+			   for (i=0;i<mn2;++i){      /*  To compile the regexp pattern;*/
 					pattern[i]=Str2[i];
 					out1[i]=(regex_t *)malloc(sizeof(regex_t));
 					 z = regcomp(out1[i], pattern[i], cflags);
@@ -170,7 +169,7 @@ char typ = '*';
 	           
            }
 	  }
-	   else {       // When we do not use the regexp.
+	   else {       /* When we do not use the regexp.*/
 		 for (x=0;x<mn2;++x){
 			 if (strlen(Str2[x])==0) {
 				 Scierror(999, "2th argument must not be an empty string");
@@ -186,7 +185,7 @@ char typ = '*';
 	   } 
 		
 	    
-		numRow   = 1        ;// Output values[] and position[]
+		numRow   = 1        ;/* Output values[] and position[]*/
         outIndex = 0        ;
   
         CreateVar(Rhs+1,"d",&numRow,&nbValues,&outIndex) ;
