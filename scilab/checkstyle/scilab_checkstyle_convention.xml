@@ -50,7 +50,6 @@ Any comments or request : scilab.developpers@inria.fr
         <module name="NoWhitespaceBefore"/>
         <module name="ParenPad"/>
         <module name="TypecastParenPad"/>
-        <module name="TabCharacter"/>
         <module name="WhitespaceAfter"/>
         <module name="WhitespaceAround"/>
         <module name="ModifierOrder"/>
