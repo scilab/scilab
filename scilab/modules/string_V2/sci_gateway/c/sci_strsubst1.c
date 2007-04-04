@@ -18,6 +18,9 @@
 #include "machine.h"
 #include "MALLOC.h" 
 int next[20];
+int numRow;
+int numCol;
+char *newstr1;
 /*-------------------------------------------------------------------------------------*/
 
 
@@ -67,7 +70,7 @@ char typ = '*';
   static char def_sep[] ="";
   char *sep = def_sep;
   static int un=1;
-  int x,m1,n1,mn,mn2,mn3,m2,n2,m3,n3,m4,n4,l4,nchars=0;
+  int x,m1,n1,mn,mn2,mn3,m2,n2,m3,n3,m4,n4,l4,nchars,i=0;
   unsigned x1;
   int lenth=0;
   int lenthrow=1;
@@ -137,24 +140,45 @@ char typ = '*';
 	}
    else { 
 		for (x=0;x<mn;++x){
-		if (strlen(Str2[x])==0) {
+		if (strlen(Str2[0])==0) {
 			Scierror(999, "2th argument must not be an empty string");
 			return 1;
 		}
 		getnext(Str2[0],next); 
 		w=kmp(Str[x],Str2[0],pos);
 		if (w!=0) {
-             int outIndex2= Rhs +x+1 ;
+	/*		 int outIndex2= Rhs +x+1 ;
 			 int numRow   = 1 ;
-			 int numCol   = strlen( newstr(Str[x], w, w+strlen(Str2[0]),*Str3)) ;
+			 int numCol   = strlen( newstr(Str[x], w-1, w+strlen(Str2[0])-1,*Str3)) ;
 			 int loutIndex = 0 ;
 			 CreateVar(Rhs+1+x,"c",&numRow,&numCol,&loutIndex);
-			 strncpy(cstk(loutIndex),newstr(Str[x], w, w+strlen(Str2[0]),*Str3), numCol);
-			 LhsVar(x+1) = outIndex2 ;
-
+			 strncpy(cstk(loutIndex),newstr(Str[x], w-1, w+strlen(Str2[0])-1,*Str3), numCol);
+			 LhsVar(x+1) = outIndex2 ;*/
+             newstr1=newstr(Str[x], w-1, w+strlen(Str2[0])-1,*Str3);
+			//*(Str[x])=*newstr1;
+			 strcpy(Str[x],newstr1);
+			 // for(i=0;i<strlen(newstr1);++i) Str[x][i]=newstr1[i];
+			// Str[x][i]='/0';
 		
-		} 	 
+		
+		} 	
+		//else {
+		//	 int outIndex2= Rhs +x+1 ;
+		//	 int numRow   = 1 ;
+		//	 int numCol   = mn ;
+		//	 int loutIndex = 0 ;
+		//	 //CreateVar(Rhs+1+x,"c",&numRow,&numCol,&loutIndex);
+		//	 //strncpy(cstk(loutIndex),Str[x], numCol);
+		//	 
+  //           CreateVarFromPtr( Rhs+1, "S", &numRow, &numCol, Str ) ;
+		//	 LhsVar(x+1) = Rhs+x+1 ;
+
+		//}
 		}
+        numRow   = 1 ;
+	    numCol   = mn ;
+		CreateVarFromPtr( Rhs+1, "S", &numRow, &numCol, Str ) ;
+	    LhsVar(1) = Rhs+1 ;    
    }
 	
 
