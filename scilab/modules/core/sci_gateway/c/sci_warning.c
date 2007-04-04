@@ -10,7 +10,7 @@
 #include "warningmode.h"
 #include "MALLOC.h"
 #include "error_scilab.h"
-#include "message_scilab.h"
+#include "../../localization/includes/QueryStringMessage.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_warning) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -63,7 +63,13 @@ int C2F(sci_warning) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else if ( getWarningMode() )
 			{
-				message_scilab("core_message_137",Param);
+				char *MSG=QueryStringMessage("core_message_137");
+				if (MSG)
+				{
+					sciprint(MSG,Param);
+					sciprint("\n");
+				}
+				if (MSG) {FREE(MSG);MSG=NULL;}
 			}
 		}
 	}
