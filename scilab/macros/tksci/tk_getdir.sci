@@ -7,6 +7,7 @@ function p=tk_getdir(startdir,title)
   end
   if exists("title","local")==1 then arg=arg+" -title {"+title+"}",end
   arg=arg+" -parent $root"
-  p=TCL_EvalStr("tk_chooseDirectory"+arg)
+  TCL_EvalStr("set getdir [tk_chooseDirectory"+arg+"]") 
+  p=TCL_GetVar("getdir");
 endfunction
 
