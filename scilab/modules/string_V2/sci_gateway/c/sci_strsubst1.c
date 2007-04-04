@@ -125,14 +125,10 @@ char typ = '*';
 						continue;
 					}
 					for (x1 = 0; x1 < nmatch && pm[x1].rm_so != -1; ++ x1) {
-						int outIndex2= Rhs +x+1 ;
-						int numRow   = 1 ;
-						int numCol   = strlen( newstr(Str[x], pm[x1].rm_so, pm[x1].rm_eo,*Str3)) ;
-						int loutIndex = 0 ;
-						CreateVar(Rhs+1+x,"c",&numRow,&numCol,&loutIndex);
-						strncpy(cstk(loutIndex),newstr(Str[x], pm[x1].rm_so, pm[x1].rm_eo,*Str3), numCol);
-						LhsVar(x+1) = outIndex2 ;
-
+					
+						
+                        newstr1=newstr(Str[x], pm[x1].rm_so, pm[x1].rm_eo,*Str3);
+                        strcpy(Str[x],newstr1);
 					}    
 			
               }
@@ -175,11 +171,12 @@ char typ = '*';
 
 		//}
 		}
-        numRow   = 1 ;
+   }  
+		numRow   = 1 ;
 	    numCol   = mn ;
 		CreateVarFromPtr( Rhs+1, "S", &numRow, &numCol, Str ) ;
 	    LhsVar(1) = Rhs+1 ;    
-   }
+  
 	
 
   }
