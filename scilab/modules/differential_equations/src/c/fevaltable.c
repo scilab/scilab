@@ -2,6 +2,7 @@
 /* INRIA */
 /*-----------------------------------------------------------------------------------*/
 #include "FTables.h"
+#include "feval.h"
 /***********************************
 * feval (ffeval)
 ***********************************/
@@ -10,8 +11,6 @@
 typedef void (*ffevalf)(ARGS_ffeval);
 
 /**************** ffeval ***************/
-extern void C2F(parab)(ARGS_ffeval);
-extern void C2F(parabc)(ARGS_ffeval);
 void C2F(ffeval)(ARGS_ffeval);
 void C2F(setfeval)(char *name, int *rep);
 
