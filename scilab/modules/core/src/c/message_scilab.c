@@ -37,7 +37,7 @@ int message_scilab(char *Tag,...)
 		(void )vsprintf(s_buf, LocalizedString, ap );
 		#endif
 		va_end(ap);
-		sciprint_full(s_buf);
+		sciprint(s_buf);
 		sciprint("\n");
 		ret=1;
 	}
