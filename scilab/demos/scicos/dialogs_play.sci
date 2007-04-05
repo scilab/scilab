@@ -16,7 +16,7 @@ function rep=x_message(comment,btns)
   else
     if size(btns,'*')==1
     else
-      str=readline()	
+      str=readline()
       rep=find(str==btns)
     end
   end
@@ -24,21 +24,21 @@ endfunction
 
 function str=x_dialog(comment,default)
 // Copyright INRIA
-  if argn(2)==1 then default=' ',end   
+  if argn(2)==1 then default=' ',end
   str=[]
- 
+
   while %t do
-    s=readline()	
+    s=readline()
     if part(s,1:2)=='o '|part(s,1)=='c ' then break,end
     str=[str;s]
   end
   if str==' ' then str=default,end
   rep=s
   if part(rep,1:2)=='c ' then str=[],end
-  
+
   ln=max(size(default,1),size(str,1))+2
   lw=max(length([default;str]))+2
-  
+
   txt=create_txt4(comment,default)
 
   TCL_EvalStr(txt)
@@ -47,7 +47,7 @@ function str=x_dialog(comment,default)
   for t=1:100,  xpause(1000),end
   TCL_EvalStr('$w.mess delete 0.0 end')
   TCL_EvalStr('$w.mess  insert 0.0 '"'+sci2tcl(str)+''"')
-  
+
   for t=1:min(140*(ln-1),7000),  xpause(2000),end
 //disp(timer())
   TCL_EvalStr('destroy $w')
@@ -57,9 +57,9 @@ function str=x_mdialog(description,labels,valuesini)
 // Copyright INRIA
   n=prod(size(labels))
   if argn(2)==2 then valuesini(n)=' ',end
-  
+
    txt=create_txt1(description,labels,valuesini);
-  
+
    TCL_EvalStr(txt)
    xpause(500000)
    for k=1:n
@@ -93,7 +93,7 @@ function num=x_choose(tochoose,comment,button)
   end
 //  pause
   tk_mpop(l,num,xget('wpos')+[200,200]);
-  
+
 endfunction
 
 
@@ -115,7 +115,7 @@ function [btn,xc,yc,win,Cmenu]=xclick();
   xset('mark',mrk(1),mrk(2))
   win=0
 
-  if size(rep)>=4 then 
+  if size(rep)>=4 then
     win=rep(4),
     if win>0 then
       ww=xget('window')
@@ -135,7 +135,7 @@ function [btn,xc,yc,win,Cmenu]=xclick();
 //      end
     end
   end
-  if size(rep)>=5 then 
+  if size(rep)>=5 then
     Cmenu=rep(5)
   else
     Cmenu=[]
@@ -161,7 +161,7 @@ function [btn,xc,yc,win,Cmenu]=xclick();
 endfunction
 
 function rep=xgetmouse(flag);
-// Copyright INRIA 
+// Copyright INRIA
   str=readline()
   rep=evstr('['+str+']')
   // next line for animation
@@ -170,7 +170,7 @@ endfunction
 
 
 function str=readline()
-// Copyright INRIA 
+// Copyright INRIA
   global LineCount
   LineCount=LineCount+1
   comm='//'
@@ -180,7 +180,7 @@ function str=readline()
     k=strindex(rep,comm)
     if k<>[] then
       k=k(1)
-      if part(rep,1:k-1)<>part(blank,1:k-1) then 
+      if part(rep,1:k-1)<>part(blank,1:k-1) then
 	str=stripblanks(part(rep,1:k-1))
 	com=part(rep,k+1:length(rep))
 	if part(str,1:3)=='-->' then
@@ -209,7 +209,7 @@ endfunction
 
 
 function c=getcolor(title,cini)
-// Copyright INRIA  
+// Copyright INRIA
   str=readline()
   c=evstr('['+str+']')
 endfunction
@@ -223,12 +223,12 @@ function rep=message(comment,btns)
   end
 endfunction
 
-function rep=dialog(labels,valueini) 
+function rep=dialog(labels,valueini)
 // Copyright INRIA
   if argn(2)==1 then
-    rep=x_dialog(labels) 
+    rep=x_dialog(labels)
   else
-    rep=x_dialog(labels,valueini) 
+    rep=x_dialog(labels,valueini)
   end
 endfunction
 
@@ -240,13 +240,13 @@ function  txt=create_txt4(comment,default)
        'wm iconname $w '"scicos'"'
        'label $w.msg  -wraplength 4i -justify left -text '"'+sci2tcl(comment)+''"'
        'pack $w.msg -side top'
-       'text $w.mess  -background white -font  {-*-helvetica-normal-r-*-*-12} -relief sunken -bd 2 -setgrid true -width '+string(lw)+' -height '+string(ln)
+       'text $w.mess -font  {-*-helvetica-normal-r-*-*-12} -relief sunken -bd 2 -setgrid true -width '+string(lw)+' -height '+string(ln)
        'frame $w.buttons'
        'pack $w.buttons -side bottom -fill x -pady 2m'
-       'button $w.buttons.dismiss -text Dismiss' 
+       'button $w.buttons.dismiss -text Dismiss'
        'button $w.buttons.code -text OK '
        'pack $w.buttons.dismiss $w.buttons.code -side left -expand 1'
-       'pack $w.mess  -expand yes -fill both -side top' 
+       'pack $w.mess  -expand yes -fill both -side top'
       ]
 
 function txt=create_txt1(title,items,init)
@@ -263,7 +263,7 @@ txt=['set w .form'
 'label $w.msg  -wraplength 4i -justify left -text '"'+sci2tcl(title)+''"'
 'frame $w.buttons'
 'pack $w.buttons -side bottom -fill x -pady 2m'
-'button $w.buttons.dismiss -text Dismiss' 
+'button $w.buttons.dismiss -text Dismiss'
 'button $w.buttons.code -text OK '
 'pack $w.buttons.dismiss $w.buttons.code -side left -expand 1'];
 
@@ -285,7 +285,7 @@ end
 	'$w.f'+string(i)+'.entry insert 0 '"'+sci2tcl(init(i))+''"'
 ];
    end
- 
+
 tt=''
 for i=1:size(items,'*')
   tt=tt+'global x'+string(i)+';set x'+string(i)+' [$w.f'+string(i)+'.entry get];'
@@ -338,7 +338,7 @@ function tk_mpop(ll,but,pos)
   end
   [txt,MM]=create_pop(ll,but,pos)
   ierr=execstr('TCL_EvalStr(txt)','continue')
-  
+
   xpause(1000000)
   txt='catch {destroy .scicoslhb}'
   ierr=execstr('TCL_EvalStr(txt)','continue')
