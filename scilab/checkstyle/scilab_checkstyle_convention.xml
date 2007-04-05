@@ -21,6 +21,7 @@ Any comments or request : scilab.developpers@inria.fr
         </module>
         <module name="JavadocVariable">
             <property name="severity" value="info"/>
+            <property name="scope" value="package"/>
         </module>
         <module name="JavadocStyle">
             <property name="checkFirstSentence" value="false"/>
@@ -73,7 +74,9 @@ Any comments or request : scilab.developpers@inria.fr
         <module name="RedundantThrows"/>
         <module name="SimplifyBooleanExpression"/>
         <module name="SimplifyBooleanReturn"/>
-        <module name="DesignForExtension"/>
+        <module name="DesignForExtension">
+            <property name="severity" value="ignore"/>
+        </module>
         <module name="FinalClass"/>
         <module name="HideUtilityClassConstructor"/>
         <module name="InterfaceIsType"/>
