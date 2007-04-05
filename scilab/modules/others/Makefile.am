@@ -13,7 +13,7 @@ libsciothers_la_rootdir = $(target)
 libsciothers_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 
-#### others : init scripts #### 
+#### others : init scripts #### 
 libsciothers_la_etcdir = $(target)/etc
 libsciothers_la_etc_DATA = etc/others.quit etc/others.start
 
@@ -147,53 +147,71 @@ demos/loop_demo/dialogs/demo26.dialogs \
 demos/loop_demo/cmplxfunc/MacCmplx.sci \
 demos/loop_demo/cmplxfunc/cmplxfunc.dem \
 demos/loop_demo/sliding_pendulum.sci \
-demos/loop_demo/demo_cellule.htm \
-demos/loop_demo/demo_truck.htm \
+demos/loop_demo/html/en_US/demo_cellule.htm \
+demos/loop_demo/html/en_US/demo_truck.htm \
+demos/loop_demo/html/en_US/demo_riemann.htm \
+demos/loop_demo/html/en_US/demo_pendulum.htm \
+demos/loop_demo/html/en_US/demo_isoSurf.htm \
+demos/loop_demo/html/en_US/demo_geneal.htm \
+demos/loop_demo/html/en_US/demo_cmplxfun.htm \
+demos/loop_demo/html/en_US/demo_scilab.htm \
+demos/loop_demo/html/en_US/demo_optloc.htm \
+demos/loop_demo/html/en_US/demo_sliding_pendulum.htm \
+demos/loop_demo/html/en_US/demo_scicos1.htm \
+demos/loop_demo/html/en_US/demo_scicos2.htm \
+demos/loop_demo/html/en_US/demo_car.htm \
+demos/loop_demo/html/en_US/demo_3dplot.htm \
+demos/loop_demo/html/en_US/demo_datafit.htm \
+demos/loop_demo/html/en_US/demo_signal.htm \
+demos/loop_demo/html/en_US/demo_multiflot.htm \
+demos/loop_demo/html/en_US/demo_image.htm \
+demos/loop_demo/html/fr_FR/demo_cellule.htm \
+demos/loop_demo/html/fr_FR/demo_truck.htm \
+demos/loop_demo/html/fr_FR/demo_riemann.htm \
+demos/loop_demo/html/fr_FR/demo_pendulum.htm \
+demos/loop_demo/html/fr_FR/demo_isoSurf.htm \
+demos/loop_demo/html/fr_FR/demo_geneal.htm \
+demos/loop_demo/html/fr_FR/demo_cmplxfun.htm \
+demos/loop_demo/html/fr_FR/demo_scilab.htm \
+demos/loop_demo/html/fr_FR/demo_optloc.htm \
+demos/loop_demo/html/fr_FR/demo_sliding_pendulum.htm \
+demos/loop_demo/html/fr_FR/demo_scicos1.htm \
+demos/loop_demo/html/fr_FR/demo_scicos2.htm \
+demos/loop_demo/html/fr_FR/demo_car.htm \
+demos/loop_demo/html/fr_FR/demo_3dplot.htm \
+demos/loop_demo/html/fr_FR/demo_datafit.htm \
+demos/loop_demo/html/fr_FR/demo_signal.htm \
+demos/loop_demo/html/fr_FR/demo_multiflot.htm \
+demos/loop_demo/html/fr_FR/demo_image.htm \
 demos/loop_demo/n_pendulum.sci \
 demos/loop_demo/rosenbrock.sci \
 demos/loop_demo/loop_demo.sce \
-demos/loop_demo/demo_scilab.htm \
 demos/loop_demo/datafit.sci \
-demos/loop_demo/demo_optloc.htm \
-demos/loop_demo/demo_scicos1.htm \
 demos/loop_demo/ex3.graph \
-demos/loop_demo/demo_scicos2.htm \
-demos/loop_demo/demo_3dplot.htm \
-demos/loop_demo/demo_car.htm \
 demos/loop_demo/demo_image.sci \
 demos/loop_demo/truck.sci \
 demos/loop_demo/demo_cellule.sci \
 demos/loop_demo/Geneal.sci \
-demos/loop_demo/demo_signal.htm \
 demos/loop_demo/Geneal.txt \
-demos/loop_demo/demo_multiflot.htm \
 demos/loop_demo/optloc.sci \
 demos/loop_demo/demo_scilab.sci \
 demos/loop_demo/car.sci \
 demos/loop_demo/loop.sce \
-demos/loop_demo/demo_riemann.htm \
-demos/loop_demo/demo_pendulum.htm \
-demos/loop_demo/Scilab.htm \
 demos/loop_demo/demo_scicos1.sci \
-demos/loop_demo/demo_isoSurf.htm \
 demos/loop_demo/demo_scicos2.sci \
-demos/loop_demo/demo_geneal.htm \
 demos/loop_demo/demo_3dplot.sci \
-demos/loop_demo/whatis.htm \
-demos/loop_demo/demo_cmplxfun.htm \
 demos/loop_demo/demo_scicos1.dialogs \
 demos/loop_demo/scilabb.ppm \
 demos/loop_demo/multiflot.sci \
-demos/loop_demo/README \
-demos/loop_demo/demo_sliding_pendulum.htm \
 demos/loop_demo/Save \
+demos/loop_demo/readme.txt \
 demos/loop_demo/demo_signal.sci \
 demos/loop_demo/demo_scicos.sci \
 demos/loop_demo/riemann.sci \
-demos/loop_demo/demo_datafit.htm \
 demos/loop_demo/spline.sci \
 demos/loop_demo/scilab_logo.ppm \
 demos/loop_demo/cmplxfun.sci \
-demos/loop_demo/demo_isoSurf.sci \
-demos/loop_demo/demo_image.htm
+demos/loop_demo/demo_isoSurf.sci
+
+
 include $(top_srcdir)/Makefile.incl.am
