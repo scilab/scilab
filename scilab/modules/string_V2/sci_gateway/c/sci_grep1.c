@@ -14,22 +14,8 @@
 #include <stdio.h>
 #include "machine.h"
 #include "MALLOC.h" /* MALLOC */
-int next[20];
-static char* substr(const char*str, unsigned start, unsigned end)
+int *next;
 
-{
-
-unsigned n = end - start;
-
-static char stbuf[256];
-
-strncpy(stbuf, str + start, n);
-
-stbuf[n] = 0;
-
-return stbuf;
-
-}
 /**
  * The KMP method to search in a string.
  * @S[] is  the input of the main string.
@@ -66,20 +52,20 @@ int kmp(char S[],char T[],int pos){
  * @*next is the pointer to the next value.
  * @T[] is  the input of substring.
  */
-void getnext(char T[],int *next){  /*To get the next value of the substring*/
+void getnext(char T[], int *next1){  /*To get the next value of the substring*/
         int i,j,lenT;
         i=0;
 		j=-1;
         lenT=strlen(T);
-        *(next)=-1;         
+        *(next1)=-1;         
 		while(i<lenT){
 			if(j==-1||T[i]==T[j]){  
                   ++i;
                   ++j;
-                  *(next+i)=j;
+                  *(next1+i)=j;
             }
             else 
-              j=*(next+j);
+              j=*(next1+j);
 
                  
         }
@@ -94,14 +80,14 @@ int C2F(sci_grep1) _PARAMS((char *fname,unsigned long fname_len))
 	char **Str,**Str2;
 	int y,x,m1,n1,mn,mn2,i,m2,n2,m3,n3,l3=0;
 	unsigned x1;
-	int lenth=0;
-	int lenthrow=1;
-    int lenthcol=1;
+	
+	
+    
     int outIndex = 0 ;
     char ebuf[128];
 	const size_t nmatch = 10;
     char *pattern[100];
-    int  z, lno = 0, cflags = 0;
+    int  z, cflags = 0;
     int values[10];
     int nbValues=0;
     int position[10];
@@ -141,10 +127,10 @@ int C2F(sci_grep1) _PARAMS((char *fname,unsigned long fname_len))
 							z = regexec(out1[x], Str[y], nmatch, pm, 0);
 							if (z == REG_NOMATCH) { 
 								int outIndex2= Rhs +x+1 ;
-								int numRow   = 1 ;
-								int numCol   = 1 ;
-								int outIndex = 0 ;
-								CreateVar(Rhs+1+x,"c",&numRow,&numCol,&outIndex);
+							   int numCol   = 1 ;
+								outIndex = 0 ;
+								numRow  =1 ;
+                        CreateVar(Rhs+1+x,"c",&numRow,&numCol,&outIndex);
   								LhsVar(x+1) = outIndex2 ;
 								continue;
 							}
