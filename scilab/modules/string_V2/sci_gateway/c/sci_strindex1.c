@@ -76,7 +76,7 @@ int C2F(sci_strindex1) _PARAMS((char *fname,unsigned long fname_len)){
 						out1[i]=(regex_t *)malloc(sizeof(regex_t));
 						z = regcomp(out1[i], pattern[i], cflags);
 						if (z != 0){
-							regerror(z, out1, ebuf, sizeof(ebuf));
+							regerror(z, out1[i], ebuf, sizeof(ebuf));
 							Scierror(999, "%s: pattern '%s' \n", ebuf, pattern);
 							return 1;
 						}
