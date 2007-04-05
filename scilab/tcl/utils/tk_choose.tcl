@@ -33,7 +33,7 @@ namespace eval tkChoose {
 
     label $t.label -text $titleString -font chooseBoldFont
     
-    listbox $t.list -bg white -height 0 -width 0 -font chooseFont
+    listbox $t.list -height 0 -width 0 -font chooseFont
     bind  $t.list  <ButtonRelease> {
       bind $tkChoose::t <Destroy> {}
       catch {set tkChoose::result [$tkChoose::t.list nearest %y]}
