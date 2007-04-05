@@ -126,7 +126,6 @@ Any comments or request : scilab.developpers@inria.fr
         <module name="CyclomaticComplexity"/>
         <module name="JavaNCSS"/>
         <module name="NPathComplexity"/>
-        <module name="Indentation"/>
     </module>
     <module name="PackageHtml"/>
     <module name="NewlineAtEndOfFile"/>
