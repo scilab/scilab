@@ -1,10 +1,10 @@
-// Main Scilab initifalisation file 
+// Main Scilab initialisation file
 // Copyright INRIA
 mode(-1);  // silent execution mode
 
 // clean database when restarted ======================================
-predef('clear'); //unprotect all variables 
-clear  // erase all variables 
+predef('clear'); //unprotect all variables
+clear  // erase all variables
 clearglobal();
 
 // Set stack size   ===================================================
@@ -35,17 +35,17 @@ $=poly(0,'$')
 verbose=sciargs()<>"-nb"
 if verbose then
   if ~fromjava() & ~fromc() then
-    banner(); 
+    banner();
     write(%io(2),[' ';' ';'Startup execution:'])
   end
 end
 
 // Load scilab functions libraries  ===================================
-if verbose then 
+if verbose then
   if ~fromjava() & ~fromc() then
     write(%io(2),'  loading initial environment')
-  end  
-end 
+  end
+end
 clear verbose
 
 load('SCI/macros/mtlb/lib')
@@ -134,17 +134,17 @@ clear initial_demos_tables demolist
 global %browsehelp
 %browsehelp=loaddefaultbrowser();
 clear %browsehelp with_tk with_gtk loaddefaultbrowser //remove the local variable
-      
+
 // Menu for Help and editor ===========================================
 if grep(args,'scilex')<>[] then
   if (args<>"-nw")&(args<>"-nwni")&(args<>"--texmacs")&(args<>"-nogui") then
-    
-    if ~MSDOS then 
+
+    if ~MSDOS then
     	delmenu("Help")
       addmenu("Help",["Help browser","Apropos","Configure"],list(2,"help_menu")),
     end
     if with_tk() then
-      if ~MSDOS then 
+      if ~MSDOS then
       	delmenu("Editor");
         addmenu("Editor",list(2,"scipad();"));
       end
@@ -160,13 +160,13 @@ if MSDOS then
 else
   LCC=%f
 end
-clear LCC 
+clear LCC
 
 
 
 
 // Protect variable previously defined  ================================
-predef('all') 
+predef('all')
 
 
 clear  scicos_pal // explicitly clear %helps scicos_pal variables
@@ -186,7 +186,7 @@ clear  scicos_pal // explicitly clear %helps scicos_pal variables
 
 
 // Graphic mode and Startup info ======================================
-if %gui then 
+if %gui then
   set old_style off
   verbose=sciargs()<>"-nb"
   if verbose then
@@ -194,11 +194,11 @@ if %gui then
 	  clear show_startupinfo;
    end
    clear verbose;
-end   
+end
 // load contrib menu if present ========================================
 [fd,ierr]=mopen(SCI+'/contrib/loader.sce');
 if ierr== 0 then;
-  mclose(fd); 
+  mclose(fd);
   global %toolboxes
   global %toolboxes_dir
   exec(SCI+'/contrib/loader.sce');
