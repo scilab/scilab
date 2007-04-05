@@ -67,7 +67,7 @@ int C2F(sci_strsubst1) _PARAMS((char *fname,unsigned long fname_len))
 {
 char typ = '*';
 
-  char **Str,**Str2,**Str3;
+  char **Str,**Str2,**Str3,**Str4;
   
   
   
@@ -106,7 +106,7 @@ char typ = '*';
            if (typ == 'r' ) {  
 
 
-				out1=(regex_t *)malloc(sizeof(regex_t));
+				out1=(regex_t *)MALLOC(sizeof(regex_t));
 				z = regcomp(out1, pattern, cflags);
 				if (z != 0){
 					regerror(z, out1, ebuf, sizeof(ebuf));
@@ -173,11 +173,31 @@ char typ = '*';
 		//}
 		}
    }  
-		numRow   = 1 ;
-	    numCol   = mn ;
-		CreateVarFromPtr( Rhs+1, "S", &numRow, &numCol, Str ) ;
-	    LhsVar(1) = Rhs+1 ;    
-  
+		//numRow   = 1 ;
+	    //numCol   = mn ;
+		//CreateVarFromPtr( Rhs+1, "S", &numRow, &numCol, Str ) ;
+	    //LhsVar(1) = Rhs+1 ;    
+/*        numRow    = 0;
+	    numCol   = 0 ;
+		Str4[0][0]='\0';
+		CreateVarFromPtr( Rhs+1, "S", &numRow, &numCol, Str4 ) ;
+	    LhsVar(1) = Rhs+1 ;  */ 
+   {
+	   int m1,n1,l1;
+int i=0;
+	   m1=3;
+	   n1=2;
+		l1=0;
+		Str4=(char**)MALLOC(sizeof(char*)*(m1*n1));
+		for (i=0;i<m1*n1;i++)
+		{
+			Str4[i]=(char*)MALLOC(sizeof(char*)*(1));
+			strcpy(Str4[i],"");
+		}
+		CreateVarFromPtr(1,"S",&m1, &n1, Str4);
+		LhsVar(1)=1;
+
+   }    
 	
 
   }
