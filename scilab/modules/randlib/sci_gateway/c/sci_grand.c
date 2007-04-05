@@ -21,6 +21,7 @@
 #include "others_generators.h"
 #include <math.h>
 #include "sciprint.h"
+#include "Scierror.h"
 
 enum {MT, KISS, CLCG4, CLCG2, URAND, FSULTRA};
 
