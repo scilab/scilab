@@ -10,7 +10,6 @@
 #ifdef _MSC_VER
 #include <Windows.h>
 #include "MALLOC.h"
-extern char *GetExceptionString(DWORD ExceptionCode);
 #endif
 
 #include "stack-c.h"
