@@ -15,6 +15,8 @@
 #include "machine.h"
 #include "MALLOC.h" /* MALLOC */
 int *next;
+void getnext(char T[],int *next);
+int kmp(char S[],char T[],int pos);
 
 /**
  * The KMP method to search in a string.
