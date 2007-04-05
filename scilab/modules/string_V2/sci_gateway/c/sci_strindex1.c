@@ -54,7 +54,7 @@ int C2F(sci_strindex1) _PARAMS((char *fname,unsigned long fname_len)){
     Rhs = Max(0, Rhs);
     CheckRhs(1,3);
     CheckLhs(1,2);
-  
+    
     switch ( VarType(1)) {
 		case 10 :
 			GetRhsVar(1,"S",&m1,&n1,&Str);
