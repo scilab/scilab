@@ -74,7 +74,7 @@ C     .. Data statements ..
 C     ..
 C     .. Executable Statements ..
 C
-   10 u = ranf()
+   10 u = 1.0 - ranf()
       s = 0.0
       IF (u.GT.0.5) s = 1.0
       u = u + u - s
