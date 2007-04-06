@@ -5,6 +5,9 @@
 #include "FTables.h"
 #include "link.h"
 
+typedef struct {double r,i;} doublecmplx;
+
+
 /***********************************
 * Search Table for fschur
 ***********************************/
