@@ -32,7 +32,9 @@ static StringTable Tab[]=
 	{C2F(sci_strindex1),"strindex1"},
     {C2F(sci_strsubst1),"strsubst1"},
 	{C2F(sci_grep1),"grep1"},
-    {C2F(sci_regexppri),"regexppri"}
+    {C2F(sci_regexppri),"regexppri"},
+	{C2F(sci_emptystr1),"emptystr1"}
+
 };
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_string)(void)
