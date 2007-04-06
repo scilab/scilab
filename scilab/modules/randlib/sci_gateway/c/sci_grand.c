@@ -22,6 +22,7 @@
 #include <math.h>
 #include "sciprint.h"
 #include "Scierror.h"
+#include "gw_randlib.h"
 
 enum {MT, KISS, CLCG4, CLCG2, URAND, FSULTRA};
 
