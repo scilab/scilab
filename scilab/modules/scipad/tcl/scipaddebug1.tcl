@@ -161,6 +161,9 @@ if {0} {
     bind all <Control-equal> { \
         checkexecutionerror_bp \
     }
+    bind all <Control-equal> { \
+        runtoreturnpoint_bp \
+    }
 }
 
 # End of useful binding triggering a command

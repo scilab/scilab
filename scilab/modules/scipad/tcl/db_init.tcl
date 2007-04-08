@@ -23,6 +23,7 @@ set debuggerbusycursor false
 set initprevdbpauselevel 4                  ;# see proc checkendofdebug_bp
 set prevdbpauselevel $initprevdbpauselevel
 set afilewasopenedbyuabpt false             ;# see proc checkendofdebug_bp
+set displayruntoreturnwarning true
 
 # list of functions names that cannot be debugged
 # because they are debugger ancillaries
@@ -53,6 +54,7 @@ image create photo butstepimage_o        -file [file join $iconsdir stepstep.gif
 image create photo butstepenterimage_o   -file [file join $iconsdir arrowenter.gif]
 image create photo butstepoverimage_o    -file [file join $iconsdir arrowover.gif]
 image create photo butstepexitimage_o    -file [file join $iconsdir arrowexit.gif]
+image create photo butruntoreturnimage_o -file [file join $iconsdir arrowout.gif] ; #waiting for new icon
 image create photo butruntocursorimage_o -file [file join $iconsdir arrowcursor.gif]
 image create photo butgoonignorimage_o   -file [file join $iconsdir arrowignore.gif]
 image create photo butwatchimage_o       -file [file join $iconsdir arrowwatch.gif]
@@ -70,6 +72,7 @@ image create photo butstepimage
 image create photo butstepenterimage
 image create photo butstepoverimage
 image create photo butstepexitimage
+image create photo butruntoreturnimage
 image create photo butruntocursorimage
 image create photo butgoonignorimage
 image create photo butwatchimage
@@ -83,13 +86,15 @@ butstepimage        copy butstepimage_o        -subsample $subsamplex $subsample
 butstepenterimage   copy butstepenterimage_o   -subsample $subsamplex $subsampley
 butstepoverimage    copy butstepoverimage_o    -subsample $subsamplex $subsampley
 butstepexitimage    copy butstepexitimage_o    -subsample $subsamplex $subsampley
+butruntoreturnimage copy butruntoreturnimage_o -subsample $subsamplex $subsampley
 butruntocursorimage copy butruntocursorimage_o -subsample $subsamplex $subsampley
 butgoonignorimage   copy butgoonignorimage_o   -subsample $subsamplex $subsampley
 butwatchimage       copy butwatchimage_o       -subsample $subsamplex $subsampley
 butbreakimage       copy butbreakimage_o       -subsample $subsamplex $subsampley
 butcancelimage      copy butcancelimage_o      -subsample $subsamplex $subsampley
 set db_butimages [list "sep" butsetbptimage butremoveallimage "sep" butconfigureimage \
-                       "sep" butnextimage butstepimage butruntocursorimage \
+                       "sep" butnextimage butstepimage \
+                       butruntoreturnimage butruntocursorimage \
                        butgoonignorimage "sep" butwatchimage "sep" butbreakimage \
                        butcancelimage]
 set db_stepbutimages [list "sep" butstepenterimage butstepoverimage butstepexitimage]
@@ -102,6 +107,7 @@ image create photo menubutstepimage
 image create photo menubutstepenterimage
 image create photo menubutstepoverimage
 image create photo menubutstepexitimage
+image create photo menubutruntoreturnimage
 image create photo menubutruntocursorimage
 image create photo menubutgoonignorimage
 image create photo menubutwatchimage
@@ -117,6 +123,7 @@ menubutstepimage        copy butstepimage_o        -subsample $subsamplex $subsa
 menubutstepenterimage   copy butstepenterimage_o   -subsample $subsamplex $subsampley
 menubutstepoverimage    copy butstepoverimage_o    -subsample $subsamplex $subsampley
 menubutstepexitimage    copy butstepexitimage_o    -subsample $subsamplex $subsampley
+menubutruntoreturnimage copy butruntoreturnimage_o -subsample $subsamplex $subsampley
 menubutruntocursorimage copy butruntocursorimage_o -subsample $subsamplex $subsampley
 menubutgoonignorimage   copy butgoonignorimage_o   -subsample $subsamplex $subsampley
 menubutwatchimage       copy butwatchimage_o       -subsample $subsamplex $subsampley

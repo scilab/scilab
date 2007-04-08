@@ -253,6 +253,7 @@ proc displaymatchresultswin {} {
     set matchres $pad.matchres
 
     if {[winfo exists $matchres]} {
+        raise $matchres
         $matchres.f1.resarea configure -state normal
         $matchres.f1.resarea delete 1.0 end
         $matchres.f1.resarea configure -state disabled

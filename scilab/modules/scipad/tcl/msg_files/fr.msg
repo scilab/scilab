@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.97
+# in sync at least with v6.98
 
 
 # commons
@@ -50,11 +50,11 @@
 ::msgcat::mcset fr "&Get current value from Scilab" "Obtenir la valeur &actuelle dans Scilab"
 
 
+# db_bptsmanagement.tcl
+::msgcat::mcset fr "No breakpoint here!" "Pas de point d'arrêt ici !"
+
+
 # db_configureexec.tcl
-::msgcat::mcset fr "You must enable colorization to be able to launch the debugger!" \
-                   "Vous devez autoriser la colorisation pour lancer le débuggueur !"
-::msgcat::mcset fr "The debugger needs colorization" \
-                   "Le débuggueur a besoin de la colorisation"
 ::msgcat::mcset fr "Configure execution" "Configurer l'exécution"
 ::msgcat::mcset fr "Function name:" "Nom de la fonction :"
 ::msgcat::mcset fr "&Obtain" "&Obtenir"
@@ -90,13 +90,24 @@
 ::msgcat::mcset fr "This file contains no function and will be treated" \
                    " Ce fichier ne contient aucune fonction et sera traité"
     ::msgcat::mcset fr "as a single .sce file.\nStart debugging?" "en tant qu'unique entité .sce.\nCommencer le débug ?"
+::msgcat::mcset fr "You must enable colorization to be able to launch the debugger!" \
+                   "Vous devez autoriser la colorisation pour lancer le débuggueur !"
+::msgcat::mcset fr "The debugger needs colorization" \
+                   "Le débuggueur a besoin de la colorisation"
+::msgcat::mcset fr "Warning!\n\n \
+                 One or more function is defined more than once in the currently opened files.\n \
+                 The debugger cannot cope with multiple copies of functions.\n \
+                 The following duplicates were detected:\n" \
+                   "Attention !\n\n \
+                 Une ou plusieurs fonctions sont définies plus d'une fois dans les fichiers actuellement ouverts.\n \
+                 Le débuggueur ne supporte pas les copies multiples de fonctions.\n \
+                 Les doublons suivants ont été détectés :\n"
+::msgcat::mcset fr "\n--> Definition of function " "\n--> Définition de la fonction "
+::msgcat::mcset fr " found in:\n" " trouvée dans :\n"
+::msgcat::mcset fr "Duplicate function definitions found" "Fonctions en doublon identifiées"
 
 
 # db_debugsession.tcl
-::msgcat::mcset fr "Cursor must be in a function" \
-                   "Le curseur doit être dans une fonction"
-::msgcat::mcset fr "No effect - The debugged file is not stuck" \
-                   "Aucun effet - Le fichier en débug n'est pas bloqué"
 ::msgcat::mcset fr "Too many breakpointed functions" \
                    "Trop de fonctions contenant des points d'arrêt"
 ::msgcat::mcset fr "You have currently" \
@@ -116,18 +127,24 @@
                        "points d'arrêt dans vos fichiers ouverts."
     ::msgcat::mcset fr "possible breakpoints in Scilab (see help setbpt)." \
                        "points d'arrêt (voir help setbpt)."
-::msgcat::mcset fr "No breakpoint here!" "Pas de point d'arrêt ici !"
-::msgcat::mcset fr "Warning!\n\n \
-                 One or more function is defined more than once in the currently opened files.\n \
-                 The debugger cannot cope with multiple copies of functions.\n \
-                 The following duplicates were detected:\n" \
-                   "Attention !\n\n \
-                 Une ou plusieurs fonctions sont définies plus d'une fois dans les fichiers actuellement ouverts.\n \
-                 Le débuggueur ne supporte pas les copies multiples de fonctions.\n \
-                 Les doublons suivants ont été détectés :\n"
-::msgcat::mcset fr "\n--> Definition of function " "\n--> Définition de la fonction "
-::msgcat::mcset fr " found in:\n" " trouvée dans :\n"
-::msgcat::mcset fr "Duplicate function definitions found" "Fonctions en doublon identifiées"
+::msgcat::mcset fr "Cursor must be in a function" \
+                   "Le curseur doit être dans une fonction"
+::msgcat::mcset fr "This command cannot succeed if the function where the debug just stopped is not opened in Scipad!" \
+                   "Le fichier dans lequel le débug vient de stopper doit être ouvert pour exécuter cette commande !"
+::msgcat::mcset fr "Cannot run to return point" \
+                   "Impossible d'exécuter jusqu'au point de retour"
+::msgcat::mcset fr "Warning!\nThe line where the debugger just stopped contains a return statement (either endfunction, return or resume) but this statement is not the first one on the line." \
+                   "Attention !\nLa ligne sur laquelle le débuggueur vient de s'arrêter contient une instruction de retour (endfunction ou bien return ou bien resume), mais cette instruction n'est pas la première sur la ligne."
+::msgcat::mcset fr "As a consequence the debugger cannot predict if the next debug step will really jump outside of the current function, which is what you just asked the debugger to do." \
+                   "Par conséquent le débuggueur ne peut pas prédire si le prochain pas de débug va faire sortir de la fonction en cours (i.e. ce que vous venez de demander de réaliser)."
+::msgcat::mcset fr "To avoid this unresolvable case, it is recommended to place the return statement alone on its line." \
+                   "Pour éviter ce cas indécidable, il est recommandé de placer chaque instruction de retour seule sur sa ligne."
+::msgcat::mcset fr "Do you want to see this warning again during this Scipad session?" \
+                   "Voulez-vous voir ce message à nouveau durant cette session Scipad?"
+::msgcat::mcset fr "Unresolvable case found while running to return point" \
+                   "Cas indécidable identifié durant l'exécution jusqu'au point de retour"
+::msgcat::mcset fr "No effect - The debugged file is not stuck" \
+                   "Aucun effet - Le fichier en débug n'est pas bloqué"
 
 
 # db_init.tcl
@@ -432,6 +449,7 @@
     ::msgcat::mcset fr "Step &into" "Pas à pas &détaillé"
     ::msgcat::mcset fr "Step o&ver" "Pas à pas &principal"
     ::msgcat::mcset fr "Step &out" "Pas à pas &sortant"
+    ::msgcat::mcset fr "Run to re&turn point" "Executer jusqu'au point de retour"
     ::msgcat::mcset fr "Run to c&ursor" "Executer jusqu'au cur&seur"
     ::msgcat::mcset fr "G&o on ignoring any breakpoint" "&Continuer sans aucun point d'arrêt"
     ::msgcat::mcset fr "Show &watch" "Fenêtre &watch"

@@ -22,7 +22,8 @@
 # |               |---->----/   /
 # |   -----------------        /tonextbreakpoint_bp |
 # |-<-|DebugInProgress|---<---/ runtocursor_bp      |
-#     -----------------         stepbystepinto_bp   |
+#     -----------------         runtoreturnpoint_bp |
+#       \     \                 stepbystepinto_bp   |
 #        \     \                stepbystepover_bp   |
 #         \     \               stepbystepout_bp
 #          \     \
@@ -33,10 +34,11 @@
 #               \        stepbystepover_bp   |
 #                \       stepbystepout_bp    |
 #                 \      showwatch_bp        |
-#                  \     runtocursor_bp      |
-#                   \    break_bp
-#                    \           |
-#                     \----<-----|
+#                  \     runtoreturnpoint_bp |
+#                   \    runtocursor_bp      |
+#                    \   break_bp
+#                     \           |
+#                      \----<-----|
 #
 ####################################################################
 
@@ -89,6 +91,8 @@ global dev_debug
         bind all <F8> {}
         $dms entryconfigure $MenuEntryId($dms.[mcra "Step &out"]) -state disabled
         bind all <Control-F8> {}
+        $dm entryconfigure $MenuEntryId($dm.[mcra "Run to re&turn point"]) -state disabled
+        bind all <Shift-F11> {}
         $dm entryconfigure $MenuEntryId($dm.[mcra "Run to c&ursor"]) -state disabled
         bind all <Control-F11> {}
         $dm entryconfigure $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"]) -state disabled
@@ -119,6 +123,8 @@ global dev_debug
         bind all <F8> {stepbystepover_bp}
         $dms entryconfigure $MenuEntryId($dms.[mcra "Step &out"]) -state normal
         bind all <Control-F8> {stepbystepout_bp}
+        $dm entryconfigure $MenuEntryId($dm.[mcra "Run to re&turn point"]) -state normal
+        bind all <Shift-F11> {runtoreturnpoint_bp}
         $dm entryconfigure $MenuEntryId($dm.[mcra "Run to c&ursor"]) -state normal
         bind all <Control-F11> {runtocursor_bp}
         $dm entryconfigure $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"]) -state disabled
@@ -149,6 +155,8 @@ global dev_debug
         bind all <F8> {stepbystepover_bp}
         $dms entryconfigure $MenuEntryId($dms.[mcra "Step &out"]) -state normal
         bind all <Control-F8> {stepbystepout_bp}
+        $dm entryconfigure $MenuEntryId($dm.[mcra "Run to re&turn point"]) -state normal
+        bind all <Shift-F11> {runtoreturnpoint_bp}
         $dm entryconfigure $MenuEntryId($dm.[mcra "Run to c&ursor"]) -state normal
         bind all <Control-F11> {runtocursor_bp}
         $dm entryconfigure $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"]) -state normal
@@ -182,6 +190,7 @@ if {$dev_debug=="true"} {
                 [lindex $wis $MenuEntryId($dms.[mcra "Step &into"])] configure -state disabled
                 [lindex $wis $MenuEntryId($dms.[mcra "Step o&ver"])] configure -state disabled
                 [lindex $wis $MenuEntryId($dms.[mcra "Step &out"])] configure -state disabled
+                [lindex $wi $MenuEntryId($dm.[mcra "Run to re&turn point"])] configure -state disabled
                 [lindex $wi $MenuEntryId($dm.[mcra "Run to c&ursor"])] configure -state disabled
                 [lindex $wi $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"])] configure -state disabled
                 [lindex $wi $MenuEntryId($dm.[mcra "&Break"])] configure -state disabled
@@ -192,6 +201,7 @@ if {$dev_debug=="true"} {
                 [lindex $wis $MenuEntryId($dms.[mcra "Step &into"])] configure -state normal
                 [lindex $wis $MenuEntryId($dms.[mcra "Step o&ver"])] configure -state normal
                 [lindex $wis $MenuEntryId($dms.[mcra "Step &out"])] configure -state normal
+                [lindex $wi $MenuEntryId($dm.[mcra "Run to re&turn point"])] configure -state normal
                 [lindex $wi $MenuEntryId($dm.[mcra "Run to c&ursor"])] configure -state normal
                 [lindex $wi $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"])] configure -state disabled
                 [lindex $wi $MenuEntryId($dm.[mcra "&Break"])] configure -state disabled
@@ -202,6 +212,7 @@ if {$dev_debug=="true"} {
                 [lindex $wis $MenuEntryId($dms.[mcra "Step &into"])] configure -state normal
                 [lindex $wis $MenuEntryId($dms.[mcra "Step o&ver"])] configure -state normal
                 [lindex $wis $MenuEntryId($dms.[mcra "Step &out"])] configure -state normal
+                [lindex $wi $MenuEntryId($dm.[mcra "Run to re&turn point"])] configure -state normal
                 [lindex $wi $MenuEntryId($dm.[mcra "Run to c&ursor"])] configure -state normal
                 [lindex $wi $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"])] configure -state normal
 if {$dev_debug=="true"} {
@@ -317,6 +328,7 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
     # note that since checkendofdebug_bp is called at the end of each step, the
     # command below is an if and not a while
     # same principle is used for skipping breakpoints when running to cursor
+    # or running to return point of the current function
     # note also that in order to stack commands with the right order, this must
     # be a ScilabEval_lt(Tcl_EvalStr(ScilabEval_lt(TCL_EvalStr ...) seq) seq)
     switch -- $stepmode {
@@ -340,6 +352,11 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
                    }
         "runtocur" {
             set skipline1 "TCL_EvalStr(\\\"\"if {!\\\[iscursorplace_bp\\\]} {runtocursor_bp 0 1}\\\"\",\\\"\"scipad\\\"\");"
+            set skipline2 "TCL_EvalStr(\\\"\"if {\\\[isnocodeline \\\[gettextareacur\\\] insert\\\]} {stepbystepover_bp 0 0} else {unsetdebuggerbusycursor}\\\"\",\\\"\"scipad\\\"\");"
+            set skipline [concat $skipline1 $skipline2]
+                   }
+        "runtoret" {
+            set skipline1 "TCL_EvalStr(\\\"\"if {!\\\[isreturnpoint_bp\\\]} {runtoreturnpoint_bp 0 1}\\\"\",\\\"\"scipad\\\"\");"
             set skipline2 "TCL_EvalStr(\\\"\"if {\\\[isnocodeline \\\[gettextareacur\\\] insert\\\]} {stepbystepover_bp 0 0} else {unsetdebuggerbusycursor}\\\"\",\\\"\"scipad\\\"\");"
             set skipline [concat $skipline1 $skipline2]
                    }
@@ -380,6 +397,7 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
         "over"     { set steppedininsteadofover "(size(db_l,1) > $prevdbpauselevel) & ~($stoppedonarealbpt)" }
         "out"      { set steppedininsteadofover "%f" }
         "runtocur" { set steppedininsteadofover "%f" }
+        "runtoret" { set steppedininsteadofover "%f" }
     }
     # 2. Step over (F8) steps actually into (Shift-F8) when the next line
     #    calls the same function as the one the debugger is currently in
@@ -402,6 +420,7 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
         "over"     { set didntwentout "%f" }
         "out"      { set didntwentout "(~(size(db_l,1) <= $prevdbpauselevel)) & ~($stoppedonarealbpt)" }
         "runtocur" { set didntwentout "%f" }
+        "runtoret" { set didntwentout "%f" }
     }
 
     # now create the full command to be ScilabEval-ed at the end

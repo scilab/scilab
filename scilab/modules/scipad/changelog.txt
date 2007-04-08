@@ -2898,5 +2898,12 @@ Francois VOGEL, 20/03/07
    instance dynamickeywords.sce
  * Fixed update of the scrollbars by textareas that are no longer displayed:
    the -x/yscrollcommand must be emptied when the textarea is unpacked
- * Added duplicate function definition check/warning the debugger
+ * Added duplicate function definition check/warning in the debugger
  * version --> 6.97
+
+Francois VOGEL, 08/04/07
+ * Find in files raises the find results window when a new find in files
+   starts
+ * New feature for the debugger: Run to return point. This was asked in the
+   newsgroup: http://groups.google.com/group/comp.soft-sys.math.scilab/browse_frm/thread/c482b4e4986a9282
+ * version --> 6.98

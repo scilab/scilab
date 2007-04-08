@@ -58,19 +58,6 @@ endfunction
 -watching some very large variable content looks like the variable is empty
  This is Tk bug 1449858.
 
--after configuration, when the first debug command is issued, Scipad execs
- the current buffer and the buffer containing the configured function.
- It should actually exec only the configured function plus all its ancillaries
- if those ancillaries have ever been open in Scipad (let's simplify and limit
- ourself to those that are currently open in Scipad). The current scheme is
- a problem especially for mixed .sce/.sci files, when the user answers "No"
- to the question "Debug as single .sce" and configures a function from a
- mixed buffer. In such a case, the entire buffer is exec'ed, and this might
- have consequences. The proposed solution is to scan the function being
- debugged for ancillary functions, check recursively if any of them is in
- a Scipad buffer, and dump all their definitions only to a temporary file
- and execute that file only.
-
 -Multiple file open in the file dialog: There is a Tcl bug on tk_getOpenFile,
  which does not correctly work on Linux with -multiple 1 option. See Tcl
  bug 1614032. I have proposed a patch for this bug to the Tcl core team, but
@@ -88,6 +75,9 @@ length of the scroll box changes.
  accelerator does apparently not trigger the associated -command proc.
  This is Tk bug #1638905 (which is a duplicate of #1599877), which is fixed
  in both 8.4.15 and 8.5a6 versions of Tcl/Tk.
+ Once Scilab uses one of the above Tcl/Tk versions, check in fr.msg (in the
+ menues section) whether there are missing accents on characters. I know at
+ least of two occurrences where "Executer" should read "Exécuter".
 
 -Line numbers of lines located after the active breakpoint are slightly
  misaligned with the lines they're facing. This is due to the font of the
@@ -103,7 +93,7 @@ length of the scroll box changes.
      list) check out the tag that is of priority just below the highest
      and run the game again
    . When there is no tag left, use the $textFont -size value as a fallback
- Beware of performance issues here! This must be done for each line!
+ Beware of performance issues here! This must be done for each visible line!
  Moreover, this would still not be perfect: mixed sizes inside single lines
  would not be supported (but such complications are anyway not used in
  Scipad currently)

@@ -18,7 +18,7 @@
 #   Elements of $listboxinput
 #   Elements of $listboxinputval
 #   Elements of $spin
-#   funname: function name shown by spin
+#   funname: function name shown by $spin
 #   funvars($funname): arguments list of function $funname, e.g. {arg1 arg2}
 #   funvarsvals($funname,var): content of argument var from function $funname
 #   funnames: list of all the different function names found by Obtainall_bp

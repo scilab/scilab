@@ -63,21 +63,25 @@ proc showwatch_bp {} {
     set buttonStepOut $watch.f.f1.f1l.stepOut
     button $buttonStepOut -command "stepbystepout_bp" -image [lindex $db_stepbutimages 3] \
            -relief flat -overrelief raised
+    set buttonRunToReturn $watch.f.f1.f1l.runToReturn
+    button $buttonRunToReturn -command "runtoreturnpoint_bp" -image [lindex $db_butimages 8] \
+           -relief flat -overrelief raised
     set buttonRunToCursor $watch.f.f1.f1l.runToCursor
-    button $buttonRunToCursor -command "runtocursor_bp" -image [lindex $db_butimages 8] \
+    button $buttonRunToCursor -command "runtocursor_bp" -image [lindex $db_butimages 9] \
            -relief flat -overrelief raised
     set buttonGoOnIgnor $watch.f.f1.f1l.goOnIgnor
-    button $buttonGoOnIgnor -command "goonwo_bp" -image [lindex $db_butimages 9] \
+    button $buttonGoOnIgnor -command "goonwo_bp" -image [lindex $db_butimages 10] \
            -relief flat -overrelief raised
     set buttonBreakDebug $watch.f.f1.f1l.breakDebug
-    button $buttonBreakDebug -command "break_bp" -image [lindex $db_butimages 13] \
+    button $buttonBreakDebug -command "break_bp" -image [lindex $db_butimages 14] \
            -relief flat -overrelief raised
     set buttonCancelDebug $watch.f.f1.f1l.cancelDebug
-    button $buttonCancelDebug -command "canceldebug_bp" -image [lindex $db_butimages 14] \
+    button $buttonCancelDebug -command "canceldebug_bp" -image [lindex $db_butimages 15] \
            -relief flat -overrelief raised
     pack $buttonConfigure $buttonToNextBpt $buttonStepInto \
          $buttonStepOver $buttonStepOut \
-         $buttonRunToCursor $buttonGoOnIgnor \
+         $buttonRunToReturn $buttonRunToCursor \
+         $buttonGoOnIgnor \
          $buttonBreakDebug $buttonCancelDebug \
          -padx 0 -pady 0 -side left
 
@@ -134,7 +138,8 @@ proc showwatch_bp {} {
     pack $watch.f.f1.f1fr -anchor w -expand 1 -fill both
 
     set watchwinicons [list "sep" "" "" "sep" $buttonConfigure "sep" $buttonToNextBpt \
-                            "" $buttonRunToCursor $buttonGoOnIgnor "sep" "" "sep"\
+                            "" $buttonRunToReturn $buttonRunToCursor $buttonGoOnIgnor \
+                            "sep" "" "sep"\
                             $buttonBreakDebug $buttonCancelDebug ]
     set watchwinstepicons [list "sep" $buttonStepInto $buttonStepOver $buttonStepOut]
 
@@ -168,6 +173,12 @@ proc showwatch_bp {} {
         [winfo pointerxy $watch]}
     bind $buttonStepOut     <Leave> {update_bubble_watch_step leave \
         $MenuEntryId($pad.filemenu.debug.step.[mcra "Step &out"]) \
+        [winfo pointerxy $watch]}
+    bind $buttonRunToReturn <Enter> {update_bubble_watch enter \
+        $MenuEntryId($pad.filemenu.debug.[mcra "Run to re&turn point"]) \
+        [winfo pointerxy $watch]}
+    bind $buttonRunToReturn <Leave> {update_bubble_watch leave \
+        $MenuEntryId($pad.filemenu.debug.[mcra "Run to re&turn point"]) \
         [winfo pointerxy $watch]}
     bind $buttonRunToCursor <Enter> {update_bubble_watch enter \
         $MenuEntryId($pad.filemenu.debug.[mcra "Run to c&ursor"]) \

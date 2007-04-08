@@ -285,17 +285,44 @@ append sbklnRE {\[} $scontRE $sblRE {(?:} $slnRE {)?} $scontRE $sblRE {\]}
 set spalnRE {}
 append spalnRE {\(} $scontRE $sblRE {(?:} $slnRE {)?} $scontRE $sblRE {\)}
 
+# Scilab left part of an assignment such as "[a,b,c] =" or just "a"
+set saslRE {}
+append saslRE {(?:} {(?:} $sbklnRE {|} $snRE {)} $scontRE $sblRE {=} $scontRE {)} {?} $sblRE
+
+# Scilab right part of an assignment, without the function name, such as "(a,b,c) =" or just "a" or "()"
+set sasrRE {}
+append sasrRE $sblRE $scontRE $sblRE {(?:} $spalnRE {)} {?} $scontRE $sblRE {(?:} {[;,]} {|} {(?:} $sblRE $scommRE {)} {|} {\n} {)}
+
 # Scilab function definition regexp (left part, i.e. up to but not including function name)
 set sfdlRE {}
-append sfdlRE {\mfunction\M[[:blank:]]+} $scontRE {(?:} {(?:} $sbklnRE {|} $snRE {)} $scontRE $sblRE {=} $scontRE {)} {?} $sblRE
+append sfdlRE {\mfunction\M[[:blank:]]+} $scontRE $saslRE
 
 # Scilab function definition regexp (right part, i.e. from but not including function name)
 set sfdrRE {}
-append sfdrRE $sblRE $scontRE $sblRE {(?:} $spalnRE {)} {?} $scontRE $sblRE {(?:} {[;,]} {|} {(?:} $sblRE $scommRE {)} {|} {\n} {)}
+append sfdrRE $sasrRE
 
 set funlineREpat1 $sfdlRE
 set funlineREpat2 $sfdrRE
 set scilabnameREpat $snRE_rep
+
+# regular expression matching a line starting with a return statement of a
+# Scilab function, i.e. either
+#   endfunction          or
+#   [..] = resume(...)   or
+#   [..] = return(...)
+# note that the regexp starts with the \A constraint, i.e it matches at the
+# beginning of the string, therefore the text passed to the regexp engine
+# must be a single line of a scilab text buffer (and not an entire buffer)
+# if this is a nuisance, replace \A by ^ and use regexp -line option
+# note also that we don't care about what is after the return statement, we
+# only need the return statement be the first executable instruction of the
+# line
+set sresRE {}
+append sresRE {\A} $sblRE {(} {(endfunction)} {|}
+append sresRE                 {(} $saslRE {(return)|(resume)} $sasrRE {)}
+append sresRE             {)}
+
+###
 
 # Floating point number, reporting version and non-reporting version
 set floatingpointnumberREpat_rep {((\.\d+)|(\m\d+(\.\d*)?))([deDE][+\-]?\d{1,3})?\M}

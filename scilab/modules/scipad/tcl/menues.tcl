@@ -146,6 +146,9 @@ proc createmenues {} {
                  -command \"stepbystepout_bp\" -accelerator Ctrl+F8\
                  -image menubutstepexitimage -compound left "
 
+    eval "$pad.filemenu.debug add command [me "Run to re&turn point"] \
+               -command \"runtoreturnpoint_bp\" -accelerator Shift+F11\
+               -image menubutruntoreturnimage -compound left "
     eval "$pad.filemenu.debug add command [me "Run to c&ursor"] \
                -command \"runtocursor_bp\" -accelerator Ctrl+F11\
                -image menubutruntocursorimage -compound left "

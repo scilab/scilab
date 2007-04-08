@@ -103,24 +103,40 @@ proc whichfun {indexin {buf "current"}} {
     }
 }
 
-proc getendfunctionpos {ta precfun} {
+proc getendfunctionpos {ta precfun {exittypes "only_endfunction"}} {
 # look for endfunction corresponding to $precfun (beginning of function
 # definition)
-# the position returned is the index in $ta of the first n of the word
-# endfunction corresponding to the function definition starting at $precfun
-# if no endfunction corresponding to $precfun is found, then -1 is returned
+# if $exittypes == "only_endfunction":
+#    only the position of the endfunction keyword is returned
+#    the position returned is the index in $ta of the first n of the word
+#    endfunction corresponding to the function definition starting at $precfun
+#    if no endfunction corresponding to $precfun is found, then -1 is returned
+# otherwise:
+#    the proc returns a list of indices, each of them corresponding to an
+#    exit point (a return point) of the function starting at $precfun
+#    keywords considered as exit points are "return", "resume" and
+#    "endfunction". The position returned is the position of the second
+#    character of each of these keywords
+#    if no endfunction corresponding to $precfun is found, then -1 is returned
+#    even if there were return or resume before in the text
+    if {$exittypes == "only_endfunction"} {
+        set searchpat {\m(end)?function\M}
+    } else {
+        set searchpat {\m(((end)?function)|(return)|(resume))\M}
+    }
     set lfunpos [list $precfun]
+    set repos [list ]
     set amatch [$ta search -exact -regexp "\\mfunction\\M" $precfun end]
     set curpos [$ta index "$amatch + 1c"]
     set amatch "firstloop"
     while {[llength $lfunpos] != 0} {
         # search for the next "function" or "endfunction" which is not in a
         # comment nor in a string
-        set amatch [$ta search -exact -regexp "\\m(end)?function\\M" $curpos end]
+        set amatch [$ta search -exact -regexp $searchpat $curpos end]
         if {$amatch != ""} {
             while {[lsearch [$ta tag names $amatch] "textquoted"] !=-1 || \
                    [lsearch [$ta tag names $amatch] "rem2"      ] !=-1} {
-                set amatch [$ta search -exact -regexp "\\m(end)?function\\M" "$amatch+8c" end]
+                set amatch [$ta search -exact -regexp $searchpat "$amatch+6c" end]
                 if {$amatch==""} break
             }
         }
@@ -132,9 +148,17 @@ proc getendfunctionpos {ta precfun} {
                     # into the core of the function
                     set lfunpos [lreplace $lfunpos end end]
                 }
-            } else {
+            } elseif {[$ta get $amatch] == "f"} {
                 # "function" found
                 lappend lfunpos $amatch
+            } else {
+                # "return" or "resume" found
+                # be clever, and don't include what is in a nested function
+                # of the function starting at $precfun (those positions are
+                # not return points of function starting at $precfun)
+                if {[llength $lfunpos] == 1} {
+                    lappend repos [$ta index "$amatch + 1c"]
+                }
             }
             set curpos [$ta index "$amatch + 1c"]
         } else {
@@ -142,7 +166,16 @@ proc getendfunctionpos {ta precfun} {
             break
         }
     }
-    return $curpos
+    if {$exittypes == "only_endfunction"} {
+        return $curpos
+    } else {
+        if {$curpos != "-1"} {
+            lappend repos $curpos
+            return $repos
+        } else {
+            return $curpos
+        }
+    }
 }
 
 proc tagcontlinesinallbuffers {} {
@@ -440,7 +473,7 @@ proc funnametofunnametafunstart {functionname} {
 # given a function name, this proc looks in all the opened buffers and
 # tries to find a function with this name
 # if it succeeds, then the proc returns a list with one getallfunsintextarea
-# result
+# result, more precisely, this is a list {$funcname $ta $funstartline}
 # if it does not succeed, then the return value is ""
 # <TODO> this search might fail if the same function name can be found in more
 #        than one single buffer - in this case, the first match is returned
@@ -603,6 +636,10 @@ proc getlistofancillaries {ta fun tag {lifun -1}} {
         set endpos [getendfunctionpos $ta $precfun]
         if {$endpos == -1} {
             # can't happen in principle
+            # <TODO>: It happens however in well-formed functions containing a string
+            #         containing the word "function", the string being quoted with
+            #         single quotes when these strings are not colorized (options menu)
+            #         Find a better way to handle such cases than just this messageBox!
             tk_messageBox -message "getendfunctionpos returned $endpos in proc getlistofancillaries: please report"
         }
         foreach {i j} [$ta tag ranges $tag] {
