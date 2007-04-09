@@ -3,10 +3,10 @@
 <!ELEMENT META (#PCDATA)  	 >
 
 <!ATTLIST META 
-CATEGORY 	CDATA 	"Scilab localization " 	 
+CATEGORY 	CDATA 	"Scilab localization" 	 
 VERSION_SCI 	CDATA 	"5.0" 	 
 VERSION_DOC 	CDATA 	"1.0" 	 
-AUTHOR 	CDATA 	"Allan CORNET INNRIA 2007" 	 
+AUTHOR 	CDATA 	"Allan CORNET INRIA 2007" 	 
  >
 
 <!ELEMENT entry (tag,string) >

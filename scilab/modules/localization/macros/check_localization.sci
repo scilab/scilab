@@ -1,7 +1,7 @@
 //------------------------------------
 // Allan CORNET INRIA 2007
 //------------------------------------
-function ret=checkl()
+function ret=check_localization()
  ret=%T;
  modules=getmodules();
  szmodules=size(modules);
