@@ -319,6 +319,7 @@
 
 <entry>
 	<tag>compatibility_functions_error_64</tag>
+	<string>mtlb_printf : this particular case is not implemented.</string>
 </entry>
 
 <entry>
