@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- =================== -->
+<!--
+ Scilab 
+ Allan CORNET
+ INRIA 2007
+ ===================
+ Don't edit if you aren't sure
+-->
+<!-- =================== -->
+<!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
+
+<GATEWAY>
+
+<PRIMITIVE>
+  <GATEWAY_ID>49</GATEWAY_ID>
+  <PRIMITIVE_ID>1</PRIMITIVE_ID>
+	<PRIMITIVE_NAME>savewave</PRIMITIVE_NAME>
+</PRIMITIVE>	
+
+<PRIMITIVE>
+  <GATEWAY_ID>49</GATEWAY_ID>
+  <PRIMITIVE_ID>2</PRIMITIVE_ID>
+	<PRIMITIVE_NAME>loadwave</PRIMITIVE_NAME>
+</PRIMITIVE>	
+
+<PRIMITIVE>
+  <GATEWAY_ID>49</GATEWAY_ID>
+  <PRIMITIVE_ID>3</PRIMITIVE_ID>
+	<PRIMITIVE_NAME>PlaySound</PRIMITIVE_NAME>
+</PRIMITIVE>	
+
+<PRIMITIVE>
+  <GATEWAY_ID>49</GATEWAY_ID>
+  <PRIMITIVE_ID>4</PRIMITIVE_ID>
+	<PRIMITIVE_NAME>beep</PRIMITIVE_NAME>
+</PRIMITIVE>	
+
+</GATEWAY>

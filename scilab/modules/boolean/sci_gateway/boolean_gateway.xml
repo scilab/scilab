@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- =================== -->
+<!--
+ Scilab 
+ Allan CORNET
+ INRIA 2007
+ ===================
+ Don't edit if you aren't sure
+-->
+<!-- =================== -->
+<!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
+
+<GATEWAY>
+
+<PRIMITIVE>
+  <GATEWAY_ID>23</GATEWAY_ID>
+  <PRIMITIVE_ID>1</PRIMITIVE_ID>
+	<PRIMITIVE_NAME>find</PRIMITIVE_NAME>
+</PRIMITIVE>	
+
+<PRIMITIVE>
+  <GATEWAY_ID>23</GATEWAY_ID>
+  <PRIMITIVE_ID>2</PRIMITIVE_ID>
+	<PRIMITIVE_NAME>bool2s</PRIMITIVE_NAME>
+</PRIMITIVE>	
+
+<PRIMITIVE>
+  <GATEWAY_ID>23</GATEWAY_ID>
+  <PRIMITIVE_ID>3</PRIMITIVE_ID>
+	<PRIMITIVE_NAME>or</PRIMITIVE_NAME>
+</PRIMITIVE>	
+
+<PRIMITIVE>
+  <GATEWAY_ID>23</GATEWAY_ID>
+  <PRIMITIVE_ID>4</PRIMITIVE_ID>
+	<PRIMITIVE_NAME>and</PRIMITIVE_NAME>
+</PRIMITIVE>	
+
+</GATEWAY>

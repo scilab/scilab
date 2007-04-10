@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- =================== -->
+<!--
+ Scilab 
+ Allan CORNET
+ INRIA 2007
+ ===================
+ Don't edit if you aren't sure
+-->
+<!-- =================== -->
+<!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
+
+<GATEWAY>
+
+<PRIMITIVE>
+  <GATEWAY_ID>38</GATEWAY_ID>
+  <PRIMITIVE_ID>1</PRIMITIVE_ID>
+	<PRIMITIVE_NAME>grand</PRIMITIVE_NAME>
+</PRIMITIVE>	
+
+</GATEWAY>
