@@ -8,18 +8,16 @@
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "msg_errors.h"
+#include "msgstore.h"
+#include "inffic.h"
+#include "msgout.h"
 /*-----------------------------------------------------------------------------------*/
 #define MSGOUT(msg) C2F(msgout)(&io, &lunit, msg, strlen(msg));
 /*-----------------------------------------------------------------------------------*/
-extern int C2F(freemsgtable)();
-extern int C2F(errstore)();
-extern int C2F(funnamestore)();
-extern int C2F(linestore)();
+
 extern int C2F(showstack)();
-extern int C2F(inffic)();
 extern int C2F(cvname)();
 extern int C2F(prntid)();
-extern int C2F(msgout)();
 /*-----------------------------------------------------------------------------------*/
 int C2F(errmsg)(integer *n,integer *errtyp)
 {
