@@ -13,9 +13,6 @@ EXPORTS
 	intsetenv_
 	sci_deff_
 	sci_diary_
-	getdiary
-	diary_
-	diary_nnl
 	sci_disp_
 	sci_exec_
 	sci_execstr_

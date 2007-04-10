@@ -35,6 +35,9 @@ cresmat2_
 cluni0_
 mopen_
 getfiletype_
+getdiary
+diary_
+diary_nnl
 ;
 ;core_f
 ;

@@ -214,6 +214,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\diary.c"
+				>
+			</File>
+			<File
 				RelativePath=".\dynamic_menus.c"
 				>
 			</File>
@@ -780,6 +784,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\core_math.h"
+				>
+			</File>
+			<File
+				RelativePath=".\diary.h"
 				>
 			</File>
 			<File

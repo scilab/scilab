@@ -48,7 +48,5 @@ size_t MyFRead (void *ptr, size_t size, size_t n, FILE * file);
 void Xputchar (c);
 void Xputstring (str, n);
 void Scisncr (str);
-void C2F(diary) __PARAMS((char *str,int *n));
-void diary_nnl __PARAMS((char *str,int *n));
 #endif /* __PRINTF_H__ */
 /*-----------------------------------------------------------------------------------*/

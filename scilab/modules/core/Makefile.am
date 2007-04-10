@@ -75,7 +75,8 @@ src/c/message_scilab.c \
 src/c/force_link.c \
 src/c/returnProperty.c \
 src/c/returnPropertyList.c \
-src/c/scilabmode.c
+src/c/scilabmode.c \
+src/c/diary.c
 
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f \
 src/fortran/clunit.f \

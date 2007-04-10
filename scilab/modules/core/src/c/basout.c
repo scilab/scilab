@@ -6,10 +6,10 @@
 #include "machine.h"
 #include "stack-def.h"
 #include "basout.h"
+#include "diary.h"
 /*-----------------------------------------------------------------------------------*/ 
 extern int C2F(xscimore)();
 extern int C2F(writewtemore)();
-extern int C2F(diary)();
 extern int C2F(writelunitstring)();
 extern int C2F(xscion)();
 extern int C2F(xscistring)();
@@ -72,14 +72,14 @@ int C2F(basout)(integer *io,integer *lunit,char *string,long int notused)
 			C2F(xscistring)(string, &notused, notused);
 		}
 		/* write to diary file if required */
-		C2F(diary)(string, &notused, notused);
+		C2F(diary)(string, &notused);
 	} 
 	else
 	{
 		/* sortie sur fichier */
 		if (*lunit == C2F(iop).wio) 
 		{
-			C2F(diary)(string, &notused, notused);
+			C2F(diary)(string, &notused);
 		}
 		else 
 		{
