@@ -7,8 +7,7 @@
 //================================
 
 function tests=testslist()
-tests = ['algebra.tst';
-	'arma.tst';
+tests = ['arma.tst';
 	'auto.tst';
 	'binary.tst';
 	'binary_representation.tst';
@@ -34,7 +33,6 @@ tests = ['algebra.tst';
 	'grandb.tst';
 	'gsort.tst';
 	'hypermat.tst'
-	'intops.tst';
 	'listextraction.tst';
 	'listinsertion.tst';
 	'lsparse.tst';
@@ -46,7 +44,6 @@ tests = ['algebra.tst';
 	'matode.tst';
 	'matops.tst';
 	'matopt.tst';
-	'matsys.tst';
 	'maxi.tst';
 	'metanet.tst';
 	'mfprintf.tst';
@@ -79,7 +76,10 @@ tests = ['algebra.tst';
 	'filesassocation.tst';
 	'scicos_filesassociation.tst';
 	'basiclink.tst';
-	'links.tst';];
+	'links.tst';
+	'algebra.tst';
+	'intops.tst';
+	'matsys.tst';];
 	
 	if ~%scicos then
 		tests(find(tests=='scicos.tst'))=[];
