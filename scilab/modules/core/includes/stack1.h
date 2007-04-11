@@ -5,6 +5,10 @@
 
 typedef  void (*S_fp) __PARAMS((char *,int *));
 
+extern integer C2F(gettype)  __PARAMS((integer *lw));
+extern integer C2F(ogettype)  __PARAMS((integer *lw));
+
+
 /** used in stack1.c : defined elsewhere */
 
 extern  int C2F(cvname) __PARAMS((integer *,char *,integer *, unsigned long int));
@@ -99,8 +103,6 @@ int C2F(copyobj)  __PARAMS((char *fname, integer *lw, integer *lwd, unsigned lon
 int C2F(vcopyobj)  __PARAMS((char *fname, integer *lw, integer *lwd, unsigned long fname_len));
 int C2F(swapmat)  __PARAMS((char *fname, integer *topk, integer *lw, integer *it1, integer *m1, integer *n1, integer *mn1, integer *it2, integer *m2, integer *n2, integer *mn2, unsigned long fname_len));
 int C2F(insmat)  __PARAMS((integer *topk, integer *lw, integer *it, integer *m, integer *n, integer *lr, integer *lc, integer *lr1, integer *lc1));
-extern integer C2F(gettype)  __PARAMS((integer *lw));
-extern integer C2F(ogettype)  __PARAMS((integer *lw));
 int C2F(stackinfo)  __PARAMS((integer *lw, integer *typ));
 int C2F(allmat)  __PARAMS((char *fname, integer *topk, integer *lw, integer *m, integer *n, unsigned long fname_len));
 int C2F(allmatset)  __PARAMS((char *fname, integer *lw, integer *m, integer *n, unsigned long fname_len));
