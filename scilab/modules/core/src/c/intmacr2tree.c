@@ -1762,9 +1762,19 @@ static int CreateCommentTList(int *data,int *index2)
   return 0;
 }
 
-/****************************************************************
- Function name: CreateRecursiveIndex2List
-****************************************************************/
+
+
+/*
+ * Function name: CreateRecursiveIndexList
+ * Decription: 
+ *  Create on Scilab stack a list for recursive insertion or extraction
+ *  First list item is a matrix which contains number of row/column indexes
+ * @param data pointer to compiled macro code
+ * @param index index of current integer in data
+ *
+ * @return 0 if execution succeeds
+ * @return not null if execution fails
+ */
 static int CreateRecursiveIndex2List(int *data,int *index2)
 {
   int m,n;
