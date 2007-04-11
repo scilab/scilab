@@ -65,7 +65,7 @@ libscifileio_la_etc_DATA = etc/fileio.quit etc/fileio.start
 
 #### fileio : gateway declaration #### 
 libscifileio_la_sci_gatewaydir = $(target)/sci_gateway
-libscifileio_la_sci_gateway_DATA = sci_gateway/fileio
+libscifileio_la_sci_gateway_DATA = sci_gateway/fileio_gateway.xml
 
 #### fileio : include files ####
 libscifileio_la_includedir=$(sciincludedir)/fileio

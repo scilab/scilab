@@ -17,7 +17,7 @@ Source: modules\{#SPARSE}\readme.txt; DestDir: {app}\modules\{#SPARSE}; Componen
 Source: modules\{#SPARSE}\licence.txt; DestDir: {app}\modules\{#SPARSE}; Components: {#COMPN_SPARSE}
 Source: modules\{#SPARSE}\changelog.txt; DestDir: {app}\modules\{#SPARSE}; Components: {#COMPN_SPARSE}
 ;
-Source: modules\{#SPARSE}\sci_gateway\sparse; DestDir: {app}\modules\{#SPARSE}\sci_gateway; Components: {#COMPN_SPARSE}
+Source: modules\{#SPARSE}\sci_gateway\sparse_gateway.xml; DestDir: {app}\modules\{#SPARSE}\sci_gateway; Components: {#COMPN_SPARSE}
 ;
 Source: modules\{#SPARSE}\etc\{#SPARSE}.quit; DestDir: {app}\modules\{#SPARSE}\etc; Components: {#COMPN_SPARSE}
 Source: modules\{#SPARSE}\etc\{#SPARSE}.start; DestDir: {app}\modules\{#SPARSE}\etc; Components: {#COMPN_SPARSE}

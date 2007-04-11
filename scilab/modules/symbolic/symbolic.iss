@@ -18,7 +18,7 @@ Source: modules\{#SYMBOLIC}\readme.txt; DestDir: {app}\modules\{#SYMBOLIC}; Comp
 Source: modules\{#SYMBOLIC}\licence.txt; DestDir: {app}\modules\{#SYMBOLIC}; Components: {#COMPN_SYMB}
 Source: modules\{#SYMBOLIC}\changelog.txt; DestDir: {app}\modules\{#SYMBOLIC}; Components: {#COMPN_SYMB}
 ;
-Source: modules\{#SYMBOLIC}\sci_gateway\symbolic; DestDir: {app}\modules\{#SYMBOLIC}\sci_gateway; Components: {#COMPN_SYMB}
+Source: modules\{#SYMBOLIC}\sci_gateway\symbolic_gateway.xml; DestDir: {app}\modules\{#SYMBOLIC}\sci_gateway; Components: {#COMPN_SYMB}
 ;
 Source: modules\{#SYMBOLIC}\etc\{#SYMBOLIC}.quit; DestDir: {app}\modules\{#SYMBOLIC}\etc; Components: {#COMPN_SYMB}
 Source: modules\{#SYMBOLIC}\etc\{#SYMBOLIC}.start; DestDir: {app}\modules\{#SYMBOLIC}\etc; Components: {#COMPN_SYMB}

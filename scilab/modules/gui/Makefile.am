@@ -138,7 +138,7 @@ libscigui_la_etc_DATA = etc/gui.quit etc/gui.start
 
 #### gui : gateway declaration #### 
 libscigui_la_sci_gatewaydir = $(target)/sci_gateway
-libscigui_la_sci_gateway_DATA = sci_gateway/gui
+libscigui_la_sci_gateway_DATA = sci_gateway/gui_gateway.xml
 
 
 #### gui : include files ####

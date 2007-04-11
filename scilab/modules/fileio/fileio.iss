@@ -15,7 +15,7 @@ Source: modules\{#FILEIO}\readme.txt; DestDir: {app}\modules\{#FILEIO}; Componen
 Source: modules\{#FILEIO}\licence.txt; DestDir: {app}\modules\{#FILEIO}; Components: {#COMPN_SCILAB}
 Source: modules\{#FILEIO}\changelog.txt; DestDir: {app}\modules\{#FILEIO}; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#FILEIO}\sci_gateway\fileio; DestDir: {app}\modules\{#FILEIO}\sci_gateway; Components: {#COMPN_SCILAB}
+Source: modules\{#FILEIO}\sci_gateway\fileio_gateway.xml; DestDir: {app}\modules\{#FILEIO}\sci_gateway; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#FILEIO}\etc\{#FILEIO}.quit; DestDir: {app}\modules\{#FILEIO}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#FILEIO}\etc\fileio.start; DestDir: {app}\modules\{#FILEIO}\etc; Components: {#COMPN_SCILAB}

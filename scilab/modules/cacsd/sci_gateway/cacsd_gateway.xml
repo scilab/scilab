@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
+
+<GATEWAY>
+
 <!-- =================== -->
 <!--
  Scilab 
@@ -7,10 +12,6 @@
  ===================
  Don't edit if you aren't sure
 -->
-<!-- =================== -->
-<!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
-
-<GATEWAY>
 <!-- =================== -->
 <!-- 1 gschur obsolete -->
 <!-- 2 gspec obsolete -->

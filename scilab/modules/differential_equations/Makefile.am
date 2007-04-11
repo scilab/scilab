@@ -148,6 +148,6 @@ libscidifferential_equations_la_etc_DATA = etc/differential_equations.quit etc/d
 
 #### differential_equations : gateway declaration #### 
 libscidifferential_equations_la_sci_gatewaydir = $(target)/sci_gateway
-libscidifferential_equations_la_sci_gateway_DATA = sci_gateway/differential_equations
+libscidifferential_equations_la_sci_gateway_DATA = sci_gateway/differential_equations_gateway.xml
 
 include $(top_srcdir)/Makefile.incl.am

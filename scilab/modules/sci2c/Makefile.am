@@ -15,7 +15,7 @@ libsci2c_la_etc_DATA = etc/sci2c.quit etc/sci2c.start
 
 #### sci2c : gateway declaration #### 
 libsci2c_la_sci_gatewaydir = $(target)/sci_gateway
-libsci2c_la_sci_gateway_DATA = sci_gateway/sci2c
+libsci2c_la_sci_gateway_DATA = sci_gateway/sci2c_gateway.xml
 
 
 include $(top_srcdir)/Makefile.incl.am

@@ -20,7 +20,7 @@ Source: modules\{#TIME}\VERSION; DestDir: {app}\modules\{#TIME}; Components: {#C
 ;
 Source: modules\{#TIME}\includes\*.h; DestDir: {app}\modules\{#TIME}\includes; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#TIME}\sci_gateway\time; DestDir: {app}\modules\{#TIME}\sci_gateway; Components: {#COMPN_SCILAB}
+Source: modules\{#TIME}\sci_gateway\time_gateway.xml; DestDir: {app}\modules\{#TIME}\sci_gateway; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#TIME}\etc\{#TIME}.quit; DestDir: {app}\modules\{#TIME}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#TIME}\etc\{#TIME}.start; DestDir: {app}\modules\{#TIME}\etc; Components: {#COMPN_SCILAB}

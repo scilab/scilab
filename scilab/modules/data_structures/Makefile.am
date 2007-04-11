@@ -76,7 +76,7 @@ libscidata_structures_la_etc_DATA = etc/data_structures.quit etc/data_structures
 
 #### data_structures : gateway declaration #### 
 libscidata_structures_la_sci_gatewaydir = $(target)/sci_gateway
-libscidata_structures_la_sci_gateway_DATA = sci_gateway/data_structures
+libscidata_structures_la_sci_gateway_DATA = sci_gateway/data_structures_gateway.xml
 
 
 

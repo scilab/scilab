@@ -15,7 +15,7 @@ Source: modules\{#INTERPOLATION}\readme.txt; DestDir: {app}\modules\{#INTERPOLAT
 Source: modules\{#INTERPOLATION}\licence.txt; DestDir: {app}\modules\{#INTERPOLATION}; Components: {#COMPN_INTERP}
 Source: modules\{#INTERPOLATION}\changelog.txt; DestDir: {app}\modules\{#INTERPOLATION}; Components: {#COMPN_INTERP}
 ;
-Source: modules\{#INTERPOLATION}\sci_gateway\interpolation; DestDir: {app}\modules\{#INTERPOLATION}\sci_gateway; Components: {#COMPN_INTERP}
+Source: modules\{#INTERPOLATION}\sci_gateway\interpolation_gateway.xml; DestDir: {app}\modules\{#INTERPOLATION}\sci_gateway; Components: {#COMPN_INTERP}
 ;
 Source: modules\{#INTERPOLATION}\etc\{#INTERPOLATION}.quit; DestDir: {app}\modules\{#INTERPOLATION}\etc; Components: {#COMPN_INTERP}
 Source: modules\{#INTERPOLATION}\etc\{#INTERPOLATION}.start; DestDir: {app}\modules\{#INTERPOLATION}\etc; Components: {#COMPN_INTERP}

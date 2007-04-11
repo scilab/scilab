@@ -19,7 +19,7 @@ Source: modules\{#METANET}\readme.txt; DestDir: {app}\modules\{#METANET}; Compon
 Source: modules\{#METANET}\licence.txt; DestDir: {app}\modules\{#METANET}; Components: {#COMPN_METANET}
 Source: modules\{#METANET}\changelog.txt; DestDir: {app}\modules\{#METANET}; Components: {#COMPN_METANET}
 ;
-Source: modules\{#METANET}\sci_gateway\metanet; DestDir: {app}\modules\{#METANET}\sci_gateway; Components: {#COMPN_METANET}
+Source: modules\{#METANET}\sci_gateway\metanet_gateway.xml; DestDir: {app}\modules\{#METANET}\sci_gateway; Components: {#COMPN_METANET}
 ;
 Source: modules\{#METANET}\etc\{#METANET}.quit; DestDir: {app}\modules\{#METANET}\etc; Components: {#COMPN_METANET}
 Source: modules\{#METANET}\etc\{#METANET}.start; DestDir: {app}\modules\{#METANET}\etc; Components: {#COMPN_METANET}

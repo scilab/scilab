@@ -19,7 +19,7 @@ Source: modules\{#SOUND}\licence.txt; DestDir: {app}\modules\{#SOUND}; Component
 Source: modules\{#SOUND}\readme.txt; DestDir: {app}\modules\{#SOUND}; Components: {#COMPN_SOUND}
 Source: modules\{#SOUND}\VERSION; DestDir: {app}\modules\{#SOUND}; Components: {#COMPN_SOUND}
 ;
-Source: modules\{#SOUND}\sci_gateway\sound; DestDir: {app}\modules\{#SOUND}\sci_gateway; Components: {#COMPN_SOUND}
+Source: modules\{#SOUND}\sci_gateway\sound_gateway.xml; DestDir: {app}\modules\{#SOUND}\sci_gateway; Components: {#COMPN_SOUND}
 ;
 Source: modules\{#SOUND}\includes\*.h; DestDir: {app}\modules\{#SOUND}\includes; Components: {#COMPN_SOUND}
 ;

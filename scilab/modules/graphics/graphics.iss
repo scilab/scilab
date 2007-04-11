@@ -15,7 +15,7 @@ Source: modules\{#GRAPHICS}\readme.txt; DestDir: {app}\modules\{#GRAPHICS}; Comp
 Source: modules\{#GRAPHICS}\licence.txt; DestDir: {app}\modules\{#GRAPHICS}; Components: {#COMPN_GRAPHICS}
 Source: modules\{#GRAPHICS}\changelog.txt; DestDir: {app}\modules\{#GRAPHICS}; Components: {#COMPN_GRAPHICS}
 ;
-Source: modules\{#GRAPHICS}\sci_gateway\graphics; DestDir: {app}\modules\{#GRAPHICS}\sci_gateway; Components: {#COMPN_GRAPHICS}
+Source: modules\{#GRAPHICS}\sci_gateway\graphics_gateway.xml; DestDir: {app}\modules\{#GRAPHICS}\sci_gateway; Components: {#COMPN_GRAPHICS}
 ;
 Source: modules\{#GRAPHICS}\etc\{#GRAPHICS}.quit; DestDir: {app}\modules\{#GRAPHICS}\etc; Components: {#COMPN_GRAPHICS}
 Source: modules\{#GRAPHICS}\etc\{#GRAPHICS}.start; DestDir: {app}\modules\{#GRAPHICS}\etc; Components: {#COMPN_GRAPHICS}

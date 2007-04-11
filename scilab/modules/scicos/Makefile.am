@@ -243,7 +243,7 @@ libsciscicos_la_etc_DATA = etc/scicos.quit etc/scicos.start
 
 #### scicos : gateway declaration #### 
 libsciscicos_la_sci_gatewaydir = $(target)/sci_gateway
-libsciscicos_la_sci_gateway_DATA = sci_gateway/scicos
+libsciscicos_la_sci_gateway_DATA = sci_gateway/scicos_gateway.xml
 
 
 #### scicos : include files ####

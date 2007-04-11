@@ -102,6 +102,6 @@ libsciarnoldi_la_etc_DATA = etc/arnoldi.quit etc/arnoldi.start
 
 #### arnoldi : gateway declaration #### 
 libsciarnoldi_la_sci_gatewaydir = $(target)/sci_gateway
-libsciarnoldi_la_sci_gateway_DATA = sci_gateway/arnoldi
+libsciarnoldi_la_sci_gateway_DATA = sci_gateway/arnoldi_gateway.xml
 
 include $(top_srcdir)/Makefile.incl.am

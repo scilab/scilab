@@ -190,7 +190,7 @@ libscisparse_la_etc_DATA = etc/sparse.quit etc/sparse.start
 
 #### sparse : gateway declaration #### 
 libscisparse_la_sci_gatewaydir = $(target)/sci_gateway
-libscisparse_la_sci_gateway_DATA = sci_gateway/sparse
+libscisparse_la_sci_gateway_DATA = sci_gateway/sparse_gateway.xml
 
 #### sparse : include files ####
 libscisparse_la_includedir=$(sciincludedir)/sparse

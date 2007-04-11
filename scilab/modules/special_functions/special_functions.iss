@@ -15,7 +15,7 @@ Source: modules\{#SPFUNCTIONS}\readme.txt; DestDir: {app}\modules\{#SPFUNCTIONS}
 Source: modules\{#SPFUNCTIONS}\licence.txt; DestDir: {app}\modules\{#SPFUNCTIONS}; Components: {#COMPN_SCILAB}
 Source: modules\{#SPFUNCTIONS}\changelog.txt; DestDir: {app}\modules\{#SPFUNCTIONS}; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#SPFUNCTIONS}\sci_gateway\special_functions; DestDir: {app}\modules\{#SPFUNCTIONS}\sci_gateway; Components: {#COMPN_SCILAB}
+Source: modules\{#SPFUNCTIONS}\sci_gateway\special_functions_gateway.xml; DestDir: {app}\modules\{#SPFUNCTIONS}\sci_gateway; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#SPFUNCTIONS}\etc\{#SPFUNCTIONS}.quit; DestDir: {app}\modules\{#SPFUNCTIONS}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#SPFUNCTIONS}\etc\{#SPFUNCTIONS}.start; DestDir: {app}\modules\{#SPFUNCTIONS}\etc; Components: {#COMPN_SCILAB}

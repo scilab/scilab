@@ -134,7 +134,7 @@ libscipolynomials_la_etc_DATA = etc/polynomials.quit etc/polynomials.start
 
 #### polynomials : gateway declaration #### 
 libscipolynomials_la_sci_gatewaydir = $(target)/sci_gateway
-libscipolynomials_la_sci_gateway_DATA = sci_gateway/polynomials
+libscipolynomials_la_sci_gateway_DATA = sci_gateway/polynomials_gateway.xml
 
 
 

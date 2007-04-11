@@ -18,7 +18,7 @@ Source: modules\{#LINALG}\readme.txt; DestDir: {app}\modules\{#LINALG}; Componen
 Source: modules\{#LINALG}\licence.txt; DestDir: {app}\modules\{#LINALG}; Components: {#COMPN_LINALG}
 Source: modules\{#LINALG}\changelog.txt; DestDir: {app}\modules\{#LINALG}; Components: {#COMPN_LINALG}
 ;
-Source: modules\{#LINALG}\sci_gateway\linear_algebra; DestDir: {app}\modules\{#LINALG}\sci_gateway; Components: {#COMPN_LINALG}
+Source: modules\{#LINALG}\sci_gateway\linear_algebra_gateway.xml; DestDir: {app}\modules\{#LINALG}\sci_gateway; Components: {#COMPN_LINALG}
 ;
 Source: modules\{#LINALG}\etc\{#LINALG}.quit; DestDir: {app}\modules\{#LINALG}\etc; Components: {#COMPN_LINALG}
 Source: modules\{#LINALG}\etc\{#LINALG}.start; DestDir: {app}\modules\{#LINALG}\etc; Components: {#COMPN_LINALG}

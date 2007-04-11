@@ -15,7 +15,7 @@ Source: modules\{#GUI}\readme.txt; DestDir: {app}\modules\{#GUI}; Components: {#
 Source: modules\{#GUI}\licence.txt; DestDir: {app}\modules\{#GUI}; Components: {#COMPN_SCILAB}
 Source: modules\{#GUI}\changelog.txt; DestDir: {app}\modules\{#GUI}; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#GUI}\sci_gateway\gui; DestDir: {app}\modules\{#GUI}\sci_gateway; Components: {#COMPN_SCILAB}
+Source: modules\{#GUI}\sci_gateway\gui_gateway.xml; DestDir: {app}\modules\{#GUI}\sci_gateway; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#GUI}\etc\{#GUI}.quit; DestDir: {app}\modules\{#GUI}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#GUI}\etc\{#GUI}.start; DestDir: {app}\modules\{#GUI}\etc; Components: {#COMPN_SCILAB}

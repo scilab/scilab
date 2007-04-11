@@ -17,7 +17,7 @@ Source: modules\{#INTEGER}\readme.txt; DestDir: {app}\modules\{#INTEGER}; Compon
 Source: modules\{#INTEGER}\licence.txt; DestDir: {app}\modules\{#INTEGER}; Components: {#COMPN_SCILAB}
 Source: modules\{#INTEGER}\changelog.txt; DestDir: {app}\modules\{#INTEGER}; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#INTEGER}\sci_gateway\integer; DestDir: {app}\modules\{#INTEGER}\sci_gateway; Components: {#COMPN_SCILAB}
+Source: modules\{#INTEGER}\sci_gateway\integer_gateway.xml; DestDir: {app}\modules\{#INTEGER}\sci_gateway; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#INTEGER}\etc\{#INTEGER}.quit; DestDir: {app}\modules\{#INTEGER}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#INTEGER}\etc\{#INTEGER}.start; DestDir: {app}\modules\{#INTEGER}\etc; Components: {#COMPN_SCILAB}

@@ -73,7 +73,7 @@ libscistring_la_etc_DATA = etc/string.quit etc/string.start
 
 #### string : gateway declaration #### 
 libscistring_la_sci_gatewaydir = $(target)/sci_gateway
-libscistring_la_sci_gateway_DATA = sci_gateway/string
+libscistring_la_sci_gateway_DATA = sci_gateway/string_gateway.xml
 
 #### string : include files ####
 libscistring_la_includedir=$(sciincludedir)/string

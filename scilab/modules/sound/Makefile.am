@@ -43,7 +43,7 @@ libscisound_la_etc_DATA = etc/sound.quit etc/sound.start
 
 #### sound : gateway declaration #### 
 libscisound_la_sci_gatewaydir = $(target)/sci_gateway
-libscisound_la_sci_gateway_DATA = sci_gateway/sound
+libscisound_la_sci_gateway_DATA = sci_gateway/sound_gateway.xml
 
 #### sound : include files ####
 libscisound_la_includedir=$(sciincludedir)/sound

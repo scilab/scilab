@@ -17,7 +17,7 @@ Source: modules\{#ELEMFUNCTIONS}\readme.txt; DestDir: {app}\modules\{#ELEMFUNCTI
 Source: modules\{#ELEMFUNCTIONS}\licence.txt; DestDir: {app}\modules\{#ELEMFUNCTIONS}; Components: {#COMPN_SCILAB}
 Source: modules\{#ELEMFUNCTIONS}\changelog.txt; DestDir: {app}\modules\{#ELEMFUNCTIONS}; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#ELEMFUNCTIONS}\sci_gateway\elementaries_functions; DestDir: {app}\modules\{#ELEMFUNCTIONS}\sci_gateway; Components: {#COMPN_SCILAB}
+Source: modules\{#ELEMFUNCTIONS}\sci_gateway\elementaries_functions_gateway.xml; DestDir: {app}\modules\{#ELEMFUNCTIONS}\sci_gateway; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#ELEMFUNCTIONS}\etc\{#ELEMFUNCTIONS}.quit; DestDir: {app}\modules\{#ELEMFUNCTIONS}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#ELEMFUNCTIONS}\etc\{#ELEMFUNCTIONS}.start; DestDir: {app}\modules\{#ELEMFUNCTIONS}\etc; Components: {#COMPN_SCILAB}

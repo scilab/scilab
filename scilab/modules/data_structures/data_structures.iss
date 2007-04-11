@@ -15,7 +15,7 @@ Source: modules\{#DATASTRUCT}\readme.txt; DestDir: {app}\modules\{#DATASTRUCT}; 
 Source: modules\{#DATASTRUCT}\licence.txt; DestDir: {app}\modules\{#DATASTRUCT}; Components: {#COMPN_SCILAB}
 Source: modules\{#DATASTRUCT}\changelog.txt; DestDir: {app}\modules\{#DATASTRUCT}; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#DATASTRUCT}\sci_gateway\data_structures; DestDir: {app}\modules\{#DATASTRUCT}\sci_gateway; Components: {#COMPN_SCILAB}
+Source: modules\{#DATASTRUCT}\sci_gateway\data_structures_gateway.xml; DestDir: {app}\modules\{#DATASTRUCT}\sci_gateway; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#DATASTRUCT}\etc\{#DATASTRUCT}.quit; DestDir: {app}\modules\{#DATASTRUCT}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#DATASTRUCT}\etc\{#DATASTRUCT}.start; DestDir: {app}\modules\{#DATASTRUCT}\etc; Components: {#COMPN_SCILAB}

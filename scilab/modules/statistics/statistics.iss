@@ -15,7 +15,7 @@ Source: modules\{#STATS}\readme.txt; DestDir: {app}\modules\{#STATS}; Components
 Source: modules\{#STATS}\licence.txt; DestDir: {app}\modules\{#STATS}; Components: {#COMPN_STATS}
 Source: modules\{#STATS}\changelog.txt; DestDir: {app}\modules\{#STATS}; Components: {#COMPN_STATS}
 ;
-Source: modules\{#STATS}\sci_gateway\statistics; DestDir: {app}\modules\{#STATS}\sci_gateway; Components: {#COMPN_STATS}
+Source: modules\{#STATS}\sci_gateway\statistics_gateway.xml; DestDir: {app}\modules\{#STATS}\sci_gateway; Components: {#COMPN_STATS}
 ;
 Source: modules\{#STATS}\etc\{#STATS}.quit; DestDir: {app}\modules\{#STATS}\etc; Components: {#COMPN_STATS}
 Source: modules\{#STATS}\etc\{#STATS}.start; DestDir: {app}\modules\{#STATS}\etc; Components: {#COMPN_STATS}

@@ -41,7 +41,7 @@ libscisymbolic_la_etc_DATA = etc/symbolic.quit etc/symbolic.start
 
 #### symbolic : gateway declaration #### 
 libscisymbolic_la_sci_gatewaydir = $(target)/sci_gateway
-libscisymbolic_la_sci_gateway_DATA = sci_gateway/symbolic
+libscisymbolic_la_sci_gateway_DATA = sci_gateway/symbolic_gateway.xml 
 
 
 #### symbolic : include files ####

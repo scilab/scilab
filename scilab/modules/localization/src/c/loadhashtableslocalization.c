@@ -10,6 +10,7 @@
 #include "setgetSCIpath.h"
 #include "libxml/xmlreader.h"
 #include "../../fileio/includes/FileExist.h"
+#include "GetXmlFileEncoding.h"
 /*-----------------------------------------------------------------------------------*/ 
 #define FILEERRORS "errors"
 #define FILEMSGS "messages"
@@ -17,7 +18,6 @@
 #define FILEFORMATPATH "%s/modules/%s/languages/%s/%s.xml"
 /*-----------------------------------------------------------------------------------*/ 
 static BOOL LoadHashTableLocalization(struct hashtable *table,char *filenamexml);
-static char *GetXmlFileEncoding(const char *filename);
 /*-----------------------------------------------------------------------------------*/ 
 BOOL LoadHashTablesLocalization(char *language)
 {
@@ -158,30 +158,5 @@ BOOL LoadHashTableLocalization(struct hashtable *table,char *filenamexml)
 	if (encoding) {FREE(encoding);encoding=NULL;}
 
 	return bOK;
-}
-/*-----------------------------------------------------------------------------------*/ 
-static char *GetXmlFileEncoding(const char *filename)
-{
-	#define DEFAULT_ENCODING "UTF-8"
-	char *encoding=NULL;
-	xmlDocPtr doc = NULL;
-
-	/* default */
-	encoding=(char *)MALLOC(sizeof(char)*(strlen(DEFAULT_ENCODING)+1));
-	strcpy(encoding,DEFAULT_ENCODING);
-
-	doc = xmlParseFile (filename);
-	if (doc) 
-	{
-		if (doc->encoding)
-		{
-			if (encoding) {FREE(encoding);encoding=NULL;}
-			encoding=(char *)MALLOC(sizeof(char)*(strlen(doc->encoding)+1));
-			strcpy(encoding,doc->encoding);
-		}
-	}
-
-	xmlFreeDoc (doc);
-	return encoding;
 }
 /*-----------------------------------------------------------------------------------*/ 

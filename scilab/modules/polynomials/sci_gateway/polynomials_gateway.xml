@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
+
+<GATEWAY>
+
 <!-- =================== -->
 <!--
  Scilab 
@@ -8,9 +13,6 @@
  Don't edit if you aren't sure
 -->
 <!-- =================== -->
-<!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
-
-<GATEWAY>
 
 <PRIMITIVE>
   <GATEWAY_ID>16</GATEWAY_ID>

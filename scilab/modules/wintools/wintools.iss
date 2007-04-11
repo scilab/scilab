@@ -15,7 +15,7 @@ Source: modules\{#WINTOOLS}\readme.txt; DestDir: {app}\modules\{#WINTOOLS}; Comp
 Source: modules\{#WINTOOLS}\licence.txt; DestDir: {app}\modules\{#WINTOOLS}; Components: {#COMPN_SCILAB}
 Source: modules\{#WINTOOLS}\changelog.txt; DestDir: {app}\modules\{#WINTOOLS}; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#WINTOOLS}\sci_gateway\wintools; DestDir: {app}\modules\{#WINTOOLS}\sci_gateway; Components: {#COMPN_SCILAB}
+Source: modules\{#WINTOOLS}\sci_gateway\wintools_gateway.xml; DestDir: {app}\modules\{#WINTOOLS}\sci_gateway; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#WINTOOLS}\etc\{#WINTOOLS}.quit; DestDir: {app}\modules\{#WINTOOLS}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#WINTOOLS}\etc\{#WINTOOLS}.start; DestDir: {app}\modules\{#WINTOOLS}\etc; Components: {#COMPN_SCILAB}

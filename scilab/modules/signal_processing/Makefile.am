@@ -121,7 +121,7 @@ libscisignal_processing_la_etc_DATA = etc/signal_processing.quit etc/signal_proc
 
 #### signal_processing : gateway declaration #### 
 libscisignal_processing_la_sci_gatewaydir = $(target)/sci_gateway
-libscisignal_processing_la_sci_gateway_DATA = sci_gateway/signal_processing
+libscisignal_processing_la_sci_gateway_DATA = sci_gateway/signal_processing_gateway.xml
 
 
 

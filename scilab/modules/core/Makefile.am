@@ -76,7 +76,8 @@ src/c/force_link.c \
 src/c/returnProperty.c \
 src/c/returnPropertyList.c \
 src/c/scilabmode.c \
-src/c/diary.c
+src/c/diary.c \
+src/c/GetXmlFileEncoding.c
 
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f \
 src/fortran/clunit.f \
@@ -320,8 +321,8 @@ CORE_C_SOURCES+=src/c/getarg.c
 endif
 
 
-libscicore_la_CFLAGS=  -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ 
-libscicore_la_LDFLAGS = 
+libscicore_la_CFLAGS=  -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ $(XML_FLAGS)
+libscicore_la_LDFLAGS = $(XML_LIBS)
 pkglib_LTLIBRARIES = libscicore.la
 
 libscicore_la_SOURCES = $(CORE_C_SOURCES) $(CORE_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
@@ -359,7 +360,7 @@ libscicore_la_etc_DATA = etc/core.quit etc/core.start
 
 #### core : gateway declaration #### 
 libscicore_la_sci_gatewaydir = $(target)/sci_gateway
-libscicore_la_sci_gateway_DATA = sci_gateway/core
+libscicore_la_sci_gateway_DATA = sci_gateway/core_gateway.xml
 
 
 #### core : include files ####
@@ -406,7 +407,8 @@ includes/fromjava.h \
 includes/getarg.h \
 includes/inisci-c.h \
 includes/cvstr.h \
-includes/error_scilab.h
+includes/error_scilab.h \
+includes/GetXmlFileEncoding.h
 
 #### core : demos files ####
 libscicore_la_demosintrodir=$(target)/demos/intro/

@@ -15,7 +15,7 @@ Source: modules\{#DIFFEQU}\readme.txt; DestDir: {app}\modules\{#DIFFEQU}; Compon
 Source: modules\{#DIFFEQU}\licence.txt; DestDir: {app}\modules\{#DIFFEQU}; Components: {#COMPN_EQUDIF}
 Source: modules\{#DIFFEQU}\changelog.txt; DestDir: {app}\modules\{#DIFFEQU}; Components: {#COMPN_EQUDIF}
 ;
-Source: modules\{#DIFFEQU}\sci_gateway\differential_equations; DestDir: {app}\modules\{#DIFFEQU}\sci_gateway; Components: {#COMPN_EQUDIF}
+Source: modules\{#DIFFEQU}\sci_gateway\differential_equations_gateway.xml; DestDir: {app}\modules\{#DIFFEQU}\sci_gateway; Components: {#COMPN_EQUDIF}
 ;
 Source: modules\{#DIFFEQU}\etc\{#DIFFEQU}.quit; DestDir: {app}\modules\{#DIFFEQU}\etc; Components: {#COMPN_EQUDIF}
 Source: modules\{#DIFFEQU}\etc\{#DIFFEQU}.start; DestDir: {app}\modules\{#DIFFEQU}\etc; Components: {#COMPN_EQUDIF}

@@ -45,6 +45,10 @@ libscilocalization_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 libscilocalization_la_etcdir = $(target)/etc
 libscilocalization_la_etc_DATA = etc/localization.quit etc/localization.start
 
+#### localization : gateway declaration #### 
+libscilocalization_la_sci_gatewaydir = $(target)/sci_gateway
+libscilocalization_la_sci_gateway_DATA = sci_gateway/localization_gateway.xml
+
 
 ####localization : include files ####
 libscilocalization_la_includedir=$(sciincludedir)/localization

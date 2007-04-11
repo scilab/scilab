@@ -20,7 +20,7 @@ Source: modules\{#RANDLIB}\readme.txt; DestDir: {app}\modules\{#RANDLIB}; Compon
 Source: modules\{#RANDLIB}\licence.txt; DestDir: {app}\modules\{#RANDLIB}; Components: {#COMPN_RANDLIB}
 Source: modules\{#RANDLIB}\changelog.txt; DestDir: {app}\modules\{#RANDLIB}; Components: {#COMPN_RANDLIB}
 ;
-Source: modules\{#RANDLIB}\sci_gateway\randlib; DestDir: {app}\modules\{#RANDLIB}\sci_gateway; Components: {#COMPN_RANDLIB}
+Source: modules\{#RANDLIB}\sci_gateway\randlib_gateway.xml; DestDir: {app}\modules\{#RANDLIB}\sci_gateway; Components: {#COMPN_RANDLIB}
 ;
 Source: modules\{#RANDLIB}\etc\{#RANDLIB}.quit; DestDir: {app}\modules\{#RANDLIB}\etc; Components: {#COMPN_RANDLIB}
 Source: modules\{#RANDLIB}\etc\{#RANDLIB}.start; DestDir: {app}\modules\{#RANDLIB}\etc; Components: {#COMPN_RANDLIB}

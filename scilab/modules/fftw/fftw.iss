@@ -16,7 +16,7 @@ Source: modules\{#FFTW}\readme.txt; DestDir: {app}\modules\{#FFTW}; Components: 
 Source: modules\{#FFTW}\licence.txt; DestDir: {app}\modules\{#FFTW}; Components: {#COMPN_FFTW}
 Source: modules\{#FFTW}\changelog.txt; DestDir: {app}\modules\{#FFTW}; Components: {#COMPN_FFTW}
 ;
-Source: modules\{#FFTW}\sci_gateway\fftw; DestDir: {app}\modules\{#FFTW}\sci_gateway; Components: {#COMPN_FFTW}
+Source: modules\{#FFTW}\sci_gateway\fftw_gateway.xml; DestDir: {app}\modules\{#FFTW}\sci_gateway; Components: {#COMPN_FFTW}
 ;
 Source: modules\{#FFTW}\etc\{#FFTW}.quit; DestDir: {app}\modules\{#FFTW}\etc; Components: {#COMPN_FFTW}
 Source: modules\{#FFTW}\etc\{#FFTW}.start; DestDir: {app}\modules\{#FFTW}\etc; Components: {#COMPN_FFTW}

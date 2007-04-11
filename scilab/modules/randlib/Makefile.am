@@ -71,7 +71,7 @@ libscirandlib_la_etc_DATA = etc/randlib.quit etc/randlib.start
 
 #### randlib : gateway declaration #### 
 libscirandlib_la_sci_gatewaydir = $(target)/sci_gateway
-libscirandlib_la_sci_gateway_DATA = sci_gateway/randlib
+libscirandlib_la_sci_gateway_DATA = sci_gateway/randlib_gateway.xml
 
 #### randlib : include files ####
 libscirandlib_la_includedir=$(sciincludedir)/randlib

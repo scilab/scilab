@@ -37,7 +37,7 @@ libscifftw_la_etc_DATA = etc/fftw.quit etc/fftw.start
 
 #### fftw : gateway declaration #### 
 libscifftw_la_sci_gatewaydir = $(target)/sci_gateway
-libscifftw_la_sci_gateway_DATA = sci_gateway/fftw
+libscifftw_la_sci_gateway_DATA = sci_gateway/fftw_gateway.xml
 
 libscifftw_la_SOURCES = $(FFTW_C_SOURCES) $(GATEWAY_C_SOURCES)
 

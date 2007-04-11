@@ -15,7 +15,7 @@ Source: modules\{#OPTIMIZATION}\readme.txt; DestDir: {app}\modules\{#OPTIMIZATIO
 Source: modules\{#OPTIMIZATION}\licence.txt; DestDir: {app}\modules\{#OPTIMIZATION}; Components: {#COMPN_OPTIM}
 Source: modules\{#OPTIMIZATION}\changelog.txt; DestDir: {app}\modules\{#OPTIMIZATION}; Components: {#COMPN_OPTIM}
 ;
-Source: modules\{#OPTIMIZATION}\sci_gateway\optimization; DestDir: {app}\modules\{#OPTIMIZATION}\sci_gateway; Components: {#COMPN_OPTIM}
+Source: modules\{#OPTIMIZATION}\sci_gateway\optimization_gateway.xml; DestDir: {app}\modules\{#OPTIMIZATION}\sci_gateway; Components: {#COMPN_OPTIM}
 ;
 Source: modules\{#OPTIMIZATION}\etc\{#OPTIMIZATION}.quit; DestDir: {app}\modules\{#OPTIMIZATION}\etc; Components: {#COMPN_OPTIM}
 Source: modules\{#OPTIMIZATION}\etc\{#OPTIMIZATION}.start; DestDir: {app}\modules\{#OPTIMIZATION}\etc; Components: {#COMPN_OPTIM}

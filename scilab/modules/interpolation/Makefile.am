@@ -54,7 +54,7 @@ libsciinterpolation_la_etc_DATA = etc/interpolation.quit etc/interpolation.start
 
 #### interpolation : gateway declaration #### 
 libsciinterpolation_la_sci_gatewaydir = $(target)/sci_gateway
-libsciinterpolation_la_sci_gateway_DATA = sci_gateway/interpolation
+libsciinterpolation_la_sci_gateway_DATA = sci_gateway/interpolation_gateway.xml
 
 #### interpolation : include files ####
 libsciinterpolation_la_includedir=$(sciincludedir)/interpolation

@@ -11,6 +11,8 @@
 #include "getmodules.h"
 #include "setgetSCIpath.h"
 #include "LoadFunctionsTab.h"
+#include "libxml/xmlreader.h"
+#include "GetXmlFileEncoding.h"
 /*-----------------------------------------------------------------------------------*/  
 static int firstentry = 0;
 /*-----------------------------------------------------------------------------------*/  
@@ -36,7 +38,7 @@ void LoadFunctionsTab(void)
 
 	for (j=0;j<Modules->numberofModules;j++)
 	{
-		#define FORMATFILENAME "%s/modules/%s/sci_gateway/%s"
+		#define FORMATFILENAME "%s/modules/%s/sci_gateway/%s_gateway.xml"
 		char *filename_primitives_list=NULL;
 		int len=strlen(FORMATFILENAME)+strlen(SciPath)+strlen(Modules->ModuleList[j])*2;
 
@@ -66,31 +68,102 @@ static int Add_a_Scilab_primitive_in_hashtable(char *str, int *dataI, int *data)
 static int Load_primitives_from_file(char *filename)
 {
 	BOOL bOK=FALSE;
+
 	if (FileExist(filename))
 	{
-		#define LineMaxSize 1024
-		char Line[LineMaxSize];
-		FILE *pFile;
-		int dataI=0;
-		int data=0;
-		char namefunction[MAXLENGHTFUNCTIONNAME];
+		char *encoding=GetXmlFileEncoding(filename);
 
-		pFile=fopen(filename,"rt");
-		while (fgets(Line, LineMaxSize,pFile))
+		/* Don't care about line return / empty line */
+		xmlKeepBlanksDefault(0); 
+
+		/* check if the XML file has been encoded with utf8 (unicode) or not */
+		if ( (strcmp("utf-8", encoding)!=0) || (strcmp("UTF-8", encoding)==0) )
 		{
-			if (Line[0]!=';')
+			xmlNodePtr node;
+			xmlDocPtr doc;
+
+			int GATEWAY_ID=0;
+			int PRIMITIVE_ID=0;
+			char *PRIMITIVE_NAME=NULL;
+
+			doc = xmlParseFile (filename);
+
+			if (doc == NULL) 
 			{
-				int retval=0;
-				retval=sscanf(Line,"%d %d %s",&dataI,&data,namefunction);
-				if (retval == 3)
-				{
-					Add_a_Scilab_primitive_in_hashtable(namefunction,&dataI,&data);
-				}
+				printf("Error: could not parse file %s\n", filename);
+				return bOK;
 			}
+
+			node = doc->children;
+			if (!xmlStrEqual(node->name,(const xmlChar*)"GATEWAY"))
+			{ 
+				/* Check if the first tag is valid */
+				printf("Error : Not a valid gateway file %s (should start with <GATEWAY>)\n", filename);
+				return bOK;
+			}
+
+			/* browse all the <PRIMITIVE> */
+			for (node = node->next->children; node != NULL; node = node->next)
+			{
+
+				xmlNodePtr child=node->children;
+
+				/* browse elements in <PRIMITIVE> */
+				while (child != NULL)
+				{
+					if (child->children != NULL)
+					{ 
+						if (xmlStrEqual (child->name, (const xmlChar*) "GATEWAY_ID"))
+						{ 
+							/* we found <GATEWAY_ID> */
+							const char *str=(const char*)child->children->content;
+							GATEWAY_ID=atoi(str);
+						}
+						else if (xmlStrEqual (child->name, (const xmlChar*)"PRIMITIVE_ID"))
+						{ 
+							/* we found <PRIMITIVE_ID> */
+							const char *str=(const char*)child->children->content;
+							PRIMITIVE_ID=atoi(str);
+						}
+						else if (xmlStrEqual (child->name, (const xmlChar*)"PRIMITIVE_NAME"))
+						{
+							/* we found <PRIMITIVE_NAME> */
+							const char *str=(const char*)child->children->content;
+							PRIMITIVE_NAME=(char*)MALLOC(sizeof(char)*(strlen((const char*)str)+1));
+							strcpy(PRIMITIVE_NAME,str);
+						}
+					}
+				
+					child = child->next;
+				}
+
+				if ( (GATEWAY_ID != 0) && (PRIMITIVE_ID != 0) && (PRIMITIVE_NAME) )
+				{
+					if (strlen(PRIMITIVE_NAME) > 0)
+					{
+						Add_a_Scilab_primitive_in_hashtable(PRIMITIVE_NAME,&GATEWAY_ID,&PRIMITIVE_ID);
+					}
+				}
+
+				if (PRIMITIVE_NAME) {FREE(PRIMITIVE_NAME); PRIMITIVE_NAME =NULL;}
+				GATEWAY_ID = 0;
+				PRIMITIVE_ID = 0;
+			}
+
+			xmlFreeDoc (doc);
+
+			/*
+			* Cleanup function for the XML library.
+			*/
+			xmlCleanupParser();
 		}
-		fclose(pFile);
-		bOK=TRUE;
+		else
+		{
+			printf("Error : Not a valid gateway file %s (encoding not 'utf-8') Encoding '%s' found\n", filename, encoding);
+		}
+
+		if (encoding) {FREE(encoding);encoding=NULL;}
 	}
 	return bOK;
 }
-/*-----------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/ 

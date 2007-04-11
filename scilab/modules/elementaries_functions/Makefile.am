@@ -403,7 +403,7 @@ libscielementaries_functions_la_etc_DATA = etc/elementaries_functions.quit etc/e
 
 #### elementaries_functions : gateway declaration #### 
 libscielementaries_functions_la_sci_gatewaydir = $(target)/sci_gateway
-libscielementaries_functions_la_sci_gateway_DATA = sci_gateway/elementaries_functions
+libscielementaries_functions_la_sci_gateway_DATA = sci_gateway/elementaries_functions_gateway.xml
 
 
 #### elementaries_functions : include files ####

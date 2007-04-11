@@ -15,7 +15,7 @@ Source: modules\{#CORE}\readme.txt; DestDir: {app}\modules\{#CORE}; Components: 
 Source: modules\{#CORE}\licence.txt; DestDir: {app}\modules\{#CORE}; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\changelog.txt; DestDir: {app}\modules\{#CORE}; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#CORE}\sci_gateway\core; DestDir: {app}\modules\{#CORE}\sci_gateway; Components: {#COMPN_SCILAB}
+Source: modules\{#CORE}\sci_gateway\core_gateway.xml; DestDir: {app}\modules\{#CORE}\sci_gateway; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#CORE}\etc\{#CORE}.quit; DestDir: {app}\modules\{#CORE}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\etc\{#CORE}.start; DestDir: {app}\modules\{#CORE}\etc; Components: {#COMPN_SCILAB}

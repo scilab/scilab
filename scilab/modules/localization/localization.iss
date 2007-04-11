@@ -20,7 +20,7 @@ Source: modules\{#LOCALIZATION}\changelog.txt; DestDir: {app}\modules\{#LOCALIZA
 Source: modules\{#LOCALIZATION}\etc\{#LOCALIZATION}.quit; DestDir: {app}\modules\{#LOCALIZATION}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#LOCALIZATION}\etc\{#LOCALIZATION}.start; DestDir: {app}\modules\{#LOCALIZATION}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#LOCALIZATION}\sci_gateway\{#LOCALIZATION}; DestDir: {app}\modules\{#LOCALIZATION}\sci_gateway; Components: {#COMPN_SCILAB}
+Source: modules\{#LOCALIZATION}\sci_gateway\{#LOCALIZATION}_gateway.xml; DestDir: {app}\modules\{#LOCALIZATION}\sci_gateway; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#LOCALIZATION}\help\addchapter.sce; DestDir: {app}\modules\{#LOCALIZATION}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
 Source: modules\{#LOCALIZATION}\help\removechapter.sce; DestDir: {app}\modules\{#LOCALIZATION}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}

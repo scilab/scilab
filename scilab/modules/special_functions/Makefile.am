@@ -66,6 +66,6 @@ libscispecial_functions_la_etc_DATA = etc/special_functions.quit etc/special_fun
 
 #### special_functions : gateway declaration #### 
 libscispecial_functions_la_sci_gatewaydir = $(target)/sci_gateway
-libscispecial_functions_la_sci_gateway_DATA = sci_gateway/special_functions
+libscispecial_functions_la_sci_gateway_DATA = sci_gateway/special_functions_gateway.xml
 
 include $(top_srcdir)/Makefile.incl.am

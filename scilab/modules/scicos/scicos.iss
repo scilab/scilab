@@ -23,7 +23,7 @@ Source: bin\scicos.dll; DestDir: {app}\bin; DestName: scicos.dll
 ;Source: modules\{#SCICOS}\licence.txt; DestDir: {app}\modules\{#SCICOS}; Components: {#COMPN_SCICOS}
 ;Source: modules\{#SCICOS}\changelog.txt; DestDir: {app}\modules\{#SCICOS}; Components: {#COMPN_SCICOS}
 ;
-;Source: modules\{#SCICOS}\sci_gateway\scicos; DestDir: {app}\modules\{#SCICOS}\sci_gateway; Components: {#COMPN_SCICOS}
+;Source: modules\{#SCICOS}\sci_gateway\scicos_gateway.xml; DestDir: {app}\modules\{#SCICOS}\sci_gateway; Components: {#COMPN_SCICOS}
 ;
 ;Source: modules\{#SCICOS}\etc\{#SCICOS}.quit; DestDir: {app}\modules\{#SCICOS}\etc; Components: {#COMPN_SCICOS}
 ;Source: modules\{#SCICOS}\etc\{#SCICOS}.start; DestDir: {app}\modules\{#SCICOS}\etc; Components: {#COMPN_SCICOS}

@@ -17,7 +17,7 @@ Source: modules\{#PVM}\VERSION; DestDir: {app}\modules\{#PVM}; Components: {#COM
 ;
 Source: modules\{#PVM}\includes\*.h; DestDir: {app}\modules\{#PVM}\includes; Components: {#COMPN_PVM}
 ;
-Source: modules\{#PVM}\sci_gateway\pvm; DestDir: {app}\modules\{#PVM}\sci_gateway; Components: {#COMPN_PVM}
+Source: modules\{#PVM}\sci_gateway\pvm_gateway.xml; DestDir: {app}\modules\{#PVM}\sci_gateway; Components: {#COMPN_PVM}
 ;
 Source: modules\{#PVM}\etc\{#PVM}.quit; DestDir: {app}\modules\{#PVM}\etc; Components: {#COMPN_PVM}
 Source: modules\{#PVM}\etc\{#PVM}.start; DestDir: {app}\modules\{#PVM}\etc; Components: {#COMPN_PVM}

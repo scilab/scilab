@@ -15,7 +15,7 @@ Source: modules\{#SIGPROC}\readme.txt; DestDir: {app}\modules\signal_processing;
 Source: modules\{#SIGPROC}\licence.txt; DestDir: {app}\modules\signal_processing; Components: {#COMPN_SIGPROC}
 Source: modules\{#SIGPROC}\changelog.txt; DestDir: {app}\modules\signal_processing; Components: {#COMPN_SIGPROC}
 ;
-Source: modules\{#SIGPROC}\sci_gateway\signal_processing; DestDir: {app}\modules\signal_processing\sci_gateway; Components: {#COMPN_SIGPROC}
+Source: modules\{#SIGPROC}\sci_gateway\signal_processing_gateway.xml; DestDir: {app}\modules\signal_processing\sci_gateway; Components: {#COMPN_SIGPROC}
 ;
 Source: modules\{#SIGPROC}\etc\{#SIGPROC}.quit; DestDir: {app}\modules\{#SIGPROC}\etc; Components: {#COMPN_SIGPROC}
 Source: modules\{#SIGPROC}\etc\{#SIGPROC}.start; DestDir: {app}\modules\{#SIGPROC}\etc; Components: {#COMPN_SIGPROC}

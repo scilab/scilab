@@ -15,7 +15,7 @@ Source: modules\{#BOOLEAN}\readme.txt; DestDir: {app}\modules\{#BOOLEAN}; Compon
 Source: modules\{#BOOLEAN}\licence.txt; DestDir: {app}\modules\{#BOOLEAN}; Components: {#COMPN_SCILAB}
 Source: modules\{#BOOLEAN}\changelog.txt; DestDir: {app}\modules\{#BOOLEAN}; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#BOOLEAN}\sci_gateway\boolean; DestDir: {app}\modules\{#BOOLEAN}\sci_gateway; Components: {#COMPN_SCILAB}
+Source: modules\{#BOOLEAN}\sci_gateway\boolean_gateway.xml; DestDir: {app}\modules\{#BOOLEAN}\sci_gateway; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#BOOLEAN}\etc\{#BOOLEAN}.quit; DestDir: {app}\modules\{#BOOLEAN}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#BOOLEAN}\etc\{#BOOLEAN}.start; DestDir: {app}\modules\{#BOOLEAN}\etc; Components: {#COMPN_SCILAB}

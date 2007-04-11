@@ -15,7 +15,7 @@ Source: modules\{#TCLSCI}\readme.txt; DestDir: {app}\modules\{#TCLSCI}; Componen
 Source: modules\{#TCLSCI}\licence.txt; DestDir: {app}\modules\{#TCLSCI}; Components: {#COMPN_TCLSCI}
 Source: modules\{#TCLSCI}\changelog.txt; DestDir: {app}\modules\{#TCLSCI}; Components: {#COMPN_TCLSCI}
 ;
-Source: modules\{#TCLSCI}\sci_gateway\tclsci; DestDir: {app}\modules\{#TCLSCI}\sci_gateway; Components: {#COMPN_TCLSCI}
+Source: modules\{#TCLSCI}\sci_gateway\tclsci_gateway.xml; DestDir: {app}\modules\{#TCLSCI}\sci_gateway; Components: {#COMPN_TCLSCI}
 ;
 Source: modules\{#TCLSCI}\etc\{#TCLSCI}.quit; DestDir: {app}\modules\{#TCLSCI}\etc; Components: {#COMPN_TCLSCI}
 Source: modules\{#TCLSCI}\etc\{#TCLSCI}.start; DestDir: {app}\modules\{#TCLSCI}\etc; Components: {#COMPN_TCLSCI}
