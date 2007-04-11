@@ -2,7 +2,7 @@
 
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
 
-<GATEWAY>
+<GATEWAY name="statistics">
 
 <!-- =================== -->
 <!--
