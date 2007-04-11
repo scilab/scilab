@@ -26,26 +26,17 @@ static int Scierror_internal __PARAMS((integer *n,char *buffer));
 /* 
 * as sciprint but with an added first argument 
 * which is ignored (used in do_printf) 
+* @param iv
+* @param fmt
+* @return
 */
-#if defined (__STDC__) || defined (_MSC_VER)
-	int  Scierror(int iv,char *fmt,...) 
-#else
-	int Scierror(va_alist) va_dcl
-#endif 
+int  Scierror(int iv,char *fmt,...) 
 {
 	int retval;
 	integer lstr;
 	va_list ap;
 	char s_buf[bsiz];
-#if defined (__STDC__) || defined (_MSC_VER)
 	va_start(ap,fmt);
-#else
-	int iv;
-	char *fmt;
-	va_start(ap);
-	iv = va_arg(ap,int);
-	fmt = va_arg(ap, char *);
-#endif
 
 #if defined (vsnprintf) || defined (linux)
 {
