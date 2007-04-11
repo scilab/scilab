@@ -120,7 +120,7 @@ libscistatistics_la_etc_DATA = etc/statistics.quit etc/statistics.start
 
 #### statistics : gateway declaration #### 
 libscistatistics_la_sci_gatewaydir = $(target)/sci_gateway
-libscistatistics_la_sci_gateway_DATA = sci_gateway/statistics
+libscistatistics_la_sci_gateway_DATA = sci_gateway/statistics_gateway.xml
 
 
 #### statistics : include files ####
