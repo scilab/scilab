@@ -294,6 +294,10 @@ extern  void * GetFuncPtr __PARAMS((char *,int,void *,void (*f)(),int *,int*,int
 
 #define Nbvars C2F(intersci).nbvars 
 
+/**
+ * TODO : need a comment !!!!
+ *
+ */
 #define LhsVar(x) C2F(intersci).lhsvar[x-1]
 
 

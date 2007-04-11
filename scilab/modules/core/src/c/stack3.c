@@ -148,8 +148,7 @@ int C2F(cwritemat)(char *namex, integer *m, integer *n,  double *mat, unsigned l
   integer l4, id[nsiz], lc, lr;
   
   C2F(str2name)(namex, id, name_len);
-  /* jpc april 2002 */ 
-  /* ++Top; */
+
   Top = Top + Nbvars + 1; 
   if (! C2F(cremat)("cwritemat", &Top, &cx0, m, n, &lr, &lc, 9L)) return  FALSE_;
   C2F(dcopy)(&ix1, mat, &cx1, stk(lr ), &cx1);
@@ -357,8 +356,7 @@ int C2F(cwritechain)(char *namex, integer *m, char *chai, unsigned long name_len
     integer id[nsiz], lr;
     C2F(str2name)(namex, id, name_len);
     Top_k = Top;
-    /* jpc april 2002 */ 
-    /* ++Top; */
+
     Top = Top + Nbvars + 1; 
     if (! C2F(cresmat2)("cwritechain", &Top, m, &lr, 11L)) {
 	return FALSE_;

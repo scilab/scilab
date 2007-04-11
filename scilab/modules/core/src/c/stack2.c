@@ -426,6 +426,7 @@ int C2F(createvar)(integer *lw,char *typex,integer *m,integer *n,integer  *lr,un
       ix1 = *m * *n;
       if (! C2F(cresmat2)(fname, &lw1, &ix1, lr, nlgh)) return FALSE_; 
       *lr = cadr(*lr);
+	  // Fill the string with spaces
       for (ix = 0; ix < (*m)*(*n) ; ++ix) *cstk(*lr+ix)= ' ';
       *cstk(*lr+ (*m)*(*n) )= '\0';
       C2F(intersci).ntypes[*lw - 1] = Type;
@@ -504,6 +505,7 @@ int C2F(createvar)(integer *lw,char *typex,integer *m,integer *n,integer  *lr,un
       C2F(intersci).iwhere[*lw - 1] = *Lstk(lw1);
       C2F(intersci).lad[*lw - 1] = *lr;
       break;
+	  // TODO : add a default case
     }
   return TRUE_; 
 }

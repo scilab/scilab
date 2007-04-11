@@ -44,19 +44,66 @@ integer C2F(numopt)(void);
 integer C2F(overload) __PARAMS(( integer *lw, char *fname, unsigned long l));
 integer C2F(overloadtype) __PARAMS(( integer *lw, char *fname,char *typ));
 
-int C2F(convert2sci) __PARAMS((int *)); 
+int C2F(convert2sci) __PARAMS((int *));
+
+
+/**
+ * int C2F(putlhsvar)()
+ *     This function put on the Scilab stack the lhs 
+ *     variables which are at the position lhsvar(i) 
+ *     on the calling stack 
+ *     Warning : this function supposes that the last 
+ *     variable on the stack is at position top-rhs+nbvars
+ * @return  
+ */
 int C2F(putlhsvar) __PARAMS((void));
 
 int C2F(isref) __PARAMS((integer *lw));
 integer C2F(vartype) __PARAMS((integer *number));
 integer C2F(elementtype) __PARAMS((integer *lnumber,integer *number));
+
+/**
+ * Create a variable into the Scilab stack
+ * You will probably need to do after a istk(xxxx) = yourvalue;
+ * TODO : add a @see to the type of data
+ * @param lw Position in the stack
+ * @param type__ Type of data ('c','d','r','i','l','b')
+ * @param m number of line of the matrix
+ * @param n number of columns of the matrix
+ * @param[out] lr the address of the data in Scilab Stack
+ * @param type_len length of the char *type__
+ */
 int C2F(createvar) __PARAMS((integer *lw, char *type__, integer *m, integer *n, integer *lr, unsigned long type_len));
 
 int C2F(creatework)  __PARAMS((integer *number,integer *m,integer  *lr));
 
 int C2F(setworksize)  __PARAMS((integer *number,integer *size));
 
+
+/**
+ * Create a complex variable into the Scilab stack
+ * You will probably need to do after a istk(xxxx) = yourvalue;
+ * TODO : add a @see to the type of data
+ * @example
+ * Add the content of comm_size into the stack of Scilab 
+ * @code
+ 	int n1=1,m1=1,l1=0;
+	int comm_size=42;
+	CreateVar(1, "i", &m1, &n1 ,&l1);
+	*istk(l1)=comm_size;
+ * @endcode
+ * @param lw Position in the stack
+ * @param type__ Type of data ('c','d','r','i','l','b')
+ * @param it if it is complex or not (not sure)
+ * @param m number of line of the matrix
+ * @param n number of columns of the matrix
+ * @param[out] lr the address of the real data in Scilab Stack
+ * @param[out] lc the address of the complex data in Scilab Stack
+ * @param type_len length of the char *type__
+ */
 int C2F(createcvar) __PARAMS((integer *lw, char *type__, integer *it, integer *m, integer *n, integer *lr, integer *lc, unsigned long type_len));
+
+
 int C2F(createlist) __PARAMS((integer *lw, integer *nel));
 int C2F(createvarfrom) __PARAMS((integer *lw, char *type__, integer *m, integer *n, integer *lr, integer *lar, unsigned long type_len));
 int C2F(createcvarfrom) __PARAMS((integer *lw, char *type__, integer *it, integer *m, integer *n, integer *lr, integer *lc, integer *lar, integer *lac, unsigned long type_len));
@@ -69,8 +116,29 @@ int C2F(getlistrhsvar) __PARAMS((integer *lnumber, integer *number, char *type__
 int C2F(getlistrhscvar) __PARAMS((integer *lnumber, integer *number, char *type__, integer *it, integer *m, integer *n, integer *lr, integer *lc, unsigned long type_len));
 
 
+
+/**
+ * Create a variable into the Scilab stack from a pointer
+ * @param lw Position in the stack
+ * @param type__ Type of data (i for integer, c for char, b for boolean ...)
+ * @param m number of line of the matrix
+ * @param n number of columns of the matrix
+ * @param iptr the data we want to add into the stack
+ * @param type_len length of the char *type__
+ */
 int C2F(createvarfromptr) __PARAMS((integer *number, char *type__, integer *m, integer *n,void *iptr, unsigned long type_len)); 
 
+
+/**
+ * Create a complex variable into the Scilab stack from a pointer
+ * @param lw Position in the stack
+ * @param type__ Type of data (i for integer, c for char, b for boolean ...)
+ * @param m number of line of the matrix
+ * @param n number of columns of the matrix
+ * @param iptr the data we want to add into the stack
+ * @param iptc the complex data we want to add into the stack
+ * @param type_len length of the char *type__
+ */
 int C2F(createcvarfromptr) __PARAMS((integer *number, char *type__, integer *it, integer *m, integer *n, double *iptr, double *iptc, unsigned long type_len));
 
 int C2F(mklistfromvars) __PARAMS((integer *pos, integer *n));
