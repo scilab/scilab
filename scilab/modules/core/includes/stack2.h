@@ -100,6 +100,7 @@ int C2F(setworksize)  __PARAMS((integer *number,integer *size));
  * @param[out] lr the address of the real data in Scilab Stack
  * @param[out] lc the address of the complex data in Scilab Stack
  * @param type_len length of the char *type__
+ * @return the result of the operation
  */
 int C2F(createcvar) __PARAMS((integer *lw, char *type__, integer *it, integer *m, integer *n, integer *lr, integer *lc, unsigned long type_len));
 
@@ -110,8 +111,53 @@ int C2F(createcvarfrom) __PARAMS((integer *lw, char *type__, integer *it, intege
 int C2F(createlistvarfrom) __PARAMS((integer *lnumber, integer *number, char *type__, integer *m, integer *n, integer *lr, integer *lar, unsigned long type_len));
 
 int C2F(getmatdims)  __PARAMS((integer *number, integer *m, integer *n));
+
+
+/**
+ * getrhsvar :
+ *     get the argument number <<number>> 
+ *     the argument must be of type type ('c','d','r','i','f','l','b') 
+ *     return values m,n,lr 
+ *     c : string  (m-> number of characters and n->1) 
+ *     d,r,i : matrix of double,float or integer 
+ *     f : external (function) 
+ *     b : boolean matrix 
+ *     l : a list  (m-> number of elements and n->1) 
+ *         for each element of the list an other function 
+ *         must be used to <<get>> them 
+ *     side effects : arguments in the common intersci are modified 
+ *     see examples in addinter-examples 
+ * @param number the number of the argument in the function
+ * @param type__ the type of the variable
+ * @param m number of line of the matrix
+ * @param n number of columns of the matrix
+ * @param lr the address of the data in Scilab Stack
+ * @param type_len length of the char *type__
+ * @return the result of the operation
+ */
 int C2F(getrhsvar) __PARAMS((integer *number, char *type__, integer *m, integer *n, integer *lr, unsigned long type_len));
+
+
+/**
+ * getrhsvar :
+ *     get the argument number <<number>>  which is a complex matrices
+ *     the argument must be of type type ('d','r','i') 
+ *     return values m,n,lr 
+ *     d,r,i : matrix of double,float or integer 
+ *     side effects : arguments in the common intersci are modified 
+ *     see examples in addinter-examples 
+ * @param number the number of the argument in the function
+ * @param type__ the type of the variable
+ * @param m number of line of the matrix
+ * @param n number of columns of the matrix
+ * @param lr the address of the real data in Scilab Stack
+ * @param lc the address of the complex data in Scilab Stack
+ * @param type_len length of the char *type__
+ * @return the result of the operation
+ */
 int C2F(getrhscvar) __PARAMS((integer *number, char *type__, integer *it, integer *m, integer *n, integer *lr, integer *lc, unsigned long type_len));
+
+
 int C2F(getlistrhsvar) __PARAMS((integer *lnumber, integer *number, char *type__, integer *m, integer *n, integer *lr,  unsigned long type_len));
 int C2F(getlistrhscvar) __PARAMS((integer *lnumber, integer *number, char *type__, integer *it, integer *m, integer *n, integer *lr, integer *lc, unsigned long type_len));
 
