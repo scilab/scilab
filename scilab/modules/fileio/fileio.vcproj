@@ -351,11 +351,11 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath=".\sci_gateway\fileio"
+			RelativePath=".\fileio.iss"
 			>
 		</File>
 		<File
-			RelativePath=".\fileio.iss"
+			RelativePath=".\sci_gateway\fileio_gateway.xml"
 			>
 		</File>
 		<File

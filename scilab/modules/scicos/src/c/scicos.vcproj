@@ -667,15 +667,15 @@
 			>
 		</File>
 		<File
-			RelativePath="..\..\sci_gateway\scicos"
-			>
-		</File>
-		<File
 			RelativePath="..\..\scicos.iss"
 			>
 		</File>
 		<File
 			RelativePath=".\scicos_f.lib"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\scicos_gateway.xml"
 			>
 		</File>
 		<File

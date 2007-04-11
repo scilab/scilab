@@ -1770,7 +1770,7 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\sci_gateway\elementaries_functions"
+			RelativePath="..\..\sci_gateway\elementaries_functions_gateway.xml"
 			>
 		</File>
 		<File

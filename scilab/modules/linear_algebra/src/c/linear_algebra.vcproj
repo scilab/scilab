@@ -195,23 +195,11 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath=".\gschur.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\gw_linear_algebra.c"
 				>
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\gw_linear_algebra2.c"
-				>
-			</File>
-			<File
-				RelativePath=".\linear_FTables.h"
-				>
-			</File>
-			<File
-				RelativePath=".\schur.h"
 				>
 			</File>
 			<File
@@ -284,11 +272,23 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
+				RelativePath=".\gschur.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\gw_linear_algebra.h"
 				>
 			</File>
 			<File
 				RelativePath="..\..\includes\gw_linear_algebra2.h"
+				>
+			</File>
+			<File
+				RelativePath=".\linear_FTables.h"
+				>
+			</File>
+			<File
+				RelativePath=".\schur.h"
 				>
 			</File>
 		</Filter>
@@ -309,11 +309,11 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\sci_gateway\linear_algebra"
+			RelativePath="..\..\linear_algebra.iss"
 			>
 		</File>
 		<File
-			RelativePath="..\..\linear_algebra.iss"
+			RelativePath="..\..\sci_gateway\linear_algebra_gateway.xml"
 			>
 		</File>
 		<File

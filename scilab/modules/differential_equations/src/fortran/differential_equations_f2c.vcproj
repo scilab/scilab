@@ -906,7 +906,7 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\sci_gateway\differential_equations"
+			RelativePath="..\..\sci_gateway\differential_equations_gateway.xml"
 			>
 		</File>
 		<File

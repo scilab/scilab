@@ -278,7 +278,7 @@
 			>
 		</File>
 		<File
-			RelativePath="..\..\sci_gateway\special_functions"
+			RelativePath="..\..\sci_gateway\special_functions_gateway.xml"
 			>
 		</File>
 	</Files>

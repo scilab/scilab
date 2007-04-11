@@ -360,11 +360,11 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\sci_gateway\gui"
+			RelativePath="..\..\gui.iss"
 			>
 		</File>
 		<File
-			RelativePath="..\..\gui.iss"
+			RelativePath="..\..\sci_gateway\gui_gateway.xml"
 			>
 		</File>
 		<File

@@ -965,7 +965,7 @@
 			>
 		</File>
 		<File
-			RelativePath="..\..\sci_gateway\scicos"
+			RelativePath="..\..\sci_gateway\scicos_gateway.xml"
 			>
 		</File>
 	</Files>

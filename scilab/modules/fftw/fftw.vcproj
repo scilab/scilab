@@ -337,11 +337,11 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath=".\sci_gateway\fftw"
+			RelativePath=".\fftw.iss"
 			>
 		</File>
 		<File
-			RelativePath=".\fftw.iss"
+			RelativePath=".\sci_gateway\fftw_gateway.xml"
 			>
 		</File>
 		<File

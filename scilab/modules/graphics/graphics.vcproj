@@ -2532,11 +2532,11 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath=".\sci_gateway\graphics"
+			RelativePath=".\graphics.iss"
 			>
 		</File>
 		<File
-			RelativePath=".\graphics.iss"
+			RelativePath=".\sci_gateway\graphics_gateway.xml"
 			>
 		</File>
 		<File

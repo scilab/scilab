@@ -567,11 +567,11 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\sci_gateway\integer"
+			RelativePath="..\..\integer.iss"
 			>
 		</File>
 		<File
-			RelativePath="..\..\integer.iss"
+			RelativePath="..\..\sci_gateway\integer_gateway.xml"
 			>
 		</File>
 		<File

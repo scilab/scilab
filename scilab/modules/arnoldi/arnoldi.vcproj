@@ -271,11 +271,11 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath=".\sci_gateway\arnoldi"
+			RelativePath=".\arnoldi.iss"
 			>
 		</File>
 		<File
-			RelativePath=".\arnoldi.iss"
+			RelativePath=".\sci_gateway\arnoldi_gateway.xml"
 			>
 		</File>
 		<File

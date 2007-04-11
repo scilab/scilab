@@ -250,7 +250,7 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\sci_gateway\interpolation"
+			RelativePath="..\..\sci_gateway\interpolation_gateway.xml"
 			>
 		</File>
 		<File

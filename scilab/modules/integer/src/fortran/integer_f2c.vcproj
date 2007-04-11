@@ -741,7 +741,7 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\sci_gateway\integer"
+			RelativePath="..\..\sci_gateway\integer_gateway.xml"
 			>
 		</File>
 		<File

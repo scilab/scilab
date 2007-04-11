@@ -854,7 +854,7 @@
 			>
 		</File>
 		<File
-			RelativePath="..\..\sci_gateway\polynomials"
+			RelativePath="..\..\sci_gateway\polynomials_gateway.xml"
 			>
 		</File>
 	</Files>

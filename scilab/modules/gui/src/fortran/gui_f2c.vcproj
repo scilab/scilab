@@ -290,7 +290,7 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\sci_gateway\gui"
+			RelativePath="..\..\sci_gateway\gui_gateway.xml"
 			>
 		</File>
 		<File

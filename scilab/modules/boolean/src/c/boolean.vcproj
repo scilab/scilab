@@ -231,11 +231,11 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\sci_gateway\boolean"
+			RelativePath="..\..\boolean.iss"
 			>
 		</File>
 		<File
-			RelativePath="..\..\boolean.iss"
+			RelativePath="..\..\sci_gateway\boolean_gateway.xml"
 			>
 		</File>
 		<File

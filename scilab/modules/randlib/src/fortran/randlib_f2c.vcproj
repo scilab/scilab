@@ -425,7 +425,7 @@
 			>
 		</File>
 		<File
-			RelativePath="..\..\sci_gateway\randlib"
+			RelativePath="..\..\sci_gateway\randlib_gateway.xml"
 			>
 		</File>
 	</Files>

@@ -806,7 +806,7 @@
 			>
 		</File>
 		<File
-			RelativePath="..\..\sci_gateway\signal_processing"
+			RelativePath="..\..\sci_gateway\signal_processing_gateway.xml"
 			>
 		</File>
 	</Files>

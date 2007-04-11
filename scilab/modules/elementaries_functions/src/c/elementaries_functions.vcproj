@@ -431,11 +431,11 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\sci_gateway\elementaries_functions"
+			RelativePath="..\..\elementaries_functions.iss"
 			>
 		</File>
 		<File
-			RelativePath="..\..\elementaries_functions.iss"
+			RelativePath="..\..\sci_gateway\elementaries_functions_gateway.xml"
 			>
 		</File>
 		<File

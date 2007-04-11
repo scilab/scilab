@@ -242,7 +242,7 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\sci_gateway\boolean"
+			RelativePath="..\..\sci_gateway\boolean_gateway.xml"
 			>
 		</File>
 		<File

@@ -1176,7 +1176,7 @@
 			>
 		</File>
 		<File
-			RelativePath="..\..\sci_gateway\sparse"
+			RelativePath="..\..\sci_gateway\sparse_gateway.xml"
 			>
 		</File>
 	</Files>

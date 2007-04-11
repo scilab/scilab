@@ -319,11 +319,11 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\sci_gateway\differential_equations"
+			RelativePath="..\..\differential_equations.iss"
 			>
 		</File>
 		<File
-			RelativePath="..\..\differential_equations.iss"
+			RelativePath="..\..\sci_gateway\differential_equations_gateway.xml"
 			>
 		</File>
 		<File

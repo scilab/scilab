@@ -271,11 +271,11 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\sci_gateway\data_structures"
+			RelativePath="..\..\data_structures.iss"
 			>
 		</File>
 		<File
-			RelativePath="..\..\data_structures.iss"
+			RelativePath="..\..\sci_gateway\data_structures_gateway.xml"
 			>
 		</File>
 		<File

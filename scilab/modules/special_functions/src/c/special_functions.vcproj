@@ -271,11 +271,11 @@
 			>
 		</File>
 		<File
-			RelativePath="..\..\sci_gateway\special_functions"
+			RelativePath="..\..\special_functions.iss"
 			>
 		</File>
 		<File
-			RelativePath="..\..\special_functions.iss"
+			RelativePath="..\..\sci_gateway\special_functions_gateway.xml"
 			>
 		</File>
 		<File

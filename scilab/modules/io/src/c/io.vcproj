@@ -413,11 +413,11 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\sci_gateway\io"
+			RelativePath="..\..\io.iss"
 			>
 		</File>
 		<File
-			RelativePath="..\..\io.iss"
+			RelativePath="..\..\sci_gateway\io_gateway.xml"
 			>
 		</File>
 		<File

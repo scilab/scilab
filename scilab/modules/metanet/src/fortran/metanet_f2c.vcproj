@@ -1033,7 +1033,7 @@
 			>
 		</File>
 		<File
-			RelativePath="..\..\sci_gateway\metanet"
+			RelativePath="..\..\sci_gateway\metanet_gateway.xml"
 			>
 		</File>
 	</Files>

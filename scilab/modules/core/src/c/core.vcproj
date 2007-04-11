@@ -996,11 +996,11 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\sci_gateway\core"
+			RelativePath="..\..\core.iss"
 			>
 		</File>
 		<File
-			RelativePath="..\..\core.iss"
+			RelativePath="..\..\sci_gateway\core_gateway.xml"
 			>
 		</File>
 		<File

@@ -299,11 +299,11 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\sci_gateway\cacsd"
+			RelativePath="..\..\cacsd.iss"
 			>
 		</File>
 		<File
-			RelativePath="..\..\cacsd.iss"
+			RelativePath="..\..\sci_gateway\cacsd_gateway.xml"
 			>
 		</File>
 		<File

@@ -385,7 +385,7 @@
 			>
 		</File>
 		<File
-			RelativePath="..\..\sci_gateway\string"
+			RelativePath="..\..\sci_gateway\string_gateway.xml"
 			>
 		</File>
 	</Files>

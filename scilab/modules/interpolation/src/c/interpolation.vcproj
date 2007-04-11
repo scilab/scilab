@@ -259,11 +259,11 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\sci_gateway\interpolation"
+			RelativePath="..\..\interpolation.iss"
 			>
 		</File>
 		<File
-			RelativePath="..\..\interpolation.iss"
+			RelativePath="..\..\sci_gateway\interpolation_gateway.xml"
 			>
 		</File>
 		<File

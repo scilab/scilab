@@ -1482,7 +1482,7 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\sci_gateway\core"
+			RelativePath="..\..\sci_gateway\core_gateway.xml"
 			>
 		</File>
 		<File

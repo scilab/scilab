@@ -353,11 +353,11 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\sci_gateway\localization"
+			RelativePath="..\localization.iss"
 			>
 		</File>
 		<File
-			RelativePath="..\localization.iss"
+			RelativePath="..\sci_gateway\localization_gateway.xml"
 			>
 		</File>
 		<File

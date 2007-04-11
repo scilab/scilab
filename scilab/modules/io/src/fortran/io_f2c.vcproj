@@ -478,7 +478,7 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\sci_gateway\io"
+			RelativePath="..\..\sci_gateway\io_gateway.xml"
 			>
 		</File>
 		<File

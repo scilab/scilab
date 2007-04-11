@@ -386,7 +386,7 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\sci_gateway\data_structures"
+			RelativePath="..\..\sci_gateway\data_structures_gateway.xml"
 			>
 		</File>
 		<File

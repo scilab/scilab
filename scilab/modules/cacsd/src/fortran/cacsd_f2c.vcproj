@@ -866,7 +866,7 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\sci_gateway\cacsd"
+			RelativePath="..\..\sci_gateway\cacsd_gateway.xml"
 			>
 		</File>
 		<File
