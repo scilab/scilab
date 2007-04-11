@@ -546,7 +546,7 @@ libscitclsci_la_etc_DATA = etc/tclsci.quit etc/tclsci.start
 
 #### tclsci : gateway declaration #### 
 libscitclsci_la_sci_gatewaydir = $(target)/sci_gateway
-libscitclsci_la_sci_gateway_DATA = sci_gateway/tclsci
+libscitclsci_la_sci_gateway_DATA = sci_gateway/tclsci_gateway.xml
 
 #### tclsci : include files ####
 libscitclsci_la_includedir = $(sciincludedir)/tclsci

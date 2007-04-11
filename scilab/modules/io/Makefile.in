@@ -395,7 +395,7 @@ libsciio_la_etc_DATA = etc/io.quit etc/io.start
 
 #### io : gateway declaration #### 
 libsciio_la_sci_gatewaydir = $(target)/sci_gateway
-libsciio_la_sci_gateway_DATA = sci_gateway/io
+libsciio_la_sci_gateway_DATA = sci_gateway/io_gateway.xml
 
 #### io : include files ####
 libsciio_la_includedir = $(sciincludedir)/io

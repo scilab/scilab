@@ -322,7 +322,7 @@ libsciwintools_la_etc_DATA = etc/wintools.quit etc/wintools.start
 
 #### wintools : gateway declaration #### 
 libsciwintools_la_sci_gatewaydir = $(target)/sci_gateway
-libsciwintools_la_sci_gateway_DATA = sci_gateway/wintools
+libsciwintools_la_sci_gateway_DATA = sci_gateway/wintools_gateway.xml
 
 #### wintools : include files ####
 libsciwintools_la_includedir = $(sciincludedir)/wintools

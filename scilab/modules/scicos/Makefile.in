@@ -755,7 +755,7 @@ LOCALISATIONFILES = errors.xml menus.xml messages.xml
 
 #### scicos : gateway declaration #### 
 @SCICOS_TRUE@libsciscicos_la_sci_gatewaydir = $(target)/sci_gateway
-@SCICOS_TRUE@libsciscicos_la_sci_gateway_DATA = sci_gateway/scicos
+@SCICOS_TRUE@libsciscicos_la_sci_gateway_DATA = sci_gateway/scicos_gateway.xml
 @SCICOS_FALSE@libsciscicos_la_includedir = $(sciincludedir)/scicos
 
 #### scicos : include files ####

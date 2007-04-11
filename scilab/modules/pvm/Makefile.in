@@ -401,7 +401,7 @@ top_srcdir = @top_srcdir@
 
 #### pvm : gateway declaration #### 
 @PVM_TRUE@libscipvm_la_sci_gatewaydir = $(target)/sci_gateway
-@PVM_TRUE@libscipvm_la_sci_gateway_DATA = sci_gateway/pvm
+@PVM_TRUE@libscipvm_la_sci_gateway_DATA = sci_gateway/pvm_gateway.xml
 
 #### pvm : include files ####
 @PVM_TRUE@libscipvm_la_includedir = $(sciincludedir)/pvm

@@ -607,7 +607,7 @@ libscicacsd_la_etc_DATA = etc/cacsd.quit etc/cacsd.start
 
 #### cacsd : gateway declaration ####
 libscicacsd_la_sci_gatewaydir = $(target)/sci_gateway
-libscicacsd_la_sci_gateway_DATA = sci_gateway/cacsd
+libscicacsd_la_sci_gateway_DATA = sci_gateway/cacsd_gateway.xml
 
 #### cacsd : include files ####
 libscicacsd_la_includedir = $(sciincludedir)/cacsd

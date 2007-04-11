@@ -75,6 +75,7 @@ am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscilocalization_la_etcdir)" \
 	"$(DESTDIR)$(libscilocalization_la_rootdir)" \
+	"$(DESTDIR)$(libscilocalization_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libscilocalization_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
@@ -119,8 +120,10 @@ SOURCES = $(libscilocalization_la_SOURCES)
 DIST_SOURCES = $(libscilocalization_la_SOURCES)
 libscilocalization_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscilocalization_la_rootDATA_INSTALL = $(INSTALL_DATA)
+libscilocalization_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
 DATA = $(libscilocalization_la_etc_DATA) \
-	$(libscilocalization_la_root_DATA)
+	$(libscilocalization_la_root_DATA) \
+	$(libscilocalization_la_sci_gateway_DATA)
 libscilocalization_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libscilocalization_la_include_HEADERS)
 ETAGS = etags
@@ -315,6 +318,10 @@ libscilocalization_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 ####localization : init scripts #### 
 libscilocalization_la_etcdir = $(target)/etc
 libscilocalization_la_etc_DATA = etc/localization.quit etc/localization.start
+
+#### localization : gateway declaration #### 
+libscilocalization_la_sci_gatewaydir = $(target)/sci_gateway
+libscilocalization_la_sci_gateway_DATA = sci_gateway/localization_gateway.xml
 
 ####localization : include files ####
 libscilocalization_la_includedir = $(sciincludedir)/localization
@@ -636,6 +643,23 @@ uninstall-libscilocalization_la_rootDATA:
 	  echo " rm -f '$(DESTDIR)$(libscilocalization_la_rootdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libscilocalization_la_rootdir)/$$f"; \
 	done
+install-libscilocalization_la_sci_gatewayDATA: $(libscilocalization_la_sci_gateway_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscilocalization_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libscilocalization_la_sci_gatewaydir)"
+	@list='$(libscilocalization_la_sci_gateway_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libscilocalization_la_sci_gatewayDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscilocalization_la_sci_gatewaydir)/$$f'"; \
+	  $(libscilocalization_la_sci_gatewayDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscilocalization_la_sci_gatewaydir)/$$f"; \
+	done
+
+uninstall-libscilocalization_la_sci_gatewayDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscilocalization_la_sci_gateway_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libscilocalization_la_sci_gatewaydir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscilocalization_la_sci_gatewaydir)/$$f"; \
+	done
 install-libscilocalization_la_includeHEADERS: $(libscilocalization_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscilocalization_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscilocalization_la_includedir)"
@@ -733,7 +757,7 @@ check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscilocalization_la_etcdir)" "$(DESTDIR)$(libscilocalization_la_rootdir)" "$(DESTDIR)$(libscilocalization_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscilocalization_la_etcdir)" "$(DESTDIR)$(libscilocalization_la_rootdir)" "$(DESTDIR)$(libscilocalization_la_sci_gatewaydir)" "$(DESTDIR)$(libscilocalization_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -787,7 +811,8 @@ info-am:
 install-data-am: install-data-local \
 	install-libscilocalization_la_etcDATA \
 	install-libscilocalization_la_includeHEADERS \
-	install-libscilocalization_la_rootDATA
+	install-libscilocalization_la_rootDATA \
+	install-libscilocalization_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
 
@@ -828,6 +853,7 @@ ps-am:
 uninstall-am: uninstall-libscilocalization_la_etcDATA \
 	uninstall-libscilocalization_la_includeHEADERS \
 	uninstall-libscilocalization_la_rootDATA \
+	uninstall-libscilocalization_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
 .MAKE: install-am install-strip
@@ -842,15 +868,18 @@ uninstall-am: uninstall-libscilocalization_la_etcDATA \
 	install-html-local install-info install-info-am \
 	install-libscilocalization_la_etcDATA \
 	install-libscilocalization_la_includeHEADERS \
-	install-libscilocalization_la_rootDATA install-man install-pdf \
-	install-pdf-am install-pkglibLTLIBRARIES install-ps \
-	install-ps-am install-strip installcheck installcheck-am \
-	installdirs maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-compile mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
-	uninstall-am uninstall-libscilocalization_la_etcDATA \
+	install-libscilocalization_la_rootDATA \
+	install-libscilocalization_la_sci_gatewayDATA install-man \
+	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
+	install-ps install-ps-am install-strip installcheck \
+	installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	tags uninstall uninstall-am \
+	uninstall-libscilocalization_la_etcDATA \
 	uninstall-libscilocalization_la_includeHEADERS \
 	uninstall-libscilocalization_la_rootDATA \
+	uninstall-libscilocalization_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
 

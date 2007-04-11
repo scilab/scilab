@@ -320,7 +320,7 @@ libsciboolean_la_etc_DATA = etc/boolean.quit etc/boolean.start
 
 #### boolean : gateway declaration #### 
 libsciboolean_la_sci_gatewaydir = $(target)/sci_gateway
-libsciboolean_la_sci_gateway_DATA = sci_gateway/boolean
+libsciboolean_la_sci_gateway_DATA = sci_gateway/boolean_gateway.xml
 
 #### boolean : include files ####
 libsciboolean_la_includedir = $(sciincludedir)/boolean

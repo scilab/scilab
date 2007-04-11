@@ -115,11 +115,11 @@ am__libscicore_la_SOURCES_DIST = src/c/history.c src/c/inffic.c \
 	src/c/InitializeCore.c src/c/TerminateCore.c src/c/coretable.c \
 	src/c/error_scilab.c src/c/message_scilab.c src/c/force_link.c \
 	src/c/returnProperty.c src/c/returnPropertyList.c \
-	src/c/scilabmode.c src/c/diary.c src/c/getarg-hpux.c \
-	src/c/getarg.c src/fortran/algebre.f src/fortran/clunit.f \
-	src/fortran/complexify.f src/fortran/allowptr.f \
-	src/fortran/dldsp.f src/fortran/bcol.f src/fortran/msgs.f \
-	src/fortran/getlin.f src/fortran/isany.f \
+	src/c/scilabmode.c src/c/diary.c src/c/GetXmlFileEncoding.c \
+	src/c/getarg-hpux.c src/c/getarg.c src/fortran/algebre.f \
+	src/fortran/clunit.f src/fortran/complexify.f \
+	src/fortran/allowptr.f src/fortran/dldsp.f src/fortran/bcol.f \
+	src/fortran/msgs.f src/fortran/getlin.f src/fortran/isany.f \
 	src/fortran/hmcreate.f src/fortran/nextj.f \
 	src/fortran/functionsforbasout.f src/fortran/setgetmode.f \
 	src/fortran/errmsgf.f src/fortran/showstack.f \
@@ -274,7 +274,8 @@ am__objects_3 = libscicore_la-history.lo libscicore_la-inffic.lo \
 	libscicore_la-force_link.lo libscicore_la-returnProperty.lo \
 	libscicore_la-returnPropertyList.lo \
 	libscicore_la-scilabmode.lo libscicore_la-diary.lo \
-	$(am__objects_1) $(am__objects_2)
+	libscicore_la-GetXmlFileEncoding.lo $(am__objects_1) \
+	$(am__objects_2)
 @IS_HPUX_TRUE@am__objects_4 = fgetarg-hpux.lo
 @IS_HPUX_FALSE@am__objects_5 = fgetarg.lo
 am__objects_6 = algebre.lo clunit.lo complexify.lo allowptr.lo \
@@ -561,8 +562,8 @@ CORE_C_SOURCES = src/c/history.c src/c/inffic.c src/c/cs2st.c \
 	src/c/InitializeCore.c src/c/TerminateCore.c src/c/coretable.c \
 	src/c/error_scilab.c src/c/message_scilab.c src/c/force_link.c \
 	src/c/returnProperty.c src/c/returnPropertyList.c \
-	src/c/scilabmode.c src/c/diary.c $(am__append_2) \
-	$(am__append_4)
+	src/c/scilabmode.c src/c/diary.c src/c/GetXmlFileEncoding.c \
+	$(am__append_2) $(am__append_4)
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f src/fortran/clunit.f \
 	src/fortran/complexify.f src/fortran/allowptr.f \
 	src/fortran/dldsp.f src/fortran/bcol.f src/fortran/msgs.f \
@@ -721,8 +722,8 @@ sci_gateway/fortran/sci_error.f \
 sci_gateway/fortran/sci_sciargs.f \
 sci_gateway/fortran/sci_isglobal.f
 
-libscicore_la_CFLAGS = -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ 
-libscicore_la_LDFLAGS = 
+libscicore_la_CFLAGS = -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ $(XML_FLAGS)
+libscicore_la_LDFLAGS = $(XML_LIBS)
 pkglib_LTLIBRARIES = libscicore.la
 libscicore_la_SOURCES = $(CORE_C_SOURCES) $(CORE_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libscicore_la_LIBADD = \
@@ -750,7 +751,7 @@ libscicore_la_etc_DATA = etc/core.quit etc/core.start
 
 #### core : gateway declaration #### 
 libscicore_la_sci_gatewaydir = $(target)/sci_gateway
-libscicore_la_sci_gateway_DATA = sci_gateway/core
+libscicore_la_sci_gateway_DATA = sci_gateway/core_gateway.xml
 
 #### core : include files ####
 libscicore_la_includedir = $(sciincludedir)/core
@@ -796,7 +797,8 @@ includes/fromjava.h \
 includes/getarg.h \
 includes/inisci-c.h \
 includes/cvstr.h \
-includes/error_scilab.h
+includes/error_scilab.h \
+includes/GetXmlFileEncoding.h
 
 
 #### core : demos files ####
@@ -938,6 +940,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-CallScilab.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-FTables.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-Funtab.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-GetXmlFileEncoding.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-InitScilab.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-InitializeCore.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-IsAScalar.Plo@am__quote@
@@ -1612,6 +1615,13 @@ libscicore_la-diary.lo: src/c/diary.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/diary.c' object='libscicore_la-diary.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-diary.lo `test -f 'src/c/diary.c' || echo '$(srcdir)/'`src/c/diary.c
+
+libscicore_la-GetXmlFileEncoding.lo: src/c/GetXmlFileEncoding.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-GetXmlFileEncoding.lo -MD -MP -MF $(DEPDIR)/libscicore_la-GetXmlFileEncoding.Tpo -c -o libscicore_la-GetXmlFileEncoding.lo `test -f 'src/c/GetXmlFileEncoding.c' || echo '$(srcdir)/'`src/c/GetXmlFileEncoding.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-GetXmlFileEncoding.Tpo $(DEPDIR)/libscicore_la-GetXmlFileEncoding.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/GetXmlFileEncoding.c' object='libscicore_la-GetXmlFileEncoding.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-GetXmlFileEncoding.lo `test -f 'src/c/GetXmlFileEncoding.c' || echo '$(srcdir)/'`src/c/GetXmlFileEncoding.c
 
 libscicore_la-getarg-hpux.lo: src/c/getarg-hpux.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-getarg-hpux.lo -MD -MP -MF $(DEPDIR)/libscicore_la-getarg-hpux.Tpo -c -o libscicore_la-getarg-hpux.lo `test -f 'src/c/getarg-hpux.c' || echo '$(srcdir)/'`src/c/getarg-hpux.c

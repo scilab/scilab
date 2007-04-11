@@ -327,7 +327,7 @@ top_srcdir = @top_srcdir@
 
 #### fftw : gateway declaration #### 
 @FFTW_TRUE@libscifftw_la_sci_gatewaydir = $(target)/sci_gateway
-@FFTW_TRUE@libscifftw_la_sci_gateway_DATA = sci_gateway/fftw
+@FFTW_TRUE@libscifftw_la_sci_gateway_DATA = sci_gateway/fftw_gateway.xml
 @FFTW_TRUE@libscifftw_la_SOURCES = $(FFTW_C_SOURCES) $(GATEWAY_C_SOURCES)
 @FFTW_TRUE@libscifftw_la_CFLAGS = -Iincludes/  -Isrc/c/
 @FFTW_TRUE@libscifftw_la_LDFLAGS = $(FFTW3_LIB)

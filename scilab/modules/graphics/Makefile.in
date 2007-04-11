@@ -1096,7 +1096,7 @@ libscigraphics_la_etc_DATA = etc/graphics.quit etc/graphics.start
 
 #### graphics : gateway declaration #### 
 libscigraphics_la_sci_gatewaydir = $(target)/sci_gateway
-libscigraphics_la_sci_gateway_DATA = sci_gateway/graphics
+libscigraphics_la_sci_gateway_DATA = sci_gateway/graphics_gateway.xml
 
 #### graphics : include files ####
 libscigraphics_la_includedir = $(sciincludedir)/graphics

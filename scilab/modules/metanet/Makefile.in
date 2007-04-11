@@ -442,7 +442,7 @@ libscimetanet_la_etc_DATA = etc/metanet.quit etc/metanet.start
 
 #### metanet : gateway declaration #### 
 libscimetanet_la_sci_gatewaydir = $(target)/sci_gateway
-libscimetanet_la_sci_gateway_DATA = sci_gateway/metanet
+libscimetanet_la_sci_gateway_DATA = sci_gateway/metanet_gateway.xml
 
 #### metanet : include files ####
 libscimetanet_la_includedir = $(sciincludedir)/metanet

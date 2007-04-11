@@ -365,7 +365,7 @@ libscistring_la_etc_DATA = etc/string_V2.quit etc/string_V2.start
 
 #### string : gateway declaration #### 
 libscistring_la_sci_gatewaydir = $(target)/sci_gateway
-libscistring_la_sci_gateway_DATA = sci_gateway/string_V2
+libscistring_la_sci_gateway_DATA = sci_gateway/string_V2_gateway.xml
 
 #### string : include files ####
 libscistring_la_includedir = $(sciincludedir)/string
