@@ -1,47 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
-
 <GATEWAY name="symbolic">
-
 <!-- =================== -->
 <!--
- Scilab 
- Allan CORNET
- INRIA 2007
+ Scilab
+ Interface description. In this file, we define the list of the function which
+ will be available into Scilab and the link to the "native" function.
+
+ gatewayId is the position in the hashtable 'Interfaces' defined in the
+ file SCI/modules/core/src/c/callinterf.h
+
+ primitiveId is the position in the hashtable '<module>Table Tab[]' defined
+ in the file modules/<module>/sci_gateway/c/gw_<module>.c
+
+ primitiveName is the name of the Scilab function
+
+ @author Allan CORNET
+ @author Sylvestre LEDRU
+ @date INRIA 2007
  ===================
- Don't edit if you aren't sure
+ Don't touch if you do not know what you are doing
 -->
 <!-- =================== -->
 
-<PRIMITIVE>
-  <GATEWAY_ID>22</GATEWAY_ID>
-  <PRIMITIVE_ID>1</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>addf</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>22</GATEWAY_ID>
-  <PRIMITIVE_ID>2</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>subf</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>22</GATEWAY_ID>
-  <PRIMITIVE_ID>3</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>mulf</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>22</GATEWAY_ID>
-  <PRIMITIVE_ID>4</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>ldivf</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>22</GATEWAY_ID>
-  <PRIMITIVE_ID>5</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>rdivf</PRIMITIVE_NAME>
-</PRIMITIVE>
-
+<PRIMITIVE gatewayId="22" primitiveId="1" primitiveName="addf" />
+<PRIMITIVE gatewayId="22" primitiveId="2" primitiveName="subf" />
+<PRIMITIVE gatewayId="22" primitiveId="3" primitiveName="mulf" />
+<PRIMITIVE gatewayId="22" primitiveId="4" primitiveName="ldivf" />
+<PRIMITIVE gatewayId="22" primitiveId="5" primitiveName="rdivf" />
 </GATEWAY>

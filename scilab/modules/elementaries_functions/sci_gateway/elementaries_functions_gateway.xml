@@ -1,319 +1,76 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
-
 <GATEWAY name="elementaries_functions">
-
 <!-- =================== -->
 <!--
- Scilab 
- Allan CORNET
- INRIA 2007
+ Scilab
+ Interface description. In this file, we define the list of the function which
+ will be available into Scilab and the link to the "native" function.
+
+ gatewayId is the position in the hashtable 'Interfaces' defined in the
+ file SCI/modules/core/src/c/callinterf.h
+
+ primitiveId is the position in the hashtable '<module>Table Tab[]' defined
+ in the file modules/<module>/sci_gateway/c/gw_<module>.c
+
+ primitiveName is the name of the Scilab function
+
+ @author Allan CORNET
+ @author Sylvestre LEDRU
+ @date INRIA 2007
  ===================
- Don't edit if you aren't sure
+ Don't touch if you do not know what you are doing
 -->
 <!-- =================== -->
 
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>1</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>abs</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>2</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>real</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>3</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>imag</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>4</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>conj</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>5</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>round</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>6</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>int</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>7</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>size</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>8</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>sum</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>9</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>prod</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>10</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>diag</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>11</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>triu</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>12</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>tril</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>13</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>eye</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>14</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>rand</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>15</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>ones</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>16</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>max</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>16</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>maxi</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>17</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>min</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>17</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>mini</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>18</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>sort</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>19</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>kron</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<!-- 20 kron -->
-<!-- 21 kron -->
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>22</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>matrix</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>23</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>sin</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>24</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>cos</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>25</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>atan</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>26</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>exp</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>27</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>sqrt</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>28</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>log</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<!-- 29 " ^ " -->
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>30</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>sign</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>31</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>clean</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>32</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>floor</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>33</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>ceil</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>34</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>expm</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>35</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>cumsum</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>36</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>cumprod</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>37</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>testmatrix</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>38</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>isreal</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>39</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>frexp</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>40</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>zeros</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>41</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>tan</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>42</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>log1p</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>43</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>imult</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>44</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>asin</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>45</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>acos</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>46</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>number_properties</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>47</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>nearfloat</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>48</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>dsearch</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>49</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>isequal</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>6</GATEWAY_ID>
-  <PRIMITIVE_ID>50</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>spones</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-
+<PRIMITIVE gatewayId="6" primitiveId="1" primitiveName="abs" />
+<PRIMITIVE gatewayId="6" primitiveId="2" primitiveName="real" />
+<PRIMITIVE gatewayId="6" primitiveId="3" primitiveName="imag" />
+<PRIMITIVE gatewayId="6" primitiveId="4" primitiveName="conj" />
+<PRIMITIVE gatewayId="6" primitiveId="5" primitiveName="round" />
+<PRIMITIVE gatewayId="6" primitiveId="6" primitiveName="int" />
+<PRIMITIVE gatewayId="6" primitiveId="7" primitiveName="size" />
+<PRIMITIVE gatewayId="6" primitiveId="8" primitiveName="sum" />
+<PRIMITIVE gatewayId="6" primitiveId="9" primitiveName="prod" />
+<PRIMITIVE gatewayId="6" primitiveId="10" primitiveName="diag" />
+<PRIMITIVE gatewayId="6" primitiveId="11" primitiveName="triu" />
+<PRIMITIVE gatewayId="6" primitiveId="12" primitiveName="tril" />
+<PRIMITIVE gatewayId="6" primitiveId="13" primitiveName="eye" />
+<PRIMITIVE gatewayId="6" primitiveId="14" primitiveName="rand" />
+<PRIMITIVE gatewayId="6" primitiveId="15" primitiveName="ones" />
+<PRIMITIVE gatewayId="6" primitiveId="16" primitiveName="max" />
+<PRIMITIVE gatewayId="6" primitiveId="16" primitiveName="maxi" />
+<PRIMITIVE gatewayId="6" primitiveId="17" primitiveName="min" />
+<PRIMITIVE gatewayId="6" primitiveId="17" primitiveName="mini" />
+<PRIMITIVE gatewayId="6" primitiveId="18" primitiveName="sort" />
+<PRIMITIVE gatewayId="6" primitiveId="19" primitiveName="kron" />
+<PRIMITIVE gatewayId="6" primitiveId="22" primitiveName="matrix" />
+<PRIMITIVE gatewayId="6" primitiveId="23" primitiveName="sin" />
+<PRIMITIVE gatewayId="6" primitiveId="24" primitiveName="cos" />
+<PRIMITIVE gatewayId="6" primitiveId="25" primitiveName="atan" />
+<PRIMITIVE gatewayId="6" primitiveId="26" primitiveName="exp" />
+<PRIMITIVE gatewayId="6" primitiveId="27" primitiveName="sqrt" />
+<PRIMITIVE gatewayId="6" primitiveId="28" primitiveName="log" />
+<PRIMITIVE gatewayId="6" primitiveId="30" primitiveName="sign" />
+<PRIMITIVE gatewayId="6" primitiveId="31" primitiveName="clean" />
+<PRIMITIVE gatewayId="6" primitiveId="32" primitiveName="floor" />
+<PRIMITIVE gatewayId="6" primitiveId="33" primitiveName="ceil" />
+<PRIMITIVE gatewayId="6" primitiveId="34" primitiveName="expm" />
+<PRIMITIVE gatewayId="6" primitiveId="35" primitiveName="cumsum" />
+<PRIMITIVE gatewayId="6" primitiveId="36" primitiveName="cumprod" />
+<PRIMITIVE gatewayId="6" primitiveId="37" primitiveName="testmatrix" />
+<PRIMITIVE gatewayId="6" primitiveId="38" primitiveName="isreal" />
+<PRIMITIVE gatewayId="6" primitiveId="39" primitiveName="frexp" />
+<PRIMITIVE gatewayId="6" primitiveId="40" primitiveName="zeros" />
+<PRIMITIVE gatewayId="6" primitiveId="41" primitiveName="tan" />
+<PRIMITIVE gatewayId="6" primitiveId="42" primitiveName="log1p" />
+<PRIMITIVE gatewayId="6" primitiveId="43" primitiveName="imult" />
+<PRIMITIVE gatewayId="6" primitiveId="44" primitiveName="asin" />
+<PRIMITIVE gatewayId="6" primitiveId="45" primitiveName="acos" />
+<PRIMITIVE gatewayId="6" primitiveId="46" primitiveName="number_properties" />
+<PRIMITIVE gatewayId="6" primitiveId="47" primitiveName="nearfloat" />
+<PRIMITIVE gatewayId="6" primitiveId="48" primitiveName="dsearch" />
+<PRIMITIVE gatewayId="6" primitiveId="49" primitiveName="isequal" />
+<PRIMITIVE gatewayId="6" primitiveId="50" primitiveName="spones" />
 </GATEWAY>
-
-

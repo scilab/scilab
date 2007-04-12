@@ -1,108 +1,42 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
-
 <GATEWAY name="linear_algebra">
-
 <!-- =================== -->
 <!--
- Scilab 
- Allan CORNET
- INRIA 2007
+ Scilab
+ Interface description. In this file, we define the list of the function which
+ will be available into Scilab and the link to the "native" function.
+
+ gatewayId is the position in the hashtable 'Interfaces' defined in the
+ file SCI/modules/core/src/c/callinterf.h
+
+ primitiveId is the position in the hashtable '<module>Table Tab[]' defined
+ in the file modules/<module>/sci_gateway/c/gw_<module>.c
+
+ primitiveName is the name of the Scilab function
+
+ @author Allan CORNET
+ @author Sylvestre LEDRU
+ @date INRIA 2007
  ===================
- Don't edit if you aren't sure
+ Don't touch if you do not know what you are doing
 -->
 <!-- =================== -->
 
-<PRIMITIVE>
-  <GATEWAY_ID>2</GATEWAY_ID>
-  <PRIMITIVE_ID>4</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>bdiag</PRIMITIVE_NAME>
-</PRIMITIVE>	
-<!-- =================== -->
-<PRIMITIVE>
-  <GATEWAY_ID>44</GATEWAY_ID>
-  <PRIMITIVE_ID>1</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>qr</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>44</GATEWAY_ID>
-  <PRIMITIVE_ID>2</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>svd</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>44</GATEWAY_ID>
-  <PRIMITIVE_ID>3</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>lsq</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>44</GATEWAY_ID>
-  <PRIMITIVE_ID>4</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>spec</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>44</GATEWAY_ID>
-  <PRIMITIVE_ID>5</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>inv</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>44</GATEWAY_ID>
-  <PRIMITIVE_ID>6</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>rcond</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>44</GATEWAY_ID>
-  <PRIMITIVE_ID>7</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>chol</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>44</GATEWAY_ID>
-  <PRIMITIVE_ID>8</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>lu</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>44</GATEWAY_ID>
-  <PRIMITIVE_ID>9</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>slash</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>44</GATEWAY_ID>
-  <PRIMITIVE_ID>10</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>backslash</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>44</GATEWAY_ID>
-  <PRIMITIVE_ID>11</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>schur</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>44</GATEWAY_ID>
-  <PRIMITIVE_ID>12</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>hess</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>44</GATEWAY_ID>
-  <PRIMITIVE_ID>13</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>det</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>44</GATEWAY_ID>
-  <PRIMITIVE_ID>14</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>balanc</PRIMITIVE_NAME>
-</PRIMITIVE>
-
+<PRIMITIVE gatewayId="2" primitiveId="4" primitiveName="bdiag" />
+<PRIMITIVE gatewayId="44" primitiveId="1" primitiveName="qr" />
+<PRIMITIVE gatewayId="44" primitiveId="2" primitiveName="svd" />
+<PRIMITIVE gatewayId="44" primitiveId="3" primitiveName="lsq" />
+<PRIMITIVE gatewayId="44" primitiveId="4" primitiveName="spec" />
+<PRIMITIVE gatewayId="44" primitiveId="5" primitiveName="inv" />
+<PRIMITIVE gatewayId="44" primitiveId="6" primitiveName="rcond" />
+<PRIMITIVE gatewayId="44" primitiveId="7" primitiveName="chol" />
+<PRIMITIVE gatewayId="44" primitiveId="8" primitiveName="lu" />
+<PRIMITIVE gatewayId="44" primitiveId="9" primitiveName="slash" />
+<PRIMITIVE gatewayId="44" primitiveId="10" primitiveName="backslash" />
+<PRIMITIVE gatewayId="44" primitiveId="11" primitiveName="schur" />
+<PRIMITIVE gatewayId="44" primitiveId="12" primitiveName="hess" />
+<PRIMITIVE gatewayId="44" primitiveId="13" primitiveName="det" />
+<PRIMITIVE gatewayId="44" primitiveId="14" primitiveName="balanc" />
 </GATEWAY>
-

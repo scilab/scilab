@@ -1,418 +1,94 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
-
 <GATEWAY name="core">
 <!-- =================== -->
 <!--
- Scilab 
- Allan CORNET
- INRIA 2007
+ Scilab
+ Interface description. In this file, we define the list of the function which
+ will be available into Scilab and the link to the "native" function.
+
+ gatewayId is the position in the hashtable 'Interfaces' defined in the
+ file SCI/modules/core/src/c/callinterf.h
+
+ primitiveId is the position in the hashtable '<module>Table Tab[]' defined
+ in the file modules/<module>/sci_gateway/c/gw_<module>.c
+
+ primitiveName is the name of the Scilab function
+
+ @author Allan CORNET
+ @author Sylvestre LEDRU
+ @date INRIA 2007
  ===================
- Don't edit if you aren't sure
+ Don't touch if you do not know what you are doing
 -->
 <!-- =================== -->
 
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>1</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>debug</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>2</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>who</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>3</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>lines</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>4</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>argn</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>5</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>fort</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>6</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>comp</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>7</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>call</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>8</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>mode</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>9</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>type</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>10</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>error</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>11</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>resume</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>12</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>return</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>13</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>format</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>14</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>isdef</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>15</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>exists</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>16</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>errcatch</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>17</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>errclear</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>18</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>iserror</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>19</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>predef</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>20</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>newfun</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>21</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>clearfun</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>22</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>funptr</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>23</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>macr2lst</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>24</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>setbpt</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>25</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>delbpt</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>26</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>dispbpt</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>27</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>funcprot</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>28</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>whereis</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>29</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>where</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>30</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>havewindow</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>31</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>stacksize</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>32</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>mtlb_mode</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>33</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>link</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>34</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>ulink</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>35</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>c_link</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>36</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>addinter</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>37</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>clear</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>38</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>what</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>39</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>sciargs</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>40</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>chdir</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>41</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>ieee</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>42</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>typename</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>43</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>global</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>44</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>pwd</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>45</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>clearglobal</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>46</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>isglobal</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>47</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>gstacksize</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>48</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>intppty</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>49</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>lasterror</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>50</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>getversion</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>51</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>loadhistory</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>52</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>savehistory</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>53</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>gethistory</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>54</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>resethistory</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>55</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>macr2tree</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>56</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>getos</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>57</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>banner</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>58</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>fromjava</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>59</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>getmemory</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>60</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>fromc</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>61</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>getmd5</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>62</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>warning</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>63</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>getcwd</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>64</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>getmodules</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>65</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>with_module</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>13</GATEWAY_ID>
-  <PRIMITIVE_ID>66</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>getdynlibext</PRIMITIVE_NAME>
-</PRIMITIVE>	
-<!-- =================== -->
-<PRIMITIVE>
-  <GATEWAY_ID>14</GATEWAY_ID>
-  <PRIMITIVE_ID>1</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>user</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
+<PRIMITIVE gatewayId="13" primitiveId="1" primitiveName="debug" />
+<PRIMITIVE gatewayId="13" primitiveId="2" primitiveName="who" />
+<PRIMITIVE gatewayId="13" primitiveId="3" primitiveName="lines" />
+<PRIMITIVE gatewayId="13" primitiveId="4" primitiveName="argn" />
+<PRIMITIVE gatewayId="13" primitiveId="5" primitiveName="fort" />
+<PRIMITIVE gatewayId="13" primitiveId="6" primitiveName="comp" />
+<PRIMITIVE gatewayId="13" primitiveId="7" primitiveName="call" />
+<PRIMITIVE gatewayId="13" primitiveId="8" primitiveName="mode" />
+<PRIMITIVE gatewayId="13" primitiveId="9" primitiveName="type" />
+<PRIMITIVE gatewayId="13" primitiveId="10" primitiveName="error" />
+<PRIMITIVE gatewayId="13" primitiveId="11" primitiveName="resume" />
+<PRIMITIVE gatewayId="13" primitiveId="12" primitiveName="return" />
+<PRIMITIVE gatewayId="13" primitiveId="13" primitiveName="format" />
+<PRIMITIVE gatewayId="13" primitiveId="14" primitiveName="isdef" />
+<PRIMITIVE gatewayId="13" primitiveId="15" primitiveName="exists" />
+<PRIMITIVE gatewayId="13" primitiveId="16" primitiveName="errcatch" />
+<PRIMITIVE gatewayId="13" primitiveId="17" primitiveName="errclear" />
+<PRIMITIVE gatewayId="13" primitiveId="18" primitiveName="iserror" />
+<PRIMITIVE gatewayId="13" primitiveId="19" primitiveName="predef" />
+<PRIMITIVE gatewayId="13" primitiveId="20" primitiveName="newfun" />
+<PRIMITIVE gatewayId="13" primitiveId="21" primitiveName="clearfun" />
+<PRIMITIVE gatewayId="13" primitiveId="22" primitiveName="funptr" />
+<PRIMITIVE gatewayId="13" primitiveId="23" primitiveName="macr2lst" />
+<PRIMITIVE gatewayId="13" primitiveId="24" primitiveName="setbpt" />
+<PRIMITIVE gatewayId="13" primitiveId="25" primitiveName="delbpt" />
+<PRIMITIVE gatewayId="13" primitiveId="26" primitiveName="dispbpt" />
+<PRIMITIVE gatewayId="13" primitiveId="27" primitiveName="funcprot" />
+<PRIMITIVE gatewayId="13" primitiveId="28" primitiveName="whereis" />
+<PRIMITIVE gatewayId="13" primitiveId="29" primitiveName="where" />
+<PRIMITIVE gatewayId="13" primitiveId="30" primitiveName="havewindow" />
+<PRIMITIVE gatewayId="13" primitiveId="31" primitiveName="stacksize" />
+<PRIMITIVE gatewayId="13" primitiveId="32" primitiveName="mtlb_mode" />
+<PRIMITIVE gatewayId="13" primitiveId="33" primitiveName="link" />
+<PRIMITIVE gatewayId="13" primitiveId="34" primitiveName="ulink" />
+<PRIMITIVE gatewayId="13" primitiveId="35" primitiveName="c_link" />
+<PRIMITIVE gatewayId="13" primitiveId="36" primitiveName="addinter" />
+<PRIMITIVE gatewayId="13" primitiveId="37" primitiveName="clear" />
+<PRIMITIVE gatewayId="13" primitiveId="38" primitiveName="what" />
+<PRIMITIVE gatewayId="13" primitiveId="39" primitiveName="sciargs" />
+<PRIMITIVE gatewayId="13" primitiveId="40" primitiveName="chdir" />
+<PRIMITIVE gatewayId="13" primitiveId="41" primitiveName="ieee" />
+<PRIMITIVE gatewayId="13" primitiveId="42" primitiveName="typename" />
+<PRIMITIVE gatewayId="13" primitiveId="43" primitiveName="global" />
+<PRIMITIVE gatewayId="13" primitiveId="44" primitiveName="pwd" />
+<PRIMITIVE gatewayId="13" primitiveId="45" primitiveName="clearglobal" />
+<PRIMITIVE gatewayId="13" primitiveId="46" primitiveName="isglobal" />
+<PRIMITIVE gatewayId="13" primitiveId="47" primitiveName="gstacksize" />
+<PRIMITIVE gatewayId="13" primitiveId="48" primitiveName="intppty" />
+<PRIMITIVE gatewayId="13" primitiveId="49" primitiveName="lasterror" />
+<PRIMITIVE gatewayId="13" primitiveId="50" primitiveName="getversion" />
+<PRIMITIVE gatewayId="13" primitiveId="51" primitiveName="loadhistory" />
+<PRIMITIVE gatewayId="13" primitiveId="52" primitiveName="savehistory" />
+<PRIMITIVE gatewayId="13" primitiveId="53" primitiveName="gethistory" />
+<PRIMITIVE gatewayId="13" primitiveId="54" primitiveName="resethistory" />
+<PRIMITIVE gatewayId="13" primitiveId="55" primitiveName="macr2tree" />
+<PRIMITIVE gatewayId="13" primitiveId="56" primitiveName="getos" />
+<PRIMITIVE gatewayId="13" primitiveId="57" primitiveName="banner" />
+<PRIMITIVE gatewayId="13" primitiveId="58" primitiveName="fromjava" />
+<PRIMITIVE gatewayId="13" primitiveId="59" primitiveName="getmemory" />
+<PRIMITIVE gatewayId="13" primitiveId="60" primitiveName="fromc" />
+<PRIMITIVE gatewayId="13" primitiveId="61" primitiveName="getmd5" />
+<PRIMITIVE gatewayId="13" primitiveId="62" primitiveName="warning" />
+<PRIMITIVE gatewayId="13" primitiveId="63" primitiveName="getcwd" />
+<PRIMITIVE gatewayId="13" primitiveId="64" primitiveName="getmodules" />
+<PRIMITIVE gatewayId="13" primitiveId="65" primitiveName="with_module" />
+<PRIMITIVE gatewayId="13" primitiveId="66" primitiveName="getdynlibext" />
+<PRIMITIVE gatewayId="14" primitiveId="1" primitiveName="user" />
 </GATEWAY>

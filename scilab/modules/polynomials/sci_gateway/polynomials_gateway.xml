@@ -1,87 +1,37 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
-
 <GATEWAY name="polynomials">
-
 <!-- =================== -->
 <!--
- Scilab 
- Allan CORNET
- INRIA 2007
+ Scilab
+ Interface description. In this file, we define the list of the function which
+ will be available into Scilab and the link to the "native" function.
+
+ gatewayId is the position in the hashtable 'Interfaces' defined in the
+ file SCI/modules/core/src/c/callinterf.h
+
+ primitiveId is the position in the hashtable '<module>Table Tab[]' defined
+ in the file modules/<module>/sci_gateway/c/gw_<module>.c
+
+ primitiveName is the name of the Scilab function
+
+ @author Allan CORNET
+ @author Sylvestre LEDRU
+ @date INRIA 2007
  ===================
- Don't edit if you aren't sure
+ Don't touch if you do not know what you are doing
 -->
 <!-- =================== -->
 
-<PRIMITIVE>
-  <GATEWAY_ID>16</GATEWAY_ID>
-  <PRIMITIVE_ID>1</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>poly</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>16</GATEWAY_ID>
-  <PRIMITIVE_ID>2</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>roots</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>16</GATEWAY_ID>
-  <PRIMITIVE_ID>3</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>degree</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>16</GATEWAY_ID>
-  <PRIMITIVE_ID>4</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>coeff</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<!-- 5 eval implicit -->
-
-<PRIMITIVE>
-  <GATEWAY_ID>16</GATEWAY_ID>
-  <PRIMITIVE_ID>6</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>pppdiv</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>16</GATEWAY_ID>
-  <PRIMITIVE_ID>7</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>simp</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<!-- 8 sum implicit -->
-<!-- 9 prod implicit -->
-<!-- 10 diag implicit -->
-<!-- 11 triu implicit -->
-<!-- 12 tril implicit -->
-
-<PRIMITIVE>
-  <GATEWAY_ID>16</GATEWAY_ID>
-  <PRIMITIVE_ID>13</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>bezout</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>16</GATEWAY_ID>
-  <PRIMITIVE_ID>14</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>sfact</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>16</GATEWAY_ID>
-  <PRIMITIVE_ID>15</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>simp_mode</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>16</GATEWAY_ID>
-  <PRIMITIVE_ID>16</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>varn</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<!-- 17 cleanp implicit -->
-
+<PRIMITIVE gatewayId="16" primitiveId="1" primitiveName="poly" />
+<PRIMITIVE gatewayId="16" primitiveId="2" primitiveName="roots" />
+<PRIMITIVE gatewayId="16" primitiveId="3" primitiveName="degree" />
+<PRIMITIVE gatewayId="16" primitiveId="4" primitiveName="coeff" />
+<PRIMITIVE gatewayId="16" primitiveId="6" primitiveName="pppdiv" />
+<PRIMITIVE gatewayId="16" primitiveId="7" primitiveName="simp" />
+<PRIMITIVE gatewayId="16" primitiveId="13" primitiveName="bezout" />
+<PRIMITIVE gatewayId="16" primitiveId="14" primitiveName="sfact" />
+<PRIMITIVE gatewayId="16" primitiveId="15" primitiveName="simp_mode" />
+<PRIMITIVE gatewayId="16" primitiveId="16" primitiveName="varn" />
 </GATEWAY>

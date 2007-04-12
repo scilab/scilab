@@ -1,551 +1,116 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
-
 <GATEWAY name="graphics">
-
 <!-- =================== -->
 <!--
- Scilab 
- Allan CORNET
- INRIA 2007
+ Scilab
+ Interface description. In this file, we define the list of the function which
+ will be available into Scilab and the link to the "native" function.
+
+ gatewayId is the position in the hashtable 'Interfaces' defined in the
+ file SCI/modules/core/src/c/callinterf.h
+
+ primitiveId is the position in the hashtable '<module>Table Tab[]' defined
+ in the file modules/<module>/sci_gateway/c/gw_<module>.c
+
+ primitiveName is the name of the Scilab function
+
+ @author Allan CORNET
+ @author Sylvestre LEDRU
+ @date INRIA 2007
  ===================
- Don't edit if you aren't sure
+ Don't touch if you do not know what you are doing
 -->
 <!-- =================== -->
 
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>1</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>champ</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>2</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>champ1</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>3</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>driver</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>4</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>fec</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>5</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>geom3d</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>6</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>grayplot</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>7</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>Matplot</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>8</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>Matplot1</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>9</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>contour2di</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>10</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>param3d</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>11</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>param3d1</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>12</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>xstringb</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>13</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>plot2d</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>14</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>plot2d1</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>15</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>plot2d2</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>16</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>plot2d3</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>17</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>plot2d4</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>18</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>plot3d</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>19</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>plot3d1</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>20</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>winsid</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>21</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>xarc</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>22</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>xarcs</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>23</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>xarrows</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>24</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>drawaxis</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>25</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>xchange</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>26</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>xclea</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>27</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>oldxclear</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>28</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>xclick</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>29</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>xdel</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>30</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>xend</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>31</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>xfarc</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>32</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>xfarcs</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>33</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>xfpoly</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>34</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>xfpolys</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>35</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>xfrect</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>36</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>xg2ps</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>37</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>xget</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>38</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>xgetech</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>39</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>xgetmouse</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>40</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>xgrid</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>41</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>xinit</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>42</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>xlfont</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>43</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>xpoly</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>44</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>xpolys</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>45</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>xrect</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>46</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>xrects</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>47</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>xs2fig</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>48</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>xsegs</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>49</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>show_window</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>50</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>xset</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>51</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>xsetech</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>52</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>xstring</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>53</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>xstringl</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>54</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>xtape</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>55</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>xtitle</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>56</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>xgraduate</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>57</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>xname</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>58</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>xaxis</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>59</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>xs2gif</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>60</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>xs2ppm</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>61</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>xs2ps</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>62</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>xs2bmp</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>63</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>xs2emf</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>64</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>set_posfig_dim</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>65</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>xsnative</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>66</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>zoom_rect</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>67</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>unzoom</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>68</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>StringBox</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>69</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>move</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>70</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>glue</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>71</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>unglue</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>72</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>drawnow</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>73</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>drawlater</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>74</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>draw</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>75</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>addcb</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>76</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>copy</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>77</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>delete</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>78</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>get</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>79</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>set</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>80</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>newaxes</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>81</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>relocate_handle</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>82</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>swap_handles</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>83</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>gsort</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>84</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>help_gtk</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>85</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>UImenu</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>85</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>UImenu</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>86</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>showalluimenushandles</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>87</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>readxbm</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>7</GATEWAY_ID>
-  <PRIMITIVE_ID>88</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>readgif</PRIMITIVE_NAME>
-</PRIMITIVE>
-
+<PRIMITIVE gatewayId="7" primitiveId="1" primitiveName="champ" />
+<PRIMITIVE gatewayId="7" primitiveId="2" primitiveName="champ1" />
+<PRIMITIVE gatewayId="7" primitiveId="3" primitiveName="driver" />
+<PRIMITIVE gatewayId="7" primitiveId="4" primitiveName="fec" />
+<PRIMITIVE gatewayId="7" primitiveId="5" primitiveName="geom3d" />
+<PRIMITIVE gatewayId="7" primitiveId="6" primitiveName="grayplot" />
+<PRIMITIVE gatewayId="7" primitiveId="7" primitiveName="Matplot" />
+<PRIMITIVE gatewayId="7" primitiveId="8" primitiveName="Matplot1" />
+<PRIMITIVE gatewayId="7" primitiveId="9" primitiveName="contour2di" />
+<PRIMITIVE gatewayId="7" primitiveId="10" primitiveName="param3d" />
+<PRIMITIVE gatewayId="7" primitiveId="11" primitiveName="param3d1" />
+<PRIMITIVE gatewayId="7" primitiveId="12" primitiveName="xstringb" />
+<PRIMITIVE gatewayId="7" primitiveId="13" primitiveName="plot2d" />
+<PRIMITIVE gatewayId="7" primitiveId="14" primitiveName="plot2d1" />
+<PRIMITIVE gatewayId="7" primitiveId="15" primitiveName="plot2d2" />
+<PRIMITIVE gatewayId="7" primitiveId="16" primitiveName="plot2d3" />
+<PRIMITIVE gatewayId="7" primitiveId="17" primitiveName="plot2d4" />
+<PRIMITIVE gatewayId="7" primitiveId="18" primitiveName="plot3d" />
+<PRIMITIVE gatewayId="7" primitiveId="19" primitiveName="plot3d1" />
+<PRIMITIVE gatewayId="7" primitiveId="20" primitiveName="winsid" />
+<PRIMITIVE gatewayId="7" primitiveId="21" primitiveName="xarc" />
+<PRIMITIVE gatewayId="7" primitiveId="22" primitiveName="xarcs" />
+<PRIMITIVE gatewayId="7" primitiveId="23" primitiveName="xarrows" />
+<PRIMITIVE gatewayId="7" primitiveId="24" primitiveName="drawaxis" />
+<PRIMITIVE gatewayId="7" primitiveId="25" primitiveName="xchange" />
+<PRIMITIVE gatewayId="7" primitiveId="26" primitiveName="xclea" />
+<PRIMITIVE gatewayId="7" primitiveId="27" primitiveName="oldxclear" />
+<PRIMITIVE gatewayId="7" primitiveId="28" primitiveName="xclick" />
+<PRIMITIVE gatewayId="7" primitiveId="29" primitiveName="xdel" />
+<PRIMITIVE gatewayId="7" primitiveId="30" primitiveName="xend" />
+<PRIMITIVE gatewayId="7" primitiveId="31" primitiveName="xfarc" />
+<PRIMITIVE gatewayId="7" primitiveId="32" primitiveName="xfarcs" />
+<PRIMITIVE gatewayId="7" primitiveId="33" primitiveName="xfpoly" />
+<PRIMITIVE gatewayId="7" primitiveId="34" primitiveName="xfpolys" />
+<PRIMITIVE gatewayId="7" primitiveId="35" primitiveName="xfrect" />
+<PRIMITIVE gatewayId="7" primitiveId="36" primitiveName="xg2ps" />
+<PRIMITIVE gatewayId="7" primitiveId="37" primitiveName="xget" />
+<PRIMITIVE gatewayId="7" primitiveId="38" primitiveName="xgetech" />
+<PRIMITIVE gatewayId="7" primitiveId="39" primitiveName="xgetmouse" />
+<PRIMITIVE gatewayId="7" primitiveId="40" primitiveName="xgrid" />
+<PRIMITIVE gatewayId="7" primitiveId="41" primitiveName="xinit" />
+<PRIMITIVE gatewayId="7" primitiveId="42" primitiveName="xlfont" />
+<PRIMITIVE gatewayId="7" primitiveId="43" primitiveName="xpoly" />
+<PRIMITIVE gatewayId="7" primitiveId="44" primitiveName="xpolys" />
+<PRIMITIVE gatewayId="7" primitiveId="45" primitiveName="xrect" />
+<PRIMITIVE gatewayId="7" primitiveId="46" primitiveName="xrects" />
+<PRIMITIVE gatewayId="7" primitiveId="47" primitiveName="xs2fig" />
+<PRIMITIVE gatewayId="7" primitiveId="48" primitiveName="xsegs" />
+<PRIMITIVE gatewayId="7" primitiveId="49" primitiveName="show_window" />
+<PRIMITIVE gatewayId="7" primitiveId="50" primitiveName="xset" />
+<PRIMITIVE gatewayId="7" primitiveId="51" primitiveName="xsetech" />
+<PRIMITIVE gatewayId="7" primitiveId="52" primitiveName="xstring" />
+<PRIMITIVE gatewayId="7" primitiveId="53" primitiveName="xstringl" />
+<PRIMITIVE gatewayId="7" primitiveId="54" primitiveName="xtape" />
+<PRIMITIVE gatewayId="7" primitiveId="55" primitiveName="xtitle" />
+<PRIMITIVE gatewayId="7" primitiveId="56" primitiveName="xgraduate" />
+<PRIMITIVE gatewayId="7" primitiveId="57" primitiveName="xname" />
+<PRIMITIVE gatewayId="7" primitiveId="58" primitiveName="xaxis" />
+<PRIMITIVE gatewayId="7" primitiveId="59" primitiveName="xs2gif" />
+<PRIMITIVE gatewayId="7" primitiveId="60" primitiveName="xs2ppm" />
+<PRIMITIVE gatewayId="7" primitiveId="61" primitiveName="xs2ps" />
+<PRIMITIVE gatewayId="7" primitiveId="62" primitiveName="xs2bmp" />
+<PRIMITIVE gatewayId="7" primitiveId="63" primitiveName="xs2emf" />
+<PRIMITIVE gatewayId="7" primitiveId="64" primitiveName="set_posfig_dim" />
+<PRIMITIVE gatewayId="7" primitiveId="65" primitiveName="xsnative" />
+<PRIMITIVE gatewayId="7" primitiveId="66" primitiveName="zoom_rect" />
+<PRIMITIVE gatewayId="7" primitiveId="67" primitiveName="unzoom" />
+<PRIMITIVE gatewayId="7" primitiveId="68" primitiveName="StringBox" />
+<PRIMITIVE gatewayId="7" primitiveId="69" primitiveName="move" />
+<PRIMITIVE gatewayId="7" primitiveId="70" primitiveName="glue" />
+<PRIMITIVE gatewayId="7" primitiveId="71" primitiveName="unglue" />
+<PRIMITIVE gatewayId="7" primitiveId="72" primitiveName="drawnow" />
+<PRIMITIVE gatewayId="7" primitiveId="73" primitiveName="drawlater" />
+<PRIMITIVE gatewayId="7" primitiveId="74" primitiveName="draw" />
+<PRIMITIVE gatewayId="7" primitiveId="75" primitiveName="addcb" />
+<PRIMITIVE gatewayId="7" primitiveId="76" primitiveName="copy" />
+<PRIMITIVE gatewayId="7" primitiveId="77" primitiveName="delete" />
+<PRIMITIVE gatewayId="7" primitiveId="78" primitiveName="get" />
+<PRIMITIVE gatewayId="7" primitiveId="79" primitiveName="set" />
+<PRIMITIVE gatewayId="7" primitiveId="80" primitiveName="newaxes" />
+<PRIMITIVE gatewayId="7" primitiveId="81" primitiveName="relocate_handle" />
+<PRIMITIVE gatewayId="7" primitiveId="82" primitiveName="swap_handles" />
+<PRIMITIVE gatewayId="7" primitiveId="83" primitiveName="gsort" />
+<PRIMITIVE gatewayId="7" primitiveId="84" primitiveName="help_gtk" />
+<PRIMITIVE gatewayId="7" primitiveId="85" primitiveName="UImenu" />
+<PRIMITIVE gatewayId="7" primitiveId="85" primitiveName="UImenu" />
+<PRIMITIVE gatewayId="7" primitiveId="86" primitiveName="showalluimenushandles" />
+<PRIMITIVE gatewayId="7" primitiveId="87" primitiveName="readxbm" />
+<PRIMITIVE gatewayId="7" primitiveId="88" primitiveName="readgif" />
 </GATEWAY>

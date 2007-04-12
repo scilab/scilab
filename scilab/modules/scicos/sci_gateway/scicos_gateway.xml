@@ -1,169 +1,52 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
-
 <GATEWAY name="scicos">
-
 <!-- =================== -->
 <!--
- Scilab 
- Allan CORNET
- INRIA 2007
+ Scilab
+ Interface description. In this file, we define the list of the function which
+ will be available into Scilab and the link to the "native" function.
+
+ gatewayId is the position in the hashtable 'Interfaces' defined in the
+ file SCI/modules/core/src/c/callinterf.h
+
+ primitiveId is the position in the hashtable '<module>Table Tab[]' defined
+ in the file modules/<module>/sci_gateway/c/gw_<module>.c
+
+ primitiveName is the name of the Scilab function
+
+ @author Allan CORNET
+ @author Sylvestre LEDRU
+ @date INRIA 2007
  ===================
- Don't edit if you aren't sure
+ Don't touch if you do not know what you are doing
 -->
 <!-- =================== -->
 
-<PRIMITIVE>
-  <GATEWAY_ID>45</GATEWAY_ID>
-  <PRIMITIVE_ID>1</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>var2vec</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>45</GATEWAY_ID>
-  <PRIMITIVE_ID>2</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>vec2var</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>45</GATEWAY_ID>
-  <PRIMITIVE_ID>3</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>curblock</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>45</GATEWAY_ID>
-  <PRIMITIVE_ID>4</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>getblocklabel</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>45</GATEWAY_ID>
-  <PRIMITIVE_ID>5</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>scicos_debug</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>45</GATEWAY_ID>
-  <PRIMITIVE_ID>6</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>scicos_debug_count</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>45</GATEWAY_ID>
-  <PRIMITIVE_ID>7</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>sctree</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>45</GATEWAY_ID>
-  <PRIMITIVE_ID>8</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>sci_tree2</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>45</GATEWAY_ID>
-  <PRIMITIVE_ID>9</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>sci_tree3</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>45</GATEWAY_ID>
-  <PRIMITIVE_ID>10</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>sci_tree4</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<!-- =================== -->
-
-<PRIMITIVE>
-  <GATEWAY_ID>46</GATEWAY_ID>
-  <PRIMITIVE_ID>1</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>scicos_time</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>46</GATEWAY_ID>
-  <PRIMITIVE_ID>2</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>duplicate</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>46</GATEWAY_ID>
-  <PRIMITIVE_ID>3</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>diffobjs</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>46</GATEWAY_ID>
-  <PRIMITIVE_ID>4</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>pointer_xproperty</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>46</GATEWAY_ID>
-  <PRIMITIVE_ID>5</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>phase_simulation</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>46</GATEWAY_ID>
-  <PRIMITIVE_ID>6</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>set_xproperty</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>46</GATEWAY_ID>
-  <PRIMITIVE_ID>7</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>scicos_cpass2</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>46</GATEWAY_ID>
-  <PRIMITIVE_ID>8</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>set_blockerror</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>46</GATEWAY_ID>
-  <PRIMITIVE_ID>9</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>ctree2</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>46</GATEWAY_ID>
-  <PRIMITIVE_ID>10</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>ctree3</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>46</GATEWAY_ID>
-  <PRIMITIVE_ID>11</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>ctree4</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>46</GATEWAY_ID>
-  <PRIMITIVE_ID>12</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>scicosim</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>46</GATEWAY_ID>
-  <PRIMITIVE_ID>13</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>getscicosvars</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>46</GATEWAY_ID>
-  <PRIMITIVE_ID>14</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>curblockc</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>46</GATEWAY_ID>
-  <PRIMITIVE_ID>15</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>buildouttb</PRIMITIVE_NAME>
-</PRIMITIVE>
-
+<PRIMITIVE gatewayId="45" primitiveId="1" primitiveName="var2vec" />
+<PRIMITIVE gatewayId="45" primitiveId="2" primitiveName="vec2var" />
+<PRIMITIVE gatewayId="45" primitiveId="3" primitiveName="curblock" />
+<PRIMITIVE gatewayId="45" primitiveId="4" primitiveName="getblocklabel" />
+<PRIMITIVE gatewayId="45" primitiveId="5" primitiveName="scicos_debug" />
+<PRIMITIVE gatewayId="45" primitiveId="6" primitiveName="scicos_debug_count" />
+<PRIMITIVE gatewayId="45" primitiveId="7" primitiveName="sctree" />
+<PRIMITIVE gatewayId="45" primitiveId="8" primitiveName="sci_tree2" />
+<PRIMITIVE gatewayId="45" primitiveId="9" primitiveName="sci_tree3" />
+<PRIMITIVE gatewayId="45" primitiveId="10" primitiveName="sci_tree4" />
+<PRIMITIVE gatewayId="46" primitiveId="1" primitiveName="scicos_time" />
+<PRIMITIVE gatewayId="46" primitiveId="2" primitiveName="duplicate" />
+<PRIMITIVE gatewayId="46" primitiveId="3" primitiveName="diffobjs" />
+<PRIMITIVE gatewayId="46" primitiveId="4" primitiveName="pointer_xproperty" />
+<PRIMITIVE gatewayId="46" primitiveId="5" primitiveName="phase_simulation" />
+<PRIMITIVE gatewayId="46" primitiveId="6" primitiveName="set_xproperty" />
+<PRIMITIVE gatewayId="46" primitiveId="7" primitiveName="scicos_cpass2" />
+<PRIMITIVE gatewayId="46" primitiveId="8" primitiveName="set_blockerror" />
+<PRIMITIVE gatewayId="46" primitiveId="9" primitiveName="ctree2" />
+<PRIMITIVE gatewayId="46" primitiveId="10" primitiveName="ctree3" />
+<PRIMITIVE gatewayId="46" primitiveId="11" primitiveName="ctree4" />
+<PRIMITIVE gatewayId="46" primitiveId="12" primitiveName="scicosim" />
+<PRIMITIVE gatewayId="46" primitiveId="13" primitiveName="getscicosvars" />
+<PRIMITIVE gatewayId="46" primitiveId="14" primitiveName="curblockc" />
+<PRIMITIVE gatewayId="46" primitiveId="15" primitiveName="buildouttb" />
 </GATEWAY>

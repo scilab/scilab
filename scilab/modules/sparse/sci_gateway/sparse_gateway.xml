@@ -1,155 +1,49 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
-
 <GATEWAY name="sparse">
-
 <!-- =================== -->
 <!--
- Scilab 
- Allan CORNET
- INRIA 2007
+ Scilab
+ Interface description. In this file, we define the list of the function which
+ will be available into Scilab and the link to the "native" function.
+
+ gatewayId is the position in the hashtable 'Interfaces' defined in the
+ file SCI/modules/core/src/c/callinterf.h
+
+ primitiveId is the position in the hashtable '<module>Table Tab[]' defined
+ in the file modules/<module>/sci_gateway/c/gw_<module>.c
+
+ primitiveName is the name of the Scilab function
+
+ @author Allan CORNET
+ @author Sylvestre LEDRU
+ @date INRIA 2007
  ===================
- Don't edit if you aren't sure
+ Don't touch if you do not know what you are doing
 -->
 <!-- =================== -->
 
-<PRIMITIVE>
-  <GATEWAY_ID>27</GATEWAY_ID>
-  <PRIMITIVE_ID>1</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>sparse</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>27</GATEWAY_ID>
-  <PRIMITIVE_ID>2</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>spget</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>27</GATEWAY_ID>
-  <PRIMITIVE_ID>3</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>full</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>27</GATEWAY_ID>
-  <PRIMITIVE_ID>4</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>lufact</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>27</GATEWAY_ID>
-  <PRIMITIVE_ID>5</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>lusolve</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>27</GATEWAY_ID>
-  <PRIMITIVE_ID>6</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>ludel</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>27</GATEWAY_ID>
-  <PRIMITIVE_ID>7</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>luget</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<!-- 8 spclean -->
-
-<PRIMITIVE>
-  <GATEWAY_ID>27</GATEWAY_ID>
-  <PRIMITIVE_ID>9</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>nnz</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<!-- 10 spmax -->
-<!-- 11 spmin -->
-<!-- 12 spmatrix -->
-
-<PRIMITIVE>
-  <GATEWAY_ID>27</GATEWAY_ID>
-  <PRIMITIVE_ID>13</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>spchol</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>27</GATEWAY_ID>
-  <PRIMITIVE_ID>14</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>readmps</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>27</GATEWAY_ID>
-  <PRIMITIVE_ID>15</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>fadj2sp</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>27</GATEWAY_ID>
-  <PRIMITIVE_ID>16</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>spcompack</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>27</GATEWAY_ID>
-  <PRIMITIVE_ID>17</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>ordmmd</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>27</GATEWAY_ID>
-  <PRIMITIVE_ID>18</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>blkfc1i</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>27</GATEWAY_ID>
-  <PRIMITIVE_ID>19</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>blkslvi</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>27</GATEWAY_ID>
-  <PRIMITIVE_ID>20</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>inpnvi</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>27</GATEWAY_ID>
-  <PRIMITIVE_ID>21</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>sfinit</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>27</GATEWAY_ID>
-  <PRIMITIVE_ID>22</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>symfcti</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>27</GATEWAY_ID>
-  <PRIMITIVE_ID>23</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>bfinit</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>27</GATEWAY_ID>
-  <PRIMITIVE_ID>24</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>mtlb_sparse</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>27</GATEWAY_ID>
-  <PRIMITIVE_ID>25</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>%msp_spget</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>27</GATEWAY_ID>
-  <PRIMITIVE_ID>26</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>%msp_full</PRIMITIVE_NAME>
-</PRIMITIVE>
-
+<PRIMITIVE gatewayId="27" primitiveId="1" primitiveName="sparse" />
+<PRIMITIVE gatewayId="27" primitiveId="2" primitiveName="spget" />
+<PRIMITIVE gatewayId="27" primitiveId="3" primitiveName="full" />
+<PRIMITIVE gatewayId="27" primitiveId="4" primitiveName="lufact" />
+<PRIMITIVE gatewayId="27" primitiveId="5" primitiveName="lusolve" />
+<PRIMITIVE gatewayId="27" primitiveId="6" primitiveName="ludel" />
+<PRIMITIVE gatewayId="27" primitiveId="7" primitiveName="luget" />
+<PRIMITIVE gatewayId="27" primitiveId="9" primitiveName="nnz" />
+<PRIMITIVE gatewayId="27" primitiveId="13" primitiveName="spchol" />
+<PRIMITIVE gatewayId="27" primitiveId="14" primitiveName="readmps" />
+<PRIMITIVE gatewayId="27" primitiveId="15" primitiveName="fadj2sp" />
+<PRIMITIVE gatewayId="27" primitiveId="16" primitiveName="spcompack" />
+<PRIMITIVE gatewayId="27" primitiveId="17" primitiveName="ordmmd" />
+<PRIMITIVE gatewayId="27" primitiveId="18" primitiveName="blkfc1i" />
+<PRIMITIVE gatewayId="27" primitiveId="19" primitiveName="blkslvi" />
+<PRIMITIVE gatewayId="27" primitiveId="20" primitiveName="inpnvi" />
+<PRIMITIVE gatewayId="27" primitiveId="21" primitiveName="sfinit" />
+<PRIMITIVE gatewayId="27" primitiveId="22" primitiveName="symfcti" />
+<PRIMITIVE gatewayId="27" primitiveId="23" primitiveName="bfinit" />
+<PRIMITIVE gatewayId="27" primitiveId="24" primitiveName="mtlb_sparse" />
+<PRIMITIVE gatewayId="27" primitiveId="25" primitiveName="%msp_spget" />
+<PRIMITIVE gatewayId="27" primitiveId="26" primitiveName="%msp_full" />
 </GATEWAY>

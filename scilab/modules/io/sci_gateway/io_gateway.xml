@@ -1,197 +1,57 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
-
 <GATEWAY name="io">
-
 <!-- =================== -->
 <!--
- Scilab 
- Allan CORNET
- INRIA 2007
+ Scilab
+ Interface description. In this file, we define the list of the function which
+ will be available into Scilab and the link to the "native" function.
+
+ gatewayId is the position in the hashtable 'Interfaces' defined in the
+ file SCI/modules/core/src/c/callinterf.h
+
+ primitiveId is the position in the hashtable '<module>Table Tab[]' defined
+ in the file modules/<module>/sci_gateway/c/gw_<module>.c
+
+ primitiveName is the name of the Scilab function
+
+ @author Allan CORNET
+ @author Sylvestre LEDRU
+ @date INRIA 2007
  ===================
- Don't edit if you aren't sure
+ Don't touch if you do not know what you are doing
 -->
 <!-- =================== -->
 
-<PRIMITIVE>
-  <GATEWAY_ID>5</GATEWAY_ID>
-  <PRIMITIVE_ID>1</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>oldload</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>5</GATEWAY_ID>
-  <PRIMITIVE_ID>2</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>read</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>5</GATEWAY_ID>
-  <PRIMITIVE_ID>3</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>getf</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>5</GATEWAY_ID>
-  <PRIMITIVE_ID>4</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>exec</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>5</GATEWAY_ID>
-  <PRIMITIVE_ID>5</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>lib</PRIMITIVE_NAME>
-</PRIMITIVE>		
-
-<PRIMITIVE>
-  <GATEWAY_ID>5</GATEWAY_ID>
-  <PRIMITIVE_ID>6</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>diary</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>5</GATEWAY_ID>
-  <PRIMITIVE_ID>7</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>oldsave</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>5</GATEWAY_ID>
-  <PRIMITIVE_ID>8</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>write</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>5</GATEWAY_ID>
-  <PRIMITIVE_ID>9</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>print</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>5</GATEWAY_ID>
-  <PRIMITIVE_ID>10</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>rat</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>5</GATEWAY_ID>
-  <PRIMITIVE_ID>11</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>deff</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>5</GATEWAY_ID>
-  <PRIMITIVE_ID>12</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>file</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>5</GATEWAY_ID>
-  <PRIMITIVE_ID>13</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>host</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>5</GATEWAY_ID>
-  <PRIMITIVE_ID>14</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>unix</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>5</GATEWAY_ID>
-  <PRIMITIVE_ID>15</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>readb</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>5</GATEWAY_ID>
-  <PRIMITIVE_ID>16</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>writb</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>5</GATEWAY_ID>
-  <PRIMITIVE_ID>17</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>execstr</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>5</GATEWAY_ID>
-  <PRIMITIVE_ID>18</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>disp</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>5</GATEWAY_ID>
-  <PRIMITIVE_ID>19</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>getpid</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>5</GATEWAY_ID>
-  <PRIMITIVE_ID>20</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>getenv</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>5</GATEWAY_ID>
-  <PRIMITIVE_ID>21</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>read4b</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>5</GATEWAY_ID>
-  <PRIMITIVE_ID>22</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>write4b</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>5</GATEWAY_ID>
-  <PRIMITIVE_ID>23</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>save</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>5</GATEWAY_ID>
-  <PRIMITIVE_ID>24</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>load</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>5</GATEWAY_ID>
-  <PRIMITIVE_ID>25</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>mgetl</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>5</GATEWAY_ID>
-  <PRIMITIVE_ID>26</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>fileinfo</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>5</GATEWAY_ID>
-  <PRIMITIVE_ID>27</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>getio</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>5</GATEWAY_ID>
-  <PRIMITIVE_ID>28</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>setenv</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>5</GATEWAY_ID>
-  <PRIMITIVE_ID>29</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>getrelativefilename</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>5</GATEWAY_ID>
-  <PRIMITIVE_ID>30</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>newest</PRIMITIVE_NAME>
-</PRIMITIVE>
-
+<PRIMITIVE gatewayId="5" primitiveId="1" primitiveName="oldload" />
+<PRIMITIVE gatewayId="5" primitiveId="2" primitiveName="read" />
+<PRIMITIVE gatewayId="5" primitiveId="3" primitiveName="getf" />
+<PRIMITIVE gatewayId="5" primitiveId="4" primitiveName="exec" />
+<PRIMITIVE gatewayId="5" primitiveId="5" primitiveName="lib" />
+<PRIMITIVE gatewayId="5" primitiveId="6" primitiveName="diary" />
+<PRIMITIVE gatewayId="5" primitiveId="7" primitiveName="oldsave" />
+<PRIMITIVE gatewayId="5" primitiveId="8" primitiveName="write" />
+<PRIMITIVE gatewayId="5" primitiveId="9" primitiveName="print" />
+<PRIMITIVE gatewayId="5" primitiveId="10" primitiveName="rat" />
+<PRIMITIVE gatewayId="5" primitiveId="11" primitiveName="deff" />
+<PRIMITIVE gatewayId="5" primitiveId="12" primitiveName="file" />
+<PRIMITIVE gatewayId="5" primitiveId="13" primitiveName="host" />
+<PRIMITIVE gatewayId="5" primitiveId="14" primitiveName="unix" />
+<PRIMITIVE gatewayId="5" primitiveId="15" primitiveName="readb" />
+<PRIMITIVE gatewayId="5" primitiveId="16" primitiveName="writb" />
+<PRIMITIVE gatewayId="5" primitiveId="17" primitiveName="execstr" />
+<PRIMITIVE gatewayId="5" primitiveId="18" primitiveName="disp" />
+<PRIMITIVE gatewayId="5" primitiveId="19" primitiveName="getpid" />
+<PRIMITIVE gatewayId="5" primitiveId="20" primitiveName="getenv" />
+<PRIMITIVE gatewayId="5" primitiveId="21" primitiveName="read4b" />
+<PRIMITIVE gatewayId="5" primitiveId="22" primitiveName="write4b" />
+<PRIMITIVE gatewayId="5" primitiveId="23" primitiveName="save" />
+<PRIMITIVE gatewayId="5" primitiveId="24" primitiveName="load" />
+<PRIMITIVE gatewayId="5" primitiveId="25" primitiveName="mgetl" />
+<PRIMITIVE gatewayId="5" primitiveId="26" primitiveName="fileinfo" />
+<PRIMITIVE gatewayId="5" primitiveId="27" primitiveName="getio" />
+<PRIMITIVE gatewayId="5" primitiveId="28" primitiveName="setenv" />
+<PRIMITIVE gatewayId="5" primitiveId="29" primitiveName="getrelativefilename" />
+<PRIMITIVE gatewayId="5" primitiveId="30" primitiveName="newest" />
 </GATEWAY>

@@ -1,216 +1,60 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
-
 <GATEWAY name="pvm">
-
 <!-- =================== -->
 <!--
- Scilab 
- Allan CORNET
- INRIA 2007
+ Scilab
+ Interface description. In this file, we define the list of the function which
+ will be available into Scilab and the link to the "native" function.
+
+ gatewayId is the position in the hashtable 'Interfaces' defined in the
+ file SCI/modules/core/src/c/callinterf.h
+
+ primitiveId is the position in the hashtable '<module>Table Tab[]' defined
+ in the file modules/<module>/sci_gateway/c/gw_<module>.c
+
+ primitiveName is the name of the Scilab function
+
+ @author Allan CORNET
+ @author Sylvestre LEDRU
+ @date INRIA 2007
  ===================
- Don't edit if you aren't sure
+ Don't touch if you do not know what you are doing
 -->
 <!-- =================== -->
 
-<PRIMITIVE>
-  <GATEWAY_ID>42</GATEWAY_ID>
-  <PRIMITIVE_ID>1</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>pvm_joingroup</PRIMITIVE_NAME>
-</PRIMITIVE>	
-
-<PRIMITIVE>
-  <GATEWAY_ID>42</GATEWAY_ID>
-  <PRIMITIVE_ID>2</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>pvm_lvgroup</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>42</GATEWAY_ID>
-  <PRIMITIVE_ID>3</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>pvm_gsize</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>42</GATEWAY_ID>
-  <PRIMITIVE_ID>4</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>pvm_gettid</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>42</GATEWAY_ID>
-  <PRIMITIVE_ID>5</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>pvm_getinst</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>42</GATEWAY_ID>
-  <PRIMITIVE_ID>6</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>pvm_barrier</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>42</GATEWAY_ID>
-  <PRIMITIVE_ID>7</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>pvm_bcast</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>42</GATEWAY_ID>
-  <PRIMITIVE_ID>8</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>pvm_tasks</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>42</GATEWAY_ID>
-  <PRIMITIVE_ID>9</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>pvm_config</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>42</GATEWAY_ID>
-  <PRIMITIVE_ID>10</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>pvm_addhosts</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>42</GATEWAY_ID>
-  <PRIMITIVE_ID>11</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>pvm_delhosts</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>42</GATEWAY_ID>
-  <PRIMITIVE_ID>12</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>pvm_parent</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>42</GATEWAY_ID>
-  <PRIMITIVE_ID>13</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>pvm_tidtohost</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>42</GATEWAY_ID>
-  <PRIMITIVE_ID>14</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>pvm_set_timer</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>42</GATEWAY_ID>
-  <PRIMITIVE_ID>15</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>pvm_get_timer</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>42</GATEWAY_ID>
-  <PRIMITIVE_ID>16</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>pvm_mytid</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>42</GATEWAY_ID>
-  <PRIMITIVE_ID>17</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>pvm_exit</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>42</GATEWAY_ID>
-  <PRIMITIVE_ID>18</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>pvm_kill</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>42</GATEWAY_ID>
-  <PRIMITIVE_ID>19</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>pvm_spawn</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>42</GATEWAY_ID>
-  <PRIMITIVE_ID>20</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>pvm_spawn_independent</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>42</GATEWAY_ID>
-  <PRIMITIVE_ID>21</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>pvm_recv</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>42</GATEWAY_ID>
-  <PRIMITIVE_ID>22</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>pvm_send</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>42</GATEWAY_ID>
-  <PRIMITIVE_ID>23</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>pvm_recv_var</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>42</GATEWAY_ID>
-  <PRIMITIVE_ID>24</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>pvm_send_var</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>42</GATEWAY_ID>
-  <PRIMITIVE_ID>25</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>pvm_reduce</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>42</GATEWAY_ID>
-  <PRIMITIVE_ID>26</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>pvm_start</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>42</GATEWAY_ID>
-  <PRIMITIVE_ID>27</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>pvm_halt</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>42</GATEWAY_ID>
-  <PRIMITIVE_ID>28</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>pvm_error</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>42</GATEWAY_ID>
-  <PRIMITIVE_ID>29</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>pvm_sci2f77</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>42</GATEWAY_ID>
-  <PRIMITIVE_ID>30</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>pvm_f772sci</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>42</GATEWAY_ID>
-  <PRIMITIVE_ID>31</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>pvm_probe</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>42</GATEWAY_ID>
-  <PRIMITIVE_ID>32</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>pvm_bufinfo</PRIMITIVE_NAME>
-</PRIMITIVE>
-
-<PRIMITIVE>
-  <GATEWAY_ID>42</GATEWAY_ID>
-  <PRIMITIVE_ID>33</PRIMITIVE_ID>
-	<PRIMITIVE_NAME>pvm_error_mode</PRIMITIVE_NAME>
-</PRIMITIVE>
-
+<PRIMITIVE gatewayId="42" primitiveId="1" primitiveName="pvm_joingroup" />
+<PRIMITIVE gatewayId="42" primitiveId="2" primitiveName="pvm_lvgroup" />
+<PRIMITIVE gatewayId="42" primitiveId="3" primitiveName="pvm_gsize" />
+<PRIMITIVE gatewayId="42" primitiveId="4" primitiveName="pvm_gettid" />
+<PRIMITIVE gatewayId="42" primitiveId="5" primitiveName="pvm_getinst" />
+<PRIMITIVE gatewayId="42" primitiveId="6" primitiveName="pvm_barrier" />
+<PRIMITIVE gatewayId="42" primitiveId="7" primitiveName="pvm_bcast" />
+<PRIMITIVE gatewayId="42" primitiveId="8" primitiveName="pvm_tasks" />
+<PRIMITIVE gatewayId="42" primitiveId="9" primitiveName="pvm_config" />
+<PRIMITIVE gatewayId="42" primitiveId="10" primitiveName="pvm_addhosts" />
+<PRIMITIVE gatewayId="42" primitiveId="11" primitiveName="pvm_delhosts" />
+<PRIMITIVE gatewayId="42" primitiveId="12" primitiveName="pvm_parent" />
+<PRIMITIVE gatewayId="42" primitiveId="13" primitiveName="pvm_tidtohost" />
+<PRIMITIVE gatewayId="42" primitiveId="14" primitiveName="pvm_set_timer" />
+<PRIMITIVE gatewayId="42" primitiveId="15" primitiveName="pvm_get_timer" />
+<PRIMITIVE gatewayId="42" primitiveId="16" primitiveName="pvm_mytid" />
+<PRIMITIVE gatewayId="42" primitiveId="17" primitiveName="pvm_exit" />
+<PRIMITIVE gatewayId="42" primitiveId="18" primitiveName="pvm_kill" />
+<PRIMITIVE gatewayId="42" primitiveId="19" primitiveName="pvm_spawn" />
+<PRIMITIVE gatewayId="42" primitiveId="20" primitiveName="pvm_spawn_independent" />
+<PRIMITIVE gatewayId="42" primitiveId="21" primitiveName="pvm_recv" />
+<PRIMITIVE gatewayId="42" primitiveId="22" primitiveName="pvm_send" />
+<PRIMITIVE gatewayId="42" primitiveId="23" primitiveName="pvm_recv_var" />
+<PRIMITIVE gatewayId="42" primitiveId="24" primitiveName="pvm_send_var" />
+<PRIMITIVE gatewayId="42" primitiveId="25" primitiveName="pvm_reduce" />
+<PRIMITIVE gatewayId="42" primitiveId="26" primitiveName="pvm_start" />
+<PRIMITIVE gatewayId="42" primitiveId="27" primitiveName="pvm_halt" />
+<PRIMITIVE gatewayId="42" primitiveId="28" primitiveName="pvm_error" />
+<PRIMITIVE gatewayId="42" primitiveId="29" primitiveName="pvm_sci2f77" />
+<PRIMITIVE gatewayId="42" primitiveId="30" primitiveName="pvm_f772sci" />
+<PRIMITIVE gatewayId="42" primitiveId="31" primitiveName="pvm_probe" />
+<PRIMITIVE gatewayId="42" primitiveId="32" primitiveName="pvm_bufinfo" />
+<PRIMITIVE gatewayId="42" primitiveId="33" primitiveName="pvm_error_mode" />
 </GATEWAY>
-     
