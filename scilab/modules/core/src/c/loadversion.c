@@ -9,25 +9,20 @@
 #include "with_module.h"
 #include "setgetSCIpath.h"
 #include "MALLOC.h"
+#include "libxml/xmlreader.h"
+#include "GetXmlFileEncoding.h"
+#include "../../../fileio/includes/FileExist.h"
 /*-----------------------------------------------------------------------------------*/ 
-#define FORMATFILENAMEVERSION  "%s/modules/%s/VERSION" 
-#define SCI_VERSION_MAJOR_keyword "SCI_VERSION_MAJOR"
-#define SCI_VERSION_MINOR_keyword "SCI_VERSION_MINOR"
-#define SCI_VERSION_MAINTENANCE_keyword "SCI_VERSION_MAINTENANCE"
-#define SCI_VERSION_STRING_keyword "SCI_VERSION_STRING"
-#define SCI_VERSION_REVISION_keyword "SCI_VERSION_REVISION"
-/*-----------------------------------------------------------------------------------*/ 
-extern BOOL FileExist(char *filename);
+#define FORMATFILENAMEVERSION  "%s/modules/%s/VERSION.xml" 
 /*-----------------------------------------------------------------------------------*/ 
 BOOL getversionmodule(char *modulename,
-					 int *sci_version_major,
-					 int *sci_version_minor,
-					 int *sci_version_maintenance,
-					 char *sci_version_string,
-					 int *sci_version_revision)
+					  int *sci_version_major,
+					  int *sci_version_minor,
+					  int *sci_version_maintenance,
+					  char *sci_version_string,
+					  int *sci_version_revision)
 {
 	BOOL bOK=FALSE;
-
 
 	if (with_module(modulename))
 	{
@@ -39,57 +34,114 @@ BOOL getversionmodule(char *modulename,
 		len=strlen(FORMATFILENAMEVERSION)+strlen(SciPath)+strlen(modulename)+1;
 		filename_VERSION_module=(char*)MALLOC(sizeof(char)*len);
 		sprintf(filename_VERSION_module,FORMATFILENAMEVERSION,SciPath,modulename);
+		if (SciPath){FREE(SciPath);SciPath=NULL;}
 
 		if (FileExist(filename_VERSION_module))
 		{
-			#define LineMaxSize 1024
-			char Line[LineMaxSize];
-			FILE *pFile;
+			char *encoding=GetXmlFileEncoding(filename_VERSION_module);
 
-			pFile=fopen(filename_VERSION_module,"rt");
-			while (fgets(Line, LineMaxSize,pFile))
+			/* Don't care about line return / empty line */
+			xmlKeepBlanksDefault(0);
+
+			/* check if the XML file has been encoded with utf8 (unicode) or not */
+			if ( (strcmp("utf-8", encoding)!=0) || (strcmp("UTF-8", encoding)==0) )
 			{
-				int retval=0;
-				char SCI_VERSION_TYPE[32];
+				xmlNodePtr node;
+				xmlDocPtr doc;
+				
+				int version_major=0;
+				int version_minor=0;
+				int version_maintenance=0;
+				int version_revision=0;
+				char *version_string=0;
 
-				retval=sscanf(Line,"%s",SCI_VERSION_TYPE);
+				doc = xmlParseFile (filename_VERSION_module);
 
-				if ( strcmp(SCI_VERSION_TYPE,SCI_VERSION_MAJOR_keyword) == 0 )
+				if (doc == NULL) 
 				{
-					retval=sscanf(Line,"%s %d",SCI_VERSION_TYPE,sci_version_major);
+					printf("Error: could not parse file %s\n", filename_VERSION_module);
+					return bOK;
 				}
-				else if ( strcmp(SCI_VERSION_TYPE,SCI_VERSION_MINOR_keyword) == 0 )
-				{
-					retval=sscanf(Line,"%s %d",SCI_VERSION_TYPE,sci_version_minor);
+
+				node = doc->children;
+				if (!xmlStrEqual(node->name,(const xmlChar*)"MODULE_VERSION"))
+				{ 
+					/* Check if the first tag is valid */
+					printf("Error : Not a valid gateway file %s (should start with <MODULE_VERSION>)\n", filename_VERSION_module);
+					return bOK;
 				}
-				else if ( strcmp(SCI_VERSION_TYPE,SCI_VERSION_MAINTENANCE_keyword) == 0 )
+
+				for (node = node->next->children; node != NULL; node = node->next)
 				{
-					retval=sscanf(Line,"%s %d",SCI_VERSION_TYPE,sci_version_maintenance);
-				}
-				else if ( strcmp(SCI_VERSION_TYPE,SCI_VERSION_STRING_keyword) == 0 )
-				{
-					int j=0;
-					strncpy(sci_version_string,&Line[strlen(SCI_VERSION_STRING_keyword)],LineMaxSize);
-					for (j=strlen(sci_version_string);j>0;j--)
+					xmlNodePtr child=node->children;
+
+					/* browse elements in <VERSION> */
+					while (child != NULL)
 					{
-						if (sci_version_string[j] == '\n')
-						{
-							sci_version_string[j]='\0';
-							break;
+						if (child->children != NULL)
+						{ 
+							if (xmlStrEqual (child->name, (const xmlChar*) "major"))
+							{ 
+								/* we found <major> */
+								const char *str=(const char*)child->children->content;
+								version_major=atoi(str);
+							}
+							else if (xmlStrEqual (child->name, (const xmlChar*)"minor"))
+							{ 
+								/* we found <minor> */
+								const char *str=(const char*)child->children->content;
+								version_minor=atoi(str);
+							}
+							else if (xmlStrEqual (child->name, (const xmlChar*)"maintenance"))
+							{ 
+								/* we found <maintenance> */
+								const char *str=(const char*)child->children->content;
+								version_maintenance=atoi(str);
+							}
+							else if (xmlStrEqual (child->name, (const xmlChar*)"revision"))
+							{ 
+								/* we found <revision> */
+								const char *str=(const char*)child->children->content;
+								version_revision=atoi(str);
+							}
+							else if (xmlStrEqual (child->name, (const xmlChar*)"string"))
+							{
+								/* we found <string> */
+								const char *str=(const char*)child->children->content;
+								version_string=(char*)MALLOC(sizeof(char)*(strlen((const char*)str)+1));
+								strcpy(version_string,str);
+							}
 						}
+
+						child = child->next;
 					}
+
+					*sci_version_major=version_major;
+					*sci_version_minor=version_minor;
+					*sci_version_maintenance=version_maintenance;
+					*sci_version_revision=version_revision;
+					strncpy(sci_version_string,version_string,1024);
+					if (version_string) {FREE(version_string);version_string=NULL;}
 				}
-				else if ( strcmp(SCI_VERSION_TYPE,SCI_VERSION_REVISION_keyword) == 0 )
-				{
-					retval=sscanf(Line,"%s %d",SCI_VERSION_TYPE,sci_version_revision);
-				}
+
+				xmlFreeDoc (doc);
+
+				/*
+				* Cleanup function for the XML library.
+				*/
+				xmlCleanupParser();
 			}
-			fclose(pFile);
+			else
+			{
+				printf("Error : Not a valid version file %s (encoding not 'utf-8') Encoding '%s' found\n", filename_VERSION_module, encoding);
+			}
+
+			if (encoding) {FREE(encoding);encoding=NULL;}
+
 			bOK=TRUE;
 		}
-		if (SciPath){FREE(SciPath);SciPath=NULL;}
+		
 		if (filename_VERSION_module) {FREE(filename_VERSION_module);filename_VERSION_module=NULL;}
 	}
 	return bOK;
 }
-/*-----------------------------------------------------------------------------------*/ 

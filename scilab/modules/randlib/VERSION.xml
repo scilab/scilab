@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE MODULE_VERSION SYSTEM "../core/xml/VERSION.dtd">
+
+<MODULE_VERSION name="randlib">
+
+<VERSION>
+	<major>5</major>
+	<minor>0</minor>
+	<maintenance>0</maintenance>
+	<revision>0</revision>
+	<string>unstable-svn</string>
+</VERSION>
+
+</MODULE_VERSION>

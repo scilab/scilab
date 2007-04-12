@@ -173,6 +173,12 @@ static int getversion_no_rhs(void)
 /*-----------------------------------------------------------------------------------*/
 static int getversion_one_rhs(void)
 {
+	if (Lhs == 2)
+	{
+		error_scilab(78,"core_error_78","getversion");
+		return 0;
+	}
+
 	if (GetType(1) == sci_strings)
 	{
 		static int l1,n1,m1;
@@ -235,6 +241,12 @@ static int getversion_one_rhs(void)
 /*-----------------------------------------------------------------------------------*/
 static int getversion_two_rhs(void)
 {
+	if (Lhs == 2)
+	{
+		error_scilab(78,"core_error_78","getversion");
+		return 0;
+	}
+
 	if ( (GetType(1) == sci_strings) && (GetType(2) == sci_strings) )
 	{
 		static int l2,n2,m2;
