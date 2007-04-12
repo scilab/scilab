@@ -599,7 +599,7 @@ target = $(datadir)/cacsd
 
 #### cacsd : Conf files ####
 libscicacsd_la_rootdir = $(target)
-libscicacsd_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscicacsd_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 #### cacsd : init scripts #### 
 libscicacsd_la_etcdir = $(target)/etc

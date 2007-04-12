@@ -313,7 +313,7 @@ target = $(datadir)/localization
 
 #### localization : Conf files ####
 libscilocalization_la_rootdir = $(target)
-libscilocalization_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscilocalization_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 ####localization : init scripts #### 
 libscilocalization_la_etcdir = $(target)/etc

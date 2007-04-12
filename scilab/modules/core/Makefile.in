@@ -743,7 +743,7 @@ target = $(datadir)/core
 
 #### core : Conf files ####
 libscicore_la_rootdir = $(target)
-libscicore_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscicore_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 #### core : init scripts #### 
 libscicore_la_etcdir = $(target)/etc

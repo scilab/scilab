@@ -319,7 +319,7 @@ top_srcdir = @top_srcdir@
 
 #### fftw : Conf files ####
 @FFTW_TRUE@libscifftw_la_rootdir = $(target)
-@FFTW_TRUE@libscifftw_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+@FFTW_TRUE@libscifftw_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 #### fftw : init scripts #### 
 @FFTW_TRUE@libscifftw_la_etcdir = $(target)/etc

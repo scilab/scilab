@@ -747,7 +747,7 @@ LOCALISATIONFILES = errors.xml menus.xml messages.xml
 
 #### scicos : Conf files ####
 @SCICOS_TRUE@libsciscicos_la_rootdir = $(target)
-@SCICOS_TRUE@libsciscicos_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+@SCICOS_TRUE@libsciscicos_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 #### scicos : init scripts #### 
 @SCICOS_TRUE@libsciscicos_la_etcdir = $(target)/etc

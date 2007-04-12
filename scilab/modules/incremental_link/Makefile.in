@@ -244,7 +244,7 @@ target = $(datadir)/incremental_link
 
 #### incremental_link : Conf files ####
 libincremental_link_la_rootdir = $(target)
-libincremental_link_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libincremental_link_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 #### incremental_link : init scripts #### 
 libincremental_link_la_etcdir = $(target)/etc

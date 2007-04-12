@@ -345,7 +345,7 @@ target = $(datadir)/tclsci
 
 #### tclsci : Conf files ####
 libscitclsci_la_rootdir = $(target)
-libscitclsci_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscitclsci_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 ### TCL macros ###
 libscitclsci_la_tcldir = $(target)

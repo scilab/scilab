@@ -280,7 +280,7 @@ top_srcdir = @top_srcdir@
 
 #### jvm : Conf files ####
 @JAVA_TRUE@libscijvm_la_rootdir = $(target)
-@JAVA_TRUE@libscijvm_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+@JAVA_TRUE@libscijvm_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 #### jvm : init scripts #### 
 @JAVA_TRUE@libscijvm_la_etcdir = $(target)/etc

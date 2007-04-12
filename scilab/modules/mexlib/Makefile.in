@@ -298,7 +298,7 @@ target = $(datadir)/mexlib
 
 #### mexlib : Conf files ####
 libmex_la_rootdir = $(target)
-libmex_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libmex_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 #### mexlib : init scripts #### 
 libmex_la_etcdir = $(target)/etc

@@ -314,7 +314,7 @@ target = $(datadir)/wintools
 
 #### wintools : Conf files ####
 libsciwintools_la_rootdir = $(target)
-libsciwintools_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libsciwintools_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 #### wintools : init scripts #### 
 libsciwintools_la_etcdir = $(target)/etc
