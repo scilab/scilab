@@ -19,7 +19,6 @@ static struct hashtable *Table_Scilab_Errors=NULL;
 static struct hashtable *Table_Scilab_Messages=NULL;
 static struct hashtable *Table_Scilab_Menus=NULL;
 
-static char *ReplaceChars(char *s1, char *s2, char *s3);
 static char *QueryString(struct hashtable *Table,char *Tag);
 /*-----------------------------------------------------------------------------------*/ 
 BOOL AppendHashTableLocalization(struct hashtable *Table,char *Tag,char* MsgStr)
@@ -132,62 +131,10 @@ char *QueryStringMenu(char *Tag)
 	return QueryString(Table_Scilab_Menus,Tag);
 }
 /*-----------------------------------------------------------------------------------*/ 
-static char *ReplaceChars(char *S1, char *S2, char *S3) 
-{
-	char *buffer=NULL;
-
-	if ( (S1) && (strlen(S1)>0) )
-	{
-		char *p=NULL;
-		buffer = (char*)MALLOC((strlen(S1)*2)*sizeof(char));
-		if(!(p = strstr(S1, S2))) 
-		{
-			sprintf(buffer,"%s",S1);
-			return buffer;
-		}
-
-		strncpy(buffer, S1, p-S1);
-		buffer[p-S1] = '\0';
-
-		sprintf(buffer+(p-S1), "%s%s", S3, p+strlen(S2));
-	}
-	return buffer;
-}
-/*-----------------------------------------------------------------------------------*/ 
 static char *QueryString(struct hashtable *Table,char *Tag)
 {
-	char oldpiece[8];
-	char newpiece[8];
 	char *RetString=NULL;
-	char *StringWithoutSomeChars=NULL;
-	
-	// table empty (happen for example when no localization xml file has been found)
-	if (Table==NULL)
-		return NULL;
-
-	if (strcmp(Tag,"\r\n"))
-	{
-		/* Replace \r\n by \\r\\n */
-		strcpy(oldpiece,"\r\n");
-		strcpy(newpiece,"\\r\\n");
-		StringWithoutSomeChars=ReplaceChars( Tag,oldpiece,newpiece);
-
-		if (StringWithoutSomeChars)
-		{
-			RetString=SearchHashtable_string(Table,StringWithoutSomeChars);
-			if (StringWithoutSomeChars) FREE(StringWithoutSomeChars);
-
-			if (RetString)
-			{
-				/* Replace \\r\\n by \r\n */
-				strcpy(oldpiece,"\\r\\n");
-				strcpy(newpiece,"\r\n");
-				StringWithoutSomeChars=ReplaceChars(RetString,oldpiece,newpiece);
-				if (RetString) FREE(RetString);
-				RetString = StringWithoutSomeChars;
-			}
-		}
-	}
+	RetString=SearchHashtable_string(Table,Tag);
 	return RetString;
 }
 /*-----------------------------------------------------------------------------------*/ 

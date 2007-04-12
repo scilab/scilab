@@ -11,6 +11,7 @@
 #include "QueryStringMessage.h"
 #include "hashtable.h"
 #include "getentrieshashtable.h"
+#include "error_scilab.h"
 /*-----------------------------------------------------------------------------------*/
 static int OneRhs_gettext(void);
 static int TwoRhs_gettext(void);
@@ -34,6 +35,12 @@ int C2F(sci_gettext) _PARAMS((char *fname,unsigned long fname_len))
 /*-----------------------------------------------------------------------------------*/
 static int TwoRhs_gettext(void)
 {
+	if (Lhs == 2)
+	{
+		error_scilab(78,"core_error_78","gettext");
+		return 0;
+	}
+
 	if ( (GetType(1) == sci_strings) && (GetType(2) == sci_strings) )
 	{
 		static int l1,n1,m1;
@@ -68,8 +75,8 @@ static int TwoRhs_gettext(void)
 			if (TranslatedString)
 			{
 				n1=1;
-				CreateVarFromPtr( 1, "c",(m1=(int)strlen(TranslatedString), &m1),&n1,&TranslatedString);
-				LhsVar(1) = 1;
+				CreateVarFromPtr(Rhs+1, "c",(m1=(int)strlen(TranslatedString), &m1),&n1,&TranslatedString);
+				LhsVar(1)=Rhs+1;
 				C2F(putlhsvar)();	
 				if (TranslatedString) {FREE(TranslatedString);TranslatedString=NULL;}
 			}
@@ -78,8 +85,8 @@ static int TwoRhs_gettext(void)
 				m1=0;
 				n1=0;
 				l1=0;
-				CreateVar(1,"d",  &m1, &n1, &l1);
-				LhsVar(1)=1;
+				CreateVar(Rhs+1,"d",  &m1, &n1, &l1);
+				LhsVar(1)=Rhs+1;
 				C2F(putlhsvar)();
 			}
 		}

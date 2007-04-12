@@ -25,6 +25,7 @@ EXPORTS
  FileExist
  getmodules
  GetXmlFileEncoding
+ error_scilab
  
  
  
