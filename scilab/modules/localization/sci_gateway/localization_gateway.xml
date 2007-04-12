@@ -30,5 +30,5 @@
 <PRIMITIVE gatewayId="50" primitiveId="4" primitiveName="getlanguagestable" />
 <PRIMITIVE gatewayId="50" primitiveId="5" primitiveName="gettext" />
 <PRIMITIVE gatewayId="50" primitiveId="6" primitiveName="addtext" />
-<PRIMITIVE gatewayId="50" primitiveId="6" primitiveName="removetext" />
+<PRIMITIVE gatewayId="50" primitiveId="7" primitiveName="removetext" />
 </GATEWAY>
