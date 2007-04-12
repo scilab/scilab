@@ -21,12 +21,12 @@ c     ====================================
       
       end
 c     ====================================      
-      subroutine writebufdgetri(buffer,line)
+      subroutine writebufdgetri(buffer,rcond)
       
       character*(*) buffer
-      character*(*) line
+      double precision rcond
       
-      write(buffer(1:13),'(1pd13.4)') line
+      write(buffer(1:13),'(1pd13.4)') rcond
       
       end
 c     ====================================      
