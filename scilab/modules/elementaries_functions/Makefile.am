@@ -393,7 +393,7 @@ target=$(datadir)/elementaries_functions
 
 #### elementaries_functions : Conf files ####
 libscielementaries_functions_la_rootdir = $(target)
-libscielementaries_functions_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscielementaries_functions_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 

@@ -30,7 +30,7 @@ sci_gateway/c/sci_TCL_ExistInterp.c \
 sci_gateway/c/gw_tclsci.c \
 sci_gateway/c/sci_TCL_EvalStr.c \
 sci_gateway/c/sci_TCL_DeleteInterp.c \
-sci_gateway/c/sci_TCL_GetVersion.c \
+sci_gateway/c/sci_TCL_GetVERSION.xml.c \
 sci_gateway/c/sci_TCL_EvalFile.c \
 sci_gateway/c/sci_TCL_GetVar.c \
 sci_gateway/c/sci_set.c \
@@ -55,7 +55,7 @@ target=$(datadir)/tclsci
 
 #### tclsci : Conf files ####
 libscitclsci_la_rootdir = $(target)
-libscitclsci_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscitclsci_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 ### TCL macros ###

@@ -30,7 +30,7 @@ target=$(datadir)/jvm
 
 #### jvm : Conf files ####
 libscijvm_la_rootdir = $(target)
-libscijvm_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscijvm_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### jvm : init scripts #### 

@@ -62,7 +62,7 @@ target=$(datadir)/randlib
 
 #### randlib : Conf files ####
 libscirandlib_la_rootdir = $(target)
-libscirandlib_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscirandlib_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### randlib : init scripts #### 

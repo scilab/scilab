@@ -111,7 +111,7 @@ target=$(datadir)/statistics
 
 #### statistics : Conf files ####
 libscistatistics_la_rootdir = $(target)
-libscistatistics_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscistatistics_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### statistics : init scripts #### 

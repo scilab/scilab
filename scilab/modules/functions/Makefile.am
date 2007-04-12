@@ -10,7 +10,7 @@ target=$(datadir)/functions
 
 #### functions : Conf files ####
 libscifunctions_la_rootdir = $(target)
-libscifunctions_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscifunctions_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 

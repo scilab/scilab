@@ -10,7 +10,7 @@ target=$(datadir)/m2sci
 
 #### m2sci : Conf files ####
 libm2sci_la_rootdir = $(target)
-libm2sci_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libm2sci_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 #### m2sci : Macros ####
 MACROSDIRSEXT =  macros/m2sci/kernel/ \

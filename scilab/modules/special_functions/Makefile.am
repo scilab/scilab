@@ -58,7 +58,7 @@ target=$(datadir)/special_functions
 
 #### special_functions : Conf files ####
 libscispecial_functions_la_rootdir = $(target)
-libscispecial_functions_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscispecial_functions_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 #### special_functions : init scripts #### 
 libscispecial_functions_la_etcdir = $(target)/etc

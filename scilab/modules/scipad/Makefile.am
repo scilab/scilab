@@ -10,7 +10,7 @@ target=$(datadir)/scipad
 
 #### scipad : Conf files ####
 libsciscipad_la_rootdir = $(target)
-libsciscipad_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libsciscipad_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 MACROSDIRSEXT = macros/scipad_internals

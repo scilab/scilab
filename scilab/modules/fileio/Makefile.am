@@ -56,7 +56,7 @@ target=$(datadir)/fileio
 
 #### fileio : Conf files ####
 libscifileio_la_rootdir = $(target)
-libscifileio_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscifileio_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### fileio : init scripts #### 

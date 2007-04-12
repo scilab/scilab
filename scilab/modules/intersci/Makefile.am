@@ -43,7 +43,7 @@ target=$(datadir)/intersci
 
 #### intersci : Conf files ####
 libsciintersci_la_rootdir = $(target)
-libsciintersci_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libsciintersci_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### intersci : init scripts #### 

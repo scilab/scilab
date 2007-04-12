@@ -61,8 +61,8 @@ src/c/hashtable_core.c \
 src/c/returnanan.c \
 src/c/LoadFunctionsTab.c \
 src/c/with_module.c \
-src/c/loadversion.c \
-src/c/version.c \
+src/c/loadVERSION.xml.c \
+src/c/VERSION.xml.c \
 src/c/stackinfo.c \
 src/c/scirun.c \
 src/c/SCIHOME.c \
@@ -259,7 +259,7 @@ sci_gateway/c/sci_typename.c \
 sci_gateway/c/sci_mode.c \
 sci_gateway/c/sci_macr2tree.c \
 sci_gateway/c/sci_iserror.c \
-sci_gateway/c/sci_getversion.c \
+sci_gateway/c/sci_getVERSION.xml.c \
 sci_gateway/c/sci_debug.c \
 sci_gateway/c/gw_core.c \
 sci_gateway/c/gw_user.c \
@@ -351,7 +351,7 @@ target=$(datadir)/core
 
 #### core : Conf files ####
 libscicore_la_rootdir = $(target)
-libscicore_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscicore_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### core : init scripts #### 
@@ -384,7 +384,7 @@ includes/msg_errors.h \
 includes/intgetmemory.h \
 includes/gw_core.h \
 includes/stack-c.h \
-includes/version.h \
+includes/VERSION.xml.h \
 includes/Os_specific.h \
 includes/stack1.h \
 includes/SciEnv.h \
@@ -396,7 +396,7 @@ includes/stack3.h \
 includes/machine.h \
 includes/ExceptionMessage.h \
 includes/prompt.h \
-includes/loadversion.h \
+includes/loadVERSION.xml.h \
 includes/tmpdir.h \
 includes/SCIHOME.h \
 includes/warningmode.h \

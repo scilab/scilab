@@ -283,7 +283,7 @@
 			>
 		</File>
 		<File
-			RelativePath=".\VERSION"
+			RelativePath=".\VERSION.xml"
 			>
 		</File>
 	</Files>

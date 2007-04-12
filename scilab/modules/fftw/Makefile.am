@@ -29,7 +29,7 @@ GATEWAY_C_SOURCES = sci_gateway/c/gw_fftw.c \
 
 #### fftw : Conf files ####
 libscifftw_la_rootdir = $(target)
-libscifftw_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscifftw_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 #### fftw : init scripts #### 
 libscifftw_la_etcdir = $(target)/etc

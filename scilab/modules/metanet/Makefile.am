@@ -139,7 +139,7 @@ target=$(datadir)/metanet
 
 #### metanet : Conf files ####
 libscimetanet_la_rootdir = $(target)
-libscimetanet_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscimetanet_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### metanet : init scripts #### 

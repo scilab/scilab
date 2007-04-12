@@ -69,7 +69,7 @@ target=$(datadir)/modules/pvm
 
 #### pvm : Conf files ####
 libscipvm_la_rootdir = $(target)
-libscipvm_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscipvm_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 #### pvm : init scripts #### 
 libscipvm_la_etcdir = $(target)/etc

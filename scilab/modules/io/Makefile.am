@@ -100,7 +100,7 @@ target=$(datadir)/io
 
 #### io : Conf files ####
 libsciio_la_rootdir = $(target)
-libsciio_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libsciio_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### io : init scripts #### 

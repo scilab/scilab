@@ -93,7 +93,7 @@ target=$(datadir)/arnoldi
 
 #### arnoldi : Conf files ####
 libsciarnoldi_la_rootdir = $(target)
-libsciarnoldi_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libsciarnoldi_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### arnoldi : init scripts #### 

@@ -11,7 +11,7 @@ target=$(datadir)/texmacs
 
 #### texmacs : Conf files ####
 libscitexmacs_la_rootdir = $(target)
-libscitexmacs_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscitexmacs_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 

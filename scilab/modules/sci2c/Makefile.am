@@ -6,7 +6,7 @@ target=$(datadir)/sci2c
 
 #### sci2c : Conf files ####
 libsci2c_la_rootdir = $(target)
-libsci2c_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libsci2c_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### sci2c : init scripts #### 

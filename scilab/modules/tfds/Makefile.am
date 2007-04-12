@@ -10,7 +10,7 @@ target=$(datadir)/tfds
 
 #### tfds : Conf files ####
 libscitfds_la_rootdir = $(target)
-libscitfds_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscitfds_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### tfds : init scripts #### 

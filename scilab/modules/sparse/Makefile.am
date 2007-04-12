@@ -181,7 +181,7 @@ target=$(datadir)/sparse
 
 #### sparse : Conf files ####
 libscisparse_la_rootdir = $(target)
-libscisparse_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscisparse_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### sparse : init scripts #### 

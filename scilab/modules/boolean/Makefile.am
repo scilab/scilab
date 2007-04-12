@@ -42,7 +42,7 @@ target=$(datadir)/boolean
 
 #### boolean : Conf files ####
 libsciboolean_la_rootdir = $(target)
-libsciboolean_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libsciboolean_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### boolean : init scripts #### 

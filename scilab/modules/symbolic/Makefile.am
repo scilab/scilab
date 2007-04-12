@@ -32,7 +32,7 @@ target=$(datadir)/symbolic
 
 #### symbolic : Conf files ####
 libscisymbolic_la_rootdir = $(target)
-libscisymbolic_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscisymbolic_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### symbolic : init scripts #### 

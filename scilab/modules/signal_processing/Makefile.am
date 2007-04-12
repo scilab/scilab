@@ -112,7 +112,7 @@ target=$(datadir)/signal_processing
 
 #### signal_processing : Conf files ####
 libscisignal_processing_la_rootdir = $(target)
-libscisignal_processing_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscisignal_processing_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### signal_processing : init scripts #### 

@@ -43,7 +43,7 @@ target=$(datadir)/double
 
 #### double : Conf files ####
 libscidouble_la_rootdir = $(target)
-libscidouble_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscidouble_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### double : init scripts #### 

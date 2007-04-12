@@ -10,7 +10,7 @@ target=$(datadir)/scilab2fortran
 
 #### scilab2fortran : Conf files ####
 libscilab2fortran_la_rootdir = $(target)
-libscilab2fortran_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscilab2fortran_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### scilab2fortran : init scripts #### 

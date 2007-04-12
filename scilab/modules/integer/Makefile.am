@@ -136,7 +136,7 @@ target=$(datadir)/integer
 
 #### integer : Conf files ####
 libsciinteger_la_rootdir = $(target)
-libsciinteger_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libsciinteger_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### integer : init scripts #### 

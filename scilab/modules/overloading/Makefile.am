@@ -10,7 +10,7 @@ target=$(datadir)/overloading
 
 #### overloading : Conf files ####
 libscioverloading_la_rootdir = $(target)
-libscioverloading_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscioverloading_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 

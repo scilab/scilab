@@ -140,7 +140,7 @@ target=$(datadir)/differential_equations
 
 #### differential_equations : Conf files ####
 libscidifferential_equations_la_rootdir = $(target)
-libscidifferential_equations_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscidifferential_equations_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 #### differential_equations : init scripts #### 
 libscidifferential_equations_la_etcdir = $(target)/etc

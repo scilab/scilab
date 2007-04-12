@@ -129,7 +129,7 @@ target=$(datadir)/gui
 
 #### gui : Conf files ####
 libscigui_la_rootdir = $(target)
-libscigui_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscigui_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### gui : init scripts #### 

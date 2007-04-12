@@ -34,7 +34,7 @@ target=$(datadir)/sound
 
 #### sound : Conf files ####
 libscisound_la_rootdir = $(target)
-libscisound_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscisound_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### sound : init scripts #### 

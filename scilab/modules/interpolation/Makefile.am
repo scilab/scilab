@@ -45,7 +45,7 @@ target=$(datadir)/interpolation
 
 #### interpolation : Conf files ####
 libsciinterpolation_la_rootdir = $(target)
-libsciinterpolation_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libsciinterpolation_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### interpolation : init scripts #### 

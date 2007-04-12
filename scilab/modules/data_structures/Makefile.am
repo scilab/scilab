@@ -67,7 +67,7 @@ target=$(datadir)/data_structures
 
 #### data_structures : Conf files ####
 libscidata_structures_la_rootdir = $(target)
-libscidata_structures_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscidata_structures_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### data_structures : init scripts #### 
