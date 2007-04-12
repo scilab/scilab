@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
 <!DOCTYPE MODULE_VERSION SYSTEM "../core/xml/VERSION.dtd">
-
 <MODULE_VERSION name="sparse">
+<!-- =================== -->
+<!--
+ Scilab
+ Defines the version of a module
 
-<VERSION>
-	<major>5</major>
-	<minor>0</minor>
-	<maintenance>0</maintenance>
-	<revision>0</revision>
-	<string>unstable-svn</string>
-</VERSION>
+ @author Allan CORNET
+ @author Sylvestre LEDRU
+ @date INRIA 2007
+ ===================
 
+-->
+<!-- =================== -->
+
+<VERSION major="5" minor="0" maintenance="0" revision="0" string="unstable-svn" />
 </MODULE_VERSION>

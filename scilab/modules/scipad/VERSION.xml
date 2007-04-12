@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
 <!DOCTYPE MODULE_VERSION SYSTEM "../core/xml/VERSION.dtd">
-
 <MODULE_VERSION name="scipad">
+<!-- =================== -->
+<!--
+ Scilab
+ Defines the version of a module
 
-<VERSION>
-	<major>6</major>
-	<minor>98</minor>
-	<maintenance>0</maintenance>
-	<revision>0</revision>
-	<string>SciPad unstable-svn</string>
-</VERSION>
+ @author Allan CORNET
+ @author Sylvestre LEDRU
+ @date INRIA 2007
+ ===================
 
+-->
+<!-- =================== -->
+
+<VERSION major="6" minor="98" maintenance="0" revision="0" string="SciPad unstable-svn" />
 </MODULE_VERSION>
