@@ -6,7 +6,6 @@
           using regular express .                                         */
 /*------------------------------------------------------------------------*/
 #include <string.h>
-#include <string.h>
 #include <stdio.h>
 #include <ctype.h> 
 #include "gw_string.h"
@@ -159,45 +158,26 @@ char typ = '*';
 		
 		
 		} 	
-		//else {
-		//	 int outIndex2= Rhs +x+1 ;
-		//	 int numRow   = 1 ;
-		//	 int numCol   = mn ;
-		//	 int loutIndex = 0 ;
-		//	 //CreateVar(Rhs+1+x,"c",&numRow,&numCol,&loutIndex);
-		//	 //strncpy(cstk(loutIndex),Str[x], numCol);
-		//	 
-  //           CreateVarFromPtr( Rhs+1, "S", &numRow, &numCol, Str ) ;
-		//	 LhsVar(x+1) = Rhs+x+1 ;
+		else {
+			 int outIndex2= Rhs +x+1 ;
+			 int numRow   = 1 ;
+			 int numCol   = mn ;
+			 int loutIndex = 0 ;
+			 CreateVar(Rhs+1+x,"c",&numRow,&numCol,&loutIndex);
+			 strncpy(cstk(loutIndex),Str[x], numCol);
+			 
+             CreateVarFromPtr( Rhs+1, "S", &numRow, &numCol, Str ) ;
+			 LhsVar(x+1) = Rhs+x+1 ;
 
-		//}
+		}
 		}
    }  
-		//numRow   = 1 ;
-	    //numCol   = mn ;
-		//CreateVarFromPtr( Rhs+1, "S", &numRow, &numCol, Str ) ;
-	    //LhsVar(1) = Rhs+1 ;    
-/*        numRow    = 0;
-	    numCol   = 0 ;
-		Str4[0][0]='\0';
-		CreateVarFromPtr( Rhs+1, "S", &numRow, &numCol, Str4 ) ;
-	    LhsVar(1) = Rhs+1 ;  */ 
-   {
-	   int m1,n1,l1;
-int i=0;
-	   m1=3;
-	   n1=2;
-		l1=0;
-		Str4=(char**)MALLOC(sizeof(char*)*(m1*n1));
-		for (i=0;i<m1*n1;i++)
-		{
-			Str4[i]=(char*)MALLOC(sizeof(char*)*(1));
-			strcpy(Str4[i],"");
-		}
-		CreateVarFromPtr(1,"S",&m1, &n1, Str4);
-		LhsVar(1)=1;
+		numRow   = 1 ;
+	    numCol   = mn ;
+		CreateVarFromPtr( Rhs+1, "S", &numRow, &numCol, Str ) ;
+	    LhsVar(1) = Rhs+1 ; 
+      
 
-   }    
 	
 
   }
