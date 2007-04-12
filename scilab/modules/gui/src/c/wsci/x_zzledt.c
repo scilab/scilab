@@ -45,18 +45,7 @@ int NumberOfCommands=0;
  **********************************************************************/
 
 /**** Warning here : eof can be true  ***/
-#ifdef __STDC__
 void C2F (zzledt) (char *buffer, int *buf_size, int *len_line, int *eof, int* interrupt, int *modex, long int dummy1)
-#else
-void C2F (zzledt) (buffer, buf_size, len_line, eof, interrupt, modex, dummy1)
-     char *buffer;
-     int *buf_size;
-     int *len_line;
-     int *eof;
-     int *interrupt;
-     int *modex;
-     long int dummy1;		/* added by FORTRAN to give buffer length */
-#endif
 {
   int i;
   extern BOOL PutLineInBuffer;
