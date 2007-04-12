@@ -1,6 +1,5 @@
 package javasci ;
 
-import java.lang.NoSuchMethodException;
 /**
  * Scilab Array of Complex Object
  * See SCI/modules/javasci/examples/others for some simple examples 
@@ -119,7 +118,8 @@ public class SciComplexArray extends javasci.SciAbstractArray implements java.io
 	 * @see #getRealPartData()
 	 * @see #getImaginaryPartData()
 	 */
-	public double[] getData() throws NoSuchMethodException{
+	public double[] getData() throws NoSuchMethodException
+	{
 		throw new NoSuchMethodException("Cannot call getData on a Complex Data. See getRealPartData() / getImaginaryPartData() .");
 	}
 

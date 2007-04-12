@@ -61,7 +61,8 @@ public class SciDouble extends SciAbstractDataType implements java.io.Serializab
 	 * @return the Description
 	 *
 	 */
-	public String getTypeDescription(){
+	public String getTypeDescription()
+	{
 		return this.typeDescription;
 	}
 

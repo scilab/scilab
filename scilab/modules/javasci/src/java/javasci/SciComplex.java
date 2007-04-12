@@ -117,7 +117,8 @@ public class SciComplex extends SciAbstractDataType implements java.io.Serializa
 	 * @return the Description
 	 *
 	 */
-	public String getTypeDescription(){
+	public String getTypeDescription()
+	{
 		return this.typeDescription;
 	}
 

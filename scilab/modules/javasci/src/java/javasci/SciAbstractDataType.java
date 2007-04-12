@@ -5,7 +5,8 @@ package javasci;
  * Cannot be implemented
  * @author Sylvestre LEDRU - INRIA 2007
  */
-public abstract class SciAbstractDataType {
+public abstract class SciAbstractDataType 
+{
 	protected SciAbstractArray sciArray;
 
 	/**
@@ -14,7 +15,7 @@ public abstract class SciAbstractDataType {
 	 * @return the Description
 	 *
 	 */
-	abstract public String getTypeDescription();
+	abstract String getTypeDescription();
 
 	/**
 	 * Returns the name of the Scilab variable

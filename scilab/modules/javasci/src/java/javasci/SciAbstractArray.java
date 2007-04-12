@@ -4,7 +4,8 @@ package javasci;
  * Defines the basic method that very ScilabXXXXArray should implement
  * @author Sylvestre LEDRU - INRIA 2007
  */
-public abstract class SciAbstractArray implements java.io.Serializable {
+public abstract class SciAbstractArray implements java.io.Serializable 
+{
 
 	/** m number of rows */
 	protected int m;
@@ -98,14 +99,16 @@ public abstract class SciAbstractArray implements java.io.Serializable {
 	 * Return the name of the variable
 	 * @return the name
 	 */
-	public String getName()  {
+	public String getName()
+	{
 		return name;
 	}
 
 	/**
 	 * Display the Matrix (by calling the scilab disp() function
 	 */
-	public void disp(){
+	public void disp()
+	{
 		Get();
 		System.out.println("Matrix "+ getName() +"=");
 		Scilab.Exec( "disp(" + getName() +");"); // Call the scilab command
@@ -119,22 +122,30 @@ public abstract class SciAbstractArray implements java.io.Serializable {
 
 	static 
 	{
-		try {
-			System.loadLibrary("javasci");
-		} catch(SecurityException e){
-			System.err.println("A security manager exists and does not allow the loading of the specified dynamic library :");
-			e.printStackTrace(System.err);
-		} catch(UnsatisfiedLinkError e){
-			System.err.println("The native library javasci does not exist or cannot be found.");
-			e.printStackTrace(System.err);
-		}
+		try 
+			{
+				System.loadLibrary("javasci");
+			} 
+		catch(SecurityException e)
+			{
+				System.err.println("A security manager exists and does not allow the loading of the specified dynamic library :");
+				e.printStackTrace(System.err);
+			} 
+		catch(UnsatisfiedLinkError e)
+			{
+				System.err.println("The native library javasci does not exist or cannot be found.");
+				e.printStackTrace(System.err);
+			}
 
-		try {
-			Initialize();		
-		}catch(UnsatisfiedLinkError e){
-			System.err.println("Cannot find method Initialize from the library.");
-			e.printStackTrace(System.err);
+		try 
+			{
+				Initialize();		
+			}
+		catch(UnsatisfiedLinkError e)
+			{
+				System.err.println("Cannot find method Initialize from the library.");
+				e.printStackTrace(System.err);
 			
-		}
+			}
 	}
 }

@@ -6,7 +6,8 @@ package javasci ;
  * @author Allan CORNET - INRIA 2007
  * @author Sylvestre LEDRU - INRIA 2007
  */
-public class SciBooleanArray extends javasci.SciAbstractArray implements java.io.Serializable  {
+public class SciBooleanArray extends javasci.SciAbstractArray implements java.io.Serializable  
+{
 
  private boolean [] x ;
   
