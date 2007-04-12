@@ -72,58 +72,61 @@ BOOL getversionmodule(char *modulename,
 				}
 
 				for (node = node->next->children; node != NULL; node = node->next)
-				{
-					xmlNodePtr child=node->children;
-
-					/* browse elements in <VERSION> */
-					while (child != NULL)
 					{
-						if (child->children != NULL)
-						{ 
-							if (xmlStrEqual (child->name, (const xmlChar*) "major"))
-							{ 
-								/* we found <major> */
-								const char *str=(const char*)child->children->content;
-								version_major=atoi(str);
-							}
-							else if (xmlStrEqual (child->name, (const xmlChar*)"minor"))
-							{ 
-								/* we found <minor> */
-								const char *str=(const char*)child->children->content;
-								version_minor=atoi(str);
-							}
-							else if (xmlStrEqual (child->name, (const xmlChar*)"maintenance"))
-							{ 
-								/* we found <maintenance> */
-								const char *str=(const char*)child->children->content;
-								version_maintenance=atoi(str);
-							}
-							else if (xmlStrEqual (child->name, (const xmlChar*)"revision"))
-							{ 
-								/* we found <revision> */
-								const char *str=(const char*)child->children->content;
-								version_revision=atoi(str);
-							}
-							else if (xmlStrEqual (child->name, (const xmlChar*)"string"))
+						if (xmlStrEqual(node->name,(const xmlChar*)"VERSION"))
 							{
-								/* we found <string> */
-								const char *str=(const char*)child->children->content;
-								version_string=(char*)MALLOC(sizeof(char)*(strlen((const char*)str)+1));
-								strcpy(version_string,str);
-							}
+							/* Only browse <VERSION> (comments are also processed in XML) */
+							xmlAttrPtr attrib=node->properties;
+
+							/* browse elements in <VERSION> */
+							while (attrib != NULL)
+								{
+									if (attrib->children != NULL)
+										{ 
+											if (xmlStrEqual (attrib->name, (const xmlChar*) "major"))
+												{ 
+													/* we found <major> */
+													const char *str=(const char*)attrib->children->content;
+													version_major=atoi(str);
+												}
+											else if (xmlStrEqual (attrib->name, (const xmlChar*)"minor"))
+												{ 
+													/* we found <minor> */
+													const char *str=(const char*)attrib->children->content;
+													version_minor=atoi(str);
+												}
+											else if (xmlStrEqual (attrib->name, (const xmlChar*)"maintenance"))
+												{ 
+													/* we found <maintenance> */
+													const char *str=(const char*)attrib->children->content;
+													version_maintenance=atoi(str);
+												}
+											else if (xmlStrEqual (attrib->name, (const xmlChar*)"revision"))
+												{ 
+													/* we found <revision> */
+													const char *str=(const char*)attrib->children->content;
+													version_revision=atoi(str);
+												}
+											else if (xmlStrEqual (attrib->name, (const xmlChar*)"string"))
+												{
+													/* we found <string> */
+													const char *str=(const char*)attrib->children->content;
+													version_string=(char*)MALLOC(sizeof(char)*(strlen((const char*)str)+1));
+													strcpy(version_string,str);
+												}
+										}
+
+									attrib = attrib->next;
+								}
+
+							*sci_version_major=version_major;
+							*sci_version_minor=version_minor;
+							*sci_version_maintenance=version_maintenance;
+							*sci_version_revision=version_revision;
+							strncpy(sci_version_string,version_string,1024);
+							if (version_string) {FREE(version_string);version_string=NULL;}
 						}
-
-						child = child->next;
 					}
-
-					*sci_version_major=version_major;
-					*sci_version_minor=version_minor;
-					*sci_version_maintenance=version_maintenance;
-					*sci_version_revision=version_revision;
-					strncpy(sci_version_string,version_string,1024);
-					if (version_string) {FREE(version_string);version_string=NULL;}
-				}
-
 				xmlFreeDoc (doc);
 
 				/*

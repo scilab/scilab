@@ -104,51 +104,55 @@ int Load_primitives_from_file(char *filename)
 
 			/* browse all the <PRIMITIVE> */
 			for (node = node->next->children; node != NULL; node = node->next)
-			{
-				
-				xmlAttrPtr attrib=node->properties;
-
-				/* browse properties in <PRIMITIVE> */
-				while (attrib != NULL)
 				{
-					if (attrib->children != NULL)
-					{ 
-						if (xmlStrEqual (attrib->name, (const xmlChar*) "gatewayId"))
-						{ 
-							/* we found the tag gatewayId */
-							const char *str=(const char*)attrib->children->content;
-							GATEWAY_ID=atoi(str);
-						}
-						else if (xmlStrEqual (attrib->name, (const xmlChar*)"primitiveId"))
-						{ 
-							/* we found the tag primitiveId */
-							const char *str=(const char*)attrib->children->content;
-							PRIMITIVE_ID=atoi(str);
-						}
-						else if (xmlStrEqual (attrib->name, (const xmlChar*)"primitiveName"))
+				
+					if (xmlStrEqual(node->name,(const xmlChar*)"PRIMITIVE"))
 						{
-							/* we found the tag primitiveName */
-							const char *str=(const char*)attrib->children->content;
-							PRIMITIVE_NAME=(char*)MALLOC(sizeof(char)*(strlen((const char*)str)+1));
-							strcpy(PRIMITIVE_NAME,str);
-						}
-					}
+							/* Only browse <PRIMITIVE> (comments are also processed in XML) */
+							xmlAttrPtr attrib=node->properties;
+
+							/* browse properties in <PRIMITIVE> */
+							while (attrib != NULL)
+								{
+									if (attrib->children != NULL)
+										{ 
+											if (xmlStrEqual (attrib->name, (const xmlChar*) "gatewayId"))
+												{ 
+													/* we found the tag gatewayId */
+													const char *str=(const char*)attrib->children->content;
+													GATEWAY_ID=atoi(str);
+												}
+											else if (xmlStrEqual (attrib->name, (const xmlChar*)"primitiveId"))
+												{ 
+													/* we found the tag primitiveId */
+													const char *str=(const char*)attrib->children->content;
+													PRIMITIVE_ID=atoi(str);
+												}
+											else if (xmlStrEqual (attrib->name, (const xmlChar*)"primitiveName"))
+												{
+													/* we found the tag primitiveName */
+													const char *str=(const char*)attrib->children->content;
+													PRIMITIVE_NAME=(char*)MALLOC(sizeof(char)*(strlen((const char*)str)+1));
+													strcpy(PRIMITIVE_NAME,str);
+												}
+										}
 				
-					attrib = attrib->next;
-				}
+									attrib = attrib->next;
+								}
 
-				if ( (GATEWAY_ID != 0) && (PRIMITIVE_ID != 0) && (PRIMITIVE_NAME) )
-				{
-					if (strlen(PRIMITIVE_NAME) > 0)
-					{
-						Add_a_Scilab_primitive_in_hashtable(PRIMITIVE_NAME,&GATEWAY_ID,&PRIMITIVE_ID);
-					}
-				}
+							if ( (GATEWAY_ID != 0) && (PRIMITIVE_ID != 0) && (PRIMITIVE_NAME) )
+								{
+									if (strlen(PRIMITIVE_NAME) > 0)
+										{
+											Add_a_Scilab_primitive_in_hashtable(PRIMITIVE_NAME,&GATEWAY_ID,&PRIMITIVE_ID);
+										}
+								}
 
-				if (PRIMITIVE_NAME) {FREE(PRIMITIVE_NAME); PRIMITIVE_NAME =NULL;}
-				GATEWAY_ID = 0;
-				PRIMITIVE_ID = 0;
-			}
+							if (PRIMITIVE_NAME) {FREE(PRIMITIVE_NAME); PRIMITIVE_NAME =NULL;}
+							GATEWAY_ID = 0;
+							PRIMITIVE_ID = 0;
+						}
+				}
 			xmlFreeDoc (doc);
 
 			/*
