@@ -13,11 +13,11 @@
 #include "LoadFunctionsTab.h"
 #include "libxml/xmlreader.h"
 #include "GetXmlFileEncoding.h"
+#include "../fileio/includes/FileExist.h"
 /*-----------------------------------------------------------------------------------*/  
 static int firstentry = 0;
 /*-----------------------------------------------------------------------------------*/  
 extern int C2F(cvname) __PARAMS((integer *,char *,integer *, unsigned long int));
-extern BOOL FileExist(char *filename);
 /*-----------------------------------------------------------------------------------*/  
 static int Add_a_Scilab_primitive_in_hashtable(char *str, int *dataI, int *data);
 static BOOL Load_primitives_from_file(char *filename);
@@ -33,8 +33,8 @@ void LoadFunctionsTab(void)
 
 	SciPath=getSCIpath();
 	Modules=getmodules();
-	/* je ne libere pas Modules pour accelerer le prochain appel à getmodule */
-	/* liberé dans sciquit.c */
+	/* We are not freeing Modules in order to speed up the next call of getmodule */
+	/* freed in sciquit.c */
 
 	for (j=0;j<Modules->numberofModules;j++)
 	{
@@ -65,7 +65,7 @@ static int Add_a_Scilab_primitive_in_hashtable(char *str, int *dataI, int *data)
 	return( action_hashtable_scilab_functions(id,str,&ldata,SCI_HFUNCTIONS_ENTER));
 }
 /*-----------------------------------------------------------------------------------*/
-static int Load_primitives_from_file(char *filename)
+int Load_primitives_from_file(char *filename)
 {
 	BOOL bOK=FALSE;
 
@@ -105,36 +105,36 @@ static int Load_primitives_from_file(char *filename)
 			/* browse all the <PRIMITIVE> */
 			for (node = node->next->children; node != NULL; node = node->next)
 			{
+				
+				xmlAttrPtr attrib=node->properties;
 
-				xmlNodePtr child=node->children;
-
-				/* browse elements in <PRIMITIVE> */
-				while (child != NULL)
+				/* browse properties in <PRIMITIVE> */
+				while (attrib != NULL)
 				{
-					if (child->children != NULL)
+					if (attrib->children != NULL)
 					{ 
-						if (xmlStrEqual (child->name, (const xmlChar*) "GATEWAY_ID"))
+						if (xmlStrEqual (attrib->name, (const xmlChar*) "gatewayId"))
 						{ 
-							/* we found <GATEWAY_ID> */
-							const char *str=(const char*)child->children->content;
+							/* we found the tag gatewayId */
+							const char *str=(const char*)attrib->children->content;
 							GATEWAY_ID=atoi(str);
 						}
-						else if (xmlStrEqual (child->name, (const xmlChar*)"PRIMITIVE_ID"))
+						else if (xmlStrEqual (attrib->name, (const xmlChar*)"primitiveId"))
 						{ 
-							/* we found <PRIMITIVE_ID> */
-							const char *str=(const char*)child->children->content;
+							/* we found the tag primitiveId */
+							const char *str=(const char*)attrib->children->content;
 							PRIMITIVE_ID=atoi(str);
 						}
-						else if (xmlStrEqual (child->name, (const xmlChar*)"PRIMITIVE_NAME"))
+						else if (xmlStrEqual (attrib->name, (const xmlChar*)"primitiveName"))
 						{
-							/* we found <PRIMITIVE_NAME> */
-							const char *str=(const char*)child->children->content;
+							/* we found the tag primitiveName */
+							const char *str=(const char*)attrib->children->content;
 							PRIMITIVE_NAME=(char*)MALLOC(sizeof(char)*(strlen((const char*)str)+1));
 							strcpy(PRIMITIVE_NAME,str);
 						}
 					}
 				
-					child = child->next;
+					attrib = attrib->next;
 				}
 
 				if ( (GATEWAY_ID != 0) && (PRIMITIVE_ID != 0) && (PRIMITIVE_NAME) )
@@ -149,7 +149,6 @@ static int Load_primitives_from_file(char *filename)
 				GATEWAY_ID = 0;
 				PRIMITIVE_ID = 0;
 			}
-
 			xmlFreeDoc (doc);
 
 			/*
