@@ -185,7 +185,7 @@ if norm(xf(:,nt)-eAt*x0)>Leps then bugmes();quit;end
  
 xfj=ode(x0,t0,t,f,j);   //lsoda with jacobian
  Warning: Jacobian external is given, but
- not used!,  see %ODEOPTIONS(6).
+ not used!,  see ODEOPTIONS(6).
  
  
 if norm(xfj(:,nt)-eAt*x0)>Leps then bugmes();quit;end
@@ -232,7 +232,7 @@ deff('y=fcrit(t,x)',['if t<=tcrit then'
                       ' y=A*x;chk=resume(1);end'])
  
 x42=ode(x0,t0,t,fcrit);
- Warning : integration up to tcrit
+ Warning : integration up to tcrit.
  
  
 if chk==1 then bugmes();quit;end
@@ -288,7 +288,7 @@ if norm(x61-xf,1)>10*Leps then bugmes();quit;end
  
 x60=ode('st',x0,t0,t,f,j);   //Jacobian not used (warning)
  Warning: Jacobian external is given, but
- not used!,  see %ODEOPTIONS(6).
+ not used!,  see ODEOPTIONS(6).
  
  
 x60=ode('st',x0,t0,t,f);    //Jacobian not used
@@ -301,7 +301,7 @@ if norm(x60-x61,1)>10*Leps then bugmes();quit;end
  
 x60=ode('st',x0,t0,t,f)  ;
  Warning: No Jacobian external given but
- one is required by %ODEOPTIONS(6) value !
+ one is required by ODEOPTIONS(6) value !
  
  
 if norm(x60-x61,1)>10*Leps then bugmes();quit;end
@@ -321,7 +321,7 @@ if norm(x60-x61,1)>10*Leps then bugmes();quit;end
  
 x60=ode('ad',x0,t0,t,f,j);   //Jacobian not used (warning)
  Warning: Jacobian external is given, but
- not used!,  see %ODEOPTIONS(6).
+ not used!,  see ODEOPTIONS(6).
  
  
 x60=ode('ad',x0,t0,t,f);    //Jacobian not used
@@ -342,7 +342,7 @@ if norm(x60-x61,1)>10*Leps then bugmes();quit;end
  
 x60=ode(x0,t0,t,f);
  Warning: No Jacobian external given but
- one is required by %ODEOPTIONS(6) value !
+ one is required by ODEOPTIONS(6) value !
  
  
 if norm(x60-x61,1)>10*Leps then bugmes();quit;end
@@ -428,7 +428,7 @@ deff('jj=j(t,x)','jj=J')
  
 xband=ode('st',x0,t0,t,f,j);
  Warning: Jacobian external is given, but
- not used!,  see %ODEOPTIONS(6).
+ not used!,  see ODEOPTIONS(6).
  
  
 if norm(xnotband-xband,1)>Leps then bugmes();quit;end
