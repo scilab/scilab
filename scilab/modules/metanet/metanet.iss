@@ -14,7 +14,7 @@ Source: bin\metanet_f.dll; DestDir: {app}\bin; Components: {#COMPN_METANET}; Che
 Source: bin\metanet.dll; DestDir: {app}\bin; DestName: metanet.dll; Components: {#COMPN_METANET}
 Source: bin\nometanet.dll; DestDir: {app}\bin; DestName: metanet.dll; Components: not ({#COMPN_METANET})
 ;
-Source: modules\{#METANET}\VERSION; DestDir: {app}\modules\{#METANET}; Components: {#COMPN_METANET}
+Source: modules\{#METANET}\VERSION.xml; DestDir: {app}\modules\{#METANET}; Components: {#COMPN_METANET}
 Source: modules\{#METANET}\readme.txt; DestDir: {app}\modules\{#METANET}; Components: {#COMPN_METANET}
 Source: modules\{#METANET}\licence.txt; DestDir: {app}\modules\{#METANET}; Components: {#COMPN_METANET}
 Source: modules\{#METANET}\changelog.txt; DestDir: {app}\modules\{#METANET}; Components: {#COMPN_METANET}

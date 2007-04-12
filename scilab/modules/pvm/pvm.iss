@@ -13,7 +13,7 @@
 Source: modules\{#PVM}\changelog.txt; DestDir: {app}\modules\{#PVM}; Components: {#COMPN_PVM}; Check: set_with_pvm
 Source: modules\{#PVM}\licence.txt; DestDir: {app}\modules\{#PVM}; Components: {#COMPN_PVM}
 Source: modules\{#PVM}\readme.txt; DestDir: {app}\modules\{#PVM}; Components: {#COMPN_PVM}
-Source: modules\{#PVM}\VERSION; DestDir: {app}\modules\{#PVM}; Components: {#COMPN_PVM}
+Source: modules\{#PVM}\VERSION.xml; DestDir: {app}\modules\{#PVM}; Components: {#COMPN_PVM}
 ;
 Source: modules\{#PVM}\includes\*.h; DestDir: {app}\modules\{#PVM}\includes; Components: {#COMPN_PVM}
 ;

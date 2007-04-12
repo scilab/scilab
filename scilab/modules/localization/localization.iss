@@ -12,7 +12,7 @@
 ;
 Source: bin\localization.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#LOCALIZATION}\VERSION; DestDir: {app}\modules\{#LOCALIZATION}; Components: {#COMPN_SCILAB}
+Source: modules\{#LOCALIZATION}\VERSION.xml; DestDir: {app}\modules\{#LOCALIZATION}; Components: {#COMPN_SCILAB}
 Source: modules\{#LOCALIZATION}\readme.txt; DestDir: {app}\modules\{#LOCALIZATION}; Components: {#COMPN_SCILAB}
 Source: modules\{#LOCALIZATION}\licence.txt; DestDir: {app}\modules\{#LOCALIZATION}; Components: {#COMPN_SCILAB}
 Source: modules\{#LOCALIZATION}\changelog.txt; DestDir: {app}\modules\{#LOCALIZATION}; Components: {#COMPN_SCILAB}

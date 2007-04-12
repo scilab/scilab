@@ -11,7 +11,7 @@
 #define FFTW "fftw"
 ;
 
-Source: modules\{#FFTW}\VERSION; DestDir: {app}\modules\{#FFTW}; Components: {#COMPN_FFTW}; Check: set_with_fftw
+Source: modules\{#FFTW}\VERSION.xml; DestDir: {app}\modules\{#FFTW}; Components: {#COMPN_FFTW}; Check: set_with_fftw
 Source: modules\{#FFTW}\readme.txt; DestDir: {app}\modules\{#FFTW}; Components: {#COMPN_FFTW}
 Source: modules\{#FFTW}\licence.txt; DestDir: {app}\modules\{#FFTW}; Components: {#COMPN_FFTW}
 Source: modules\{#FFTW}\changelog.txt; DestDir: {app}\modules\{#FFTW}; Components: {#COMPN_FFTW}

@@ -10,7 +10,7 @@
 ;
 #define OTHERS "others"
 ;
-Source: modules\{#OTHERS}\VERSION; DestDir: {app}\modules\{#OTHERS}; Components: {#COMPN_OTHERS}; Check: set_with_others
+Source: modules\{#OTHERS}\VERSION.xml; DestDir: {app}\modules\{#OTHERS}; Components: {#COMPN_OTHERS}; Check: set_with_others
 Source: modules\{#OTHERS}\readme.txt; DestDir: {app}\modules\{#OTHERS}; Components: {#COMPN_OTHERS}
 Source: modules\{#OTHERS}\licence.txt; DestDir: {app}\modules\{#OTHERS}; Components: {#COMPN_OTHERS}
 Source: modules\{#OTHERS}\changelog.txt; DestDir: {app}\modules\{#OTHERS}; Components: {#COMPN_OTHERS}

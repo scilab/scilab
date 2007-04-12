@@ -10,7 +10,7 @@
 ;
 #define FUNCTIONS "functions"
 ;
-Source: modules\{#FUNCTIONS}\VERSION; DestDir: {app}\modules\{#FUNCTIONS}; Components: {#COMPN_SCILAB}
+Source: modules\{#FUNCTIONS}\VERSION.xml; DestDir: {app}\modules\{#FUNCTIONS}; Components: {#COMPN_SCILAB}
 Source: modules\{#FUNCTIONS}\readme.txt; DestDir: {app}\modules\{#FUNCTIONS}; Components: {#COMPN_SCILAB}
 Source: modules\{#FUNCTIONS}\licence.txt; DestDir: {app}\modules\{#FUNCTIONS}; Components: {#COMPN_SCILAB}
 Source: modules\{#FUNCTIONS}\changelog.txt; DestDir: {app}\modules\{#FUNCTIONS}; Components: {#COMPN_SCILAB}

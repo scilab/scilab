@@ -10,7 +10,7 @@
 ;
 #define INTERSCI "intersci"
 ;
-Source: modules\{#INTERSCI}\VERSION; DestDir: {app}\modules\{#INTERSCI}; Components: {#COMPN_INTERSCI}; Check: set_with_intersci
+Source: modules\{#INTERSCI}\VERSION.xml; DestDir: {app}\modules\{#INTERSCI}; Components: {#COMPN_INTERSCI}; Check: set_with_intersci
 Source: modules\{#INTERSCI}\readme.txt; DestDir: {app}\modules\{#INTERSCI}; Components: {#COMPN_INTERSCI}
 Source: modules\{#INTERSCI}\licence.txt; DestDir: {app}\modules\{#INTERSCI}; Components: {#COMPN_INTERSCI}
 Source: modules\{#INTERSCI}\changelog.txt; DestDir: {app}\modules\{#INTERSCI}; Components: {#COMPN_INTERSCI}

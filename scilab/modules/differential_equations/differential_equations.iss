@@ -10,7 +10,7 @@
 ;
 #define DIFFEQU "differential_equations"
 ;
-Source: modules\{#DIFFEQU}\VERSION; DestDir: {app}\modules\{#DIFFEQU}; Components: {#COMPN_EQUDIF}; Check: set_with_differential_equations
+Source: modules\{#DIFFEQU}\VERSION.xml; DestDir: {app}\modules\{#DIFFEQU}; Components: {#COMPN_EQUDIF}; Check: set_with_differential_equations
 Source: modules\{#DIFFEQU}\readme.txt; DestDir: {app}\modules\{#DIFFEQU}; Components: {#COMPN_EQUDIF}
 Source: modules\{#DIFFEQU}\licence.txt; DestDir: {app}\modules\{#DIFFEQU}; Components: {#COMPN_EQUDIF}
 Source: modules\{#DIFFEQU}\changelog.txt; DestDir: {app}\modules\{#DIFFEQU}; Components: {#COMPN_EQUDIF}

@@ -17,7 +17,7 @@ Source: bin\nosound.dll; DestDir: {app}\bin; DestName: sound.dll; Components: no
 Source: modules\{#SOUND}\changelog.txt; DestDir: {app}\modules\{#SOUND}; Components: {#COMPN_SOUND}; Check: set_with_sound
 Source: modules\{#SOUND}\licence.txt; DestDir: {app}\modules\{#SOUND}; Components: {#COMPN_SOUND}
 Source: modules\{#SOUND}\readme.txt; DestDir: {app}\modules\{#SOUND}; Components: {#COMPN_SOUND}
-Source: modules\{#SOUND}\VERSION; DestDir: {app}\modules\{#SOUND}; Components: {#COMPN_SOUND}
+Source: modules\{#SOUND}\VERSION.xml; DestDir: {app}\modules\{#SOUND}; Components: {#COMPN_SOUND}
 ;
 Source: modules\{#SOUND}\sci_gateway\sound_gateway.xml; DestDir: {app}\modules\{#SOUND}\sci_gateway; Components: {#COMPN_SOUND}
 ;

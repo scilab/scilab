@@ -10,7 +10,7 @@
 ;
 #define DATASTRUCT "data_structures"
 ;
-Source: modules\{#DATASTRUCT}\VERSION; DestDir: {app}\modules\{#DATASTRUCT}; Components: {#COMPN_SCILAB}
+Source: modules\{#DATASTRUCT}\VERSION.xml; DestDir: {app}\modules\{#DATASTRUCT}; Components: {#COMPN_SCILAB}
 Source: modules\{#DATASTRUCT}\readme.txt; DestDir: {app}\modules\{#DATASTRUCT}; Components: {#COMPN_SCILAB}
 Source: modules\{#DATASTRUCT}\licence.txt; DestDir: {app}\modules\{#DATASTRUCT}; Components: {#COMPN_SCILAB}
 Source: modules\{#DATASTRUCT}\changelog.txt; DestDir: {app}\modules\{#DATASTRUCT}; Components: {#COMPN_SCILAB}

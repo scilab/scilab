@@ -4,7 +4,7 @@
 ;
 #define TEXMACS "texmacs"
 ;
-Source: modules\{#TEXMACS}\VERSION; DestDir: {app}\modules\{#TEXMACS}; Components: {#COMPN_TEXMACS}; Check: set_with_texmacs
+Source: modules\{#TEXMACS}\VERSION.xml; DestDir: {app}\modules\{#TEXMACS}; Components: {#COMPN_TEXMACS}; Check: set_with_texmacs
 Source: modules\{#TEXMACS}\readme.txt; DestDir: {app}\modules\{#TEXMACS}; Components: {#COMPN_TEXMACS}
 Source: modules\{#TEXMACS}\licence.txt; DestDir: {app}\modules\{#TEXMACS}; Components: {#COMPN_TEXMACS}
 Source: modules\{#TEXMACS}\changelog.txt; DestDir: {app}\modules\{#TEXMACS}; Components: {#COMPN_TEXMACS}

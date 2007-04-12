@@ -10,7 +10,7 @@
 ;
 #define SIGPROC "signal_processing"
 ;
-Source: modules\{#SIGPROC}\VERSION; DestDir: {app}\modules\{#SIGPROC}; Components: {#COMPN_SIGPROC}; Check: set_with_signal_processing
+Source: modules\{#SIGPROC}\VERSION.xml; DestDir: {app}\modules\{#SIGPROC}; Components: {#COMPN_SIGPROC}; Check: set_with_signal_processing
 Source: modules\{#SIGPROC}\readme.txt; DestDir: {app}\modules\signal_processing; Components: {#COMPN_SIGPROC}
 Source: modules\{#SIGPROC}\licence.txt; DestDir: {app}\modules\signal_processing; Components: {#COMPN_SIGPROC}
 Source: modules\{#SIGPROC}\changelog.txt; DestDir: {app}\modules\signal_processing; Components: {#COMPN_SIGPROC}

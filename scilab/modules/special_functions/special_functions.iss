@@ -10,7 +10,7 @@
 ;
 #define SPFUNCTIONS "special_functions"
 ;
-Source: modules\{#SPFUNCTIONS}\VERSION; DestDir: {app}\modules\{#SPFUNCTIONS}; Components: {#COMPN_SCILAB}
+Source: modules\{#SPFUNCTIONS}\VERSION.xml; DestDir: {app}\modules\{#SPFUNCTIONS}; Components: {#COMPN_SCILAB}
 Source: modules\{#SPFUNCTIONS}\readme.txt; DestDir: {app}\modules\{#SPFUNCTIONS}; Components: {#COMPN_SCILAB}
 Source: modules\{#SPFUNCTIONS}\licence.txt; DestDir: {app}\modules\{#SPFUNCTIONS}; Components: {#COMPN_SCILAB}
 Source: modules\{#SPFUNCTIONS}\changelog.txt; DestDir: {app}\modules\{#SPFUNCTIONS}; Components: {#COMPN_SCILAB}

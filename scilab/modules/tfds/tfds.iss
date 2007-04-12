@@ -10,7 +10,7 @@
 ;
 #define TFDS "tfds"
 ;
-Source: modules\{#TFDS}\VERSION; DestDir: {app}\modules\{#TFDS}; Components: {#COMPN_TFDS}; Check: set_with_tfds
+Source: modules\{#TFDS}\VERSION.xml; DestDir: {app}\modules\{#TFDS}; Components: {#COMPN_TFDS}; Check: set_with_tfds
 Source: modules\{#TFDS}\readme.txt; DestDir: {app}\modules\{#TFDS}; Components: {#COMPN_TFDS}
 Source: modules\{#TFDS}\licence.txt; DestDir: {app}\modules\{#TFDS}; Components: {#COMPN_TFDS}
 Source: modules\{#TFDS}\changelog.txt; DestDir: {app}\modules\{#TFDS}; Components: {#COMPN_TFDS}

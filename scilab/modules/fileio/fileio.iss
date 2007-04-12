@@ -10,7 +10,7 @@
 ;
 #define FILEIO "fileio"
 ;
-Source: modules\{#FILEIO}\VERSION; DestDir: {app}\modules\{#FILEIO}; Components: {#COMPN_SCILAB}
+Source: modules\{#FILEIO}\VERSION.xml; DestDir: {app}\modules\{#FILEIO}; Components: {#COMPN_SCILAB}
 Source: modules\{#FILEIO}\readme.txt; DestDir: {app}\modules\{#FILEIO}; Components: {#COMPN_SCILAB}
 Source: modules\{#FILEIO}\licence.txt; DestDir: {app}\modules\{#FILEIO}; Components: {#COMPN_SCILAB}
 Source: modules\{#FILEIO}\changelog.txt; DestDir: {app}\modules\{#FILEIO}; Components: {#COMPN_SCILAB}

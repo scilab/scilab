@@ -18,7 +18,7 @@ Source: bin\scicos.dll; DestDir: {app}\bin; DestName: scicos.dll
 ;Source: bin\scicos.dll; DestDir: {app}\bin; DestName: scicos.dll; Components: {#COMPN_SCICOS}
 ;Source: bin\noscicos.dll; DestDir: {app}\bin; DestName: scicos.dll; Components: not ({#COMPN_SCICOS})
 ;
-;Source: modules\{#SCICOS}\VERSION; DestDir: {app}\modules\{#SCICOS}; Components: {#COMPN_SCICOS}
+;Source: modules\{#SCICOS}\VERSION.xml; DestDir: {app}\modules\{#SCICOS}; Components: {#COMPN_SCICOS}
 ;Source: modules\{#SCICOS}\readme.txt; DestDir: {app}\modules\{#SCICOS}; Components: {#COMPN_SCICOS}
 ;Source: modules\{#SCICOS}\licence.txt; DestDir: {app}\modules\{#SCICOS}; Components: {#COMPN_SCICOS}
 ;Source: modules\{#SCICOS}\changelog.txt; DestDir: {app}\modules\{#SCICOS}; Components: {#COMPN_SCICOS}

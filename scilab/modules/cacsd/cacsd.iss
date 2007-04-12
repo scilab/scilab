@@ -12,7 +12,7 @@
 ;
 Source: bin\slicot_f.dll; DestDir: {app}\bin; Components: {#COMPN_CACSD}
 ;
-Source: modules\{#CACSD}\VERSION; DestDir: {app}\modules\{#CACSD}; Components: {#COMPN_CACSD}; Check: set_with_cacsd
+Source: modules\{#CACSD}\VERSION.xml; DestDir: {app}\modules\{#CACSD}; Components: {#COMPN_CACSD}; Check: set_with_cacsd
 Source: modules\{#CACSD}\readme.txt; DestDir: {app}\modules\{#CACSD}; Components: {#COMPN_CACSD}
 Source: modules\{#CACSD}\licence.txt; DestDir: {app}\modules\{#CACSD}; Components: {#COMPN_CACSD}
 Source: modules\{#CACSD}\changelog.txt; DestDir: {app}\modules\{#CACSD}; Components: {#COMPN_CACSD}

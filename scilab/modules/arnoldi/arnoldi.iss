@@ -14,7 +14,7 @@ Source: bin\arnoldi.dll; DestDir: {app}\bin; Components: {#COMPN_ARNOLDI}; Check
 Source: bin\Arpack.dll; DestDir: {app}\bin; Components: {#COMPN_ARNOLDI}
 Source: bin\UMFPACK.dll; DestDir: {app}\bin; Components: {#COMPN_ARNOLDI}
 ;
-Source: modules\{#ARNOLDI}\VERSION; DestDir: {app}\modules\{#ARNOLDI}; Components: {#COMPN_ARNOLDI}
+Source: modules\{#ARNOLDI}\VERSION.xml; DestDir: {app}\modules\{#ARNOLDI}; Components: {#COMPN_ARNOLDI}
 Source: modules\{#ARNOLDI}\readme.txt; DestDir: {app}\modules\{#ARNOLDI}; Components: {#COMPN_ARNOLDI}
 Source: modules\{#ARNOLDI}\licence.txt; DestDir: {app}\modules\{#ARNOLDI}; Components: {#COMPN_ARNOLDI}
 Source: modules\{#ARNOLDI}\changelog.txt; DestDir: {app}\modules\{#ARNOLDI}; Components: {#COMPN_ARNOLDI}

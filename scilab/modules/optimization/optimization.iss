@@ -10,7 +10,7 @@
 ;
 #define OPTIMIZATION "optimization"
 ;
-Source: modules\{#OPTIMIZATION}\VERSION; DestDir: {app}\modules\{#OPTIMIZATION}; Components: {#COMPN_OPTIM}; Check: set_with_optimization
+Source: modules\{#OPTIMIZATION}\VERSION.xml; DestDir: {app}\modules\{#OPTIMIZATION}; Components: {#COMPN_OPTIM}; Check: set_with_optimization
 Source: modules\{#OPTIMIZATION}\readme.txt; DestDir: {app}\modules\{#OPTIMIZATION}; Components: {#COMPN_OPTIM}
 Source: modules\{#OPTIMIZATION}\licence.txt; DestDir: {app}\modules\{#OPTIMIZATION}; Components: {#COMPN_OPTIM}
 Source: modules\{#OPTIMIZATION}\changelog.txt; DestDir: {app}\modules\{#OPTIMIZATION}; Components: {#COMPN_OPTIM}

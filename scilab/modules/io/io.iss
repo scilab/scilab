@@ -13,7 +13,7 @@
 Source: bin\io.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\io_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#IO}\VERSION; DestDir: {app}\modules\{#IO}; Components: {#COMPN_SCILAB}
+Source: modules\{#IO}\VERSION.xml; DestDir: {app}\modules\{#IO}; Components: {#COMPN_SCILAB}
 Source: modules\{#IO}\readme.txt; DestDir: {app}\modules\{#IO}; Components: {#COMPN_SCILAB}
 Source: modules\{#IO}\licence.txt; DestDir: {app}\modules\{#IO}; Components: {#COMPN_SCILAB}
 Source: modules\{#IO}\changelog.txt; DestDir: {app}\modules\{#IO}; Components: {#COMPN_SCILAB}

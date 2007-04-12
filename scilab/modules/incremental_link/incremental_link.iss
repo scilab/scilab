@@ -10,7 +10,7 @@
 ;
 #define INCRLINK "incremental_link"
 ;
-Source: modules\{#INCRLINK}\VERSION; DestDir: {app}\modules\{#INCRLINK}; Components: {#COMPN_SCILAB}
+Source: modules\{#INCRLINK}\VERSION.xml; DestDir: {app}\modules\{#INCRLINK}; Components: {#COMPN_SCILAB}
 Source: modules\{#INCRLINK}\readme.txt; DestDir: {app}\modules\{#INCRLINK}; Components: {#COMPN_SCILAB}
 Source: modules\{#INCRLINK}\licence.txt; DestDir: {app}\modules\{#INCRLINK}; Components: {#COMPN_SCILAB}
 Source: modules\{#INCRLINK}\changelog.txt; DestDir: {app}\modules\{#INCRLINK}; Components: {#COMPN_SCILAB}

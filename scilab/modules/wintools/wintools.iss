@@ -10,7 +10,7 @@
 ;
 #define WINTOOLS "wintools"
 ;
-Source: modules\{#WINTOOLS}\VERSION; DestDir: {app}\modules\{#WINTOOLS}; Components: {#COMPN_SCILAB}
+Source: modules\{#WINTOOLS}\VERSION.xml; DestDir: {app}\modules\{#WINTOOLS}; Components: {#COMPN_SCILAB}
 Source: modules\{#WINTOOLS}\readme.txt; DestDir: {app}\modules\{#WINTOOLS}; Components: {#COMPN_SCILAB}
 Source: modules\{#WINTOOLS}\licence.txt; DestDir: {app}\modules\{#WINTOOLS}; Components: {#COMPN_SCILAB}
 Source: modules\{#WINTOOLS}\changelog.txt; DestDir: {app}\modules\{#WINTOOLS}; Components: {#COMPN_SCILAB}

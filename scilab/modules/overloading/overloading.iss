@@ -11,7 +11,7 @@
 ;
 #define OVERLOADING "overloading"
 ;
-Source: modules\{#OVERLOADING}\VERSION; DestDir: {app}\modules\{#OVERLOADING}; Components: {#COMPN_SCILAB}
+Source: modules\{#OVERLOADING}\VERSION.xml; DestDir: {app}\modules\{#OVERLOADING}; Components: {#COMPN_SCILAB}
 Source: modules\{#OVERLOADING}\readme.txt; DestDir: {app}\modules\{#OVERLOADING}; Components: {#COMPN_SCILAB}
 Source: modules\{#OVERLOADING}\licence.txt; DestDir: {app}\modules\{#OVERLOADING}; Components: {#COMPN_SCILAB}
 Source: modules\{#OVERLOADING}\changelog.txt; DestDir: {app}\modules\{#OVERLOADING}; Components: {#COMPN_SCILAB}

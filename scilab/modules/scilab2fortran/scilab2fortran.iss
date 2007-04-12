@@ -10,7 +10,7 @@
 ;
 #define SCI2FOR "scilab2fortran"
 ;
-Source: modules\{#SCI2FOR}\VERSION; DestDir: {app}\modules\{#SCI2FOR}; Components: {#COMPN_SCI2FOR}; Check: set_with_scilab2fortran
+Source: modules\{#SCI2FOR}\VERSION.xml; DestDir: {app}\modules\{#SCI2FOR}; Components: {#COMPN_SCI2FOR}; Check: set_with_scilab2fortran
 Source: modules\{#SCI2FOR}\readme.txt; DestDir: {app}\modules\{#SCI2FOR}; Components: {#COMPN_SCI2FOR}
 Source: modules\{#SCI2FOR}\licence.txt; DestDir: {app}\modules\{#SCI2FOR}; Components: {#COMPN_SCI2FOR}
 Source: modules\{#SCI2FOR}\changelog.txt; DestDir: {app}\modules\{#SCI2FOR}; Components: {#COMPN_SCI2FOR}

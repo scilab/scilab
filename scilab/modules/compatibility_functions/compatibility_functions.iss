@@ -10,7 +10,7 @@
 ;
 #define COMPATFUNCTIONS "compatibility_functions"
 ;
-Source: modules\{#COMPATFUNCTIONS}\VERSION; DestDir: {app}\modules\{#COMPATFUNCTIONS}; Components: {#COMPN_COMPATFUNCTIONS}; Check: set_with_compatibility_functions
+Source: modules\{#COMPATFUNCTIONS}\VERSION.xml; DestDir: {app}\modules\{#COMPATFUNCTIONS}; Components: {#COMPN_COMPATFUNCTIONS}; Check: set_with_compatibility_functions
 Source: modules\{#COMPATFUNCTIONS}\readme.txt; DestDir: {app}\modules\{#COMPATFUNCTIONS}; Components: {#COMPN_COMPATFUNCTIONS}
 Source: modules\{#COMPATFUNCTIONS}\licence.txt; DestDir: {app}\modules\{#COMPATFUNCTIONS}; Components: {#COMPN_COMPATFUNCTIONS}
 Source: modules\{#COMPATFUNCTIONS}\changelog.txt; DestDir: {app}\modules\{#COMPATFUNCTIONS}; Components: {#COMPN_COMPATFUNCTIONS}
