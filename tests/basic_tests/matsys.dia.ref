@@ -54,7 +54,7 @@ if or(foo()<>[1 0]) then bugmes();quit;end
 [x,y]=foo();if or(x<>[2 0]) then bugmes();quit;end
  
 deff('[x,y]=foo(a,b)','lhs=argn(0);x=lhs;y=-1')
-Warning :redefining function: foo                     
+Warning : redefining function : foo                     
  
  
 if foo(1)<>1 then bugmes();quit;end
@@ -66,7 +66,7 @@ if foo(1,2)<>1 then bugmes();quit;end
 //
  
 deff('[x,y]=foo(a,b)','[lhs,rhs]=argn();x=[lhs,rhs];y=-1')
-Warning :redefining function: foo                     
+Warning : redefining function : foo                     
  
  
 if or(foo(1)<>[1 1]) then bugmes();quit;end
@@ -82,7 +82,7 @@ if or(foo()<>[1 0]) then bugmes();quit;end
 [x,y]=foo();if or(x<>[2 0]) then bugmes();quit;end
  
 deff('[x,y]=foo(a,b)','lhs=argn();x=lhs;y=-1')
-Warning :redefining function: foo                     
+Warning : redefining function : foo                     
  
  
 if foo(1)<>1 then bugmes();quit;end
@@ -312,7 +312,7 @@ errclear();errcatch();
  
 //whereis
  
-if whereis('sci2exp')<>'m2scilib' then bugmes();quit;end
+if whereis('sci2exp')<>'stringlib' then bugmes();quit;end
  
 if whereis('aaa')<>[]  then bugmes();quit;end
  
@@ -320,7 +320,7 @@ if whereis('aaa')<>[]  then bugmes();quit;end
 //where
  
 deff('[a,b]=foo()','[a,b]=where()')
-Warning :redefining function: foo                     
+Warning : redefining function : foo                     
  
  
 [a,b]=foo();
@@ -337,7 +337,7 @@ deff('foo()','a=1')
 funcprot(1)
  
 deff('foo()','a=2')
-Warning :redefining function: foo                     
+Warning : redefining function : foo                     
  
  
 errcatch(111,'continue','nomessage')
@@ -363,11 +363,11 @@ timer();for i=1:100000,end;if timer()<=0 then bugmes();quit;end
 // comp
  
 deff('[a]=foo()','a=1','n')
-Warning :redefining function: foo                     
+Warning : redefining function : foo                     
  
  
 comp(foo)
-Warning :redefining function: foo                     
+Warning : redefining function : foo                     
  
  
 if foo()<>1 then bugmes();quit;end
@@ -386,7 +386,7 @@ y=stacksize();if y(1)<>a+1000 then bugmes();quit;end
 //non compiled functions
  
 deff('y=foo(a)','x=a+1000,stacksize(x),y=stacksize();y=y(1)','n')
-Warning :redefining function: foo                     
+Warning : redefining function : foo                     
  
  
 a=stacksize();a=a(1);
@@ -421,7 +421,7 @@ a=y;
 // compiled functions
  
 deff('y=foo(a)','x=a+1000,stacksize(x),y=stacksize();y=y(1)')
-Warning :redefining function: foo                     
+Warning : redefining function : foo                     
  
  
 y=foo(a);
@@ -431,7 +431,7 @@ if y<>a+1000 then bugmes();quit;end
 a=y;
  
 deff('y=toto()','a=stacksize();a=a(1);y=foo(a)')
-Warning :redefining function: toto                    
+Warning : redefining function : toto                    
  
  
 y=toto();
@@ -491,7 +491,7 @@ if 1/0<>%inf then bugmes();quit;end
 ieee(1)
  
 if 1/0<>%inf then bugmes();quit;end
-Warning :division by zero...
+Warning : division by zero...
  
  
 ieee(0)

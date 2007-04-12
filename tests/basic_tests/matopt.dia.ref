@@ -144,7 +144,7 @@ deff('[f,g,ind]=rose(x,ind)', 'a=x(2)-x(1)^2 , b=1-x(2) ,...
 f=50.*a^2 + b^2 , g(1)=-400.*x(1)*a , g(2)=200.*a -2.*b ');
  
 comp(rose);
- Warning: function is already compiled
+ Warning: function is already compiled.
  
  
 //[f,x,g,tr]=optim(rose,x0,'qn','ar',50);if abs(f+norm(x-xopt)) > Leps then bugmes();quit;end
@@ -207,7 +207,7 @@ deff('[fpen,gpen,ind]=sipn(x,ind,sip1,ne,nc,cpen)',...
 ' for i=ne+1:nc, if f(i) > 0 then gpen=gpen + cpen*f(i)*g(:,i),end,end;end;'])
  
 comp(sipn);
- Warning: function is already compiled
+ Warning: function is already compiled.
  
  
 [f,x,g]=optim(list(sipn,sip2,ne,nc,cpen),...
@@ -227,7 +227,7 @@ if norm(X-inv(A))>Leps then bugmes();quit;end
  
  
 deff('[f,g,ind]=ndsim(x,ind)', 'y=A*x-b;f=sum(abs(y));g=A''*sign(y)')
-Warning :redefining function: ndsim                   
+Warning : redefining function : ndsim                   
  
  
 A=rand(2,2);b=[1;0];Ai=inv(A);
@@ -240,7 +240,7 @@ if norm(x-Ai(:,1))>Leps then bugmes();quit;end
 deff('[f,g,ind]=ndsim(x,ind)', [
 'y=A*x-b;f=max(abs(y)),sel=abs(y)==f'
 'g=A(sel,:)''*sign(y(sel))']);
-Warning :redefining function: ndsim                   
+Warning : redefining function : ndsim                   
  
  
 //A=rand(2,2);b=[1;0];Ai=inv(A);

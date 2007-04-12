@@ -1241,7 +1241,7 @@ yref=[ 0
 -%inf];
  
 y=besseli(alpha,x);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -1250,7 +1250,7 @@ yref=[ 0
 -%inf];
  
 y=besseli(alpha,x,1);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -1576,7 +1576,7 @@ yref=[-%inf
  0];
  
 y=besseli(alpha,x);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -1587,7 +1587,7 @@ yref=[-%inf
  0];
  
 y=besseli(alpha,x,1);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -1742,7 +1742,7 @@ yref=[-%inf
  0];
  
 y=besseli(alpha,x);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -1754,7 +1754,7 @@ yref=[-%inf
  0];
  
 y=besseli(alpha,x,1);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -3109,7 +3109,7 @@ yref=[ -0
 -%inf];
  
 y=besselj(alpha,x);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -3118,7 +3118,7 @@ yref=[ -0
 -%inf];
  
 y=besselj(alpha,x,1);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -3601,7 +3601,7 @@ yref=[-%inf
  -0];
  
 y=besselj(alpha,x);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -3612,7 +3612,7 @@ yref=[-%inf
  -0];
  
 y=besselj(alpha,x,1);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -3767,7 +3767,7 @@ yref=[-%inf
  -0];
  
 y=besselj(alpha,x);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -3779,7 +3779,7 @@ yref=[-%inf
  -0];
  
 y=besselj(alpha,x,1);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -4088,7 +4088,7 @@ x=[0];
 yref=[%inf];
  
 y=besselk(alpha,x);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -4096,7 +4096,7 @@ if testresult() then bugmes();quit;end
 yref=[%inf];
  
 y=besselk(alpha,x,1);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -4245,7 +4245,7 @@ x=[0];
 yref=[%inf];
  
 y=besselk(alpha,x);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -4253,7 +4253,7 @@ if testresult() then bugmes();quit;end
 yref=[%inf];
  
 y=besselk(alpha,x,1);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -4402,7 +4402,7 @@ x=[0];
 yref=[%inf %inf %inf];
  
 y=besselk(alpha,x);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -4410,7 +4410,7 @@ if testresult() then bugmes();quit;end
 yref=[%inf %inf %inf];
  
 y=besselk(alpha,x,1);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -4527,7 +4527,7 @@ x=[0];
 yref=[%inf %inf %inf];
  
 y=besselk(alpha,x);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -4535,7 +4535,7 @@ if testresult() then bugmes();quit;end
 yref=[%inf %inf %inf];
  
 y=besselk(alpha,x,1);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -4658,7 +4658,7 @@ yref=[%inf
 %inf];
  
 y=besselk(alpha,x);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -4668,7 +4668,7 @@ yref=[%inf
 %inf];
  
 y=besselk(alpha,x,1);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -4832,7 +4832,7 @@ yref=[%inf
 %inf];
  
 y=besselk(alpha,x);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -4842,7 +4842,7 @@ yref=[%inf
 %inf];
  
 y=besselk(alpha,x,1);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -5000,7 +5000,7 @@ x=[0];
 yref=[%inf];
  
 y=besselk(alpha,x);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -5008,7 +5008,7 @@ if testresult() then bugmes();quit;end
 yref=[%inf];
  
 y=besselk(alpha,x,1);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -5160,7 +5160,7 @@ yref=[%inf
 %inf];
  
 y=besselk(alpha,x);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -5169,7 +5169,7 @@ yref=[%inf
 %inf];
  
 y=besselk(alpha,x,1);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -5326,7 +5326,7 @@ yref=[%inf
 %inf];
  
 y=besselk(alpha,x);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -5338,7 +5338,7 @@ yref=[%inf
 %inf];
  
 y=besselk(alpha,x,1);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -5499,7 +5499,7 @@ yref=[%inf
 %inf];
  
 y=besselk(alpha,x);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -5510,7 +5510,7 @@ yref=[%inf
 %inf];
  
 y=besselk(alpha,x,1);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -5665,7 +5665,7 @@ yref=[%inf
 %inf];
  
 y=besselk(alpha,x);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -5677,7 +5677,7 @@ yref=[%inf
 %inf];
  
 y=besselk(alpha,x,1);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -5986,7 +5986,7 @@ x=[0];
 yref=[-%inf];
  
 y=bessely(alpha,x);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -5994,7 +5994,7 @@ if testresult() then bugmes();quit;end
 yref=[-%inf];
  
 y=bessely(alpha,x,1);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -6143,7 +6143,7 @@ x=[0];
 yref=[-%inf];
  
 y=bessely(alpha,x);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -6151,7 +6151,7 @@ if testresult() then bugmes();quit;end
 yref=[-%inf];
  
 y=bessely(alpha,x,1);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -6300,7 +6300,7 @@ x=[0];
 yref=[-%inf -%inf -%inf];
  
 y=bessely(alpha,x);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -6308,7 +6308,7 @@ if testresult() then bugmes();quit;end
 yref=[-%inf -%inf -%inf];
  
 y=bessely(alpha,x,1);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -6425,7 +6425,7 @@ x=[0];
 yref=[-%inf -%inf -%inf];
  
 y=bessely(alpha,x);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -6433,7 +6433,7 @@ if testresult() then bugmes();quit;end
 yref=[-%inf -%inf -%inf];
  
 y=bessely(alpha,x,1);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -6556,7 +6556,7 @@ yref=[-%inf
 -%inf];
  
 y=bessely(alpha,x);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -6566,7 +6566,7 @@ yref=[-%inf
 -%inf];
  
 y=bessely(alpha,x,1);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -6730,7 +6730,7 @@ yref=[-%inf
 -%inf];
  
 y=bessely(alpha,x);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -6740,7 +6740,7 @@ yref=[-%inf
 -%inf];
  
 y=bessely(alpha,x,1);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -6898,7 +6898,7 @@ x=[0];
 yref=[-%inf];
  
 y=bessely(alpha,x);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -6906,7 +6906,7 @@ if testresult() then bugmes();quit;end
 yref=[-%inf];
  
 y=bessely(alpha,x,1);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -7058,7 +7058,7 @@ yref=[-%inf
 -%inf];
  
 y=bessely(alpha,x);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -7067,7 +7067,7 @@ yref=[-%inf
 -%inf];
  
 y=bessely(alpha,x,1);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -7224,7 +7224,7 @@ yref=[-%inf
 -%inf];
  
 y=bessely(alpha,x);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -7236,7 +7236,7 @@ yref=[-%inf
 -%inf];
  
 y=bessely(alpha,x,1);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -7397,7 +7397,7 @@ yref=[-%inf
 -%inf];
  
 y=bessely(alpha,x);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -7408,7 +7408,7 @@ yref=[-%inf
 -%inf];
  
 y=bessely(alpha,x,1);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -7560,7 +7560,7 @@ yref=[-%inf
 -%inf];
  
 y=bessely(alpha,x);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -7571,7 +7571,7 @@ yref=[-%inf
 -%inf];
  
 y=bessely(alpha,x,1);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -7726,7 +7726,7 @@ yref=[-%inf
 -%inf];
  
 y=bessely(alpha,x);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end
@@ -7738,7 +7738,7 @@ yref=[-%inf
 -%inf];
  
 y=bessely(alpha,x,1);
-Warning :division by zero...
+Warning : division by zero...
  
  
 if testresult() then bugmes();quit;end

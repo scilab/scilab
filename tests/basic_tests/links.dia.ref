@@ -20,7 +20,7 @@ ilib_for_link(routines,'externals.o',[],"f");
  
 exec loader.sce ;
 shared archive loaded
-Link done
+Link done.
  
 //===========================================================
  
