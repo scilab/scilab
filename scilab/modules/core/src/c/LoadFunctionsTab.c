@@ -13,7 +13,7 @@
 #include "LoadFunctionsTab.h"
 #include "libxml/xmlreader.h"
 #include "GetXmlFileEncoding.h"
-#include "../fileio/includes/FileExist.h"
+#include "../../fileio/includes/FileExist.h"
 /*-----------------------------------------------------------------------------------*/  
 static int firstentry = 0;
 /*-----------------------------------------------------------------------------------*/  
