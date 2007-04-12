@@ -57,7 +57,7 @@ int main( int argc,char ** argv)
     default:
 		printf("Usage:  intersci <interface file> 'files' 'libs'\n");
 		printf("intersci is a program for building an interface file between Scilab\n");
-		printf("and C/Fortran subroutines functions.\n");
+		printf("and C/Fortran functions/subroutines.\n");
 		printf("See : http://www.scilab.org/doc/intersci.pdf\n");
       exit(1);
       break;
