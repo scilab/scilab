@@ -533,10 +533,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\msgs.c"
-				>
-			</File>
-			<File
 				RelativePath=".\namstr.c"
 				>
 			</File>
@@ -1186,10 +1182,6 @@
 			</File>
 			<File
 				RelativePath=".\mrknmd.f"
-				>
-			</File>
-			<File
-				RelativePath=".\msgs.f"
 				>
 			</File>
 			<File

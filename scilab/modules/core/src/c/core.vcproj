@@ -370,6 +370,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\msgs.c"
+				>
+			</File>
+			<File
 				RelativePath=".\msgstore.c"
 				>
 			</File>

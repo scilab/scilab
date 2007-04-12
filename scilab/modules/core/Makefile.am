@@ -77,7 +77,8 @@ src/c/returnProperty.c \
 src/c/returnPropertyList.c \
 src/c/scilabmode.c \
 src/c/diary.c \
-src/c/GetXmlFileEncoding.c
+src/c/GetXmlFileEncoding.c \
+src/c/msgs.c
 
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f \
 src/fortran/clunit.f \
@@ -85,7 +86,6 @@ src/fortran/complexify.f \
 src/fortran/allowptr.f \
 src/fortran/dldsp.f \
 src/fortran/bcol.f \
-src/fortran/msgs.f \
 src/fortran/getlin.f \
 src/fortran/isany.f \
 src/fortran/hmcreate.f \

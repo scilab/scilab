@@ -118,7 +118,6 @@ cd .."/>
 		<File RelativePath="mklist.f"/>
 		<File RelativePath="mname.f"/>
 		<File RelativePath="mrknmd.f"/>
-		<File RelativePath="msgs.f"/>
 		<File RelativePath="namstr.f"/>
 		<File RelativePath="nextj.f"/>
 		<File RelativePath="print.f"/>
