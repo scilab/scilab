@@ -14,6 +14,7 @@
 #include "libxml/xmlreader.h"
 #include "GetXmlFileEncoding.h"
 #include "../../fileio/includes/FileExist.h"
+#include <libxml/xpath.h>
 /*-----------------------------------------------------------------------------------*/  
 static int firstentry = 0;
 /*-----------------------------------------------------------------------------------*/  
@@ -65,7 +66,7 @@ static int Add_a_Scilab_primitive_in_hashtable(char *str, int *dataI, int *data)
 	return( action_hashtable_scilab_functions(id,str,&ldata,SCI_HFUNCTIONS_ENTER));
 }
 /*-----------------------------------------------------------------------------------*/
-int Load_primitives_from_file(char *filename)
+static BOOL Load_primitives_from_file(char *filename)
 {
 	BOOL bOK=FALSE;
 
@@ -81,6 +82,9 @@ int Load_primitives_from_file(char *filename)
 		{
 			xmlNodePtr node;
 			xmlDocPtr doc;
+			xmlXPathContextPtr xpathCtxt = NULL;
+			xmlXPathObjectPtr xpathObj = NULL;
+
 
 			int GATEWAY_ID=0;
 			int PRIMITIVE_ID=0;
@@ -94,51 +98,43 @@ int Load_primitives_from_file(char *filename)
 				return bOK;
 			}
 
-			node = doc->children;
-			if (!xmlStrEqual(node->name,(const xmlChar*)"GATEWAY"))
-			{ 
-				/* Check if the first tag is valid */
-				printf("Error : Not a valid gateway file %s (should start with <GATEWAY>)\n", filename);
-				return bOK;
-			}
+			xpathCtxt = xmlXPathNewContext(doc);
+			xpathObj = xmlXPathEval("//GATEWAY/PRIMITIVE", xpathCtxt);
 
-			/* browse all the <PRIMITIVE> */
-			for (node = node->next->children; node != NULL; node = node->next)
+			if(xpathObj && xpathObj->nodesetval->nodeMax) 
 				{
-				
-					if (xmlStrEqual(node->name,(const xmlChar*)"PRIMITIVE"))
-						{
-							/* Only browse <PRIMITIVE> (comments are also processed in XML) */
-							xmlAttrPtr attrib=node->properties;
-
-							/* browse properties in <PRIMITIVE> */
-							while (attrib != NULL)
-								{
-									if (attrib->children != NULL)
-										{ 
-											if (xmlStrEqual (attrib->name, (const xmlChar*) "gatewayId"))
-												{ 
-													/* we found the tag gatewayId */
-													const char *str=(const char*)attrib->children->content;
-													GATEWAY_ID=atoi(str);
-												}
-											else if (xmlStrEqual (attrib->name, (const xmlChar*)"primitiveId"))
-												{ 
-													/* we found the tag primitiveId */
-													const char *str=(const char*)attrib->children->content;
-													PRIMITIVE_ID=atoi(str);
-												}
-											else if (xmlStrEqual (attrib->name, (const xmlChar*)"primitiveName"))
-												{
-													/* we found the tag primitiveName */
-													const char *str=(const char*)attrib->children->content;
-													PRIMITIVE_NAME=(char*)MALLOC(sizeof(char)*(strlen((const char*)str)+1));
-													strcpy(PRIMITIVE_NAME,str);
-												}
-										}
-				
-									attrib = attrib->next;
-								}
+					/* the Xpath has been understood and there are node */
+				int	i;
+				for(i = 0; i < xpathObj->nodesetval->nodeNr; i++)
+					{
+					
+						xmlAttrPtr attrib=xpathObj->nodesetval->nodeTab[i]->properties;
+						/* Get the properties of <PRIMITIVE>  */
+						while (attrib != NULL)
+							{
+								/* loop until when have read all the attributes */
+								if (xmlStrEqual (attrib->name, (const xmlChar*) "gatewayId"))
+									{ 
+										/* we found the tag gatewayId */
+										const char *str=(const char*)attrib->children->content;
+										GATEWAY_ID=atoi(str);
+									}
+								else if (xmlStrEqual (attrib->name, (const xmlChar*)"primitiveId"))
+									{ 
+										/* we found the tag primitiveId */
+										const char *str=(const char*)attrib->children->content;
+										PRIMITIVE_ID=atoi(str);
+									}
+								else if (xmlStrEqual (attrib->name, (const xmlChar*)"primitiveName"))
+									{
+										/* we found the tag primitiveName */
+										const char *str=(const char*)attrib->children->content;
+										PRIMITIVE_NAME=(char*)MALLOC(sizeof(char)*(strlen((const char*)str)+1));
+										strcpy(PRIMITIVE_NAME,str);
+									}
+					attrib = attrib->next;
+							}
+						
 
 							if ( (GATEWAY_ID != 0) && (PRIMITIVE_ID != 0) && (PRIMITIVE_NAME) )
 								{
@@ -152,7 +148,12 @@ int Load_primitives_from_file(char *filename)
 							GATEWAY_ID = 0;
 							PRIMITIVE_ID = 0;
 						}
+				}else{
+					printf("Error : Not a valid gateway file %s (should start with <GATEWAY> and contains <PRIMITIVE gatewayId='' primitiveId='' primitiveName=''>)\n", filename);
+					return bOK;
 				}
+			if(xpathObj) xmlXPathFreeObject(xpathObj);
+			if(xpathCtxt) xmlXPathFreeContext(xpathCtxt);
 			xmlFreeDoc (doc);
 
 			/*
