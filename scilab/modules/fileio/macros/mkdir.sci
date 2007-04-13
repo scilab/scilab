@@ -32,15 +32,15 @@ function [status,msg]=mkdir(varargin)
   NewDirectory=fullfile(DirName,NewDirName)
   
   if (fileinfo(NewDirectory)==[]) then 
-    // Le repertoire n'existe pas
+    // The directory does not exist
     status=1;
   else
-    // Le fichier ou repertoire existe
+    // The directory or file exists
     if (isdir(NewDirectory)) then
-      // c'est un repertoire
+      // it is a directory
       status=2; 
     else
-      // c'est un fichier
+      // it is a file
       status=-2;
     end
   end
