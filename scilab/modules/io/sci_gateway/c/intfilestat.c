@@ -14,10 +14,9 @@
 
 #include "stack-c.h"
 #include "intfilestat.h"
+#include "cluni0.h"
 /*-----------------------------------------------------------------------------------*/
-extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int name_len,long int nams_len));  
-/*-----------------------------------------------------------------------------------*/
-int C2F(intfilestat)(char * fname)
+int C2F(intfilestat)(char * fname,unsigned long fname_len)
 {
 #ifdef _MSC_VER
    struct _stat buf;
@@ -71,7 +70,7 @@ int C2F(intfilestat)(char * fname)
 			 CreateVar(2,"d",&one,&n1,&l2);
 
 			 *stk(l2+0) =  0.0;
-			 *stk(l2+1) =  16895;
+			 *stk(l2+1) =  16895; /* TODO: explain what the hell is 16895 */
 			 *stk(l2+2) =  0.0;
 			 *stk(l2+3) =  0.0;
 			 *stk(l2+4) =  0.0;

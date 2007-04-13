@@ -1,15 +1,13 @@
-/*-----------------------------------------------------------------------------------*/
-/* Author : Pierre MARECHAL                                                          */
-/* Scilab team                                                                       */
-/* Copyright INRIA                                                                   */
-/*                                                                                   */
-/* Date : 24 august 2006                                                             */
-/*-----------------------------------------------------------------------------------*/
+/**
+ * @Author : Pierre MARECHAL - INRIA 2006
+ */
+ /*-----------------------------------------------------------------------------------*/
 #include <string.h>
 #include <ctype.h>
 #include "gw_io.h"
 #include "MALLOC.h"
 #include "sci_getrelativefilename.h"
+#include "directories.h"
 /* ================================================================================== */
 // sci_getrelativefilename
 // 

@@ -3,8 +3,7 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
 #include "gw_io.h"
-/*-----------------------------------------------------------------------------------*/
-extern int C2F(intfilestat) _PARAMS((char *fname,unsigned long fname_len));
+#include "intfilestat.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_fileinfo) _PARAMS((char *fname,unsigned long fname_len))
 {

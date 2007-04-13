@@ -21,9 +21,6 @@
 	#define NULL 0
 #endif
 
-#define MAX_PATH_LONG 32767
-#define MAX_FILENAME_LEN 512
-
 #ifdef _MSC_VER
 	#define ABSOLUTE_NAME_START 3
 	#define SLASH '\\'

@@ -46,6 +46,7 @@ int C2F(intdisp)();
 int C2F(intexec)();
 int C2F(sci_getrelativefilename) _PARAMS((char *fname,unsigned long l));
 int C2F(sci_newest) _PARAMS((char *fname,unsigned long l));
+int C2F(sci_isdir) _PARAMS((char *fname,unsigned long l));
 /*-----------------------------------------------------------------------------------*/
 #endif /*  __GW_IO__ */
 /*-----------------------------------------------------------------------------------*/
