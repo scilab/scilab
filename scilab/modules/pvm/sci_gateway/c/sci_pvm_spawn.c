@@ -1,8 +1,9 @@
 /*-----------------------------------------------------------------------------------*/
-/* PVM functions interfaces */
-/* Copyright (c) 1997 by Inria Lorraine.  All Rights Reserved */
-/* Jean-Philippe Chancelier July 2002  */
-/* Modified by Allan Cornet  INRIA 2006 */
+/* PVM functions interfaces 
+ * @author  Inria Lorraine - 1997
+ * @author Jean-Philippe Chancelier - July 2002
+ * @author Allan Cornet INRIA 2006 
+ */
 /*-----------------------------------------------------------------------------------*/ 
 #include "gw_pvm.h"
 #include "sci_pvm.h"
