@@ -4,9 +4,9 @@
    NAME
      pvm_send
    PURPOSE
-     pvm_send envoie une var scilab 
+     pvm_send send a scilab variable 
    NOTES
-     Pour chaque variable on envoie:
+     For each variable, we send:
         - n: size of the pack array
 	- p: pack array vect: (real,int)+
         - v: the variable.
