@@ -41,9 +41,9 @@ int sci_Playsound __PARAMS((char *fname,unsigned long fname_len))
   rep = C2F(playsound)(filename,command,(int)strlen(filename));
   if ( Lhs == 1 ) 
   {
-      CreateVar(2,"d",&un,&un,&l2);
+      CreateVar(Rhs+2,"d",&un,&un,&l2);
       *stk(l2)= rep;
-      LhsVar(1)=2;
+      LhsVar(1)=Rhs+2;
   }
   else
   {

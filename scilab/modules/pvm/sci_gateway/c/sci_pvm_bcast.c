@@ -24,7 +24,7 @@ int intspvm_bcast _PARAMS((char *fname,unsigned long fname_len))
   GetRhsVar(3,"i",&m3,&n3,&l3);
   CheckScalar(3,m3,n3);
   /* cross variable size checking */
-  CreateVar(4,"i",&un,&un,&l4);/* named: res */
+  CreateVar(Rhs+4,"i",&un,&un,&l4);/* named: res */
   /* Use the rest of the stack as working area */ 
   CreateWork(5,&size,&l5); 
   Ipack= (int *) stk(l5);
@@ -40,7 +40,7 @@ int intspvm_bcast _PARAMS((char *fname,unsigned long fname_len))
     return 0; 
   }
   C2F(scipvmbcast)(cstk(l1),&m1,Ipack,&used,(double *)header,istk(l3),istk(l4));
-  LhsVar(1)= 4;
+  LhsVar(1)= Rhs+4;
   pvm_error_check(fname,*istk(l4),fname_len);
   return 0;
 }

@@ -38,8 +38,8 @@ int sci_loadwave(char *fname,unsigned long fname_len)
   /* using channels */
   m2 =Wi.wChannels;
   nn2 = n2/m2;
-  CreateVar(2,"d",&m2,&nn2,&l2);
-  CreateVar(3,"d",&un,&eight,&l3);
+  CreateVar(Rhs+2,"d",&m2,&nn2,&l2);
+  CreateVar(Rhs+3,"d",&un,&eight,&l3);
   
   *stk(l3)   = Wi.wFormatTag;	/* data format */
   *stk(l3+1) = Wi.wChannels;	/* number of channels */
@@ -51,7 +51,7 @@ int sci_loadwave(char *fname,unsigned long fname_len)
   *stk(l3+7) = Wi.bytespersample; /* bytes per sample (per channel) */
 
   n4=1;m4=(int)strlen(Wi.wav_format);
-  CreateVar(4,"c",&m4,&n4,&l4);
+  CreateVar(Rhs+4,"c",&m4,&n4,&l4);
   strncpy(cstk(l4),Wi.wav_format,strlen(Wi.wav_format));
   C2F(loadwave)(filename,stk(l2),&n2,1,&Wi,&err);
   if (err >  0)
@@ -60,9 +60,9 @@ int sci_loadwave(char *fname,unsigned long fname_len)
     Error(10000);
     return 0;
   };
-  LhsVar(1)= 2;
-  LhsVar(2)= 3;
-  LhsVar(3)= 4;
+  LhsVar(1)= Rhs+2;
+  LhsVar(2)= Rhs+3;
+  LhsVar(3)= Rhs+4;
   PutLhsVar();
   return 0;
 }

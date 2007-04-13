@@ -20,9 +20,9 @@ int intspvm_delhosts _PARAMS((char *fname,unsigned long fname_len))
   GetRhsVar(1,"S",&m1,&n1,&Str1);
   CheckOneDim(1,1,m1,1);
   /* cross variable size checking */
-  CreateVar(2,"i",(un=1,&un),(mn2=n1,&mn2),&l2);/* named: infos */
+  CreateVar(Rhs+2,"i",(un=1,&un),(mn2=n1,&mn2),&l2);/* named: infos */
   pvm_delhosts(Str1, n1,istk(l2));
-  LhsVar(1)= 2;
+  LhsVar(1)= Rhs+2;
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

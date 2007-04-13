@@ -55,8 +55,8 @@ int C2F(sci_warning) _PARAMS((char *fname,unsigned long fname_len))
 				}
 
 				n1=1;
-				CreateVarFromPtr( 1, "c",(m1=(int)strlen(Output), &m1),&n1,&Output);
-				LhsVar(1) = 1;
+				CreateVarFromPtr(Rhs+ 1, "c",(m1=(int)strlen(Output), &m1),&n1,&Output);
+				LhsVar(1) = Rhs+1;
 				C2F(putlhsvar)();	
 				if (Output) {FREE(Output);Output=NULL;}
 				return 0;

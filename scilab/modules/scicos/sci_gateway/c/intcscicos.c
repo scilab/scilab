@@ -73,9 +73,9 @@ int inttimescicos(fname,fname_len)
   int un,l1;
   CheckRhs(-1,0);
   CheckLhs(1,1);
-  CreateVar(1,"d",(un=1,&un),(un=1,&un),&l1);
+  CreateVar(Rhs+1,"d",(un=1,&un),(un=1,&un),&l1);
   *stk(l1)=get_scicos_time();
-  LhsVar(1)=1;
+  LhsVar(1)=Rhs+1;
   return 0;
 }
 
@@ -98,8 +98,8 @@ int intduplicate(fname,fname_len)
   n=m1*n1;
   if (n==0) {
     m3=0;
-    CreateVar(3, "d", &m3, &m3, &l3);
-    LhsVar(1) = 3;
+    CreateVar(Rhs+3, "d", &m3, &m3, &l3);
+    LhsVar(1) = Rhs+3;
     return 0;
   }
   if (n!=m2*n2) 
@@ -109,9 +109,9 @@ int intduplicate(fname,fname_len)
     }
   comp_size(stk(l2),&n3,n);
   m3=1;
-  CreateVar(3, "d", &n3, &m3, &l3);
+  CreateVar(Rhs+3, "d", &n3, &m3, &l3);
   duplicata(&n,stk(l1),stk(l2),stk(l3),&n3);
-  LhsVar(1) = 3;
+  LhsVar(1) = Rhs+3;
   return 0;
 }
 
@@ -127,8 +127,8 @@ int intdiffobjs(fname,fname_len)
   CheckLhs(1,1);
   header1 = GetData(1);
   header2 = GetData(2);
-  CreateVar(3,"d",(un=1,&un),(un=1,&un),&l3);
-  LhsVar(1) = 3;
+  CreateVar(Rhs+3,"d",(un=1,&un),(un=1,&un),&l3);
+  LhsVar(1) = Rhs+3;
   size1=2*(*Lstk(Top-Rhs+2)-*Lstk(Top-Rhs+1)); 
   size2=2*(*Lstk(Top-Rhs+3)-*Lstk(Top-Rhs+2));
 
@@ -164,15 +164,15 @@ int inttree2(fname,fname_len)
   GetRhsVar(4,"i",&ndep,&mdep,&ipdep);
   GetRhsVar(5,"i",&ndepuptr,&mdepuptr,&ipdepuptr);
   n=nvec*mvec;
-  CreateVar(6,"i",&n,&un,&ipord);
-  CreateVar(7,"i",&un,&un,&ipok);
+  CreateVar(Rhs+6,"i",&n,&un,&ipord);
+  CreateVar(Rhs+7,"i",&un,&un,&ipok);
 
   ctree2(istk(ipvec),n,istk(ipdep),istk(ipdepuptr),istk(ipoin),istk(ipoinr),
 	 istk(ipord),&nord,istk(ipok));
   *istk(iadr(C2F(intersci).iwhere[5])+1)=nord;
 
-  LhsVar(1)=6;
-  LhsVar(2)=7;
+  LhsVar(1)=Rhs+6;
+  LhsVar(2)=Rhs+7;
 
   return 0;
 }
@@ -199,15 +199,15 @@ int inttree3(fname,fname_len)
   GetRhsVar(8,"i",&nblr,&mblr,&ipblr);
   
   n=nvec*mvec;
-  CreateVar(9,"i",&n,&un,&ipord);
-  CreateVar(10,"i",&un,&un,&ipok);
+  CreateVar(Rhs+9,"i",&n,&un,&ipord);
+  CreateVar(Rhs+10,"i",&un,&un,&ipok);
 
   ctree3(istk(ipvec),n,istk(ipdep),istk(ipdepuptr),istk(iptyp),istk(ipbex),
 	 istk(ipbop),istk(ipbln),istk(ipblr),istk(ipord),&nord,istk(ipok));
   *istk(iadr(C2F(intersci).iwhere[8])+1)=nord;
 
-  LhsVar(1)=9;
-  LhsVar(2)=10;
+  LhsVar(1)=Rhs+9;
+  LhsVar(2)=Rhs+10;
 
   return 0;
 }
@@ -228,14 +228,14 @@ int inttree4 _PARAMS((char *fname,unsigned long fname_len))
   GetRhsVar(5,"i",&ntyp,&mtyp,&iptyp);
   n=nvec*mvec;
   nn=nnd*mnd;
-  CreateVar(6,"i",&un,&nn,&ipr1);
-  CreateVar(7,"i",&un,&nn,&ipr2);
+  CreateVar(Rhs+6,"i",&un,&nn,&ipr1);
+  CreateVar(Rhs+7,"i",&un,&nn,&ipr2);
 
   ctree4(istk(ipvec),n,istk(ipnd),mnd,istk(iptyp),istk(ipoin),
 	 istk(ipoinr),istk(ipr1),istk(ipr2),&nr);
   
-  LhsVar(1)=6;
-  LhsVar(2)=7;
+  LhsVar(1)=Rhs+6;
+  LhsVar(2)=Rhs+7;
   /*      nbcols(6)=nr */
   *istk(iadr(C2F(intersci).iwhere[5])+2)=nr;
   /*      nbcols(7)=nr */
@@ -255,8 +255,8 @@ int intxproperty(fname,fname_len)
   extern int n_pointer_xproperty;
   CheckRhs(-1,0);
   CheckLhs(1,1);
-  CreateVarFromPtr(1,"i",&n_pointer_xproperty,(un=1,&un),&pointer_xproperty);
-  LhsVar(1)=1;
+  CreateVarFromPtr(Rhs+1,"i",&n_pointer_xproperty,(un=1,&un),&pointer_xproperty);
+  LhsVar(1)=Rhs+1;
   return 0;
 }
  
@@ -268,9 +268,9 @@ int intphasesim(fname,fname_len)
   int un,l1;
   CheckRhs(-1,0);
   CheckLhs(1,1);
-  CreateVar(1,"i",(un=1,&un),(un=1,&un),&l1);
+  CreateVar(Rhs+1,"i",(un=1,&un),(un=1,&un),&l1);
   *istk(l1)=get_phase_simulation();
-  LhsVar(1)=1;
+  LhsVar(1)=Rhs+1;
   return 0;
 }
 
@@ -827,16 +827,16 @@ int intcpass2(fname,fname_len)
 	 &nblk,&ndcblk,&subscr,&iord,&ok);
   if (!ok) 
     {
-      CreateVar(11,"i", &one, &zeros, &l31);
-      CreateVar(12,"i", &one, &zeros, &l32);
-      CreateVar(13,"i", &one, &zeros, &l33);
-      CreateVar(14,"i", &one, &zeros, &l39);
-      CreateVar(15,"i", &one, &zeros, &l40);
-      LhsVar(1) = 11;
-      LhsVar(2) = 12;
-      LhsVar(3) = 13;
-      LhsVar(4) = 14;
-      LhsVar(5) = 15;
+      CreateVar(Rhs+11,"i", &one, &zeros, &l31);
+      CreateVar(Rhs+12,"i", &one, &zeros, &l32);
+      CreateVar(Rhs+13,"i", &one, &zeros, &l33);
+      CreateVar(Rhs+14,"i", &one, &zeros, &l39);
+      CreateVar(Rhs+15,"i", &one, &zeros, &l40);
+      LhsVar(1) = Rhs+11;
+      LhsVar(2) = Rhs+12;
+      LhsVar(3) = Rhs+13;
+      LhsVar(4) = Rhs+14;
+      LhsVar(5) = Rhs+15;
       return 0;
     }
   if (nb > nblk)
@@ -1096,18 +1096,18 @@ int intcpass2(fname,fname_len)
   if ((solverptr=MALLOC(sizeof(int))) ==NULL )  return 0;		  
   solverptr[0]=solver;
   y39=solverptr;
-  CreateVarFromPtr(9, "i", &one, &one, &y39);
-  LhsVar(4) = 9;
+  CreateVarFromPtr(Rhs+9, "i", &one, &one, &y39);
+  LhsVar(4) = Rhs+9;
   FREE(solverptr);
 
-  CreateVar(10,"l", &nb, &one, &l40);
+  CreateVar(Rhs+10,"l", &nb, &one, &l40);
   for (i=1; i < nb+1; i++)
     {      
       y40=(int*) (corinvec+corinvptr[i]);
       n42=corinvptr[i+1]-corinvptr[i];
       CreateListVarFromPtr(10,i,"i", &one, &n42, &y40); 
     }
-  LhsVar(5) = 10;
+  LhsVar(5) = Rhs+10;
   FREE(corinvec);
   FREE(corinvptr);
   return 0;
@@ -3192,11 +3192,11 @@ int intgetscicosvarsc(fname,fname_len)
     j++;
     C2F(mktlist)(&j);
     Top=Top-1;
-    CreateVar(2,"t",&j,(i=1,&i),&l_tmp); /* this is done to inform common intersci */
+    CreateVar(Rhs+2,"t",&j,(i=1,&i),&l_tmp); /* this is done to inform common intersci */
    }
 
    /* put new variable in lsh argument */
-   LhsVar(1)=2;
+   LhsVar(1)=Rhs+2;
 
    /* end */
    FREE(dyn_char);
@@ -3239,12 +3239,12 @@ int intcurblkc(fname,fname_len)
   /* define type of integer */
   l1 = I_INT32;
   /* Create int32 variable at the top addr. of the stack */
-  CreateVar(1,"I",(j=1,&j),(k=1,&k),&l1);
+  CreateVar(Rhs+1,"I",(j=1,&j),(k=1,&k),&l1);
   /* Store value of C2F(curblk).kfun at the l1 address in istk */
   *istk(l1) = C2F(curblk).kfun;
 
   /* return the value stored at Top address to lhs variable */
-  LhsVar(1) = 1;
+  LhsVar(1) = Rhs+1;
 
   /* return 0 as default value */
   return 0;

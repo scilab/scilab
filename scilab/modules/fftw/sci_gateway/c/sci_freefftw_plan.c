@@ -32,11 +32,11 @@ int sci_freefftw_plan __PARAMS((char *fname,unsigned long fname_len))
 
 	/* */
 	m1=1;n1=m1;
-	CreateVar( 1, "d", &m1, &n1, &l1);
+	CreateVar( Rhs+1, "d", &m1, &n1, &l1);
 	*stk(l1)=Sci_Plan.nb_CPlan;
 
 	/* */
-	LhsVar(1)=1;
+	LhsVar(1)=Rhs+1;
 	PutLhsVar();
 	/* */
 	return(0);

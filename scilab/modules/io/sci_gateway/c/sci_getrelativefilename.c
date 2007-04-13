@@ -65,8 +65,8 @@ int C2F(sci_getrelativefilename) _PARAMS((char *fname, unsigned long l))
 		
 		result = getrelativefilename(param1,param2);
 		
-		CreateVarFromPtr(3,"c",(m1=(int)strlen(result), &m1),&n1,&result);
-		LhsVar(1)=3;
+		CreateVarFromPtr(Rhs+3,"c",(m1=(int)strlen(result), &m1),&n1,&result);
+		LhsVar(1)=Rhs+3;
 		if (result) {FREE(result);result=NULL;}
 		C2F(putlhsvar)();
 	}

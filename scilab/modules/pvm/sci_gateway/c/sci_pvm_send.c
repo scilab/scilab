@@ -26,7 +26,7 @@ int intspvm_send _PARAMS((char *fname,unsigned long fname_len))
   GetRhsVar(3,"i",&m3,&n3,&l3);
   CheckScalar(3,m3,n3);
   /* cross variable size checking */
-  CreateVar(4,"i",&un,&un,&l4);/* named: res */
+  CreateVar(Rhs+4,"i",&un,&un,&l4);/* named: res */
   CreateWork(5,&size,&l5); 
   Ipack= (int *) stk(l5);
   /* Build a pack vector for buff: size is the max size 
@@ -42,7 +42,7 @@ int intspvm_send _PARAMS((char *fname,unsigned long fname_len))
   }
 
   C2F(scipvmsend)(istk(l1),&n1,Ipack,&used,(double *)header,istk(l3),istk(l4));
-  LhsVar(1)= 4;
+  LhsVar(1)= Rhs+4;
   pvm_error_check(fname,*istk(l4),fname_len);
   return 0;
 }

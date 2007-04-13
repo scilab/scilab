@@ -53,9 +53,9 @@ int C2F(sci_stacksize) _PARAMS((char *fname,unsigned long fname_len))
 		paramoutINT[1]=used;
 
 		n1=1;m1=2;
-		CreateVarFromPtr(1, "i", &n1, &m1, &paramoutINT);
+		CreateVarFromPtr(Rhs+1, "i", &n1, &m1, &paramoutINT);
 
-		LhsVar(1) = 1;
+		LhsVar(1) = Rhs+1;
 		C2F(putlhsvar)();	
 
 		if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}

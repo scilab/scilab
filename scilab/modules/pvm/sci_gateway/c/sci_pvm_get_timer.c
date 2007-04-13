@@ -16,9 +16,9 @@ int intspvm_get_timer _PARAMS((char *fname,unsigned long fname_len))
   CheckRhs(0,0);
   CheckLhs(1,1);
   /* cross variable size checking */
-  CreateVar(1,"d",&un,&un,&l1);/* named: res */
+  CreateVar(Rhs+1,"d",&un,&un,&l1);/* named: res */
   C2F(scipvmgettimer)(stk(l1));
-  LhsVar(1)= 1;
+  LhsVar(1)= Rhs+1;
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

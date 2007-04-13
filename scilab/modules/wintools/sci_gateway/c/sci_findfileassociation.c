@@ -82,17 +82,17 @@ int C2F(sci_findfileassociation) _PARAMS((char *fname,unsigned long l))
 	if (Output)
 	{
 		n1=1;
-		CreateVarFromPtr( 1, "c",(m1=(int)strlen(Output), &m1),&n1,&Output);
+		CreateVarFromPtr(Rhs+ 1, "c",(m1=(int)strlen(Output), &m1),&n1,&Output);
 	}
 	else
 	{
 		n1=0;
 		m1=0;
 		l1=0;
-		CreateVarFromPtr( 1, "d",&n1,&m1,&l1);
+		CreateVarFromPtr(Rhs+ 1, "d",&n1,&m1,&l1);
 	}
 		
-	LhsVar(1) = 1;
+	LhsVar(1) = Rhs+1;
 	C2F(putlhsvar)();	
 	if (Output) {FREE(Output);Output=NULL;}
 

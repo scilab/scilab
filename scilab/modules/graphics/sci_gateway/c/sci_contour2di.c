@@ -58,16 +58,16 @@ int sci_contour2di( char * fname, unsigned long fname_len )
   C2F(getconts)(&hl1, &hl2, &m1, &n1);
   if (n1 == 0)
   {
-    CreateVar(6,"d", &n1, &n1, &l1);
-    CreateVar(7,"d", &n1, &n1, &l2);
+    CreateVar(Rhs+6,"d", &n1, &n1, &l1);
+    CreateVar(Rhs+7,"d", &n1, &n1, &l2);
   }
   else 
   {
-    CreateVarFromPtr(6,"d", &m1, &n1, &hl1);
-    CreateVarFromPtr(7,"d", &m1, &n1, &hl2);
+    CreateVarFromPtr(Rhs+6,"d", &m1, &n1, &hl1);
+    CreateVarFromPtr(Rhs+7,"d", &m1, &n1, &hl2);
   }
-  LhsVar(1)=6;
-  LhsVar(2)=7;
+  LhsVar(1)=Rhs+6;
+  LhsVar(2)=Rhs+7;
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/

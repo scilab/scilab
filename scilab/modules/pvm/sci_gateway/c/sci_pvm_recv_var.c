@@ -24,9 +24,9 @@ int intspvm_recv_var _PARAMS((char *fname,unsigned long fname_len))
   /*  checking variable buff */
   GetRhsVar(3,"c",&m3,&n3,&l3);
   /* cross variable size checking */
-  CreateVar(4,"i",&un,&un,&l4);/* named: res */
+  CreateVar(Rhs+4,"i",&un,&un,&l4);/* named: res */
   C2F(scipvmrecvvar)(istk(l1),istk(l2),cstk(l3),istk(l4));
-  LhsVar(1)= 4;
+  LhsVar(1)= Rhs+4;
   pvm_error_check(fname,*istk(l4),fname_len);
   return 0;
 }

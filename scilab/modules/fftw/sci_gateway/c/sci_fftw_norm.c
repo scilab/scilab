@@ -40,11 +40,11 @@ int sci_fftw_norm __PARAMS((char *fname,unsigned long fname_len))
 
 	/* */
 	m1=1;n1=m1;
-	CreateVar(2, "b",&m1,&n1,&l2)
+	CreateVar(Rhs+2, "b",&m1,&n1,&l2)
 		*istk(l2)=Sci_Plan.norm;
 
 	/* */
-	LhsVar(1)=2;
+	LhsVar(1)=Rhs+2;
 	PutLhsVar();
 	/* */
 	return(0);

@@ -18,13 +18,13 @@ int intspvm_bufinfo _PARAMS((char *fname,unsigned long fname_len))
   CheckLhs(1,4);
   GetRhsVar(1,"i",&m1,&n1,&l1);/* bufid */ 
   CheckScalar(1,m1,n1);
-  CreateVar(2,"i",&un,&un,&bytes);
-  CreateVar(3,"i",&un,&un,&msgtag);
-  CreateVar(4,"i",&un,&un,&tid);
-  CreateVar(5,"i",&un,&un,&res);
+  CreateVar(Rhs+2,"i",&un,&un,&bytes);
+  CreateVar(Rhs+3,"i",&un,&un,&msgtag);
+  CreateVar(Rhs+4,"i",&un,&un,&tid);
+  CreateVar(Rhs+5,"i",&un,&un,&res);
   C2F(scipvmbufinfo)(istk(l1), istk(bytes), istk(msgtag), istk(tid), istk(res)); 
   for ( i = 1 ; i <= Lhs ; i++) 
-    LhsVar(i)= i+1; 
+    LhsVar(i)= Rhs+i+1; 
   pvm_error_check(fname,*istk(res),fname_len);
   return 0;  
 }

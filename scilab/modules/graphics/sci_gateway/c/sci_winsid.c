@@ -18,10 +18,10 @@ int sci_winsid(char *fname,unsigned long fname_len)
 
   CheckRhs(-1,0) ;
   getWins(&num,&ids ,&iflag);
-  CreateVar(1,"i",&un,&num,&l1);
+  CreateVar(Rhs+1,"i",&un,&num,&l1);
   iflag = 1; 
   getWins(&num,istk(l1),&iflag);
-  LhsVar(1)=1;
+  LhsVar(1)=Rhs+1;
 
   return 0;
 }

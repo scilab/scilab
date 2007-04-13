@@ -48,7 +48,7 @@ int sci_xlfont( char * fname, unsigned long fname_len )
       S[i][sz[i]]='\0';
     } 
     S[m]= (char *) 0;
-    CreateVarFromPtr(1,"S",&one,&m,S);
+    CreateVarFromPtr(Rhs+1,"S",&one,&m,S);
 	if (S)
 	{
 		int j=0;
@@ -63,7 +63,7 @@ int sci_xlfont( char * fname, unsigned long fname_len )
 		FREE(S);
 		S=NULL;
 	}
-    LhsVar(1)=1;
+    LhsVar(1)=Rhs+1;
     return 0;
   }
   CheckRhs(2,2);

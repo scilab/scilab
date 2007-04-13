@@ -13,13 +13,13 @@ int C2F(intgetmemory) _PARAMS((char *fname))
 	CheckRhs(0,0) ;
 	CheckLhs(1,2);
 
-	CreateVar(1,"i",&one,&one,&l1);
+	CreateVar(Rhs+1,"i",&one,&one,&l1);
 	*istk(l1) = getfreememory();
-	LhsVar(1) = 1;
+	LhsVar(1) = Rhs+1;
 	if (Lhs == 2) {
-	  CreateVar(2,"i",&one,&one,&l1);
+	  CreateVar(Rhs+2,"i",&one,&one,&l1);
 	  *istk(l1) = getmemorysize();
-	  LhsVar(2) = 2;
+	  LhsVar(2) = Rhs+2;
 	}
 
 	C2F(putlhsvar)();

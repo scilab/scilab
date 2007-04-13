@@ -138,31 +138,31 @@ int sci_Rand(char *fname,unsigned long fname_len)
 	      switch(current_gen)
 		{
 		case(MT) :
-		  CreateVar(2,"d",&dim_state_mt,&un,&lr);
+		  CreateVar(Rhs+2,"d",&dim_state_mt,&un,&lr);
 		  get_state_mt(stk(lr));
 		  break;
 		case(KISS) :
-		  CreateVar(2,"d",&dim_state_4,&un,&lr);
+		  CreateVar(Rhs+2,"d",&dim_state_4,&un,&lr);
 		  get_state_kiss(stk(lr));
 		  break;
 		case(CLCG4) :
-		  CreateVar(2,"d",&dim_state_4,&un,&lr);
+		  CreateVar(Rhs+2,"d",&dim_state_4,&un,&lr);
 		  get_state_clcg4(current_clcg4, stk(lr));
 		  break;
 		case(CLCG2) :
-		  CreateVar(2,"d",&deux,&un,&lr);
+		  CreateVar(Rhs+2,"d",&deux,&un,&lr);
 		  get_state_clcg2(stk(lr));
 		  break;
 		case(URAND) : 
-		  CreateVar(2,"d",&un,&un,&lr);
+		  CreateVar(Rhs+2,"d",&un,&un,&lr);
 		  get_state_urand(stk(lr));
 		  break;
 		case(FSULTRA) : 
-		  CreateVar(2,"d",&dim_state_fsultra,&un,&lr);
+		  CreateVar(Rhs+2,"d",&dim_state_fsultra,&un,&lr);
 		  get_state_fsultra(stk(lr));
 		  break;
 		};
-	      LhsVar(1) = 2;
+	      LhsVar(1) = Rhs+2;
 	      PutLhsVar();
 	      return 0;
 	    }
@@ -438,8 +438,8 @@ int sci_Rand(char *fname,unsigned long fname_len)
 	      Scierror(999,"Rhs should be 1 for 'getgen' option\n\r");
 	      return 0;
 	    }
-	  CreateVarFromPtr( 2, "S", &l_un, &l_un, &names_gen[current_gen]);
-	  LhsVar(1) = 2;
+	  CreateVarFromPtr( Rhs+2, "S", &l_un, &l_un, &names_gen[current_gen]);
+	  LhsVar(1) = Rhs+2;
 	  PutLhsVar();
 	  return 0;
 	}

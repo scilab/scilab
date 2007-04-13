@@ -328,17 +328,17 @@ int	InterfaceWindowsClipboard(char *fname,unsigned long l)
 
 				if (output)
 				{
-					CreateVarFromPtr( 1, "c",(m1=strlen(output), &m1),&n1,&output);
+					CreateVarFromPtr(Rhs+ 1, "c",(m1=strlen(output), &m1),&n1,&output);
 					FREE(output);
-					LhsVar(1)=1;
+					LhsVar(1)=Rhs+1;
 				}
 				else
 				{
 					m1=0;
 					n1=0;
 					l1=0;
-					CreateVar(1,"d",  &m1, &n1, &l1);
-					LhsVar(1)=1;
+					CreateVar(Rhs+1,"d",  &m1, &n1, &l1);
+					LhsVar(1)=Rhs+1;
 				}
 
 				C2F(putlhsvar)();	
@@ -384,8 +384,8 @@ int	InterfaceWindowsClipboard(char *fname,unsigned long l)
 					m1=0;
 					n1=0;
 					l1=0;
-					CreateVar(1,"d",  &m1, &n1, &l1);
-					LhsVar(1)=1;
+					CreateVar(Rhs+1,"d",  &m1, &n1, &l1);
+					LhsVar(1)=Rhs+1;
 					C2F(putlhsvar)();	
 					return 0;
 				}
@@ -443,8 +443,8 @@ int	InterfaceWindowsClipboard(char *fname,unsigned long l)
 					m1=0;
 					n1=0;
 					l1=0;
-					CreateVar(1,"d",  &m1, &n1, &l1);
-					LhsVar(1)=1;
+					CreateVar(Rhs+1,"d",  &m1, &n1, &l1);
+					LhsVar(1)=Rhs+1;
 					C2F(putlhsvar)();	
 					return 0;
 				}
@@ -544,8 +544,8 @@ int	InterfaceWindowsClipboard(char *fname,unsigned long l)
 						m1=0;
 						n1=0;
 						l1=0;
-						CreateVar(1,"d",  &m1, &n1, &l1);
-						LhsVar(1)=1;
+						CreateVar(Rhs+1,"d",  &m1, &n1, &l1);
+						LhsVar(1)=Rhs+1;
 						C2F(putlhsvar)();	
 						return 0;
 					}
@@ -601,17 +601,17 @@ int	InterfaceWindowsClipboard(char *fname,unsigned long l)
 
 	//	  if (output)
 	//	  {
-	//		  CreateVarFromPtr( 1, "c",(m1=strlen(output), &m1),&n1,&output);
+	//		  CreateVarFromPtr( Rhs+1, "c",(m1=strlen(output), &m1),&n1,&output);
 	//		  FREE(output);
-	//		  LhsVar(1)=1;
+	//		  LhsVar(1)=Rhs+1;
 	//	  }
 	//	  else
 	//	  {
 	//		  m1=0;
 	//		  n1=0;
 	//		  l1=0;
-	//		  CreateVar(1,"d",  &m1, &n1, &l1);
-	//		  LhsVar(1)=1;
+	//		  CreateVar(Rhs+1,"d",  &m1, &n1, &l1);
+	//		  LhsVar(1)=Rhs+1;
 	//	  }
 
 	//		C2F(putlhsvar)();	

@@ -14,9 +14,9 @@ int int_objnumTokens(char *fname,unsigned long fname_len)
 	CheckRhs(1,1);
 	GetRhsVar(1,"c",&m1,&n1,&l1);
 	StringConvert(cstk(l1));  /* conversion */
-	CreateVar(2, "d", &un, &un, &l2);
+	CreateVar(Rhs+2, "d", &un, &un, &l2);
 	*stk(l2) = (double) NumTokens(cstk(l1));
-	LhsVar(1) = 2;
+	LhsVar(1) = Rhs+2;
 	PutLhsVar();
 	return 0;
 }  

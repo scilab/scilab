@@ -51,8 +51,8 @@ int C2F(sci_getlongpathname) _PARAMS((char *fname,unsigned long l))
 		#endif
 
 		n1=1;
-		CreateVarFromPtr( 2, "c",(m1=(int)strlen(LongName), &m1),&n1,&LongName);
-		LhsVar(1)=2;
+		CreateVarFromPtr(Rhs+ 2, "c",(m1=(int)strlen(LongName), &m1),&n1,&LongName);
+		LhsVar(1)=Rhs+2;
 
 		if (LongName) {FREE(LongName);LongName=NULL;}
 
@@ -62,8 +62,8 @@ int C2F(sci_getlongpathname) _PARAMS((char *fname,unsigned long l))
 
 			*bOkOutINT=bOK;
 			n1=1;
-			CreateVarFromPtr(3, "b", &n1, &n1, &bOkOutINT);
-			LhsVar(2)=3;
+			CreateVarFromPtr(Rhs+3, "b", &n1, &n1, &bOkOutINT);
+			LhsVar(2)=Rhs+3;
 			if (bOkOutINT) {FREE(bOkOutINT);bOkOutINT=NULL;}
 		}
 
@@ -112,8 +112,8 @@ int C2F(sci_getshortpathname) _PARAMS((char *fname,unsigned long l))
 		#endif
 
 		n1=1;
-		CreateVarFromPtr( 2, "c",(m1=(int)strlen(ShortName), &m1),&n1,&ShortName);
-		LhsVar(1)=2;
+		CreateVarFromPtr( Rhs+2, "c",(m1=(int)strlen(ShortName), &m1),&n1,&ShortName);
+		LhsVar(1)=Rhs+2;
 
 		if (ShortName) {FREE(ShortName);ShortName=NULL;}
 
@@ -123,8 +123,8 @@ int C2F(sci_getshortpathname) _PARAMS((char *fname,unsigned long l))
 
 			*bOkOutINT=bOK;
 			n1=1;
-			CreateVarFromPtr(3, "b", &n1, &n1, &bOkOutINT);
-			LhsVar(2)=3;
+			CreateVarFromPtr(Rhs+3, "b", &n1, &n1, &bOkOutINT);
+			LhsVar(2)=Rhs+3;
 			if (bOkOutINT) {FREE(bOkOutINT);bOkOutINT=NULL;}
 		}
 

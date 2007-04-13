@@ -21,9 +21,9 @@ int intspvm_probe _PARAMS((char *fname,unsigned long fname_len))
   CheckScalar(1,m1,n1);
   GetRhsVar(2,"i",&m2,&n2,&l2);/* msgtag */ 
   CheckScalar(2,m2,n2);
-  CreateVar(3,"i",&un,&un,&res);
+  CreateVar(Rhs+3,"i",&un,&un,&res);
   *istk(res) = pvm_probe(*istk(l1),*istk(l2));
-  LhsVar(1)= 3; 
+  LhsVar(1)= Rhs+3; 
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

@@ -53,8 +53,8 @@ int ReturnValueSetenv(int value)
 	else  *paramoutINT=(int)(FALSE);
 
 	n1=1;
-	CreateVarFromPtr(1, "b", &n1, &n1, &paramoutINT);
-    LhsVar(1)=1;
+	CreateVarFromPtr(Rhs+1, "b", &n1, &n1, &paramoutINT);
+    LhsVar(1)=Rhs+1;
 	C2F(putlhsvar)();
 	if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}
 	return 0;

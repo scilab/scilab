@@ -77,28 +77,28 @@ int mcisendstringWindowsfunction _PARAMS((char *fname))
 
 		if ( Lhs == 1 )
 		{
-			CreateVarFromPtr(1, "b", &n1, &n1, &BoolOutput);
-			LhsVar(1)=1;
+			CreateVarFromPtr(Rhs+1, "b", &n1, &n1, &BoolOutput);
+			LhsVar(1)=Rhs+1;
 		}
 		else
 		if ( Lhs == 2 )
 		{
-			CreateVarFromPtr(1, "b", &n1, &n1, &BoolOutput);
-			LhsVar(1)=1;
+			CreateVarFromPtr(Rhs+1, "b", &n1, &n1, &BoolOutput);
+			LhsVar(1)=Rhs+1;
 
-			CreateVarFromPtr(2, "i", &n1, &n1, &CodeOutput);
-			LhsVar(2)=2;
+			CreateVarFromPtr(Rhs+2, "i", &n1, &n1, &CodeOutput);
+			LhsVar(2)=Rhs+2;
 		}
 		else /* Lhs == 3 */
 		{
-			CreateVarFromPtr(1, "b", &n1, &n1, &BoolOutput);
-			LhsVar(1)=1;
+			CreateVarFromPtr(Rhs+1, "b", &n1, &n1, &BoolOutput);
+			LhsVar(1)=Rhs+1;
 
-			CreateVarFromPtr(2, "i", &n1, &n1, &CodeOutput);
-			LhsVar(2)=2;
+			CreateVarFromPtr(Rhs+2, "i", &n1, &n1, &CodeOutput);
+			LhsVar(2)=Rhs+2;
 
-			CreateVarFromPtr( 3, "c",(m1=(int)strlen(Output), &m1),&n1,&Output);
-			LhsVar(3)=3;
+			CreateVarFromPtr(Rhs+ 3, "c",(m1=(int)strlen(Output), &m1),&n1,&Output);
+			LhsVar(3)=Rhs+3;
 		}
 		
 		C2F(putlhsvar)();
@@ -143,28 +143,28 @@ int mcisendstringUnixfunction _PARAMS((char *fname))
 
 		if ( Lhs == 1 )
 		{
-			CreateVarFromPtr(1, "b", &n1, &n1, &BoolOutput);
-			LhsVar(1)=1;
+			CreateVarFromPtr(Rhs+1, "b", &n1, &n1, &BoolOutput);
+			LhsVar(1)=Rhs+1;
 		}
 		else
 		if ( Lhs == 2 )
 		{
-			CreateVarFromPtr(1, "b", &n1, &n1, &BoolOutput);
-			LhsVar(1)=1;
+			CreateVarFromPtr(Rhs+1, "b", &n1, &n1, &BoolOutput);
+			LhsVar(1)=Rhs+1;
 
-			CreateVarFromPtr(2, "i", &n1, &n1, &CodeOutput);
-			LhsVar(2)=2;
+			CreateVarFromPtr(Rhs+2, "i", &n1, &n1, &CodeOutput);
+			LhsVar(2)=Rhs+2;
 		}
 		else /* Lhs == 3 */
 		{
-			CreateVarFromPtr(1, "b", &n1, &n1, &BoolOutput);
-			LhsVar(1)=1;
+			CreateVarFromPtr(Rhs+1, "b", &n1, &n1, &BoolOutput);
+			LhsVar(1)=Rhs+1;
 
-			CreateVarFromPtr(2, "i", &n1, &n1, &CodeOutput);
-			LhsVar(2)=2;
+			CreateVarFromPtr(Rhs+2, "i", &n1, &n1, &CodeOutput);
+			LhsVar(2)=Rhs+2;
 
-			CreateVarFromPtr( 3, "c",(m1=strlen(Output), &m1),&n1,&Output);
-			LhsVar(3)=3;
+			CreateVarFromPtr( Rhs+3, "c",(m1=strlen(Output), &m1),&n1,&Output);
+			LhsVar(3)=Rhs+3;
 		}
 		
 		C2F(putlhsvar)();

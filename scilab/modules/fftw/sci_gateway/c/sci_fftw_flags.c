@@ -184,7 +184,7 @@ int sci_fftw_flags __PARAMS((char *fname,unsigned long fname_len))
   m2 = 1;
   n2 = m2;
   l2 = I_INT32;
-  CreateVar(2,"I",&m2,&n2,&l2);
+  CreateVar(Rhs+2,"I",&m2,&n2,&l2);
   *istk(l2)=(int) Sci_Plan.flags;
 
   /* */
@@ -217,11 +217,11 @@ int sci_fftw_flags __PARAMS((char *fname,unsigned long fname_len))
 
   /* */
   n1=1;
-  CreateVarFromPtr( 3, "S", &j, &n1, Str3);
+  CreateVarFromPtr( Rhs+3, "S", &j, &n1, Str3);
 
   /* */
-  LhsVar(1)=2;
-  LhsVar(2)=3;
+  LhsVar(1)=Rhs+2;
+  LhsVar(2)=Rhs+3;
   PutLhsVar();
   /* */
   for (i=0;i<j;i++) FREE(Str3[i]);

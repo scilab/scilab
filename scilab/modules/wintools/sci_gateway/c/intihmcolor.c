@@ -82,9 +82,9 @@ int C2F(sci_settextcolor) _PARAMS((char *fname,unsigned long l))
 	}
 
 	n1=1;
-	CreateVarFromPtr(1, "b", &n1, &n1,&paramoutINT);
+	CreateVarFromPtr(Rhs+1, "b", &n1, &n1,&paramoutINT);
 
-	LhsVar(1)=1;
+	LhsVar(1)=Rhs+1;
 	C2F(putlhsvar)();
 	FREE(paramoutINT);
 	return 0;
@@ -156,9 +156,9 @@ int C2F(sci_settextbackgroundcolor) _PARAMS((char *fname,unsigned long l))
 	}
 
 	n1=1;
-	CreateVarFromPtr(1, "b", &n1, &n1,&paramoutINT);
+	CreateVarFromPtr(Rhs+1, "b", &n1, &n1,&paramoutINT);
 
-	LhsVar(1)=1;
+	LhsVar(1)=Rhs+1;
 	C2F(putlhsvar)();
 	FREE(paramoutINT);
 	return 0;

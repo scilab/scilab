@@ -32,8 +32,8 @@ int C2F(sci_printsetupbox) _PARAMS((char *fname,unsigned long l))
 	#endif
 
 	n1=1;
-	CreateVarFromPtr(1, "b", &n1, &n1,&paramoutINT);
-	LhsVar(1)=1;
+	CreateVarFromPtr(Rhs+1, "b", &n1, &n1,&paramoutINT);
+	LhsVar(1)=Rhs+1;
 	FREE(paramoutINT);
 	C2F(putlhsvar)();
 

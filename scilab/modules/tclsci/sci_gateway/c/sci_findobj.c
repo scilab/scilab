@@ -50,7 +50,7 @@ int C2F(sci_findobj) _PARAMS((char *fname,unsigned long l))
 			m1=0;
 			n1=0;
 			l1=0;
-			CreateVar(1,"d",  &m1, &n1, &l1);
+			CreateVar(Rhs+1,"d",  &m1, &n1, &l1);
 		}
 		else
 		{
@@ -58,7 +58,7 @@ int C2F(sci_findobj) _PARAMS((char *fname,unsigned long l))
 			paramoutINT=(int*)MALLOC(sizeof(int));
 			*paramoutINT=(int)(Handle);
 			n1=1;
-			CreateVarFromPtr(1, "i", &n1, &n1, &paramoutINT);
+			CreateVarFromPtr(Rhs+1, "i", &n1, &n1, &paramoutINT);
 			Tcl_UnsetVar(TCLinterp, "TclScilabTmpVar", TCL_GLOBAL_ONLY);
 		}
 	}
@@ -68,7 +68,7 @@ int C2F(sci_findobj) _PARAMS((char *fname,unsigned long l))
 		return 0;
 	}
 	
-	LhsVar(1) = 1;
+	LhsVar(1) = Rhs+1;
 	C2F(putlhsvar)();	
 
     if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}

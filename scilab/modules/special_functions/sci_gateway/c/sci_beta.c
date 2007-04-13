@@ -39,7 +39,7 @@ int sci_beta(char *fname,unsigned long fname_len)
       return 0;
     };
 
-  CreateVar(3, "d", &mx, &nx, &lz); z = stk(lz);
+  CreateVar(Rhs+3, "d", &mx, &nx, &lz); z = stk(lz);
 
   for ( i = 0 ; i < mx*nx ; i++ )
     {
@@ -54,7 +54,7 @@ int sci_beta(char *fname,unsigned long fname_len)
       else
 	z[i] = exp(F2C(betaln)(&x[i], &y[i]));
     }
-  LhsVar(1) = 3;
+  LhsVar(1) = Rhs+3;
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/

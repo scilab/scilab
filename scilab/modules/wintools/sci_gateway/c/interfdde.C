@@ -33,8 +33,8 @@ int	InterfaceWindowsDDEopen _PARAMS((char *fname))
 				int *paramoutINT=(int*)MALLOC(sizeof(int));
 				*paramoutINT=(int)(TRUE);
 				n1=1;
-				CreateVarFromPtr(1, "i", &n1, &n1, &paramoutINT);
-				LhsVar(1)=1;
+				CreateVarFromPtr(Rhs+1, "i", &n1, &n1, &paramoutINT);
+				LhsVar(1)=Rhs+1;
 				FREE(paramoutINT);
 			}
 			else
@@ -42,8 +42,8 @@ int	InterfaceWindowsDDEopen _PARAMS((char *fname))
 				int *paramoutINT=(int*)MALLOC(sizeof(int));
 				*paramoutINT=(int)(FALSE);
 				n1=1;
-				CreateVarFromPtr(1, "i", &n1, &n1, &paramoutINT);
-				LhsVar(1)=1;
+				CreateVarFromPtr(Rhs+1, "i", &n1, &n1, &paramoutINT);
+				LhsVar(1)=Rhs+1;
 				FREE(paramoutINT);
 			}
 		}
@@ -71,8 +71,8 @@ int	InterfaceWindowsDDEclose _PARAMS((char *fname))
 		int *paramoutINT=(int*)MALLOC(sizeof(int));
 		*paramoutINT=(int)TRUE;
 		n1=1;
-		CreateVarFromPtr(1, "i", &n1, &n1, &paramoutINT);
-		LhsVar(1)=1;
+		CreateVarFromPtr(Rhs+1, "i", &n1, &n1, &paramoutINT);
+		LhsVar(1)=Rhs+1;
 		FREE(paramoutINT);
 	}
 	else
@@ -80,8 +80,8 @@ int	InterfaceWindowsDDEclose _PARAMS((char *fname))
 		int *paramoutINT=(int*)MALLOC(sizeof(int));
 		*paramoutINT=(int)FALSE;
 		n1=1;
-		CreateVarFromPtr(1, "i", &n1, &n1, &paramoutINT);
-		LhsVar(1)=1;
+		CreateVarFromPtr(Rhs+1, "i", &n1, &n1, &paramoutINT);
+		LhsVar(1)=Rhs+1;
 		FREE(paramoutINT);
 	}
 	
@@ -140,8 +140,8 @@ int	InterfaceWindowsDDEexec _PARAMS((char *fname))
 			int *paramoutINT=(int*)MALLOC(sizeof(int));
 			*paramoutINT=(int)TRUE;
 			n1=1;
-			CreateVarFromPtr(1, "i", &n1, &n1, &paramoutINT);
-			LhsVar(1)=1;
+			CreateVarFromPtr(Rhs+1, "i", &n1, &n1, &paramoutINT);
+			LhsVar(1)=Rhs+1;
 			FREE(paramoutINT);
 		}
 		else
@@ -149,8 +149,8 @@ int	InterfaceWindowsDDEexec _PARAMS((char *fname))
 			int *paramoutINT=(int*)MALLOC(sizeof(int));
 			*paramoutINT=(int)FALSE;
 			n1=1;
-			CreateVarFromPtr(1, "i", &n1, &n1, &paramoutINT);
-			LhsVar(1)=1;
+			CreateVarFromPtr(Rhs+1, "i", &n1, &n1, &paramoutINT);
+			LhsVar(1)=Rhs+1;
 			FREE(paramoutINT);
 		}
 
@@ -226,8 +226,8 @@ int	InterfaceWindowsDDEpoke _PARAMS((char *fname))
 			int *paramoutINT=(int*)MALLOC(sizeof(int));
 			*paramoutINT=(int)TRUE;
 			n1=1;
-			CreateVarFromPtr(1, "i", &n1, &n1, &paramoutINT);
-			LhsVar(1)=1;
+			CreateVarFromPtr(Rhs+1, "i", &n1, &n1, &paramoutINT);
+			LhsVar(1)=Rhs+1;
 			FREE(paramoutINT);
 		}
 		else
@@ -235,8 +235,8 @@ int	InterfaceWindowsDDEpoke _PARAMS((char *fname))
 			int *paramoutINT=(int*)MALLOC(sizeof(int));
 			*paramoutINT=(int)FALSE;
 			n1=1;
-			CreateVarFromPtr(1, "i", &n1, &n1, &paramoutINT);
-			LhsVar(1)=1;
+			CreateVarFromPtr(Rhs+1, "i", &n1, &n1, &paramoutINT);
+			LhsVar(1)=Rhs+1;
 			FREE(paramoutINT);
 		}
 	}
@@ -308,17 +308,17 @@ int	InterfaceWindowsDDEreq _PARAMS((char *fname))
 			char *output=NULL ;
 			output=(char*)MALLOC((strlen(Buffer)+1)*sizeof(char));
 			wsprintf(output,"%s",Buffer);
-			CreateVarFromPtr( 1, "c",(m1=(int)strlen(output), &m1),&n1,&output);
+			CreateVarFromPtr( Rhs+1, "c",(m1=(int)strlen(output), &m1),&n1,&output);
 			FREE(output);
-			LhsVar(1)=1;
+			LhsVar(1)=Rhs+1;
 		}
 		else
 		{
 			m1=0;
 			n1=0;
 			l1=0;
-			CreateVar(1,"d",  &m1, &n1, &l1);
-			LhsVar(1)=1;
+			CreateVar(Rhs+1,"d",  &m1, &n1, &l1);
+			LhsVar(1)=Rhs+1;
 		}
 	}
 	else
@@ -346,7 +346,7 @@ int	InterfaceWindowsDDEIsOpen _PARAMS((char *fname))
 
 	m1=n1=1;
 	
-	CreateVar(1,"b",&m1,&n1,&l1);
+	CreateVar(Rhs+1,"b",&m1,&n1,&l1);
 	
 	if ( DDEIsOpen() )
 	{
@@ -359,7 +359,7 @@ int	InterfaceWindowsDDEIsOpen _PARAMS((char *fname))
 
 	
 
-	LhsVar(1)= 1;
+	LhsVar(1)= Rhs+1;
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

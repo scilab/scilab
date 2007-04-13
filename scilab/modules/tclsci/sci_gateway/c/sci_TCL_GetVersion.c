@@ -64,10 +64,10 @@ int C2F(sci_TCL_GetVersion) _PARAMS((char *fname,unsigned long l))
 		output=(char*)MALLOC((strlen(VersionString)+1)*sizeof(char));
 		sprintf(output,"%s",VersionString);
 		n1=1;
-		CreateVarFromPtr( 1, "c",(m1=(int)strlen(output), &m1),&n1,&output);
+		CreateVarFromPtr(Rhs+ 1, "c",(m1=(int)strlen(output), &m1),&n1,&output);
 		if (output) {FREE(output);output=NULL;}
 
-		LhsVar(1) = 1;
+		LhsVar(1) = Rhs+1;
 		C2F(putlhsvar)();
 	}
 	else 
@@ -93,8 +93,8 @@ int C2F(sci_TCL_GetVersion) _PARAMS((char *fname,unsigned long l))
 
 				m1=1;
 				n1=4;
-				CreateVarFromPtr(1, "i", &m1, &n1 ,&VERSIONMATRIX);
-				LhsVar(1)=1;
+				CreateVarFromPtr(Rhs+1, "i", &m1, &n1 ,&VERSIONMATRIX);
+				LhsVar(1)=Rhs+1;
 				PutLhsVar();
 				if (VERSIONMATRIX){	FREE(VERSIONMATRIX); VERSIONMATRIX=NULL;}
 			}

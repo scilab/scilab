@@ -51,8 +51,8 @@ static int getversion_no_rhs(void)
 	char *v = Version ;
 
 	n1=1;
-	CreateVarFromPtr( 1, "c",(m1=strlen(Version), &m1),&n1,&v);
-	LhsVar(1) = 1;
+	CreateVarFromPtr( Rhs+1, "c",(m1=strlen(Version), &m1),&n1,&v);
+	LhsVar(1) = Rhs+1;
 	if (Lhs==2) 
 	{
 		static char *Str[12];
@@ -163,8 +163,8 @@ static int getversion_no_rhs(void)
 		#endif
 
 		m1=1;
-		CreateVarFromPtr( 2, "S", &m1, &n1, Str);
-		LhsVar(2) = 2;
+		CreateVarFromPtr(Rhs+ 2, "S", &m1, &n1, Str);
+		LhsVar(2) = Rhs+2;
 	}
 	C2F(putlhsvar)();
 
@@ -226,8 +226,8 @@ static int getversion_one_rhs(void)
 		}
 		m1=1;
 		n1=4;
-		CreateVarFromPtr(1, "i", &m1, &n1 ,&VERSIONMATRIX);
-		LhsVar(1)=1;
+		CreateVarFromPtr(Rhs+1, "i", &m1, &n1 ,&VERSIONMATRIX);
+		LhsVar(1)=Rhs+1;
 		PutLhsVar();
 		if (VERSIONMATRIX){	FREE(VERSIONMATRIX); VERSIONMATRIX=NULL;}
 	}
@@ -270,10 +270,10 @@ static int getversion_two_rhs(void)
 				sprintf(output,"%s",SCI_VERSION_STRING);
 
 				n1=1;
-				CreateVarFromPtr( 1, "c",(m1=strlen(output), &m1),&n1,&output);
+				CreateVarFromPtr(Rhs+ 1, "c",(m1=strlen(output), &m1),&n1,&output);
 				if (output) {FREE(output);output=NULL;}
 
-				LhsVar(1) = 1;
+				LhsVar(1) = Rhs+1;
 				C2F(putlhsvar)();
 				return 0;
 			}
@@ -294,10 +294,10 @@ static int getversion_two_rhs(void)
 					sprintf(output,"%s",versionstring);
 
 					n1=1;
-					CreateVarFromPtr( 1, "c",(m1=strlen(output), &m1),&n1,&output);
+					CreateVarFromPtr(Rhs+ 1, "c",(m1=strlen(output), &m1),&n1,&output);
 					if (output) {FREE(output);output=NULL;}
 
-					LhsVar(1) = 1;
+					LhsVar(1) = Rhs+1;
 					C2F(putlhsvar)();
 					return 0;
 				}

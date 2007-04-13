@@ -38,12 +38,12 @@ int intspvm_error_mode _PARAMS((char *fname,unsigned long fname_len))
       int m;
       if ( pvm_error == 1 ) { 
 	m = strlen(stop);
-	CreateVarFromPtr(1,"c",&m,&un,(loc=stop,&loc));
+	CreateVarFromPtr(Rhs+1,"c",&m,&un,(loc=stop,&loc));
       } else { 
 	m = strlen(cont);
-	CreateVarFromPtr(1,"c",&m,&un,(loc=cont,&loc));
+	CreateVarFromPtr(Rhs+1,"c",&m,&un,(loc=cont,&loc));
       }
-      LhsVar(1)=1;
+      LhsVar(1)=Rhs+1;
     }
   return 0;
 }

@@ -100,9 +100,9 @@ int C2F(sci_TCL_GetVar) _PARAMS((char *fname,unsigned long l))
 				output=(char*)MALLOC((strlen(AsciiFromUTF8)+1)*sizeof(char));
 				sprintf(output,"%s",AsciiFromUTF8);
 				n1=1;
-				CreateVarFromPtr( 1, "c",(m1=(int)strlen(output), &m1),&n1,&output);
+				CreateVarFromPtr(Rhs+ 1, "c",(m1=(int)strlen(output), &m1),&n1,&output);
 
-				LhsVar(1) = 1;
+				LhsVar(1) = Rhs+1;
 				C2F(putlhsvar)();
 
 				if (output) {FREE(output);output=NULL;}

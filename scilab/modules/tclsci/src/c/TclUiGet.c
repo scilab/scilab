@@ -113,7 +113,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 
 							output=(char*)MALLOC((strlen(AsciiFromUTF8)+1)*sizeof(char));
 							sprintf(output,"%s",AsciiFromUTF8);
-							CreateVarFromPtr( 1, "c",(m1=(int)strlen(output), &m1),&n1,&output);
+							CreateVarFromPtr(Rhs+ 1, "c",(m1=(int)strlen(output), &m1),&n1,&output);
 
 							if (output) {FREE(output);output=NULL;}
 							if (AsciiFromUTF8){FREE(AsciiFromUTF8);AsciiFromUTF8=NULL;}
@@ -175,7 +175,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 
 								output=(char*)MALLOC((strlen(AsciiFromUTF8)+1)*sizeof(char));
 								sprintf(output,"%s",AsciiFromUTF8);
-								/*CreateVarFromPtr( 1, "c",(m1=strlen(output), &m1),&n1,&output);*/
+								/*CreateVarFromPtr( Rhs+1, "c",(m1=strlen(output), &m1),&n1,&output);*/
 
 								if (output) {FREE(output);output=NULL;}
 								if (AsciiFromUTF8){FREE(AsciiFromUTF8);AsciiFromUTF8=NULL;}

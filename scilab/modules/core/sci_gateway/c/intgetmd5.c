@@ -44,10 +44,10 @@ int C2F(intgetmd5) __PARAMS((char *fname,unsigned long fname_len))
 				if (MD5) {FREE(MD5);MD5=NULL;}
 
 				n1=1;
-				CreateVarFromPtr( 1, "c",(m1=strlen(output), &m1),&n1,&output);
+				CreateVarFromPtr(Rhs+1, "c",(m1=strlen(output), &m1),&n1,&output);
 				if (output) {FREE(output);output=NULL;}
 
-				LhsVar(1) = 1;
+				LhsVar(1) = Rhs+1;
 				C2F(putlhsvar)();
 			}
 			else
@@ -87,10 +87,10 @@ int C2F(intgetmd5) __PARAMS((char *fname,unsigned long fname_len))
 					if (MD5) {FREE(MD5);MD5=NULL;}
 
 					n1=1;
-					CreateVarFromPtr( 1, "c",(m1=strlen(output), &m1),&n1,&output);
+					CreateVarFromPtr( Rhs+1, "c",(m1=strlen(output), &m1),&n1,&output);
 					if (output) {FREE(output);output=NULL;}
 
-					LhsVar(1) = 1;
+					LhsVar(1) = Rhs+1;
 					C2F(putlhsvar)();
 				}
 				else

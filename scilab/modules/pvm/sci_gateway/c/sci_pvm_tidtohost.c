@@ -19,9 +19,9 @@ int intspvm_tidtohost _PARAMS((char *fname,unsigned long fname_len))
   GetRhsVar(1,"i",&m1,&n1,&l1);
   CheckScalar(1,m1,n1);
   /* cross variable size checking */
-  CreateVar(2,"i",&un,&un,&l2);/* named: res */
+  CreateVar(Rhs+2,"i",&un,&un,&l2);/* named: res */
   *istk(l2) = pvm_tidtohost(*istk(l1));
-  LhsVar(1)= 2;
+  LhsVar(1)= Rhs+2;
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

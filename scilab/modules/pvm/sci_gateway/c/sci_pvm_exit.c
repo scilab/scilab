@@ -16,9 +16,9 @@ int intspvm_exit _PARAMS((char *fname,unsigned long fname_len))
   CheckRhs(0,0);
   CheckLhs(1,1);
   /* cross variable size checking */
-  CreateVar(1,"i",&un,&un,&l1);/* named: res */
+  CreateVar(Rhs+1,"i",&un,&un,&l1);/* named: res */
   *istk(l1) = pvm_exit();
-  LhsVar(1)= 1;
+  LhsVar(1)= Rhs+1;
   pvm_error_check(fname,*istk(l1),fname_len);
   return 0;
 }
