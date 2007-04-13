@@ -135,7 +135,7 @@
 
 #include "MALLOC.h"
 
-#if defined(__EDG__)
+#ifdef __EDG__
 #include <time.h>
 #endif
 #include <sys/stat.h>
@@ -282,11 +282,10 @@ void C2F(scipvmstart)(int *res, char *hostfile, int *l)
   argv[1] = (char*)0;
   if (!strcmp(hostfile, "null")) 
     {
-      /* on ne spécifie pas de hostfile */
-      /* on essaye de prendre
-       * $HOME/.pvmd.conf, puis
-       * $SCI/.pvmd.conf sinon on laisse
-       *	 faire pvmd...
+      /* If hostfile is not specified, we try
+       * $HOME/.pvmd.conf, then
+       * $SCI/.pvmd.conf 
+	   * if both files are not found, let pvmd does his work
        */ 
       if (!argc && (ro = getenv("PVM_ROOT")) && (rd = getenv("HOME"))){
 	if ((path = (char *) MALLOC(strlen(rd)+12)) == NULL) {
@@ -419,12 +418,12 @@ void C2F(scipvmspawn)(char *task,  int *l1,
     where = NULL;
   else
     flag = PvmTaskHost;
-#if (defined _MSC_VER)
+#ifdef _MSC_VER
   strcpy(cmd, "scilex.exe");
 #else
   strcpy(cmd, "scilab");
 #endif 
-#if (defined _MSC_VER)
+#ifdef _MSC_VER
   if ( _stricmp(task,"null") != 0) 
 #else 
   if (strcasecmp(task, "null")) 
