@@ -5,6 +5,7 @@
 #include "core_math.h"
 #include "Os_specific.h"
 #include "../../../io/includes/setenvc.h"
+#include "cluni0.h"
 
 #define MAX_ENV 256 
 
@@ -52,10 +53,14 @@ int C2F(cluni0)(char *in_name, char *out_name, int *out_n, long int lin, long in
   return(0);
 }
 
-/************************************************
- * getenv + squash trailing white spaces 
- ************************************************/
 
+/**
+ * getenv + squash trailing white spaces 
+ *
+ * @param name  
+ * @param env   
+ * @param len   
+ */
 void GetenvB(char *name, char *env, int len)
 {
   int ierr,un=1;
@@ -71,13 +76,19 @@ void GetenvB(char *name, char *env, int len)
     }  
 }
 
-/************************************************
+/**
  * expand in_name to produce out_name 
  *     try to find alias[i] at the begining of in_name 
  *     and replaces it by env in out_name 
  *     out_name must be large enough to get the result 
- ************************************************/
-
+ *
+ * @param env   
+ * @param alias 
+ * @param in_name   
+ * @param out_name  
+ * @param lin   
+ * @return <ReturnValue>
+ */
 static int Cluni0(char *env, char **alias, char *in_name, char *out_name, long int lin)
 {
   int i=0;
