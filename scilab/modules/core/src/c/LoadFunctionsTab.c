@@ -11,10 +11,8 @@
 #include "getmodules.h"
 #include "setgetSCIpath.h"
 #include "LoadFunctionsTab.h"
-#include "libxml/xmlreader.h"
 #include "GetXmlFileEncoding.h"
 #include "../../fileio/includes/FileExist.h"
-#include <libxml/xpath.h>
 /*-----------------------------------------------------------------------------------*/  
 static int firstentry = 0;
 /*-----------------------------------------------------------------------------------*/  
@@ -80,7 +78,6 @@ static BOOL Load_primitives_from_file(char *filename)
 		/* check if the XML file has been encoded with utf8 (unicode) or not */
 		if ( (strcmp("utf-8", encoding)!=0) || (strcmp("UTF-8", encoding)==0) )
 		{
-			xmlNodePtr node;
 			xmlDocPtr doc;
 			xmlXPathContextPtr xpathCtxt = NULL;
 			xmlXPathObjectPtr xpathObj = NULL;
@@ -99,7 +96,7 @@ static BOOL Load_primitives_from_file(char *filename)
 			}
 
 			xpathCtxt = xmlXPathNewContext(doc);
-			xpathObj = xmlXPathEval("//GATEWAY/PRIMITIVE", xpathCtxt);
+			xpathObj = xmlXPathEval((const xmlChar*)"//GATEWAY/PRIMITIVE", xpathCtxt);
 
 			if(xpathObj && xpathObj->nodesetval->nodeMax) 
 				{

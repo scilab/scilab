@@ -9,7 +9,6 @@
 #include "with_module.h"
 #include "setgetSCIpath.h"
 #include "MALLOC.h"
-#include "libxml/xmlreader.h"
 #include "GetXmlFileEncoding.h"
 #include "../../../fileio/includes/FileExist.h"
 /*-----------------------------------------------------------------------------------*/ 
@@ -46,9 +45,10 @@ BOOL getversionmodule(char *modulename,
 			/* check if the XML file has been encoded with utf8 (unicode) or not */
 			if ( (strcmp("utf-8", encoding)!=0) || (strcmp("UTF-8", encoding)==0) )
 			{
-				xmlNodePtr node;
 				xmlDocPtr doc;
-				
+				xmlXPathContextPtr xpathCtxt = NULL;
+				xmlXPathObjectPtr xpathObj = NULL;
+
 				int version_major=0;
 				int version_minor=0;
 				int version_maintenance=0;
@@ -63,70 +63,63 @@ BOOL getversionmodule(char *modulename,
 					return bOK;
 				}
 
-				node = doc->children;
-				if (!xmlStrEqual(node->name,(const xmlChar*)"MODULE_VERSION"))
-				{ 
-					/* Check if the first tag is valid */
-					printf("Error : Not a valid gateway file %s (should start with <MODULE_VERSION>)\n", filename_VERSION_module);
-					return bOK;
-				}
-
-				for (node = node->next->children; node != NULL; node = node->next)
-					{
-						if (xmlStrEqual(node->name,(const xmlChar*)"VERSION"))
-							{
-							/* Only browse <VERSION> (comments are also processed in XML) */
-							xmlAttrPtr attrib=node->properties;
-
-							/* browse elements in <VERSION> */
-							while (attrib != NULL)
+			xpathCtxt = xmlXPathNewContext(doc);
+			xpathObj = xmlXPathEval((const xmlChar*)"//MODULE_VERSION/VERSION", xpathCtxt);
+			if(xpathObj && xpathObj->nodesetval->nodeMax) 
+				{
+					
+					xmlAttrPtr attrib=xpathObj->nodesetval->nodeTab[0]->properties;
+					while (attrib != NULL)
+						{	
+							if (xmlStrEqual (attrib->name, (const xmlChar*) "major"))
+								{ 
+									/* we found <major> */
+									const char *str=(const char*)attrib->children->content;
+									version_major=atoi(str);
+								}
+							else if (xmlStrEqual (attrib->name, (const xmlChar*)"minor"))
+								{ 
+									/* we found <minor> */
+									const char *str=(const char*)attrib->children->content;
+									version_minor=atoi(str);
+								}
+							else if (xmlStrEqual (attrib->name, (const xmlChar*)"maintenance"))
+								{ 
+									/* we found <maintenance> */
+									const char *str=(const char*)attrib->children->content;
+									version_maintenance=atoi(str);
+								}
+							else if (xmlStrEqual (attrib->name, (const xmlChar*)"revision"))
+								{ 
+									/* we found <revision> */
+									const char *str=(const char*)attrib->children->content;
+									version_revision=atoi(str);
+								}
+							else if (xmlStrEqual (attrib->name, (const xmlChar*)"string"))
 								{
-									if (attrib->children != NULL)
-										{ 
-											if (xmlStrEqual (attrib->name, (const xmlChar*) "major"))
-												{ 
-													/* we found <major> */
-													const char *str=(const char*)attrib->children->content;
-													version_major=atoi(str);
-												}
-											else if (xmlStrEqual (attrib->name, (const xmlChar*)"minor"))
-												{ 
-													/* we found <minor> */
-													const char *str=(const char*)attrib->children->content;
-													version_minor=atoi(str);
-												}
-											else if (xmlStrEqual (attrib->name, (const xmlChar*)"maintenance"))
-												{ 
-													/* we found <maintenance> */
-													const char *str=(const char*)attrib->children->content;
-													version_maintenance=atoi(str);
-												}
-											else if (xmlStrEqual (attrib->name, (const xmlChar*)"revision"))
-												{ 
-													/* we found <revision> */
-													const char *str=(const char*)attrib->children->content;
-													version_revision=atoi(str);
-												}
-											else if (xmlStrEqual (attrib->name, (const xmlChar*)"string"))
-												{
-													/* we found <string> */
-													const char *str=(const char*)attrib->children->content;
-													version_string=(char*)MALLOC(sizeof(char)*(strlen((const char*)str)+1));
-													strcpy(version_string,str);
-												}
-										}
-
-									attrib = attrib->next;
+									/* we found <string> */
+									const char *str=(const char*)attrib->children->content;
+									version_string=(char*)MALLOC(sizeof(char)*(strlen((const char*)str)+1));
+									strcpy(version_string,str);
 								}
 
-							*sci_version_major=version_major;
-							*sci_version_minor=version_minor;
-							*sci_version_maintenance=version_maintenance;
-							*sci_version_revision=version_revision;
-							strncpy(sci_version_string,version_string,1024);
-							if (version_string) {FREE(version_string);version_string=NULL;}
+							attrib = attrib->next;
 						}
-					}
+
+					*sci_version_major=version_major;
+					*sci_version_minor=version_minor;
+					*sci_version_maintenance=version_maintenance;
+					*sci_version_revision=version_revision;
+					strncpy(sci_version_string,version_string,1024);
+					if (version_string) {FREE(version_string);version_string=NULL;}
+				}
+			else
+				{
+					printf("Error : Not a valid version file %s (should start with <MODULE_VERSION> and contains <VERSION major='' minor='' maintenance='' revision='' string=''>)\n", filename_VERSION_module);
+					return bOK;
+				}
+			if(xpathObj) xmlXPathFreeObject(xpathObj);
+			if(xpathCtxt) xmlXPathFreeContext(xpathCtxt);
 				xmlFreeDoc (doc);
 
 				/*
