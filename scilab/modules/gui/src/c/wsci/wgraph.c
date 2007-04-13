@@ -9,6 +9,7 @@
 #include "periScreen.h"
 #include "Actions.h"
 #include "periScreen.h"
+#include "cluni0.h"
 
 #include "win_mem_alloc.h" /* MALLOC */
 /*-----------------------------------------------------------------------------------*/
@@ -23,7 +24,6 @@ extern void DebugGW (char *fmt,...);
 extern void DebugGW1 (char *fmt,...);
 extern int check_pointer_win __PARAMS ((int *x1,int *y1,int *win));
 extern void delete_sgwin_entities(int win_num);
-extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int name_len,long int nams_len));  
 extern EXPORT LRESULT CALLBACK WndGraphProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 extern EXPORT LRESULT CALLBACK WndParentGraphProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 extern void ExportBMP(struct BCG *ScilabGC,char *pszflname);

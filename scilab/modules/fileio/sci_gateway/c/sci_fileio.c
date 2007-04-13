@@ -8,13 +8,12 @@
 #include "sci_fileio.h"
 #include "gw_fileio.h"
 #include "files.h"
+#include "cluni0.h"
 /*-----------------------------------------------------------------------------------*/ 
 #ifdef hppa 
 	#undef FILENAME_MAX
 	#define FILENAME_MAX 4096 
 #endif 
-/*-----------------------------------------------------------------------------------*/ 
-extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int name_len,long int nams_len)); 
 /*-----------------------------------------------------------------------------------*/ 
 static char filename[FILENAME_MAX];
 static int out_n;

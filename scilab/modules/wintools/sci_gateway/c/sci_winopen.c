@@ -5,10 +5,8 @@
 #ifdef _MSC_VER
 #include <Windows.h>
 #endif
-
+#include "cluni0.h"
 #include "gw_wintools.h"
-/*-----------------------------------------------------------------------------------*/
-extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int name_len,long int nams_len)); 
 /* Open Web Browser*/
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_winopen) _PARAMS((char *fname,unsigned long l))

@@ -1,8 +1,7 @@
 #include "gw_sound.h"
 #include "stack-c.h"
 #include "sox.h" 
-/*-----------------------------------------------------------------------------------*/ 
-extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int name_len,long int nams_len));  
+#include "cluni0.h"
 /*-----------------------------------------------------------------------------------*/ 
 /* FILENAME_MAX is set to 14 on hp */
 #ifdef hppa 

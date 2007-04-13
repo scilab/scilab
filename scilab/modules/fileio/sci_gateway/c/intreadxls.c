@@ -10,13 +10,13 @@
 #include "gw_fileio.h"
 #include "intreadxls.h"
 #include "tmpdir.h"
+#include "cluni0.h"
 
 /*---------------------------------------------------------------
   Authors Pierrick Mode, Serge Steer INRIA 2005, Copyright INRIA
   --------------------------------------------------------------*/
 
 extern void GetenvB( char *name,char *env, int len);
-extern int C2F(cluni0)(char *in_name, char *out_name, int *out_n, long int lin, long int lout);
 
 /*Prototype*/
 void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int *M, int *err);
