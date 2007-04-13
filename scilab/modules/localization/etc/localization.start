@@ -7,5 +7,4 @@ load('SCI/modules/localization/macros/lib');
 // ====================================================================
 //add help chapter
 add_module_help_chapter('localization');
-clear add_module_help_chapter;
 // ====================================================================

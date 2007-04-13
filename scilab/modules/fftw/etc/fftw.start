@@ -26,8 +26,7 @@ path = getshortpathname(path);
 //pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/fftw.dem',%f,%f);
 //add_demo('FFTW',pathdemos);
 
-clear  pathdemos get_absolute_file_path;
-clear add_module_help_chapter;
+clear  pathdemos;
 
 end // if ( loadfftwlibrary(librarynamefftw) ) then
 

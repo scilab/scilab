@@ -7,7 +7,6 @@ load('SCI/modules/pvm/macros/lib');
 // ====================================================================
 //add help chapter
 add_module_help_chapter('pvm');
-clear add_module_help_chapter;
 // ====================================================================
 //add demos
 path = get_absolute_file_path('pvm.start');
@@ -22,5 +21,5 @@ if MSDOS then
   end
 end
 // ====================================================================
-clear path pathdemos get_absolute_file_path;
+clear path pathdemos;
 // ====================================================================

@@ -1,23 +1,23 @@
 ; Allan CORNET INRIA 2006
-; Warning don't change order for 4 first modules
-;"helptools","fileio","core","io"
-helptools
-fileio
+; Warning "core" module must be always the first module
+;
 core
-io
-arnoldi
-boolean
-cacsd
-data_structures
 differential_equations
 double
 elementaries_functions
 functions
 graphics
+fileio
+boolean
+cacsd
+data_structures
+helptools
 gui
 incremental_link
 integer
 interpolation
+io
+arnoldi
 intersci
 jvm
 linear_algebra

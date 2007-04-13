@@ -7,5 +7,4 @@ load('SCI/modules/linear_algebra/macros/lib');
 // ====================================================================
 //add help chapter
 add_module_help_chapter('linear_algebra');
-clear add_module_help_chapter;
 // ====================================================================

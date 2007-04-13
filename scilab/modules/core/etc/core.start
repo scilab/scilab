@@ -2,6 +2,14 @@
 // core module initialisation file 
 // Copyright INRIA 2006
 // ====================================================================
+// load temporary functions need by all others
+load('SCI/modules/fileio/macros/get_absolute_file_path.bin');
+load('SCI/modules/fileio/macros/pathconvert.bin');
+load('SCI/modules/fileio/macros/isdir.bin');
+load('SCI/modules/string/macros/stripblanks.bin');
+load('SCI/modules/helptools/macros/add_module_help_chapter.bin');
+load('SCI/modules/helptools/macros/add_help_chapter.bin');
+// ====================================================================
 //Load  functions librarie
 load('SCI/modules/core/macros/lib');
 // ====================================================================
@@ -16,6 +24,5 @@ pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/intro/dem01.dem',%
 
 add_demo('Introduction',pathdemos);
 
-clear path pathdemos get_absolute_file_path;
-clear add_module_help_chapter;
+clear path pathdemos ;
 // ====================================================================

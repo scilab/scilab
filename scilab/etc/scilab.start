@@ -65,14 +65,14 @@ if larg<>[] & larg<=size(args,"*") then
 end
 clear larg
 // loads modules ======================================================
+
 modules=getmodules();
 index=size(modules);
-
 for i=1:index(1) do
  exec("SCI/modules/"+modules(i)+"/etc/"+modules(i)+".start",-1);
 end
 
-clear stripblanks modules index i add_demo
+clear stripblanks modules index i add_demo add_help_chapter add_module_help_chapter
 // Create some configuration variables ================================
 home=getenv('HOME',SCI);
 if MSDOS then

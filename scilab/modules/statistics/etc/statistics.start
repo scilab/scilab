@@ -7,5 +7,4 @@ load('SCI/modules/statistics/macros/lib');
 // ====================================================================
 ///add help chapter
 add_module_help_chapter('statistics');
-clear add_module_help_chapter;
 // ====================================================================

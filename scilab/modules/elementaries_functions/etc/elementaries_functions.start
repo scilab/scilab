@@ -7,5 +7,4 @@ load('SCI/modules/elementaries_functions/macros/lib');
 // ====================================================================
 //add help chapter
 add_module_help_chapter('elementaries_functions');
-clear add_module_help_chapter;
 // ====================================================================

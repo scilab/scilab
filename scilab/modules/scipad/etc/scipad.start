@@ -8,5 +8,4 @@ load('SCI/modules/scipad/macros/scipad_internals/lib');
 // ====================================================================
 //add help chapter
 add_module_help_chapter('scipad');
-clear add_module_help_chapter;
 // ====================================================================

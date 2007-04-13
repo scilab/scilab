@@ -7,5 +7,4 @@ load('SCI/modules/overloading/macros/lib');
 // ====================================================================
 //add help chapter
 add_module_help_chapter('overloading');
-clear add_module_help_chapter;
 // ====================================================================

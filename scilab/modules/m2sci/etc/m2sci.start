@@ -7,5 +7,4 @@ load('SCI/modules/m2sci/macros/lib');
 // ====================================================================
 //add help chapter
 add_module_help_chapter('m2sci');
-clear add_module_help_chapter;
 // ====================================================================

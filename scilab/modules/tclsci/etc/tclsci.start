@@ -7,12 +7,11 @@ load('SCI/modules/tclsci/macros/lib');
 // ====================================================================
 //add help chapter
 add_module_help_chapter('tclsci');
-clear add_module_help_chapter;
 // ====================================================================
 // add demos
 path = get_absolute_file_path('tclsci.start');
 path = getshortpathname(path);
 pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/tk/tk.dem',%f,%f);
 add_demo('Tcl/Tk',pathdemos);
-clear path pathdemos get_absolute_file_path;
+clear path pathdemos;
 // ====================================================================

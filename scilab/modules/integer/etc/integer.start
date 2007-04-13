@@ -7,5 +7,4 @@ load('SCI/modules/integer/macros/lib');
 // ====================================================================
 //add help chapter
 add_module_help_chapter('integer');
-clear add_module_help_chapter;
 // ====================================================================

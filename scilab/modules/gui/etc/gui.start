@@ -15,6 +15,5 @@ add_module_help_chapter('gui');
 //add demos
 add_demo("GUI",pathdemos);
 
-clear path pathdemos get_absolute_file_path;
-clear add_module_help_chapter;
+clear path pathdemos;
 // ====================================================================

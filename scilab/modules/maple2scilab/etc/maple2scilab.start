@@ -7,5 +7,4 @@ load('SCI/modules/maple2scilab/macros/lib');
 // ====================================================================
 //add help chapter
 add_module_help_chapter('maple2scilab');
-clear add_module_help_chapter;
 // ====================================================================

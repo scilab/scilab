@@ -7,12 +7,11 @@ load('SCI/modules/signal_processing/macros/lib');
 // ====================================================================
 //add help chapter
 add_module_help_chapter('signal_processing');
-clear add_module_help_chapter;
 // ====================================================================
 //add demos
 path = get_absolute_file_path('signal_processing.start');
 path = getshortpathname(path);
 pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/signal.dem',%f,%f);
 add_demo("Signal Processing",pathdemos);
-clear path pathdemos get_absolute_file_path;
+clear path pathdemos;
 // ====================================================================

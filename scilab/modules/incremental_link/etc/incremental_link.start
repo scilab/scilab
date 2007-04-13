@@ -7,7 +7,6 @@ load('SCI/modules/incremental_link/macros/lib');
 // ====================================================================
 //add help chapter
 add_module_help_chapter('incremental_link');
-clear add_module_help_chapter;
 // LCC initialization =================================================
 global LCC; 
 if ~MSDOS then
@@ -29,6 +28,7 @@ if MSDOS then
       configure_lcc();
     end
   end
+  clear findmsvccompiler
 end
 // ====================================================================
 clear LCC 

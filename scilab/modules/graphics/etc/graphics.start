@@ -17,6 +17,5 @@ add_module_help_chapter('graphics');
 //add demo
 add_demo("Graphics",pathdemos);
 
-clear pathdemos get_absolute_file_path ;
-clear add_module_help_chapter;
+clear pathdemos ;
 // ====================================================================

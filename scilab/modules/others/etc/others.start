@@ -7,7 +7,6 @@ load('SCI/modules/others/macros/lib');
 // ====================================================================
 //add help chapter
 add_module_help_chapter('others');
-clear add_module_help_chapter;
 // ====================================================================
 //add demos
 path = get_absolute_file_path('others.start');
@@ -17,5 +16,5 @@ pathdemos2 = pathconvert(part(path,1:(length(path)-5))+'/demos/velpic/velpic.dem
 add_demo("Simulation",pathdemos1);
 add_demo("Others",pathdemos2);
 
-clear path pathdemos1 pathdemos2 get_absolute_file_path;
+clear path pathdemos1 pathdemos2;
 // ====================================================================
