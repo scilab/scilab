@@ -28,8 +28,6 @@ extern int C2F(basout) __PARAMS((integer *io, integer *lunit, char *string, ftnl
 extern int C2F(basou1) __PARAMS((integer *lunit, char *string, ftnlen string_len));  
 /*  "cgpath-n.c.X1" */
 extern void C2F(cgpath) __PARAMS((char *nomfic, integer *ln));  
-/*  "cluni0-n.c.X1" */
-extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, ftnlen name_len, ftnlen nams_len));  
 /*  "clunit-n.c.X1" */
 extern int C2F(clunit) __PARAMS((integer *lunit, char *name, integer *mode, ftnlen name_len));  
 /*  "csignal-n.c.X1" */
