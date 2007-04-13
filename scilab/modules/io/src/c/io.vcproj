@@ -195,7 +195,7 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath=".\createdir.c"
+				RelativePath=".\directories.c"
 				>
 			</File>
 			<File
@@ -268,6 +268,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_host.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_isdir.c"
 				>
 			</File>
 			<File
