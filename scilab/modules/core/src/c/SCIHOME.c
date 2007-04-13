@@ -10,7 +10,7 @@
 #include "version.h"
 #include "machine.h"
 
-#include "../../../io/includes/createdir.h"
+#include "../../../io/includes/directories.h"
 #include "../../../io/includes/getenvc.h"
 /*-----------------------------------------------------------------------------------*/
 #ifndef MAX_PATH
@@ -70,9 +70,9 @@ BOOL setSCIHOME(void)
 		strcpy(SCIHOMEPATH,SCIHOME);
 	}
 
-	if (!ExistDir(SCIHOMEPATH))
+	if (!isdir(SCIHOMEPATH))
 	{
-		if(!ExistDir(USERPATHSCILAB)) CreateDir(USERPATHSCILAB);
+		if(!isdir(USERPATHSCILAB)) CreateDir(USERPATHSCILAB);
 		if (CreateDir(SCIHOMEPATH))
 		{
 			bOK=TRUE;
