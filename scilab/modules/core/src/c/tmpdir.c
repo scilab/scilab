@@ -3,7 +3,8 @@
 /*-----------------------------------------------------------------------------------*/
 #include <stdio.h>
 #include "machine.h"
-#include "../../../io/includes/createdir.h"
+#include "../../../io/includes/directories.h"
+#include <string.h>
 #include "MALLOC.h" /* MALLOC */
 
 #ifdef _MSC_VER
@@ -19,11 +20,11 @@
 extern  char  *getenv();
 #endif
 
-#if (defined _MSC_VER)
+#ifdef _MSC_VER
 #define putenv(x) _putenv(x)
 #endif
 
-#if defined(_MSC_VER)
+#ifdef _MSC_VER
 #include <process.h>
 #endif
 #include "prompt.h"
@@ -89,6 +90,7 @@ void C2F(settmpdir)(void)
 /*-----------------------------------------------------------------------------------*/
 /**
 * get a reference to tmp_dir 
+* @return the name of the directory
 */
 char *get_sci_tmp_dir(void)
 {
