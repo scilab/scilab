@@ -93,9 +93,10 @@ void C2F(scipvmrecv)(double *beginvar, int *maxsize, int *size,
   (void) fprintf(stderr, "\n");
 #endif /* DEBUG */
 
-  msgbyte -= (n + 1)  * sizeof(int); /* on ne tient pas compte de la taille
-					du vecteur de pack et de sa
-					taille */
+  msgbyte -= (n + 1)  * sizeof(int); /** Don't take in account the size 
+									  * of the vector of pack and his size 
+									  */
+
   if (msgbyte % sizeof(double)) {
     (void) fprintf(stderr, "Error pvm_recv: not double\n");
     pvm_freebuf(bufid);
@@ -147,7 +148,7 @@ void C2F(scipvmrecv)(double *beginvar, int *maxsize, int *size,
 } /* scipvmrecv */
 
 
-C2F(scipvmrecvvar)(int *tid,  int *tag, char *buff, int *res)
+void C2F(scipvmrecvvar)(int *tid,  int *tag, char *buff, int *res)
 {
   int bufid;
   int info;
