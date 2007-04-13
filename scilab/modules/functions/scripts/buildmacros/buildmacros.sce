@@ -11,7 +11,6 @@ exec(SCI+'/modules/string/macros/stripblanks.sci');
 exec(SCI+'/modules/fileio/macros/listfiles.sci');
 exec(SCI+'/modules/io/macros/unix_g.sci');
 exec(SCI+'/modules/core/macros/OS_Version.sci');
-exec(SCI+'/modules/fileio/macros/isdir.sci');
 exec(SCI+'/modules/overloading/macros/%c_a_c.sci');
 exec(SCI+'/modules/fileio/macros/basename.sci');
 exec(SCI+'/modules/fileio/macros/mputl.sci');
