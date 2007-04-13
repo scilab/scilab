@@ -5,7 +5,6 @@
 // load temporary functions need by all others
 load('SCI/modules/fileio/macros/get_absolute_file_path.bin');
 load('SCI/modules/fileio/macros/pathconvert.bin');
-load('SCI/modules/fileio/macros/isdir.bin');
 load('SCI/modules/string/macros/stripblanks.bin');
 load('SCI/modules/helptools/macros/add_module_help_chapter.bin');
 load('SCI/modules/helptools/macros/add_help_chapter.bin');
