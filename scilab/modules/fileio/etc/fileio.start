@@ -2,10 +2,7 @@
 // fileio module initialisation file 
 // Copyright INRIA 2006
 // ====================================================================
-clear get_absolute_file_path;
 clear pathconvert
-clear isdir
-
 //Load  functions librarie
 load('SCI/modules/fileio/macros/lib');
 // ====================================================================

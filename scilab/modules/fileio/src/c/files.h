@@ -4,7 +4,9 @@
 /*------------------------------------------------------------------------*/
 #ifndef __FILES_H__
 #define __FILES_H__
-#include "machine.h"
+
+#include <stdio.h> /* FILE */
+#include "machine.h" /* C2F() */
 
 void C2F(getfiledesc)(integer *fd);
 

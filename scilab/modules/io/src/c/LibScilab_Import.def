@@ -25,4 +25,11 @@ iop_
 GetFile
 getTMPDIR
 ExceptionMessage
+FileExist
+scigetcwd_
+;
+; fileio
+;
+getfiledesc_
+getfileinfo_
 

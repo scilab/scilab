@@ -9,6 +9,7 @@
 #endif
 #include <string.h> /* strlen */
 #include "getenvc.h"
+#include "sciprint.h"
 /*-----------------------------------------------------------------------------------*/
 void C2F(getenvc)(int *ierr,char *var,char *buf,int *buflen,int *iflag)
 {

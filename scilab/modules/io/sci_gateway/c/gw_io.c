@@ -49,6 +49,7 @@ static IoTable Tab[]=
 {C2F(sci_getrelativefilename),"getrelativefilename"},
 {C2F(sci_newest),"newest"},
 {C2F(sci_isdir),"isdir"},
+{C2F(sci_get_absolute_file_path),"get_absolute_file_path"}
 };
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_io)(void)

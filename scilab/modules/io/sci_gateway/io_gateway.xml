@@ -55,4 +55,5 @@
 <PRIMITIVE gatewayId="5" primitiveId="29" primitiveName="getrelativefilename" />
 <PRIMITIVE gatewayId="5" primitiveId="30" primitiveName="newest" />
 <PRIMITIVE gatewayId="5" primitiveId="31" primitiveName="isdir" />
+<PRIMITIVE gatewayId="5" primitiveId="32" primitiveName="get_absolute_file_path" />
 </GATEWAY>

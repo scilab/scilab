@@ -8,6 +8,7 @@
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "cluni0.h"
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_isdir) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -18,7 +19,7 @@ int C2F(sci_isdir) _PARAMS((char *fname,unsigned long fname_len))
 	
 	if (! (GetType(1) == sci_strings))
 	{
-		Scierror(999,"parameter incorrect must be a string (a filename).");
+		Scierror(999,"parameter incorrect must be a string (a file pathname).\r\n");
 		return 0;
 	}
 	else
@@ -36,7 +37,7 @@ int C2F(sci_isdir) _PARAMS((char *fname,unsigned long fname_len))
 		}
 		else
 		{
-			Scierror(999,"First parameter incorrect, must be a string (a directory).");
+			Scierror(999,"First parameter incorrect, must be a string (a file pathname).\r\n");
 			return 0;
 		}
 
@@ -44,7 +45,7 @@ int C2F(sci_isdir) _PARAMS((char *fname,unsigned long fname_len))
 		
 		if( strlen(path) > MAX_PATH_LONG )
 		{
-			Scierror(999,"The parameter is too long : must be less than %d caracters",MAX_PATH_LONG);
+			Scierror(999,"The parameter is too long : must be less than %d caracters.\r\n",MAX_PATH_LONG);
 		}
 		
 		/* Crappy workaround because a / was added after SCI & ~ into 

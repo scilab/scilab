@@ -48,7 +48,8 @@ sci_gateway/c/sci_oldsave.c \
 sci_gateway/c/sci_save.c \
 sci_gateway/c/sci_disp.c \
 sci_gateway/c/sci_newest.c \
-sci_gateway/c/sci_isdir.c
+sci_gateway/c/sci_isdir.c \
+sci_gateway/c/sci_get_absolute_file_path.c
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/oldloadsave.f \
 sci_gateway/fortran/intwrite4b.f \
