@@ -79,6 +79,8 @@ int C2F(sci_get_absolute_file_path) _PARAMS((char *fname,unsigned long fname_len
 						if (absolute_file_path)
 						{
 							strncpy(absolute_file_path,fileNameFormList,posBeginFileName);
+absolute_file_path[posBeginFileName]='\0';
+
 							break;
 						}
 					}
@@ -112,6 +114,7 @@ int C2F(sci_get_absolute_file_path) _PARAMS((char *fname,unsigned long fname_len
 						{
 							absolute_file_path=(char *)MALLOC(sizeof(char)*(lpath+(int)strlen(DIR_SEPARATOR)+1));
 							strncpy(absolute_file_path,path[0],lpath);
+							absolute_file_path[lpath]='\0';
 							/* Add '\' or '/' */
 							strcat(absolute_file_path,DIR_SEPARATOR);
 						}

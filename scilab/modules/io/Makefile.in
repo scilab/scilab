@@ -108,7 +108,8 @@ am__objects_3 = libsciio_la-sci_execstr.lo libsciio_la-sci_read4b.lo \
 	libsciio_la-intfilestat.lo libsciio_la-sci_unix.lo \
 	libsciio_la-sci_getf.lo libsciio_la-sci_oldsave.lo \
 	libsciio_la-sci_save.lo libsciio_la-sci_disp.lo \
-	libsciio_la-sci_newest.lo libsciio_la-sci_isdir.lo
+	libsciio_la-sci_newest.lo libsciio_la-sci_isdir.lo \
+	libsciio_la-sci_get_absolute_file_path.lo
 am__objects_4 = oldloadsave.lo intwrite4b.lo intexec.lo intgetf.lo \
 	intrat.lo intwritb.lo intgetenv.lo intwrite.lo intprint.lo \
 	intdisp.lo intread4b.lo intdeff.lo intlib.lo intgetio.lo \
@@ -203,17 +204,13 @@ MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
 MANGENERATOR = @MANGENERATOR@
 MKDIR_P = @MKDIR_P@
+MPICC = @MPICC@
+MPILIBS = @MPILIBS@
 NM = @NM@
 OBJEXT = @OBJEXT@
 OCAMLC = @OCAMLC@
 OCAMLDEP = @OCAMLDEP@
 OCAMLOPT = @OCAMLOPT@
-OPENMPI_CC = @OPENMPI_CC@
-OPENMPI_CPPFLAGS = @OPENMPI_CPPFLAGS@
-OPENMPI_DIR = @OPENMPI_DIR@
-OPENMPI_HEADER = @OPENMPI_HEADER@
-OPENMPI_LDFLAGS = @OPENMPI_LDFLAGS@
-OPENMPI_LIBS = @OPENMPI_LIBS@
 PACKAGE = @PACKAGE@
 PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
 PACKAGE_NAME = @PACKAGE_NAME@
@@ -349,7 +346,8 @@ sci_gateway/c/sci_oldsave.c \
 sci_gateway/c/sci_save.c \
 sci_gateway/c/sci_disp.c \
 sci_gateway/c/sci_newest.c \
-sci_gateway/c/sci_isdir.c
+sci_gateway/c/sci_isdir.c \
+sci_gateway/c/sci_get_absolute_file_path.c
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/oldloadsave.f \
 sci_gateway/fortran/intwrite4b.f \
@@ -557,6 +555,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_execstr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_file.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_fileinfo.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_get_absolute_file_path.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_getenv.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_getf.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_getio.Plo@am__quote@
@@ -877,6 +876,13 @@ libsciio_la-sci_isdir.lo: sci_gateway/c/sci_isdir.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_isdir.c' object='libsciio_la-sci_isdir.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciio_la_CFLAGS) $(CFLAGS) -c -o libsciio_la-sci_isdir.lo `test -f 'sci_gateway/c/sci_isdir.c' || echo '$(srcdir)/'`sci_gateway/c/sci_isdir.c
+
+libsciio_la-sci_get_absolute_file_path.lo: sci_gateway/c/sci_get_absolute_file_path.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciio_la_CFLAGS) $(CFLAGS) -MT libsciio_la-sci_get_absolute_file_path.lo -MD -MP -MF $(DEPDIR)/libsciio_la-sci_get_absolute_file_path.Tpo -c -o libsciio_la-sci_get_absolute_file_path.lo `test -f 'sci_gateway/c/sci_get_absolute_file_path.c' || echo '$(srcdir)/'`sci_gateway/c/sci_get_absolute_file_path.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciio_la-sci_get_absolute_file_path.Tpo $(DEPDIR)/libsciio_la-sci_get_absolute_file_path.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_get_absolute_file_path.c' object='libsciio_la-sci_get_absolute_file_path.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciio_la_CFLAGS) $(CFLAGS) -c -o libsciio_la-sci_get_absolute_file_path.lo `test -f 'sci_gateway/c/sci_get_absolute_file_path.c' || echo '$(srcdir)/'`sci_gateway/c/sci_get_absolute_file_path.c
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<
