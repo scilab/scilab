@@ -50,6 +50,9 @@ int C2F(sci_isdir) _PARAMS((char *fname,unsigned long fname_len))
 		/* Crappy workaround because a / was added after SCI & ~ into 
 		 * the Scilab macros
 		 */
+		/* TODO: CHECK IF THIS WORKAROUND IS MANDATORY : /home/sylvestre/ 
+		 * should be the same a /home/sylvestre 
+		*/
 		if(strcmp(path,"SCI")==0)
 		{
 			myPath=MALLOC((m1+2)*sizeof(char)); /* +2 because the / added + \0 */
