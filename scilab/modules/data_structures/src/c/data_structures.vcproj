@@ -253,6 +253,14 @@
 				RelativePath="..\..\includes\gw_data_structures2.h"
 				>
 			</File>
+			<File
+				RelativePath=".\hmops.h"
+				>
+			</File>
+			<File
+				RelativePath=".\stcreate.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="localization"

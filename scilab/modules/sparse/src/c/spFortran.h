@@ -2,7 +2,8 @@
 /* INRIA 2007 */
 /* Sylvestre Ledru */
 /*-----------------------------------------------------------------------------------*/
-
+#ifndef __SPFORTRAN_H__
+#define __SPFORTRAN_H__
 
 /*
  *  Routine Renaming
@@ -107,3 +108,4 @@ void sfStripFills( long *Matrix );
 void sfClear( long *Matrix );
 
 
+#endif /* __SPFORTRAN_H__ */

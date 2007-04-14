@@ -2,6 +2,10 @@
 /* INRIA 2006 */
 /* Ledru Sylvestre */
 /*-----------------------------------------------------------------------------------*/ 
+#ifndef __INI_C_H__
+#define __INI_C_H__
+
+#include "machine.h"
 
 /** 
  * TODO : comment
@@ -130,3 +134,5 @@ int C2F(getsci)(char *buf,int *nbuf,long int lbuf);
  * @return 
 */
 int C2F(getscihome)(char *buf,int *nbuf,long int lbuf);
+
+#endif /* __INI_C_H__ */

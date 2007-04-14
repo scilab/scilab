@@ -258,6 +258,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\fftw3.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\fftw_utilities.h"
 				>
 			</File>

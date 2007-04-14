@@ -2,6 +2,8 @@
 /* INRIA 2007 */
 /* Sylvestre LEDRU */
 /*-----------------------------------------------------------------------------------*/
+#ifndef __FLAGS_H__
+#define __FLAGS_H__
 
 /**
  * set the echo mode of typed scilab commands 
@@ -28,3 +30,5 @@ void set_is_reading(int mode);
  * @return the reading mode
 */
 int get_is_reading(void);
+
+#endif /* __FLAGS_H__ */

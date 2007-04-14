@@ -1,6 +1,8 @@
 /**************************************
  * Sylvestre Ledru - INRIA 2007
  **************************************/
+#ifndef __LINEAR_FTABLES_H__
+#define __LINEAR_FTABLES_H__
 
 #include "machine.h"
 
@@ -15,3 +17,5 @@ typedef struct {
   char *name;
   voidf f;
 } FTAB;
+
+#endif /* __LINEAR_FTABLES_H__ */

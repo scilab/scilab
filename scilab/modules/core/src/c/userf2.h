@@ -2,5 +2,11 @@
 /* INRIA 2007 */
 /* Sylvestre LEDRU */
 /*-----------------------------------------------------------------------------------*/
+#ifndef __USERF2_H__
+#define __USERF2_H__
+
+#include "machine.h"
 
 int C2F(userf2)(void);
+
+#endif /* __USERF2_H__ */

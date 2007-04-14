@@ -2,6 +2,8 @@
 /* INRIA 2007 */
 /* Sylvestre LEDRU */
 /*-----------------------------------------------------------------------------------*/ 
+#ifndef __PATHS_H__
+#define __PATHS_H__
 
 #include "machine.h"
 
@@ -55,3 +57,5 @@ void C2F(edge2st)(int *n,int *alpha,int **tree,int *treesize);
  */
 
 void C2F(prevn2st)(int *n,int *nodes,int **tree,int *treesize,int *la,int *lp,int *ls);
+
+#endif /* __PATHS_H__ */

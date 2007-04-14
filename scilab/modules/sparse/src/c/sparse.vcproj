@@ -330,6 +330,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\spAllocate.h"
+				>
+			</File>
+			<File
+				RelativePath=".\spBuild.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\spConfig.h"
 				>
 			</File>
@@ -338,11 +346,27 @@
 				>
 			</File>
 			<File
+				RelativePath=".\spFactor.h"
+				>
+			</File>
+			<File
+				RelativePath=".\spFortran.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\spmalloc.h"
 				>
 			</File>
 			<File
 				RelativePath="..\..\includes\spmatrix.h"
+				>
+			</File>
+			<File
+				RelativePath=".\spSolve.h"
+				>
+			</File>
+			<File
+				RelativePath=".\spUtils.h"
 				>
 			</File>
 		</Filter>

@@ -2,7 +2,10 @@
 /* INRIA 2006 */
 /* Ledru Sylvestre */
 /*-----------------------------------------------------------------------------------*/ 
+#ifndef __MSGSTORE_H__
+#define __MSGSTORE_H__
 
+#include "machine.h"
 
 /**
  * TODO : comment
@@ -50,3 +53,4 @@ int C2F(lasterror)(char *fname, unsigned long fname_len);
  */
 int GetLastErrorCode(void);
 
+#endif /* __MSGSTORE_H__ */

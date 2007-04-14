@@ -323,6 +323,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\men_scilab.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\sci_clc.h"
 				>
 			</File>

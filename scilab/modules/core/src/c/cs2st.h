@@ -2,6 +2,10 @@
 /* INRIA 2006 */
 /* Ledru Sylvestre */
 /*-----------------------------------------------------------------------------------*/
-
+#ifndef __CS2ST_H__
+#define __CS2ST_H__
+#include "machine.h"
 
 int C2F(cs2st)(integer *i,integer *ires);
+
+#endif /* __CS2ST_H__ */

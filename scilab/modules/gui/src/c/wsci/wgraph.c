@@ -30,6 +30,7 @@ extern void ExportBMP(struct BCG *ScilabGC,char *pszflname);
 extern void Setscig_buzyState(BOOL state);
 extern Scig_deletegwin_handler scig_deletegwin_handler;
 extern Scig_deletegwin_handler set_scig_deletegwin_handler(Scig_deletegwin_handler f);
+extern void SetGHdc(HDC lhdc,int width,int height);
 /*-----------------------------------------------------------------------------------*/
 static void sci_extra_margin(HDC hdc , struct BCG *ScilabGC);
 /*-----------------------------------------------------------------------------------*/

@@ -2,6 +2,10 @@
 /* INRIA 2007 */
 /* Sylvestre LEDRU */
 /*-----------------------------------------------------------------------------------*/
+#ifndef __FUNTAB_H__
+#define __FUNTAB_H__
+
+#include "machine.h"
 /**
  *    Hash table for scilab functions 
  *    job is used to specify a job
@@ -26,3 +30,5 @@
  *   @param fptr
  */
 int C2F(funtab)(int *id, int *fptr, int *job,char *namefunction,unsigned long namefunction_len);
+
+#endif /* __FUNTAB_H__ */

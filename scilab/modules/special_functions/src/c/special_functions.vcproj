@@ -246,7 +246,15 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
+				RelativePath="..\..\includes\gw_special_functions1.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\gw_special_functions1.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\gw_special_functions2.h"
 				>
 			</File>
 		</Filter>

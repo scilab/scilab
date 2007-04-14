@@ -247,6 +247,10 @@
 				RelativePath=".\hashtable_metanet.h"
 				>
 			</File>
+			<File
+				RelativePath=".\paths.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="localization"

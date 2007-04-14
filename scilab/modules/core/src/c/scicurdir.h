@@ -4,6 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 #ifndef __SCICURDIR_H__
 #define __SCICURDIR_H__
+#include "machine.h"
 /*******************************
  * Changes scilab current directory 
  * @param path : the path where Scilab should go

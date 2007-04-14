@@ -1983,7 +1983,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\fig.h"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\Format.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_data_property.h"
 				>
 			</File>
 			<File
@@ -2079,11 +2087,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\paintop.h"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\periFig.h"
 				>
 			</File>
 			<File
 				RelativePath=".\includes\periGif.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\periMac.h"
 				>
 			</File>
 			<File
@@ -2099,11 +2115,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\periX11.h"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\pixel_mode.h"
 				>
 			</File>
 			<File
 				RelativePath=".\includes\Plo2d.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\Plo2dEch.h"
 				>
 			</File>
 			<File
@@ -2116,6 +2140,14 @@
 			</File>
 			<File
 				RelativePath=".\includes\PloEch.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\qsort.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\resources.h"
 				>
 			</File>
 			<File
@@ -2359,6 +2391,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\sci_xload.h"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\sci_xname.h"
 				>
 			</File>
@@ -2400,6 +2436,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_xs2ps.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_xsave.h"
 				>
 			</File>
 			<File
@@ -2459,6 +2499,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\set_data_property.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\setGetHashTable.h"
 				>
 			</File>
@@ -2496,6 +2540,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\Vertices.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\w_rottext.h"
 				>
 			</File>
 			<File

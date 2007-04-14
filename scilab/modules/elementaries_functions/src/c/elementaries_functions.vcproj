@@ -402,7 +402,7 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath="..\..\includes\calelm.h"
+				RelativePath="..\..\includes\elementaries_functions.h"
 				>
 			</File>
 			<File

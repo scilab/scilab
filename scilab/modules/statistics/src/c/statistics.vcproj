@@ -234,7 +234,15 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
+				RelativePath=".\CdfBase.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\gw_statistics.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ipmpar1.h"
 				>
 			</File>
 		</Filter>

@@ -2,6 +2,8 @@
 /* INRIA 2007 */
 /* Sylvestre LEDRU */
 /*-----------------------------------------------------------------------------------*/
+#ifndef __CSIGNAL_H__ 
+#define __CSIGNAL_H__
 #include <signal.h>
 #include "machine.h"
 
@@ -17,3 +19,4 @@ void controlC_handler (int sig);
  */
 int C2F(csignal)(void);
 
+#endif /* __CSIGNAL_H__ */

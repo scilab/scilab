@@ -360,6 +360,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\directories.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\getenvc.h"
 				>
 			</File>
@@ -389,6 +393,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_setenv.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\setenvc.h"
 				>
 			</File>
 			<File

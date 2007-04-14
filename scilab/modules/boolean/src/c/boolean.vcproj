@@ -213,6 +213,10 @@
 				RelativePath="..\..\includes\gw_boolean.h"
 				>
 			</File>
+			<File
+				RelativePath="..\..\includes\matboolean.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="localization"

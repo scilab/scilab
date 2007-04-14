@@ -354,6 +354,10 @@
 				RelativePath=".\src\c\sci_pvm.h"
 				>
 			</File>
+			<File
+				RelativePath=".\src\c\sci_tools.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="localization"

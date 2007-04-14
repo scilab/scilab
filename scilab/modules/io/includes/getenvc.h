@@ -2,8 +2,9 @@
 /* INRIA 2007 */
 /* Sylvestre LEDRU */
 /*-----------------------------------------------------------------------------------*/
+#ifndef __GETENVC_H__
+#define __GETENVC_H__
 #include "machine.h"
-#include "sciprint.h"
 
 /**
  * Retrieve a system variable 
@@ -15,3 +16,4 @@
  */
 void C2F(getenvc)(int *ierr,char *var,char *buf,int *buflen,int *iflag);
 
+#endif /* __GETENVC_H__ */

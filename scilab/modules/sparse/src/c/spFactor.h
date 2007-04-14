@@ -2,6 +2,8 @@
 /* INRIA 2007 */
 /* Sylvestre LEDRU */
 /*-----------------------------------------------------------------------------------*/
+#ifndef __SPFACTOR_H__
+#define __SPFACTOR_H__
 
 #include "spConfig.h"
 #include "spmatrix.h"
@@ -32,3 +34,4 @@ static int MatrixIsSingular( MatrixPtr Matrix, int Step );
 static int ZeroPivot( MatrixPtr Matrix, int Step );
 
 
+#endif /* __SPFACTOR_H__ */

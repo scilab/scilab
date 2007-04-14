@@ -306,6 +306,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\fileio.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\files.h"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\gw_fileio.h"
 				>
 			</File>
@@ -327,6 +335,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\pldstr.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\ripole.h"
 				>
 			</File>
 			<File

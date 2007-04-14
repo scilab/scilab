@@ -3,6 +3,8 @@
 /* Sylvestre LEDRU */
 /*-----------------------------------------------------------------------------------*/
 
+#ifndef __CDFBASE_H__
+#define __CDFBASE_H__
 
 /**
  * TODO : needs comments
@@ -19,3 +21,5 @@
  */
 
 int  CdfBase(char *fname,int inarg,int oarg,int *callpos,char *option,char *errnames,int which,int (*fonc)(),void (*foncErr)() );
+
+#endif /* __CDFBASE_H__ */

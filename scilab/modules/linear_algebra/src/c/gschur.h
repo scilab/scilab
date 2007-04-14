@@ -1,6 +1,8 @@
 /**************************************
  * Sylvestre Ledru - INRIA 2007
  **************************************/
+#ifndef __GSCHUR_H__
+#define __GSCHUR_H__
 
 #include "linear_FTables.h"
 
@@ -38,3 +40,5 @@ FTAB FTab_gshsel[] ={
 {"sb02ow", (voidf)  C2F(sb02ow)},
 {"sb02ox", (voidf)  C2F(sb02ox)},
 {(char *) 0, (voidf) 0}};
+
+#endif /* __GSCHUR_H__ */

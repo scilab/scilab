@@ -234,11 +234,19 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
+				RelativePath="..\..\includes\constinterp.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\gw_interpolation.h"
 				>
 			</File>
 			<File
 				RelativePath="..\..\includes\interpolation.h"
+				>
+			</File>
+			<File
+				RelativePath=".\someinterp.h"
 				>
 			</File>
 		</Filter>

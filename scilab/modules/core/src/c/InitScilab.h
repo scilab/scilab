@@ -2,9 +2,13 @@
 /* INRIA 2006 */
 /* Ledru Sylvestre */
 /*-----------------------------------------------------------------------------------*/ 
+#ifndef __INITSCILAB_H__
+#define __INITSCILAB_H__
+
 #include "machine.h"
 
 int C2F(initscilab)(void);
 
+#endif /* __INITSCILAB_H__ */
 /*-----------------------------------------------------------------------------------*/ 
 

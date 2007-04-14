@@ -279,6 +279,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\DDE.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\FindFileAssociation.h"
 				>
 			</File>

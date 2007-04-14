@@ -783,6 +783,18 @@
 				>
 			</File>
 			<File
+				RelativePath=".\banier.h"
+				>
+			</File>
+			<File
+				RelativePath=".\basout.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\callinter.h"
+				>
+			</File>
+			<File
 				RelativePath="callinterf.h"
 				>
 			</File>
@@ -791,11 +803,31 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\cluni0.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\core_math.h"
 				>
 			</File>
 			<File
+				RelativePath=".\cs2st.h"
+				>
+			</File>
+			<File
+				RelativePath=".\csignal.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\cvstr.h"
+				>
+			</File>
+			<File
 				RelativePath=".\diary.h"
+				>
+			</File>
+			<File
+				RelativePath=".\dynamic_menus.h"
 				>
 			</File>
 			<File
@@ -807,11 +839,31 @@
 				>
 			</File>
 			<File
+				RelativePath=".\flags.h"
+				>
+			</File>
+			<File
 				RelativePath=".\fromc.h"
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\fromjava.h"
+				>
+			</File>
+			<File
 				RelativePath=".\fromjava.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\FTables.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Funtab.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\getarg.h"
 				>
 			</File>
 			<File
@@ -824,6 +876,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\getmodules.h"
+				>
+			</File>
+			<File
+				RelativePath=".\getval.h"
 				>
 			</File>
 			<File
@@ -851,11 +907,23 @@
 				>
 			</File>
 			<File
+				RelativePath=".\inffic.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\inisci-c.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\InitializeCore.h"
 				>
 			</File>
 			<File
 				RelativePath="..\..\includes\InitScilab.h"
+				>
+			</File>
+			<File
+				RelativePath=".\InitScilab.h"
 				>
 			</File>
 			<File
@@ -871,7 +939,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\IsAScalar.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\link.h"
+				>
+			</File>
+			<File
+				RelativePath=".\LoadFunctionsTab.h"
 				>
 			</File>
 			<File
@@ -895,7 +971,31 @@
 				>
 			</File>
 			<File
+				RelativePath=".\msgout.h"
+				>
+			</File>
+			<File
+				RelativePath=".\msgstore.h"
+				>
+			</File>
+			<File
+				RelativePath=".\msgstxt.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\Os_specific.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Os_specific.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\PARAMS.h"
+				>
+			</File>
+			<File
+				RelativePath=".\parse.h"
 				>
 			</File>
 			<File
@@ -903,7 +1003,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\readline.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\realmain.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\returnanan.h"
 				>
 			</File>
 			<File
@@ -912,6 +1020,18 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\returnPropertyList.h"
+				>
+			</File>
+			<File
+				RelativePath=".\run.h"
+				>
+			</File>
+			<File
+				RelativePath=".\scicurdir.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\SciEnv.h"
 				>
 			</File>
 			<File
@@ -927,11 +1047,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\scimem.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\sciprint.h"
 				>
 			</File>
 			<File
 				RelativePath="..\..\includes\sciquit.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\scirun.h"
 				>
 			</File>
 			<File
@@ -944,6 +1072,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\stack-def.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\stack.h"
 				>
 			</File>
 			<File
@@ -963,7 +1095,27 @@
 				>
 			</File>
 			<File
+				RelativePath=".\str2sci.h"
+				>
+			</File>
+			<File
 				RelativePath=".\TerminateCore.h"
+				>
+			</File>
+			<File
+				RelativePath=".\texmacs.h"
+				>
+			</File>
+			<File
+				RelativePath=".\timer.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\tmpdir.h"
+				>
+			</File>
+			<File
+				RelativePath=".\userf2.h"
 				>
 			</File>
 			<File
