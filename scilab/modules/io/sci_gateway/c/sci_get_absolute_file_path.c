@@ -79,8 +79,7 @@ int C2F(sci_get_absolute_file_path) _PARAMS((char *fname,unsigned long fname_len
 						if (absolute_file_path)
 						{
 							strncpy(absolute_file_path,fileNameFormList,posBeginFileName);
-absolute_file_path[posBeginFileName]='\0';
-
+							absolute_file_path[posBeginFileName]='\0';
 							break;
 						}
 					}
