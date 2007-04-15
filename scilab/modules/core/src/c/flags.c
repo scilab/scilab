@@ -1,14 +1,9 @@
 /* Copyright INRIA/ENPC */
-#ifdef _MSC_VER
-#define True 1
-#define False 0
-#else
-#include <X11/Xlib.h>
-#endif
+#include "machine.h"
 #include "flags.h"
 
-static int echo_mode = True;
-static int reading = False;
+static int echo_mode = TRUE;
+static int reading = FALSE;
 
 void set_echo_mode(int mode)
 {
