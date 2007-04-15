@@ -35,7 +35,7 @@ BOOL setlanguage(char *lang,BOOL updateHelpIndex, BOOL updateMenus)
 
 				if (updateHelpIndex)
 				{
-					#define UPDATESCILABHELPMACRO "try update_scilab_help();catch end;" 
+					#define UPDATESCILABHELPMACRO "try update_scilab_help();catch end;clear update_scilab_help;" 
 					integer ierr ;
 					integer seq = 1 ;
 					int macroCallLength=0;
