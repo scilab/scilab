@@ -9,7 +9,7 @@ function [y]=toolboxes(path,flag,force)
   y=[];
   if rhs == 1 & typeof(path)=="constant" then 
     // execute the toolbox loader
-    y='exec("""+%toolboxes_dir+%toolboxes(path)+"/"+"loader.sce"+""")";
+    y='exec("""+%toolboxes_dir+%toolboxes(path)+"/"+"loader.sce"+""");";
     return 
   end
     
