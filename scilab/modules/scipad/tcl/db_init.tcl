@@ -54,7 +54,7 @@ image create photo butstepimage_o        -file [file join $iconsdir stepstep.gif
 image create photo butstepenterimage_o   -file [file join $iconsdir arrowenter.gif]
 image create photo butstepoverimage_o    -file [file join $iconsdir arrowover.gif]
 image create photo butstepexitimage_o    -file [file join $iconsdir arrowexit.gif]
-image create photo butruntoreturnimage_o -file [file join $iconsdir arrowout.gif] ; #waiting for new icon
+image create photo butruntoreturnimage_o -file [file join $iconsdir arrowtoreturn.gif]
 image create photo butruntocursorimage_o -file [file join $iconsdir arrowcursor.gif]
 image create photo butgoonignorimage_o   -file [file join $iconsdir arrowignore.gif]
 image create photo butwatchimage_o       -file [file join $iconsdir arrowwatch.gif]

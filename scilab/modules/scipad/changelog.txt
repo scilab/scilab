@@ -2907,3 +2907,14 @@ Francois VOGEL, 08/04/07
  * New feature for the debugger: Run to return point. This was asked in the
    newsgroup: http://groups.google.com/group/comp.soft-sys.math.scilab/browse_frm/thread/c482b4e4986a9282
  * version --> 6.98
+
+Francois VOGEL, 15/04/07
+ * The debugger shows a new icon from Enrico for "Run to return point"
+ * Fixed: debugging as .sce, when running to return point, one line above the
+   correct line (which is the last executable line from the buffer, excluding
+   the wrapper) was breakpointed
+ * Fixed the non detection of the end of debug when "Run without any
+   breakpoint" was called (only execution errors were checked, but the end of
+   the debug was not detected, thus no cleanup (.sce wrapper stays), and a
+   messed up debug state remaining)
+ * version --> 6.99

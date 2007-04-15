@@ -644,6 +644,11 @@ proc runtoreturnpoint_bp {{checkbusyflag 1} {skipbptmode 0}} {
             if {[lsearch [$currentfunta tag names $returnpointpos] "db_wrapper"] != -1} {
                 set wrapstart [$currentfunta tag prevrange "db_wrapper" $returnpointpos]
                 set wrapstart [lindex $wrapstart 0]
+                # at this point $wrapstart is the position of the first character
+                # tagged with the "db_wrapper" tag. It is always the leading \n
+                # of the function return instructions inserted in proc Obtainall_bp
+                # the position searched is therefore 1 character to the right
+                set wrapstart [$currentfunta index "$wrapstart + 1 c"]
                 set lastscecodepos [$currentfunta index "$wrapstart - 1 l"]
                 while {[isnocodeline $currentfunta $lastscecodepos]} {
                     set lastscecodepos [$currentfunta index "$lastscecodepos - 1 l"]
@@ -781,7 +786,8 @@ proc goonwo_bp {} {
         removescilab_bp "with_output"
         ScilabEval_lt "resume(0)" "seq"
         getfromshell
-        checkexecutionerror_bp
+        # .sce debug cleanup, check execution error, and so on
+        checkendofdebug_bp "nostep"
     } else {
         # <TODO> .sce case if some day the parser uses pseudocode noops
     }
