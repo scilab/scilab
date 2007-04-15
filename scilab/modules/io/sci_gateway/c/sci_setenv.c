@@ -5,7 +5,6 @@
 #include "gw_io.h"
 #include "setenvc.h"
 #include "intsetenv.h"
-#include "sci_setenv.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_setenv) _PARAMS((char *fname,unsigned long fname_len))
 {

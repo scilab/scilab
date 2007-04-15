@@ -36,7 +36,6 @@ int C2F(sci_load) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_mgetl) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_fileinfo) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_getio) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_setenv) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(intexec)();
 int C2F(intexecstr)();
 int C2F(intgetf)();
@@ -48,6 +47,8 @@ int C2F(sci_getrelativefilename) _PARAMS((char *fname,unsigned long l));
 int C2F(sci_newest) _PARAMS((char *fname,unsigned long l));
 int C2F(sci_isdir) _PARAMS((char *fname,unsigned long l));
 int C2F(sci_get_absolute_file_path) _PARAMS((char *fname,unsigned long l));
+int C2F(sci_setenv) _PARAMS((char *fname,unsigned long fname_len));
+
 /*-----------------------------------------------------------------------------------*/
 #endif /*  __GW_IO__ */
 /*-----------------------------------------------------------------------------------*/
