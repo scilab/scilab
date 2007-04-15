@@ -11,6 +11,19 @@ struct MODULESLIST
 };
 
 /*-----------------------------------------------------------------------------------*/ 
+/**
+ * Get the list of modules
+ *
+ * @param void  
+ * @return List of modules
+ */
 struct MODULESLIST *getmodules(void);
+
+/**
+ * <long-description>
+ *
+ * @param void  
+ * @return <ReturnValue>
+ */
 BOOL DisposeModulesInfo(void);
 /*-----------------------------------------------------------------------------------*/ 

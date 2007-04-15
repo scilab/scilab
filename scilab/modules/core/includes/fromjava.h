@@ -7,7 +7,19 @@
 
 #include "machine.h"
 
+/**
+ * <long-description>
+ *
+ * @param void  
+ */
 void SetFromJavaToON(void);
+
+/**
+ * <long-description>
+ *
+ * @param void  
+ * @return <ReturnValue>
+ */
 int IsFromJava(void);
 
 #endif /*FROMJAVA*/
