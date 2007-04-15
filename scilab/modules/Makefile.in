@@ -158,7 +158,7 @@ DIST_SUBDIRS = intersci polynomials cacsd elementaries_functions \
 	special_functions double randlib data_structures mexlib \
 	symbolic tclsci sparse io gui graphics wintools functions \
 	incremental_link others overloading maple2scilab m2sci texmacs \
-	tfds scipad scilab2fortran development_tools \
+	scipad scilab2fortran development_tools \
 	compatibility_functions helptools scicos jvm fftw pvm . \
 	javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -324,7 +324,7 @@ SUBDIRS = intersci polynomials cacsd elementaries_functions arnoldi \
 	special_functions double randlib data_structures mexlib \
 	symbolic tclsci sparse io gui graphics wintools functions \
 	incremental_link others overloading maple2scilab m2sci texmacs \
-	tfds scipad scilab2fortran development_tools \
+	scipad scilab2fortran development_tools \
 	compatibility_functions helptools scicos $(am__append_1) \
 	$(am__append_2) $(am__append_3) . $(am__append_4)
 
