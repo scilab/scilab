@@ -105,6 +105,11 @@ void sfDestroy( long *Matrix );
 
 void sfStripFills( long *Matrix );
 
+/**
+ * <long-description>
+ *
+ * @param Matrix    
+ */
 void sfClear( long *Matrix );
 
 
