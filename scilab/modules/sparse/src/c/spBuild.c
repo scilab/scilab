@@ -66,6 +66,10 @@
 #include "spmalloc.h"
 #include "spBuild.h"
 
+static void Translate( MatrixPtr Matrix, int *Row, int *Col );
+static int EnlargeMatrix( MatrixPtr Matrix, register int NewSize );
+static int ExpandTranslationArrays( MatrixPtr Matrix, register int NewSize );
+	 
 
 
 /**
