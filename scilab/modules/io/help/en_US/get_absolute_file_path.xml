@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>get_absolute_file_path</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>$LastChangedDate: 2006-10-10 17:02:59 +0200 (mar., 10 oct. 2006)
+  $</DATE>
+
+  <SHORT_DESCRIPTION name="get_absolute_file_path">Given an absolute
+  pathname.</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>pathname =
+    get_absolute_file_path(filename)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>filename</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: A character string : filename</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>pathname</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: A character string : the absolute pathname</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>Given the absolute pathname.</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[a=mopen(TMPDIR+'test.sce','wt');
+get_absolute_file_path('test.sce');
+mclose(a);
+
+]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>getshortpathname</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>getlongpathname</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>getcwd</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHOR>Allan CORNET</AUTHOR>
+</MAN>
