@@ -9,6 +9,7 @@
 /**
  * TODO 
  * @param fname
+ * @param fname_len
  * @return 
  */
 int C2F(intfilestat)(char * fname,unsigned long fname_len);
