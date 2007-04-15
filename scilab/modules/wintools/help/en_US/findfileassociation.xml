@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>findfileassociation</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>$LastChangedDate: 2006-08-17 18:06:16 +0200 (jeu., 17 août 2006) $</DATE>
+
+  <SHORT_DESCRIPTION name="findfileassociation">Searches for and retrieves a file association-related string from the registry.(Windows only)</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>findfileassociation('A file name extension, such as .txt')</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <DESCRIPTION>
+    <P><VERB>findfileassociation('A file name extension, such as .txt')</VERB> Searches for and retrieves a file association-related string from the registry.</P>
+  </DESCRIPTION>
+  
+  <EXAMPLE><![CDATA[
+  findfileassociation('.txt')
+  findfileassociation('.sce')
+  findfileassociation('.xsl')
+  findfileassociation('.toto')
+  
+]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>winopen</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>A.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>
