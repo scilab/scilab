@@ -830,7 +830,11 @@ Save your data and restart Scilab.</string>
 <entry>
 	<tag>core_message_185</tag>
 	<string>Powershell not found.</string>
-</entry>	
+</entry>
 
+<entry>
+  <tag>core_message_186</tag>
+  <string>Type 'resume' or 'abort' to return to standard level prompt.</string>
+</entry>
 
 </LOCALIZATION>
