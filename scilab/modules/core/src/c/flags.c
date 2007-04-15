@@ -1,5 +1,5 @@
 /* Copyright INRIA/ENPC */
-#if defined(_MSC_VER)
+#ifdef _MSC_VER
 #define True 1
 #define False 0
 #else
