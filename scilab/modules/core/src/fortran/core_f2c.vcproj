@@ -337,10 +337,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Ex-fort.c"
-				>
-			</File>
-			<File
 				RelativePath=".\expr.c"
 				>
 			</File>
@@ -986,10 +982,6 @@
 			</File>
 			<File
 				RelativePath=".\error.f"
-				>
-			</File>
-			<File
-				RelativePath=".\Ex-fort.f"
 				>
 			</File>
 			<File

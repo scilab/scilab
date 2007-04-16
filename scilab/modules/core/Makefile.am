@@ -167,7 +167,6 @@ src/fortran/terme.f \
 src/fortran/inisci.f \
 src/fortran/expr.f \
 src/fortran/ptover.f \
-src/fortran/Ex-fort.f \
 src/fortran/getfunction.f \
 src/fortran/stackp.f \
 src/fortran/getpro.f \
