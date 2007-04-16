@@ -6,13 +6,14 @@
 #include "Os_specific.h"
 #include "../../../io/includes/setenvc.h"
 #include "cluni0.h"
+#include "GetenvB.h"
 
 #define MAX_ENV 256 
 
 static char *SCI_a[] = {  "SCI/", "sci/", "$SCI", "SCI\\", "sci\\", (char *) 0 };
 static char *HOME_a[] = {  "HOME/", "home/", "~/" , "HOME\\", "home\\", "~\\" ,"$HOME", (char *) 0};
 static char *TMP_a[] = {  "TMPDIR/", "tmpdir/","TMPDIR\\", "tmpdir\\", "$TMPDIR", (char *) 0};
-void GetenvB __PARAMS(( char *name,char *env, int len));
+
 static int Cluni0 __PARAMS((char *env,char **alias,char* in_name,char *out_name, long int lin));
 
 
@@ -44,7 +45,7 @@ int C2F(cluni0)(char *in_name, char *out_name, int *out_n, long int lin, long in
 	out_name[lin]='\0';
       }
   *out_n = strlen(out_name);
-#if defined(_MSC_VER)
+#ifdef _MSC_VER
   for (k=0 ; k < *out_n ;k++) if ( out_name[k]=='/') out_name[k]='\\';
 #else
   for (k=0 ; k < *out_n ;k++) if ( out_name[k]=='\\') out_name[k]='/';
@@ -53,28 +54,6 @@ int C2F(cluni0)(char *in_name, char *out_name, int *out_n, long int lin, long in
   return(0);
 }
 
-
-/**
- * getenv + squash trailing white spaces 
- *
- * @param name  
- * @param env   
- * @param len   
- */
-void GetenvB(char *name, char *env, int len)
-{
-  int ierr,un=1;
-  C2F(getenvc)(&ierr,name,env,&len,&un);
-  if( ierr == 0) 
-    {
-      char *last = &env[len-1];
-      while ( *last == ' ' ) { last = '\0' ; } last--;
-    }
-  else 
-    {
-      env[0] = '\0' ;
-    }  
-}
 
 /**
  * expand in_name to produce out_name 
