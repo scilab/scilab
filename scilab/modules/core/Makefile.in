@@ -149,10 +149,9 @@ am__libscicore_la_SOURCES_DIST = src/c/history.c src/c/inffic.c \
 	src/fortran/mklist.f src/fortran/dmdsp.f src/fortran/sigbas.f \
 	src/fortran/indxg.f src/fortran/matz.f src/fortran/istrue.f \
 	src/fortran/terme.f src/fortran/inisci.f src/fortran/expr.f \
-	src/fortran/ptover.f src/fortran/Ex-fort.f \
-	src/fortran/getfunction.f src/fortran/stackp.f \
-	src/fortran/getpro.f src/fortran/dbasin.f src/fortran/macro.f \
-	src/fortran/lspdsp.f src/fortran/extlarg.f \
+	src/fortran/ptover.f src/fortran/getfunction.f \
+	src/fortran/stackp.f src/fortran/getpro.f src/fortran/dbasin.f \
+	src/fortran/macro.f src/fortran/lspdsp.f src/fortran/extlarg.f \
 	src/fortran/getstr.f src/fortran/cvwm.f \
 	src/fortran/storeglobal.f src/fortran/lst2vars.f \
 	src/fortran/fmttyp.f src/fortran/basnms.f src/fortran/matc.f \
@@ -293,8 +292,8 @@ am__objects_6 = algebre.lo clunit.lo complexify.lo allowptr.lo \
 	savlod.lo error.lo cvdm.lo tradsl.lo mkindx.lo whatln.lo \
 	errmgr.lo defmat.lo mklist.lo dmdsp.lo sigbas.lo indxg.lo \
 	matz.lo istrue.lo terme.lo inisci.lo expr.lo ptover.lo \
-	Ex-fort.lo getfunction.lo stackp.lo getpro.lo dbasin.lo \
-	macro.lo lspdsp.lo extlarg.lo getstr.lo cvwm.lo storeglobal.lo \
+	getfunction.lo stackp.lo getpro.lo dbasin.lo macro.lo \
+	lspdsp.lo extlarg.lo getstr.lo cvwm.lo storeglobal.lo \
 	lst2vars.lo fmttyp.lo basnms.lo matc.lo ptrback.lo getch.lo \
 	ftob.lo seteol.lo basin.lo clause.lo compcl.lo termf.lo \
 	expsum.lo eqid.lo copyvar.lo putid.lo itosci.lo \
@@ -440,17 +439,13 @@ MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
 MANGENERATOR = @MANGENERATOR@
 MKDIR_P = @MKDIR_P@
+MPICC = @MPICC@
+MPILIBS = @MPILIBS@
 NM = @NM@
 OBJEXT = @OBJEXT@
 OCAMLC = @OCAMLC@
 OCAMLDEP = @OCAMLDEP@
 OCAMLOPT = @OCAMLOPT@
-OPENMPI_CC = @OPENMPI_CC@
-OPENMPI_CPPFLAGS = @OPENMPI_CPPFLAGS@
-OPENMPI_DIR = @OPENMPI_DIR@
-OPENMPI_HEADER = @OPENMPI_HEADER@
-OPENMPI_LDFLAGS = @OPENMPI_LDFLAGS@
-OPENMPI_LIBS = @OPENMPI_LIBS@
 PACKAGE = @PACKAGE@
 PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
 PACKAGE_NAME = @PACKAGE_NAME@
@@ -599,10 +594,9 @@ CORE_FORTRAN_SOURCES = src/fortran/algebre.f src/fortran/clunit.f \
 	src/fortran/mklist.f src/fortran/dmdsp.f src/fortran/sigbas.f \
 	src/fortran/indxg.f src/fortran/matz.f src/fortran/istrue.f \
 	src/fortran/terme.f src/fortran/inisci.f src/fortran/expr.f \
-	src/fortran/ptover.f src/fortran/Ex-fort.f \
-	src/fortran/getfunction.f src/fortran/stackp.f \
-	src/fortran/getpro.f src/fortran/dbasin.f src/fortran/macro.f \
-	src/fortran/lspdsp.f src/fortran/extlarg.f \
+	src/fortran/ptover.f src/fortran/getfunction.f \
+	src/fortran/stackp.f src/fortran/getpro.f src/fortran/dbasin.f \
+	src/fortran/macro.f src/fortran/lspdsp.f src/fortran/extlarg.f \
 	src/fortran/getstr.f src/fortran/cvwm.f \
 	src/fortran/storeglobal.f src/fortran/lst2vars.f \
 	src/fortran/fmttyp.f src/fortran/basnms.f src/fortran/matc.f \
@@ -2411,9 +2405,6 @@ expr.lo: src/fortran/expr.f
 
 ptover.lo: src/fortran/ptover.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ptover.lo `test -f 'src/fortran/ptover.f' || echo '$(srcdir)/'`src/fortran/ptover.f
-
-Ex-fort.lo: src/fortran/Ex-fort.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o Ex-fort.lo `test -f 'src/fortran/Ex-fort.f' || echo '$(srcdir)/'`src/fortran/Ex-fort.f
 
 getfunction.lo: src/fortran/getfunction.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o getfunction.lo `test -f 'src/fortran/getfunction.f' || echo '$(srcdir)/'`src/fortran/getfunction.f
