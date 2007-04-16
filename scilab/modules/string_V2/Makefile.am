@@ -22,6 +22,7 @@ sci_gateway/c/sci_strsplit.c \
 sci_gateway/c/sci_str2code.c \
 sci_gateway/c/sci_code2str.c \
 sci_gateway/c/sci_emptystr.c \
+sci_gateway/c/sci_emptystr1.c \
 sci_gateway/c/sci_ascii.c \
 sci_gateway/c/sci_strsubst.c \
 sci_gateway/c/sci_grep.c \
