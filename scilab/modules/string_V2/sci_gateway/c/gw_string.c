@@ -33,7 +33,15 @@ static StringTable Tab[]=
     {C2F(sci_strsubst1),"strsubst1"},
 	{C2F(sci_grep1),"grep1"},
     {C2F(sci_regexppri),"regexppri"},
-	{C2F(sci_emptystr1),"emptystr1"}
+	{C2F(sci_emptystr1),"emptystr1"},
+    {C2F(sci_strcat1),"strcat1"},
+    {C2F(sci_part1),"part1"},
+	{C2F(sci_convstr1),"convstr1"},
+	{C2F(sci_ascii1),"ascii1"},
+    {C2F(sci_stripblanks1),"stripblanks1"}
+
+
+
 
 };
 /*-----------------------------------------------------------------------------------*/
