@@ -266,6 +266,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\GetenvB.c"
+				>
+			</File>
+			<File
 				RelativePath=".\getmodules.c"
 				>
 				<FileConfiguration
