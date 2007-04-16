@@ -7,8 +7,7 @@
 
   <TYPE>Scilab Function</TYPE>
 
-  <DATE>$LastChangedDate: 2006-10-10 17:02:59 +0200 (mar., 10 oct. 2006)
-  $</DATE>
+  <DATE>$LastChangedDate: 2006-10-10 17:02:59 +0200 (mar., 10 oct. 2006)$</DATE>
 
   <SHORT_DESCRIPTION name="get_absolute_file_path">Given an absolute
   pathname.</SHORT_DESCRIPTION>
