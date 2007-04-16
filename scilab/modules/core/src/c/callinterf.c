@@ -32,48 +32,48 @@ static void sci_sigint_addinter(int n);
 
 static int c_local_interf = 9999;
 
-void C2F(no_gw_tclsci)(void)
+int C2F(no_gw_tclsci)(void)
 {
   message_scilab("core_message_121","tclsci");
   C2F(error)(&c_local_interf);
-  return;
+  return 0;
 }
 
-void C2F(NoPvm)(void)
+int C2F(NoPvm)(void)
 {
   message_scilab("core_message_121","pvm");
   C2F(error)(&c_local_interf);
-  return;
+  return 0;
 }
 
-void C2F(Nogw_scicos)(void)
+int C2F(Nogw_scicos)(void)
 {
 	message_scilab("core_message_121","scicos");
 	C2F(error)(&c_local_interf);
-	return;
+	return 0;
 }
 
-void C2F(Nogw_cscicos)(void)
+int C2F(Nogw_cscicos)(void)
 {
 	message_scilab("core_message_121","scicos");
 	C2F(error)(&c_local_interf);
-	return;
+	return 0;
 }
 
 
-void C2F(Nogw_slicot)(void)
+int C2F(Nogw_slicot)(void)
 {
 	message_scilab("core_message_121","slicot");
 	C2F(error)(&c_local_interf);
-	return;
+	return 0;
 }
 
 
-void C2F(Nogw_fftw)(void)
+int C2F(Nogw_fftw)(void)
 {
 	message_scilab("core_message_121","fftw");
 	C2F(error)(&c_local_interf);
-	return;
+	return 0;
 }
 
 static int sig_ok = 0;

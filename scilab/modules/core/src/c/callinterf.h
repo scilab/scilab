@@ -55,7 +55,7 @@
 /* 40 */						#include "../../../tclsci/includes/gw_tclsci.h"
 #define TCLINTERF C2F(gw_tclsci)
 #else 
-void C2F(no_gw_tclsci)(void);
+int C2F(no_gw_tclsci)(void);
 #define TCLINTERF C2F(no_gw_tclsci)
 #endif
 
@@ -65,7 +65,7 @@ void C2F(no_gw_tclsci)(void);
 /* 42 */						#include "../../../pvm/includes/gw_pvm.h"
 #define PVMINTERF C2F(gw_pvm)
 #else 
-void C2F(NoPvm)(void);
+int C2F(NoPvm)(void);
 #define PVMINTERF C2F(NoPvm)
 #endif
 
@@ -73,8 +73,8 @@ void C2F(NoPvm)(void);
 /* 44 */						#include "../../../linear_algebra/includes/gw_linear_algebra2.h" 
 
 #ifdef WITHOUT_SCICOS
-void C2F(Nogw_scicos)(void);
-void C2F(Nogw_cscicos)(void);
+int C2F(Nogw_scicos)(void);
+int C2F(Nogw_cscicos)(void);
 #define SCICOSINTERF1 C2F(Nogw_scicos)
 #define SCICOSINTERF2 C2F(Nogw_cscicos)
 #else
@@ -93,7 +93,7 @@ void C2F(Nogw_cscicos)(void);
 /* 51 */						#include "../../../fftw/includes/gw_fftw.h"
 #define FFTWINTERF C2F(gw_fftw)
 #else 
-void C2F(Nogw_fftw)(void);
+int C2F(Nogw_fftw)(void);
 #define FFTWINTERF C2F(Nogw_fftw)
 #endif
 
@@ -102,8 +102,8 @@ void errjump (int n);
 
 /** table of interfaces **/
 
-typedef  struct  {
-	void  (*fonc)();
+typedef struct {
+	int  (*fonc)(void);
 } OpTab ;
 
 
