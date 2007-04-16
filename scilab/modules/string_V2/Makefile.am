@@ -26,6 +26,7 @@ sci_gateway/c/sci_ascii.c \
 sci_gateway/c/sci_strsubst.c \
 sci_gateway/c/sci_grep.c \
 sci_gateway/c/sci_convstr.c \
+sci_gateway/c/sci_convstr1.c \
 sci_gateway/c/sci_length1.c \
 sci_gateway/c/sci_strsubst1.c \
 sci_gateway/c/sci_grep1.c \
