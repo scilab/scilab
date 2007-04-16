@@ -10,6 +10,7 @@ STRING_FORTRAN_SOURCES =src/fortran/strord.f src/fortran/strdsp.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_strindex.c \
 sci_gateway/c/sci_strcat.c \
+sci_gateway/c/sci_strcat1.c \
 sci_gateway/c/sci_tokens.c \
 sci_gateway/c/gw_string.c \
 sci_gateway/c/sci_string.c \
