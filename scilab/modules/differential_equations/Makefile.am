@@ -16,6 +16,13 @@ src/c/fydot2table.c \
 src/c/dassltable.c
 
 DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES = src/fortran/rscar1.f \
+src/fortran/arnol.f \
+src/fortran/arset.f \
+src/fortran/bcomp.f \
+src/fortran/icomp.f \
+src/fortran/lcomp.f \
+src/fortran/loren.f \
+src/fortran/loset.f \
 src/fortran/prja.f \
 src/fortran/vnorm.f \
 src/fortran/lsoda.f \
@@ -84,7 +91,6 @@ sci_gateway/c/gw_differential_equations5.c \
 sci_gateway/c/gw_differential_equations6.c
 
 GATEWAY_FORTRAN_SOURCES = \
-sci_gateway/fortran/Ex-ode-more.f \
 sci_gateway/fortran/sci_dasrt.f \
 sci_gateway/fortran/sci_feval.f \
 sci_gateway/fortran/sci_odedc.f \

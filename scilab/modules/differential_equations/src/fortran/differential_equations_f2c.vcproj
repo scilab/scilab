@@ -197,11 +197,23 @@
 				>
 			</File>
 			<File
+				RelativePath=".\arnol.c"
+				>
+			</File>
+			<File
+				RelativePath=".\arset.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\fortran\badd.c"
 				>
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\bbvode.c"
+				>
+			</File>
+			<File
+				RelativePath=".\bcomp.c"
 				>
 			</File>
 			<File
@@ -337,10 +349,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\Ex-ode-more.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\fortran\Ex-ode.c"
 				>
 			</File>
@@ -365,6 +373,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\icomp.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\fortran\int2d.c"
 				>
 			</File>
@@ -378,6 +390,18 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\intg.c"
+				>
+			</File>
+			<File
+				RelativePath=".\lcomp.c"
+				>
+			</File>
+			<File
+				RelativePath=".\loren.c"
+				>
+			</File>
+			<File
+				RelativePath=".\loset.c"
 				>
 			</File>
 			<File
@@ -561,11 +585,23 @@
 				>
 			</File>
 			<File
+				RelativePath=".\arnol.f"
+				>
+			</File>
+			<File
+				RelativePath=".\arset.f"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\fortran\badd.f"
 				>
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\bbvode.f"
+				>
+			</File>
+			<File
+				RelativePath=".\bcomp.f"
 				>
 			</File>
 			<File
@@ -701,10 +737,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\Ex-ode-more.f"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\fortran\Ex-ode.f"
 				>
 			</File>
@@ -729,6 +761,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\icomp.f"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\fortran\int2d.f"
 				>
 			</File>
@@ -742,6 +778,18 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\intg.f"
+				>
+			</File>
+			<File
+				RelativePath=".\lcomp.f"
+				>
+			</File>
+			<File
+				RelativePath=".\loren.f"
+				>
+			</File>
+			<File
+				RelativePath=".\loset.f"
 				>
 			</File>
 			<File
