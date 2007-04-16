@@ -75,7 +75,3 @@ int C2F(sci_strcat1) _PARAMS((char *fname,unsigned long fname_len))
   C2F(putlhsvar)();
   return 0;
 }
-    
-
-
-   
