@@ -16,6 +16,7 @@
 #include "Funtab.h"
 #include "warningmode.h"
 #include "message_scilab.h"
+#include "GetenvB.h"
 
 #ifdef _MSC_VER
 #include "ExceptionMessage.h"
@@ -23,7 +24,6 @@
 
 extern int C2F(namstr) __PARAMS((integer *id, integer *str, integer *n, integer *job));
 extern int C2F(error)  __PARAMS((integer *n));  
-extern void GetenvB __PARAMS(( char *name,char *env, int len));
 
 #include <stdlib.h>
 
