@@ -11,12 +11,12 @@
 #include "intreadxls.h"
 #include "tmpdir.h"
 #include "cluni0.h"
+#include "GetenvB.h"
 
 /*---------------------------------------------------------------
   Authors Pierrick Mode, Serge Steer INRIA 2005, Copyright INRIA
   --------------------------------------------------------------*/
 
-extern void GetenvB( char *name,char *env, int len);
 
 /*Prototype*/
 void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int *M, int *err);
