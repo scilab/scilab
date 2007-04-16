@@ -50,10 +50,8 @@ int C2F(sci_isdir) _PARAMS((char *fname,unsigned long fname_len))
 		
 		/* Crappy workaround because a / was added after SCI & ~ into 
 		 * the Scilab macros
+		 * cluni0 waits for SCI/ or ~/. It doesn't detect isdir("SCI")
 		 */
-		/* TODO: CHECK IF THIS WORKAROUND IS MANDATORY : /home/sylvestre/ 
-		 * should be the same a /home/sylvestre 
-		*/
 		if(strcmp(path,"SCI")==0)
 		{
 			myPath=MALLOC((m1+2)*sizeof(char)); /* +2 because the / added + \0 */
@@ -69,10 +67,12 @@ int C2F(sci_isdir) _PARAMS((char *fname,unsigned long fname_len))
 		lout=FILENAME_MAX;
 		if(myPath==NULL)
 		{
+			/* Replaces SCI, ~, HOME by the real path */
 			C2F(cluni0)(path, filename, &out_n,m1*n1,lout);
 		}
 		else
 		{
+			/* Replaces SCI, ~, HOME by the real path */
 			C2F(cluni0)(myPath, filename, &out_n,m1*n1,lout);
 		}
 
