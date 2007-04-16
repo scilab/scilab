@@ -23,4 +23,5 @@ intersci_
 sciReturnInt
 sciReturnString
 sciReturnRowVectorFromInt
+gettype_
 ;
