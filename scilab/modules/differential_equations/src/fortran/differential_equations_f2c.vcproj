@@ -197,10 +197,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\arnol.c"
-				>
-			</File>
-			<File
 				RelativePath=".\arset.c"
 				>
 			</File>
@@ -582,10 +578,6 @@
 			>
 			<File
 				RelativePath=".\ainvg.f"
-				>
-			</File>
-			<File
-				RelativePath=".\arnol.f"
 				>
 			</File>
 			<File
