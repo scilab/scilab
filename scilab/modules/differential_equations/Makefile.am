@@ -14,7 +14,7 @@ src/c/int2dtable.c \
 src/c/int3dtable.c \
 src/c/fydot2table.c \
 src/c/dassltable.c \
-src/c/arnol.c \
+src/c/arnol.c
 
 DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES = src/fortran/rscar1.f \
 src/fortran/arset.f \

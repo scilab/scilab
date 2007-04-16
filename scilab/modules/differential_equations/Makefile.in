@@ -89,14 +89,15 @@ am__objects_1 = libscidifferential_equations_la-dassl.lo \
 	libscidifferential_equations_la-int2dtable.lo \
 	libscidifferential_equations_la-int3dtable.lo \
 	libscidifferential_equations_la-fydot2table.lo \
-	libscidifferential_equations_la-dassltable.lo
-am__objects_2 = rscar1.lo arnol.lo arset.lo bcomp.lo icomp.lo lcomp.lo \
-	loren.lo loset.lo prja.lo vnorm.lo lsoda.lo lsodar.lo ainvg.lo \
-	lsode.lo svcom1.lo quarul.lo solsy.lo lsodi.lo ddassl.lo \
-	order.lo epsalg.lo cfode.lo rscma1.lo colnew.lo dcutet.lo \
-	xsetf.lo dgbsl.lo rkf45.lo rchek.lo dqag0.lo xerrwv.lo \
-	twodq.lo dqags.lo greatr.lo hpdel.lo hpins.lo svcar1.lo \
-	daux.lo dgbfa.lo rscom1.lo rksimp.lo roots.lo rgk4.lo stoda.lo \
+	libscidifferential_equations_la-dassltable.lo \
+	libscidifferential_equations_la-arnol.lo
+am__objects_2 = rscar1.lo arset.lo bcomp.lo icomp.lo lcomp.lo loren.lo \
+	loset.lo prja.lo vnorm.lo lsoda.lo lsodar.lo ainvg.lo lsode.lo \
+	svcom1.lo quarul.lo solsy.lo lsodi.lo ddassl.lo order.lo \
+	epsalg.lo cfode.lo rscma1.lo colnew.lo dcutet.lo xsetf.lo \
+	dgbsl.lo rkf45.lo rchek.lo dqag0.lo xerrwv.lo twodq.lo \
+	dqags.lo greatr.lo hpdel.lo hpins.lo svcar1.lo daux.lo \
+	dgbfa.lo rscom1.lo rksimp.lo roots.lo rgk4.lo stoda.lo \
 	bnorm.lo rchek2.lo stode.lo vmnorm.lo prepj.lo lsdisc.lo \
 	fnorm.lo ddasrt.lo stodi.lo xsetun.lo intdy.lo ewset.lo \
 	roots2.lo prepji.lo svcma1.lo
@@ -317,10 +318,10 @@ src/c/intgtable.c \
 src/c/int2dtable.c \
 src/c/int3dtable.c \
 src/c/fydot2table.c \
-src/c/dassltable.c
+src/c/dassltable.c \
+src/c/arnol.c
 
 DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES = src/fortran/rscar1.f \
-src/fortran/arnol.f \
 src/fortran/arset.f \
 src/fortran/bcomp.f \
 src/fortran/icomp.f \
@@ -579,6 +580,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_la-arnol.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_la-colnewtable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_la-dassl.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_la-dassltable.Plo@am__quote@
@@ -702,6 +704,13 @@ libscidifferential_equations_la-dassltable.lo: src/c/dassltable.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_la_CFLAGS) $(CFLAGS) -c -o libscidifferential_equations_la-dassltable.lo `test -f 'src/c/dassltable.c' || echo '$(srcdir)/'`src/c/dassltable.c
 
+libscidifferential_equations_la-arnol.lo: src/c/arnol.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_la_CFLAGS) $(CFLAGS) -MT libscidifferential_equations_la-arnol.lo -MD -MP -MF $(DEPDIR)/libscidifferential_equations_la-arnol.Tpo -c -o libscidifferential_equations_la-arnol.lo `test -f 'src/c/arnol.c' || echo '$(srcdir)/'`src/c/arnol.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscidifferential_equations_la-arnol.Tpo $(DEPDIR)/libscidifferential_equations_la-arnol.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/arnol.c' object='libscidifferential_equations_la-arnol.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_la_CFLAGS) $(CFLAGS) -c -o libscidifferential_equations_la-arnol.lo `test -f 'src/c/arnol.c' || echo '$(srcdir)/'`src/c/arnol.c
+
 libscidifferential_equations_la-sci_int2d.lo: sci_gateway/c/sci_int2d.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_la_CFLAGS) $(CFLAGS) -MT libscidifferential_equations_la-sci_int2d.lo -MD -MP -MF $(DEPDIR)/libscidifferential_equations_la-sci_int2d.Tpo -c -o libscidifferential_equations_la-sci_int2d.lo `test -f 'sci_gateway/c/sci_int2d.c' || echo '$(srcdir)/'`sci_gateway/c/sci_int2d.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscidifferential_equations_la-sci_int2d.Tpo $(DEPDIR)/libscidifferential_equations_la-sci_int2d.Plo
@@ -804,9 +813,6 @@ libscidifferential_equations_la-gw_differential_equations6.lo: sci_gateway/c/gw_
 
 rscar1.lo: src/fortran/rscar1.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rscar1.lo `test -f 'src/fortran/rscar1.f' || echo '$(srcdir)/'`src/fortran/rscar1.f
-
-arnol.lo: src/fortran/arnol.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o arnol.lo `test -f 'src/fortran/arnol.f' || echo '$(srcdir)/'`src/fortran/arnol.f
 
 arset.lo: src/fortran/arset.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o arset.lo `test -f 'src/fortran/arset.f' || echo '$(srcdir)/'`src/fortran/arset.f
