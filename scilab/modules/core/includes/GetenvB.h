@@ -3,6 +3,7 @@
 /* Ledru Sylvestre */
 /*-----------------------------------------------------------------------------------*/ 
 
+#include "../../io/includes/getenvc.h"
 /**
  * getenv + squash trailing white spaces 
  *
