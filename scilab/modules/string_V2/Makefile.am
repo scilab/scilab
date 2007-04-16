@@ -15,6 +15,7 @@ sci_gateway/c/sci_tokens.c \
 sci_gateway/c/gw_string.c \
 sci_gateway/c/sci_string.c \
 sci_gateway/c/sci_part.c \
+sci_gateway/c/sci_part1.c \
 sci_gateway/c/sci_ssort.c \
 sci_gateway/c/sci_length.c \
 sci_gateway/c/sci_strsplit.c \
