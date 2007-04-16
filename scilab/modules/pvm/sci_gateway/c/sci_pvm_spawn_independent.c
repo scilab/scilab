@@ -35,7 +35,11 @@ int intspvm_spawn_independent _PARAMS((char *fname,unsigned long fname_len))
   C2F(scipvmspawnindependent)(cstk(l1),&mn1,istk(l2),where,&lwhere,istk(tids),istk(res));
   LhsVar(1)= Rhs+1;
   LhsVar(2)= Rhs+2;
+
   pvm_error_check(fname,*istk(res),fname_len);
+
+  C2F(putlhsvar)();
+
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

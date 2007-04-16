@@ -23,7 +23,9 @@ int intspvm_barrier _PARAMS((char *fname,unsigned long fname_len))
   /* cross variable size checking */
   CreateVar(Rhs+3,"i",&un,&un,&l3);/* named: res */
   *istk(l3) = pvm_barrier(cstk(l1),*istk(l2));
+
   LhsVar(1)= Rhs+3;
+  C2F(putlhsvar)();
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

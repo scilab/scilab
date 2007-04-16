@@ -67,7 +67,10 @@ int intspvm_config _PARAMS((char *fname,unsigned long fname_len))
   FREE(pspeed);
   CreateListVarFromPtr(1,7,"i",&un,&un,(work=&info,&work));
   LhsVar(1)= 1;
+  
   pvm_error_check(fname,info,fname_len);
+
+  C2F(putlhsvar)();
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

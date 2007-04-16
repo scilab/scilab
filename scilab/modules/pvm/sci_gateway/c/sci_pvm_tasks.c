@@ -61,6 +61,9 @@ int intspvm_tasks _PARAMS((char *fname,unsigned long fname_len))
   CreateListVarFromPtr(Rhs+1,7,"i",&un,&un,(work=&info,&work));
   LhsVar(1)= Rhs+1;
   pvm_error_check(fname,info,fname_len);
+
+  C2F(putlhsvar)();
+
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

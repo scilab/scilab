@@ -19,6 +19,7 @@ int intspvm_parent _PARAMS((char *fname,unsigned long fname_len))
   CreateVar(Rhs+1,"i",&un,&un,&l1);/* named: res */
   *istk(l1) = pvm_parent();
   LhsVar(1)= Rhs+1;
+  C2F(putlhsvar)();
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

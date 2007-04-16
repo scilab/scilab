@@ -50,7 +50,9 @@ int intspvm_recv _PARAMS((char *fname,unsigned long fname_len))
     *istk(l)=tag;
     LhsVar(4)=count;
   }
+
   pvm_error_check(fname,*istk(l3),fname_len);
+  C2F(putlhsvar)();
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

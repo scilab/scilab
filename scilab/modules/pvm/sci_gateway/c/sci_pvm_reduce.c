@@ -32,7 +32,11 @@ int intspvm_reduce _PARAMS((char *fname,unsigned long fname_len))
   C2F(scipvmreduce)(cstk(l1),&mn1,stk(l2),&m2,&n2,istk(l3),cstk(l4),&mn4,istk(l5),istk(res));
   LhsVar(1)= 2;
   LhsVar(2)= 6;
+
   pvm_error_check(fname,*istk(res),fname_len);
+
+  C2F(putlhsvar)();
+
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

@@ -27,7 +27,9 @@ int intspvm_start _PARAMS((char *fname,unsigned long fname_len))
   CreateVar(Rhs+1,"i",&un,&un,&res);
   C2F(scipvmstart)(istk(res),host,&mn1);
   LhsVar(1)=Rhs+1;
+  C2F(putlhsvar)();
   pvm_error_check(fname,*istk(res),fname_len);
+  C2F(putlhsvar)();
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

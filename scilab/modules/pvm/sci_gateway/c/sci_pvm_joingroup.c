@@ -21,7 +21,9 @@ int intspvm_joingroup _PARAMS((char *fname,unsigned long fname_len))
   CreateVar(Rhs+2,"i",&un,&un,&l2);/* named: inum */
   *istk(l2) = pvm_joingroup(cstk(l1));
   LhsVar(1)= Rhs+2;
+  
   pvm_error_check(fname,*istk(l2),fname_len);
+  C2F(putlhsvar)();
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

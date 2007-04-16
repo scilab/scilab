@@ -42,6 +42,7 @@ int intspvm_bcast _PARAMS((char *fname,unsigned long fname_len))
   C2F(scipvmbcast)(cstk(l1),&m1,Ipack,&used,(double *)header,istk(l3),istk(l4));
   LhsVar(1)= Rhs+4;
   pvm_error_check(fname,*istk(l4),fname_len);
+  C2F(putlhsvar)();
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

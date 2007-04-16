@@ -19,6 +19,7 @@ int intspvm_get_timer _PARAMS((char *fname,unsigned long fname_len))
   CreateVar(Rhs+1,"d",&un,&un,&l1);/* named: res */
   C2F(scipvmgettimer)(stk(l1));
   LhsVar(1)= Rhs+1;
+  C2F(putlhsvar)();
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

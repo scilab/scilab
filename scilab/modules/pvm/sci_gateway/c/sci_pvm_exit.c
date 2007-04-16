@@ -19,7 +19,9 @@ int intspvm_exit _PARAMS((char *fname,unsigned long fname_len))
   CreateVar(Rhs+1,"i",&un,&un,&l1);/* named: res */
   *istk(l1) = pvm_exit();
   LhsVar(1)= Rhs+1;
+
   pvm_error_check(fname,*istk(l1),fname_len);
+  C2F(putlhsvar)();
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

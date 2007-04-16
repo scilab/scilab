@@ -24,6 +24,7 @@ int intspvm_getinst _PARAMS((char *fname,unsigned long fname_len))
   CreateVar(Rhs+3,"i",&un,&un,&l3);/* named: inum */
   *istk(l3) = pvm_getinst(cstk(l1),*istk(l2));
   LhsVar(1)= Rhs+3;
+  C2F(putlhsvar)();
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

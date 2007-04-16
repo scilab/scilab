@@ -22,6 +22,7 @@ int intspvm_tidtohost _PARAMS((char *fname,unsigned long fname_len))
   CreateVar(Rhs+2,"i",&un,&un,&l2);/* named: res */
   *istk(l2) = pvm_tidtohost(*istk(l1));
   LhsVar(1)= Rhs+2;
+  C2F(putlhsvar)();
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

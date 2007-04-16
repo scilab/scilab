@@ -30,6 +30,7 @@ int intspvm_sci2f77 _PARAMS((char *fname,unsigned long fname_len))
        */
       LhsVar(1)=1;
     }
+  C2F(putlhsvar)();
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

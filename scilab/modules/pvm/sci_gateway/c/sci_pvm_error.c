@@ -21,7 +21,8 @@ int intspvm_error _PARAMS((char *fname,unsigned long fname_len))
   CheckScalar(1,m1,n1);
   res = scipvm_error_msg(*istk(l1));
   CreateVarFromPtr(Rhs+2, "c",(mres=strlen(res), &mres), &nres, &res);
-  LhsVar(1)=Rhs+2; 
+  LhsVar(1)=Rhs+2;
+  C2F(putlhsvar)();
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

@@ -25,6 +25,7 @@ int intspvm_kill _PARAMS((char *fname,unsigned long fname_len))
     pvm_error_check(fname,istk(l2)[i],fname_len);
   }
   LhsVar(1)= Rhs+2;
+  C2F(putlhsvar)();
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

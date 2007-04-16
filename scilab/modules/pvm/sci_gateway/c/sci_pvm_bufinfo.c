@@ -23,9 +23,11 @@ int intspvm_bufinfo _PARAMS((char *fname,unsigned long fname_len))
   CreateVar(Rhs+4,"i",&un,&un,&tid);
   CreateVar(Rhs+5,"i",&un,&un,&res);
   C2F(scipvmbufinfo)(istk(l1), istk(bytes), istk(msgtag), istk(tid), istk(res)); 
-  for ( i = 1 ; i <= Lhs ; i++) 
-    LhsVar(i)= Rhs+i+1; 
+
+  for ( i = 1 ; i <= Lhs ; i++) LhsVar(i)= Rhs+i+1; 
+
   pvm_error_check(fname,*istk(res),fname_len);
+  C2F(putlhsvar)();
   return 0;  
 }
 /*-----------------------------------------------------------------------------------*/

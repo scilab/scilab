@@ -24,6 +24,7 @@ int intspvm_probe _PARAMS((char *fname,unsigned long fname_len))
   CreateVar(Rhs+3,"i",&un,&un,&res);
   *istk(res) = pvm_probe(*istk(l1),*istk(l2));
   LhsVar(1)= Rhs+3; 
+  C2F(putlhsvar)();
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

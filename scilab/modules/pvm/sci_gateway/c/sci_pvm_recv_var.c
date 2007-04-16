@@ -27,7 +27,11 @@ int intspvm_recv_var _PARAMS((char *fname,unsigned long fname_len))
   CreateVar(Rhs+4,"i",&un,&un,&l4);/* named: res */
   C2F(scipvmrecvvar)(istk(l1),istk(l2),cstk(l3),istk(l4));
   LhsVar(1)= Rhs+4;
+  
   pvm_error_check(fname,*istk(l4),fname_len);
+
+  C2F(putlhsvar)();
+
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 
