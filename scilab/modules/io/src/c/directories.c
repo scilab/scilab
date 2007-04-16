@@ -21,6 +21,8 @@
 int DeleteDirectory(char *refcstrRootDirectory);
 #ifndef _MSC_VER
 static void removefile(char *filename);
+#else
+static BOOL isDrive(const char *strname);
 #endif
 /*-----------------------------------------------------------------------------------*/ 
 BOOL isdir(const char * path)
@@ -31,11 +33,28 @@ BOOL isdir(const char * path)
 		if (path == NULL) return FALSE;
 		if (stat(path, &buf) == 0 && S_ISDIR(buf.st_mode)) bOK=TRUE;
 	#else
-		WIN32_FIND_DATA ffd;
-		HANDLE sh = FindFirstFile(path, &ffd);
+		if (isDrive(path)) return TRUE;
+		else
+		{
+			char *pathTmp=NULL;
 
-		if(INVALID_HANDLE_VALUE == sh) return FALSE;
-		if(ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) bOK=TRUE;
+			pathTmp=MALLOC(sizeof(char)*((int)strlen(path)+1));
+			if (pathTmp)
+			{
+				WIN32_FIND_DATA ffd;
+				HANDLE sh=NULL;
+				strcpy(pathTmp,path);
+				if ( (pathTmp[strlen(pathTmp)-1]=='\\') || (pathTmp[strlen(pathTmp)-1]=='/') )
+				{
+					pathTmp[strlen(pathTmp)-1]='\0';
+				}
+
+				sh = FindFirstFile(pathTmp, &ffd);
+				FREE(pathTmp);pathTmp=NULL;
+				if(INVALID_HANDLE_VALUE == sh) return FALSE;
+				if(ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) bOK=TRUE;
+			}
+		}
 	#endif
 
 	return bOK;
@@ -172,6 +191,32 @@ int DeleteDirectory(char *refcstrRootDirectory)
 		rmdir(refcstrRootDirectory);
 	}
 	return 0;
+}
+#endif
+/*-----------------------------------------------------------------------------------*/
+#if _MSC_VER
+BOOL isDrive(const char *strname)
+{
+	BOOL bOK=FALSE;
+	if (strname)
+	{
+		if ( (strlen(strname) == 2) || (strlen(strname) == 3) && (strname[1]== ':') )
+		{
+			if (strlen(strname) == 3)
+			{
+				if ( (strname[2]!= '\\') && (strname[2]!= '/') )
+				{
+					return FALSE;
+				}
+			}
+
+			if ( ( strname[0] >= 'A' && strname[0] <= 'Z' ) || ( strname[0] >= 'a' && strname[0] <= 'z' ) )
+			{
+				bOK =TRUE;
+			}
+		}
+	}
+	return bOK;
 }
 #endif
 /*-----------------------------------------------------------------------------------*/
