@@ -232,7 +232,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 #### Target ######
-target = $(datadir)/m2sci
+target = $(datadir)/modules/m2sci
 
 #### m2sci : Conf files ####
 libm2sci_la_rootdir = $(target)

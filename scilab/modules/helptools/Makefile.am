@@ -5,7 +5,7 @@
 
 
 #### Target ######
-target=$(datadir)/helptools
+target=$(datadir)/modules/helptools
 
 
 #### helptools : Conf files ####

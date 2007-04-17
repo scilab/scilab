@@ -25,7 +25,7 @@ $(top_builddir)/modules/gui/libscigui.la
 
 
 #### Target ######
-target=$(datadir)/jvm
+target=$(datadir)/modules/jvm
 
 
 #### jvm : Conf files ####

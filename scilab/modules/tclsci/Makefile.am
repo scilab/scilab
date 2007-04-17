@@ -50,7 +50,7 @@ libscitclsci_la_LIBADD = \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
 
 #### Target ######
-target=$(datadir)/tclsci
+target=$(datadir)/modules/tclsci
 
 
 #### tclsci : Conf files ####

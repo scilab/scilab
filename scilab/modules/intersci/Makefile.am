@@ -38,7 +38,7 @@ libsciintersci_la_LIBADD = \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
 
 #### Target ######
-target=$(datadir)/intersci
+target=$(datadir)/modules/intersci
 
 
 #### intersci : Conf files ####

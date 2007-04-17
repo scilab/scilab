@@ -6,7 +6,7 @@
 
 
 #### Target ######
-target=$(datadir)/texmacs
+target=$(datadir)/modules/texmacs
 
 
 #### texmacs : Conf files ####

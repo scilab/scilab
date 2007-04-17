@@ -334,7 +334,7 @@ libscispecial_functions_la_LIBADD = \
 #	$(top_builddir)/modules/arnoldi/libsciarnoldi.la
 
 #### Target ######
-target = $(datadir)/special_functions
+target = $(datadir)/modules/special_functions
 
 #### special_functions : Conf files ####
 libscispecial_functions_la_rootdir = $(target)

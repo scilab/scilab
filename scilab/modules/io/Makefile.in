@@ -386,7 +386,7 @@ libsciio_la_LIBADD = libdummy-io.la \
 
 
 #### Target ######
-target = $(datadir)/io
+target = $(datadir)/modules/io
 
 #### io : Conf files ####
 libsciio_la_rootdir = $(target)

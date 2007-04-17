@@ -138,7 +138,7 @@ libscidifferential_equations_la_LIBADD = \
 
 
 #### Target ######
-target=$(datadir)/differential_equations
+target=$(datadir)/modules/differential_equations
 
 
 #### differential_equations : Conf files ####

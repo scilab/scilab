@@ -124,7 +124,7 @@ libscigui_la_LIBADD = \
 
 
 #### Target ######
-target=$(datadir)/gui
+target=$(datadir)/modules/gui
 
 
 #### gui : Conf files ####

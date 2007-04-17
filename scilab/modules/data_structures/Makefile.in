@@ -347,7 +347,7 @@ libscidata_structures_la_LIBADD = \
 #	$(top_builddir)/scilab-bin -nb -l eng -nouserstartup -nwni -e "xmltohtml();exit;"
 
 #### Target ######
-target = $(datadir)/data_structures
+target = $(datadir)/modules/data_structures
 
 #### data_structures : Conf files ####
 libscidata_structures_la_rootdir = $(target)

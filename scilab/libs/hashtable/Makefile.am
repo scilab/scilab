@@ -23,6 +23,6 @@ libscihashtable_la_SOURCES = $(HASHTABLE_C_SOURCES)
 libscihashtable_la_LIBADD = 
 
 #### Target ######
-target=$(datadir)/hashtable
+target=$(datadir)/modules/hashtable
 
 include $(top_srcdir)/Makefile.incl.am

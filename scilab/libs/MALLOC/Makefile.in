@@ -266,7 +266,7 @@ libscimalloc_la_SOURCES = $(MALLOC_C_SOURCES)
 libscimalloc_la_LIBADD = 
 
 #### Target ######
-target = $(datadir)/malloc
+target = $(datadir)/modules/malloc
 
 # Where headers (*.h) are installed (usually /usr/include/scilab/)
 sciincludedir = ${includedir}/scilab

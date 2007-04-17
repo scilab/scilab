@@ -276,7 +276,7 @@ top_srcdir = @top_srcdir@
 
 
 #### Target ######
-@JAVA_TRUE@target = $(datadir)/jvm
+@JAVA_TRUE@target = $(datadir)/modules/jvm
 
 #### jvm : Conf files ####
 @JAVA_TRUE@libscijvm_la_rootdir = $(target)

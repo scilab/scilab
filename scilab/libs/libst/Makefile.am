@@ -13,6 +13,6 @@ libscilibst_la_SOURCES = $(LIBST_C_SOURCES)
 libscilibst_la_LIBADD =
 
 #### Target ######
-target=$(datadir)/libst
+target=$(datadir)/modules/libst
 
 include $(top_srcdir)/Makefile.incl.am

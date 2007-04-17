@@ -32,7 +32,7 @@ libscitime_la_LIBADD = \
 
 
 #### Target ######
-target=$(datadir)/time
+target=$(datadir)/modules/time
 
 
 #### time : Conf files ####

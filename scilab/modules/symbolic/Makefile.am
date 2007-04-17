@@ -27,7 +27,7 @@ $(top_builddir)/modules/core/libscicore.la
 
 
 #### Target ######
-target=$(datadir)/symbolic
+target=$(datadir)/modules/symbolic
 
 
 #### symbolic : Conf files ####

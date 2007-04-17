@@ -446,7 +446,7 @@ libscigraphics_la_LIBADD = \
 
 
 #### Target ######
-target=$(datadir)/graphics
+target=$(datadir)/modules/graphics
 
 
 #### graphics : Conf files ####

@@ -37,7 +37,7 @@ libsciboolean_la_LIBADD = \
 
 
 #### Target ######
-target=$(datadir)/boolean
+target=$(datadir)/modules/boolean
 
 
 #### boolean : Conf files ####

@@ -5,7 +5,7 @@
 
 
 #### Target ######
-target=$(datadir)/m2sci
+target=$(datadir)/modules/m2sci
 
 
 #### m2sci : Conf files ####

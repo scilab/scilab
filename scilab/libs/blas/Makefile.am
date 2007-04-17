@@ -84,7 +84,7 @@ libsciblas_la_SOURCES = $(BLAS_FORTRAN_SOURCES)
 libsciblas_la_LIBADD =
 
 #### Target ######
-target=$(datadir)/blas
+target=$(datadir)/modules/blas
 
 
 include $(top_srcdir)/Makefile.incl.am

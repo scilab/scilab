@@ -53,7 +53,7 @@ libscispecial_functions_la_LIBADD = \
 
 
 #### Target ######
-target=$(datadir)/special_functions
+target=$(datadir)/modules/special_functions
 
 
 #### special_functions : Conf files ####

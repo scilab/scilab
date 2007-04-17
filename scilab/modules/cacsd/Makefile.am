@@ -234,7 +234,7 @@ libscicacsd_la_LIBADD = \
 
 
 #### Target ######
-target=$(datadir)/cacsd
+target=$(datadir)/modules/cacsd
 
 
 #### cacsd : Conf files ####

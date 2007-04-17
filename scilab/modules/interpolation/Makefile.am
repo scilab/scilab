@@ -40,7 +40,7 @@ libsciinterpolation_la_LIBADD = \
 
 
 #### Target ######
-target=$(datadir)/interpolation
+target=$(datadir)/modules/interpolation
 
 
 #### interpolation : Conf files ####

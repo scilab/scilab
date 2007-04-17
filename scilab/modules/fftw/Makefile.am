@@ -7,7 +7,7 @@
 if FFTW
 
 #### Target ######
-target=$(datadir)/fftw
+target=$(datadir)/modules/fftw
 
 pkglib_LTLIBRARIES = libscifftw.la
 

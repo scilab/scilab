@@ -341,7 +341,7 @@ libscitclsci_la_LIBADD = \
 
 
 #### Target ######
-target = $(datadir)/tclsci
+target = $(datadir)/modules/tclsci
 
 #### tclsci : Conf files ####
 libscitclsci_la_rootdir = $(target)

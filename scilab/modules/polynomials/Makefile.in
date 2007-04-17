@@ -415,7 +415,7 @@ libscipolynomials_la_LIBADD =
 #	$(top_builddir)/modules/core/libscicore.la 
 
 #### Target ######
-target = $(datadir)/polynomials
+target = $(datadir)/modules/polynomials
 
 #### polynomials : Conf files ####
 libscipolynomials_la_rootdir = $(target)

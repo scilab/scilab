@@ -326,7 +326,7 @@ LOCALISATIONDIRS = languages/fr_FR/ languages/en_US/
 LOCALISATIONFILES = errors.xml menus.xml messages.xml
 
 #### Target ######
-target = $(datadir)/javasci
+target = $(datadir)/modules/javasci
 
 #### Java sources ####
 JAVAFILES = src/java/javasci/Scilab.java \

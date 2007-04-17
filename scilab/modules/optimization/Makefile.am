@@ -153,7 +153,7 @@ libscioptimization_la_LIBADD = \
 
 
 #### Target ######
-target=$(datadir)/optimization
+target=$(datadir)/modules/optimization
 
 
 #### optimization : Conf files ####

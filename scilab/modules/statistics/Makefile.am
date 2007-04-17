@@ -106,7 +106,7 @@ libscistatistics_la_LIBADD = \
 
 
 #### Target ######
-target=$(datadir)/statistics
+target=$(datadir)/modules/statistics
 
 
 #### statistics : Conf files ####

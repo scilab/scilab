@@ -5,7 +5,7 @@
 
 
 #### Target ######
-target=$(datadir)/compatibility_functions
+target=$(datadir)/modules/compatibility_functions
 
 
 #### compatibility_functions : Conf files ####

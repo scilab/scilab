@@ -20,6 +20,6 @@ libscimalloc_la_SOURCES = $(MALLOC_C_SOURCES)
 libscimalloc_la_LIBADD = 
 
 #### Target ######
-target=$(datadir)/malloc
+target=$(datadir)/modules/malloc
 
 include $(top_srcdir)/Makefile.incl.am

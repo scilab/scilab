@@ -388,7 +388,7 @@ libdummy_elementaries_functions_la-icopy.lo: src/fortran/icopy.f
 
 
 #### Target ######
-target=$(datadir)/elementaries_functions
+target=$(datadir)/modules/elementaries_functions
 
 
 #### elementaries_functions : Conf files ####

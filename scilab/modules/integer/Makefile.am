@@ -131,7 +131,7 @@ libsciinteger_la_LIBADD = \
 
 
 #### Target ######
-target=$(datadir)/integer
+target=$(datadir)/modules/integer
 
 
 #### integer : Conf files ####

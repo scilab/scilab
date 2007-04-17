@@ -5,7 +5,7 @@
 
 
 #### Target ######
-target=$(datadir)/overloading
+target=$(datadir)/modules/overloading
 
 
 #### overloading : Conf files ####

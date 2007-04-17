@@ -6,7 +6,7 @@
 include $(top_srcdir)/Makefile.incl.am
 
 #### Target ######
-target=$(datadir)/javasci
+target=$(datadir)/modules/javasci
 
 #### Java sources ####
 JAVAFILES = src/java/javasci/Scilab.java \

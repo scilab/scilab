@@ -979,7 +979,7 @@ libscielementaries_functions_la_LIBADD = \
 
 
 #### Target ######
-target = $(datadir)/elementaries_functions
+target = $(datadir)/modules/elementaries_functions
 
 #### elementaries_functions : Conf files ####
 libscielementaries_functions_la_rootdir = $(target)

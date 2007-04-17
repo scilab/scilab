@@ -1,7 +1,7 @@
 
 
 #### Target ######
-target=$(datadir)/sci2c
+target=$(datadir)/modules/sci2c
 
 
 #### sci2c : Conf files ####

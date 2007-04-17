@@ -379,7 +379,7 @@ $(top_builddir)/libs/MALLOC/libscimalloc.la
 #$(top_builddir)/modules/core/libscicore.la
 
 #### Target ######
-target = $(datadir)/arnoldi
+target = $(datadir)/modules/arnoldi
 
 #### arnoldi : Conf files ####
 libsciarnoldi_la_rootdir = $(target)

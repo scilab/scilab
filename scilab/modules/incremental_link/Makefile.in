@@ -240,7 +240,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 #### Target ######
-target = $(datadir)/incremental_link
+target = $(datadir)/modules/incremental_link
 
 #### incremental_link : Conf files ####
 libincremental_link_la_rootdir = $(target)

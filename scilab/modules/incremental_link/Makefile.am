@@ -5,7 +5,7 @@
 
 
 #### Target ######
-target=$(datadir)/incremental_link
+target=$(datadir)/modules/incremental_link
 
 
 #### incremental_link : Conf files ####

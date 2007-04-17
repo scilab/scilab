@@ -62,7 +62,7 @@ libscidata_structures_la_LIBADD = \
 
 
 #### Target ######
-target=$(datadir)/data_structures
+target=$(datadir)/modules/data_structures
 
 
 #### data_structures : Conf files ####

@@ -232,7 +232,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 #### Target ######
-target = $(datadir)/functions
+target = $(datadir)/modules/functions
 
 #### functions : Conf files ####
 libscifunctions_la_rootdir = $(target)

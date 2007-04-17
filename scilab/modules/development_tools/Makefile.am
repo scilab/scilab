@@ -6,7 +6,7 @@
 
 
 #### Target ######
-target=$(datadir)/development_tools
+target=$(datadir)/modules/development_tools
 
 
 #### development_tools : Conf files ####

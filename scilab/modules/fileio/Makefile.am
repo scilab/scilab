@@ -51,7 +51,7 @@ libscifileio_la_LIBADD = \
 
 
 #### Target ######
-target=$(datadir)/fileio
+target=$(datadir)/modules/fileio
 
 
 #### fileio : Conf files ####

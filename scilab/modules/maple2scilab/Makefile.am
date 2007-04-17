@@ -5,7 +5,7 @@
 
 
 #### Target ######
-target=$(datadir)/maple2scilab
+target=$(datadir)/modules/maple2scilab
 
 
 #### maple2scilab : Conf files ####

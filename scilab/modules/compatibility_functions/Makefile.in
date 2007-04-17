@@ -234,7 +234,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 #### Target ######
-target = $(datadir)/compatibility_functions
+target = $(datadir)/modules/compatibility_functions
 
 #### compatibility_functions : Conf files ####
 libscicompatibility_functions_la_rootdir = $(target)

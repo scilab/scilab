@@ -233,7 +233,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 #### Target ######
-target = $(datadir)/overloading
+target = $(datadir)/modules/overloading
 
 #### overloading : Conf files ####
 libscioverloading_la_rootdir = $(target)

@@ -235,7 +235,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 #### Target ######
-target = $(datadir)/others
+target = $(datadir)/modules/others
 
 #### others : Conf files ####
 libsciothers_la_rootdir = $(target)

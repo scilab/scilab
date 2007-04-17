@@ -267,7 +267,7 @@ libscihashtable_la_SOURCES = $(HASHTABLE_C_SOURCES)
 libscihashtable_la_LIBADD = 
 
 #### Target ######
-target = $(datadir)/hashtable
+target = $(datadir)/modules/hashtable
 
 # Where headers (*.h) are installed (usually /usr/include/scilab/)
 sciincludedir = ${includedir}/scilab

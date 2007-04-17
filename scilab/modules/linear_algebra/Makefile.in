@@ -397,7 +397,7 @@ $(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la
 
 
 #### Target ######
-target = $(datadir)/linear_algebra
+target = $(datadir)/modules/linear_algebra
 
 #### linear_algebra : Conf files ####
 libscilinear_algebra_la_rootdir = $(target)

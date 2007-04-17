@@ -37,7 +37,7 @@ libsciwintools_la_LIBADD = \
 
 
 #### Target ######
-target=$(datadir)/wintools
+target=$(datadir)/modules/wintools
 
 
 #### wintools : Conf files ####

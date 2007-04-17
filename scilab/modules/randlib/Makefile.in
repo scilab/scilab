@@ -331,7 +331,7 @@ libscirandlib_la_LIBADD = \
 #	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la 
 
 #### Target ######
-target = $(datadir)/randlib
+target = $(datadir)/modules/randlib
 
 #### randlib : Conf files ####
 libscirandlib_la_rootdir = $(target)

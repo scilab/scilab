@@ -57,7 +57,7 @@ libscirandlib_la_LIBADD = \
 
 
 #### Target ######
-target=$(datadir)/randlib
+target=$(datadir)/modules/randlib
 
 
 #### randlib : Conf files ####

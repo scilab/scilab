@@ -236,7 +236,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 #### Target ######
-target = $(datadir)/scilab2fortran
+target = $(datadir)/modules/scilab2fortran
 
 #### scilab2fortran : Conf files ####
 libscilab2fortran_la_rootdir = $(target)

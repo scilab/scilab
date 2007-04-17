@@ -396,7 +396,7 @@ libscisignal_processing_la_LIBADD = \
 #	$(top_builddir)/modules/core/libscicore.la
 
 #### Target ######
-target = $(datadir)/signal_processing
+target = $(datadir)/modules/signal_processing
 
 #### signal_processing : Conf files ####
 libscisignal_processing_la_rootdir = $(target)

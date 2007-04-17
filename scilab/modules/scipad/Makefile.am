@@ -5,7 +5,7 @@
 
 
 #### Target ######
-target=$(datadir)/scipad
+target=$(datadir)/modules/scipad
 
 
 #### scipad : Conf files ####

@@ -35,7 +35,7 @@ libmx_la_CFLAGS=  $(MEXLIB_FLAGS)
 
 
 #### Target ######
-target=$(datadir)/mexlib
+target=$(datadir)/modules/mexlib
 
 
 #### mexlib : Conf files ####

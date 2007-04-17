@@ -394,7 +394,7 @@ libscistatistics_la_LIBADD = \
 #	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la 
 
 #### Target ######
-target = $(datadir)/statistics
+target = $(datadir)/modules/statistics
 
 #### statistics : Conf files ####
 libscistatistics_la_rootdir = $(target)

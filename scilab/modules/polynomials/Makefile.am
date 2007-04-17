@@ -120,7 +120,7 @@ libscipolynomials_la_LIBADD =
 
 
 #### Target ######
-target=$(datadir)/polynomials
+target=$(datadir)/modules/polynomials
 
 
 #### polynomials : Conf files ####

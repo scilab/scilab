@@ -107,7 +107,7 @@ libscisignal_processing_la_LIBADD = \
 
 
 #### Target ######
-target=$(datadir)/signal_processing
+target=$(datadir)/modules/signal_processing
 
 
 #### signal_processing : Conf files ####

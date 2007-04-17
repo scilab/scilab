@@ -299,7 +299,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 #### Target ######
-@FFTW_TRUE@target = $(datadir)/fftw
+@FFTW_TRUE@target = $(datadir)/modules/fftw
 @FFTW_TRUE@pkglib_LTLIBRARIES = libscifftw.la
 @FFTW_TRUE@FFTW_C_SOURCES = src/c/callfftw_Linux.c \
 @FFTW_TRUE@src/c/fftwlibname.c \

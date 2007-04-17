@@ -360,7 +360,7 @@ libscistring_la_LIBADD = \
 #	$(top_builddir)/modules/core/libscicore.la
 
 #### Target ######
-target = $(datadir)/string
+target = $(datadir)/modules/string
 
 #### string : Conf files ####
 libscistring_la_rootdir = $(target)

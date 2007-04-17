@@ -302,7 +302,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 #### Target ######
-target = $(datadir)/lapack
+target = $(datadir)/modules/lapack
 pkglib_LTLIBRARIES = libscilapack.la 
 noinst_LTLIBRARIES = libdummy-lapack.la
 LAPACK_FORTRAN_SOURCES = dlasv2.f \

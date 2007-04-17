@@ -88,7 +88,7 @@ $(top_builddir)/libs/MALLOC/libscimalloc.la
 
 
 #### Target ######
-target=$(datadir)/arnoldi
+target=$(datadir)/modules/arnoldi
 
 
 #### arnoldi : Conf files ####

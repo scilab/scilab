@@ -1084,7 +1084,7 @@ libscigraphics_la_LIBADD = \
 #	$(top_builddir)/modules/gui/libscigui.la
 
 #### Target ######
-target = $(datadir)/graphics
+target = $(datadir)/modules/graphics
 
 #### graphics : Conf files ####
 libscigraphics_la_rootdir = $(target)

@@ -98,11 +98,8 @@ libscilinear_algebra_la_LIBADD = $(top_builddir)/libs/lapack/libscilapack.la \
 $(top_builddir)/libs/blas/libsciblas.la \
 $(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la  
 
-
-
-
 #### Target ######
-target=$(datadir)/linear_algebra
+target=$(datadir)/modules/linear_algebra
 
 
 #### linear_algebra : Conf files ####

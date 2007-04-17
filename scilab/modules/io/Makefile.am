@@ -97,7 +97,7 @@ libdummy_io_la-intmgetl.lo: sci_gateway/fortran/intmgetl.f
 
 
 #### Target ######
-target=$(datadir)/io
+target=$(datadir)/modules/io
 
 
 #### io : Conf files ####

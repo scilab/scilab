@@ -330,7 +330,7 @@ libsciblas_la_SOURCES = $(BLAS_FORTRAN_SOURCES)
 libsciblas_la_LIBADD = 
 
 #### Target ######
-target = $(datadir)/blas
+target = $(datadir)/modules/blas
 
 # Where headers (*.h) are installed (usually /usr/include/scilab/)
 sciincludedir = ${includedir}/scilab

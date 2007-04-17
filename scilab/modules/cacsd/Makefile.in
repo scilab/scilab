@@ -595,7 +595,7 @@ libscicacsd_la_LIBADD = \
 #	$(top_builddir)/modules/core/libscicore.la 
 
 #### Target ######
-target = $(datadir)/cacsd
+target = $(datadir)/modules/cacsd
 
 #### cacsd : Conf files ####
 libscicacsd_la_rootdir = $(target)

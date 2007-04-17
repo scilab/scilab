@@ -5,7 +5,7 @@
 
 
 #### Target ######
-target=$(datadir)/others
+target=$(datadir)/modules/others
 
 
 #### others : Conf files ####

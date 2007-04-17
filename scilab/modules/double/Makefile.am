@@ -38,7 +38,7 @@ libscidouble_la_LIBADD = \
 
 
 #### Target ######
-target=$(datadir)/double
+target=$(datadir)/modules/double
 
 
 #### double : Conf files ####

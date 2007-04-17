@@ -297,7 +297,7 @@ libsciintersci_la_LIBADD = \
 
 
 #### Target ######
-target = $(datadir)/intersci
+target = $(datadir)/modules/intersci
 
 #### intersci : Conf files ####
 libsciintersci_la_rootdir = $(target)

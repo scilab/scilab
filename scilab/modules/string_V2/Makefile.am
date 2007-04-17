@@ -72,7 +72,7 @@ libscistring_la_LIBADD = \
 
 
 #### Target ######
-target=$(datadir)/string
+target=$(datadir)/modules/string
 
 
 #### string : Conf files ####

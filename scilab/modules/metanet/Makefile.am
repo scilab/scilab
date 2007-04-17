@@ -134,7 +134,7 @@ libscimetanet_la_LIBADD = \
 
 
 #### Target ######
-target=$(datadir)/metanet
+target=$(datadir)/modules/metanet
 
 
 #### metanet : Conf files ####

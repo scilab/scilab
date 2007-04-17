@@ -8,7 +8,7 @@
 pkglib_LTLIBRARIES = libsciscicos.la
 
 #### Target ######
-target=$(datadir)/scicos
+target=$(datadir)/modules/scicos
 
 include $(top_srcdir)/Makefile.incl.am
 

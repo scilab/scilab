@@ -29,7 +29,7 @@ libscisound_la_LIBADD = \
 
 
 #### Target ######
-target=$(datadir)/sound
+target=$(datadir)/modules/sound
 
 
 #### sound : Conf files ####

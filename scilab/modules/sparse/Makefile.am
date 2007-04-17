@@ -176,7 +176,7 @@ libscisparse_la_LIBADD = \
 
 
 #### Target ######
-target=$(datadir)/sparse
+target=$(datadir)/modules/sparse
 
 
 #### sparse : Conf files ####

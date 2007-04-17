@@ -5,7 +5,7 @@
 
 
 #### Target ######
-target=$(datadir)/scilab2fortran
+target=$(datadir)/modules/scilab2fortran
 
 
 #### scilab2fortran : Conf files ####

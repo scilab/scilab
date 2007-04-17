@@ -5,7 +5,7 @@
 
 
 #### Target ######
-target=$(datadir)/functions
+target=$(datadir)/modules/functions
 
 
 #### functions : Conf files ####

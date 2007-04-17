@@ -344,8 +344,7 @@ endif
 
 
 #### Target ######
-target=$(datadir)/core
-
+target=$(datadir)/modules/core
 
 #### core : Conf files ####
 libscicore_la_rootdir = $(target)

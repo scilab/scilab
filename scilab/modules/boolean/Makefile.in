@@ -308,7 +308,7 @@ libsciboolean_la_LIBADD = \
 #	echo "oh oh"
 
 #### Target ######
-target = $(datadir)/boolean
+target = $(datadir)/modules/boolean
 
 #### boolean : Conf files ####
 libsciboolean_la_rootdir = $(target)

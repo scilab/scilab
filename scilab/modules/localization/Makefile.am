@@ -34,7 +34,7 @@ libscilocalization_la_LIBADD = 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 $(top_builddir)/libs/hashtable/libscihashtable.la
 
 #### Target ######
-target=$(datadir)/localization
+target=$(datadir)/modules/localization
 
 #### localization : Conf files ####
 libscilocalization_la_rootdir = $(target)

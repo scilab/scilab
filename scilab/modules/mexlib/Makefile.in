@@ -294,7 +294,7 @@ libmx_la_LIBADD = $(MEXLIB_DEP)
 libmx_la_CFLAGS = $(MEXLIB_FLAGS)
 
 #### Target ######
-target = $(datadir)/mexlib
+target = $(datadir)/modules/mexlib
 
 #### mexlib : Conf files ####
 libmex_la_rootdir = $(target)
