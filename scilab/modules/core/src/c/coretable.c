@@ -17,9 +17,6 @@ typedef integer * (*interff)(ARGS_interf);
 typedef integer * (*interff1)(ARGS_interf1);
 
 /**************** interf ***************/
-extern void C2F(icomp)(ARGS_interf);
-extern void C2F(loset)(ARGS_interf);
-extern void C2F(arset)(ARGS_interf);
 extern void C2F(icse0)(ARGS_interf);
 extern void C2F(icse)(ARGS_interf);
 extern void C2F(icscof)(ARGS_interf);
@@ -29,12 +26,9 @@ void C2F(setinterf)(char *name, int *rep);
 
 FTAB FTab_interf[] =
 {
-	{"arset", (voidf)  C2F(arset)},
-	{"icomp", (voidf)  C2F(icomp)},
 	{"icscof", (voidf)  C2F(icscof)},
 	{"icse", (voidf)  C2F(icse)},
 	{"icse0", (voidf)  C2F(icse0)},
-	{"loset", (voidf)  C2F(loset)},
 	{(char *) 0, (voidf) 0}
 };
 

@@ -197,10 +197,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\arset.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\fortran\badd.c"
 				>
 			</File>
@@ -369,10 +365,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\icomp.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\fortran\int2d.c"
 				>
 			</File>
@@ -394,10 +386,6 @@
 			</File>
 			<File
 				RelativePath=".\loren.c"
-				>
-			</File>
-			<File
-				RelativePath=".\loset.c"
 				>
 			</File>
 			<File
@@ -581,10 +569,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\arset.f"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\fortran\badd.f"
 				>
 			</File>
@@ -753,10 +737,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\icomp.f"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\fortran\int2d.f"
 				>
 			</File>
@@ -778,10 +758,6 @@
 			</File>
 			<File
 				RelativePath=".\loren.f"
-				>
-			</File>
-			<File
-				RelativePath=".\loset.f"
 				>
 			</File>
 			<File
