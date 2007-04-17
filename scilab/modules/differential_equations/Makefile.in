@@ -91,16 +91,16 @@ am__objects_1 = libscidifferential_equations_la-dassl.lo \
 	libscidifferential_equations_la-fydot2table.lo \
 	libscidifferential_equations_la-dassltable.lo \
 	libscidifferential_equations_la-arnol.lo
-am__objects_2 = rscar1.lo arset.lo bcomp.lo icomp.lo lcomp.lo loren.lo \
-	loset.lo prja.lo vnorm.lo lsoda.lo lsodar.lo ainvg.lo lsode.lo \
-	svcom1.lo quarul.lo solsy.lo lsodi.lo ddassl.lo order.lo \
-	epsalg.lo cfode.lo rscma1.lo colnew.lo dcutet.lo xsetf.lo \
-	dgbsl.lo rkf45.lo rchek.lo dqag0.lo xerrwv.lo twodq.lo \
-	dqags.lo greatr.lo hpdel.lo hpins.lo svcar1.lo daux.lo \
-	dgbfa.lo rscom1.lo rksimp.lo roots.lo rgk4.lo stoda.lo \
-	bnorm.lo rchek2.lo stode.lo vmnorm.lo prepj.lo lsdisc.lo \
-	fnorm.lo ddasrt.lo stodi.lo xsetun.lo intdy.lo ewset.lo \
-	roots2.lo prepji.lo svcma1.lo
+am__objects_2 = rscar1.lo bcomp.lo lcomp.lo loren.lo prja.lo vnorm.lo \
+	lsoda.lo lsodar.lo ainvg.lo lsode.lo svcom1.lo quarul.lo \
+	solsy.lo lsodi.lo ddassl.lo order.lo epsalg.lo cfode.lo \
+	rscma1.lo colnew.lo dcutet.lo xsetf.lo dgbsl.lo rkf45.lo \
+	rchek.lo dqag0.lo xerrwv.lo twodq.lo dqags.lo greatr.lo \
+	hpdel.lo hpins.lo svcar1.lo daux.lo dgbfa.lo rscom1.lo \
+	rksimp.lo roots.lo rgk4.lo stoda.lo bnorm.lo rchek2.lo \
+	stode.lo vmnorm.lo prepj.lo lsdisc.lo fnorm.lo ddasrt.lo \
+	stodi.lo xsetun.lo intdy.lo ewset.lo roots2.lo prepji.lo \
+	svcma1.lo
 am__objects_3 = libscidifferential_equations_la-sci_int2d.lo \
 	libscidifferential_equations_la-sci_int3d.lo \
 	libscidifferential_equations_la-sci_intg.lo \
@@ -322,12 +322,9 @@ src/c/dassltable.c \
 src/c/arnol.c
 
 DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES = src/fortran/rscar1.f \
-src/fortran/arset.f \
 src/fortran/bcomp.f \
-src/fortran/icomp.f \
 src/fortran/lcomp.f \
 src/fortran/loren.f \
-src/fortran/loset.f \
 src/fortran/prja.f \
 src/fortran/vnorm.f \
 src/fortran/lsoda.f \
@@ -814,23 +811,14 @@ libscidifferential_equations_la-gw_differential_equations6.lo: sci_gateway/c/gw_
 rscar1.lo: src/fortran/rscar1.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rscar1.lo `test -f 'src/fortran/rscar1.f' || echo '$(srcdir)/'`src/fortran/rscar1.f
 
-arset.lo: src/fortran/arset.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o arset.lo `test -f 'src/fortran/arset.f' || echo '$(srcdir)/'`src/fortran/arset.f
-
 bcomp.lo: src/fortran/bcomp.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o bcomp.lo `test -f 'src/fortran/bcomp.f' || echo '$(srcdir)/'`src/fortran/bcomp.f
-
-icomp.lo: src/fortran/icomp.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o icomp.lo `test -f 'src/fortran/icomp.f' || echo '$(srcdir)/'`src/fortran/icomp.f
 
 lcomp.lo: src/fortran/lcomp.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o lcomp.lo `test -f 'src/fortran/lcomp.f' || echo '$(srcdir)/'`src/fortran/lcomp.f
 
 loren.lo: src/fortran/loren.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o loren.lo `test -f 'src/fortran/loren.f' || echo '$(srcdir)/'`src/fortran/loren.f
-
-loset.lo: src/fortran/loset.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o loset.lo `test -f 'src/fortran/loset.f' || echo '$(srcdir)/'`src/fortran/loset.f
 
 prja.lo: src/fortran/prja.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o prja.lo `test -f 'src/fortran/prja.f' || echo '$(srcdir)/'`src/fortran/prja.f
