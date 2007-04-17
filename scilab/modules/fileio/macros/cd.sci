@@ -7,7 +7,7 @@ function path=cd(path)
     end
     if or(path==['SCI' '~' 'TMPDIR' 'home' ]) path=path+'/',end
     
-    if or(path==['/' '\']) then
+    if or(path==['/' '\' '..']) then
       chdir(path)
     else
       if ~isdir(path) then
