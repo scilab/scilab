@@ -90,39 +90,29 @@ int C2F(sci_get_absolute_file_path) _PARAMS((char *fname,unsigned long fname_len
 			{
 				int ierr=0;
 				int lpath=0;
-				char **path=NULL;
-				
-				path=(char**)MALLOC(sizeof(char*));
+				char *path=NULL;
+				path=(char*)MALLOC(sizeof(char)*(MAX_PATH_LONG+1));
 				if (path)
 				{
-					path[0]=(char*)MALLOC(sizeof(char)*(MAX_PATH_LONG+1));
-					if (path[0])
+					C2F(scigetcwd)(&path,&lpath,&ierr);
+					if (ierr) /* Problem to get current directory */
 					{
-						C2F(scigetcwd)(&path[0],&lpath,&ierr);
-						if (ierr) /* Problem to get current directory */
-						{
-							m1=0; n1=0; l1=0; /* returns a empty string */
-							CreateVar(Rhs+1,"c",  &m1, &n1, &l1);
-							LhsVar(1)=Rhs+1;
-							C2F(putlhsvar)();
-							FREE(path[0]);path[0]=NULL;
-							FREE(path);path=NULL;
-							return 0;
-						}
-						else
-						{
-							absolute_file_path=(char *)MALLOC(sizeof(char)*(lpath+(int)strlen(DIR_SEPARATOR)+1));
-							strncpy(absolute_file_path,path[0],lpath);
-							absolute_file_path[lpath]='\0';
-							/* Add '\' or '/' */
-							strcat(absolute_file_path,DIR_SEPARATOR);
-						}
-						/* Problem on FREE */
-						/* scigetcwd returns a static char * in scicurdir.c */
-						/* need to rewrite scigetcwd and sci_getcwd */
-						/* FREE(path[0]);path[0]=NULL; */
+						m1=0; n1=0; l1=0; /* returns a empty string */
+						CreateVar(Rhs+1,"c",  &m1, &n1, &l1);
+						LhsVar(1)=Rhs+1;
+						C2F(putlhsvar)();
+						FREE(path);path=NULL;
+						return 0;
 					}
-					FREE(path); path=NULL; 
+					else
+					{
+						absolute_file_path=(char *)MALLOC(sizeof(char)*(lpath+(int)strlen(DIR_SEPARATOR)+1));
+						strncpy(absolute_file_path,path,lpath);
+						absolute_file_path[lpath]='\0';
+						/* Add '\' or '/' */
+						strcat(absolute_file_path,DIR_SEPARATOR);
+					}
+					FREE(path);path=NULL;
 				}
 			}
 

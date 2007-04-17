@@ -258,15 +258,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\GetenvB.c"
+				>
+			</File>
+			<File
 				RelativePath=".\GetExceptionCode.c"
 				>
 			</File>
 			<File
 				RelativePath=".\getmemory.c"
-				>
-			</File>
-			<File
-				RelativePath=".\GetenvB.c"
 				>
 			</File>
 			<File
@@ -610,10 +610,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_pwd.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_resethistory.c"
 				>
 			</File>
@@ -923,11 +919,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\InitScilab.h"
+				RelativePath=".\InitScilab.h"
 				>
 			</File>
 			<File
-				RelativePath=".\InitScilab.h"
+				RelativePath="..\..\includes\InitScilab.h"
 				>
 			</File>
 			<File
@@ -987,11 +983,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\Os_specific.h"
+				RelativePath=".\Os_specific.h"
 				>
 			</File>
 			<File
-				RelativePath=".\Os_specific.h"
+				RelativePath="..\..\includes\Os_specific.h"
 				>
 			</File>
 			<File

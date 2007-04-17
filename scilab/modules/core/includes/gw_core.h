@@ -50,7 +50,6 @@ int C2F(sci_what) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_sciargs) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_chdir) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_getcwd) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_pwd) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_ieee) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_typename) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_global) _PARAMS((char *fname,unsigned long fname_len));

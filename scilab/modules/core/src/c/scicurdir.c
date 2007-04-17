@@ -12,6 +12,7 @@
 #include "sciprint.h"
 #include "scicurdir.h"
 #include "message_scilab.h"
+#include "MALLOC.h"
 #define FSIZE 1024
 static char cur_dir[FSIZE];
 /*-----------------------------------------------------------------------------------*/
@@ -55,7 +56,12 @@ int C2F(scigetcwd)(char **path,int *lpath,int *err)
 	}
     else 
 	{
-		*path= cur_dir;
+		char *returnPath=NULL;
+		returnPath=(char*)MALLOC(sizeof(char)*(strlen(cur_dir)+1));
+		strcpy(returnPath,cur_dir);
+
+		*path= returnPath;
+
 		*lpath=strlen(cur_dir);
 		*err=0;
 	}

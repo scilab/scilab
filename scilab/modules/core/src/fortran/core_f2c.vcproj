@@ -641,10 +641,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_getcwd.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_global.c"
 				>
 			</File>
@@ -1286,10 +1282,6 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_funptr.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_getcwd.f"
 				>
 			</File>
 			<File

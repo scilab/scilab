@@ -210,7 +210,6 @@ sci_gateway/c/sci_errcatch.c \
 sci_gateway/c/sci_getos.c \
 sci_gateway/c/sci_ulink.c \
 sci_gateway/c/sci_format.c \
-sci_gateway/c/sci_pwd.c \
 sci_gateway/c/sci_fromjava.c \
 sci_gateway/c/sci_link.c \
 sci_gateway/c/sci_getmemory.c \
@@ -300,7 +299,6 @@ sci_gateway/fortran/sci_typnam.f \
 sci_gateway/fortran/sci_clearglobal.f \
 sci_gateway/fortran/sci_fort.f \
 sci_gateway/fortran/sci_delbpt.f \
-sci_gateway/fortran/sci_getcwd.f \
 sci_gateway/fortran/where.f \
 sci_gateway/fortran/sci_iserror.f \
 sci_gateway/fortran/sci_type.f \

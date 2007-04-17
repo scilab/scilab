@@ -62,7 +62,7 @@ static CoreTable Tab[]=
 {C2F(sci_ieee),"ieee"},
 {C2F(sci_typename),"typename"},
 {C2F(sci_global),"global"},
-{C2F(sci_pwd),"pwd"},
+{C2F(sci_getcwd),"getcwd"},
 {C2F(sci_clearglobal),"clearglobal"},
 {C2F(sci_isglobal),"isglobal"},
 {C2F(sci_gstacksize),"gstacksize"},
@@ -81,7 +81,6 @@ static CoreTable Tab[]=
 {C2F(sci_fromc),"fromc"},
 {C2F(sci_getmd5),"getmd5"},
 {C2F(sci_warning),"warning"},
-{C2F(sci_getcwd),"getcwd"},
 {C2F(sci_getmodules),"getmodules"},
 {C2F(sci_with_module),"with_module"},
 {C2F(sci_getdynlibext),"getdynlibext"}

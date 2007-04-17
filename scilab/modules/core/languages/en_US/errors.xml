@@ -701,4 +701,9 @@
 	<string>First input argument must be a Perl File.</string>
 </entry>
 
+<entry>
+  <tag>core_error_284</tag>
+  <string>Internal Error.</string>
+</entry>
+
 </LOCALIZATION>
