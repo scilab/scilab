@@ -1,9 +1,13 @@
 /*------------------------------------------------------------------------*/
-/* File: sci_strsubst1.c                                                  */
+/* File: sci_emptystr1.c                                                  */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Cong Wu                                                      */
-/* desc : substitute a character string by another in a character string
-          using regular express .                                         */
+/* desc : zero length string                                              */
+/*        With no input argument returns a zero length character string   */
+/*        With a matrix for input argument returns a zero length character*/ 
+/*              strings matrix of the same size                           */
+/*        With two integer arguments returns a mxn zero length character  */
+/*                strings matrix                                          */
 /*------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>
