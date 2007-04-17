@@ -117,7 +117,10 @@ int C2F(sci_get_absolute_file_path) _PARAMS((char *fname,unsigned long fname_len
 							/* Add '\' or '/' */
 							strcat(absolute_file_path,DIR_SEPARATOR);
 						}
-						FREE(path[0]);path[0]=NULL;
+						/* Problem on FREE */
+						/* scigetcwd returns a static char * in scicurdir.c */
+						/* need to rewrite scigetcwd and sci_getcwd */
+						/* FREE(path[0]);path[0]=NULL; */
 					}
 					FREE(path); path=NULL; 
 				}
