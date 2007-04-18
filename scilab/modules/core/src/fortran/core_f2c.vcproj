@@ -281,10 +281,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\ctrlc.c"
-				>
-			</File>
-			<File
 				RelativePath=".\cvdm.c"
 				>
 			</File>
@@ -914,10 +910,6 @@
 			</File>
 			<File
 				RelativePath=".\createref.f"
-				>
-			</File>
-			<File
-				RelativePath=".\ctrlc.f"
 				>
 			</File>
 			<File

@@ -122,7 +122,6 @@ src/fortran/btof.f \
 src/fortran/matzs.f \
 src/fortran/getnum.f \
 src/fortran/btofm.f \
-src/fortran/ctrlc.f \
 src/fortran/getsym.f \
 src/fortran/findequal.f \
 src/fortran/stackg.f \
