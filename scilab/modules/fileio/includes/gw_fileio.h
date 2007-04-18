@@ -34,6 +34,7 @@ int int_objprintf __PARAMS((char *fname,unsigned long fname_len));
 int intsmopen __PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_xls_read) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_xls_open) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_findfiles) _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/ 
 #endif /*  __INTFILEIO__ */
 /*-----------------------------------------------------------------------------------*/

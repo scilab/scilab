@@ -33,7 +33,8 @@ static TabF Tab[]={
 	{int_objnumTokens,"NumTokens"},
 	{intsmerror, "merror"},
 	{C2F(sci_xls_open),"xls_open"},
-	{C2F(sci_xls_read),"xls_read"}
+	{C2F(sci_xls_read),"xls_read"},
+	{C2F(sci_findfiles),"findfiles"}
 	};
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(gw_fileio)(void)

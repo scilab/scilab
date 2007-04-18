@@ -201,6 +201,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\findfiles.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\c\gw_fileio.c"
 				>
 			</File>
@@ -230,6 +234,10 @@
 			</File>
 			<File
 				RelativePath=".\sci_gateway\c\sci_fileio.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\c\sci_findfiles.c"
 				>
 			</File>
 			<File
@@ -311,6 +319,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\files.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\findfiles.h"
 				>
 			</File>
 			<File
