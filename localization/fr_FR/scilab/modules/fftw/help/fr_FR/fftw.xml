@@ -92,18 +92,9 @@
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <A href='fftw_flags.htm'><VERB>fftw_flags</VERB></A>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <A href='fftw_norm.htm'><VERB>fftw_norm</VERB></A>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <A href='fftw_inplace.htm'><VERB>fftw_inplace</VERB></A>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <A href='pushfftw_plan.htm'><VERB>pushfftw_plan</VERB></A>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <A href='freefftw_plan.htm'><VERB>freefftw_plan</VERB></A>
+      <A href='get_fftw_wisdom.htm'><VERB>get_fftw_wisdom</VERB></A>
+      <A href='set_fftw_wisdom.htm'><VERB>set_fftw_wisdom</VERB></A>
+      <A href='fftw_forget_wisdom.htm'><VERB>fftw_forget_wisdom</VERB></A>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 
