@@ -29,8 +29,7 @@
 <PRIMITIVE gatewayId="51" primitiveId="3" primitiveName="fftwlibraryisloaded" />
 <PRIMITIVE gatewayId="51" primitiveId="4" primitiveName="fftw" />
 <PRIMITIVE gatewayId="51" primitiveId="5" primitiveName="fftw_flags" />
-<PRIMITIVE gatewayId="51" primitiveId="6" primitiveName="fftw_inplace" />
-<PRIMITIVE gatewayId="51" primitiveId="7" primitiveName="fftw_norm" />
-<PRIMITIVE gatewayId="51" primitiveId="8" primitiveName="pushfftw_plan" />
-<PRIMITIVE gatewayId="51" primitiveId="9" primitiveName="freefftw_plan" />
+<PRIMITIVE gatewayId="51" primitiveId="6" primitiveName="get_fftw_wisdom" />
+<PRIMITIVE gatewayId="51" primitiveId="7" primitiveName="set_fftw_wisdom" />
+<PRIMITIVE gatewayId="51" primitiveId="8" primitiveName="fftw_forget_wisdom" />
 </GATEWAY>

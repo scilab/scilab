@@ -18,13 +18,12 @@ src/c/fftw_utilities.c
 GATEWAY_C_SOURCES = sci_gateway/c/gw_fftw.c \
 	sci_gateway/c/sci_fftwlibraryisloaded.c \
 	sci_gateway/c/sci_disposefftwlibrary.c \
-	sci_gateway/c/sci_fftw_norm.c \
 	sci_gateway/c/sci_fftw.c \
-	sci_gateway/c/sci_freefftw_plan.c \
 	sci_gateway/c/sci_fftw_flags.c \
 	sci_gateway/c/sci_loadfftwlibrary.c \
-	sci_gateway/c/sci_fftw_inplace.c \
-	sci_gateway/c/sci_pushfftw_plan.c
+	sci_gateway/c/sci_get_fftw_wisdom.c \
+	sci_gateway/c/sci_set_fftw_wisdom.c \
+	sci_gateway/c/sci_fftw_forget_wisdom.c
 
 
 #### fftw : Conf files ####
@@ -49,14 +48,13 @@ libscifftw_la_LDFLAGS = $(FFTW3_LIB)
 libscifftw_la_includedir=$(sciincludedir)/fftw
 libscifftw_la_include_HEADERS = includes/sci_loadfftwlibrary.h \
 includes/sci_fftwlibraryisloaded.h \
-includes/sci_pushfftw_plan.h \
-includes/sci_fftw_inplace.h \
-includes/sci_fftw_norm.h \
 includes/sci_disposefftwlibrary.h \
 includes/sci_fftw_flags.h \
-includes/sci_freefftw_plan.h \
 includes/gw_fftw.h \
-includes/sci_fftw.h
+includes/sci_fftw.h \
+includes/sci_get_fftw_wisdom.h \
+includes/sci_set_fftw_wisdom.h \
+includes/sci_fftw_forget_wisdom.h
 
 include $(top_srcdir)/Makefile.incl.am
 

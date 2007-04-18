@@ -2,8 +2,8 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef __INTPUSHFFTW_PLAN__
-#define __INTPUSHFFTW_PLAN__
+#ifndef __INTFFTW_FORGET_WISDOM__
+#define __INTFFTW_FORGET_WISDOM__
 
 #ifdef _MSC_VER
 #include <windows.h>
@@ -14,7 +14,7 @@
 #include "stack-c.h"
 #include "version.h"
 
-int sci_pushfftw_plan __PARAMS((char *fname,unsigned long fname_len));
+int sci_fftw_forget_wisdom __PARAMS((char *fname,unsigned long fname_len));
 
-#endif /* __INTPUSHFFTW_PLAN__ */
+#endif /* __INTFFTW__ */
 /*-----------------------------------------------------------------------------------*/

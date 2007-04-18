@@ -83,18 +83,6 @@
     <SEE_ALSO_ITEM>
       <A href='fftw.htm'><VERB>fftw</VERB></A>
     </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <A href='fftw_norm.htm'><VERB>fftw_norm</VERB></A>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <A href='fftw_inplace.htm'><VERB>fftw_inplace</VERB></A>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <A href='pushfftw_plan.htm'><VERB>pushfftw_plan</VERB></A>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <A href='freefftw_plan.htm'><VERB>freefftw_plan</VERB></A>
-    </SEE_ALSO_ITEM>
   </SEE_ALSO>
 
 </MAN>

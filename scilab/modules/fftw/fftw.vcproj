@@ -224,19 +224,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_fftw_inplace.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\c\sci_fftw_norm.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\c\sci_fftwlibraryisloaded.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\c\sci_freefftw_plan.c"
 				>
 			</File>
 			<File
@@ -244,7 +232,15 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_pushfftw_plan.c"
+				RelativePath=".\sci_gateway\c\sci_get_fftw_wisdom.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\c\sci_set_fftw_wisdom.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\c\sci_fftw_forget_wisdom.c"
 				>
 			</File>
 		</Filter>
@@ -290,19 +286,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\sci_fftw_inplace.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_fftw_norm.h"
-				>
-			</File>
-			<File
 				RelativePath=".\includes\sci_fftwlibraryisloaded.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_freefftw_plan.h"
 				>
 			</File>
 			<File
@@ -310,9 +294,18 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\sci_pushfftw_plan.h"
+				RelativePath=".\includes\sci_get_fftw_wisdom.h"
 				>
 			</File>
+			<File
+				RelativePath=".\includes\sci_set_fftw_wisdom.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_fftw_forget_wisdom.h"
+				>
+			</File>
+
 		</Filter>
 		<Filter
 			Name="Resource Files"

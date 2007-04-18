@@ -8,17 +8,27 @@
 /*-----------------------------------------------------------------------------------*/
 typedef void (*PROC_FFTW_EXECUTE_SPLIT_DFT) (const fftw_plan p, double *ri, double *ii, double *ro, double *io);
 typedef fftw_plan (*PROC_FFTW_PLAN_GURU_SPLIT_DFT) (int rank, const fftw_iodim *dims, int howmany_rank, const fftw_iodim *howmany_dims, double *ri, double *ii, double *ro, double *io, unsigned flags);
-typedef void (*PROC_FFTW_DESTROY_PLAN) (fftw_plan p) ;
+typedef void (*PROC_FFTW_DESTROY_PLAN) (fftw_plan p);
+
+typedef char *(*PROC_FFTW_EXPORT_WISDOM_TO_STRING) (void);
+typedef int (*PROC_FFTW_IMPORT_WISDOM_FROM_STRING) (const char *input_string);
+typedef void (*PROC_FFTW_FORGET_WISDOM) (void);
 /*-----------------------------------------------------------------------------------*/
 static void *hinstLib = NULL;
 static PROC_FFTW_EXECUTE_SPLIT_DFT MY_FFTW_EXECUTE_SPLIT_DFT=NULL;
 static PROC_FFTW_PLAN_GURU_SPLIT_DFT MY_FFTW_PLAN_GURU_SPLIT_DFT=NULL;
 static PROC_FFTW_DESTROY_PLAN MY_FFTW_DESTROY_PLAN=NULL;
+
+static PROC_FFTW_EXPORT_WISDOM_TO_STRING MY_FFTW_EXPORT_WISDOM_TO_STRING=NULL;
+static PROC_FFTW_IMPORT_WISDOM_FROM_STRING MY_FFTW_IMPORT_WISDOM_FROM_STRING=NULL;
+static PROC_FFTW_FORGET_WISDOM MY_FFTW_FORGET_WISDOM=NULL;
 /*-----------------------------------------------------------------------------------*/
 BOOL IsLoadedFFTW(void)
 {
 	BOOL bOK=FALSE;
-	if ( (MY_FFTW_EXECUTE_SPLIT_DFT) && (MY_FFTW_PLAN_GURU_SPLIT_DFT) && (MY_FFTW_DESTROY_PLAN) ) bOK=TRUE;
+	if ( (MY_FFTW_EXECUTE_SPLIT_DFT) && (MY_FFTW_PLAN_GURU_SPLIT_DFT) && (MY_FFTW_DESTROY_PLAN) &&\
+             (MY_FFTW_EXPORT_WISDOM_TO_STRING) && (MY_FFTW_IMPORT_WISDOM_FROM_STRING) &&\
+             (MY_FFTW_FORGET_WISDOM) ) bOK=TRUE;
 	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -34,12 +44,22 @@ BOOL LoadFFTWLibrary(char *libraryname)
 		MY_FFTW_PLAN_GURU_SPLIT_DFT=NULL;
 		MY_FFTW_DESTROY_PLAN=NULL;
 
+                MY_FFTW_EXPORT_WISDOM_TO_STRING=NULL;
+                MY_FFTW_IMPORT_WISDOM_FROM_STRING=NULL;
+                MY_FFTW_FORGET_WISDOM=NULL;
+
 		MY_FFTW_EXECUTE_SPLIT_DFT = (PROC_FFTW_EXECUTE_SPLIT_DFT) dlsym(hinstLib,"fftw_execute_split_dft");
 		MY_FFTW_PLAN_GURU_SPLIT_DFT = (PROC_FFTW_PLAN_GURU_SPLIT_DFT) dlsym(hinstLib,"fftw_plan_guru_split_dft");
 		MY_FFTW_DESTROY_PLAN = (PROC_FFTW_DESTROY_PLAN) dlsym(hinstLib,"fftw_destroy_plan");
+
+                MY_FFTW_EXPORT_WISDOM_TO_STRING = (PROC_FFTW_EXPORT_WISDOM_TO_STRING) dlsym(hinstLib,"fftw_export_wisdom_to_string");
+                MY_FFTW_IMPORT_WISDOM_FROM_STRING = (PROC_FFTW_IMPORT_WISDOM_FROM_STRING) dlsym(hinstLib,"fftw_import_wisdom_from_string");
+                MY_FFTW_FORGET_WISDOM = (PROC_FFTW_FORGET_WISDOM) dlsym(hinstLib,"fftw_forget_wisdom");
 	}
 
-	if ( MY_FFTW_EXECUTE_SPLIT_DFT && MY_FFTW_PLAN_GURU_SPLIT_DFT && MY_FFTW_DESTROY_PLAN )
+	if ( MY_FFTW_EXECUTE_SPLIT_DFT && MY_FFTW_PLAN_GURU_SPLIT_DFT && MY_FFTW_DESTROY_PLAN &&\
+             MY_FFTW_EXPORT_WISDOM_TO_STRING && MY_FFTW_IMPORT_WISDOM_FROM_STRING &&\
+             MY_FFTW_FORGET_WISDOM )
 	{
 		bOK=TRUE;
 	}
@@ -61,7 +81,13 @@ BOOL DisposeFFTWLibrary(void)
 	if (MY_FFTW_PLAN_GURU_SPLIT_DFT) MY_FFTW_PLAN_GURU_SPLIT_DFT=NULL;
 	if (MY_FFTW_DESTROY_PLAN) MY_FFTW_DESTROY_PLAN=NULL;
 
-	if ( !MY_FFTW_EXECUTE_SPLIT_DFT && !MY_FFTW_PLAN_GURU_SPLIT_DFT && !MY_FFTW_DESTROY_PLAN )
+        if (MY_FFTW_EXPORT_WISDOM_TO_STRING) MY_FFTW_EXPORT_WISDOM_TO_STRING=NULL;
+        if (MY_FFTW_IMPORT_WISDOM_FROM_STRING) MY_FFTW_IMPORT_WISDOM_FROM_STRING=NULL;
+        if (MY_FFTW_FORGET_WISDOM) MY_FFTW_FORGET_WISDOM=NULL;
+
+	if ( !MY_FFTW_EXECUTE_SPLIT_DFT && !MY_FFTW_PLAN_GURU_SPLIT_DFT && !MY_FFTW_DESTROY_PLAN &&\
+             !MY_FFTW_EXPORT_WISDOM_TO_STRING && !MY_FFTW_IMPORT_WISDOM_FROM_STRING &&\
+             !MY_FFTW_FORGET_WISDOM )
 	{
 		bOK=TRUE;
 	}
@@ -94,3 +120,28 @@ void call_fftw_destroy_plan (fftw_plan p)
 	}
 }
 /*-----------------------------------------------------------------------------------*/
+char *call_fftw_export_wisdom_to_string (void)
+{
+	if (MY_FFTW_EXPORT_WISDOM_TO_STRING)
+	{
+		return (char *)(MY_FFTW_EXPORT_WISDOM_TO_STRING)();
+	}
+}
+/*-----------------------------------------------------------------------------------*/
+int call_fftw_import_wisdom_from_string (const char *input_string)
+{
+	if (MY_FFTW_IMPORT_WISDOM_FROM_STRING)
+	{
+		return (int)(MY_FFTW_IMPORT_WISDOM_FROM_STRING)(input_string);
+	}
+}
+/*-----------------------------------------------------------------------------------*/
+void call_fftw_forget_wisdom (void)
+{
+	if (MY_FFTW_FORGET_WISDOM)
+	{
+		(MY_FFTW_FORGET_WISDOM)();
+	}
+}
+/*-----------------------------------------------------------------------------------*/
+

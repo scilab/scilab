@@ -2,8 +2,8 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef __INTFREEFFTW_PLAN__
-#define __INTFREEFFTW_PLAN__
+#ifndef __INTSET_FFTW_WISDOM__
+#define __INTSET_FFTW_WISDOM__
 
 #ifdef _MSC_VER
 #include <windows.h>
@@ -14,7 +14,7 @@
 #include "stack-c.h"
 #include "version.h"
 
-int sci_freefftw_plan __PARAMS((char *fname,unsigned long fname_len));
+int sci_set_fftw_wisdom __PARAMS((char *fname,unsigned long fname_len));
 
-#endif /* __INTFREEFFTW_PLAN__ */
+#endif /* __INTFFTW__ */
 /*-----------------------------------------------------------------------------------*/

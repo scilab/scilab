@@ -2,8 +2,8 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef __INTFFTW_INPLACE__
-#define __INTFFTW_INPLACE__
+#ifndef __INTGET_FFTW_WISDOM__
+#define __INTGET_FFTW_WISDOM__
 
 #ifdef _MSC_VER
 #include <windows.h>
@@ -14,7 +14,7 @@
 #include "stack-c.h"
 #include "version.h"
 
-int sci_fftw_inplace __PARAMS((char *fname,unsigned long fname_len));
+int sci_get_fftw_wisdom __PARAMS((char *fname,unsigned long fname_len));
 
-#endif /* __INTFFTW_INPLACE__ */
+#endif /* __INTFFTW__ */
 /*-----------------------------------------------------------------------------------*/

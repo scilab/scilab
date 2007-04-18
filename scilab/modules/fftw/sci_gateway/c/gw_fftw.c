@@ -26,10 +26,9 @@ static intFFTWTable Tab[]={
 { sci_fftwlibraryisloaded,"fftwlibraryisloaded"},
 { sci_fftw,"fftw"},
 { sci_fftw_flags,"fftw_flags"},
-{ sci_fftw_inplace,"fftw_inplace"},
-{ sci_fftw_norm,"fftw_norm"},
-{ sci_pushfftw_plan,"pushfftw_plan"},
-{ sci_freefftw_plan,"freefftw_plan"}
+{ sci_get_fftw_wisdom,"get_fftw_wisdom"},
+{ sci_set_fftw_wisdom,"set_fftw_wisdom"},
+{ sci_fftw_forget_wisdom,"fftw_forget_wisdom"}
 };
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(gw_fftw)()
