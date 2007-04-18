@@ -169,7 +169,7 @@ int sci_fftw_flags __PARAMS((char *fname,unsigned long fname_len))
                   fname);
      return(0);
    }
-   len = strlen(Str[0]);
+   len = (int)strlen(Str[0]);
    if ((Str3[0] = (char *)MALLOC(sizeof(char)*(len+1))) == NULL) {
      Scierror(999,"%s: "
                   "Memory allocation error\n",
@@ -189,7 +189,7 @@ int sci_fftw_flags __PARAMS((char *fname,unsigned long fname_len))
                     fname);
        return(0);
      }
-     len = strlen(Str[i]);
+     len = (int)strlen(Str[i]);
      if ((Str3[j-1] = (char *)MALLOC(sizeof(char)*(len+1))) == NULL) {
        Scierror(999,"%s: "
                     "Memory allocation error\n",

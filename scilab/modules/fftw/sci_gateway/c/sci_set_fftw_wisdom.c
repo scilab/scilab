@@ -34,18 +34,18 @@ int sci_set_fftw_wisdom __PARAMS((char *fname,unsigned long fname_len))
 
   len = 0; k = 0;
   for (j = 0; j < m1*n1; j++) {
-    len += strlen(Str1[j])+1;
+    len += (int)strlen(Str1[j])+1;
     if ((Str = (char *)REALLOC(Str,sizeof(char)*(len))) == NULL) {
        Scierror(999,"%s: "
                     "Memory allocation error\n",
                     fname);
        return(0);
     }
-    for (i = 0; i < strlen(Str1[j]); i++) {
+    for (i = 0; i < (int)strlen(Str1[j]); i++) {
      Str[k+i] = Str1[j][i];
     }
     Str[k+strlen(Str1[j])] = '\n';
-    k += strlen(Str1[j])+1;
+    k += (int)strlen(Str1[j])+1;
   }
   Str[k-1] = '\0';
 

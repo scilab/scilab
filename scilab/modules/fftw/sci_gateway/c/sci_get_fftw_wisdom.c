@@ -31,7 +31,7 @@ int sci_get_fftw_wisdom __PARAMS((char *fname,unsigned long fname_len))
   Str=call_fftw_export_wisdom_to_string();
 
   n1 = 0; j = 0;
-  for(i = 0; i < strlen(Str); i++) {
+  for(i = 0; i < (int)strlen(Str); i++) {
    if (Str[i] == '\n') {
      n1++;
      if ((Str1 = (char **)REALLOC(Str1,sizeof(char *)*n1)) == NULL) {
