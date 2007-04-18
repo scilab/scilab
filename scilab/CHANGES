@@ -1,3 +1,22 @@
+                              Scilab 4.1.1
+                              ============
+
+Please note that the Scilab 4.1.1 is released for two main reasons :
+- to have a HP-UX Scilab 4.1.1 release available for Scilab users,
+- to provide a Scilab version running with the Scilab - LabVIEW Gateway release 1.0
+
+The Scilab 4.1.1 release is built from the Scilab 4.1 source with added
+code to take into account the HP-UX machine and the Scilab - LabVIEW Gateway.
+If you already use the Scilab 4.1 release and if the above reasons do not
+concern your use of Scilab, no needs to download the 4.1.1 release.
+
+Notice that the workaround we have added in the 4.1 release to avoid
+the major bug of gfortran compiler is improved in the 4.1.1 release
+(because it did not work under some platform).
+
+For more details see our wiki page (http://wiki.scilab.org/Scilab_under_Linux_and_Unix?highlight=%28gfortran%29 )
+and the GCC bugzilla page ( http://gcc.gnu.org/bugzilla/show_bug.cgi?id=28354 )
+
                      Main Changes Scilab 3.0 -> 4.x
                      ==============================
 
