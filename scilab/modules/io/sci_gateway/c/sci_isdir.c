@@ -84,8 +84,7 @@ int C2F(sci_isdir) _PARAMS((char *fname,unsigned long fname_len))
 		
 		LhsVar(1)= Rhs+1;
 		C2F(putlhsvar)();
-		FREE(myPath);
-		myPath=NULL;
+		if (myPath) {FREE(myPath);myPath=NULL;}
 	}
 	return 0;
 	
