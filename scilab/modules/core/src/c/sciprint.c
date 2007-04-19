@@ -15,6 +15,7 @@
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "message_scilab.h"
+#include "../../localization/includes/QueryStringMessage.h"
 /*-----------------------------------------------------------------------------------*/ 
 #ifdef _MSC_VER
   #define vsnprintf _vsnprintf
@@ -168,6 +169,7 @@ void sciprint_full(char *fmt,...)
   int count=0;
   int p_s=0;
   static integer colwidth;
+  char *MSG;
 
   s_buf=MALLOC(sizeof(char)*(MAXCHARSSCIPRINT_FULL+1));
   if (s_buf == (char *) 0)
@@ -212,26 +214,37 @@ void sciprint_full(char *fmt,...)
 
   if (lstr<colwidth)
   {
-     sciprint(s_buf);
+     sciprint("%s",s_buf);
   } 
   else 
   {
      strncpy(split_s_buf,s_buf+p_s,colwidth-1);
      split_s_buf[colwidth]='\0';
      p_s=p_s+colwidth-1;
-     sciprint(split_s_buf);
+     sciprint("%s",split_s_buf);
      sciprint("\n");
      while (p_s+colwidth-1<(int)lstr) 
      {
         strncpy(split_s_buf,s_buf+p_s,colwidth-1);
         split_s_buf[colwidth]='\0';
         p_s=p_s+colwidth-1;
-        message_scilab("core_message_146",split_s_buf);
-        
+        MSG=QueryStringMessage("core_message_146");
+        if (MSG)
+        {
+            sciprint(MSG,split_s_buf);
+            sciprint("\n");
+        }
+        if (MSG) {FREE(MSG);MSG=NULL;}
      }
      strncpy(split_s_buf,s_buf+p_s,lstr-p_s);
      split_s_buf[lstr-p_s]='\0';
-     message_scilab("core_message_147",split_s_buf);
+     MSG=QueryStringMessage("core_message_147");
+     if (MSG)
+     {
+         sciprint(MSG,split_s_buf);
+         sciprint("\n");
+     }
+     if (MSG) {FREE(MSG);MSG=NULL;}
   }
 
   if (s_buf){FREE(s_buf);s_buf=NULL;}
