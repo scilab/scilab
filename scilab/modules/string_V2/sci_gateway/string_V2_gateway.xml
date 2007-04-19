@@ -45,4 +45,9 @@
 <PRIMITIVE gatewayId="21" primitiveId="20" primitiveName="grep1" />
 <PRIMITIVE gatewayId="21" primitiveId="21" primitiveName="regexppri" />
 <PRIMITIVE gatewayId="21" primitiveId="22" primitiveName="emptystr1" />
+<PRIMITIVE gatewayId="21" primitiveId="23" primitiveName="strcat1" />
+<PRIMITIVE gatewayId="21" primitiveId="24" primitiveName="part1" />
+<PRIMITIVE gatewayId="21" primitiveId="25" primitiveName="convstr1" />
+<PRIMITIVE gatewayId="21" primitiveId="26" primitiveName="ascii1" />
+<PRIMITIVE gatewayId="21" primitiveId="27" primitiveName="stripblanks1" />
 </GATEWAY>
