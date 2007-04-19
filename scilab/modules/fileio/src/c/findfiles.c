@@ -55,15 +55,11 @@ char **findfiles(char *path,char *filespec,int *sizeListReturned)
 char **findfiles(char *path,char *filespec,int *sizeListReturned)
 {
 	char **ListFiles=NULL;
-	char *strPattern=NULL;
 	int nbElements=0;
 	DIR *folder=NULL;
 	struct dirent *read=NULL;
 
 	*sizeListReturned=0;
-
-	strPattern=(char*)MALLOC(sizeof(char)*(strlen(path)+strlen(filespec)+8));
-	sprintf(strPattern,"%s/%s",path,filespec);
 
 	folder = opendir(path);
 	if (folder)
