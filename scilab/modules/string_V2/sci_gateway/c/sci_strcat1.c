@@ -2,8 +2,9 @@
 /* File: sci_strcat1.c                                                  */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Cong Wu                                                      */
-/* desc : substitute a character string by another in a character string
-          using regular express .                                         */
+/* desc : catenate character strings 
+/* Examples: strcat1(string(1:10),',')
+                                                                          */
 /*------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>
@@ -17,8 +18,7 @@
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_strcat1) _PARAMS((char *fname,unsigned long fname_len))
 {
-  char typ = '*';
-  char **Str,**Str2;
+  char **Str,**Str2; /**< the two input arguments */
   int x,m1,n1,m2,n2,mn,mn2,numRow,numCol;
   Rhs = Max(0, Rhs);
   CheckRhs(1,2);
@@ -37,7 +37,6 @@ int C2F(sci_strcat1) _PARAMS((char *fname,unsigned long fname_len))
 				}
 				strcat(Str[0],Str[x]);
 				strcat(Str[0] ,Str2[0]);
-				
 			}
 			strcat(Str[0] ,Str[mn-1]);
 		}
