@@ -62,9 +62,6 @@ function files= listfiles(paths,flag,flagexpand)
       files=[files;filesi];
       
     end // if filesi<>[] then
-    
-    files=[files;filesi];
-    
   end // for i=1:size(paths,'*')
   
 endfunction
