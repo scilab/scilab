@@ -18,8 +18,6 @@ void C2F(getfiletype)(integer *fd, integer *type, integer *ierr);
 
 void C2F(delfile)(integer *fd);
 
-int Status2Mode(char *status);
-
 FILE *GetFile(integer *fd);
 
 int GetSwap(integer *fd);

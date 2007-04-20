@@ -285,6 +285,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\Status2Mode.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\xls.c"
 				>
 			</File>
@@ -355,6 +359,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_fileio.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\Status2Mode.h"
 				>
 			</File>
 		</Filter>

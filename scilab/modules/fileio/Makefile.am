@@ -16,7 +16,8 @@ src/c/ripole.c \
 src/c/bt-int.c \
 src/c/do_xxprintf.c \
 src/c/do_xxscanf.c \
-src/c/findfiles.c
+src/c/findfiles.c \
+src/c/Status2Mode.c
 
 GATEWAY_SOURCES = \
 sci_gateway/c/sci_xls_read.c \
