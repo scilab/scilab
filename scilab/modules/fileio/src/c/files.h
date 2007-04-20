@@ -24,10 +24,6 @@ FILE *GetFile(integer *fd);
 
 int GetSwap(integer *fd);
 
-int islittle_endian(void);
-
-int C2F(getendian)(void);
-
 void C2F(mopen)(int *fd, char *file, char *status, int *f_swap, double *res, int *error);
 
 void C2F(mclose) (integer *fd, double *res);

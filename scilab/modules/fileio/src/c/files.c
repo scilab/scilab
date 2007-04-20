@@ -200,24 +200,6 @@ int GetSwap(integer *fd)
     return(0);
 }
 
-
-/*********************************************
- * check machine status (little or big endian)
- *********************************************/
-
-int islittle_endian(void)
-{
-  int	littlendian = 1;
-  char	*endptr;
-  endptr = (char *) &littlendian;
-  return (int) *endptr;
-}
-
-int C2F(getendian)(void)
-{
-  return islittle_endian();
-}
-
 /*********************************************
  * Opens file given by file and return it's id 
  * in fd. 
@@ -454,10 +436,10 @@ void C2F(mtell) (integer *fd, double *offset, integer *err)
 	{ \
 	        case ' ': MPUT_NC(Type,Fswap); break; \
 		case 'b': \
-		  swap = (islittle_endian()==1) ? 1 : 0; \
+		  swap = (islittleendian()==1) ? 1 : 0; \
 		  MPUT_NC(Type,Fswap); break; \
 		case 'l': \
-		  swap = (islittle_endian()==1) ? 0 : 1; \
+		  swap = (islittleendian()==1) ? 0 : 1; \
 		  MPUT_NC(Type,Fswap); break; \
 		default: \
 		  sciprint("mput : %s format not recognized \r\n",type); \
@@ -530,10 +512,10 @@ void C2F(mputnc) (integer *fd, void * res, integer *n1, char *type, integer *ier
 	{ \
 	        case ' ': MPUT(Type,Fswap); break; \
 		case 'b': \
-		  swap = (islittle_endian()==1) ? 1 : 0; \
+		  swap = (islittleendian()==1) ? 1 : 0; \
 		  MPUT(Type,Fswap); break; \
 		case 'l': \
-		  swap = (islittle_endian()==1) ? 0 : 1; \
+		  swap = (islittleendian()==1) ? 0 : 1; \
 		  MPUT(Type,Fswap); break; \
 		default: \
 		  sciprint("mput : %s format not recognized \r\n",type); \
@@ -629,9 +611,9 @@ void C2F(mput) (integer *fd, double *res, integer *n, char *type, integer *ierr)
 { \
     switch (cf) { \
           case ' ': MGET_NC(NumType,Fswap);break; \
-	  case 'b': swap = (islittle_endian()==1)? 1:0; \
+	  case 'b': swap = (islittleendian()==1)? 1:0; \
 			    MGET_NC(NumType,Fswap); break; \
-  	  case 'l': swap = (islittle_endian()==1) ? 0:1; \
+  	  case 'l': swap = (islittleendian()==1) ? 0:1; \
 		  MGET_NC(NumType,Fswap);  break; \
    	  default: sciprint("mget : %s format not recognized \r\n",type); \
 	     *ierr=1; return; \

@@ -7,11 +7,12 @@
 #include "mgeti.h"
 #include "sciprint.h"
 #include "../../../../libs/libst/misc.h"
+#include "islittleendian.h"
 
 struct soundstream ftf;
 extern FILE *GetFile();
 extern int GetSwap();
-extern int islittle_endian(void); /* Defined in SCI/routines/fileio/sound.c */
+
 
 #define MGETI(Type,Fswap) {\
 Type *RES;\
@@ -189,10 +190,10 @@ int nc,swap;
   if ( nc > 1) {
     switch (type[1])  {
     case 'b': 
-      if (islittle_endian()==1) swap=1;else swap=0; 
+      if (islittleendian()==1) swap=1;else swap=0; 
       break; 
     case 'l': 
-      if (islittle_endian()==1) swap=0;else swap=1; 
+      if (islittleendian()==1) swap=0;else swap=1; 
       break; 
     default:
       sciprint("mgeti : unknown format %s  \r\n",type);

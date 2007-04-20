@@ -79,7 +79,8 @@ src/c/scilabmode.c \
 src/c/diary.c \
 src/c/GetXmlFileEncoding.c \
 src/c/msgs.c \
-src/c/GetenvB.c
+src/c/GetenvB.c \
+src/c/islittleendian.c
 
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f \
 src/fortran/clunit.f \
