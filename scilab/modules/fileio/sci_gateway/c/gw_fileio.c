@@ -34,7 +34,8 @@ static TabF Tab[]={
 	{intsmerror, "merror"},
 	{C2F(sci_xls_open),"xls_open"},
 	{C2F(sci_xls_read),"xls_read"},
-	{C2F(sci_findfiles),"findfiles"}
+	{C2F(sci_findfiles),"findfiles"},
+	{C2F(sci_maxfiles),"maxfiles"}
 	};
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(gw_fileio)(void)

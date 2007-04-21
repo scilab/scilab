@@ -50,7 +50,8 @@ sci_gateway/c/sci_mfscanf.c \
 sci_gateway/c/sci_fprintfMat.c \
 sci_gateway/c/sci_NumTokens.c \
 sci_gateway/c/sci_fscanfMat.c \
-sci_gateway/c/sci_findfiles.c
+sci_gateway/c/sci_findfiles.c \
+sci_gateway/c/sci_maxfiles.c
 
 libscifileio_la_CFLAGS=-Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ 
 

@@ -10,6 +10,14 @@
 #include "machine.h"
 
 /**
+* Default max of files opened in scilab
+*/
+#ifdef FOPEN_MAX
+	#define DEFAULT_MAX_FILES FOPEN_MAX 
+#else
+	#define DEFAULT_MAX_FILES 20 
+#endif
+/**
 * Get max of files opened in scilab
 * @return max of files opened in scilab
 */

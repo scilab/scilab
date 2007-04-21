@@ -16,17 +16,14 @@ extern integer C2F(adjuststacksize)();
 /*-----------------------------------------------------------------------------------*/
 #define MIN_STACKSIZE 180000
 /*-----------------------------------------------------------------------------------*/
-/* stacksize - set scilab stack size 
-
+/**
+* stacksize - set scilab stack size 
 * Calling Sequence 
-
 * stacksize(n)   
 * stacksize('max')   
 * stacksize('min')   
 * sz=stacksize()   
-
 * Parameters 
-
 * n : integer, the required stack size given in number of double precision words 
 * 'max' : try to allocate the maximum of memory
 * 'max' : allocate the minimum of memory

@@ -11,7 +11,7 @@
 #include "tmpdir.h"
 #include "cluni0.h"
 #include "GetenvB.h"
-
+#include "mopen.h"
 /*---------------------------------------------------------------
   Authors Pierrick Mode, Serge Steer INRIA 2005, Copyright INRIA
   --------------------------------------------------------------*/

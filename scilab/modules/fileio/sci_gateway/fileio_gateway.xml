@@ -47,4 +47,5 @@
 <PRIMITIVE gatewayId="34" primitiveId="21" primitiveName="xls_open" />
 <PRIMITIVE gatewayId="34" primitiveId="22" primitiveName="xls_read" />
 <PRIMITIVE gatewayId="34" primitiveId="23" primitiveName="findfiles" />
+<PRIMITIVE gatewayId="34" primitiveId="24" primitiveName="maxfiles" />
 </GATEWAY>

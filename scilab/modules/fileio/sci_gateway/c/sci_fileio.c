@@ -8,6 +8,17 @@
 #include "sci_fileio.h"
 #include "gw_fileio.h"
 #include "cluni0.h"
+#include "mopen.h"
+#include "mput.h"
+#include "mputstr.h"
+#include "mclose.h"
+#include "meof.h"
+#include "mseek.h"
+#include "merror.h"
+#include "mtell.h"
+#include "mclearerr.h"
+#include "mget.h"
+#include "mgetstr.h"
 /*-----------------------------------------------------------------------------------*/ 
 #ifdef hppa 
 	#undef FILENAME_MAX

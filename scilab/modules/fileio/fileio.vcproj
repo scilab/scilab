@@ -309,6 +309,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\c\sci_maxfiles.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\c\sci_mfprintf.c"
 				>
 			</File>

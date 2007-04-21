@@ -8,8 +8,6 @@
 #include "core_math.h" /* Min Max */
 #include "MALLOC.h" 
 /*-----------------------------------------------------------------------------------*/
-#define DEFAULT_MAX_FILES 20 
-/*-----------------------------------------------------------------------------------*/
 typedef struct {
 	FILE *ftformat;
 	int ftswap; /* swap status for each file */
