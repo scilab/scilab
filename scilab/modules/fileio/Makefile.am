@@ -4,7 +4,6 @@
 ##########
 
 FILEIO_SOURCES = src/c/FileExist.c \
-src/c/files.c \
 src/c/xls.c \
 src/c/fileio.c \
 src/c/olestream-unwrap.c \
