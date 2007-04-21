@@ -13,7 +13,6 @@ tests = ['arma.tst';
 	'binary_representation.tst';
 	'breakpoints.tst';
 	'bvode.tst';
-	'call.tst';
 	'calpol.tst';
 	'clause.tst';
 	'cmp.tst';

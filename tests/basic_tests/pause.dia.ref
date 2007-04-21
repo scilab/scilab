@@ -8,6 +8,8 @@ deff('[x]=tata(y)','x=-y,write(%io(2),''enter quit''),pause,x=+20')
 xx=tata(10);
 enter quit
  
+Type 'resume' or 'abort' to return to standard level prompt.
+
 quit;
  
 if 10+xx<>0 then bugmes();quit;end
@@ -18,7 +20,7 @@ deff('[x]=tata(y)',['x=-y'
                  'write(6,''enter return'')'
                  'pause'
                  'x=+20'])
-Warning :redefining function: tata                    
+Warning : redefining function : tata                    
  
  
 xx=tata(0);
@@ -29,7 +31,7 @@ return
 if 20-xx<>0 then bugmes();quit;end
  
 deff('[x]=tata(y)','x=-y,write(6,''type x=resume(0)''),pause')
-Warning :redefining function: tata                    
+Warning : redefining function : tata                    
  
  
 xx=tata(40);
