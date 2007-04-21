@@ -22,6 +22,7 @@
 #include "GetProperty.h"
 #include "WindowList.h"
 #include "MALLOC.h"
+#include "cluni0.h"
 
 /*-----------------------------------------------------------------------------------*/
 static int NumBMP=0;

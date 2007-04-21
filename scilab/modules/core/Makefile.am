@@ -25,7 +25,6 @@ src/c/texmacs.c \
 src/c/userf2.c \
 src/c/msgstxt.c \
 src/c/sciquit.c \
-src/c/readline.c \
 src/c/stack1.c \
 src/c/scicurdir.c \
 src/c/realmain.c \
@@ -76,7 +75,6 @@ src/c/force_link.c \
 src/c/returnProperty.c \
 src/c/returnPropertyList.c \
 src/c/scilabmode.c \
-src/c/diary.c \
 src/c/GetXmlFileEncoding.c \
 src/c/msgs.c \
 src/c/GetenvB.c \

@@ -29,6 +29,8 @@ Source: modules\{#FILEIO}\languages\*.xml; DestDir: {app}\modules\{#FILEIO}\lang
 ;
 Source: modules\{#FILEIO}\includes\*.h; DestDir: {app}\modules\{#FILEIO}\includes; Components: {#COMPN_SCILAB}
 ;
+Source: bin\fileio.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+;
 Source: modules\{#FILEIO}\macros\buildmacros.sce; DestDir: {app}\modules\{#FILEIO}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#FILEIO}\macros\lib; DestDir: {app}\modules\{#FILEIO}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#FILEIO}\macros\names; DestDir: {app}\modules\{#FILEIO}\macros; Components: {#COMPN_SCILAB}

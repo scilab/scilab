@@ -4,6 +4,8 @@
 	Version="8,00"
 	Name="fileio"
 	ProjectGUID="{4FC72D4A-80EE-4B1A-8724-0201C1A35621}"
+	RootNamespace="fileio"
+	Keyword="Win32Proj"
 	>
 	<Platforms>
 		<Platform
@@ -15,11 +17,9 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="false"
+			ConfigurationType="2"
 			CharacterSet="2"
 			>
 			<Tool
@@ -40,38 +40,43 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../libs/MALLOC/includes;../core/includes;includes;src/c;sci_gateway"
-				PreprocessorDefinitions="_LIB;STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
+				AdditionalIncludeDirectories="includes;src/c;../../libs/MALLOC/includes;../core/includes;includes\tcltk\include;includes\tcltk\include\X11"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;FILEIO_EXPORTS"
+				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
-				RuntimeLibrary="1"
+				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=""
-				AssemblerListingLocation="$(ConfigurationName)/"
-				ObjectFile="$(ConfigurationName)/"
-				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
-				SuppressStartupBanner="true"
+				Detect64BitPortabilityProblems="true"
 				DebugInformationFormat="3"
-				CompileAs="0"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG"
-				Culture="1036"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				Description="Make dependencies"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n fileio.dll %%f &gt;nul&#x0D;&#x0A;copy *.def fileiotmp.def &gt;nul&#x0D;&#x0A;copy ..\fileio_header.def+fileiotmp.def  ..\fileio.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../libs/fileio.lib"
-				SuppressStartupBanner="true"
+				Name="VCLinkerTool"
+				AdditionalOptions="/fixed:no"
+				AdditionalDependencies="LibScilab.lib"
+				OutputFile="../../bin/$(ProjectName).dll"
+				LinkIncremental="1"
+				ModuleDefinitionFile="fileio.def"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				TargetMachine="1"
 			/>
 			<Tool
 				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -83,18 +88,22 @@
 				Name="VCFxCopTool"
 			/>
 			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def fileio1.def &gt;nul&#x0D;&#x0A;copy fileio1.def ..\..\..\libs\fileio.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="false"
+			ConfigurationType="2"
 			CharacterSet="2"
+			WholeProgramOptimization="0"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -113,42 +122,49 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../../libs/MALLOC/includes;../core/includes;includes;src/c;sci_gateway"
-				PreprocessorDefinitions="NDEBUG;_LIB;STRICT;_CRT_SECURE_NO_DEPRECATE"
+				WholeProgramOptimization="false"
+				AdditionalIncludeDirectories="includes;src/c;../../libs/MALLOC/includes;../core/includes;includes\tcltk\include;includes\tcltk\include\X11"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;FILEIO_EXPORTS"
 				StringPooling="true"
-				RuntimeLibrary="0"
-				EnableFunctionLevelLinking="true"
+				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="1"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=""
-				AssemblerListingLocation="$(ConfigurationName)/"
-				ObjectFile="$(ConfigurationName)/"
-				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
-				SuppressStartupBanner="true"
-				CompileAs="0"
+				Detect64BitPortabilityProblems="false"
+				DebugInformationFormat="3"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG"
-				Culture="1036"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				Description="Make dependencies"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n fileio.dll %%f &gt;nul&#x0D;&#x0A;copy *.def fileiotmp.def &gt;nul&#x0D;&#x0A;copy ..\fileio_header.def+fileiotmp.def  ..\fileio.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../libs/fileio.lib"
-				SuppressStartupBanner="true"
+				Name="VCLinkerTool"
+				AdditionalDependencies="LibScilab.lib"
+				OutputFile="../../bin/$(ProjectName).dll"
+				LinkIncremental="1"
+				ModuleDefinitionFile="fileio.def"
+				GenerateDebugInformation="false"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				LinkTimeCodeGeneration="0"
+				ImportLibrary="../../bin/$(ProjectName).lib"
+				TargetMachine="1"
 			/>
 			<Tool
 				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -160,8 +176,13 @@
 				Name="VCFxCopTool"
 			/>
 			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def fileio1.def &gt;nul&#x0D;&#x0A;copy fileio1.def ..\..\..\libs\fileio.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>
@@ -170,7 +191,8 @@
 	<Files>
 		<Filter
 			Name="Source Files"
-			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
+			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
+			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
 				RelativePath=".\src\c\addfile.c"
@@ -186,6 +208,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\delfile.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\diary.c"
 				>
 			</File>
 			<File
@@ -289,6 +315,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\readline.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\ripole.c"
 				>
 			</File>
@@ -359,7 +389,8 @@
 		</Filter>
 		<Filter
 			Name="Header Files"
-			Filter="h;hpp;hxx;hm;inl"
+			Filter="h;hpp;hxx;hm;inl;inc;xsd"
+			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
 				RelativePath=".\includes\addfile.h"
@@ -375,6 +406,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\delfile.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\diary.h"
 				>
 			</File>
 			<File
@@ -478,6 +513,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\resource.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\ripole.h"
 				>
 			</File>
@@ -487,6 +526,16 @@
 			</File>
 			<File
 				RelativePath=".\src\c\Status2Mode.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Resource Files"
+			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
+			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
+			>
+			<File
+				RelativePath=".\src\c\fileio.rc"
 				>
 			</File>
 		</Filter>

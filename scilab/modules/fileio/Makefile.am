@@ -32,7 +32,9 @@ src/c/mopen.c \
 src/c/mput.c \
 src/c/mputstr.c \
 src/c/mseek.c \
-src/c/mtell.c
+src/c/mtell.c \
+src/c/diary.c \
+src/c/readline.c
 
 
 GATEWAY_SOURCES = \

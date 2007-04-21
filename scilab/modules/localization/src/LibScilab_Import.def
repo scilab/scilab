@@ -22,7 +22,6 @@ EXPORTS
  getSCIHOME
  getWarningMode
  syncexec_
- FileExist
  getmodules
  GetXmlFileEncoding
  error_scilab

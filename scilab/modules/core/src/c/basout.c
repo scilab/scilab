@@ -6,7 +6,7 @@
 #include "machine.h"
 #include "stack-def.h"
 #include "basout.h"
-#include "diary.h"
+#include "../../fileio/src/c/diary.h"
 /*-----------------------------------------------------------------------------------*/ 
 extern int C2F(xscimore)();
 extern int C2F(writewtemore)();
