@@ -7,8 +7,8 @@
 #include "do_xxprintf.h"
 #include "do_xxscanf.h"
 #include "fileio.h"
-#include "files.h"
 #include "gw_fileio.h"
+#include "filesmanagement.h"
 /*-----------------------------------------------------------------------------------*/ 
 int int_objfscanf(char *fname,unsigned long fname_len)
 {
@@ -18,6 +18,7 @@ int int_objfscanf(char *fname,unsigned long fname_len)
 	int retval_s=0;
 	entry *data=NULL;
 	long int pos;
+	int param1=0;
 
 	rec_entry buf[MAXSCAN];
 	sfdir  type[MAXSCAN],type_s[MAXSCAN];
@@ -45,8 +46,9 @@ int int_objfscanf(char *fname,unsigned long fname_len)
 	GetRhsVar(iarg,"i",&m1,&n1,&l1);
 	GetRhsVar(iarg+1,"c",&m2,&n2,&l2);/* format */
 
+	param1=*istk(l1);
 	StringConvert(cstk(l2));  /* conversion */
-	if ((f= GetFile(istk(l1))) == (FILE *)0)
+	if ((f= GetFileOpenedInScilab(param1)) == (FILE *)0)
 	{
 		Scierror(999,"fprintf:\t wrong file descriptor %d\r\n",*istk(l1));
 		return 0;

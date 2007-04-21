@@ -11,11 +11,14 @@
 #include "LoadFunctionsTab.h"
 #include "prompt.h"
 #include "message_scilab.h"
+#include "filesmanagement.h"
 /*-----------------------------------------------------------------------------------*/ 
 BOOL InitializeCore(void)
 {
 	BOOL bOK=FALSE;
 	int pause=0;
+
+	InitializeScilabFilesList();
 
 	SciEnv();
 

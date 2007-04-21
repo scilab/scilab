@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include "machine.h"
 #include "readline.h"
+#include "filesmanagement.h"
 
 #if (defined(sun) && !defined(SYSV)) || defined(sgi)
 #define SEEK_SET 0
@@ -13,7 +14,7 @@
 
 #define CR 13
 #define LF 10
-FILE *GetFile();
+
 
  /* 
   * @params cnt : number of charaters returned in buf 
@@ -81,10 +82,7 @@ int LineRead(FILE *fd,char buf[],int n,int *cnt,int *nr)
  
 void C2F(readnextline)(integer *fd,char buf[],integer *n,integer *count,integer *nr,integer *ierr)
 {
-
-FILE *fa= GetFile(fd);
-
-*ierr=LineRead(fa,buf,*n,count,nr);
-
+	FILE *fa= GetFileOpenedInScilab(*fd);
+	*ierr=LineRead(fa,buf,*n,count,nr);
 }
 

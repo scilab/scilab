@@ -173,11 +173,19 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
+				RelativePath=".\src\c\addfile.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\bt-int.c"
 				>
 			</File>
 			<File
 				RelativePath=".\src\c\bytedecoders.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\delfile.c"
 				>
 			</File>
 			<File
@@ -197,11 +205,19 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\files.c"
+				RelativePath=".\src\c\findfiles.c"
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\findfiles.c"
+				RelativePath=".\src\c\getfiledesc.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getfileinfo.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getfiletype.c"
 				>
 			</File>
 			<File
@@ -214,6 +230,50 @@
 			</File>
 			<File
 				RelativePath=".\src\c\logger.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\mclearerr.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\mclose.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\meof.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\merror.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\mget.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\mgetstr.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\mopen.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\mput.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\mputstr.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\mseek.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\mtell.c"
 				>
 			</File>
 			<File
@@ -298,11 +358,19 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
+				RelativePath=".\includes\addfile.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\bt-int.h"
 				>
 			</File>
 			<File
 				RelativePath=".\src\c\bytedecoders.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\delfile.h"
 				>
 			</File>
 			<File
@@ -322,11 +390,19 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\files.h"
+				RelativePath=".\src\c\findfiles.h"
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\findfiles.h"
+				RelativePath=".\includes\getfiledesc.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\getfileinfo.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\getfiletype.h"
 				>
 			</File>
 			<File
@@ -339,6 +415,50 @@
 			</File>
 			<File
 				RelativePath=".\src\c\logger.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\mclearerr.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\mclose.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\meof.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\merror.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\mget.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\mgetstr.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\mopen.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\mput.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\mputstr.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\mseek.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\mtell.h"
 				>
 			</File>
 			<File

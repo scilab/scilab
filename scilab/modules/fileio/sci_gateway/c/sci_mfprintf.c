@@ -5,8 +5,8 @@
 #include "machine.h"
 #include "stack-c.h"
 #include "do_xxprintf.h"
-#include "files.h"
 #include "gw_fileio.h"
+#include "filesmanagement.h"
 /*-----------------------------------------------------------------------------------*/ 
 int int_objfprintf __PARAMS((char *fname,unsigned long fname_len))
 {
@@ -15,6 +15,7 @@ int int_objfprintf __PARAMS((char *fname,unsigned long fname_len))
 	char *ptrFormat=NULL;
 	int i=0;
 	int NumberPercent=0;
+	int param1=0;
 
 	Nbvars = 0;
 	CheckRhs(1,1000);
@@ -32,7 +33,9 @@ int int_objfprintf __PARAMS((char *fname,unsigned long fname_len))
 	GetRhsVar(2,"c",&m2,&n2,&l2); /* format */
 	ptrFormat=cstk(l2);
 
-	if ((f= GetFile(istk(l1))) == (FILE *)0)
+	param1=*istk(l1);
+
+	if ((f= GetFileOpenedInScilab(param1)) == (FILE *)0)
 	{
 		Scierror(999,"mfprintf:\t wrong file descriptor %d\r\n",*istk(l1));
 		return 0;

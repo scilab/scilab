@@ -9,7 +9,7 @@
 
 #include "Os_specific.h" /* isanan */ 
 #include "MALLOC.h"
-
+#include "cluni0.h"
 
 /****************************************************
  * Scilab xgetfile command used to get a file name 

@@ -8,10 +8,9 @@
 #include "sciprint.h"
 #include "../../../../libs/libst/misc.h"
 #include "islittleendian.h"
+#include "filesmanagement.h"
 
 struct soundstream ftf;
-extern FILE *GetFile();
-extern int GetSwap();
 
 
 #define MGETI(Type,Fswap) {\
@@ -47,8 +46,8 @@ void C2F(mgeti) (integer *fd,integer *res,integer *n,char type[],integer *ierr)
   RES_ul=(unsigned long *)res;
   RES_us=(unsigned short *)res;
 
-  fa = GetFile(fd);
-  swap = GetSwap(fd);
+  fa = GetFileOpenedInScilab(*fd);
+  swap = GetSwapStatus(*fd);
   ft = &ftf; 
   ft->fp = fa;
   nc=strlen(type);
@@ -186,7 +185,7 @@ int SWAP(char type[],integer *fd)
 {
 int nc,swap;
   nc=strlen(type);
-  swap = GetSwap(fd);
+  swap = GetSwapStatus(*fd);
   if ( nc > 1) {
     switch (type[1])  {
     case 'b': 

@@ -8,10 +8,11 @@
 
 #include "../../../../libs/libst/misc.h"
 #include "sciprint.h"
+#include "filesmanagement.h"
 
 struct soundstream ftf;
-extern FILE *GetFile();
-extern int GetSwap();
+
+
 
 extern int SWAP(char type[],integer *fd); /* Defined in mgeti.c */
 
@@ -42,8 +43,8 @@ void C2F(mputi) (integer *fd,integer *res,integer *n,char type[],integer *ierr)
   RES_ul=(unsigned long *)res;
   RES_us=(unsigned short *)res;
 
-  fa = GetFile(fd);
-  swap = GetSwap(fd);
+  fa = GetFileOpenedInScilab(*fd);
+  swap = GetSwapStatus(*fd);
   ft = &ftf; 
   ft->fp = fa;
   nc=strlen(type);

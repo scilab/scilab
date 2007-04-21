@@ -3,7 +3,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include "diary.h"
 #include "stack-c.h"
-#include "../../fileio/src/c/files.h" /* GetFile */
+#include "filesmanagement.h"
 /*-----------------------------------------------------------------------------------*/
 int getdiary(void)
 {
@@ -24,7 +24,7 @@ void C2F(diary)(char *str,int *n)
 	u=getdiary();
 	if ( u != 0 ) 
 	{
-		FILE *fd= GetFile(&u);
+		FILE *fd= GetFileOpenedInScilab(u);
 		fwrite(str,sizeof(unsigned char),*n,fd);
 		fwrite(newline,sizeof(unsigned char),nn,fd);
 	}
@@ -38,7 +38,7 @@ void diary_nnl(char *str,int *n)
 
 	if (u) 
 	{
-		FILE *fd= GetFile(&u);
+		FILE *fd= GetFileOpenedInScilab(u);
 		fwrite(str,sizeof(unsigned char),*n,fd);
 	}
 }

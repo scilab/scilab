@@ -11,6 +11,7 @@
 #include "scimem.h" /* freegmem */
 #include "tmpdir.h" /* tmpdirc */
 #include "hashtable_core.h" /* destroy_hashtable_scilab_functions */
+#include "filesmanagement.h"
 /*-----------------------------------------------------------------------------------*/ 
 BOOL TerminateCorePart1(void)
 {
@@ -32,6 +33,9 @@ BOOL TerminateCorePart2(void)
 	DisposeModulesInfo();
 
 	destroy_hashtable_scilab_functions();
+
+	/* Close all scilab's files */
+	TerminateScilabFilesList();
 
 	/** clean tmpfiles **/
 	C2F(tmpdirc)();

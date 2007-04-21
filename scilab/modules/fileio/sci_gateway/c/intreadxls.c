@@ -6,7 +6,6 @@
 #include "stack-c.h"
 #include "ole.h"
 #include "ripole.h"
-#include "files.h"
 #include "gw_fileio.h"
 #include "intreadxls.h"
 #include "tmpdir.h"

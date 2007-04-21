@@ -7,7 +7,6 @@
 #include "MALLOC.h" /* MALLOC */
 #include "sci_fileio.h"
 #include "gw_fileio.h"
-#include "files.h"
 #include "cluni0.h"
 /*-----------------------------------------------------------------------------------*/ 
 #ifdef hppa 

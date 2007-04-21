@@ -7,7 +7,11 @@
 #include "machine.h"
 #include "MALLOC.h" /* MALLOC */
 #include "sciprint.h"
-
+#include "returnanan.h"
+#include "mseek.h"
+#include "mtell.h"
+#include "mget.h"
+/*------------------------------------------------------------------*/
 #define  typ_short "s"
 #define  typ_ushort "us"
 #define  typ_char "c"
@@ -15,15 +19,8 @@
 #define  typ_double "d"
 #define  typ_int "i"
 #define Min(x,y)  ((x) < (y) ? (x) : (y))
-
-extern int ripole(char *inputfile, char *outputfile, int debug, int verbose);
-extern void C2F(mgetnc) (integer *fd, void *res, integer *n, char *type, integer *ierr);
-extern void C2F(mtell) (integer *fd, double *offset, integer *err);
-extern void C2F(mseek) (integer *fd, integer *offset, char *flag, integer *err);
-extern FILE *GetFile(integer *fd);
-extern int GetSwap(integer *fd);
-
 /*------------------------------------------------------------------*/
+extern int ripole(char *inputfile, char *outputfile, int debug, int verbose);
 /*------------------------------------------------------------------*/
 /*Prototype*/
 void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int *M, int *err);
@@ -35,22 +32,6 @@ static void getBOF(int *fd ,int* Data, int *err);
 static void getString(int *fd,short *count, short *Len, int flag,char **str,int *err);
 static int get_oleheader(int *fd);
 /*------------------------------------------------------------------*/
-/*------------------------------------------------------------------*/
-static double return_a_nan()
-{
-  static int first = 1;
-  static double nan = 1.0;
-
-  if ( first )
-    {
-      nan = (nan - (double) first)/(nan - (double) first);
-      first = 0;
-    }
-  return (nan);
-}
-
-
-
 void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int *M, int *err)
 {
   /*---------------Déclaration Des Variables*--------------------*/
@@ -81,7 +62,7 @@ void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int
   double resultat;/*Result of the formula*/
   short optionflag;/*Option flags*/
   int formula_notused; /*Not used*/
-  double NaN=return_a_nan();
+  double NaN=C2F(returnanan)();
 
   int BOFData[7]; /*[BIFF  Version DataType Identifier Year HistoryFlags LowestXlsVersion]*/
   /* initialization of pointers corresponding to malloc's */

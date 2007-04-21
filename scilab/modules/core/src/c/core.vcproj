@@ -230,6 +230,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\filesmanagement.c"
+				>
+			</File>
+			<File
 				RelativePath=".\flags.c"
 				>
 			</File>
@@ -843,6 +847,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\filesmanagement.h"
+				>
+			</File>
+			<File
 				RelativePath=".\flags.h"
 				>
 			</File>
@@ -851,11 +859,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\fromjava.h"
+				RelativePath="..\..\includes\fromjava.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\fromjava.h"
+				RelativePath=".\fromjava.h"
 				>
 			</File>
 			<File
@@ -923,11 +931,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\InitScilab.h"
+				RelativePath="..\..\includes\InitScilab.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\InitScilab.h"
+				RelativePath=".\InitScilab.h"
 				>
 			</File>
 			<File

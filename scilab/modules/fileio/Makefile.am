@@ -17,7 +17,24 @@ src/c/bt-int.c \
 src/c/do_xxprintf.c \
 src/c/do_xxscanf.c \
 src/c/findfiles.c \
-src/c/Status2Mode.c
+src/c/Status2Mode.c \
+src/c/addfile.c \
+src/c/delfile.c \
+src/c/getfiledesc.c \
+src/c/getfileinfo.c \
+src/c/getfiletype.c \
+src/c/mclearerr.c \
+src/c/mclose.c \
+src/c/meof.c \
+src/c/merror.c \
+src/c/mget.c \
+src/c/mgetstr.c \
+src/c/mopen.c \
+src/c/mput.c \
+src/c/mputstr.c \
+src/c/mseek.c \
+src/c/mtell.c
+
 
 GATEWAY_SOURCES = \
 sci_gateway/c/sci_xls_read.c \

@@ -14,12 +14,13 @@
 
 #include "gw_io.h"
 #include "../../../fileio/includes/FileExist.h"
-#include "../../../fileio/src/c/files.h"
 #include "../../../core/src/c/scicurdir.h"
 #include "directories.h"
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "Scierror.h"
+#include "../../../fileio/includes/getfiledesc.h"
+#include "../../../fileio/includes/getfileinfo.h"
 /*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 	#define DIR_SEPARATOR "\\"

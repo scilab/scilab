@@ -1,0 +1,66 @@
+/*-----------------------------------------------------------------------------------*/
+/* Scilab */
+/* INRIA 2007 */
+/*-----------------------------------------------------------------------------------*/
+#include <string.h>
+#include <stdio.h>
+#include "mseek.h"
+#include "filesmanagement.h"
+#include "sciprint.h"
+/*-----------------------------------------------------------------------------------*/
+#if (defined(sun) && !defined(SYSV)) 
+char *strerror __PARAMS((int errcode));
+#endif
+/*-----------------------------------------------------------------------------------*/
+#if (defined(sun) && !defined(SYSV)) || defined(sgi)
+#define SEEK_SET 0
+#define SEEK_CUR 1
+#define SEEK_END 2
+#endif 
+/*-----------------------------------------------------------------------------------*/
+void C2F(mseek) (integer *fd, integer *offset, char *flag, integer *err)
+{     
+	int iflag;
+#if (defined(sun) && !defined(SYSV)) || defined(sgi)
+	int irep;
+#endif
+	FILE *fa= GetFileOpenedInScilab(*fd);
+	*err=0;
+	if ( fa == (FILE *) 0 ) 
+	{
+		sciprint("mseek: wrong file logical unit \r\n");
+		*err=1;
+		return;
+	}
+	if ( strncmp(flag,"set",3)==0 ) 
+		iflag = SEEK_SET;
+	else if ( strncmp(flag,"cur",3)==0 ) 
+		iflag = SEEK_CUR;
+	else if ( strncmp(flag,"end",3)==0 ) 
+		iflag = SEEK_END;
+	else 
+	{
+		sciprint("mseek : flag = %s not recognized \r\n");
+		*err=1;
+		return;
+	}
+#if (defined(sun) && !defined(SYSV)) || defined(sgi)
+	irep = fseek(fa,(long) *offset,iflag) ;
+	if ( irep != 0 ) 
+	{
+		sciprint(strerror(irep));
+		*err=1;
+	}
+	else
+		*err=0;
+#else
+	if (fseek(fa,(long) *offset,iflag) == -1 ) 
+	{
+		sciprint("mseek: error\r\n");
+		*err=1;
+	}
+	else 
+		*err=0;
+#endif
+}
+/*-----------------------------------------------------------------------------------*/
