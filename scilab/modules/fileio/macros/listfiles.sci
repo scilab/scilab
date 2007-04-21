@@ -28,9 +28,11 @@ function files= listfiles(paths,flag,flagexpand)
   for i=1:size(paths,'*') 
     [path,fname,extension]=fileparts(paths(i));
     
+    if path == '' then path='./',end;
     if extension == '' then extension='.*',end;
     if fname == '' then fname='*',end;
-    
+   
+
     filesi=findfiles(path,fname+extension);
     
     if filesi<>[] then 
