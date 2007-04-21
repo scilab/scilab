@@ -418,10 +418,10 @@ char *PLD_strreplace_general( struct PLD_strreplace *replace_details )
 
 	if (replace_details->source == NULL) return NULL;
 
-	source_length = strlen( replace_details->source );
+	source_length = (int)strlen( replace_details->source );
 	source_end = replace_details->source +source_length;
-	searchfor_length = strlen(replace_details->searchfor);
-	replacewith_length = strlen(replace_details->replacewith);
+	searchfor_length = (int)strlen(replace_details->searchfor);
+	replacewith_length = (int)strlen(replace_details->replacewith);
 	size_difference = replacewith_length -searchfor_length;
 	size_required = source_length;
 	replace_count = replace_details->replacenumber;

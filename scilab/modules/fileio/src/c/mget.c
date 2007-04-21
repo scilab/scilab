@@ -150,7 +150,7 @@ void C2F(mget) (integer *fd, double *res, integer *n, char *type, integer *ierr)
 {  
 	int nc,swap2;
 	FILE *fa;
-	nc=strlen(type);
+	nc=(int)strlen(type);
 	*ierr=0;
 	if ( nc == 0) 
 	{

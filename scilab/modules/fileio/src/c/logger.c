@@ -197,7 +197,7 @@ int LOGGER_clean_output( char *string, char **buffer )
 	char *next_space;
 
 	int pc;
-	int slen = strlen( string );
+	int slen = (int)strlen( string );
 	int line_size;
 	int maxsize = slen *2;
 

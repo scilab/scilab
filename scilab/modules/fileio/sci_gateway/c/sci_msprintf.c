@@ -80,7 +80,7 @@ int int_objsprintf(char *fname,unsigned long fname_len)
 					n++;
 				}
 				else { /* cat to previous line */
-					ll=strlen(strs[n-1]);
+					ll=(int)strlen(strs[n-1]);
 					if ((strs[n-1]=REALLOC(strs[n-1],(k+1+ll))) == NULL) goto mem;
 					strncpy(&(strs[n-1][ll]),str1, k);
 					strs[n-1][k+ll]='\0';
@@ -115,7 +115,7 @@ int int_objsprintf(char *fname,unsigned long fname_len)
 
 			}
 			else { /* cat to previous line */
-				ll=strlen(strs[n-1]);
+				ll=(int)strlen(strs[n-1]);
 				if ((strs[n-1]=REALLOC(strs[n-1],(k+1+ll))) == NULL) goto mem;
 				strncpy(&(strs[n-1][ll]),str1, k);
 				strs[n-1][k+ll]='\0';

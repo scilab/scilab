@@ -14,7 +14,7 @@ int NumTokens __PARAMS((char *string))
   char buf[128];
   int n=1;
   int lnchar=0,ntok=-1;
-  int length = strlen(string)+1;
+  int length = (int)strlen(string)+1;
 
   if (string != 0)
 	{ 
@@ -134,7 +134,7 @@ int Sci_Store __PARAMS((int nrow, int ncol, entry *data, sfdir *type, int retval
 	break;
       }
     if (multi) {
-      i=strlen(ltype);
+      i=(int)strlen(ltype);
       iarg=Rhs;
       CreateVarFromPtr(++iarg, "c", &one, &i, &ltype); /* the mlist type field */
       cur_type=type[0];

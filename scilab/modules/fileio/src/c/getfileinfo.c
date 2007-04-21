@@ -24,7 +24,7 @@ void C2F(getfileinfo)(integer *fd, FILE *fa, integer *swap2, integer *type, inte
 	*type = GetFileTypeOpenedInScilab(*fd);
 	*mode = GetFileModeOpenedInScilab(*fd);
 	strcpy(filename,GetFileNameOpenedInScilab(*fd));
-	*lf=strlen(filename);
+	*lf=(int)strlen(filename);
 	*ierr=0;
 }
 /*-----------------------------------------------------------------------------------*/

@@ -163,7 +163,7 @@ void C2F(mput) (integer *fd, double *res, integer *n, char *type, integer *ierr)
 	int nc,swap2;
 	FILE *fa;
 	*ierr=0;
-	if ((nc = strlen(type)) == 0) 
+	if ((nc = (int)strlen(type)) == 0) 
 	{
 		sciprint("mput : format is of length 0\r\n",type);
 		*ierr=2;

@@ -354,7 +354,7 @@ int OLE_get_block( struct OLE_object *ole, int block_index, unsigned char *block
 
       DOLE LOGGER_log("%s:%d:OLE_get_block:DEBUG: Read offset in file = 0x%x size to read= 0x%x",FL,offset,ole->header.sector_size);
 
-      fseek_result = fseek(ole->f, offset, SEEK_SET);
+      fseek_result = fseek(ole->f, (long)offset, SEEK_SET);
       if (fseek_result != 0)
 	{
 	  if (bb != NULL) { FREE(bb); bb = NULL; }
@@ -363,7 +363,7 @@ int OLE_get_block( struct OLE_object *ole, int block_index, unsigned char *block
 	}
 
       /*read_count = fread(block_buffer, sizeof(unsigned char), ole->header.sector_size, ole->f);*/
-      read_count = fread(bb, sizeof(unsigned char), ole->header.sector_size, ole->f);
+      read_count = (int)fread(bb, sizeof(unsigned char), ole->header.sector_size, ole->f);
       DOLE LOGGER_log("%s:%d:OLE_get_block:DEBUG: Read %d byte of data",FL,read_count);
       if (read_count != (int)ole->header.sector_size)
 	{
@@ -636,7 +636,7 @@ int OLE_convert_header( struct OLE_object *ole )
    ** and dividing it by the size of our sector size.  While this isn't 
    ** absolutely accurate it is at least useful in providing us with an 
    ** upper-bound of what is an acceptable sector ID **/
-  ole->last_sector = ole->file_size  >> h->sector_shift;
+  ole->last_sector = (int)(ole->file_size  >> h->sector_shift);
 
   /** Decode our first 109 sector-ID's into the master sector allocation table (MSAT/FAT) **/
   fat_start = header_fat_sectors(hb);
@@ -676,7 +676,7 @@ int OLE_header_sanity_check( struct OLE_object *ole )
 
   h = &(ole->header);
 
-  max_sectors = ole->file_size / h->sector_size;
+  max_sectors = (int)(ole->file_size / h->sector_size);
 
   if (h->sector_shift > 20) insanity++;
   if (h->mini_sector_shift > 10) insanity++;

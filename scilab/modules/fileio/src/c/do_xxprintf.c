@@ -500,7 +500,7 @@ static int  GetString(char *fname, int *prev, int *arg, int narg, int *ic, int i
 	}
 	lw = *arg + Top - Rhs;
 
-	if (! C2F(getwsmat)(fname,&Top,&lw,&mx,&nx,&il,&ild, strlen(fname))) return RET_BUG;
+	if (! C2F(getwsmat)(fname,&Top,&lw,&mx,&nx,&il,&ild,(unsigned long)strlen(fname))) return RET_BUG;
 	else 
 	{
 		if ( *ic>nx ) 
@@ -509,7 +509,7 @@ static int  GetString(char *fname, int *prev, int *arg, int narg, int *ic, int i
 			if (*arg>narg ) return NOT_ENOUGH_ARGS;
 			*ic=1;
 			lw = *arg + Top - Rhs;
-			if (! C2F(getwsmat)(fname,&Top,&lw,&mx,&nx,&il,&ild, strlen(fname))) return RET_BUG;
+			if (! C2F(getwsmat)(fname,&Top,&lw,&mx,&nx,&il,&ild,(unsigned long) strlen(fname))) return RET_BUG;
 		}
 	}
 	if (ir>mx) return RET_END;

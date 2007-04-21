@@ -1,0 +1,51 @@
+LIBRARY    LibScilab.dll
+
+
+EXPORTS
+ gettype_
+ vstk_
+ iop_
+ GetData
+ sciprint
+ putlhsvar_
+ createvar_
+ stack_
+ com_
+ getrhsvar_
+ checklhs_
+ checkrhs_
+ intersci_
+ createvarfromptr_
+ ExceptionMessage
+ SetFileTypeOpenedInScilab
+ SetSwapStatus
+ SetFileOpenedInScilab
+ SetFileNameOpenedInScilab
+ FreeFileNameOpenedInScilab
+ GetMaximumFileOpenedInScilab
+ GetFileOpenedInScilab
+ Scierror
+ sciprint2
+ getwsmat_
+ mkmlistfromvars_
+ cvstr_
+ GetFileModeOpenedInScilab
+ GetSwapStatus
+ getTMPDIR
+ cluni0_
+ GetCurrentFileId
+ islittleendian
+ SetCurrentFileId
+ error_
+ scigetcwd_
+ ExtendScilabFilesList
+ getmatdims_
+ overload_
+ vartype_
+ zzledt_
+ xscion_
+ returnanan_
+ SetFileModeOpenedInScilab
+ GetFileTypeOpenedInScilab
+ GetFileNameOpenedInScilab
+ 
