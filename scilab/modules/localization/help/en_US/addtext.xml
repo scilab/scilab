@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>addtext</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>$LastChangedDate: 2007-04-22 18:33:00 +0200 (dim., 22 avr. 2007)$</DATE>
+
+  <SHORT_DESCRIPTION name="addtext">to add entrie(s) (tag,string) in a
+  domain.</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>addtext(domain,tag,string)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>addtext(domain,[tag1,tag2,...],[string1,string2,...])</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>domain</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: with domain='messages' 'errors', or 'menus'</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>tag</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: with tag = a string id. example 'my_tag_1'</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>string</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: with string= a string associated to tag.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P><VERB>addtext</VERB> : add entrie(s) (tag,string) in a domain.</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+
+addtext('messages','my_tag_3','viva el scilab')
+addtext('messages',['my_tag_1','my_tag_2'],['my message in scilab','hello scilab'])
+gettext('messages','my_tag_2')
+gettext('messages','my_tag_1')
+ 
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>gettext</LINK>
+
+      <LINK>,removetext</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>A.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

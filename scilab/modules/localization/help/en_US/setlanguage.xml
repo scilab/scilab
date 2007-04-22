@@ -31,6 +31,19 @@
   <DESCRIPTION>
     <P><VERB>setlanguage(language)</VERB> changes current language in scilab.</P>
   </DESCRIPTION>
+  
+    <EXAMPLE>
+<![CDATA[
+setlanguage('en_US')
+getlanguage()
+setlanguage('en')
+getlanguage()
+setlanguage('fr')
+getlanguage()
+setlanguage('fr_FR')
+getlanguage()
+ ]]>
+  </EXAMPLE>
 
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
