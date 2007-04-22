@@ -30,7 +30,8 @@ I - TO RUN SCILAB (BINARY VERSION)
         http://msdn.microsoft.com/vstudio/express/visualc/usingpsdk/
  
     5 - If you want use LCC-Win32 (C compiler) with Scilab 5.0
-        See Readme_LCC.txt in lcc directory.
+        See :
+        http://wiki.scilab.org/Using_LCC-Win32_compiler_on_Windows_for_incremental_link_with_Scilab_5.x/
         You can download at http://www.cs.virginia.edu/~lcc-win32/
     
     6 - If you have any problems or suggestions concerning Scilab,
