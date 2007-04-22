@@ -38,7 +38,7 @@
     <VERB>dir</VERB> commands in order to get information on files. 
     Thus in order to write portable Scilab script valid wildcard patterns 
     for both os are to be given. Note that Pathname conversion is
-    performed and for example <VERB>SCI/macros/util/*.sci</VERB> is a valid 
+    performed and for example <VERB>SCI/core/macros/*.sci</VERB> is a valid 
     pattern for both unix and windows.</P>
     <P>
     if <VERB>flag</VERB> is true the pathnames given by <VERB>paths</VERB> are 
@@ -49,10 +49,13 @@
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
-files=listfiles(['SCI/macros/util/*.sci';'SCI/macros/util/*.bin']);
+files=listfiles(['SCI/modules/core/macros/*.sci';'SCI/modules/core/macros/*.bin']);
  ]]>
   </EXAMPLE>
   <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>findfiles</LINK>
+    </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>basename</LINK>
     </SEE_ALSO_ITEM>

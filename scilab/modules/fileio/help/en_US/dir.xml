@@ -36,7 +36,7 @@
       <VERB>dir</VERB> commands in order to get information on files. 
       Thus in order to write portable Scilab script valid wildcard patterns 
       for both os are to be given. Note that Pathname conversion is
-      performed and for example <VERB>SCI/macros/util/*.sci</VERB> is a valid 
+      performed and for example <VERB>SCI/modules/core/macros/*.sci</VERB> is a valid 
       pattern for both unix and windows.
     </P>
     <P>
@@ -69,6 +69,9 @@ mprintf("%s: %04d-%02d-%02d %02d:%02d:%02d\n",x.name,dt(:,[1 2 3 7:9]))
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>listfiles</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>findfiles</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>ls</LINK>
