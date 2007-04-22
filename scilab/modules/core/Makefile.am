@@ -201,7 +201,6 @@ GATEWAY_C_SOURCES = sci_gateway/c/sci_savehistory.c \
 sci_gateway/c/sci_stacksize.c \
 sci_gateway/c/sci_resume.c \
 sci_gateway/c/sci_mtlb_mode.c \
-sci_gateway/c/intgetmd5.c \
 sci_gateway/c/sci_banner.c \
 sci_gateway/c/sci_where.c \
 sci_gateway/c/sci_lines.c \
@@ -216,7 +215,6 @@ sci_gateway/c/sci_fromc.c \
 sci_gateway/c/sci_havewindow.c \
 sci_gateway/c/sci_delbpt.c \
 sci_gateway/c/sci_loadhistory.c \
-sci_gateway/c/intgetmemory.c \
 sci_gateway/c/sci_macr2lst.c \
 sci_gateway/c/sci_isdef.c \
 sci_gateway/c/sci_addinter.c \
@@ -265,7 +263,8 @@ sci_gateway/c/gw_user2.c \
 sci_gateway/c/sci_error.c \
 sci_gateway/c/sci_sciargs.c \
 sci_gateway/c/sci_with_module.c \
-sci_gateway/c/sci_getdynlibext.c
+sci_gateway/c/sci_getdynlibext.c \
+sci_gateway/c/sci_islittleendian.c
 
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_errclear.f \
@@ -366,7 +365,6 @@ includes/CallScilab.h \
 includes/sciprint.h \
 includes/link.h \
 includes/intmacr2tree.h \
-includes/intgetmd5.h \
 includes/core_math.h \
 includes/stack-def.h \
 includes/xscion.h \
@@ -377,7 +375,6 @@ includes/callinter.h \
 includes/InitScilab.h \
 includes/sciquit.h \
 includes/msg_errors.h \
-includes/intgetmemory.h \
 includes/gw_core.h \
 includes/stack-c.h \
 includes/version.h \

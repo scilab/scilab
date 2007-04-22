@@ -326,14 +326,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\intgetmd5.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\intgetmemory.c"
-				>
-			</File>
-			<File
 				RelativePath=".\intmacr2tree.c"
 				>
 			</File>
@@ -567,6 +559,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_isglobal.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_islittleendian.c"
 				>
 			</File>
 			<File
@@ -919,19 +915,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\InitScilab.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\includes\InitScilab.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\intgetmd5.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\intgetmemory.h"
+				RelativePath=".\InitScilab.h"
 				>
 			</File>
 			<File

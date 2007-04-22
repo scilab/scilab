@@ -83,7 +83,8 @@ static CoreTable Tab[]=
 {C2F(sci_warning),"warning"},
 {C2F(sci_getmodules),"getmodules"},
 {C2F(sci_with_module),"with_module"},
-{C2F(sci_getdynlibext),"getdynlibext"}
+{C2F(sci_getdynlibext),"getdynlibext"},
+{C2F(sci_islittleendian),"islittleendian"}
 };
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_core)()
