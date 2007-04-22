@@ -2,23 +2,23 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
+#include <stdio.h>
 #include <string.h>
 #include "machine.h"
 #include "stack-def.h"
 #include "basout.h"
 #include "../../fileio/src/c/diary.h"
+#include "sciprint.h"
 /*-----------------------------------------------------------------------------------*/ 
 extern int C2F(xscimore)();
-extern int C2F(writewtemore)();
 extern int C2F(writelunitstring)();
 extern int C2F(xscion)();
 extern int C2F(xscistring)();
-extern int C2F(readrtechar)();
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(basout)(integer *io,integer *lunit,char *string,long int notused)
 {
 	static integer iflag;
-	static char ch[1];
+
 	static integer ich;
 
 	if (*lunit == C2F(iop).wte)
@@ -36,20 +36,18 @@ int C2F(basout)(integer *io,integer *lunit,char *string,long int notused)
 				C2F(iop).lct[0] = 0;
 				if (iflag == 0) 
 				{
+					int ch;
 					/* scilab n'a pas de  fenetre propre */
-					C2F(writewtemore)();
-					*(unsigned char *)ch = ' ';
-					C2F(readrtechar)(ch, 1L);
-					if (*(unsigned char *)ch != ' ') 
-					{
-						ich = 1;
-					}
+					sciprint(" more ? ");
+					ch = getchar();
+					if ( (ch != ' ') && (ch != '\n') && (ch != 'y') ) ich = 1;
 				}
 				else
 				{
 					/* scilab a une  fenetre  en propre */
 					C2F(xscimore)(&ich);
 				}
+
 				if (ich == 1) 
 				{
 					C2F(iop).lct[0] = -1;
