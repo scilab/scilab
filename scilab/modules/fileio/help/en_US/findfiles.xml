@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>findfiles</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>$LastChangedDate: 2006-09-10 20:58:00 +0200 (dim., 10 sept. 2006)$</DATE>
+
+  <SHORT_DESCRIPTION name="findfiles">Finding all files with a given
+  filespec</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>f = findfiles()</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>f=findfiles(path)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>f=findfiles(path,filespec)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>path</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: a path </SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>filespec</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: a spec file. example "*.sce" </SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>f</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: returns a string matrix of filenames</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>Finding all files with a given filespec </P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+
+   f=findfiles()
+   f=findfiles(SCI)
+   f=findfiles(SCI+'/modules/core/macros','*.sci') 
+  
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>listfiles</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>A.C</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>
