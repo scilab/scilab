@@ -25,12 +25,7 @@ end
 clear nparam params ierr old newstacksize defaultstacksize
 // Special variables definition =======================================
 ieee(2);%inf=1/0;ieee(0);%nan=%inf-%inf;
-
-%s=poly(0,'s');%z=poly(0,'z');
-$=poly(0,'$')
-
 %T=%t;%F=%f;       // boolean variables
-
 // Startup message  ===================================================
 verbose=sciargs()<>"-nb"
 if verbose then
@@ -39,7 +34,6 @@ if verbose then
     write(%io(2),[' ';' ';'Startup execution:'])
   end
 end
-
 // Load scilab functions libraries  ===================================
 if verbose then
   if ~fromjava() & ~fromc() then
