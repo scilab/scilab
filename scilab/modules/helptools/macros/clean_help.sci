@@ -9,6 +9,8 @@ function clean_help(dirs)
 	// dirs is a set of directories for which html manuals are to be deleted
 	// =========================================================================================
 	
+	lines(0);
+	
 	global %helps
 	global %helps_modules
   %HELPS=[%helps_modules;%helps];
@@ -47,20 +49,28 @@ function clean_help(dirs)
 	
 	// On transforme le ou les chemins donnés en chemin absolu
 	// -----------------------------------------------------------------------------------------
-	
+
 	for k=1:size(dirs,'*')
-		chdir(dirs(k));
-		if MSDOS then
-			dirs(k) = getlongpathname(pwd());
-		else
-			dirs(k) = pwd();
+	  try
+	    if typeof(dirs(k)) <> 'string' then
+	      // Probleme ? ? ?
+	    else
+		    chdir(dirs(k));
+		    if MSDOS then
+			    dirs(k) = getlongpathname(pwd());
+		    else
+			    dirs(k) = pwd();
+		    end
+		    chdir(current_directory);
+		  end
+		catch
+		  // Probleme ? ? ?
 		end
-		chdir(current_directory);
 	end
-	
+
 	// Nettoyage des répertoires un par un
 	// -----------------------------------------------------------------------------------------
-	
+
 	mprintf("deleting files ");
 	
 	for k=1:size(dirs,'*')
