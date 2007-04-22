@@ -60,7 +60,7 @@ gettext('messages','my_tag_1')
     <SEE_ALSO_ITEM>
       <LINK>addtext</LINK>
 
-      <LINK>re, movetext</LINK>
+      <LINK>removetext</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 

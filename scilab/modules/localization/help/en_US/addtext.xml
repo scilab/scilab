@@ -67,7 +67,7 @@ gettext('messages','my_tag_1')
     <SEE_ALSO_ITEM>
       <LINK>gettext</LINK>
 
-      <LINK>,removetext</LINK>
+      <LINK>removetext</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 
