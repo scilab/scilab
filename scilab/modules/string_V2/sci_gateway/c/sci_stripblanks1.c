@@ -24,7 +24,7 @@ static char* substr(const char*str, unsigned start, unsigned end)
 
 	unsigned n = end - start;
 
-	static char stbuf[256];
+	char *stbuf;
 
 	strncpy(stbuf, str + start, n);
 
