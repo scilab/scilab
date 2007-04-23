@@ -9,15 +9,14 @@
 
 /**
 * islittleendian 
-* @param void  
-* @return 0 or 1
+* @return if it is a little endian (0 or 1)
 */
 int islittleendian(void);
 
 /**
 * C2F(getendian)
 * @param void  
-* @return 0 or 1
+* @return the endian (0 or 1)
 */
 int C2F(getendian)(void);
 
