@@ -8,8 +8,11 @@
 #include "machine.h"
 
 /**
-* check eof 
-*/
+ * check eof 
+ *
+ * @param fd    
+ * @param res   
+ */
 void C2F(meof) (integer *fd, double *res);
 
 #endif /* __MEOF_H__ */
