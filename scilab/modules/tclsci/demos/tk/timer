@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/wish
 # the next line restarts using wish \
 #exec wish8.0 "$0" "$@"
 
