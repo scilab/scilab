@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>getdrives</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>$LastChangedDate: 2006-09-10 20:58:00 +0200 (dim., 10 sept. 2006)$</DATE>
+
+  <SHORT_DESCRIPTION name="getdrives">Get the drive letters of all mounted filesystems on the computer.</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>drives = getdrives()</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>drives</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: a matrix of strings</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>Get the drive letters of all mounted filesystems on the computer.</P>
+    <P>returns the roots of all mounted filesystems on the computer as a matrix of strings.</P>
+    <P>For Linux this list consists solely of the  root directory, / .</P>
+    
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+   getdrives()
+  ]]></EXAMPLE>
+
+
+  <AUTHORS>
+    <AUTHORS_ITEM>A.C</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

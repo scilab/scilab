@@ -2,7 +2,7 @@
 /* INRIA 2006 */
 /* Allan CORNET*/
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef __INTFILEIO__
+#ifndef __GW_FILEIO_H__
 #define __INTFILEIO__
 /*-----------------------------------------------------------------------------------*/ 
 #include "machine.h"
@@ -36,6 +36,7 @@ int C2F(sci_xls_read) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_xls_open) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_findfiles) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_maxfiles) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_getdrives) _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/ 
-#endif /*  __INTFILEIO__ */
+#endif /* __GW_FILEIO_H__ */
 /*-----------------------------------------------------------------------------------*/
