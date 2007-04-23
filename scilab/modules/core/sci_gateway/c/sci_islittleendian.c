@@ -9,7 +9,7 @@
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_islittleendian) _PARAMS((char *fname,unsigned long fname_len))
 {
-	static int l1,n1,m1;
+	static int n1,m1;
 	int *Status=NULL;
 
 	CheckRhs(0,1);

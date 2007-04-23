@@ -12,8 +12,6 @@
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_getcwd) _PARAMS((char *fname,unsigned long fname_len))
 {
-	
-	char *Output=NULL;
 	int ierr=0;
 	int lpath=0;
 	char *path=NULL;
