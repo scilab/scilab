@@ -290,7 +290,10 @@ proc sciGUIBrowseHelp { {winId -1} update filelist {toFind ""} } {
                         %W yview scroll [expr {-(%D/120)}] units \
                     }
                 }
-
+                # Bindings added by Vincent COUVERT (23/04/07) to quit sciGUI
+                # using keyboard when no Window decoration (for example)
+                bind $w <Control-q> "sciGUIBrowseHelpQuit $winId2"
+                bind $w <Control-Q> "sciGUIBrowseHelpQuit $winId2"
                 pack $w.l -side left -padx 5 -fill both -expand 0
                 pack $w.r -side left -padx 5 -fill both -expand 1
                 set sciGUITable(browsehelp,filelist) $filelist
