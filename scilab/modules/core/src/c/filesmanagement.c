@@ -3,6 +3,7 @@
 /* Allan CORNET */
 /* INRIA 2007 */
 /*-----------------------------------------------------------------------------------*/
+#include <string.h>
 #include "machine.h"
 #include "filesmanagement.h"
 #include "core_math.h" /* Min Max */
