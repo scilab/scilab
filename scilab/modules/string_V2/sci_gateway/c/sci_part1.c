@@ -41,7 +41,8 @@ int C2F(sci_part1) _PARAMS((char *fname,unsigned long fname_len))
 	for (x=0;x<n1;x++){
         mn3=0;
 		for (y=0;y<n2;y++)
-			 if (m[y]-1<=strlen(Str[x])) Str3[x][mn3++]=Str[x][m[y]-1]		;
+			 if (m[y]<=strlen(Str[x])) Str3[x][mn3++]=Str[x][m[y]-1]		;
+			 else Str3[x][mn3++]=' ';
 	}
 	numRow   = m1 ;                          /*Output  */
     numCol   = n1 ;
