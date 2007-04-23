@@ -17,7 +17,6 @@
 int *next;
 void getnext(char T[],int *next);
 int kmp(char S[],char T[],int pos);
-
 /**
  * The KMP method to search in a string.
  * @S[] is  the input of the main string.
@@ -56,7 +55,8 @@ int kmp(char S[],char T[],int pos){
  */
 void getnext(char T[], int *next1){  /*To get the next value of the substring*/
         int i,j,lenT;
-        i=0;
+       
+		i=0;
 		j=-1;
         lenT=strlen(T);
         *(next1)=-1;         
@@ -82,9 +82,6 @@ int C2F(sci_grep1) _PARAMS((char *fname,unsigned long fname_len))
 	char **Str,**Str2;
 	int y,x,m1,n1,mn,mn2,i,m2,n2,m3,n3,l3=0;
 	unsigned x1;
-	
-	
-    
     int outIndex = 0 ;
     char ebuf[128];
 	const size_t nmatch = 10;
@@ -102,6 +99,7 @@ int C2F(sci_grep1) _PARAMS((char *fname,unsigned long fname_len))
 	Rhs = Max(0, Rhs);
 	CheckRhs(1,3);
 	CheckLhs(1,2);
+	next=(int*)MALLOC(sizeof(int));
 	switch ( VarType(1)) {
 		case 10 :
 			GetRhsVar(1,"S",&m1,&n1,&Str);
@@ -121,7 +119,6 @@ int C2F(sci_grep1) _PARAMS((char *fname,unsigned long fname_len))
 							regerror(z, *out1, ebuf, sizeof(ebuf));
 							Scierror(999, "%s: pattern '%s' \n", ebuf, pattern);
 							return 1;
-
 						}
 					}
 					for (y=0;y<mn;++y){
@@ -139,11 +136,8 @@ int C2F(sci_grep1) _PARAMS((char *fname,unsigned long fname_len))
 							for (x1 = 0; x1 < nmatch && pm[x1].rm_so != -1; ++ x1) {
 								values[nbValues++]=y+1;
 								position[nbposition++]=x+1;
-		
 							}     
-
 						}
-
 					}
 				}/* end of typ=='r'*/
 			}/* end of Rhs>=3*/
@@ -163,9 +157,6 @@ int C2F(sci_grep1) _PARAMS((char *fname,unsigned long fname_len))
 					}
 				}
 			} 
-     		
-			
-			
 			numRow   = 1        ;
 			outIndex = 0        ;
 			CreateVar(Rhs+1,"d",&numRow,&nbValues,&outIndex) ;
@@ -180,15 +171,9 @@ int C2F(sci_grep1) _PARAMS((char *fname,unsigned long fname_len))
 				stk(outIndex)[i] = (double)position[i] ;
 			}
 			LhsVar(2) = Rhs+2;	
-		
-
-
-
-    
-   
-  
-  }
-  
+			FREE(out1);
+			FREE(next);
+	}
   C2F(putlhsvar)();
 	return 0;
 }
