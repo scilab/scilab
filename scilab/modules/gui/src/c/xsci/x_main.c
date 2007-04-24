@@ -120,19 +120,19 @@ int IsNoInteractiveWindow(void);
 void sci_sig_tstp(int n);
 int IsConsoleMode(void);
 void InitXsession(void);
-void C2F(mainscic)(void);
+void mainscic(int argc, char **argv);
 
 /*----------------------------------------------------------------------------------*/
-void C2F(mainscic)()
+void mainscic(int argc, char **argv)
 {
-  int argc,i;
+  int i;
   int  no_startup_flag=0;
   int  memory = MIN_STACKSIZE;
 	
   char * initial_script = NULL;
   int  initial_script_type = 0; /* 0 means filename 1 means code */
  
-  char **argv, *display = NULL;
+  char  *display = NULL;
   
   #if (defined __GNUC__  )
 		putenv ("COMPILER=gcc");
@@ -144,8 +144,8 @@ void C2F(mainscic)()
 /* floating point exceptions */
 fpsetmask(0);
 #endif
-  /* create argv */
-  if (( argv = create_argv(&argc))== NULL)  exit(1);
+
+
   ProgramName = argv[0];
   
   setScilabMode(SCILAB_STD);

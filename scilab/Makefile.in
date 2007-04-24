@@ -73,7 +73,7 @@ am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(bindir)" \
 	"$(DESTDIR)$(pkgconfigdir)" "$(DESTDIR)$(sysconfdir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
-am_scilab_bin_OBJECTS = mainsci.$(OBJEXT)
+am_scilab_bin_OBJECTS = main_linux.$(OBJEXT)
 scilab_bin_OBJECTS = $(am_scilab_bin_OBJECTS)
 am__DEPENDENCIES_1 =
 scilab_bin_DEPENDENCIES = $(top_builddir)/modules/libscilab.la \
@@ -81,12 +81,16 @@ scilab_bin_DEPENDENCIES = $(top_builddir)/modules/libscilab.la \
 binSCRIPT_INSTALL = $(INSTALL_SCRIPT)
 SCRIPTS = $(bin_SCRIPTS)
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
-F77COMPILE = $(F77) $(AM_FFLAGS) $(FFLAGS)
-LTF77COMPILE = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
-	--mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS)
-F77LD = $(F77)
-F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
-	--mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) $(AM_LDFLAGS) \
+depcomp = $(SHELL) $(top_srcdir)/config/depcomp
+am__depfiles_maybe = depfiles
+COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
+	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
+LTCOMPILE = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
+	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
+CCLD = $(CC)
+LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(scilab_bin_SOURCES)
 DIST_SOURCES = $(scilab_bin_SOURCES)
@@ -280,7 +284,7 @@ SUBDIRS = libs \
 ACLOCAL_AMFLAGS = -I m4/
 changelogs = CHANGES
 bin_SCRIPTS = bin/scilab
-scilab_bin_SOURCES = $(top_srcdir)/modules/core/src/fortran/mainsci.f
+scilab_bin_SOURCES = $(top_srcdir)/modules/core/src/c/main_linux.c
 scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
 	$(X_EXTRA_LIBS) -lXt -lX11 -lSM
 
@@ -298,7 +302,7 @@ pkgconfig_DATA = scilab.pc
 all: all-recursive
 
 .SUFFIXES:
-.SUFFIXES: .f .lo .o .obj
+.SUFFIXES: .c .lo .o .obj
 am--refresh:
 	@:
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
@@ -385,7 +389,7 @@ clean-binPROGRAMS:
 	done
 scilab-bin$(EXEEXT): $(scilab_bin_OBJECTS) $(scilab_bin_DEPENDENCIES) 
 	@rm -f scilab-bin$(EXEEXT)
-	$(F77LINK) $(scilab_bin_OBJECTS) $(scilab_bin_LDADD) $(LIBS)
+	$(LINK) $(scilab_bin_OBJECTS) $(scilab_bin_LDADD) $(LIBS)
 install-binSCRIPTS: $(bin_SCRIPTS)
 	@$(NORMAL_INSTALL)
 	test -z "$(bindir)" || $(MKDIR_P) "$(DESTDIR)$(bindir)"
@@ -412,20 +416,42 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-.f.o:
-	$(F77COMPILE) -c -o $@ $<
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main_linux.Po@am__quote@
 
-.f.obj:
-	$(F77COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
+.c.o:
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(COMPILE) -c $<
 
-.f.lo:
-	$(LTF77COMPILE) -c -o $@ $<
+.c.obj:
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(COMPILE) -c `$(CYGPATH_W) '$<'`
 
-mainsci.o: $(top_srcdir)/modules/core/src/fortran/mainsci.f
-	$(F77) $(AM_FFLAGS) $(FFLAGS) -c -o mainsci.o `test -f '$(top_srcdir)/modules/core/src/fortran/mainsci.f' || echo '$(srcdir)/'`$(top_srcdir)/modules/core/src/fortran/mainsci.f
+.c.lo:
+@am__fastdepCC_TRUE@	$(LTCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
-mainsci.obj: $(top_srcdir)/modules/core/src/fortran/mainsci.f
-	$(F77) $(AM_FFLAGS) $(FFLAGS) -c -o mainsci.obj `if test -f '$(top_srcdir)/modules/core/src/fortran/mainsci.f'; then $(CYGPATH_W) '$(top_srcdir)/modules/core/src/fortran/mainsci.f'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/core/src/fortran/mainsci.f'; fi`
+main_linux.o: $(top_srcdir)/modules/core/src/c/main_linux.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT main_linux.o -MD -MP -MF $(DEPDIR)/main_linux.Tpo -c -o main_linux.o `test -f '$(top_srcdir)/modules/core/src/c/main_linux.c' || echo '$(srcdir)/'`$(top_srcdir)/modules/core/src/c/main_linux.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/main_linux.Tpo $(DEPDIR)/main_linux.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$(top_srcdir)/modules/core/src/c/main_linux.c' object='main_linux.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o main_linux.o `test -f '$(top_srcdir)/modules/core/src/c/main_linux.c' || echo '$(srcdir)/'`$(top_srcdir)/modules/core/src/c/main_linux.c
+
+main_linux.obj: $(top_srcdir)/modules/core/src/c/main_linux.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT main_linux.obj -MD -MP -MF $(DEPDIR)/main_linux.Tpo -c -o main_linux.obj `if test -f '$(top_srcdir)/modules/core/src/c/main_linux.c'; then $(CYGPATH_W) '$(top_srcdir)/modules/core/src/c/main_linux.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/core/src/c/main_linux.c'; fi`
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/main_linux.Tpo $(DEPDIR)/main_linux.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$(top_srcdir)/modules/core/src/c/main_linux.c' object='main_linux.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o main_linux.obj `if test -f '$(top_srcdir)/modules/core/src/c/main_linux.c'; then $(CYGPATH_W) '$(top_srcdir)/modules/core/src/c/main_linux.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/core/src/c/main_linux.c'; fi`
 
 mostlyclean-libtool:
 	-rm -f *.lo
@@ -784,6 +810,7 @@ clean-am: clean-binPROGRAMS clean-generic clean-libtool clean-local \
 
 distclean: distclean-recursive
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
+	-rm -rf ./$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-hdr distclean-libtool distclean-local distclean-tags
@@ -820,6 +847,7 @@ installcheck-am:
 maintainer-clean: maintainer-clean-recursive
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
 	-rm -rf $(top_srcdir)/autom4te.cache
+	-rm -rf ./$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
