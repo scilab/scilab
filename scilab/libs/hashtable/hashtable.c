@@ -191,11 +191,20 @@ hashtable_insert(struct hashtable *h, void *k, void *v)
 }
 
 /*****************************************************************************/
-void * /* returns value associated with key */
-hashtable_search(struct hashtable *h, void *k)
+
+
+/** 
+ * Returns value associated with key
+ */
+void * hashtable_search(struct hashtable *h, void *k)
 {
     struct entry *e;
     unsigned int hashvalue, index_;
+	if (h==NULL){
+		/* Check that the hashtable does exist. */
+		printf("Internal error: cannot search into an NULL hashtable !\n");
+		exit(-1);
+	}
     hashvalue = hash(h,k);
     index_ = indexFor(h->tablelength,hashvalue);
     e = h->table[index_];
