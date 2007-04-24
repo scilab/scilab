@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h> /* getenv ! */
+#include "../../fileio/includes/FileExist.h"
 #include "machine.h" 
 #include "Os_specific.h"
 #include "core_math.h" 
@@ -21,7 +22,6 @@
 static BOOL WITH_GUI=TRUE;
 /*************************************************************************************************/
 extern int C2F(withtk)(int *rep);
-extern BOOL FileExist(char *filename);
 /*************************************************************************************************/
 int C2F(withpvm)(int *rep)
 { 
