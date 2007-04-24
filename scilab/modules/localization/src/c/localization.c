@@ -131,6 +131,10 @@ char *QueryStringMenu(char *Tag)
 static char *QueryString(struct hashtable *Table,char *Tag)
 {
 	char *RetString=NULL;
+	if (Table==NULL){
+		printf("Internal error: localisation table empty (looking for %s)!\nAre you sure that the localisation files have been loaded ?\n",Tag);
+		exit(-1);
+	}
 	RetString=SearchHashtable_string(Table,Tag);
 	return RetString;
 }
