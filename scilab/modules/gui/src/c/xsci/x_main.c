@@ -159,23 +159,23 @@ fpsetmask(0);
       } 
       else if ( strcmp(argv[i],"-nwni") == 0) 
       { 
-      	setScilabMode(SCILAB_NW);
+      	setScilabMode(SCILAB_NWNI);
       } 
       else if ( strcmp(argv[i],"-display") == 0) 
-			{ 
-	  		char dpy[128];
-	  		sprintf(dpy,"DISPLAY=%s",display);
-	  		putenv(dpy);
-			} 
+      { 
+	char dpy[128];
+	sprintf(dpy,"DISPLAY=%s",display);
+	putenv(dpy);
+      } 
       else if ( strcmp(argv[i],"-nb") == 0)  { sci_show_banner = 0; }
       else if ( strcmp(argv[i],"-ns") == 0)  { no_startup_flag = 1;}
       else if ( strcmp(argv[i],"-mem") == 0) { i++;memory = Max(atoi(argv[i]),MIN_STACKSIZE );} 
       else if ( strcmp(argv[i],"-f") == 0)   { initial_script = argv[++i];} 
       else if ( strcmp(argv[i],"-e") == 0) 
-	    {
-	  		initial_script = argv[++i];
-	  		initial_script_type = 1;
-			} 
+      {
+	initial_script = argv[++i];
+	initial_script_type = 1;
+      } 
       else if ( strcmp(argv[i],"--texmacs") == 0)  
       {
       	setScilabMode(SCILAB_NWNI);
