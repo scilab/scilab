@@ -24,7 +24,6 @@ int numCol;
 int C2F(sci_strsplit1) _PARAMS((char *fname,unsigned long fname_len))
 {
   char **Str,**Str3;
-  char typ = '*';
   int *m4;
   int x,y,m1,n1,mn,i,n4,l4,u,v,w=0;
   Rhs = Max(0, Rhs);
@@ -38,9 +37,8 @@ int C2F(sci_strsplit1) _PARAMS((char *fname,unsigned long fname_len))
 	u=0;
 	v=0;
 	w=0;
-
 	Str3=(char**)MALLOC(sizeof(char*)*(m1*n1));
-	for (i=0;i<10*10;i++)
+	for (i=0;i<20*20;i++)
 	{
 		Str3[i]=(char*)MALLOC(sizeof(char*)*(1));
 		strcpy(Str3[i],"");
@@ -52,7 +50,6 @@ int C2F(sci_strsplit1) _PARAMS((char *fname,unsigned long fname_len))
 			v++;
 			w=0;
 		}
-		
         Str3[u][w]=0;
 	}
 	numRow   = u;  /*Output */
