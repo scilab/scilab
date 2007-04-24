@@ -4,8 +4,7 @@ package javasci;
  * Defines the basic method that very ScilabXXXXArray should implement
  * @author Sylvestre LEDRU - INRIA 2007
  */
-public abstract class SciAbstractArray implements java.io.Serializable 
-{
+public abstract class SciAbstractArray implements java.io.Serializable {
 
 	/** m number of rows */
 	protected int m;
@@ -22,13 +21,15 @@ public abstract class SciAbstractArray implements java.io.Serializable
 	protected static native void Initialize();
 
 	/**
-	 * Internal method to know dim (Row) in scilab 
+	 * Internal method to know dim (Row) in scilab
+	 * @param name name of the variable in the Scilab instance
 	 * @return The result of the operation (>= 0 OK, -1 if the name does not exist)
 	 */
 	protected native int getNumberOfRowsFromScilab(String name);
 
 	/**
-	 * internal method to know dim (Col) in scilab
+	 * Internal method to know dim (Col) in scilab
+	 * @param name name of the variable in the Scilab instance
 	 * @return The result of the operation (>= 0 OK, -1 if the name does not exist)
 	 */  
 	protected native int getNumberOfColsFromScilab(String name);
@@ -37,8 +38,8 @@ public abstract class SciAbstractArray implements java.io.Serializable
 	 * Execute a command in Scilab 
 	 * Deprecated. Use Scilab.Exec instead.
 	 * @param job the Scilab job 
-	 * @return 
-	 @deprecated
+	 * @return the result of the operation
+	 * @deprecated
 	 */
 	public native boolean Job(String job);
 
@@ -58,8 +59,7 @@ public abstract class SciAbstractArray implements java.io.Serializable
 	 * @see #getNumberOfRows()
 	 * @return the number of rows
 	 */
-	public int getRow() 
-	{
+	public int getRow() {
 		return this.getNumberOfRows();
 	}
 
@@ -68,8 +68,7 @@ public abstract class SciAbstractArray implements java.io.Serializable
 	 * Return the number of rows
 	 * @return the number of rows
 	 */
-	public int getNumberOfRows()
-	{
+	public int getNumberOfRows() {
 		return m;
 	}
 	
@@ -79,8 +78,7 @@ public abstract class SciAbstractArray implements java.io.Serializable
 	 * @see #getNumberOfCols()
 	 * @return the number of columns
 	 */
-	public int getCol()
-	{
+	public int getCol() {
 		return this.getNumberOfCols();
 	}
 
@@ -90,8 +88,7 @@ public abstract class SciAbstractArray implements java.io.Serializable
 	 * Return the number of columns
 	 * @return the number of columns
 	 */
-	public int getNumberOfCols()
-	{
+	public int getNumberOfCols() {
 		return n;
 	}
 
@@ -99,19 +96,17 @@ public abstract class SciAbstractArray implements java.io.Serializable
 	 * Return the name of the variable
 	 * @return the name
 	 */
-	public String getName()
-	{
+	public String getName() {
 		return name;
 	}
 
 	/**
 	 * Display the Matrix (by calling the scilab disp() function
 	 */
-	public void disp()
-	{
+	public void disp() {
 		Get();
-		System.out.println("Matrix "+ getName() +"=");
-		Scilab.Exec( "disp(" + getName() +");"); // Call the scilab command
+		System.out.println("Matrix " + getName() + "=");
+		Scilab.Exec("disp(" + getName() + ");"); // Call the scilab command
 	}
 
 	/**
@@ -122,27 +117,18 @@ public abstract class SciAbstractArray implements java.io.Serializable
 
 	static 
 	{
-		try 
-			{
+		try {
 				System.loadLibrary("javasci");
-			} 
-		catch(SecurityException e)
-			{
+			} catch (SecurityException e) {
 				System.err.println("A security manager exists and does not allow the loading of the specified dynamic library :");
 				e.printStackTrace(System.err);
-			} 
-		catch(UnsatisfiedLinkError e)
-			{
+			} catch (UnsatisfiedLinkError e) {
 				System.err.println("The native library javasci does not exist or cannot be found.");
 				e.printStackTrace(System.err);
 			}
-
-		try 
-			{
+		try {
 				Initialize();		
-			}
-		catch(UnsatisfiedLinkError e)
-			{
+			} catch (UnsatisfiedLinkError e) {
 				System.err.println("Cannot find method Initialize from the library.");
 				e.printStackTrace(System.err);
 			

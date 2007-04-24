@@ -1,4 +1,4 @@
-package javasci ;
+package javasci;
 
 /**
  * Scilab Array of double object
@@ -8,7 +8,7 @@ package javasci ;
  */
 public class SciDoubleArray extends javasci.SciAbstractArray implements java.io.Serializable  
 {
-	private double [] x ;
+	private double [] x;
 
 	/**
 	 * Get only ONE element from Scilab Matrix 
@@ -25,16 +25,15 @@ public class SciDoubleArray extends javasci.SciAbstractArray implements java.io.
 	/**
 	 * Constructs a Scilab Double Array from a other SciDoubleArray
 	 * @param name the name of the Scilab variable
-	 * @param Obj the SciDoubleArray you want to copy
+	 * @param doubleObj the SciDoubleArray you want to copy
 	 */
-	public SciDoubleArray(String name,SciDoubleArray Obj) 
-	{
+	public SciDoubleArray(String name, SciDoubleArray doubleObj) {
 		this.name = name;
-		this.m = Obj.getNumberOfRows() ;
-		this.n = Obj.getNumberOfCols();
-		this.x = new double[m*n];
+		this.m = doubleObj.getNumberOfRows();
+		this.n = doubleObj.getNumberOfCols();
+		this.x = new double[m * n];
    
-		this.x =Obj.getData() ;
+		this.x = doubleObj.getData();
 		Send();
 	}
 
@@ -45,23 +44,21 @@ public class SciDoubleArray extends javasci.SciAbstractArray implements java.io.
 	 * @param r number of rows
 	 * @param c number of columns
 	 */ 
-	public SciDoubleArray(String name,int r,int c) 
-	{
-		this.m = r ;
-		this.n = c ;
-		this.x = new double[r*c];
+	public SciDoubleArray(String name, int r, int c) {
+		this.m = r;
+		this.n = c;
+		this.x = new double[ r * c ];
 		this.name = name;
 
 
-		if ( (Scilab.TypeVar(name) == 1) & 
-			 (getNumberOfRowsFromScilab(name) == r) & 
-			 (getNumberOfColsFromScilab(name) == c) )
-			{
+		if ((Scilab.TypeVar(name) == 1)
+			 & (getNumberOfRowsFromScilab(name) == r) 
+			 & (getNumberOfColsFromScilab(name) == c)) {
 				Get();
-			}
-		else
-			{
-				for ( int i = 0 ; i < r*c ; i++)x[i]=0;
+			} else {
+				for (int i = 0; i < r * c; i++) {
+						x[i] = 0;
+				}
 				Send();
 			}
 	}
@@ -72,13 +69,11 @@ public class SciDoubleArray extends javasci.SciAbstractArray implements java.io.
 	 * @param c number of columns
 	 * @param x the array of double with want to copy into
 	 */
-	public SciDoubleArray(String name,int r,int c,double [] x )
-	{
-		if ( r*c != x.length) 
-			{
+	public SciDoubleArray(String name, int r, int c, double [] x) {
+		if ((r * c) != x.length) {
 				throw new BadDataArgumentException("Bad Matrix call, size of third argument is wrong");
 			}
-		this.m = r ;
+		this.m = r;
 		this.n = c;
 		this.x = x;
 		this.name = name;
@@ -90,8 +85,7 @@ public class SciDoubleArray extends javasci.SciAbstractArray implements java.io.
 	 * Return the data
 	 * @return the data
 	 */
-	public double[] getData() 
-	{
+	public double[] getData() {
 		Get();
 
 		return x;

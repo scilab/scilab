@@ -1,11 +1,10 @@
-package javasci ;
+package javasci;
 
 /** 
  * Java interface for Scilab
  * @author Allan CORNET - INRIA
  */
-public class Scilab
-{
+public class Scilab {
   /**
   * Initialize Scilab interface
   */
@@ -27,14 +26,14 @@ public class Scilab
   /**
   * Execute a command in Scilab
   * @param job the scilab job
-  * @return
+  * @return the result of the job
   */
   public static native boolean Exec(String job);
 
   /**
-  * Detect if Variable name exists in Scilab 
-  * @param varName 
-  * @return
+  * Detect if a variable name exists in Scilab 
+  * @param varName the name of the variable 
+  * @return if the variable exists or not into the current instance of Scilab
   */
   public static native boolean ExistVar(String varName);
 
@@ -66,7 +65,6 @@ public class Scilab
 
   /**
   * Get Last Error Code
-  * @return the error code
   * @return the last error code (0 if no error)
   */  
   public static native int GetLastErrorCode();
@@ -74,16 +72,15 @@ public class Scilab
   /**
   * Execute a scilab script .sce
   * @param scriptFilename the path to the .sce file
-  * @return 
+  * @return The result of the operation
   */
-  public static boolean ExecuteScilabScript(String scriptFilename)
-  {
-		return Exec("exec('"+scriptFilename+"');");
+  public static boolean ExecuteScilabScript(String scriptFilename) {
+		return Exec("exec('" + scriptFilename + "');");
   }
 
   /**
   * When you finish to use Scilab Call scilab.quit, clean memory, ... 
-  * @return 
+  * @return the result of the operation
   */  
   public static native boolean Finish();
 
@@ -91,18 +88,13 @@ public class Scilab
 
 	static 
 	{
-		try 
-			{
+		try {
 				System.loadLibrary("javasci");
 				Initialize();
-			} 
-		catch(SecurityException e)
-			{
+			} catch (SecurityException e) {
 				System.err.println("A security manager exists and does not allow the loading of the specified dynamic library :");
 				e.printStackTrace(System.err);
-			} 
-		catch(UnsatisfiedLinkError e)
-			{
+			} catch (UnsatisfiedLinkError e)	{
 				System.err.println("The native library javasci does not exist or cannot be found.");
 				e.printStackTrace(System.err);
 			}

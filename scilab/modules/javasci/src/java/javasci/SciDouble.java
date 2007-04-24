@@ -1,24 +1,22 @@
-package javasci ;
+package javasci;
 /**
  * Scilab Double object
  * See SCI/modules/javasci/examples/others for some simple examples 
  * @author Allan CORNET - INRIA 2006
  * @author Sylvestre LEDRU - INRIA 2007
  */
-public class SciDouble extends SciAbstractDataType implements java.io.Serializable  
-{
-	private String typeDescription="double";
+public class SciDouble extends SciAbstractDataType implements java.io.Serializable {
+	private String typeDescription = "double";
 	
 	/**
 	 * Constructs a Scilab Double from a other SciDouble
 	 * @param name the name of the Scilab variable
-	 * @param Obj the SciDouble you want to copy
+	 * @param doubleObj the SciDouble you want to copy
 	 */
-  public SciDouble(String name,SciDouble Obj) 
-  {
-	  double[] pTmpDoubleArray=new double[1];
-	  pTmpDoubleArray[0]=Obj.getData();
-	  sciArray = new SciDoubleArray(name,1,1,pTmpDoubleArray);
+  public SciDouble(String name, SciDouble doubleObj) {
+	  double[] pTmpDoubleArray = new double[1];
+	  pTmpDoubleArray[0] = doubleObj.getData();
+	  sciArray = new SciDoubleArray(name, 1, 1, pTmpDoubleArray);
  }
 
 	/**
@@ -26,10 +24,8 @@ public class SciDouble extends SciAbstractDataType implements java.io.Serializab
 	 * initialized to 0
 	 * @param name  the name of the Scilab Variable 
 	 */ 
- public SciDouble(String name) 
- {
-	double[] pTmpDoubleArray=new double[1];
-	sciArray = new SciDoubleArray(name,1,1);
+ public SciDouble(String name) {
+	sciArray = new SciDoubleArray(name, 1, 1);
  }
 
 	/**
@@ -37,21 +33,19 @@ public class SciDouble extends SciAbstractDataType implements java.io.Serializab
 	 * @param name the name of the Scilab Variable 
 	 * @param value the value
 	 */ 
-  public SciDouble(String name,double value )
-  {
-	double[] pTmpDoubleArray=new double[1];
-  	pTmpDoubleArray[0]=value;
-	sciArray = new SciDoubleArray(name,1,1,pTmpDoubleArray);
+  public SciDouble(String name, double value) {
+	double[] pTmpDoubleArray = new double[1];
+  	pTmpDoubleArray[0] = value;
+	sciArray = new SciDoubleArray(name, 1, 1, pTmpDoubleArray);
  }
 
 	/**
 	 * Return the double
 	 * @return the double
 	 */
-  public double getData()
-  {
+  public double getData() {
     Get();
-    double[] pTmpDoubleArray=((SciDoubleArray)sciArray).getData();
+    double[] pTmpDoubleArray = ((SciDoubleArray) sciArray).getData();
     return pTmpDoubleArray[0];
   }
 
@@ -61,8 +55,7 @@ public class SciDouble extends SciAbstractDataType implements java.io.Serializab
 	 * @return the Description
 	 *
 	 */
-	public String getTypeDescription()
-	{
+	public String getTypeDescription() {
 		return this.typeDescription;
 	}
 

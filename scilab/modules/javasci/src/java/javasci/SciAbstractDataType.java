@@ -5,8 +5,10 @@ package javasci;
  * Cannot be implemented
  * @author Sylvestre LEDRU - INRIA 2007
  */
-public abstract class SciAbstractDataType 
-{
+public abstract class SciAbstractDataType {
+	/**
+	 * the data 
+	 */
 	protected SciAbstractArray sciArray;
 
 	/**
@@ -21,24 +23,21 @@ public abstract class SciAbstractDataType
 	 * Returns the name of the Scilab variable
 	 * @return the name
 	 */
-	public String getName()
-	{
+	public String getName()	{
 		return sciArray.getName();
 	}
 
 	/**
 	 * Load the data from Scilab
 	 */
-	public void Get() 
-	{
+	public void Get() {
 		sciArray.Get();
 	}
 	
 	/**
 	 * Send the data to Scilab 
 	 */
-	public void Send()
-	{
+	public void Send() {
 		sciArray.Send();
 	}
 	
@@ -47,22 +46,20 @@ public abstract class SciAbstractDataType
 	 * Execute a command in Scilab 
 	 * Deprecated. Use Scilab.Exec instead.
 	 * @param job the Scilab job 
-	 * @return 
-	 @deprecated
+	 * @return the result of the operation
+	 * @deprecated
 	 */
-	public boolean Job(String job)
-	{
+	public boolean Job(String job) {
 		return sciArray.Job(job);
 	}  
 
 	/** 
 	 * Display the variable 
 	 */
-	public void disp() 
-	{
+	public void disp() {
 		Get();
-		System.out.println(getTypeDescription()+" "+ getName() +"=");
+		System.out.println(getTypeDescription() + " " + getName() + "=");
 		//				System.out.println("Scilab.Exec( \"disp(" + getName() +");\");");
-		Scilab.Exec( "disp(" + getName() +");");
+		Scilab.Exec("disp(" + getName() + ");");
 	}
 }

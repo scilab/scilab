@@ -1,4 +1,4 @@
-package javasci ;
+package javasci;
 /**
  * Scilab String object
  * See SCI/modules/javasci/examples/others for some simple examples 
@@ -7,18 +7,17 @@ package javasci ;
  */
 public class SciString extends SciAbstractDataType implements java.io.Serializable  
 {
-	private String typeDescription="String";
+	private String typeDescription = "String";
 
 	/**
 	 * Constructs a Scilab String from a other SciString
 	 * @param name the name of the Scilab variable
-	 * @param Obj the SciString you want to copy
+	 * @param stringObj the SciString you want to copy
 	 */
-  public SciString(String name,SciString Obj) 
-  {
-  	String[] pTmpStringArray=new String[1];
-  	pTmpStringArray[0]=Obj.getData();
-	sciArray = new SciStringArray(name,1,1,pTmpStringArray);
+  public SciString(String name, SciString stringObj) {
+  	String[] pTmpStringArray = new String[1];
+  	pTmpStringArray[0] = stringObj.getData();
+	sciArray = new SciStringArray(name, 1, 1, pTmpStringArray);
  }
 
 	/**
@@ -26,10 +25,8 @@ public class SciString extends SciAbstractDataType implements java.io.Serializab
 	 * initialized to ""
 	 * @param name the name of the Scilab Variable 
 	 */ 
-  public SciString(String name) 
-  {
-  	String[] pTmpStringArray=new String[1];
-	sciArray = new SciStringArray(name,1,1);
+  public SciString(String name) {
+  	sciArray = new SciStringArray(name, 1, 1);
  }
 
 	/**
@@ -37,21 +34,19 @@ public class SciString extends SciAbstractDataType implements java.io.Serializab
 	 * @param name the name of the Scilab Variable 
 	 * @param strValue the value
 	 */ 
-  public SciString(String name,String strValue )
-  {
-  	String[] pTmpStringArray=new String[1];
-  	pTmpStringArray[0]=strValue;
-	sciArray = new SciStringArray(name,1,1,pTmpStringArray);
+  public SciString(String name, String strValue) {
+  	String[] pTmpStringArray = new String[1];
+  	pTmpStringArray[0] = strValue;
+	sciArray = new SciStringArray(name, 1, 1, pTmpStringArray);
  }
 
 	/**
 	 * Return the string
 	 * @return the String
 	 */
-  public String getData() 
-  {
+  public String getData() {
     Get();
-    String[] pTmpStringArray=((SciStringArray)sciArray).getData();
+    String[] pTmpStringArray = ((SciStringArray) sciArray).getData();
     return pTmpStringArray[0];
   }
 
@@ -62,8 +57,7 @@ public class SciString extends SciAbstractDataType implements java.io.Serializab
 	 * @return the Description
 	 *
 	 */
-	public String getTypeDescription()
-	{
+	public String getTypeDescription() {
 		return this.typeDescription;
 	}
 
