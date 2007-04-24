@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.98
+# in sync at least with v6.100
 
 
 # commons
@@ -339,6 +339,12 @@
                    " ce que vous tentez d'espionner est de type "
     ::msgcat::mcset fr " - this type is not supported by the debugger" \
                        " - ce type n'est pas supporté par le débuggueur"
+::msgcat::mcset fr "Type:" "Type:"
+::msgcat::mcset fr "(unsupported)" "(non supporté)"
+::msgcat::mcset fr "size:" "taille:"
+::msgcat::mcset fr "real" "réel"
+::msgcat::mcset fr "complex" "complexe"
+::msgcat::mcset fr "elements" "éléments"
 
 
 # FormatWhereForWatch.sci

@@ -38,6 +38,9 @@ if {$debuglog} {
     trimcontandcomments extractfunnamefromfunline \
     bindenable binddisable findbinding \
     setwindowsmenuentrylabel addwindowsmenuentry sortwindowsmenuentries \
+    update_bubble cancel_bubble_deletion update_bubble_watchvar \
+    generic_update_bubble_watch update_bubble_watch_step update_bubble_watch \
+    update_bubble_panetitle \
     ]
 #    set excludedScipadprocs [list ]
 

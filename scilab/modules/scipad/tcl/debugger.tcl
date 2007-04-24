@@ -28,6 +28,7 @@
 #   Elements of $lbvarval
 #   watchvars: list of watch variables, e.g. {var1 var2}
 #   watchvarsvals(var): content of variable var
+#   watchvarstysi(var): type and size of variable var
 #
 # One further level down: ($adda level)
 # -----------------------

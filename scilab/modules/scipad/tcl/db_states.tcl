@@ -441,7 +441,6 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
     set comm7      "TCL_EvalStr(\"unsetdebuggerbusycursor\",\"scipad\");"
     set comm8      "TCL_SetVar(\"prevdbpauselevel\",$initprevdbpauselevel,\"scipad\");"
     set comm9  "else"
-    set comm10     "TCL_EvalStr(\"ScilabEval_lt \"\"$cmd\"\"  \"\"seq\"\" \",\"scipad\");"
     set commc1     "if $steppedininsteadofover then"
     set commc2         "TCL_EvalStr(\"ScilabEval_lt TCL_EvalStr(\"\"closecurifopenedbyuabpt\"\",\"\"scipad\"\") seq\",\"scipad\");"
     set commc3         "TCL_EvalStr(\"ScilabEval_lt {TCL_EvalStr(\"\"set afilewasopenedbyuabpt false\"\",\"\"scipad\"\")} seq\",\"scipad\");"
@@ -454,6 +453,7 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
     set commc10        "TCL_EvalStr(\"ScilabEval_lt \"\"$skipline\"\"  \"\"seq\"\" \",\"scipad\");"
     set commc11        "TCL_SetVar(\"prevdbpauselevel\",size(db_l,1),\"scipad\");"
     set commc12    "end;"
+    set comm10     "TCL_EvalStr(\"ScilabEval_lt \"\"$cmd\"\"  \"\"seq\"\" \",\"scipad\");"
     set comm11 "end;"
 #    set comm11 "end;TCL_EvalStr(\"hidewrappercode\",\"scipad\");"
 

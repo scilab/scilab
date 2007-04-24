@@ -2918,3 +2918,8 @@ Francois VOGEL, 15/04/07
    the debug was not detected, thus no cleanup (.sce wrapper stays), and a
    messed up debug state remaining)
  * version --> 6.99
+
+Francois VOGEL, 24/04/07
+ * The watch window displays the type (including real/complex if appropriate)
+   and size of each watched variable in a tooltip
+ * version --> 6.100

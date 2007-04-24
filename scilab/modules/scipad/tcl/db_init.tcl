@@ -5,6 +5,7 @@ set curdropind 0
 set dragndroplb ""
 set watchvars ""
 array set watchvarsvals {}
+array set watchvarstysi {}   ; # type and size of watch variables
 set callstackfuns ""
 set callstacklines ""
 set callstackcontent ""

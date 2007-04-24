@@ -76,8 +76,8 @@ if {[catch {ScilabEval ";" "sync" "seq"}] != 0} {
 # Debug settings for the new Scipad debugger commands (Run to cursor and Break)
 
 # Committed versions should have this attribute set to false
-# In that case, the Run to Cursor and Break commands are hidden
-# since there are issues with them in the Scilab parsers
+# In that case, the Break command is greyed
+# since there are issues with it in the Scilab parsers
 
 set dev_debug "false"
 

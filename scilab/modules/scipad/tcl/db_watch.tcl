@@ -353,7 +353,9 @@ proc showwatch_bp {} {
                              closewatch_bp $watch nodestroy}
     bind $watch <Delete>    {Removearg_bp $lbvarname $lbvarval; \
                              closewatch_bp $watch nodestroy}
-    bind $lbvarval <<ListboxSelect>>  {selectinrightwin_bp $lbvarname $lbvarval}
+    bind $lbvarval <<ListboxSelect>> {selectinrightwin_bp $lbvarname $lbvarval}
+    bind $lbvarname <Enter> "set go_on_update_bubble_watchvar true ; update_bubble_watchvar %W enter \[winfo pointerxy $pad\]"
+    bind $lbvarname <Leave> "set go_on_update_bubble_watchvar false; update_bubble_watchvar %W leave \[list \]"
     bind $lbvarname <ButtonPress-3>   {set itemindex [dragitem_bp $lbvarname %y]}
     bind $lbvarname <ButtonRelease-3> {dropitem_bp $lbvarname $lbvarval "" $itemindex %y}
     bind $watch <Up>   {scrollarrows_bp $lbvarname up  }
@@ -617,17 +619,20 @@ proc getfromshell { {startitem 3} } {
 proc getonefromshell {wvar {opt "seq"}} {
 # Update one single watched variable content by getting its value from Scilab
 # The watch window display is not updated
-    global watchvars watchvarsvals unklabel
+    global unklabel
     # certain special characters are allowed in Scilab names,
     # these must be escaped
     set escwvar [escapespecialchars $wvar]
     set fullcomm ""
     set comm1 "if ext_exists(\"$wvar\"),"
-    set comm2 "TCL_EvalStr(\"set watchvarsvals($escwvar) \"\"\"+FormatStringsForWatch($wvar)+\"\"\"\",\"scipad\");"
-    set comm3 "else"
-    set comm4 "TCL_EvalStr(\"set watchvarsvals($escwvar) \"\"$unklabel\"\"\",\"scipad\");"
-    set comm5 "end;"
-    set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5]
+    set comm2 "\[db_svar,db_tysi\]=FormatStringsForWatch($wvar);"
+    set comm3 "TCL_EvalStr(\"set watchvarsvals($escwvar) \"\"\"+db_svar+\"\"\"\",\"scipad\");"
+    set comm4 "TCL_EvalStr(\"set watchvarstysi($escwvar) \"\"\"+db_tysi+\"\"\"\",\"scipad\");"
+    set comm5 "else"
+    set comm6 "TCL_EvalStr(\"set watchvarsvals($escwvar) \"\"$unklabel\"\"\",\"scipad\");"
+    set comm7 "TCL_EvalStr(\"set watchvarstysi($escwvar) \"\"$unklabel\"\"\",\"scipad\");"
+    set comm8 "end;"
+    set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6 $comm7 $comm8]
     ScilabEval_lt $fullcomm $opt
 }
 

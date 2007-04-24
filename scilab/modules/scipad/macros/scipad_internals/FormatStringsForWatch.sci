@@ -1,19 +1,22 @@
-function [svar] = FormatStringsForWatch(varargin)
-// Converts input variable into a single string (not a matrix of strings),
-// taking into account its type.
-// This is used for the watch window of the debugger in Scipad.
-// The output string is identical to what the user would have typed in the
-// Scilab shell, apart from some extra characters needed to pass the string
-// to Tcl/Tk.
+function [svar,tysi] = FormatStringsForWatch(var)
+// Return two strings describing variable var in some way
+// svar:
+//   Convertion of variable var content into a single string (not a matrix
+//   of strings), taking into account the type of var.
+//   The string svar is identical to what the user would have typed in the
+//   Scilab shell to define var, apart from some extra characters needed to
+//   pass the string to Tcl/Tk.
+// tysi:
+//   A string containing the type and size of var
+// Both strings are used for the watch window of the debugger in Scipad.
 // Author: François Vogel, 2004-2007
-
-  if argn(2) == 0 then error(39); else var = varargin(1); end
 
   unklabel = "<?>"; // Warning: if this is changed it must be changed accordingly in db_init.tcl
 
   if execstr("tvar = type(var);","errcatch") <> 0 then
     warning(LocalizeForScipad(" what you try to watch is not supported by the debugger"));
     svar = unklabel;
+    tysi = unklabel;
 
   else
 
@@ -23,12 +26,12 @@ function [svar] = FormatStringsForWatch(varargin)
           +typeof(var)...
           +LocalizeForScipad(" - this type is not supported by the debugger"));
       svar = unklabel;
+      tysi = LocalizeForScipad("Type:") + " " + typeof(var) + " " + LocalizeForScipad("(unsupported)")
 
     else
       // supported cases
       svar = emptystr();
-
-      if tvar == 6 then tvar = 5; end;  // this is to use the same code for sparse matrices and boolean sparse matrices
+      tysi = emptystr();
 
       listpref = emptystr();  // this is to use the same code for lists, tlists and mlists
       if tvar == 16 then tvar = 15; listpref = "t"; end;
@@ -50,6 +53,14 @@ function [svar] = FormatStringsForWatch(varargin)
         else
           svar = varstr;
         end
+        [nr,nc] = size(var);
+        if isreal(var) then
+          reco = LocalizeForScipad("real");
+        else
+          reco = LocalizeForScipad("complex");
+        end
+        tysi = LocalizeForScipad("Type:") + " " + typeof(var) + " (" + reco + "), " + ...
+               LocalizeForScipad("size:") + " " + string(nr) + "x" + string(nc);
 
       case 2 then  // polynomial matrix
         if prod(size(var)) > 1 then
@@ -59,6 +70,14 @@ function [svar] = FormatStringsForWatch(varargin)
           unknown = stripblanks(varn(var));  // stripblanks is no more required since cvs 26 May 05
           svar = "poly(\[" + co + "\],\""" + unknown + "\"",\""coeff\"")";
         end
+        [nr,nc] = size(var);
+        if isreal(var) then
+          reco = LocalizeForScipad("real");
+        else
+          reco = LocalizeForScipad("complex");
+        end
+        tysi = LocalizeForScipad("Type:") + " " + typeof(var) + " (" + reco + "), " + ...
+               LocalizeForScipad("size:") + " " + string(nr) + "x" + string(nc);
 
       case 4 then  // boolean matrix
         varstr = string(var);
@@ -72,13 +91,34 @@ function [svar] = FormatStringsForWatch(varargin)
         else
           svar = "%" + varstr;
         end
+        [nr,nc] = size(var);
+        tysi = LocalizeForScipad("Type:") + " " + typeof(var) + ", " + ...
+               LocalizeForScipad("size:") + " " + string(nr) + "x" + string(nc);
 
-      case 5 then  // sparse matrix, or boolean sparse matrix (type 6 changed into 5 above)
+      case 5 then  // sparse matrix
         [ij,v,mn]=spget(var);
         ind = FormatStringsForWatch(ij);
         vec = FormatStringsForWatch(v);
         dim = FormatStringsForWatch(mn);
         svar = "sparse(" + ind + "," + vec + "," + dim + ")";
+        [nr,nc] = size(var);
+        if isreal(var) then
+          reco = LocalizeForScipad("real");
+        else
+          reco = LocalizeForScipad("complex");
+        end
+        tysi = LocalizeForScipad("Type:") + " " + typeof(var) + " (" + reco + "), " + ...
+               LocalizeForScipad("size:") + " " + string(nr) + "x" + string(nc);
+
+      case 6 then  // boolean sparse matrix
+        [ij,v,mn]=spget(var);
+        ind = FormatStringsForWatch(ij);
+        vec = FormatStringsForWatch(v);
+        dim = FormatStringsForWatch(mn);
+        svar = "sparse(" + ind + "," + vec + "," + dim + ")";
+        [nr,nc] = size(var);
+        tysi = LocalizeForScipad("Type:") + " " + typeof(var) + ", " + ...
+               LocalizeForScipad("size:") + " " + string(nr) + "x" + string(nc);
 
       case 8 then  // 1, 2 or 4-bytes integer matrix (this works for 1 to 10-bytes int or uint)
         if prod(size(var)) > 1 then
@@ -90,6 +130,9 @@ function [svar] = FormatStringsForWatch(varargin)
         else
           svar = string(var);
         end
+        [nr,nc] = size(var);
+        tysi = LocalizeForScipad("Type:") + " " + typeof(var) + ", " + ...
+               LocalizeForScipad("size:") + " " + string(nr) + "x" + string(nc);
 
       case 10 then  // character string matrix
         if prod(size(var)) > 1 then
@@ -105,6 +148,9 @@ function [svar] = FormatStringsForWatch(varargin)
           svar = strsubst(svar,"]","\]");
           svar = "\""" + svar + "\""";
         end
+        [nr,nc] = size(var);
+        tysi = LocalizeForScipad("Type:") + " " + typeof(var) + ", " + ...
+               LocalizeForScipad("size:") + " " + string(nr) + "x" + string(nc);
 
       case 15 then  // list or tlist or mlist (types 16 and 17 changed into 15 above)
         if length(var) == 0 then svar = listpref + "list()";
@@ -120,6 +166,8 @@ function [svar] = FormatStringsForWatch(varargin)
           svar = part(svar,1:length(svar)-1);
           svar = listpref + "list(" + svar + ")";
         end
+        tysi = LocalizeForScipad("Type:") + " " + typeof(var) + ", " + ...
+               LocalizeForScipad("size:") + " " + string(length(var)) + " " + LocalizeForScipad("elements");
 
       end
     end

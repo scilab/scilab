@@ -65,7 +65,7 @@ endfunction
  about special dirs on Windows, still for tk_getOpenFile.
 
 -When there are wrapped lines of varying lengths, as the user scrolls, the
-length of the scroll box changes. 
+ length of the scroll box changes. 
  This is actually fixed in Tk 8.5: http://www.tcl.tk/cgi-bin/tct/tip/155.html
  No workaround available in 8.4, this is a deep Tk core issue.
 
@@ -166,9 +166,6 @@ Debugger wishes:
  evaluation displayed in the watch window area (e.g. size(a_matrix,"*"))
  Hmm, maybe a separate toplevel would be better - the watch is already a
  pretty large window...
-
--Add a field showing the type (and size) of the variables displayed in the
- watch window
 
 -Scipad defines and uses, mostly for the debugger, some variables in order to
  send values to Scipad. All these variables currently start with the prefix 
