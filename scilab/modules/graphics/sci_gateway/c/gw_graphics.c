@@ -10,8 +10,7 @@
 #include "gw_graphics.h"
 #include "stack-c.h"
 #include "graphicModuleLoad.h"
-/*-----------------------------------------------------------------------------------*/ 
-extern int GetWITH_GUI(void);
+#include "scilabmode.h"
 /*-----------------------------------------------------------------------------------*/ 
 typedef int (*des_interf) __PARAMS((char *fname,unsigned long l));
 typedef struct table_struct {
@@ -117,7 +116,7 @@ static MatdesTable Tab[]={
 int C2F(gw_graphics)(void)
 {  
   Rhs = Max(0, Rhs);
-  if ( GetWITH_GUI() || (strcmp(Tab[Fin-1].name,"gsort")==0) ) /*Veru en attendant de deplacer gsort*/
+  if ( (getScilabMode() != SCILAB_NWNI) || (strcmp(Tab[Fin-1].name,"gsort")==0) ) /*Veru en attendant de deplacer gsort*/
   {
     /* create needed data structure if not already created */
     loadGraphicModule() ;

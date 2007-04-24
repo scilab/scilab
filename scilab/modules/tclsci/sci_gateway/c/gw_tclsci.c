@@ -12,6 +12,7 @@
 #include "gw_tclsci.h"
 #include "stack-c.h"
 #include "inisci-c.h"
+#include "scilabmode.h"
 /*-----------------------------------------------------------------------------------*/
 typedef int (*TCLSci_Interf) __PARAMS((char *fname,unsigned long l));
 typedef struct table_struct 
@@ -48,7 +49,7 @@ extern int TK_Started;
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_tclsci)()
 {  
-	if ( GetWITH_GUI() )
+	if ( getScilabMode() != NWNI )
 	{
 		if (TK_Started)
 		{

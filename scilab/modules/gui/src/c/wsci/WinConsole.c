@@ -6,10 +6,10 @@
 #include "Messages.h"
 #include "Warnings.h"
 #include "Errors.h"
+#include "scilabmode.h"
 /*-----------------------------------------------------------------------------------*/
 static CONSOLE_SCREEN_BUFFER_INFO csbiInfoSave;
 char ScilexConsoleName[MAX_PATH];
-static BOOL WindowMode;
 static int Windows_Console_State;/* 0 Hide 1 Show */
 /*-----------------------------------------------------------------------------------*/
 typedef  UINT (WINAPI * GetWindowModuleFileNamePROC) (HWND,LPTSTR,UINT);
@@ -126,12 +126,12 @@ void RestoreConsoleColors(void)
 /*-----------------------------------------------------------------------------------*/
 BOOL IsWindowInterface(void)
 {
-	return WindowMode;
+	return (getScilabMode() == SCILAB_STD );
 }
 /*-----------------------------------------------------------------------------------*/
 int IsConsoleMode(void)
 {
-	return (int)(!WindowMode);
+	return (int)( (getScilabMode() == SCILAB_NWNI) || (getScilabMode() == SCILAB_NW) );
 }
 /*-----------------------------------------------------------------------------------*/
 /* Retourne un numéro valide pour nommer les fenetres associées à ce process */
@@ -209,11 +209,6 @@ void SwitchConsole(void)
 		}
 		break;
 	}
-}
-/*-----------------------------------------------------------------------------------*/
-void SetWindowMode(BOOL ON)
-{
-	  WindowMode=ON;
 }
 /*-----------------------------------------------------------------------------------*/
 int GetConsoleState(void)

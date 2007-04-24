@@ -9,6 +9,7 @@
 #endif
 #include "gw_gui.h"
 #include "stack-c.h"
+#include "scilabmode.h"
 /*-----------------------------------------------------------------------------------*/
 typedef int (*Gui_Interf) __PARAMS((char *fname,unsigned long l));
 typedef struct table_struct 
@@ -39,7 +40,7 @@ int C2F(gw_gui)(void)
 {  
 	Rhs = Max(0, Rhs);
 
-	if (! GetWITH_GUI() )
+	if ( getScilabMode() == SCILAB_NWNI)
 	{
 		Scierror(999,"interface disabled in -nogui mode.");
 		return 0;

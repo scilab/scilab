@@ -40,6 +40,7 @@
 #include "MenuWindows.h"
 
 #include "win_mem_alloc.h" /* MALLOC */
+#include "scilabmode.h"
 /*-----------------------------------------------------------------------------------*/
 #define stricmp _stricmp
 #define strnicmp _strnicmp
@@ -54,9 +55,8 @@ extern void CreateSplashscreen(void);
 extern void settexmacs(void);
 extern void MessageBoxNewGraphicMode(void);
 extern int ExitScilab(void);
-extern void SetWITH_GUI(BOOL ON);
-extern BOOL GetWITH_GUI(void);
 extern void disp_scilab_version(void);
+extern void switch_rlgets (int i);
 /*-----------------------------------------------------------------------------------*/
 static LPSTR my_argv[MAXCMDTOKENS];
 /*-----------------------------------------------------------------------------------*/
@@ -71,7 +71,8 @@ int Console_Main(int argc, char **argv)
 
   ForbiddenToUseScilab();
 
-  SetWindowMode(FALSE);
+  setScilabMode(SCILAB_NW);
+
   ScilabIsStarting=TRUE;
   
   for (i=0;i<argc;i++)
@@ -125,8 +126,7 @@ int Console_Main(int argc, char **argv)
       else if ( stricmp(my_argv[argcount],"-NB") == 0) { sci_show_banner = 0; }
       else if (stricmp (my_argv[argcount], "-NWNI") == 0)
 		{
-			nowin = 1;
-			nointeractive = 1;
+			setScilabMode(SCILAB_NWNI);
 		}
       else if (stricmp (my_argv[argcount], "-F") == 0 && argcount + 1 < my_argc)
 		{
@@ -145,13 +145,12 @@ int Console_Main(int argc, char **argv)
 		} 
 	  else if ( stricmp(my_argv[argcount],"-TEXMACS") == 0 )
 	  {
+		  setScilabMode(SCILAB_NWNI);
 		  settexmacs();
 	  }
 	  else if ( stricmp(my_argv[argcount],"-NOGUI") == 0 )
 	  {
-		  nowin = 1;
-		  nointeractive = 1;
-		  SetWITH_GUI(FALSE);
+		  setScilabMode(SCILAB_NWNI);
 	  }
 	  else if ( (stricmp (my_argv[argcount],"-VERSION")==0) ||
 		  (stricmp (my_argv[argcount],"-VER")==0) )
@@ -186,16 +185,17 @@ int Console_Main(int argc, char **argv)
 
   hdllInstance = GetModuleHandle(MSG_SCIMSG9);
 
-  if (nowin == 1)
+
+  if ( (getScilabMode() == SCILAB_NWNI) || (getScilabMode() == SCILAB_NW) )
     {
 	  SaveConsoleColors();
-	  if (nointeractive!=1)
+	  if (getScilabMode() == SCILAB_NW)
 	  {
 		  RenameConsole();
 		  UpdateConsoleColors();
 	  }
 	  
-	  sci_windows_main (nowin, &startupf,path,pathtype, &lpath,memory);
+	  sci_windows_main (&startupf,path,pathtype, &lpath,memory);
 	 
     }
   else
@@ -227,7 +227,8 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 
 	ForbiddenToUseScilab();
 
-	SetWindowMode(TRUE);
+	setScilabMode(SCILAB_STD);
+
 	ScilabIsStarting=TRUE;
 
 	strcpy(FileName,"Empty");
@@ -469,21 +470,20 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 
 	textwin.hIcon = LoadIcon (hInstance, "texticon");
 	SetClassLong (textwin.hWndParent, GCL_HICON, (DWORD) textwin.hIcon);
-	SetXsciOn ();
+
+	switch_rlgets (1);
 
 	ShowWindow (textwin.hWndParent, SW_SHOWNORMAL);
 	ForceToActiveWindowParent();
 	HideScilex(); /* Cache la fenetre Console */
 
 	if (LaunchAFile) ChangeCursorWhenScilabIsReady();
-
 	
-	sci_windows_main (nowin, &startupf, path,pathtype, &lpath,memory);
+	sci_windows_main (&startupf, path,pathtype, &lpath,memory);
 	
 	CloseScilabConsole();
 
 	ExitScilab();
-
 
 	return 0;
 }
@@ -494,7 +494,7 @@ void InitWindowGraphDll(void)
 /* Display graphic menus with a call of the DLL Scilab*/
 /* for Interface with Java */
 {
-	if ( GetWITH_GUI() )
+	if ( getScilabMode() != SCILAB_NWNI )
 	{
 		char *ScilabDirectory=NULL;
 
@@ -564,7 +564,7 @@ int sci_getarg(int *n,char *s,long int ls)
 /*-----------------------------------------------------------------------------------*/
 int InteractiveMode ()
 {
-	return nointeractive;
+	return (getScilabMode()== SCILAB_NWNI);
 }
 /*-----------------------------------------------------------------------------------*/
 int C2F(showlogo) ()
@@ -608,7 +608,7 @@ BOOL ForbiddenToUseScilab(void)
 /*-----------------------------------------------------------------------------------*/
 int IsNoInteractiveWindow(void)
 {
-	return nointeractive;
+	return (getScilabMode() == SCILAB_NWNI);
 }
 /*-----------------------------------------------------------------------------------*/
 /* strstr case insensitive */

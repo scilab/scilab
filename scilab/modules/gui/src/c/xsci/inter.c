@@ -29,7 +29,7 @@
 #include <errno.h>
 #include <stdio.h>
 #include "inter.h"
-
+#include "scilabmode.h"
 /**
  hpux uses time.h instead of select.h
 **/
@@ -301,7 +301,7 @@ int Xorgetchar(int interrupt)
 
 int C2F(sxevents)()
 {
-	if ( GetWITH_GUI() )
+	if ( getScilabMode() != SCILAB_NWNI )
 	{
 		  if (getINXscilab()==1) 
     {

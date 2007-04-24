@@ -23,7 +23,6 @@ int C2F(sci_x_message_modeless) _PARAMS((char *fname,unsigned long fname_len));
 int sci_clc( char *fname, unsigned long fname_len ) ;
 int sci_raise_window( char * fname, unsigned long fname_len ) ;
 int sci_tohome( char * fname, unsigned long fname_len ) ;
-BOOL GetWITH_GUI(void);
 /*-----------------------------------------------------------------------------------*/
 #endif /*  __GW_GUI__ */
 /*-----------------------------------------------------------------------------------*/

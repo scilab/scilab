@@ -29,6 +29,7 @@
 #include "realmain.h" /* realmain */
 #include "scimem.h" /* nofpex */
 #include "getarg.h"
+#include "scilabmode.h"
 
 #include "DestroyObjects.h"
 #include "periScreen.h"
@@ -100,7 +101,6 @@ extern void do_kill(Widget gw, caddr_t closure, caddr_t data);
 extern void sci_usr1_signal(int n) ;
 extern char ** create_argv(int *argc);
 extern void settexmacs(void);
-extern void SetWITH_GUI(BOOL);
 /*-----------------------------------------------------------------------------------*/
 /*static void Syntax __PARAMS((char *badOption));  */
 /*static void Syntax (char *badOption);  */
@@ -132,7 +132,6 @@ void C2F(mainscic)()
   char * initial_script = NULL;
   int  initial_script_type = 0; /* 0 means filename 1 means code */
  
-
   char **argv, *display = NULL;
   
   #if (defined __GNUC__  )
@@ -148,11 +147,20 @@ fpsetmask(0);
   /* create argv */
   if (( argv = create_argv(&argc))== NULL)  exit(1);
   ProgramName = argv[0];
+  
+  setScilabMode(SCILAB_STD);
+  
   /* scanning options */
   for ( i=0 ; i < argc ; i++) 
   {
-      if ( strcmp(argv[i],"-nw") == 0) { no_window = 1; } 
-      else if ( strcmp(argv[i],"-nwni") == 0) { no_window = 1; nointeractive = 1;} 
+      if ( strcmp(argv[i],"-nw") == 0) 
+      { 
+      	setScilabMode(SCILAB_NW);
+      } 
+      else if ( strcmp(argv[i],"-nwni") == 0) 
+      { 
+      	setScilabMode(SCILAB_NW);
+      } 
       else if ( strcmp(argv[i],"-display") == 0) 
 			{ 
 	  		char dpy[128];
@@ -168,12 +176,19 @@ fpsetmask(0);
 	  		initial_script = argv[++i];
 	  		initial_script_type = 1;
 			} 
-      else if ( strcmp(argv[i],"--texmacs") == 0)  { no_window = 1;settexmacs();}
-      else if ( strcmp(argv[i],"-nogui") == 0)  {no_window = 1; nointeractive = 1; SetWITH_GUI(0);}
+      else if ( strcmp(argv[i],"--texmacs") == 0)  
+      {
+      	setScilabMode(SCILAB_NWNI);
+      	settexmacs();
+      }
+      else if ( strcmp(argv[i],"-nogui") == 0)  
+      {
+      	setScilabMode(SCILAB_NWNI);
+      }
       else if ( strcmp(argv[i],"-version") == 0) {disp_scilab_version();exit(1);}
     }
 
-  realmain(no_window,no_startup_flag,initial_script,initial_script_type,memory);
+  realmain(no_startup_flag,initial_script,initial_script_type,memory);
 }
 
 /*----------------------------------------------------------------------------------*/
@@ -418,7 +433,7 @@ void main_sci (int argc,char ** argv, char *startup, int lstartup,int memory)
   **/
   XtAppAddActions(app_con, actionProcs, XtNumber(actionProcs));
   toplevel =   initColors(realToplevel);
-   /* SetXsciOn();  */ /*Already done in realmain */
+
   xterm_name = resource.xterm_name;
   if (strcmp(xterm_name, "-") == 0) xterm_name = "xterm";
   XtSetValues (toplevel, ourTopLevelShellArgs,
@@ -606,12 +621,12 @@ static void Syntax(char *badOption)
 /*----------------------------------------------------------------------------------*/ 
 int IsConsoleMode(void)
 {
-  return no_window;
+  return (int)( (getScilabMode() == SCILAB_NWNI) || (getScilabMode() == SCILAB_NW) );
 }
 /*----------------------------------------------------------------------------------*/
 int IsNoInteractiveWindow(void)
 {
-	return nointeractive;
+	return (getScilabMode() == SCILAB_NWNI);
 }
 /*----------------------------------------------------------------------------------*/
 void InitXsession(void)

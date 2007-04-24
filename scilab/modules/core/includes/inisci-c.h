@@ -67,18 +67,6 @@ int ExistJavaSciUnix(void);
 
 /** 
  * TODO : comment
- * @param ON
- */
-void SetWITH_GUI(int ON);
-
-/** 
- * TODO : comment
- * @return 
- */
-BOOL GetWITH_GUI(void);
-
-/** 
- * TODO : comment
  * @return 
  */
 BOOL ExistModelicac(void);

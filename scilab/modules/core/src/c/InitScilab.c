@@ -9,17 +9,18 @@
 #ifdef _MSC_VER
 #include "../../jvm/includes/InitializeJVM.h"
 #endif
+#include "scilabmode.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(initscilab)(void)
 {
 	InitializeCore();
 
 	InitializeTclTk();
-
 	
 	InitializeLocalization();
 	#ifdef _MSC_VER
-	InitializeJVM();
+	/* -NWNI only mode without JVM */
+	if ( getScilabMode() != SCILAB_NWNI ) InitializeJVM();
 	#endif
 	
 	return 0;

@@ -48,11 +48,11 @@
 #include "Messages.h"
 #include "Warnings.h"
 #include "Errors.h"
-
+#include "realmain.h"
+#include "scilabmode.h"
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(sciquit)(void );
 static void interrupt_setup ();
-extern void realmain(int nowin,int no_startup_flag,char *initial_script,int initial_script_type,int memory);
 /*-----------------------------------------------------------------------------------*/
 jmp_buf env;
 /*-----------------------------------------------------------------------------------*/
@@ -86,7 +86,7 @@ static void interrupt_setup (void)
   (void) signal (SIGINT, inter);
 }
 /*-----------------------------------------------------------------------------------*/
-void sci_windows_main (int nowin, int *nos, char *path,int pathtype,int *lpath,int memory)
+void sci_windows_main ( int *nos, char *path,int pathtype,int *lpath,int memory)
 {
   setbuf (stderr, (char *) NULL);
   if (!setjmp (env))
@@ -97,11 +97,10 @@ void sci_windows_main (int nowin, int *nos, char *path,int pathtype,int *lpath,i
   else
     {
       /* come back here from int_error() */
-      if (nowin != 1)
-	SetCursor (LoadCursor ((HINSTANCE) NULL, IDC_ARROW));
+		if (getScilabMode() == SCILAB_STD ) SetCursor (LoadCursor ((HINSTANCE) NULL, IDC_ARROW));
     }
   /* take commands from stdin */
-  realmain(nowin,*nos,path,pathtype,memory);
+  realmain(*nos,path,pathtype,memory);
 
 }
 /*-----------------------------------------------------------------------------------*/

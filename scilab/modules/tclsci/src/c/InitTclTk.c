@@ -19,9 +19,9 @@
 #endif
 #include "setgetSCIpath.h"
 #include "message_scilab.h"
+#include "scilabmode.h"
 /*-----------------------------------------------------------------------------------*/ 
 extern int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONST char ** argv);
-extern int GetWITH_GUI(void);
 /*-----------------------------------------------------------------------------------*/ 
 int TK_Started=0;
 #ifndef _MSC_VER
@@ -32,7 +32,7 @@ char *GetSciPath(void);
 /*-----------------------------------------------------------------------------------*/
 void initTCLTK(void)
 {
-	if ( GetWITH_GUI() )
+	if ( getScilabMode() != NWNI )
 	{
 		if ( OpenTCLsci()==0 ) 
 		{
@@ -171,7 +171,7 @@ int OpenTCLsci(void)
 int CloseTCLsci(void)
 {
 	int bOK=0;
-	if ( GetWITH_GUI() )
+	if ( getScilabMode() != NWNI )
 	{
 		if (TK_Started)
 		{

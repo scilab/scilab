@@ -4,69 +4,28 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include "scilabmode.h"
 /*-----------------------------------------------------------------------------------*/ 
-/* default mode is STD */
-static BOOL bNWNImode=FALSE;
-static BOOL bNWmode=FALSE;
-static BOOL bSTDmode=TRUE;
+/* default mode is API */
+static scilabMode CurrentScilabMode = SCILAB_API;
 /*-----------------------------------------------------------------------------------*/ 
-BOOL setNWNImode(void)
+int getScilabMode(void)
 {
-	bNWNImode=TRUE;
-	bNWmode=FALSE;
-	bSTDmode=FALSE;
-
-	return TRUE;
+	return CurrentScilabMode;
 }
 /*-----------------------------------------------------------------------------------*/ 
-BOOL setNWmode(void)
+BOOL setScilabMode(int newmode)
 {
-	bNWmode=TRUE;
-	bNWNImode=FALSE;
-	bSTDmode=FALSE;
-
-	return TRUE;
+	BOOL bOK=FALSE;
+	if ( (newmode == SCILAB_API) || (newmode == SCILAB_STD) || (newmode == SCILAB_NW) || (newmode == SCILAB_NWNI) )
+	{
+		CurrentScilabMode = newmode;
+		bOK=TRUE;
+	}
+	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/ 
-BOOL setSTDmode(void)
+int C2F(getscilabmode)(int *mode)
 {
-	bNWmode=FALSE;
-	bNWNImode=FALSE;
-	bSTDmode=TRUE;
-
-	return TRUE;
+	*mode=getScilabMode();
+	return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 
-BOOL isSTDmode(void)
-{
-	return bSTDmode;
-}
-/*-----------------------------------------------------------------------------------*/ 
-BOOL isNWmode(void)
-{
-	return bNWmode;
-}
-/*-----------------------------------------------------------------------------------*/ 
-BOOL isNWNImode(void)
-{
-	return bNWNImode;
-}
-/*-----------------------------------------------------------------------------------*/ 
-int C2F(isstdmode)(int *ok)
-{
-	*ok=(int)isSTDmode();
-	return 1;
-}
-/*-----------------------------------------------------------------------------------*/ 
-int C2F(isnwmode)(int *ok)
-{
-	*ok=(int)isNWmode();
-	return 1;
-}
-/*-----------------------------------------------------------------------------------*/ 
-int C2F(isnwnimode)(int *ok)
-{
-	*ok=(int)isNWNImode();
-	return 1;
-}
-/*-----------------------------------------------------------------------------------*/ 
-

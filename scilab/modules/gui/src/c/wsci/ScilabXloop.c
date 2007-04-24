@@ -18,6 +18,7 @@
 #include "Warnings.h"
 #include "Errors.h"
 #include "xscion.h"
+#include "scilabmode.h"
 
 #ifdef WITH_TK
 extern void flushTKEvents ();
@@ -25,7 +26,7 @@ extern int TclEventsLoop(void);
 static int BasicScilab = 0;
 #endif
 
-extern int GetWITH_GUI(void);
+
 /*-----------------------------------------------------------------------------------*/
 /* used to know if we must check events 
  * inside the scilab interpreter (parse/*)
@@ -71,7 +72,7 @@ void TextMessage1 (int ctrlflag)
 /*-----------------------------------------------------------------------------------*/
 int C2F (sxevents) ()
 {
-  if ( GetWITH_GUI() )
+  if ( getScilabMode() != SCILAB_NWNI )
   {
 #ifdef WITH_TK
 	  if (getINXscilab() == 1 || BasicScilab == 0 )

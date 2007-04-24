@@ -130,7 +130,6 @@ extern void AddMenu(integer *win_num,char * button_name,char ** entries,
 extern int gp_printfile(HINSTANCE hInstance,HWND hwnd,char *filename, char *port);
 /*-----------------------------------------------------------------------------------*/
 /* Scilab_Xloop */
-extern void SetXsciOn();
 extern int C2F(xscion)(int *i);
 extern int C2F(getmen)(char *,integer *,integer *);
 extern integer C2F(ismenu)(void);
@@ -147,7 +146,7 @@ extern void int_error(char *str,int t_num);
 extern int instring(char *str,char  c);
 /*-----------------------------------------------------------------------------------*/
 /* wtloop */
-extern void sci_windows_main(int,int *,char *,int,int *,int);
+extern void sci_windows_main(int *,char *,int,int *,int);
 extern void SciMenuSelect(char *Name);
 extern void  C2F(setfbutn)(char *buf,int *rep);
 extern void  C2F(fbutn)(char *buf,int *win,int *ent);

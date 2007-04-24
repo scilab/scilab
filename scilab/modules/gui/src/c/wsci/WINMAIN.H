@@ -44,7 +44,6 @@ extern MW menuwin;
 extern HINSTANCE hdllInstance;
 
 static int startupf = 0; /** 0 if we execute startup else 1 **/
-static int nointeractive = 0;
 static int show_logo = 1;
 static int  memory = MIN_STACKSIZE;
 static int my_argc = -1;

@@ -14,6 +14,7 @@
 #include "sciquit.h"
 #include "getarg.h"
 #include "tmpdir.h"
+#include "scilabmode.h"
 /*-----------------------------------------------------------------------------------*/
 extern void sci_clear_and_exit(int n);
 extern int C2F(inisci)(int *,int *,int *);
@@ -36,7 +37,7 @@ static int  no_startup_flag=0;
 #define PATH_MAX 1024
 #endif
 /*-----------------------------------------------------------------------------------*/
-void realmain(int nowin,int no_startup_flag_l,char *initial_script,int initial_script_type,int memory)
+void realmain(int no_startup_flag_l,char *initial_script,int initial_script_type,int memory)
 {
   static int ini=-1;
   int ierr=0;
@@ -45,6 +46,7 @@ void realmain(int nowin,int no_startup_flag_l,char *initial_script,int initial_s
 
   /* create temp directory */
   C2F(settmpdir)();
+
   /* signals */
   #ifdef ENABLESIG
   signal(SIGINT,sci_clear_and_exit);
@@ -109,7 +111,6 @@ void realmain(int nowin,int no_startup_flag_l,char *initial_script,int initial_s
       argv = create_argv(&argc);
 
       /* we are in window mode */
-      SetXsciOn();
       main_sci(argc,argv,startup,strlen(startup),memory);
     }
   else 

@@ -28,9 +28,6 @@ extern int C2F (setmen) __PARAMS((integer *win_num, char *button_name, integer *
 extern int C2F (unsmen) __PARAMS((integer *win_num, char *button_name, integer *entries, integer *ptrentries, integer *ne, integer *ierr));  
 
 /*  "jpc_Xloop-n.c.X1"*/
-
-
-extern void SetXsciOn  __PARAMS((void));  
 extern int C2F (xscion) __PARAMS((int *i));  
 extern void DisplayInit  __PARAMS((char *string, Display **dpy, Widget *toplevel));  
 extern int Xorgetchar  __PARAMS((int interrupt));  

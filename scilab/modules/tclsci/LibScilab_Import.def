@@ -3,7 +3,7 @@ LIBRARY    LibScilab.dll
 
 EXPORTS
  ConvertPathUnixToWindowsFormat
- GetWITH_GUI
+ getScilabMode
  gettype_
  vstk_
  IsAScalar

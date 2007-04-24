@@ -23,7 +23,6 @@ void UpdateConsoleColors(void);
 void SaveConsoleColors(void);
 void RestoreConsoleColors(void);
 
-void SetWindowMode(BOOL ON);
 BOOL IsWindowInterface();
 
 /* Retourne un numéro valide pour nommer les fenetres associées à ce process */

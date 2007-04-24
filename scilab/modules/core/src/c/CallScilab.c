@@ -13,6 +13,7 @@
 #include "fromc.h"
 #include "inisci-c.h"
 #include "scirun.h"
+#include "scilabmode.h"
 
 #ifdef _MSC_VER
 #define putenv _putenv
@@ -61,7 +62,7 @@ static void SetSciEnv(void)
 /*-----------------------------------------------------------------------------------*/
 void DisableInteractiveMode(void)
 {
-	SetWITH_GUI(FALSE);
+	setScilabMode(SCILAB_NWNI);
 }
 /*-----------------------------------------------------------------------------------*/
 int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
@@ -167,7 +168,7 @@ int TerminateScilab(char *ScilabQuit)
 /*-----------------------------------------------------------------------------------*/
 void ScilabDoOneEvent(void)
 {
-	if ( GetWITH_GUI() )
+	if ( getScilabMode() != SCILAB_NWNI )
 	{
 		#ifdef _MSC_VER
 			TextMessage1 (1);
@@ -187,9 +188,8 @@ int ScilabHaveAGraph(void)
 	integer iflag =0,ids,num;
 	int vInt=0;
 
-	if ( GetWITH_GUI() )
+	if ( getScilabMode() != SCILAB_NWNI )
 	{
-			
           sciGetIdFigure (&ids,&num,&iflag);
           if (num > 0) { vInt = 1 ; }
 	}
