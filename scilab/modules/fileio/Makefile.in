@@ -97,7 +97,8 @@ am__objects_1 = libscifileio_la-FileExist.lo libscifileio_la-xls.lo \
 	libscifileio_la-mgetstr.lo libscifileio_la-mopen.lo \
 	libscifileio_la-mput.lo libscifileio_la-mputstr.lo \
 	libscifileio_la-mseek.lo libscifileio_la-mtell.lo \
-	libscifileio_la-diary.lo libscifileio_la-readline.lo
+	libscifileio_la-diary.lo libscifileio_la-readline.lo \
+	libscifileio_la-getdrives.lo
 am__objects_2 = libscifileio_la-sci_xls_read.lo \
 	libscifileio_la-gw_fileio.lo libscifileio_la-sci_fileio.lo \
 	libscifileio_la-sci_xls_open.lo libscifileio_la-intreadxls.lo \
@@ -325,7 +326,8 @@ src/c/mputstr.c \
 src/c/mseek.c \
 src/c/mtell.c \
 src/c/diary.c \
-src/c/readline.c
+src/c/readline.c \
+src/c/getdrives.c
 
 GATEWAY_SOURCES = \
 sci_gateway/c/sci_xls_read.c \
@@ -526,6 +528,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-do_xxscanf.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-fileio.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-findfiles.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-getdrives.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-getfiledesc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-getfileinfo.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-getfiletype.Plo@am__quote@
@@ -809,6 +812,13 @@ libscifileio_la-readline.lo: src/c/readline.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/readline.c' object='libscifileio_la-readline.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifileio_la_CFLAGS) $(CFLAGS) -c -o libscifileio_la-readline.lo `test -f 'src/c/readline.c' || echo '$(srcdir)/'`src/c/readline.c
+
+libscifileio_la-getdrives.lo: src/c/getdrives.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifileio_la_CFLAGS) $(CFLAGS) -MT libscifileio_la-getdrives.lo -MD -MP -MF $(DEPDIR)/libscifileio_la-getdrives.Tpo -c -o libscifileio_la-getdrives.lo `test -f 'src/c/getdrives.c' || echo '$(srcdir)/'`src/c/getdrives.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscifileio_la-getdrives.Tpo $(DEPDIR)/libscifileio_la-getdrives.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getdrives.c' object='libscifileio_la-getdrives.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifileio_la_CFLAGS) $(CFLAGS) -c -o libscifileio_la-getdrives.lo `test -f 'src/c/getdrives.c' || echo '$(srcdir)/'`src/c/getdrives.c
 
 libscifileio_la-sci_xls_read.lo: sci_gateway/c/sci_xls_read.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifileio_la_CFLAGS) $(CFLAGS) -MT libscifileio_la-sci_xls_read.lo -MD -MP -MF $(DEPDIR)/libscifileio_la-sci_xls_read.Tpo -c -o libscifileio_la-sci_xls_read.lo `test -f 'sci_gateway/c/sci_xls_read.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xls_read.c
