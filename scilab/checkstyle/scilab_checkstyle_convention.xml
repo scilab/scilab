@@ -3,7 +3,7 @@
 	This configuration file was written by the eclipse-cs plugin configuration editor
 -->
 <!--
-Checkstyle-Configuration: Scilab Checkstyle
+Checkstyle-Configuration: scilab checkstyle
 Description:
 
 -->
@@ -82,10 +82,6 @@ Description:
         <module name="InterfaceIsType"/>
         <module name="VisibilityModifier"/>
         <module name="ArrayTypeStyle"/>
-        <module name="GenericIllegalRegexp">
-            <property name="format" value="\s+$"/>
-            <property name="message" value="Line has trailing spaces."/>
-        </module>
         <module name="TodoComment"/>
         <module name="UpperEll"/>
         <module name="OperatorWrap">
