@@ -34,7 +34,8 @@ src/c/mputstr.c \
 src/c/mseek.c \
 src/c/mtell.c \
 src/c/diary.c \
-src/c/readline.c
+src/c/readline.c \
+src/c/getdrives.c
 
 
 GATEWAY_SOURCES = \

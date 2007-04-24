@@ -1,18 +1,13 @@
 /*-----------------------------------------------------------------------------------*/
-/* INRIA 2005 */
+/* INRIA 2007 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include <string.h>
-#ifdef _MSC_VER
-#include <windows.h>
-#endif
 #include "gw_fileio.h"
 #include "stack-c.h"
 #include "MALLOC.h" 
+#include "getdrives.h"
 /*-----------------------------------------------------------------------------------*/
-/**
-* Get the drive letters of all mounted filesystems on the computer.
-*/
 int C2F(sci_getdrives) _PARAMS((char *fname,unsigned long l))
 {	
 	static int l1=0,n1=0,m1=0;
@@ -25,40 +20,7 @@ int C2F(sci_getdrives) _PARAMS((char *fname,unsigned long l))
 	CheckRhs(0,0);
 	CheckLhs(0,1);
 
-	#ifdef _MSC_VER
-	{
-		DWORD uDriveMask = GetLogicalDrives();
-
-		while (DrvLetter[0]<='Z')
-		{
-			if(uDriveMask & 0x00000001L)
-			{
-				nbDrives++;
-				if (Drives) 
-				{
-					Drives=(char**)REALLOC(Drives,sizeof(char*)*(nbDrives));
-					Drives[nbDrives-1]=(char*)MALLOC(sizeof(char)*(strlen(DrvLetter)+1));
-				}
-				else
-				{
-					Drives=(char**)MALLOC(sizeof(char*)*(nbDrives));
-					Drives[nbDrives-1]=(char*)MALLOC(sizeof(char)*(strlen(DrvLetter)+1));
-				}
-				strcpy(Drives[nbDrives-1],DrvLetter);
-
-			}
-				
-			DrvLetter[0]++;
-			uDriveMask= uDriveMask >> 1;
-		}
-	}
-	#else
-	nbDrives++;
-	Drives=(char**)MALLOC(sizeof(char*)*(nbDrives));
-	Drives[nbDrives-1]=(char*)MALLOC(sizeof(char)*(strlen(DrvLetter)+1));
-	strcpy(Drives[nbDrives-1],"/");
-	#endif
-
+	Drives=getdrives(&nbDrives);
 
 	if (Drives)
 	{

@@ -235,6 +235,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getdrives.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getfiledesc.c"
 				>
 			</File>
@@ -434,6 +438,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\findfiles.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getdrives.h"
 				>
 			</File>
 			<File
