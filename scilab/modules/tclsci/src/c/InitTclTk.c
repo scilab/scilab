@@ -32,7 +32,7 @@ char *GetSciPath(void);
 /*-----------------------------------------------------------------------------------*/
 void initTCLTK(void)
 {
-	if ( getScilabMode() != NWNI )
+	if ( getScilabMode() != SCILAB_NWNI )
 	{
 		if ( OpenTCLsci()==0 ) 
 		{
@@ -171,7 +171,7 @@ int OpenTCLsci(void)
 int CloseTCLsci(void)
 {
 	int bOK=0;
-	if ( getScilabMode() != NWNI )
+	if ( getScilabMode() != SCILAB_NWNI )
 	{
 		if (TK_Started)
 		{

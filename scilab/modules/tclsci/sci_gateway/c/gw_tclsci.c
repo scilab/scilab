@@ -49,7 +49,7 @@ extern int TK_Started;
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_tclsci)()
 {  
-	if ( getScilabMode() != NWNI )
+	if ( getScilabMode() != SCILAB_NWNI )
 	{
 		if (TK_Started)
 		{

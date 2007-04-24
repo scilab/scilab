@@ -103,7 +103,7 @@ void realmain(int no_startup_flag_l,char *initial_script,int initial_script_type
   }
 
   #ifndef _MSC_VER
-  if ( nowin == 0 ) 
+  if ( getScilabMode() == SCILAB_STD ) 
     {
       int argc=0;
       char **argv=NULL;
