@@ -23,7 +23,8 @@ int next[20];
 
 
 
-int C2F(sci_strindex1) _PARAMS((char *fname,unsigned long fname_len)){
+int C2F(sci_strindex1) _PARAMS((char *fname,unsigned long fname_len))
+{
 	char typ = '*';
     char **Str,**Str2;
     static char def_sep[] ="";
