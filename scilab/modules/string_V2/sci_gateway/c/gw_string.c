@@ -38,7 +38,8 @@ static StringTable Tab[]=
     {C2F(sci_part1),"part1"},
 	{C2F(sci_convstr1),"convstr1"},
 	{C2F(sci_ascii1),"ascii1"},
-    {C2F(sci_stripblanks1),"stripblanks1"}
+    {C2F(sci_stripblanks1),"stripblanks1"},
+	{C2F(sci_strsplit),"strsplit"}
 
 
 
