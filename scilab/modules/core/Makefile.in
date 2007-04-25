@@ -219,7 +219,6 @@ am__libscicore_la_SOURCES_DIST = src/c/history.c src/c/inffic.c \
 	sci_gateway/fortran/sci_format.f \
 	sci_gateway/fortran/sci_chdir.f sci_gateway/fortran/sci_link.f \
 	sci_gateway/fortran/sci_comp.f \
-	sci_gateway/fortran/sci_havewindow.f \
 	sci_gateway/fortran/sci_setbpt.f \
 	sci_gateway/fortran/sci_predef.f \
 	sci_gateway/fortran/sci_typnam.f \
@@ -341,10 +340,10 @@ am__objects_8 = sci_errclear.lo sci_c_link.lo sci_funcprot.lo \
 	sci_notify.lo sci_macrovar.lo sci_lines.lo sci_funptr.lo \
 	sci_exists.lo sci_errcatch.lo sci_clear.lo sci_argn.lo \
 	sci_format.lo sci_chdir.lo sci_link.lo sci_comp.lo \
-	sci_havewindow.lo sci_setbpt.lo sci_predef.lo sci_typnam.lo \
-	sci_clearglobal.lo sci_fort.lo sci_delbpt.lo where.lo \
-	sci_iserror.lo sci_type.lo sci_mode.lo sci_addinter.lo \
-	sci_debug.lo sci_error.lo sci_sciargs.lo sci_isglobal.lo
+	sci_setbpt.lo sci_predef.lo sci_typnam.lo sci_clearglobal.lo \
+	sci_fort.lo sci_delbpt.lo where.lo sci_iserror.lo sci_type.lo \
+	sci_mode.lo sci_addinter.lo sci_debug.lo sci_error.lo \
+	sci_sciargs.lo sci_isglobal.lo
 am_libscicore_la_OBJECTS = $(am__objects_3) $(am__objects_6) \
 	$(am__objects_7) $(am__objects_8)
 libscicore_la_OBJECTS = $(am_libscicore_la_OBJECTS)
@@ -698,7 +697,6 @@ sci_gateway/fortran/sci_format.f \
 sci_gateway/fortran/sci_chdir.f \
 sci_gateway/fortran/sci_link.f \
 sci_gateway/fortran/sci_comp.f \
-sci_gateway/fortran/sci_havewindow.f \
 sci_gateway/fortran/sci_setbpt.f \
 sci_gateway/fortran/sci_predef.f \
 sci_gateway/fortran/sci_typnam.f \
@@ -2543,9 +2541,6 @@ sci_link.lo: sci_gateway/fortran/sci_link.f
 
 sci_comp.lo: sci_gateway/fortran/sci_comp.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_comp.lo `test -f 'sci_gateway/fortran/sci_comp.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_comp.f
-
-sci_havewindow.lo: sci_gateway/fortran/sci_havewindow.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_havewindow.lo `test -f 'sci_gateway/fortran/sci_havewindow.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_havewindow.f
 
 sci_setbpt.lo: sci_gateway/fortran/sci_setbpt.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_setbpt.lo `test -f 'sci_gateway/fortran/sci_setbpt.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_setbpt.f
