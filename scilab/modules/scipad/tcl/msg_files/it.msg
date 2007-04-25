@@ -1,5 +1,5 @@
 # Scipad texts in Italian
-# in sync at least with v6.80
+# in sync at least with v6.100
 
 
 # commons
@@ -57,13 +57,11 @@
                    "Recupera il valore &attuale in Scilab"
 
 
+# db_bptsmanagement.tcl
+::msgcat::mcset it "No breakpoint here!" "Non si può mettere un arresto qui!"
+
+
 # db_configureexec.tcl
-::msgcat::mcset it "You must enable colorization to be able to launch the\
-                    debugger!"\
-                   "Occorre attivare la colorazione per potere usare il\
-                    debugger!"
-::msgcat::mcset it "The debugger needs colorization"\
-                   "Il debugger ha bisogno della colorazione"
 ::msgcat::mcset it "Configure execution" "Configura l'esecuzione"
 ::msgcat::mcset it "Function name:" "Nome della funzione:"
 ::msgcat::mcset it "&Obtain" "&Ottieni"
@@ -114,13 +112,28 @@
                    "Questo file non contiene alcuna funzione e sarà trattato"
 ::msgcat::mcset it "as a single .sce file.\nStart debugging?"\
                    "Come un unico file .sce. Cominciare il debug?"
+::msgcat::mcset it "You must enable colorization to be able to launch the\
+                    debugger!"\
+                   "Occorre attivare la colorazione per potere usare il\
+                    debugger!"
+::msgcat::mcset it "The debugger needs colorization"\
+                   "Il debugger ha bisogno della colorazione"
+::msgcat::mcset it "Warning!\n\n  One or more function is defined more than\
+                    once in the currently opened files.\n  The debugger\
+                    cannot cope with multiple copies of functions.\n  The\
+                    following duplicates were detected:\n"\
+                   "Attenzione! Una o più funzioni sono definite più volte\
+                    nei files aperti. Il debugger non è in grado di scegliere\
+                    la definizione pertinente e non può procedere. Sono stati\
+                    rilevati i seguenti doppioni:"
+::msgcat::mcset it "\n--> Definition of function "\
+                   "\n--> Definizione della funzione "
+::msgcat::mcset it " found in:\n" " trovata in:\n"
+::msgcat::mcset it "Duplicate function definitions found"\
+                   "Doppie definizioni di funzioni trovate"
 
 
 # db_debugsession.tcl
-::msgcat::mcset it "Cursor must be in a function"\
-                   "Il cursore deve essere dentro una funzione"
-::msgcat::mcset it "No effect - The debugged file is not stuck"\
-                   "Senza effetto - il file in debug non è piantato"
 ::msgcat::mcset it "Too many breakpointed functions"\
                    "Troppe funzioni con punti di arresto"
 ::msgcat::mcset it "You have currently" "Ci sono al momento"
@@ -139,7 +152,41 @@
                    "punti d'arresto nei files aperti."
 ::msgcat::mcset it "possible breakpoints in Scilab (see help setbpt)."\
                    "possibili punti d'arresto (vedere help setbpt)."
-::msgcat::mcset it "No breakpoint here!" "Non si può mettere un arresto qui!"
+::msgcat::mcset it "Cursor must be in a function"\
+                   "Il cursore deve essere dentro una funzione"
+::msgcat::mcset it "This command cannot succeed if the function where the\
+                    debug just stopped is not opened in Scipad!"\
+                   "Questo comando non può essere eseguito se la funzione\
+                    in cui il debugger si è fermato non è aperta in Scipad!"
+::msgcat::mcset it "Cannot run to return point"\
+                   "Impossibile eseguire fino al punto di ritorno"
+::msgcat::mcset it "Warning!\nThe line where the debugger just stopped\
+                    contains a return statement (either endfunction, return\
+                    or resume) but this statement is not the first one on\
+                    the line."\
+                   "Attenzione!\nLa linea su cui il debugger si è fermato\
+                    contiene una istruzione di ritorno (endfunction, return o resume)\
+                    che non è la prima della linea."
+::msgcat::mcset it "As a consequence the debugger cannot predict if the next\
+                    debug step will really jump outside of the current\
+                    function, which is what you just asked the debugger to\
+                    do."\
+                   "Il debugger non può prevedere se il prossimo passo\
+                    di debug provocherà davvero l'uscita (come richiesto) o meno."
+::msgcat::mcset it "To avoid this unresolvable case, it is recommended to\
+                    place the return statement alone on its line."\
+                   "Per evitare casi non risolubili (per il debugger) come questo\
+                    è raccomandato di piazzare l'istruzione di ritorno isolata\
+                    sulla sua linea."
+::msgcat::mcset it "Do you want to see this warning again during this Scipad\
+                    session?"\
+                   "Vuoi vedere ancora questo messaggio durante questa sessione di\
+                    Scipad?"
+::msgcat::mcset it "Unresolvable case found while running to return point"\
+                   "Caso irrisolubile incontrato durante \"esegui fino al\
+                    punto di ritorno\""
+::msgcat::mcset it "No effect - The debugged file is not stuck"\
+                   "Senza effetto - il file in debug non è piantato"
 
 
 # db_init.tcl
@@ -203,11 +250,11 @@
                     file with the same name?"\
                    "non esiste più. Creare un nuovo file collo stesso nome?"
 ::msgcat::mcset it "Open file" "Aprire file"
-#::msgcat::mcset it "The file" "Il file" ;# defined in the "commons" section
+#::msgcat::mcset fr "The file" "Le fichier" ;# defined in the "commons" section
 ::msgcat::mcset it "is already opened! Save the current opened file to\
                     another name and reopen it from disk!"\
-                   "è già aperto! Salvarlo eventualmente con un altro nome e\
-                    riaprirlo dal disco"
+                   "è già aperto! Salvarlo eventualmente con un altro nome\
+                    e riaprirlo dal disco"
 ::msgcat::mcset it "File" "File"
 ::msgcat::mcset it "saved" "salvato"
 ::msgcat::mcset it "cannot be written!" "non è scrivibile!"
@@ -245,7 +292,8 @@
 
 
 # findreplace.tcl
-::msgcat::mcset it "Dialog box already open!" "Finestra di dialogo già aperta!"
+::msgcat::mcset it "Dialog box already open!"\
+                   "Finestra di dialogo già aperta!"
 ::msgcat::mcset it "The string" "La stringa \["
 ::msgcat::mcset it "could not be found in" "\] non è stata trovata in"
 ::msgcat::mcset it "could not be found in any of the opened files !"\
@@ -262,7 +310,7 @@
 ::msgcat::mcset it "Re&place" "&Sostituisci"
 ::msgcat::mcset it "Find what:" "Cerca:"
 ::msgcat::mcset it "Replace with:" "Cambia in:"
-::msgcat::mcset it "Find &Next" "Trova il segue&nte"
+::msgcat::mcset it "Find &Next" "Trova il &seguente"
 ::msgcat::mcset it "Replace &All" "Rimpiazza &tutti"
 ::msgcat::mcset it "Direction" "Direzione"
 ::msgcat::mcset it "&Upwards" "Verso l'&alto"
@@ -279,6 +327,7 @@
 ::msgcat::mcset it "Find in files search options"\
                    "Opzioni di ricerca nelle directories"
 ::msgcat::mcset it "Directory r&ecurse search" "Ricerca ri&corsiva"
+::msgcat::mcset it "Include &hidden files" "Includere files &nascosti"
 ::msgcat::mcset it "In files/file types:" "Nei files/tipi di files"
 ::msgcat::mcset it "In directory:" "Nella directory:"
 ::msgcat::mcset it "Search for file names" "Cercare tra i nomi dei files"
@@ -374,6 +423,12 @@
                    "Stai cercando di osservare un oggetto di tipo "
 ::msgcat::mcset it " - this type is not supported by the debugger"\
                    "questo tipo non viene supportato dal debugger"
+::msgcat::mcset it "Type:" "Tipo:"
+::msgcat::mcset it "(unsupported)" "(non supportato)"
+::msgcat::mcset it "size:" "dimensione:"
+::msgcat::mcset it "real" "reale"
+::msgcat::mcset it "complex" "complesso"
+::msgcat::mcset it "elements" "elementi"
 
 
 # FormatWhereForWatch.sci
@@ -391,12 +446,13 @@
                    "\n Originato da tknotepad di Joseph Acosta,\
                     joeja@mindspring.com.\n Modificato dal Consorzio\
                     Scilab.\n Migliorato da Enrico Segre 2003-2006\n e da\
-                    François Vogel (in particolare il debugger) 2004-2007.\n\
-                    Traduzioni: \n   norvegese, Torbjørn Pettersen 2005; \n  \
-                    polacco, Bartosz Kosiorek 2005; \n   svedese, Gunnar\
-                    Lindholm 2005; \n   tedesco, Dirk Reusch 2005; \n  \
-                    spagnolo, Juan Nicolás Quesada 2006;\n   taiwanese, \
-                    Yung-Jang Lee 2007;\n   danese, Kim B. Hansen, 2007."
+                    François Vogel (in particolare il debugger)\
+                    2004-2007.\n Traduzioni: \n   norvegese, Torbjørn\
+                    Pettersen 2005; \n   polacco, Bartosz Kosiorek 2005; \n  \
+                    svedese, Gunnar Lindholm 2005; \n   tedesco, Dirk Reusch\
+                    2005; \n   spagnolo, Juan Nicolás Quesada 2006;\n  \
+                    taiwanese,  Yung-Jang Lee 2007;\n   danese, Kim B.\
+                    Hansen, 2007."
 
 
 # infomessages.tcl
@@ -451,8 +507,10 @@
 ::msgcat::mcset it "&Undo" "&Annulla"
 ::msgcat::mcset it "&Redo" "&Ripristina"
 ::msgcat::mcset it "Cu&t" "&Taglia"
+::msgcat::mcset it "B&lock cut" "Ta&glia blocco"
 ::msgcat::mcset it "&Copy" "&Copia"
 ::msgcat::mcset it "&Paste" "&Incolla"
+::msgcat::mcset it "&Block paste" "Incolla &blocco"
 ::msgcat::mcset it "&Delete" "&Elimina"
 ::msgcat::mcset it "Select &All" "Sele&ziona tutto"
 ::msgcat::mcset it "Insert &Time/Date" "Inserisci &ora/data"
@@ -478,8 +536,10 @@
 ::msgcat::mcset it "Go to next b&reakpoint" "&Vai fino al prossimo arresto"
 ::msgcat::mcset it "&Step by step" "&Passo a passo"
 ::msgcat::mcset it "Step &into" "Entra &dentro"
-::msgcat::mcset it "Step o&ver" "Passa sop&ra"
-::msgcat::mcset it "Step &out" "Esci &fuori"
+::msgcat::mcset it "Step o&ver" "Passa s&opra"
+::msgcat::mcset it "Step &out" "Esci f&uori"
+::msgcat::mcset it "Run to re&turn point"\
+                   "Esegui &fino al ritorno"
 ::msgcat::mcset it "Run to c&ursor" "Esegui fino al curso&re"
 ::msgcat::mcset it "G&o on ignoring any breakpoint"\
                    "Co&ntinua ignorando gli arresti"
@@ -620,10 +680,10 @@
                     imprevedibile.\n\n Il comando in questione è:\n\n-->"
 ::msgcat::mcset it "impossibleScilabEval_message2"\
                    "ATTENZIONE : Un comando non ha potuto essere passato a\
-                    Scilab ed è stato ignorato perché troppo lungo. Ne può\
-                    risultare un comportamento imprevedibile.\n\n Se si è\
-                    nel corso di una sessione di debug, provare a ridurre le\
-                    variabili osservate. \n\n Il comando in questione\
+                    Scilab ed è stato ignorato perché troppo lungo. Ne\
+                    può risultare un comportamento imprevedibile.\n\n Se si\
+                    è nel corso di una sessione di debug, provare a ridurre\
+                    le variabili osservate. \n\n Il comando in questione\
                     è:\n\n-->"
 ::msgcat::mcset it "(end of command skipped)" "(resto del comando omesso)"
 ::msgcat::mcset it "Scilab working" "Scilab occupato"
@@ -640,8 +700,8 @@
                     selezione"
 ::msgcat::mcset it "Scilab is working, wait for the prompt to convert a\
                     Matlab file."\
-                   "Scilab è occupato, attendere il prompt per convertire un\
-                    file Matlab"
+                   "Scilab è occupato, attendere il prompt per convertire\
+                    un file Matlab"
 ::msgcat::mcset it "Scilab is working, wait for the prompt to compile the\
                     help file."\
                    "Scilab è occupato, attendere il prompt per compilare la\
