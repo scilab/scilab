@@ -28,7 +28,8 @@ extern EXPORT LRESULT CALLBACK WndGraphProc(HWND hwnd, UINT message, WPARAM wPar
 extern EXPORT LRESULT CALLBACK WndParentGraphProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 extern void ExportBMP(struct BCG *ScilabGC,char *pszflname);
 extern void Setscig_buzyState(BOOL state);
-extern Scig_deletegwin_handler scig_deletegwin_handler;
+/*extern Scig_deletegwin_handler 
+scig_deletegwin_handler;*/
 extern Scig_deletegwin_handler set_scig_deletegwin_handler(Scig_deletegwin_handler f);
 extern void SetGHdc(HDC lhdc,int width,int height);
 /*-----------------------------------------------------------------------------------*/
@@ -44,7 +45,7 @@ int C2F (deletewin) (integer * number)
   scig_erase (num);
   /* delete the windows and resources */
   DeleteObjs(num);
-  scig_deletegwin_handler (num);
+  get_scig_deletegwin_handler()(num);
   DeleteSGWin (num); /* Here we 1) destroy the ScilabXgc (set to NULL) if it is the last window in the list */
                         /*         2) or reset the ScilabXgc to the next one see DeleteSGWin*/
 

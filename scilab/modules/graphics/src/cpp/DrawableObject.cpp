@@ -26,6 +26,6 @@ void DrawableObject::drawChildren( void )
 /*------------------------------------------------------------------------------------------*/
 bool DrawableObject::checkVisibility( void )
 {
-  return sciGetVisibility( m_pDrawed ) ;
+  return sciGetVisibility( m_pDrawed ) == TRUE ;
 }
 /*------------------------------------------------------------------------------------------*/
