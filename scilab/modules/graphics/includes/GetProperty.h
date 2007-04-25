@@ -11,13 +11,17 @@
  *    objects.
  --------------------------------------------------------------------------*/
 
+
+
+#ifndef __SCI_GET_PROPERTY__
+#define __SCI_GET_PROPERTY__
+
+
+
 #include "ObjectStructure.h"
 #include "HandleManagement.h"
 #include "StringMatrix.h"
 #include "bcg.h"
-
-#ifndef __SCI_GET_PROPERTY__
-#define __SCI_GET_PROPERTY__
 
 void *sciGetPointerToFeature (sciPointObj * pobj); /* GET */
 void sciGetPointerToUserData (sciPointObj * pobj,int ***user_data_ptr, int **size_ptr); /* GET */
@@ -198,5 +202,6 @@ void sciGetScreenPosition( sciPointObj * pObj, int * posX, int * posY ) ;
 
 BOOL sciGetIsEventHandlerEnable( sciPointObj * pObj ) ;
 char * sciGetEventHandler( sciPointObj * pObj ) ;
+
 
 #endif /* __SCI_GET_PROPERTY__ */

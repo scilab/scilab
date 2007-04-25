@@ -463,11 +463,51 @@ am__objects_2 = libscigraphics_la-sci_swap_handles.lo \
 	libscigraphics_la-sci_driver.lo libscigraphics_la-sci_xdel.lo \
 	libscigraphics_la-sci_winsid.lo libscigraphics_la-sci_addcb.lo \
 	libscigraphics_la-sci_fec.lo
-am_libscigraphics_la_OBJECTS = $(am__objects_1) $(am__objects_2)
+am__objects_3 = libscigraphics_la-HandleDrawingObserver.lo \
+	libscigraphics_la-HandleObserverManagement.lo \
+	libscigraphics_la-BuildDrawingObserver.lo \
+	libscigraphics_la-DrawableObject.lo \
+	libscigraphics_la-DrawableClippedObject.lo \
+	libscigraphics_la-DrawableObjectFactory.lo \
+	libscigraphics_la-DrawingBridge.lo \
+	libscigraphics_la-getHandleDrawer.lo \
+	libscigraphics_la-DrawableFigure.lo \
+	libscigraphics_la-DrawableFigureFactory.lo \
+	libscigraphics_la-ConcreteDrawableFigure.lo \
+	libscigraphics_la-DrawableFigureJoGL.lo \
+	libscigraphics_la-DrawableFigureImpFactory.lo \
+	libscigraphics_la-DrawableSubwinFactory.lo \
+	libscigraphics_la-DrawableSubwin.lo \
+	libscigraphics_la-DrawablePolylineFactory.lo \
+	libscigraphics_la-DrawablePolyline.lo \
+	libscigraphics_la-DrawableTextFactory.lo \
+	libscigraphics_la-DrawableText.lo \
+	libscigraphics_la-DrawableLabelFactory.lo \
+	libscigraphics_la-DrawableLabel.lo \
+	libscigraphics_la-DrawableCompoundFactory.lo \
+	libscigraphics_la-DrawableCompound.lo \
+	libscigraphics_la-DrawableSurfaceFactory.lo \
+	libscigraphics_la-DrawableSurface.lo \
+	libscigraphics_la-DrawableArcFactory.lo \
+	libscigraphics_la-DrawableArc.lo \
+	libscigraphics_la-DrawableAxesFactory.lo \
+	libscigraphics_la-DrawableAxes.lo \
+	libscigraphics_la-DrawableFecFactory.lo \
+	libscigraphics_la-DrawableFec.lo \
+	libscigraphics_la-DrawableGrayplotFactory.lo \
+	libscigraphics_la-DrawableGrayplot.lo \
+	libscigraphics_la-DrawableLegendFactory.lo \
+	libscigraphics_la-DrawableLegend.lo \
+	libscigraphics_la-DrawableRectangleFactory.lo \
+	libscigraphics_la-DrawableRectangle.lo \
+	libscigraphics_la-DrawableSegsFactory.lo \
+	libscigraphics_la-DrawableSegs.lo
+am_libscigraphics_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
+	$(am__objects_3)
 libscigraphics_la_OBJECTS = $(am_libscigraphics_la_OBJECTS)
-libscigraphics_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
-	$(libscigraphics_la_CFLAGS) $(CFLAGS) \
+libscigraphics_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CXXLD) \
+	$(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) \
 	$(libscigraphics_la_LDFLAGS) $(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
@@ -480,6 +520,15 @@ LTCOMPILE = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
+	$(LDFLAGS) -o $@
+CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
+	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
+LTCXXCOMPILE = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
+	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
+CXXLD = $(CXX)
+CXXLINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libscigraphics_la_SOURCES)
 DIST_SOURCES = $(libscigraphics_la_SOURCES)
@@ -986,6 +1035,46 @@ src/c/TerminateGraphics.c \
 src/c/CurrentObjectsManagement.c \
 src/c/ObjectSelection.c
 
+GRAPHICS_CPP_SOURCES = src/cpp/HandleDrawingObserver.cpp \
+src/cpp/HandleObserverManagement.cpp \
+src/cpp/BuildDrawingObserver.cpp \
+src/cpp/DrawableObject.cpp \
+src/cpp/DrawableClippedObject.cpp \
+src/cpp/DrawableObjectFactory.cpp \
+src/cpp/DrawingBridge.cpp \
+src/cpp/getHandleDrawer.cpp \
+src/cpp/figureDrawing/DrawableFigure.cpp \
+src/cpp/figureDrawing/DrawableFigureFactory.cpp \
+src/cpp/figureDrawing/ConcreteDrawableFigure.cpp \
+src/cpp/figureDrawing/DrawableFigureJoGL.cpp \
+src/cpp/figureDrawing/DrawableFigureImpFactory.cpp \
+src/cpp/subwinDrawing/DrawableSubwinFactory.cpp \
+src/cpp/subwinDrawing/DrawableSubwin.cpp \
+src/cpp/polylineDrawing/DrawablePolylineFactory.cpp \
+src/cpp/polylineDrawing/DrawablePolyline.cpp \
+src/cpp/textDrawing/DrawableTextFactory.cpp \
+src/cpp/textDrawing/DrawableText.cpp \
+src/cpp/labelDrawing/DrawableLabelFactory.cpp \
+src/cpp/labelDrawing/DrawableLabel.cpp \
+src/cpp/compoundDrawing/DrawableCompoundFactory.cpp \
+src/cpp/compoundDrawing/DrawableCompound.cpp \
+src/cpp/surfaceDrawing/DrawableSurfaceFactory.cpp \
+src/cpp/surfaceDrawing/DrawableSurface.cpp \
+src/cpp/arcDrawing/DrawableArcFactory.cpp \
+src/cpp/arcDrawing/DrawableArc.cpp \
+src/cpp/axesDrawing/DrawableAxesFactory.cpp \
+src/cpp/axesDrawing/DrawableAxes.cpp \
+src/cpp/fecDrawing/DrawableFecFactory.cpp \
+src/cpp/fecDrawing/DrawableFec.cpp \
+src/cpp/grayplotDrawing/DrawableGrayplotFactory.cpp \
+src/cpp/grayplotDrawing/DrawableGrayplot.cpp \
+src/cpp/legendDrawing/DrawableLegendFactory.cpp \
+src/cpp/legendDrawing/DrawableLegend.cpp \
+src/cpp/rectangleDrawing/DrawableRectangleFactory.cpp \
+src/cpp/rectangleDrawing/DrawableRectangle.cpp \
+src/cpp/segsDrawing/DrawableSegsFactory.cpp \
+src/cpp/segsDrawing/DrawableSegs.cpp
+
 GATEWAY_C_SOURCES = sci_gateway/c/sci_swap_handles.c \
 sci_gateway/c/sci_readgif.c \
 sci_gateway/c/sci_grayplot.c \
@@ -1070,10 +1159,11 @@ sci_gateway/c/sci_winsid.c \
 sci_gateway/c/sci_addcb.c \
 sci_gateway/c/sci_fec.c
 
-libscigraphics_la_CFLAGS = -Iincludes/ -Isrc/c/ -Isrc/gd/  -Isrc/gd/gdfonts/ $(TCL_INC_PATH) $(TK_INC_PATH) -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/
+libscigraphics_la_CFLAGS = -Iincludes/ -Isrc/c/ -Isrc/cpp -Isrc/gd/  -Isrc/gd/gdfonts/ $(TCL_INC_PATH) $(TK_INC_PATH) -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/
+libscigraphics_la_CXXFLAGS = -Iincludes/ -Isrc/c/
 libscigraphics_la_LDFLAGS = $(TCLTK_LIBS) $(X_LIBS)
 pkglib_LTLIBRARIES = libscigraphics.la
-libscigraphics_la_SOURCES = $(GRAPHICS_C_SOURCES) $(GATEWAY_C_SOURCES)
+libscigraphics_la_SOURCES = $(GRAPHICS_C_SOURCES) $(GATEWAY_C_SOURCES) $(GRAPHICS_CPP_SOURCES)
 libscigraphics_la_LIBADD = \
 	$(top_builddir)/modules/intersci/libsciintersci.la \
 	$(top_builddir)/modules/data_structures/libscidata_structures.la \
@@ -1349,7 +1439,7 @@ all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
 .SUFFIXES:
-.SUFFIXES: .sci .java .class .jar .bin .c .lo .o .obj
+.SUFFIXES: .sci .java .class .jar .bin .c .cpp .lo .o .obj
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -1418,16 +1508,52 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-Actions.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-Axes.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-BasicAlgos.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-BuildDrawingObserver.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-BuildObjects.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-Champ.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-CheckTicksProperty.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-CloneObjects.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-ColorMapManagement.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-ConcreteDrawableFigure.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-Contour.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-CurrentObjectsManagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DefaultCommandArg.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DestroyObjects.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawObjects.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableArc.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableArcFactory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableAxes.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableAxesFactory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableClippedObject.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableCompound.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableCompoundFactory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableFec.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableFecFactory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableFigure.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableFigureFactory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableFigureImpFactory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableFigureJoGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableGrayplot.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableGrayplotFactory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableLabel.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableLabelFactory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableLegend.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableLegendFactory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableObject.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableObjectFactory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawablePolyline.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawablePolylineFactory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableRectangle.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableRectangleFactory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableSegs.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableSegsFactory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableSubwin.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableSubwinFactory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableSurface.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableSurfaceFactory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableText.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableTextFactory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawingBridge.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-Events.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-FeC.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-Format.Plo@am__quote@
@@ -1436,7 +1562,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-GetProperty.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-GraphicZoom.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-Gray.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-HandleDrawingObserver.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-HandleManagement.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-HandleObserverManagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-InitObjects.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-Interaction.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-ObjectSelection.Plo@am__quote@
@@ -1478,6 +1606,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-gdfontmb.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-gdfonts.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-gdfontt.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-getHandleDrawer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-getPropertyAssignedValue.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_alignment_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_arrow_size_factor_property.Plo@am__quote@
@@ -4796,6 +4925,300 @@ libscigraphics_la-sci_fec.lo: sci_gateway/c/sci_fec.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_fec.c' object='libscigraphics_la-sci_fec.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_fec.lo `test -f 'sci_gateway/c/sci_fec.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fec.c
+
+.cpp.o:
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ $<
+
+.cpp.obj:
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
+
+.cpp.lo:
+@am__fastdepCXX_TRUE@	$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
+
+libscigraphics_la-HandleDrawingObserver.lo: src/cpp/HandleDrawingObserver.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-HandleDrawingObserver.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-HandleDrawingObserver.Tpo -c -o libscigraphics_la-HandleDrawingObserver.lo `test -f 'src/cpp/HandleDrawingObserver.cpp' || echo '$(srcdir)/'`src/cpp/HandleDrawingObserver.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-HandleDrawingObserver.Tpo $(DEPDIR)/libscigraphics_la-HandleDrawingObserver.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/HandleDrawingObserver.cpp' object='libscigraphics_la-HandleDrawingObserver.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-HandleDrawingObserver.lo `test -f 'src/cpp/HandleDrawingObserver.cpp' || echo '$(srcdir)/'`src/cpp/HandleDrawingObserver.cpp
+
+libscigraphics_la-HandleObserverManagement.lo: src/cpp/HandleObserverManagement.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-HandleObserverManagement.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-HandleObserverManagement.Tpo -c -o libscigraphics_la-HandleObserverManagement.lo `test -f 'src/cpp/HandleObserverManagement.cpp' || echo '$(srcdir)/'`src/cpp/HandleObserverManagement.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-HandleObserverManagement.Tpo $(DEPDIR)/libscigraphics_la-HandleObserverManagement.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/HandleObserverManagement.cpp' object='libscigraphics_la-HandleObserverManagement.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-HandleObserverManagement.lo `test -f 'src/cpp/HandleObserverManagement.cpp' || echo '$(srcdir)/'`src/cpp/HandleObserverManagement.cpp
+
+libscigraphics_la-BuildDrawingObserver.lo: src/cpp/BuildDrawingObserver.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-BuildDrawingObserver.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-BuildDrawingObserver.Tpo -c -o libscigraphics_la-BuildDrawingObserver.lo `test -f 'src/cpp/BuildDrawingObserver.cpp' || echo '$(srcdir)/'`src/cpp/BuildDrawingObserver.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-BuildDrawingObserver.Tpo $(DEPDIR)/libscigraphics_la-BuildDrawingObserver.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/BuildDrawingObserver.cpp' object='libscigraphics_la-BuildDrawingObserver.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-BuildDrawingObserver.lo `test -f 'src/cpp/BuildDrawingObserver.cpp' || echo '$(srcdir)/'`src/cpp/BuildDrawingObserver.cpp
+
+libscigraphics_la-DrawableObject.lo: src/cpp/DrawableObject.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableObject.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableObject.Tpo -c -o libscigraphics_la-DrawableObject.lo `test -f 'src/cpp/DrawableObject.cpp' || echo '$(srcdir)/'`src/cpp/DrawableObject.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawableObject.Tpo $(DEPDIR)/libscigraphics_la-DrawableObject.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/DrawableObject.cpp' object='libscigraphics_la-DrawableObject.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableObject.lo `test -f 'src/cpp/DrawableObject.cpp' || echo '$(srcdir)/'`src/cpp/DrawableObject.cpp
+
+libscigraphics_la-DrawableClippedObject.lo: src/cpp/DrawableClippedObject.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableClippedObject.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableClippedObject.Tpo -c -o libscigraphics_la-DrawableClippedObject.lo `test -f 'src/cpp/DrawableClippedObject.cpp' || echo '$(srcdir)/'`src/cpp/DrawableClippedObject.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawableClippedObject.Tpo $(DEPDIR)/libscigraphics_la-DrawableClippedObject.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/DrawableClippedObject.cpp' object='libscigraphics_la-DrawableClippedObject.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableClippedObject.lo `test -f 'src/cpp/DrawableClippedObject.cpp' || echo '$(srcdir)/'`src/cpp/DrawableClippedObject.cpp
+
+libscigraphics_la-DrawableObjectFactory.lo: src/cpp/DrawableObjectFactory.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableObjectFactory.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableObjectFactory.Tpo -c -o libscigraphics_la-DrawableObjectFactory.lo `test -f 'src/cpp/DrawableObjectFactory.cpp' || echo '$(srcdir)/'`src/cpp/DrawableObjectFactory.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawableObjectFactory.Tpo $(DEPDIR)/libscigraphics_la-DrawableObjectFactory.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/DrawableObjectFactory.cpp' object='libscigraphics_la-DrawableObjectFactory.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableObjectFactory.lo `test -f 'src/cpp/DrawableObjectFactory.cpp' || echo '$(srcdir)/'`src/cpp/DrawableObjectFactory.cpp
+
+libscigraphics_la-DrawingBridge.lo: src/cpp/DrawingBridge.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawingBridge.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawingBridge.Tpo -c -o libscigraphics_la-DrawingBridge.lo `test -f 'src/cpp/DrawingBridge.cpp' || echo '$(srcdir)/'`src/cpp/DrawingBridge.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawingBridge.Tpo $(DEPDIR)/libscigraphics_la-DrawingBridge.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/DrawingBridge.cpp' object='libscigraphics_la-DrawingBridge.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawingBridge.lo `test -f 'src/cpp/DrawingBridge.cpp' || echo '$(srcdir)/'`src/cpp/DrawingBridge.cpp
+
+libscigraphics_la-getHandleDrawer.lo: src/cpp/getHandleDrawer.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-getHandleDrawer.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-getHandleDrawer.Tpo -c -o libscigraphics_la-getHandleDrawer.lo `test -f 'src/cpp/getHandleDrawer.cpp' || echo '$(srcdir)/'`src/cpp/getHandleDrawer.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-getHandleDrawer.Tpo $(DEPDIR)/libscigraphics_la-getHandleDrawer.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/getHandleDrawer.cpp' object='libscigraphics_la-getHandleDrawer.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-getHandleDrawer.lo `test -f 'src/cpp/getHandleDrawer.cpp' || echo '$(srcdir)/'`src/cpp/getHandleDrawer.cpp
+
+libscigraphics_la-DrawableFigure.lo: src/cpp/figureDrawing/DrawableFigure.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableFigure.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableFigure.Tpo -c -o libscigraphics_la-DrawableFigure.lo `test -f 'src/cpp/figureDrawing/DrawableFigure.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/DrawableFigure.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawableFigure.Tpo $(DEPDIR)/libscigraphics_la-DrawableFigure.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/figureDrawing/DrawableFigure.cpp' object='libscigraphics_la-DrawableFigure.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableFigure.lo `test -f 'src/cpp/figureDrawing/DrawableFigure.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/DrawableFigure.cpp
+
+libscigraphics_la-DrawableFigureFactory.lo: src/cpp/figureDrawing/DrawableFigureFactory.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableFigureFactory.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableFigureFactory.Tpo -c -o libscigraphics_la-DrawableFigureFactory.lo `test -f 'src/cpp/figureDrawing/DrawableFigureFactory.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/DrawableFigureFactory.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawableFigureFactory.Tpo $(DEPDIR)/libscigraphics_la-DrawableFigureFactory.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/figureDrawing/DrawableFigureFactory.cpp' object='libscigraphics_la-DrawableFigureFactory.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableFigureFactory.lo `test -f 'src/cpp/figureDrawing/DrawableFigureFactory.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/DrawableFigureFactory.cpp
+
+libscigraphics_la-ConcreteDrawableFigure.lo: src/cpp/figureDrawing/ConcreteDrawableFigure.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-ConcreteDrawableFigure.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-ConcreteDrawableFigure.Tpo -c -o libscigraphics_la-ConcreteDrawableFigure.lo `test -f 'src/cpp/figureDrawing/ConcreteDrawableFigure.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/ConcreteDrawableFigure.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-ConcreteDrawableFigure.Tpo $(DEPDIR)/libscigraphics_la-ConcreteDrawableFigure.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/figureDrawing/ConcreteDrawableFigure.cpp' object='libscigraphics_la-ConcreteDrawableFigure.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-ConcreteDrawableFigure.lo `test -f 'src/cpp/figureDrawing/ConcreteDrawableFigure.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/ConcreteDrawableFigure.cpp
+
+libscigraphics_la-DrawableFigureJoGL.lo: src/cpp/figureDrawing/DrawableFigureJoGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableFigureJoGL.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableFigureJoGL.Tpo -c -o libscigraphics_la-DrawableFigureJoGL.lo `test -f 'src/cpp/figureDrawing/DrawableFigureJoGL.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/DrawableFigureJoGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawableFigureJoGL.Tpo $(DEPDIR)/libscigraphics_la-DrawableFigureJoGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/figureDrawing/DrawableFigureJoGL.cpp' object='libscigraphics_la-DrawableFigureJoGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableFigureJoGL.lo `test -f 'src/cpp/figureDrawing/DrawableFigureJoGL.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/DrawableFigureJoGL.cpp
+
+libscigraphics_la-DrawableFigureImpFactory.lo: src/cpp/figureDrawing/DrawableFigureImpFactory.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableFigureImpFactory.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableFigureImpFactory.Tpo -c -o libscigraphics_la-DrawableFigureImpFactory.lo `test -f 'src/cpp/figureDrawing/DrawableFigureImpFactory.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/DrawableFigureImpFactory.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawableFigureImpFactory.Tpo $(DEPDIR)/libscigraphics_la-DrawableFigureImpFactory.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/figureDrawing/DrawableFigureImpFactory.cpp' object='libscigraphics_la-DrawableFigureImpFactory.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableFigureImpFactory.lo `test -f 'src/cpp/figureDrawing/DrawableFigureImpFactory.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/DrawableFigureImpFactory.cpp
+
+libscigraphics_la-DrawableSubwinFactory.lo: src/cpp/subwinDrawing/DrawableSubwinFactory.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableSubwinFactory.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableSubwinFactory.Tpo -c -o libscigraphics_la-DrawableSubwinFactory.lo `test -f 'src/cpp/subwinDrawing/DrawableSubwinFactory.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/DrawableSubwinFactory.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawableSubwinFactory.Tpo $(DEPDIR)/libscigraphics_la-DrawableSubwinFactory.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/DrawableSubwinFactory.cpp' object='libscigraphics_la-DrawableSubwinFactory.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableSubwinFactory.lo `test -f 'src/cpp/subwinDrawing/DrawableSubwinFactory.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/DrawableSubwinFactory.cpp
+
+libscigraphics_la-DrawableSubwin.lo: src/cpp/subwinDrawing/DrawableSubwin.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableSubwin.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableSubwin.Tpo -c -o libscigraphics_la-DrawableSubwin.lo `test -f 'src/cpp/subwinDrawing/DrawableSubwin.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/DrawableSubwin.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawableSubwin.Tpo $(DEPDIR)/libscigraphics_la-DrawableSubwin.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/DrawableSubwin.cpp' object='libscigraphics_la-DrawableSubwin.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableSubwin.lo `test -f 'src/cpp/subwinDrawing/DrawableSubwin.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/DrawableSubwin.cpp
+
+libscigraphics_la-DrawablePolylineFactory.lo: src/cpp/polylineDrawing/DrawablePolylineFactory.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawablePolylineFactory.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawablePolylineFactory.Tpo -c -o libscigraphics_la-DrawablePolylineFactory.lo `test -f 'src/cpp/polylineDrawing/DrawablePolylineFactory.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/DrawablePolylineFactory.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawablePolylineFactory.Tpo $(DEPDIR)/libscigraphics_la-DrawablePolylineFactory.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/polylineDrawing/DrawablePolylineFactory.cpp' object='libscigraphics_la-DrawablePolylineFactory.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawablePolylineFactory.lo `test -f 'src/cpp/polylineDrawing/DrawablePolylineFactory.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/DrawablePolylineFactory.cpp
+
+libscigraphics_la-DrawablePolyline.lo: src/cpp/polylineDrawing/DrawablePolyline.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawablePolyline.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawablePolyline.Tpo -c -o libscigraphics_la-DrawablePolyline.lo `test -f 'src/cpp/polylineDrawing/DrawablePolyline.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/DrawablePolyline.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawablePolyline.Tpo $(DEPDIR)/libscigraphics_la-DrawablePolyline.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/polylineDrawing/DrawablePolyline.cpp' object='libscigraphics_la-DrawablePolyline.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawablePolyline.lo `test -f 'src/cpp/polylineDrawing/DrawablePolyline.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/DrawablePolyline.cpp
+
+libscigraphics_la-DrawableTextFactory.lo: src/cpp/textDrawing/DrawableTextFactory.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableTextFactory.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableTextFactory.Tpo -c -o libscigraphics_la-DrawableTextFactory.lo `test -f 'src/cpp/textDrawing/DrawableTextFactory.cpp' || echo '$(srcdir)/'`src/cpp/textDrawing/DrawableTextFactory.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawableTextFactory.Tpo $(DEPDIR)/libscigraphics_la-DrawableTextFactory.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/textDrawing/DrawableTextFactory.cpp' object='libscigraphics_la-DrawableTextFactory.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableTextFactory.lo `test -f 'src/cpp/textDrawing/DrawableTextFactory.cpp' || echo '$(srcdir)/'`src/cpp/textDrawing/DrawableTextFactory.cpp
+
+libscigraphics_la-DrawableText.lo: src/cpp/textDrawing/DrawableText.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableText.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableText.Tpo -c -o libscigraphics_la-DrawableText.lo `test -f 'src/cpp/textDrawing/DrawableText.cpp' || echo '$(srcdir)/'`src/cpp/textDrawing/DrawableText.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawableText.Tpo $(DEPDIR)/libscigraphics_la-DrawableText.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/textDrawing/DrawableText.cpp' object='libscigraphics_la-DrawableText.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableText.lo `test -f 'src/cpp/textDrawing/DrawableText.cpp' || echo '$(srcdir)/'`src/cpp/textDrawing/DrawableText.cpp
+
+libscigraphics_la-DrawableLabelFactory.lo: src/cpp/labelDrawing/DrawableLabelFactory.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableLabelFactory.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableLabelFactory.Tpo -c -o libscigraphics_la-DrawableLabelFactory.lo `test -f 'src/cpp/labelDrawing/DrawableLabelFactory.cpp' || echo '$(srcdir)/'`src/cpp/labelDrawing/DrawableLabelFactory.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawableLabelFactory.Tpo $(DEPDIR)/libscigraphics_la-DrawableLabelFactory.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/labelDrawing/DrawableLabelFactory.cpp' object='libscigraphics_la-DrawableLabelFactory.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableLabelFactory.lo `test -f 'src/cpp/labelDrawing/DrawableLabelFactory.cpp' || echo '$(srcdir)/'`src/cpp/labelDrawing/DrawableLabelFactory.cpp
+
+libscigraphics_la-DrawableLabel.lo: src/cpp/labelDrawing/DrawableLabel.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableLabel.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableLabel.Tpo -c -o libscigraphics_la-DrawableLabel.lo `test -f 'src/cpp/labelDrawing/DrawableLabel.cpp' || echo '$(srcdir)/'`src/cpp/labelDrawing/DrawableLabel.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawableLabel.Tpo $(DEPDIR)/libscigraphics_la-DrawableLabel.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/labelDrawing/DrawableLabel.cpp' object='libscigraphics_la-DrawableLabel.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableLabel.lo `test -f 'src/cpp/labelDrawing/DrawableLabel.cpp' || echo '$(srcdir)/'`src/cpp/labelDrawing/DrawableLabel.cpp
+
+libscigraphics_la-DrawableCompoundFactory.lo: src/cpp/compoundDrawing/DrawableCompoundFactory.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableCompoundFactory.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableCompoundFactory.Tpo -c -o libscigraphics_la-DrawableCompoundFactory.lo `test -f 'src/cpp/compoundDrawing/DrawableCompoundFactory.cpp' || echo '$(srcdir)/'`src/cpp/compoundDrawing/DrawableCompoundFactory.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawableCompoundFactory.Tpo $(DEPDIR)/libscigraphics_la-DrawableCompoundFactory.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/compoundDrawing/DrawableCompoundFactory.cpp' object='libscigraphics_la-DrawableCompoundFactory.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableCompoundFactory.lo `test -f 'src/cpp/compoundDrawing/DrawableCompoundFactory.cpp' || echo '$(srcdir)/'`src/cpp/compoundDrawing/DrawableCompoundFactory.cpp
+
+libscigraphics_la-DrawableCompound.lo: src/cpp/compoundDrawing/DrawableCompound.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableCompound.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableCompound.Tpo -c -o libscigraphics_la-DrawableCompound.lo `test -f 'src/cpp/compoundDrawing/DrawableCompound.cpp' || echo '$(srcdir)/'`src/cpp/compoundDrawing/DrawableCompound.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawableCompound.Tpo $(DEPDIR)/libscigraphics_la-DrawableCompound.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/compoundDrawing/DrawableCompound.cpp' object='libscigraphics_la-DrawableCompound.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableCompound.lo `test -f 'src/cpp/compoundDrawing/DrawableCompound.cpp' || echo '$(srcdir)/'`src/cpp/compoundDrawing/DrawableCompound.cpp
+
+libscigraphics_la-DrawableSurfaceFactory.lo: src/cpp/surfaceDrawing/DrawableSurfaceFactory.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableSurfaceFactory.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableSurfaceFactory.Tpo -c -o libscigraphics_la-DrawableSurfaceFactory.lo `test -f 'src/cpp/surfaceDrawing/DrawableSurfaceFactory.cpp' || echo '$(srcdir)/'`src/cpp/surfaceDrawing/DrawableSurfaceFactory.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawableSurfaceFactory.Tpo $(DEPDIR)/libscigraphics_la-DrawableSurfaceFactory.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/surfaceDrawing/DrawableSurfaceFactory.cpp' object='libscigraphics_la-DrawableSurfaceFactory.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableSurfaceFactory.lo `test -f 'src/cpp/surfaceDrawing/DrawableSurfaceFactory.cpp' || echo '$(srcdir)/'`src/cpp/surfaceDrawing/DrawableSurfaceFactory.cpp
+
+libscigraphics_la-DrawableSurface.lo: src/cpp/surfaceDrawing/DrawableSurface.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableSurface.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableSurface.Tpo -c -o libscigraphics_la-DrawableSurface.lo `test -f 'src/cpp/surfaceDrawing/DrawableSurface.cpp' || echo '$(srcdir)/'`src/cpp/surfaceDrawing/DrawableSurface.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawableSurface.Tpo $(DEPDIR)/libscigraphics_la-DrawableSurface.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/surfaceDrawing/DrawableSurface.cpp' object='libscigraphics_la-DrawableSurface.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableSurface.lo `test -f 'src/cpp/surfaceDrawing/DrawableSurface.cpp' || echo '$(srcdir)/'`src/cpp/surfaceDrawing/DrawableSurface.cpp
+
+libscigraphics_la-DrawableArcFactory.lo: src/cpp/arcDrawing/DrawableArcFactory.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableArcFactory.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableArcFactory.Tpo -c -o libscigraphics_la-DrawableArcFactory.lo `test -f 'src/cpp/arcDrawing/DrawableArcFactory.cpp' || echo '$(srcdir)/'`src/cpp/arcDrawing/DrawableArcFactory.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawableArcFactory.Tpo $(DEPDIR)/libscigraphics_la-DrawableArcFactory.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/arcDrawing/DrawableArcFactory.cpp' object='libscigraphics_la-DrawableArcFactory.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableArcFactory.lo `test -f 'src/cpp/arcDrawing/DrawableArcFactory.cpp' || echo '$(srcdir)/'`src/cpp/arcDrawing/DrawableArcFactory.cpp
+
+libscigraphics_la-DrawableArc.lo: src/cpp/arcDrawing/DrawableArc.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableArc.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableArc.Tpo -c -o libscigraphics_la-DrawableArc.lo `test -f 'src/cpp/arcDrawing/DrawableArc.cpp' || echo '$(srcdir)/'`src/cpp/arcDrawing/DrawableArc.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawableArc.Tpo $(DEPDIR)/libscigraphics_la-DrawableArc.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/arcDrawing/DrawableArc.cpp' object='libscigraphics_la-DrawableArc.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableArc.lo `test -f 'src/cpp/arcDrawing/DrawableArc.cpp' || echo '$(srcdir)/'`src/cpp/arcDrawing/DrawableArc.cpp
+
+libscigraphics_la-DrawableAxesFactory.lo: src/cpp/axesDrawing/DrawableAxesFactory.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableAxesFactory.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableAxesFactory.Tpo -c -o libscigraphics_la-DrawableAxesFactory.lo `test -f 'src/cpp/axesDrawing/DrawableAxesFactory.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/DrawableAxesFactory.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawableAxesFactory.Tpo $(DEPDIR)/libscigraphics_la-DrawableAxesFactory.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/axesDrawing/DrawableAxesFactory.cpp' object='libscigraphics_la-DrawableAxesFactory.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableAxesFactory.lo `test -f 'src/cpp/axesDrawing/DrawableAxesFactory.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/DrawableAxesFactory.cpp
+
+libscigraphics_la-DrawableAxes.lo: src/cpp/axesDrawing/DrawableAxes.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableAxes.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableAxes.Tpo -c -o libscigraphics_la-DrawableAxes.lo `test -f 'src/cpp/axesDrawing/DrawableAxes.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/DrawableAxes.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawableAxes.Tpo $(DEPDIR)/libscigraphics_la-DrawableAxes.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/axesDrawing/DrawableAxes.cpp' object='libscigraphics_la-DrawableAxes.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableAxes.lo `test -f 'src/cpp/axesDrawing/DrawableAxes.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/DrawableAxes.cpp
+
+libscigraphics_la-DrawableFecFactory.lo: src/cpp/fecDrawing/DrawableFecFactory.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableFecFactory.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableFecFactory.Tpo -c -o libscigraphics_la-DrawableFecFactory.lo `test -f 'src/cpp/fecDrawing/DrawableFecFactory.cpp' || echo '$(srcdir)/'`src/cpp/fecDrawing/DrawableFecFactory.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawableFecFactory.Tpo $(DEPDIR)/libscigraphics_la-DrawableFecFactory.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/fecDrawing/DrawableFecFactory.cpp' object='libscigraphics_la-DrawableFecFactory.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableFecFactory.lo `test -f 'src/cpp/fecDrawing/DrawableFecFactory.cpp' || echo '$(srcdir)/'`src/cpp/fecDrawing/DrawableFecFactory.cpp
+
+libscigraphics_la-DrawableFec.lo: src/cpp/fecDrawing/DrawableFec.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableFec.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableFec.Tpo -c -o libscigraphics_la-DrawableFec.lo `test -f 'src/cpp/fecDrawing/DrawableFec.cpp' || echo '$(srcdir)/'`src/cpp/fecDrawing/DrawableFec.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawableFec.Tpo $(DEPDIR)/libscigraphics_la-DrawableFec.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/fecDrawing/DrawableFec.cpp' object='libscigraphics_la-DrawableFec.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableFec.lo `test -f 'src/cpp/fecDrawing/DrawableFec.cpp' || echo '$(srcdir)/'`src/cpp/fecDrawing/DrawableFec.cpp
+
+libscigraphics_la-DrawableGrayplotFactory.lo: src/cpp/grayplotDrawing/DrawableGrayplotFactory.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableGrayplotFactory.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableGrayplotFactory.Tpo -c -o libscigraphics_la-DrawableGrayplotFactory.lo `test -f 'src/cpp/grayplotDrawing/DrawableGrayplotFactory.cpp' || echo '$(srcdir)/'`src/cpp/grayplotDrawing/DrawableGrayplotFactory.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawableGrayplotFactory.Tpo $(DEPDIR)/libscigraphics_la-DrawableGrayplotFactory.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/grayplotDrawing/DrawableGrayplotFactory.cpp' object='libscigraphics_la-DrawableGrayplotFactory.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableGrayplotFactory.lo `test -f 'src/cpp/grayplotDrawing/DrawableGrayplotFactory.cpp' || echo '$(srcdir)/'`src/cpp/grayplotDrawing/DrawableGrayplotFactory.cpp
+
+libscigraphics_la-DrawableGrayplot.lo: src/cpp/grayplotDrawing/DrawableGrayplot.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableGrayplot.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableGrayplot.Tpo -c -o libscigraphics_la-DrawableGrayplot.lo `test -f 'src/cpp/grayplotDrawing/DrawableGrayplot.cpp' || echo '$(srcdir)/'`src/cpp/grayplotDrawing/DrawableGrayplot.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawableGrayplot.Tpo $(DEPDIR)/libscigraphics_la-DrawableGrayplot.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/grayplotDrawing/DrawableGrayplot.cpp' object='libscigraphics_la-DrawableGrayplot.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableGrayplot.lo `test -f 'src/cpp/grayplotDrawing/DrawableGrayplot.cpp' || echo '$(srcdir)/'`src/cpp/grayplotDrawing/DrawableGrayplot.cpp
+
+libscigraphics_la-DrawableLegendFactory.lo: src/cpp/legendDrawing/DrawableLegendFactory.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableLegendFactory.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableLegendFactory.Tpo -c -o libscigraphics_la-DrawableLegendFactory.lo `test -f 'src/cpp/legendDrawing/DrawableLegendFactory.cpp' || echo '$(srcdir)/'`src/cpp/legendDrawing/DrawableLegendFactory.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawableLegendFactory.Tpo $(DEPDIR)/libscigraphics_la-DrawableLegendFactory.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/legendDrawing/DrawableLegendFactory.cpp' object='libscigraphics_la-DrawableLegendFactory.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableLegendFactory.lo `test -f 'src/cpp/legendDrawing/DrawableLegendFactory.cpp' || echo '$(srcdir)/'`src/cpp/legendDrawing/DrawableLegendFactory.cpp
+
+libscigraphics_la-DrawableLegend.lo: src/cpp/legendDrawing/DrawableLegend.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableLegend.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableLegend.Tpo -c -o libscigraphics_la-DrawableLegend.lo `test -f 'src/cpp/legendDrawing/DrawableLegend.cpp' || echo '$(srcdir)/'`src/cpp/legendDrawing/DrawableLegend.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawableLegend.Tpo $(DEPDIR)/libscigraphics_la-DrawableLegend.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/legendDrawing/DrawableLegend.cpp' object='libscigraphics_la-DrawableLegend.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableLegend.lo `test -f 'src/cpp/legendDrawing/DrawableLegend.cpp' || echo '$(srcdir)/'`src/cpp/legendDrawing/DrawableLegend.cpp
+
+libscigraphics_la-DrawableRectangleFactory.lo: src/cpp/rectangleDrawing/DrawableRectangleFactory.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableRectangleFactory.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableRectangleFactory.Tpo -c -o libscigraphics_la-DrawableRectangleFactory.lo `test -f 'src/cpp/rectangleDrawing/DrawableRectangleFactory.cpp' || echo '$(srcdir)/'`src/cpp/rectangleDrawing/DrawableRectangleFactory.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawableRectangleFactory.Tpo $(DEPDIR)/libscigraphics_la-DrawableRectangleFactory.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/rectangleDrawing/DrawableRectangleFactory.cpp' object='libscigraphics_la-DrawableRectangleFactory.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableRectangleFactory.lo `test -f 'src/cpp/rectangleDrawing/DrawableRectangleFactory.cpp' || echo '$(srcdir)/'`src/cpp/rectangleDrawing/DrawableRectangleFactory.cpp
+
+libscigraphics_la-DrawableRectangle.lo: src/cpp/rectangleDrawing/DrawableRectangle.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableRectangle.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableRectangle.Tpo -c -o libscigraphics_la-DrawableRectangle.lo `test -f 'src/cpp/rectangleDrawing/DrawableRectangle.cpp' || echo '$(srcdir)/'`src/cpp/rectangleDrawing/DrawableRectangle.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawableRectangle.Tpo $(DEPDIR)/libscigraphics_la-DrawableRectangle.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/rectangleDrawing/DrawableRectangle.cpp' object='libscigraphics_la-DrawableRectangle.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableRectangle.lo `test -f 'src/cpp/rectangleDrawing/DrawableRectangle.cpp' || echo '$(srcdir)/'`src/cpp/rectangleDrawing/DrawableRectangle.cpp
+
+libscigraphics_la-DrawableSegsFactory.lo: src/cpp/segsDrawing/DrawableSegsFactory.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableSegsFactory.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableSegsFactory.Tpo -c -o libscigraphics_la-DrawableSegsFactory.lo `test -f 'src/cpp/segsDrawing/DrawableSegsFactory.cpp' || echo '$(srcdir)/'`src/cpp/segsDrawing/DrawableSegsFactory.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawableSegsFactory.Tpo $(DEPDIR)/libscigraphics_la-DrawableSegsFactory.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/segsDrawing/DrawableSegsFactory.cpp' object='libscigraphics_la-DrawableSegsFactory.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableSegsFactory.lo `test -f 'src/cpp/segsDrawing/DrawableSegsFactory.cpp' || echo '$(srcdir)/'`src/cpp/segsDrawing/DrawableSegsFactory.cpp
+
+libscigraphics_la-DrawableSegs.lo: src/cpp/segsDrawing/DrawableSegs.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableSegs.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableSegs.Tpo -c -o libscigraphics_la-DrawableSegs.lo `test -f 'src/cpp/segsDrawing/DrawableSegs.cpp' || echo '$(srcdir)/'`src/cpp/segsDrawing/DrawableSegs.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawableSegs.Tpo $(DEPDIR)/libscigraphics_la-DrawableSegs.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/segsDrawing/DrawableSegs.cpp' object='libscigraphics_la-DrawableSegs.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableSegs.lo `test -f 'src/cpp/segsDrawing/DrawableSegs.cpp' || echo '$(srcdir)/'`src/cpp/segsDrawing/DrawableSegs.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

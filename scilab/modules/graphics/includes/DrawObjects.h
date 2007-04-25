@@ -101,7 +101,7 @@ extern void DrawAxes(sciPointObj*); /* DRAWINGS */
 
 extern void UpdateSubwinScale(sciPointObj * pobj); /* DRAWINGS */
 
-extern int sciDrawObj (sciPointObj * pobj); /* DRAWINGS */
+//extern int sciDrawObj (sciPointObj * pobj); /* DRAWINGS */
 extern int sciDrawObjIfRequired (sciPointObj * pobj); /* DRAWINGS */
 extern int sciRefreshObj( sciPointObj * pobj ) ; /* DRAWINGS */
 

@@ -32,6 +32,7 @@
 #include "sciprint.h"
 #include "CurrentObjectsManagement.h"
 #include "ObjectSelection.h"
+#include "BuildDrawingObserver.h"
 
 #ifdef WITH_TK
 #include "../../../tclsci/includes/GedManagement.h"
@@ -646,6 +647,8 @@ int DestroyLabel (sciPointObj * pthis)
 {
   sciLabel * ppLabel = pLABEL_FEATURE (pthis);
   int textStatus = -1 ;
+  deleteObservers( pthis ) ;
+  destroyHandleDrawer( pthis ) ;
   sciUnselectSons( pthis ) ;
   sciDelThisToItsParent( pthis, sciGetParent(pthis) ) ;
   if ( sciDelHandle(pthis) == -1 ) { return -1 ; }
@@ -795,10 +798,11 @@ void sciDeleteWindow( int winNum )
 void AllGraphWinDelete( void )
 {
 
-  integer iflag=0,num=0;
-  int *ArrayWGraph=NULL;
+  integer iflag=0 ;
+  int num = sciGetNbFigure() ;
+  int *ArrayWGraph = NULL ;
 
-  sciGetIdFigure (ArrayWGraph,&num,&iflag);
+  //sciGetIdFigure (ArrayWGraph,&num,&iflag);
 
   if (num > 0)
   {
@@ -806,13 +810,13 @@ void AllGraphWinDelete( void )
     ArrayWGraph=(int*)MALLOC(sizeof(int)*num);
 
     iflag = 1;
-    sciGetIdFigure (ArrayWGraph,&num,&iflag);
+    sciGetFiguresId( ArrayWGraph ) ;
 
     for (i=0;i<num;i++)
     {
       C2F (deletewin) (&ArrayWGraph[i]);
-      FREE (ArrayWGraph);
     }
+    FREE (ArrayWGraph);
     ArrayWGraph=NULL;
   }
 }
@@ -845,6 +849,8 @@ int sciDestroyConsole( sciPointObj * pThis )
 int sciStandardDestroyOperations( sciPointObj * pThis )
 {
   int res = 0 ;
+  deleteObservers( pThis ) ;
+  destroyHandleDrawer( pThis ) ;
   clearUserData( pThis ) ;
   sciUnselectSons( pThis ) ;
   sciDelThisToItsParent( pThis, sciGetParent(pThis) ) ;

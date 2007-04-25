@@ -37,6 +37,7 @@
 #include "sciprint.h"
 #include "CurrentObjectsManagement.h"
 #include "ObjectSelection.h"
+#include "BuildDrawingObserver.h"
 
 #include "MALLOC.h" /* MALLOC */
 
@@ -65,7 +66,7 @@ ConstructStatusBar (sciPointObj * pparentfigure)
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
-      if ( sciStandrardBuildOperations( pobj, pparentfigure ) == NULL )
+      if ( sciStandardBuildOperations( pobj, pparentfigure ) == NULL )
       {
         return NULL ;
       }
@@ -142,7 +143,7 @@ sciPointObj * ConstructFigure( sciPointObj * pparent, struct BCG * XGC )
   
   ppFigure = pFIGURE_FEATURE(pobj) ;
 
-  if ( sciStandrardBuildOperations( pobj, pparent ) == NULL )
+  if ( sciStandardBuildOperations( pobj, pparent ) == NULL )
   {
     return NULL ;
   }
@@ -253,7 +254,7 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 	  return (sciPointObj *) NULL;
 	}
       
-      if ( sciStandrardBuildOperations( pobj, pparentfigure ) == NULL )
+      if ( sciStandardBuildOperations( pobj, pparentfigure ) == NULL )
       {
         return NULL ;
       }
@@ -568,7 +569,7 @@ ConstructScrollV (sciPointObj * pparentfigure)
 	  FREE(pobjsbv);
 	  return (sciPointObj *) NULL;
 	}
-      if ( sciStandrardBuildOperations( pobjsbv, pparentfigure ) == NULL )
+      if ( sciStandardBuildOperations( pobjsbv, pparentfigure ) == NULL )
       {
         return NULL ;
       }
@@ -603,7 +604,7 @@ ConstructScrollH (sciPointObj * pparentfigure)
 	  FREE(pobjsbh);
 	  return (sciPointObj *) NULL;
 	}
-      if ( sciStandrardBuildOperations( pobjsbh, pparentfigure ) == NULL )
+      if ( sciStandardBuildOperations( pobjsbh, pparentfigure ) == NULL )
       {
         return NULL ;
       }
@@ -748,6 +749,10 @@ ConstructText (sciPointObj * pparentsubwin, char ** text, int nbRow, int nbCol, 
       return NULL ;
     }
 
+    pobj->pObservers = DoublyLinkedList_new() ;
+    createDrawingObserver( pobj ) ;
+    pobj->pDrawer = NULL ;
+
     if ( sciInitFontContext( pobj ) == -1 )
     {
       FREE(pobj->pfeatures);
@@ -813,7 +818,7 @@ ConstructTitle (sciPointObj * pparentsubwin, char text[], int type)
       
       ppTitle = pTITLE_FEATURE(pobj) ;
 
-      if ( sciStandrardBuildOperations( pobj, pparentsubwin ) == NULL )
+      if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
       {
         return NULL ;
       }
@@ -905,7 +910,7 @@ ConstructLegend (sciPointObj * pparentsubwin, char text[], int n, int nblegends,
       /* get the pointer on the features */
       ppLegend = pLEGEND_FEATURE( pobj );
 
-      if ( sciStandrardBuildOperations( pobj, pparentsubwin ) == NULL )
+      if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
       {
         return NULL ;
       }
@@ -1033,7 +1038,7 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
-      if ( sciStandrardBuildOperations( pobj, pparentsubwin ) == NULL )
+      if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
       {
         return NULL ;
       }
@@ -1211,7 +1216,7 @@ ConstructArc (sciPointObj * pparentsubwin, double x, double y,
       /* get the pointer to features */
       ppArc = pobj->pfeatures ;
 
-      if ( sciStandrardBuildOperations( pobj, pparentsubwin ) == NULL )
+      if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
       {
         return NULL ;
       }
@@ -1299,7 +1304,7 @@ ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
-      if ( sciStandrardBuildOperations( pobj, pparentsubwin ) == NULL )
+      if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
       {
         return NULL ;
       }
@@ -1416,7 +1421,7 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
 	}
       /*debug F.Leray*/
       psurf = pSURFACE_FEATURE (pobj);
-      if ( sciStandrardBuildOperations( pobj, pparentsubwin ) == NULL )
+      if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
       {
         return NULL ;
       }
@@ -1665,7 +1670,7 @@ ConstructGrayplot (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
-      if ( sciStandrardBuildOperations( pobj, pparentsubwin ) == NULL )
+      if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
       {
         return NULL ;
       }
@@ -1774,7 +1779,7 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
-      if ( sciStandrardBuildOperations( pobj, pparentsubwin ) == NULL )
+      if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
       {
         return NULL ;
       }
@@ -1934,7 +1939,7 @@ ConstructFec (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double 
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
-      if ( sciStandrardBuildOperations( pobj, pparentsubwin ) == NULL )
+      if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
       {
         return NULL ;
       }
@@ -2093,7 +2098,7 @@ ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy,
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
-      if ( sciStandrardBuildOperations( pobj, pparentsubwin ) == NULL )
+      if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
       {
         return NULL ;
       }
@@ -2273,7 +2278,7 @@ ConstructCompound (long *handelsvalue, int number) /* Conflicting types with def
   /* get the pointer on features */
   ppCompound = pAGREG_FEATURE (pobj) ;
 
-  if ( sciStandrardBuildOperations( pobj, sciGetParent(sciGetPointerFromHandle( (long) handelsvalue[0])) ) == NULL )
+  if ( sciStandardBuildOperations( pobj, sciGetParent(sciGetPointerFromHandle( (long) handelsvalue[0])) ) == NULL )
   {
     return NULL ;
   }
@@ -2320,7 +2325,7 @@ ConstructCompound (long *handelsvalue, int number) /* Conflicting types with def
 sciPointObj *
 ConstructCompoundSeq (int number) 
 {
-  sciSons *sons, *lastsons;
+  sciSons *sons, *lastsons, *firstSon ;
   sciPointObj *pobj;
   int i;
 
@@ -2333,55 +2338,62 @@ ConstructCompoundSeq (int number)
 
   /* initialize the A Compound data structure */
   if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
-    return (sciPointObj *) NULL;
+  {
+    return NULL;
+  }
 
   sciSetEntityType (pobj, SCI_AGREG);
   if ((pobj->pfeatures = MALLOC ((sizeof (sciAgreg)))) == NULL)
-    return (sciPointObj *) NULL;
-  ppagr=pAGREG_FEATURE(pobj);
+  {
+    return NULL;
+  }
+
+  ppagr = pAGREG_FEATURE(pobj) ;
+
+  if ( sciStandardBuildOperations( pobj, psubwin ) == NULL )
+  {
+    return NULL ;
+  }
 
   if (sciAddNewHandle (pobj) == -1)
-    {
-      sciprint("no handle to allocate\n");
-      FREE(pobj->pfeatures);FREE(pobj);
-      return (sciPointObj *) NULL;
-    }
+  {
+    sciprint("no handle to allocate\n");
+    FREE(pobj->pfeatures);FREE(pobj);
+    return (sciPointObj *) NULL;
+  }
 
 
-  sons=ppsubwin->relationship.psons;
+  sons = ppsubwin->relationship.psons;
   /* check if s1 predecessor is null*/
-  if (sons->pprev != (sciSons *)NULL) {
+  if (sons->pprev != NULL)
+  {
     sciprint("Unexpected case, please report\n");
     FREE(pobj->pfeatures);FREE(pobj);
     return (sciPointObj *) NULL;
   }
 
-  /* change parent of all sons s1,...,sn*/
-  lastsons=sons;
-
+  /* change parent of all sons s2,...,sn+1*/
+  /* s1 is the compound */
+  firstSon = sons->pnext ;
+  lastsons = firstSon ;
   
-  /*   sciprint("debut\n"); */
-  
-  for (i=0;i<number;i++) {
-   
-    /*     sciprint("%8x %8x %8x  |  %8x\n",lastsons->pprev,lastsons->pointobj,lastsons->pnext, */
-    /* 	     sciGetRelationship (lastsons->pointobj)->pparent); */
-    
-    (sciGetRelationship (lastsons->pointobj))->pparent=pobj;
-    lastsons=lastsons->pnext;
+  for ( i = 0 ; i < number ; i++ )
+  {
+    (sciGetRelationship(lastsons->pointobj))->pparent = pobj ;
+    lastsons=lastsons->pnext ;
   }
 
-  lastsons=lastsons->pprev; /* lastsons is sn */
+  lastsons = lastsons->pprev; /* lastsons is sn+1 */
 
-  /* disconnect chain s1->s2->...->sn out of subwin children list */
-  ppsubwin->relationship.psons = lastsons->pnext;
-  ppsubwin->relationship.psons->pprev = (sciSons *)NULL;
+  /* disconnect chain s2->s3->...->sn+1 out of subwin children list */
+  ppsubwin->relationship.psons->pnext = lastsons->pnext;
+  ppsubwin->relationship.psons->pprev = NULL;
   /* attach the Compound to the current subwin */
   /* the subwin children list is now null->A->sn+1->...->null */
-  if (!(sciAddThisToItsParent (pobj, (sciPointObj *)psubwin))) {
-    FREE(pobj->pfeatures);FREE(pobj);
-    return (sciPointObj *) NULL;
-  }
+  /* if (!(sciAddThisToItsParent (pobj, (sciPointObj *)psubwin))) { */
+/*     FREE(pobj->pfeatures);FREE(pobj); */
+/*     return (sciPointObj *) NULL; */
+/*   } */
   sciInitSelectedSons(pobj);
   /* the subwin children list is now null->A->sn+1->...->null */
 
@@ -2395,12 +2407,12 @@ ConstructCompoundSeq (int number)
   ppagr->isselected = TRUE;
  
   /* re chain A sons lists */
-  ppagr->relationship.psons = sons;
+  ppagr->relationship.psons = firstSon;
   
   ppagr->relationship.plastsons = lastsons;
-  ppagr->relationship.plastsons->pnext = (sciSons *)NULL;
-  ppagr->relationship.psons->pprev = (sciSons *)NULL; /* this should do nothing*/
-  /* the Compound children list is now  null->s1->s2->...->sn->null*/
+  ppagr->relationship.plastsons->pnext = NULL;
+  ppagr->relationship.psons->pprev = NULL; /* this should do nothing*/
+  /* the Compound children list is now  null->s2->s3->...->sn+1->null*/
 
 
   return (sciPointObj *)pobj;
@@ -2470,6 +2482,11 @@ ConstructLabel (sciPointObj * pparentsubwin, char *text, int type)
     
     sciInitSelectedSons(pobj);
     sciInitIsFilled(pobj,FALSE); /* by default a simple text is display (if existing) */
+
+    pobj->pObservers = DoublyLinkedList_new() ;
+    createDrawingObserver( pobj ) ;
+
+    pobj->pDrawer = NULL ;
     
     sciInitIs3d( pobj, FALSE ) ; /* the text of labels is displayed using 2d scale */
 
@@ -2513,7 +2530,7 @@ ConstructMenu (sciPointObj * pparentfigure, char plabel[], int n)
 	  return (sciPointObj *) NULL;
 	}
 
-      if ( sciStandrardBuildOperations( pobj, pparentfigure ) == NULL )
+      if ( sciStandardBuildOperations( pobj, pparentfigure ) == NULL )
       {
         return NULL ;
       }
@@ -2569,7 +2586,7 @@ ConstructMenuContext (sciPointObj * pparentfigure)
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
-      if ( sciStandrardBuildOperations( pobj, pparentfigure ) == NULL )
+      if ( sciStandardBuildOperations( pobj, pparentfigure ) == NULL )
       {
         return NULL ;
       }
@@ -2721,7 +2738,7 @@ sciPointObj * ConstructUimenu (sciPointObj * pparent, char *label,char *callback
 	  return (sciPointObj *) NULL;
 	}
       ppobj=pUIMENU_FEATURE (pobj);
-      if ( sciStandrardBuildOperations( pobj, pparent ) == NULL )
+      if ( sciStandardBuildOperations( pobj, pparent ) == NULL )
       {
         return NULL ;
       }
@@ -2785,7 +2802,7 @@ sciPointObj * sciConstructConsole( sciPointObj * pparent )
 
   }
 
-  pObj = sciStandrardBuildOperations( pObj, pparent ) ;
+  pObj = sciStandardBuildOperations( pObj, pparent ) ;
 
   return pObj ;
 
@@ -2797,7 +2814,7 @@ sciPointObj * sciConstructConsole( sciPointObj * pparent )
  * @return the modified object. Should be the same as pObj, unless an error occured.
  *         then it is NULL.
  */
-sciPointObj * sciStandrardBuildOperations( sciPointObj * pObj, sciPointObj * parent )
+sciPointObj * sciStandardBuildOperations( sciPointObj * pObj, sciPointObj * parent )
 {
   int ** userData = NULL ;
   int *  udSize   = NULL ;
@@ -2832,6 +2849,11 @@ sciPointObj * sciStandrardBuildOperations( sciPointObj * pObj, sciPointObj * par
   *userData = NULL ;
   *udSize   = 0    ;
 
+  pObj->pObservers = DoublyLinkedList_new() ;
+  createDrawingObserver( pObj ) ;
+
+  pObj->pDrawer = NULL ;
+
   return pObj ;
 
 }
@@ -2858,7 +2880,7 @@ sciPointObj * sciConstructFrame( sciPointObj * pparent )
 
   }
 
-  pObj = sciStandrardBuildOperations( pObj, pparent ) ;
+  pObj = sciStandardBuildOperations( pObj, pparent ) ;
 
   return pObj ;
 
@@ -2886,7 +2908,7 @@ sciPointObj * sciConstructWindow( sciPointObj * pparent )
 
   }
 
-  pObj = sciStandrardBuildOperations( pObj, pparent ) ;
+  pObj = sciStandardBuildOperations( pObj, pparent ) ;
 
   return pObj ;
 
@@ -2914,7 +2936,7 @@ sciPointObj * sciConstructWindowFrame( sciPointObj * pparent )
 
   }
 
-  pObj = sciStandrardBuildOperations( pObj, pparent ) ;
+  pObj = sciStandardBuildOperations( pObj, pparent ) ;
 
   return pObj ;
 
@@ -2942,7 +2964,7 @@ sciPointObj * sciConstructScreen( sciPointObj * pparent )
 
   }
 
-  pObj = sciStandrardBuildOperations( pObj, pparent ) ;
+  pObj = sciStandardBuildOperations( pObj, pparent ) ;
 
   return pObj ;
 

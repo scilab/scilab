@@ -55,6 +55,9 @@
 #include "drawMarks.h"
 #include "BasicAlgos.h"
 
+#include "BuildDrawingObserver.h"
+#include "DrawingBridge.h"
+
 #include "MALLOC.h" /* MALLOC */
 
 #ifdef WITH_TK
@@ -112,7 +115,7 @@ unsigned short defcolors[] = {
 
 void sciRedrawFigure( void )
 {
-  sciDrawObj (sciGetCurrentFigure ());
+  sciDrawObj(sciGetCurrentFigure ());
 }
 
 void sciRedrawF(value)
@@ -131,7 +134,7 @@ void sciRedrawF(value)
     {
       C2F (dr) ("xget", "window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,6L);
       C2F (dr) ("xset", "window",value,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,6L);
-      sciDrawObj (figure);
+      sciDrawObj(figure);
       C2F (dr) ("xset", "window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,6L);
     }
 }
@@ -148,7 +151,7 @@ void sciXbasc()
   if ((masousfen = ConstructSubWin (mafigure, 'o')) != NULL){
     sciSetCurrentObj(masousfen);
     sciSetOriginalSubWin (mafigure, masousfen);}
-  sciDrawObj(sciGetCurrentFigure ());      
+  notifyObservers(sciGetCurrentFigure ());      
 } 	
 
 void sciXclear()
@@ -170,7 +173,7 @@ void sciXclear()
       psonstmp = psonstmp->pnext;
     }
   sciSetSelectedSubWin (tmpsousfen);
-  sciDrawObj(sciGetCurrentFigure ());      
+  notifyObservers(sciGetCurrentFigure ());      
 }
 
 /* update the scale and retrieve the bounding box of the axis */
@@ -1229,7 +1232,7 @@ sciDrawObjIfRequired (sciPointObj * pobj)
 
   if( pFIGURE_FEATURE(pfigure)->auto_redraw && pFIGURE_FEATURE(pfigure)->visible )
   {
-    sciDrawObj(pobj);
+    sciDrawObj( pobj ) ;
   }
 
   return 0;
@@ -1240,71 +1243,70 @@ sciDrawObjIfRequired (sciPointObj * pobj)
  * @param sciPointObj * pobj: the pointer to the entity
  * @return  int 0 if OK, -1 if not
  */
-int
-sciDrawObj (sciPointObj * pobj)
-{
- 
-  
-  /* driver test */  
-  if((GetDriverId() != 0) && ( isGraphicSessionOpened() )){
-    return -1;
-  }
+/* int */
+/* sciDrawObj (sciPointObj * pobj) */
+/* { */
+/*   /\* driver test *\/   */
+/*   if((GetDriverId() != 0) && ( isGraphicSessionOpened() )){ */
+/*     return -1; */
+/*   } */
 
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_FIGURE:
-      return drawFigureEntity( pobj ) ;
-      break;
-    case SCI_SUBWIN:
-      return drawSubWinEntity( pobj ) ;
-      break ;
-    case SCI_AGREG:
-      return drawCompoundEntity( pobj ) ;
-      break;
-    case SCI_LEGEND:
-      return drawLegendEntity( pobj ) ;
-      break;   
-    case SCI_FEC:
-      return drawFecEntity( pobj ) ;
-      break;      
-    case SCI_SEGS:
-      return drawSegsEntity( pobj ) ;
-      break;
-    case SCI_GRAYPLOT:
-      return drawGrayplotEntity( pobj ) ;
-      break;
-    case SCI_POLYLINE:   
-      return drawPolylineEntity( pobj ) ;
-      break;
-    case SCI_ARC:
-      return drawArcEntity( pobj ) ;
-      break;
-    case SCI_RECTANGLE:
-      return drawRectangleEntity( pobj ) ;
-      break;
-    case SCI_TEXT:
-      return drawTextEntity( pobj ) ;
-      break;
-    case SCI_AXES:
-      return drawAxesEntity(pobj) ;
-      break;
-    case SCI_SURFACE:
-      return drawSurfaceEntity(pobj) ;
-      break;
-    case SCI_LIGHT:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
-    case SCI_STATUSB:
-    default:
-      return -1;
-      break;
-    }
-  /*sciSetSelectedSubWin (curSubWin);*/
-  return -1;
-}
+/*   switch (sciGetEntityType (pobj)) */
+/*     { */
+/*     case SCI_FIGURE: */
+/*       return drawFigureEntity( pobj ) ; */
+/*       break; */
+/*     case SCI_SUBWIN: */
+/*       return drawSubWinEntity( pobj ) ; */
+/*       break ; */
+/*     case SCI_AGREG: */
+/*       return drawCompoundEntity( pobj ) ; */
+/*       break; */
+/*     case SCI_LEGEND: */
+/*       return drawLegendEntity( pobj ) ; */
+/*       break;    */
+/*     case SCI_FEC: */
+/*       return drawFecEntity( pobj ) ; */
+/*       break;       */
+/*     case SCI_SEGS: */
+/*       return drawSegsEntity( pobj ) ; */
+/*       break; */
+/*     case SCI_GRAYPLOT: */
+/*       return drawGrayplotEntity( pobj ) ; */
+/*       break; */
+/*     case SCI_POLYLINE:    */
+/*       return drawPolylineEntity( pobj ) ; */
+/*       break; */
+/*     case SCI_ARC: */
+/*       return drawArcEntity( pobj ) ; */
+/*       break; */
+/*     case SCI_RECTANGLE: */
+/*       return drawRectangleEntity( pobj ) ; */
+/*       break; */
+/*     case SCI_TEXT: */
+/*       return drawTextEntity( pobj ) ; */
+/*       break; */
+/*     case SCI_AXES: */
+/*       return drawAxesEntity(pobj) ; */
+/*       break; */
+/*     case SCI_SURFACE: */
+/*       return drawSurfaceEntity(pobj) ; */
+/*       break; */
+/*     case SCI_LIGHT: */
+/*     case SCI_PANNER: */
+/*     case SCI_SBH: */
+/*     case SCI_SBV: */
+/*     case SCI_MENU: */
+/*     case SCI_MENUCONTEXT: */
+/*     case SCI_STATUSB: */
+/*     default: */
+/*       return -1; */
+/*       break; */
+/*     } */
+/*   /\*sciSetSele */
+/*     ctedSubWin (curSubWin);*\/ */
+/*   return -1; */
+/* } */
 
 
 

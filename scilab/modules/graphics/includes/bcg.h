@@ -6,8 +6,7 @@
 # ifndef __BCG__
 #define __BCG__
 
-#include "machine.h" /* to be sure that WITH_XXX are defined */
-#include "Events.h"
+
 
 #ifndef _MSC_VER
 #include <X11/Xlib.h>
@@ -15,6 +14,9 @@
 #else
 #include "../../gui/src/c/wsci/wgnuplib.h"
 #endif 
+
+#include "machine.h" /* to be sure that WITH_XXX are defined */
+#include "Events.h"
 
 #ifndef CoordModePrevious 
 #define CoordModePrevious 1
@@ -143,5 +145,6 @@ typedef struct BCG
 
 
 extern struct BCG *GetWindowXgcNumber  (int i);
+
 
 #endif /* __BCG__ */

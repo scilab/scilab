@@ -32,4 +32,5 @@ int closeGraphicSession( void ) ;
  */
 BOOL isGraphicSessionOpened( void ) ;
 
+
 #endif /* _GRAPHIC_SESSION_H_ */

@@ -524,6 +524,9 @@ int InitFigureModel( void )
   pFIGURE_FEATURE(pfiguremdl)->eventHandler = NULL ;
   sciInitEventHandler( pfiguremdl, "" ) ;
 
+  pfiguremdl->pObservers = NULL ;
+  pfiguremdl->pDrawer = NULL ;
+
   return 0;
 }
 
@@ -667,6 +670,9 @@ int InitAxesModel()
   ppaxesmdl->SRect[5]   = 1.0;  /* zmax */
   
   ppaxesmdl->tight_limits = FALSE;
+
+  paxesmdl->pObservers = NULL ;
+  paxesmdl->pDrawer = NULL ;
 
   /* F.Leray 10.06.04 */
   /* Adding default Labels inside Axes */
@@ -939,6 +945,9 @@ sciPointObj * initLabel( sciPointObj * pParentObj )
   ppLabel->ptype = 0 ; /* must be changed : 1 for title, 2 x_label, 3 y_label, 4 z_label */
  
   sciInitIs3d( newLabel, FALSE ) ;
+
+  newLabel->pObservers = NULL ;
+  newLabel->pDrawer = NULL ;
 
   if ( sciInitGraphicContext( newLabel ) == -1 )
   {

@@ -30,7 +30,7 @@
 #include "sciprint.h"
 #include "CurrentObjectsManagement.h"
 #include "ObjectSelection.h"
-
+#include "BuildDrawingObserver.h"
 
 #include "MALLOC.h" /* MALLOC */
 
@@ -702,7 +702,7 @@ int sciRelocateHandles( unsigned long handles[], int nbHandles, unsigned long ne
   {
     sciPointObj * modifiedFig  = NULL ;
     modifiedFiguresList = List_pop( modifiedFiguresList, (void *)&modifiedFig ) ;
-    sciDrawObj( modifiedFig ) ;
+    notifyObservers( modifiedFig ) ;
   }
   
   List_free( modifiedFiguresList ) ;
@@ -801,12 +801,12 @@ int swapHandles( unsigned long firstHdl, unsigned long secondHdl )
   if ( firstParentFig == secondParentFig )
   {
     /* we need only to redraw once since it is the same figure */
-    sciDrawObj( firstParentFig ) ;
+    notifyObservers( firstParentFig ) ;
   }
   else
   {
-    sciDrawObj( firstParentFig )  ;
-    sciDrawObj( secondParentFig ) ;
+    notifyObservers( firstParentFig )  ;
+    notifyObservers( secondParentFig ) ;
   }
   
   return 0 ;

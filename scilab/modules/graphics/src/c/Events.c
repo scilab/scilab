@@ -32,6 +32,7 @@ static int event_select=5;/* record only press and release events, ignoring move
 /* next used to prevent the user from destroying a graphic window 
  * when acquiring for example a zoom rectangle */
 static int sci_graphic_protect = 0;
+static Scig_deletegwin_handler scig_deletegwin_handler = scig_deletegwin_handler_sci;
 
 /*-----------------------------------------------------------------------------------*/
 
@@ -104,7 +105,7 @@ void scig_deletegwin_handler_sci (int win)
 }
 /*-----------------------------------------------------------------------------------*/
 
-Scig_deletegwin_handler scig_deletegwin_handler = scig_deletegwin_handler_sci;
+
 
 /*-----------------------------------------------------------------------------------*/
 Scig_deletegwin_handler set_scig_deletegwin_handler(Scig_deletegwin_handler f) 
@@ -113,6 +114,11 @@ Scig_deletegwin_handler set_scig_deletegwin_handler(Scig_deletegwin_handler f)
   Scig_deletegwin_handler old = scig_deletegwin_handler;
   scig_deletegwin_handler = f;
   return old;
+}
+/*-----------------------------------------------------------------------------------*/
+Scig_deletegwin_handler get_scig_deletegwin_handler( void )
+{
+  return scig_deletegwin_handler ;
 }
 /*-----------------------------------------------------------------------------------*/
 void reset_scig_deletegwin_handler() 

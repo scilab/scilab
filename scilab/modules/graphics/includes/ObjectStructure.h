@@ -12,11 +12,7 @@
 #ifndef __SCI_OBJECT_STRUCTURE__
 #define __SCI_OBJECT_STRUCTURE__
 
-#ifdef _MSC_VER
-#undef Top 
-#include <windows.h>
-#define Top C2F(vstk).top
-#endif
+
 
 /*en fait il n'y a essentiellement besion que de Math.h dans stack-c.h
   sauf pour les callback (il faudrait creer une fonction et l'appeler) */
@@ -25,6 +21,11 @@
 #include "machine.h"
 #include "../../data_structures/includes/DoublyLinkedList.h" /* REORGANISATION TEMPORAIRE */
 
+#ifdef _MSC_VER
+#undef Top 
+#include <windows.h>
+#define Top C2F(vstk).top
+#endif
 
 #ifndef _MSC_VER
 #define PS_SOLID 0
@@ -212,7 +213,11 @@ typedef struct
 {/** */
   sciEntityType entitytype;
   /**  points to the characteristic of the structure (figure, axes...) */
-  void *pfeatures;		
+  void *pfeatures;
+  /** List of all observers watching this object */
+  DoublyLinkedList * pObservers ;
+  /** Drawing object used to actually draw the graphic handle */
+  void * pDrawer ;
 }/** */
 sciPointObj;  
 
@@ -1436,5 +1441,6 @@ typedef struct
   int size_of_user_data;
 
 } sciScreen ;
+
 
 #endif /*__SCI_OBJECT_STRUCTURE__ */
