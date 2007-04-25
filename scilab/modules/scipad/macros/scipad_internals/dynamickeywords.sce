@@ -3,9 +3,9 @@ function dynamickeywords()
   function cset=lineform(keywordlist)
      keywordlist=sort(keywordlist)
      initial=gsort(unique(part(keywordlist,1)),"r","i")
-     cset=""
+     cset=[]
      for i=1:size(initial,1)
-       cset(i)=strcat(keywordlist(part(keywordlist,1)==initial(i))," ")
+         cset(i)=strcat(keywordlist(part(keywordlist,1)==initial(i))," ")
      end
   endfunction
 
@@ -37,6 +37,10 @@ function dynamickeywords()
     if type(eval(names(i)))==14 then
        libvar=[libvar;names(i)];
        libstring=string(eval(names(i)));
+       if or(libstring=="") then
+         warning(" suspect empty function name found in "+names(i)+" (BUG #2338)")
+         libstring=libstring(libstring<>"")
+       end
        libfun=[libfun;libstring(2:$)];
     end
   end
