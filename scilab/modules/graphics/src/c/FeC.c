@@ -27,7 +27,7 @@ for entities handling
 #include "sciprint.h"
 #include "clipping.h"
 #include "CurrentObjectsManagement.h"
-
+#include "DrawingBridge.h"
 
 /* functions used by the modified version : */
 static void PaintTriangle __PARAMS((double sx[], double sy[], double fxy[], 

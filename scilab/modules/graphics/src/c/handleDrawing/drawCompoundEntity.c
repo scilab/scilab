@@ -8,6 +8,7 @@
 #include "drawCompoundEntity.h"
 #include "GetProperty.h"
 #include "DrawObjects.h"
+#include "DrawingBridge.h"
 
 /*-----------------------------------------------------------------------------------*/
 int drawCompoundEntity( sciPointObj * pObj )

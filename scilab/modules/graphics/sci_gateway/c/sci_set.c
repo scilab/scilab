@@ -28,6 +28,7 @@
 
 
 #include "MALLOC.h" /* MALLOC */
+#include "DrawingBridge.h"
 
 int sciSet(sciPointObj *pobj, char *marker, int *value, int valueType, int *numrow, int *numcol) ;
 

@@ -28,6 +28,7 @@
 #include "Format.h"
 #include "scirun.h"
 #include "CurrentObjectsManagement.h"
+#include "DrawingBridge.h"
 
 #include "MALLOC.h" /* MALLOC */
 

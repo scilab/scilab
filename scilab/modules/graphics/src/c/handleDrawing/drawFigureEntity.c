@@ -10,6 +10,7 @@
 #include "GetProperty.h"
 #include "periScreen.h" /* should be removed */
 #include "DrawObjects.h"
+#include "DrawingBridge.h"
 
 /*---------------------------------------------------------------------------------------------*/
 int drawFigureEntity( sciPointObj * pObj )

@@ -13,6 +13,7 @@
 #include "GetProperty.h"
 #include "DrawObjects.h"
 #include "CurrentObjectsManagement.h"
+#include "DrawingBridge.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_xgrid(char *fname,unsigned long fname_len)

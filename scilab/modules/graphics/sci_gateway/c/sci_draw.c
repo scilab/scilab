@@ -13,6 +13,7 @@
 #include "gw_graphics.h"
 #include "HandleManagement.h"
 #include "CurrentObjectsManagement.h"
+#include "DrawingBridge.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_draw( char * fname, unsigned long fname_len )

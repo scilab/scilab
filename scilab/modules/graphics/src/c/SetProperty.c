@@ -39,6 +39,7 @@
 #include "ObjectSelection.h"
 
 #include "MALLOC.h"
+#include "DrawingBridge.h"
 
 /*------------------------------------------------------------------------------------*/
 /* setSubWinAngles                                                                    */

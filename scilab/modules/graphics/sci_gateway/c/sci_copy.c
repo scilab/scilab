@@ -13,6 +13,7 @@
 #include "DrawObjects.h"
 #include "GetProperty.h"
 #include "CloneObjects.h"
+#include "DrawingBridge.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_copy(char *fname,unsigned long fname_len)

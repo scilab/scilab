@@ -15,6 +15,7 @@
 #include "DrawObjects.h"
 #include "GraphicZoom.h"
 #include "clipping.h"
+#include "DrawingBridge.h"
 
 /*----------------------------------------------------------------------------------------*/
 int drawSubWinEntity( sciPointObj * pObj )

@@ -33,6 +33,7 @@
 #include "CurrentObjectsManagement.h"
 #include "ObjectSelection.h"
 #include "BuildDrawingObserver.h"
+#include "DrawingBridge.h"
 
 #ifdef WITH_TK
 #include "../../../tclsci/includes/GedManagement.h"

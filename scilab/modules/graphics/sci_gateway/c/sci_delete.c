@@ -17,6 +17,7 @@
 #include "Interaction.h"
 #include "CurrentObjectsManagement.h"
 #include "ObjectSelection.h"
+#include "DrawingBridge.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_delete(char *fname,unsigned long fname_len)

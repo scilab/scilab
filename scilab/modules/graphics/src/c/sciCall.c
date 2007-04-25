@@ -25,6 +25,7 @@
 #include "MALLOC.h" /* MALLOC */
 
 #include "sciCall.h"
+#include "DrawingBridge.h"
 
 extern BOOL update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);
 

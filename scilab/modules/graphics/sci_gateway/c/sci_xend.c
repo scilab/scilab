@@ -17,6 +17,7 @@
 #include "DrawObjects.h"
 #include "graphicSession.h"
 #include "CurrentObjectsManagement.h"
+#include "DrawingBridge.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_xend(char *fname,unsigned long fname_len)

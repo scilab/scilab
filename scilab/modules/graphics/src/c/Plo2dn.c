@@ -24,6 +24,7 @@
 #include "CurrentObjectsManagement.h"
 
 #include "MALLOC.h" /* MALLOC */
+#include "DrawingBridge.h"
 
 extern void initsubwin();
 void compute_data_bounds(int cflag, char dataflag,double *x,double *y,integer n1,integer n2,double *drect);
