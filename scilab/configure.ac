@@ -198,7 +198,6 @@ else
    enable_debug_C=no
 fi
 
-
 if test "$enable_debug_CXX" = yes; then
    CXXFLAGS="`echo "$CXXFLAGS"| sed -e 's|-O[0-9+]|-O0|'`"
 else
@@ -391,6 +390,20 @@ AM_CONDITIONAL(IS_SPARC, test -n "$SPARC")
 AM_CONDITIONAL(IS_MIPS_SGI_IRIX, test -n "$MIPS_SGI_IRIX")
 
 
+
+############
+## C++
+############
+
+if test "$CXX" = "g++"; then
+   ## With GNU C++ Compiler
+   if test "$enable_debug_CXX" = yes; then
+	  CXXFLAGS="$CXXFLAGS -Wformat -Wshadow -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations -Wall "
+   else
+	  CXXFLAGS="$CXXFLAGS -DNDEBUG" 
+   fi
+fi
+
 ##########" 
 # not useful under Linux (and was only defined here with scilab 4)
 #AC_CHECK_LIB(ieee,main,[LIEEE="-lieee"])
@@ -401,7 +414,7 @@ AM_CONDITIONAL(IS_MIPS_SGI_IRIX, test -n "$MIPS_SGI_IRIX")
 if test "$CC" = "gcc"; then
    ## With GNU Compiler
    if test "$enable_debug_C" = yes; then
-	  CFLAGS="$CFLAGS -Wformat -Wshadow -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations -g -Wall "
+	  CFLAGS="$CFLAGS -Wformat -Wshadow -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations -Wall "
 	  # used to be -O
 	  # -D_FORTIFY_SOURCE=2
    else
