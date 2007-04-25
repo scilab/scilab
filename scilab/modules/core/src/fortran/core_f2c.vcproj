@@ -641,10 +641,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_havewindow.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_ieee.c"
 				>
 			</File>
@@ -1278,10 +1274,6 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_global.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_havewindow.f"
 				>
 			</File>
 			<File
