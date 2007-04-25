@@ -259,9 +259,7 @@ build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
 builddir = @builddir@
-
-# Where all the Scilab stuff is installed (macros, help, ...)
-datadir = ${datarootdir}/scilab/modules
+datadir = @datadir@
 datarootdir = @datarootdir@
 docdir = @docdir@
 dvidir = @dvidir@
@@ -360,29 +358,29 @@ libscifileio_la_LIBADD = \
 #	$(top_builddir)/modules/core/libscicore.la
 
 #### Target ######
-target = $(datadir)/modules/fileio
+modulename = fileio
 
 #### fileio : Conf files ####
-libscifileio_la_rootdir = $(target)
+libscifileio_la_rootdir = $(mydatadir)
 libscifileio_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 #### fileio : init scripts #### 
-libscifileio_la_etcdir = $(target)/etc
+libscifileio_la_etcdir = $(mydatadir)/etc
 libscifileio_la_etc_DATA = etc/fileio.quit etc/fileio.start
 
 #### fileio : gateway declaration #### 
-libscifileio_la_sci_gatewaydir = $(target)/sci_gateway
+libscifileio_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscifileio_la_sci_gateway_DATA = sci_gateway/fileio_gateway.xml
 
 #### fileio : include files ####
-libscifileio_la_includedir = $(sciincludedir)/fileio
+libscifileio_la_includedir = $(pkgincludedir)/fileio
 libscifileio_la_include_HEADERS = includes/FileExist.h \
 includes/gw_fileio.h \
 includes/sci_fileio.h
 
 
 #### fileio : demos files ####
-libscifileio_la_demosdir = $(target)
+libscifileio_la_demosdir = $(mydatadir)
 nobase_libscifileio_la_demos_DATA = demos/excel/Testo1.xls \
 demos/excel/o1.xls \
 demos/excel/Test1.xls \
@@ -392,8 +390,8 @@ demos/excel/t1.xls \
 demos/excel/README
 
 
-# Where headers (*.h) are installed (usually /usr/include/scilab/)
-sciincludedir = ${includedir}/scilab
+# Where all the Scilab stuff is installed (macros, help, ...)
+mydatadir = $(pkgdatadir)/modules/$(modulename)
 
 #SUFFIXES = .xml .sci .htm
 SUFFIXES = .sci .java .class .jar
@@ -421,7 +419,7 @@ CLEANFILES = $(CLASSFILES)
 # we are building Scilab
 
 # Where it should be installed
-pkgdocdir = $(target)
+pkgdocdir = $(mydatadir)
 # Which directories we have to install
 DOCDIRS = help/fr_FR help/en_US
 # What is the mask of the help output
@@ -432,7 +430,7 @@ DOCMASKXML = *.xml
 ########### INSTALL DATA ###################
 # Install macros
 # Where it should be installed
-pkgmacrosdir = $(target)
+pkgmacrosdir = $(mydatadir)
 # Which directory we process
 MACRODIRS = macros/
 # Mask of the Scilab sources macros

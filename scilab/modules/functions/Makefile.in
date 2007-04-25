@@ -194,9 +194,7 @@ build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
 builddir = @builddir@
-
-# Where all the Scilab stuff is installed (macros, help, ...)
-datadir = ${datarootdir}/scilab/modules
+datadir = @datadir@
 datarootdir = @datarootdir@
 docdir = @docdir@
 dvidir = @dvidir@
@@ -232,18 +230,18 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 #### Target ######
-target = $(datadir)/modules/functions
+modulename = functions
 
 #### functions : Conf files ####
-libscifunctions_la_rootdir = $(target)
+libscifunctions_la_rootdir = $(mydatadir)
 libscifunctions_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 #### functions : init scripts #### 
-libscifunctions_la_etcdir = $(target)/etc
+libscifunctions_la_etcdir = $(mydatadir)/etc
 libscifunctions_la_etc_DATA = etc/functions.quit etc/functions.start
 
-# Where headers (*.h) are installed (usually /usr/include/scilab/)
-sciincludedir = ${includedir}/scilab
+# Where all the Scilab stuff is installed (macros, help, ...)
+mydatadir = $(pkgdatadir)/modules/$(modulename)
 
 #SUFFIXES = .xml .sci .htm
 SUFFIXES = .sci .java .class .jar
@@ -271,7 +269,7 @@ CLEANFILES = $(CLASSFILES)
 # we are building Scilab
 
 # Where it should be installed
-pkgdocdir = $(target)
+pkgdocdir = $(mydatadir)
 # Which directories we have to install
 DOCDIRS = help/fr_FR help/en_US
 # What is the mask of the help output
@@ -282,7 +280,7 @@ DOCMASKXML = *.xml
 ########### INSTALL DATA ###################
 # Install macros
 # Where it should be installed
-pkgmacrosdir = $(target)
+pkgmacrosdir = $(mydatadir)
 # Which directory we process
 MACRODIRS = macros/
 # Mask of the Scilab sources macros

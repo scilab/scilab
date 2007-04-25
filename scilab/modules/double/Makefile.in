@@ -227,9 +227,7 @@ build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
 builddir = @builddir@
-
-# Where all the Scilab stuff is installed (macros, help, ...)
-datadir = ${datarootdir}/scilab/modules
+datadir = @datadir@
 datarootdir = @datarootdir@
 docdir = @docdir@
 dvidir = @dvidir@
@@ -297,18 +295,18 @@ libscidouble_la_LIBADD = \
 
 
 #### Target ######
-target = $(datadir)/modules/double
+modulename = double
 
 #### double : Conf files ####
-libscidouble_la_rootdir = $(target)
+libscidouble_la_rootdir = $(mydatadir)
 libscidouble_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 #### double : init scripts #### 
-libscidouble_la_etcdir = $(target)/etc
+libscidouble_la_etcdir = $(mydatadir)/etc
 libscidouble_la_etc_DATA = etc/double.quit etc/double.start
 
-# Where headers (*.h) are installed (usually /usr/include/scilab/)
-sciincludedir = ${includedir}/scilab
+# Where all the Scilab stuff is installed (macros, help, ...)
+mydatadir = $(pkgdatadir)/modules/$(modulename)
 
 #SUFFIXES = .xml .sci .htm
 SUFFIXES = .sci .java .class .jar
@@ -336,7 +334,7 @@ CLEANFILES = $(CLASSFILES)
 # we are building Scilab
 
 # Where it should be installed
-pkgdocdir = $(target)
+pkgdocdir = $(mydatadir)
 # Which directories we have to install
 DOCDIRS = help/fr_FR help/en_US
 # What is the mask of the help output
@@ -347,7 +345,7 @@ DOCMASKXML = *.xml
 ########### INSTALL DATA ###################
 # Install macros
 # Where it should be installed
-pkgmacrosdir = $(target)
+pkgmacrosdir = $(mydatadir)
 # Which directory we process
 MACRODIRS = macros/
 # Mask of the Scilab sources macros

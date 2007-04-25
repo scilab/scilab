@@ -239,9 +239,7 @@ build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
 builddir = @builddir@
-
-# Where all the Scilab stuff is installed (macros, help, ...)
-datadir = ${datarootdir}/scilab/modules
+datadir = @datadir@
 datarootdir = @datarootdir@
 docdir = @docdir@
 dvidir = @dvidir@
@@ -294,22 +292,22 @@ libmx_la_LIBADD = $(MEXLIB_DEP)
 libmx_la_CFLAGS = $(MEXLIB_FLAGS)
 
 #### Target ######
-target = $(datadir)/modules/mexlib
+modulename = mexlib
 
 #### mexlib : Conf files ####
-libmex_la_rootdir = $(target)
+libmex_la_rootdir = $(mydatadir)
 libmex_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 #### mexlib : init scripts #### 
-libmex_la_etcdir = $(target)/etc
+libmex_la_etcdir = $(mydatadir)/etc
 libmex_la_etc_DATA = etc/mexlib.quit etc/mexlib.start
 
 #### mexlib : include files ####
-libmex_la_includedir = $(sciincludedir)/mexlib
+libmex_la_includedir = $(pkgincludedir)/mexlib
 libmex_la_include_HEADERS = includes/mex.h
 
-# Where headers (*.h) are installed (usually /usr/include/scilab/)
-sciincludedir = ${includedir}/scilab
+# Where all the Scilab stuff is installed (macros, help, ...)
+mydatadir = $(pkgdatadir)/modules/$(modulename)
 
 #SUFFIXES = .xml .sci .htm
 SUFFIXES = .sci .java .class .jar
@@ -337,7 +335,7 @@ CLEANFILES = $(CLASSFILES)
 # we are building Scilab
 
 # Where it should be installed
-pkgdocdir = $(target)
+pkgdocdir = $(mydatadir)
 # Which directories we have to install
 DOCDIRS = help/fr_FR help/en_US
 # What is the mask of the help output
@@ -348,7 +346,7 @@ DOCMASKXML = *.xml
 ########### INSTALL DATA ###################
 # Install macros
 # Where it should be installed
-pkgmacrosdir = $(target)
+pkgmacrosdir = $(mydatadir)
 # Which directory we process
 MACRODIRS = macros/
 # Mask of the Scilab sources macros

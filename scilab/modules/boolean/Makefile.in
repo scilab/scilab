@@ -241,9 +241,7 @@ build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
 builddir = @builddir@
-
-# Where all the Scilab stuff is installed (macros, help, ...)
-datadir = ${datarootdir}/scilab/modules
+datadir = @datadir@
 datarootdir = @datarootdir@
 docdir = @docdir@
 dvidir = @dvidir@
@@ -306,28 +304,26 @@ libsciboolean_la_LIBADD = \
 #SUFFIXES = .la
 #.la:
 #	echo "oh oh"
-
-#### Target ######
-target = $(datadir)/modules/boolean
+modulename = boolean
 
 #### boolean : Conf files ####
-libsciboolean_la_rootdir = $(target)
+libsciboolean_la_rootdir = $(mydatadir)
 libsciboolean_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 #### boolean : init scripts #### 
-libsciboolean_la_etcdir = $(target)/etc
+libsciboolean_la_etcdir = $(mydatadir)/etc
 libsciboolean_la_etc_DATA = etc/boolean.quit etc/boolean.start
 
 #### boolean : gateway declaration #### 
-libsciboolean_la_sci_gatewaydir = $(target)/sci_gateway
+libsciboolean_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciboolean_la_sci_gateway_DATA = sci_gateway/boolean_gateway.xml
 
 #### boolean : include files ####
-libsciboolean_la_includedir = $(sciincludedir)/boolean
+libsciboolean_la_includedir = $(pkgincludedir)/boolean
 libsciboolean_la_include_HEADERS = includes/gw_boolean.h
 
-# Where headers (*.h) are installed (usually /usr/include/scilab/)
-sciincludedir = ${includedir}/scilab
+# Where all the Scilab stuff is installed (macros, help, ...)
+mydatadir = $(pkgdatadir)/modules/$(modulename)
 
 #SUFFIXES = .xml .sci .htm
 SUFFIXES = .sci .java .class .jar
@@ -355,7 +351,7 @@ CLEANFILES = $(CLASSFILES)
 # we are building Scilab
 
 # Where it should be installed
-pkgdocdir = $(target)
+pkgdocdir = $(mydatadir)
 # Which directories we have to install
 DOCDIRS = help/fr_FR help/en_US
 # What is the mask of the help output
@@ -366,7 +362,7 @@ DOCMASKXML = *.xml
 ########### INSTALL DATA ###################
 # Install macros
 # Where it should be installed
-pkgmacrosdir = $(target)
+pkgmacrosdir = $(mydatadir)
 # Which directory we process
 MACRODIRS = macros/
 # Mask of the Scilab sources macros

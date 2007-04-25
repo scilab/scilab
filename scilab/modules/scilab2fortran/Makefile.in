@@ -198,9 +198,7 @@ build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
 builddir = @builddir@
-
-# Where all the Scilab stuff is installed (macros, help, ...)
-datadir = ${datarootdir}/scilab/modules
+datadir = @datadir@
 datarootdir = @datarootdir@
 docdir = @docdir@
 dvidir = @dvidir@
@@ -236,18 +234,18 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 #### Target ######
-target = $(datadir)/modules/scilab2fortran
+modulename = scilab2fortran
 
 #### scilab2fortran : Conf files ####
-libscilab2fortran_la_rootdir = $(target)
+libscilab2fortran_la_rootdir = $(mydatadir)
 libscilab2fortran_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 #### scilab2fortran : init scripts #### 
-libscilab2fortran_la_etcdir = $(target)/etc
+libscilab2fortran_la_etcdir = $(mydatadir)/etc
 libscilab2fortran_la_etc_DATA = etc/scilab2fortran.quit etc/scilab2fortran.start
 
 #### scilab2fortran : demos files ####
-libscilab2fortran_la_demosdir = $(target)/demos/
+libscilab2fortran_la_demosdir = $(mydatadir)/demos/
 libscilab2fortran_la_demos_DATA = demos/dem1.sce \
 demos/dem2.sce \
 demos/dem3.sce \
@@ -258,8 +256,8 @@ demos/dem6.sce \
 demos/printspecs.sci
 
 
-# Where headers (*.h) are installed (usually /usr/include/scilab/)
-sciincludedir = ${includedir}/scilab
+# Where all the Scilab stuff is installed (macros, help, ...)
+mydatadir = $(pkgdatadir)/modules/$(modulename)
 
 #SUFFIXES = .xml .sci .htm
 SUFFIXES = .sci .java .class .jar
@@ -287,7 +285,7 @@ CLEANFILES = $(CLASSFILES)
 # we are building Scilab
 
 # Where it should be installed
-pkgdocdir = $(target)
+pkgdocdir = $(mydatadir)
 # Which directories we have to install
 DOCDIRS = help/fr_FR help/en_US
 # What is the mask of the help output
@@ -298,7 +296,7 @@ DOCMASKXML = *.xml
 ########### INSTALL DATA ###################
 # Install macros
 # Where it should be installed
-pkgmacrosdir = $(target)
+pkgmacrosdir = $(mydatadir)
 # Which directory we process
 MACRODIRS = macros/
 # Mask of the Scilab sources macros

@@ -233,9 +233,7 @@ build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
 builddir = @builddir@
-
-# Where all the Scilab stuff is installed (macros, help, ...)
-datadir = ${datarootdir}/scilab/modules
+datadir = @datadir@
 datarootdir = @datarootdir@
 docdir = @docdir@
 dvidir = @dvidir@
@@ -287,7 +285,7 @@ src/exe/declare.c \
 src/exe/opt.c \
 src/exe/check.c
 
-libsciintersci_la_includedir = $(sciincludedir)/intersci
+libsciintersci_la_includedir = $(pkgincludedir)/intersci
 pkglib_LTLIBRARIES = libsciintersci.la
 intersci_SOURCES = $(INTERSCI_EXE_C_SOURCES)
 libsciintersci_la_SOURCES = $(INTERSCI_LIB_C_SOURCES)
@@ -297,18 +295,18 @@ libsciintersci_la_LIBADD = \
 
 
 #### Target ######
-target = $(datadir)/modules/intersci
+modulename = intersci
 
 #### intersci : Conf files ####
-libsciintersci_la_rootdir = $(target)
+libsciintersci_la_rootdir = $(mydatadir)
 libsciintersci_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 #### intersci : init scripts #### 
-libsciintersci_la_etcdir = $(target)/etc
+libsciintersci_la_etcdir = $(mydatadir)/etc
 libsciintersci_la_etc_DATA = etc/intersci.quit etc/intersci.start
 
-# Where headers (*.h) are installed (usually /usr/include/scilab/)
-sciincludedir = ${includedir}/scilab
+# Where all the Scilab stuff is installed (macros, help, ...)
+mydatadir = $(pkgdatadir)/modules/$(modulename)
 
 #SUFFIXES = .xml .sci .htm
 SUFFIXES = .sci .java .class .jar
@@ -336,7 +334,7 @@ CLEANFILES = $(CLASSFILES)
 # we are building Scilab
 
 # Where it should be installed
-pkgdocdir = $(target)
+pkgdocdir = $(mydatadir)
 # Which directories we have to install
 DOCDIRS = help/fr_FR help/en_US
 # What is the mask of the help output
@@ -347,7 +345,7 @@ DOCMASKXML = *.xml
 ########### INSTALL DATA ###################
 # Install macros
 # Where it should be installed
-pkgmacrosdir = $(target)
+pkgmacrosdir = $(mydatadir)
 # Which directory we process
 MACRODIRS = macros/
 # Mask of the Scilab sources macros

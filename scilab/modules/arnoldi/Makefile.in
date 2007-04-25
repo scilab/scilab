@@ -267,9 +267,7 @@ build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
 builddir = @builddir@
-
-# Where all the Scilab stuff is installed (macros, help, ...)
-datadir = ${datarootdir}/scilab/modules
+datadir = @datadir@
 datarootdir = @datarootdir@
 docdir = @docdir@
 dvidir = @dvidir@
@@ -364,7 +362,7 @@ sci_gateway/c/sci_dneupd.c \
 sci_gateway/c/sci_dsaupd.c \
 sci_gateway/c/sci_znaupd.c
 
-libsciarnoldi_la_includedir = $(sciincludedir)/arnoldi
+libsciarnoldi_la_includedir = $(pkgincludedir)/arnoldi
 libsciarnoldi_la_include_HEADERS = 
 libsciarnoldi_la_CFLAGS = -I$(top_srcdir)/libs/MALLOC/includes/ -Iincludes/
 libsciarnoldi_la_FFLAGS = -Isrc/arpack/
@@ -379,22 +377,22 @@ $(top_builddir)/libs/MALLOC/libscimalloc.la
 #$(top_builddir)/modules/core/libscicore.la
 
 #### Target ######
-target = $(datadir)/modules/arnoldi
+modulename = arnoldi
 
 #### arnoldi : Conf files ####
-libsciarnoldi_la_rootdir = $(target)
+libsciarnoldi_la_rootdir = $(mydatadir)
 libsciarnoldi_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 #### arnoldi : init scripts #### 
-libsciarnoldi_la_etcdir = $(target)/etc
+libsciarnoldi_la_etcdir = $(mydatadir)/etc
 libsciarnoldi_la_etc_DATA = etc/arnoldi.quit etc/arnoldi.start
 
 #### arnoldi : gateway declaration #### 
-libsciarnoldi_la_sci_gatewaydir = $(target)/sci_gateway
+libsciarnoldi_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciarnoldi_la_sci_gateway_DATA = sci_gateway/arnoldi_gateway.xml
 
-# Where headers (*.h) are installed (usually /usr/include/scilab/)
-sciincludedir = ${includedir}/scilab
+# Where all the Scilab stuff is installed (macros, help, ...)
+mydatadir = $(pkgdatadir)/modules/$(modulename)
 
 #SUFFIXES = .xml .sci .htm
 SUFFIXES = .sci .java .class .jar
@@ -422,7 +420,7 @@ CLEANFILES = $(CLASSFILES)
 # we are building Scilab
 
 # Where it should be installed
-pkgdocdir = $(target)
+pkgdocdir = $(mydatadir)
 # Which directories we have to install
 DOCDIRS = help/fr_FR help/en_US
 # What is the mask of the help output
@@ -433,7 +431,7 @@ DOCMASKXML = *.xml
 ########### INSTALL DATA ###################
 # Install macros
 # Where it should be installed
-pkgmacrosdir = $(target)
+pkgmacrosdir = $(mydatadir)
 # Which directory we process
 MACRODIRS = macros/
 # Mask of the Scilab sources macros

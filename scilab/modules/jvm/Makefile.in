@@ -225,9 +225,6 @@ build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
 builddir = @builddir@
-
-# Where all the Scilab stuff is installed (macros, help, ...)
-@JAVA_TRUE@datadir = ${datarootdir}/scilab/modules
 datadir = @datadir@
 datarootdir = @datarootdir@
 docdir = @docdir@
@@ -276,18 +273,18 @@ top_srcdir = @top_srcdir@
 
 
 #### Target ######
-@JAVA_TRUE@target = $(datadir)/modules/jvm
+@JAVA_TRUE@modulename = jvm
 
 #### jvm : Conf files ####
-@JAVA_TRUE@libscijvm_la_rootdir = $(target)
+@JAVA_TRUE@libscijvm_la_rootdir = $(mydatadir)
 @JAVA_TRUE@libscijvm_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 #### jvm : init scripts #### 
-@JAVA_TRUE@libscijvm_la_etcdir = $(target)/etc
+@JAVA_TRUE@libscijvm_la_etcdir = $(mydatadir)/etc
 @JAVA_TRUE@libscijvm_la_etc_DATA = etc/jvm.quit etc/jvm.start
 
-# Where headers (*.h) are installed (usually /usr/include/scilab/)
-@JAVA_TRUE@sciincludedir = ${includedir}/scilab
+# Where all the Scilab stuff is installed (macros, help, ...)
+@JAVA_TRUE@mydatadir = $(pkgdatadir)/modules/$(modulename)
 
 #SUFFIXES = .xml .sci .htm
 @JAVA_TRUE@SUFFIXES = .sci .java .class .jar
@@ -315,7 +312,7 @@ top_srcdir = @top_srcdir@
 # we are building Scilab
 
 # Where it should be installed
-@JAVA_TRUE@pkgdocdir = $(target)
+@JAVA_TRUE@pkgdocdir = $(mydatadir)
 # Which directories we have to install
 @JAVA_TRUE@DOCDIRS = help/fr_FR help/en_US
 # What is the mask of the help output
@@ -326,7 +323,7 @@ top_srcdir = @top_srcdir@
 ########### INSTALL DATA ###################
 # Install macros
 # Where it should be installed
-@JAVA_TRUE@pkgmacrosdir = $(target)
+@JAVA_TRUE@pkgmacrosdir = $(mydatadir)
 # Which directory we process
 @JAVA_TRUE@MACRODIRS = macros/
 # Mask of the Scilab sources macros

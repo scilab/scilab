@@ -107,7 +107,6 @@ tcl/sciGUI/license.txt \
 tcl/sciGUI/sciBar.tcl \
 tcl/sciGUI/sciGUI.tcl \
 tcl/sciGUI/sciConfig.tcl \
-tcl/sciGUI/sciBrowseHelp.tcl \
 tcl/sciGUI/sciBrowseVar.tcl \
 tcl/sciGUI/sciDemoPlay.tcl \
 tcl/sciGUI/sciEditVar.tcl \
@@ -245,7 +244,6 @@ tcl/figure.tcl \
 tcl/tkcontrols.tcl \
 tcl/uimenu.tcl \
 tcl/html_library.tcl \
-tcl/browsehelp.tcl \
 tcl/TK_Scilab.tcl \
 tcl/misc.tcl \
 tcl/set.tcl
