@@ -11,10 +11,23 @@
 #                                                                           #
 #############################################################################
 
-
 ####
 #
-# First, this script will look for scilab-bin in :
+# Scilab can be installed/used in different ways :
+# * ./configure; make install
+#    => will install Scilab into /usr/local/ and split files to 
+#    /usr/local/bin, /usr/local/share/scilab/, /usr/local/lib/scilab/,
+#    /usr/local/include/scilab/
+# * ./configure --prefix=/my/dir/; make install
+#    => will install Scilab into /usr/local/ and split files to 
+#    /my/dir/bin/, /my/dir/share/scilab/, /my/dir/lib/scilab/
+#    /my/dir/include/scilab/
+# * ./configure; make install prefix=$(DESTDIR)/usr \
+#				   bindir=$(DESTDIR)/usr/bin \
+#				   datadir=$(DESTDIR)/usr/share/scilab ...
+#    Solution used mainly by Linux packagers
+#
+## First, this script will look for scilab-bin in :
 # * If specified, in the $SCI variable
 # * Into the scilab/bin/ directory
 # * Into the scilab/ directory (if the user is using a source version and 
@@ -27,62 +40,78 @@
 ###
 
 if test -n "$SCI"; then
-	echo "SCI found ... Use $SCI as Path"
-else
+	if test ! -d $SCI/modules; then
+		echo "Cannot find directory $SCI/modules/ !"
+		echo "SCI should point to the root data directory of Scilab"
+		exit -1
+	fi
+fi
 	
 # Use scilab-bin in the current dir if it exists
 # If not, then start resolving symlinks until we find scilab-bin
-	found=0
-	progname="$0"
-	curdir=`dirname "$progname"`
+found=0
+progname="$0"
+curdir=`dirname "$progname"`
 
-	progbase=`basename "$progname"`
-	run_sci="$curdir/scilab-bin"
-	if test -x "$run_sci"; then # scilab-bin is in the /bin/ directory
+progbase=`basename "$progname"`
+run_sci="$curdir/scilab-bin"
+if test -x "$run_sci"; then # scilab-bin is in the /bin/ directory
+	cd "$curdir/../"
+	SCI=`pwd`
+	SCIBIN=$run_sci
+	found=1
+else
+	run_sci="$curdir/../scilab-bin"
+	if test -x "$run_sci"; then # scilab-bin is in the / directory 
+		# which is the case in a dev env
 		cd "$curdir/../"
 		SCI=`pwd`
+		SCIBIN=$run_sci
 		found=1
 	else
-		run_sci="$curdir/../scilab-bin"
-		if test -x "$run_sci"; then # scilab-bin is in the / directory
-			cd "$curdir/../"
-			SCI=`pwd`
-			found=1
-		else
-			here=`/bin/pwd`
-			while [ -h "$progname" ]; do
-				bn=`basename "$progname"`
-				cd `dirname "$progname"`
-				progname=`/bin/ls -l "$bn" | sed -e 's/^.* -> //' `
-				if [ ! -x "$progname" ]; then
-					break
-				fi
-				curdir=`dirname "$progname"`
-				run_sci="$curdir/bin/scilab-bin"
-				if [ -x "$run_sci" ]; then
-					cd "$curdir"
-					SCI=`pwd`
-					found=1
-					break
-				fi
-			done
-			cd "$here"
-		fi
-		echo "I think I found Scilab here : $SCI"
+		here=`/bin/pwd`
+		while [ -h "$progname" ]; do
+			bn=`basename "$progname"`
+			cd `dirname "$progname"`
+			progname=`/bin/ls -l "$bn" | sed -e 's/^.* -> //' `
+			if [ ! -x "$progname" ]; then
+				break
+			fi
+			curdir=`dirname "$progname"`
+			run_sci="$curdir/bin/scilab-bin"
+			if [ -x "$run_sci" ]; then
+				cd "$curdir"
+				SCI=`pwd`
+				SCIBIN=$run_sci
+				found=1
+				break
+			fi
+		done
+		cd "$here"
 	fi
+	echo "I think I found Scilab here : $SCI"
 fi
+
 
 if test -x $SCI/bin/scilab-bin; then
 	SCILABBIN=$SCI/bin/scilab-bin
+	SCI=$SCI/share/scilab/
 else
 	if test -x $SCI/scilab-bin; then
+		# dev env
 		SCILABBIN=$SCI/scilab-bin
 	else
 		echo "Cannot not found scilab-bin ... Don't worry. This script is still an alpha version"
 		exit 1
 	fi
 fi
+# should be removed
 export SCI
+
+
+echo "SCI : $SCI"
+echo "SCIBIN : $SCIBIN"
+echo "SCIDATA : $SCIDATA"
 
 if test "$DISPLAY" = ""; then
   DISPLAY="unix:0.0"
@@ -100,9 +129,9 @@ export DISPLAY
 #export PVM_ARCH
 
 if test "$LD_LIBRARY_PATH" = ""; then
-	LD_LIBRARY_PATH=$SCI/bin:$SCI/libs
+	LD_LIBRARY_PATH=$SCI/bin:$SCI/lib/scilab/
 else
-	LD_LIBRARY_PATH=$SCI/bin:$SCI/libs:$LD_LIBRARY_PATH
+	LD_LIBRARY_PATH=$SCI/bin:$SCI/lib/scilab/:$LD_LIBRARY_PATH
 fi
 export LD_LIBRARY_PATH
 
