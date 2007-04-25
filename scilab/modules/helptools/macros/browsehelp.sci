@@ -11,7 +11,7 @@ function browsehelp(path,key)
 		key="index"
 	end
 	if or(sciargs()=="-nw") then // the no window case
-		if  (with_tk()& or(%browsehelp==['Scilab Browser','Old Scilab Browser'])) | ..
+		if  (or(%browsehelp==['Scilab Browser'])) | ..
 			or(%browsehelp==['firefox','nautilus','mozilla/netscape (gnome-moz-remote)','opera','quanta (kde)']) then
 			run_help(path,key);
 		else
@@ -37,12 +37,6 @@ function  browsehelp_configure(job)
 				'opera'
 				'quanta (kde)'];
 		
-		if with_tk() then 
-			browse_modes=[browse_modes;
-				'Scilab Browser'
-				'Old Scilab Browser'];
-		end
-	
 		if %browsehelp<>[] then //help mode already selected
 			if and(browse_modes<>%browsehelp) then
 				warning('Unhandled  help browser '+%browsehelp)
@@ -57,11 +51,6 @@ function  browsehelp_configure(job)
 	else //for windows 
 		if job=='set' then oldbrowsehelp=%browsehelp;%browsehelp=[],end
 		browse_modes=['Default Windows Browser';];
-		if with_tk() then 
-			browse_modes=[browse_modes;
-				'Scilab Browser'
-				'Old Scilab Browser'];
-		end
 	
 		if %browsehelp<>[] then //help mode already selected
 			if and(browse_modes<>%browsehelp) then
@@ -73,14 +62,13 @@ function  browsehelp_configure(job)
 			%browsehelp=oldbrowsehelp; // If user select cancel
 			%browsehelp= help_ask(browse_modes);
 		end
-	//%browsehelp = 'tcltk'
 	end
 endfunction
 
 
 function run_help(path,key)
 	// the  help browser
-	// browse_modes=['nautilus';'tcltk'];
+	// browse_modes=['nautilus'];
 	[lhs,rhs]=argn(0);
 	global INDEX
 	global %browsehelp
@@ -107,12 +95,6 @@ function run_help(path,key)
 		winopen(path);
 	case 'Scilab Browser' then 
 		sciGUIhelp(key);
-	case 'Old Scilab Browser' then 
-		if MSDOS then
-			tcltk_help(path,key);
-		else
-			unix(SCI+'/tcl/browsehelpexe '+path+' '+INDEX+' '+ '&');
-		end
 	else
 		write(%io(2),mgetl(path))
 	end
@@ -129,63 +111,4 @@ function md=help_ask(modes)
 		md=modes(n)
 	end
 	savedefaultbrowser(md);    
-endfunction
-
-
-function tcltk_help(path,key,key1)
-	// the tck tk help browser
-	global INDEX
-	// We must have / in paths, even for Windows
-	path=strsubst(path,"\","/")
-	INDEX=strsubst(INDEX,"\","/")
-	if argn(2)<3 then key1=key,end //for temp file and widget name
-	K=[' ','(',')','[',']','{','}','""','/','\','.','<','>']
-	for k=K,key1=strsubst(key1,k,'_'),end
-	if MSDOS then
-		TCL_EvalStr('set isbrowsehelpinterp [interp exists browsehelp]');
-		if TCL_GetVar("isbrowsehelpinterp")=='0' then    
-		TCL_EvalStr("interp create browsehelp")
-		tcltkver=TCL_GetVersion('numbers');
-		tklibname=SCI+'/bin/tk'+string(tcltkver(1))+string(tcltkver(2))+getdynlibext();
-		TCL_EvalStr("load {"+libname+"} Tk browsehelp")
-		TCL_EvalStr("browsehelp eval {wm withdraw .}")
-		clear tklibname;
-		end
-		TCL_EvalStr("browsehelp eval {set lang "+getlanguage()+"}")
-		TCL_EvalStr("browsehelp eval {set SciPath """+SCI+"""}")
-		TCL_EvalStr("browsehelp eval {set Home """+INDEX+"""}")
-		TCL_EvalStr("browsehelp eval {set sciw .scihelp-"+key1+"}")
-		TCL_EvalStr("browsehelp eval {set manpath """+path+"""}")
-		TCL_EvalStr("browsehelp eval {source ""'+SCI+'/tcl/browsehelp.tcl""}")
-	else
-		TCL_SetVar("lang",getlanguage())
-		TCL_SetVar("Home",INDEX)
-		TCL_SetVar("sciw",".scihelp-"+key1+"}")
-		TCL_SetVar("manpath",path)
-		TCL_EvalFile(SCI+"/tcl/browsehelp.tcl")
-	end
-endfunction
-
-
-function tcltk_apropos(path)
-	// calling the tck tk help browser
-	// for apropos
-	global INDEX
-	// We must have / in paths, even for Windows
-	path=strsubst(path,"\","/")
-	INDEX=strsubst(INDEX,"\","/")
-	if MSDOS then
-		TCL_EvalStr("browsehelp eval {set lang "+getlanguage()+"}")
-		TCL_EvalStr("browsehelp eval {set SciPath """+SCI+"""}")
-		TCL_EvalStr("browsehelp eval {set Home """+INDEX+"""}")
-		TCL_EvalStr("browsehelp eval {set sciw .sciapropos}")
-		TCL_EvalStr("browsehelp eval {set manpath """+path+"""}")
-		TCL_EvalStr("browsehelp eval {source $SciPath/tcl/browsehelp.tcl}")
-	else
-		TCL_SetVar("lang",getlanguage())
-		TCL_SetVar("Home",INDEX)
-		TCL_SetVar("sciw",".sciapropos")
-		TCL_SetVar("manpath",path)
-		TCL_EvalFile(SCI+"/tcl/browsehelp.tcl")
-	end
 endfunction
