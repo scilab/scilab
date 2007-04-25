@@ -1,0 +1,19 @@
+/*------------------------------------------------------------------------*/
+/* file: DrawableArc.cpp                                                  */
+/* Copyright INRIA 2007                                                   */
+/* Authors : Jean-Baptiste Silvy                                          */
+/* desc : Class containing the drawing routine for an arc object          */
+/*------------------------------------------------------------------------*/
+
+#include "DrawableArc.h"
+extern "C"
+{
+#include "handleDrawing/drawArcEntity.h"
+}
+
+/*------------------------------------------------------------------------------------------*/
+void DrawableArc::draw( void )
+{
+  drawArcEntity( m_pDrawed ) ;
+}
+/*------------------------------------------------------------------------------------------*/

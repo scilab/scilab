@@ -1,0 +1,44 @@
+/*------------------------------------------------------------------------*/
+/* file: HandleObserver.h                                                 */
+/* Copyright INRIA 2007                                                   */
+/* Authors : Jean-Baptiste Silvy                                          */
+/* desc : Observer observing a sciPointObj object                         */
+/*------------------------------------------------------------------------*/
+
+#ifndef _HANDLE_OBSERVER_H_
+#define _HANDLE_OBSERVER_H_
+
+extern "C"
+{
+#include "ObjectStructure.h"
+}
+
+#include "Observer.h"
+
+/**
+ * Class observing handles (sciPointObj *).
+ */
+class HandleObserver : public Observer
+{
+public:
+
+  /**
+   * Constructor with the link to the observed object.
+   */
+  HandleObserver( sciPointObj * subject ) { m_pSubject = subject ; }
+
+  /**
+   * Destructor
+   */
+  virtual ~HandleObserver( void ) {}
+  
+protected:
+
+  /**
+   * The observed Object
+   */
+  sciPointObj * m_pSubject ;
+
+} ;
+
+#endif /* _HANDLE_OBSERVER_H_ */
