@@ -13,6 +13,9 @@ extern "C"
 #include "ObjectStructure.h"
 }
 
+namespace sciGraphics
+{
+
 /**
  * Object dedicated to render a sciPointObj.
  */
@@ -53,5 +56,7 @@ protected:
   sciPointObj * m_pDrawed ;
 
 } ;
+
+}
 
 #endif /* _DRAWABLE_OBJECT_H_  */

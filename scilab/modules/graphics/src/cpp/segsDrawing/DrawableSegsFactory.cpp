@@ -9,9 +9,14 @@
 #include "DrawableSegsFactory.h"
 #include "DrawableSegs.h"
 
+namespace sciGraphics
+{
+
 /*------------------------------------------------------------------------------------------*/
 DrawableObject * DrawableSegsFactory::create( void )
 {
   return new DrawableSegs( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
+
+}

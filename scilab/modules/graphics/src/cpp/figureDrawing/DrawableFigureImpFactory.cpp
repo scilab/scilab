@@ -8,6 +8,9 @@
 #include "DrawableFigureImpFactory.h"
 #include "DrawableFigureJoGL.h"
 
+namespace sciGraphics
+{
+
 /*------------------------------------------------------------------------------------------*/
 DrawableFigureImp * DrawableFigureImpFactory::create( void )
 {
@@ -19,3 +22,5 @@ void DrawableFigureImpFactory::setDrawedFigure( DrawableFigure * fig )
   m_pDrawable = fig ;
 }
 /*------------------------------------------------------------------------------------------*/
+
+}

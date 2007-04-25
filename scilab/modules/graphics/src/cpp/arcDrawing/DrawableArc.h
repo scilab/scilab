@@ -11,6 +11,9 @@
 
 #include "../DrawableClippedObject.h"
 
+namespace sciGraphics
+{
+
 class DrawableArc : public DrawableClippedObject
 {
 
@@ -24,5 +27,7 @@ public:
   void draw( void ) ;
 
 } ;
+
+}
 
 #endif /* _DRAWABLE_ARC_H_  */

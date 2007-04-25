@@ -9,9 +9,14 @@
 #include "DrawableCompoundFactory.h"
 #include "DrawableCompound.h"
 
+namespace sciGraphics
+{
+
 /*------------------------------------------------------------------------------------------*/
 DrawableObject * DrawableCompoundFactory::create( void )
 {
   return new DrawableCompound( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
+
+}

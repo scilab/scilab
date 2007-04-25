@@ -11,9 +11,14 @@ extern "C"
 #include "handleDrawing/drawPolylineEntity.h"
 }
 
+namespace sciGraphics
+{
+
 /*------------------------------------------------------------------------------------------*/
 void DrawablePolyline::draw( void )
 {
   drawPolylineEntity( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
+
+}

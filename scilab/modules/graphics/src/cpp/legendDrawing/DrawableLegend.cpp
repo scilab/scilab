@@ -11,9 +11,14 @@ extern "C"
 #include "handleDrawing/drawLegendEntity.h"
 }
 
+namespace sciGraphics
+{
+
 /*------------------------------------------------------------------------------------------*/
 void DrawableLegend::draw( void )
 {
   drawLegendEntity( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
+
+}

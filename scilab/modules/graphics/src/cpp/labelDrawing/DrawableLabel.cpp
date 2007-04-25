@@ -11,9 +11,13 @@ extern "C"
 //#include "handleDrawing/drawLabelEntity.h"
 }
 
+namespace sciGraphics
+{
+
 /*------------------------------------------------------------------------------------------*/
 void DrawableLabel::draw( void )
 {
   //drawLabelEntity( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
+}

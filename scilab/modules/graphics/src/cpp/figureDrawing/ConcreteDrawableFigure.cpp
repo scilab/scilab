@@ -13,9 +13,14 @@ extern "C"
 #include "GetProperty.h"
 }
 
+namespace sciGraphics
+{
+
 /*------------------------------------------------------------------------------------------*/
 bool ConcreteDrawableFigure::checkAutoRedraw( void )
 {
   return ( pFIGURE_FEATURE(m_pDrawed)->auto_redraw == TRUE ) ;
 }
 /*------------------------------------------------------------------------------------------*/
+
+}

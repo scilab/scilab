@@ -7,6 +7,9 @@
 
 #include "HandleObserverManagement.h"
 
+namespace sciGraphics
+{
+
 /*------------------------------------------------------------------------------------------*/
 void attachObserver( sciPointObj * pObj, Observer * obs )
 {
@@ -30,3 +33,5 @@ void notifyAllObservers( sciPointObj * pObj )
   }
 }
 /*------------------------------------------------------------------------------------------*/
+
+}

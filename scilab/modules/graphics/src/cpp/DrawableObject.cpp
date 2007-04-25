@@ -13,6 +13,9 @@ extern "C"
 #include "DrawableObject.h"
 #include "getHandleDrawer.h"
 
+namespace sciGraphics
+{
+
 /*------------------------------------------------------------------------------------------*/
 void DrawableObject::drawChildren( void )
 {
@@ -29,3 +32,5 @@ bool DrawableObject::checkVisibility( void )
   return sciGetVisibility( m_pDrawed ) == TRUE ;
 }
 /*------------------------------------------------------------------------------------------*/
+
+}

@@ -11,9 +11,14 @@ extern "C"
 #include "handleDrawing/drawFecEntity.h"
 }
 
+namespace sciGraphics
+{
+
 /*------------------------------------------------------------------------------------------*/
 void DrawableFec::draw( void )
 {
   drawFecEntity( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
+
+}

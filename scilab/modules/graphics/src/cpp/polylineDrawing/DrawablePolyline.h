@@ -11,6 +11,9 @@
 
 #include "../DrawableClippedObject.h"
 
+namespace sciGraphics
+{
+
 class DrawablePolyline : public DrawableClippedObject
 {
 
@@ -24,5 +27,7 @@ public:
   void draw( void ) ;
 
 } ;
+
+}
 
 #endif /* _DRAWABLE_POLYLINE_H_  */

@@ -8,6 +8,8 @@
 #ifndef _OBSERVER_H_
 #define _OBSERVER_H_
 
+namespace sciGraphics
+{
 
 /**
  * Interface for every observer objects
@@ -25,4 +27,7 @@ public:
 
 } ;
 
+}
+
 #endif /* _OBSERVER_H_ */
+

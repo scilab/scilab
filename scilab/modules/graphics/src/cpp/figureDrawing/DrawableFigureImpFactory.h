@@ -11,6 +11,9 @@
 
 #include "DrawableFigure.h"
 
+namespace sciGraphics
+{
+
 class DrawableFigureImpFactory
 {
 
@@ -35,5 +38,7 @@ protected:
   DrawableFigure * m_pDrawable ;
   
 } ;
+
+}
 
 #endif /* _DRAWABLE_FIGURE_IMP_FACTORY_H_  */

@@ -9,6 +9,9 @@
 #include "getHandleDrawer.h"
 #include "DrawableObjectFactory.h"
 
+namespace sciGraphics
+{
+
 /*------------------------------------------------------------------------------------------*/
 DrawableObject * getHandleDrawer( sciPointObj * pObj )
 {
@@ -44,3 +47,5 @@ void setHandleDrawerPointer( sciPointObj * pObj, DrawableObject * drawer )
   ((DrawableObjectWrapper *)(pObj->pDrawer))->drawer = drawer ;
 }
 /*------------------------------------------------------------------------------------------*/
+
+}

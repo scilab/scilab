@@ -11,9 +11,14 @@ extern "C"
 #include "handleDrawing/drawGrayplotEntity.h"
 }
 
+namespace sciGraphics
+{
+
 /*------------------------------------------------------------------------------------------*/
 void DrawableGrayplot::draw( void )
 {
   drawGrayplotEntity( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
+
+}

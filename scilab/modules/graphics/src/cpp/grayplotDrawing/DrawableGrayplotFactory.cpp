@@ -9,9 +9,14 @@
 #include "DrawableGrayplotFactory.h"
 #include "DrawableGrayplot.h"
 
+namespace sciGraphics
+{
+
 /*------------------------------------------------------------------------------------------*/
 DrawableObject * DrawableGrayplotFactory::create( void )
 {
   return new DrawableGrayplot( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
+
+}

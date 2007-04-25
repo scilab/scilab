@@ -10,6 +10,9 @@
 
 #include "HandleObserver.h"
 
+namespace sciGraphics
+{
+
 /**
  * Class observing handles (sciPointObj *).
  */
@@ -25,5 +28,7 @@ public:
   void update( void ) ;
   
 } ;
+
+}
 
 #endif /* _HANDLE_DRAWING_OBSERVER_H_ */

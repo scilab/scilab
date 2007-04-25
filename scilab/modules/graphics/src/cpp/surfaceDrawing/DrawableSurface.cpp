@@ -12,9 +12,14 @@ extern "C"
 #include "handleDrawing/drawSurfaceEntity.h"
 }
 
+namespace sciGraphics
+{
+
 /*------------------------------------------------------------------------------------------*/
 void DrawableSurface::draw( void )
 {
   drawSurfaceEntity( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
+
+}

@@ -27,6 +27,9 @@ extern "C"
 #include "rectangleDrawing/DrawableRectangleFactory.h"
 #include "segsDrawing/DrawableSegsFactory.h"
 
+namespace sciGraphics
+{
+
 /*------------------------------------------------------------------------------------------*/ 
 void DrawableObjectFactory::setGraphicObj( sciPointObj * drawedObj )
 {
@@ -109,3 +112,5 @@ DrawableObject * DrawableObjectFactory::create( void )
 
 }
 /*------------------------------------------------------------------------------------------*/
+
+}

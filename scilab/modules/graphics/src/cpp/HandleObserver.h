@@ -15,6 +15,9 @@ extern "C"
 
 #include "Observer.h"
 
+namespace sciGraphics
+{
+
 /**
  * Class observing handles (sciPointObj *).
  */
@@ -40,5 +43,7 @@ protected:
   sciPointObj * m_pSubject ;
 
 } ;
+
+}
 
 #endif /* _HANDLE_OBSERVER_H_ */

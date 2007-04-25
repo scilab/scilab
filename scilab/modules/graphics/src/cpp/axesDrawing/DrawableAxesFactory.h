@@ -12,6 +12,9 @@
 
 #include "../DrawableObjectFactory.h"
 
+namespace sciGraphics
+{
+
 class DrawableAxesFactory : public DrawableObjectFactory
 {
 
@@ -23,5 +26,7 @@ public:
   DrawableObject * create( void ) ;
 
 } ;
+
+}
 
 #endif /* _DRAWABLE_AXES_FACTORY_H_  */

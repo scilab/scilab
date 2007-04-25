@@ -9,9 +9,14 @@
 #include "DrawableArcFactory.h"
 #include "DrawableArc.h"
 
+namespace sciGraphics
+{
+
 /*------------------------------------------------------------------------------------------*/
 DrawableObject * DrawableArcFactory::create( void )
 {
   return new DrawableArc( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
+
+}

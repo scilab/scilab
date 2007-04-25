@@ -9,9 +9,14 @@
 #include "DrawableSurfaceFactory.h"
 #include "DrawableSurface.h"
 
+namespace sciGraphics
+{
+
 /*------------------------------------------------------------------------------------------*/
 DrawableObject * DrawableSurfaceFactory::create( void )
 {
   return new DrawableSurface( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
+
+}

@@ -13,6 +13,9 @@
 #include "DrawableFigureImp.h"
 #include "DrawableFigure.h"
 
+namespace sciGraphics
+{
+
 class DrawableFigureJoGL : public DrawableFigureImp
 {
 
@@ -36,5 +39,7 @@ public:
   virtual void updateInfoMessage( void  ) ;
 
 } ;
+
+}
 
 #endif /* _DRAWABLE_FIGURE_JOGL_H_  */

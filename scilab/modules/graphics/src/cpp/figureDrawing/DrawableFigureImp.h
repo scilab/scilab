@@ -11,6 +11,9 @@
 
 #include "../DrawableObject.h"
 
+namespace sciGraphics
+{
+
 /**
  * To avoid cyclic dependances.
  */
@@ -45,5 +48,7 @@ protected:
   DrawableFigure * m_pDrawer ; /**< bridge for driver dependant algorithm */
 
 } ;
+
+}
 
 #endif /* _DRAWABLE_FIGURE_IMP_H_  */

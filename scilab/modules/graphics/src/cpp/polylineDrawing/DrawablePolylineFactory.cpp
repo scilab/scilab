@@ -9,9 +9,14 @@
 #include "DrawablePolylineFactory.h"
 #include "DrawablePolyline.h"
 
+namespace sciGraphics
+{
+
 /*------------------------------------------------------------------------------------------*/
 DrawableObject * DrawablePolylineFactory::create( void )
 {
   return new DrawablePolyline( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
+
+}

@@ -9,9 +9,14 @@
 #include "DrawableAxesFactory.h"
 #include "DrawableAxes.h"
 
+namespace sciGraphics
+{
+
 /*------------------------------------------------------------------------------------------*/
 DrawableObject * DrawableAxesFactory::create( void )
 {
   return new DrawableAxes( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
+
+}

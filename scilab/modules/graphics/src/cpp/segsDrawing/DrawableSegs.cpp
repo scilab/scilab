@@ -11,9 +11,14 @@ extern "C"
 #include "handleDrawing/drawSegsEntity.h"
 }
 
+namespace sciGraphics
+{
+
 /*------------------------------------------------------------------------------------------*/
 void DrawableSegs::draw( void )
 {
   drawSegsEntity( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
+
+}

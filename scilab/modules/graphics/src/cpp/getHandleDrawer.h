@@ -15,6 +15,8 @@ extern "C"
 }
 #include "DrawableObject.h"
 
+namespace sciGraphics
+{
 
 /**
  * Wrapping of the polymorph class drawable object.
@@ -45,6 +47,6 @@ DrawableObject * getHandleDrawerPointer( sciPointObj * pObj ) ;
  */
 void setHandleDrawerPointer( sciPointObj * pObj, DrawableObject * drawer) ;
 
-
+}
 
 #endif /* _GET_HANDLE_DRAWER_H_  */

@@ -9,9 +9,14 @@
 #include "DrawableRectangleFactory.h"
 #include "DrawableRectangle.h"
 
+namespace sciGraphics
+{
+
 /*------------------------------------------------------------------------------------------*/
 DrawableObject * DrawableRectangleFactory::create( void )
 {
   return new DrawableRectangle( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
+
+}

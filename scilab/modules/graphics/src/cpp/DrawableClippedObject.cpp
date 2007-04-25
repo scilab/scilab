@@ -7,6 +7,9 @@
 
 #include "DrawableClippedObject.h"
 
+namespace sciGraphics
+{
+
 /*------------------------------------------------------------------------------------------*/
 DrawableClippedObject::DrawableClippedObject( sciPointObj * drawed )
   : DrawableObject( drawed )
@@ -38,3 +41,5 @@ void DrawableClippedObject::unClip( void )
   m_bIsClipped = false ;
 }
 /*------------------------------------------------------------------------------------------*/
+
+}

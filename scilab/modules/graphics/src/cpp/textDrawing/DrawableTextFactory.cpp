@@ -9,9 +9,14 @@
 #include "DrawableTextFactory.h"
 #include "DrawableText.h"
 
+namespace sciGraphics
+{
+
 /*------------------------------------------------------------------------------------------*/
 DrawableObject * DrawableTextFactory::create( void )
 {
   return new DrawableText( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
+
+}

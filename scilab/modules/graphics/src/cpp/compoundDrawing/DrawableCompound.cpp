@@ -12,9 +12,14 @@ extern "C"
 #include "handleDrawing/drawCompoundEntity.h"
 }
 
+namespace sciGraphics
+{
+
 /*------------------------------------------------------------------------------------------*/
 void DrawableCompound::draw( void )
 {
   drawCompoundEntity( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
+
+}

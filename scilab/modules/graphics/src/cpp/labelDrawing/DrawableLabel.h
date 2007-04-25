@@ -11,6 +11,9 @@
 
 #include "../DrawableObject.h"
 
+namespace sciGraphics
+{
+
 class DrawableLabel : public DrawableObject
 {
 
@@ -24,5 +27,7 @@ public:
   void draw( void ) ;
 
 } ;
+
+}
 
 #endif /* _DRAWABLE_LABEL_H_  */

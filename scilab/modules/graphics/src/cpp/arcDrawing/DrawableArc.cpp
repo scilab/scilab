@@ -11,9 +11,14 @@ extern "C"
 #include "handleDrawing/drawArcEntity.h"
 }
 
+namespace sciGraphics
+{
+
 /*------------------------------------------------------------------------------------------*/
 void DrawableArc::draw( void )
 {
   drawArcEntity( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
+
+}

@@ -10,9 +10,15 @@ extern "C"
 {
 #include "handleDrawing/drawTextEntity.h"
 }
+
+namespace sciGraphics
+{
+
 /*------------------------------------------------------------------------------------------*/
 void DrawableText::draw( void )
 {
   drawTextEntity( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
+
+}

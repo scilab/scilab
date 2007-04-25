@@ -15,6 +15,9 @@ extern "C"
 }
 #include "DrawableObject.h"
 
+namespace sciGraphics
+{
+
 class DrawableObjectFactory
 {
 
@@ -41,5 +44,7 @@ protected:
   sciPointObj * m_pDrawed ;
 
 } ;
+
+}
 
 #endif /* _DRAWABLE_OBJECT_FACTORY_H_  */

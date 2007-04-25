@@ -13,7 +13,7 @@ extern "C" {
 #endif
 
 #include "ObjectStructure.h"
-  
+
   /**
    * Delete the drawer of a graphic handle
    */

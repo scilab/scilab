@@ -10,6 +10,8 @@
 #include "HandleDrawingObserver.h"
 #include "HandleObserverManagement.h"
 
+using namespace sciGraphics ;
+
 /*------------------------------------------------------------------------------------------*/
 void createDrawingObserver( sciPointObj * pObj )
 {
@@ -37,3 +39,4 @@ void notifyObservers( sciPointObj * pObj )
   notifyAllObservers( pObj ) ;
 }
 /*------------------------------------------------------------------------------------------*/
+

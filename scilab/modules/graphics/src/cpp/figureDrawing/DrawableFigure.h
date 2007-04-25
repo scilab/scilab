@@ -11,6 +11,9 @@
 #include "../DrawableObject.h"
 #include "DrawableFigureImp.h"
 
+namespace sciGraphics
+{
+
 class DrawableFigure : public DrawableObject
 {
 
@@ -61,5 +64,7 @@ protected:
   DrawableFigureImp * m_pImp ; /**< bridge for driver dependant algorithm */
 
 } ;
+
+}
 
 #endif /* _DRAWABLE_FIGURE_H_  */

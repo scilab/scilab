@@ -11,9 +11,14 @@ extern "C"
 #include "handleDrawing/drawAxesEntity.h"
 }
 
+namespace sciGraphics
+{
+
 /*------------------------------------------------------------------------------------------*/
 void DrawableAxes::draw( void )
 {
   drawAxesEntity( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
+
+}

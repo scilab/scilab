@@ -9,9 +9,14 @@
 #include "DrawableLegendFactory.h"
 #include "DrawableLegend.h"
 
+namespace sciGraphics
+{
+
 /*------------------------------------------------------------------------------------------*/
 DrawableObject * DrawableLegendFactory::create( void )
 {
   return new DrawableLegend( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
+
+}

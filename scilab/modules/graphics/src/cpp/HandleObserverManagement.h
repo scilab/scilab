@@ -15,6 +15,9 @@ extern "C"
 
 #include "HandleObserver.h"
 
+namespace sciGraphics
+{
+
 /**
  * Add a new observer to the graphic handle
  */
@@ -30,5 +33,6 @@ void detachObserver( sciPointObj * pObj, Observer * obs ) ;
  */
 void notifyAllObservers( sciPointObj * pObj ) ;
 
+}
 
 #endif /* _HANDLE_OBSERVER_MANAGEMENT_H_  */

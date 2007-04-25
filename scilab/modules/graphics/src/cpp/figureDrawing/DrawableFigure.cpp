@@ -13,6 +13,9 @@ extern "C"
 
 #include <stdio.h>
 
+namespace sciGraphics
+{
+
 /*------------------------------------------------------------------------------------------*/
 DrawableFigure::DrawableFigure( sciPointObj * pObj )
   : DrawableObject( pObj )
@@ -63,3 +66,5 @@ void DrawableFigure::updateInfoMessage( void  )
   m_pImp->updateInfoMessage() ;
 }
 /*------------------------------------------------------------------------------------------*/
+
+}

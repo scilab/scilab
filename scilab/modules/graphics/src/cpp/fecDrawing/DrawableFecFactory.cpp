@@ -9,9 +9,14 @@
 #include "DrawableFecFactory.h"
 #include "DrawableFec.h"
 
+namespace sciGraphics
+{
+
 /*------------------------------------------------------------------------------------------*/
 DrawableObject * DrawableFecFactory::create( void )
 {
   return new DrawableFec( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
+
+}

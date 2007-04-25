@@ -11,6 +11,9 @@
 
 #include "../DrawableClippedObject.h"
 
+namespace sciGraphics
+{
+
 class DrawableGrayplot : public DrawableClippedObject
 {
 
@@ -24,5 +27,7 @@ public:
   void draw( void ) ;
 
 } ;
+
+}
 
 #endif /* _DRAWABLE_GRAYPLOT_H_  */

@@ -11,9 +11,14 @@ extern "C"
 #include "handleDrawing/drawRectangleEntity.h"
 }
 
+namespace sciGraphics
+{
+
 /*------------------------------------------------------------------------------------------*/
 void DrawableRectangle::draw( void )
 {
   drawRectangleEntity( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
+
+}

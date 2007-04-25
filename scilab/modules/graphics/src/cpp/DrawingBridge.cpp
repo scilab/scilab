@@ -8,6 +8,8 @@
 #include "DrawingBridge.h"
 #include "getHandleDrawer.h"
 
+using namespace sciGraphics ;
+
 /*------------------------------------------------------------------------------------------*/
 void destroyHandleDrawer( sciPointObj * pObj )
 {
@@ -25,3 +27,4 @@ void sciDrawObj( sciPointObj * pObj )
   getHandleDrawer(pObj)->draw() ;
 }
 /*------------------------------------------------------------------------------------------*/
+

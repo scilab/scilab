@@ -10,6 +10,9 @@
 #include "ConcreteDrawableFigure.h"
 #include "DrawableFigureImpFactory.h"
 
+namespace sciGraphics
+{
+
 /*------------------------------------------------------------------------------------------*/
 DrawableObject * DrawableFigureFactory::create( void )
 {
@@ -22,3 +25,5 @@ DrawableObject * DrawableFigureFactory::create( void )
 
 }
 /*------------------------------------------------------------------------------------------*/
+
+}

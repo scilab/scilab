@@ -15,6 +15,9 @@ extern "C"
 #include "DrawObjects.h"
 }
 
+namespace sciGraphics
+{
+
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::initializeDrawing( void )
 {
@@ -58,3 +61,5 @@ void DrawableFigureJoGL::updateInfoMessage( void  )
   C2F(dr)("xinfo",sciGetInfoMessage(m_pDrawer->getDrawedObject()),PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,6L,0L);
 }
 /*------------------------------------------------------------------------------------------*/
+
+}

@@ -9,9 +9,14 @@
 #include "DrawableLabelFactory.h"
 #include "DrawableLabel.h"
 
+namespace sciGraphics
+{
+
 /*------------------------------------------------------------------------------------------*/
 DrawableObject * DrawableLabelFactory::create( void )
 {
   return new DrawableLabel( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
+
+}

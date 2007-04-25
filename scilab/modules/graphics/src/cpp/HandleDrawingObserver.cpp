@@ -9,9 +9,14 @@
 #include "HandleDrawingObserver.h"
 #include "DrawingBridge.h"
 
+namespace sciGraphics
+{
+
 /*------------------------------------------------------------------------------------------*/
 void HandleDrawingObserver::update( void )
 {
   sciDrawObj( m_pSubject ) ;
 }
 /*------------------------------------------------------------------------------------------*/
+
+}

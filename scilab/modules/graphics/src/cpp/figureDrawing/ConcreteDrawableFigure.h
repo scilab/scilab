@@ -12,6 +12,9 @@
 
 #include "DrawableFigure.h"
 
+namespace sciGraphics
+{
+
 class ConcreteDrawableFigure : public DrawableFigure
 {
 
@@ -25,5 +28,7 @@ public:
   virtual bool checkAutoRedraw( void ) ;
 
 } ;
+
+}
 
 #endif /* _CONCRETE_DRAWABLE_FIGURE_H_  */

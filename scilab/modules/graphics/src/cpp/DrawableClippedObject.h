@@ -15,6 +15,9 @@ extern "C"
 
 #include "DrawableObject.h"
 
+namespace sciGraphics
+{
+
 /**
  * Object dedicated to render a sciPointObj.
  */
@@ -65,5 +68,7 @@ protected:
   bool m_bIsClipped ;
 
 } ;
+
+}
 
 #endif /* _DRAWABLE_CLIPPED_OBJECT_H_  */

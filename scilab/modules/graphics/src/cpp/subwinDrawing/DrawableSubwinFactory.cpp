@@ -9,9 +9,14 @@
 #include "DrawableSubwinFactory.h"
 #include "DrawableSubwin.h"
 
+namespace sciGraphics
+{
+
 /*------------------------------------------------------------------------------------------*/
 DrawableObject * DrawableSubwinFactory::create( void )
 {
   return new DrawableSubwin( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
+
+}

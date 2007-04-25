@@ -11,9 +11,14 @@ extern "C"
 #include "handleDrawing/drawSubWinEntity.h"
 }
 
+namespace sciGraphics
+{
+
 /*------------------------------------------------------------------------------------------*/
 void DrawableSubwin::draw( void )
 {
   drawSubWinEntity( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
+
+}
