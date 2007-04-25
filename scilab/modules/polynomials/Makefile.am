@@ -120,26 +120,26 @@ libscipolynomials_la_LIBADD =
 
 
 #### Target ######
-target=$(datadir)/modules/polynomials
+modulename=polynomials
 
 
 #### polynomials : Conf files ####
-libscipolynomials_la_rootdir = $(target)
+libscipolynomials_la_rootdir = $(mydatadir)
 libscipolynomials_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### polynomials : init scripts #### 
-libscipolynomials_la_etcdir = $(target)/etc
+libscipolynomials_la_etcdir = $(mydatadir)/etc
 libscipolynomials_la_etc_DATA = etc/polynomials.quit etc/polynomials.start
 
 #### polynomials : gateway declaration #### 
-libscipolynomials_la_sci_gatewaydir = $(target)/sci_gateway
+libscipolynomials_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscipolynomials_la_sci_gateway_DATA = sci_gateway/polynomials_gateway.xml
 
 
 
 #### polynomials : include files ####
-libscipolynomials_la_includedir=$(sciincludedir)/polynomials
+libscipolynomials_la_includedir=$(pkgincludedir)/polynomials
 libscipolynomials_la_include_HEADERS = includes/gw_polynomials.h
 
 include $(top_srcdir)/Makefile.incl.am

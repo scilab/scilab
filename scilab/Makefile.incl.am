@@ -6,11 +6,8 @@
 ### Target, variable, suffixes which are supposed to be usefull in every makefile.am
 ##########
 
-# Where headers (*.h) are installed (usually /usr/include/scilab/)
-sciincludedir=${includedir}/scilab
-
 # Where all the Scilab stuff is installed (macros, help, ...)
-datadir=${datarootdir}/scilab/modules
+mydatadir=$(pkgdatadir)/modules/$(modulename)
 
 #SUFFIXES = .xml .sci .htm
 SUFFIXES = .sci .java .class .jar
@@ -79,7 +76,7 @@ macrossly:
 # we are building Scilab
 
 # Where it should be installed
-pkgdocdir = $(target)
+pkgdocdir = $(mydatadir)
 # Which directories we have to install
 DOCDIRS = help/fr_FR help/en_US
 # What is the mask of the help output
@@ -117,7 +114,7 @@ endif
 ########### INSTALL DATA ###################
 # Install macros
 # Where it should be installed
-pkgmacrosdir = $(target)
+pkgmacrosdir = $(mydatadir)
 # Which directory we process
 MACRODIRS = macros/
 # Mask of the Scilab sources macros

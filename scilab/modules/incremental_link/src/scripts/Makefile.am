@@ -8,7 +8,7 @@ pkglib_LTLIBRARIES = libsciexternal.la
 
 # Fake sources in order to make believe to the autotool that we are going
 # to compile some C/C++, fortran sources.
-# Thanks to this, automake will generate compilation targets for 
+# Thanks to this, automake will generate compilation mydatadirs for 
 # these 3 languages.
 # Don't change name or order 
 libsciexternal_la_SOURCES = foo.c foo2.f foo3.cxx

@@ -6,7 +6,7 @@
 include $(top_srcdir)/Makefile.incl.am
 
 #### Target ######
-target=$(datadir)/modules/javasci
+modulename=javasci
 
 #### Java sources ####
 JAVAFILES = src/java/javasci/Scilab.java \
@@ -52,16 +52,16 @@ libjavasci_la_LIBADD = \
 	$(top_builddir)/modules/libscilab.la
 
 #### javasci : Conf files ####
-libjavasci_la_rootdir = $(target)
+libjavasci_la_rootdir = $(mydatadir)
 libjavasci_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 #### javasci : init scripts #### 
-libjavasci_la_etcdir = $(target)/etc
+libjavasci_la_etcdir = $(mydatadir)/etc
 libjavasci_la_etc_DATA = etc/javasci.quit etc/javasci.start
 
 
 #### javasci : include files ####
-libjavasci_la_includedir=$(sciincludedir)/javasci
+libjavasci_la_includedir=$(pkgincludedir)/javasci
 libjavasci_la_include_HEADERS = includes/javasci_Scilab.h \
 includes/javasci_Scilab2.h \
 includes/javasci_globals.h \

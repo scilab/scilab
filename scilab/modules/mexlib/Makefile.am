@@ -35,20 +35,20 @@ libmx_la_CFLAGS=  $(MEXLIB_FLAGS)
 
 
 #### Target ######
-target=$(datadir)/modules/mexlib
+modulename=mexlib
 
 
 #### mexlib : Conf files ####
-libmex_la_rootdir = $(target)
+libmex_la_rootdir = $(mydatadir)
 libmex_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 #### mexlib : init scripts #### 
-libmex_la_etcdir = $(target)/etc
+libmex_la_etcdir = $(mydatadir)/etc
 libmex_la_etc_DATA = etc/mexlib.quit etc/mexlib.start
 
 
 #### mexlib : include files ####
-libmex_la_includedir=$(sciincludedir)/mexlib
+libmex_la_includedir=$(pkgincludedir)/mexlib
 libmex_la_include_HEADERS = includes/mex.h
 
 include $(top_srcdir)/Makefile.incl.am

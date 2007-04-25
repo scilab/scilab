@@ -5,21 +5,21 @@
 
 
 #### Target ######
-target=$(datadir)/modules/others
+modulename=others
 
 
 #### others : Conf files ####
-libsciothers_la_rootdir = $(target)
+libsciothers_la_rootdir = $(mydatadir)
 libsciothers_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### others : init scripts #### 
-libsciothers_la_etcdir = $(target)/etc
+libsciothers_la_etcdir = $(mydatadir)/etc
 libsciothers_la_etc_DATA = etc/others.quit etc/others.start
 
 
 #### others : demos files - velpic ####
-libsciothers_la_demosdir=$(target)
+libsciothers_la_demosdir=$(mydatadir)
 nobase_libsciothers_la_demos_DATA = demos/velpic/id_rgn.desc \
 demos/velpic/velpic.sci \
 demos/velpic/plotdb.sci \

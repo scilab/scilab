@@ -57,31 +57,31 @@ libscirandlib_la_LIBADD = \
 
 
 #### Target ######
-target=$(datadir)/modules/randlib
+modulename=randlib
 
 
 #### randlib : Conf files ####
-libscirandlib_la_rootdir = $(target)
+libscirandlib_la_rootdir = $(mydatadir)
 libscirandlib_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### randlib : init scripts #### 
-libscirandlib_la_etcdir = $(target)/etc
+libscirandlib_la_etcdir = $(mydatadir)/etc
 libscirandlib_la_etc_DATA = etc/randlib.quit etc/randlib.start
 
 #### randlib : gateway declaration #### 
-libscirandlib_la_sci_gatewaydir = $(target)/sci_gateway
+libscirandlib_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscirandlib_la_sci_gateway_DATA = sci_gateway/randlib_gateway.xml
 
 #### randlib : include files ####
-libscirandlib_la_includedir=$(sciincludedir)/randlib
+libscirandlib_la_includedir=$(pkgincludedir)/randlib
 libscirandlib_la_include_HEADERS = includes/grand.h \
 includes/clcg4.h \
 includes/others_generators.h
 
 
 #### randlib : demos files ####
-libscirandlib_la_demosdir=$(target)/demos/
+libscirandlib_la_demosdir=$(mydatadir)/demos/
 libscirandlib_la_demos_DATA = demos/randomT.sci \
 demos/random.dem \
 demos/random.sci

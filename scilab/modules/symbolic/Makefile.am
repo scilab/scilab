@@ -27,25 +27,25 @@ $(top_builddir)/modules/core/libscicore.la
 
 
 #### Target ######
-target=$(datadir)/modules/symbolic
+modulename=symbolic
 
 
 #### symbolic : Conf files ####
-libscisymbolic_la_rootdir = $(target)
+libscisymbolic_la_rootdir = $(mydatadir)
 libscisymbolic_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### symbolic : init scripts #### 
-libscisymbolic_la_etcdir = $(target)/etc
+libscisymbolic_la_etcdir = $(mydatadir)/etc
 libscisymbolic_la_etc_DATA = etc/symbolic.quit etc/symbolic.start
 
 #### symbolic : gateway declaration #### 
-libscisymbolic_la_sci_gatewaydir = $(target)/sci_gateway
+libscisymbolic_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscisymbolic_la_sci_gateway_DATA = sci_gateway/symbolic_gateway.xml 
 
 
 #### symbolic : include files ####
-libscisymbolic_la_includedir=$(sciincludedir)/symbolic
+libscisymbolic_la_includedir=$(pkgincludedir)/symbolic
 libscisymbolic_la_include_HEADERS = includes/gw_symbolic.h
 
 include $(top_srcdir)/Makefile.incl.am

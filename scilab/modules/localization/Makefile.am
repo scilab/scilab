@@ -34,24 +34,24 @@ libscilocalization_la_LIBADD = 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 $(top_builddir)/libs/hashtable/libscihashtable.la
 
 #### Target ######
-target=$(datadir)/modules/localization
+modulename=localization
 
 #### localization : Conf files ####
-libscilocalization_la_rootdir = $(target)
+libscilocalization_la_rootdir = $(mydatadir)
 libscilocalization_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 ####localization : init scripts #### 
-libscilocalization_la_etcdir = $(target)/etc
+libscilocalization_la_etcdir = $(mydatadir)/etc
 libscilocalization_la_etc_DATA = etc/localization.quit etc/localization.start
 
 #### localization : gateway declaration #### 
-libscilocalization_la_sci_gatewaydir = $(target)/sci_gateway
+libscilocalization_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscilocalization_la_sci_gateway_DATA = sci_gateway/localization_gateway.xml
 
 
 ####localization : include files ####
-libscilocalization_la_includedir=$(sciincludedir)/localization
+libscilocalization_la_includedir=$(pkgincludedir)/localization
 libscilocalization_la_include_HEADERS = includes/localization.h \
 includes/gw_localization.h
 

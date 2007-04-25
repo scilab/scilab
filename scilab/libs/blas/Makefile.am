@@ -76,7 +76,6 @@ zherk.f \
 dsymm.f \
 zher2.f
 
-
 pkglib_LTLIBRARIES = libsciblas.la
 
 libsciblas_la_SOURCES = $(BLAS_FORTRAN_SOURCES)
@@ -84,8 +83,7 @@ libsciblas_la_SOURCES = $(BLAS_FORTRAN_SOURCES)
 libsciblas_la_LIBADD =
 
 #### Target ######
-target=$(datadir)/modules/blas
-
+modulename=blas
 
 include $(top_srcdir)/Makefile.incl.am
 

@@ -23,7 +23,8 @@ scilab_bin_SOURCES		= $(top_srcdir)/modules/core/src/c/main_linux.c
 scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
 	$(X_EXTRA_LIBS) -lXt -lX11 -lSM
 
-sysconf_DATA = $(top_srcdir)/etc/scilab.start \
+rootdir=$(pkgdatadir)/etc/
+root_DATA = $(top_srcdir)/etc/scilab.start \
 $(top_srcdir)/etc/scilab.quit
 
 all: macros

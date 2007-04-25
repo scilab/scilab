@@ -342,24 +342,24 @@ endif
 
 
 #### Target ######
-target=$(datadir)/modules/core
+modulename=core
 
 #### core : Conf files ####
-libscicore_la_rootdir = $(target)
+libscicore_la_rootdir = $(mydatadir)
 libscicore_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### core : init scripts #### 
-libscicore_la_etcdir = $(target)/etc
+libscicore_la_etcdir = $(mydatadir)/etc
 libscicore_la_etc_DATA = etc/core.quit etc/core.start
 
 #### core : gateway declaration #### 
-libscicore_la_sci_gatewaydir = $(target)/sci_gateway
+libscicore_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscicore_la_sci_gateway_DATA = sci_gateway/core_gateway.xml
 
 
 #### core : include files ####
-libscicore_la_includedir=$(sciincludedir)/core
+libscicore_la_includedir=$(pkgincludedir)/core
 libscicore_la_include_HEADERS = includes/GetExceptionCode.h \
 includes/CallScilab.h \
 includes/sciprint.h \
@@ -404,7 +404,7 @@ includes/error_scilab.h \
 includes/GetXmlFileEncoding.h
 
 #### core : demos files ####
-libscicore_la_demosintrodir=$(target)/demos/intro/
+libscicore_la_demosintrodir=$(mydatadir)/demos/intro/
 libscicore_la_demosintro_DATA = demos/intro/extf.sce \
 demos/intro/Makefile.mak \
 demos/intro/MakeC.mak \

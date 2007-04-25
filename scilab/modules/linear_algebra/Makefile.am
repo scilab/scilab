@@ -99,24 +99,24 @@ $(top_builddir)/libs/blas/libsciblas.la \
 $(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la  
 
 #### Target ######
-target=$(datadir)/modules/linear_algebra
+modulename=linear_algebra
 
 
 #### linear_algebra : Conf files ####
-libscilinear_algebra_la_rootdir = $(target)
+libscilinear_algebra_la_rootdir = $(mydatadir)
 libscilinear_algebra_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### linear_algebra : init scripts #### 
-libscilinear_algebra_la_etcdir = $(target)/etc
+libscilinear_algebra_la_etcdir = $(mydatadir)/etc
 libscilinear_algebra_la_etc_DATA = etc/linear_algebra.quit etc/linear_algebra.start
 #### linear_algebra : gateway declaration #### 
-libscilinear_algebra_la_sci_gatewaydir = $(target)/sci_gateway
+libscilinear_algebra_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscilinear_algebra_la_sci_gateway_DATA = sci_gateway/linear_algebra_gateway.xml
 
 
 #### linear_algebra : include files ####
-libscilinear_algebra_la_includedir=$(sciincludedir)/linear_algebra
+libscilinear_algebra_la_includedir=$(pkgincludedir)/linear_algebra
 libscilinear_algebra_la_include_HEADERS = includes/gw_linear_algebra.h \
 includes/gw_linear_algebra2.h
 

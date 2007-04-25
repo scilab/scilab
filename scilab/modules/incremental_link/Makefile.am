@@ -5,19 +5,19 @@
 
 
 #### Target ######
-target=$(datadir)/modules/incremental_link
+modulename=incremental_link
 
 
 #### incremental_link : Conf files ####
-libincremental_link_la_rootdir = $(target)
+libincremental_link_la_rootdir = $(mydatadir)
 libincremental_link_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 #### incremental_link : init scripts #### 
-libincremental_link_la_etcdir = $(target)/etc
+libincremental_link_la_etcdir = $(mydatadir)/etc
 libincremental_link_la_etc_DATA = etc/incremental_link.quit etc/incremental_link.start
 
 #### incremental_link : compilation scripts #### 
-libincremental_link_la_scriptdir = $(target)/src/scripts/
+libincremental_link_la_scriptdir = $(mydatadir)/src/scripts/
 libincremental_link_la_script_DATA = src/scripts/Makefile.in \
 src/scripts/configure.ac \
 src/scripts/ltmain.sh \

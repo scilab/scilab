@@ -138,19 +138,19 @@ libscidifferential_equations_la_LIBADD = \
 
 
 #### Target ######
-target=$(datadir)/modules/differential_equations
+modulename=differential_equations
 
 
 #### differential_equations : Conf files ####
-libscidifferential_equations_la_rootdir = $(target)
+libscidifferential_equations_la_rootdir = $(mydatadir)
 libscidifferential_equations_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 #### differential_equations : init scripts #### 
-libscidifferential_equations_la_etcdir = $(target)/etc
+libscidifferential_equations_la_etcdir = $(mydatadir)/etc
 libscidifferential_equations_la_etc_DATA = etc/differential_equations.quit etc/differential_equations.start
 
 #### differential_equations : gateway declaration #### 
-libscidifferential_equations_la_sci_gatewaydir = $(target)/sci_gateway
+libscidifferential_equations_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscidifferential_equations_la_sci_gateway_DATA = sci_gateway/differential_equations_gateway.xml
 
 include $(top_srcdir)/Makefile.incl.am

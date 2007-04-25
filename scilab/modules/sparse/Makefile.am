@@ -176,24 +176,24 @@ libscisparse_la_LIBADD = \
 
 
 #### Target ######
-target=$(datadir)/modules/sparse
+modulename=sparse
 
 
 #### sparse : Conf files ####
-libscisparse_la_rootdir = $(target)
+libscisparse_la_rootdir = $(mydatadir)
 libscisparse_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### sparse : init scripts #### 
-libscisparse_la_etcdir = $(target)/etc
+libscisparse_la_etcdir = $(mydatadir)/etc
 libscisparse_la_etc_DATA = etc/sparse.quit etc/sparse.start
 
 #### sparse : gateway declaration #### 
-libscisparse_la_sci_gatewaydir = $(target)/sci_gateway
+libscisparse_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscisparse_la_sci_gateway_DATA = sci_gateway/sparse_gateway.xml
 
 #### sparse : include files ####
-libscisparse_la_includedir=$(sciincludedir)/sparse
+libscisparse_la_includedir=$(pkgincludedir)/sparse
 libscisparse_la_include_HEADERS = includes/gw_sparse.h \
 includes/spmalloc.h \
 includes/sp.h \

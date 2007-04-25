@@ -22,7 +22,7 @@ src/exe/declare.c \
 src/exe/opt.c \
 src/exe/check.c
 
-libsciintersci_la_includedir=$(sciincludedir)/intersci
+libsciintersci_la_includedir=$(pkgincludedir)/intersci
 
 
 pkglib_LTLIBRARIES = libsciintersci.la
@@ -38,16 +38,16 @@ libsciintersci_la_LIBADD = \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
 
 #### Target ######
-target=$(datadir)/modules/intersci
+modulename=intersci
 
 
 #### intersci : Conf files ####
-libsciintersci_la_rootdir = $(target)
+libsciintersci_la_rootdir = $(mydatadir)
 libsciintersci_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### intersci : init scripts #### 
-libsciintersci_la_etcdir = $(target)/etc
+libsciintersci_la_etcdir = $(mydatadir)/etc
 libsciintersci_la_etc_DATA = etc/intersci.quit etc/intersci.start
 
 include $(top_srcdir)/Makefile.incl.am

@@ -36,25 +36,23 @@ libsciboolean_la_LIBADD = \
 #	echo "oh oh"
 
 
-#### Target ######
-target=$(datadir)/modules/boolean
-
+modulename=boolean
 
 #### boolean : Conf files ####
-libsciboolean_la_rootdir = $(target)
+libsciboolean_la_rootdir = $(mydatadir)
 libsciboolean_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### boolean : init scripts #### 
-libsciboolean_la_etcdir = $(target)/etc
+libsciboolean_la_etcdir = $(mydatadir)/etc
 libsciboolean_la_etc_DATA = etc/boolean.quit etc/boolean.start
 
 #### boolean : gateway declaration #### 
-libsciboolean_la_sci_gatewaydir = $(target)/sci_gateway
+libsciboolean_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciboolean_la_sci_gateway_DATA = sci_gateway/boolean_gateway.xml
 
 #### boolean : include files ####
-libsciboolean_la_includedir=$(sciincludedir)/boolean
+libsciboolean_la_includedir=$(pkgincludedir)/boolean
 libsciboolean_la_include_HEADERS = includes/gw_boolean.h
 
 include $(top_srcdir)/Makefile.incl.am

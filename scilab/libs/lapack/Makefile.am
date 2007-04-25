@@ -4,7 +4,7 @@
 ##########
 
 #### Target ######
-target=$(datadir)/modules/lapack
+modulename=lapack
 
 pkglib_LTLIBRARIES = libscilapack.la 
 

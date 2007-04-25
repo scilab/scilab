@@ -31,7 +31,7 @@ sci_gateway/fortran/sci_f_oldbesselj.f \
 sci_gateway/fortran/sci_f_oldbesselk.f \
 sci_gateway/fortran/sci_f_calerf.f
 
-libscispecial_functions_la_includedir=$(sciincludedir)/special_functions
+libscispecial_functions_la_includedir=$(pkgincludedir)/special_functions
 
 libscispecial_functions_la_include_HEADERS = includes/gw_special_functions1.h \
 includes/gw_special_functions2.h
@@ -53,19 +53,19 @@ libscispecial_functions_la_LIBADD = \
 
 
 #### Target ######
-target=$(datadir)/modules/special_functions
+modulename=special_functions
 
 
 #### special_functions : Conf files ####
-libscispecial_functions_la_rootdir = $(target)
+libscispecial_functions_la_rootdir = $(mydatadir)
 libscispecial_functions_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 #### special_functions : init scripts #### 
-libscispecial_functions_la_etcdir = $(target)/etc
+libscispecial_functions_la_etcdir = $(mydatadir)/etc
 libscispecial_functions_la_etc_DATA = etc/special_functions.quit etc/special_functions.start
 
 #### special_functions : gateway declaration #### 
-libscispecial_functions_la_sci_gatewaydir = $(target)/sci_gateway
+libscispecial_functions_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscispecial_functions_la_sci_gateway_DATA = sci_gateway/special_functions_gateway.xml
 
 include $(top_srcdir)/Makefile.incl.am

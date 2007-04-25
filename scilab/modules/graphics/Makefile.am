@@ -446,24 +446,24 @@ libscigraphics_la_LIBADD = \
 
 
 #### Target ######
-target=$(datadir)/modules/graphics
+modulename=graphics
 
 
 #### graphics : Conf files ####
-libscigraphics_la_rootdir = $(target)
+libscigraphics_la_rootdir = $(mydatadir)
 libscigraphics_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### graphics : init scripts #### 
-libscigraphics_la_etcdir = $(target)/etc
+libscigraphics_la_etcdir = $(mydatadir)/etc
 libscigraphics_la_etc_DATA = etc/graphics.quit etc/graphics.start
 
 #### graphics : gateway declaration #### 
-libscigraphics_la_sci_gatewaydir = $(target)/sci_gateway
+libscigraphics_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscigraphics_la_sci_gateway_DATA = sci_gateway/graphics_gateway.xml
 
 #### graphics : include files ####
-libscigraphics_la_includedir=$(sciincludedir)/graphics
+libscigraphics_la_includedir=$(pkgincludedir)/graphics
 libscigraphics_la_include_HEADERS = includes/sci_xdel.h \
 includes/sci_winsid.h \
 includes/sci_addcb.h \
@@ -601,7 +601,7 @@ includes/ObjectSelection.h
 
 
 #### graphics : demos files ####
-libscigraphics_la_demosdir=$(target)
+libscigraphics_la_demosdir=$(mydatadir)
 nobase_libscigraphics_la_demos_DATA = demos/anim/anim7.dem \
 demos/anim/anim8.dem \
 demos/anim/~anim6.sci \

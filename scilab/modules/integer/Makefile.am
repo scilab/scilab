@@ -131,24 +131,24 @@ libsciinteger_la_LIBADD = \
 
 
 #### Target ######
-target=$(datadir)/modules/integer
+modulename=integer
 
 
 #### integer : Conf files ####
-libsciinteger_la_rootdir = $(target)
+libsciinteger_la_rootdir = $(mydatadir)
 libsciinteger_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### integer : init scripts #### 
-libsciinteger_la_etcdir = $(target)/etc
+libsciinteger_la_etcdir = $(mydatadir)/etc
 libsciinteger_la_etc_DATA = etc/integer.quit etc/integer.start
 
 #### integer : gateway declaration #### 
-libsciinteger_la_sci_gatewaydir = $(target)/sci_gateway
+libsciinteger_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciinteger_la_sci_gateway_DATA = sci_gateway/integer_gateway.xml
 
 #### integer : include files ####
-libsciinteger_la_includedir=$(sciincludedir)/integer
+libsciinteger_la_includedir=$(pkgincludedir)/integer
 libsciinteger_la_include_HEADERS = includes/gw_integer.h \
 includes/def.h
 

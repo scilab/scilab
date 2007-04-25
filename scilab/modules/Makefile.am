@@ -65,6 +65,10 @@ if PVM
 SUBDIRS += pvm
 endif
 
+if MPI
+SUBDIRS += mpi
+endif
+
 SUBDIRS += .
 
 # javasci should be compile at the end because it needs libscilab.la
@@ -76,10 +80,10 @@ endif
 
 
 #### Target ######
-target=$(datadir)/
+mydatadir=$(datadir)/
 
 #### Basic files ####
-libscilab_la_rootdir = $(target)
+libscilab_la_rootdir = $(mydatadir)
 libscilab_la_root_DATA = modules
 
 # 
@@ -127,6 +131,10 @@ endif
 
 if PVM
 libscilab_la_LIBADD += $(top_builddir)/modules/pvm/libscipvm.la
+endif
+
+if MPI
+libscilab_la_LIBADD += $(top_builddir)/modules/mpi/libscimpi.la
 endif
 
 if FFTW

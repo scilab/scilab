@@ -388,26 +388,26 @@ libdummy_elementaries_functions_la-icopy.lo: src/fortran/icopy.f
 
 
 #### Target ######
-target=$(datadir)/modules/elementaries_functions
+modulename=elementaries_functions
 
 
 #### elementaries_functions : Conf files ####
-libscielementaries_functions_la_rootdir = $(target)
+libscielementaries_functions_la_rootdir = $(mydatadir)
 libscielementaries_functions_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 
 #### elementaries_functions : init scripts #### 
-libscielementaries_functions_la_etcdir = $(target)/etc
+libscielementaries_functions_la_etcdir = $(mydatadir)/etc
 libscielementaries_functions_la_etc_DATA = etc/elementaries_functions.quit etc/elementaries_functions.start
 
 #### elementaries_functions : gateway declaration #### 
-libscielementaries_functions_la_sci_gatewaydir = $(target)/sci_gateway
+libscielementaries_functions_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscielementaries_functions_la_sci_gateway_DATA = sci_gateway/elementaries_functions_gateway.xml
 
 
 #### elementaries_functions : include files ####
-libscielementaries_functions_la_includedir=$(sciincludedir)/elementaries_functions
+libscielementaries_functions_la_includedir=$(pkgincludedir)/elementaries_functions
 libscielementaries_functions_la_include_HEADERS = includes/sci_tools.h \
 includes/gw_elementaries_functions.h \
 includes/elementaries_functions.h

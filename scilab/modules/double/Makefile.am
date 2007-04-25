@@ -38,16 +38,16 @@ libscidouble_la_LIBADD = \
 
 
 #### Target ######
-target=$(datadir)/modules/double
+modulename=double
 
 
 #### double : Conf files ####
-libscidouble_la_rootdir = $(target)
+libscidouble_la_rootdir = $(mydatadir)
 libscidouble_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### double : init scripts #### 
-libscidouble_la_etcdir = $(target)/etc
+libscidouble_la_etcdir = $(mydatadir)/etc
 libscidouble_la_etc_DATA = etc/double.quit etc/double.start
 
 include $(top_srcdir)/Makefile.incl.am

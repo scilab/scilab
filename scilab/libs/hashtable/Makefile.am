@@ -8,7 +8,7 @@ hashtable_itr.c \
 hashtable.c
 
 
-libscihashtable_la_includedir=$(sciincludedir)/hashtable
+libscihashtable_la_includedir=$(pkgincludedir)/hashtable
 
 libscihashtable_la_include_HEADERS = ./hashtable_itr.h \
 ./hashtable.h \
@@ -23,6 +23,6 @@ libscihashtable_la_SOURCES = $(HASHTABLE_C_SOURCES)
 libscihashtable_la_LIBADD = 
 
 #### Target ######
-target=$(datadir)/modules/hashtable
+modulename=hashtable
 
 include $(top_srcdir)/Makefile.incl.am

@@ -5,7 +5,7 @@
 
 MALLOC_C_SOURCES = src/sci_mem_alloc.c src/getmaxMALLOC.c
 
-libscimalloc_la_includedir=$(sciincludedir)/malloc
+libscimalloc_la_includedir=$(pkgincludedir)/malloc
 
 libscimalloc_la_include_HEADERS = includes/sci_mem_alloc.h \
 includes/MALLOC.h \
@@ -20,6 +20,6 @@ libscimalloc_la_SOURCES = $(MALLOC_C_SOURCES)
 libscimalloc_la_LIBADD = 
 
 #### Target ######
-target=$(datadir)/modules/malloc
+modulename=malloc
 
 include $(top_srcdir)/Makefile.incl.am

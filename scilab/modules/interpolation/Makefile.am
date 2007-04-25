@@ -40,31 +40,31 @@ libsciinterpolation_la_LIBADD = \
 
 
 #### Target ######
-target=$(datadir)/modules/interpolation
+modulename=interpolation
 
 
 #### interpolation : Conf files ####
-libsciinterpolation_la_rootdir = $(target)
+libsciinterpolation_la_rootdir = $(mydatadir)
 libsciinterpolation_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### interpolation : init scripts #### 
-libsciinterpolation_la_etcdir = $(target)/etc
+libsciinterpolation_la_etcdir = $(mydatadir)/etc
 libsciinterpolation_la_etc_DATA = etc/interpolation.quit etc/interpolation.start
 
 #### interpolation : gateway declaration #### 
-libsciinterpolation_la_sci_gatewaydir = $(target)/sci_gateway
+libsciinterpolation_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciinterpolation_la_sci_gateway_DATA = sci_gateway/interpolation_gateway.xml
 
 #### interpolation : include files ####
-libsciinterpolation_la_includedir=$(sciincludedir)/interpolation
+libsciinterpolation_la_includedir=$(pkgincludedir)/interpolation
 libsciinterpolation_la_include_HEADERS = includes/gw_interpolation.h \
 includes/interpolation.h \
 includes/constinterp.h
 
 
 #### interpolation : demos files ####
-libsciinterpolation_la_demosdir=$(target)/demos/
+libsciinterpolation_la_demosdir=$(mydatadir)/demos/
 libsciinterpolation_la_demos_DATA = demos/interp_demo.sci
 
 include $(top_srcdir)/Makefile.incl.am

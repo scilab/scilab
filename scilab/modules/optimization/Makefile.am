@@ -153,29 +153,29 @@ libscioptimization_la_LIBADD = \
 
 
 #### Target ######
-target=$(datadir)/modules/optimization
+modulename=optimization
 
 
 #### optimization : Conf files ####
-libscioptimization_la_rootdir = $(target)
+libscioptimization_la_rootdir = $(mydatadir)
 libscioptimization_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### optimization : init scripts #### 
-libscioptimization_la_etcdir = $(target)/etc
+libscioptimization_la_etcdir = $(mydatadir)/etc
 libscioptimization_la_etc_DATA = etc/optimization.quit etc/optimization.start
 
 #### optimization : gateway declaration #### 
-libscioptimization_la_sci_gatewaydir = $(target)/sci_gateway
+libscioptimization_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscioptimization_la_sci_gateway_DATA = sci_gateway/optimization_gateway.xml
 #### optimization : include files ####
-libscioptimization_la_includedir=$(sciincludedir)/optimization
+libscioptimization_la_includedir=$(pkgincludedir)/optimization
 libscioptimization_la_include_HEADERS = includes/gw_optim.h \
 includes/spd.h
 
 
 #### optimization : demos files ####
-libscioptimization_la_demosdir=$(target)
+libscioptimization_la_demosdir=$(mydatadir)
 nobase_libscioptimization_la_demos_DATA = demos/lmitool/normoptd.sci \
 demos/lmitool/dscr_lyap2.sci \
 demos/lmitool/fullstate.sci \

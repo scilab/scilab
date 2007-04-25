@@ -62,26 +62,26 @@ libscidata_structures_la_LIBADD = \
 
 
 #### Target ######
-target=$(datadir)/modules/data_structures
+modulename=data_structures
 
 
 #### data_structures : Conf files ####
-libscidata_structures_la_rootdir = $(target)
+libscidata_structures_la_rootdir = $(mydatadir)
 libscidata_structures_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### data_structures : init scripts #### 
-libscidata_structures_la_etcdir = $(target)/etc
+libscidata_structures_la_etcdir = $(mydatadir)/etc
 libscidata_structures_la_etc_DATA = etc/data_structures.quit etc/data_structures.start
 
 #### data_structures : gateway declaration #### 
-libscidata_structures_la_sci_gatewaydir = $(target)/sci_gateway
+libscidata_structures_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscidata_structures_la_sci_gateway_DATA = sci_gateway/data_structures_gateway.xml
 
 
 
 #### data_structures : include files ####
-libscidata_structures_la_includedir=$(sciincludedir)/data_structures
+libscidata_structures_la_includedir=$(pkgincludedir)/data_structures
 libscidata_structures_la_include_HEADERS = includes/gw_data_structures1.h \
 includes/gw_data_structures2.h \
 includes/DoublyLinkedList.h

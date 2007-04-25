@@ -32,24 +32,24 @@ libscitime_la_LIBADD = \
 
 
 #### Target ######
-target=$(datadir)/modules/time
+modulename=time
 
 
 #### time : Conf files ####
-libscitime_la_rootdir = $(target)
+libscitime_la_rootdir = $(mydatadir)
 libscitime_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### time : init scripts #### 
-libscitime_la_etcdir = $(target)/etc
+libscitime_la_etcdir = $(mydatadir)/etc
 libscitime_la_etc_DATA = etc/time.quit etc/time.start
 
 #### time : gateway declaration #### 
-libscitime_la_sci_gatewaydir = $(target)/sci_gateway
+libscitime_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscitime_la_sci_gateway_DATA = sci_gateway/time_gateway.xml
 
 #### time : include files ####
-libscitime_la_includedir=$(sciincludedir)/time
+libscitime_la_includedir=$(pkgincludedir)/time
 libscitime_la_include_HEADERS = includes/gw_time.h \
 includes/sci_getdate.h \
 includes/sci_timer.h \

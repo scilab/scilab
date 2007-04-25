@@ -74,31 +74,31 @@ libscifileio_la_LIBADD = \
 
 
 #### Target ######
-target=$(datadir)/modules/fileio
+modulename=fileio
 
 
 #### fileio : Conf files ####
-libscifileio_la_rootdir = $(target)
+libscifileio_la_rootdir = $(mydatadir)
 libscifileio_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### fileio : init scripts #### 
-libscifileio_la_etcdir = $(target)/etc
+libscifileio_la_etcdir = $(mydatadir)/etc
 libscifileio_la_etc_DATA = etc/fileio.quit etc/fileio.start
 
 #### fileio : gateway declaration #### 
-libscifileio_la_sci_gatewaydir = $(target)/sci_gateway
+libscifileio_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscifileio_la_sci_gateway_DATA = sci_gateway/fileio_gateway.xml
 
 #### fileio : include files ####
-libscifileio_la_includedir=$(sciincludedir)/fileio
+libscifileio_la_includedir=$(pkgincludedir)/fileio
 libscifileio_la_include_HEADERS = includes/FileExist.h \
 includes/gw_fileio.h \
 includes/sci_fileio.h
 
 
 #### fileio : demos files ####
-libscifileio_la_demosdir=$(target)
+libscifileio_la_demosdir=$(mydatadir)
 nobase_libscifileio_la_demos_DATA = demos/excel/Testo1.xls \
 demos/excel/o1.xls \
 demos/excel/Test1.xls \

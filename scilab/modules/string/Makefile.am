@@ -60,23 +60,23 @@ libscistring_la_LIBADD = \
 
 
 #### Target ######
-target=$(datadir)/modules/string
+modulename=string
 
 
 #### string : Conf files ####
-libscistring_la_rootdir = $(target)
+libscistring_la_rootdir = $(mydatadir)
 libscistring_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 #### string : init scripts #### 
-libscistring_la_etcdir = $(target)/etc
+libscistring_la_etcdir = $(mydatadir)/etc
 libscistring_la_etc_DATA = etc/string.quit etc/string.start
 
 #### string : gateway declaration #### 
-libscistring_la_sci_gatewaydir = $(target)/sci_gateway
+libscistring_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscistring_la_sci_gateway_DATA = sci_gateway/string_gateway.xml
 
 #### string : include files ####
-libscistring_la_includedir=$(sciincludedir)/string
+libscistring_la_includedir=$(pkgincludedir)/string
 libscistring_la_include_HEADERS = includes/men_Sutils.h \
 includes/gw_string.h
 

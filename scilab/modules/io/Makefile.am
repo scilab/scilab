@@ -97,24 +97,24 @@ libdummy_io_la-intmgetl.lo: sci_gateway/fortran/intmgetl.f
 
 
 #### Target ######
-target=$(datadir)/modules/io
+modulename=io
 
 
 #### io : Conf files ####
-libsciio_la_rootdir = $(target)
+libsciio_la_rootdir = $(mydatadir)
 libsciio_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### io : init scripts #### 
-libsciio_la_etcdir = $(target)/etc
+libsciio_la_etcdir = $(mydatadir)/etc
 libsciio_la_etc_DATA = etc/io.quit etc/io.start
 
 #### io : gateway declaration #### 
-libsciio_la_sci_gatewaydir = $(target)/sci_gateway
+libsciio_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciio_la_sci_gateway_DATA = sci_gateway/io_gateway.xml
 
 #### io : include files ####
-libsciio_la_includedir=$(sciincludedir)/io
+libsciio_la_includedir=$(pkgincludedir)/io
 libsciio_la_include_HEADERS = includes/sci_getrelativefilename.h \
 includes/gw_io.h
 

@@ -134,29 +134,29 @@ libscimetanet_la_LIBADD = \
 
 
 #### Target ######
-target=$(datadir)/modules/metanet
+modulename=metanet
 
 
 #### metanet : Conf files ####
-libscimetanet_la_rootdir = $(target)
+libscimetanet_la_rootdir = $(mydatadir)
 libscimetanet_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### metanet : init scripts #### 
-libscimetanet_la_etcdir = $(target)/etc
+libscimetanet_la_etcdir = $(mydatadir)/etc
 libscimetanet_la_etc_DATA = etc/metanet.quit etc/metanet.start
 
 #### metanet : gateway declaration #### 
-libscimetanet_la_sci_gatewaydir = $(target)/sci_gateway
+libscimetanet_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscimetanet_la_sci_gateway_DATA = sci_gateway/metanet_gateway.xml
 
 #### metanet : include files ####
-libscimetanet_la_includedir=$(sciincludedir)/metanet
+libscimetanet_la_includedir=$(pkgincludedir)/metanet
 libscimetanet_la_include_HEADERS = includes/gw_metanet.h
 
 
 #### metanet : demos files ####
-libscimetanet_la_demosdir=$(target)/demos/
+libscimetanet_la_demosdir=$(mydatadir)/demos/
 libscimetanet_la_demos_DATA = demos/foret.graph \
 demos/toto.graph \
 demos/colored.graph \

@@ -107,31 +107,31 @@ libscisignal_processing_la_LIBADD = \
 
 
 #### Target ######
-target=$(datadir)/modules/signal_processing
+modulename=signal_processing
 
 
 #### signal_processing : Conf files ####
-libscisignal_processing_la_rootdir = $(target)
+libscisignal_processing_la_rootdir = $(mydatadir)
 libscisignal_processing_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### signal_processing : init scripts #### 
-libscisignal_processing_la_etcdir = $(target)/etc
+libscisignal_processing_la_etcdir = $(mydatadir)/etc
 libscisignal_processing_la_etc_DATA = etc/signal_processing.quit etc/signal_processing.start
 
 #### signal_processing : gateway declaration #### 
-libscisignal_processing_la_sci_gatewaydir = $(target)/sci_gateway
+libscisignal_processing_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscisignal_processing_la_sci_gateway_DATA = sci_gateway/signal_processing_gateway.xml
 
 
 
 #### signal_processing : include files ####
-libscisignal_processing_la_includedir=$(sciincludedir)/signal_processing
+libscisignal_processing_la_includedir=$(pkgincludedir)/signal_processing
 libscisignal_processing_la_include_HEADERS = includes/gw_signal.h
 
 
 #### signal_processing : demos files ####
-libscisignal_processing_la_demosdir=$(target)
+libscisignal_processing_la_demosdir=$(mydatadir)
 nobase_libscisignal_processing_la_demos_DATA = demos/arma/arma1.dem \
 demos/arma/arma2.dem \
 demos/arma/arma3.dem \

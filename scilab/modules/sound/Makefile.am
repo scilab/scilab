@@ -29,29 +29,29 @@ libscisound_la_LIBADD = \
 
 
 #### Target ######
-target=$(datadir)/modules/sound
+modulename=sound
 
 
 #### sound : Conf files ####
-libscisound_la_rootdir = $(target)
+libscisound_la_rootdir = $(mydatadir)
 libscisound_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### sound : init scripts #### 
-libscisound_la_etcdir = $(target)/etc
+libscisound_la_etcdir = $(mydatadir)/etc
 libscisound_la_etc_DATA = etc/sound.quit etc/sound.start
 
 #### sound : gateway declaration #### 
-libscisound_la_sci_gatewaydir = $(target)/sci_gateway
+libscisound_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscisound_la_sci_gateway_DATA = sci_gateway/sound_gateway.xml
 
 #### sound : include files ####
-libscisound_la_includedir=$(sciincludedir)/sound
+libscisound_la_includedir=$(pkgincludedir)/sound
 libscisound_la_include_HEADERS = includes/gw_sound.h
 
 
 #### sound : demos files ####
-libscisound_la_demosdir=$(target)/demos/
+libscisound_la_demosdir=$(mydatadir)/demos/
 libscisound_la_demos_DATA = demos/chimes.wav \
 demos/sound.dem
 

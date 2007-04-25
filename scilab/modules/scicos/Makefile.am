@@ -8,7 +8,7 @@
 pkglib_LTLIBRARIES = libsciscicos.la
 
 #### Target ######
-target=$(datadir)/modules/scicos
+modulename=scicos
 
 include $(top_srcdir)/Makefile.incl.am
 
@@ -233,21 +233,21 @@ libsciscicos_la_LIBADD = \
 
 
 #### scicos : Conf files ####
-libsciscicos_la_rootdir = $(target)
+libsciscicos_la_rootdir = $(mydatadir)
 libsciscicos_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### scicos : init scripts #### 
-libsciscicos_la_etcdir = $(target)/etc
+libsciscicos_la_etcdir = $(mydatadir)/etc
 libsciscicos_la_etc_DATA = etc/scicos.quit etc/scicos.start
 
 #### scicos : gateway declaration #### 
-libsciscicos_la_sci_gatewaydir = $(target)/sci_gateway
+libsciscicos_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciscicos_la_sci_gateway_DATA = sci_gateway/scicos_gateway.xml
 
 
 #### scicos : include files ####
-libsciscicos_la_includedir=$(sciincludedir)/scicos
+libsciscicos_la_includedir=$(pkgincludedir)/scicos
 libsciscicos_la_include_HEADERS = includes/import.h \
 includes/cc_pass2.h \
 includes/scicos_block.h \
@@ -261,7 +261,7 @@ includes/blocks.h
 
 
 #### scicos : demos files ####
-libsciscicos_la_demosdir=$(target)
+libsciscicos_la_demosdir=$(mydatadir)
 nobase_libsciscicos_la_demos_DATA = demos/CodeGen/Fibo_standalone.c \
 demos/CodeGen/Therm.cosf \
 demos/CodeGen/Therm_standalone.c \
@@ -323,7 +323,7 @@ NO_SCICOS_C_SOURCES = src/c/noscicos/noscicos.c
 
 libsciscicos_la_SOURCES = $(NO_SCICOS_C_SOURCES)
 
-libsciscicos_la_includedir=$(sciincludedir)/scicos
+libsciscicos_la_includedir=$(pkgincludedir)/scicos
 libsciscicos_la_include_HEADERS = src/c/noscicos/resource.h
 
 endif

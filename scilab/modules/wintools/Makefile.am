@@ -37,24 +37,24 @@ libsciwintools_la_LIBADD = \
 
 
 #### Target ######
-target=$(datadir)/modules/wintools
+modulename=wintools
 
 
 #### wintools : Conf files ####
-libsciwintools_la_rootdir = $(target)
+libsciwintools_la_rootdir = $(mydatadir)
 libsciwintools_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 #### wintools : init scripts #### 
-libsciwintools_la_etcdir = $(target)/etc
+libsciwintools_la_etcdir = $(mydatadir)/etc
 libsciwintools_la_etc_DATA = etc/wintools.quit etc/wintools.start 
 
 
 #### wintools : gateway declaration #### 
-libsciwintools_la_sci_gatewaydir = $(target)/sci_gateway
+libsciwintools_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciwintools_la_sci_gateway_DATA = sci_gateway/wintools_gateway.xml
 
 #### wintools : include files ####
-libsciwintools_la_includedir=$(sciincludedir)/wintools
+libsciwintools_la_includedir=$(pkgincludedir)/wintools
 libsciwintools_la_include_HEADERS = includes/gw_wintools.h \
 includes/interfdde.h \
 includes/TextToPrint.h

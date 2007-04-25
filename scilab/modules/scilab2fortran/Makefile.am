@@ -5,22 +5,22 @@
 
 
 #### Target ######
-target=$(datadir)/modules/scilab2fortran
+modulename=scilab2fortran
 
 
 #### scilab2fortran : Conf files ####
-libscilab2fortran_la_rootdir = $(target)
+libscilab2fortran_la_rootdir = $(mydatadir)
 libscilab2fortran_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### scilab2fortran : init scripts #### 
-libscilab2fortran_la_etcdir = $(target)/etc
+libscilab2fortran_la_etcdir = $(mydatadir)/etc
 libscilab2fortran_la_etc_DATA = etc/scilab2fortran.quit etc/scilab2fortran.start
 
 
 
 #### scilab2fortran : demos files ####
-libscilab2fortran_la_demosdir=$(target)/demos/
+libscilab2fortran_la_demosdir=$(mydatadir)/demos/
 libscilab2fortran_la_demos_DATA = demos/dem1.sce \
 demos/dem2.sce \
 demos/dem3.sce \

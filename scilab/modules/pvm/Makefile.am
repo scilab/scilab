@@ -65,26 +65,26 @@ libscipvm_la_LDFLAGS = $(PVM_LIB)
 
 #
 #### Target ######
-target=$(datadir)/modules/pvm
+modulename=pvm
 
 #### pvm : Conf files ####
-libscipvm_la_rootdir = $(target)
+libscipvm_la_rootdir = $(mydatadir)
 libscipvm_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 #### pvm : init scripts #### 
-libscipvm_la_etcdir = $(target)/etc
+libscipvm_la_etcdir = $(mydatadir)/etc
 libscipvm_la_etc_DATA = etc/pvm.quit etc/pvm.start
 
 #### pvm : gateway declaration #### 
-libscipvm_la_sci_gatewaydir = $(target)/sci_gateway
+libscipvm_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscipvm_la_sci_gateway_DATA = sci_gateway/pvm_gateway.xml
 
 #### pvm : include files ####
-libscipvm_la_includedir=$(sciincludedir)/pvm
+libscipvm_la_includedir=$(pkgincludedir)/pvm
 libscipvm_la_include_HEADERS = includes/gw_pvm.h
 
 #### pvm : demos files ####
-libscipvm_la_demosdir=$(target)/demos/
+libscipvm_la_demosdir=$(mydatadir)/demos/
 libscipvm_la_demos_DATA = demos/pvm.dem \
 demos/pvm1.sce \
 demos/script.sce

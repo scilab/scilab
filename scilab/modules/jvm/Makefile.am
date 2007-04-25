@@ -25,16 +25,16 @@ $(top_builddir)/modules/gui/libscigui.la
 
 
 #### Target ######
-target=$(datadir)/modules/jvm
+modulename=jvm
 
 
 #### jvm : Conf files ####
-libscijvm_la_rootdir = $(target)
+libscijvm_la_rootdir = $(mydatadir)
 libscijvm_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### jvm : init scripts #### 
-libscijvm_la_etcdir = $(target)/etc
+libscijvm_la_etcdir = $(mydatadir)/etc
 libscijvm_la_etc_DATA = etc/jvm.quit etc/jvm.start
 
 include $(top_srcdir)/Makefile.incl.am

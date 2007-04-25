@@ -50,16 +50,16 @@ libscitclsci_la_LIBADD = \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
 
 #### Target ######
-target=$(datadir)/modules/tclsci
+modulename=tclsci
 
 
 #### tclsci : Conf files ####
-libscitclsci_la_rootdir = $(target)
+libscitclsci_la_rootdir = $(mydatadir)
 libscitclsci_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 ### TCL macros ###
-libscitclsci_la_tcldir = $(target)
+libscitclsci_la_tcldir = $(mydatadir)
 nobase_libscitclsci_la_tcl_DATA = tcl/utils/tk_choose.tcl \
 tcl/utils/Notebook.tcl \
 tcl/utils/Balloon.tcl \
@@ -251,15 +251,15 @@ tcl/misc.tcl \
 tcl/set.tcl
 
 #### tclsci : init scripts #### 
-libscitclsci_la_etcdir = $(target)/etc
+libscitclsci_la_etcdir = $(mydatadir)/etc
 libscitclsci_la_etc_DATA = etc/tclsci.quit etc/tclsci.start
 
 #### tclsci : gateway declaration #### 
-libscitclsci_la_sci_gatewaydir = $(target)/sci_gateway
+libscitclsci_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscitclsci_la_sci_gateway_DATA = sci_gateway/tclsci_gateway.xml
 
 #### tclsci : include files ####
-libscitclsci_la_includedir=$(sciincludedir)/tclsci
+libscitclsci_la_includedir=$(pkgincludedir)/tclsci
 libscitclsci_la_include_HEADERS = includes/sci_TCL_GetVar.h \
 includes/TclUiSet.h \
 includes/GedManagement.h \
@@ -273,14 +273,14 @@ includes/InitializeTclTk.h
 
 
 #### tclsci : demos files sciGUI ####
-libscitclsci_la_demossciGUIdir=$(target)/demos/sciGUI/
+libscitclsci_la_demossciGUIdir=$(mydatadir)/demos/sciGUI/
 libscitclsci_la_demossciGUI_DATA = demos/sciGUI/sciGUIdemo.dpf \
 demos/sciGUI/test_demoplay.dpf \
 demos/sciGUI/scilab01.gif \
 demos/sciGUI/logo01.gif
 
 #### tclsci : demos files tk ####
-libscitclsci_la_demostkdir=$(target)/demos/tk/
+libscitclsci_la_demostkdir=$(mydatadir)/demos/tk/
 libscitclsci_la_demostk_DATA = demos/tk/timer \
 demos/tk/tk.dem \
 demos/tk/rolodex.sce \

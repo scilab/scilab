@@ -106,25 +106,25 @@ libscistatistics_la_LIBADD = \
 
 
 #### Target ######
-target=$(datadir)/modules/statistics
+modulename=statistics
 
 
 #### statistics : Conf files ####
-libscistatistics_la_rootdir = $(target)
+libscistatistics_la_rootdir = $(mydatadir)
 libscistatistics_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 
 #### statistics : init scripts #### 
-libscistatistics_la_etcdir = $(target)/etc
+libscistatistics_la_etcdir = $(mydatadir)/etc
 libscistatistics_la_etc_DATA = etc/statistics.quit etc/statistics.start
 
 #### statistics : gateway declaration #### 
-libscistatistics_la_sci_gatewaydir = $(target)/sci_gateway
+libscistatistics_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscistatistics_la_sci_gateway_DATA = sci_gateway/statistics_gateway.xml
 
 
 #### statistics : include files ####
-libscistatistics_la_includedir=$(sciincludedir)/statistics
+libscistatistics_la_includedir=$(pkgincludedir)/statistics
 libscistatistics_la_include_HEADERS = includes/gw_statistics.h
 
 include $(top_srcdir)/Makefile.incl.am
