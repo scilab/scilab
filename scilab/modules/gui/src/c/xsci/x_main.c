@@ -120,7 +120,7 @@ int IsNoInteractiveWindow(void);
 void sci_sig_tstp(int n);
 int IsConsoleMode(void);
 void InitXsession(void);
-void mainscic(int argc, char **argv);
+
 
 /*----------------------------------------------------------------------------------*/
 void mainscic(int argc, char **argv)
