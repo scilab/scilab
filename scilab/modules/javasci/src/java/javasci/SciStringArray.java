@@ -10,20 +10,7 @@ public class SciStringArray extends javasci.SciAbstractArray implements java.io.
 	/********************************************************************************************************/
 	private String [] x;
 
-	/**
-	 * Return a specific element in the Array
-	 * @param indr Row index
-	 * @param indc Column index
-	 * @return The element
-	 */
-	public native String GetElement(int indr, int indc);
 
-	/**
-	 * @param str The String
-	 * @param indr Row index
-	 * @param indc Column index
-	 */
-	private native void SendString(String str, int indr, int indc);
 
 	/**
 	 * Constructs a Scilab String Array from a other SciStringArray
@@ -84,6 +71,21 @@ public class SciStringArray extends javasci.SciAbstractArray implements java.io.
 	}
 
 	/**
+	 * Return a specific element in the Array
+	 * @param indr Row index
+	 * @param indc Column index
+	 * @return The element
+	 */
+	public native String GetElement(int indr, int indc);
+
+	/**
+	 * @param str The String
+	 * @param indr Row index
+	 * @param indc Column index
+	 */
+	private native void SendString(String str, int indr, int indc);
+	
+	/**
 	 * Return the data
 	 * @return the data
 	 */
@@ -92,6 +94,7 @@ public class SciStringArray extends javasci.SciAbstractArray implements java.io.
 		return x;
 	}
 
+	
 	/**
 	 * Get Matrix from Scilab
 	 */

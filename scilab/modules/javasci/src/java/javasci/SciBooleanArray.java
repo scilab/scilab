@@ -10,33 +10,6 @@ public class SciBooleanArray extends javasci.SciAbstractArray implements java.io
 
  private boolean [] x;
 
-  /**
-  * Get only ONE element from Scilab Matrix
-  * indr AND indc are indices in scilab
-  * in Scilab A=[%t,%t;%t,%f];
-  * A(1,1)=%t
-  * A(2,2)=%f
-  * @param indr row indice
-  * @param indc column indice
-  * @return the boolean value at the position [indr, indc]
- * @deprecated Use {@link #getElement(int,int)} instead
-  */
-  public native boolean GetElement(int indr, int indc);
-
-
-/**
-  * Get only ONE element from Scilab Matrix
-  * indr AND indc are indices in scilab
-  * in Scilab A=[%t,%t;%t,%f];
-  * A(1,1)=%t
-  * A(2,2)=%f
-  * @param indr row indice
-  * @param indc column indice
-  * @return the boolean value at the position [indr, indc]
-  */
-  public native boolean getElement(int indr, int indc);
-  
-
 	/**
 	 * Constructs a Scilab Boolean Array from a other SciBooleanArray
 	 * @param name the name of the Scilab variable
@@ -98,6 +71,20 @@ public class SciBooleanArray extends javasci.SciAbstractArray implements java.io
     this.name = name;
     Send();
   }
+  
+
+  /**
+  * Get only ONE element from Scilab Matrix
+  * indr AND indc are indices in scilab
+  * in Scilab A=[%t,%t;%t,%f];
+  * A(1,1)=%t
+  * A(2,2)=%f
+  * @param indr row indice
+  * @param indc column indice
+  * @return the boolean value at the position [indr, indc]
+  */
+  public native boolean GetElement(int indr, int indc);
+
 
 	/**
 	 * Return the data

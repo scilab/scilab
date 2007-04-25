@@ -11,18 +11,6 @@ public class SciDoubleArray extends javasci.SciAbstractArray implements java.io.
 	private double [] x;
 
 	/**
-	 * Get only ONE element from Scilab Matrix 
-	 * indr AND indc are indices in scilab 
-	 * in Scilab A=[1,2;3,4];
-	 * A(1,1)=1 
-	 * A(2,2)=4 
-	 * @param indr row indice 
-	 * @param indc column indice 
-	 * @return the double value at the position [indr, indc]
-	 */
-	public native double GetElement(int indr, int indc);
-  
-	/**
 	 * Constructs a Scilab Double Array from a other SciDoubleArray
 	 * @param name the name of the Scilab variable
 	 * @param doubleObj the SciDoubleArray you want to copy
@@ -80,6 +68,19 @@ public class SciDoubleArray extends javasci.SciAbstractArray implements java.io.
 		Send();
 	}
 
+
+	/**
+	 * Get only ONE element from Scilab Matrix 
+	 * indr AND indc are indices in scilab 
+	 * in Scilab A=[1,2;3,4];
+	 * A(1,1)=1 
+	 * A(2,2)=4 
+	 * @param indr row indice 
+	 * @param indc column indice 
+	 * @return the double value at the position [indr, indc]
+	 */
+	public native double GetElement(int indr, int indc);
+  
 
 	/**
 	 * Return the data

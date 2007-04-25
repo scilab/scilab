@@ -12,25 +12,6 @@ public class SciComplexArray extends javasci.SciAbstractArray implements java.io
  private double [] x; /* Real part */
  private double [] y; /* Imaginary part */
 
-  /**
-  * Get only ONE element from Scilab Matrix 
-  * Get Real Part
-  * @param indr row indice in scilab 
-  * @param indc column indice in scilab 
-  * @return the Real Part
-  */
-  public native double GetRealPartElement(int indr, int indc);
-
-  /**
-  * Get only ONE element from Scilab Matrix 
-  * Get Real Part
-  * @param indr row indice in scilab 
-  * @param indc column indice in scilab 
-  * @return the Imaginary Part 
-  */
-
-  public native double GetImaginaryPartElement(int indr, int indc);
-  
 	/**
 	 * Constructs a Scilab Complex Array from a other SciComplexArray
 	 * @param name the name of the Scilab variable
@@ -124,7 +105,7 @@ public class SciComplexArray extends javasci.SciAbstractArray implements java.io
  public String getName() {
 	return name;
  }
-/********************************************************************************************************/  
+ 
  /**
   * returns the real data of the complex array
  * @return the real data
@@ -134,6 +115,25 @@ public double[] getRealPartData() {
 	return x;
  }
 	
+/**
+ * Get only ONE element from Scilab Matrix 
+ * Get Real Part
+ * @param indr row indice in scilab
+ * @param indc column indice in scilab 
+ * @return the Real Part
+ */
+ public native double GetRealPartElement(int indr, int indc);
+
+ /**
+ * Get only ONE element from Scilab Matrix 
+ * Get Real Part
+ * @param indr row indice in scilab
+ * @param indc column indice in scilab 
+ * @return the Imaginary Part 
+ */
+
+ public native double GetImaginaryPartElement(int indr, int indc);
+ 
 	/**
 	 * Return the Imaginary part of the data
 	 * @return the Imaginary part of the data 
