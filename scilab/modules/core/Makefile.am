@@ -264,7 +264,8 @@ sci_gateway/c/sci_error.c \
 sci_gateway/c/sci_sciargs.c \
 sci_gateway/c/sci_with_module.c \
 sci_gateway/c/sci_getdynlibext.c \
-sci_gateway/c/sci_islittleendian.c
+sci_gateway/c/sci_islittleendian.c \
+sci_gateway/c/sci_getscilabmode.c
 
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_errclear.f \

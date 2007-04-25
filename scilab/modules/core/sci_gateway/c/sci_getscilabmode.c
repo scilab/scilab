@@ -1,0 +1,48 @@
+/*-----------------------------------------------------------------------------------*/
+/* INRIA 2007 */
+/* Allan CORNET */
+/*-----------------------------------------------------------------------------------*/ 
+#include "gw_core.h"
+#include "machine.h"
+#include "stack-c.h"
+#include "MALLOC.h"
+#include "scilabmode.h"
+/*-----------------------------------------------------------------------------------*/ 
+int C2F(sci_getscilabmode) _PARAMS((char *fname,unsigned long fname_len))
+{
+	static int l1,n1,m1;
+	char *output=NULL ;
+
+	Rhs=Max(Rhs,0);
+	CheckRhs(0,0) ;
+	CheckLhs(1,1) ;
+
+	output=(char*)MALLOC((strlen("NWNI")+1)*sizeof(char));
+
+	switch (getScilabMode())
+	{
+		case SCILAB_API: default :
+			sprintf(output,"API");
+		break;
+		case SCILAB_STD:
+			sprintf(output,"STD");
+		break;
+		case SCILAB_NW:
+			sprintf(output,"NW");
+		break;
+		case SCILAB_NWNI:
+			sprintf(output,"NWNI");
+		break;
+	}
+
+	n1=1;
+	CreateVarFromPtr(Rhs+1, "c",(m1=strlen(output), &m1),&n1,&output);
+	if (output) {FREE(output);output=NULL;}
+
+	LhsVar(1) = Rhs+1;
+	C2F(putlhsvar)();
+
+	if (output) {FREE(output);output=NULL;}
+	return 0;
+}
+/*-----------------------------------------------------------------------------------*/ 
