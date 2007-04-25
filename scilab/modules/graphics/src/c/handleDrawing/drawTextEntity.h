@@ -12,6 +12,7 @@
 #include "StringMatrix.h"
 #include "Vect2Matrix.h"
 
+
 /**
  * Routine which draw a text object
  * @param pObj the pointer on the text object
@@ -61,6 +62,7 @@ void drawStringInCell( char             * string      ,
  * @param align      specify the position of the string inside the cell.
  * @param lMargin    left margin (horizontal).
  * @param bMargin    bottom margin (vertical).
+
  */
 void getStringMargins( int                stringSize[2],
                        int                blCorner[2]  ,
@@ -68,7 +70,6 @@ void getStringMargins( int                stringSize[2],
                        sciTextAlignment   align        ,
                        int              * lMargin      ,
                        int              * bMargin       ) ;
-
 
 
 #endif /* _DRAW_TEXT_HANDLE_H_ */

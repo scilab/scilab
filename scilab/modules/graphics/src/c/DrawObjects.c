@@ -183,14 +183,14 @@ void updateScale3d( sciPointObj * pobj    ,
                     double        ybox[8] ,
                     double        zbox[8]  )
 {
-  int    flag     ;
-  int    i        ;
-  double xmmin    ;
-  double xmmax    ;
-  double ymmin    ;
-  double ymmax    ;
-  double wmax     ;
-  double hmax     ;
+  int    flag        ;
+  int    i           ;
+  double xmmin = 0.0 ;
+  double xmmax = 0.0 ;
+  double ymmin = 0.0 ;
+  double ymmax = 0.0 ;
+  double wmax  = 0.0 ;
+  double hmax  = 0.0 ;
   integer aaint[] = {2,10,2,10} ;
   sciSubWindow * ppsubwin =  pSUBWIN_FEATURE (pobj);
 

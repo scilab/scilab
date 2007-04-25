@@ -21,6 +21,8 @@ class DrawableObjectFactory
 public:
 
   DrawableObjectFactory( void ) { m_pDrawed = NULL ; }
+
+  virtual ~DrawableObjectFactory( void ) {}
   
   /**
    * Set the graphic handle we want to draw.

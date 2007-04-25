@@ -18,6 +18,8 @@ public:
 
   DrawableFigureImpFactory( void ) { m_pDrawable = NULL ; }
 
+  virtual ~DrawableFigureImpFactory( void ) {}
+
   /**
    * Create a new drawer from the drawed object.
    */

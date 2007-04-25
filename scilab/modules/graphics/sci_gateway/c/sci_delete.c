@@ -28,7 +28,7 @@ int sci_delete(char *fname,unsigned long fname_len)
 
   CheckRhs(0,1);
   CheckLhs(0,1);
-  /*SciWin();*/
+
   switch(VarType(1))
   {
   case 9: /* delete Entity given by a handle */
@@ -80,7 +80,6 @@ int sci_delete(char *fname,unsigned long fname_len)
 
     if ( sciGetParentFigure(pobj) != NULL && objType != SCI_FIGURE)
     {
-      sciPointObj * parentSubWin = sciGetParentSubwin( pobj ) ;
       BOOL selected = sciGetIsSelected( pobj ) ;
       pparentfigure = sciGetParentFigure(pobj);
       sciSetCurrentObj( sciGetParent(pobj) ) ; /* A LAISSER F.Leray 25.03.04*/

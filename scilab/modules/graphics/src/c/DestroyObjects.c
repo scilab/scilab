@@ -251,7 +251,7 @@ int C2F(scigerase)( void )
   char str[4];
   C2F(xgetg)("auto clear",str,&lstr,11L,4L);
   if (strcmp(str,"on") == 0) {
-    C2F(dr1)("xget","window",&verb,&win,&na,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L);
+    C2F(dr1)("xget","window",&verb,&win,&na,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7754L);
     C2F(dr1)("xclear",C2F(cha1).buf,&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,7L,bsiz);
     C2F(dr1)("xstart",C2F(cha1).buf,&win,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,7L,bsiz);
   }

@@ -15,7 +15,7 @@ void destroyHandleDrawer( sciPointObj * pObj )
   if ( pObj->pDrawer != NULL )
   {
     delete getHandleDrawer( pObj ) ;
-    delete pObj->pDrawer ;
+    delete (DrawableObjectWrapper *)pObj->pDrawer ;
     pObj->pDrawer = NULL ;
   }
 }

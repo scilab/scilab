@@ -18,8 +18,8 @@
 int sci_glue( char * fname, unsigned long fname_len )
 {
   integer numrow,numcol,l1,l2,lind,n,cx1=1,ret ;
-  unsigned long hdl, parenthdl;
-  long *handelsvalue;
+  unsigned long hdl = 0, parenthdl = 0 ;
+  long *handelsvalue = NULL ;
   int outindex,i;
   sciPointObj *pobj;
 

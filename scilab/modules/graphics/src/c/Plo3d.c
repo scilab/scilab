@@ -133,24 +133,21 @@ int C2F(box3d)(double *xbox, double *ybox, double *zbox)
 
 void SetEch3d1(double *xbox, double *ybox, double *zbox, double *bbox, double *teta, double *alpha, integer flag)
 {
-  double xmmin,ymmax,xmmax,ymmin,FRect[4],WRect[4],ARect[4];
+  double xmmin = 0 ;
+  double ymmax = 0 ;
+  double xmmax = 0 ;
+  double ymmin = 0 ;
+  double FRect[4],WRect[4],ARect[4];
   integer ib;
   static integer aaint[]={2,10,2,10};
   int verbose=0,wdim[2],narg_;
   char logf_[2];
   double R,xo,yo,zo,dx,dy,dz,hx,hy,hx1,hy1,Teta,Alpha;
-  integer wmax,hmax;
+  integer wmax = 0, hmax = 0 ;
   static double cost=0.5,sint=0.5,cosa=0.5,sina=0.5;
   Teta=*teta;
   Alpha=*alpha;
-  /*  if (flag==0) {
-      Alpha=Cscale.alpha;
-      Teta=Cscale.theta;
-      }
-      else {
-      Cscale.alpha = Alpha;
-      Cscale.theta = Teta;
-      }*/
+  
   Cscale.alpha = Alpha;
   Cscale.theta = Teta;
   cost=cos((Teta)*M_PI/180.0);
@@ -481,8 +478,8 @@ void AxesStrings(integer axflag, integer *ixbox, integer *iybox, integer *xind, 
   /*   legz=strtok_r(NULL,"@",&buff); */
  
   legx=strtok(loc,"@");
-  legy=strtok(NULL,"@");
-  legz=strtok(NULL,"@");
+  legy=NULL ;strtok(NULL,"@");
+  legz=NULL ;strtok(NULL,"@");
 
   /** le cot\'e gauche ( c'est tjrs un axe des Z **/
   C2F(dr)("xget","wdim",&verbose,xz,&narg_, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -643,9 +640,9 @@ int I3dRotation(void)
 
   static integer modes[]={1,0};/* for xgemouse only get mouse mouvement*/ 
   sciSons *psonstmp;
-  sciPointObj *psubwin, *tmpsubwin;
-  sciPointObj *pold = NULL;
-  /*  sciPointObj *psurface; */
+  sciPointObj * psubwin = NULL ;
+  sciPointObj * tmpsubwin =  NULL ;
+  sciPointObj * pold = NULL ;
   integer xr, yr;
 
 

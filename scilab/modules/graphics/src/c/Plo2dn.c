@@ -92,10 +92,10 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
 {
   int closeflag = 0;
   int jj = 0;
-  sciPointObj **pptabofpointobj;
-  sciPointObj  *psubwin;
+  sciPointObj **pptabofpointobj = NULL ;
+  sciPointObj  *psubwin = NULL ;
   long hdl;
-  long *hdltab;
+  long *hdltab = NULL ;
   int cmpt=0/*,i*/;
   int with_leg;
   double drect[6];

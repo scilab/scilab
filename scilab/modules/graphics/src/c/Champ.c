@@ -22,6 +22,7 @@
 #include "CurrentObjectsManagement.h"
 #include "DrawingBridge.h"
 
+
 #include "MALLOC.h" /* MALLOC */
 
 static double MiniD __PARAMS((double *x,integer n));
@@ -164,7 +165,7 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
   sciSetCurrentObj(ConstructSegs(psubwin,type,x,y,*n1,*n2,fx,fy,flag,
     style,arsize1,colored,*arfact,typeofchamp)); 
 
-  sciDrawObjIfRequired( sciGetCurrentObj() ) ; 
+  sciDrawObj( sciGetCurrentObj() ) ;
   DrawAxesIfRequired( sciGetCurrentObj() ) ; /* force axes redrawing */
   /* F.Leray Libération de style[dim = Nbr1]*/
   if( style != NULL )

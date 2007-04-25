@@ -51,7 +51,7 @@ int set_color_mode_property( sciPointObj * pobj, int stackPointer, int valueType
       {
         nc = psurf->dimzy; /* remind: dimzy always equal n3*/
       }
-      else if(flagcolor == 3)
+      else
       {
         nc = psurf->dimzx * psurf->dimzy;
       }

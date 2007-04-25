@@ -29,6 +29,7 @@ for entities handling
 #include "CurrentObjectsManagement.h"
 #include "DrawingBridge.h"
 
+
 /* functions used by the modified version : */
 static void PaintTriangle __PARAMS((double sx[], double sy[], double fxy[], 
 				    int zxy[], 
@@ -175,7 +176,7 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
       sciprint("Warning : Nax does not work with logarithmic scaling\n");}
   }
 
-  if(bounds_changed == TRUE || axes_properties_changed == TRUE)
+  if(bounds_changed || axes_properties_changed )
   {
     sciDrawObj(sciGetCurrentFigure());
   }
@@ -190,25 +191,18 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
   pptabofpointobj = sciGetCurrentObj();
   hdltab[cmpt]=sciGetHandle(pptabofpointobj);   
   cmpt++;   
-  sciDrawObjIfRequired(sciGetCurrentObj ());
+  sciDrawObj(sciGetCurrentObj ());
   DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing */
   /** Drawing the Legends **/
   if ((int)strlen(strflag) >=1  && strflag[0] == '1')
   {
     n1=1; styl[0]=1;styl[1]=0;
     sciSetCurrentObj (ConstructLegend
-      (sciGetCurrentSubWin(),
-      legend, strlen(legend), n1, styl, &pptabofpointobj)); 
-
-    /*       sciSetMarkSizeUnit(sciGetCurrentObj(),2); /\* force switch to tabulated mode : old syntax *\/ */
-
-    /* removed JB Silvy 12/05 */
-    /* fec object has no mark properties */
-    /*sciSetIsMark(pptabofpointobj, TRUE);*/
-    /*sciSetMarkStyle (pptabofpointobj, *styl);*/
-
-
-    sciDrawObjIfRequired(sciGetCurrentObj ()); 
+                      (sciGetCurrentSubWin(),
+                       legend, strlen(legend), n1, styl, &pptabofpointobj)); 
+    
+    
+    sciDrawObj(sciGetCurrentObj ()); 
     DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing */
     hdltab[cmpt]=sciGetHandle(sciGetCurrentObj ()); 
     cmpt++;

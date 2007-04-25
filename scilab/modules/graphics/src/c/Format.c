@@ -877,7 +877,7 @@ int ComputeC_format(sciPointObj * pobj, char * c_format)
   int *ny = NULL;
   char * format = NULL;
   sciPointObj * psubwin = sciGetCurrentSubWin();
-  int  xpassed = 0, ypassed = 0, Nx, Ny, x3, y3;
+  int  xpassed = 0, ypassed = 0, Nx = 0, Ny = 0, x3, y3;
 
 
   if(sciGetEntityType(pobj) != SCI_AXES){

@@ -17,7 +17,6 @@
 /* singleton, there is only one screen */
 static sciPointObj * sciScreenRoot     = NULL ;
 static sciPointObj * sciCurrentObject  = NULL ;
-static sciPointObj * sciCurrentConsole = NULL ;
 
 /* there can be only one console and one screen root */
 BOOL sciIsConsoleCreated = FALSE ;

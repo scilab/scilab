@@ -437,7 +437,6 @@ void Objplot3d ( char    * fname ,
   integer flagcolor;  
   long *hdltab;
   int i, mn;
-  BOOL needMerge = FALSE ;
   sciPointObj *psubwin = NULL, *pobj = NULL;
   double drect[6];
   char * loc = NULL;

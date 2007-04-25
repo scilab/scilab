@@ -16,6 +16,8 @@ class Observer
 {
 public:
 
+  virtual ~Observer( void ) {}
+
   /**
    * Function called when the subject call notify
    */

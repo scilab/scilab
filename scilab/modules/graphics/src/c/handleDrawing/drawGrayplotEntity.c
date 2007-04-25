@@ -211,6 +211,7 @@ int drawGrayplotEntity( sciPointObj * pObj )
       frame_clip_off();  
 #ifdef _MSC_VER
       if ( flag_DO == 1) ReleaseWinHdc();
+      
 #endif
 
       FREE( xCoords ) ;

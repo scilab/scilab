@@ -3471,13 +3471,15 @@ sciPointObj * sciIsExistingFigure( int *value )
   double dv=0.0; 
 
   if(GetDriverId() == 0) /* driver Win32 or X11 F.Leray 26.08.04 */
+  {
       figGC=getWindowXgcNumber(*value);
+  }
   else
-      {
-          /* drivers GIF, Pos or Xfig are always the current one (only window number "value" at a given time) (for now) F.Leray 26.08.04 */
-          /* So let's get the current gc */
-	      C2F(dr)("xget","gc",&v,&v,&v,&v,&v,&v,(double *)&figGC,&dv,&dv,&dv,5L,10L);
-	  }
+  {
+    /* drivers GIF, Pos or Xfig are always the current one (only window number "value" at a given time) (for now) F.Leray 26.08.04 */
+    /* So let's get the current gc */
+    C2F(dr)("xget","gc",&v,&v,&v,&v,&v,&v,(double *)&figGC,&dv,&dv,&dv,5L,10L);
+  }
 
   if ((figGC != (struct BCG *) NULL) && (figGC->mafigure != (sciPointObj *) NULL)) /* ajout F.Leray 22.07.04 */
     return figGC->mafigure;

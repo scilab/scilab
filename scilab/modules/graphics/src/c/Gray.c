@@ -142,8 +142,10 @@ int C2F(xgray)(double *x, double *y, double *z, integer *n1, integer *n2, char *
       sciprint("Warning : Nax does not work with logarithmic scaling\n");}
   }
 
-  if(bounds_changed == TRUE || axes_properties_changed == TRUE)
+  if( bounds_changed || axes_properties_changed )
+  {
     sciDrawObj(sciGetCurrentFigure());
+  }
 
   sciSetCurrentObj (ConstructGrayplot 
     ((sciPointObj *)
@@ -152,11 +154,11 @@ int C2F(xgray)(double *x, double *y, double *z, integer *n1, integer *n2, char *
   /* if the auto_clear is on we must redraw everything */
   if ( isRedrawn )
   {
-    sciDrawObjIfRequired( sciGetCurrentFigure() ) ;
+    sciDrawObj( sciGetCurrentFigure() ) ;
   }
   else
   {
-    sciDrawObjIfRequired(sciGetCurrentObj ());
+    sciDrawObj( sciGetCurrentObj() );
     DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing */
   }
   
@@ -303,8 +305,10 @@ int C2F(xgray1)(double *z, integer *n1, integer *n2, char *strflag, double *brec
 
 
 
-  if(bounds_changed == TRUE || axes_properties_changed == TRUE)
+  if( bounds_changed || axes_properties_changed )
+  {
     sciDrawObj(sciGetCurrentFigure());
+  }
 
   sciSetCurrentObj (ConstructGrayplot 
     ((sciPointObj *)
@@ -313,11 +317,11 @@ int C2F(xgray1)(double *z, integer *n1, integer *n2, char *strflag, double *brec
   /* if the auto_clear is on we must redraw everything */
   if ( isRedrawn )
   {
-    sciDrawObjIfRequired( sciGetCurrentFigure() ) ;
+    sciDrawObj( sciGetCurrentFigure() ) ;
   }
   else
   {
-    sciDrawObjIfRequired(sciGetCurrentObj ());
+    sciDrawObj(sciGetCurrentObj ());
     DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing */
   }
 
@@ -352,11 +356,11 @@ int C2F(xgray2)(double *z, integer *n1, integer *n2, double *xrect)
   /* if the auto_clear is on we must redraw everything */
   if ( isRedrawn )
   {
-    sciDrawObjIfRequired( sciGetCurrentFigure() ) ;
+    sciDrawObj( sciGetCurrentFigure() ) ;
   }
   else
   {
-    sciDrawObjIfRequired(sciGetCurrentObj ());
+    sciDrawObj(sciGetCurrentObj ());
     DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing */
   }
 

@@ -227,7 +227,7 @@ void Sci_Axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny,
               char *str[], int subtics, char *format, int fontsize, int textcolor, 
               int fontstyle, int ticscolor, char logflag, int seg_flag, int axisbuild_flag)
 {
-  int Nx,Ny,j;
+  int Nx = 0 ,Ny = 0 ,j;
   double angle=0.0,vxx,vxx1;
   int vx[2],vy[2],xm[2],ym[2];
   char c_format[5];
@@ -239,7 +239,10 @@ void Sci_Axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny,
   int x3, y3, xpassed = 0, ypassed = 0; /* for log. case management */
   /*** 01/07/2002 -> 11.05.04 ***/ /* F.Leray : Re-put the Djalel modif. for a better display 
                                    using tight_limits='on' and/or isoview='on' */
-  double xmin,xmax,ymin, ymax; 
+  double xmin = 0.0 ;
+  double xmax = 0.0 ;
+  double ymin = 0.0 ;
+  double ymax = 0.0 ; 
   sciPointObj * psubwin = NULL;
   double pas; /* used for logarithmic grid */
 
@@ -2010,9 +2013,9 @@ static int SciAxisNew(char pos,sciPointObj *psubwin, double xy, int fontsize,int
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
   double xminval, yminval, xmaxval, ymaxval;
   
-  char logflag ;
+  char logflag = 'n' ;
   /* int lastxindex, lastyindex; */
-  BOOL auto_ticks;
+  BOOL auto_ticks = FALSE ;
 
 
   if(pos=='u' || pos=='d'){
@@ -3223,7 +3226,7 @@ int Axes3dStrings2( integer * ixbox, integer * iybox, integer * xind )
   double angle=0.0;
 
   int constOffset[2] ; /* displacment of labels from the axes segments. */
-  int maxTicksLabelSize[2] ; /* for each axis the maximum size of ticks label */
+  int maxTicksLabelSize[2] = {0,0} ; /* for each axis the maximum size of ticks label */
 
 
   psubwin= sciGetCurrentSubWin();

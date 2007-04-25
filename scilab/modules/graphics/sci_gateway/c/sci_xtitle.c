@@ -86,7 +86,7 @@ int sci_xtitle( char * fname, unsigned long fname_len )
   {
     int i,m,n;
     char **Str;
-    sciPointObj * modifiedLabel ;
+    sciPointObj * modifiedLabel = NULL ;
     char * text ;
 
     GetRhsVar(narg,"S",&m,&n,&Str);

@@ -30,6 +30,7 @@
 #include "CurrentObjectsManagement.h"
 #include "DrawingBridge.h"
 
+
 #include "MALLOC.h" /* MALLOC */
 
 extern void xgetmouse2(char *fname, char *str, integer *ibutton, integer *iflag, integer *x1, integer *yy1, integer *x6, integer *x7, double *x, double *y, double *dx3, double *dx4, integer lx0, integer lx1);

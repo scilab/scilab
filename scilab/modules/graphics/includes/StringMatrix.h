@@ -47,4 +47,5 @@ void copyStrMatElement( StringMatrix * mat, int row, int col, const char * copyS
 
 /*-------------------------------------------------------------------------------------------*/
 
+
 #endif /* _SCI_STRING_MATRIX_H_ */

@@ -20,9 +20,6 @@ void DrawableFigureJoGL::initializeDrawing( void )
 {
   sciPointObj * pObj     = m_pDrawer->getDrawedObject() ;
   sciFigure   * ppFigure = pFIGURE_FEATURE( pObj ) ;
-  int         verbose    = 0 ;
-  int         narg       = 0 ;
-  double      dv         = 0 ;
   int         background = sciGetBackground (pObj) ;
 
 #ifdef _MSC_VER
