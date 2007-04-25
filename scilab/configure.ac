@@ -54,7 +54,10 @@ AC_ARG_ENABLE(debug,
    [  --enable-debug           do not optimize and print warning messages (C/C++/Fortran code)])
 
 AC_ARG_ENABLE(debugC,
-   [  --enable-debug-C         do not optimize and print warning messages (C/C++ code)])
+   [  --enable-debug-C         do not optimize and print warning messages (C code)])
+
+AC_ARG_ENABLE(debugCXX,
+   [  --enable-debug-CXX       do not optimize and print warning messages (C++ code)])
 
 AC_ARG_ENABLE(debugFortran,
    [  --enable-debug-fortran   do not optimize and print warning messages (Fortran code)])
@@ -158,8 +161,17 @@ if test -z "$CC"; then
 fi
 
 if test -z "$CC"; then
-  AC_MSG_ERROR([No C Compiler. Cannot compile Scilab without a C compiler])
+  AC_MSG_ERROR([No C Compiler found. Cannot compile Scilab without a C compiler])
 fi
+
+
+### C++ ###
+AC_PROG_CXX
+
+if test -z "$CXX"; then
+  AC_MSG_ERROR([No C++ Compiler found. Cannot compile Scilab without a C++ compiler])
+fi
+
 
 # for "subdir-objects"
 
@@ -169,6 +181,7 @@ AC_PROG_F77_C_O
 if test "$enable_debug" = yes; then
    enable_debug_fortran=yes
    enable_debug_C=yes
+   enable_debug_CXX=yes
 else
    enable_debug=no
 fi
@@ -185,8 +198,12 @@ else
    enable_debug_C=no
 fi
 
-### C++###
-AC_PROG_CXX
+
+if test "$enable_debug_CXX" = yes; then
+   CXXFLAGS="`echo "$CXXFLAGS"| sed -e 's|-O[0-9+]|-O0|'`"
+else
+   enable_debug_CXX=no
+fi
 
 
 
@@ -984,6 +1001,23 @@ if test "$enable_static" = 'yes'; then
   libtool_build_static_libs='yes'
 fi
 
+# Mandatory for Debian (and more generaly for Linux)
+# See http://wiki.debian.org/RpathIssue
+# by Marcelo Magallon <mmagallo@efis.ucr.ac.cr>
+# Turn around -rpath problem with libtool
+# This define should be improbable enough to not conflict with anything
+ case ${host} in
+   *-pc-linux-gnu)
+     AC_MSG_RESULT([Fixing libtool for -rpath problems.])
+     sed < $SCIDIR/libtool > $SCIDIR/libtool-2 \
+    's/^hardcode_libdir_flag_spec.*$/hardcode_libdir_flag_spec=" -D__LIBTOOL_IS_A_FOOL__ "/'
+     mv $SCIDIR/libtool-2 $SCIDIR/libtool
+     chmod 755 $SCIDIR/libtool
+   ;;
+ esac
+####### End of the workaround
+
+
 AC_C_CONST()
 AC_C_INLINE()
 
@@ -1150,7 +1184,8 @@ echo "Shared libraries.....      --enable-shared=$libtool_build_shared_libs	$lib
 echo "Static libraries.....      --enable-static=$libtool_build_static_libs	$libtool_build_static_libs"
 echo "GNU ld...............      --with-gnu-ld=$with_gnu_ld		$lt_cv_prog_gnu_ld"
 echo "Enable debug ........      --enable-debug=$enable_debug	$enable_debug"
-echo "Enable debug C/C++...      --enable-debug-C=$enable_debug_C	$enable_debug_C"
+echo "Enable debug C.......      --enable-debug-C=$enable_debug_C	$enable_debug_C"
+echo "Enable debug C++.....      --enable-debug-CXX=$enable_debug_CXX	$enable_debug_CXX"
 echo "Enable debug Fortran.      --enable-debug-fortran=$enable_debug_fortran	$enable_debug_fortran"
 echo ""
 echo "Compiler Configuration:"
