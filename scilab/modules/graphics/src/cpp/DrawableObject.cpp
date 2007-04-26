@@ -17,12 +17,33 @@ namespace sciGraphics
 {
 
 /*------------------------------------------------------------------------------------------*/
-void DrawableObject::drawChildren( void )
+DrawableObject::DrawableObject( sciPointObj * drawed )
+{
+  m_pDrawed     = drawed ;
+  m_bNeedRedraw = true   ; // a first call to draw is necessary
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableObject::display( void )
+{
+  if ( m_bNeedRedraw )
+  {
+    draw() ;
+    m_bNeedRedraw = false ;
+  }
+  show() ;
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableObject::hasChanged( void )
+{
+  m_bNeedRedraw = true ;
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableObject::displayChildren( void )
 {
   sciSons * curSon = sciGetLastSons( m_pDrawed ) ;
   while ( curSon != NULL )
   {
-    getHandleDrawer( curSon->pointobj )->draw() ;
+    getHandleDrawer( curSon->pointobj )->display() ;
     curSon = curSon->pprev ;
   }
 }

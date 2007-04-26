@@ -24,36 +24,60 @@ class DrawableObject
 
 public:
 
-  DrawableObject( sciPointObj * drawed ) { m_pDrawed = drawed ; }
+  DrawableObject( sciPointObj * drawed ) ;
 
   virtual ~DrawableObject( void ) {}
 
   /**
-   * Main function of the class. Render the graphic handle
+   * Display a handle on the screen.
    */
-  virtual void draw( void ) = 0 ;
-
-  /**
-   * Common to every object, draw their children
-   */
-  void drawChildren( void ) ;
-
-  /**
-   * Common to every object. Check its visibility.
-   */
-  bool checkVisibility( void ) ;
+  virtual void display( void ) ;
 
   /**
    * In case you want to retrieve the drawed object
    */
   sciPointObj * getDrawedObject( void ) { return m_pDrawed ; }
 
+  /**
+   * To specify that the object was modified and need to be redrawn
+   */
+  void hasChanged( void ) ;
+
+  /**
+   * Common to every object, draw their children
+   */
+  void displayChildren( void ) ;
+
 protected:
+
+  /**
+   * Draw the graphic handle and store it representation in memory
+   * for later faster drawing.
+   */
+  virtual void draw( void ) = 0 ;
+
+  /**
+   * Fast draw of the graphic handle on the screen using the data created by draw.
+   * Warning, be sure that draw is called before show each time the handle is modified.
+   */
+  virtual void show( void ) = 0 ;
+
+  /**
+   * Common to every object. Check its visibility.
+   */
+  bool checkVisibility( void ) ;
+
 
   /**
    * The graphic handle to draw
    */
   sciPointObj * m_pDrawed ;
+
+  /**
+   * To know if the object needs to be drawn or if show is enough.
+   */
+  bool m_bNeedRedraw ;
+
 
 } ;
 

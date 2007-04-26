@@ -8,6 +8,11 @@
 #include "DrawingBridge.h"
 #include "getHandleDrawer.h"
 
+extern "C"
+{
+#include "GetProperty.h"
+}
+
 using namespace sciGraphics ;
 
 /*------------------------------------------------------------------------------------------*/
@@ -24,7 +29,14 @@ void destroyHandleDrawer( sciPointObj * pObj )
 /*------------------------------------------------------------------------------------------*/
 void sciDrawObj( sciPointObj * pObj )
 {
-  getHandleDrawer(pObj)->draw() ;
+  /* force total redraw */
+  getHandleDrawer(pObj)->hasChanged() ;
+  /* redisplay everything, including this handle */
+  getHandleDrawer( sciGetParentFigure( pObj ) )->display() ;
 }
 /*------------------------------------------------------------------------------------------*/
-
+void displayChildren( sciPointObj * pObj )
+{
+  getHandleDrawer( pObj )->displayChildren() ;
+}
+/*------------------------------------------------------------------------------------------*/

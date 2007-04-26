@@ -11,8 +11,6 @@ extern "C"
 #include "handleDrawing/drawFigureEntity.h"
 }
 
-#include <stdio.h>
-
 namespace sciGraphics
 {
 
@@ -25,7 +23,6 @@ DrawableFigure::DrawableFigure( sciPointObj * pObj )
 /*------------------------------------------------------------------------------------------*/
 DrawableFigure::~DrawableFigure( void )
 {
-  printf("Destroying\n");
   if ( m_pImp != NULL )
   {
     delete m_pImp ;
@@ -34,21 +31,25 @@ DrawableFigure::~DrawableFigure( void )
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigure::draw( void )
-{
-  //drawFigureEntity( m_pDrawed ) ;
-  
+{ 
   if ( !checkAutoRedraw() ) { return ; }
 
   initializeDrawing() ;
-
+  
+  
   if ( checkVisibility() )
   {
     updateInfoMessage() ;
-    drawChildren() ;
+    displayChildren() ;
   }
 
   endDrawing() ;
 
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableFigure::show( void )
+{
+  draw() ;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigure::initializeDrawing( void )

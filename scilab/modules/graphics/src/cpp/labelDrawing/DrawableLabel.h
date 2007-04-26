@@ -21,10 +21,19 @@ public:
 
   DrawableLabel( sciPointObj * pObj ) : DrawableObject( pObj ) {}
 
+protected:
+
   /**
-   * Create a new drawer from the drawed object.
+   * Draw the graphic handle and store it representation in memory
+   * for later faster drawing.
    */
-  void draw( void ) ;
+  virtual void draw( void ) ;
+
+  /**
+   * Fast draw of the graphic handle on the screen using the data created by draw.
+   * Warning, be sure that draw is called before show each time the handle is modified.
+   */
+  virtual void show( void ) ;
 
 } ;
 

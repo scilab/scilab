@@ -18,13 +18,14 @@ int drawCompoundEntity( sciPointObj * pObj )
   if ( !sciGetVisibility(pObj) ) { return 0 ; }
 
   /* scan the hierarchy and call sciDrawObj */
-  curSon = sciGetLastSons( pObj ) ;
-  while ( curSon != NULL )
-  {
-    sciDrawObj( curSon->pointobj ) ;
-    curSon = curSon->pprev ;
-  }
-
+ /*  curSon = sciGetLastSons( pObj ) ; */
+/*   while ( curSon != NULL ) */
+/*   { */
+/*     sciDrawObj( curSon->pointobj ) ; */
+/*     curSon = curSon->pprev ; */
+/*   } */
+  
+  displayChildren( pObj ) ;
   return 0 ;
 }
 /*-----------------------------------------------------------------------------------*/

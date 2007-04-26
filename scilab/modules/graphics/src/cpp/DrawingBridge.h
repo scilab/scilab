@@ -25,6 +25,8 @@ extern "C" {
    */
   void sciDrawObj( sciPointObj * pObj ) ;
 
+  void displayChildren( sciPointObj * pObj ) ;
+
 #ifdef __cplusplus
 }
 #endif

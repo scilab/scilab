@@ -24,10 +24,24 @@ public:
   virtual ~DrawableFigure( void ) ;
 
   /**
-   * Create a new drawer from the drawed object.
+   * Set the implementation objects for the previous algorithmz
    */
-  void draw( void ) ;
+  void setDrawableImp( DrawableFigureImp * imp ) { m_pImp = imp ; }
 
+protected:
+
+  /**
+   * Draw the graphic handle and store it representation in memory
+   * for later faster drawing.
+   */
+  virtual void draw( void ) ;
+
+  /**
+   * Fast draw of the graphic handle on the screen using the data created by draw.
+   * Warning, be sure that draw is called before show each time the handle is modified.
+   */
+  virtual void show( void ) ;
+  
   /*--------------------------------------------------------------------------------------*/
   // Driver Independant Algorithms
   /**
@@ -52,14 +66,8 @@ public:
    */
   void updateInfoMessage( void ) ;
 
-  /**
-   * Set the implementation objects for the previous algorithmz
-   */
-  void setDrawableImp( DrawableFigureImp * imp ) { m_pImp = imp ; }
-
   /*--------------------------------------------------------------------------------------*/ 
 
-protected:
 
   DrawableFigureImp * m_pImp ; /**< bridge for driver dependant algorithm */
 

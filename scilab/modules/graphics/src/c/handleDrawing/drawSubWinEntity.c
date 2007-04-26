@@ -86,12 +86,14 @@ int drawSubWinEntity( sciPointObj * pObj )
     axis_3ddraw( pObj,xbox,ybox,zbox,InsideU,InsideD); /* TEST on sciGetVisibility inside : REMOVED F.Leray 21.01.05 */
     /* because axis_3ddraw displays 3d axes BUT ALSO compute + reset the 3d scale BEFORE !! */
 
-    curSon = sciGetLastSons (pObj);
-    while ( curSon != NULL)
-    {
-      sciDrawObj( curSon->pointobj ) ;
-      curSon = curSon->pprev;
-    }
+    /* curSon = sciGetLastSons (pObj); */
+/*     while ( curSon != NULL) */
+/*     { */
+/*       sciDrawObj( curSon->pointobj ) ; */
+/*       curSon = curSon->pprev; */
+/*     } */
+    displayChildren( pObj ) ;
+
 
     triedre(pObj,xbox,ybox,zbox,InsideU,InsideD);
   }
@@ -128,12 +130,14 @@ int drawSubWinEntity( sciPointObj * pObj )
     DrawAxesBackground();
 
     drawAxesGrid( pObj ) ;
-    curSon = sciGetLastSons( pObj ) ;
-    while ( curSon != NULL )
-    {
-      sciDrawObj( curSon->pointobj ) ;
-      curSon = curSon->pprev;
-    }	  
+    /* curSon = sciGetLastSons( pObj ) ; */
+/*     while ( curSon != NULL ) */
+/*     { */
+/*       sciDrawObj( curSon->pointobj ) ; */
+/*       curSon = curSon->pprev; */
+/*     } */
+
+    displayChildren( pObj ) ;
 
     /* F.Leray 07.12.04 */
     /* TO CORRECT the bug 1115 : Big object (grayplots) could cover axes*/
