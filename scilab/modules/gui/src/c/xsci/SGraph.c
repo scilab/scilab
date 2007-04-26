@@ -990,7 +990,7 @@ Delete(Widget w, XtPointer number, XtPointer client_data)
   Efface((Widget) 0,(XtPointer) number, (XtPointer) 0);
   DeleteObjs(win_num);
   v_flag = 0;
-  scig_deletegwin_handler(win_num);
+  get_scig_deletegwin_handler()(win_num);
   DeleteSGWin(win_num); /* Here we 1) destroy the ScilabXgc (set to NULL) if it is the last window in the list */
                         /*         2) or reset the ScilabXgc to the next one see DeleteSGWin*/
 
