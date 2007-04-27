@@ -326,10 +326,6 @@
 				RelativePath=".\src\c\tksynchro.c"
 				>
 			</File>
-			<File
-				RelativePath=".\src\c\with_tk.c"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
