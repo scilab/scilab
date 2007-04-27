@@ -3,6 +3,8 @@
 ### INRIA - Scilab 2006 
 ##########
 
+if TCLTK
+
 TCLSCI_C_SOURCES = src/c/GedManagement.c \
 src/c/TclUiGet.c \
 src/c/TCL_Global.c \
@@ -11,7 +13,6 @@ src/c/InitTclTk.c \
 src/c/ScilabEval.c \
 src/c/TclEvents.c \
 src/c/setenvtcl.c \
-src/c/with_tk.c \
 src/c/TclUiSet.c \
 src/c/InitializeTclTk.c \
 src/c/TerminateTclTk.c
@@ -260,6 +261,7 @@ libscitclsci_la_sci_gateway_DATA = sci_gateway/tclsci_gateway.xml
 libscitclsci_la_includedir=$(pkgincludedir)/tclsci
 libscitclsci_la_include_HEADERS = includes/sci_TCL_GetVar.h \
 includes/TclUiSet.h \
+includes/setenvtcl.h \
 includes/GedManagement.h \
 includes/TCL_Global.h \
 includes/ScilabEval.h \
@@ -298,3 +300,8 @@ demos/tk/rolodex \
 demos/tk/vscale
 
 include $(top_srcdir)/Makefile.incl.am
+
+else
+		echo "TCL/TK not activated. Skip this module."
+endif
+
