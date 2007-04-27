@@ -14,8 +14,6 @@
 #include "inisci-c.h"
 #include "error_scilab.h"
 /*-----------------------------------------------------------------------------------*/
-extern int C2F(withtk)(int *rep);
-/*-----------------------------------------------------------------------------------*/
 static int getversion_no_rhs(void);
 static int getversion_one_rhs(void);
 static int getversion_two_rhs(void);
