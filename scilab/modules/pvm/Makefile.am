@@ -61,10 +61,6 @@ libscipvm_la_LIBADD = \
 
 libscipvm_la_LDFLAGS = $(PVM_LIB)
 
-
-
-#
-#### Target ######
 modulename=pvm
 
 #### pvm : Conf files ####
