@@ -6,6 +6,9 @@
 #include <stdio.h>
 #include <string.h>
 #include "setenvc.h"
+#ifdef WITH_TK
+#include "../../tclsci/includes/setenvtcl.h"
+#endif
 #include "MALLOC.h" /* MALLOC */
 
 #ifdef _MSC_VER
@@ -14,8 +17,6 @@ static char *env=NULL;
 #endif
 
 static int UpdateEnvVar=0;
-/*-----------------------------------------------------------------------------------*/
-extern int setenvtcl(char *string,char *value);
 /*-----------------------------------------------------------------------------------*/
 int setenvc(char *string,char *value)
 {
@@ -32,12 +33,21 @@ int setenvc(char *string,char *value)
 #else /* others HP Solaris WIN32*/
   env=(char*)MALLOC((strlen(string)+strlen(value)+2)*sizeof(char));
   sprintf(env,"%s=%s",string,value);
-  if ( putenv(env) ) ret=FALSE;
+  if ( putenv(env) )
+	  { 
+		  ret=FALSE;
+
+	  }
   else 
-    {
+	  {
+#ifdef WITH_TK
       setenvtcl(string,value);
       ret=TRUE;
       UpdateEnvVar=1;
+#else
+      ret=FALSE;
+      UpdateEnvVar=0;
+#endif
     }
 #ifdef _MSC_VER
   if (env)
