@@ -210,9 +210,6 @@ if test "x${prefix}" = "xNONE"; then
   prefix="${ac_default_prefix}"
 fi
 
-###############################
-## creating Path.incl if needed
-###############################
 # 
 # change scidir for mingw 
 #   *-*-cygwin* |   *-*-mingw32*)
@@ -253,49 +250,7 @@ fi
 #############################################
 
 
-# use for making scripts in script directory
-#   different for MIPS Ultrix
-SCILAB_GS=sh
-# scilab script file in script directory: default is "scilab.g" for UNIX
-#   for gcwin32 use "scilab-gcwin32.g"
-SCILABSCRIPT=scilab.g
-
-# For old Hp computer (9.x), used in "routines/os_specific/Makefile.in"
-#   for choosing the good file between link_std.c and link_SYSV.c
-HPPA_OLD=
-
 GUI='X11'
-
-# specific scilab dirs for graphics: default is "xsci" for X11
-#   different for Win32
-GUILIB=xsci 
-
-# specific scilab dirs for xdr:  default is void for X11
-#   xdr for Win32
-XDRLIB=
-XDRLIBNAME=
-# objects files in routines/menusX: default is XOBJS for UNIX
-#   for Win32 use WOBJS
-MENUSOBJS=XOBJS
-# use other malloc (in "routines/os_specific" directory) for some 64 bits machines
-MALLOC=
-
-
-# on windows target generating scripts for 
-# printing is useless 
-BLPR_SCRIPTS='$(BPROGRAMS)'
-# on windows target when generating script 
-# cygdrive/xxx must be replaced by xxx:/ 
-# for mingw32 
-SED_CYGDRIVE=
-# subset of examples which are supposed to work 
-EXAMPLES_TESTS='$(SUBDIRS1) $(SUBDIRS2)'
-# special stuff for cygwin in impdir 
-IMPPREF=S
-IMPENV= 
-# periX11.c must be compiled without optimization on Darwin
-PERIX11NOPT=periX11darwin
-NMOPT=
 
 ######################
 ######## Set compilation options for intel C/Fortran compilers
@@ -847,7 +802,7 @@ AM_CONDITIONAL(STRINGV2, test "$with_cong_string" = yes)
 ## Tcl/Tk library
 #################
 
-
+WITH_TKSCI=0
 if test "$with_tk" != no; then
 
 	TCLTKHELP=tksci
@@ -918,7 +873,7 @@ if test "$with_tk" != no; then
 	AC_SUBST(TK_INC_PATH)
 
 fi
-
+AM_CONDITIONAL(TCLTK, test "$WITH_TKSCI" = 1)
 
 #################
 ## atlas 
