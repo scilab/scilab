@@ -1346,7 +1346,7 @@ int in_put(int interrupt)
     }
     XFlush(screen->display);	/* always flush writes before waiting */
 #ifdef WITH_TK
-    flushTKEvents(); 	/* always flush writes before waiting */
+   flushTKEvents(); 	/* always flush writes before waiting */
 #endif
 
     /* Update the masks and, unless X events are already in the queue, wait

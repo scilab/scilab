@@ -14,7 +14,9 @@
 #include "All-extern-x.h"
 #include "All-extern.h"
 #include "xscion.h"
+#ifdef WITH_TK
 #include "TclEvents.h" /* flushTKEvents() */
+#endif
 #include "dynamic_menus.h" /* ismenu() */
 
 #include <X11/Xlib.h>
