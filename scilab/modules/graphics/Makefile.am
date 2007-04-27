@@ -478,9 +478,11 @@ libscigraphics_la_SOURCES = $(GRAPHICS_C_SOURCES) $(GATEWAY_C_SOURCES) $(GRAPHIC
 libscigraphics_la_LIBADD = \
 	$(top_builddir)/modules/intersci/libsciintersci.la \
 	$(top_builddir)/modules/data_structures/libscidata_structures.la \
-	$(top_builddir)/modules/tclsci/libscitclsci.la \
 	$(top_builddir)/modules/string/libscistring.la
 
+if TCLTK
+libscigraphics_la_LIBADD += $(top_builddir)/modules/tclsci/libscitclsci.la
+endif
 #	$(top_builddir)/modules/gui/libscigui.la
 
 

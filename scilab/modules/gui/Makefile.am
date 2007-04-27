@@ -111,10 +111,12 @@ libscigui_la_SOURCES += $(GUI_JAVA_SOURCES)
 endif
 
 libscigui_la_LIBADD = \
-	$(top_builddir)/modules/tclsci/libscitclsci.la \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/string/libscistring.la
 
+if TCLTK
+libscigui_la_LIBADD += $(top_builddir)/modules/tclsci/libscitclsci.la
+endif
 
 # Cyclic dep
 #	$(top_builddir)/modules/graphics/libscigraphics.la
