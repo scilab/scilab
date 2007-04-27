@@ -15,15 +15,15 @@ public class SciStringArray extends javasci.SciAbstractArray implements java.io.
 	/**
 	 * Constructs a Scilab String Array from a other SciStringArray
 	 * @param name the name of the Scilab variable
-	 * @param Obj the SciStringArray you want to copy
+	 * @param stringArrayObj the SciStringArray you want to copy
 	 */
-	public SciStringArray(String name, SciStringArray Obj) {
+	public SciStringArray(String name, SciStringArray stringArrayObj) {
 		this.name = name;
-		this.m = Obj.getNumberOfRows();
-		this.n = Obj.getNumberOfCols();
+		this.m = stringArrayObj.getNumberOfRows();
+		this.n = stringArrayObj.getNumberOfCols();
 		this.x = new String[m * n];
 
-		this.x = Obj.getData();
+		this.x = stringArrayObj.getData();
 		Send();
 	}
 
