@@ -19,3 +19,4 @@
  */
 int C2F(genmcuprod)(integer *typ,integer *job,integer * a,integer * na,integer * m,integer * n);
 #endif /* __GENMCUPROD_H__ */
+

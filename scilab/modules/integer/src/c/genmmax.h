@@ -23,3 +23,4 @@
 int C2F(genmmax)(integer *typ, integer *job, integer *m, integer *n, int *dx, integer *incx, int *dy, int *dk, integer *incy);
 
 #endif /* __GENMMAX_H__ */
+

@@ -19,3 +19,4 @@
  */
 int C2F(gendot)(integer *typ,integer *n, void *dx, integer *incx, void *dy, integer *incy);
 #endif /* __GENDOT_H__ */
+
