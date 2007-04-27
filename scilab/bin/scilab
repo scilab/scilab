@@ -101,7 +101,7 @@ else
 		# dev env
 		SCILABBIN=$SCI/scilab-bin
 	else
-		echo "Cannot not found scilab-bin ... Don't worry. This script is still an alpha version"
+		echo "Cannot not find scilab-bin ..."
 		exit 1
 	fi
 fi
