@@ -1,12 +1,12 @@
 prefix=/usr/
-exec_prefix=${prefix}
+exec_prefix=${prefix}/bin/
 libdir=${exec_prefix}/lib/scilab/
-includedir=${prefix}/include
+includedir=${prefix}/include/scilab/
 
 Name: libscilab
 Description: Scilab Library
 URL: http://www.scilab.org
 Version: 5.0
-Requires: libxml-2.0
+Requires: libxml-2.0 libpcre
 Libs: -L${libdir} -lscilab
 Cflags: -I${includedir} -lieee -lXaw3d -lXmu -lXt -lX11 -lSM -lncurses -ltk8.4 -ltcl8.4 -ldl
