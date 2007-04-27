@@ -52,7 +52,6 @@ extern int C2F(sxevents)();
 extern int C2F(bexec)();
 extern int C2F(ismenu)();
 extern int C2F(getmen)();
-extern int C2F(tksynchro)();
 extern int C2F(checkevts)();
 
 extern int C2F(print)();
