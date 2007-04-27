@@ -21,10 +21,6 @@ libscijvm_la_SOURCES = $(JVM_C_SOURCES)
 libscijvm_la_LIBADD = \
 $(top_builddir)/modules/gui/libscigui.la
 
-
-
-
-#### Target ######
 modulename=jvm
 
 
@@ -36,6 +32,13 @@ libscijvm_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 #### jvm : init scripts #### 
 libscijvm_la_etcdir = $(mydatadir)/etc
 libscijvm_la_etc_DATA = etc/jvm.quit etc/jvm.start
+
+#### gui : include files ####
+libscijvm_la_includedir=$(pkgincludedir)/jvm
+libscijvm_la_include_HEADERS = includes/exportimport.h \
+includes/InitializeJVM.h \
+includes/JVM_CONSOLE.h
+
 
 include $(top_srcdir)/Makefile.incl.am
 
