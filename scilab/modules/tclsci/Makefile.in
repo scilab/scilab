@@ -167,7 +167,7 @@ DATA = $(libscitclsci_la_demossciGUI_DATA) \
 	$(libscitclsci_la_sci_gateway_DATA) \
 	$(nobase_libscitclsci_la_tcl_DATA)
 am__libscitclsci_la_include_HEADERS_DIST = includes/sci_TCL_GetVar.h \
-	includes/TclUiSet.h includes/setenvtcl.h  \
+	includes/TclUiSet.h includes/setenvtcl.h \
 	includes/GedManagement.h includes/TCL_Global.h \
 	includes/ScilabEval.h includes/InitTclTk.h \
 	includes/TclEvents.h includes/gw_tclsci.h includes/TclUiGet.h \
@@ -221,12 +221,6 @@ JAVA_HOME = @JAVA_HOME@
 JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
 JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
 JDB = @JDB@
-LAMPI_CC = @LAMPI_CC@
-LAMPI_CPPFLAGS = @LAMPI_CPPFLAGS@
-LAMPI_DIR = @LAMPI_DIR@
-LAMPI_HEADER = @LAMPI_HEADER@
-LAMPI_LDFLAGS = @LAMPI_LDFLAGS@
-LAMPI_LIBS = @LAMPI_LIBS@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
 LIBOBJS = @LIBOBJS@
@@ -238,6 +232,8 @@ MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
 MANGENERATOR = @MANGENERATOR@
 MKDIR_P = @MKDIR_P@
+MPICC = @MPICC@
+MPILIBS = @MPILIBS@
 NM = @NM@
 OBJEXT = @OBJEXT@
 OCAMLC = @OCAMLC@
@@ -585,7 +581,7 @@ top_srcdir = @top_srcdir@
 @TCLTK_TRUE@libscitclsci_la_includedir = $(pkgincludedir)/tclsci
 @TCLTK_TRUE@libscitclsci_la_include_HEADERS = includes/sci_TCL_GetVar.h \
 @TCLTK_TRUE@includes/TclUiSet.h \
-@TCLTK_TRUE@includes/setenvtcl.h \
+@TCLTK_TRUE@includes/setenvtcl.h\
 @TCLTK_TRUE@includes/GedManagement.h \
 @TCLTK_TRUE@includes/TCL_Global.h \
 @TCLTK_TRUE@includes/ScilabEval.h \

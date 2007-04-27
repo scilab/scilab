@@ -261,7 +261,7 @@ libscitclsci_la_sci_gateway_DATA = sci_gateway/tclsci_gateway.xml
 libscitclsci_la_includedir=$(pkgincludedir)/tclsci
 libscitclsci_la_include_HEADERS = includes/sci_TCL_GetVar.h \
 includes/TclUiSet.h \
-includes/setenvtcl.h \
+includes/setenvtcl.h\
 includes/GedManagement.h \
 includes/TCL_Global.h \
 includes/ScilabEval.h \
