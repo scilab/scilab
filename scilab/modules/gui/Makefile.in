@@ -51,6 +51,7 @@ DIST_COMMON = $(libscigui_la_include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
 @JAVA_TRUE@am__append_1 = $(JAVA_JNI_INCLUDE)
 @JAVA_TRUE@am__append_2 = $(GUI_JAVA_SOURCES)
+@TCLTK_TRUE@am__append_3 = $(top_builddir)/modules/tclsci/libscitclsci.la
 subdir = modules/gui
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
@@ -82,9 +83,8 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscigui_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/tclsci/libscitclsci.la \
 	$(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/modules/string/libscistring.la
+	$(top_builddir)/modules/string/libscistring.la $(am__append_3)
 am__libscigui_la_SOURCES_DIST = src/c/xsci/wf_w_util.c \
 	src/c/xsci/utils.c src/c/xsci/x_cursor.c src/c/xsci/x_main.c \
 	src/c/xsci/wf_f_read.c src/c/xsci/wf_f_util.c \
@@ -250,6 +250,12 @@ JAVA_HOME = @JAVA_HOME@
 JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
 JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
 JDB = @JDB@
+LAMPI_CC = @LAMPI_CC@
+LAMPI_CPPFLAGS = @LAMPI_CPPFLAGS@
+LAMPI_DIR = @LAMPI_DIR@
+LAMPI_HEADER = @LAMPI_HEADER@
+LAMPI_LDFLAGS = @LAMPI_LDFLAGS@
+LAMPI_LIBS = @LAMPI_LIBS@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
 LIBOBJS = @LIBOBJS@
@@ -261,8 +267,6 @@ MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
 MANGENERATOR = @MANGENERATOR@
 MKDIR_P = @MKDIR_P@
-MPICC = @MPICC@
-MPILIBS = @MPILIBS@
 NM = @NM@
 OBJEXT = @OBJEXT@
 OCAMLC = @OCAMLC@
@@ -502,17 +506,15 @@ libscigui_la_CFLAGS = -Iincludes/ \
 	-I$(top_srcdir)/modules/core/src/c/ \
 	-I$(top_srcdir)/modules/string/includes/ \
 	-I$(top_srcdir)/modules/tclsci/includes/ \
+	-I$(top_srcdir)/modules/jvm/includes/ \
 	-I$(top_srcdir)/modules/gui/src/c/xsci/ $(TCL_INC_PATH) \
 	$(Tk_INC_PATH) $(am__append_1)
 libscigui_la_LDFLAGS = $(X_LIBS) $(TERMCAP_LIB) $(X_EXTRA_LIBS)
 pkglib_LTLIBRARIES = libscigui.la
 libscigui_la_SOURCES = $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES) \
 	$(GATEWAY_FORTRAN_SOURCES) $(am__append_2)
-libscigui_la_LIBADD = \
-	$(top_builddir)/modules/tclsci/libscitclsci.la \
-	$(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/modules/string/libscistring.la
-
+libscigui_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
+	$(top_builddir)/modules/string/libscistring.la $(am__append_3)
 
 # Cyclic dep
 #	$(top_builddir)/modules/graphics/libscigraphics.la
