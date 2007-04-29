@@ -65,27 +65,27 @@
 
 <entry>
 	<tag>tclsci_message_12</tag>
-	<string> Execution starts for %s.</string>
+	<string> Execution starts for %s</string>
 </entry>	
 
 <entry>
 	<tag>tclsci_message_13</tag>
-	<string> Execution ends for %s.</string>
+	<string> Execution ends for %s</string>
 </entry>	
 
 <entry>
 	<tag>tclsci_message_14</tag>
-	<string> Flushed execution starts for %s - No option.</string>
+	<string> Flushed execution starts for %s - No option</string>
 </entry>	
 
 <entry>
 	<tag>tclsci_message_15</tag>
-	<string> Flushed execution starts for %s - seq.</string>
+	<string> Flushed execution starts for %s - seq</string>
 </entry>	
 
 <entry>
 	<tag>tclsci_message_16</tag>
-	<string> Flushed execution ends for %s.</string>
+	<string> Flushed execution ends for %s</string>
 </entry>	
 
 <entry>
