@@ -95,6 +95,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
 		  char *msg=QueryStringMessage("tclsci_message_12");
 		  sciprint_full(msg,command);
 		  if (msg){FREE(msg);msg=NULL;}
+          sciprint("\n");
 	  }
       C2F(syncexec)(command,&ns,&ierr,&seq);
       if (C2F(iop).ddt==-1)
@@ -102,6 +103,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
 		  char *msg=QueryStringMessage("tclsci_message_13");
 		  sciprint_full(msg,command);
 		  if (msg){FREE(msg);msg=NULL;}
+          sciprint("\n");
 	  }
       C2F(tksynchro)(&C2F(recu).paus);
       if (ierr != 0) return TCL_ERROR;
