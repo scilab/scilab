@@ -2923,3 +2923,10 @@ Francois VOGEL, 24/04/07
  * The watch window displays the type (including real/complex if appropriate)
    and size of each watched variable in a tooltip
  * version --> 6.100
+
+Francois VOGEL, 30/04/07
+ * Added the Break command in the debugger since I fixed bug 2384 (outside of
+   Scipad ; ScilabEval sync seq execution was interruptible in the Scilab
+   parser)
+ * Availability of the Break command depends on the flag bug2384_fixed
+ * version --> 6.101

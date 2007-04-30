@@ -73,15 +73,31 @@ if {[catch {ScilabEval ";" "sync" "seq"}] != 0} {
 
 
 #############
-# Debug settings for the new Scipad debugger commands (Run to cursor and Break)
+# Debug settings for the latest Scipad debugger features
 
 # Committed versions should have this attribute set to false
-# In that case, the Break command is greyed
-# since there are issues with it in the Scilab parsers
+# so that features that are believed to be too unstable are
+# disabled (usually because of issues in the Scilab parsers)
+# Currently this flag is not used
 
-set dev_debug "false"
+set dev_debug false
 
-# End of debug settings for the new debugger commands (Run to cursor and Break)
+# End of debug settings for the latest Scipad debugger features
+#############
+
+
+#############
+# Flags to adjust Scipad to the host Scilab version
+
+# The break command can only be used with Scilab versions having bug 2384 fixed
+# Currently (30/04/07), this is done in svn trunk and BUILD4 branches
+# but nowhere else, e.g. in scilab-gtk
+# The flag below allows for easy adjustment of Scipad to Scilab versions,
+# especially with backported Scipad versions in mind
+
+set bug2384_fixed true
+
+# End of flags to adjust Scipad to the host Scilab version
 #############
 
 
@@ -133,7 +149,7 @@ if {0} {
     proc dispsthg {} {
 #        set str [countcontlines [gettextareacur] 1.0 [[gettextareacur] index insert]]
 #        set str [time {colorize [gettextareacur] 1.0 end}]
-#        set str "[getlogicallinenumbersranges allscilabbuffers]\n\n[getlogicallinenumbersranges current&ancill]"
+#        set str "[getlogicallinenumbersranges allscilabbuffers "stepbystep"]\n\n[getlogicallinenumbersranges current&ancill "stepbystep"]"
         set str "[getlistofancillaries [gettextareacur] FOO1 libfun]"
         tk_messageBox -message "$str"
     }

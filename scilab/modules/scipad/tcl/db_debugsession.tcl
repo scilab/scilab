@@ -213,11 +213,11 @@ proc stepbystep_bp {checkbusyflag stepmode rescanbuffers} {
             if {![info exists previousstepscope] || \
                 ![info exists logicallinenumbersranges]} {
                 foreach {logicallinenumbersranges CurBreakpointedMacros CurBreakpointedLines} \
-                        [getlogicallinenumbersranges $stepscope] {}
+                        [getlogicallinenumbersranges $stepscope "stepbystep"] {}
             } else {
                 if {$rescanbuffers || ($previousstepscope != $stepscope) } {
                     foreach {logicallinenumbersranges CurBreakpointedMacros CurBreakpointedLines} \
-                            [getlogicallinenumbersranges $stepscope] {}
+                            [getlogicallinenumbersranges $stepscope "stepbystep"] {}
                 }
             }
             updatebptcomplexityindicators_bp $CurBreakpointedMacros $CurBreakpointedLines
@@ -261,7 +261,7 @@ proc stepbystep_bp {checkbusyflag stepmode rescanbuffers} {
     }
 }
 
-proc getlogicallinenumbersranges {stepscope} {
+proc getlogicallinenumbersranges {stepscope messagetype} {
 # get all logical line numbers ranges of all functions from the given
 # step by step scope $stepscope, which can be
 #   - allscilabbuffers : functions from all scilab scheme buffers
@@ -287,8 +287,14 @@ proc getlogicallinenumbersranges {stepscope} {
 # in case any Scilab limit is exceeded, item1 is a string containing
 # a return code:
 #   "0"  : the calling procedure should apply "Go to next breakpoint" instead
-#          of the intended step-by-step command
-#   "-1" : the calling procedure should cancel the step-by-step command
+#          of the intended (step-by-step) command
+#   "-1" : the calling procedure should cancel the current command
+# in case any Scilab limit is exceeded, this proc displays a message box
+# that can be selected by the input parameter $messagetype:
+#   "stepbystep" : the user can select between cancelling the debug command
+#                  he launched, or jumping to the next breakpoint
+#   "break"      : the user has no choice at all, the debug command he
+#                  launched cannot be executed
 
     global ScilabCodeMaxBreakpointedMacros ScilabCodeMaxBreakpoints
     global debugassce
@@ -422,14 +428,25 @@ proc getlogicallinenumbersranges {stepscope} {
        updatebptcomplexityindicators_bp $nbmacros $nbbreakp
        set mes [concat [mc "You have currently"] $nbmacros [mc "functions in your opened files."] \
                         [mc "Scilab supports a maximum of"] $ScilabCodeMaxBreakpointedMacros \
-                        [mc "possible breakpointed functions (see help setbpt)."] \
-                        [mc "Step-by-step hence cannot be performed."] \
-                        [mc "This command will actually run to the next breakpoint."] ]
-        set answer [tk_messageBox -message $mes -title [mc "Too many breakpointed functions"] \
-                        -icon warning -type okcancel]
-        switch -- $answer {
-            ok     {set cmd "0"}
-            cancel {set cmd "-1"}
+                        [mc "possible breakpointed functions (see help setbpt)."] ]
+       set tit [mc "Too many breakpointed functions"]
+       if {$messagetype == "stepbystep"} {
+           set mes [concat $mes \
+                            [mc "Step-by-step hence cannot be performed."] \
+                            [mc "This command will actually run to the next breakpoint."] ]
+            set answer [tk_messageBox -message $mes -title $tit \
+                            -icon warning -type okcancel]
+            switch -- $answer {
+                ok     {set cmd "0"}
+                cancel {set cmd "-1"}
+            }
+        } else {
+            #$messagetype == "break"
+            set mes [concat $mes \
+                            [mc "Break hence cannot be performed."] ]
+            set answer [tk_messageBox -message $mes -title $tit \
+                            -icon warning -type ok]
+            set cmd "-1"
         }
         set nbmacros [countallbreakpointedmacros]
     }
@@ -439,14 +456,24 @@ proc getlogicallinenumbersranges {stepscope} {
         set mes [concat [mc "Executing this command would require to set"] $nbbreakp \
                         [mc "breakpoints in your opened files."] \
                         [mc "Scilab supports a maximum of"] $ScilabCodeMaxBreakpoints \
-                        [mc "possible breakpoints in Scilab (see help setbpt)."] \
-                        [mc "Step-by-step hence cannot be performed."] \
-                        [mc "This command will actually run to the next breakpoint."] ]
-        set answer [tk_messageBox -message $mes -title [mc "Too many breakpoints"] \
-                        -icon warning -type okcancel]
-        switch -- $answer {
-            ok     {set cmd "0"}
-            cancel {set cmd "-1"}
+                        [mc "possible breakpoints in Scilab (see help setbpt)."] ]
+        set tit [mc "Too many breakpoints"]
+        if {$messagetype == "stepbystep"} {
+            set mes [concat $mes \
+                            [mc "Step-by-step hence cannot be performed."] \
+                            [mc "This command will actually run to the next breakpoint."] ]
+            set answer [tk_messageBox -message $mes -title $tit \
+                            -icon warning -type okcancel]
+            switch -- $answer {
+                ok     {set cmd "0"}
+                cancel {set cmd "-1"}
+            }
+        } else {
+            set mes [concat $mes \
+                            [mc "Break hence cannot be performed."] ]
+            set answer [tk_messageBox -message $mes -title $tit \
+                            -icon warning -type ok]
+            set cmd "-1"
         }
         set nbbreakp [countallbreakpointedlines]
     }
@@ -795,71 +822,41 @@ proc goonwo_bp {} {
 }
 
 proc break_bp {} {
+    global funnameargs
+
     if {[isscilabbusy]} {
-
-# Many solutions were explored, none is fully functional.
-# Apparently the problem boils down to sending a sync command
-# while in a seq execution (the one from the very beginning
-# of the debug, which executes the function to debug)
-# See also bug 1086 for that sort of issues
-
-# 1. send a seq pause preceded by flush
-# two flushes since the first one may just queue new commands
-# (see proc checkendofdebug_bp)
-#        ScilabEval_lt "flush"
-#        ScilabEval_lt "flush"
-#        ScilabEval_lt "pause" "seq"
-#        updateactivebreakpoint 4
-#        getfromshell 4
-
-# 2. send a sync pause
-# apparently same result with:
-#       ScilabEval_lt "pause" "sync"
-#       updateactivebreakpoint 3
-#       getfromshell 3
-
-# 3. launch a new core Fortran command that only says call sigbas(2)
-#    i.e. set iflag to 1 (true), i.e. an interrupt has occurred
-#    Note that this command already exists in C (void SignalCtrC)
-#      ScilabEval "breaksgl" "sync" "seq"
-#      updateactivebreakpoint 4
-#      getfromshell 4
-
-# 4. set breakpoints everywhere during run (details copied
-#    from stepbystep_bp)
-if {1} {
-global funnameargs
-global setbptonreallybreakpointedlinescmd
-set checkbusyflag 0
         if {$funnameargs != ""} {
-            # because the user can open or close files during debug,
-            # getlogicallinenumbersranges must be called at each step
-            set stepmode "into"
             set stepscope "allscilabbuffers"
-            set cmd [getlogicallinenumbersranges $stepscope]
+            set cmd [lindex [getlogicallinenumbersranges $stepscope "break"] 0]
             # check Scilab limits in terms of breakpoints
             if {$cmd == "-1" || $cmd == "0"} {
                 # impossible to set the required breakpoints
-                tk_messageBox -message "Too many bpts or bpted funs!"
+                # a message box has already been displayed in proc
+                # getlogicallinenumbersranges, there is nothing more
+                # to do
                 return
             } else {
-                # no limit exceeded - go on one 
+                # no limit exceeded - go on and set them 
                 regsub -all -- {\(} $cmd "setbpt(" cmdset
                 regsub -all -- {\(} $cmd "delbpt(" cmddel
-                ScilabEval_lt "$cmdset" "sync" ;# "seq"
-                updateactivebreakpoint 4
+                # execute now in a dedicated parser the breakpoint setting,
+                # so that the main parser will see them in the not too
+                # distant future
+                ScilabEval_lt "$cmdset" "sync" "seq"
+                # now queue a command in the main parser, in order to remove
+                # the breakpoints set for the break command - this is not an
+                # issue for future commands since proc checkendofdebug_bp
+                # will anyway set breakpoints later on really breakpointed
+                # lines
                 ScilabEval_lt "$cmddel" "seq"
-                getfromshell 4
+                # updateactivebreakpoint and getfromshell are already queued
+                # by the previous command that stucked the script, it's not
+                # needed to repeat these commands here
             }
         } else {
             # <TODO> .sce case if some day the parser uses pseudocode noops
-    #        resume_bp
         }
-}
 
-# <TODO> Remove next line and allow to continue debug
-# Problem: Scilab does not stop at breakpoints located after the break command point!
-#        setdbstate "NoDebug"
     } else {
         showinfo [mc "No effect - The debugged file is not stuck"]
     }

@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.100
+# in sync at least with v6.101
 
 
 # commons
@@ -120,6 +120,8 @@
                        "Le mode pas à pas n'est en conséquence pas possible."
     ::msgcat::mcset fr "This command will actually run to the next breakpoint." \
                        "Cette commande va atteindre le prochain point d'arrêt."
+    ::msgcat::mcset fr "Break hence cannot be performed." \
+                       "La commande Stop ne peut pas être exécutée."
 ::msgcat::mcset fr "Too many breakpoints" "Trop de points d'arrêt"
 ::msgcat::mcset fr "Executing this command would require to set" \
                    "Exécuter cette commande nécessiterait d'insérer"

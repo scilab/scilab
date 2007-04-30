@@ -68,7 +68,7 @@ proc setdbmenuentriesstates_bp {} {
     global pad watch watchwinicons watchwinstepicons
     global Shift_F8 Shift_F12
     global MenuEntryId
-global dev_debug
+    global bug2384_fixed
 
     set errmess "Unknown debugstate in proc setdbmenuentriesstates_bp: please report"
 
@@ -163,13 +163,13 @@ global dev_debug
         pbind all $Shift_F12 {goonwo_bp}
         $dm entryconfigure $MenuEntryId($dm.[mcra "Show &watch"]) -state normal
         bind all <Control-F12> {showwatch_bp}
-if {$dev_debug=="true"} {
-        $dm entryconfigure $MenuEntryId($dm.[mcra "&Break"]) -state normal
-        bind all <F12> {break_bp}
-} else {
-        $dm entryconfigure $MenuEntryId($dm.[mcra "&Break"]) -state disabled
-        bind all <F12> {}
-}
+        if {$bug2384_fixed} {
+            $dm entryconfigure $MenuEntryId($dm.[mcra "&Break"]) -state normal
+            bind all <F12> {break_bp}
+        } else {
+            $dm entryconfigure $MenuEntryId($dm.[mcra "&Break"]) -state disabled
+            bind all <F12> {}
+        }
         $dm entryconfigure $MenuEntryId($dm.[mcra "Cance&l debug"]) -state normal
         $pad.filemenu.scheme entryconfigure $MenuEntryId($pad.filemenu.scheme.[mcra "S&cilab"]) -state disabled
         $pad.filemenu.scheme entryconfigure $MenuEntryId($pad.filemenu.scheme.[mcra "&XML"]) -state disabled
@@ -215,9 +215,11 @@ if {$dev_debug=="true"} {
                 [lindex $wi $MenuEntryId($dm.[mcra "Run to re&turn point"])] configure -state normal
                 [lindex $wi $MenuEntryId($dm.[mcra "Run to c&ursor"])] configure -state normal
                 [lindex $wi $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"])] configure -state normal
-if {$dev_debug=="true"} {
-                [lindex $wi $MenuEntryId($dm.[mcra "&Break"])] configure -state normal
-} else {[lindex $wi $MenuEntryId($dm.[mcra "&Break"])] configure -state disabled}
+                if {$bug2384_fixed} {
+                    [lindex $wi $MenuEntryId($dm.[mcra "&Break"])] configure -state normal
+                } else {
+                    [lindex $wi $MenuEntryId($dm.[mcra "&Break"])] configure -state disabled
+                }
                 [lindex $wi $MenuEntryId($dm.[mcra "Cance&l debug"])] configure -state normal
             } else {
                 tk_messageBox -message $errmess
