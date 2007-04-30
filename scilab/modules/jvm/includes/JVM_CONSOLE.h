@@ -6,7 +6,7 @@
 #define __JVM_CONSOLE__
 /*-----------------------------------------------------------------------------------*/ 
 #include "jni.h"
-#include "jvm_common.h"
+#include "..\src\c\jvm_common.h"
 #ifdef _MSC_VER
   #include <windows.h>
 #endif
