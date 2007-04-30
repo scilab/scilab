@@ -134,12 +134,14 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
 			  char *msg=QueryStringMessage("tclsci_message_14");
 			  sciprint_full(msg,comm[nc]);
 			  if (msg){FREE(msg);msg=NULL;}
+              sciprint("\n");
 		  }
 	      else
 		  {
 			  char *msg=QueryStringMessage("tclsci_message_15");
 			  sciprint_full(msg,comm[nc]);
 			  if (msg){FREE(msg);msg=NULL;}
+              sciprint("\n");
 		  }
         }
         ns=(int)strlen(comm[nc]);
@@ -149,6 +151,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
 			char *msg=QueryStringMessage("tclsci_message_16");
 			sciprint_full(msg,comm[nc]);
 			if (msg){FREE(msg);msg=NULL;}
+            sciprint("\n");
         }
         FREE(comm[nc]);
         C2F(tksynchro)(&C2F(recu).paus);
