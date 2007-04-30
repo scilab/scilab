@@ -234,6 +234,7 @@
 			<File
 				RelativePath="..\includes\InitializeJVM.h"
 				>
+			</File>
 			<File
 				RelativePath="..\includes\JVM_CONSOLE.h"
 				>
