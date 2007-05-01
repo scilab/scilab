@@ -98,6 +98,7 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
     global spin funvars funvarsvals
     global watchvars watchvarsvals
     global getvaluefromscilab
+    global bug2384_fixed
 
     if {$argname != ""} {
 
@@ -164,17 +165,18 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
                 set watchvars [linsert $watchvars $pos $argname]
                 set watchvarsvals($argname) $argvalue
                 if {$argvalue == $unklabel} {
-        # BUG! "sync" option does not work correctly  (Bug 1086 like)
-        # getonefromshell performs right but asynchronously: it
-        # returns before completion - See WORKAROUND below
-    #                getonefromshell $argname "sync"
-        # WORKAROUND: use getfromshell seq and force update of the watch window
-        # <TODO> Once the parser works correctly with "sync" the three next
-        # lines can be removed and the comment sign can be removed
-        # from line   getonefromshell $argname "sync"   above
-        getonefromshell $argname
-        set fullcomm "TCL_EvalStr(\"updatewatch_bp\",\"scipad\");"
-        ScilabEval_lt $fullcomm "seq"
+                    # BUG! "sync" option did not work correctly  (Bug 2384)
+                    # getonefromshell performed right but asynchronously: it
+                    # returned before completion
+                    # WORKAROUND: use getfromshell seq and force update of
+                    # the watch window
+                    if {$bug2384_fixed} {
+                        getonefromshell $argname "sync"
+                    } else {
+                        getonefromshell $argname
+                        set fullcomm "TCL_EvalStr(\"updatewatch_bp\",\"scipad\");"
+                        ScilabEval_lt $fullcomm "seq"
+                    }
                     set argvalue $watchvarsvals($argname)
                 }
             }
@@ -197,17 +199,18 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
                 if {$getvaluefromscilab == 1} {set forceget "true"}
                 set watchvarsvals($argname) $argvalue
                 if {$forceget == "true"} {
-        # BUG! "sync" option does not work correctly  (Bug 1086 like)
-        # getonefromshell performs right but asynchronously: it
-        # returns before completion - See WORKAROUND below
-    #                getonefromshell $argname "sync"
-        # WORKAROUND: use getfromshell seq and force update of the watch window
-        # <TODO> Once the parser works correctly with "sync" the three next
-        # lines can be removed and the comment sign can be removed
-        # from line   getonefromshell $argname "sync"   above
-        getonefromshell $argname
-        set fullcomm "TCL_EvalStr(\"updatewatch_bp\",\"scipad\");"
-        ScilabEval_lt $fullcomm "seq"
+                    # BUG! "sync" option did not work correctly  (Bug 2384)
+                    # getonefromshell performed right but asynchronously: it
+                    # returned before completion
+                    # WORKAROUND: use getfromshell seq and force update of
+                    # the watch window
+                    if {$bug2384_fixed} {
+                        getonefromshell $argname "sync"
+                    } else {
+                        getonefromshell $argname
+                        set fullcomm "TCL_EvalStr(\"updatewatch_bp\",\"scipad\");"
+                        ScilabEval_lt $fullcomm "seq"
+                    }
                     set argvalue $watchvarsvals($argname)
                 }
             }

@@ -49,16 +49,22 @@ proc load_words {} {
     set chset(scilab.predef) {}
     set chset(scilab.libfun) {}
     set chset(scilab.scicos) {}
-# ask to scilab about keywords:
-# Warning: "seq" option only is mandatory so that colorization
-#          works with scipad somefile.sci (i.e. the ScilabEval
-#          below must be queued before colorization starts in
-#          the file that was just loaded through TCL_EvalStr("openfile ...
-#          (see scipad.sci)
-# Note: "sync" "seq" would have been the right thing to do, but for
-#       some unclear reason words and chset are unknown in that case
-#       when the exec returns
+    # ask to scilab about keywords:
+    # Warning: "seq" option only is mandatory so that colorization
+    #          works with scipad somefile.sci (i.e. the ScilabEval
+    #          below must be queued before colorization starts in
+    #          the file that will be loaded through the famous
+    #          TCL_EvalStr("ScilabEval "TCL_EvalStr(""openfile ...
+    #          (see scipad.sci)
+    # Note: "sync" "seq" would have been the right thing to do, but for
+    #       some unclear reason words and chset are unknown in that case
+    #       when the exec returns (running in sync mode is the same as
+    #       running in a function: local vars are unknown upon function
+    #       return). What is however strange is that this applies to slave
+    #       Tcl interpreters too... See also proc setScipadVersionString
+    #       for a simpler example of this strange behavior
     ScilabEval_lt "exec \"$intmacdir/dynamickeywords.sce\";" "seq"
+
 # old code to load a word file with additional keywords: maybe someday it will
 # turn useful...
 #     set type {}

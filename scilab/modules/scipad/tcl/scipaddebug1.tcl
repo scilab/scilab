@@ -94,6 +94,7 @@ set dev_debug false
 # but nowhere else, e.g. in scilab-gtk
 # The flag below allows for easy adjustment of Scipad to Scilab versions,
 # especially with backported Scipad versions in mind
+# Bug 2384 in fact fixes the sync seq options of ScilabEval (interruptibility)
 
 set bug2384_fixed true
 

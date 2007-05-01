@@ -2930,3 +2930,10 @@ Francois VOGEL, 30/04/07
    parser)
  * Availability of the Break command depends on the flag bug2384_fixed
  * version --> 6.101
+
+Francois VOGEL, 01/05/07
+ * Fixed sync issues (colorization, version number display) when launching
+   scipad afile.sci
+ * Removed the workaround in proc OKadda_bp since ScilabEval sync works as
+   expected (bug 2384 fixed) - This depends on the flag bug2384_fixed
+ * version --> 6.102

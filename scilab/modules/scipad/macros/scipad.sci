@@ -44,12 +44,6 @@ function scipad(varargin)
         else
             TCL_EvalStr("set tmpdir """+pathconvert(TMPDIR,%f,%t)+"""","scipad")
         end
-// Although the following line might seem to be a bit too much it is
-// designed to take advantage of the ScilabEval sequential mode in
-// order to prevent flushing of events by Scilab to Tcl during the
-// launch of Scipad
-//        TCL_EvalStr("ScilabEval {TCL_EvalStr(""scipad eval {source """""+SCI+ ..
-//                "/modules/scipad/tcl/scipad.tcl""""}"")} ""seq"" ")
         TCL_EvalStr("source """+SCI+"/modules/scipad/tcl/scipad.tcl""","scipad")
         nfiles=argn(2)
         if nfiles>0 then
@@ -85,12 +79,14 @@ function scipad(varargin)
                     if MSDOS then 
                         filetoopen=strsubst(filetoopen,"\","/"); 
                     end
-//  Given that scipad is open via a ScilabEval as is done above, the initial
-//  opening of files has to be done in the same way, so that the command is sequenced
-//  after scipad is really open
-//                  TCL_EvalStr("ScilabEval {TCL_EvalStr(""scipad eval {openfile {"+..
-//                              filetoopen +"}}"")} ""seq"" ")     
-                    TCL_EvalStr("openfile """+filetoopen+"""","scipad")
+                    // The complication below is needed to comply with ScilabEval sync limitations: what
+                    // is executed during a sync is not available in the interpreter after the sync has
+                    // ended (because sync launches a new interpreter - same thing as running in a function),
+                    // thus sync cannot be used for loading colorization arrays chset and words, and a seq
+                    // is used. But then the file opening should be queued after the loading of keywords,
+                    // which means the following nested complication is needed
+                    TCL_EvalStr("ScilabEval {TCL_EvalStr(""openfile {"+ filetoopen +"}"",""scipad"")} ""seq"" ")     
+//                    TCL_EvalStr("openfile """+filetoopen+"""","scipad")
                 end
             end  // end of "for i=1:nfiles"
         end  // end of "if nfiles>0"
