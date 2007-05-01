@@ -2,18 +2,26 @@ proc setScipadVersionString {} {
 # set the version string for Scipad, using the information from the
 # VERSION file of the Scipad module
     global ScipadVersion
-    set ScipadVersion "" ; # for when launched outside of Scilab
-    set comm1 "ScipadVer=getversion(\"scipad\");"
-    set comm2 "if ScipadVer(3)==0 then"
-    set comm3   "TCL_EvalStr(\"set ScipadVersion \"\"\"+string(ScipadVer(1))+\".\"+string(ScipadVer(2))+\" - \"+getversion(\"scipad\",\"string_info\")+\"\"\"\",\"scipad\");"
-    set comm4 "else"
-    set comm5   "TCL_EvalStr(\"set ScipadVersion \"\"\"+string(ScipadVer(1))+\".\"+string(ScipadVer(2))+\".\"+string(ScipadVer(3))+\" - \"+getversion(\"scipad\",\"string_info\")+\"\"\"\",\"scipad\");"
-    set comm6 "end;"
+    # empty placeholder for when launched outside of Scilab,
+    # or for filling in manually when backporting Scipad from
+    # the trunk to the BUILD4 environment (BUILD4 does not
+    # understand instruction getversion)
+    set ScipadVersion ""
+    # try/end so that this code portion can be kept with no change
+    # even in a backported version
+    set comm1 "try;"
+    set comm2   "ScipadVer=getversion(\"scipad\");"
+    set comm3   "if ScipadVer(3)==0 then"
+    set comm4     "TCL_EvalStr(\"set ScipadVersion \"\"\"+string(ScipadVer(1))+\".\"+string(ScipadVer(2))+\" - \"+getversion(\"scipad\",\"string_info\")+\"\"\"\",\"scipad\");"
+    set comm5   "else"
+    set comm6     "TCL_EvalStr(\"set ScipadVersion \"\"\"+string(ScipadVer(1))+\".\"+string(ScipadVer(2))+\".\"+string(ScipadVer(3))+\" - \"+getversion(\"scipad\",\"string_info\")+\"\"\"\",\"scipad\");"
+    set comm7   "end;"
+    set comm8 "end;"
     # update title bar
-    set comm7 "TCL_EvalStr(\"modifiedtitle [gettextareacur]\",\"scipad\");"
+    set comm9 "TCL_EvalStr(\"modifiedtitle [gettextareacur]\",\"scipad\");"
     # <TODO> SCI_VERSION_REVISION is not used until some automatic way to
     #        fill in this field at commit exists
-    set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6 $comm7]
+    set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6 $comm7 $comm8 $comm9]
     # Warning: "sync" "seq" would have been the natural options to use,
     #          but see proc loadwords for some explanations about why
     #          the sole seq is mandatory

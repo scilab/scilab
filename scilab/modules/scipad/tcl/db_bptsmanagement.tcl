@@ -95,6 +95,9 @@ proc removeall_bp {} {
 proc removescilab_bp {outp} {
 # if $outp != "no_output", remove all the breakpoints set in Scilab
 # otherwise just return the command that would do that
+# <TODO>: couldn't this proc just output a single "delbpt"?
+#         in the past it was not possible to delet all breakpoints
+#         with this single command, but now it is!
     global funnames listoftextarea
     if {$outp != "no_output"} {
         if {[isscilabbusy 5]} {return}

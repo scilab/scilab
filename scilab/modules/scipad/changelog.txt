@@ -2937,8 +2937,18 @@ Francois VOGEL, 01/05/07
  * Removed the workaround in proc OKadda_bp since ScilabEval sync works as
    expected (bug 2384 fixed) - This depends on the flag bug2384_fixed
  * version --> 6.102
- 
+
 ES, 01/05/07
  * scipad(dirname) opens a file chooser, starting in directory dirname
  * version --> 6.103
- 
+
+Francois VOGEL, 01/05/07
+ * Fixed the non stopping of the debug on Break in some cases
+ * Reverted to not using getonefromshell with sync in proc OKadda_bp because
+   sync does sometimes not return the variable value (visibility issue in
+   a sync parser - not clear) - anyway, the previous (<= 6.101) scheme works:
+   use seq and force the update of the watch window
+ * Added a try/end structure in proc setScipadVersionString to ease future
+   backporting work
+ * De-tab-ified a bit
+ * version --> 6.104

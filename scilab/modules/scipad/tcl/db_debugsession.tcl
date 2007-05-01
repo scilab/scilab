@@ -823,6 +823,7 @@ proc goonwo_bp {} {
 
 proc break_bp {} {
     global funnameargs
+    global breakcommandtriggered
 
     if {[isscilabbusy]} {
         if {$funnameargs != ""} {
@@ -837,6 +838,7 @@ proc break_bp {} {
                 return
             } else {
                 # no limit exceeded - go on and set them 
+                set breakcommandtriggered true
                 regsub -all -- {\(} $cmd "setbpt(" cmdset
                 regsub -all -- {\(} $cmd "delbpt(" cmddel
                 # execute now in a dedicated parser the breakpoint setting,
@@ -860,6 +862,19 @@ proc break_bp {} {
     } else {
         showinfo [mc "No effect - The debugged file is not stuck"]
     }
+}
+
+proc isbreakhit_bp {} {
+# return true if the user has triggered the break debug command
+# return false otherwise
+    global breakcommandtriggered
+    return $breakcommandtriggered
+}
+
+proc resetbreakhit_bp {} {
+# reset the break command flag to false
+    global breakcommandtriggered
+    set breakcommandtriggered false
 }
 
 proc canceldebug_bp {} {

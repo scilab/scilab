@@ -38,7 +38,7 @@ proc update_bubble_watchvar {w type mousexy} {
 # the mouse is hovering over a new entry
     global pad watchvarstysi
     global go_on_update_bubble_watchvar hovereditem_update_bubble_watchvar
- 
+
     if {$type == "enter" && $go_on_update_bubble_watchvar} {
 
         # no bubble should show up if the mouse is below the last watched var
@@ -89,7 +89,7 @@ proc update_bubble_watchvar {w type mousexy} {
 
         # wait a bit and play the game again
         after 100 "update_bubble_watchvar $w $type \[winfo pointerxy $pad\]"
- 
+
     } else {
         # $type == "leave" or $go_on_update_bubble_watchvar is false,
         # then delete the bubble immediately

@@ -20,7 +20,7 @@ proc deletetext {} {
         set last $first
     } else {
         # text deletion must be done at once and not range by range!
-	    eval "$textareacur delete $selindices"
+        eval "$textareacur delete $selindices"
         set first [lindex $selindices 0  ]
         set last  [lindex $selindices end]
     }
@@ -64,7 +64,7 @@ proc backspacetext {} {
         set last $first
     } else {
         # text deletion must be done at once and not range by range!
-	    eval "$textareacur delete $selindices"
+        eval "$textareacur delete $selindices"
         set first [lindex $selindices 0  ]
         set last  [lindex $selindices end]
     }
@@ -144,7 +144,7 @@ proc cuttext {mode {tocutinblockmode ""}} {
     # text deletion must be done at once and not range by range!
     if {$mode == "normal"} {
         # normal cut
-	    eval "$textareacur delete $selindices"
+        eval "$textareacur delete $selindices"
     } else {
         # $mode == "block", this is block cut
         blockcuttext $textareacur $selindices
@@ -214,7 +214,7 @@ proc sendtoclipboard {ta indices} {
 # $indices is a list of $start $stop text widget indices
 # warning: this list is supposed to identify contiguous lines, i.e. a block
 #          selection
-	clipboard clear -displayof $ta
+    clipboard clear -displayof $ta
     clipboard append -displayof $ta [gettatextstring $ta $indices]
 }
 

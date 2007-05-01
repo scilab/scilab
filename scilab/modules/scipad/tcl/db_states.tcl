@@ -331,35 +331,42 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
     # command below is an if and not a while
     # same principle is used for skipping breakpoints when running to cursor
     # or running to return point of the current function
+    # warning: this skipping behavior must be switched off in case the user
+    # has hit the break command, otherwise there is a resume sent by the
+    # skipping (stepbystepover_bp) code, and the debug does finally not stop
+    # as expected - the consequence of switching the skipping off is that
+    # the debug, on a break command only, might stop for instance on a comment,
+    # but this is not meant to be a problem in this particular case
     # note also that in order to stack commands with the right order, this must
     # be a ScilabEval_lt(Tcl_EvalStr(ScilabEval_lt(TCL_EvalStr ...) seq) seq)
     switch -- $stepmode {
         "nostep"   {
             # no need to define code for skipping no code lines since
-            # stops always occur on existing breakpoints set by the user
+            # stops always occur on existing breakpoints set by the user,
+            # or on the current line when Break was hit
             set skipline "TCL_EvalStr(\\\"\"unsetdebuggerbusycursor\\\"\",\\\"\"scipad\\\"\");"
                    }
         "into"     {
-            set skipline "TCL_EvalStr(\\\"\"if {\\\[isnocodeline \\\[gettextareacur\\\] insert\\\]} {stepbystepover_bp 0 0} else {unsetdebuggerbusycursor}\\\"\",\\\"\"scipad\\\"\");"
+            set skipline "TCL_EvalStr(\\\"\"if {\\\[isnocodeline \\\[gettextareacur\\\] insert\\\] && !\\\[isbreakhit_bp\\\]} {stepbystepover_bp 0 0} else {unsetdebuggerbusycursor}\\\"\",\\\"\"scipad\\\"\");"
                    }
         "over"     {
             # stepbystepover_bp 0 1, i.e. with rescanbuffers set to true,
             # because Scipad must rescan the buffer when leaving it on
             # step over - this is required to prevent Scipad to skip
             # nested libfuns contructs
-            set skipline "TCL_EvalStr(\\\"\"if {\\\[isnocodeline \\\[gettextareacur\\\] insert\\\]} {stepbystepover_bp 0 1} else {unsetdebuggerbusycursor}\\\"\",\\\"\"scipad\\\"\");"
+            set skipline "TCL_EvalStr(\\\"\"if {\\\[isnocodeline \\\[gettextareacur\\\] insert\\\] && !\\\[isbreakhit_bp\\\]} {stepbystepover_bp 0 1} else {unsetdebuggerbusycursor}\\\"\",\\\"\"scipad\\\"\");"
                    }
         "out"      {
-            set skipline "TCL_EvalStr(\\\"\"if {\\\[isnocodeline \\\[gettextareacur\\\] insert\\\]} {stepbystepover_bp 0 0} else {unsetdebuggerbusycursor}\\\"\",\\\"\"scipad\\\"\");"
+            set skipline "TCL_EvalStr(\\\"\"if {\\\[isnocodeline \\\[gettextareacur\\\] insert\\\] && !\\\[isbreakhit_bp\\\]} {stepbystepover_bp 0 0} else {unsetdebuggerbusycursor}\\\"\",\\\"\"scipad\\\"\");"
                    }
         "runtocur" {
-            set skipline1 "TCL_EvalStr(\\\"\"if {!\\\[iscursorplace_bp\\\]} {runtocursor_bp 0 1}\\\"\",\\\"\"scipad\\\"\");"
-            set skipline2 "TCL_EvalStr(\\\"\"if {\\\[isnocodeline \\\[gettextareacur\\\] insert\\\]} {stepbystepover_bp 0 0} else {unsetdebuggerbusycursor}\\\"\",\\\"\"scipad\\\"\");"
+            set skipline1 "TCL_EvalStr(\\\"\"if {!\\\[iscursorplace_bp\\\] && !\\\[isbreakhit_bp\\\]} {runtocursor_bp 0 1}\\\"\",\\\"\"scipad\\\"\");"
+            set skipline2 "TCL_EvalStr(\\\"\"if {\\\[isnocodeline \\\[gettextareacur\\\] insert\\\] && !\\\[isbreakhit_bp\\\]} {stepbystepover_bp 0 0} else {unsetdebuggerbusycursor}\\\"\",\\\"\"scipad\\\"\");"
             set skipline [concat $skipline1 $skipline2]
                    }
         "runtoret" {
-            set skipline1 "TCL_EvalStr(\\\"\"if {!\\\[isreturnpoint_bp\\\]} {runtoreturnpoint_bp 0 1}\\\"\",\\\"\"scipad\\\"\");"
-            set skipline2 "TCL_EvalStr(\\\"\"if {\\\[isnocodeline \\\[gettextareacur\\\] insert\\\]} {stepbystepover_bp 0 0} else {unsetdebuggerbusycursor}\\\"\",\\\"\"scipad\\\"\");"
+            set skipline1 "TCL_EvalStr(\\\"\"if {!\\\[isreturnpoint_bp\\\] && !\\\[isbreakhit_bp\\\]} {runtoreturnpoint_bp 0 1}\\\"\",\\\"\"scipad\\\"\");"
+            set skipline2 "TCL_EvalStr(\\\"\"if {\\\[isnocodeline \\\[gettextareacur\\\] insert\\\] && !\\\[isbreakhit_bp\\\]} {stepbystepover_bp 0 0} else {unsetdebuggerbusycursor}\\\"\",\\\"\"scipad\\\"\");"
             set skipline [concat $skipline1 $skipline2]
                    }
     }
@@ -383,20 +390,22 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
     #    be breakpointed at this point of the debug
     #    --> The solution used is to check whether a deeper level has just
     #        been reached, and if the current stop is not due to a real
-    #        breakpoint set by the user, then perform a stepbystepout_bp and
-    #        close the ancillary file that was possibly opened by the
-    #        debugger, if that did happen (if not, then the ancillary was
-    #        already opened and it is not automatically closed by this proc)
+    #        breakpoint set by the user (nor by the user having hit Break),
+    #        then perform a stepbystepout_bp and close the ancillary
+    #        file that was possibly opened by the debugger, if that
+    #        did happen (if not, then the ancillary was already opened
+    #        and it is not automatically closed by this proc)
     #    Note: in the example above, going out of nestedfun with F8 on the
     #    endfunction still enters the evstr ancillary, but this is desirable:
     #    the debugger goes out of nestedfun and enters the libfun ancillary
     #    from the line that called nestedfun, i.e. the same depth level is
     #    kept, which is the exact purpose of step over
     set stoppedonarealbpt "TCL_EvalStr(\"lsearch \[getreallybptedlines \" + db_m(3) + \"\] \" + string(db_l(3)-1) + \"\",\"scipad\") <> string(-1)"
+    set breakwashit "TCL_EvalStr(\"isbreakhit_bp\",\"scipad\") == \"true\""
     switch -- $stepmode {
         "nostep"   { set steppedininsteadofover "%f" }
         "into"     { set steppedininsteadofover "%f" }
-        "over"     { set steppedininsteadofover "(size(db_l,1) > $prevdbpauselevel) & ~($stoppedonarealbpt)" }
+        "over"     { set steppedininsteadofover "(size(db_l,1) > $prevdbpauselevel) & ~($stoppedonarealbpt) & ~($breakwashit)" }
         "out"      { set steppedininsteadofover "%f" }
         "runtocur" { set steppedininsteadofover "%f" }
         "runtoret" { set steppedininsteadofover "%f" }
@@ -410,8 +419,8 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
     #    does not work: it steps into instead
     #    --> The solution used is to check whether the pause level has just
     #        decreased or not; if not, and if the current stop is not due to a
-    #        real breakpoint set by the user, then perform a stepbystepout_bp
-    #        again
+    #        real breakpoint set by the user (nor by the user having hit Break),
+    #        then perform a stepbystepout_bp again
     # Note: for case "out", the <= is required while just < would be more
     # obvious. This is to allow for nested libfun calls to work, e.g.:
     #   n=[1,2,10,15];m=[2,2,3,5];
@@ -420,7 +429,7 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
         "nostep"   { set didntwentout "%f" }
         "into"     { set didntwentout "%f" }
         "over"     { set didntwentout "%f" }
-        "out"      { set didntwentout "(~(size(db_l,1) <= $prevdbpauselevel)) & ~($stoppedonarealbpt)" }
+        "out"      { set didntwentout "(~(size(db_l,1) <= $prevdbpauselevel)) & ~($stoppedonarealbpt) & ~($breakwashit)" }
         "runtocur" { set didntwentout "%f" }
         "runtoret" { set didntwentout "%f" }
     }
@@ -455,14 +464,15 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
     set commc10        "TCL_EvalStr(\"ScilabEval_lt \"\"$skipline\"\"  \"\"seq\"\" \",\"scipad\");"
     set commc11        "TCL_SetVar(\"prevdbpauselevel\",size(db_l,1),\"scipad\");"
     set commc12    "end;"
-    set comm10     "TCL_EvalStr(\"ScilabEval_lt \"\"$cmd\"\"  \"\"seq\"\" \",\"scipad\");"
-    set comm11 "end;"
-#    set comm11 "end;TCL_EvalStr(\"hidewrappercode\",\"scipad\");"
+    set comm10     "TCL_EvalStr(\"ScilabEval_lt \"\"$cmd\"\" \"\"seq\"\" \",\"scipad\");"
+    set comm11     "TCL_EvalStr(\"ScilabEval_lt {TCL_EvalStr(\"\"resetbreakhit_bp\"\",\"\"scipad\"\")} seq\",\"scipad\");"
+    set comm12 "end;"
+#    set comm12 "end;TCL_EvalStr(\"hidewrappercode\",\"scipad\");"
 
     set commc [concat $commc1 $commc2 $commc3 $commc4 $commc5 $commc6 \
                       $commc7 $commc8 $commc9 $commc10 $commc11 $commc12]
     set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6 $comm7 \
-                         $comm8 $comm9 $commc $comm10 $comm11]
+                         $comm8 $comm9 $commc $comm10 $comm11 $comm12]
 
     # do it!
     ScilabEval_lt "$fullcomm" "seq"

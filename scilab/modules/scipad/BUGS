@@ -150,7 +150,10 @@ Old bugs/whishes which have been hacked but could have been done better:
  detect the wrong one and prevent correct configuration of the debugger
  Since duplicate function definitions are not supported by the debugger, a
  warning is issued to the user, and the debugger refuses to execute
- To let the debugger support this would perhaps be desirable
+ To let the debugger support this would perhaps be desirable, but very difficult
+ since the internals in Scilab store breakpoints linked to a function name:
+ setbpt("funname",bptline).
+ Two functions with the same name would therefore mix their breakpoints!
 
 
 Wishes:

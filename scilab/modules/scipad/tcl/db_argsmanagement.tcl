@@ -98,7 +98,6 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
     global spin funvars funvarsvals
     global watchvars watchvarsvals
     global getvaluefromscilab
-    global bug2384_fixed
 
     if {$argname != ""} {
 
@@ -165,18 +164,9 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
                 set watchvars [linsert $watchvars $pos $argname]
                 set watchvarsvals($argname) $argvalue
                 if {$argvalue == $unklabel} {
-                    # BUG! "sync" option did not work correctly  (Bug 2384)
-                    # getonefromshell performed right but asynchronously: it
-                    # returned before completion
-                    # WORKAROUND: use getfromshell seq and force update of
-                    # the watch window
-                    if {$bug2384_fixed} {
-                        getonefromshell $argname "sync"
-                    } else {
-                        getonefromshell $argname
-                        set fullcomm "TCL_EvalStr(\"updatewatch_bp\",\"scipad\");"
-                        ScilabEval_lt $fullcomm "seq"
-                    }
+                    getonefromshell $argname
+                    set fullcomm "TCL_EvalStr(\"updatewatch_bp\",\"scipad\");"
+                    ScilabEval_lt $fullcomm "seq"
                     set argvalue $watchvarsvals($argname)
                 }
             }
@@ -199,18 +189,9 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
                 if {$getvaluefromscilab == 1} {set forceget "true"}
                 set watchvarsvals($argname) $argvalue
                 if {$forceget == "true"} {
-                    # BUG! "sync" option did not work correctly  (Bug 2384)
-                    # getonefromshell performed right but asynchronously: it
-                    # returned before completion
-                    # WORKAROUND: use getfromshell seq and force update of
-                    # the watch window
-                    if {$bug2384_fixed} {
-                        getonefromshell $argname "sync"
-                    } else {
-                        getonefromshell $argname
-                        set fullcomm "TCL_EvalStr(\"updatewatch_bp\",\"scipad\");"
-                        ScilabEval_lt $fullcomm "seq"
-                    }
+                    getonefromshell $argname
+                    set fullcomm "TCL_EvalStr(\"updatewatch_bp\",\"scipad\");"
+                    ScilabEval_lt $fullcomm "seq"
                     set argvalue $watchvarsvals($argname)
                 }
             }
