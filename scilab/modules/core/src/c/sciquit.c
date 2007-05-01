@@ -16,10 +16,10 @@
 #endif
 #include "../../../gui/includes/TerminateGui.h"
 #include "../../../localization/includes/TerminateLocalization.h"
+#include "../../../jvm/includes/TerminateJVM.h"
+#include "scilabmode.h"
 /*-----------------------------------------------------------------------------------*/ 
-#ifdef _MSC_VER
-extern int TerminateJVMs(void);
-#endif
+
 /*-----------------------------------------------------------------------------------*/ 
 int ExitScilab(void)
 {
@@ -33,11 +33,11 @@ int ExitScilab(void)
 	TerminateTclTk();
 	#endif
 
-	#ifdef _MSC_VER
-	TerminateJVMs();
-	#endif
-
 	TerminateLocalization();
+
+#ifdef _MSC_VER 
+	if ( getScilabMode() != SCILAB_NWNI ) TerminateJVM();
+#endif
 
 	TerminateCorePart2();
 

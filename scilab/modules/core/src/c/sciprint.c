@@ -22,9 +22,7 @@
   TW textwin;
 #endif
 /*-----------------------------------------------------------------------------------*/ 
-#ifdef _MSC_VER
-  extern int PutString(char *Str);
-#else
+#ifndef _MSC_VER
 #include "../../gui/src/c/xsci/x_charproc.h"
 #endif
 extern int getdiary __PARAMS(());
@@ -63,7 +61,6 @@ void  sciprint(char *fmt,...)
 	{
 		#ifdef _MSC_VER
 		 TextPutS (&textwin,s_buf);
-		 PutString(s_buf);
 		#else
 		 C2F(xscisrn)(s_buf,&lstr,0L);
 		#endif
@@ -98,7 +95,6 @@ void  sciprint(char *fmt,...)
 	  else
 	  {
 		  TextPutS (&textwin, s_buf);
-		  PutString(s_buf);
 	  }
 	  if (getdiary()) diary_nnl(s_buf,&lstr);
 

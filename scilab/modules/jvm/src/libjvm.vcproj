@@ -214,7 +214,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\c\JVM_CONSOLE.c"
+				RelativePath=".\c\JVM.c"
 				>
 			</File>
 			<File
@@ -222,7 +222,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\c\jvms.c"
+				RelativePath=".\c\TerminateJVM.c"
 				>
 			</File>
 		</Filter>
@@ -230,17 +230,24 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
-
+			<File
+				RelativePath="..\includes\export_import_library_JVM.h"
+				>
+			</File>
+			<File
+				RelativePath="..\includes\getScilabJVM.h"
+				>
+			</File>
 			<File
 				RelativePath="..\includes\InitializeJVM.h"
 				>
 			</File>
 			<File
-				RelativePath="..\includes\JVM_CONSOLE.h"
+				RelativePath=".\c\JVM.h"
 				>
 			</File>
 			<File
-				RelativePath=".\c\jvm_common.h"
+				RelativePath=".\c\JVM_commons.h"
 				>
 			</File>
 			<File
@@ -248,21 +255,13 @@
 				>
 			</File>
 			<File
-				RelativePath=".\c\jvms.h"
+				RelativePath="..\includes\TerminateJVM.h"
 				>
 			</File>
 		</Filter>
 		<Filter
 			Name="Import .Lib"
 			>
-			<File
-				RelativePath=".\LibScilab_Import.def"
-				>
-			</File>
-			<File
-				RelativePath=".\SciGUIConsole_Import.def"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="localization"

@@ -15,10 +15,7 @@
 #include "Messages.h"
 #include "Warnings.h"
 #include "Errors.h"
-
-
 /*-----------------------------------------------------------------------------------*/
-extern int PutString(char *Str);
 extern void Xputchar ();
 extern BOOL IsWindowInterface(void);
 extern LPTW GetTextWinScilab(void);
@@ -27,7 +24,6 @@ int MyPutCh (int ch)
 {
 	char Str[1];
 	Str[0]=ch;
-	//PutString(Str);
 	return TextPutCh (&textwin, (BYTE) ch);
 }
 /*-----------------------------------------------------------------------------------*/
@@ -65,8 +61,6 @@ int MyFPutS (char *str, FILE * file)
 	if (isterm (file))
 	{
 		TextPutS (&textwin, str);
-		PutString(str);
-		
 		TextMessage ();
 		return (*str);		/* different from Borland library */
 	}
@@ -83,8 +77,6 @@ void Scistring (char *str)
 	else
 	{
 		TextPutS (&textwin, str);
-		PutString(str);
-		PutString("\n");
 		MyPutCh ('\n');
 	}
 }
@@ -117,7 +109,6 @@ void sciprint_nd (char *fmt,...)
 	{
 		/*count = vsprintf(buf,fmt,args); SS */
 		TextPutS (&textwin, buf);
-		PutString(buf);
 	}
 	va_end (args);
 	/** return count; **/
@@ -161,7 +152,6 @@ void Xputstring (char *str,int n)
 {
 	int i;
 	
-	PutString(str);
 	for (i = 0; i < n; i++)	Xputchar (str[i]);
 }
 /*-----------------------------------------------------------------------------------*/

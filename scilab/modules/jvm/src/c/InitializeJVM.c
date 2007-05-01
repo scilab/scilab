@@ -4,9 +4,9 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include <stdlib.h>
 #include "InitializeJVM.h"
-#include "jvms.h"
 #include "setgetSCIpath.h"
 #include "MALLOC.h"
+#include "JVM.h"
 /*-----------------------------------------------------------------------------------*/ 
 IMPORT_EXPORT_LIBJVM_DLL BOOL InitializeJVM(void)
 {
@@ -14,8 +14,21 @@ IMPORT_EXPORT_LIBJVM_DLL BOOL InitializeJVM(void)
 	char *SCIPATH=NULL;
 
 	SCIPATH=getSCIpath();
-	StartJVMs(SCIPATH);
+
+	bOK=startJVM(SCIPATH);
+
+	if (!bOK)
+	{
+#ifdef _MSC_VER
+		MessageBox(NULL,"Scilab can't open jvm library.","Error",MB_ICONEXCLAMATION|MB_OK);
+#else
+		printf("\n Error : Scilab can't open jvm library.\n");
+#endif
+	}
+
 	if (SCIPATH) {FREE(SCIPATH);SCIPATH=NULL;}
+
+	if (!bOK) exit(1);
 
 	return bOK;
 }

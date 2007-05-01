@@ -18,7 +18,6 @@ Source: modules\{#JVM}\VERSION.xml; DestDir: {app}\modules\{#JVM}; Components: {
 Source: modules\{#JVM}\changelog.txt; DestDir: {app}\modules\{#JVM}; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#JVM}\bin\jre\*.*; DestDir: {app}\modules\{#JVM}\bin\jre; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
-Source: modules\{#JVM}\bin\SWT\*.*; DestDir: {app}\modules\{#JVM}\bin\SWT; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#JVM}\classes\*.class; DestDir: {app}\modules\{#JVM}\classes; Components: {#COMPN_SCILAB}
 ;

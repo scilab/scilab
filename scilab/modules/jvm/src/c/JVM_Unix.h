@@ -4,13 +4,36 @@
 /*-----------------------------------------------------------------------------------*/ 
 #ifndef __JVM_UNIX__
 #define __JVM_UNIX__
-#include <dlfcn.h> 
 #include "jni.h"
+#include "machine.h"
 #include "jvm_common.h"
 /*-----------------------------------------------------------------------------------*/ 
-int GetJVMDll(char *SCILAB_PATH);
-int FreeJVMDll(void);
-jint MyJNI_CreateJavaVM(JavaVM **pvm, void **penv, void *args);
-jint MyJNI_GetCreatedJavaVMs(JavaVM **vmBuf, jsize BufLen, jsize *nVMs);
+
+/**
+* Load JVM dynamic library
+* @return TRUE or FALSE
+*/
+BOOL LoadDynLibJVM(char *SCILAB_PATH);
+
+/**
+* Free JVM dynamic library
+* @return TRUE or FALSE
+*/
+BOOL FreeDynLibJVM(void);
+
+/**
+* wrapping JNI_CreateJavaVM
+*/
+jint SciJNI_CreateJavaVM(JavaVM **pvm, void **penv, void *args);
+
+/**
+* wrapping JNI_GetCreatedJavaVMs
+*/
+jint SciJNI_GetCreatedJavaVMs(JavaVM **vmBuf, jsize BufLen, jsize *nVMs);
+
+/**
+* wrapping JNI_GetDefaultJavaVMInitArgs
+*/
+jint SciJNI_GetDefaultJavaVMInitArgs(void *args);
 /*-----------------------------------------------------------------------------------*/ 
 #endif /* __JVM_UNIX__ */
