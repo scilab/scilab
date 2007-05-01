@@ -15,7 +15,8 @@ src/c/TclEvents.c \
 src/c/setenvtcl.c \
 src/c/TclUiSet.c \
 src/c/InitializeTclTk.c \
-src/c/TerminateTclTk.c
+src/c/TerminateTclTk.c \
+src/c/withtk.c
 
 GATEWAY_C_SOURCES =  sci_gateway/c/sci_TCL_CreateSlave.c \
 sci_gateway/c/sci_opentk.c \

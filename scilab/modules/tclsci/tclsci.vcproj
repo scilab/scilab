@@ -326,6 +326,10 @@
 				RelativePath=".\src\c\tksynchro.c"
 				>
 			</File>
+			<File
+				RelativePath=".\src\c\withtk.c"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -454,6 +458,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\TerminateTclTk.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\withtk.h"
 				>
 			</File>
 		</Filter>
