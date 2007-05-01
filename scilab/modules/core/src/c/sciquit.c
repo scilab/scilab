@@ -35,9 +35,7 @@ int ExitScilab(void)
 
 	TerminateLocalization();
 
-#ifdef _MSC_VER 
 	if ( getScilabMode() != SCILAB_NWNI ) TerminateJVM();
-#endif
 
 	TerminateCorePart2();
 

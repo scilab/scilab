@@ -15,9 +15,7 @@ int C2F(initscilab)(void)
 {
 	InitializeCore();
 
-#ifdef _MSC_VER 
 	if ( getScilabMode() != SCILAB_NWNI ) InitializeJVM();
-#endif
 
 	InitializeTclTk();
 
