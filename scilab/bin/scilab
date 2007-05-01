@@ -409,12 +409,12 @@ if test "$rest" = "yes"; then
 	  sci_args="$sci_args -nw"
           ;;
       --texmacs)
-          now="-nw"
-          sci_args="$sci_args -nw --texmacs"
+          now="-nwni"
+          sci_args="$sci_args -nwni --texmacs"
           ;;
       -nwni)
-          now="-nw"
-	  sci_args="$sci_args -nw"
+          now="-nwni"
+	  sci_args="$sci_args -nwni"
           ;;
       -display|-d)
           prevarg="display"
