@@ -2937,3 +2937,8 @@ Francois VOGEL, 01/05/07
  * Removed the workaround in proc OKadda_bp since ScilabEval sync works as
    expected (bug 2384 fixed) - This depends on the flag bug2384_fixed
  * version --> 6.102
+ 
+ES, 01/05/07
+ * scipad(dirname) opens a file chooser, starting in directory dirname
+ * version --> 6.103
+ 

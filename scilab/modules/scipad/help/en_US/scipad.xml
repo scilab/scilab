@@ -17,6 +17,8 @@
 
     <CALLING_SEQUENCE_ITEM>scipad(f)</CALLING_SEQUENCE_ITEM>
 
+    <CALLING_SEQUENCE_ITEM>scipad(f1,f2,...)</CALLING_SEQUENCE_ITEM>
+
     <CALLING_SEQUENCE_ITEM>scipad([f1,f2,...])</CALLING_SEQUENCE_ITEM>
 
     <CALLING_SEQUENCE_ITEM>scipad f1 f2 ...</CALLING_SEQUENCE_ITEM>
@@ -28,7 +30,7 @@
         <PARAM_NAME>f, f1, f2...</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: file pathnames</SP>
+          <SP>: file or directory pathnames (strings)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
@@ -36,12 +38,15 @@
 
   <DESCRIPTION>
     <P>Scipad is an embedded Scilab text editor written in Tcl/Tk. It can be
-    started with the "Editor" button on top of the main Scilab window, or from
-    Scilab command line with the instruction <VERB>scipad()</VERB> or
-    <VERB>scipad f</VERB>.</P>
+    started with a fresh text buffer pressing the "Editor" button on top of 
+    the main Scilab window, or from Scilab command line with the instruction 
+    <VERB>scipad()</VERB>, or it can open specific files if invoked
+    with any of the calling sequences above.</P>
 
-    <P>The same invocation adds further files to an already opened scipad
-    session. Scipad allows Windows like edition modes. Keyboard shortcuts are
+    <P>The same invocation adds further files to an already opened Scipad.
+    If any of the arguments is a directory pathname, a file chooser
+    starting in that directory pops up, allowing (multiple) selection of files.</P>
+    <P>Scipad allows Windows like edition modes. Keyboard shortcuts are
     defined for most possible editing actions and reported by the menu
     entries.</P>
 

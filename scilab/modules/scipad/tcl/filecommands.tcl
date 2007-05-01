@@ -682,7 +682,16 @@ proc openfile {file {tiledisplay "currenttile"}} {
 #    0 if file could not be open
 #    1 if file could be open or displayed (switched buffers)
     global pad winopened listoftextarea listoffile
-    global closeinitialbufferallowed
+    global closeinitialbufferallowed startdir
+
+#hack for bringing up the chooser, if $file is a directory
+# on windows this has to precede the check fro readable,
+#  because a directory is "unreadable"
+    if {[file isdirectory $file]} {
+	set startdir $file
+        showopenwin currenttile; 
+        return
+    }
 
     if {[fileunreadable $file]} {return 0}
 
