@@ -34,27 +34,34 @@ BOOL startJVM(char *SCI_PATH)
 	JavaVMInitArgs vm_args;
 	JavaVMOption jvm_options[3];
 	jint res=0;
+	int length_JAVACLASSPATH=0;
+	int length_JAVALIBRARYPATH=0;
+	int itmp=0;
 
 	if (! LoadDynLibJVM(SCI_PATH) ) return FALSE;
 	
 	memset(&vm_args, 0, sizeof(vm_args));
 	SciJNI_GetDefaultJavaVMInitArgs(&vm_args);
 
-	JAVACLASSPATH=(char*) MALLOC( sizeof(char)*	( strlen("-Djava.class.path=%s%s%s%s")+
+	length_JAVACLASSPATH = strlen("-Djava.class.path=%s%s%s%s")+
 		strlen(SCI_PATH)+
 		strlen(DEFAULT_SCILAB_CLASSPATH)+
 		strlen(PATH_SEPARATOR)+
-		strlen(USER_CLASSPATH)+1) );
+		strlen(USER_CLASSPATH);
+
+	JAVACLASSPATH=(char*) MALLOC( sizeof(char)*	( length_JAVACLASSPATH +1) );
 	sprintf(JAVACLASSPATH,"-Djava.class.path=%s%s%s%s",SCI_PATH,DEFAULT_SCILAB_CLASSPATH,PATH_SEPARATOR,USER_CLASSPATH);
 
-	JAVALIBRARYPATH=(char*)MALLOC(sizeof(char)* ( strlen("-Djava.library.path=%s%s/lib%s%s%s")+
+	length_JAVALIBRARYPATH = strlen("-Djava.library.path=%s%s/lib%s%s%s")+
+		strlen(SCI_PATH)+
 		strlen(JRE_PATH)+
 		strlen(PATH_SEPARATOR)+
 		strlen(SCI_PATH)+
-		strlen(DEFAULT_SCILAB_LIBRARYPATH)+1) );
+		strlen(DEFAULT_SCILAB_LIBRARYPATH);
+
+	JAVALIBRARYPATH=(char*)MALLOC(sizeof(char)* ( length_JAVALIBRARYPATH +1) );
 
 	sprintf(JAVALIBRARYPATH,"-Djava.library.path=%s%s/lib%s%s%s",SCI_PATH,JRE_PATH,PATH_SEPARATOR,SCI_PATH,DEFAULT_SCILAB_LIBRARYPATH);
-
 	/* JAVACLASSPATH & JAVALIBRARYPATH sont liberes à la fin de l'execution de la JVM */
 
 #ifdef JNI_VERSION_1_6
