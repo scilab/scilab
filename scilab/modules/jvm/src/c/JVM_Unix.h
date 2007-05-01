@@ -6,7 +6,7 @@
 #define __JVM_UNIX__
 #include "jni.h"
 #include "machine.h"
-#include "jvm_common.h"
+#include "JVM_commons.h"
 /*-----------------------------------------------------------------------------------*/ 
 
 /**

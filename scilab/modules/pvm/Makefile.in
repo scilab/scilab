@@ -383,9 +383,6 @@ top_srcdir = @top_srcdir@
 @PVM_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la
 
 @PVM_TRUE@libscipvm_la_LDFLAGS = $(PVM_LIB)
-
-#
-#### Target ######
 @PVM_TRUE@modulename = pvm
 
 #### pvm : Conf files ####

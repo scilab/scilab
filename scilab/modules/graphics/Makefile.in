@@ -47,6 +47,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+@TCLTK_TRUE@am__append_1 = $(top_builddir)/modules/tclsci/libscitclsci.la
 DIST_COMMON = $(libscigraphics_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
@@ -83,8 +84,7 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscigraphics_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/intersci/libsciintersci.la \
 	$(top_builddir)/modules/data_structures/libscidata_structures.la \
-	$(top_builddir)/modules/tclsci/libscitclsci.la \
-	$(top_builddir)/modules/string/libscistring.la
+	$(top_builddir)/modules/string/libscistring.la $(am__append_1)
 am__objects_1 = libscigraphics_la-GetCommandArg.lo \
 	libscigraphics_la-w_rottext.lo libscigraphics_la-gifimg.lo \
 	libscigraphics_la-WindowList.lo libscigraphics_la-Events.lo \
@@ -1162,13 +1162,10 @@ libscigraphics_la_CXXFLAGS = -Iincludes/ -Isrc/c/
 libscigraphics_la_LDFLAGS = $(TCLTK_LIBS) $(X_LIBS)
 pkglib_LTLIBRARIES = libscigraphics.la
 libscigraphics_la_SOURCES = $(GRAPHICS_C_SOURCES) $(GATEWAY_C_SOURCES) $(GRAPHICS_CPP_SOURCES)
-libscigraphics_la_LIBADD = \
+libscigraphics_la_LIBADD =  \
 	$(top_builddir)/modules/intersci/libsciintersci.la \
 	$(top_builddir)/modules/data_structures/libscidata_structures.la \
-	$(top_builddir)/modules/tclsci/libscitclsci.la \
-	$(top_builddir)/modules/string/libscistring.la
-
-
+	$(top_builddir)/modules/string/libscistring.la $(am__append_1)
 #	$(top_builddir)/modules/gui/libscigui.la
 
 #### Target ######

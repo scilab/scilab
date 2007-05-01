@@ -35,9 +35,8 @@ libscijvm_la_etc_DATA = etc/jvm.quit etc/jvm.start
 
 #### gui : include files ####
 libscijvm_la_includedir=$(pkgincludedir)/jvm
-libscijvm_la_include_HEADERS = includes/exportimport.h \
-includes/InitializeJVM.h \
-includes/JVM_CONSOLE.h
+libscijvm_la_include_HEADERS = includes/InitializeJVM.h 
+
 
 
 include $(top_srcdir)/Makefile.incl.am

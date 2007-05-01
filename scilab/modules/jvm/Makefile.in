@@ -28,6 +28,7 @@
 ##########
 
 
+
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkglibdir = $(libdir)/@PACKAGE@
@@ -46,7 +47,8 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+DIST_COMMON = $(am__libscijvm_la_include_HEADERS_DIST) \
+	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 subdir = modules/jvm
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -72,16 +74,17 @@ am__vpath_adj = case $$p in \
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscijvm_la_etcdir)" \
-	"$(DESTDIR)$(libscijvm_la_rootdir)"
+	"$(DESTDIR)$(libscijvm_la_rootdir)" \
+	"$(DESTDIR)$(libscijvm_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 @JAVA_TRUE@libscijvm_la_DEPENDENCIES =  \
 @JAVA_TRUE@	$(top_builddir)/modules/gui/libscigui.la
-am__libscijvm_la_SOURCES_DIST = src/c/JVM_CONSOLE.c src/c/JVM_Unix.c \
-	src/c/jvms.c src/c/InitializeJVM.c
-@JAVA_TRUE@am__objects_1 = libscijvm_la-JVM_CONSOLE.lo \
-@JAVA_TRUE@	libscijvm_la-JVM_Unix.lo libscijvm_la-jvms.lo \
-@JAVA_TRUE@	libscijvm_la-InitializeJVM.lo
+am__libscijvm_la_SOURCES_DIST = src/c/InitializeJVM.c \
+	src/c/TerminateJVM.c src/c/JVM_Unix.c src/c/JVM.c
+@JAVA_TRUE@am__objects_1 = libscijvm_la-InitializeJVM.lo \
+@JAVA_TRUE@	libscijvm_la-TerminateJVM.lo \
+@JAVA_TRUE@	libscijvm_la-JVM_Unix.lo libscijvm_la-JVM.lo
 @JAVA_TRUE@am_libscijvm_la_OBJECTS = $(am__objects_1)
 libscijvm_la_OBJECTS = $(am_libscijvm_la_OBJECTS)
 libscijvm_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
@@ -105,6 +108,9 @@ DIST_SOURCES = $(am__libscijvm_la_SOURCES_DIST)
 libscijvm_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscijvm_la_rootDATA_INSTALL = $(INSTALL_DATA)
 DATA = $(libscijvm_la_etc_DATA) $(libscijvm_la_root_DATA)
+am__libscijvm_la_include_HEADERS_DIST = includes/InitializeJVM.h
+libscijvm_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
+HEADERS = $(libscijvm_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -259,10 +265,10 @@ target_alias = @target_alias@
 tcldir = @tcldir@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-@JAVA_TRUE@JVM_C_SOURCES = src/c/JVM_CONSOLE.c \
+@JAVA_TRUE@JVM_C_SOURCES = src/c/InitializeJVM.c \
+@JAVA_TRUE@src/c/TerminateJVM.c \
 @JAVA_TRUE@src/c/JVM_Unix.c \
-@JAVA_TRUE@src/c/jvms.c\
-@JAVA_TRUE@src/c/InitializeJVM.c
+@JAVA_TRUE@src/c/JVM.c
 
 @JAVA_TRUE@libscijvm_la_CFLAGS = $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/libs/MALLOC/includes/ -Iincludes/
 @JAVA_TRUE@libscijvm_la_LDFLAGS = $(JAVA_JNI_LIBS) -lpthread -ldl
@@ -271,8 +277,6 @@ top_srcdir = @top_srcdir@
 @JAVA_TRUE@libscijvm_la_LIBADD = \
 @JAVA_TRUE@$(top_builddir)/modules/gui/libscigui.la
 
-
-#### Target ######
 @JAVA_TRUE@modulename = jvm
 
 #### jvm : Conf files ####
@@ -282,6 +286,10 @@ top_srcdir = @top_srcdir@
 #### jvm : init scripts #### 
 @JAVA_TRUE@libscijvm_la_etcdir = $(mydatadir)/etc
 @JAVA_TRUE@libscijvm_la_etc_DATA = etc/jvm.quit etc/jvm.start
+
+#### gui : include files ####
+@JAVA_TRUE@libscijvm_la_includedir = $(pkgincludedir)/jvm
+@JAVA_TRUE@libscijvm_la_include_HEADERS = includes/InitializeJVM.h 
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 @JAVA_TRUE@mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -409,9 +417,9 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_la-InitializeJVM.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_la-JVM_CONSOLE.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_la-JVM.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_la-JVM_Unix.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_la-jvms.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_la-TerminateJVM.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -434,12 +442,19 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
-libscijvm_la-JVM_CONSOLE.lo: src/c/JVM_CONSOLE.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscijvm_la_CFLAGS) $(CFLAGS) -MT libscijvm_la-JVM_CONSOLE.lo -MD -MP -MF $(DEPDIR)/libscijvm_la-JVM_CONSOLE.Tpo -c -o libscijvm_la-JVM_CONSOLE.lo `test -f 'src/c/JVM_CONSOLE.c' || echo '$(srcdir)/'`src/c/JVM_CONSOLE.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscijvm_la-JVM_CONSOLE.Tpo $(DEPDIR)/libscijvm_la-JVM_CONSOLE.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/JVM_CONSOLE.c' object='libscijvm_la-JVM_CONSOLE.lo' libtool=yes @AMDEPBACKSLASH@
+libscijvm_la-InitializeJVM.lo: src/c/InitializeJVM.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscijvm_la_CFLAGS) $(CFLAGS) -MT libscijvm_la-InitializeJVM.lo -MD -MP -MF $(DEPDIR)/libscijvm_la-InitializeJVM.Tpo -c -o libscijvm_la-InitializeJVM.lo `test -f 'src/c/InitializeJVM.c' || echo '$(srcdir)/'`src/c/InitializeJVM.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscijvm_la-InitializeJVM.Tpo $(DEPDIR)/libscijvm_la-InitializeJVM.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/InitializeJVM.c' object='libscijvm_la-InitializeJVM.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscijvm_la_CFLAGS) $(CFLAGS) -c -o libscijvm_la-JVM_CONSOLE.lo `test -f 'src/c/JVM_CONSOLE.c' || echo '$(srcdir)/'`src/c/JVM_CONSOLE.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscijvm_la_CFLAGS) $(CFLAGS) -c -o libscijvm_la-InitializeJVM.lo `test -f 'src/c/InitializeJVM.c' || echo '$(srcdir)/'`src/c/InitializeJVM.c
+
+libscijvm_la-TerminateJVM.lo: src/c/TerminateJVM.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscijvm_la_CFLAGS) $(CFLAGS) -MT libscijvm_la-TerminateJVM.lo -MD -MP -MF $(DEPDIR)/libscijvm_la-TerminateJVM.Tpo -c -o libscijvm_la-TerminateJVM.lo `test -f 'src/c/TerminateJVM.c' || echo '$(srcdir)/'`src/c/TerminateJVM.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscijvm_la-TerminateJVM.Tpo $(DEPDIR)/libscijvm_la-TerminateJVM.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/TerminateJVM.c' object='libscijvm_la-TerminateJVM.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscijvm_la_CFLAGS) $(CFLAGS) -c -o libscijvm_la-TerminateJVM.lo `test -f 'src/c/TerminateJVM.c' || echo '$(srcdir)/'`src/c/TerminateJVM.c
 
 libscijvm_la-JVM_Unix.lo: src/c/JVM_Unix.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscijvm_la_CFLAGS) $(CFLAGS) -MT libscijvm_la-JVM_Unix.lo -MD -MP -MF $(DEPDIR)/libscijvm_la-JVM_Unix.Tpo -c -o libscijvm_la-JVM_Unix.lo `test -f 'src/c/JVM_Unix.c' || echo '$(srcdir)/'`src/c/JVM_Unix.c
@@ -448,19 +463,12 @@ libscijvm_la-JVM_Unix.lo: src/c/JVM_Unix.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscijvm_la_CFLAGS) $(CFLAGS) -c -o libscijvm_la-JVM_Unix.lo `test -f 'src/c/JVM_Unix.c' || echo '$(srcdir)/'`src/c/JVM_Unix.c
 
-libscijvm_la-jvms.lo: src/c/jvms.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscijvm_la_CFLAGS) $(CFLAGS) -MT libscijvm_la-jvms.lo -MD -MP -MF $(DEPDIR)/libscijvm_la-jvms.Tpo -c -o libscijvm_la-jvms.lo `test -f 'src/c/jvms.c' || echo '$(srcdir)/'`src/c/jvms.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscijvm_la-jvms.Tpo $(DEPDIR)/libscijvm_la-jvms.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/jvms.c' object='libscijvm_la-jvms.lo' libtool=yes @AMDEPBACKSLASH@
+libscijvm_la-JVM.lo: src/c/JVM.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscijvm_la_CFLAGS) $(CFLAGS) -MT libscijvm_la-JVM.lo -MD -MP -MF $(DEPDIR)/libscijvm_la-JVM.Tpo -c -o libscijvm_la-JVM.lo `test -f 'src/c/JVM.c' || echo '$(srcdir)/'`src/c/JVM.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscijvm_la-JVM.Tpo $(DEPDIR)/libscijvm_la-JVM.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/JVM.c' object='libscijvm_la-JVM.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscijvm_la_CFLAGS) $(CFLAGS) -c -o libscijvm_la-jvms.lo `test -f 'src/c/jvms.c' || echo '$(srcdir)/'`src/c/jvms.c
-
-libscijvm_la-InitializeJVM.lo: src/c/InitializeJVM.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscijvm_la_CFLAGS) $(CFLAGS) -MT libscijvm_la-InitializeJVM.lo -MD -MP -MF $(DEPDIR)/libscijvm_la-InitializeJVM.Tpo -c -o libscijvm_la-InitializeJVM.lo `test -f 'src/c/InitializeJVM.c' || echo '$(srcdir)/'`src/c/InitializeJVM.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscijvm_la-InitializeJVM.Tpo $(DEPDIR)/libscijvm_la-InitializeJVM.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/InitializeJVM.c' object='libscijvm_la-InitializeJVM.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscijvm_la_CFLAGS) $(CFLAGS) -c -o libscijvm_la-InitializeJVM.lo `test -f 'src/c/InitializeJVM.c' || echo '$(srcdir)/'`src/c/InitializeJVM.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscijvm_la_CFLAGS) $(CFLAGS) -c -o libscijvm_la-JVM.lo `test -f 'src/c/JVM.c' || echo '$(srcdir)/'`src/c/JVM.c
 
 mostlyclean-libtool:
 	-rm -f *.lo
@@ -500,6 +508,23 @@ uninstall-libscijvm_la_rootDATA:
 	  f=$(am__strip_dir) \
 	  echo " rm -f '$(DESTDIR)$(libscijvm_la_rootdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libscijvm_la_rootdir)/$$f"; \
+	done
+install-libscijvm_la_includeHEADERS: $(libscijvm_la_include_HEADERS)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscijvm_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscijvm_la_includedir)"
+	@list='$(libscijvm_la_include_HEADERS)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libscijvm_la_includeHEADERS_INSTALL) '$$d$$p' '$(DESTDIR)$(libscijvm_la_includedir)/$$f'"; \
+	  $(libscijvm_la_includeHEADERS_INSTALL) "$$d$$p" "$(DESTDIR)$(libscijvm_la_includedir)/$$f"; \
+	done
+
+uninstall-libscijvm_la_includeHEADERS:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscijvm_la_include_HEADERS)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libscijvm_la_includedir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscijvm_la_includedir)/$$f"; \
 	done
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
@@ -579,9 +604,9 @@ distdir: $(DISTFILES)
 check-am: all-am
 check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
-all-am: Makefile $(LTLIBRARIES) $(DATA)
+all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscijvm_la_etcdir)" "$(DESTDIR)$(libscijvm_la_rootdir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscijvm_la_etcdir)" "$(DESTDIR)$(libscijvm_la_rootdir)" "$(DESTDIR)$(libscijvm_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -636,6 +661,7 @@ info: info-am
 info-am:
 
 install-data-am: install-data-local install-libscijvm_la_etcDATA \
+	install-libscijvm_la_includeHEADERS \
 	install-libscijvm_la_rootDATA
 
 install-dvi: install-dvi-am
@@ -675,6 +701,7 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libscijvm_la_etcDATA \
+	uninstall-libscijvm_la_includeHEADERS \
 	uninstall-libscijvm_la_rootDATA uninstall-pkglibLTLIBRARIES
 
 .MAKE: install-am install-strip
@@ -687,15 +714,17 @@ uninstall-am: uninstall-libscijvm_la_etcDATA \
 	install-data-am install-data-local install-dvi install-dvi-am \
 	install-exec install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
-	install-libscijvm_la_etcDATA install-libscijvm_la_rootDATA \
-	install-man install-pdf install-pdf-am \
-	install-pkglibLTLIBRARIES install-ps install-ps-am \
-	install-strip installcheck installcheck-am installdirs \
-	maintainer-clean maintainer-clean-generic mostlyclean \
-	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
-	pdf pdf-am ps ps-am tags uninstall uninstall-am \
-	uninstall-libscijvm_la_etcDATA uninstall-libscijvm_la_rootDATA \
-	uninstall-pkglibLTLIBRARIES
+	install-libscijvm_la_etcDATA \
+	install-libscijvm_la_includeHEADERS \
+	install-libscijvm_la_rootDATA install-man install-pdf \
+	install-pdf-am install-pkglibLTLIBRARIES install-ps \
+	install-ps-am install-strip installcheck installcheck-am \
+	installdirs maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-compile mostlyclean-generic \
+	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
+	uninstall-am uninstall-libscijvm_la_etcDATA \
+	uninstall-libscijvm_la_includeHEADERS \
+	uninstall-libscijvm_la_rootDATA uninstall-pkglibLTLIBRARIES
 
 
 # Compilation of Java

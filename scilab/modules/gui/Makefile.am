@@ -85,8 +85,6 @@ sci_gateway/fortran/sci_setmenu_old.f \
 sci_gateway/fortran/sci_addmenu_old.f \
 sci_gateway/fortran/sci_delmenu_old.f
 
-GUI_JAVA_SOURCES = src/c/SciGUIConsole/SciGUIConsole.c
-
 BUILT_SOURCES += $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
 
 $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h: $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad src/c/xsci/x_main.c
@@ -106,9 +104,6 @@ pkglib_LTLIBRARIES = libscigui.la
 
 libscigui_la_SOURCES = $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
-if JAVA
-libscigui_la_SOURCES += $(GUI_JAVA_SOURCES)
-endif
 
 libscigui_la_LIBADD = \
 	$(top_builddir)/modules/core/libscicore.la \
@@ -120,7 +115,7 @@ endif
 
 # Cyclic dep
 #	$(top_builddir)/modules/graphics/libscigraphics.la
-#	$(top_builddir)/modules/jvm/libsciscijvm.la
+
 
 
 
