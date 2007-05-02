@@ -20,25 +20,16 @@
 #include "xscion.h"
 #include "scilabmode.h"
 
-#ifdef WITH_TK
 extern void flushTKEvents ();
 extern int TclEventsLoop(void);
 static int BasicScilab = 0;
-#endif
-
-
 /*-----------------------------------------------------------------------------------*/
 /* used to know if we must check events 
  * inside the scilab interpreter (parse/*)
  */
 int C2F(checkevts)(int *i)
 {
-  
-  #ifdef WITH_TK
   *i= Max(getINXscilab(),1);
-  #else
-  *i= getINXscilab();
-  #endif
   return(0);
 }
 /*-----------------------------------------------------------------------------------*/
@@ -51,15 +42,14 @@ extern TW textwin;
 void TextMessage1 (int ctrlflag)
 {
   MSG msg;
-#ifdef WITH_TK
+
   flushTKEvents ();
-#endif
+
   while (PeekMessage (&msg, 0, 0, 0, PM_NOREMOVE))
     {
-#ifdef WITH_TK
       /* check for a tcl/tk event */
      if ( TclEventsLoop() ) continue ;
-#endif
+
       PeekMessage (&msg, 0, 0, 0, PM_REMOVE);
       TranslateMessage (&msg);
       DispatchMessage (&msg);
@@ -74,11 +64,7 @@ int C2F (sxevents) ()
 {
   if ( getScilabMode() != SCILAB_NWNI )
   {
-#ifdef WITH_TK
 	  if (getINXscilab() == 1 || BasicScilab == 0 )
-#else
-	  if (getINXscilab() == 1 )
-#endif
 	  {
 		  TextMessage1 (1);
 	  }

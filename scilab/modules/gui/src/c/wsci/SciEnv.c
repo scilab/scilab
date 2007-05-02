@@ -24,7 +24,7 @@ void SciEnvForWindows(void)
 
 	SCIPathName=GetScilabDirectory(TRUE);
 
-	// Correction Bug 1579
+	/* Correction Bug 1579 */
 	if (!IsTheGoodShell()) 
 	{
 		if ( (!Set_Shell()) || (!IsTheGoodShell()))
@@ -47,10 +47,8 @@ void set_sci_env(char *DefaultSCIPATH)
 	{
 		Set_SCI_PATH(DefaultSCIPATH);
 		Set_HOME_PATH(DefaultSCIPATH);
-		#ifdef WITH_TK
-			Set_TCL_LIBRARY_PATH(DefaultSCIPATH);
-			Set_TK_LIBRARY_PATH(DefaultSCIPATH);
-		#endif
+		Set_TCL_LIBRARY_PATH(DefaultSCIPATH);
+		Set_TK_LIBRARY_PATH(DefaultSCIPATH);
 		Set_SOME_ENVIRONMENTS_VARIABLES_FOR_SCILAB();
 	}
 	else

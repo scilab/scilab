@@ -5,7 +5,7 @@
 #ifndef __WITHTK_H__
 #define __WITHTK_H__
 
-#include "machine.h" /* C2F */
+#include "machine.h" /* C2F , BOOL*/
 
 /** 
 * check if it is with TCL/TK
@@ -13,6 +13,12 @@
 * @return 0
 */
 int C2F(withtk)(int *rep);
+
+/** 
+* check if it is with TCL/TK
+* @return TRUE or FALSE
+*/
+BOOL withtk(void);
 
 #endif /* _WITHTK_H__ */
 /*-----------------------------------------------------------------------------------*/ 

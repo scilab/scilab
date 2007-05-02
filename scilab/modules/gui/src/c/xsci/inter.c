@@ -46,12 +46,6 @@
 
 #include <stdlib.h>
 
-/*
-#ifdef WITH_TK
-#include "TCL_Global.h"
-#endif
-*/
-
 
 extern int XTKsocket;
 

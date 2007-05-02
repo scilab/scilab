@@ -43,6 +43,8 @@
 
 #include "prompt.h"
 
+#include "../../../../tclsci/includes/withtk.h"
+
 
 double t=0.; /*for xclick_any */
 extern void AddMenu  __PARAMS((integer *win_num, char *button_name, char **entries, integer *ne, integer *typ, char *fname, integer *ierr));
@@ -3462,17 +3464,7 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4, integ
   static integer EntryCounter = 0;
   integer WinNum;
   
-#ifdef WITH_TK
-  integer ne=11, menutyp=2, ierr;
-  char *EditMenusE[]={"Select figure as current","Redraw figure","Erase figure","Copy object","Paste object","Move object","Delete object","Figure properties","Current axes properties","Start entity picker","Stop entity picker"};
-
-  integer ni=/*7*/6;
-  char *InsertMenusE[]={"Line","Polyline","Arrow",/*"Double Arrow",*/"Text","Rectangle","Circle"};
-
-#else
-  integer ne=3, menutyp=2, ierr;
-  char *EditMenusE[]={"Select as current","Redraw figure","Erase figure"};
-#endif
+ 
   
   GC XCreateGC(Display *, Drawable, long unsigned int, XGCValues *);
   static int screen;
@@ -3549,14 +3541,31 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4, integ
   /*  StoreXgc(WinNum);*/
   EntryCounter=Max(EntryCounter,WinNum);
   EntryCounter++;
-#ifdef WITH_TK
-    /* add the Edit and Insert menus */
-    AddMenu(&WinNum,"Edit", EditMenusE, &ne, &menutyp, "ged", &ierr);
+  
+  if (withtk())
+  {
+  	integer ne=11, menutyp=2, ierr;
+  	char *EditMenusE[]={"Select figure as current","Redraw figure","Erase figure","Copy object","Paste object","Move object","Delete object","Figure properties","Current axes properties","Start entity picker","Stop entity picker"};
+
+  	integer ni=/*7*/6;
+  	char *InsertMenusE[]={"Line","Polyline","Arrow",/*"Double Arrow",*/"Text","Rectangle","Circle"};
+  	
+  	AddMenu(&WinNum,"Edit", EditMenusE, &ne, &menutyp, "ged", &ierr);
     AddMenu(&WinNum,"Insert", InsertMenusE, &ni, &menutyp, "ged_insert", &ierr);
 
     /* put them in grey in old style */
     refreshMenus( ScilabXgc ) ;  
-#endif
+  }
+  else
+  {
+  	integer ne=3, menutyp=2, ierr;
+  	char *EditMenusE[]={"Select as current","Redraw figure","Erase figure"};
+  	AddMenu(&WinNum,"Edit", EditMenusE, &ne, &menutyp, "ged", &ierr);
+  	
+  	/* put them in grey in old style */
+    refreshMenus( ScilabXgc ) ;  
+  }
+  
   XSync(dpy,0);
   
 }
