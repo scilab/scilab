@@ -41,7 +41,10 @@ static StringTable Tab[]=
     {C2F(sci_stripblanks1),"stripblanks1"},
 	{C2F(sci_strsplit),"strsplit"},
 	{C2F(sci_tokens1),"tokens1"},
-	{C2F(sci_code2str1),"code2str1"}
+	{C2F(sci_code2str1),"code2str1"},
+	{C2F(sci_str2code1),"str2code1"}
+
+
 
 
 
