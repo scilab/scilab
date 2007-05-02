@@ -13,7 +13,8 @@ pkglib_LTLIBRARIES = libscifftw.la
 
 FFTW_C_SOURCES = src/c/callfftw_Linux.c \
 src/c/fftwlibname.c \
-src/c/fftw_utilities.c
+src/c/fftw_utilities.c \
+src/c/with_fftw.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_fftw.c \
 	sci_gateway/c/sci_fftwlibraryisloaded.c \

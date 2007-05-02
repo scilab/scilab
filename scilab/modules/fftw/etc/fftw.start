@@ -2,6 +2,8 @@
 // fftw module initialisation file 
 // Copyright INRIA 2006
 // ====================================================================
+if %fftw then
+
 if MSDOS then
   librarynamefftw = SCI+"/bin/libfftw3-3"+getdynlibext();
 else
@@ -32,4 +34,5 @@ end // if ( loadfftwlibrary(librarynamefftw) ) then
 
 clear librarynamefftw
 
+end
 // ====================================================================

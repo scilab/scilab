@@ -3,6 +3,8 @@
 // of a scilab session for fftw module
 // Copyright INRIA 2006
 // ====================================================================
+if %fftw then 
+
 if ( fftwlibraryisloaded() ) then
 
 // delete help chapter
@@ -11,4 +13,6 @@ del_module_help_chapter('fftw');
 disposefftwlibrary();
 
 end // if ( fftwlibraryisloaded() ) then
+
+end // if %fftw then 
 // ====================================================================

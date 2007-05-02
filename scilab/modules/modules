@@ -51,7 +51,7 @@ randlib
 scilab2fortran
 development_tools
 ;sci2c
-;fftw
+fftw
 ;/* module_skeleton is a template to add a module in scilab */
 ;module_skeleton
 ;end

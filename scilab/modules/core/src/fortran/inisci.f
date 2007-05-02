@@ -243,9 +243,9 @@ c     . hard predefined variables
       gbot=isizt
       lstk(gbot)=lstk(gtop+1)+vsizg-1
 c
-c     17 is the number of predefined variables 
-c     19 - 1 blank not include
-      bot=isiz-18
+c     18 is the number of predefined variables 
+c     20 - 1 blank not include
+      bot=isiz-19
       bbot=bot
       bot0=bot
 c     memory requested for predefined variables 
@@ -254,13 +254,13 @@ c     $        -> size : sadr(10-1) + 2
 c     mxn mat  -> size : sadr(3)+m*n*(it+1)
 c     string   -> size : sadr(6+nchar)+1
 c     4 strings
-c     8 booleans
+c     9 booleans
       call getcomp(bufcomp,nbcomp)
       call getsci(bufsci,nbsci)
       call getscihome(bufscihome,nbscihome)
       call gettmpdir(buftmp,nbtmpdir)
       lpvar = (sadr(10-1) + 2) 
-     $     + 8*sadr(5) 
+     $     + 9*sadr(5) 
      $     + 4*(sadr(3)+1)
      $     + 2*(sadr(3)+2)
      $     + 1*(sadr(6+nbcomp)+1)
@@ -313,20 +313,30 @@ c     . %gtk
       call crebmatvar(idloc,k,1,1,irep)
       k=k+1
 c     . %gui
+      vname = ' '
       vname(1:4) = "%gui"
       call withgui(irep)
       call cvname(idloc,vname,0)
       call crebmatvar(idloc,k,1,1,irep)
       k=k+1
 c     . %pvm
+      vname = ' '
       vname(1:4) = "%pvm"
       call withpvm(irep)
       call cvname(idloc,vname,0)
       call crebmatvar(idloc,k,1,1,irep)
       k=k+1
-c     . %tk 
-      vname(1:4) = "%tk "
+c     . %tk
+      vname = ' ' 
+      vname(1:3) = "%tk"
       call withtk(irep)
+      call cvname(idloc,vname,0)
+      call crebmatvar(idloc,k,1,1,irep)
+      k=k+1
+c     . %tk 
+      vname = ' '
+      vname(1:5) = "%fftw"
+      call withfftw(irep)
       call cvname(idloc,vname,0)
       call crebmatvar(idloc,k,1,1,irep)
       k=k+1
