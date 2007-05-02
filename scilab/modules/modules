@@ -47,7 +47,7 @@ sound
 scipad
 ;pvm
 randlib
-;scicos
+scicos
 scilab2fortran
 development_tools
 ;sci2c

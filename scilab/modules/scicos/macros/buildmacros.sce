@@ -1,6 +1,7 @@
 //------------------------------------
 // Allan CORNET INRIA 2006
 //------------------------------------
+if %scicos then
 // load some libraries 
 if ~exists('corelib') then load('SCI/modules/core/macros/lib'),end
 if ~exists('functionslib') then load('SCI/modules/functions/macros/lib'),end
@@ -18,4 +19,6 @@ exec('buildmacros.sce',-1);
 mprintf(" -- Creation of [SCI/modules/scicos/macros/scicos_blocks] (Macros) --\n");
 chdir('SCI/modules/scicos/macros/scicos_blocks');
 exec('buildmacros.sce',-1);
+//------------------------------------
+end // if %scicos then
 //------------------------------------
