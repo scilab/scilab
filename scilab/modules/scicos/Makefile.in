@@ -748,7 +748,11 @@ LOCALISATIONFILES = errors.xml menus.xml messages.xml
 @SCICOS_TRUE@libsciscicos_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 #### scicos : init scripts #### 
+@SCICOS_FALSE@libsciscicos_la_etcdir = $(mydatadir)/etc
+
+#### scicos : init scripts #### 
 @SCICOS_TRUE@libsciscicos_la_etcdir = $(mydatadir)/etc
+@SCICOS_FALSE@libsciscicos_la_etc_DATA = etc/scicos.quit etc/scicos.start
 @SCICOS_TRUE@libsciscicos_la_etc_DATA = etc/scicos.quit etc/scicos.start
 
 #### scicos : gateway declaration #### 

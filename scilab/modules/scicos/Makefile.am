@@ -326,6 +326,10 @@ libsciscicos_la_SOURCES = $(NO_SCICOS_C_SOURCES)
 libsciscicos_la_includedir=$(pkgincludedir)/scicos
 libsciscicos_la_include_HEADERS = src/c/noscicos/resource.h
 
+#### scicos : init scripts #### 
+libsciscicos_la_etcdir = $(mydatadir)/etc
+libsciscicos_la_etc_DATA = etc/scicos.quit etc/scicos.start
+
 endif
 
 

@@ -47,16 +47,15 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 @JAVA_TRUE@am__append_1 = jvm
-@FFTW_TRUE@am__append_2 = fftw
-@PVM_TRUE@am__append_3 = pvm
+@PVM_TRUE@am__append_2 = pvm
 
 # javasci should be compile at the end because it needs libscilab.la
 # Don't forget that the order in subdirs does matter !!!
-@JAVA_TRUE@am__append_4 = javasci
-@STRINGV2_TRUE@am__append_5 = $(top_builddir)/modules/string_V2/libscistring.la
-@STRINGV2_FALSE@am__append_6 = $(top_builddir)/modules/string/libscistring.la
-@PVM_TRUE@am__append_7 = $(top_builddir)/modules/pvm/libscipvm.la
-@JAVA_TRUE@am__append_8 = $(top_builddir)/modules/jvm/libscijvm.la
+@JAVA_TRUE@am__append_3 = javasci
+@STRINGV2_TRUE@am__append_4 = $(top_builddir)/modules/string_V2/libscistring.la
+@STRINGV2_FALSE@am__append_5 = $(top_builddir)/modules/string/libscistring.la
+@PVM_TRUE@am__append_6 = $(top_builddir)/modules/pvm/libscipvm.la
+@JAVA_TRUE@am__append_7 = $(top_builddir)/modules/jvm/libscijvm.la
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 subdir = modules
@@ -115,8 +114,8 @@ libscilab_la_DEPENDENCIES = $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/time/libscitime.la \
 	$(top_builddir)/modules/wintools/libsciwintools.la \
 	$(top_builddir)/modules/tclsci/libscitclsci.la \
-	$(top_builddir)/modules/fftw/libscifftw.la $(am__append_5) \
-	$(am__append_6) $(am__append_7) $(am__append_8) \
+	$(top_builddir)/modules/fftw/libscifftw.la $(am__append_4) \
+	$(am__append_5) $(am__append_6) $(am__append_7) \
 	$(top_builddir)/modules/scicos/libsciscicos.la \
 	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/libs/hashtable/libscihashtable.la \
@@ -158,7 +157,7 @@ DIST_SUBDIRS = intersci polynomials cacsd elementaries_functions \
 	symbolic tclsci sparse io gui graphics wintools functions \
 	incremental_link others overloading maple2scilab m2sci texmacs \
 	scipad scilab2fortran development_tools \
-	compatibility_functions helptools scicos jvm fftw pvm . \
+	compatibility_functions helptools scicos fftw jvm pvm . \
 	javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
@@ -322,8 +321,8 @@ SUBDIRS = intersci polynomials cacsd elementaries_functions arnoldi \
 	symbolic tclsci sparse io gui graphics wintools functions \
 	incremental_link others overloading maple2scilab m2sci texmacs \
 	scipad scilab2fortran development_tools \
-	compatibility_functions helptools scicos $(am__append_1) \
-	$(am__append_2) $(am__append_3) . $(am__append_4)
+	compatibility_functions helptools scicos fftw $(am__append_1) \
+	$(am__append_2) . $(am__append_3)
 modulename = 
 
 #### Basic files ####
@@ -365,8 +364,8 @@ libscilab_la_LIBADD = $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/time/libscitime.la \
 	$(top_builddir)/modules/wintools/libsciwintools.la \
 	$(top_builddir)/modules/tclsci/libscitclsci.la \
-	$(top_builddir)/modules/fftw/libscifftw.la $(am__append_5) \
-	$(am__append_6) $(am__append_7) $(am__append_8) \
+	$(top_builddir)/modules/fftw/libscifftw.la $(am__append_4) \
+	$(am__append_5) $(am__append_6) $(am__append_7) \
 	$(top_builddir)/modules/scicos/libsciscicos.la \
 	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/libs/hashtable/libscihashtable.la \

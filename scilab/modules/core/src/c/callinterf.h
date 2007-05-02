@@ -66,17 +66,9 @@ int C2F(NoPvm)(void);
 /* 43 */						#include "../../../integer/includes/gw_integer.h"
 /* 44 */						#include "../../../linear_algebra/includes/gw_linear_algebra2.h" 
 
-#ifdef WITHOUT_SCICOS
-int C2F(Nogw_scicos)(void);
-int C2F(Nogw_cscicos)(void);
-#define SCICOSINTERF1 C2F(Nogw_scicos)
-#define SCICOSINTERF2 C2F(Nogw_cscicos)
-#else
 /* 45 */						#include "../../../scicos/includes/gw_scicos.h"
-#define SCICOSINTERF1 C2F(gw_scicos)
+
 /* 46 */						#include "../../../scicos/includes/gw_cscicos.h"
-#define SCICOSINTERF2 C2F(gw_cscicos)
-#endif
 
 /* 47 */						#include "../../../wintools/includes/gw_wintools.h"
 /* 48 */						#include "../../../time/includes/gw_time.h"
@@ -140,8 +132,8 @@ static OpTab Interfaces[] = {
 	/* 42  */ {PVMINTERF},
         /* 43  */ {C2F(gw_integer)},
         /* 44  */ {C2F(gw_linear_algebra2)},
-        /* 45  */ {SCICOSINTERF1},  
-        /* 46  */ {SCICOSINTERF2},
+        /* 45  */ {C2F(gw_scicos)},  
+        /* 46  */ {C2F(gw_cscicos)},
 	/* 47  */ {C2F(gw_wintools)},
 	/* 48  */ {C2F(gw_time)},
 	/* 49  */ {C2F(gw_sound)},

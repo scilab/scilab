@@ -49,16 +49,12 @@ scipad \
 scilab2fortran \
 development_tools \
 compatibility_functions \
-helptools
-
-SUBDIRS += scicos 
+helptools \
+scicos \
+fftw
 
 if JAVA
 SUBDIRS += jvm
-endif
-
-if FFTW
-SUBDIRS += fftw
 endif
 
 if PVM

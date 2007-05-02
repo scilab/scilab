@@ -39,21 +39,6 @@ int C2F(NoPvm)(void)
   return 0;
 }
 
-int C2F(Nogw_scicos)(void)
-{
-	message_scilab("core_message_121","scicos");
-	C2F(error)(&c_local_interf);
-	return 0;
-}
-
-int C2F(Nogw_cscicos)(void)
-{
-	message_scilab("core_message_121","scicos");
-	C2F(error)(&c_local_interf);
-	return 0;
-}
-
-
 int C2F(Nogw_slicot)(void)
 {
 	message_scilab("core_message_121","slicot");
