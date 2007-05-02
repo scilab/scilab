@@ -19,7 +19,7 @@ Source: modules\{#JVM}\changelog.txt; DestDir: {app}\modules\{#JVM}; Components:
 ;
 Source: modules\{#JVM}\bin\jre\*.*; DestDir: {app}\modules\{#JVM}\bin\jre; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#JVM}\classes\*.class; DestDir: {app}\modules\{#JVM}\classes; Components: {#COMPN_SCILAB}
+;Source: modules\{#JVM}\classes\*.class; DestDir: {app}\modules\{#JVM}\classes; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#JVM}\etc\{#JVM}.quit; DestDir: {app}\modules\{#JVM}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#JVM}\etc\{#JVM}.start; DestDir: {app}\modules\{#JVM}\etc; Components: {#COMPN_SCILAB}
