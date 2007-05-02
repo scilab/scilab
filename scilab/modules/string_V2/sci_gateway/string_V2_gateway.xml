@@ -52,4 +52,5 @@
 <PRIMITIVE gatewayId="21" primitiveId="27" primitiveName="stripblanks1" />
 <PRIMITIVE gatewayId="21" primitiveId="28" primitiveName="strsplit1" />
 <PRIMITIVE gatewayId="21" primitiveId="29" primitiveName="tokens1" />
+<PRIMITIVE gatewayId="21" primitiveId="30" primitiveName="code2str1" />
 </GATEWAY>
