@@ -27,6 +27,14 @@
 ### Target, variable, suffixes which are supposed to be usefull in every makefile.am
 ##########
 
+##########
+### Sylvestre Ledru <sylvestre.ledru@inria.fr>
+### INRIA - Scilab 2006/2007
+### 
+### Makefile included stuff
+### Target, variable, suffixes which are supposed to be usefull in every makefile.am
+##########
+
 
 
 VPATH = @srcdir@
@@ -82,14 +90,17 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscitclsci_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
+@TCLTK_FALSE@libscitclsci_la_DEPENDENCIES = $(top_builddir)/modules/intersci/libsciintersci.la \
+@TCLTK_FALSE@	$(top_builddir)/modules/core/libscicore.la \
+@TCLTK_FALSE@	$(top_builddir)/libs/MALLOC/libscimalloc.la
 @TCLTK_TRUE@libscitclsci_la_DEPENDENCIES = $(top_builddir)/modules/intersci/libsciintersci.la \
 @TCLTK_TRUE@	$(top_builddir)/modules/core/libscicore.la \
 @TCLTK_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la
-am__libscitclsci_la_SOURCES_DIST = src/c/GedManagement.c \
-	src/c/TclUiGet.c src/c/TCL_Global.c src/c/tksynchro.c \
-	src/c/InitTclTk.c src/c/ScilabEval.c src/c/TclEvents.c \
-	src/c/setenvtcl.c src/c/TclUiSet.c src/c/InitializeTclTk.c \
-	src/c/TerminateTclTk.c src/c/withtk.c \
+am__libscitclsci_la_SOURCES_DIST = src/notclsci/notclsci.c \
+	src/c/GedManagement.c src/c/TclUiGet.c src/c/TCL_Global.c \
+	src/c/tksynchro.c src/c/InitTclTk.c src/c/ScilabEval.c \
+	src/c/TclEvents.c src/c/setenvtcl.c src/c/TclUiSet.c \
+	src/c/InitializeTclTk.c src/c/TerminateTclTk.c src/c/withtk.c \
 	sci_gateway/c/sci_TCL_CreateSlave.c sci_gateway/c/sci_opentk.c \
 	sci_gateway/c/sci_TCL_gcf.c sci_gateway/c/sci_close.c \
 	sci_gateway/c/sci_TCL_SetVar.c \
@@ -104,6 +115,7 @@ am__libscitclsci_la_SOURCES_DIST = src/c/GedManagement.c \
 	sci_gateway/c/sci_TCL_GetVar.c sci_gateway/c/sci_set.c \
 	sci_gateway/c/sci_TCL_ExistArray.c \
 	sci_gateway/c/sci_TCL_UpVar.c
+@TCLTK_FALSE@am__objects_1 = libscitclsci_la-notclsci.lo
 @TCLTK_TRUE@am__objects_1 = libscitclsci_la-GedManagement.lo \
 @TCLTK_TRUE@	libscitclsci_la-TclUiGet.lo \
 @TCLTK_TRUE@	libscitclsci_la-TCL_Global.lo \
@@ -136,12 +148,14 @@ am__libscitclsci_la_SOURCES_DIST = src/c/GedManagement.c \
 @TCLTK_TRUE@	libscitclsci_la-sci_set.lo \
 @TCLTK_TRUE@	libscitclsci_la-sci_TCL_ExistArray.lo \
 @TCLTK_TRUE@	libscitclsci_la-sci_TCL_UpVar.lo
+@TCLTK_FALSE@am_libscitclsci_la_OBJECTS = $(am__objects_1)
 @TCLTK_TRUE@am_libscitclsci_la_OBJECTS = $(am__objects_1) \
 @TCLTK_TRUE@	$(am__objects_2)
 libscitclsci_la_OBJECTS = $(am_libscitclsci_la_OBJECTS)
 libscitclsci_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libscitclsci_la_CFLAGS) \
 	$(CFLAGS) $(libscitclsci_la_LDFLAGS) $(LDFLAGS) -o $@
+@TCLTK_FALSE@am_libscitclsci_la_rpath = -rpath $(pkglibdir)
 @TCLTK_TRUE@am_libscitclsci_la_rpath = -rpath $(pkglibdir)
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
@@ -330,6 +344,7 @@ target_alias = @target_alias@
 tcldir = @tcldir@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
+@TCLTK_FALSE@TCLSCI_C_SOURCES = src/notclsci/notclsci.c
 @TCLTK_TRUE@TCLSCI_C_SOURCES = src/c/GedManagement.c \
 @TCLTK_TRUE@src/c/TclUiGet.c \
 @TCLTK_TRUE@src/c/TCL_Global.c \
@@ -364,10 +379,18 @@ top_srcdir = @top_srcdir@
 @TCLTK_TRUE@sci_gateway/c/sci_TCL_ExistArray.c \
 @TCLTK_TRUE@sci_gateway/c/sci_TCL_UpVar.c
 
+@TCLTK_FALSE@pkglib_LTLIBRARIES = libscitclsci.la
 @TCLTK_TRUE@pkglib_LTLIBRARIES = libscitclsci.la
+@TCLTK_FALSE@libscitclsci_la_CFLAGS = -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 @TCLTK_TRUE@libscitclsci_la_CFLAGS = -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/ $(TCL_INC_PATH) $(TK_INC_PATH)
 @TCLTK_TRUE@libscitclsci_la_LDFLAGS = $(TCLTK_LIBS)
+@TCLTK_FALSE@libscitclsci_la_SOURCES = $(TCLSCI_C_SOURCES)
 @TCLTK_TRUE@libscitclsci_la_SOURCES = $(TCLSCI_C_SOURCES) $(GATEWAY_C_SOURCES)
+@TCLTK_FALSE@libscitclsci_la_LIBADD = \
+@TCLTK_FALSE@	$(top_builddir)/modules/intersci/libsciintersci.la \
+@TCLTK_FALSE@	$(top_builddir)/modules/core/libscicore.la \
+@TCLTK_FALSE@	$(top_builddir)/libs/MALLOC/libscimalloc.la
+
 @TCLTK_TRUE@libscitclsci_la_LIBADD = \
 @TCLTK_TRUE@	$(top_builddir)/modules/intersci/libsciintersci.la \
 @TCLTK_TRUE@	$(top_builddir)/modules/core/libscicore.la \
@@ -375,7 +398,13 @@ top_srcdir = @top_srcdir@
 
 
 #### Target ######
+@TCLTK_FALSE@modulename = tclsci
+
+#### Target ######
 @TCLTK_TRUE@modulename = tclsci
+
+#### tclsci : Conf files ####
+@TCLTK_FALSE@libscitclsci_la_rootdir = $(mydatadir)
 
 #### tclsci : Conf files ####
 @TCLTK_TRUE@libscitclsci_la_rootdir = $(mydatadir)
@@ -573,7 +602,11 @@ top_srcdir = @top_srcdir@
 
 
 #### tclsci : init scripts #### 
+@TCLTK_FALSE@libscitclsci_la_etcdir = $(mydatadir)/etc
+
+#### tclsci : init scripts #### 
 @TCLTK_TRUE@libscitclsci_la_etcdir = $(mydatadir)/etc
+@TCLTK_FALSE@libscitclsci_la_etc_DATA = etc/tclsci.quit etc/tclsci.start
 @TCLTK_TRUE@libscitclsci_la_etc_DATA = etc/tclsci.quit etc/tclsci.start
 
 #### tclsci : gateway declaration #### 
@@ -625,7 +658,13 @@ top_srcdir = @top_srcdir@
 
 
 # Where all the Scilab stuff is installed (macros, help, ...)
+@TCLTK_FALSE@mydatadir = $(pkgdatadir)/modules/$(modulename)
+
+# Where all the Scilab stuff is installed (macros, help, ...)
 @TCLTK_TRUE@mydatadir = $(pkgdatadir)/modules/$(modulename)
+
+#SUFFIXES = .xml .sci .htm
+@TCLTK_FALSE@SUFFIXES = .sci .java .class .jar
 
 #SUFFIXES = .xml .sci .htm
 @TCLTK_TRUE@SUFFIXES = .sci .java .class .jar
@@ -639,12 +678,37 @@ top_srcdir = @top_srcdir@
 #######################################################################
 
 # Replace all the .java by .class in JAVAFILES
+@TCLTK_FALSE@CLASSFILES = $(JAVAFILES:.java=.class)
+
+########################### JAVA ######################################
+#### We had to create those rules because autotools does NOT provide
+#### a kind of mechanism like C or Fortran sources :
+#### libsciboolean_la_SOURCES = plop.c plip.f 
+####
+#### It is why those rules exist.
+#######################################################################
+
+# Replace all the .java by .class in JAVAFILES
 @TCLTK_TRUE@CLASSFILES = $(JAVAFILES:.java=.class)
 # Create path without src/java and rename .java  by .class (needed by the jar 
 # creation)
+@TCLTK_FALSE@CLASSFILESRELATIVE = `echo "$(JAVAFILES)"| sed -e 's|src/java/||g'|sed -e 's|\.java|\.class|g'`
+# Create path without src/java and rename .java  by .class (needed by the jar 
+# creation)
 @TCLTK_TRUE@CLASSFILESRELATIVE = `echo "$(JAVAFILES)"| sed -e 's|src/java/||g'|sed -e 's|\.java|\.class|g'`
+@TCLTK_FALSE@BUILT_SOURCES = $(CLASSFILES)
 @TCLTK_TRUE@BUILT_SOURCES = $(CLASSFILES)
+@TCLTK_FALSE@CLEANFILES = $(CLASSFILES)
 @TCLTK_TRUE@CLEANFILES = $(CLASSFILES)
+
+########### INSTALL DOCUMENTATION ###################
+# Install HTML files into the right target
+# We do not use the automake mechanism (libxxxx_la_help_fr_DATA) because
+# automake needs the html files to be present which is not the case when
+# we are building Scilab
+
+# Where it should be installed
+@TCLTK_FALSE@pkgdocdir = $(mydatadir)
 
 ########### INSTALL DOCUMENTATION ###################
 # Install HTML files into the right target
@@ -655,36 +719,61 @@ top_srcdir = @top_srcdir@
 # Where it should be installed
 @TCLTK_TRUE@pkgdocdir = $(mydatadir)
 # Which directories we have to install
+@TCLTK_FALSE@DOCDIRS = help/fr_FR help/en_US
+# Which directories we have to install
 @TCLTK_TRUE@DOCDIRS = help/fr_FR help/en_US
 # What is the mask of the help output
+@TCLTK_FALSE@DOCMASK = *.htm
+# What is the mask of the help output
 @TCLTK_TRUE@DOCMASK = *.htm
+# What is the mask of the help source
+@TCLTK_FALSE@DOCMASKXML = *.xml
 # What is the mask of the help source
 @TCLTK_TRUE@DOCMASKXML = *.xml
 
 ########### INSTALL DATA ###################
 # Install macros
 # Where it should be installed
+@TCLTK_FALSE@pkgmacrosdir = $(mydatadir)
+
+########### INSTALL DATA ###################
+# Install macros
+# Where it should be installed
 @TCLTK_TRUE@pkgmacrosdir = $(mydatadir)
+# Which directory we process
+@TCLTK_FALSE@MACRODIRS = macros/
 # Which directory we process
 @TCLTK_TRUE@MACRODIRS = macros/
 # Mask of the Scilab sources macros
+@TCLTK_FALSE@MACROMASK = *.sci
+# Mask of the Scilab sources macros
 @TCLTK_TRUE@MACROMASK = *.sci
+# Mask of the Scilab executable sources macros
+@TCLTK_FALSE@MACROBUILDMASK = *.sce
 # Mask of the Scilab executable sources macros
 @TCLTK_TRUE@MACROBUILDMASK = *.sce
 # Mask of the Scilab compiled macros
+@TCLTK_FALSE@MACROBINMASK = *.bin
+# Mask of the Scilab compiled macros
 @TCLTK_TRUE@MACROBINMASK = *.bin
+# List of the function of a module
+@TCLTK_FALSE@FUNCTION_NAMES = macros/names
 # List of the function of a module
 @TCLTK_TRUE@FUNCTION_NAMES = macros/names
 # Localisation directory name
+@TCLTK_FALSE@LOCALISATIONDIRS = languages/fr_FR/ languages/en_US/
+# Localisation directory name
 @TCLTK_TRUE@LOCALISATIONDIRS = languages/fr_FR/ languages/en_US/
+# List of the localisation (languages) files
+@TCLTK_FALSE@LOCALISATIONFILES = errors.xml menus.xml messages.xml
 # List of the localisation (languages) files
 @TCLTK_TRUE@LOCALISATIONFILES = errors.xml menus.xml messages.xml
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
 .SUFFIXES:
-.SUFFIXES: .sci .java .class .jar .bin .c .lo .o .obj
-$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
+.SUFFIXES: .sci .java .class .jar .sci .java .class .jar .bin .c .lo .o .obj
+$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -759,6 +848,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-TclUiSet.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-TerminateTclTk.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-gw_tclsci.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-notclsci.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-sci_TCL_CreateSlave.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-sci_TCL_DeleteInterp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-sci_TCL_DoOneEvent.Plo@am__quote@
@@ -802,6 +892,13 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
+
+libscitclsci_la-notclsci.lo: src/notclsci/notclsci.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-notclsci.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-notclsci.Tpo -c -o libscitclsci_la-notclsci.lo `test -f 'src/notclsci/notclsci.c' || echo '$(srcdir)/'`src/notclsci/notclsci.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscitclsci_la-notclsci.Tpo $(DEPDIR)/libscitclsci_la-notclsci.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/notclsci/notclsci.c' object='libscitclsci_la-notclsci.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-notclsci.lo `test -f 'src/notclsci/notclsci.c' || echo '$(srcdir)/'`src/notclsci/notclsci.c
 
 libscitclsci_la-GedManagement.lo: src/c/GedManagement.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-GedManagement.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-GedManagement.Tpo -c -o libscitclsci_la-GedManagement.lo `test -f 'src/c/GedManagement.c' || echo '$(srcdir)/'`src/c/GedManagement.c
@@ -1263,9 +1360,6 @@ maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
 	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
-@TCLTK_FALSE@install-data-local:
-@TCLTK_FALSE@install-html-local:
-@TCLTK_FALSE@clean-local:
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
@@ -1483,7 +1577,115 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @TCLTK_TRUE@	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
 @TCLTK_TRUE@	$(top_builddir)/bin/scilab -nb -nwni -f $(abs_srcdir)/macros/buildmacros.sce 	)
 
-@TCLTK_FALSE@		echo "TCL/TK not activated. Skip this module."
+# Compilation of Java
+@TCLTK_FALSE@%.class:%.java
+@TCLTK_FALSE@	@echo; \
+@TCLTK_FALSE@	echo "Compiling Java source :" $<
+@TCLTK_FALSE@	$(JAVAC) -classpath "$(CLASSPATH):$(JAVA_CLASSPATH)" $(JAVAC_FLAGS) $<
+
+# creation of the jar
+@TCLTK_FALSE@%.jar: $(CLASSFILES)
+@TCLTK_FALSE@	@(echo; \
+@TCLTK_FALSE@	echo "Creation of the jar archive :"; \
+@TCLTK_FALSE@	cd $(CLASSPATH); \
+@TCLTK_FALSE@	$(JAR) cvf ../../$(JARFILE) $(CLASSFILESRELATIVE)	)
+
+################ MACROS ######################"
+# Rule to build a macro
+@TCLTK_FALSE@.sci.bin:
+@TCLTK_FALSE@	-@( if test ! -x $(top_builddir)/scilab-bin; then \
+@TCLTK_FALSE@	echo "Error : Cannot build $< : Scilab has not been build"; \
+@TCLTK_FALSE@	else \
+@TCLTK_FALSE@	echo "Creating $@"; \
+@TCLTK_FALSE@	$(top_builddir)/bin/scilab -ns -nwni -e "exec('$(abs_srcdir)/$<');save('$(abs_srcdir)/$@');exit;"; \
+@TCLTK_FALSE@	fi )
+
+@TCLTK_FALSE@macrossly:
+@TCLTK_FALSE@	@( if test ! -x $(top_builddir)/scilab-bin; then \
+@TCLTK_FALSE@	echo "Error : Cannot build $< : Scilab has not been build"; \
+@TCLTK_FALSE@	else \
+@TCLTK_FALSE@	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
+@TCLTK_FALSE@	SCI=`cd $(top_builddir); pwd;`; export SCI; \
+@TCLTK_FALSE@	echo $$SCI/modules/functions/macros/genlib.bin; \
+@TCLTK_FALSE@	if test ! -f $$SCI/modules/functions/macros/genlib.bin; then \
+@TCLTK_FALSE@	(cd $$SCI; $$SCI/scilab-bin -ns -nwni -f $$SCI/modules/functions/scripts/buildmacros/buildmacros.sce;) \
+@TCLTK_FALSE@	fi; \
+@TCLTK_FALSE@	echo $(top_builddir)/scilab-bin -ns -nwni -f macros/buildmacros.sce; \
+@TCLTK_FALSE@	$(top_builddir)/scilab-bin -nwni -f macros/buildmacros.sce; \
+@TCLTK_FALSE@	fi )
+@TCLTK_FALSE@install-html-local:
+@TCLTK_FALSE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
+@TCLTK_FALSE@	@for dir in $(DOCDIRS) ; do \
+@TCLTK_FALSE@	 if test -d $$dir; then \
+@TCLTK_FALSE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+@TCLTK_FALSE@		if ls -lLd $(srcdir)/$$dir/$(DOCMASK) >/dev/null 2>&1; then \
+@TCLTK_FALSE@		  for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
+@TCLTK_FALSE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+@TCLTK_FALSE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+@TCLTK_FALSE@		  done ; \
+@TCLTK_FALSE@		fi; \
+@TCLTK_FALSE@	 fi; \
+@TCLTK_FALSE@	done
+# If the user wants the help sources to be installed
+@INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@	@for dir in $(DOCDIRS) ; do \
+@INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@	 if test -d $$dir; then \
+@INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+@INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@		if ls -lLd $(srcdir)/$$dir/$(DOCMASKXML) >/dev/null 2>&1; then \
+@INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@		  for file in $(srcdir)/$$dir/$(DOCMASKXML) ; do \
+@INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+@INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+@INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@		  done ; \
+@INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@		fi; \
+@INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@	 fi; \
+@INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@	done
+@TCLTK_FALSE@install-data-local:
+@TCLTK_FALSE@	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)
+@TCLTK_FALSE@	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS)
+@TCLTK_FALSE@	@if test -f $(FUNCTION_NAMES); then \
+@TCLTK_FALSE@		echo "$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/"; \
+@TCLTK_FALSE@		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
+@TCLTK_FALSE@	fi
+# Install the macros
+@TCLTK_FALSE@	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
+@TCLTK_FALSE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
+@TCLTK_FALSE@		if test -d $(srcdir)/$$dir/; then \
+@TCLTK_FALSE@		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/lib 2>/dev/null`; do \
+@TCLTK_FALSE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
+@TCLTK_FALSE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
+@TCLTK_FALSE@		  done; \
+@TCLTK_FALSE@		fi; \
+@TCLTK_FALSE@	done
+# Install the localisation files
+@TCLTK_FALSE@	@for dir in $(LOCALISATIONDIRS) ; do \
+@TCLTK_FALSE@	 if test -d $$dir; then \
+@TCLTK_FALSE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+@TCLTK_FALSE@		  for file in $(LOCALISATIONFILES) ; do \
+@TCLTK_FALSE@		    echo "$(INSTALL_DATA) $$dir/$$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+@TCLTK_FALSE@	    	$(INSTALL_DATA) "$$dir/$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+@TCLTK_FALSE@		  done ; \
+@TCLTK_FALSE@	 fi; \
+@TCLTK_FALSE@	done
+
+########### CLEAN ###################
+# Clean macros and help (generated automatically by Scilab)
+@TCLTK_FALSE@clean-local:
+# Removes macros (*.bin generated from .sci)
+@TCLTK_FALSE@	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
+@TCLTK_FALSE@		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \
+@TCLTK_FALSE@		rm -f $(srcdir)/$$dir/$(MACROBINMASK); \
+@TCLTK_FALSE@	done
+# Removes documentation (*.htm generated from .xml) 
+@TCLTK_FALSE@	@for dir in $(DOCDIRS) ; do \
+@TCLTK_FALSE@		 if test -d $$dir; then \
+@TCLTK_FALSE@			echo "rm -f $(srcdir)/$$dir/$(DOCMASK)"; \
+@TCLTK_FALSE@			rm -f $(srcdir)/$$dir/$(DOCMASK); \
+@TCLTK_FALSE@		fi; \
+@TCLTK_FALSE@	done
+
+@TCLTK_FALSE@macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODIRS)/$(MACROMASK)
+@TCLTK_FALSE@	-@( \
+@TCLTK_FALSE@	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
+@TCLTK_FALSE@	$(top_builddir)/bin/scilab -nb -nwni -f $(abs_srcdir)/macros/buildmacros.sce 	)
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

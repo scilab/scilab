@@ -61,14 +61,6 @@ int C2F(Nogw_slicot)(void)
 	return 0;
 }
 
-
-int C2F(Nogw_fftw)(void)
-{
-	message_scilab("core_message_121","fftw");
-	C2F(error)(&c_local_interf);
-	return 0;
-}
-
 static int sig_ok = 0;
 
 

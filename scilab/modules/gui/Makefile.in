@@ -50,7 +50,6 @@ host_triplet = @host@
 DIST_COMMON = $(libscigui_la_include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
 @JAVA_TRUE@am__append_1 = $(JAVA_JNI_INCLUDE)
-@TCLTK_TRUE@am__append_2 = $(top_builddir)/modules/tclsci/libscitclsci.la
 subdir = modules/gui
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
@@ -83,7 +82,8 @@ pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscigui_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/modules/string/libscistring.la $(am__append_2)
+	$(top_builddir)/modules/string/libscistring.la \
+	$(top_builddir)/modules/tclsci/libscitclsci.la
 am__objects_1 = libscigui_la-wf_w_util.lo libscigui_la-utils.lo \
 	libscigui_la-x_cursor.lo libscigui_la-x_main.lo \
 	libscigui_la-wf_f_read.lo libscigui_la-wf_f_util.lo \
@@ -462,8 +462,11 @@ libscigui_la_CFLAGS = -Iincludes/ \
 libscigui_la_LDFLAGS = $(X_LIBS) $(TERMCAP_LIB) $(X_EXTRA_LIBS)
 pkglib_LTLIBRARIES = libscigui.la
 libscigui_la_SOURCES = $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-libscigui_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/modules/string/libscistring.la $(am__append_2)
+libscigui_la_LIBADD = \
+	$(top_builddir)/modules/core/libscicore.la \
+	$(top_builddir)/modules/string/libscistring.la \
+        $(top_builddir)/modules/tclsci/libscitclsci.la
+
 
 # Cyclic dep
 #	$(top_builddir)/modules/graphics/libscigraphics.la

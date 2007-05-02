@@ -83,13 +83,7 @@ int C2F(Nogw_cscicos)(void);
 /* 49 */						#include "../../../sound/includes/gw_sound.h"
 /* 50 */						#include "../../../localization/includes/gw_localization.h"
 
-#if defined(WITH_FFTW) || defined(_MSC_VER)
 /* 51 */						#include "../../../fftw/includes/gw_fftw.h"
-#define FFTWINTERF C2F(gw_fftw)
-#else 
-int C2F(Nogw_fftw)(void);
-#define FFTWINTERF C2F(Nogw_fftw)
-#endif
 
 void errjump (int n);
 
@@ -152,7 +146,7 @@ static OpTab Interfaces[] = {
 	/* 48  */ {C2F(gw_time)},
 	/* 49  */ {C2F(gw_sound)},
 	/* 50  */ {C2F(gw_localization)},
-	/* 51  */ {FFTWINTERF}
+	/* 51  */ {C2F(gw_fftw)}
 };
 
 

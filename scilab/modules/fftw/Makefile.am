@@ -14,7 +14,7 @@ pkglib_LTLIBRARIES = libscifftw.la
 FFTW_C_SOURCES = src/c/callfftw_Linux.c \
 src/c/fftwlibname.c \
 src/c/fftw_utilities.c \
-src/c/with_fftw.c
+src/c/with_fftw.c 
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_fftw.c \
 	sci_gateway/c/sci_fftwlibraryisloaded.c \
@@ -60,5 +60,22 @@ includes/sci_fftw_forget_wisdom.h
 include $(top_srcdir)/Makefile.incl.am
 
 else
-		echo "FFTW not activated. Skip this module."
+#### Target ######
+modulename=fftw
+
+pkglib_LTLIBRARIES = libscifftw.la
+
+FFTW_C_SOURCES = src/nofftw/nofftw.c
+
+#### fftw : Conf files ####
+libscifftw_la_rootdir = $(mydatadir)
+
+#### fftw : init scripts #### 
+libscifftw_la_etcdir = $(mydatadir)/etc
+libscifftw_la_etc_DATA = etc/fftw.quit etc/fftw.start
+
+libscifftw_la_SOURCES = $(FFTW_C_SOURCES)
+
+include $(top_srcdir)/Makefile.incl.am
+
 endif
