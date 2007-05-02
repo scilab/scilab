@@ -119,7 +119,7 @@ public double[] getRealPartData() {
  * Get only ONE element from Scilab Matrix 
  * Get Real Part
  * @param indr row indice in scilab
- * @param indc column indice in scilab 
+ * @param indc column indice in scilab 
  * @return the Real Part
  */
  public native double GetRealPartElement(int indr, int indc);
@@ -128,7 +128,7 @@ public double[] getRealPartData() {
  * Get only ONE element from Scilab Matrix 
  * Get Real Part
  * @param indr row indice in scilab
- * @param indc column indice in scilab 
+ * @param indc column indice in scilab 
  * @return the Imaginary Part 
  */
 
