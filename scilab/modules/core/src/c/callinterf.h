@@ -55,6 +55,7 @@
 
 /* 41 */						#include "../../../data_structures/includes/gw_data_structures2.h"
 
+#ifndef _MSC_VER
 #ifdef WITH_PVM
 /* 42 */						#include "../../../pvm/includes/gw_pvm.h"
 #define PVMINTERF C2F(gw_pvm)
@@ -62,6 +63,11 @@
 int C2F(NoPvm)(void);
 #define PVMINTERF C2F(NoPvm)
 #endif
+#else
+/* 42 */						#include "../../../pvm/includes/gw_pvm.h"
+#define PVMINTERF C2F(gw_pvm)
+#endif
+
 
 /* 43 */						#include "../../../integer/includes/gw_integer.h"
 /* 44 */						#include "../../../linear_algebra/includes/gw_linear_algebra2.h" 

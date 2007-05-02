@@ -45,7 +45,7 @@ tclsci
 texmacs
 sound
 scipad
-;pvm
+pvm
 randlib
 scicos
 scilab2fortran

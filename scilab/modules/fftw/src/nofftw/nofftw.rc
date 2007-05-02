@@ -69,8 +69,8 @@ BEGIN
             VALUE "FileVersion", "5, 0, 0, 0"
             VALUE "InternalName", "nofftw module"
             VALUE "LegalCopyright", "Copyright (C) 2007"
-            VALUE "OriginalFilename", "notclsci.dll"
-            VALUE "ProductName", " notclsci"
+            VALUE "OriginalFilename", "nofftw.dll"
+            VALUE "ProductName", " nofftw"
             VALUE "ProductVersion", "5, 0, 0, 0"
         END
     END
