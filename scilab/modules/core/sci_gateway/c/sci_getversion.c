@@ -13,6 +13,7 @@
 #include "loadversion.h"
 #include "inisci-c.h"
 #include "error_scilab.h"
+#include "../../../tclsci/includes/withtk.h"
 /*-----------------------------------------------------------------------------------*/
 static int getversion_no_rhs(void);
 static int getversion_one_rhs(void);
