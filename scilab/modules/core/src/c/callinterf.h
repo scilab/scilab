@@ -34,7 +34,7 @@
 /* 21 */						#include "../../../string/includes/gw_string.h"
 /* 22 */						#include "../../../symbolic/includes/gw_symbolic.h"
 /* 23 */						#include "../../../boolean/includes/gw_boolean.h"
-/* 24  C2F(gw_user2)(); FREE */	                        #include "gw_user2.h" 
+/* 24  C2F(gw_user2)(); FREE */	#include "gw_user2.h" 
 /* 25 */						#include "../../../gui/includes/gw_gui.h"
 /* 26 */						#include "../../../differential_equations/includes/gw_differential_equations2.h"
 /* 27 */						#include "../../../sparse/includes/gw_sparse.h"
