@@ -111,17 +111,14 @@ libscilab_la_LIBADD = \
 	$(top_builddir)/modules/time/libscitime.la \
 	$(top_builddir)/modules/wintools/libsciwintools.la \
         $(top_builddir)/modules/tclsci/libscitclsci.la \
-        $(top_builddir)/modules/fftw/libscifftw.la
+        $(top_builddir)/modules/fftw/libscifftw.la \
+        $(top_builddir)/modules/pvm/libscipvm.la
 
 
 if STRINGV2
 libscilab_la_LIBADD += $(top_builddir)/modules/string_V2/libscistring.la
 else
 libscilab_la_LIBADD += $(top_builddir)/modules/string/libscistring.la
-endif
-
-if PVM
-libscilab_la_LIBADD += $(top_builddir)/modules/pvm/libscipvm.la
 endif
 
 if JAVA

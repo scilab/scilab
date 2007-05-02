@@ -34,7 +34,7 @@
 /* 21 */						#include "../../../string/includes/gw_string.h"
 /* 22 */						#include "../../../symbolic/includes/gw_symbolic.h"
 /* 23 */						#include "../../../boolean/includes/gw_boolean.h"
-/* 24  C2F(gw_user2)(); FREE */	#include "gw_user2.h" 
+/* 24  C2F(gw_user2)(); FREE */	                        #include "gw_user2.h" 
 /* 25 */						#include "../../../gui/includes/gw_gui.h"
 /* 26 */						#include "../../../differential_equations/includes/gw_differential_equations2.h"
 /* 27 */						#include "../../../sparse/includes/gw_sparse.h"
@@ -55,19 +55,7 @@
 
 /* 41 */						#include "../../../data_structures/includes/gw_data_structures2.h"
 
-#ifndef _MSC_VER
-#ifdef WITH_PVM
 /* 42 */						#include "../../../pvm/includes/gw_pvm.h"
-#define PVMINTERF C2F(gw_pvm)
-#else 
-int C2F(NoPvm)(void);
-#define PVMINTERF C2F(NoPvm)
-#endif
-#else
-/* 42 */						#include "../../../pvm/includes/gw_pvm.h"
-#define PVMINTERF C2F(gw_pvm)
-#endif
-
 
 /* 43 */						#include "../../../integer/includes/gw_integer.h"
 /* 44 */						#include "../../../linear_algebra/includes/gw_linear_algebra2.h" 
@@ -135,7 +123,7 @@ static OpTab Interfaces[] = {
         /* 39  */ {C2F(gw_special_functions2)},
         /* 40  */ {C2F(gw_tclsci)},
 	/* 41  */ {C2F(gwdatastructures2)},
-	/* 42  */ {PVMINTERF},
+	/* 42  */ {C2F(gw_pvm)},
         /* 43  */ {C2F(gw_integer)},
         /* 44  */ {C2F(gw_linear_algebra2)},
         /* 45  */ {C2F(gw_scicos)},  

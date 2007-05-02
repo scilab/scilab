@@ -88,7 +88,24 @@ demos/script.sce
 include $(top_srcdir)/Makefile.incl.am
 
 else
-		echo "PVM not activated. Skip this module."
+
+PVM_C_SOURCES = src/nopvm/nopvm.c 
+
+pkglib_LTLIBRARIES = libscipvm.la
+
+libscipvm_la_SOURCES = $(PVM_C_SOURCES) 
+
+libscipvm_la_LIBADD = \
+	$(top_builddir)/modules/core/libscicore.la
+
+modulename=pvm
+
+#### pvm : init scripts #### 
+libscipvm_la_etcdir = $(mydatadir)/etc
+libscipvm_la_etc_DATA = etc/pvm.quit etc/pvm.start
+
+include $(top_srcdir)/Makefile.incl.am
+
 endif
 
 

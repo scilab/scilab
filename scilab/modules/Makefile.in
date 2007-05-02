@@ -54,8 +54,7 @@ host_triplet = @host@
 @JAVA_TRUE@am__append_3 = javasci
 @STRINGV2_TRUE@am__append_4 = $(top_builddir)/modules/string_V2/libscistring.la
 @STRINGV2_FALSE@am__append_5 = $(top_builddir)/modules/string/libscistring.la
-@PVM_TRUE@am__append_6 = $(top_builddir)/modules/pvm/libscipvm.la
-@JAVA_TRUE@am__append_7 = $(top_builddir)/modules/jvm/libscijvm.la
+@JAVA_TRUE@am__append_6 = $(top_builddir)/modules/jvm/libscijvm.la
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 subdir = modules
@@ -114,8 +113,9 @@ libscilab_la_DEPENDENCIES = $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/time/libscitime.la \
 	$(top_builddir)/modules/wintools/libsciwintools.la \
 	$(top_builddir)/modules/tclsci/libscitclsci.la \
-	$(top_builddir)/modules/fftw/libscifftw.la $(am__append_4) \
-	$(am__append_5) $(am__append_6) $(am__append_7) \
+	$(top_builddir)/modules/fftw/libscifftw.la \
+	$(top_builddir)/modules/pvm/libscipvm.la $(am__append_4) \
+	$(am__append_5) $(am__append_6) \
 	$(top_builddir)/modules/scicos/libsciscicos.la \
 	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/libs/hashtable/libscihashtable.la \
@@ -364,8 +364,9 @@ libscilab_la_LIBADD = $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/time/libscitime.la \
 	$(top_builddir)/modules/wintools/libsciwintools.la \
 	$(top_builddir)/modules/tclsci/libscitclsci.la \
-	$(top_builddir)/modules/fftw/libscifftw.la $(am__append_4) \
-	$(am__append_5) $(am__append_6) $(am__append_7) \
+	$(top_builddir)/modules/fftw/libscifftw.la \
+	$(top_builddir)/modules/pvm/libscipvm.la $(am__append_4) \
+	$(am__append_5) $(am__append_6) \
 	$(top_builddir)/modules/scicos/libsciscicos.la \
 	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/libs/hashtable/libscihashtable.la \

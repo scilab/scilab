@@ -27,6 +27,14 @@
 ### Target, variable, suffixes which are supposed to be usefull in every makefile.am
 ##########
 
+##########
+### Sylvestre Ledru <sylvestre.ledru@inria.fr>
+### INRIA - Scilab 2006/2007
+### 
+### Makefile included stuff
+### Target, variable, suffixes which are supposed to be usefull in every makefile.am
+##########
+
 
 
 VPATH = @srcdir@
@@ -80,13 +88,16 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscipvm_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
+@PVM_FALSE@libscipvm_la_DEPENDENCIES =  \
+@PVM_FALSE@	$(top_builddir)/modules/core/libscicore.la
 @PVM_TRUE@libscipvm_la_DEPENDENCIES =  \
 @PVM_TRUE@	$(top_builddir)/modules/core/libscicore.la \
 @PVM_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la
-am__libscipvm_la_SOURCES_DIST = src/c/pvm_proc_ctrl.c \
-	src/c/sci_tools.c src/c/pvm_recv.c src/c/scipvmf77.c \
-	src/c/varpack.c src/c/pvm_grp.c src/c/pvm_send.c \
-	src/c/pvm_info.c sci_gateway/c/sci_pvm_get_timer.c \
+am__libscipvm_la_SOURCES_DIST = src/nopvm/nopvm.c \
+	src/c/pvm_proc_ctrl.c src/c/sci_tools.c src/c/pvm_recv.c \
+	src/c/scipvmf77.c src/c/varpack.c src/c/pvm_grp.c \
+	src/c/pvm_send.c src/c/pvm_info.c src/c/with_pvm.c \
+	sci_gateway/c/sci_pvm_get_timer.c \
 	sci_gateway/c/sci_pvm_gettid.c sci_gateway/c/sci_pvm_gsize.c \
 	sci_gateway/c/sci_pvm_sci2f77.c \
 	sci_gateway/c/sci_pvm_f772sci.c \
@@ -109,11 +120,12 @@ am__libscipvm_la_SOURCES_DIST = src/c/pvm_proc_ctrl.c \
 	sci_gateway/c/sci_pvm_send_var.c \
 	sci_gateway/c/sci_pvm_config.c \
 	sci_gateway/c/sci_pvm_recv_var.c sci_gateway/c/sci_pvm_exit.c
+@PVM_FALSE@am__objects_1 = libscipvm_la-nopvm.lo
 @PVM_TRUE@am__objects_1 = libscipvm_la-pvm_proc_ctrl.lo \
 @PVM_TRUE@	libscipvm_la-sci_tools.lo libscipvm_la-pvm_recv.lo \
 @PVM_TRUE@	libscipvm_la-scipvmf77.lo libscipvm_la-varpack.lo \
 @PVM_TRUE@	libscipvm_la-pvm_grp.lo libscipvm_la-pvm_send.lo \
-@PVM_TRUE@	libscipvm_la-pvm_info.lo
+@PVM_TRUE@	libscipvm_la-pvm_info.lo libscipvm_la-with_pvm.lo
 @PVM_TRUE@am__objects_2 = libscipvm_la-sci_pvm_get_timer.lo \
 @PVM_TRUE@	libscipvm_la-sci_pvm_gettid.lo \
 @PVM_TRUE@	libscipvm_la-sci_pvm_gsize.lo \
@@ -148,11 +160,13 @@ am__libscipvm_la_SOURCES_DIST = src/c/pvm_proc_ctrl.c \
 @PVM_TRUE@	libscipvm_la-sci_pvm_config.lo \
 @PVM_TRUE@	libscipvm_la-sci_pvm_recv_var.lo \
 @PVM_TRUE@	libscipvm_la-sci_pvm_exit.lo
+@PVM_FALSE@am_libscipvm_la_OBJECTS = $(am__objects_1)
 @PVM_TRUE@am_libscipvm_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscipvm_la_OBJECTS = $(am_libscipvm_la_OBJECTS)
 libscipvm_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libscipvm_la_CFLAGS) \
 	$(CFLAGS) $(libscipvm_la_LDFLAGS) $(LDFLAGS) -o $@
+@PVM_FALSE@am_libscipvm_la_rpath = -rpath $(pkglibdir)
 @PVM_TRUE@am_libscipvm_la_rpath = -rpath $(pkglibdir)
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
@@ -331,6 +345,7 @@ target_alias = @target_alias@
 tcldir = @tcldir@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
+@PVM_FALSE@PVM_C_SOURCES = src/nopvm/nopvm.c 
 @PVM_TRUE@PVM_C_SOURCES = src/c/pvm_proc_ctrl.c \
 @PVM_TRUE@src/c/sci_tools.c \
 @PVM_TRUE@src/c/pvm_recv.c \
@@ -338,7 +353,8 @@ top_srcdir = @top_srcdir@
 @PVM_TRUE@src/c/varpack.c \
 @PVM_TRUE@src/c/pvm_grp.c \
 @PVM_TRUE@src/c/pvm_send.c \
-@PVM_TRUE@src/c/pvm_info.c
+@PVM_TRUE@src/c/pvm_info.c \
+@PVM_TRUE@src/c/with_pvm.c
 
 @PVM_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/sci_pvm_get_timer.c \
 @PVM_TRUE@sci_gateway/c/sci_pvm_gettid.c \
@@ -376,13 +392,19 @@ top_srcdir = @top_srcdir@
 @PVM_TRUE@sci_gateway/c/sci_pvm_exit.c
 
 @PVM_TRUE@libscipvm_la_CFLAGS = -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/ -Isrc/c/
+@PVM_FALSE@pkglib_LTLIBRARIES = libscipvm.la
 @PVM_TRUE@pkglib_LTLIBRARIES = libscipvm.la
+@PVM_FALSE@libscipvm_la_SOURCES = $(PVM_C_SOURCES) 
 @PVM_TRUE@libscipvm_la_SOURCES = $(PVM_C_SOURCES) $(GATEWAY_C_SOURCES)
+@PVM_FALSE@libscipvm_la_LIBADD = \
+@PVM_FALSE@	$(top_builddir)/modules/core/libscicore.la
+
 @PVM_TRUE@libscipvm_la_LIBADD = \
 @PVM_TRUE@	$(top_builddir)/modules/core/libscicore.la \
 @PVM_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la
 
 @PVM_TRUE@libscipvm_la_LDFLAGS = $(PVM_LIB)
+@PVM_FALSE@modulename = pvm
 @PVM_TRUE@modulename = pvm
 
 #### pvm : Conf files ####
@@ -390,7 +412,11 @@ top_srcdir = @top_srcdir@
 @PVM_TRUE@libscipvm_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 #### pvm : init scripts #### 
+@PVM_FALSE@libscipvm_la_etcdir = $(mydatadir)/etc
+
+#### pvm : init scripts #### 
 @PVM_TRUE@libscipvm_la_etcdir = $(mydatadir)/etc
+@PVM_FALSE@libscipvm_la_etc_DATA = etc/pvm.quit etc/pvm.start
 @PVM_TRUE@libscipvm_la_etc_DATA = etc/pvm.quit etc/pvm.start
 
 #### pvm : gateway declaration #### 
@@ -409,7 +435,13 @@ top_srcdir = @top_srcdir@
 
 
 # Where all the Scilab stuff is installed (macros, help, ...)
+@PVM_FALSE@mydatadir = $(pkgdatadir)/modules/$(modulename)
+
+# Where all the Scilab stuff is installed (macros, help, ...)
 @PVM_TRUE@mydatadir = $(pkgdatadir)/modules/$(modulename)
+
+#SUFFIXES = .xml .sci .htm
+@PVM_FALSE@SUFFIXES = .sci .java .class .jar
 
 #SUFFIXES = .xml .sci .htm
 @PVM_TRUE@SUFFIXES = .sci .java .class .jar
@@ -423,12 +455,37 @@ top_srcdir = @top_srcdir@
 #######################################################################
 
 # Replace all the .java by .class in JAVAFILES
+@PVM_FALSE@CLASSFILES = $(JAVAFILES:.java=.class)
+
+########################### JAVA ######################################
+#### We had to create those rules because autotools does NOT provide
+#### a kind of mechanism like C or Fortran sources :
+#### libsciboolean_la_SOURCES = plop.c plip.f 
+####
+#### It is why those rules exist.
+#######################################################################
+
+# Replace all the .java by .class in JAVAFILES
 @PVM_TRUE@CLASSFILES = $(JAVAFILES:.java=.class)
 # Create path without src/java and rename .java  by .class (needed by the jar 
 # creation)
+@PVM_FALSE@CLASSFILESRELATIVE = `echo "$(JAVAFILES)"| sed -e 's|src/java/||g'|sed -e 's|\.java|\.class|g'`
+# Create path without src/java and rename .java  by .class (needed by the jar 
+# creation)
 @PVM_TRUE@CLASSFILESRELATIVE = `echo "$(JAVAFILES)"| sed -e 's|src/java/||g'|sed -e 's|\.java|\.class|g'`
+@PVM_FALSE@BUILT_SOURCES = $(CLASSFILES)
 @PVM_TRUE@BUILT_SOURCES = $(CLASSFILES)
+@PVM_FALSE@CLEANFILES = $(CLASSFILES)
 @PVM_TRUE@CLEANFILES = $(CLASSFILES)
+
+########### INSTALL DOCUMENTATION ###################
+# Install HTML files into the right target
+# We do not use the automake mechanism (libxxxx_la_help_fr_DATA) because
+# automake needs the html files to be present which is not the case when
+# we are building Scilab
+
+# Where it should be installed
+@PVM_FALSE@pkgdocdir = $(mydatadir)
 
 ########### INSTALL DOCUMENTATION ###################
 # Install HTML files into the right target
@@ -439,36 +496,61 @@ top_srcdir = @top_srcdir@
 # Where it should be installed
 @PVM_TRUE@pkgdocdir = $(mydatadir)
 # Which directories we have to install
+@PVM_FALSE@DOCDIRS = help/fr_FR help/en_US
+# Which directories we have to install
 @PVM_TRUE@DOCDIRS = help/fr_FR help/en_US
 # What is the mask of the help output
+@PVM_FALSE@DOCMASK = *.htm
+# What is the mask of the help output
 @PVM_TRUE@DOCMASK = *.htm
+# What is the mask of the help source
+@PVM_FALSE@DOCMASKXML = *.xml
 # What is the mask of the help source
 @PVM_TRUE@DOCMASKXML = *.xml
 
 ########### INSTALL DATA ###################
 # Install macros
 # Where it should be installed
+@PVM_FALSE@pkgmacrosdir = $(mydatadir)
+
+########### INSTALL DATA ###################
+# Install macros
+# Where it should be installed
 @PVM_TRUE@pkgmacrosdir = $(mydatadir)
+# Which directory we process
+@PVM_FALSE@MACRODIRS = macros/
 # Which directory we process
 @PVM_TRUE@MACRODIRS = macros/
 # Mask of the Scilab sources macros
+@PVM_FALSE@MACROMASK = *.sci
+# Mask of the Scilab sources macros
 @PVM_TRUE@MACROMASK = *.sci
+# Mask of the Scilab executable sources macros
+@PVM_FALSE@MACROBUILDMASK = *.sce
 # Mask of the Scilab executable sources macros
 @PVM_TRUE@MACROBUILDMASK = *.sce
 # Mask of the Scilab compiled macros
+@PVM_FALSE@MACROBINMASK = *.bin
+# Mask of the Scilab compiled macros
 @PVM_TRUE@MACROBINMASK = *.bin
+# List of the function of a module
+@PVM_FALSE@FUNCTION_NAMES = macros/names
 # List of the function of a module
 @PVM_TRUE@FUNCTION_NAMES = macros/names
 # Localisation directory name
+@PVM_FALSE@LOCALISATIONDIRS = languages/fr_FR/ languages/en_US/
+# Localisation directory name
 @PVM_TRUE@LOCALISATIONDIRS = languages/fr_FR/ languages/en_US/
+# List of the localisation (languages) files
+@PVM_FALSE@LOCALISATIONFILES = errors.xml menus.xml messages.xml
 # List of the localisation (languages) files
 @PVM_TRUE@LOCALISATIONFILES = errors.xml menus.xml messages.xml
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
 .SUFFIXES:
-.SUFFIXES: .sci .java .class .jar .bin .c .lo .o .obj
-$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
+.SUFFIXES: .sci .java .class .jar .sci .java .class .jar .bin .c .lo .o .obj
+$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -534,6 +616,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscipvm_la-gw_pvm.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscipvm_la-nopvm.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscipvm_la-pvm_grp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscipvm_la-pvm_info.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscipvm_la-pvm_proc_ctrl.Plo@am__quote@
@@ -575,6 +658,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscipvm_la-sci_tools.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscipvm_la-scipvmf77.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscipvm_la-varpack.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscipvm_la-with_pvm.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -596,6 +680,13 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
+
+libscipvm_la-nopvm.lo: src/nopvm/nopvm.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscipvm_la_CFLAGS) $(CFLAGS) -MT libscipvm_la-nopvm.lo -MD -MP -MF $(DEPDIR)/libscipvm_la-nopvm.Tpo -c -o libscipvm_la-nopvm.lo `test -f 'src/nopvm/nopvm.c' || echo '$(srcdir)/'`src/nopvm/nopvm.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscipvm_la-nopvm.Tpo $(DEPDIR)/libscipvm_la-nopvm.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/nopvm/nopvm.c' object='libscipvm_la-nopvm.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscipvm_la_CFLAGS) $(CFLAGS) -c -o libscipvm_la-nopvm.lo `test -f 'src/nopvm/nopvm.c' || echo '$(srcdir)/'`src/nopvm/nopvm.c
 
 libscipvm_la-pvm_proc_ctrl.lo: src/c/pvm_proc_ctrl.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscipvm_la_CFLAGS) $(CFLAGS) -MT libscipvm_la-pvm_proc_ctrl.lo -MD -MP -MF $(DEPDIR)/libscipvm_la-pvm_proc_ctrl.Tpo -c -o libscipvm_la-pvm_proc_ctrl.lo `test -f 'src/c/pvm_proc_ctrl.c' || echo '$(srcdir)/'`src/c/pvm_proc_ctrl.c
@@ -652,6 +743,13 @@ libscipvm_la-pvm_info.lo: src/c/pvm_info.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/pvm_info.c' object='libscipvm_la-pvm_info.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscipvm_la_CFLAGS) $(CFLAGS) -c -o libscipvm_la-pvm_info.lo `test -f 'src/c/pvm_info.c' || echo '$(srcdir)/'`src/c/pvm_info.c
+
+libscipvm_la-with_pvm.lo: src/c/with_pvm.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscipvm_la_CFLAGS) $(CFLAGS) -MT libscipvm_la-with_pvm.lo -MD -MP -MF $(DEPDIR)/libscipvm_la-with_pvm.Tpo -c -o libscipvm_la-with_pvm.lo `test -f 'src/c/with_pvm.c' || echo '$(srcdir)/'`src/c/with_pvm.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscipvm_la-with_pvm.Tpo $(DEPDIR)/libscipvm_la-with_pvm.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/with_pvm.c' object='libscipvm_la-with_pvm.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscipvm_la_CFLAGS) $(CFLAGS) -c -o libscipvm_la-with_pvm.lo `test -f 'src/c/with_pvm.c' || echo '$(srcdir)/'`src/c/with_pvm.c
 
 libscipvm_la-sci_pvm_get_timer.lo: sci_gateway/c/sci_pvm_get_timer.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscipvm_la_CFLAGS) $(CFLAGS) -MT libscipvm_la-sci_pvm_get_timer.lo -MD -MP -MF $(DEPDIR)/libscipvm_la-sci_pvm_get_timer.Tpo -c -o libscipvm_la-sci_pvm_get_timer.lo `test -f 'sci_gateway/c/sci_pvm_get_timer.c' || echo '$(srcdir)/'`sci_gateway/c/sci_pvm_get_timer.c
@@ -1091,9 +1189,6 @@ maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
 	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
-@PVM_FALSE@install-data-local:
-@PVM_FALSE@install-html-local:
-@PVM_FALSE@clean-local:
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
@@ -1301,7 +1396,115 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_TRUE@	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
 @PVM_TRUE@	$(top_builddir)/bin/scilab -nb -nwni -f $(abs_srcdir)/macros/buildmacros.sce 	)
 
-@PVM_FALSE@		echo "PVM not activated. Skip this module."
+# Compilation of Java
+@PVM_FALSE@%.class:%.java
+@PVM_FALSE@	@echo; \
+@PVM_FALSE@	echo "Compiling Java source :" $<
+@PVM_FALSE@	$(JAVAC) -classpath "$(CLASSPATH):$(JAVA_CLASSPATH)" $(JAVAC_FLAGS) $<
+
+# creation of the jar
+@PVM_FALSE@%.jar: $(CLASSFILES)
+@PVM_FALSE@	@(echo; \
+@PVM_FALSE@	echo "Creation of the jar archive :"; \
+@PVM_FALSE@	cd $(CLASSPATH); \
+@PVM_FALSE@	$(JAR) cvf ../../$(JARFILE) $(CLASSFILESRELATIVE)	)
+
+################ MACROS ######################"
+# Rule to build a macro
+@PVM_FALSE@.sci.bin:
+@PVM_FALSE@	-@( if test ! -x $(top_builddir)/scilab-bin; then \
+@PVM_FALSE@	echo "Error : Cannot build $< : Scilab has not been build"; \
+@PVM_FALSE@	else \
+@PVM_FALSE@	echo "Creating $@"; \
+@PVM_FALSE@	$(top_builddir)/bin/scilab -ns -nwni -e "exec('$(abs_srcdir)/$<');save('$(abs_srcdir)/$@');exit;"; \
+@PVM_FALSE@	fi )
+
+@PVM_FALSE@macrossly:
+@PVM_FALSE@	@( if test ! -x $(top_builddir)/scilab-bin; then \
+@PVM_FALSE@	echo "Error : Cannot build $< : Scilab has not been build"; \
+@PVM_FALSE@	else \
+@PVM_FALSE@	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
+@PVM_FALSE@	SCI=`cd $(top_builddir); pwd;`; export SCI; \
+@PVM_FALSE@	echo $$SCI/modules/functions/macros/genlib.bin; \
+@PVM_FALSE@	if test ! -f $$SCI/modules/functions/macros/genlib.bin; then \
+@PVM_FALSE@	(cd $$SCI; $$SCI/scilab-bin -ns -nwni -f $$SCI/modules/functions/scripts/buildmacros/buildmacros.sce;) \
+@PVM_FALSE@	fi; \
+@PVM_FALSE@	echo $(top_builddir)/scilab-bin -ns -nwni -f macros/buildmacros.sce; \
+@PVM_FALSE@	$(top_builddir)/scilab-bin -nwni -f macros/buildmacros.sce; \
+@PVM_FALSE@	fi )
+@PVM_FALSE@install-html-local:
+@PVM_FALSE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
+@PVM_FALSE@	@for dir in $(DOCDIRS) ; do \
+@PVM_FALSE@	 if test -d $$dir; then \
+@PVM_FALSE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+@PVM_FALSE@		if ls -lLd $(srcdir)/$$dir/$(DOCMASK) >/dev/null 2>&1; then \
+@PVM_FALSE@		  for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
+@PVM_FALSE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+@PVM_FALSE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+@PVM_FALSE@		  done ; \
+@PVM_FALSE@		fi; \
+@PVM_FALSE@	 fi; \
+@PVM_FALSE@	done
+# If the user wants the help sources to be installed
+@INSTALL_HELP_XML_TRUE@@PVM_FALSE@	@for dir in $(DOCDIRS) ; do \
+@INSTALL_HELP_XML_TRUE@@PVM_FALSE@	 if test -d $$dir; then \
+@INSTALL_HELP_XML_TRUE@@PVM_FALSE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+@INSTALL_HELP_XML_TRUE@@PVM_FALSE@		if ls -lLd $(srcdir)/$$dir/$(DOCMASKXML) >/dev/null 2>&1; then \
+@INSTALL_HELP_XML_TRUE@@PVM_FALSE@		  for file in $(srcdir)/$$dir/$(DOCMASKXML) ; do \
+@INSTALL_HELP_XML_TRUE@@PVM_FALSE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+@INSTALL_HELP_XML_TRUE@@PVM_FALSE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+@INSTALL_HELP_XML_TRUE@@PVM_FALSE@		  done ; \
+@INSTALL_HELP_XML_TRUE@@PVM_FALSE@		fi; \
+@INSTALL_HELP_XML_TRUE@@PVM_FALSE@	 fi; \
+@INSTALL_HELP_XML_TRUE@@PVM_FALSE@	done
+@PVM_FALSE@install-data-local:
+@PVM_FALSE@	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)
+@PVM_FALSE@	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS)
+@PVM_FALSE@	@if test -f $(FUNCTION_NAMES); then \
+@PVM_FALSE@		echo "$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/"; \
+@PVM_FALSE@		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
+@PVM_FALSE@	fi
+# Install the macros
+@PVM_FALSE@	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
+@PVM_FALSE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
+@PVM_FALSE@		if test -d $(srcdir)/$$dir/; then \
+@PVM_FALSE@		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/lib 2>/dev/null`; do \
+@PVM_FALSE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
+@PVM_FALSE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
+@PVM_FALSE@		  done; \
+@PVM_FALSE@		fi; \
+@PVM_FALSE@	done
+# Install the localisation files
+@PVM_FALSE@	@for dir in $(LOCALISATIONDIRS) ; do \
+@PVM_FALSE@	 if test -d $$dir; then \
+@PVM_FALSE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+@PVM_FALSE@		  for file in $(LOCALISATIONFILES) ; do \
+@PVM_FALSE@		    echo "$(INSTALL_DATA) $$dir/$$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+@PVM_FALSE@	    	$(INSTALL_DATA) "$$dir/$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+@PVM_FALSE@		  done ; \
+@PVM_FALSE@	 fi; \
+@PVM_FALSE@	done
+
+########### CLEAN ###################
+# Clean macros and help (generated automatically by Scilab)
+@PVM_FALSE@clean-local:
+# Removes macros (*.bin generated from .sci)
+@PVM_FALSE@	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
+@PVM_FALSE@		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \
+@PVM_FALSE@		rm -f $(srcdir)/$$dir/$(MACROBINMASK); \
+@PVM_FALSE@	done
+# Removes documentation (*.htm generated from .xml) 
+@PVM_FALSE@	@for dir in $(DOCDIRS) ; do \
+@PVM_FALSE@		 if test -d $$dir; then \
+@PVM_FALSE@			echo "rm -f $(srcdir)/$$dir/$(DOCMASK)"; \
+@PVM_FALSE@			rm -f $(srcdir)/$$dir/$(DOCMASK); \
+@PVM_FALSE@		fi; \
+@PVM_FALSE@	done
+
+@PVM_FALSE@macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODIRS)/$(MACROMASK)
+@PVM_FALSE@	-@( \
+@PVM_FALSE@	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
+@PVM_FALSE@	$(top_builddir)/bin/scilab -nb -nwni -f $(abs_srcdir)/macros/buildmacros.sce 	)
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
