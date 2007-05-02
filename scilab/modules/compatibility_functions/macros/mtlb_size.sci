@@ -9,8 +9,8 @@ varargout=list()
 
 // d=size(X,dim)
 if rhs==2 then
-  if dim<size(size(X),2) then
-    varargout=size(X,dim)
+  if dim<=size(size(X),2) then
+    varargout(1)=size(X,dim)
   else
     varargout(1)=1
   end
