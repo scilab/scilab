@@ -51,15 +51,9 @@ development_tools \
 compatibility_functions \
 helptools \
 scicos \
-fftw
-
-if JAVA
-SUBDIRS += jvm
-endif
-
-if PVM
-SUBDIRS += pvm
-endif
+fftw \
+pvm \
+jvm
 
 SUBDIRS += .
 
