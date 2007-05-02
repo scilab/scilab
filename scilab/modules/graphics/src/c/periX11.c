@@ -43,13 +43,6 @@
 
 #include "prompt.h"
 
-#ifdef WITH_TK
-#include <tcl.h>
-#include <tk.h>
-
-extern Tcl_Interp *TCLinterp;
-extern Tk_Window TKmainWindow;
-#endif
 
 double t=0.; /*for xclick_any */
 extern void AddMenu  __PARAMS((integer *win_num, char *button_name, char **entries, integer *ne, integer *typ, char *fname, integer *ierr));
@@ -73,9 +66,9 @@ extern int IsCloseSGWindow __PARAMS((XEvent *));
 extern void SciViewportMove __PARAMS((struct BCG *,int,int));
 extern void SciViewportGet __PARAMS((struct BCG *,int *,int*));
 extern void SciViewportClipGetSize __PARAMS((struct BCG *,int *,int*));
-#ifdef WITH_TK
+
 extern void flushTKEvents(void);
-#endif
+
 extern void refreshMenus( struct BCG * ScilabGC ) ;
 
 
@@ -3472,7 +3465,6 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4, integ
 #ifdef WITH_TK
   integer ne=11, menutyp=2, ierr;
   char *EditMenusE[]={"Select figure as current","Redraw figure","Erase figure","Copy object","Paste object","Move object","Delete object","Figure properties","Current axes properties","Start entity picker","Stop entity picker"};
-  
 
   integer ni=/*7*/6;
   char *InsertMenusE[]={"Line","Polyline","Arrow",/*"Double Arrow",*/"Text","Rectangle","Circle"};
@@ -3519,23 +3511,6 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4, integ
       ScilabXgc= NewXgc;
     }
 
-#ifdef WITH_TK
-  if (IsTKGraphicalMode()) {
-    Tk_Window  win;
-
-    /* TKmainWindow est initialise dans tclsci.c  Tk_CreateMainWindow */
-    if (TKmainWindow != (Tk_Window)0) {
-		win = Tk_NameToWindow(TCLinterp, string, (Tk_Window) TKmainWindow);
-		if (win != (Tk_Window)0) {
-			ScilabXgc->CWindow=Tk_WindowId(win);
-			ScilabXgc->CBGWindow=(Window)0;
-			ScilabXgc->popup=(Widget)0;
-			
-		}
-    }
-  }
-  else
-#endif
     CreatePopupWindow(WinNum,toplevel,ScilabXgc,&DefaultForeground,&DefaultBackground) ;
 
 
@@ -3575,15 +3550,12 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4, integ
   EntryCounter=Max(EntryCounter,WinNum);
   EntryCounter++;
 #ifdef WITH_TK
-  if (!IsTKGraphicalMode())
-  {
     /* add the Edit and Insert menus */
     AddMenu(&WinNum,"Edit", EditMenusE, &ne, &menutyp, "ged", &ierr);
     AddMenu(&WinNum,"Insert", InsertMenusE, &ni, &menutyp, "ged_insert", &ierr);
 
     /* put them in grey in old style */
     refreshMenus( ScilabXgc ) ;  
-  }
 #endif
   XSync(dpy,0);
   
@@ -3758,22 +3730,6 @@ Window Find_BG_Window(integer i)
 
 
 #define STR2 "objfigure1"
-/*** XXXXXXXXXX
-extern Display *XTKdisplay;
-
-Window Find_TK_Window(i)
-     integer i;
-{
-  char wname[sizeof(STR2)+4];
-  Window w;
-  sprintf(wname,STR2,(int) i);
-  DbugInfo1("Searching %s\n",wname);
-  w=Window_With_Name(RootWindow(dpy,DefaultScreen(dpy)),wname,0,
-			  ResList[1],ResList[2],ResList[2]);
-  dpy = XTKdisplay;
-  return(w);
-}
-**/
 
   /*
    * make sure that the window is valid

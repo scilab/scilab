@@ -107,11 +107,9 @@ libscigui_la_SOURCES = $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_S
 
 libscigui_la_LIBADD = \
 	$(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/modules/string/libscistring.la
+	$(top_builddir)/modules/string/libscistring.la \
+        $(top_builddir)/modules/tclsci/libscitclsci.la
 
-if TCLTK
-libscigui_la_LIBADD += $(top_builddir)/modules/tclsci/libscitclsci.la
-endif
 
 # Cyclic dep
 #	$(top_builddir)/modules/graphics/libscigraphics.la

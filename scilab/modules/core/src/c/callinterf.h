@@ -51,13 +51,7 @@
 /* 38 */						#include "../../../randlib/includes/gw_randlib.h"
 /* 39 */						#include "../../../special_functions/includes/gw_special_functions2.h"
 
-#if defined(WITH_TK) || defined(_MSC_VER)
 /* 40 */						#include "../../../tclsci/includes/gw_tclsci.h"
-#define TCLINTERF C2F(gw_tclsci)
-#else 
-int C2F(no_gw_tclsci)(void);
-#define TCLINTERF C2F(no_gw_tclsci)
-#endif
 
 /* 41 */						#include "../../../data_structures/includes/gw_data_structures2.h"
 
@@ -140,20 +134,20 @@ static OpTab Interfaces[] = {
 	/* 30  */ {C2F(gw_differential_equations4)},
 	/* 31  */ {C2F(gw_differential_equations5)},
 	/* 32  */ {C2F(gw_differential_equations6)},
-    /* 33  */ {C2F(gw_user2)}, /* free position may be used */
+        /* 33  */ {C2F(gw_user2)}, /* free position may be used */
 	/* 34  */ {C2F(gw_fileio)},
 	/* 46  */ {C2F(gw_arnoldi)},
 	/* 36  */ {C2F(gw_special_functions1)},
 	/* 37  */ {C2F(gw_statistics)},
-    /* 38  */ {C2F(gw_randlib)},
-    /* 39  */ {C2F(gw_special_functions2)},
-    /* 40  */ {TCLINTERF},
+        /* 38  */ {C2F(gw_randlib)},
+        /* 39  */ {C2F(gw_special_functions2)},
+        /* 40  */ {C2F(gw_tclsci)},
 	/* 41  */ {C2F(gwdatastructures2)},
 	/* 42  */ {PVMINTERF},
-    /* 43  */ {C2F(gw_integer)},
-    /* 44  */ {C2F(gw_linear_algebra2)},
-    /* 45  */ {SCICOSINTERF1},  
-    /* 46  */ {SCICOSINTERF2},
+        /* 43  */ {C2F(gw_integer)},
+        /* 44  */ {C2F(gw_linear_algebra2)},
+        /* 45  */ {SCICOSINTERF1},  
+        /* 46  */ {SCICOSINTERF2},
 	/* 47  */ {C2F(gw_wintools)},
 	/* 48  */ {C2F(gw_time)},
 	/* 49  */ {C2F(gw_sound)},

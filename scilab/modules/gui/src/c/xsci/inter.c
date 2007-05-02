@@ -14,9 +14,8 @@
 #include "All-extern-x.h"
 #include "All-extern.h"
 #include "xscion.h"
-#ifdef WITH_TK
 #include "TclEvents.h" /* flushTKEvents() */
-#endif
+
 #include "dynamic_menus.h" /* ismenu() */
 
 #include <X11/Xlib.h>
@@ -47,9 +46,15 @@
 
 #include <stdlib.h>
 
+/*
 #ifdef WITH_TK
 #include "TCL_Global.h"
 #endif
+*/
+
+
+extern int XTKsocket;
+
 
 #include "Os_specific.h" 
 
@@ -187,9 +192,9 @@ static void basic_scilab_mask( Display **dpy)
   FD_ZERO(&Select_mask_ref);
   FD_SET(fd_in , &Select_mask_ref);
   FD_SET(Xsocket, &Select_mask_ref);
-#ifdef WITH_TK 
+
   if ( XTKsocket != 0 ) FD_SET(XTKsocket, &Select_mask_ref);
-#endif 
+
   FD_ZERO(&Write_mask_ref);
   /* the two next FD_SET causes select not to wait 
    * 
@@ -200,9 +205,9 @@ static void basic_scilab_mask( Display **dpy)
   inter_max_plus1 = Max(fd_in,Xsocket);      
   inter_max_plus1 = Max(fd_out,inter_max_plus1);
   inter_max_plus1 = Max(fd_err,inter_max_plus1);
-#ifdef WITH_TK 
+
   inter_max_plus1 = Max(XTKsocket,inter_max_plus1);
-#endif 
+
   inter_max_plus1++;
 }  
 
@@ -234,9 +239,9 @@ int Xorgetchar(int interrupt)
     XFlush(the_dpy); /* always flush writes before waiting */
     fflush(stdout); 
     fflush(stderr); 
-#ifdef WITH_TK 
+
     flushTKEvents();
-#endif 
+
     /* Initialize masks  */
     select_mask = Select_mask_ref;
     write_mask  = Write_mask_ref;
@@ -261,11 +266,11 @@ int Xorgetchar(int interrupt)
       fflush(stderr); 
     }
 
-#ifdef WITH_TK 
+
     if ( XTKsocket != 0 && FD_ISSET(XTKsocket,&select_mask )) { 
       flushTKEvents();
     }
-#endif 
+
 
     /* if there's something to read */
     if (FD_ISSET(fd_in,&select_mask) || IsClick_menu()) 
@@ -314,9 +319,9 @@ int C2F(sxevents)()
       XEvent event;
       if (BasicScilab) return(0);
       if ( the_dpy == (Display *) NULL)  return(0);
-#ifdef WITH_TK 
+
       if ( XTKsocket != 0 ) flushTKEvents();
-#endif 
+
       if (!XPending (the_dpy))
 	/* protect against events/errors being swallowed by us or Xlib */
 	return(0);

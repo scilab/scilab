@@ -303,6 +303,30 @@ demos/tk/vscale
 include $(top_srcdir)/Makefile.incl.am
 
 else
-		echo "TCL/TK not activated. Skip this module."
+
+TCLSCI_C_SOURCES = src/notclsci/notclsci.c
+pkglib_LTLIBRARIES = libscitclsci.la
+
+libscitclsci_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
+
+libscitclsci_la_SOURCES = $(TCLSCI_C_SOURCES)
+
+libscitclsci_la_LIBADD = \
+	$(top_builddir)/modules/intersci/libsciintersci.la \
+	$(top_builddir)/modules/core/libscicore.la \
+	$(top_builddir)/libs/MALLOC/libscimalloc.la
+
+#### Target ######
+modulename=tclsci
+
+
+#### tclsci : Conf files ####
+libscitclsci_la_rootdir = $(mydatadir)
+
+#### tclsci : init scripts #### 
+libscitclsci_la_etcdir = $(mydatadir)/etc
+libscitclsci_la_etc_DATA = etc/tclsci.quit etc/tclsci.start
+
+include $(top_srcdir)/Makefile.incl.am
 endif
 

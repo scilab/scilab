@@ -433,22 +433,7 @@ typedef int BOOL ;
 #endif
 #define FALSE 0
 
-/*  params.h */
-#ifdef __STDC__
-#ifndef  __PARAMS
-#define  __PARAMS(paramlist)		paramlist
-#endif
-#ifndef  _PARAMS
-#define  _PARAMS(paramlist)		paramlist
-#endif
-#else
-#ifndef  __PARAMS
-#define  __PARAMS(paramlist)		()
-#endif
-#ifndef  _PARAMS
-#define  _PARAMS(paramlist)		()
-#endif
-#endif
+#include "PARAMS.h"
 
 #endif /* MACHINE_H  */
 

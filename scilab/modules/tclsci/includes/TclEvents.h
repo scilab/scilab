@@ -5,8 +5,6 @@
 #ifndef __TCLEVENTS__
 #define __TCLEVENTS__
 
-#include "TCL_Global.h"
-
 int tcl_check_one_event(void);
 void flushTKEvents(void);
 int TclEventsLoop(void);

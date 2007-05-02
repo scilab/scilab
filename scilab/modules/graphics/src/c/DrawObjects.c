@@ -60,9 +60,7 @@
 
 #include "MALLOC.h" /* MALLOC */
 
-#ifdef WITH_TK
 #include "../../../tclsci/includes/GedManagement.h"
-#endif
 
 #ifdef _MSC_VER
 extern HDC TryToGetDC(HWND hWnd);

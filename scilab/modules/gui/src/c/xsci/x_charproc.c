@@ -62,11 +62,11 @@
 #include <stdlib.h>
 
 
-#ifdef WITH_TK
-#include "TCL_Global.h"
-#include "TclEvents.h"
-#endif
 
+
+#include "TclEvents.h"
+
+extern int XTKsocket;
 
 #include "All-extern-x.h"
 #include "All-extern.h"
@@ -1264,9 +1264,9 @@ static int ctrl_action(int i)
 void xevents1()
 {
   int bcnt1 = bcnt;
-#ifdef WITH_TK
+
   flushTKEvents();
-#endif
+
   /* If queue is empty we reinitialize bptr */
   if ( bcnt1 == 0) bptr=buffer ;
   x_events();
@@ -1281,9 +1281,9 @@ void xevents1()
 	}
     }
   
-#ifdef WITH_TK
+
   flushTKEvents();
-#endif
+
   
 }
 
@@ -1345,25 +1345,27 @@ int in_put(int interrupt)
 	  HideCursor();
     }
     XFlush(screen->display);	/* always flush writes before waiting */
-#ifdef WITH_TK
+
    flushTKEvents(); 	/* always flush writes before waiting */
-#endif
+
 
     /* Update the masks and, unless X events are already in the queue, wait
      * for I/O to be possible. */
 
-#ifdef WITH_TK
+
     /* select_mask = X_mask; */
     /* does not work everywhere : FD_SET(XTKsocket,&select_mask); */
     select_mask = X_mask | (1 << XTKsocket);
     select_timeout.tv_sec = 0;
     select_timeout.tv_usec = 100;
     max_plus1 = (max_plus1 < (XTKsocket+1)) ? (XTKsocket+1): max_plus1;
+/*
 #else 
     select_mask = X_mask;		
     select_timeout.tv_sec = 1;
     select_timeout.tv_usec = 0;
 #endif
+*/
     i = select(max_plus1,(fd_set *)&select_mask,(fd_set *) NULL,(fd_set *) NULL, &select_timeout);
     if (i < 0)
       {
@@ -1372,9 +1374,9 @@ int in_put(int interrupt)
 	continue;
       }
 
-#ifdef WITH_TK
+
     if ( select_mask & (1 << XTKsocket)) flushTKEvents();
-#endif
+
 
     /* if there are X events already in our queue, it counts as being
      * readable */

@@ -11,9 +11,7 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include "TerminateCore.h"
 #include "../../../graphics/includes/TerminateGraphics.h"
-#ifdef WITH_TK
 #include "../../../tclsci/includes/TerminateTclTk.h"
-#endif
 #include "../../../gui/includes/TerminateGui.h"
 #include "../../../localization/includes/TerminateLocalization.h"
 #include "../../../jvm/includes/TerminateJVM.h"
@@ -29,9 +27,7 @@ int ExitScilab(void)
 
 	TerminateGUI();
   
-	#ifdef WITH_TK
 	TerminateTclTk();
-	#endif
 
 	TerminateLocalization();
 

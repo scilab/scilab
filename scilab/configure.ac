@@ -210,16 +210,6 @@ if test "x${prefix}" = "xNONE"; then
   prefix="${ac_default_prefix}"
 fi
 
-# 
-# change scidir for mingw 
-#   *-*-cygwin* |   *-*-mingw32*)
-
-case "$host" in
-   *-*-mingw32*)
-    SCIDIR=`echo $SCIDIR | sed -e 's+/cygdrive/\([[a-zA-Z]]*\)/+\1:/+g' `
-    ;;
-esac
-
 ###############################
 ## get the version 
 ###############################
@@ -409,17 +399,6 @@ if test "$CC" = "gcc"; then
     CFLAGS="$CFLAGS -Dnetbsd"
 
 	;;
-  *-*-cygwin* )
-     if test "$enable_debug_C" = yes; then
-	 	 CFLAGS="$CFLAGS -mieee-fp "
-	 else
-	 	 CFLAGS="-O2 -DNDEBUG -mieee-fp "
-	 fi
-	;;
-   *-*-mingw32*)
-    CFLAGS="$CFLAGS -mno-cygwin -mieee-fp -fwritable-strings "
-	;;
-
   *-*-darwin*)
      if test "$enable_debug_C" = yes; then
 	      CFLAGS=" $CFLAGS -I/sw/include -L/sw/lib"
@@ -533,13 +512,6 @@ fi
 #XXTXEXT="-lXt -lXext"
 #XX11="-lX11"
 
-#  case "$host" in
-#      *-*-mingw32*)
-#      XXTXEXT=
-#      XX11=
-#    ;;
-#  esac
-  
 ###########################
 ## test for JAVA compiler
 ###########################
@@ -850,23 +822,13 @@ if test "$with_tk" != no; then
 	fi
 	
 	TKBASE=
-	case "$host" in
-	*-*-mingw32*)
-		TKBASE=$SCIDIR
-		TK_INC_PATH=`echo $TK_INC_PATH | sed -e "s+$SCIDIR+\\$(TKBASE)+g" `
-		TCL_INC_PATH=`echo $TCL_INC_PATH | sed -e "s+$SCIDIR+\\$(TKBASE)+g" `
-		TCLTK_LIBS=`echo $TCLTK_LIBS | sed -e "s+$SCIDIR+\\$(TKBASE)+g" `
-	;;
-	esac
 	## voir quoi faire maintenant avec le SONAME qui se barre
 	GETLIBTK=libtk$TK_MAJOR_VERSION.$TK_MINOR_VERSION.so
-	
+
 	case "$host" in
 		*-*-darwin*)
 		GETLIBTK=/sw/lib/libtk$TK_MAJOR_VERSION.$TK_MINOR_VERSION.dylib
 		;;
-		*-*-cygwin* |   *-*-mingw32*)
-		GETLIBTK=tk$TK_MAJOR_VERSION$TK_MINOR_VERSION.dll
 	esac 
 	AC_SUBST(TCLTK_LIBS)
 	AC_SUBST(TCL_INC_PATH)
@@ -954,7 +916,7 @@ AC_CHECK_UNDERSCORE_FORTRAN()
 #########################
 
 AC_PROG_LIBTOOL
-LT_INIT([shared static dlopen win32-dll])
+LT_INIT([shared static dlopen])
 
 
 # Check to see if building shared libraries
@@ -1030,29 +992,13 @@ typedef int BOOL ;
 #endif
 #define FALSE 0
 
-/*  params.h */
-#ifdef __STDC__
-#ifndef  __PARAMS
-#define  __PARAMS(paramlist)		paramlist
-#endif
-#ifndef  _PARAMS
-#define  _PARAMS(paramlist)		paramlist
-#endif
-#else
-#ifndef  __PARAMS
-#define  __PARAMS(paramlist)		()
-#endif
-#ifndef  _PARAMS
-#define  _PARAMS(paramlist)		()
-#endif
-#endif
+#include "PARAMS.h"
 
 #endif /* MACHINE_H  */
 ])
 
 
 AM_CONDITIONAL(GUI_X11, test "$GUI" = "X11")
-AM_CONDITIONAL(GUI_WIN32, test "$GUI" = "WIN32")
 AM_CONDITIONAL(TERM_ZTERM, test "$TERM_NAME" = "zterm")
 AM_CONDITIONAL(TERM_VTE, test "$GUI" = "vte")
 

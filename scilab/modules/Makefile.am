@@ -113,11 +113,9 @@ libscilab_la_LIBADD = \
 	$(top_builddir)/modules/sound/libscisound.la \
 	$(top_builddir)/modules/statistics/libscistatistics.la \
 	$(top_builddir)/modules/time/libscitime.la \
-	$(top_builddir)/modules/wintools/libsciwintools.la
+	$(top_builddir)/modules/wintools/libsciwintools.la \
+        $(top_builddir)/modules/tclsci/libscitclsci.la
 
-if TCLTK
-libscilab_la_LIBADD += $(top_builddir)/modules/tclsci/libscitclsci.la
-endif
 
 if STRINGV2
 libscilab_la_LIBADD += $(top_builddir)/modules/string_V2/libscistring.la

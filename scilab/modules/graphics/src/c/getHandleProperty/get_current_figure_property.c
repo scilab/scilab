@@ -14,9 +14,9 @@
 #include "Xcall1.h"
 #include "CurrentObjectsManagement.h"
 
-#ifdef WITH_TK
+
 extern int GetTclCurrentFigure( void ) ;
-#endif
+
 
 /*-----------------------------------------------------------------------------------*/
 int get_current_figure_property( sciPointObj * pobj )
@@ -31,12 +31,7 @@ int get_current_figure_property( sciPointObj * pobj )
   }
   else
   {
-    
-#ifdef WITH_TK
     return sciReturnDouble( (double)GetTclCurrentFigure() ) ;
-#else
-    return sciReturnEmptyMatrix() ;
-#endif
   }
   
 

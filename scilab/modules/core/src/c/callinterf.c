@@ -32,13 +32,6 @@ static void sci_sigint_addinter(int n);
 
 static int c_local_interf = 9999;
 
-int C2F(no_gw_tclsci)(void)
-{
-  message_scilab("core_message_121","tclsci");
-  C2F(error)(&c_local_interf);
-  return 0;
-}
-
 int C2F(NoPvm)(void)
 {
   message_scilab("core_message_121","pvm");

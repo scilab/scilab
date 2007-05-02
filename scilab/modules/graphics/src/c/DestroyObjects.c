@@ -35,9 +35,7 @@
 #include "BuildDrawingObserver.h"
 #include "DrawingBridge.h"
 
-#ifdef WITH_TK
 #include "../../../tclsci/includes/GedManagement.h"
-#endif
 
 #include "MALLOC.h" /* MALLOC */
 
@@ -597,10 +595,10 @@ void DeleteObjs(integer win_num)
       Xgc = (struct BCG *) pFIGURE_FEATURE(figure)->pScilabXgc;
       
       DestroyAllGraphicsSons (figure);
-#ifdef WITH_TK
-            /* close ged to prevent errors when using it */
-            sciDestroyGed( sciGetNum(figure) ) ;
-#endif
+
+      /* close ged to prevent errors when using it */
+      sciDestroyGed( sciGetNum(figure) ) ;
+
       DestroyFigure (figure);
       Xgc->mafigure = (sciPointObj *) NULL;
     }

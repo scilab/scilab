@@ -10,9 +10,8 @@
 
 #include "parse.h"
 
-#ifdef WITH_TK
 #include "../../tclsci/includes/tksynchro.h"
-#endif
+
 
 
 #undef Lstk
@@ -256,15 +255,13 @@ int C2F(parse)()
     }
   }
  L13:
-#ifdef WITH_TK
+
   C2F(tksynchro)(&C2F(recu).paus);
-#endif
 
   C2F(getlin)(&job, &c__1);
 
-#ifdef WITH_TK
   C2F(tksynchro)(&c_n1);
-#endif 
+
 
   if (C2F(com).fin == -3) {
     /*     interrupted line acquisition */
