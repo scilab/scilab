@@ -53,6 +53,7 @@ int C2F(sci_ascii1) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_stripblanks1) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_strsplit1) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_tokens1) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_code2str1) _PARAMS((char *fname,unsigned long fname_len));
 
 
 
