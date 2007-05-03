@@ -33,7 +33,7 @@ libscijvm_la_etc_DATA = etc/jvm.quit etc/jvm.start
 
 #### jvm : gateway declaration #### 
 libscijvm_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libscijvm_la_sci_gateway_DATA = sci_gateway/io_gateway.xml
+libscijvm_la_sci_gateway_DATA = sci_gateway/jvm_gateway.xml
 
 #### jvm : include files ####
 libscijvm_la_includedir=$(pkgincludedir)/jvm
