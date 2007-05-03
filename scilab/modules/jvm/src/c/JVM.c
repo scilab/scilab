@@ -76,6 +76,10 @@ BOOL startJVM(char *SCI_PATH)
 	#endif
 		exit(1);
 #endif
+	jvm_options[0].optionString = "-Djava.compiler=NONE"; /* disable JIT */
+    jvm_options[1].optionString = JAVACLASSPATH;
+	jvm_options[2].optionString = JAVALIBRARYPATH;
+
 	vm_args.options = jvm_options;
 	vm_args.nOptions = 3;
 	vm_args.ignoreUnrecognized = TRUE;
