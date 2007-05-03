@@ -11,16 +11,28 @@
 	#include "JVM_Unix.h"
 #endif
 #include "MALLOC.h"
-#include "getScilabJVM.h"
+#include "getScilabJavaVM.h"
 /*-----------------------------------------------------------------------------------*/ 
 static JavaVM *jvm_SCILAB=NULL;
 /*-----------------------------------------------------------------------------------*/ 
 static char *JAVACLASSPATH=NULL;
 static char *JAVALIBRARYPATH=NULL;
 /*-----------------------------------------------------------------------------------*/ 
-JavaVM *getScilabJVM(void)
+JavaVM *getScilabJavaVM(void)
 {
 	return jvm_SCILAB;
+}
+/*-----------------------------------------------------------------------------------*/ 
+JNIEnv *getScilabJNIEnv(void)
+{
+	JNIEnv *JNIEnv_SCILAB=NULL;
+	jint res=0;
+#ifdef JNI_VERSION_1_6
+	res = (*jvm_SCILAB)->GetEnv(jvm_SCILAB, (void **)&JNIEnv_SCILAB, JNI_VERSION_1_6);
+#elif JNI_VERSION_1_4
+	res = (*jvm_SCILAB)->GetEnv(jvm_SCILAB, (void **)&JNIEnv_SCILAB, JNI_VERSION_1_4);
+#endif
+	return JNIEnv_SCILAB;
 }
 /*-----------------------------------------------------------------------------------*/ 
 BOOL startJVM(char *SCI_PATH)

@@ -234,7 +234,11 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath=".\includes\getScilabJVM.h"
+				RelativePath=".\includes\getScilabJavaVM.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\getScilabJNIEnv.h"
 				>
 			</File>
 			<File
@@ -298,6 +302,10 @@
 		</File>
 		<File
 			RelativePath=".\sci_gateway\jvm_gateway.xml"
+			>
+		</File>
+		<File
+			RelativePath=".\LibScilab_Import.def"
 			>
 		</File>
 		<File
