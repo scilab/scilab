@@ -198,7 +198,8 @@
 
 <entry>
 	<tag>core_error_175</tag>
-	<string>%s : can't alloc more memory.\ntry stacksize('max').</string>
+	<string>%s : can't alloc more memory.
+try stacksize('max').</string>
 </entry>	
 
 <entry>
