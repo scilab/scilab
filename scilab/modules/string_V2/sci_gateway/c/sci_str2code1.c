@@ -1,11 +1,9 @@
 /*------------------------------------------------------------------------*/
-/* File: sci_ascii1.c                                                     */
+/* File: sci_str2code1.c                                                     */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Cong Wu                                                      */
-/* desc : This function convert Scilab string to a vector of ascii code   */
-/*        or vector of ascii code to Scilab strings.                      */
-/*        If  txt  is a matrix of string,  ascii(txt)  is equivalent to   */  
-/*	      ascii(strcat(txt))                                              */
+/* desc : This function return scilab integer codes associated with a 
+          character string                                                */
 /*------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>
@@ -14,13 +12,11 @@
 #include "machine.h"
 #include "stack-c.h"
 #include "MALLOC.h" 
-int numRow;
-int numCol;
 /*-------------------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_str2code1) _PARAMS((char *fname,unsigned long fname_len))
 {
-  char m5[]={'0','1','2','3','4','5','6','7','8','9',
+  char m5[]={'0','1','2','3','4','5','6','7','8','9',   /* The table of the code */
            'a','b','c','d','e','f','g','h','i','j',
            'k','l','m','n','o','p','q','r','s','t',
            'u','v','w','x','y','z','_','#','!','$',
@@ -34,10 +30,9 @@ int C2F(sci_str2code1) _PARAMS((char *fname,unsigned long fname_len))
            '0','0','0','0','0','0','0','0','0','$',
            '0','0','0','"','{','}','0','0','0','`','0','@',
 		   '0'};
-  char **Str,**Str3;
+  char **Str;
   char typ = '*';
-  int x,y,m1,n1,mn,i,l1,l4=0;
-  int *m4;
+  int x,m1,n1,mn,i,l4=0;
   int key=0;
   int values[100];
   int nbValues=0;
@@ -49,7 +44,7 @@ int C2F(sci_str2code1) _PARAMS((char *fname,unsigned long fname_len))
 	  case 10 :
 	  GetRhsVar(1,"S",&m1,&n1,&Str);
 	  mn = m1*n1; 
-	    for (x=0;x<=62;x++)
+	    for (x=0;x<=62;x++)       /* To look up in the table */
 			if (Str[0][0] == m5[x]) 
 	 		{
 				key=1;
@@ -62,26 +57,15 @@ int C2F(sci_str2code1) _PARAMS((char *fname,unsigned long fname_len))
 						key=1;
 						values[nbValues++]=-x;
 					}	   
-			
-		
-			
-	  /*if (key==0) {
-			for (x=0;x<=62;x++) 
-				if (Str[0][0]==m6[x])¡¡{
-					key=1;
-					values[nbValues++]=-x;
-				}
-		}*/
-		CreateVar(Rhs+1,"d",&numRow,&nbValues,&outIndex) ;
+		CreateVar(Rhs+1,"d",&numRow,&nbValues,&outIndex) ;    /*Output*/
 		for ( i = 0 ; i < nbValues ; i++ )
 		{
 			stk(outIndex)[i] = (double)values[i] ;
 		}
 		LhsVar(1) = Rhs+1 ;
 		C2F(putlhsvar)();
-		return 0;
-
   }
+  return 0;
 }
 
 /*-----------------------------------------------------------------------------------*/
