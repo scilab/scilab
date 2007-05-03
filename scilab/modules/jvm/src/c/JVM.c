@@ -10,7 +10,6 @@
 	#include "JVM_Unix.h"
 #endif
 #include "MALLOC.h"
-#include "export_import_library_JVM.h"
 #include "getScilabJVM.h"
 /*-----------------------------------------------------------------------------------*/ 
 static JavaVM *jvm_SCILAB=NULL;
