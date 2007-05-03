@@ -41,7 +41,7 @@ int C2F(sci_code2str1) _PARAMS((char *fname,unsigned long fname_len))
   Rhs = Max(0, Rhs);
   CheckRhs(1,4);
   switch ( GetType(1)) {
-   case sci_matrix :                /*When input vector of integer ascii codes  */
+   case sci_matrix :                
 	   GetRhsVar(1,"i",&m1,&n1,&l1);
 	   m4=istk(l1);
 	   Str3=(char**)MALLOC(sizeof(char*)*(m1*n1));  /*Malloc*/
