@@ -70,6 +70,7 @@
 /* 50 */						#include "../../../localization/includes/gw_localization.h"
 
 /* 51 */						#include "../../../fftw/includes/gw_fftw.h"
+/* 52 */						#include "../../../jvm/includes/gw_jvm.h"
 
 void errjump (int n);
 
@@ -114,25 +115,26 @@ static OpTab Interfaces[] = {
 	/* 30  */ {C2F(gw_differential_equations4)},
 	/* 31  */ {C2F(gw_differential_equations5)},
 	/* 32  */ {C2F(gw_differential_equations6)},
-        /* 33  */ {C2F(gw_user2)}, /* free position may be used */
+	/* 33  */ {C2F(gw_user2)}, /* free position may be used */
 	/* 34  */ {C2F(gw_fileio)},
 	/* 46  */ {C2F(gw_arnoldi)},
 	/* 36  */ {C2F(gw_special_functions1)},
 	/* 37  */ {C2F(gw_statistics)},
-        /* 38  */ {C2F(gw_randlib)},
-        /* 39  */ {C2F(gw_special_functions2)},
-        /* 40  */ {C2F(gw_tclsci)},
+	/* 38  */ {C2F(gw_randlib)},
+	/* 39  */ {C2F(gw_special_functions2)},
+	/* 40  */ {C2F(gw_tclsci)},
 	/* 41  */ {C2F(gwdatastructures2)},
 	/* 42  */ {C2F(gw_pvm)},
-        /* 43  */ {C2F(gw_integer)},
-        /* 44  */ {C2F(gw_linear_algebra2)},
-        /* 45  */ {C2F(gw_scicos)},  
-        /* 46  */ {C2F(gw_cscicos)},
+	/* 43  */ {C2F(gw_integer)},
+	/* 44  */ {C2F(gw_linear_algebra2)},
+	/* 45  */ {C2F(gw_scicos)},  
+	/* 46  */ {C2F(gw_cscicos)},
 	/* 47  */ {C2F(gw_wintools)},
 	/* 48  */ {C2F(gw_time)},
 	/* 49  */ {C2F(gw_sound)},
 	/* 50  */ {C2F(gw_localization)},
-	/* 51  */ {C2F(gw_fftw)}
+	/* 51  */ {C2F(gw_fftw)},
+	/* 52  */ {C2F(gw_jvm)}
 };
 
 

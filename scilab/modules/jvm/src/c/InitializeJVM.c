@@ -8,7 +8,7 @@
 #include "MALLOC.h"
 #include "JVM.h"
 /*-----------------------------------------------------------------------------------*/ 
-IMPORT_EXPORT_LIBJVM_DLL BOOL InitializeJVM(void)
+BOOL InitializeJVM(void)
 {
 	BOOL bOK=FALSE;
 	char *SCIPATH=NULL;

@@ -1,0 +1,9 @@
+LIBRARY    LibScilab.dll
+
+
+EXPORTS
+
+getSCIpath
+putlhsvar_
+intersci_
+com_

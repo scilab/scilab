@@ -5,7 +5,7 @@
 #include "TerminateJVM.h"
 #include "JVM.h"
 /*-----------------------------------------------------------------------------------*/ 
-IMPORT_EXPORT_LIBJVM_DLL BOOL TerminateJVM(void)
+BOOL TerminateJVM(void)
 {
 	BOOL bOK=FALSE;
 

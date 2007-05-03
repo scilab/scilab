@@ -1,9 +1,0 @@
-LIBRARY    SciGuiConsole.dll
-
-
-EXPORTS
-
-Events_Loop_SciGUIConsole
-Initialize_SciGUIConsole_Object
-JVM_Create_SciGUIConsole_Object
-IsEnabled_SciGUIConsole

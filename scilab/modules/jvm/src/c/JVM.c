@@ -18,7 +18,7 @@ static JavaVM *jvm_SCILAB=NULL;
 static char *JAVACLASSPATH=NULL;
 static char *JAVALIBRARYPATH=NULL;
 /*-----------------------------------------------------------------------------------*/ 
-IMPORT_EXPORT_LIBJVM_DLL JavaVM *getScilabJVM(void)
+JavaVM *getScilabJVM(void)
 {
 	return jvm_SCILAB;
 }
@@ -43,21 +43,21 @@ BOOL startJVM(char *SCI_PATH)
 	memset(&vm_args, 0, sizeof(vm_args));
 	SciJNI_GetDefaultJavaVMInitArgs(&vm_args);
 
-	length_JAVACLASSPATH = strlen("-Djava.class.path=%s%s%s%s")+
+	length_JAVACLASSPATH = (int) ( strlen("-Djava.class.path=%s%s%s%s")+
 		strlen(SCI_PATH)+
 		strlen(DEFAULT_SCILAB_CLASSPATH)+
 		strlen(PATH_SEPARATOR)+
-		strlen(USER_CLASSPATH);
+		strlen(USER_CLASSPATH) );
 
 	JAVACLASSPATH=(char*) MALLOC( sizeof(char)*	( length_JAVACLASSPATH +1) );
 	sprintf(JAVACLASSPATH,"-Djava.class.path=%s%s%s%s",SCI_PATH,DEFAULT_SCILAB_CLASSPATH,PATH_SEPARATOR,USER_CLASSPATH);
 
-	length_JAVALIBRARYPATH = strlen("-Djava.library.path=%s%s/lib%s%s%s")+
+	length_JAVALIBRARYPATH = (int)( strlen("-Djava.library.path=%s%s/lib%s%s%s")+
 		strlen(SCI_PATH)+
 		strlen(JRE_PATH)+
 		strlen(PATH_SEPARATOR)+
 		strlen(SCI_PATH)+
-		strlen(DEFAULT_SCILAB_LIBRARYPATH);
+		strlen(DEFAULT_SCILAB_LIBRARYPATH) );
 
 	JAVALIBRARYPATH=(char*)MALLOC(sizeof(char)* ( length_JAVALIBRARYPATH +1) );
 
