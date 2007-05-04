@@ -424,7 +424,7 @@ JNIEXPORT void JNICALL Java_javasci_SciAbstractArray_Send(JNIEnv *env, jobject o
   if (strcmp(signatureType,"Z")==0){
 	  jbooleanArray jx = (*env)->GetObjectField(env, obj_this, id_x);
 	  int *CX = (int*) MALLOC(sizeof(int)*(jm*jn2));
-	  double *cx = (*env)->GetDoubleArrayElements(env,jx,NULL);
+	  jboolean *cx = (*env)->GetBooleanArrayElements(env,jx,NULL);
 
 	  int i=0;
 

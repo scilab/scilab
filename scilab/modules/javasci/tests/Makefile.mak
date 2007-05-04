@@ -1,5 +1,5 @@
 
-SCIDIR1 = ..\..
+SCIDIR1 = ..\..\..
 
 tests:
 	$(SCIDIR1)\bin\scilex -nb -f JavaTests.sce
