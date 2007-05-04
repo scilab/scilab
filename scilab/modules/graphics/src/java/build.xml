@@ -25,7 +25,7 @@ INRIA 2007
         <javac srcdir="graphics" destdir="build/classes"/>
     </target>
 
-    <target name="jar" description="do .jar file">
+    <target name="jar" description="do .jar file" depends="compile">
         <jar destfile="${dist}/graphics.jar" basedir="build/classes">
             <manifest>
                 <attribute name="DrawableFigureJoGL" value="DrawableFigureJoGL"/>
