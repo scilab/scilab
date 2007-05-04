@@ -1,7 +1,7 @@
 function params=scicos_params(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10)
   if exists('wpar','local')==0 then wpar=[600,450,0,0,600,450],end
   if exists('title','local')==1 then Title=title,end
-  if exists('Title','local')==0 then titlex='Untitled',end
+  if exists('Title','local')==0 then Title='Untitled',end
   if exists('tf','local')==0 then tf=100000,end
   if exists('tol','local')==0 then tol=[1.d-4,1.d-6,1.d-10,tf+1,0,0],end
   if exists('context','local')==0 then context=[],end
@@ -13,7 +13,7 @@ function params=scicos_params(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10)
 
   params=tlist(['params','wpar','title','tol','tf','context',..
 		'void1','options','void2','void3','doc'],..
-	       wpar,titlex,tol,tf,context,void1,options,void2,..
+	       wpar,Title,tol,tf,context,void1,options,void2,..
 	       void3,doc)
 
 endfunction
