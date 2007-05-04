@@ -88,7 +88,7 @@ char *Search_Java_RuntimeLib_in_Windows_Registry(void)
 		return NULL;
 	}
 
-	if ((result = RegQueryValueEx(regKey, "CurrentVersion", NULL, NULL, value, &size)) != ERROR_SUCCESS)
+	if ((result = RegQueryValueEx(regKey, "CurrentVersion", NULL, NULL, (LPBYTE)value, &size)) != ERROR_SUCCESS)
 	{
 		RegCloseKey(regKey);
 		return NULL;
@@ -106,7 +106,7 @@ char *Search_Java_RuntimeLib_in_Windows_Registry(void)
 		return NULL;
 	}
 
-	if ((result = RegQueryValueEx(regKey, "RuntimeLib", NULL, NULL, value, &size)) != ERROR_SUCCESS)
+	if ((result = RegQueryValueEx(regKey, "RuntimeLib", NULL, NULL,(LPBYTE)value, &size)) != ERROR_SUCCESS)
 	{
 		RegCloseKey(regKey);
 		return NULL;
