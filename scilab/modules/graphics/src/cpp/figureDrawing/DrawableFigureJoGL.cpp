@@ -13,11 +13,24 @@ extern "C"
 #include "GetProperty.h"
 #include "periScreen.h" /* should be removed */
 #include "DrawObjects.h"
+#include "getScilabJavaVM.h"
+#include "JniUtils.h"
 }
 
 namespace sciGraphics
 {
 
+/*------------------------------------------------------------------------------------------*/
+DrawableFigureJoGL::DrawableFigureJoGL( DrawableFigure * drawer ) : DrawableFigureImp( drawer )
+{
+  jniInitUtils( getScilabJavaVM() ) ;
+  jniCreateDefaultInstance( "DrawableFigureJoGL", &m_oDrawableClass, &m_oDrawableObject) ;
+}
+/*------------------------------------------------------------------------------------------*/
+DrawableFigureJoGL::~DrawableFigureJoGL( void )
+{
+  jniCloseUtils() ;
+}
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::initializeDrawing( void )
 {
@@ -49,16 +62,19 @@ void DrawableFigureJoGL::initializeDrawing( void )
 #ifdef _MSC_VER
   if ( flag_DO == 1) { ReleaseWinHdc(); }
 #endif
+
+  jniCallVoidFunctionSafe( m_oDrawableObject, "initializeDrawing", "" ) ;
+
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::endDrawing( void )
-{
-  // nothing for now
+{   
+  jniCallVoidFunctionSafe( m_oDrawableObject, "endDrawing", "" ) ;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::updateInfoMessage( void  )
 {
-  C2F(dr)("xinfo",sciGetInfoMessage(m_pDrawer->getDrawedObject()),PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,6L,0L);
+  jniCallVoidFunctionSafe( m_oDrawableObject, "updateInfoMessage", "" ) ;
 }
 /*------------------------------------------------------------------------------------------*/
 

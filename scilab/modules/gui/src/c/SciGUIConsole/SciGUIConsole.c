@@ -108,7 +108,7 @@ IMPORT_EXPORT_SCIGUICONSOLE_DLL int PutString(char *Str)
 		(*jvm_CONSOLE)->GetEnv(jvm_CONSOLE, (void **)&env, JNI_VERSION_1_4);
 		if (env)
 		{
-			PutString_SciGUIConsole(env,Str);
+			//PutString_SciGUIConsole(env,Str);
 			bOK=TRUE;
 		}
 	}

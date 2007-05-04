@@ -9,6 +9,7 @@
 #ifndef _DRAWABLE_FIGURE_JOGL_H_
 #define _DRAWABLE_FIGURE_JOGL_H_
 
+#include <jni.h>
 
 #include "DrawableFigureImp.h"
 #include "DrawableFigure.h"
@@ -21,7 +22,9 @@ class DrawableFigureJoGL : public DrawableFigureImp
 
 public:
 
-  DrawableFigureJoGL( DrawableFigure * drawer ) : DrawableFigureImp( drawer ) {}
+  DrawableFigureJoGL( DrawableFigure * drawer ) ;
+
+  virtual ~DrawableFigureJoGL( void ) ;
 
   /**
    * Initialize the context for drawing
@@ -37,6 +40,12 @@ public:
    * Display the info message of the window
    */
   virtual void updateInfoMessage( void  ) ;
+
+protected:
+
+  jclass m_oDrawableClass ;
+
+  jobject m_oDrawableObject ;
 
 } ;
 

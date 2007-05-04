@@ -208,6 +208,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\JniUtils.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\JVM.c"
 				>
 			</File>
@@ -247,6 +251,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\InitializeJVM.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\JniUtils.h"
 				>
 			</File>
 			<File
