@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Jean-Baptiste Silvy 
+INRIA 2007
+-->
+<project name="graphics" default="compile">
+
+<!--
+ TO DO : add a test on system linux / windows
+-->
+   <property name="dist"  location="../../../../bin" />
+   
+   <description>
+        build graphics Scilab - Scilab graphics Library
+    </description>
+
+    <target name="clean" description="clean sources">
+        <delete dir="build"/>
+        <delete file="${dist}/graphics.jar"/>
+    </target>
+
+    <target name="compile" description="build sources">
+    
+        <mkdir dir="build/classes"/>
+        <javac srcdir="graphics" destdir="build/classes"/>
+    </target>
+
+    <target name="jar" description="do .jar file">
+        <jar destfile="${dist}/graphics.jar" basedir="build/classes">
+            <manifest>
+                <attribute name="DrawableFigureJoGL" value="DrawableFigureJoGL"/>
+                
+            </manifest>
+        </jar>
+    </target>
+
+</project>
