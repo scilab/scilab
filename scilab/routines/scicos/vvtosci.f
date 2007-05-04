@@ -8,7 +8,7 @@ c
       integer  l
       integer inull(4)
 c 
-      external dcopy, error
+      external scidcopy, error
       include "../stack.h"
       data inull/1,1,0,0/
 c 
@@ -24,7 +24,7 @@ c
           call error(17)
           return
        endif
-          call dcopy(2,inull,1,stk(l),1)
+          call scidcopy(2,inull,1,stk(l),1)
           lstk(top+1) = l + 4
        else
         err = l + nx - lstk(bot)
@@ -32,7 +32,7 @@ c
           call error(17)
           return
        endif
-          call dcopy(nx,x,1,stk(l),1)
+          call scidcopy(nx,x,1,stk(l),1)
           lstk(top+1) = l + nx
        endif
       endif

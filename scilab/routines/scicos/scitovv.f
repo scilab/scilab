@@ -7,7 +7,7 @@ c     Copyright INRIA
       double precision x(*)
       integer  l
 c 
-      external dcopy, error
+      external scidcopy, error
       include "../stack.h"
 c 
       integer  iadr,sadr
@@ -24,7 +24,7 @@ c     scilab variable to transfer
          return
       endif
       if((n.eq.nx).or.(nx.eq.0)) then
-         call dcopy(nx,stk(l),1,x,1)
+         call scidcopy(nx,stk(l),1,x,1)
          top=top-1
       else
          call error(98)

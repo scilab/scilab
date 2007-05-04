@@ -181,7 +181,7 @@ c     .     indirection to a list entry
                call error(17)
                return
             endif
-            call dcopy(is,stk(istk(ilk+1)),1,stk(lt),1)
+            call scidcopy(is,stk(istk(ilk+1)),1,stk(lt),1)
             lstk(top+1)=lstk(top)+is
             infstk(top)=0
             goto 27

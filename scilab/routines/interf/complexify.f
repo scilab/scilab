@@ -31,10 +31,10 @@ c
          call error(17)
          return
       endif
-      call dcopy(isize,stk(ln),1,stk(lfree),1)
+      call scidcopy(isize,stk(ln),1,stk(lfree),1)
       call dcopy(mn,0.0d0,0,stk(lfree+isize),1)
-      call dcopy(lw-isize-mn,stk(ln1),1,stk(lfree+isize+mn),1)
-      call dcopy(lw,stk(lfree),1,stk(ln),1)
+      call scidcopy(lw-isize-mn,stk(ln1),1,stk(lfree+isize+mn),1)
+      call scidcopy(lw,stk(lfree),1,stk(ln),1)
       complexify=.true.
       return
       end
