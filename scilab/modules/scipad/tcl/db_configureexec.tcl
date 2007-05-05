@@ -145,7 +145,18 @@ proc configurefoo_bp {} {
     # function, which is the wrapper)
     # in this case, close the configure box and... that's all, folks!
     if {$funnames == ""} {
-        OKconf_bp $conf
+        # there is one case where $funnames is "" but the $conf dialog has
+        # already been closed:
+        # when the exec of the temp buffer containing all the non level zero
+        # code produces an error, the cleanup of the buffer has already been
+        # done at this point in proc canceldebug_bp that has been called by
+        # proc scilaberror from execfile from execfile_bp
+        if {[winfo exists $conf]} {
+            OKconf_bp $conf
+        } else {
+            # nothing more to do, the dialog is closed and there was
+            # an error during execfile
+        }
     } else {
         # a function to debug exists, either a "real" function, or the
         # wrapper created to debug .sce or mixed files
@@ -310,7 +321,7 @@ proc OKconf_bp {w} {
 #        debug session launch, i.e. on F11, and not on closure of the
 #        configure box ...hmmm, to be thought further. What if the
 #        user changes something else in the function definition line
-#        that was used for debugger configuration, e.g. change the name
+#        that was used for debugger configuration, e.g. changes the name
 #        of the function? $funnameargs becomes also wrong. The real
 #        problem would come when the user changes a variable name for
 #        instance since what was configured in the configure box and

@@ -375,6 +375,12 @@ proc exitapp { {quittype yesno} } {
 
     # stop debugger and clean Scilab state
     if {[getdbstate] == "DebugInProgress"} {
+        # note that the abort below is useless: it executes in a ScilabEval sync,
+        # i.e. in a dedicated parser, and just aborts in that parser without
+        # interfering with what's happening in the main parser
+        # <TODO>: find a way to abort in the main parser when this parser is busy
+        #         hint: this is just impossible with the current amount of control
+        #               we have on Scilab from Tcl!
         ScilabEval_lt "\"delbpt();abort\"" "sync" "seq"
         cleantmpScilabEvalfile
     }
@@ -1008,6 +1014,7 @@ proc writefileondisk {textarea nametosave {nobackupskip 1}} {
 # really write the file onto the disk
 # all writability tests have normally been done before
     global filebackupdepth tcl_platform
+    global pad
 
     if {$nobackupskip} {
         backupfile $nametosave $filebackupdepth
@@ -1021,7 +1028,7 @@ proc writefileondisk {textarea nametosave {nobackupskip 1}} {
     # However, the TRUNC flag is really needed (i.e. there should be the
     # full "w" mode) to overwrite files, otherwise writing overwrites
     # without truncating to zero length when opening, which results in
-    # a wrong file when the new version is smaller than the exising
+    # a wrong file when the new version is smaller than the previous
     # version on disk
     # Therefore, hidden files are treated specially on windows: first
     # the hidden flag is removed, the file is saved on disk and finally
@@ -1037,9 +1044,29 @@ proc writefileondisk {textarea nametosave {nobackupskip 1}} {
         file attributes $nametosave -hidden 0
     }
 
+    # since save is allowed during debug (thus providing a mean to
+    # save modifications performed before the debug was launched)
+    # there is a need to filter out lines of the .sce debug wrapper
+    # so that they are not included in the saved file
+    # the solution used dumps the content of the buffer to save into
+    # a temporary text widget and removes everything tagged as db_wrapper
+    # before writing the file on disk
+    # this needs more memory than the natural approach of saving line by
+    # line, but it avoids a lot of headaches in determining which is the
+    # last line not tagged (this line must be saved with the -nonewline
+    # option of puts)
+    set dbwrapranges [$textarea tag ranges db_wrapper]
+    text $pad.temptextwidget
+    $pad.temptextwidget insert 1.0 [$textarea get 1.0 "end-1c"]
+    if {$dbwrapranges != {}} {
+        eval "$pad.temptextwidget delete $dbwrapranges"
+    }
+
     set FileNameToSave [open $nametosave w]
-    puts -nonewline $FileNameToSave [$textarea get 1.0 end]
+    puts -nonewline $FileNameToSave [$pad.temptextwidget get 1.0 end]
     close $FileNameToSave
+
+    destroy $pad.temptextwidget
 
     if {$specialtreatment} {
         file attributes $nametosave -hidden 1

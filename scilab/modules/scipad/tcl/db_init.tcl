@@ -25,6 +25,7 @@ set initprevdbpauselevel 4                  ;# see proc checkendofdebug_bp
 set prevdbpauselevel $initprevdbpauselevel
 set afilewasopenedbyuabpt false             ;# see proc checkendofdebug_bp
 set displayruntoreturnwarning true
+set breakcommandtriggered false
 
 # list of functions names that cannot be debugged
 # because they are debugger ancillaries

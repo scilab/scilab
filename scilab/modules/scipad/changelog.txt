@@ -2952,3 +2952,13 @@ Francois VOGEL, 01/05/07
    backporting work
  * De-tab-ified a bit
  * version --> 6.104
+
+Francois VOGEL, 05/05/07
+ * Fixed: when execing a .sce buffer during the configuration step failed
+   (e.g. because of a syntax error), Scipad tried nevertheless to launch the
+   debug
+ * Filtered lines of the .sce debug wrapper when saving during debug
+ * "Go on without any breakpoint" waits for end of execution of the debugged
+   script before resetting the debugger state. "Break" can therefore be used
+   in that situation too
+ * version --> 6.105

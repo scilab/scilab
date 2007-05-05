@@ -15,6 +15,7 @@ proc tonextbreakpoint_bp {{checkbusyflag 1} {stepmode "nostep"}} {
 }
 
 proc execfile_bp {{stepmode "nostep"}} {
+# return argument: 0=success, -1=fail
     global funnameargs listoftextarea funsinbuffer waitmessage watchvars
     global setbptonreallybreakpointedlinescmd
     if {[isscilabbusy 5]} {return}
@@ -94,11 +95,16 @@ proc execfile_bp {{stepmode "nostep"}} {
         # doing this, there is not even a flash in the display
         filesetasnew
         [gettextareacur] insert 1.0 $allfuntexts
-        if {[execfile "current"] == -1} {
-            # in case execing the file produced an error, restore the cursors
-            unsetdebuggerbusycursor
-        }
+        set execresult [execfile "current"]
         closecur "NoSaveQuestion"
+        if {$execresult == -1} {
+            # in case execing the file produced an error, restore the cursors
+            # and return (the debug must not be launched) - the cleanup has
+            # been done in proc canceldebug_bp that has been called by proc
+            # scilaberror from execfile
+            unsetdebuggerbusycursor
+            return $execresult
+        }
 
         # run the debug, i.e. launch the configured function
         set setbptonreallybreakpointedlinescmd $setbpcomm
@@ -114,9 +120,12 @@ proc execfile_bp {{stepmode "nostep"}} {
         updateactivebreakpoint
         getfromshell
         checkendofdebug_bp $stepmode
+        set execresult 0
     } else {
         # <TODO> .sce case if some day the parser uses pseudocode noops
+        set execresult 0
     }
+    return $execresult
 }
 
 # <TODO> step by step support
@@ -182,9 +191,18 @@ proc stepbystep_bp {checkbusyflag stepmode rescanbuffers} {
         } else {
             # <TODO> .sce case if some day the parser uses pseudocode noops
         }
-        # here tricky (but correct) behaviour!! (see below for same comment)
-        execfile_bp $stepmode
-        if {$funnameargs != ""} {
+        set execresult [execfile_bp $stepmode]
+        # about the || 1 below: the delbpt must be done in any case,
+        # i.e. whatever the result of the execfile_bp. If $execresult
+        # is -1 there was an error during execfile (syntax error in
+        # the buffer, ...) and the breakpoint set a few lines above
+        # must be removed here even if $funnameargs might be empty
+        # because the error was in a .sce buffer (that has therefore
+        # already been cleaned up from its wrapper, thus an empty
+        # $funnameargs). On the other hand (i.e. in the normal case
+        # where there is no exec error), the breakpoint set above
+        # must also be removed because we're in a step command here
+        if {$funnameargs != "" || 1} {
             ScilabEval_lt "delbpt(\"$funname\",1);" "seq"
         } else {
             # <TODO> .sce case if some day the parser uses pseudocode noops
@@ -811,14 +829,10 @@ proc goonwo_bp {} {
     if {$funnameargs != ""} {
         removeallactive_bp
         removescilab_bp "with_output"
-        ScilabEval_lt "resume(0)" "seq"
-        getfromshell
-        # .sce debug cleanup, check execution error, and so on
-        checkendofdebug_bp "nostep"
+        resume_bp
     } else {
         # <TODO> .sce case if some day the parser uses pseudocode noops
     }
-    setdbstate "ReadyForDebug"
 }
 
 proc break_bp {} {
@@ -882,9 +896,14 @@ proc canceldebug_bp {} {
 
     if {[isscilabbusy 5]} {return}
 
-    # warn the user about duplicate function names possibly found
-    # the debugger won't execute in that case
-    if {[checkforduplicatefunnames]} {return}
+    # note: here no checkforduplicatefunnames is made because there is
+    # one case where a duplicate exists temporarily: when exec-ing the
+    # temp buffer containing all the non level zero code (see proc
+    # execfile_bp). If this exec fails, then a canceldebug_bp is launched
+    # by proc scilaberror, and at this point the temp buffer has not yet
+    # been closed, thus a duplicate would be found here
+    # anyway, real duplicates should have been detected before the user
+    # hits the cancel button
 
     if {[getdbstate] == "DebugInProgress"} {
         showinfo $waitmessage

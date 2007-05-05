@@ -372,7 +372,7 @@ proc scilaberror {funnameargs} {
       $funnameargs [mc ": error "] $errnum ", " $errmsg ", " [mc "at line "]\
       $errline [mc " of "] $errfunc]
     showinfo [mc "Execution aborted!"]
-    if {[getdbstate] == "DebugInProgress"} {
+    if {[getdbstate] != "NoDebug"} {
         canceldebug_bp
     }
     blinkline $errline $errfunc
