@@ -351,7 +351,7 @@ libdummy_elementaries_functions_la_SOURCES = src/fortran/hqror2.f \
 
 libdummy_elementaries_functions_la_FFLAGS = $(FFLAGS:-O%=)
 
-libdummy_elementaries_functions_la_CFLAGS = $(CFLAGS:-O%=)
+libdummy_elementaries_functions_la_CFLAGS = $(CFLAGS:-O%=) -I$(top_srcdir)/modules/core/includes/
 
 libscielementaries_functions_la_FFLAGS= -Iincludes/ 
 libscielementaries_functions_la_CFLAGS= -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
