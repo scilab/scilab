@@ -1,5 +1,5 @@
 @echo off
-SET JAVAC="..\..\..\..\jvm\bin\jdk\bin\javac.exe"
+SET JAVAC="..\..\..\..\..\java\jdk\bin\javac.exe"
 SET JAVASCIPATH="..\..\..\..\..\bin"
 SET SRCCLASSPATH=".."
 rem Compilation of the Scilab/Java interface
