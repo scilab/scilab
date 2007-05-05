@@ -11,8 +11,6 @@
 #define PVM "pvm"
 
 Source: bin\pvm.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: modules\{#PVM}\etc\{#PVM}.quit; DestDir: {app}\modules\{#PVM}\etc; Components: {#COMPN_SCILAB}
-Source: modules\{#PVM}\etc\{#PVM}.start; DestDir: {app}\modules\{#PVM}\etc; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#PVM}\changelog.txt; DestDir: {app}\modules\{#PVM}; Components: {#COMPN_PVM}; Check: set_with_pvm
 ;Source: modules\{#PVM}\licence.txt; DestDir: {app}\modules\{#PVM}; Components: {#COMPN_PVM}

@@ -15,6 +15,14 @@ Source: modules\{#GRAPHICS}\readme.txt; DestDir: {app}\modules\{#GRAPHICS}; Comp
 Source: modules\{#GRAPHICS}\licence.txt; DestDir: {app}\modules\{#GRAPHICS}; Components: {#COMPN_GRAPHICS}
 Source: modules\{#GRAPHICS}\changelog.txt; DestDir: {app}\modules\{#GRAPHICS}; Components: {#COMPN_GRAPHICS}
 ;
+Source: bin\jogl.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
+Source: bin\jogl_awt.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
+Source: bin\jogl_cg.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
+;
+Source: java\jar\externals\gluegen-rt.jar; DestDir: {app}\java\jar\externals; Components: {#COMPN_GRAPHICS}
+Source: java\jar\externals\jogl.jar;DestDir: {app}\java\jar\externals; Components: {#COMPN_GRAPHICS}
+Source: java\jar\modules\graphics.jar;DestDir: {app}\java\jar\modules; Components: {#COMPN_GRAPHICS}
+;
 Source: modules\{#GRAPHICS}\sci_gateway\graphics_gateway.xml; DestDir: {app}\modules\{#GRAPHICS}\sci_gateway; Components: {#COMPN_GRAPHICS}
 ;
 Source: modules\{#GRAPHICS}\etc\{#GRAPHICS}.quit; DestDir: {app}\modules\{#GRAPHICS}\etc; Components: {#COMPN_GRAPHICS}

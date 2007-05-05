@@ -17,9 +17,9 @@ Source: modules\{#JVM}\readme.txt; DestDir: {app}\modules\{#JVM}; Components: {#
 Source: modules\{#JVM}\VERSION.xml; DestDir: {app}\modules\{#JVM}; Components: {#COMPN_SCILAB}
 Source: modules\{#JVM}\changelog.txt; DestDir: {app}\modules\{#JVM}; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#JVM}\bin\jre\*.*; DestDir: {app}\modules\{#JVM}\bin\jre; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+Source: modules\{#JVM}\sci_gateway\jvm_gateway.xml; DestDir: {app}\modules\{#JVM}\sci_gateway; Components: {#COMPN_SCILAB}
 ;
-;Source: modules\{#JVM}\classes\*.class; DestDir: {app}\modules\{#JVM}\classes; Components: {#COMPN_SCILAB}
+Source: modules\{#JVM}\includes\*.h; DestDir: {app}\modules\{#JVM}\includes; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#JVM}\etc\{#JVM}.quit; DestDir: {app}\modules\{#JVM}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#JVM}\etc\{#JVM}.start; DestDir: {app}\modules\{#JVM}\etc; Components: {#COMPN_SCILAB}
