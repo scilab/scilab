@@ -29,5 +29,6 @@
 
 /*-----------------------------------------------------------------------------------*/
 IMPORT_EXPORT_GETWINDOWSVERSION_DLL int GetWindowsVersion(void);
+IMPORT_EXPORT_GETWINDOWSVERSION_DLL BOOL IsWow64(void);
 /*-----------------------------------------------------------------------------------*/
 #endif /* __GETWINDOWSVERSION_H__ */
