@@ -24,7 +24,7 @@ namespace sciGraphics
 DrawableFigureJoGL::DrawableFigureJoGL( DrawableFigure * drawer ) : DrawableFigureImp( drawer )
 {
   jniInitUtils( getScilabJavaVM() ) ;
-  jniCreateDefaultInstance( "DrawableFigureJoGL", &m_oDrawableClass, &m_oDrawableObject) ;
+  jniCreateDefaultInstance( "org/scilab/modules/graphics/figureDrawing/DrawableFigureJoGL", &m_oDrawableClass, &m_oDrawableObject) ;
 }
 /*------------------------------------------------------------------------------------------*/
 DrawableFigureJoGL::~DrawableFigureJoGL( void )

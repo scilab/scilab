@@ -1,3 +1,5 @@
+package org.scilab.modules.graphics.figureDrawing;
+
 /*------------------------------------------------------------------------*/
 /* file: DrawableFigureJoGL.java                                          */
 /* Copyright INRIA 2007                                                   */
