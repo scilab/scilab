@@ -218,7 +218,7 @@ c     store
    35  lstk(k) = lstk(k+1) - v
       lk = lstk(k)
       if (lstk(pntr)+v.lt.lk) then
-         call dcopy(v,stk(lstk(pntr)),1,stk(lk),1)
+         call scidcopy(v,stk(lstk(pntr)),1,stk(lk),1)
       else
          call unsfdcopy(v,stk(lstk(pntr)),-1,stk(lk),-1)
       endif

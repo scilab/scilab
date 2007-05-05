@@ -15,6 +15,7 @@ extern  int C2F(cvname) __PARAMS((integer *,char *,integer *, unsigned long int)
 extern  int C2F(cvstr)  __PARAMS((integer *,integer *,char *,integer *,unsigned long int));
 extern int C2F(icopy)  __PARAMS((integer *,integer *,integer *,integer *,integer *));
 extern int C2F(dcopy)  __PARAMS((integer *,double *,integer *,double *,integer *));
+extern int C2F(scidcopy)  __PARAMS((integer *,double *,integer *,double *,integer *));
 extern int C2F(unsfdcopy)  __PARAMS((integer *,double *,integer *,double *,integer *));
 extern int C2F(rcopy)  __PARAMS((integer *,float *,integer *,float *,integer *));
 extern void C2F(cstringf) __PARAMS((char ***,integer *,integer *,integer *,integer *,integer *));

@@ -757,6 +757,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\scidcopy.c"
+				>
+			</File>
+			<File
 				RelativePath=".\simple.c"
 				>
 			</File>
@@ -1558,6 +1562,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_f_zeros.f"
+				>
+			</File>
+			<File
+				RelativePath=".\scidcopy.f"
 				>
 			</File>
 			<File

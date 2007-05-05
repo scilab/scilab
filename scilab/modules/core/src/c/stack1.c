@@ -1903,7 +1903,7 @@ int C2F(lmatj)(char *fname,integer *lw,integer *j,unsigned long fname_len)
   n = *istk(il + 2 + *j ) - *istk(il + 2 + (*j - 1) );
   Err = *Lstk(*lw ) + n - *Lstk(Bot );
   if (Err > 0) return FALSE_;
-  C2F(dcopy)(&n, stk(slj ), &cx1, stk(*Lstk(*lw ) ), &cx1);
+  C2F(scidcopy)(&n, stk(slj ), &cx1, stk(*Lstk(*lw ) ), &cx1);
   *Lstk(*lw +1) = *Lstk(*lw ) + n;
   return TRUE_;
 } 
@@ -2630,7 +2630,7 @@ int C2F(copyobj)(char *fname,integer *lw,integer *lwd,unsigned long fname_len)
   if (l+ix1>ld||ld+ix1>l) 
     C2F(unsfdcopy)(&ix1, stk(l), &cx1, stk(ld), &cx1);
   else
-    C2F(dcopy)(&ix1, stk(l), &cx1, stk(ld), &cx1);
+    C2F(scidcopy)(&ix1, stk(l), &cx1, stk(ld), &cx1);
   *Lstk(*lwd +1) = ld + ix1;
   return 0;
 }
@@ -2664,7 +2664,7 @@ int C2F(vcopyobj)(char *fname,integer *lw,integer *lwd,unsigned long fname_len)
   if (l+lv>l1||l1+lv>l) 
     C2F(unsfdcopy)(&lv, stk(l), &cx1, stk(l1), &cx1);
   else
-    C2F(dcopy)(&lv, stk(l), &cx1, stk(l1), &cx1);
+    C2F(scidcopy)(&lv, stk(l), &cx1, stk(l1), &cx1);
 
   *Lstk(*lwd +1) = *Lstk(*lwd ) + lv;
   return TRUE_;

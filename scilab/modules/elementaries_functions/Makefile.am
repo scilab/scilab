@@ -239,7 +239,8 @@ src/fortran/dmmul.f \
 src/fortran/wsort.f \
 src/fortran/wsqrt.f \
 src/fortran/rjbesl.f \
-src/fortran/rat.f
+src/fortran/rat.f \
+src/fortran/scidcopy.f
 
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_isequal.c \

@@ -226,7 +226,7 @@ c     form individual variables with the 2..n1 entries of index
          top=top+1
  31   continue
       l=sadr(il1+3+n1)+istk(il1+3)-1
-      call dcopy(istk(il1+2+n1)-istk(il1+3),stk(l),1,stk(l1),1)
+      call scidcopy(istk(il1+2+n1)-istk(il1+3),stk(l),1,stk(l1),1)
       top=top-1
       rhs=n1-1
 

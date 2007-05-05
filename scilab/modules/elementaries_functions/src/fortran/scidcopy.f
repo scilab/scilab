@@ -1,9 +1,8 @@
-      subroutine  unsfdcopy(n,dx,incx,dy,incy)
-c
-c     copies a vector, x, to a vector, y.
-c     uses unrolled loops for increments equal to one.
-c     jack dongarra, linpack, 3/11/78.
-c     modified 12/3/93, array(1) declarations changed to array(*)
+c alternative to dcopy for copying array with mixed datatypes 
+c integer*8 declaration used instead of double precision used to fix a 
+c efficiency problem with pentium M processors 
+
+      subroutine  scidcopy(n,dx,incx,dy,incy)
 c
       integer*8 dx(*),dy(*)
       integer i,incx,incy,ix,iy,m,mp1,n
