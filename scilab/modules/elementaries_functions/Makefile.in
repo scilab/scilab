@@ -330,7 +330,8 @@ am__objects_3 = libscielementaries_functions_la-psi.lo \
 	libscielementaries_functions_la-wsort.lo \
 	libscielementaries_functions_la-wsqrt.lo \
 	libscielementaries_functions_la-rjbesl.lo \
-	libscielementaries_functions_la-rat.lo
+	libscielementaries_functions_la-rat.lo \
+	libscielementaries_functions_la-scidcopy.lo
 am__objects_4 = libscielementaries_functions_la-sci_isequal.lo \
 	libscielementaries_functions_la-sci_matrix.lo \
 	libscielementaries_functions_la-sci_prod.lo \
@@ -856,7 +857,8 @@ src/fortran/dmmul.f \
 src/fortran/wsort.f \
 src/fortran/wsqrt.f \
 src/fortran/rjbesl.f \
-src/fortran/rat.f
+src/fortran/rat.f \
+src/fortran/scidcopy.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_isequal.c \
 sci_gateway/c/sci_matrix.c \
@@ -2290,6 +2292,9 @@ libscielementaries_functions_la-rjbesl.lo: src/fortran/rjbesl.f
 
 libscielementaries_functions_la-rat.lo: src/fortran/rat.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementaries_functions_la-rat.lo `test -f 'src/fortran/rat.f' || echo '$(srcdir)/'`src/fortran/rat.f
+
+libscielementaries_functions_la-scidcopy.lo: src/fortran/scidcopy.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementaries_functions_la-scidcopy.lo `test -f 'src/fortran/scidcopy.f' || echo '$(srcdir)/'`src/fortran/scidcopy.f
 
 libscielementaries_functions_la-sci_f_isequal.lo: sci_gateway/fortran/sci_f_isequal.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementaries_functions_la-sci_f_isequal.lo `test -f 'sci_gateway/fortran/sci_f_isequal.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_isequal.f
