@@ -75,6 +75,7 @@ BOOL FreeDynLibJVM(void)
 /*-----------------------------------------------------------------------------------*/ 
 char *Search_Java_RuntimeLib_in_Windows_Registry(void)
 {
+	#define JRE_HKEY "Software\\JavaSoft\\Java Runtime Environment"
 	char *RuntimeLib=NULL;
 	char value[MAX_PATH];
 	char newKey[MAX_PATH];
@@ -83,7 +84,11 @@ char *Search_Java_RuntimeLib_in_Windows_Registry(void)
 	DWORD size  = MAX_PATH;
 	int   result;
 
-	if ((result = RegOpenKeyEx(HKEY_LOCAL_MACHINE, "Software\\JavaSoft\\Java Runtime Environment", 0,KEY_QUERY_VALUE, &regKey)) != ERROR_SUCCESS)
+#ifdef _WIN64 /* if Win64 search only 64 bits JRE version */
+	if ((result = RegOpenKeyEx(HKEY_LOCAL_MACHINE, JRE_HKEY, 0, KEY_READ | KEY_WOW64_64KEY, &regKey)) != ERROR_SUCCESS)
+#else
+	if ((result = RegOpenKeyEx(HKEY_LOCAL_MACHINE, JRE_HKEY, 0, KEY_READ | KEY_WOW64_32KEY, &regKey)) != ERROR_SUCCESS)
+#endif
 	{
 		return NULL;
 	}
@@ -98,10 +103,15 @@ char *Search_Java_RuntimeLib_in_Windows_Registry(void)
 	value[size] = '\0';
 	size = MAX_PATH;
 
-	strcpy(newKey, "Software\\JavaSoft\\Java Runtime Environment\\");
+	strcpy(newKey, JRE_HKEY);
+	strcat(newKey, "\\");
 	strcat(newKey, value);
 
-	if ((result = RegOpenKeyEx(HKEY_LOCAL_MACHINE, newKey, 0, KEY_QUERY_VALUE, &regKey)) != ERROR_SUCCESS)
+#ifdef _WIN64
+	if ((result = RegOpenKeyEx(HKEY_LOCAL_MACHINE, newKey, 0, KEY_READ | KEY_WOW64_64KEY, &regKey)) != ERROR_SUCCESS)
+#else
+	if ((result = RegOpenKeyEx(HKEY_LOCAL_MACHINE, newKey, 0, KEY_READ | KEY_WOW64_32KEY, &regKey)) != ERROR_SUCCESS)
+#endif
 	{
 		return NULL;
 	}
