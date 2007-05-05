@@ -19,7 +19,7 @@ BOOL WindowsQueryRegistry(char *ParamIn1,char *ParamIn2,char *ParamIn3,char *Par
 
 	hKeyToOpen =GetHkeyrootFromString(ParamIn1);
 
-	if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, KEY_QUERY_VALUE , &key) == ERROR_SUCCESS )
+	if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, KEY_QUERY_VALUE | KEY_WOW64_64KEY , &key) == ERROR_SUCCESS )
 	{
 		DWORD type=0;
 
@@ -61,7 +61,7 @@ BOOL WindowsQueryRegistryList(char *ParamIn1,char *ParamIn2,int dimMax,char **Li
 
 	hKeyToOpen =GetHkeyrootFromString(ParamIn1);
 
-	if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, KEY_READ , &key) == ERROR_SUCCESS )
+	if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, KEY_READ | KEY_WOW64_64KEY , &key) == ERROR_SUCCESS )
 	{
 		int i=0;
 		for (i=0; i<dimMax; i++) 
@@ -124,7 +124,7 @@ BOOL WindowsQueryRegistryNumberOfElementsInList(char *ParamIn1,char *ParamIn2,in
 	HKEY hTestKey;
 
 	hKeyToOpen =GetHkeyrootFromString(ParamIn1);
-	if( RegOpenKeyEx(hKeyToOpen,ParamIn2, 0, KEY_READ, &hTestKey) == ERROR_SUCCESS )
+	if( RegOpenKeyEx(hKeyToOpen,ParamIn2, 0, KEY_READ | KEY_WOW64_64KEY, &hTestKey) == ERROR_SUCCESS )
 	{
 		DWORD retCode; 
 
