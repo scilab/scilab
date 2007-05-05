@@ -10,7 +10,8 @@ src/c/cmp.c \
 src/c/vceil.c \
 src/c/xerhlt.c \
 src/c/vfloor.c \
-src/c/vfrexp.c 
+src/c/vfrexp.c \
+src/c/scidcopy.c
 
 SLATEC_SOURCES = src/fortran/slatec/zwrsk.f \
 src/fortran/slatec/d9b0mp.f \
@@ -239,8 +240,7 @@ src/fortran/dmmul.f \
 src/fortran/wsort.f \
 src/fortran/wsqrt.f \
 src/fortran/rjbesl.f \
-src/fortran/rat.f \
-src/fortran/scidcopy.f
+src/fortran/rat.f 
 
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_isequal.c \

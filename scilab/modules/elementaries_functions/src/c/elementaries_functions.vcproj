@@ -377,6 +377,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\scidcopy.c"
+				>
+			</File>
+			<File
 				RelativePath=".\vceil.c"
 				>
 			</File>
