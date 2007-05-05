@@ -381,6 +381,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\unsfdcopy.c"
+				>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						FavorSizeOrSpeed="2"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
 				RelativePath=".\vceil.c"
 				>
 			</File>

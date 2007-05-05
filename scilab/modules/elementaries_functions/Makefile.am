@@ -346,10 +346,12 @@ noinst_LTLIBRARIES = libdummy-elementaries_functions.la
 libdummy_elementaries_functions_la_SOURCES = src/fortran/hqror2.f \
 	src/fortran/comqr3.f \
 	src/fortran/pade.f \
-	src/fortran/unsfdcopy.f \
+	src/c/unsfdcopy.c \
 	src/fortran/icopy.f
 
 libdummy_elementaries_functions_la_FFLAGS = $(FFLAGS:-O%=)
+
+libdummy_elementaries_functions_la_CFLAGS = $(CFLAGS:-O%=)
 
 libscielementaries_functions_la_FFLAGS= -Iincludes/ 
 libscielementaries_functions_la_CFLAGS= -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
@@ -379,8 +381,8 @@ libdummy_elementaries_functions_la-comqr3.lo: src/fortran/comqr3.f
 libdummy_elementaries_functions_la-pade.lo: src/fortran/pade.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementaries_functions_la_FFLAGS) -c -o libdummy_elementaries_functions_la-pade.lo `test -f 'src/fortran/pade.f' || echo '$(srcdir)/'`src/fortran/pade.f
 
-libdummy_elementaries_functions_la-unsfdcopy.lo: src/fortran/unsfdcopy.f
-	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementaries_functions_la_FFLAGS) -c -o libdummy_elementaries_functions_la-unsfdcopy.lo `test -f 'src/fortran/unsfdcopy.f' || echo '$(srcdir)/'`src/fortran/unsfdcopy.f
+libdummy_elementaries_functions_la-unsfdcopy.lo: src/c/unsfdcopy.c
+	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(libdummy_elementaries_functions_la_CFLAGS) -c -o libdummy_elementaries_functions_la-unsfdcopy.lo `test -f 'src/c/unsfdcopy.c' || echo '$(srcdir)/'`src/c/unsfdcopy.c
 
 
 libdummy_elementaries_functions_la-icopy.lo: src/fortran/icopy.f
