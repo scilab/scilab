@@ -8,9 +8,9 @@
 #include "machine.h"
 /*-----------------------------------------------------------------------------------*/ 
 #ifdef _MSC_VER
-#define JRE_PATH "/modules/jvm/bin/jre"
+#define JRE_PATH "/java/jre"
 #else
-#define JRE_PATH "/modules/jvm/bin/jre"
+#define JRE_PATH "/java/jre"
 #endif
 /*-----------------------------------------------------------------------------------*/ 
 #ifdef _MSC_VER
@@ -28,7 +28,7 @@
 #endif
 /*-----------------------------------------------------------------------------------*/ 
 #define USER_CLASSPATH "."
-#define GRAPHICS_CLASSPATH "/bin/graphics.jar"
+#define GRAPHICS_CLASSPATH "/java/jar/modules/graphics.jar"
 /*-----------------------------------------------------------------------------------*/ 
 #endif /*  __JVM_COMMONS_H__ */
 /*-----------------------------------------------------------------------------------*/ 

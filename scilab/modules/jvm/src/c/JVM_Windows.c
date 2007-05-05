@@ -83,7 +83,7 @@ char *Search_Java_RuntimeLib_in_Windows_Registry(void)
 	DWORD size  = MAX_PATH;
 	int   result;
 
-	if ((result = RegOpenKeyEx(HKEY_LOCAL_MACHINE, "Software\\JavaSoft\\Java Runtime Environment", 0, KEY_READ, &regKey)) != ERROR_SUCCESS)
+	if ((result = RegOpenKeyEx(HKEY_LOCAL_MACHINE, "Software\\JavaSoft\\Java Runtime Environment", 0,KEY_QUERY_VALUE, &regKey)) != ERROR_SUCCESS)
 	{
 		return NULL;
 	}
@@ -101,7 +101,7 @@ char *Search_Java_RuntimeLib_in_Windows_Registry(void)
 	strcpy(newKey, "Software\\JavaSoft\\Java Runtime Environment\\");
 	strcat(newKey, value);
 
-	if ((result = RegOpenKeyEx(HKEY_LOCAL_MACHINE, newKey, 0, KEY_READ, &regKey)) != ERROR_SUCCESS)
+	if ((result = RegOpenKeyEx(HKEY_LOCAL_MACHINE, newKey, 0, KEY_QUERY_VALUE, &regKey)) != ERROR_SUCCESS)
 	{
 		return NULL;
 	}

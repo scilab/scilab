@@ -52,3 +52,4 @@ protected:
 }
 
 #endif /* _DRAWABLE_FIGURE_JOGL_H_  */
+

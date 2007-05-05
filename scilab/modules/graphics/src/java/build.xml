@@ -5,10 +5,7 @@ INRIA 2007
 -->
 <project name="graphics" default="compile">
 
-<!--
- TO DO : add a test on system linux / windows
--->
-   <property name="dist"  location="../../../../bin" />
+   <property name="dist"  location="../../../../java/jar/modules" />
    
    <description>
         build graphics Scilab - Scilab graphics Library

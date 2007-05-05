@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;../../libs/MALLOC/includes;../core/includes;../jvm/bin/jdk/include/;../jvm/bin/jdk/include/win32"
+				AdditionalIncludeDirectories="includes;../../libs/MALLOC/includes;../core/includes;../../java/jdk/include/;../../java/jdk/include/win32"
 				PreprocessorDefinitions="_DEBUG;_USRDLL;JAVA_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -122,7 +122,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="includes;../../libs/MALLOC/includes;../core/includes;../jvm/bin/jdk/include/;../jvm/bin/jdk/include/win32"
+				AdditionalIncludeDirectories="includes;../../libs/MALLOC/includes;../core/includes;../../java/jdk/include/;../../java/jdk/include/win32"
 				PreprocessorDefinitions="NDEBUG;_USRDLL;JAVA_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="1"
@@ -278,10 +278,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\java\javasci\MakeJavaClass.bat"
-				>
-			</File>
-			<File
 				RelativePath=".\src\java\javasci\SciAbstractArray.java"
 				>
 			</File>
@@ -339,6 +335,14 @@
 			</File>
 			<File
 				RelativePath=".\languages\en_US\messages.xml"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Ant"
+			>
+			<File
+				RelativePath=".\src\java\build.xml"
 				>
 			</File>
 		</Filter>

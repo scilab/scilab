@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="bin/jdk/include;bin/jdk/include/win32;includes;src/c;../core/includes;../../libs/MALLOC/includes"
+				AdditionalIncludeDirectories="../../java/jdk/include;../../java/jdk/include/win32;includes;src/c;../core/includes;../../libs/MALLOC/includes"
 				PreprocessorDefinitions="FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;LIBJVM_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -125,7 +125,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="bin/jdk/include;bin/jdk/include/win32;includes;src/c;../core/includes;../../libs/MALLOC/includes"
+				AdditionalIncludeDirectories="../../java/jdk/include;../../java/jdk/include/win32;includes;src/c;../core/includes;../../libs/MALLOC/includes"
 				PreprocessorDefinitions="FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBJVM_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"
