@@ -189,7 +189,8 @@ am__objects_2 = libscielementaries_functions_la-sci_tools.lo \
 	libscielementaries_functions_la-vceil.lo \
 	libscielementaries_functions_la-xerhlt.lo \
 	libscielementaries_functions_la-vfloor.lo \
-	libscielementaries_functions_la-vfrexp.lo
+	libscielementaries_functions_la-vfrexp.lo \
+	libscielementaries_functions_la-scidcopy.lo
 am__objects_3 = libscielementaries_functions_la-psi.lo \
 	libscielementaries_functions_la-wasum.lo \
 	libscielementaries_functions_la-dexpm1.lo \
@@ -330,8 +331,7 @@ am__objects_3 = libscielementaries_functions_la-psi.lo \
 	libscielementaries_functions_la-wsort.lo \
 	libscielementaries_functions_la-wsqrt.lo \
 	libscielementaries_functions_la-rjbesl.lo \
-	libscielementaries_functions_la-rat.lo \
-	libscielementaries_functions_la-scidcopy.lo
+	libscielementaries_functions_la-rat.lo
 am__objects_4 = libscielementaries_functions_la-sci_isequal.lo \
 	libscielementaries_functions_la-sci_matrix.lo \
 	libscielementaries_functions_la-sci_prod.lo \
@@ -628,7 +628,8 @@ src/c/cmp.c \
 src/c/vceil.c \
 src/c/xerhlt.c \
 src/c/vfloor.c \
-src/c/vfrexp.c 
+src/c/vfrexp.c \
+src/c/scidcopy.c
 
 SLATEC_SOURCES = src/fortran/slatec/zwrsk.f \
 src/fortran/slatec/d9b0mp.f \
@@ -857,8 +858,7 @@ src/fortran/dmmul.f \
 src/fortran/wsort.f \
 src/fortran/wsqrt.f \
 src/fortran/rjbesl.f \
-src/fortran/rat.f \
-src/fortran/scidcopy.f
+src/fortran/rat.f 
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_isequal.c \
 sci_gateway/c/sci_matrix.c \
@@ -1187,6 +1187,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-sci_tril.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-sci_triu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-sci_zeros.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-scidcopy.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-vceil.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-vfinite.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-vfloor.Plo@am__quote@
@@ -1269,6 +1270,13 @@ libscielementaries_functions_la-vfrexp.lo: src/c/vfrexp.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/vfrexp.c' object='libscielementaries_functions_la-vfrexp.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-vfrexp.lo `test -f 'src/c/vfrexp.c' || echo '$(srcdir)/'`src/c/vfrexp.c
+
+libscielementaries_functions_la-scidcopy.lo: src/c/scidcopy.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-scidcopy.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-scidcopy.Tpo -c -o libscielementaries_functions_la-scidcopy.lo `test -f 'src/c/scidcopy.c' || echo '$(srcdir)/'`src/c/scidcopy.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-scidcopy.Tpo $(DEPDIR)/libscielementaries_functions_la-scidcopy.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/scidcopy.c' object='libscielementaries_functions_la-scidcopy.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-scidcopy.lo `test -f 'src/c/scidcopy.c' || echo '$(srcdir)/'`src/c/scidcopy.c
 
 libscielementaries_functions_la-sci_isequal.lo: sci_gateway/c/sci_isequal.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_isequal.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_isequal.Tpo -c -o libscielementaries_functions_la-sci_isequal.lo `test -f 'sci_gateway/c/sci_isequal.c' || echo '$(srcdir)/'`sci_gateway/c/sci_isequal.c
@@ -2292,9 +2300,6 @@ libscielementaries_functions_la-rjbesl.lo: src/fortran/rjbesl.f
 
 libscielementaries_functions_la-rat.lo: src/fortran/rat.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementaries_functions_la-rat.lo `test -f 'src/fortran/rat.f' || echo '$(srcdir)/'`src/fortran/rat.f
-
-libscielementaries_functions_la-scidcopy.lo: src/fortran/scidcopy.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementaries_functions_la-scidcopy.lo `test -f 'src/fortran/scidcopy.f' || echo '$(srcdir)/'`src/fortran/scidcopy.f
 
 libscielementaries_functions_la-sci_f_isequal.lo: sci_gateway/fortran/sci_f_isequal.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementaries_functions_la-sci_f_isequal.lo `test -f 'sci_gateway/fortran/sci_f_isequal.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_isequal.f
