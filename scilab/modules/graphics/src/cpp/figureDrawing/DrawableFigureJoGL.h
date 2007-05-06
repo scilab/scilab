@@ -9,7 +9,7 @@
 #ifndef _DRAWABLE_FIGURE_JOGL_H_
 #define _DRAWABLE_FIGURE_JOGL_H_
 
-#include <jni.h>
+#include "jni.h"
 
 #include "DrawableFigureImp.h"
 #include "DrawableFigure.h"

@@ -81,9 +81,11 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscijvm_la_LIBADD =
 am__objects_1 = libscijvm_la-InitializeJVM.lo \
 	libscijvm_la-TerminateJVM.lo libscijvm_la-JVM_Unix.lo \
-	libscijvm_la-JVM.lo libscijvm_la-JniUtils.lo
+	libscijvm_la-JVM.lo libscijvm_la-JniUtils.lo \
+	libscijvm_la-addToClasspath.lo
 am__objects_2 = libscijvm_la-gw_jvm.lo libscijvm_la-sci_jvm_version.lo \
-	libscijvm_la-sci_with_embedded_jre.lo
+	libscijvm_la-sci_with_embedded_jre.lo \
+	libscijvm_la-sci_javaclasspath.lo
 am_libscijvm_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscijvm_la_OBJECTS = $(am_libscijvm_la_OBJECTS)
 libscijvm_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
@@ -268,11 +270,13 @@ JVM_C_SOURCES = src/c/InitializeJVM.c \
 src/c/TerminateJVM.c \
 src/c/JVM_Unix.c \
 src/c/JVM.c \
-src/c/JniUtils.c
+src/c/JniUtils.c \
+src/c/addToClasspath.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_jvm.c \
 sci_gateway/c/sci_jvm_version.c \
-sci_gateway/c/sci_with_embedded_jre.c
+sci_gateway/c/sci_with_embedded_jre.c \
+sci_gateway/c/sci_javaclasspath.c
 
 libscijvm_la_CFLAGS = $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/libs/MALLOC/includes/ -Iincludes/
 libscijvm_la_LDFLAGS = $(JAVA_JNI_LIBS) -lpthread -ldl
@@ -301,7 +305,8 @@ includes/getScilabJavaVM.h \
 includes/getScilabJNIEnv.h \
 includes/InitializeJVM.h \
 includes/gw_jvm.h \
-includes/JniUtils.h
+includes/JniUtils.h \
+includes/addToClasspath.h
 
 
 # Where all the Scilab stuff is installed (macros, help, ...)
@@ -434,7 +439,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_la-JVM_Unix.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_la-JniUtils.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_la-TerminateJVM.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_la-addToClasspath.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_la-gw_jvm.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_la-sci_javaclasspath.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_la-sci_jvm_version.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_la-sci_with_embedded_jre.Plo@am__quote@
 
@@ -494,6 +501,13 @@ libscijvm_la-JniUtils.lo: src/c/JniUtils.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscijvm_la_CFLAGS) $(CFLAGS) -c -o libscijvm_la-JniUtils.lo `test -f 'src/c/JniUtils.c' || echo '$(srcdir)/'`src/c/JniUtils.c
 
+libscijvm_la-addToClasspath.lo: src/c/addToClasspath.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscijvm_la_CFLAGS) $(CFLAGS) -MT libscijvm_la-addToClasspath.lo -MD -MP -MF $(DEPDIR)/libscijvm_la-addToClasspath.Tpo -c -o libscijvm_la-addToClasspath.lo `test -f 'src/c/addToClasspath.c' || echo '$(srcdir)/'`src/c/addToClasspath.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscijvm_la-addToClasspath.Tpo $(DEPDIR)/libscijvm_la-addToClasspath.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/addToClasspath.c' object='libscijvm_la-addToClasspath.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscijvm_la_CFLAGS) $(CFLAGS) -c -o libscijvm_la-addToClasspath.lo `test -f 'src/c/addToClasspath.c' || echo '$(srcdir)/'`src/c/addToClasspath.c
+
 libscijvm_la-gw_jvm.lo: sci_gateway/c/gw_jvm.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscijvm_la_CFLAGS) $(CFLAGS) -MT libscijvm_la-gw_jvm.lo -MD -MP -MF $(DEPDIR)/libscijvm_la-gw_jvm.Tpo -c -o libscijvm_la-gw_jvm.lo `test -f 'sci_gateway/c/gw_jvm.c' || echo '$(srcdir)/'`sci_gateway/c/gw_jvm.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscijvm_la-gw_jvm.Tpo $(DEPDIR)/libscijvm_la-gw_jvm.Plo
@@ -514,6 +528,13 @@ libscijvm_la-sci_with_embedded_jre.lo: sci_gateway/c/sci_with_embedded_jre.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_with_embedded_jre.c' object='libscijvm_la-sci_with_embedded_jre.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscijvm_la_CFLAGS) $(CFLAGS) -c -o libscijvm_la-sci_with_embedded_jre.lo `test -f 'sci_gateway/c/sci_with_embedded_jre.c' || echo '$(srcdir)/'`sci_gateway/c/sci_with_embedded_jre.c
+
+libscijvm_la-sci_javaclasspath.lo: sci_gateway/c/sci_javaclasspath.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscijvm_la_CFLAGS) $(CFLAGS) -MT libscijvm_la-sci_javaclasspath.lo -MD -MP -MF $(DEPDIR)/libscijvm_la-sci_javaclasspath.Tpo -c -o libscijvm_la-sci_javaclasspath.lo `test -f 'sci_gateway/c/sci_javaclasspath.c' || echo '$(srcdir)/'`sci_gateway/c/sci_javaclasspath.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscijvm_la-sci_javaclasspath.Tpo $(DEPDIR)/libscijvm_la-sci_javaclasspath.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_javaclasspath.c' object='libscijvm_la-sci_javaclasspath.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscijvm_la_CFLAGS) $(CFLAGS) -c -o libscijvm_la-sci_javaclasspath.lo `test -f 'sci_gateway/c/sci_javaclasspath.c' || echo '$(srcdir)/'`sci_gateway/c/sci_javaclasspath.c
 
 mostlyclean-libtool:
 	-rm -f *.lo
