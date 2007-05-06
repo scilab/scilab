@@ -79,3 +79,4 @@ void jniCallVoidFunctionSafe( jobject instance, const char * functionName, const
 BOOL jniCheckLastCall( BOOL dumpStack ) ;
 
 #endif /* _JNI_UTILS_H_ */
+
