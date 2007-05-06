@@ -13,7 +13,7 @@ src/c/addToClasspath.c
 GATEWAY_C_SOURCES = sci_gateway/c/gw_jvm.c \
 sci_gateway/c/sci_jvm_version.c \
 sci_gateway/c/sci_with_embedded_jre.c \
-sci_gateway/c/sci_javaclasspath
+sci_gateway/c/sci_javaclasspath.c
 
 
 libscijvm_la_CFLAGS=  $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/libs/MALLOC/includes/ -Iincludes/
