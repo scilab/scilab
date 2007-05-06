@@ -12,7 +12,6 @@ int main(argc,argv)
   char name[256],nam1[256],nam2[256];
   char fname[256];
   FILE *file,*filei;
-  int i=0;
   strcpy(fname,argv[1]);
   fname[strlen(fname)]= '\0';
   /** we use fname +1 since msvc makefile temporary filenames 

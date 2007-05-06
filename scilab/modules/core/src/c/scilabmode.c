@@ -17,7 +17,7 @@ BOOL setScilabMode(int newmode)
 	BOOL bOK=FALSE;
 	if ( (newmode == SCILAB_API) || (newmode == SCILAB_STD) || (newmode == SCILAB_NW) || (newmode == SCILAB_NWNI) )
 	{
-		CurrentScilabMode = newmode;
+		CurrentScilabMode = (scilabMode)newmode;
 		bOK=TRUE;
 	}
 	return bOK;
