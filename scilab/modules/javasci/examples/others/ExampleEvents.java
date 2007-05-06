@@ -3,7 +3,7 @@ import java.io.*;
 
 
 
-class  ExampleEvent
+class  ExampleEvents
 {
   
   public static void main(String[] args)  throws Exception
