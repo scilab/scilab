@@ -2,6 +2,11 @@
 // graphics module initialisation file 
 // Copyright INRIA 2006
 // ====================================================================
+if (getscilabmode() <> 'NWNI') then
+
+// Load graphics classes
+javaclasspath(SCI+'/java/jar/modules/graphics.jar')
+// ====================================================================
 //Load  functions librarie
 load('SCI/modules/graphics/macros/lib');
 // ====================================================================
@@ -18,4 +23,6 @@ add_module_help_chapter('graphics');
 add_demo("Graphics",pathdemos);
 
 clear pathdemos ;
+
+end // if (getscilabmode <> 'NWNI') then
 // ====================================================================

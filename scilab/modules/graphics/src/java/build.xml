@@ -11,13 +11,18 @@ INRIA 2007
    <description>
         build graphics Scilab - Scilab graphics Library
     </description>
+    
+    <target name="init">
+			<!-- Create the time stamp -->
+			<tstamp/>
+		</target>    
 
     <target name="clean" description="clean sources">
         <delete dir="build"/>
         <delete file="${dist}/graphics.jar"/>
     </target>
 
-    <target name="compile" description="build sources">
+    <target name="compile" description="build sources" depends="init">
     
         <mkdir dir="build/classes"/>
         <javac srcdir="org" destdir="build/classes"/>

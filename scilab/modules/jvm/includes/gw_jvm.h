@@ -14,6 +14,7 @@ int C2F(gw_jvm)(void);
 /* used in sci_gateway */
 int C2F(sci_with_embedded_jre) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_jvm_version) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_javaclasspath) _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/
 #endif /*  __GW_JVM_H__ */
 

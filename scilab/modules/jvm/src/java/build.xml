@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Allan CORNET
+INRIA 2007
+-->
+<project name="jvm" default="compile">
+
+   <property name="dist"  location="../../../../java/jar/modules" />
+   
+   <description>
+        build jvm modules
+    </description>
+    
+    <target name="init">
+			<!-- Create the time stamp -->
+			<tstamp/>
+		</target>    
+
+    <target name="clean" description="clean sources">
+        <delete dir="build"/>
+        <delete file="${dist}/jvm.jar"/>
+    </target>
+
+    <target name="compile" description="build sources" depends="init">
+    
+        <mkdir dir="build/classes"/>
+        <javac srcdir="org" destdir="build/classes"/>
+    </target>
+
+    <target name="jar" description="do .jar file" depends="compile">
+        <jar destfile="${dist}/jvm.jar" basedir="build/classes">
+            <manifest>
+                <attribute name="ClassPath" value="org.scilab.modules.jvm.ClassPath"/>
+                
+            </manifest>
+        </jar>
+    </target>
+
+</project>

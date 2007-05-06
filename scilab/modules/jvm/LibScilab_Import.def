@@ -9,3 +9,11 @@ intersci_
 com_
 sciprint
 ExceptionMessage
+stack_
+getrhsvar_
+vstk_
+checklhs_
+checkrhs_
+gettype_
+getScilabMode
+Scierror

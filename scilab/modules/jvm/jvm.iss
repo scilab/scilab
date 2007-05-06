@@ -12,6 +12,8 @@
 ;
 Source: bin\libjvm.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
+Source: java\jar\modules\jvm.jar;DestDir: {app}\java\jar\modules; Components: {#COMPN_SCILAB}
+;
 Source: modules\{#JVM}\licence.txt; DestDir: {app}\modules\{#JVM}; Components: {#COMPN_SCILAB}
 Source: modules\{#JVM}\readme.txt; DestDir: {app}\modules\{#JVM}; Components: {#COMPN_SCILAB}
 Source: modules\{#JVM}\VERSION.xml; DestDir: {app}\modules\{#JVM}; Components: {#COMPN_SCILAB}

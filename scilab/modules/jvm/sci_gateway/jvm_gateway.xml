@@ -25,4 +25,5 @@
 
 <PRIMITIVE gatewayId="52" primitiveId="1" primitiveName="with_embedded_jre" />
 <PRIMITIVE gatewayId="52" primitiveId="2" primitiveName="jvm_version" />
+<PRIMITIVE gatewayId="52" primitiveId="3" primitiveName="javaclasspath" />
 </GATEWAY>

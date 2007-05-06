@@ -78,12 +78,12 @@ BOOL startJVM(char *SCI_PATH)
 			strlen(DEFAULT_SCILAB_CLASSPATH)+
 			strlen(PATH_SEPARATOR)+
 			strlen(USER_CLASSPATH)+
-                        strlen(PATH_SEPARATOR)+
-                        strlen(SCI_PATH)  +
-                        strlen(GRAPHICS_CLASSPATH));
+            strlen(PATH_SEPARATOR)+
+            strlen(SCI_PATH)  +
+            strlen(JVM_CLASSPATH));
 
 		JAVACLASSPATH=(char*) MALLOC( sizeof(char)*	( length_JAVACLASSPATH +1) );
-		sprintf(JAVACLASSPATH,"-Djava.class.path=%s%s%s%s%s%s%s",SCI_PATH,DEFAULT_SCILAB_CLASSPATH,PATH_SEPARATOR,USER_CLASSPATH,PATH_SEPARATOR,SCI_PATH,GRAPHICS_CLASSPATH);
+		sprintf(JAVACLASSPATH,"-Djava.class.path=%s%s%s%s%s%s%s",SCI_PATH,DEFAULT_SCILAB_CLASSPATH,PATH_SEPARATOR,USER_CLASSPATH,PATH_SEPARATOR,SCI_PATH,JVM_CLASSPATH);
 
 		length_JAVALIBRARYPATH = (int)( strlen("-Djava.library.path=%s%s/lib%s%s%s")+
 			strlen(SCI_PATH)+

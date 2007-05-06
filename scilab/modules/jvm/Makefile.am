@@ -7,11 +7,13 @@ JVM_C_SOURCES = src/c/InitializeJVM.c \
 src/c/TerminateJVM.c \
 src/c/JVM_Unix.c \
 src/c/JVM.c \
-src/c/JniUtils.c
+src/c/JniUtils.c \
+src/c/addToClasspath.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_jvm.c \
 sci_gateway/c/sci_jvm_version.c \
-sci_gateway/c/sci_with_embedded_jre.c
+sci_gateway/c/sci_with_embedded_jre.c \
+sci_gateway/c/sci_javaclasspath
 
 
 libscijvm_la_CFLAGS=  $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/libs/MALLOC/includes/ -Iincludes/
@@ -44,6 +46,7 @@ includes/getScilabJavaVM.h \
 includes/getScilabJNIEnv.h \
 includes/InitializeJVM.h \
 includes/gw_jvm.h \
-includes/JniUtils.h
+includes/JniUtils.h \
+includes/addToClasspath.h
 
 include $(top_srcdir)/Makefile.incl.am

@@ -100,8 +100,8 @@ static MatdesTable Tab[]={
 	{sci_get,"get"},
 	{sci_set,"set"},
 	{sci_newaxes,"newaxes"},
-        {sci_relocate_handle,"relocate_handle"},
-        {sci_swap_handles,"swap_handles"},
+    {sci_relocate_handle,"relocate_handle"},
+    {sci_swap_handles,"swap_handles"},
      /* NG end */
 	{sci_xsort,"gsort"},
 	{sci_help_gtk,"help_gtk"},
@@ -141,7 +141,7 @@ int C2F(gw_graphics)(void)
   }
   else
   {
-	  Scierror(999,"graphic interface disabled -nogui mode.\r\n");
+	  Scierror(999,"graphic interface disabled -nogui or -nwni mode.\r\n");
 	  return 0;
   }
 
