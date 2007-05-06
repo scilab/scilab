@@ -2,7 +2,7 @@
 import java.io.*;
 import javasci.*; 
 
-public class  Exemple7A {
+public class  Example7A {
 
   public static void main(String[] args)
   {
@@ -16,7 +16,7 @@ public class  Exemple7A {
  		a.Get();
  		b=a.getData();
  		
- 		System.out.println("Exemple 7 A Serialize");
+ 		System.out.println("Example 7 A Serialize");
  		System.out.println("----------------------------------------------------");
   	for(r=0;r<=(a.getNumberOfRows()*a.getNumberOfCols())-1;r++)
     {
@@ -27,7 +27,7 @@ public class  Exemple7A {
   	
  		try 
     {
-     	FileOutputStream fichier = new FileOutputStream("Exemple7.ser");
+     	FileOutputStream fichier = new FileOutputStream("Example7.ser");
      	ObjectOutputStream oos = new ObjectOutputStream(fichier);
      	oos.writeObject(a);
      	oos.flush();

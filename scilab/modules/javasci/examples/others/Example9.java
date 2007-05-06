@@ -1,7 +1,7 @@
 import javasci.* ; 
 
 
-class  Exemple9 {
+class  Example9 {
 
   public static void main(String[] args) {
   	int col=4;

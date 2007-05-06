@@ -1,18 +1,17 @@
 import javasci.* ; 
 
 
-class  Exemple11 {
+class  Example1 {
 
   public static void main(String[] args) {
   	int col=4;
   	int row=2;
   	int r,c;
-  	boolean [] b=new boolean[row*col];
+  	double [] b=new double[row*col];
   	
-  	SciBooleanArray a = new SciBooleanArray("A",row,col);
-  	SciBooleanArray bsci = new SciBooleanArray("B",row,col);
-  	
-  	Scilab.Exec("A=[%t,%t,%t,%f;%f %t %t %t];");
+  	SciDoubleArray a = new SciDoubleArray("A",row,col);
+  	Scilab.Exec("A=[1,2,3,4;5 6 7 8];");
+  	a.Get();
   	System.out.println("----------------------------------------------------");
   	a.disp();
   	System.out.println("----------------------------------------------------");
@@ -37,12 +36,20 @@ class  Exemple11 {
      System.out.println(" ");
     }
   	System.out.println("----------------------------------------------------");
-  	Scilab.Exec("B=~A;");
-    bsci.disp();
-    System.out.println("----------------------------------------------------");
-		System.out.println("A ScilabType : "+Scilab.TypeVar("A"));
-		System.out.println("B ScilabType : "+Scilab.TypeVar("B"));
+ 	  SciDoubleArray d = new SciDoubleArray("D",1,4,new double [] {1,2,3,4});
+ 	  SciDoubleArray q = new SciDoubleArray("Q",3,1, new double [] {0,0,0} );
+
+    Scilab.Exec("Str='Scilab';");
+    Scilab.Exec("P=poly(D','x','coeff');");
+    Scilab.Exec("Q=real(roots(P));");
+
+    Scilab.Exec("disp('Str : '+Str);");
+		System.out.println("Q ScilabType : "+Scilab.TypeVar("Q"));
+		System.out.println("Str ScilabType : "+Scilab.TypeVar("Str"));
 		System.out.println("----------------------------------------------------");
+    q.Get();
+    q.disp();
+    System.out.println("----------------------------------------------------");
     Scilab.Finish();
   }
 }

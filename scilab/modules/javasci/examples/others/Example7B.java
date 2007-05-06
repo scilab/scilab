@@ -2,13 +2,13 @@
 import java.io.*;
 import javasci.*; 
 
-class  Exemple7B {
+class  Example7B {
 
   public static void main(String[] args)
   {
   	  try 
     {
-      FileInputStream fichier = new FileInputStream("Exemple7.ser");
+      FileInputStream fichier = new FileInputStream("Example7.ser");
       ObjectInputStream ois = new ObjectInputStream(fichier);
       
       int col=4;
@@ -21,7 +21,7 @@ class  Exemple7B {
       
       b=a.getData();
       
-      System.out.println("Exemple 7 B DeSerialize");
+      System.out.println("Example 7 B DeSerialize");
       System.out.println("----------------------------------------------------");
   		for(r=0;r<=(a.getNumberOfRows()*a.getNumberOfCols())-1;r++)
       {

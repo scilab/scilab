@@ -1,10 +1,9 @@
 execute Make.bat to compile these examples
 
-execute :
-	Exemples.bat
-	ExempleEvents.bat
-	ExempleEvent2.bat
+or "ant compile" in this directory
 
+execute :
+	Examples.bat
 
 Allan CORNET
 

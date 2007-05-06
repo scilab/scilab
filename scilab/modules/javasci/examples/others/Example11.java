@@ -1,18 +1,18 @@
 import javasci.* ; 
 
-class  Exemple5 {
 
-  public static void main(String[] args) 
-  {
+class  Example11 {
+
+  public static void main(String[] args) {
   	int col=4;
   	int row=2;
-  	int r,c,k;
-  	String [] b=new String [row*col];
-  	String [] d=new String[row*col];
+  	int r,c;
+  	boolean [] b=new boolean[row*col];
   	
-  	SciStringArray a = new SciStringArray("A",row,col);
-  	Scilab.Exec("A=['Aaa','Bbb','Ccc','Ddd';'Eee','Fff','Ggg','Hhh'];");
-  	a.Get();
+  	SciBooleanArray a = new SciBooleanArray("A",row,col);
+  	SciBooleanArray bsci = new SciBooleanArray("B",row,col);
+  	
+  	Scilab.Exec("A=[%t,%t,%t,%f;%f %t %t %t];");
   	System.out.println("----------------------------------------------------");
   	a.disp();
   	System.out.println("----------------------------------------------------");
@@ -37,23 +37,13 @@ class  Exemple5 {
      System.out.println(" ");
     }
   	System.out.println("----------------------------------------------------");
-
-		
-		for (k=0;k<row*col;k++)
-		{
-			d[k]=new String("Sentence ")+k;
-		}
-		
-		SciStringArray D = new SciStringArray("D",2,4,d);
-		D.disp();
-		
-		SciStringArray Dp = new SciStringArray("D",2,4);
-		Dp.disp();
-		
-		Scilab.Finish();
-
-  	
-    
+  	Scilab.Exec("B=~A;");
+    bsci.disp();
+    System.out.println("----------------------------------------------------");
+		System.out.println("A ScilabType : "+Scilab.TypeVar("A"));
+		System.out.println("B ScilabType : "+Scilab.TypeVar("B"));
+		System.out.println("----------------------------------------------------");
+    Scilab.Finish();
   }
 }
 

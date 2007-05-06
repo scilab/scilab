@@ -20,7 +20,7 @@ import java.io.*;
   	}
   }
 
-class  ExempleEvent2
+class  ExampleEvent2
 {
 
   public static void main(String[] args)  throws Exception

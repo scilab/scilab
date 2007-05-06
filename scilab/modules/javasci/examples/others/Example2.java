@@ -1,6 +1,6 @@
 import javasci.* ; 
 
-class  Exemple2 {
+class  Example2 {
 
   public static void main(String[] args) {
   

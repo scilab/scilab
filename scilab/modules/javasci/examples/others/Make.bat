@@ -1,11 +1,20 @@
 @echo off
 rem Allan CORNET
-rem INRIA Juillet 2004
+rem INRIA Mai 2007
 
-rem A modifier selon votre répertoire d'installation de Java(TM) 2 SDK, Standard Edition Version 1.5
-PATH=%PATH%;D:\TRUNK\scilab\modules\jvm\bin\jdk\bin;
+set SCILAB_ROOT=../../../..
+set PATH=%SCILAB_ROOT%/bin;%PATH%
+set JAVAC="%SCILAB_ROOT%/java/jdk/bin/javac.exe"
+if NOT EXIST %JAVAC% set %JAVAC%=javac.exe
+set CLASSPATH=%SCILAB_ROOT%/java/jar/modules/javasci.jar;%CLASSPATH%
 
-rem Compilation des exemples
-javac -deprecation -d ..\..\..\..\bin -classpath ..\..\..\..\bin *.java
+rem build examples
+
+mkdir build
+cd build
+mkdir classes
+cd ..
+
+%JAVAC% -deprecation -d build/classes *.java
 @echo on
 
