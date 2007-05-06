@@ -37,6 +37,10 @@ function  browsehelp_configure(job)
 				'opera'
 				'quanta (kde)'];
 		
+		if with_tk() then 
+			browse_modes=[browse_modes;
+				'Scilab Browser'];
+		end
 		if %browsehelp<>[] then //help mode already selected
 			if and(browse_modes<>%browsehelp) then
 				warning('Unhandled  help browser '+%browsehelp)
@@ -51,6 +55,10 @@ function  browsehelp_configure(job)
 	else //for windows 
 		if job=='set' then oldbrowsehelp=%browsehelp;%browsehelp=[],end
 		browse_modes=['Default Windows Browser';];
+		if with_tk() then 
+			browse_modes=[browse_modes;
+				'Scilab Browser'];
+		end
 	
 		if %browsehelp<>[] then //help mode already selected
 			if and(browse_modes<>%browsehelp) then
