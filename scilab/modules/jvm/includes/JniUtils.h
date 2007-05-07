@@ -48,7 +48,7 @@ jintArray    jniCreateIntArrayCopy( const jint    * cArray, int nbElements ) ;
 /**
  * Delete a Java object (array, objects, ...)
  */
-void jniDeleteJavaLocalEntity( jobject entity ) ;
+void jniDeleteLocalEntity( jobject entity ) ;
 
 /**
  * Create a new instance of a Java class calling its
