@@ -2,8 +2,8 @@
 /* INRIA 2007 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#include "addToClasspath.h"
 #include <jni.h>
+#include "addToClasspath.h"
 #include "getScilabJNIEnv.h"
 #include "../../io/includes/directories.h"
 #include "../../fileio/includes/FileExist.h"
