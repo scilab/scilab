@@ -56,9 +56,10 @@ void jniDeleteJavaLocalEntity( jobject entity ) ;
  * @param className[in] string of the class name
  * @param instanceClass[out] Java reference to the class
  * @param instance[out] created object
+ * @return TRUE if the call was succesful, FALSE otherwise.
  */
-void jniCreateDefaultInstance(     const char * className, jclass * instanceClass, jobject * instance ) ;
-void jniCreateDefaultInstanceSafe( const char * className, jclass * instanceClass, jobject * instance ) ;
+BOOL jniCreateDefaultInstance(     const char * className, jclass * instanceClass, jobject * instance ) ;
+BOOL jniCreateDefaultInstanceSafe( const char * className, jclass * instanceClass, jobject * instance ) ;
 
 /**
  * Call a Java function returning void.
@@ -66,9 +67,10 @@ void jniCreateDefaultInstanceSafe( const char * className, jclass * instanceClas
  * @param functionName Name of the function
  * @param paramTypes string containing the types of paramaters given as optionals argument.
  *                   This respect the JNI style and looks like "[DID".
+ * @return TRUE if the call was succesful, FALSE otherwise.
  */
-void jniCallVoidFunction(     jobject instance, const char * functionName, const char * paramTypes, ... ) ;
-void jniCallVoidFunctionSafe( jobject instance, const char * functionName, const char * paramTypes, ... ) ;
+BOOL jniCallVoidFunction(     jobject instance, const char * functionName, const char * paramTypes, ... ) ;
+BOOL jniCallVoidFunctionSafe( jobject instance, const char * functionName, const char * paramTypes, ... ) ;
 
 /**
  * Tell if the last call to JNI primitive was successful

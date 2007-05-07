@@ -64,7 +64,7 @@ void jniDeleteLocalEntity( jobject entity )
   (*sciJEnv)->DeleteLocalRef( sciJEnv, entity ) ;
 }
 /*------------------------------------------------------------------------------------------*/
-void jniCreateDefaultInstance( const char * className, jclass * instanceClass, jobject * instance )
+BOOL jniCreateDefaultInstance( const char * className, jclass * instanceClass, jobject * instance )
 {
   jmethodID constructObject = NULL ;
   
@@ -74,7 +74,7 @@ void jniCreateDefaultInstance( const char * className, jclass * instanceClass, j
     Scierror( 999, "Unable to find class %s.\r\n", className ) ;
     *instanceClass = NULL ;
     *instance      = NULL ;
-    return ;
+    return FALSE ;
   }
 
   /* "()V" for no parameters and return void */
@@ -87,18 +87,19 @@ void jniCreateDefaultInstance( const char * className, jclass * instanceClass, j
     Scierror( 999, "Unable to create an instance of class %s.\r\n", className ) ;
     *instanceClass = NULL ;
     *instance      = NULL ;
-    return ;
+    return FALSE ;
   }
+  return TRUE ;
 }
 /*------------------------------------------------------------------------------------------*/
-void jniCreateDefaultInstanceSafe( const char * className, jclass * instanceClass, jobject * instance )
+BOOL jniCreateDefaultInstanceSafe( const char * className, jclass * instanceClass, jobject * instance )
 {
-  if ( instanceClass == NULL || instance == NULL ) { return ; }
+  if ( instanceClass == NULL || instance == NULL ) { return FALSE ; }
   jniUpdateCurrentEnv() ;
-  jniCreateDefaultInstance( className, instanceClass, instance ) ;
+  return jniCreateDefaultInstance( className, instanceClass, instance ) ;
 }
 /*------------------------------------------------------------------------------------------*/
-void jniCallVoidFunction( jobject instance, const char * functionName, const char * paramTypes, ... )
+BOOL jniCallVoidFunction( jobject instance, const char * functionName, const char * paramTypes, ... )
 {
   jmethodID   voidMethod = NULL ;
   jclass      instanceClass = (*sciJEnv)->GetObjectClass( sciJEnv, instance ) ; /* retrieve the class of the object */
@@ -107,34 +108,48 @@ void jniCallVoidFunction( jobject instance, const char * functionName, const cha
 
   /* Add (...)V around the paramList */
   callingSequence = MALLOC( ( strlen(paramTypes) + 4 ) * sizeof(char) ) ; /* 3 for ()V and 1 for 0 terminating character */
-  if ( callingSequence == NULL ) { return ; }
+  if ( callingSequence == NULL ) { return FALSE ; }
 
   sprintf( callingSequence, "(%s)V", paramTypes ) ;
 
   /* Find the method in the class */
   voidMethod = (*sciJEnv)->GetMethodID( sciJEnv, instanceClass, functionName, callingSequence ) ;
+  if ( !jniCheckLastCall(FALSE) )
+  {
+    Scierror( 999, "Unable to find function %s.\r\n", functionName ) ;
+    FREE( callingSequence ) ;
+    return FALSE ;
+  }
 
   /* Call the function with the optionals parameters */
   va_start( args, paramTypes ) ;
   (*sciJEnv)->CallVoidMethod( sciJEnv, instance, voidMethod, args ) ;
   va_end(args);
+  if ( !jniCheckLastCall(FALSE) )
+  {
+    Scierror( 999, "Unable to call function %s.\r\n", functionName ) ;
+    FREE( callingSequence ) ;
+    return FALSE ;
+  }
 
   FREE( callingSequence ) ;
-
+  return TRUE ;
 }
 /*------------------------------------------------------------------------------------------*/
-void jniCallVoidFunctionSafe( jobject instance, const char * functionName, const char * paramTypes, ... )
+BOOL jniCallVoidFunctionSafe( jobject instance, const char * functionName, const char * paramTypes, ... )
 {
-  va_list args;
+  va_list args ;
+  BOOL status = FALSE ;
 
-  if ( instance == NULL ) { return ; }
+  if ( instance == NULL ) { return FALSE ; }
 
   jniUpdateCurrentEnv() ;
 
   /* Call the function with the optionals parameters */
   va_start( args, paramTypes ) ;
-  jniCallVoidFunction( instance, functionName, paramTypes, args ) ;
+  status = jniCallVoidFunction( instance, functionName, paramTypes, args ) ;
   va_end(args);
+  return status ;
 
 }
 /*------------------------------------------------------------------------------------------*/
