@@ -26,7 +26,10 @@ DrawableFigureJoGL::DrawableFigureJoGL( DrawableFigure * drawer ) : DrawableFigu
   jniCreateDefaultInstance( "org/scilab/modules/graphics/figureDrawing/DrawableFigureJoGL", &m_oDrawableClass, &m_oDrawableObject) ;
 }
 /*------------------------------------------------------------------------------------------*/
-DrawableFigureJoGL::~DrawableFigureJoGL( void ) {}
+DrawableFigureJoGL::~DrawableFigureJoGL( void )
+{
+  jniDeleteLocalEntity( m_oDrawableObject ) ;
+}
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::initializeDrawing( void )
 {
