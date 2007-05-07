@@ -3,7 +3,7 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
 #include "addToClasspath.h"
-#include "jni.h"
+#include <jni.h>
 #include "getScilabJNIEnv.h"
 /*-----------------------------------------------------------------------------------*/ 
 BOOL addToClasspath(char *classpathstring)

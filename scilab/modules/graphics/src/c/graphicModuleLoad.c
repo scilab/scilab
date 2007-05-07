@@ -11,6 +11,8 @@
 #include "graphicModuleLoad.h"
 #include "InitObjects.h"
 #include "periScreen.h"
+#include "getScilabJavaVM.h"
+#include "JniUtils.h"
 
 static BOOL isGraphicModuleLoaded = FALSE ;
 
@@ -23,6 +25,8 @@ void loadGraphicModule( void )
   createScilabSetHashTable() ;
 
   C2F(graphicsmodels)() ;
+
+  jniInitUtils( getScilabJavaVM() ) ;
 
   isGraphicModuleLoaded = TRUE ;
 }
@@ -44,6 +48,8 @@ void closeGraphicModule( void )
 
   /* deleteTemporary points points in peri***.c */
   deletePoints() ;
+
+  jniCloseUtils() ;
 
   isGraphicModuleLoaded = FALSE ;
 

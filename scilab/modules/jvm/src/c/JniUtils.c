@@ -11,6 +11,7 @@
 
 #include "JniUtils.h"
 #include "MALLOC.h"
+#include "Scierror.h"
 
 /*------------------------------------------------------------------------------------------*/
 /** Static variable containing the jvm. */
@@ -70,6 +71,7 @@ void jniCreateDefaultInstance( const char * className, jclass * instanceClass, j
   *instanceClass = (*sciJEnv)->FindClass( sciJEnv, className ) ;
   if ( !jniCheckLastCall(TRUE) )
   {
+    Scierror( 999, "Unable to find class %s.\r\n", className ) ;
     *instanceClass = NULL ;
     *instance      = NULL ;
     return ;
@@ -82,6 +84,7 @@ void jniCreateDefaultInstance( const char * className, jclass * instanceClass, j
   *instance = (*sciJEnv)->NewObject( sciJEnv, *instanceClass, constructObject ) ;
   if ( !jniCheckLastCall(TRUE) )
   {
+    Scierror( 999, "Unable to create an instance of class %s.\r\n", className ) ;
     *instanceClass = NULL ;
     *instance      = NULL ;
     return ;
@@ -90,6 +93,7 @@ void jniCreateDefaultInstance( const char * className, jclass * instanceClass, j
 /*------------------------------------------------------------------------------------------*/
 void jniCreateDefaultInstanceSafe( const char * className, jclass * instanceClass, jobject * instance )
 {
+  if ( instanceClass == NULL || instance == NULL ) { return ; }
   jniUpdateCurrentEnv() ;
   jniCreateDefaultInstance( className, instanceClass, instance ) ;
 }
@@ -122,6 +126,8 @@ void jniCallVoidFunction( jobject instance, const char * functionName, const cha
 void jniCallVoidFunctionSafe( jobject instance, const char * functionName, const char * paramTypes, ... )
 {
   va_list args;
+
+  if ( instance == NULL ) { return ; }
 
   jniUpdateCurrentEnv() ;
 
