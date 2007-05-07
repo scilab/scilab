@@ -99,7 +99,7 @@ proc showwatch_bp {} {
     set checkboxshowwatchvariablesarea $watch.f.f1.f1r.showwatchvariablesarea
     eval "checkbutton $checkboxshowwatchvariablesarea \
             -variable showwatchvariablesarea [bl "Hide watch &variables"] \
-            -command \"closewatch_bp $watch; showwatch_bp\" \
+            -command \"closewatch_bp; showwatch_bp\" \
             -onvalue \"false\" -offvalue \"true\" \
             -width $bestwidth -font \[list $menuFont\] \
             -anchor w -borderwidth 1 -pady 0 "
@@ -107,7 +107,7 @@ proc showwatch_bp {} {
     set checkboxshowcallstackarea $watch.f.f1.f1r.showcallstackarea
     eval "checkbutton $checkboxshowcallstackarea [bl "Hide call &stack"] \
             -variable showcallstackarea \
-            -command \"closewatch_bp $watch; showwatch_bp\" \
+            -command \"closewatch_bp; showwatch_bp\" \
             -onvalue \"false\" -offvalue \"true\" \
             -width $bestwidth -font \[list $menuFont\] \
             -anchor w -borderwidth 1 -pady 0 "
@@ -212,7 +212,8 @@ proc showwatch_bp {} {
     frame $watch.f.vpw.f2.f2l ;# -bg lightgrey
     set bestwidth [mcmaxra "Watch variables:" \
                            "Add/Chan&ge" \
-                           "&Remove"]
+                           "&Remove" \
+                           "A&uto (local variables)"]
     set tl [mc "Watch variables:"]
     label $watch.f.vpw.f2.f2l.label -text $tl -font $menuFont
     set buttonAddw $watch.f.vpw.f2.f2l.buttonAdd
@@ -223,9 +224,18 @@ proc showwatch_bp {} {
     eval "button $buttonRemove [bl "&Remove"] \
             -width $bestwidth -font \[list $menuFont\] "
     if {$dockwatch} {$buttonRemove configure -underline -1}
+    set checkboxautowatchlocals $watch.f.vpw.f2.f2l.autowatchlocals
+    eval "checkbutton $checkboxautowatchlocals [bl "A&uto (local variables)"] \
+            -variable autowatchloc \
+            -command \"manageautowatchloc_bp\" \
+            -onvalue \"true\" -offvalue \"false\" \
+            -width $bestwidth -font \[list $menuFont\] \
+            -anchor w -borderwidth 1 -pady 0 "
+    if {$dockwatch} {$checkboxautowatchlocals configure -underline -1}
 
-    pack $watch.f.vpw.f2.f2l.label $buttonAddw $buttonRemove -pady 4
+    pack $watch.f.vpw.f2.f2l.label $buttonAddw $buttonRemove $checkboxautowatchlocals -pady 4
     pack $watch.f.vpw.f2.f2l -anchor n
+    manageautowatchloc_bp
 
     frame $watch.f.vpw.f2.f2r ;# -bg peachpuff
 
@@ -240,10 +250,9 @@ proc showwatch_bp {} {
     frame $watch.f.vpw.f2.f2r.hpw.fr
     set lbvarval  $watch.f.vpw.f2.f2r.hpw.fr.lbvarval
     set scrollxr  $watch.f.vpw.f2.f2r.hpw.fr.xscroll
-    $buttonAddw   configure -command {Addarg_bp $watch $buttonAddw $lbvarname $lbvarval; \
-                                      closewatch_bp $watch nodestroy}
+    $buttonAddw   configure -command {Addarg_bp $watch $buttonAddw $lbvarname $lbvarval}
     $buttonRemove configure -command {Removearg_bp $lbvarname $lbvarval; \
-                                      closewatch_bp $watch nodestroy}
+                                      syncwatchvarsfromlistbox}
     scrollbar $scrolly  -command "scrollyboth_bp $lbvarname $lbvarval" -takefocus 0
     scrollbar $scrollxl -command "$lbvarname xview" -orient horizontal -takefocus 0
     scrollbar $scrollxr -command "$lbvarval  xview" -orient horizontal -takefocus 0
@@ -312,7 +321,7 @@ proc showwatch_bp {} {
     SetProgressBarNarrow $bptfunsindic
     set buttonClose $watch.f.f9.buttonClose
     eval "button $buttonClose [bl "&Close"] \
-            -command \"closewatch_bp $watch\" \
+            -command \"closewatch_bp\" \
             -font \[list $menuFont\] "
     if {$dockwatch} {$buttonClose configure -underline -1}
     pack $totbptsindic -expand no -fill x
@@ -344,15 +353,11 @@ proc showwatch_bp {} {
         $watch.f.vpw.f2.f2r.hpw sash place 0 [lindex $watchhsashcoord 0] [lindex $watchhsashcoord 1]
     }
 
-    bind $watch <Return> {Addarg_bp $watch $buttonAddw $lbvarname $lbvarval; \
-                          closewatch_bp $watch nodestroy}
-    bind $lbvarname <Double-Button-1> {Addarg_bp $watch $buttonAddw $lbvarname $lbvarval; \
-                                       closewatch_bp $watch nodestroy}
-    bind $watch <Escape>    {closewatch_bp $watch}
-    bind $watch <BackSpace> {Removearg_bp $lbvarname $lbvarval; \
-                             closewatch_bp $watch nodestroy}
-    bind $watch <Delete>    {Removearg_bp $lbvarname $lbvarval; \
-                             closewatch_bp $watch nodestroy}
+    bind $watch <Return> {Addarg_bp $watch $buttonAddw $lbvarname $lbvarval}
+    bind $lbvarname <Double-Button-1> {Addarg_bp $watch $buttonAddw $lbvarname $lbvarval}
+    bind $watch <Escape>    {closewatch_bp}
+    bind $watch <BackSpace> {Removearg_bp $lbvarname $lbvarval;syncwatchvarsfromlistbox}
+    bind $watch <Delete>    {Removearg_bp $lbvarname $lbvarval;syncwatchvarsfromlistbox}
     bind $lbvarval <<ListboxSelect>> {selectinrightwin_bp $lbvarname $lbvarval}
     bind $lbvarname <Enter> "set go_on_update_bubble_watchvar true ; update_bubble_watchvar %W enter \[winfo pointerxy $pad\]"
     bind $lbvarname <Leave> "set go_on_update_bubble_watchvar false; update_bubble_watchvar %W leave \[list \]"
@@ -382,6 +387,7 @@ proc showwatch_bp {} {
     bind $watch <Alt-[fb $checkboxdockwatch]>              "$checkboxdockwatch invoke"
     bind $watch <Alt-[fb $buttonAddw]>                     "$buttonAddw invoke"
     bind $watch <Alt-[fb $buttonRemove]>                   "$buttonRemove invoke"
+    bind $watch <Alt-[fb $checkboxautowatchlocals]>        "$checkboxautowatchlocals invoke"
     bind $watch <Alt-[fb $buttonClose]>                    "$buttonClose invoke"
 
     if {!$dockwatch} {
@@ -462,18 +468,10 @@ proc updatewatch_bp {} {
     }
 }
 
-proc closewatch_bp {w {dest "destroy"}} {
-    global lbvarname lbvarval
-    global watchvars watchvarsvals
-    set watchvars ""
-    array set watchvarsvals {}
-    for {set i 0} {$i < [$lbvarname size]} {incr i} {
-        set wvarname [$lbvarname get $i]
-        set watchvars "$watchvars $wvarname"
-        set wvarvalue [$lbvarval get $i]
-        set watchvarsvals($wvarname) $wvarvalue
-    }
-    if {$dest == "destroy"} {destroy $w}
+proc closewatch_bp {} {
+    global watch
+    syncwatchvarsfromlistbox
+    destroy $watch
 }
 
 proc managewatchontop_bp {} {
@@ -541,7 +539,7 @@ proc managedockwatch_bp {} {
     managewatchontop_bp
 
     # redraw the watch window with the new watchontop value
-    closewatch_bp $watch
+    closewatch_bp
     showwatch_bp
     managewatchontop_bp
 
@@ -552,54 +550,142 @@ proc managedockwatch_bp {} {
     }
 }
 
-proc updateclickablelinetag {} {
-    global callstackwidget
-    global callstackfuns callstacklines 
-    global errfunc errline
-    if {[getdbstate] == "DebugInProgress"} {
-        # there is no error displayed in the call stack area
-        # the call stack area looks like this:
-        #     Breakpoint called at line 4 of macro %foo
-        #     %foo       called at line 4 of macro foo
-        #     foo        called at line 5 of macro b_test
-        #     b_test     called at line 101 of macro atest
-        $callstackwidget tag add clickableline 1.0 "end - 1c"
-    } else {
-        # no debug in progress
-        # either there was no error (the call stack area is empty), and in
-        # this case $errfunc is "" and $errline is 0
-        # or the debug stopped due to an error and the call stack area looks
-        # like this:
-        #     Error 4 -- << undefined variable : A >>
-        #     at line 14 of atest
-        #
-        #     Scilab is back at the main level now.
-        # note that only line 2 is relevant to click in this case, and that
-        # $errfunc and $errline set in proc checkexecutionerror_bp contain
-        # the target destination
-        $callstackwidget tag remove clickableline 1.0 end
-        if {$errfunc != ""} {
-            # non empty call stack area
-            $callstackwidget tag add clickableline 2.0 3.0
+proc manageautowatchloc_bp {} {
+# switch on or off the local variables automatic display in the watch window
+    global watch autowatchloc
+    global callstackfuns
+    if {[info exists watch]} {
+        if {[getdbstate] == "DebugInProgress"} {
+            # retrieve the local variables names
+            getlocalsnames
+            if {$autowatchloc} {
+                # add all local variables to the watch window
+                set fullcomm "TCL_EvalStr(\"addlocalsinwatch\",\"scipad\");"
+            } else {
+                # remove all local variables to the watch window
+                set fullcomm "TCL_EvalStr(\"removelocalsfromwatch\",\"scipad\");"
+            }
+             ScilabEval_lt $fullcomm "seq"
+        } else {
+            # not in a debug session - nothing to do, this will be handled
+            # during the debug
         }
     }
 }
 
-proc updatebptcomplexityindicators_bp {{NbBreakpointedMacros -1} {NbBreakpoints -1}} {
-# update the indicators describing the complexity of the debug in
-# terms of number of breakpoints and number of breakpointed functions
-    global ScilabCodeMaxBreakpointedMacros ScilabCodeMaxBreakpoints
-    global bptfunsindic totbptsindic
-    global watch
-    if {[info exists watch]} {
-        if {[winfo exists $watch]} {
-            if {$NbBreakpointedMacros == -1} {
-                set NbBreakpointedMacros [countallbreakpointedmacros]
-                set NbBreakpoints [countallbreakpointedlines]
+proc getlocalsnames {} {
+# fill in the varsforautowatchloc global array with the names of
+# the local variables of function $curfun
+# this is done by retrieving the result of macrovar for the current
+# function, more precisely if vars=macrovar(foo), vars(1), vars(2),
+# and vars(5), which are respectively the input, output, and local
+# variables of the first item in $callstackfuns
+# the matrix elements of each element of list varsforautowatchloc_db
+# are concatenated using strcat with a space in between, so that
+# $varsforautowatchloc(...) can be interpreted later as a Tcl list
+
+    # note the complication below to provide a function (type 13)
+    # and not a string to macrovar, and to let the expression be
+    # evaluated at the correct time...!
+    
+    # Moreover, the test on the emptiness of db_curfunname allows
+    # to deal easily with the case where the debugger finished
+    # the debug: [lindex $callstackfuns 0] is empty and would throw
+    # an error in macrovar(""). In this case no local variable is
+    # to be considered and the elements of $varsforautowatchloc are
+    # reset to empty lists
+ 
+    # finally, to ease backporting, the result of TCL_EvalStr is not
+    # used directly, the usual detour with TCL_GetVar is used
+
+# this could be used on trunk only
+#    set comm1 "db_curfunname = TCL_EvalStr(\"lindex \$callstackfuns 0\",\"scipad\");"
+# this is compatible with both trunk and BUILD4 branches
+    set comm1 "TCL_EvalStr(\"set db_curfunname_Tcl \[lindex \$callstackfuns 0\]\",\"scipad\");db_curfunname = TCL_GetVar(\"db_curfunname_Tcl\",\"scipad\");"
+
+    set comm2 "varsforautowatchloc_db = \"macrovar(\"+db_curfunname+\")\";"
+    set comm3 "if db_curfunname <> \"\" then"
+    set comm4     "execstr(\"varsforautowatchloc_db=\"+varsforautowatchloc_db);"
+    set comm5     "TCL_EvalStr(\"set varsforautowatchloc(in)     \"\"\"+strcat(varsforautowatchloc_db(1),\" \")+\"\"\"\",\"scipad\");"
+    set comm6     "TCL_EvalStr(\"set varsforautowatchloc(out)    \"\"\"+strcat(varsforautowatchloc_db(2),\" \")+\"\"\"\",\"scipad\");"
+    set comm7     "TCL_EvalStr(\"set varsforautowatchloc(locals) \"\"\"+strcat(varsforautowatchloc_db(5),\" \")+\"\"\"\",\"scipad\");"
+    set comm8 "else"
+    set comm9     "TCL_EvalStr(\"set varsforautowatchloc(in)     \"\"\"\"\",\"scipad\");"
+    set commA     "TCL_EvalStr(\"set varsforautowatchloc(out)    \"\"\"\"\",\"scipad\");"
+    set commB     "TCL_EvalStr(\"set varsforautowatchloc(locals) \"\"\"\"\",\"scipad\");"
+    set commC "end;"
+    set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6 $comm7 $comm8 $comm9 $commA $commB $commC]
+    ScilabEval_lt $fullcomm "seq"
+}
+
+proc addlocalsinwatch {} {
+# add the variables whose names are stored in $varsforautowatchloc
+# in the watch window
+    global varsforautowatchloc
+    global watchvars watchvarsvals unklabel
+    foreach typ {in out locals} {
+        foreach avar $varsforautowatchloc($typ) {
+            # there is no point in adding the "ans" local variable,
+            # which is always present in the 5th element of the macrovar output
+            # on next debug step, the debugger will [ans]=resume(ans)
+            # which means that a new variable "ans" will be created
+            # which was not present in the debugged script - the
+            # original ans is special, and cannot be watched because
+            # of this
+            # to let ans be watched, I could just avoid to include it
+            # in the resume list in proc createsetinscishellcomm
+            # however, this is not enough: if ans is added here,
+            # it gets filled by the result of FormatWhereForWatch,
+            # which is not the intent -> better completely forbid
+            # watching ans
+            if {$avar != "ans"} {
+                # don't add if already present
+                if {[lsearch $watchvars $avar] == -1} {
+                    lappend watchvars $avar
+                    set watchvarsvals($avar) $unklabel
+                }
             }
-            SetProgress $totbptsindic $NbBreakpoints $ScilabCodeMaxBreakpoints [mc "Breakpoints"] {0.6 0.8}
-            SetProgress $bptfunsindic $NbBreakpointedMacros $ScilabCodeMaxBreakpointedMacros [mc "Breakpointed functions"] {0.6 0.8}
         }
+    }
+    getfromshell
+}
+
+proc removelocalsfromwatch {} {
+# remove the variables whose names are stored in $varsforautowatchloc
+# from the watch window
+    global varsforautowatchloc
+    global watchvars watchvarsvals
+    foreach typ {in out locals} {
+        foreach avar $varsforautowatchloc($typ) {
+            # the test below is almost always true, but might also
+            # be false (e.g. for $avar == "ans")
+            set avarindex [lsearch $watchvars $avar]
+            if {$avarindex != -1} {
+                set watchvars [lreplace $watchvars $avarindex $avarindex]
+                unset watchvarsvals($avar)
+            }
+        }
+    }
+    getfromshell
+}
+
+proc addlocalvars {} {
+# add the local vars in the watch window if the user
+# checked the corresponding "Auto add locals" checkbox
+    global autowatchloc
+    if {$autowatchloc} {
+        manageautowatchloc_bp
+    }
+}
+
+proc removelocalvars {} {
+# remove the local vars from the watch window if the user
+# checked the corresponding "Auto add locals" checkbox
+    global autowatchloc
+    if {$autowatchloc} {
+        set autowatchloc false
+        manageautowatchloc_bp
+        set autowatchloc true
     }
 }
 
@@ -745,6 +831,39 @@ proc createsetinscishellcomm {setofvars} {
     return [list $fullcomm $retcomm $viscomm]
 }
 
+proc updateclickablelinetag {} {
+    global callstackwidget
+    global callstackfuns callstacklines 
+    global errfunc errline
+    if {[getdbstate] == "DebugInProgress"} {
+        # there is no error displayed in the call stack area
+        # the call stack area looks like this:
+        #     Breakpoint called at line 4 of macro %foo
+        #     %foo       called at line 4 of macro foo
+        #     foo        called at line 5 of macro b_test
+        #     b_test     called at line 101 of macro atest
+        $callstackwidget tag add clickableline 1.0 "end - 1c"
+    } else {
+        # no debug in progress
+        # either there was no error (the call stack area is empty), and in
+        # this case $errfunc is "" and $errline is 0
+        # or the debug stopped due to an error and the call stack area looks
+        # like this:
+        #     Error 4 -- << undefined variable : A >>
+        #     at line 14 of atest
+        #
+        #     Scilab is back at the main level now.
+        # note that only line 2 is relevant to click in this case, and that
+        # $errfunc and $errline set in proc checkexecutionerror_bp contain
+        # the target destination
+        $callstackwidget tag remove clickableline 1.0 end
+        if {$errfunc != ""} {
+            # non empty call stack area
+            $callstackwidget tag add clickableline 2.0 3.0
+        }
+    }
+}
+
 proc openpointedstacklevel {w x y} {
 # display the line in the file pointed by the mouse in the call stack area
     global callstackwidget
@@ -808,6 +927,24 @@ proc openpointedstacklevel {w x y} {
     after 500
     $w tag configure clickedline -background $curbg
     $w tag delete clickedline
+}
+
+proc updatebptcomplexityindicators_bp {{NbBreakpointedMacros -1} {NbBreakpoints -1}} {
+# update the indicators describing the complexity of the debug in
+# terms of number of breakpoints and number of breakpointed functions
+    global ScilabCodeMaxBreakpointedMacros ScilabCodeMaxBreakpoints
+    global bptfunsindic totbptsindic
+    global watch
+    if {[info exists watch]} {
+        if {[winfo exists $watch]} {
+            if {$NbBreakpointedMacros == -1} {
+                set NbBreakpointedMacros [countallbreakpointedmacros]
+                set NbBreakpoints [countallbreakpointedlines]
+            }
+            SetProgress $totbptsindic $NbBreakpoints $ScilabCodeMaxBreakpoints [mc "Breakpoints"] {0.6 0.8}
+            SetProgress $bptfunsindic $NbBreakpointedMacros $ScilabCodeMaxBreakpointedMacros [mc "Breakpointed functions"] {0.6 0.8}
+        }
+    }
 }
 
 proc duplicatechars {st ch} {

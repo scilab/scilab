@@ -2962,3 +2962,12 @@ Francois VOGEL, 05/05/07
    script before resetting the debugger state. "Break" can therefore be used
    in that situation too
  * version --> 6.105
+
+Francois VOGEL, 07/05/07
+ * Fixed: Cancelling find in files during the file list construction did not
+   enable the close button of the search results window, and there was
+   therefore no means for closing this window
+ * Added a control in the watch window to gear in an automatic mode for
+   displaying the local variables
+ * The ans variable cannot be watched (see rationale in proc addlocalsinwatch)
+ * version --> 6.106

@@ -89,7 +89,6 @@
 # db_watch.tcl
 ::msgcat::mcset se "Watch" "Bevakning"
 ::msgcat::mcset se "Watch variables:" "Iakta variabler :"
-::msgcat::mcset se "Remove" "Tabort"
 ::msgcat::mcset se "Call stack:" "Anropsstack:"
 ::msgcat::mcset se "Hide watch &variables" "Dölj bevakade &variabler"
 ::msgcat::mcset se "Hide call &stack" "Dölj &anropsstacken"

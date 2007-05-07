@@ -107,7 +107,6 @@
 # db_watch.tcl
 ::msgcat::mcset es "Watch" "Cuidado"
 ::msgcat::mcset es "Watch variables:" "Cuidado con las variables:"
-::msgcat::mcset es "Remove" "Remover"
 ::msgcat::mcset es "Call stack:" "Llamar la pila del programa:"
 ::msgcat::mcset es "Hide watch &variables" "Esconder las &variables"
 ::msgcat::mcset es "Hide call &stack" "Esconder la &pila"

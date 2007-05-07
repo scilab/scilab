@@ -205,7 +205,6 @@
 # db_watch.tcl
 ::msgcat::mcset it "Watch" "Controllo esecuzione e variabili"
 ::msgcat::mcset it "Watch variables:" "Variabili osservate:"
-::msgcat::mcset it "Remove" "Rimuovi"
 ::msgcat::mcset it "Call stack:" "stack di programma:"
 ::msgcat::mcset it "&Always on top" "Sempre in &primo piano"
 ::msgcat::mcset it "Hide watch &variables" "Nascondi le &variabili"

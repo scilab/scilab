@@ -109,6 +109,7 @@ proc execfile_bp {{stepmode "nostep"}} {
         # run the debug, i.e. launch the configured function
         set setbptonreallybreakpointedlinescmd $setbpcomm
         setdbstate "DebugInProgress"
+        removelocalvars
         set commnvars [createsetinscishellcomm $watchvars]
         set watchsetcomm [lindex $commnvars 0]
         if {$watchsetcomm != ""} {
@@ -119,6 +120,7 @@ proc execfile_bp {{stepmode "nostep"}} {
         ScilabEval_lt "$setbpcomm; $funnameargs;" "seq"
         updateactivebreakpoint
         getfromshell
+        addlocalvars ; # MUST be after getfromshell (callstackfuns, used by addlocalvars is set in FormatWhereForWatch called by getfromshell)
         checkendofdebug_bp $stepmode
         set execresult 0
     } else {
@@ -129,7 +131,7 @@ proc execfile_bp {{stepmode "nostep"}} {
 }
 
 # <TODO> step by step support
-# I have no satisfactory solution for the time being.
+# I have no fully satisfactory solution for the time being.
 # The heart of the matter with step by step execution is that
 # once the execution is stopped there is no way of knowing what is the next
 # line of code to execute. Of course, it is usually the next code line in the
@@ -798,6 +800,7 @@ proc resume_bp {{checkbusyflag 1} {stepmode "nostep"}} {
     showinfo $waitmessage
     if {$funnameargs != ""} {
         setdebuggerbusycursor
+        removelocalvars
         set commnvars [createsetinscishellcomm $watchvars]
         set watchsetcomm [lindex $commnvars 0]
         if {$watchsetcomm != ""} {
@@ -810,6 +813,7 @@ proc resume_bp {{checkbusyflag 1} {stepmode "nostep"}} {
         }
         updateactivebreakpoint
         getfromshell
+        addlocalvars ; # MUST be after getfromshell (callstackfuns, used by addlocalvars is set in FormatWhereForWatch called by getfromshell)
         checkendofdebug_bp $stepmode
     } else {
         # <TODO> .sce case if some day the parser uses pseudocode noops
@@ -908,10 +912,12 @@ proc canceldebug_bp {} {
     if {[getdbstate] == "DebugInProgress"} {
         showinfo $waitmessage
         if {$funnameargs != ""} {
+            removelocalvars
             removeallactive_bp
             ScilabEval_lt "abort" "seq"
             removescilab_bp "with_output"
             getfromshell
+            addlocalvars ; # MUST be after getfromshell (callstackfuns, used by addlocalvars is set in FormatWhereForWatch called by getfromshell)
             cleantmpScilabEvalfile
         }
     } else {

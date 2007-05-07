@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.101
+# in sync at least with v6.106
 
 
 # commons
@@ -48,6 +48,9 @@
 ::msgcat::mcset fr "Variable:" "Variable :"
 ::msgcat::mcset fr "Value:" "Valeur :"
 ::msgcat::mcset fr "&Get current value from Scilab" "Obtenir la valeur &actuelle dans Scilab"
+::msgcat::mcset fr "Non watchable variable" "Variable non espionnable"
+::msgcat::mcset fr "Sorry, variable" "Désolé, la variable"
+    ::msgcat::mcset fr "is special and cannot be watched." "est spéciale et ne peut pas être espionnée."
 
 
 # db_bptsmanagement.tcl
@@ -164,7 +167,7 @@
 # db_watch.tcl
 ::msgcat::mcset fr "Watch" "Espions"
 ::msgcat::mcset fr "Watch variables:" "Variables espions :"
-::msgcat::mcset fr "Remove" "Supprimer"
+::msgcat::mcset fr "A&uto (local variables)" "A&uto (variables locales)"
 ::msgcat::mcset fr "Call stack:" "Pile des appels :"
 ::msgcat::mcset fr "&Always on top" "Toujours à l'&avant-plan"
 ::msgcat::mcset fr "Hide watch &variables" "Cacher les &variables"

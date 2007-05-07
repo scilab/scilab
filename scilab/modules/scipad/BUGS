@@ -211,11 +211,6 @@ Debugger wishes:
  in the margin, and perhaps a breakpoint pink dot in that margin, or other
  debugger info
 
--add a control in the watch window to gear in an automatic mode: all the
- local variables are added and displayed when entering a function, and
- removed when the debugger leaves a function (must specify policy more
- precisely). Possible implementation would use macrovar
-
 -highlight in color the watched variables that changed value during previous
  debugger command
 
@@ -278,6 +273,10 @@ Other wishes:
  window, therefore minsize should also be clamped to some clever maximum
 
 -Improvements for find/replace:
+  . Dynamical indices in the find in files results: Currently: launch find
+    in files, then delete a line in the buffer between two matches, then
+    click on the second match. The wrong line is highlighted. Beware of
+    performance while fixing this!
   . The find/replace entries in the dialog could be comboboxes retaining
     the strings previously searched or replaced
       o combobox 2.3 and BWidgets 1.7.0 are currently in the Scilab distro

@@ -107,7 +107,6 @@
 # db_watch.tcl
 ::msgcat::mcset no "Watch" "Overvåk"
 ::msgcat::mcset no "Watch variables:" "Overvåk variabler :"
-::msgcat::mcset no "Remove" "Fjern"
 ::msgcat::mcset no "Call stack:" "Call stack:"
 ::msgcat::mcset no "Hide watch &variables" "Skjul overvåkede &variabler"
 ::msgcat::mcset no "Hide call &stack" "Skjul call &stack"

@@ -109,7 +109,6 @@
 # db_watch.tcl
 ::msgcat::mcset pl "Watch" "Obserwowane"
 ::msgcat::mcset pl "Watch variables:" "Zmienne obserwowane :"
-::msgcat::mcset pl "Remove" "Usu\u0144"
 ::msgcat::mcset pl "Call stack:" "Stos wywo\u0142a\u0144:"
 ::msgcat::mcset pl "Hide watch &variables" "Ukryj zmienne &obserwowane"
 ::msgcat::mcset pl "Hide call &stack" "Ukryj &stos wywo\u0142a\u0144"

@@ -4,8 +4,9 @@ set unklabel "<?>" ;# Warning: if this is changed it must be changed accordingly
 set curdropind 0
 set dragndroplb ""
 set watchvars ""
-array set watchvarsvals {}
-array set watchvarstysi {}   ; # type and size of watch variables
+array unset watchvarsvals
+array unset watchvarstysi          ; # type and size of watch variables
+array unset varsforautowatchloc    ; # list of current input, output and local variables for the auto watch feature
 set callstackfuns ""
 set callstacklines ""
 set callstackcontent ""
@@ -13,6 +14,7 @@ set firsttimeinshowwatch "true"
 set showwatchvariablesarea "true"
 set showcallstackarea "true"
 set watchalwaysontop 0
+set autowatchloc false
 set dockwatch false
 set errmsg ""
 set errnum 0

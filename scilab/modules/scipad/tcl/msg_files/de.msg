@@ -114,7 +114,6 @@
 # db_watch.tcl
 ::msgcat::mcset de "Watch" "Beobachten"
 ::msgcat::mcset de "Watch variables:" "Beobachtete Variablen :"
-::msgcat::mcset de "Remove" "Entfernen"
 ::msgcat::mcset de "Call stack:" "Ausführungsstapel:"
 ::msgcat::mcset de "Hide watch &variables" "Beobachtete &Variablen verstecken"
 ::msgcat::mcset de "Hide call &stack" "Ausführungs&stapel verstecken"

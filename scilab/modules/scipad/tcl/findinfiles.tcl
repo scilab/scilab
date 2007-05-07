@@ -67,8 +67,8 @@ proc findinfiles {tosearchfor cas reg whword initdir globpat recursesearchindir 
                      The following ones were ignored"] ":\n\n$nlopenerrorfiles"] \
                 -icon warning -title [mc "Ignored files"] -type ok
         }
-        enablesearchresultsbuttons
     }
+    enablesearchresultsbuttons
     set searchinfilesalreadyrunning 0
 }
 

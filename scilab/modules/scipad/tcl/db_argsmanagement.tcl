@@ -101,7 +101,17 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
 
     if {$argname != ""} {
 
-        # 1. Check whether the variable was already entered in the calling (watch or configure) box
+        # 1. Some variables cannot be watched
+        #    a. ans: see rationale in proc addlocalsinwatch
+        #    b. <TODO> what about varargin and varargout?
+        if {$argname == "ans"} {
+            set mes [concat [mc "Sorry, variable"] $argname [mc "is special and cannot be watched."]]
+            set tit [mc "Non watchable variable"]
+            tk_messageBox -message $mes -icon error -title $tit
+            return
+        }
+
+        # 2. Check whether the variable was already entered in the calling (watch or configure) box
         set leftwinelts [$leftwin get 0 end]
         set alreadyexists "false"
         set eltindex 0
@@ -114,7 +124,7 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
             }
         }
 
-        # 2. In certain cases one cannot add variables when Scilab is busy
+        # 3. In certain cases one cannot add variables when Scilab is busy
         if {$alreadyexists == "false" && \
             [string first listboxinput $leftwin] == -1 && \
             (    ($argvalue == "" || $getvaluefromscilab == 1) \
@@ -145,7 +155,7 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
             if {[isscilabbusy 5]} {return}
         }
 
-        # 3. add or change this variable in the calling box
+        # 4. add or change this variable in the calling box
         # next line is a bit dirty... it is used to differentiate processing for the
         # add argument box used with the watch window from the one use with the configure box
         if {[string first listboxinput $leftwin] != -1} {
@@ -201,7 +211,7 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
             $rightwin insert $eltindex $argvalue
         }
 
-        # 4. Perform a roundtrip to Scilab to:
+        # 5. Perform a roundtrip to Scilab to:
         #   a. update the new value of the modified variable in Scilab, and
         #   b. get back the new values of all the watched variables from Scilab
         # This is required only for the watch window, in case the user watches a variable
@@ -285,6 +295,19 @@ proc quickAddWatch_bp {watchvar} {
     set argvalue ""
     set getvaluefromscilab 1
     OKadda_bp -1 $lbvarname $lbvarval "true"
+}
+
+proc syncwatchvarsfromlistbox {} {
+    global lbvarname lbvarval
+    global watchvars watchvarsvals
+    set watchvars ""
+    array unset watchvarsvals
+    for {set i 0} {$i < [$lbvarname size]} {incr i} {
+        set wvarname [$lbvarname get $i]
+        set watchvars "$watchvars $wvarname"
+        set wvarvalue [$lbvarval get $i]
+        set watchvarsvals($wvarname) $wvarvalue
+    }
 }
 
 proc removefuns_bp {textarea} {
