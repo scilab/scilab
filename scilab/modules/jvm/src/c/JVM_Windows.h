@@ -36,5 +36,11 @@ jint SciJNI_GetCreatedJavaVMs(JavaVM **vmBuf, jsize BufLen, jsize *nVMs);
 * wrapping JNI_GetDefaultJavaVMInitArgs
 */
 jint SciJNI_GetDefaultJavaVMInitArgs(void *args);
+
+/**
+* Check if Scilab uses embedded JRE
+* @return TRUE or FALSE
+*/
+BOOL withEmbeddedJRE(void);
 /*-----------------------------------------------------------------------------------*/ 
 #endif /* __JVM_WINDOWS__ */

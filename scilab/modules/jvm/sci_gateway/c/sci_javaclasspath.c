@@ -34,7 +34,7 @@ int C2F(sci_javaclasspath) _PARAMS((char *fname,unsigned long fname_len))
 				return 0;
 			}
 		}
-		LhsVar(0) = 0;
+		LhsVar(1) = 0;
 		C2F(putlhsvar)();	
 	}
 	else

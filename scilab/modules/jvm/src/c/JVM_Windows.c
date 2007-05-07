@@ -15,6 +15,8 @@ typedef jint (JNICALL * JNI_GetDefaultJavaVMInitArgsPROC)(void *args);
 /*-----------------------------------------------------------------------------------*/ 
 static char *Search_Java_RuntimeLib_in_Windows_Registry(void);
 /*-----------------------------------------------------------------------------------*/ 
+static BOOL EMBEDDED_JRE=FALSE;
+/*-----------------------------------------------------------------------------------*/ 
 jint SciJNI_GetDefaultJavaVMInitArgs(void *args)
 {
 	JNI_GetDefaultJavaVMInitArgsPROC ptr_JNI_GetDefaultJavaVMInitArgs;
@@ -54,6 +56,7 @@ BOOL LoadDynLibJVM(char *SCILAB_PATH)
 		JVMDLLFULLNAME=Search_Java_RuntimeLib_in_Windows_Registry();
 		hLibJVM = LoadLibrary(JVMDLLFULLNAME);
 	}
+	else EMBEDDED_JRE=TRUE;
 
 	if (JVMDLLFULLNAME){FREE(JVMDLLFULLNAME);JVMDLLFULLNAME=NULL;};
 	if (hLibJVM) bOK=TRUE;
@@ -132,5 +135,10 @@ char *Search_Java_RuntimeLib_in_Windows_Registry(void)
 	}
 
 	return RuntimeLib;
+}
+/*-----------------------------------------------------------------------------------*/ 
+BOOL withEmbeddedJRE(void)
+{
+	return EMBEDDED_JRE;
 }
 /*-----------------------------------------------------------------------------------*/ 

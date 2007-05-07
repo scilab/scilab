@@ -11,6 +11,8 @@
 /*-----------------------------------------------------------------------------------*/ 
 static void *hLibJVM = NULL;
 /*-----------------------------------------------------------------------------------*/ 
+static BOOL EMBEDDED_JRE=FALSE;
+/*-----------------------------------------------------------------------------------*/ 
 jint SciJNI_GetDefaultJavaVMInitArgs(void *args)
 {
 	jint (*GetDefaultJavaVMInitArgs)(void *args);
@@ -56,6 +58,7 @@ BOOL LoadDynLibJVM(char *SCILAB_PATH)
 		sprintf(JVMDLLFULLNAME,"%s%s","libjava",SHARED_LIB_EXT);
 		hLibJVM = dlopen(JVMDLLFULLNAME, RTLD_NOW | RTLD_GLOBAL); 
 	}
+	else EMBEDDED_JRE=TRUE;
 
 	if (hLibJVM) bOK=TRUE;
   
@@ -72,5 +75,10 @@ BOOL FreeDynLibJVM(void)
 	}
 	
 	return bOK;
+}
+/*-----------------------------------------------------------------------------------*/ 
+BOOL withEmbeddedJRE(void)
+{
+	return EMBEDDED_JRE;
 }
 /*-----------------------------------------------------------------------------------*/ 
