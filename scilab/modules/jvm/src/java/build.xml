@@ -31,7 +31,6 @@ INRIA 2007
         <jar destfile="${dist}/jvm.jar" basedir="build/classes">
             <manifest>
                 <attribute name="ClassPath" value="org.scilab.modules.jvm.ClassPath"/>
-                
             </manifest>
         </jar>
     </target>

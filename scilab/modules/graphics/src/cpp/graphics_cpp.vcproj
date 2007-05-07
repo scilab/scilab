@@ -84,7 +84,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy graphics_cpp.vcdef ..\..\..\..\libs\graphics_cpp.vcdef&#x0D;&#x0A;set JAVA_HOME=&quot;$(SolutionDir)\java\jdk&quot;&#x0D;&#x0A;set PATH=&quot;$(SolutionDir)\java\ant\bin&quot;;%PATH%;&#x0D;&#x0A;cd ..\java&#x0D;&#x0A;ant jar&#x0D;&#x0A;cd  ..\cpp&#x0D;&#x0A;"
+				CommandLine="copy graphics_cpp.vcdef ..\..\..\..\libs\graphics_cpp.vcdef&#x0D;&#x0A;set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;cd ..\java&#x0D;&#x0A;ant jar&#x0D;&#x0A;cd  ..\cpp&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -161,7 +161,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy graphics_cpp.vcdef ..\..\..\..\libs\graphics_cpp.vcdef&#x0D;&#x0A;set JAVA_HOME=&quot;$(SolutionDir)\java\jdk&quot;&#x0D;&#x0A;set PATH=&quot;$(SolutionDir)\java\ant\bin&quot;;%PATH%;&#x0D;&#x0A;cd ..\java&#x0D;&#x0A;ant jar&#x0D;&#x0A;cd  ..\cpp&#x0D;&#x0A;"
+				CommandLine="copy graphics_cpp.vcdef ..\..\..\..\libs\graphics_cpp.vcdef&#x0D;&#x0A;set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;cd ..\java&#x0D;&#x0A;ant jar&#x0D;&#x0A;cd  ..\cpp&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>

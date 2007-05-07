@@ -95,7 +95,8 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="set JAVA_HOME=&quot;$(SolutionDir)\java\jdk&quot;&#x0D;&#x0A;set PATH=&quot;$(SolutionDir)\java\ant\bin&quot;;%PATH%;&#x0D;&#x0A;cd src\java&#x0D;&#x0A;ant jar&#x0D;&#x0A;cd  ..\..&#x0D;&#x0A;"
+				Description="Ant"
+				CommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;cd src\java&#x0D;&#x0A;ant jar&#x0D;&#x0A;cd  ..\..&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -185,7 +186,8 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="set JAVA_HOME=&quot;$(SolutionDir)\java\jdk&quot;&#x0D;&#x0A;set PATH=&quot;$(SolutionDir)\java\ant\bin&quot;;%PATH%;&#x0D;&#x0A;cd src\java&#x0D;&#x0A;ant jar&#x0D;&#x0A;cd  ..\..&#x0D;&#x0A;"
+				Description="Ant"
+				CommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;cd src\java&#x0D;&#x0A;ant jar&#x0D;&#x0A;cd  ..\..&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>
