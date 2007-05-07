@@ -465,11 +465,13 @@ sci_gateway/c/sci_winsid.c \
 sci_gateway/c/sci_addcb.c \
 sci_gateway/c/sci_fec.c
 
-libscigraphics_la_CFLAGS =  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ -Isrc/cpp -Isrc/gd/  -Isrc/gd/gdfonts/ $(TCL_INC_PATH) $(TK_INC_PATH) -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/
+libscigraphics_la_CFLAGS =  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ -Isrc/cpp -Isrc/gd/  -Isrc/gd/gdfonts/ $(TCL_INC_PATH) $(TK_INC_PATH) -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/ -I$(top_srcdir)/modules/jvm/includes $(JAVA_JNI_INCLUDE)
 
 libscigraphics_la_CXXFLAGS =  -Iincludes/ -Isrc/c/ $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/modules/jvm/includes
 
+
 libscigraphics_la_LDFLAGS =  $(JAVA_JNI_LIBS) $(TCLTK_LIBS) $(X_LIBS)
+
 
 pkglib_LTLIBRARIES = libscigraphics.la
 
@@ -483,12 +485,21 @@ libscigraphics_la_LIBADD = \
 
 #	$(top_builddir)/modules/gui/libscigui.la
 
-
+include $(top_srcdir)/Makefile.incl.am
 
 
 #### Target ######
 modulename=graphics
 
+JAVAFILES = src/java/org/scilab/modules/graphics/figureDrawing/DrawableFigureJoGL.java
+
+#### Where are the sources (mandatory) ####
+CLASSPATH = src/java/
+
+#### graphics : jar file #### 
+JARFILE = graphics.jar
+
+BUILT_SOURCES+=$(JARFILE)
 
 #### graphics : Conf files ####
 libscigraphics_la_rootdir = $(mydatadir)
@@ -694,4 +705,9 @@ demos/portrait.dem \
 demos/xdemo-1.dem \
 demos/bike.dem
 
-include $(top_srcdir)/Makefile.incl.am
+tests:: $(JARFILE) $(JAVAFILES)
+	@(cd tests; make tests)
+
+install-data-local: $(JARFILE)
+#$(INSTALL_DATA) $(JARFILE) $(DESTDIR)$(pkglibdir)/
+	$(INSTALL_DATA) $(JARFILE) $(top_srcdir)/java/jar/modules/

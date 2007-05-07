@@ -1157,7 +1157,7 @@ sci_gateway/c/sci_winsid.c \
 sci_gateway/c/sci_addcb.c \
 sci_gateway/c/sci_fec.c
 
-libscigraphics_la_CFLAGS = $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ -Isrc/cpp -Isrc/gd/  -Isrc/gd/gdfonts/ $(TCL_INC_PATH) $(TK_INC_PATH) -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/
+libscigraphics_la_CFLAGS = $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ -Isrc/cpp -Isrc/gd/  -Isrc/gd/gdfonts/ $(TCL_INC_PATH) $(TK_INC_PATH) -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/ -I$(top_srcdir)/modules/jvm/includes $(JAVA_JNI_INCLUDE)
 libscigraphics_la_CXXFLAGS = -Iincludes/ -Isrc/c/ $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/modules/jvm/includes
 libscigraphics_la_LDFLAGS = $(JAVA_JNI_LIBS) $(TCLTK_LIBS) $(X_LIBS)
 pkglib_LTLIBRARIES = libscigraphics.la
@@ -1169,10 +1169,73 @@ libscigraphics_la_LIBADD = \
         $(top_builddir)/modules/tclsci/libscitclsci.la
 
 
+# Where all the Scilab stuff is installed (macros, help, ...)
+mydatadir = $(pkgdatadir)/modules/$(modulename)
+
+#SUFFIXES = .xml .sci .htm
+SUFFIXES = .sci .java .class .jar
+
+########################### JAVA ######################################
+#### We had to create those rules because autotools does NOT provide
+#### a kind of mechanism like C or Fortran sources :
+#### libsciboolean_la_SOURCES = plop.c plip.f 
+####
+#### It is why those rules exist.
+#######################################################################
+
+# Replace all the .java by .class in JAVAFILES
+CLASSFILES = $(JAVAFILES:.java=.class)
+# Create path without src/java and rename .java  by .class (needed by the jar 
+# creation)
+CLASSFILESRELATIVE = `echo "$(JAVAFILES)"| sed -e 's|src/java/||g'|sed -e 's|\.java|\.class|g'`
+BUILT_SOURCES = $(CLASSFILES) $(JARFILE)
+CLEANFILES = $(CLASSFILES)
+
+########### INSTALL DOCUMENTATION ###################
+# Install HTML files into the right target
+# We do not use the automake mechanism (libxxxx_la_help_fr_DATA) because
+# automake needs the html files to be present which is not the case when
+# we are building Scilab
+
+# Where it should be installed
+pkgdocdir = $(mydatadir)
+# Which directories we have to install
+DOCDIRS = help/fr_FR help/en_US
+# What is the mask of the help output
+DOCMASK = *.htm
+# What is the mask of the help source
+DOCMASKXML = *.xml
+
+########### INSTALL DATA ###################
+# Install macros
+# Where it should be installed
+pkgmacrosdir = $(mydatadir)
+# Which directory we process
+MACRODIRS = macros/
+# Mask of the Scilab sources macros
+MACROMASK = *.sci
+# Mask of the Scilab executable sources macros
+MACROBUILDMASK = *.sce
+# Mask of the Scilab compiled macros
+MACROBINMASK = *.bin
+# List of the function of a module
+FUNCTION_NAMES = macros/names
+# Localisation directory name
+LOCALISATIONDIRS = languages/fr_FR/ languages/en_US/
+# List of the localisation (languages) files
+LOCALISATIONFILES = errors.xml menus.xml messages.xml
+
 #	$(top_builddir)/modules/gui/libscigui.la
 
 #### Target ######
 modulename = graphics
+JAVAFILES = src/java/org/scilab/modules/graphics/figureDrawing/DrawableFigureJoGL.java
+
+#### Where are the sources (mandatory) ####
+CLASSPATH = src/java/
+
+#### graphics : jar file #### 
+JARFILE = graphics.jar
 
 #### graphics : Conf files ####
 libscigraphics_la_rootdir = $(mydatadir)
@@ -1377,62 +1440,6 @@ demos/portrait.dem \
 demos/xdemo-1.dem \
 demos/bike.dem
 
-
-# Where all the Scilab stuff is installed (macros, help, ...)
-mydatadir = $(pkgdatadir)/modules/$(modulename)
-
-#SUFFIXES = .xml .sci .htm
-SUFFIXES = .sci .java .class .jar
-
-########################### JAVA ######################################
-#### We had to create those rules because autotools does NOT provide
-#### a kind of mechanism like C or Fortran sources :
-#### libsciboolean_la_SOURCES = plop.c plip.f 
-####
-#### It is why those rules exist.
-#######################################################################
-
-# Replace all the .java by .class in JAVAFILES
-CLASSFILES = $(JAVAFILES:.java=.class)
-# Create path without src/java and rename .java  by .class (needed by the jar 
-# creation)
-CLASSFILESRELATIVE = `echo "$(JAVAFILES)"| sed -e 's|src/java/||g'|sed -e 's|\.java|\.class|g'`
-BUILT_SOURCES = $(CLASSFILES)
-CLEANFILES = $(CLASSFILES)
-
-########### INSTALL DOCUMENTATION ###################
-# Install HTML files into the right target
-# We do not use the automake mechanism (libxxxx_la_help_fr_DATA) because
-# automake needs the html files to be present which is not the case when
-# we are building Scilab
-
-# Where it should be installed
-pkgdocdir = $(mydatadir)
-# Which directories we have to install
-DOCDIRS = help/fr_FR help/en_US
-# What is the mask of the help output
-DOCMASK = *.htm
-# What is the mask of the help source
-DOCMASKXML = *.xml
-
-########### INSTALL DATA ###################
-# Install macros
-# Where it should be installed
-pkgmacrosdir = $(mydatadir)
-# Which directory we process
-MACRODIRS = macros/
-# Mask of the Scilab sources macros
-MACROMASK = *.sci
-# Mask of the Scilab executable sources macros
-MACROBUILDMASK = *.sce
-# Mask of the Scilab compiled macros
-MACROBINMASK = *.bin
-# List of the function of a module
-FUNCTION_NAMES = macros/names
-# Localisation directory name
-LOCALISATIONDIRS = languages/fr_FR/ languages/en_US/
-# List of the localisation (languages) files
-LOCALISATIONFILES = errors.xml menus.xml messages.xml
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
@@ -5627,6 +5634,13 @@ macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODI
 	-@( \
 	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
 	$(top_builddir)/bin/scilab -nb -nwni -f $(abs_srcdir)/macros/buildmacros.sce 	)
+
+tests:: $(JARFILE) $(JAVAFILES)
+	@(cd tests; make tests)
+
+install-data-local: $(JARFILE)
+#$(INSTALL_DATA) $(JARFILE) $(DESTDIR)$(pkglibdir)/
+	$(INSTALL_DATA) $(JARFILE) $(top_srcdir)/java/jar/modules/
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
