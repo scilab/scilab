@@ -5,6 +5,8 @@
 #include "addToClasspath.h"
 #include <jni.h>
 #include "getScilabJNIEnv.h"
+#include "../../io/includes/directories.h"
+#include "../../fileio/includes/FileExist.h"
 /*-----------------------------------------------------------------------------------*/ 
 BOOL addToClasspath(char *classpathstring)
 {
@@ -12,23 +14,26 @@ BOOL addToClasspath(char *classpathstring)
 
 	if (classpathstring)
 	{
-		JNIEnv * currentENV = getScilabJNIEnv();
-
-		jclass cls=NULL;
-		jmethodID mid=NULL;
-
-		if (currentENV)
+		if ( isdir(classpathstring) || FileExist(classpathstring) )
 		{
-			cls = (*currentENV)->FindClass(currentENV, "org/scilab/modules/jvm/ClassPath");
-			if (cls)
+			JNIEnv * currentENV = getScilabJNIEnv();
+
+			jclass cls=NULL;
+			jmethodID mid=NULL;
+
+			if (currentENV)
 			{
-				mid = (*currentENV)->GetStaticMethodID(currentENV, cls, "addFile","(Ljava/lang/String;)V");
-				if (mid)
+				cls = (*currentENV)->FindClass(currentENV, "org/scilab/modules/jvm/ClassPath");
+				if (cls)
 				{
-					jstring jstr;
-					jstr = (*currentENV)->NewStringUTF(currentENV,classpathstring);
-					(*currentENV)->CallStaticObjectMethod(currentENV,cls, mid,jstr);
-					bOK=TRUE;
+					mid = (*currentENV)->GetStaticMethodID(currentENV, cls, "addFile","(Ljava/lang/String;)V");
+					if (mid)
+					{
+						jstring jstr;
+						jstr = (*currentENV)->NewStringUTF(currentENV,classpathstring);
+						(*currentENV)->CallStaticObjectMethod(currentENV,cls, mid,jstr);
+						bOK=TRUE;
+					}
 				}
 			}
 		}
