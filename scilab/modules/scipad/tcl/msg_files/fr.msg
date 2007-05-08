@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.106
+# in sync at least with v6.107
 
 
 # commons
@@ -45,6 +45,9 @@
 
 
 # db_argsmanagement.tcl
+::msgcat::mcset fr "This variable can be watched but cannot be edited!" \
+                   "Cette variable peut être espionnée mais ne peut pas être modifiée !"
+::msgcat::mcset fr "Non editable variable" "Variable non éditable"
 ::msgcat::mcset fr "Variable:" "Variable :"
 ::msgcat::mcset fr "Value:" "Valeur :"
 ::msgcat::mcset fr "&Get current value from Scilab" "Obtenir la valeur &actuelle dans Scilab"
@@ -175,7 +178,7 @@
 ::msgcat::mcset fr "&Dock" "&Intégrer"
 ::msgcat::mcset fr "Breakpoints" "Points d'arrêt"
 ::msgcat::mcset fr "Breakpointed functions" "Fonctions avec breakpoints"
-::msgcat::mcset fr "Undefined elements are not legal in variable" "Les éléments indéfinis sont illégaux pour la variable"
+::msgcat::mcset fr "Undefined or non editable elements are not legal in variable" "Les éléments indéfinis ou non éditables sont illégaux pour la variable"
 ::msgcat::mcset fr ".\nThis variable will not be updated in Scilab." ".\nCette variable ne sera pas mise à jour dans Scilab"
 ::msgcat::mcset fr "Illegal undefined element found" "Elément indéfini illégal identifié"
 ::msgcat::mcset fr "Scipad cannot find source code for the selected function.\nPlease open the adequate file manually and try again." \
@@ -350,6 +353,13 @@
 ::msgcat::mcset fr "real" "réel"
 ::msgcat::mcset fr "complex" "complexe"
 ::msgcat::mcset fr "elements" "éléments"
+::msgcat::mcset fr "graphic handle" "handle de graphique"
+::msgcat::mcset fr "uncompiled function" "fonction non compilée"
+::msgcat::mcset fr "compiled function" "fonction compilée"
+::msgcat::mcset fr "library" "librairie"
+::msgcat::mcset fr "pointer" "pointeur"
+::msgcat::mcset fr "size implicit index" "indice de taille implicite"
+::msgcat::mcset fr "primitive" "primitive"
 
 
 # FormatWhereForWatch.sci

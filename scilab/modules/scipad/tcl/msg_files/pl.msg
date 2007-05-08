@@ -112,7 +112,7 @@
 ::msgcat::mcset pl "Call stack:" "Stos wywo\u0142a\u0144:"
 ::msgcat::mcset pl "Hide watch &variables" "Ukryj zmienne &obserwowane"
 ::msgcat::mcset pl "Hide call &stack" "Ukryj &stos wywo\u0142a\u0144"
-::msgcat::mcset pl "Undefined elements are not legal in variable"\
+::msgcat::mcset pl "Undefined or non editable elements are not legal in variable"\
                    "Niezdefiniowane elementy nie s\u0105\
                    prawid\u0142owe w zmiennej"
 ::msgcat::mcset pl ".\nThis variable will not be updated in Scilab."\

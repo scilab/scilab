@@ -4,8 +4,30 @@ proc Addarg_bp {w focusbut leftwin rightwin} {
     global argname argvalue
     global adda getvaluefromscilab
     global textFont menuFont
+
     set pos [$leftwin curselection]
     if {$pos == ""} {set pos -1}
+    set selecteditem [$leftwin curselection]
+    if {$selecteditem != ""} {
+        set argname [$leftwin get $selecteditem]
+        set argvalue [$rightwin get $selecteditem]
+        # check that what the user selected for edit is actually editable
+        # (this check conly concerns the watch window, not the configure box
+        if {[string first listboxinput $leftwin] == -1} {
+            set editable [lindex [createsetinscishellcomm $argname] 3]
+            if {!$editable} {
+                tk_messageBox -message \
+                    [mc "This variable can be watched but cannot be edited!"] \
+                    -icon warning -type ok \
+                    -title [mc "Non editable variable"]
+                return
+            }
+        }
+    } else {
+        set argname ""
+        set argvalue ""
+    }
+
     set adda $w.adda
     toplevel $adda
     wm title $adda [mc "Add/Change"]
@@ -15,15 +37,6 @@ proc Addarg_bp {w focusbut leftwin rightwin} {
     # The add argument dialog must be a transient of $watch or $conf
     # otherwise it might be obscured by the watch window if always on top
     wm transient $adda $w
-
-    set selecteditem [$leftwin curselection]
-    if {$selecteditem != ""} {
-        set argname [$leftwin get $selecteditem]
-        set argvalue [$rightwin get $selecteditem]
-    } else {
-        set argname ""
-        set argvalue ""
-    }
 
     frame $adda.f
 
@@ -98,13 +111,12 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
     global spin funvars funvarsvals
     global watchvars watchvarsvals
     global getvaluefromscilab
+    global debugger_unwatchable_vars
 
     if {$argname != ""} {
 
         # 1. Some variables cannot be watched
-        #    a. ans: see rationale in proc addlocalsinwatch
-        #    b. <TODO> what about varargin and varargout?
-        if {$argname == "ans"} {
+        if {[lsearch -exact $debugger_unwatchable_vars $argname] != -1} {
             set mes [concat [mc "Sorry, variable"] $argname [mc "is special and cannot be watched."]]
             set tit [mc "Non watchable variable"]
             tk_messageBox -message $mes -icon error -title $tit
@@ -174,7 +186,7 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
                 set watchvars [linsert $watchvars $pos $argname]
                 set watchvarsvals($argname) $argvalue
                 if {$argvalue == $unklabel} {
-                    getonefromshell $argname
+                    getonewatchvarfromshell $argname
                     set fullcomm "TCL_EvalStr(\"updatewatch_bp\",\"scipad\");"
                     ScilabEval_lt $fullcomm "seq"
                     set argvalue $watchvarsvals($argname)
@@ -199,7 +211,7 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
                 if {$getvaluefromscilab == 1} {set forceget "true"}
                 set watchvarsvals($argname) $argvalue
                 if {$forceget == "true"} {
-                    getonefromshell $argname
+                    getonewatchvarfromshell $argname
                     set fullcomm "TCL_EvalStr(\"updatewatch_bp\",\"scipad\");"
                     ScilabEval_lt $fullcomm "seq"
                     set argvalue $watchvarsvals($argname)
@@ -220,7 +232,7 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
         # watched variables must be retrieved from Scilab
         if {$mustdoScilabroundtrip} {
             setinscishellone_bp $argname  ; # update the changed var only
-            getfromshell                  ; # get new value of all the watched variables
+            getwatchvarfromshell          ; # get new value of all the watched variables
         }
 
     }

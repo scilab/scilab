@@ -92,7 +92,7 @@
 ::msgcat::mcset se "Call stack:" "Anropsstack:"
 ::msgcat::mcset se "Hide watch &variables" "Dölj bevakade &variabler"
 ::msgcat::mcset se "Hide call &stack" "Dölj &anropsstacken"
-::msgcat::mcset se "Undefined elements are not legal in variable" "Odefinierade element är inte giltiga i variabel"
+::msgcat::mcset se "Undefined or non editable elements are not legal in variable" "Odefinierade element är inte giltiga i variabel"
 ::msgcat::mcset se ".\nThis variable will not be updated in Scilab."\
                    ".\nDenna variabel kommer ej uppdateras i Scilab"
 ::msgcat::mcset se "Illegal undefined element found" "Ogiltigt odefinierat element funnet"

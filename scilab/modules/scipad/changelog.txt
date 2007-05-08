@@ -2944,10 +2944,10 @@ ES, 01/05/07
 
 Francois VOGEL, 01/05/07
  * Fixed the non stopping of the debug on Break in some cases
- * Reverted to not using getonefromshell with sync in proc OKadda_bp because
-   sync does sometimes not return the variable value (visibility issue in
-   a sync parser - not clear) - anyway, the previous (<= 6.101) scheme works:
-   use seq and force the update of the watch window
+ * Reverted to not using getonewatchvarfromshell with sync in proc OKadda_bp
+   because sync does sometimes not return the variable value (visibility issue
+   in a sync parser - not clear) - anyway, the previous (<= 6.101) scheme
+   works: use seq and force the update of the watch window
  * Added a try/end structure in proc setScipadVersionString to ease future
    backporting work
  * De-tab-ified a bit
@@ -2971,3 +2971,14 @@ Francois VOGEL, 07/05/07
    displaying the local variables
  * The ans variable cannot be watched (see rationale in proc addlocalsinwatch)
  * version --> 6.106
+
+Francois VOGEL, 08/05/07
+ * Created a list of unwatchable variables in db_init.tcl, so that they are
+   in a single place, along with the corresponding rationale about why they
+   cannot be watched
+ * Run to return point icon and menu item is greyed when scheme is not
+   "scilab"
+ * Auto watched variables are no longer updated while skipping no code lines,
+   thus improving a bit the performance
+ * Added better display in the debugger for non editable variable types
+ * version --> 6.107

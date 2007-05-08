@@ -93,10 +93,12 @@ proc execfile_bp {{stepmode "nostep"}} {
 
         # create a new buffer, exec it and then destroy it
         # doing this, there is not even a flash in the display
+        set saved_ta [gettextareacur]
         filesetasnew
         [gettextareacur] insert 1.0 $allfuntexts
         set execresult [execfile "current"]
         closecur "NoSaveQuestion"
+        showtext $saved_ta
         if {$execresult == -1} {
             # in case execing the file produced an error, restore the cursors
             # and return (the debug must not be launched) - the cleanup has
@@ -109,7 +111,8 @@ proc execfile_bp {{stepmode "nostep"}} {
         # run the debug, i.e. launch the configured function
         set setbptonreallybreakpointedlinescmd $setbpcomm
         setdbstate "DebugInProgress"
-        removelocalvars
+        # no need to call removelocalvars at this point, Scilab is always at
+        # the main level, thus there is no local variables to remove
         set commnvars [createsetinscishellcomm $watchvars]
         set watchsetcomm [lindex $commnvars 0]
         if {$watchsetcomm != ""} {
@@ -119,8 +122,7 @@ proc execfile_bp {{stepmode "nostep"}} {
         }
         ScilabEval_lt "$setbpcomm; $funnameargs;" "seq"
         updateactivebreakpoint
-        getfromshell
-        addlocalvars ; # MUST be after getfromshell (callstackfuns, used by addlocalvars is set in FormatWhereForWatch called by getfromshell)
+        getcallstackfromshell
         checkendofdebug_bp $stepmode
         set execresult 0
     } else {
@@ -800,7 +802,9 @@ proc resume_bp {{checkbusyflag 1} {stepmode "nostep"}} {
     showinfo $waitmessage
     if {$funnameargs != ""} {
         setdebuggerbusycursor
-        removelocalvars
+        if {![isnocodeline [gettextareacur] insert]} {
+            removelocalvars
+        }
         set commnvars [createsetinscishellcomm $watchvars]
         set watchsetcomm [lindex $commnvars 0]
         if {$watchsetcomm != ""} {
@@ -812,8 +816,7 @@ proc resume_bp {{checkbusyflag 1} {stepmode "nostep"}} {
             ScilabEval_lt "resume(0)" "seq"
         }
         updateactivebreakpoint
-        getfromshell
-        addlocalvars ; # MUST be after getfromshell (callstackfuns, used by addlocalvars is set in FormatWhereForWatch called by getfromshell)
+        getcallstackfromshell
         checkendofdebug_bp $stepmode
     } else {
         # <TODO> .sce case if some day the parser uses pseudocode noops
@@ -869,9 +872,10 @@ proc break_bp {} {
                 # will anyway set breakpoints later on really breakpointed
                 # lines
                 ScilabEval_lt "$cmddel" "seq"
-                # updateactivebreakpoint and getfromshell are already queued
-                # by the previous command that stucked the script, it's not
-                # needed to repeat these commands here
+                getcallstackfromshell
+                # updateactivebreakpoint and getwatchvarfromshell are already
+                # queued by the previous command that stucked the script, it's
+                # not needed to repeat these commands here
             }
         } else {
             # <TODO> .sce case if some day the parser uses pseudocode noops
@@ -916,8 +920,8 @@ proc canceldebug_bp {} {
             removeallactive_bp
             ScilabEval_lt "abort" "seq"
             removescilab_bp "with_output"
-            getfromshell
-            addlocalvars ; # MUST be after getfromshell (callstackfuns, used by addlocalvars is set in FormatWhereForWatch called by getfromshell)
+            getwatchvarfromshell
+            getcallstackfromshell
             cleantmpScilabEvalfile
         }
     } else {

@@ -886,7 +886,7 @@ proc schememenus {textarea} {
         bind all <F10> {}
         bind all <Control-F11> {}
         bind all <F11> {}
-#       pbind all $Shift_F11 {} ; # unused for the time being
+        pbind all $Shift_F11 {}
         pbind all $Shift_F8 {}
         bind all <F8> {}
         bind all <Control-F8> {}
@@ -903,6 +903,7 @@ proc schememenus {textarea} {
                 [lindex $wis $MenuEntryId($dms.[mcra "Step &into"])] configure -state disabled
                 [lindex $wis $MenuEntryId($dms.[mcra "Step o&ver"])] configure -state disabled
                 [lindex $wis $MenuEntryId($dms.[mcra "Step &out"])] configure -state disabled
+                [lindex $wi $MenuEntryId($dm.[mcra "Run to re&turn point"])] configure -state disabled
                 [lindex $wi $MenuEntryId($dm.[mcra "Run to c&ursor"])] configure -state disabled
                 [lindex $wi $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"])] configure -state disabled
                 [lindex $wi $MenuEntryId($dm.[mcra "&Break"])] configure -state disabled

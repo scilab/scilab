@@ -117,7 +117,7 @@
 ::msgcat::mcset de "Call stack:" "Ausführungsstapel:"
 ::msgcat::mcset de "Hide watch &variables" "Beobachtete &Variablen verstecken"
 ::msgcat::mcset de "Hide call &stack" "Ausführungs&stapel verstecken"
-::msgcat::mcset de "Undefined elements are not legal in variable"\
+::msgcat::mcset de "Undefined  or non editable elements are not legal in variable"\
                    "Undefinierte Elemente sind als Variable nicht erlaubt"
 ::msgcat::mcset de ".\nThis variable will not be updated in Scilab."\
                    ".\n Diese Variable wird in Scilab nicht aktualisiert."

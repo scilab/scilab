@@ -623,22 +623,13 @@ proc addlocalsinwatch {} {
 # in the watch window
     global varsforautowatchloc
     global watchvars watchvarsvals unklabel
+    global debugger_unwatchable_vars
     foreach typ {in out locals} {
         foreach avar $varsforautowatchloc($typ) {
-            # there is no point in adding the "ans" local variable,
-            # which is always present in the 5th element of the macrovar output
-            # on next debug step, the debugger will [ans]=resume(ans)
-            # which means that a new variable "ans" will be created
-            # which was not present in the debugged script - the
-            # original ans is special, and cannot be watched because
-            # of this
-            # to let ans be watched, I could just avoid to include it
-            # in the resume list in proc createsetinscishellcomm
-            # however, this is not enough: if ans is added here,
-            # it gets filled by the result of FormatWhereForWatch,
-            # which is not the intent -> better completely forbid
-            # watching ans
-            if {$avar != "ans"} {
+            # don't add an unwatchable variable, such as "ans"
+            # which is always present in the 5th element of the
+            # macrovar output
+            if {[lsearch -exact $debugger_unwatchable_vars $avar] == -1} {
                 # don't add if already present
                 if {[lsearch $watchvars $avar] == -1} {
                     lappend watchvars $avar
@@ -647,7 +638,7 @@ proc addlocalsinwatch {} {
             }
         }
     }
-    getfromshell
+    getwatchvarfromshell
 }
 
 proc removelocalsfromwatch {} {
@@ -666,15 +657,19 @@ proc removelocalsfromwatch {} {
             }
         }
     }
-    getfromshell
+    getwatchvarfromshell
 }
 
-proc addlocalvars {} {
+proc updatewatchvars {} {
 # add the local vars in the watch window if the user
 # checked the corresponding "Auto add locals" checkbox
     global autowatchloc
     if {$autowatchloc} {
+        # add locals and get locals + user variables values from the shell
         manageautowatchloc_bp
+    } else {
+        # get user variables values from the shell
+        getwatchvarfromshell
     }
 }
 
@@ -689,20 +684,27 @@ proc removelocalvars {} {
     }
 }
 
-proc getfromshell { {startitem 3} } {
-# Update the watched variables content by getting their values from Scilab
-# Also update the call stack area and update the watch window display
-    global watchvars callstackcontent
-    foreach var $watchvars {
-        getonefromshell $var
-    }
-    set fullcomm "TCL_EvalStr(\"set callstackcontent \"\"\"+FormatWhereForWatch($startitem)+\"\"\"\",\"scipad\");"
+proc getcallstackfromshell {} {
+# update the call stack area with the textual call stack content retrieved
+# from Scilab, and set the global variables callstackfuns and callstacklines
+# (this is done in the Scilab function FormatWhereForWatch)
+    set fullcomm "TCL_EvalStr(\"set callstackcontent \"\"\"+FormatWhereForWatch(3)+\"\"\"\",\"scipad\");"
     ScilabEval_lt $fullcomm "seq"
     set fullcomm "TCL_EvalStr(\"updatewatch_bp\",\"scipad\");"
     ScilabEval_lt $fullcomm "seq"
 }
 
-proc getonefromshell {wvar {opt "seq"}} {
+proc getwatchvarfromshell {} {
+# Update the watched variables content by getting their values from Scilab
+    global watchvars callstackcontent
+    foreach var $watchvars {
+        getonewatchvarfromshell $var
+    }
+    set fullcomm "TCL_EvalStr(\"updatewatch_bp\",\"scipad\");"
+    ScilabEval_lt $fullcomm "seq"
+}
+
+proc getonewatchvarfromshell {wvar {opt "seq"}} {
 # Update one single watched variable content by getting its value from Scilab
 # The watch window display is not updated
     global unklabel
@@ -723,19 +725,26 @@ proc getonefromshell {wvar {opt "seq"}} {
 }
 
 proc createsetinscishellcomm {setofvars} {
-# Create three command strings used outside of this proc to send to Scilab new values for variables
+# Create three command strings used outside of this proc to send to Scilab
+# new values for variables, plus an editability flag
 # Input:  a list of variable names to consider
 # Output: 1. execstr("var1=var1_value;...;varN=varN_value","errcatch","m");
 #         2. [var1,...,varN]=resume(var1_value,...,varN_value);
 #         3. execstr("var1",...,varN","errcatch","n");
+#         4. a list of editable true|false flags for each variable
+# Elements of variables from $setofvars whose value is $unklabel or starts with
+# $unsuptyp_l are filtered out (ignored)
     global watchvars watchvarsvals unklabel
+    global unsuptyp_l
     set fullcomm ""
     set varset ""
     set retcomm ""
     set viscomm ""
+    set editable [list ]
     foreach var $setofvars {
-        if {[string first $unklabel $watchvarsvals($var)] == -1} {
-            # Variable is fully known and defined
+        if {[string first $unklabel $watchvarsvals($var)] == -1 && \
+            [string first $unsuptyp_l $watchvarsvals($var)] == -1} {
+            # Variable is fully defined and is editable
             set onecomm [duplicatechars "$var=$watchvarsvals($var);" "\""]
             set onecomm [duplicatechars $onecomm "'"]
             set fullcomm [concat $fullcomm $onecomm]
@@ -745,29 +754,44 @@ proc createsetinscishellcomm {setofvars} {
             } else {
                 set varset [concat $varset [string range $var 0 [expr {$oppar - 1}]]]
             }
+            lappend editable true
         } else {
             if {$watchvarsvals($var) == $unklabel} {
                 # Variable is fully undefined, nothing to do
+                lappend editable true
+            } elseif {[string range $watchvarsvals($var) 0 1] == $unsuptyp_l} {
+                # Variable is a single non editable type, nothing to do
+                lappend editable false
             } else {
-                # Variable is partially undefined (ex: certain elements of a list)
+                # Variable is partially undefined (ex: certain elements of a list), or
+                # contains at least one element of non editable type
                 # In this case, we're dealing with list(elt1,..,eltn,$unklabel,eltm,..,eltp)
-                # and $unklabel can appear any number of times >1 in the elements list
+                # and $unklabel can appear any number of times >1 in the elements list, or
+                # with list(elt1,..,eltn,$unsuptyp_lsomething$unsuptyp_r,eltm,..,eltp)
+                # or with a mix of these two
                 # Result: variable is split into:
-                # $var=list();$var($curind)=elt1; and so on, forgetting the undefined elements
-                # marked as $unklabel. This recreates truly undefined elements in Scilab
+                # $var=list();$var($curind)=elt1; and so on, forgetting the undefined and
+                # non editable elements marked as $unklabel or starting with $unsuptyp_l
+                # This recreates truly undefined elements in Scilab
+                # Note that this method does in fact not support lists with non editable
+                # elements: those elements would be erased from the list and replaced by
+                # undefined elements. For this reason, if a list contains a non editable
+                # element, then the entire list is non editable
                 set oppar [string first "\(" $watchvarsvals($var)]
                 set listtype [string range $watchvarsvals($var) 0 [expr {$oppar - 1}]]
                 if {$listtype != "list"} {
-                    # Undefined elements are forbidden in any variable of type different than "list"
+                    # Undefined or non editable elements are forbidden in any variable
+                    # of type different than "list"
                     tk_messageBox -message [concat \
-                        [mc "Undefined elements are not legal in variable"] $var \
+                        [mc "Undefined or non editable elements are not legal in variable"] $var \
                         [mc ".\nThis variable will not be updated in Scilab."] ]\
                         -icon warning -type ok \
                         -title [mc "Illegal undefined element found"]
                     continue
                 }
                 set onecomm "$var=[string range $watchvarsvals($var) 0 $oppar]);"
-                set fullcomm [concat $fullcomm $onecomm]
+                set fullcommlist $onecomm
+                set canedit true
                 set start [expr {$oppar + 1}]
                 set anotherelt "true"
                 set curind 0
@@ -801,19 +825,35 @@ proc createsetinscishellcomm {setofvars} {
                     }
                     incr curind
                     set curval [string range $watchvarsvals($var) $start [expr {$i - 1}]]
-                    if {$curval != $unklabel} { 
-                        set onecomm [duplicatechars "$var\($curind\)=$curval;" "\""]
-                        set onecomm [duplicatechars $onecomm "'"]
-                        set fullcomm [concat $fullcomm $onecomm]
+                    if {$curval != $unklabel} {
+                        if {[string range $curval 0 1] != $unsuptyp_l} {
+                            # normal (i.e. defined and editable) element
+                            set onecomm [duplicatechars "$var\($curind\)=$curval;" "\""]
+                            set onecomm [duplicatechars $onecomm "'"]
+                            set fullcommlist [concat $fullcommlist $onecomm]
+                        } else {
+                            # non editable element, skip the entire list and
+                            # set it as non editable
+                            set canedit false
+                            set fullcommlist ""
+                            break
+                        }
+                    } else {
+                        # undefined element - nothing to do, ignore it
                     }
                     set start [expr {$i + 1}]
                     set oppar [string first "\(" $var]
+                    # <TODO> here a test for duplicate varset is missing
+                    #        watching a list of n elements, varset contains
+                    #        n times the name of the list - not a big deal
                     if {$oppar == -1} {
                         set varset [concat $varset $var]
                     } else {
                         set varset [concat $varset [string range $var 0 [expr {$oppar - 1}]]]
                     }
                 }
+                set fullcomm [concat $fullcomm $fullcommlist]
+                lappend editable $canedit
             }
         }
     }
@@ -828,7 +868,7 @@ proc createsetinscishellcomm {setofvars} {
         set viscomm "execstr(\"$retcomm\",\"errcatch\",\"n\");"
         set retcomm "\[$retcomm\]=resume($retcomm);"
     }
-    return [list $fullcomm $retcomm $viscomm]
+    return [list $fullcomm $retcomm $viscomm $editable]
 }
 
 proc updateclickablelinetag {} {

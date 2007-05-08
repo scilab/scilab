@@ -1,6 +1,8 @@
 set funnameargs ""
 set funnames ""
-set unklabel "<?>" ;# Warning: if this is changed it must be changed accordingly in FormatStringsForWatch.sci
+set unklabel "<?>"   ;# Warning: if this is changed it must be changed accordingly in FormatStringsForWatch.sci
+set unsuptyp_l "<<"  ;# Ditto
+set unsuptyp_r ">>"  ;# Ditto
 set curdropind 0
 set dragndroplb ""
 set watchvars ""
@@ -37,6 +39,22 @@ set debugger_fun_ancillaries [list \
     "MatFormatStringsForWatch" \
     "FormatWhereForWatch" \
     "ext_exists" \
+    ]
+
+# list of variables that cannot be watched for various reasons
+# ans: "ans" local variable is always present in the 5th element of the macrovar output
+#      On next debug step, the debugger will [ans]=resume(ans) which means that a new
+#      variable "ans" will be created which was not present in the debugged script - the
+#      original ans is special, and cannot be watched because of this
+#      To let ans be watched, I could just avoid to include it in the resume list in
+#      proc createsetinscishellcomm. However this is not enough: if ans is added as a
+#      watch variable it gets filled during debug by the result of FormatWhereForWatch,
+#      which is not the intent -> better completely forbid watching ans
+# db_nam: is used in the wrapper of a .sce debug
+# <TODO> what about varargin and varargout?
+set debugger_unwatchable_vars [list \
+    "ans" \
+    "db_nam" \
     ]
 
 # Set the Scilab limits in terms of max number of breakpointed functions

@@ -11,7 +11,9 @@ function [svar,tysi] = FormatStringsForWatch(var)
 // Both strings are used for the watch window of the debugger in Scipad.
 // Author: François Vogel, 2004-2007
 
-  unklabel = "<?>"; // Warning: if this is changed it must be changed accordingly in db_init.tcl
+  unklabel   = "<?>"; // Warning: if this is changed it must be changed accordingly in db_init.tcl
+  unsuptyp_l = "<<";  // Ditto
+  unsuptyp_r = ">>";  // Ditto
 
   if execstr("tvar = type(var);","errcatch") <> 0 then
     warning(LocalizeForScipad(" what you try to watch is not supported by the debugger"));
@@ -20,7 +22,7 @@ function [svar,tysi] = FormatStringsForWatch(var)
 
   else
 
-    if tvar<>1 & tvar<>2 & tvar<>4 & tvar<>5 & tvar<>6 & tvar<>8 & tvar<>10 & tvar<>15 & tvar<>16 & tvar<>17 then
+    if and(tvar<>[1 2 4 5 6 8 9 10 11 13 14 15 16 17 128 129 130]) then
       // unsupported cases
       warning(LocalizeForScipad(" what you try to watch is of type ")...
           +typeof(var)...
@@ -134,6 +136,12 @@ function [svar,tysi] = FormatStringsForWatch(var)
         tysi = LocalizeForScipad("Type:") + " " + typeof(var) + ", " + ...
                LocalizeForScipad("size:") + " " + string(nr) + "x" + string(nc);
 
+      case 9 then  // graphic handle, we aren't yet able to display the content
+        svar = unsuptyp_l + LocalizeForScipad("graphic handle") + unsuptyp_r
+        [nr,nc] = size(var);
+        tysi = LocalizeForScipad("Type:") + " " + typeof(var) + ", " + ...
+               LocalizeForScipad("size:") + " " + string(nr) + "x" + string(nc);
+         
       case 10 then  // character string matrix
         if prod(size(var)) > 1 then
           svar = MatFormatStringsForWatch(var);
@@ -152,6 +160,24 @@ function [svar,tysi] = FormatStringsForWatch(var)
         tysi = LocalizeForScipad("Type:") + " " + typeof(var) + ", " + ...
                LocalizeForScipad("size:") + " " + string(nr) + "x" + string(nc);
 
+      case 11 then  // uncompiled function
+        Vars = macrovar(var);
+        svar = unsuptyp_l + LocalizeForScipad("uncompiled function") + unsuptyp_r + ...
+               "+\[" + strcat(Vars(2)',",") + "]=...(" + strcat(Vars(1)',",") + ")"
+        tysi = LocalizeForScipad("Type:") + " " + typeof(var)
+
+      case 13 then  // compiled function
+        Vars = macrovar(var)
+        svar = unsuptyp_l + LocalizeForScipad("compiled function") + unsuptyp_r + ...
+               ":\[" + strcat(Vars(2)',",") + "]=...(" + strcat(Vars(1)',",") + ")"
+        tysi = LocalizeForScipad("Type:") + " " + typeof(var)
+
+      case 14 then  // library
+        s = string(var)
+        svar = unsuptyp_l + LocalizeForScipad("library") + unsuptyp_r + ...
+               ":" + strcat(s(2:$),",")
+        tysi = LocalizeForScipad("Type:") + " " + typeof(var)
+        
       case 15 then  // list or tlist or mlist (types 16 and 17 changed into 15 above)
         if length(var) == 0 then svar = listpref + "list()";
         else
@@ -168,6 +194,19 @@ function [svar,tysi] = FormatStringsForWatch(var)
         end
         tysi = LocalizeForScipad("Type:") + " " + typeof(var) + ", " + ...
                LocalizeForScipad("size:") + " " + string(length(var)) + " " + LocalizeForScipad("elements");
+
+      case 128 then  // pointer
+        svar = unsuptyp_l + LocalizeForScipad("pointer") + unsuptyp_r
+        tysi = LocalizeForScipad("Type:") + " " + typeof(var)
+
+      case 129 then  // size implicit index?
+        svar = unsuptyp_l + LocalizeForScipad("size implicit index") + unsuptyp_r
+        tysi = LocalizeForScipad("Type:") + " " + typeof(var)
+
+      case 130 then  // intrinsic function
+        svar = unsuptyp_l + LocalizeForScipad("primitive") + unsuptyp_r
+        tysi = LocalizeForScipad("Type:") + " " + typeof(var)
+
 
       end
     end

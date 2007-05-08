@@ -212,7 +212,7 @@
 ::msgcat::mcset it "&Dock" "&Incassa"
 ::msgcat::mcset it "Breakpoints" "Punti d'arresto"
 ::msgcat::mcset it "Breakpointed functions" "Funzioni con arresti"
-::msgcat::mcset it "Undefined elements are not legal in variable"\
+::msgcat::mcset it "Undefined or non editable elements are not legal in variable"\
                    "Gli elementi indefiniti sono illegali in questa variabile"
 ::msgcat::mcset it ".\nThis variable will not be updated in Scilab."\
                    ".\nQuesta variabile non sarà aggiornata in Scilab"

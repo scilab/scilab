@@ -110,7 +110,7 @@
 ::msgcat::mcset no "Call stack:" "Call stack:"
 ::msgcat::mcset no "Hide watch &variables" "Skjul overvåkede &variabler"
 ::msgcat::mcset no "Hide call &stack" "Skjul call &stack"
-::msgcat::mcset no "Undefined elements are not legal in variable"\
+::msgcat::mcset no "Undefined or non editable elements are not legal in variable"\
                    "Udefinerte elementer er ikke lovlig i variabel"
 ::msgcat::mcset no ".\nThis variable will not be updated in Scilab."\
                    ".\nDenne variabelen vil ikke bli oppdatert i Scilab"
