@@ -48,7 +48,7 @@ function ExecJava(filename,buildref)
 	end
 
 	if MSDOS then
-	  commandline='..\modules\jvm\bin\jre\bin\java '+fname +' > '+repfilename;
+	  commandline=SCI+'\java\jre\bin\java '+fname +' > '+repfilename;
 	else
 	  commandline='java -classpath ../javasci.jar:. -Djava.library.path=../.libs/ '+fname +' > '+repfilename;
 	end

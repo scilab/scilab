@@ -22,7 +22,6 @@ INRIA 2007
     </target>
 
     <target name="compile" description="build sources" depends="init">
-    
         <mkdir dir="build/classes"/>
         <javac srcdir="org" destdir="build/classes"/>
     </target>

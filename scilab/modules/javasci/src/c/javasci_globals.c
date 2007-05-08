@@ -88,6 +88,10 @@ void Initialize(void)
   #endif
   /* set TMPDIR */
   C2F(settmpdir)();
+
+  /* pour initialisation de la primitive scilab : fromjava() */
+  SetFromJavaToON();
+
   /* Scilab Initialization */
   C2F(inisci)(&iflag,&stacksize,&ierr);
   if ( ierr > 0 ) 
@@ -96,15 +100,11 @@ void Initialize(void)
       exit(1);
     }
 
-
   /* Initialisation fenetre graphique */
   #ifdef _MSC_VER
     InitWindowGraphDll();
   #endif
-
-  /* pour initialisation de la primitive scilab : fromjava() */
-  SetFromJavaToON();
-
+  
   /* Chargement de Scilab.start */
   C2F(scirun)(initstr,(int)strlen(initstr));
  

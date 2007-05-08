@@ -7,6 +7,7 @@
 #include "getScilabJNIEnv.h"
 #include "../../io/includes/directories.h"
 #include "../../fileio/includes/FileExist.h"
+#include "fromjava.h"
 /*-----------------------------------------------------------------------------------*/ 
 BOOL addToClasspath(char *classpathstring)
 {
@@ -23,7 +24,18 @@ BOOL addToClasspath(char *classpathstring)
 
 			if (currentENV)
 			{
-				cls = (*currentENV)->FindClass(currentENV, "org/scilab/modules/jvm/ClassPath");
+				if (IsFromJava())
+				{
+					/* Boot loader for scilab and javasci */
+					/* if scilab is called from java (javasci), we need to update standard classpath */
+					/* doesn't require to add -cp SCI/jar/modules/jvm.jar when you use javasci */
+					cls = (*currentENV)->FindClass(currentENV, "javasci/ClassPath");
+				}
+				else
+				{
+					cls = (*currentENV)->FindClass(currentENV, "org/scilab/modules/jvm/ClassPath");
+				}
+				
 				if (cls)
 				{
 					mid = (*currentENV)->GetStaticMethodID(currentENV, cls, "addFile","(Ljava/lang/String;)V");

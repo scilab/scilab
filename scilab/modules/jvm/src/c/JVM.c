@@ -21,6 +21,13 @@ static BOOL HadAlreadyJavaVm=FALSE;
 /*-----------------------------------------------------------------------------------*/ 
 static JavaVM *FindCreatedJavaVM(void);
 /*-----------------------------------------------------------------------------------*/ 
+/*#define __STATIC_JAVA_LIB__ 
+#pragma comment(lib,"../../java/jdk/lib/jvm.lib")*/
+/* Probleme avec javasci en mode explicite (au moins sous windows probleme thread ???)*/
+/* java -cp . Clf */
+/* SciJNI_GetCreatedJavaVMs ne retourne pas la jvm existante celle de java :( */
+/* http://forum.java.sun.com/thread.jspa?threadID=5170047 */
+/*-----------------------------------------------------------------------------------*/ 
 JavaVM *getScilabJavaVM(void)
 {
 	return jvm_SCILAB;
@@ -45,7 +52,9 @@ BOOL startJVM(char *SCI_PATH)
 	JavaVM *ptr_jvm = NULL;
 	jint res=0;
 
+#ifndef __STATIC_JAVA_LIB__
 	if (! LoadDynLibJVM(SCI_PATH) ) return FALSE;
+#endif
 
 	ptr_jvm = FindCreatedJavaVM();
 
@@ -63,7 +72,11 @@ BOOL startJVM(char *SCI_PATH)
 
 		long status=0;
 		JavaVMInitArgs vm_args;
+		#ifdef _DEBUG
+		JavaVMOption jvm_options[4];
+		#else
 		JavaVMOption jvm_options[3];
+		#endif
 
 		int length_JAVACLASSPATH=0;
 		int length_JAVALIBRARYPATH=0;
@@ -71,9 +84,13 @@ BOOL startJVM(char *SCI_PATH)
 		HadAlreadyJavaVm = FALSE;
 
 		memset(&vm_args, 0, sizeof(vm_args));
+#ifndef __STATIC_JAVA_LIB__
 		SciJNI_GetDefaultJavaVMInitArgs(&vm_args);
+#else
+		JNI_GetDefaultJavaVMInitArgs(&vm_args);
+#endif
 
-		length_JAVACLASSPATH = (int) ( strlen("-Djava.class.path=%s%s%s%s")+
+		length_JAVACLASSPATH = (int) ( strlen("-Djava.class.path=%s%s%s%s%s%s%s")+
 			strlen(SCI_PATH)+
 			strlen(DEFAULT_SCILAB_CLASSPATH)+
 			strlen(PATH_SEPARATOR)+
@@ -112,15 +129,29 @@ BOOL startJVM(char *SCI_PATH)
 		jvm_options[0].optionString = "-Djava.compiler=NONE"; /* disable JIT */
 		jvm_options[1].optionString = JAVACLASSPATH;
 		jvm_options[2].optionString = JAVALIBRARYPATH;
+		#ifdef _DEBUG
+		jvm_options[3].optionString = "-verbose:jni";  /* print JNI msgs */
+		#endif
 
 		vm_args.options = jvm_options;
+		#ifdef _DEBUG
+		vm_args.nOptions = 4;
+		#else
 		vm_args.nOptions = 3;
+		#endif
 		vm_args.ignoreUnrecognized = TRUE;
 
+#ifndef __STATIC_JAVA_LIB__
 		status = SciJNI_CreateJavaVM(&jvm_SCILAB, (void**) &env, &vm_args);
+#else
+		status = JNI_CreateJavaVM(&jvm_SCILAB, (void**) &env, &vm_args);
+#endif
+
 		if (status == JNI_ERR)
 		{
+#ifndef __STATIC_JAVA_LIB__
 			FreeDynLibJVM();
+#endif
 			if (JAVACLASSPATH){FREE(JAVACLASSPATH);JAVACLASSPATH=NULL;}
 			if (JAVALIBRARYPATH){FREE(JAVALIBRARYPATH);JAVALIBRARYPATH=NULL;}
 			bOK=FALSE;
@@ -169,9 +200,9 @@ BOOL finishJVM(void)
 		jvm_SCILAB = NULL;
 		bOK=TRUE;
 	}
-
+#ifndef __STATIC_JAVA_LIB__
 	FreeDynLibJVM();
-
+#endif
 	if (JAVACLASSPATH){FREE(JAVACLASSPATH);JAVACLASSPATH=NULL;}
 	if (JAVALIBRARYPATH){FREE(JAVALIBRARYPATH);JAVALIBRARYPATH=NULL;}
 
@@ -184,8 +215,11 @@ static JavaVM *FindCreatedJavaVM(void)
 	jsize jvm_count = 0;
 	jint res=0;
 
+#ifndef __STATIC_JAVA_LIB__
 	res = SciJNI_GetCreatedJavaVMs (&jvm, 1, &jvm_count);
-
+#else
+	res = JNI_GetCreatedJavaVMs (&jvm, 1, &jvm_count);
+#endif
 	if (res == 0)
 	{
 		if ( jvm_count == 0 )

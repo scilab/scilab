@@ -15,4 +15,5 @@ rem Compilation of the Scilab/Java interface
 %JAVAC% -classpath %SRCCLASSPATH% -d %JAVASCIPATH% SciComplex.java
 %JAVAC% -classpath %SRCCLASSPATH% -d %JAVASCIPATH% SciBooleanArray.java
 %JAVAC% -classpath %SRCCLASSPATH% -d %JAVASCIPATH% SciBoolean.java
+%JAVAC% -classpath %SRCCLASSPATH% -d %JAVASCIPATH% ClassPath.java
 @echo on

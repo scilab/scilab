@@ -7,7 +7,12 @@
 /********************************************************************************************************/
 JNIEXPORT void JNICALL Java_javasci_Scilab_Initialize (JNIEnv *env, jclass cl)
 {
-	if ( GetInterfState() == 0) { EnableInterf(); Initialize();} 
+	if ( GetInterfState() == 0) 
+	{ 
+		EnableInterf();
+		Initialize();
+	} 
+
 }
 /********************************************************************************************************/
 /* public static native void Events(); */

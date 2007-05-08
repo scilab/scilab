@@ -42,6 +42,7 @@ INRIA 2007
                 <attribute name="SciDouble" value="SciDouble"/>
                 <attribute name="Scilab" value="Scilab"/>
                 <attribute name="SciStringArray" value="SciStringArray"/>
+                <attribute name="ClassPath" value="ClassPath"/>
             </manifest>
         </jar>
     </target>

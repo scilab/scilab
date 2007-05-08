@@ -20,7 +20,8 @@ JAVAFILES = src/java/javasci/Scilab.java \
 	src/java/javasci/SciComplexArray.java \
 	src/java/javasci/SciStringArray.java \
 	src/java/javasci/SciComplex.java \
-	src/java/javasci/SciString.java
+	src/java/javasci/SciString.java \
+	src/java/javasci/ClassPath.java
 
 #### Where are the sources (mandatory) ####
 CLASSPATH = src/java/

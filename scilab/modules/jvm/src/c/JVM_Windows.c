@@ -19,21 +19,21 @@ static BOOL EMBEDDED_JRE=FALSE;
 /*-----------------------------------------------------------------------------------*/ 
 jint SciJNI_GetDefaultJavaVMInitArgs(void *args)
 {
-	JNI_GetDefaultJavaVMInitArgsPROC ptr_JNI_GetDefaultJavaVMInitArgs;
+	JNI_GetDefaultJavaVMInitArgsPROC ptr_JNI_GetDefaultJavaVMInitArgs = NULL;
 	ptr_JNI_GetDefaultJavaVMInitArgs = (JNI_GetDefaultJavaVMInitArgsPROC) GetProcAddress(hLibJVM, "JNI_GetDefaultJavaVMInitArgs" ); 
 	return (*ptr_JNI_GetDefaultJavaVMInitArgs)(args);
 }
 /*-----------------------------------------------------------------------------------*/ 
 jint SciJNI_CreateJavaVM(JavaVM **pvm, void **penv, void *args)
 {
-	JNI_CreateJavaVMPROC ptr_JNI_CreateJavaVM;
+	JNI_CreateJavaVMPROC ptr_JNI_CreateJavaVM  = NULL;
 	ptr_JNI_CreateJavaVM = (JNI_CreateJavaVMPROC) GetProcAddress(hLibJVM, "JNI_CreateJavaVM" ); 
 	return (*ptr_JNI_CreateJavaVM)(pvm,penv,args);
 }
 /*-----------------------------------------------------------------------------------*/ 
 jint SciJNI_GetCreatedJavaVMs(JavaVM **vmBuf, jsize BufLen, jsize *nVMs)
 {
-	JNI_GetCreatedJavaVMsPROC ptr_JNI_GetCreatedJavaVMs;
+	JNI_GetCreatedJavaVMsPROC ptr_JNI_GetCreatedJavaVMs = NULL;
 	ptr_JNI_GetCreatedJavaVMs = (JNI_GetCreatedJavaVMsPROC) GetProcAddress(hLibJVM, "JNI_GetCreatedJavaVMs" ); 
 	return (*ptr_JNI_GetCreatedJavaVMs)(vmBuf,BufLen,nVMs);
 }

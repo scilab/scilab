@@ -3,7 +3,7 @@
 * Loading classes at runtime.
 */
 /*-----------------------------------------------------------------------------------*/
-package org.scilab.modules.jvm;
+package javasci;
 /*-----------------------------------------------------------------------------------*/ 
 import java.lang.reflect.*;
 import java.io.*;
@@ -28,6 +28,7 @@ public static void addURL(URL u) throws IOException {
 	URLClassLoader sysloader = (URLClassLoader)ClassLoader.getSystemClassLoader();
 	Class sysclass = URLClassLoader.class;
  
+ getClassPath();
 	try {
 		Method method = sysclass.getDeclaredMethod("addURL",parameters);
 		method.setAccessible(true);
@@ -38,7 +39,7 @@ public static void addURL(URL u) throws IOException {
 	}
 	getClassPath();
 }
-/*-----------------------------------------------------------------------------------*/  
+/*-----------------------------------------------------------------------------------*/ 
 public static String[] getClassPath() {
 	URLClassLoader sysloader = (URLClassLoader)ClassLoader.getSystemClassLoader();
 	URL path[]=sysloader.getURLs();
@@ -49,7 +50,7 @@ public static String[] getClassPath() {
     }
     return paths;
 }
-/*-----------------------------------------------------------------------------------*/  
+/*-----------------------------------------------------------------------------------*/ 
 }
 /*-----------------------------------------------------------------------------------*/ 
 

@@ -278,6 +278,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\java\javasci\ClassPath.java"
+				>
+			</File>
+			<File
 				RelativePath=".\src\java\javasci\SciAbstractArray.java"
 				>
 			</File>
