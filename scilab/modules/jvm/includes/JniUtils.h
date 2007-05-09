@@ -10,6 +10,7 @@
 #define _JNI_UTILS_H_
 
 #include <jni.h>
+#include <stdarg.h>
 #include "machine.h"
 
 /**
@@ -71,6 +72,7 @@ BOOL jniCreateDefaultInstanceSafe( const char * className, jclass * instanceClas
  */
 BOOL jniCallVoidFunction(     jobject instance, const char * functionName, const char * paramTypes, ... ) ;
 BOOL jniCallVoidFunctionSafe( jobject instance, const char * functionName, const char * paramTypes, ... ) ;
+BOOL jniCallVoidFunctionV(    jobject instance, const char * functionName, const char * paramTypes, va_list args ) ;
 
 /**
  * Tell if the last call to JNI primitive was successful

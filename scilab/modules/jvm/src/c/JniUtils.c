@@ -6,7 +6,6 @@
 /*        functions are used to call Java from C code                     */
 /*------------------------------------------------------------------------*/
 
-#include <stdarg.h>
 #include <string.h>
 
 #include "JniUtils.h"
@@ -99,12 +98,11 @@ BOOL jniCreateDefaultInstanceSafe( const char * className, jclass * instanceClas
   return jniCreateDefaultInstance( className, instanceClass, instance ) ;
 }
 /*------------------------------------------------------------------------------------------*/
-BOOL jniCallVoidFunction( jobject instance, const char * functionName, const char * paramTypes, ... )
+BOOL jniCallVoidFunctionV( jobject instance, const char * functionName, const char * paramTypes, va_list args )
 {
   jmethodID   voidMethod = NULL ;
   jclass      instanceClass = (*sciJEnv)->GetObjectClass( sciJEnv, instance ) ; /* retrieve the class of the object */
   char      * callingSequence = NULL ;
-  va_list     args ;
 
   /* Add (...)V around the paramList */
   callingSequence = MALLOC( ( strlen(paramTypes) + 4 ) * sizeof(char) ) ; /* 3 for ()V and 1 for 0 terminating character */
@@ -122,9 +120,7 @@ BOOL jniCallVoidFunction( jobject instance, const char * functionName, const cha
   }
 
   /* Call the function with the optionals parameters */
-  va_start( args, paramTypes ) ;
-  (*sciJEnv)->CallVoidMethod( sciJEnv, instance, voidMethod, args ) ;
-  va_end(args);
+  (*sciJEnv)->CallVoidMethodV( sciJEnv, instance, voidMethod, args ) ;
   if ( !jniCheckLastCall(FALSE) )
   {
     Scierror( 999, "Unable to call function %s.\r\n", functionName ) ;
@@ -134,6 +130,17 @@ BOOL jniCallVoidFunction( jobject instance, const char * functionName, const cha
 
   FREE( callingSequence ) ;
   return TRUE ;
+}
+/*------------------------------------------------------------------------------------------*/
+BOOL jniCallVoidFunction( jobject instance, const char * functionName, const char * paramTypes, ... )
+{
+  BOOL status = FALSE ;
+  va_list args ;
+  va_start( args, paramTypes ) ;
+  status = jniCallVoidFunctionV( instance, functionName, paramTypes, args ) ;
+  va_end(args);
+  
+  return status ;
 }
 /*------------------------------------------------------------------------------------------*/
 BOOL jniCallVoidFunctionSafe( jobject instance, const char * functionName, const char * paramTypes, ... )
@@ -147,7 +154,7 @@ BOOL jniCallVoidFunctionSafe( jobject instance, const char * functionName, const
 
   /* Call the function with the optionals parameters */
   va_start( args, paramTypes ) ;
-  status = jniCallVoidFunction( instance, functionName, paramTypes, args ) ;
+  status = jniCallVoidFunctionV( instance, functionName, paramTypes, args ) ;
   va_end(args);
   return status ;
 
