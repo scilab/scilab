@@ -9,33 +9,38 @@
 /*-----------------------------------------------------------------------------------*/ 
 static HINSTANCE hLibJVM = NULL;
 /*-----------------------------------------------------------------------------------*/ 
-typedef jint (JNICALL * JNI_CreateJavaVMPROC) (JavaVM **, void **, void *);
-typedef jint (JNICALL * JNI_GetCreatedJavaVMsPROC)(JavaVM **, jsize, jsize *);
-typedef jint (JNICALL * JNI_GetDefaultJavaVMInitArgsPROC)(void *args);
+typedef jint (JNICALL *JNI_CreateJavaVMPROC) (JavaVM **pvm, void **penv, void *args);
+typedef jint (JNICALL *JNI_GetCreatedJavaVMsPROC)(JavaVM **vmBuf, jsize BufLen, jsize *nVMs);
+typedef jint (JNICALL *JNI_GetDefaultJavaVMInitArgsPROC)(void *args);
+/*-----------------------------------------------------------------------------------*/ 
+static JNI_GetDefaultJavaVMInitArgsPROC ptr_JNI_GetDefaultJavaVMInitArgs = NULL;
+static JNI_CreateJavaVMPROC ptr_JNI_CreateJavaVM  = NULL;
+static JNI_GetCreatedJavaVMsPROC ptr_JNI_GetCreatedJavaVMs = NULL;
 /*-----------------------------------------------------------------------------------*/ 
 static char *Search_Java_RuntimeLib_in_Windows_Registry(void);
+static BOOL LoadFuntionsJVM(HINSTANCE hLibJVM);
 /*-----------------------------------------------------------------------------------*/ 
 static BOOL EMBEDDED_JRE=FALSE;
 /*-----------------------------------------------------------------------------------*/ 
 jint SciJNI_GetDefaultJavaVMInitArgs(void *args)
 {
-	JNI_GetDefaultJavaVMInitArgsPROC ptr_JNI_GetDefaultJavaVMInitArgs = NULL;
-	ptr_JNI_GetDefaultJavaVMInitArgs = (JNI_GetDefaultJavaVMInitArgsPROC) GetProcAddress(hLibJVM, "JNI_GetDefaultJavaVMInitArgs" ); 
-	return (*ptr_JNI_GetDefaultJavaVMInitArgs)(args);
+	jint res = JNI_ERR;
+	if (ptr_JNI_GetDefaultJavaVMInitArgs) res = (ptr_JNI_GetDefaultJavaVMInitArgs)(args);
+	return res;
 }
 /*-----------------------------------------------------------------------------------*/ 
 jint SciJNI_CreateJavaVM(JavaVM **pvm, void **penv, void *args)
 {
-	JNI_CreateJavaVMPROC ptr_JNI_CreateJavaVM  = NULL;
-	ptr_JNI_CreateJavaVM = (JNI_CreateJavaVMPROC) GetProcAddress(hLibJVM, "JNI_CreateJavaVM" ); 
-	return (*ptr_JNI_CreateJavaVM)(pvm,penv,args);
+	jint res = JNI_ERR;
+	if (ptr_JNI_CreateJavaVM) res=(ptr_JNI_CreateJavaVM)(pvm,penv,args);
+	return res;
 }
 /*-----------------------------------------------------------------------------------*/ 
 jint SciJNI_GetCreatedJavaVMs(JavaVM **vmBuf, jsize BufLen, jsize *nVMs)
 {
-	JNI_GetCreatedJavaVMsPROC ptr_JNI_GetCreatedJavaVMs = NULL;
-	ptr_JNI_GetCreatedJavaVMs = (JNI_GetCreatedJavaVMsPROC) GetProcAddress(hLibJVM, "JNI_GetCreatedJavaVMs" ); 
-	return (*ptr_JNI_GetCreatedJavaVMs)(vmBuf,BufLen,nVMs);
+	jint res = JNI_ERR;
+	if (ptr_JNI_GetCreatedJavaVMs) res = (ptr_JNI_GetCreatedJavaVMs)(vmBuf,BufLen,nVMs);
+	return res;
 }
 /*-----------------------------------------------------------------------------------*/ 
 BOOL LoadDynLibJVM(char *SCILAB_PATH)
@@ -49,12 +54,13 @@ BOOL LoadDynLibJVM(char *SCILAB_PATH)
 
 	hLibJVM = LoadLibrary(JVMDLLFULLNAME);
 
-	if (hLibJVM == NULL)
+	if (!LoadFuntionsJVM(hLibJVM))
 	{
 		/* We try to find JRE on Windows registry*/
 		if (JVMDLLFULLNAME){FREE(JVMDLLFULLNAME);JVMDLLFULLNAME=NULL;};
 		JVMDLLFULLNAME=Search_Java_RuntimeLib_in_Windows_Registry();
 		hLibJVM = LoadLibrary(JVMDLLFULLNAME);
+		LoadFuntionsJVM(hLibJVM);
 	}
 	else EMBEDDED_JRE=TRUE;
 
@@ -67,12 +73,13 @@ BOOL LoadDynLibJVM(char *SCILAB_PATH)
 BOOL FreeDynLibJVM(void)
 {
 	BOOL bOK=FALSE;
-	
-	if (FreeLibrary(hLibJVM))
+	if (FreeLibrary(hLibJVM)) 
 	{
+		ptr_JNI_GetDefaultJavaVMInitArgs = NULL; 
+		ptr_JNI_CreateJavaVM = NULL; 
+		ptr_JNI_GetCreatedJavaVMs = NULL; 
 		bOK=TRUE;
 	}
-	
 	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/ 
@@ -140,5 +147,17 @@ char *Search_Java_RuntimeLib_in_Windows_Registry(void)
 BOOL withEmbeddedJRE(void)
 {
 	return EMBEDDED_JRE;
+}
+/*-----------------------------------------------------------------------------------*/ 
+static BOOL LoadFuntionsJVM(HINSTANCE hLibJVM_)
+{
+	BOOL bOK=FALSE;
+	ptr_JNI_GetDefaultJavaVMInitArgs = (JNI_GetDefaultJavaVMInitArgsPROC) GetProcAddress(hLibJVM_, "JNI_GetDefaultJavaVMInitArgs" ); 
+	ptr_JNI_CreateJavaVM = (JNI_CreateJavaVMPROC) GetProcAddress(hLibJVM_, "JNI_CreateJavaVM" ); 
+	ptr_JNI_GetCreatedJavaVMs = (JNI_GetCreatedJavaVMsPROC) GetProcAddress(hLibJVM_, "JNI_GetCreatedJavaVMs" ); 
+
+	if (ptr_JNI_GetDefaultJavaVMInitArgs && ptr_JNI_CreateJavaVM && ptr_JNI_GetCreatedJavaVMs) bOK=TRUE;
+
+	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/ 
