@@ -12,21 +12,13 @@
 #endif
 #include "MALLOC.h"
 #include "getScilabJavaVM.h"
+#include "fromjava.h"
 /*-----------------------------------------------------------------------------------*/ 
 static JavaVM *jvm_SCILAB=NULL;
 /*-----------------------------------------------------------------------------------*/ 
 static char *JAVACLASSPATH=NULL;
 static char *JAVALIBRARYPATH=NULL;
 static BOOL HadAlreadyJavaVm=FALSE;
-/*-----------------------------------------------------------------------------------*/ 
-static JavaVM *FindCreatedJavaVM(void);
-/*-----------------------------------------------------------------------------------*/ 
-/*#define __STATIC_JAVA_LIB__ 
-#pragma comment(lib,"../../java/jdk/lib/jvm.lib")*/
-/* Probleme avec javasci en mode explicite (au moins sous windows probleme thread ???)*/
-/* java -cp . Clf */
-/* SciJNI_GetCreatedJavaVMs ne retourne pas la jvm existante celle de java :( */
-/* http://forum.java.sun.com/thread.jspa?threadID=5170047 */
 /*-----------------------------------------------------------------------------------*/ 
 JavaVM *getScilabJavaVM(void)
 {
@@ -52,110 +44,106 @@ BOOL startJVM(char *SCI_PATH)
 	JavaVM *ptr_jvm = NULL;
 	jint res=0;
 
-#ifndef __STATIC_JAVA_LIB__
-	if (! LoadDynLibJVM(SCI_PATH) ) return FALSE;
-#endif
-
-	ptr_jvm = FindCreatedJavaVM();
-
-	if (ptr_jvm) /* a jvm already exist in scilab process */
+	if (IsFromJava())
 	{
-		HadAlreadyJavaVm = TRUE;
-		jvm_SCILAB = ptr_jvm;
-		env = getScilabJNIEnv();
+		ptr_jvm = FindCreatedJavaVM(SCI_PATH);
+		if (ptr_jvm) /* a jvm already exist in scilab process */
+		{
+			HadAlreadyJavaVm = TRUE;
+			jvm_SCILAB = ptr_jvm;
+			env = getScilabJNIEnv();
+		}
+		else 
+		{
+			FreeDynLibJVM();
+			return FALSE;
+		}
 	}
 	else
 	{
-		/**
-		* http://java.sun.com/javase/6/docs/technotes/guides/jni/spec/invocation.html#wp15956
-		*/
-
-		long status=0;
-		JavaVMInitArgs vm_args;
-		#ifdef _DEBUG
-		JavaVMOption jvm_options[4];
-		#else
-		JavaVMOption jvm_options[3];
-		#endif
-
-		int length_JAVACLASSPATH=0;
-		int length_JAVALIBRARYPATH=0;
-
-		HadAlreadyJavaVm = FALSE;
-
-		memset(&vm_args, 0, sizeof(vm_args));
-#ifndef __STATIC_JAVA_LIB__
-		SciJNI_GetDefaultJavaVMInitArgs(&vm_args);
+		if (! LoadDynLibJVM(SCI_PATH) ) return FALSE;
+		else
+		{
+			/**
+			* http://java.sun.com/javase/6/docs/technotes/guides/jni/spec/invocation.html#wp15956
+			*/
+			long status=0;
+			JavaVMInitArgs vm_args;
+#ifdef _DEBUG
+			JavaVMOption jvm_options[4];
 #else
-		JNI_GetDefaultJavaVMInitArgs(&vm_args);
+			JavaVMOption jvm_options[3];
 #endif
+			int length_JAVACLASSPATH=0;
+			int length_JAVALIBRARYPATH=0;
 
-		length_JAVACLASSPATH = (int) ( strlen("-Djava.class.path=%s%s%s%s%s%s%s")+
-			strlen(SCI_PATH)+
-			strlen(DEFAULT_SCILAB_CLASSPATH)+
-			strlen(PATH_SEPARATOR)+
-			strlen(USER_CLASSPATH)+
-            strlen(PATH_SEPARATOR)+
-            strlen(SCI_PATH)  +
-            strlen(JVM_CLASSPATH));
+			HadAlreadyJavaVm = FALSE;
 
-		JAVACLASSPATH=(char*) MALLOC( sizeof(char)*	( length_JAVACLASSPATH +1) );
-		sprintf(JAVACLASSPATH,"-Djava.class.path=%s%s%s%s%s%s%s",SCI_PATH,DEFAULT_SCILAB_CLASSPATH,PATH_SEPARATOR,USER_CLASSPATH,PATH_SEPARATOR,SCI_PATH,JVM_CLASSPATH);
+			memset(&vm_args, 0, sizeof(vm_args));
 
-		length_JAVALIBRARYPATH = (int)( strlen("-Djava.library.path=%s%s/lib%s%s%s")+
-			strlen(SCI_PATH)+
-			strlen(JRE_PATH)+
-			strlen(PATH_SEPARATOR)+
-			strlen(SCI_PATH)+
-			strlen(DEFAULT_SCILAB_LIBRARYPATH) );
+			SciJNI_GetDefaultJavaVMInitArgs(&vm_args);
 
-		JAVALIBRARYPATH=(char*)MALLOC(sizeof(char)* ( length_JAVALIBRARYPATH +1) );
+			length_JAVACLASSPATH = (int) ( strlen("-Djava.class.path=%s%s%s%s%s%s%s")+
+				strlen(SCI_PATH)+
+				strlen(DEFAULT_SCILAB_CLASSPATH)+
+				strlen(PATH_SEPARATOR)+
+				strlen(USER_CLASSPATH)+
+				strlen(PATH_SEPARATOR)+
+				strlen(SCI_PATH)  +
+				strlen(JVM_CLASSPATH));
 
-		sprintf(JAVALIBRARYPATH,"-Djava.library.path=%s%s/lib%s%s%s",SCI_PATH,JRE_PATH,PATH_SEPARATOR,SCI_PATH,DEFAULT_SCILAB_LIBRARYPATH);
-		/* JAVACLASSPATH & JAVALIBRARYPATH sont liberes à la fin de l'execution de la JVM */
+			JAVACLASSPATH=(char*) MALLOC( sizeof(char)*	( length_JAVACLASSPATH +1) );
+			sprintf(JAVACLASSPATH,"-Djava.class.path=%s%s%s%s%s%s%s",SCI_PATH,DEFAULT_SCILAB_CLASSPATH,PATH_SEPARATOR,USER_CLASSPATH,PATH_SEPARATOR,SCI_PATH,JVM_CLASSPATH);
+
+			length_JAVALIBRARYPATH = (int)( strlen("-Djava.library.path=%s%s/lib%s%s%s")+
+				strlen(SCI_PATH)+
+				strlen(JRE_PATH)+
+				strlen(PATH_SEPARATOR)+
+				strlen(SCI_PATH)+
+				strlen(DEFAULT_SCILAB_LIBRARYPATH) );
+
+			JAVALIBRARYPATH=(char*)MALLOC(sizeof(char)* ( length_JAVALIBRARYPATH +1) );
+
+			sprintf(JAVALIBRARYPATH,"-Djava.library.path=%s%s/lib%s%s%s",SCI_PATH,JRE_PATH,PATH_SEPARATOR,SCI_PATH,DEFAULT_SCILAB_LIBRARYPATH);
+			/* JAVACLASSPATH & JAVALIBRARYPATH sont liberes à la fin de l'execution de la JVM */
 
 #ifdef JNI_VERSION_1_6
-		vm_args.version = JNI_VERSION_1_6;
+			vm_args.version = JNI_VERSION_1_6;
 #elif JNI_VERSION_1_4
-		vm_args.version = JNI_VERSION_1_4;
+			vm_args.version = JNI_VERSION_1_4;
 #elif
 #ifdef _MSC_VER
-		MessageBox(NULL,"Incorrect version JNI.","Error",MB_ICONEXCLAMATION|MB_OK);
+			MessageBox(NULL,"Incorrect version JNI.","Error",MB_ICONEXCLAMATION|MB_OK);
 #else
-		printf("\n Error : Incorrect version JNI.\n");
+			printf("\n Error : Incorrect version JNI.\n");
 #endif
-		exit(1);
+			exit(1);
 #endif
-		jvm_options[0].optionString = "-Djava.compiler=NONE"; /* disable JIT */
-		jvm_options[1].optionString = JAVACLASSPATH;
-		jvm_options[2].optionString = JAVALIBRARYPATH;
-		#ifdef _DEBUG
-		jvm_options[3].optionString = "-verbose:jni";  /* print JNI msgs */
-		#endif
+			jvm_options[0].optionString = "-Djava.compiler=NONE"; /* disable JIT */
+			jvm_options[1].optionString = JAVACLASSPATH;
+			jvm_options[2].optionString = JAVALIBRARYPATH;
+#ifdef _DEBUG
+			jvm_options[3].optionString = "-verbose:jni";  /* print JNI msgs */
+#endif
 
-		vm_args.options = jvm_options;
-		#ifdef _DEBUG
-		vm_args.nOptions = 4;
-		#else
-		vm_args.nOptions = 3;
-		#endif
-		vm_args.ignoreUnrecognized = TRUE;
-
-#ifndef __STATIC_JAVA_LIB__
-		status = SciJNI_CreateJavaVM(&jvm_SCILAB, (void**) &env, &vm_args);
+			vm_args.options = jvm_options;
+#ifdef _DEBUG
+			vm_args.nOptions = 4;
 #else
-		status = JNI_CreateJavaVM(&jvm_SCILAB, (void**) &env, &vm_args);
+			vm_args.nOptions = 3;
 #endif
+			vm_args.ignoreUnrecognized = TRUE;
 
-		if (status == JNI_ERR)
-		{
-#ifndef __STATIC_JAVA_LIB__
-			FreeDynLibJVM();
-#endif
-			if (JAVACLASSPATH){FREE(JAVACLASSPATH);JAVACLASSPATH=NULL;}
-			if (JAVALIBRARYPATH){FREE(JAVALIBRARYPATH);JAVALIBRARYPATH=NULL;}
-			bOK=FALSE;
-			return bOK;
+			status = SciJNI_CreateJavaVM(&jvm_SCILAB, (void**) &env, &vm_args);
+
+			if (status == JNI_ERR)
+			{
+				FreeDynLibJVM();
+				if (JAVACLASSPATH){FREE(JAVACLASSPATH);JAVACLASSPATH=NULL;}
+				if (JAVALIBRARYPATH){FREE(JAVALIBRARYPATH);JAVALIBRARYPATH=NULL;}
+				bOK=FALSE;
+				return bOK;
+			}
 		}
 	}
 
@@ -184,10 +172,7 @@ BOOL finishJVM(void)
 
 	if (!HadAlreadyJavaVm)
 	{
-		if ( (*jvm_SCILAB)->DestroyJavaVM(jvm_SCILAB) )
-		{
-			bOK=FALSE;
-		}
+		if ( (*jvm_SCILAB)->DestroyJavaVM(jvm_SCILAB) ) bOK=FALSE;
 		else 
 		{
 			jvm_SCILAB = NULL;
@@ -200,35 +185,12 @@ BOOL finishJVM(void)
 		jvm_SCILAB = NULL;
 		bOK=TRUE;
 	}
-#ifndef __STATIC_JAVA_LIB__
+
 	FreeDynLibJVM();
-#endif
+
 	if (JAVACLASSPATH){FREE(JAVACLASSPATH);JAVACLASSPATH=NULL;}
 	if (JAVALIBRARYPATH){FREE(JAVALIBRARYPATH);JAVALIBRARYPATH=NULL;}
 
 	return bOK;
-}
-/*-----------------------------------------------------------------------------------*/ 
-static JavaVM *FindCreatedJavaVM(void)
-{
-	JavaVM *jvm = NULL;
-	jsize jvm_count = 0;
-	jint res=0;
-
-#ifndef __STATIC_JAVA_LIB__
-	res = SciJNI_GetCreatedJavaVMs (&jvm, 1, &jvm_count);
-#else
-	res = JNI_GetCreatedJavaVMs (&jvm, 1, &jvm_count);
-#endif
-	if (res == 0)
-	{
-		if ( jvm_count == 0 )
-		{
-			jvm = NULL;
-		}
-	}
-	else jvm = NULL;
-
-	return jvm;
 }
 /*-----------------------------------------------------------------------------------*/ 

@@ -42,5 +42,11 @@ jint SciJNI_GetDefaultJavaVMInitArgs(void *args);
 * @return TRUE or FALSE
 */
 BOOL withEmbeddedJRE(void);
+
+/**
+* search a Created JavaVM
+* @return a JavaVM or NULL (not found)
+*/
+JavaVM *FindCreatedJavaVM(char *SCILAB_PATH);
 /*-----------------------------------------------------------------------------------*/ 
 #endif /* __JVM_WINDOWS__ */
