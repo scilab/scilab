@@ -8,9 +8,8 @@ function [str]=pol2str(p)
 n=degree(p)
 var=varn(p)
 nv=length(var);while part(var,nv)==' ' then nv=nv-1,end;var=part(var,1:nv);
-string(20)
+
 p=coeff(p)
-string(10)
 if p(1)<>0 then
   if p(1)<0 then
     str=string(p(1))
@@ -18,7 +17,11 @@ if p(1)<>0 then
     str=' '+string(p(1))
   end
 else
-  str=' '
+  if n==0 then
+    str='0'
+  else
+    str=' '
+  end
 end
 for k=1:n
   if p(k+1)<>0 then
