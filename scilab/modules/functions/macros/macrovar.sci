@@ -22,7 +22,7 @@ ng=prod(size(getted))
 globals=[],called=[]
 for k=1:ng
   if (find(getted(k)==vars)==[])&(find(getted(k)==in)==[]) then 
-    clear w //to avoid redefinition warning
+    clear w //to avoid redefinition warning (bug 1774)
     ierr=execstr('w='+getted(k),'errcatch')
     if ierr==0 then //the variable exists
       if or(type(w)==[13 130 11]) then
@@ -32,6 +32,7 @@ for k=1:ng
       end
     else
       globals=[globals;getted(k)]
+      lasterror(%t)  // clear the error (bug 2393)
     end
   end
 end
