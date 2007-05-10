@@ -23,8 +23,8 @@
 #define DEFAULT_SCILAB_CLASSPATH "/bin" /* SCI/bin */
 #define DEFAULT_SCILAB_LIBRARYPATH "/bin" /* SCI/bin */
 #else
-#define DEFAULT_SCILAB_CLASSPATH "/.libs" /* SCI/.libs */
-#define DEFAULT_SCILAB_LIBRARYPATH "/.libs" /* SCI/.libs */
+#define DEFAULT_SCILAB_CLASSPATH "/.libs/" /* SCI/.libs */
+#define DEFAULT_SCILAB_LIBRARYPATH "/.libs/" /* SCI/.libs */
 #endif
 /*-----------------------------------------------------------------------------------*/ 
 #define USER_CLASSPATH "."
