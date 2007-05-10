@@ -131,6 +131,11 @@ BOOL TerminateScilabFilesList(void);
 */
 BOOL ExtendScilabFilesList(int NewSize);
 
+/**
+* Search if filename is already opened in Scilab
+* @return TRUE or FALSE
+*/
+BOOL IsAlreadyOpenedInScilab(char *filename);
 #endif /* __FILESMANAGEMENT_H__ */
 /*-----------------------------------------------------------------------------------*/
 

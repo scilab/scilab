@@ -182,3 +182,21 @@ BOOL ExtendScilabFilesList(int NewSize)
 	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/
+BOOL IsAlreadyOpenedInScilab(char *filename)
+{
+	BOOL bOK=FALSE;
+
+	if (ScilabFileList)
+	{
+		int i=0;
+		for (i=0;i<CurrentMaxFiles;i++)
+		{
+			if (ScilabFileList[i].ftname)
+			{
+				if (strcmp(ScilabFileList[i].ftname,filename) == 0) return TRUE;
+			}
+		}
+	}
+	return bOK;
+}
+/*-----------------------------------------------------------------------------------*/

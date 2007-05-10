@@ -8,6 +8,7 @@
 #include "filesmanagement.h"
 #include "getfiledesc.h"
 #include "addfile.h"
+#include "sciprint.h"
 /*-----------------------------------------------------------------------------------*/
 extern int swap;
 /*-----------------------------------------------------------------------------------*/
@@ -17,6 +18,12 @@ void C2F(mopen)(int *fd, char *file, char *status, int *f_swap, double *res, int
 	char	*endptr;
 	FILE * fa;
 	/* next line added by ss 16/10/98 */
+
+	if (IsAlreadyOpenedInScilab(file))
+	{
+		sciprint("Warning : file '%s' already opened ins scilab.\r\n",file);
+	}
+
 	swap =0;
 	*error=0;
 	endptr = (char *) &littlendian;

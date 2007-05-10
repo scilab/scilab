@@ -48,4 +48,5 @@ EXPORTS
  SetFileModeOpenedInScilab
  GetFileTypeOpenedInScilab
  GetFileNameOpenedInScilab
+ IsAlreadyOpenedInScilab
  

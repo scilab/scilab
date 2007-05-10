@@ -60,6 +60,7 @@ int intsmopen(char *fname,unsigned long fname_len)
 	CreateVar(Rhs+2, "d", &un,&un, &l5);
 	lout=FILENAME_MAX;
 	C2F(cluni0)(cstk(l1), filename, &out_n,m1*n1,lout);
+
 	C2F(mopen)(istk(l4),filename,status,&swap,stk(l5),&err);
 	if (err >  0)
 	{
