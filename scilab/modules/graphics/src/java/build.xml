@@ -30,10 +30,7 @@ INRIA 2007
 
     <target name="jar" description="do .jar file" depends="compile">
         <jar destfile="${dist}/graphics.jar" basedir="build/classes">
-            <manifest>
-                <attribute name="DrawableFigureJoGL" value="org.scilab.modules.graphics.figureDrawing.DrawableFigureJoGL"/>
-                
-            </manifest>
+            
         </jar>
     </target>
 

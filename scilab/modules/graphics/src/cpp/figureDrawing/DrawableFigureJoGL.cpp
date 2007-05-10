@@ -17,6 +17,8 @@ extern "C"
 #include "JniUtils.h"
 }
 
+#include <stdio.h>
+
 namespace sciGraphics
 {
 
@@ -28,7 +30,7 @@ DrawableFigureJoGL::DrawableFigureJoGL( DrawableFigure * drawer ) : DrawableFigu
 /*------------------------------------------------------------------------------------------*/
 DrawableFigureJoGL::~DrawableFigureJoGL( void )
 {
-  jniDeleteLocalEntity( m_oDrawableObject ) ;
+  closeRenderingCanvas() ;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::initializeDrawing( void )
@@ -74,6 +76,22 @@ void DrawableFigureJoGL::endDrawing( void )
 void DrawableFigureJoGL::updateInfoMessage( void  )
 {
   jniCallVoidFunctionSafe( m_oDrawableObject, "updateInfoMessage", "" ) ;
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableFigureJoGL::openRenderingCanvas( int figureIndex )
+{
+  jniCallVoidFunctionSafe( m_oDrawableObject, "openRenderingCanvas", "I", figureIndex ) ;
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableFigureJoGL::closeRenderingCanvas( void )
+{
+  if ( m_oDrawableObject != NULL )
+  {
+    jniCallVoidFunctionSafe( m_oDrawableObject, "closeRenderingCanvas", "" ) ;
+    jniDeleteLocalEntity( m_oDrawableObject ) ;
+  }
+  m_oDrawableObject = NULL ;
+  m_oDrawableClass  = NULL ;
 }
 /*------------------------------------------------------------------------------------------*/
 

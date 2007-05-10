@@ -41,6 +41,16 @@ public:
    */
   virtual void updateInfoMessage( void  ) ;
 
+  /**
+   * Create the rendering canvas for the figure if none exists.
+   */
+  virtual void openRenderingCanvas( int figureIndex ) ;
+
+  /**
+   * Close the rendering canvas
+   */
+  virtual void closeRenderingCanvas( void ) ;
+
 protected:
 
   jclass m_oDrawableClass ;

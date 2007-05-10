@@ -9,6 +9,7 @@
 extern "C"
 {
 #include "handleDrawing/drawFigureEntity.h"
+#include "GetProperty.h"
 }
 
 namespace sciGraphics
@@ -23,6 +24,7 @@ DrawableFigure::DrawableFigure( sciPointObj * pObj )
 /*------------------------------------------------------------------------------------------*/
 DrawableFigure::~DrawableFigure( void )
 {
+  closeRenderingCanvas() ;
   if ( m_pImp != NULL )
   {
     delete m_pImp ;
@@ -30,12 +32,22 @@ DrawableFigure::~DrawableFigure( void )
   }
 }
 /*------------------------------------------------------------------------------------------*/
+void DrawableFigure::openRenderingCanvas( void )
+{
+  m_pImp->openRenderingCanvas( sciGetNum( m_pDrawed ) ) ;
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableFigure::closeRenderingCanvas( void )
+{
+  m_pImp->closeRenderingCanvas() ;
+}
+/*------------------------------------------------------------------------------------------*/
 void DrawableFigure::draw( void )
 { 
   if ( !checkAutoRedraw() ) { return ; }
 
+  openRenderingCanvas() ;
   initializeDrawing() ;
-  
   
   if ( checkVisibility() )
   {

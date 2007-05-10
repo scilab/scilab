@@ -485,21 +485,22 @@ libscigraphics_la_LIBADD = \
 
 #	$(top_builddir)/modules/gui/libscigui.la
 
-include $(top_srcdir)/Makefile.incl.am
+# include $(top_srcdir)/Makefile.incl.am
 
 
-#### Target ######
-modulename=graphics
+# #### Target ######
+# modulename=graphics
 
-JAVAFILES = src/java/org/scilab/modules/graphics/figureDrawing/DrawableFigureJoGL.java
+# JAVAFILES = src/java/org/scilab/modules/graphics/figureDrawing/DrawableFigureJoGL.java \
+# src/java/org/scilab/modules/graphics/figureDrawing/SciRenderer.java
 
-#### Where are the sources (mandatory) ####
-CLASSPATH = src/java/
+# #### Where are the sources (mandatory) ####
+# CLASSPATH = src/java/
 
-#### graphics : jar file #### 
-JARFILE = graphics.jar
+# #### graphics : jar file #### 
+# JARFILE = graphics.jar
 
-BUILT_SOURCES+=$(JARFILE)
+# BUILT_SOURCES+=$(JARFILE)
 
 #### graphics : Conf files ####
 libscigraphics_la_rootdir = $(mydatadir)

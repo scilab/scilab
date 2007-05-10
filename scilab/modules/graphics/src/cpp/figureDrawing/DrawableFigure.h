@@ -24,9 +24,10 @@ public:
   virtual ~DrawableFigure( void ) ;
 
   /**
-   * Set the implementation objects for the previous algorithmz
+   * Set the implementation objects for the graphic algorithms
    */
   void setDrawableImp( DrawableFigureImp * imp ) { m_pImp = imp ; }
+
 
 protected:
 
@@ -51,6 +52,17 @@ protected:
 
   /*--------------------------------------------------------------------------------------*/
   // Driver dependant algorithms
+
+  /**
+   * Create the rendering canvas for the figure.
+   */
+  void openRenderingCanvas( void ) ;
+
+  /**
+   * Close the rendering canvas
+   */
+  void closeRenderingCanvas( void ) ;
+
   /**
    * Initialize the context for drawing
    */

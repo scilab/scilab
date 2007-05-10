@@ -43,6 +43,16 @@ public:
    */
   virtual void updateInfoMessage( void  ) = 0 ;
 
+  /**
+   * Create the rendering canvas for the figure.
+   */
+  virtual void openRenderingCanvas( int figureIndex ) = 0 ;
+
+  /**
+   * Close the rendering canvas
+   */
+  virtual void closeRenderingCanvas( void ) = 0 ;
+
 protected:
 
   DrawableFigure * m_pDrawer ; /**< bridge for driver dependant algorithm */
