@@ -21,7 +21,8 @@ void C2F(mopen)(int *fd, char *file, char *status, int *f_swap, double *res, int
 
 	if (IsAlreadyOpenedInScilab(file))
 	{
-		sciprint("Warning : file '%s' already opened ins scilab.\r\n",file);
+		/* disable need to be enhanced*/
+	/*	sciprint("Warning : file '%s' already opened ins scilab.\r\n",file);*/
 	}
 
 	swap =0;
