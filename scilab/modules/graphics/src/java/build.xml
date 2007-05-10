@@ -12,6 +12,10 @@ INRIA 2007
         build graphics Scilab - Scilab graphics Library
     </description>
     
+     <path id="classpath">
+        <fileset dir="../../../../java/jar/externals" includes="**/*.jar"/>
+    </path>
+    
     <target name="init">
 			<!-- Create the time stamp -->
 			<tstamp/>
@@ -25,11 +29,11 @@ INRIA 2007
     <target name="compile" description="build sources" depends="init">
     
         <mkdir dir="build/classes"/>
-        <javac srcdir="org" destdir="build/classes"/>
+        <javac srcdir="org" destdir="build/classes" classpathref="classpath"/>
     </target>
 
     <target name="jar" description="do .jar file" depends="compile">
-        <jar destfile="${dist}/graphics.jar" basedir="build/classes">
+        <jar destfile="${dist}/graphics.jar" basedir="build/classes" >
             
         </jar>
     </target>
