@@ -1,0 +1,13 @@
+LIBRARY    scirenderer.dll
+
+
+EXPORTS
+; --------------------------------------- 
+; scirenderer
+; --------------------------------------- 
+createDrawingObserver
+deleteObservers
+notifyObservers
+destroyHandleDrawer
+sciDrawObj
+displayChildren

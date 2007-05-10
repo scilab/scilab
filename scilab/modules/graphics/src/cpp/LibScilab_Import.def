@@ -1,0 +1,31 @@
+	LIBRARY    Libscilab.dll
+
+
+EXPORTS
+; from graphics
+List_free
+sciGetLastSons
+sciGetVisibility
+sciGetEntityType
+sciGetParentFigure
+List_append
+List_free_item
+drawTextEntity
+drawSurfaceEntity
+drawSubWinEntity
+drawSegsEntity
+drawRectangleEntity
+drawPolylineEntity
+drawLegendEntity
+drawGrayplotEntity
+sciGetNum
+ReleaseWinHdc
+sciGetScilabXgc
+GetDriverId
+dr_
+MaybeSetWinhdc
+sciGetBackground
+drawFecEntity
+drawCompoundEntity
+drawAxesEntity
+drawArcEntity
