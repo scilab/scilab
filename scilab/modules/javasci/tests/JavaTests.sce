@@ -6,11 +6,13 @@ tests = ['Boolean.java';'BooleanArray.java';'Clf.java';'Disp.java';'Exec.java';'
 //---------------------------------------------------------------
 // Compilation du fichier Java
 function ret=BuildJava(filename)
-	if MSDOS then
-		Command='javac -deprecation -d '+SCI+'\bin -classpath '+SCI+'\bin '+filename;
-	else
-		Command='javac -deprecation -classpath ../javasci.jar '+filename;
-	end
+
+  if MSDOS then 
+    sep=';';
+  else
+    sep=':';
+  end
+	Command='javac -deprecation -d '+SCI+'/modules/javasci/tests -cp '+SCI+'/java/jar/modules/javasci.jar'+sep+'. '+filename;
 	[rep,stat]=unix_g(Command);
 	if ~(stat==0) then
 		disp('Error in the compilation '+filename);
@@ -30,7 +32,7 @@ function ExecJava(filename,buildref)
 		setenv('CLASSPATH','$CLASSPATH:'+pwd()+':.');
 		setenv('SHLIB_PATH','$SHLIB_PATH:'+pwd()+':.');
 	else 
-		chdir(SCI+'\bin');
+		setenv('PATH',SCI+'\bin;'+getenv('PATH')+';');
 	end
 	[path,fname,extension]=fileparts(filename);
 	if (buildref == %T) then
@@ -48,9 +50,11 @@ function ExecJava(filename,buildref)
 	end
 
 	if MSDOS then
-	  commandline=SCI+'\java\jre\bin\java '+fname +' > '+repfilename;
+	  sep=';'
+	  commandline='java -cp '+SCI+'\java\jar\modules\javasci.jar'+sep+'. '+fname+' > '+repfilename;
 	else
-	  commandline='java -classpath ../javasci.jar:. -Djava.library.path=../.libs/ '+fname +' > '+repfilename;
+	  sep=':'
+	  commandline='java -cp '+SCI+'\java\jar\modules\javasci.jar'+sep+'. -Djava.library.path='+SCI+'/modules/javasci/.libs/ '+fname +' > '+repfilename;
 	end
 	unix(commandline);
 	chdir(currentdir);
@@ -59,7 +63,6 @@ endfunction
 // Nettoyage apres tests du fichier .class généré
 function CleanClass(filename)
 	currentdir=pwd();
-	chdir(SCI+'\bin');
 	[path,fname,extension]=fileparts(filename);
 	if MSDOS then
 		unix_s('del '+fname+'.class');

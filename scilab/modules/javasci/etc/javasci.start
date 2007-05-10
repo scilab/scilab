@@ -4,6 +4,9 @@
 // ====================================================================
 //Load  functions librarie
 //load('SCI/modules/javasci/macros/lib');
+if (getscilabmode()<>'NWNI') then
+  javaclasspath(SCI+'/java/jar/modules/javasci.jar');
+end  
 // ====================================================================
 //add help chapter
 add_module_help_chapter('javasci');

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Allan CORNET
+INRIA 2007
+-->
+<project name="javasci Examples ihm" default="compile">
+
+   <property name="dist"  location="." />
+   
+   <description>
+        build examples "ihm" javasci
+    </description>
+    
+     <path id="classpath">
+        <fileset dir="../../../../java/jar/modules" includes="**/javasci.jar"/>
+    </path>
+
+    
+    <target name="init">
+				<!-- Create the time stamp -->
+				<tstamp/>
+		</target>
+
+    <target name="clean" description="clean sources">
+        <delete dir="build"/>
+        <delete file="ihm.jar"/>
+    </target>
+
+    <target name="compile" description="build sources" depends="init">
+        <mkdir dir="build/classes"/>
+        <javac srcdir="." destdir="build/classes" classpathref="classpath"/>
+    </target>
+
+</project>

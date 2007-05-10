@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-Allan CORNET 
+Allan CORNET
 INRIA 2007
 -->
 <project name="javasci" default="compile">
@@ -8,13 +8,13 @@ INRIA 2007
    <property name="dist"  location="../../../../java/jar/modules" />
    
    <description>
-        build javasci Scilab - Java Interface
+        build javasci module
     </description>
     
     <target name="init">
 			<!-- Create the time stamp -->
 			<tstamp/>
-		</target>
+		</target>    
 
     <target name="clean" description="clean sources">
         <delete dir="build"/>
@@ -22,7 +22,6 @@ INRIA 2007
     </target>
 
     <target name="compile" description="build sources" depends="init">
-    
         <mkdir dir="build/classes"/>
         <javac srcdir="javasci" destdir="build/classes"/>
     </target>
@@ -30,19 +29,19 @@ INRIA 2007
     <target name="jar" description="do .jar file" depends="compile">
         <jar destfile="${dist}/javasci.jar" basedir="build/classes">
             <manifest>
-                <attribute name="SciAbstractDataType" value="SciAbstractDataType"/>
-                <attribute name="SciBooleanArray" value="SciBooleanArray"/>
-                <attribute name="SciComplexArray" value="SciComplexArray"/>
-                <attribute name="SciDoubleArray" value="SciDoubleArray"/>
-                <attribute name="SciString" value="SciString"/>
-                <attribute name="BadDataArgumentException" value="BadDataArgumentException"/>
-                <attribute name="SciAbstractArray" value="SciAbstractArray"/>
-                <attribute name="SciBoolean" value="SciBoolean"/>
-                <attribute name="SciComplex" value="SciComplex"/>
-                <attribute name="SciDouble" value="SciDouble"/>
-                <attribute name="Scilab" value="Scilab"/>
-                <attribute name="SciStringArray" value="SciStringArray"/>
-                <attribute name="ClassPath" value="ClassPath"/>
+                <attribute name="SciAbstractDataType" value="javasci.SciAbstractDataType"/>
+                <attribute name="SciBooleanArray" value="javasci.SciBooleanArray"/>
+                <attribute name="SciComplexArray" value="javasci.SciComplexArray"/>
+                <attribute name="SciDoubleArray" value="javasci.SciDoubleArray"/>
+                <attribute name="SciString" value="javasci.SciString"/>
+                <attribute name="BadDataArgumentException" value="javasci.BadDataArgumentException"/>
+                <attribute name="SciAbstractArray" value="javasci.SciAbstractArray"/>
+                <attribute name="SciBoolean" value="javasci.SciBoolean"/>
+                <attribute name="SciComplex" value="javasci.SciComplex"/>
+                <attribute name="SciDouble" value="javasci.SciDouble"/>
+                <attribute name="Scilab" value="javasci.Scilab"/>
+                <attribute name="SciStringArray" value="javasci.SciStringArray"/>
+                <attribute name="ClassPath" value="javasci.ClassPath"/>
             </manifest>
         </jar>
     </target>
