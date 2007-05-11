@@ -8,7 +8,9 @@ src/c/TerminateJVM.c \
 src/c/JVM_Unix.c \
 src/c/JVM.c \
 src/c/JniUtils.c \
-src/c/addToClasspath.c
+src/c/addToClasspath.c \
+src/c/getClasspath.c
+
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_jvm.c \
 sci_gateway/c/sci_jvm_version.c \

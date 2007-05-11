@@ -209,6 +209,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getClasspath.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\c\gw_jvm.c"
 				>
 			</File>
@@ -252,6 +256,10 @@
 			>
 			<File
 				RelativePath=".\includes\addToClasspath.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getClasspath.h"
 				>
 			</File>
 			<File

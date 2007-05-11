@@ -19,3 +19,5 @@ getScilabMode
 Scierror
 createvar_
 IsFromJava
+createvarfromptr_
+

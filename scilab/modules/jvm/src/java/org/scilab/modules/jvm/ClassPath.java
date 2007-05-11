@@ -36,16 +36,17 @@ public static void addURL(URL u) throws IOException {
 		t.printStackTrace();
 		throw new IOException("Error, could not add URL to system classloader");
 	}
-	getClassPath();
 }
 /*-----------------------------------------------------------------------------------*/  
 public static String[] getClassPath() {
+
 	URLClassLoader sysloader = (URLClassLoader)ClassLoader.getSystemClassLoader();
 	URL path[]=sysloader.getURLs();
 	String[] paths=new String[path.length];
+	
 	for( int i=0; i<path.length; i++ ) {
-		paths[i]= path[i].getFile();
-		//System.out.println(paths[i]);
+		paths[i]= path[i].toString();
+		System.out.println(paths[i]);
     }
     return paths;
 }

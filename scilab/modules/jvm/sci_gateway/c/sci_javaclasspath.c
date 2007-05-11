@@ -10,36 +10,68 @@
 #include "sciprint.h"
 #include "Scierror.h"
 #include "addToClasspath.h"
+#include "getClasspath.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_javaclasspath) _PARAMS((char *fname,unsigned long fname_len))
 {
-	CheckRhs(1,1);
+	Rhs = Max(Rhs,0);
+	CheckRhs(0,1);
 	CheckLhs(0,1);
 
-	if (GetType(1) == sci_strings)
+	if (Rhs == 0)
 	{
-		static int l1=0,n1=0,m1=0;
+		int nbRow=0;
+		int nbCol=1;
 		int i=0;
-		BOOL bOK=FALSE;
-		char **CLASSPATHS=NULL;
+		char **Strings=NULL;
 
-		GetRhsVar(1,"S",&m1,&n1,&CLASSPATHS);
+		Strings=getClasspath(&nbRow);
+		CreateVarFromPtr( Rhs+1, "S", &nbRow, &nbCol,Strings ) ;
 
-		for (i = 0; i<m1*n1 ;i++)
+		LhsVar(1)=Rhs+1;
+		C2F(putlhsvar)();
+		if (Strings)
 		{
-			bOK=addToClasspath(CLASSPATHS[i]);
-			if (!bOK)
+			for (i=0;i<nbRow;i++)
 			{
-				Scierror(999,"could not add URL to system classloader : %s.\r\n",CLASSPATHS[i]);
-				return 0;
+				if (Strings[i])
+				{
+					FREE(Strings[i]);
+					Strings[i]=NULL;
+				}
 			}
+			FREE(Strings);
+			Strings=NULL;
 		}
-		LhsVar(1) = 0;
-		C2F(putlhsvar)();	
+
 	}
 	else
 	{
-		Scierror(999,"invalid parameter(s).\r\n");
+		if ( GetType(1) == sci_strings )
+		{
+			static int l1=0,n1=0,m1=0;
+			int i=0;
+			BOOL bOK=FALSE;
+			char **CLASSPATHS=NULL;
+
+			GetRhsVar(1,"S",&m1,&n1,&CLASSPATHS);
+
+			for (i = 0; i<m1*n1 ;i++)
+			{
+				bOK=addToClasspath(CLASSPATHS[i]);
+				if (!bOK)
+				{
+					Scierror(999,"could not add URL to system classloader : %s.\r\n",CLASSPATHS[i]);
+					return 0;
+				}
+			}
+			LhsVar(1) = 0;
+			C2F(putlhsvar)();	
+		}
+		else
+		{
+			Scierror(999,"invalid parameter(s).\r\n");
+		}
 	}
 	return 0;
 }

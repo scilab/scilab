@@ -18,12 +18,9 @@ BOOL addToClasspath(char *classpathstring)
 		if ( isdir(classpathstring) || FileExist(classpathstring) )
 		{
 			JNIEnv * currentENV = getScilabJNIEnv();
-
-			jclass cls=NULL;
-			jmethodID mid=NULL;
-
 			if (currentENV)
 			{
+				jclass cls=NULL;
 				if (IsFromJava())
 				{
 					/* Boot loader for scilab and javasci */
@@ -38,6 +35,7 @@ BOOL addToClasspath(char *classpathstring)
 				
 				if (cls)
 				{
+					jmethodID mid=NULL;
 					mid = (*currentENV)->GetStaticMethodID(currentENV, cls, "addFile","(Ljava/lang/String;)V");
 					if (mid)
 					{
