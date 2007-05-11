@@ -3,6 +3,7 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
 #include <jni.h>
+#include <string.h>
 #include "getClasspath.h"
 #include "getScilabJNIEnv.h"
 #include "fromjava.h"
