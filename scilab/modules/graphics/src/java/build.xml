@@ -6,36 +6,54 @@ INRIA 2007
 -->
 <project name="graphics" default="compile">
 
-   <property name="dist"  location="../../../../java/jar/modules" />
+	<property name="rootdirectory"  location="../../../.." />
+  <property name="dist"  location="${rootdirectory}/java/jar/modules" />
+  
+  <!--
+a voir sous linux ...
+-->
+  <taskdef resource="checkstyletask.properties" classpath="${rootdirectory}/java/checkstyle/checkstyle-all-4.3.jar"/>
    
-   <description>
-        build graphics Scilab - Scilab graphics Library
-    </description>
+  <description>
+		build graphics Scilab - Scilab graphics Library
+  </description>
     
-     <path id="classpath">
-        <fileset dir="../../../../java/jar/externals" includes="**/*.jar"/>
-    </path>
+  <path id="classpath">
+  	<fileset dir="${rootdirectory}/java/jar/externals" includes="**/*.jar"/>
+  </path>
+  
+  <target name="checkstyle-scilab">
+		<checkstyle config="${rootdirectory}/checkstyle/scilab_checkstyle_convention.xml">
+  		<fileset dir="org" includes="**/*.java"/>
+  		<!-- Location of cache-file. -->
+  		<property key="checkstyle.cache.file" file="build/cachefile"/>
+		</checkstyle> 
+	</target>  
     
-    <target name="init">
-			<!-- Create the time stamp -->
-			<tstamp/>
-		</target>    
+  <target name="init">
+		<!-- Create the time stamp -->
+		<tstamp/>
+	</target>    
 
-    <target name="clean" description="clean sources">
-        <delete dir="build"/>
-        <delete file="${dist}/graphics.jar"/>
-    </target>
+  <target name="clean" description="clean sources">
+  	<delete dir="build"/>
+    <delete file="${dist}/graphics.jar"/>
+  </target>
 
-    <target name="compile" description="build sources" depends="init">
-    
-        <mkdir dir="build/classes"/>
-        <javac srcdir="org" destdir="build/classes" classpathref="classpath"/>
-    </target>
+<!-- 
+  <target name="compile" description="build sources" depends="init,checkstyle-scilab">
+-->
+  <target name="compile" description="build sources" depends="init">
+  	<mkdir dir="build/classes"/>
+    <javac srcdir="org" destdir="build/classes" classpathref="classpath"/>
+  </target>
 
-    <target name="jar" description="do .jar file" depends="compile">
-        <jar destfile="${dist}/graphics.jar" basedir="build/classes" >
-            
-        </jar>
-    </target>
-
+  <target name="jar" description="do .jar file" depends="compile">
+  	<jar destfile="${dist}/graphics.jar" basedir="build/classes" >
+  	<manifest>
+      	<attribute name="DrawableFigureJoGL" value="org.scilab.modules.graphics.figureDrawing.DrawableFigureJoGL"/>
+      	<attribute name="SciRenderer" value="org.scilab.modules.graphics.figureDrawing.SciRenderer"/>
+			</manifest>
+    </jar>
+   </target>
 </project>

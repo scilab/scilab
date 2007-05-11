@@ -19,20 +19,20 @@ public static void addFile(String s) throws IOException {
 }
 /*-----------------------------------------------------------------------------------*/ 
 public static void addFile(File f) throws IOException {
-	URI uri=f.toURI();
+	URI uri = f.toURI();
 	addURL(uri.toURL());
 }
 /*-----------------------------------------------------------------------------------*/  
 public static void addURL(URL u) throws IOException {
 		
-	URLClassLoader sysloader = (URLClassLoader)ClassLoader.getSystemClassLoader();
+	URLClassLoader sysloader = (URLClassLoader) ClassLoader.getSystemClassLoader();
 	Class sysclass = URLClassLoader.class;
  
  getClassPath();
 	try {
-		Method method = sysclass.getDeclaredMethod("addURL",parameters);
+		Method method = sysclass.getDeclaredMethod("addURL", parameters);
 		method.setAccessible(true);
-		method.invoke(sysloader,new Object[]{ u });
+		method.invoke(sysloader , new Object[] {u });
 	} catch (Throwable t) {
 		t.printStackTrace();
 		throw new IOException("Error, could not add URL to system classloader");
@@ -41,11 +41,11 @@ public static void addURL(URL u) throws IOException {
 }
 /*-----------------------------------------------------------------------------------*/ 
 public static String[] getClassPath() {
-	URLClassLoader sysloader = (URLClassLoader)ClassLoader.getSystemClassLoader();
-	URL path[]=sysloader.getURLs();
-	String[] paths=new String[path.length];
-	for( int i=0; i<path.length; i++ ) {
-		paths[i]= path[i].getFile();
+	URLClassLoader sysloader = (URLClassLoader) ClassLoader.getSystemClassLoader();
+	URL path[] = sysloader.getURLs();
+	String[] paths = new String[path.length];
+	for (int i = 0; i < path.length; i++) {
+		paths[i] = path[i].getFile();
 		//System.out.println(paths[i]);
     }
     return paths;
