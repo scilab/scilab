@@ -46,7 +46,6 @@ public static String[] getClassPath() {
 	
 	for( int i=0; i<path.length; i++ ) {
 		paths[i]= path[i].toString();
-		System.out.println(paths[i]);
     }
     return paths;
 }
