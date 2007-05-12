@@ -24,6 +24,11 @@ INRIA 2007
 	<tstamp/>
   </target>   
 	
+	<target name="clean" description="clean sources">
+  	<delete dir="build"/>
+    <delete file="${dist}/graphics.jar"/>
+  </target>
+  
   <target name="compile" description="build sources" depends="init">
   	<mkdir dir="build/classes"/>
     <javac srcdir="${src}" destdir="build/classes" classpathref="classpath"/>
