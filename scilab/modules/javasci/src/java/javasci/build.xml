@@ -5,8 +5,9 @@ INRIA 2007
 -->
 <project name="javasci" default="compile">
 
-  <property name="rootdirectory"  location="../../../../.." />
-  <property name="dist"  location="${rootdirectory}/java/jar/modules" />
+  <property name="rootdirectory"  location="../../../../.."/>
+  <property name="dist"  location="${rootdirectory}/java/jar/modules"/>
+  <property name="src"  location="."/>
 
 <!--
 a voir sous linux ...
@@ -19,7 +20,7 @@ a voir sous linux ...
 
 	<target name="checkstyle-scilab">
 		<checkstyle config="${rootdirectory}/checkstyle/scilab_checkstyle_convention.xml">
-  		<fileset dir="." includes="**/*.java"/>
+  		<fileset dir="${src}" includes="**/*.java"/>
   		<!-- Location of cache-file. -->
   		<property key="checkstyle.cache.file" file="build/cachefile"/>
 		</checkstyle> 
@@ -40,7 +41,7 @@ a voir sous linux ...
 -->
   <target name="compile" description="build sources" depends="init">
 		<mkdir dir="build/classes"/>
-    <javac srcdir="." destdir="build/classes"/>
+    <javac srcdir="${src}" destdir="build/classes"/>
   </target>
 
   <target name="jar" description="do .jar file" depends="compile">
