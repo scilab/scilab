@@ -6,7 +6,7 @@
 /*        canvas                                                          */
 /*------------------------------------------------------------------------*/
 
-package org.scilab.modules.graphics.figureDrawing ;
+package org.scilab.modules.graphics.figureDrawing;
 
 import java.awt.*;
 import java.awt.event.*;

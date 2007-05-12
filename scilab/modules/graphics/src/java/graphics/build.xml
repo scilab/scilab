@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-Jean-Baptiste Silvy 
 Allan CORNET
 INRIA 2007
 -->
 <project name="graphics" default="compile">
 
-	<property name="rootdirectory"  location="../../../.." />
+  <property name="rootdirectory"  location="../../../../.." />
+  <property name="src"  location="." />
   <property name="dist"  location="${rootdirectory}/java/jar/modules" />
   
-  <!--
-a voir sous linux ...
--->
   <taskdef resource="checkstyletask.properties" classpath="${rootdirectory}/java/checkstyle/checkstyle-all-4.3.jar"/>
    
   <description>
@@ -21,39 +18,24 @@ a voir sous linux ...
   <path id="classpath">
   	<fileset dir="${rootdirectory}/java/jar/externals" includes="**/*.jar"/>
   </path>
-  
-  <target name="checkstyle-scilab">
-		<checkstyle config="${rootdirectory}/checkstyle/scilab_checkstyle_convention.xml">
-  		<fileset dir="org" includes="**/*.java"/>
-  		<!-- Location of cache-file. -->
-  		<property key="checkstyle.cache.file" file="build/cachefile"/>
-		</checkstyle> 
-	</target>  
-    
+	
   <target name="init">
-		<!-- Create the time stamp -->
-		<tstamp/>
-	</target>    
-
-  <target name="clean" description="clean sources">
-  	<delete dir="build"/>
-    <delete file="${dist}/graphics.jar"/>
-  </target>
-
-<!-- 
-  <target name="compile" description="build sources" depends="init,checkstyle-scilab">
--->
+	<!-- Create the time stamp -->
+	<tstamp/>
+  </target>   
+	
   <target name="compile" description="build sources" depends="init">
   	<mkdir dir="build/classes"/>
-    <javac srcdir="org" destdir="build/classes" classpathref="classpath"/>
+    <javac srcdir="${src}" destdir="build/classes" classpathref="classpath"/>
   </target>
-
+	
   <target name="jar" description="do .jar file" depends="compile">
   	<jar destfile="${dist}/graphics.jar" basedir="build/classes" >
   	<manifest>
       	<attribute name="DrawableFigureJoGL" value="org.scilab.modules.graphics.figureDrawing.DrawableFigureJoGL"/>
       	<attribute name="SciRenderer" value="org.scilab.modules.graphics.figureDrawing.SciRenderer"/>
-			</manifest>
+	</manifest>
     </jar>
-   </target>
+  </target>
+	
 </project>
