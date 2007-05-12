@@ -1,8 +1,8 @@
 set funnameargs ""
 set funnames ""
-set unklabel "<?>"   ;# Warning: if this is changed it must be changed accordingly in FormatStringsForWatch.sci
-set unsuptyp_l "<<"  ;# Ditto
-set unsuptyp_r ">>"  ;# Ditto
+set unklabel "<?>" ;# Warning: if this is changed it must be changed accordingly in FormatStringsForWatch.sci
+set noedit_l "<<"  ;# Ditto
+set noedit_r ">>"  ;# Ditto
 set curdropind 0
 set dragndroplb ""
 set watchvars ""

@@ -18,6 +18,8 @@ proc execfile_bp {{stepmode "nostep"}} {
 # return argument: 0=success, -1=fail
     global funnameargs listoftextarea funsinbuffer waitmessage watchvars
     global setbptonreallybreakpointedlinescmd
+    global tmpdir
+
     if {[isscilabbusy 5]} {return}
     showinfo $waitmessage
 
@@ -50,11 +52,6 @@ proc execfile_bp {{stepmode "nostep"}} {
         #         buffers 1) tagged as scilab buffers and 2) colorized
         #         Maybe a warning to the user about the non exec-ing of
         #         scilab not colorized buffers would be a good idea...
-        # <TODO>: if the same function name can be found in more than one
-        #         buffer, then the last found will be the one known by
-        #         Scilab during debug - the user receives a message box
-        #         but it would be better to support it (i.e. let the user
-        #         select which function he wants to use)
         # <TODO>: instead of execing all non level zero code from all scilab
         #         scheme buffers, Scipad should actually exec only the
         #         configured function plus all its ancillaries if those
@@ -91,14 +88,30 @@ proc execfile_bp {{stepmode "nostep"}} {
             }
         }
 
-        # create a new buffer, exec it and then destroy it
-        # doing this, there is not even a flash in the display
-        set saved_ta [gettextareacur]
-        filesetasnew
-        [gettextareacur] insert 1.0 $allfuntexts
-        set execresult [execfile "current"]
-        closecur "NoSaveQuestion"
-        showtext $saved_ta
+        # create a temporary file, puts everything in there, and exec it
+        # this part is catched to take into account possible access
+        # (permissions) errors
+        if {[catch {
+            set fname [file join $tmpdir "Scipad_execfile_bp_tempfile.sci"]
+            # mode(-1) to prevent Scilab to echo the commands passed to the temporary
+            # file - only "mode(-1)" will be displayed in the Scilab shell when the
+            # ScilabEval "exec ..." below gets executed
+            set fid [open $fname w]
+            puts $fid "mode(-1);"
+            puts $fid $allfuntexts
+            close $fid
+            ScilabEval_lt "exec(\"$fname\")" "sync" "seq"
+            set execresult 0
+        }] != 0} {
+            # if the temporary file solution did not work, let's create a
+            # temporary regular buffer and exec it!
+            set saved_ta [gettextareacur]
+            filesetasnew
+            [gettextareacur] insert 1.0 $allfuntexts
+            set execresult [execfile "current"]
+            closecur "NoSaveQuestion"
+            showtext $saved_ta
+        }
         if {$execresult == -1} {
             # in case execing the file produced an error, restore the cursors
             # and return (the debug must not be launched) - the cleanup has
@@ -803,16 +816,21 @@ proc resume_bp {{checkbusyflag 1} {stepmode "nostep"}} {
     if {$funnameargs != ""} {
         setdebuggerbusycursor
         if {![isnocodeline [gettextareacur] insert]} {
+            # the debugger is not currently skipping no code lines
             removelocalvars
-        }
-        set commnvars [createsetinscishellcomm $watchvars]
-        set watchsetcomm [lindex $commnvars 0]
-        if {$watchsetcomm != ""} {
-            set visibilitycomm [lindex $commnvars 2]
-            ScilabEval_lt "$visibilitycomm;$watchsetcomm" "seq"
-            set returnwithvars [lindex $commnvars 1]
-            ScilabEval_lt "$returnwithvars" "seq"
+            set commnvars [createsetinscishellcomm $watchvars]
+            set watchsetcomm [lindex $commnvars 0]
+            if {$watchsetcomm != ""} {
+                set visibilitycomm [lindex $commnvars 2]
+                ScilabEval_lt "$visibilitycomm;$watchsetcomm" "seq"
+                set returnwithvars [lindex $commnvars 1]
+                ScilabEval_lt "$returnwithvars" "seq"
+            } else {
+                ScilabEval_lt "resume(0)" "seq"
+            }
         } else {
+            # the debugger is currently skipping no code lines
+            # the watch variables do not have to be updated
             ScilabEval_lt "resume(0)" "seq"
         }
         updateactivebreakpoint
@@ -831,6 +849,9 @@ proc goonwo_bp {} {
     # warn the user about duplicate function names possibly found
     # the debugger won't execute in that case
     if {[checkforduplicatefunnames]} {return}
+
+    # no test on [getdbstate], this proc can only be called in "DebugInProgress"
+    # state (this is set by the debugger state machine in proc setdbmenuentriesstates_bp)
 
     showinfo $waitmessage
     if {$funnameargs != ""} {

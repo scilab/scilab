@@ -81,10 +81,10 @@ proc configurefoo_bp {} {
     scrollbar $listboxscrolly -command "scrollyboth_bp $listboxinput $listboxinputval"
     listbox $listboxinput -height 6 -width 12 -font $textFont -yscrollcommand \
                           "scrollyrightandscrollbar_bp $listboxscrolly $listboxinput $listboxinputval" \
-                          -takefocus 0
+                          -takefocus 0 -exportselection 0
     listbox $listboxinputval -height 6 -width 25 -font $textFont -yscrollcommand \
                           "scrollyleftandscrollbar_bp $listboxscrolly $listboxinput $listboxinputval" \
-                          -takefocus 0
+                          -takefocus 0 -exportselection 0
     if {[info exists funvars($funname)]} {
         foreach var $funvars($funname) {
             $listboxinput insert end $var
@@ -190,6 +190,7 @@ proc scrollyrightandscrollbar_bp {lbscrolly leftwin rightwin x y} {
     eval "$rightwin yview $firstvisible"
 }
 proc selectinrightwin_bp {leftwin rightwin} {
+    $leftwin selection clear 0 end
     set selecteditem [$rightwin curselection]
     if {$selecteditem != ""} {
         $rightwin selection clear $selecteditem

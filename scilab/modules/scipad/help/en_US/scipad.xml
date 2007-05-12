@@ -15,11 +15,7 @@
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>scipad()</CALLING_SEQUENCE_ITEM>
 
-    <CALLING_SEQUENCE_ITEM>scipad(f)</CALLING_SEQUENCE_ITEM>
-
-    <CALLING_SEQUENCE_ITEM>scipad(f1,f2,...)</CALLING_SEQUENCE_ITEM>
-
-    <CALLING_SEQUENCE_ITEM>scipad([f1,f2,...])</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>scipad(f1[,f2,...])</CALLING_SEQUENCE_ITEM>
 
     <CALLING_SEQUENCE_ITEM>scipad f1 f2 ...</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
@@ -27,10 +23,10 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>f, f1, f2...</PARAM_NAME>
+        <PARAM_NAME>f1, f2...</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: file or directory pathnames (strings)</SP>
+          <SP>: (strings or vectors of strings) file or directory pathnames</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
@@ -318,7 +314,9 @@
     <P>At any time during the debug, a <BD>watch window</BD> can be displayed
     on user request. It allows to monitor any variable value, or change a
     variable value during a breakpoint stop and relaunch execution with the
-    modified value. The watch window also displays the calling stack and
+    modified value. A watchable variable can be part of a larger structure,
+    for instance if A is a 20x20 matrix, the shorter sub-matrix A(2:4,7:9)
+    can be watched. The watch window also displays the calling stack and
     contains a toolbar with the most useful commands from the debug menu.</P>
 
     <P></P>

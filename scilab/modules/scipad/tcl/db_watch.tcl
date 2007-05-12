@@ -259,11 +259,11 @@ proc showwatch_bp {} {
     listbox $lbvarname -height 6 -width 12 -font $textFont -yscrollcommand \
                        "scrollyrightandscrollbar_bp $scrolly $lbvarname $lbvarval" \
                        -xscrollcommand "$scrollxl set" \
-                       -takefocus 0
+                       -takefocus 0 -exportselection 0
     listbox $lbvarval  -height 6 -font $textFont -yscrollcommand \
                        "scrollyleftandscrollbar_bp $scrolly $lbvarname $lbvarval" \
                        -xscrollcommand "$scrollxr set" \
-                       -takefocus 0
+                       -takefocus 0 -exportselection 0
     if {[info exists watchvars]} {
         foreach var $watchvars {
             $lbvarname insert end $var
@@ -449,14 +449,20 @@ proc updatewatch_bp {} {
     if {[info exists watch]} {
         if {[winfo exists $watch]} {
             if {[info exists watchvars]} {
+                set curlbsel [$lbvarname curselection]
                 $lbvarname delete 0 end
                 $lbvarval delete 0 end
                 foreach var $watchvars {
                     $lbvarname insert end $var
                     $lbvarval insert end $watchvarsvals($var)
                 }
-                $lbvarname selection set 0
-                $lbvarname see 0
+                if {$curlbsel != ""} {
+                    $lbvarname selection set $curlbsel
+                    $lbvarname see $curlbsel
+                } else {
+                    $lbvarname selection set 0
+                    $lbvarname see 0
+                }
             }
             $callstackwidget configure -state normal
             $callstackwidget delete 1.0 end
@@ -587,14 +593,14 @@ proc getlocalsnames {} {
     # note the complication below to provide a function (type 13)
     # and not a string to macrovar, and to let the expression be
     # evaluated at the correct time...!
-    
+
     # Moreover, the test on the emptiness of db_curfunname allows
     # to deal easily with the case where the debugger finished
     # the debug: [lindex $callstackfuns 0] is empty and would throw
     # an error in macrovar(""). In this case no local variable is
     # to be considered and the elements of $varsforautowatchloc are
     # reset to empty lists
- 
+
     # finally, to ease backporting, the result of TCL_EvalStr is not
     # used directly, the usual detour with TCL_GetVar is used
 
@@ -733,9 +739,9 @@ proc createsetinscishellcomm {setofvars} {
 #         3. execstr("var1",...,varN","errcatch","n");
 #         4. a list of editable true|false flags for each variable
 # Elements of variables from $setofvars whose value is $unklabel or starts with
-# $unsuptyp_l are filtered out (ignored)
+# $noedit_l are filtered out (ignored)
     global watchvars watchvarsvals unklabel
-    global unsuptyp_l
+    global noedit_l
     set fullcomm ""
     set varset ""
     set retcomm ""
@@ -743,7 +749,7 @@ proc createsetinscishellcomm {setofvars} {
     set editable [list ]
     foreach var $setofvars {
         if {[string first $unklabel $watchvarsvals($var)] == -1 && \
-            [string first $unsuptyp_l $watchvarsvals($var)] == -1} {
+            [string first $noedit_l $watchvarsvals($var)] == -1} {
             # Variable is fully defined and is editable
             set onecomm [duplicatechars "$var=$watchvarsvals($var);" "\""]
             set onecomm [duplicatechars $onecomm "'"]
@@ -759,7 +765,7 @@ proc createsetinscishellcomm {setofvars} {
             if {$watchvarsvals($var) == $unklabel} {
                 # Variable is fully undefined, nothing to do
                 lappend editable true
-            } elseif {[string range $watchvarsvals($var) 0 1] == $unsuptyp_l} {
+            } elseif {[string range $watchvarsvals($var) 0 1] == $noedit_l} {
                 # Variable is a single non editable type, nothing to do
                 lappend editable false
             } else {
@@ -767,11 +773,11 @@ proc createsetinscishellcomm {setofvars} {
                 # contains at least one element of non editable type
                 # In this case, we're dealing with list(elt1,..,eltn,$unklabel,eltm,..,eltp)
                 # and $unklabel can appear any number of times >1 in the elements list, or
-                # with list(elt1,..,eltn,$unsuptyp_lsomething$unsuptyp_r,eltm,..,eltp)
+                # with list(elt1,..,eltn,$noedit_lsomething$noedit_r,eltm,..,eltp)
                 # or with a mix of these two
                 # Result: variable is split into:
                 # $var=list();$var($curind)=elt1; and so on, forgetting the undefined and
-                # non editable elements marked as $unklabel or starting with $unsuptyp_l
+                # non editable elements marked as $unklabel or starting with $noedit_l
                 # This recreates truly undefined elements in Scilab
                 # Note that this method does in fact not support lists with non editable
                 # elements: those elements would be erased from the list and replaced by
@@ -826,7 +832,7 @@ proc createsetinscishellcomm {setofvars} {
                     incr curind
                     set curval [string range $watchvarsvals($var) $start [expr {$i - 1}]]
                     if {$curval != $unklabel} {
-                        if {[string range $curval 0 1] != $unsuptyp_l} {
+                        if {[string range $curval 0 1] != $noedit_l} {
                             # normal (i.e. defined and editable) element
                             set onecomm [duplicatechars "$var\($curind\)=$curval;" "\""]
                             set onecomm [duplicatechars $onecomm "'"]

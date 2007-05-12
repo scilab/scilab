@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.107
+# in sync at least with v6.108
 
 
 # commons
@@ -47,6 +47,8 @@
 # db_argsmanagement.tcl
 ::msgcat::mcset fr "This variable can be watched but cannot be edited!" \
                    "Cette variable peut être espionnée mais ne peut pas être modifiée !"
+::msgcat::mcset fr "A new watch variable will be created." \
+                   "Une nouvelle variable espion va être créée."
 ::msgcat::mcset fr "Non editable variable" "Variable non éditable"
 ::msgcat::mcset fr "Variable:" "Variable :"
 ::msgcat::mcset fr "Value:" "Valeur :"

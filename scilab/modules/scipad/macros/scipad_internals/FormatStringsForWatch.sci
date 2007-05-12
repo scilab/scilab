@@ -11,9 +11,9 @@ function [svar,tysi] = FormatStringsForWatch(var)
 // Both strings are used for the watch window of the debugger in Scipad.
 // Author: François Vogel, 2004-2007
 
-  unklabel   = "<?>"; // Warning: if this is changed it must be changed accordingly in db_init.tcl
-  unsuptyp_l = "<<";  // Ditto
-  unsuptyp_r = ">>";  // Ditto
+  unklabel = "<?>"; // Warning: if this is changed it must be changed accordingly in db_init.tcl
+  noedit_l = "<<";  // Ditto
+  noedit_r = ">>";  // Ditto
 
   if execstr("tvar = type(var);","errcatch") <> 0 then
     warning(LocalizeForScipad(" what you try to watch is not supported by the debugger"));
@@ -22,7 +22,7 @@ function [svar,tysi] = FormatStringsForWatch(var)
 
   else
 
-    if and(tvar<>[1 2 4 5 6 8 9 10 11 13 14 15 16 17 128 129 130]) then
+    if and(tvar<>[1 2 4 5 6 7 8 9 10 11 13 14 15 16 17 128 129 130]) then
       // unsupported cases
       warning(LocalizeForScipad(" what you try to watch is of type ")...
           +typeof(var)...
@@ -122,6 +122,23 @@ function [svar,tysi] = FormatStringsForWatch(var)
         tysi = LocalizeForScipad("Type:") + " " + typeof(var) + ", " + ...
                LocalizeForScipad("size:") + " " + string(nr) + "x" + string(nc);
 
+      case 7 then  // Matlab sparse matrix
+        [ij,v,mn]=spget(var);
+        ind = FormatStringsForWatch(ij);
+        vec = FormatStringsForWatch(v);
+        dim = FormatStringsForWatch(mn);
+        svar = "mtlb_sparse(sparse(" + ind + "," + vec + "," + dim + "))";
+        [nr,nc] = size(var);
+        // isreal does not work with a Matlab sparse (%msp_isreal is not defined)
+        // so use a detour
+        if isreal(sparse(ij,v,mn)) then
+          reco = LocalizeForScipad("real");
+        else
+          reco = LocalizeForScipad("complex");
+        end
+        tysi = LocalizeForScipad("Type:") + " " + typeof(var) + " (" + reco + "), " + ...
+               LocalizeForScipad("size:") + " " + string(nr) + "x" + string(nc);
+
       case 8 then  // 1, 2 or 4-bytes integer matrix (this works for 1 to 10-bytes int or uint)
         if prod(size(var)) > 1 then
           svar = MatFormatStringsForWatch(var);
@@ -137,11 +154,11 @@ function [svar,tysi] = FormatStringsForWatch(var)
                LocalizeForScipad("size:") + " " + string(nr) + "x" + string(nc);
 
       case 9 then  // graphic handle, we aren't yet able to display the content
-        svar = unsuptyp_l + LocalizeForScipad("graphic handle") + unsuptyp_r
+        svar = noedit_l + LocalizeForScipad("graphic handle") + noedit_r
         [nr,nc] = size(var);
         tysi = LocalizeForScipad("Type:") + " " + typeof(var) + ", " + ...
                LocalizeForScipad("size:") + " " + string(nr) + "x" + string(nc);
-         
+
       case 10 then  // character string matrix
         if prod(size(var)) > 1 then
           svar = MatFormatStringsForWatch(var);
@@ -162,22 +179,22 @@ function [svar,tysi] = FormatStringsForWatch(var)
 
       case 11 then  // uncompiled function
         Vars = macrovar(var);
-        svar = unsuptyp_l + LocalizeForScipad("uncompiled function") + unsuptyp_r + ...
-               "+\[" + strcat(Vars(2)',",") + "]=...(" + strcat(Vars(1)',",") + ")"
+        svar = noedit_l + LocalizeForScipad("uncompiled function") + noedit_r + ...
+               ":\[" + strcat(Vars(2)',",") + "]=...(" + strcat(Vars(1)',",") + ")"
         tysi = LocalizeForScipad("Type:") + " " + typeof(var)
 
       case 13 then  // compiled function
         Vars = macrovar(var)
-        svar = unsuptyp_l + LocalizeForScipad("compiled function") + unsuptyp_r + ...
+        svar = noedit_l + LocalizeForScipad("compiled function") + noedit_r + ...
                ":\[" + strcat(Vars(2)',",") + "]=...(" + strcat(Vars(1)',",") + ")"
         tysi = LocalizeForScipad("Type:") + " " + typeof(var)
 
       case 14 then  // library
         s = string(var)
-        svar = unsuptyp_l + LocalizeForScipad("library") + unsuptyp_r + ...
+        svar = noedit_l + LocalizeForScipad("library") + noedit_r + ...
                ":" + strcat(s(2:$),",")
         tysi = LocalizeForScipad("Type:") + " " + typeof(var)
-        
+
       case 15 then  // list or tlist or mlist (types 16 and 17 changed into 15 above)
         if length(var) == 0 then svar = listpref + "list()";
         else
@@ -195,18 +212,17 @@ function [svar,tysi] = FormatStringsForWatch(var)
         tysi = LocalizeForScipad("Type:") + " " + typeof(var) + ", " + ...
                LocalizeForScipad("size:") + " " + string(length(var)) + " " + LocalizeForScipad("elements");
 
-      case 128 then  // pointer
-        svar = unsuptyp_l + LocalizeForScipad("pointer") + unsuptyp_r
+      case 128 then  // pointer, e.g. a=rand(5,5);b=rand(5,1);A=sparse(a);[h,rk]=lufact(A);typeof(h), type(h)
+        svar = noedit_l + LocalizeForScipad("pointer") + noedit_r
         tysi = LocalizeForScipad("Type:") + " " + typeof(var)
 
-      case 129 then  // size implicit index?
-        svar = unsuptyp_l + LocalizeForScipad("size implicit index") + unsuptyp_r
+      case 129 then  // size implicit index, e.g. index=2:$; typeof(index), type(index)
+        svar = noedit_l + LocalizeForScipad("size implicit index") + noedit_r + " " + sci2exp(var)
         tysi = LocalizeForScipad("Type:") + " " + typeof(var)
 
       case 130 then  // intrinsic function
-        svar = unsuptyp_l + LocalizeForScipad("primitive") + unsuptyp_r
+        svar = noedit_l + LocalizeForScipad("primitive") + noedit_r
         tysi = LocalizeForScipad("Type:") + " " + typeof(var)
-
 
       end
     end

@@ -84,8 +84,14 @@ proc update_bubble_watchvar {w type mousexy} {
         cancel_bubble_deletion $w
 
         # destroy the previous bubble and create the new one
-        update_bubble leave $w $mousexy $watchvarstysi($escwvar)
-        update_bubble enter $w $mousexy $watchvarstysi($escwvar)
+        # catched because when closing the add argument box, if the mouse cursor
+        # is above the bubble triggering area in the watch window, then the
+        # content to display in the bubble might not yet be retrieved from
+        # Scilab (because the debug state is not "DebugInProgress")
+        catch {
+            update_bubble leave $w $mousexy $watchvarstysi($escwvar)
+            update_bubble enter $w $mousexy $watchvarstysi($escwvar)
+        }
 
         # wait a bit and play the game again
         after 100 "update_bubble_watchvar $w $type \[winfo pointerxy $pad\]"

@@ -1,14 +1,21 @@
 proc Addarg_bp {w focusbut leftwin rightwin} {
 # Create the add argument dialog
 # This dialog can be called from the watch window or from the configure dialog
+# Calling this proc with $leftwin being an empty listbox or a non empty listbox
+# with no selected item will result in creating a new element (unless the user
+# hits Cancel)
     global argname argvalue
     global adda getvaluefromscilab
     global textFont menuFont
 
-    set pos [$leftwin curselection]
-    if {$pos == ""} {set pos -1}
+    if {[$leftwin index end] == 0} {
+        set emptylistbox true
+    } else {
+        set emptylistbox false
+    }
+
     set selecteditem [$leftwin curselection]
-    if {$selecteditem != ""} {
+    if {!$emptylistbox && $selecteditem != ""} {
         set argname [$leftwin get $selecteditem]
         set argvalue [$rightwin get $selecteditem]
         # check that what the user selected for edit is actually editable
@@ -17,15 +24,22 @@ proc Addarg_bp {w focusbut leftwin rightwin} {
             set editable [lindex [createsetinscishellcomm $argname] 3]
             if {!$editable} {
                 tk_messageBox -message \
-                    [mc "This variable can be watched but cannot be edited!"] \
+                    [concat [mc "This variable can be watched but cannot be edited!"]\
+                            [mc "A new watch variable will be created."] ] \
                     -icon warning -type ok \
                     -title [mc "Non editable variable"]
+                # run the add variable dialog again after having cleared the selection,
+                # which is a special case in proc Addarg_bp: listbox is not empty but
+                # has no currently selected item
+                $leftwin selection clear $selecteditem
+                Addarg_bp $w $focusbut $leftwin $rightwin
                 return
             }
         }
     } else {
         set argname ""
         set argvalue ""
+        set selecteditem -1
     }
 
     set adda $w.adda
@@ -74,22 +88,22 @@ proc Addarg_bp {w focusbut leftwin rightwin} {
     set bestwidth [mcmaxra "OK" \
                            "Cance&l"]
     button $adda.f.f9.buttonOK -text "OK" \
-           -command "OKadda_bp $pos $leftwin $rightwin ; destroy $adda"\
+           -command "OKadda_bp $selecteditem $leftwin $rightwin ; destroy $adda"\
            -width $bestwidth -font $menuFont
     eval "button $adda.f.f9.buttonCancel [bl "Cance&l"] \
-           -command \"Canceladda_bp $adda $pos $leftwin\"\
+           -command \"Canceladda_bp $adda $selecteditem $leftwin\"\
            -width $bestwidth -font \[list $menuFont\] "
     pack $adda.f.f9.buttonOK $adda.f.f9.buttonCancel -side left -padx 10
     pack $adda.f.f9 -pady 4
     pack $adda.f -expand 1 -fill x
 
-    bind $adda <Return> "OKadda_bp $pos $leftwin $rightwin ; destroy $adda"
-    bind $adda <Escape> "Canceladda_bp $adda $pos $leftwin"
+    bind $adda <Return> "OKadda_bp $selecteditem $leftwin $rightwin ; destroy $adda"
+    bind $adda <Escape> "Canceladda_bp $adda $selecteditem $leftwin"
 
     bind $adda <Alt-[fb $adda.f.cbox1]>           "$adda.f.cbox1 invoke"
     bind $adda <Alt-[fb $adda.f.f9.buttonCancel]> "$adda.f.f9.buttonCancel invoke"
 
-    if {$selecteditem != ""} {
+    if {$selecteditem != -1} {
         focus $adda.f.f2.entry
     } else {
         focus $adda.f.f1.entry
@@ -175,6 +189,8 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
         }
         if {$alreadyexists == "false"} {
             # a new variable was added in the add box
+            $leftwin selection clear $pos
+            # set insert position after the currently selected item
             incr pos
             if {[string first listboxinput $leftwin] != -1} {
                 # the proc was called from configure box
@@ -198,13 +214,15 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
             $leftwin see $pos
         } else {
             # an existing variable was modified in the add box
-            set nextone [expr {$eltindex + 1}]
-            if {$nextone >= [$leftwin size]} {
-                set nextone 0
-            }
+            $leftwin selection clear $eltindex
             if {[string first listboxinput $leftwin] != -1} {
                 # the proc was called from configure box
                 set funvarsvals($funname,$argname) $argvalue
+                set nextone [expr {$eltindex + 1}]
+                if {$nextone >= [$leftwin size]} {
+                    set nextone 0
+                }
+                set selitem $nextone
             } else {
                 # the proc was called from the watch window
                 if {$argvalue == ""} {set argvalue $unklabel}
@@ -216,9 +234,10 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
                     ScilabEval_lt $fullcomm "seq"
                     set argvalue $watchvarsvals($argname)
                 }
+                set selitem $eltindex
             }
-            $leftwin selection set $nextone
-            $leftwin see $nextone
+            $leftwin selection set $selitem
+            $leftwin see $selitem
             $rightwin delete $eltindex
             $rightwin insert $eltindex $argvalue
         }
@@ -235,12 +254,17 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
             getwatchvarfromshell          ; # get new value of all the watched variables
         }
 
+    } else {
+        # $argname is empty
+        if {$pos == -1} {set pos 0}
+        $leftwin selection set $pos
     }
 }
 
 proc Canceladda_bp {w pos leftwin} {
 # Close the add argument dialog and ignore the values of its fields
     destroy $w
+    if {$pos == -1} {set pos 0}
     $leftwin selection set $pos
 }
 

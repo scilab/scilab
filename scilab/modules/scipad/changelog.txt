@@ -2982,3 +2982,25 @@ Francois VOGEL, 08/05/07
    thus improving a bit the performance
  * Added better display in the debugger for non editable variable types
  * version --> 6.107
+
+Francois VOGEL, 12/05/07
+ * Size implicit indices (type 129) are displayed in details in the watch
+   window
+ * Matlab sparse matrices (type 7) are watchable
+ * Fixed: the watch variables must not be sent (written) to Scilab when
+   skipping no code lines (they were already no longer read since 6.106)
+ * Fixed: when only non editable variables were watched, the only way to add
+   a watch variable was to remove all the non editable variables, then add
+   the new variable and re-add the removed ones
+ * The listboxes in the watch window and configure box have always an item
+   selected (when not empty). They must have -exportselection 0, otherwise
+   their selection gets lost when the Add arg box is opened
+ * Catched the bubble information display for watch variables: the information
+   to display in the tooltip might not yet be available (because watch
+   variables can be added in any debugger state but their values and types are
+   only updated in "DebugInProgress" state)
+ * Scipad no longer flashes on executing the first debug command (was due to
+   the temporary buffer packing the time needed for execing it)
+ * scipad.xml: simplified the calling sequence and added a note about the
+   watching capabilities of the debugger
+ * version --> 6.108
