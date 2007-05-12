@@ -58,7 +58,7 @@ public class SciDoubleArray extends javasci.SciAbstractArray implements java.io.
 	 * @param x the array of double with want to copy into
 	 */
 	public SciDoubleArray(String name, int r, int c, double [] x) {
-		if ((r * c) != x.length) {
+	if ((r * c) != x.length) {
 				throw new BadDataArgumentException("Bad Matrix call, size of third argument is wrong");
 			}
 		this.m = r;

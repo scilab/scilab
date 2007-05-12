@@ -1,6 +1,6 @@
 package javasci;
 /**
- * This class manages exceptions from the construction of SciDoubleArray , SciStringArray 
+ * This class manages exceptions from the construction of SciDoubleArray , SciStringArray. 
  * @author Allan Cornet - INRIA 2005
  */
 public class BadDataArgumentException extends RuntimeException {

@@ -17,12 +17,12 @@ import java.net.URI;
  */
 public class ClassPath {
 
-private static final Class[] Parameters = new Class[]{URL.class};
+private static final Class[] parameters = new Class[]{URL.class};
 
 /**
  * add a filename to java classpath.
- * @param String s a filename
- * @throws IOException
+ * @param s a filename
+ * @throws IOException if an error occurs
  */
 public static void addFile(final String s) throws IOException {
 File f = new File(s);
@@ -31,7 +31,8 @@ addFile(f);
 /*--------------------------------------------------------------------------*/
 /**
  * add a file to java classpath.
- * @param File
+ * @param  f a file
+ * @throws IOException if an error occurs
  */
 public static void addFile(final File f) throws IOException {
 	
@@ -42,7 +43,7 @@ addURL(uri.toURL());
 /**
  * add a URL to classpath.
  * @param u URL
- * @throws t 
+ * @throws IOException if an error occurs 
  */
 public static void addURL(final URL u) throws IOException {
 
@@ -50,7 +51,7 @@ URLClassLoader sysloader = (URLClassLoader) ClassLoader.getSystemClassLoader();
 Class sysclass = URLClassLoader.class;
 
 try {
-Method method = sysclass.getDeclaredMethod("addURL", Parameters);
+Method method = sysclass.getDeclaredMethod("addURL", parameters);
 method.setAccessible(true);
 method.invoke(sysloader , new Object[] {u });
 } catch (Throwable t) {
@@ -61,7 +62,8 @@ throw new IOException("Error, could not add URL to system classloader");
 }
 /*--------------------------------------------------------------------------*/
 /**
- * 
+ * get the scilab classpath.
+ * @return classpath
  */
 public static String[] getClassPath() {
 	

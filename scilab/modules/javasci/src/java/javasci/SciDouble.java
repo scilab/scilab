@@ -47,7 +47,7 @@ public class SciDouble extends SciAbstractDataType implements java.io.Serializab
     Get();
     double[] pTmpDoubleArray = ((SciDoubleArray) sciArray).getData();
     return pTmpDoubleArray[0];
-  }
+}
 
 	/**
 	 * Return the description of the DataType

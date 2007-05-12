@@ -77,26 +77,26 @@ public class SciComplex extends SciAbstractDataType implements java.io.Serializa
   public String toString() {
    	double[] complexImaginary = ((SciComplexArray) sciArray).getImaginaryPartData();
    	double[] complexReal = ((SciComplexArray) sciArray).getRealPartData();
+   	String valToReturn;
+   	final String addStr = " + ";
 
     Get();
 	if (complexReal[0] != 0 && complexImaginary[0] > 0) {
-		return complexReal[0] + " + " + complexImaginary[0] + complexRepresentation;
-	}
-    
-    if (complexReal[0] != 0 && complexImaginary[0] < 0) {
-       return complexReal[0] + " - " + (-complexImaginary[0]) + complexRepresentation;
+		valToReturn = complexReal[0] + addStr + complexImaginary[0] + complexRepresentation; }
+	else if (complexReal[0] != 0 && complexImaginary[0] < 0) {
+    	valToReturn = complexReal[0] + " - " + (-complexImaginary[0]) + complexRepresentation; }
+    else if (complexImaginary[0] == 0) {
+    	valToReturn = String.valueOf(complexReal[0]); }
+    else if (complexReal[0] == 0) {
+    	valToReturn = complexImaginary[0] + complexRepresentation; 
     }
-    if (complexImaginary[0] == 0) {
-       return String.valueOf(complexReal[0]);
-    }
-
-    if (complexReal[0] == 0) {
-       return complexImaginary[0] + complexRepresentation;
-    }
+    else {
+    	valToReturn = complexReal[0] + addStr + complexRepresentation + "*" + complexImaginary[0]; 
+     }
     /*(unless Inf or NaN)*/
-    return complexReal[0] + " + " + complexRepresentation + "*" + complexImaginary[0];
+    return valToReturn;
         
-  }       
+  }
 
 	/**
 	 * Return the description of the DataType

@@ -48,7 +48,7 @@ public class SciString extends SciAbstractDataType implements java.io.Serializab
     Get();
     String[] pTmpStringArray = ((SciStringArray) sciArray).getData();
     return pTmpStringArray[0];
-  }
+}
   
 	/**
 	 * Return the description of the DataType
