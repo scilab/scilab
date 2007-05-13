@@ -21,7 +21,10 @@ typedef struct table_struct
 /*-----------------------------------------------------------------------------------*/
 static ConsoleTable Tab[]=
 {
-{C2F(sci_completion),"completion"}
+{C2F(sci_completion),"completion"},
+{C2F(sci_clc),"clc"},
+{C2F(sci_tohome),"tohome"}
+
 };
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_console)()

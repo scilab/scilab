@@ -58,7 +58,6 @@ src/c/guitable.c \
 src/c/TerminateGui.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_x_choice.c \
-sci_gateway/c/sci_clc.c \
 sci_gateway/c/sci_x_message_modeless.c \
 sci_gateway/c/gw_gui.c \
 sci_gateway/c/sci_x_mdialog.c \
@@ -66,7 +65,6 @@ sci_gateway/c/sci_x_dialog.c \
 sci_gateway/c/sci_raise_window.c \
 sci_gateway/c/sci_x_choose.c \
 sci_gateway/c/sci_xgetfile.c \
-sci_gateway/c/sci_tohome.c \
 sci_gateway/c/sci_x_message.c \
 sci_gateway/c/sci_unsetmenu_old.c \
 sci_gateway/c/sci_delmenu_old.c \
@@ -139,9 +137,7 @@ libscigui_la_sci_gateway_DATA = sci_gateway/gui_gateway.xml
 #### gui : include files ####
 libscigui_la_includedir=$(pkgincludedir)/gui
 libscigui_la_include_HEADERS = includes/men_choice.h \
-includes/sci_tohome.h \
 includes/men_scilab.h \
-includes/sci_clc.h \
 includes/gw_gui.h \
 includes/wmen_scilab.h \
 includes/sci_raise_window.h \

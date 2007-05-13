@@ -195,11 +195,11 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath=".\completion.c"
+				RelativePath=".\clc.c"
 				>
 			</File>
 			<File
-				RelativePath=".\console.rc"
+				RelativePath=".\completion.c"
 				>
 			</File>
 			<File
@@ -207,7 +207,19 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_clc.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_completion.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_tohome.c"
+				>
+			</File>
+			<File
+				RelativePath=".\tohome.c"
 				>
 			</File>
 		</Filter>
@@ -216,11 +228,19 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
+				RelativePath=".\clc.h"
+				>
+			</File>
+			<File
 				RelativePath=".\completion.h"
 				>
 			</File>
 			<File
 				RelativePath=".\resource.h"
+				>
+			</File>
+			<File
+				RelativePath=".\tohome.h"
 				>
 			</File>
 		</Filter>
@@ -237,6 +257,14 @@
 			</File>
 			<File
 				RelativePath="..\..\languages\en_US\messages.xml"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Resource File"
+			>
+			<File
+				RelativePath=".\console.rc"
 				>
 			</File>
 		</Filter>

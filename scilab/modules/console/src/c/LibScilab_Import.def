@@ -15,4 +15,8 @@ checkrhs_
 checklhs_
 intersci_
 putlhsvar_
+Scierror
+gettype_
+getScilabMode
+vstk_
 ;

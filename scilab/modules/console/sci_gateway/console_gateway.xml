@@ -23,5 +23,7 @@
 -->
 <!-- =================== -->
 
-<PRIMITIVE gatewayId="53" primitiveId="1" primitiveName="completion" />
+<PRIMITIVE gatewayId="53" primitiveId="1" primitiveName="completion"/>
+<PRIMITIVE gatewayId="53" primitiveId="2" primitiveName="clc"/>
+<PRIMITIVE gatewayId="53" primitiveId="3" primitiveName="tohome"/>
 </GATEWAY>

@@ -31,9 +31,7 @@ static GuiTable Tab[]=
 	{C2F(sci_unsetmenu_old),"unsetmenu_old"},
 	{C2F(sci_xgetfile),"xgetfile"},
 	{C2F(sci_x_message_modeless),"x_message_modeless"},
-    {sci_clc,"clc"},
-    {sci_raise_window,"raise_window"},
-    {sci_tohome,"tohome"}
+  {sci_raise_window,"raise_window"}
 };
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_gui)(void)
