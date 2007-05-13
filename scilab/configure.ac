@@ -1029,6 +1029,7 @@ modules/optimization/Makefile
 modules/elementaries_functions/Makefile
 modules/special_functions/Makefile
 modules/io/Makefile
+modules/console/Makefile
 modules/jvm/Makefile
 modules/sound/Makefile
 modules/statistics/Makefile

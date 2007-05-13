@@ -12,7 +12,7 @@ boolean
 cacsd
 data_structures
 helptools
-;console
+console
 gui
 incremental_link
 integer

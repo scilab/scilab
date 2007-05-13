@@ -35,6 +35,7 @@ symbolic \
 tclsci \
 sparse \
 io \
+console \
 gui \
 graphics \
 wintools \
@@ -86,6 +87,7 @@ libscilab_la_LIBADD = \
 	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la \
 	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/graphics/libscigraphics.la \
+	$(top_builddir)/modules/console/libsciconsole.la \
 	$(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/integer/libsciinteger.la \
 	$(top_builddir)/modules/interpolation/libsciinterpolation.la \
@@ -106,8 +108,8 @@ libscilab_la_LIBADD = \
 	$(top_builddir)/modules/wintools/libsciwintools.la \
         $(top_builddir)/modules/tclsci/libscitclsci.la \
         $(top_builddir)/modules/fftw/libscifftw.la \
-        $(top_builddir)/modules/pvm/libscipvm.la
-
+        $(top_builddir)/modules/pvm/libscipvm.la \ 
+        $(top_builddir)/modules/jvm/libscijvm.la
 
 if STRINGV2
 libscilab_la_LIBADD += $(top_builddir)/modules/string_V2/libscistring.la
@@ -115,9 +117,6 @@ else
 libscilab_la_LIBADD += $(top_builddir)/modules/string/libscistring.la
 endif
 
-if JAVA
-libscilab_la_LIBADD += $(top_builddir)/modules/jvm/libscijvm.la
-endif
 
 libscilab_la_LIBADD += $(top_builddir)/modules/scicos/libsciscicos.la
 

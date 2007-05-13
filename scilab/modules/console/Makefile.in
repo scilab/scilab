@@ -15,8 +15,8 @@
 @SET_MAKE@
 
 ##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006/2007
+### Allan CORNET
+### INRIA - Scilab 2007
 ##########
 
 ##########
@@ -26,6 +26,7 @@
 ### Makefile included stuff
 ### Target, variable, suffixes which are supposed to be usefull in every makefile.am
 ##########
+
 
 
 VPATH = @srcdir@
@@ -46,15 +47,10 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-
-# javasci should be compile at the end because it needs libscilab.la
-# Don't forget that the order in subdirs does matter !!!
-@JAVA_TRUE@am__append_1 = javasci
-@STRINGV2_TRUE@am__append_2 = $(top_builddir)/modules/string_V2/libscistring.la
-@STRINGV2_FALSE@am__append_3 = $(top_builddir)/modules/string/libscistring.la
-DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+DIST_COMMON = $(libsciconsole_la_include_HEADERS) \
+	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-subdir = modules
+subdir = modules/console
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
 	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/intel_compiler.m4 \
@@ -77,52 +73,26 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
-	"$(DESTDIR)$(libscilab_la_rootdir)"
+	"$(DESTDIR)$(libsciconsole_la_etcdir)" \
+	"$(DESTDIR)$(libsciconsole_la_rootdir)" \
+	"$(DESTDIR)$(libsciconsole_la_sci_gatewaydir)" \
+	"$(DESTDIR)$(libsciconsole_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libscilab_la_DEPENDENCIES = $(top_builddir)/modules/mexlib/libmex.la \
-	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-	$(top_builddir)/modules/boolean/libsciboolean.la \
-	$(top_builddir)/modules/cacsd/libscicacsd.la \
-	$(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/modules/data_structures/libscidata_structures.la \
-	$(top_builddir)/modules/differential_equations/libscidifferential_equations.la \
-	$(top_builddir)/modules/double/libscidouble.la \
-	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la \
-	$(top_builddir)/modules/fileio/libscifileio.la \
-	$(top_builddir)/modules/graphics/libscigraphics.la \
-	$(top_builddir)/modules/console/libsciconsole.la \
-	$(top_builddir)/modules/gui/libscigui.la \
-	$(top_builddir)/modules/integer/libsciinteger.la \
-	$(top_builddir)/modules/interpolation/libsciinterpolation.la \
-	$(top_builddir)/modules/intersci/libsciintersci.la \
-	$(top_builddir)/modules/io/libsciio.la \
-	$(top_builddir)/modules/linear_algebra/libscilinear_algebra.la \
-	$(top_builddir)/modules/localization/libscilocalization.la \
-	$(top_builddir)/modules/metanet/libscimetanet.la \
-	$(top_builddir)/modules/optimization/libscioptimization.la \
-	$(top_builddir)/modules/polynomials/libscipolynomials.la \
-	$(top_builddir)/modules/randlib/libscirandlib.la \
-	$(top_builddir)/modules/symbolic/libscisymbolic.la \
-	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
-	$(top_builddir)/modules/special_functions/libscispecial_functions.la \
-	$(top_builddir)/modules/sound/libscisound.la \
-	$(top_builddir)/modules/statistics/libscistatistics.la \
-	$(top_builddir)/modules/time/libscitime.la \
-	$(top_builddir)/modules/wintools/libsciwintools.la \
-	$(top_builddir)/modules/tclsci/libscitclsci.la \
-	$(top_builddir)/modules/fftw/libscifftw.la \
-	$(top_builddir)/modules/pvm/libscipvm.la \
-	$(top_builddir)/modules/jvm/libscijvm.la $(am__append_2) \
-	$(am__append_3) $(top_builddir)/modules/scicos/libsciscicos.la \
+libsciconsole_la_DEPENDENCIES =  \
 	$(top_builddir)/libs/blas/libsciblas.la \
-	$(top_builddir)/libs/hashtable/libscihashtable.la \
-	$(top_builddir)/libs/lapack/libscilapack.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/libs/libst/libscilibst.la
-am_libscilab_la_OBJECTS =
-libscilab_la_OBJECTS = $(am_libscilab_la_OBJECTS)
+	$(top_builddir)/libs/MALLOC/libscimalloc.la
+am__objects_1 = libsciconsole_la-completion.lo
+am__objects_2 = libsciconsole_la-sci_completion.lo \
+	libsciconsole_la-gw_console.lo
+am_libsciconsole_la_OBJECTS = $(am__objects_1) $(am__objects_2)
+libsciconsole_la_OBJECTS = $(am_libsciconsole_la_OBJECTS)
+libsciconsole_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libsciconsole_la_CFLAGS) \
+	$(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
+depcomp = $(SHELL) $(top_srcdir)/config/depcomp
+am__depfiles_maybe = depfiles
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 LTCOMPILE = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
@@ -132,31 +102,17 @@ CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libscilab_la_SOURCES)
-DIST_SOURCES = $(libscilab_la_SOURCES)
-RECURSIVE_TARGETS = all-recursive check-recursive dvi-recursive \
-	html-recursive info-recursive install-data-recursive \
-	install-dvi-recursive install-exec-recursive \
-	install-html-recursive install-info-recursive \
-	install-pdf-recursive install-ps-recursive install-recursive \
-	installcheck-recursive installdirs-recursive pdf-recursive \
-	ps-recursive uninstall-recursive
-libscilab_la_rootDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libscilab_la_root_DATA)
-RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\
-  distclean-recursive maintainer-clean-recursive
+SOURCES = $(libsciconsole_la_SOURCES)
+DIST_SOURCES = $(libsciconsole_la_SOURCES)
+libsciconsole_la_etcDATA_INSTALL = $(INSTALL_DATA)
+libsciconsole_la_rootDATA_INSTALL = $(INSTALL_DATA)
+libsciconsole_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(libsciconsole_la_etc_DATA) $(libsciconsole_la_root_DATA) \
+	$(libsciconsole_la_sci_gateway_DATA)
+libsciconsole_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
+HEADERS = $(libsciconsole_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
-DIST_SUBDIRS = intersci polynomials cacsd elementaries_functions \
-	arnoldi boolean linear_algebra differential_equations string \
-	string_V2 signal_processing fileio core metanet optimization \
-	interpolation localization sound statistics time integer \
-	special_functions double randlib data_structures mexlib \
-	symbolic tclsci sparse io console gui graphics wintools \
-	functions incremental_link others overloading maple2scilab \
-	m2sci texmacs scipad scilab2fortran development_tools \
-	compatibility_functions helptools scicos fftw pvm jvm . \
-	javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
@@ -310,68 +266,46 @@ tcldir = @tcldir@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
-# The order DOES matter !!!
-SUBDIRS = intersci polynomials cacsd elementaries_functions arnoldi \
-	boolean linear_algebra differential_equations string string_V2 \
-	signal_processing fileio core metanet optimization \
-	interpolation localization sound statistics time integer \
-	special_functions double randlib data_structures mexlib \
-	symbolic tclsci sparse io console gui graphics wintools \
-	functions incremental_link others overloading maple2scilab \
-	m2sci texmacs scipad scilab2fortran development_tools \
-	compatibility_functions helptools scicos fftw pvm jvm . \
-	$(am__append_1)
-modulename = 
+# List of the c files
+CONSOLE_C_SOURCES = src/c/completion.c
 
-#### Basic files ####
-libscilab_la_rootdir = $(mydatadir)
-libscilab_la_root_DATA = modules
+# List of the gateway c files
+GATEWAY_C_SOURCES = sci_gateway/c/sci_completion.c \
+sci_gateway/c/gw_console.c
 
-# 
-pkglib_LTLIBRARIES = libscilab.la
-libscilab_la_SOURCES = 
 
-# Core modules
-libscilab_la_LIBADD = $(top_builddir)/modules/mexlib/libmex.la \
-	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-	$(top_builddir)/modules/boolean/libsciboolean.la \
-	$(top_builddir)/modules/cacsd/libscicacsd.la \
-	$(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/modules/data_structures/libscidata_structures.la \
-	$(top_builddir)/modules/differential_equations/libscidifferential_equations.la \
-	$(top_builddir)/modules/double/libscidouble.la \
-	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la \
-	$(top_builddir)/modules/fileio/libscifileio.la \
-	$(top_builddir)/modules/graphics/libscigraphics.la \
-	$(top_builddir)/modules/console/libsciconsole.la \
-	$(top_builddir)/modules/gui/libscigui.la \
-	$(top_builddir)/modules/integer/libsciinteger.la \
-	$(top_builddir)/modules/interpolation/libsciinterpolation.la \
-	$(top_builddir)/modules/intersci/libsciintersci.la \
-	$(top_builddir)/modules/io/libsciio.la \
-	$(top_builddir)/modules/linear_algebra/libscilinear_algebra.la \
-	$(top_builddir)/modules/localization/libscilocalization.la \
-	$(top_builddir)/modules/metanet/libscimetanet.la \
-	$(top_builddir)/modules/optimization/libscioptimization.la \
-	$(top_builddir)/modules/polynomials/libscipolynomials.la \
-	$(top_builddir)/modules/randlib/libscirandlib.la \
-	$(top_builddir)/modules/symbolic/libscisymbolic.la \
-	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
-	$(top_builddir)/modules/special_functions/libscispecial_functions.la \
-	$(top_builddir)/modules/sound/libscisound.la \
-	$(top_builddir)/modules/statistics/libscistatistics.la \
-	$(top_builddir)/modules/time/libscitime.la \
-	$(top_builddir)/modules/wintools/libsciwintools.la \
-	$(top_builddir)/modules/tclsci/libscitclsci.la \
-	$(top_builddir)/modules/fftw/libscifftw.la \
-	$(top_builddir)/modules/pvm/libscipvm.la \
-	$(top_builddir)/modules/jvm/libscijvm.la $(am__append_2) \
-	$(am__append_3) $(top_builddir)/modules/scicos/libsciscicos.la \
+# Includes need for the compilation
+libsciconsole_la_CFLAGS = -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/
+
+# Name of the future library (.la will be replace by .so, .a, etc regarding 
+# the system)
+pkglib_LTLIBRARIES = libsciconsole.la
+
+# All the sources needed by libsciconsole.la
+libsciconsole_la_SOURCES = $(CONSOLE_C_SOURCES) $(GATEWAY_C_SOURCES) 
+libsciconsole_la_LIBADD = \
 	$(top_builddir)/libs/blas/libsciblas.la \
-	$(top_builddir)/libs/hashtable/libscihashtable.la \
-	$(top_builddir)/libs/lapack/libscilapack.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/libs/libst/libscilibst.la
+	$(top_builddir)/libs/MALLOC/libscimalloc.la
+
+
+#### Target ######
+target = $(datadir)/console
+
+#### console : Conf files ####
+libsciconsole_la_rootdir = $(target)
+libsciconsole_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
+
+#### console : init scripts #### 
+libsciconsole_la_etcdir = $(target)/etc
+libsciconsole_la_etc_DATA = etc/console.quit etc/console.start
+
+#### console : gateway declaration #### 
+libsciconsole_la_sci_gatewaydir = $(target)/sci_gateway
+libsciconsole_la_sci_gateway_DATA = sci_gateway/console_gateway.xml
+
+#### console : include files ####
+libsciconsole_la_includedir = $(sciincludedir)/console
+libsciconsole_la_include_HEADERS = includes/gw_console.h
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -429,10 +363,10 @@ LOCALISATIONDIRS = languages/fr_FR/ languages/en_US/
 # List of the localisation (languages) files
 LOCALISATIONFILES = errors.xml menus.xml messages.xml
 all: $(BUILT_SOURCES)
-	$(MAKE) $(AM_MAKEFLAGS) all-recursive
+	$(MAKE) $(AM_MAKEFLAGS) all-am
 
 .SUFFIXES:
-.SUFFIXES: .sci .java .class .jar .bin
+.SUFFIXES: .sci .java .class .jar .bin .c .lo .o .obj
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -442,9 +376,9 @@ $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir
 	      exit 1;; \
 	  esac; \
 	done; \
-	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign  modules/Makefile'; \
+	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign  modules/console/Makefile'; \
 	cd $(top_srcdir) && \
-	  $(AUTOMAKE) --foreign  modules/Makefile
+	  $(AUTOMAKE) --foreign  modules/console/Makefile
 .PRECIOUS: Makefile
 Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	@case '$?' in \
@@ -489,8 +423,8 @@ clean-pkglibLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
-libscilab.la: $(libscilab_la_OBJECTS) $(libscilab_la_DEPENDENCIES) 
-	$(LINK) -rpath $(pkglibdir) $(libscilab_la_OBJECTS) $(libscilab_la_LIBADD) $(LIBS)
+libsciconsole.la: $(libsciconsole_la_OBJECTS) $(libsciconsole_la_DEPENDENCIES) 
+	$(libsciconsole_la_LINK) -rpath $(pkglibdir) $(libsciconsole_la_OBJECTS) $(libsciconsole_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -498,97 +432,124 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-completion.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-gw_console.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-sci_completion.Plo@am__quote@
+
+.c.o:
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(COMPILE) -c $<
+
+.c.obj:
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(COMPILE) -c `$(CYGPATH_W) '$<'`
+
+.c.lo:
+@am__fastdepCC_TRUE@	$(LTCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
+
+libsciconsole_la-completion.lo: src/c/completion.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-completion.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-completion.Tpo -c -o libsciconsole_la-completion.lo `test -f 'src/c/completion.c' || echo '$(srcdir)/'`src/c/completion.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-completion.Tpo $(DEPDIR)/libsciconsole_la-completion.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/completion.c' object='libsciconsole_la-completion.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-completion.lo `test -f 'src/c/completion.c' || echo '$(srcdir)/'`src/c/completion.c
+
+libsciconsole_la-sci_completion.lo: sci_gateway/c/sci_completion.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-sci_completion.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-sci_completion.Tpo -c -o libsciconsole_la-sci_completion.lo `test -f 'sci_gateway/c/sci_completion.c' || echo '$(srcdir)/'`sci_gateway/c/sci_completion.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-sci_completion.Tpo $(DEPDIR)/libsciconsole_la-sci_completion.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_completion.c' object='libsciconsole_la-sci_completion.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-sci_completion.lo `test -f 'sci_gateway/c/sci_completion.c' || echo '$(srcdir)/'`sci_gateway/c/sci_completion.c
+
+libsciconsole_la-gw_console.lo: sci_gateway/c/gw_console.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-gw_console.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-gw_console.Tpo -c -o libsciconsole_la-gw_console.lo `test -f 'sci_gateway/c/gw_console.c' || echo '$(srcdir)/'`sci_gateway/c/gw_console.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-gw_console.Tpo $(DEPDIR)/libsciconsole_la-gw_console.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/gw_console.c' object='libsciconsole_la-gw_console.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-gw_console.lo `test -f 'sci_gateway/c/gw_console.c' || echo '$(srcdir)/'`sci_gateway/c/gw_console.c
+
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libscilab_la_rootDATA: $(libscilab_la_root_DATA)
+install-libsciconsole_la_etcDATA: $(libsciconsole_la_etc_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libscilab_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libscilab_la_rootdir)"
-	@list='$(libscilab_la_root_DATA)'; for p in $$list; do \
+	test -z "$(libsciconsole_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciconsole_la_etcdir)"
+	@list='$(libsciconsole_la_etc_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libscilab_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscilab_la_rootdir)/$$f'"; \
-	  $(libscilab_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscilab_la_rootdir)/$$f"; \
+	  echo " $(libsciconsole_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsciconsole_la_etcdir)/$$f'"; \
+	  $(libsciconsole_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsciconsole_la_etcdir)/$$f"; \
 	done
 
-uninstall-libscilab_la_rootDATA:
+uninstall-libsciconsole_la_etcDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libscilab_la_root_DATA)'; for p in $$list; do \
+	@list='$(libsciconsole_la_etc_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscilab_la_rootdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscilab_la_rootdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libsciconsole_la_etcdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libsciconsole_la_etcdir)/$$f"; \
+	done
+install-libsciconsole_la_rootDATA: $(libsciconsole_la_root_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libsciconsole_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciconsole_la_rootdir)"
+	@list='$(libsciconsole_la_root_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libsciconsole_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsciconsole_la_rootdir)/$$f'"; \
+	  $(libsciconsole_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsciconsole_la_rootdir)/$$f"; \
 	done
 
-# This directory's subdirectories are mostly independent; you can cd
-# into them and run `make' without going through this Makefile.
-# To change the values of `make' variables: instead of editing Makefiles,
-# (1) if the variable is set in `config.status', edit `config.status'
-#     (which will cause the Makefiles to be regenerated when you run `make');
-# (2) otherwise, pass the desired values on the `make' command line.
-$(RECURSIVE_TARGETS):
-	@failcom='exit 1'; \
-	for f in x $$MAKEFLAGS; do \
-	  case $$f in \
-	    *=* | --[!k]*);; \
-	    *k*) failcom='fail=yes';; \
-	  esac; \
-	done; \
-	dot_seen=no; \
-	target=`echo $@ | sed s/-recursive//`; \
-	list='$(SUBDIRS)'; for subdir in $$list; do \
-	  echo "Making $$target in $$subdir"; \
-	  if test "$$subdir" = "."; then \
-	    dot_seen=yes; \
-	    local_target="$$target-am"; \
-	  else \
-	    local_target="$$target"; \
-	  fi; \
-	  (cd $$subdir && $(MAKE) $(AM_MAKEFLAGS) $$local_target) \
-	  || eval $$failcom; \
-	done; \
-	if test "$$dot_seen" = "no"; then \
-	  $(MAKE) $(AM_MAKEFLAGS) "$$target-am" || exit 1; \
-	fi; test -z "$$fail"
-
-$(RECURSIVE_CLEAN_TARGETS):
-	@failcom='exit 1'; \
-	for f in x $$MAKEFLAGS; do \
-	  case $$f in \
-	    *=* | --[!k]*);; \
-	    *k*) failcom='fail=yes';; \
-	  esac; \
-	done; \
-	dot_seen=no; \
-	case "$@" in \
-	  distclean-* | maintainer-clean-*) list='$(DIST_SUBDIRS)' ;; \
-	  *) list='$(SUBDIRS)' ;; \
-	esac; \
-	rev=''; for subdir in $$list; do \
-	  if test "$$subdir" = "."; then :; else \
-	    rev="$$subdir $$rev"; \
-	  fi; \
-	done; \
-	rev="$$rev ."; \
-	target=`echo $@ | sed s/-recursive//`; \
-	for subdir in $$rev; do \
-	  echo "Making $$target in $$subdir"; \
-	  if test "$$subdir" = "."; then \
-	    local_target="$$target-am"; \
-	  else \
-	    local_target="$$target"; \
-	  fi; \
-	  (cd $$subdir && $(MAKE) $(AM_MAKEFLAGS) $$local_target) \
-	  || eval $$failcom; \
-	done && test -z "$$fail"
-tags-recursive:
-	list='$(SUBDIRS)'; for subdir in $$list; do \
-	  test "$$subdir" = . || (cd $$subdir && $(MAKE) $(AM_MAKEFLAGS) tags); \
+uninstall-libsciconsole_la_rootDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libsciconsole_la_root_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libsciconsole_la_rootdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libsciconsole_la_rootdir)/$$f"; \
 	done
-ctags-recursive:
-	list='$(SUBDIRS)'; for subdir in $$list; do \
-	  test "$$subdir" = . || (cd $$subdir && $(MAKE) $(AM_MAKEFLAGS) ctags); \
+install-libsciconsole_la_sci_gatewayDATA: $(libsciconsole_la_sci_gateway_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libsciconsole_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libsciconsole_la_sci_gatewaydir)"
+	@list='$(libsciconsole_la_sci_gateway_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libsciconsole_la_sci_gatewayDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsciconsole_la_sci_gatewaydir)/$$f'"; \
+	  $(libsciconsole_la_sci_gatewayDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsciconsole_la_sci_gatewaydir)/$$f"; \
+	done
+
+uninstall-libsciconsole_la_sci_gatewayDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libsciconsole_la_sci_gateway_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libsciconsole_la_sci_gatewaydir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libsciconsole_la_sci_gatewaydir)/$$f"; \
+	done
+install-libsciconsole_la_includeHEADERS: $(libsciconsole_la_include_HEADERS)
+	@$(NORMAL_INSTALL)
+	test -z "$(libsciconsole_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libsciconsole_la_includedir)"
+	@list='$(libsciconsole_la_include_HEADERS)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libsciconsole_la_includeHEADERS_INSTALL) '$$d$$p' '$(DESTDIR)$(libsciconsole_la_includedir)/$$f'"; \
+	  $(libsciconsole_la_includeHEADERS_INSTALL) "$$d$$p" "$(DESTDIR)$(libsciconsole_la_includedir)/$$f"; \
+	done
+
+uninstall-libsciconsole_la_includeHEADERS:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libsciconsole_la_include_HEADERS)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libsciconsole_la_includedir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libsciconsole_la_includedir)/$$f"; \
 	done
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
@@ -601,23 +562,10 @@ ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	mkid -fID $$unique
 tags: TAGS
 
-TAGS: tags-recursive $(HEADERS) $(SOURCES)  $(TAGS_DEPENDENCIES) \
+TAGS:  $(HEADERS) $(SOURCES)  $(TAGS_DEPENDENCIES) \
 		$(TAGS_FILES) $(LISP)
 	tags=; \
 	here=`pwd`; \
-	if ($(ETAGS) --etags-include --version) >/dev/null 2>&1; then \
-	  include_option=--etags-include; \
-	  empty_fix=.; \
-	else \
-	  include_option=--include; \
-	  empty_fix=; \
-	fi; \
-	list='$(SUBDIRS)'; for subdir in $$list; do \
-	  if test "$$subdir" = .; then :; else \
-	    test ! -f $$subdir/TAGS || \
-	      tags="$$tags $$include_option=$$here/$$subdir/TAGS"; \
-	  fi; \
-	done; \
 	list='$(SOURCES) $(HEADERS)  $(LISP) $(TAGS_FILES)'; \
 	unique=`for i in $$list; do \
 	    if test -f "$$i"; then echo $$i; else echo $(srcdir)/$$i; fi; \
@@ -630,7 +578,7 @@ TAGS: tags-recursive $(HEADERS) $(SOURCES)  $(TAGS_DEPENDENCIES) \
 	    $$tags $$unique; \
 	fi
 ctags: CTAGS
-CTAGS: ctags-recursive $(HEADERS) $(SOURCES)  $(TAGS_DEPENDENCIES) \
+CTAGS:  $(HEADERS) $(SOURCES)  $(TAGS_DEPENDENCIES) \
 		$(TAGS_FILES) $(LISP)
 	tags=; \
 	here=`pwd`; \
@@ -678,42 +626,24 @@ distdir: $(DISTFILES)
 	    || exit 1; \
 	  fi; \
 	done
-	list='$(DIST_SUBDIRS)'; for subdir in $$list; do \
-	  if test "$$subdir" = .; then :; else \
-	    test -d "$(distdir)/$$subdir" \
-	    || $(MKDIR_P) "$(distdir)/$$subdir" \
-	    || exit 1; \
-	    distdir=`$(am__cd) $(distdir) && pwd`; \
-	    top_distdir=`$(am__cd) $(top_distdir) && pwd`; \
-	    (cd $$subdir && \
-	      $(MAKE) $(AM_MAKEFLAGS) \
-	        top_distdir="$$top_distdir" \
-	        distdir="$$distdir/$$subdir" \
-		am__remove_distdir=: \
-		am__skip_length_check=: \
-	        distdir) \
-	      || exit 1; \
-	  fi; \
-	done
 check-am: all-am
 check: $(BUILT_SOURCES)
-	$(MAKE) $(AM_MAKEFLAGS) check-recursive
-all-am: Makefile $(LTLIBRARIES) $(DATA)
-installdirs: installdirs-recursive
-installdirs-am:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscilab_la_rootdir)"; do \
+	$(MAKE) $(AM_MAKEFLAGS) check-am
+all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
+installdirs:
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciconsole_la_etcdir)" "$(DESTDIR)$(libsciconsole_la_rootdir)" "$(DESTDIR)$(libsciconsole_la_sci_gatewaydir)" "$(DESTDIR)$(libsciconsole_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
-	$(MAKE) $(AM_MAKEFLAGS) install-recursive
-install-exec: install-exec-recursive
-install-data: install-data-recursive
-uninstall: uninstall-recursive
+	$(MAKE) $(AM_MAKEFLAGS) install-am
+install-exec: install-exec-am
+install-data: install-data-am
+uninstall: uninstall-am
 
 install-am: all-am
 	@$(MAKE) $(AM_MAKEFLAGS) install-exec-am install-data-am
 
-installcheck: installcheck-recursive
+installcheck: installcheck-am
 install-strip:
 	$(MAKE) $(AM_MAKEFLAGS) INSTALL_PROGRAM="$(INSTALL_STRIP_PROGRAM)" \
 	  install_sh_PROGRAM="$(INSTALL_STRIP_PROGRAM)" INSTALL_STRIP_FLAG=-s \
@@ -731,86 +661,98 @@ maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
 	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
-clean: clean-recursive
+clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
 	clean-pkglibLTLIBRARIES mostlyclean-am
 
-distclean: distclean-recursive
+distclean: distclean-am
+	-rm -rf ./$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
 
-dvi: dvi-recursive
+dvi: dvi-am
 
 dvi-am:
 
-html: html-recursive
+html: html-am
 
-info: info-recursive
+info: info-am
 
 info-am:
 
-install-data-am: install-data-local install-libscilab_la_rootDATA
+install-data-am: install-data-local install-libsciconsole_la_etcDATA \
+	install-libsciconsole_la_includeHEADERS \
+	install-libsciconsole_la_rootDATA \
+	install-libsciconsole_la_sci_gatewayDATA
 
-install-dvi: install-dvi-recursive
+install-dvi: install-dvi-am
 
 install-exec-am: install-pkglibLTLIBRARIES
 
-install-html: install-html-recursive
+install-html: install-html-am
 
 install-html-am: install-html-local
 
-install-info: install-info-recursive
+install-info: install-info-am
 
 install-man:
 
-install-pdf: install-pdf-recursive
+install-pdf: install-pdf-am
 
-install-ps: install-ps-recursive
+install-ps: install-ps-am
 
 installcheck-am:
 
-maintainer-clean: maintainer-clean-recursive
+maintainer-clean: maintainer-clean-am
+	-rm -rf ./$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
-mostlyclean: mostlyclean-recursive
+mostlyclean: mostlyclean-am
 
 mostlyclean-am: mostlyclean-compile mostlyclean-generic \
 	mostlyclean-libtool
 
-pdf: pdf-recursive
+pdf: pdf-am
 
 pdf-am:
 
-ps: ps-recursive
+ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libscilab_la_rootDATA \
+uninstall-am: uninstall-libsciconsole_la_etcDATA \
+	uninstall-libsciconsole_la_includeHEADERS \
+	uninstall-libsciconsole_la_rootDATA \
+	uninstall-libsciconsole_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
-.MAKE: $(RECURSIVE_CLEAN_TARGETS) $(RECURSIVE_TARGETS) install-am \
-	install-strip
+.MAKE: install-am install-strip
 
-.PHONY: $(RECURSIVE_CLEAN_TARGETS) $(RECURSIVE_TARGETS) CTAGS GTAGS \
-	all all-am check check-am clean clean-generic clean-libtool \
-	clean-local clean-pkglibLTLIBRARIES ctags ctags-recursive \
+.PHONY: CTAGS GTAGS all all-am check check-am clean clean-generic \
+	clean-libtool clean-local clean-pkglibLTLIBRARIES ctags \
 	distclean distclean-compile distclean-generic \
 	distclean-libtool distclean-tags distdir dvi dvi-am html \
 	html-am info info-am install install-am install-data \
 	install-data-am install-data-local install-dvi install-dvi-am \
 	install-exec install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
-	install-libscilab_la_rootDATA install-man install-pdf \
-	install-pdf-am install-pkglibLTLIBRARIES install-ps \
-	install-ps-am install-strip installcheck installcheck-am \
-	installdirs installdirs-am maintainer-clean \
+	install-libsciconsole_la_etcDATA \
+	install-libsciconsole_la_includeHEADERS \
+	install-libsciconsole_la_rootDATA \
+	install-libsciconsole_la_sci_gatewayDATA install-man \
+	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
+	install-ps install-ps-am install-strip installcheck \
+	installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
-	tags tags-recursive uninstall uninstall-am \
-	uninstall-libscilab_la_rootDATA uninstall-pkglibLTLIBRARIES
+	tags uninstall uninstall-am uninstall-libsciconsole_la_etcDATA \
+	uninstall-libsciconsole_la_includeHEADERS \
+	uninstall-libsciconsole_la_rootDATA \
+	uninstall-libsciconsole_la_sci_gatewayDATA \
+	uninstall-pkglibLTLIBRARIES
 
 
 # Compilation of Java
@@ -923,12 +865,7 @@ macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODI
 	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
 	$(top_builddir)/bin/scilab -nb -nwni -f $(abs_srcdir)/macros/buildmacros.sce 	)
 
-#BUILT_SOURCES = modules
-
-# Generate the module list from the SUBDIRS
-# COMMENTED : because it must be hardcoded (the order does matter)
-#modules:
-#	@for module in $(SUBDIRS); do if test $$module != "."; then echo $$module; fi;	done > modules
+# Provides macros compilation, Java compilation, cleaning
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

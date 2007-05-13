@@ -38,7 +38,7 @@ libsciconsole_la_etc_DATA = etc/console.quit etc/console.start
 
 #### console : gateway declaration #### 
 libsciconsole_la_sci_gatewaydir = $(target)/sci_gateway
-libsciconsole_la_sci_gateway_DATA = sci_gateway/console
+libsciconsole_la_sci_gateway_DATA = sci_gateway/console_gateway.xml
 
 #### console : include files ####
 libsciconsole_la_includedir=$(sciincludedir)/console

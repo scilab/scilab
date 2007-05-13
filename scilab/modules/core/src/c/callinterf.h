@@ -71,9 +71,8 @@
 
 /* 51 */						#include "../../../fftw/includes/gw_fftw.h"
 /* 52 */						#include "../../../jvm/includes/gw_jvm.h"
-#ifdef _MSC_VER
 /* 53 */						#include "../../../console/includes/gw_console.h"
-#endif
+
 
 void errjump (int n);
 
@@ -137,10 +136,8 @@ static OpTab Interfaces[] = {
 	/* 49  */ {C2F(gw_sound)},
 	/* 50  */ {C2F(gw_localization)},
 	/* 51  */ {C2F(gw_fftw)},
-	/* 52  */ {C2F(gw_jvm)}
-#ifdef _MSC_VER
-	/* 53  */ ,{C2F(gw_console)}
-#endif
+	/* 52  */ {C2F(gw_jvm)},
+	/* 53  */ {C2F(gw_console)}
 };
 
 
