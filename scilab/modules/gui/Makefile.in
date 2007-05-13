@@ -91,24 +91,24 @@ am__objects_1 = libscigui_la-wf_w_util.lo libscigui_la-utils.lo \
 	libscigui_la-wf_e_edit.lo libscigui_la-windows.lo \
 	libscigui_la-wf_w_cursor.lo libscigui_la-wf_w_dir.lo \
 	libscigui_la-x_util.lo libscigui_la-x_screen.lo \
-	libscigui_la-x_scrollbar.lo libscigui_la-zzledt.lo \
-	libscigui_la-SGraph.lo libscigui_la-x_menu.lo \
-	libscigui_la-xwidgets.lo libscigui_la-x_data.lo \
-	libscigui_la-x_VTPrsTbl.lo libscigui_la-inter.lo \
-	libscigui_la-coloredit.lo libscigui_la-x_input.lo \
-	libscigui_la-x_charproc.lo libscigui_la-wf_w_msgpanel.lo \
-	libscigui_la-wf_w_file.lo libscigui_la-x_button.lo \
-	libscigui_la-command.lo libscigui_la-wf_w_setup.lo \
-	libscigui_la-wf_w_init.lo libscigui_la-men_dialog.lo \
-	libscigui_la-xmen_getfile.lo libscigui_la-xmen_choose.lo \
-	libscigui_la-xmen_message.lo libscigui_la-xmen_mdial.lo \
-	libscigui_la-men_getfile.lo libscigui_la-xmen_madial.lo \
-	libscigui_la-men_choose.lo libscigui_la-xmen_choice.lo \
-	libscigui_la-men_message.lo libscigui_la-xmen_print.lo \
-	libscigui_la-men_mdial.lo libscigui_la-men_madial.lo \
-	libscigui_la-xmen_dialog.lo libscigui_la-xmen_Utils.lo \
-	libscigui_la-men_choice.lo libscigui_la-men_print.lo \
-	libscigui_la-guitable.lo libscigui_la-TerminateGui.lo
+	libscigui_la-x_scrollbar.lo libscigui_la-SGraph.lo \
+	libscigui_la-x_menu.lo libscigui_la-xwidgets.lo \
+	libscigui_la-x_data.lo libscigui_la-x_VTPrsTbl.lo \
+	libscigui_la-inter.lo libscigui_la-coloredit.lo \
+	libscigui_la-x_input.lo libscigui_la-x_charproc.lo \
+	libscigui_la-wf_w_msgpanel.lo libscigui_la-wf_w_file.lo \
+	libscigui_la-x_button.lo libscigui_la-command.lo \
+	libscigui_la-wf_w_setup.lo libscigui_la-wf_w_init.lo \
+	libscigui_la-men_dialog.lo libscigui_la-xmen_getfile.lo \
+	libscigui_la-xmen_choose.lo libscigui_la-xmen_message.lo \
+	libscigui_la-xmen_mdial.lo libscigui_la-men_getfile.lo \
+	libscigui_la-xmen_madial.lo libscigui_la-men_choose.lo \
+	libscigui_la-xmen_choice.lo libscigui_la-men_message.lo \
+	libscigui_la-xmen_print.lo libscigui_la-men_mdial.lo \
+	libscigui_la-men_madial.lo libscigui_la-xmen_dialog.lo \
+	libscigui_la-xmen_Utils.lo libscigui_la-men_choice.lo \
+	libscigui_la-men_print.lo libscigui_la-guitable.lo \
+	libscigui_la-TerminateGui.lo
 am__objects_2 = libscigui_la-sci_x_choice.lo \
 	libscigui_la-sci_x_message_modeless.lo libscigui_la-gw_gui.lo \
 	libscigui_la-sci_x_mdialog.lo libscigui_la-sci_x_dialog.lo \
@@ -385,7 +385,6 @@ src/c/xsci/wf_w_dir.c \
 src/c/xsci/x_util.c \
 src/c/xsci/x_screen.c \
 src/c/xsci/x_scrollbar.c \
-src/c/xsci/zzledt.c \
 src/c/xsci/SGraph.c \
 src/c/xsci/x_menu.c \
 src/c/xsci/xwidgets.c \
@@ -628,7 +627,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-xmen_message.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-xmen_print.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-xwidgets.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-zzledt.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -755,13 +753,6 @@ libscigui_la-x_scrollbar.lo: src/c/xsci/x_scrollbar.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/x_scrollbar.c' object='libscigui_la-x_scrollbar.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-x_scrollbar.lo `test -f 'src/c/xsci/x_scrollbar.c' || echo '$(srcdir)/'`src/c/xsci/x_scrollbar.c
-
-libscigui_la-zzledt.lo: src/c/xsci/zzledt.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-zzledt.lo -MD -MP -MF $(DEPDIR)/libscigui_la-zzledt.Tpo -c -o libscigui_la-zzledt.lo `test -f 'src/c/xsci/zzledt.c' || echo '$(srcdir)/'`src/c/xsci/zzledt.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-zzledt.Tpo $(DEPDIR)/libscigui_la-zzledt.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/zzledt.c' object='libscigui_la-zzledt.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-zzledt.lo `test -f 'src/c/xsci/zzledt.c' || echo '$(srcdir)/'`src/c/xsci/zzledt.c
 
 libscigui_la-SGraph.lo: src/c/xsci/SGraph.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-SGraph.lo -MD -MP -MF $(DEPDIR)/libscigui_la-SGraph.Tpo -c -o libscigui_la-SGraph.lo `test -f 'src/c/xsci/SGraph.c' || echo '$(srcdir)/'`src/c/xsci/SGraph.c

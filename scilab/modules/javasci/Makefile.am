@@ -9,27 +9,27 @@ include $(top_srcdir)/Makefile.incl.am
 modulename=javasci
 
 #### Java sources ####
-JAVAFILES = src/java/javasci/Scilab.java \
-	src/java/javasci/BadDataArgumentException.java \
-	src/java/javasci/SciAbstractArray.java \
-	src/java/javasci/SciAbstractDataType.java \
-	src/java/javasci/SciDoubleArray.java \
-	src/java/javasci/SciBooleanArray.java \
-	src/java/javasci/SciDouble.java \
-	src/java/javasci/SciBoolean.java \
-	src/java/javasci/SciComplexArray.java \
-	src/java/javasci/SciStringArray.java \
-	src/java/javasci/SciComplex.java \
-	src/java/javasci/SciString.java \
-	src/java/javasci/ClassPath.java
+JAVAFILES = src/java/javasci/javasci/Scilab.java \
+	src/java/javasci/javasci/BadDataArgumentException.java \
+	src/java/javasci/javasci/SciAbstractArray.java \
+	src/java/javasci/javasci/SciAbstractDataType.java \
+	src/java/javasci/javasci/SciDoubleArray.java \
+	src/java/javasci/javasci/SciBooleanArray.java \
+	src/java/javasci/javasci/SciDouble.java \
+	src/java/javasci/javasci/SciBoolean.java \
+	src/java/javasci/javasci/SciComplexArray.java \
+	src/java/javasci/javasci/SciStringArray.java \
+	src/java/javasci/javasci/SciComplex.java \
+	src/java/javasci/javasci/SciString.java \
+	src/java/javasci/javasci/ClassPath.java
 
 #### Where are the sources (mandatory) ####
-CLASSPATH = src/java/
+CLASSPATH = src/java/javasci/
 
 #### javasci : jar file #### 
 JARFILE = javasci.jar
 
-BUILT_SOURCES+=$(JARFILE)
+#BUILT_SOURCES+=$(JARFILE)
 
 #### Javasci : sources ####
 JAVASCI_C_SOURCES = src/c/javasci_Scilab2.c \

@@ -21,7 +21,6 @@ src/c/xsci/wf_w_dir.c \
 src/c/xsci/x_util.c \
 src/c/xsci/x_screen.c \
 src/c/xsci/x_scrollbar.c \
-src/c/xsci/zzledt.c \
 src/c/xsci/SGraph.c \
 src/c/xsci/x_menu.c \
 src/c/xsci/xwidgets.c \

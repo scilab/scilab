@@ -83,10 +83,15 @@ libsciconsole_la_DEPENDENCIES =  \
 	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
 am__objects_1 = libsciconsole_la-completion.lo libsciconsole_la-clc.lo \
-	libsciconsole_la-tohome.lo
+	libsciconsole_la-tohome.lo libsciconsole_la-history.lo \
+	libsciconsole_la-zzledt_Linux.lo
 am__objects_2 = libsciconsole_la-sci_completion.lo \
 	libsciconsole_la-gw_console.lo libsciconsole_la-sci_clc.lo \
-	libsciconsole_la-sci_tohome.lo
+	libsciconsole_la-sci_tohome.lo \
+	libsciconsole_la-sci_gethistory.lo \
+	libsciconsole_la-sci_loadhistory.lo \
+	libsciconsole_la-sci_resethistory.lo \
+	libsciconsole_la-sci_savehistory.lo
 am_libsciconsole_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libsciconsole_la_OBJECTS = $(am_libsciconsole_la_OBJECTS)
 libsciconsole_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
@@ -271,14 +276,20 @@ top_srcdir = @top_srcdir@
 # List of the c files
 CONSOLE_C_SOURCES = src/c/completion.c \
 src/c/clc.c \
-src/c/tohome.c
+src/c/tohome.c \
+src/c/history.c \
+src/c/zzledt_Linux.c
 
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/sci_completion.c \
 sci_gateway/c/gw_console.c \
 sci_gateway/c/sci_clc.c \
-sci_gateway/c/sci_tohome.c
+sci_gateway/c/sci_tohome.c \
+sci_gateway/c/sci_gethistory.c \
+sci_gateway/c/sci_loadhistory.c \
+sci_gateway/c/sci_resethistory.c \
+sci_gateway/c/sci_savehistory.c
 
 
 # Includes need for the compilation
@@ -442,10 +453,16 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-clc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-completion.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-gw_console.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-history.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-sci_clc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-sci_completion.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-sci_gethistory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-sci_loadhistory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-sci_resethistory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-sci_savehistory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-sci_tohome.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-tohome.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-zzledt_Linux.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -489,6 +506,20 @@ libsciconsole_la-tohome.lo: src/c/tohome.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-tohome.lo `test -f 'src/c/tohome.c' || echo '$(srcdir)/'`src/c/tohome.c
 
+libsciconsole_la-history.lo: src/c/history.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-history.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-history.Tpo -c -o libsciconsole_la-history.lo `test -f 'src/c/history.c' || echo '$(srcdir)/'`src/c/history.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-history.Tpo $(DEPDIR)/libsciconsole_la-history.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/history.c' object='libsciconsole_la-history.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-history.lo `test -f 'src/c/history.c' || echo '$(srcdir)/'`src/c/history.c
+
+libsciconsole_la-zzledt_Linux.lo: src/c/zzledt_Linux.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-zzledt_Linux.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-zzledt_Linux.Tpo -c -o libsciconsole_la-zzledt_Linux.lo `test -f 'src/c/zzledt_Linux.c' || echo '$(srcdir)/'`src/c/zzledt_Linux.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-zzledt_Linux.Tpo $(DEPDIR)/libsciconsole_la-zzledt_Linux.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/zzledt_Linux.c' object='libsciconsole_la-zzledt_Linux.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-zzledt_Linux.lo `test -f 'src/c/zzledt_Linux.c' || echo '$(srcdir)/'`src/c/zzledt_Linux.c
+
 libsciconsole_la-sci_completion.lo: sci_gateway/c/sci_completion.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-sci_completion.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-sci_completion.Tpo -c -o libsciconsole_la-sci_completion.lo `test -f 'sci_gateway/c/sci_completion.c' || echo '$(srcdir)/'`sci_gateway/c/sci_completion.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-sci_completion.Tpo $(DEPDIR)/libsciconsole_la-sci_completion.Plo
@@ -516,6 +547,34 @@ libsciconsole_la-sci_tohome.lo: sci_gateway/c/sci_tohome.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_tohome.c' object='libsciconsole_la-sci_tohome.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-sci_tohome.lo `test -f 'sci_gateway/c/sci_tohome.c' || echo '$(srcdir)/'`sci_gateway/c/sci_tohome.c
+
+libsciconsole_la-sci_gethistory.lo: sci_gateway/c/sci_gethistory.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-sci_gethistory.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-sci_gethistory.Tpo -c -o libsciconsole_la-sci_gethistory.lo `test -f 'sci_gateway/c/sci_gethistory.c' || echo '$(srcdir)/'`sci_gateway/c/sci_gethistory.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-sci_gethistory.Tpo $(DEPDIR)/libsciconsole_la-sci_gethistory.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_gethistory.c' object='libsciconsole_la-sci_gethistory.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-sci_gethistory.lo `test -f 'sci_gateway/c/sci_gethistory.c' || echo '$(srcdir)/'`sci_gateway/c/sci_gethistory.c
+
+libsciconsole_la-sci_loadhistory.lo: sci_gateway/c/sci_loadhistory.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-sci_loadhistory.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-sci_loadhistory.Tpo -c -o libsciconsole_la-sci_loadhistory.lo `test -f 'sci_gateway/c/sci_loadhistory.c' || echo '$(srcdir)/'`sci_gateway/c/sci_loadhistory.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-sci_loadhistory.Tpo $(DEPDIR)/libsciconsole_la-sci_loadhistory.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_loadhistory.c' object='libsciconsole_la-sci_loadhistory.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-sci_loadhistory.lo `test -f 'sci_gateway/c/sci_loadhistory.c' || echo '$(srcdir)/'`sci_gateway/c/sci_loadhistory.c
+
+libsciconsole_la-sci_resethistory.lo: sci_gateway/c/sci_resethistory.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-sci_resethistory.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-sci_resethistory.Tpo -c -o libsciconsole_la-sci_resethistory.lo `test -f 'sci_gateway/c/sci_resethistory.c' || echo '$(srcdir)/'`sci_gateway/c/sci_resethistory.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-sci_resethistory.Tpo $(DEPDIR)/libsciconsole_la-sci_resethistory.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_resethistory.c' object='libsciconsole_la-sci_resethistory.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-sci_resethistory.lo `test -f 'sci_gateway/c/sci_resethistory.c' || echo '$(srcdir)/'`sci_gateway/c/sci_resethistory.c
+
+libsciconsole_la-sci_savehistory.lo: sci_gateway/c/sci_savehistory.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-sci_savehistory.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-sci_savehistory.Tpo -c -o libsciconsole_la-sci_savehistory.lo `test -f 'sci_gateway/c/sci_savehistory.c' || echo '$(srcdir)/'`sci_gateway/c/sci_savehistory.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-sci_savehistory.Tpo $(DEPDIR)/libsciconsole_la-sci_savehistory.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_savehistory.c' object='libsciconsole_la-sci_savehistory.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-sci_savehistory.lo `test -f 'sci_gateway/c/sci_savehistory.c' || echo '$(srcdir)/'`sci_gateway/c/sci_savehistory.c
 
 mostlyclean-libtool:
 	-rm -f *.lo
