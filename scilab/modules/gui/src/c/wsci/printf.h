@@ -39,6 +39,9 @@ int MyGetCh (void);
 char * MyFGetS (char *str, unsigned int size, FILE * file);
 int MyFPutC (int ch, FILE * file);
 int MyFPutS (char *str, FILE * file);
+int MyFPutCstdout(int ch);
+int MyFPutSstdout(char *str);
+
 void Scistring (char *str);
 void sciprint (char *fmt,...);
 void sciprint_nd (char *fmt,...);

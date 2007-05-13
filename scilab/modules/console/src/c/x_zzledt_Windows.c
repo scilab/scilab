@@ -1,6 +1,3 @@
-/* Copyright (C) 1998-2002 Chancelier Jean-Philippe */
-/* INRIA 2003 Allan CORNET */
-
 /************************************
  * reading functions for scilab 
  ************************************/
@@ -8,11 +5,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#ifndef STRICT
-#define STRICT
-#endif
-#include "wcommon.h"
-#include "wtext.h"
+
+#include "machine.h"
+#include "command.h"
+#include "../../core/src/c/flags.h"
 #include "win_mem_alloc.h" /* MALLOC */
 /*-----------------------------------------------------------------------------------*/
 char save_prompt[10];
@@ -20,35 +16,40 @@ char save_prompt[10];
 
 extern void InvalidateCursor( void ); 
 extern char input_line[MAX_LINE_LEN + 1];
-extern BOOL ScilabIsStarting;
+
 extern void SetReadyOrNotForAnewLign(BOOL Ready);
 extern void GetCurrentPrompt(char *CurrentPrompt);
 
 extern int GetSaveHistoryAfterNcommands(void);
 extern char * getfilenamehistory(void);
 extern void write_history(char *filename);
-extern LPTW GetTextWinScilab(void);
 extern void SendCTRLandAKey(int code);
 extern BOOL IsWindowInterface(void);
 extern int C2F (scilines) (int *nl, int *nc);
+extern int C2F(sxevents)();
+extern void set_is_reading(int);
+
+BOOL CanPutLineInBuffer(void);
+void DisablePutLineInBuffer(void);
 /*-----------------------------------------------------------------------------------*/
 char copycur_line[1024];
 BOOL PutLineInBuffer=FALSE;
 void ChangeCursorWhenScilabIsReady(void);
-int NumberOfCommands=0;
+static int NumberOfCommands=0;
+int getNumberOfCommands(void);
+void resetNumberOfCommands(void);
+extern void CleanCurrentLine(char *line);
 /*-----------------------------------------------------------------------------------*/
 /***********************************************************************
  * line editor win32 version 
  * Input function for Scilab 
- * zzledt1 for scilab 
- * zzledt  for scilab -nw 
+ * zzledt  for scilab 
  **********************************************************************/
 
 /**** Warning here : eof can be true  ***/
 void C2F (zzledt) (char *buffer, int *buf_size, int *len_line, int *eof, int* interrupt, int *modex, long int dummy1)
 {
   int i;
-  extern BOOL PutLineInBuffer;
   extern char copycur_line[1024];
 
   GetCurrentPrompt(save_prompt);
@@ -57,11 +58,10 @@ void C2F (zzledt) (char *buffer, int *buf_size, int *len_line, int *eof, int* in
   C2F (sxevents) ();
   if (*modex) SetReadyOrNotForAnewLign(TRUE); /* Pret à recevoir depuis la thread Coller */
   set_is_reading (TRUE);
-  if (PutLineInBuffer)
+  if (CanPutLineInBuffer())
   {
-	  SendCTRLandAKey(CTRLU);
-	  write_scilab(copycur_line);
-	  PutLineInBuffer=FALSE;
+	  CleanCurrentLine(copycur_line);
+	  DisablePutLineInBuffer();
   }
   
   i = read_line (save_prompt,*interrupt);
@@ -74,7 +74,7 @@ void C2F (zzledt) (char *buffer, int *buf_size, int *len_line, int *eof, int* in
     return;
   }
   strncpy (buffer, input_line, *buf_size);
-  *len_line = strlen (buffer);
+  *len_line = (int)strlen (buffer);
   /** fprintf(stderr,"[%s,%d]\n",buffer,*len_line); **/
   *eof = (i == 1) ? TRUE : FALSE;
   set_is_reading (FALSE);
@@ -82,7 +82,7 @@ void C2F (zzledt) (char *buffer, int *buf_size, int *len_line, int *eof, int* in
 
   /* see savehistory */
   NumberOfCommands++;
-  if ( ( GetSaveHistoryAfterNcommands() == NumberOfCommands ) && ( GetSaveHistoryAfterNcommands() > 0) )
+  if ( ( GetSaveHistoryAfterNcommands() == getNumberOfCommands() ) && ( GetSaveHistoryAfterNcommands() > 0) )
   {
 	  char *filenamehistory=NULL;
 	
@@ -91,54 +91,54 @@ void C2F (zzledt) (char *buffer, int *buf_size, int *len_line, int *eof, int* in
 	  FREE(filenamehistory);
 
 	  NumberOfCommands=0;
+	  resetNumberOfCommands();
   }
 
   return;
 }
 /*-----------------------------------------------------------------------------------*/
-void ChangeCursorWhenScilabIsReady(void)
-{
-  if ( (IsWindowInterface()) && (ScilabIsStarting) )
-  {
-	HCURSOR hCursor;
-	LPTW lptw=GetTextWinScilab();
-	int NumsMenu = 0;
-	int nl=0, nc=0;
-	HMENU hMenu=NULL;
-		
-	hCursor=LoadCursor(  lptw->hInstance,IDC_ARROW);
-	SetClassLong(lptw->hWndParent, GCL_HCURSOR,	(LONG) hCursor); 
-	SetClassLong(lptw->hWndText,GCL_HCURSOR,(LONG) hCursor); 
-	InvalidateCursor(); 
-	hMenu=GetMenu(lptw->hWndParent);
-	NumsMenu=GetMenuItemCount (hMenu);
-	EnableNMenus(lptw,NumsMenu);
-	EnableToolBar(lptw);
 
-	ScilabIsStarting=FALSE;
-
-	ShowWindow (lptw->hWndParent,SW_SHOWDEFAULT);
-	BringWindowToTop (lptw->hWndParent);
-	SetFocus(lptw->hWndParent);
-	SetFocus(lptw->hWndText);
-	
-	/* Initialize 'lines' */
-	nc = lptw->ClientSize.x / lptw->CharSize.x;
-	nl = lptw->ClientSize.y / lptw->CharSize.y;
-	/** send number of lines info to scilab **/
-	if ((lptw->ClientSize.x>0) && (lptw->ClientSize.y>0))	C2F (scilines) (&nl, &nc);
-
-  }
-}
 /*-----------------------------------------------------------------------------------*/
 void SaveCurrentLine(BOOL RewriteLineAtPrompt)
 {
 	extern char cur_line[1024];
 
-	if ( (get_is_reading ()) && (PutLineInBuffer == FALSE) )
+	if ( (get_is_reading ()) && (CanPutLineInBuffer() == FALSE) )
 	{
 		strcpy(copycur_line,cur_line);
-		if (RewriteLineAtPrompt) PutLineInBuffer=TRUE;
+		if (RewriteLineAtPrompt) DisablePutLineInBuffer();
 	}
+}
+/*-----------------------------------------------------------------------------------*/
+int getNumberOfCommands(void)
+{
+	return NumberOfCommands;
+}
+/*-----------------------------------------------------------------------------------*/
+void resetNumberOfCommands(void)
+{
+	NumberOfCommands = 0;
+}
+/*-----------------------------------------------------------------------------------*/
+BOOL CanPutLineInBuffer(void)
+{
+	return PutLineInBuffer;
+}
+/*-----------------------------------------------------------------------------------*/
+void EnablePutLineInBuffer(void)
+{
+	PutLineInBuffer = TRUE;
+}
+/*-----------------------------------------------------------------------------------*/
+void DisablePutLineInBuffer(void)
+{
+	PutLineInBuffer = FALSE;
+}
+/*-----------------------------------------------------------------------------------*/
+char *getCopyCurrentLine(void)
+{
+	char *copy_current_line = MALLOC(sizeof(char)*(strlen(copycur_line)+1));
+	strcpy(copy_current_line,copycur_line);
+	return copy_current_line;
 }
 /*-----------------------------------------------------------------------------------*/

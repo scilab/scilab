@@ -8,13 +8,12 @@
 #include <windowsx.h>
 #include <Winuser.h>
 #include "wgnuplib.h"
-#include "printf.h"
 #include "winmain.h"
 #include "wcommon.h"
-
 #include "Messages.h"
 #include "Warnings.h"
 #include "Errors.h"
+#include "printf.h"
 /*-----------------------------------------------------------------------------------*/
 extern void Xputchar ();
 extern BOOL IsWindowInterface(void);
@@ -54,6 +53,20 @@ int MyFPutC (int ch, FILE * file)
 		return ch;
 	}
 	return fputc (ch, file);
+}
+/*-----------------------------------------------------------------------------------*/
+int MyFPutSstdout (char *str)
+{
+	TextPutS (&textwin, str);
+	TextMessage ();
+	return (*str);
+}
+/*-----------------------------------------------------------------------------------*/
+int MyFPutCstdout (int ch)
+{
+	MyPutCh ((BYTE) ch);
+	TextMessage ();
+	return ch;
 }
 /*-----------------------------------------------------------------------------------*/
 int MyFPutS (char *str, FILE * file)

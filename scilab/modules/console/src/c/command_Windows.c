@@ -1,25 +1,15 @@
 
-/*
- * command.c : 
- * (1997) : Jean-Philippe Chancelier 
- * (2004) : Allan CORNET
- * 
- */
-
 #include <stdio.h>
 #include <setjmp.h>
 #include <stdlib.h>
-#include "wcommon.h"
-//#include "plot.h"
-#include "Messages.h"
-#include "Warnings.h"
-#include "Errors.h"
+
+#include "command.h"
+#include "sciprint.h"
 #include "win_mem_alloc.h" /* MALLOC */
+#include "prompt.h"
+#include "../../core/src/c/flags.h"
 
-#ifndef STRICT
-#define STRICT
-#endif
-
+#include "../../gui/src/c/wsci/printf.h"
 struct hist
 {
     		char *line;
@@ -30,13 +20,15 @@ struct hist
 extern void AddHistory (char *line);
 extern struct hist * SearchBackwardInHistory(char *line);
 extern BOOL NewSearchInHistory;
+extern char * readline_nw (char *prompt, int interrupt);
 
-extern GW graphwin;		/* graphic window */
-extern TW textwin;
-extern jmp_buf env;		/* from plot.c */
+
+
 
 static char *rlgets (char *s, int n, char *prompt, int interrupt);
 static char *rlgets_nw (char *s, int n, char *prompt, int interrupt);
+
+void int_error (char *str, int t_num);
 
 /* input data, parsing variables */
 
@@ -110,6 +102,18 @@ switch_rlgets (int i)
     rlgets_def = rlgets_nw;
 }
 
+
+void int_error (char *str, int t_num)
+{
+	/* reprint line if screen has been written to */
+	if (t_num != NO_CARET)
+	{				/* put caret under error */
+		sciprint ("\n%s%s\n", SCIPROMPT, input_line);
+	}
+	sciprint ("\t%s\n\n", str);
+}
+
+
 /**********************************************
  * reads a scilab line with rlgets or rlgets_nw 
  * according to current value of rlgets_def 
@@ -135,7 +139,7 @@ int read_line (char *prompt, int interrupt)
     *p = 0;
   if ((p = strchr (&(input_line[start + 2]), '\n')) != NULL)
     *p = 0;
-  input_line[start + 1] = strlen (&(input_line[start + 2]));
+  input_line[start + 1] = (char)strlen (&(input_line[start + 2]));
 
   if (input_line[start + 2] == 26 || input_line[start + 2] == -1)
     {
@@ -157,11 +161,11 @@ int read_line (char *prompt, int interrupt)
 	i++;			/* yuck!  move everything down two characters */
 
   inline_num++;
-      last = strlen (input_line) - 1;
+      last = (int)strlen (input_line) - 1;
       if (last < 0)
 	last = 0;		/* stop UAE in Windows */
       if (last + 1 >= MAX_LINE_LEN)
-	int_error (MSG_ERROR68, NO_CARET);
+	int_error ("Input line too long", NO_CARET);
     }
     
   return (0);
@@ -169,3 +173,33 @@ int read_line (char *prompt, int interrupt)
 }
 
 
+/****************************************************************
+*alloc:
+* allocate memory 
+* This is a protected version of malloc. It causes an int_error 
+* if there is not enough memory. If message is NULL, we 
+* allow NULL return. Otherwise, we handle the error, using the
+* message to create the int_error string. Note cp/sp_extend uses realloc,
+* so it depends on this using malloc().
+*****************************************************************/
+
+char * alloc (unsigned long size, char *message)
+/* unsigned long size;     # of bytes */
+/* char *message;           description of what is being allocated */
+{
+	char *p;			/* the new allocation */
+	char errbuf[100];		/* error message string */
+	p = MALLOC ((size_t) size);	/* try again */
+	if (p == (char *) NULL)
+	{
+		/* really out of memory */
+		if (message != NULL)
+		{
+			(void) sprintf (errbuf, "out of memory for %s", message);
+			int_error (errbuf, NO_CARET);
+			/* NOTREACHED */
+		}
+		/* else we return NULL */
+	}
+	return (p);
+}

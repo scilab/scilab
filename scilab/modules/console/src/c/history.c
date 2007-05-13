@@ -26,7 +26,8 @@ static int HistorySizeInMemory=0;
 BOOL NewSearchInHistory=FALSE; /* rlgets wsci\command.c */
 
 static int SaveHistoryAfterNcommands=0;
-extern int NumberOfCommands;
+extern int getNumberOfCommands(void);
+extern void resetNumberOfCommands(void);
 /*-----------------------------------------------------------------------------------*/
 static char *ASCIItime(const struct tm *timeptr)
 {
@@ -213,9 +214,6 @@ sci_hist * GoNextKnot(sci_hist * CurrentKnot)
 
 /*-----------------------------------------------------------------------------------*/
 /* save history in filemane: */
-
-#ifndef WITH_READLINE
-
 void write_history(char *filename)
 {
 	FILE * pFile;
@@ -265,8 +263,6 @@ void write_history(char *filename)
 		fclose(pFile);
 	}
 }
-#endif 
-
 /*-----------------------------------------------------------------------------------*/
 char * getfilenamehistory(void)
 {
@@ -279,9 +275,7 @@ char * getfilenamehistory(void)
 }
 
 /*-----------------------------------------------------------------------------------*/
-
-#ifndef WITH_READLINE
-
+/*interface routine for Scilab function resethistory  */
 void reset_history(void)
 {
   if (history)
@@ -308,40 +302,13 @@ void reset_history(void)
     }
 
 }
-#else 
-void reset_history(void)
-{
-  register HIST_ENTRY **the_list;
-  register int i;
-  the_list = history_list ();
-  if (the_list)
-    {
-      int count;
-      for (count = 0; the_list[count]; count++) ;
-      for ( i = count ; i >= 0 ; i--)
-	{
-	  HIST_ENTRY *entry = remove_history (i);
-	  if (entry)
-	    {
-	      FREE (entry->line);
-	      FREE (entry);
-	    }
-	}
-    }
-  HistorySizeInMemory=0;
-}
-
-#endif 
-
 /*-----------------------------------------------------------------------------------*/
-/*interface routine for Scilab function resethistory  */
+
 
 /*-----------------------------------------------------------------------------------*/
 /*interface routine for Scilab function loadhistory  */
-
-#ifndef  WITH_READLINE
 static void read_history(char *filename);
-#endif 
+
 
 int C2F(loadhistory) _PARAMS((char *fname))
 {
@@ -370,7 +337,6 @@ int C2F(loadhistory) _PARAMS((char *fname))
   return 0;
 }
 
-#ifndef  WITH_READLINE
 
 static void read_history(char *filename)
 {
@@ -397,16 +363,12 @@ static void read_history(char *filename)
   AddHistory (line);  
 }
 
-#endif 
 
 /*-----------------------------------------------------------------------------------*/
 /*interface routine for Scilab function gethistory  */
 
-#ifndef  WITH_READLINE
-
 int CreSmatFromHist(char *fname, int number, sci_hist *Parcours);
 
- 
 /*-----------------------------------------------------------------------------------*/
 int CreSmatFromHist(char *fname, int number, sci_hist *Parcours)
 {
@@ -466,72 +428,6 @@ int CreSmatFromHist(char *fname, int number, sci_hist *Parcours)
   C2F(intersci).ntypes[number - 1] = '$';
   return TRUE_;
 } 
-
-#else 
-
-/* readline version */
-
-static int CreSmatFromHist(char *fname, int number, int from_line, int count);
-
-static int CreSmatFromHist(char *fname, int number, int from_line, int count)
-{
-  int ix1, il, nnchar, kij, ilp, lw, pos, indice,i;
-  static int  cx0 = 0;
-  register HIST_ENTRY **the_list;
-
-  Nbvars = Max(number,Nbvars);
-  lw = number + Top - Rhs;
-
-  the_list = history_list ();
-
-  /* get the number of history lines and total number of characters */
-
-  indice=0;nnchar = 0;
-  if ( from_line -1 >= count ) return 0;
-  for ( i = Max(from_line -1,0) ; i < count  ; i++)
-    {
-      nnchar += strlen(the_list[i]->line);
-      indice++;
-    }
-  
-  /* Check for available memory */
-
-  il = iadr(*Lstk(lw));
-  ix1 = il + 4 + (nnchar + 1) + (indice + 1);
-  Err = sadr(ix1) - *Lstk(Bot );
-  if (Err > 0) {
-	  error_scilab(17,"core_error_17",fname);
-    return FALSE_;
-  } ;
-  /* create the variable header */
-  *istk(il ) = 10;
-  *istk(il + 1) = indice;
-  *istk(il + 2) = 1;
-  *istk(il + 3) = 0;
-  ilp = il + 4;
-  *istk(ilp ) = 1;
-  pos = ilp + indice + 1;
-
-  /* fill in the variable */
-
-  kij = ilp + 1;
-  for ( i = Max(from_line -1,0) ; i < count  ; i++)
-    {
-      int l = strlen(the_list[i]->line);
-      *istk(kij ) = *istk(kij - 1) + l;
-      C2F(cvstr)(&l, istk(pos), the_list[i]->line, &cx0, l);
-      kij++;
-      pos = pos + l;
-    }
-  /* close the variable */
-  *Lstk(lw+1) = sadr(pos);
-
-  C2F(intersci).iwhere[number - 1] = *Lstk(lw);
-  C2F(intersci).ntypes[number - 1] = '$';
-  return TRUE_;
-} 
-
-#endif 
 /*-----------------------------------------------------------------------------------*/
 int savehistoryafterncommands(int N)
 {
@@ -542,7 +438,7 @@ int savehistoryafterncommands(int N)
 	if (SaveHistoryAfterNcommandsTemp>=0)
 	{
 		SaveHistoryAfterNcommands=SaveHistoryAfterNcommandsTemp;
-		NumberOfCommands=0;
+		resetNumberOfCommands();
 	}
 
 	return 0;	

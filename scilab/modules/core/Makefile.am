@@ -4,7 +4,6 @@
 ##########
 
 CORE_C_SOURCES = \
-src/c/history.c \
 src/c/inffic.c \
 src/c/cs2st.c \
 src/c/tmpdir.c \
@@ -196,9 +195,7 @@ src/fortran/itosci.f \
 src/fortran/formatnumber.f \
 src/fortran/wmdsp.f
 
-
-GATEWAY_C_SOURCES = sci_gateway/c/sci_savehistory.c \
-sci_gateway/c/sci_stacksize.c \
+GATEWAY_C_SOURCES = sci_gateway/c/sci_stacksize.c \
 sci_gateway/c/sci_resume.c \
 sci_gateway/c/sci_mtlb_mode.c \
 sci_gateway/c/sci_banner.c \
@@ -214,7 +211,6 @@ sci_gateway/c/sci_getmemory.c \
 sci_gateway/c/sci_fromc.c \
 sci_gateway/c/sci_havewindow.c \
 sci_gateway/c/sci_delbpt.c \
-sci_gateway/c/sci_loadhistory.c \
 sci_gateway/c/sci_macr2lst.c \
 sci_gateway/c/sci_isdef.c \
 sci_gateway/c/sci_addinter.c \
@@ -224,7 +220,6 @@ sci_gateway/c/sci_c_link.c \
 sci_gateway/c/sci_errclear.c \
 sci_gateway/c/sci_global.c \
 sci_gateway/c/sci_funcprot.c \
-sci_gateway/c/sci_gethistory.c \
 sci_gateway/c/sci_newfun.c \
 sci_gateway/c/sci_warning.c \
 sci_gateway/c/sci_dispbpt.c \
@@ -245,7 +240,6 @@ sci_gateway/c/sci_setbpt.c \
 sci_gateway/c/sci_getmodules.c \
 sci_gateway/c/sci_what.c \
 sci_gateway/c/sci_predef.c \
-sci_gateway/c/sci_resethistory.c \
 sci_gateway/c/sci_clearglobal.c \
 sci_gateway/c/sci_arg.c \
 sci_gateway/c/sci_call.c \
@@ -266,7 +260,6 @@ sci_gateway/c/sci_with_module.c \
 sci_gateway/c/sci_getdynlibext.c \
 sci_gateway/c/sci_islittleendian.c \
 sci_gateway/c/sci_getscilabmode.c
-
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_errclear.f \
 sci_gateway/fortran/sci_c_link.f \

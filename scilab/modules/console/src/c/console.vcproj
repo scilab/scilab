@@ -199,11 +199,27 @@
 				>
 			</File>
 			<File
+				RelativePath=".\command_Windows.c"
+				>
+			</File>
+			<File
 				RelativePath=".\completion.c"
 				>
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\gw_console.c"
+				>
+			</File>
+			<File
+				RelativePath=".\history.c"
+				>
+			</File>
+			<File
+				RelativePath=".\readconsole.c"
+				>
+			</File>
+			<File
+				RelativePath=".\readwindows.c"
 				>
 			</File>
 			<File
@@ -215,11 +231,31 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_gethistory.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_loadhistory.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_resethistory.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_savehistory.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_tohome.c"
 				>
 			</File>
 			<File
 				RelativePath=".\tohome.c"
+				>
+			</File>
+			<File
+				RelativePath=".\x_zzledt_Windows.c"
 				>
 			</File>
 		</Filter>
@@ -233,6 +269,14 @@
 			</File>
 			<File
 				RelativePath=".\completion.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\gw_console.h"
+				>
+			</File>
+			<File
+				RelativePath=".\history.h"
 				>
 			</File>
 			<File

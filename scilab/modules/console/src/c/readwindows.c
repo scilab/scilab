@@ -1,11 +1,10 @@
+
 /* Copyright (C) 1998-2002 Chancelier Jean-Philippe */
 
 /**************************************
- * performs I/O in a console window 
- * (see printf.h for the definition of the used io functions
+ * performs I/O in a windows window 
  * (1997) : Jean-Philippe Chancelier 
- * 
  **************************************/
 
-#define  USE_CONSOLE
-#include "readline.c"
+#define _Windows
+#include "readline_Windows.c"

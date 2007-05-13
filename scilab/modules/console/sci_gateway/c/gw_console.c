@@ -23,8 +23,11 @@ static ConsoleTable Tab[]=
 {
 {C2F(sci_completion),"completion"},
 {C2F(sci_clc),"clc"},
-{C2F(sci_tohome),"tohome"}
-
+{C2F(sci_tohome),"tohome"},
+{C2F(sci_loadhistory),"loadhistory"},
+{C2F(sci_savehistory),"savehistory"},
+{C2F(sci_gethistory),"gethistory"},
+{C2F(sci_resethistory),"resethistory"}
 };
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_console)()

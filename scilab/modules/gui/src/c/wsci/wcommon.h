@@ -30,9 +30,9 @@
 #include "sciprint.h"
 
 /*-----------------------------------------------------------------------------------*/
-#define MAX_LINE_LEN 512	/* maximum number of chars allowed on line */
+
 #define MAX_ID_LEN 50		/* max length of an identifier */
-#define NO_CARET (-1)
+
 #define GBUFSIZE 512
 /*-----------------------------------------------------------------------------------*/
 typedef struct tagGFILE {
@@ -103,9 +103,7 @@ extern BOOL  DialogWindow();
 extern void add_history_nw();
 extern char * readline_nw (char *prompt, int interrupt);
 /*-----------------------------------------------------------------------------------*/
-/* readline */
-extern void add_history_win();
-extern char * readline_win (char *prompt,int interrupt);
+
 /*-----------------------------------------------------------------------------------*/
 /* wgmenu */
 extern int WGFindMenuPos( BYTE **macros);

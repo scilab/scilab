@@ -6,14 +6,21 @@
 # List of the c files
 CONSOLE_C_SOURCES = src/c/completion.c \
 src/c/clc.c \
-src/c/tohome.c
+src/c/tohome.c \
+src/c/history.c \
+src/c/zzledt_Linux.c
 
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/sci_completion.c \
 sci_gateway/c/gw_console.c \
 sci_gateway/c/sci_clc.c \
-sci_gateway/c/sci_tohome.c
+sci_gateway/c/sci_tohome.c \
+sci_gateway/c/sci_gethistory.c \
+sci_gateway/c/sci_loadhistory.c \
+sci_gateway/c/sci_resethistory.c \
+sci_gateway/c/sci_savehistory.c
+
 
 # Includes need for the compilation
 libsciconsole_la_CFLAGS=  -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/

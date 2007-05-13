@@ -177,33 +177,16 @@
 				>
 			</File>
 			<File
-				RelativePath=".\clipboard.c"
+				RelativePath=".\ChangeCursor.c"
 				>
 			</File>
 			<File
-				RelativePath="command.c"
+				RelativePath=".\CleanLine.c"
 				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="2"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\clipboard.c"
+				>
 			</File>
 			<File
 				RelativePath=".\CriticalSectionGraphicWindow.c"
@@ -324,56 +307,6 @@
 				>
 			</File>
 			<File
-				RelativePath="readcons.c"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="2"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="readwin.c"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="2"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-			</File>
-			<File
 				RelativePath=".\registry.c"
 				>
 			</File>
@@ -383,6 +316,14 @@
 			</File>
 			<File
 				RelativePath=".\ScilabXloop.c"
+				>
+			</File>
+			<File
+				RelativePath=".\SendChar.c"
+				>
+			</File>
+			<File
+				RelativePath=".\SetTextAttr.c"
 				>
 			</File>
 			<File
@@ -658,10 +599,6 @@
 					/>
 				</FileConfiguration>
 			</File>
-			<File
-				RelativePath=".\x_zzledt.c"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -757,6 +694,10 @@
 			</File>
 			<File
 				RelativePath=".\SciEnv.h"
+				>
+			</File>
+			<File
+				RelativePath=".\SetTextAttr.h"
 				>
 			</File>
 			<File

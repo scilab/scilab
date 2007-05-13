@@ -26,4 +26,9 @@
 <PRIMITIVE gatewayId="53" primitiveId="1" primitiveName="completion"/>
 <PRIMITIVE gatewayId="53" primitiveId="2" primitiveName="clc"/>
 <PRIMITIVE gatewayId="53" primitiveId="3" primitiveName="tohome"/>
+<PRIMITIVE gatewayId="53" primitiveId="4" primitiveName="loadhistory" />
+<PRIMITIVE gatewayId="53" primitiveId="5" primitiveName="savehistory" />
+<PRIMITIVE gatewayId="53" primitiveId="6" primitiveName="gethistory" />
+<PRIMITIVE gatewayId="53" primitiveId="7" primitiveName="resethistory" />
+
 </GATEWAY>

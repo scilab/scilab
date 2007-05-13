@@ -9,27 +9,20 @@
 #include <time.h>
 #include <stdlib.h>
 
-#ifdef	_MSC_VER
-  #include "wcommon.h" /* for BOOL */
-#else
+#ifndef	_MSC_VER
   #include "machine.h"
   extern char *getenv();
 #endif
 
 
-#ifdef  WITH_READLINE
-#include <readline/readline.h>
-#include <readline/history.h>
-#else 
 extern void write_history(char *filename); 
-#endif 
 extern void reset_history(void);
 
 #ifndef STRICT
   #define STRICT
 #endif
 
-#include "inffic.h" /* get_sci_data_strings */
+#include "../../core/src/c/inffic.h" /* get_sci_data_strings */
 #include "cluni0.h"
 
 extern void write_scilab  __PARAMS((char *s));
@@ -70,8 +63,5 @@ int C2F(gethistory) _PARAMS((char *fname)); /* Affiche le contenu de l'historiqu
 /*-----------------------------------------------------------------------------------*/
 void GetCommentDateSession(char *line,int BeginSession);
 int GetSaveHistoryAfterNcommands(void);
-
-#ifndef  WITH_READLINE
 int CreSmatFromHist(char *fname, int number, sci_hist *Parcours);
-#endif
 #endif 

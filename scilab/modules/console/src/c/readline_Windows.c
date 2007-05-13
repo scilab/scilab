@@ -1,34 +1,3 @@
-/*******************************************
- * Original source : GNUPLOT - readline.c 
- * modified for Scilab 
- *******************************************
- *
- * Copyright (C) 1986 - 1993   Thomas Williams, Colin Kelley
- *
- * Permission to use, copy, and distribute this software and its
- * documentation for any purpose with or without fee is hereby granted, 
- * provided that the above copyright notice appear in all copies and 
- * that both that copyright notice and this permission notice appear 
- * in supporting documentation.
- *
- * Permission to modify the software is granted, but not the right to
- * distribute the modified code.  Modifications are to be distributed 
- * as patches to released version.
- *  
- * This software is provided "as is" without express or implied warranty.
- * 
- *
- * AUTHORS
- *
- *   Original Software:
- *     Tom Tkacik
- *   Msdos port and some enhancements:
- *     Gershon Elber and many others.
- *   Scilab port 
- *     Jean-Philippe Chancelier 
- *     Allan CORNET 2004-2005 
-*/
-
 /***********************************************************
  * a small portable version of GNU's readline 
  * this is not the BASH or GNU EMACS version of READLINE due to Copyleft restrictions 
@@ -52,23 +21,17 @@
  * EOF with an empty line returns (char *)NULL 
  * all other characters are ignored 
  ***********************************************************/
-
 #include <stdio.h>
 #include <ctype.h>
 #include <signal.h>
 #include <conio.h>
 #include <string.h>
-
-#ifndef STRICT
-	#define STRICT
-#endif
-	
-#include "wcommon.h"
-#include "printf.h"	
-#include "wtext.h"
+#include <Windows.h>	
 #include "machine.h"
 #include "prompt.h"
-
+#include "MALLOC.h"
+#include "command.h"
+#include "../../gui/src/c/wsci/printf.h"
 /*-----------------------------------------------------------------------------------*/
 #define TEXTUSER 0xf1
 #define TEXTGNUPLOT 0xf0
@@ -87,19 +50,17 @@ struct sci_hist
     		struct sci_hist *next;
 };
 /*-----------------------------------------------------------------------------------*/
-extern BOOL PutLineInBuffer;
 extern char copycur_line[MAXBUF];
 char cur_line[MAXBUF];	/* current contents of the line */
 extern struct sci_hist *history;	/* voir history.c */
 extern struct sci_hist *cur_entry;
-extern LPTW Backuplptw;	
-extern TW textwin;
 /*-----------------------------------------------------------------------------------*/
-extern int MyGetCh (void);
 extern BOOL IsWindowInterface(void);
 extern struct sci_hist * SearchBackwardInHistory(char *line);
 extern int C2F(ismenu) ();
+extern int C2F (sxevents) ();
 extern int IsFromC(void);
+extern void  SignalCtrC(void);
 /*-----------------------------------------------------------------------------------*/
 static int cur_pos = 0;		/* current position of the cursor */
 static int max_pos = 0;		/* maximum character position */
@@ -118,6 +79,9 @@ static void copy_line ();
  * Send a string to scilab interaction window
  * as if it was typed by the user 
   ************************************/
+
+extern void SendChar(char c);
+
 #ifdef USE_CONSOLE
 void Write_Scilab_Console (char *buf)
 #else
@@ -143,7 +107,7 @@ void Write_Scilab_Window (char *buf)
 			d	= buffer;
 			while (*d)
 			{
-				SendMessage (textwin.hWndText, WM_CHAR, *d, 1L);
+				SendChar(*d);
 				d++;
 			}
 		}
@@ -156,6 +120,7 @@ void Write_Scilab_Window (char *buf)
 		copy_line (buf);
 	}
 }
+
 /*-----------------------------------------------------------------------------------*/
 /* user_putc and user_puts should be used in the place of
  * fputc(ch,stdout) and fputs(str,stdout) for all output
@@ -166,18 +131,18 @@ static int user_putc (int ch)
 {
 	int rv;
 
-	if (IsWindowInterface()) TextAttr (&textwin, TEXTUSER);
+	if (IsWindowInterface()) SetTextAttr(1);
 	
 	if (IsWindowInterface())
 	{
-		rv =MyFPutC (ch, stdout);
+		rv =MyFPutCstdout (ch);
 	}
 	else
 	{
-		rv = fputc (ch, stdout);
+		rv = fputc (ch,stdout);
 	}
 
-  	if (IsWindowInterface()) TextAttr (&textwin, TEXTGNUPLOT);
+  	if (IsWindowInterface()) SetTextAttr(2);
 	
   	return rv;
 }
@@ -186,7 +151,7 @@ static int user_puts (char *str)
 {
 	int rv;
 	
-  	if (IsWindowInterface()) TextAttr (&textwin, TEXTUSER);
+  	if (IsWindowInterface()) SetTextAttr(1);
 	
 	if (IsWindowInterface())
 	{
@@ -196,7 +161,7 @@ static int user_puts (char *str)
 	{
 		rv = fputs (str, stdout);
 	}
-   	if (IsWindowInterface()) TextAttr (&textwin, TEXTGNUPLOT);
+   	if (IsWindowInterface()) SetTextAttr(2);
   
   	return rv;
 }
@@ -240,7 +205,7 @@ static int NotTTyRead (char *prompt, char *buffer, int buf_size, int *eof)
       /** We are reading a file ==> no prompts : XXXXX to test **/
 		if (IsWindowInterface())
 		{
-			MyFPutS (SCIPROMPT, stdout);
+			MyFPutSstdout (SCIPROMPT);
 			/* read a line into the buffer, but not too* big */
 			*eof = (MyFGetS (buffer, buf_size, stdin) == NULL);
 			/* remove newline character if there */
@@ -475,7 +440,7 @@ char * readline_win (char *prompt,int interrupt)
   char *new_line;  /* unsigned char *new_line; */
   
   /* print the prompt */
-  if (sendprompt) MyFPutS (prompt, stdout);
+  if (sendprompt) MyFPutSstdout (prompt);
   sendprompt=1;
 
   cur_line[0] = '\0';
@@ -605,8 +570,8 @@ char * readline_win (char *prompt,int interrupt)
 	      break;
 	    case 014:		/* ^L */
 	    case 022:		/* ^R */
-	      MyFPutC ('\n', stdout);	/* go to a fresh line */
-	      MyFPutC ('\n', stdout);
+	      MyFPutCstdout ('\n');	/* go to a fresh line */
+	      MyFPutCstdout ('\n');
 	      redraw_line (prompt);
 	      break;
 	    case 0177:		/* DEL */
@@ -666,7 +631,7 @@ char * readline_win (char *prompt,int interrupt)
 			}
 		    else
 			{
-				MyFPutC ('\n', stdout);
+				MyFPutCstdout ('\n');
 				new_line = (char *) alloc ((unsigned long) (strlen (cur_line) + 1), "history");
 				strcpy (new_line, cur_line);
 				return (new_line);
@@ -690,7 +655,7 @@ static void redraw_line (prompt)
   int i;
   if (IsWindowInterface())
   {
-	  MyFPutS (prompt, stdout);
+	  MyFPutSstdout (prompt);
   }
   else
   {
@@ -734,15 +699,15 @@ static void clear_line (prompt)
   {
 	   if (IsWindowInterface())
 	   {
-		    MyFPutC (SPACE, stdout);
+		    MyFPutCstdout (SPACE);
 	   }
 	   else putc (SPACE, stdout);
   }
 
   if (IsWindowInterface())
   {
-	  MyFPutC ('\r', stdout);
-	  MyFPutS (prompt, stdout);
+	  MyFPutCstdout ('\r');
+	  MyFPutSstdout (prompt);
   }
   else
   {
@@ -763,7 +728,7 @@ static void clear_eoline (prompt)
   for (i = cur_pos; i < max_pos; i++)
 	  if (IsWindowInterface())
 	  {
-		  MyFPutC (SPACE, stdout);
+		  MyFPutCstdout (SPACE);
 	  }
 	  else
 	  {
@@ -779,7 +744,7 @@ static void copy_line (line)
 {
   strcpy (cur_line, line);
   user_puts (cur_line);
-  cur_pos = max_pos = strlen (cur_line);
+  cur_pos = max_pos = (int)strlen (cur_line);
 }
 /*-----------------------------------------------------------------------------------*/
 /* Convert Arrow keystrokes to Control characters: */

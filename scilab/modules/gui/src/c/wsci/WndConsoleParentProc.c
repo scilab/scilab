@@ -19,6 +19,7 @@ extern BOOL ReceiveFromAnotherScilab(HWND hWndSend,PCOPYDATASTRUCT MyCopyDataStr
 extern BOOL GetCommandFromAnotherScilab(char *TitleWindowSend,char *CommandLine);
 extern BOOL ActivateTransparencyMode(HWND hWnd);
 extern BOOL SetIhmSystemDefaultTextColor(void);
+extern char *getCopyCurrentLine(void);
 /*-----------------------------------------------------------------------------------*/
 extern POINT ScreenMinSize;
 extern char ScilexConsoleName[MAX_PATH];
@@ -218,11 +219,18 @@ BOOL ON_WND_CONSOLE_WM_COMMAND(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify)
 BOOL ON_WND_CONSOLE_WM_EXITSIZEMOVE(void)
 {
 	LPTW lptw=GetTextWinScilab();
-	extern char copycur_line[1024];
+	char *copycur_line = NULL;
 
 	WriteRegistryTxt(lptw); /* Sauvegarde Position apres deplacement et redimensionnement */
 	SendCTRLandAKey(CTRLU); /* Scrollbar */
-	WriteIntoKeyBuffer(lptw,copycur_line);
+	copycur_line=getCopyCurrentLine();
+	if (copycur_line)
+	{
+		WriteIntoKeyBuffer(lptw,copycur_line);
+		FREE(copycur_line);
+		copycur_line = NULL;
+	}
+	
 	return TRUE;
 }
 /*-----------------------------------------------------------------------------------*/

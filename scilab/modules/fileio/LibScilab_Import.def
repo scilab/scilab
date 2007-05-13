@@ -42,7 +42,6 @@ EXPORTS
  getmatdims_
  overload_
  vartype_
- zzledt_
  xscion_
  returnanan_
  SetFileModeOpenedInScilab

@@ -70,6 +70,7 @@ extern BOOL IsWindowInterface(void);
 extern void AddHistory (char *line);
 extern void GetCommentDateSession(char *line,int BeginSession);
 extern void WINAPI FilesAssociationBox (HWND hwnd);
+extern void DisablePutLineInBuffer(void);
 /*-----------------------------------------------------------------------------------*/
 static integer lab_count = 0;
 static char gwin_name[100], gwin_name1[100];
@@ -138,16 +139,16 @@ void Callback_OPEN(void)
 	    			
 	if ( OpenSaveSCIFile(lptw->hWndParent,TitleText,TRUE,"Files *.sce;*.sci\0*.sci;*.sce\0Files *.sci\0*.sci\0Files *.sce\0*.sce\0All *.*\0*.*\0",File) == TRUE)
 	{
-		extern BOOL PutLineInBuffer;
+
 		char CommandBis[512];
 		GetShortPathName(File,ShortFile,MAX_PATH);
 		wsprintf(command,"%cscipad('%s');",CTRLU,ShortFile);
 		wsprintf(CommandBis,"scipad('%s');",ShortFile);
 
-		PutLineInBuffer=FALSE;
+		DisablePutLineInBuffer();
 		if (IsToThePrompt ()) StoreCommand1(command,1);
 		else StoreCommand(CommandBis);
-		PutLineInBuffer=FALSE;
+		DisablePutLineInBuffer();
 		
 	}
 }
@@ -513,13 +514,13 @@ void Callback_CONSOLE(void)
 void Callback_SCIPAD(void)
 {
 	char Command[512];
-	extern BOOL PutLineInBuffer;
+
 	wsprintf(Command,"%cscipad();",CTRLU);
 
-    PutLineInBuffer=FALSE;
+	DisablePutLineInBuffer();
 	if (IsToThePrompt ()) StoreCommand1(Command,1);
 	else StoreCommand("scipad();");
-	PutLineInBuffer=FALSE;
+	DisablePutLineInBuffer();
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_HELP(void)
@@ -528,10 +529,10 @@ void Callback_HELP(void)
 	extern BOOL PutLineInBuffer;
 	wsprintf(Command,"%chelp();",CTRLU);
 
-	PutLineInBuffer=FALSE;
+	DisablePutLineInBuffer();
 	if (IsToThePrompt ()) StoreCommand1(Command,1);
 	else StoreCommand("help();");
-	PutLineInBuffer=FALSE;
+	DisablePutLineInBuffer();
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_DEMOS(void)

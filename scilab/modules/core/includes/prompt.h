@@ -6,6 +6,8 @@
 #define _PROMPT_H_
 /* Define prompts of Scilab */
 
+#include "machine.h" /* C2F */
+
 #ifdef SCIPROMPT
 #undef SCIPROMPT
 #endif

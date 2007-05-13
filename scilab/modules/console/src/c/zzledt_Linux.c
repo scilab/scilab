@@ -231,9 +231,20 @@ extern char * getfilenamehistory(void);
 
 extern void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,	int *menusflag,int * modex,long int dummy1);
 
-int NumberOfCommands=0;
+static int NumberOfCommands=0;
 
 /*-------------- End of Declarations  specific for console mode-----------------  */
+int getNumberOfCommands(void)
+{
+	return NumberOfCommands;
+}
+/*-----------------------------------------------------------------------------------*/
+void resetNumberOfCommands(void)
+{
+	NumberOfCommands = 0;
+}
+/*-----------------------------------------------------------------------------------*/
+
 
 /***********************************************************************
  * line editor
@@ -653,7 +664,7 @@ extern void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
   
   /* see savehistory */
   NumberOfCommands++;
-  if ( ( GetSaveHistoryAfterNcommands() == NumberOfCommands ) && ( GetSaveHistoryAfterNcommands() > 0) )
+  if ( ( GetSaveHistoryAfterNcommands() == getNumberOfCommands() ) && ( GetSaveHistoryAfterNcommands() > 0) )
   {
 	  char *filenamehistory=NULL;
 	
@@ -661,7 +672,7 @@ extern void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 	  write_history( filenamehistory );
 	  free(filenamehistory);
 
-	  NumberOfCommands=0;
+	  resetNumberOfCommands();
   }
   
   return;

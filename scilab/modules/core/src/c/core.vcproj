@@ -306,10 +306,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\history.c"
-				>
-			</File>
-			<File
 				RelativePath=".\inffic.c"
 				>
 			</File>
@@ -506,10 +502,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_gethistory.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_getmd5.c"
 				>
 			</File>
@@ -582,10 +574,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_loadhistory.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_macr2lst.c"
 				>
 			</File>
@@ -610,19 +598,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_resethistory.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_resume.c"
 				>
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_return.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_savehistory.c"
 				>
 			</File>
 			<File
@@ -847,11 +827,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\fromjava.h"
+				RelativePath=".\fromjava.h"
 				>
 			</File>
 			<File
-				RelativePath=".\fromjava.h"
+				RelativePath="..\..\includes\fromjava.h"
 				>
 			</File>
 			<File
@@ -903,10 +883,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\history.h"
-				>
-			</File>
-			<File
 				RelativePath=".\inffic.h"
 				>
 			</File>
@@ -920,10 +896,6 @@
 			</File>
 			<File
 				RelativePath=".\InitScilab.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\InitScilab.h"
 				>
 			</File>
 			<File
