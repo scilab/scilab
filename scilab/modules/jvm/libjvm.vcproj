@@ -237,11 +237,15 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_jvm_version.c"
+				RelativePath=".\sci_gateway\c\sci_system_getproperty.c"
 				>
 			</File>
 			<File
 				RelativePath=".\sci_gateway\c\sci_with_embedded_jre.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\system_getproperty.c"
 				>
 			</File>
 			<File
@@ -296,6 +300,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\resource.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\system_getproperty.h"
 				>
 			</File>
 			<File

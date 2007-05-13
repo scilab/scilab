@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>ver</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>$LastChangedDate: 2007-05-10 09:26:08 +0200$</DATE>
+
+  <SHORT_DESCRIPTION name="ver">Version information for Scilab</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>ver()</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  
+  <DESCRIPTION>
+    <P>Version information for Scilab.</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[ver
+]]></EXAMPLE>
+
+  <AUTHOR>A.C</AUTHOR>
+</MAN>

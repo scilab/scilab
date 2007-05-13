@@ -54,7 +54,7 @@ char **getClasspath(int *sizeClasspathArray)
 						string = (char*)MALLOC(sizeof(char)*(strlen(str)+1));
 
 						#if _MSC_VER
-						if (strlen(str) > 6) strcpy(string,&str[6]);
+						if (strlen(str) > 1) strcpy(string,&str[1]);
 						#else
 						if (strlen(str) > 5) strcpy(string,&str[5]);
 						#endif

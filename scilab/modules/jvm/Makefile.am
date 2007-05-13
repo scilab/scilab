@@ -9,13 +9,14 @@ src/c/JVM_Unix.c \
 src/c/JVM.c \
 src/c/JniUtils.c \
 src/c/addToClasspath.c \
-src/c/getClasspath.c
+src/c/getClasspath.c \
+src/c/system_getproperty.c
 
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_jvm.c \
 sci_gateway/c/sci_jvm_version.c \
 sci_gateway/c/sci_with_embedded_jre.c \
-sci_gateway/c/sci_javaclasspath.c
+sci_gateway/c/sci_system_getproperty.c
 
 
 libscijvm_la_CFLAGS=  $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/libs/MALLOC/includes/ -Iincludes/ -Isrc/c

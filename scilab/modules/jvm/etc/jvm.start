@@ -3,8 +3,8 @@
 // Copyright INRIA 2006
 // ====================================================================
 //Load  functions librarie
-//load('SCI/modules/jvm/macros/lib');
 if (getscilabmode()<>'NWNI') then
+  load('SCI/modules/jvm/macros/lib');
   javaclasspath(SCI+'/java/jar/modules/jvm.jar')
 end  
 // ====================================================================

@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>system_getproperty</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>$LastChangedDate: 2007-05-10 09:26:08 +0200$</DATE>
+
+  <SHORT_DESCRIPTION name="system_getproperty">gets the system property
+  indicated by a specified key.</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>res=system_getproperty(key)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>javaclasspath(path)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>res</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: a string value</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>key</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: a string</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>gets the system property indicated by a specified key.</P>
+
+    <TABLE>
+      
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>java.version</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>Java Runtime Environment version</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW> 
+
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>java.vendor</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>Java Runtime Environment vendor</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW> 
+
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>java.vendor.url</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>Java vendor URL</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW> 
+
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>java.home</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>Java installation directory</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW> 
+
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>java.vm.specification.version</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>Java Virtual Machine specification version</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW> 
+
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>java.vm.specification.vendor</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>Java Virtual Machine specification vendor</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW> 
+
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>java.vm.specification.name</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>Java Virtual Machine specification name</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW> 
+
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>java.vm.version</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>Java Virtual Machine implementation version</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW> 
+
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>java.vm.vendor</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>Java Virtual Machine implementation vendor</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW> 
+
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>java.vm.name</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>Java Virtual Machine implementation name</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW> 
+
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>java.specification.version</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>Java Runtime Environment specification version</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW> 
+
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>java.specification.vendor</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>Java Runtime Environment specification vendor</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW> 
+
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>java.specification.name</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>Java Runtime Environment specification name</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW> 
+
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>java.class.version</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>Java class format version number</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW> 
+
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>java.class.path</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>Java class path</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW> 
+
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>java.library.path</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>List of paths to search when loading libraries</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW> 
+
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>java.io.tmpdir</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>Default temp file path</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW> 
+
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>java.compiler</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>Name of JIT compiler to use</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW> 
+
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>java.ext.dirs</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>Path of extension directory or directories</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW> 
+
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>os.name</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>Operating system name</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW> 
+
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>os.arch</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>Operating system architecture</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW> 
+
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>os.version</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>Operating system version</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW> 
+
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>file.separator</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>File separator ("/" on UNIX)</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW> 
+
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>path.separator</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>Path separator (":" on UNIX)</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW> 
+
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>line.separator Line separator</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>("\n" on UNIX)</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW> 
+
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>user.name</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>User's account name</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW> 
+
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>user.home</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>User's home directory</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW> 
+
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>user.dir</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>User's current working directory</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW> 
+      
+    </TABLE>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[system_getproperty('awt.toolkit')
+system_getproperty('file.encoding')
+system_getproperty('file.encoding.pkg')
+system_getproperty('java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment')
+system_getproperty('java.awt.printerjob=sun.awt.windows.WPrinterJob')
+system_getproperty('java.class.path')
+system_getproperty('java.class.version')
+system_getproperty('java.endorsed.dirs')
+system_getproperty('java.ext.dirs')
+system_getproperty('java.home')
+system_getproperty('java.io.tmpdir')
+system_getproperty('java.library.path')
+system_getproperty('java.runtime.name')
+system_getproperty('java.runtime.version')
+system_getproperty('java.specification.name')
+system_getproperty('java.specification.vendor')
+system_getproperty('java.specification.version')
+system_getproperty('java.vendor')
+system_getproperty('java.vendor.url')
+system_getproperty('java.vendor.url.bug')
+system_getproperty('java.version')
+system_getproperty('java.vm.info')
+system_getproperty('java.vm.name')
+system_getproperty('java.vm.specification.name')
+system_getproperty('java.vm.specification.vendor')
+system_getproperty('java.vm.specification.version')
+system_getproperty('java.vm.vendor')
+system_getproperty('java.vm.version')
+system_getproperty('line.separator')
+system_getproperty('os.arch')
+system_getproperty('os.name')
+system_getproperty('os.version')
+system_getproperty('path.separator')
+system_getproperty('sun.arch.data.model')
+system_getproperty('sun.boot.class.path')
+system_getproperty('sun.boot.library.path')
+system_getproperty('sun.cpu.endian')
+system_getproperty('sun.cpu.isalist')
+system_getproperty('sun.desktop')
+system_getproperty('sun.io.unicode.encoding')
+system_getproperty('sun.jnu.encoding')
+system_getproperty('sun.management.compiler')
+system_getproperty('sun.os.patch.level')
+system_getproperty('user.country')
+system_getproperty('user.dir')
+system_getproperty('user.home')
+system_getproperty('user.language')
+system_getproperty('user.name')
+system_getproperty('user.timezone')
+system_getproperty('user.variant')
+]]></EXAMPLE>
+
+  <AUTHOR>A.C</AUTHOR>
+</MAN>

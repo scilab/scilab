@@ -1,5 +1,5 @@
 //------------------------------------
 // Allan CORNET INRIA 2005
 //------------------------------------
-//genlib('jvmlib','SCI/modules/jvm/macros');
+genlib('jvmlib','SCI/modules/jvm/macros');
 //------------------------------------

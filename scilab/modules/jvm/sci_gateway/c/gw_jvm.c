@@ -24,7 +24,7 @@ typedef struct table_struct
 static jvmTable Tab[]=
 {
 	{C2F(sci_with_embedded_jre),"with_embedded_jre"},
-	{C2F(sci_jvm_version),"jvm_version"},
+	{C2F(sci_system_getproperty),"system_getproperty"},
 	{C2F(sci_javaclasspath),"javaclasspath"}
 };
 /*-----------------------------------------------------------------------------------*/
