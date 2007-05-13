@@ -1,0 +1,3 @@
+  * First version of the console module
+
+  -- Allan CORNET  13/05/2007
