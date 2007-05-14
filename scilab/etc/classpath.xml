@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE CLASSPATH SYSTEM "../modules/jvm/xml/classpath.dtd">
+<!-- =================== -->
+<!--
+ default CLASSPATH for Scilab
+
+ @author Allan CORNET
+ @date INRIA 2007
+ ===================
+ Don't touch if you do not know what you are doing
+-->
+<!-- =================== -->
+
+<CLASSPATH>
+<CLASS path="$SCILAB/bin"/>
+<CLASS path="$SCILAB/java/jar/modules"/>
+<CLASS path="$SCILAB/java/jar/externals"/>
+<CLASS path="$SCILAB/java/jar/toolboxes"/>
+<CLASS path="$SCILAB/java/jar/modules/jvm.jar"/>
+<CLASS path="$SCILAB/java/jar/modules/console.jar"/>
+<CLASS path="$SCILAB/java/jar/modules/javasci.jar"/>
+<CLASS path="$SCILAB/java/jar/modules/graphics.jar"/>
+<CLASS path="$SCILAB/java/jar/externals/jogl.jar"/>
+<CLASS path="$SCILAB/java/jar/externals/gluegen-rt.jar"/>
+</CLASSPATH>
