@@ -316,6 +316,22 @@
 				>
 			</File>
 		</Filter>
+		<Filter
+			Name="Java classes"
+			>
+			<File
+				RelativePath="..\java\console\org\scilab\modules\console\ScilabConsole.java"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Ant"
+			>
+			<File
+				RelativePath="..\java\console\build.xml"
+				>
+			</File>
+		</Filter>
 		<File
 			RelativePath="..\..\console.iss"
 			>

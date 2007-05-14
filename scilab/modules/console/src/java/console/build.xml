@@ -13,12 +13,7 @@ INRIA 2007
   <description>
 			build console module
   </description>
-	
-  <path id="classpath">
-  	<fileset dir="${rootdirectory}/java/jar/externals" includes="**/jvm.jar"/>
-  </path>
 
-  
 	<target name="checkstyle-scilab">
 		<checkstyle config="${rootdirectory}/checkstyle/scilab_checkstyle_convention.xml">
   		<fileset dir="${src}" includes="**/*.java"/>
@@ -42,7 +37,7 @@ INRIA 2007
 -->
   <target name="compile" description="build sources" depends="init">
   	<mkdir dir="build/classes"/>
-    <javac srcdir="${src}" destdir="build/classes" classpathref="classpath"/>
+    <javac srcdir="${src}" destdir="build/classes"/>
   </target>
 
   <target name="jar" description="do .jar file" depends="compile">

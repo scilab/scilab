@@ -11,7 +11,8 @@ src/c/JniUtils.c \
 src/c/addToClasspath.c \
 src/c/getClasspath.c \
 src/c/system_getproperty.c \
-src/c/loadClasspath.c
+src/c/loadClasspath.c \
+src/c/createMainScilabObject.c
 
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_jvm.c \

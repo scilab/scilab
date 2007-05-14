@@ -9,13 +9,16 @@ import org.scilab.modules.console.ScilabConsole;
 public class Scilab {
 	
 	private ScilabConsole console;
+	
 	private int mode;
 	/**
 	 * Constructor Scilab Class.
 	 * @param mode Mode Scilab -NW -NWNI -STD -API
 	 */
 	public Scilab(int mode) {
-		this.mode = mode; 
+		this.mode = mode;
+		console = new ScilabConsole();
+        console.printf("First Step\n");
 	}
 }
 /*--------------------------------------------------------------------------*/

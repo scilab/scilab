@@ -205,6 +205,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\createMainScilabObject.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\DllmainJvm.c"
 				>
 			</File>
@@ -267,6 +271,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\createMainScilabObject.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getClasspath.h"
 				>
 			</File>
@@ -276,6 +284,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\getScilabJNIEnv.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\getScilabObject.h"
 				>
 			</File>
 			<File
@@ -349,7 +361,7 @@
 			Name="Ant"
 			>
 			<File
-				RelativePath=".\src\java\build.xml"
+				RelativePath=".\src\java\jvm\build.xml"
 				>
 			</File>
 		</Filter>
@@ -358,6 +370,10 @@
 			>
 			<File
 				RelativePath=".\src\java\org\scilab\modules\jvm\ClassPath.java"
+				>
+			</File>
+			<File
+				RelativePath=".\src\java\jvm\org\scilab\modules\jvm\Scilab.java"
 				>
 			</File>
 		</Filter>

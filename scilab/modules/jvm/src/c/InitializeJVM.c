@@ -9,6 +9,7 @@
 #include "setgetSCIpath.h"
 #include "MALLOC.h"
 #include "JVM.h"
+#include "createMainScilabObject.h"
 /*-----------------------------------------------------------------------------------*/ 
 BOOL InitializeJVM(void)
 {
@@ -35,6 +36,8 @@ BOOL InitializeJVM(void)
 		sprintf(classpathfile,xmlclasspath,SCIPATH);
 		LoadClasspath(classpathfile);
 		if (classpathfile) {FREE(classpathfile); classpathfile = NULL;}
+
+		bOK = createMainScilabObject();
 	}
 
 	if (SCIPATH) {FREE(SCIPATH);SCIPATH=NULL;}
