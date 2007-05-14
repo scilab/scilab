@@ -155,7 +155,7 @@ static int user_puts (char *str)
 	
 	if (IsWindowInterface())
 	{
-		rv =MyFPutS (str, stdout);
+		rv =MyFPutSstdout (str);
 	}
 	else
 	{
