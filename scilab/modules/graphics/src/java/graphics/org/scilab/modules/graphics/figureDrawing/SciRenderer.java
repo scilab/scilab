@@ -8,28 +8,36 @@
 
 package org.scilab.modules.graphics.figureDrawing;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.io.* ;
+import javax.media.opengl.GLEventListener;
+import javax.media.opengl.GLAutoDrawable;
+import javax.media.opengl.GL;
+import javax.media.opengl.glu.GLU;
 
-//import net.java.games.jogl.*;
-import javax.media.opengl.* ;
-import javax.media.opengl.glu.* ;
-import com.sun.opengl.util.* ;
-import com.sun.opengl.impl.* ;
-import javax.swing.JFrame;
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
 
+/**
+ * GLEventListener used by Scilab
+ * @author Jean-Baptiste Silvy silvy
+ */
 public class SciRenderer
-  implements GLEventListener, KeyListener
-{
+  implements GLEventListener, KeyListener {
   
+	private boolean isInit;
+	
+	/**
+	 * Default constructor
+	 */
+	public SciRenderer() {
+		isInit = false;
+	}
+	
   /** Called by the drawable to initiate OpenGL rendering by the client.
    * After all GLEventListeners have been notified of a display event, the 
    * drawable will swap its buffers if necessary.
    * @param gLDrawable The GLDrawable object.
    */    
-  public void display(GLAutoDrawable gLDrawable)
-    {
+  public void display(GLAutoDrawable gLDrawable) {
       // should call the draw function of the corresponding figure
     }
     
@@ -39,16 +47,15 @@ public class SciRenderer
    * @param modeChanged Indicates if the video mode has changed.
    * @param deviceChanged Indicates if the video device has changed.
    */
-  public void displayChanged(GLAutoDrawable gLDrawable, boolean modeChanged, boolean deviceChanged) {}
+  public void displayChanged(GLAutoDrawable gLDrawable, boolean modeChanged, boolean deviceChanged) { }
 	     
   /** Called by the drawable immediately after the OpenGL context is 
    * initialized for the first time. Can be used to perform one-time OpenGL 
    * initialization such as setup of lights and display lists.
    * @param gLDrawable The GLDrawable object.
    */
-  public void init(GLAutoDrawable gLDrawable)
-    {
-      if ( isInit ) { return ; }
+  public void init(GLAutoDrawable gLDrawable) {
+      if (isInit) { return; }
 
       final GL gl = gLDrawable.getGL();
       gl.glShadeModel(GL.GL_SMOOTH);              // Enable Smooth Shading
@@ -59,7 +66,7 @@ public class SciRenderer
       gl.glHint(GL.GL_PERSPECTIVE_CORRECTION_HINT, GL.GL_NICEST);	// Really Nice Perspective Calculations
       gLDrawable.addKeyListener(this);
       
-      isInit = true ;
+      isInit = true;
 
     }
     
@@ -80,13 +87,14 @@ public class SciRenderer
   public void reshape(GLAutoDrawable gLDrawable, int x, int y, int width, int height)
     {
       final GL gl = gLDrawable.getGL();
-      final GLU glu = new GLU() ;
+      final GLU glu = new GLU();
+      float h = 1.0f; 
 
-      if (height <= 0) // avoid a divide by zero error!
-      {
-        height = 1 ;
+      if (height > 0) {
+        // avoid a divide by zero error!
+        h = (float) height;
       }
-      final float h = (float)width / (float)height;
+      h = (float) width / h;
       gl.glMatrixMode(GL.GL_PROJECTION);
       gl.glLoadIdentity();
       glu.gluPerspective(45.0f, h, 1.0, 20.0);
@@ -100,18 +108,12 @@ public class SciRenderer
    * a key pressed event.
    * @param e The KeyEvent.
    */
-  public void keyPressed(KeyEvent e)
-    {
-      if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
-      {
+  public void keyPressed(KeyEvent e) {
+	  if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
         System.out.println("Escape key pressed");
-      }
-      else if (e.getKeyCode() == KeyEvent.VK_RIGHT)
-      {
-        System.out.println("Right Key pressed");
-      }
-      else if (e.getKeyCode() == KeyEvent.VK_RIGHT)
-      {
+	  } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+		  System.out.println("Right Key pressed");
+      } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
         System.out.println("Left Key pressed");
       }
     }
@@ -121,16 +123,14 @@ public class SciRenderer
    * a key released event.
    * @param e The KeyEvent.
    */
-  public void keyReleased(KeyEvent e) {}
+  public void keyReleased(KeyEvent e) { }
     
   /** Invoked when a key has been typed.
    * See the class description for {@link KeyEvent} for a definition of
    * a key typed event.
    * @param e The KeyEvent.
    */
-  public void keyTyped(KeyEvent e) {}
+  public void keyTyped(KeyEvent e) { }
 
-
-  private boolean isInit = false ;
 
 }
