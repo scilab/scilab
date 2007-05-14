@@ -70,6 +70,7 @@ BOOL LoadClasspath(char *xmlfilename)
 						SCIPATH=getSCIpath();
 						
 						strncpy(firstchars,CLASSPATH,strlen(KEYWORDSCILAB));
+						firstchars[strlen(KEYWORDSCILAB)]='\0';
 
 						if (strcmp(firstchars,KEYWORDSCILAB)==0)
 						{
