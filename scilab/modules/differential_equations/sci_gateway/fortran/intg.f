@@ -77,7 +77,7 @@ c
          call dqag0(bintg,a,b,epsa,epsr,val,abserr,
      +        stk(lpal),lw,stk(lpali),liw,ifail)
       endif
-      if(err.gt.0)return
+      if(err.gt.0.or.err1.gt.0)return
       if(ifail.gt.0) then
          call error(24)
          return
