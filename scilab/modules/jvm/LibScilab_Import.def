@@ -20,4 +20,5 @@ Scierror
 createvar_
 IsFromJava
 createvarfromptr_
+GetXmlFileEncoding
 

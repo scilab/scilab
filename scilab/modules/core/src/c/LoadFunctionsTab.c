@@ -6,6 +6,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <libxml/xpath.h>
+#include <libxml/xmlreader.h>
 #include "machine.h"
 #include "hashtable_core.h"
 #include "getmodules.h"
@@ -92,6 +94,7 @@ static BOOL Load_primitives_from_file(char *filename)
 			if (doc == NULL) 
 			{
 				printf("Error: could not parse file %s\n", filename);
+				if (encoding) {FREE(encoding);encoding=NULL;}
 				return bOK;
 			}
 

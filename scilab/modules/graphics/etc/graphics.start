@@ -3,10 +3,6 @@
 // Copyright INRIA 2006
 // ====================================================================
 if (getscilabmode() <> 'NWNI') then
-// Load graphics classes
-javaclasspath(SCI+'/java/jar/modules/graphics.jar')
-javaclasspath(SCI+'/java/jar/externals/jogl.jar')
-javaclasspath(SCI+'/java/jar/externals/gluegen-rt.jar')
 // ====================================================================
 //Load  functions librarie
 load('SCI/modules/graphics/macros/lib');

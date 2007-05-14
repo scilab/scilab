@@ -10,7 +10,8 @@ src/c/JVM.c \
 src/c/JniUtils.c \
 src/c/addToClasspath.c \
 src/c/getClasspath.c \
-src/c/system_getproperty.c
+src/c/system_getproperty.c \
+src/c/loadClasspath.c
 
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_jvm.c \
@@ -19,9 +20,9 @@ sci_gateway/c/sci_with_embedded_jre.c \
 sci_gateway/c/sci_javaclasspath.c
 
 
-libscijvm_la_CFLAGS=  $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/libs/MALLOC/includes/ -Iincludes/ -Isrc/c
+libscijvm_la_CFLAGS=  $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/libs/MALLOC/includes/ -Iincludes/ -Isrc/c $(XML_FLAGS)
 
-libscijvm_la_LDFLAGS = $(JAVA_JNI_LIBS) -lpthread -ldl
+libscijvm_la_LDFLAGS = $(JAVA_JNI_LIBS) -lpthread -ldl $(XML_LIBS)
 
 pkglib_LTLIBRARIES = libscijvm.la
 

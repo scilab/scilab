@@ -5,7 +5,6 @@
 //Load  functions librarie
 if (getscilabmode()<>'NWNI') then
   load('SCI/modules/jvm/macros/lib');
-  javaclasspath(SCI+'/java/jar/modules/jvm.jar')
 end  
 // ====================================================================
 //add help chapter

@@ -3,7 +3,9 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
 #include <stdlib.h>
+#include <stdio.h>
 #include "InitializeJVM.h"
+#include "loadClasspath.h"
 #include "setgetSCIpath.h"
 #include "MALLOC.h"
 #include "JVM.h"
@@ -24,6 +26,15 @@ BOOL InitializeJVM(void)
 #else
 		printf("\n Error : Scilab can't open jvm library.\n");
 #endif
+	}
+	else
+	{
+		#define xmlclasspath "%s/etc/classpath.xml"
+		char *classpathfile = NULL;
+		classpathfile = (char*)MALLOC(sizeof(char)*(strlen(SCIPATH)+strlen(xmlclasspath)+1));
+		sprintf(classpathfile,xmlclasspath,SCIPATH);
+		LoadClasspath(classpathfile);
+		if (classpathfile) {FREE(classpathfile); classpathfile = NULL;}
 	}
 
 	if (SCIPATH) {FREE(SCIPATH);SCIPATH=NULL;}
