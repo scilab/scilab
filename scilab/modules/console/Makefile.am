@@ -24,7 +24,9 @@ sci_gateway/c/sci_savehistory.c
 
 
 # Includes need for the compilation
-libsciconsole_la_CFLAGS=  -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/
+libsciconsole_la_CFLAGS= $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/
+
+libsciconsole_la_LDFLAGS = $(JAVA_JNI_LIBS)
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding 
 # the system)
