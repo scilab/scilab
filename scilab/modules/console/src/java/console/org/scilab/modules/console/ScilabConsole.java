@@ -9,6 +9,15 @@ public class ScilabConsole {
 	 */
 	public ScilabConsole() {
 	}
+	
+	/**
+	 * print a string in console.
+	 * @param line a line to print
+
+	 */
+	public void printf(String line) {
+		System.out.print(line);
+	}
 }
 /*--------------------------------------------------------------------------*/
 

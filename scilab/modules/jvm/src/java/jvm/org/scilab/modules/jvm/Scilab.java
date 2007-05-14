@@ -1,9 +1,14 @@
 package org.scilab.modules.jvm;
+
+import org.scilab.modules.console.ScilabConsole;
+
 /**
  * Main Class for Scilab
  * @author Allan CORNET INRIA 2007
   */
 public class Scilab {
+	
+	private ScilabConsole console;
 	private int mode;
 	/**
 	 * Constructor Scilab Class.
