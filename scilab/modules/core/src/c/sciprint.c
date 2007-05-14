@@ -131,6 +131,7 @@ int  sciprint2(int iv,char *fmt,...)
 #endif
 
 		  lstr=strlen(s_buf);
+		  ConsolePrintf(s_buf);
 		  C2F(xscisncr)(s_buf,&lstr,0L);
 	  }
 
