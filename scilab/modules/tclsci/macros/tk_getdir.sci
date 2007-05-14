@@ -3,6 +3,7 @@ function p=tk_getdir(startdir,title)
   arg=''
   if exists("startdir","local")==1 then 
     startdir=pathconvert(startdir,%f,%t)
+    startdir=strsubst(startdir,"\","/")
     arg=arg+" -initialdir {"+startdir+"}"
   end
   if exists("title","local")==1 then arg=arg+" -title {"+title+"}",end
