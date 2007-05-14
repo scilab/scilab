@@ -8,7 +8,8 @@ CONSOLE_C_SOURCES = src/c/completion.c \
 src/c/clc.c \
 src/c/tohome.c \
 src/c/history.c \
-src/c/zzledt_Linux.c
+src/c/zzledt_Linux.c \
+src/c/ConsolePrintf.c
 
 
 # List of the gateway c files
