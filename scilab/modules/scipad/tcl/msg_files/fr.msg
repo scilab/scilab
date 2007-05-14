@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.108
+# in sync at least with v6.109
 
 
 # commons
@@ -173,6 +173,7 @@
 ::msgcat::mcset fr "Watch" "Espions"
 ::msgcat::mcset fr "Watch variables:" "Variables espions :"
 ::msgcat::mcset fr "A&uto (local variables)" "A&uto (variables locales)"
+::msgcat::mcset fr "Au&to watch globals too" "Espionner aussi les &globales"
 ::msgcat::mcset fr "Call stack:" "Pile des appels :"
 ::msgcat::mcset fr "&Always on top" "Toujours à l'&avant-plan"
 ::msgcat::mcset fr "Hide watch &variables" "Cacher les &variables"
@@ -349,9 +350,9 @@
                    " ce que vous tentez d'espionner est de type "
     ::msgcat::mcset fr " - this type is not supported by the debugger" \
                        " - ce type n'est pas supporté par le débuggueur"
-::msgcat::mcset fr "Type:" "Type:"
+::msgcat::mcset fr "Type:" "Type :"
 ::msgcat::mcset fr "(unsupported)" "(non supporté)"
-::msgcat::mcset fr "size:" "taille:"
+::msgcat::mcset fr "size:" "taille :"
 ::msgcat::mcset fr "real" "réel"
 ::msgcat::mcset fr "complex" "complexe"
 ::msgcat::mcset fr "elements" "éléments"

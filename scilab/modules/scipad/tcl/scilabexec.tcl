@@ -266,10 +266,6 @@ proc ScilabEval_lt {comm {opt1 ""} {opt2 ""}} {
             set splitsize 4000 ;# arbitrary but works up to approx. 4095
             set nbparts [expr {[string length $comm] / $splitsize + 1}]
             set fid [open $fname w]
-            # mode(-1) to prevent Scilab to echo the commands passed to the temporary
-            # file - only "mode(-1)" will be displayed in the Scilab shell when the
-            # ScilabEval "exec ..." below gets executed
-            puts $fid "mode(-1);"
             set startpos 0
             for {set i 1} {$i < $nbparts} {incr i} {
                 set stoppos  [expr {$i * $splitsize - 1}]
@@ -281,7 +277,7 @@ proc ScilabEval_lt {comm {opt1 ""} {opt2 ""}} {
             }
             puts $fid [string range $comm $stoppos end]
             close $fid
-            ScilabEval "exec(\"$fname\")" $opt1 $opt2
+            ScilabEval "exec(\"$fname\");" $opt1 $opt2
         }] != 0} {
             tk_messageBox  -title [mc "ScilabEval command cannot be passed to Scilab!"] -icon warning -type ok \
                            -message [concat [mc impossibleScilabEval_message] "ScilabEval" $comm $opt1 $opt2]

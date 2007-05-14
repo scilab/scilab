@@ -3004,3 +3004,13 @@ Francois VOGEL, 12/05/07
  * scipad.xml: simplified the calling sequence and added a note about the
    watching capabilities of the debugger
  * version --> 6.108
+
+Francois VOGEL, 14/05/07
+ * Added auto watching of global variables - globals are not editable
+ * Long ScilabEvals no longer display a "mode(-1);" in the shell
+ * Removed the catch for the bubble information display for watch variables:
+   better correctly initialize the missing information...
+ * Better (16 times) performance in proc dogotoline when going to logical line
+   numbers in functions - Significantly improves the performance when updating
+   the active breakpoint tag during a debug session
+ * version --> 6.109

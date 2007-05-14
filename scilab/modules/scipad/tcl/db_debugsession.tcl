@@ -93,14 +93,10 @@ proc execfile_bp {{stepmode "nostep"}} {
         # (permissions) errors
         if {[catch {
             set fname [file join $tmpdir "Scipad_execfile_bp_tempfile.sci"]
-            # mode(-1) to prevent Scilab to echo the commands passed to the temporary
-            # file - only "mode(-1)" will be displayed in the Scilab shell when the
-            # ScilabEval "exec ..." below gets executed
             set fid [open $fname w]
-            puts $fid "mode(-1);"
             puts $fid $allfuntexts
             close $fid
-            ScilabEval_lt "exec(\"$fname\")" "sync" "seq"
+            ScilabEval_lt "exec(\"$fname\");" "sync" "seq"
             set execresult 0
         }] != 0} {
             # if the temporary file solution did not work, let's create a
@@ -124,7 +120,7 @@ proc execfile_bp {{stepmode "nostep"}} {
         # run the debug, i.e. launch the configured function
         set setbptonreallybreakpointedlinescmd $setbpcomm
         setdbstate "DebugInProgress"
-        # no need to call removelocalvars at this point, Scilab is always at
+        # no need to call removeautovars at this point, Scilab is always at
         # the main level, thus there is no local variables to remove
         set commnvars [createsetinscishellcomm $watchvars]
         set watchsetcomm [lindex $commnvars 0]
@@ -817,7 +813,7 @@ proc resume_bp {{checkbusyflag 1} {stepmode "nostep"}} {
         setdebuggerbusycursor
         if {![isnocodeline [gettextareacur] insert]} {
             # the debugger is not currently skipping no code lines
-            removelocalvars
+            removeautovars
             set commnvars [createsetinscishellcomm $watchvars]
             set watchsetcomm [lindex $commnvars 0]
             if {$watchsetcomm != ""} {
@@ -937,7 +933,7 @@ proc canceldebug_bp {} {
     if {[getdbstate] == "DebugInProgress"} {
         showinfo $waitmessage
         if {$funnameargs != ""} {
-            removelocalvars
+            removeautovars
             removeallactive_bp
             ScilabEval_lt "abort" "seq"
             removescilab_bp "with_output"

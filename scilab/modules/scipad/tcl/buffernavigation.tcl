@@ -1696,16 +1696,13 @@ proc dogotoline {{physlogic_ "useglobals"} {linetogo_ ""} {curfileorfun_ ""} {fu
             # go to logical line in function
             set textarea [lindex $funtogoto_ 1]
             set funstart [lindex $funtogoto_ 2]
-            # lineend mandatory to work when function is indented (was +1c before)
-            set infun [whichfun [$textarea index "$funstart lineend"] $textarea]
             set offset 0
-            # <TODO> This while loop could be improved (proc whichfun takes time to execute)
-            # Its purpose is to make the line number in the buffer correspond to $linetogo_
-            # Use countcontlines instead of whichfun, much faster!
-            while {$infun != "" && [lindex $infun 1] != $linetogo_} {
+            set nbcl 0
+            while {[expr {$offset - $nbcl + 1}] != $linetogo_} {
                 incr offset
-                set infun [whichfun [$textarea index "$funstart + $offset l"] $textarea]
+                set nbcl [countcontlines $textarea $funstart "$funstart + $offset l"]
             }
+            set infun [whichfun [$textarea index "$funstart + $offset l"] $textarea]
             if {[lindex $infun 0] == [lindex $funtogoto_ 0]} {
                 # target logical line is between function and endfunction
                 set targetline [$textarea index "$funstart + $offset l"]

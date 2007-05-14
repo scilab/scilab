@@ -88,10 +88,8 @@ proc update_bubble_watchvar {w type mousexy} {
         # is above the bubble triggering area in the watch window, then the
         # content to display in the bubble might not yet be retrieved from
         # Scilab (because the debug state is not "DebugInProgress")
-        catch {
-            update_bubble leave $w $mousexy $watchvarstysi($escwvar)
-            update_bubble enter $w $mousexy $watchvarstysi($escwvar)
-        }
+        update_bubble leave $w $mousexy $watchvarstysi($escwvar)
+        update_bubble enter $w $mousexy $watchvarstysi($escwvar)
 
         # wait a bit and play the game again
         after 100 "update_bubble_watchvar $w $type \[winfo pointerxy $pad\]"

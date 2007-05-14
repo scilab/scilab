@@ -232,10 +232,20 @@ proc showwatch_bp {} {
             -width $bestwidth -font \[list $menuFont\] \
             -anchor w -borderwidth 1 -pady 0 "
     if {$dockwatch} {$checkboxautowatchlocals configure -underline -1}
+    set checkboxautowatchglobals $watch.f.vpw.f2.f2l.autowatchglobals
+    eval "checkbutton $checkboxautowatchglobals [bl "Au&to watch globals too"] \
+            -variable autowatchglo \
+            -command \"manageautowatchglo_bp\" \
+            -onvalue \"true\" -offvalue \"false\" \
+            -width $bestwidth -font \[list $menuFont\] \
+            -anchor w -borderwidth 1 -pady 0 "
+    if {$dockwatch} {$checkboxautowatchglobals configure -underline -1}
 
-    pack $watch.f.vpw.f2.f2l.label $buttonAddw $buttonRemove $checkboxautowatchlocals -pady 4
+    pack $watch.f.vpw.f2.f2l.label $buttonAddw $buttonRemove \
+            $checkboxautowatchlocals $checkboxautowatchglobals -pady 4
     pack $watch.f.vpw.f2.f2l -anchor n
     manageautowatchloc_bp
+    manageautowatchglo_bp
 
     frame $watch.f.vpw.f2.f2r ;# -bg peachpuff
 
@@ -388,6 +398,7 @@ proc showwatch_bp {} {
     bind $watch <Alt-[fb $buttonAddw]>                     "$buttonAddw invoke"
     bind $watch <Alt-[fb $buttonRemove]>                   "$buttonRemove invoke"
     bind $watch <Alt-[fb $checkboxautowatchlocals]>        "$checkboxautowatchlocals invoke"
+    bind $watch <Alt-[fb $checkboxautowatchglobals]>       "$checkboxautowatchglobals invoke"
     bind $watch <Alt-[fb $buttonClose]>                    "$buttonClose invoke"
 
     if {!$dockwatch} {
@@ -558,37 +569,64 @@ proc managedockwatch_bp {} {
 
 proc manageautowatchloc_bp {} {
 # switch on or off the local variables automatic display in the watch window
-    global watch autowatchloc
+    manageautowatchlocglo_bp loc
+}
+
+proc manageautowatchglo_bp {} {
+# switch on or off the global variables automatic display in the watch window
+    manageautowatchlocglo_bp glo
+}
+
+proc manageautowatchlocglo_bp {locorglo} {
+# switch on or off the local and/or global variables automatic display
+# in the watch window
+    global watch autowatchloc autowatchglo
     global callstackfuns
     if {[info exists watch]} {
-        if {[getdbstate] == "DebugInProgress"} {
-            # retrieve the local variables names
-            getlocalsnames
-            if {$autowatchloc} {
-                # add all local variables to the watch window
-                set fullcomm "TCL_EvalStr(\"addlocalsinwatch\",\"scipad\");"
+        if {[winfo exists $watch]} {
+            if {$locorglo == "loc"} {
+                if {$autowatchloc} {
+                    $watch.f.vpw.f2.f2l.autowatchglobals configure -state normal
+                } else {
+                    $watch.f.vpw.f2.f2l.autowatchglobals deselect
+                    $watch.f.vpw.f2.f2l.autowatchglobals configure -state disabled
+                }
+                set checkboxtocheck $autowatchloc
+                set opt "globalstoo"
             } else {
-                # remove all local variables to the watch window
-                set fullcomm "TCL_EvalStr(\"removelocalsfromwatch\",\"scipad\");"
+                set checkboxtocheck $autowatchglo
+                set opt "globalsonly"
             }
-             ScilabEval_lt $fullcomm "seq"
-        } else {
-            # not in a debug session - nothing to do, this will be handled
-            # during the debug
+            if {[getdbstate] == "DebugInProgress"} {
+                # retrieve the local variables names
+                getautowatchnames
+                if {$checkboxtocheck} {
+                    # add auto watch variables to the watch window
+                    set fullcomm "TCL_EvalStr(\"addautosinwatch\",\"scipad\");"
+                } else {
+                    # remove auto watch variables from the watch window
+                    set fullcomm "TCL_EvalStr(\"removeautosfromwatch $opt\",\"scipad\");"
+                }
+                ScilabEval_lt $fullcomm "seq"
+            } else {
+                # not in a debug session - nothing to do, this will be handled
+                # during the debug
+            }
         }
     }
 }
 
-proc getlocalsnames {} {
-# fill in the varsforautowatchloc global array with the names of
-# the local variables of function $curfun
+proc getautowatchnames {} {
+# fill in the varsforautowatch global array with the names of
+# the local and global variables of function $curfun
 # this is done by retrieving the result of macrovar for the current
 # function, more precisely if vars=macrovar(foo), vars(1), vars(2),
-# and vars(5), which are respectively the input, output, and local
-# variables of the first item in $callstackfuns
-# the matrix elements of each element of list varsforautowatchloc_db
+# vars(3) and vars(5), which are respectively the input, output,
+# global and local variables of the function whose name is the first
+# item from $callstackfuns
+# the matrix elements of each element of list varsforautowatch_db
 # are concatenated using strcat with a space in between, so that
-# $varsforautowatchloc(...) can be interpreted later as a Tcl list
+# $varsforautowatch(...) can be interpreted later as a Tcl list
 
     # note the complication below to provide a function (type 13)
     # and not a string to macrovar, and to let the expression be
@@ -598,7 +636,7 @@ proc getlocalsnames {} {
     # to deal easily with the case where the debugger finished
     # the debug: [lindex $callstackfuns 0] is empty and would throw
     # an error in macrovar(""). In this case no local variable is
-    # to be considered and the elements of $varsforautowatchloc are
+    # to be considered and the elements of $varsforautowatch are
     # reset to empty lists
 
     # finally, to ease backporting, the result of TCL_EvalStr is not
@@ -609,29 +647,37 @@ proc getlocalsnames {} {
 # this is compatible with both trunk and BUILD4 branches
     set comm1 "TCL_EvalStr(\"set db_curfunname_Tcl \[lindex \$callstackfuns 0\]\",\"scipad\");db_curfunname = TCL_GetVar(\"db_curfunname_Tcl\",\"scipad\");"
 
-    set comm2 "varsforautowatchloc_db = \"macrovar(\"+db_curfunname+\")\";"
+    set comm2 "varsforautowatch_db = \"macrovar(\"+db_curfunname+\")\";"
     set comm3 "if db_curfunname <> \"\" then"
-    set comm4     "execstr(\"varsforautowatchloc_db=\"+varsforautowatchloc_db);"
-    set comm5     "TCL_EvalStr(\"set varsforautowatchloc(in)     \"\"\"+strcat(varsforautowatchloc_db(1),\" \")+\"\"\"\",\"scipad\");"
-    set comm6     "TCL_EvalStr(\"set varsforautowatchloc(out)    \"\"\"+strcat(varsforautowatchloc_db(2),\" \")+\"\"\"\",\"scipad\");"
-    set comm7     "TCL_EvalStr(\"set varsforautowatchloc(locals) \"\"\"+strcat(varsforautowatchloc_db(5),\" \")+\"\"\"\",\"scipad\");"
-    set comm8 "else"
-    set comm9     "TCL_EvalStr(\"set varsforautowatchloc(in)     \"\"\"\"\",\"scipad\");"
-    set commA     "TCL_EvalStr(\"set varsforautowatchloc(out)    \"\"\"\"\",\"scipad\");"
-    set commB     "TCL_EvalStr(\"set varsforautowatchloc(locals) \"\"\"\"\",\"scipad\");"
-    set commC "end;"
-    set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6 $comm7 $comm8 $comm9 $commA $commB $commC]
+    set comm4     "execstr(\"varsforautowatch_db=\"+varsforautowatch_db);"
+    set comm5     "TCL_EvalStr(\"set varsforautowatch(in)      \"\"\"+strcat(varsforautowatch_db(1),\" \")+\"\"\"\",\"scipad\");"
+    set comm6     "TCL_EvalStr(\"set varsforautowatch(out)     \"\"\"+strcat(varsforautowatch_db(2),\" \")+\"\"\"\",\"scipad\");"
+    set comm7     "TCL_EvalStr(\"set varsforautowatch(globals) \"\"\"+strcat(varsforautowatch_db(3),\" \")+\"\"\"\",\"scipad\");"
+    set comm8     "TCL_EvalStr(\"set varsforautowatch(locals)  \"\"\"+strcat(varsforautowatch_db(5),\" \")+\"\"\"\",\"scipad\");"
+    set comm9 "else"
+    set commA     "TCL_EvalStr(\"set varsforautowatch(in)      \"\"\"\"\",\"scipad\");"
+    set commB     "TCL_EvalStr(\"set varsforautowatch(out)     \"\"\"\"\",\"scipad\");"
+    set commC     "TCL_EvalStr(\"set varsforautowatch(locals)  \"\"\"\"\",\"scipad\");"
+    set commD     "TCL_EvalStr(\"set varsforautowatch(globals) \"\"\"\"\",\"scipad\");"
+    set commE "end;"
+    set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6 $comm7 $comm8 $comm9 $commA $commB $commC $commD $commE]
     ScilabEval_lt $fullcomm "seq"
 }
 
-proc addlocalsinwatch {} {
-# add the variables whose names are stored in $varsforautowatchloc
-# in the watch window
-    global varsforautowatchloc
+proc addautosinwatch {} {
+# add all variables whose names are stored in all elements of the
+# $varsforautowatch array in the watch window
+    global varsforautowatch autowatchglo
     global watchvars watchvarsvals unklabel
     global debugger_unwatchable_vars
-    foreach typ {in out locals} {
-        foreach avar $varsforautowatchloc($typ) {
+
+    set listoftypes [list in out locals]
+    if {$autowatchglo} {
+        lappend listoftypes globals
+    }
+
+    foreach typ $listoftypes {
+        foreach avar $varsforautowatch($typ) {
             # don't add an unwatchable variable, such as "ans"
             # which is always present in the 5th element of the
             # macrovar output
@@ -644,16 +690,32 @@ proc addlocalsinwatch {} {
             }
         }
     }
+
     getwatchvarfromshell
 }
 
-proc removelocalsfromwatch {} {
-# remove the variables whose names are stored in $varsforautowatchloc
+proc removeautosfromwatch {{whichautos all}} {
+# remove all variables whose names are stored in $varsforautowatch
 # from the watch window
-    global varsforautowatchloc
+# if $whichautos == "globalsonly" : globals
+# if $whichautos == "globalstoo"  : in, out, locals, globals
+# if $whichautos == "all", it depends on the "Auto (globals too)" checkbox status:
+#     if $autowatchglo is true    : in, out, locals, globals
+#     if $autowatchglo is false   : in, out, locals
+    global varsforautowatch autowatchglo
     global watchvars watchvarsvals
-    foreach typ {in out locals} {
-        foreach avar $varsforautowatchloc($typ) {
+
+    if {$whichautos != "globalsonly"} {
+        set listoftypes [list in out locals]
+    } else {
+        set listoftypes [list ]
+    }
+    if {$autowatchglo || $whichautos == "globalsonly" || $whichautos == "globalstoo"} {
+        lappend listoftypes globals
+    }
+
+    foreach typ $listoftypes {
+        foreach avar $varsforautowatch($typ) {
             # the test below is almost always true, but might also
             # be false (e.g. for $avar == "ans")
             set avarindex [lsearch $watchvars $avar]
@@ -663,6 +725,7 @@ proc removelocalsfromwatch {} {
             }
         }
     }
+
     getwatchvarfromshell
 }
 
@@ -679,15 +742,43 @@ proc updatewatchvars {} {
     }
 }
 
-proc removelocalvars {} {
+proc removeautovars {} {
 # remove the local vars from the watch window if the user
 # checked the corresponding "Auto add locals" checkbox
-    global autowatchloc
+    global watch autowatchloc autowatchglo
     if {$autowatchloc} {
+        set saved_autowatchglo $autowatchglo
         set autowatchloc false
         manageautowatchloc_bp
         set autowatchloc true
+        if {[info exists watch]} {
+            if {[winfo exists $watch]} {
+                $watch.f.vpw.f2.f2l.autowatchglobals configure -state normal
+            }
+        }
+        set autowatchglo $saved_autowatchglo
     }
+}
+
+proc isglobalautowatchvar {var} {
+# return true if $var is a purely global auto watched variable,
+# and false otherwise
+    global varsforautowatch
+    if {![info exists varsforautowatch]} {
+        return false
+    } elseif {[lsearch -exact $varsforautowatch(globals) $var] == -1} {
+        set retval false
+    } else {
+        if {[lsearch -exact $varsforautowatch(in)     $var] == -1 && \
+            [lsearch -exact $varsforautowatch(out)    $var] == -1 && \
+            [lsearch -exact $varsforautowatch(locals) $var] == -1 \
+            } {
+            set retval true
+        } else {
+            set retval false
+        }
+    }
+    return $retval
 }
 
 proc getcallstackfromshell {} {
@@ -738,6 +829,16 @@ proc createsetinscishellcomm {setofvars} {
 #         2. [var1,...,varN]=resume(var1_value,...,varN_value);
 #         3. execstr("var1",...,varN","errcatch","n");
 #         4. a list of editable true|false flags for each variable
+# A variable is editable if none of the following conditions are true:
+#   . its value starts with $noedit_l
+#   . it's a (purely) global variable
+# A non editable variable is not part of any of the three returned commands
+# (execstr("...=..."), resume command and visibility command execstr("..."),
+# so that:
+#   . Scipad does not attempt to update really non editable variables
+#     (libraries for instance)
+#   . Scipad does not transform globals into locals, which would otherwise mess
+#     up the visibility assumptions in the debugged function
 # Elements of variables from $setofvars whose value is $unklabel or starts with
 # $noedit_l are filtered out (ignored)
     global watchvars watchvarsvals unklabel
@@ -749,7 +850,8 @@ proc createsetinscishellcomm {setofvars} {
     set editable [list ]
     foreach var $setofvars {
         if {[string first $unklabel $watchvarsvals($var)] == -1 && \
-            [string first $noedit_l $watchvarsvals($var)] == -1} {
+            [string first $noedit_l $watchvarsvals($var)] == -1 && \
+            ![isglobalautowatchvar $var]} {
             # Variable is fully defined and is editable
             set onecomm [duplicatechars "$var=$watchvarsvals($var);" "\""]
             set onecomm [duplicatechars $onecomm "'"]
@@ -762,15 +864,18 @@ proc createsetinscishellcomm {setofvars} {
             }
             lappend editable true
         } else {
-            if {$watchvarsvals($var) == $unklabel} {
-                # Variable is fully undefined, nothing to do
-                lappend editable true
-            } elseif {[string range $watchvarsvals($var) 0 1] == $noedit_l} {
-                # Variable is a single non editable type, nothing to do
+            if {[isglobalautowatchvar $var]} {
+                # Variable is a global, set editability only
                 lappend editable false
+            } elseif {[string range $watchvarsvals($var) 0 1] == $noedit_l} {
+                # Variable is a single non editable type, set editability only
+                lappend editable false
+            } elseif {$watchvarsvals($var) == $unklabel} {
+                # Variable is fully undefined, set editability only
+                lappend editable true
             } else {
-                # Variable is partially undefined (ex: certain elements of a list), or
-                # contains at least one element of non editable type
+                # Variable is not global, is partially undefined (ex: certain elements of
+                # a list), or contains at least one element of non editable type
                 # In this case, we're dealing with list(elt1,..,eltn,$unklabel,eltm,..,eltp)
                 # and $unklabel can appear any number of times >1 in the elements list, or
                 # with list(elt1,..,eltn,$noedit_lsomething$noedit_r,eltm,..,eltp)
@@ -793,6 +898,7 @@ proc createsetinscishellcomm {setofvars} {
                         [mc ".\nThis variable will not be updated in Scilab."] ]\
                         -icon warning -type ok \
                         -title [mc "Illegal undefined element found"]
+                    lappend editable false
                     continue
                 }
                 set onecomm "$var=[string range $watchvarsvals($var) 0 $oppar]);"
@@ -845,7 +951,7 @@ proc createsetinscishellcomm {setofvars} {
                             break
                         }
                     } else {
-                        # undefined element - nothing to do, ignore it
+                        # undefined element - ignore it, editability is already set to true
                     }
                     set start [expr {$i + 1}]
                     set oppar [string first "\(" $var]

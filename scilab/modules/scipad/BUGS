@@ -104,6 +104,12 @@ endfunction
  createsetinscishellcomm should be recursive)
  example: watch Q in   M=list(1,2,[1,2]);M(5)=33;Q=list(M,888);
 
+-watching a string containing either $unklabel or $noedit_l doesn't work
+
+-Step Out doesn't work in functions called recursively.
+ Example: debug sci2exp(1:$) and try to step out when you're again in
+ sci2exp at level 3.
+
 -Tcl/Tk 8.5 only: alt-f followed by 1 correctly opens the first file of the
  recent list, but Scipad rings a bell and opens also another menu afterwards.
  Does not happen with 8.4. Try to get a more stable/recent version of 8.5

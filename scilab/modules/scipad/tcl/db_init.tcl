@@ -8,7 +8,7 @@ set dragndroplb ""
 set watchvars ""
 array unset watchvarsvals
 array unset watchvarstysi          ; # type and size of watch variables
-array unset varsforautowatchloc    ; # list of current input, output and local variables for the auto watch feature
+array unset varsforautowatch       ; # list of current variables for the auto watch feature input, output, globals and locals)
 set callstackfuns ""
 set callstacklines ""
 set callstackcontent ""
@@ -17,6 +17,7 @@ set showwatchvariablesarea "true"
 set showcallstackarea "true"
 set watchalwaysontop 0
 set autowatchloc false
+set autowatchglo false
 set dockwatch false
 set errmsg ""
 set errnum 0

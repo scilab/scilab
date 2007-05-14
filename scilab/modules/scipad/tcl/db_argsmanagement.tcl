@@ -120,10 +120,10 @@ proc Addarg_bp {w focusbut leftwin rightwin} {
 
 proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
 # Close the add argument dialog and take the values of its fields into account
-    global unklabel
+    global unklabel noedit_l
     global argname argvalue
     global spin funvars funvarsvals
-    global watchvars watchvarsvals
+    global watchvars watchvarsvals watchvarstysi
     global getvaluefromscilab
     global debugger_unwatchable_vars
 
@@ -134,6 +134,8 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
             set mes [concat [mc "Sorry, variable"] $argname [mc "is special and cannot be watched."]]
             set tit [mc "Non watchable variable"]
             tk_messageBox -message $mes -icon error -title $tit
+            if {$pos == -1} {set pos 0}
+            $leftwin selection set $pos
             return
         }
 
@@ -153,13 +155,15 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
         # 3. In certain cases one cannot add variables when Scilab is busy
         if {$alreadyexists == "false" && \
             [string first listboxinput $leftwin] == -1 && \
-            (    ($argvalue == "" || $getvaluefromscilab == 1) \
-              || ($argvalue == $unklabel) \
-            ) } {
+            ($argvalue == "" || $getvaluefromscilab == 1 || $argvalue == $unklabel) } {
             # the proc was called from the watch window, $argname does not
             # yet exist and $argvalue will in fine be set to $unklabel
             # -> the value will be retrieved from Scilab
-            if {[isscilabbusy 5]} {return}
+            if {[isscilabbusy 5]} {
+                if {$pos == -1} {set pos 0}
+                $leftwin selection set $pos
+                return
+            }
         }
         if {$alreadyexists == "true" && \
             [string first listboxinput $leftwin] == -1 && \
@@ -168,8 +172,34 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
             # already exist and $argvalue will in fine be forced to Scilab's
             # value
             # -> the value will be retrieved from Scilab
-            if {[isscilabbusy 5]} {return}
+            if {[isscilabbusy 5]} {
+                if {$pos == -1} {set pos 0}
+                $leftwin selection set $pos
+                return
+            }
         }
+
+        # 4. Attempts to update a global auto watched variable are killed
+        # Note that only attempts to redefine globals must be killed, but not
+        # necessarily attempts to redefine other non editable variables
+        # (starting with $noedit_l). This is because redefining globals would
+        # mess the visibility assumptions in the debugged function, i.e. the
+        # debug tool would potentially change the behavior of what is debugged.
+        # This is however not true for $noedit_l variables that can just
+        # be redefined to some editable types with no such side effect. However
+        # allowing this wouldn't make a lot of sense, especially since the user
+        # previously got the non editable warning message box, so $noedit_l
+        # variables are also prevented from being redefined
+        if {$alreadyexists == "true" && \
+            [string first listboxinput $leftwin] == -1 && \
+            ([isglobalautowatchvar $argname] || [string first $noedit_l $watchvarsvals($argname)] != -1)} {
+            if {$pos == -1} {set pos 0}
+            $leftwin selection set $pos
+            return
+        }
+
+        # 5. Decide whether a roundtrip to Scilab is needed, so that when
+        # variable var has been modified, the watched var(1:2) will be also updated
         set mustdoScilabroundtrip false
         if {[string first listboxinput $leftwin] == -1 && \
             [getdbstate] == "DebugInProgress" && \
@@ -178,10 +208,14 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
             # and the "get from Scilab" box was not checked
             # -> a round trip to Scilab is required
             set mustdoScilabroundtrip true
-            if {[isscilabbusy 5]} {return}
+            if {[isscilabbusy 5]} {
+                if {$pos == -1} {set pos 0}
+                $leftwin selection set $pos
+                return
+            }
         }
 
-        # 4. add or change this variable in the calling box
+        # 6. Add or change this variable in the calling box
         # next line is a bit dirty... it is used to differentiate processing for the
         # add argument box used with the watch window from the one use with the configure box
         if {[string first listboxinput $leftwin] != -1} {
@@ -201,6 +235,7 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
                 if {$argvalue == "" || $getvaluefromscilab == 1} {set argvalue $unklabel}
                 set watchvars [linsert $watchvars $pos $argname]
                 set watchvarsvals($argname) $argvalue
+                set watchvarstysi($argname) $unklabel
                 if {$argvalue == $unklabel} {
                     getonewatchvarfromshell $argname
                     set fullcomm "TCL_EvalStr(\"updatewatch_bp\",\"scipad\");"
@@ -228,6 +263,7 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
                 if {$argvalue == ""} {set argvalue $unklabel}
                 if {$getvaluefromscilab == 1} {set forceget "true"}
                 set watchvarsvals($argname) $argvalue
+                set watchvarstysi($argname) $unklabel
                 if {$forceget == "true"} {
                     getonewatchvarfromshell $argname
                     set fullcomm "TCL_EvalStr(\"updatewatch_bp\",\"scipad\");"
@@ -242,7 +278,7 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
             $rightwin insert $eltindex $argvalue
         }
 
-        # 5. Perform a roundtrip to Scilab to:
+        # 7. Perform a roundtrip to Scilab to:
         #   a. update the new value of the modified variable in Scilab, and
         #   b. get back the new values of all the watched variables from Scilab
         # This is required only for the watch window, in case the user watches a variable
