@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry kind="lib" path="D:/ScilabDev/scilab_5dev/java/jar/externals/jogl.jar"/>
+	<classpathentry kind="lib" path="D:/ScilabDev/scilab_5dev/java/jar/externals/gluegen-rt.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

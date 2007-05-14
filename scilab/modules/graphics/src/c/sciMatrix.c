@@ -17,6 +17,7 @@ sciMatrix * emptyMatrix( void )
 {
   sciMatrix * newMat ;
   newMat = MALLOC( sizeof(sciMatrix) ) ;
+  if ( newMat == NULL ) { return NULL ;}
   newMat->data  = NULL ;
   newMat->nbCol = 0    ;
   newMat->nbRow = 0    ;

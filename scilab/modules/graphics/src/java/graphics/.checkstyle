@@ -3,7 +3,7 @@
     <local-check-config name="Scilab CheckStyle" location="E:\Trunk\scilab\checkstyle\scilab_checkstyle_convention.xml" type="external" description="">
         <additional-data name="protect-config-file" value="false"/>
     </local-check-config>
-    <fileset name="tous" enabled="true" check-config-name="Scilab CheckStyle" local="false">
+    <fileset name="tous" enabled="true" check-config-name="CheckStyle Scilab" local="false">
         <file-match-pattern match-pattern="." include-pattern="true"/>
     </fileset>
 </fileset-config>

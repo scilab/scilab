@@ -29,6 +29,11 @@ public:
   virtual ~DrawableFigureImp( void ) {}
 
   /**
+  * Tell the canvas to draw itself.
+  */
+  virtual void drawCanvas( void ) = 0 ;
+
+  /**
    * Initialize the context for drawing
    */
   virtual void initializeDrawing( void ) = 0 ;

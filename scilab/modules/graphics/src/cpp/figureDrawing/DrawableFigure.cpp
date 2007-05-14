@@ -42,26 +42,41 @@ void DrawableFigure::closeRenderingCanvas( void )
   m_pImp->closeRenderingCanvas() ;
 }
 /*------------------------------------------------------------------------------------------*/
-void DrawableFigure::draw( void )
-{ 
-  if ( !checkAutoRedraw() ) { return ; }
-
-  openRenderingCanvas() ;
+void DrawableFigure::drawInContext( void )
+{
   initializeDrawing() ;
-  
+
   if ( checkVisibility() )
   {
     updateInfoMessage() ;
-    displayChildren() ;
+    //displayChildren() ;
   }
 
   endDrawing() ;
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableFigure::draw( void )
+{ 
+  if ( !checkAutoRedraw() )
+  {
+    return ;
+  }
+
+  // make sure the context is created
+  openRenderingCanvas() ;
+  //drawInContext() ;
+  drawCanvas() ;
 
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigure::show( void )
 {
   draw() ;
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableFigure::drawCanvas( void )
+{
+  m_pImp->drawCanvas() ;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigure::initializeDrawing( void )

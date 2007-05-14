@@ -39,6 +39,9 @@ public class SciRenderer
    */    
   public void display(GLAutoDrawable gLDrawable) {
       // should call the draw function of the corresponding figure
+	  gLDrawable.getContext().setSynchronized(true);
+	  FigureScilabCall call = new FigureScilabCall();
+	  call.redrawFigure(0);
     }
     
     
@@ -56,7 +59,7 @@ public class SciRenderer
    */
   public void init(GLAutoDrawable gLDrawable) {
       if (isInit) { return; }
-
+      System.out.println("toto");
       final GL gl = gLDrawable.getGL();
       gl.glShadeModel(GL.GL_SMOOTH);              // Enable Smooth Shading
       gl.glClearColor(0.0f, 0.0f, 0.0f, 0.5f);    // Black Background

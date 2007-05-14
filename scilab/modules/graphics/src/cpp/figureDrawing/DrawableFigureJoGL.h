@@ -27,6 +27,11 @@ public:
   virtual ~DrawableFigureJoGL( void ) ;
 
   /**
+  * Tell the canvas to draw itself.
+  */
+  virtual void drawCanvas( void ) ;
+
+  /**
    * Initialize the context for drawing
    */
   virtual void initializeDrawing( void ) ;

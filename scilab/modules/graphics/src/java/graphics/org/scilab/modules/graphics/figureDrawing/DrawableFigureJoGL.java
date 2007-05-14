@@ -41,23 +41,12 @@ public class DrawableFigureJoGL {
   /**
    * Function called before beginning to use OpenGL methods.
    */
-  public void initializeDrawing() {
-    if (canvas == null) { return; }
-    
-    canvas.getContext().makeCurrent();
-  }
+  public void initializeDrawing() { }
 
   /**
    * Function called at the end of the OpenGL use.
    */
-  public void endDrawing() {
-    if (canvas == null) { return; }
-    // ok the thread can work on other things
-    canvas.getContext().release();
-    // we need to swap the buffer in the same action
-    // and not resynchronize with a call of canvas.display
-    canvas.swapBuffers(); //canvas.display() ;
-  }
+  public void endDrawing() { }
 
   /**
    * Display the info message of the figure
@@ -70,12 +59,20 @@ public class DrawableFigureJoGL {
     gl.glLoadIdentity();
     gl.glTranslatef(-1.5f, 0.0f, -6.0f);
     gl.glRotatef(0.2f, 0.0f, 1.0f, 0.0f);
-    gl.glBegin(GL.GL_TRIANGLES);
     gl.glColor3f(1.0f, 0.0f, 0.0f);
     glu.gluSphere(glu.gluNewQuadric(), 1.0, 32, 32);
 
   }
 
+  /**
+   * Force the display of the canvas
+   * Called from C to be sure to be in the right context
+   */
+  public void display() {
+
+	  canvas.repaint();
+  }
+  
   /**
    * If needed create a new context to draw the figure
    * @param figureIndex number of the figurewhich will be displayed in the canvas
@@ -100,9 +97,6 @@ public class DrawableFigureJoGL {
           }
         });
        frame.show();
-       canvas.display(); // needed for full initialization
-       canvas.setAutoSwapBufferMode(false);
-       canvas.requestFocus();
     }
 
   /**

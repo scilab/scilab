@@ -29,3 +29,6 @@ drawFecEntity
 drawCompoundEntity
 drawAxesEntity
 drawArcEntity
+sciGetCurrentFigure
+sciprint
+getHandleDrawer

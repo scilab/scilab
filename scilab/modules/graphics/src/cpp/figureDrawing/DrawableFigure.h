@@ -28,6 +28,13 @@ public:
    */
   void setDrawableImp( DrawableFigureImp * imp ) { m_pImp = imp ; }
 
+  /**
+   * Real operations to draw the figure.
+   * Can be only called if the rendering context (canvas)
+   * is created
+   */
+   virtual void drawInContext( void ) ;
+
 
 protected:
 
@@ -57,6 +64,11 @@ protected:
    * Create the rendering canvas for the figure.
    */
   void openRenderingCanvas( void ) ;
+
+  /**
+  * Tell the canvas to draw itself.
+  */
+  void drawCanvas( void ) ;
 
   /**
    * Close the rendering canvas

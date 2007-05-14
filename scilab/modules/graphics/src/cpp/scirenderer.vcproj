@@ -343,6 +343,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\figureDrawing\FigureScilabCall.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\getHandleDrawer.cpp"
 				>
 			</File>
@@ -505,6 +509,10 @@
 			</File>
 			<File
 				RelativePath=".\DrawingBridge.h"
+				>
+			</File>
+			<File
+				RelativePath=".\figureDrawing\FigureScilabCall.h"
 				>
 			</File>
 			<File
