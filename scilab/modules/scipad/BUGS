@@ -200,7 +200,21 @@ Debugger wishes:
  but this one is only available from Tk 8.5 (TIP #179) - Use the global
  variable Tk85
 
--include profiling into the debugger
+-include profiling into the debugger. The idea would be something like
+ making "Run Profiling" another button/command of the debugger, disabled
+ in editing mode, active only after Configure for Debug. Once started 
+ profiling, all the debugger stepping and watch commands would be disabled,
+ except for "break" and "cancel debug". At the end of the run, 
+ plotprofile() is called [plotprofile too needs to be adapted so
+ that it won't create a new buffer, but refers to the original].
+ "Run profiling" would also be callable again, for cumulation.
+ 
+ There is however a big potential showstopper. For profiling, the
+ function (or wrapper) has to be getf(,"p"); we're now making the
+ functions known to scilab with exec() instead. getf() has known bugs
+ (1968, 2072, 2253) and limitations in comparison with exec().
+ In particular it doesn't support nested function definitions (bug 1564).
+
 
 -breakpoint, activebreakpoint and continued lines tags are not visible
  when selected. No solution found so far. Only one tag with -background
