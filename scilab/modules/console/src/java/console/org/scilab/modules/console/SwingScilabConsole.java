@@ -3,38 +3,35 @@
 
 package org.scilab.modules.console;
 
-import org.scilab.modules.gui.ScilabBridge;
+import java.awt.Dimension;
+
+import com.artenum.jyconsole.JyConsole;
+
+import fr.scilab.console.Console;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
 /**
- * Class for Scilab Console in GUIs
+ * Swing implementation for Scilab Console in GUIs
+ * This implementation uses JyConsole package
  * @author Vincent COUVERT
  */
-public class ScilabConsole implements Console {
+public class SwingScilabConsole extends JyConsole implements Console {
 
 	/**
 	 * Constructor
 	 */
-	protected ScilabConsole() {
-        throw new UnsupportedOperationException(); /* Prevents calls from subclass */
-	}
-
-	/**
-	 * Creates a Scilab Console
-	 * @return the created console
-	 */
-	public static Console createConsole() {
-		return ScilabBridge.createConsole();
+	public SwingScilabConsole() {
+		super();
 	}
 
 	/**
 	 * Displays data in the console
 	 * @param dataToDisplay the data to be displayed
-	 * @see fr.scilab.console.Console#display()
+	 * @see fr.scilab.console.Console#display(java.lang.String)
 	 */
 	public void display(String dataToDisplay) {
-		ScilabBridge.display(this, dataToDisplay);
+		// TODO write this method !!
 	}
 
 	/**
@@ -43,69 +40,63 @@ public class ScilabConsole implements Console {
 	 * @see fr.scilab.console.Console#readLine()
 	 */
 	public String readLine() {
-		return ScilabBridge.readLine(this);
+		// TODO write this method !!
+		return null;
 	}
 
 	/**
 	 * Draw a console
-	 * @see org.scilab.modules.gui.UIElement#draw()
 	 */
 	public void draw() {
-		ScilabBridge.draw(this);
+		super.setVisible(true);
+		super.doLayout();
 	}
 
 	/**
 	 * Gets the dimensions (width and height) of a Scilab console
 	 * @return the size of the console
-	 * @see org.scilab.modules.gui.UIElement#getDims()
 	 */
 	public Size getDims() {
-		return ScilabBridge.getDims(this);
+		return new Size(super.getWidth(), super.getHeight());
 	}
 
 	/**
 	 * Gets the position (X-coordinate and Y-coordinates) of a Scilab console
 	 * @return the position of the console
-	 * @see org.scilab.modules.gui.UIElement#getPosition()
 	 */
 	public Position getPosition() {
-		return ScilabBridge.getPosition(this);
+		return new Position(this.getX(), this.getY());
 	}
 
 	/**
 	 * Gets the visibility status of a console
 	 * @return the visibility status of the console (true if the console is visible, false if not)
-	 * @see org.scilab.modules.gui.UIElement#isVisible()
 	 */
 	public boolean isVisible() {
-		return ScilabBridge.isVisible(this);
+		return super.isVisible();
 	}
 
 	/**
 	 * Sets the dimensions (width and height) of a Scilab console
 	 * @param newSize the size we want to set to the console
-	 * @see org.scilab.modules.gui.UIElement#setDims(org.scilab.modules.gui.utils.Size)
 	 */
 	public void setDims(Size newSize) {
-		ScilabBridge.setDims(this, newSize);
+		this.setPreferredSize(new Dimension(newSize.getWidth(), newSize.getHeight()));
 	}
 
 	/**
 	 * Sets the position (X-coordinate and Y-coordinate) of a Scilab console
 	 * @param newPosition the position we want to set to the console
-	 * @see org.scilab.modules.gui.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
 	 */
 	public void setPosition(Position newPosition) {
-		ScilabBridge.setPosition(this, newPosition);
+		this.setLocation(newPosition.getX(), newPosition.getY());
 	}
 
 	/**
 	 * Sets the visibility status of a Scilab console
 	 * @param newVisibleState the visibility status we want to set to the console
-	 * @see org.scilab.modules.gui.UIElement#setVisible(boolean)
 	 */
 	public void setVisible(boolean newVisibleState) {
-		ScilabBridge.setPosition(this, newVisibleState);
+		super.setVisible(newVisibleState);
 	}
-
 }

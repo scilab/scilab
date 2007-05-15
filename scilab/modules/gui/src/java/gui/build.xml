@@ -3,7 +3,7 @@
 Allan CORNET
 INRIA 2007
 -->
-<project name="jvm" default="compile">
+<project name="gui" default="compile">
   <property name="rootdirectory"  location="../../../../.." />
   <property name="dist"  location="${rootdirectory}/java/jar/modules" />
   <property name="src"  location="." />
@@ -11,7 +11,7 @@ INRIA 2007
   <taskdef resource="checkstyletask.properties" classpath="${rootdirectory}/java/checkstyle/checkstyle-all-4.3.jar"/>
       
   <description>
-			build jvm module
+			build gui module
   </description>
 	
   <path id="classpath">
@@ -34,7 +34,7 @@ INRIA 2007
 
   <target name="clean" description="clean sources">
   	<delete dir="build"/>
-    <delete file="${dist}/jvm.jar"/>
+    <delete file="${dist}/gui.jar"/>
   </target>
 
 <!-- 
@@ -46,10 +46,10 @@ INRIA 2007
   </target>
 
   <target name="jar" description="do .jar file" depends="compile">
-		<jar destfile="${dist}/jvm.jar" basedir="build/classes">
-    	<manifest>
-      	<attribute name="ClassPath" value="org.scilab.modules.jvm.ClassPath"/>
-			</manifest>
+		<jar destfile="${dist}/gui.jar" basedir="build/classes">
+<!--	<manifest>
+      	<attribute name="ClassPath" value="org.scilab.modules.gui.ClassPath"/>
+			</manifest> -->
 		</jar>
   </target>
 </project>
