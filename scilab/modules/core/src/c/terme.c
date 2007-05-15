@@ -1,0 +1,148 @@
+/*-----------------------------------------------------------------------------------*/
+/* INRIA 2007 */
+/* Allan CORNET */
+/*-----------------------------------------------------------------------------------*/ 
+#include "machine.h"
+#include "stack-def.h"
+/*-----------------------------------------------------------------------------------*/ 
+extern int C2F(getsym)();
+extern int C2F(error)(int *);
+/*-----------------------------------------------------------------------------------*/ 
+int C2F(terme)(void)
+{
+	#define char_plus 45
+	#define char_minus 46
+	#define char_bchar_slash 49
+	#define char_star 47
+	#define char_slash 48
+	#define char_dot 51
+	#define char_not 61
+	#define constnumber 114688
+
+	/* Local variables */
+	int op = 0;
+	int code_error = 0;
+
+	int r = 0;
+
+	/* integer equal,less,great,char_not */
+	r = C2F(recu).rstk[(constnumber + (0 + ( (C2F(recu).pt - 1) << 2)) - constnumber) / 4];
+
+	if (C2F(iop).ddt == 4) { }
+
+	if ( (r / 100) != 2) 
+	{
+		++C2F(recu).pt;
+		C2F(recu).rstk[C2F(recu).pt - 1] = 201;
+		C2F(recu).icall = 3;
+		return 0;
+	}
+
+	switch (r - 200) 
+	{
+		case 1: 
+		{
+			--C2F(recu).pt;
+			op = 0;
+			if (C2F(com).sym == char_dot) 
+			{
+				op = char_dot;
+				C2F(getsym)();
+			}
+
+			if (C2F(com).sym == char_star || C2F(com).sym == char_slash || C2F(com).sym == char_bchar_slash) 
+			{
+				op += C2F(com).sym;
+				C2F(getsym)();
+				if (C2F(com).sym == char_dot) op += C2F(com).sym << 1;
+
+				if (C2F(com).sym == char_dot) C2F(getsym)();
+
+				++C2F(recu).pt;
+				C2F(recu).pstk[C2F(recu).pt - 1] = op;
+				if (C2F(com).sym != char_not) 
+				{
+					C2F(recu).rstk[C2F(recu).pt - 1] = 202;
+
+					/* added to handle syntax like a*-b for Matlab compatiblity */
+					if (C2F(com).sym == char_plus || C2F(com).sym == char_minus) C2F(recu).icall = 1;
+					else C2F(recu).icall = 3;
+
+					return 0;
+				}
+				C2F(recu).rstk[C2F(recu).pt - 1] = 204;
+				C2F(recu).icall = 1;
+				return 0;
+			}
+
+			if (op != 0) 
+			{
+				code_error = 7;
+				C2F(error)(&code_error);
+			}
+			return 0;
+		}
+		case 2:
+		{
+			C2F(com).fin = C2F(recu).pstk[C2F(recu).pt - 1];
+			/* evaluation */
+			C2F(recu).rstk[C2F(recu).pt - 1] = 203;
+			C2F(com).rhs = 2;
+			C2F(recu).icall = 4;
+			return 0;
+		}
+		case 3: 
+		{
+			--C2F(recu).pt;
+			op = 0;
+			if (C2F(com).sym == char_dot) 
+			{
+				op = char_dot;
+				C2F(getsym)();
+			}
+			if (C2F(com).sym == char_star || C2F(com).sym == char_slash || C2F(com).sym == char_bchar_slash) 
+			{
+				op += C2F(com).sym;
+				C2F(getsym)();
+				if (C2F(com).sym == char_dot) op += C2F(com).sym << 1;
+
+				if (C2F(com).sym == char_dot) C2F(getsym)();
+
+				++C2F(recu).pt;
+				C2F(recu).pstk[C2F(recu).pt - 1] = op;
+				if (C2F(com).sym != char_not) 
+				{
+					C2F(recu).rstk[C2F(recu).pt - 1] = 202;
+					if (C2F(com).sym == char_plus || C2F(com).sym == char_minus) C2F(recu).icall = 1;
+					else C2F(recu).icall = 3;
+					return 0;
+				}
+				C2F(recu).rstk[C2F(recu).pt - 1] = 204;
+				C2F(recu).icall = 1;
+				return 0;
+			}
+
+			if (op != 0) 
+			{
+				code_error = 7;
+				C2F(error)(&code_error);
+			}
+			return 0;
+		}
+		case 4: 
+		{
+			C2F(com).fin = C2F(recu).pstk[C2F(recu).pt - 1];
+			/* evaluation */
+			C2F(recu).rstk[C2F(recu).pt - 1] = 203;
+			C2F(com).rhs = 2;
+			C2F(recu).icall = 4;
+			return 0;
+		}
+		break;
+	}
+
+	code_error = 22;
+	C2F(error)(&code_error);
+	return 0;
+}
+/*-----------------------------------------------------------------------------------*/ 

@@ -78,7 +78,8 @@ src/c/GetXmlFileEncoding.c \
 src/c/msgs.c \
 src/c/GetenvB.c \
 src/c/islittleendian.c \
-src/c/filesmanagement.c
+src/c/filesmanagement.c \
+src/c/terme.c
 
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f \
 src/fortran/clunit.f \
@@ -161,7 +162,6 @@ src/fortran/sigbas.f \
 src/fortran/indxg.f \
 src/fortran/matz.f \
 src/fortran/istrue.f \
-src/fortran/terme.f \
 src/fortran/inisci.f \
 src/fortran/expr.f \
 src/fortran/ptover.f \
