@@ -17,6 +17,7 @@
 #include "message_scilab.h"
 #include "../../localization/includes/QueryStringMessage.h"
 #include "../../console/includes/ConsolePrintf.h"
+#include "scilabmode.h"
 /*-----------------------------------------------------------------------------------*/ 
 #ifdef _MSC_VER
   #define vsnprintf _vsnprintf
@@ -65,7 +66,7 @@ void  sciprint(char *fmt,...)
 		#else
 		 C2F(xscisrn)(s_buf,&lstr,0L);
 		#endif
-		ConsolePrintf(s_buf);
+		if (getScilabMode() != SCILAB_NWNI) ConsolePrintf(s_buf);
 	}
 	if (getdiary()) diary_nnl(s_buf,&lstr);
 	va_end(ap);
@@ -97,7 +98,7 @@ void  sciprint(char *fmt,...)
 	  {
 		  TextPutS (&textwin, s_buf);
 	  }
-	  ConsolePrintf(s_buf);
+	  if (getScilabMode() != SCILAB_NWNI) ConsolePrintf(s_buf);
 	  if (getdiary()) diary_nnl(s_buf,&lstr);
 
 	  va_end (ap);
@@ -131,7 +132,7 @@ int  sciprint2(int iv,char *fmt,...)
 #endif
 
 		  lstr=strlen(s_buf);
-		  ConsolePrintf(s_buf);
+		  if (getScilabMode() != SCILAB_NWNI) ConsolePrintf(s_buf);
 		  C2F(xscisncr)(s_buf,&lstr,0L);
 	  }
 
