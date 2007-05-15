@@ -1,5 +1,5 @@
 # Scipad texts in Italian
-# in sync at least with v6.100
+# in sync at least with v6.109
 
 
 # commons
@@ -51,10 +51,19 @@
 
 
 # db_argsmanagement.tcl
+::msgcat::mcset it "This variable can be watched but cannot be edited!"\
+                   "Questa variabile può essere osservata, ma non modificata!"
+::msgcat::mcset it "A new watch variable will be created."\
+                   "Verrà piuttosto proposta una nuova variabile da osservare."
+::msgcat::mcset it "Non editable variable" "Variabile non modificabile"
 ::msgcat::mcset it "Variable:" "Variabile:"
 ::msgcat::mcset it "Value:" "Valore:"
 ::msgcat::mcset it "&Get current value from Scilab"\
                    "Recupera il valore &attuale in Scilab"
+::msgcat::mcset it "Non watchable variable" "Variabile non osservabile"
+::msgcat::mcset it "Sorry, variable" "Spiacente, la variabile"
+::msgcat::mcset it "is special and cannot be watched."\
+                   "è di un tipo che non può essere osservato."
 
 
 # db_bptsmanagement.tcl
@@ -123,9 +132,9 @@
                     cannot cope with multiple copies of functions.\n  The\
                     following duplicates were detected:\n"\
                    "Attenzione! Una o più funzioni sono definite più volte\
-                    nei files aperti. Il debugger non è in grado di scegliere\
-                    la definizione pertinente e non può procedere. Sono stati\
-                    rilevati i seguenti doppioni:"
+                    nei files aperti. Il debugger non è in grado di\
+                    scegliere la definizione pertinente e non può\
+                    procedere. Sono stati rilevati i seguenti doppioni:"
 ::msgcat::mcset it "\n--> Definition of function "\
                    "\n--> Definizione della funzione "
 ::msgcat::mcset it " found in:\n" " trovata in:\n"
@@ -145,6 +154,8 @@
                    "Il modo passo-passo non è pertanto possible."
 ::msgcat::mcset it "This command will actually run to the next breakpoint."\
                    "Questo comando andrà solo fino all'arresto successivo"
+::msgcat::mcset it "Break hence cannot be performed."\
+                   "Il comando Stop non può essere eseguito."
 ::msgcat::mcset it "Too many breakpoints" "Troppi punti d'arresto"
 ::msgcat::mcset it "Executing this command would require to set"\
                    "Eseguire questo comando richiederebbe di inserire"
@@ -157,7 +168,8 @@
 ::msgcat::mcset it "This command cannot succeed if the function where the\
                     debug just stopped is not opened in Scipad!"\
                    "Questo comando non può essere eseguito se la funzione\
-                    in cui il debugger si è fermato non è aperta in Scipad!"
+                    in cui il debugger si è fermato non è aperta in\
+                    Scipad!"
 ::msgcat::mcset it "Cannot run to return point"\
                    "Impossibile eseguire fino al punto di ritorno"
 ::msgcat::mcset it "Warning!\nThe line where the debugger just stopped\
@@ -165,23 +177,24 @@
                     or resume) but this statement is not the first one on\
                     the line."\
                    "Attenzione!\nLa linea su cui il debugger si è fermato\
-                    contiene una istruzione di ritorno (endfunction, return o resume)\
-                    che non è la prima della linea."
+                    contiene una istruzione di ritorno (endfunction, return\
+                    o resume) che non è la prima della linea."
 ::msgcat::mcset it "As a consequence the debugger cannot predict if the next\
                     debug step will really jump outside of the current\
                     function, which is what you just asked the debugger to\
                     do."\
-                   "Il debugger non può prevedere se il prossimo passo\
-                    di debug provocherà davvero l'uscita (come richiesto) o meno."
+                   "Il debugger non può prevedere se il prossimo passo di\
+                    debug provocherà davvero l'uscita (come richiesto) o\
+                    meno."
 ::msgcat::mcset it "To avoid this unresolvable case, it is recommended to\
                     place the return statement alone on its line."\
-                   "Per evitare casi non risolubili (per il debugger) come questo\
-                    è raccomandato di piazzare l'istruzione di ritorno isolata\
-                    sulla sua linea."
+                   "Per evitare casi non risolubili (per il debugger) come\
+                    questo è raccomandato di piazzare l'istruzione di\
+                    ritorno isolata sulla sua linea."
 ::msgcat::mcset it "Do you want to see this warning again during this Scipad\
                     session?"\
-                   "Vuoi vedere ancora questo messaggio durante questa sessione di\
-                    Scipad?"
+                   "Vuoi vedere ancora questo messaggio durante questa\
+                    sessione di Scipad?"
 ::msgcat::mcset it "Unresolvable case found while running to return point"\
                    "Caso irrisolubile incontrato durante \"esegui fino al\
                     punto di ritorno\""
@@ -205,6 +218,9 @@
 # db_watch.tcl
 ::msgcat::mcset it "Watch" "Controllo esecuzione e variabili"
 ::msgcat::mcset it "Watch variables:" "Variabili osservate:"
+::msgcat::mcset it "A&uto (local variables)" "&Auto (tutte le variabili locali)"
+::msgcat::mcset it "Au&to watch globals too"\
+                   "Anche variabili &globali usate dalla funzione"
 ::msgcat::mcset it "Call stack:" "stack di programma:"
 ::msgcat::mcset it "&Always on top" "Sempre in &primo piano"
 ::msgcat::mcset it "Hide watch &variables" "Nascondi le &variabili"
@@ -212,7 +228,8 @@
 ::msgcat::mcset it "&Dock" "&Incassa"
 ::msgcat::mcset it "Breakpoints" "Punti d'arresto"
 ::msgcat::mcset it "Breakpointed functions" "Funzioni con arresti"
-::msgcat::mcset it "Undefined or non editable elements are not legal in variable"\
+::msgcat::mcset it "Undefined or non editable elements are not legal in\
+                    variable"\
                    "Gli elementi indefiniti sono illegali in questa variabile"
 ::msgcat::mcset it ".\nThis variable will not be updated in Scilab."\
                    ".\nQuesta variabile non sarà aggiornata in Scilab"
@@ -421,13 +438,20 @@
 ::msgcat::mcset it " what you try to watch is of type "\
                    "Stai cercando di osservare un oggetto di tipo "
 ::msgcat::mcset it " - this type is not supported by the debugger"\
-                   "questo tipo non viene supportato dal debugger"
+                   " - questo tipo non viene supportato dal debugger"
 ::msgcat::mcset it "Type:" "Tipo:"
 ::msgcat::mcset it "(unsupported)" "(non supportato)"
 ::msgcat::mcset it "size:" "dimensione:"
 ::msgcat::mcset it "real" "reale"
 ::msgcat::mcset it "complex" "complesso"
 ::msgcat::mcset it "elements" "elementi"
+::msgcat::mcset it "graphic handle" "rif. oggetto grafico"
+::msgcat::mcset it "uncompiled function" "funzione non compilata"
+::msgcat::mcset it "compiled function" "funzione compilata"
+::msgcat::mcset it "library" "libreria"
+::msgcat::mcset it "pointer" "puntatore"
+::msgcat::mcset it "size implicit index" "indice a dimensione implicita"
+::msgcat::mcset it "primitive" "primitiva"
 
 
 # FormatWhereForWatch.sci
@@ -520,7 +544,7 @@
 
 # menues.tcl - Search menu
 ::msgcat::mcset it "&Find..." "&Trova..."
-::msgcat::mcset it "Find &Next" "Trova il segue&nte"
+::msgcat::mcset it "Find &Next" "Trova il &seguente"
 ::msgcat::mcset it "&Replace..." "&Sostituisci..."
 ::msgcat::mcset it "&Goto Line..." "&Vai a linea..."
 
@@ -537,8 +561,7 @@
 ::msgcat::mcset it "Step &into" "Entra &dentro"
 ::msgcat::mcset it "Step o&ver" "Passa s&opra"
 ::msgcat::mcset it "Step &out" "Esci f&uori"
-::msgcat::mcset it "Run to re&turn point"\
-                   "Esegui &fino al ritorno"
+::msgcat::mcset it "Run to re&turn point" "Esegui &fino al ritorno"
 ::msgcat::mcset it "Run to c&ursor" "Esegui fino al curso&re"
 ::msgcat::mcset it "G&o on ignoring any breakpoint"\
                    "Co&ntinua ignorando gli arresti"
