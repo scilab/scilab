@@ -1,4 +1,4 @@
-package org.scilab.modules.console;
+package org.scilab.modules.shell;
 /**
  * Scilab Console
  * @author Allan CORNET INRIA 2007

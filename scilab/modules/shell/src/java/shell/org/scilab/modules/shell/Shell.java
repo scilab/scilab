@@ -1,7 +1,7 @@
 
 /* Copyright INRIA 2007 */
 
-package org.scilab.modules.console;
+package org.scilab.modules.shell;
 
 /**
  * Interface for Scilab shell
