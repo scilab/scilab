@@ -3,7 +3,14 @@ package org.scilab.modules.jvm;
 import org.scilab.modules.shell.ScilabShell;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
-
+import org.scilab.modules.gui.tab.ScilabTab;
+import org.scilab.modules.gui.console.Console;
+import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.console.ScilabConsole;
+import org.scilab.modules.gui.canvas.ScilabCanvas;
+import org.scilab.modules.gui.utils.Position;
+import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.canvas.Canvas;
 /**
  * Main Class for Scilab
  * @author Allan CORNET INRIA 2007
@@ -29,33 +36,33 @@ public class Scilab {
         
         
 		Window mainView = ScilabWindow.createWindow();
-		//mainView.draw();
+		mainView.draw();
 
 		/* CONSOLE */
-//		newWindowSize = new Size(DEFAULTWIDTH, DEFAULTHEIGHT);
-//		mainView.setDims(newWindowSize);
+		//newWindowSize = new Size(DEFAULTWIDTH, DEFAULTHEIGHT);
+		//mainView.setDims(newWindowSize);
 //		/* Create a tab to put console into */
-//		Tab consoleTab = ScilabTab.createTab("Console Scilab");
-//		//consoleTab.setName("Console");
-//		mainView.addTab(consoleTab);
+		Tab consoleTab = ScilabTab.createTab("Console Scilab");
+		consoleTab.setName("Console");
+		mainView.addTab(consoleTab);
 //		/* Create the console */
-//		Console sciConsole = ScilabConsole.createConsole();
-//		consoleTab.addMember(sciConsole);
-//		mainView.draw();
+		Console sciConsole = ScilabConsole.createConsole();
+		consoleTab.addMember(sciConsole);
+		mainView.draw();
 //
 //		/* FIGURE */
 //		/* Create the tab to put a canvas into */
-//		Tab figureTab = ScilabTab.createTab("Scilab Figure");
-//		//figureTab.setName("Scilab Figure");
-//		mainView.addTab(figureTab);
+		Tab figureTab = ScilabTab.createTab("Scilab Figure");
+		figureTab.setName("Scilab Figure");
+		mainView.addTab(figureTab);
 //
 //		/* Create the canvas */
-//		Canvas figureCanvas = ScilabCanvas.createCanvas();
-//		figureCanvas.setDims(new Size(DEFAULTWIDTH, DEFAULTHEIGHT));
-//		figureCanvas.draw();
-//		figureTab.addMember(figureCanvas);
-//		figureTab.draw();
-//		mainView.draw();
+		Canvas figureCanvas = ScilabCanvas.createCanvas();
+		figureCanvas.setDims(new Size(DEFAULTWIDTH, DEFAULTHEIGHT));
+		figureCanvas.draw();
+	    figureTab.addMember(figureCanvas);
+		figureTab.draw();
+		mainView.draw();
 
 	}
 }

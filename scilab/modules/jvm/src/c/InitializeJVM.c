@@ -38,6 +38,17 @@ BOOL InitializeJVM(void)
 		if (classpathfile) {FREE(classpathfile); classpathfile = NULL;}
 
 		bOK = createMainScilabObject();
+
+		if (!bOK)
+		{
+#ifdef _MSC_VER
+			MessageBox(NULL,"Scilab can't create Scilab Main-Class.","Error",MB_ICONEXCLAMATION|MB_OK);
+#else
+			printf("\n Error : Scilab can't create Scilab Main-Class.\n");
+#endif
+		}
+
+
 	}
 
 	if (SCIPATH) {FREE(SCIPATH);SCIPATH=NULL;}

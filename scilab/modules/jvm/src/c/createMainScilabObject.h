@@ -13,5 +13,7 @@
 */
 BOOL createMainScilabObject(void);
 
+BOOL finishMainScilabObject(void);
+
 #endif /* __CREATEMAINSCILABOBJECT_H__ */
 /*-----------------------------------------------------------------------------------*/ 

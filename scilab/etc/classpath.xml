@@ -18,6 +18,7 @@
 <CLASS path="$SCILAB/java/jar/toolboxes"/>
 <CLASS path="$SCILAB/java/jar/modules/jvm.jar"/>
 <CLASS path="$SCILAB/java/jar/modules/shell.jar"/>
+<CLASS path="$SCILAB/java/jar/modules/gui.jar"/>
 <CLASS path="$SCILAB/java/jar/modules/javasci.jar"/>
 <CLASS path="$SCILAB/java/jar/modules/graphics.jar"/>
 <CLASS path="$SCILAB/java/jar/externals/jogl.jar"/>
@@ -26,5 +27,11 @@
 <CLASS path="$SCILAB/java/jar/externals/JyConsole.jar"/>
 <CLASS path="$SCILAB/java/jar/externals/jython.jar"/>
 <CLASS path="$SCILAB/java/jar/externals/ArtTk.jar"/>
+<CLASS path="$SCILAB/java/jar/externals/skinlf.jar"/>
+<CLASS path="$SCILAB/java/jar/externals/looks-2.1.1.jar"/>
+<CLASS path="$SCILAB/java/jar/externals/commons-logging-1.1.jar"/>
+
+
+
 
 </CLASSPATH>

@@ -40,3 +40,14 @@ jobject getScilabObject(void)
 	return ScilabObject;
 }
 /*-----------------------------------------------------------------------------------*/ 
+BOOL finishMainScilabObject(void)
+{
+	BOOL bOK = FALSE;
+	JNIEnv * currentENV = getScilabJNIEnv();
+	JavaVM * currentJVM = getScilabJavaVM();
+
+	(*currentJVM)->AttachCurrentThread( currentJVM, (void **) &currentENV , NULL ) ;
+	(*currentENV)->DeleteGlobalRef(currentENV, ScilabObject);
+	return bOK;
+}
+/*-----------------------------------------------------------------------------------*/ 
