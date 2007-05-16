@@ -22,10 +22,13 @@ public class Scilab {
 	 */
 	public Scilab(int mode) {
 		this.mode = mode;
-		console = new ScilabShell();
-        console.printf("First Step\n");
+		System.out.println("ICI");
+		
+		//console = new ScilabShell();
+        //console.printf("First Step\n");
         
-		//Window mainView = ScilabWindow.createWindow();
+        
+		Window mainView = ScilabWindow.createWindow();
 		//mainView.draw();
 
 		/* CONSOLE */

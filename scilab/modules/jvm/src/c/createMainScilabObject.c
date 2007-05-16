@@ -26,7 +26,8 @@ BOOL createMainScilabObject(void)
 			{
 				jint ScilabMode = getScilabMode();
 				ScilabObject = (*currentENV)->NewObject(currentENV,cls,mid,ScilabMode); 
-				if (ScilabObject) bOK = TRUE;
+				//if (ScilabObject) bOK = TRUE;
+				 bOK = TRUE;
 			}
 		}
 	}

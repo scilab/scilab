@@ -3,7 +3,7 @@
  * @author Allan CORNET INRIA 2007
  */
 /*-----------------------------------------------------------------------------------*/
-#include "gw_console.h"
+#include "gw_shell.h"
 #include "MALLOC.h"
 #include "machine.h"
 #include "stack-c.h"

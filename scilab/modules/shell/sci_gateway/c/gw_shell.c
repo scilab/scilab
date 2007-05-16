@@ -8,18 +8,18 @@
 #include <Windows.h>
 #include "ExceptionMessage.h"
 #endif
-#include "gw_console.h"
+#include "gw_shell.h"
 #include "stack-c.h"
 /*-----------------------------------------------------------------------------------*/
-typedef int (*Console_Interf) __PARAMS((char *fname,unsigned long l));
+typedef int (*Shell_Interf) __PARAMS((char *fname,unsigned long l));
 
 typedef struct table_struct
 {
-  Console_Interf f;    /** function **/
+  Shell_Interf f;    /** function **/
   char *name;      /** its name **/
-} ConsoleTable;
+} ShellTable;
 /*-----------------------------------------------------------------------------------*/
-static ConsoleTable Tab[]=
+static ShellTable Tab[]=
 {
 {C2F(sci_completion),"completion"},
 {C2F(sci_clc),"clc"},
@@ -30,7 +30,7 @@ static ConsoleTable Tab[]=
 {C2F(sci_resethistory),"resethistory"}
 };
 /*-----------------------------------------------------------------------------------*/
-int C2F(gw_console)()
+int C2F(gw_shell)()
 {  
 	Rhs = Max(0, Rhs);
 

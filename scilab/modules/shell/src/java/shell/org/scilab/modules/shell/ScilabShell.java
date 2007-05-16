@@ -1,11 +1,11 @@
 package org.scilab.modules.shell;
 /**
- * Scilab Console
+ * Scilab Shell
  * @author Allan CORNET INRIA 2007
   */
 public class ScilabShell implements Shell {
 	/**
-	 * Constructor ScilabConsole Class.
+	 * Constructor ScilabShell Class.
 	 */
 	public ScilabShell() {
 	}

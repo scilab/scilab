@@ -211,10 +211,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\ConsolePrintf.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\gw_shell.c"
 				>
 			</File>
@@ -259,6 +255,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\ShellPrintf.c"
+				>
+			</File>
+			<File
 				RelativePath=".\tohome.c"
 				>
 			</File>
@@ -280,10 +280,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\ConsolePrintf.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\includes\gw_shell.h"
 				>
 			</File>
@@ -293,6 +289,10 @@
 			</File>
 			<File
 				RelativePath=".\resource.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\ShellPrintf.h"
 				>
 			</File>
 			<File
@@ -328,7 +328,15 @@
 			Name="Java classes"
 			>
 			<File
-				RelativePath="..\java\shell\org\scilab\modules\shell\ScilabConsole.java"
+				RelativePath="..\java\shell\org\scilab\modules\shell\ScilabShell.java"
+				>
+			</File>
+			<File
+				RelativePath="..\java\shell\org\scilab\modules\shell\ScilabShellBridge.java"
+				>
+			</File>
+			<File
+				RelativePath="..\java\shell\org\scilab\modules\shell\Shell.java"
 				>
 			</File>
 		</Filter>
@@ -341,15 +349,15 @@
 			</File>
 		</Filter>
 		<File
+			RelativePath="..\..\Makefile.am"
+			>
+		</File>
+		<File
 			RelativePath="..\..\shell.iss"
 			>
 		</File>
 		<File
 			RelativePath="..\..\sci_gateway\shell_gateway.xml"
-			>
-		</File>
-		<File
-			RelativePath="..\..\Makefile.am"
 			>
 		</File>
 		<File

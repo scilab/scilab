@@ -22,4 +22,9 @@
 <CLASS path="$SCILAB/java/jar/modules/graphics.jar"/>
 <CLASS path="$SCILAB/java/jar/externals/jogl.jar"/>
 <CLASS path="$SCILAB/java/jar/externals/gluegen-rt.jar"/>
+<CLASS path="$SCILAB/java/jar/externals/flexdock-0.5.1.jar"/>
+<CLASS path="$SCILAB/java/jar/externals/JyConsole.jar"/>
+<CLASS path="$SCILAB/java/jar/externals/jython.jar"/>
+<CLASS path="$SCILAB/java/jar/externals/ArtTk.jar"/>
+
 </CLASSPATH>

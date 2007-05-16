@@ -3,7 +3,7 @@
 /* Author : Allan Cornet                                                             */
 /* desc : interface for clc primitive                                                */
 /*-----------------------------------------------------------------------------------*/
-#include "gw_console.h"
+#include "gw_shell.h"
 #include "stack-c.h"
 #include "clc.h"
 #include "Scierror.h"

@@ -3,7 +3,7 @@
 /* Authors : Allan Cornet						                          */
 /* desc : interface for tohome primitive                                  */
 /*------------------------------------------------------------------------*/
-#include "gw_console.h"
+#include "gw_shell.h"
 #include "machine.h"
 #include "stack-c.h"
 #include "tohome.h"
