@@ -107,7 +107,7 @@ c
 
       endif
 
-      if(err.gt.0)return
+      if(err.gt.0.or.err1.gt.0)return
       if(iflag.gt.0) then
          if(iflag.eq.1) then
 c     termination for lack of space to divide triangle

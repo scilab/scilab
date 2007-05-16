@@ -125,7 +125,7 @@ c
      $        ,epsrel,lenver,nw,irestar,stk(lres),stk(lres+numfun),neval
      $        ,ifail,stk(lwork),stk(liwork))
       endif
-      if(err.gt.0)return
+      if(err.gt.0.or.err1.gt.0)return
       if(ifail.gt.0) then
          if(ifail.eq.1) then
 c     MAXPTS was too small to obtain the required accuracy
