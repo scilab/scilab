@@ -150,7 +150,7 @@ C     -------------------------------------------
      $        ,stk(lwa3),stk(lwa4))
 
       endif 
-      if(err.gt.0) return
+      if(err.gt.0.or.err1.gt.0) return
 c     
       top=top-2
       if(lhs.eq.1) then
