@@ -1,6 +1,6 @@
 package org.scilab.modules.jvm;
 
-import org.scilab.modules.console.ScilabConsole;
+import org.scilab.modules.shell.ScilabShell;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
 
@@ -13,7 +13,7 @@ public class Scilab {
 	private static final int DEFAULTWIDTH = 500;
 	private static final int DEFAULTHEIGHT = 500;
 
-	//private ScilabConsole console;
+	private ScilabShell console;
 	
 	private int mode;
 	/**
@@ -22,11 +22,11 @@ public class Scilab {
 	 */
 	public Scilab(int mode) {
 		this.mode = mode;
-		//console = new ScilabConsole();
-        //console.printf("First Step\n");
+		console = new ScilabShell();
+        console.printf("First Step\n");
         
-		Window mainView = ScilabWindow.createWindow();
-		mainView.draw();
+		//Window mainView = ScilabWindow.createWindow();
+		//mainView.draw();
 
 		/* CONSOLE */
 //		newWindowSize = new Size(DEFAULTWIDTH, DEFAULTHEIGHT);
