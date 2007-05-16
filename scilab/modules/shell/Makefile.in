@@ -47,9 +47,8 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = $(libscishell_la_include_HEADERS) \
-	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
-	$(top_srcdir)/Makefile.incl.am
+DIST_COMMON = $(libscishell_la_include_HEADERS) $(srcdir)/Makefile.am \
+	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
 subdir = modules/shell
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
@@ -79,17 +78,14 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscishell_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libscishell_la_DEPENDENCIES =  \
-	$(top_builddir)/libs/blas/libsciblas.la \
+libscishell_la_DEPENDENCIES = $(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
 am__objects_1 = libscishell_la-completion.lo libscishell_la-clc.lo \
 	libscishell_la-tohome.lo libscishell_la-history.lo \
-	libscishell_la-zzledt_Linux.lo \
-	libscishell_la-ConsolePrintf.lo
+	libscishell_la-zzledt_Linux.lo libscishell_la-ShellPrintf.lo
 am__objects_2 = libscishell_la-sci_completion.lo \
 	libscishell_la-gw_shell.lo libscishell_la-sci_clc.lo \
-	libscishell_la-sci_tohome.lo \
-	libscishell_la-sci_gethistory.lo \
+	libscishell_la-sci_tohome.lo libscishell_la-sci_gethistory.lo \
 	libscishell_la-sci_loadhistory.lo \
 	libscishell_la-sci_resethistory.lo \
 	libscishell_la-sci_savehistory.lo
@@ -275,12 +271,12 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 # List of the c files
-CONSOLE_C_SOURCES = src/c/completion.c \
+SHELL_C_SOURCES = src/c/completion.c \
 src/c/clc.c \
 src/c/tohome.c \
 src/c/history.c \
 src/c/zzledt_Linux.c \
-src/c/ConsolePrintf.c
+src/c/ShellPrintf.c
 
 
 # List of the gateway c files
@@ -303,7 +299,7 @@ libscishell_la_LDFLAGS = $(JAVA_JNI_LIBS)
 pkglib_LTLIBRARIES = libscishell.la
 
 # All the sources needed by libscishell.la
-libscishell_la_SOURCES = $(CONSOLE_C_SOURCES) $(GATEWAY_C_SOURCES) 
+libscishell_la_SOURCES = $(SHELL_C_SOURCES) $(GATEWAY_C_SOURCES) 
 libscishell_la_LIBADD = \
 	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
@@ -453,7 +449,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-ConsolePrintf.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-ShellPrintf.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-clc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-completion.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-gw_shell.Plo@am__quote@
@@ -524,12 +520,12 @@ libscishell_la-zzledt_Linux.lo: src/c/zzledt_Linux.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-zzledt_Linux.lo `test -f 'src/c/zzledt_Linux.c' || echo '$(srcdir)/'`src/c/zzledt_Linux.c
 
-libscishell_la-ConsolePrintf.lo: src/c/ConsolePrintf.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-ConsolePrintf.lo -MD -MP -MF $(DEPDIR)/libscishell_la-ConsolePrintf.Tpo -c -o libscishell_la-ConsolePrintf.lo `test -f 'src/c/ConsolePrintf.c' || echo '$(srcdir)/'`src/c/ConsolePrintf.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscishell_la-ConsolePrintf.Tpo $(DEPDIR)/libscishell_la-ConsolePrintf.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/ConsolePrintf.c' object='libscishell_la-ConsolePrintf.lo' libtool=yes @AMDEPBACKSLASH@
+libscishell_la-ShellPrintf.lo: src/c/ShellPrintf.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-ShellPrintf.lo -MD -MP -MF $(DEPDIR)/libscishell_la-ShellPrintf.Tpo -c -o libscishell_la-ShellPrintf.lo `test -f 'src/c/ShellPrintf.c' || echo '$(srcdir)/'`src/c/ShellPrintf.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscishell_la-ShellPrintf.Tpo $(DEPDIR)/libscishell_la-ShellPrintf.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/ShellPrintf.c' object='libscishell_la-ShellPrintf.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-ConsolePrintf.lo `test -f 'src/c/ConsolePrintf.c' || echo '$(srcdir)/'`src/c/ConsolePrintf.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-ShellPrintf.lo `test -f 'src/c/ShellPrintf.c' || echo '$(srcdir)/'`src/c/ShellPrintf.c
 
 libscishell_la-sci_completion.lo: sci_gateway/c/sci_completion.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-sci_completion.lo -MD -MP -MF $(DEPDIR)/libscishell_la-sci_completion.Tpo -c -o libscishell_la-sci_completion.lo `test -f 'sci_gateway/c/sci_completion.c' || echo '$(srcdir)/'`sci_gateway/c/sci_completion.c
@@ -851,13 +847,13 @@ uninstall-am: uninstall-libscishell_la_etcDATA \
 	install-libscishell_la_etcDATA \
 	install-libscishell_la_includeHEADERS \
 	install-libscishell_la_rootDATA \
-	install-libscishell_la_sci_gatewayDATA install-man \
-	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
-	install-ps install-ps-am install-strip installcheck \
-	installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-compile \
-	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
-	tags uninstall uninstall-am uninstall-libscishell_la_etcDATA \
+	install-libscishell_la_sci_gatewayDATA install-man install-pdf \
+	install-pdf-am install-pkglibLTLIBRARIES install-ps \
+	install-ps-am install-strip installcheck installcheck-am \
+	installdirs maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-compile mostlyclean-generic \
+	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
+	uninstall-am uninstall-libscishell_la_etcDATA \
 	uninstall-libscishell_la_includeHEADERS \
 	uninstall-libscishell_la_rootDATA \
 	uninstall-libscishell_la_sci_gatewayDATA \
