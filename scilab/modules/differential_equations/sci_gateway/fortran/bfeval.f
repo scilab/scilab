@@ -4,13 +4,12 @@ C     soft external for feval
 C     the result is real or complex according to itype value 
 c     ==========================================================
 c     Copyright INRIA
-      include 'stack.h'
+      include '../stack.h'
       integer sadr,iadr
       character*6 ename
       double precision x1,x2,xres(2)
       common / fevaladr / kfeval,kx1top,kx2top
       common / fevaltyp / itfeval
-      common/ierfeval/iero
       logical allowptr
 
       data mlhs/1/
@@ -31,10 +30,10 @@ c
 c     Putting Fortran arguments on Scilab stack 
 c+    
       call ftob(x1,1,kx1top)
-      if(err.gt.0) goto 9999
+      if(err.gt.0.or.err1.gt.0) return
       if (nn.eq.2) then
          call ftob(x2,1,kx2top)
-         if(err.gt.0) goto 9999
+         if(err.gt.0.or.err1.gt.0) return
       endif
 c+    
       if(itfeval.ne.15) then
@@ -48,15 +47,15 @@ c     external adress
          fin=l
 c     Extra arguments in calling list that westore on the Scilab stack
          call extlarg(l,ils,nelt,mrhs)
-         if (err.gt.0) goto 9999
+         if(err.gt.0.or.err1.gt.0) return
       endif
+
 c     Macro execution 
 c     
-      iero=0
       pt=pt+1
       if(pt.gt.psiz) then
          call  error(26)
-         goto 9999
+         return
       endif
       ids(1,pt)=lhs
       ids(2,pt)=rhs
@@ -68,36 +67,39 @@ c
 c     
       icall=5
 
-      include 'callinter.h'
+      include '../callinter.h'
 cxxx
 c     
  200  lhs=ids(1,pt)
       rhs=ids(2,pt)
       pt=pt-1
+      niv=niv-1
 c+    
 c     transfert des variables (scilab) de sortie vers fortran
 c     avec test du cas complexe
       il=iadr(lstk(top))
+ 
       if(istk(il).ne.1) then 
          call error(98)
-         goto 9999
+         return
       endif
       itype=istk(il+3)
       call btof(xres,itype+1)
-      if(err.gt.0) goto 9999
-c+    
-      niv=niv-1
+      if(err.gt.0.or.err1.gt.0) return
+c     normal return
       return
-c     
+
+c     the external produces an error
  9999 continue
+      niv=niv-1
       if(err1.gt.0) then
+c     .  the error has been catched
          lhs=ids(1,pt)
          rhs=ids(2,pt)
          pt=pt-1
          fun=0
       endif
-      iero=1
-      niv=niv-1
       return
+
       end
 
