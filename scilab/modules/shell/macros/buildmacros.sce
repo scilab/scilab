@@ -1,5 +1,5 @@
 //------------------------------------
 // Allan CORNET INRIA 2007
 //------------------------------------
-//genlib('consolelib','SCI/modules/console/macros');
+//genlib('shelllib','SCI/modules/shell/macros');
 //------------------------------------

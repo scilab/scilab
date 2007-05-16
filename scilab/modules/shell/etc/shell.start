@@ -1,12 +1,12 @@
 // ====================================================================
-// console module initialisation file 
+// shell module initialisation file 
 // Allan CORNET
 // Copyright INRIA 2007
 // ====================================================================
 //Load  functions librarie
-//load('SCI/modules/console/macros/lib');
+//load('SCI/modules/shell/macros/lib');
 // ====================================================================
 //add help chapter
-add_module_help_chapter('console');
+add_module_help_chapter('shell');
 clear add_module_help_chapter;
 // ====================================================================
