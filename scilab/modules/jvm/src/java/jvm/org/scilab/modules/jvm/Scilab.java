@@ -1,6 +1,8 @@
 package org.scilab.modules.jvm;
 
 import org.scilab.modules.console.ScilabConsole;
+import org.scilab.modules.gui.window.ScilabWindow;
+import org.scilab.modules.gui.window.Window;
 
 /**
  * Main Class for Scilab
