@@ -3,7 +3,7 @@
 
 package org.scilab.modules.gui.frame;
 
-import org.scilab.modules.console.Console;
+import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.bridge.SwingScilabCanvas;
 import org.scilab.modules.gui.bridge.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.SwingScilabFrame;

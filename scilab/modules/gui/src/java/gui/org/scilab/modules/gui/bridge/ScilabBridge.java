@@ -3,8 +3,8 @@
 
 package org.scilab.modules.gui.bridge;
 
-import org.scilab.modules.console.Console;
-import org.scilab.modules.console.ScilabConsoleBridge;
+import org.scilab.modules.gui.console.Console;
+import org.scilab.modules.gui.console.ScilabConsoleBridge;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.canvas.ScilabCanvasBridge;
 import org.scilab.modules.gui.frame.Frame;

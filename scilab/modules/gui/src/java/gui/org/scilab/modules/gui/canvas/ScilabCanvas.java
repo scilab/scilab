@@ -3,7 +3,7 @@
 
 package org.scilab.modules.gui.canvas;
 
-import org.scilab.modules.gui.ScilabBridge;
+import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 

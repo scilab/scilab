@@ -3,8 +3,8 @@
 
 package org.scilab.modules.gui.tab;
 
-import org.scilab.modules.console.Console;
-import org.scilab.modules.gui.ScilabBridge;
+import org.scilab.modules.gui.console.Console;
+import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.container.ScilabContainer;
 import org.scilab.modules.gui.dockable.Dockable;

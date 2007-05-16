@@ -3,7 +3,7 @@
 
 package org.scilab.modules.gui.tab;
 
-import org.scilab.modules.console.Console;
+import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.container.Container;
 import org.scilab.modules.gui.frame.Frame;

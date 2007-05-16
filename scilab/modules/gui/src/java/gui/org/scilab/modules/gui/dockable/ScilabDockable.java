@@ -3,7 +3,7 @@
 
 package org.scilab.modules.gui.dockable;
 
-import org.scilab.modules.gui.ScilabUIElement;
+import org.scilab.modules.gui.uielement.ScilabUIElement;
 
 /**
  * Abstract class for all dockable objets in Scilab GUIs

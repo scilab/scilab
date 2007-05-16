@@ -3,7 +3,7 @@
 
 package org.scilab.modules.gui.window;
 
-import org.scilab.modules.gui.UIElement;
+import org.scilab.modules.gui.uielement.UIElement;
 import org.scilab.modules.gui.tab.Tab;
 
 /**

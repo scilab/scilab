@@ -1,7 +1,7 @@
 
 /* Copyright INRIA 2007 */
 
-package org.scilab.modules.gui;
+package org.scilab.modules.gui.uielement;
 
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
