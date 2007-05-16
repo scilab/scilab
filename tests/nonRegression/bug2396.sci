@@ -1,0 +1,14 @@
+// Non-regression test file for bug 2396
+// Serge Steer - Scilab Project
+// Copyright INRIA
+// 14 may 2007
+
+mode(-1);
+clear;
+
+a1 = [1 2 3]
+a2 = [1 3 4 5 1 6 7]
+function y=elfind(x),y = (find(a2 == x) ~= []),endfunction
+T=execstr('z=feval(a1,elfind)','errcatch')==98
+
+affich_result(T,2396);
