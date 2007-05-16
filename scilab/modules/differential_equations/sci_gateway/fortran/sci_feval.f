@@ -4,11 +4,11 @@ C     feval(x1,x2,external) -> external(x1(i),x2(j))
 C     feval(x1,external)    -> external(x1(i))
 c      implicit undefined (a-z)
 c     Copyright ENPC (Jean-Philippe Chancelier 
-      include 'stack.h'
+      include '../stack.h'
       character*(5) fname
       character*(nlgh+1)   ename
       integer m1,n1,lb,m2,n2,la,i,j,nn,lr,lc,lb1,lbc1,lrr,lcr
-      integer topk,itype,kx1top,kx2top,lr1,iero,kfeval,gettype
+      integer topk,itype,kx1top,kx2top,lr1,kfeval,gettype
       double precision x1,x2,fval(2)
       external setfeval 
       logical type,getexternal,getrmat,cremat
@@ -16,7 +16,6 @@ C     External names (colname), Position in stack (coladr), type (coltyp)
       common / fevalname / ename
       common / fevaladr / kfeval,kx1top,kx2top
       common / fevaltyp / itfeval
-      common/  ierfeval / iero
       fname='feval'
       if(rhs.lt.2) then
          call error(39)
@@ -56,7 +55,6 @@ C     une variable de taille 1 qui permet de gerer le type d'argument
          kx2top=top
          if (.not.cremat(fname,top,0,1,1,lrr,lcr)) return
       endif
-      iero=0
       if(type) then 
          if (nn.eq.2) then 
             do 182 i=1,m2*n2
@@ -83,10 +81,6 @@ C     une variable de taille 1 qui permet de gerer le type d'argument
                   call bfeval(nn,stk(la+i-1),stk(lb+j-1),
      $                 fval,itype,ename)
                   if(err.gt.0.or.err1.gt.0) return
-                  if(iero.gt.0) then
-                     call error(24)
-                     Return
-                  endif
                   stk(lr+i-1+m2*n2*(j-1))=fval(1)
                   if (itype.eq.1) stk(lc+i-1+m2*n2*(j-1))=fval(2)
  174           continue
@@ -95,10 +89,6 @@ C     une variable de taille 1 qui permet de gerer le type d'argument
             do 173 i=1,m1*n1
                call bfeval(nn,stk(lb+i-1),1.0D0,fval,itype,ename)
                if(err.gt.0.or.err1.gt.0) return
-               if(iero.gt.0) then
-                  call error(24)
-                  Return
-               endif
                stk(lb+i-1)=fval(1)
                if (itype.eq.1) stk(lb1+i-1)=fval(2)
  173        continue
