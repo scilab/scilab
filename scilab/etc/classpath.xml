@@ -17,7 +17,7 @@
 <CLASS path="$SCILAB/java/jar/externals"/>
 <CLASS path="$SCILAB/java/jar/toolboxes"/>
 <CLASS path="$SCILAB/java/jar/modules/jvm.jar"/>
-<CLASS path="$SCILAB/java/jar/modules/console.jar"/>
+<CLASS path="$SCILAB/java/jar/modules/shell.jar"/>
 <CLASS path="$SCILAB/java/jar/modules/javasci.jar"/>
 <CLASS path="$SCILAB/java/jar/modules/graphics.jar"/>
 <CLASS path="$SCILAB/java/jar/externals/jogl.jar"/>

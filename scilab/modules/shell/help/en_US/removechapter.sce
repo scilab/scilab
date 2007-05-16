@@ -1,9 +1,9 @@
 // ====================================================================
-// help console module
+// help shell module
 // remove chapter
 // Copyright INRIA 2007
 // Allan CORNET
 // ====================================================================
-del_help_chapter("console",%T);
+del_help_chapter("shell",%T);
 clear del_help_chapter;
 // ====================================================================

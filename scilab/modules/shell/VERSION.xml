@@ -2,7 +2,7 @@
 
 <!DOCTYPE MODULE_VERSION SYSTEM "../core/xml/VERSION.dtd">
 
-<MODULE_VERSION name="console">
+<MODULE_VERSION name="shell">
 
 <VERSION>
 	<major>5</major>

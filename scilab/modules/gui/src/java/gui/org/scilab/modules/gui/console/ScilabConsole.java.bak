@@ -40,7 +40,7 @@ public class ScilabConsole implements Console {
 	/**
 	 * Reads input data in the console
 	 * @return the data entered by the user
-	 * @see org.scilab.modules.shell.Console#readLine()
+	 * @see fr.scilab.console.Console#readLine()
 	 */
 	public String readLine() {
 		return ScilabBridge.readLine(this);

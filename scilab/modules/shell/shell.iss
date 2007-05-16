@@ -5,41 +5,41 @@
 ; Copyright INRIA 2007
 ;##############################################################################################################
 ;--------------------------------------------------------------------------------------------------------------
-; CONSOLE module
+; SHELL module
 ;--------------------------------------------------------------------------------------------------------------
 ;
-#define CONSOLE "console"
+#define SHELL "shell"
 ;
-Source: bin\CONSOLE.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\libshell.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
-;Source: java\jar\modules\console.jar;DestDir: {app}\java\jar\modules; Components: {#COMPN_SCILAB}
+;Source: java\jar\modules\shell.jar;DestDir: {app}\java\jar\modules; Components: {#COMPN_SCILAB}
 ;
 ;
-Source: modules\{#CONSOLE}\changelog.txt; DestDir: {app}\modules\{#CONSOLE}; Components: {#COMPN_SCILAB}; Check: set_with_console
-Source: modules\{#CONSOLE}\licence.txt; DestDir: {app}\modules\{#CONSOLE}; Components: {#COMPN_SCILAB}
-Source: modules\{#CONSOLE}\readme.txt; DestDir: {app}\modules\{#CONSOLE}; Components: {#COMPN_SCILAB}
-Source: modules\{#CONSOLE}\VERSION.xml; DestDir: {app}\modules\{#CONSOLE}; Components: {#COMPN_SCILAB}
+Source: modules\{#SHELL}\changelog.txt; DestDir: {app}\modules\{#SHELL}; Components: {#COMPN_SCILAB}; Check: set_with_shell
+Source: modules\{#SHELL}\licence.txt; DestDir: {app}\modules\{#SHELL}; Components: {#COMPN_SCILAB}
+Source: modules\{#SHELL}\readme.txt; DestDir: {app}\modules\{#SHELL}; Components: {#COMPN_SCILAB}
+Source: modules\{#SHELL}\VERSION.xml; DestDir: {app}\modules\{#SHELL}; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#CONSOLE}\sci_gateway\console_gateway.xml; DestDir: {app}\modules\{#CONSOLE}\sci_gateway; Components: {#COMPN_SCILAB}
+Source: modules\{#SHELL}\sci_gateway\shell_gateway.xml; DestDir: {app}\modules\{#SHELL}\sci_gateway; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#CONSOLE}\includes\*.h; DestDir: {app}\modules\{#CONSOLE}\includes; Components: {#COMPN_SCILAB}
+Source: modules\{#SHELL}\includes\*.h; DestDir: {app}\modules\{#SHELL}\includes; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#CONSOLE}\help\addchapter.sce; DestDir: {app}\modules\{#CONSOLE}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
-Source: modules\{#CONSOLE}\help\removechapter.sce; DestDir: {app}\modules\{#CONSOLE}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+Source: modules\{#SHELL}\help\addchapter.sce; DestDir: {app}\modules\{#SHELL}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
+Source: modules\{#SHELL}\help\removechapter.sce; DestDir: {app}\modules\{#SHELL}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#CONSOLE}\etc\{#CONSOLE}.quit; DestDir: {app}\modules\{#CONSOLE}\etc; Components: {#COMPN_SCILAB}
-Source: modules\{#CONSOLE}\etc\{#CONSOLE}.start; DestDir: {app}\modules\{#CONSOLE}\etc; Components: {#COMPN_SCILAB}
+Source: modules\{#SHELL}\etc\{#SHELL}.quit; DestDir: {app}\modules\{#SHELL}\etc; Components: {#COMPN_SCILAB}
+Source: modules\{#SHELL}\etc\{#SHELL}.start; DestDir: {app}\modules\{#SHELL}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#CONSOLE}\help\*.htm; DestDir: {app}\modules\{#CONSOLE}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+Source: modules\{#SHELL}\help\*.htm; DestDir: {app}\modules\{#SHELL}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#CONSOLE}\languages\*.xml; DestDir: {app}\modules\{#CONSOLE}\languages; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+Source: modules\{#SHELL}\languages\*.xml; DestDir: {app}\modules\{#SHELL}\languages; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#CONSOLE}\macros\buildmacros.sce; DestDir: {app}\modules\{#CONSOLE}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#CONSOLE}\macros\*.bin; DestDir: {app}\modules\{#CONSOLE}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#CONSOLE}\macros\*.sci; DestDir: {app}\modules\{#CONSOLE}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#CONSOLE}\macros\lib; DestDir: {app}\modules\{#CONSOLE}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#CONSOLE}\macros\names; DestDir: {app}\modules\{#CONSOLE}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#SHELL}\macros\buildmacros.sce; DestDir: {app}\modules\{#SHELL}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#SHELL}\macros\*.bin; DestDir: {app}\modules\{#SHELL}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#SHELL}\macros\*.sci; DestDir: {app}\modules\{#SHELL}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#SHELL}\macros\lib; DestDir: {app}\modules\{#SHELL}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#SHELL}\macros\names; DestDir: {app}\modules\{#SHELL}\macros; Components: {#COMPN_SCILAB}
 ;
-;Source: modules\{#CONSOLE}\demos\*.*; DestDir: {app}\modules\{#CONSOLE}\demos; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+;Source: modules\{#SHELL}\demos\*.*; DestDir: {app}\modules\{#SHELL}\demos; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 ;--------------------------------------------------------------------------------------------------------------

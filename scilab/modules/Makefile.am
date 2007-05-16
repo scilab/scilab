@@ -35,7 +35,7 @@ symbolic \
 tclsci \
 sparse \
 io \
-console \
+shell \
 gui \
 graphics \
 wintools \
@@ -87,7 +87,7 @@ libscilab_la_LIBADD = \
 	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la \
 	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/graphics/libscigraphics.la \
-	$(top_builddir)/modules/console/libsciconsole.la \
+	$(top_builddir)/modules/shell/libscishell.la \
 	$(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/integer/libsciinteger.la \
 	$(top_builddir)/modules/interpolation/libsciinterpolation.la \

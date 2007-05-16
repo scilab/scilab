@@ -5,11 +5,11 @@
 /*-----------------------------------------------------------------------------------*/
 #include <stdlib.h>
 #include <jni.h>
-#include "ShellPrintf.h"
+#include "ConsolePrintf.h"
 #include "./../../jvm/includes/getScilabObject.h"
 #include "../../../jvm/includes/getScilabJNIEnv.h"
 /*-----------------------------------------------------------------------------------*/
-int ShellPrintf(char *line)
+int ConsolePrintf(char *line)
 {
 	int len = 0;
 	jobject  ScilabObj = getScilabObject();
@@ -19,17 +19,17 @@ int ShellPrintf(char *line)
 	jclass class_Mine = (*env)->GetObjectClass(env, ScilabObj);
 
 
-	jfieldID id_Shell =  (*env)->GetFieldID(env, class_Mine, "console","Lorg/scilab/modules/console/ScilabConsole;");
+	jfieldID id_Console =  (*env)->GetFieldID(env, class_Mine, "console","Lorg/scilab/modules/console/ScilabConsole;");
 
-	jobject jShell = (*env)->GetObjectField(env, ScilabObj, id_Shell);
+	jobject jConsole = (*env)->GetObjectField(env, ScilabObj, id_Console);
 
 	{
 		jstring jstr;
-		jclass cls = (*env)->GetObjectClass(env, jShell);
+		jclass cls = (*env)->GetObjectClass(env, jConsole);
 		jmethodID mid = (*env)->GetMethodID(env, cls, "printf", "(Ljava/lang/String;)V");
 		jstr = (*env)->NewStringUTF(env,line);
 
-		(*env)->CallVoidMethod(env, jShell, mid, jstr);
+		(*env)->CallVoidMethod(env, jConsole, mid, jstr);
 
 	}
 

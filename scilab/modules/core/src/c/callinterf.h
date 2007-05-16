@@ -71,7 +71,7 @@
 
 /* 51 */						#include "../../../fftw/includes/gw_fftw.h"
 /* 52 */						#include "../../../jvm/includes/gw_jvm.h"
-/* 53 */						#include "../../../console/includes/gw_console.h"
+/* 53 */						#include "../../../shell/includes/gw_shell.h"
 
 
 void errjump (int n);
@@ -137,7 +137,7 @@ static OpTab Interfaces[] = {
 	/* 50  */ {C2F(gw_localization)},
 	/* 51  */ {C2F(gw_fftw)},
 	/* 52  */ {C2F(gw_jvm)},
-	/* 53  */ {C2F(gw_console)}
+	/* 53  */ {C2F(gw_shell)}
 };
 
 

@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
 // Microsoft Visual C++ generated include file.
-// Used by shell.rc
+// Used by console.rc
 
 // Next default values for new objects
 // 

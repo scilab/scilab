@@ -1,3 +1,3 @@
 README File
 
-Console for Scilab
+Shell for Scilab
