@@ -173,7 +173,7 @@ function endprof()
   if withpad then
     if ~TCL_ExistInterp("scipad") then return,end
     if ~TCL_ExistVar("pad","scipad") then return,end
-    TCL_EvalStr("scipad eval {montretext $profiled}")
+    TCL_EvalStr("scipad eval {showtext $profiled}")
     TCL_EvalStr("scipad eval {closecur}")
   end
 endfunction
@@ -186,7 +186,7 @@ function scipad_hiliteline(n)
       openinscipad(profpath)
     end
   end
-  TCL_EvalStr("scipad eval {montretext $profiled}")
+  TCL_EvalStr("scipad eval {showtext $profiled}")
   TCL_EvalStr("scipad eval {set gotlnCommand "+string(n)+"}")
   TCL_EvalStr("scipad eval {[gettextareacur] mark set insert ""$gotlnCommand.0""}")
   //TCL_EvalStr("scipad eval {catch {keyposn [gettextareacur]}}")
