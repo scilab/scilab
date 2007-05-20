@@ -41,6 +41,7 @@
 
   <DESCRIPTION>
     <P>Creates an full path name for the specified relative path name.</P>
+    <P>On linux 'relative_path' needs to exist.</P>
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[
