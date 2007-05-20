@@ -3,12 +3,19 @@
 /* Allan CORNET */
 /* INRIA 2007 */
 /*-----------------------------------------------------------------------------------*/
+#ifndef _MSC_VER
+#include <sys/param.h>
+#endif
 #include <string.h>
 #include <stdlib.h>
 #include "machine.h"
 #include "filesmanagement.h"
 #include "core_math.h" /* Min Max */
 #include "MALLOC.h" 
+/*-----------------------------------------------------------------------------------*/
+#ifndef _fullpath
+#define _fullpath(a,r,l)        realpath(r,a)
+#endif
 /*-----------------------------------------------------------------------------------*/
 typedef struct {
 	FILE *ftformat;

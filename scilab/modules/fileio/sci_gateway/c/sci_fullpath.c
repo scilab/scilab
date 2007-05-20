@@ -2,6 +2,9 @@
 /* INRIA 2007 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
+#ifndef _MSC_VER
+#include <sys/param.h>
+#endif
 #include <stdlib.h>
 #include "gw_fileio.h"
 #include "stack-c.h"
@@ -10,6 +13,9 @@
 /*-----------------------------------------------------------------------------------*/
 #ifndef _MAX_PATH
 #define _MAX_PATH   260
+#endif
+#ifndef _fullpath
+#define _fullpath(a,r,l)        realpath(r,a)
 #endif
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_fullpath) _PARAMS((char *fname,unsigned long fname_len))
