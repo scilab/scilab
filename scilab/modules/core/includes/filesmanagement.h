@@ -11,7 +11,7 @@
 
 
 #ifndef _MAX_PATH
-#define #define _MAX_PATH   260
+#define _MAX_PATH   260
 #endif
 
 /**
