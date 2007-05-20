@@ -14,7 +14,7 @@
 #ifndef _MAX_PATH
 #define _MAX_PATH   260
 #endif
-#ifndef _fullpath
+#ifndef _MSC_VER
 #define _fullpath(a,r,l)        realpath(r,a)
 #endif
 /*-----------------------------------------------------------------------------------*/

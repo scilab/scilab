@@ -13,8 +13,8 @@
 #include "core_math.h" /* Min Max */
 #include "MALLOC.h" 
 /*-----------------------------------------------------------------------------------*/
-#ifndef _fullpath
-#define _fullpath(a,r,l)        realpath(r,a)
+#ifndef _MSC_VER
+#define _fullpath(a,r,l) realpath(r,a)
 #endif
 /*-----------------------------------------------------------------------------------*/
 typedef struct {
@@ -224,7 +224,7 @@ BOOL IsAlreadyOpenedInScilab(char *filename)
 		
 		for (i=0;i<CurrentMaxFiles;i++)
 		{
-			if (ScilabFileList[i].ftname)
+			if ( (ScilabFileList[i].ftformat) && ScilabFileList[i].ftname)
 			{
 				if (strcmp(ScilabFileList[i].ftname,fullpath) == 0) return TRUE;
 			}
