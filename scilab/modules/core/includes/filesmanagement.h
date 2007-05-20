@@ -9,6 +9,11 @@
 #include <stdio.h>
 #include "machine.h"
 
+
+#ifndef _MAX_PATH
+#define #define _MAX_PATH   260
+#endif
+
 /**
 * Default max of files opened in scilab
 */
