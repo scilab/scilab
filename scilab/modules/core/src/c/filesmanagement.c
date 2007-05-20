@@ -4,6 +4,7 @@
 /* INRIA 2007 */
 /*-----------------------------------------------------------------------------------*/
 #include <string.h>
+#include <stdlib.h>
 #include "machine.h"
 #include "filesmanagement.h"
 #include "core_math.h" /* Min Max */
@@ -94,14 +95,21 @@ BOOL SetFileNameOpenedInScilab(int Id,char *name)
 {
 	BOOL bOK=FALSE;
 	char *ptrName=NULL;
+	char fullpath[_MAX_PATH*4];
 
-	ptrName=(char*)MALLOC(sizeof(char)*(strlen(name)+1));
-	if (ptrName)
+	if( _fullpath( fullpath, name, _MAX_PATH*4 ) != NULL )
 	{
-		ScilabFileList[Id].ftname = ptrName;
-		strcpy(ptrName,name);
-		bOK=TRUE;
+		ptrName=(char*)MALLOC(sizeof(char)*(strlen(fullpath)+1));
+		strcpy(ptrName,fullpath);
 	}
+	else
+	{
+		ptrName=(char*)MALLOC(sizeof(char)*(strlen(name)+1));
+		strcpy(ptrName,name);
+	}
+
+	ScilabFileList[Id].ftname = ptrName;
+	bOK=TRUE;
 
 	return bOK;
 }
@@ -188,12 +196,20 @@ BOOL IsAlreadyOpenedInScilab(char *filename)
 
 	if (ScilabFileList)
 	{
+		char fullpath[_MAX_PATH*4];
 		int i=0;
+
+		if( _fullpath( fullpath, filename, _MAX_PATH*4 ) == NULL )
+		{
+			/* if we are a problem */
+			strcpy(fullpath,filename);
+		}
+		
 		for (i=0;i<CurrentMaxFiles;i++)
 		{
 			if (ScilabFileList[i].ftname)
 			{
-				if (strcmp(ScilabFileList[i].ftname,filename) == 0) return TRUE;
+				if (strcmp(ScilabFileList[i].ftname,fullpath) == 0) return TRUE;
 			}
 		}
 	}

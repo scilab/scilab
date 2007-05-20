@@ -9,6 +9,7 @@
 #include "getfiledesc.h"
 #include "addfile.h"
 #include "sciprint.h"
+#include "warningmode.h"
 /*-----------------------------------------------------------------------------------*/
 extern int swap;
 /*-----------------------------------------------------------------------------------*/
@@ -19,10 +20,9 @@ void C2F(mopen)(int *fd, char *file, char *status, int *f_swap, double *res, int
 	FILE * fa;
 	/* next line added by ss 16/10/98 */
 
-	if (IsAlreadyOpenedInScilab(file))
+	if ( getWarningMode() && IsAlreadyOpenedInScilab(file) )
 	{
-		/* disable need to be enhanced*/
-	/*	sciprint("Warning : file '%s' already opened ins scilab.\r\n",file);*/
+		sciprint("Warning : file '%s' already opened in scilab.\r\n",file);
 	}
 
 	swap =0;

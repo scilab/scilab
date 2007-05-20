@@ -49,4 +49,5 @@
 <PRIMITIVE gatewayId="34" primitiveId="23" primitiveName="findfiles" />
 <PRIMITIVE gatewayId="34" primitiveId="24" primitiveName="maxfiles" />
 <PRIMITIVE gatewayId="34" primitiveId="25" primitiveName="getdrives" />
+<PRIMITIVE gatewayId="34" primitiveId="26" primitiveName="fullpath" />
 </GATEWAY>

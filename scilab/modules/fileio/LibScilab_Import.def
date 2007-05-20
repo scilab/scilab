@@ -48,4 +48,5 @@ EXPORTS
  GetFileTypeOpenedInScilab
  GetFileNameOpenedInScilab
  IsAlreadyOpenedInScilab
+ getWarningMode
  

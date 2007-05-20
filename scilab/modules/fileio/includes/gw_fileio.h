@@ -37,6 +37,7 @@ int C2F(sci_xls_open) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_findfiles) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_maxfiles) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_getdrives) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_fullpath) _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/ 
 #endif /* __GW_FILEIO_H__ */
 /*-----------------------------------------------------------------------------------*/

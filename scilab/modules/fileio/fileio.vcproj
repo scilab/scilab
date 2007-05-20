@@ -343,6 +343,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\c\sci_fullpath.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\c\sci_getdrives.c"
 				>
 			</File>
