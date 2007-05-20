@@ -9,7 +9,7 @@
 #include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 #ifndef _MAX_PATH
-#define #define _MAX_PATH   260
+#define _MAX_PATH   260
 #endif
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_fullpath) _PARAMS((char *fname,unsigned long fname_len))
