@@ -5,6 +5,7 @@
 #include "createMainScilabObject.h"
 #include "getScilabObject.h"
 #include "getScilabJNIEnv.h"
+#include "getScilabJavaVM.h"
 #include "scilabmode.h"
 /*-----------------------------------------------------------------------------------*/ 
 static jobject ScilabObject;
