@@ -102,56 +102,56 @@ static BOOL Load_primitives_from_file(char *filename)
 			xpathObj = xmlXPathEval((const xmlChar*)"//GATEWAY/PRIMITIVE", xpathCtxt);
 
 			if(xpathObj && xpathObj->nodesetval->nodeMax) 
-				{
-					/* the Xpath has been understood and there are node */
+			{
+				/* the Xpath has been understood and there are node */
 				int	i;
 				for(i = 0; i < xpathObj->nodesetval->nodeNr; i++)
+				{
+					xmlAttrPtr attrib=xpathObj->nodesetval->nodeTab[i]->properties;
+					/* Get the properties of <PRIMITIVE>  */
+					while (attrib != NULL)
 					{
-					
-						xmlAttrPtr attrib=xpathObj->nodesetval->nodeTab[i]->properties;
-						/* Get the properties of <PRIMITIVE>  */
-						while (attrib != NULL)
-							{
-								/* loop until when have read all the attributes */
-								if (xmlStrEqual (attrib->name, (const xmlChar*) "gatewayId"))
-									{ 
-										/* we found the tag gatewayId */
-										const char *str=(const char*)attrib->children->content;
-										GATEWAY_ID=atoi(str);
-									}
-								else if (xmlStrEqual (attrib->name, (const xmlChar*)"primitiveId"))
-									{ 
-										/* we found the tag primitiveId */
-										const char *str=(const char*)attrib->children->content;
-										PRIMITIVE_ID=atoi(str);
-									}
-								else if (xmlStrEqual (attrib->name, (const xmlChar*)"primitiveName"))
-									{
-										/* we found the tag primitiveName */
-										const char *str=(const char*)attrib->children->content;
-										PRIMITIVE_NAME=(char*)MALLOC(sizeof(char)*(strlen((const char*)str)+1));
-										strcpy(PRIMITIVE_NAME,str);
-									}
-					attrib = attrib->next;
-							}
-						
-
-							if ( (GATEWAY_ID != 0) && (PRIMITIVE_ID != 0) && (PRIMITIVE_NAME) )
-								{
-									if (strlen(PRIMITIVE_NAME) > 0)
-										{
-											Add_a_Scilab_primitive_in_hashtable(PRIMITIVE_NAME,&GATEWAY_ID,&PRIMITIVE_ID);
-										}
-								}
-
-							if (PRIMITIVE_NAME) {FREE(PRIMITIVE_NAME); PRIMITIVE_NAME =NULL;}
-							GATEWAY_ID = 0;
-							PRIMITIVE_ID = 0;
+						/* loop until when have read all the attributes */
+						if (xmlStrEqual (attrib->name, (const xmlChar*) "gatewayId"))
+						{ 
+							/* we found the tag gatewayId */
+							const char *str=(const char*)attrib->children->content;
+							GATEWAY_ID=atoi(str);
 						}
-				}else{
-					printf("Error : Not a valid gateway file %s (should start with <GATEWAY> and contains <PRIMITIVE gatewayId='' primitiveId='' primitiveName=''>)\n", filename);
-					return bOK;
+						else if (xmlStrEqual (attrib->name, (const xmlChar*)"primitiveId"))
+						{ 
+							/* we found the tag primitiveId */
+							const char *str=(const char*)attrib->children->content;
+							PRIMITIVE_ID=atoi(str);
+						}
+						else if (xmlStrEqual (attrib->name, (const xmlChar*)"primitiveName"))
+						{
+							/* we found the tag primitiveName */
+							const char *str=(const char*)attrib->children->content;
+							PRIMITIVE_NAME=(char*)MALLOC(sizeof(char)*(strlen((const char*)str)+1));
+							strcpy(PRIMITIVE_NAME,str);
+						}
+						attrib = attrib->next;
+					}
+
+					if ( (GATEWAY_ID != 0) && (PRIMITIVE_ID != 0) && (PRIMITIVE_NAME) )
+					{
+						if (strlen(PRIMITIVE_NAME) > 0)
+						{
+							Add_a_Scilab_primitive_in_hashtable(PRIMITIVE_NAME,&GATEWAY_ID,&PRIMITIVE_ID);
+						}
+					}
+
+					if (PRIMITIVE_NAME) {FREE(PRIMITIVE_NAME); PRIMITIVE_NAME =NULL;}
+					GATEWAY_ID = 0;
+					PRIMITIVE_ID = 0;
 				}
+			}
+			else
+			{
+				printf("Error : Not a valid gateway file %s (should start with <GATEWAY> and contains <PRIMITIVE gatewayId='' primitiveId='' primitiveName=''>)\n", filename);
+				return bOK;
+			}
 			if(xpathObj) xmlXPathFreeObject(xpathObj);
 			if(xpathCtxt) xmlXPathFreeContext(xpathCtxt);
 			xmlFreeDoc (doc);

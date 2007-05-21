@@ -4,23 +4,24 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include <stdio.h>
 #include <stdlib.h>
+#include <libxml/xpath.h>
+#include <libxml/xmlreader.h>
 #include "getmodules.h"
 #include "machine.h"
 #include "MALLOC.h"
 #include "setgetSCIpath.h"
 #include "string.h"
 #include "sciprint.h"
+#include "GetXmlFileEncoding.h"
 /*-----------------------------------------------------------------------------------*/ 
-#define basenamemodulesfile "modules/modules" 
+#define basenamemodulesfile "etc/modules.xml" 
 /*-----------------------------------------------------------------------------------*/ 
 extern BOOL FileExist(char *filename);
 /*-----------------------------------------------------------------------------------*/ 
 static struct MODULESLIST *ScilabModules=NULL;
 /*-----------------------------------------------------------------------------------*/ 
 static BOOL ReadModulesFile(void);
-static int GetNumberOfLinesInFile(char *filename);
 static BOOL AppendModules(char *filename);
-static void cleaningLine(char *source);
 static BOOL VerifyModule(char *ModuleName);
 /*-----------------------------------------------------------------------------------*/ 
 struct MODULESLIST *getmodules(void)
@@ -55,7 +56,6 @@ BOOL DisposeModulesInfo(void)
 		ScilabModules->numberofModules=0;
 		FREE(ScilabModules);
 		ScilabModules=NULL;
-
 	}
 
 	return bOK;
@@ -81,9 +81,6 @@ static BOOL ReadModulesFile(void)
 	
 	if (FileExist(ModulesFilename))
 	{
-		int NumberofLines=GetNumberOfLinesInFile(ModulesFilename);
-		ScilabModules->ModuleList=(char**)MALLOC(sizeof(char*)*NumberofLines);
-		ScilabModules->numberofModules=NumberofLines;
 		AppendModules(ModulesFilename);
 		FREE(ModulesFilename);
 		ModulesFilename=NULL;
@@ -98,81 +95,12 @@ static BOOL ReadModulesFile(void)
 	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/ 
-static int GetNumberOfLinesInFile(char *filename)
-{
-	#define LineMaxSize 1024
-	int ret=0;
-	FILE *pFile;
-
-	if (FileExist(filename))
-	{
-		char Line[LineMaxSize];
-		pFile=fopen(filename,"rt");
-		while (fgets(Line, LineMaxSize,pFile))
-		{
-			if ( VerifyModule(Line) )
-			{
-				ret++;
-			}
-		}
-		fclose(pFile);
-	}
-
-	return ret;
-}
-/*-----------------------------------------------------------------------------------*/ 
-static BOOL AppendModules(char *filename)
-{
-	#define LineMaxSize 1024
-	BOOL bOK=FALSE;
-	char Line[LineMaxSize];
-	int i=0;
-	FILE *pFile;
-
-	pFile=fopen(filename,"rt");
-	while (fgets(Line, LineMaxSize,pFile))
-	{
-		if ( VerifyModule(Line) )
-		{
-			ScilabModules->ModuleList[i]=(char*)MALLOC(sizeof(char)*(strlen(Line)+1));
-			sprintf(ScilabModules->ModuleList[i],"%s",Line);
-			i++;
-		}
-		else
-		{
-			if (Line[0]!=';') /* Starts with a ; => it is a comment */
-			{
-				sciprint("%s module not found.\n",Line);
-			}
-		}
-	}
-	fclose(pFile);
-	return bOK;
-}
-/*-----------------------------------------------------------------------------------*/ 
-static void cleaningLine(char *source)
-{
-	int i=0;
-	for (i=0;i<(int)strlen(source);i++)
-	{
-		if ( (source[i]==' ') || (source[i]=='\n') || (source[i]=='\r') )
-		{
-			source[i]='\0';
-			break;
-		}
-	}
-}
-/*-----------------------------------------------------------------------------------*/ 
 static BOOL VerifyModule(char *ModuleName)
 {
 	BOOL bOK=FALSE;
 	char *SciPath=NULL;
 	char *FullPathModuleName=NULL;
-
-	cleaningLine(ModuleName);
-
-	/* ';' is a comment into the declaration file (modules/modules) */
-	if (ModuleName[0]==';') return FALSE;
+	
 
 	SciPath=getSCIpath();
 	if (SciPath==NULL)
@@ -195,6 +123,98 @@ static BOOL VerifyModule(char *ModuleName)
 	FREE(FullPathModuleName);
 	FullPathModuleName=NULL;
 
+	return bOK;
+}
+/*-----------------------------------------------------------------------------------*/ 
+static BOOL AppendModules(char *xmlfilename)
+{
+	BOOL bOK = FALSE;
+	if ( FileExist(xmlfilename) )
+	{
+		char *encoding=GetXmlFileEncoding(xmlfilename);
+
+		/* Don't care about line return / empty line */
+		xmlKeepBlanksDefault(0);
+		/* check if the XML file has been encoded with utf8 (unicode) or not */
+		if ( (strcmp("utf-8", encoding)!=0) || (strcmp("UTF-8", encoding)==0) )
+		{
+			xmlDocPtr doc;
+			xmlXPathContextPtr xpathCtxt = NULL;
+			xmlXPathObjectPtr xpathObj = NULL;
+			char *name=NULL;
+			int activate=0;
+			int indice=0;
+
+			doc = xmlParseFile (xmlfilename);
+
+			if (doc == NULL) 
+			{
+				printf("Error: could not parse file %s\n", xmlfilename);
+				if (encoding) {FREE(encoding);encoding=NULL;}
+				return bOK;
+			}
+
+			xpathCtxt = xmlXPathNewContext(doc);
+			xpathObj = xmlXPathEval((const xmlChar*)"//module_list/module", xpathCtxt);
+
+			if(xpathObj && xpathObj->nodesetval->nodeMax) 
+			{
+				/* the Xpath has been understood and there are node */
+				int	i;
+				for(i = 0; i < xpathObj->nodesetval->nodeNr; i++)
+				{
+
+					xmlAttrPtr attrib=xpathObj->nodesetval->nodeTab[i]->properties;
+					/* Get the properties of <module>  */
+					while (attrib != NULL)
+					{
+						/* loop until when have read all the attributes */
+						if (xmlStrEqual (attrib->name, (const xmlChar*) "name"))
+						{ 
+							/* we found the tag name */
+							const char *str=(const char*)attrib->children->content;
+							name=(char*)MALLOC(sizeof(char)*(strlen((const char*)str)+1));
+							strcpy(name,str);
+						}
+						else if (xmlStrEqual (attrib->name, (const xmlChar*) "activate"))
+						{ 
+							/* we found the tag activate */
+							const char *str=(const char*)attrib->children->content;
+							activate=atoi(str);
+						}
+						attrib = attrib->next;
+					}
+
+					if ( (name) && (strlen(name) > 0) && (activate) )
+					{
+						if ( VerifyModule(name) )
+						{
+							if (ScilabModules->ModuleList) ScilabModules->ModuleList=(char**)REALLOC(ScilabModules->ModuleList,sizeof(char*)*(indice+1)); 
+							else ScilabModules->ModuleList=(char**)MALLOC(sizeof(char*)*(indice+1)); 
+
+							ScilabModules->numberofModules=indice+1;
+							
+							ScilabModules->ModuleList[indice]=(char*)MALLOC(sizeof(char)*(strlen(name)+1));
+							sprintf(ScilabModules->ModuleList[indice],"%s",name);
+							indice++;
+						}
+						else
+						{
+							sciprint("%s module not found.\n",name);
+						}
+					}
+					if (name) {FREE(name);name = NULL;}
+					activate = 0;
+				}
+				bOK = TRUE;
+			}
+		}
+		else
+		{
+			printf("Error : Not a valid module file %s (encoding not 'utf-8') Encoding '%s' found\n", xmlfilename, encoding);
+		}
+		if (encoding) {FREE(encoding);encoding=NULL;}
+	}
 	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/ 
