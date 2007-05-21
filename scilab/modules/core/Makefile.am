@@ -165,7 +165,6 @@ src/fortran/indxg.f \
 src/fortran/matz.f \
 src/fortran/istrue.f \
 src/fortran/inisci.f \
-src/fortran/expr.f \
 src/fortran/ptover.f \
 src/fortran/getfunction.f \
 src/fortran/stackp.f \
