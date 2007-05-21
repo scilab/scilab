@@ -117,8 +117,8 @@ am__libscicore_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	src/c/returnProperty.c src/c/returnPropertyList.c \
 	src/c/scilabmode.c src/c/GetXmlFileEncoding.c src/c/msgs.c \
 	src/c/GetenvB.c src/c/islittleendian.c src/c/filesmanagement.c \
-	src/c/terme.c src/c/getarg-hpux.c src/c/getarg.c \
-	src/fortran/algebre.f src/fortran/clunit.f \
+	src/c/terme.c src/c/ifexpr.c src/c/expr.c src/c/getarg-hpux.c \
+	src/c/getarg.c src/fortran/algebre.f src/fortran/clunit.f \
 	src/fortran/complexify.f src/fortran/allowptr.f \
 	src/fortran/dldsp.f src/fortran/bcol.f src/fortran/getlin.f \
 	src/fortran/isany.f src/fortran/hmcreate.f src/fortran/nextj.f \
@@ -149,7 +149,7 @@ am__libscicore_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	src/fortran/whatln.f src/fortran/errmgr.f src/fortran/defmat.f \
 	src/fortran/mklist.f src/fortran/dmdsp.f src/fortran/sigbas.f \
 	src/fortran/indxg.f src/fortran/matz.f src/fortran/istrue.f \
-	src/fortran/inisci.f src/fortran/expr.f src/fortran/ptover.f \
+	src/fortran/inisci.f src/fortran/ptover.f \
 	src/fortran/getfunction.f src/fortran/stackp.f \
 	src/fortran/getpro.f src/fortran/dbasin.f src/fortran/macro.f \
 	src/fortran/lspdsp.f src/fortran/extlarg.f \
@@ -272,7 +272,8 @@ am__objects_3 = libscicore_la-inffic.lo libscicore_la-cs2st.lo \
 	libscicore_la-GetXmlFileEncoding.lo libscicore_la-msgs.lo \
 	libscicore_la-GetenvB.lo libscicore_la-islittleendian.lo \
 	libscicore_la-filesmanagement.lo libscicore_la-terme.lo \
-	$(am__objects_1) $(am__objects_2)
+	libscicore_la-ifexpr.lo libscicore_la-expr.lo $(am__objects_1) \
+	$(am__objects_2)
 @IS_HPUX_TRUE@am__objects_4 = fgetarg-hpux.lo
 @IS_HPUX_FALSE@am__objects_5 = fgetarg.lo
 am__objects_6 = algebre.lo clunit.lo complexify.lo allowptr.lo \
@@ -289,7 +290,7 @@ am__objects_6 = algebre.lo clunit.lo complexify.lo allowptr.lo \
 	bashos.lo dtosci.lo bexec.lo varfunptr.lo getfun.lo savlod.lo \
 	error.lo cvdm.lo tradsl.lo mkindx.lo whatln.lo errmgr.lo \
 	defmat.lo mklist.lo dmdsp.lo sigbas.lo indxg.lo matz.lo \
-	istrue.lo inisci.lo expr.lo ptover.lo getfunction.lo stackp.lo \
+	istrue.lo inisci.lo ptover.lo getfunction.lo stackp.lo \
 	getpro.lo dbasin.lo macro.lo lspdsp.lo extlarg.lo getstr.lo \
 	cvwm.lo storeglobal.lo lst2vars.lo fmttyp.lo basnms.lo matc.lo \
 	ptrback.lo getch.lo ftob.lo seteol.lo basin.lo clause.lo \
@@ -554,7 +555,8 @@ CORE_C_SOURCES = src/c/inffic.c src/c/cs2st.c src/c/tmpdir.c \
 	src/c/returnProperty.c src/c/returnPropertyList.c \
 	src/c/scilabmode.c src/c/GetXmlFileEncoding.c src/c/msgs.c \
 	src/c/GetenvB.c src/c/islittleendian.c src/c/filesmanagement.c \
-	src/c/terme.c $(am__append_2) $(am__append_4)
+	src/c/terme.c src/c/ifexpr.c src/c/expr.c $(am__append_2) \
+	$(am__append_4)
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f src/fortran/clunit.f \
 	src/fortran/complexify.f src/fortran/allowptr.f \
 	src/fortran/dldsp.f src/fortran/bcol.f src/fortran/getlin.f \
@@ -586,7 +588,7 @@ CORE_FORTRAN_SOURCES = src/fortran/algebre.f src/fortran/clunit.f \
 	src/fortran/whatln.f src/fortran/errmgr.f src/fortran/defmat.f \
 	src/fortran/mklist.f src/fortran/dmdsp.f src/fortran/sigbas.f \
 	src/fortran/indxg.f src/fortran/matz.f src/fortran/istrue.f \
-	src/fortran/inisci.f src/fortran/expr.f src/fortran/ptover.f \
+	src/fortran/inisci.f src/fortran/ptover.f \
 	src/fortran/getfunction.f src/fortran/stackp.f \
 	src/fortran/getpro.f src/fortran/dbasin.f src/fortran/macro.f \
 	src/fortran/lspdsp.f src/fortran/extlarg.f \
@@ -942,6 +944,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-cvstr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-dynamic_menus.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-error_scilab.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-expr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-filesmanagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-flags.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-force_link.Plo@am__quote@
@@ -956,6 +959,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-gw_user.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-gw_user2.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-hashtable_core.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-ifexpr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-inffic.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-inisci-c.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-intmacr2tree.Plo@am__quote@
@@ -1613,6 +1617,20 @@ libscicore_la-terme.lo: src/c/terme.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/terme.c' object='libscicore_la-terme.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-terme.lo `test -f 'src/c/terme.c' || echo '$(srcdir)/'`src/c/terme.c
+
+libscicore_la-ifexpr.lo: src/c/ifexpr.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-ifexpr.lo -MD -MP -MF $(DEPDIR)/libscicore_la-ifexpr.Tpo -c -o libscicore_la-ifexpr.lo `test -f 'src/c/ifexpr.c' || echo '$(srcdir)/'`src/c/ifexpr.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-ifexpr.Tpo $(DEPDIR)/libscicore_la-ifexpr.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/ifexpr.c' object='libscicore_la-ifexpr.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-ifexpr.lo `test -f 'src/c/ifexpr.c' || echo '$(srcdir)/'`src/c/ifexpr.c
+
+libscicore_la-expr.lo: src/c/expr.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-expr.lo -MD -MP -MF $(DEPDIR)/libscicore_la-expr.Tpo -c -o libscicore_la-expr.lo `test -f 'src/c/expr.c' || echo '$(srcdir)/'`src/c/expr.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-expr.Tpo $(DEPDIR)/libscicore_la-expr.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/expr.c' object='libscicore_la-expr.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-expr.lo `test -f 'src/c/expr.c' || echo '$(srcdir)/'`src/c/expr.c
 
 libscicore_la-getarg-hpux.lo: src/c/getarg-hpux.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-getarg-hpux.lo -MD -MP -MF $(DEPDIR)/libscicore_la-getarg-hpux.Tpo -c -o libscicore_la-getarg-hpux.lo `test -f 'src/c/getarg-hpux.c' || echo '$(srcdir)/'`src/c/getarg-hpux.c
@@ -2337,9 +2355,6 @@ istrue.lo: src/fortran/istrue.f
 
 inisci.lo: src/fortran/inisci.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o inisci.lo `test -f 'src/fortran/inisci.f' || echo '$(srcdir)/'`src/fortran/inisci.f
-
-expr.lo: src/fortran/expr.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o expr.lo `test -f 'src/fortran/expr.f' || echo '$(srcdir)/'`src/fortran/expr.f
 
 ptover.lo: src/fortran/ptover.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ptover.lo `test -f 'src/fortran/ptover.f' || echo '$(srcdir)/'`src/fortran/ptover.f
