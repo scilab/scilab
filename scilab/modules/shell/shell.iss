@@ -15,7 +15,7 @@ Source: bin\libshell.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;Source: java\jar\modules\shell.jar;DestDir: {app}\java\jar\modules; Components: {#COMPN_SCILAB}
 ;
 ;
-Source: modules\{#SHELL}\changelog.txt; DestDir: {app}\modules\{#SHELL}; Components: {#COMPN_SCILAB}; Check: set_with_shell
+Source: modules\{#SHELL}\changelog.txt; DestDir: {app}\modules\{#SHELL}; Components: {#COMPN_SCILAB};
 Source: modules\{#SHELL}\licence.txt; DestDir: {app}\modules\{#SHELL}; Components: {#COMPN_SCILAB}
 Source: modules\{#SHELL}\readme.txt; DestDir: {app}\modules\{#SHELL}; Components: {#COMPN_SCILAB}
 Source: modules\{#SHELL}\VERSION.xml; DestDir: {app}\modules\{#SHELL}; Components: {#COMPN_SCILAB}
