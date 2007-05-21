@@ -29,41 +29,39 @@ public class Scilab {
 	 */
 	public Scilab(int mode) {
 		this.mode = mode;
-		System.out.println("ICI");
 		
-		//console = new ScilabShell();
-        //console.printf("First Step\n");
-        
-        
-		Window mainView = ScilabWindow.createWindow();
-		mainView.draw();
+		if (mode == 2) {
+		
+			Window mainView = ScilabWindow.createWindow();
+			mainView.draw();
+			/* CONSOLE */
+			/* Create a tab to put console into */
+			Tab consoleTab = ScilabTab.createTab("Console Scilab");
+			consoleTab.setName("Console");
+			mainView.addTab(consoleTab);
+			/* Create the console */
+			Console sciConsole = ScilabConsole.createConsole();
+			consoleTab.addMember(sciConsole);
+			mainView.draw();
+			/* FIGURE */
+			/* Create the tab to put a canvas into */
+			Tab figureTab = ScilabTab.createTab("Scilab Figure");
+			figureTab.setName("Scilab Figure");
+			mainView.addTab(figureTab);
 
-		/* CONSOLE */
-		//newWindowSize = new Size(DEFAULTWIDTH, DEFAULTHEIGHT);
-		//mainView.setDims(newWindowSize);
-//		/* Create a tab to put console into */
-		Tab consoleTab = ScilabTab.createTab("Console Scilab");
-		consoleTab.setName("Console");
-		mainView.addTab(consoleTab);
-//		/* Create the console */
-		Console sciConsole = ScilabConsole.createConsole();
-		consoleTab.addMember(sciConsole);
-		mainView.draw();
-//
-//		/* FIGURE */
-//		/* Create the tab to put a canvas into */
-		Tab figureTab = ScilabTab.createTab("Scilab Figure");
-		figureTab.setName("Scilab Figure");
-		mainView.addTab(figureTab);
-//
-//		/* Create the canvas */
-		Canvas figureCanvas = ScilabCanvas.createCanvas();
-		figureCanvas.setDims(new Size(DEFAULTWIDTH, DEFAULTHEIGHT));
-		figureCanvas.draw();
-	    figureTab.addMember(figureCanvas);
-		figureTab.draw();
-		mainView.draw();
-
+			/* Create the canvas */
+			Canvas figureCanvas = ScilabCanvas.createCanvas();
+			figureCanvas.setDims(new Size(DEFAULTWIDTH, DEFAULTHEIGHT));
+			figureCanvas.draw();
+			figureTab.addMember(figureCanvas);
+			figureTab.draw();
+			mainView.draw();
+		
+		}
+		else {
+			System.out.println("mode -NW");
+		}
+		
 	}
 }
 /*--------------------------------------------------------------------------*/
