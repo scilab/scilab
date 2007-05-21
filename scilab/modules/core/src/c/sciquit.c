@@ -22,16 +22,18 @@
 int ExitScilab(void)
 {
 	TerminateCorePart1();
-
-	TerminateGraphics();
-
+	
 	TerminateGUI();
   
 	TerminateTclTk();
 
 	TerminateLocalization();
 
-	if ( getScilabMode() != SCILAB_NWNI ) TerminateJVM();
+	if ( getScilabMode() != SCILAB_NWNI ) 
+	{
+		TerminateJVM();
+		TerminateGraphics();
+	}
 
 	TerminateCorePart2();
 

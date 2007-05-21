@@ -9,7 +9,6 @@
 #endif
 #include "gw_graphics.h"
 #include "stack-c.h"
-#include "graphicModuleLoad.h"
 #include "scilabmode.h"
 /*-----------------------------------------------------------------------------------*/ 
 typedef int (*des_interf) __PARAMS((char *fname,unsigned long l));
@@ -118,8 +117,7 @@ int C2F(gw_graphics)(void)
   Rhs = Max(0, Rhs);
   if ( (getScilabMode() != SCILAB_NWNI) || (strcmp(Tab[Fin-1].name,"gsort")==0) ) /*Veru en attendant de deplacer gsort*/
   {
-    /* create needed data structure if not already created */
-    loadGraphicModule() ;
+
 #ifdef _MSC_VER
 #ifndef _DEBUG
 	  _try
