@@ -35,10 +35,10 @@ Source: modules\{#SHELL}\help\*.htm; DestDir: {app}\modules\{#SHELL}\help; Flags
 Source: modules\{#SHELL}\languages\*.xml; DestDir: {app}\modules\{#SHELL}\languages; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#SHELL}\macros\buildmacros.sce; DestDir: {app}\modules\{#SHELL}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#SHELL}\macros\*.bin; DestDir: {app}\modules\{#SHELL}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#SHELL}\macros\*.sci; DestDir: {app}\modules\{#SHELL}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#SHELL}\macros\lib; DestDir: {app}\modules\{#SHELL}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#SHELL}\macros\names; DestDir: {app}\modules\{#SHELL}\macros; Components: {#COMPN_SCILAB}
+;Source: modules\{#SHELL}\macros\*.bin; DestDir: {app}\modules\{#SHELL}\macros; Components: {#COMPN_SCILAB}
+;Source: modules\{#SHELL}\macros\*.sci; DestDir: {app}\modules\{#SHELL}\macros; Components: {#COMPN_SCILAB}
+;Source: modules\{#SHELL}\macros\lib; DestDir: {app}\modules\{#SHELL}\macros; Components: {#COMPN_SCILAB}
+;Source: modules\{#SHELL}\macros\names; DestDir: {app}\modules\{#SHELL}\macros; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#SHELL}\demos\*.*; DestDir: {app}\modules\{#SHELL}\demos; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
