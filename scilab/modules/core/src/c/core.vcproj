@@ -226,6 +226,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\expr.c"
+				>
+			</File>
+			<File
 				RelativePath=".\filesmanagement.c"
 				>
 			</File>
@@ -303,6 +307,10 @@
 			</File>
 			<File
 				RelativePath=".\hashtable_core.c"
+				>
+			</File>
+			<File
+				RelativePath=".\ifexpr.c"
 				>
 			</File>
 			<File
@@ -819,6 +827,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\expr.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\filesmanagement.h"
 				>
 			</File>
@@ -831,11 +843,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\fromjava.h"
+				RelativePath="..\..\includes\fromjava.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\fromjava.h"
+				RelativePath=".\fromjava.h"
 				>
 			</File>
 			<File
@@ -884,6 +896,10 @@
 			</File>
 			<File
 				RelativePath=".\hashtable_core.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ifexpr.h"
 				>
 			</File>
 			<File

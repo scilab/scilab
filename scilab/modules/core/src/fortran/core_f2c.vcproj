@@ -333,10 +333,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\expr.c"
-				>
-			</File>
-			<File
 				RelativePath=".\expsum.c"
 				>
 			</File>
@@ -962,10 +958,6 @@
 			</File>
 			<File
 				RelativePath=".\error.f"
-				>
-			</File>
-			<File
-				RelativePath=".\expr.f"
 				>
 			</File>
 			<File

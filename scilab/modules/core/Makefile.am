@@ -79,7 +79,9 @@ src/c/msgs.c \
 src/c/GetenvB.c \
 src/c/islittleendian.c \
 src/c/filesmanagement.c \
-src/c/terme.c
+src/c/terme.c \
+src/c/ifexpr.c \
+src/c/expr.c 
 
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f \
 src/fortran/clunit.f \
