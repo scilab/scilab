@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8,00"
-	Name="Javasci"
+	Name="javasci"
 	ProjectGUID="{0BD503EF-5CB6-4277-BAC4-8955C97F247D}"
 	RootNamespace="Javasci"
 	Keyword="Win32Proj"
@@ -271,62 +271,6 @@
 			>
 		</Filter>
 		<Filter
-			Name="Java Class"
-			>
-			<File
-				RelativePath=".\src\java\javasci\BadDataArgumentException.java"
-				>
-			</File>
-			<File
-				RelativePath=".\src\java\javasci\ClassPath.java"
-				>
-			</File>
-			<File
-				RelativePath=".\src\java\javasci\SciAbstractArray.java"
-				>
-			</File>
-			<File
-				RelativePath=".\src\java\javasci\SciAbstractDataType.java"
-				>
-			</File>
-			<File
-				RelativePath=".\src\java\javasci\SciBoolean.java"
-				>
-			</File>
-			<File
-				RelativePath=".\src\java\javasci\SciBooleanArray.java"
-				>
-			</File>
-			<File
-				RelativePath=".\src\java\javasci\SciComplex.java"
-				>
-			</File>
-			<File
-				RelativePath=".\src\java\javasci\SciComplexArray.java"
-				>
-			</File>
-			<File
-				RelativePath=".\src\java\javasci\SciDouble.java"
-				>
-			</File>
-			<File
-				RelativePath=".\src\java\javasci\SciDoubleArray.java"
-				>
-			</File>
-			<File
-				RelativePath=".\src\java\javasci\Scilab.java"
-				>
-			</File>
-			<File
-				RelativePath=".\src\java\javasci\SciString.java"
-				>
-			</File>
-			<File
-				RelativePath=".\src\java\javasci\SciStringArray.java"
-				>
-			</File>
-		</Filter>
-		<Filter
 			Name="localization"
 			>
 			<File
@@ -339,14 +283,6 @@
 			</File>
 			<File
 				RelativePath=".\languages\en_US\messages.xml"
-				>
-			</File>
-		</Filter>
-		<Filter
-			Name="Ant"
-			>
-			<File
-				RelativePath=".\src\java\javasci\build.xml"
 				>
 			</File>
 		</Filter>

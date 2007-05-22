@@ -96,8 +96,8 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				Description="Ant"
-				CommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;cd ..\java\shell&#x0D;&#x0A;ant jar&#x0D;&#x0A;cd  ..\..\c&#x0D;&#x0A;"
+				Description=""
+				CommandLine=""
 			/>
 		</Configuration>
 		<Configuration
@@ -186,8 +186,8 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				Description="Ant"
-				CommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;cd ..\java\shell&#x0D;&#x0A;ant jar&#x0D;&#x0A;cd  ..\..\c&#x0D;&#x0A;"
+				Description=""
+				CommandLine=""
 			/>
 		</Configuration>
 	</Configurations>
@@ -321,30 +321,6 @@
 			>
 			<File
 				RelativePath=".\shell.rc"
-				>
-			</File>
-		</Filter>
-		<Filter
-			Name="Java classes"
-			>
-			<File
-				RelativePath="..\java\shell\org\scilab\modules\shell\ScilabShell.java"
-				>
-			</File>
-			<File
-				RelativePath="..\java\shell\org\scilab\modules\shell\ScilabShellBridge.java"
-				>
-			</File>
-			<File
-				RelativePath="..\java\shell\org\scilab\modules\shell\Shell.java"
-				>
-			</File>
-		</Filter>
-		<Filter
-			Name="Ant"
-			>
-			<File
-				RelativePath="..\java\shell\build.xml"
 				>
 			</File>
 		</Filter>
