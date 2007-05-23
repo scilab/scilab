@@ -155,7 +155,7 @@ static BOOL AppendModules(char *xmlfilename)
 			}
 
 			xpathCtxt = xmlXPathNewContext(doc);
-			xpathObj = xmlXPathEval((const xmlChar*)"//module_list/module", xpathCtxt);
+			xpathObj = xmlXPathEval((const xmlChar*)"//modules/module", xpathCtxt);
 
 			if(xpathObj && xpathObj->nodesetval->nodeMax) 
 			{

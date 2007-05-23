@@ -1,4 +1,4 @@
-<!ELEMENT module_list (META?,module*)>
+<!ELEMENT modules (META?,module*)>
 
 <!ELEMENT META (#PCDATA)>
 
