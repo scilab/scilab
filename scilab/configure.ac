@@ -535,6 +535,7 @@ if test "$with_java" != no; then
 		AC_JAVA_CLASSPATH
 		JAVA_CLASSPATH=$ac_java_classpath
 		AC_JAVA_TOOLS
+		AC_JAVA_ANT
 		JAVA_OK=1
 	else
 		AC_MSG_WARN([Sun javac not found: I will not build the java interface])
@@ -1185,6 +1186,7 @@ echo "  JAVA_JNI_LIBS ....... = $JAVA_JNI_LIBS"
 echo "  JAVA_JNI_LIBS_PRELOAD = $JAVA_JNI_LIBS_PRELOAD"
 echo "  JAVA ................ = $JAVA"
 echo "  JAR ................. = $JAR"
+echo "  ANT ................. = $ANT"
 else
 echo "  JAVA disabled"
 fi

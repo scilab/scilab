@@ -594,6 +594,32 @@ AC_DEFUN([AC_JAVA_TOOLS], [
     esac
 ])
 
+
+
+#------------------------------------------------------------------------
+# AC_JAVA_ANT
+#
+#	Figure out if ant is available and where
+#
+# Arguments:
+#	PATH
+#
+# VARIABLES SET:
+#	ANT
+#
+#------------------------------------------------------------------------
+
+AC_DEFUN([AC_JAVA_ANT], [
+    AC_ARG_WITH(ant, [  --with-ant=DIR          use ant from DIR], ANTPATH=$withval, ANTPATH=no)
+    if test "$ANTPATH" = "no" ; then	
+	    AC_JAVA_TOOLS_CHECK(ANT, ant)
+	elif test ! -d "$ANTPATH"; then
+        AC_MSG_ERROR([--with-ant=DIR option, must pass a valid DIR])
+	else
+		AC_JAVA_TOOLS_CHECK(ANT, ant, $ANTPATH/bin $ANTPATH)
+	fi
+])
+
 #------------------------------------------------------------------------
 # AC_JAVA_TOOLS_CHECK(VARIABLE, TOOL, PATH, NOERR)
 #
@@ -625,3 +651,4 @@ AC_DEFUN([AC_JAVA_TOOLS_CHECK], [
     fi
     ])
 ])
+
