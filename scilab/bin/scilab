@@ -100,6 +100,7 @@ else
 	if test -x $SCI/scilab-bin; then
 		# dev env
 		SCILABBIN=$SCI/scilab-bin
+		DEVENV=1
 	else
 		echo "Cannot not find scilab-bin ..."
 		exit 1
@@ -402,7 +403,7 @@ if test "$rest" = "yes"; then
 	  sci_args="$sci_args -nb"
           ;;
       -debug) 
-          debug="-debug"
+          DEBUG="-debug"
           ;;
       -nw)
           now="-nw"
@@ -464,8 +465,14 @@ if test "$rest" = "yes"; then
   if test -n "$mem"; then
     sci_args="$sci_args -mem  $mem"
   fi
-  if test -n "$debug"; then
-     gdb $SCILABBIN $sci_args
+  if test -n "$DEBUG"; then
+	  if test -n "$DEVENV"; then
+		  echo "Running debug of Scilab  : " $SCI/libtool --mode=execute gdb $SCILABBIN $sci_args
+		  $SCI/libtool --mode=execute gdb $SCILABBIN $sci_args
+	  else
+		  echo "Running debug of Scilab  : " gdb $SCILABBIN $sci_args
+		  gdb $SCILABBIN $sci_args
+	  fi
   else
     if test -n "$now"; then
         sci_exe="do_scilex_now"
