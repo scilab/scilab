@@ -11,7 +11,7 @@
  activate="1" module will be launched ( or not "0")
  -->
 <!-- =================== -->
-<module_list>
+<modules>
 <module name="core" activate="1"/>
 <module name="differential_equations" activate="1"/>
 <module name="double" activate="1"/>
