@@ -66,5 +66,5 @@
 <module name="sci2c" activate="0"/>
 <module name="fftw" activate="0"/>
 <module name="module_skeleton" activate="0"/>
- </module_list>
+ </modules>
  
