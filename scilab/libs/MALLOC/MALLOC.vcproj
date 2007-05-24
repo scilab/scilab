@@ -40,6 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
+				AdditionalIncludeDirectories="includes"
 				PreprocessorDefinitions="EXPORT_MALLOC_DLL"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -120,6 +121,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				WholeProgramOptimization="false"
+				AdditionalIncludeDirectories="includes"
 				PreprocessorDefinitions="EXPORT_MALLOC_DLL"
 				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="1"
