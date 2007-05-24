@@ -189,11 +189,8 @@ static BOOL AppendModules(char *xmlfilename)
 					{
 						if ( VerifyModule(name) )
 						{
-							if (indice==0){
-								ScilabModules->ModuleList=(char**)MALLOC(sizeof(char*)*(indice+1)); 
-							} else {
-								ScilabModules->ModuleList=(char**)REALLOC(ScilabModules->ModuleList,sizeof(char*)*(indice+1));
-							}
+							if (indice==0) ScilabModules->ModuleList=(char**)MALLOC(sizeof(char*)*(indice+1)); 
+							else ScilabModules->ModuleList=(char**)REALLOC(ScilabModules->ModuleList,sizeof(char*)*(indice+1));
 
 							ScilabModules->numberofModules=indice+1;
 							
