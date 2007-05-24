@@ -11,7 +11,7 @@
  -->
 <!-- =================== -->
 <toolboxes users="all">
-<toolboxes name="toolboxe_skeleton" path="$SCILAB/contrib/toolboxe_skeleton" activate="0"/>
+<toolboxe name="toolboxe_skeleton" path="$SCILAB/contrib/toolboxe_skeleton" activate="0"/>
 <!-- comments -->
 </toolboxes>
  
