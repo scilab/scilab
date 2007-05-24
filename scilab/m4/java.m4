@@ -647,7 +647,7 @@ AC_DEFUN([AC_JAVA_TOOLS_CHECK], [
 
     m4_ifval([$4],,[
     if test "x[$]$1" = "x" ; then
-        AC_MSG_ERROR([Cannot find $2 on $3])
+        AC_MSG_ERROR([Cannot find $2])
     fi
     ])
 ])
