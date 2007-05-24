@@ -5,7 +5,7 @@
 /* Allan CORNET */
 /* INRIA 2005 */
 /*-----------------------------------------------------------------------------------*/
-void * MyReAlloc(void * lpAddress,int dwSize,char *file,int line)
+IMPORT_EXPORT_MALLOC_DLL void * MyReAlloc(void * lpAddress,int dwSize,char *fichier,int ligne)
 {
   void * NewPointer=NULL;
  
@@ -14,14 +14,14 @@ void * MyReAlloc(void * lpAddress,int dwSize,char *file,int line)
   if(NewPointer == NULL)
     {
 	#ifndef NDEBUG
-      printf("REALLOC returns NULL Error File %s Line %d \n",file,line);
+      printf("REALLOC returns NULL Error File %s Line %d \n",fichier,ligne);
       fflush(NULL);
 	#endif
     }
   return NewPointer;
 }
 /*-----------------------------------------------------------------------------------*/
-void * MyAlloc(unsigned int dwSize,char *file,int line)
+IMPORT_EXPORT_MALLOC_DLL void * MyAlloc(unsigned int dwSize,char *file,int line)
 {
   void * NewPointer=NULL;
 
@@ -50,7 +50,7 @@ void * MyAlloc(unsigned int dwSize,char *file,int line)
 }
 
 /*-----------------------------------------------------------------------------------*/
-void * MyCalloc(unsigned int x, unsigned int y, char *file,int line)
+IMPORT_EXPORT_MALLOC_DLL void * MyCalloc(unsigned int x, unsigned int y, char *file,int line)
 {
   void * NewPointer=NULL;
 
@@ -78,7 +78,7 @@ void * MyCalloc(unsigned int x, unsigned int y, char *file,int line)
 
 }
 /*-----------------------------------------------------------------------------------*/
-void MyFree(void *x, char *file,int line)
+IMPORT_EXPORT_MALLOC_DLL void MyFree(void *x, char *file,int line)
 {
 	free((void*)x);
 }

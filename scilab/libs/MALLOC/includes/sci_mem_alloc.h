@@ -37,7 +37,7 @@
 #define IMPORT_EXPORT_MALLOC_DLL __declspec(dllimport)
 #endif
 #else
-#define IMPORT_EXPORT_MALLOC_DLL extern
+#define IMPORT_EXPORT_MALLOC_DLL 
 #endif
 
 
