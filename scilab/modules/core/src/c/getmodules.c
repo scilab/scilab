@@ -143,8 +143,8 @@ static BOOL AppendModules(char *xmlfilename)
 			xmlXPathObjectPtr xpathObj = NULL;
 			char *name=NULL;
 			int activate=0;
-			int indice=0;
 
+			int indice=0;
 			doc = xmlParseFile (xmlfilename);
 
 			if (doc == NULL) 
@@ -189,8 +189,11 @@ static BOOL AppendModules(char *xmlfilename)
 					{
 						if ( VerifyModule(name) )
 						{
-							if (ScilabModules->ModuleList) ScilabModules->ModuleList=(char**)REALLOC(ScilabModules->ModuleList,sizeof(char*)*(indice+1)); 
-							else ScilabModules->ModuleList=(char**)MALLOC(sizeof(char*)*(indice+1)); 
+							if (indice==0){
+								ScilabModules->ModuleList=(char**)MALLOC(sizeof(char*)*(indice+1)); 
+							} else {
+								ScilabModules->ModuleList=(char**)REALLOC(ScilabModules->ModuleList,sizeof(char*)*(indice+1));
+							}
 
 							ScilabModules->numberofModules=indice+1;
 							
