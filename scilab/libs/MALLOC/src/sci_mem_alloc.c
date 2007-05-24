@@ -1,11 +1,11 @@
-#include "../includes/sci_mem_alloc.h"
+#include "sci_mem_alloc.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 /* Allan CORNET */
 /* INRIA 2005 */
 /*-----------------------------------------------------------------------------------*/
-IMPORT_EXPORT_MALLOC_DLL void * MyReAlloc(void * lpAddress,int dwSize,char *fichier,int ligne)
+void * MyReAlloc(void * lpAddress,int dwSize,char *file,int line)
 {
   void * NewPointer=NULL;
  
@@ -14,14 +14,14 @@ IMPORT_EXPORT_MALLOC_DLL void * MyReAlloc(void * lpAddress,int dwSize,char *fich
   if(NewPointer == NULL)
     {
 	#ifndef NDEBUG
-      printf("REALLOC returns NULL Error File %s Line %d \n",fichier,ligne);
+      printf("REALLOC returns NULL Error File %s Line %d \n",file,line);
       fflush(NULL);
 	#endif
     }
   return NewPointer;
 }
 /*-----------------------------------------------------------------------------------*/
-IMPORT_EXPORT_MALLOC_DLL void * MyAlloc(unsigned int dwSize,char *fichier,int ligne)
+void * MyAlloc(unsigned int dwSize,char *file,int line)
 {
   void * NewPointer=NULL;
 
@@ -32,7 +32,7 @@ IMPORT_EXPORT_MALLOC_DLL void * MyAlloc(unsigned int dwSize,char *fichier,int li
       if (NewPointer == NULL)
 		{
 		#ifndef NDEBUG
-			printf("MALLOC returns NULL Error File %s Line %d \n",fichier,ligne);
+			printf("MALLOC returns NULL Error File %s Line %d \n",file,line);
 			fflush(NULL);
 		#endif
 		}
@@ -41,7 +41,7 @@ IMPORT_EXPORT_MALLOC_DLL void * MyAlloc(unsigned int dwSize,char *fichier,int li
     { 
 		NewPointer = malloc(dwSize);
 		#ifndef NDEBUG
-			printf("MALLOC incorrect Size Error File %s Line %d \n",fichier,ligne);
+			printf("MALLOC incorrect Size Error File %s Line %d \n",file,line);
 			fflush(NULL);
 		#endif
     }
@@ -50,7 +50,7 @@ IMPORT_EXPORT_MALLOC_DLL void * MyAlloc(unsigned int dwSize,char *fichier,int li
 }
 
 /*-----------------------------------------------------------------------------------*/
-IMPORT_EXPORT_MALLOC_DLL void * MyCalloc(unsigned int x, unsigned int y, char *fichier,int ligne)
+void * MyCalloc(unsigned int x, unsigned int y, char *file,int line)
 {
   void * NewPointer=NULL;
 
@@ -61,7 +61,7 @@ IMPORT_EXPORT_MALLOC_DLL void * MyCalloc(unsigned int x, unsigned int y, char *f
 		if (NewPointer == NULL)
 		{
 		#ifndef NDEBUG
-			printf("CALLOC returns NULL Error File %s Line %d \n",fichier,ligne);
+			printf("CALLOC returns NULL Error File %s Line %d \n",file,line);
 			fflush(NULL);
 		#endif
 		}
@@ -70,7 +70,7 @@ IMPORT_EXPORT_MALLOC_DLL void * MyCalloc(unsigned int x, unsigned int y, char *f
     {
 		NewPointer = calloc(x,y);
 		#ifndef NDEBUG
-			printf("CALLOC incorrect size Error File %s Line %d \n",fichier,ligne);
+			printf("CALLOC incorrect size Error File %s Line %d \n",file,line);
 			fflush(NULL);
 		#endif
     }
@@ -78,7 +78,7 @@ IMPORT_EXPORT_MALLOC_DLL void * MyCalloc(unsigned int x, unsigned int y, char *f
 
 }
 /*-----------------------------------------------------------------------------------*/
-IMPORT_EXPORT_MALLOC_DLL void MyFree(void *x, char *fichier,int ligne)
+void MyFree(void *x, char *file,int line)
 {
 	free((void*)x);
 }

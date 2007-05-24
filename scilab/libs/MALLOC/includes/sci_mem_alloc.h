@@ -42,10 +42,21 @@
 
 
 #ifndef _MSC_VER
- extern void * MyReAlloc(void * lpAddress,int dwSize,char *fichier,int ligne);
- extern void * MyAlloc(unsigned int dwSize,char *fichier,int ligne);
- extern void * MyCalloc(unsigned  int x, unsigned int y, char *fichier,int ligne);
- extern void MyFree(void *lpAddress,char *fichier,int ligne);
+
+/**
+ * Reallocate the memory
+ * Unix/Linux only
+ *
+ * @param lpAddress Address 
+ * @param dwSize Size
+ * @param file Where the function is called (used debug) 
+ * @param line  
+ * @return <ReturnValue>
+ */
+ void * MyReAlloc(void * lpAddress,int dwSize,char *file,int line);
+ void * MyAlloc(unsigned int dwSize,char *file,int line);
+ void * MyCalloc(unsigned  int x, unsigned int y, char *file,int line);
+ void MyFree(void *lpAddress,char *file,int line);
 
  #ifdef lint5
    #include <sys/stdtypes.h>
