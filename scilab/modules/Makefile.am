@@ -68,7 +68,6 @@ modulename=
 
 #### Basic files ####
 libscilab_la_rootdir = $(mydatadir)
-libscilab_la_root_DATA = modules
 
 # 
 pkglib_LTLIBRARIES = libscilab.la
@@ -108,7 +107,7 @@ libscilab_la_LIBADD = \
 	$(top_builddir)/modules/wintools/libsciwintools.la \
         $(top_builddir)/modules/tclsci/libscitclsci.la \
         $(top_builddir)/modules/fftw/libscifftw.la \
-        $(top_builddir)/modules/pvm/libscipvm.la \ 
+        $(top_builddir)/modules/pvm/libscipvm.la \
         $(top_builddir)/modules/jvm/libscijvm.la
 
 if STRINGV2

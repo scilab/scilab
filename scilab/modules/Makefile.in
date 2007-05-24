@@ -27,7 +27,6 @@
 ### Target, variable, suffixes which are supposed to be usefull in every makefile.am
 ##########
 
-
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkglibdir = $(libdir)/@PACKAGE@
@@ -76,8 +75,7 @@ am__vpath_adj = case $$p in \
     *) f=$$p;; \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
-am__installdirs = "$(DESTDIR)$(pkglibdir)" \
-	"$(DESTDIR)$(libscilab_la_rootdir)"
+am__installdirs = "$(DESTDIR)$(pkglibdir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscilab_la_DEPENDENCIES = $(top_builddir)/modules/mexlib/libmex.la \
@@ -141,8 +139,6 @@ RECURSIVE_TARGETS = all-recursive check-recursive dvi-recursive \
 	install-pdf-recursive install-ps-recursive install-recursive \
 	installcheck-recursive installdirs-recursive pdf-recursive \
 	ps-recursive uninstall-recursive
-libscilab_la_rootDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libscilab_la_root_DATA)
 RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\
   distclean-recursive maintainer-clean-recursive
 ETAGS = etags
@@ -160,6 +156,7 @@ DIST_SUBDIRS = intersci polynomials cacsd elementaries_functions \
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
+ANT = @ANT@
 AR = @AR@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
@@ -325,7 +322,6 @@ modulename =
 
 #### Basic files ####
 libscilab_la_rootdir = $(mydatadir)
-libscilab_la_root_DATA = modules
 
 # 
 pkglib_LTLIBRARIES = libscilab.la
@@ -503,23 +499,6 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libscilab_la_rootDATA: $(libscilab_la_root_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscilab_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libscilab_la_rootdir)"
-	@list='$(libscilab_la_root_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscilab_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscilab_la_rootdir)/$$f'"; \
-	  $(libscilab_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscilab_la_rootdir)/$$f"; \
-	done
-
-uninstall-libscilab_la_rootDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscilab_la_root_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscilab_la_rootdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscilab_la_rootdir)/$$f"; \
-	done
 
 # This directory's subdirectories are mostly independent; you can cd
 # into them and run `make' without going through this Makefile.
@@ -698,10 +677,10 @@ distdir: $(DISTFILES)
 check-am: all-am
 check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-recursive
-all-am: Makefile $(LTLIBRARIES) $(DATA)
+all-am: Makefile $(LTLIBRARIES)
 installdirs: installdirs-recursive
 installdirs-am:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscilab_la_rootdir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -751,7 +730,7 @@ info: info-recursive
 
 info-am:
 
-install-data-am: install-data-local install-libscilab_la_rootDATA
+install-data-am: install-data-local
 
 install-dvi: install-dvi-recursive
 
@@ -788,8 +767,7 @@ ps: ps-recursive
 
 ps-am:
 
-uninstall-am: uninstall-libscilab_la_rootDATA \
-	uninstall-pkglibLTLIBRARIES
+uninstall-am: uninstall-pkglibLTLIBRARIES
 
 .MAKE: $(RECURSIVE_CLEAN_TARGETS) $(RECURSIVE_TARGETS) install-am \
 	install-strip
@@ -802,15 +780,14 @@ uninstall-am: uninstall-libscilab_la_rootDATA \
 	html-am info info-am install install-am install-data \
 	install-data-am install-data-local install-dvi install-dvi-am \
 	install-exec install-exec-am install-html install-html-am \
-	install-html-local install-info install-info-am \
-	install-libscilab_la_rootDATA install-man install-pdf \
-	install-pdf-am install-pkglibLTLIBRARIES install-ps \
-	install-ps-am install-strip installcheck installcheck-am \
-	installdirs installdirs-am maintainer-clean \
+	install-html-local install-info install-info-am install-man \
+	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
+	install-ps install-ps-am install-strip installcheck \
+	installcheck-am installdirs installdirs-am maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags tags-recursive uninstall uninstall-am \
-	uninstall-libscilab_la_rootDATA uninstall-pkglibLTLIBRARIES
+	uninstall-pkglibLTLIBRARIES
 
 
 # Compilation of Java
