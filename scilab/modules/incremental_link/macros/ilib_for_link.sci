@@ -240,7 +240,7 @@ function ilib_link_gen_Make_lcc(names,files,libs,Makename,libname,ldflags,cflags
   mfprintf(fd,"SCIIMPLIB=$(SCIDIR1)\\bin\\lcclib\\LibScilab.lib $(SCIDIR1)\\bin\\lcclib\\blasplus.lib $(SCIDIR1)\\bin\\lcclib\\libf2c.lib $(SCIDIR1)\\bin\\lcclib\\intersci.lib $(SCIDIR1)\\bin\\lapack.lib $(SCIDIR1)\\bin\\scicos.lib\n\n");
   mfprintf(fd,"CC=lcc\n");
   mfprintf(fd,"LINKER=lcclnk\n");
-  mfprintf(fd,"CFLAGS=-I""$(SCIDIR)/modules/core/includes"" -I""$(SCIDIR)/libs/f2c"" -I""$(SCIDIR)/modules/mexlib/includes"" -Dmexfunction_=mex$*_ -DmexFunction=mex_$* -DWIN32 -DSTRICT -DFORDLL -D__STDC__ "+ cflags +" \n"); 
+  mfprintf(fd,"CFLAGS=-I""$(SCIDIR)/modules/core/includes"" -I""$(SCIDIR)/libs/f2c"" -I""$(SCIDIR)/modules/mexlib/includes"" -Dmexfunction_=mex$*_ -DmexFunction=mex_$* -DWIN32 -DSTRICT -DFORDLL -D__STDC__ -DHAVE_EXP10 "+ cflags +" \n"); 
   mfprintf(fd,"LINKER_FLAGS=-dll -nounderscores\n");
   mfprintf(fd,"EXTRA_LDFLAGS = "+ ldflags+"\n");
   mfprintf(fd,"O=.obj\n");
