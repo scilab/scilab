@@ -11,7 +11,7 @@ modulename=fftw
 
 pkglib_LTLIBRARIES = libscifftw.la
 
-FFTW_C_SOURCES = src/c/callfftw_Linux.c \
+FFTW_C_SOURCES = src/c/callfftw.c \
 src/c/fftwlibname.c \
 src/c/fftw_utilities.c \
 src/c/with_fftw.c 
