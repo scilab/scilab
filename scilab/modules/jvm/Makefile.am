@@ -13,7 +13,7 @@ src/c/getClasspath.c \
 src/c/system_getproperty.c \
 src/c/loadClasspath.c \
 src/c/createMainScilabObject.c \
-src/c/JVM_functions.c
+src/c/JVM_commons.c
 
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_jvm.c \
