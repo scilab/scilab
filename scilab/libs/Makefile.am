@@ -9,7 +9,7 @@ SUBDIRS = \
 	lapack \
 	MALLOC \
 	hashtable \
-	libst
+	libst \
 	dynamiclibrary
 # \
 #	f2c
