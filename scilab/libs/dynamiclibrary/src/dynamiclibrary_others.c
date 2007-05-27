@@ -3,6 +3,9 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
 #include "dynamiclibrary_others.h"
+#ifndef NULL
+#define NULL 0
+#endif
 /*-----------------------------------------------------------------------------------*/ 
 DynLibHandle LoadDynLibrary(char *libname)
 {
