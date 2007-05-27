@@ -41,7 +41,9 @@ libscifftw_la_sci_gateway_DATA = sci_gateway/fftw_gateway.xml
 
 libscifftw_la_SOURCES = $(FFTW_C_SOURCES) $(GATEWAY_C_SOURCES)
 
-libscifftw_la_CFLAGS=  -Iincludes/  -Isrc/c/
+libscifftw_la_LIBADD = $(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la
+
+libscifftw_la_CFLAGS=  -Iincludes/  -Isrc/c/ -I$(top_srcdir)/libs/dynamiclibrary/includes/
 
 libscifftw_la_LDFLAGS = $(FFTW3_LIB)
 
