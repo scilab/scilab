@@ -128,6 +128,7 @@ char *call_fftw_export_wisdom_to_string (void)
 	{
 		return (char *)(MY_FFTW_EXPORT_WISDOM_TO_STRING)();
 	}
+	return NULL;
 }
 /*-----------------------------------------------------------------------------------*/
 int call_fftw_import_wisdom_from_string (const char *input_string)
@@ -136,6 +137,7 @@ int call_fftw_import_wisdom_from_string (const char *input_string)
 	{
 		return (int)(MY_FFTW_IMPORT_WISDOM_FROM_STRING)(input_string);
 	}
+	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 void call_fftw_forget_wisdom (void)
