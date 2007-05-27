@@ -10,7 +10,11 @@ import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.canvas.ScilabCanvas;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.canvas.Canvas;
+import org.scilab.modules.gui.utils.LookAndFeel;
+
+
+
+
 /**
  * Main Class for Scilab
  * @author Allan CORNET INRIA 2007
@@ -31,7 +35,14 @@ public class Scilab {
 		this.mode = mode;
 		
 		if (mode == 2) {
-		
+
+		/*
+		 *	 by default we used O.S Look and Feel
+		 */		
+		LookAndFeel.setSystemLookAndFeel();
+
+	
+
 			Window mainView = ScilabWindow.createWindow();
 			mainView.draw();
 			/* CONSOLE */
@@ -45,18 +56,17 @@ public class Scilab {
 			mainView.draw();
 			/* FIGURE */
 			/* Create the tab to put a canvas into */
-			Tab figureTab = ScilabTab.createTab("Scilab Figure");
-			figureTab.setName("Scilab Figure");
-			mainView.addTab(figureTab);
+			//Tab figureTab = ScilabTab.createTab("Scilab Figure");
+// 			/figureTab.setName("Scilab Figure");
+// 			mainView.addTab(figureTab);
 
-			/* Create the canvas */
-			Canvas figureCanvas = ScilabCanvas.createCanvas();
-			figureCanvas.setDims(new Size(DEFAULTWIDTH, DEFAULTHEIGHT));
-			figureCanvas.draw();
-			figureTab.addMember(figureCanvas);
-			figureTab.draw();
-			mainView.draw();
-		
+// 			/* Create the canvas */
+// 			Canvas figureCanvas = ScilabCanvas.createCanvas();
+// 			figureCanvas.setDims(new Size(DEFAULTWIDTH, DEFAULTHEIGHT));
+// 			figureCanvas.draw();
+// 			figureTab.addMember(figureCanvas);
+// 			figureTab.draw();
+// 			mainView.draw();
 		}
 		else {
 			System.out.println("mode -NW");

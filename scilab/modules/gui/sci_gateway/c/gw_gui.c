@@ -31,7 +31,11 @@ static GuiTable Tab[]=
 	{C2F(sci_unsetmenu_old),"unsetmenu_old"},
 	{C2F(sci_xgetfile),"xgetfile"},
 	{C2F(sci_x_message_modeless),"x_message_modeless"},
-  {sci_raise_window,"raise_window"}
+ 	{C2F(sci_raise_window),"raise_window"},
+	{C2F(sci_getlookandfeel),"getlookandfeel"},
+	{C2F(sci_getinstalledlookandfeels),"getinstalledlookandfeels"},
+	{C2F(sci_setlookandfeel),"setlookandfeel"}
+
 };
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_gui)(void)

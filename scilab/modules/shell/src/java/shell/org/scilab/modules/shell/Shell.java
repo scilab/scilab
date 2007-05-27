@@ -1,7 +1,5 @@
-
-/* Copyright INRIA 2007 */
-
 package org.scilab.modules.shell;
+/* Copyright INRIA 2007 */
 
 /**
  * Interface for Scilab shell
@@ -39,3 +37,5 @@ public interface Shell {
 	int lines();
 
 }
+/*--------------------------------------------------------------------------*/
+

@@ -54,7 +54,10 @@ src/c/xmen_Utils.c \
 src/c/men_choice.c \
 src/c/men_print.c \
 src/c/guitable.c \
-src/c/TerminateGui.c
+src/c/TerminateGui.c \
+src/c/getlookandfeel.c \
+src/c/setlookandfeel.c \
+src/c/getinstalledlookandfeels.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_x_choice.c \
 sci_gateway/c/sci_x_message_modeless.c \
@@ -68,7 +71,10 @@ sci_gateway/c/sci_x_message.c \
 sci_gateway/c/sci_unsetmenu_old.c \
 sci_gateway/c/sci_delmenu_old.c \
 sci_gateway/c/sci_addmenu_old.c \
-sci_gateway/c/sci_setmenu_old.c
+sci_gateway/c/sci_setmenu_old.c \
+sci_gateway/c/sci_getlookandfeel.c \
+sci_gateway/c/sci_getinstalledlookandfeels.c \
+sci_gateway/c/sci_setlookandfeel.c
 
 GATEWAY_FORTRAN_SOURCES =  \
 sci_gateway/fortran/sci_choices.f \
@@ -110,9 +116,6 @@ libscigui_la_LIBADD = \
 
 # Cyclic dep
 #	$(top_builddir)/modules/graphics/libscigraphics.la
-
-
-
 
 
 #### Target ######

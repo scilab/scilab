@@ -36,4 +36,7 @@
 <PRIMITIVE gatewayId="25" primitiveId="10" primitiveName="xgetfile" />
 <PRIMITIVE gatewayId="25" primitiveId="11" primitiveName="x_message_modeless" />
 <PRIMITIVE gatewayId="25" primitiveId="12" primitiveName="raise_window" />
+<PRIMITIVE gatewayId="25" primitiveId="13" primitiveName="getlookandfeel"/>
+<PRIMITIVE gatewayId="25" primitiveId="14" primitiveName="getinstalledlookandfeels"/>
+<PRIMITIVE gatewayId="25" primitiveId="15" primitiveName="setlookandfeel"/>
 </GATEWAY>

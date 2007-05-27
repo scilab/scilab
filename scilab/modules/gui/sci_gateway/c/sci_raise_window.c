@@ -21,7 +21,7 @@
 #include "gw_gui.h"
 #include "../../graphics/includes/WindowList.h"
 /*-----------------------------------------------------------------------------------*/
-int sci_raise_window( char * fname, unsigned long fname_len )
+int C2F(sci_raise_window) _PARAMS(( char * fname, unsigned long fname_len ))
 {
 #ifdef _MSC_VER
   static int l1, m1, n1;	
