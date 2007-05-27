@@ -9,9 +9,6 @@
 #include "machine.h" /* BOOL */
 
 typedef void * DynLibHandle;
-typedef DynLibFuncPtr FARPROC;
-
-typedef HINSTANCE DynLibHandle;
 typedef void * DynLibFuncPtr;
 
 /**
