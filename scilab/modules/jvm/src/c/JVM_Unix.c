@@ -6,7 +6,6 @@
 #include <stdlib.h>
 #include "JVM_commons.h"
 #include "JVM_functions.h"
-#include "JVM_Unix.h"
 #include "sci_mem_alloc.h"
 /*-----------------------------------------------------------------------------------*/ 
 #define JVM_TYPE "client"
