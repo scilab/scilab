@@ -10,6 +10,7 @@ SUBDIRS = \
 	MALLOC \
 	hashtable \
 	libst
+	dynamiclibrary
 # \
 #	f2c
 

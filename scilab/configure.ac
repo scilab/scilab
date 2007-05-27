@@ -1020,6 +1020,7 @@ AC_CONFIG_FILES([
 libs/lapack/Makefile
 libs/blas/Makefile
 libs/MALLOC/Makefile
+libs/dynamiclibrary/Makefile
 libs/hashtable/Makefile
 libs/f2c/Makefile
 libs/libst/Makefile

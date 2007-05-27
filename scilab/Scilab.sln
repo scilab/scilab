@@ -706,6 +706,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "graphics-Ant", "modules\gra
 		{8CCDD3C2-B025-4A12-A986-1AA28D7C0C33} = {8CCDD3C2-B025-4A12-A986-1AA28D7C0C33}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dynamiclibrary", "libs\dynamiclibrary\dynamiclibrary.vcproj", "{77154919-8A20-4F35-B7C7-6B3B957BDCA1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -1166,6 +1168,10 @@ Global
 		{1C341A1B-A791-469C-817F-4C3A26A3FC0A}.Debug|Win32.Build.0 = Debug|Win32
 		{1C341A1B-A791-469C-817F-4C3A26A3FC0A}.Release|Win32.ActiveCfg = Release|Win32
 		{1C341A1B-A791-469C-817F-4C3A26A3FC0A}.Release|Win32.Build.0 = Release|Win32
+		{77154919-8A20-4F35-B7C7-6B3B957BDCA1}.Debug|Win32.ActiveCfg = Debug|Win32
+		{77154919-8A20-4F35-B7C7-6B3B957BDCA1}.Debug|Win32.Build.0 = Debug|Win32
+		{77154919-8A20-4F35-B7C7-6B3B957BDCA1}.Release|Win32.ActiveCfg = Release|Win32
+		{77154919-8A20-4F35-B7C7-6B3B957BDCA1}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
