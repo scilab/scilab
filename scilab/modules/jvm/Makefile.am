@@ -12,7 +12,8 @@ src/c/addToClasspath.c \
 src/c/getClasspath.c \
 src/c/system_getproperty.c \
 src/c/loadClasspath.c \
-src/c/createMainScilabObject.c
+src/c/createMainScilabObject.c \
+src/c/JVM_functions.c
 
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_jvm.c \
@@ -21,13 +22,15 @@ sci_gateway/c/sci_with_embedded_jre.c \
 sci_gateway/c/sci_javaclasspath.c
 
 
-libscijvm_la_CFLAGS=  $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/libs/MALLOC/includes/ -Iincludes/ -Isrc/c $(XML_FLAGS)
+libscijvm_la_CFLAGS=  $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/dynamiclibrary/includes/ -Iincludes/ -Isrc/c $(XML_FLAGS)
 
 libscijvm_la_LDFLAGS = $(JAVA_JNI_LIBS) -lpthread -ldl $(XML_LIBS)
 
 pkglib_LTLIBRARIES = libscijvm.la
 
 libscijvm_la_SOURCES = $(JVM_C_SOURCES) $(GATEWAY_C_SOURCES)
+
+libscijvm_la_LIBADD = $(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la
 
 #### Target ######
 modulename=jvm

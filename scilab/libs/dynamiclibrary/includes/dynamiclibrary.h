@@ -5,7 +5,7 @@
 #ifndef __DYNAMICLIBRARY_H__
 #define __DYNAMICLIBRARY_H__
 
-#ifdef _MSVCVER
+#ifdef _MSC_VER
 	#include "dynamiclibrary_windows.h"
 #else
 	#include "dynamiclibrary_others.h"

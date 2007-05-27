@@ -3,7 +3,7 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
 #include "JVM_commons.h"
-#include "JVM_Windows.h"
+#include "JVM_functions.h"
 #include "win_mem_alloc.h" /* MALLOC */
 #include "../../fileio/includes/FileExist.h"
 /*-----------------------------------------------------------------------------------*/ 
@@ -15,44 +15,12 @@ The Server VM is much faster than the Client VM,
 but it has the downside of taking around 10% longer to start up, and it uses more memory.
 */
 /*-----------------------------------------------------------------------------------*/ 
-static HINSTANCE hLibJVM = NULL;
-/*-----------------------------------------------------------------------------------*/ 
-typedef jint (JNICALL *JNI_CreateJavaVMPROC) (JavaVM **pvm, void **penv, void *args);
-typedef jint (JNICALL *JNI_GetCreatedJavaVMsPROC)(JavaVM **vmBuf, jsize BufLen, jsize *nVMs);
-typedef jint (JNICALL *JNI_GetDefaultJavaVMInitArgsPROC)(void *args);
-/*-----------------------------------------------------------------------------------*/ 
-static JNI_GetDefaultJavaVMInitArgsPROC ptr_JNI_GetDefaultJavaVMInitArgs = NULL;
-static JNI_CreateJavaVMPROC ptr_JNI_CreateJavaVM  = NULL;
-static JNI_GetCreatedJavaVMsPROC ptr_JNI_GetCreatedJavaVMs = NULL;
-/*-----------------------------------------------------------------------------------*/ 
 static char *Search_Java_RuntimeLib_in_Windows_Registry(void);
 static JavaVM *SearchCreatedJavaVMPath(void);
 static JavaVM *SearchCreatedJavaVMEmbedded(char *SCILAB_PATH);
 static JavaVM *SearchCreatedJavaVMRegistry(void);
-static BOOL LoadFuntionsJVM(HINSTANCE hLibJVM);
 /*-----------------------------------------------------------------------------------*/ 
 static BOOL EMBEDDED_JRE=FALSE;
-/*-----------------------------------------------------------------------------------*/ 
-jint SciJNI_GetDefaultJavaVMInitArgs(void *args)
-{
-	jint res = JNI_ERR;
-	if (ptr_JNI_GetDefaultJavaVMInitArgs) res = (ptr_JNI_GetDefaultJavaVMInitArgs)(args);
-	return res;
-}
-/*-----------------------------------------------------------------------------------*/ 
-jint SciJNI_CreateJavaVM(JavaVM **pvm, void **penv, void *args)
-{
-	jint res = JNI_ERR;
-	if (ptr_JNI_CreateJavaVM) res=(ptr_JNI_CreateJavaVM)(pvm,penv,args);
-	return res;
-}
-/*-----------------------------------------------------------------------------------*/ 
-jint SciJNI_GetCreatedJavaVMs(JavaVM **vmBuf, jsize BufLen, jsize *nVMs)
-{
-	jint res = JNI_ERR;
-	if (ptr_JNI_GetCreatedJavaVMs) res = (ptr_JNI_GetCreatedJavaVMs)(vmBuf,BufLen,nVMs);
-	return res;
-}
 /*-----------------------------------------------------------------------------------*/ 
 BOOL LoadDynLibJVM(char *SCILAB_PATH)
 {
@@ -68,43 +36,31 @@ BOOL LoadDynLibJVM(char *SCILAB_PATH)
 	JVMDLLFULLNAME=(char*)MALLOC( (strlen(SCILAB_PATH)+strlen(JRE_PATH)+strlen("/bin/")+strlen(JVM_TYPE)+strlen("/jvm")+strlen(SHARED_LIB_EXT)+1)*sizeof(char));
 	sprintf(JVMDLLFULLNAME,"%s%s%s%s%s%s",SCILAB_PATH,JRE_PATH,"/bin/",JVM_TYPE,"/jvm",SHARED_LIB_EXT);
 
-	hLibJVM = LoadLibrary(JVMDLLFULLNAME);
-
-	if (!LoadFuntionsJVM(hLibJVM))
+	if (!LoadFuntionsJVM(JVMDLLFULLNAME))
 	{
 		/* 2] search in windows registry */
 		/* We try to find JRE on Windows registry*/
 		if (JVMDLLFULLNAME){FREE(JVMDLLFULLNAME);JVMDLLFULLNAME=NULL;};
 		JVMDLLFULLNAME=Search_Java_RuntimeLib_in_Windows_Registry();
-		hLibJVM = LoadLibrary(JVMDLLFULLNAME);
 
 		/* 3] search in PATH */
-		if (!LoadFuntionsJVM(hLibJVM))
+		if (!LoadFuntionsJVM(JVMDLLFULLNAME))
 		{
 			if (JVMDLLFULLNAME){FREE(JVMDLLFULLNAME);JVMDLLFULLNAME=NULL;};
 			JVMDLLFULLNAME=(char*)MALLOC( (strlen("jvm")+strlen(SHARED_LIB_EXT)+1)*sizeof(char));
 			sprintf(JVMDLLFULLNAME,"%s%s",SCILAB_PATH,JRE_PATH,"jvm",SHARED_LIB_EXT);
-			hLibJVM = LoadLibrary(JVMDLLFULLNAME);
+			if ( LoadFuntionsJVM(JVMDLLFULLNAME) ) bOK = TRUE;
 		}
+		else bOK = TRUE;
 	}
-	else EMBEDDED_JRE=TRUE;
+	else 
+	{
+		EMBEDDED_JRE = TRUE;
+		bOK = TRUE;
+	}
 
 	if (JVMDLLFULLNAME){FREE(JVMDLLFULLNAME);JVMDLLFULLNAME=NULL;};
-	if (hLibJVM) bOK=TRUE;
 
-	return bOK;
-}
-/*-----------------------------------------------------------------------------------*/ 
-BOOL FreeDynLibJVM(void)
-{
-	BOOL bOK=FALSE;
-	if (FreeLibrary(hLibJVM)) 
-	{
-		ptr_JNI_GetDefaultJavaVMInitArgs = NULL; 
-		ptr_JNI_CreateJavaVM = NULL; 
-		ptr_JNI_GetCreatedJavaVMs = NULL; 
-		bOK=TRUE;
-	}
 	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/ 
@@ -174,20 +130,6 @@ BOOL withEmbeddedJRE(void)
 	return EMBEDDED_JRE;
 }
 /*-----------------------------------------------------------------------------------*/ 
-static BOOL LoadFuntionsJVM(HINSTANCE hLibJVM_)
-{
-	BOOL bOK=FALSE;
-	if (hLibJVM_)
-	{
-		ptr_JNI_GetDefaultJavaVMInitArgs = (JNI_GetDefaultJavaVMInitArgsPROC) GetProcAddress(hLibJVM_, "JNI_GetDefaultJavaVMInitArgs" ); 
-		ptr_JNI_CreateJavaVM = (JNI_CreateJavaVMPROC) GetProcAddress(hLibJVM_, "JNI_CreateJavaVM" ); 
-		ptr_JNI_GetCreatedJavaVMs = (JNI_GetCreatedJavaVMsPROC) GetProcAddress(hLibJVM_, "JNI_GetCreatedJavaVMs" ); 
-
-		if (ptr_JNI_GetDefaultJavaVMInitArgs && ptr_JNI_CreateJavaVM && ptr_JNI_GetCreatedJavaVMs) bOK=TRUE;
-	}
-	return bOK;
-}
-/*----------------------------------------------------------------------------------*/ 
 static JavaVM *SearchCreatedJavaVMEmbedded(char *SCILAB_PATH)
 {
 	JavaVM *jvm = NULL;
@@ -200,17 +142,19 @@ static JavaVM *SearchCreatedJavaVMEmbedded(char *SCILAB_PATH)
 	sprintf(JVMDLLFULLNAME,"%s%s%s%s%s%s",SCILAB_PATH,JRE_PATH,"/bin/",JVM_TYPE,"/jvm",SHARED_LIB_EXT);
 
 	FreeDynLibJVM();
-	hLibJVM = LoadLibrary(JVMDLLFULLNAME);
-	if (JVMDLLFULLNAME){FREE(JVMDLLFULLNAME);JVMDLLFULLNAME=NULL;}
 
-	if (LoadFuntionsJVM(hLibJVM))
+	if (LoadFuntionsJVM(JVMDLLFULLNAME))
 	{
 		res = SciJNI_GetCreatedJavaVMs (&jvm, 1, &jvm_count);
 
-		if ( jvm_count == 1 ) return jvm;
+		if ( jvm_count == 1 ) 
+		{
+			if (JVMDLLFULLNAME){FREE(JVMDLLFULLNAME);JVMDLLFULLNAME=NULL;}
+			return jvm;
+		}
 		else jvm = NULL;
 	}
-
+	if (JVMDLLFULLNAME){FREE(JVMDLLFULLNAME);JVMDLLFULLNAME=NULL;}
 	return jvm;
 }
 /*----------------------------------------------------------------------------------*/ 
@@ -223,16 +167,19 @@ JavaVM *SearchCreatedJavaVMRegistry(void)
 
 	JVMDLLFULLNAME=Search_Java_RuntimeLib_in_Windows_Registry();
 	FreeDynLibJVM();
-	hLibJVM = LoadLibrary(JVMDLLFULLNAME);
-	if (JVMDLLFULLNAME){FREE(JVMDLLFULLNAME);JVMDLLFULLNAME=NULL;};
 
-	if (LoadFuntionsJVM(hLibJVM))
+	if (LoadFuntionsJVM(JVMDLLFULLNAME))
 	{
 		res = SciJNI_GetCreatedJavaVMs (&jvm, 1, &jvm_count);
 		
-		if ( jvm_count == 1 ) return jvm;
+		if ( jvm_count == 1 ) 
+		{
+				if (JVMDLLFULLNAME){FREE(JVMDLLFULLNAME);JVMDLLFULLNAME=NULL;}
+				return jvm;
+		}
 		else jvm = NULL;
 	}
+	if (JVMDLLFULLNAME){FREE(JVMDLLFULLNAME);JVMDLLFULLNAME=NULL;}
 	return jvm;
 }
 /*----------------------------------------------------------------------------------*/ 
@@ -248,13 +195,14 @@ static JavaVM *SearchCreatedJavaVMPath(void)
 	JVMDLLFULLNAME=(char*)MALLOC( (strlen("jvm")+strlen(SHARED_LIB_EXT)+1)*sizeof(char));
 	sprintf(JVMDLLFULLNAME,"%s%s","jvm",SHARED_LIB_EXT);
 
-	hLibJVM = LoadLibrary(JVMDLLFULLNAME);
-	if (JVMDLLFULLNAME){FREE(JVMDLLFULLNAME);JVMDLLFULLNAME=NULL;};
-
-	if (LoadFuntionsJVM(hLibJVM))
+	if (LoadFuntionsJVM(JVMDLLFULLNAME))
 	{
 		res = SciJNI_GetCreatedJavaVMs (&jvm, 1, &jvm_count);
-		if ( jvm_count == 1 ) return jvm;
+		if ( jvm_count == 1 ) 
+		{
+				if (JVMDLLFULLNAME){FREE(JVMDLLFULLNAME);JVMDLLFULLNAME=NULL;};
+				return jvm;
+		}
 		else jvm = NULL;
 	}
 	return jvm;

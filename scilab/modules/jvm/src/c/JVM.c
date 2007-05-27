@@ -5,11 +5,7 @@
 #include <string.h>
 #include "JVM.h"
 #include "JVM_commons.h"
-#ifdef _MSC_VER
-	#include "JVM_Windows.h"
-#else
-	#include "JVM_Unix.h"
-#endif
+#include "JVM_functions.h"
 #include "MALLOC.h"
 #include "getScilabJavaVM.h"
 #include "fromjava.h"

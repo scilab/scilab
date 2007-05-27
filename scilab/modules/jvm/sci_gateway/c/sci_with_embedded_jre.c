@@ -7,11 +7,7 @@
 #include "MALLOC.h"
 #include "machine.h"
 #include "stack-c.h"
-#ifdef _MSC_VER
-#include "JVM_Windows.h"
-#else
-#include "JVM_Unix.h"
-#endif
+#include "JVM_functions.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_with_embedded_jre) _PARAMS((char *fname,unsigned long fname_len))
 {

@@ -2,10 +2,10 @@
 /* INRIA 2006 - 2007 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#include <dlfcn.h> 
 #include <string.h>
 #include <stdlib.h>
 #include "JVM_commons.h"
+#include "JVM_functions.h"
 #include "JVM_Unix.h"
 #include "sci_mem_alloc.h"
 /*-----------------------------------------------------------------------------------*/ 
@@ -17,42 +17,11 @@ The Server VM is much faster than the Client VM,
 but it has the downside of taking around 10% longer to start up, and it uses more memory.
 */
 /*-----------------------------------------------------------------------------------*/ 
-static void *hLibJVM = NULL;
-/*-----------------------------------------------------------------------------------*/ 
-typedef jint (JNICALL *JNI_CreateJavaVMPROC) (JavaVM **pvm, void **penv, void *args);
-typedef jint (JNICALL *JNI_GetCreatedJavaVMsPROC)(JavaVM **vmBuf, jsize BufLen, jsize *nVMs);
-typedef jint (JNICALL *JNI_GetDefaultJavaVMInitArgsPROC)(void *args);
-/*-----------------------------------------------------------------------------------*/ 
-static JNI_GetDefaultJavaVMInitArgsPROC ptr_JNI_GetDefaultJavaVMInitArgs = NULL;
-static JNI_CreateJavaVMPROC ptr_JNI_CreateJavaVM  = NULL;
-static JNI_GetCreatedJavaVMsPROC ptr_JNI_GetCreatedJavaVMs = NULL;
-/*-----------------------------------------------------------------------------------*/ 
 static JavaVM *SearchCreatedJavaVMEmbedded(char *SCILAB_PATH);
 static JavaVM *SearchCreatedJavaVMPath(void);
 static BOOL LoadFuntionsJVM(char *filedynlib);
 /*-----------------------------------------------------------------------------------*/ 
 static BOOL EMBEDDED_JRE=FALSE;
-/*-----------------------------------------------------------------------------------*/ 
-jint SciJNI_GetDefaultJavaVMInitArgs(void *args)
-{
-	jint res = JNI_ERR;
-	if (ptr_JNI_GetDefaultJavaVMInitArgs) res = (ptr_JNI_GetDefaultJavaVMInitArgs)(args);
-	return res;
-}
-/*-----------------------------------------------------------------------------------*/ 
-jint SciJNI_CreateJavaVM(JavaVM **pvm, void **penv, void *args)
-{
-  jint res = JNI_ERR;
-	if (ptr_JNI_CreateJavaVM) res=(ptr_JNI_CreateJavaVM)(pvm,penv,args);
-	return res;
-}
-/*-----------------------------------------------------------------------------------*/ 
-jint SciJNI_GetCreatedJavaVMs(JavaVM **vmBuf, jsize BufLen, jsize *nVMs)
-{
-	jint res = JNI_ERR;
-	if (ptr_JNI_GetCreatedJavaVMs) res = (ptr_JNI_GetCreatedJavaVMs)(vmBuf,BufLen,nVMs);
-	return res;
-}
 /*-----------------------------------------------------------------------------------*/ 
 BOOL LoadDynLibJVM(char *SCILAB_PATH)
 {
@@ -87,40 +56,9 @@ BOOL LoadDynLibJVM(char *SCILAB_PATH)
 
 }
 /*-----------------------------------------------------------------------------------*/ 
-BOOL FreeDynLibJVM(void)
-{
-	BOOL bOK=FALSE;
-	
-	if (!dlclose(hLibJVM))
-	{
-		ptr_JNI_GetDefaultJavaVMInitArgs = NULL; 
-		ptr_JNI_CreateJavaVM = NULL; 
-		ptr_JNI_GetCreatedJavaVMs = NULL; 
-		bOK=TRUE;
-	}
-	return bOK;
-}
-/*-----------------------------------------------------------------------------------*/ 
 BOOL withEmbeddedJRE(void)
 {
 	return EMBEDDED_JRE;
-}
-/*-----------------------------------------------------------------------------------*/ 
-static BOOL LoadFuntionsJVM(char *filedynlib)
-{
-	BOOL bOK=FALSE;
-	
-	hLibJVM = dlopen(filedynlib, RTLD_NOW | RTLD_GLOBAL); 
-	
-	if (hLibJVM)
-	{
-		ptr_JNI_GetDefaultJavaVMInitArgs = (JNI_GetDefaultJavaVMInitArgsPROC) dlsym(hLibJVM, "JNI_GetDefaultJavaVMInitArgs" ); 
-		ptr_JNI_CreateJavaVM = (JNI_CreateJavaVMPROC) dlsym(hLibJVM, "JNI_CreateJavaVM" ); 
-		ptr_JNI_GetCreatedJavaVMs = (JNI_GetCreatedJavaVMsPROC) dlsym(hLibJVM, "JNI_GetCreatedJavaVMs" ); 
-	
-		if (ptr_JNI_GetDefaultJavaVMInitArgs && ptr_JNI_CreateJavaVM && ptr_JNI_GetCreatedJavaVMs) bOK=TRUE;
-  }
-	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/ 
 static JavaVM *SearchCreatedJavaVMEmbedded(char *SCILAB_PATH)

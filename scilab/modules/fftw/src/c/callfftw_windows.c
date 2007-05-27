@@ -4,7 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include "callfftw.h"
 /*-----------------------------------------------------------------------------------*/
-#include <Windows.h>
+#include "dynamiclibrary.h"
 /*-----------------------------------------------------------------------------------*/
 typedef void (*PROC_FFTW_EXECUTE_SPLIT_DFT) (const fftw_plan p, double *ri, double *ii, double *ro, double *io);
 typedef fftw_plan (*PROC_FFTW_PLAN_GURU_SPLIT_DFT) (int rank, const fftw_iodim *dims, int howmany_rank, const fftw_iodim *howmany_dims, double *ri, double *ii, double *ro, double *io, unsigned flags);
@@ -14,7 +14,7 @@ typedef char *(*PROC_FFTW_EXPORT_WISDOM_TO_STRING) (void);
 typedef int (*PROC_FFTW_IMPORT_WISDOM_FROM_STRING) (const char *input_string);
 typedef void (*PROC_FFTW_FORGET_WISDOM) (void);
 /*-----------------------------------------------------------------------------------*/
-static HINSTANCE hinstLib=NULL; 
+static DynLibHandle hinstLib = NULL; 
 static PROC_FFTW_EXECUTE_SPLIT_DFT MY_FFTW_EXECUTE_SPLIT_DFT=NULL;
 static PROC_FFTW_PLAN_GURU_SPLIT_DFT MY_FFTW_PLAN_GURU_SPLIT_DFT=NULL;
 static PROC_FFTW_DESTROY_PLAN MY_FFTW_DESTROY_PLAN=NULL;
@@ -40,22 +40,22 @@ BOOL LoadFFTWLibrary(char *libraryname)
 
 	if (hinstLib == NULL)
 	{
-		hinstLib = LoadLibrary(libraryname);
+		hinstLib = LoadDynLibrary(libraryname);
 		MY_FFTW_EXECUTE_SPLIT_DFT=NULL;
 		MY_FFTW_PLAN_GURU_SPLIT_DFT=NULL;
 		MY_FFTW_DESTROY_PLAN=NULL;
 
-                MY_FFTW_EXPORT_WISDOM_TO_STRING=NULL;
-                MY_FFTW_IMPORT_WISDOM_FROM_STRING=NULL;
-                MY_FFTW_FORGET_WISDOM=NULL;
+        MY_FFTW_EXPORT_WISDOM_TO_STRING=NULL;
+        MY_FFTW_IMPORT_WISDOM_FROM_STRING=NULL;
+        MY_FFTW_FORGET_WISDOM=NULL;
 
-		MY_FFTW_EXECUTE_SPLIT_DFT = (PROC_FFTW_EXECUTE_SPLIT_DFT) GetProcAddress(hinstLib, TEXT("fftw_execute_split_dft"));
-		MY_FFTW_PLAN_GURU_SPLIT_DFT = (PROC_FFTW_PLAN_GURU_SPLIT_DFT) GetProcAddress(hinstLib, TEXT("fftw_plan_guru_split_dft"));
-		MY_FFTW_DESTROY_PLAN = (PROC_FFTW_DESTROY_PLAN) GetProcAddress(hinstLib, TEXT("fftw_destroy_plan"));
+		MY_FFTW_EXECUTE_SPLIT_DFT = (PROC_FFTW_EXECUTE_SPLIT_DFT) GetFuncPtr(hinstLib,"fftw_execute_split_dft");
+		MY_FFTW_PLAN_GURU_SPLIT_DFT = (PROC_FFTW_PLAN_GURU_SPLIT_DFT) GetFuncPtr(hinstLib,"fftw_plan_guru_split_dft");
+		MY_FFTW_DESTROY_PLAN = (PROC_FFTW_DESTROY_PLAN) GetFuncPtr(hinstLib,"fftw_destroy_plan");
 
-                MY_FFTW_EXPORT_WISDOM_TO_STRING = (PROC_FFTW_EXPORT_WISDOM_TO_STRING) GetProcAddress(hinstLib, TEXT("fftw_export_wisdom_to_string"));
-                MY_FFTW_IMPORT_WISDOM_FROM_STRING = (PROC_FFTW_IMPORT_WISDOM_FROM_STRING) GetProcAddress(hinstLib, TEXT("fftw_import_wisdom_from_string"));
-                MY_FFTW_FORGET_WISDOM = (PROC_FFTW_FORGET_WISDOM) GetProcAddress(hinstLib, TEXT("fftw_forget_wisdom"));
+        MY_FFTW_EXPORT_WISDOM_TO_STRING = (PROC_FFTW_EXPORT_WISDOM_TO_STRING) GetFuncPtr(hinstLib,"fftw_export_wisdom_to_string");
+        MY_FFTW_IMPORT_WISDOM_FROM_STRING = (PROC_FFTW_IMPORT_WISDOM_FROM_STRING) GetFuncPtr(hinstLib, "fftw_import_wisdom_from_string");
+        MY_FFTW_FORGET_WISDOM = (PROC_FFTW_FORGET_WISDOM) GetFuncPtr(hinstLib,"fftw_forget_wisdom");
 	}
 
 	if ( MY_FFTW_EXECUTE_SPLIT_DFT && MY_FFTW_PLAN_GURU_SPLIT_DFT && MY_FFTW_DESTROY_PLAN &&\
@@ -75,7 +75,7 @@ BOOL DisposeFFTWLibrary(void)
 
 	if (hinstLib)
 	{
-		fFreeResult = FreeLibrary(hinstLib); 
+		fFreeResult = FreeDynLibrary(hinstLib); 
 		hinstLib=NULL;
 	}
 	
