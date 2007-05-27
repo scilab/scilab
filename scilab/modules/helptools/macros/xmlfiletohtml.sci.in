@@ -15,7 +15,11 @@ function ok = xmlfiletohtml(path,xsl,directory_language,default_language)
 	// path    :     XML file
 	// xsl     :     abolute path of the xsl path
 	
-	generate_cmd='@MANGENERATOR@';
+	if MSDOS then
+	  generate_cmd='sabcmd';
+	else
+	  generate_cmd='@MANGENERATOR@';
+	end
 	
 	[lhs,rhs] = argn(0);
 	
