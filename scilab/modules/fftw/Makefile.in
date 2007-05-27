@@ -88,10 +88,9 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscifftw_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libscifftw_la_LIBADD =
-am__libscifftw_la_SOURCES_DIST = src/nofftw/nofftw.c \
-	src/c/callfftw_Linux.c src/c/fftwlibname.c \
-	src/c/fftw_utilities.c src/c/with_fftw.c \
+@FFTW_TRUE@libscifftw_la_DEPENDENCIES = $(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la
+am__libscifftw_la_SOURCES_DIST = src/nofftw/nofftw.c src/c/callfftw.c \
+	src/c/fftwlibname.c src/c/fftw_utilities.c src/c/with_fftw.c \
 	sci_gateway/c/gw_fftw.c \
 	sci_gateway/c/sci_fftwlibraryisloaded.c \
 	sci_gateway/c/sci_disposefftwlibrary.c \
@@ -101,7 +100,7 @@ am__libscifftw_la_SOURCES_DIST = src/nofftw/nofftw.c \
 	sci_gateway/c/sci_set_fftw_wisdom.c \
 	sci_gateway/c/sci_fftw_forget_wisdom.c
 @FFTW_FALSE@am__objects_1 = libscifftw_la-nofftw.lo
-@FFTW_TRUE@am__objects_1 = libscifftw_la-callfftw_Linux.lo \
+@FFTW_TRUE@am__objects_1 = libscifftw_la-callfftw.lo \
 @FFTW_TRUE@	libscifftw_la-fftwlibname.lo \
 @FFTW_TRUE@	libscifftw_la-fftw_utilities.lo \
 @FFTW_TRUE@	libscifftw_la-with_fftw.lo
@@ -315,7 +314,7 @@ top_srcdir = @top_srcdir@
 @FFTW_FALSE@pkglib_LTLIBRARIES = libscifftw.la
 @FFTW_TRUE@pkglib_LTLIBRARIES = libscifftw.la
 @FFTW_FALSE@FFTW_C_SOURCES = src/nofftw/nofftw.c
-@FFTW_TRUE@FFTW_C_SOURCES = src/c/callfftw_Linux.c \
+@FFTW_TRUE@FFTW_C_SOURCES = src/c/callfftw.c \
 @FFTW_TRUE@src/c/fftwlibname.c \
 @FFTW_TRUE@src/c/fftw_utilities.c \
 @FFTW_TRUE@src/c/with_fftw.c 
@@ -351,7 +350,8 @@ top_srcdir = @top_srcdir@
 @FFTW_TRUE@libscifftw_la_sci_gateway_DATA = sci_gateway/fftw_gateway.xml
 @FFTW_FALSE@libscifftw_la_SOURCES = $(FFTW_C_SOURCES)
 @FFTW_TRUE@libscifftw_la_SOURCES = $(FFTW_C_SOURCES) $(GATEWAY_C_SOURCES)
-@FFTW_TRUE@libscifftw_la_CFLAGS = -Iincludes/  -Isrc/c/
+@FFTW_TRUE@libscifftw_la_LIBADD = $(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la
+@FFTW_TRUE@libscifftw_la_CFLAGS = -Iincludes/  -Isrc/c/ -I$(top_srcdir)/libs/dynamiclibrary/includes/
 @FFTW_TRUE@libscifftw_la_LDFLAGS = $(FFTW3_LIB)
 
 #### fftw : include files ####
@@ -548,7 +548,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifftw_la-callfftw_Linux.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifftw_la-callfftw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifftw_la-fftw_utilities.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifftw_la-fftwlibname.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifftw_la-gw_fftw.Plo@am__quote@
@@ -591,12 +591,12 @@ libscifftw_la-nofftw.lo: src/nofftw/nofftw.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifftw_la_CFLAGS) $(CFLAGS) -c -o libscifftw_la-nofftw.lo `test -f 'src/nofftw/nofftw.c' || echo '$(srcdir)/'`src/nofftw/nofftw.c
 
-libscifftw_la-callfftw_Linux.lo: src/c/callfftw_Linux.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifftw_la_CFLAGS) $(CFLAGS) -MT libscifftw_la-callfftw_Linux.lo -MD -MP -MF $(DEPDIR)/libscifftw_la-callfftw_Linux.Tpo -c -o libscifftw_la-callfftw_Linux.lo `test -f 'src/c/callfftw_Linux.c' || echo '$(srcdir)/'`src/c/callfftw_Linux.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscifftw_la-callfftw_Linux.Tpo $(DEPDIR)/libscifftw_la-callfftw_Linux.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/callfftw_Linux.c' object='libscifftw_la-callfftw_Linux.lo' libtool=yes @AMDEPBACKSLASH@
+libscifftw_la-callfftw.lo: src/c/callfftw.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifftw_la_CFLAGS) $(CFLAGS) -MT libscifftw_la-callfftw.lo -MD -MP -MF $(DEPDIR)/libscifftw_la-callfftw.Tpo -c -o libscifftw_la-callfftw.lo `test -f 'src/c/callfftw.c' || echo '$(srcdir)/'`src/c/callfftw.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscifftw_la-callfftw.Tpo $(DEPDIR)/libscifftw_la-callfftw.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/callfftw.c' object='libscifftw_la-callfftw.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifftw_la_CFLAGS) $(CFLAGS) -c -o libscifftw_la-callfftw_Linux.lo `test -f 'src/c/callfftw_Linux.c' || echo '$(srcdir)/'`src/c/callfftw_Linux.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifftw_la_CFLAGS) $(CFLAGS) -c -o libscifftw_la-callfftw.lo `test -f 'src/c/callfftw.c' || echo '$(srcdir)/'`src/c/callfftw.c
 
 libscifftw_la-fftwlibname.lo: src/c/fftwlibname.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifftw_la_CFLAGS) $(CFLAGS) -MT libscifftw_la-fftwlibname.lo -MD -MP -MF $(DEPDIR)/libscifftw_la-fftwlibname.Tpo -c -o libscifftw_la-fftwlibname.lo `test -f 'src/c/fftwlibname.c' || echo '$(srcdir)/'`src/c/fftwlibname.c
