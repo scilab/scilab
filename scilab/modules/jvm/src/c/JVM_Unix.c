@@ -19,7 +19,6 @@ but it has the downside of taking around 10% longer to start up, and it uses mor
 /*-----------------------------------------------------------------------------------*/ 
 static JavaVM *SearchCreatedJavaVMEmbedded(char *SCILAB_PATH);
 static JavaVM *SearchCreatedJavaVMPath(void);
-static BOOL LoadFuntionsJVM(char *filedynlib);
 /*-----------------------------------------------------------------------------------*/ 
 static BOOL EMBEDDED_JRE=FALSE;
 /*-----------------------------------------------------------------------------------*/ 
