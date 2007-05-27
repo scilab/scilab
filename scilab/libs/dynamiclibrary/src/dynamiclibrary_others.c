@@ -9,7 +9,7 @@ DynLibHandle LoadDynLibrary(char *libname)
 	return (DynLibHandle) dlopen(libname,  RTLD_NOW | RTLD_GLOBAL);
 }
 /*-----------------------------------------------------------------------------------*/ 
-FBOOL FreeDynLibrary(DynLibHandle hInstance)
+BOOL FreeDynLibrary(DynLibHandle hInstance)
 {
 	BOOL bOK = FALSE;
 	if (dlclose( hInstance)) bOK = TRUE;
