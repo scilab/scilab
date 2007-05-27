@@ -15,7 +15,7 @@ function ok = xmlfiletohtml(path,xsl,directory_language,default_language)
 	// path    :     XML file
 	// xsl     :     abolute path of the xsl path
 	
-	generate_cmd='sabcmd';
+	generate_cmd='xsltproc';
 	
 	[lhs,rhs] = argn(0);
 	
