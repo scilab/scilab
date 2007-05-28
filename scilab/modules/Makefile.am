@@ -64,7 +64,7 @@ SUBDIRS += .
 
 # javasci should be compile at the end because it needs libscilab.la
 # Don't forget that the order in subdirs does matter !!!
-if JAVA
+if WITH_JAVA
 SUBDIRS += javasci
 endif
 
