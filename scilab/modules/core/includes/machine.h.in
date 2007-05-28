@@ -357,8 +357,8 @@
 /* With FFTW */
 #undef WITH_FFTW
 
-/* Define if you have the MPI library. */
-#undef WITH_MPI
+/* With the JAVA stuff (GUI, Console, Scilab <=> Java... */
+#undef WITH_JAVA
 
 /* With OCAML */
 #undef WITH_OCAML

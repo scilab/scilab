@@ -4,10 +4,14 @@
 */
 /*-----------------------------------------------------------------------------------*/
 #include <stdlib.h>
+
+#ifdef WITH_JAVA
 #include <jni.h>
-#include "ShellPrintf.h"
 #include "./../../jvm/includes/getScilabObject.h"
 #include "../../../jvm/includes/getScilabJNIEnv.h"
+#endif
+
+#include "ShellPrintf.h"
 /*-----------------------------------------------------------------------------------*/
 int ShellPrintf(char *line)
 {
