@@ -40,6 +40,7 @@ function a=%hm_matrix(a,varargin)
     return
   end
 
-  a.dims=int32(matrix(sz,-1,1));
+   a.dims=int32(matrix(sz,1,-1));
+
 
 endfunction
