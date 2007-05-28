@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE CLASSPATH SYSTEM "../modules/jvm/xml/classpath.dtd">
+<!DOCTYPE classpaths SYSTEM "../modules/jvm/xml/classpath.dtd">
 <!-- =================== -->
 <!--
  default CLASSPATH for Scilab
