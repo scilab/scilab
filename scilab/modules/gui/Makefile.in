@@ -57,10 +57,10 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
 	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
 	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/libxml2.m4 \
 	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/mpi.m4 \
-	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
-	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/sciman.m4 \
-	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/ocaml.m4 \
+	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pvm.m4 \
+	$(top_srcdir)/m4/sciman.m4 $(top_srcdir)/m4/tcltk.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
@@ -221,8 +221,6 @@ MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
 MANGENERATOR = @MANGENERATOR@
 MKDIR_P = @MKDIR_P@
-MPICC = @MPICC@
-MPILIBS = @MPILIBS@
 NM = @NM@
 OBJEXT = @OBJEXT@
 OCAMLC = @OCAMLC@
@@ -322,25 +320,7 @@ top_srcdir = @top_srcdir@
 mydatadir = $(pkgdatadir)/modules/$(modulename)
 
 #SUFFIXES = .xml .sci .htm
-SUFFIXES = .sci .java .class .jar
-
-########################### JAVA ######################################
-#### We had to create those rules because autotools does NOT provide
-#### a kind of mechanism like C or Fortran sources :
-#### libsciboolean_la_SOURCES = plop.c plip.f 
-####
-#### It is why those rules exist.
-#######################################################################
-
-# Replace all the .java by .class in JAVAFILES
-CLASSFILES = $(JAVAFILES:.java=.class)
-# Create path without src/java and rename .java  by .class (needed by the jar 
-# creation)
-CLASSFILESRELATIVE = `echo "$(JAVAFILES)"| sed -e 's|src/java/||g'|sed -e 's|\.java|\.class|g'`
-BUILT_SOURCES = $(CLASSFILES) \
-	$(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
-CLEANFILES = $(CLASSFILES) \
-	$(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
+SUFFIXES = .sci 
 
 ########### INSTALL DOCUMENTATION ###################
 # Install HTML files into the right target
@@ -458,6 +438,8 @@ sci_gateway/fortran/sci_setmenu_old.f \
 sci_gateway/fortran/sci_addmenu_old.f \
 sci_gateway/fortran/sci_delmenu_old.f
 
+BUILT_SOURCES = $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
+CLEANFILES = $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
 libscigui_la_CFLAGS = -Isrc/c/ -Iincludes/ \
 	-I$(top_srcdir)/modules/graphics/includes/ \
 	-I$(top_srcdir)/libs/MALLOC/includes/ \
@@ -467,13 +449,14 @@ libscigui_la_CFLAGS = -Isrc/c/ -Iincludes/ \
 	-I$(top_srcdir)/modules/jvm/includes/ \
 	-I$(top_srcdir)/modules/gui/src/c/xsci/ $(TCL_INC_PATH) \
 	$(Tk_INC_PATH) $(am__append_1)
+@JAVA_TRUE@EXTRA_DIST = src/java/gui/build.xml
 libscigui_la_LDFLAGS = $(X_LIBS) $(TERMCAP_LIB) $(X_EXTRA_LIBS)
 pkglib_LTLIBRARIES = libscigui.la
 libscigui_la_SOURCES = $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libscigui_la_LIBADD = \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/string/libscistring.la \
-        $(top_builddir)/modules/tclsci/libscitclsci.la
+    $(top_builddir)/modules/tclsci/libscitclsci.la
 
 
 # Cyclic dep
@@ -511,7 +494,7 @@ all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
 .SUFFIXES:
-.SUFFIXES: .sci .java .class .jar .bin .c .f .lo .o .obj
+.SUFFIXES: .sci .bin .c .f .lo .o .obj
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -1350,7 +1333,8 @@ distdir: $(DISTFILES)
 check-am: all-am
 check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
-all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
+@JAVA_FALSE@all-local:
+all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
 	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscigui_la_demosdir)" "$(DESTDIR)$(libscigui_la_etcdir)" "$(DESTDIR)$(libscigui_la_rootdir)" "$(DESTDIR)$(libscigui_la_sci_gatewaydir)" "$(DESTDIR)$(libscigui_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
@@ -1454,15 +1438,16 @@ uninstall-am: uninstall-libscigui_la_demosDATA \
 
 .MAKE: install-am install-strip
 
-.PHONY: CTAGS GTAGS all all-am check check-am clean clean-generic \
-	clean-libtool clean-local clean-pkglibLTLIBRARIES ctags \
-	distclean distclean-compile distclean-generic \
-	distclean-libtool distclean-tags distdir dvi dvi-am html \
-	html-am info info-am install install-am install-data \
-	install-data-am install-data-local install-dvi install-dvi-am \
-	install-exec install-exec-am install-html install-html-am \
-	install-html-local install-info install-info-am \
-	install-libscigui_la_demosDATA install-libscigui_la_etcDATA \
+.PHONY: CTAGS GTAGS all all-am all-local check check-am clean \
+	clean-generic clean-libtool clean-local \
+	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
+	distclean-generic distclean-libtool distclean-tags distdir dvi \
+	dvi-am html html-am info info-am install install-am \
+	install-data install-data-am install-data-local install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-html-local install-info \
+	install-info-am install-libscigui_la_demosDATA \
+	install-libscigui_la_etcDATA \
 	install-libscigui_la_includeHEADERS \
 	install-libscigui_la_rootDATA \
 	install-libscigui_la_sci_gatewayDATA install-man install-pdf \
@@ -1478,19 +1463,38 @@ uninstall-am: uninstall-libscigui_la_demosDATA \
 	uninstall-libscigui_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
+#.java .class .jar
+
+########################### JAVA ######################################
+#### We had to create those rules because autotools does NOT provide
+#### a kind of mechanism like C or Fortran sources :
+#### libsciboolean_la_SOURCES = plop.c plip.f 
+####
+#### It is why those rules exist.
+#######################################################################
+
+# Replace all the .java by .class in JAVAFILES
+#CLASSFILES = $(JAVAFILES:.java=.class)
+# Create path without src/java and rename .java  by .class (needed by the jar 
+# creation)
+#CLASSFILESRELATIVE = `echo "$(JAVAFILES)"| sed -e 's|src/java/||g'|sed -e 's|\.java|\.class|g'`
+
+#BUILT_SOURCES=$(CLASSFILES)
 
 # Compilation of Java
-%.class:%.java
-	@echo; \
-	echo "Compiling Java source :" $<
-	$(JAVAC) -classpath "$(CLASSPATH):$(JAVA_CLASSPATH)" $(JAVAC_FLAGS) $<
+#%.class:%.java
+#	@echo; \
+#	echo "Compiling Java source :" $<
+#	$(JAVAC) -classpath "$(CLASSPATH):$(JAVA_CLASSPATH)" $(JAVAC_FLAGS) $<
 
 # creation of the jar
-%.jar: $(CLASSFILES)
-	@(echo; \
-	echo "Creation of the jar archive :"; \
-	cd $(CLASSPATH); \
-	$(JAR) cvf ../../$(JARFILE) $(CLASSFILESRELATIVE)	)
+#%.jar: $(CLASSFILES)
+#	@(echo; \
+#	echo "Creation of the jar archive :"; \
+#	cd $(CLASSPATH); \
+#	$(JAR) cvf ../../$(JARFILE) $(CLASSFILESRELATIVE)	)
+
+#CLEANFILES=$(CLASSFILES)
 
 ################ MACROS ######################"
 # Rule to build a macro
@@ -1591,6 +1595,14 @@ macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODI
 
 $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h: $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad src/c/xsci/x_main.c
 	$(top_srcdir)/modules/gui/src/c/xsci/ad2c.sh $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad > $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
+
+@JAVA_TRUE@org.scilab.modules.gui.jar:
+@JAVA_TRUE@	$(ANT) jar
+
+@JAVA_TRUE@all-local: org.scilab.modules.gui.jar
+
+@JAVA_TRUE@clean-local: 
+@JAVA_TRUE@	$(ANT) clean
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

@@ -1,34 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-Allan CORNET
+<!--
+@author Allan CORNET
+@author Sylvestre LEDRU
 INRIA 2007
+
+TODO : change the name of the module : IHM is a french acronym which means Human-computer interaction
 -->
 <project name="javasci Examples ihm" default="compile">
+  	<import file="../build-common.xml"/>
 
-   <property name="dist"  location="." />
-   
    <description>
-        build examples "ihm" javasci
+        Build examples of the Scilab/Java connector (javasci)
     </description>
-    
-     <path id="classpath">
-        <fileset dir="../../../../java/jar/modules" includes="**/javasci.jar"/>
-    </path>
-
-    
-    <target name="init">
-				<!-- Create the time stamp -->
-				<tstamp/>
-		</target>
 
     <target name="clean" description="clean sources">
         <delete dir="build"/>
         <delete file="ihm.jar"/>
     </target>
 
-    <target name="compile" description="build sources" depends="init">
-        <mkdir dir="build/classes"/>
-        <javac srcdir="." destdir="build/classes" classpathref="classpath"/>
-    </target>
 
 </project>

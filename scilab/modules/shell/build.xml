@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@author Allan CORNET
+@author Sylvestre LEDRU
+INRIA 2007
+-->
+<project name="shell" default="compile">
+
+  <import file="../../build.incl.xml"/>
+
+  <property name="library.name" value="${library.shell.name}" />
+
+      
+  <description>
+			Build the Scilab shell module
+  </description>
+
+</project>

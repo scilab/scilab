@@ -65,10 +65,10 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
 	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
 	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/libxml2.m4 \
 	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/mpi.m4 \
-	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
-	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/sciman.m4 \
-	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/ocaml.m4 \
+	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pvm.m4 \
+	$(top_srcdir)/m4/sciman.m4 $(top_srcdir)/m4/tcltk.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
@@ -249,8 +249,6 @@ MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
 MANGENERATOR = @MANGENERATOR@
 MKDIR_P = @MKDIR_P@
-MPICC = @MPICC@
-MPILIBS = @MPILIBS@
 NM = @NM@
 OBJEXT = @OBJEXT@
 OCAMLC = @OCAMLC@
@@ -665,42 +663,10 @@ top_srcdir = @top_srcdir@
 @TCLTK_TRUE@mydatadir = $(pkgdatadir)/modules/$(modulename)
 
 #SUFFIXES = .xml .sci .htm
-@TCLTK_FALSE@SUFFIXES = .sci .java .class .jar
+@TCLTK_FALSE@SUFFIXES = .sci 
 
 #SUFFIXES = .xml .sci .htm
-@TCLTK_TRUE@SUFFIXES = .sci .java .class .jar
-
-########################### JAVA ######################################
-#### We had to create those rules because autotools does NOT provide
-#### a kind of mechanism like C or Fortran sources :
-#### libsciboolean_la_SOURCES = plop.c plip.f 
-####
-#### It is why those rules exist.
-#######################################################################
-
-# Replace all the .java by .class in JAVAFILES
-@TCLTK_FALSE@CLASSFILES = $(JAVAFILES:.java=.class)
-
-########################### JAVA ######################################
-#### We had to create those rules because autotools does NOT provide
-#### a kind of mechanism like C or Fortran sources :
-#### libsciboolean_la_SOURCES = plop.c plip.f 
-####
-#### It is why those rules exist.
-#######################################################################
-
-# Replace all the .java by .class in JAVAFILES
-@TCLTK_TRUE@CLASSFILES = $(JAVAFILES:.java=.class)
-# Create path without src/java and rename .java  by .class (needed by the jar 
-# creation)
-@TCLTK_FALSE@CLASSFILESRELATIVE = `echo "$(JAVAFILES)"| sed -e 's|src/java/||g'|sed -e 's|\.java|\.class|g'`
-# Create path without src/java and rename .java  by .class (needed by the jar 
-# creation)
-@TCLTK_TRUE@CLASSFILESRELATIVE = `echo "$(JAVAFILES)"| sed -e 's|src/java/||g'|sed -e 's|\.java|\.class|g'`
-@TCLTK_FALSE@BUILT_SOURCES = $(CLASSFILES)
-@TCLTK_TRUE@BUILT_SOURCES = $(CLASSFILES)
-@TCLTK_FALSE@CLEANFILES = $(CLASSFILES)
-@TCLTK_TRUE@CLEANFILES = $(CLASSFILES)
+@TCLTK_TRUE@SUFFIXES = .sci 
 
 ########### INSTALL DOCUMENTATION ###################
 # Install HTML files into the right target
@@ -769,11 +735,10 @@ top_srcdir = @top_srcdir@
 @TCLTK_FALSE@LOCALISATIONFILES = errors.xml menus.xml messages.xml
 # List of the localisation (languages) files
 @TCLTK_TRUE@LOCALISATIONFILES = errors.xml menus.xml messages.xml
-all: $(BUILT_SOURCES)
-	$(MAKE) $(AM_MAKEFLAGS) all-am
+all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .sci .java .class .jar .sci .java .class .jar .bin .c .lo .o .obj
+.SUFFIXES: .sci .sci .bin .c .lo .o .obj
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -1327,15 +1292,13 @@ distdir: $(DISTFILES)
 	  fi; \
 	done
 check-am: all-am
-check: $(BUILT_SOURCES)
-	$(MAKE) $(AM_MAKEFLAGS) check-am
+check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
 	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscitclsci_la_demossciGUIdir)" "$(DESTDIR)$(libscitclsci_la_demostkdir)" "$(DESTDIR)$(libscitclsci_la_etcdir)" "$(DESTDIR)$(libscitclsci_la_rootdir)" "$(DESTDIR)$(libscitclsci_la_sci_gatewaydir)" "$(DESTDIR)$(libscitclsci_la_tcldir)" "$(DESTDIR)$(libscitclsci_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
-install: $(BUILT_SOURCES)
-	$(MAKE) $(AM_MAKEFLAGS) install-am
+install: install-am
 install-exec: install-exec-am
 install-data: install-data-am
 uninstall: uninstall-am
@@ -1352,7 +1315,6 @@ install-strip:
 mostlyclean-generic:
 
 clean-generic:
-	-test -z "$(CLEANFILES)" || rm -f $(CLEANFILES)
 
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
@@ -1360,7 +1322,6 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
-	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
@@ -1467,19 +1428,38 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 	uninstall-nobase_libscitclsci_la_tclDATA \
 	uninstall-pkglibLTLIBRARIES
 
+#.java .class .jar
+
+########################### JAVA ######################################
+#### We had to create those rules because autotools does NOT provide
+#### a kind of mechanism like C or Fortran sources :
+#### libsciboolean_la_SOURCES = plop.c plip.f 
+####
+#### It is why those rules exist.
+#######################################################################
+
+# Replace all the .java by .class in JAVAFILES
+#CLASSFILES = $(JAVAFILES:.java=.class)
+# Create path without src/java and rename .java  by .class (needed by the jar 
+# creation)
+#CLASSFILESRELATIVE = `echo "$(JAVAFILES)"| sed -e 's|src/java/||g'|sed -e 's|\.java|\.class|g'`
+
+#BUILT_SOURCES=$(CLASSFILES)
 
 # Compilation of Java
-@TCLTK_TRUE@%.class:%.java
-@TCLTK_TRUE@	@echo; \
-@TCLTK_TRUE@	echo "Compiling Java source :" $<
-@TCLTK_TRUE@	$(JAVAC) -classpath "$(CLASSPATH):$(JAVA_CLASSPATH)" $(JAVAC_FLAGS) $<
+#%.class:%.java
+#	@echo; \
+#	echo "Compiling Java source :" $<
+#	$(JAVAC) -classpath "$(CLASSPATH):$(JAVA_CLASSPATH)" $(JAVAC_FLAGS) $<
 
 # creation of the jar
-@TCLTK_TRUE@%.jar: $(CLASSFILES)
-@TCLTK_TRUE@	@(echo; \
-@TCLTK_TRUE@	echo "Creation of the jar archive :"; \
-@TCLTK_TRUE@	cd $(CLASSPATH); \
-@TCLTK_TRUE@	$(JAR) cvf ../../$(JARFILE) $(CLASSFILESRELATIVE)	)
+#%.jar: $(CLASSFILES)
+#	@(echo; \
+#	echo "Creation of the jar archive :"; \
+#	cd $(CLASSPATH); \
+#	$(JAR) cvf ../../$(JARFILE) $(CLASSFILESRELATIVE)	)
+
+#CLEANFILES=$(CLASSFILES)
 
 ################ MACROS ######################"
 # Rule to build a macro
@@ -1577,19 +1557,38 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @TCLTK_TRUE@	-@( \
 @TCLTK_TRUE@	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
 @TCLTK_TRUE@	$(top_builddir)/bin/scilab -nb -nwni -f $(abs_srcdir)/macros/buildmacros.sce 	)
+#.java .class .jar
+
+########################### JAVA ######################################
+#### We had to create those rules because autotools does NOT provide
+#### a kind of mechanism like C or Fortran sources :
+#### libsciboolean_la_SOURCES = plop.c plip.f 
+####
+#### It is why those rules exist.
+#######################################################################
+
+# Replace all the .java by .class in JAVAFILES
+#CLASSFILES = $(JAVAFILES:.java=.class)
+# Create path without src/java and rename .java  by .class (needed by the jar 
+# creation)
+#CLASSFILESRELATIVE = `echo "$(JAVAFILES)"| sed -e 's|src/java/||g'|sed -e 's|\.java|\.class|g'`
+
+#BUILT_SOURCES=$(CLASSFILES)
 
 # Compilation of Java
-@TCLTK_FALSE@%.class:%.java
-@TCLTK_FALSE@	@echo; \
-@TCLTK_FALSE@	echo "Compiling Java source :" $<
-@TCLTK_FALSE@	$(JAVAC) -classpath "$(CLASSPATH):$(JAVA_CLASSPATH)" $(JAVAC_FLAGS) $<
+#%.class:%.java
+#	@echo; \
+#	echo "Compiling Java source :" $<
+#	$(JAVAC) -classpath "$(CLASSPATH):$(JAVA_CLASSPATH)" $(JAVAC_FLAGS) $<
 
 # creation of the jar
-@TCLTK_FALSE@%.jar: $(CLASSFILES)
-@TCLTK_FALSE@	@(echo; \
-@TCLTK_FALSE@	echo "Creation of the jar archive :"; \
-@TCLTK_FALSE@	cd $(CLASSPATH); \
-@TCLTK_FALSE@	$(JAR) cvf ../../$(JARFILE) $(CLASSFILESRELATIVE)	)
+#%.jar: $(CLASSFILES)
+#	@(echo; \
+#	echo "Creation of the jar archive :"; \
+#	cd $(CLASSPATH); \
+#	$(JAR) cvf ../../$(JARFILE) $(CLASSFILESRELATIVE)	)
+
+#CLEANFILES=$(CLASSFILES)
 
 ################ MACROS ######################"
 # Rule to build a macro

@@ -10,7 +10,8 @@
 mydatadir=$(pkgdatadir)/modules/$(modulename)
 
 #SUFFIXES = .xml .sci .htm
-SUFFIXES = .sci .java .class .jar
+SUFFIXES = .sci 
+#.java .class .jar
 
 ########################### JAVA ######################################
 #### We had to create those rules because autotools does NOT provide
@@ -21,27 +22,27 @@ SUFFIXES = .sci .java .class .jar
 #######################################################################
 
 # Replace all the .java by .class in JAVAFILES
-CLASSFILES = $(JAVAFILES:.java=.class)
+#CLASSFILES = $(JAVAFILES:.java=.class)
 # Create path without src/java and rename .java  by .class (needed by the jar 
 # creation)
-CLASSFILESRELATIVE = `echo "$(JAVAFILES)"| sed -e 's|src/java/||g'|sed -e 's|\.java|\.class|g'`
+#CLASSFILESRELATIVE = `echo "$(JAVAFILES)"| sed -e 's|src/java/||g'|sed -e 's|\.java|\.class|g'`
 
-BUILT_SOURCES=$(CLASSFILES)
+#BUILT_SOURCES=$(CLASSFILES)
 
 # Compilation of Java
-%.class:%.java
-	@echo; \
-	echo "Compiling Java source :" $<
-	$(JAVAC) -classpath "$(CLASSPATH):$(JAVA_CLASSPATH)" $(JAVAC_FLAGS) $<
+#%.class:%.java
+#	@echo; \
+#	echo "Compiling Java source :" $<
+#	$(JAVAC) -classpath "$(CLASSPATH):$(JAVA_CLASSPATH)" $(JAVAC_FLAGS) $<
 
 # creation of the jar
-%.jar: $(CLASSFILES)
-	@(echo; \
-	echo "Creation of the jar archive :"; \
-	cd $(CLASSPATH); \
-	$(JAR) cvf ../../$(JARFILE) $(CLASSFILESRELATIVE)	)
+#%.jar: $(CLASSFILES)
+#	@(echo; \
+#	echo "Creation of the jar archive :"; \
+#	cd $(CLASSPATH); \
+#	$(JAR) cvf ../../$(JARFILE) $(CLASSFILESRELATIVE)	)
 
-CLEANFILES=$(CLASSFILES)
+#CLEANFILES=$(CLASSFILES)
 
 ################ MACROS ######################"
 # Rule to build a macro

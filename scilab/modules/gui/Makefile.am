@@ -88,17 +88,20 @@ sci_gateway/fortran/sci_setmenu_old.f \
 sci_gateway/fortran/sci_addmenu_old.f \
 sci_gateway/fortran/sci_delmenu_old.f
 
-BUILT_SOURCES += $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
+BUILT_SOURCES = $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
 
 $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h: $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad src/c/xsci/x_main.c
 	$(top_srcdir)/modules/gui/src/c/xsci/ad2c.sh $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad > $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
 
-CLEANFILES += $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
+CLEANFILES = $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
 
 libscigui_la_CFLAGS=  -Isrc/c/ -Iincludes/ -I$(top_srcdir)/modules/graphics/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/core/src/c/ -I$(top_srcdir)/modules/string/includes/ -I$(top_srcdir)/modules/tclsci/includes/ -I$(top_srcdir)/modules/jvm/includes/ -I$(top_srcdir)/modules/gui/src/c/xsci/ $(TCL_INC_PATH) $(Tk_INC_PATH) 
 
 if JAVA
 libscigui_la_CFLAGS += $(JAVA_JNI_INCLUDE)
+
+EXTRA_DIST = src/java/gui/build.xml
+
 endif
 
 libscigui_la_LDFLAGS = $(X_LIBS) $(TERMCAP_LIB) $(X_EXTRA_LIBS)
@@ -107,25 +110,21 @@ pkglib_LTLIBRARIES = libscigui.la
 
 libscigui_la_SOURCES = $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
-
 libscigui_la_LIBADD = \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/string/libscistring.la \
-        $(top_builddir)/modules/tclsci/libscitclsci.la
+    $(top_builddir)/modules/tclsci/libscitclsci.la
 
 
 # Cyclic dep
 #	$(top_builddir)/modules/graphics/libscigraphics.la
 
-
 #### Target ######
 modulename=gui
-
 
 #### gui : Conf files ####
 libscigui_la_rootdir = $(mydatadir)
 libscigui_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
-
 
 #### gui : init scripts #### 
 libscigui_la_etcdir = $(mydatadir)/etc
@@ -151,3 +150,14 @@ libscigui_la_demosdir=$(mydatadir)/demos/
 libscigui_la_demos_DATA = demos/dialog.dem
 
 
+if JAVA
+
+org.scilab.modules.gui.jar:
+	$(ANT) jar
+
+all-local: org.scilab.modules.gui.jar
+
+clean-local: 
+	$(ANT) clean
+
+endif

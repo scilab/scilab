@@ -56,6 +56,10 @@ fftw \
 pvm \
 jvm
 
+if MPI
+SUBDIRS += mpi
+endif
+
 SUBDIRS += .
 
 # javasci should be compile at the end because it needs libscilab.la
@@ -105,10 +109,9 @@ libscilab_la_LIBADD = \
 	$(top_builddir)/modules/statistics/libscistatistics.la \
 	$(top_builddir)/modules/time/libscitime.la \
 	$(top_builddir)/modules/wintools/libsciwintools.la \
-        $(top_builddir)/modules/tclsci/libscitclsci.la \
-        $(top_builddir)/modules/fftw/libscifftw.la \
-        $(top_builddir)/modules/pvm/libscipvm.la \
-        $(top_builddir)/modules/jvm/libscijvm.la
+    $(top_builddir)/modules/tclsci/libscitclsci.la \
+    $(top_builddir)/modules/fftw/libscifftw.la \
+    $(top_builddir)/modules/pvm/libscipvm.la
 
 if STRINGV2
 libscilab_la_LIBADD += $(top_builddir)/modules/string_V2/libscistring.la
@@ -116,6 +119,15 @@ else
 libscilab_la_LIBADD += $(top_builddir)/modules/string/libscistring.la
 endif
 
+if MPI
+libscilab_la_LIBADD += $(top_builddir)/modules/mpi/libscimpi.la
+endif
+
+if FFTW
+libscilab_la_LIBADD += $(top_builddir)/modules/fftw/libscifftw.la
+endif
+
+libscilab_la_LIBADD += $(top_builddir)/modules/jvm/libscijvm.la
 
 libscilab_la_LIBADD += $(top_builddir)/modules/scicos/libsciscicos.la
 

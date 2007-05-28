@@ -47,6 +47,10 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+@JAVA_TRUE@am__append_1 = sci_gateway/c/sci_system_getproperty.c \
+@JAVA_TRUE@sci_gateway/c/sci_with_embedded_jre.c \
+@JAVA_TRUE@sci_gateway/c/sci_javaclasspath.c
+
 DIST_COMMON = $(libscijvm_la_include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
 subdir = modules/jvm
@@ -56,10 +60,10 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
 	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
 	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/libxml2.m4 \
 	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/mpi.m4 \
-	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
-	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/sciman.m4 \
-	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/ocaml.m4 \
+	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pvm.m4 \
+	$(top_srcdir)/m4/sciman.m4 $(top_srcdir)/m4/tcltk.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
@@ -80,19 +84,29 @@ pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscijvm_la_DEPENDENCIES =  \
 	$(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la
-am__objects_1 = libscijvm_la-InitializeJVM.lo \
-	libscijvm_la-TerminateJVM.lo libscijvm_la-JVM_Unix.lo \
-	libscijvm_la-JVM.lo libscijvm_la-JniUtils.lo \
-	libscijvm_la-addToClasspath.lo libscijvm_la-getClasspath.lo \
-	libscijvm_la-system_getproperty.lo \
-	libscijvm_la-loadClasspath.lo \
-	libscijvm_la-createMainScilabObject.lo \
-	libscijvm_la-JVM_commons.lo
-am__objects_2 = libscijvm_la-gw_jvm.lo \
-	libscijvm_la-sci_system_getproperty.lo \
-	libscijvm_la-sci_with_embedded_jre.lo \
-	libscijvm_la-sci_javaclasspath.lo
-am_libscijvm_la_OBJECTS = $(am__objects_1) $(am__objects_2)
+am__libscijvm_la_SOURCES_DIST = src/c/InitializeJVM.c \
+	src/c/TerminateJVM.c src/c/JVM_Unix.c src/c/JVM.c \
+	src/c/JniUtils.c src/c/addToClasspath.c src/c/getClasspath.c \
+	src/c/system_getproperty.c src/c/loadClasspath.c \
+	src/c/createMainScilabObject.c src/c/JVM_commons.c \
+	sci_gateway/c/gw_jvm.c sci_gateway/c/sci_system_getproperty.c \
+	sci_gateway/c/sci_with_embedded_jre.c \
+	sci_gateway/c/sci_javaclasspath.c
+@JAVA_TRUE@am__objects_1 = libscijvm_la-InitializeJVM.lo \
+@JAVA_TRUE@	libscijvm_la-TerminateJVM.lo \
+@JAVA_TRUE@	libscijvm_la-JVM_Unix.lo libscijvm_la-JVM.lo \
+@JAVA_TRUE@	libscijvm_la-JniUtils.lo \
+@JAVA_TRUE@	libscijvm_la-addToClasspath.lo \
+@JAVA_TRUE@	libscijvm_la-getClasspath.lo \
+@JAVA_TRUE@	libscijvm_la-system_getproperty.lo \
+@JAVA_TRUE@	libscijvm_la-loadClasspath.lo \
+@JAVA_TRUE@	libscijvm_la-createMainScilabObject.lo \
+@JAVA_TRUE@	libscijvm_la-JVM_commons.lo
+@JAVA_TRUE@am__objects_2 = libscijvm_la-sci_system_getproperty.lo \
+@JAVA_TRUE@	libscijvm_la-sci_with_embedded_jre.lo \
+@JAVA_TRUE@	libscijvm_la-sci_javaclasspath.lo
+am__objects_3 = libscijvm_la-gw_jvm.lo $(am__objects_2)
+am_libscijvm_la_OBJECTS = $(am__objects_1) $(am__objects_3)
 libscijvm_la_OBJECTS = $(am_libscijvm_la_OBJECTS)
 libscijvm_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libscijvm_la_CFLAGS) \
@@ -110,7 +124,7 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libscijvm_la_SOURCES)
-DIST_SOURCES = $(libscijvm_la_SOURCES)
+DIST_SOURCES = $(am__libscijvm_la_SOURCES_DIST)
 libscijvm_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscijvm_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscijvm_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
@@ -177,8 +191,6 @@ MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
 MANGENERATOR = @MANGENERATOR@
 MKDIR_P = @MKDIR_P@
-MPICC = @MPICC@
-MPILIBS = @MPILIBS@
 NM = @NM@
 OBJEXT = @OBJEXT@
 OCAMLC = @OCAMLC@
@@ -273,27 +285,10 @@ target_alias = @target_alias@
 tcldir = @tcldir@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-JVM_C_SOURCES = src/c/InitializeJVM.c \
-src/c/TerminateJVM.c \
-src/c/JVM_Unix.c \
-src/c/JVM.c \
-src/c/JniUtils.c \
-src/c/addToClasspath.c \
-src/c/getClasspath.c \
-src/c/system_getproperty.c \
-src/c/loadClasspath.c \
-src/c/createMainScilabObject.c \
-src/c/JVM_commons.c
-
-GATEWAY_C_SOURCES = sci_gateway/c/gw_jvm.c \
-sci_gateway/c/sci_system_getproperty.c \
-sci_gateway/c/sci_with_embedded_jre.c \
-sci_gateway/c/sci_javaclasspath.c
-
+GATEWAY_C_SOURCES = sci_gateway/c/gw_jvm.c $(am__append_1)
 libscijvm_la_CFLAGS = $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/dynamiclibrary/includes/ -Iincludes/ -Isrc/c $(XML_FLAGS)
 libscijvm_la_LDFLAGS = $(JAVA_JNI_LIBS) -lpthread -ldl $(XML_LIBS)
 pkglib_LTLIBRARIES = libscijvm.la
-libscijvm_la_SOURCES = $(JVM_C_SOURCES) $(GATEWAY_C_SOURCES)
 libscijvm_la_LIBADD = $(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la
 
 #### Target ######
@@ -321,28 +316,25 @@ includes/gw_jvm.h \
 includes/JniUtils.h \
 includes/addToClasspath.h
 
+@JAVA_TRUE@JVM_C_SOURCES = src/c/InitializeJVM.c \
+@JAVA_TRUE@src/c/TerminateJVM.c \
+@JAVA_TRUE@src/c/JVM_Unix.c \
+@JAVA_TRUE@src/c/JVM.c \
+@JAVA_TRUE@src/c/JniUtils.c \
+@JAVA_TRUE@src/c/addToClasspath.c \
+@JAVA_TRUE@src/c/getClasspath.c \
+@JAVA_TRUE@src/c/system_getproperty.c \
+@JAVA_TRUE@src/c/loadClasspath.c \
+@JAVA_TRUE@src/c/createMainScilabObject.c \
+@JAVA_TRUE@src/c/JVM_commons.c
+
+libscijvm_la_SOURCES = $(JVM_C_SOURCES) $(GATEWAY_C_SOURCES)
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
 
 #SUFFIXES = .xml .sci .htm
-SUFFIXES = .sci .java .class .jar
-
-########################### JAVA ######################################
-#### We had to create those rules because autotools does NOT provide
-#### a kind of mechanism like C or Fortran sources :
-#### libsciboolean_la_SOURCES = plop.c plip.f 
-####
-#### It is why those rules exist.
-#######################################################################
-
-# Replace all the .java by .class in JAVAFILES
-CLASSFILES = $(JAVAFILES:.java=.class)
-# Create path without src/java and rename .java  by .class (needed by the jar 
-# creation)
-CLASSFILESRELATIVE = `echo "$(JAVAFILES)"| sed -e 's|src/java/||g'|sed -e 's|\.java|\.class|g'`
-BUILT_SOURCES = $(CLASSFILES)
-CLEANFILES = $(CLASSFILES)
+SUFFIXES = .sci 
 
 ########### INSTALL DOCUMENTATION ###################
 # Install HTML files into the right target
@@ -377,11 +369,10 @@ FUNCTION_NAMES = macros/names
 LOCALISATIONDIRS = languages/fr_FR/ languages/en_US/
 # List of the localisation (languages) files
 LOCALISATIONFILES = errors.xml menus.xml messages.xml
-all: $(BUILT_SOURCES)
-	$(MAKE) $(AM_MAKEFLAGS) all-am
+all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .sci .java .class .jar .bin .c .lo .o .obj
+.SUFFIXES: .sci .bin .c .lo .o .obj
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -738,15 +729,14 @@ distdir: $(DISTFILES)
 	  fi; \
 	done
 check-am: all-am
-check: $(BUILT_SOURCES)
-	$(MAKE) $(AM_MAKEFLAGS) check-am
-all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
+check: check-am
+@JAVA_FALSE@all-local:
+all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
 	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscijvm_la_etcdir)" "$(DESTDIR)$(libscijvm_la_rootdir)" "$(DESTDIR)$(libscijvm_la_sci_gatewaydir)" "$(DESTDIR)$(libscijvm_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
-install: $(BUILT_SOURCES)
-	$(MAKE) $(AM_MAKEFLAGS) install-am
+install: install-am
 install-exec: install-exec-am
 install-data: install-data-am
 uninstall: uninstall-am
@@ -763,7 +753,6 @@ install-strip:
 mostlyclean-generic:
 
 clean-generic:
-	-test -z "$(CLEANFILES)" || rm -f $(CLEANFILES)
 
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
@@ -771,7 +760,7 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
-	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
+@JAVA_FALSE@clean-local:
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
@@ -842,15 +831,15 @@ uninstall-am: uninstall-libscijvm_la_etcDATA \
 
 .MAKE: install-am install-strip
 
-.PHONY: CTAGS GTAGS all all-am check check-am clean clean-generic \
-	clean-libtool clean-local clean-pkglibLTLIBRARIES ctags \
-	distclean distclean-compile distclean-generic \
-	distclean-libtool distclean-tags distdir dvi dvi-am html \
-	html-am info info-am install install-am install-data \
-	install-data-am install-data-local install-dvi install-dvi-am \
-	install-exec install-exec-am install-html install-html-am \
-	install-html-local install-info install-info-am \
-	install-libscijvm_la_etcDATA \
+.PHONY: CTAGS GTAGS all all-am all-local check check-am clean \
+	clean-generic clean-libtool clean-local \
+	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
+	distclean-generic distclean-libtool distclean-tags distdir dvi \
+	dvi-am html html-am info info-am install install-am \
+	install-data install-data-am install-data-local install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-html-local install-info \
+	install-info-am install-libscijvm_la_etcDATA \
 	install-libscijvm_la_includeHEADERS \
 	install-libscijvm_la_rootDATA \
 	install-libscijvm_la_sci_gatewayDATA install-man install-pdf \
@@ -866,18 +855,45 @@ uninstall-am: uninstall-libscijvm_la_etcDATA \
 	uninstall-pkglibLTLIBRARIES
 
 
+@JAVA_TRUE@org.scilab.modules.jvm.jar:
+@JAVA_TRUE@	$(ANT) jar
+
+@JAVA_TRUE@all-local: org.scilab.modules.jvm.jar
+
+@JAVA_TRUE@clean-local: 
+@JAVA_TRUE@	$(ANT) clean
+#.java .class .jar
+
+########################### JAVA ######################################
+#### We had to create those rules because autotools does NOT provide
+#### a kind of mechanism like C or Fortran sources :
+#### libsciboolean_la_SOURCES = plop.c plip.f 
+####
+#### It is why those rules exist.
+#######################################################################
+
+# Replace all the .java by .class in JAVAFILES
+#CLASSFILES = $(JAVAFILES:.java=.class)
+# Create path without src/java and rename .java  by .class (needed by the jar 
+# creation)
+#CLASSFILESRELATIVE = `echo "$(JAVAFILES)"| sed -e 's|src/java/||g'|sed -e 's|\.java|\.class|g'`
+
+#BUILT_SOURCES=$(CLASSFILES)
+
 # Compilation of Java
-%.class:%.java
-	@echo; \
-	echo "Compiling Java source :" $<
-	$(JAVAC) -classpath "$(CLASSPATH):$(JAVA_CLASSPATH)" $(JAVAC_FLAGS) $<
+#%.class:%.java
+#	@echo; \
+#	echo "Compiling Java source :" $<
+#	$(JAVAC) -classpath "$(CLASSPATH):$(JAVA_CLASSPATH)" $(JAVAC_FLAGS) $<
 
 # creation of the jar
-%.jar: $(CLASSFILES)
-	@(echo; \
-	echo "Creation of the jar archive :"; \
-	cd $(CLASSPATH); \
-	$(JAR) cvf ../../$(JARFILE) $(CLASSFILESRELATIVE)	)
+#%.jar: $(CLASSFILES)
+#	@(echo; \
+#	echo "Creation of the jar archive :"; \
+#	cd $(CLASSPATH); \
+#	$(JAR) cvf ../../$(JARFILE) $(CLASSFILESRELATIVE)	)
+
+#CLEANFILES=$(CLASSFILES)
 
 ################ MACROS ######################"
 # Rule to build a macro

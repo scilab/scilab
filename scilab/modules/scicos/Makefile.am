@@ -204,7 +204,7 @@ sci_gateway/fortran/sci_vec2var.f \
 sci_gateway/fortran/sci_scicos_debug.f \
 sci_gateway/fortran/sci_getblocklabel.f
 
-BUILT_SOURCES += includes/blocks.h
+BUILT_SOURCES = includes/blocks.h
 
 includes/blocks.h:
 	if test ! -d build; then mkdir build; fi
@@ -214,7 +214,7 @@ includes/blocks.h:
 	$(top_srcdir)/modules/scicos/src/c/GenBlocks.sh build/Fblocknames build/Cblocknames includes/blocks.h
 
 
-CLEANFILES+=includes/blocks.h build/Cblocknames build/Fblocknames 
+CLEANFILES=includes/blocks.h build/Cblocknames build/Fblocknames 
 
 libsciscicos_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 #libsciscicos_la_LDFLAGS = -lf2c

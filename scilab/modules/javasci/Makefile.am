@@ -24,10 +24,10 @@ JAVAFILES = src/java/javasci/javasci/Scilab.java \
 	src/java/javasci/javasci/ClassPath.java
 
 #### Where are the sources (mandatory) ####
-CLASSPATH = src/java/javasci/
+#CLASSPATH = src/java/javasci/
 
 #### javasci : jar file #### 
-JARFILE = javasci.jar
+#JARFILE = javasci.jar
 
 #BUILT_SOURCES+=$(JARFILE)
 
@@ -72,9 +72,19 @@ includes/javasci_SciDoubleArray.h \
 includes/javasci_SciBooleanArray.h \
 includes/javasci_SciAbstractArray.h
 
+javasci.jar:
+	$(ANT) jar
+
+install-exec-local: javasci.jar
+	$(INSTALL) $< $(DESTDIR)$(pkgdatadir)/java/
+
+uninstall-local-mapi_jar:
+	$(RM) $(DESTDIR)$(pkgdatadir)/lib/javasci.jar
+
+all-local: javasci.jar
+
+clean-local: 
+	 $(ANT) clean
 
 tests:: $(JARFILE) $(JAVAFILES)
 	@(cd tests; make tests)
-
-install-data-local: $(JARFILE)
-	$(INSTALL_DATA) $(JARFILE) $(DESTDIR)$(pkglibdir)/

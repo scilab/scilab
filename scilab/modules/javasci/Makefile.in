@@ -56,10 +56,10 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
 	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
 	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/libxml2.m4 \
 	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/mpi.m4 \
-	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
-	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/sciman.m4 \
-	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/ocaml.m4 \
+	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pvm.m4 \
+	$(top_srcdir)/m4/sciman.m4 $(top_srcdir)/m4/tcltk.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
@@ -171,8 +171,6 @@ MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
 MANGENERATOR = @MANGENERATOR@
 MKDIR_P = @MKDIR_P@
-MPICC = @MPICC@
-MPILIBS = @MPILIBS@
 NM = @NM@
 OBJEXT = @OBJEXT@
 OCAMLC = @OCAMLC@
@@ -272,23 +270,7 @@ top_srcdir = @top_srcdir@
 mydatadir = $(pkgdatadir)/modules/$(modulename)
 
 #SUFFIXES = .xml .sci .htm
-SUFFIXES = .sci .java .class .jar
-
-########################### JAVA ######################################
-#### We had to create those rules because autotools does NOT provide
-#### a kind of mechanism like C or Fortran sources :
-#### libsciboolean_la_SOURCES = plop.c plip.f 
-####
-#### It is why those rules exist.
-#######################################################################
-
-# Replace all the .java by .class in JAVAFILES
-CLASSFILES = $(JAVAFILES:.java=.class)
-# Create path without src/java and rename .java  by .class (needed by the jar 
-# creation)
-CLASSFILESRELATIVE = `echo "$(JAVAFILES)"| sed -e 's|src/java/||g'|sed -e 's|\.java|\.class|g'`
-BUILT_SOURCES = $(CLASSFILES)
-CLEANFILES = $(CLASSFILES)
+SUFFIXES = .sci 
 
 ########### INSTALL DOCUMENTATION ###################
 # Install HTML files into the right target
@@ -344,10 +326,10 @@ JAVAFILES = src/java/javasci/javasci/Scilab.java \
 
 
 #### Where are the sources (mandatory) ####
-CLASSPATH = src/java/javasci/
+#CLASSPATH = src/java/javasci/
 
 #### javasci : jar file #### 
-JARFILE = javasci.jar
+#JARFILE = javasci.jar
 
 #BUILT_SOURCES+=$(JARFILE)
 
@@ -389,11 +371,10 @@ includes/javasci_SciDoubleArray.h \
 includes/javasci_SciBooleanArray.h \
 includes/javasci_SciAbstractArray.h
 
-all: $(BUILT_SOURCES)
-	$(MAKE) $(AM_MAKEFLAGS) all-am
+all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .sci .java .class .jar .bin .c .lo .o .obj
+.SUFFIXES: .sci .bin .c .lo .o .obj
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -685,15 +666,13 @@ distdir: $(DISTFILES)
 	  fi; \
 	done
 check-am: all-am
-check: $(BUILT_SOURCES)
-	$(MAKE) $(AM_MAKEFLAGS) check-am
-all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
+check: check-am
+all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
 	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libjavasci_la_etcdir)" "$(DESTDIR)$(libjavasci_la_rootdir)" "$(DESTDIR)$(libjavasci_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
-install: $(BUILT_SOURCES)
-	$(MAKE) $(AM_MAKEFLAGS) install-am
+install: install-am
 install-exec: install-exec-am
 install-data: install-data-am
 uninstall: uninstall-am
@@ -710,7 +689,6 @@ install-strip:
 mostlyclean-generic:
 
 clean-generic:
-	-test -z "$(CLEANFILES)" || rm -f $(CLEANFILES)
 
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
@@ -718,7 +696,6 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
-	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
@@ -746,7 +723,7 @@ install-data-am: install-data-local install-libjavasci_la_etcDATA \
 
 install-dvi: install-dvi-am
 
-install-exec-am: install-pkglibLTLIBRARIES
+install-exec-am: install-exec-local install-pkglibLTLIBRARIES
 
 install-html: install-html-am
 
@@ -786,15 +763,15 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 
 .MAKE: install-am install-strip
 
-.PHONY: CTAGS GTAGS all all-am check check-am clean clean-generic \
-	clean-libtool clean-local clean-pkglibLTLIBRARIES ctags \
-	distclean distclean-compile distclean-generic \
-	distclean-libtool distclean-tags distdir dvi dvi-am html \
-	html-am info info-am install install-am install-data \
-	install-data-am install-data-local install-dvi install-dvi-am \
-	install-exec install-exec-am install-html install-html-am \
-	install-html-local install-info install-info-am \
-	install-libjavasci_la_etcDATA \
+.PHONY: CTAGS GTAGS all all-am all-local check check-am clean \
+	clean-generic clean-libtool clean-local \
+	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
+	distclean-generic distclean-libtool distclean-tags distdir dvi \
+	dvi-am html html-am info info-am install install-am \
+	install-data install-data-am install-data-local install-dvi \
+	install-dvi-am install-exec install-exec-am install-exec-local \
+	install-html install-html-am install-html-local install-info \
+	install-info-am install-libjavasci_la_etcDATA \
 	install-libjavasci_la_includeHEADERS \
 	install-libjavasci_la_rootDATA install-man install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
@@ -806,19 +783,38 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 	uninstall-libjavasci_la_includeHEADERS \
 	uninstall-libjavasci_la_rootDATA uninstall-pkglibLTLIBRARIES
 
+#.java .class .jar
+
+########################### JAVA ######################################
+#### We had to create those rules because autotools does NOT provide
+#### a kind of mechanism like C or Fortran sources :
+#### libsciboolean_la_SOURCES = plop.c plip.f 
+####
+#### It is why those rules exist.
+#######################################################################
+
+# Replace all the .java by .class in JAVAFILES
+#CLASSFILES = $(JAVAFILES:.java=.class)
+# Create path without src/java and rename .java  by .class (needed by the jar 
+# creation)
+#CLASSFILESRELATIVE = `echo "$(JAVAFILES)"| sed -e 's|src/java/||g'|sed -e 's|\.java|\.class|g'`
+
+#BUILT_SOURCES=$(CLASSFILES)
 
 # Compilation of Java
-%.class:%.java
-	@echo; \
-	echo "Compiling Java source :" $<
-	$(JAVAC) -classpath "$(CLASSPATH):$(JAVA_CLASSPATH)" $(JAVAC_FLAGS) $<
+#%.class:%.java
+#	@echo; \
+#	echo "Compiling Java source :" $<
+#	$(JAVAC) -classpath "$(CLASSPATH):$(JAVA_CLASSPATH)" $(JAVAC_FLAGS) $<
 
 # creation of the jar
-%.jar: $(CLASSFILES)
-	@(echo; \
-	echo "Creation of the jar archive :"; \
-	cd $(CLASSPATH); \
-	$(JAR) cvf ../../$(JARFILE) $(CLASSFILESRELATIVE)	)
+#%.jar: $(CLASSFILES)
+#	@(echo; \
+#	echo "Creation of the jar archive :"; \
+#	cd $(CLASSPATH); \
+#	$(JAR) cvf ../../$(JARFILE) $(CLASSFILESRELATIVE)	)
+
+#CLEANFILES=$(CLASSFILES)
 
 ################ MACROS ######################"
 # Rule to build a macro
@@ -917,11 +913,22 @@ macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODI
 	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
 	$(top_builddir)/bin/scilab -nb -nwni -f $(abs_srcdir)/macros/buildmacros.sce 	)
 
+javasci.jar:
+	$(ANT) jar
+
+install-exec-local: javasci.jar
+	$(INSTALL) $< $(DESTDIR)$(pkgdatadir)/java/
+
+uninstall-local-mapi_jar:
+	$(RM) $(DESTDIR)$(pkgdatadir)/lib/javasci.jar
+
+all-local: javasci.jar
+
+clean-local: 
+	 $(ANT) clean
+
 tests:: $(JARFILE) $(JAVAFILES)
 	@(cd tests; make tests)
-
-install-data-local: $(JARFILE)
-	$(INSTALL_DATA) $(JARFILE) $(DESTDIR)$(pkglibdir)/
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

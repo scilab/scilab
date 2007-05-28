@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@author Allan CORNET
+@author Sylvestre LEDRU
+INRIA 2007
+-->
+<project name="gui" default="compile">
+
+  <import file="../../build.incl.xml"/>
+  <property name="library.name" value="${library.gui.name}" />
+
+  <description>
+			Build the Scilab GUI module
+  </description>
+
+</project>

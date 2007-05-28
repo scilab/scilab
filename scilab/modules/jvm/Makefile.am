@@ -3,23 +3,7 @@
 ### INRIA - Scilab 2006 
 ##########
 
-JVM_C_SOURCES = src/c/InitializeJVM.c \
-src/c/TerminateJVM.c \
-src/c/JVM_Unix.c \
-src/c/JVM.c \
-src/c/JniUtils.c \
-src/c/addToClasspath.c \
-src/c/getClasspath.c \
-src/c/system_getproperty.c \
-src/c/loadClasspath.c \
-src/c/createMainScilabObject.c \
-src/c/JVM_commons.c
-
-
-GATEWAY_C_SOURCES = sci_gateway/c/gw_jvm.c \
-sci_gateway/c/sci_system_getproperty.c \
-sci_gateway/c/sci_with_embedded_jre.c \
-sci_gateway/c/sci_javaclasspath.c
+GATEWAY_C_SOURCES = sci_gateway/c/gw_jvm.c
 
 
 libscijvm_la_CFLAGS=  $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/dynamiclibrary/includes/ -Iincludes/ -Isrc/c $(XML_FLAGS)
@@ -28,7 +12,6 @@ libscijvm_la_LDFLAGS = $(JAVA_JNI_LIBS) -lpthread -ldl $(XML_LIBS)
 
 pkglib_LTLIBRARIES = libscijvm.la
 
-libscijvm_la_SOURCES = $(JVM_C_SOURCES) $(GATEWAY_C_SOURCES)
 
 libscijvm_la_LIBADD = $(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la
 
@@ -56,5 +39,38 @@ includes/InitializeJVM.h \
 includes/gw_jvm.h \
 includes/JniUtils.h \
 includes/addToClasspath.h
+
+
+if JAVA
+
+GATEWAY_C_SOURCES += sci_gateway/c/sci_system_getproperty.c \
+sci_gateway/c/sci_with_embedded_jre.c \
+sci_gateway/c/sci_javaclasspath.c
+
+JVM_C_SOURCES = src/c/InitializeJVM.c \
+src/c/TerminateJVM.c \
+src/c/JVM_Unix.c \
+src/c/JVM.c \
+src/c/JniUtils.c \
+src/c/addToClasspath.c \
+src/c/getClasspath.c \
+src/c/system_getproperty.c \
+src/c/loadClasspath.c \
+src/c/createMainScilabObject.c \
+src/c/JVM_commons.c
+
+org.scilab.modules.jvm.jar:
+	$(ANT) jar
+
+all-local: org.scilab.modules.jvm.jar
+
+
+clean-local: 
+	$(ANT) clean
+
+endif
+
+libscijvm_la_SOURCES = $(JVM_C_SOURCES) $(GATEWAY_C_SOURCES)
+
 
 include $(top_srcdir)/Makefile.incl.am

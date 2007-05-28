@@ -349,11 +349,10 @@ src/cpp/DrawableClippedObject.cpp \
 src/cpp/DrawableObjectFactory.cpp \
 src/cpp/DrawingBridge.cpp \
 src/cpp/getHandleDrawer.cpp \
+src/cpp/figureDrawing/DrawableFigureImpFactory.cpp \
 src/cpp/figureDrawing/DrawableFigure.cpp \
 src/cpp/figureDrawing/DrawableFigureFactory.cpp \
 src/cpp/figureDrawing/ConcreteDrawableFigure.cpp \
-src/cpp/figureDrawing/DrawableFigureJoGL.cpp \
-src/cpp/figureDrawing/DrawableFigureImpFactory.cpp \
 src/cpp/subwinDrawing/DrawableSubwinFactory.cpp \
 src/cpp/subwinDrawing/DrawableSubwin.cpp \
 src/cpp/polylineDrawing/DrawablePolylineFactory.cpp \
@@ -380,6 +379,10 @@ src/cpp/rectangleDrawing/DrawableRectangleFactory.cpp \
 src/cpp/rectangleDrawing/DrawableRectangle.cpp \
 src/cpp/segsDrawing/DrawableSegsFactory.cpp \
 src/cpp/segsDrawing/DrawableSegs.cpp
+
+if JAVA
+GRAPHICS_CPP_SOURCES += src/cpp/figureDrawing/DrawableFigureJoGL.cpp 
+endif
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_swap_handles.c \
 sci_gateway/c/sci_readgif.c \

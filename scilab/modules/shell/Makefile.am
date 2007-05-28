@@ -59,5 +59,15 @@ libscishell_la_sci_gateway_DATA = sci_gateway/shell_gateway.xml
 libscishell_la_includedir=$(sciincludedir)/shell
 libscishell_la_include_HEADERS = includes/gw_shell.h
 
+
+org.scilab.modules.shell.jar:
+	$(ANT) jar
+
+all-local: org.scilab.modules.shell.jar
+
+clean-local: 
+	$(ANT) clean
+
+
 # Provides macros compilation, Java compilation, cleaning
 include $(top_srcdir)/Makefile.incl.am

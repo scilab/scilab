@@ -4,12 +4,18 @@
 ### INRIA - Scilab 2007
 ##########
 
-if FFTW
-
-#### Target ######
 modulename=fftw
 
 pkglib_LTLIBRARIES = libscifftw.la
+
+#### fftw : Conf files ####
+libscifftw_la_rootdir = $(mydatadir)
+
+#### fftw : init scripts #### 
+libscifftw_la_etcdir = $(mydatadir)/etc
+libscifftw_la_etc_DATA = etc/fftw.quit etc/fftw.start
+
+if FFTW
 
 FFTW_C_SOURCES = src/c/callfftw.c \
 src/c/fftwlibname.c \
@@ -28,12 +34,7 @@ GATEWAY_C_SOURCES = sci_gateway/c/gw_fftw.c \
 
 
 #### fftw : Conf files ####
-libscifftw_la_rootdir = $(mydatadir)
 libscifftw_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
-
-#### fftw : init scripts #### 
-libscifftw_la_etcdir = $(mydatadir)/etc
-libscifftw_la_etc_DATA = etc/fftw.quit etc/fftw.start
 
 #### fftw : gateway declaration #### 
 libscifftw_la_sci_gatewaydir = $(mydatadir)/sci_gateway
@@ -59,25 +60,12 @@ includes/sci_get_fftw_wisdom.h \
 includes/sci_set_fftw_wisdom.h \
 includes/sci_fftw_forget_wisdom.h
 
-include $(top_srcdir)/Makefile.incl.am
-
 else
-#### Target ######
-modulename=fftw
-
-pkglib_LTLIBRARIES = libscifftw.la
 
 FFTW_C_SOURCES = src/nofftw/nofftw.c
 
-#### fftw : Conf files ####
-libscifftw_la_rootdir = $(mydatadir)
-
-#### fftw : init scripts #### 
-libscifftw_la_etcdir = $(mydatadir)/etc
-libscifftw_la_etc_DATA = etc/fftw.quit etc/fftw.start
-
 libscifftw_la_SOURCES = $(FFTW_C_SOURCES)
 
-include $(top_srcdir)/Makefile.incl.am
-
 endif
+
+include $(top_srcdir)/Makefile.incl.am

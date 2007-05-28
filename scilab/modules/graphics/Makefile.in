@@ -39,6 +39,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+@JAVA_TRUE@am__append_1 = src/cpp/figureDrawing/DrawableFigureJoGL.cpp 
 subdir = modules/graphics
 DIST_COMMON = $(libscigraphics_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in
@@ -48,10 +49,10 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
 	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
 	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/libxml2.m4 \
 	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/mpi.m4 \
-	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
-	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/sciman.m4 \
-	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/ocaml.m4 \
+	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pvm.m4 \
+	$(top_srcdir)/m4/sciman.m4 $(top_srcdir)/m4/tcltk.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
@@ -76,6 +77,379 @@ libscigraphics_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/data_structures/libscidata_structures.la \
 	$(top_builddir)/modules/string/libscistring.la \
 	$(top_builddir)/modules/tclsci/libscitclsci.la
+am__libscigraphics_la_SOURCES_DIST = src/c/GetCommandArg.c \
+	src/c/w_rottext.c src/c/gifimg.c src/c/WindowList.c \
+	src/c/Events.c \
+	src/c/getHandleProperty/get_figure_position_property.c \
+	src/c/getHandleProperty/get_figure_size_property.c \
+	src/c/getHandleProperty/get_visible_property.c \
+	src/c/getHandleProperty/get_old_style_property.c \
+	src/c/getHandleProperty/get_figures_id_property.c \
+	src/c/getHandleProperty/get_figure_style_property.c \
+	src/c/getHandleProperty/get_pixel_drawing_mode_property.c \
+	src/c/getHandleProperty/get_line_mode_property.c \
+	src/c/getHandleProperty/get_axes_size_property.c \
+	src/c/getHandleProperty/get_thickness_property.c \
+	src/c/getHandleProperty/get_font_foreground_property.c \
+	src/c/getHandleProperty/get_bar_layout_property.c \
+	src/c/getHandleProperty/get_current_axes_property.c \
+	src/c/getHandleProperty/get_bar_width_property.c \
+	src/c/getHandleProperty/get_font_color_property.c \
+	src/c/getHandleProperty/get_default_axes_property.c \
+	src/c/getHandleProperty/get_y_shift_property.c \
+	src/c/getHandleProperty/get_immediate_drawing_property.c \
+	src/c/getHandleProperty/get_current_entity_property.c \
+	src/c/getHandleProperty/get_background_property.c \
+	src/c/getHandleProperty/get_rotation_style_property.c \
+	src/c/getHandleProperty/get_type_property.c \
+	src/c/getHandleProperty/get_current_figure_property.c \
+	src/c/getHandleProperty/get_mark_foreground_property.c \
+	src/c/getHandleProperty/get_default_figure_property.c \
+	src/c/getHandleProperty/get_children_property.c \
+	src/c/getHandleProperty/get_parent_property.c \
+	src/c/getHandleProperty/get_surface_mode_property.c \
+	src/c/getHandleProperty/get_figure_id_property.c \
+	src/c/getHandleProperty/get_mark_mode_property.c \
+	src/c/getHandleProperty/get_pixmap_property.c \
+	src/c/getHandleProperty/get_interp_color_mode.c \
+	src/c/getHandleProperty/get_font_size_property.c \
+	src/c/getHandleProperty/get_x_shift_property.c \
+	src/c/getHandleProperty/get_z_shift_property.c \
+	src/c/getHandleProperty/get_line_style_property.c \
+	src/c/getHandleProperty/get_foreground_property.c \
+	src/c/getHandleProperty/get_mark_style_property.c \
+	src/c/getHandleProperty/get_color_map_property.c \
+	src/c/getHandleProperty/get_polyline_style_property.c \
+	src/c/getHandleProperty/get_font_angle_property.c \
+	src/c/getHandleProperty/get_interp_color_vector.c \
+	src/c/getHandleProperty/get_figure_name_property.c \
+	src/c/getHandleProperty/get_arrow_size_factor_property.c \
+	src/c/getHandleProperty/get_mark_size_unit_property.c \
+	src/c/getHandleProperty/get_mark_size_property.c \
+	src/c/getHandleProperty/get_mark_background_property.c \
+	src/c/getHandleProperty/get_auto_resize_property.c \
+	src/c/getHandleProperty/get_fill_mode_property.c \
+	src/c/getHandleProperty/get_tight_limits_property.c \
+	src/c/getHandleProperty/get_auto_ticks_property.c \
+	src/c/getHandleProperty/get_font_name_property.c \
+	src/c/getHandleProperty/get_x_label_property.c \
+	src/c/getHandleProperty/get_auto_scale_property.c \
+	src/c/getHandleProperty/get_auto_dimensionning_property.c \
+	src/c/getHandleProperty/get_text_box_property.c \
+	src/c/getHandleProperty/get_clip_box_property.c \
+	src/c/getHandleProperty/get_tics_direction_property.c \
+	src/c/getHandleProperty/get_position_property.c \
+	src/c/getHandleProperty/get_y_label_property.c \
+	src/c/getHandleProperty/get_data_property.c \
+	src/c/getHandleProperty/get_auto_clear_property.c \
+	src/c/getHandleProperty/get_title_property.c \
+	src/c/getHandleProperty/get_zoom_state_property.c \
+	src/c/getHandleProperty/get_zoom_box_property.c \
+	src/c/getHandleProperty/get_log_flags_property.c \
+	src/c/getHandleProperty/get_x_location_property.c \
+	src/c/getHandleProperty/get_text_box_mode_property.c \
+	src/c/getHandleProperty/get_y_location_property.c \
+	src/c/getHandleProperty/get_z_label_property.c \
+	src/c/getHandleProperty/get_alignment_property.c \
+	src/c/getHandleProperty/get_font_style_property.c \
+	src/c/getHandleProperty/get_auto_rotation_property.c \
+	src/c/getHandleProperty/get_clip_state_property.c \
+	src/c/getHandleProperty/get_callback_property.c \
+	src/c/getHandleProperty/get_auto_position_property.c \
+	src/c/getHandleProperty/get_closed_property.c \
+	src/c/getHandleProperty/get_callbackmevent_property.c \
+	src/c/getHandleProperty/get_text_property.c \
+	src/c/getHandleProperty/get_margins_property.c \
+	src/c/getHandleProperty/get_view_property.c \
+	src/c/getHandleProperty/get_data_bounds_property.c \
+	src/c/getHandleProperty/get_axes_reverse_property.c \
+	src/c/getHandleProperty/get_tics_color_property.c \
+	src/c/getHandleProperty/get_axes_bounds_property.c \
+	src/c/getHandleProperty/get_tics_style_property.c \
+	src/c/getHandleProperty/get_user_data_property.c \
+	src/c/getHandleProperty/get_xtics_coord_property.c \
+	src/c/getHandleProperty/get_color_mode_property.c \
+	src/c/getHandleProperty/get_z_bounds_property.c \
+	src/c/getHandleProperty/get_data_mapping_property.c \
+	src/c/getHandleProperty/get_arrow_size_property.c \
+	src/c/getHandleProperty/get_rotation_angles_property.c \
+	src/c/getHandleProperty/get_callback_type_property.c \
+	src/c/getHandleProperty/get_format_n_property.c \
+	src/c/getHandleProperty/get_color_flag_property.c \
+	src/c/getHandleProperty/get_sub_tics_property.c \
+	src/c/getHandleProperty/get_hidden_axis_color_property.c \
+	src/c/getHandleProperty/get_ytics_coord_property.c \
+	src/c/getHandleProperty/get_labels_font_size_property.c \
+	src/c/getHandleProperty/get_isoview_property.c \
+	src/c/getHandleProperty/get_grid_property.c \
+	src/c/getHandleProperty/get_box_property.c \
+	src/c/getHandleProperty/get_hidden_color_property.c \
+	src/c/getHandleProperty/get_handle_visible_property.c \
+	src/c/getHandleProperty/get_menu_enable_property.c \
+	src/c/getHandleProperty/get_labels_font_color_property.c \
+	src/c/getHandleProperty/get_surface_color_property.c \
+	src/c/getHandleProperty/get_tics_label_property.c \
+	src/c/getHandleProperty/get_labels_font_style_property.c \
+	src/c/getHandleProperty/get_axes_visible_property.c \
+	src/c/getHandleProperty/get_cube_scaling_property.c \
+	src/c/getHandleProperty/get_tics_segment_property.c \
+	src/c/getHandleProperty/get_cdata_mapping_property.c \
+	src/c/getHandleProperty/get_colored_property.c \
+	src/c/getHandleProperty/get_triangles_property.c \
+	src/c/getHandleProperty/get_viewport_property.c \
+	src/c/getHandleProperty/get_info_message_property.c \
+	src/c/getHandleProperty/get_y_ticks_property.c \
+	src/c/getHandleProperty/get_z_ticks_property.c \
+	src/c/getHandleProperty/get_x_ticks_property.c \
+	src/c/getHandleProperty/get_ticks_utils.c \
+	src/c/getHandleProperty/setGetHashTable.c \
+	src/c/getHandleProperty/get_segs_color_property.c \
+	src/c/getHandleProperty/get_screen_position_property.c \
+	src/c/getHandleProperty/get_dimension_property.c \
+	src/c/getHandleProperty/get_event_handler_property.c \
+	src/c/getHandleProperty/get_event_handler_enable_property.c \
+	src/c/getHandleProperty/GetHashTable.c \
+	src/c/graphicModuleLoad.c \
+	src/c/getHandleProperty/set_old_style_property.c \
+	src/c/getHandleProperty/set_figure_name_property.c \
+	src/c/getHandleProperty/getPropertyAssignedValue.c \
+	src/c/getHandleProperty/set_visible_property.c \
+	src/c/getHandleProperty/set_pixel_drawing_mode_property.c \
+	src/c/getHandleProperty/set_interp_color_vector_property.c \
+	src/c/getHandleProperty/set_immediate_drawing_property.c \
+	src/c/getHandleProperty/set_figure_size_property.c \
+	src/c/getHandleProperty/set_background_property.c \
+	src/c/getHandleProperty/set_rotation_style_property.c \
+	src/c/getHandleProperty/set_current_figure_property.c \
+	src/c/getHandleProperty/set_axes_size_property.c \
+	src/c/getHandleProperty/set_default_values_property.c \
+	src/c/getHandleProperty/set_figure_position_property.c \
+	src/c/getHandleProperty/set_color_map_property.c \
+	src/c/getHandleProperty/set_auto_resize_property.c \
+	src/c/getHandleProperty/set_current_axes_property.c \
+	src/c/getHandleProperty/set_current_entity_property.c \
+	src/c/getHandleProperty/set_figure_id_property.c \
+	src/c/getHandleProperty/set_pixmap_property.c \
+	src/c/getHandleProperty/set_figure_style_property.c \
+	src/c/ColorMapManagement.c \
+	src/c/getHandleProperty/set_mark_size_property.c \
+	src/c/getHandleProperty/set_y_shift_property.c \
+	src/c/getHandleProperty/set_font_name_property.c \
+	src/c/getHandleProperty/set_auto_scale_property.c \
+	src/c/getHandleProperty/set_auto_dimensionning_property.c \
+	src/c/getHandleProperty/set_text_box_property.c \
+	src/c/getHandleProperty/set_text_property.c \
+	src/c/getHandleProperty/set_mark_mode_property.c \
+	src/c/getHandleProperty/set_clip_box_property.c \
+	src/c/getHandleProperty/set_z_shift_property.c \
+	src/c/getHandleProperty/set_line_style_property.c \
+	src/c/getHandleProperty/set_polyline_style_property.c \
+	src/c/getHandleProperty/set_line_mode_property.c \
+	src/c/getHandleProperty/set_thickness_property.c \
+	src/c/getHandleProperty/set_font_foreground_property.c \
+	src/c/getHandleProperty/set_text_box_mode_property.c \
+	src/c/getHandleProperty/set_bar_layout_property.c \
+	src/c/getHandleProperty/set_bar_width_property.c \
+	src/c/getHandleProperty/SetPropertyStatus.c \
+	src/c/getHandleProperty/set_font_style_property.c \
+	src/c/getHandleProperty/set_surface_mode_property.c \
+	src/c/getHandleProperty/set_font_size_property.c \
+	src/c/getHandleProperty/set_mark_style_property.c \
+	src/c/getHandleProperty/set_mark_background_property.c \
+	src/c/getHandleProperty/set_interp_color_mode_property.c \
+	src/c/getHandleProperty/set_data_property.c \
+	src/c/getHandleProperty/set_font_angle_property.c \
+	src/c/getHandleProperty/set_auto_clear_property.c \
+	src/c/getHandleProperty/set_arrow_size_factor_property.c \
+	src/c/getHandleProperty/set_mark_size_unit_property.c \
+	src/c/getHandleProperty/set_zoom_state_property.c \
+	src/c/getHandleProperty/set_fill_mode_property.c \
+	src/c/getHandleProperty/set_zoom_box_property.c \
+	src/c/getHandleProperty/set_font_color_property.c \
+	src/c/getHandleProperty/set_alignment_property.c \
+	src/c/getHandleProperty/set_mark_foreground_property.c \
+	src/c/getHandleProperty/set_clip_state_property.c \
+	src/c/getHandleProperty/set_x_shift_property.c \
+	src/c/getHandleProperty/set_foreground_property.c \
+	src/c/getHandleProperty/set_tics_direction_property.c \
+	src/c/getHandleProperty/set_title_property.c \
+	src/c/getHandleProperty/set_x_location_property.c \
+	src/c/getHandleProperty/set_auto_position_property.c \
+	src/c/getHandleProperty/set_tight_limits_property.c \
+	src/c/getHandleProperty/set_x_label_property.c \
+	src/c/getHandleProperty/set_y_label_property.c \
+	src/c/getHandleProperty/set_y_location_property.c \
+	src/c/getHandleProperty/set_z_label_property.c \
+	src/c/getHandleProperty/set_auto_rotation_property.c \
+	src/c/getHandleProperty/set_callback_property.c \
+	src/c/getHandleProperty/set_closed_property.c \
+	src/c/getHandleProperty/set_callbackmevent_property.c \
+	src/c/getHandleProperty/set_cdata_mapping_property.c \
+	src/c/getHandleProperty/set_y_ticks_property.c \
+	src/c/getHandleProperty/set_z_bounds_property.c \
+	src/c/getHandleProperty/set_position_property.c \
+	src/c/getHandleProperty/set_z_ticks_property.c \
+	src/c/getHandleProperty/set_axes_bounds_property.c \
+	src/c/getHandleProperty/set_tics_style_property.c \
+	src/c/getHandleProperty/SetHashTable.c \
+	src/c/getHandleProperty/set_handle_visible_property.c \
+	src/c/getHandleProperty/set_menu_enable_property.c \
+	src/c/getHandleProperty/set_labels_font_color_property.c \
+	src/c/getHandleProperty/set_parent_property.c \
+	src/c/getHandleProperty/set_axes_visible_property.c \
+	src/c/getHandleProperty/set_triangles_property.c \
+	src/c/getHandleProperty/set_tics_color_property.c \
+	src/c/getHandleProperty/set_color_flag_property.c \
+	src/c/getHandleProperty/set_labels_font_size_property.c \
+	src/c/getHandleProperty/set_tics_segment_property.c \
+	src/c/getHandleProperty/set_user_data_property.c \
+	src/c/getHandleProperty/set_view_property.c \
+	src/c/getHandleProperty/set_arrow_size_property.c \
+	src/c/getHandleProperty/set_children_property.c \
+	src/c/getHandleProperty/set_axes_reverse_property.c \
+	src/c/getHandleProperty/set_grid_property.c \
+	src/c/getHandleProperty/set_log_flags_property.c \
+	src/c/getHandleProperty/set_cube_scaling_property.c \
+	src/c/getHandleProperty/set_colored_property.c \
+	src/c/getHandleProperty/set_margins_property.c \
+	src/c/getHandleProperty/set_auto_ticks_property.c \
+	src/c/getHandleProperty/set_xtics_coord_property.c \
+	src/c/getHandleProperty/set_color_mode_property.c \
+	src/c/getHandleProperty/set_data_bounds_property.c \
+	src/c/getHandleProperty/set_tics_labels_property.c \
+	src/c/getHandleProperty/set_data_mapping_property.c \
+	src/c/getHandleProperty/set_rotation_angles_property.c \
+	src/c/getHandleProperty/set_callback_type_property.c \
+	src/c/getHandleProperty/set_segs_color_property.c \
+	src/c/getHandleProperty/set_format_n_property.c \
+	src/c/getHandleProperty/set_sub_tics_property.c \
+	src/c/getHandleProperty/set_hidden_axis_color_property.c \
+	src/c/getHandleProperty/set_isoview_property.c \
+	src/c/getHandleProperty/set_box_property.c \
+	src/c/getHandleProperty/set_hidden_color_property.c \
+	src/c/getHandleProperty/set_label_font_style_property.c \
+	src/c/getHandleProperty/set_surface_color_property.c \
+	src/c/getHandleProperty/set_yticks_coord_property.c \
+	src/c/getHandleProperty/CheckTicksProperty.c \
+	src/c/getHandleProperty/set_x_ticks_property.c \
+	src/c/getHandleProperty/set_viewport_property.c \
+	src/c/getHandleProperty/set_info_message_property.c \
+	src/c/getHandleProperty/set_screen_position_property.c \
+	src/c/getHandleProperty/set_dimension_property.c \
+	src/c/getHandleProperty/set_event_handler_property.c \
+	src/c/getHandleProperty/set_event_handler_enable_property.c \
+	src/c/DefaultCommandArg.c src/c/periPos.c src/c/periX11.c \
+	src/c/graphicSession.c src/c/Xcall1.c src/c/Axes.c \
+	src/c/sciMatrix.c src/c/Xcall.c src/c/DrawObjects.c \
+	src/c/Vect2Matrix.c src/c/xs2file.c src/c/Plo3d.c \
+	src/c/GetProperty.c src/c/periFig.c src/c/Contour.c \
+	src/c/nues1.c src/c/SetProperty.c src/c/BasicAlgos.c \
+	src/c/BuildObjects.c src/c/sciCall.c src/c/CloneObjects.c \
+	src/c/InitObjects.c src/c/pixel_mode.c src/c/Format.c \
+	src/c/Champ.c src/c/StringMatrix.c src/c/FeC.c src/c/gsort.c \
+	src/c/Plo3dn.c src/c/Actions.c src/c/Plo2dEch.c src/c/Plo2dn.c \
+	src/c/Gray.c src/c/DestroyObjects.c src/c/clipping.c \
+	src/c/qsort.c src/c/qsort-char.c src/c/qsort-double.c \
+	src/c/qsort-int.c src/c/qsort-short.c src/c/qsort-string.c \
+	src/c/math_graphics.c src/c/Interaction.c src/c/periGif.c \
+	src/c/HandleManagement.c src/gd/gdfonts/gdfontmb.c \
+	src/gd/gdfonts/gdfonts.c src/gd/gdfonts/gdfontt.c \
+	src/gd/gdfonts/gdfontg.c src/gd/gdfonts/gdfontl.c \
+	src/gd/bdftogd.c src/gd/xfonts.c src/gd/gd.c src/c/StringBox.c \
+	src/c/drawMarks.c src/c/axesScale.c src/c/Vertices.c \
+	src/c/GraphicZoom.c src/c/handleDrawing/drawArcEntity.c \
+	src/c/handleDrawing/drawAxesEntity.c \
+	src/c/handleDrawing/drawCompoundEntity.c \
+	src/c/handleDrawing/drawFecEntity.c \
+	src/c/handleDrawing/drawFigureEntity.c \
+	src/c/handleDrawing/drawGrayplotEntity.c \
+	src/c/handleDrawing/drawLegendEntity.c \
+	src/c/handleDrawing/drawPolylineEntity.c \
+	src/c/handleDrawing/drawRectangleEntity.c \
+	src/c/handleDrawing/drawSegsEntity.c \
+	src/c/handleDrawing/drawSubWinEntity.c \
+	src/c/handleDrawing/drawSurfaceEntity.c \
+	src/c/handleDrawing/drawTextEntity.c src/c/TerminateGraphics.c \
+	src/c/CurrentObjectsManagement.c src/c/ObjectSelection.c \
+	sci_gateway/c/sci_swap_handles.c sci_gateway/c/sci_readgif.c \
+	sci_gateway/c/sci_grayplot.c sci_gateway/c/sci_matplot1.c \
+	sci_gateway/c/sci_xfpolys.c sci_gateway/c/sci_xget.c \
+	sci_gateway/c/sci_newaxes.c sci_gateway/c/sci_xlfont.c \
+	sci_gateway/c/sci_xgraduate.c sci_gateway/c/sci_xgrid.c \
+	sci_gateway/c/sci_xclick.c sci_gateway/c/sci_xclear.c \
+	sci_gateway/c/sci_geom3d.c sci_gateway/c/sci_xsort.c \
+	sci_gateway/c/sci_xtape.c sci_gateway/c/sci_xset.c \
+	sci_gateway/c/sci_set_posfig_dim.c sci_gateway/c/sci_xgetech.c \
+	sci_gateway/c/sci_unzoom.c sci_gateway/c/sci_xs2ppm.c \
+	sci_gateway/c/sci_xs2bmp.c sci_gateway/c/sci_xs2emf.c \
+	sci_gateway/c/sci_xsegs.c sci_gateway/c/sci_xaxis.c \
+	sci_gateway/c/sci_glue.c sci_gateway/c/sci_xarc.c \
+	sci_gateway/c/sci_xpolys.c sci_gateway/c/sci_xstring.c \
+	sci_gateway/c/sci_xstringb.c sci_gateway/c/sci_xs2gif.c \
+	sci_gateway/c/sci_xsetech.c sci_gateway/c/sci_show_window.c \
+	sci_gateway/c/sci_param3d1.c sci_gateway/c/sci_xname.c \
+	sci_gateway/c/sci_xstringl.c sci_gateway/c/sci_xpoly.c \
+	sci_gateway/c/sci_xchange.c sci_gateway/c/sci_UImenu.c \
+	sci_gateway/c/sci_matplot.c sci_gateway/c/sci_readxbm.c \
+	sci_gateway/c/sci_drawaxis.c sci_gateway/c/sci_demo.c \
+	sci_gateway/c/sci_plot2d1.c sci_gateway/c/sci_xrect.c \
+	sci_gateway/c/sci_xclea.c sci_gateway/c/sci_draw.c \
+	sci_gateway/c/sci_xg2ps.c sci_gateway/c/sci_xarrows.c \
+	sci_gateway/c/sci_plot3d.c sci_gateway/c/sci_move.c \
+	sci_gateway/c/sci_copy.c sci_gateway/c/sci_relocate_handle.c \
+	sci_gateway/c/sci_get.c sci_gateway/c/sci_xs2ps.c \
+	sci_gateway/c/sci_xarcs.c sci_gateway/c/sci_xfpoly.c \
+	sci_gateway/c/sci_drawlater.c sci_gateway/c/sci_champ.c \
+	sci_gateway/c/sci_xinit.c sci_gateway/c/sci_help_gtk.c \
+	sci_gateway/c/sci_set.c \
+	sci_gateway/c/sci_showalluimenushandles.c \
+	sci_gateway/c/sci_xend.c sci_gateway/c/sci_unglue.c \
+	sci_gateway/c/gw_graphics.c sci_gateway/c/sci_xsnative.c \
+	sci_gateway/c/sci_zoom_rect.c sci_gateway/c/sci_delete.c \
+	sci_gateway/c/sci_xs2fig.c sci_gateway/c/sci_plot2d.c \
+	sci_gateway/c/sci_xrects.c sci_gateway/c/sci_xtitle.c \
+	sci_gateway/c/sci_StringBox.c sci_gateway/c/sci_xgetmouse.c \
+	sci_gateway/c/sci_drawnow.c sci_gateway/c/sci_xfarcs.c \
+	sci_gateway/c/sci_param3d.c sci_gateway/c/sci_contour2di.c \
+	sci_gateway/c/sci_driver.c sci_gateway/c/sci_xdel.c \
+	sci_gateway/c/sci_winsid.c sci_gateway/c/sci_addcb.c \
+	sci_gateway/c/sci_fec.c src/cpp/HandleDrawingObserver.cpp \
+	src/cpp/HandleObserverManagement.cpp \
+	src/cpp/BuildDrawingObserver.cpp src/cpp/DrawableObject.cpp \
+	src/cpp/DrawableClippedObject.cpp \
+	src/cpp/DrawableObjectFactory.cpp src/cpp/DrawingBridge.cpp \
+	src/cpp/getHandleDrawer.cpp \
+	src/cpp/figureDrawing/DrawableFigureImpFactory.cpp \
+	src/cpp/figureDrawing/DrawableFigure.cpp \
+	src/cpp/figureDrawing/DrawableFigureFactory.cpp \
+	src/cpp/figureDrawing/ConcreteDrawableFigure.cpp \
+	src/cpp/subwinDrawing/DrawableSubwinFactory.cpp \
+	src/cpp/subwinDrawing/DrawableSubwin.cpp \
+	src/cpp/polylineDrawing/DrawablePolylineFactory.cpp \
+	src/cpp/polylineDrawing/DrawablePolyline.cpp \
+	src/cpp/textDrawing/DrawableTextFactory.cpp \
+	src/cpp/textDrawing/DrawableText.cpp \
+	src/cpp/labelDrawing/DrawableLabelFactory.cpp \
+	src/cpp/labelDrawing/DrawableLabel.cpp \
+	src/cpp/compoundDrawing/DrawableCompoundFactory.cpp \
+	src/cpp/compoundDrawing/DrawableCompound.cpp \
+	src/cpp/surfaceDrawing/DrawableSurfaceFactory.cpp \
+	src/cpp/surfaceDrawing/DrawableSurface.cpp \
+	src/cpp/arcDrawing/DrawableArcFactory.cpp \
+	src/cpp/arcDrawing/DrawableArc.cpp \
+	src/cpp/axesDrawing/DrawableAxesFactory.cpp \
+	src/cpp/axesDrawing/DrawableAxes.cpp \
+	src/cpp/fecDrawing/DrawableFecFactory.cpp \
+	src/cpp/fecDrawing/DrawableFec.cpp \
+	src/cpp/grayplotDrawing/DrawableGrayplotFactory.cpp \
+	src/cpp/grayplotDrawing/DrawableGrayplot.cpp \
+	src/cpp/legendDrawing/DrawableLegendFactory.cpp \
+	src/cpp/legendDrawing/DrawableLegend.cpp \
+	src/cpp/rectangleDrawing/DrawableRectangleFactory.cpp \
+	src/cpp/rectangleDrawing/DrawableRectangle.cpp \
+	src/cpp/segsDrawing/DrawableSegsFactory.cpp \
+	src/cpp/segsDrawing/DrawableSegs.cpp \
+	src/cpp/figureDrawing/DrawableFigureJoGL.cpp
 am__objects_1 = libscigraphics_la-GetCommandArg.lo \
 	libscigraphics_la-w_rottext.lo libscigraphics_la-gifimg.lo \
 	libscigraphics_la-WindowList.lo libscigraphics_la-Events.lo \
@@ -454,7 +828,8 @@ am__objects_2 = libscigraphics_la-sci_swap_handles.lo \
 	libscigraphics_la-sci_driver.lo libscigraphics_la-sci_xdel.lo \
 	libscigraphics_la-sci_winsid.lo libscigraphics_la-sci_addcb.lo \
 	libscigraphics_la-sci_fec.lo
-am__objects_3 = libscigraphics_la-HandleDrawingObserver.lo \
+@JAVA_TRUE@am__objects_3 = libscigraphics_la-DrawableFigureJoGL.lo
+am__objects_4 = libscigraphics_la-HandleDrawingObserver.lo \
 	libscigraphics_la-HandleObserverManagement.lo \
 	libscigraphics_la-BuildDrawingObserver.lo \
 	libscigraphics_la-DrawableObject.lo \
@@ -462,11 +837,10 @@ am__objects_3 = libscigraphics_la-HandleDrawingObserver.lo \
 	libscigraphics_la-DrawableObjectFactory.lo \
 	libscigraphics_la-DrawingBridge.lo \
 	libscigraphics_la-getHandleDrawer.lo \
+	libscigraphics_la-DrawableFigureImpFactory.lo \
 	libscigraphics_la-DrawableFigure.lo \
 	libscigraphics_la-DrawableFigureFactory.lo \
 	libscigraphics_la-ConcreteDrawableFigure.lo \
-	libscigraphics_la-DrawableFigureJoGL.lo \
-	libscigraphics_la-DrawableFigureImpFactory.lo \
 	libscigraphics_la-DrawableSubwinFactory.lo \
 	libscigraphics_la-DrawableSubwin.lo \
 	libscigraphics_la-DrawablePolylineFactory.lo \
@@ -492,9 +866,9 @@ am__objects_3 = libscigraphics_la-HandleDrawingObserver.lo \
 	libscigraphics_la-DrawableRectangleFactory.lo \
 	libscigraphics_la-DrawableRectangle.lo \
 	libscigraphics_la-DrawableSegsFactory.lo \
-	libscigraphics_la-DrawableSegs.lo
+	libscigraphics_la-DrawableSegs.lo $(am__objects_3)
 am_libscigraphics_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
-	$(am__objects_3)
+	$(am__objects_4)
 libscigraphics_la_OBJECTS = $(am_libscigraphics_la_OBJECTS)
 libscigraphics_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) \
@@ -522,7 +896,7 @@ CXXLINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libscigraphics_la_SOURCES)
-DIST_SOURCES = $(libscigraphics_la_SOURCES)
+DIST_SOURCES = $(am__libscigraphics_la_SOURCES_DIST)
 libscigraphics_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscigraphics_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscigraphics_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
@@ -591,8 +965,6 @@ MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
 MANGENERATOR = @MANGENERATOR@
 MKDIR_P = @MKDIR_P@
-MPICC = @MPICC@
-MPILIBS = @MPILIBS@
 NM = @NM@
 OBJEXT = @OBJEXT@
 OCAMLC = @OCAMLC@
@@ -1026,45 +1398,41 @@ src/c/CurrentObjectsManagement.c \
 src/c/ObjectSelection.c
 
 GRAPHICS_CPP_SOURCES = src/cpp/HandleDrawingObserver.cpp \
-src/cpp/HandleObserverManagement.cpp \
-src/cpp/BuildDrawingObserver.cpp \
-src/cpp/DrawableObject.cpp \
-src/cpp/DrawableClippedObject.cpp \
-src/cpp/DrawableObjectFactory.cpp \
-src/cpp/DrawingBridge.cpp \
-src/cpp/getHandleDrawer.cpp \
-src/cpp/figureDrawing/DrawableFigure.cpp \
-src/cpp/figureDrawing/DrawableFigureFactory.cpp \
-src/cpp/figureDrawing/ConcreteDrawableFigure.cpp \
-src/cpp/figureDrawing/DrawableFigureJoGL.cpp \
-src/cpp/figureDrawing/DrawableFigureImpFactory.cpp \
-src/cpp/subwinDrawing/DrawableSubwinFactory.cpp \
-src/cpp/subwinDrawing/DrawableSubwin.cpp \
-src/cpp/polylineDrawing/DrawablePolylineFactory.cpp \
-src/cpp/polylineDrawing/DrawablePolyline.cpp \
-src/cpp/textDrawing/DrawableTextFactory.cpp \
-src/cpp/textDrawing/DrawableText.cpp \
-src/cpp/labelDrawing/DrawableLabelFactory.cpp \
-src/cpp/labelDrawing/DrawableLabel.cpp \
-src/cpp/compoundDrawing/DrawableCompoundFactory.cpp \
-src/cpp/compoundDrawing/DrawableCompound.cpp \
-src/cpp/surfaceDrawing/DrawableSurfaceFactory.cpp \
-src/cpp/surfaceDrawing/DrawableSurface.cpp \
-src/cpp/arcDrawing/DrawableArcFactory.cpp \
-src/cpp/arcDrawing/DrawableArc.cpp \
-src/cpp/axesDrawing/DrawableAxesFactory.cpp \
-src/cpp/axesDrawing/DrawableAxes.cpp \
-src/cpp/fecDrawing/DrawableFecFactory.cpp \
-src/cpp/fecDrawing/DrawableFec.cpp \
-src/cpp/grayplotDrawing/DrawableGrayplotFactory.cpp \
-src/cpp/grayplotDrawing/DrawableGrayplot.cpp \
-src/cpp/legendDrawing/DrawableLegendFactory.cpp \
-src/cpp/legendDrawing/DrawableLegend.cpp \
-src/cpp/rectangleDrawing/DrawableRectangleFactory.cpp \
-src/cpp/rectangleDrawing/DrawableRectangle.cpp \
-src/cpp/segsDrawing/DrawableSegsFactory.cpp \
-src/cpp/segsDrawing/DrawableSegs.cpp
-
+	src/cpp/HandleObserverManagement.cpp \
+	src/cpp/BuildDrawingObserver.cpp src/cpp/DrawableObject.cpp \
+	src/cpp/DrawableClippedObject.cpp \
+	src/cpp/DrawableObjectFactory.cpp src/cpp/DrawingBridge.cpp \
+	src/cpp/getHandleDrawer.cpp \
+	src/cpp/figureDrawing/DrawableFigureImpFactory.cpp \
+	src/cpp/figureDrawing/DrawableFigure.cpp \
+	src/cpp/figureDrawing/DrawableFigureFactory.cpp \
+	src/cpp/figureDrawing/ConcreteDrawableFigure.cpp \
+	src/cpp/subwinDrawing/DrawableSubwinFactory.cpp \
+	src/cpp/subwinDrawing/DrawableSubwin.cpp \
+	src/cpp/polylineDrawing/DrawablePolylineFactory.cpp \
+	src/cpp/polylineDrawing/DrawablePolyline.cpp \
+	src/cpp/textDrawing/DrawableTextFactory.cpp \
+	src/cpp/textDrawing/DrawableText.cpp \
+	src/cpp/labelDrawing/DrawableLabelFactory.cpp \
+	src/cpp/labelDrawing/DrawableLabel.cpp \
+	src/cpp/compoundDrawing/DrawableCompoundFactory.cpp \
+	src/cpp/compoundDrawing/DrawableCompound.cpp \
+	src/cpp/surfaceDrawing/DrawableSurfaceFactory.cpp \
+	src/cpp/surfaceDrawing/DrawableSurface.cpp \
+	src/cpp/arcDrawing/DrawableArcFactory.cpp \
+	src/cpp/arcDrawing/DrawableArc.cpp \
+	src/cpp/axesDrawing/DrawableAxesFactory.cpp \
+	src/cpp/axesDrawing/DrawableAxes.cpp \
+	src/cpp/fecDrawing/DrawableFecFactory.cpp \
+	src/cpp/fecDrawing/DrawableFec.cpp \
+	src/cpp/grayplotDrawing/DrawableGrayplotFactory.cpp \
+	src/cpp/grayplotDrawing/DrawableGrayplot.cpp \
+	src/cpp/legendDrawing/DrawableLegendFactory.cpp \
+	src/cpp/legendDrawing/DrawableLegend.cpp \
+	src/cpp/rectangleDrawing/DrawableRectangleFactory.cpp \
+	src/cpp/rectangleDrawing/DrawableRectangle.cpp \
+	src/cpp/segsDrawing/DrawableSegsFactory.cpp \
+	src/cpp/segsDrawing/DrawableSegs.cpp $(am__append_1)
 GATEWAY_C_SOURCES = sci_gateway/c/sci_swap_handles.c \
 sci_gateway/c/sci_readgif.c \
 sci_gateway/c/sci_grayplot.c \
@@ -4949,6 +5317,13 @@ libscigraphics_la-getHandleDrawer.lo: src/cpp/getHandleDrawer.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-getHandleDrawer.lo `test -f 'src/cpp/getHandleDrawer.cpp' || echo '$(srcdir)/'`src/cpp/getHandleDrawer.cpp
 
+libscigraphics_la-DrawableFigureImpFactory.lo: src/cpp/figureDrawing/DrawableFigureImpFactory.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableFigureImpFactory.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableFigureImpFactory.Tpo -c -o libscigraphics_la-DrawableFigureImpFactory.lo `test -f 'src/cpp/figureDrawing/DrawableFigureImpFactory.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/DrawableFigureImpFactory.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawableFigureImpFactory.Tpo $(DEPDIR)/libscigraphics_la-DrawableFigureImpFactory.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/figureDrawing/DrawableFigureImpFactory.cpp' object='libscigraphics_la-DrawableFigureImpFactory.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableFigureImpFactory.lo `test -f 'src/cpp/figureDrawing/DrawableFigureImpFactory.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/DrawableFigureImpFactory.cpp
+
 libscigraphics_la-DrawableFigure.lo: src/cpp/figureDrawing/DrawableFigure.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableFigure.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableFigure.Tpo -c -o libscigraphics_la-DrawableFigure.lo `test -f 'src/cpp/figureDrawing/DrawableFigure.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/DrawableFigure.cpp
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawableFigure.Tpo $(DEPDIR)/libscigraphics_la-DrawableFigure.Plo
@@ -4969,20 +5344,6 @@ libscigraphics_la-ConcreteDrawableFigure.lo: src/cpp/figureDrawing/ConcreteDrawa
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/figureDrawing/ConcreteDrawableFigure.cpp' object='libscigraphics_la-ConcreteDrawableFigure.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-ConcreteDrawableFigure.lo `test -f 'src/cpp/figureDrawing/ConcreteDrawableFigure.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/ConcreteDrawableFigure.cpp
-
-libscigraphics_la-DrawableFigureJoGL.lo: src/cpp/figureDrawing/DrawableFigureJoGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableFigureJoGL.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableFigureJoGL.Tpo -c -o libscigraphics_la-DrawableFigureJoGL.lo `test -f 'src/cpp/figureDrawing/DrawableFigureJoGL.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/DrawableFigureJoGL.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawableFigureJoGL.Tpo $(DEPDIR)/libscigraphics_la-DrawableFigureJoGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/figureDrawing/DrawableFigureJoGL.cpp' object='libscigraphics_la-DrawableFigureJoGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableFigureJoGL.lo `test -f 'src/cpp/figureDrawing/DrawableFigureJoGL.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/DrawableFigureJoGL.cpp
-
-libscigraphics_la-DrawableFigureImpFactory.lo: src/cpp/figureDrawing/DrawableFigureImpFactory.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableFigureImpFactory.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableFigureImpFactory.Tpo -c -o libscigraphics_la-DrawableFigureImpFactory.lo `test -f 'src/cpp/figureDrawing/DrawableFigureImpFactory.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/DrawableFigureImpFactory.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawableFigureImpFactory.Tpo $(DEPDIR)/libscigraphics_la-DrawableFigureImpFactory.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/figureDrawing/DrawableFigureImpFactory.cpp' object='libscigraphics_la-DrawableFigureImpFactory.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableFigureImpFactory.lo `test -f 'src/cpp/figureDrawing/DrawableFigureImpFactory.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/DrawableFigureImpFactory.cpp
 
 libscigraphics_la-DrawableSubwinFactory.lo: src/cpp/subwinDrawing/DrawableSubwinFactory.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableSubwinFactory.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableSubwinFactory.Tpo -c -o libscigraphics_la-DrawableSubwinFactory.lo `test -f 'src/cpp/subwinDrawing/DrawableSubwinFactory.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/DrawableSubwinFactory.cpp
@@ -5165,6 +5526,13 @@ libscigraphics_la-DrawableSegs.lo: src/cpp/segsDrawing/DrawableSegs.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/segsDrawing/DrawableSegs.cpp' object='libscigraphics_la-DrawableSegs.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableSegs.lo `test -f 'src/cpp/segsDrawing/DrawableSegs.cpp' || echo '$(srcdir)/'`src/cpp/segsDrawing/DrawableSegs.cpp
+
+libscigraphics_la-DrawableFigureJoGL.lo: src/cpp/figureDrawing/DrawableFigureJoGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableFigureJoGL.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableFigureJoGL.Tpo -c -o libscigraphics_la-DrawableFigureJoGL.lo `test -f 'src/cpp/figureDrawing/DrawableFigureJoGL.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/DrawableFigureJoGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawableFigureJoGL.Tpo $(DEPDIR)/libscigraphics_la-DrawableFigureJoGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/figureDrawing/DrawableFigureJoGL.cpp' object='libscigraphics_la-DrawableFigureJoGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableFigureJoGL.lo `test -f 'src/cpp/figureDrawing/DrawableFigureJoGL.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/DrawableFigureJoGL.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
