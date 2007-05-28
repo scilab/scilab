@@ -343,7 +343,7 @@ AM_CONDITIONAL(IS_MIPS_SGI_IRIX, test -n "$MIPS_SGI_IRIX")
 if test "$CXX" = "g++"; then
    ## With GNU C++ Compiler
    if test "$enable_debug_CXX" = yes; then
-	  CXXFLAGS="$CXXFLAGS -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wall "
+	  CXXFLAGS="$CXXFLAGS -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wstrict-overflow=4 -Wstrict-aliasing -Wextra -Wall "
    else
 	  CXXFLAGS="$CXXFLAGS -DNDEBUG" 
    fi
@@ -536,7 +536,8 @@ if test "$with_java" != no; then
 		JAVA_CLASSPATH=$ac_java_classpath
 		AC_JAVA_TOOLS
 		AC_JAVA_ANT
-		JAVA_OK=1
+
+		AC_DEFINE([WITH_JAVA],[],[With the JAVA stuff (GUI, Console, Scilab <=> Java...])
 	else
 		AC_MSG_WARN([Sun javac not found: I will not build the java interface])
 		if test "$ac_java_jvm_name" != ""; then
@@ -547,7 +548,7 @@ if test "$with_java" != no; then
     AC_SUBST(JAVA_JNI_LIBS)
     AC_SUBST(JAVA_HOME)
 fi
-AM_CONDITIONAL(JAVA, test "$with_java" != no)
+AM_CONDITIONAL(WITH_JAVA, test "$with_java" != no)
 
 
 ##############################################################
@@ -724,9 +725,11 @@ AM_CONDITIONAL(FFTW, test "$with_fftw" = yes)
 AC_ARG_WITH(mpi,
     [  --with-mpi	           compile with MPI library ])
 
-if test "$with_mpi" = yes; then
-   ACX_MPI()
-fi
+#if test "$with_mpi" = yes; then
+#   AC_PKG_OPENMPI
+#   AC_PKG_LAMPI
+   # do we have to manage other stuff here?
+#fi
 AM_CONDITIONAL(MPI, test "$with_mpi" = yes)
 
 #################
@@ -1056,6 +1059,7 @@ modules/string_V2/Makefile
 modules/time/Makefile
 modules/graphics/Makefile
 modules/gui/Makefile
+modules/mpi/Makefile
 modules/pvm/Makefile
 modules/randlib/Makefile
 modules/tclsci/Makefile
@@ -1158,10 +1162,37 @@ echo ""
 
 if test "$with_mpi" = yes; then
    echo "MPI Configuration:"
-   echo "MPI libs ........... = $MPILIBS"
+   echo "MPI LIBS ........... = $MPILIBS"
    echo "MPI C Compiler ..... = $MPICC"
    echo "MPI C++ Compiler ... = $MPICXX"
    echo "MPI F77 Compiler ... = $MPIF77"
+else
+   echo "Not using MPI"
+fi
+
+
+if test "$found_lampi" = "1"; then
+   echo "LAMPI Configuration:"
+   echo "LAMPI LIBS ........... = $LAMPI_LIBS"
+   echo "LAMPI C Compiler ..... = $LAMPI_CC"
+   echo "LAMPI LD Flags ....... = $LAMPI_LDFLAGS"
+   echo "LAMPI Headers ........ = $LAMPI_HEADER"
+   echo "LAMPI directory ...... = $LAMPI_DIR"
+
+   echo "LAMPI F77 Compiler ... = $MPIF77"
+else
+   echo "Not using MPI"
+fi
+
+if test "$found_openmpi" = "1"; then
+   echo "OpenMPI Configuration:"
+   echo "OpenMPI LIBS ........... = $OPENMPI_LIBS"
+   echo "OpenMPI C Compiler ..... = $OPENMPI_CC"
+   echo "OpenMPI LD Flags ....... = $OPENMPI_LDFLAGS"
+   echo "OpenMPI Headers ........ = $OPENMPI_HEADER"
+   echo "OpenMPI directory ...... = $OPENMPI_DIR"
+
+   echo "OpenMPI F77 Compiler ... = $MPIF77"
 else
    echo "Not using MPI"
 fi

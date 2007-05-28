@@ -97,7 +97,7 @@ CLEANFILES = $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
 
 libscigui_la_CFLAGS=  -Isrc/c/ -Iincludes/ -I$(top_srcdir)/modules/graphics/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/core/src/c/ -I$(top_srcdir)/modules/string/includes/ -I$(top_srcdir)/modules/tclsci/includes/ -I$(top_srcdir)/modules/jvm/includes/ -I$(top_srcdir)/modules/gui/src/c/xsci/ $(TCL_INC_PATH) $(Tk_INC_PATH) 
 
-if JAVA
+if WITH_JAVA
 libscigui_la_CFLAGS += $(JAVA_JNI_INCLUDE)
 
 EXTRA_DIST = src/java/gui/build.xml
@@ -150,7 +150,7 @@ libscigui_la_demosdir=$(mydatadir)/demos/
 libscigui_la_demos_DATA = demos/dialog.dem
 
 
-if JAVA
+if WITH_JAVA
 
 org.scilab.modules.gui.jar:
 	$(ANT) jar

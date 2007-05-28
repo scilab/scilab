@@ -47,9 +47,9 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@JAVA_TRUE@am__append_1 = sci_gateway/c/sci_system_getproperty.c \
-@JAVA_TRUE@sci_gateway/c/sci_with_embedded_jre.c \
-@JAVA_TRUE@sci_gateway/c/sci_javaclasspath.c
+@WITH_JAVA_TRUE@am__append_1 = sci_gateway/c/sci_system_getproperty.c \
+@WITH_JAVA_TRUE@sci_gateway/c/sci_with_embedded_jre.c \
+@WITH_JAVA_TRUE@sci_gateway/c/sci_javaclasspath.c
 
 DIST_COMMON = $(libscijvm_la_include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
@@ -92,19 +92,20 @@ am__libscijvm_la_SOURCES_DIST = src/c/InitializeJVM.c \
 	sci_gateway/c/gw_jvm.c sci_gateway/c/sci_system_getproperty.c \
 	sci_gateway/c/sci_with_embedded_jre.c \
 	sci_gateway/c/sci_javaclasspath.c
-@JAVA_TRUE@am__objects_1 = libscijvm_la-InitializeJVM.lo \
-@JAVA_TRUE@	libscijvm_la-TerminateJVM.lo \
-@JAVA_TRUE@	libscijvm_la-JVM_Unix.lo libscijvm_la-JVM.lo \
-@JAVA_TRUE@	libscijvm_la-JniUtils.lo \
-@JAVA_TRUE@	libscijvm_la-addToClasspath.lo \
-@JAVA_TRUE@	libscijvm_la-getClasspath.lo \
-@JAVA_TRUE@	libscijvm_la-system_getproperty.lo \
-@JAVA_TRUE@	libscijvm_la-loadClasspath.lo \
-@JAVA_TRUE@	libscijvm_la-createMainScilabObject.lo \
-@JAVA_TRUE@	libscijvm_la-JVM_commons.lo
-@JAVA_TRUE@am__objects_2 = libscijvm_la-sci_system_getproperty.lo \
-@JAVA_TRUE@	libscijvm_la-sci_with_embedded_jre.lo \
-@JAVA_TRUE@	libscijvm_la-sci_javaclasspath.lo
+@WITH_JAVA_TRUE@am__objects_1 = libscijvm_la-InitializeJVM.lo \
+@WITH_JAVA_TRUE@	libscijvm_la-TerminateJVM.lo \
+@WITH_JAVA_TRUE@	libscijvm_la-JVM_Unix.lo libscijvm_la-JVM.lo \
+@WITH_JAVA_TRUE@	libscijvm_la-JniUtils.lo \
+@WITH_JAVA_TRUE@	libscijvm_la-addToClasspath.lo \
+@WITH_JAVA_TRUE@	libscijvm_la-getClasspath.lo \
+@WITH_JAVA_TRUE@	libscijvm_la-system_getproperty.lo \
+@WITH_JAVA_TRUE@	libscijvm_la-loadClasspath.lo \
+@WITH_JAVA_TRUE@	libscijvm_la-createMainScilabObject.lo \
+@WITH_JAVA_TRUE@	libscijvm_la-JVM_commons.lo
+@WITH_JAVA_TRUE@am__objects_2 =  \
+@WITH_JAVA_TRUE@	libscijvm_la-sci_system_getproperty.lo \
+@WITH_JAVA_TRUE@	libscijvm_la-sci_with_embedded_jre.lo \
+@WITH_JAVA_TRUE@	libscijvm_la-sci_javaclasspath.lo
 am__objects_3 = libscijvm_la-gw_jvm.lo $(am__objects_2)
 am_libscijvm_la_OBJECTS = $(am__objects_1) $(am__objects_3)
 libscijvm_la_OBJECTS = $(am_libscijvm_la_OBJECTS)
@@ -316,17 +317,17 @@ includes/gw_jvm.h \
 includes/JniUtils.h \
 includes/addToClasspath.h
 
-@JAVA_TRUE@JVM_C_SOURCES = src/c/InitializeJVM.c \
-@JAVA_TRUE@src/c/TerminateJVM.c \
-@JAVA_TRUE@src/c/JVM_Unix.c \
-@JAVA_TRUE@src/c/JVM.c \
-@JAVA_TRUE@src/c/JniUtils.c \
-@JAVA_TRUE@src/c/addToClasspath.c \
-@JAVA_TRUE@src/c/getClasspath.c \
-@JAVA_TRUE@src/c/system_getproperty.c \
-@JAVA_TRUE@src/c/loadClasspath.c \
-@JAVA_TRUE@src/c/createMainScilabObject.c \
-@JAVA_TRUE@src/c/JVM_commons.c
+@WITH_JAVA_TRUE@JVM_C_SOURCES = src/c/InitializeJVM.c \
+@WITH_JAVA_TRUE@src/c/TerminateJVM.c \
+@WITH_JAVA_TRUE@src/c/JVM_Unix.c \
+@WITH_JAVA_TRUE@src/c/JVM.c \
+@WITH_JAVA_TRUE@src/c/JniUtils.c \
+@WITH_JAVA_TRUE@src/c/addToClasspath.c \
+@WITH_JAVA_TRUE@src/c/getClasspath.c \
+@WITH_JAVA_TRUE@src/c/system_getproperty.c \
+@WITH_JAVA_TRUE@src/c/loadClasspath.c \
+@WITH_JAVA_TRUE@src/c/createMainScilabObject.c \
+@WITH_JAVA_TRUE@src/c/JVM_commons.c
 
 libscijvm_la_SOURCES = $(JVM_C_SOURCES) $(GATEWAY_C_SOURCES)
 
@@ -730,7 +731,7 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-@JAVA_FALSE@all-local:
+@WITH_JAVA_FALSE@all-local:
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
 	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscijvm_la_etcdir)" "$(DESTDIR)$(libscijvm_la_rootdir)" "$(DESTDIR)$(libscijvm_la_sci_gatewaydir)" "$(DESTDIR)$(libscijvm_la_includedir)"; do \
@@ -760,7 +761,7 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
-@JAVA_FALSE@clean-local:
+@WITH_JAVA_FALSE@clean-local:
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
@@ -855,13 +856,13 @@ uninstall-am: uninstall-libscijvm_la_etcDATA \
 	uninstall-pkglibLTLIBRARIES
 
 
-@JAVA_TRUE@org.scilab.modules.jvm.jar:
-@JAVA_TRUE@	$(ANT) jar
+@WITH_JAVA_TRUE@org.scilab.modules.jvm.jar:
+@WITH_JAVA_TRUE@	$(ANT) jar
 
-@JAVA_TRUE@all-local: org.scilab.modules.jvm.jar
+@WITH_JAVA_TRUE@all-local: org.scilab.modules.jvm.jar
 
-@JAVA_TRUE@clean-local: 
-@JAVA_TRUE@	$(ANT) clean
+@WITH_JAVA_TRUE@clean-local: 
+@WITH_JAVA_TRUE@	$(ANT) clean
 #.java .class .jar
 
 ########################### JAVA ######################################

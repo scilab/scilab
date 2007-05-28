@@ -715,6 +715,7 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
+@WITH_JAVA_FALSE@all-local:
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
 	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscishell_la_etcdir)" "$(DESTDIR)$(libscishell_la_rootdir)" "$(DESTDIR)$(libscishell_la_sci_gatewaydir)" "$(DESTDIR)$(libscishell_la_includedir)"; do \
@@ -744,6 +745,7 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
+@WITH_JAVA_FALSE@clean-local:
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
@@ -838,13 +840,13 @@ uninstall-am: uninstall-libscishell_la_etcDATA \
 	uninstall-pkglibLTLIBRARIES
 
 
-org.scilab.modules.shell.jar:
-	$(ANT) jar
+@WITH_JAVA_TRUE@org.scilab.modules.shell.jar:
+@WITH_JAVA_TRUE@	$(ANT) jar
 
-all-local: org.scilab.modules.shell.jar
+@WITH_JAVA_TRUE@all-local: org.scilab.modules.shell.jar
 
-clean-local: 
-	$(ANT) clean
+@WITH_JAVA_TRUE@clean-local: 
+@WITH_JAVA_TRUE@	$(ANT) clean
 #.java .class .jar
 
 ########################### JAVA ######################################

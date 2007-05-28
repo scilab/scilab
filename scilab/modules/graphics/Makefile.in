@@ -39,7 +39,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@JAVA_TRUE@am__append_1 = src/cpp/figureDrawing/DrawableFigureJoGL.cpp 
+@WITH_JAVA_TRUE@am__append_1 = src/cpp/figureDrawing/DrawableFigureJoGL.cpp 
 subdir = modules/graphics
 DIST_COMMON = $(libscigraphics_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in
@@ -828,7 +828,8 @@ am__objects_2 = libscigraphics_la-sci_swap_handles.lo \
 	libscigraphics_la-sci_driver.lo libscigraphics_la-sci_xdel.lo \
 	libscigraphics_la-sci_winsid.lo libscigraphics_la-sci_addcb.lo \
 	libscigraphics_la-sci_fec.lo
-@JAVA_TRUE@am__objects_3 = libscigraphics_la-DrawableFigureJoGL.lo
+@WITH_JAVA_TRUE@am__objects_3 =  \
+@WITH_JAVA_TRUE@	libscigraphics_la-DrawableFigureJoGL.lo
 am__objects_4 = libscigraphics_la-HandleDrawingObserver.lo \
 	libscigraphics_la-HandleObserverManagement.lo \
 	libscigraphics_la-BuildDrawingObserver.lo \

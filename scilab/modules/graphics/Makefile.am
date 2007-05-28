@@ -380,7 +380,7 @@ src/cpp/rectangleDrawing/DrawableRectangle.cpp \
 src/cpp/segsDrawing/DrawableSegsFactory.cpp \
 src/cpp/segsDrawing/DrawableSegs.cpp
 
-if JAVA
+if WITH_JAVA
 GRAPHICS_CPP_SOURCES += src/cpp/figureDrawing/DrawableFigureJoGL.cpp 
 endif
 

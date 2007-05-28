@@ -49,7 +49,7 @@ build_triplet = @build@
 host_triplet = @host@
 DIST_COMMON = $(libscigui_la_include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
-@JAVA_TRUE@am__append_1 = $(JAVA_JNI_INCLUDE)
+@WITH_JAVA_TRUE@am__append_1 = $(JAVA_JNI_INCLUDE)
 subdir = modules/gui
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
@@ -449,7 +449,7 @@ libscigui_la_CFLAGS = -Isrc/c/ -Iincludes/ \
 	-I$(top_srcdir)/modules/jvm/includes/ \
 	-I$(top_srcdir)/modules/gui/src/c/xsci/ $(TCL_INC_PATH) \
 	$(Tk_INC_PATH) $(am__append_1)
-@JAVA_TRUE@EXTRA_DIST = src/java/gui/build.xml
+@WITH_JAVA_TRUE@EXTRA_DIST = src/java/gui/build.xml
 libscigui_la_LDFLAGS = $(X_LIBS) $(TERMCAP_LIB) $(X_EXTRA_LIBS)
 pkglib_LTLIBRARIES = libscigui.la
 libscigui_la_SOURCES = $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
@@ -1333,7 +1333,7 @@ distdir: $(DISTFILES)
 check-am: all-am
 check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
-@JAVA_FALSE@all-local:
+@WITH_JAVA_FALSE@all-local:
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
 	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscigui_la_demosdir)" "$(DESTDIR)$(libscigui_la_etcdir)" "$(DESTDIR)$(libscigui_la_rootdir)" "$(DESTDIR)$(libscigui_la_sci_gatewaydir)" "$(DESTDIR)$(libscigui_la_includedir)"; do \
@@ -1596,13 +1596,13 @@ macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODI
 $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h: $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad src/c/xsci/x_main.c
 	$(top_srcdir)/modules/gui/src/c/xsci/ad2c.sh $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad > $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
 
-@JAVA_TRUE@org.scilab.modules.gui.jar:
-@JAVA_TRUE@	$(ANT) jar
+@WITH_JAVA_TRUE@org.scilab.modules.gui.jar:
+@WITH_JAVA_TRUE@	$(ANT) jar
 
-@JAVA_TRUE@all-local: org.scilab.modules.gui.jar
+@WITH_JAVA_TRUE@all-local: org.scilab.modules.gui.jar
 
-@JAVA_TRUE@clean-local: 
-@JAVA_TRUE@	$(ANT) clean
+@WITH_JAVA_TRUE@clean-local: 
+@WITH_JAVA_TRUE@	$(ANT) clean
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
