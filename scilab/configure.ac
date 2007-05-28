@@ -1059,7 +1059,6 @@ modules/string_V2/Makefile
 modules/time/Makefile
 modules/graphics/Makefile
 modules/gui/Makefile
-modules/mpi/Makefile
 modules/pvm/Makefile
 modules/randlib/Makefile
 modules/tclsci/Makefile
@@ -1085,7 +1084,7 @@ libs/Makefile
 Makefile
 modules/helptools/macros/xmlfiletohtml.sci
 ])#MAN_FR MAN_ENG
-
+#modules/mpi/Makefile
 #for top_builddir in . .. ../.. $ac_auxdir $ac_auxdir/..; do
 #  test -f $top_builddir/configure && break
 #done
