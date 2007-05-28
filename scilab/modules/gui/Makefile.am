@@ -54,10 +54,13 @@ src/c/xmen_Utils.c \
 src/c/men_choice.c \
 src/c/men_print.c \
 src/c/guitable.c \
-src/c/TerminateGui.c \
-src/c/getlookandfeel.c \
+src/c/TerminateGui.c
+
+if WITH_JAVA
+GUI_C_SOURCES += src/c/getlookandfeel.c \
 src/c/setlookandfeel.c \
 src/c/getinstalledlookandfeels.c
+endif
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_x_choice.c \
 sci_gateway/c/sci_x_message_modeless.c \
