@@ -5,6 +5,8 @@
 #include "deleteafile.h"
 #ifndef _MSC_VER
 	#include <stdio.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 #else
 	#include <Windows.h>
 #endif
