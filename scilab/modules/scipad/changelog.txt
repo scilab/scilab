@@ -3014,3 +3014,16 @@ Francois VOGEL, 14/05/07
    numbers in functions - Significantly improves the performance when updating
    the active breakpoint tag during a debug session
  * version --> 6.109
+
+Francois VOGEL, 28/05/07
+ * Fixed: Variables having special characters (especially $) in their names
+   can be watched
+ * Fixed: The global variable $ was always auto watched when debugging a .sce
+   script because $ was used in the wrapper code. This has been fixed without
+   preventing from watching the real $ if needed (fixed by Enrico)
+ * $env(SCIINSTALLPATH) replaces $env(SCIPATH) which was set outside of the
+   scipad module in SCI/modules/tclsci/tcl/TK_Scilab.tcl - its value is the
+   SCI value. Now env(SCIPATH) is no longer used in Scipad and the new
+   env(SCIINSTALLPATH) is defined in scipad.sci in order to better separate
+   the tclsci module and the scipad module
+ * version --> 6.110

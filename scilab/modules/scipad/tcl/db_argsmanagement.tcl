@@ -19,7 +19,7 @@ proc Addarg_bp {w focusbut leftwin rightwin} {
         set argname [$leftwin get $selecteditem]
         set argvalue [$rightwin get $selecteditem]
         # check that what the user selected for edit is actually editable
-        # (this check conly concerns the watch window, not the configure box
+        # (this check only concerns the watch window, not the configure box
         if {[string first listboxinput $leftwin] == -1} {
             set editable [lindex [createsetinscishellcomm $argname] 3]
             if {!$editable} {

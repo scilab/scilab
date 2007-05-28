@@ -585,7 +585,7 @@ proc Obtainall_bp {} {
         # the leading \n is very important to avoid concatenation of text from
         # the debugged file with this wrapper text. See also proc runtoreturnpoint_bp
         # about the importance of the leading \n
-        set txt "\ndb_nam=who(\"local\");db_nam=strcat(db_nam(1:$-predef()),\",\")\n"
+        set txt "\ndb_nam=who(\"local\");db_nam=strcat(db_nam(1:size(db_nam,1)-predef()),\",\")\n"
         append txt "execstr(\"\[\" + db_nam + \"\]=resume(\" + db_nam + \")\")\n"
         # the trailing \n below is also very important and related to
         # adjustment of $lastlogicalline in proc getlogicallinenumbersranges

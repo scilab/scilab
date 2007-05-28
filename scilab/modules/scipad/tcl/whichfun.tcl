@@ -475,7 +475,7 @@ proc funnametofunnametafunstart {functionname} {
 # if it succeeds, then the proc returns a list with one getallfunsintextarea
 # result, more precisely, this is a list {$funcname $ta $funstartline}
 # if it does not succeed, then the return value is ""
-# <TODO> this search might fail if the same function name can be found in more
+# <TODO> This search might fail if the same function name can be found in more
 #        than one single buffer - in this case, the first match is returned
 #        this proc should be improved to prompt the user whenever there is
 #        more than one match
@@ -484,6 +484,12 @@ proc funnametofunnametafunstart {functionname} {
 #        this should be dynamical - this would be good for performance since
 #        getallfunsinalltextareas, which is usually the slowest proc, would
 #        have to be called much less often
+#        Handling this is needed because this proc is not only used in the
+#        debugger but also elsewhere (proc blinkline, that is even called from
+#        outside of Scipad by edit_error - asking the user where it should
+#        blink is probably not the best thing to do!!)
+#        In the debugger there can no longer be duplicate functions, this case
+#        is trapped and the debug won't run
     set fundefs [getallfunsinalltextareas]
     set funstruct ""
     foreach {ta fundefsinta} $fundefs {

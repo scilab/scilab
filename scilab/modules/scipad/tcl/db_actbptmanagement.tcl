@@ -16,8 +16,6 @@ proc updateactivebreakpoint { {itemno 3} } {
 proc updateactbreakpointtag {{activeline -1} {activemacro -1}} {
 # Show the active breakpoint
 # This is done by using proc dogotoline
-# <TODO> this might fail if the same function name can be found in more
-#        than one single buffer - see funnametofunnametafunstart
 
     # uabpt_opened is used to prevent more than one recursive call
     global backgroundtasksallowed
@@ -28,6 +26,8 @@ proc updateactbreakpointtag {{activeline -1} {activemacro -1}} {
 
     if {$activemacro == ""} {return}
 
+    # during the debug, funnametofunnametafunstart cannot return
+    # the wrong function, there can be no duplicates
     set funtogoto [funnametofunnametafunstart $activemacro]
 
     if {$funtogoto == ""} {

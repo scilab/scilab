@@ -12,14 +12,14 @@ if { [info exists pad] } {
 
     set pad .scipad
 
-    set moduledir [file join "$env(SCIPATH)" "modules" "scipad"]
+    set moduledir [file join "$env(SCIINSTALLPATH)" "modules" "scipad"]
     set sourcedir [file join "$moduledir" "tcl"]
     set msgsdir   [file join "$sourcedir" "msg_files"]
     set iconsdir  [file join "$sourcedir" "icons"]
     set binddir   [file join "$sourcedir" "bindings"]
     set intmacdir [file join "$moduledir" "macros" "scipad_internals"]
-    set scicosdir [file join "$env(SCIPATH)" "modules" "scicos" "macros" "scicos"]
-    set blocksdir [file join "$env(SCIPATH)" "modules" "scicos" "macros" "scicos_blocks"]
+    set scicosdir [file join "$env(SCIINSTALLPATH)" "modules" "scicos" "macros" "scicos"]
+    set blocksdir [file join "$env(SCIINSTALLPATH)" "modules" "scicos" "macros" "scicos_blocks"]
 
     # load first some debug settings
     source [file join $sourcedir scipaddebug1.tcl]

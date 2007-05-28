@@ -249,6 +249,8 @@ proc showtext {textarea} {
 # and make this textarea the current one
 # if $textarea is already visible in some other pane than the
 # current one, simply switch to this textarea
+# WARNING: this proc is called from outside Scipad (plotprofile.sci)
+#          changes here should be assessed with their full consequences...
 
     if {![isdisplayed $textarea]} {
         packbuffer $textarea

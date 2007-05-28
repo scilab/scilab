@@ -44,6 +44,11 @@ function scipad(varargin)
         else
             TCL_EvalStr("set tmpdir """+pathconvert(TMPDIR,%f,%t)+"""","scipad")
         end
+        if MSDOS then
+            TCL_EvalStr("set env(SCIINSTALLPATH) """+strsubst(SCI,"\","/")+"""","scipad")
+        else
+            TCL_EvalStr("set env(SCIINSTALLPATH) """+pathconvert(SCI,%f,%t)+"""","scipad")
+        end
         TCL_EvalStr("source """+SCI+"/modules/scipad/tcl/scipad.tcl""","scipad")
         nfiles=argn(2)
         if nfiles>0 then

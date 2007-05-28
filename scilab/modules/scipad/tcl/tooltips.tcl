@@ -74,8 +74,7 @@ proc update_bubble_watchvar {w type mousexy} {
 
         # a new item is hovered, retrieve the corresponding watch variable name
         set wvar [$w get $hovereditem]
-        set escwvar [escapespecialchars $wvar]
-        if {$escwvar == ""} {
+        if {$wvar == ""} {
             return
         }
 
@@ -84,12 +83,8 @@ proc update_bubble_watchvar {w type mousexy} {
         cancel_bubble_deletion $w
 
         # destroy the previous bubble and create the new one
-        # catched because when closing the add argument box, if the mouse cursor
-        # is above the bubble triggering area in the watch window, then the
-        # content to display in the bubble might not yet be retrieved from
-        # Scilab (because the debug state is not "DebugInProgress")
-        update_bubble leave $w $mousexy $watchvarstysi($escwvar)
-        update_bubble enter $w $mousexy $watchvarstysi($escwvar)
+        update_bubble leave $w [list ] ""
+        update_bubble enter $w $mousexy $watchvarstysi($wvar)
 
         # wait a bit and play the game again
         after 100 "update_bubble_watchvar $w $type \[winfo pointerxy $pad\]"

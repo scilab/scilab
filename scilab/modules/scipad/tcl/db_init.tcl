@@ -48,11 +48,11 @@ set debugger_fun_ancillaries [list \
 #      variable "ans" will be created which was not present in the debugged script - the
 #      original ans is special, and cannot be watched because of this
 #      To let ans be watched, I could just avoid to include it in the resume list in
-#      proc createsetinscishellcomm. However this is not enough: if ans is added as a
-#      watch variable it gets filled during debug by the result of FormatWhereForWatch,
-#      which is not the intent -> better completely forbid watching ans
+#      proc createsetinscishellcomm, i.e. make ans a non editable watch variable.
+#      However this is not enough: if ans is added as a watch variable it gets filled
+#      during debug by the result of FormatWhereForWatch, which is not the intent!
+#      -> better completely forbid watching ans
 # db_nam: is used in the wrapper of a .sce debug
-# <TODO> what about varargin and varargout?
 set debugger_unwatchable_vars [list \
     "ans" \
     "db_nam" \
