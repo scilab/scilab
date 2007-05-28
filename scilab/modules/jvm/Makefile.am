@@ -40,8 +40,6 @@ includes/gw_jvm.h \
 includes/JniUtils.h \
 includes/addToClasspath.h
 
-<<<<<<< .mine
-
 if WITH_JAVA
 
 GATEWAY_C_SOURCES += sci_gateway/c/sci_system_getproperty.c \
@@ -74,39 +72,4 @@ endif
 libscijvm_la_SOURCES = $(JVM_C_SOURCES) $(GATEWAY_C_SOURCES)
 
 
-=======
-
-if JAVA
-
-GATEWAY_C_SOURCES += sci_gateway/c/sci_system_getproperty.c \
-sci_gateway/c/sci_with_embedded_jre.c \
-sci_gateway/c/sci_javaclasspath.c
-
-JVM_C_SOURCES = src/c/InitializeJVM.c \
-src/c/TerminateJVM.c \
-src/c/JVM_Unix.c \
-src/c/JVM.c \
-src/c/JniUtils.c \
-src/c/addToClasspath.c \
-src/c/getClasspath.c \
-src/c/system_getproperty.c \
-src/c/loadClasspath.c \
-src/c/createMainScilabObject.c \
-src/c/JVM_commons.c
-
-org.scilab.modules.jvm.jar:
-	$(ANT) jar
-
-all-local: org.scilab.modules.jvm.jar
-
-
-clean-local: 
-	$(ANT) clean
-
-endif
-
-libscijvm_la_SOURCES = $(JVM_C_SOURCES) $(GATEWAY_C_SOURCES)
-
-
->>>>>>> .r16548
 include $(top_srcdir)/Makefile.incl.am
