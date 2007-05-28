@@ -11,27 +11,23 @@
 -->
 <!-- =================== -->
 
-<CLASSPATH>
-<CLASS path="$SCILAB/bin"/>
-<CLASS path="$SCILAB/java/jar/modules"/>
-<CLASS path="$SCILAB/java/jar/externals"/>
-<CLASS path="$SCILAB/java/jar/toolboxes"/>
-<CLASS path="$SCILAB/java/jar/modules/jvm.jar"/>
-<CLASS path="$SCILAB/java/jar/modules/shell.jar"/>
-<CLASS path="$SCILAB/java/jar/modules/gui.jar"/>
-<CLASS path="$SCILAB/java/jar/modules/javasci.jar"/>
-<CLASS path="$SCILAB/java/jar/modules/graphics.jar"/>
-<CLASS path="$SCILAB/java/jar/externals/jogl.jar"/>
-<CLASS path="$SCILAB/java/jar/externals/gluegen-rt.jar"/>
-<CLASS path="$SCILAB/java/jar/externals/flexdock-0.5.1.jar"/>
-<CLASS path="$SCILAB/java/jar/externals/JyConsole.jar"/>
-<CLASS path="$SCILAB/java/jar/externals/jython.jar"/>
-<CLASS path="$SCILAB/java/jar/externals/ArtTk.jar"/>
-<CLASS path="$SCILAB/java/jar/externals/skinlf.jar"/>
-<CLASS path="$SCILAB/java/jar/externals/looks-2.1.1.jar"/>
-<CLASS path="$SCILAB/java/jar/externals/commons-logging-1.1.jar"/>
-
-
-
-
-</CLASSPATH>
+<classpaths>
+<classpath path="$SCILAB/bin"/>
+<classpath path="$SCILAB/lib"/>
+<classpath path="$SCILAB/lib/thirdparty/"/>
+<classpath path="$SCILAB/java/toolboxes"/>
+<classpath path="$SCILAB/modules/jvm/jar/org.scilab.modules.jvm.jar"/>
+<classpath path="$SCILAB/modules/shell/jar/org.scilab.modules.shell.jar"/>
+<classpath path="$SCILAB/modules/gui/jar/org.scilab.modules.gui.jar"/>
+<classpath path="$SCILAB/modules/javasci/jar/javasci.jar"/>
+<classpath path="$SCILAB/modules/graphics/jar/org.scilab.modules.graphics.jar"/>
+<classpath path="$SCILAB/lib/thirdparty/jogl.jar"/>
+<classpath path="$SCILAB/lib/thirdparty/gluegen-rt.jar"/>
+<classpath path="$SCILAB/lib/thirdparty/flexdock-0.5.1.jar"/>
+<classpath path="$SCILAB/lib/thirdparty/JyConsole.jar"/>
+<classpath path="$SCILAB/lib/thirdparty/jython.jar"/>
+<classpath path="$SCILAB/lib/thirdparty/ArtTk.jar"/>
+<classpath path="$SCILAB/lib/thirdparty/skinlf.jar"/>
+<classpath path="$SCILAB/lib/thirdparty/looks-2.1.1.jar"/>
+<classpath path="$SCILAB/lib/thirdparty/commons-logging-1.1.jar"/>
+</classpaths>

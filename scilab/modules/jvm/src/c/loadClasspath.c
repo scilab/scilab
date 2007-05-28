@@ -38,7 +38,7 @@ BOOL LoadClasspath(char *xmlfilename)
 			}
 
 			xpathCtxt = xmlXPathNewContext(doc);
-			xpathObj = xmlXPathEval((const xmlChar*)"//CLASSPATH/CLASS", xpathCtxt);
+			xpathObj = xmlXPathEval((const xmlChar*)"//classpaths/classpath", xpathCtxt);
 
 			if(xpathObj && xpathObj->nodesetval->nodeMax) 
 			{
@@ -88,6 +88,10 @@ BOOL LoadClasspath(char *xmlfilename)
 					}
 				}
 				bOK = TRUE;
+			}
+			else
+				{
+			printf("Wrong format for classpath.xml. \n", xmlfilename, encoding);
 			}
 		}
 		else
