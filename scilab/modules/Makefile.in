@@ -49,7 +49,7 @@ host_triplet = @host@
 
 # javasci should be compile at the end because it needs libscilab.la
 # Don't forget that the order in subdirs does matter !!!
-@JAVA_TRUE@am__append_2 = javasci
+@WITH_JAVA_TRUE@am__append_2 = javasci
 @STRINGV2_TRUE@am__append_3 = $(top_builddir)/modules/string_V2/libscistring.la
 @STRINGV2_FALSE@am__append_4 = $(top_builddir)/modules/string/libscistring.la
 @MPI_TRUE@am__append_5 = $(top_builddir)/modules/mpi/libscimpi.la
