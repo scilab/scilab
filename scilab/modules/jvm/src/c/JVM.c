@@ -45,7 +45,7 @@ BOOL startJVM(char *SCI_PATH)
 	if (IsFromJava())
 	{
 		ptr_jvm = FindCreatedJavaVM(SCI_PATH);
-		if (ptr_jvm) /* a jvm already exist in scilab process */
+		if (ptr_jvm) /* a jvm already exists in scilab process */
 		{
 			HadAlreadyJavaVm = TRUE;
 			jvm_SCILAB = ptr_jvm;
