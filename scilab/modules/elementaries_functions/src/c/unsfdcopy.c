@@ -7,6 +7,7 @@
 /* ALWAYS BUILD unsfdcopy without optimization (Blended) */
 /*-----------------------------------------------------------------------------------*/
 #include "machine.h"
+#include "unsfdcopy.h"
 /*-----------------------------------------------------------------------------------*/
  int C2F(unsfdcopy)(int *n, long long *dx, int *incx, long long *dy, int *incy)
 {

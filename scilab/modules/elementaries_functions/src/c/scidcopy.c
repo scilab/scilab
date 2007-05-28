@@ -9,6 +9,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include <string.h>
 #include "machine.h"
+#include "scidcopy.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(scidcopy)(int *n, long long *dx, int *incx, long long *dy, int *incy)
 {
