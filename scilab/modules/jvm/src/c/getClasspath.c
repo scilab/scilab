@@ -20,7 +20,7 @@ char **getClasspath(int *sizeClasspathArray)
 		{
 			/* Boot loader for scilab and javasci */
 			/* if scilab is called from java (javasci), we need to update standard classpath */
-			/* doesn't require to add -cp SCI/jar/modules/jvm.jar when you use javasci */
+			/* doesn't require to add -cp SCI/modules/jvm/jar/org.scilab.modules.jvm.jar when you use javasci */
 			cls = (*currentENV)->FindClass(currentENV, "javasci/ClassPath");
 		}
 		else
