@@ -35,7 +35,8 @@ src/c/mseek.c \
 src/c/mtell.c \
 src/c/diary.c \
 src/c/readline.c \
-src/c/getdrives.c
+src/c/getdrives.c \
+src/c/deleteafile.c
 
 
 GATEWAY_SOURCES = \
@@ -56,7 +57,8 @@ sci_gateway/c/sci_fscanfMat.c \
 sci_gateway/c/sci_findfiles.c \
 sci_gateway/c/sci_maxfiles.c \
 sci_gateway/c/sci_getdrives.c \
-sci_gateway/c/sci_fullpath.c
+sci_gateway/c/sci_fullpath.c \
+sci_gateway/c/sci_deletefile.c
 
 libscifileio_la_CFLAGS=-Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ 
 
