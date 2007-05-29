@@ -59,6 +59,10 @@ src/c/JVM_commons.c
 
 USEANT=1
 
+else
+
+JVM_C_SOURCES = src/nojvm/nojvm.c
+
 endif
 
 libscijvm_la_SOURCES = $(JVM_C_SOURCES) $(GATEWAY_C_SOURCES)
