@@ -4,7 +4,7 @@
 @author Sylvestre LEDRU
 INRIA 2007
 -->
-<project name="gui" default="compile">
+<project name="shell" default="compile">
 
   <import file="../../build.incl.xml"/>
   <property name="library.name" value="${library.shell.name}" />
