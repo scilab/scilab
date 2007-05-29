@@ -24,6 +24,8 @@
 <!-- Where we can find the sources -->
   <property name="src.dir"  location="src/java/" />
 
+  <property name="checkstyle.config.file" value="${base.dir}/checkstyle/scilab_checkstyle_convention.xml"/>
+
   <property name="checkstyle.report.file" value="${build.dir}/checkstyle_errors.xml"/>
 
   <property name="modules.dir" value="${base.dir}/modules" />
@@ -71,7 +73,7 @@ We could specify one by one library that we are using -->
   <taskdef resource="checkstyletask.properties" classpathref="checkstyle.classpath"/>
 
   <target name="checkstyle" description="Generates a report of code convention violations.">
-	<checkstyle config="${base.dir}/checkstyle/scilab_checkstyle_convention.xml">
+	<checkstyle config="${checkstyle.config.file}">
 	  <fileset dir="${src.dir}" includes="**/*.java"/>
 	  <!-- Location of cache-file. -->
 	  <property key="checkstyle.cache.file" file="${cache.dir}"/>
