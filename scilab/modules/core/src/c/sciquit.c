@@ -14,9 +14,7 @@
 #include "../../../tclsci/includes/TerminateTclTk.h"
 #include "../../../gui/includes/TerminateGui.h"
 #include "../../../localization/includes/TerminateLocalization.h"
-#ifdef WITH_JAVA
 #include "../../../jvm/includes/TerminateJVM.h"
-#endif
 #include "scilabmode.h"
 /*-----------------------------------------------------------------------------------*/ 
 
@@ -33,9 +31,7 @@ int ExitScilab(void)
 
 	if ( getScilabMode() != SCILAB_NWNI ) 
 	{
-#ifdef WITH_JAVA
 		TerminateJVM();
-#endif
 		TerminateGraphics();
 	}
 
