@@ -10,7 +10,7 @@
   <property name="build.jar.dir"  value="jar/" />
 
 <!-- Where the thirdparty libraries could be found -->
-  <property name="thirdparty.dir" location="${base.dir}/java/thirdparty/" />
+  <property name="thirdparty.dir" location="${base.dir}/thirdparty/" />
 
 <!-- The building directory -->
   <property name="build.dir" location="build/"/>
