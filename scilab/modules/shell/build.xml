@@ -1,54 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-Allan CORNET
+@author Allan CORNET
+@author Sylvestre LEDRU
 INRIA 2007
 -->
-<project name="shell" default="compile">
-  <property name="rootdirectory"  location="../../../../.." />
-  <property name="dist"  location="${rootdirectory}/java/jar/modules" />
-  <property name="src"  location="." />
+<project name="gui" default="compile">
 
-  <taskdef resource="checkstyletask.properties" classpath="${rootdirectory}/java/checkstyle/checkstyle-all-4.3.jar"/>
-      
+  <import file="../../build.incl.xml"/>
+  <property name="library.name" value="${library.shell.name}" />
+
   <description>
-			build shell module
+			Build the Scilab Shell module
   </description>
-	
-  <path id="classpath">
-  	<fileset dir="${rootdirectory}/java/jar" includes="**/*.jar"/>
-  </path>
-	
-  
-	<target name="checkstyle-scilab">
-		<checkstyle config="${rootdirectory}/checkstyle/scilab_checkstyle_convention.xml">
-  		<fileset dir="${src}" includes="**/*.java"/>
-  		<!-- Location of cache-file. -->
-  		<property key="checkstyle.cache.file" file="build/cachefile"/>
-		</checkstyle> 
-	</target>  
-    
-  <target name="init">
-		<!-- Create the time stamp -->
-		<tstamp/>
-	</target>    
 
-  <target name="clean" description="clean sources">
-  	<delete dir="build"/>
-    <delete file="${dist}/shell.jar"/>
-  </target>
-
-<!-- 
-  <target name="compile" description="build sources" depends="init,checkstyle-scilab">
--->
-  <target name="compile" description="build sources" depends="init">
-  	<mkdir dir="build/classes"/>
-    <javac srcdir="${src}" destdir="build/classes" classpathref="classpath"/>
-  </target>
-
-  <target name="jar" description="do .jar file" depends="compile">
-		<jar destfile="${dist}/shell.jar" basedir="build/classes">
-    	<manifest>
-			</manifest>
-		</jar>
-  </target>
 </project>
