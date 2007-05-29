@@ -488,11 +488,7 @@ libscigraphics_la_LIBADD = \
 
 #	$(top_builddir)/modules/gui/libscigui.la
 
-# include $(top_srcdir)/Makefile.incl.am
-
-
-# #### Target ######
-# modulename=graphics
+modulename=graphics
 
 # JAVAFILES = src/java/org/scilab/modules/graphics/figureDrawing/DrawableFigureJoGL.java \
 # src/java/org/scilab/modules/graphics/figureDrawing/SciRenderer.java
@@ -712,6 +708,10 @@ demos/bike.dem
 tests:: $(JARFILE) $(JAVAFILES)
 	@(cd tests; make tests)
 
-install-data-local: $(JARFILE)
-#$(INSTALL_DATA) $(JARFILE) $(DESTDIR)$(pkglibdir)/
-	$(INSTALL_DATA) $(JARFILE) $(top_srcdir)/java/jar/modules/
+if WITH_JAVA
+
+USEANT=1
+
+endif
+
+include $(top_srcdir)/Makefile.incl.am

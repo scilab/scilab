@@ -40,34 +40,28 @@ libscishell_la_LIBADD = \
 	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
 
-#### Target ######
-target=$(datadir)/shell
+
+modulename=shell
 
 #### shell : Conf files ####
-libscishell_la_rootdir = $(target)
+libscishell_la_rootdir = $(mydatadir)
 libscishell_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 #### shell : init scripts #### 
-libscishell_la_etcdir = $(target)/etc
+libscishell_la_etcdir = $(mydatadir)/etc
 libscishell_la_etc_DATA = etc/shell.quit etc/shell.start
 
 #### shell : gateway declaration #### 
-libscishell_la_sci_gatewaydir = $(target)/sci_gateway
+libscishell_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscishell_la_sci_gateway_DATA = sci_gateway/shell_gateway.xml
 
 #### shell : include files ####
-libscishell_la_includedir=$(sciincludedir)/shell
+libscishell_la_includedir=$(pkgincludedir)/shell
 libscishell_la_include_HEADERS = includes/gw_shell.h
 
 if WITH_JAVA
 
-org.scilab.modules.shell.jar:
-	$(ANT) jar
-
-all-local: org.scilab.modules.shell.jar
-
-clean-local: 
-	$(ANT) clean
+USEANT=1
 
 endif
 

@@ -72,19 +72,7 @@ includes/javasci_SciDoubleArray.h \
 includes/javasci_SciBooleanArray.h \
 includes/javasci_SciAbstractArray.h
 
-javasci.jar:
-	$(ANT) jar
-
-install-exec-local: javasci.jar
-	$(INSTALL) $< $(DESTDIR)$(pkgdatadir)/java/
-
-uninstall-local-mapi_jar:
-	$(RM) $(DESTDIR)$(pkgdatadir)/lib/javasci.jar
-
-all-local: javasci.jar
-
-clean-local: 
-	 $(ANT) clean
+USEANT=1
 
 tests:: $(JARFILE) $(JAVAFILES)
 	@(cd tests; make tests)

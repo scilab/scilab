@@ -303,25 +303,24 @@ libscishell_la_LIBADD = \
 	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
 
-
-#### Target ######
-target = $(datadir)/shell
+modulename = shell
 
 #### shell : Conf files ####
-libscishell_la_rootdir = $(target)
+libscishell_la_rootdir = $(mydatadir)
 libscishell_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
 
 #### shell : init scripts #### 
-libscishell_la_etcdir = $(target)/etc
+libscishell_la_etcdir = $(mydatadir)/etc
 libscishell_la_etc_DATA = etc/shell.quit etc/shell.start
 
 #### shell : gateway declaration #### 
-libscishell_la_sci_gatewaydir = $(target)/sci_gateway
+libscishell_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscishell_la_sci_gateway_DATA = sci_gateway/shell_gateway.xml
 
 #### shell : include files ####
-libscishell_la_includedir = $(sciincludedir)/shell
+libscishell_la_includedir = $(pkgincludedir)/shell
 libscishell_la_include_HEADERS = includes/gw_shell.h
+@WITH_JAVA_TRUE@USEANT = 1
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -360,6 +359,10 @@ MACROBINMASK = *.bin
 FUNCTION_NAMES = macros/names
 # Localisation directory name
 LOCALISATIONDIRS = languages/fr_FR/ languages/en_US/
+# Where to export JAVA files (.jar)
+JARDIR = jar/
+# JAR files
+JARMASK = *.jar
 # List of the localisation (languages) files
 LOCALISATIONFILES = errors.xml menus.xml messages.xml
 all: all-am
@@ -745,7 +748,6 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
-@WITH_JAVA_FALSE@clean-local:
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
@@ -839,14 +841,6 @@ uninstall-am: uninstall-libscishell_la_etcDATA \
 	uninstall-libscishell_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
-
-@WITH_JAVA_TRUE@org.scilab.modules.shell.jar:
-@WITH_JAVA_TRUE@	$(ANT) jar
-
-@WITH_JAVA_TRUE@all-local: org.scilab.modules.shell.jar
-
-@WITH_JAVA_TRUE@clean-local: 
-@WITH_JAVA_TRUE@	$(ANT) clean
 #.java .class .jar
 
 ########################### JAVA ######################################
@@ -856,6 +850,25 @@ uninstall-am: uninstall-libscishell_la_etcDATA \
 ####
 #### It is why those rules exist.
 #######################################################################
+
+@WITH_JAVA_TRUE@export JAVA_HOME
+
+@WITH_JAVA_TRUE@java-build:
+@WITH_JAVA_TRUE@	@if test -f build.xml; then \
+@WITH_JAVA_TRUE@		$(ANT) jar; \
+@WITH_JAVA_TRUE@	fi
+
+@WITH_JAVA_TRUE@java-clean: 
+@WITH_JAVA_TRUE@	@if test -f build.xml; then \
+@WITH_JAVA_TRUE@		$(ANT) clean; \
+@WITH_JAVA_TRUE@	fi
+
+@WITH_JAVA_TRUE@checkstyle:
+@WITH_JAVA_TRUE@	@if test -f build.xml; then \
+@WITH_JAVA_TRUE@		$(ANT) checkstyle; \
+@WITH_JAVA_TRUE@	fi
+
+@WITH_JAVA_TRUE@all-local: java-build
 
 # Replace all the .java by .class in JAVAFILES
 #CLASSFILES = $(JAVAFILES:.java=.class)
@@ -955,10 +968,19 @@ install-data-local:
 		  done ; \
 	 fi; \
 	done
+# Install java files (.jar)
+	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(JARDIR)
+	@if ls -lLd $(srcdir)/$(JARDIR)/$(JARMASK) >/dev/null 2>&1; then \
+	  for file in $(srcdir)/$(JARDIR)/$(JARMASK) ; do \
+		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$(JARDIR)" ; \
+	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$(JARDIR) ; \
+	  done ; \
+	fi
 
 ########### CLEAN ###################
 # Clean macros and help (generated automatically by Scilab)
-clean-local:
+@WITH_JAVA_TRUE@clean-local: java-clean
+@WITH_JAVA_FALSE@clean-local:
 # Removes macros (*.bin generated from .sci)
 	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \

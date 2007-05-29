@@ -155,12 +155,6 @@ libscigui_la_demos_DATA = demos/dialog.dem
 
 if WITH_JAVA
 
-org.scilab.modules.gui.jar:
-	$(ANT) jar
-
-all-local: org.scilab.modules.gui.jar
-
-clean-local: 
-	$(ANT) clean
+USEANT=1
 
 endif

@@ -15,7 +15,6 @@ pkglib_LTLIBRARIES = libscijvm.la
 
 libscijvm_la_LIBADD = $(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la
 
-#### Target ######
 modulename=jvm
 
 #### jvm : Conf files ####
@@ -58,14 +57,7 @@ src/c/loadClasspath.c \
 src/c/createMainScilabObject.c \
 src/c/JVM_commons.c
 
-org.scilab.modules.jvm.jar:
-	$(ANT) jar
-
-all-local: org.scilab.modules.jvm.jar
-
-
-clean-local: 
-	$(ANT) clean
+USEANT=1
 
 endif
 

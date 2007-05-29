@@ -9,6 +9,7 @@
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir=$(pkgdatadir)/modules/$(modulename)
 
+
 #SUFFIXES = .xml .sci .htm
 SUFFIXES = .sci 
 #.java .class .jar
@@ -20,6 +21,29 @@ SUFFIXES = .sci
 ####
 #### It is why those rules exist.
 #######################################################################
+
+if WITH_JAVA
+
+export JAVA_HOME
+
+java-build:
+	@if test -f build.xml; then \
+		$(ANT) jar; \
+	fi
+
+java-clean: 
+	@if test -f build.xml; then \
+		$(ANT) clean; \
+	fi
+
+checkstyle:
+	@if test -f build.xml; then \
+		$(ANT) checkstyle; \
+	fi
+
+all-local: java-build
+
+endif
 
 # Replace all the .java by .class in JAVAFILES
 #CLASSFILES = $(JAVAFILES:.java=.class)
@@ -128,6 +152,10 @@ MACROBINMASK = *.bin
 FUNCTION_NAMES=macros/names
 # Localisation directory name
 LOCALISATIONDIRS=languages/fr_FR/ languages/en_US/
+# Where to export JAVA files (.jar)
+JARDIR=jar/
+# JAR files
+JARMASK=*.jar
 # List of the localisation (languages) files
 LOCALISATIONFILES = errors.xml menus.xml messages.xml
 install-data-local:
@@ -157,10 +185,23 @@ install-data-local:
 		  done ; \
 	 fi; \
 	done
+# Install java files (.jar)
+	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(JARDIR)
+	@if ls -lLd $(srcdir)/$(JARDIR)/$(JARMASK) >/dev/null 2>&1; then \
+	  for file in $(srcdir)/$(JARDIR)/$(JARMASK) ; do \
+		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$(JARDIR)" ; \
+	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$(JARDIR) ; \
+	  done ; \
+	fi
+
 
 ########### CLEAN ###################
 # Clean macros and help (generated automatically by Scilab)
+if WITH_JAVA
+clean-local: java-clean
+else
 clean-local:
+endif
 # Removes macros (*.bin generated from .sci)
 	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \
@@ -173,6 +214,8 @@ clean-local:
 			rm -f $(srcdir)/$$dir/$(DOCMASK); \
 		fi; \
 	done
+
+
 
 
 macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODIRS)/$(MACROMASK)

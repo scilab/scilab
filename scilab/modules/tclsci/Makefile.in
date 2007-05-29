@@ -731,6 +731,14 @@ top_srcdir = @top_srcdir@
 @TCLTK_FALSE@LOCALISATIONDIRS = languages/fr_FR/ languages/en_US/
 # Localisation directory name
 @TCLTK_TRUE@LOCALISATIONDIRS = languages/fr_FR/ languages/en_US/
+# Where to export JAVA files (.jar)
+@TCLTK_FALSE@JARDIR = jar/
+# Where to export JAVA files (.jar)
+@TCLTK_TRUE@JARDIR = jar/
+# JAR files
+@TCLTK_FALSE@JARMASK = *.jar
+# JAR files
+@TCLTK_TRUE@JARMASK = *.jar
 # List of the localisation (languages) files
 @TCLTK_FALSE@LOCALISATIONFILES = errors.xml menus.xml messages.xml
 # List of the localisation (languages) files
@@ -1293,7 +1301,8 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
+@WITH_JAVA_FALSE@all-local:
+all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
 	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscitclsci_la_demossciGUIdir)" "$(DESTDIR)$(libscitclsci_la_demostkdir)" "$(DESTDIR)$(libscitclsci_la_etcdir)" "$(DESTDIR)$(libscitclsci_la_rootdir)" "$(DESTDIR)$(libscitclsci_la_sci_gatewaydir)" "$(DESTDIR)$(libscitclsci_la_tcldir)" "$(DESTDIR)$(libscitclsci_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
@@ -1399,15 +1408,15 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 
 .MAKE: install-am install-strip
 
-.PHONY: CTAGS GTAGS all all-am check check-am clean clean-generic \
-	clean-libtool clean-local clean-pkglibLTLIBRARIES ctags \
-	distclean distclean-compile distclean-generic \
-	distclean-libtool distclean-tags distdir dvi dvi-am html \
-	html-am info info-am install install-am install-data \
-	install-data-am install-data-local install-dvi install-dvi-am \
-	install-exec install-exec-am install-html install-html-am \
-	install-html-local install-info install-info-am \
-	install-libscitclsci_la_demossciGUIDATA \
+.PHONY: CTAGS GTAGS all all-am all-local check check-am clean \
+	clean-generic clean-libtool clean-local \
+	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
+	distclean-generic distclean-libtool distclean-tags distdir dvi \
+	dvi-am html html-am info info-am install install-am \
+	install-data install-data-am install-data-local install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-html-local install-info \
+	install-info-am install-libscitclsci_la_demossciGUIDATA \
 	install-libscitclsci_la_demostkDATA \
 	install-libscitclsci_la_etcDATA \
 	install-libscitclsci_la_includeHEADERS \
@@ -1437,6 +1446,25 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 ####
 #### It is why those rules exist.
 #######################################################################
+
+@TCLTK_TRUE@@WITH_JAVA_TRUE@export JAVA_HOME
+
+@TCLTK_TRUE@@WITH_JAVA_TRUE@java-build:
+@TCLTK_TRUE@@WITH_JAVA_TRUE@	@if test -f build.xml; then \
+@TCLTK_TRUE@@WITH_JAVA_TRUE@		$(ANT) jar; \
+@TCLTK_TRUE@@WITH_JAVA_TRUE@	fi
+
+@TCLTK_TRUE@@WITH_JAVA_TRUE@java-clean: 
+@TCLTK_TRUE@@WITH_JAVA_TRUE@	@if test -f build.xml; then \
+@TCLTK_TRUE@@WITH_JAVA_TRUE@		$(ANT) clean; \
+@TCLTK_TRUE@@WITH_JAVA_TRUE@	fi
+
+@TCLTK_TRUE@@WITH_JAVA_TRUE@checkstyle:
+@TCLTK_TRUE@@WITH_JAVA_TRUE@	@if test -f build.xml; then \
+@TCLTK_TRUE@@WITH_JAVA_TRUE@		$(ANT) checkstyle; \
+@TCLTK_TRUE@@WITH_JAVA_TRUE@	fi
+
+@TCLTK_TRUE@@WITH_JAVA_TRUE@all-local: java-build
 
 # Replace all the .java by .class in JAVAFILES
 #CLASSFILES = $(JAVAFILES:.java=.class)
@@ -1536,10 +1564,19 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @TCLTK_TRUE@		  done ; \
 @TCLTK_TRUE@	 fi; \
 @TCLTK_TRUE@	done
+# Install java files (.jar)
+@TCLTK_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(JARDIR)
+@TCLTK_TRUE@	@if ls -lLd $(srcdir)/$(JARDIR)/$(JARMASK) >/dev/null 2>&1; then \
+@TCLTK_TRUE@	  for file in $(srcdir)/$(JARDIR)/$(JARMASK) ; do \
+@TCLTK_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$(JARDIR)" ; \
+@TCLTK_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$(JARDIR) ; \
+@TCLTK_TRUE@	  done ; \
+@TCLTK_TRUE@	fi
 
 ########### CLEAN ###################
 # Clean macros and help (generated automatically by Scilab)
-@TCLTK_TRUE@clean-local:
+@TCLTK_TRUE@@WITH_JAVA_TRUE@clean-local: java-clean
+@TCLTK_TRUE@@WITH_JAVA_FALSE@clean-local:
 # Removes macros (*.bin generated from .sci)
 @TCLTK_TRUE@	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 @TCLTK_TRUE@		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \
@@ -1566,6 +1603,25 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 ####
 #### It is why those rules exist.
 #######################################################################
+
+@TCLTK_FALSE@@WITH_JAVA_TRUE@export JAVA_HOME
+
+@TCLTK_FALSE@@WITH_JAVA_TRUE@java-build:
+@TCLTK_FALSE@@WITH_JAVA_TRUE@	@if test -f build.xml; then \
+@TCLTK_FALSE@@WITH_JAVA_TRUE@		$(ANT) jar; \
+@TCLTK_FALSE@@WITH_JAVA_TRUE@	fi
+
+@TCLTK_FALSE@@WITH_JAVA_TRUE@java-clean: 
+@TCLTK_FALSE@@WITH_JAVA_TRUE@	@if test -f build.xml; then \
+@TCLTK_FALSE@@WITH_JAVA_TRUE@		$(ANT) clean; \
+@TCLTK_FALSE@@WITH_JAVA_TRUE@	fi
+
+@TCLTK_FALSE@@WITH_JAVA_TRUE@checkstyle:
+@TCLTK_FALSE@@WITH_JAVA_TRUE@	@if test -f build.xml; then \
+@TCLTK_FALSE@@WITH_JAVA_TRUE@		$(ANT) checkstyle; \
+@TCLTK_FALSE@@WITH_JAVA_TRUE@	fi
+
+@TCLTK_FALSE@@WITH_JAVA_TRUE@all-local: java-build
 
 # Replace all the .java by .class in JAVAFILES
 #CLASSFILES = $(JAVAFILES:.java=.class)
@@ -1665,10 +1721,19 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @TCLTK_FALSE@		  done ; \
 @TCLTK_FALSE@	 fi; \
 @TCLTK_FALSE@	done
+# Install java files (.jar)
+@TCLTK_FALSE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(JARDIR)
+@TCLTK_FALSE@	@if ls -lLd $(srcdir)/$(JARDIR)/$(JARMASK) >/dev/null 2>&1; then \
+@TCLTK_FALSE@	  for file in $(srcdir)/$(JARDIR)/$(JARMASK) ; do \
+@TCLTK_FALSE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$(JARDIR)" ; \
+@TCLTK_FALSE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$(JARDIR) ; \
+@TCLTK_FALSE@	  done ; \
+@TCLTK_FALSE@	fi
 
 ########### CLEAN ###################
 # Clean macros and help (generated automatically by Scilab)
-@TCLTK_FALSE@clean-local:
+@TCLTK_FALSE@@WITH_JAVA_TRUE@clean-local: java-clean
+@TCLTK_FALSE@@WITH_JAVA_FALSE@clean-local:
 # Removes macros (*.bin generated from .sci)
 @TCLTK_FALSE@	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 @TCLTK_FALSE@		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \

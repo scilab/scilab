@@ -1037,6 +1037,10 @@ MACROBINMASK = *.bin
 FUNCTION_NAMES = macros/names
 # Localisation directory name
 LOCALISATIONDIRS = languages/fr_FR/ languages/en_US/
+# Where to export JAVA files (.jar)
+JARDIR = jar/
+# JAR files
+JARMASK = *.jar
 # List of the localisation (languages) files
 LOCALISATIONFILES = errors.xml menus.xml messages.xml
 all: all-am
@@ -2576,7 +2580,8 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
+@WITH_JAVA_FALSE@all-local:
+all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
 	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscielementaries_functions_la_etcdir)" "$(DESTDIR)$(libscielementaries_functions_la_rootdir)" "$(DESTDIR)$(libscielementaries_functions_la_sci_gatewaydir)" "$(DESTDIR)$(libscielementaries_functions_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
@@ -2676,15 +2681,15 @@ uninstall-am: uninstall-libscielementaries_functions_la_etcDATA \
 
 .MAKE: install-am install-strip
 
-.PHONY: CTAGS GTAGS all all-am check check-am clean clean-generic \
-	clean-libtool clean-local clean-noinstLTLIBRARIES \
-	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
-	distclean-generic distclean-libtool distclean-tags distdir dvi \
-	dvi-am html html-am info info-am install install-am \
-	install-data install-data-am install-data-local install-dvi \
-	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-html-local install-info \
-	install-info-am \
+.PHONY: CTAGS GTAGS all all-am all-local check check-am clean \
+	clean-generic clean-libtool clean-local \
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES ctags \
+	distclean distclean-compile distclean-generic \
+	distclean-libtool distclean-tags distdir dvi dvi-am html \
+	html-am info info-am install install-am install-data \
+	install-data-am install-data-local install-dvi install-dvi-am \
+	install-exec install-exec-am install-html install-html-am \
+	install-html-local install-info install-info-am \
 	install-libscielementaries_functions_la_etcDATA \
 	install-libscielementaries_functions_la_includeHEADERS \
 	install-libscielementaries_functions_la_rootDATA \
@@ -2727,6 +2732,25 @@ libdummy_elementaries_functions_la-icopy.lo: src/fortran/icopy.f
 ####
 #### It is why those rules exist.
 #######################################################################
+
+@WITH_JAVA_TRUE@export JAVA_HOME
+
+@WITH_JAVA_TRUE@java-build:
+@WITH_JAVA_TRUE@	@if test -f build.xml; then \
+@WITH_JAVA_TRUE@		$(ANT) jar; \
+@WITH_JAVA_TRUE@	fi
+
+@WITH_JAVA_TRUE@java-clean: 
+@WITH_JAVA_TRUE@	@if test -f build.xml; then \
+@WITH_JAVA_TRUE@		$(ANT) clean; \
+@WITH_JAVA_TRUE@	fi
+
+@WITH_JAVA_TRUE@checkstyle:
+@WITH_JAVA_TRUE@	@if test -f build.xml; then \
+@WITH_JAVA_TRUE@		$(ANT) checkstyle; \
+@WITH_JAVA_TRUE@	fi
+
+@WITH_JAVA_TRUE@all-local: java-build
 
 # Replace all the .java by .class in JAVAFILES
 #CLASSFILES = $(JAVAFILES:.java=.class)
@@ -2826,10 +2850,19 @@ install-data-local:
 		  done ; \
 	 fi; \
 	done
+# Install java files (.jar)
+	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(JARDIR)
+	@if ls -lLd $(srcdir)/$(JARDIR)/$(JARMASK) >/dev/null 2>&1; then \
+	  for file in $(srcdir)/$(JARDIR)/$(JARMASK) ; do \
+		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$(JARDIR)" ; \
+	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$(JARDIR) ; \
+	  done ; \
+	fi
 
 ########### CLEAN ###################
 # Clean macros and help (generated automatically by Scilab)
-clean-local:
+@WITH_JAVA_TRUE@clean-local: java-clean
+@WITH_JAVA_FALSE@clean-local:
 # Removes macros (*.bin generated from .sci)
 	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \

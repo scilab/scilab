@@ -276,6 +276,10 @@ MACROBINMASK = *.bin
 FUNCTION_NAMES = macros/names
 # Localisation directory name
 LOCALISATIONDIRS = languages/fr_FR/ languages/en_US/
+# Where to export JAVA files (.jar)
+JARDIR = jar/
+# JAR files
+JARMASK = *.jar
 # List of the localisation (languages) files
 LOCALISATIONFILES = errors.xml menus.xml messages.xml
 all: all-am
@@ -386,7 +390,8 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-all-am: Makefile $(DATA)
+@WITH_JAVA_FALSE@all-local:
+all-am: Makefile $(DATA) all-local
 installdirs:
 	for dir in "$(DESTDIR)$(libscihelptools_la_etcdir)" "$(DESTDIR)$(libscihelptools_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
@@ -475,13 +480,14 @@ uninstall-am: uninstall-libscihelptools_la_etcDATA \
 
 .MAKE: install-am install-strip
 
-.PHONY: all all-am check check-am clean clean-generic clean-libtool \
-	clean-local distclean distclean-generic distclean-libtool \
-	distdir dvi dvi-am html html-am info info-am install \
-	install-am install-data install-data-am install-data-local \
-	install-dvi install-dvi-am install-exec install-exec-am \
-	install-html install-html-am install-html-local install-info \
-	install-info-am install-libscihelptools_la_etcDATA \
+.PHONY: all all-am all-local check check-am clean clean-generic \
+	clean-libtool clean-local distclean distclean-generic \
+	distclean-libtool distdir dvi dvi-am html html-am info info-am \
+	install install-am install-data install-data-am \
+	install-data-local install-dvi install-dvi-am install-exec \
+	install-exec-am install-html install-html-am \
+	install-html-local install-info install-info-am \
+	install-libscihelptools_la_etcDATA \
 	install-libscihelptools_la_rootDATA install-man install-pdf \
 	install-pdf-am install-ps install-ps-am install-strip \
 	installcheck installcheck-am installdirs maintainer-clean \
@@ -499,6 +505,25 @@ uninstall-am: uninstall-libscihelptools_la_etcDATA \
 ####
 #### It is why those rules exist.
 #######################################################################
+
+@WITH_JAVA_TRUE@export JAVA_HOME
+
+@WITH_JAVA_TRUE@java-build:
+@WITH_JAVA_TRUE@	@if test -f build.xml; then \
+@WITH_JAVA_TRUE@		$(ANT) jar; \
+@WITH_JAVA_TRUE@	fi
+
+@WITH_JAVA_TRUE@java-clean: 
+@WITH_JAVA_TRUE@	@if test -f build.xml; then \
+@WITH_JAVA_TRUE@		$(ANT) clean; \
+@WITH_JAVA_TRUE@	fi
+
+@WITH_JAVA_TRUE@checkstyle:
+@WITH_JAVA_TRUE@	@if test -f build.xml; then \
+@WITH_JAVA_TRUE@		$(ANT) checkstyle; \
+@WITH_JAVA_TRUE@	fi
+
+@WITH_JAVA_TRUE@all-local: java-build
 
 # Replace all the .java by .class in JAVAFILES
 #CLASSFILES = $(JAVAFILES:.java=.class)
@@ -598,10 +623,19 @@ install-data-local:
 		  done ; \
 	 fi; \
 	done
+# Install java files (.jar)
+	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(JARDIR)
+	@if ls -lLd $(srcdir)/$(JARDIR)/$(JARMASK) >/dev/null 2>&1; then \
+	  for file in $(srcdir)/$(JARDIR)/$(JARMASK) ; do \
+		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$(JARDIR)" ; \
+	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$(JARDIR) ; \
+	  done ; \
+	fi
 
 ########### CLEAN ###################
 # Clean macros and help (generated automatically by Scilab)
-clean-local:
+@WITH_JAVA_TRUE@clean-local: java-clean
+@WITH_JAVA_FALSE@clean-local:
 # Removes macros (*.bin generated from .sci)
 	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \

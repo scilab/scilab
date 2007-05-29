@@ -508,6 +508,14 @@ top_srcdir = @top_srcdir@
 @PVM_FALSE@LOCALISATIONDIRS = languages/fr_FR/ languages/en_US/
 # Localisation directory name
 @PVM_TRUE@LOCALISATIONDIRS = languages/fr_FR/ languages/en_US/
+# Where to export JAVA files (.jar)
+@PVM_FALSE@JARDIR = jar/
+# Where to export JAVA files (.jar)
+@PVM_TRUE@JARDIR = jar/
+# JAR files
+@PVM_FALSE@JARMASK = *.jar
+# JAR files
+@PVM_TRUE@JARMASK = *.jar
 # List of the localisation (languages) files
 @PVM_FALSE@LOCALISATIONFILES = errors.xml menus.xml messages.xml
 # List of the localisation (languages) files
@@ -1122,7 +1130,8 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
+@WITH_JAVA_FALSE@all-local:
+all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
 	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscipvm_la_demosdir)" "$(DESTDIR)$(libscipvm_la_etcdir)" "$(DESTDIR)$(libscipvm_la_rootdir)" "$(DESTDIR)$(libscipvm_la_sci_gatewaydir)" "$(DESTDIR)$(libscipvm_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
@@ -1223,15 +1232,16 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 
 .MAKE: install-am install-strip
 
-.PHONY: CTAGS GTAGS all all-am check check-am clean clean-generic \
-	clean-libtool clean-local clean-pkglibLTLIBRARIES ctags \
-	distclean distclean-compile distclean-generic \
-	distclean-libtool distclean-tags distdir dvi dvi-am html \
-	html-am info info-am install install-am install-data \
-	install-data-am install-data-local install-dvi install-dvi-am \
-	install-exec install-exec-am install-html install-html-am \
-	install-html-local install-info install-info-am \
-	install-libscipvm_la_demosDATA install-libscipvm_la_etcDATA \
+.PHONY: CTAGS GTAGS all all-am all-local check check-am clean \
+	clean-generic clean-libtool clean-local \
+	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
+	distclean-generic distclean-libtool distclean-tags distdir dvi \
+	dvi-am html html-am info info-am install install-am \
+	install-data install-data-am install-data-local install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-html-local install-info \
+	install-info-am install-libscipvm_la_demosDATA \
+	install-libscipvm_la_etcDATA \
 	install-libscipvm_la_includeHEADERS \
 	install-libscipvm_la_rootDATA \
 	install-libscipvm_la_sci_gatewayDATA install-man install-pdf \
@@ -1256,6 +1266,25 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 ####
 #### It is why those rules exist.
 #######################################################################
+
+@PVM_TRUE@@WITH_JAVA_TRUE@export JAVA_HOME
+
+@PVM_TRUE@@WITH_JAVA_TRUE@java-build:
+@PVM_TRUE@@WITH_JAVA_TRUE@	@if test -f build.xml; then \
+@PVM_TRUE@@WITH_JAVA_TRUE@		$(ANT) jar; \
+@PVM_TRUE@@WITH_JAVA_TRUE@	fi
+
+@PVM_TRUE@@WITH_JAVA_TRUE@java-clean: 
+@PVM_TRUE@@WITH_JAVA_TRUE@	@if test -f build.xml; then \
+@PVM_TRUE@@WITH_JAVA_TRUE@		$(ANT) clean; \
+@PVM_TRUE@@WITH_JAVA_TRUE@	fi
+
+@PVM_TRUE@@WITH_JAVA_TRUE@checkstyle:
+@PVM_TRUE@@WITH_JAVA_TRUE@	@if test -f build.xml; then \
+@PVM_TRUE@@WITH_JAVA_TRUE@		$(ANT) checkstyle; \
+@PVM_TRUE@@WITH_JAVA_TRUE@	fi
+
+@PVM_TRUE@@WITH_JAVA_TRUE@all-local: java-build
 
 # Replace all the .java by .class in JAVAFILES
 #CLASSFILES = $(JAVAFILES:.java=.class)
@@ -1355,10 +1384,19 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_TRUE@		  done ; \
 @PVM_TRUE@	 fi; \
 @PVM_TRUE@	done
+# Install java files (.jar)
+@PVM_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(JARDIR)
+@PVM_TRUE@	@if ls -lLd $(srcdir)/$(JARDIR)/$(JARMASK) >/dev/null 2>&1; then \
+@PVM_TRUE@	  for file in $(srcdir)/$(JARDIR)/$(JARMASK) ; do \
+@PVM_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$(JARDIR)" ; \
+@PVM_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$(JARDIR) ; \
+@PVM_TRUE@	  done ; \
+@PVM_TRUE@	fi
 
 ########### CLEAN ###################
 # Clean macros and help (generated automatically by Scilab)
-@PVM_TRUE@clean-local:
+@PVM_TRUE@@WITH_JAVA_TRUE@clean-local: java-clean
+@PVM_TRUE@@WITH_JAVA_FALSE@clean-local:
 # Removes macros (*.bin generated from .sci)
 @PVM_TRUE@	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 @PVM_TRUE@		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \
@@ -1385,6 +1423,25 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 ####
 #### It is why those rules exist.
 #######################################################################
+
+@PVM_FALSE@@WITH_JAVA_TRUE@export JAVA_HOME
+
+@PVM_FALSE@@WITH_JAVA_TRUE@java-build:
+@PVM_FALSE@@WITH_JAVA_TRUE@	@if test -f build.xml; then \
+@PVM_FALSE@@WITH_JAVA_TRUE@		$(ANT) jar; \
+@PVM_FALSE@@WITH_JAVA_TRUE@	fi
+
+@PVM_FALSE@@WITH_JAVA_TRUE@java-clean: 
+@PVM_FALSE@@WITH_JAVA_TRUE@	@if test -f build.xml; then \
+@PVM_FALSE@@WITH_JAVA_TRUE@		$(ANT) clean; \
+@PVM_FALSE@@WITH_JAVA_TRUE@	fi
+
+@PVM_FALSE@@WITH_JAVA_TRUE@checkstyle:
+@PVM_FALSE@@WITH_JAVA_TRUE@	@if test -f build.xml; then \
+@PVM_FALSE@@WITH_JAVA_TRUE@		$(ANT) checkstyle; \
+@PVM_FALSE@@WITH_JAVA_TRUE@	fi
+
+@PVM_FALSE@@WITH_JAVA_TRUE@all-local: java-build
 
 # Replace all the .java by .class in JAVAFILES
 #CLASSFILES = $(JAVAFILES:.java=.class)
@@ -1484,10 +1541,19 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_FALSE@		  done ; \
 @PVM_FALSE@	 fi; \
 @PVM_FALSE@	done
+# Install java files (.jar)
+@PVM_FALSE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(JARDIR)
+@PVM_FALSE@	@if ls -lLd $(srcdir)/$(JARDIR)/$(JARMASK) >/dev/null 2>&1; then \
+@PVM_FALSE@	  for file in $(srcdir)/$(JARDIR)/$(JARMASK) ; do \
+@PVM_FALSE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$(JARDIR)" ; \
+@PVM_FALSE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$(JARDIR) ; \
+@PVM_FALSE@	  done ; \
+@PVM_FALSE@	fi
 
 ########### CLEAN ###################
 # Clean macros and help (generated automatically by Scilab)
-@PVM_FALSE@clean-local:
+@PVM_FALSE@@WITH_JAVA_TRUE@clean-local: java-clean
+@PVM_FALSE@@WITH_JAVA_FALSE@clean-local:
 # Removes macros (*.bin generated from .sci)
 @PVM_FALSE@	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 @PVM_FALSE@		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \
