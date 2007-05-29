@@ -10,11 +10,7 @@
 #ifdef _MSC_VER
 #define JRE_PATH "/java/jre"
 #else
-/* 
-TODO : 
-Change this part
-The Path of the JRE should be hardcoded for Linux/Unix. 
-*/
+/* Always this value when we embedded JRE */
 #define JRE_PATH "/java/jre"
 #endif
 /*-----------------------------------------------------------------------------------*/ 
@@ -28,13 +24,7 @@ The Path of the JRE should be hardcoded for Linux/Unix.
 #define DEFAULT_SCILAB_CLASSPATH "/bin" /* SCI/bin */
 #define DEFAULT_SCILAB_LIBRARYPATH "/bin" /* SCI/bin */
 #else
-/* 
-TODO :
-Change this part 
-Won't work in production... 
-1. this should not be hardcoded (this part should be delegated to the system)
-2. the path is not the same in the dev env & the installed env 
-*/
+/* not really used , LD_LIBRARY_PATH is used in fact */
 #define DEFAULT_SCILAB_CLASSPATH "/.libs/" /* SCI/.libs */
 #define DEFAULT_SCILAB_LIBRARYPATH "/.libs/" /* SCI/.libs */
 #endif

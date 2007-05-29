@@ -39,8 +39,7 @@ BOOL InitializeJVM(void)
 		LoadClasspath(classpathfile);
 		if (classpathfile) {FREE(classpathfile); classpathfile = NULL;}
 
-		bOK= TRUE;
-/*		bOK = createMainScilabObject();
+		bOK = createMainScilabObject();
 
 		if (!bOK)
 		{
@@ -50,7 +49,6 @@ BOOL InitializeJVM(void)
 			printf("\nError : Scilab cannot create Scilab Java Main-Class. (we have not been able to find the main Scilab class. Check if the Scilab jvm package is available).\n");
 #endif
 		}
-		*/
 	}
 
 	if (SCIPATH) {FREE(SCIPATH);SCIPATH=NULL;}
