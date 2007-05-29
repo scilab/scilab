@@ -2,13 +2,13 @@ package org.scilab.modules.gui.bridge;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.* ;
+import java.io.*;
 
 //import net.java.games.jogl.*;
-import javax.media.opengl.* ;
-import javax.media.opengl.glu.* ;
-import com.sun.opengl.util.* ;
-import com.sun.opengl.impl.* ;
+import javax.media.opengl.*;
+import javax.media.opengl.glu.*;
+import com.sun.opengl.util.*;
+import com.sun.opengl.impl.*;
 
 
 
@@ -17,7 +17,7 @@ class Renderer
 {
   private float rquad = 0.0f;
   private float rtri = 0.0f;
-  private float speed = 1.0f ;
+  private float speed = 1.0f;
 
   /** Called by the drawable to initiate OpenGL rendering by the client.
    * After all GLEventListeners have been notified of a display event, the 
@@ -34,11 +34,11 @@ class Renderer
       gl.glRotatef(rtri, 0.0f, 1.0f, 0.0f);
       gl.glBegin(GL.GL_TRIANGLES);		    // Drawing Using Triangles
       gl.glColor3f(1.0f, 0.0f, 0.0f);   // Set the current drawing color to red
-      gl.glVertex3f( 0.0f, 1.0f, 0.0f);	// Top
+      gl.glVertex3f(0.0f, 1.0f, 0.0f);	// Top
       gl.glColor3f(0.0f, 1.0f, 0.0f);   // Set the current drawing color to green
-      gl.glVertex3f(-1.0f,-1.0f, 0.0f);	// Bottom Left
+      gl.glVertex3f(-1.0f, -1.0f, 0.0f);	// Bottom Left
       gl.glColor3f(0.0f, 0.0f, 1.0f);   // Set the current drawing color to blue
-      gl.glVertex3f( 1.0f,-1.0f, 0.0f);	// Bottom Right
+      gl.glVertex3f(1.0f, -1.0f, 0.0f);	// Bottom Right
       gl.glEnd();				// Finished Drawing The Triangle
       gl.glLoadIdentity();
       gl.glTranslatef(1.5f, 0.0f, -6.0f);
@@ -46,9 +46,9 @@ class Renderer
       gl.glBegin(GL.GL_QUADS);           	// Draw A Quad
       gl.glColor3f(0.5f, 0.5f, 1.0f);   // Set the current drawing color to light blue
       gl.glVertex3f(-1.0f, 1.0f, 0.0f);	// Top Left
-      gl.glVertex3f( 1.0f, 1.0f, 0.0f);	// Top Right
-      gl.glVertex3f( 1.0f,-1.0f, 0.0f);	// Bottom Right
-      gl.glVertex3f(-1.0f,-1.0f, 0.0f);	// Bottom Left
+      gl.glVertex3f(1.0f, 1.0f, 0.0f);	// Top Right
+      gl.glVertex3f(1.0f, -1.0f, 0.0f);	// Bottom Right
+      gl.glVertex3f(-1.0f, -1.0f, 0.0f);	// Bottom Left
       gl.glEnd();				// Done Drawing The Quad
       gl.glFlush();
       rtri += speed * 0.4f;
@@ -103,7 +103,7 @@ class Renderer
     {
       System.out.println("reshape");
       final GL gl = gLDrawable.getGL();
-      final GLU glu = new GLU() ;
+      final GLU glu = new GLU();
 
       //if (height <= 0) // avoid a divide by zero error!
        // height = 1;
@@ -124,18 +124,13 @@ class Renderer
   public void keyPressed(KeyEvent e)
     {
       System.out.println("keyPressed");
-	  if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
-      {
+	  if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
         //animator.stop();
         System.exit(0);
-      }
-      else if (e.getKeyCode() == KeyEvent.VK_RIGHT)
-      {
-        speed += 0.1f ;
-      }
-      else if (e.getKeyCode() == KeyEvent.VK_LEFT)
-      {
-        speed -= 0.1f ;
+      } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+        speed += 0.1f;
+      } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+        speed -= 0.1f;
       }
     }
     
