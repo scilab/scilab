@@ -91,10 +91,12 @@ function ok = xmlfiletohtml(path,xsl,directory_language,default_language)
 			ok = %T;
 		end
 		
-		unix_s(RM+path+"2");
+		//unix_s(RM+path+"2");
+		deletefile(path+"2");
 		
 		if needToBeCopied then
-			unix_s(RM+path);
+			//unix_s(RM+path);
+			deletefile(path);
 		end
 	else
 		ok = %T;

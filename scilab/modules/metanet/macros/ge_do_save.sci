@@ -47,11 +47,7 @@ function ok=ge_do_save(GraphList,path)
   end
   fname=path
   if fileinfo(fname)<>[] then
-    if MSDOS then
-      unix_s('del '+fname)
-    else
-      unix_s('rm '+fname)
-    end
+    deletefile(fname)
   end
   
   ok=execstr('save_graph(GraphList,fname)','errcatch')==0

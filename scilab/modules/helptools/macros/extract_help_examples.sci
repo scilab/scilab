@@ -180,10 +180,10 @@ function gen_test_files(instructions,name,t)
     // write down the test script
     mputl(T,tst),
     //remove the <name>.dia file
-    if fileinfo(dia)<>[] then unix('rm -f '+pathconvert(dia,%f,%t)); end
+    if fileinfo(dia)<>[] then deletefile(pathconvert(dia,%f,%t)); end
     dia=dia+'.ref'
     //remove the <name>.dia.ref file
-    if fileinfo(dia)<>[] then unix('rm -f '+pathconvert(dia,%f,%t)); end
+    if fileinfo(dia)<>[] then deletefile(pathconvert(dia,%f,%t)); end
   end
   
 endfunction

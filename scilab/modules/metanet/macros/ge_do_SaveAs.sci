@@ -63,11 +63,7 @@ function [GraphList,ok,fname]=ge_do_SaveAs(GraphList,fname)
       r=x_message(['File '+fname+ ' already exists'
 		   'erase it'],['Yes','No'])
       if r==2 then ok=%f,return,end
-      if MSDOS then
-	unix_s('del '+fname)
-      else
-	unix_s('rm '+fname)
-      end
+      deletefile(fname)
     end
     ok=execstr('save_graph(GraphList,fname)','errcatch')==0
     if ok then 

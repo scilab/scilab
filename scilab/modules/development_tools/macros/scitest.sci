@@ -136,14 +136,14 @@ endfunction
 
 function myexec()
   if MSDOS then
-      if fileinfo(tmpfiles+'dia')<>[] then  
-	unix_s('del '+tmpfiles+'dia')
-      end
-      dos('""'+SCI+'\bin\scilex.exe'+'""'+' -nwni -args -nouserstartup < '+tmpfiles+'tst 1>NUL');
+    if fileinfo(tmpfiles+'dia')<>[] then  
+      deletefile(tmpfiles+'dia')
+    end
+    dos('""'+SCI+'\bin\scilex.exe'+'""'+' -nwni -args -nouserstartup < '+tmpfiles+'tst 1>NUL');
   else
-     if fileinfo(tmpfiles+'dia')<>[] then  
-       unix_s('rm -f '+tmpfiles+'dia')
-     end
-     unix_s('( '+SCI+'/bin/scilab -nw -args -nouserstartup <'+tmpfiles+'tst > '+tmpfiles+'res ) 2> '+tmpfiles+'err')
+    if fileinfo(tmpfiles+'dia')<>[] then  
+      deletefile(tmpfiles+'dia')
+    end
+    unix_s('( '+SCI+'/bin/scilab -nw -args -nouserstartup <'+tmpfiles+'tst > '+tmpfiles+'res ) 2> '+tmpfiles+'err')
   end
 endfunction

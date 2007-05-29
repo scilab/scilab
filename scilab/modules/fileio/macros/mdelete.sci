@@ -40,14 +40,12 @@ function mdelete(filename)
 		fullfilename = strsubst(file_path+filename,"/","\");
 		lst_files    = listfiles(fullfilename);
 		if lst_files<>[] then
-			cmd="del """+fullfilename+"""";
-			unix(cmd);
+			deletefile(fullfilename);
 		end
 	else
 		lst_files=listfiles(file_path+filename);
 		if lst_files<>[] then
-			cmd="rm -f """+file_path+filename+"""";
-			unix(cmd);
+		  deletefile(file_path+filename);
 		end
 	end
 	

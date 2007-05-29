@@ -169,11 +169,7 @@ x_message(['Welcome to LMITOOL';'      ';'   ';
           x_message('functions saved in '+fname');
         end
         if fname<>[] then
-	  if MSDOS then
-	    unix_s('del ""'+fname+'""');
-	  else
-	    unix_s('\rm -f '+fname);
-	  end
+        deletefile(fname)
           write(fname,txt)
         else
           return
