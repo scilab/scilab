@@ -20,9 +20,9 @@ Source: bin\jogl_awt.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
 Source: bin\jogl_cg.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
 Source: bin\scirenderer.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
 ;
-Source: java\jar\externals\gluegen-rt.jar; DestDir: {app}\java\jar\externals; Components: {#COMPN_GRAPHICS}
-Source: java\jar\externals\jogl.jar;DestDir: {app}\java\jar\externals; Components: {#COMPN_GRAPHICS}
-Source: java\jar\modules\graphics.jar;DestDir: {app}\java\jar\modules; Components: {#COMPN_GRAPHICS}
+Source: thirdparty\gluegen-rt.jar; DestDir: {app}\thirdparty; Components: {#COMPN_GRAPHICS}
+Source: thirdparty\jogl.jar;DestDir: {app}\thirdparty; Components: {#COMPN_GRAPHICS}
+Source: modules\{#GRAPHICS}\jar\graphics.jar;DestDir: {app}\modules\{#GRAPHICS}\jar; Components: {#COMPN_GRAPHICS}
 ;
 Source: modules\{#GRAPHICS}\sci_gateway\graphics_gateway.xml; DestDir: {app}\modules\{#GRAPHICS}\sci_gateway; Components: {#COMPN_GRAPHICS}
 ;

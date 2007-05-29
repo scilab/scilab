@@ -12,10 +12,10 @@
 ;
 Source: bin\libshell.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
-Source: lib\org.scilab.modules.shell.jar;DestDir: {app}\lib\; Components: {#COMPN_SCILAB}
-Source: java\jar\externals\ArtTk.jar;DestDir: {app}\java\jar\externals; Components: {#COMPN_SCILAB}
-Source: java\jar\externals\JyConsole.jar;DestDir: {app}\java\jar\externals; Components: {#COMPN_SCILAB}
-Source: java\jar\externals\jython.jar;DestDir: {app}\java\jar\externals; Components: {#COMPN_SCILAB}
+Source: modules\{#SHELL}\jar\org.scilab.modules.shell.jar;DestDir: {app}\modules\{#SHELL}\jar; Components: {#COMPN_SCILAB}
+Source: thirdparty\ArtTk.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\JyConsole.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\jython.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 ;
 ;
 Source: modules\{#SHELL}\changelog.txt; DestDir: {app}\modules\{#SHELL}; Components: {#COMPN_SCILAB};

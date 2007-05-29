@@ -10,11 +10,11 @@
 ;
 #define GUI "gui"
 ;
-Source: java\jar\modules\gui.jar; DestDir: {app}\java\jar\modules; Components: {#COMPN_SCILAB}
-Source: java\jar\externals\flexdock-0.5.1.jar; DestDir: {app}\java\jar\externals; Components: {#COMPN_SCILAB}
-Source: java\jar\externals\commons-logging-1.1.jar; DestDir: {app}\java\jar\externals; Components: {#COMPN_SCILAB}
-Source: java\jar\externals\looks-2.1.1.jar; DestDir: {app}\java\jar\externals; Components: {#COMPN_SCILAB}
-Source: java\jar\externals\skinlf.jar; DestDir: {app}\java\jar\externals; Components: {#COMPN_SCILAB}
+Source: modules\{#GUI}\jar\gui.jar; DestDir: {app}\modules\{#GUI}\jar; Components: {#COMPN_SCILAB}
+Source: thirdparty\flexdock-0.5.1.jar; DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\commons-logging-1.1.jar; DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\looks-2.1.1.jar; DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\skinlf.jar; DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#GUI}\VERSION.xml; DestDir: {app}\modules\{#GUI}; Components: {#COMPN_SCILAB}
 Source: modules\{#GUI}\readme.txt; DestDir: {app}\modules\{#GUI}; Components: {#COMPN_SCILAB}
