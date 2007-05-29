@@ -32,9 +32,6 @@ int C2F(gw_jvm)(void)
 {  
 	Rhs = Max(0, Rhs);
 
-#ifndef WITH_JAVA
-		Scierror(999,"Scilab compiled without Java.\r\n");
-#else
 	if ( (getScilabMode() != SCILAB_NWNI) )
 	{
 #ifdef _MSC_VER
@@ -58,7 +55,6 @@ int C2F(gw_jvm)(void)
 	{
 		Scierror(999,"JVM interface disabled in -nogui or -nwni modes.\r\n");
 	}
-#endif
 
 	return 0;
 }
