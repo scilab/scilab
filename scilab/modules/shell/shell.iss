@@ -12,7 +12,7 @@
 ;
 Source: bin\libshell.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
-Source: java\jar\modules\shell.jar;DestDir: {app}\java\jar\modules; Components: {#COMPN_SCILAB}
+Source: lib\org.scilab.modules.shell.jar;DestDir: {app}\lib\; Components: {#COMPN_SCILAB}
 Source: java\jar\externals\ArtTk.jar;DestDir: {app}\java\jar\externals; Components: {#COMPN_SCILAB}
 Source: java\jar\externals\JyConsole.jar;DestDir: {app}\java\jar\externals; Components: {#COMPN_SCILAB}
 Source: java\jar\externals\jython.jar;DestDir: {app}\java\jar\externals; Components: {#COMPN_SCILAB}
