@@ -23,9 +23,9 @@
 			>
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;ant jar&#x0D;&#x0A;&#x0D;&#x0A;"
-				ReBuildCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;ant jar&#x0D;&#x0A;"
-				CleanCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;ant clean&#x0D;&#x0A;&#x0D;&#x0A;"
+				BuildCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;cd ../..&#x0D;&#x0A;ant jar&#x0D;&#x0A;&#x0D;&#x0A;"
+				ReBuildCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;cd ../..&#x0D;&#x0A;ant jar&#x0D;&#x0A;"
+				CleanCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;cd ../..&#x0D;&#x0A;ant clean&#x0D;&#x0A;&#x0D;&#x0A;"
 				Output=""
 				PreprocessorDefinitions="WIN32;_DEBUG"
 				IncludeSearchPath=""
@@ -43,9 +43,9 @@
 			>
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;ant jar&#x0D;&#x0A;&#x0D;&#x0A;"
-				ReBuildCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;ant jar&#x0D;&#x0A;"
-				CleanCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;ant clean&#x0D;&#x0A;&#x0D;&#x0A;"
+				BuildCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;cd ../..&#x0D;&#x0A;ant jar&#x0D;&#x0A;&#x0D;&#x0A;"
+				ReBuildCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;cd ../..&#x0D;&#x0A;ant jar&#x0D;&#x0A;"
+				CleanCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;%PATH%;&#x0D;&#x0A;cd ../..&#x0D;&#x0A;ant clean&#x0D;&#x0A;&#x0D;&#x0A;"
 				Output=""
 				PreprocessorDefinitions="WIN32;NDEBUG"
 				IncludeSearchPath=""
@@ -65,6 +65,10 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath="..\..\build.xml"
+				>
+			</File>
+			<File
 				RelativePath=".\org\scilab\modules\shell\ScilabShell.java"
 				>
 			</File>
@@ -77,10 +81,6 @@
 				>
 			</File>
 		</Filter>
-		<File
-			RelativePath=".\build.xml"
-			>
-		</File>
 	</Files>
 	<Globals>
 	</Globals>
