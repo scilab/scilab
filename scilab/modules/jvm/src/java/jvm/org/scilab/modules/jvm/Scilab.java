@@ -7,9 +7,6 @@ import org.scilab.modules.gui.tab.ScilabTab;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.console.ScilabConsole;
-import org.scilab.modules.gui.canvas.ScilabCanvas;
-import org.scilab.modules.gui.utils.Position;
-import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.LookAndFeel;
 
 
@@ -41,8 +38,6 @@ public class Scilab {
 		 */		
 		LookAndFeel.setSystemLookAndFeel();
 
-	
-
 			Window mainView = ScilabWindow.createWindow();
 			mainView.draw();
 			/* CONSOLE */
@@ -67,8 +62,7 @@ public class Scilab {
 // 			figureTab.addMember(figureCanvas);
 // 			figureTab.draw();
 // 			mainView.draw();
-		}
-		else {
+		} else {
 			System.out.println("mode -NW");
 		}
 		
