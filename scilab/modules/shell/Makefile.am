@@ -8,9 +8,7 @@ SHELL_C_SOURCES = src/c/completion.c \
 src/c/clc.c \
 src/c/tohome.c \
 src/c/history.c \
-src/c/zzledt_Linux.c \
-src/c/ShellPrintf.c
-
+src/c/zzledt_Linux.c 
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/sci_completion.c \
@@ -22,6 +20,12 @@ sci_gateway/c/sci_loadhistory.c \
 sci_gateway/c/sci_resethistory.c \
 sci_gateway/c/sci_savehistory.c
 
+
+if WITH_JAVA
+SHELL_C_SOURCES += src/c/ShellPrintf.c
+else
+SHELL_C_SOURCES += src/c/ShellPrintf_nojava.c
+end
 
 # Includes need for the compilation
 libscishell_la_CFLAGS= $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/
