@@ -34,6 +34,14 @@ void jniUpdateCurrentEnv( void )
 {
   /* tips from sun, use AttachCurrentThread to always get the right environment */ 
   (*sciJVM)->AttachCurrentThread( sciJVM, (void **) &sciJEnv, NULL ) ;
+
+  /* clear all previous exceptions pending on the thread */
+  (*sciJEnv)->ExceptionClear( sciJEnv ) ;
+}
+/*------------------------------------------------------------------------------------------*/
+JNIEnv * jniGetCurrentJavaEnv( void )
+{
+  return sciJEnv ;
 }
 /*------------------------------------------------------------------------------------------*/
 jdoubleArray jniCreateDoubleArrayCopy( const jdouble * cArray, int nbElements )
@@ -58,9 +66,22 @@ jintArray jniCreateIntArrayCopy( const jint * cArray, int nbElements )
   return res ;
 }
 /*------------------------------------------------------------------------------------------*/
+jstring jniCreateStringCopy( const char * cString )
+{
+  jstring res = (*sciJEnv)->NewStringUTF( sciJEnv, cString ) ;
+  if ( !jniCheckLastCall(FALSE) )
+  {
+    return NULL ;
+  }
+  return res ;
+}
+/*------------------------------------------------------------------------------------------*/
 void jniDeleteLocalEntity( jobject entity )
 {
-  (*sciJEnv)->DeleteLocalRef( sciJEnv, entity ) ;
+  if ( entity != NULL )
+  {
+    (*sciJEnv)->DeleteLocalRef( sciJEnv, entity ) ;
+  }
 }
 /*------------------------------------------------------------------------------------------*/
 BOOL jniCreateDefaultInstance( const char * className, jclass * instanceClass, jobject * instance )
@@ -112,7 +133,7 @@ BOOL jniCallVoidFunctionV( jobject instance, const char * functionName, const ch
 
   /* Find the method in the class */
   voidMethod = (*sciJEnv)->GetMethodID( sciJEnv, instanceClass, functionName, callingSequence ) ;
-  if ( !jniCheckLastCall(TRUE) )
+  if ( voidMethod == NULL || !jniCheckLastCall(TRUE) )
   {
     Scierror( 999, "Unable to find function %s.\r\n", functionName ) ;
     FREE( callingSequence ) ;

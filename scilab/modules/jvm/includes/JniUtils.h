@@ -38,13 +38,18 @@ void jniUpdateCurrentEnv( void ) ;
 /**
  * Get the current Java environment
  */
-JNIEnv * jniGetCurrentJaveEnv( void ) ;
+JNIEnv * jniGetCurrentJavaEnv( void ) ;
 
 /**
  * Allocate and set a Java array as a copy of a C array.
  */
 jdoubleArray jniCreateDoubleArrayCopy( const jdouble * cArray, int nbElements ) ;
-jintArray    jniCreateIntArrayCopy( const jint    * cArray, int nbElements ) ;
+jintArray    jniCreateIntArrayCopy(    const jint    * cArray, int nbElements ) ;
+
+/**
+ * Create a copy of a C string to a Java string
+ */
+jstring jniCreateStringCopy( const char * cString ) ;
 
 /**
  * Delete a Java object (array, objects, ...)
