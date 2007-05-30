@@ -10,7 +10,7 @@ src/c/qsort-char.c \
 src/c/qsort-double.c \
 src/c/qsort-int.c \
 src/c/qsort-short.c \
-src/c/qsort-string.c \
+src/c/qsort-string.c
 
 
 STRING_FORTRAN_SOURCES =src/fortran/strord.f src/fortran/strdsp.f
