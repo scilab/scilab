@@ -200,3 +200,26 @@ proc updatepanestitles {} {
     # update file name in Scipad title bar (and in the current textarea pane)
     modifiedtitle [gettextareacur]
 }
+
+proc displaybusystate {} {
+# a visual indicator of the availability of the scilab prompt, for the
+# main window and for the debug watch window. This proc keeps rescheduling
+# itself as long as $pad.statusmes (hence the main window) exists
+  global sciprompt pad watch scilabbusyindicator
+  if {[info exists pad]} {
+    if {[string compare $sciprompt -1] == 0} {
+      set bok [catch {$pad.statusmes configure -background orange}]
+      if {[info exists watch]} { 
+	  catch {$scilabbusyindicator configure -background orange}
+        }
+    } else {
+      set bok [catch {$pad.statusmes configure -background lightblue}]
+      if {[info exists watch]} { 
+          catch {$scilabbusyindicator configure -background lightblue}
+      }
+    }
+    if {$bok == 0} {
+      after 100 {displaybusystate}
+    }
+  }
+}

@@ -3027,3 +3027,9 @@ Francois VOGEL, 28/05/07
    env(SCIINSTALLPATH) is defined in scipad.sci in order to better separate
    the tclsci module and the scipad module
  * version --> 6.110
+
+ES 30/5/07
+ * visual indicator of the scilab busy status in the main window 
+  ($pad.statusmes color) and in the watch window
+ * the state of the debugger is now reflected in the color of $pad.statusind2
+ * version --> 6.111

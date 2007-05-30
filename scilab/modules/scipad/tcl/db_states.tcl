@@ -233,13 +233,13 @@ proc setdbstatevisualhints_bp {} {
     global pad
     global colormen
     if {[getdbstate] == "NoDebug"} {
-        $pad.statusmes configure -background $colormen
+        $pad.statusind2 configure -background $colormen
         showinfo [mc "Currently no debug session"]
     } elseif {[getdbstate] == "ReadyForDebug"} {
-        $pad.statusmes configure -background SpringGreen
+        $pad.statusind2 configure -background SpringGreen
         showinfo [mc "Ready to start debug"]
     } elseif {[getdbstate] == "DebugInProgress"} {
-        $pad.statusmes configure -background tomato3
+        $pad.statusind2 configure -background tomato3
         showinfo [mc "Debug in progress"]
     }
     updatedebugstateindicator_bp
@@ -249,7 +249,7 @@ proc updatedebugstateindicator_bp {} {
     global watch debugstateindicator pad
     if {[info exists watch]} {
         if {[winfo exists $watch]} {
-            $debugstateindicator configure -background [$pad.statusmes cget -background]
+            $debugstateindicator configure -background [$pad.statusind2 cget -background]
         }
     }
 }

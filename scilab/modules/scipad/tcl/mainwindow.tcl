@@ -80,6 +80,9 @@ pack $pad.statusmes -in $pad.bottom -side bottom -expand 0 -fill x
 # window resize
 packnewbuffer $textareacur $pad.pw0 0
 
+# from now on, keep checking the availability of the scilab prompt 
+displaybusystate
+
 # the following update makes the initial textarea reactive to dnd!
 update
 

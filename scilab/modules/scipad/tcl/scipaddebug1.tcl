@@ -15,7 +15,7 @@ set DebugScipadWithRamDebugger no
 catch {
     if {$DebugScipadWithRamDebugger && $tcl_platform(platform) == "windows"} {
         lappend ::auto_path K:/Francois/Developpement/RamDebugger5.5/addons
-        lappend ::auto_path D:/RamDebugger5.5/addons
+        lappend ::auto_path D:/Scilab/Tools/RamDebugger5.5/addons
         package require commR
         comm::register Scipad 1
     }

@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.109
+# in sync at least with v6.110
 
 
 # commons
@@ -45,11 +45,17 @@
 
 
 # db_argsmanagement.tcl
+::msgcat::mcset fr "This partially displayed variable can be watched but cannot be edited!" \
+                   "Cette variable partiellement affichée peut être espionnée mais ne peut pas être modifiée !"
+::msgcat::mcset fr "A new watch variable will be created if you click on YES." \
+                   "Une nouvelle variable espion va être créée si vous cliquez sur OUI."
+::msgcat::mcset fr "Otherwise, to display the full variable content, click on NO." \
+                   "Sinon, pour afficher le contenu complet de cette variable, cliquez sur NON."
+::msgcat::mcset fr "Non editable variable" "Variable non éditable"
 ::msgcat::mcset fr "This variable can be watched but cannot be edited!" \
                    "Cette variable peut être espionnée mais ne peut pas être modifiée !"
 ::msgcat::mcset fr "A new watch variable will be created." \
                    "Une nouvelle variable espion va être créée."
-::msgcat::mcset fr "Non editable variable" "Variable non éditable"
 ::msgcat::mcset fr "Variable:" "Variable :"
 ::msgcat::mcset fr "Value:" "Valeur :"
 ::msgcat::mcset fr "&Get current value from Scilab" "Obtenir la valeur &actuelle dans Scilab"
@@ -344,6 +350,7 @@
 
 
 # FormatStringsForWatch.sci
+::msgcat::mcset fr "(partial)" "(partiel)"
 ::msgcat::mcset fr " what you try to watch is not supported by the debugger" \
                    " ce que vous essayez d'espionner n'est pas supporté par le débuggueur"
 ::msgcat::mcset fr " what you try to watch is of type " \

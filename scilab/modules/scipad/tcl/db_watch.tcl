@@ -10,7 +10,7 @@ proc showwatch_bp {} {
     global showwatchvariablesarea showcallstackarea
     global watchvpane1mins watchvpane2mins watchvsashcoord
     global watchhpane1mins watchhpane2mins watchhsashcoord
-    global debugstateindicator
+    global debugstateindicator scilabbusyindicator
     global menuFont textFont
     global tcl_platform
     global bptfunsindic totbptsindic
@@ -128,11 +128,18 @@ proc showwatch_bp {} {
             -anchor w -borderwidth 1 -pady 0 "
     if {$dockwatch} {$checkboxdockwatch configure -underline -1}
     set debugstateindicator $watch.f.f1.f1fr.debugstateindicator
-    canvas $debugstateindicator -relief ridge -width 15 -height 15 -borderwidth 1
+
+#    canvas $debugstateindicator -relief ridge -width 15 -height 15 -borderwidth 1
+    label $debugstateindicator -relief ridge -borderwidth 2 -text dbg -font $menuFont
+
+    set scilabbusyindicator $watch.f.f1.f1fr.scilabbusyindicator
+    label $scilabbusyindicator -relief ridge -borderwidth 2 -text {-->} -font $menuFont
+
     updatedebugstateindicator_bp
 
     pack $checkboxdockwatch -anchor w
-    pack $debugstateindicator -expand 1
+    pack $scilabbusyindicator -side left
+    pack $debugstateindicator -side left
     pack $watch.f.f1.f1fr -expand 1
     pack $watch.f.f1 -anchor w -expand 0 -fill both
     pack $watch.f.f1.f1fr -anchor w -expand 1 -fill both

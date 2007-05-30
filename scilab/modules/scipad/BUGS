@@ -333,3 +333,7 @@ http://groups.google.fr/group/comp.soft-sys.math.scilab/browse_thread/thread/dc0
  tabs, and reindents according to keywords (if, function, while, for...)
 
 -Request 262: tabbed buffers (see discussion in this request)
+
+-Use eq/neq instead of ==/!= throughout the code whenever string comparison
+ is meant:
+http://groups.google.fr/group/comp.lang.tcl/browse_thread/thread/eea78c744811e2c3/47482ff7037343ab
