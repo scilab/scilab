@@ -84,14 +84,16 @@ pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscijvm_la_DEPENDENCIES =  \
 	$(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la
-am__libscijvm_la_SOURCES_DIST = src/c/InitializeJVM.c \
-	src/c/TerminateJVM.c src/c/JVM_Unix.c src/c/JVM.c \
-	src/c/JniUtils.c src/c/addToClasspath.c src/c/getClasspath.c \
-	src/c/system_getproperty.c src/c/loadClasspath.c \
-	src/c/createMainScilabObject.c src/c/JVM_commons.c \
-	sci_gateway/c/gw_jvm.c sci_gateway/c/sci_system_getproperty.c \
+am__libscijvm_la_SOURCES_DIST = src/nojvm/nojvm.c \
+	src/c/InitializeJVM.c src/c/TerminateJVM.c src/c/JVM_Unix.c \
+	src/c/JVM.c src/c/JniUtils.c src/c/addToClasspath.c \
+	src/c/getClasspath.c src/c/system_getproperty.c \
+	src/c/loadClasspath.c src/c/createMainScilabObject.c \
+	src/c/JVM_commons.c sci_gateway/c/gw_jvm.c \
+	sci_gateway/c/sci_system_getproperty.c \
 	sci_gateway/c/sci_with_embedded_jre.c \
 	sci_gateway/c/sci_javaclasspath.c
+@WITH_JAVA_FALSE@am__objects_1 = libscijvm_la-nojvm.lo
 @WITH_JAVA_TRUE@am__objects_1 = libscijvm_la-InitializeJVM.lo \
 @WITH_JAVA_TRUE@	libscijvm_la-TerminateJVM.lo \
 @WITH_JAVA_TRUE@	libscijvm_la-JVM_Unix.lo libscijvm_la-JVM.lo \
@@ -315,6 +317,7 @@ includes/gw_jvm.h \
 includes/JniUtils.h \
 includes/addToClasspath.h
 
+@WITH_JAVA_FALSE@JVM_C_SOURCES = src/nojvm/nojvm.c
 @WITH_JAVA_TRUE@JVM_C_SOURCES = src/c/InitializeJVM.c \
 @WITH_JAVA_TRUE@src/c/TerminateJVM.c \
 @WITH_JAVA_TRUE@src/c/JVM_Unix.c \
@@ -453,6 +456,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_la-getClasspath.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_la-gw_jvm.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_la-loadClasspath.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_la-nojvm.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_la-sci_javaclasspath.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_la-sci_system_getproperty.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_la-sci_with_embedded_jre.Plo@am__quote@
@@ -478,6 +482,13 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
+
+libscijvm_la-nojvm.lo: src/nojvm/nojvm.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscijvm_la_CFLAGS) $(CFLAGS) -MT libscijvm_la-nojvm.lo -MD -MP -MF $(DEPDIR)/libscijvm_la-nojvm.Tpo -c -o libscijvm_la-nojvm.lo `test -f 'src/nojvm/nojvm.c' || echo '$(srcdir)/'`src/nojvm/nojvm.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscijvm_la-nojvm.Tpo $(DEPDIR)/libscijvm_la-nojvm.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/nojvm/nojvm.c' object='libscijvm_la-nojvm.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscijvm_la_CFLAGS) $(CFLAGS) -c -o libscijvm_la-nojvm.lo `test -f 'src/nojvm/nojvm.c' || echo '$(srcdir)/'`src/nojvm/nojvm.c
 
 libscijvm_la-InitializeJVM.lo: src/c/InitializeJVM.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscijvm_la_CFLAGS) $(CFLAGS) -MT libscijvm_la-InitializeJVM.lo -MD -MP -MF $(DEPDIR)/libscijvm_la-InitializeJVM.Tpo -c -o libscijvm_la-InitializeJVM.lo `test -f 'src/c/InitializeJVM.c' || echo '$(srcdir)/'`src/c/InitializeJVM.c
@@ -732,7 +743,9 @@ distdir: $(DISTFILES)
 	    || exit 1; \
 	  fi; \
 	done
+@WITH_JAVA_FALSE@check-local:
 check-am: all-am
+	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-am
 @WITH_JAVA_FALSE@all-local:
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
@@ -834,8 +847,8 @@ uninstall-am: uninstall-libscijvm_la_etcDATA \
 
 .MAKE: install-am install-strip
 
-.PHONY: CTAGS GTAGS all all-am all-local check check-am clean \
-	clean-generic clean-libtool clean-local \
+.PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
+	clean clean-generic clean-libtool clean-local \
 	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
 	distclean-generic distclean-libtool distclean-tags distdir dvi \
 	dvi-am html html-am info info-am install install-am \
@@ -879,7 +892,7 @@ uninstall-am: uninstall-libscijvm_la_etcDATA \
 @WITH_JAVA_TRUE@		$(ANT) clean; \
 @WITH_JAVA_TRUE@	fi
 
-@WITH_JAVA_TRUE@checkstyle:
+@WITH_JAVA_TRUE@check-local:
 @WITH_JAVA_TRUE@	@if test -f build.xml; then \
 @WITH_JAVA_TRUE@		$(ANT) checkstyle; \
 @WITH_JAVA_TRUE@	fi

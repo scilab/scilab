@@ -1299,7 +1299,9 @@ distdir: $(DISTFILES)
 	    || exit 1; \
 	  fi; \
 	done
+@WITH_JAVA_FALSE@check-local:
 check-am: all-am
+	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-am
 @WITH_JAVA_FALSE@all-local:
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
@@ -1408,8 +1410,8 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 
 .MAKE: install-am install-strip
 
-.PHONY: CTAGS GTAGS all all-am all-local check check-am clean \
-	clean-generic clean-libtool clean-local \
+.PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
+	clean clean-generic clean-libtool clean-local \
 	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
 	distclean-generic distclean-libtool distclean-tags distdir dvi \
 	dvi-am html html-am info info-am install install-am \
@@ -1459,7 +1461,7 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @TCLTK_TRUE@@WITH_JAVA_TRUE@		$(ANT) clean; \
 @TCLTK_TRUE@@WITH_JAVA_TRUE@	fi
 
-@TCLTK_TRUE@@WITH_JAVA_TRUE@checkstyle:
+@TCLTK_TRUE@@WITH_JAVA_TRUE@check-local:
 @TCLTK_TRUE@@WITH_JAVA_TRUE@	@if test -f build.xml; then \
 @TCLTK_TRUE@@WITH_JAVA_TRUE@		$(ANT) checkstyle; \
 @TCLTK_TRUE@@WITH_JAVA_TRUE@	fi
@@ -1616,7 +1618,7 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @TCLTK_FALSE@@WITH_JAVA_TRUE@		$(ANT) clean; \
 @TCLTK_FALSE@@WITH_JAVA_TRUE@	fi
 
-@TCLTK_FALSE@@WITH_JAVA_TRUE@checkstyle:
+@TCLTK_FALSE@@WITH_JAVA_TRUE@check-local:
 @TCLTK_FALSE@@WITH_JAVA_TRUE@	@if test -f build.xml; then \
 @TCLTK_FALSE@@WITH_JAVA_TRUE@		$(ANT) checkstyle; \
 @TCLTK_FALSE@@WITH_JAVA_TRUE@	fi

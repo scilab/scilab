@@ -1034,7 +1034,9 @@ distdir: $(DISTFILES)
 	    || exit 1; \
 	  fi; \
 	done
+@WITH_JAVA_FALSE@check-local:
 check-am: all-am
+	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-am
 @WITH_JAVA_FALSE@all-local:
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
@@ -1137,8 +1139,8 @@ uninstall-am: uninstall-libscilinear_algebra_la_etcDATA \
 
 .MAKE: install-am install-strip
 
-.PHONY: CTAGS GTAGS all all-am all-local check check-am clean \
-	clean-generic clean-libtool clean-local \
+.PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
+	clean clean-generic clean-libtool clean-local \
 	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
 	distclean-generic distclean-libtool distclean-tags distdir dvi \
 	dvi-am html html-am info info-am install install-am \
@@ -1183,7 +1185,7 @@ uninstall-am: uninstall-libscilinear_algebra_la_etcDATA \
 @WITH_JAVA_TRUE@		$(ANT) clean; \
 @WITH_JAVA_TRUE@	fi
 
-@WITH_JAVA_TRUE@checkstyle:
+@WITH_JAVA_TRUE@check-local:
 @WITH_JAVA_TRUE@	@if test -f build.xml; then \
 @WITH_JAVA_TRUE@		$(ANT) checkstyle; \
 @WITH_JAVA_TRUE@	fi
