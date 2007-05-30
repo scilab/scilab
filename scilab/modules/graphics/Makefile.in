@@ -361,18 +361,16 @@ am__libscigraphics_la_SOURCES_DIST = src/c/GetCommandArg.c \
 	src/c/nues1.c src/c/SetProperty.c src/c/BasicAlgos.c \
 	src/c/BuildObjects.c src/c/sciCall.c src/c/CloneObjects.c \
 	src/c/InitObjects.c src/c/pixel_mode.c src/c/Format.c \
-	src/c/Champ.c src/c/StringMatrix.c src/c/FeC.c src/c/gsort.c \
-	src/c/Plo3dn.c src/c/Actions.c src/c/Plo2dEch.c src/c/Plo2dn.c \
-	src/c/Gray.c src/c/DestroyObjects.c src/c/clipping.c \
-	src/c/qsort.c src/c/qsort-char.c src/c/qsort-double.c \
-	src/c/qsort-int.c src/c/qsort-short.c src/c/qsort-string.c \
-	src/c/math_graphics.c src/c/Interaction.c src/c/periGif.c \
-	src/c/HandleManagement.c src/gd/gdfonts/gdfontmb.c \
-	src/gd/gdfonts/gdfonts.c src/gd/gdfonts/gdfontt.c \
-	src/gd/gdfonts/gdfontg.c src/gd/gdfonts/gdfontl.c \
-	src/gd/bdftogd.c src/gd/xfonts.c src/gd/gd.c src/c/StringBox.c \
-	src/c/drawMarks.c src/c/axesScale.c src/c/Vertices.c \
-	src/c/GraphicZoom.c src/c/handleDrawing/drawArcEntity.c \
+	src/c/Champ.c src/c/StringMatrix.c src/c/FeC.c src/c/Plo3dn.c \
+	src/c/Actions.c src/c/Plo2dEch.c src/c/Plo2dn.c src/c/Gray.c \
+	src/c/DestroyObjects.c src/c/clipping.c src/c/math_graphics.c \
+	src/c/Interaction.c src/c/periGif.c src/c/HandleManagement.c \
+	src/gd/gdfonts/gdfontmb.c src/gd/gdfonts/gdfonts.c \
+	src/gd/gdfonts/gdfontt.c src/gd/gdfonts/gdfontg.c \
+	src/gd/gdfonts/gdfontl.c src/gd/bdftogd.c src/gd/xfonts.c \
+	src/gd/gd.c src/c/StringBox.c src/c/drawMarks.c \
+	src/c/axesScale.c src/c/Vertices.c src/c/GraphicZoom.c \
+	src/c/handleDrawing/drawArcEntity.c \
 	src/c/handleDrawing/drawAxesEntity.c \
 	src/c/handleDrawing/drawCompoundEntity.c \
 	src/c/handleDrawing/drawFecEntity.c \
@@ -392,31 +390,30 @@ am__libscigraphics_la_SOURCES_DIST = src/c/GetCommandArg.c \
 	sci_gateway/c/sci_newaxes.c sci_gateway/c/sci_xlfont.c \
 	sci_gateway/c/sci_xgraduate.c sci_gateway/c/sci_xgrid.c \
 	sci_gateway/c/sci_xclick.c sci_gateway/c/sci_xclear.c \
-	sci_gateway/c/sci_geom3d.c sci_gateway/c/sci_xsort.c \
-	sci_gateway/c/sci_xtape.c sci_gateway/c/sci_xset.c \
-	sci_gateway/c/sci_set_posfig_dim.c sci_gateway/c/sci_xgetech.c \
-	sci_gateway/c/sci_unzoom.c sci_gateway/c/sci_xs2ppm.c \
-	sci_gateway/c/sci_xs2bmp.c sci_gateway/c/sci_xs2emf.c \
-	sci_gateway/c/sci_xsegs.c sci_gateway/c/sci_xaxis.c \
-	sci_gateway/c/sci_glue.c sci_gateway/c/sci_xarc.c \
-	sci_gateway/c/sci_xpolys.c sci_gateway/c/sci_xstring.c \
-	sci_gateway/c/sci_xstringb.c sci_gateway/c/sci_xs2gif.c \
-	sci_gateway/c/sci_xsetech.c sci_gateway/c/sci_show_window.c \
-	sci_gateway/c/sci_param3d1.c sci_gateway/c/sci_xname.c \
-	sci_gateway/c/sci_xstringl.c sci_gateway/c/sci_xpoly.c \
-	sci_gateway/c/sci_xchange.c sci_gateway/c/sci_UImenu.c \
-	sci_gateway/c/sci_matplot.c sci_gateway/c/sci_readxbm.c \
-	sci_gateway/c/sci_drawaxis.c sci_gateway/c/sci_demo.c \
-	sci_gateway/c/sci_plot2d1.c sci_gateway/c/sci_xrect.c \
-	sci_gateway/c/sci_xclea.c sci_gateway/c/sci_draw.c \
-	sci_gateway/c/sci_xg2ps.c sci_gateway/c/sci_xarrows.c \
-	sci_gateway/c/sci_plot3d.c sci_gateway/c/sci_move.c \
-	sci_gateway/c/sci_copy.c sci_gateway/c/sci_relocate_handle.c \
-	sci_gateway/c/sci_get.c sci_gateway/c/sci_xs2ps.c \
-	sci_gateway/c/sci_xarcs.c sci_gateway/c/sci_xfpoly.c \
-	sci_gateway/c/sci_drawlater.c sci_gateway/c/sci_champ.c \
-	sci_gateway/c/sci_xinit.c sci_gateway/c/sci_help_gtk.c \
-	sci_gateway/c/sci_set.c \
+	sci_gateway/c/sci_geom3d.c sci_gateway/c/sci_xtape.c \
+	sci_gateway/c/sci_xset.c sci_gateway/c/sci_set_posfig_dim.c \
+	sci_gateway/c/sci_xgetech.c sci_gateway/c/sci_unzoom.c \
+	sci_gateway/c/sci_xs2ppm.c sci_gateway/c/sci_xs2bmp.c \
+	sci_gateway/c/sci_xs2emf.c sci_gateway/c/sci_xsegs.c \
+	sci_gateway/c/sci_xaxis.c sci_gateway/c/sci_glue.c \
+	sci_gateway/c/sci_xarc.c sci_gateway/c/sci_xpolys.c \
+	sci_gateway/c/sci_xstring.c sci_gateway/c/sci_xstringb.c \
+	sci_gateway/c/sci_xs2gif.c sci_gateway/c/sci_xsetech.c \
+	sci_gateway/c/sci_show_window.c sci_gateway/c/sci_param3d1.c \
+	sci_gateway/c/sci_xname.c sci_gateway/c/sci_xstringl.c \
+	sci_gateway/c/sci_xpoly.c sci_gateway/c/sci_xchange.c \
+	sci_gateway/c/sci_UImenu.c sci_gateway/c/sci_matplot.c \
+	sci_gateway/c/sci_readxbm.c sci_gateway/c/sci_drawaxis.c \
+	sci_gateway/c/sci_demo.c sci_gateway/c/sci_plot2d1.c \
+	sci_gateway/c/sci_xrect.c sci_gateway/c/sci_xclea.c \
+	sci_gateway/c/sci_draw.c sci_gateway/c/sci_xg2ps.c \
+	sci_gateway/c/sci_xarrows.c sci_gateway/c/sci_plot3d.c \
+	sci_gateway/c/sci_move.c sci_gateway/c/sci_copy.c \
+	sci_gateway/c/sci_relocate_handle.c sci_gateway/c/sci_get.c \
+	sci_gateway/c/sci_xs2ps.c sci_gateway/c/sci_xarcs.c \
+	sci_gateway/c/sci_xfpoly.c sci_gateway/c/sci_drawlater.c \
+	sci_gateway/c/sci_champ.c sci_gateway/c/sci_xinit.c \
+	sci_gateway/c/sci_help_gtk.c sci_gateway/c/sci_set.c \
 	sci_gateway/c/sci_showalluimenushandles.c \
 	sci_gateway/c/sci_xend.c sci_gateway/c/sci_unglue.c \
 	sci_gateway/c/gw_graphics.c sci_gateway/c/sci_xsnative.c \
@@ -748,16 +745,11 @@ am__objects_1 = libscigraphics_la-GetCommandArg.lo \
 	libscigraphics_la-InitObjects.lo \
 	libscigraphics_la-pixel_mode.lo libscigraphics_la-Format.lo \
 	libscigraphics_la-Champ.lo libscigraphics_la-StringMatrix.lo \
-	libscigraphics_la-FeC.lo libscigraphics_la-gsort.lo \
-	libscigraphics_la-Plo3dn.lo libscigraphics_la-Actions.lo \
-	libscigraphics_la-Plo2dEch.lo libscigraphics_la-Plo2dn.lo \
-	libscigraphics_la-Gray.lo libscigraphics_la-DestroyObjects.lo \
-	libscigraphics_la-clipping.lo libscigraphics_la-qsort.lo \
-	libscigraphics_la-qsort-char.lo \
-	libscigraphics_la-qsort-double.lo \
-	libscigraphics_la-qsort-int.lo \
-	libscigraphics_la-qsort-short.lo \
-	libscigraphics_la-qsort-string.lo \
+	libscigraphics_la-FeC.lo libscigraphics_la-Plo3dn.lo \
+	libscigraphics_la-Actions.lo libscigraphics_la-Plo2dEch.lo \
+	libscigraphics_la-Plo2dn.lo libscigraphics_la-Gray.lo \
+	libscigraphics_la-DestroyObjects.lo \
+	libscigraphics_la-clipping.lo \
 	libscigraphics_la-math_graphics.lo \
 	libscigraphics_la-Interaction.lo libscigraphics_la-periGif.lo \
 	libscigraphics_la-HandleManagement.lo \
@@ -794,8 +786,8 @@ am__objects_2 = libscigraphics_la-sci_swap_handles.lo \
 	libscigraphics_la-sci_xgraduate.lo \
 	libscigraphics_la-sci_xgrid.lo libscigraphics_la-sci_xclick.lo \
 	libscigraphics_la-sci_xclear.lo \
-	libscigraphics_la-sci_geom3d.lo libscigraphics_la-sci_xsort.lo \
-	libscigraphics_la-sci_xtape.lo libscigraphics_la-sci_xset.lo \
+	libscigraphics_la-sci_geom3d.lo libscigraphics_la-sci_xtape.lo \
+	libscigraphics_la-sci_xset.lo \
 	libscigraphics_la-sci_set_posfig_dim.lo \
 	libscigraphics_la-sci_xgetech.lo \
 	libscigraphics_la-sci_unzoom.lo \
@@ -1378,7 +1370,6 @@ src/c/Format.c \
 src/c/Champ.c \
 src/c/StringMatrix.c \
 src/c/FeC.c \
-src/c/gsort.c \
 src/c/Plo3dn.c \
 src/c/Actions.c \
 src/c/Plo2dEch.c \
@@ -1386,12 +1377,6 @@ src/c/Plo2dn.c \
 src/c/Gray.c \
 src/c/DestroyObjects.c \
 src/c/clipping.c \
-src/c/qsort.c \
-src/c/qsort-char.c \
-src/c/qsort-double.c \
-src/c/qsort-int.c \
-src/c/qsort-short.c \
-src/c/qsort-string.c \
 src/c/math_graphics.c \
 src/c/Interaction.c \
 src/c/periGif.c \
@@ -1477,7 +1462,6 @@ sci_gateway/c/sci_xgrid.c \
 sci_gateway/c/sci_xclick.c \
 sci_gateway/c/sci_xclear.c \
 sci_gateway/c/sci_geom3d.c \
-sci_gateway/c/sci_xsort.c \
 sci_gateway/c/sci_xtape.c \
 sci_gateway/c/sci_xset.c \
 sci_gateway/c/sci_set_posfig_dim.c \
@@ -1708,7 +1692,6 @@ includes/StringMatrix.h \
 includes/sci_xend.h \
 includes/sci_unglue.h \
 includes/gw_graphics.h \
-includes/gsort.h \
 includes/periScreen.h \
 includes/sci_zoom_rect.h \
 includes/sci_xs2fig.h \
@@ -2130,7 +2113,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-gifimg.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-graphicModuleLoad.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-graphicSession.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-gsort.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-gw_graphics.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-math_graphics.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-nues1.Plo@am__quote@
@@ -2139,12 +2121,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-periPos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-periX11.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-pixel_mode.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-qsort-char.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-qsort-double.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-qsort-int.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-qsort-short.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-qsort-string.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-qsort.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sciCall.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sciMatrix.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_StringBox.Plo@am__quote@
@@ -2222,7 +2198,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_xset.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_xsetech.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_xsnative.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_xsort.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_xstring.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_xstringb.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_xstringl.Plo@am__quote@
@@ -4408,13 +4383,6 @@ libscigraphics_la-FeC.lo: src/c/FeC.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-FeC.lo `test -f 'src/c/FeC.c' || echo '$(srcdir)/'`src/c/FeC.c
 
-libscigraphics_la-gsort.lo: src/c/gsort.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-gsort.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-gsort.Tpo -c -o libscigraphics_la-gsort.lo `test -f 'src/c/gsort.c' || echo '$(srcdir)/'`src/c/gsort.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-gsort.Tpo $(DEPDIR)/libscigraphics_la-gsort.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/gsort.c' object='libscigraphics_la-gsort.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-gsort.lo `test -f 'src/c/gsort.c' || echo '$(srcdir)/'`src/c/gsort.c
-
 libscigraphics_la-Plo3dn.lo: src/c/Plo3dn.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-Plo3dn.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-Plo3dn.Tpo -c -o libscigraphics_la-Plo3dn.lo `test -f 'src/c/Plo3dn.c' || echo '$(srcdir)/'`src/c/Plo3dn.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-Plo3dn.Tpo $(DEPDIR)/libscigraphics_la-Plo3dn.Plo
@@ -4463,48 +4431,6 @@ libscigraphics_la-clipping.lo: src/c/clipping.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/clipping.c' object='libscigraphics_la-clipping.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-clipping.lo `test -f 'src/c/clipping.c' || echo '$(srcdir)/'`src/c/clipping.c
-
-libscigraphics_la-qsort.lo: src/c/qsort.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-qsort.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-qsort.Tpo -c -o libscigraphics_la-qsort.lo `test -f 'src/c/qsort.c' || echo '$(srcdir)/'`src/c/qsort.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-qsort.Tpo $(DEPDIR)/libscigraphics_la-qsort.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/qsort.c' object='libscigraphics_la-qsort.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-qsort.lo `test -f 'src/c/qsort.c' || echo '$(srcdir)/'`src/c/qsort.c
-
-libscigraphics_la-qsort-char.lo: src/c/qsort-char.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-qsort-char.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-qsort-char.Tpo -c -o libscigraphics_la-qsort-char.lo `test -f 'src/c/qsort-char.c' || echo '$(srcdir)/'`src/c/qsort-char.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-qsort-char.Tpo $(DEPDIR)/libscigraphics_la-qsort-char.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/qsort-char.c' object='libscigraphics_la-qsort-char.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-qsort-char.lo `test -f 'src/c/qsort-char.c' || echo '$(srcdir)/'`src/c/qsort-char.c
-
-libscigraphics_la-qsort-double.lo: src/c/qsort-double.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-qsort-double.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-qsort-double.Tpo -c -o libscigraphics_la-qsort-double.lo `test -f 'src/c/qsort-double.c' || echo '$(srcdir)/'`src/c/qsort-double.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-qsort-double.Tpo $(DEPDIR)/libscigraphics_la-qsort-double.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/qsort-double.c' object='libscigraphics_la-qsort-double.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-qsort-double.lo `test -f 'src/c/qsort-double.c' || echo '$(srcdir)/'`src/c/qsort-double.c
-
-libscigraphics_la-qsort-int.lo: src/c/qsort-int.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-qsort-int.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-qsort-int.Tpo -c -o libscigraphics_la-qsort-int.lo `test -f 'src/c/qsort-int.c' || echo '$(srcdir)/'`src/c/qsort-int.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-qsort-int.Tpo $(DEPDIR)/libscigraphics_la-qsort-int.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/qsort-int.c' object='libscigraphics_la-qsort-int.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-qsort-int.lo `test -f 'src/c/qsort-int.c' || echo '$(srcdir)/'`src/c/qsort-int.c
-
-libscigraphics_la-qsort-short.lo: src/c/qsort-short.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-qsort-short.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-qsort-short.Tpo -c -o libscigraphics_la-qsort-short.lo `test -f 'src/c/qsort-short.c' || echo '$(srcdir)/'`src/c/qsort-short.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-qsort-short.Tpo $(DEPDIR)/libscigraphics_la-qsort-short.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/qsort-short.c' object='libscigraphics_la-qsort-short.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-qsort-short.lo `test -f 'src/c/qsort-short.c' || echo '$(srcdir)/'`src/c/qsort-short.c
-
-libscigraphics_la-qsort-string.lo: src/c/qsort-string.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-qsort-string.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-qsort-string.Tpo -c -o libscigraphics_la-qsort-string.lo `test -f 'src/c/qsort-string.c' || echo '$(srcdir)/'`src/c/qsort-string.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-qsort-string.Tpo $(DEPDIR)/libscigraphics_la-qsort-string.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/qsort-string.c' object='libscigraphics_la-qsort-string.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-qsort-string.lo `test -f 'src/c/qsort-string.c' || echo '$(srcdir)/'`src/c/qsort-string.c
 
 libscigraphics_la-math_graphics.lo: src/c/math_graphics.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-math_graphics.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-math_graphics.Tpo -c -o libscigraphics_la-math_graphics.lo `test -f 'src/c/math_graphics.c' || echo '$(srcdir)/'`src/c/math_graphics.c
@@ -4827,13 +4753,6 @@ libscigraphics_la-sci_geom3d.lo: sci_gateway/c/sci_geom3d.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_geom3d.c' object='libscigraphics_la-sci_geom3d.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_geom3d.lo `test -f 'sci_gateway/c/sci_geom3d.c' || echo '$(srcdir)/'`sci_gateway/c/sci_geom3d.c
-
-libscigraphics_la-sci_xsort.lo: sci_gateway/c/sci_xsort.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xsort.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xsort.Tpo -c -o libscigraphics_la-sci_xsort.lo `test -f 'sci_gateway/c/sci_xsort.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xsort.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xsort.Tpo $(DEPDIR)/libscigraphics_la-sci_xsort.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xsort.c' object='libscigraphics_la-sci_xsort.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xsort.lo `test -f 'sci_gateway/c/sci_xsort.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xsort.c
 
 libscigraphics_la-sci_xtape.lo: sci_gateway/c/sci_xtape.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xtape.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xtape.Tpo -c -o libscigraphics_la-sci_xtape.lo `test -f 'sci_gateway/c/sci_xtape.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xtape.c

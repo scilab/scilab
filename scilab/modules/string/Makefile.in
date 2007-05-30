@@ -83,7 +83,10 @@ libscistring_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/polynomials/libscipolynomials.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
 am__objects_1 = libscistring_la-strcat-c.lo \
-	libscistring_la-men_Sutils.lo
+	libscistring_la-men_Sutils.lo libscistring_la-gsort.lo \
+	libscistring_la-qsort.lo libscistring_la-qsort-char.lo \
+	libscistring_la-qsort-double.lo libscistring_la-qsort-int.lo \
+	libscistring_la-qsort-short.lo libscistring_la-qsort-string.lo
 am__objects_2 = strord.lo strdsp.lo
 am__objects_3 = libscistring_la-sci_strindex.lo \
 	libscistring_la-sci_strcat.lo libscistring_la-sci_tokens.lo \
@@ -94,7 +97,7 @@ am__objects_3 = libscistring_la-sci_strindex.lo \
 	libscistring_la-sci_code2str.lo \
 	libscistring_la-sci_emptystr.lo libscistring_la-sci_ascii.lo \
 	libscistring_la-sci_strsubst.lo libscistring_la-sci_grep.lo \
-	libscistring_la-sci_convstr.lo
+	libscistring_la-sci_convstr.lo libscistring_la-sci_xsort.lo
 am__objects_4 = sci_convstr.lo sci_grep.lo sci_strindex.lo \
 	sci_strcat.lo sci_tokens.lo sci_string.lo sci_part.lo \
 	sci_length.lo sci_strsplit.lo sci_str2code.lo sci_code2str.lo \
@@ -285,7 +288,14 @@ tcldir = @tcldir@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 STRING_C_SOURCES = src/c/strcat-c.c \
-src/c/men_Sutils.c
+src/c/men_Sutils.c \
+src/c/gsort.c \
+src/c/qsort.c \
+src/c/qsort-char.c \
+src/c/qsort-double.c \
+src/c/qsort-int.c \
+src/c/qsort-short.c \
+src/c/qsort-string.c
 
 STRING_FORTRAN_SOURCES = src/fortran/strord.f src/fortran/strdsp.f
 GATEWAY_C_SOURCES = sci_gateway/c/sci_strindex.c \
@@ -303,7 +313,8 @@ sci_gateway/c/sci_emptystr.c \
 sci_gateway/c/sci_ascii.c \
 sci_gateway/c/sci_strsubst.c \
 sci_gateway/c/sci_grep.c \
-sci_gateway/c/sci_convstr.c
+sci_gateway/c/sci_convstr.c \
+sci_gateway/c/sci_xsort.c 
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_convstr.f \
 sci_gateway/fortran/sci_grep.f \
@@ -322,7 +333,7 @@ sci_gateway/fortran/sci_ascii.f \
 sci_gateway/fortran/sci_strsubst.f \
 sci_gateway/fortran/strops.f
 
-libscistring_la_CFLAGS = -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
+libscistring_la_CFLAGS = -Isrc/c -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 pkglib_LTLIBRARIES = libscistring.la
 libscistring_la_SOURCES = $(STRING_C_SOURCES) $(STRING_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libscistring_la_LIBADD = \
@@ -466,8 +477,15 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-gsort.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-gw_string.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-men_Sutils.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-qsort-char.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-qsort-double.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-qsort-int.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-qsort-short.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-qsort-string.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-qsort.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-sci_ascii.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-sci_code2str.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-sci_convstr.Plo@am__quote@
@@ -483,6 +501,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-sci_strsplit.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-sci_strsubst.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-sci_tokens.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-sci_xsort.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-strcat-c.Plo@am__quote@
 
 .c.o:
@@ -519,6 +538,55 @@ libscistring_la-men_Sutils.lo: src/c/men_Sutils.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/men_Sutils.c' object='libscistring_la-men_Sutils.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-men_Sutils.lo `test -f 'src/c/men_Sutils.c' || echo '$(srcdir)/'`src/c/men_Sutils.c
+
+libscistring_la-gsort.lo: src/c/gsort.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-gsort.lo -MD -MP -MF $(DEPDIR)/libscistring_la-gsort.Tpo -c -o libscistring_la-gsort.lo `test -f 'src/c/gsort.c' || echo '$(srcdir)/'`src/c/gsort.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscistring_la-gsort.Tpo $(DEPDIR)/libscistring_la-gsort.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/gsort.c' object='libscistring_la-gsort.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-gsort.lo `test -f 'src/c/gsort.c' || echo '$(srcdir)/'`src/c/gsort.c
+
+libscistring_la-qsort.lo: src/c/qsort.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-qsort.lo -MD -MP -MF $(DEPDIR)/libscistring_la-qsort.Tpo -c -o libscistring_la-qsort.lo `test -f 'src/c/qsort.c' || echo '$(srcdir)/'`src/c/qsort.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscistring_la-qsort.Tpo $(DEPDIR)/libscistring_la-qsort.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/qsort.c' object='libscistring_la-qsort.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-qsort.lo `test -f 'src/c/qsort.c' || echo '$(srcdir)/'`src/c/qsort.c
+
+libscistring_la-qsort-char.lo: src/c/qsort-char.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-qsort-char.lo -MD -MP -MF $(DEPDIR)/libscistring_la-qsort-char.Tpo -c -o libscistring_la-qsort-char.lo `test -f 'src/c/qsort-char.c' || echo '$(srcdir)/'`src/c/qsort-char.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscistring_la-qsort-char.Tpo $(DEPDIR)/libscistring_la-qsort-char.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/qsort-char.c' object='libscistring_la-qsort-char.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-qsort-char.lo `test -f 'src/c/qsort-char.c' || echo '$(srcdir)/'`src/c/qsort-char.c
+
+libscistring_la-qsort-double.lo: src/c/qsort-double.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-qsort-double.lo -MD -MP -MF $(DEPDIR)/libscistring_la-qsort-double.Tpo -c -o libscistring_la-qsort-double.lo `test -f 'src/c/qsort-double.c' || echo '$(srcdir)/'`src/c/qsort-double.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscistring_la-qsort-double.Tpo $(DEPDIR)/libscistring_la-qsort-double.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/qsort-double.c' object='libscistring_la-qsort-double.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-qsort-double.lo `test -f 'src/c/qsort-double.c' || echo '$(srcdir)/'`src/c/qsort-double.c
+
+libscistring_la-qsort-int.lo: src/c/qsort-int.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-qsort-int.lo -MD -MP -MF $(DEPDIR)/libscistring_la-qsort-int.Tpo -c -o libscistring_la-qsort-int.lo `test -f 'src/c/qsort-int.c' || echo '$(srcdir)/'`src/c/qsort-int.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscistring_la-qsort-int.Tpo $(DEPDIR)/libscistring_la-qsort-int.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/qsort-int.c' object='libscistring_la-qsort-int.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-qsort-int.lo `test -f 'src/c/qsort-int.c' || echo '$(srcdir)/'`src/c/qsort-int.c
+
+libscistring_la-qsort-short.lo: src/c/qsort-short.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-qsort-short.lo -MD -MP -MF $(DEPDIR)/libscistring_la-qsort-short.Tpo -c -o libscistring_la-qsort-short.lo `test -f 'src/c/qsort-short.c' || echo '$(srcdir)/'`src/c/qsort-short.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscistring_la-qsort-short.Tpo $(DEPDIR)/libscistring_la-qsort-short.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/qsort-short.c' object='libscistring_la-qsort-short.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-qsort-short.lo `test -f 'src/c/qsort-short.c' || echo '$(srcdir)/'`src/c/qsort-short.c
+
+libscistring_la-qsort-string.lo: src/c/qsort-string.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-qsort-string.lo -MD -MP -MF $(DEPDIR)/libscistring_la-qsort-string.Tpo -c -o libscistring_la-qsort-string.lo `test -f 'src/c/qsort-string.c' || echo '$(srcdir)/'`src/c/qsort-string.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscistring_la-qsort-string.Tpo $(DEPDIR)/libscistring_la-qsort-string.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/qsort-string.c' object='libscistring_la-qsort-string.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-qsort-string.lo `test -f 'src/c/qsort-string.c' || echo '$(srcdir)/'`src/c/qsort-string.c
 
 libscistring_la-sci_strindex.lo: sci_gateway/c/sci_strindex.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-sci_strindex.lo -MD -MP -MF $(DEPDIR)/libscistring_la-sci_strindex.Tpo -c -o libscistring_la-sci_strindex.lo `test -f 'sci_gateway/c/sci_strindex.c' || echo '$(srcdir)/'`sci_gateway/c/sci_strindex.c
@@ -631,6 +699,13 @@ libscistring_la-sci_convstr.lo: sci_gateway/c/sci_convstr.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_convstr.c' object='libscistring_la-sci_convstr.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-sci_convstr.lo `test -f 'sci_gateway/c/sci_convstr.c' || echo '$(srcdir)/'`sci_gateway/c/sci_convstr.c
+
+libscistring_la-sci_xsort.lo: sci_gateway/c/sci_xsort.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-sci_xsort.lo -MD -MP -MF $(DEPDIR)/libscistring_la-sci_xsort.Tpo -c -o libscistring_la-sci_xsort.lo `test -f 'sci_gateway/c/sci_xsort.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xsort.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscistring_la-sci_xsort.Tpo $(DEPDIR)/libscistring_la-sci_xsort.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xsort.c' object='libscistring_la-sci_xsort.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-sci_xsort.lo `test -f 'sci_gateway/c/sci_xsort.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xsort.c
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<
