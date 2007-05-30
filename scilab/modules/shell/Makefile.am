@@ -20,12 +20,11 @@ sci_gateway/c/sci_loadhistory.c \
 sci_gateway/c/sci_resethistory.c \
 sci_gateway/c/sci_savehistory.c
 
-
 if WITH_JAVA
 SHELL_C_SOURCES += src/c/ShellPrintf.c
 else
 SHELL_C_SOURCES += src/c/ShellPrintf_nojava.c
-end
+endif
 
 # Includes need for the compilation
 libscishell_la_CFLAGS= $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/
