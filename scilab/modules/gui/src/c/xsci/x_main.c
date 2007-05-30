@@ -90,8 +90,6 @@ extern char *getenv();
 extern void exit();
 #endif
 /*-----------------------------------------------------------------------------------*/
-
-/*-----------------------------------------------------------------------------------*/
 char *ProgramName;
 /*-----------------------------------------------------------------------------------*/
 extern void sci_clear_and_exit (int);
@@ -100,7 +98,7 @@ extern void do_hangup(void);
 extern void do_kill(Widget gw, caddr_t closure, caddr_t data);
 extern void sci_usr1_signal(int n) ;
 extern char ** create_argv(int *argc);
-extern void settexmacs(void);
+
 /*-----------------------------------------------------------------------------------*/
 /*static void Syntax __PARAMS((char *badOption));  */
 /*static void Syntax (char *badOption);  */
@@ -121,75 +119,6 @@ void sci_sig_tstp(int n);
 int IsConsoleMode(void);
 void InitXsession(void);
 
-
-/*----------------------------------------------------------------------------------*/
-void mainscic(int argc, char **argv)
-{
-  int i;
-  int  no_startup_flag=0;
-  int  memory = MIN_STACKSIZE;
-	
-  char * initial_script = NULL;
-  int  initial_script_type = 0; /* 0 means filename 1 means code */
- 
-  char  *display = NULL;
-  
-  #if (defined __GNUC__  )
-		putenv ("COMPILER=gcc");
-	#else
-		putenv ("COMPILER=cc or another");
-	#endif
-
-#if defined(netbsd) || defined(freebsd)
-/* floating point exceptions */
-fpsetmask(0);
-#endif
-
-
-  ProgramName = argv[0];
-  
-  setScilabMode(SCILAB_STD);
-  
-  /* scanning options */
-  for ( i=0 ; i < argc ; i++) 
-  {
-      if ( strcmp(argv[i],"-nw") == 0) 
-      { 
-      	setScilabMode(SCILAB_NW);
-      } 
-      else if ( strcmp(argv[i],"-nwni") == 0) 
-      { 
-      	setScilabMode(SCILAB_NWNI);
-      } 
-      else if ( strcmp(argv[i],"-display") == 0) 
-      { 
-	char dpy[128];
-	sprintf(dpy,"DISPLAY=%s",display);
-	putenv(dpy);
-      } 
-      else if ( strcmp(argv[i],"-nb") == 0)  { sci_show_banner = 0; }
-      else if ( strcmp(argv[i],"-ns") == 0)  { no_startup_flag = 1;}
-      else if ( strcmp(argv[i],"-mem") == 0) { i++;memory = Max(atoi(argv[i]),MIN_STACKSIZE );} 
-      else if ( strcmp(argv[i],"-f") == 0)   { initial_script = argv[++i];} 
-      else if ( strcmp(argv[i],"-e") == 0) 
-      {
-	initial_script = argv[++i];
-	initial_script_type = 1;
-      } 
-      else if ( strcmp(argv[i],"--texmacs") == 0)  
-      {
-      	setScilabMode(SCILAB_NWNI);
-      	settexmacs();
-      }
-      else if ( strcmp(argv[i],"-nogui") == 0)  
-      {
-      	setScilabMode(SCILAB_NWNI);
-      }
-      else if ( strcmp(argv[i],"-version") == 0) {disp_scilab_version();exit(1);}
-    }
-
-  realmain(no_startup_flag,initial_script,initial_script_type,memory);
-}
 
 /*----------------------------------------------------------------------------------*/
 Boolean   sunFunctionKeys = False;
