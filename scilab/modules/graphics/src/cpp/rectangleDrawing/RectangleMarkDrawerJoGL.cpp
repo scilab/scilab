@@ -1,30 +1,19 @@
 /*------------------------------------------------------------------------*/
-/* file: DrawableSurface.cpp                                              */
+/* file: RectangleMarkDrawerJoGL.cpp                                      */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
-/* desc : Class containing the drawing routine for a surface object       */
+/* desc : Strategy drawing the marks on the corners of a rectangle        */
 /*------------------------------------------------------------------------*/
 
-
-#include "DrawableSurface.h"
-extern "C"
-{
-#include "handleDrawing/drawSurfaceEntity.h"
-}
+#include "RectangleMarkDrawerJoGL.h"
 
 namespace sciGraphics
 {
-
 /*------------------------------------------------------------------------------------------*/
-void DrawableSurface::draw( void )
+void RectangleMarkDrawerJoGL::drawRectangle( void )
 {
-  //drawSurfaceEntity( m_pDrawed ) ;
-}
-/*------------------------------------------------------------------------------------------*/
-void DrawableSurface::show( void )
-{
-  draw() ;
-}
-/*------------------------------------------------------------------------------------------*/
 
 }
+/*------------------------------------------------------------------------------------------*/
+}
+

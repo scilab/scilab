@@ -59,14 +59,14 @@ public class SciRenderer
    */
   public void init(GLAutoDrawable gLDrawable) {
       if (isInit) { return; }
-      System.out.println("toto");
       final GL gl = gLDrawable.getGL();
       gl.glShadeModel(GL.GL_SMOOTH);              // Enable Smooth Shading
-      gl.glClearColor(0.0f, 0.0f, 0.0f, 0.5f);    // Black Background
+      gl.glClearColor(1.0f, 1.0f, 1.0f, 0.5f);    // white Background
       gl.glClearDepth(1.0f);                      // Depth Buffer Setup
       gl.glEnable(GL.GL_DEPTH_TEST);							// Enables Depth Testing
       gl.glDepthFunc(GL.GL_LEQUAL);								// The Type Of Depth Testing To Do
       gl.glHint(GL.GL_PERSPECTIVE_CORRECTION_HINT, GL.GL_NICEST);	// Really Nice Perspective Calculations
+      gl.glEnable(GL.GL_LINE_SMOOTH);
       gLDrawable.addKeyListener(this);
       
       isInit = true;

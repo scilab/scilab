@@ -1317,7 +1317,7 @@ ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
       pRECTANGLE_FEATURE (pobj)->flagstring = flagstring;
       pRECTANGLE_FEATURE (pobj)->x = x;
       pRECTANGLE_FEATURE (pobj)->y = y;
-      pRECTANGLE_FEATURE (pobj)->z = 0; 
+      pRECTANGLE_FEATURE (pobj)->z = 0.0; 
       pRECTANGLE_FEATURE (pobj)->height = height;
       pRECTANGLE_FEATURE (pobj)->width = width;
       pRECTANGLE_FEATURE (pobj)->str = str;

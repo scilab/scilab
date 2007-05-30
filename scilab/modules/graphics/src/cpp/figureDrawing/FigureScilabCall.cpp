@@ -18,7 +18,8 @@ extern "C"
 /*-----------------------------------------------------------------------------------*/
 JNIEXPORT void JNICALL Java_org_scilab_modules_graphics_figureDrawing_FigureScilabCall_redrawFigure( JNIEnv * env, jobject obj, jint figureId )
 {
-  sciprint("Redraw the object.\n") ;
-  ((sciGraphics::DrawableFigure*)sciGraphics::getHandleDrawer(sciGetCurrentFigure()))->drawInContext() ;
+  sciPointObj * curFig = sciGetCurrentScilabXgc()->mafigure ;
+  if ( curFig == NULL ) { return ;}
+  ((sciGraphics::DrawableFigure*)sciGraphics::getHandleDrawer(curFig))->drawInContext() ;
 }
 /*-----------------------------------------------------------------------------------*/

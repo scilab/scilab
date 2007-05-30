@@ -13,55 +13,65 @@ import javax.swing.JFrame;
 
 import javax.media.opengl.GLJPanel;
 import javax.media.opengl.GL;
-import javax.media.opengl.glu.GLU;
 import javax.media.opengl.GLCapabilities;
+
+import org.scilab.modules.gui.window.ScilabWindow;
+import org.scilab.modules.gui.window.Window;
+import org.scilab.modules.gui.tab.ScilabTab;
+import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.canvas.ScilabCanvas;
+import org.scilab.modules.gui.canvas.Canvas;
+import org.scilab.modules.gui.bridge.SwingScilabCanvas;
 
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowAdapter;
+import org.scilab.modules.gui.utils.Size;
+
+import org.scilab.modules.graphics.DrawableObjectJoGL;
+import org.scilab.modules.graphics.FigureCanvasMapper;
 
 /**
  * Class containing functions called by DrawableFigureJoGL.cpp
  * @author Jean-Baptiste Silvy
  */
-public class DrawableFigureJoGL {
+public class DrawableFigureJoGL extends DrawableObjectJoGL {
 	
 	/** Canvas to draw the figure */
-	private GLJPanel canvas;
+	private SwingScilabCanvas canvas;
 	/** Window to draw the figure */
-	private JFrame frame;
+	private Tab graphicTab;
+	/** store the figureIndex */
+	private int figureId;
 	
-	/***
+	/**
 	 * Default Constructor
 	 */
-  public DrawableFigureJoGL() {
-      canvas = null;
-      frame  = null;
+	public DrawableFigureJoGL() {
+		super();
+      	canvas = null;
+      	graphicTab  = null;
     }
-
-  /**
-   * Function called before beginning to use OpenGL methods.
-   */
-  public void initializeDrawing() { }
-
-  /**
-   * Function called at the end of the OpenGL use.
-   */
-  public void endDrawing() { }
-
+	
+	/**
+	 * Set figureId property
+	 * @param figureId new figure Id
+	 */
+	public void setFigureId(int figureId) {
+		this.figureId = figureId;
+	}
+  
   /**
    * Display the info message of the figure
+   * @param infoMessage string to display describing the figure
    */
-  public void updateInfoMessage() {
+  public void updateInfoMessage(String infoMessage) {
     if (canvas == null) { return; }
-    final GL gl = canvas.getGL();
-    GLU glu = new GLU();
+    GL gl = getGL();
     gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
     gl.glLoadIdentity();
-    gl.glTranslatef(-1.5f, 0.0f, -6.0f);
-    gl.glRotatef(0.2f, 0.0f, 1.0f, 0.0f);
+    gl.glTranslatef(0.0f, 0.0f, -6.0f);
     gl.glColor3f(1.0f, 0.0f, 0.0f);
-    glu.gluSphere(glu.gluNewQuadric(), 1.0, 32, 32);
-
+    graphicTab.setName(infoMessage);
   }
 
   /**
@@ -69,7 +79,6 @@ public class DrawableFigureJoGL {
    * Called from C to be sure to be in the right context
    */
   public void display() {
-
 	  canvas.repaint();
   }
   
@@ -79,34 +88,46 @@ public class DrawableFigureJoGL {
    */
   public void openRenderingCanvas(int figureIndex) {
       if (canvas != null) { return; }
-      frame = new JFrame("Java Window number " + figureIndex);
+      System.out.println("openRenderingCanvas");
+      Window graphicView = ScilabWindow.createWindow();
+      graphicView.draw();
+      graphicView.setTitle("Graphic window number " + figureIndex);
+      
+      /* FIGURE */
+      /* Create the tab to put a canvas into */
+      graphicTab = ScilabTab.createTab("");
+      graphicTab.setName("");
+      graphicView.addTab(graphicTab);
+      
       GLCapabilities cap = new GLCapabilities();
       cap.setAlphaBits(8);
       cap.setHardwareAccelerated(true);
       cap.setDoubleBuffered(true);
       cap.setDepthBits(8);
-      canvas = new GLJPanel(cap);
+      canvas = new SwingScilabCanvas(cap);
       canvas.addGLEventListener(new SciRenderer());
+      figureId = figureIndex;
+      FigureCanvasMapper.addMapping(figureIndex, canvas);
       
-      frame.add(canvas);
-      frame.setSize(640, 480);
-      frame.addWindowListener(new WindowAdapter()
-        {
-          public void windowClosing(WindowEvent e) {
-              closeRenderingCanvas();
-          }
-        });
-       frame.show();
+      /* Create the canvas */
+      //canvas = (SwingScilabCanvas) ScilabCanvas.createCanvas();
+      canvas.setDims(new Size(640, 480));
+      //canvas.draw();
+      graphicTab.addMember(canvas);
+      canvas.draw();
+      //graphicTab.draw();
+      // graphicView.draw();
+      System.out.println("end openRenderingCanvas");
     }
 
   /**
    * Destroyr the rendering context
    */
   public void closeRenderingCanvas() {
-      if (frame != null) {
-        frame.dispose();
+      if (canvas != null) {
+    	FigureCanvasMapper.removeMapping(figureId);
         canvas = null;
-        frame = null;
+        graphicTab = null;
       }
     }
 }

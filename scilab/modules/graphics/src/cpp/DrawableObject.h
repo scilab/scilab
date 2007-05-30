@@ -8,6 +8,8 @@
 #ifndef _DRAWABLE_OBJECT_H_
 #define _DRAWABLE_OBJECT_H_
 
+#include "DrawableObjectImp.h"
+
 extern "C"
 {
 #include "ObjectStructure.h"
@@ -26,7 +28,7 @@ public:
 
   DrawableObject( sciPointObj * drawed ) ;
 
-  virtual ~DrawableObject( void ) {}
+  virtual ~DrawableObject( void ) ;
 
   /**
    * Display a handle on the screen.
@@ -48,8 +50,14 @@ public:
    */
   void displayChildren( void ) ;
 
+  /**
+   * Set the driver dependent implementation of algorithms
+   */
+  void setDrawableImp( DrawableObjectImp * imp ) { m_pImp = imp ; }
+
 protected:
 
+  /*---------------------------------------------------------------------------------*/
   /**
    * Draw the graphic handle and store it representation in memory
    * for later faster drawing.
@@ -63,10 +71,28 @@ protected:
   virtual void show( void ) = 0 ;
 
   /**
+   * Get the driver dependent implementation of algorithm
+   * Each graphic object must have is own
+   */
+  DrawableObjectImp * getDrawableImp( void ) { return m_pImp ; }
+
+  /**
    * Common to every object. Check its visibility.
    */
   bool checkVisibility( void ) ;
 
+  /**
+   * Initialize the context for drawing
+   */
+  virtual void initializeDrawing( void ) ;
+
+  /**
+   * Close drawing session and display image on the screen
+   */
+  virtual void endDrawing( void ) ;
+
+
+  /*---------------------------------------------------------------------------------*/
 
   /**
    * The graphic handle to draw
@@ -78,6 +104,11 @@ protected:
    */
   bool m_bNeedRedraw ;
 
+  /**
+   *  Contains drivers independent algorithm common to all DrawableObjects
+   */
+  DrawableObjectImp * m_pImp ;
+  /*---------------------------------------------------------------------------------*/
 
 } ;
 

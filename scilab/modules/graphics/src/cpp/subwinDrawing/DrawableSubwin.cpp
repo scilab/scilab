@@ -17,7 +17,8 @@ namespace sciGraphics
 /*------------------------------------------------------------------------------------------*/
 void DrawableSubwin::draw( void )
 {
-  drawSubWinEntity( m_pDrawed ) ;
+  displayChildren() ;
+  //drawSubWinEntity( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableSubwin::show( void )

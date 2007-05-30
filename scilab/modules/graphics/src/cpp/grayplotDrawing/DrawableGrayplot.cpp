@@ -17,7 +17,7 @@ namespace sciGraphics
 /*------------------------------------------------------------------------------------------*/
 void DrawableGrayplot::draw( void )
 {
-  drawGrayplotEntity( m_pDrawed ) ;
+  //drawGrayplotEntity( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableGrayplot::show( void )

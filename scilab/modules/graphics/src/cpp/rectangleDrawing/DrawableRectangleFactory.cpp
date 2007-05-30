@@ -7,6 +7,7 @@
 /*------------------------------------------------------------------------*/
 
 #include "DrawableRectangleFactory.h"
+#include "DrawableRectangleImpFactory.h"
 #include "DrawableRectangle.h"
 
 namespace sciGraphics
@@ -15,7 +16,12 @@ namespace sciGraphics
 /*------------------------------------------------------------------------------------------*/
 DrawableObject * DrawableRectangleFactory::create( void )
 {
-  return new DrawableRectangle( m_pDrawed ) ;
+  DrawableRectangle * newRect = new DrawableRectangle( m_pDrawed ) ;
+  DrawableRectangleImpFactory imp ;
+  imp.setDrawedRectangle( newRect ) ;
+  newRect->setDrawableImp( imp.create() ) ;
+
+  return newRect ;
 }
 /*------------------------------------------------------------------------------------------*/
 

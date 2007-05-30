@@ -17,7 +17,7 @@ namespace sciGraphics
 /*------------------------------------------------------------------------------------------*/
 void DrawablePolyline::draw( void )
 {
-  drawPolylineEntity( m_pDrawed ) ;
+  //drawPolylineEntity( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawablePolyline::show( void )

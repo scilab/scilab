@@ -10,6 +10,7 @@
 
 
 #include "../DrawableClippedObject.h"
+#include "DrawableRectangleImp.h"
 
 namespace sciGraphics
 {
@@ -21,8 +22,16 @@ public:
 
   DrawableRectangle( sciPointObj * pObj ) : DrawableClippedObject( pObj ) {}
 
+  virtual ~DrawableRectangle( void ) ;
+
+  /**
+   * compute the coordinates of the 4 edges of the rectangle given clockwise.
+   */
+  void getCornersCoordinates( double corner1[3], double corner2[3], double corner3[3], double corner4[3] ) ;
+
 protected:
 
+  /*---------------------------------------------------------------------------------*/
   /**
    * Draw the graphic handle and store it representation in memory
    * for later faster drawing.
@@ -35,6 +44,16 @@ protected:
    */
   virtual void show( void ) ;
 
+  /**
+   * Actually draw the rectangle on the screen
+   */
+  void drawRectangle( void ) ;
+
+  /**
+  * Return the real type of implementation object
+  */
+  DrawableRectangleImp * getRectangleImp( void ) { return dynamic_cast<DrawableRectangleImp *>(m_pImp) ; }
+  /*---------------------------------------------------------------------------------*/
 
 } ;
 

@@ -17,7 +17,7 @@ namespace sciGraphics
 /*------------------------------------------------------------------------------------------*/
 void DrawableText::draw( void )
 {
-  drawTextEntity( m_pDrawed ) ;
+  //drawTextEntity( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableText::show( void )

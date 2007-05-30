@@ -1,30 +1,18 @@
 /*------------------------------------------------------------------------*/
-/* file: DrawableSurface.cpp                                              */
+/* file: RectangleFillDrawerJoGL.cpp                                      */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
-/* desc : Class containing the drawing routine for a surface object       */
+/* desc : Strategy drawing the inside of a rectangle                      */
 /*------------------------------------------------------------------------*/
 
-
-#include "DrawableSurface.h"
-extern "C"
-{
-#include "handleDrawing/drawSurfaceEntity.h"
-}
+#include "RectangleFillDrawerJoGL.h"
 
 namespace sciGraphics
 {
-
 /*------------------------------------------------------------------------------------------*/
-void DrawableSurface::draw( void )
+void RectangleFillDrawerJoGL::drawRectangle( void )
 {
-  //drawSurfaceEntity( m_pDrawed ) ;
+
 }
 /*------------------------------------------------------------------------------------------*/
-void DrawableSurface::show( void )
-{
-  draw() ;
-}
-/*------------------------------------------------------------------------------------------*/
-
 }

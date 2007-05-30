@@ -17,7 +17,7 @@ namespace sciGraphics
 /*------------------------------------------------------------------------------------------*/
 void DrawableLegend::draw( void )
 {
-  drawLegendEntity( m_pDrawed ) ;
+  //drawLegendEntity( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableLegend::show( void )

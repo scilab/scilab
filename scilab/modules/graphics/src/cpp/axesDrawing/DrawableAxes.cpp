@@ -17,7 +17,7 @@ namespace sciGraphics
 /*------------------------------------------------------------------------------------------*/
 void DrawableAxes::draw( void )
 {
-  drawAxesEntity( m_pDrawed ) ;
+  //drawAxesEntity( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableAxes::show( void )

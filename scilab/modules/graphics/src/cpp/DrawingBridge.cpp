@@ -30,6 +30,8 @@ void destroyHandleDrawer( sciPointObj * pObj )
 void sciDrawObj( sciPointObj * pObj )
 {
   /* force total redraw */
+  /* we need to recreate a new one */
+  //destroyHandleDrawer(pObj);
   getHandleDrawer(pObj)->hasChanged() ;
   /* redisplay everything, including this handle */
   getHandleDrawer( sciGetParentFigure( pObj ) )->display() ;

@@ -24,11 +24,6 @@ public:
   virtual ~DrawableFigure( void ) ;
 
   /**
-   * Set the implementation objects for the graphic algorithms
-   */
-  void setDrawableImp( DrawableFigureImp * imp ) { m_pImp = imp ; }
-
-  /**
    * Real operations to draw the figure.
    * Can be only called if the rendering context (canvas)
    * is created
@@ -49,6 +44,11 @@ protected:
    * Warning, be sure that draw is called before show each time the handle is modified.
    */
   virtual void show( void ) ;
+
+  /**
+   * Return the real type of implementation object
+   */
+  DrawableFigureImp * getFigureImp( void ) { return dynamic_cast<DrawableFigureImp *>(m_pImp) ; }
   
   /*--------------------------------------------------------------------------------------*/
   // Driver Independant Algorithms
@@ -76,24 +76,11 @@ protected:
   void closeRenderingCanvas( void ) ;
 
   /**
-   * Initialize the context for drawing
-   */
-  void initializeDrawing( void ) ;
-
-  /**
-   * Close drawing session and display image on the screen
-   */
-  void endDrawing( void ) ;
-
-  /**
    * Display the info message of the window
    */
   void updateInfoMessage( void ) ;
 
   /*--------------------------------------------------------------------------------------*/ 
-
-
-  DrawableFigureImp * m_pImp ; /**< bridge for driver dependant algorithm */
 
 } ;
 

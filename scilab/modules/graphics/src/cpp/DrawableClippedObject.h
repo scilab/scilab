@@ -49,7 +49,7 @@ public:
 
   /**
    * remove clipping. Should be called at the end of the object drawing.
-   * It may have effect on other objects.
+   * Otherwise it may have effect on other objects.
    */
   virtual void unClip( void ) ;
   

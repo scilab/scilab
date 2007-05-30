@@ -32,3 +32,12 @@ drawArcEntity
 sciGetCurrentFigure
 sciprint
 getHandleDrawer
+sciGetCurrentScilabXgc
+sciGetIsMark
+sciGetIsFilled
+sciGetIsLine
+sciGetParent
+sciGetInfoMessage
+sciGetForeground
+sciGetLineWidth
+sciGetLineStyle

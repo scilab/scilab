@@ -17,7 +17,7 @@ namespace sciGraphics
 /*------------------------------------------------------------------------------------------*/
 void DrawableArc::draw( void )
 {
-  drawArcEntity( m_pDrawed ) ;
+  //drawArcEntity( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableArc::show( void )

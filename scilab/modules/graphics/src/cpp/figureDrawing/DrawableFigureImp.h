@@ -10,16 +10,17 @@
 #define _DRAWABLE_FIGURE_IMP_H_
 
 #include "../DrawableObject.h"
+#include "../DrawableObjectImp.h"
 
 namespace sciGraphics
 {
 
 /**
- * To avoid cyclic dependances.
+ * To avoid cyclic dependancies.
  */
 class DrawableFigure ;
 
-class DrawableFigureImp
+class DrawableFigureImp : virtual public DrawableObjectImp
 {
 
 public:
@@ -32,16 +33,6 @@ public:
   * Tell the canvas to draw itself.
   */
   virtual void drawCanvas( void ) = 0 ;
-
-  /**
-   * Initialize the context for drawing
-   */
-  virtual void initializeDrawing( void ) = 0 ;
-
-  /**
-   * Close drawing session and display image on the screen
-   */
-  virtual void endDrawing( void ) = 0 ;
 
   /**
    * Display the info message of the window
@@ -60,7 +51,7 @@ public:
 
 protected:
 
-  DrawableFigure * m_pDrawer ; /**< bridge for driver dependant algorithm */
+  DrawableFigure * m_pDrawer ; /**< bridge for driver dependent algorithm */
 
 } ;
 

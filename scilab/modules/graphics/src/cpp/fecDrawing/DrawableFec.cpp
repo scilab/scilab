@@ -17,7 +17,7 @@ namespace sciGraphics
 /*------------------------------------------------------------------------------------------*/
 void DrawableFec::draw( void )
 {
-  drawFecEntity( m_pDrawed ) ;
+  //drawFecEntity( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFec::show( void )

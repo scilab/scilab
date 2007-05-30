@@ -96,7 +96,6 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				Description=""
 				CommandLine=""
 			/>
 		</Configuration>
@@ -186,7 +185,6 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				Description=""
 				CommandLine=""
 			/>
 		</Configuration>
@@ -291,6 +289,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\DrawableObjectJoGL.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\polylineDrawing\DrawablePolyline.cpp"
 				>
 			</File>
@@ -304,6 +306,14 @@
 			</File>
 			<File
 				RelativePath=".\rectangleDrawing\DrawableRectangleFactory.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\rectangleDrawing\DrawableRectangleImpFactory.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\rectangleDrawing\DrawableRectangleJoGL.cpp"
 				>
 			</File>
 			<File
@@ -356,6 +366,18 @@
 			</File>
 			<File
 				RelativePath=".\HandleObserverManagement.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\rectangleDrawing\RectangleFillDrawerJoGL.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\rectangleDrawing\RectangleLineDrawerJoGL.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\rectangleDrawing\RectangleMarkDrawerJoGL.cpp"
 				>
 			</File>
 		</Filter>
@@ -460,6 +482,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\DrawableObjectImp.h"
+				>
+			</File>
+			<File
+				RelativePath=".\DrawableObjectJoGL.h"
+				>
+			</File>
+			<File
 				RelativePath=".\polylineDrawing\DrawablePolyline.h"
 				>
 			</File>
@@ -473,6 +503,18 @@
 			</File>
 			<File
 				RelativePath=".\rectangleDrawing\DrawableRectangleFactory.h"
+				>
+			</File>
+			<File
+				RelativePath=".\rectangleDrawing\DrawableRectangleImp.h"
+				>
+			</File>
+			<File
+				RelativePath=".\rectangleDrawing\DrawableRectangleImpFactory.h"
+				>
+			</File>
+			<File
+				RelativePath=".\rectangleDrawing\DrawableRectangleJoGL.h"
 				>
 			</File>
 			<File
@@ -512,6 +554,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\rectangleDrawing\DrawRectangleStrategyJoGL.h"
+				>
+			</File>
+			<File
 				RelativePath=".\figureDrawing\FigureScilabCall.h"
 				>
 			</File>
@@ -533,6 +579,18 @@
 			</File>
 			<File
 				RelativePath=".\Observer.h"
+				>
+			</File>
+			<File
+				RelativePath=".\rectangleDrawing\RectangleFillDrawerJoGL.h"
+				>
+			</File>
+			<File
+				RelativePath=".\rectangleDrawing\RectangleLineDrawerJoGL.h"
+				>
+			</File>
+			<File
+				RelativePath=".\rectangleDrawing\RectangleMarkDrawerJoGL.h"
 				>
 			</File>
 			<File

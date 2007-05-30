@@ -21,6 +21,16 @@ DrawableObject::DrawableObject( sciPointObj * drawed )
 {
   m_pDrawed     = drawed ;
   m_bNeedRedraw = true   ; // a first call to draw is necessary
+  m_pImp = NULL ;
+}
+/*------------------------------------------------------------------------------------------*/
+DrawableObject::~DrawableObject( void )
+{
+  if ( m_pImp != NULL )
+  {
+    delete m_pImp ;
+    m_pImp = NULL ;
+  }
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableObject::display( void )
@@ -53,5 +63,14 @@ bool DrawableObject::checkVisibility( void )
   return sciGetVisibility( m_pDrawed ) == TRUE ;
 }
 /*------------------------------------------------------------------------------------------*/
-
+void DrawableObject::initializeDrawing( void )
+{
+  getDrawableImp()->initializeDrawing(sciGetNum(sciGetParentFigure(m_pDrawed))) ;
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableObject::endDrawing( void )
+{
+  getDrawableImp()->endDrawing() ;
+}
+/*------------------------------------------------------------------------------------------*/
 }

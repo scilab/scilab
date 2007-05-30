@@ -17,7 +17,7 @@ namespace sciGraphics
 /*------------------------------------------------------------------------------------------*/
 void DrawableSegs::draw( void )
 {
-  drawSegsEntity( m_pDrawed ) ;
+  //drawSegsEntity( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableSegs::show( void )

@@ -9,15 +9,16 @@
 #ifndef _DRAWABLE_FIGURE_JOGL_H_
 #define _DRAWABLE_FIGURE_JOGL_H_
 
-#include "jni.h"
+#include <jni.h>
 
 #include "DrawableFigureImp.h"
 #include "DrawableFigure.h"
+#include "../DrawableObjectJoGL.h"
 
 namespace sciGraphics
 {
 
-class DrawableFigureJoGL : public DrawableFigureImp
+class DrawableFigureJoGL : public DrawableObjectJoGL, public DrawableFigureImp
 {
 
 public:
@@ -30,16 +31,6 @@ public:
   * Tell the canvas to draw itself.
   */
   virtual void drawCanvas( void ) ;
-
-  /**
-   * Initialize the context for drawing
-   */
-  virtual void initializeDrawing( void ) ;
-
-  /**
-   * Close drawing session and display image on the screen
-   */
-  virtual void endDrawing( void ) ;
 
   /**
    * Display the info message of the window
@@ -55,12 +46,6 @@ public:
    * Close the rendering canvas
    */
   virtual void closeRenderingCanvas( void ) ;
-
-protected:
-
-  jclass m_oDrawableClass ;
-
-  jobject m_oDrawableObject ;
 
 } ;
 
