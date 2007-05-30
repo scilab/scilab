@@ -378,10 +378,17 @@ src/cpp/legendDrawing/DrawableLegend.cpp \
 src/cpp/rectangleDrawing/DrawableRectangleFactory.cpp \
 src/cpp/rectangleDrawing/DrawableRectangle.cpp \
 src/cpp/segsDrawing/DrawableSegsFactory.cpp \
-src/cpp/segsDrawing/DrawableSegs.cpp
+src/cpp/segsDrawing/DrawableSegs.cpp \
+src/cpp/rectangleDrawing/DrawableRectangleImpFactory.cpp
+
 
 if WITH_JAVA
-GRAPHICS_CPP_SOURCES += src/cpp/figureDrawing/DrawableFigureJoGL.cpp 
+GRAPHICS_CPP_SOURCES += src/cpp/figureDrawing/DrawableFigureJoGL.cpp \
+src/cpp/DrawableObjectJoGL.cpp \
+src/cpp/rectangleDrawing/RectangleMarkDrawerJoGL.cpp \
+src/cpp/rectangleDrawing/DrawableRectangleJoGL.cpp \
+src/cpp/rectangleDrawing/RectangleFillDrawerJoGL.cpp \
+src/cpp/rectangleDrawing/RectangleLineDrawerJoGL.cpp
 endif
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_swap_handles.c \

@@ -47,7 +47,13 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@WITH_JAVA_TRUE@am__append_1 = src/cpp/figureDrawing/DrawableFigureJoGL.cpp 
+@WITH_JAVA_TRUE@am__append_1 = src/cpp/figureDrawing/DrawableFigureJoGL.cpp \
+@WITH_JAVA_TRUE@src/cpp/DrawableObjectJoGL.cpp \
+@WITH_JAVA_TRUE@src/cpp/rectangleDrawing/RectangleMarkDrawerJoGL.cpp \
+@WITH_JAVA_TRUE@src/cpp/rectangleDrawing/DrawableRectangleJoGL.cpp \
+@WITH_JAVA_TRUE@src/cpp/rectangleDrawing/RectangleFillDrawerJoGL.cpp \
+@WITH_JAVA_TRUE@src/cpp/rectangleDrawing/RectangleLineDrawerJoGL.cpp
+
 DIST_COMMON = $(libscigraphics_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
@@ -458,7 +464,13 @@ am__libscigraphics_la_SOURCES_DIST = src/c/GetCommandArg.c \
 	src/cpp/rectangleDrawing/DrawableRectangle.cpp \
 	src/cpp/segsDrawing/DrawableSegsFactory.cpp \
 	src/cpp/segsDrawing/DrawableSegs.cpp \
-	src/cpp/figureDrawing/DrawableFigureJoGL.cpp
+	src/cpp/rectangleDrawing/DrawableRectangleImpFactory.cpp \
+	src/cpp/figureDrawing/DrawableFigureJoGL.cpp \
+	src/cpp/DrawableObjectJoGL.cpp \
+	src/cpp/rectangleDrawing/RectangleMarkDrawerJoGL.cpp \
+	src/cpp/rectangleDrawing/DrawableRectangleJoGL.cpp \
+	src/cpp/rectangleDrawing/RectangleFillDrawerJoGL.cpp \
+	src/cpp/rectangleDrawing/RectangleLineDrawerJoGL.cpp
 am__objects_1 = libscigraphics_la-GetCommandArg.lo \
 	libscigraphics_la-w_rottext.lo libscigraphics_la-gifimg.lo \
 	libscigraphics_la-WindowList.lo libscigraphics_la-Events.lo \
@@ -838,7 +850,12 @@ am__objects_2 = libscigraphics_la-sci_swap_handles.lo \
 	libscigraphics_la-sci_winsid.lo libscigraphics_la-sci_addcb.lo \
 	libscigraphics_la-sci_fec.lo
 @WITH_JAVA_TRUE@am__objects_3 =  \
-@WITH_JAVA_TRUE@	libscigraphics_la-DrawableFigureJoGL.lo
+@WITH_JAVA_TRUE@	libscigraphics_la-DrawableFigureJoGL.lo \
+@WITH_JAVA_TRUE@	libscigraphics_la-DrawableObjectJoGL.lo \
+@WITH_JAVA_TRUE@	libscigraphics_la-RectangleMarkDrawerJoGL.lo \
+@WITH_JAVA_TRUE@	libscigraphics_la-DrawableRectangleJoGL.lo \
+@WITH_JAVA_TRUE@	libscigraphics_la-RectangleFillDrawerJoGL.lo \
+@WITH_JAVA_TRUE@	libscigraphics_la-RectangleLineDrawerJoGL.lo
 am__objects_4 = libscigraphics_la-HandleDrawingObserver.lo \
 	libscigraphics_la-HandleObserverManagement.lo \
 	libscigraphics_la-BuildDrawingObserver.lo \
@@ -876,7 +893,9 @@ am__objects_4 = libscigraphics_la-HandleDrawingObserver.lo \
 	libscigraphics_la-DrawableRectangleFactory.lo \
 	libscigraphics_la-DrawableRectangle.lo \
 	libscigraphics_la-DrawableSegsFactory.lo \
-	libscigraphics_la-DrawableSegs.lo $(am__objects_3)
+	libscigraphics_la-DrawableSegs.lo \
+	libscigraphics_la-DrawableRectangleImpFactory.lo \
+	$(am__objects_3)
 am_libscigraphics_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_4)
 libscigraphics_la_OBJECTS = $(am_libscigraphics_la_OBJECTS)
@@ -1442,7 +1461,9 @@ GRAPHICS_CPP_SOURCES = src/cpp/HandleDrawingObserver.cpp \
 	src/cpp/rectangleDrawing/DrawableRectangleFactory.cpp \
 	src/cpp/rectangleDrawing/DrawableRectangle.cpp \
 	src/cpp/segsDrawing/DrawableSegsFactory.cpp \
-	src/cpp/segsDrawing/DrawableSegs.cpp $(am__append_1)
+	src/cpp/segsDrawing/DrawableSegs.cpp \
+	src/cpp/rectangleDrawing/DrawableRectangleImpFactory.cpp \
+	$(am__append_1)
 GATEWAY_C_SOURCES = sci_gateway/c/sci_swap_handles.c \
 sci_gateway/c/sci_readgif.c \
 sci_gateway/c/sci_grayplot.c \
@@ -1906,10 +1927,13 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableLegendFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableObject.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableObjectFactory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableObjectJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawablePolyline.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawablePolylineFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableRectangle.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableRectangleFactory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableRectangleImpFactory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableRectangleJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableSegs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableSegsFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableSubwin.Plo@am__quote@
@@ -1937,6 +1961,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-Plo2dn.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-Plo3d.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-Plo3dn.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-RectangleFillDrawerJoGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-RectangleLineDrawerJoGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-RectangleMarkDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-SetHashTable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-SetProperty.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-SetPropertyStatus.Plo@am__quote@
@@ -5578,12 +5605,54 @@ libscigraphics_la-DrawableSegs.lo: src/cpp/segsDrawing/DrawableSegs.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableSegs.lo `test -f 'src/cpp/segsDrawing/DrawableSegs.cpp' || echo '$(srcdir)/'`src/cpp/segsDrawing/DrawableSegs.cpp
 
+libscigraphics_la-DrawableRectangleImpFactory.lo: src/cpp/rectangleDrawing/DrawableRectangleImpFactory.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableRectangleImpFactory.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableRectangleImpFactory.Tpo -c -o libscigraphics_la-DrawableRectangleImpFactory.lo `test -f 'src/cpp/rectangleDrawing/DrawableRectangleImpFactory.cpp' || echo '$(srcdir)/'`src/cpp/rectangleDrawing/DrawableRectangleImpFactory.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawableRectangleImpFactory.Tpo $(DEPDIR)/libscigraphics_la-DrawableRectangleImpFactory.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/rectangleDrawing/DrawableRectangleImpFactory.cpp' object='libscigraphics_la-DrawableRectangleImpFactory.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableRectangleImpFactory.lo `test -f 'src/cpp/rectangleDrawing/DrawableRectangleImpFactory.cpp' || echo '$(srcdir)/'`src/cpp/rectangleDrawing/DrawableRectangleImpFactory.cpp
+
 libscigraphics_la-DrawableFigureJoGL.lo: src/cpp/figureDrawing/DrawableFigureJoGL.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableFigureJoGL.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableFigureJoGL.Tpo -c -o libscigraphics_la-DrawableFigureJoGL.lo `test -f 'src/cpp/figureDrawing/DrawableFigureJoGL.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/DrawableFigureJoGL.cpp
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawableFigureJoGL.Tpo $(DEPDIR)/libscigraphics_la-DrawableFigureJoGL.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/figureDrawing/DrawableFigureJoGL.cpp' object='libscigraphics_la-DrawableFigureJoGL.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableFigureJoGL.lo `test -f 'src/cpp/figureDrawing/DrawableFigureJoGL.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/DrawableFigureJoGL.cpp
+
+libscigraphics_la-DrawableObjectJoGL.lo: src/cpp/DrawableObjectJoGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableObjectJoGL.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableObjectJoGL.Tpo -c -o libscigraphics_la-DrawableObjectJoGL.lo `test -f 'src/cpp/DrawableObjectJoGL.cpp' || echo '$(srcdir)/'`src/cpp/DrawableObjectJoGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawableObjectJoGL.Tpo $(DEPDIR)/libscigraphics_la-DrawableObjectJoGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/DrawableObjectJoGL.cpp' object='libscigraphics_la-DrawableObjectJoGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableObjectJoGL.lo `test -f 'src/cpp/DrawableObjectJoGL.cpp' || echo '$(srcdir)/'`src/cpp/DrawableObjectJoGL.cpp
+
+libscigraphics_la-RectangleMarkDrawerJoGL.lo: src/cpp/rectangleDrawing/RectangleMarkDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-RectangleMarkDrawerJoGL.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-RectangleMarkDrawerJoGL.Tpo -c -o libscigraphics_la-RectangleMarkDrawerJoGL.lo `test -f 'src/cpp/rectangleDrawing/RectangleMarkDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/rectangleDrawing/RectangleMarkDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-RectangleMarkDrawerJoGL.Tpo $(DEPDIR)/libscigraphics_la-RectangleMarkDrawerJoGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/rectangleDrawing/RectangleMarkDrawerJoGL.cpp' object='libscigraphics_la-RectangleMarkDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-RectangleMarkDrawerJoGL.lo `test -f 'src/cpp/rectangleDrawing/RectangleMarkDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/rectangleDrawing/RectangleMarkDrawerJoGL.cpp
+
+libscigraphics_la-DrawableRectangleJoGL.lo: src/cpp/rectangleDrawing/DrawableRectangleJoGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableRectangleJoGL.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableRectangleJoGL.Tpo -c -o libscigraphics_la-DrawableRectangleJoGL.lo `test -f 'src/cpp/rectangleDrawing/DrawableRectangleJoGL.cpp' || echo '$(srcdir)/'`src/cpp/rectangleDrawing/DrawableRectangleJoGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawableRectangleJoGL.Tpo $(DEPDIR)/libscigraphics_la-DrawableRectangleJoGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/rectangleDrawing/DrawableRectangleJoGL.cpp' object='libscigraphics_la-DrawableRectangleJoGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableRectangleJoGL.lo `test -f 'src/cpp/rectangleDrawing/DrawableRectangleJoGL.cpp' || echo '$(srcdir)/'`src/cpp/rectangleDrawing/DrawableRectangleJoGL.cpp
+
+libscigraphics_la-RectangleFillDrawerJoGL.lo: src/cpp/rectangleDrawing/RectangleFillDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-RectangleFillDrawerJoGL.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-RectangleFillDrawerJoGL.Tpo -c -o libscigraphics_la-RectangleFillDrawerJoGL.lo `test -f 'src/cpp/rectangleDrawing/RectangleFillDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/rectangleDrawing/RectangleFillDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-RectangleFillDrawerJoGL.Tpo $(DEPDIR)/libscigraphics_la-RectangleFillDrawerJoGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/rectangleDrawing/RectangleFillDrawerJoGL.cpp' object='libscigraphics_la-RectangleFillDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-RectangleFillDrawerJoGL.lo `test -f 'src/cpp/rectangleDrawing/RectangleFillDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/rectangleDrawing/RectangleFillDrawerJoGL.cpp
+
+libscigraphics_la-RectangleLineDrawerJoGL.lo: src/cpp/rectangleDrawing/RectangleLineDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-RectangleLineDrawerJoGL.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-RectangleLineDrawerJoGL.Tpo -c -o libscigraphics_la-RectangleLineDrawerJoGL.lo `test -f 'src/cpp/rectangleDrawing/RectangleLineDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/rectangleDrawing/RectangleLineDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-RectangleLineDrawerJoGL.Tpo $(DEPDIR)/libscigraphics_la-RectangleLineDrawerJoGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/rectangleDrawing/RectangleLineDrawerJoGL.cpp' object='libscigraphics_la-RectangleLineDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-RectangleLineDrawerJoGL.lo `test -f 'src/cpp/rectangleDrawing/RectangleLineDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/rectangleDrawing/RectangleLineDrawerJoGL.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
