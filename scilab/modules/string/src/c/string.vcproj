@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../../libs/hashtable;"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../../libs/hashtable;"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;SCICOS_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -126,7 +126,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../../libs/hashtable"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../../libs/hashtable;"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;SCICOS_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -195,11 +195,39 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
+				RelativePath=".\gsort.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\gw_string.c"
 				>
 			</File>
 			<File
 				RelativePath=".\men_Sutils.c"
+				>
+			</File>
+			<File
+				RelativePath=".\qsort-char.c"
+				>
+			</File>
+			<File
+				RelativePath=".\qsort-double.c"
+				>
+			</File>
+			<File
+				RelativePath=".\qsort-int.c"
+				>
+			</File>
+			<File
+				RelativePath=".\qsort-short.c"
+				>
+			</File>
+			<File
+				RelativePath=".\qsort-string.c"
+				>
+			</File>
+			<File
+				RelativePath=".\qsort.c"
 				>
 			</File>
 			<File
@@ -260,6 +288,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_tokens.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_xsort.c"
 				>
 			</File>
 			<File

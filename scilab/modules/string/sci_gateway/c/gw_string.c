@@ -33,7 +33,8 @@ static StringTable Tab[]=
 	{C2F(sci_ascii),"ascii"},
 	{C2F(sci_grep),"grep"},
 	{C2F(sci_tokens),"tokens"},
-	{C2F(sci_strsplit),"strsplit"}
+	{C2F(sci_strsplit),"strsplit"},
+	{C2F(sci_xsort),"gsort"}
 };
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_string)(void)

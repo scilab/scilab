@@ -102,7 +102,6 @@ static MatdesTable Tab[]={
     {sci_relocate_handle,"relocate_handle"},
     {sci_swap_handles,"swap_handles"},
      /* NG end */
-	{sci_xsort,"gsort"},
 	{sci_help_gtk,"help_gtk"},
 	{sci_UImenu,"UImenu"},
 	{sci_showalluimenushandles,"showalluimenushandles"},
@@ -115,7 +114,7 @@ static MatdesTable Tab[]={
 int C2F(gw_graphics)(void)
 {  
   Rhs = Max(0, Rhs);
-  if ( (getScilabMode() != SCILAB_NWNI) || (strcmp(Tab[Fin-1].name,"gsort")==0) ) /*Veru en attendant de deplacer gsort*/
+  if ( getScilabMode() != SCILAB_NWNI )
   {
 
 #ifdef _MSC_VER

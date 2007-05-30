@@ -106,11 +106,9 @@
 <PRIMITIVE gatewayId="7" primitiveId="80" primitiveName="newaxes" />
 <PRIMITIVE gatewayId="7" primitiveId="81" primitiveName="relocate_handle" />
 <PRIMITIVE gatewayId="7" primitiveId="82" primitiveName="swap_handles" />
-<PRIMITIVE gatewayId="7" primitiveId="83" primitiveName="gsort" />
-<PRIMITIVE gatewayId="7" primitiveId="84" primitiveName="help_gtk" />
-<PRIMITIVE gatewayId="7" primitiveId="85" primitiveName="UImenu" />
-<PRIMITIVE gatewayId="7" primitiveId="85" primitiveName="UImenu" />
-<PRIMITIVE gatewayId="7" primitiveId="86" primitiveName="showalluimenushandles" />
-<PRIMITIVE gatewayId="7" primitiveId="87" primitiveName="readxbm" />
-<PRIMITIVE gatewayId="7" primitiveId="88" primitiveName="readgif" />
+<PRIMITIVE gatewayId="7" primitiveId="83" primitiveName="help_gtk" />
+<PRIMITIVE gatewayId="7" primitiveId="84" primitiveName="UImenu" />
+<PRIMITIVE gatewayId="7" primitiveId="85" primitiveName="showalluimenushandles" />
+<PRIMITIVE gatewayId="7" primitiveId="86" primitiveName="readxbm" />
+<PRIMITIVE gatewayId="7" primitiveId="87" primitiveName="readgif" />
 </GATEWAY>

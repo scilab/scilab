@@ -57,7 +57,7 @@ int sci_xdel                       _PARAMS((char *fname, unsigned long fname_len
 int sci_xg2ps                      _PARAMS((char *fname, unsigned long fname_len));
 int sci_xs2ps                      _PARAMS((char *fname, unsigned long fname_len));
 int sci_xs2fig                     _PARAMS((char *fname, unsigned long fname_len));
-int sci_xsort                      _PARAMS((char *fname, unsigned long fname_len));
+
 int sci_winsid                     _PARAMS((char *fname, unsigned long fname_len));
 int sci_param3d1                   _PARAMS((char *fname, unsigned long fname_len));
 int sci_xstringb                   _PARAMS((char *fname, unsigned long fname_len));

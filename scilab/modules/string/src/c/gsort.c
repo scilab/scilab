@@ -5,10 +5,10 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
-#include "math_graphics.h"
+#include "core_math.h"
 #include "gsort.h"
 
-#include "../../../string/includes/men_Sutils.h"
+#include "men_Sutils.h"
 #include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/ 
 #include "qsort.h"

@@ -301,12 +301,6 @@ src/c/Plo2dn.c \
 src/c/Gray.c \
 src/c/DestroyObjects.c \
 src/c/clipping.c \
-src/c/qsort.c \
-src/c/qsort-char.c \
-src/c/qsort-double.c \
-src/c/qsort-int.c \
-src/c/qsort-short.c \
-src/c/qsort-string.c \
 src/c/math_graphics.c \
 src/c/Interaction.c \
 src/c/periGif.c \
@@ -404,7 +398,6 @@ sci_gateway/c/sci_xgrid.c \
 sci_gateway/c/sci_xclick.c \
 sci_gateway/c/sci_xclear.c \
 sci_gateway/c/sci_geom3d.c \
-sci_gateway/c/sci_xsort.c \
 sci_gateway/c/sci_xtape.c \
 sci_gateway/c/sci_xset.c \
 sci_gateway/c/sci_set_posfig_dim.c \

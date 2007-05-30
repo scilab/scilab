@@ -24,6 +24,7 @@ int C2F(sci_ascii) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_grep) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_tokens) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_strsplit) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_xsort) _PARAMS((char *fname, unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/ 
 #endif /*  __GW_STRING__ */
 /*-----------------------------------------------------------------------------------*/

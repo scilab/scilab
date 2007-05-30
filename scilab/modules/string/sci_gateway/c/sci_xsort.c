@@ -4,14 +4,11 @@
 /* Authors : Fabrice Leray, Jean-Baptiste Silvy                           */
 /* desc : interface for xsort routine                                     */
 /*------------------------------------------------------------------------*/
-
-
-#include "sci_xsort.h"
+#include "gw_string.h"
 #include "stack-c.h"
 #include "gsort.h"
-
 /*-----------------------------------------------------------------------------------*/
-int sci_xsort(char *fname,unsigned long fname_len)
+int C2F(sci_xsort) _PARAMS((char *fname, unsigned long fname_len))
 {
   char **S;
   integer m1,n1,l1,m2,n2,l2,m3,n3,l3/* ,v */;
@@ -127,6 +124,7 @@ int sci_xsort(char *fname,unsigned long fname_len)
   }
 
   if ( Lhs == 2 ) { LhsVar(2)=Rhs+1 ; }
+  C2F(putlhsvar)();
   return 0;
 } 
 /*-----------------------------------------------------------------------------------*/

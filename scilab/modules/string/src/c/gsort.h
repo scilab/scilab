@@ -7,6 +7,8 @@
 #ifndef _GSORT_H_
 #define _GSORT_H_
 
+#include "machine.h"
+
 void C2F(gsorts)(char **data, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
 int C2F(gsortd)(double *xD, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
 int C2F(gsortint)(int *xI, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
