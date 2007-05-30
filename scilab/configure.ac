@@ -458,6 +458,7 @@ fi
 
 # flag for possible compilations in configure
 CFLAGS="$CFLAGS -I${SCIDIRFULL}/libs/MALLOC/includes/"
+CXXFLAGS="$CXXFLAGS -I${SCIDIRFULL}/libs/MALLOC/includes/"
 FFLAGS="$FFLAGS -I${SCIDIRFULL}/modules/core/includes"
 
 ##########################################
