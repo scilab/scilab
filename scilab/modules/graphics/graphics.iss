@@ -22,7 +22,7 @@ Source: bin\scirenderer.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
 ;
 Source: thirdparty\gluegen-rt.jar; DestDir: {app}\thirdparty; Components: {#COMPN_GRAPHICS}
 Source: thirdparty\jogl.jar;DestDir: {app}\thirdparty; Components: {#COMPN_GRAPHICS}
-Source: modules\{#GRAPHICS}\jar\graphics.jar;DestDir: {app}\modules\{#GRAPHICS}\jar; Components: {#COMPN_GRAPHICS}
+Source: modules\{#GRAPHICS}\jar\org.scilab.modules.graphics.jar;DestDir: {app}\modules\{#GRAPHICS}\jar; Components: {#COMPN_GRAPHICS}
 ;
 Source: modules\{#GRAPHICS}\sci_gateway\graphics_gateway.xml; DestDir: {app}\modules\{#GRAPHICS}\sci_gateway; Components: {#COMPN_GRAPHICS}
 ;
