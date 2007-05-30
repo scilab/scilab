@@ -5,6 +5,7 @@
 
 STRING_C_SOURCES = src/c/strcat-c.c \
 src/c/men_Sutils.c \
+src/c/gsort.c \
 src/c/qsort.c \
 src/c/qsort-char.c \
 src/c/qsort-double.c \

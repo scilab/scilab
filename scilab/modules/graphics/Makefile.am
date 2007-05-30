@@ -293,7 +293,6 @@ src/c/Format.c \
 src/c/Champ.c \
 src/c/StringMatrix.c \
 src/c/FeC.c \
-src/c/gsort.c \
 src/c/Plo3dn.c \
 src/c/Actions.c \
 src/c/Plo2dEch.c \
