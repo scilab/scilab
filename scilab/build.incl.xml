@@ -23,10 +23,13 @@
 	<!-- Where we can find the sources -->
 	<property name="src.dir"  location="src/java/" />
 	
-	<property name="checkstyle.config.file"      value="${base.dir}/checkstyle/scilab_checkstyle_convention.xml" />
-	<property name="checkstyle.report.file"      value="${build.dir}/checkstyle_errors.xml" />
-	<property name="checkstyle.html.report.file" value="${build.dir}/checkstyle_errors.htm" />
-	<property name="checkstyle.stylesheet"       value="${thirdparty.dir}/checkstyle/contrib/checkstyle-noframes-sorted.xsl" />
+	<!-- Check style definitions -->
+	<property name = "checkstyle.config.file"      value = "${base.dir}/checkstyle/scilab_checkstyle_convention.xml" />
+	<property name = "checkstyle.stylesheet"       value = "${thirdparty.dir}/checkstyle/contrib/checkstyle-noframes-sorted.xsl" />
+	<property name = "checkstyle.report.dir"       value = "${build.dir}/checkstyle" />
+	<property name = "checkstyle.xml.report.file"  value = "${checkstyle.report.dir}/checkstyle_errors.xml" />
+	<property name = "checkstyle.html.report.file" value = "${checkstyle.report.dir}/checkstyle_errors.htm" />
+	
 	<property name="modules.dir"                 value="${base.dir}/modules" />
 	
 	<property file="${base.dir}/scilab-lib.properties"/>
@@ -69,20 +72,46 @@
 		
 		<pathelement location="${skinlf.jar}"/>
 	</path>
-		
+	
 	<taskdef resource="checkstyletask.properties" classpathref="checkstyle.classpath"/>
 	
-	<target name="checkstyle" description="Generates a report of code convention violations.">
-		<checkstyle config="${checkstyle.config.file}" failOnViolation="false">
-			<fileset dir="${src.dir}" includes="**/*.java"/>
+	<!-- Checkstyle process -->
+	
+	<target
+		name        = "checkstyle"
+		depends     = "checkstyle-init"
+		description = "Generates a report of code convention violations.">
+		<checkstyle
+			config          = "${checkstyle.config.file}"
+			failOnViolation = "false">
+			<fileset
+				dir      = "${src.dir}"
+				includes = "**/*.java"/>
 			<!-- Location of cache-file. -->
-			<property key="checkstyle.cache.file" file="${cache.dir}"/>
+			<property
+				key  = "checkstyle.cache.file"
+				file = "${cache.dir}"/>
 			<formatter type="plain"/>
-			<formatter type="xml" toFile="${checkstyle.report.file}"/>
+			<formatter
+				type   = "xml"
+				toFile = "${checkstyle.xml.report.file}"/>
 		</checkstyle>
-		<xslt in="${checkstyle.report.file}"
-			  out="${checkstyle.html.report.file}"
-			  style="${checkstyle.stylesheet}" />
+		<xslt
+			in     = "${checkstyle.xml.report.file}"
+			out    = "${checkstyle.html.report.file}"
+			style  = "${checkstyle.stylesheet}" />
+	</target>
+	
+	<!-- Create the build directory -->
+	
+	<target name="checkstyle-init">
+		<mkdir dir="${checkstyle.report.dir}"/>
+	</target>
+	
+	<!-- Delete the build directory -->
+	
+	<target name="checkstyle-clean">
+		<delete dir="${checkstyle.report.dir}"/>
 	</target>
 	
 	<target name="init">
