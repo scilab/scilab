@@ -98,7 +98,6 @@ extern void do_hangup(void);
 extern void do_kill(Widget gw, caddr_t closure, caddr_t data);
 extern void sci_usr1_signal(int n) ;
 extern char ** create_argv(int *argc);
-
 /*-----------------------------------------------------------------------------------*/
 /*static void Syntax __PARAMS((char *badOption));  */
 /*static void Syntax (char *badOption);  */
@@ -109,8 +108,7 @@ extern char ** create_argv(int *argc);
  * Copyright Inria/Enpc 
  */
 /*-----------------------------------------------------------------------------------*/
-#define MIN_STACKSIZE 180000
-int  sci_show_banner=1;
+extern int sci_show_banner;
 static int  no_window = 0;
 static int nointeractive = 0;
 /*----------------------------------------------------------------------------------*/
@@ -118,8 +116,6 @@ int IsNoInteractiveWindow(void);
 void sci_sig_tstp(int n);
 int IsConsoleMode(void);
 void InitXsession(void);
-
-
 /*----------------------------------------------------------------------------------*/
 Boolean   sunFunctionKeys = False;
 
@@ -548,11 +544,6 @@ static void Syntax(char *badOption)
  * or in console mode (returned value is 0) 
  */
 /*----------------------------------------------------------------------------------*/ 
-int IsConsoleMode(void)
-{
-  return (int)( (getScilabMode() == SCILAB_NWNI) || (getScilabMode() == SCILAB_NW) );
-}
-/*----------------------------------------------------------------------------------*/
 int IsNoInteractiveWindow(void)
 {
 	return (getScilabMode() == SCILAB_NWNI);

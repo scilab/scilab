@@ -47,10 +47,6 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@WITH_JAVA_TRUE@am__append_1 = sci_gateway/c/sci_system_getproperty.c \
-@WITH_JAVA_TRUE@sci_gateway/c/sci_with_embedded_jre.c \
-@WITH_JAVA_TRUE@sci_gateway/c/sci_javaclasspath.c
-
 DIST_COMMON = $(libscijvm_la_include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
 subdir = modules/jvm
@@ -104,12 +100,11 @@ am__libscijvm_la_SOURCES_DIST = src/nojvm/nojvm.c \
 @WITH_JAVA_TRUE@	libscijvm_la-loadClasspath.lo \
 @WITH_JAVA_TRUE@	libscijvm_la-createMainScilabObject.lo \
 @WITH_JAVA_TRUE@	libscijvm_la-JVM_commons.lo
-@WITH_JAVA_TRUE@am__objects_2 =  \
+@WITH_JAVA_TRUE@am__objects_2 = libscijvm_la-gw_jvm.lo \
 @WITH_JAVA_TRUE@	libscijvm_la-sci_system_getproperty.lo \
 @WITH_JAVA_TRUE@	libscijvm_la-sci_with_embedded_jre.lo \
 @WITH_JAVA_TRUE@	libscijvm_la-sci_javaclasspath.lo
-am__objects_3 = libscijvm_la-gw_jvm.lo $(am__objects_2)
-am_libscijvm_la_OBJECTS = $(am__objects_1) $(am__objects_3)
+am_libscijvm_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscijvm_la_OBJECTS = $(am_libscijvm_la_OBJECTS)
 libscijvm_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libscijvm_la_CFLAGS) \
@@ -288,7 +283,10 @@ target_alias = @target_alias@
 tcldir = @tcldir@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-GATEWAY_C_SOURCES = sci_gateway/c/gw_jvm.c $(am__append_1)
+@WITH_JAVA_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/gw_jvm.c \
+@WITH_JAVA_TRUE@	sci_gateway/c/sci_system_getproperty.c \
+@WITH_JAVA_TRUE@	sci_gateway/c/sci_with_embedded_jre.c \
+@WITH_JAVA_TRUE@	sci_gateway/c/sci_javaclasspath.c
 libscijvm_la_CFLAGS = $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/dynamiclibrary/includes/ -Iincludes/ -Isrc/c $(XML_FLAGS)
 libscijvm_la_LDFLAGS = $(JAVA_JNI_LIBS) -lpthread -ldl $(XML_LIBS)
 pkglib_LTLIBRARIES = libscijvm.la

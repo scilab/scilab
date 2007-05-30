@@ -3,7 +3,9 @@
 ### INRIA - Scilab 2006 
 ##########
 
+if WITH_JAVA
 GATEWAY_C_SOURCES = sci_gateway/c/gw_jvm.c
+endif
 
 
 libscijvm_la_CFLAGS=  $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/dynamiclibrary/includes/ -Iincludes/ -Isrc/c $(XML_FLAGS)

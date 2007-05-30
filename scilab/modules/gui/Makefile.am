@@ -6,10 +6,19 @@
 include $(top_srcdir)/Makefile.incl.am
 
 GUI_C_SOURCES = \
+src/c/xsci/mainscic.c \
+src/c/xsci/x_main.c \
+src/c/xsci/IsConsoleMode.c \
+src/c/xsci/x_VTPrsTbl.c
+
+if WITH_JAVA
+GUI_C_SOURCES += src/c/getlookandfeel.c \
+src/c/setlookandfeel.c \
+src/c/getinstalledlookandfeels.c \
+src/c/TerminateGui.c \
 src/c/xsci/wf_w_util.c \
 src/c/xsci/utils.c \
 src/c/xsci/x_cursor.c \
-src/c/xsci/x_main.c \
 src/c/xsci/wf_f_read.c \
 src/c/xsci/wf_f_util.c \
 src/c/xsci/x_tabs.c \
@@ -25,7 +34,6 @@ src/c/xsci/SGraph.c \
 src/c/xsci/x_menu.c \
 src/c/xsci/xwidgets.c \
 src/c/xsci/x_data.c \
-src/c/xsci/x_VTPrsTbl.c \
 src/c/xsci/inter.c \
 src/c/xsci/coloredit.c \
 src/c/xsci/x_input.c \
@@ -53,15 +61,10 @@ src/c/xmen_dialog.c \
 src/c/xmen_Utils.c \
 src/c/men_choice.c \
 src/c/men_print.c \
-src/c/guitable.c \
-src/c/TerminateGui.c
-
-if WITH_JAVA
-GUI_C_SOURCES += src/c/getlookandfeel.c \
-src/c/setlookandfeel.c \
-src/c/getinstalledlookandfeels.c
+src/c/guitable.c
 endif
 
+if WITH_JAVA
 GATEWAY_C_SOURCES = sci_gateway/c/sci_x_choice.c \
 sci_gateway/c/sci_x_message_modeless.c \
 sci_gateway/c/gw_gui.c \
@@ -90,6 +93,12 @@ sci_gateway/fortran/sci_x_message.f \
 sci_gateway/fortran/sci_setmenu_old.f \
 sci_gateway/fortran/sci_addmenu_old.f \
 sci_gateway/fortran/sci_delmenu_old.f
+
+else
+
+GUI_C_SOURCES += src/nogui/nogui.c
+
+endif
 
 BUILT_SOURCES = $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
 
