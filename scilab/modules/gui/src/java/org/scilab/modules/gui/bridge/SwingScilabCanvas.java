@@ -30,10 +30,10 @@ public class SwingScilabCanvas extends GLJPanel implements Canvas {
 		super(cap);
 		// TODO to remove, just for testing
 		this.setLayout(new BorderLayout());
-	    this.addGLEventListener(new Renderer());
-	    this.addMouseListener(new GLCanvasMouseListener(this));
-	    Animator animator = new Animator(this);
-	    animator.start();
+	    //this.addGLEventListener(new Renderer());
+	    //this.addMouseListener(new GLCanvasMouseListener(this));
+	    //Animator animator = new Animator(this);
+	    //animator.start();
 		//this.setIgnoreRepaint(true);
 		//this.setAutoSwapBufferMode(true);
 	}
