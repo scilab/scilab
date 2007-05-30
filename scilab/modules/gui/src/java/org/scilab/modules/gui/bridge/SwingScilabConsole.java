@@ -7,6 +7,7 @@ import java.awt.Dimension;
 
 import com.artenum.jyconsole.JyConsole;
 
+
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -32,6 +33,11 @@ public class SwingScilabConsole extends JyConsole implements Console {
 	 */
 	public void display(String dataToDisplay) {
 		// TODO write this method !!
+		System.out.println(dataToDisplay);
+		
+		// uncomment this line
+		//Sciprintf(dataToDisplay);
+		
 	}
 
 	/**

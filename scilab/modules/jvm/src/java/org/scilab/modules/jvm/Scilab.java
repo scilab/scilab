@@ -21,9 +21,9 @@ public class Scilab {
 	private static final int DEFAULTWIDTH = 500;
 	private static final int DEFAULTHEIGHT = 500;
 
-	private ScilabShell console;
-	
+	public Console sciConsole;
 	private int mode;
+	
 	/**
 	 * Constructor Scilab Class.
 	 * @param mode Mode Scilab -NW -NWNI -STD -API
@@ -46,7 +46,7 @@ public class Scilab {
 			consoleTab.setName("Console");
 			mainView.addTab(consoleTab);
 			/* Create the console */
-			Console sciConsole = ScilabConsole.createConsole();
+			sciConsole = ScilabConsole.createConsole();
 			consoleTab.addMember(sciConsole);
 			mainView.draw();
 			/* FIGURE */
