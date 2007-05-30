@@ -635,7 +635,6 @@ includes/StringMatrix.h \
 includes/sci_xend.h \
 includes/sci_unglue.h \
 includes/gw_graphics.h \
-includes/gsort.h \
 includes/periScreen.h \
 includes/sci_zoom_rect.h \
 includes/sci_xs2fig.h \
