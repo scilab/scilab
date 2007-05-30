@@ -50,7 +50,7 @@ sci_gateway/fortran/sci_ascii.f \
 sci_gateway/fortran/sci_strsubst.f \
 sci_gateway/fortran/strops.f
 
-libscistring_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
+libscistring_la_CFLAGS=  -Isrc/c -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 
 pkglib_LTLIBRARIES = libscistring.la
 
