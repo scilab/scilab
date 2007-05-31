@@ -28,19 +28,19 @@ BOOL LoadDynLibJVM(char *SCILAB_PATH)
 	/* else ERROR Java not found */
 
 	BOOL bOK=FALSE;
-	char *JVMDLLFULLNAME=NULL;
+	char *JVMLIBFULLNAME=NULL;
 	
 	/* 1] search in SCI/java/jre */
-	JVMDLLFULLNAME=(char*)MALLOC( (strlen(SCILAB_PATH)+strlen(JRE_PATH)+strlen("/bin/")+strlen(JVM_TYPE)+strlen("/libjava")+strlen(SHARED_LIB_EXT)+1)*sizeof(char));
-	sprintf(JVMDLLFULLNAME,"%s%s%s%s%s%s",SCILAB_PATH,JRE_PATH,"/bin/",JVM_TYPE,"/libjava",SHARED_LIB_EXT);
+	JVMLIBFULLNAME=(char*)MALLOC( (strlen(SCILAB_PATH)+strlen(JRE_PATH)+strlen("/bin/")+strlen(JVM_TYPE)+strlen("/libjava")+strlen(SHARED_LIB_EXT)+1)*sizeof(char));
+	sprintf(JVMLIBFULLNAME,"%s%s%s%s%s%s",SCILAB_PATH,JRE_PATH,"/bin/",JVM_TYPE,"/libjava",SHARED_LIB_EXT);
 
-	if (!LoadFuntionsJVM(JVMDLLFULLNAME))
+	if (LoadFuntionsJVM(JVMLIBFULLNAME)==NULL)
 	{
 		  /* 2] search in PATH */
-			if (JVMDLLFULLNAME){FREE(JVMDLLFULLNAME);JVMDLLFULLNAME=NULL;};
-			JVMDLLFULLNAME=(char*)MALLOC( (strlen("libjava")+strlen(SHARED_LIB_EXT)+1)*sizeof(char));
-			sprintf(JVMDLLFULLNAME,"%s%s","libjava",SHARED_LIB_EXT);
-			if (LoadFuntionsJVM(JVMDLLFULLNAME)) bOK=TRUE;
+			if (JVMLIBFULLNAME){FREE(JVMLIBFULLNAME);JVMLIBFULLNAME=NULL;};
+			JVMLIBFULLNAME=(char*)MALLOC( (strlen("libjava")+strlen(SHARED_LIB_EXT)+1)*sizeof(char));
+			sprintf(JVMLIBFULLNAME,"%s%s","libjava",SHARED_LIB_EXT);
+			if (LoadFuntionsJVM(JVMLIBFULLNAME)) bOK=TRUE;
 	}
 	else 
 	{
@@ -48,7 +48,7 @@ BOOL LoadDynLibJVM(char *SCILAB_PATH)
 		bOK=TRUE;
 	}
 
-	if (JVMDLLFULLNAME){FREE(JVMDLLFULLNAME);JVMDLLFULLNAME=NULL;};
+	if (JVMLIBFULLNAME){FREE(JVMLIBFULLNAME);JVMLIBFULLNAME=NULL;};
 	
 	return bOK;
 
@@ -64,26 +64,26 @@ static JavaVM *SearchCreatedJavaVMEmbedded(char *SCILAB_PATH)
 	JavaVM *jvm = NULL;
 	jsize jvm_count = 0;
 	jint res=0;
-	char *JVMDLLFULLNAME=NULL;
+	char *JVMLIBFULLNAME=NULL;
 
 	/* search in SCI/java/jre */
-	JVMDLLFULLNAME=(char*)MALLOC( (strlen(SCILAB_PATH)+strlen(JRE_PATH)+strlen("/bin/")+strlen(JVM_TYPE)+strlen("/libjava")+strlen(SHARED_LIB_EXT)+1)*sizeof(char));
-	sprintf(JVMDLLFULLNAME,"%s%s%s%s%s%s",SCILAB_PATH,JRE_PATH,"/bin/",JVM_TYPE,"/libjava",SHARED_LIB_EXT);
+	JVMLIBFULLNAME=(char*)MALLOC( (strlen(SCILAB_PATH)+strlen(JRE_PATH)+strlen("/bin/")+strlen(JVM_TYPE)+strlen("/libjava")+strlen(SHARED_LIB_EXT)+1)*sizeof(char));
+	sprintf(JVMLIBFULLNAME,"%s%s%s%s%s%s",SCILAB_PATH,JRE_PATH,"/bin/",JVM_TYPE,"/libjava",SHARED_LIB_EXT);
 
 	FreeDynLibJVM();
 	
-	if (LoadFuntionsJVM(JVMDLLFULLNAME))
+	if (LoadFuntionsJVM(JVMLIBFULLNAME))
 	{
 		res = SciJNI_GetCreatedJavaVMs (&jvm, 1, &jvm_count);
 
 		if ( jvm_count == 1 ) 
 		{
-			if (JVMDLLFULLNAME){FREE(JVMDLLFULLNAME);JVMDLLFULLNAME=NULL;}
+			if (JVMLIBFULLNAME){FREE(JVMLIBFULLNAME);JVMLIBFULLNAME=NULL;}
 			return jvm;
 		}
 		else jvm = NULL;
 	}
-	if (JVMDLLFULLNAME){FREE(JVMDLLFULLNAME);JVMDLLFULLNAME=NULL;}
+	if (JVMLIBFULLNAME){FREE(JVMLIBFULLNAME);JVMLIBFULLNAME=NULL;}
 	return jvm;
 }
 /*-----------------------------------------------------------------------------------*/ 
@@ -92,24 +92,24 @@ static JavaVM *SearchCreatedJavaVMPath(void)
 	JavaVM *jvm = NULL;
 	jsize jvm_count = 0;
 	jint res=0;
-	char *JVMDLLFULLNAME=NULL;
+	char *JVMLIBFULLNAME=NULL;
 	
 	FreeDynLibJVM();
 
-	JVMDLLFULLNAME=(char*)MALLOC( (strlen("libjava")+strlen(SHARED_LIB_EXT)+1)*sizeof(char));
-	sprintf(JVMDLLFULLNAME,"%s%s","libjava",SHARED_LIB_EXT);
+	JVMLIBFULLNAME=(char*)MALLOC( (strlen("libjava")+strlen(SHARED_LIB_EXT)+1)*sizeof(char));
+	sprintf(JVMLIBFULLNAME,"%s%s","libjava",SHARED_LIB_EXT);
 
-	if (LoadFuntionsJVM(JVMDLLFULLNAME))
+	if (LoadFuntionsJVM(JVMLIBFULLNAME))
 	{
 		res = SciJNI_GetCreatedJavaVMs (&jvm, 1, &jvm_count);
 		if ( jvm_count == 1 ) 
 		{
-			if (JVMDLLFULLNAME){FREE(JVMDLLFULLNAME);JVMDLLFULLNAME=NULL;};		
+			if (JVMLIBFULLNAME){FREE(JVMLIBFULLNAME);JVMLIBFULLNAME=NULL;};		
 			return jvm;
 		}
 		else jvm = NULL;
 	}
-	if (JVMDLLFULLNAME){FREE(JVMDLLFULLNAME);JVMDLLFULLNAME=NULL;};		
+	if (JVMLIBFULLNAME){FREE(JVMLIBFULLNAME);JVMLIBFULLNAME=NULL;};		
 	return jvm;
 }
 /*-----------------------------------------------------------------------------------*/ 
