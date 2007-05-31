@@ -3,9 +3,15 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
 #include "dynamiclibrary_others.h"
+#include <stdlib.h>
+#include <stdio.h>
+
 #ifndef NULL
 #define NULL 0
 #endif
+/** 
+ * @TODO: we should catch the error message from dlerror
+ */
 /*-----------------------------------------------------------------------------------*/ 
 DynLibHandle LoadDynLibrary(char *libname)
 {
@@ -15,7 +21,18 @@ DynLibHandle LoadDynLibrary(char *libname)
 BOOL FreeDynLibrary(DynLibHandle hInstance)
 {
 	BOOL bOK = FALSE;
-	if (dlclose( hInstance)) bOK = TRUE;
+	if (hInstance)
+		{
+			if (dlclose( hInstance)) bOK = TRUE;
+		}
+	#ifndef NDEBUG
+	else 
+		{
+			printf("FreeDynLibrary: Cannot close a not-opened library.\n");
+			fflush(NULL);
+		}
+	#endif
+
 	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/ 
