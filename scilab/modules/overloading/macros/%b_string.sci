@@ -1,5 +1,4 @@
 function s=%b_string(b)
-  s=emptystr(size(b,1),size(b,2))
-  for i=find(b); s(i)='T'; end
-  for i=find(~b); s(i)='F'; end
+   a=["F" "T"]
+   s=matrix(a(1+b),size(b))
 endfunction
