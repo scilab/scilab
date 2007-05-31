@@ -12,10 +12,10 @@ function ret=BuildJava(filename)
   else
     sep=':';
   end
-	Command='javac -deprecation -d '+SCI+'/modules/javasci/tests -cp '+SCI+'/java/jar/modules/javasci.jar'+sep+'. '+filename;
+	Command='javac -deprecation -d '+SCI+'/modules/javasci/tests -cp '+SCI+'/modules/javasci/jar/javasci.jar'+sep+'. '+filename;
 	[rep,stat]=unix_g(Command);
 	if ~(stat==0) then
-		disp('Error in the compilation '+filename);
+		disp('Error in the compilation of '+filename);
 		disp('Command was : '+Command);
 		ret=%F;
 	else
@@ -51,10 +51,10 @@ function ExecJava(filename,buildref)
 
 	if MSDOS then
 	  sep=';'
-	  commandline='java -cp '+SCI+'\java\jar\modules\javasci.jar'+sep+'. '+fname+' > '+repfilename;
+	  commandline='java -cp '+SCI+'\modules\javasci\jar\javasci.jar'+sep+'. '+fname+' > '+repfilename;
 	else
 	  sep=':'
-	  commandline='java -cp '+SCI+'\java\jar\modules\javasci.jar'+sep+'. -Djava.library.path='+SCI+'/modules/javasci/.libs/ '+fname +' > '+repfilename;
+	  commandline='java -cp '+SCI+'/modules/javasci/jar/javasci.jar'+sep+'. -Djava.library.path='+SCI+'/modules/javasci/.libs/ '+fname +' > '+repfilename;
 	end
 	unix(commandline);
 	chdir(currentdir);
