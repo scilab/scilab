@@ -6,6 +6,7 @@
 #define __DYNAMICLIBRARY_WINDOWS_H__
 
 #include <Windows.h>
+
 #include "machine.h" /* BOOL */
 
 #ifdef EXPORT_DYNAMICLIBRARY_DLL
@@ -38,6 +39,12 @@ IMPORT_EXPORT_DYNAMICLIBRARY_DLL BOOL FreeDynLibrary(DynLibHandle hInstance);
 * @return
 */
 IMPORT_EXPORT_DYNAMICLIBRARY_DLL DynLibFuncPtr GetFuncPtr(DynLibHandle hInstance,char *funcName);
+
+/**
+* return last dynamic linking error 
+* @return a string
+*/
+IMPORT_EXPORT_DYNAMICLIBRARY_DLL char * GetLastDynLibError(void);
 
 #endif /* __DYNAMICLIBRARY_WINDOWS_H__ */
 /*-----------------------------------------------------------------------------------*/ 

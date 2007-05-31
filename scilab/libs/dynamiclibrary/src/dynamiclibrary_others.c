@@ -5,13 +5,10 @@
 #include "dynamiclibrary_others.h"
 #include <stdlib.h>
 #include <stdio.h>
-
+/*-----------------------------------------------------------------------------------*/ 
 #ifndef NULL
 #define NULL 0
 #endif
-/** 
- * @TODO: we should catch the error message from dlerror
- */
 /*-----------------------------------------------------------------------------------*/ 
 DynLibHandle LoadDynLibrary(char *libname)
 {
@@ -45,5 +42,10 @@ DynLibFuncPtr GetFuncPtr(DynLibHandle hInstance,char *funcName)
 		retFuncPtr = dlsym(hInstance, funcName);
 	}
 	return retFuncPtr;
+}
+/*-----------------------------------------------------------------------------------*/ 
+char * GetLastDynError(void)
+{
+	return dlerror();
 }
 /*-----------------------------------------------------------------------------------*/ 

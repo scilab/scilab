@@ -29,9 +29,15 @@ BOOL FreeDynLibrary(DynLibHandle hInstance);
 * Retrieves the address of an exported function 
 * @param Handle to the loaded library
 * @param string that specifies the function
-* @return
+* @return a pointer
 */
 DynLibFuncPtr GetFuncPtr(DynLibHandle hInstance,char *funcName);
+
+/**
+* return last dynamic linking error 
+* @return a string
+*/
+char * GetLastDynLibError(void);
 
 #endif /* __DYNAMICLIBRARY_OTHERS_H__ */
 /*-----------------------------------------------------------------------------------*/ 
