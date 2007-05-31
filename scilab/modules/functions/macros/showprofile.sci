@@ -1,6 +1,9 @@
 function showprofile(fun)
 lst=macr2lst(fun)
 count=profile(lst)
+if count==[] then 
+   error("Perhaps the function(s) has not been loaded for profiling?")
+end
 count(:,2)=round(100*count(:,2))/100
 count=string(count)
 
