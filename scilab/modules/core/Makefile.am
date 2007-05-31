@@ -382,7 +382,6 @@ includes/InitializeCore.h \
 includes/FTables.h \
 includes/scirun.h \
 includes/fromjava.h \
-includes/getarg.h \
 includes/inisci-c.h \
 includes/cvstr.h \
 includes/error_scilab.h \

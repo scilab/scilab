@@ -28,7 +28,6 @@
 #include "version.h"
 #include "realmain.h" /* realmain */
 #include "scimem.h" /* nofpex */
-#include "getarg.h"
 #include "scilabmode.h"
 
 #include "DestroyObjects.h"
@@ -339,6 +338,8 @@ void main_sci (char *startup, int lstartup,int memory)
   register TScreen *screen;
   register int  pty;
   int Xsocket;
+  int argc =0;
+  char ** argv = NULL;
   /* Init the Toolkit. */
   realToplevel = toplevel = 
     XtAppInitialize(&app_con, "Xscilab", 

@@ -7,12 +7,10 @@
 #include "sciprint.h"
 #ifndef _MSC_VER
 #include "xscion.h"
-#include "getarg.h"
 #endif
 #include "inffic.h" /* get_sci_data_strings */
 #include "scirun.h"
 #include "sciquit.h"
-#include "getarg.h"
 #include "tmpdir.h"
 #include "scilabmode.h"
 /*-----------------------------------------------------------------------------------*/
