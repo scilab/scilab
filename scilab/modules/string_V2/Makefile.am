@@ -34,7 +34,12 @@ sci_gateway/c/sci_grep1.c \
 sci_gateway/c/sci_strindex1.c \
 sci_gateway/c/sci_tokens1.c \
 sci_gateway/c/sci_regexpprivate.c \
-sci_gateway/c/sci_regexp.c
+sci_gateway/c/sci_regexp.c \
+sci_gateway/c/sci_ascii1.c \
+sci_gateway/c/sci_code2str1.c \
+sci_gateway/c/sci_str2code1.c \
+sci_gateway/c/sci_stripblanks1.c \
+sci_gateway/c/sci_strsplit1.c
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_convstr.f \
 sci_gateway/fortran/sci_grep.f \
