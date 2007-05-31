@@ -25,7 +25,10 @@ scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
 
 rootdir=$(pkgdatadir)/etc/
 root_DATA = $(top_srcdir)/etc/scilab.start \
-$(top_srcdir)/etc/scilab.quit
+$(top_srcdir)/etc/scilab.quit \
+$(top_srcdir)/etc/modules.xml \
+$(top_srcdir)/etc/classpath.xml \
+$(top_srcdir)/etc/toolboxes.xml
 
 all: macros
  ### Crappy code ... Need some clean up
