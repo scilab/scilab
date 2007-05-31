@@ -168,7 +168,7 @@ sciSetColormap ( sciPointObj * pobj, double *rgbmat, integer m, integer n )
   
   if(SCI_FIGURE != sciGetEntityType(pobj))
   {
-    sciprint("sciSetColormap Error: Object must be a SCI_FIGURE\n");
+    sciprint("sciSetColormap Error: Object must be a SCI_FIGURE.\n");
     return -1 ;
   }
   

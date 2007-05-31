@@ -13,7 +13,19 @@ import javax.media.opengl.GL;
  * Class containing functions to ease Gl calls
  * @author Jean-Baptiste Silvy Silvy
  */
-public class GLTools {
+public final class GLTools {
+	
+	/** Contains the different line stipple pattern */
+	private static final short[] STIPPLE_PATTERN
+	  = {(short) 0xFFFF, // 16 solids
+		 (short) 0xFFFF, // 16 solids
+		 (short) 0x07FF, // 5 blanks, 11 solid
+		 (short) 0x0F0F, // 4 blanks, 4 solids, 4 blanks, 4 solidS
+		 (short) 0x1FC2, // 3 blanks, 3 solids, 3 blnaks, 7 solids
+		 (short) 0x3FC9, // 2 blanks, 8 solids, 2 blanks, 1 solid, 2 blanks, 1 solid
+		 (short) 0x3FC6  // 3 blanks, 8 solids, 3 blanks, 2 solids
+		};
+	
 	
 	
 	/**
@@ -27,40 +39,23 @@ public class GLTools {
 	 * to endDashMode
 	 * @param gl        OpenGL pipeline to use
 	 * @param lineStyle index of the line style
+	 * @param thickness thickness of the line to draw
 	 */
 	public static void beginDashMode(GL gl, int lineStyle, int thickness) {
-		if ( lineStyle == 0 || lineStyle == 1) {
+		if (lineStyle <= 1 || lineStyle >= STIPPLE_PATTERN.length) {
 			// plain mode, no need to set dash style
 			return;
 		}
 		
-		switch(lineStyle) {
-		case 2:
-			// 5 blanks, 11 solid
-			gl.glLineStipple(thickness, (short)0x07FF);
-			break;
-		case 3:
-			// 4 blanks, 4 solids, 4 blanks, 4 solids
-			gl.glLineStipple(thickness, (short)0x0F0F);
-			break;
-		case 4:
-			// 3 blanks, 3 solids, 3 blnaks, 7 solids
-			gl.glLineStipple(thickness, (short)0x1FC2);
-			break;
-		case 5:
-			
-			gl.glLineStipple(thickness, (short)0x3FC9);
-			break;
-		case 6:
-			gl.glLineStipple(thickness, (short)0x3FC6);
-			break;
-		default:
-			// should not happened
-			break;
-		}
+		gl.glLineStipple(thickness, STIPPLE_PATTERN[lineStyle]);
+		
 		gl.glEnable(GL.GL_LINE_STIPPLE);
 	}
 	
+	/**
+	 * To be called after a beginDahMode call to stop drawing dashes.
+	 * @param gl        OpenGL pipeline to use
+	 */
 	public static void endDashMode(GL gl) {
 		gl.glDisable(GL.GL_LINE_STIPPLE);
 	}

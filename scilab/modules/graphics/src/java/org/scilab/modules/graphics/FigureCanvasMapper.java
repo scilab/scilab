@@ -18,9 +18,13 @@ public final class FigureCanvasMapper {
 	
 	/**
 	 * We can't use directly HashMap.
-	 * @author silvy
 	 */
 	private static class FigureCanvasMap extends HashMap<Integer, SwingScilabCanvas> {	
+		/**
+		 * To remove warning
+		 */
+		private static final long serialVersionUID = 8320117573585296798L;
+
 		/**
 		 * Default Constructor
 		 */

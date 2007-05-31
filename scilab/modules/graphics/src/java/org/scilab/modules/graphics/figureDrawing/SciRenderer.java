@@ -120,7 +120,7 @@ public class SciRenderer
         System.out.println("Left Key pressed");
       }
     }
-    
+  
   /** Invoked when a key has been released.
    * See the class description for {@link KeyEvent} for a definition of
    * a key released event.

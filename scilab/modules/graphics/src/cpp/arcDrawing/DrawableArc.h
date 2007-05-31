@@ -1,8 +1,8 @@
 /*------------------------------------------------------------------------*/
-/* file: DrawableArc.h                                                 */
+/* file: DrawableArc.h                                                    */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
-/* desc : Class containing the drawing routine for an arc object        */
+/* desc : Class containing the drawing routine for an arc object          */
 /*------------------------------------------------------------------------*/
 
 #ifndef _DRAWABLE_ARC_H_

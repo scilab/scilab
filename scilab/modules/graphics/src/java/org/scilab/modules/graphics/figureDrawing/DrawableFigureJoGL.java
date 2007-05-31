@@ -9,9 +9,6 @@
 package org.scilab.modules.graphics.figureDrawing;
 
 
-import javax.swing.JFrame;
-
-import javax.media.opengl.GLJPanel;
 import javax.media.opengl.GL;
 import javax.media.opengl.GLCapabilities;
 
@@ -19,12 +16,9 @@ import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.gui.tab.ScilabTab;
 import org.scilab.modules.gui.tab.Tab;
-import org.scilab.modules.gui.canvas.ScilabCanvas;
-import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.bridge.SwingScilabCanvas;
 
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowAdapter;
+
 import org.scilab.modules.gui.utils.Size;
 
 import org.scilab.modules.graphics.DrawableObjectJoGL;
@@ -59,6 +53,27 @@ public class DrawableFigureJoGL extends DrawableObjectJoGL {
 	public void setFigureId(int figureId) {
 		this.figureId = figureId;
 	}
+	
+	/**
+	 * Function called before beginning to use OpenGL methods.
+	 * @param parentFigureIndex index of the parent figure.
+	 *                          Needed to get the GL context to draw in.
+	 */
+	public void initializeDrawing(int parentFigureIndex) {
+		super.initializeDrawing(parentFigureIndex);
+		GL gl = getGL();
+	    gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
+	    gl.glLoadIdentity();
+	    gl.glTranslatef(0.0f, 0.0f, -6.0f);
+	    gl.glColor3f(1.0f, 1.0f, 1.0f);
+	}
+	
+	/**
+	 * Function called at the end of the OpenGL use.
+	 */
+	public void endDrawing() {
+		super.endDrawing();
+	}
   
   /**
    * Display the info message of the figure
@@ -66,11 +81,6 @@ public class DrawableFigureJoGL extends DrawableObjectJoGL {
    */
   public void updateInfoMessage(String infoMessage) {
     if (canvas == null) { return; }
-    GL gl = getGL();
-    gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
-    gl.glLoadIdentity();
-    gl.glTranslatef(0.0f, 0.0f, -6.0f);
-    gl.glColor3f(1.0f, 0.0f, 0.0f);
     graphicTab.setName(infoMessage);
   }
 
