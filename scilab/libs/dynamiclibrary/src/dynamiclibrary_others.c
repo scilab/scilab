@@ -44,7 +44,7 @@ DynLibFuncPtr GetFuncPtr(DynLibHandle hInstance,char *funcName)
 	return retFuncPtr;
 }
 /*-----------------------------------------------------------------------------------*/ 
-char * GetLastDynError(void)
+char * GetLastDynLibError(void)
 {
 	return dlerror();
 }
