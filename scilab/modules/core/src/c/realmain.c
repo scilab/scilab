@@ -24,7 +24,7 @@ extern void sci_usr1_signal(int n);
 #else
 extern int IsNoInteractiveWindow(void);
 extern void InitXsession(void);
-extern void main_sci (int argc,char ** argv, char *startup, int lstartup,int memory);
+extern void main_sci (char *startup, int lstartup,int memory);
 
 #endif
 /*-----------------------------------------------------------------------------------*/
@@ -105,13 +105,8 @@ void realmain(int no_startup_flag_l,char *initial_script,int initial_script_type
   #ifndef _MSC_VER
   if ( getScilabMode() == SCILAB_STD ) 
     {
-      int argc=0;
-      char **argv=NULL;
-
-      argv = create_argv(&argc);
-
       /* we are in window mode */
-      main_sci(argc,argv,startup,strlen(startup),memory);
+      main_sci(startup,strlen(startup),memory);
     }
   else 
     {
@@ -170,27 +165,6 @@ int Get_no_startup_flag(void)
 {
 	return no_startup_flag;
 }
-/*-----------------------------------------------------------------------------------*/
-#ifndef _MSC_VER
-char ** create_argv(int *argc)
-{
-  int i;
-  char **argv;
-  *argc = C2F(sciiargc)() + 1;
-  if ( ( argv = malloc((*argc)*sizeof(char *))) == NULL) return NULL;
-  for ( i=0 ; i < *argc ; i++) 
-    {
-      char buf[BSIZE];
-      C2F(scigetarg)(&i,buf,BSIZE);
-      buf[BSIZE-1]='\0';
-      strip_blank(buf);
-      argv[i] = malloc((strlen(buf)+1)*sizeof(char));
-      if ( argv[i] == NULL) return NULL;
-      strcpy(argv[i],buf);
-    }
-  return argv;
-}
-#endif
 /*-----------------------------------------------------------------------------------*/
 static void strip_blank(char *source)
 {

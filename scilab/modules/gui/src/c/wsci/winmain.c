@@ -41,6 +41,7 @@
 
 #include "win_mem_alloc.h" /* MALLOC */
 #include "scilabmode.h"
+#include "getcommandlineargs.h"
 /*-----------------------------------------------------------------------------------*/
 #define stricmp _stricmp
 #define strnicmp _strnicmp
@@ -75,6 +76,8 @@ int Console_Main(int argc, char **argv)
 
   ScilabIsStarting=TRUE;
   
+  setCommandLineArgs(argv, argc);
+
   for (i=0;i<argc;i++)
   {
 	  my_argv[i] = argv[i];
@@ -316,6 +319,8 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	{
 		my_argv[++my_argc] = strtok(NULL, " ");
 	}
+
+	setCommandLineArgs(my_argv, my_argc);
 	
 	for (i=1;i<my_argc;i++)
 	{
@@ -531,35 +536,6 @@ void InitWindowGraphDll(void)
 		graphwin.szMenuName = GetszGraphMenuName();
 		graphwin.lptw = &textwin;
 	}
-}
-/*-----------------------------------------------------------------------------------*/
-/* to simulate argv */
-void add_sci_argv(char *p)
-{
-	if (*p)	my_argv[++my_argc]=p;
-}
-/*-----------------------------------------------------------------------------------*/
-/* Fortran iargc and fgetarg implemented here */
-int sci_iargc()
-{
-	return my_argc -1 ;
-}
-/*-----------------------------------------------------------------------------------*/
-int sci_getarg(int *n,char *s,long int ls)
-{
-	register char *t;
-	register int i;
-	
-	if(*n>=0 && *n <= my_argc)
-	t = my_argv[*n];
-	else
-	t = "";
-
-	for(i = 0; i < ls && *t!='\0' ; ++i)
-	*s++ = *t++;
-	for( ; i<ls ; ++i)
-	*s++ = ' ';
-	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 int InteractiveMode ()

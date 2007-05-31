@@ -333,7 +333,7 @@ Widget initColors(realToplevel_w)
   return toplevel_w;
 }
 /*----------------------------------------------------------------------------------*/
-void main_sci (int argc,char ** argv, char *startup, int lstartup,int memory)
+void main_sci (char *startup, int lstartup,int memory)
 {
   XtermWidget CreateSubWindows();
   register TScreen *screen;
@@ -363,24 +363,6 @@ void main_sci (int argc,char ** argv, char *startup, int lstartup,int memory)
   if (strcmp(xterm_name, "-") == 0) xterm_name = "xterm";
   XtSetValues (toplevel, ourTopLevelShellArgs,
 	       (Cardinal)  number_ourTopLevelShellArgs);
-  /* Parse the rest of the command line 
-   * the arguments parsed by XtAppInitialize must be the last ones 
-   * and here we can check that arguments belong to options 
-   * this is to be updated 
-   */
-  /* 
-  for (argc--, argv++ ; argc > 0 ; argc--, argv++) 
-    {
-      if(**argv != '-') Syntax (*argv);
-      switch(argv[0][1]) {
-      case 'h':
-	Help ();      break;
-	/ * NOTREACHED * /
-      default:
-	Syntax (*argv);
-      }
-    }
-  */
   XawSimpleMenuAddGlobalActions (app_con);
   XtRegisterGrabAction (HandlePopupMenu, True,
 			(ButtonPressMask|ButtonReleaseMask),

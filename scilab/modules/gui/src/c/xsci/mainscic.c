@@ -7,8 +7,8 @@
 #include "version.h"
 #include "realmain.h" /* realmain */
 #include "scimem.h" /* nofpex */
-#include "getarg.h"
 #include "scilabmode.h"
+#include "getcommandlineargs.h"
 /*-----------------------------------------------------------------------------------*/ 
 #define MIN_STACKSIZE 180000
 /*-----------------------------------------------------------------------------------*/ 
@@ -42,6 +42,9 @@ fpsetmask(0);
   ProgramName = argv[0];
   
   setScilabMode(SCILAB_STD);
+  
+  setCommandLineArgs(argv, argc);
+  
   
   /* scanning options */
   for ( i=0 ; i < argc ; i++) 

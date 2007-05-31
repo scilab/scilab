@@ -1,5 +1,6 @@
 #include "javasci_globals.h"
 #include "setgetSCIpath.h"
+#include "getcommandlineargs.h"
 /********************************************************************************************************/
 /* Allan CORNET */
 /* INRIA 2005 */
@@ -30,6 +31,8 @@ void Initialize(void)
   static int iflag=-1, stacksize = 1000000, ierr=0;
 
   #ifdef _MSC_VER
+	#define nb_args 3
+	static char *argv[nb_args];
     static char JavaSciInterf[]="javasci";
     static char nw[]="-nw";
     static char nb[]="-nb";
@@ -41,8 +44,13 @@ void Initialize(void)
   
   #ifdef _MSC_VER
   /* Delete the windows mode and the banner */
-    add_sci_argv(JavaSciInterf);
-    add_sci_argv(nb);
+  {
+    argv[0] = JavaSciInterf;
+	argv[1] = nw;
+	argv[2] = nb;
+	setCommandLineArgs(argv, nb_args);
+  }
+  
   #endif
   
   #ifdef _MSC_VER 

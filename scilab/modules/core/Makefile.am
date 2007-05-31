@@ -81,7 +81,8 @@ src/c/islittleendian.c \
 src/c/filesmanagement.c \
 src/c/terme.c \
 src/c/ifexpr.c \
-src/c/expr.c 
+src/c/expr.c \
+src/c/getcommandlineargs.c
 
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f \
 src/fortran/clunit.f \
@@ -168,7 +169,6 @@ src/fortran/inisci.f \
 src/fortran/ptover.f \
 src/fortran/getfunction.f \
 src/fortran/stackp.f \
-src/fortran/getpro.f \
 src/fortran/dbasin.f \
 src/fortran/macro.f \
 src/fortran/lspdsp.f \
@@ -298,17 +298,8 @@ sci_gateway/fortran/sci_mode.f \
 sci_gateway/fortran/sci_addinter.f \
 sci_gateway/fortran/sci_debug.f \
 sci_gateway/fortran/sci_error.f \
-sci_gateway/fortran/sci_sciargs.f \
 sci_gateway/fortran/sci_isglobal.f
 
-
-if IS_HPUX
-CORE_FORTRAN_SOURCES+=src/fortran/fgetarg-hpux.f
-CORE_C_SOURCES+=src/c/getarg-hpux.c
-else
-CORE_FORTRAN_SOURCES+=src/fortran/fgetarg.f
-CORE_C_SOURCES+=src/c/getarg.c
-endif
 
 
 libscicore_la_CFLAGS=  -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ $(XML_FLAGS)

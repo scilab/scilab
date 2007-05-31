@@ -53,8 +53,6 @@ void C2F(getenvc) __PARAMS((int *ierr,char *var,char *buf,int *buflen,int *iflag
 
 /*  "getpidc-n.c.X1" */
 extern int C2F(getpidc) __PARAMS((int *id1));  
-/*  "getpro-n.c.X1" */
-extern void C2F(getpro) __PARAMS((char *ret_val, ftnlen ret_val_len));  
 
 /*  "inffic-n.c.X1" */
 extern void C2F(inffic) __PARAMS((integer *iopt, char *name, integer *nc));  

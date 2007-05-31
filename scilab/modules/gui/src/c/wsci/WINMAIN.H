@@ -52,9 +52,6 @@ static int my_argc = -1;
 /* Les Fonctions */
 /*-----------------------------------------------------------------------------------*/
 int Pause (LPSTR str);
-void add_sci_argv(char *p);
-int sci_iargc();
-int sci_getarg(int *n,char *s,long int ls);
 int InteractiveMode ();
 int C2F(showlogo) ();
 void WinExit (void);
