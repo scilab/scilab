@@ -343,7 +343,7 @@ AM_CONDITIONAL(IS_MIPS_SGI_IRIX, test -n "$MIPS_SGI_IRIX")
 if test "$CXX" = "g++"; then
    ## With GNU C++ Compiler
    if test "$enable_debug_CXX" = yes; then
-	  CXXFLAGS="$CXXFLAGS -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wstrict-overflow=4 -Wstrict-aliasing -Wextra -Wall "
+	  CXXFLAGS="$CXXFLAGS -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wstrict-aliasing -Wextra -Wall "
    else
 	  CXXFLAGS="$CXXFLAGS -DNDEBUG" 
    fi
