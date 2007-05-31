@@ -1660,7 +1660,6 @@ includes/PloEch.h \
 includes/resources.h \
 includes/sci_xclick.h \
 includes/sci_xclear.h \
-includes/sci_xsort.h \
 includes/sci_xtape.h \
 includes/sci_xset.h \
 includes/sci_xgetech.h \
