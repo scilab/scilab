@@ -3,14 +3,12 @@
 // of a scilab session for scipad module
 // Copyright INRIA 2006
 // ====================================================================
-if (sciargs()<>"-nw")&(sciargs()<>"-nwni")&(sciargs()<>"-nogui") then
-    if with_tk() then
-        if (TCL_EvalStr("interp exists scipad")<>'0') then 
-            if (TCL_EvalStr("info exists pad","scipad")<>'0') then
-                TCL_EvalStr("catch {exitapp}","scipad");
-            end
-        end
-    end
+if ( (getscilabmode()<>"NWNI") & with_tk() ) then
+   if (TCL_EvalStr("interp exists scipad")<>'0') then 
+     if (TCL_EvalStr("info exists pad","scipad")<>'0') then
+       TCL_EvalStr("catch {exitapp}","scipad");
+     end
+   end
 end
 // ====================================================================
 //remove help chapter
