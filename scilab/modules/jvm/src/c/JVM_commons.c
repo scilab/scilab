@@ -3,6 +3,7 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
 #include <jni.h>
+#include <stdio.h>
 #include "JVM_commons.h"
 #include "dynamiclibrary.h"
 /*-----------------------------------------------------------------------------------*/ 
@@ -40,14 +41,16 @@ jint SciJNI_GetCreatedJavaVMs(JavaVM **vmBuf, jsize BufLen, jsize *nVMs)
 BOOL FreeDynLibJVM(void)
 {
 	BOOL bOK=FALSE;
-	
-	if (FreeDynLibrary(hLibJVM))
-	{
-		ptr_JNI_GetDefaultJavaVMInitArgs = NULL; 
-		ptr_JNI_CreateJavaVM = NULL; 
-		ptr_JNI_GetCreatedJavaVMs = NULL; 
-		bOK=TRUE;
-	}
+	if (hLibJVM)
+		{
+			if (FreeDynLibrary(hLibJVM))
+				{
+					ptr_JNI_GetDefaultJavaVMInitArgs = NULL; 
+					ptr_JNI_CreateJavaVM = NULL; 
+					ptr_JNI_GetCreatedJavaVMs = NULL; 
+					bOK=TRUE;
+				}
+		}
 	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/ 
@@ -62,9 +65,9 @@ BOOL LoadFuntionsJVM(char *filedynlib)
 		ptr_JNI_GetDefaultJavaVMInitArgs = (JNI_GetDefaultJavaVMInitArgsPROC) GetFuncPtr(hLibJVM, "JNI_GetDefaultJavaVMInitArgs" ); 
 		ptr_JNI_CreateJavaVM = (JNI_CreateJavaVMPROC) GetFuncPtr(hLibJVM, "JNI_CreateJavaVM" ); 
 		ptr_JNI_GetCreatedJavaVMs = (JNI_GetCreatedJavaVMsPROC) GetFuncPtr(hLibJVM, "JNI_GetCreatedJavaVMs" ); 
-	
+
 		if (ptr_JNI_GetDefaultJavaVMInitArgs && ptr_JNI_CreateJavaVM && ptr_JNI_GetCreatedJavaVMs) bOK=TRUE;
-  }
+	}
 	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/ 
