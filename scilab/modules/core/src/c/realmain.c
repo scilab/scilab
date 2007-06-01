@@ -7,23 +7,20 @@
 #include "sciprint.h"
 #ifndef _MSC_VER
 #include "xscion.h"
+#include "../gui/includes/x_main.h"
 #endif
 #include "inffic.h" /* get_sci_data_strings */
 #include "scirun.h"
 #include "sciquit.h"
 #include "tmpdir.h"
 #include "scilabmode.h"
+
 /*-----------------------------------------------------------------------------------*/
 extern void sci_clear_and_exit(int n);
 extern int C2F(inisci)(int *,int *,int *);
 extern void sci_usr1_signal(int n);
 #ifdef _MSC_VER
 #include "ExceptionMessage.h"
-#else
-extern int IsNoInteractiveWindow(void);
-extern void InitXsession(void);
-extern void main_sci (char *startup, int lstartup,int memory);
-
 #endif
 /*-----------------------------------------------------------------------------------*/
 static void strip_blank(char *source);
