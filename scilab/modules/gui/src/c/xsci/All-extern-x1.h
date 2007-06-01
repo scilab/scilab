@@ -49,7 +49,6 @@ extern int C2F(winsci) __PARAMS((char *pname, int *nos, int *idisp, char *displa
 extern void getcolordef  __PARAMS((integer *c));  
 extern void setcolordef  __PARAMS((int screenc));  
 /* extern void initColors  __PARAMS((void));   */
-extern void main_sci  __PARAMS((int argc, char **argv));  
 extern int clear_ieee_warnings  __PARAMS((void));  
 extern void sci_clear_and_exit  __PARAMS((integer n));  
 extern int C2F(clearexit)  __PARAMS((int *n));  
