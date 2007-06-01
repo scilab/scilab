@@ -2,13 +2,12 @@
 /* INRIA 2007 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#include "machine.h" 
-/*-----------------------------------------------------------------------------------*/ 
-extern int  Scierror __PARAMS((int iv,char *fmt,...));
+#include "machine.h"
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(gw_graphics)()
 {
-	Scierror(999,"graphics interface not installed.\r\n");
+	Scierror(999,"Graphics interface not installed.\r\n");
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 
