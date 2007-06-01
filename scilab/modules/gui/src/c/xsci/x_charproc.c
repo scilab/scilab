@@ -580,19 +580,6 @@ void Scisncr(char *str)
     }
 }
 
-void Scistring(char *str)
-{
-  int i;
-  int n;
-  C2F(xscion)(&i);
-  if (i == 0) 
-      fprintf(stdout,"%s",str);
-  else {
-      n=strlen(str);
-      C2F(xscistring)(str,&n,0L);
-  }
-}
-
 
 #ifdef __STDC__
 #include <stdarg.h>
