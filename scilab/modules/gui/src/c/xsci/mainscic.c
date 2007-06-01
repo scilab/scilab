@@ -8,6 +8,7 @@
 #include "realmain.h" /* realmain */
 #include "scimem.h" /* nofpex */
 #include "scilabmode.h"
+#include "x_main.h"
 #include "getcommandlineargs.h"
 /*-----------------------------------------------------------------------------------*/ 
 #define MIN_STACKSIZE 180000
