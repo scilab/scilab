@@ -15,37 +15,28 @@
 #include <math.h>
 #include <string.h>
 #include "spd.h"
+#include "../gui/includes/Scistring.h"
 
-#ifdef _MSC_VER 
-extern void Scistring (char *str);
-#endif
-
-void cngrncb(itype,n,AP,B,CP,temp)
- int itype;
- int n;
- double *AP;
- double *B;
- double *CP;
- double *temp;
 
 /* 
  * if itype = 1, computes C = B*A*B', otherwise, computes C = B'*A*B 
  * A and B are nxn with A symmetric.
  *
  * Arguments:
- * - itype  = 1: compute C = B*A*B'
+ * @param itype  = 1: compute C = B*A*B'
  *          = any other integer: computes C = B'*A*B
- * - n      dimension of A and B
- * - AP     (input) double array of size n*(n+1)2;
+ * @param n      dimension of A and B
+ * @param AP     (input) double array of size n*(n+1)2;
  *          the lower triangle of A in packed storage
- * - B      (input) double array of size n*n;
- * - CP     (output) double array of size n*(n+1)/2; 
+ * @param B      (input) double array of size n*n;
+ * @param CP     (output) double array of size n*(n+1)/2; 
  *          the lower triangle of C in packed storage
- * - temp:  n-array, workspace
+ * @param temp:  n-array, workspace
  */
 
-
+void cngrncb(int itype,int n,double *AP,double *B,double *CP,double *temp)
 {
+
  int j, pos, lngth = n*(n+1)/2;
  int int1=1;
  double dbl0=0.0, dbl1=1.0; 
