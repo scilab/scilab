@@ -4290,14 +4290,14 @@ fi
 #####################################################
 
 if test "$with_g77" = yes -a "$with_gfortran" = yes; then
-	{ { echo "$as_me:$LINENO: error: conflicting options : you specified two fortran compiler" >&5
-echo "$as_me: error: conflicting options : you specified two fortran compiler" >&2;}
+	{ { echo "$as_me:$LINENO: error: Conflicting options : you specified two fortran compiler" >&5
+echo "$as_me: error: Conflicting options : you specified two fortran compiler" >&2;}
    { (exit 1); exit 1; }; }
 fi
 
 if test "$with_intelcompilers" = yes -a "$with_gcc" = yes; then
-	{ { echo "$as_me:$LINENO: error: conflicting options : you specified two compiler series" >&5
-echo "$as_me: error: conflicting options : you specified two compiler series" >&2;}
+	{ { echo "$as_me:$LINENO: error: Conflicting options : you specified two compiler series" >&5
+echo "$as_me: error: Conflicting options : you specified two compiler series" >&2;}
    { (exit 1); exit 1; }; }
 fi
 
@@ -4564,8 +4564,8 @@ ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $
 ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
    if test -z "$F77"; then
-     { { echo "$as_me:$LINENO: error: you asked me to use g77 but i haven't been able to find it" >&5
-echo "$as_me: error: you asked me to use g77 but i haven't been able to find it" >&2;}
+     { { echo "$as_me:$LINENO: error: You asked me to use g77 but i haven't been able to find it" >&5
+echo "$as_me: error: You asked me to use g77 but i haven't been able to find it" >&2;}
    { (exit 1); exit 1; }; }
 	fi
 fi
@@ -4832,8 +4832,8 @@ ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $
 ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
    if test -z "$F77"; then
-     { { echo "$as_me:$LINENO: error: you asked me to use gfortran but i haven't been able to find it" >&5
-echo "$as_me: error: you asked me to use gfortran but i haven't been able to find it" >&2;}
+     { { echo "$as_me:$LINENO: error: You asked me to use gfortran but i haven't been able to find it" >&5
+echo "$as_me: error: You asked me to use gfortran but i haven't been able to find it" >&2;}
    { (exit 1); exit 1; }; }
 	fi
 fi
@@ -5100,8 +5100,8 @@ ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $
 ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
    if test -z "$F77"; then
-     { { echo "$as_me:$LINENO: error: you asked me to use ifc (intel fortran compiler) but i haven't been able to find it" >&5
-echo "$as_me: error: you asked me to use ifc (intel fortran compiler) but i haven't been able to find it" >&2;}
+     { { echo "$as_me:$LINENO: error: You asked me to use ifc (intel fortran compiler) but i haven't been able to find it" >&5
+echo "$as_me: error: You asked me to use ifc (intel fortran compiler) but i haven't been able to find it" >&2;}
    { (exit 1); exit 1; }; }
 	fi
 fi
@@ -5371,8 +5371,8 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 fi
 
 if test -z "$F77"; then
-  { { echo "$as_me:$LINENO: error: no fortran compiler. cannot compile scilab without a fortran compiler" >&5
-echo "$as_me: error: no fortran compiler. cannot compile scilab without a fortran compiler" >&2;}
+  { { echo "$as_me:$LINENO: error: No fortran compiler. cannot compile scilab without a fortran compiler" >&5
+echo "$as_me: error: No fortran compiler. cannot compile scilab without a fortran compiler" >&2;}
    { (exit 1); exit 1; }; }
 else
 	case "$F77" in
@@ -5871,8 +5871,8 @@ ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $
 ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
    if test -z "$CC"; then
-     { { echo "$as_me:$LINENO: error: you asked me to use gcc but i haven't been able to find it" >&5
-echo "$as_me: error: you asked me to use gcc but i haven't been able to find it" >&2;}
+     { { echo "$as_me:$LINENO: error: You asked me to use gcc but i haven't been able to find it" >&5
+echo "$as_me: error: You asked me to use gcc but i haven't been able to find it" >&2;}
    { (exit 1); exit 1; }; }
 	fi
 fi
