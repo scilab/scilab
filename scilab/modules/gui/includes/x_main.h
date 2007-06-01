@@ -14,13 +14,11 @@
 /**
  * TODO: comment
  *
- * @param argc  
- * @param argv  
- * @param startup   
- * @param lstartup  
- * @param memory    
+ * @param startup Which script should be started
+ * @param lstartup Length the char * startup
+ * @param memory Memory we want to allocate
  */
-void main_sci (int argc,char ** argv, char *startup, int lstartup,int memory);
+void main_sci (char *startup, int lstartup, int memory);
 
 
 
@@ -31,3 +29,34 @@ void main_sci (int argc,char ** argv, char *startup, int lstartup,int memory);
  * @param argv  
  */
 void mainscic(int argc, char **argv);
+
+
+/**
+ * TODO: comment
+ *
+ * @param void  
+ * @return <ReturnValue>
+ */
+int IsNoInteractiveWindow(void);
+
+/**
+ * TODO: comment
+ *
+ * @param n 
+ */
+void sci_sig_tstp(int n);
+
+/**
+ * TODO: comment
+ *
+ * @param void  
+ * @return <ReturnValue>
+ */
+int IsConsoleMode(void);
+
+/**
+ * TODO: comment
+ *
+ * @param void  
+ */
+void InitXsession(void);
