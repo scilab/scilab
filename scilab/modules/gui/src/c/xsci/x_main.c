@@ -22,8 +22,8 @@
 #include <X11/cursorfont.h>
 #include <X11/Xaw3d/SimpleMenu.h>
 
-
 #include "machine.h"
+#include "x_main.h"
 #include "math.h"
 #include "version.h"
 #include "realmain.h" /* realmain */
@@ -35,8 +35,8 @@
 
 extern void  controlC_handler(int n);
 
-#include "All-extern-x.h"
 #include "All-extern.h"
+#include "All-extern-x.h"
 
 #ifdef USE_TERMIOS
 #include <termios.h>
@@ -110,11 +110,6 @@ extern char ** create_argv(int *argc);
 extern int sci_show_banner;
 static int  no_window = 0;
 static int nointeractive = 0;
-/*----------------------------------------------------------------------------------*/
-int IsNoInteractiveWindow(void);
-void sci_sig_tstp(int n);
-int IsConsoleMode(void);
-void InitXsession(void);
 /*----------------------------------------------------------------------------------*/
 Boolean   sunFunctionKeys = False;
 
@@ -216,20 +211,12 @@ Widget realToplevel = (Widget) NULL;
  * DeleteWindow(): Action proc to implement ICCCM delete_window.
  */
  /*----------------------------------------------------------------------------------*/
-void DeleteWindow(w, event, params, num_params)
-    Widget w;
-    XEvent *event;
-    String *params;
-    Cardinal *num_params;
+void DeleteWindow(Widget w, XEvent *event, String *params, Cardinal *num_params)
 {
  sci_clear_and_exit(0); 
 }
 /*----------------------------------------------------------------------------------*/
-void KeyboardMapping(w, event, params, num_params)
-    Widget w;
-    XEvent *event;
-    String *params;
-    Cardinal *num_params;
+void KeyboardMapping(Widget w, XEvent *event, String *params, Cardinal *num_params)
 {
     switch (event->type) {
        case MappingNotify:
@@ -248,9 +235,7 @@ static XtActionsRec actionProcs[] = {
  * used by scilab to know the dpy and toplevel 
  */
 /*----------------------------------------------------------------------------------*/
-int Xscilab(dpy,topwid)
-     Display **dpy;
-     Widget *topwid;
+int Xscilab(Display **dpy,Widget *topwid)
 {
   *topwid=toplevel;
   if ( toplevel != (Widget) NULL) *dpy=XtDisplay(toplevel);
