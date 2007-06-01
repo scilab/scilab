@@ -94,32 +94,32 @@ AC_ARG_WITH(java,
 #####################################################
 
 if test "$with_g77" = yes -a "$with_gfortran" = yes; then
-	AC_MSG_ERROR([conflicting options : you specified two fortran compiler])
+	AC_MSG_ERROR([Conflicting options : you specified two fortran compiler])
 fi
 
 if test "$with_intelcompilers" = yes -a "$with_gcc" = yes; then
-	AC_MSG_ERROR([conflicting options : you specified two compiler series])
+	AC_MSG_ERROR([Conflicting options : you specified two compiler series])
 fi
 
 ######## fortran ########
 if test "$with_g77" = yes; then
    AC_PROG_F77(g77)
    if test -z "$F77"; then
-     AC_MSG_ERROR([you asked me to use g77 but i haven't been able to find it])
+     AC_MSG_ERROR([You asked me to use g77 but i haven't been able to find it])
 	fi
 fi
 
 if test "$with_gfortran" = yes; then
    AC_PROG_F77(gfortran)
    if test -z "$F77"; then
-     AC_MSG_ERROR([you asked me to use gfortran but i haven't been able to find it])
+     AC_MSG_ERROR([You asked me to use gfortran but i haven't been able to find it])
 	fi
 fi
 
 if test "$with_intelcompilers" = yes; then
    AC_PROG_F77(ifc ifort)
    if test -z "$F77"; then
-     AC_MSG_ERROR([you asked me to use ifc (intel fortran compiler) but i haven't been able to find it])
+     AC_MSG_ERROR([You asked me to use ifc (intel fortran compiler) but i haven't been able to find it])
 	fi
 fi
 
@@ -129,7 +129,7 @@ if test -z "$F77"; then
 fi
 
 if test -z "$F77"; then
-  AC_MSG_ERROR([no fortran compiler. cannot compile scilab without a fortran compiler])
+  AC_MSG_ERROR([No fortran compiler. cannot compile scilab without a fortran compiler])
 else
 	case "$F77" in
 	 *90*|*95*|gfortran|fort|ifort|ifc|efc|ftn|pghpf)
@@ -144,7 +144,7 @@ fi
 if test "$with_gcc" = yes; then
    AC_PROG_CC(gcc)
    if test -z "$CC"; then
-     AC_MSG_ERROR([you asked me to use gcc but i haven't been able to find it])
+     AC_MSG_ERROR([You asked me to use gcc but i haven't been able to find it])
 	fi
 fi
 
