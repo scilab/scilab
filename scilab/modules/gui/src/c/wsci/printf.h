@@ -42,7 +42,6 @@ int MyFPutS (char *str, FILE * file);
 int MyFPutCstdout(int ch);
 int MyFPutSstdout(char *str);
 
-void Scistring (char *str);
 void sciprint (char *fmt,...);
 void sciprint_nd (char *fmt,...);
 int sciprint2 (int iv, char *fmt,...);

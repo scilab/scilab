@@ -80,20 +80,6 @@ int MyFPutS (char *str, FILE * file)
 	return fputs (str, file);
 }
 /*-----------------------------------------------------------------------------------*/
-/** synonym for scilab but without the \n **/
-void Scistring (char *str)
-{
-	int i;
-	C2F (xscion) (&i);
-	if (i == 0)
-	fprintf (stdout, "%s", str);
-	else
-	{
-		TextPutS (&textwin, str);
-		MyPutCh ('\n');
-	}
-}
-/*-----------------------------------------------------------------------------------*/
 /*---------------------------------------------------
 * the same but no diary record
 *---------------------------------------------------*/
