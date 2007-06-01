@@ -220,6 +220,9 @@
 			<File
 				RelativePath=".\men_print.c"
 				>
+			<File
+				RelativePath=".\Scistring.c"
+				>
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_addmenu_old.c"
