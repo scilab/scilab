@@ -396,7 +396,7 @@ modulename=elementaries_functions
 
 #### elementaries_functions : Conf files ####
 libscielementaries_functions_la_rootdir = $(mydatadir)
-libscielementaries_functions_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
+libscielementaries_functions_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 
 

@@ -137,8 +137,8 @@ libscigui_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/string/libscistring.la \
 	$(top_builddir)/modules/tclsci/libscitclsci.la
 am__libscigui_la_SOURCES_DIST = src/c/xsci/mainscic.c \
-	src/c/xsci/x_main.c src/c/xsci/IsConsoleMode.c \
-	src/c/xsci/x_VTPrsTbl.c src/c/getlookandfeel.c \
+	src/c/xsci/IsConsoleMode.c src/c/xsci/x_VTPrsTbl.c \
+	src/c/xsci/x_main.c src/c/Scistring.c src/c/getlookandfeel.c \
 	src/c/setlookandfeel.c src/c/getinstalledlookandfeels.c \
 	src/c/TerminateGui.c src/c/xsci/wf_w_util.c src/c/xsci/utils.c \
 	src/c/xsci/x_cursor.c src/c/xsci/wf_f_read.c \
@@ -228,9 +228,9 @@ am__libscigui_la_SOURCES_DIST = src/c/xsci/mainscic.c \
 @WITH_JAVA_TRUE@	libscigui_la-men_print.lo \
 @WITH_JAVA_TRUE@	libscigui_la-guitable.lo
 @WITH_JAVA_FALSE@am__objects_2 = libscigui_la-nogui.lo
-am__objects_3 = libscigui_la-mainscic.lo libscigui_la-x_main.lo \
-	libscigui_la-IsConsoleMode.lo libscigui_la-x_VTPrsTbl.lo \
-	$(am__objects_1) $(am__objects_2)
+am__objects_3 = libscigui_la-mainscic.lo libscigui_la-IsConsoleMode.lo \
+	libscigui_la-x_VTPrsTbl.lo libscigui_la-x_main.lo \
+	libscigui_la-Scistring.lo $(am__objects_1) $(am__objects_2)
 @WITH_JAVA_TRUE@am__objects_4 = libscigui_la-sci_x_choice.lo \
 @WITH_JAVA_TRUE@	libscigui_la-sci_x_message_modeless.lo \
 @WITH_JAVA_TRUE@	libscigui_la-gw_gui.lo \
@@ -484,8 +484,8 @@ JARDIR = jar/
 JARMASK = *.jar
 # List of the localisation (languages) files
 LOCALISATIONFILES = errors.xml menus.xml messages.xml
-GUI_C_SOURCES = src/c/xsci/mainscic.c src/c/xsci/x_main.c \
-	src/c/xsci/IsConsoleMode.c src/c/xsci/x_VTPrsTbl.c \
+GUI_C_SOURCES = src/c/xsci/mainscic.c src/c/xsci/IsConsoleMode.c \
+	src/c/xsci/x_VTPrsTbl.c src/c/xsci/x_main.c src/c/Scistring.c \
 	$(am__append_1) $(am__append_2)
 @WITH_JAVA_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/sci_x_choice.c \
 @WITH_JAVA_TRUE@sci_gateway/c/sci_x_message_modeless.c \
@@ -527,7 +527,6 @@ libscigui_la_CFLAGS = -Isrc/c/ -Iincludes/ \
 	-I$(top_srcdir)/modules/jvm/includes/ \
 	-I$(top_srcdir)/modules/gui/src/c/xsci/ $(TCL_INC_PATH) \
 	$(Tk_INC_PATH) $(am__append_3)
-@WITH_JAVA_TRUE@EXTRA_DIST = src/java/gui/build.xml
 libscigui_la_LDFLAGS = $(X_LIBS) $(TERMCAP_LIB) $(X_EXTRA_LIBS)
 pkglib_LTLIBRARIES = libscigui.la
 libscigui_la_SOURCES = $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
@@ -545,7 +544,7 @@ modulename = gui
 
 #### gui : Conf files ####
 libscigui_la_rootdir = $(mydatadir)
-libscigui_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
+libscigui_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 #### gui : init scripts #### 
 libscigui_la_etcdir = $(mydatadir)/etc
@@ -641,6 +640,7 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-IsConsoleMode.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SGraph.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-Scistring.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-TerminateGui.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-coloredit.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-command.Plo@am__quote@
@@ -739,13 +739,6 @@ libscigui_la-mainscic.lo: src/c/xsci/mainscic.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-mainscic.lo `test -f 'src/c/xsci/mainscic.c' || echo '$(srcdir)/'`src/c/xsci/mainscic.c
 
-libscigui_la-x_main.lo: src/c/xsci/x_main.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-x_main.lo -MD -MP -MF $(DEPDIR)/libscigui_la-x_main.Tpo -c -o libscigui_la-x_main.lo `test -f 'src/c/xsci/x_main.c' || echo '$(srcdir)/'`src/c/xsci/x_main.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-x_main.Tpo $(DEPDIR)/libscigui_la-x_main.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/x_main.c' object='libscigui_la-x_main.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-x_main.lo `test -f 'src/c/xsci/x_main.c' || echo '$(srcdir)/'`src/c/xsci/x_main.c
-
 libscigui_la-IsConsoleMode.lo: src/c/xsci/IsConsoleMode.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-IsConsoleMode.lo -MD -MP -MF $(DEPDIR)/libscigui_la-IsConsoleMode.Tpo -c -o libscigui_la-IsConsoleMode.lo `test -f 'src/c/xsci/IsConsoleMode.c' || echo '$(srcdir)/'`src/c/xsci/IsConsoleMode.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-IsConsoleMode.Tpo $(DEPDIR)/libscigui_la-IsConsoleMode.Plo
@@ -759,6 +752,20 @@ libscigui_la-x_VTPrsTbl.lo: src/c/xsci/x_VTPrsTbl.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/x_VTPrsTbl.c' object='libscigui_la-x_VTPrsTbl.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-x_VTPrsTbl.lo `test -f 'src/c/xsci/x_VTPrsTbl.c' || echo '$(srcdir)/'`src/c/xsci/x_VTPrsTbl.c
+
+libscigui_la-x_main.lo: src/c/xsci/x_main.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-x_main.lo -MD -MP -MF $(DEPDIR)/libscigui_la-x_main.Tpo -c -o libscigui_la-x_main.lo `test -f 'src/c/xsci/x_main.c' || echo '$(srcdir)/'`src/c/xsci/x_main.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-x_main.Tpo $(DEPDIR)/libscigui_la-x_main.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/x_main.c' object='libscigui_la-x_main.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-x_main.lo `test -f 'src/c/xsci/x_main.c' || echo '$(srcdir)/'`src/c/xsci/x_main.c
+
+libscigui_la-Scistring.lo: src/c/Scistring.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-Scistring.lo -MD -MP -MF $(DEPDIR)/libscigui_la-Scistring.Tpo -c -o libscigui_la-Scistring.lo `test -f 'src/c/Scistring.c' || echo '$(srcdir)/'`src/c/Scistring.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-Scistring.Tpo $(DEPDIR)/libscigui_la-Scistring.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/Scistring.c' object='libscigui_la-Scistring.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-Scistring.lo `test -f 'src/c/Scistring.c' || echo '$(srcdir)/'`src/c/Scistring.c
 
 libscigui_la-getlookandfeel.lo: src/c/getlookandfeel.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-getlookandfeel.lo -MD -MP -MF $(DEPDIR)/libscigui_la-getlookandfeel.Tpo -c -o libscigui_la-getlookandfeel.lo `test -f 'src/c/getlookandfeel.c' || echo '$(srcdir)/'`src/c/getlookandfeel.c

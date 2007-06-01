@@ -10,7 +10,7 @@ modulename=helptools
 
 #### helptools : Conf files ####
 libscihelptools_la_rootdir = $(mydatadir)
-libscihelptools_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
+libscihelptools_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 #### helptools : init scripts #### 
 libscihelptools_la_etcdir = $(mydatadir)/etc

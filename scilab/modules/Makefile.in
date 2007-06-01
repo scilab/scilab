@@ -49,13 +49,14 @@ host_triplet = @host@
 # javasci should be compile at the end because it needs libscilab.la
 # Don't forget that the order in subdirs does matter !!!
 @WITH_JAVA_TRUE@am__append_1 = javasci
-@STRINGV2_TRUE@am__append_2 = $(top_builddir)/modules/string_V2/libscistring.la
-@STRINGV2_FALSE@am__append_3 = $(top_builddir)/modules/string/libscistring.la
+@WITH_JAVA_TRUE@am__append_2 = $(top_builddir)/modules/shell/libscishell.la
+@STRINGV2_TRUE@am__append_3 = $(top_builddir)/modules/string_V2/libscistring.la
+@STRINGV2_FALSE@am__append_4 = $(top_builddir)/modules/string/libscistring.la
 
 #if MPI
 #libscilab_la_LIBADD += $(top_builddir)/modules/mpi/libscimpi.la
 #endif
-@FFTW_TRUE@am__append_4 = $(top_builddir)/modules/fftw/libscifftw.la
+@FFTW_TRUE@am__append_5 = $(top_builddir)/modules/fftw/libscifftw.la
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 subdir = modules
@@ -94,7 +95,6 @@ libscilab_la_DEPENDENCIES = $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la \
 	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/graphics/libscigraphics.la \
-	$(top_builddir)/modules/shell/libscishell.la \
 	$(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/integer/libsciinteger.la \
 	$(top_builddir)/modules/interpolation/libsciinterpolation.la \
@@ -116,7 +116,7 @@ libscilab_la_DEPENDENCIES = $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/tclsci/libscitclsci.la \
 	$(top_builddir)/modules/fftw/libscifftw.la \
 	$(top_builddir)/modules/pvm/libscipvm.la $(am__append_2) \
-	$(am__append_3) $(am__append_4) \
+	$(am__append_3) $(am__append_4) $(am__append_5) \
 	$(top_builddir)/modules/jvm/libscijvm.la \
 	$(top_builddir)/modules/scicos/libsciscicos.la \
 	$(top_builddir)/libs/blas/libsciblas.la \
@@ -347,7 +347,6 @@ libscilab_la_LIBADD = $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la \
 	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/graphics/libscigraphics.la \
-	$(top_builddir)/modules/shell/libscishell.la \
 	$(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/integer/libsciinteger.la \
 	$(top_builddir)/modules/interpolation/libsciinterpolation.la \
@@ -369,7 +368,7 @@ libscilab_la_LIBADD = $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/tclsci/libscitclsci.la \
 	$(top_builddir)/modules/fftw/libscifftw.la \
 	$(top_builddir)/modules/pvm/libscipvm.la $(am__append_2) \
-	$(am__append_3) $(am__append_4) \
+	$(am__append_3) $(am__append_4) $(am__append_5) \
 	$(top_builddir)/modules/jvm/libscijvm.la \
 	$(top_builddir)/modules/scicos/libsciscicos.la \
 	$(top_builddir)/libs/blas/libsciblas.la \

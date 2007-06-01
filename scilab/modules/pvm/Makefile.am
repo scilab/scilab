@@ -66,7 +66,7 @@ modulename=pvm
 
 #### pvm : Conf files ####
 libscipvm_la_rootdir = $(mydatadir)
-libscipvm_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
+libscipvm_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 #### pvm : init scripts #### 
 libscipvm_la_etcdir = $(mydatadir)/etc

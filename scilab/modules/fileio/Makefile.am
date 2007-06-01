@@ -82,7 +82,7 @@ modulename=fileio
 
 #### fileio : Conf files ####
 libscifileio_la_rootdir = $(mydatadir)
-libscifileio_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
+libscifileio_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 
 #### fileio : init scripts #### 

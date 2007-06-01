@@ -11,7 +11,7 @@
 ###########
 
 SHELL = /bin/sh
-
+SCILABBIN=$$SCI/bin/scilab
 info:
 	@echo "Type \"make tests\" in tests directory"
 	@echo "  to test the  distribution"
@@ -22,7 +22,11 @@ tests:
 		echo "SCI must be defined"; \
 		exit 1; \
 	fi; \
-	$(SCI)/bin/scilab -nwni -nb -f JavaTests.sce
+	if test -x "$(SCILABBIN)"; then \
+		$(SCILABBIN) -nwni -nb -f JavaTests.sce; \
+	else \
+		echo "Cannot find file $(SCILABBIN)"; \
+	fi
 
 clean ::
 	$(RM) *.dia

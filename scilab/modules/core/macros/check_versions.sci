@@ -8,7 +8,7 @@ function ret=check_versions(varargin)
   szmodules=size(modules);
 
   for i=1:1:szmodules(1)
-    file_to_check=SCI+'/modules/'+modules(i)+'/VERSION.xml';
+    file_to_check=SCI+'/modules/'+modules(i)+'/version.xml';
     printf('checking : '+modules(i)+'\n');
     if (fileinfo(file_to_check)<>[]) then
       try

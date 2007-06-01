@@ -10,7 +10,7 @@ modulename=maple2scilab
 
 #### maple2scilab : Conf files ####
 libmaple2scilab_la_rootdir = $(mydatadir)
-libmaple2scilab_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
+libmaple2scilab_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 
 #### maple2scilab : init scripts #### 

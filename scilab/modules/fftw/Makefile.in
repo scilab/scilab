@@ -320,7 +320,7 @@ libscifftw_la_etc_DATA = etc/fftw.quit etc/fftw.start
 
 
 #### fftw : Conf files ####
-@FFTW_TRUE@libscifftw_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
+@FFTW_TRUE@libscifftw_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 #### fftw : gateway declaration #### 
 @FFTW_TRUE@libscifftw_la_sci_gatewaydir = $(mydatadir)/sci_gateway

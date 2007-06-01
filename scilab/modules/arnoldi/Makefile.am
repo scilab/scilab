@@ -93,7 +93,7 @@ modulename=arnoldi
 
 #### arnoldi : Conf files ####
 libsciarnoldi_la_rootdir = $(mydatadir)
-libsciarnoldi_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
+libsciarnoldi_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 
 #### arnoldi : init scripts #### 

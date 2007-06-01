@@ -12,7 +12,7 @@
 #include "GetXmlFileEncoding.h"
 #include "../../../fileio/includes/FileExist.h"
 /*-----------------------------------------------------------------------------------*/ 
-#define FORMATFILENAMEVERSION  "%s/modules/%s/VERSION.xml" 
+#define FORMATFILENAMEVERSION  "%s/modules/%s/version.xml" 
 /*-----------------------------------------------------------------------------------*/ 
 BOOL getversionmodule(char *modulename,
 					  int *sci_version_major,

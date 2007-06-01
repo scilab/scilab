@@ -6,7 +6,7 @@ modulename=sci2c
 
 #### sci2c : Conf files ####
 libsci2c_la_rootdir = $(mydatadir)
-libsci2c_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
+libsci2c_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 
 #### sci2c : init scripts #### 

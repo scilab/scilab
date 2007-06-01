@@ -90,7 +90,6 @@ libscilab_la_LIBADD = \
 	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la \
 	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/graphics/libscigraphics.la \
-	$(top_builddir)/modules/shell/libscishell.la \
 	$(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/integer/libsciinteger.la \
 	$(top_builddir)/modules/interpolation/libsciinterpolation.la \
@@ -112,6 +111,10 @@ libscilab_la_LIBADD = \
     $(top_builddir)/modules/tclsci/libscitclsci.la \
     $(top_builddir)/modules/fftw/libscifftw.la \
     $(top_builddir)/modules/pvm/libscipvm.la
+
+if WITH_JAVA
+libscilab_la_LIBADD += $(top_builddir)/modules/shell/libscishell.la
+endif
 
 if STRINGV2
 libscilab_la_LIBADD += $(top_builddir)/modules/string_V2/libscistring.la

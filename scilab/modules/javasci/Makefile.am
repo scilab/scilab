@@ -3,25 +3,25 @@
 ### INRIA - Scilab 2006 
 ##########
 
-include $(top_srcdir)/Makefile.incl.am
+
 
 #### Target ######
 modulename=javasci
 
 #### Java sources ####
-JAVAFILES = src/java/javasci/javasci/Scilab.java \
-	src/java/javasci/javasci/BadDataArgumentException.java \
-	src/java/javasci/javasci/SciAbstractArray.java \
-	src/java/javasci/javasci/SciAbstractDataType.java \
-	src/java/javasci/javasci/SciDoubleArray.java \
-	src/java/javasci/javasci/SciBooleanArray.java \
-	src/java/javasci/javasci/SciDouble.java \
-	src/java/javasci/javasci/SciBoolean.java \
-	src/java/javasci/javasci/SciComplexArray.java \
-	src/java/javasci/javasci/SciStringArray.java \
-	src/java/javasci/javasci/SciComplex.java \
-	src/java/javasci/javasci/SciString.java \
-	src/java/javasci/javasci/ClassPath.java
+#JAVAFILES = src/java/javasci/javasci/Scilab.java \
+#	src/java/javasci/javasci/BadDataArgumentException.java \
+#	src/java/javasci/javasci/SciAbstractArray.java \
+#	src/java/javasci/javasci/SciAbstractDataType.java \
+#	src/java/javasci/javasci/SciDoubleArray.java \
+#	src/java/javasci/javasci/SciBooleanArray.java \
+#	src/java/javasci/javasci/SciDouble.java \
+#	src/java/javasci/javasci/SciBoolean.java \
+#	src/java/javasci/javasci/SciComplexArray.java \
+#	src/java/javasci/javasci/SciStringArray.java \
+#	src/java/javasci/javasci/SciComplex.java \
+#	src/java/javasci/javasci/SciString.java \
+#	src/java/javasci/javasci/ClassPath.java
 
 #### Where are the sources (mandatory) ####
 #CLASSPATH = src/java/javasci/
@@ -54,7 +54,7 @@ libjavasci_la_LIBADD = \
 
 #### javasci : Conf files ####
 libjavasci_la_rootdir = $(mydatadir)
-libjavasci_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
+libjavasci_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 #### javasci : init scripts #### 
 libjavasci_la_etcdir = $(mydatadir)/etc
@@ -76,3 +76,5 @@ USEANT=1
 
 tests:: $(JARFILE) $(JAVAFILES)
 	@(cd tests; make tests)
+
+include $(top_srcdir)/Makefile.incl.am

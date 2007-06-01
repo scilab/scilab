@@ -139,7 +139,7 @@ modulename=metanet
 
 #### metanet : Conf files ####
 libscimetanet_la_rootdir = $(mydatadir)
-libscimetanet_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
+libscimetanet_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 
 #### metanet : init scripts #### 

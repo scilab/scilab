@@ -331,7 +331,7 @@ modulename=core
 
 #### core : Conf files ####
 libscicore_la_rootdir = $(mydatadir)
-libscicore_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
+libscicore_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 
 #### core : init scripts #### 

@@ -407,7 +407,7 @@ top_srcdir = @top_srcdir@
 
 #### tclsci : Conf files ####
 @TCLTK_TRUE@libscitclsci_la_rootdir = $(mydatadir)
-@TCLTK_TRUE@libscitclsci_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
+@TCLTK_TRUE@libscitclsci_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 ### TCL macros ###
 @TCLTK_TRUE@libscitclsci_la_tcldir = $(mydatadir)

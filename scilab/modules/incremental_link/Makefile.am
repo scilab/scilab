@@ -10,7 +10,7 @@ modulename=incremental_link
 
 #### incremental_link : Conf files ####
 libincremental_link_la_rootdir = $(mydatadir)
-libincremental_link_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
+libincremental_link_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 #### incremental_link : init scripts #### 
 libincremental_link_la_etcdir = $(mydatadir)/etc

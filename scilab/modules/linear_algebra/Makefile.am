@@ -104,7 +104,7 @@ modulename=linear_algebra
 
 #### linear_algebra : Conf files ####
 libscilinear_algebra_la_rootdir = $(mydatadir)
-libscilinear_algebra_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
+libscilinear_algebra_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 
 #### linear_algebra : init scripts #### 

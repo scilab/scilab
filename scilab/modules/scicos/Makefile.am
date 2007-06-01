@@ -234,7 +234,7 @@ libsciscicos_la_LIBADD = \
 
 #### scicos : Conf files ####
 libsciscicos_la_rootdir = $(mydatadir)
-libsciscicos_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
+libsciscicos_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 
 #### scicos : init scripts #### 

@@ -43,7 +43,7 @@ modulename=intersci
 
 #### intersci : Conf files ####
 libsciintersci_la_rootdir = $(mydatadir)
-libsciintersci_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
+libsciintersci_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 
 #### intersci : init scripts #### 

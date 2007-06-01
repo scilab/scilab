@@ -3,6 +3,8 @@
 ### INRIA - Scilab 2006 
 ##########
 
+if WITH_JAVA
+
 GRAPHICS_C_SOURCES = src/c/GetCommandArg.c \
 src/c/w_rottext.c \
 src/c/gifimg.c \
@@ -471,13 +473,19 @@ libscigraphics_la_CFLAGS =  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ -Isrc/cpp -
 
 libscigraphics_la_CXXFLAGS =  -Iincludes/ -Isrc/c/ $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/modules/jvm/includes
 
-
 libscigraphics_la_LDFLAGS =  $(JAVA_JNI_LIBS) $(TCLTK_LIBS) $(X_LIBS)
 
+libscigraphics_la_SOURCES = $(GRAPHICS_C_SOURCES) $(GATEWAY_C_SOURCES) $(GRAPHICS_CPP_SOURCES)
+
+else
+
+GRAPHICS_C_SOURCES=src/nographics/nographics.c
+
+endif
 
 pkglib_LTLIBRARIES = libscigraphics.la
 
-libscigraphics_la_SOURCES = $(GRAPHICS_C_SOURCES) $(GATEWAY_C_SOURCES) $(GRAPHICS_CPP_SOURCES)
+
 
 libscigraphics_la_LIBADD = \
 	$(top_builddir)/modules/intersci/libsciintersci.la \
@@ -502,7 +510,7 @@ modulename=graphics
 
 #### graphics : Conf files ####
 libscigraphics_la_rootdir = $(mydatadir)
-libscigraphics_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
+libscigraphics_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 
 #### graphics : init scripts #### 

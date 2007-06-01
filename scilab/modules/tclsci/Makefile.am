@@ -57,7 +57,7 @@ modulename=tclsci
 
 #### tclsci : Conf files ####
 libscitclsci_la_rootdir = $(mydatadir)
-libscitclsci_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
+libscitclsci_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 
 ### TCL macros ###

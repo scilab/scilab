@@ -158,7 +158,7 @@ modulename=optimization
 
 #### optimization : Conf files ####
 libscioptimization_la_rootdir = $(mydatadir)
-libscioptimization_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
+libscioptimization_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 
 #### optimization : init scripts #### 

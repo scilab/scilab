@@ -67,7 +67,7 @@ modulename=data_structures
 
 #### data_structures : Conf files ####
 libscidata_structures_la_rootdir = $(mydatadir)
-libscidata_structures_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
+libscidata_structures_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 
 #### data_structures : init scripts #### 

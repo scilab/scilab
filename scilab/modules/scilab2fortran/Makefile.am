@@ -10,7 +10,7 @@ modulename=scilab2fortran
 
 #### scilab2fortran : Conf files ####
 libscilab2fortran_la_rootdir = $(mydatadir)
-libscilab2fortran_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
+libscilab2fortran_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 
 #### scilab2fortran : init scripts #### 

@@ -42,7 +42,7 @@ modulename=wintools
 
 #### wintools : Conf files ####
 libsciwintools_la_rootdir = $(mydatadir)
-libsciwintools_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
+libsciwintools_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 #### wintools : init scripts #### 
 libsciwintools_la_etcdir = $(mydatadir)/etc

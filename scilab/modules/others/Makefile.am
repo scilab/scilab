@@ -10,7 +10,7 @@ modulename=others
 
 #### others : Conf files ####
 libsciothers_la_rootdir = $(mydatadir)
-libsciothers_la_root_DATA = changelog.txt licence.txt readme.txt VERSION.xml
+libsciothers_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 
 #### others : init scripts #### 
