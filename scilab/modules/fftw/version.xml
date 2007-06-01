@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
-<!DOCTYPE MODULE_VERSION SYSTEM "../core/xml/VERSION.dtd">
+<!DOCTYPE MODULE_VERSION SYSTEM "../core/xml/version.dtd">
 <MODULE_VERSION name="fftw">
 <!-- =================== -->
 <!--

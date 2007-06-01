@@ -76,6 +76,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscicore_la_etcdir)" \
 	"$(DESTDIR)$(libscicore_la_rootdir)" \
 	"$(DESTDIR)$(libscicore_la_sci_gatewaydir)" \
+	"$(DESTDIR)$(libscicore_la_xmldir)" \
 	"$(DESTDIR)$(libscicore_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
@@ -225,8 +226,10 @@ libscicore_la_demosintroDATA_INSTALL = $(INSTALL_DATA)
 libscicore_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscicore_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscicore_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
+libscicore_la_xmlDATA_INSTALL = $(INSTALL_DATA)
 DATA = $(libscicore_la_demosintro_DATA) $(libscicore_la_etc_DATA) \
-	$(libscicore_la_root_DATA) $(libscicore_la_sci_gateway_DATA)
+	$(libscicore_la_root_DATA) $(libscicore_la_sci_gateway_DATA) \
+	$(libscicore_la_xml_DATA)
 libscicore_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libscicore_la_include_HEADERS)
 ETAGS = etags
@@ -709,6 +712,10 @@ libscicore_la_etc_DATA = etc/core.quit etc/core.start
 #### core : gateway declaration #### 
 libscicore_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscicore_la_sci_gateway_DATA = sci_gateway/core_gateway.xml
+
+#### core :  dtd files #### 
+libscicore_la_xmldir = $(mydatadir)/xml
+libscicore_la_xml_DATA = xml/modules.dtd xml/version.dtd
 
 #### core : include files ####
 libscicore_la_includedir = $(pkgincludedir)/core
@@ -2578,6 +2585,23 @@ uninstall-libscicore_la_sci_gatewayDATA:
 	  echo " rm -f '$(DESTDIR)$(libscicore_la_sci_gatewaydir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libscicore_la_sci_gatewaydir)/$$f"; \
 	done
+install-libscicore_la_xmlDATA: $(libscicore_la_xml_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscicore_la_xmldir)" || $(MKDIR_P) "$(DESTDIR)$(libscicore_la_xmldir)"
+	@list='$(libscicore_la_xml_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libscicore_la_xmlDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscicore_la_xmldir)/$$f'"; \
+	  $(libscicore_la_xmlDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscicore_la_xmldir)/$$f"; \
+	done
+
+uninstall-libscicore_la_xmlDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscicore_la_xml_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libscicore_la_xmldir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscicore_la_xmldir)/$$f"; \
+	done
 install-libscicore_la_includeHEADERS: $(libscicore_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscicore_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscicore_la_includedir)"
@@ -2677,7 +2701,7 @@ check: check-am
 @WITH_JAVA_FALSE@all-local:
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscicore_la_demosintrodir)" "$(DESTDIR)$(libscicore_la_etcdir)" "$(DESTDIR)$(libscicore_la_rootdir)" "$(DESTDIR)$(libscicore_la_sci_gatewaydir)" "$(DESTDIR)$(libscicore_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscicore_la_demosintrodir)" "$(DESTDIR)$(libscicore_la_etcdir)" "$(DESTDIR)$(libscicore_la_rootdir)" "$(DESTDIR)$(libscicore_la_sci_gatewaydir)" "$(DESTDIR)$(libscicore_la_xmldir)" "$(DESTDIR)$(libscicore_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -2730,7 +2754,8 @@ install-data-am: install-data-local \
 	install-libscicore_la_etcDATA \
 	install-libscicore_la_includeHEADERS \
 	install-libscicore_la_rootDATA \
-	install-libscicore_la_sci_gatewayDATA
+	install-libscicore_la_sci_gatewayDATA \
+	install-libscicore_la_xmlDATA
 
 install-dvi: install-dvi-am
 
@@ -2773,7 +2798,7 @@ uninstall-am: uninstall-libscicore_la_demosintroDATA \
 	uninstall-libscicore_la_includeHEADERS \
 	uninstall-libscicore_la_rootDATA \
 	uninstall-libscicore_la_sci_gatewayDATA \
-	uninstall-pkglibLTLIBRARIES
+	uninstall-libscicore_la_xmlDATA uninstall-pkglibLTLIBRARIES
 
 .MAKE: install-am install-strip
 
@@ -2789,7 +2814,8 @@ uninstall-am: uninstall-libscicore_la_demosintroDATA \
 	install-libscicore_la_etcDATA \
 	install-libscicore_la_includeHEADERS \
 	install-libscicore_la_rootDATA \
-	install-libscicore_la_sci_gatewayDATA install-man install-pdf \
+	install-libscicore_la_sci_gatewayDATA \
+	install-libscicore_la_xmlDATA install-man install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
 	installdirs maintainer-clean maintainer-clean-generic \
@@ -2800,7 +2826,7 @@ uninstall-am: uninstall-libscicore_la_demosintroDATA \
 	uninstall-libscicore_la_includeHEADERS \
 	uninstall-libscicore_la_rootDATA \
 	uninstall-libscicore_la_sci_gatewayDATA \
-	uninstall-pkglibLTLIBRARIES
+	uninstall-libscicore_la_xmlDATA uninstall-pkglibLTLIBRARIES
 
 
 @STRINGV2_TRUE@	libscicore_la_LIBADD +=	$(top_builddir)/modules/string_V2/libscistring.la
