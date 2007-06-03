@@ -9,7 +9,7 @@ GUI_C_SOURCES = \
 src/c/xsci/mainscic.c \
 src/c/xsci/IsConsoleMode.c \
 src/c/xsci/x_VTPrsTbl.c \
-src/c/xsci/x_main.c \
+src/c/xsci/x_main.c 
 
 if WITH_JAVA
 GUI_C_SOURCES += src/c/getlookandfeel.c \
