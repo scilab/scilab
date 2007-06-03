@@ -9,13 +9,13 @@
 #include "basout.h"
 #include "../../fileio/src/c/diary.h"
 #include "sciprint.h"
+#include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/ 
 extern int C2F(xscimore)();
 extern int C2F(writelunitstring)();
 extern int C2F(xscion)();
-extern int C2F(xscistring)();
 /*-----------------------------------------------------------------------------------*/ 
-int C2F(basout)(integer *io,integer *lunit,char *string,long int notused)
+int C2F(basout)(integer *io,integer *lunit,char *string,long int nbcharacters)
 {
 	static integer iflag;
 
@@ -63,25 +63,37 @@ int C2F(basout)(integer *io,integer *lunit,char *string,long int notused)
 
 		if (iflag == 0) 
 		{
-			C2F(writelunitstring)(lunit, string, notused);
+			C2F(writelunitstring)(lunit, string,nbcharacters);
+			/* write to diary file if required */
+			C2F(diary)(string, &nbcharacters);
 		} 
 		else 
 		{
-			C2F(xscistring)(string, &notused, notused);
+			if (nbcharacters > 0)
+			{
+				#define bufferformat "%s\r\n"
+				char *buffer = NULL;
+				buffer = (char *)MALLOC(sizeof(char)*(nbcharacters+strlen(bufferformat)+1));
+				if (buffer)
+				{
+					strncpy(buffer,string,nbcharacters);
+					buffer[nbcharacters]='\0';
+					sciprint(bufferformat,buffer);
+					if (buffer) { FREE(buffer); buffer = NULL;}
+				}
+			}
 		}
-		/* write to diary file if required */
-		C2F(diary)(string, &notused);
 	} 
 	else
 	{
 		/* sortie sur fichier */
 		if (*lunit == C2F(iop).wio) 
 		{
-			C2F(diary)(string, &notused);
+			C2F(diary)(string, &nbcharacters);
 		}
 		else 
 		{
-			C2F(writelunitstring)(lunit, string,notused);
+			C2F(writelunitstring)(lunit, string,nbcharacters);
 		}
 	}
 	return 0;

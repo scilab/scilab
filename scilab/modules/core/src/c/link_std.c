@@ -151,7 +151,7 @@ int C2F(dynload)(ii,ename1,loaded_files,err)
 
 #ifdef DEBUG
   sciprint("ename1 [%s]\r\n",ename1);
-  sprintf(str,"lastlink %d, entry=%d\n",lastlink,*ii);Scistring(str);
+  sciprint("lastlink %d, entry=%d\n",lastlink,*ii);
 #endif
 
    libs=getenv("SYSLIBS");

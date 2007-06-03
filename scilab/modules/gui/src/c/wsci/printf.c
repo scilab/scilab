@@ -159,12 +159,6 @@ void C2F (xscisncr) (char *str,integer *n,integer dummy)
 	Xputstring (str, *n);
 }
 /*-----------------------------------------------------------------------------------*/
-void C2F (xscistring) (char *str,int *n,long int dummy)
-{
-	Xputstring (str, *n);
-	Xputstring ("\r\n", 2);
-}
-/*-----------------------------------------------------------------------------------*/
 void C2F (xscimore) (int *n)
 {
 	int n1, ln;

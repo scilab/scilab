@@ -42,7 +42,7 @@ static XtCallbackProc DialogOk(Widget w, XtPointer client_data, XtPointer call_d
     }
   else 
     {
-      Scistring("Malloc : No more place");
+      sciprint("Malloc : No more place.\n");
       ok_Flag_sci= -1;
     }
   return(0);
