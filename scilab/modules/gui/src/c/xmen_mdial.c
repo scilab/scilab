@@ -6,6 +6,7 @@
 #include "men_scilab.h"
 #endif
 #include "x_charproc.h" /* Scistring */
+#include "sciprint.h"
 
 extern MDialog SciMDialog;        /** used to stored the mdialog data **/
 
@@ -99,7 +100,7 @@ int mDialogWindow(void)
   dialoglist=(Widget *)MALLOC( (SciMDialog.nv)*sizeof(Widget));
   if ( dialoglist == (Widget *) NULL) 
     {
-      Scistring("Malloc : No more place");
+      sciprint("Malloc : No more place.\n");
       /** Warning : ierr is not realy used up to now 	ierr=1; **/
       return(FALSE);
     }

@@ -8,6 +8,7 @@
 #include "men_scilab.h"
 #include "x_charproc.h" /* Scistring */
 #include "men_Sutils.h" /* ScilabMStr2C */
+#include "sciprint.h"
 
 extern int set_cmap __PARAMS((Window w)); 
 extern void DisplayInit __PARAMS((char *string,Display **dpy,Widget *toplevel));
@@ -107,7 +108,7 @@ int write_getfile(char *dir, char *file)
     }
   else 
     {
-      Scistring("Malloc : No more place");
+      sciprint("Malloc : No more place.\n");
       error = 1;
     }
   ok_Flag_sci= 1;

@@ -5,6 +5,8 @@
 #include <sys/stat.h>
 #include <sys/file.h>
 
+#include "sciprint.h"
+
 #if defined mips || defined __alpha || defined hppa
 #define COFF
 #endif
@@ -157,15 +159,15 @@ int C2F(dynload)(ii,ename1,loaded_files,err)
    strcpy(prog,"");
    getpath(prog);/* prog est le pathname du fichier executable*/
    
-   sprintf (str,"\nlinking %s defined in %s with %s \n",ename1,*loaded_files,prog);
-   Scistring(str);
+   sciprint("\nlinking %s defined in %s with %s \n",ename1,*loaded_files,prog);
+   
 
    sprintf(tmp_file, "/tmp/SL_%d_XXXXXX",(int) getpid());
    mktemp(tmp_file);
 
    if ((*ii != lastlink) && (*ii != lastlink-1)) {
-     sprintf(str,"cannot (re)define this link \n");
-     Scistring(str);
+     sciprint("cannot (re)define this link \n");
+     
      return;
    }
 
@@ -177,8 +179,8 @@ int C2F(dynload)(ii,ename1,loaded_files,err)
       if (diff != 0) {
          end = sbrk(diff);
          if ((int)end <= 0) {
-              sprintf (str,"sbrk failed\n");
-	      Scistring(str);
+              sciprint("sbrk failed\n");
+	      
               *err=4;
             return;
             }
@@ -289,22 +291,20 @@ int C2F(dynload)(ii,ename1,loaded_files,err)
                 _exit(1);
         }
         if (pid < 0) {
-                sprintf (str,"can't create new process: %s\n", sys_errlist[errno]);
-		Scistring(str);
+                sciprint("can't create new process: %s\n", sys_errlist[errno]);
                 goto bad;
         }
         while ((wpid = wait(&status)) != pid)
                 if (wpid < 0) {
-                        sprintf (str,"no child !\n");
-			Scistring(str);
+                        sciprint("no child !\n");
                         goto bad;
                 }
         if (status != 0) {
 
-                sprintf (str,"ld returned bad status: %x\n", status);
-		Scistring(str);
+                sciprint("ld returned bad status: %x\n", status);
+		
 bad:
-/*		printf ("loading error\n");*/
+
 		*err=1;
 		goto badunlink;
 	}
@@ -313,8 +313,7 @@ bad:
 
 #ifndef _IBMR2
    if ((p = open(tmp_file, O_RDONLY)) < 0) {
-        sprintf (str,"Cannot open %s\n", tmp_file);
-	Scistring(str);
+        sciprint("Cannot open %s\n", tmp_file);
         *err=2;
         goto badclose;
       }
@@ -323,8 +322,7 @@ bad:
 
 #ifdef COFF
    if (read(p, &filehdr, sizeof filehdr) != sizeof filehdr) {
-           sprintf (str,"Cannot read filehdr from %s\n", tmp_file);
-	   Scistring(str);
+           sciprint("Cannot read filehdr from %s\n", tmp_file);
            *err=3;
            goto badclose;
    }
@@ -345,8 +343,8 @@ bad:
 #endif
 #endif /* hppa */
    if (read(p, &aouthdr, sizeof aouthdr) != sizeof aouthdr) {
-           sprintf (str,"Cannot read auxhdr from %s\n", tmp_file);
-	   Scistring(str);
+           sciprint(str,"Cannot read auxhdr from %s\n", tmp_file);
+	   
            *err=3;
            goto badclose;
    }
@@ -356,8 +354,7 @@ bad:
    i = lseek(p, TEXTBEGIN, 0);
 #else /* ! COFF */
    if (sizeof(header) != read(p, (char *)&header,sizeof(header))) {
-        sprintf (str,"Cannot read header from %s\n", tmp_file);
-	Scistring(str);
+        sciprint("Cannot read header from %s\n", tmp_file);
         *err=3;
       goto badclose;
       }
@@ -372,8 +369,7 @@ bad:
    /* allocate more memory, using sbrk */
    wh = sbrk(totalsize-nalloc);
    if ( (int)wh <= 0 ) {
-     sprintf (str,"sbrk failed to allocate\n");
-     Scistring(str);
+     sciprint("sbrk failed to allocate\n");
      *err=4;
      goto badclose;
    }
@@ -382,8 +378,7 @@ bad:
    /* now read in the function */
    i=read(p, (char *)end, readsize);
    if (readsize != i) {
-      sprintf (str,"Cannot read %s\n", tmp_file);
-      Scistring(str);
+      sciprint ("Cannot read %s\n", tmp_file);
       *err=5;
       goto badclose;
       }
@@ -418,8 +413,7 @@ badclose:
 #else /* _IBMR2 */
    EP[*ii].epoint =(function) load(tmp_file,1, "");
    if ( EP[*ii].epoint == (function) 0) {
-	   sprintf (str,"ibm load routine failed: %s\n", sys_errlist[errno]);
-	   Scistring(str);
+	   sciprint("ibm load routine failed: %s\n", sys_errlist[errno]);
 	   *err = 6;
    }
 #endif /* _IBMR2 */

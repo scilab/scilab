@@ -17,6 +17,7 @@
 #include "TclEvents.h" /* flushTKEvents() */
 
 #include "dynamic_menus.h" /* ismenu() */
+#include "sciprint.h"
 
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>
@@ -246,7 +247,7 @@ int Xorgetchar(int interrupt)
     if (i < 0) {
       if (errno != EINTR)
 	{ 
-	  Scistring("Error\n");
+	  sciprint("Error.\n");
 	  exit(0);
 	  continue;
 	}

@@ -2,9 +2,9 @@
 /* INRIA 2007 */
 /* Ledru Sylvestre */
 /*-----------------------------------------------------------------------------------*/
+#ifndef __X_MAIN_H__
+#define __X_MAIN_H__
 
-
-#include "machine.h"
 
 #define	DEFFONT			"fixed"
 #define	DEFBOLDFONT		NULL 	/* no bold font uses overstriking */
@@ -20,8 +20,6 @@
  */
 void main_sci (char *startup, int lstartup, int memory);
 
-
-
 /**
  * TODO: comment
  *
@@ -31,13 +29,6 @@ void main_sci (char *startup, int lstartup, int memory);
 void mainscic(int argc, char **argv);
 
 
-/**
- * TODO: comment
- *
- * @param void  
- * @return <ReturnValue>
- */
-int IsNoInteractiveWindow(void);
 
 /**
  * TODO: comment
@@ -46,13 +37,7 @@ int IsNoInteractiveWindow(void);
  */
 void sci_sig_tstp(int n);
 
-/**
- * TODO: comment
- *
- * @param void  
- * @return <ReturnValue>
- */
-int IsConsoleMode(void);
+
 
 /**
  * TODO: comment
@@ -60,3 +45,6 @@ int IsConsoleMode(void);
  * @param void  
  */
 void InitXsession(void);
+
+#endif /* #define __X_MAIN_H__ */
+/*-----------------------------------------------------------------------------------*/

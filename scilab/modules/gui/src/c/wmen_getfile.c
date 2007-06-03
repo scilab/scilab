@@ -8,7 +8,7 @@
 
 #include "wmen_scilab.h"
 #include "win_mem_alloc.h" /* MALLOC */
-
+#include "sciprint.h"
 /*************************************************     
  * Really Ugly I'm ashamed 
  * The main function to activate the file menu 
@@ -30,14 +30,14 @@ int GetFileWindow(filemask,szFile,dirname,flag,ierr,title)
        || (szFileTitle = MALLOC((MAXSTR+1)*sizeof(char))) == (char *)NULL
        || (szFilter = MALLOC((MAXSTR+1)*sizeof(char))) == (char *)NULL )
     {
-      Scistring("Malloc : No more place");
+      sciprint("Malloc : No more place");
       *ierr = 1;
       return(1);
     }
   *szFile = (char *) MALLOC((MAXSTR+1)*sizeof(char));
   if ( *szFile == (char*)0 ) 
     {
-      Scistring("Malloc : No more place");
+      sciprint("Malloc : No more place.\n");
       *ierr = 1;
       return(1);
     }

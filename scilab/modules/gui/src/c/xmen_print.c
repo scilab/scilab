@@ -63,7 +63,7 @@ SaveDlgOk(Widget w, caddr_t client_data, caddr_t callData)
     }
   else 
     {
-      Scistring("Malloc : No more place");
+      sciprint("Malloc : No more place.\n");
       ok_Flag_sci = MEMERR;
     }
 

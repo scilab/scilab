@@ -44,7 +44,6 @@ typedef struct tagGFILE {
 /*-----------------------------------------------------------------------------------*/
 /* wmenu.c - Menu */
 extern void WinExit(void);
-extern void Scistring(char *str);
 extern int C2F(clearexit)(integer *n);
 /*-----------------------------------------------------------------------------------*/
 /* wtext.c */
@@ -93,7 +92,6 @@ extern void sciprint_nd(char *fmt, ...);
 extern int sciprint2(int v,char *fmt,...);
 extern int Pause(LPSTR mess); 
 extern void WinExit(void);
-extern void Scistring(char *str);
 extern int C2F(clearexit)(integer *n);
 /*-----------------------------------------------------------------------------------*/
 /* ../menusX */

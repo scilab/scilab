@@ -7,6 +7,7 @@
 
 #include "wmen_scilab.h"
 #include "win_mem_alloc.h" /* MALLOC */
+#include "sciprint.h"
 
 extern SciDialog ScilabDialog;
 
@@ -40,7 +41,7 @@ EXPORT int CALLBACK SciDialogDlgProc(HWND hdlg, UINT wmsg, WPARAM wparam, LPARAM
 	  /* sciprint("string of size %d \n",l); */
 	  if ( (dialog_str =  MALLOC( (l+2)*(sizeof(char)))) == NULL) 
 	    {
-	      Scistring("Malloc : No more place");
+	      sciprint("Malloc : No more place");
 	      EndDialog(hdlg, IDCANCEL);
 	      return TRUE;
 	    }

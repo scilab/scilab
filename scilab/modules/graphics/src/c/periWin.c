@@ -23,6 +23,8 @@
 #include <stdlib.h>
 #include <stdarg.h>
 
+#include "sciprint.h"
+
 #include "../../gui/src/c/wsci/wresource.h"
 #include "../../gui/src/c/wsci/resource.h"
 #include "../../gui/src/c/wsci/wcommon.h"
@@ -410,22 +412,22 @@ int XgcAllocColors(xgc,m)
   /* don't forget black and white */
   mm = m + 2;
   if (!(xgc->Red = (float *) MALLOC(mm*sizeof(float)))) {
-    Scistring("XgcAllocColors: unable to alloc\n");
+    sciprint("XgcAllocColors: unable to alloc\n");
     return 0;
   }
   if (!(xgc->Green = (float *) MALLOC(mm*sizeof(float)))) {
-    Scistring("XgcAllocColors: unable to alloc\n");
+    sciprint("XgcAllocColors: unable to alloc\n");
     FREE(xgc->Red);
     return 0;
   }
   if (!(xgc->Blue = (float *) MALLOC(mm*sizeof(float)))) {
-    Scistring("XgcAllocColors: unable to alloc\n");
+    sciprint("XgcAllocColors: unable to alloc\n");
     FREE(xgc->Red);
     FREE(xgc->Green);
     return 0;
   }
   if (!(xgc->Colors = (COLORREF *) MALLOC(mm*sizeof(COLORREF)))) {
-    Scistring("XgcAllocColors: unable to alloc\n");
+    sciprint("XgcAllocColors: unable to alloc\n");
     FREE(xgc->Red);
     FREE(xgc->Green);
     FREE(xgc->Blue);
@@ -1359,7 +1361,7 @@ void C2F(getclip)(verbose, x, narg,dummy)
 	       ScilabXgc->CurClipRegion[2],
 	       ScilabXgc->CurClipRegion[3]);
     else 
-      Scistring("\nNo Clip Region");
+      sciprint("\nNo Clip Region");
   }
 }
 /*-----------------------------------------------------------------------------------*/
@@ -1393,9 +1395,9 @@ void C2F(getabsourel)(verbose, num, narg,dummy)
   *num = ScilabXgc->CurVectorStyle  ;
   if (*verbose == 1) {
     if (ScilabXgc->CurVectorStyle == CoordModeOrigin)
-      Scistring("\nTrace Absolu");
+      sciprint("\nTrace Absolu");
     else 
-      Scistring("\nTrace Relatif");
+      sciprint("\nTrace Relatif");
   }
 }
 /*-----------------------------------------------------------------------------------*/
@@ -1435,7 +1437,7 @@ static void idfromname(name1, num)
      *num=AluStruc_[i].id;
  if (*num == -1 ) 
    {
-     Scistring("\n Use the following keys (integer in scilab");
+     sciprint("\n Use the following keys (integer in scilab");
      for ( i=0 ; i < 16 ; i++)
        sciprint("\nkey %s   -> %s\r\n",AluStruc_[i].name,
 		AluStruc_[i].info);
@@ -1799,11 +1801,11 @@ void C2F(getdash)( integer * verbose, integer * value, integer * narg, double * 
   {
     switch ( *value )
     {
-    case 0: Scistring("\nLine style = Line Solid\n"); break ;
-    case 1: Scistring("\nLine style = DASH\n"); break ;
-    case 2: Scistring("\nLine style = DOT\n"); break ;
-    case 3: Scistring("\nLine style = DASHDOT\n"); break ;
-    case 4: Scistring("\nLine style = DASHDOTDOT\n"); break ;
+    case 0: sciprint("\nLine style = Line Solid\n"); break ;
+    case 1: sciprint("\nLine style = DASH\n"); break ;
+    case 2: sciprint("\nLine style = DOT\n"); break ;
+    case 3: sciprint("\nLine style = DASHDOT\n"); break ;
+    case 4: sciprint("\nLine style = DASHDOTDOT\n"); break ;
     }
   }
 }
@@ -2203,7 +2205,7 @@ void setcolormapg(struct BCG *Xgc,integer *v1, integer *v2, double *a, integer *
   for (i = 0; i < m; i++) {
     if (a[i] < 0 || a[i] > 1 || a[i+m] < 0 || a[i+m] > 1 ||
 	a[i+2*m] < 0 || a[i+2*m]> 1) {
-      Scistring("RGB values must be between 0 and 1\n");
+      sciprint("RGB values must be between 0 and 1\n");
       Xgc->Colors = c;
       Xgc->Red = r;
       Xgc->Green = g;
@@ -2295,7 +2297,7 @@ void C2F(pal_setcolormap)(v1,v2,v3,v4,v5,v6,a)
   for (i = 0; i < m; i++) {
     if (a[i] < 0 || a[i] > 1 || a[i+m] < 0 || a[i+m] > 1 ||
 	a[i+2*m] < 0 || a[i+2*m]> 1) {
-      Scistring("RGB values must be between 0 and 1\n");
+      sciprint("RGB values must be between 0 and 1\n");
       ScilabXgc->Colors = c;
       ScilabXgc->Red = r;
       ScilabXgc->Green = g;
@@ -2581,7 +2583,7 @@ void C2F(sempty)(verbose, v2, v3, v4)
      integer *v3;
      integer *v4;
 {
-  if ( *verbose ==1 ) Scistring("\n No operation ");
+  if ( *verbose ==1 ) sciprint("\n No operation ");
 }
 /*-----------------------------------------------------------------------------------*/
 void C2F(gempty)(verbose, v2, v3,dummy)
@@ -2590,7 +2592,7 @@ void C2F(gempty)(verbose, v2, v3,dummy)
      integer *v3;
      double *dummy;
 {
-  if ( *verbose ==1 ) Scistring("\n No operation ");
+  if ( *verbose ==1 ) sciprint("\n No operation ");
 }
 /*-----------------------------------------------------------------------------------*/
 #define NUMSETFONC 32
@@ -3793,7 +3795,7 @@ void C2F(initgraphic)(string, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
 
 	if (( NewXgc = AddNewWindowToList()) == (struct BCG *) 0)
 	{
-		Scistring("initgraphics: unable to alloc\n");
+		sciprint("initgraphics: unable to alloc\n");
 		return;
 	}
 	else
@@ -4303,7 +4305,7 @@ void C2F(xsetfont)( integer * fontid, integer * fontsize, integer * v3, integer 
       else 
 	{
 	  sciprint(" The Font Id %d is not affected \r\n",(int)i);
-	  Scistring(" use xlfont to set it \n");
+	  sciprint(" use xlfont to set it \n");
 	  return;
 	}
     }
@@ -4460,12 +4462,12 @@ static void C2F(loadfamily_n)(name, j)
 	{ 
 	  flag=0;
 	  sciprint("Unknown font : %s\r\n",name);
-	  Scistring("I'll use font: Courier New\r\n");
+	  sciprint("I'll use font: Courier New\r\n");
 	  SciMakeFont("Courier New",size_n_[i], &((*FontTab)[*j].hf[i]));
 	  if  ( (*FontTab)[*j].hf[i] == (HFONT) 0)
 	    {
 	      sciprint("Unknown font : %s\r\n","Courier New");
-	      Scistring("  Please send a bug report !\r\n");
+	      sciprint("  Please send a bug report !\r\n");
 	    }
 	}
     }
