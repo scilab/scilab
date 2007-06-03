@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.109
+# in sync at least with v6.112
 
 
 # commons
@@ -181,6 +181,8 @@
 ::msgcat::mcset fr "&Dock" "&Intégrer"
 ::msgcat::mcset fr "Breakpoints" "Points d'arrêt"
 ::msgcat::mcset fr "Breakpointed functions" "Fonctions avec breakpoints"
+::msgcat::mcset fr "Scilab busy indicator" "Indicateur d'occupation de Scilab"
+::msgcat::mcset fr "Debugger state indicator" "Indicateur de l'état du débuggueur"
 ::msgcat::mcset fr "Undefined or non editable elements are not legal in variable" "Les éléments indéfinis ou non éditables sont illégaux pour la variable"
 ::msgcat::mcset fr ".\nThis variable will not be updated in Scilab." ".\nCette variable ne sera pas mise à jour dans Scilab"
 ::msgcat::mcset fr "Illegal undefined element found" "Elément indéfini illégal identifié"

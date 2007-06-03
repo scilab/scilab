@@ -3033,3 +3033,11 @@ ES 30/5/07
   ($pad.statusmes color) and in the watch window
  * the state of the debugger is now reflected in the color of $pad.statusind2
  * version --> 6.111
+
+Francois VOGEL, 03/06/07
+ * Added missing default fallbacks to be used when the msgcat package is not
+   present (Scipad couldn't start without them)
+ * In the watch window, the debug state and the Scilab busy state are now
+   reflected in a canvas containing an image
+ * Huge performance improvement and rework in FormatStringsForWatch (by Enrico)
+ * version --> 6.112

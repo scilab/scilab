@@ -161,8 +161,18 @@ if {[catch {package require msgcat}] == 0} {
                           -icon warning -title "Tcl msgcat package not found"
         }
         proc ::msgcat::mcload {args} {}
+        proc ::msgcat::mcset {args} {}
+        proc ::msgcat::mcmax {args} {
+            set le 0
+            foreach arg $args {
+                set argle [string length $arg]
+                if {$argle > $le} {set le $argle}
+            }
+            return $le
+        }
     }
     proc mc {str} {return $str}
+    proc mcmax {args} {return [eval {::msgcat::mcmax $args}]}
 }
 
 # drag and drop capability using TkDnD

@@ -10,7 +10,7 @@ proc showwatch_bp {} {
     global showwatchvariablesarea showcallstackarea
     global watchvpane1mins watchvpane2mins watchvsashcoord
     global watchhpane1mins watchhpane2mins watchhsashcoord
-    global debugstateindicator scilabbusyindicator
+    global led_debugstate led_scilabbusy
     global menuFont textFont
     global tcl_platform
     global bptfunsindic totbptsindic
@@ -127,19 +127,8 @@ proc showwatch_bp {} {
             -font \[list $menuFont\] \
             -anchor w -borderwidth 1 -pady 0 "
     if {$dockwatch} {$checkboxdockwatch configure -underline -1}
-    set debugstateindicator $watch.f.f1.f1fr.debugstateindicator
-
-#    canvas $debugstateindicator -relief ridge -width 15 -height 15 -borderwidth 1
-    label $debugstateindicator -relief ridge -borderwidth 2 -text dbg -font $menuFont
-
-    set scilabbusyindicator $watch.f.f1.f1fr.scilabbusyindicator
-    label $scilabbusyindicator -relief ridge -borderwidth 2 -text {-->} -font $menuFont
-
-    updatedebugstateindicator_bp
 
     pack $checkboxdockwatch -anchor w
-    pack $scilabbusyindicator -side left
-    pack $debugstateindicator -side left
     pack $watch.f.f1.f1fr -expand 1
     pack $watch.f.f1 -anchor w -expand 0 -fill both
     pack $watch.f.f1.f1fr -anchor w -expand 1 -fill both
@@ -336,6 +325,17 @@ proc showwatch_bp {} {
     SetProgressBarNarrow $totbptsindic
     set bptfunsindic [Progress $watch.f.f9.fl.bptfunsindic]
     SetProgressBarNarrow $bptfunsindic
+    frame $watch.f.f9.fc
+    set led_scilabbusy $watch.f.f9.fc.ledscilabbusy
+    canvas $led_scilabbusy -height [image height led_scilabbusy_ready] \
+                           -width  [image width  led_scilabbusy_ready]
+    $led_scilabbusy create image 0 0 -anchor nw \
+            -image led_scilabbusy_ready
+    set led_debugstate $watch.f.f9.fc.leddebugstate
+    canvas $led_debugstate -height [image height led_debugstate_NoDebug] \
+                           -width  [image width  led_debugstate_NoDebug]
+    $led_debugstate create image 0 0 -anchor nw \
+            -image led_debugstate_NoDebug
     set buttonClose $watch.f.f9.buttonClose
     eval "button $buttonClose [bl "&Close"] \
             -command \"closewatch_bp\" \
@@ -343,10 +343,12 @@ proc showwatch_bp {} {
     if {$dockwatch} {$buttonClose configure -underline -1}
     pack $totbptsindic -expand no -fill x
     pack $bptfunsindic -expand no -fill x -pady 2
-    pack $watch.f.f9.fl -side left
-    pack $buttonClose -side left -padx 40
+    pack $led_scilabbusy $led_debugstate
+    pack $watch.f.f9.fl $watch.f.f9.fc -side left -padx 10
+    pack $buttonClose -side left -padx 10
     pack configure $watch.f.f9.fl -expand yes -fill x
     updatebptcomplexityindicators_bp
+    updatedebugstateindicator_bp
 
     # In order to make the Close button visible at all times, it must be packed
     # first with -side bottom, and the panedwindow must be packed after it with
@@ -361,6 +363,13 @@ proc showwatch_bp {} {
     }
 
     pack $watch.f -fill both -expand 1
+
+    bind $led_scilabbusy <Enter> {update_bubble enter $led_scilabbusy [winfo pointerxy $watch] \
+            [mc "Scilab busy indicator"] }
+    bind $led_scilabbusy <Leave> {update_bubble leave $led_scilabbusy [winfo pointerxy $watch] ""}
+    bind $led_debugstate <Enter> {update_bubble enter $led_debugstate [winfo pointerxy $watch] \
+            [mc "Debugger state indicator"] }
+    bind $led_debugstate <Leave> {update_bubble leave $led_debugstate [winfo pointerxy $watch] ""}
 
     update
     if { $firsttimeinshowwatch != "true" && $showwatchvariablesarea == "true" && $showcallstackarea == "true"} {
@@ -739,6 +748,7 @@ proc removeautosfromwatch {{whichautos all}} {
 proc updatewatchvars {} {
 # add the local vars in the watch window if the user
 # checked the corresponding "Auto add locals" checkbox
+# otherwise just update values of the existing watch variables
     global autowatchloc
     if {$autowatchloc} {
         # add locals and get locals + user variables values from the shell
@@ -808,7 +818,7 @@ proc getwatchvarfromshell {} {
     ScilabEval_lt $fullcomm "seq"
 }
 
-proc getonewatchvarfromshell {wvar {opt "seq"}} {
+proc getonewatchvarfromshell {wvar} {
 # Update one single watched variable content by getting its value from Scilab
 # The watch window display is not updated
     global unklabel
@@ -825,7 +835,7 @@ proc getonewatchvarfromshell {wvar {opt "seq"}} {
     set comm7 "TCL_EvalStr(\"set watchvarstysi($escwvar) \"\"$unklabel\"\"\",\"scipad\");"
     set comm8 "end;"
     set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6 $comm7 $comm8]
-    ScilabEval_lt $fullcomm $opt
+    ScilabEval_lt $fullcomm "seq"
 }
 
 proc createsetinscishellcomm {setofvars} {

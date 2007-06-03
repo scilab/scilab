@@ -37,7 +37,8 @@ set breakcommandtriggered false
 set debugger_fun_ancillaries [list \
     "LocalizeForScipad" \
     "FormatStringsForWatch" \
-    "MatFormatStringsForWatch" \
+    "StringMatrixFormat" \
+    "FormatInfNanForWatch" \
     "FormatWhereForWatch" \
     "ext_exists" \
     ]
@@ -152,3 +153,10 @@ menubutgoonignorimage   copy butgoonignorimage_o   -subsample $subsamplex $subsa
 menubutwatchimage       copy butwatchimage_o       -subsample $subsamplex $subsampley
 menubutbreakimage       copy butbreakimage_o       -subsample $subsamplex $subsampley
 menubutcancelimage      copy butcancelimage_o      -subsample $subsamplex $subsampley
+
+# Watch window LEDs
+image create photo led_debugstate_NoDebug         -file [file join $iconsdir dbs_NoDebug_32x16.gif]
+image create photo led_debugstate_ReadyForDebug   -file [file join $iconsdir dbs_ReadyForDebug_32x16.gif]
+image create photo led_debugstate_DebugInProgress -file [file join $iconsdir dbs_DebugInProgress_32x16.gif]
+image create photo led_scilabbusy_busy  -file [file join $iconsdir prompt_busy_32x16.gif]
+image create photo led_scilabbusy_ready -file [file join $iconsdir prompt_ready_32x16.gif]

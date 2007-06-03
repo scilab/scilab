@@ -246,10 +246,19 @@ proc setdbstatevisualhints_bp {} {
 }
 
 proc updatedebugstateindicator_bp {} {
-    global watch debugstateindicator pad
+    global watch pad led_debugstate
     if {[info exists watch]} {
         if {[winfo exists $watch]} {
-            $debugstateindicator configure -background [$pad.statusind2 cget -background]
+            if {[getdbstate] == "NoDebug"} {
+                $led_debugstate itemconfigure all -image led_debugstate_NoDebug
+                showinfo [mc "Currently no debug session"]
+            } elseif {[getdbstate] == "ReadyForDebug"} {
+                $led_debugstate itemconfigure all -image led_debugstate_ReadyForDebug
+                showinfo [mc "Ready to start debug"]
+            } elseif {[getdbstate] == "DebugInProgress"} {
+                $led_debugstate itemconfigure all -image led_debugstate_DebugInProgress
+                showinfo [mc "Debug in progress"]
+            }
         }
     }
 }
