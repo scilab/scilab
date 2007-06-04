@@ -1,30 +1,28 @@
-/* Copyright INRIA/ENPC */
-/*********************************
- * Link version for SYSV machine 
- *********************************/
-
+/*-----------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
 #include <windows.h>
 #include "stack-def.h"
 #include "warningmode.h"
-
+#include "dynamiclibrary.h"
+/*-----------------------------------------------------------------------------------*/
 #ifdef round
 	#undef round
 #endif 
+
 #define round(x,s) (((x) + ((s)-1)) & ~((s)-1))
 #define Min(x,y)	(((x)<(y))?(x):(y))
 #define Max(x,y)	(((x)>(y))?(x):(y))
 #define debug C2F(iop).ddt==1
-
+/*-----------------------------------------------------------------------------------*/
 extern char *strchr();
-
-
+/*-----------------------------------------------------------------------------------*/
 static void Sci_Delsym __PARAMS((int ));
 static int Sci_dlopen __PARAMS((char *loaded_files[],int global));
 static int Sci_dlsym __PARAMS((char *ename,int  ishared,char * strf));
-
+/*-----------------------------------------------------------------------------------*/
 /*************************************
  * New version : link entry names 
  *   from new shared lib created with 
@@ -32,7 +30,6 @@ static int Sci_dlsym __PARAMS((char *ename,int  ishared,char * strf));
  *   -1 : the shared archive was not loaded 
  *   -5 : pb with one of the entry point 
  *************************************/
-
 void SciLink(int iflag,int *rhs,int *ilib,char *files[],char *en_names[],char *strf)
 {
   int i;
@@ -60,12 +57,11 @@ void SciLink(int iflag,int *rhs,int *ilib,char *files[],char *en_names[],char *s
 	}
     }
 }
-
+/*-----------------------------------------------------------------------------------*/
 /**************************************
  * return 1 if link accepts multiple file iin one call
  * or 0 elsewhere 
  *************************************/
-
 int LinkStatus()
 {
   return(1);
@@ -87,21 +83,19 @@ void C2F(isciulink)(integer *i)
  *   the shared lib handler is stored in a Table 
  *   The return value is == -1 if the dlopen failed 
  * 
- *  How to  deal with global On Windows ? XXXXXX
  *************************************/
 
 int Sci_dlopen( char *loaded_files[], int global)
 {
-  static HINSTANCE  hd1 = NULL;
+  static DynLibHandle  hd1 = NULL;
   int   i;
-  /** XXXXX **/
   int count =0;
   while ( loaded_files[count] != NULL) count++;
   if ( count != 1 ) 
     {
       if (getWarningMode()) sciprint("link: first argument must be a unique dll name\r\n");
     }
-  hd1 =   LoadLibrary (loaded_files[0]);
+  hd1 =   LoadDynLibrary (loaded_files[0]);
   if ( hd1 == NULL ) 
     {
       if (getWarningMode()) sciprint("link failed for dll %s\r\n",loaded_files[0]);
@@ -137,7 +131,7 @@ int Sci_dlopen( char *loaded_files[], int global)
 
 int Sci_dlsym(char *ename,int ishared,char *strf)
 {
-  HINSTANCE  hd1 = NULL;
+  DynLibHandle  hd1 = NULL;
   int ish = Min(Max(0,ishared),ENTRYMAX-1);
   char enamebuf[MAXNAME];
   if ( strf[0] == 'f' )
@@ -162,8 +156,8 @@ int Sci_dlsym(char *ename,int ishared,char *strf)
       if (getWarningMode()) sciprint("Entry name %s is already loaded from lib %d\r\n",ename,ish);
       return(OK);
     }
-  hd1 = (HINSTANCE)  hd[ish].shl;
-  EP[NEpoints].epoint = (function) GetProcAddress (hd1,enamebuf);
+  hd1 = (DynLibHandle)  hd[ish].shl;
+  EP[NEpoints].epoint = (function) GetDynLibFuncPtr (hd1,enamebuf);
   if ( EP[NEpoints].epoint == NULL )
     {
       if (getWarningMode()) sciprint("%s is not an entry point \r\n",enamebuf);
@@ -179,7 +173,6 @@ int Sci_dlsym(char *ename,int ishared,char *strf)
     }
   return(OK);  
 }
-
 
 /***************************************************
  * Delete entry points associated with shared lib ishared
@@ -206,7 +199,7 @@ void Sci_Delsym(int ishared)
     }
   if ( hd[ish].ok != FAIL)
     {
-      FreeLibrary ((HINSTANCE) hd[ish].shl);
+      FreeDynLibrary ((DynLibHandle) hd[ish].shl);
       hd[ish].ok = FAIL;
     }
 }
