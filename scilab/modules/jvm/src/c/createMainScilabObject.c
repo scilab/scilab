@@ -27,7 +27,16 @@ BOOL createMainScilabObject(void)
 			{
 				jint ScilabMode = getScilabMode();
 				ScilabObject = (*currentENV)->NewObject(currentENV,cls,mid,ScilabMode); 
-				//if (ScilabObject) bOK = TRUE;
+				/* Catch the exception and display an human-reading error message 
+				* @TODO See if is worst it to factorize that code */
+				if ((*currentENV)->ExceptionCheck(currentENV) == JNI_TRUE)
+					{
+						printf("Could not create a Scilab main class. Error :\n");
+						fflush(NULL);
+						(*currentENV)->ExceptionDescribe(currentENV);
+						(*currentENV)->ExceptionClear(currentENV);
+						return bOK;
+					}
 				bOK = TRUE;
 			}
 		}
