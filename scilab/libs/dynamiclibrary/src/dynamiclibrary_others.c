@@ -33,7 +33,7 @@ BOOL FreeDynLibrary(DynLibHandle hInstance)
 	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/ 
-DynLibFuncPtr GetFuncPtr(DynLibHandle hInstance,char *funcName)
+DynLibFuncPtr GetDynLibFuncPtr(DynLibHandle hInstance,char *funcName)
 {
 	DynLibFuncPtr retFuncPtr = NULL ;
 	

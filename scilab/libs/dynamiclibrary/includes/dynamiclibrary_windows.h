@@ -38,7 +38,7 @@ IMPORT_EXPORT_DYNAMICLIBRARY_DLL BOOL FreeDynLibrary(DynLibHandle hInstance);
 * @param string that specifies the function
 * @return
 */
-IMPORT_EXPORT_DYNAMICLIBRARY_DLL DynLibFuncPtr GetFuncPtr(DynLibHandle hInstance,char *funcName);
+IMPORT_EXPORT_DYNAMICLIBRARY_DLL DynLibFuncPtr GetDynLibFuncPtr(DynLibHandle hInstance,char *funcName);
 
 /**
 * return last dynamic linking error 

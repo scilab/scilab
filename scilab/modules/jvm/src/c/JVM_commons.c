@@ -62,9 +62,9 @@ BOOL LoadFuntionsJVM(char *filedynlib)
 	
 	if (hLibJVM)
 	{
-		ptr_JNI_GetDefaultJavaVMInitArgs = (JNI_GetDefaultJavaVMInitArgsPROC) GetFuncPtr(hLibJVM, "JNI_GetDefaultJavaVMInitArgs" ); 
-		ptr_JNI_CreateJavaVM = (JNI_CreateJavaVMPROC) GetFuncPtr(hLibJVM, "JNI_CreateJavaVM" ); 
-		ptr_JNI_GetCreatedJavaVMs = (JNI_GetCreatedJavaVMsPROC) GetFuncPtr(hLibJVM, "JNI_GetCreatedJavaVMs" ); 
+		ptr_JNI_GetDefaultJavaVMInitArgs = (JNI_GetDefaultJavaVMInitArgsPROC) GetDynLibFuncPtr(hLibJVM, "JNI_GetDefaultJavaVMInitArgs" ); 
+		ptr_JNI_CreateJavaVM = (JNI_CreateJavaVMPROC) GetDynLibFuncPtr(hLibJVM, "JNI_CreateJavaVM" ); 
+		ptr_JNI_GetCreatedJavaVMs = (JNI_GetCreatedJavaVMsPROC) GetDynLibFuncPtr(hLibJVM, "JNI_GetCreatedJavaVMs" ); 
 
 		if (ptr_JNI_GetDefaultJavaVMInitArgs && ptr_JNI_CreateJavaVM && ptr_JNI_GetCreatedJavaVMs) bOK=TRUE;
 	}

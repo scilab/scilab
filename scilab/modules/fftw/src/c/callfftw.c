@@ -49,13 +49,13 @@ BOOL LoadFFTWLibrary(char *libraryname)
         MY_FFTW_IMPORT_WISDOM_FROM_STRING=NULL;
         MY_FFTW_FORGET_WISDOM=NULL;
 
-		MY_FFTW_EXECUTE_SPLIT_DFT = (PROC_FFTW_EXECUTE_SPLIT_DFT) GetFuncPtr(hinstLib,"fftw_execute_split_dft");
-		MY_FFTW_PLAN_GURU_SPLIT_DFT = (PROC_FFTW_PLAN_GURU_SPLIT_DFT) GetFuncPtr(hinstLib,"fftw_plan_guru_split_dft");
-		MY_FFTW_DESTROY_PLAN = (PROC_FFTW_DESTROY_PLAN) GetFuncPtr(hinstLib,"fftw_destroy_plan");
+		MY_FFTW_EXECUTE_SPLIT_DFT = (PROC_FFTW_EXECUTE_SPLIT_DFT) GetDynLibFuncPtr(hinstLib,"fftw_execute_split_dft");
+		MY_FFTW_PLAN_GURU_SPLIT_DFT = (PROC_FFTW_PLAN_GURU_SPLIT_DFT) GetDynLibFuncPtr(hinstLib,"fftw_plan_guru_split_dft");
+		MY_FFTW_DESTROY_PLAN = (PROC_FFTW_DESTROY_PLAN) GetDynLibFuncPtr(hinstLib,"fftw_destroy_plan");
 
-        MY_FFTW_EXPORT_WISDOM_TO_STRING = (PROC_FFTW_EXPORT_WISDOM_TO_STRING) GetFuncPtr(hinstLib,"fftw_export_wisdom_to_string");
-        MY_FFTW_IMPORT_WISDOM_FROM_STRING = (PROC_FFTW_IMPORT_WISDOM_FROM_STRING) GetFuncPtr(hinstLib, "fftw_import_wisdom_from_string");
-        MY_FFTW_FORGET_WISDOM = (PROC_FFTW_FORGET_WISDOM) GetFuncPtr(hinstLib,"fftw_forget_wisdom");
+        MY_FFTW_EXPORT_WISDOM_TO_STRING = (PROC_FFTW_EXPORT_WISDOM_TO_STRING) GetDynLibFuncPtr(hinstLib,"fftw_export_wisdom_to_string");
+        MY_FFTW_IMPORT_WISDOM_FROM_STRING = (PROC_FFTW_IMPORT_WISDOM_FROM_STRING) GetDynLibFuncPtr(hinstLib, "fftw_import_wisdom_from_string");
+        MY_FFTW_FORGET_WISDOM = (PROC_FFTW_FORGET_WISDOM) GetDynLibFuncPtr(hinstLib,"fftw_forget_wisdom");
 	}
 
 	if ( MY_FFTW_EXECUTE_SPLIT_DFT && MY_FFTW_PLAN_GURU_SPLIT_DFT && MY_FFTW_DESTROY_PLAN &&\
