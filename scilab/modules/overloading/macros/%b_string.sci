@@ -1,4 +1,6 @@
 function s=%b_string(b)
-   a=["F" "T"]
-   s=matrix(a(1+b),size(b))
-endfunction
+// thanks to E. Segre for this efficient implementation
+  a=["F" "T"]
+  s=matrix(a(1+b),size(b))
+endfunction	
+
