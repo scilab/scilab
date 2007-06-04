@@ -50,7 +50,7 @@
 #include <stdlib.h> /*pour exit()*/
 
 
-
+#include "sciprint.h"
 #include "sci_mem_alloc.h" /* MALLOC */
 
 
@@ -58,11 +58,8 @@ static char *the_current_mex_name;
 
 extern void cerro __PARAMS((char *str));
 extern int C2F(dcopy) __PARAMS((int*, double *, int *, double *, int *));
-extern int C2F(xscion)  __PARAMS((int *i));
-extern void C2F (xscisncr) __PARAMS((char *str, integer *n, integer dummy)); 
 extern int  C2F(mxgetm) __PARAMS((    mxArray *ptr));
 extern int  C2F(mxgetn) __PARAMS((    mxArray *ptr));
-extern void C2F(xscisrn) __PARAMS((char *str,int *n,int  dummy));
 extern int  C2F(erro)  __PARAMS((char *str,unsigned int dummy));
 extern int  C2F(hmcreate)  __PARAMS((int *lw,int *nz,int *sz,int *typv,int *iflag,int *retval));
 extern int  C2F(stcreate)  __PARAMS((int *lw1,int *ndim,int *dims, int *nfields, char **field_names, int *retval));
@@ -1936,96 +1933,14 @@ bool mxIsLogicalScalar(mxArray *pa)
   Print function which prints (format,args,....) 
   in Scilab window
 */
-
-
-/*
-#ifdef __STDC__ 
-void  C2F(mexprintf)(char *fmt,...) 
-#else 
-void  C2F(mexprintf)(va_alist) va_dcl
-#endif 
-{
-  int i;  integer lstr;  va_list ap;  char s_buf[1024];
-#ifdef __STDC__
-  va_start(ap,fmt);
-#else
-  char *fmt;
-  va_start(ap);
-  fmt = va_arg(ap, char *);
-#endif
-  C2F(xscion)(&i);
-  if (i == 0) 
-    {
-      (void)  vfprintf(stdout, fmt, ap );
-    }
-  else 
-    {
-      (void ) vsprintf(s_buf, fmt, ap );
-      lstr=strlen(s_buf);
-      C2F(xscisrn)(s_buf,&lstr,0L);
-    }
-  va_end(ap);
-}
-*/
-/*
-void  mexPrintf(char *fmt,...) 
-{
-  int i, lstr;
-  va_list args;
-  char buf[2048];
-  va_start(args,fmt);
-  (void ) vsprintf(buf, fmt, args );
-  lstr=strlen(buf);
-  C2F(xscion)(&i);
-  if (i == 0) 
-    {
-      printf("%s",buf); 
-    }
-  else 
-    {
-      C2F(xscisrn)(buf,&lstr,0L);
-    }
-  if (getdiary()) diary_nnl(buf,&lstr);
-  va_end(args);
-}
-*/
-
-/* Modification pour Compilation sous Windows */
-/* Allan CORNET 27 avril 2004 */
-#ifdef __STDC__ 
 void mexPrintf __PARAMS((char *fmt,...))
-#else 
-void  mexPrintf (va_alist) va_dcl
-#endif
 {
-  int i, lstr;
   va_list args;
   char buf[2048];
 
-  #ifdef __STDC__ 
   va_start(args,fmt);
-  #else
-	char *fmt;
-	va_start(args);
-	fmt = va_arg(args, char *);
-  #endif 
   (void ) vsprintf(buf, fmt, args );
-  lstr=strlen(buf);
-  C2F(xscion)(&i);
-  if (i == 0) 
-    {
-      printf("%s",buf); 
-    }
-  else 
-    {
-	#ifdef _MSC_VER
-		sciprint("%s",buf);
-		
-	#else
-      C2F(xscisrn)(buf,&lstr,0L);
-	#endif
-    }
-  if (getdiary()) diary_nnl(buf,&lstr);
+  sciprint("%s",buf);
   va_end(args);
 }
 
