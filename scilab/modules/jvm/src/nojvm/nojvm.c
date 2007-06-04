@@ -3,8 +3,14 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
 #include "machine.h" 
+#include "Scierror.h"
+#include "with_java.h"
+#include "InitializeJVM.h"
+#include "TerminateJVM.h"
+
 /*-----------------------------------------------------------------------------------*/ 
-extern int  Scierror __PARAMS((int iv,char *fmt,...));
+/* not using gw_jvm.h */
+int C2F(gw_jvm)(void);
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(gw_jvm)()
 {
