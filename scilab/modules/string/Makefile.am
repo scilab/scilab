@@ -4,8 +4,7 @@
 ##########
 
 STRING_C_SOURCES = src/c/strcat-c.c \
-src/c/men_Sutils.c \
-
+src/c/men_Sutils.c 
 
 STRING_FORTRAN_SOURCES =src/fortran/strord.f src/fortran/strdsp.f
 

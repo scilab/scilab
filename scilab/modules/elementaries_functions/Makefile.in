@@ -190,7 +190,14 @@ am__objects_2 = libscielementaries_functions_la-sci_tools.lo \
 	libscielementaries_functions_la-xerhlt.lo \
 	libscielementaries_functions_la-vfloor.lo \
 	libscielementaries_functions_la-vfrexp.lo \
-	libscielementaries_functions_la-scidcopy.lo
+	libscielementaries_functions_la-scidcopy.lo \
+	libscielementaries_functions_la-gsort.lo \
+	libscielementaries_functions_la-qsort.lo \
+	libscielementaries_functions_la-qsort-char.lo \
+	libscielementaries_functions_la-qsort-double.lo \
+	libscielementaries_functions_la-qsort-int.lo \
+	libscielementaries_functions_la-qsort-short.lo \
+	libscielementaries_functions_la-qsort-string.lo
 am__objects_3 = libscielementaries_functions_la-psi.lo \
 	libscielementaries_functions_la-wasum.lo \
 	libscielementaries_functions_la-dexpm1.lo \
@@ -379,7 +386,8 @@ am__objects_4 = libscielementaries_functions_la-sci_isequal.lo \
 	libscielementaries_functions_la-sci_int.lo \
 	libscielementaries_functions_la-sci_imult.lo \
 	libscielementaries_functions_la-sci_exp.lo \
-	libscielementaries_functions_la-sci_maxi.lo
+	libscielementaries_functions_la-sci_maxi.lo \
+	libscielementaries_functions_la-sci_gsort.lo
 am__objects_5 = libscielementaries_functions_la-sci_f_isequal.lo \
 	libscielementaries_functions_la-sci_f_maxi.lo \
 	libscielementaries_functions_la-sci_f_testmatrix.lo \
@@ -628,7 +636,14 @@ src/c/vceil.c \
 src/c/xerhlt.c \
 src/c/vfloor.c \
 src/c/vfrexp.c \
-src/c/scidcopy.c
+src/c/scidcopy.c \
+src/c/gsort.c \
+src/c/qsort.c \
+src/c/qsort-char.c \
+src/c/qsort-double.c \
+src/c/qsort-int.c \
+src/c/qsort-short.c \
+src/c/qsort-string.c
 
 SLATEC_SOURCES = src/fortran/slatec/zwrsk.f \
 src/fortran/slatec/d9b0mp.f \
@@ -906,7 +921,8 @@ sci_gateway/c/sci_conj.c \
 sci_gateway/c/sci_int.c \
 sci_gateway/c/sci_imult.c \
 sci_gateway/c/sci_exp.c \
-sci_gateway/c/sci_maxi.c
+sci_gateway/c/sci_maxi.c \
+sci_gateway/c/sci_gsort.c 
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_f_isequal.f \
 sci_gateway/fortran/sci_f_maxi.f \
@@ -966,9 +982,9 @@ libdummy_elementaries_functions_la_SOURCES = src/fortran/hqror2.f \
 	src/fortran/icopy.f
 
 libdummy_elementaries_functions_la_FFLAGS = $(FFLAGS:-O%=)
-libdummy_elementaries_functions_la_CFLAGS = $(CFLAGS:-O%=) -I$(top_srcdir)/modules/core/includes/ -Iincludes/
+libdummy_elementaries_functions_la_CFLAGS = $(CFLAGS:-O%=) -I$(top_srcdir)/modules/core/includes/ -Iincludes/ 
 libscielementaries_functions_la_FFLAGS = -Iincludes/ 
-libscielementaries_functions_la_CFLAGS = -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
+libscielementaries_functions_la_CFLAGS = -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/ -Isrc/c/
 pkglib_LTLIBRARIES = libscielementaries_functions.la
 libscielementaries_functions_la_SOURCES = $(SLATEC_SOURCES) $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libscielementaries_functions_la_LIBADD = \
@@ -1126,7 +1142,14 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libdummy_elementaries_functions_la-unsfdcopy.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-cmp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-finite.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-gsort.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-gw_elementaries_functions.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-qsort-char.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-qsort-double.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-qsort-int.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-qsort-short.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-qsort-string.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-qsort.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-sci_abs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-sci_acos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-sci_asin.Plo@am__quote@
@@ -1145,6 +1168,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-sci_eye.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-sci_floor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-sci_frexp.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-sci_gsort.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-sci_imag.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-sci_imult.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-sci_int.Plo@am__quote@
@@ -1265,6 +1289,55 @@ libscielementaries_functions_la-scidcopy.lo: src/c/scidcopy.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/scidcopy.c' object='libscielementaries_functions_la-scidcopy.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-scidcopy.lo `test -f 'src/c/scidcopy.c' || echo '$(srcdir)/'`src/c/scidcopy.c
+
+libscielementaries_functions_la-gsort.lo: src/c/gsort.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-gsort.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-gsort.Tpo -c -o libscielementaries_functions_la-gsort.lo `test -f 'src/c/gsort.c' || echo '$(srcdir)/'`src/c/gsort.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-gsort.Tpo $(DEPDIR)/libscielementaries_functions_la-gsort.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/gsort.c' object='libscielementaries_functions_la-gsort.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-gsort.lo `test -f 'src/c/gsort.c' || echo '$(srcdir)/'`src/c/gsort.c
+
+libscielementaries_functions_la-qsort.lo: src/c/qsort.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-qsort.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-qsort.Tpo -c -o libscielementaries_functions_la-qsort.lo `test -f 'src/c/qsort.c' || echo '$(srcdir)/'`src/c/qsort.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-qsort.Tpo $(DEPDIR)/libscielementaries_functions_la-qsort.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/qsort.c' object='libscielementaries_functions_la-qsort.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-qsort.lo `test -f 'src/c/qsort.c' || echo '$(srcdir)/'`src/c/qsort.c
+
+libscielementaries_functions_la-qsort-char.lo: src/c/qsort-char.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-qsort-char.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-qsort-char.Tpo -c -o libscielementaries_functions_la-qsort-char.lo `test -f 'src/c/qsort-char.c' || echo '$(srcdir)/'`src/c/qsort-char.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-qsort-char.Tpo $(DEPDIR)/libscielementaries_functions_la-qsort-char.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/qsort-char.c' object='libscielementaries_functions_la-qsort-char.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-qsort-char.lo `test -f 'src/c/qsort-char.c' || echo '$(srcdir)/'`src/c/qsort-char.c
+
+libscielementaries_functions_la-qsort-double.lo: src/c/qsort-double.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-qsort-double.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-qsort-double.Tpo -c -o libscielementaries_functions_la-qsort-double.lo `test -f 'src/c/qsort-double.c' || echo '$(srcdir)/'`src/c/qsort-double.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-qsort-double.Tpo $(DEPDIR)/libscielementaries_functions_la-qsort-double.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/qsort-double.c' object='libscielementaries_functions_la-qsort-double.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-qsort-double.lo `test -f 'src/c/qsort-double.c' || echo '$(srcdir)/'`src/c/qsort-double.c
+
+libscielementaries_functions_la-qsort-int.lo: src/c/qsort-int.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-qsort-int.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-qsort-int.Tpo -c -o libscielementaries_functions_la-qsort-int.lo `test -f 'src/c/qsort-int.c' || echo '$(srcdir)/'`src/c/qsort-int.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-qsort-int.Tpo $(DEPDIR)/libscielementaries_functions_la-qsort-int.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/qsort-int.c' object='libscielementaries_functions_la-qsort-int.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-qsort-int.lo `test -f 'src/c/qsort-int.c' || echo '$(srcdir)/'`src/c/qsort-int.c
+
+libscielementaries_functions_la-qsort-short.lo: src/c/qsort-short.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-qsort-short.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-qsort-short.Tpo -c -o libscielementaries_functions_la-qsort-short.lo `test -f 'src/c/qsort-short.c' || echo '$(srcdir)/'`src/c/qsort-short.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-qsort-short.Tpo $(DEPDIR)/libscielementaries_functions_la-qsort-short.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/qsort-short.c' object='libscielementaries_functions_la-qsort-short.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-qsort-short.lo `test -f 'src/c/qsort-short.c' || echo '$(srcdir)/'`src/c/qsort-short.c
+
+libscielementaries_functions_la-qsort-string.lo: src/c/qsort-string.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-qsort-string.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-qsort-string.Tpo -c -o libscielementaries_functions_la-qsort-string.lo `test -f 'src/c/qsort-string.c' || echo '$(srcdir)/'`src/c/qsort-string.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-qsort-string.Tpo $(DEPDIR)/libscielementaries_functions_la-qsort-string.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/qsort-string.c' object='libscielementaries_functions_la-qsort-string.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-qsort-string.lo `test -f 'src/c/qsort-string.c' || echo '$(srcdir)/'`src/c/qsort-string.c
 
 libscielementaries_functions_la-sci_isequal.lo: sci_gateway/c/sci_isequal.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_isequal.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_isequal.Tpo -c -o libscielementaries_functions_la-sci_isequal.lo `test -f 'sci_gateway/c/sci_isequal.c' || echo '$(srcdir)/'`sci_gateway/c/sci_isequal.c
@@ -1601,6 +1674,13 @@ libscielementaries_functions_la-sci_maxi.lo: sci_gateway/c/sci_maxi.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_maxi.c' object='libscielementaries_functions_la-sci_maxi.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_maxi.lo `test -f 'sci_gateway/c/sci_maxi.c' || echo '$(srcdir)/'`sci_gateway/c/sci_maxi.c
+
+libscielementaries_functions_la-sci_gsort.lo: sci_gateway/c/sci_gsort.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_gsort.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_gsort.Tpo -c -o libscielementaries_functions_la-sci_gsort.lo `test -f 'sci_gateway/c/sci_gsort.c' || echo '$(srcdir)/'`sci_gateway/c/sci_gsort.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_gsort.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_gsort.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_gsort.c' object='libscielementaries_functions_la-sci_gsort.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_gsort.lo `test -f 'sci_gateway/c/sci_gsort.c' || echo '$(srcdir)/'`sci_gateway/c/sci_gsort.c
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<
