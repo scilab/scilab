@@ -37,12 +37,12 @@
     <P><VERB>y=prod(x,'r')</VERB> (or, equivalently,
       <VERB>y=prod(x,1)</VERB>)computes the rows elementwise product of
       <VERB>x</VERB>. <VERB>y</VERB> is the row vector:
-      <VERB>y(i)=prod(x(i,:))</VERB>.</P> 
+      <VERB>y(1,j)=prod(x(:,j))</VERB>.</P> 
 
     <P><VERB>y=prod(x,'c')</VERB> (or, equivalently, <VERB>y=prod(x,2)</VERB>)
       computes the columns elementwise product of
       <VERB>x</VERB>. <VERB>y</VERB> is the column vector:
-      <VERB>y(i)=prod(x(:,i))</VERB>.</P>
+      <VERB>y(i,1)=prod(x(i,:))</VERB>.</P>
 
     <P><VERB>y=prod(x,'m')</VERB>  is the product along the first non singleton
       dimension of <VERB>x</VERB> (for compatibility with Matlab).</P> 
