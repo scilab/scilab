@@ -253,7 +253,8 @@ int Store_Scan __PARAMS((int *nrow, int *ncol, sfdir *type_s, sfdir *type, int *
       }
 
     /* check for memory and REALLOC if necessary*/
-    if (rowcount>= nr) {
+    /*&&nr>0&&nc>0 added by S. Steer for bug 2399 fix */
+    if (rowcount >= nr && nr>0 && nc>0) {
       nr=nr+blk;
       *nrow=nr;
       if ( (*data = (entry *) REALLOC(*data,nc*nr*sizeof(entry)))==NULL) {
