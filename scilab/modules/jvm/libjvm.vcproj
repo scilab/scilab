@@ -262,6 +262,10 @@
 				RelativePath=".\src\c\TerminateJVM.c"
 				>
 			</File>
+			<File
+				RelativePath=".\src\c\catchIfJavaException.c"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -332,6 +336,10 @@
 				RelativePath=".\includes\TerminateJVM.h"
 				>
 			</File>
+			<File
+				RelativePath=".\includes\catchIfJavaException.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Resource Files"
@@ -376,7 +384,7 @@
 			>
 		</File>
 		<File
-			RelativePath=".\VERSION.xml"
+			RelativePath=".\version.xml"
 			>
 		</File>
 	</Files>

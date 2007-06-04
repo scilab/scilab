@@ -54,7 +54,8 @@ src/c/getClasspath.c \
 src/c/system_getproperty.c \
 src/c/loadClasspath.c \
 src/c/createMainScilabObject.c \
-src/c/JVM_commons.c
+src/c/JVM_commons.c \
+src/c/catchIfJavaException.c
 
 USEANT=1
 
