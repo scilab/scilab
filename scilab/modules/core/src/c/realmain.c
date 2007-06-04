@@ -7,9 +7,9 @@
 #include "sciprint.h"
 #ifndef _MSC_VER
 #include "xscion.h"
-#include "../gui/includes/x_main.h"
+#include "../../gui/includes/x_main.h"
 #endif
-#include "../gui/includes/IsNoInteractiveWindow.h"
+#include "../../../gui/includes/IsNoInteractiveWindow.h"
 #include "inffic.h" /* get_sci_data_strings */
 #include "scirun.h"
 #include "sciquit.h"

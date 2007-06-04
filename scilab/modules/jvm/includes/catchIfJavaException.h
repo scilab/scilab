@@ -2,8 +2,10 @@
 /* INRIA 2007 */
 /* @author Sylvestre Ledru */
 /*-----------------------------------------------------------------------------------*/
+#ifndef __CATCHIFJAVAEXCEPTION_H__
+#define __CATCHIFJAVAEXCEPTION_H__
 
-#include "machine.h"
+#include "machine.h" /* BOOL */
 
 /**
  * Check if there is an exception and print if it is the case
@@ -11,3 +13,6 @@
  * @return 
  */
 BOOL catchIfJavaException(char *errorMsg);
+
+#endif /* __CATCHIFJAVAEXCEPTION_H__*/
+/*-----------------------------------------------------------------------------------*/
