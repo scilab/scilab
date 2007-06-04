@@ -433,7 +433,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\diary.h"
+				RelativePath=".\includes\diary.h"
 				>
 			</File>
 			<File
@@ -596,7 +596,7 @@
 			>
 		</File>
 		<File
-			RelativePath=".\VERSION.xml"
+			RelativePath=".\version.xml"
 			>
 		</File>
 	</Files>
