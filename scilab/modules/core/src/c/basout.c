@@ -4,10 +4,11 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "machine.h"
 #include "stack-def.h"
 #include "basout.h"
-#include "../../fileio/src/c/diary.h"
+#include "../../fileio/includes/diary.h"
 #include "sciprint.h"
 #include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/ 
