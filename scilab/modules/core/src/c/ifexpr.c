@@ -8,7 +8,6 @@
 int C2F(ifexpr)(void)
 {
 	#define blank  40
-	int ret_val = 0;
 	int p = 0;
 
 	if (C2F(errgst).err1 != 0) return FALSE_;
