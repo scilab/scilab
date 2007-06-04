@@ -56,6 +56,7 @@ int C2F(sci_nearfloat) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_dsearch) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_isequal) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_spones) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len));
 #endif /*  __GW_ELEMENTARIES_FUNCTIONS__ */
 /*-----------------------------------------------------------------------------------*/
 

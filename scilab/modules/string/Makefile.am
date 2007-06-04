@@ -5,13 +5,6 @@
 
 STRING_C_SOURCES = src/c/strcat-c.c \
 src/c/men_Sutils.c \
-src/c/gsort.c \
-src/c/qsort.c \
-src/c/qsort-char.c \
-src/c/qsort-double.c \
-src/c/qsort-int.c \
-src/c/qsort-short.c \
-src/c/qsort-string.c
 
 
 STRING_FORTRAN_SOURCES =src/fortran/strord.f src/fortran/strdsp.f
@@ -31,8 +24,8 @@ sci_gateway/c/sci_emptystr.c \
 sci_gateway/c/sci_ascii.c \
 sci_gateway/c/sci_strsubst.c \
 sci_gateway/c/sci_grep.c \
-sci_gateway/c/sci_convstr.c \
-sci_gateway/c/sci_xsort.c 
+sci_gateway/c/sci_convstr.c
+
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_convstr.f \
 sci_gateway/fortran/sci_grep.f \

@@ -6,7 +6,6 @@
 #include "qsort.h"
 #include "qsort-double.h"
 
-
 static int swapcodedouble(char *  parmi,char * parmj, int  n, int inc)  
 { 		
   int i = n;
@@ -25,19 +24,15 @@ static int swapcodedouble(char *  parmi,char * parmj, int  n, int inc)
 /*-----------------------------------------------------------------------------------*/ 
 static int compareCdouble(char *i,char *j)
 {
-  if ( *((double *)i) > *((double *)j))
-    return (1);
-  if ( *((double *)i) < *((double *)j))
-    return (-1);
+  if ( *((double *)i) > *((double *)j)) return (1);
+  if ( *((double *)i) < *((double *)j)) return (-1);
   return (0);
 }
 /*-----------------------------------------------------------------------------------*/ 
 static int compareDdouble(char *i,char *j)
 {
-  if ( *((double *)i) < *((double *)j))
-    return (1);
-  if ( *((double *)i) > *((double *)j))
-    return (-1);
+  if ( *((double *)i) < *((double *)j)) return (1);
+  if ( *((double *)i) > *((double *)j)) return (-1);
   return (0);
 }
 /*-----------------------------------------------------------------------------------*/ 
@@ -96,15 +91,11 @@ void RowSortdouble(double *a,int *ind,int flag,int n,int p,char dir)
 void GlobalSortdouble(double *a,int *ind,int flag,int n,int p,char dir)
 {  
   int i;
-  if ( flag == 1) 
-    {
-      for ( i = 0 ; i < n*p ; i++) 
-	ind[i]= i+1;
-    }
+  if ( flag == 1) for ( i = 0 ; i < n*p ; i++) ind[i]= i+1;
   sciqsort((char *) (a),(char *) (ind),flag, n*p, 
-	   sizeof(double),sizeof(int), 
-	   (dir == 'i' ) ? compareCdouble:compareDdouble,
-	   swapcodedouble,swapcodeind);
+			sizeof(double),sizeof(int), 
+			(dir == 'i' ) ? compareCdouble:compareDdouble,
+			swapcodedouble,swapcodeind);
 }
 /*-----------------------------------------------------------------------------------*/ 
 /*******************************************************

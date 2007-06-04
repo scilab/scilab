@@ -68,7 +68,8 @@ static ElementariesFunctionsTable Tab[]=
 	{C2F(sci_nearfloat),"nearfloat"},
 	{C2F(sci_dsearch),"dsearch"},
 	{C2F(sci_isequal),"isequal"},
-	{C2F(sci_spones),"spones"}
+	{C2F(sci_spones),"spones"},
+	{C2F(sci_gsort),"gsort"}
 };
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_elementaries_functions)(void)

@@ -38,5 +38,4 @@
 <PRIMITIVE gatewayId="21" primitiveId="13" primitiveName="grep" />
 <PRIMITIVE gatewayId="21" primitiveId="14" primitiveName="tokens" />
 <PRIMITIVE gatewayId="21" primitiveId="15" primitiveName="strsplit" />
-<PRIMITIVE gatewayId="21" primitiveId="16" primitiveName="gsort" />
 </GATEWAY>

@@ -11,7 +11,15 @@ src/c/vceil.c \
 src/c/xerhlt.c \
 src/c/vfloor.c \
 src/c/vfrexp.c \
-src/c/scidcopy.c
+src/c/scidcopy.c \
+src/c/gsort.c \
+src/c/qsort.c \
+src/c/qsort-char.c \
+src/c/qsort-double.c \
+src/c/qsort-int.c \
+src/c/qsort-short.c \
+src/c/qsort-string.c
+
 
 SLATEC_SOURCES = src/fortran/slatec/zwrsk.f \
 src/fortran/slatec/d9b0mp.f \
@@ -290,7 +298,8 @@ sci_gateway/c/sci_conj.c \
 sci_gateway/c/sci_int.c \
 sci_gateway/c/sci_imult.c \
 sci_gateway/c/sci_exp.c \
-sci_gateway/c/sci_maxi.c
+sci_gateway/c/sci_maxi.c \
+sci_gateway/c/sci_gsort.c 
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_f_isequal.f \
 sci_gateway/fortran/sci_f_maxi.f \

@@ -8,7 +8,7 @@
 #include "core_math.h"
 #include "gsort.h"
 
-#include "men_Sutils.h"
+#include "../../../string/includes/men_Sutils.h"
 #include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/ 
 #include "qsort.h"

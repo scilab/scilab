@@ -30,14 +30,12 @@ public class Scilab {
 	 */
 	public Scilab(int mode) {
 		this.mode = mode;
-		
-		if (mode == 2) {
-
 		/*
 		 *	 by default we used O.S Look and Feel
 		 */		
 		LookAndFeel.setSystemLookAndFeel();
-
+		
+		if (mode == 2) {
 			Window mainView = ScilabWindow.createWindow();
 			mainView.draw();
 			/* CONSOLE */

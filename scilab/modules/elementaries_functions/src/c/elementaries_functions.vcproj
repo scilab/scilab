@@ -4,6 +4,7 @@
 	Version="8,00"
 	Name="elementaries_functions"
 	ProjectGUID="{5B110267-7C18-437C-B87D-DBA2B50729E9}"
+	RootNamespace="elementaries_functions"
 	>
 	<Platforms>
 		<Platform
@@ -40,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../../libs/MALLOC/includes;"
+				AdditionalIncludeDirectories=".;../../includes;../../../core/includes;../../../../libs/MALLOC/includes"
 				PreprocessorDefinitions="_LIB;STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="1"
@@ -116,7 +117,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../../libs/MALLOC/includes;"
+				AdditionalIncludeDirectories=".;../../includes;../../../core/includes;../../../../libs/MALLOC/includes"
 				PreprocessorDefinitions="NDEBUG;_LIB;STRICT;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="0"
@@ -181,7 +182,35 @@
 				>
 			</File>
 			<File
+				RelativePath=".\gsort.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\gw_elementaries_functions.c"
+				>
+			</File>
+			<File
+				RelativePath=".\qsort-char.c"
+				>
+			</File>
+			<File
+				RelativePath=".\qsort-double.c"
+				>
+			</File>
+			<File
+				RelativePath=".\qsort-int.c"
+				>
+			</File>
+			<File
+				RelativePath=".\qsort-short.c"
+				>
+			</File>
+			<File
+				RelativePath=".\qsort-string.c"
+				>
+			</File>
+			<File
+				RelativePath=".\qsort.c"
 				>
 			</File>
 			<File
@@ -254,6 +283,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_frexp.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_gsort.c"
 				>
 			</File>
 			<File
@@ -423,7 +456,35 @@
 				>
 			</File>
 			<File
+				RelativePath=".\gsort.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\gw_elementaries_functions.h"
+				>
+			</File>
+			<File
+				RelativePath=".\qsort-char.h"
+				>
+			</File>
+			<File
+				RelativePath=".\qsort-double.h"
+				>
+			</File>
+			<File
+				RelativePath=".\qsort-int.h"
+				>
+			</File>
+			<File
+				RelativePath=".\qsort-short.h"
+				>
+			</File>
+			<File
+				RelativePath=".\qsort-string.h"
+				>
+			</File>
+			<File
+				RelativePath=".\qsort.h"
 				>
 			</File>
 			<File
