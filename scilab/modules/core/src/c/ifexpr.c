@@ -19,7 +19,7 @@ int C2F(ifexpr)(void)
 		/* the test rstk(p).eq.307.and.ids(1,p-1).ne.blank) checks if we are */
 		/* evaluating the argument of a function. ids(1,p-1).ne.blank */
 		/* excludes the case of a parenthesized if expression */
-		if (p == 0 || C2F(recu).rstk[p - 1] == 307 && C2F(recu).ids[(p - 1) * 6 - 6] != blank) return FALSE_;
+		if (p == 0 || (C2F(recu).rstk[p - 1] == 307 && C2F(recu).ids[(p - 1) * 6 - 6] != blank)) return FALSE_;
 	} while(C2F(recu).rstk[p - 1] != 803);
 	return TRUE_;
 }

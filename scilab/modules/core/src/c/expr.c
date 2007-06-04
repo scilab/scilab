@@ -455,7 +455,7 @@ L101:
 	goto L2;
 L102:
 	--C2F(recu).pt;
-	if (C2F(com).sym != equal && C2F(com).sym < less || C2F(com).sym == eol) goto L86;
+	if ((C2F(com).sym != equal && C2F(com).sym < less) || C2F(com).sym == eol) goto L86;
 L103:
 	op = C2F(com).sym;
 	C2F(getsym)();
