@@ -73,89 +73,23 @@ void  sciprint(char *fmt,...)
 }
 /*-----------------------------------------------------------------------------------*/ 
 /* as sciprint but with an added first argument which is ignored (used in do_printf) */
-#ifdef _MSC_VER
-  int sciprint2 (int iv, char *fmt,...)
-  {
-	  int i, count,lstr;
-	  va_list ap;
-	  char s_buf[MAXPRINTF];
-	  va_start (ap, fmt);
-	  /* next three lines added for diary SS */
-	  count = _vsnprintf (s_buf,MAXPRINTF-1, fmt, ap);
-	  if (count == -1)
-	  {
-		  s_buf[MAXPRINTF-1]='\0';
-	  }
-
-	  lstr = strlen (s_buf);
-
-	  C2F (xscion) (&i);
-	  if (i == 0)
-	  {
-		  printf ("%s", s_buf);
-	  }
-	  else
-	  {
-		  TextPutS (&textwin, s_buf);
-	  }
-	  if (getScilabMode() != SCILAB_NWNI) ShellPrintf(s_buf);
-	  if (getdiary()) diary_nnl(s_buf,&lstr);
-
-	  va_end (ap);
-	  return count;
-  }
-#else
-int  sciprint2(int iv,char *fmt,...) 
+int sciprint2 (int iv, char *fmt,...)
 {
-	  int i,retval;
-	  integer lstr;
-	  va_list ap;
-	  char s_buf[MAXPRINTF];
+	va_list ap;
+	int count = 0;
+	char s_buf[MAXPRINTF];
 
-	  va_start(ap,fmt);
+	va_start (ap, fmt);
+	count= vsnprintf(s_buf,MAXPRINTF-1, fmt, ap );
+	va_end (ap);
+	if (count == -1)
+	{
+		s_buf[MAXPRINTF-1]='\0';
+	}
 
-	  C2F(xscion)(&i);
-	  if (i == 0) 
-	  {
-		  retval= vfprintf(stdout, fmt, ap );
-	  }
-	  else 
-	  {
-#ifdef LINUX
-		  retval= vsnprintf (s_buf,MAXPRINTF-1, fmt, ap);
-		  if (retval == -1)
-		  {
-			  s_buf[MAXPRINTF-1]='\0';
-		  }
-#else
-		  retval= vsprintf(s_buf, fmt, ap );
-#endif
-
-		  lstr=strlen(s_buf);
-		  if (getScilabMode() != SCILAB_NWNI) ShellPrintf(s_buf);
-		  C2F(xscisncr)(s_buf,&lstr,0L);
-	  }
-
-	  if (getdiary()) 
-	  {
-#ifdef LINUX
-		  retval= vsnprintf (s_buf,MAXPRINTF-1, fmt, ap);
-		  if (retval == -1)
-		  {
-			  s_buf[MAXPRINTF-1]='\0';
-		  }
-#else
-		  retval= vsprintf(s_buf, fmt, ap );
-#endif
-		  lstr=strlen(s_buf);
-		  diary_nnl(s_buf,&lstr);
-	  }
-
-	  va_end(ap);
-	  return retval;
-
-  }
-#endif  
+	sciprint(s_buf);
+	return count;
+}
 /*-----------------------------------------------------------------------------------*/ 
 /* sciprint geared towards long strings (>MAXPRINTF) */
 /* the long string is splitted in elements of length equal to the number of columns  */
