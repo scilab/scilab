@@ -3,6 +3,7 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
 #include <jni.h>
+#include <string.h>
 #include "MALLOC.h"
 #include "getinstalledlookandfeels.h"
 #include "getScilabJNIEnv.h"
