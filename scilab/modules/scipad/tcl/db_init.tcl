@@ -155,8 +155,8 @@ menubutbreakimage       copy butbreakimage_o       -subsample $subsamplex $subsa
 menubutcancelimage      copy butcancelimage_o      -subsample $subsamplex $subsampley
 
 # Watch window LEDs
-image create photo led_debugstate_NoDebug         -file [file join $iconsdir dbs_NoDebug_32x16.gif]
-image create photo led_debugstate_ReadyForDebug   -file [file join $iconsdir dbs_ReadyForDebug_32x16.gif]
-image create photo led_debugstate_DebugInProgress -file [file join $iconsdir dbs_DebugInProgress_32x16.gif]
-image create photo led_scilabbusy_busy  -file [file join $iconsdir prompt_busy_32x16.gif]
-image create photo led_scilabbusy_ready -file [file join $iconsdir prompt_ready_32x16.gif]
+image create photo led_debugstate_NoDebug         -file [file join $iconsdir dbs_NoDebug_48x24.gif]
+image create photo led_debugstate_ReadyForDebug   -file [file join $iconsdir dbs_ReadyForDebug_48x24.gif]
+image create photo led_debugstate_DebugInProgress -file [file join $iconsdir dbs_DebugInProgress_48x24.gif]
+image create photo led_scilabbusy_busy  -file [file join $iconsdir prompt_busy_48x24.gif]
+image create photo led_scilabbusy_ready -file [file join $iconsdir prompt_ready_48x24.gif]

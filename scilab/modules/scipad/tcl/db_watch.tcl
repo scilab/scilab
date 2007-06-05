@@ -343,7 +343,7 @@ proc showwatch_bp {} {
     if {$dockwatch} {$buttonClose configure -underline -1}
     pack $totbptsindic -expand no -fill x
     pack $bptfunsindic -expand no -fill x -pady 2
-    pack $led_scilabbusy $led_debugstate
+    pack $led_scilabbusy $led_debugstate -side left
     pack $watch.f.f9.fl $watch.f.f9.fc -side left -padx 10
     pack $buttonClose -side left -padx 10
     pack configure $watch.f.f9.fl -expand yes -fill x

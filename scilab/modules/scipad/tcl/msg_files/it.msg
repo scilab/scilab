@@ -1,5 +1,5 @@
 # Scipad texts in Italian
-# in sync at least with v6.109
+# in sync at least with v6.112
 
 
 # commons
@@ -54,7 +54,8 @@
 ::msgcat::mcset it "This variable can be watched but cannot be edited!"\
                    "Questa variabile può essere osservata, ma non modificata!"
 ::msgcat::mcset it "A new watch variable will be created."\
-                   "Verrà piuttosto proposta una nuova variabile da osservare."
+                   "Verrà piuttosto proposta una nuova variabile da\
+                    osservare."
 ::msgcat::mcset it "Non editable variable" "Variabile non modificabile"
 ::msgcat::mcset it "Variable:" "Variabile:"
 ::msgcat::mcset it "Value:" "Valore:"
@@ -218,7 +219,8 @@
 # db_watch.tcl
 ::msgcat::mcset it "Watch" "Controllo esecuzione e variabili"
 ::msgcat::mcset it "Watch variables:" "Variabili osservate:"
-::msgcat::mcset it "A&uto (local variables)" "&Auto (tutte le variabili locali)"
+::msgcat::mcset it "A&uto (local variables)"\
+                   "&Auto (tutte le variabili locali)"
 ::msgcat::mcset it "Au&to watch globals too"\
                    "Anche variabili &globali usate dalla funzione"
 ::msgcat::mcset it "Call stack:" "stack di programma:"
@@ -228,6 +230,10 @@
 ::msgcat::mcset it "&Dock" "&Incassa"
 ::msgcat::mcset it "Breakpoints" "Punti d'arresto"
 ::msgcat::mcset it "Breakpointed functions" "Funzioni con arresti"
+::msgcat::mcset it "Scilab busy indicator"\
+                   "indicatore per Scilab pronto/occupato"
+::msgcat::mcset it "Debugger state indicator"\
+                   "indicatore dello stato del debugger"
 ::msgcat::mcset it "Undefined or non editable elements are not legal in\
                     variable"\
                    "Gli elementi indefiniti sono illegali in questa variabile"
