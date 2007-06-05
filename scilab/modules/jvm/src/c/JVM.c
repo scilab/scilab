@@ -3,6 +3,7 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
 #include <string.h>
+#include <stdlib.h>
 #include "JVM.h"
 #include "JVM_commons.h"
 #include "JVM_functions.h"

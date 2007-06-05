@@ -2,7 +2,6 @@
 /* INRIA 2007 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#include <jni.h>
 #include <stdio.h>
 #include "JVM_commons.h"
 #include "dynamiclibrary.h"

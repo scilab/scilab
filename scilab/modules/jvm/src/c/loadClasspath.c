@@ -91,7 +91,7 @@ BOOL LoadClasspath(char *xmlfilename)
 			}
 			else
 				{
-			printf("Wrong format for classpath.xml. \n", xmlfilename, encoding);
+			printf("Wrong format for %s. \n", xmlfilename);
 			}
 		}
 		else

@@ -6,7 +6,7 @@
 #define __JVM_H__
 
 #include "machine.h" /* BOOL */
-
+#include <jni.h>
 /**
 * start JVM used in InitializeJVM function
 * @param Scilab path
@@ -19,6 +19,14 @@ BOOL startJVM(char *SCI_PATH);
 * @return TRUE or FALSE
 */
 BOOL finishJVM(void);
+
+
+/**
+ * Returns the current JNIEnv of Scilab
+ * @return The JNI environnement of Scilab
+ */
+JNIEnv *getScilabJNIEnv(void);
+
 
 #endif /* __JVM_H__ */
 /*-----------------------------------------------------------------------------------*/ 

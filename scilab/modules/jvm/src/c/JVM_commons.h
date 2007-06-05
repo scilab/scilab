@@ -5,6 +5,7 @@
 #ifndef __JVM_COMMONS_H__
 #define __JVM_COMMONS_H__
 /*-----------------------------------------------------------------------------------*/ 
+#include <jni.h>
 #include "machine.h"
 /*-----------------------------------------------------------------------------------*/ 
 #ifdef _MSC_VER
@@ -32,5 +33,50 @@
 #define USER_CLASSPATH "."
 #define JVM_CLASSPATH "/modules/jvm/jar/org.scilab.modules.jvm.jar"
 /*-----------------------------------------------------------------------------------*/ 
+
+/**
+ * @TODO : add comments...
+ *
+ * @param args  
+ * @return <ReturnValue>
+ */
+jint SciJNI_GetDefaultJavaVMInitArgs(void *args);
+
+/**
+ * @TODO : add comments...
+ *
+ * @param pvm   
+ * @param penv  
+ * @param args  
+ * @return <ReturnValue>
+ */
+jint SciJNI_CreateJavaVM(JavaVM **pvm, void **penv, void *args);
+
+/**
+ * @TODO : add comments...
+ *
+ * @param vmBuf 
+ * @param BufLen    
+ * @param nVMs  
+ * @return <ReturnValue>
+ */
+jint SciJNI_GetCreatedJavaVMs(JavaVM **vmBuf, jsize BufLen, jsize *nVMs);
+
+/**
+ * @TODO : add comments...
+ *
+ * @param filedynlib    
+ * @return <ReturnValue>
+ */
+BOOL LoadFuntionsJVM(char *filedynlib);
+
+
+/**
+ * @TODO : add comments...
+ *
+ * @return <ReturnValue>
+ */
+BOOL FreeDynLibJVM(void);
+
 #endif /*  __JVM_COMMONS_H__ */
 /*-----------------------------------------------------------------------------------*/ 

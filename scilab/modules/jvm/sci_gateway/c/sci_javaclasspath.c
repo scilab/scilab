@@ -49,7 +49,7 @@ int C2F(sci_javaclasspath) _PARAMS((char *fname,unsigned long fname_len))
 	{
 		if ( GetType(1) == sci_strings )
 		{
-			static int l1=0,n1=0,m1=0;
+			static int n1=0,m1=0;
 			int i=0;
 			BOOL bOK=FALSE;
 			char **CLASSPATHS=NULL;
