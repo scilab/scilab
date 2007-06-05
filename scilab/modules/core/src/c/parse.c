@@ -9,6 +9,7 @@
 #include "stack-c.h"
 
 #include "parse.h"
+#include "basout.h"
 
 #include "../../tclsci/includes/tksynchro.h"
 
@@ -84,7 +85,6 @@ extern int C2F(cvname)();
 extern int C2F(getlin)();
 extern int C2F(mrknmd)();
 extern int C2F(stimer)();
-extern int C2F(basout)();
 extern int C2F(mkindx)();
 extern int C2F(whatln)();
 extern int C2F(prompt)();
