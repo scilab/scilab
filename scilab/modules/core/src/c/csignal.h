@@ -16,6 +16,7 @@ void controlC_handler (int sig);
 
 /** 
  * TODO : comment
+ * @return
  */
 int C2F(csignal)(void);
 
