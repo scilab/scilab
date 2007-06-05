@@ -17,6 +17,7 @@
 #include "stack-c.h"
 #include "run.h"
 #include "timer.h"
+#include "basout.h"
 
 #undef Lstk
 #undef Infstk
@@ -58,7 +59,7 @@ extern int C2F(print)();
 extern int C2F(createref1)();
 extern int C2F(cvname)();
 extern int C2F(stimer)();
-extern int C2F(basout)();
+
 extern int C2F(mkindx)();
 extern int C2F(whatln)();
 extern int C2F(prompt)();
