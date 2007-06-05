@@ -16,7 +16,7 @@ extern int C2F(xscimore)();
 extern int C2F(writelunitstring)();
 extern int C2F(xscion)();
 /*-----------------------------------------------------------------------------------*/ 
-int C2F(basout)(integer *io,integer *lunit,char *string,long int nbcharacters)
+int C2F(basout)(integer *io, integer *lunit, char *string, int nbcharacters)
 {
 	static integer iflag;
 
