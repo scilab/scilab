@@ -4,6 +4,7 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include "expr.h"
 #include "ifexpr.h"
+#include "msgs.h"
 #include "stack-def.h"
 #include "stack-c.h"
 /*-----------------------------------------------------------------------------------*/ 
@@ -12,7 +13,6 @@ static int checkvalue = 4095;
 static int code = 30;
 static int val = 0;
 /*-----------------------------------------------------------------------------------*/ 
-extern int C2F(msgs)(int *, int *);
 extern int C2F(putid)(int *, int *);
 extern int C2F(error)(int *);
 extern int C2F(compil)(int *, int *, int *, int *, int *);

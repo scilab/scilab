@@ -9,6 +9,7 @@
 #include "stack-def.h" /* C2F(cha1) */
 #include "stack-c.h" /* Fin */
 #include "MALLOC.h"
+#include "msgs.h"
 #include "../../localization/includes/QueryStringMessage.h"
 /*-----------------------------------------------------------------------------------*/
 #ifdef BUF
