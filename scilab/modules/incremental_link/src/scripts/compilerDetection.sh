@@ -10,5 +10,5 @@ if test ! -s Makefile.orig; then
 	./configure --disable-static --disable-dependency-tracking
 	mv Makefile Makefile.orig	
 else 
-	echo "Detection already done"
+	echo "Detection of compilers already done"
 fi
