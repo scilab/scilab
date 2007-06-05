@@ -3,9 +3,10 @@
 /* Ledru Sylvestre */
 /*-----------------------------------------------------------------------------------*/
 #ifndef __BASOUT_H__
-#define __BANNER_H__
+#define __BASOUT_H__
 
-#include "machine.h"
-int C2F(basout)(integer *io,integer *lunit,char *string,int notused);
+#include "machine.h" /* C2F */
 
-#endif /* __BANNER_H__ */
+int C2F(basout)(integer *io, integer *lunit, char *string,long int nbcharacters);
+
+#endif /* __BASOUT_H__ */
