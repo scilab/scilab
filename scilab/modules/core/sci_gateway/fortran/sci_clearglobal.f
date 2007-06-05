@@ -65,24 +65,26 @@ c     .     pack
             vk=ls-ll
 c     .     translate "values" up
             call unsfdcopy(lstk(gtop+1)-lstk(kg+1),stk(ls),1,stk(ll),1)
-            do 09 i = kg, gtop-1
+            do 09 i = kg, gtop
 c     .        translate names up
                call putid(idstk(1,i),idstk(1,i+1))
 c     .        translate property up
                infstk(i)=infstk(i+1)
 c     .        update pointers 
                lstk(i) = lstk(i+1)-vk
-c     .        update pointers in variables which refer this global var
-               do 07 j=bot,isiz-1
-                  if(infstk(j).eq.2) then
-                     if(eqid(idstk(1,j),idstk(1,i))) then
-c     .                 variable j refers this global var
-                        ilj=iadr(lstk(j))
-                        istk(ilj+1)=lstk(i)
-                        istk(ilj+2)=i
+               if (i.lt.gtop) then
+c     .           update pointers in variables which refer this global var
+                  do 07 j=bot,isiz-1
+                     if(infstk(j).eq.2) then
+                        if(eqid(idstk(1,j),idstk(1,i))) then
+c     .                    variable j refers this global var
+                           ilj=iadr(lstk(j))
+                           istk(ilj+1)=lstk(i)
+                           istk(ilj+2)=i
+                        endif
                      endif
-                  endif
- 07            continue
+ 07               continue
+               endif
  09         continue
          endif
          gtop=gtop-1
