@@ -44,30 +44,33 @@ void realmain(int no_startup_flag_l,char *initial_script,int initial_script_type
   C2F(settmpdir)();
 
   /* signals */
-  #ifdef ENABLESIG
+
+#ifdef ENABLESIG
+#ifndef DEBUG
   signal(SIGINT,sci_clear_and_exit);
   #ifdef SIGBUS
-  signal(SIGBUS,sci_clear_and_exit);
+   signal(SIGBUS,sci_clear_and_exit);
   #endif
   signal(SIGSEGV,sci_clear_and_exit);
   #if SIGQUIT
-  signal(SIGQUIT,sci_clear_and_exit);
+   signal(SIGQUIT,sci_clear_and_exit);
   #endif
   #ifdef SIGHUP
-  signal(SIGHUP,sci_clear_and_exit);
+   signal(SIGHUP,sci_clear_and_exit);
   #endif
   #ifdef SIGUSR1
-  signal(SIGUSR1,sci_usr1_signal);
+   signal(SIGUSR1,sci_usr1_signal);
   #endif
+#endif
 
   #ifdef _MSC_VER
-  signal(SIGILL,sci_clear_and_exit);
-  signal(SIGFPE,sci_clear_and_exit);
-  signal(SIGTERM,sci_clear_and_exit);
-  signal(SIGBREAK,sci_clear_and_exit);
-  signal(SIGABRT,sci_clear_and_exit);
+   signal(SIGILL,sci_clear_and_exit);
+   signal(SIGFPE,sci_clear_and_exit);
+   signal(SIGTERM,sci_clear_and_exit);
+   signal(SIGBREAK,sci_clear_and_exit);
+   signal(SIGABRT,sci_clear_and_exit);
   #endif
-  #endif
+#endif
 
   /*  prepare startup script  */
 
