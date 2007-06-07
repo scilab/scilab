@@ -31,8 +31,8 @@ int ExitScilab(void)
 
 	if ( getScilabMode() != SCILAB_NWNI ) 
 	{
-		TerminateJVM();
 		TerminateGraphics();
+		TerminateJVM();
 	}
 
 	TerminateCorePart2();
