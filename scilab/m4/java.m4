@@ -66,7 +66,7 @@ AC_DEFUN([AC_PROG_JAVAC], [
     if test "x$JAVAC" = "x" ; then
         AC_PATH_PROG(JAVAC, javac)
         if test "x$JAVAC" = "x" ; then
-            AC_MSG_ERROR([javac not found on PATH ... did you forget --with-jdk=DIR])
+            AC_MSG_ERROR([javac not found on PATH ... did you try with --with-jdk=DIR])
         fi
     fi
     if test ! -f "$JAVAC" ; then
@@ -74,14 +74,16 @@ AC_DEFUN([AC_PROG_JAVAC], [
         Perhaps Java is not installed or you passed a bad dir to a --with option.])
     fi
 
-    # Check for Solaris install which uses a symlink in /usr/bin to /usr/java/bin
+    # Check for installs which uses a symlink. If it is the case, try to resolve JAVA_HOME from it
     if test -h "$JAVAC" ; then
-        BASE=`basename $JAVAC`
-        DIR=`dirname $JAVAC`
-        if test -f $DIR/../java/bin/$BASE ; then
-            JAVAC=`cd $DIR/../java/bin;pwd`/$BASE
-        fi
+		FOLLOW_SYMLINKS($JAVAC)
+        TMP=`dirname $SYMLINK_FOLLOWED_TO`
+        TMP=`dirname $TMP`
+        ac_java_jvm_dir=$TMP
+		echo "Java base directory (probably) available here : $ac_java_jvm_dir"
     fi
+
+
 
     # If we were searching for javac, then set ac_java_jvm_dir
     if test "x$ac_java_jvm_dir" = "x"; then
