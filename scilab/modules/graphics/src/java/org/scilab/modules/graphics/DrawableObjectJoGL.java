@@ -15,16 +15,17 @@ import javax.media.opengl.GL;
  */
 public abstract class DrawableObjectJoGL extends ObjectJoGL {
 
+	/** display lists index is always different than 0 */
+	private static final int UNINIT_DL_INDEX = 0;
 	/** Index of the display list */
 	private int dlIndex;
-	/** display lists index is always different than 0 */
-	private final int uninitDlIndex = 0;
 	
 	/**
 	 * Default constructor
 	 */
 	public DrawableObjectJoGL() {
-		dlIndex        = uninitDlIndex; // can't create the index outside the jogl thread.
+		super();
+		dlIndex = UNINIT_DL_INDEX; // can't create the index outside the jogl thread.
 	}
 	
 	/**
@@ -61,10 +62,10 @@ public abstract class DrawableObjectJoGL extends ObjectJoGL {
 	 */
 	public void destroy() {
 		// We need to be sure that the memory used by the display list is freed
-		if (dlIndex != uninitDlIndex) {
+		if (dlIndex != UNINIT_DL_INDEX) {
 			getGL().glDeleteLists(dlIndex, 1);
 		}
-		dlIndex = uninitDlIndex;
+		dlIndex = UNINIT_DL_INDEX;
 	}
 	
 	
@@ -75,7 +76,7 @@ public abstract class DrawableObjectJoGL extends ObjectJoGL {
 	 * until endRecordDL is called
 	 */
 	protected void startRecordDL() {
-		if (dlIndex == uninitDlIndex) {
+		if (dlIndex == UNINIT_DL_INDEX) {
 			// create a new number
 			dlIndex = getGL().glGenLists(1);
 		} else {

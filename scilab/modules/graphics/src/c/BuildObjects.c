@@ -126,6 +126,7 @@ sciPointObj * ConstructFigure( sciPointObj * pparent, struct BCG * XGC )
   sciPointObj * pfiguremdl = getFigureModel() ;
   sciFigure   * ppFigure = NULL ;
   sciFigure   * ppModel  = pFIGURE_FEATURE(pfiguremdl) ;
+  double      * colorMap = NULL ;
 
   /* memory allocation for the new Figure   affectation du type allocation de la structure */
 
@@ -216,7 +217,19 @@ sciPointObj * ConstructFigure( sciPointObj * pparent, struct BCG * XGC )
   ppFigure->pcolormap = NULL ;
   sciInitNumColors(pobj, 0) ;
 
-  sciSetColormap( pobj, ppModel->pcolormap, sciGetNumColors(pfiguremdl), 3 ) ;
+  /*sciSetColormap( pobj, ppModel->pcolormap, sciGetNumColors(pfiguremdl), 3 ) ;*/
+  colorMap = MALLOC( sciGetNumColors(pfiguremdl) * 3 * sizeof(double) ) ;
+  if ( colorMap == NULL )
+  {
+    Scierror(999, "Unable to allocate colormap, memory full.\n") ;
+    DestroyFigure(pobj) ;
+    return NULL;
+  }
+
+  sciGetColormap(pfiguremdl, colorMap) ;
+  sciSetColormap( pobj, colorMap, sciGetNumColors(pfiguremdl), 3 ) ;
+
+  FREE(colorMap);
 
   return pobj;
 }

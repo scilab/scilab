@@ -13,7 +13,7 @@
 
 namespace sciGraphics
 {
-  class DrawableObjectJoGL : virtual public DrawableObjectImp
+  class DrawableObjectJoGL : public virtual DrawableObjectImp
   {
   public:
     
@@ -21,25 +21,20 @@ namespace sciGraphics
      * Constructor
      * @param className name of the Java class which implements the routines
      */
-    DrawableObjectJoGL( const char * className ) ;
+    DrawableObjectJoGL( DrawableObject * drawer, const char * className ) ;
     
     /**
      * Delete the Java instance used to implement the class 
      */
-    virtual ~DrawableObjectJoGL( void ) ;
+    virtual ~DrawableObjectJoGL( void) ;
 
   protected:
     
-    /**
-     * Default constructor
-     */
-    DrawableObjectJoGL( void ) ;
     /*-----------------------------------------------------------------------------*/
     /**
      * Initialize the context for drawing (incl starting recording display list)
-     * @param figureIndex index of parentFigure
      */
-    virtual void initializeDrawing( int figureIndex ) ;
+    virtual void initializeDrawing( void ) ;
 
     /**
      * Close drawing session (incl stop recording display list)
@@ -48,9 +43,8 @@ namespace sciGraphics
 
     /**
      * Initialize the context for showing (ie displaying recorded object)
-     * @param figureIndex index of parentFigure
      */
-    virtual void initializeShowing( int figureIndex ) ;
+    virtual void initializeShowing( void ) ;
 
     /**
      * Close showing session

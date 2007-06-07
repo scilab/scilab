@@ -6,6 +6,7 @@
 /*------------------------------------------------------------------------*/
 
 #include "DrawableFigure.h"
+#include "DrawableFigureImp.h"
 extern "C"
 {
 #include "handleDrawing/drawFigureEntity.h"
@@ -27,6 +28,16 @@ DrawableFigure::~DrawableFigure( void )
   closeRenderingCanvas() ;
 }
 /*------------------------------------------------------------------------------------------*/
+void DrawableFigure::setColorMap( const double rgbMat[], int nbColor )
+{
+  getFigureImp()->setColorMap( rgbMat, nbColor ) ;
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableFigure::getColorMap( double rgbMat[] )
+{
+  getFigureImp()->getColorMap( rgbMat ) ;
+}
+/*------------------------------------------------------------------------------------------*/
 void DrawableFigure::openRenderingCanvas( void )
 {
   getFigureImp()->openRenderingCanvas( sciGetNum( m_pDrawed ) ) ;
@@ -40,7 +51,7 @@ void DrawableFigure::closeRenderingCanvas( void )
 void DrawableFigure::drawInContext( void )
 {
   initializeDrawing() ;
-
+  setBackgroundColor() ;
   if ( checkVisibility() )
   {
     updateInfoMessage() ;
@@ -68,6 +79,11 @@ void DrawableFigure::show( void )
   draw() ;
 }
 /*------------------------------------------------------------------------------------------*/
+DrawableFigureImp * DrawableFigure::getFigureImp( void )
+{
+  return dynamic_cast<DrawableFigureImp *>(m_pImp) ;
+}
+/*------------------------------------------------------------------------------------------*/
 void DrawableFigure::drawCanvas( void )
 {
   getFigureImp()->drawCanvas() ;
@@ -78,5 +94,9 @@ void DrawableFigure::updateInfoMessage( void  )
   getFigureImp()->updateInfoMessage() ;
 }
 /*------------------------------------------------------------------------------------------*/
-
+void DrawableFigure::setBackgroundColor( void )
+{
+  getFigureImp()->setBackgroundColor( sciGetGraphicContext(getDrawedObject())->backgroundcolor ) ;
+}
+/*------------------------------------------------------------------------------------------*/
 }

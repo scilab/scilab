@@ -20,12 +20,12 @@ namespace sciGraphics
   */
   class DrawableRectangle ;
 
-  class DrawableRectangleImp : virtual public DrawableObjectImp
+  class DrawableRectangleImp : public virtual DrawableObjectImp
   {
 
   public:
 
-    DrawableRectangleImp( DrawableRectangle * drawer ) { m_pDrawer = drawer ; }
+    DrawableRectangleImp( DrawableRectangle * drawer ) ;
 
     virtual ~DrawableRectangleImp( void ) {}
 
@@ -37,11 +37,9 @@ namespace sciGraphics
     /**
      * Return the drawed object
      */
-    DrawableRectangle * getDrawer( void ) { return m_pDrawer ; }
+    DrawableRectangle * getDrawer( void ) ;
 
   protected:
-
-    DrawableRectangle * m_pDrawer ; /**< bridge for driver dependent algorithm */
 
   } ;
 

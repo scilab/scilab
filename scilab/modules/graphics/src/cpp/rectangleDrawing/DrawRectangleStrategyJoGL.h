@@ -17,7 +17,7 @@ namespace sciGraphics
   {
   public:
 
-    DrawRectangleStrategyJoGL( DrawableRectangleJoGL * drawer ) { m_pDrawer = drawer ; }
+    DrawRectangleStrategyJoGL( DrawableRectangleJoGL * drawer ) { m_pDrawed = drawer ; }
     
     virtual ~DrawRectangleStrategyJoGL( void ) {}
 
@@ -28,7 +28,7 @@ namespace sciGraphics
 
   protected:
 
-    DrawableRectangleJoGL * m_pDrawer ;
+    DrawableRectangleJoGL * m_pDrawed ;
 
   };
   

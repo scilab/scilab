@@ -249,6 +249,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\figureDrawing\DrawableFigureImp.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\figureDrawing\DrawableFigureImpFactory.cpp"
 				>
 			</File>
@@ -309,6 +313,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\rectangleDrawing\DrawableRectangleImp.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\rectangleDrawing\DrawableRectangleImpFactory.cpp"
 				>
 			</File>
@@ -361,6 +369,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\GetJavaProperty.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\HandleDrawingObserver.cpp"
 				>
 			</File>
@@ -378,6 +390,10 @@
 			</File>
 			<File
 				RelativePath=".\rectangleDrawing\RectangleMarkDrawerJoGL.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\SetJavaProperty.cpp"
 				>
 			</File>
 		</Filter>
@@ -566,6 +582,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\GetJavaProperty.h"
+				>
+			</File>
+			<File
 				RelativePath=".\HandleDrawingObserver.h"
 				>
 			</File>
@@ -595,6 +615,10 @@
 			</File>
 			<File
 				RelativePath=".\resource.h"
+				>
+			</File>
+			<File
+				RelativePath=".\SetJavaProperty.h"
 				>
 			</File>
 		</Filter>

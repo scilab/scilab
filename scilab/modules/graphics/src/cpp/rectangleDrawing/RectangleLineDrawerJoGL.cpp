@@ -7,6 +7,7 @@
 
 #include "RectangleLineDrawerJoGL.h"
 #include "DrawableRectangle.h"
+#include "DrawableRectangleJoGL.h"
 extern "C"
 {
 #include "GetProperty.h"
@@ -17,19 +18,19 @@ namespace sciGraphics
 {
 /*------------------------------------------------------------------------------------------*/
 RectangleLineDrawerJoGL::RectangleLineDrawerJoGL( DrawableRectangleJoGL * drawer )
-  : DrawRectangleStrategyJoGL( drawer ), DrawableObjectJoGL("org/scilab/modules/graphics/rectangleDrawing/RectangleLineDrawerJoGL")
+  : DrawableObjectImp(drawer->getDrawer()), DrawRectangleStrategyJoGL( drawer ), DrawableObjectJoGL( drawer->getDrawer(), "org/scilab/modules/graphics/rectangleDrawing/RectangleLineDrawerJoGL" )
 {
 
 }
 /*------------------------------------------------------------------------------------------*/
 void RectangleLineDrawerJoGL::drawRectangle( void )
 {
-  sciPointObj * pObj = m_pDrawer->getDrawer()->getDrawedObject() ;
-  initializeDrawing( sciGetNum(sciGetParentFigure(pObj)) ) ;
+  sciPointObj * pObj = m_pDrawed->getDrawer()->getDrawedObject() ;
+  initializeDrawing() ;
 
   // set the line parameters
   jniCallVoidFunctionSafe( m_oDrawableObject, "setLineParameters", "III",
-                           sciGetForeground(pObj), sciGetLineWidth(pObj), sciGetLineStyle(pObj) ) ;
+                           sciGetGraphicContext(pObj)->foregroundcolor, sciGetLineWidth(pObj), sciGetLineStyle(pObj) ) ;
 
   // get the coordinates of the four corners of the rectangle.
   double corner1[3] ;
@@ -37,7 +38,7 @@ void RectangleLineDrawerJoGL::drawRectangle( void )
   double corner3[3] ;
   double corner4[3] ;
   
-  m_pDrawer->getDrawer()->getCornersCoordinates( corner1, corner2, corner3, corner4 ) ;
+  m_pDrawed->getDrawer()->getCornersCoordinates( corner1, corner2, corner3, corner4 ) ;
 
   // display the rectangle
   jniCallVoidFunctionSafe( m_oDrawableObject, "drawRectangle", "DDDDDDDDDDDD",

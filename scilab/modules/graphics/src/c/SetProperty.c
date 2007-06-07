@@ -38,6 +38,8 @@
 #include "CurrentObjectsManagement.h"
 #include "ObjectSelection.h"
 
+#include "SetJavaProperty.h"
+
 #include "MALLOC.h"
 #include "DrawingBridge.h"
 
@@ -154,83 +156,86 @@ sciSetEntityType (sciPointObj * pobj, sciEntityType value)
 int
 sciSetColormap ( sciPointObj * pobj, double *rgbmat, integer m, integer n )
 {
-  int k,old_m,m1;
+  /*int k,old_m,m1;
   int curWinIndex = sciGetNum( sciGetCurrentFigure() ) ;
   double * cmap = NULL ;
   int notSucceed = 0 ;
-  sciFigure * pFigure = NULL ;
+  sciFigure * pFigure = NULL ;*/
 
-  if(n != 3)
+  if ( n != 3 )
   {
-    sciprint("colormap : number of colums must be 3\n");
+    Scierror(999, "colormap : number of columns must be 3.\n");
     return -1 ;
   }
   
-  if(SCI_FIGURE != sciGetEntityType(pobj))
+  if ( SCI_FIGURE != sciGetEntityType(pobj) )
   {
-    sciprint("sciSetColormap Error: Object must be a SCI_FIGURE.\n");
+    Scierror(999, "sciSetColormap Error: Object must be a SCI_FIGURE.\n");
     return -1 ;
   }
   
-  pFigure = pFIGURE_FEATURE( pobj ) ;
+ // pFigure = pFIGURE_FEATURE( pobj ) ;
 
-  old_m = sciGetNumColors(pobj);
-  m1 = m ;
-  if ( pobj != getFigureModel() )
-  {
-    int verbose = 0 ;
-    sciSetUsedWindow( sciGetNum( pobj ) ) ;
-    /*It should be impossible to set the colormap because of restriction on max 
-      number of colors. In this case the old one is kept*/
-    C2F(dr)("xset","colormap",&m,&n,&notSucceed,PI0,PI0,PI0,rgbmat,PD0,PD0,PD0,0L,0L);
-    C2F(dr)("xget","cmap_size", &verbose, &m1, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L ) ;
-    sciSetNumColors( pobj, m1 ) ;
-    sciSetUsedWindow( curWinIndex ) ;
-  }
-  
-  if ( notSucceed == 1 )
-  {
-    /* failed to allocate or xinit (for Gif driver) was missing */
-    sciprint ("Failed to change colormap : Allocation failed or missing xinit detected\n");
-    return -1;
-  }
-  
-  if ( m1 != old_m )
-  {
-   /* color map size changes, reallocate it */
-    if ( ( cmap = MALLOC ( m * n * sizeof(double) ) ) == NULL )
-    {
-      /* error allocating colormap */
-      if (pobj != getFigureModel())
-      {
-	sciSetUsedWindow( sciGetNum( pobj ) ) ;
-	C2F(dr)("xset","colormap",&old_m,&n,&notSucceed,PI0,PI0,PI0,
-		pFigure->pcolormap,PD0,PD0,PD0,0L,0L);
-	
-	if ( notSucceed == 1 )
-        {
-          /* failed to allocate or xinit (for Gif driver) was missing */
-	  sciprint ("Failed to change colormap : Allocation failed or missing xinit detected\n");
-	  return -1;
-	}
-	sciSetUsedWindow( curWinIndex ) ;
-      }
-      sciprint ("Not enough memory available for colormap, previous one kept\n");
-      return -1;
-    }  
-    if (pFigure->pcolormap) FREE( pFigure->pcolormap ) ;
-    pFigure->pcolormap = cmap ;
-  }
-  for ( k =  0  ; k < m1 * n ; k++ )
-  {
-    pFigure->pcolormap[k] = rgbmat[k];
-  }
-  pFigure->numcolors = m1 ;
-  
-  if ( pobj != getFigureModel() )
-  {
-    sciRecursiveUpdateBaW( pobj, old_m, m ) ; /* missing line F.Leray */
-  }
+ // old_m = sciGetNumColors(pobj);
+ // m1 = m ;
+ // if ( pobj != getFigureModel() )
+ // {
+ //   int verbose = 0 ;
+ //   sciSetUsedWindow( sciGetNum( pobj ) ) ;
+ //   /*It should be impossible to set the colormap because of restriction on max 
+ //     number of colors. In this case the old one is kept*/
+ //   C2F(dr)("xset","colormap",&m,&n,&notSucceed,PI0,PI0,PI0,rgbmat,PD0,PD0,PD0,0L,0L);
+ //   C2F(dr)("xget","cmap_size", &verbose, &m1, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L ) ;
+ //   sciSetNumColors( pobj, m1 ) ;
+ //   sciSetUsedWindow( curWinIndex ) ;
+ // }
+ // 
+ // if ( notSucceed == 1 )
+ // {
+ //   /* failed to allocate or xinit (for Gif driver) was missing */
+ //   sciprint ("Failed to change colormap : Allocation failed or missing xinit detected\n");
+ //   return -1;
+ // }
+ // 
+ // if ( m1 != old_m )
+ // {
+ //  /* color map size changes, reallocate it */
+ //   if ( ( cmap = MALLOC ( m * n * sizeof(double) ) ) == NULL )
+ //   {
+ //     /* error allocating colormap */
+ //     if (pobj != getFigureModel())
+ //     {
+	//sciSetUsedWindow( sciGetNum( pobj ) ) ;
+	//C2F(dr)("xset","colormap",&old_m,&n,&notSucceed,PI0,PI0,PI0,
+	//	pFigure->pcolormap,PD0,PD0,PD0,0L,0L);
+	//
+	//if ( notSucceed == 1 )
+ //       {
+ //         /* failed to allocate or xinit (for Gif driver) was missing */
+	//  sciprint ("Failed to change colormap : Allocation failed or missing xinit detected\n");
+	//  return -1;
+	//}
+	//sciSetUsedWindow( curWinIndex ) ;
+ //     }
+ //     sciprint ("Not enough memory available for colormap, previous one kept\n");
+ //     return -1;
+ //   }  
+ //   if (pFigure->pcolormap) FREE( pFigure->pcolormap ) ;
+ //   pFigure->pcolormap = cmap ;
+ // }
+ // for ( k =  0  ; k < m1 * n ; k++ )
+ // {
+ //   pFigure->pcolormap[k] = rgbmat[k];
+ // }
+ // pFigure->numcolors = m1 ;
+ // 
+ // if ( pobj != getFigureModel() )
+ // {
+ //   sciRecursiveUpdateBaW( pobj, old_m, m ) ; /* missing line F.Leray */
+ // }
+
+  pFIGURE_FEATURE(pobj)->numcolors = m ;
+  sciSetJavaColormap( pobj, rgbmat, m * n ) ;
 
   return 0;
 }

@@ -65,7 +65,7 @@ bool DrawableObject::checkVisibility( void )
 /*------------------------------------------------------------------------------------------*/
 void DrawableObject::initializeDrawing( void )
 {
-  getDrawableImp()->initializeDrawing(sciGetNum(sciGetParentFigure(m_pDrawed))) ;
+  getDrawableImp()->initializeDrawing() ;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableObject::endDrawing( void )

@@ -8,6 +8,7 @@
 
 #include "DrawableFigureFactory.h"
 #include "ConcreteDrawableFigure.h"
+#include "DrawableFigureImp.h"
 #include "DrawableFigureImpFactory.h"
 
 namespace sciGraphics

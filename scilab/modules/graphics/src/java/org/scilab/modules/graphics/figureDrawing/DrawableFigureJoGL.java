@@ -10,19 +10,16 @@ package org.scilab.modules.graphics.figureDrawing;
 
 
 import javax.media.opengl.GL;
-import javax.media.opengl.GLCapabilities;
 
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.gui.tab.ScilabTab;
 import org.scilab.modules.gui.tab.Tab;
-import org.scilab.modules.gui.bridge.SwingScilabCanvas;
-
-
-import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.graphics.ColoredCanvas;
 
 import org.scilab.modules.graphics.DrawableObjectJoGL;
-import org.scilab.modules.graphics.FigureCanvasMapper;
+import org.scilab.modules.graphics.FigureMapper;
+import org.scilab.modules.graphics.utils.ColorMap;
 
 /**
  * Class containing functions called by DrawableFigureJoGL.cpp
@@ -31,7 +28,7 @@ import org.scilab.modules.graphics.FigureCanvasMapper;
 public class DrawableFigureJoGL extends DrawableObjectJoGL {
 	
 	/** Canvas to draw the figure */
-	private SwingScilabCanvas canvas;
+	private FigureCanvas canvas;
 	/** Window to draw the figure */
 	private Tab graphicTab;
 	/** store the figureIndex */
@@ -44,14 +41,18 @@ public class DrawableFigureJoGL extends DrawableObjectJoGL {
 		super();
       	canvas = null;
       	graphicTab  = null;
+      	setColorMap(ColorMap.create());
     }
 	
 	/**
 	 * Set figureId property
 	 * @param figureId new figure Id
 	 */
-	public void setFigureId(int figureId) {
+	public void setFigureIndex(int figureId) {
+		FigureMapper.removeMapping(this.figureId);
 		this.figureId = figureId;
+		FigureMapper.addMapping(figureId, this);
+		super.setFigureIndex(figureId);
 	}
 	
 	/**
@@ -62,10 +63,8 @@ public class DrawableFigureJoGL extends DrawableObjectJoGL {
 	public void initializeDrawing(int parentFigureIndex) {
 		super.initializeDrawing(parentFigureIndex);
 		GL gl = getGL();
-	    gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 	    gl.glLoadIdentity();
 	    gl.glTranslatef(0.0f, 0.0f, -6.0f);
-	    gl.glColor3f(1.0f, 1.0f, 1.0f);
 	}
 	
 	/**
@@ -98,7 +97,6 @@ public class DrawableFigureJoGL extends DrawableObjectJoGL {
    */
   public void openRenderingCanvas(int figureIndex) {
       if (canvas != null) { return; }
-      System.out.println("openRenderingCanvas");
       Window graphicView = ScilabWindow.createWindow();
       graphicView.draw();
       graphicView.setTitle("Graphic window number " + figureIndex);
@@ -109,25 +107,10 @@ public class DrawableFigureJoGL extends DrawableObjectJoGL {
       graphicTab.setName("");
       graphicView.addTab(graphicTab);
       
-      GLCapabilities cap = new GLCapabilities();
-      cap.setAlphaBits(8);
-      cap.setHardwareAccelerated(true);
-      cap.setDoubleBuffered(true);
-      cap.setDepthBits(8);
-      canvas = new SwingScilabCanvas(cap);
-      canvas.addGLEventListener(new SciRenderer());
-      figureId = figureIndex;
-      FigureCanvasMapper.addMapping(figureIndex, canvas);
-      
-      /* Create the canvas */
-      //canvas = (SwingScilabCanvas) ScilabCanvas.createCanvas();
-      canvas.setDims(new Size(640, 480));
-      //canvas.draw();
+      canvas = FigureCanvas.create();
+
       graphicTab.addMember(canvas);
       canvas.draw();
-      //graphicTab.draw();
-      // graphicView.draw();
-      System.out.println("end openRenderingCanvas");
     }
 
   /**
@@ -135,9 +118,53 @@ public class DrawableFigureJoGL extends DrawableObjectJoGL {
    */
   public void closeRenderingCanvas() {
       if (canvas != null) {
-    	FigureCanvasMapper.removeMapping(figureId);
+    	FigureMapper.removeMapping(figureId);
         canvas = null;
         graphicTab = null;
       }
     }
+  
+  /**
+   * Set a new colormap to the figure
+   * @param rgbMat matrix containing the new data. This is a nbColor x 3 matrix
+   *               where 3 is the number of color in the colormap
+   */
+  	public void setColorMapData(double[] rgbMat) {
+  		getColorMap().setData(rgbMat);
+  	}
+  	
+  	/**
+  	 * Get the raw data of the figure colormap
+  	 * Should only be used by C code
+  	 * @return colormap data
+  	 */
+  	public double[] getColorMapData() {
+  		return getColorMap().getData();
+  	}
+  	
+  	/**
+  	 * Get the raw data of the figure colormap
+  	 * Should only be used by C code
+  	 * @param data matrix filled with the colormap data
+  	 */
+  	public void getColorMapData(double[] data) {
+  		getColorMap().getData(data);
+  	}
+  	
+  	/**
+  	 * Get the canvas in which the figure is drawn
+  	 * @return canvas in x=which the figur eis drawn or null if none exists
+  	 */
+  	public FigureCanvas getCanvas() { return canvas; }
+  	
+  	/**
+  	 * Set the background color of the figure
+  	 * @param colorIndex index of the colro to use
+  	 */
+  	public void setBackgroundColor(int colorIndex) {
+  		double[] color = getColorMap().getColor(colorIndex);
+  		getGL().glClearColor((float) color[0], (float) color[1], (float) color[2], 1.0f); // alpha is set to 1
+  		getGL().glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
+  	}
+  	
 }

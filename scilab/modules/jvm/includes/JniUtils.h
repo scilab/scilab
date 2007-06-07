@@ -47,6 +47,12 @@ jdoubleArray jniCreateDoubleArrayCopy( const jdouble * cArray, int nbElements ) 
 jintArray    jniCreateIntArrayCopy(    const jint    * cArray, int nbElements ) ;
 
 /**
+ * Copy a java array into a preallocated C array
+ */
+void jniCopyJavaDoubleArray( const jdoubleArray javaArray, jdouble * cArray ) ;
+void jniCopyJavaIntArray(    const jintArray    javaArray, jint    * cArray ) ;
+
+/**
  * Create a copy of a C string to a Java string
  */
 jstring jniCreateStringCopy( const char * cString ) ;

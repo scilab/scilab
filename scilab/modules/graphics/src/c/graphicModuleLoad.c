@@ -26,9 +26,9 @@ void loadGraphicModule( void )
   createScilabGetHashTable() ;
   createScilabSetHashTable() ;
 
-  C2F(graphicsmodels)() ;
-
   jniInitUtils( getScilabJavaVM() ) ;
+
+  C2F(graphicsmodels)() ;
 
   isGraphicModuleLoaded = TRUE ;
 }

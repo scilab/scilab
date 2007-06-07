@@ -12,3 +12,5 @@ destroyHandleDrawer
 sciDrawObj
 displayChildren
 Java_org_scilab_modules_graphics_figureDrawing_FigureScilabCall_redrawFigure
+sciSetJavaColormap
+sciGetJavaColormap

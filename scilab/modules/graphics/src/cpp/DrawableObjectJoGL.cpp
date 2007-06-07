@@ -6,25 +6,22 @@
 /*------------------------------------------------------------------------*/
 
 #include "DrawableObjectJoGL.h"
+#include "DrawableObject.h"
 extern "C"
 {
 #include "JniUtils.h"
+#include "GetProperty.h"
 }
 
 namespace sciGraphics
 {
 /*------------------------------------------------------------------------------------------*/
-DrawableObjectJoGL::DrawableObjectJoGL( const char * className ) : DrawableObjectImp()
+DrawableObjectJoGL::DrawableObjectJoGL( DrawableObject * drawer, const char * className ) : DrawableObjectImp(drawer)
 {
   m_oDrawableClass  = NULL ;
   m_oDrawableObject = NULL ;
   jniCreateDefaultInstanceSafe( className, &m_oDrawableClass, &m_oDrawableObject ) ;
-}
-/*------------------------------------------------------------------------------------------*/
-DrawableObjectJoGL::DrawableObjectJoGL( void ) : DrawableObjectImp()
-{
-  m_oDrawableClass  = NULL ;
-  m_oDrawableObject = NULL ;
+  jniCallVoidFunctionSafe( m_oDrawableObject, "setFigureIndex", "I", sciGetNum(sciGetParentFigure(m_pDrawer->getDrawedObject())) ) ;
 }
 /*------------------------------------------------------------------------------------------*/
 DrawableObjectJoGL::~DrawableObjectJoGL( void )
@@ -43,9 +40,9 @@ void DrawableObjectJoGL::destroy( void )
   m_oDrawableClass  = NULL ;
 }
 /*------------------------------------------------------------------------------------------*/
-void DrawableObjectJoGL::initializeDrawing( int figureIndex )
+void DrawableObjectJoGL::initializeDrawing( void )
 {
-  jniCallVoidFunctionSafe( m_oDrawableObject, "initializeDrawing", "I", figureIndex ) ;
+  jniCallVoidFunctionSafe( m_oDrawableObject, "initializeDrawing", "I", sciGetNum(sciGetParentFigure(m_pDrawer->getDrawedObject())) ) ;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableObjectJoGL::endDrawing( void )
@@ -53,9 +50,9 @@ void DrawableObjectJoGL::endDrawing( void )
   jniCallVoidFunctionSafe( m_oDrawableObject, "endDrawing", "" ) ;
 }
 /*------------------------------------------------------------------------------------------*/
-void DrawableObjectJoGL::initializeShowing( int figureIndex )
+void DrawableObjectJoGL::initializeShowing( void )
 {
-  jniCallVoidFunctionSafe( m_oDrawableObject, "initializeShowing", "I", figureIndex ) ;
+  jniCallVoidFunctionSafe( m_oDrawableObject, "initializeShowing", "I", sciGetNum(sciGetParentFigure(m_pDrawer->getDrawedObject())) ) ;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableObjectJoGL::endShowing( void )

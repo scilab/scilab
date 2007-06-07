@@ -7,6 +7,7 @@
 /*------------------------------------------------------------------------*/
 
 #include "../DrawableObjectJoGL.h"
+#include "DrawableRectangle.h"
 #include "DrawableRectangleJoGL.h"
 extern "C"
 {
@@ -19,7 +20,7 @@ namespace sciGraphics
 {
 /*------------------------------------------------------------------------------------------*/
 DrawableRectangleJoGL::DrawableRectangleJoGL( DrawableRectangle * drawer )
-  : DrawableRectangleImp(drawer), DrawableObjectJoGL("org/scilab/modules/graphics/figureDrawing/DrawableRectangleJoGL")
+  : DrawableObjectImp(drawer), DrawableRectangleImp(drawer), DrawableObjectJoGL(drawer, "org/scilab/modules/graphics/figureDrawing/DrawableRectangleJoGL")
 {
   m_oDrawingStrategies.clear() ;
 }

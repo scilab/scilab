@@ -41,3 +41,6 @@ sciGetInfoMessage
 sciGetForeground
 sciGetLineWidth
 sciGetLineStyle
+Scierror
+sciGetGraphicContext
+sciGetNumColors

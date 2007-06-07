@@ -26,6 +26,7 @@ public class RectangleLineDrawerJoGL extends ObjectJoGL {
 	 * Default constructor
 	 */
 	public RectangleLineDrawerJoGL() {
+		super();
 		lineColor = 1;
 		thickness = 1;
 		lineStyle = 1;
@@ -88,9 +89,14 @@ public class RectangleLineDrawerJoGL extends ObjectJoGL {
 							  double corner4X, double corner4Y, double corner4Z) {
 		GL gl = getGL();
 		
-		// set line parameters
+		// set dash mode
 		gl.glLineWidth(thickness);
 		GLTools.beginDashMode(gl, lineStyle, thickness);
+		
+		// set color
+		double[] color = getColorMap().getColor(lineColor);
+		gl.glColor3d(color[0], color[1], color[2]);
+		
 		
 		gl.glBegin(GL.GL_LINE_LOOP);
 		gl.glVertex3d(corner1X, corner1Y, corner1Z);

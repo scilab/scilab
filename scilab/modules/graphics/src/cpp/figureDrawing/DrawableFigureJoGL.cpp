@@ -6,6 +6,8 @@
 /*        figure object with JoGL                                         */
 /*------------------------------------------------------------------------*/
 
+#include "DrawableFigure.h"
+#include "DrawableFigureImp.h"
 #include "DrawableFigureJoGL.h"
 extern "C"
 {
@@ -15,6 +17,7 @@ extern "C"
 #include "DrawObjects.h"
 #include "getScilabJavaVM.h"
 #include "JniUtils.h"
+#include "Scierror.h"
 }
 
 #include <stdio.h>
@@ -24,7 +27,7 @@ namespace sciGraphics
 
 /*------------------------------------------------------------------------------------------*/
 DrawableFigureJoGL::DrawableFigureJoGL( DrawableFigure * drawer )
-  : DrawableFigureImp( drawer ), DrawableObjectJoGL("org/scilab/modules/graphics/figureDrawing/DrawableFigureJoGL") {}
+  : DrawableObjectImp(drawer), DrawableFigureImp( drawer ), DrawableObjectJoGL(drawer, "org/scilab/modules/graphics/figureDrawing/DrawableFigureJoGL") {}
 /*------------------------------------------------------------------------------------------*/
 DrawableFigureJoGL::~DrawableFigureJoGL( void )
 {
@@ -57,6 +60,53 @@ void DrawableFigureJoGL::closeRenderingCanvas( void )
     jniCallVoidFunctionSafe( m_oDrawableObject, "closeRenderingCanvas", "" ) ;
   }
   DrawableObjectJoGL::destroy() ;
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableFigureJoGL::setBackgroundColor( int backgroundColor )
+{
+  jniCallVoidFunctionSafe( m_oDrawableObject, "setBackgroundColor", "I", backgroundColor ) ;
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableFigureJoGL::setColorMap( const double rgbMat[], int nbColor )
+{
+  jdoubleArray javaCmap = NULL;
+  jniUpdateCurrentEnv();
+  javaCmap = jniCreateDoubleArrayCopy(rgbMat, nbColor) ;
+  jniCallVoidFunction( m_oDrawableObject, "setColorMapData", "[D", javaCmap ) ;
+  jniDeleteLocalEntity(javaCmap) ;
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableFigureJoGL::getColorMap( double rgbMat[] )
+{
+  jmethodID colorMapMethod = NULL ;
+  jdoubleArray javaCMap = NULL ;
+  jniUpdateCurrentEnv();
+  JNIEnv * curEnv = jniGetCurrentJavaEnv() ;
+
+  colorMapMethod = curEnv->GetMethodID( m_oDrawableClass, "getColorMapData", "([D)V" ) ;
+  if ( !jniCheckLastCall(TRUE) )
+  {
+    Scierror( 999, "Error when calling function %s.\r\n", "getColorMapData" ) ;
+    return ;
+  }
+
+  javaCMap = curEnv->NewDoubleArray( sciGetNumColors(getDrawer()->getDrawedObject()) * 3 ) ;
+  if ( !jniCheckLastCall(TRUE) )
+  {
+    Scierror( 999, "Unable to allocate colormap, memory full.\n" ) ;
+    return ;
+  }
+
+  curEnv->CallObjectMethod( m_oDrawableObject, colorMapMethod, javaCMap ) ;
+  if ( !jniCheckLastCall(TRUE) )
+  {
+    Scierror( 999, "Error when calling function %s.\r\n", "getColorMapData" ) ;
+    return ;
+  }
+
+  jniCopyJavaDoubleArray( javaCMap, rgbMat ) ;
+  
+  jniDeleteLocalEntity(javaCMap) ;
 }
 /*------------------------------------------------------------------------------------------*/
 }

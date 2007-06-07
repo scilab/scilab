@@ -31,7 +31,7 @@ char *sciGetCharEntityType (sciPointObj * pobj);  /* GET */
 /* Graphic Context Functions */
 sciGraphicContext *sciGetGraphicContext (sciPointObj * pobj); /* GET */
 int sciGetNumColors (sciPointObj * pobj); /* GET */
-int sciGetColormap (sciPointObj * pobj, double *rgbmat); /* GET */
+int sciGetColormap (sciPointObj * pobj, double rgbmat[] ); /* GET */
 int sciGetNumColors( sciPointObj * pobj ) ; /* GET */
 int sciGetGoodIndex(sciPointObj * pobj, int colorindex);  /* GET */
 

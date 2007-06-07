@@ -25,6 +25,9 @@ extern "C" {
    */
   void sciDrawObj( sciPointObj * pObj ) ;
 
+  /**
+   * Call display function on the children of an object
+   */
   void displayChildren( sciPointObj * pObj ) ;
 
 #ifdef __cplusplus

@@ -28,8 +28,24 @@ public:
    * Can be only called if the rendering context (canvas)
    * is created
    */
-   virtual void drawInContext( void ) ;
+  virtual void drawInContext( void ) ;
 
+  /*--------------------------------------------------------------------------------------*/
+  /* Set/Get properties */
+
+  /**
+   * Set a new colormap to this figure
+   * @param nbColor x 3 matrix contains the three channels RGB of each color
+   * @param nbColor number of color in the colormap
+   */
+  void setColorMap( const double rgbMat[], int nbColor ) ;
+
+  /**
+   * Fill the rgbMat with the colors in the colormap
+   * @param rgbMat should be a nbColor x 3 matrix with nbColor the number of color in the colormap
+   */
+  void getColorMap( double rgbMat[] ) ;
+  /*--------------------------------------------------------------------------------------*/
 
 protected:
 
@@ -48,7 +64,7 @@ protected:
   /**
    * Return the real type of implementation object
    */
-  DrawableFigureImp * getFigureImp( void ) { return dynamic_cast<DrawableFigureImp *>(m_pImp) ; }
+  DrawableFigureImp * getFigureImp( void ) ;
   
   /*--------------------------------------------------------------------------------------*/
   // Driver Independant Algorithms
@@ -80,7 +96,12 @@ protected:
    */
   void updateInfoMessage( void ) ;
 
-  /*--------------------------------------------------------------------------------------*/ 
+  /**
+   * Set the background color of the figure
+   */
+  void setBackgroundColor( void ) ;
+
+  /*--------------------------------------------------------------------------------------*/
 
 } ;
 

@@ -29,6 +29,7 @@
 #include "../../gui/includes/GraphicWindow.h"
 #include "CurrentObjectsManagement.h"
 #include "ObjectSelection.h"
+#include "GetJavaProperty.h"
 
 #include "MALLOC.h" /* MALLOC */
 
@@ -335,7 +336,7 @@ sciGetNumColors (sciPointObj * pobj)
   switch (sciGetEntityType (pobj))
   {
   case SCI_FIGURE:
-    return pFIGURE_FEATURE (pobj)->numcolors ;
+    return pFIGURE_FEATURE(pobj)->numcolors ;
   default:
     return sciGetNumColors( sciGetParentFigure( pobj ) ) ;
   }
@@ -348,16 +349,9 @@ sciGetNumColors (sciPointObj * pobj)
  * Gets the colormap rgbmat must be a m x 3 double RGB matrix:  
  * a[i] = RED, a[i+m] = GREEN, a[i+2*m] = BLUE 
  */
-int
-sciGetColormap (sciPointObj * pobj, double *rgbmat)
+int sciGetColormap(sciPointObj * pobj, double rgbmat[] )
 {
-  int i;
-  int m = sciGetNumColors (pobj);	/* the number of the color*/
-  
-  for ( i = 0 ; i < 3 * m ; i++ )
-  {
-    rgbmat[i] = pFIGURE_FEATURE(pobj)->pcolormap[i] ;
-  }
+  sciGetJavaColormap( pobj, rgbmat ) ;
   return 0 ;
 }
 
@@ -367,9 +361,9 @@ int sciGetGoodIndex(sciPointObj * pobj, int colorindex) /* return colorindex or 
   int m = sciGetNumColors (pobj);	/* the number of the color*/
 
   if(colorindex == -1) /* Black */
-    return m+1;
+    return m + 1;
   else if(colorindex == -2) /* White */
-    return m+1 +1;
+    return m + 2;
   else
     return colorindex;
 }

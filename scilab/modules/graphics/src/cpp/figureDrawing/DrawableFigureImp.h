@@ -15,17 +15,14 @@
 namespace sciGraphics
 {
 
-/**
- * To avoid cyclic dependancies.
- */
-class DrawableFigure ;
+class DrawableFigure;
 
-class DrawableFigureImp : virtual public DrawableObjectImp
+class DrawableFigureImp : public virtual DrawableObjectImp
 {
 
 public:
 
-  DrawableFigureImp( DrawableFigure * drawer ) { m_pDrawer = drawer ; }
+  DrawableFigureImp( DrawableFigure * drawer ) ;
 
   virtual ~DrawableFigureImp( void ) {}
 
@@ -49,9 +46,30 @@ public:
    */
   virtual void closeRenderingCanvas( void ) = 0 ;
 
-protected:
+  /**
+   * Set the background color of the figure
+   */
+  virtual void setBackgroundColor( int backgroundColor ) = 0 ;
 
-  DrawableFigure * m_pDrawer ; /**< bridge for driver dependent algorithm */
+  /**
+   * Set a new colormap to this figure
+   * @param nbColor x 3 matrix contains the three channels RGB of each color
+   * @param nbColor number of color in the colormap
+   */
+  virtual void setColorMap( const double rgbMat[], int nbColor ) = 0 ;
+
+  /**
+   * Fill the rgbMat with the colors in the colormap
+   * @param rgbMat should be a nbColor x 3 matrix with nbColor the number of color in the colormap
+   */
+  virtual void getColorMap( double rgbMat[] ) = 0 ;
+
+  /**
+   * Return the drawed object
+   */
+  DrawableFigure * getDrawer( void ) ;
+
+protected:
 
 } ;
 

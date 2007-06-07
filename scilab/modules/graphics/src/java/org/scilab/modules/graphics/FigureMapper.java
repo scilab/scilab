@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------*/
-/* file: FigureCanvasMapper.java                                          */
+/* file: FigureMapper.java                                                */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
 /* desc : Contains the mapping between figure number and canvas           */
@@ -8,18 +8,19 @@
 package org.scilab.modules.graphics;
 
 import java.util.HashMap;
-import org.scilab.modules.gui.bridge.SwingScilabCanvas;
+
+import org.scilab.modules.graphics.figureDrawing.DrawableFigureJoGL;
 
 /**
  * Glbal variable, mapping between Scilab figure number its correspondign canvas
  * @author Jean-Baptiste Silvy
  */
-public final class FigureCanvasMapper {
+public final class FigureMapper {
 	
 	/**
 	 * We can't use directly HashMap.
 	 */
-	private static class FigureCanvasMap extends HashMap<Integer, SwingScilabCanvas> {	
+	private static class FigureMap extends HashMap<Integer, DrawableFigureJoGL> {	
 		/**
 		 * To remove warning
 		 */
@@ -28,7 +29,7 @@ public final class FigureCanvasMapper {
 		/**
 		 * Default Constructor
 		 */
-		public FigureCanvasMap() {
+		public FigureMap() {
 			super();
 		}
 	}
@@ -36,20 +37,20 @@ public final class FigureCanvasMapper {
 	/**
 	 * The hashmap containing the mapping between figures id (int) and canvas.
 	 */
-	private static FigureCanvasMap mapper = new FigureCanvasMap();
+	private static final FigureMap MAPPER = new FigureMap();
 	
 	/**
 	 * Default constructor. This is a utility class, there should not be any instance
 	 */
-	private FigureCanvasMapper() { }
+	private FigureMapper() { }
 	
 	/**
 	 * Add a new mapping between a figure and canvas
 	 * @param figureId id of the figure
-	 * @param canvas corresponding canvas
+	 * @param figure corresponding figure
 	 */
-	public static void addMapping(int figureId, SwingScilabCanvas canvas) {
-		mapper.put(figureId, canvas);
+	public static void addMapping(int figureId, DrawableFigureJoGL figure) {
+		MAPPER.put(figureId, figure);
 	}
 	
 	/**
@@ -57,7 +58,7 @@ public final class FigureCanvasMapper {
 	 * @param figureId id of the figure
 	 */
 	public static void removeMapping(int figureId) {
-		mapper.remove(figureId);
+		MAPPER.remove(figureId);
 	}
 	
 	/**
@@ -65,8 +66,8 @@ public final class FigureCanvasMapper {
 	 * @param figureId id of the figure
 	 * @return the corresponding canvas
 	 */
-	public static SwingScilabCanvas getCorrespondingCanvas(int figureId) {
-		return mapper.get(figureId);
+	public static DrawableFigureJoGL getCorrespondingFigure(int figureId) {
+		return MAPPER.get(figureId);
 	}
 	
 }

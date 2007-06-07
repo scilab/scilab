@@ -66,6 +66,18 @@ jintArray jniCreateIntArrayCopy( const jint * cArray, int nbElements )
   return res ;
 }
 /*------------------------------------------------------------------------------------------*/
+void jniCopyJavaDoubleArray( const jdoubleArray javaArray, jdouble * cArray )
+{
+  int arrayLength = (*sciJEnv)->GetArrayLength( sciJEnv, javaArray ) ;
+  (*sciJEnv)->GetDoubleArrayRegion( sciJEnv, javaArray, 0, arrayLength, cArray ) ;
+}
+/*------------------------------------------------------------------------------------------*/
+void jniCopyJavaIntArray( const jintArray javaArray, jint * cArray )
+{
+  int arrayLength = (*sciJEnv)->GetArrayLength( sciJEnv, javaArray ) ;
+  (*sciJEnv)->GetIntArrayRegion( sciJEnv, javaArray, 0, arrayLength, cArray ) ;
+}
+/*------------------------------------------------------------------------------------------*/
 jstring jniCreateStringCopy( const char * cString )
 {
   jstring res = (*sciJEnv)->NewStringUTF( sciJEnv, cString ) ;

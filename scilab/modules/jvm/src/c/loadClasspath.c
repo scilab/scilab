@@ -82,7 +82,7 @@ BOOL LoadClasspath(char *xmlfilename)
 						}
 
   					    if (SCIPATH) {FREE(SCIPATH);SCIPATH=NULL;}
-						addToClasspath(CLASSPATH);
+                                                addToClasspath(CLASSPATH);
 						FREE(CLASSPATH);
 						CLASSPATH = NULL;
 					}

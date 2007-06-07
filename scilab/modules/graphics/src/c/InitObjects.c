@@ -202,8 +202,8 @@ sciInitGraphicContext (sciPointObj * pobj)
   case SCI_FIGURE:
     if ( pobj == pfiguremdl )
     {
-      (sciGetGraphicContext(pobj))->backgroundcolor = -3; /*33;*/  /* F.Leray 29.03.04: Wrong index here: 32+1 (old method) must be changed to -1 new method*/
-      (sciGetGraphicContext(pobj))->foregroundcolor = -2; /*32;*/  /* F.Leray 29.03.04: Wrong index here: 32+2 (old method) must be changed to -2 new method*/
+      (sciGetGraphicContext(pobj))->backgroundcolor = /*-3;*/ 33;  /* F.Leray 29.03.04: Wrong index here: 32+1 (old method) must be changed to -1 new method*/
+      (sciGetGraphicContext(pobj))->foregroundcolor = /*-2;*/ 32;  /* F.Leray 29.03.04: Wrong index here: 32+2 (old method) must be changed to -2 new method*/
       (sciGetGraphicContext(pobj))->fillstyle = HS_HORIZONTAL;
       (sciGetGraphicContext(pobj))->fillcolor = (sciGetGraphicContext(pobj))->backgroundcolor;
       (sciGetGraphicContext(pobj))->linewidth = 1;
@@ -466,6 +466,7 @@ int InitFigureModel( void )
 { 
   int i ;
   int m = NUMCOLORS_SCI ;
+  double * colorMap ;
 
   pFIGURE_FEATURE (pfiguremdl)->allredraw = FALSE;
 
@@ -491,8 +492,8 @@ int InitFigureModel( void )
   pFIGURE_FEATURE (pfiguremdl)->windowdimheight = 400 ;
   pFIGURE_FEATURE (pfiguremdl)->inrootposx      = 200 ;
   pFIGURE_FEATURE (pfiguremdl)->inrootposy      = 200 ;
-  
-  if((pFIGURE_FEATURE(pfiguremdl)->pcolormap = (double *) MALLOC (m * 3 * sizeof (double))) == (double *) NULL)
+
+  /*if((pFIGURE_FEATURE(pfiguremdl)->pcolormap = (double *) MALLOC (m * 3 * sizeof (double))) == (double *) NULL)
     {
       strcpy(error_message,"Cannot init color map");
       return -1 ;
@@ -502,9 +503,7 @@ int InitFigureModel( void )
     pFIGURE_FEATURE(pfiguremdl)->pcolormap[i] = (double) (defcolors[3*i]/255.0);
     pFIGURE_FEATURE(pfiguremdl)->pcolormap[i+m] = (double) (defcolors[3*i+1]/255.0); 
     pFIGURE_FEATURE(pfiguremdl)->pcolormap[i+2*m] = (double) (defcolors[3*i+2]/255.0);
-  }
-  
-  pFIGURE_FEATURE (pfiguremdl)->numcolors = m;
+  }*/
   pFIGURE_FEATURE (pfiguremdl)->isiconified = FALSE;
   pFIGURE_FEATURE (pfiguremdl)->isselected = TRUE;
   pFIGURE_FEATURE (pfiguremdl)->rotstyle = 0;
@@ -526,6 +525,24 @@ int InitFigureModel( void )
 
   pfiguremdl->pObservers = NULL ;
   pfiguremdl->pDrawer = NULL ;
+  colorMap = MALLOC( m * 3 * sizeof(double) ) ;
+  if ( colorMap == NULL )
+  {
+    strcpy(error_message,"Cannot init color map, memory full.\n");
+    return -1 ;
+  }
+
+  for ( i = 0 ; i < m ; i++ )
+  {
+    colorMap[i        ] = (double) (defcolors[3*i]/255.0) ;
+    colorMap[i + m    ] = (double) (defcolors[3*i+1]/255.0) ;
+    colorMap[i + 2 * m] = (double) (defcolors[3*i+2]/255.0) ;
+  }
+
+  sciSetColormap( pfiguremdl, colorMap, m, 3 ) ;
+  pFIGURE_FEATURE (pfiguremdl)->numcolors = m;
+
+  FREE( colorMap ) ;
 
   return 0;
 }

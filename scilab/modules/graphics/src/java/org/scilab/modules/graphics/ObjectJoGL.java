@@ -10,6 +10,8 @@ package org.scilab.modules.graphics;
 import javax.media.opengl.GL;
 import javax.media.opengl.glu.GLU;
 
+import org.scilab.modules.graphics.utils.ColorMap;
+
 /**
  * Object which can be rendered in a GL pipeline
  * @author Jean-Baptiste Silvy
@@ -20,13 +22,22 @@ public class ObjectJoGL {
 	private GL glPipeline;
 	/** Glu instance to use glu functionalities */
 	private GLU curGluInstance;
+	/** current colorMap to use */
+	private ColorMap curColorMap;
 
 	/**
 	 * Default constructor
 	 */
 	public ObjectJoGL() {
-		glPipeline = null;
 		curGluInstance = null;
+	}
+	
+	/**
+	 * Specify index of parent figure to get all interesting data.
+	 * @param parentFigureIndex index of parentFigure
+	 */
+	public void setFigureIndex(int parentFigureIndex) {
+		updateColorMap(parentFigureIndex);
 	}
 	
 	/**
@@ -37,6 +48,7 @@ public class ObjectJoGL {
 	public void initializeDrawing(int parentFigureIndex) {
 		// get the context from the drawing canvas
 		updateGLContext(parentFigureIndex);
+		updateColorMap(parentFigureIndex);
 	}
 	
 	/**
@@ -59,9 +71,11 @@ public class ObjectJoGL {
 	/**
 	 * Get the OpenGL context relative to the canvas figureIndex
 	 * @param figureIndex index of the figure correspondingto the canvas
+	 * @return updated OpenGL pipeline
 	 */
-	protected void updateGLContext(int figureIndex) {
-		glPipeline = FigureCanvasMapper.getCorrespondingCanvas(figureIndex).getGL();
+	protected GL updateGLContext(int figureIndex) {
+		glPipeline = FigureMapper.getCorrespondingFigure(figureIndex).getCanvas().getGL();
+		return glPipeline;
 	}
 	
 	/**
@@ -70,6 +84,32 @@ public class ObjectJoGL {
 	 */
 	protected GL getGL() {
 		return glPipeline;
+	}
+	
+	/**
+	 * Get the colormap relative to figure with figureIndex
+	 * @param figureIndex index of the figure correspondingto the canvas
+	 * @return updated colormap
+	 */
+	protected ColorMap updateColorMap(int figureIndex) {
+		curColorMap = FigureMapper.getCorrespondingFigure(figureIndex).getColorMap();
+		return curColorMap;
+	}
+	
+	/**
+	 * Get the current colormap, ie the colormap of the parent canvas
+	 * @return current colormap
+	 */
+	protected ColorMap getColorMap() {
+		return curColorMap;
+	}
+	
+	/**
+	 * Set the colormap
+	 * @param cmap new colormap
+	 */
+	protected void setColorMap(ColorMap cmap) {
+		curColorMap = cmap;
 	}
 	
 }

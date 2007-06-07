@@ -47,6 +47,24 @@ public:
    */
   virtual void closeRenderingCanvas( void ) ;
 
+  /**
+   * Set the background color of the figure
+   */
+  virtual void setBackgroundColor( int backgroundColor ) ;
+
+  /**
+   * Set a new colormap to this figure
+   * @param nbColor x 3 matrix contains the three channels RGB of each color
+   * @param nbColor number of color in the colormap
+   */
+  virtual void setColorMap( const double rgbMat[], int nbColor ) ;
+
+  /**
+   * Fill the rgbMat with the colors in the colormap
+   * @param rgbMat should be a nbColor x 3 matrix with nbColor the number of color in the colormap
+   */
+  virtual void getColorMap( double rgbMat[] ) ;
+
 } ;
 
 }
