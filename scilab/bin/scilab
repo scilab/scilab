@@ -211,7 +211,10 @@ if test ! -z "$JAVA_HOME"; then
 	else
 		export LD_LIBRARY_PATH=$JRE_HOME/lib/$proc/:$JRE_HOME/lib/$proc/server/:$JRE_HOME/lib/$proc/native_threads/:$LD_LIBRARY_PATH
 	fi
+else
+	echo "Have not been able to find any Java VM on this computer. Scilab maybe not be working"
 fi
+	
 ####### END OF JAVA ENV DETECTION/SETTING ######
 
 
