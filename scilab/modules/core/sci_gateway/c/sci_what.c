@@ -10,8 +10,6 @@
 #include "sciprint.h"
 #include "message_scilab.h"
 /*-----------------------------------------------------------------------------------*/
-int C2F(intwhat) _PARAMS((char *fname));
-/*-----------------------------------------------------------------------------------*/
 static const int nbrCommands=29;
 /*-----------------------------------------------------------------------------------*/
 static char *CommandWords[]={
@@ -44,13 +42,6 @@ extern char **GetFunctionsList(int *sizeList);
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_what) _PARAMS((char *fname,unsigned long fname_len))
 {
-	C2F(intwhat)(fname);
-	return 0;
-}
-/*-----------------------------------------------------------------------------------*/
-int C2F(intwhat) _PARAMS((char *fname))
-{
-
 	Rhs = Max(0, Rhs);
 	CheckRhs(0,0);
 	CheckLhs(1,2);
