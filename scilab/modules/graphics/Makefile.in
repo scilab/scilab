@@ -455,6 +455,10 @@ am__libscigraphics_la_SOURCES_DIST = src/nographics/nographics.c \
 	src/cpp/segsDrawing/DrawableSegsFactory.cpp \
 	src/cpp/segsDrawing/DrawableSegs.cpp \
 	src/cpp/rectangleDrawing/DrawableRectangleImpFactory.cpp \
+	src/cpp/figureDrawing/DrawableFigureImp.cpp \
+	src/cpp/GetJavaProperty.cpp \
+	src/cpp/rectangleDrawing/DrawableRectangleImp.cpp \
+	src/cpp/SetJavaProperty.cpp \
 	src/cpp/figureDrawing/DrawableFigureJoGL.cpp \
 	src/cpp/DrawableObjectJoGL.cpp \
 	src/cpp/rectangleDrawing/RectangleMarkDrawerJoGL.cpp \
@@ -914,6 +918,10 @@ am__libscigraphics_la_SOURCES_DIST = src/nographics/nographics.c \
 @WITH_JAVA_TRUE@	libscigraphics_la-DrawableSegsFactory.lo \
 @WITH_JAVA_TRUE@	libscigraphics_la-DrawableSegs.lo \
 @WITH_JAVA_TRUE@	libscigraphics_la-DrawableRectangleImpFactory.lo \
+@WITH_JAVA_TRUE@	libscigraphics_la-DrawableFigureImp.lo \
+@WITH_JAVA_TRUE@	libscigraphics_la-GetJavaProperty.lo \
+@WITH_JAVA_TRUE@	libscigraphics_la-DrawableRectangleImp.lo \
+@WITH_JAVA_TRUE@	libscigraphics_la-SetJavaProperty.lo \
 @WITH_JAVA_TRUE@	libscigraphics_la-DrawableFigureJoGL.lo \
 @WITH_JAVA_TRUE@	libscigraphics_la-DrawableObjectJoGL.lo \
 @WITH_JAVA_TRUE@	libscigraphics_la-RectangleMarkDrawerJoGL.lo \
@@ -1484,6 +1492,10 @@ top_srcdir = @top_srcdir@
 @WITH_JAVA_TRUE@	src/cpp/segsDrawing/DrawableSegsFactory.cpp \
 @WITH_JAVA_TRUE@	src/cpp/segsDrawing/DrawableSegs.cpp \
 @WITH_JAVA_TRUE@	src/cpp/rectangleDrawing/DrawableRectangleImpFactory.cpp \
+@WITH_JAVA_TRUE@	src/cpp/figureDrawing/DrawableFigureImp.cpp \
+@WITH_JAVA_TRUE@	src/cpp/GetJavaProperty.cpp \
+@WITH_JAVA_TRUE@	src/cpp/rectangleDrawing/DrawableRectangleImp.cpp \
+@WITH_JAVA_TRUE@	src/cpp/SetJavaProperty.cpp \
 @WITH_JAVA_TRUE@	src/cpp/figureDrawing/DrawableFigureJoGL.cpp \
 @WITH_JAVA_TRUE@	src/cpp/DrawableObjectJoGL.cpp \
 @WITH_JAVA_TRUE@	src/cpp/rectangleDrawing/RectangleMarkDrawerJoGL.cpp \
@@ -1940,6 +1952,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableFecFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableFigure.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableFigureFactory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableFigureImp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableFigureImpFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableFigureJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableGrayplot.Plo@am__quote@
@@ -1955,6 +1968,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawablePolylineFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableRectangle.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableRectangleFactory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableRectangleImp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableRectangleImpFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableRectangleJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-DrawableSegs.Plo@am__quote@
@@ -1971,6 +1985,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-Format.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-GetCommandArg.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-GetHashTable.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-GetJavaProperty.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-GetProperty.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-GraphicZoom.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-Gray.Plo@am__quote@
@@ -1988,6 +2003,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-RectangleLineDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-RectangleMarkDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-SetHashTable.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-SetJavaProperty.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-SetProperty.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-SetPropertyStatus.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-StringBox.Plo@am__quote@
@@ -5578,6 +5594,34 @@ libscigraphics_la-DrawableRectangleImpFactory.lo: src/cpp/rectangleDrawing/Drawa
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/rectangleDrawing/DrawableRectangleImpFactory.cpp' object='libscigraphics_la-DrawableRectangleImpFactory.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableRectangleImpFactory.lo `test -f 'src/cpp/rectangleDrawing/DrawableRectangleImpFactory.cpp' || echo '$(srcdir)/'`src/cpp/rectangleDrawing/DrawableRectangleImpFactory.cpp
+
+libscigraphics_la-DrawableFigureImp.lo: src/cpp/figureDrawing/DrawableFigureImp.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableFigureImp.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableFigureImp.Tpo -c -o libscigraphics_la-DrawableFigureImp.lo `test -f 'src/cpp/figureDrawing/DrawableFigureImp.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/DrawableFigureImp.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawableFigureImp.Tpo $(DEPDIR)/libscigraphics_la-DrawableFigureImp.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/figureDrawing/DrawableFigureImp.cpp' object='libscigraphics_la-DrawableFigureImp.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableFigureImp.lo `test -f 'src/cpp/figureDrawing/DrawableFigureImp.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/DrawableFigureImp.cpp
+
+libscigraphics_la-GetJavaProperty.lo: src/cpp/GetJavaProperty.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-GetJavaProperty.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-GetJavaProperty.Tpo -c -o libscigraphics_la-GetJavaProperty.lo `test -f 'src/cpp/GetJavaProperty.cpp' || echo '$(srcdir)/'`src/cpp/GetJavaProperty.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-GetJavaProperty.Tpo $(DEPDIR)/libscigraphics_la-GetJavaProperty.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/GetJavaProperty.cpp' object='libscigraphics_la-GetJavaProperty.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-GetJavaProperty.lo `test -f 'src/cpp/GetJavaProperty.cpp' || echo '$(srcdir)/'`src/cpp/GetJavaProperty.cpp
+
+libscigraphics_la-DrawableRectangleImp.lo: src/cpp/rectangleDrawing/DrawableRectangleImp.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableRectangleImp.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableRectangleImp.Tpo -c -o libscigraphics_la-DrawableRectangleImp.lo `test -f 'src/cpp/rectangleDrawing/DrawableRectangleImp.cpp' || echo '$(srcdir)/'`src/cpp/rectangleDrawing/DrawableRectangleImp.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DrawableRectangleImp.Tpo $(DEPDIR)/libscigraphics_la-DrawableRectangleImp.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/rectangleDrawing/DrawableRectangleImp.cpp' object='libscigraphics_la-DrawableRectangleImp.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-DrawableRectangleImp.lo `test -f 'src/cpp/rectangleDrawing/DrawableRectangleImp.cpp' || echo '$(srcdir)/'`src/cpp/rectangleDrawing/DrawableRectangleImp.cpp
+
+libscigraphics_la-SetJavaProperty.lo: src/cpp/SetJavaProperty.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-SetJavaProperty.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-SetJavaProperty.Tpo -c -o libscigraphics_la-SetJavaProperty.lo `test -f 'src/cpp/SetJavaProperty.cpp' || echo '$(srcdir)/'`src/cpp/SetJavaProperty.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-SetJavaProperty.Tpo $(DEPDIR)/libscigraphics_la-SetJavaProperty.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/SetJavaProperty.cpp' object='libscigraphics_la-SetJavaProperty.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-SetJavaProperty.lo `test -f 'src/cpp/SetJavaProperty.cpp' || echo '$(srcdir)/'`src/cpp/SetJavaProperty.cpp
 
 libscigraphics_la-DrawableFigureJoGL.lo: src/cpp/figureDrawing/DrawableFigureJoGL.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-DrawableFigureJoGL.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DrawableFigureJoGL.Tpo -c -o libscigraphics_la-DrawableFigureJoGL.lo `test -f 'src/cpp/figureDrawing/DrawableFigureJoGL.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/DrawableFigureJoGL.cpp

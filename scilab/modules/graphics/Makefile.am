@@ -374,7 +374,11 @@ src/cpp/rectangleDrawing/DrawableRectangleFactory.cpp \
 src/cpp/rectangleDrawing/DrawableRectangle.cpp \
 src/cpp/segsDrawing/DrawableSegsFactory.cpp \
 src/cpp/segsDrawing/DrawableSegs.cpp \
-src/cpp/rectangleDrawing/DrawableRectangleImpFactory.cpp
+src/cpp/rectangleDrawing/DrawableRectangleImpFactory.cpp \
+src/cpp/figureDrawing/DrawableFigureImp.cpp \
+src/cpp/GetJavaProperty.cpp \
+src/cpp/rectangleDrawing/DrawableRectangleImp.cpp \
+src/cpp/SetJavaProperty.cpp
 
 
 if WITH_JAVA
