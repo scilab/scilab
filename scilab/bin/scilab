@@ -46,7 +46,10 @@ if test -n "$SCI"; then
 		exit -1
 	fi
 fi
-	
+
+
+OLDPWD=`pwd`
+
 # Use scilab-bin in the current dir if it exists
 # If not, then start resolving symlinks until we find scilab-bin
 found=0
@@ -70,16 +73,16 @@ else
 		found=1
 	else
 		here=`/bin/pwd`
-		while [ -h "$progname" ]; do
+		while test -h "$progname"; do
 			bn=`basename "$progname"`
 			cd `dirname "$progname"`
 			progname=`/bin/ls -l "$bn" | sed -e 's/^.* -> //' `
-			if [ ! -x "$progname" ]; then
+			if ! -x "$progname"; then
 				break
 			fi
 			curdir=`dirname "$progname"`
 			run_sci="$curdir/bin/scilab-bin"
-			if [ -x "$run_sci" ]; then
+			if test -x "$run_sci"; then
 				cd "$curdir"
 				SCI=`pwd`
 				SCIBIN=$run_sci
@@ -109,11 +112,113 @@ fi
 # should be removed
 export SCI
 
+############# JAVA DETECTION ##############
+# Basic inspiration from Eclipse 
+#
+# Scilab is looking for Java in various places with different ways :
+# * if JAVA_HOME is specificed, use it
+# * Check in 'standard' places we know Java could be installed
+# if some are missing, please contact us
+# * look in the PATH if there is a java binary
+# if it is the case, resolve the symlink and set the JAVA_HOME from it
+#
+# Once we have JAVA_HOME, we check that native libraries (libjava.so and 
+# 2 others) are available
+###
+
+# If the user has the variable JAVA_HOME in the ENV
+if test -n "$JAVA_HOME" ; then
+    echo "Using specified vm: $JAVA_HOME"
+    if [ ! -x "$JAVA_HOME/bin/java" ]; then
+		echo "Cannot find $JAVA_HOME/bin/java"
+        exit 1
+    fi
+fi
+
+# Browse "default directory" (if it means anything under Unix/Linux) of Java
+# to find where it could be !
+if test -z "$JAVA_HOME"; then
+	JAVA_DEFAULT_DIR="/usr/lib/jvm/java-1.6.0-sun/ /usr/lib/j2se/1.6 /usr/lib/j2sdk1.6-ibm /usr/lib/jvm/java-1.5.0-sun /usr/lib/j2se/1.5 /usr/lib/j2se/1.4 /usr/lib/j2sdk1.5-ibm /usr/lib/j2sdk1.4-ibm /usr/lib/j2sdk1.5-sun /usr/lib/j2sdk1.4-sun /usr/lib/jvm/java-gcj /usr/lib/kaffe/pthreads"
+    for JAVA_HOME in $JAVA_DEFAULT_DIR ; do
+		echo -n "Trying to find Java in $JAVA_HOME "
+		if [ -x "${JAVA_HOME}/bin/java" ]; then
+            export JAVA_HOME
+            echo "found"
+            break
+        else
+            echo "not found"
+        fi
+	done
+fi
+
+# JAVA_HOME still haven't been found. Well, we can now try to find it in the path
+
+if test -z "$JAVA_HOME"; then
+    PATH_SEPARATOR=:
+	as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+	echo "Look the binary java in the PATH. If it is a symlink, try to resolve it"
+	for DIR in $PATH; do
+		if test -f $DIR/java; then
+
+			_cur=$DIR/java
+			# resolve symlink
+			while ls -ld "$_cur" 2>/dev/null | grep " -> " >/dev/null; do
+				_cur=`ls -ld "$_cur" | sed 's/.* -> //'`
+			done
+			# symlink resolved to the real file
+			
+			# Now, create JAVA_HOME
+			TMP=`dirname $_cur`
+			JAVA_HOME=`dirname $TMP`
+			if test ! -z "$JAVA_HOME"; then
+				break;
+			fi
+		fi
+	done
+	IFS=$as_save_IFS
+fi
+if test ! -z "$JAVA_HOME"; then
+	echo "Using $JAVA_HOME as JAVA_HOME"
+
+
+# Manage JRE & JDK because libjava.so and others are stored in the JRE 
+	if test -d $JAVA_HOME/jre; then
+		JRE_HOME=$JAVA_HOME/jre
+	else
+		JRE_HOME=$JAVA_HOME
+	fi
+
+# Configuring LD_LIBRARY_PATH for libjava.so libhpi.so and libxxxx.so
+
+# Get the proc name matching to the one of the JVM
+	case "`uname -m`" in
+		i[3-6]86  | ia32 | ia64 | i?86)
+        proc=i386
+        ;;
+		sparc*)
+			proc=sparc
+			;;
+		*)
+			proc="`uname -m`"
+			;;
+	esac
+
+# Check if the lib exists or not (we should manage system where .so is not the 
+# ext for library
+	LIBJAVA="$JRE_HOME/lib/$proc/libjava.so"
+	if test ! -f $LIBJAVA; then
+		echo "Cannot find $LIBJAVA"
+	else
+		export LD_LIBRARY_PATH=$JRE_HOME/lib/$proc/:$JRE_HOME/lib/$proc/server/:$JRE_HOME/lib/$proc/native_threads/:$LD_LIBRARY_PATH
+	fi
+fi
+####### END OF JAVA ENV DETECTION/SETTING ######
+
 
 echo "SCI : $SCI"
 echo "SCIBIN : $SCIBIN"
 echo "SCIDATA : $SCIDATA"
-
+cd $OLDPWD
 if test "$DISPLAY" = ""; then
   DISPLAY="unix:0.0"
 fi
