@@ -77,7 +77,7 @@ else
 			bn=`basename "$progname"`
 			cd `dirname "$progname"`
 			progname=`/bin/ls -l "$bn" | sed -e 's/^.* -> //' `
-			if ! -x "$progname"; then
+			if test ! -x "$progname"; then
 				break
 			fi
 			curdir=`dirname "$progname"`
@@ -178,8 +178,7 @@ if test -z "$JAVA_HOME"; then
 	IFS=$as_save_IFS
 fi
 if test ! -z "$JAVA_HOME"; then
-	echo "Using $JAVA_HOME as JAVA_HOME"
-
+	echo "JAVA_HOME : $JAVA_HOME"
 
 # Manage JRE & JDK because libjava.so and others are stored in the JRE 
 	if test -d $JAVA_HOME/jre; then
