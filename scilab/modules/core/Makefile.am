@@ -234,7 +234,6 @@ sci_gateway/c/sci_return.c \
 sci_gateway/c/sci_exists.c \
 sci_gateway/c/sci_getmd5.c \
 sci_gateway/c/sci_clear.c \
-sci_gateway/c/sci_chdir.c \
 sci_gateway/c/sci_comp.c \
 sci_gateway/c/sci_clearfun.c \
 sci_gateway/c/sci_setbpt.c \

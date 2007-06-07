@@ -13,6 +13,7 @@
 #include "scicurdir.h"
 #include "message_scilab.h"
 #include "MALLOC.h"
+#include "warningmode.h"
 #define FSIZE 1024
 static char cur_dir[FSIZE];
 /*-----------------------------------------------------------------------------------*/
@@ -26,17 +27,13 @@ int C2F(scichdir)(char *path,int *err)
 	}
 #ifndef _MSC_VER
 	if (chdir(path) == -1) 
-	{
-		message_scilab("core_message_142", path); 
-	    *err=1;
-	} 
 #else
 	if (SetCurrentDirectory(path) == 0)
-	{
-		message_scilab("core_message_142", path); 
-		*err=1;
-	}
 #endif
+	{
+		if ( getWarningMode() ) message_scilab("core_message_142", path); 
+	    *err=1;
+	} 
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -49,7 +46,7 @@ int C2F(scigetcwd)(char **path,int *lpath,int *err)
 #endif
 	{
 		/* get current working dir */
-		message_scilab("core_message_143");
+		if ( getWarningMode() ) message_scilab("core_message_143");
 		*cur_dir = '\0';
 		*lpath=0;
 		*err=1;

@@ -565,10 +565,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_chdir.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_clear.c"
 				>
 			</File>
@@ -1178,10 +1174,6 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_c_link.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_chdir.f"
 				>
 			</File>
 			<File

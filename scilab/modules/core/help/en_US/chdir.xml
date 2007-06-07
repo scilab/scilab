@@ -9,22 +9,26 @@
 
   <DATE>$LastChangedDate$</DATE>
 
-  <SHORT_DESCRIPTION name="chdir">changes Scilab current
-  directory</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="chdir">changes Scilab current directory</SHORT_DESCRIPTION>
 
-  <SHORT_DESCRIPTION name="cd">changes Scilab current
-  directory</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="cd">changes Scilab current directory</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>chdir(path)</CALLING_SEQUENCE_ITEM>
-
+    <CALLING_SEQUENCE_ITEM>b=chdir(path)</CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>realpath=cd(path)</CALLING_SEQUENCE_ITEM>
-
     <CALLING_SEQUENCE_ITEM>cd path</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 
   <PARAM>
     <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>b</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: a boolean %t if chdir operation is ok. </SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      
       <PARAM_ITEM>
         <PARAM_NAME>path</PARAM_NAME>
 
@@ -47,7 +51,7 @@
   <DESCRIPTION>
     <SP>Change the current Scilab directory to those given by
     <VERB>path</VERB>. Note that path conversion is performed and for example
-    <VERB>SCI/macros/util</VERB> is a valid pattern for both unix and windows.
+    <VERB>SCI/modules/core/macros</VERB> is a valid pattern for both unix and windows.
     If path is empty change to "home" directory.</SP>
   </DESCRIPTION>
 

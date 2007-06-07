@@ -614,7 +614,7 @@ Save your data and restart Scilab.</string>
 
 <entry>
 	<tag>core_message_142</tag>
-	<string>Can't go to directory %s.</string>
+	<string>Can't go to directory %s .</string>
 </entry>	
 
 <entry>
