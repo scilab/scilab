@@ -15,7 +15,6 @@ import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.gui.tab.ScilabTab;
 import org.scilab.modules.gui.tab.Tab;
-import org.scilab.modules.graphics.ColoredCanvas;
 
 import org.scilab.modules.graphics.DrawableObjectJoGL;
 import org.scilab.modules.graphics.FigureMapper;
