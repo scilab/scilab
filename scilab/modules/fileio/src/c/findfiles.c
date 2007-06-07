@@ -9,6 +9,7 @@
 	#include <dirent.h>
 #endif
 #include <stdio.h>
+#include <string.h>
 #include "findfiles.h"
 #include "MALLOC.h"
 #include "machine.h"
