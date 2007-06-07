@@ -138,7 +138,7 @@ fi
 # Browse "default directory" (if it means anything under Unix/Linux) of Java
 # to find where it could be !
 if test -z "$JAVA_HOME"; then
-	JAVA_DEFAULT_DIR="/usr/lib/jvm/java-1.6.0-sun/ /usr/lib/j2se/1.6 /usr/lib/j2sdk1.6-ibm /usr/lib/jvm/java-1.5.0-sun /usr/lib/j2se/1.5 /usr/lib/j2se/1.4 /usr/lib/j2sdk1.5-ibm /usr/lib/j2sdk1.4-ibm /usr/lib/j2sdk1.5-sun /usr/lib/j2sdk1.4-sun /usr/lib/jvm/java-gcj /usr/lib/kaffe/pthreads"
+	JAVA_DEFAULT_DIR="/usr/lib/jvm/java-1.6.0-sun/ /usr/lib/j2se/1.6 /usr/java/jdk1.6.0*/ /usr/java/jdk1.5.0*/ /usr/lib/j2sdk1.6-ibm /usr/lib/jvm/java-1.5.0-sun /usr/lib/j2se/1.5 /usr/lib/j2se/1.4 /usr/lib/j2sdk1.5-ibm /usr/lib/j2sdk1.4-ibm /usr/lib/j2sdk1.5-sun /usr/lib/j2sdk1.4-sun /usr/lib/jvm/java-gcj /usr/lib/kaffe/pthreads"
     for JAVA_HOME in $JAVA_DEFAULT_DIR ; do
 		echo -n "Trying to find Java in $JAVA_HOME "
 		if [ -x "${JAVA_HOME}/bin/java" ]; then
