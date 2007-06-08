@@ -34,8 +34,10 @@ public abstract class DrawableObjectJoGL extends ObjectJoGL {
 	 */
 	public void show(int parentFigureIndex) {
 		// the display list should already have been created.
-		updateGLContext(parentFigureIndex);
+		super.initializeDrawing(parentFigureIndex);
+		System.err.println("printed dl dlIndex is " + dlIndex);
 		getGL().glCallList(dlIndex);
+		super.endDrawing();
 	}
 	
 	/**
@@ -46,15 +48,15 @@ public abstract class DrawableObjectJoGL extends ObjectJoGL {
 	public void initializeDrawing(int parentFigureIndex) {
 		// get the context from the drawing canvas
 		super.initializeDrawing(parentFigureIndex);
-		//startRecordDL();
+		startRecordDL();
 	}
 	
 	/**
 	 * Function called at the end of the OpenGL use.
 	 */
 	public void endDrawing() {
+		endRecordDL();
 		super.endDrawing();
-		//endRecordDL();
 	}
 	
 	/**
@@ -76,13 +78,11 @@ public abstract class DrawableObjectJoGL extends ObjectJoGL {
 	 * until endRecordDL is called
 	 */
 	protected void startRecordDL() {
-		if (dlIndex == UNINIT_DL_INDEX) {
-			// create a new number
-			dlIndex = getGL().glGenLists(1);
-		} else {
-			// the number can be reused.
+		if (dlIndex != UNINIT_DL_INDEX) {
 			getGL().glDeleteLists(dlIndex, 1);
 		}
+		dlIndex = getGL().glGenLists(1);
+		System.err.println("dlIndex is now " + dlIndex);
 		getGL().glNewList(dlIndex, GL.GL_COMPILE);
 	}
 	

@@ -21,10 +21,17 @@ public class FigureScilabCall {
 	FigureScilabCall() { }
 	
 	/**
-	 * Redraw the figure with figureId
+	 * Draw the figure with figureId in the openGL context
+	 * @param figureId number of the figure to redraw
+	 */
+	public native void displayFigure(int figureId);
+	
+	/**
+	 * Redraw a figure and all its children
 	 * @param figureId number of the figure to redraw
 	 */
 	public native void redrawFigure(int figureId);
+	
 	
 	static
 	{

@@ -7,19 +7,31 @@
 
 #include "FigureScilabCall.h"
 #include "DrawableFigure.h"
+#include "../DrawingBridge.h"
 #include "../getHandleDrawer.h"
-#include <stdio.h>
+
 extern "C"
 {
-#include "CurrentObjectsManagement.h"
-#include "sciprint.h"
+#include "GetProperty.h"
 }
 
 /*-----------------------------------------------------------------------------------*/
-JNIEXPORT void JNICALL Java_org_scilab_modules_graphics_figureDrawing_FigureScilabCall_redrawFigure( JNIEnv * env, jobject obj, jint figureId )
+JNIEXPORT void JNICALL Java_org_scilab_modules_graphics_figureDrawing_FigureScilabCall_displayFigure( JNIEnv * env, jobject obj, jint figureId )
 {
-  sciPointObj * curFig = sciGetCurrentScilabXgc()->mafigure ;
+  int figIndex = (int) figureId ;
+  sciPointObj * curFig = sciIsExistingFigure(&figIndex) ;
   if ( curFig == NULL ) { return ;}
   ((sciGraphics::DrawableFigure*)sciGraphics::getHandleDrawer(curFig))->drawInContext() ;
 }
 /*-----------------------------------------------------------------------------------*/
+
+/*-----------------------------------------------------------------------------------*/
+JNIEXPORT void JNICALL Java_org_scilab_modules_graphics_figureDrawing_FigureScilabCall_redrawFigure( JNIEnv * env, jobject obj, jint figureId )
+{
+  int figIndex = (int) figureId ;
+  sciPointObj * curFig = sciIsExistingFigure(&figIndex) ;
+  if ( curFig == NULL ) { return ;}
+  redrawHierarchy(curFig) ;
+}
+/*-----------------------------------------------------------------------------------*/
+

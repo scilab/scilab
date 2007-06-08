@@ -6,6 +6,7 @@
 /*------------------------------------------------------------------------*/
 
 #include "DrawableRectangle.h"
+#include <iostream>
 extern "C"
 {
 #include "handleDrawing/drawRectangleEntity.h"
@@ -13,6 +14,9 @@ extern "C"
 
 namespace sciGraphics
 {
+
+using namespace std;
+
 /*------------------------------------------------------------------------------------------*/
 DrawableRectangle::~DrawableRectangle( void )
 {
@@ -22,12 +26,18 @@ DrawableRectangle::~DrawableRectangle( void )
 void DrawableRectangle::draw( void )
 {
   if ( !checkVisibility() ) { return ; }
+  initializeDrawing() ;
   drawRectangle() ;
+  endDrawing();
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableRectangle::show( void )
 {
-  draw() ;
+  cerr << "Showing Rectangle" << endl;
+  cout << "Showing Rectangle" << endl;
+  getRectangleImp()->show() ;
+  cerr << " End Showing Rectangle" << endl;
+  cout << " End Showing Rectangle" << endl;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableRectangle::drawRectangle( void )
@@ -50,7 +60,7 @@ void DrawableRectangle::getCornersCoordinates( double corner1[3], double corner2
   corner3[1] = ppRect->y + ppRect->height ;
   corner3[2] = ppRect->z ;
 
-  corner4[0] = ppRect->x + ppRect->height ;
+  corner4[0] = ppRect->x + ppRect->width ;
   corner4[1] = ppRect->y ;
   corner4[2] = ppRect->z ;
 

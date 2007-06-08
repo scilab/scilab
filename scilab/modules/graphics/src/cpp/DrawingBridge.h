@@ -26,6 +26,12 @@ extern "C" {
   void sciDrawObj( sciPointObj * pObj ) ;
 
   /**
+   * Redraw an object and all its children.
+   * To be called on a figure to redraw a whole window
+   */
+  void redrawHierarchy( sciPointObj * pObj ) ;
+
+  /**
    * Call display function on the children of an object
    */
   void displayChildren( sciPointObj * pObj ) ;

@@ -16,7 +16,7 @@ import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.gui.tab.ScilabTab;
 import org.scilab.modules.gui.tab.Tab;
 
-import org.scilab.modules.graphics.DrawableObjectJoGL;
+import org.scilab.modules.graphics.ObjectJoGL;
 import org.scilab.modules.graphics.FigureMapper;
 import org.scilab.modules.graphics.utils.ColorMap;
 
@@ -24,7 +24,7 @@ import org.scilab.modules.graphics.utils.ColorMap;
  * Class containing functions called by DrawableFigureJoGL.cpp
  * @author Jean-Baptiste Silvy
  */
-public class DrawableFigureJoGL extends DrawableObjectJoGL {
+public class DrawableFigureJoGL extends ObjectJoGL {
 	
 	/** Canvas to draw the figure */
 	private FigureCanvas canvas;
@@ -107,7 +107,7 @@ public class DrawableFigureJoGL extends DrawableObjectJoGL {
       graphicView.addTab(graphicTab);
       
       canvas = FigureCanvas.create();
-
+      canvas.addGLEventListener(new SciRenderer(figureIndex));
       graphicTab.addMember(canvas);
       canvas.draw();
     }

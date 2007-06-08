@@ -29,17 +29,6 @@ DrawableObjectJoGL::~DrawableObjectJoGL( void )
   destroy() ;
 }
 /*------------------------------------------------------------------------------------------*/
-void DrawableObjectJoGL::destroy( void )
-{
-  if ( m_oDrawableObject != NULL )
-  {
-    jniCallVoidFunctionSafe( m_oDrawableObject, "destroy", "" ) ;
-    jniDeleteLocalEntity( m_oDrawableObject ) ;
-  }
-  m_oDrawableObject = NULL ;
-  m_oDrawableClass  = NULL ;
-}
-/*------------------------------------------------------------------------------------------*/
 void DrawableObjectJoGL::initializeDrawing( void )
 {
   jniCallVoidFunctionSafe( m_oDrawableObject, "initializeDrawing", "I", sciGetNum(sciGetParentFigure(m_pDrawer->getDrawedObject())) ) ;
@@ -58,6 +47,22 @@ void DrawableObjectJoGL::initializeShowing( void )
 void DrawableObjectJoGL::endShowing( void )
 {   
   jniCallVoidFunctionSafe( m_oDrawableObject, "endShowing", "" ) ;
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableObjectJoGL::show( void )
+{
+  jniCallVoidFunctionSafe( m_oDrawableObject, "show", "I", sciGetNum(sciGetParentFigure(m_pDrawer->getDrawedObject())) ) ;
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableObjectJoGL::destroy( void )
+{
+  if ( m_oDrawableObject != NULL )
+  {
+    jniCallVoidFunctionSafe( m_oDrawableObject, "destroy", "" ) ;
+    jniDeleteLocalEntity( m_oDrawableObject ) ;
+  }
+  m_oDrawableObject = NULL ;
+  m_oDrawableClass  = NULL ;
 }
 /*------------------------------------------------------------------------------------------*/
 }

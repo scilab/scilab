@@ -46,6 +46,11 @@ public:
   void hasChanged( void ) ;
 
   /**
+   * Ro specify that an object and its children have changed
+   */
+  void familyHasChanged( void ) ;
+
+  /**
    * Common to every object, draw their children
    */
   void displayChildren( void ) ;

@@ -52,6 +52,11 @@ namespace sciGraphics
     virtual void endShowing( void ) ;
 
     /**
+     * Call the display list of an object
+     */
+    virtual void show( void ) ;
+
+    /**
      * Free the Java resources used by this object
      */
     virtual void destroy( void ) ;

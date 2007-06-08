@@ -46,6 +46,12 @@ namespace sciGraphics
      */
     virtual void endShowing( void ) = 0 ;
 
+    /**
+     * Display an object which whose representation has been already saved (ie dl created).
+     */
+    virtual void show( void ) = 0 ;
+
+
   protected:
 
     DrawableObject * m_pDrawer ; /**< bridge for driver dependent algorithm */

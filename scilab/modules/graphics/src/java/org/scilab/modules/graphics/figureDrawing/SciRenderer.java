@@ -13,23 +13,27 @@ import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GL;
 import javax.media.opengl.glu.GLU;
 
-import java.awt.event.KeyListener;
-import java.awt.event.KeyEvent;
 
 /**
  * GLEventListener used by Scilab
  * @author Jean-Baptiste Silvy silvy
  */
 public class SciRenderer
-  implements GLEventListener, KeyListener {
+  implements GLEventListener {
   
+	/** To know if the graphic context has already been initialized */
 	private boolean isInit;
+	
+	/** index of the figure to render */
+	private int renderedFigure;
 	
 	/**
 	 * Default constructor
+	 * @param figureIndex index of the figure to render
 	 */
-	public SciRenderer() {
+	public SciRenderer(int figureIndex) {
 		isInit = false;
+		renderedFigure = figureIndex;
 	}
 	
   /** Called by the drawable to initiate OpenGL rendering by the client.
@@ -41,7 +45,7 @@ public class SciRenderer
       // should call the draw function of the corresponding figure
 	  gLDrawable.getContext().setSynchronized(true);
 	  FigureScilabCall call = new FigureScilabCall();
-	  call.redrawFigure(0);
+	  call.displayFigure(renderedFigure);
     }
     
     
@@ -58,7 +62,12 @@ public class SciRenderer
    * @param gLDrawable The GLDrawable object.
    */
   public void init(GLAutoDrawable gLDrawable) {
-      if (isInit) { return; }
+	  
+      if (isInit) {
+    	  FigureScilabCall call = new FigureScilabCall();
+    	  call.redrawFigure(renderedFigure);
+    	  //return;
+      }
       final GL gl = gLDrawable.getGL();
       gl.glShadeModel(GL.GL_SMOOTH);              // Enable Smooth Shading
       gl.glClearColor(1.0f, 1.0f, 1.0f, 0.5f);    // white Background
@@ -67,8 +76,6 @@ public class SciRenderer
       gl.glDepthFunc(GL.GL_LEQUAL);								// The Type Of Depth Testing To Do
       gl.glHint(GL.GL_PERSPECTIVE_CORRECTION_HINT, GL.GL_NICEST);	// Really Nice Perspective Calculations
       gl.glEnable(GL.GL_LINE_SMOOTH);
-      gLDrawable.addKeyListener(this);
-      
       isInit = true;
 
     }
@@ -105,35 +112,6 @@ public class SciRenderer
       gl.glLoadIdentity();
 
     }
-
-  /** Invoked when a key has been pressed.
-   * See the class description for {@link KeyEvent} for a definition of
-   * a key pressed event.
-   * @param e The KeyEvent.
-   */
-  public void keyPressed(KeyEvent e) {
-	  if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-        System.out.println("Escape key pressed");
-	  } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-		  System.out.println("Right Key pressed");
-      } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-        System.out.println("Left Key pressed");
-      }
-    }
-  
-  /** Invoked when a key has been released.
-   * See the class description for {@link KeyEvent} for a definition of
-   * a key released event.
-   * @param e The KeyEvent.
-   */
-  public void keyReleased(KeyEvent e) { }
-    
-  /** Invoked when a key has been typed.
-   * See the class description for {@link KeyEvent} for a definition of
-   * a key typed event.
-   * @param e The KeyEvent.
-   */
-  public void keyTyped(KeyEvent e) { }
 
 
 }

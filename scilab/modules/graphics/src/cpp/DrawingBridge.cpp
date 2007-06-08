@@ -32,7 +32,6 @@ void sciDrawObj( sciPointObj * pObj )
 {
   /* force total redraw */
   /* we need to recreate a new one */
-  //destroyHandleDrawer(pObj);
   DrawableObjectFactory updater ;
   updater.setGraphicObj( pObj ) ;
   updater.update() ;
@@ -44,5 +43,11 @@ void sciDrawObj( sciPointObj * pObj )
 void displayChildren( sciPointObj * pObj )
 {
   getHandleDrawer( pObj )->displayChildren() ;
+}
+/*------------------------------------------------------------------------------------------*/
+void redrawHierarchy( sciPointObj * pObj )
+{
+  getHandleDrawer(pObj)->familyHasChanged();
+  getHandleDrawer(pObj)->display();
 }
 /*------------------------------------------------------------------------------------------*/

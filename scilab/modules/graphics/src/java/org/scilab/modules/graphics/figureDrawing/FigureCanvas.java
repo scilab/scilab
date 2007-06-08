@@ -40,7 +40,6 @@ public class FigureCanvas extends SwingScilabCanvas {
 		GLCapabilities cap = new GLCapabilities();
 		cap.setDoubleBuffered(true);
 		FigureCanvas res = new FigureCanvas(cap);
-		res.addGLEventListener(new SciRenderer());
 		res.setDims(DEFAULT_SIZE);
 		return res;
 	}

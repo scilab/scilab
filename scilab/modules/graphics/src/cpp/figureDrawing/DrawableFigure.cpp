@@ -20,7 +20,7 @@ namespace sciGraphics
 DrawableFigure::DrawableFigure( sciPointObj * pObj )
   : DrawableObject( pObj )
 {
-
+  m_bNeedRedraw = false ; // no display lists for figure
 }
 /*------------------------------------------------------------------------------------------*/
 DrawableFigure::~DrawableFigure( void )

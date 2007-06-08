@@ -48,6 +48,17 @@ void DrawableObject::hasChanged( void )
   m_bNeedRedraw = true ;
 }
 /*------------------------------------------------------------------------------------------*/
+void DrawableObject::familyHasChanged( void )
+{
+  hasChanged();
+  sciSons * curSon = sciGetLastSons( m_pDrawed ) ;
+  while ( curSon != NULL )
+  {
+    getHandleDrawer( curSon->pointobj )->familyHasChanged();
+    curSon = curSon->pprev ;
+  }
+}
+/*------------------------------------------------------------------------------------------*/
 void DrawableObject::displayChildren( void )
 {
   sciSons * curSon = sciGetLastSons( m_pDrawed ) ;
