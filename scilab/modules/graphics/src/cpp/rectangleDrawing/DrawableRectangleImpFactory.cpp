@@ -21,7 +21,26 @@ namespace sciGraphics
 DrawableRectangleImp * DrawableRectangleImpFactory::create( void )
 {
   DrawableRectangleJoGL * imp = new DrawableRectangleJoGL( m_pDrawable ) ;
-  
+
+  setStrategies( imp ) ;
+
+  return imp ;
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableRectangleImpFactory::update( void )
+{
+   setStrategies( m_pDrawable->getRectangleImp() ) ;
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableRectangleImpFactory::setDrawedRectangle( DrawableRectangle * rect )
+{
+  m_pDrawable = rect ;
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableRectangleImpFactory::setStrategies( DrawableRectangleImp * imp )
+{
+  imp->removeDrawingStrategies() ;
+
   // Create rendering algorithms
   sciPointObj * rect = m_pDrawable->getDrawedObject() ;
 
@@ -39,13 +58,6 @@ DrawableRectangleImp * DrawableRectangleImpFactory::create( void )
   {
     imp->addDrawingStrategy( new RectangleMarkDrawerJoGL( imp ) ) ;
   }
-
-  return imp ;
-}
-/*------------------------------------------------------------------------------------------*/
-void DrawableRectangleImpFactory::setDrawedRectangle( DrawableRectangle * rect )
-{
-  m_pDrawable = rect ;
 }
 /*------------------------------------------------------------------------------------------*/
 

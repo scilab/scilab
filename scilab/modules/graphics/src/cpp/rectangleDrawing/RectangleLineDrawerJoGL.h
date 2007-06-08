@@ -8,17 +8,17 @@
 #ifndef _RECTANGLE_LINE_DRAWER_JOGL_H_
 #define _RECTANGLE_LINE_DRAWER_JOGL_H_
 
-#include "DrawRectangleStrategyJoGL.h"
+#include "DrawRectangleStrategy.h"
 #include "DrawableRectangleJoGL.h"
 #include "../DrawableObjectJoGL.h"
 
 namespace sciGraphics
 {
-  class RectangleLineDrawerJoGL : public DrawRectangleStrategyJoGL, public DrawableObjectJoGL
+  class RectangleLineDrawerJoGL : public DrawRectangleStrategy, public DrawableObjectJoGL
   {
   public:
 
-    RectangleLineDrawerJoGL( DrawableRectangleJoGL * drawer ) ;
+    RectangleLineDrawerJoGL( DrawableRectangleImp * drawer ) ;
 
     /**
     * Main algorithm to draw the outline of the rectangle

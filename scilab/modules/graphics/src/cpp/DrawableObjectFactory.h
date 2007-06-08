@@ -39,9 +39,22 @@ public:
    */
   virtual DrawableObject * create( void ) ;
 
+  /**
+   * Update the drawer of the drawed object.
+   * To be used when an object was deeply modified and to avoid to create it again completely.
+   */
+  virtual void update( void ) ;
+
 protected:
 
   sciPointObj * m_pDrawed ;
+
+private:
+
+  /**
+   * Choose the good factory to create the drawer
+   */
+  DrawableObjectFactory * createRightFactory( void ) ;
 
 } ;
 

@@ -18,5 +18,10 @@ DrawableObject * DrawableLabelFactory::create( void )
   return new DrawableLabel( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
+void DrawableLabelFactory::update( void )
+{
+  // nothing for now
+}
+/*------------------------------------------------------------------------------------------*/
 
 }

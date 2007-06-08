@@ -8,15 +8,15 @@
 #ifndef _RECTANGLE_MARK_DRAWER_JOGL_H_
 #define _RECTANGLE_MARK_DRAWER_JOGL_H_
 
-#include "DrawRectangleStrategyJoGL.h"
+#include "DrawRectangleStrategy.h"
 
 namespace sciGraphics
 {
-  class RectangleMarkDrawerJoGL : public DrawRectangleStrategyJoGL
+  class RectangleMarkDrawerJoGL : public DrawRectangleStrategy
   {
   public:
 
-    RectangleMarkDrawerJoGL( DrawableRectangleJoGL * drawer ) : DrawRectangleStrategyJoGL( drawer ) {}
+    RectangleMarkDrawerJoGL( DrawableRectangleImp * drawer ) : DrawRectangleStrategy( drawer ) {}
     /**
     * Main algorithm to draw the marks on the rectangle corners
     */

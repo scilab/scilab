@@ -18,5 +18,10 @@ DrawableObject * DrawableSubwinFactory::create( void )
   return new DrawableSubwin( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
+void DrawableSubwinFactory::update( void )
+{
+  // nothing for now
+}
+/*------------------------------------------------------------------------------------------*/
 
 }

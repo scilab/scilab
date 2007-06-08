@@ -55,6 +55,12 @@ public:
    */
   void setDrawableImp( DrawableObjectImp * imp ) { m_pImp = imp ; }
 
+  /**
+  * Get the driver dependent implementation of algorithm
+  * Each graphic object must have is own
+  */
+  DrawableObjectImp * getDrawableImp( void ) { return m_pImp ; }
+
 protected:
 
   /*---------------------------------------------------------------------------------*/
@@ -69,12 +75,6 @@ protected:
    * Warning, be sure that draw is called before show each time the handle is modified.
    */
   virtual void show( void ) = 0 ;
-
-  /**
-   * Get the driver dependent implementation of algorithm
-   * Each graphic object must have is own
-   */
-  DrawableObjectImp * getDrawableImp( void ) { return m_pImp ; }
 
   /**
    * Common to every object. Check its visibility.

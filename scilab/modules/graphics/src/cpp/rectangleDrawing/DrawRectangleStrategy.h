@@ -1,25 +1,25 @@
 /*------------------------------------------------------------------------*/
-/* file: DrawRectangleStrategyJoGL.h                                      */
+/* file: DrawRectangleStrategy.h                                          */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
 /* desc : Strategy interface for the drawRectangle algorithm              */
 /*------------------------------------------------------------------------*/
 
-#ifndef _DRAW_RECTANGLE_STRATEGY_JOGL_H_
-#define _DRAW_RECTANGLE_STRATEGY_JOGL_H_
+#ifndef _DRAW_RECTANGLE_STRATEGY_H_
+#define _DRAW_RECTANGLE_STRATEGY_H_
 
 namespace sciGraphics
 {
   // cross reference
-  class DrawableRectangleJoGL ;
+  class DrawableRectangleImp ;
 
-  class DrawRectangleStrategyJoGL
+  class DrawRectangleStrategy
   {
   public:
 
-    DrawRectangleStrategyJoGL( DrawableRectangleJoGL * drawer ) { m_pDrawed = drawer ; }
+    DrawRectangleStrategy( DrawableRectangleImp * drawer ) { m_pDrawed = drawer ; }
     
-    virtual ~DrawRectangleStrategyJoGL( void ) {}
+    virtual ~DrawRectangleStrategy( void ) {}
 
     /**
      * Main algorithm
@@ -28,11 +28,11 @@ namespace sciGraphics
 
   protected:
 
-    DrawableRectangleJoGL * m_pDrawed ;
+    DrawableRectangleImp * m_pDrawed ;
 
   };
   
 
 }
 
-#endif /* _DRAW_RECTANGLE_STRATEGY_JOGL_H_ */
+#endif /* _DRAW_RECTANGLE_STRATEGY_H_ */

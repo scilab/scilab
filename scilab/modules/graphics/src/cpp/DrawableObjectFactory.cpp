@@ -38,70 +38,8 @@ void DrawableObjectFactory::setGraphicObj( sciPointObj * drawedObj )
 /*------------------------------------------------------------------------------------------*/
 DrawableObject * DrawableObjectFactory::create( void )
 {
-  DrawableObjectFactory * fact = NULL ;
+  DrawableObjectFactory * fact = createRightFactory() ;
   
-  switch ( sciGetEntityType(m_pDrawed) )
-    {
-    case SCI_FIGURE:
-      fact = new DrawableFigureFactory() ;
-      break ;
-    case SCI_SUBWIN:
-      fact = new DrawableSubwinFactory() ;
-      break;
-    case SCI_TEXT:
-      fact = new DrawableTextFactory() ;
-      break;
-    case SCI_POLYLINE:
-      fact = new DrawablePolylineFactory() ;
-      break;
-    case SCI_LABEL:
-      fact = new DrawableLabelFactory() ;
-      break;
-    case SCI_AGREG:
-      fact = new DrawableCompoundFactory() ;
-      break ;
-    case SCI_SURFACE:
-      fact = new DrawableSurfaceFactory() ;
-      break ;
-    case SCI_ARC:
-      fact = new DrawableArcFactory() ;
-      break ;
-    case SCI_LEGEND:
-      fact = new DrawableLegendFactory() ;
-      break ;
-    case SCI_AXES:
-      fact = new DrawableAxesFactory() ;
-      break ;
-    case SCI_SEGS:
-      fact = new DrawableSegsFactory() ;
-      break ;
-    case SCI_FEC:
-      fact = new DrawableFecFactory() ;
-      break ;
-    case SCI_GRAYPLOT:
-      fact = new DrawableGrayplotFactory() ;
-      break ;
-    case SCI_RECTANGLE: 
-      fact = new DrawableRectangleFactory() ;
-      break ;
-    case SCI_TITLE:    
-    case SCI_LIGHT:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
-    case SCI_STATUSB:
-    case SCI_UIMENU: 
-    case SCI_CONSOLE:
-    case SCI_FRAME:
-    case SCI_WINDOW:
-    case SCI_WINDOWFRAME:
-    case SCI_SCREEN:
-    default:
-      return NULL;
-    }
-
   fact->setGraphicObj( m_pDrawed ) ;
   
   DrawableObject * drawer = fact->create() ;
@@ -112,5 +50,81 @@ DrawableObject * DrawableObjectFactory::create( void )
 
 }
 /*------------------------------------------------------------------------------------------*/
+void DrawableObjectFactory::update( void )
+{
+  DrawableObjectFactory * fact = createRightFactory() ;
 
+  fact->setGraphicObj( m_pDrawed ) ;
+
+  fact->update() ;
+
+  delete fact ;
+
+}
+/*------------------------------------------------------------------------------------------*/
+DrawableObjectFactory * DrawableObjectFactory::createRightFactory( void )
+{
+  switch ( sciGetEntityType(m_pDrawed) )
+  {
+  case SCI_FIGURE:
+    return new DrawableFigureFactory() ;
+    break ;
+  case SCI_SUBWIN:
+    return new DrawableSubwinFactory() ;
+    break;
+  case SCI_TEXT:
+    return new DrawableTextFactory() ;
+    break;
+  case SCI_POLYLINE:
+    return new DrawablePolylineFactory() ;
+    break;
+  case SCI_LABEL:
+    return new DrawableLabelFactory() ;
+    break;
+  case SCI_AGREG:
+    return new DrawableCompoundFactory() ;
+    break ;
+  case SCI_SURFACE:
+    return new DrawableSurfaceFactory() ;
+    break ;
+  case SCI_ARC:
+    return new DrawableArcFactory() ;
+    break ;
+  case SCI_LEGEND:
+    return new DrawableLegendFactory() ;
+    break ;
+  case SCI_AXES:
+    return new DrawableAxesFactory() ;
+    break ;
+  case SCI_SEGS:
+    return new DrawableSegsFactory() ;
+    break ;
+  case SCI_FEC:
+    return new DrawableFecFactory() ;
+    break ;
+  case SCI_GRAYPLOT:
+    return new DrawableGrayplotFactory() ;
+    break ;
+  case SCI_RECTANGLE: 
+    return new DrawableRectangleFactory() ;
+    break ;
+  case SCI_TITLE:    
+  case SCI_LIGHT:
+  case SCI_PANNER:
+  case SCI_SBH:
+  case SCI_SBV:
+  case SCI_MENU:
+  case SCI_MENUCONTEXT:
+  case SCI_STATUSB:
+  case SCI_UIMENU: 
+  case SCI_CONSOLE:
+  case SCI_FRAME:
+  case SCI_WINDOW:
+  case SCI_WINDOWFRAME:
+  case SCI_SCREEN:
+  default:
+    return NULL;
+  }
+}
+/*------------------------------------------------------------------------------------------*/
 }

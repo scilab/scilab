@@ -161,6 +161,7 @@ sciSetColormap ( sciPointObj * pobj, double *rgbmat, integer m, integer n )
   double * cmap = NULL ;
   int notSucceed = 0 ;
   sciFigure * pFigure = NULL ;*/
+  int oldNbColors = sciGetNumColors(pobj) ;
 
   if ( n != 3 )
   {
@@ -236,6 +237,10 @@ sciSetColormap ( sciPointObj * pobj, double *rgbmat, integer m, integer n )
 
   pFIGURE_FEATURE(pobj)->numcolors = m ;
   sciSetJavaColormap( pobj, rgbmat, m * n ) ;
+  if ( pobj != getFigureModel() )
+  {
+    sciRecursiveUpdateBaW( pobj, oldNbColors, m ) ; /* missing line F.Leray */
+  }
 
   return 0;
 }

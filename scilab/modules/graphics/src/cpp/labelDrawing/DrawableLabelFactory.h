@@ -25,6 +25,12 @@ public:
    */
   DrawableObject * create( void ) ;
 
+  /**
+   * Update the drawer of the drawed object.
+   * To be used when an object was deeply modified and to avoid to create it again completely.
+   */
+  virtual void update( void ) ;
+
 } ;
 
 }

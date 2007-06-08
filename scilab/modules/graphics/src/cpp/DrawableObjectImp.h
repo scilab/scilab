@@ -31,19 +31,19 @@ namespace sciGraphics
     virtual void initializeDrawing( void ) = 0 ;
 
     /**
-    * Close drawing session (incl stop recording display list)
-    */
+     * Close drawing session (incl stop recording display list)
+     */
     virtual void endDrawing( void ) = 0 ;
 
     /**
-    * Initialize the context for showing (ie displaying recorded object)
-    * @param figureIndex index of parentFigure
-    */
+     * Initialize the context for showing (ie displaying recorded object)
+     * @param figureIndex index of parentFigure
+     */
     virtual void initializeShowing( void ) = 0 ;
 
     /**
-    * Close showing session
-    */
+     * Close showing session
+     */
     virtual void endShowing( void ) = 0 ;
 
   protected:

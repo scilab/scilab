@@ -18,5 +18,9 @@ DrawableObject * DrawableAxesFactory::create( void )
   return new DrawableAxes( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
-
+void DrawableAxesFactory::update( void )
+{
+ // nothing for now
+}
+/*------------------------------------------------------------------------------------------*/
 }

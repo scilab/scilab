@@ -18,10 +18,10 @@ import org.scilab.modules.graphics.utils.ColorMap;
  */
 public class ObjectJoGL {
 
+	/** Glu instance to use glu functionalities */
+	private GLU curGluInstance = new GLU();
 	/** current context to draw in */
 	private GL glPipeline;
-	/** Glu instance to use glu functionalities */
-	private GLU curGluInstance;
 	/** current colorMap to use */
 	private ColorMap curColorMap;
 
@@ -57,11 +57,16 @@ public class ObjectJoGL {
 	public void endDrawing() { }
 	
 	/**
+	 * Called when the objetc is destroyed from C code
+	 */
+	void destroy() { }
+	
+	/**
 	 * To avoid always creating new glu instance for the object,
 	 * only one is created
 	 * @return The current glu instance
 	 */
-	protected GLU getGlu() {
+	protected synchronized GLU getGlu() {
 		if (curGluInstance == null) {
 			curGluInstance = new GLU();
 		}

@@ -7,6 +7,7 @@
 
 #include "DrawingBridge.h"
 #include "getHandleDrawer.h"
+#include "DrawableObjectFactory.h"
 
 extern "C"
 {
@@ -32,6 +33,9 @@ void sciDrawObj( sciPointObj * pObj )
   /* force total redraw */
   /* we need to recreate a new one */
   //destroyHandleDrawer(pObj);
+  DrawableObjectFactory updater ;
+  updater.setGraphicObj( pObj ) ;
+  updater.update() ;
   getHandleDrawer(pObj)->hasChanged() ;
   /* redisplay everything, including this handle */
   getHandleDrawer( sciGetParentFigure( pObj ) )->display() ;

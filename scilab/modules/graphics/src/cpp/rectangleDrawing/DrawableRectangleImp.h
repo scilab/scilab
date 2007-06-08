@@ -11,6 +11,8 @@
 
 #include "../DrawableObject.h"
 #include "../DrawableObjectImp.h"
+#include "DrawRectangleStrategy.h"
+#include <list>
 
 namespace sciGraphics
 {
@@ -27,19 +29,34 @@ namespace sciGraphics
 
     DrawableRectangleImp( DrawableRectangle * drawer ) ;
 
-    virtual ~DrawableRectangleImp( void ) {}
+    virtual ~DrawableRectangleImp( void ) ;
 
     /**
      * Tell the canvas to draw itself.
      */
-    virtual void drawRectangle( void ) = 0 ;
+    virtual void drawRectangle( void ) ;
 
     /**
      * Return the drawed object
      */
     DrawableRectangle * getDrawer( void ) ;
 
+    /**
+    * Add a rendering algorithm
+    */
+    void addDrawingStrategy( DrawRectangleStrategy * strategy ) ;
+
+    /**
+    * Remove all drawing strategies.
+    */
+    void removeDrawingStrategies( void ) ;
+
   protected:
+
+    /**
+    * List of different rendering algorithms to perform
+    */
+    std::list<DrawRectangleStrategy *> m_oDrawingStrategies ;
 
   } ;
 

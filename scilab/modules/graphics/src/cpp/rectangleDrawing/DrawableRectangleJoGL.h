@@ -9,11 +9,8 @@
 #ifndef _DRAWABLE_RECTANGLE_JOGL_H_
 #define _DRAWABLE_RECTANGLE_JOGL_H_
 
-#include <jni.h>
-#include <list>
 
 #include "DrawableRectangleImp.h"
-#include "DrawRectangleStrategyJoGL.h"
 #include "../DrawableObjectJoGL.h"
 
 namespace sciGraphics
@@ -29,14 +26,9 @@ namespace sciGraphics
     virtual ~DrawableRectangleJoGL( void ) ;
 
     /**
-    * Tell the canvas to draw itself.
-    */
-    virtual void drawRectangle( void ) ;
-
-    /**
-     * Add a rendering algorithm
+     * Tell the canvas to draw itself.
      */
-    void addDrawingStrategy( DrawRectangleStrategyJoGL * strategy ) ;
+    virtual void drawRectangle( void ) ;
 
   protected:
 
@@ -44,14 +36,6 @@ namespace sciGraphics
     /** destroy the rectangle entity */
     void destroyRectangle( void ) ;
     /*-------------------------------------------------------------*/
-
-    /**
-     * List of different rendering algorithms to perform
-     */
-    std::list<DrawRectangleStrategyJoGL *> m_oDrawingStrategies ;
-    /*-------------------------------------------------------------*/
-
-    
 
   } ;
 

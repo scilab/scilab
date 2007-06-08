@@ -570,7 +570,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\rectangleDrawing\DrawRectangleStrategyJoGL.h"
+				RelativePath=".\rectangleDrawing\DrawRectangleStrategy.h"
 				>
 			</File>
 			<File

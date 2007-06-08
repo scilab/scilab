@@ -29,6 +29,11 @@ public:
    */
   void getCornersCoordinates( double corner1[3], double corner2[3], double corner3[3], double corner4[3] ) ;
 
+  /**
+   * Return the real type of implementation object
+   */
+  DrawableRectangleImp * getRectangleImp( void ) { return dynamic_cast<DrawableRectangleImp *>(m_pImp) ; }
+
 protected:
 
   /*---------------------------------------------------------------------------------*/
@@ -48,11 +53,6 @@ protected:
    * Actually draw the rectangle on the screen
    */
   void drawRectangle( void ) ;
-
-  /**
-  * Return the real type of implementation object
-  */
-  DrawableRectangleImp * getRectangleImp( void ) { return dynamic_cast<DrawableRectangleImp *>(m_pImp) ; }
   /*---------------------------------------------------------------------------------*/
 
 } ;
