@@ -13,7 +13,7 @@ src/c/loadhashtableslocalization.c \
 src/c/TerminateLocalization.c
 
 if WITH_JAVA
-LOCALIZATION_C_SOURCES += org_scilab_modules_localization_QueryString.c
+LOCALIZATION_C_SOURCES += src/c/org_scilab_modules_localization_QueryString.c
 endif
 
 
