@@ -4,14 +4,14 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include <libxml/xpath.h>
 #include <libxml/xmlreader.h>
-#include "loadClasspath.h"
+#include "loadLibrarypath.h"
 #include "GetXmlFileEncoding.h"
 #include "../../fileio/includes/FileExist.h"
-#include "addToClasspath.h"
+#include "addToLibrarypath.h"
 #include "setgetSCIpath.h"
 #include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/ 
-BOOL LoadClasspath(char *xmlfilename)
+BOOL LoadLibrarypath(char *xmlfilename)
 {
 	BOOL bOK = FALSE;
 	if ( FileExist(xmlfilename) )
@@ -26,7 +26,7 @@ BOOL LoadClasspath(char *xmlfilename)
 			xmlDocPtr doc;
 			xmlXPathContextPtr xpathCtxt = NULL;
 			xmlXPathObjectPtr xpathObj = NULL;
-			char *CLASSPATH=NULL;
+			char *LIBRARYPATH=NULL;
 
 			doc = xmlParseFile (xmlfilename);
 
@@ -38,7 +38,7 @@ BOOL LoadClasspath(char *xmlfilename)
 			}
 
 			xpathCtxt = xmlXPathNewContext(doc);
-			xpathObj = xmlXPathEval((const xmlChar*)"//classpaths/classpath", xpathCtxt);
+			xpathObj = xmlXPathEval((const xmlChar*)"//librarypaths/librarypath", xpathCtxt);
 
 			if(xpathObj && xpathObj->nodesetval->nodeMax) 
 			{
@@ -48,7 +48,7 @@ BOOL LoadClasspath(char *xmlfilename)
 				{
 
 					xmlAttrPtr attrib=xpathObj->nodesetval->nodeTab[i]->properties;
-					/* Get the properties of <CLASS>  */
+					/* Get the properties of <librarypath>  */
 					while (attrib != NULL)
 					{
 						/* loop until when have read all the attributes */
@@ -56,47 +56,47 @@ BOOL LoadClasspath(char *xmlfilename)
 						{ 
 							/* we found the tag primitiveName */
 							const char *str=(const char*)attrib->children->content;
-							CLASSPATH=(char*)MALLOC(sizeof(char)*(strlen((const char*)str)+1));
-							strcpy(CLASSPATH,str);
+							LIBRARYPATH=(char*)MALLOC(sizeof(char)*(strlen((const char*)str)+1));
+							strcpy(LIBRARYPATH,str);
 						}
 						attrib = attrib->next;
 					}
 
-					if ( (CLASSPATH) && (strlen(CLASSPATH) > 0) )
+					if ( (LIBRARYPATH) && (strlen(LIBRARYPATH) > 0) )
 					{
 						#define KEYWORDSCILAB "$SCILAB" 
 						char firstchars[8];
 						char *SCIPATH=NULL;
 						SCIPATH=getSCIpath();
 						
-						strncpy(firstchars,CLASSPATH,strlen(KEYWORDSCILAB));
+						strncpy(firstchars,LIBRARYPATH,strlen(KEYWORDSCILAB));
 						firstchars[strlen(KEYWORDSCILAB)]='\0';
 
 						if (strcmp(firstchars,KEYWORDSCILAB)==0)
 						{
-							char *modifypath = (char*)MALLOC(sizeof(char)*(strlen(SCIPATH)+strlen(CLASSPATH)+1));
+							char *modifypath = (char*)MALLOC(sizeof(char)*(strlen(SCIPATH)+strlen(LIBRARYPATH)+1));
 							strcpy(modifypath,SCIPATH);
-							strcat(modifypath,&CLASSPATH[strlen(KEYWORDSCILAB)]);
-							FREE(CLASSPATH);
-							CLASSPATH = modifypath;
+							strcat(modifypath,&LIBRARYPATH[strlen(KEYWORDSCILAB)]);
+							FREE(LIBRARYPATH);
+							LIBRARYPATH = modifypath;
 						}
 
   					    if (SCIPATH) {FREE(SCIPATH);SCIPATH=NULL;}
-                                                addToClasspath(CLASSPATH);
-						FREE(CLASSPATH);
-						CLASSPATH = NULL;
+                        addToLibrarypath(LIBRARYPATH);
+						FREE(LIBRARYPATH);
+						LIBRARYPATH = NULL;
 					}
 				}
 				bOK = TRUE;
 			}
 			else
-			{
+				{
 			printf("Wrong format for %s. \n", xmlfilename);
 			}
 		}
 		else
 		{
-			printf("Error : Not a valid classpath file %s (encoding not 'utf-8') Encoding '%s' found\n", xmlfilename, encoding);
+			printf("Error : Not a valid path file %s (encoding not 'utf-8') Encoding '%s' found\n", xmlfilename, encoding);
 		}
 		if (encoding) {FREE(encoding);encoding=NULL;}
 	}

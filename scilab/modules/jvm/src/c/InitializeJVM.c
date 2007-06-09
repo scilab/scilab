@@ -7,10 +7,14 @@
 #include <string.h>
 #include "InitializeJVM.h"
 #include "loadClasspath.h"
+#include "loadLibrarypath.h"
 #include "setgetSCIpath.h"
 #include "MALLOC.h"
 #include "JVM.h"
 #include "createMainScilabObject.h"
+/*-----------------------------------------------------------------------------------*/ 
+static void DoLoadClasspathInEtc(char *SCIPATH);
+static void DoLoadLibrarypathInEtc(char *SCIPATH);
 /*-----------------------------------------------------------------------------------*/ 
 BOOL InitializeJVM(void)
 {
@@ -30,14 +34,9 @@ BOOL InitializeJVM(void)
 #endif
 	}
 	else
-
 	{
-		#define XMLCLASSPATH "%s/etc/classpath.xml"
-		char *classpathfile = NULL;
-		classpathfile = (char*)MALLOC(sizeof(char)*(strlen(SCIPATH)+strlen(XMLCLASSPATH)+1));
-		sprintf(classpathfile,XMLCLASSPATH,SCIPATH);
-		LoadClasspath(classpathfile);
-		if (classpathfile) {FREE(classpathfile); classpathfile = NULL;}
+		DoLoadLibrarypathInEtc(SCIPATH);
+		DoLoadClasspathInEtc(SCIPATH);
 
 		bOK = createMainScilabObject();
 
@@ -58,4 +57,25 @@ BOOL InitializeJVM(void)
 	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/ 
+static void DoLoadClasspathInEtc(char *SCIPATH)
+{
+	#define XMLCLASSPATH "%s/etc/classpath.xml"
+	char *classpathfile = NULL;
+	classpathfile = (char*)MALLOC(sizeof(char)*(strlen(SCIPATH)+strlen(XMLCLASSPATH)+1));
+	sprintf(classpathfile,XMLCLASSPATH,SCIPATH);
+	LoadClasspath(classpathfile);
+	if (classpathfile) {FREE(classpathfile); classpathfile = NULL;}
+}
+/*-----------------------------------------------------------------------------------*/ 
+static void DoLoadLibrarypathInEtc(char *SCIPATH)
+{
+	#define XMLLIBRARYPATH "%s/etc/librarypath.xml"
+	char *librarypathfile = NULL;
+	librarypathfile = (char*)MALLOC(sizeof(char)*(strlen(SCIPATH)+strlen(XMLLIBRARYPATH)+1));
+	sprintf(librarypathfile,XMLLIBRARYPATH,SCIPATH);
+	LoadLibrarypath(librarypathfile);
+	if (librarypathfile) {FREE(librarypathfile); librarypathfile = NULL;}
+}
+/*-----------------------------------------------------------------------------------*/ 
+
 

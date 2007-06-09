@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>javalibrarypath</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>$LastChangedDate: 2007-05-10 09:26:08 +0200$</DATE>
+
+  <SHORT_DESCRIPTION name="javalibrarypath">set and get dynamic java.library.path</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>res=javalibrarypath()</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>javalibrarypath(path)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>res</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: a string matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>set and get the dynamic Java Library path to one or more directory given in path.</P>
+    <P>When you use java classes with native methods, you need to define path where is dynamic library.</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[res=javalibrarypath();
+javalibrarypath(SCI);
+javalibrarypath([SCI,SCI+'/.lib']);
+]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>javaclasspath</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHOR>A.C</AUTHOR>
+</MAN>

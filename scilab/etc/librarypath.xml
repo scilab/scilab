@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE librarypaths SYSTEM "../modules/jvm/xml/librarypath.dtd">
+<!-- =================== -->
+<!--
+ default java.library.path for Scilab
+ add path only if path exists
+ @author Allan CORNET
+ @date INRIA 2007
+ ===================
+ Don't touch if you do not know what you are doing
+-->
+<!-- =================== -->
+
+<librarypaths>
+<librarypath path="$SCILAB/bin"/>
+<librarypath path="$SCILAB/.libs"/>
+</librarypaths>

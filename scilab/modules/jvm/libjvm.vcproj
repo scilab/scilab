@@ -203,6 +203,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\addToLibrarypath.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\catchIfJavaException.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\createMainScilabObject.c"
 				>
 			</File>
@@ -212,6 +220,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\getClasspath.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getLibrarypath.c"
 				>
 			</File>
 			<File
@@ -243,7 +255,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\loadLibrarypath.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\c\sci_javaclasspath.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\c\sci_javalibrarypath.c"
 				>
 			</File>
 			<File
@@ -262,10 +282,6 @@
 				RelativePath=".\src\c\TerminateJVM.c"
 				>
 			</File>
-			<File
-				RelativePath=".\src\c\catchIfJavaException.c"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -277,11 +293,23 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\addToLibrarypath.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\catchIfJavaException.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\createMainScilabObject.h"
 				>
 			</File>
 			<File
 				RelativePath=".\src\c\getClasspath.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getLibrarypath.h"
 				>
 			</File>
 			<File
@@ -325,6 +353,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\loadLibrarypath.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\resource.h"
 				>
 			</File>
@@ -334,10 +366,6 @@
 			</File>
 			<File
 				RelativePath=".\includes\TerminateJVM.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\catchIfJavaException.h"
 				>
 			</File>
 		</Filter>

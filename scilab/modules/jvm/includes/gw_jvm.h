@@ -15,6 +15,7 @@ int C2F(gw_jvm)(void);
 int C2F(sci_with_embedded_jre) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_system_getproperty) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_javaclasspath) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_javalibrarypath) _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/
 #endif /*  __GW_JVM_H__ */
 

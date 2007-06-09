@@ -28,6 +28,7 @@ root_DATA = $(top_srcdir)/etc/scilab.start \
 $(top_srcdir)/etc/scilab.quit \
 $(top_srcdir)/etc/modules.xml \
 $(top_srcdir)/etc/classpath.xml \
+$(top_srcdir)/etc/librarypath.xml \
 $(top_srcdir)/etc/toolboxes.xml
 
 all: macros

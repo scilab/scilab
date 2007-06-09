@@ -69,6 +69,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\org\scilab\modules\jvm\LibraryPath.java"
+				>
+			</File>
+			<File
 				RelativePath=".\org\scilab\modules\jvm\Scilab.java"
 				>
 			</File>

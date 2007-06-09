@@ -16,28 +16,38 @@ BOOL LoadDynLibJVM(char *SCILAB_PATH);
 
 /**
 * Free JVM dynamic library
-* @return TRUE or FALSE
+* @return <ReturnValue> TRUE or FALSE
 */
 BOOL FreeDynLibJVM(void);
 
 /**
 * wrapping JNI_CreateJavaVM
+* @param pvm   
+* @param penv  
+* @param args  
+* @return <ReturnValue>
 */
 jint SciJNI_CreateJavaVM(JavaVM **pvm, void **penv, void *args);
 
 /**
 * wrapping JNI_GetCreatedJavaVMs
+* @param vmBuf 
+* @param BufLen    
+* @param nVMs  
+* @return <ReturnValue>
 */
 jint SciJNI_GetCreatedJavaVMs(JavaVM **vmBuf, jsize BufLen, jsize *nVMs);
 
 /**
 * wrapping JNI_GetDefaultJavaVMInitArgs
+* @param args  
+* @return <ReturnValue>
 */
 jint SciJNI_GetDefaultJavaVMInitArgs(void *args);
 
 /**
 * Check if Scilab uses embedded JRE
-* @return TRUE or FALSE
+* @return <ReturnValue> TRUE or FALSE
 */
 BOOL withEmbeddedJRE(void);
 

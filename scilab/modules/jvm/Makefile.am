@@ -35,14 +35,17 @@ includes/getScilabJNIEnv.h \
 includes/InitializeJVM.h \
 includes/gw_jvm.h \
 includes/JniUtils.h \
-includes/addToClasspath.h
+includes/addToClasspath.h \
+includes/addToLibrarypath.h \
 
 if WITH_JAVA
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_system_getproperty.c \
 sci_gateway/c/sci_with_embedded_jre.c \
 sci_gateway/c/sci_javaclasspath.c \
-sci_gateway/c/gw_jvm.c
+sci_gateway/c/gw_jvm.c \
+sci_gateway/c/sci_javalibrarypath.c
+
 
 JVM_C_SOURCES = src/c/InitializeJVM.c \
 src/c/TerminateJVM.c \
@@ -55,7 +58,10 @@ src/c/system_getproperty.c \
 src/c/loadClasspath.c \
 src/c/createMainScilabObject.c \
 src/c/JVM_commons.c \
-src/c/catchIfJavaException.c
+src/c/catchIfJavaException.c \
+src/c/loadLibrarypath.c \
+src/c/getLibrarypath.c \
+src/c/addToLibrarypath.c
 
 USEANT=1
 

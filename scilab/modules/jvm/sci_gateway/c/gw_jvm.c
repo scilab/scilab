@@ -25,7 +25,8 @@ static jvmTable Tab[]=
 {
 	{C2F(sci_with_embedded_jre),"with_embedded_jre"},
 	{C2F(sci_system_getproperty),"system_getproperty"},
-	{C2F(sci_javaclasspath),"javaclasspath"}
+	{C2F(sci_javaclasspath),"javaclasspath"},
+	{C2F(sci_javalibrarypath),"javalibrarypath"}
 };
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_jvm)(void)

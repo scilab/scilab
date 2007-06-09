@@ -28,6 +28,7 @@ INRIA 2007
 		<attribute name="Scilab" value="javasci.Scilab"/>
 		<attribute name="SciStringArray" value="javasci.SciStringArray"/>
 		<attribute name="ClassPath" value="javasci.ClassPath"/>
+		<attribute name="LibraryPath" value="javasci.LibraryPath"/>
 	  </manifest>
 	</jar>
   </target>

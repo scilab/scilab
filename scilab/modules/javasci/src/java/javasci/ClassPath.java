@@ -1,11 +1,13 @@
-/*--------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 /**
- * Loading classes at runtime.
- */
-/*--------------------------------------------------------------------------*/
-package javasci;
-/*--------------------------------------------------------------------------*/
+* Loading classes at runtime.
+* @author Allan CORNET - INRIA 2007
+*/
+/*-----------------------------------------------------------------------------------*/
+package org.scilab.modules.jvm;
+/*-----------------------------------------------------------------------------------*/ 
 import java.lang.reflect.Method;
+import java.lang.reflect.InvocationTargetException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -18,6 +20,14 @@ import java.net.URI;
 public class ClassPath {
 
 private static final Class[] parameters = new Class[]{URL.class};
+
+/**
+ * Constructor
+ */
+protected ClassPath() {
+	/*  indicate that the requested operation is not supported */
+	throw new UnsupportedOperationException(); 		
+}
 
 /**
  * add a filename to java classpath.
@@ -54,9 +64,12 @@ try {
 Method method = sysclass.getDeclaredMethod("addURL", parameters);
 method.setAccessible(true);
 method.invoke(sysloader , new Object[] {u });
-} catch (Throwable t) {
-t.printStackTrace();
-throw new IOException("Error, could not add URL to system classloader");
+} catch (NoSuchMethodException e) {
+	throw new IOException("Error NoSuchMethodException, could not add URL to system classloader");
+} catch (IllegalAccessException e) {
+	throw new IOException("Error IllegalAccessException, could not add URL to system classloader");
+} catch (InvocationTargetException e) {
+	throw new IOException("Error InvocationTargetException, could not add URL to system classloader");
 }
 
 }
