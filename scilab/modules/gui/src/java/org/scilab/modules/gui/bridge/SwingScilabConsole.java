@@ -11,7 +11,6 @@ import com.artenum.jyconsole.JyConsole;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.localization.QueryString;
 
 /**
  * Swing implementation for Scilab Console in GUIs
@@ -34,7 +33,6 @@ public class SwingScilabConsole extends JyConsole implements Console {
 	 */
 	public void display(String dataToDisplay) {
 		// TODO write this method !!
-		System.out.println(QueryString.error("core_error_41"));
 		System.out.println(dataToDisplay);
 		
 		// uncomment this line
