@@ -42,7 +42,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../src/c;../includes;../../core/includes;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml"
+				AdditionalIncludeDirectories="../src/c;../includes;../../core/includes;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml;../../../java/jdk/include;../../../java/jdk/include/win32;"
 				PreprocessorDefinitions="FORDLL;_DLL;STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE;EXPORT_LOCALIZATION_DLL"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
@@ -72,12 +72,12 @@
 				Name="VCLinkerTool"
 				AdditionalOptions="/fixed:no"
 				AdditionalDependencies="Libscilab.lib"
-				OutputFile="..\..\..\bin\localization.dll"
+				OutputFile="..\..\..\bin\scilocalization.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="localization.def"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="$(TargetDir)$(TargetName).pdb"
-				ImportLibrary="..\..\..\bin\localization.lib"
+				ImportLibrary="..\..\..\bin\scilocalization.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -133,7 +133,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../src/c;../includes;../../core/includes;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml"
+				AdditionalIncludeDirectories="../src/c;../includes;../../core/includes;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml;../../../java/jdk/include;../../../java/jdk/include/win32;"
 				PreprocessorDefinitions="FORDLL;EXPORT_LOCALIZATION_DLL;STRICT;NDEBUG;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -163,11 +163,11 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="Libscilab.lib"
-				OutputFile="..\..\..\bin\localization.dll"
+				OutputFile="..\..\..\bin\scilocalization.dll"
 				ModuleDefinitionFile="localization.def"
 				OptimizeForWindows98="1"
 				SupportUnloadOfDelayLoadedDLL="true"
-				ImportLibrary="..\..\..\bin\localization.lib"
+				ImportLibrary="..\..\..\bin\scilocalization.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -232,6 +232,10 @@
 			</File>
 			<File
 				RelativePath=".\c\localization.c"
+				>
+			</File>
+			<File
+				RelativePath=".\c\org_scilab_modules_localization_QueryString.c"
 				>
 			</File>
 			<File
@@ -301,6 +305,10 @@
 			</File>
 			<File
 				RelativePath="..\includes\localization.h"
+				>
+			</File>
+			<File
+				RelativePath=".\c\org_scilab_modules_localization_QueryString.h"
 				>
 			</File>
 			<File

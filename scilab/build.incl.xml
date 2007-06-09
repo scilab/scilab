@@ -50,6 +50,7 @@
 	
 	<path id="compile.classpath">
 	
+	  <pathelement location="${library.localization.dir}/${library.localization.name}"/>
 		<pathelement location="${library.shell.dir}/${library.shell.name}"/>
 		<pathelement location="${library.gui.dir}/${library.gui.name}"/>
 		<pathelement location="${library.jvm.dir}/${library.jvm.name}"/>

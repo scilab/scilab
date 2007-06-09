@@ -12,6 +12,11 @@ src/c/getentrieshashtable.c \
 src/c/loadhashtableslocalization.c \
 src/c/TerminateLocalization.c
 
+if WITH_JAVA
+LOCALIZATION_C_SOURCES += org_scilab_modules_localization_QueryString.c
+endif
+
+
 GATEWAY_C_SOURCES = sci_gateway/c/gw_localization.c \
 sci_gateway/c/sci_setlanguage.c \
 sci_gateway/c/sci_getlanguage.c \
@@ -22,9 +27,10 @@ sci_gateway/c/sci_removetext.c \
 sci_gateway/c/sci_gettext.c
 
 
-libscilocalization_la_CFLAGS=  -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/ $(XML_FLAGS)
 
-libscilocalization_la_LDFLAGS = $(XML_LIBS)
+libscilocalization_la_CFLAGS=  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/ $(XML_FLAGS)
+
+libscilocalization_la_LDFLAGS = $(JAVA_JNI_LIBS) $(XML_LIBS)
 
 pkglib_LTLIBRARIES = libscilocalization.la
 
@@ -54,5 +60,10 @@ libscilocalization_la_sci_gateway_DATA = sci_gateway/localization_gateway.xml
 libscilocalization_la_includedir=$(pkgincludedir)/localization
 libscilocalization_la_include_HEADERS = includes/localization.h \
 includes/gw_localization.h
+
+if WITH_JAVA
+USEANT=1
+endif
+
 
 include $(top_srcdir)/Makefile.incl.am

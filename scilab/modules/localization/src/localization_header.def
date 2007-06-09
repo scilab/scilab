@@ -1,4 +1,4 @@
-LIBRARY    localization.dll
+LIBRARY    scilocalization.dll
 
 
 EXPORTS
