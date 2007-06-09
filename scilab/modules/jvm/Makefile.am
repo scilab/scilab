@@ -36,7 +36,7 @@ includes/InitializeJVM.h \
 includes/gw_jvm.h \
 includes/JniUtils.h \
 includes/addToClasspath.h \
-includes/addToLibrarypath.h \
+includes/addToLibrarypath.h
 
 if WITH_JAVA
 
