@@ -24,7 +24,7 @@ while ilst<=nlst then
     end
     //non interpreted code lines (e.g. subfunction definition body)
     if lst(ilst)(1)=='26' then 
-      ncode=ncode+eval(lst(ilst)(2))
+      ncode=ncode+eval(lst(ilst)(2))-1
     end
     //subfunction definition trailer
     if lst(ilst)(1)=='20' &  lst(ilst)(2)=="deff" then 
