@@ -7,7 +7,12 @@
  --------------------------------------------------------------------------*/
 #define GREYNUMBER 17
 #define DEFAULTNUMCOLORS 32
+
+#ifndef _MSC_VER
 extern unsigned short default_colors[];
+#endif
+
+
 #define DEFAULTBLACK 0
 #define DEFAULTWHITE 7
 

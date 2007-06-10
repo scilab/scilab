@@ -94,7 +94,7 @@ char ** createCopyStringMatrixFromStack( int stackPointer, int nbElement )
 
   for ( i = 0 ; i < nbElement ; i++ )
   {
-    int size = strlen( values[i] ) + 1 ;
+    int size =  (int)strlen( values[i] ) + 1 ;
     res[i] = MALLOC( size * sizeof(char) ) ;
 
     if ( res[i] == NULL )

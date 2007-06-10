@@ -1,0 +1,37 @@
+LIBRARY    graphics.dll
+
+
+EXPORTS
+; from graphics
+sciIsExistingFigure
+sciGetLineStyle
+sciGetCurrentScilabXgc
+sciGetIsMark
+sciGetIsFilled
+sciGetIsLine
+sciGetParent
+sciGetInfoMessage
+sciGetForeground
+sciGetLineWidth
+sciGetGraphicContext
+sciGetNumColors
+sciGetLastSons
+sciGetVisibility
+sciGetEntityType
+sciGetParentFigure
+drawTextEntity
+drawSurfaceEntity
+drawSubWinEntity
+drawSegsEntity
+drawRectangleEntity
+drawPolylineEntity
+drawLegendEntity
+drawGrayplotEntity
+sciGetNum
+sciGetBackground
+drawFecEntity
+drawCompoundEntity
+drawAxesEntity
+drawArcEntity
+sciGetCurrentFigure
+getHandleDrawer

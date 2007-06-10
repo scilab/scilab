@@ -4972,7 +4972,7 @@ int sciGetInfoMessageLength( sciPointObj * pObj )
   switch ( sciGetEntityType(pObj) )
   {
   case SCI_FIGURE:
-    return strlen( pFIGURE_FEATURE(pObj)->infoMessage ) ;
+    return  (int)strlen( pFIGURE_FEATURE(pObj)->infoMessage ) ;
   default:
     sciprint( "This object has no info_message property.\n" ) ;
     return -1 ;

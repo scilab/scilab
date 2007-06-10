@@ -2763,7 +2763,7 @@ sciPointObj * ConstructUimenu (sciPointObj * pparent, char *label,char *callback
 	}
 
       strcpy(pUIMENU_FEATURE (pobj)->label.callback,callback);
-      pUIMENU_FEATURE (pobj)->label.callbacklen = strlen(callback); 
+      pUIMENU_FEATURE (pobj)->label.callbacklen =  (int)strlen(callback); 
 
       pUIMENU_FEATURE (pobj)->visible = TRUE; /* A changer */ 
 

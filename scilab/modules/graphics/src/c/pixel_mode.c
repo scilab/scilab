@@ -49,7 +49,7 @@ int getPixelModeIndex( const char * modeName )
 
   int nameLen = 0 ;
 
-  nameLen = strlen( modeName ) ;
+  nameLen =  (int)strlen( modeName ) ;
 
   switch( modeName[0] )
   {

@@ -257,7 +257,7 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
     if (with_leg) {
       sciSetCurrentObj (ConstructLegend
                         (sciGetCurrentSubWin(),
-			 legend, strlen(legend), *n1, style, pptabofpointobj)); 
+			 legend,  (int)strlen(legend), *n1, style, pptabofpointobj)); 
       hdl=sciGetHandle(sciGetCurrentObj ());   
       hdltab[cmpt]=hdl;
       cmpt++;

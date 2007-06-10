@@ -51,6 +51,7 @@
 #include "Xcall1.h"
 #include "periScreen.h"
 
+#include "color.h"
 
 #if defined(_MSC_VER)
 #define CoordModePrevious 1
@@ -85,7 +86,9 @@ static FILE *file= (FILE *) 0;
 static FILE *file= stdout ;
 #endif
 
-
+#ifdef _MSC_VER
+extern unsigned short default_colors[];
+#endif
 
 
 void C2F(WriteGeneric1Gif)();
@@ -2360,7 +2363,7 @@ void C2F(queryfamilyGif)(char *name, integer *j, integer *v3, integer *v4, integ
   integer i ;
   name[0]='\0';
   for (i=0;i<FONTNUMBER;i++) {
-    v3[i]=strlen(FontInfoTabGif[i].fname);
+    v3[i]=(integer)strlen(FontInfoTabGif[i].fname);
     strcat(name,FontInfoTabGif[i].fname);
   }
   *j=FONTNUMBER;

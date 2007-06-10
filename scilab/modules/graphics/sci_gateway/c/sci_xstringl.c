@@ -57,7 +57,7 @@ int sci_xstringl( char *fname, unsigned long fname_len )
     for (j = 0 ; j < n3 ; ++j) 
     {
       strcpy(C2F(cha1).buf + ib,Str[i+ m3*j]);
-      ib += strlen(Str[i+ m3*j]);
+      ib +=  (int)strlen(Str[i+ m3*j]);
       if ( j != n3-1) { C2F(cha1).buf[ib]=' '; ib++;}
     }
     C2F(dr1)("xstringl",C2F(cha1).buf,&v,&v,&v,&v,&v,&v,&x,&y,rect,&dv,9L,bsiz);

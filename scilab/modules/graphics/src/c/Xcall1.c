@@ -198,7 +198,7 @@ int C2F(dr1)( char x0[],char x1[],integer *x2,integer *x3,integer *x4,integer *x
 	            integer lx0, integer lx1)
 { 
   const struct funreplace *fr;
-  fr=in_word_set(x0,strlen(x0));
+  fr=in_word_set(x0,(unsigned long)strlen(x0));
   if ( fr != NULL ) 
     {
       (*(fr->action))(x0,x1,x2,x3,x4,x5,x6,x7,dx1,dx2,dx3,dx4,lx0,lx1);
@@ -255,7 +255,7 @@ int C2F(xgetg)( char * str, char * str1, integer * len,integer  lx0,integer lx1)
   if ( strcmp(str,"fpf") == 0) 
   {
     strncpy(str1,FPF,32);
-    *len= strlen(str1);
+    *len= (integer)strlen(str1);
   }
   else if ( strcmp(str,"auto clear")==0) 
   {

@@ -60,7 +60,7 @@ int insertGetHashtable( GetPropertyHashTable * hashTable, char * key, getPropert
   /* allocate a new key because the hashtable claims ownership */
   /* and will free it when destroyed */
   char * copyKey   = NULL ;
-  int    keyLength = strlen( key ) + 1 ;
+  int    keyLength =  (int)strlen( key ) + 1 ;
 
   copyKey = MALLOC( keyLength * sizeof(char) ) ;
   if ( copyKey == NULL ) { return 0 ; }
@@ -90,7 +90,7 @@ int insertSetHashtable( SetPropertyHashTable * hashTable, char * key, setPropert
   /* allocate a new key because the hashtable claims ownership */
   /* and will free it when destroyed */
   char * copyKey   = NULL ;
-  int    keyLength = strlen( key ) + 1 ;
+  int    keyLength =  (int)strlen( key ) + 1 ;
 
   copyKey = MALLOC( keyLength * sizeof(char) ) ;
   strcpy( copyKey, key ) ;

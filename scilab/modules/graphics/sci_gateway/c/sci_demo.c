@@ -14,7 +14,7 @@
 
 int sci_demo( char * fname, char * code, int * flagx )
 {
-  int mlhs=0,mrhs=1,ibegin=1, l1, m1=strlen(code), n1=1;
+  int mlhs=0,mrhs=1,ibegin=1, l1, m1= (int)strlen(code), n1=1;
 	static char name[] = "execstr" ;
 	Nbvars = 0 ;
 	

@@ -4800,7 +4800,7 @@ int sciSetInfoMessage( sciPointObj * pObj, const char * newMessage )
       }
       else
       {
-        int messageSize = strlen( newMessage ) + 1 ;
+        int messageSize =  (int)strlen( newMessage ) + 1 ;
         if ( ppFigure->infoMessage != NULL )
         {
           ppFigure->infoMessage = REALLOC( ppFigure->infoMessage, messageSize * sizeof(char) ) ;
@@ -4826,7 +4826,7 @@ int sciInitEventHandler( sciPointObj * pObj, char * name )
   {
   case SCI_FIGURE:
     {
-      int nameLength = strlen( name ) + 1 ;
+      int nameLength =  (int)strlen( name ) + 1 ;
       sciFigure * ppFigure = pFIGURE_FEATURE(pObj) ;
       if ( ppFigure->eventHandler != NULL )
       {

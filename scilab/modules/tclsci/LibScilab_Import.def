@@ -29,7 +29,6 @@ EXPORTS
  intersci_
  createvarfromptr_
  ExceptionMessage
- set_cf_type
  getSCIpath
  error_scilab
  message_scilab

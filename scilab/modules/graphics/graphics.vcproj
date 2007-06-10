@@ -4,6 +4,8 @@
 	Version="8,00"
 	Name="graphics"
 	ProjectGUID="{8CCDD3C2-B025-4A12-A986-1AA28D7C0C33}"
+	RootNamespace="graphics"
+	Keyword="Win32Proj"
 	>
 	<Platforms>
 		<Platform
@@ -15,11 +17,9 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="false"
+			ConfigurationType="2"
 			CharacterSet="2"
 			>
 			<Tool
@@ -41,37 +41,42 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="../../java/jdk/include;../../java/jdk/include/win32;includes;../core/includes;../../libs/MALLOC/includes;../../libs/hashtable;src/c;src/cpp;../jvm/includes"
-				PreprocessorDefinitions="_LIB;STRICT;WITH_TK;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
+				PreprocessorDefinitions="FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
+				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
-				RuntimeLibrary="1"
+				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=""
-				AssemblerListingLocation="$(ConfigurationName)/"
-				ObjectFile="$(ConfigurationName)/"
-				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
-				SuppressStartupBanner="true"
+				Detect64BitPortabilityProblems="true"
 				DebugInformationFormat="3"
-				CompileAs="0"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG"
-				Culture="1036"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				Description="Make dependencies"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n graphics.dll %%f &gt;nul&#x0D;&#x0A;copy *.def graphicstmp.def &gt;nul&#x0D;&#x0A;copy ..\graphics_header.def+graphicstmp.def  ..\graphics.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../libs/graphics.lib"
-				SuppressStartupBanner="true"
+				Name="VCLinkerTool"
+				AdditionalOptions="/fixed:no"
+				AdditionalDependencies="LibScilab.lib ../../bin/blasplus.lib ../../bin/lapack.lib"
+				OutputFile="../../bin/$(ProjectName).dll"
+				LinkIncremental="1"
+				ModuleDefinitionFile="graphics.def"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				TargetMachine="1"
 			/>
 			<Tool
 				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -83,18 +88,22 @@
 				Name="VCFxCopTool"
 			/>
 			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def graphics.def &gt;nul&#x0D;&#x0A;copy graphics.def ..\..\..\libs\graphics.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd.. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="false"
+			ConfigurationType="2"
 			CharacterSet="2"
+			WholeProgramOptimization="0"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -113,42 +122,49 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				AdditionalIncludeDirectories="../../java/jdk/include;../../java/jdk/include/win32;includes;../core/includes;../../libs/MALLOC/includes;../../libs/hashtable;src/c;src/cpp;../jvm/includes"
-				PreprocessorDefinitions="NDEBUG;_LIB;STRICT;WITH_TK;_CRT_SECURE_NO_DEPRECATE"
+				PreprocessorDefinitions="FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
-				RuntimeLibrary="0"
+				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				EnableEnhancedInstructionSet="1"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=""
-				AssemblerListingLocation="$(ConfigurationName)/"
-				ObjectFile="$(ConfigurationName)/"
-				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
-				SuppressStartupBanner="true"
-				CompileAs="0"
+				Detect64BitPortabilityProblems="false"
+				DebugInformationFormat="0"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG"
-				Culture="1036"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				Description="Make dependencies"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n graphics.dll %%f &gt;nul&#x0D;&#x0A;copy *.def graphicstmp.def &gt;nul&#x0D;&#x0A;copy ..\graphics_header.def+graphicstmp.def  ..\graphics.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../libs/graphics.lib"
-				SuppressStartupBanner="true"
+				Name="VCLinkerTool"
+				AdditionalDependencies="LibScilab.lib ../../bin/blasplus.lib ../../bin/lapack.lib"
+				OutputFile="../../bin/$(ProjectName).dll"
+				LinkIncremental="1"
+				ModuleDefinitionFile="graphics.def"
+				GenerateDebugInformation="false"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				LinkTimeCodeGeneration="0"
+				ImportLibrary="../../bin/$(ProjectName).lib"
+				TargetMachine="1"
 			/>
 			<Tool
 				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -160,8 +176,13 @@
 				Name="VCFxCopTool"
 			/>
 			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def graphics.def &gt;nul&#x0D;&#x0A;copy graphics.def ..\..\..\libs\graphics.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd.. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>
@@ -170,7 +191,8 @@
 	<Files>
 		<Filter
 			Name="Source Files"
-			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
+			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
+			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
 				RelativePath=".\src\c\Actions.c"
@@ -885,19 +907,6 @@
 				>
 			</File>
 			<File
-				RelativePath="src\c\periWin.c"
-				>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						FavorSizeOrSpeed="2"
-					/>
-				</FileConfiguration>
-			</File>
-			<File
 				RelativePath=".\src\c\pixel_mode.c"
 				>
 			</File>
@@ -1158,6 +1167,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\c\sci_xload.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\c\sci_xname.c"
 				>
 			</File>
@@ -1199,6 +1212,10 @@
 			</File>
 			<File
 				RelativePath=".\sci_gateway\c\sci_xs2ps.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\c\sci_xsave.c"
 				>
 			</File>
 			<File
@@ -1796,7 +1813,8 @@
 		</Filter>
 		<Filter
 			Name="Header Files"
-			Filter="h;hpp;hxx;hm;inl"
+			Filter="h;hpp;hxx;hm;inl;inc;xsd"
+			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
 				RelativePath=".\includes\Actions.h"
@@ -1931,10 +1949,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\fig.h"
-				>
-			</File>
-			<File
 				RelativePath=".\includes\Format.h"
 				>
 			</File>
@@ -1979,10 +1993,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\Graphics.h"
-				>
-			</File>
-			<File
 				RelativePath=".\includes\graphicSession.h"
 				>
 			</File>
@@ -1999,10 +2009,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\gsort.h"
-				>
-			</File>
-			<File
 				RelativePath=".\includes\gw_graphics.h"
 				>
 			</File>
@@ -2012,10 +2018,6 @@
 			</File>
 			<File
 				RelativePath=".\includes\InitObjects.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\intcommongraphics.h"
 				>
 			</File>
 			<File
@@ -2071,10 +2073,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\Plo2d.h"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\Plo2dEch.h"
 				>
 			</File>
@@ -2088,10 +2086,6 @@
 			</File>
 			<File
 				RelativePath=".\includes\PloEch.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\qsort.h"
 				>
 			</File>
 			<File
@@ -2404,10 +2398,6 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_xsnative.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xsort.h"
 				>
 			</File>
 			<File

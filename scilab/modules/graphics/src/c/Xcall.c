@@ -354,7 +354,7 @@ static void C2F(all)(char x0[],char x1[],integer *x2,integer *x3,integer *x4,int
 		     integer *x7,double *dx1,double *dx2,double *dx3,double *dx4, integer lx0, integer lx1)
 { 
   const struct funreplace *fr;
-  fr=xcall_in_word_set(x0,strlen(x0));
+  fr=xcall_in_word_set(x0,(unsigned int)strlen(x0));
   if ( fr != NULL ) 
     {
       (*(fr->action[DriverId]))(x1,x2,x3,x4,x5,x6,x7,dx1,dx2,dx3,dx4,lx0,lx1);

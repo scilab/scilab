@@ -8,9 +8,9 @@
 #include "../../../modules/graphics/includes/xs2file.h"
 /*-----------------------------------------------------------------------------------*/
 extern HINSTANCE hdllInstance;
-extern int WindowsPrintScreen;
-extern int Printer_XRes;
-extern int Printer_YRes;
+static int WindowsPrintScreen;
+static int Printer_XRes;
+static int Printer_YRes;
 extern void dos2win32 (char *filename, char *filename1);
 extern char GetPrinterOrientation(void);
 extern void Setscig_buzyState(BOOL state);

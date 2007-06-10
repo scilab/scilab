@@ -48,8 +48,14 @@ static BOOL ScilabGCPos_is_initialized = FALSE;
 #include "math_graphics.h"
 #include "periPos.h"
 #include "color.h"
+
 #include "bcg.h" /* NG */
 #include "MALLOC.h" /* MALLOC */
+
+
+#ifdef _MSC_VER
+extern unsigned short default_colors[];
+#endif
 
 void C2F(WriteGeneric1Pos)(char *string, integer nobjpos, integer objbeg, integer sizeobj, integer *vx, integer *vy, integer flag, integer *fvect);
 void C2F(xgetmarkPos)(integer *verbose, integer *symb, integer *narg, double *dummy);
@@ -2488,7 +2494,7 @@ void C2F(queryfamilyPos)(char *name, integer *j, integer *v3, integer *v4, integ
   name[0]='\0';
   for (i=0;i<FONTNUMBER;i++) {
     strcat(name,FontInfoTabPos[i].fname);
-    v3[i]=strlen(FontInfoTabPos[i].fname);
+    v3[i]=(integer)strlen(FontInfoTabPos[i].fname);
   }
   *j=FONTNUMBER;
 }

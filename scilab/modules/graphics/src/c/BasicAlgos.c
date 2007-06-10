@@ -107,7 +107,7 @@ void stringArrayCopy( char * dest[], char * src[], int nbElement )
   int i ;
   for ( i = 0 ; i < nbElement ; i++ )
   {
-    int elemSize = strlen( src[i] ) + 1 ;
+    int elemSize =  (int)strlen( src[i] ) + 1 ;
     FREE( dest[i] ) ;
 
     dest[i] = MALLOC( elemSize * sizeof(char) ) ;

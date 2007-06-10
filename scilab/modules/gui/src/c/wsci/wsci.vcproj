@@ -303,6 +303,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\periWin.c"
+				>
+			</File>
+			<File
 				RelativePath=".\printf.c"
 				>
 			</File>

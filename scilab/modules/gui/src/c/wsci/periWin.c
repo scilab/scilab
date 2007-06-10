@@ -25,22 +25,22 @@
 
 #include "sciprint.h"
 
-#include "../../gui/src/c/wsci/wresource.h"
-#include "../../gui/src/c/wsci/resource.h"
-#include "../../gui/src/c/wsci/wcommon.h"
-#include "../../gui/src/c/wsci/wgraph.h"
-#include "../../gui/src/c/wsci/wtext.h"
-#include "Events.h"
+#include "wresource.h"
+#include "resource.h"
+#include "wcommon.h"
+#include "wgraph.h"
+#include "wtext.h"
+#include "../../../../graphics/includes/Events.h"
 
-#include "bcg.h"
-#include "periWin.h" 
-#include "color.h" 
-#include "scigraphic.h"
+#include "../../../../graphics/includes/bcg.h"
+#include "../../../../graphics/includes/periWin.h" 
+#include "../../../../graphics/includes/color.h" 
+#include "../../../../graphics/includes/scigraphic.h"
 #include "machine.h"
-#include "clipping.h"
-#include "SetProperty.h"
+#include "../../../../graphics/includes/clipping.h"
+#include "../../../../graphics/includes/SetProperty.h"
 
-#include "math_graphics.h"
+#include "../../../../graphics/includes/math_graphics.h"
 
 #include "MALLOC.h" /* MALLOC */
 
@@ -52,6 +52,9 @@
 
 
 #define GXxor 6
+
+LPSTR szGraphClass = "wscilab_graph";
+LPSTR szParentGraphClass = "wscilab_parent_graph";
 
 
 /** 
@@ -97,43 +100,6 @@ static double *vdouble = 0; /* used when a double argument is needed */
    used in periPos.c and periFig.c
 */
 
-unsigned short default_colors[] = {
-  0,   0,   0, /* Black: DEFAULTBLACK */
-  0,   0, 255, /* Blue */
-  0, 255,   0, /* Green */
-  0, 255, 255, /* Cyan */
-  255,   0,   0, /* Red */
-  255,   0, 255, /* Magenta */
-  255,   0,   0, /* Yellow */
-  255, 255, 255, /* White: DEFAULTWHITE */
-  0,   0, 144, /* Blue4 */
-  0,   0, 176, /* Blue3 */
-  0,   0, 208, /* Blue2 */
-  135, 206, 255, /* LtBlue */
-  0, 144,   0, /* Green4 */
-  0, 176,   0, /* Green3 */
-  0, 208,   0, /* Green2 */
-  0, 144, 144, /* Cyan4 */
-  0, 176, 176, /* Cyan3 */
-  0, 208, 208, /* Cyan2 */
-  144,   0,   0, /* Red4 */
-  176,   0,   0, /* Red3 */
-  208,   0,   0, /* Red2 */
-  144,   0, 144, /* Magenta4 */
-  176,   0, 176, /* Magenta3 */
-  208,   0, 208, /* Magenta2 */
-  128,  48,   0, /* Brown4 */
-  160,  64,   0, /* Brown3 */
-  192,  96,   0, /* Brown2 */
-  255, 128, 128, /* Pink4 */
-  255, 160, 160, /* Pink3 */
-  255, 192, 192, /* Pink2 */
-  255, 224, 224, /* Pink */
-  255, 215,   0  /* Gold */
-};
-
-LPSTR szGraphClass = "wscilab_graph";
-LPSTR szParentGraphClass = "wscilab_parent_graph";
 
 
 #define MAXDASH 5
@@ -187,7 +153,6 @@ static void XDrawPoints();
 static BOOL SciPalette(int iNumClr);
 static void set_current_clip (void);
 static void set_clip_after_scroll (void) ;
-
 
 extern void UpdateFileGraphNameMenu(struct BCG *ScilabGC);
 extern void CreateGraphToolBar(struct BCG * ScilabGC); 

@@ -126,7 +126,7 @@ static int Fsepare(char *fmt, integer dec, integer *l, double xmin, double xmax,
     { x += xpas;
       strcpy(buf2,buf1);
       sprintf(buf1,fmt,dec,x);
-      *l = (((int)strlen(buf1) >= *l) ? strlen(buf1) : *l) ;
+      *l = (((int)strlen(buf1) >= *l) ? (integer)strlen(buf1) : *l) ;
       if ( strcmp(buf1,buf2) == 0) return(0);
     }
   return(1);
@@ -201,7 +201,7 @@ static int Fsepare1(char *fmt, integer dec, integer *l, double *xx, integer nx)
   for ( i=1 ; i < nx ; i++)
     { strcpy(buf2,buf1);
       sprintf(buf1,fmt,dec,xx[i]);
-      *l = (((int)strlen(buf1) >= *l) ? strlen(buf1) : *l) ;
+      *l = (((int)strlen(buf1) >= *l) ? (integer)strlen(buf1) : *l) ;
       if ( strcmp(buf1,buf2) == 0) return(0);
     }
   return(1);
@@ -1275,7 +1275,7 @@ char * copyFormatedValue( double value, const char format[5], int bufferSize )
 
   sprintf( buffer , format, value ) ;
 
-  resLength = strlen( buffer ) + 1 ; /* + 1 <=> 0 terminating char */
+  resLength =  (int)strlen( buffer ) + 1 ; /* + 1 <=> 0 terminating char */
 
   res = MALLOC( resLength * sizeof(char) ) ;
 

@@ -57,6 +57,44 @@ static BOOL ScilabGCXfig_is_initialized = FALSE;
 #define WHITE 7
 #define BLACK 0
 
+
+#ifdef _MSC_VER
+unsigned short default_colors[] = {
+	0,   0,   0, /* Black: DEFAULTBLACK */
+	0,   0, 255, /* Blue */
+	0, 255,   0, /* Green */
+	0, 255, 255, /* Cyan */
+	255,   0,   0, /* Red */
+	255,   0, 255, /* Magenta */
+	255,   0,   0, /* Yellow */
+	255, 255, 255, /* White: DEFAULTWHITE */
+	0,   0, 144, /* Blue4 */
+	0,   0, 176, /* Blue3 */
+	0,   0, 208, /* Blue2 */
+	135, 206, 255, /* LtBlue */
+	0, 144,   0, /* Green4 */
+	0, 176,   0, /* Green3 */
+	0, 208,   0, /* Green2 */
+	0, 144, 144, /* Cyan4 */
+	0, 176, 176, /* Cyan3 */
+	0, 208, 208, /* Cyan2 */
+	144,   0,   0, /* Red4 */
+	176,   0,   0, /* Red3 */
+	208,   0,   0, /* Red2 */
+	144,   0, 144, /* Magenta4 */
+	176,   0, 176, /* Magenta3 */
+	208,   0, 208, /* Magenta2 */
+	128,  48,   0, /* Brown4 */
+	160,  64,   0, /* Brown3 */
+	192,  96,   0, /* Brown2 */
+	255, 128, 128, /* Pink4 */
+	255, 160, 160, /* Pink3 */
+	255, 192, 192, /* Pink2 */
+	255, 224, 224, /* Pink */
+	255, 215,   0  /* Gold */
+};
+#endif
+
 void C2F(Write2VectXfig)(integer *vx, integer *vy, integer n, integer flag); 
 void C2F(WriteGenericXfig)(char *string, integer nobj, integer sizeobj, integer *vx, integer *vy, integer sizev, integer flag, integer *fvect);
 void C2F(InitScilabGCXfig)(integer *v1, integer *v2, integer *v3, integer *v4);
@@ -2261,7 +2299,7 @@ void C2F(queryfamilyXfig)(char *name, integer *j, integer *v3, integer *v4, inte
   name[0]='\0';
   for (i=0;i<FONTNUMBER;i++) {
     strcat(name,FontInfoTabXfig_[i].fname);
-    v3[i]=strlen(FontInfoTabXfig_[i].fname);
+    v3[i]=(integer)strlen(FontInfoTabXfig_[i].fname);
   }
   *j=FONTNUMBER;
 }

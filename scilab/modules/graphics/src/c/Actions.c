@@ -132,7 +132,7 @@ void scig_erase(integer win_num)
 int scig_2dzoom(integer win_num)
 {
   char name[4];
-  int ret;
+  int ret = 0;
   integer verb=0,cur,na;
 
   if ( scig_buzy  == 1 ) return 0; ;
@@ -205,7 +205,7 @@ void scig_loadsg(int win_num, char *filename)
   char * macroCall = NULL ;
   /* the sting is "xload('(1)')" where (1) is filemame */
   /* Consequently we have 9 fixed character and two variable strings. */
-  int macroCallLength = 9 + strlen(filename) ;
+  int macroCallLength = 9 + (int)strlen(filename) ;
 
   if ( scig_buzy  == 1 ) { return ; }
   scig_buzy  = 1 ;
@@ -233,7 +233,7 @@ void scig_savesg( int win_num, char * filename )
 
   /* the sting is "xsave('(1)',(2))" where (1) is filemame and (2) the string */
   /* corresponding of win_num. Consequently we have 10 fixed character and two variable strings. */
-  int macroCallLength = 10 + strlen(filename) + GET_NB_DIGITS(win_num) ;
+  int macroCallLength = 10 +  (int)strlen(filename) + GET_NB_DIGITS(win_num) ;
 
   macroCall = MALLOC( (macroCallLength+1) * sizeof(char) ) ; /* +1 for the \0 terminating character */
 

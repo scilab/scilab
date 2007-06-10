@@ -143,7 +143,7 @@ int drawTextEntity( sciPointObj * pObj )
       C2F (dr) ("xset", "dashes", textProperties, textProperties, textProperties+3, textProperties+3, textProperties+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
       C2F (dr) ("xset", "foreground", textProperties, textProperties, textProperties+3, textProperties+3, textProperties+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
 
-      C2F (dr) ("xarea", "xv", &n, xm, ym, &close, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen("xv"));
+      C2F (dr) ("xarea", "xv", &n, xm, ym, &close, PI0, PI0, PD0, PD0, PD0, PD0, 5L,(integer)strlen("xv"));
     }
 
     /* draw the line around the box */
