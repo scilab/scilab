@@ -23,8 +23,11 @@ while ilst<=nlst then
       ncode=1
     end
     //non interpreted code lines (e.g. subfunction definition body)
-    if lst(ilst)(1)=='26' then 
-      ncode=ncode+eval(lst(ilst)(2))-1
+    if lst(ilst)(1)=='26' then
+      // macr2lst keeps whitespace (even too much... leading whitespace
+      //   makes a new code line), fun2string no. See bug 2413
+      codelines=lst(ilst); codelines=codelines(4:$); 
+      ncode=length(stripblanks(codelines)<>"")
     end
     //subfunction definition trailer
     if lst(ilst)(1)=='20' &  lst(ilst)(2)=="deff" then 
