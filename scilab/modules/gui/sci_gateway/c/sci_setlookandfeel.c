@@ -3,6 +3,7 @@
 * @author Allan CORNET INRIA 2007
 */
 /*-----------------------------------------------------------------------------------*/
+#include "gw_gui.h"
 #include "setlookandfeel.h"
 #include "MALLOC.h"
 #include "stack-c.h"
