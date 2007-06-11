@@ -2,6 +2,7 @@
 /* INRIA 2007 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
+#include <stdlib.h>
 #include "org_scilab_modules_localization_QueryString.h"
 #include "QueryStringError.h"
 #include "QueryStringMenu.h"
