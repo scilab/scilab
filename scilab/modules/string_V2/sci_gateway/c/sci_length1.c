@@ -29,10 +29,8 @@ char typ = '*';
   static int un=1;
   char *text;
   int m1,n1,mn,i,j,k,m2,n2,l2,m3,n3,l3,nchars=0;
-  int lenth=0;
-  int lenthrow=1;
-  int lenthcol=1;
-  int outIndex = 0 ;
+  int length=0;
+
   Rhs = Max(0, Rhs);
 
   CheckRhs(1,3);
@@ -49,17 +47,18 @@ char typ = '*';
     if (Rhs >= 3) {
       GetRhsVar(3,"c",&m3,&n3,&l3);
       if ( m3*n3 != 0) 
-	typ = cstk(l3)[0];
+		  typ = cstk(l3)[0];
       if (typ != 'c' && typ != 'r' && typ != 'p' && typ != 'a') {
-	Scierror(999,"%s: third argument should be 'c' or 'r'\r\n",fname);
-	return 0;
+		  Scierror(999,"%s: third argument should be 'c' or 'r'\r\n",fname);
+		  return 0;
       }
     }
     switch ( typ ) {
     case '*' : 
       /* just return one string */ 
-      for ( i = 0 ; i < mn ; i++ ) 
-	nchars += strlen(Str[i]);
+		for ( i = 0 ; i < mn ; i++ )
+		  nchars += strlen(Str[i]);
+
       nchars += (mn-1)*strlen(sep);
       CreateVar(Rhs+1,"c",&un,&nchars,&l3);
       k=0;
@@ -78,8 +77,8 @@ char typ = '*';
 
    
 	case 'p':
-		lenth=strlen(Str[0]);
-		sciReturnInt(lenth);
+		length=strlen(Str[0]);
+		sciReturnInt(length);
 		//FreeRhsSVar(Str);
 		LhsVar(1) = Rhs+1  ;
 

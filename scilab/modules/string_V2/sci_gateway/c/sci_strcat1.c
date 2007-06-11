@@ -1,10 +1,10 @@
 /*------------------------------------------------------------------------*/
-/* File: sci_strcat1.c                                                  */
+/* File: sci_strcat1.c                                                    */
 /* Copyright INRIA 2007                                                   */
-/* Authors : Cong Wu                                                      */
-/* desc : catenate character strings 
-/* Examples: strcat1(string(1:10),',')
-                                                                          */
+/* @Authors : Cong Wu                                                     */
+/* desc : catenate character strings                                      */
+/* Examples: strcat1(string(1:10),',')                                    */
+/*                                                                        */
 /*------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>

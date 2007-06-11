@@ -57,7 +57,7 @@ return stbuf4;
 int C2F(sci_strsubst1) _PARAMS((char *fname,unsigned long fname_len))
 {
   char typ = '*';
-  char **Str,**Str2,**Str3,**Str4;
+  char **Str,**Str2,**Str3;
   int x,m1,n1,mn,mn2,mn3,m2,n2,m3,n3,m4,n4,l4=0;
   unsigned x1;
   char ebuf[128];
@@ -124,13 +124,12 @@ int C2F(sci_strsubst1) _PARAMS((char *fname,unsigned long fname_len))
 			 strcpy(Str[x],_replacedstr);
 		} 	
 		else {
-			 int outIndex2= Rhs +x+1 ;
-			 int numRow   = 1 ;
-			 int numCol   = mn ;
+			 int lnumRow   = 1 ;
+			 int lnumCol   = mn ;
 			 int loutIndex = 0 ;
-			 CreateVar(Rhs+1+x,"c",&numRow,&numCol,&loutIndex);
-			 strncpy(cstk(loutIndex),Str[x], numCol);
-             CreateVarFromPtr( Rhs+1, "S", &numRow, &numCol, Str ) ;
+			 CreateVar(Rhs+1+x,"c",&lnumRow,&lnumCol,&loutIndex);
+			 strncpy(cstk(loutIndex),Str[x], lnumCol);
+             CreateVarFromPtr( Rhs+1, "S", &lnumRow, &lnumCol, Str ) ;
 			 LhsVar(x+1) = Rhs+x+1 ;
 		}
 		}

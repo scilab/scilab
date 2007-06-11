@@ -27,13 +27,12 @@ int C2F(sci_emptystr1) _PARAMS((char *fname,unsigned long fname_len))
 {
    char **Str,**Str4;
    int m1,n1,mn,m2,n2,i,m4,n4,l1,l2=0;
-   int pos=0;
    Rhs = Max(0, Rhs);
    if (Rhs < 1) {  /* With no input argument returns a zero length character string */ 
-		int m1=0;
-		int n1=0;
-		int l1=0;
-		CreateVar(1,"c",  &m1, &n1, &l1);
+		int m1_2=0;
+		int n1_2=0;
+		int l1_2=0;
+		CreateVar(1,"c",  &m1_2, &n1_2, &l1_2);
 		LhsVar(1)=1;
 		C2F(putlhsvar)();
 	    return 0;
