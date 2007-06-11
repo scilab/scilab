@@ -11,6 +11,8 @@ import javax.media.opengl.GL;
 import javax.media.opengl.glu.GLU;
 
 import org.scilab.modules.graphics.utils.ColorMap;
+import org.scilab.modules.graphics.figureDrawing.DrawableFigureJoGL;
+import org.scilab.modules.graphics.figureDrawing.FigureCanvas;
 
 /**
  * Object which can be rendered in a GL pipeline
@@ -79,7 +81,9 @@ public class ObjectJoGL {
 	 * @return updated OpenGL pipeline
 	 */
 	protected GL updateGLContext(int figureIndex) {
-		glPipeline = FigureMapper.getCorrespondingFigure(figureIndex).getCanvas().getGL();
+		DrawableFigureJoGL figure = FigureMapper.getCorrespondingFigure(figureIndex);
+		FigureCanvas canvas = figure.getCanvas();
+		glPipeline = canvas.getGL();
 		return glPipeline;
 	}
 	

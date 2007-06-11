@@ -70,4 +70,13 @@ public final class FigureMapper {
 		return MAPPER.get(figureId);
 	}
 	
+	/**
+	 * Returns true if the figure already exists in the hashmap
+	 * @param figure figure object to be searched
+	 * @return true if the figure already exists in the hashmap, false otherwise
+	 */
+	public static boolean containsFigure(DrawableFigureJoGL figure) {
+		return MAPPER.containsValue(figure);
+	}
+	
 }

@@ -41,6 +41,7 @@ public class DrawableFigureJoGL extends ObjectJoGL {
       	canvas = null;
       	graphicTab  = null;
       	setColorMap(ColorMap.create());
+      	figureId = -1; // ffigue ids should be greater than 0.
     }
 	
 	/**
@@ -48,7 +49,9 @@ public class DrawableFigureJoGL extends ObjectJoGL {
 	 * @param figureId new figure Id
 	 */
 	public void setFigureIndex(int figureId) {
-		FigureMapper.removeMapping(this.figureId);
+		if (FigureMapper.containsFigure(this)) {
+			FigureMapper.removeMapping(this.figureId);
+		}
 		this.figureId = figureId;
 		FigureMapper.addMapping(figureId, this);
 		super.setFigureIndex(figureId);
