@@ -3,12 +3,13 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
 #include "machine.h" 
-/*-----------------------------------------------------------------------------------*/ 
-extern int  Scierror __PARAMS((int iv,char *fmt,...));
+#include "Scierror.h"
+#include "sciprint.h"
+#include "nogui.h"
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(gw_gui)()
 {
-	Scierror(999,"gui interface not installed.\r\n");
+	Scierror(999,"GUI interface not installed.\r\n");
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 
