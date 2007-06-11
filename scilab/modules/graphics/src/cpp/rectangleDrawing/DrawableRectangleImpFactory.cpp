@@ -29,7 +29,7 @@ DrawableRectangleImp * DrawableRectangleImpFactory::create( void )
 /*------------------------------------------------------------------------------------------*/
 void DrawableRectangleImpFactory::update( void )
 {
-   setStrategies( m_pDrawable->getRectangleImp() ) ;
+  setStrategies( m_pDrawable->getRectangleImp() ) ;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableRectangleImpFactory::setDrawedRectangle( DrawableRectangle * rect )
@@ -44,14 +44,14 @@ void DrawableRectangleImpFactory::setStrategies( DrawableRectangleImp * imp )
   // Create rendering algorithms
   sciPointObj * rect = m_pDrawable->getDrawedObject() ;
 
-  if ( sciGetIsLine( rect ) )
-  {
-    imp->addDrawingStrategy( new RectangleLineDrawerJoGL( imp ) ) ;
-  }
-
   if ( sciGetIsFilled( rect ) )
   {
     imp->addDrawingStrategy( new RectangleFillDrawerJoGL( imp ) ) ;
+  }
+
+  if ( sciGetIsLine( rect ) )
+  {
+    imp->addDrawingStrategy( new RectangleLineDrawerJoGL( imp ) ) ;
   }
 
   if ( sciGetIsMark( rect ) )

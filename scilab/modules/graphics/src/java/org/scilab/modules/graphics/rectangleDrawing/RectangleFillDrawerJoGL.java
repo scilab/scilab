@@ -1,71 +1,39 @@
 /*------------------------------------------------------------------------*/
-/* file: RectangleLineDrawerJoGL.java                                     */
+/* file: RectangleFillDrawerJoGL.java                                     */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
 /* desc : Class containing the driver dependant routines to draw the      */
-/*        outline of a rectangle object                                   */
+/*        inside of a rectangle object                                   */
 /*------------------------------------------------------------------------*/
+
 
 package org.scilab.modules.graphics.rectangleDrawing;
 
 import org.scilab.modules.graphics.ObjectJoGL;
 import javax.media.opengl.GL;
-import org.scilab.modules.graphics.utils.GLTools;
 
 /**
- * Class containing functions called by RectangleLineDrawerJoGL.cpp
+ * Class containing functions called by RectangleFillDrawerJoGL.cpp
  * @author Jean-Baptiste Silvy
  */
-public class RectangleLineDrawerJoGL extends ObjectJoGL {
-
-	private int lineColor;
-	private int thickness;
-	private int lineStyle;
+public class RectangleFillDrawerJoGL extends ObjectJoGL {
+	
+	/** index of background color */
+	private int backColor;
 	
 	/**
-	 * Default constructor
+	 * Default Constructor
 	 */
-	public RectangleLineDrawerJoGL() {
-		super();
-		lineColor = 1;
-		thickness = 1;
-		lineStyle = 1;
+	public RectangleFillDrawerJoGL() {
+		backColor = -1;
 	}
 	
 	/**
-	 * Set line Color
-	 * @param lineColor index of the line color in the colormap
+	 * Set rectangle background color
+	 * @param color index of background color
 	 */
-	public void setLineColor(int lineColor) {
-		this.lineColor = lineColor;
-	}
-	
-	/**
-	 * Set the thickness
-	 * @param thickness thickness of the line in pixels
-	 */
-	public void setThickness(int thickness) {
-		this.thickness = thickness;
-	}
-	
-	/**
-	 * Set the line style
-	 * @param lineStyle index of the line Style
-	 */
-	public void setLineStyle(int lineStyle) {
-		this.lineStyle = lineStyle;
-	}
-	
-	/**
-	 * Set all line parameters at once, to avoid multiple Jni calls
-	 * @param lineColor index of the line color in the colormap
-	 * @param thickness thickness of the line in pixels
-	 * @param lineStyle index of the line Style
-	 */
-	public void setLineParameters(int lineColor, int thickness, int lineStyle) {
-		setLineColor(lineColor);
-		setThickness(thickness);
-		setLineStyle(lineStyle);
+	public void setBackColor(int color) {
+		backColor = color;
 	}
 	
 	/**
@@ -89,24 +57,16 @@ public class RectangleLineDrawerJoGL extends ObjectJoGL {
 							  double corner4X, double corner4Y, double corner4Z) {
 		GL gl = getGL();
 		
-		// set dash mode
-		gl.glLineWidth(thickness);
-		GLTools.beginDashMode(gl, lineStyle, thickness);
-		
 		// set color
-		double[] color = getColorMap().getColor(lineColor);
+		double[] color = getColorMap().getColor(backColor);
 		gl.glColor3d(color[0], color[1], color[2]);
 		
-		
-		gl.glBegin(GL.GL_LINE_LOOP);
+		gl.glBegin(GL.GL_QUADS);
 		gl.glVertex3d(corner1X, corner1Y, corner1Z);
 		gl.glVertex3d(corner2X, corner2Y, corner2Z);
 		gl.glVertex3d(corner3X, corner3Y, corner3Z);
 		gl.glVertex3d(corner4X, corner4Y, corner4Z);
 		gl.glEnd();
 		
-		GLTools.endDashMode(gl);
-		
 	}
-	
 }

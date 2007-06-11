@@ -6,7 +6,6 @@
 /*------------------------------------------------------------------------*/
 
 #include "DrawableRectangle.h"
-#include <iostream>
 extern "C"
 {
 #include "handleDrawing/drawRectangleEntity.h"
@@ -25,19 +24,21 @@ DrawableRectangle::~DrawableRectangle( void )
 /*------------------------------------------------------------------------------------------*/
 void DrawableRectangle::draw( void )
 {
-  if ( !checkVisibility() ) { return ; }
   initializeDrawing() ;
+  if ( !checkVisibility() )
+  {
+
+    endDrawing();
+    return ;
+  }
+  
   drawRectangle() ;
   endDrawing();
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableRectangle::show( void )
 {
-  cerr << "Showing Rectangle" << endl;
-  cout << "Showing Rectangle" << endl;
   getRectangleImp()->show() ;
-  cerr << " End Showing Rectangle" << endl;
-  cout << " End Showing Rectangle" << endl;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableRectangle::drawRectangle( void )

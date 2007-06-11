@@ -226,8 +226,8 @@ sciInitGraphicContext (sciPointObj * pobj)
     if ( pobj == paxesmdl )
     {
       cloneGraphicContext( sciGetParent (pobj), pobj ) ;
-      sciGetGraphicContext(pobj)->backgroundcolor = -3 ;
-      sciGetGraphicContext(pobj)->foregroundcolor = -2 ;
+      sciGetGraphicContext(pobj)->backgroundcolor = /*-3 ;*/ 33;
+      sciGetGraphicContext(pobj)->foregroundcolor = /*-2 ;*/ 32;
       sciGetGraphicContext(pobj)->markbackground  = -3 ;
       sciGetGraphicContext(pobj)->markforeground  = -2 ;
     }

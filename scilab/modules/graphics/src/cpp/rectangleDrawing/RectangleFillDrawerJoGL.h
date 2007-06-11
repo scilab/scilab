@@ -9,14 +9,16 @@
 #define _RECTANGLE_FILL_DRAWER_JOGL_H_
 
 #include "DrawRectangleStrategy.h"
+#include "../DrawableObjectJoGL.h"
+#include "DrawableRectangleJoGL.h"
 
 namespace sciGraphics
 {
-  class RectangleFillDrawerJoGL : public DrawRectangleStrategy
+  class RectangleFillDrawerJoGL : public DrawRectangleStrategy, public DrawableObjectJoGL
   {
   public:
 
-    RectangleFillDrawerJoGL( DrawableRectangleImp * drawer ) : DrawRectangleStrategy( drawer ) {}
+    RectangleFillDrawerJoGL( DrawableRectangleImp * drawer ) ;
 
     /**
     * Main algorithm to fill the inside of a rectangle

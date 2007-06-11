@@ -51,7 +51,6 @@ namespace sciGraphics
      */
     virtual void show( void ) = 0 ;
 
-
   protected:
 
     DrawableObject * m_pDrawer ; /**< bridge for driver dependent algorithm */

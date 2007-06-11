@@ -28,9 +28,6 @@ namespace sciGraphics
      */
     virtual ~DrawableObjectJoGL( void) ;
 
-  protected:
-    
-    /*-----------------------------------------------------------------------------*/
     /**
      * Initialize the context for drawing (incl starting recording display list)
      */
@@ -55,6 +52,10 @@ namespace sciGraphics
      * Call the display list of an object
      */
     virtual void show( void ) ;
+
+  protected:
+    
+    /*-----------------------------------------------------------------------------*/
 
     /**
      * Free the Java resources used by this object

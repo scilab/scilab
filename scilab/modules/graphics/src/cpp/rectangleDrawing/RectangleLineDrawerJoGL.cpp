@@ -7,7 +7,7 @@
 
 #include "RectangleLineDrawerJoGL.h"
 #include "DrawableRectangle.h"
-#include "DrawableRectangleJoGL.h"
+
 extern "C"
 {
 #include "GetProperty.h"
@@ -18,7 +18,8 @@ namespace sciGraphics
 {
 /*------------------------------------------------------------------------------------------*/
 RectangleLineDrawerJoGL::RectangleLineDrawerJoGL( DrawableRectangleImp * drawer )
-  : DrawableObjectImp(drawer->getDrawer()), DrawRectangleStrategy( drawer ), DrawableObjectJoGL( drawer->getDrawer(), "org/scilab/modules/graphics/rectangleDrawing/RectangleLineDrawerJoGL" )
+  : DrawableObjectImp(drawer->getDrawer()), DrawRectangleStrategy( drawer ),
+    DrawableObjectJoGL( drawer->getDrawer(), "org/scilab/modules/graphics/rectangleDrawing/RectangleLineDrawerJoGL" )
 {
 
 }

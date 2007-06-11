@@ -19,7 +19,7 @@ namespace sciGraphics
 {
 /*------------------------------------------------------------------------------------------*/
 DrawableRectangleJoGL::DrawableRectangleJoGL( DrawableRectangle * drawer )
-  : DrawableObjectImp(drawer), DrawableRectangleImp(drawer), DrawableObjectJoGL(drawer, "org/scilab/modules/graphics/figureDrawing/DrawableRectangleJoGL")
+  : DrawableObjectImp(drawer), DrawableRectangleImp(drawer), DrawableObjectJoGL(drawer, "org/scilab/modules/graphics/rectangleDrawing/DrawableRectangleJoGL")
 {
 
 }

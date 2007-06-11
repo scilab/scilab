@@ -11,7 +11,7 @@ import javax.media.opengl.GL;
 
 /**
  * Parent class for all graphic classes corresponding to a cpp one
- * @author silvy
+ * @author Jean-Baptiste Silvy
  */
 public abstract class DrawableObjectJoGL extends ObjectJoGL {
 
@@ -34,10 +34,11 @@ public abstract class DrawableObjectJoGL extends ObjectJoGL {
 	 */
 	public void show(int parentFigureIndex) {
 		// the display list should already have been created.
-		super.initializeDrawing(parentFigureIndex);
-		System.err.println("printed dl dlIndex is " + dlIndex);
-		getGL().glCallList(dlIndex);
-		super.endDrawing();
+		if (dlIndex != UNINIT_DL_INDEX) {
+			super.initializeDrawing(parentFigureIndex);
+			getGL().glCallList(dlIndex);
+			super.endDrawing();
+		}
 	}
 	
 	/**
@@ -63,6 +64,13 @@ public abstract class DrawableObjectJoGL extends ObjectJoGL {
 	 * To be called when the cpp object is destroyed
 	 */
 	public void destroy() {
+		clearDisplayList();
+	}
+	
+	/**
+	 * Clear the display list of this object
+	 */
+	public void clearDisplayList() {
 		// We need to be sure that the memory used by the display list is freed
 		if (dlIndex != UNINIT_DL_INDEX) {
 			getGL().glDeleteLists(dlIndex, 1);
@@ -82,7 +90,6 @@ public abstract class DrawableObjectJoGL extends ObjectJoGL {
 			getGL().glDeleteLists(dlIndex, 1);
 		}
 		dlIndex = getGL().glGenLists(1);
-		System.err.println("dlIndex is now " + dlIndex);
 		getGL().glNewList(dlIndex, GL.GL_COMPILE);
 	}
 	
