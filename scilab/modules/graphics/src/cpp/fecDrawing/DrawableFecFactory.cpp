@@ -18,5 +18,10 @@ DrawableObject * DrawableFecFactory::create( void )
   return new DrawableFec( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
+void DrawableFecFactory::update( void )
+{
+  // nothing for now
+}
+/*------------------------------------------------------------------------------------------*/
 
 }

@@ -18,5 +18,10 @@ DrawableObject * DrawableSegsFactory::create( void )
   return new DrawableSegs( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
+void DrawableSegsFactory::update( void )
+{
+  // nothing for now
+}
+/*------------------------------------------------------------------------------------------*/
 
 }

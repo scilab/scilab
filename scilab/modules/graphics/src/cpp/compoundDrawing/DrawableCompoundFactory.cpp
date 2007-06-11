@@ -18,5 +18,10 @@ DrawableObject * DrawableCompoundFactory::create( void )
   return new DrawableCompound( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
+void DrawableCompoundFactory::update( void )
+{
+  // nothing for now
+}
+/*------------------------------------------------------------------------------------------*/
 
 }

@@ -18,5 +18,10 @@ DrawableObject * DrawableLegendFactory::create( void )
   return new DrawableLegend( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
+void DrawableLegendFactory::update( void )
+{
+  // nothing for now
+}
+/*------------------------------------------------------------------------------------------*/
 
 }

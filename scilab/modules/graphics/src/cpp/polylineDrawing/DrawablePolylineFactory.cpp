@@ -18,5 +18,10 @@ DrawableObject * DrawablePolylineFactory::create( void )
   return new DrawablePolyline( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
+void DrawablePolylineFactory::update( void )
+{
+  // nothing for now
+}
+/*------------------------------------------------------------------------------------------*/
 
 }

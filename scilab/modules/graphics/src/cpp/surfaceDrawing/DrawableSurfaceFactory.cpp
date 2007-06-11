@@ -18,5 +18,10 @@ DrawableObject * DrawableSurfaceFactory::create( void )
   return new DrawableSurface( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
+void DrawableSurfaceFactory::update( void )
+{
+  // nothing for now
+}
+/*------------------------------------------------------------------------------------------*/
 
 }

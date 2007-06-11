@@ -18,5 +18,10 @@ DrawableObject * DrawableTextFactory::create( void )
   return new DrawableText( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
+void DrawableTextFactory::update( void )
+{
+  // nothing for now
+}
+/*------------------------------------------------------------------------------------------*/
 
 }

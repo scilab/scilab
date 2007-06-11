@@ -18,5 +18,10 @@ DrawableObject * DrawableArcFactory::create( void )
   return new DrawableArc( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
+void DrawableArcFactory::update( void )
+{
+  // nothing for now
+}
+/*------------------------------------------------------------------------------------------*/
 
 }

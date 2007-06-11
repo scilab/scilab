@@ -18,5 +18,10 @@ DrawableObject * DrawableGrayplotFactory::create( void )
   return new DrawableGrayplot( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
+void DrawableGrayplotFactory::update( void )
+{
+  // nothing for now
+}
+/*------------------------------------------------------------------------------------------*/
 
 }
