@@ -4,6 +4,7 @@
 typedef integer (*I_fp)();
 
 int C2F(vfinite)  _PARAMS((int *n, double *v));
+int C2F(unsfdcopy) _PARAMS((int *n, double *dx, int *incx, double *dy, int *incy));
 
 extern int C2F(wsort) _PARAMS((double *countr, double *counti, int *n, int *index, I_fp test));
 
@@ -84,7 +85,6 @@ extern int C2F(rkbesl) _PARAMS((double *x, double *alpha, int *nb, int *ize, dou
 /*extern double C2F(round) _PARAMS((double *x1));*/
 extern int C2F(rybesl) _PARAMS((double *x, double *alpha, int *nb, double *by, int *ncalc));
 extern int C2F(simple) _PARAMS((int *n, double *d__, float *s));
-extern int C2F(unsfdcopy) _PARAMS((int *n, double *dx, int *incx, double *dy, int *incy));
 extern double C2F(urand) _PARAMS((int *iy));
 extern int C2F(vpythag) _PARAMS((int *n, double *xr, double *xi));
 extern int C2F(wacos) _PARAMS((double *zr, double *zi, double *ar, double *ai));
