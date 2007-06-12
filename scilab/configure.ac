@@ -552,8 +552,8 @@ if test "$with_javasci" != no -a "$with_gui" != no; then
     AC_SUBST(JAVA_JNI_LIBS)
     AC_SUBST(JAVA_HOME)
 fi
-AM_CONDITIONAL(GUI, test "$with_gui" = yes)
-AM_CONDITIONAL(JAVASCI, test "$with_javasci" = yes)
+AM_CONDITIONAL(GUI, test "$with_gui" != no)
+AM_CONDITIONAL(JAVASCI, test "$with_javasci" != no)
 
 
 ##############################################################
