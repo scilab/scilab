@@ -11,8 +11,8 @@
 #include "parse.h"
 #include "basout.h"
 #include "../../gui/includes/checkevts.h"
+#include "../../gui/includes/sxevents.h"
 #include "../../tclsci/includes/tksynchro.h"
-
 
 
 #undef Lstk
@@ -70,7 +70,6 @@ extern logical C2F(eqid)();
 extern logical C2F(ptover)();
 extern int C2F(funs)();
 
-extern int C2F(sxevents)();
 extern int C2F(bexec)();
 extern int C2F(ismenu)();
 extern int C2F(getmen)();

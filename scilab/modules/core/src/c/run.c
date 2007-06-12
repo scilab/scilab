@@ -19,6 +19,7 @@
 #include "timer.h"
 #include "basout.h"
 #include "../../gui/includes/checkevts.h"
+#include "../../gui/includes/sxevents.h"
 
 #undef Lstk
 #undef Infstk
@@ -50,7 +51,6 @@ extern int C2F(putid)();
 extern logical C2F(eqid)();
 extern int C2F(funs)();
 
-extern int C2F(sxevents)();
 extern int C2F(bexec)();
 extern int C2F(ismenu)();
 extern int C2F(getmen)();

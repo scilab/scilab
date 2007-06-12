@@ -7,8 +7,7 @@
 #endif
 #include <stdio.h>
 #include "version.h"
-/*-----------------------------------------------------------------------------------*/ 
-extern int IsConsoleMode(void);
+#include "../../gui/includes/IsConsoleMode.h"
 /*-----------------------------------------------------------------------------------*/ 
 void disp_scilab_version(void)
 {

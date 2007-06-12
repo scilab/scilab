@@ -11,8 +11,10 @@
 #include "../../fileio/includes/diary.h"
 #include "sciprint.h"
 #include "MALLOC.h"
+#ifndef _MSC_VER
+#include "../../gui/includes/xscimore.h"
+#endif
 /*-----------------------------------------------------------------------------------*/ 
-extern int C2F(xscimore)();
 extern int C2F(writelunitstring)();
 extern int C2F(xscion)();
 /*-----------------------------------------------------------------------------------*/ 
@@ -45,7 +47,7 @@ int C2F(basout)(integer *io, integer *lunit, char *string,long int nbcharacters)
 				}
 				else
 				{
-					/* scilab a une  fenetre  en propre */
+					/* scilab has his own window */
 					C2F(xscimore)(&ich);
 				}
 

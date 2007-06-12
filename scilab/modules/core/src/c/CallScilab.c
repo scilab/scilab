@@ -6,6 +6,7 @@
 #include "MALLOC.h"
 #include "../../../graphics/includes/WindowList.h"
 #include "../../../graphics/includes/GetProperty.h"
+#include "../../../gui/includes/sxevents.h"
 #include "setgetSCIpath.h"
 #include "fromc.h"
 #include "sciquit.h"
@@ -37,8 +38,6 @@ extern char *GetScilabDirectory(BOOL UnixStyle);
 extern void InitWindowGraphDll(void);
 extern void TextMessage1 (int ctrlflag);
 extern void set_sci_env(char *DefaultSCIPATH);
-#else
-extern int C2F(sxevents)();
 #endif
 /*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
