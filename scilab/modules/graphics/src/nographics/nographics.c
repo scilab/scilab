@@ -2,13 +2,14 @@
 /* INRIA 2007 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#include "../../includes/bcg.h"
-#include "../../includes/ObjectStructure.h"
-#include "../../includes/clipping.h"
-#include "../../includes/Events.h"
-#include "../../includes/WindowList.h"
+#include "bcg.h"
+#include "ObjectStructure.h"
+#include "clipping.h"
+#include "Events.h"
+#include "WindowList.h"
 #include "machine.h"
 #include "Scierror.h"
+#include "nographics.h"
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(gw_graphics)()
 {
