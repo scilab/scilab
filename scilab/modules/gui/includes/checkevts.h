@@ -3,6 +3,4 @@
 /* Sylvestre Ledru */
 /*-----------------------------------------------------------------------------------*/
 
-int IntoEmacs(void );
-
-void sci_tk_activate(void);
+int C2F(checkevts)(int *i);

@@ -19,6 +19,7 @@
 #include "Errors.h"
 #include "xscion.h"
 #include "scilabmode.h"
+#include "checkevts.h"
 
 extern void flushTKEvents ();
 extern int TclEventsLoop(void);

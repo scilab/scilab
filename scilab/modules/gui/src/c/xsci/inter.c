@@ -31,6 +31,7 @@
 #include <errno.h>
 #include <stdio.h>
 #include "inter.h"
+#include "checkevts.h"
 #include "scilabmode.h"
 /**
  hpux uses time.h instead of select.h
