@@ -26,9 +26,10 @@
 /*-----------------------------------------------------------------------------------*/
 #include <stdio.h>
 #include "core_math.h"
+#include "write_scilab.h"
 #include "../../../../graphics/includes/bcg.h" /* Scilab graphic window */
 #include "sciprint.h"
-
+#include "sxevents.h"
 /*-----------------------------------------------------------------------------------*/
 
 #define MAX_ID_LEN 50		/* max length of an identifier */
@@ -56,7 +57,6 @@ extern void TextPutStr(LPTW lptw, LPSTR str);
 extern void WriteRegistryTxt(LPTW lptw);
 extern void ReadRegistryTxt(LPTW lptw);
 extern void DragFunc(LPTW lptw, HDROP hdrop);
-extern int C2F(sxevents)();
 /*-----------------------------------------------------------------------------------*/
 /* wmenu.c - Menu */
 extern void SendMacro(LPTW lptw, UINT m);
@@ -107,7 +107,6 @@ extern char * readline_nw (char *prompt, int interrupt);
 extern int WGFindMenuPos( BYTE **macros);
 extern void ScilabMenuAction(char *buf);
 extern void SendGraphMacro(struct BCG *ScilabGC, UINT m);
-extern void write_scilab(char *buf);
 extern void  LoadGraphMacros(struct BCG *ScilabGC);
 extern void CloseGraphMacros(struct BCG *ScilabGC);
 extern int C2F(setmen)(integer *,char *,integer *,integer *,integer *,

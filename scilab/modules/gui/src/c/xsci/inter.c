@@ -33,6 +33,9 @@
 #include "inter.h"
 #include "checkevts.h"
 #include "scilabmode.h"
+#include "write_scilab.h"
+#include "sxevents.h"
+
 /**
  hpux uses time.h instead of select.h
 **/
@@ -359,8 +362,7 @@ static void str_to_xterm_nw ( string, nbytes)
   Click_menu(1);
 }
 
-void write_scilab(s)
-     char   *s;
+void write_scilab(char *s)
 {
   int  i;
   C2F(xscion)(&i);

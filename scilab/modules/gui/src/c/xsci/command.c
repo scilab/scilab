@@ -37,6 +37,7 @@
 #include "global.h"
 #include "Os_specific.h" 
 #include "All-extern-x1.h" 
+#include "write_scilab.h"
 
 #include <X11/cursorfont.h>
 #define	 REVERSE	0

@@ -14,6 +14,7 @@
 #include "Warnings.h"
 #include "Errors.h"
 #include "printf.h"
+#include "xscimore.h"
 /*-----------------------------------------------------------------------------------*/
 extern void Xputchar ();
 extern BOOL IsWindowInterface(void);

@@ -31,6 +31,7 @@ char     cur_filename[FSIZE];
 #include "men_scilab.h"
 
 #include "setgetSCIpath.h"
+#include "write_scilab.h"
 
 extern Boolean	file_msg_is_popped;
 extern Widget	file_msg_popup;

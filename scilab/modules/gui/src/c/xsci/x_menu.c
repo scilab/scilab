@@ -28,11 +28,6 @@ without express or implied warranty.
 #include "machine.h"
 #include "All-extern-x.h"
 
-
-MenuEntry mainMenuEntries[], vtMenuEntries[];
-MenuEntry fontMenuEntries[];
-Arg menuArgs[];
-
 Arg menuArgs[2] = {{ XtNleftBitmap, (XtArgVal) 0 },
 		   { XtNsensitive, (XtArgVal) 0 }};
 

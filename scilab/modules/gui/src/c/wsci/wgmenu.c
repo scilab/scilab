@@ -8,6 +8,7 @@
 #include "periScreen.h"
 
 #include "MALLOC.h" /* MALLOC */
+#include "write_scilab.h"
 #include "../../../../tclsci/includes/withtk.h"
 
 void scig_savesg( int win_num, char * filename ) ;

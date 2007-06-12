@@ -14,7 +14,7 @@ extern int C2F(inisci) __PARAMS( (int *,int *,int *));
 extern int  Scierror  __PARAMS((int iv,char *fmt,...));
 
 
-/*  "jpc_SGraph-n.c.X1"*/
+/*  "SGraph-n.c.X1"*/
 
 
 extern int C2F (deletewin) __PARAMS((integer *number));  
@@ -27,29 +27,26 @@ extern int C2F (addmen) __PARAMS((integer *win_num, char *button_name, integer *
 extern int C2F (setmen) __PARAMS((integer *win_num, char *button_name, integer *entries, integer *ptrentries, integer *ne, integer *ierr));  
 extern int C2F (unsmen) __PARAMS((integer *win_num, char *button_name, integer *entries, integer *ptrentries, integer *ne, integer *ierr));  
 
-/*  "jpc_Xloop-n.c.X1"*/
+/*  "Xloop-n.c.X1"*/
 extern int C2F (xscion) __PARAMS((int *i));  
 extern void DisplayInit  __PARAMS((char *string, Display **dpy, Widget *toplevel));  
 extern int Xorgetchar  __PARAMS((int interrupt));  
-extern int C2F (sxevents) __PARAMS((void));  
 
-/*  "jpc_coloredit-n.c.X1"*/
+/*  "coloredit-n.c.X1"*/
 extern void popup_choice_panel  __PARAMS((Widget tool));  
 extern void create_color_panel  __PARAMS((Widget form, Widget cancel));  
 extern void cancel_color_popup  __PARAMS((Widget w, XtPointer dum1, XtPointer dum2));  
-/*  "jpc_command-n.c.X1"*/
+/*  "command-n.c.X1"*/
 extern void FileG1  __PARAMS((Widget w, XtPointer closure, caddr_t call_data));  
 extern void getMenuBut0  __PARAMS((Widget *w));  
 extern void MenuFixCurrentWin  __PARAMS((int ivalue));  
 extern void CreateCommandPanel  __PARAMS((Widget parent));  
-/*  "jpc_inter-n.c.X1"*/
-extern void write_scilab  __PARAMS((char *s));  
-/*  "jpc_utils-n.c.X1"*/
+/*  "utils-n.c.X1"*/
 extern void DisableWindowResize  __PARAMS((Widget w));  
 extern void bell  __PARAMS((int volume));  
 extern char *concat  __PARAMS((char *s1, char *s2));  
 
-/*  "jpc_windows-n.c.X1"*/
+/*  "windows-n.c.X1"*/
 
 extern void DefaultMessageWindow  __PARAMS((void));  
 /*   extern XtermWidget CreateSubWindows  __PARAMS((Widget parent));   */
@@ -62,7 +59,7 @@ extern void UpdateFileLabel  __PARAMS((char *string));
 extern void UpdateLineLabel  __PARAMS((Cardinal line));  
 extern void UpdateMessageWindow  __PARAMS((char *format, char *arg));  
 
-/*  "jpc_xwidgets-n.c.X1"*/
+/*  "xwidgets-n.c.X1"*/
 extern void AddNewMenu  __PARAMS((Widget parent, Widget drawbox));  
 /*  "wf_e_edit-n.c.X1"*/
 extern int panel_set_value  __PARAMS((Widget widg, char *val));  

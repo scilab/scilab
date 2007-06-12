@@ -59,6 +59,8 @@
 #include "DrawObjects.h"
 #include "Events.h"
 #include "Xcall1.h"
+#include "GetScreenProperty.h"
+
 
 
 /*-----------------------------------------------------------------------------------*/
@@ -89,8 +91,6 @@ static int emulate_backing_store = 1; /* to use  ScilabPaintWithBitmap*/
 
 void HideGraphToolBar(struct BCG * ScilabGC);
 void ShowGraphToolBar(struct BCG * ScilabGC);
-
-int GetScreenProperty(char *prop, char *value);
 
 integer GetCurrentFigureWindows(void);
 void SetCurrentFigureWindows(integer win);

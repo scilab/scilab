@@ -36,8 +36,9 @@
 
 #include <X11/Xaw3d/Command.h>	
 #include <X11/Xaw3d/Cardinals.h>	
-
+#include "write_scilab.h"
 #include "wf_resources.h"
+
 static void Syntax();
 static void Select();
 
@@ -144,8 +145,7 @@ char *call;
 }
 
 
-write_scilab(arg)
-     char *arg;
+write_scilab(char *arg)
 {
   fprintf(stderr,"%s",arg);
 };

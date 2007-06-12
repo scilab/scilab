@@ -49,6 +49,11 @@ void HandleVisibility();
  * the mainMenuEntries, vtMenuEntries arrays in menu.c.
  */
 
+MenuEntry mainMenuEntries[], vtMenuEntries[];
+MenuEntry fontMenuEntries[];
+Arg menuArgs[];
+
+
 /*
  * items in primary menu
  */

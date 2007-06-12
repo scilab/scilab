@@ -38,6 +38,7 @@
 #include "resource.h"
 #include "wcommon.h"
 #include "version.h"
+#include "write_scilab.h"
 
 
 /*-----------------------------------------------------------------------------------*/
@@ -135,7 +136,6 @@ int ReplacePrompt(char *Text,char *prompt);
 void ForceToActiveWindowParent(void);
 void PrintSelectionGUI(LPTW lptw,char *Entete);
 void ExitWindow(void);
-void write_scilab_synchro(char *line);
 DWORD WINAPI WriteTextThread(LPVOID lpParam);
 BOOL WriteIntoScilab(LPTW lptw,char *StringCommand);
 void WriteIntoKeyBuffer(LPTW lptw,char *StringCommand);

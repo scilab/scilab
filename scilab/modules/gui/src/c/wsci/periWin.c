@@ -45,7 +45,7 @@
 #include "MALLOC.h" /* MALLOC */
 
 #include "WindowList.h"
-
+#include "sxevents.h"
 
 #define CoordModePrevious 1
 #define CoordModeOrigin 0

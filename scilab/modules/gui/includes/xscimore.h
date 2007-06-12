@@ -6,7 +6,6 @@
 /**
  * <long-description>
  *
- * @param i 
- * @return <ReturnValue>
+ * @param n 
  */
-int C2F(checkevts)(int *i);
+void C2F(xscimore)(int *n);

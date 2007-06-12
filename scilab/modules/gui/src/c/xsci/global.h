@@ -70,7 +70,7 @@
 
 #include "machine.h"
 #include "defs.h"
-
+#include "write_scilab.h"
 #include "All-extern.h"
 
 /* calldbx.c */
@@ -93,7 +93,6 @@ extern void		print_handler();	/* printing variables */
 
 extern void		debug_init();		/* initial source display */
 extern void 		read_dbx();		/* get data from dbx */
-extern void 		write_scilab();		/* send data to dbx */
 extern void		query_dbx();		/* ask dbx for info */
 
 

@@ -36,6 +36,7 @@
 #include "All-extern-x.h"
 
 #include <stdio.h>
+#include "GetScreenProperty.h"
 
 extern int IsConsoleMode(void);
 extern void DisplayInit(char *string,Display **dpy,Widget * toplevel);
@@ -44,7 +45,6 @@ static void horizontal_copy_area(TScreen *screen, int firstchar, int nchars, int
 static void vertical_copy_area(TScreen *screen, int firstline, int nlines, int amount);
 void XHomeFunction(void);
 int XClearScreenConsole(char *fname);
-int GetScreenProperty(char *prop, char *value);
 int GetScreenDPI(int *ixres, int *iyres);
 /*-----------------------------------------------------------------------------------*/
 

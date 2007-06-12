@@ -72,6 +72,7 @@ extern int XTKsocket;
 #include "All-extern.h"
 
 #include "x_charproc.h"
+#include "xscimore.h"
 
 #define CTRL_B                0x0002  /* back a character */
 #define CTRL_C                0x0003  /* redo line */
@@ -2780,8 +2781,7 @@ void VTReset(full)
  * and sets the indicated ranges to the indicated values.
  */
 
-int set_character_class(s)
-  register char *s;
+int set_character_class(register char *s)
 {
   register int i;	/* iterator, index into s */
   int len;	/* length of s */

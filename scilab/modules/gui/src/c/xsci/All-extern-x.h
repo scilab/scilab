@@ -9,6 +9,7 @@
 
 #include "x_ptyxP.h"
 #include "sciprint.h"
+#include "x_charproc.h"
 /*  "x_button-n.c.X1"*/
 
 extern Boolean SendMousePosition  __PARAMS((Widget w, XEvent *));  
@@ -33,7 +34,6 @@ extern void DisownSelection  __PARAMS((register XtermWidget termw));
 extern int XEvorgetchar  __PARAMS((int interrupt));  
 extern void Xputstring  __PARAMS((char *str, int n));  
 extern void C2F (xscisncr) __PARAMS((char *str, integer *n, integer dummy));  
-extern void C2F (xscimore) __PARAMS((int *n));  
 extern void Scisncr  __PARAMS((char *str));  
 extern void Xputchar  __PARAMS((unsigned char c));  
 extern void v_write  __PARAMS((int f, char *d, int len));  

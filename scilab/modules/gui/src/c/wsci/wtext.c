@@ -38,7 +38,7 @@
 #include "Warnings.h"
 #include "Errors.h"
 #include "WindowList.h"
-
+#include "write_scilab.h"
 #include "prompt.h"
 
 #include "win_mem_alloc.h" /* MALLOC */

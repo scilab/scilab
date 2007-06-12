@@ -1,12 +1,13 @@
 /*-----------------------------------------------------------------------------------*/
-/* INRIA 2007 */
+/* INRIA 2006 */
 /* Sylvestre Ledru */
 /*-----------------------------------------------------------------------------------*/
 
 /**
- * <long-description>
+ * @TODO : add comment
  *
- * @param i 
+ * @param prop  
+ * @param value 
  * @return <ReturnValue>
  */
-int C2F(checkevts)(int *i);
+int GetScreenProperty(char *prop, char *value);

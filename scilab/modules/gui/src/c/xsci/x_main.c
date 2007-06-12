@@ -89,7 +89,7 @@ extern char *getenv();
 extern void exit();
 #endif
 /*-----------------------------------------------------------------------------------*/
-char *ProgramName;
+
 /*-----------------------------------------------------------------------------------*/
 extern void sci_clear_and_exit (int);
 extern char *strindex (register char *s1, register char *s2);

@@ -1,4 +1,5 @@
 #include "wtext.h"
+#include "write_scilab.h"
 
 extern void SendCTRLandAKey(int code);
 

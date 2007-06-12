@@ -2,11 +2,15 @@
 /* INRIA 2007 */
 /* Sylvestre Ledru */
 /*-----------------------------------------------------------------------------------*/
+#ifndef __WRITE_SCILAB_H__
+#define __WRITE_SCILAB_H__
+#include "machine.h"
 
 /**
  * <long-description>
  *
- * @param i 
- * @return <ReturnValue>
+ * @param s 
  */
-int C2F(checkevts)(int *i);
+void write_scilab (char *s);
+
+#endif /* _WRITE_SCILAB_H__ */

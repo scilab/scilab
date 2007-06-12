@@ -20,6 +20,7 @@
 #include "xscion.h"
 #include "scilabmode.h"
 #include "checkevts.h"
+#include "sxevents.h"
 
 extern void flushTKEvents ();
 extern int TclEventsLoop(void);

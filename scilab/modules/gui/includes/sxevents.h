@@ -6,7 +6,6 @@
 /**
  * <long-description>
  *
- * @param i 
  * @return <ReturnValue>
  */
-int C2F(checkevts)(int *i);
+int C2F(sxevents)(void);
