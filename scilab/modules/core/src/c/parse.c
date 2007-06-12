@@ -10,7 +10,7 @@
 
 #include "parse.h"
 #include "basout.h"
-
+#include "../../gui/includes/checkevts.h"
 #include "../../tclsci/includes/tksynchro.h"
 
 
@@ -74,7 +74,6 @@ extern int C2F(sxevents)();
 extern int C2F(bexec)();
 extern int C2F(ismenu)();
 extern int C2F(getmen)();
-extern int C2F(checkevts)();
 
 extern int C2F(findequal)();
 extern int C2F(print)();

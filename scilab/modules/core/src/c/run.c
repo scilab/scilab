@@ -18,6 +18,7 @@
 #include "run.h"
 #include "timer.h"
 #include "basout.h"
+#include "../../gui/includes/checkevts.h"
 
 #undef Lstk
 #undef Infstk
@@ -53,7 +54,6 @@ extern int C2F(sxevents)();
 extern int C2F(bexec)();
 extern int C2F(ismenu)();
 extern int C2F(getmen)();
-extern int C2F(checkevts)();
 
 extern int C2F(print)();
 extern int C2F(createref1)();
