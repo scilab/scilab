@@ -11,9 +11,8 @@
 #include "../../fileio/includes/diary.h"
 #include "sciprint.h"
 #include "MALLOC.h"
-#ifndef _MSC_VER
-#include "../../gui/includes/xscimore.h"
-#endif
+#include "../../../gui/includes/xscimore.h"
+
 /*-----------------------------------------------------------------------------------*/ 
 extern int C2F(writelunitstring)();
 extern int C2F(xscion)();

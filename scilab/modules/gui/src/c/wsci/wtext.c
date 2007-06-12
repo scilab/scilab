@@ -38,7 +38,7 @@
 #include "Warnings.h"
 #include "Errors.h"
 #include "WindowList.h"
-#include "write_scilab.h"
+#include "../../../includes/write_scilab.h"
 #include "prompt.h"
 
 #include "win_mem_alloc.h" /* MALLOC */
@@ -1203,6 +1203,18 @@ void OnRightClickMenu(LPTW lptw)
  	
 }
 /*-----------------------------------------------------------------------------------*/
+void write_scilab_synchro(char *line)
+/* write_scilab_synchro attend le prompt pour ecrire une ligne sur la console*/
+/* une ligne c a d sans retour chariot ou un seul */
+{
+	DWORD IdThreadWrite;
+
+	InitializeCriticalSection(&Sync);
+	hThreadWrite=CreateThread(NULL,0,(LPTHREAD_START_ROUTINE)WriteTextThread,line,0,(LPDWORD)&IdThreadWrite);
+	CloseHandle(hThreadWrite);
+
+}
+/*-----------------------------------------------------------------------------------*/
 void EvaluateSelection(LPTW lptw)
 {
 	HDC hdc;
@@ -1806,17 +1818,6 @@ void ExitWindow(void)
    }
 }
 /*-----------------------------------------------------------------------------------*/
-void write_scilab_synchro(char *line)
-/* write_scilab_synchro attend le prompt pour ecrire une ligne sur la console*/
-/* une ligne c a d sans retour chariot ou un seul */
-{
-	DWORD IdThreadWrite;
-		
-	InitializeCriticalSection(&Sync);
-	hThreadWrite=CreateThread(NULL,0,(LPTHREAD_START_ROUTINE)WriteTextThread,line,0,(LPDWORD)&IdThreadWrite);
-	CloseHandle(hThreadWrite);
-	
-}
 /*-----------------------------------------------------------------------------------*/
 DWORD WINAPI WriteTextThread(LPVOID lpParam)
 {

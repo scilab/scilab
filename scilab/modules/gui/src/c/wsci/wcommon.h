@@ -26,10 +26,8 @@
 /*-----------------------------------------------------------------------------------*/
 #include <stdio.h>
 #include "core_math.h"
-#include "write_scilab.h"
 #include "../../../../graphics/includes/bcg.h" /* Scilab graphic window */
 #include "sciprint.h"
-#include "sxevents.h"
 /*-----------------------------------------------------------------------------------*/
 
 #define MAX_ID_LEN 50		/* max length of an identifier */

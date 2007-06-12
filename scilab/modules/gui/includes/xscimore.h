@@ -2,10 +2,13 @@
 /* INRIA 2007 */
 /* Sylvestre Ledru */
 /*-----------------------------------------------------------------------------------*/
-
+#ifndef __XSCIMORE_H__
+#define __XSCIMORE_H__
 /**
  * <long-description>
  *
  * @param n 
  */
 void C2F(xscimore)(int *n);
+#endif
+

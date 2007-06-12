@@ -33,7 +33,7 @@
 
 #include "win_mem_alloc.h" /* MALLOC */
 #include "setgetSCIpath.h"
-#include "write_scilab.h"
+#include "../../../includes/write_scilab.h"
 
 #ifndef STRICT
 #define STRICT

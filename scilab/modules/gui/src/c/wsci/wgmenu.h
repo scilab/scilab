@@ -15,15 +15,8 @@
 #endif
 
 #include <string.h>		/* only use  items */
-
-#include <commdlg.h>
-#include <direct.h>
-
 #include "wresource.h"
 #include "wcommon.h"
-#include "write_scilab.h"
-
-
 #include "../../../../string/includes/men_Sutils.h"
 
 
@@ -112,6 +105,7 @@ static void scig_command_scilabgc (int number, void f (struct BCG *));
 
 void SendGraphMacro (struct BCG *ScilabGC, UINT m);
 void ScilabMenuAction (char *buf);
+void write_scilab (char *buf);
 void LoadGraphMacros (struct BCG *ScilabGC);
 void CloseGraphMacros (struct BCG *ScilabGC);
 

@@ -4,7 +4,6 @@
 /*-----------------------------------------------------------------------------------*/
 #ifndef __WRITE_SCILAB_H__
 #define __WRITE_SCILAB_H__
-#include "machine.h"
 
 /**
  * <long-description>

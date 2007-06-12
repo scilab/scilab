@@ -59,7 +59,7 @@
 #include "DrawObjects.h"
 #include "Events.h"
 #include "Xcall1.h"
-#include "GetScreenProperty.h"
+#include "../../../includes/GetScreenProperty.h"
 
 
 
