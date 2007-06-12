@@ -22,7 +22,9 @@ SUFFIXES = .sci
 #### It is why those rules exist.
 #######################################################################
 
-if WITH_JAVA
+
+# TODO : Renamed this variable
+if GUI
 
 export JAVA_HOME
 
@@ -197,7 +199,7 @@ install-data-local:
 
 ########### CLEAN ###################
 # Clean macros and help (generated automatically by Scilab)
-if WITH_JAVA
+if GUI
 clean-local: java-clean
 else
 clean-local:

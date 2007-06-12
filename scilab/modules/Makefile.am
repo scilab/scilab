@@ -64,7 +64,7 @@ SUBDIRS += .
 
 # javasci should be compile at the end because it needs libscilab.la
 # Don't forget that the order in subdirs does matter !!!
-if WITH_JAVA
+if JAVASCI
 SUBDIRS += javasci
 endif
 
@@ -110,11 +110,9 @@ libscilab_la_LIBADD = \
 	$(top_builddir)/modules/wintools/libsciwintools.la \
     $(top_builddir)/modules/tclsci/libscitclsci.la \
     $(top_builddir)/modules/fftw/libscifftw.la \
-    $(top_builddir)/modules/pvm/libscipvm.la
+    $(top_builddir)/modules/pvm/libscipvm.la \
+	$(top_builddir)/modules/shell/libscishell.la
 
-if WITH_JAVA
-libscilab_la_LIBADD += $(top_builddir)/modules/shell/libscishell.la
-endif
 
 if STRINGV2
 libscilab_la_LIBADD += $(top_builddir)/modules/string_V2/libscistring.la

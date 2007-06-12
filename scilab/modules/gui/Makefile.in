@@ -49,59 +49,63 @@ build_triplet = @build@
 host_triplet = @host@
 DIST_COMMON = $(libscigui_la_include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
-@WITH_JAVA_TRUE@am__append_1 = src/c/getlookandfeel.c \
-@WITH_JAVA_TRUE@src/c/setlookandfeel.c \
-@WITH_JAVA_TRUE@src/c/getinstalledlookandfeels.c \
-@WITH_JAVA_TRUE@src/c/TerminateGui.c \
-@WITH_JAVA_TRUE@src/c/xsci/wf_w_util.c \
-@WITH_JAVA_TRUE@src/c/xsci/utils.c \
-@WITH_JAVA_TRUE@src/c/xsci/x_cursor.c \
-@WITH_JAVA_TRUE@src/c/xsci/wf_f_read.c \
-@WITH_JAVA_TRUE@src/c/xsci/wf_f_util.c \
-@WITH_JAVA_TRUE@src/c/xsci/x_tabs.c \
-@WITH_JAVA_TRUE@src/c/xsci/x_misc.c \
-@WITH_JAVA_TRUE@src/c/xsci/wf_e_edit.c \
-@WITH_JAVA_TRUE@src/c/xsci/windows.c \
-@WITH_JAVA_TRUE@src/c/xsci/wf_w_cursor.c \
-@WITH_JAVA_TRUE@src/c/xsci/wf_w_dir.c \
-@WITH_JAVA_TRUE@src/c/xsci/x_util.c \
-@WITH_JAVA_TRUE@src/c/xsci/x_screen.c \
-@WITH_JAVA_TRUE@src/c/xsci/x_scrollbar.c \
-@WITH_JAVA_TRUE@src/c/xsci/SGraph.c \
-@WITH_JAVA_TRUE@src/c/xsci/x_menu.c \
-@WITH_JAVA_TRUE@src/c/xsci/xwidgets.c \
-@WITH_JAVA_TRUE@src/c/xsci/x_data.c \
-@WITH_JAVA_TRUE@src/c/xsci/inter.c \
-@WITH_JAVA_TRUE@src/c/xsci/coloredit.c \
-@WITH_JAVA_TRUE@src/c/xsci/x_input.c \
-@WITH_JAVA_TRUE@src/c/xsci/x_charproc.c \
-@WITH_JAVA_TRUE@src/c/xsci/wf_w_msgpanel.c \
-@WITH_JAVA_TRUE@src/c/xsci/wf_w_file.c \
-@WITH_JAVA_TRUE@src/c/xsci/x_button.c \
-@WITH_JAVA_TRUE@src/c/xsci/command.c \
-@WITH_JAVA_TRUE@src/c/xsci/wf_w_setup.c \
-@WITH_JAVA_TRUE@src/c/xsci/wf_w_init.c \
-@WITH_JAVA_TRUE@src/c/men_dialog.c \
-@WITH_JAVA_TRUE@src/c/xmen_getfile.c \
-@WITH_JAVA_TRUE@src/c/xmen_choose.c \
-@WITH_JAVA_TRUE@src/c/xmen_message.c \
-@WITH_JAVA_TRUE@src/c/xmen_mdial.c \
-@WITH_JAVA_TRUE@src/c/men_getfile.c \
-@WITH_JAVA_TRUE@src/c/xmen_madial.c \
-@WITH_JAVA_TRUE@src/c/men_choose.c \
-@WITH_JAVA_TRUE@src/c/xmen_choice.c \
-@WITH_JAVA_TRUE@src/c/men_message.c \
-@WITH_JAVA_TRUE@src/c/xmen_print.c \
-@WITH_JAVA_TRUE@src/c/men_mdial.c \
-@WITH_JAVA_TRUE@src/c/men_madial.c \
-@WITH_JAVA_TRUE@src/c/xmen_dialog.c \
-@WITH_JAVA_TRUE@src/c/xmen_Utils.c \
-@WITH_JAVA_TRUE@src/c/men_choice.c \
-@WITH_JAVA_TRUE@src/c/men_print.c \
-@WITH_JAVA_TRUE@src/c/guitable.c
+@GUI_TRUE@am__append_1 = \
+@GUI_TRUE@src/c/xsci/IsConsoleMode.c \
+@GUI_TRUE@src/c/xsci/x_VTPrsTbl.c \
+@GUI_TRUE@src/c/xsci/x_main.c \
+@GUI_TRUE@src/c/getlookandfeel.c \
+@GUI_TRUE@src/c/setlookandfeel.c \
+@GUI_TRUE@src/c/getinstalledlookandfeels.c \
+@GUI_TRUE@src/c/TerminateGui.c \
+@GUI_TRUE@src/c/xsci/wf_w_util.c \
+@GUI_TRUE@src/c/xsci/utils.c \
+@GUI_TRUE@src/c/xsci/x_cursor.c \
+@GUI_TRUE@src/c/xsci/wf_f_read.c \
+@GUI_TRUE@src/c/xsci/wf_f_util.c \
+@GUI_TRUE@src/c/xsci/x_tabs.c \
+@GUI_TRUE@src/c/xsci/x_misc.c \
+@GUI_TRUE@src/c/xsci/wf_e_edit.c \
+@GUI_TRUE@src/c/xsci/windows.c \
+@GUI_TRUE@src/c/xsci/wf_w_cursor.c \
+@GUI_TRUE@src/c/xsci/wf_w_dir.c \
+@GUI_TRUE@src/c/xsci/x_util.c \
+@GUI_TRUE@src/c/xsci/x_screen.c \
+@GUI_TRUE@src/c/xsci/x_scrollbar.c \
+@GUI_TRUE@src/c/xsci/SGraph.c \
+@GUI_TRUE@src/c/xsci/x_menu.c \
+@GUI_TRUE@src/c/xsci/xwidgets.c \
+@GUI_TRUE@src/c/xsci/x_data.c \
+@GUI_TRUE@src/c/xsci/inter.c \
+@GUI_TRUE@src/c/xsci/coloredit.c \
+@GUI_TRUE@src/c/xsci/x_input.c \
+@GUI_TRUE@src/c/xsci/x_charproc.c \
+@GUI_TRUE@src/c/xsci/wf_w_msgpanel.c \
+@GUI_TRUE@src/c/xsci/wf_w_file.c \
+@GUI_TRUE@src/c/xsci/x_button.c \
+@GUI_TRUE@src/c/xsci/command.c \
+@GUI_TRUE@src/c/xsci/wf_w_setup.c \
+@GUI_TRUE@src/c/xsci/wf_w_init.c \
+@GUI_TRUE@src/c/men_dialog.c \
+@GUI_TRUE@src/c/xmen_getfile.c \
+@GUI_TRUE@src/c/xmen_choose.c \
+@GUI_TRUE@src/c/xmen_message.c \
+@GUI_TRUE@src/c/xmen_mdial.c \
+@GUI_TRUE@src/c/men_getfile.c \
+@GUI_TRUE@src/c/xmen_madial.c \
+@GUI_TRUE@src/c/men_choose.c \
+@GUI_TRUE@src/c/xmen_choice.c \
+@GUI_TRUE@src/c/men_message.c \
+@GUI_TRUE@src/c/xmen_print.c \
+@GUI_TRUE@src/c/men_mdial.c \
+@GUI_TRUE@src/c/men_madial.c \
+@GUI_TRUE@src/c/xmen_dialog.c \
+@GUI_TRUE@src/c/xmen_Utils.c \
+@GUI_TRUE@src/c/men_choice.c \
+@GUI_TRUE@src/c/men_print.c \
+@GUI_TRUE@src/c/guitable.c
 
-@WITH_JAVA_FALSE@am__append_2 = src/nogui/nogui.c
-@WITH_JAVA_TRUE@am__append_3 = $(JAVA_JNI_INCLUDE)
+@GUI_TRUE@am__append_2 = $(JAVA_JNI_INCLUDE)
+@GUI_FALSE@am__append_3 = src/nogui/nogui.c 
 subdir = modules/gui
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
@@ -181,77 +185,65 @@ am__libscigui_la_SOURCES_DIST = src/c/xsci/mainscic.c \
 	sci_gateway/fortran/sci_setmenu_old.f \
 	sci_gateway/fortran/sci_addmenu_old.f \
 	sci_gateway/fortran/sci_delmenu_old.f
-@WITH_JAVA_TRUE@am__objects_1 = libscigui_la-getlookandfeel.lo \
-@WITH_JAVA_TRUE@	libscigui_la-setlookandfeel.lo \
-@WITH_JAVA_TRUE@	libscigui_la-getinstalledlookandfeels.lo \
-@WITH_JAVA_TRUE@	libscigui_la-TerminateGui.lo \
-@WITH_JAVA_TRUE@	libscigui_la-wf_w_util.lo \
-@WITH_JAVA_TRUE@	libscigui_la-utils.lo libscigui_la-x_cursor.lo \
-@WITH_JAVA_TRUE@	libscigui_la-wf_f_read.lo \
-@WITH_JAVA_TRUE@	libscigui_la-wf_f_util.lo \
-@WITH_JAVA_TRUE@	libscigui_la-x_tabs.lo libscigui_la-x_misc.lo \
-@WITH_JAVA_TRUE@	libscigui_la-wf_e_edit.lo \
-@WITH_JAVA_TRUE@	libscigui_la-windows.lo \
-@WITH_JAVA_TRUE@	libscigui_la-wf_w_cursor.lo \
-@WITH_JAVA_TRUE@	libscigui_la-wf_w_dir.lo \
-@WITH_JAVA_TRUE@	libscigui_la-x_util.lo \
-@WITH_JAVA_TRUE@	libscigui_la-x_screen.lo \
-@WITH_JAVA_TRUE@	libscigui_la-x_scrollbar.lo \
-@WITH_JAVA_TRUE@	libscigui_la-SGraph.lo libscigui_la-x_menu.lo \
-@WITH_JAVA_TRUE@	libscigui_la-xwidgets.lo \
-@WITH_JAVA_TRUE@	libscigui_la-x_data.lo libscigui_la-inter.lo \
-@WITH_JAVA_TRUE@	libscigui_la-coloredit.lo \
-@WITH_JAVA_TRUE@	libscigui_la-x_input.lo \
-@WITH_JAVA_TRUE@	libscigui_la-x_charproc.lo \
-@WITH_JAVA_TRUE@	libscigui_la-wf_w_msgpanel.lo \
-@WITH_JAVA_TRUE@	libscigui_la-wf_w_file.lo \
-@WITH_JAVA_TRUE@	libscigui_la-x_button.lo \
-@WITH_JAVA_TRUE@	libscigui_la-command.lo \
-@WITH_JAVA_TRUE@	libscigui_la-wf_w_setup.lo \
-@WITH_JAVA_TRUE@	libscigui_la-wf_w_init.lo \
-@WITH_JAVA_TRUE@	libscigui_la-men_dialog.lo \
-@WITH_JAVA_TRUE@	libscigui_la-xmen_getfile.lo \
-@WITH_JAVA_TRUE@	libscigui_la-xmen_choose.lo \
-@WITH_JAVA_TRUE@	libscigui_la-xmen_message.lo \
-@WITH_JAVA_TRUE@	libscigui_la-xmen_mdial.lo \
-@WITH_JAVA_TRUE@	libscigui_la-men_getfile.lo \
-@WITH_JAVA_TRUE@	libscigui_la-xmen_madial.lo \
-@WITH_JAVA_TRUE@	libscigui_la-men_choose.lo \
-@WITH_JAVA_TRUE@	libscigui_la-xmen_choice.lo \
-@WITH_JAVA_TRUE@	libscigui_la-men_message.lo \
-@WITH_JAVA_TRUE@	libscigui_la-xmen_print.lo \
-@WITH_JAVA_TRUE@	libscigui_la-men_mdial.lo \
-@WITH_JAVA_TRUE@	libscigui_la-men_madial.lo \
-@WITH_JAVA_TRUE@	libscigui_la-xmen_dialog.lo \
-@WITH_JAVA_TRUE@	libscigui_la-xmen_Utils.lo \
-@WITH_JAVA_TRUE@	libscigui_la-men_choice.lo \
-@WITH_JAVA_TRUE@	libscigui_la-men_print.lo \
-@WITH_JAVA_TRUE@	libscigui_la-guitable.lo
-@WITH_JAVA_FALSE@am__objects_2 = libscigui_la-nogui.lo
-am__objects_3 = libscigui_la-mainscic.lo libscigui_la-IsConsoleMode.lo \
-	libscigui_la-x_VTPrsTbl.lo libscigui_la-x_main.lo \
-	$(am__objects_1) $(am__objects_2)
-@WITH_JAVA_TRUE@am__objects_4 = libscigui_la-sci_x_choice.lo \
-@WITH_JAVA_TRUE@	libscigui_la-sci_x_message_modeless.lo \
-@WITH_JAVA_TRUE@	libscigui_la-gw_gui.lo \
-@WITH_JAVA_TRUE@	libscigui_la-sci_x_mdialog.lo \
-@WITH_JAVA_TRUE@	libscigui_la-sci_x_dialog.lo \
-@WITH_JAVA_TRUE@	libscigui_la-sci_raise_window.lo \
-@WITH_JAVA_TRUE@	libscigui_la-sci_x_choose.lo \
-@WITH_JAVA_TRUE@	libscigui_la-sci_xgetfile.lo \
-@WITH_JAVA_TRUE@	libscigui_la-sci_x_message.lo \
-@WITH_JAVA_TRUE@	libscigui_la-sci_unsetmenu_old.lo \
-@WITH_JAVA_TRUE@	libscigui_la-sci_delmenu_old.lo \
-@WITH_JAVA_TRUE@	libscigui_la-sci_addmenu_old.lo \
-@WITH_JAVA_TRUE@	libscigui_la-sci_setmenu_old.lo \
-@WITH_JAVA_TRUE@	libscigui_la-sci_getlookandfeel.lo \
-@WITH_JAVA_TRUE@	libscigui_la-sci_getinstalledlookandfeels.lo \
-@WITH_JAVA_TRUE@	libscigui_la-sci_setlookandfeel.lo
-@WITH_JAVA_TRUE@am__objects_5 = sci_choices.lo sci_x_mdialog.lo \
-@WITH_JAVA_TRUE@	sci_x_dialog.lo sci_x_message_modeless.lo \
-@WITH_JAVA_TRUE@	sci_x_choose.lo sci_xgetfile.lo \
-@WITH_JAVA_TRUE@	sci_x_message.lo sci_setmenu_old.lo \
-@WITH_JAVA_TRUE@	sci_addmenu_old.lo sci_delmenu_old.lo
+@GUI_TRUE@am__objects_1 = libscigui_la-IsConsoleMode.lo \
+@GUI_TRUE@	libscigui_la-x_VTPrsTbl.lo libscigui_la-x_main.lo \
+@GUI_TRUE@	libscigui_la-getlookandfeel.lo \
+@GUI_TRUE@	libscigui_la-setlookandfeel.lo \
+@GUI_TRUE@	libscigui_la-getinstalledlookandfeels.lo \
+@GUI_TRUE@	libscigui_la-TerminateGui.lo \
+@GUI_TRUE@	libscigui_la-wf_w_util.lo libscigui_la-utils.lo \
+@GUI_TRUE@	libscigui_la-x_cursor.lo libscigui_la-wf_f_read.lo \
+@GUI_TRUE@	libscigui_la-wf_f_util.lo libscigui_la-x_tabs.lo \
+@GUI_TRUE@	libscigui_la-x_misc.lo libscigui_la-wf_e_edit.lo \
+@GUI_TRUE@	libscigui_la-windows.lo libscigui_la-wf_w_cursor.lo \
+@GUI_TRUE@	libscigui_la-wf_w_dir.lo libscigui_la-x_util.lo \
+@GUI_TRUE@	libscigui_la-x_screen.lo libscigui_la-x_scrollbar.lo \
+@GUI_TRUE@	libscigui_la-SGraph.lo libscigui_la-x_menu.lo \
+@GUI_TRUE@	libscigui_la-xwidgets.lo libscigui_la-x_data.lo \
+@GUI_TRUE@	libscigui_la-inter.lo libscigui_la-coloredit.lo \
+@GUI_TRUE@	libscigui_la-x_input.lo libscigui_la-x_charproc.lo \
+@GUI_TRUE@	libscigui_la-wf_w_msgpanel.lo \
+@GUI_TRUE@	libscigui_la-wf_w_file.lo libscigui_la-x_button.lo \
+@GUI_TRUE@	libscigui_la-command.lo libscigui_la-wf_w_setup.lo \
+@GUI_TRUE@	libscigui_la-wf_w_init.lo libscigui_la-men_dialog.lo \
+@GUI_TRUE@	libscigui_la-xmen_getfile.lo \
+@GUI_TRUE@	libscigui_la-xmen_choose.lo \
+@GUI_TRUE@	libscigui_la-xmen_message.lo \
+@GUI_TRUE@	libscigui_la-xmen_mdial.lo \
+@GUI_TRUE@	libscigui_la-men_getfile.lo \
+@GUI_TRUE@	libscigui_la-xmen_madial.lo \
+@GUI_TRUE@	libscigui_la-men_choose.lo \
+@GUI_TRUE@	libscigui_la-xmen_choice.lo \
+@GUI_TRUE@	libscigui_la-men_message.lo \
+@GUI_TRUE@	libscigui_la-xmen_print.lo libscigui_la-men_mdial.lo \
+@GUI_TRUE@	libscigui_la-men_madial.lo \
+@GUI_TRUE@	libscigui_la-xmen_dialog.lo \
+@GUI_TRUE@	libscigui_la-xmen_Utils.lo \
+@GUI_TRUE@	libscigui_la-men_choice.lo libscigui_la-men_print.lo \
+@GUI_TRUE@	libscigui_la-guitable.lo
+@GUI_FALSE@am__objects_2 = libscigui_la-nogui.lo
+am__objects_3 = libscigui_la-mainscic.lo $(am__objects_1) \
+	$(am__objects_2)
+@GUI_TRUE@am__objects_4 = libscigui_la-sci_x_choice.lo \
+@GUI_TRUE@	libscigui_la-sci_x_message_modeless.lo \
+@GUI_TRUE@	libscigui_la-gw_gui.lo libscigui_la-sci_x_mdialog.lo \
+@GUI_TRUE@	libscigui_la-sci_x_dialog.lo \
+@GUI_TRUE@	libscigui_la-sci_raise_window.lo \
+@GUI_TRUE@	libscigui_la-sci_x_choose.lo \
+@GUI_TRUE@	libscigui_la-sci_xgetfile.lo \
+@GUI_TRUE@	libscigui_la-sci_x_message.lo \
+@GUI_TRUE@	libscigui_la-sci_unsetmenu_old.lo \
+@GUI_TRUE@	libscigui_la-sci_delmenu_old.lo \
+@GUI_TRUE@	libscigui_la-sci_addmenu_old.lo \
+@GUI_TRUE@	libscigui_la-sci_setmenu_old.lo \
+@GUI_TRUE@	libscigui_la-sci_getlookandfeel.lo \
+@GUI_TRUE@	libscigui_la-sci_getinstalledlookandfeels.lo \
+@GUI_TRUE@	libscigui_la-sci_setlookandfeel.lo
+@GUI_TRUE@am__objects_5 = sci_choices.lo sci_x_mdialog.lo \
+@GUI_TRUE@	sci_x_dialog.lo sci_x_message_modeless.lo \
+@GUI_TRUE@	sci_x_choose.lo sci_xgetfile.lo sci_x_message.lo \
+@GUI_TRUE@	sci_setmenu_old.lo sci_addmenu_old.lo \
+@GUI_TRUE@	sci_delmenu_old.lo
 am_libscigui_la_OBJECTS = $(am__objects_3) $(am__objects_4) \
 	$(am__objects_5)
 libscigui_la_OBJECTS = $(am_libscigui_la_OBJECTS)
@@ -484,40 +476,6 @@ JARDIR = jar/
 JARMASK = *.jar
 # List of the localisation (languages) files
 LOCALISATIONFILES = errors.xml menus.xml messages.xml
-GUI_C_SOURCES = src/c/xsci/mainscic.c src/c/xsci/IsConsoleMode.c \
-	src/c/xsci/x_VTPrsTbl.c src/c/xsci/x_main.c $(am__append_1) \
-	$(am__append_2)
-@WITH_JAVA_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/sci_x_choice.c \
-@WITH_JAVA_TRUE@sci_gateway/c/sci_x_message_modeless.c \
-@WITH_JAVA_TRUE@sci_gateway/c/gw_gui.c \
-@WITH_JAVA_TRUE@sci_gateway/c/sci_x_mdialog.c \
-@WITH_JAVA_TRUE@sci_gateway/c/sci_x_dialog.c \
-@WITH_JAVA_TRUE@sci_gateway/c/sci_raise_window.c \
-@WITH_JAVA_TRUE@sci_gateway/c/sci_x_choose.c \
-@WITH_JAVA_TRUE@sci_gateway/c/sci_xgetfile.c \
-@WITH_JAVA_TRUE@sci_gateway/c/sci_x_message.c \
-@WITH_JAVA_TRUE@sci_gateway/c/sci_unsetmenu_old.c \
-@WITH_JAVA_TRUE@sci_gateway/c/sci_delmenu_old.c \
-@WITH_JAVA_TRUE@sci_gateway/c/sci_addmenu_old.c \
-@WITH_JAVA_TRUE@sci_gateway/c/sci_setmenu_old.c \
-@WITH_JAVA_TRUE@sci_gateway/c/sci_getlookandfeel.c \
-@WITH_JAVA_TRUE@sci_gateway/c/sci_getinstalledlookandfeels.c \
-@WITH_JAVA_TRUE@sci_gateway/c/sci_setlookandfeel.c
-
-@WITH_JAVA_TRUE@GATEWAY_FORTRAN_SOURCES = \
-@WITH_JAVA_TRUE@sci_gateway/fortran/sci_choices.f \
-@WITH_JAVA_TRUE@sci_gateway/fortran/sci_x_mdialog.f \
-@WITH_JAVA_TRUE@sci_gateway/fortran/sci_x_dialog.f \
-@WITH_JAVA_TRUE@sci_gateway/fortran/sci_x_message_modeless.f \
-@WITH_JAVA_TRUE@sci_gateway/fortran/sci_x_choose.f \
-@WITH_JAVA_TRUE@sci_gateway/fortran/sci_xgetfile.f \
-@WITH_JAVA_TRUE@sci_gateway/fortran/sci_x_message.f \
-@WITH_JAVA_TRUE@sci_gateway/fortran/sci_setmenu_old.f \
-@WITH_JAVA_TRUE@sci_gateway/fortran/sci_addmenu_old.f \
-@WITH_JAVA_TRUE@sci_gateway/fortran/sci_delmenu_old.f
-
-BUILT_SOURCES = $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
-CLEANFILES = $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
 libscigui_la_CFLAGS = -Isrc/c/ -Iincludes/ \
 	-I$(top_srcdir)/modules/graphics/includes/ \
 	-I$(top_srcdir)/libs/MALLOC/includes/ \
@@ -526,7 +484,39 @@ libscigui_la_CFLAGS = -Isrc/c/ -Iincludes/ \
 	-I$(top_srcdir)/modules/tclsci/includes/ \
 	-I$(top_srcdir)/modules/jvm/includes/ \
 	-I$(top_srcdir)/modules/gui/src/c/xsci/ $(TCL_INC_PATH) \
-	$(Tk_INC_PATH) $(am__append_3)
+	$(Tk_INC_PATH) $(am__append_2)
+GUI_C_SOURCES = src/c/xsci/mainscic.c $(am__append_1) $(am__append_3)
+@GUI_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/sci_x_choice.c \
+@GUI_TRUE@sci_gateway/c/sci_x_message_modeless.c \
+@GUI_TRUE@sci_gateway/c/gw_gui.c \
+@GUI_TRUE@sci_gateway/c/sci_x_mdialog.c \
+@GUI_TRUE@sci_gateway/c/sci_x_dialog.c \
+@GUI_TRUE@sci_gateway/c/sci_raise_window.c \
+@GUI_TRUE@sci_gateway/c/sci_x_choose.c \
+@GUI_TRUE@sci_gateway/c/sci_xgetfile.c \
+@GUI_TRUE@sci_gateway/c/sci_x_message.c \
+@GUI_TRUE@sci_gateway/c/sci_unsetmenu_old.c \
+@GUI_TRUE@sci_gateway/c/sci_delmenu_old.c \
+@GUI_TRUE@sci_gateway/c/sci_addmenu_old.c \
+@GUI_TRUE@sci_gateway/c/sci_setmenu_old.c \
+@GUI_TRUE@sci_gateway/c/sci_getlookandfeel.c \
+@GUI_TRUE@sci_gateway/c/sci_getinstalledlookandfeels.c \
+@GUI_TRUE@sci_gateway/c/sci_setlookandfeel.c
+
+@GUI_TRUE@GATEWAY_FORTRAN_SOURCES = \
+@GUI_TRUE@sci_gateway/fortran/sci_choices.f \
+@GUI_TRUE@sci_gateway/fortran/sci_x_mdialog.f \
+@GUI_TRUE@sci_gateway/fortran/sci_x_dialog.f \
+@GUI_TRUE@sci_gateway/fortran/sci_x_message_modeless.f \
+@GUI_TRUE@sci_gateway/fortran/sci_x_choose.f \
+@GUI_TRUE@sci_gateway/fortran/sci_xgetfile.f \
+@GUI_TRUE@sci_gateway/fortran/sci_x_message.f \
+@GUI_TRUE@sci_gateway/fortran/sci_setmenu_old.f \
+@GUI_TRUE@sci_gateway/fortran/sci_addmenu_old.f \
+@GUI_TRUE@sci_gateway/fortran/sci_delmenu_old.f
+
+@GUI_TRUE@BUILT_SOURCES = $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
+@GUI_TRUE@CLEANFILES = $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
 libscigui_la_LDFLAGS = $(X_LIBS) $(TERMCAP_LIB) $(X_EXTRA_LIBS)
 pkglib_LTLIBRARIES = libscigui.la
 libscigui_la_SOURCES = $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
@@ -567,7 +557,7 @@ includes/GraphicWindow.h
 #### gui : demos files ####
 libscigui_la_demosdir = $(mydatadir)/demos/
 libscigui_la_demos_DATA = demos/dialog.dem
-@WITH_JAVA_TRUE@USEANT = 1
+@GUI_TRUE@USEANT = 1
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
@@ -1432,12 +1422,12 @@ distdir: $(DISTFILES)
 	    || exit 1; \
 	  fi; \
 	done
-@WITH_JAVA_FALSE@check-local:
+@GUI_FALSE@check-local:
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
-@WITH_JAVA_FALSE@all-local:
+@GUI_FALSE@all-local:
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
 	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscigui_la_demosdir)" "$(DESTDIR)$(libscigui_la_etcdir)" "$(DESTDIR)$(libscigui_la_rootdir)" "$(DESTDIR)$(libscigui_la_sci_gatewaydir)" "$(DESTDIR)$(libscigui_la_includedir)"; do \
@@ -1577,24 +1567,26 @@ uninstall-am: uninstall-libscigui_la_demosDATA \
 #### It is why those rules exist.
 #######################################################################
 
-@WITH_JAVA_TRUE@export JAVA_HOME
+# TODO : Renamed this variable
 
-@WITH_JAVA_TRUE@java-build:
-@WITH_JAVA_TRUE@	@if test -f build.xml; then \
-@WITH_JAVA_TRUE@		$(ANT) jar; \
-@WITH_JAVA_TRUE@	fi
+@GUI_TRUE@export JAVA_HOME
 
-@WITH_JAVA_TRUE@java-clean: 
-@WITH_JAVA_TRUE@	@if test -f build.xml; then \
-@WITH_JAVA_TRUE@		$(ANT) clean; \
-@WITH_JAVA_TRUE@	fi
+@GUI_TRUE@java-build:
+@GUI_TRUE@	@if test -f build.xml; then \
+@GUI_TRUE@		$(ANT) jar; \
+@GUI_TRUE@	fi
 
-@WITH_JAVA_TRUE@check-local:
-@WITH_JAVA_TRUE@	@if test -f build.xml; then \
-@WITH_JAVA_TRUE@		$(ANT) checkstyle; \
-@WITH_JAVA_TRUE@	fi
+@GUI_TRUE@java-clean: 
+@GUI_TRUE@	@if test -f build.xml; then \
+@GUI_TRUE@		$(ANT) clean; \
+@GUI_TRUE@	fi
 
-@WITH_JAVA_TRUE@all-local: java-build
+@GUI_TRUE@check-local:
+@GUI_TRUE@	@if test -f build.xml; then \
+@GUI_TRUE@		$(ANT) checkstyle; \
+@GUI_TRUE@	fi
+
+@GUI_TRUE@all-local: java-build
 
 # Replace all the .java by .class in JAVAFILES
 #CLASSFILES = $(JAVAFILES:.java=.class)
@@ -1705,8 +1697,8 @@ install-data-local:
 
 ########### CLEAN ###################
 # Clean macros and help (generated automatically by Scilab)
-@WITH_JAVA_TRUE@clean-local: java-clean
-@WITH_JAVA_FALSE@clean-local:
+@GUI_TRUE@clean-local: java-clean
+@GUI_FALSE@clean-local:
 # Removes macros (*.bin generated from .sci)
 	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \
@@ -1725,8 +1717,8 @@ macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODI
 	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
 	$(top_builddir)/bin/scilab -nb -nwni -f $(abs_srcdir)/macros/buildmacros.sce 	)
 
-$(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h: $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad src/c/xsci/x_main.c
-	$(top_srcdir)/modules/gui/src/c/xsci/ad2c.sh $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad > $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
+@GUI_TRUE@$(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h: $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad src/c/xsci/x_main.c
+@GUI_TRUE@	$(top_srcdir)/modules/gui/src/c/xsci/ad2c.sh $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad > $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

@@ -5,14 +5,18 @@
 
 include $(top_srcdir)/Makefile.incl.am
 
+
+libscigui_la_CFLAGS=  -Isrc/c/ -Iincludes/ -I$(top_srcdir)/modules/graphics/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/core/src/c/ -I$(top_srcdir)/modules/string/includes/ -I$(top_srcdir)/modules/tclsci/includes/ -I$(top_srcdir)/modules/jvm/includes/ -I$(top_srcdir)/modules/gui/src/c/xsci/ $(TCL_INC_PATH) $(Tk_INC_PATH) 
+
 GUI_C_SOURCES = \
-src/c/xsci/mainscic.c \
+src/c/xsci/mainscic.c
+
+if GUI
+GUI_C_SOURCES += \
 src/c/xsci/IsConsoleMode.c \
 src/c/xsci/x_VTPrsTbl.c \
-src/c/xsci/x_main.c 
-
-if WITH_JAVA
-GUI_C_SOURCES += src/c/getlookandfeel.c \
+src/c/xsci/x_main.c \
+src/c/getlookandfeel.c \
 src/c/setlookandfeel.c \
 src/c/getinstalledlookandfeels.c \
 src/c/TerminateGui.c \
@@ -92,11 +96,6 @@ sci_gateway/fortran/sci_setmenu_old.f \
 sci_gateway/fortran/sci_addmenu_old.f \
 sci_gateway/fortran/sci_delmenu_old.f
 
-else
-
-GUI_C_SOURCES += src/nogui/nogui.c
-
-endif
 
 BUILT_SOURCES = $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
 
@@ -105,11 +104,11 @@ $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h: $(top_srcdir)/modules/gui/src
 
 CLEANFILES = $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
 
-libscigui_la_CFLAGS=  -Isrc/c/ -Iincludes/ -I$(top_srcdir)/modules/graphics/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/core/src/c/ -I$(top_srcdir)/modules/string/includes/ -I$(top_srcdir)/modules/tclsci/includes/ -I$(top_srcdir)/modules/jvm/includes/ -I$(top_srcdir)/modules/gui/src/c/xsci/ $(TCL_INC_PATH) $(Tk_INC_PATH) 
-
-if WITH_JAVA
-
 libscigui_la_CFLAGS += $(JAVA_JNI_INCLUDE)
+
+else
+
+GUI_C_SOURCES += src/nogui/nogui.c 
 
 endif
 
@@ -159,7 +158,7 @@ libscigui_la_demosdir=$(mydatadir)/demos/
 libscigui_la_demos_DATA = demos/dialog.dem
 
 
-if WITH_JAVA
+if GUI
 
 USEANT=1
 

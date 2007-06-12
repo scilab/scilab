@@ -48,15 +48,14 @@ host_triplet = @host@
 
 # javasci should be compile at the end because it needs libscilab.la
 # Don't forget that the order in subdirs does matter !!!
-@WITH_JAVA_TRUE@am__append_1 = javasci
-@WITH_JAVA_TRUE@am__append_2 = $(top_builddir)/modules/shell/libscishell.la
-@STRINGV2_TRUE@am__append_3 = $(top_builddir)/modules/string_V2/libscistring.la
-@STRINGV2_FALSE@am__append_4 = $(top_builddir)/modules/string/libscistring.la
+@JAVASCI_TRUE@am__append_1 = javasci
+@STRINGV2_TRUE@am__append_2 = $(top_builddir)/modules/string_V2/libscistring.la
+@STRINGV2_FALSE@am__append_3 = $(top_builddir)/modules/string/libscistring.la
 
 #if MPI
 #libscilab_la_LIBADD += $(top_builddir)/modules/mpi/libscimpi.la
 #endif
-@FFTW_TRUE@am__append_5 = $(top_builddir)/modules/fftw/libscifftw.la
+@FFTW_TRUE@am__append_4 = $(top_builddir)/modules/fftw/libscifftw.la
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 subdir = modules
@@ -115,8 +114,9 @@ libscilab_la_DEPENDENCIES = $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/wintools/libsciwintools.la \
 	$(top_builddir)/modules/tclsci/libscitclsci.la \
 	$(top_builddir)/modules/fftw/libscifftw.la \
-	$(top_builddir)/modules/pvm/libscipvm.la $(am__append_2) \
-	$(am__append_3) $(am__append_4) $(am__append_5) \
+	$(top_builddir)/modules/pvm/libscipvm.la \
+	$(top_builddir)/modules/shell/libscishell.la $(am__append_2) \
+	$(am__append_3) $(am__append_4) \
 	$(top_builddir)/modules/jvm/libscijvm.la \
 	$(top_builddir)/modules/scicos/libsciscicos.la \
 	$(top_builddir)/libs/blas/libsciblas.la \
@@ -367,8 +367,9 @@ libscilab_la_LIBADD = $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/wintools/libsciwintools.la \
 	$(top_builddir)/modules/tclsci/libscitclsci.la \
 	$(top_builddir)/modules/fftw/libscifftw.la \
-	$(top_builddir)/modules/pvm/libscipvm.la $(am__append_2) \
-	$(am__append_3) $(am__append_4) $(am__append_5) \
+	$(top_builddir)/modules/pvm/libscipvm.la \
+	$(top_builddir)/modules/shell/libscishell.la $(am__append_2) \
+	$(am__append_3) $(am__append_4) \
 	$(top_builddir)/modules/jvm/libscijvm.la \
 	$(top_builddir)/modules/scicos/libsciscicos.la \
 	$(top_builddir)/libs/blas/libsciblas.la \
@@ -669,11 +670,11 @@ distdir: $(DISTFILES)
 	      || exit 1; \
 	  fi; \
 	done
-@WITH_JAVA_FALSE@check-local:
+@GUI_FALSE@check-local:
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-recursive
-@WITH_JAVA_FALSE@all-local:
+@GUI_FALSE@all-local:
 all-am: Makefile $(LTLIBRARIES) all-local
 installdirs: installdirs-recursive
 installdirs-am:
@@ -794,24 +795,26 @@ uninstall-am: uninstall-pkglibLTLIBRARIES
 #### It is why those rules exist.
 #######################################################################
 
-@WITH_JAVA_TRUE@export JAVA_HOME
+# TODO : Renamed this variable
 
-@WITH_JAVA_TRUE@java-build:
-@WITH_JAVA_TRUE@	@if test -f build.xml; then \
-@WITH_JAVA_TRUE@		$(ANT) jar; \
-@WITH_JAVA_TRUE@	fi
+@GUI_TRUE@export JAVA_HOME
 
-@WITH_JAVA_TRUE@java-clean: 
-@WITH_JAVA_TRUE@	@if test -f build.xml; then \
-@WITH_JAVA_TRUE@		$(ANT) clean; \
-@WITH_JAVA_TRUE@	fi
+@GUI_TRUE@java-build:
+@GUI_TRUE@	@if test -f build.xml; then \
+@GUI_TRUE@		$(ANT) jar; \
+@GUI_TRUE@	fi
 
-@WITH_JAVA_TRUE@check-local:
-@WITH_JAVA_TRUE@	@if test -f build.xml; then \
-@WITH_JAVA_TRUE@		$(ANT) checkstyle; \
-@WITH_JAVA_TRUE@	fi
+@GUI_TRUE@java-clean: 
+@GUI_TRUE@	@if test -f build.xml; then \
+@GUI_TRUE@		$(ANT) clean; \
+@GUI_TRUE@	fi
 
-@WITH_JAVA_TRUE@all-local: java-build
+@GUI_TRUE@check-local:
+@GUI_TRUE@	@if test -f build.xml; then \
+@GUI_TRUE@		$(ANT) checkstyle; \
+@GUI_TRUE@	fi
+
+@GUI_TRUE@all-local: java-build
 
 # Replace all the .java by .class in JAVAFILES
 #CLASSFILES = $(JAVAFILES:.java=.class)
@@ -922,8 +925,8 @@ install-data-local:
 
 ########### CLEAN ###################
 # Clean macros and help (generated automatically by Scilab)
-@WITH_JAVA_TRUE@clean-local: java-clean
-@WITH_JAVA_FALSE@clean-local:
+@GUI_TRUE@clean-local: java-clean
+@GUI_FALSE@clean-local:
 # Removes macros (*.bin generated from .sci)
 	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \

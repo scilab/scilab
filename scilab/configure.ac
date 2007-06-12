@@ -80,8 +80,11 @@ AC_ARG_WITH(local-xaw,
 AC_ARG_WITH(tk,
     [  --without-tk            do not compile with TCL/TK ])
 
-AC_ARG_WITH(java,
-    [  --without-java          do not compile java modules ])
+AC_ARG_WITH(javasci,
+    [  --without-javasci       do not compile the Java/Scilab module ])
+
+AC_ARG_WITH(gui,
+    [  --without-gui           do not compile the Graphical User Interface (GUI). Intended for embedded/clustering/grid Scilab ])
 
 
 
@@ -517,7 +520,7 @@ fi
 ## test for JAVA compiler
 ###########################
 
-if test "$with_java" != no; then
+if test "$with_javasci" == yes -o "$with_gui" == yes; then
    # See if --with-jdk command line argument is given
      # Try to detect the installed JVM, this could be controlled
 	 # by the above --with options
@@ -538,7 +541,7 @@ if test "$with_java" != no; then
 		AC_JAVA_TOOLS
 		AC_JAVA_ANT
 
-		AC_DEFINE([WITH_JAVA],[],[With the JAVA stuff (GUI, Console, Scilab <=> Java...])
+		AC_DEFINE([WITH_GUI],[],[With the JAVA stuff (GUI, Console, JOGL...])
 	else
 		AC_MSG_WARN([Sun javac not found: I will not build the java interface])
 		if test "$ac_java_jvm_name" != ""; then
@@ -549,7 +552,8 @@ if test "$with_java" != no; then
     AC_SUBST(JAVA_JNI_LIBS)
     AC_SUBST(JAVA_HOME)
 fi
-AM_CONDITIONAL(WITH_JAVA, test "$with_java" != no)
+AM_CONDITIONAL(GUI, test "$with_gui" == yes)
+AM_CONDITIONAL(JAVASCI, test "$with_javasci" == yes)
 
 
 ##############################################################

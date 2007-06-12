@@ -92,27 +92,26 @@ am__libscijvm_la_SOURCES_DIST = src/nojvm/nojvm.c \
 	sci_gateway/c/sci_with_embedded_jre.c \
 	sci_gateway/c/sci_javaclasspath.c sci_gateway/c/gw_jvm.c \
 	sci_gateway/c/sci_javalibrarypath.c
-@WITH_JAVA_FALSE@am__objects_1 = libscijvm_la-nojvm.lo
-@WITH_JAVA_TRUE@am__objects_1 = libscijvm_la-InitializeJVM.lo \
-@WITH_JAVA_TRUE@	libscijvm_la-TerminateJVM.lo \
-@WITH_JAVA_TRUE@	libscijvm_la-JVM_Unix.lo libscijvm_la-JVM.lo \
-@WITH_JAVA_TRUE@	libscijvm_la-JniUtils.lo \
-@WITH_JAVA_TRUE@	libscijvm_la-addToClasspath.lo \
-@WITH_JAVA_TRUE@	libscijvm_la-getClasspath.lo \
-@WITH_JAVA_TRUE@	libscijvm_la-system_getproperty.lo \
-@WITH_JAVA_TRUE@	libscijvm_la-loadClasspath.lo \
-@WITH_JAVA_TRUE@	libscijvm_la-createMainScilabObject.lo \
-@WITH_JAVA_TRUE@	libscijvm_la-JVM_commons.lo \
-@WITH_JAVA_TRUE@	libscijvm_la-catchIfJavaException.lo \
-@WITH_JAVA_TRUE@	libscijvm_la-loadLibrarypath.lo \
-@WITH_JAVA_TRUE@	libscijvm_la-getLibrarypath.lo \
-@WITH_JAVA_TRUE@	libscijvm_la-addToLibrarypath.lo
-@WITH_JAVA_TRUE@am__objects_2 =  \
-@WITH_JAVA_TRUE@	libscijvm_la-sci_system_getproperty.lo \
-@WITH_JAVA_TRUE@	libscijvm_la-sci_with_embedded_jre.lo \
-@WITH_JAVA_TRUE@	libscijvm_la-sci_javaclasspath.lo \
-@WITH_JAVA_TRUE@	libscijvm_la-gw_jvm.lo \
-@WITH_JAVA_TRUE@	libscijvm_la-sci_javalibrarypath.lo
+@GUI_FALSE@am__objects_1 = libscijvm_la-nojvm.lo
+@GUI_TRUE@am__objects_1 = libscijvm_la-InitializeJVM.lo \
+@GUI_TRUE@	libscijvm_la-TerminateJVM.lo \
+@GUI_TRUE@	libscijvm_la-JVM_Unix.lo libscijvm_la-JVM.lo \
+@GUI_TRUE@	libscijvm_la-JniUtils.lo \
+@GUI_TRUE@	libscijvm_la-addToClasspath.lo \
+@GUI_TRUE@	libscijvm_la-getClasspath.lo \
+@GUI_TRUE@	libscijvm_la-system_getproperty.lo \
+@GUI_TRUE@	libscijvm_la-loadClasspath.lo \
+@GUI_TRUE@	libscijvm_la-createMainScilabObject.lo \
+@GUI_TRUE@	libscijvm_la-JVM_commons.lo \
+@GUI_TRUE@	libscijvm_la-catchIfJavaException.lo \
+@GUI_TRUE@	libscijvm_la-loadLibrarypath.lo \
+@GUI_TRUE@	libscijvm_la-getLibrarypath.lo \
+@GUI_TRUE@	libscijvm_la-addToLibrarypath.lo
+@GUI_TRUE@am__objects_2 = libscijvm_la-sci_system_getproperty.lo \
+@GUI_TRUE@	libscijvm_la-sci_with_embedded_jre.lo \
+@GUI_TRUE@	libscijvm_la-sci_javaclasspath.lo \
+@GUI_TRUE@	libscijvm_la-gw_jvm.lo \
+@GUI_TRUE@	libscijvm_la-sci_javalibrarypath.lo
 am_libscijvm_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscijvm_la_OBJECTS = $(am_libscijvm_la_OBJECTS)
 libscijvm_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
@@ -321,30 +320,30 @@ includes/JniUtils.h \
 includes/addToClasspath.h \
 includes/addToLibrarypath.h
 
-@WITH_JAVA_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/sci_system_getproperty.c \
-@WITH_JAVA_TRUE@sci_gateway/c/sci_with_embedded_jre.c \
-@WITH_JAVA_TRUE@sci_gateway/c/sci_javaclasspath.c \
-@WITH_JAVA_TRUE@sci_gateway/c/gw_jvm.c \
-@WITH_JAVA_TRUE@sci_gateway/c/sci_javalibrarypath.c
+@GUI_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/sci_system_getproperty.c \
+@GUI_TRUE@sci_gateway/c/sci_with_embedded_jre.c \
+@GUI_TRUE@sci_gateway/c/sci_javaclasspath.c \
+@GUI_TRUE@sci_gateway/c/gw_jvm.c \
+@GUI_TRUE@sci_gateway/c/sci_javalibrarypath.c
 
-@WITH_JAVA_FALSE@JVM_C_SOURCES = src/nojvm/nojvm.c
-@WITH_JAVA_TRUE@JVM_C_SOURCES = src/c/InitializeJVM.c \
-@WITH_JAVA_TRUE@src/c/TerminateJVM.c \
-@WITH_JAVA_TRUE@src/c/JVM_Unix.c \
-@WITH_JAVA_TRUE@src/c/JVM.c \
-@WITH_JAVA_TRUE@src/c/JniUtils.c \
-@WITH_JAVA_TRUE@src/c/addToClasspath.c \
-@WITH_JAVA_TRUE@src/c/getClasspath.c \
-@WITH_JAVA_TRUE@src/c/system_getproperty.c \
-@WITH_JAVA_TRUE@src/c/loadClasspath.c \
-@WITH_JAVA_TRUE@src/c/createMainScilabObject.c \
-@WITH_JAVA_TRUE@src/c/JVM_commons.c \
-@WITH_JAVA_TRUE@src/c/catchIfJavaException.c \
-@WITH_JAVA_TRUE@src/c/loadLibrarypath.c \
-@WITH_JAVA_TRUE@src/c/getLibrarypath.c \
-@WITH_JAVA_TRUE@src/c/addToLibrarypath.c
+@GUI_FALSE@JVM_C_SOURCES = src/nojvm/nojvm.c
+@GUI_TRUE@JVM_C_SOURCES = src/c/InitializeJVM.c \
+@GUI_TRUE@src/c/TerminateJVM.c \
+@GUI_TRUE@src/c/JVM_Unix.c \
+@GUI_TRUE@src/c/JVM.c \
+@GUI_TRUE@src/c/JniUtils.c \
+@GUI_TRUE@src/c/addToClasspath.c \
+@GUI_TRUE@src/c/getClasspath.c \
+@GUI_TRUE@src/c/system_getproperty.c \
+@GUI_TRUE@src/c/loadClasspath.c \
+@GUI_TRUE@src/c/createMainScilabObject.c \
+@GUI_TRUE@src/c/JVM_commons.c \
+@GUI_TRUE@src/c/catchIfJavaException.c \
+@GUI_TRUE@src/c/loadLibrarypath.c \
+@GUI_TRUE@src/c/getLibrarypath.c \
+@GUI_TRUE@src/c/addToLibrarypath.c
 
-@WITH_JAVA_TRUE@USEANT = 1
+@GUI_TRUE@USEANT = 1
 libscijvm_la_SOURCES = $(JVM_C_SOURCES) $(GATEWAY_C_SOURCES)
 
 # Where all the Scilab stuff is installed (macros, help, ...)
@@ -797,11 +796,11 @@ distdir: $(DISTFILES)
 	    || exit 1; \
 	  fi; \
 	done
-@WITH_JAVA_FALSE@check-local:
+@GUI_FALSE@check-local:
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-am
-@WITH_JAVA_FALSE@all-local:
+@GUI_FALSE@all-local:
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
 	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscijvm_la_etcdir)" "$(DESTDIR)$(libscijvm_la_rootdir)" "$(DESTDIR)$(libscijvm_la_sci_gatewaydir)" "$(DESTDIR)$(libscijvm_la_includedir)"; do \
@@ -934,24 +933,26 @@ uninstall-am: uninstall-libscijvm_la_etcDATA \
 #### It is why those rules exist.
 #######################################################################
 
-@WITH_JAVA_TRUE@export JAVA_HOME
+# TODO : Renamed this variable
 
-@WITH_JAVA_TRUE@java-build:
-@WITH_JAVA_TRUE@	@if test -f build.xml; then \
-@WITH_JAVA_TRUE@		$(ANT) jar; \
-@WITH_JAVA_TRUE@	fi
+@GUI_TRUE@export JAVA_HOME
 
-@WITH_JAVA_TRUE@java-clean: 
-@WITH_JAVA_TRUE@	@if test -f build.xml; then \
-@WITH_JAVA_TRUE@		$(ANT) clean; \
-@WITH_JAVA_TRUE@	fi
+@GUI_TRUE@java-build:
+@GUI_TRUE@	@if test -f build.xml; then \
+@GUI_TRUE@		$(ANT) jar; \
+@GUI_TRUE@	fi
 
-@WITH_JAVA_TRUE@check-local:
-@WITH_JAVA_TRUE@	@if test -f build.xml; then \
-@WITH_JAVA_TRUE@		$(ANT) checkstyle; \
-@WITH_JAVA_TRUE@	fi
+@GUI_TRUE@java-clean: 
+@GUI_TRUE@	@if test -f build.xml; then \
+@GUI_TRUE@		$(ANT) clean; \
+@GUI_TRUE@	fi
 
-@WITH_JAVA_TRUE@all-local: java-build
+@GUI_TRUE@check-local:
+@GUI_TRUE@	@if test -f build.xml; then \
+@GUI_TRUE@		$(ANT) checkstyle; \
+@GUI_TRUE@	fi
+
+@GUI_TRUE@all-local: java-build
 
 # Replace all the .java by .class in JAVAFILES
 #CLASSFILES = $(JAVAFILES:.java=.class)
@@ -1062,8 +1063,8 @@ install-data-local:
 
 ########### CLEAN ###################
 # Clean macros and help (generated automatically by Scilab)
-@WITH_JAVA_TRUE@clean-local: java-clean
-@WITH_JAVA_FALSE@clean-local:
+@GUI_TRUE@clean-local: java-clean
+@GUI_FALSE@clean-local:
 # Removes macros (*.bin generated from .sci)
 	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \

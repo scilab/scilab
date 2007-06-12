@@ -3,7 +3,7 @@
 ### INRIA - Scilab 2006 
 ##########
 
-if WITH_JAVA
+if GUI
 
 GRAPHICS_C_SOURCES = src/c/GetCommandArg.c \
 src/c/w_rottext.c \
@@ -381,7 +381,7 @@ src/cpp/rectangleDrawing/DrawableRectangleImp.cpp \
 src/cpp/SetJavaProperty.cpp
 
 
-if WITH_JAVA
+if GUI
 GRAPHICS_CPP_SOURCES += src/cpp/figureDrawing/DrawableFigureJoGL.cpp \
 src/cpp/DrawableObjectJoGL.cpp \
 src/cpp/rectangleDrawing/RectangleMarkDrawerJoGL.cpp \
@@ -481,16 +481,6 @@ libscigraphics_la_LDFLAGS =  $(JAVA_JNI_LIBS) $(TCLTK_LIBS) $(X_LIBS)
 
 libscigraphics_la_SOURCES = $(GRAPHICS_C_SOURCES) $(GATEWAY_C_SOURCES) $(GRAPHICS_CPP_SOURCES)
 
-else
-
-GRAPHICS_C_SOURCES=src/nographics/nographics.c
-
-endif
-
-pkglib_LTLIBRARIES = libscigraphics.la
-
-
-
 libscigraphics_la_LIBADD = \
 	$(top_builddir)/modules/intersci/libsciintersci.la \
 	$(top_builddir)/modules/data_structures/libscidata_structures.la \
@@ -498,8 +488,6 @@ libscigraphics_la_LIBADD = \
         $(top_builddir)/modules/tclsci/libscitclsci.la
 
 #	$(top_builddir)/modules/gui/libscigui.la
-
-modulename=graphics
 
 # JAVAFILES = src/java/org/scilab/modules/graphics/figureDrawing/DrawableFigureJoGL.java \
 # src/java/org/scilab/modules/graphics/figureDrawing/SciRenderer.java
@@ -717,10 +705,20 @@ demos/bike.dem
 tests:: $(JARFILE) $(JAVAFILES)
 	@(cd tests; make tests)
 
-if WITH_JAVA
-
 USEANT=1
 
+else
+
+GRAPHICS_C_SOURCES=src/nographics/nographics.c
+
+libscigraphics_la_SOURCES = $(GRAPHICS_C_SOURCES)
+
+libscigraphics_la_CFLAGS =  -Iincludes/ -Isrc/c/
+
 endif
+
+pkglib_LTLIBRARIES = libscigraphics.la
+
+modulename=graphics
 
 include $(top_srcdir)/Makefile.incl.am

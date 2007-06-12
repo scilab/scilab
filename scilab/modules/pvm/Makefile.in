@@ -1128,11 +1128,11 @@ distdir: $(DISTFILES)
 	    || exit 1; \
 	  fi; \
 	done
-@WITH_JAVA_FALSE@check-local:
+@GUI_FALSE@check-local:
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-am
-@WITH_JAVA_FALSE@all-local:
+@GUI_FALSE@all-local:
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
 	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscipvm_la_demosdir)" "$(DESTDIR)$(libscipvm_la_etcdir)" "$(DESTDIR)$(libscipvm_la_rootdir)" "$(DESTDIR)$(libscipvm_la_sci_gatewaydir)" "$(DESTDIR)$(libscipvm_la_includedir)"; do \
@@ -1269,24 +1269,26 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 #### It is why those rules exist.
 #######################################################################
 
-@PVM_TRUE@@WITH_JAVA_TRUE@export JAVA_HOME
+# TODO : Renamed this variable
 
-@PVM_TRUE@@WITH_JAVA_TRUE@java-build:
-@PVM_TRUE@@WITH_JAVA_TRUE@	@if test -f build.xml; then \
-@PVM_TRUE@@WITH_JAVA_TRUE@		$(ANT) jar; \
-@PVM_TRUE@@WITH_JAVA_TRUE@	fi
+@GUI_TRUE@@PVM_TRUE@export JAVA_HOME
 
-@PVM_TRUE@@WITH_JAVA_TRUE@java-clean: 
-@PVM_TRUE@@WITH_JAVA_TRUE@	@if test -f build.xml; then \
-@PVM_TRUE@@WITH_JAVA_TRUE@		$(ANT) clean; \
-@PVM_TRUE@@WITH_JAVA_TRUE@	fi
+@GUI_TRUE@@PVM_TRUE@java-build:
+@GUI_TRUE@@PVM_TRUE@	@if test -f build.xml; then \
+@GUI_TRUE@@PVM_TRUE@		$(ANT) jar; \
+@GUI_TRUE@@PVM_TRUE@	fi
 
-@PVM_TRUE@@WITH_JAVA_TRUE@check-local:
-@PVM_TRUE@@WITH_JAVA_TRUE@	@if test -f build.xml; then \
-@PVM_TRUE@@WITH_JAVA_TRUE@		$(ANT) checkstyle; \
-@PVM_TRUE@@WITH_JAVA_TRUE@	fi
+@GUI_TRUE@@PVM_TRUE@java-clean: 
+@GUI_TRUE@@PVM_TRUE@	@if test -f build.xml; then \
+@GUI_TRUE@@PVM_TRUE@		$(ANT) clean; \
+@GUI_TRUE@@PVM_TRUE@	fi
 
-@PVM_TRUE@@WITH_JAVA_TRUE@all-local: java-build
+@GUI_TRUE@@PVM_TRUE@check-local:
+@GUI_TRUE@@PVM_TRUE@	@if test -f build.xml; then \
+@GUI_TRUE@@PVM_TRUE@		$(ANT) checkstyle; \
+@GUI_TRUE@@PVM_TRUE@	fi
+
+@GUI_TRUE@@PVM_TRUE@all-local: java-build
 
 # Replace all the .java by .class in JAVAFILES
 #CLASSFILES = $(JAVAFILES:.java=.class)
@@ -1397,8 +1399,8 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 
 ########### CLEAN ###################
 # Clean macros and help (generated automatically by Scilab)
-@PVM_TRUE@@WITH_JAVA_TRUE@clean-local: java-clean
-@PVM_TRUE@@WITH_JAVA_FALSE@clean-local:
+@GUI_TRUE@@PVM_TRUE@clean-local: java-clean
+@GUI_FALSE@@PVM_TRUE@clean-local:
 # Removes macros (*.bin generated from .sci)
 @PVM_TRUE@	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 @PVM_TRUE@		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \
@@ -1426,24 +1428,26 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 #### It is why those rules exist.
 #######################################################################
 
-@PVM_FALSE@@WITH_JAVA_TRUE@export JAVA_HOME
+# TODO : Renamed this variable
 
-@PVM_FALSE@@WITH_JAVA_TRUE@java-build:
-@PVM_FALSE@@WITH_JAVA_TRUE@	@if test -f build.xml; then \
-@PVM_FALSE@@WITH_JAVA_TRUE@		$(ANT) jar; \
-@PVM_FALSE@@WITH_JAVA_TRUE@	fi
+@GUI_TRUE@@PVM_FALSE@export JAVA_HOME
 
-@PVM_FALSE@@WITH_JAVA_TRUE@java-clean: 
-@PVM_FALSE@@WITH_JAVA_TRUE@	@if test -f build.xml; then \
-@PVM_FALSE@@WITH_JAVA_TRUE@		$(ANT) clean; \
-@PVM_FALSE@@WITH_JAVA_TRUE@	fi
+@GUI_TRUE@@PVM_FALSE@java-build:
+@GUI_TRUE@@PVM_FALSE@	@if test -f build.xml; then \
+@GUI_TRUE@@PVM_FALSE@		$(ANT) jar; \
+@GUI_TRUE@@PVM_FALSE@	fi
 
-@PVM_FALSE@@WITH_JAVA_TRUE@check-local:
-@PVM_FALSE@@WITH_JAVA_TRUE@	@if test -f build.xml; then \
-@PVM_FALSE@@WITH_JAVA_TRUE@		$(ANT) checkstyle; \
-@PVM_FALSE@@WITH_JAVA_TRUE@	fi
+@GUI_TRUE@@PVM_FALSE@java-clean: 
+@GUI_TRUE@@PVM_FALSE@	@if test -f build.xml; then \
+@GUI_TRUE@@PVM_FALSE@		$(ANT) clean; \
+@GUI_TRUE@@PVM_FALSE@	fi
 
-@PVM_FALSE@@WITH_JAVA_TRUE@all-local: java-build
+@GUI_TRUE@@PVM_FALSE@check-local:
+@GUI_TRUE@@PVM_FALSE@	@if test -f build.xml; then \
+@GUI_TRUE@@PVM_FALSE@		$(ANT) checkstyle; \
+@GUI_TRUE@@PVM_FALSE@	fi
+
+@GUI_TRUE@@PVM_FALSE@all-local: java-build
 
 # Replace all the .java by .class in JAVAFILES
 #CLASSFILES = $(JAVAFILES:.java=.class)
@@ -1554,8 +1558,8 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 
 ########### CLEAN ###################
 # Clean macros and help (generated automatically by Scilab)
-@PVM_FALSE@@WITH_JAVA_TRUE@clean-local: java-clean
-@PVM_FALSE@@WITH_JAVA_FALSE@clean-local:
+@GUI_TRUE@@PVM_FALSE@clean-local: java-clean
+@GUI_FALSE@@PVM_FALSE@clean-local:
 # Removes macros (*.bin generated from .sci)
 @PVM_FALSE@	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 @PVM_FALSE@		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \

@@ -38,7 +38,7 @@ includes/JniUtils.h \
 includes/addToClasspath.h \
 includes/addToLibrarypath.h
 
-if WITH_JAVA
+if GUI
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_system_getproperty.c \
 sci_gateway/c/sci_with_embedded_jre.c \

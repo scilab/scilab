@@ -12,7 +12,7 @@ src/c/getentrieshashtable.c \
 src/c/loadhashtableslocalization.c \
 src/c/TerminateLocalization.c
 
-if WITH_JAVA
+if GUI
 LOCALIZATION_C_SOURCES += src/c/org_scilab_modules_localization_QueryString.c
 endif
 
@@ -61,7 +61,7 @@ libscilocalization_la_includedir=$(pkgincludedir)/localization
 libscilocalization_la_include_HEADERS = includes/localization.h \
 includes/gw_localization.h
 
-if WITH_JAVA
+if GUI
 USEANT=1
 endif
 
