@@ -520,7 +520,7 @@ fi
 ## test for JAVA compiler
 ###########################
 
-if test "$with_javasci" == yes -o "$with_gui" == yes; then
+if test "$with_javasci" != no -a "$with_gui" != no; then
    # See if --with-jdk command line argument is given
      # Try to detect the installed JVM, this could be controlled
 	 # by the above --with options
@@ -552,8 +552,8 @@ if test "$with_javasci" == yes -o "$with_gui" == yes; then
     AC_SUBST(JAVA_JNI_LIBS)
     AC_SUBST(JAVA_HOME)
 fi
-AM_CONDITIONAL(GUI, test "$with_gui" == yes)
-AM_CONDITIONAL(JAVASCI, test "$with_javasci" == yes)
+AM_CONDITIONAL(GUI, test "$with_gui" = yes)
+AM_CONDITIONAL(JAVASCI, test "$with_javasci" = yes)
 
 
 ##############################################################
