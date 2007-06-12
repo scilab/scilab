@@ -108,8 +108,6 @@ extern char ** create_argv(int *argc);
  */
 /*-----------------------------------------------------------------------------------*/
 extern int sci_show_banner;
-static int  no_window = 0;
-static int nointeractive = 0;
 /*----------------------------------------------------------------------------------*/
 Boolean   sunFunctionKeys = False;
 
