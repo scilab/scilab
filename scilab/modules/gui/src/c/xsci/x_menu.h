@@ -20,33 +20,29 @@ typedef struct _MenuEntry {
     Widget widget;
 } MenuEntry;
 
-extern MenuEntry mainMenuEntries[], vtMenuEntries[];
-extern MenuEntry fontMenuEntries[];
-extern Arg menuArgs[];
 
-
-extern void HandleSetVisualBell();
-extern void HandleRedraw();
-extern void HandleSendSignal();
-extern void HandleQuit();
-extern void HandleScrollbar();
-extern void HandleJumpscroll();
-extern void HandleReverseVideo();
-extern void HandleAutoWrap();
-extern void HandleReverseWrap();
-extern void HandleAutoLineFeed();
-extern void HandleAppCursor();
-extern void HandleAppKeypad();
-extern void HandleScrollKey();
-extern void HandleScrollTtyOutput();
-extern void HandleAllow132();
-extern void HandleCursesEmul();
-extern void HandleMarginBell();
-extern void HandleAltScreen();
-extern void HandleSoftReset();
-extern void HandleHardReset();
-extern void HandleClearSavedLines();
-extern void HandleVisibility();
+void HandleSetVisualBell();
+void HandleRedraw();
+void HandleSendSignal();
+void HandleQuit();
+void HandleScrollbar();
+void HandleJumpscroll();
+void HandleReverseVideo();
+void HandleAutoWrap();
+void HandleReverseWrap();
+void HandleAutoLineFeed();
+void HandleAppCursor();
+void HandleAppKeypad();
+void HandleScrollKey();
+void HandleScrollTtyOutput();
+void HandleAllow132();
+void HandleCursesEmul();
+void HandleMarginBell();
+void HandleAltScreen();
+void HandleSoftReset();
+void HandleHardReset();
+void HandleClearSavedLines();
+void HandleVisibility();
 
 /*
  * The following definitions MUST match the order of entries given in 
