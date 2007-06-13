@@ -26,5 +26,6 @@ GetFile
 getTMPDIR
 ExceptionMessage
 scigetcwd_
+vartype_
 ;
 

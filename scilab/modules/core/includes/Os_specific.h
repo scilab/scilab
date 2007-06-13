@@ -15,10 +15,6 @@ void C2F(addinter)(int *iflag,int *descla, int *ptrdescla, int *nvla, char *inam
 extern void RemoveInterf  __PARAMS((int Nshared));  
 extern void C2F(userlk) __PARAMS((integer *k));  
 
-/*  "bashos-n.c.X1" */
-
-extern int C2F(bashos) __PARAMS((char *ligne, integer *n, integer *nout, integer *ierr, ftnlen ligne_len));  
-
 /*  "basin-n.c.X1" */
 
 extern int C2F(basin) __PARAMS((integer *ierr, integer *lunit, char *string, char *fmt, ftnlen string_len, ftnlen fmt_len));  

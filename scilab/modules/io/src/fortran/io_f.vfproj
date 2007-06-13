@@ -45,7 +45,6 @@ copy io_f_header.def+io_f.vcdef io_f.def &gt;nul" Description="Build io.def"/></
 		<File RelativePath="..\..\sci_gateway\fortran\intfile.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\intgetenv.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\intgetf.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\inthost.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\intlib.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\intmgetl.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\intprint.f"/>

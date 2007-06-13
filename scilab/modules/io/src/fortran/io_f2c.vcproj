@@ -253,10 +253,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\inthost.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\fortran\intlib.c"
 				>
 			</File>
@@ -378,10 +374,6 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\intgetf.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\inthost.f"
 				>
 			</File>
 			<File

@@ -146,7 +146,6 @@ src/fortran/isbrk.f \
 src/fortran/majmin.f \
 src/fortran/dmdspf.f \
 src/fortran/xerbla.f \
-src/fortran/bashos.f \
 src/fortran/dtosci.f \
 src/fortran/bexec.f \
 src/fortran/varfunptr.f \
