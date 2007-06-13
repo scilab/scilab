@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="8,00"
 	Name="renderer-Ant"
-	ProjectGUID="{4235A847-ED0E-43a3-B62B-E59CB857EDE9}"
+	ProjectGUID="{4235A847-ED0E-43A3-B62B-E59CB857EDE9}"
 	RootNamespace="renderer-Ant"
 	Keyword="MakeFileProj"
 	>

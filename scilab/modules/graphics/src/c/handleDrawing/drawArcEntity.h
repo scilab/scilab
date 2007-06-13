@@ -8,7 +8,7 @@
 #ifndef _DRAW_ARC_ENTITY_H_
 #define _DRAW_ARC_ENTITY_H_
 
-#include "ObjectStructure.h"
+#include "../../../graphics/includes/ObjectStructure.h"
 
 /**
 * Routine which draw an arc object

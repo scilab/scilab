@@ -1,0 +1,21 @@
+LIBRARY    scirenderer.dll
+
+
+EXPORTS
+
+; --------------------------------------- 
+; scirenderer
+; --------------------------------------- 
+; add here exports from cpp
+createDrawingObserver
+deleteObservers
+notifyObservers
+destroyHandleDrawer
+sciDrawObj
+displayChildren
+Java_org_scilab_modules_graphics_figureDrawing_FigureScilabCall_displayFigure
+Java_org_scilab_modules_graphics_figureDrawing_FigureScilabCall_redrawFigure
+sciSetJavaColormap
+sciGetJavaColormap
+; --------------------------------------- 
+

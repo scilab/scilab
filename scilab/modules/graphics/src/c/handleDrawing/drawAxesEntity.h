@@ -8,7 +8,7 @@
 #ifndef _DRAW_AXES_ENTITY_H_
 #define _DRAW_AXES_ENTITY_H_
 
-#include "ObjectStructure.h"
+#include "../../../graphics/includes/ObjectStructure.h"
 
 /**
 * Routine which draw an axes object.

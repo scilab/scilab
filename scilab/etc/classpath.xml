@@ -27,6 +27,6 @@
 <classpath path="$SCILAB/modules/shell/jar/org.scilab.modules.shell.jar"/>
 <classpath path="$SCILAB/modules/gui/jar/org.scilab.modules.gui.jar"/>
 <classpath path="$SCILAB/modules/javasci/jar/javasci.jar"/>
-<classpath path="$SCILAB/modules/graphics/jar/org.scilab.modules.graphics.jar"/>
+<classpath path="$SCILAB/modules/renderer/jar/org.scilab.modules.renderer.jar"/>
 <classpath path="$SCILAB/modules/localization/jar/org.scilab.modules.localization.jar"/>
 </classpaths>

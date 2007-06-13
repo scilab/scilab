@@ -72,6 +72,9 @@
 /* 51 */						#include "../../../fftw/includes/gw_fftw.h"
 /* 52 */						#include "../../../jvm/includes/gw_jvm.h"
 /* 53 */						#include "../../../shell/includes/gw_shell.h"
+/*
+/* 54 */						#include "../../../renderer/includes/gw_renderer.h"
+/* 55 */				//		#include "../../../renderer/includes/gw_dynamic_link.h"
 
 
 void errjump (int n);
@@ -138,6 +141,8 @@ static OpTab Interfaces[] = {
 	/* 51  */ {C2F(gw_fftw)},
 	/* 52  */ {C2F(gw_jvm)},
 	/* 53  */ {C2F(gw_shell)}
+//	/* 54  */ ,{C2F(gw_renderer)},
+//	/* 55  */ {C2F(gw_dynamic_link)}
 };
 
 
