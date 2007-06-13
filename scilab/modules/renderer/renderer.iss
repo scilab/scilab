@@ -10,37 +10,37 @@
 ;
 #define RENDERER "renderer"
 ;
-Source: bin\scirenderer.dll; DestDir: {app}\bin; Components: {#COMPN_RENDERER}
+Source: bin\scirenderer.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
 ;
-Source: java\jar\modules\org.scilab.modules.renderer.jar;DestDir: {app}\java\jar\modules; Components: {#COMPN_RENDERER}
+Source: modules\{#RENDERER}\jar\org.scilab.modules.renderer.jar;DestDir: {app}\modules\{#RENDERER}\jar; Components: {#COMPN_GRAPHICS}
 ;
-Source: bin\norenderer.dll; DestDir: {app}\bin; DestName: renderer.dll; Components: not ({#COMPN_RENDERER})
+;Source: bin\norenderer.dll; DestDir: {app}\bin; DestName: scirenderer.dll; Components: not ({#COMPN_GRAPHICS})
 ;
-Source: modules\{#RENDERER}\changelog.txt; DestDir: {app}\modules\{#RENDERER}; Components: {#COMPN_RENDERER}; Check: set_with_renderer
-Source: modules\{#RENDERER}\licence.txt; DestDir: {app}\modules\{#RENDERER}; Components: {#COMPN_RENDERER}
-Source: modules\{#RENDERER}\readme.txt; DestDir: {app}\modules\{#RENDERER}; Components: {#COMPN_RENDERER}
-Source: modules\{#RENDERER}\version.xml; DestDir: {app}\modules\{#RENDERER}; Components: {#COMPN_RENDERER}
+Source: modules\{#RENDERER}\changelog.txt; DestDir: {app}\modules\{#RENDERER}; Components: {#COMPN_GRAPHICS};
+Source: modules\{#RENDERER}\licence.txt; DestDir: {app}\modules\{#RENDERER}; Components: {#COMPN_GRAPHICS}
+Source: modules\{#RENDERER}\readme.txt; DestDir: {app}\modules\{#RENDERER}; Components: {#COMPN_GRAPHICS}
+Source: modules\{#RENDERER}\version.xml; DestDir: {app}\modules\{#RENDERER}; Components: {#COMPN_GRAPHICS}
 ;
-Source: modules\{#RENDERER}\sci_gateway\renderer.xml; DestDir: {app}\modules\{#RENDERER}\sci_gateway; Components: {#COMPN_RENDERER}
+Source: modules\{#RENDERER}\sci_gateway\renderer_gateway.xml; DestDir: {app}\modules\{#RENDERER}\sci_gateway; Components: {#COMPN_GRAPHICS}
 ;
-Source: modules\{#RENDERER}\includes\*.h; DestDir: {app}\modules\{#RENDERER}\includes; Components: {#COMPN_RENDERER}
+Source: modules\{#RENDERER}\includes\*.h; DestDir: {app}\modules\{#RENDERER}\includes; Components: {#COMPN_GRAPHICS}
 ;
-Source: modules\{#RENDERER}\help\addchapter.sce; DestDir: {app}\modules\{#RENDERER}\help; Flags: recursesubdirs; Components:  {#COMPN_RENDERER}
-Source: modules\{#RENDERER}\help\removechapter.sce; DestDir: {app}\modules\{#RENDERER}\help; Flags: recursesubdirs; Components: {#COMPN_RENDERER}
+Source: modules\{#RENDERER}\help\addchapter.sce; DestDir: {app}\modules\{#RENDERER}\help; Flags: recursesubdirs; Components:  {#COMPN_GRAPHICS}
+Source: modules\{#RENDERER}\help\removechapter.sce; DestDir: {app}\modules\{#RENDERER}\help; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS}
 ;
-Source: modules\{#RENDERER}\etc\{#RENDERER}.quit; DestDir: {app}\modules\{#RENDERER}\etc; Components: {#COMPN_RENDERER}
-Source: modules\{#RENDERER}\etc\{#RENDERER}.start; DestDir: {app}\modules\{#RENDERER}\etc; Components: {#COMPN_RENDERER}
+Source: modules\{#RENDERER}\etc\{#RENDERER}.quit; DestDir: {app}\modules\{#RENDERER}\etc; Components: {#COMPN_GRAPHICS}
+Source: modules\{#RENDERER}\etc\{#RENDERER}.start; DestDir: {app}\modules\{#RENDERER}\etc; Components: {#COMPN_GRAPHICS}
 ;
-Source: modules\{#RENDERER}\help\*.htm; DestDir: {app}\modules\{#RENDERER}\help; Flags: recursesubdirs; Components: {#COMPN_RENDERER}
+;Source: modules\{#RENDERER}\help\*.htm; DestDir: {app}\modules\{#RENDERER}\help; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS}
 ;
-Source: modules\{#RENDERER}\languages\*.xml; DestDir: {app}\modules\{#RENDERER}\languages; Flags: recursesubdirs; Components: {#COMPN_RENDERER}
+Source: modules\{#RENDERER}\languages\*.xml; DestDir: {app}\modules\{#RENDERER}\languages; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS}
 ;
-Source: modules\{#RENDERER}\macros\buildmacros.sce; DestDir: {app}\modules\{#RENDERER}\macros; Components: {#COMPN_RENDERER}
-Source: modules\{#RENDERER}\macros\*.bin; DestDir: {app}\modules\{#RENDERER}\macros; Components: {#COMPN_RENDERER}
-Source: modules\{#RENDERER}\macros\*.sci; DestDir: {app}\modules\{#RENDERER}\macros; Components: {#COMPN_RENDERER}
-Source: modules\{#RENDERER}\macros\lib; DestDir: {app}\modules\{#RENDERER}\macros; Components: {#COMPN_RENDERER}
-Source: modules\{#RENDERER}\macros\names; DestDir: {app}\modules\{#RENDERER}\macros; Components: {#COMPN_RENDERER}
+Source: modules\{#RENDERER}\macros\buildmacros.sce; DestDir: {app}\modules\{#RENDERER}\macros; Components: {#COMPN_GRAPHICS}
+;Source: modules\{#RENDERER}\macros\*.bin; DestDir: {app}\modules\{#RENDERER}\macros; Components: {#COMPN_GRAPHICS}
+;Source: modules\{#RENDERER}\macros\*.sci; DestDir: {app}\modules\{#RENDERER}\macros; Components: {#COMPN_GRAPHICS}
+;Source: modules\{#RENDERER}\macros\lib; DestDir: {app}\modules\{#RENDERER}\macros; Components: {#COMPN_GRAPHICS}
+;Source: modules\{#RENDERER}\macros\names; DestDir: {app}\modules\{#RENDERER}\macros; Components: {#COMPN_GRAPHICS}
 ;
-;Source: modules\{#RENDERER}\demos\*.*; DestDir: {app}\modules\{#RENDERER}\demos; Flags: recursesubdirs; Components: {#COMPN_SOUND}
+;Source: modules\{#RENDERER}\demos\*.*; DestDir: {app}\modules\{#RENDERER}\demos; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS}
 ;
 ;--------------------------------------------------------------------------------------------------------------
