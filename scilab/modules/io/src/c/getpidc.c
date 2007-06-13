@@ -1,18 +1,23 @@
-/* Copyright INRIA/ENPC */
-#include "machine.h"
-
-#include <stdlib.h>
+/*-----------------------------------------------------------------------------------*/
+/* INRIA 2007 */
+/*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
-	#include <process.h>
-	#define getpid _getpid
+#include <Windows.h>
 #else
+	#include <stdlib.h>
 	#include <sys/types.h>
 	#include <unistd.h>
 #endif
 #include "getpidc.h"
-
+/*-----------------------------------------------------------------------------------*/
 int C2F(getpidc)(int *id1)
 {
-  *id1=getpid();
-  return(0) ;
+	#if _MSC_VER
+		*id1=GetCurrentProcessId();
+	#else
+		*id1=getpid();
+	#endif
+	
+	return(0) ;
 }
+/*-----------------------------------------------------------------------------------*/
