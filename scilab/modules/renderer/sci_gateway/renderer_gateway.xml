@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
+
+<GATEWAY name="module_skeleton">
+<!-- =================== -->
+<!--
+ Scilab 
+ Allan CORNET
+ INRIA 2007
+ ===================
+ Don't edit if you aren't sure
+-->
+<!-- =================== -->
+
+<PRIMITIVE>
+  <GATEWAY_ID>52</GATEWAY_ID>
+  <PRIMITIVE_ID>1</PRIMITIVE_ID>
+	<PRIMITIVE_NAME>skeleton_c</PRIMITIVE_NAME>
+</PRIMITIVE>	
+
+</GATEWAY>

@@ -1,0 +1,11 @@
+// ====================================================================
+// renderer module initialisation file 
+// Copyright INRIA 2007
+// ====================================================================
+//Load  functions librarie
+//load('SCI/modules/renderer/macros/lib');
+// ====================================================================
+//add help chapter
+//add_module_help_chapter('renderer');
+clear add_module_help_chapter;
+// ====================================================================
