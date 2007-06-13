@@ -16,7 +16,7 @@ lib /DEF:&quot;$(InputDir)io_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /O
 for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n io_f.dll %%f &gt;nul
 copy *.def io_f.def &gt;nul
 copy io_f.def ..\io_f.vcdef &gt;nul
-rem del *.def &gt;nul
+del *.def &gt;nul
 cd ..
 copy io_f_header.def+io_f.vcdef io_f.def &gt;nul" Description="Build io.def"/></Configuration>
 		<Configuration Name="Release|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
@@ -32,7 +32,7 @@ lib /DEF:&quot;$(InputDir)io_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /O
 for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n io_f.dll %%f &gt;nul
 copy *.def io_f.def &gt;nul
 copy io_f.def ..\io_f.vcdef &gt;nul
-rem del *.def &gt;nul
+del *.def &gt;nul
 cd ..
 copy io_f_header.def+io_f.vcdef io_f.def &gt;nul" Description="Build io.def"/></Configuration></Configurations>
 	<Files>
@@ -45,7 +45,6 @@ copy io_f_header.def+io_f.vcdef io_f.def &gt;nul" Description="Build io.def"/></
 		<File RelativePath="..\..\sci_gateway\fortran\intfile.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\intgetenv.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\intgetf.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\intgetio.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\inthost.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\intlib.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\intmgetl.f"/>
