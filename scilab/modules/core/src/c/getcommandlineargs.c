@@ -15,14 +15,17 @@ char ** getCommandLineArgs(int *nbargs)
 {
 	char **argv = NULL;
 	int i = 0;
-	*nbargs = scilab_nbargs;
+	if (*nbargs>0) 
+		{
+		*nbargs = scilab_nbargs;
 
-	argv = (char **)MALLOC(sizeof(char*)*scilab_nbargs);
-
-	for (i = 0;i < scilab_nbargs;i++)
-	{
-		argv[i] = (char *)MALLOC(sizeof(char)*(strlen(scilab_argv[i])+1));
-		strcpy(argv[i],scilab_argv[i]);
+		argv = (char **)MALLOC(sizeof(char*)*scilab_nbargs);
+		
+		for (i = 0;i < scilab_nbargs;i++)
+			{
+				argv[i] = (char *)MALLOC(sizeof(char)*(strlen(scilab_argv[i])+1));
+				strcpy(argv[i],scilab_argv[i]);
+			}
 	}
 	return argv;
 }
