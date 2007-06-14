@@ -20,10 +20,12 @@ BOOL createMainScilabObject(void)
 	{
 		jclass cls=NULL;
 		cls = (*currentENV)->FindClass(currentENV, "org/scilab/modules/jvm/Scilab");
+			bOK=catchIfJavaException("Could not access to the Main Scilab Class :\n");
 		if (cls)
 		{
 			jmethodID mid=NULL;
 			mid = (*currentENV)->GetMethodID(currentENV,cls,"<init>","(I)V");
+			bOK=catchIfJavaException("Could not access the creator of the Main Scilab Class :\n");
 			if (mid)
 			{
 				jint ScilabMode = getScilabMode();
