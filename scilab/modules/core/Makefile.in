@@ -129,7 +129,7 @@ am__objects_1 = libscicore_la-inffic.lo libscicore_la-cs2st.lo \
 	libscicore_la-GetenvB.lo libscicore_la-islittleendian.lo \
 	libscicore_la-filesmanagement.lo libscicore_la-terme.lo \
 	libscicore_la-ifexpr.lo libscicore_la-expr.lo \
-	libscicore_la-getcommandlineargs.lo
+	libscicore_la-getcommandlineargs.lo libscicore_la-syncexec.lo
 am__objects_2 = algebre.lo clunit.lo complexify.lo allowptr.lo \
 	dldsp.lo bcol.lo getlin.lo isany.lo hmcreate.lo nextj.lo \
 	functionsforbasout.lo setgetmode.lo errmsgf.lo showstack.lo \
@@ -463,7 +463,8 @@ src/c/filesmanagement.c \
 src/c/terme.c \
 src/c/ifexpr.c \
 src/c/expr.c \
-src/c/getcommandlineargs.c
+src/c/getcommandlineargs.c \
+src/c/syncexec.c
 
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f \
 src/fortran/clunit.f \
@@ -756,7 +757,8 @@ includes/fromjava.h \
 includes/inisci-c.h \
 includes/cvstr.h \
 includes/error_scilab.h \
-includes/GetXmlFileEncoding.h
+includes/GetXmlFileEncoding.h \
+includes/syncexec.h
 
 
 #### core : demos files ####
@@ -1017,6 +1019,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-stack3.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-stackinfo.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-str2sci.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-syncexec.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-terme.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-texmacs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-timer.Plo@am__quote@
@@ -1600,6 +1603,13 @@ libscicore_la-getcommandlineargs.lo: src/c/getcommandlineargs.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getcommandlineargs.c' object='libscicore_la-getcommandlineargs.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-getcommandlineargs.lo `test -f 'src/c/getcommandlineargs.c' || echo '$(srcdir)/'`src/c/getcommandlineargs.c
+
+libscicore_la-syncexec.lo: src/c/syncexec.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-syncexec.lo -MD -MP -MF $(DEPDIR)/libscicore_la-syncexec.Tpo -c -o libscicore_la-syncexec.lo `test -f 'src/c/syncexec.c' || echo '$(srcdir)/'`src/c/syncexec.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-syncexec.Tpo $(DEPDIR)/libscicore_la-syncexec.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/syncexec.c' object='libscicore_la-syncexec.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-syncexec.lo `test -f 'src/c/syncexec.c' || echo '$(srcdir)/'`src/c/syncexec.c
 
 libscicore_la-sci_stacksize.lo: sci_gateway/c/sci_stacksize.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_stacksize.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_stacksize.Tpo -c -o libscicore_la-sci_stacksize.lo `test -f 'sci_gateway/c/sci_stacksize.c' || echo '$(srcdir)/'`sci_gateway/c/sci_stacksize.c
