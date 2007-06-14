@@ -7,7 +7,7 @@
 
 /**
 * get command line arguments
-* @param nbargs number of arguments
+* @param returns nbargs number of arguments
 * @return arguments (char **) 
 */
 char ** getCommandLineArgs(int *nbargs);
