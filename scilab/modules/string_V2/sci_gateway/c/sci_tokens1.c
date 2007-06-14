@@ -26,7 +26,7 @@ int C2F(sci_tokens1) _PARAMS((char *fname,unsigned long fname_len))
 {
 
   char **Str,**Str2,**Str3;
-  int x,y,m1,n1,m2,n2,mn2,mn,i,m4,n4,l4=0;
+  int x,y,m1,n1,m2,n2,mn2,mn,i=0;
   int u=0;
   int w=0;
   int numRow;
