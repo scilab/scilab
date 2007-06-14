@@ -14,18 +14,17 @@
 #include "machine.h"
 #include "stack-c.h"
 #include "MALLOC.h" 
-int numRow;
+int numRow=1;
 int numCol;
 /*-------------------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_ascii1) _PARAMS((char *fname,unsigned long fname_len))
 {
   char **Str,**Str3;
-  int x,y,m1,n1,mn,i,l1,l4=0;
+  int x,y,m1,n1,mn,i,l1=0;
   int *m4;
   int values[100];
   int nbValues=0;
-  int numRow   = 1        ;
   int outIndex = 0        ;
   Rhs = Max(0, Rhs);
   CheckRhs(1,4);
@@ -66,6 +65,7 @@ int C2F(sci_ascii1) _PARAMS((char *fname,unsigned long fname_len))
        FREE(Str3);
 	   return 0;
   }
+  return 0;
 }
 
 /*-----------------------------------------------------------------------------------*/
