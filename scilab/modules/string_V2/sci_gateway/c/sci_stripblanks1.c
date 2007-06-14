@@ -43,7 +43,8 @@ int C2F(sci_stripblanks1) _PARAMS((char *fname,unsigned long fname_len))
 	  int x,m1,n1,mn,m2,n2,i,l2,n4,l1=0;
 	  Rhs = Max(0, Rhs);
 	  CheckRhs(1,4);
-	  switch ( VarType(1)) {
+         Str3=(char**)MALLOC(sizeof(char*)*(m1*n1));	  
+         switch ( VarType(1)) {
 	  case 10 :
 			GetRhsVar(1,"S",&m1,&n1,&Str);
 			mn = m1*n1;  
@@ -52,7 +53,7 @@ int C2F(sci_stripblanks1) _PARAMS((char *fname,unsigned long fname_len))
 				n4=*istk(l2);
 			}
 			else n4=0;
-			Str3=(char**)MALLOC(sizeof(char*)*(m1*n1));
+			
 			for (i=0;i<m1*n1;i++)
 			{
 				Str3[i]=(char*)MALLOC(sizeof(char*)*(1));
