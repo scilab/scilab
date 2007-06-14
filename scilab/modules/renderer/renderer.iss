@@ -10,18 +10,25 @@
 ;
 #define RENDERER "renderer"
 ;
+Source: bin\jogl.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
+Source: bin\jogl_awt.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
+Source: bin\jogl_cg.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
+
 Source: bin\scirenderer.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
+;Source: bin\norenderer.dll; DestDir: {app}\bin; DestName: scirenderer.dll; Components: not ({#COMPN_GRAPHICS})
+;
+Source: thirdparty\gluegen-rt.jar; DestDir: {app}\thirdparty; Components: {#COMPN_GRAPHICS}
+Source: thirdparty\jogl.jar;DestDir: {app}\thirdparty; Components: {#COMPN_GRAPHICS}
 ;
 Source: modules\{#RENDERER}\jar\org.scilab.modules.renderer.jar;DestDir: {app}\modules\{#RENDERER}\jar; Components: {#COMPN_GRAPHICS}
 ;
-;Source: bin\norenderer.dll; DestDir: {app}\bin; DestName: scirenderer.dll; Components: not ({#COMPN_GRAPHICS})
-;
+
 Source: modules\{#RENDERER}\changelog.txt; DestDir: {app}\modules\{#RENDERER}; Components: {#COMPN_GRAPHICS};
 Source: modules\{#RENDERER}\licence.txt; DestDir: {app}\modules\{#RENDERER}; Components: {#COMPN_GRAPHICS}
 Source: modules\{#RENDERER}\readme.txt; DestDir: {app}\modules\{#RENDERER}; Components: {#COMPN_GRAPHICS}
 Source: modules\{#RENDERER}\version.xml; DestDir: {app}\modules\{#RENDERER}; Components: {#COMPN_GRAPHICS}
 ;
-Source: modules\{#RENDERER}\sci_gateway\renderer_gateway.xml; DestDir: {app}\modules\{#RENDERER}\sci_gateway; Components: {#COMPN_GRAPHICS}
+;Source: modules\{#RENDERER}\sci_gateway\renderer_gateway.xml; DestDir: {app}\modules\{#RENDERER}\sci_gateway; Components: {#COMPN_GRAPHICS}
 ;
 Source: modules\{#RENDERER}\includes\*.h; DestDir: {app}\modules\{#RENDERER}\includes; Components: {#COMPN_GRAPHICS}
 ;
