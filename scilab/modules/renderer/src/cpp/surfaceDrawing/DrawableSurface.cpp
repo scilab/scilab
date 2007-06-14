@@ -9,7 +9,7 @@
 #include "DrawableSurface.h"
 extern "C"
 {
-#include "../../../graphics/src/c/handleDrawing/drawSurfaceEntity.h"
+#include "drawSurfaceEntity.h"
 }
 
 namespace sciGraphics

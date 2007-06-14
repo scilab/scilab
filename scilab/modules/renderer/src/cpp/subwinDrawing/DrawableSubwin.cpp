@@ -8,7 +8,7 @@
 #include "DrawableSubwin.h"
 extern "C"
 {
-#include "../../../graphics/src/c/handleDrawing/drawSubWinEntity.h"
+#include "drawSubWinEntity.h"
 }
 
 namespace sciGraphics

@@ -8,7 +8,7 @@
 #include "DrawablePolyline.h"
 extern "C"
 {
-#include "../../../graphics/src/c/handleDrawing/drawPolylineEntity.h"
+#include "drawPolylineEntity.h"
 }
 
 namespace sciGraphics

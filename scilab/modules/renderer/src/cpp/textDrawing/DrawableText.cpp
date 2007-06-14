@@ -8,7 +8,7 @@
 #include "DrawableText.h"
 extern "C"
 {
-#include "../../../graphics/src/c/handleDrawing/drawTextEntity.h"
+#include "drawTextEntity.h"
 }
 
 namespace sciGraphics

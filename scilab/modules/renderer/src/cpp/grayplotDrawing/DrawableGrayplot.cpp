@@ -8,7 +8,7 @@
 #include "DrawableGrayplot.h"
 extern "C"
 {
-#include "../../../graphics/src/c/handleDrawing/drawGrayplotEntity.h"
+#include "drawGrayplotEntity.h"
 }
 
 namespace sciGraphics

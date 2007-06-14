@@ -8,7 +8,7 @@
 #include "DrawableSegs.h"
 extern "C"
 {
-#include "../../../graphics/src/c/handleDrawing/drawSegsEntity.h"
+#include "drawSegsEntity.h"
 }
 
 namespace sciGraphics

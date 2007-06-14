@@ -8,7 +8,7 @@
 #include "DrawableArc.h"
 extern "C"
 {
-#include "../../../graphics/src/c/handleDrawing/drawArcEntity.h"
+#include "drawArcEntity.h"
 }
 
 namespace sciGraphics

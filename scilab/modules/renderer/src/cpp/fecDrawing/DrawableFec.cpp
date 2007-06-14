@@ -8,7 +8,7 @@
 #include "DrawableFec.h"
 extern "C"
 {
-#include "../../../graphics/src/c/handleDrawing/drawFecEntity.h"
+#include "drawFecEntity.h"
 }
 
 namespace sciGraphics

@@ -8,7 +8,7 @@
 #include "DrawableAxes.h"
 extern "C"
 {
-#include "../../../graphics/src/c/handleDrawing/drawAxesEntity.h"
+#include "drawAxesEntity.h"
 }
 
 namespace sciGraphics

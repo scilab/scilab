@@ -8,7 +8,7 @@
 #include "DrawableLegend.h"
 extern "C"
 {
-#include "../../../graphics/src/c/handleDrawing/drawLegendEntity.h"
+#include "drawLegendEntity.h"
 }
 
 namespace sciGraphics

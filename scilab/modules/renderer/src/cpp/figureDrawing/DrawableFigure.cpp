@@ -9,8 +9,8 @@
 #include "DrawableFigureImp.h"
 extern "C"
 {
-#include "../../../graphics/src/c/handleDrawing/drawFigureEntity.h"
-#include "../../../graphics/includes/GetProperty.h"
+#include "drawFigureEntity.h"
+#include "GetProperty.h"
 }
 
 namespace sciGraphics

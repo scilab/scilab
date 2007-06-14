@@ -9,7 +9,7 @@
 #include "DrawableCompound.h"
 extern "C"
 {
-#include "../../../graphics/src/c/handleDrawing/drawCompoundEntity.h"
+#include "drawCompoundEntity.h"
 }
 
 namespace sciGraphics

@@ -8,7 +8,7 @@
 #include "DrawableRectangle.h"
 extern "C"
 {
-#include "../../../graphics/src/c/handleDrawing/drawRectangleEntity.h"
+#include "drawRectangleEntity.h"
 }
 
 namespace sciGraphics
