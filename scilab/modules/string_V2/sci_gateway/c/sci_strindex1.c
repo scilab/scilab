@@ -27,20 +27,14 @@ int C2F(sci_strindex1) _PARAMS((char *fname,unsigned long fname_len))
 {
 	char typ = '*';
     char **Str,**Str2;
-    static char def_sep[] ="";
-    char *sep = def_sep;
-    static int un=1;
-    int x,m1,n1,mn,mn2,i,m2,n2,m3,n3,l3,nchars=0;
+    int x,m1,n1,mn,mn2,i,m2,n2,m3,n3,l3=0;
     unsigned x1;
-    int lenth=0;
-    int lenthrow=1;
-    int lenthcol=1;
     int outIndex = 0 ;
     char ebuf[128];
     char *lbuf;
     const size_t nmatch = 10;
     char *pattern[100];
-    int  z, lno = 0, cflags = 0;
+    int  z, cflags = 0;
     int values[10];
     int nbValues=0;
     int position[10];
@@ -88,9 +82,9 @@ int C2F(sci_strindex1) _PARAMS((char *fname,unsigned long fname_len))
 						z = regexec(out1[x], Str[0], nmatch, pm, 0);
 						if (z == REG_NOMATCH) { 
 							int outIndex2= Rhs +x+1 ;
-							int numRow   = 1 ;
-							int numCol   = 1 ;
-							int outIndex = 0 ;
+							numRow   = 1 ;
+							numCol   = 1 ;
+							outIndex = 0 ;
 							CreateVar(Rhs+1+x,"c",&numRow,&numCol,&outIndex);
   							LhsVar(x+1) = outIndex2 ;
 							continue;
