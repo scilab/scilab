@@ -18,7 +18,7 @@
 #include "sciprint.h"
 #include "periScreen.h"
 #include "Actions.h"
-
+#include "syncexec.h"
 extern int xinitxend_flag;
 
 /********************************************************
@@ -35,7 +35,6 @@ extern int xinitxend_flag;
  ********************************************************/
 extern int sciSwitchWindow  __PARAMS((int *winnum));/* NG */
 extern void sciGetIdFigure __PARAMS((int *vect, int *id, int *iflag));/* NG */
-extern int C2F(syncexec)(char *str, int *ns, int *ierr, int *seq, long int str_len) ;
 #if !defined(_MSC_VER)
 extern int WithBackingStore();
 #endif

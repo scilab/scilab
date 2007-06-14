@@ -9,6 +9,7 @@
 #include "tableslanguages.h"
 #include "loadsavelanguage.h"
 #include "loadhashtableslocalization.h"
+#include "syncexec.h"
 /*-----------------------------------------------------------------------------------*/ 
 static char CURRENTLANGUAGESTRING[LengthAlphacode]=SCILABDEFAULTLANGUAGE;
 static int  CURRENTLANGUAGECODE=SCILABDEFAULTLANGUAGECODE;
@@ -17,8 +18,6 @@ static int FindLanguageCode(char *lang);
 static BOOL setlanguagecode(char *lang);
 static char *FindAlias(char *lang);
 static char *GetLanguageFromAlias(char *langAlias);
-/*-----------------------------------------------------------------------------------*/ 
-extern int C2F(syncexec)(char *str, int *ns, int *ierr, int *seq, long int str_len);
 /*-----------------------------------------------------------------------------------*/ 
 BOOL setlanguage(char *lang,BOOL updateHelpIndex, BOOL updateMenus)
 {

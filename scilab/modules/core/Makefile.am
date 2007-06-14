@@ -82,7 +82,8 @@ src/c/filesmanagement.c \
 src/c/terme.c \
 src/c/ifexpr.c \
 src/c/expr.c \
-src/c/getcommandlineargs.c
+src/c/getcommandlineargs.c \ 
+src/c/syncexec.c
 
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f \
 src/fortran/clunit.f \
@@ -386,7 +387,8 @@ includes/fromjava.h \
 includes/inisci-c.h \
 includes/cvstr.h \
 includes/error_scilab.h \
-includes/GetXmlFileEncoding.h
+includes/GetXmlFileEncoding.h \
+includes/syncexec.h
 
 #### core : demos files ####
 libscicore_la_demosintrodir=$(mydatadir)/demos/intro/

@@ -9,6 +9,7 @@
 #include "tksynchro.h"
 #include "error_scilab.h"
 #include "../../localization/includes/QueryStringMessage.h"
+#include "syncexec.h"
 /*-----------------------------------------------------------------------------------*/
 /* what's the max number of commands in the queue ??*/
 #define arbitrary_max_queued_callbacks 20
@@ -17,7 +18,6 @@
 static int c_n1 = -1;     
 /*-----------------------------------------------------------------------------------*/
 extern void SetCommandflag(int flag) ;
-extern void C2F(syncexec)(char * str, int *ns, int *ierr, int *seq);
 extern int GetCommand(char *str);
 extern int StoreCommand ( char *command); 
 extern integer C2F (ismenu)(void); 
@@ -97,7 +97,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
 		  if (msg){FREE(msg);msg=NULL;}
           sciprint("\n");
 	  }
-      C2F(syncexec)(command,&ns,&ierr,&seq);
+      C2F(syncexec)(command,&ns,&ierr,&seq,ns);
       if (C2F(iop).ddt==-1)
 	  {
 		  char *msg=QueryStringMessage("tclsci_message_13");
@@ -145,7 +145,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
 		  }
         }
         ns=(int)strlen(comm[nc]);
-        C2F(syncexec)(comm[nc],&ns,&ierr,&(seqf[nc]));
+        C2F(syncexec)(comm[nc],&ns,&ierr,&(seqf[nc]),ns);
         if (C2F(iop).ddt==-1)
         {
 			char *msg=QueryStringMessage("tclsci_message_16");
