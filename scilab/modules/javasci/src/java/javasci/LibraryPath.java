@@ -4,7 +4,7 @@
 * @author Allan CORNET - INRIA 2007
 */
 /*-----------------------------------------------------------------------------------*/
-package org.scilab.modules.jvm;
+package javasci;
 /*-----------------------------------------------------------------------------------*/
 import java.io.IOException;
 import java.io.File;
