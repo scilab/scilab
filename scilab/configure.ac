@@ -1063,6 +1063,7 @@ modules/string/Makefile
 modules/string_V2/Makefile
 modules/time/Makefile
 modules/graphics/Makefile
+modules/renderer/Makefile
 modules/gui/Makefile
 modules/pvm/Makefile
 modules/randlib/Makefile
