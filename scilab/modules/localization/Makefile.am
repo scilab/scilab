@@ -26,8 +26,6 @@ sci_gateway/c/sci_addtext.c \
 sci_gateway/c/sci_removetext.c \
 sci_gateway/c/sci_gettext.c
 
-
-
 libscilocalization_la_CFLAGS=  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/ $(XML_FLAGS)
 
 libscilocalization_la_LDFLAGS = $(JAVA_JNI_LIBS) $(XML_LIBS)
