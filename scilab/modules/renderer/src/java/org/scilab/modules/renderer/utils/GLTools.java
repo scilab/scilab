@@ -15,6 +15,9 @@ import javax.media.opengl.GL;
  */
 public final class GLTools {
 	
+	/** display lists index is always different than 0 */
+	public static final int UNINIT_DL_INDEX = 0;
+	
 	/** Contains the different line stipple pattern */
 	private static final short[] STIPPLE_PATTERN
 	  = {(short) 0xFFFF, // 16 solids, unused equivalent to no stipple
@@ -26,6 +29,7 @@ public final class GLTools {
 		 (short) 0x3FC6  // 3 blanks, 8 solids, 3 blanks, 2 solids
 		};
 	
+	private static final int VIEWPORT_LENGTH = 4;
 	
 	/**
 	 * Default contructor
@@ -40,13 +44,13 @@ public final class GLTools {
 	 * @param lineStyle index of the line style
 	 * @param thickness thickness of the line to draw
 	 */
-	public static void beginDashMode(GL gl, int lineStyle, int thickness) {
+	public static void beginDashMode(GL gl, int lineStyle, float thickness) {
 		if (lineStyle <= 1 || lineStyle >= STIPPLE_PATTERN.length) {
 			// plain mode, no need to set dash style
 			return;
 		}
 		
-		gl.glLineStipple(thickness, STIPPLE_PATTERN[lineStyle]);
+		gl.glLineStipple((int) thickness, STIPPLE_PATTERN[lineStyle]);
 		
 		gl.glEnable(GL.GL_LINE_STIPPLE);
 	}
@@ -57,6 +61,39 @@ public final class GLTools {
 	 */
 	public static void endDashMode(GL gl) {
 		gl.glDisable(GL.GL_LINE_STIPPLE);
+	}
+	
+	/**
+	 * Change coordinates to pixel values (for x and y).
+	 * To get back to user coordinates call endPixelCoordinates
+	 * @param gl current OpenGL pipeline
+	 * @param zNear distance of nearer clipping plane
+	 * @param zFar distance of farther clipping plane
+	 */
+	public static void usePixelCoordinates(GL gl, double zNear, double zFar) {
+		
+		int[] viewPort = new int[VIEWPORT_LENGTH];
+		
+		gl.glMatrixMode(GL.GL_PROJECTION);
+		gl.glPushMatrix();
+		gl.glLoadIdentity();
+		gl.glGetIntegerv(GL.GL_VIEWPORT, viewPort, 0);
+		gl.glOrtho(viewPort[0], viewPort[0] + viewPort[2], viewPort[1], viewPort[1] + viewPort[VIEWPORT_LENGTH - 1], zNear, zFar);
+		gl.glMatrixMode(GL.GL_MODELVIEW);
+		gl.glPushMatrix();
+		gl.glLoadIdentity();
+	}
+	
+	/**
+	 * To get back to pixels coordinates from user coordinates.
+	 * To be called after a userPixelCoordinates call.
+	 * @param gl current OpenGL pipeline
+	 */
+	public static void endPixelCoordinates(GL gl) {
+		gl.glMatrixMode(GL.GL_PROJECTION);
+		gl.glPopMatrix();
+		gl.glMatrixMode(GL.GL_MODELVIEW);
+		gl.glPopMatrix();
 	}
 	
 }

@@ -10,8 +10,8 @@
 
 #include <jni.h>
 
-JNIEXPORT void JNICALL Java_org_scilab_modules_graphics_figureDrawing_FigureScilabCall_displayFigure( JNIEnv * env, jobject obj, jint figureId ) ;
+JNIEXPORT void JNICALL Java_org_scilab_modules_renderer_figureDrawing_FigureScilabCall_displayFigure( JNIEnv * env, jobject obj, jint figureId ) ;
 
-JNIEXPORT void JNICALL Java_org_scilab_modules_graphics_figureDrawing_FigureScilabCall_redrawFigure( JNIEnv * env, jobject obj, jint figureId ) ;
+JNIEXPORT void JNICALL Java_org_scilab_modules_renderer_figureDrawing_FigureScilabCall_redrawFigure( JNIEnv * env, jobject obj, jint figureId ) ;
 
 #endif /* _FIGURE_SCILAB_CALL_ */

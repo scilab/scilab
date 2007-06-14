@@ -18,7 +18,7 @@ import org.scilab.modules.renderer.figureDrawing.FigureCanvas;
  * Object which can be rendered in a GL pipeline
  * @author Jean-Baptiste Silvy
  */
-public class ObjectJoGL {
+public abstract class ObjectJoGL {
 
 	/** Glu instance to use glu functionalities */
 	private GLU curGluInstance = new GLU();

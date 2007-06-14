@@ -24,6 +24,11 @@ namespace sciGraphics
     * Main algorithm to fill the inside of a rectangle
     */
     virtual void drawRectangle( void ) ;
+  
+    /**
+     * Call the display list of an object
+     */
+    virtual void show( void ) { DrawableObjectJoGL::show(); }
 
   };
 

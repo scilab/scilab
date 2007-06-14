@@ -26,6 +26,11 @@ namespace sciGraphics
      */
     virtual void drawRectangle( void ) = 0 ;
 
+    /**
+     * Call the display list of an object
+     */
+    virtual void show( void ) = 0;
+
   protected:
 
     DrawableRectangleImp * m_pDrawed ;

@@ -35,4 +35,6 @@ drawAxesEntity
 drawArcEntity
 sciGetCurrentFigure
 getHandleDrawer
- 
+sciGetMarkSizeUnit
+sciGetMarkSize
+sciGetMarkStyle

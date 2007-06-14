@@ -30,8 +30,8 @@ void RectangleLineDrawerJoGL::drawRectangle( void )
   initializeDrawing() ;
 
   // set the line parameters
-  jniCallVoidFunctionSafe( m_oDrawableObject, "setLineParameters", "III",
-                           sciGetGraphicContext(pObj)->foregroundcolor, sciGetLineWidth(pObj), sciGetLineStyle(pObj) ) ;
+  jniCallVoidFunctionSafe( m_oDrawableObject, "setLineParameters", "IFI",
+                           sciGetGraphicContext(pObj)->foregroundcolor, (float)sciGetLineWidth(pObj), sciGetLineStyle(pObj) ) ;
 
   // get the coordinates of the four corners of the rectangle.
   double corner1[3] ;

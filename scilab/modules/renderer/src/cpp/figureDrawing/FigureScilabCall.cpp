@@ -16,7 +16,7 @@ extern "C"
 }
 
 /*-----------------------------------------------------------------------------------*/
-JNIEXPORT void JNICALL Java_org_scilab_modules_graphics_figureDrawing_FigureScilabCall_displayFigure( JNIEnv * env, jobject obj, jint figureId )
+JNIEXPORT void JNICALL Java_org_scilab_modules_renderer_figureDrawing_FigureScilabCall_displayFigure( JNIEnv * env, jobject obj, jint figureId )
 {
   int figIndex = (int) figureId ;
   sciPointObj * curFig = sciIsExistingFigure(&figIndex) ;
@@ -26,7 +26,7 @@ JNIEXPORT void JNICALL Java_org_scilab_modules_graphics_figureDrawing_FigureScil
 /*-----------------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------------*/
-JNIEXPORT void JNICALL Java_org_scilab_modules_graphics_figureDrawing_FigureScilabCall_redrawFigure( JNIEnv * env, jobject obj, jint figureId )
+JNIEXPORT void JNICALL Java_org_scilab_modules_renderer_figureDrawing_FigureScilabCall_redrawFigure( JNIEnv * env, jobject obj, jint figureId )
 {
   int figIndex = (int) figureId ;
   sciPointObj * curFig = sciIsExistingFigure(&figIndex) ;

@@ -42,13 +42,13 @@ namespace sciGraphics
     DrawableRectangle * getDrawer( void ) ;
 
     /**
-    * Add a rendering algorithm
-    */
+     * Add a rendering algorithm
+     */
     void addDrawingStrategy( DrawRectangleStrategy * strategy ) ;
 
     /**
-    * Remove all drawing strategies.
-    */
+     * Remove all drawing strategies.
+     */
     void removeDrawingStrategies( void ) ;
 
   protected:

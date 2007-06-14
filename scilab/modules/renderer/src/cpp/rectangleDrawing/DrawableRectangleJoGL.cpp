@@ -6,9 +6,11 @@
 /*        rectangle object with JoGL                                      */
 /*------------------------------------------------------------------------*/
 
+#include <list>
 #include "../DrawableObjectJoGL.h"
 #include "DrawableRectangle.h"
 #include "DrawableRectangleJoGL.h"
+
 extern "C"
 {
 #include "JniUtils.h"
@@ -32,6 +34,15 @@ DrawableRectangleJoGL::~DrawableRectangleJoGL( void )
 void DrawableRectangleJoGL::drawRectangle( void )
 {
   DrawableRectangleImp::drawRectangle();
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableRectangleJoGL::show( void )
+{
+  std::list<DrawRectangleStrategy *>::iterator it = m_oDrawingStrategies.begin() ;
+  for ( ; it != m_oDrawingStrategies.end() ; it++ )
+  {
+    (*it)->show() ;
+  }
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableRectangleJoGL::destroyRectangle( void )

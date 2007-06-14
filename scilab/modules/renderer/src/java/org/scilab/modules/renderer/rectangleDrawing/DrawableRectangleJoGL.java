@@ -8,13 +8,13 @@
 
 package org.scilab.modules.renderer.rectangleDrawing;
 
-import org.scilab.modules.renderer.DrawableObjectJoGL;
+import org.scilab.modules.renderer.ObjectJoGL;
 
 /**
  * Class containing functions called by DrawableFigureJoGL.cpp
  * @author Jean-Baptiste Silvy
  */
-public class DrawableRectangleJoGL extends DrawableObjectJoGL {
+public class DrawableRectangleJoGL extends ObjectJoGL {
 
 	/**
 	 * Default Constructor

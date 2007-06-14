@@ -9,14 +9,14 @@
 
 package org.scilab.modules.renderer.rectangleDrawing;
 
-import org.scilab.modules.renderer.ObjectJoGL;
+import org.scilab.modules.renderer.AutoDrawableObjectJoGL;
 import javax.media.opengl.GL;
 
 /**
  * Class containing functions called by RectangleFillDrawerJoGL.cpp
  * @author Jean-Baptiste Silvy
  */
-public class RectangleFillDrawerJoGL extends ObjectJoGL {
+public class RectangleFillDrawerJoGL extends AutoDrawableObjectJoGL {
 	
 	/** index of background color */
 	private int backColor;

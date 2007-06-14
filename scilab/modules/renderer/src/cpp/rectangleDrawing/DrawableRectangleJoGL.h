@@ -30,6 +30,11 @@ namespace sciGraphics
      */
     virtual void drawRectangle( void ) ;
 
+    /**
+     * Call the display list of an object
+     */
+    virtual void show( void ) ;
+
   protected:
 
     /*-------------------------------------------------------------*/

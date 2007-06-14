@@ -66,7 +66,6 @@ public class SciRenderer
       if (isInit) {
     	  FigureScilabCall call = new FigureScilabCall();
     	  call.redrawFigure(renderedFigure);
-    	  //return;
       }
       final GL gl = gLDrawable.getGL();
       gl.glShadeModel(GL.GL_SMOOTH);              // Enable Smooth Shading

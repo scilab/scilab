@@ -8,6 +8,7 @@
 package org.scilab.modules.renderer;
 
 import javax.media.opengl.GL;
+import org.scilab.modules.renderer.utils.GLTools;
 
 /**
  * Parent class for all graphic classes corresponding to a cpp one
@@ -15,8 +16,6 @@ import javax.media.opengl.GL;
  */
 public abstract class DrawableObjectJoGL extends ObjectJoGL {
 
-	/** display lists index is always different than 0 */
-	private static final int UNINIT_DL_INDEX = 0;
 	/** Index of the display list */
 	private int dlIndex;
 	
@@ -25,45 +24,20 @@ public abstract class DrawableObjectJoGL extends ObjectJoGL {
 	 */
 	public DrawableObjectJoGL() {
 		super();
-		dlIndex = UNINIT_DL_INDEX; // can't create the index outside the jogl thread.
+		dlIndex = GLTools.UNINIT_DL_INDEX; // can't create the index outside the jogl thread.
 	}
 	
 	/**
 	 * Display the object by displaying its display list
 	 * @param parentFigureIndex index of the parent figure in which the object will be drawn
 	 */
-	public void show(int parentFigureIndex) {
-		// the display list should already have been created.
-		if (dlIndex != UNINIT_DL_INDEX) {
-			super.initializeDrawing(parentFigureIndex);
-			getGL().glCallList(dlIndex);
-			super.endDrawing();
-		}
-	}
-	
-	/**
-	 * Function called before beginning to use OpenGL methods.
-	 * @param parentFigureIndex index of the parent figure.
-	 *                          Needed to get the GL context to draw in.
-	 */
-	public void initializeDrawing(int parentFigureIndex) {
-		// get the context from the drawing canvas
-		super.initializeDrawing(parentFigureIndex);
-		startRecordDL();
-	}
-	
-	/**
-	 * Function called at the end of the OpenGL use.
-	 */
-	public void endDrawing() {
-		endRecordDL();
-		super.endDrawing();
-	}
+	public abstract void show(int parentFigureIndex);
 	
 	/**
 	 * To be called when the cpp object is destroyed
 	 */
 	public void destroy() {
+		super.destroy();
 		clearDisplayList();
 	}
 	
@@ -72,10 +46,10 @@ public abstract class DrawableObjectJoGL extends ObjectJoGL {
 	 */
 	public void clearDisplayList() {
 		// We need to be sure that the memory used by the display list is freed
-		if (dlIndex != UNINIT_DL_INDEX) {
+		if (dlIndex != GLTools.UNINIT_DL_INDEX) {
 			getGL().glDeleteLists(dlIndex, 1);
 		}
-		dlIndex = UNINIT_DL_INDEX;
+		dlIndex = GLTools.UNINIT_DL_INDEX;
 	}
 	
 	
@@ -86,7 +60,7 @@ public abstract class DrawableObjectJoGL extends ObjectJoGL {
 	 * until endRecordDL is called
 	 */
 	protected void startRecordDL() {
-		if (dlIndex != UNINIT_DL_INDEX) {
+		if (dlIndex != GLTools.UNINIT_DL_INDEX) {
 			getGL().glDeleteLists(dlIndex, 1);
 		}
 		dlIndex = getGL().glGenLists(1);
@@ -99,6 +73,27 @@ public abstract class DrawableObjectJoGL extends ObjectJoGL {
 	 */
 	protected void endRecordDL() {
 		getGL().glEndList();
+	}
+	
+	/**
+	 * Call the display list
+	 */
+	protected void displayDL() {
+		getGL().glCallList(dlIndex);
+	}
+	
+	/**
+	 * @return true if the display list has already been created, false otherwise.
+	 */
+	protected synchronized boolean isDLInit() {
+		return (dlIndex != GLTools.UNINIT_DL_INDEX);
+	}
+	
+	/**
+	 * @return index of the display lists for this object
+	 */
+	protected int getDlIndex() {
+		return dlIndex;
 	}
 	
 }

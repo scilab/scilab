@@ -58,7 +58,7 @@ void DrawableObjectJoGL::destroy( void )
 {
   if ( m_oDrawableObject != NULL )
   {
-    jniCallVoidFunctionSafe( m_oDrawableObject, "destroy", "" ) ;
+    //jniCallVoidFunctionSafe( m_oDrawableObject, "destroy", "" ) ;
     jniDeleteLocalEntity( m_oDrawableObject ) ;
   }
   m_oDrawableObject = NULL ;

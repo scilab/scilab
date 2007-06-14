@@ -9,18 +9,26 @@
 #define _RECTANGLE_MARK_DRAWER_JOGL_H_
 
 #include "DrawRectangleStrategy.h"
+#include "../DrawableObjectJoGL.h"
+#include "DrawableRectangleImp.h"
 
 namespace sciGraphics
 {
-  class RectangleMarkDrawerJoGL : public DrawRectangleStrategy
+  class RectangleMarkDrawerJoGL : public DrawRectangleStrategy, public DrawableObjectJoGL
   {
   public:
 
-    RectangleMarkDrawerJoGL( DrawableRectangleImp * drawer ) : DrawRectangleStrategy( drawer ) {}
+    RectangleMarkDrawerJoGL( DrawableRectangleImp * drawer ) ;
+
     /**
-    * Main algorithm to draw the marks on the rectangle corners
-    */
+     * Main algorithm to draw the marks on the rectangle corners
+     */
     virtual void drawRectangle( void ) ;
+
+    /**
+    * Call the display list of an object
+    */
+    virtual void show( void ) { DrawableObjectJoGL::show(); }
 
   };
 

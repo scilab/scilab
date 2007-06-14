@@ -8,7 +8,7 @@
 
 package org.scilab.modules.renderer.rectangleDrawing;
 
-import org.scilab.modules.renderer.ObjectJoGL;
+import org.scilab.modules.renderer.AutoDrawableObjectJoGL;
 import javax.media.opengl.GL;
 import org.scilab.modules.renderer.utils.GLTools;
 
@@ -16,11 +16,11 @@ import org.scilab.modules.renderer.utils.GLTools;
  * Class containing functions called by RectangleLineDrawerJoGL.cpp
  * @author Jean-Baptiste Silvy
  */
-public class RectangleLineDrawerJoGL extends ObjectJoGL {
+public class RectangleLineDrawerJoGL extends AutoDrawableObjectJoGL {
 
-	private int lineColor;
-	private int thickness;
-	private int lineStyle;
+	private int   lineColor;
+	private float thickness;
+	private int   lineStyle;
 	
 	/**
 	 * Default constructor
@@ -28,7 +28,7 @@ public class RectangleLineDrawerJoGL extends ObjectJoGL {
 	public RectangleLineDrawerJoGL() {
 		super();
 		lineColor = 1;
-		thickness = 1;
+		thickness = 1.0f;
 		lineStyle = 1;
 	}
 	
@@ -44,7 +44,7 @@ public class RectangleLineDrawerJoGL extends ObjectJoGL {
 	 * Set the thickness
 	 * @param thickness thickness of the line in pixels
 	 */
-	public void setThickness(int thickness) {
+	public void setThickness(float thickness) {
 		this.thickness = thickness;
 	}
 	
@@ -62,7 +62,7 @@ public class RectangleLineDrawerJoGL extends ObjectJoGL {
 	 * @param thickness thickness of the line in pixels
 	 * @param lineStyle index of the line Style
 	 */
-	public void setLineParameters(int lineColor, int thickness, int lineStyle) {
+	public void setLineParameters(int lineColor, float thickness, int lineStyle) {
 		setLineColor(lineColor);
 		setThickness(thickness);
 		setLineStyle(lineStyle);
