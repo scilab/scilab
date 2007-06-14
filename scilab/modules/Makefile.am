@@ -38,6 +38,7 @@ io \
 shell \
 gui \
 graphics \
+renderer \
 wintools \
 functions \
 incremental_link \
@@ -90,6 +91,7 @@ libscilab_la_LIBADD = \
 	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la \
 	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/graphics/libscigraphics.la \
+	$(top_builddir)/modules/renderer/libscirenderer.la \
 	$(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/integer/libsciinteger.la \
 	$(top_builddir)/modules/interpolation/libsciinterpolation.la \

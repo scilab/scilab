@@ -94,6 +94,7 @@ libscilab_la_DEPENDENCIES = $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la \
 	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/graphics/libscigraphics.la \
+	$(top_builddir)/modules/renderer/libscirenderer.la \
 	$(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/integer/libsciinteger.la \
 	$(top_builddir)/modules/interpolation/libsciinterpolation.la \
@@ -154,7 +155,7 @@ DIST_SUBDIRS = intersci polynomials cacsd elementaries_functions \
 	string_V2 signal_processing fileio core metanet optimization \
 	interpolation localization sound statistics time integer \
 	special_functions double randlib data_structures mexlib \
-	symbolic tclsci sparse io shell gui graphics wintools \
+	symbolic tclsci sparse io shell gui graphics renderer wintools \
 	functions incremental_link others overloading maple2scilab \
 	m2sci texmacs scipad scilab2fortran development_tools \
 	compatibility_functions helptools scicos fftw pvm jvm . \
@@ -321,7 +322,7 @@ SUBDIRS = intersci polynomials cacsd elementaries_functions arnoldi \
 	signal_processing fileio core metanet optimization \
 	interpolation localization sound statistics time integer \
 	special_functions double randlib data_structures mexlib \
-	symbolic tclsci sparse io shell gui graphics wintools \
+	symbolic tclsci sparse io shell gui graphics renderer wintools \
 	functions incremental_link others overloading maple2scilab \
 	m2sci texmacs scipad scilab2fortran development_tools \
 	compatibility_functions helptools scicos fftw pvm jvm . \
@@ -347,6 +348,7 @@ libscilab_la_LIBADD = $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la \
 	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/graphics/libscigraphics.la \
+	$(top_builddir)/modules/renderer/libscirenderer.la \
 	$(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/integer/libsciinteger.la \
 	$(top_builddir)/modules/interpolation/libsciinterpolation.la \
