@@ -30,7 +30,7 @@ int C2F(sci_part1) _PARAMS((char *fname,unsigned long fname_len))
   case 10 :
     GetRhsVar(1,"S",&m1,&n1,&Str);
     mn = m1*n1;  
-	GetRhsVar(2,"i",&m2,&n2,&l2);
+    GetRhsVar(2,"i",&m2,&n2,&l2);
     m=istk(l2); 
 	Str3=(char**)MALLOC(sizeof(char*)*(m1*n1));
 	for (i=0;i<m1*n1;i++)
