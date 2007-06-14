@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "file:///usr/local/scilab/man/manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>listfunctions</TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>11-Jun-2007</DATE>
+  <SHORT_DESCRIPTION name="listfunctions">properties of all functions in 
+                            the workspace</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[flist,compiled,profilable,called] = listfunctions([scope])</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>scope</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : string, "local" (default) or "global"
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>flist</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : string array, names of all the function variables in the specified namespace
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>compiled</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : boolean array, true if the corresponding element of flist is of type=13
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>profilable</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : boolean array, true if the corresponding element of flist is of type=13, 
+         and additionally profiling information is found in the pseudocode of
+         the function
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>called</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : uint32 array, number of times the corresponding element of flist has been
+       already called (nonzero only for profilable functions)
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+  </PARAM_INDENT>
+  </PARAM>
+ 
+  <DESCRIPTION>
+     <DESCRIPTION_INDENT>
+     <DESCRIPTION_ITEM>
+     <P>
+     This function checks all the variables in the workspace (given by 
+     <LINK>who</LINK>) and collects those of type 11 or 13; for the latter,
+     lst=<LINK>macr2lst</LINK>(fun) is called, in order to check for the magic
+     profiling entry at the end of the first codeline, i.e. lst(5)(1)=="25".
+     </P>
+     </DESCRIPTION_ITEM>
+     </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+   recompilefunction("asinh","p")
+   [flist,compiled,profilable,called] = listfunctions();
+   flist(profilable)
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>function</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>getf</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>deff</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>comp</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>fun2string</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>profile</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>recompilefunction</LINK> </SEE_ALSO_ITEM>
+   </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM label='Enrico Segre'>
+    </AUTHORS_ITEM>
+  </AUTHORS>
+
+  <BIBLIO>
+    <SP>
+   http://wiki.scilab.org/Scilab_function_variables%3A_representation%2C_manipulation
+    </SP>
+  </BIBLIO>
+
+</MAN>

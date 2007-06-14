@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>recompilefunction</TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>10-Jun-2007</DATE>
+  <SHORT_DESCRIPTION name="recompilefunction">recompiles a scilab function, 
+                       changing its type</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>recompilefunction(funname [,kind [,force]])</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>funname</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : string, name of the function to recompile
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>kind</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : string: <BD>"n"</BD> (noncompiled, type 11), <BD>"c"</BD> 
+       (compiled, type 13) or <BD>"p"</BD> (compiled, type 13, with 
+       provision for profiling). Default "c".
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>force</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : boolean. If false, the function is recomplied only if its kind changes;
+       if true, it is recompiled even if it keeps the same kind (notably useful
+       to recompile a "p" function, to reset the profiling statistics).
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+  </PARAM_INDENT>
+  </PARAM>
+ 
+  <DESCRIPTION>
+     <DESCRIPTION_INDENT>
+     <DESCRIPTION_ITEM>
+     <P>
+     This function reverse-compiles a function variable via <LINK>fun2string</LINK>,
+     and recompiles it to the desired kind with <LINK>deff</LINK>.
+     </P>
+     </DESCRIPTION_ITEM>
+     </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+   recompilefunction("asinh","p")
+   for i=1:100; asinh(rand(100,100)); end
+   showprofile(asinh)   
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>function</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>getf</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>deff</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>comp</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>fun2string</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>profile</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM label='Enrico Segre'>
+    </AUTHORS_ITEM>
+  </AUTHORS>
+
+  <BIBLIO>
+    <SP>
+   http://wiki.scilab.org/Scilab_function_variables%3A_representation%2C_manipulation
+  </SP>
+  </BIBLIO>
+
+</MAN>
