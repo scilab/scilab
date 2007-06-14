@@ -75,8 +75,8 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 		z = regexec(out1, Str[0], nmatch, pm, 0);
 		if (z == REG_NOMATCH) { 
 			int outIndex2= Rhs +x+1 ;
+			int numCol   = 1 ;
 			numRow   = 1 ;
-            int numCol   = 1 ;
             outIndex = 0 ;
             CreateVar(Rhs+1+x,"c",&numRow,&numCol,&outIndex);
   			LhsVar(x+1) = outIndex2 ;
