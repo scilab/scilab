@@ -37,34 +37,20 @@ return stbuf;
 */
 int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 {
-char typ = '*';
   char **Str,**Str2;
-  static char def_sep[] ="";
-  char *sep = def_sep;
-  static int un=1;
-  int x,m1,n1,mn,mn2,m2,n2,nchars=0;
+  int x,m1,n1,mn,mn2,m2,n2=0;
   unsigned x1;
-  int lenth=0;
-  int lenthrow=1;
-  int lenthcol=1;
   int outIndex = 0 ;
   char ebuf[128];
-
+  int numRow;
   const size_t nmatch = 10;
   char *pattern;
-  int  z, lno = 0, cflags = 0;
+  int  z,cflags = 0;
   int stpoint[10];
   int endpoint[10];
   int nbstpoint=0;
   int nbendpoint=0;
-  int nbValues=0;
-  int numRow   = 1 ;
-
-
   regmatch_t pm[10];
-
-
-
   regex_t *out1=NULL;
   Rhs = Max(0, Rhs);
 
@@ -89,9 +75,9 @@ char typ = '*';
 		z = regexec(out1, Str[0], nmatch, pm, 0);
 		if (z == REG_NOMATCH) { 
 			int outIndex2= Rhs +x+1 ;
-			int numRow   = 1 ;
+			numRow   = 1 ;
             int numCol   = 1 ;
-            int outIndex = 0 ;
+            outIndex = 0 ;
             CreateVar(Rhs+1+x,"c",&numRow,&numCol,&outIndex);
   			LhsVar(x+1) = outIndex2 ;
 			
