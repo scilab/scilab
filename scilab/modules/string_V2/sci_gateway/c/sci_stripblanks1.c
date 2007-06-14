@@ -25,6 +25,7 @@ static char* substr(const char*str, unsigned start, unsigned end)
 	unsigned n = end - start;
 
 	char *stbuf;
+       stbuf=(char*)MALLOC(sizeof(char*)*(1));
 
 	strncpy(stbuf, str + start, n);
 
@@ -39,7 +40,7 @@ static char* substr(const char*str, unsigned start, unsigned end)
 int C2F(sci_stripblanks1) _PARAMS((char *fname,unsigned long fname_len))
 {
 	  char **Str,**Str3;
-	  int x,m1,n1,mn,m2,n2,i,l2,n4,l1,l4=0;
+	  int x,m1,n1,mn,m2,n2,i,l2,n4,l1=0;
 	  Rhs = Max(0, Rhs);
 	  CheckRhs(1,4);
 	  switch ( VarType(1)) {
