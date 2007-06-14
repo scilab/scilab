@@ -31,8 +31,7 @@ int C2F(sci_str2code1) _PARAMS((char *fname,unsigned long fname_len))
            '0','0','0','"','{','}','0','0','0','`','0','@',
 		   '0'};
   char **Str;
-  char typ = '*';
-  int x,m1,n1,mn,i,l4=0;
+  int x,m1,n1,mn,i=0;
   int key=0;
   int values[100];
   int nbValues=0;
