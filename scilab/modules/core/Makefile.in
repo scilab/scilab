@@ -129,7 +129,8 @@ am__objects_1 = libscicore_la-inffic.lo libscicore_la-cs2st.lo \
 	libscicore_la-GetenvB.lo libscicore_la-islittleendian.lo \
 	libscicore_la-filesmanagement.lo libscicore_la-terme.lo \
 	libscicore_la-ifexpr.lo libscicore_la-expr.lo \
-	libscicore_la-getcommandlineargs.lo libscicore_la-syncexec.lo
+	libscicore_la-getcommandlineargs.lo libscicore_la-syncexec.lo \
+	libscicore_la-getfastcode.lo
 am__objects_2 = algebre.lo clunit.lo complexify.lo allowptr.lo \
 	dldsp.lo bcol.lo getlin.lo isany.lo hmcreate.lo nextj.lo \
 	functionsforbasout.lo setgetmode.lo errmsgf.lo showstack.lo \
@@ -464,7 +465,8 @@ src/c/terme.c \
 src/c/ifexpr.c \
 src/c/expr.c \
 src/c/getcommandlineargs.c \
-src/c/syncexec.c
+src/c/syncexec.c \
+src/c/getfastcode.c 
 
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f \
 src/fortran/clunit.f \
@@ -760,7 +762,8 @@ includes/inisci-c.h \
 includes/cvstr.h \
 includes/error_scilab.h \
 includes/GetXmlFileEncoding.h \
-includes/syncexec.h
+includes/syncexec.h \
+includes/getfastcode.h 
 
 
 #### core : demos files ####
@@ -918,6 +921,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-fromc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-fromjava.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-getcommandlineargs.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-getfastcode.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-getmemory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-getmodules.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-getval.Plo@am__quote@
@@ -1612,6 +1616,13 @@ libscicore_la-syncexec.lo: src/c/syncexec.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/syncexec.c' object='libscicore_la-syncexec.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-syncexec.lo `test -f 'src/c/syncexec.c' || echo '$(srcdir)/'`src/c/syncexec.c
+
+libscicore_la-getfastcode.lo: src/c/getfastcode.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-getfastcode.lo -MD -MP -MF $(DEPDIR)/libscicore_la-getfastcode.Tpo -c -o libscicore_la-getfastcode.lo `test -f 'src/c/getfastcode.c' || echo '$(srcdir)/'`src/c/getfastcode.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-getfastcode.Tpo $(DEPDIR)/libscicore_la-getfastcode.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getfastcode.c' object='libscicore_la-getfastcode.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-getfastcode.lo `test -f 'src/c/getfastcode.c' || echo '$(srcdir)/'`src/c/getfastcode.c
 
 libscicore_la-sci_stacksize.lo: sci_gateway/c/sci_stacksize.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_stacksize.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_stacksize.Tpo -c -o libscicore_la-sci_stacksize.lo `test -f 'sci_gateway/c/sci_stacksize.c' || echo '$(srcdir)/'`sci_gateway/c/sci_stacksize.c

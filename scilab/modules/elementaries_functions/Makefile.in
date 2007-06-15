@@ -199,11 +199,12 @@ am__objects_2 = libscielementaries_functions_la-sci_tools.lo \
 	libscielementaries_functions_la-qsort-short.lo \
 	libscielementaries_functions_la-qsort-string.lo \
 	libscielementaries_functions_la-int2db.lo \
-	libscielementaries_functions_la-rea2db.lo
+	libscielementaries_functions_la-rea2db.lo \
+	libscielementaries_functions_la-idmax.lo \
+	libscielementaries_functions_la-idmin.lo
 am__objects_3 = libscielementaries_functions_la-psi.lo \
 	libscielementaries_functions_la-wasum.lo \
 	libscielementaries_functions_la-dexpm1.lo \
-	libscielementaries_functions_la-idmin.lo \
 	libscielementaries_functions_la-wwdiv.lo \
 	libscielementaries_functions_la-wdotcr.lo \
 	libscielementaries_functions_la-iset.lo \
@@ -281,7 +282,6 @@ am__objects_3 = libscielementaries_functions_la-psi.lo \
 	libscielementaries_functions_la-vpythag.lo \
 	libscielementaries_functions_la-isova0.lo \
 	libscielementaries_functions_la-wswap.lo \
-	libscielementaries_functions_la-idmax.lo \
 	libscielementaries_functions_la-wwpow1.lo \
 	libscielementaries_functions_la-getdimfromvar.lo \
 	libscielementaries_functions_la-gdcp2i.lo \
@@ -645,7 +645,9 @@ src/c/qsort-int.c \
 src/c/qsort-short.c \
 src/c/qsort-string.c \
 src/c/int2db.c \
-src/c/rea2db.c
+src/c/rea2db.c \
+src/c/idmax.c \
+src/c/idmin.c
 
 SLATEC_SOURCES = src/fortran/slatec/zwrsk.f \
 src/fortran/slatec/d9b0mp.f \
@@ -737,7 +739,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
 src/fortran/psi.f \
 src/fortran/wasum.f \
 src/fortran/dexpm1.f \
-src/fortran/idmin.f \
 src/fortran/wwdiv.f \
 src/fortran/wdotcr.f \
 src/fortran/iset.f \
@@ -815,7 +816,6 @@ src/fortran/ddpow1.f \
 src/fortran/vpythag.f \
 src/fortran/isova0.f \
 src/fortran/wswap.f \
-src/fortran/idmax.f \
 src/fortran/wwpow1.f \
 src/fortran/getdimfromvar.f \
 src/fortran/gdcp2i.f \
@@ -1144,6 +1144,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-finite.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-gsort.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-gw_elementaries_functions.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-idmax.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-idmin.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-int2db.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-qsort-char.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-qsort-double.Plo@am__quote@
@@ -1354,6 +1356,20 @@ libscielementaries_functions_la-rea2db.lo: src/c/rea2db.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/rea2db.c' object='libscielementaries_functions_la-rea2db.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-rea2db.lo `test -f 'src/c/rea2db.c' || echo '$(srcdir)/'`src/c/rea2db.c
+
+libscielementaries_functions_la-idmax.lo: src/c/idmax.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-idmax.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-idmax.Tpo -c -o libscielementaries_functions_la-idmax.lo `test -f 'src/c/idmax.c' || echo '$(srcdir)/'`src/c/idmax.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-idmax.Tpo $(DEPDIR)/libscielementaries_functions_la-idmax.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/idmax.c' object='libscielementaries_functions_la-idmax.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-idmax.lo `test -f 'src/c/idmax.c' || echo '$(srcdir)/'`src/c/idmax.c
+
+libscielementaries_functions_la-idmin.lo: src/c/idmin.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-idmin.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-idmin.Tpo -c -o libscielementaries_functions_la-idmin.lo `test -f 'src/c/idmin.c' || echo '$(srcdir)/'`src/c/idmin.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-idmin.Tpo $(DEPDIR)/libscielementaries_functions_la-idmin.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/idmin.c' object='libscielementaries_functions_la-idmin.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-idmin.lo `test -f 'src/c/idmin.c' || echo '$(srcdir)/'`src/c/idmin.c
 
 libscielementaries_functions_la-sci_isequal.lo: sci_gateway/c/sci_isequal.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_isequal.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_isequal.Tpo -c -o libscielementaries_functions_la-sci_isequal.lo `test -f 'sci_gateway/c/sci_isequal.c' || echo '$(srcdir)/'`sci_gateway/c/sci_isequal.c
@@ -1971,9 +1987,6 @@ libscielementaries_functions_la-wasum.lo: src/fortran/wasum.f
 libscielementaries_functions_la-dexpm1.lo: src/fortran/dexpm1.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementaries_functions_la-dexpm1.lo `test -f 'src/fortran/dexpm1.f' || echo '$(srcdir)/'`src/fortran/dexpm1.f
 
-libscielementaries_functions_la-idmin.lo: src/fortran/idmin.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementaries_functions_la-idmin.lo `test -f 'src/fortran/idmin.f' || echo '$(srcdir)/'`src/fortran/idmin.f
-
 libscielementaries_functions_la-wwdiv.lo: src/fortran/wwdiv.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementaries_functions_la-wwdiv.lo `test -f 'src/fortran/wwdiv.f' || echo '$(srcdir)/'`src/fortran/wwdiv.f
 
@@ -2204,9 +2217,6 @@ libscielementaries_functions_la-isova0.lo: src/fortran/isova0.f
 
 libscielementaries_functions_la-wswap.lo: src/fortran/wswap.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementaries_functions_la-wswap.lo `test -f 'src/fortran/wswap.f' || echo '$(srcdir)/'`src/fortran/wswap.f
-
-libscielementaries_functions_la-idmax.lo: src/fortran/idmax.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementaries_functions_la-idmax.lo `test -f 'src/fortran/idmax.f' || echo '$(srcdir)/'`src/fortran/idmax.f
 
 libscielementaries_functions_la-wwpow1.lo: src/fortran/wwpow1.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementaries_functions_la-wwpow1.lo `test -f 'src/fortran/wwpow1.f' || echo '$(srcdir)/'`src/fortran/wwpow1.f

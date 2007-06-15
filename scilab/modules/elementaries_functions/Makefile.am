@@ -24,6 +24,7 @@ src/c/rea2db.c \
 src/c/idmax.c \
 src/c/idmin.c
 
+
 SLATEC_SOURCES = src/fortran/slatec/zwrsk.f \
 src/fortran/slatec/d9b0mp.f \
 src/fortran/slatec/d9b1mp.f \
@@ -191,7 +192,6 @@ src/fortran/ddpow1.f \
 src/fortran/vpythag.f \
 src/fortran/isova0.f \
 src/fortran/wswap.f \
-
 src/fortran/wwpow1.f \
 src/fortran/getdimfromvar.f \
 src/fortran/gdcp2i.f \
