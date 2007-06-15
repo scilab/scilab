@@ -82,7 +82,7 @@ src/c/filesmanagement.c \
 src/c/terme.c \
 src/c/ifexpr.c \
 src/c/expr.c \
-src/c/getcommandlineargs.c \ 
+src/c/getcommandlineargs.c \
 src/c/syncexec.c
 
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f \
