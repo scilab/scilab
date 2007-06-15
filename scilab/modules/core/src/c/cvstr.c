@@ -104,33 +104,3 @@ int C2F(asciitocode)(integer * n,integer * line,char * str,integer * flagx,unsig
   }
   return 0;
 } 
-
-/*--------------------------------------------- 
- *   converts one ascii to Scilab internal code 
- *   Copyright INRIA/ENPC 
- *   Obsolete replaced by getfascode 
- *--------------------------------------------- */
-//
-//integer C2F(getcode)(unsigned char * mc,unsigned long mc_len)
-//{
-//  static integer eol = 99;
-//  integer k;
-//  for (k = 0 ; k < csiz; ++k) {
-//    if ( *mc == C2F(cha1).alfa[k]) 
-//      {
-//	return k ;
-//      }
-//    else if ( *mc == C2F(cha1).alfb[k]) {
-//      return - k;
-//    }
-//  }
-//  /*     special characters */
-//  switch ( *mc ) {
-//  case 0:  return  100; break; 
-//  case 9:  return 109; break; 
-//  case 10: return 110 ; break; 
-//  default : 
-//    return  *mc + eol + 1;
-//  }
-//} 
-
