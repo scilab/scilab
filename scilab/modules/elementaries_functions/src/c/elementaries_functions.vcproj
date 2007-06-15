@@ -190,6 +190,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\idmax.c"
+				>
+			</File>
+			<File
+				RelativePath=".\idmin.c"
+				>
+			</File>
+			<File
 				RelativePath=".\int2db.c"
 				>
 			</File>
@@ -469,6 +477,14 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\gw_elementaries_functions.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\idmax.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\idmin.h"
 				>
 			</File>
 			<File

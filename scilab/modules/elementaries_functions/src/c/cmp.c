@@ -1,8 +1,8 @@
 /* copyright Enpc: Jean-Philippe Chancelier  */
 
 #include "stack-c.h" 
+#include "isanan.h"
 
-#include "Os_specific.h" /* isanan */ 
 
 #ifdef _MSC_VER 
 /* vc++ pbs with nan and comparisons */ 

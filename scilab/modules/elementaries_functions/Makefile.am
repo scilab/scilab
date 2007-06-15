@@ -20,8 +20,9 @@ src/c/qsort-int.c \
 src/c/qsort-short.c \
 src/c/qsort-string.c \
 src/c/int2db.c \
-src/c/rea2db.c
-
+src/c/rea2db.c \
+src/c/idmax.c \
+src/c/idmin.c
 
 SLATEC_SOURCES = src/fortran/slatec/zwrsk.f \
 src/fortran/slatec/d9b0mp.f \
@@ -113,7 +114,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
 src/fortran/psi.f \
 src/fortran/wasum.f \
 src/fortran/dexpm1.f \
-src/fortran/idmin.f \
 src/fortran/wwdiv.f \
 src/fortran/wdotcr.f \
 src/fortran/iset.f \
@@ -191,7 +191,7 @@ src/fortran/ddpow1.f \
 src/fortran/vpythag.f \
 src/fortran/isova0.f \
 src/fortran/wswap.f \
-src/fortran/idmax.f \
+
 src/fortran/wwpow1.f \
 src/fortran/getdimfromvar.f \
 src/fortran/gdcp2i.f \

@@ -9,7 +9,7 @@
 #include <math.h>
 #include "stack-c.h"
 #include "someinterp.h"
-#include "Os_specific.h" /* isanan */
+#include "isanan.h"
 #include "returnanan.h"
 enum {NOT_A_KNOT, NATURAL, CLAMPED, PERIODIC, FAST, FAST_PERIODIC, 
       MONOTONE, BY_ZERO, C0, LINEAR, BY_NAN};

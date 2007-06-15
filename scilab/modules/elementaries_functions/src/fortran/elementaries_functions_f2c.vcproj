@@ -441,14 +441,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\idmax.c"
-				>
-			</File>
-			<File
-				RelativePath=".\idmin.c"
-				>
-			</File>
-			<File
 				RelativePath=".\imcopy.c"
 				>
 			</File>
@@ -1214,14 +1206,6 @@
 			</File>
 			<File
 				RelativePath=".\icopy.f"
-				>
-			</File>
-			<File
-				RelativePath=".\idmax.f"
-				>
-			</File>
-			<File
-				RelativePath=".\idmin.f"
 				>
 			</File>
 			<File

@@ -1,9 +1,7 @@
 /* Copyright INRIA/ENPC */
 #include <stdio.h>
 #include <math.h>
-
-#include "machine.h"
-#include "Os_specific.h"
+#include "isanan.h"
 
 
 #ifdef _MSC_VER 

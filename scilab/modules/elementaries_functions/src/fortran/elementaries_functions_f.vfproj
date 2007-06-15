@@ -96,8 +96,6 @@ cd .."/>
 		<File RelativePath="hqror2.f"/>
 		<File RelativePath="i1mach.f"/>
 		<File RelativePath="icopy.f"/>
-		<File RelativePath="idmax.f"/>
-		<File RelativePath="idmin.f"/>
 		<File RelativePath="imcopy.f"/>
 		<File RelativePath="infinity.f"/>
 		<File RelativePath="intp.f"/>

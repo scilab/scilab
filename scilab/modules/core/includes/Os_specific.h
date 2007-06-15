@@ -78,9 +78,4 @@ extern int LinkStatus  __PARAMS((void));
 extern void C2F(isciulink)(integer *i) ;
 
 
-/* isanan.c */ 
-
-integer C2F(isanan)  __PARAMS((double *x) ); 
-
-
 #endif /* SUNSCI_PROTO */
