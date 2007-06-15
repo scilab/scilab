@@ -1,7 +1,7 @@
 
 /* Copyright INRIA 2007 */
 
-package fr.scilab.test;
+
 
 import java.awt.EventQueue;
 
@@ -10,16 +10,15 @@ import javax.swing.UIManager;
 
 import org.flexdock.docking.DockingManager;
 import org.flexdock.util.SwingUtility;
-
-import fr.scilab.console.Console;
-import fr.scilab.console.ScilabConsole;
-import fr.scilab.ihm.bridge.swing.SwingScilabConsole;
-import fr.scilab.ihm.frame.Frame;
-import fr.scilab.ihm.frame.ScilabFrame;
-import fr.scilab.ihm.tab.ScilabTab;
-import fr.scilab.ihm.tab.Tab;
-import fr.scilab.ihm.window.ScilabWindow;
-import fr.scilab.ihm.window.Window;
+import org.scilab.modules.gui.bridge.SwingScilabConsole;
+import org.scilab.modules.gui.console.Console;
+import org.scilab.modules.gui.console.ScilabConsole;
+import org.scilab.modules.gui.frame.Frame;
+import org.scilab.modules.gui.frame.ScilabFrame;
+import org.scilab.modules.gui.tab.ScilabTab;
+import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.window.ScilabWindow;
+import org.scilab.modules.gui.window.Window;
 
 /**
  * Test class for Scilab 5.0 GUIs
@@ -57,7 +56,7 @@ public class ScilabConsoleTest {
 		mainView.addTab(consoleTab);
 		mainView.draw();
 		System.out.println("Console Tab Title: " + consoleTab.getName());
-		System.out.println("-*- Stopping Program -*-");
+		System.out.println("-*- Stoping Program -*-");
 
 		/* Console creation */
 		Frame consoleFrame = ScilabFrame.createFrame();
@@ -85,7 +84,7 @@ public class ScilabConsoleTest {
 		JFrame f = new JFrame();
 		f.setSize(200,200);
 		SwingScilabConsole content = new SwingScilabConsole();
-		f.add(content);
+		//f.add(content);
 		f.setVisible(true);
 
 		//		JyConsole console = new JyConsole();
