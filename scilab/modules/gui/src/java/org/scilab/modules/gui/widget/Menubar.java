@@ -8,5 +8,5 @@ package org.scilab.modules.gui.widget;
  * @author Vincent COUVERT
  */
 public interface Menubar {
-
+	//	 TODO : Add the methods that are usefull for a Menu
 }
