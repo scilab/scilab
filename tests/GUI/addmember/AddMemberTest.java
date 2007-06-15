@@ -38,7 +38,7 @@ public class AddMemberTest {
 		// Try to add a Frame in a Tab
 		assertTrue("_MUST_ be able to add a Frame in a Tab", tab.addMember(frame) != -1);
 		assertTrue("_MUST_ be able to add a Frame in a Tab (Through the Bridge)", ScilabBridge.addMember(tab, frame) != -1);
-		System.out.println("-*- Stoping Program -*-");
+		System.out.println("-*- Stopping Program -*-");
 	}
 
 	/**
@@ -57,7 +57,7 @@ public class AddMemberTest {
 		// Try to add a Console in a Frame
 		assertTrue("_MUST_NOT_ be able to add a Console in a Frame", frame.addMember(console) == -1);
 		assertTrue("_MUST_ be able to add a Console in a Frame (Through the Bridge)", ScilabBridge.addMember(frame, console) != -1);
-		System.out.println("-*- Stoping Program -*-");
+		System.out.println("-*- Stopping Program -*-");
 	}
 
 	/**
@@ -76,7 +76,7 @@ public class AddMemberTest {
 		// Try to add a Console in a Tab
 		assertTrue("_MUST_ be able to add a Console in a Tab", tab.addMember(console) != -1);
 		assertTrue("_MUST_ be able to add a Console in a Tab(Through the Bridge)", ScilabBridge.addMember(tab, console) != -1);
-		System.out.println("-*- Stoping Program -*-");
+		System.out.println("-*- Stopping Program -*-");
 		}
 
 }

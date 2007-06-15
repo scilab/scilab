@@ -57,7 +57,7 @@ public class ScilabConsoleTest {
 		mainView.addTab(consoleTab);
 		mainView.draw();
 		System.out.println("Console Tab Title: " + consoleTab.getName());
-		System.out.println("-*- Stoping Program -*-");
+		System.out.println("-*- Stopping Program -*-");
 
 		/* Console creation */
 		Frame consoleFrame = ScilabFrame.createFrame();
