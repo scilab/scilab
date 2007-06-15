@@ -207,7 +207,6 @@ src/fortran/wclmat.f \
 src/fortran/dsort.f \
 src/fortran/cerr.f \
 src/fortran/rcopy.f \
-
 src/fortran/wdpow.f \
 src/fortran/orthes.f \
 src/fortran/wnrm2.f \
