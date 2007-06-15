@@ -131,7 +131,6 @@ src/fortran/findequal.f \
 src/fortran/stackg.f \
 src/fortran/find.f \
 src/fortran/israt.f \
-src/fortran/stack0.f \
 src/fortran/setlnb.f \
 src/fortran/mrknmd.f \
 src/fortran/stackgl.f \
@@ -194,7 +193,10 @@ src/fortran/copyvar.f \
 src/fortran/putid.f \
 src/fortran/itosci.f \
 src/fortran/formatnumber.f \
-src/fortran/wmdsp.f
+src/fortran/wmdsp.f \
+src/fortran/stackr2d.f \
+src/fortran/stacki2d.f \
+src/fortran/stackc2i.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_stacksize.c \
 sci_gateway/c/sci_resume.c \
