@@ -1,7 +1,7 @@
 
 /* Copyright INRIA 2007 */
 
-package fr.scilab.test;
+
 
 import java.awt.EventQueue;
 
@@ -9,17 +9,16 @@ import javax.swing.UIManager;
 
 import org.flexdock.docking.DockingManager;
 import org.flexdock.util.SwingUtility;
-
-import fr.scilab.console.Console;
-import fr.scilab.console.ScilabConsole;
-import fr.scilab.ihm.canvas.Canvas;
-import fr.scilab.ihm.canvas.ScilabCanvas;
-import fr.scilab.ihm.tab.ScilabTab;
-import fr.scilab.ihm.tab.Tab;
-import fr.scilab.ihm.utils.Position;
-import fr.scilab.ihm.utils.Size;
-import fr.scilab.ihm.window.ScilabWindow;
-import fr.scilab.ihm.window.Window;
+import org.scilab.modules.gui.canvas.Canvas;
+import org.scilab.modules.gui.canvas.ScilabCanvas;
+import org.scilab.modules.gui.console.Console;
+import org.scilab.modules.gui.console.ScilabConsole;
+import org.scilab.modules.gui.tab.ScilabTab;
+import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.utils.Position;
+import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.window.ScilabWindow;
+import org.scilab.modules.gui.window.Window;
 
 /**
  * Test class for Scilab 5.0 GUIs

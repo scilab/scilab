@@ -1,15 +1,14 @@
 
 /* Copyright INRIA 2007 */
 
-package fr.scilab.test.window.size;
+package window.size;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-
-import fr.scilab.ihm.utils.Size;
-import fr.scilab.ihm.window.ScilabWindow;
-import fr.scilab.ihm.window.Window;
+import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.window.ScilabWindow;
+import org.scilab.modules.gui.window.Window;
 
 /**
  * Unitary test for window size modification in Scilab
