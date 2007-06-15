@@ -83,7 +83,8 @@ src/c/terme.c \
 src/c/ifexpr.c \
 src/c/expr.c \
 src/c/getcommandlineargs.c \
-src/c/syncexec.c
+src/c/syncexec.c \
+src/c/getfastcode.c 
 
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f \
 src/fortran/clunit.f \
@@ -390,7 +391,8 @@ includes/inisci-c.h \
 includes/cvstr.h \
 includes/error_scilab.h \
 includes/GetXmlFileEncoding.h \
-includes/syncexec.h
+includes/syncexec.h \
+includes/getfastcode.h 
 
 #### core : demos files ####
 libscicore_la_demosintrodir=$(mydatadir)/demos/intro/

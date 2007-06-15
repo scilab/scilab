@@ -3,6 +3,7 @@
 #define memused(it,mn) ((((mn)*( it % 10))/sizeof(int))+1)
 #include "stack-c.h"
 #include "stcreate.h"
+#include "cvstr.h"
 
 /* Table of constant values */
 static integer c17 = 17;

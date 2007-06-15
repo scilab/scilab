@@ -52,7 +52,7 @@
 
 #include "sciprint.h"
 #include "sci_mem_alloc.h" /* MALLOC */
-
+#include "cvstr.h"
 
 static char *the_current_mex_name;
 

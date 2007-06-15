@@ -5,9 +5,7 @@
 #include "men_Sutils.h"
 
 #include "MALLOC.h" /* MALLOC */
-
-/* Subroutine */ 
-extern int C2F(cvstr) __PARAMS((integer *n, integer *line, char *str, integer *job,long int str_len));
+#include "cvstr.h"
 
 
 

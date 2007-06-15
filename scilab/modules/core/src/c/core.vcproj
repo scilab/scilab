@@ -270,6 +270,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\getfastcode.c"
+				>
+			</File>
+			<File
 				RelativePath=".\getmemory.c"
 				>
 			</File>
@@ -847,11 +851,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\fromjava.h"
+				RelativePath=".\fromjava.h"
 				>
 			</File>
 			<File
-				RelativePath=".\fromjava.h"
+				RelativePath="..\..\includes\fromjava.h"
 				>
 			</File>
 			<File
@@ -864,6 +868,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\GetExceptionCode.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\getfastcode.h"
 				>
 			</File>
 			<File
@@ -971,11 +979,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Os_specific.h"
+				RelativePath="..\..\includes\Os_specific.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\Os_specific.h"
+				RelativePath=".\Os_specific.h"
 				>
 			</File>
 			<File

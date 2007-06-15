@@ -10,6 +10,7 @@
 #include "sciprint.h"
 #include "error_scilab.h"
 #include "message_scilab.h"
+#include "cvstr.h"
 
 /* Table to store variable names */
 static char varnames[isizt][nlgh+1];

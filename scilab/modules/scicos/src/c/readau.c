@@ -3,8 +3,8 @@
 #include <string.h> 
 #include "machine.h"
 #include "sciprint.h"
+#include "cvstr.h"
 
-extern  int C2F(cvstr)  __PARAMS((integer *,integer *,char *,integer *,unsigned long int));
 extern void mget2 __PARAMS((FILE *fa, integer swap, double *res, integer n, char *type, integer *ierr));
 void 
 readau(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,

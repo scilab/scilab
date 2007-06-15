@@ -13,7 +13,7 @@
 #include "../../gui/includes/checkevts.h"
 #include "../../gui/includes/sxevents.h"
 #include "../../tclsci/includes/tksynchro.h"
-
+#include "cvstr.h"
 
 #undef Lstk
 #undef Infstk
@@ -76,7 +76,6 @@ extern int C2F(getmen)();
 
 extern int C2F(findequal)();
 extern int C2F(print)();
-extern int C2F(cvstr)();
 extern int C2F(createref1)();
 extern int C2F(comand)();
 extern int C2F(cvname)();

@@ -3,11 +3,8 @@
  *--------------------------------------------------------------------------*/
 
 #include "history.h"
-
-#include "MALLOC.h"  /* malloc */
-
+#include "MALLOC.h" 
 #include "stack-c.h"
-
 #include "error_scilab.h"
 
 #ifndef Max 

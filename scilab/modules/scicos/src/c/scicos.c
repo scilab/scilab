@@ -25,7 +25,7 @@
 
 #include "scicos-def.h"
 #include "sciprint.h"
-
+#include "cvstr.h"
 
 typedef struct {
 	integer iero;
@@ -102,7 +102,7 @@ extern void  GetDynFunc();
 extern void  C2F(iislink)();
 
 
-extern  integer C2F(cvstr)();
+
 extern  integer C2F(dset)();
 extern  integer C2F(dcopy)();
 extern  integer C2F(iset)();

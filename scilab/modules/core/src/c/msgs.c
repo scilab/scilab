@@ -11,6 +11,7 @@
 #include "MALLOC.h"
 #include "msgs.h"
 #include "../../localization/includes/QueryStringMessage.h"
+#include "cvstr.h"
 /*-----------------------------------------------------------------------------------*/
 #ifdef BUF
 #undef BUF

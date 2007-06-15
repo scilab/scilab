@@ -3,8 +3,8 @@
 
 #include "machine.h"
 #include "sciprint.h"
+#include "cvstr.h"
 
-extern  int C2F(cvstr)  __PARAMS((integer *,integer *,char *,integer *,unsigned long int));
 
 void mput2  __PARAMS((FILE *fa, integer swap, double *res, integer n, char *type, integer *ierr));
 

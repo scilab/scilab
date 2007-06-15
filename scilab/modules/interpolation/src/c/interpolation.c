@@ -12,7 +12,7 @@
 #include <string.h>
 #include "interpolation.h"
 #include "stack-c.h"
-#include "cvstr.h" /* getfastcode */
+#include "getfastcode.h"
 /*-----------------------------------------------------------------------------------*/
 int good_order(double x[], int n)
 {

@@ -7,8 +7,9 @@
 
 #include "libinter.h"
 #include "cerro.h"
+#include "cvstr.h"
 
-extern int C2F(cvstr)  __PARAMS((integer *n, integer *line, char *str, integer *job, unsigned long str_len));
+
 
 /*--------------------------------------------------------------
  * A set of functions used with intersci 

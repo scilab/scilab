@@ -12,6 +12,7 @@
 #include "sciprint.h"
 #include "error_scilab.h"
 #include "message_scilab.h"
+#include "cvstr.h"
 
 /* Table of constant values */
 
@@ -344,8 +345,6 @@ int C2F(crebmatvar)(integer *id, integer *lw, integer *m, integer *n, integer *v
 int C2F(cresmatvar)(integer *id, integer *lw, char *str, integer *lstr, unsigned long str_len)
 {
 	extern int C2F(putid)(integer *, integer *);
-	extern int C2F(cvstr)(integer *, integer *, char *, integer *, unsigned long );
-
 	static integer il, mn, lr1, ix1, ilp;
 	static integer ilast;
 	static integer c__0 = 0;
