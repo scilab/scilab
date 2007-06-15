@@ -18,7 +18,9 @@ src/c/qsort-char.c \
 src/c/qsort-double.c \
 src/c/qsort-int.c \
 src/c/qsort-short.c \
-src/c/qsort-string.c
+src/c/qsort-string.c \
+src/c/int2db.c \
+src/c/rea2db.c
 
 
 SLATEC_SOURCES = src/fortran/slatec/zwrsk.f \
@@ -173,7 +175,6 @@ src/fortran/wscal.f \
 src/fortran/dlblks.f \
 src/fortran/kronc.f \
 src/fortran/ddrdiv.f \
-src/fortran/int2db.f \
 src/fortran/dipow.f \
 src/fortran/wshrsl.f \
 src/fortran/wwrdiv.f \
@@ -206,7 +207,7 @@ src/fortran/wclmat.f \
 src/fortran/dsort.f \
 src/fortran/cerr.f \
 src/fortran/rcopy.f \
-src/fortran/rea2db.f \
+
 src/fortran/wdpow.f \
 src/fortran/orthes.f \
 src/fortran/wnrm2.f \

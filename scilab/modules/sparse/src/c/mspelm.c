@@ -1,6 +1,6 @@
 #include "stack-c.h"
 #include "../../elementaries_functions/includes/elementaries_functions.h"
-
+#include "../../elementaries_functions/includes/int2db.h"
 #define CHAR(x)         (cstk(x))
 #define INT(x)  	(istk(x))
 #define DOUBLE(x)	( stk(x))
@@ -39,7 +39,6 @@ extern  int C2F(unsfdcopy)();
 extern  int C2F(icopy)();
 extern  int C2F(error)();
 extern  int C2F(dset)();
-extern  int C2F(int2db)();
 extern  int empty(void);
 
 int C2F(intmsparse)(integer *id)

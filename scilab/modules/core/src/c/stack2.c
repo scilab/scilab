@@ -19,7 +19,8 @@
 #include "../../../string/includes/men_Sutils.h" 
 #include "error_scilab.h"
 #include "message_scilab.h"
-
+#include "../../../elementaries_functions/includes/int2db.h"
+#include "../../../elementaries_functions/includes/rea2db.h"
 
 #ifdef _MSC_VER
 #define abs(x) ((x) >= 0 ? (x) : -(x)) /* pour abs  C2F(mvfromto) line 2689 */

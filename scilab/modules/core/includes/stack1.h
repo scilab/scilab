@@ -27,8 +27,6 @@ extern int C2F(stackg)   __PARAMS((integer *));
 extern int C2F(entier)  __PARAMS((integer *n, double *d__, integer *s));
 extern int C2F(simple)  __PARAMS((integer *n, double *d__, float *s));
 extern int C2F(iset)  __PARAMS((integer *n, integer *dx, integer *dy, integer *incy));
-extern int C2F(rea2db)  __PARAMS((integer *n, float *dx, integer *incx, double *dy, integer *incy));
-extern int C2F(int2db)  __PARAMS((integer *n, integer *dx, integer *incx, double *dy, integer *incy));
 
 /* stack0.c */
 

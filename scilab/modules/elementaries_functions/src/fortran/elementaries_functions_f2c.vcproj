@@ -457,10 +457,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\int2db.c"
-				>
-			</File>
-			<File
 				RelativePath=".\intp.c"
 				>
 			</File>
@@ -542,10 +538,6 @@
 			</File>
 			<File
 				RelativePath=".\rcsort.c"
-				>
-			</File>
-			<File
-				RelativePath=".\rea2db.c"
 				>
 			</File>
 			<File
@@ -1241,10 +1233,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\int2db.f"
-				>
-			</File>
-			<File
 				RelativePath=".\intp.f"
 				>
 			</File>
@@ -1326,10 +1314,6 @@
 			</File>
 			<File
 				RelativePath=".\rcsort.f"
-				>
-			</File>
-			<File
-				RelativePath=".\rea2db.f"
 				>
 			</File>
 			<File

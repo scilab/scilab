@@ -190,6 +190,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\int2db.c"
+				>
+			</File>
+			<File
 				RelativePath=".\qsort-char.c"
 				>
 			</File>
@@ -211,6 +215,10 @@
 			</File>
 			<File
 				RelativePath=".\qsort.c"
+				>
+			</File>
+			<File
+				RelativePath=".\rea2db.c"
 				>
 			</File>
 			<File
@@ -464,6 +472,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\int2db.h"
+				>
+			</File>
+			<File
 				RelativePath=".\qsort-char.h"
 				>
 			</File>
@@ -485,6 +497,10 @@
 			</File>
 			<File
 				RelativePath=".\qsort.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\rea2b.h"
 				>
 			</File>
 			<File
