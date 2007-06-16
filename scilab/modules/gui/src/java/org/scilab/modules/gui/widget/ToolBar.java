@@ -7,6 +7,6 @@ package org.scilab.modules.gui.widget;
  * Interface for toolbar associated to objects in Scilab GUIs
  * @author Vincent COUVERT
  */
-public interface Toolbar {
+public interface ToolBar {
 	// TODO : Add the methods that are usefull for a Toolbar
 }

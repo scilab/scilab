@@ -7,6 +7,6 @@ package org.scilab.modules.gui.widget;
  * Interface for menubar associated to objects in Scilab GUIs
  * @author Vincent COUVERT
  */
-public interface Menubar {
+public interface MenuBar {
 	//	 TODO : Add the methods that are usefull for a Menu
 }
