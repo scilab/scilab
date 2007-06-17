@@ -1,5 +1,6 @@
 proc tkdndbind {w} {
 # Drag and drop feature using TkDnD
+# $w must be textarea
 
     global TkDnDloaded pad dndinitiated sourcetextarea
     global savedsel savedseli dnddroppos
@@ -353,3 +354,34 @@ proc dorestorecursorblink {} {
 
 # End of temporary cursor blinking start/stop
 ############################
+
+proc dndbinddirentrybox {w} {
+# set an entry box to be a drop target for text/plain content
+# $w must be an entry widget
+    global TkDnDloaded
+
+    # Abort if TkDnD package is not available
+    if {$TkDnDloaded != "true"} {
+        return
+    }
+
+    # To ensure that the widgets have been created before binding to them
+    update idletasks
+
+    # select the current content when the mouse enters the entry box
+    dnd bindtarget $w text/plain <DragEnter> {
+        focus -force %W
+        %W selection range 0 end
+    }
+
+    # deselect the current content when the mouse leaves the entry box
+    dnd bindtarget $w text/plain <DragLeave> {
+        %W selection clear
+    }
+
+    # insert the dragged text in the drop target
+    dnd bindtarget $w text/plain <Drop> {
+        %W delete 0 end
+        %W insert end %D
+    }
+}

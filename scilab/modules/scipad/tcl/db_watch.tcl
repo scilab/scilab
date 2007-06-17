@@ -1002,8 +1002,7 @@ proc createsetinscishellcomm {setofvars} {
 
 proc updateclickablelinetag {} {
     global callstackwidget
-    global callstackfuns callstacklines 
-    global errfunc errline
+    global errfunc
     if {[getdbstate] == "DebugInProgress"} {
         # there is no error displayed in the call stack area
         # the call stack area looks like this:

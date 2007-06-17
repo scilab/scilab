@@ -411,6 +411,7 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
     #    kept, which is the exact purpose of step over
     set stoppedonarealbpt "TCL_EvalStr(\"lsearch \[getreallybptedlines \" + db_m(3) + \"\] \" + string(db_l(3)-1) + \"\",\"scipad\") <> string(-1)"
     set breakwashit "TCL_EvalStr(\"isbreakhit_bp\",\"scipad\") == \"true\""
+    set stoppedinsamefun "TCL_EvalStr(\"hasstoppedinthesamefun\",\"scipad\") == \"true\""
     switch -- $stepmode {
         "nostep"   { set steppedininsteadofover "%f" }
         "into"     { set steppedininsteadofover "%f" }
@@ -430,15 +431,24 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
     #        decreased or not; if not, and if the current stop is not due to a
     #        real breakpoint set by the user (nor by the user having hit Break),
     #        then perform a stepbystepout_bp again
-    # Note: for case "out", the <= is required while just < would be more
-    # obvious. This is to allow for nested libfun calls to work, e.g.:
-    #   n=[1,2,10,15];m=[2,2,3,5];
-    #   a=pmodulo(modulo(pmodulo(modulo(n,m),m),m),m)
+    # Note: for case "out", the last step went out if (mainly):
+    #    size(db_l,1) < $prevdbpauselevel
+    #      i.e. there is one pause level less than at the previous stop
+    #      This is for standard recursive functions to work
+    #      such as the naive factorial function
+    #  or
+    #    (size(db_l,1) == $prevdbpauselevel) & ~($stoppedinsamefun)
+    #      i.e. same level as at the previous stop, but in another function
+    #      This is to allow for nested libfun calls to work, e.g.:
+    #        n=[1,2,10,15];m=[2,2,3,5];
+    #        a=pmodulo(modulo(pmodulo(modulo(n,m),m),m),m)
     switch -- $stepmode {
         "nostep"   { set didntwentout "%f" }
         "into"     { set didntwentout "%f" }
         "over"     { set didntwentout "%f" }
-        "out"      { set didntwentout "(~(size(db_l,1) <= $prevdbpauselevel)) & ~($stoppedonarealbpt) & ~($breakwashit)" }
+        "out"      { set didntwentout "(~( (size(db_l,1) < $prevdbpauselevel) | ((size(db_l,1) == $prevdbpauselevel) & ~($stoppedinsamefun)) )) & \
+                                       ~($stoppedonarealbpt) & \
+                                       ~($breakwashit)" }
         "runtocur" { set didntwentout "%f" }
         "runtoret" { set didntwentout "%f" }
     }

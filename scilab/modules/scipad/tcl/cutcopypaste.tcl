@@ -308,7 +308,7 @@ proc pastetext {mode {topasteinblockmode ""}} {
 }
 
 proc button2copypaste {w x y} {
-##ES 16/11/04 -- we have to write a full proc for this because we need
+# we have to write a full proc for this because we need
 # to take care of colorization, insert only when editable, etc
     global textareacur listoffile
     # the target textarea gets focused, even if paste is forbidden there
@@ -322,15 +322,27 @@ proc button2copypaste {w x y} {
         set ct [selection get]
         clipboard append $ct
         selection clear
-        focustextarea $w
+        showtext $w ; # see comment on showtext below
         $w mark set insert [TextClosestGap_scipad $w $x $y]
         pastetext normal
     } else {
-        focustextarea $w
+        # in principle, focustextarea $w would be enough here since $w is
+        # already visible (it has just been clicked!)
+        # but because of Scilab bug 1544, [selection get] might last 10 s
+        # or so during which the Tcl event loop is active, allowing the user
+        # to Ctrl-n or anything else that switches buffers and hides the one
+        # that was Button-2 clicked for pasting. Then one of the following
+        # errors would be triggered:
+        #   can't read "listoffile(".scipad.new1",displayedname)": no such element in array
+        #   invalid command name "none"
+        # Even without bug 1544, using proc showtext instead of focustextarea
+        # is an extra precaution that could indeed be needed because it also
+        # lauches recolorization of user functions, which might change on paste
+        showtext $w
     }
-    #there is still one glitch - the cursor returns at the beginning
+    # there is still one glitch - the cursor returns at the beginning
     # of the insertion point (why?) - but not on windows !
-    #also in windows this works as a sort of "drop selection here", but
+    # also in windows this works as a sort of "drop selection here", but
     # with glitches (which ones?)
     restorecursorblink ; # see comments in proc puttext
 }

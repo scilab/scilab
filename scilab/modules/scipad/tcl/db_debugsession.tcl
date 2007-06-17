@@ -19,6 +19,7 @@ proc execfile_bp {{stepmode "nostep"}} {
     global funnameargs listoftextarea funsinbuffer waitmessage watchvars
     global setbptonreallybreakpointedlinescmd
     global tmpdir
+    global previousstopfun
 
     if {[isscilabbusy 5]} {return}
     showinfo $waitmessage
@@ -118,6 +119,7 @@ proc execfile_bp {{stepmode "nostep"}} {
         }
 
         # run the debug, i.e. launch the configured function
+        set previousstopfun ""
         set setbptonreallybreakpointedlinescmd $setbpcomm
         setdbstate "DebugInProgress"
         # no need to call removeautovars at this point, Scilab is always at
@@ -636,10 +638,8 @@ proc iscursorplace_bp {} {
 }
 
 proc runtoreturnpoint_bp {{checkbusyflag 1} {skipbptmode 0}} {
-    global currentfunname currentfunreturnlineslist
-    global currentfunreturnlinesvector ; # globality mandatory, and only used while skipping lines (see proc checkendofdebug_bp)
-    global lastscecodepos
-    global funnameargs callstackfuns
+    global currentfunname
+    global currentfunreturnlinesvector
 
     # no busy check to allow to skip stops at the wrong breakpoint
     if {$checkbusyflag} {
@@ -651,84 +651,7 @@ proc runtoreturnpoint_bp {{checkbusyflag 1} {skipbptmode 0}} {
     if {[checkforduplicatefunnames]} {return}
 
     if {!$skipbptmode} {
-        # retrieve the current function name
-        if {[getdbstate] == "ReadyForDebug"} {
-            # use the configured function as current function
-            set oppar [string first "\(" $funnameargs]
-            set currentfunname [string range $funnameargs 0 [expr {$oppar - 1}]]
-        } else {
-            # [getdbstate] is "DebugInProgress"
-            set currentfunname [lindex $callstackfuns 0]
-        }
-        # build the list of exit points for the current function
-        # this includes the line containing the endfunction keyword corresponding
-        # to the function declaration line (there can be only one such line in
-        # Scilab, no multiple "endfunction" for one "function"), but also possibly
-        # multiple "return" and "resume" statements
-        # in case the current function is the .sce wrapper, then the debug occurs
-        # in the main level part of a .sce file, and there is no endfunction at all
-        # this is dealt with a little further below
-        set fntafs [funnametofunnametafunstart $currentfunname]
-        if {$fntafs == ""} {
-            # the function where the debug just stopped is currently not opened
-            # in Scipad (perhaps the user closed it manually before)
-            set mes [mc "This command cannot succeed if the function where the debug just stopped is not opened in Scipad!"]
-            set tit [mc "Cannot run to return point"]
-            tk_messageBox -message $mes -icon warning -title $tit
-            return
-        }
-        set currentfunta [lindex $fntafs 1]
-        set currentfunstartline [lindex $fntafs 2]
-        set currentfunendfunctionpos [getendfunctionpos $currentfunta $currentfunstartline "all_return_points"]
-        if {$currentfunendfunctionpos == -1} {
-            # should never happen
-            # <TODO>: It happens however in well-formed functions containing a string
-            #         containing the word "function", the string being quoted with
-            #         single quotes when these strings are not colorized (options menu)
-            #         Find a better way to handle such cases than just this messageBox!
-            tk_messageBox -message "Unexpected missing endfunction in proc runtoreturnpoint_bp: please report"
-        }
-        set currentfunreturnlineslist [list ]
-        set currentfunreturnlinesvector {[}
-        foreach returnpointpos $currentfunendfunctionpos {
-            # if the return point is in the wrapper code (.sce files case),
-            # then it is the endfunction keyword of the wrapper
-            # in this case the last code line before the end wrapper code must
-            # be considered as a return position and not the endfunction of
-            # the wrapper
-            # <TODO> .sce case if some day the parser uses pseudocode noops
-            #        this part should be completely rewritten
-            set lastscecodepos "" ; # useful in proc isreturnpoint_bp: if not empty then a .sce file is debugged
-            if {[lsearch [$currentfunta tag names $returnpointpos] "db_wrapper"] != -1} {
-                set wrapstart [$currentfunta tag prevrange "db_wrapper" $returnpointpos]
-                set wrapstart [lindex $wrapstart 0]
-                # at this point $wrapstart is the position of the first character
-                # tagged with the "db_wrapper" tag. It is always the leading \n
-                # of the function return instructions inserted in proc Obtainall_bp
-                # the position searched is therefore 1 character to the right
-                set wrapstart [$currentfunta index "$wrapstart + 1 c"]
-                set lastscecodepos [$currentfunta index "$wrapstart - 1 l"]
-                while {[isnocodeline $currentfunta $lastscecodepos]} {
-                    set lastscecodepos [$currentfunta index "$lastscecodepos - 1 l"]
-                }
-                set returnpointpos $lastscecodepos
-                # save position of the previous line since we'll substract 1 below
-                set lastscecodepos [expr {$lastscecodepos - 1}]
-            }
-
-            # lazy solution is to call whichfun for each return point found
-            # clever solution is to count continued lines, but I go for the
-            # lazy one since it's easier though slower, and there is usually
-            # only a few return points
-            set infun [whichfun [$currentfunta index $returnpointpos] $currentfunta]
-
-            # substract 1 since we want to stop before this line and not after
-            set logicalline_returnpos [expr {[lindex $infun 1] - 1}]
-            lappend currentfunreturnlineslist $logicalline_returnpos
-            append currentfunreturnlinesvector $logicalline_returnpos {,}
-        }
-        set currentfunreturnlinesvector [string range $currentfunreturnlinesvector 0 "end-1"] 
-        append currentfunreturnlinesvector {]}
+        buildlistofreturnpoints
     }
 
     set setbpcomm "setbpt(\"$currentfunname\",$currentfunreturnlinesvector);"
@@ -736,6 +659,93 @@ proc runtoreturnpoint_bp {{checkbusyflag 1} {skipbptmode 0}} {
     tonextbreakpoint_bp $checkbusyflag "runtoret"
     set delbpcomm "delbpt(\"$currentfunname\",$currentfunreturnlinesvector);"
     ScilabEval_lt $delbpcomm "seq"
+}
+
+proc buildlistofreturnpoints {} {
+    global currentfunname currentfunreturnlineslist
+    global currentfunreturnlinesvector
+    global lastscecodepos
+    global funnameargs callstackfuns
+
+    # retrieve the current function name
+    if {[getdbstate] == "ReadyForDebug"} {
+        # use the configured function as current function
+        set oppar [string first "\(" $funnameargs]
+        set currentfunname [string range $funnameargs 0 [expr {$oppar - 1}]]
+    } else {
+        # [getdbstate] is "DebugInProgress"
+        set currentfunname [lindex $callstackfuns 0]
+    }
+
+    # build the list of exit points for the current function
+    # this includes the line containing the endfunction keyword corresponding
+    # to the function declaration line (there can be only one such line in
+    # Scilab, no multiple "endfunction" for one "function"), but also possibly
+    # multiple "return" and "resume" statements
+    # in case the current function is the .sce wrapper, then the debug occurs
+    # in the main level part of a .sce file, and there is no endfunction at all
+    # this is dealt with a little further below
+    set fntafs [funnametofunnametafunstart $currentfunname]
+    if {$fntafs == ""} {
+        # the function where the debug just stopped is currently not opened
+        # in Scipad (perhaps the user closed it manually before)
+        set mes [mc "This command cannot succeed if the function where the debug just stopped is not opened in Scipad!"]
+        set tit [mc "Cannot run to return point"]
+        tk_messageBox -message $mes -icon warning -title $tit
+        return
+    }
+    set currentfunta [lindex $fntafs 1]
+    set currentfunstartline [lindex $fntafs 2]
+    set currentfunendfunctionpos [getendfunctionpos $currentfunta $currentfunstartline "all_return_points"]
+    if {$currentfunendfunctionpos == -1} {
+        # should never happen
+        # <TODO>: It happens however in well-formed functions containing a string
+        #         containing the word "function", the string being quoted with
+        #         single quotes when these strings are not colorized (options menu)
+        #         Find a better way to handle such cases than just this messageBox!
+        tk_messageBox -message "Unexpected missing endfunction in proc runtoreturnpoint_bp: please report"
+    }
+    set currentfunreturnlineslist [list ]
+    set currentfunreturnlinesvector {[}
+    foreach returnpointpos $currentfunendfunctionpos {
+        # if the return point is in the wrapper code (.sce files case),
+        # then it is the endfunction keyword of the wrapper
+        # in this case the last code line before the end wrapper code must
+        # be considered as a return position and not the endfunction of
+        # the wrapper
+        # <TODO> .sce case if some day the parser uses pseudocode noops
+        #        this part should be completely rewritten
+        set lastscecodepos "" ; # useful in proc isreturnpoint_bp: if not empty then a .sce file is debugged
+        if {[lsearch [$currentfunta tag names $returnpointpos] "db_wrapper"] != -1} {
+            set wrapstart [$currentfunta tag prevrange "db_wrapper" $returnpointpos]
+            set wrapstart [lindex $wrapstart 0]
+            # at this point $wrapstart is the position of the first character
+            # tagged with the "db_wrapper" tag. It is always the leading \n
+            # of the function return instructions inserted in proc Obtainall_bp
+            # the position searched is therefore 1 character to the right
+            set wrapstart [$currentfunta index "$wrapstart + 1 c"]
+            set lastscecodepos [$currentfunta index "$wrapstart - 1 l"]
+            while {[isnocodeline $currentfunta $lastscecodepos]} {
+                set lastscecodepos [$currentfunta index "$lastscecodepos - 1 l"]
+            }
+            set returnpointpos $lastscecodepos
+            # save position of the previous line since we'll substract 1 below
+            set lastscecodepos [expr {$lastscecodepos - 1}]
+        }
+
+        # lazy solution is to call whichfun for each return point found
+        # clever solution is to count continued lines, but I go for the
+        # lazy one since it's easier though slower, and there is usually
+        # only a few return points
+        set infun [whichfun [$currentfunta index $returnpointpos] $currentfunta]
+
+        # substract 1 since we want to stop before this line and not after
+        set logicalline_returnpos [expr {[lindex $infun 1] - 1}]
+        lappend currentfunreturnlineslist $logicalline_returnpos
+        append currentfunreturnlinesvector $logicalline_returnpos {,}
+    }
+    set currentfunreturnlinesvector [string range $currentfunreturnlinesvector 0 "end-1"] 
+    append currentfunreturnlinesvector {]}
 }
 
 proc isreturnpoint_bp {} {
@@ -798,6 +808,7 @@ proc isreturnpoint_bp {} {
 
 proc resume_bp {{checkbusyflag 1} {stepmode "nostep"}} {
     global funnameargs waitmessage watchvars
+    global callstackfuns previousstopfun
 
     # no busy check to allow to skip lines without code (step by step)
     if {$checkbusyflag} {
@@ -813,6 +824,8 @@ proc resume_bp {{checkbusyflag 1} {stepmode "nostep"}} {
         setdebuggerbusycursor
         if {![isnocodeline [gettextareacur] insert]} {
             # the debugger is not currently skipping no code lines
+            # save the name of the function in which the debugger stopped before resuming
+            set previousstopfun [lindex $callstackfuns 0]
             removeautovars
             set commnvars [createsetinscishellcomm $watchvars]
             set watchsetcomm [lindex $commnvars 0]
@@ -951,4 +964,16 @@ proc canceldebug_bp {} {
     # scedebugcleanup_bp does nothing for .sci files
     setdbstate "NoDebug"
 
+}
+
+proc hasstoppedinthesamefun {} {
+# return true if the current debug stop is in the same function
+# as the previous stop was, otherwise return false
+    global previousstopfun
+    global callstackfuns
+    if {[lindex $callstackfuns 0] == $previousstopfun} {
+        return true
+    } else {
+        return false
+    }
 }

@@ -323,6 +323,9 @@ proc findtextdialog {typ} {
     update
     grab $find
 
+    # the directory entry box is a drop target for text/plain content
+    dndbinddirentrybox $find.b.f2.entryd
+
     # initial settings for direction
     $find.l.f4.f1.f1.down invoke
 
@@ -527,9 +530,11 @@ proc searchindirdisabled {} {
 
 proc getinitialdirforsearch {} {
     global find initdir
+    set oldinitdir $initdir
     set initdir [tk_chooseDirectory -parent $find -mustexist 1]
     if {$initdir == ""} {
-        set initdir [file normalize "."]
+        # the user clicked Cancel in the choose directory dialog
+        set initdir $oldinitdir
     }
 }
 
