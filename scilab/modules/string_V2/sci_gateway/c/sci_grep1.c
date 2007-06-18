@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include "machine.h"
 #include "MALLOC.h" /* MALLOC */
-int *next;
+int next[20];
 void getnext(char T[],int *next);
 int kmp(char S[],char T[],int pos);
 /**
@@ -99,7 +99,7 @@ int C2F(sci_grep1) _PARAMS((char *fname,unsigned long fname_len))
 	Rhs = Max(0, Rhs);
 	CheckRhs(1,3);
 	CheckLhs(1,2);
-	next=(int*)MALLOC(sizeof(int));
+	//next=(int*)MALLOC(sizeof(int));
 	switch ( VarType(1)) {
 		case 10 :
 			GetRhsVar(1,"S",&m1,&n1,&Str);
