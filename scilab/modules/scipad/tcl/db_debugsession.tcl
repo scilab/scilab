@@ -666,6 +666,13 @@ proc buildlistofreturnpoints {} {
     global currentfunreturnlinesvector
     global lastscecodepos
     global funnameargs callstackfuns
+    global stoppauselevelatruntoreturnlaunch
+
+    # $stoppauselevelatruntoreturnlaunch differs from $prevdbpauselevel in that the latter
+    # might change at each stop (including when skipping lines) but the former only receives
+    # a value when the user uses the Run to return command - The difference is important
+    # only when debugging recursive functions
+    set stoppauselevelatruntoreturnlaunch [llength $callstackfuns]
 
     # retrieve the current function name
     if {[getdbstate] == "ReadyForDebug"} {
@@ -751,23 +758,33 @@ proc buildlistofreturnpoints {} {
 proc isreturnpoint_bp {} {
 # return true if the current stop occurs at one of the return points of the
 # current function, i.e. at one of the lines listed in $currentfunreturnlineslist
-# of function $currentfunname
+# of function $currentfunname, and having stopped at a pause level at most equal
+# to the current pause level when the run to return command was launched
 # return false otherwise
     global currentfunname currentfunreturnlineslist
     global callstackfuns callstacklines
     global sresRE
     global lastscecodepos
     global displayruntoreturnwarning
+    global stoppauselevelatruntoreturnlaunch
 
     set returnpointreached false
-    if {[lindex $callstackfuns 0] == $currentfunname} {
-        set candidateline [expr {[lindex $callstacklines 0] -1}]
-        foreach aline $currentfunreturnlineslist {
-            if {$aline == $candidateline} {
-                set returnpointreached true
-                break
-            }
-       }
+
+    # note <= and not == : with == one would climb the entire stack back to
+    # the main level in case of a recursive function when the current stop
+    # is already on a return point. With <= one climbs just one level, which
+    # is much more intuitive
+    if {[llength $callstackfuns] <= $stoppauselevelatruntoreturnlaunch} {
+        # current stop is less deep than when the run to return command was launched
+        if {[lindex $callstackfuns 0] == $currentfunname} {
+            set candidateline [expr {[lindex $callstacklines 0] -1}]
+            foreach aline $currentfunreturnlineslist {
+                if {$aline == $candidateline} {
+                    set returnpointreached true
+                    break
+                }
+           }
+        }
     }
 
     # check if the line containing the return statement starts by

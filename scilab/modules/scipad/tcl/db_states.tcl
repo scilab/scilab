@@ -66,7 +66,7 @@ proc getdbstate {} {
 
 proc setdbmenuentriesstates_bp {} {
     global pad watch watchwinicons watchwinstepicons
-    global Shift_F8 Shift_F12
+    global Shift_F8 Shift_F11 Shift_F12
     global MenuEntryId
     global bug2384_fixed
 
@@ -92,7 +92,7 @@ proc setdbmenuentriesstates_bp {} {
         $dms entryconfigure $MenuEntryId($dms.[mcra "Step &out"]) -state disabled
         bind all <Control-F8> {}
         $dm entryconfigure $MenuEntryId($dm.[mcra "Run to re&turn point"]) -state disabled
-        bind all <Shift-F11> {}
+        pbind all $Shift_F11 {}
         $dm entryconfigure $MenuEntryId($dm.[mcra "Run to c&ursor"]) -state disabled
         bind all <Control-F11> {}
         $dm entryconfigure $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"]) -state disabled
@@ -124,7 +124,7 @@ proc setdbmenuentriesstates_bp {} {
         $dms entryconfigure $MenuEntryId($dms.[mcra "Step &out"]) -state normal
         bind all <Control-F8> {stepbystepout_bp}
         $dm entryconfigure $MenuEntryId($dm.[mcra "Run to re&turn point"]) -state normal
-        bind all <Shift-F11> {runtoreturnpoint_bp}
+        pbind all $Shift_F11 {runtoreturnpoint_bp}
         $dm entryconfigure $MenuEntryId($dm.[mcra "Run to c&ursor"]) -state normal
         bind all <Control-F11> {runtocursor_bp}
         $dm entryconfigure $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"]) -state disabled
@@ -156,7 +156,7 @@ proc setdbmenuentriesstates_bp {} {
         $dms entryconfigure $MenuEntryId($dms.[mcra "Step &out"]) -state normal
         bind all <Control-F8> {stepbystepout_bp}
         $dm entryconfigure $MenuEntryId($dm.[mcra "Run to re&turn point"]) -state normal
-        bind all <Shift-F11> {runtoreturnpoint_bp}
+        pbind all $Shift_F11 {runtoreturnpoint_bp}
         $dm entryconfigure $MenuEntryId($dm.[mcra "Run to c&ursor"]) -state normal
         bind all <Control-F11> {runtocursor_bp}
         $dm entryconfigure $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"]) -state normal

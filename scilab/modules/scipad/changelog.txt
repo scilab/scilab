@@ -3051,3 +3051,9 @@ Francois VOGEL, 17/06/07
    because of Scilab bug 1544
  * Fixed Step Out not stepping out of recursive functions
  * version --> 6.113
+
+Francois VOGEL, 18/06/07
+ * Correct binding to $Shift_F11 (instead of <Shift-F11>) in db_states.tcl (by
+   Enrico)
+ * Run to return point (Shift-F11) works correctly with recursive functions
+ * version --> 6.114
