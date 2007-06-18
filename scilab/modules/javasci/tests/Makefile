@@ -33,3 +33,9 @@ clean ::
 
 distclean::
 	$(RM) *.dia
+#javac -deprecation -d /home/sylvestre/dev/scilab5/modules/javasci/tests -cp /home/sylvestre/dev/scilab5/modules/javasci/jar/javasci.jar:. Boolean.java
+#java -cp /home/sylvestre/dev/scilab5/modules/javasci/jar/javasci.jar:. -Djava.library.path=/home/sylvestre/dev/scilab5/modules/javasci/.libs/ Boolean > /home/sylvestre/dev/scilab5/modules/javasci/tests/Boolean.dia
+
+
+
+#java -cp /home/sylvestre/dev/scilab5/modules/javasci/jar/javasci.jar:.:/home/sylvestre/dev/scilab5//modules/javasci/jar/javasci.jar:/home/sylvestre/dev/scilab5//modules/localization/jar/org.scilab.modules.localization.jar:/home/sylvestre/dev/scilab5//modules/jvm/jar/org.scilab.modules.jvm.jar:/home/sylvestre/dev/scilab5//modules/gui/jar/org.scilab.modules.gui.jar:/home/sylvestre/dev/scilab5/modules/graphics/jar/org.scilab.modules.graphics.jar:/home/sylvestre/dev/scilab5//modules/shell/jar/org.scilab.modules.shell.jar -Djava.library.path=/home/sylvestre/dev/scilab5/modules/javasci/.libs/ BooleanArray

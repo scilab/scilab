@@ -982,8 +982,6 @@ uninstall-am: uninstall-libscistring_la_etcDATA \
 
 # TODO : Renamed this variable
 
-@GUI_TRUE@export JAVA_HOME
-
 @GUI_TRUE@java-build:
 @GUI_TRUE@	@if test -f build.xml; then \
 @GUI_TRUE@		$(ANT) jar; \

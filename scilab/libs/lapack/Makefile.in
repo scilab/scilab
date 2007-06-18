@@ -942,8 +942,6 @@ libdummy_lapack_la-slamch.lo: slamch.f
 
 # TODO : Renamed this variable
 
-@GUI_TRUE@export JAVA_HOME
-
 @GUI_TRUE@java-build:
 @GUI_TRUE@	@if test -f build.xml; then \
 @GUI_TRUE@		$(ANT) jar; \

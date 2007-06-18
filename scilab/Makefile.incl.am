@@ -26,8 +26,6 @@ SUFFIXES = .sci
 # TODO : Renamed this variable
 if GUI
 
-export JAVA_HOME
-
 java-build:
 	@if test -f build.xml; then \
 		$(ANT) jar; \

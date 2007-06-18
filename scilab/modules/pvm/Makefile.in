@@ -1271,8 +1271,6 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 
 # TODO : Renamed this variable
 
-@GUI_TRUE@@PVM_TRUE@export JAVA_HOME
-
 @GUI_TRUE@@PVM_TRUE@java-build:
 @GUI_TRUE@@PVM_TRUE@	@if test -f build.xml; then \
 @GUI_TRUE@@PVM_TRUE@		$(ANT) jar; \
@@ -1429,8 +1427,6 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 #######################################################################
 
 # TODO : Renamed this variable
-
-@GUI_TRUE@@PVM_FALSE@export JAVA_HOME
 
 @GUI_TRUE@@PVM_FALSE@java-build:
 @GUI_TRUE@@PVM_FALSE@	@if test -f build.xml; then \

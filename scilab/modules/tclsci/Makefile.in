@@ -1451,8 +1451,6 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 
 # TODO : Renamed this variable
 
-@GUI_TRUE@@TCLTK_TRUE@export JAVA_HOME
-
 @GUI_TRUE@@TCLTK_TRUE@java-build:
 @GUI_TRUE@@TCLTK_TRUE@	@if test -f build.xml; then \
 @GUI_TRUE@@TCLTK_TRUE@		$(ANT) jar; \
@@ -1609,8 +1607,6 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 #######################################################################
 
 # TODO : Renamed this variable
-
-@GUI_TRUE@@TCLTK_FALSE@export JAVA_HOME
 
 @GUI_TRUE@@TCLTK_FALSE@java-build:
 @GUI_TRUE@@TCLTK_FALSE@	@if test -f build.xml; then \
