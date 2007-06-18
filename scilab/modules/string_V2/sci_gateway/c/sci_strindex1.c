@@ -43,8 +43,12 @@ int C2F(sci_strindex1) _PARAMS((char *fname,unsigned long fname_len))
     int numCol   = 1 ;
     int w;
     int pos=0;
- 
-    regmatch_t pm[10];
+	
+	
+	
+	
+	
+	regmatch_t pm[10];
     regex_t *out1[10];
     Rhs = Max(0, Rhs);
     CheckRhs(1,3);
