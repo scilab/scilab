@@ -5,7 +5,7 @@ package org.scilab.modules.gui.uielement;
 
 import org.scilab.modules.gui.utils.Layout;
 import org.scilab.modules.gui.widget.Menubar;
-import org.scilab.modules.gui.widget.Toolbar;
+import org.scilab.modules.gui.widget.ToolBar;
 
 /**
  * Abstract class defining an object in Scilab GUIs
@@ -16,9 +16,9 @@ import org.scilab.modules.gui.widget.Toolbar;
 public abstract class ScilabUIElement implements UIElement {
 
 	/**
-	 * The toolbar associated to the UIElement
+	 * The toolBar associated to the UIElement
 	 */
-	private Toolbar toolBar;
+	private ToolBar toolBar;
 
 	/**
 	 * The menubar associated to the UIElement
@@ -121,7 +121,7 @@ public abstract class ScilabUIElement implements UIElement {
 	 * Gets the toolbar associated to an UIElement
 	 * @return the toolBar
 	 */
-	public Toolbar getToolBar() {
+	public ToolBar getToolBar() {
 		return toolBar;
 	}
 
@@ -129,7 +129,7 @@ public abstract class ScilabUIElement implements UIElement {
 	 * Sets the toolbar associated to an UIElement
 	 * @param toolBar the toolBar to set
 	 */
-	public void setToolBar(Toolbar toolBar) {
+	public void setToolBar(ToolBar toolBar) {
 		this.toolBar = toolBar;
 	}
 
