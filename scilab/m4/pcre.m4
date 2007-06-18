@@ -39,9 +39,12 @@ else
 		fi
 fi
 saved_cflags=$CFLAGS
+saved_LIBS="$LIBS"
 		
 PCRE_CFLAGS=`$PCRE_CONFIG --cflags`
 PCRE_LIBS=`$PCRE_CONFIG --libs-posix`
+
+
 
 CFLAGS="$PCRE_CFLAGS $CFLAGS"
 
@@ -56,7 +59,9 @@ AC_CHECK_LIB([pcreposix], [regexec],
                )
 AC_CHECK_HEADERS([pcre.h])
 
+LIBS="$saved_LIBS"
 CFLAGS=$saved_cflags
+
 AC_SUBST(PCRE_FLAGS)
 AC_SUBST(PCRE_LIBS)
 

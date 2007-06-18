@@ -27,6 +27,7 @@ else
 		fi
 fi
 saved_cflags=$CFLAGS
+saved_LIBS="$LIBS"
 
 		
 XML_FLAGS=`$XML_CONFIG --cflags`
@@ -44,6 +45,8 @@ AC_CHECK_LIB([xml2], [xmlReaderForFile],
 #AC_CHECK_HEADERS([libxml/xpathInternals.h])
 
 CFLAGS=$saved_cflags
+LIBS="$saved_LIBS"
+
 AC_SUBST(XML_FLAGS)
 AC_SUBST(XML_LIBS)
 
