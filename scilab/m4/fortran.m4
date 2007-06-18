@@ -28,19 +28,19 @@ eval "$F77 -c pipof.f > /dev/null 2>&1"
 FC_LEADING_UNDERSCORE=no
 FC_TRAILING_UNDERSCORE=no
 
-output=`nm $NMOPT pipof.o|grep _pipof 2>&1`
+output=`$NM $NMOPT pipof.o|grep _pipof 2>&1`
 if test ! -z "$output"; then
   FC_LEADING_UNDERSCORE=yes
   FC_TRAILING_UNDERSCORE=no
 fi
 
-output=`nm $NMOPT pipof.o|grep pipof_ 2>&1`
+output=`$NM $NMOPT pipof.o|grep pipof_ 2>&1`
 if test ! -z "$output"; then
   FC_LEADING_UNDERSCORE=no
   FC_TRAILING_UNDERSCORE=yes
 fi
 
-output=`nm $NMOPT pipof.o|grep _pipof_ 2>&1`
+output=`$NM $NMOPT pipof.o|grep _pipof_ 2>&1`
 if test ! -z "$output"; then
   FC_LEADING_UNDERSCORE=yes
   FC_TRAILING_UNDERSCORE=yes
