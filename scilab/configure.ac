@@ -967,9 +967,7 @@ AC_C_INLINE()
 
 AH_TOP([#ifndef MACHINE_H 
 #define MACHINE_H 
-#ifdef _FILE_OFFSET_BITS
-	#undef _FILE_OFFSET_BITS
-#endif
+
 ])
 
 AH_BOTTOM([
