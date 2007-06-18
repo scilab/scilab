@@ -62,7 +62,7 @@ src/cpp/DrawingBridge.cpp
 GATEWAY_C_SOURCES = sci_gateway/c/gw_renderer.c
 
 # Includes need for the compilation
-libscirenderer_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) -Iincludes/ -I$(top_srcdir)/modules/jvm/includes -I$(top_srcdir)/modules/graphics/includes/ -I$(top_srcdir)/modules/graphics/includes/handleDrawing/
+libscirenderer_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -I$(top_srcdir)/modules/jvm/includes -I$(top_srcdir)/modules/graphics/includes/ -I$(top_srcdir)/modules/graphics/includes/handleDrawing/ 
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding 
 # the system)

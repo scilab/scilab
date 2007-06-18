@@ -7,8 +7,8 @@
 
 #include "FigureScilabCall.h"
 #include "DrawableFigure.h"
-#include "../DrawingBridge.h"
-#include "../getHandleDrawer.h"
+#include "DrawingBridge.h"
+#include "getHandleDrawer.h"
 
 extern "C"
 {
