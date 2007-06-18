@@ -336,60 +336,6 @@ src/c/TerminateGraphics.c \
 src/c/CurrentObjectsManagement.c \
 src/c/ObjectSelection.c
 
-GRAPHICS_CPP_SOURCES = src/cpp/HandleDrawingObserver.cpp \
-src/cpp/HandleObserverManagement.cpp \
-src/cpp/BuildDrawingObserver.cpp \
-src/cpp/DrawableObject.cpp \
-src/cpp/DrawableClippedObject.cpp \
-src/cpp/DrawableObjectFactory.cpp \
-src/cpp/DrawingBridge.cpp \
-src/cpp/getHandleDrawer.cpp \
-src/cpp/figureDrawing/DrawableFigureImpFactory.cpp \
-src/cpp/figureDrawing/DrawableFigure.cpp \
-src/cpp/figureDrawing/DrawableFigureFactory.cpp \
-src/cpp/figureDrawing/ConcreteDrawableFigure.cpp \
-src/cpp/subwinDrawing/DrawableSubwinFactory.cpp \
-src/cpp/subwinDrawing/DrawableSubwin.cpp \
-src/cpp/polylineDrawing/DrawablePolylineFactory.cpp \
-src/cpp/polylineDrawing/DrawablePolyline.cpp \
-src/cpp/textDrawing/DrawableTextFactory.cpp \
-src/cpp/textDrawing/DrawableText.cpp \
-src/cpp/labelDrawing/DrawableLabelFactory.cpp \
-src/cpp/labelDrawing/DrawableLabel.cpp \
-src/cpp/compoundDrawing/DrawableCompoundFactory.cpp \
-src/cpp/compoundDrawing/DrawableCompound.cpp \
-src/cpp/surfaceDrawing/DrawableSurfaceFactory.cpp \
-src/cpp/surfaceDrawing/DrawableSurface.cpp \
-src/cpp/arcDrawing/DrawableArcFactory.cpp \
-src/cpp/arcDrawing/DrawableArc.cpp \
-src/cpp/axesDrawing/DrawableAxesFactory.cpp \
-src/cpp/axesDrawing/DrawableAxes.cpp \
-src/cpp/fecDrawing/DrawableFecFactory.cpp \
-src/cpp/fecDrawing/DrawableFec.cpp \
-src/cpp/grayplotDrawing/DrawableGrayplotFactory.cpp \
-src/cpp/grayplotDrawing/DrawableGrayplot.cpp \
-src/cpp/legendDrawing/DrawableLegendFactory.cpp \
-src/cpp/legendDrawing/DrawableLegend.cpp \
-src/cpp/rectangleDrawing/DrawableRectangleFactory.cpp \
-src/cpp/rectangleDrawing/DrawableRectangle.cpp \
-src/cpp/segsDrawing/DrawableSegsFactory.cpp \
-src/cpp/segsDrawing/DrawableSegs.cpp \
-src/cpp/rectangleDrawing/DrawableRectangleImpFactory.cpp \
-src/cpp/figureDrawing/DrawableFigureImp.cpp \
-src/cpp/GetJavaProperty.cpp \
-src/cpp/rectangleDrawing/DrawableRectangleImp.cpp \
-src/cpp/SetJavaProperty.cpp
-
-
-if GUI
-GRAPHICS_CPP_SOURCES += src/cpp/figureDrawing/DrawableFigureJoGL.cpp \
-src/cpp/DrawableObjectJoGL.cpp \
-src/cpp/rectangleDrawing/RectangleMarkDrawerJoGL.cpp \
-src/cpp/rectangleDrawing/DrawableRectangleJoGL.cpp \
-src/cpp/rectangleDrawing/RectangleFillDrawerJoGL.cpp \
-src/cpp/rectangleDrawing/RectangleLineDrawerJoGL.cpp
-endif
-
 GATEWAY_C_SOURCES = sci_gateway/c/sci_swap_handles.c \
 sci_gateway/c/sci_readgif.c \
 sci_gateway/c/sci_grayplot.c \
@@ -473,7 +419,7 @@ sci_gateway/c/sci_winsid.c \
 sci_gateway/c/sci_addcb.c \
 sci_gateway/c/sci_fec.c
 
-libscigraphics_la_CFLAGS =  $(JAVA_JNI_INCLUDE) -Iincludes/ -Iincludes/handleDrawing -Isrc/c/ -Isrc/cpp -Isrc/gd/  -Isrc/gd/gdfonts/ $(TCL_INC_PATH) $(TK_INC_PATH) -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/ -I$(top_srcdir)/modules/jvm/includes
+libscigraphics_la_CFLAGS =  $(JAVA_JNI_INCLUDE) -Iincludes/ -Iincludes/handleDrawing -Isrc/c/ -Isrc/cpp -Isrc/gd/  -Isrc/gd/gdfonts/ $(TCL_INC_PATH) $(TK_INC_PATH) -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/ -I$(top_srcdir)/modules/jvm/includes -I$(top_srcdir)/modules/renderer/includes/
 
 libscigraphics_la_CXXFLAGS =  -Iincludes/ -Isrc/c/ $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/modules/jvm/includes
 
