@@ -12,6 +12,11 @@ dnl Look for trailing or leading underscores
 dnl 
 AC_DEFUN([AC_CHECK_UNDERSCORE_FORTRAN],[
 AC_MSG_CHECKING([for leading underscores with Fortran])
+
+AC_CHECK_PROGS(NM,nm,no)
+if test "x$NM" = "xno"; then
+	AC_MSG_ERROR([Unable to find nm in the path. nm is used to list all the symbol from a lib])
+fi
 cat << EOF > pipof.f
        subroutine pipof
        end
