@@ -69,12 +69,58 @@ public abstract class MarkDrawingStrategy {
 			return null;
 		}
 		
+		MarkDrawingStrategy res;
 		switch(getMarkStyle(markStyleIndex)) {
 		case DOT:
-			return new DotMarkDrawer();
+			res = new DotMarkDrawer();
+			break;
+		case PLUS:
+			res = new PlusMarkDrawer();
+			break;
+		case CROSS:
+			res = new CrossMarkDrawer();
+			break;
+		case STAR:
+			res = new StarMarkDrawer();
+			break;
+		case FILLED_DIAMOND:
+			res = new FilledDiamondMarkDrawer();
+			break;
+		case DIAMOND:
+			res = new DiamondMarkDrawer();
+			break;
+		case TRIANGLE_UP:
+			res = new TriangleMarkDrawer();
+			break;
+		case TRIANGLE_DOWN:
+			res = new TriangleDownMarkDrawer();
+			break;
+		case DIAMOND_PLUS:
+			res = new DiamondPlusMarkDrawer();
+			break;
+		case CIRCLE:
+			res = new CircleMarkDrawer();
+			break;
+		case ASTERISK:
+			res = new AsteriskMarkDrawer();
+			break;
+		case SQUARE:
+			res = new SquareMarkDrawer();
+			break;
+		case TRIANGLE_RIGHT:
+			res = new TriangleRightMarkDrawer();
+			break;
+		case TRIANGLE_LEFT:
+			res = new TriangleLeftMarkDrawer();
+			break;
+		case PENTAGRAM:
+			res = new PentagramMarkDrawer();
+			break;
 		default:
-			return null;
+			res = null;
+			break;
 		}
+		return res;
 	}
 	
 	/**

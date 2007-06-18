@@ -1,42 +1,41 @@
 /*------------------------------------------------------------------------*/
-/* file: DotMarkDrawer.java                                               */
+/* file: TriangleRightMarkDrawer.java                                     */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
-/* desc : Class specialized in drawing dot marks                          */
+/* desc : Class specialized in drawing triangle right marks               */
 /*------------------------------------------------------------------------*/
 
 
 package org.scilab.modules.renderer.utils.MarkDrawing;
 
-import javax.media.opengl.glu.GLU;
 import javax.media.opengl.GL;
 
-
 /**
- * Class specialized in drawing dot marks 
+ * Class specialized in drawing triangle up marks
  * @author Jean-Baptiste Silvy
  */
-public class DotMarkDrawer extends MarkDrawingStrategy  {
+public class TriangleRightMarkDrawer extends TriangleMarkDrawer {
 
-	
-	private static final int NB_SLICES = 64;
+	/** angle between up triangle and down triangle */
+	public static final double ROTATION_ANGLE = 270.0;
 	
 	/**
 	 * Default constructor
 	 */
-	public DotMarkDrawer() {
+	public TriangleRightMarkDrawer() {
 		super();
 	}
 	
 	/**
-	 * Draw a dot
+	 * Draw a, equilateral triangle pointing right
 	 * @param gl OpenGL pipeline to use
 	 * @param backColor RGB color of mark background
 	 * @param frontColor RGB color of mark foreground
 	 */
 	public void drawMark(GL gl, double[] backColor, double[] frontColor) {
-		gl.glColor3d(frontColor[0], frontColor[1], frontColor[2]);
-		GLU glu = new GLU();
-		glu.gluDisk(glu.gluNewQuadric(), 0.0, 1.0, NB_SLICES, 1);
+		gl.glRotated(ROTATION_ANGLE, 0.0, 0.0, 1.0);
+		super.drawMark(gl, backColor, frontColor);
+
 	}
+
 }

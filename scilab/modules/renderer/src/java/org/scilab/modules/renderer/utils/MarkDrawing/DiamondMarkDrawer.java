@@ -1,42 +1,54 @@
 /*------------------------------------------------------------------------*/
-/* file: DotMarkDrawer.java                                               */
+/* file: DiamondMarkDrawer.java                                           */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
-/* desc : Class specialized in drawing dot marks                          */
+/* desc : Class specialized in drawing diamond marks                      */
 /*------------------------------------------------------------------------*/
 
 
 package org.scilab.modules.renderer.utils.MarkDrawing;
 
-import javax.media.opengl.glu.GLU;
 import javax.media.opengl.GL;
 
-
 /**
- * Class specialized in drawing dot marks 
+ * Class specialized in drawing diamond marks
  * @author Jean-Baptiste Silvy
  */
-public class DotMarkDrawer extends MarkDrawingStrategy  {
+public class DiamondMarkDrawer extends MarkDrawingStrategy {
 
-	
-	private static final int NB_SLICES = 64;
-	
 	/**
 	 * Default constructor
 	 */
-	public DotMarkDrawer() {
+	public DiamondMarkDrawer() {
 		super();
 	}
 	
 	/**
-	 * Draw a dot
+	 * Draw a filled diamond
 	 * @param gl OpenGL pipeline to use
 	 * @param backColor RGB color of mark background
 	 * @param frontColor RGB color of mark foreground
 	 */
 	public void drawMark(GL gl, double[] backColor, double[] frontColor) {
+		
+		// outline
 		gl.glColor3d(frontColor[0], frontColor[1], frontColor[2]);
-		GLU glu = new GLU();
-		glu.gluDisk(glu.gluNewQuadric(), 0.0, 1.0, NB_SLICES, 1);
+		gl.glBegin(GL.GL_LINE_LOOP);
+		gl.glVertex3d(-1.0,  0.0, 0.0);
+		gl.glVertex3d(0.0 ,  1.0, 0.0);
+		gl.glVertex3d(1.0 ,  0.0, 0.0);
+		gl.glVertex3d(0.0 , -1.0, 0.0);
+		gl.glEnd();
+		
+		// inside
+		gl.glColor3d(backColor[0], backColor[1], backColor[2]);
+		gl.glBegin(GL.GL_QUADS);
+		gl.glVertex3d(-1.0,  0.0, 0.0);
+		gl.glVertex3d(0.0 ,  1.0, 0.0);
+		gl.glVertex3d(1.0 ,  0.0, 0.0);
+		gl.glVertex3d(0.0 , -1.0, 0.0);
+		gl.glEnd();
+
 	}
+
 }

@@ -1,42 +1,49 @@
 /*------------------------------------------------------------------------*/
-/* file: DotMarkDrawer.java                                               */
+/* file: StarMarkDrawer.java                                              */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
-/* desc : Class specialized in drawing dot marks                          */
+/* desc : Class specialized in drawing star marks                         */
 /*------------------------------------------------------------------------*/
+
 
 
 package org.scilab.modules.renderer.utils.MarkDrawing;
 
-import javax.media.opengl.glu.GLU;
 import javax.media.opengl.GL;
 
 
 /**
- * Class specialized in drawing dot marks 
+ * Class specialized in drawing star marks
  * @author Jean-Baptiste Silvy
  */
-public class DotMarkDrawer extends MarkDrawingStrategy  {
-
-	
-	private static final int NB_SLICES = 64;
+public class StarMarkDrawer extends CircleMarkDrawer {
 	
 	/**
 	 * Default constructor
 	 */
-	public DotMarkDrawer() {
+	public StarMarkDrawer() {
 		super();
 	}
 	
 	/**
-	 * Draw a dot
+	 * Draw a star (outline circle, inside disk and a plus)
 	 * @param gl OpenGL pipeline to use
 	 * @param backColor RGB color of mark background
 	 * @param frontColor RGB color of mark foreground
 	 */
 	public void drawMark(GL gl, double[] backColor, double[] frontColor) {
+		super.drawMark(gl, backColor, frontColor);
+		
 		gl.glColor3d(frontColor[0], frontColor[1], frontColor[2]);
-		GLU glu = new GLU();
-		glu.gluDisk(glu.gluNewQuadric(), 0.0, 1.0, NB_SLICES, 1);
+		// plus
+		gl.glBegin(GL.GL_LINES);
+		gl.glVertex3d(-1.0,  0.0, 0.0);
+		gl.glVertex3d(1.0 ,  0.0, 0.0);
+		gl.glVertex3d(0.0 , -1.0, 0.0);
+		gl.glVertex3d(0.0 ,  1.0, 0.0);
+		gl.glEnd();
+		
+
 	}
+
 }

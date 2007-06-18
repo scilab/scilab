@@ -135,6 +135,8 @@ public class RectangleMarkDrawerJoGL extends DrawableObjectJoGL {
 	 */
 	public void drawRectangle() {
 		GL gl = getGL();
+		if (gl == null) { return; }
+		
 		CoordinateTransformation transform = CoordinateTransformation.getTransformation();
 		
 		// need to perform this befaore swithching to pixel coordinates
@@ -199,7 +201,7 @@ public class RectangleMarkDrawerJoGL extends DrawableObjectJoGL {
 		cornersPos[2][0] = corner3X;
 		cornersPos[2][1] = corner3Y;
 		cornersPos[2][2] = corner3Z;
-		cornersPos[NB_CORNERS - 1][0] = corner4X;
+		cornersPos[NB_CORNERS - 1][0] = corner4X; // To avoid javadoc warning
 		cornersPos[NB_CORNERS - 1][1] = corner4Y;
 		cornersPos[NB_CORNERS - 1][2] = corner4Z;
 		
