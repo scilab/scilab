@@ -79,60 +79,112 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscirenderer_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libscirenderer_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/graphics/libscigraphics.la
-am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
-	libscirenderer_la-DrawableSubwin.lo \
-	libscirenderer_la-DrawableFigureJoGL.lo \
-	libscirenderer_la-DrawableFigureImpFactory.lo \
-	libscirenderer_la-DrawableFigure.lo \
-	libscirenderer_la-ConcreteDrawableFigure.lo \
-	libscirenderer_la-DrawableFigureImp.lo \
-	libscirenderer_la-DrawableFigureFactory.lo \
-	libscirenderer_la-FigureScilabCall.lo \
-	libscirenderer_la-DrawableCompoundFactory.lo \
-	libscirenderer_la-DrawableCompound.lo \
-	libscirenderer_la-DrawableTextFactory.lo \
-	libscirenderer_la-DrawableText.lo \
-	libscirenderer_la-DrawablePolylineFactory.lo \
-	libscirenderer_la-DrawablePolyline.lo \
-	libscirenderer_la-DrawableLegend.lo \
-	libscirenderer_la-DrawableLegendFactory.lo \
-	libscirenderer_la-DrawableSegs.lo \
-	libscirenderer_la-DrawableSegsFactory.lo \
-	libscirenderer_la-DrawableRectangleFactory.lo \
-	libscirenderer_la-RectangleMarkDrawerJoGL.lo \
-	libscirenderer_la-DrawableRectangleImpFactory.lo \
-	libscirenderer_la-DrawableRectangle.lo \
-	libscirenderer_la-DrawableRectangleImp.lo \
-	libscirenderer_la-DrawableRectangleJoGL.lo \
-	libscirenderer_la-RectangleFillDrawerJoGL.lo \
-	libscirenderer_la-RectangleLineDrawerJoGL.lo \
-	libscirenderer_la-DrawableArcFactory.lo \
-	libscirenderer_la-DrawableArc.lo \
-	libscirenderer_la-DrawableLabel.lo \
-	libscirenderer_la-DrawableLabelFactory.lo \
-	libscirenderer_la-DrawableSurfaceFactory.lo \
-	libscirenderer_la-DrawableSurface.lo \
-	libscirenderer_la-DrawableFec.lo \
-	libscirenderer_la-DrawableFecFactory.lo \
-	libscirenderer_la-DrawableAxes.lo \
-	libscirenderer_la-DrawableAxesFactory.lo \
-	libscirenderer_la-DrawableGrayplot.lo \
-	libscirenderer_la-DrawableGrayplotFactory.lo \
-	libscirenderer_la-getHandleDrawer.lo \
-	libscirenderer_la-HandleObserverManagement.lo \
-	libscirenderer_la-DrawableObjectFactory.lo \
-	libscirenderer_la-DrawableClippedObject.lo \
-	libscirenderer_la-HandleDrawingObserver.lo \
-	libscirenderer_la-BuildDrawingObserver.lo \
-	libscirenderer_la-DrawableObjectJoGL.lo \
-	libscirenderer_la-GetJavaProperty.lo \
-	libscirenderer_la-SetJavaProperty.lo \
-	libscirenderer_la-DrawableObject.lo \
-	libscirenderer_la-DrawingBridge.lo
-am__objects_2 = libscirenderer_la-gw_renderer.lo
-am_libscirenderer_la_OBJECTS = $(am__objects_1) $(am__objects_2)
+@GUI_TRUE@libscirenderer_la_DEPENDENCIES =  \
+@GUI_TRUE@	$(top_builddir)/modules/graphics/libscigraphics.la
+am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
+	src/cpp/subwinDrawing/DrawableSubwinFactory.cpp \
+	src/cpp/subwinDrawing/DrawableSubwin.cpp \
+	src/cpp/figureDrawing/DrawableFigureJoGL.cpp \
+	src/cpp/figureDrawing/DrawableFigureImpFactory.cpp \
+	src/cpp/figureDrawing/DrawableFigure.cpp \
+	src/cpp/figureDrawing/ConcreteDrawableFigure.cpp \
+	src/cpp/figureDrawing/DrawableFigureImp.cpp \
+	src/cpp/figureDrawing/DrawableFigureFactory.cpp \
+	src/cpp/figureDrawing/FigureScilabCall.cpp \
+	src/cpp/compoundDrawing/DrawableCompoundFactory.cpp \
+	src/cpp/compoundDrawing/DrawableCompound.cpp \
+	src/cpp/textDrawing/DrawableTextFactory.cpp \
+	src/cpp/textDrawing/DrawableText.cpp \
+	src/cpp/polylineDrawing/DrawablePolylineFactory.cpp \
+	src/cpp/polylineDrawing/DrawablePolyline.cpp \
+	src/cpp/legendDrawing/DrawableLegend.cpp \
+	src/cpp/legendDrawing/DrawableLegendFactory.cpp \
+	src/cpp/segsDrawing/DrawableSegs.cpp \
+	src/cpp/segsDrawing/DrawableSegsFactory.cpp \
+	src/cpp/rectangleDrawing/DrawableRectangleFactory.cpp \
+	src/cpp/rectangleDrawing/RectangleMarkDrawerJoGL.cpp \
+	src/cpp/rectangleDrawing/DrawableRectangleImpFactory.cpp \
+	src/cpp/rectangleDrawing/DrawableRectangle.cpp \
+	src/cpp/rectangleDrawing/DrawableRectangleImp.cpp \
+	src/cpp/rectangleDrawing/DrawableRectangleJoGL.cpp \
+	src/cpp/rectangleDrawing/RectangleFillDrawerJoGL.cpp \
+	src/cpp/rectangleDrawing/RectangleLineDrawerJoGL.cpp \
+	src/cpp/arcDrawing/DrawableArcFactory.cpp \
+	src/cpp/arcDrawing/DrawableArc.cpp \
+	src/cpp/labelDrawing/DrawableLabel.cpp \
+	src/cpp/labelDrawing/DrawableLabelFactory.cpp \
+	src/cpp/surfaceDrawing/DrawableSurfaceFactory.cpp \
+	src/cpp/surfaceDrawing/DrawableSurface.cpp \
+	src/cpp/fecDrawing/DrawableFec.cpp \
+	src/cpp/fecDrawing/DrawableFecFactory.cpp \
+	src/cpp/axesDrawing/DrawableAxes.cpp \
+	src/cpp/axesDrawing/DrawableAxesFactory.cpp \
+	src/cpp/grayplotDrawing/DrawableGrayplot.cpp \
+	src/cpp/grayplotDrawing/DrawableGrayplotFactory.cpp \
+	src/cpp/getHandleDrawer.cpp \
+	src/cpp/HandleObserverManagement.cpp \
+	src/cpp/DrawableObjectFactory.cpp \
+	src/cpp/DrawableClippedObject.cpp \
+	src/cpp/HandleDrawingObserver.cpp \
+	src/cpp/BuildDrawingObserver.cpp \
+	src/cpp/DrawableObjectJoGL.cpp src/cpp/GetJavaProperty.cpp \
+	src/cpp/SetJavaProperty.cpp src/cpp/DrawableObject.cpp \
+	src/cpp/DrawingBridge.cpp sci_gateway/c/gw_renderer.c
+@GUI_TRUE@am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableSubwin.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableFigureJoGL.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableFigureImpFactory.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableFigure.lo \
+@GUI_TRUE@	libscirenderer_la-ConcreteDrawableFigure.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableFigureImp.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableFigureFactory.lo \
+@GUI_TRUE@	libscirenderer_la-FigureScilabCall.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableCompoundFactory.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableCompound.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableTextFactory.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableText.lo \
+@GUI_TRUE@	libscirenderer_la-DrawablePolylineFactory.lo \
+@GUI_TRUE@	libscirenderer_la-DrawablePolyline.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableLegend.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableLegendFactory.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableSegs.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableSegsFactory.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableRectangleFactory.lo \
+@GUI_TRUE@	libscirenderer_la-RectangleMarkDrawerJoGL.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableRectangleImpFactory.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableRectangle.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableRectangleImp.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableRectangleJoGL.lo \
+@GUI_TRUE@	libscirenderer_la-RectangleFillDrawerJoGL.lo \
+@GUI_TRUE@	libscirenderer_la-RectangleLineDrawerJoGL.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableArcFactory.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableArc.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableLabel.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableLabelFactory.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableSurfaceFactory.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableSurface.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableFec.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableFecFactory.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableAxes.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableAxesFactory.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableGrayplot.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableGrayplotFactory.lo \
+@GUI_TRUE@	libscirenderer_la-getHandleDrawer.lo \
+@GUI_TRUE@	libscirenderer_la-HandleObserverManagement.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableObjectFactory.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableClippedObject.lo \
+@GUI_TRUE@	libscirenderer_la-HandleDrawingObserver.lo \
+@GUI_TRUE@	libscirenderer_la-BuildDrawingObserver.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableObjectJoGL.lo \
+@GUI_TRUE@	libscirenderer_la-GetJavaProperty.lo \
+@GUI_TRUE@	libscirenderer_la-SetJavaProperty.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableObject.lo \
+@GUI_TRUE@	libscirenderer_la-DrawingBridge.lo
+@GUI_TRUE@am__objects_2 = libscirenderer_la-gw_renderer.lo
+@GUI_FALSE@am_libscirenderer_la_OBJECTS =  \
+@GUI_FALSE@	libscirenderer_la-norenderer.lo
+@GUI_TRUE@am_libscirenderer_la_OBJECTS = $(am__objects_1) \
+@GUI_TRUE@	$(am__objects_2)
 libscirenderer_la_OBJECTS = $(am_libscirenderer_la_OBJECTS)
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
@@ -156,7 +208,7 @@ CXXLINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libscirenderer_la_SOURCES)
-DIST_SOURCES = $(libscirenderer_la_SOURCES)
+DIST_SOURCES = $(am__libscirenderer_la_SOURCES_DIST)
 libscirenderer_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscirenderer_la_rootDATA_INSTALL = $(INSTALL_DATA)
 DATA = $(libscirenderer_la_etc_DATA) $(libscirenderer_la_root_DATA)
@@ -317,72 +369,75 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 # List of the c files
-RENDERER_CPP_SOURCES = \
-src/cpp/subwinDrawing/DrawableSubwinFactory.cpp \
-src/cpp/subwinDrawing/DrawableSubwin.cpp \
-src/cpp/figureDrawing/DrawableFigureJoGL.cpp \
-src/cpp/figureDrawing/DrawableFigureImpFactory.cpp \
-src/cpp/figureDrawing/DrawableFigure.cpp \
-src/cpp/figureDrawing/ConcreteDrawableFigure.cpp \
-src/cpp/figureDrawing/DrawableFigureImp.cpp \
-src/cpp/figureDrawing/DrawableFigureFactory.cpp \
-src/cpp/figureDrawing/FigureScilabCall.cpp \
-src/cpp/compoundDrawing/DrawableCompoundFactory.cpp \
-src/cpp/compoundDrawing/DrawableCompound.cpp \
-src/cpp/textDrawing/DrawableTextFactory.cpp \
-src/cpp/textDrawing/DrawableText.cpp \
-src/cpp/polylineDrawing/DrawablePolylineFactory.cpp \
-src/cpp/polylineDrawing/DrawablePolyline.cpp \
-src/cpp/legendDrawing/DrawableLegend.cpp \
-src/cpp/legendDrawing/DrawableLegendFactory.cpp \
-src/cpp/segsDrawing/DrawableSegs.cpp \
-src/cpp/segsDrawing/DrawableSegsFactory.cpp \
-src/cpp/rectangleDrawing/DrawableRectangleFactory.cpp \
-src/cpp/rectangleDrawing/RectangleMarkDrawerJoGL.cpp \
-src/cpp/rectangleDrawing/DrawableRectangleImpFactory.cpp \
-src/cpp/rectangleDrawing/DrawableRectangle.cpp \
-src/cpp/rectangleDrawing/DrawableRectangleImp.cpp \
-src/cpp/rectangleDrawing/DrawableRectangleJoGL.cpp \
-src/cpp/rectangleDrawing/RectangleFillDrawerJoGL.cpp \
-src/cpp/rectangleDrawing/RectangleLineDrawerJoGL.cpp \
-src/cpp/arcDrawing/DrawableArcFactory.cpp \
-src/cpp/arcDrawing/DrawableArc.cpp \
-src/cpp/labelDrawing/DrawableLabel.cpp \
-src/cpp/labelDrawing/DrawableLabelFactory.cpp \
-src/cpp/surfaceDrawing/DrawableSurfaceFactory.cpp \
-src/cpp/surfaceDrawing/DrawableSurface.cpp \
-src/cpp/fecDrawing/DrawableFec.cpp \
-src/cpp/fecDrawing/DrawableFecFactory.cpp \
-src/cpp/axesDrawing/DrawableAxes.cpp \
-src/cpp/axesDrawing/DrawableAxesFactory.cpp \
-src/cpp/grayplotDrawing/DrawableGrayplot.cpp \
-src/cpp/grayplotDrawing/DrawableGrayplotFactory.cpp \
-src/cpp/getHandleDrawer.cpp \
-src/cpp/HandleObserverManagement.cpp \
-src/cpp/DrawableObjectFactory.cpp \
-src/cpp/DrawableClippedObject.cpp \
-src/cpp/HandleDrawingObserver.cpp \
-src/cpp/BuildDrawingObserver.cpp \
-src/cpp/DrawableObjectJoGL.cpp \
-src/cpp/GetJavaProperty.cpp \
-src/cpp/SetJavaProperty.cpp \
-src/cpp/DrawableObject.cpp \
-src/cpp/DrawingBridge.cpp
+@GUI_TRUE@RENDERER_CPP_SOURCES = \
+@GUI_TRUE@src/cpp/subwinDrawing/DrawableSubwinFactory.cpp \
+@GUI_TRUE@src/cpp/subwinDrawing/DrawableSubwin.cpp \
+@GUI_TRUE@src/cpp/figureDrawing/DrawableFigureJoGL.cpp \
+@GUI_TRUE@src/cpp/figureDrawing/DrawableFigureImpFactory.cpp \
+@GUI_TRUE@src/cpp/figureDrawing/DrawableFigure.cpp \
+@GUI_TRUE@src/cpp/figureDrawing/ConcreteDrawableFigure.cpp \
+@GUI_TRUE@src/cpp/figureDrawing/DrawableFigureImp.cpp \
+@GUI_TRUE@src/cpp/figureDrawing/DrawableFigureFactory.cpp \
+@GUI_TRUE@src/cpp/figureDrawing/FigureScilabCall.cpp \
+@GUI_TRUE@src/cpp/compoundDrawing/DrawableCompoundFactory.cpp \
+@GUI_TRUE@src/cpp/compoundDrawing/DrawableCompound.cpp \
+@GUI_TRUE@src/cpp/textDrawing/DrawableTextFactory.cpp \
+@GUI_TRUE@src/cpp/textDrawing/DrawableText.cpp \
+@GUI_TRUE@src/cpp/polylineDrawing/DrawablePolylineFactory.cpp \
+@GUI_TRUE@src/cpp/polylineDrawing/DrawablePolyline.cpp \
+@GUI_TRUE@src/cpp/legendDrawing/DrawableLegend.cpp \
+@GUI_TRUE@src/cpp/legendDrawing/DrawableLegendFactory.cpp \
+@GUI_TRUE@src/cpp/segsDrawing/DrawableSegs.cpp \
+@GUI_TRUE@src/cpp/segsDrawing/DrawableSegsFactory.cpp \
+@GUI_TRUE@src/cpp/rectangleDrawing/DrawableRectangleFactory.cpp \
+@GUI_TRUE@src/cpp/rectangleDrawing/RectangleMarkDrawerJoGL.cpp \
+@GUI_TRUE@src/cpp/rectangleDrawing/DrawableRectangleImpFactory.cpp \
+@GUI_TRUE@src/cpp/rectangleDrawing/DrawableRectangle.cpp \
+@GUI_TRUE@src/cpp/rectangleDrawing/DrawableRectangleImp.cpp \
+@GUI_TRUE@src/cpp/rectangleDrawing/DrawableRectangleJoGL.cpp \
+@GUI_TRUE@src/cpp/rectangleDrawing/RectangleFillDrawerJoGL.cpp \
+@GUI_TRUE@src/cpp/rectangleDrawing/RectangleLineDrawerJoGL.cpp \
+@GUI_TRUE@src/cpp/arcDrawing/DrawableArcFactory.cpp \
+@GUI_TRUE@src/cpp/arcDrawing/DrawableArc.cpp \
+@GUI_TRUE@src/cpp/labelDrawing/DrawableLabel.cpp \
+@GUI_TRUE@src/cpp/labelDrawing/DrawableLabelFactory.cpp \
+@GUI_TRUE@src/cpp/surfaceDrawing/DrawableSurfaceFactory.cpp \
+@GUI_TRUE@src/cpp/surfaceDrawing/DrawableSurface.cpp \
+@GUI_TRUE@src/cpp/fecDrawing/DrawableFec.cpp \
+@GUI_TRUE@src/cpp/fecDrawing/DrawableFecFactory.cpp \
+@GUI_TRUE@src/cpp/axesDrawing/DrawableAxes.cpp \
+@GUI_TRUE@src/cpp/axesDrawing/DrawableAxesFactory.cpp \
+@GUI_TRUE@src/cpp/grayplotDrawing/DrawableGrayplot.cpp \
+@GUI_TRUE@src/cpp/grayplotDrawing/DrawableGrayplotFactory.cpp \
+@GUI_TRUE@src/cpp/getHandleDrawer.cpp \
+@GUI_TRUE@src/cpp/HandleObserverManagement.cpp \
+@GUI_TRUE@src/cpp/DrawableObjectFactory.cpp \
+@GUI_TRUE@src/cpp/DrawableClippedObject.cpp \
+@GUI_TRUE@src/cpp/HandleDrawingObserver.cpp \
+@GUI_TRUE@src/cpp/BuildDrawingObserver.cpp \
+@GUI_TRUE@src/cpp/DrawableObjectJoGL.cpp \
+@GUI_TRUE@src/cpp/GetJavaProperty.cpp \
+@GUI_TRUE@src/cpp/SetJavaProperty.cpp \
+@GUI_TRUE@src/cpp/DrawableObject.cpp \
+@GUI_TRUE@src/cpp/DrawingBridge.cpp
 
 
 # List of the gateway c files
-GATEWAY_C_SOURCES = sci_gateway/c/gw_renderer.c
+@GUI_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/gw_renderer.c
 
 # Includes need for the compilation
-libscirenderer_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -I$(top_srcdir)/modules/jvm/includes -I$(top_srcdir)/modules/graphics/includes/ -I$(top_srcdir)/modules/graphics/includes/handleDrawing/ 
+@GUI_TRUE@libscirenderer_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -I$(top_srcdir)/modules/jvm/includes -I$(top_srcdir)/modules/graphics/includes/ -I$(top_srcdir)/modules/graphics/includes/handleDrawing/ 
+
+# All the sources needed by libscirenderer.la
+@GUI_FALSE@libscirenderer_la_SOURCES = src/norenderer/norenderer.c
+
+# All the sources needed by libscirenderer.la
+@GUI_TRUE@libscirenderer_la_SOURCES = $(RENDERER_CPP_SOURCES) $(GATEWAY_C_SOURCES) 
+@GUI_TRUE@libscirenderer_la_LIBADD = $(top_builddir)/modules/graphics/libscigraphics.la
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding 
 # the system)
 pkglib_LTLIBRARIES = libscirenderer.la
-
-# All the sources needed by libscirenderer.la
-libscirenderer_la_SOURCES = $(RENDERER_CPP_SOURCES) $(GATEWAY_C_SOURCES) 
-libscirenderer_la_LIBADD = $(top_builddir)/modules/graphics/libscigraphics.la
 
 #### Name of the module and the path ######
 modulename = renderer
@@ -570,6 +625,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SetJavaProperty.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-getHandleDrawer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-gw_renderer.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-norenderer.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -591,6 +647,13 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
+
+libscirenderer_la-norenderer.lo: src/norenderer/norenderer.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscirenderer_la-norenderer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-norenderer.Tpo -c -o libscirenderer_la-norenderer.lo `test -f 'src/norenderer/norenderer.c' || echo '$(srcdir)/'`src/norenderer/norenderer.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-norenderer.Tpo $(DEPDIR)/libscirenderer_la-norenderer.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/norenderer/norenderer.c' object='libscirenderer_la-norenderer.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscirenderer_la-norenderer.lo `test -f 'src/norenderer/norenderer.c' || echo '$(srcdir)/'`src/norenderer/norenderer.c
 
 libscirenderer_la-gw_renderer.lo: sci_gateway/c/gw_renderer.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscirenderer_la-gw_renderer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-gw_renderer.Tpo -c -o libscirenderer_la-gw_renderer.lo `test -f 'sci_gateway/c/gw_renderer.c' || echo '$(srcdir)/'`sci_gateway/c/gw_renderer.c

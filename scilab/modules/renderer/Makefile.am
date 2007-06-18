@@ -4,6 +4,7 @@
 ### INRIA - Scilab 2007
 ##########
 
+if GUI
 # List of the c files
 RENDERER_CPP_SOURCES = \
 src/cpp/subwinDrawing/DrawableSubwinFactory.cpp \
@@ -64,16 +65,23 @@ GATEWAY_C_SOURCES = sci_gateway/c/gw_renderer.c
 # Includes need for the compilation
 libscirenderer_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -I$(top_srcdir)/modules/jvm/includes -I$(top_srcdir)/modules/graphics/includes/ -I$(top_srcdir)/modules/graphics/includes/handleDrawing/ 
 
-# Name of the future library (.la will be replace by .so, .a, etc regarding 
-# the system)
-pkglib_LTLIBRARIES = libscirenderer.la
-
 # All the sources needed by libscirenderer.la
 libscirenderer_la_SOURCES = $(RENDERER_CPP_SOURCES) $(GATEWAY_C_SOURCES) 
 
 ## Libraries necessary
 ## Change to include other Scilab modules/lib
 libscirenderer_la_LIBADD = $(top_builddir)/modules/graphics/libscigraphics.la
+
+else
+
+# All the sources needed by libscirenderer.la
+libscirenderer_la_SOURCES = src/norenderer/norenderer.c
+
+endif
+
+# Name of the future library (.la will be replace by .so, .a, etc regarding 
+# the system)
+pkglib_LTLIBRARIES = libscirenderer.la
 
 
 #### Name of the module and the path ######
