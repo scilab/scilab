@@ -517,7 +517,7 @@ GUI_C_SOURCES = src/c/xsci/IsConsoleMode.c src/c/xsci/mainscic.c \
 
 @GUI_TRUE@BUILT_SOURCES = $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
 @GUI_TRUE@CLEANFILES = $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
-libscigui_la_LDFLAGS = $(X_LIBS) $(TERMCAP_LIB) $(X_EXTRA_LIBS)
+libscigui_la_LDFLAGS = $(LD_FLAGS) $(X_LIBS) $(TERMCAP_LIB) $(X_EXTRA_LIBS)
 pkglib_LTLIBRARIES = libscigui.la
 libscigui_la_SOURCES = $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libscigui_la_LIBADD = \
