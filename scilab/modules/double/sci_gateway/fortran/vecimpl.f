@@ -83,10 +83,11 @@ c
 
 c     check for clause
       if (rstk(pt-1) .eq. 801.or.rstk(pt).eq.611) go to 54
-      if(rstk(pt-1).eq.611.and.rstk(pt).eq.601) then
-c     : in compiled for, next line to differentiate from extraction
-         if(istk(pstk(pt)).eq.16) goto  54
-      endif
+      if(rstk(pt-1).eq.611.and.rstk(pt).eq.601) go to 54
+C       if(rstk(pt-1).eq.611.and.rstk(pt).eq.601) then
+C c     : in compiled for, next line to differentiate from extraction
+C          if(istk(pstk(pt)).eq.16) goto  54
+C       endif
 c
       if (st .eq. 0.0d+0) then
          istk(il1+1)=1
