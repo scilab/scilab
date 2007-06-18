@@ -110,7 +110,7 @@ BOOL startJVM(char *SCI_PATH)
 			vm_args.version = JNI_VERSION_1_6;
 #elif JNI_VERSION_1_4
 			vm_args.version = JNI_VERSION_1_4;
-#elif
+#else
 #ifdef _MSC_VER
 			MessageBox(NULL,"Incorrect version JNI.","Error",MB_ICONEXCLAMATION|MB_OK);
 #else
