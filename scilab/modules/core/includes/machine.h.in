@@ -2,7 +2,9 @@
 
 #ifndef MACHINE_H 
 #define MACHINE_H 
-
+#ifdef _FILE_OFFSET_BITS
+	#undef _FILE_OFFSET_BITS
+#endif
 
 
 /* Define C2F without Trailing Underscore */
@@ -357,8 +359,8 @@
 /* With FFTW */
 #undef WITH_FFTW
 
-/* With the JAVA stuff (GUI, Console, Scilab <=> Java... */
-#undef WITH_JAVA
+/* With the JAVA stuff (GUI, Console, JOGL... */
+#undef WITH_GUI
 
 /* With OCAML */
 #undef WITH_OCAML
