@@ -17070,7 +17070,7 @@ echo $ECHO_N "checking pcre, for pcre-config... $ECHO_C" >&6; }
 echo "${ECHO_T}$PCRE_CONFIG" >&6; }
 				PCRE_FOUND=1
 		fi
-   if test PCRE_FOUND -eq 0; then
+   if test $PCRE_FOUND -eq 0; then
    PCRE_CONFIG="$with_pcre/pcre-config"
         if test -x "$PCRE_CONFIG"; then
 				PCRE_FOUND=1
@@ -17078,7 +17078,7 @@ echo "${ECHO_T}$PCRE_CONFIG" >&6; }
 echo "${ECHO_T}$PCRE_CONFIG" >&6; }
         fi
    fi
-		if test PCRE_FOUND -eq 0; then
+		if test $PCRE_FOUND -eq 0; then
                 { { echo "$as_me:$LINENO: error: Unable to find $PCRE_CONFIG. Please check the path you provided" >&5
 echo "$as_me: error: Unable to find $PCRE_CONFIG. Please check the path you provided" >&2;}
    { (exit 1); exit 1; }; }

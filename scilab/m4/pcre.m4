@@ -20,14 +20,14 @@ if test "$with_pcre" != 'yes' -a "$with_pcre" != 'no'; then
                 AC_MSG_RESULT([$PCRE_CONFIG])
 				PCRE_FOUND=1
 		fi
-   if test PCRE_FOUND -eq 0; then
+   if test $PCRE_FOUND -eq 0; then
    PCRE_CONFIG="$with_pcre/pcre-config" 
         if test -x "$PCRE_CONFIG"; then
 				PCRE_FOUND=1
                 AC_MSG_RESULT([$PCRE_CONFIG])
         fi
    fi
-		if test PCRE_FOUND -eq 0; then
+		if test $PCRE_FOUND -eq 0; then
                 AC_MSG_ERROR([Unable to find $PCRE_CONFIG. Please check the path you provided])
 		else
 			unset PCRE_FOUND
