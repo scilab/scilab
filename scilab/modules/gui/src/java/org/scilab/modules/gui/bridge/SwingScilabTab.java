@@ -7,7 +7,6 @@ import org.flexdock.docking.DockingConstants;
 import org.flexdock.view.View;
 
 import org.scilab.modules.gui.console.Console;
-import org.scilab.modules.gui.bridge.SwingScilabConsole;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.dockable.Dockable;
 import org.scilab.modules.gui.frame.Frame;

@@ -14,9 +14,9 @@ import org.scilab.modules.gui.utils.Size;
  */
 public interface UIElement {
 
-//	public abstract void addToolBar(Toolbar toolBarToAdd);
+//	public abstract void addToolBar(ToolBar toolBarToAdd);
 //
-//	public abstract void addMenuBar(Menubar toolMenuToAdd);
+//	public abstract void addMenuBar(MenuBar toolMenuToAdd);
 //
 //	public abstract void resize();
 //

@@ -1,7 +1,7 @@
 
 /* Copyright INRIA 2007 */
 
-package org.scilab.modules.gui.widget;
+package org.scilab.modules.gui.textbox;
 
 /**
  * Interface for textbox associated to objects in Scilab GUIs

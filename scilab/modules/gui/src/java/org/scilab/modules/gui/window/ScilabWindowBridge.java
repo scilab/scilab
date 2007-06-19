@@ -3,15 +3,17 @@
 
 package org.scilab.modules.gui.window;
 
-import org.scilab.modules.gui.bridge.SwingScilabWindow;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.menubar.MenuBar;
 
 /**
  * Bridge for Scilab windows in GUIs
  * @author Vincent COUVERT
  * @author Bruno JOFRET
+ * @author Marouane BEN JELLOUL
  */
 public class ScilabWindowBridge {
 
@@ -117,5 +119,14 @@ public class ScilabWindowBridge {
 	 */
 	public static void addTab(Window window, Tab newTab) {
 		window.addTab(newTab);
+	}
+	
+	/**
+	 * Sets a MenuBar to a Scilab window
+	 * @param window the window which we want to add the MenuBar to
+	 * @param newMenuBar the MenuBar to add to the window
+	 */
+	public static void setMenuBar(Window window, MenuBar newMenuBar) {
+		window.setMenuBar(newMenuBar);
 	}
 }

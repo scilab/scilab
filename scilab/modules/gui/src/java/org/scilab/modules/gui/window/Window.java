@@ -4,6 +4,8 @@
 package org.scilab.modules.gui.window;
 
 import org.scilab.modules.gui.uielement.UIElement;
+import org.scilab.modules.gui.menubar.MenuBar;
+
 import org.scilab.modules.gui.tab.Tab;
 
 /**
@@ -30,4 +32,10 @@ public interface Window extends UIElement {
 	 * @param newTab the tab to add to the window
 	 */
 	void addTab(Tab newTab);
+	
+	/**
+	 * Sets a MenuBar to a window
+	 * @param newMenuBar the MenuBar to add to the window
+	 */
+	void setMenuBar(MenuBar newMenuBar);
 }

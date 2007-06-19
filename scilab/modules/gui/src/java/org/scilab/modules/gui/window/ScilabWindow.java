@@ -8,6 +8,7 @@ import org.scilab.modules.gui.uielement.ScilabUIElement;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.menubar.MenuBar;
 
 /**
  * Class for Scilab Windows in GUIs
@@ -120,6 +121,15 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 */
 	public void addTab(Tab newTab) {
 		ScilabBridge.addTab(this, newTab);
+	}
+
+	/**
+	 * Sets a MeunBar to a Scilab window
+	 * @param newMenuBar the tab to add to the window
+	 * @see org.scilab.modules.gui.window.Window#setMenuBar(org.scilab.modules.gui.widget.MenuBar)
+	 */
+	public void setMenuBar(MenuBar newMenuBar) {
+		ScilabBridge.setMenuBar(this, newMenuBar);
 	}
 
 }

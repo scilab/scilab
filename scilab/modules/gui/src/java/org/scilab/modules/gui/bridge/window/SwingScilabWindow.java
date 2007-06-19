@@ -1,17 +1,20 @@
 
 /* Copyright INRIA 2007 */
 
-package org.scilab.modules.gui.bridge;
+package org.scilab.modules.gui.bridge.window;
 
 import javax.swing.JFrame;
+import javax.swing.JMenuBar;
 
 import org.flexdock.docking.DockingManager;
 import org.flexdock.docking.DockingPort;
 import org.flexdock.docking.defaults.DefaultDockingPort;
 
+import org.scilab.modules.gui.bridge.SwingScilabTab;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.window.Window;
 
 /**
@@ -127,5 +130,14 @@ public class SwingScilabWindow extends JFrame implements Window {
 	 */
 	public void addTab(Tab newTab) {
 		DockingManager.dock((SwingScilabTab) newTab, this.getDockingPort());
+	}
+	
+	/**
+	 * Sets a Scilab MenuBar to a Scilab window
+	 * @param newMenuBar the Scilab MenuBar to add to the Scilab window
+	 * @see org.scilab.modules.gui.window.Window#setMenuBar(org.scilab.modules.gui.widget.MenuBar)
+	 */
+	public void setMenuBar(MenuBar newMenuBar) {
+		super.setJMenuBar((JMenuBar) newMenuBar);
 	}
 }

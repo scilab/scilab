@@ -15,6 +15,12 @@ import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.window.ScilabWindowBridge;
 import org.scilab.modules.gui.window.Window;
+import org.scilab.modules.gui.menubar.MenuBar;
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.menu.Menu;
+import org.scilab.modules.gui.menubar.ScilabMenuBarBridge;
+import org.scilab.modules.gui.menuitem.ScilabMenuItemBridge;
+import org.scilab.modules.gui.menu.ScilabMenuBridge;
 
 /**
  * Main bridge for Scilab Java GUIs
@@ -28,7 +34,7 @@ public class ScilabBridge {
 	 */
 	protected ScilabBridge() {
 		throw new UnsupportedOperationException(); /* Prevents calls from subclass */
-	};
+	}
 
 	/*****************/
 	/* Window Bridge */
@@ -132,6 +138,15 @@ public class ScilabBridge {
 		ScilabWindowBridge.addTab(window, newTab);
 	}
 
+	/**
+	 * Sets a MeunBar to a window
+	 * @param window the window which we want to add the MeunBar to
+	 * @param newMenuBar the MeunBar to add to the window
+	 */
+	public static void setMenuBar(Window window, MenuBar newMenuBar) {
+		ScilabWindowBridge.setMenuBar(window, newMenuBar);
+	}
+	
 	/****************/
 	/* Frame Bridge */
 	/****************/
@@ -541,5 +556,79 @@ public class ScilabBridge {
 	 */
 	public static void setVisible(Canvas canvas, boolean newVisibleState) {
 		ScilabCanvasBridge.setVisible(canvas, newVisibleState);
+	}
+	
+	/*****************/
+	/* MenuBar Bridge */
+	/*****************/
+
+	/**
+	 * Creates a new MenuBar
+	 * @return the created MenuBar
+	 */
+	public static MenuBar createMenuBar() {
+		return ScilabMenuBarBridge.createMenuBar();
+	}
+	
+	/**
+	 * Append a Menu to a MenuBar
+	 * @param menuBar the MenuBar which we want to add the newMenu to
+	 * @param newMenu the Menu to add to the MenuBar
+	 * @return the added Menu
+	 */
+	public static Menu add(MenuBar menuBar, Menu newMenu) {
+		return ScilabMenuBarBridge.add(menuBar, newMenu);
+	}
+	
+	/*****************/
+	/* MenuItem Bridge */
+	/*****************/
+
+	/**
+	 * Creates a new MenuItem
+	 * @return the created MenuItem
+	 */
+	public static MenuItem createMenuItem() {
+		return ScilabMenuItemBridge.createMenuItem();
+	}
+	
+	/**
+	 * Sets the Text of a MenuItem
+	 * @param menuItem the MenuItem we want to set the Text of
+	 * @param newText the Text to set for the MenuItem
+	 */
+	public static void setText(MenuItem menuItem, String newText) {
+		ScilabMenuItemBridge.setText(menuItem, newText);
+	}
+	
+	/**
+	 * set a mnemonic to a MenuItem
+	 * @param menuItem the MenuItem which we want to add the mnemonic to
+	 * @param mnemonic the mnemonic to add to the MenuItem
+	 */
+	public static void setMnemonic(MenuItem menuItem, int mnemonic) {
+		ScilabMenuItemBridge.setMnemonic(menuItem, mnemonic);
+	}
+	
+	/*****************/
+	/* Menu Bridge */
+	/*****************/
+
+	/**
+	 * Creates a new Menu
+	 * @return the created Menu
+	 */
+	public static Menu createMenu() {
+		return ScilabMenuBridge.createMenu();
+	}
+	
+	/**
+	 * Append a MenuItem to a MenuBar
+	 * @param menu the Menu which we want to add the MenuItem to
+	 * @param newMenuItem the MenuItem to add to the Menu
+	 * @return the added MenuItem
+	 */
+	public static MenuItem add(Menu menu, MenuItem newMenuItem) {
+		return ScilabMenuBridge.add(menu, newMenuItem);
 	}
 }

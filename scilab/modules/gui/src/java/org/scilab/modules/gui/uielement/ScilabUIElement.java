@@ -4,8 +4,8 @@
 package org.scilab.modules.gui.uielement;
 
 import org.scilab.modules.gui.utils.Layout;
-import org.scilab.modules.gui.widget.MenuBar;
-import org.scilab.modules.gui.widget.ToolBar;
+import org.scilab.modules.gui.menubar.MenuBar;
+import org.scilab.modules.gui.toolbar.ToolBar;
 
 
 /**
