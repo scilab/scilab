@@ -1,7 +1,7 @@
 
 /* Copyright INRIA 2007 */
 
-
+package overview;
 
 import java.awt.EventQueue;
 
@@ -27,6 +27,16 @@ import org.scilab.modules.gui.window.Window;
  */
 public class ScilabConsoleTest {
 
+	private static final int WIDTH = 200;
+	private static final int HEIGHT = 200;
+	
+	/**
+	 * Constructor
+	 */
+	protected ScilabConsoleTest() {
+        throw new UnsupportedOperationException(); /* Prevents calls from subclass */
+	}
+	
 	/**
 	 * Launch main Scilab
 	 * @param args not used
@@ -82,9 +92,9 @@ public class ScilabConsoleTest {
 		mainView.draw();
 
 		JFrame f = new JFrame();
-		f.setSize(200,200);
+		f.setSize(WIDTH, HEIGHT);
 		SwingScilabConsole content = new SwingScilabConsole();
-		//f.add(content);
+		f.add(content);
 		f.setVisible(true);
 
 		//		JyConsole console = new JyConsole();

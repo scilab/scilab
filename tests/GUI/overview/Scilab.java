@@ -2,6 +2,7 @@
 /* Copyright INRIA 2007 */
 
 
+package overview;
 
 import java.awt.EventQueue;
 
@@ -36,6 +37,9 @@ public class Scilab {
 	private static final int DEFAULTWIDTH = 500;
 	private static final int DEFAULTHEIGHT = 500;
 
+	private static final String X = "x";
+	private static final String AND_Y_EQUAL = "and y=";
+	
 	/**
 	 * Constructor
 	 */
@@ -71,24 +75,24 @@ public class Scilab {
 		/* DIMENSIONS */
 		/* Defaut dimensions */
 		Size windowSize = mainView.getDims();
-		System.out.println("Window Size = " + windowSize.getWidth() + "x" + windowSize.getHeight());
+		System.out.println("Window Size = " + windowSize.getWidth() + X + windowSize.getHeight());
 		/* User defined dimensions */
 		Size newWindowSize = new Size(NEWWIDTH, NEWHEIGHT);
 		mainView.setDims(newWindowSize);
 		windowSize = mainView.getDims();
 		System.out.println("-*- Has size changed ??? -*-");
-		System.out.println("Window Size: " + windowSize.getWidth() + "x" + windowSize.getHeight());
+		System.out.println("Window Size: " + windowSize.getWidth() + X + windowSize.getHeight());
 
 		/* POSITION */
 		/* Default position */
 		Position windowPosition = mainView.getPosition();
-		System.out.println("Window Position: x=" + windowPosition.getX() + " and y=" + windowPosition.getY());
+		System.out.println("Window Position: x=" + windowPosition.getX() + AND_Y_EQUAL + windowPosition.getY());
 		/* User defined position */
 		Position newWindowPosition = new Position(NEWXPOSITION, NEWYPOSITION);
 		mainView.setPosition(newWindowPosition);
 		windowPosition = mainView.getPosition();
 		System.out.println("-*- Has position changed ??? -*-");
-		System.out.println("New Window Position: x=" + windowPosition.getX() + " and y=" + windowPosition.getY());
+		System.out.println("New Window Position: x=" + windowPosition.getX() + AND_Y_EQUAL + windowPosition.getY());
 
 		/* TITLE */
 		System.out.println("Window Title: " + mainView.getTitle());
