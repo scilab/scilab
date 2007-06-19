@@ -3,7 +3,7 @@
 
 package org.scilab.modules.gui.console;
 
-import org.scilab.modules.gui.bridge.SwingScilabConsole;
+import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.frame.ScilabFrame;
 import org.scilab.modules.gui.tab.ScilabTab;
 import org.scilab.modules.gui.utils.Position;

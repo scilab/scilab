@@ -3,7 +3,7 @@
 
 package org.scilab.modules.gui.menubar;
 
-import org.scilab.modules.gui.bridge.SwingScilabMenuBar;
+import org.scilab.modules.gui.bridge.menubar.SwingScilabMenuBar;
 import org.scilab.modules.gui.menu.Menu;
 
 /**

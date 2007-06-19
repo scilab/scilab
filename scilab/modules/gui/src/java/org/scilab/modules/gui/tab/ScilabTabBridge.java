@@ -4,8 +4,8 @@
 package org.scilab.modules.gui.tab;
 
 import org.scilab.modules.gui.console.Console;
-import org.scilab.modules.gui.bridge.SwingScilabCanvas;
-import org.scilab.modules.gui.bridge.SwingScilabTab;
+import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
+import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.utils.Position;

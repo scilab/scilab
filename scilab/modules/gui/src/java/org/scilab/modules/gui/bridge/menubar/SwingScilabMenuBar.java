@@ -1,7 +1,7 @@
 
 /* Copyright INRIA 2007 */
 
-package org.scilab.modules.gui.bridge;
+package org.scilab.modules.gui.bridge.menubar;
 
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
