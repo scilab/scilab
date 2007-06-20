@@ -63,6 +63,15 @@ JavaVM *FindCreatedJavaVM(char *SCILAB_PATH);
 */
 BOOL LoadFuntionsJVM(char *filedynlib);
 
+
+/**
+ * Returns the description of the error message from the JNI return status
+ *
+ * @param status the JNI status
+ * @return The message describing the problem
+ */
+char *getJniErrorFromStatusCode(long status);
+
 #endif /* __JVM_FUNCTIONS_H__ */
 /*-----------------------------------------------------------------------------------*/ 
 
