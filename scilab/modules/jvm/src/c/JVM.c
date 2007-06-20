@@ -135,13 +135,13 @@ BOOL startJVM(char *SCI_PATH)
 
 			status = SciJNI_CreateJavaVM(&jvm_SCILAB, (void**) &env, &vm_args);
 
-			if (status == JNI_ERR)
+			if (status != JNI_OK)
 			{
+				printf("Error in the creation of the Java VM : %s\n",getJniErrorFromStatusCode(status));
 				FreeDynLibJVM();
 				if (JAVACLASSPATH){FREE(JAVACLASSPATH);JAVACLASSPATH=NULL;}
 				if (JAVALIBRARYPATH){FREE(JAVALIBRARYPATH);JAVALIBRARYPATH=NULL;}
-				bOK=FALSE;
-				return bOK;
+				return FALSE;
 			}
 		}
 	}
