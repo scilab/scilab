@@ -8,7 +8,7 @@
 
 package org.scilab.modules.renderer.figureDrawing;
 
-import org.scilab.modules.gui.bridge.SwingScilabCanvas;
+import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import javax.media.opengl.GLCapabilities;
 import org.scilab.modules.gui.utils.Size;
 
