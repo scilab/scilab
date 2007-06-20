@@ -659,7 +659,7 @@ c     left division by a scalar
          nel2=mn2
          call unsfdcopy(nel2*(it2+1),stk(l2),1,stk(l1),1)
       else
-         call icopy(5+2*nel2,istk(il2),1,istk(il1),1)
+         call icopy(5+m2+nel2,istk(il2),1,istk(il1),1)
          l1=sadr(il1+5+m2+nel2)
          call unsfdcopy(nel2*(it2+1),stk(l2),1,stk(l1),1)
       endif
