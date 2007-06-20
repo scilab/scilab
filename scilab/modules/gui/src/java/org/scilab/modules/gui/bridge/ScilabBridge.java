@@ -9,6 +9,10 @@ import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.canvas.ScilabCanvasBridge;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.frame.ScilabFrameBridge;
+import org.scilab.modules.gui.pushbutton.PushButton;
+import org.scilab.modules.gui.pushbutton.ScilabPushButtonBridge;
+import org.scilab.modules.gui.separator.ScilabSeparatorBridge;
+import org.scilab.modules.gui.separator.Separator;
 import org.scilab.modules.gui.tab.ScilabTabBridge;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.Position;
@@ -623,6 +627,61 @@ public class ScilabBridge {
 	}
 	
 	/**
+	 * Sets the dimensions (width and height) of a swing Scilab Menu
+	 * @param menu the Menu which we want to set the newSize to
+	 * @param newSize the dimensions to set to the Menu
+	 */
+	public static void setDims(Menu menu, Size newSize) {
+		ScilabMenuBridge.setDims(menu, newSize);
+	}
+	
+	/**
+	 * Gets the dimensions (width and height) of a swing Scilab Menu
+	 * @param menu the Menu which we want to get the Size of
+	 * @return the dimensions of the Menu
+	 */
+	public static Size getDims(Menu menu) {
+		return ScilabMenuBridge.getDims(menu);
+	}
+	
+	/**
+	 * Gets the position (X-coordinate and Y-coordinate) of a menu
+	 * @param menu the menu we want to get the position of
+	 * @return position of the menu
+	 */
+	public static Position getPosition(Menu menu) {
+		return ScilabMenuBridge.getPosition(menu);
+	}
+
+	/**
+	 * Sets the position (X-coordinate and Y-coordinate) of a menu
+	 * @param menu the menu we want to set the position of
+	 * @param newPosition new position of the menu
+	 */
+	public static void setPosition(Menu menu, Position newPosition) {
+		ScilabMenuBridge.setPosition(menu, newPosition);
+	}
+	
+	/**
+	 * Gets the visibility status of a menu
+	 * @param menu the menu we want to get the status of
+	 * @return visibility status (true if the menu is visible, false if not)
+	 */
+	public static boolean isVisible(Menu menu) {
+		return ScilabMenuBridge.isVisible(menu);
+	}
+
+	/**
+	 * Sets the visibility status for a menu
+	 * @param menu the menu we want to set the visibility status of
+	 * @param newVisibleState new visibility status for the menu
+	 * 			(true set the menu visible, false to set the menu invisible)
+	 */
+	public static void setVisible(Menu menu, boolean newVisibleState) {
+		ScilabMenuBridge.setVisible(menu, newVisibleState);
+	}
+	
+	/**
 	 * Append a MenuItem to a MenuBar
 	 * @param menu the Menu which we want to add the MenuItem to
 	 * @param newMenuItem the MenuItem to add to the Menu
@@ -631,4 +690,46 @@ public class ScilabBridge {
 	public static MenuItem add(Menu menu, MenuItem newMenuItem) {
 		return ScilabMenuBridge.add(menu, newMenuItem);
 	}
+	
+	/**
+	 * set a mnemonic to a menu
+	 * @param menu the Menu which we want to set the mnemonic to
+	 * @param mnemonic the new mnemonic to set to the menu
+	 */
+	public static void setMnemonic(Menu menu, int mnemonic) {
+		ScilabMenuBridge.setMnemonic(menu, mnemonic);
+	}
+	
+	/**
+	 * Add a Separator to a Menu
+	 * @param menu the Menu which we want to add the Separator to
+	 */
+	public static void addSeparator(Menu menu) {
+		ScilabMenuBridge.addSeparator(menu);
+	}
+	
+	/*****************/
+	/* Separator Bridge */
+	/*****************/
+
+	/**
+	 * Creates a new Separator
+	 * @return the created Separator
+	 */
+	public static Separator createSeparator() {
+		return ScilabSeparatorBridge.createSeparator();
+	}
+	
+	/*****************/
+	/* PushButton Bridge */
+	/*****************/
+
+	/**
+	 * Creates a new PushButton
+	 * @return the created PushButton
+	 */
+	public static PushButton createPushButton() {
+		return ScilabPushButtonBridge.createPushButton();
+	}
+	
 }

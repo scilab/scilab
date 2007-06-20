@@ -122,13 +122,4 @@ public class ScilabFrame extends ScilabContainer implements Frame {
 		return ScilabBridge.addMember(this, member);
 	}
 
-	/**
-	 * Add a member (dockable element) to a Scilab frame and returns its index
-	 * @param member the member to add
-	 * @return index of member in frame components
-	 * @see org.scilab.modules.gui.container.Container#addMember(org.scilab.modules.gui.dockable.Dockable)
-	 */
-	public int addMember(Dockable member) {
-		return addMember(member);
-	}
 }

@@ -5,6 +5,7 @@ package org.scilab.modules.gui.frame;
 
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.container.Container;
+import org.scilab.modules.gui.dockable.Dockable;
 
 /**
  * Interface for Scilab frames in GUIs

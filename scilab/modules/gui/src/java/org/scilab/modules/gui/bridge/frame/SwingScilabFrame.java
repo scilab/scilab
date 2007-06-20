@@ -6,9 +6,11 @@ package org.scilab.modules.gui.bridge.frame;
 import javax.swing.JPanel;
 
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
+import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.dockable.Dockable;
 import org.scilab.modules.gui.frame.Frame;
+import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -129,5 +131,24 @@ public class SwingScilabFrame extends JPanel implements Frame {
 	// TODO : Must manage this with Exceptions.
 		System.out.println("[SwingScilabFrame.addMember(Dockable)] : Must not be there !!!");
 		return -1;
+	}
+	
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in ArrayList
+	 */
+	public int addMember(PushButton member) {
+		return this.addMember((SwingScilabPushButton) member);
+	}
+	
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in ArrayList
+	 */
+	private int addMember(SwingScilabPushButton member) {
+		this.add(member);
+		return this.getComponentZOrder(member);
 	}
 }

@@ -21,7 +21,7 @@ public class SwingScilabMenuItem extends JMenuItem implements MenuItem {
 	
 	/**
 	 * Sets the Text of a swing Scilab MenuItem
-	 * @param newText the Text to set to the window
+	 * @param newText the Text to set to the MenuItem
 	 * @see javax.swing.AbstractButton#setText(java.lang.String)
 	 */
 	public void setText(String newText) {

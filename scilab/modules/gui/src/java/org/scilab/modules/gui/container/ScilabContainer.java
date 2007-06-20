@@ -6,6 +6,7 @@ package org.scilab.modules.gui.container;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.scilab.modules.gui.dockable.Dockable;
 import org.scilab.modules.gui.dockable.ScilabDockable;
 
 /**
@@ -59,5 +60,15 @@ public abstract class ScilabContainer extends ScilabDockable implements Containe
 	 * @return index of member in ArrayList
 	 */
 	//public abstract int addMember(Frame member);
+	
+	/**
+	 * Add a member (dockable element) to a Scilab container and returns its index
+	 * @param member the member to add
+	 * @return index of member in container components
+	 * @see org.scilab.modules.gui.container.Container#addMember(org.scilab.modules.gui.dockable.Dockable)
+	 */
+	public int addMember(Dockable member) {
+		return addMember(member);
+	}
 
 }
