@@ -138,7 +138,7 @@ fi
 # Browse "default directory" (if it means anything under Unix/Linux) of Java
 # to find where it could be !
 if test -z "$JAVA_HOME"; then
-	JAVA_DEFAULT_DIR="/usr/lib/jvm/java-1.6.0-sun/ /usr/lib/j2se/1.6 /usr/java/jdk1.6.0*/ /usr/java/jdk1.5.0*/ /usr/lib/j2sdk1.6-ibm /usr/lib/jvm/java-1.5.0-sun /usr/lib/j2se/1.5 /usr/lib/j2se/1.4 /usr/lib/j2sdk1.5-ibm /usr/lib/j2sdk1.4-ibm /usr/lib/j2sdk1.5-sun /usr/lib/j2sdk1.4-sun /usr/lib/jvm/java-gcj /usr/lib/kaffe/pthreads"
+	JAVA_DEFAULT_DIR="/usr/lib/jvm/java-6-sun/ /usr/lib/j2se/1.6 /usr/java/jdk1.6.0*/ /usr/java/jdk1.5.0*/ /usr/lib/j2sdk1.6-ibm /usr/lib/jvm/java-1.5.0-sun /usr/lib/j2se/1.5 /usr/lib/j2se/1.4 /usr/lib/j2sdk1.5-ibm /usr/lib/j2sdk1.4-ibm /usr/lib/j2sdk1.5-sun /usr/lib/j2sdk1.4-sun /usr/lib/jvm/java-gcj /usr/lib/kaffe/pthreads"
     for JAVA_HOME in $JAVA_DEFAULT_DIR ; do
 		echo -n "Trying to find Java in $JAVA_HOME "
 		if [ -x "${JAVA_HOME}/bin/java" ]; then
@@ -208,6 +208,7 @@ if test ! -z "$JAVA_HOME"; then
 	if test ! -f $LIBJAVA; then
 		echo "Cannot find $LIBJAVA"
 	else
+		export CLASSPATH=$CLASSPATH:$SCI/modules/jvm/jar/org.scilab.modules.jvm.jar
 		export LD_LIBRARY_PATH=$JRE_HOME/lib/$proc/:$JRE_HOME/lib/$proc/server/:$JRE_HOME/lib/$proc/native_threads/:$LD_LIBRARY_PATH
 	fi
 else
@@ -219,7 +220,7 @@ fi
 
 echo "SCI : $SCI"
 echo "SCIBIN : $SCIBIN"
-echo "SCIDATA : $SCIDATA"
+#echo "SCIDATA : $SCIDATA"
 cd $OLDPWD
 if test "$DISPLAY" = ""; then
   DISPLAY="unix:0.0"
@@ -246,6 +247,8 @@ export LD_LIBRARY_PATH
 #TCL_LIBRARY
 
 #TK_LIBRARY
+# --suppressions=$SCI/tools/valgrind.supp 
+VALGRIND_OPTIONS=" --gen-suppressions=all  --num-callers=6 --trace-children=yes --demangle=no --leak-check=yes --smc-check=all --db-attach=yes "
 
 do_scilex()
 {
@@ -281,6 +284,7 @@ echo     "                        by the Scilab function sciargs."
 echo     "      -display Display: for use under Xwindow systems to set a specific X server display."
 echo     "      -d Display      : equivalent to display Display."
 echo     "      -debug          : Start Scilab under gdb (Unix/linux only)."
+echo     "      -profiling      : Start Scilab under valgrind (Unix/linux only)."
 echo     "      -e Instruction  : execute the scilab instruction given in Instruction argument."
 echo     "                        -e and -f options are mutually exclusive."
 echo     "      -f File         : execute the scilab script given in File argument."
@@ -482,6 +486,7 @@ sci_args=
 if test "$rest" = "yes"; then
 
   debug=
+  profiling=
   now=
   display=
   start_file=
@@ -511,6 +516,9 @@ if test "$rest" = "yes"; then
           ;;
       -debug) 
           DEBUG="-debug"
+          ;;
+      -profiling) 
+          PROFILING="-profiling"
           ;;
       -nw)
           now="-nw"
@@ -581,12 +589,22 @@ if test "$rest" = "yes"; then
 		  gdb $SCILABBIN $sci_args
 	  fi
   else
+	if test -n "$PROFILING"; then
+	  if test -n "$DEVENV"; then
+		  echo "Running profiling of Scilab  : " $SCI/libtool --mode=execute valgrind $VALGRIND_OPTIONS $SCILABBIN $sci_args
+		  $SCI/libtool --mode=execute valgrind $SCILABBIN $sci_args
+	  else
+		  echo "Running profiling of Scilab  : " valgrind $VALGRIND_OPTIONS $SCILABBIN $sci_args
+		  valgrind $VALGRIND_OPTIONS $SCILABBIN $sci_args
+	  fi
+	else
     if test -n "$now"; then
         sci_exe="do_scilex_now"
         $sci_exe $sci_args
     else
         sci_exe="do_scilex"
         $sci_exe $sci_args 
+		fi
     fi
   fi
 fi
