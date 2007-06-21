@@ -10,6 +10,7 @@
 #include "error_scilab.h"
 #include "../../localization/includes/QueryStringMessage.h"
 #include "syncexec.h"
+#include "dynamic_menus.h"
 /*-----------------------------------------------------------------------------------*/
 /* what's the max number of commands in the queue ??*/
 #define arbitrary_max_queued_callbacks 20
@@ -20,7 +21,6 @@ static int c_n1 = -1;
 extern void SetCommandflag(int flag) ;
 extern int GetCommand(char *str);
 extern int StoreCommand ( char *command); 
-extern integer C2F (ismenu)(void); 
 /*-----------------------------------------------------------------------------------*/
 int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONST char ** argv)
 {
@@ -112,7 +112,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
 	{
       /* flush */
       if (C2F(iop).ddt==-1) message_scilab("tclsci_message_8");
-      while (C2F(ismenu)() && ncomm<arbitrary_max_queued_callbacks-1)
+      while (ismenu() && ncomm<arbitrary_max_queued_callbacks-1)
 	  {
         ncomm++;
         comm[ncomm] = (char *) MALLOC (bsiz+1);
@@ -123,7 +123,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
         }
         seqf[ncomm]=GetCommand (comm[ncomm]);
       }
-      if (C2F(ismenu)()) message_scilab("tclsci_message_9");
+      if (ismenu()) message_scilab("tclsci_message_9");
       for (nc = 0 ; nc <= ncomm ; nc++ )
 	  {
         C2F(tksynchro)(&c_n1);  /* set sciprompt to -1 (scilab busy) */

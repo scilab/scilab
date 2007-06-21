@@ -20,6 +20,7 @@
 #include "basout.h"
 #include "../../gui/includes/checkevts.h"
 #include "../../gui/includes/sxevents.h"
+#include "dynamic_menus.h"
 
 #undef Lstk
 #undef Infstk
@@ -52,7 +53,6 @@ extern logical C2F(eqid)();
 extern int C2F(funs)();
 
 extern int C2F(bexec)();
-extern int C2F(ismenu)();
 extern int C2F(getmen)();
 
 extern int C2F(print)();
@@ -488,7 +488,7 @@ int C2F(run)()
     Lct[8] = Ids[2 + Pt * nsiz];
 
     if (inxsci == 1 && scilab_timer_check() )  C2F(sxevents)();
-    if (C2F(ismenu)() == 1 && C2F(basbrk).interruptible) goto L115;
+    if (ismenu() == 1 && C2F(basbrk).interruptible) goto L115;
     goto L10;
   }
   /*     fin for */
@@ -598,7 +598,7 @@ int C2F(run)()
     Ids[2 + Pt * nsiz] = nc;
     Rstk[Pt] = 616;
     if (inxsci == 1 && scilab_timer_check() ) C2F(sxevents)();
-    if (C2F(ismenu)() == 1 && C2F(basbrk).interruptible) goto L115;
+    if (ismenu() == 1 && C2F(basbrk).interruptible) goto L115;
     goto L10;
   } else {
     if (Istk[Pstk[Pt]] == 9) {
@@ -656,7 +656,7 @@ int C2F(run)()
  L70:
   /* re entering run to continue macro evaluation */
   if (inxsci == 1 && scilab_timer_check() ) C2F(sxevents)();
-  if (C2F(ismenu)() == 1 && C2F(basbrk).interruptible) goto L115;
+  if (ismenu() == 1 && C2F(basbrk).interruptible) goto L115;
 
  L71:
   /* reset proper values for l0 and nc if a control structure had been escaped*/
@@ -929,7 +929,7 @@ int C2F(run)()
   ++lc;
 
   if (inxsci == 1 && scilab_timer_check() ) C2F(sxevents)();
-  if (C2F(ismenu)() == 1 && C2F(basbrk).interruptible) goto L115;
+  if (ismenu() == 1 && C2F(basbrk).interruptible) goto L115;
 
   goto L10;
 

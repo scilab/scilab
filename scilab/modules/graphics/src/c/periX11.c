@@ -28,7 +28,7 @@
 #include "version.h"
 #include "math_graphics.h"
 #endif
-
+#include "dynamic_menus.h"
 #include "sci_mem_alloc.h"
 #include "math.h"
 #include "periX11.h"
@@ -49,14 +49,13 @@
 double t=0.; /*for xclick_any */
 extern void AddMenu  __PARAMS((integer *win_num, char *button_name, char **entries, integer *ne, integer *typ, char *fname, integer *ierr));
 extern int XRotDrawString(Display *dpy, XFontStruct *font, float angle, Drawable drawable, GC gc_, int x, int y, char *str);
-/** jpc_SGraph.c **/
+/** SGraph.c **/
 extern void ChangeBandF __PARAMS((int win_num,Pixel fg, Pixel bg));
 
 void CreatePopupWindow  __PARAMS((integer WinNum,Widget top,struct BCG *, Pixel *fg,Pixel *bg));
 extern void GViewportResize __PARAMS((struct BCG *ScilabXgc, int *width,int *height));
 
-/** jpc_Xloop.c **/
-extern integer C2F(ismenu) __PARAMS((void));
+/** Xloop.c **/
 extern int C2F(getmen) __PARAMS((char *btn_cmd,integer *lb,integer *entry));
 extern  integer C2F(sxevents)();
 extern void DisplayInit __PARAMS((char *string,Display **dpy,Widget *toplevel));
@@ -507,7 +506,7 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int g
 	  return;
 	}
       /** check for dynamic menu  **/
-      if ( (dyn_men == 1||dyn_men==3) &&  C2F(ismenu)()==1 ) {
+      if ( (dyn_men == 1||dyn_men==3) &&  ismenu()==1 ) {
 	int entry;
 	C2F(getmen)(str,lstr,&entry);
 	*ibutton = -2;
@@ -602,7 +601,7 @@ void C2F(xclick_any)(char *str, integer *ibutton, integer *x1, integer *yy1, int
     C2F(sxevents)();
 
    /** Check menu activation **/
-    if ( *istr==1 && C2F(ismenu)()==1 ) {
+    if ( *istr==1 && ismenu()==1 ) {
       int entry;
       C2F(getmen)(str,&lstr,&entry);
       *ibutton = -2;

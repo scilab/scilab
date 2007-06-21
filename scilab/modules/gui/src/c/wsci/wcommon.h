@@ -28,6 +28,7 @@
 #include "core_math.h"
 #include "../../../../graphics/includes/bcg.h" /* Scilab graphic window */
 #include "sciprint.h"
+#include "dynamic_menus.h"
 /*-----------------------------------------------------------------------------------*/
 
 #define MAX_ID_LEN 50		/* max length of an identifier */
@@ -125,7 +126,6 @@ extern int gp_printfile(HINSTANCE hInstance,HWND hwnd,char *filename, char *port
 /* Scilab_Xloop */
 extern int C2F(xscion)(int *i);
 extern int C2F(getmen)(char *,integer *,integer *);
-extern integer C2F(ismenu)(void);
 extern int GetCommand(char *);
 extern int StoreCommand1(char *,int);
 extern int StoreCommand(char *);

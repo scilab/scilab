@@ -73,6 +73,7 @@ extern int XTKsocket;
 
 #include "x_charproc.h"
 #include "xscimore.h"
+#include "dynamic_menus.h"
 
 #define CTRL_B                0x0002  /* back a character */
 #define CTRL_C                0x0003  /* redo line */
@@ -94,7 +95,6 @@ extern int getdiary();
 void C2F(diary) __PARAMS((char *str,int *n));
 void diary_nnl __PARAMS((char *str,int *n));
 typedef  int (*osc_func) ();
-extern int C2F(ismenu)();
 extern int C2F(sigbas)();
 /*
  * Check for both EAGAIN and EWOULDBLOCK, because some supposedly POSIX
@@ -1312,7 +1312,7 @@ int in_put(int interrupt)
       break;
     }
     /* escape if we accept input interruption and an event had been detected */
-    if (interrupt&&(C2F(ismenu)()==1)) return(-1);
+    if (interrupt&&(ismenu()==1)) return(-1);
 
     pty_read_bytes = 0;
     /* update the screen */

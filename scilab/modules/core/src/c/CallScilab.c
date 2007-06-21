@@ -15,6 +15,7 @@
 #include "inisci-c.h"
 #include "scirun.h"
 #include "scilabmode.h"
+#include "dynamic_menus.h"
 
 #ifdef _MSC_VER
 #define putenv _putenv
@@ -31,7 +32,6 @@ static int StartScilabIsOK=FALSE;
 /*-----------------------------------------------------------------------------------*/
 extern int setenvc(char *string,char *value);
 extern int C2F(inisci)(int *,int *,int *);
-extern int C2F(ismenu)();
 /*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 extern char *GetScilabDirectory(BOOL UnixStyle);
@@ -175,7 +175,7 @@ void ScilabDoOneEvent(void)
 			C2F(sxevents)();
 		#endif
 
-		while(C2F(ismenu)()==1 ) 
+		while(ismenu()==1 ) 
 		{
 			C2F(scirun)("quit;",(int)strlen("quit;"));
 		}

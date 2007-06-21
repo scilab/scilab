@@ -31,6 +31,7 @@
 #include "prompt.h"
 #include "MALLOC.h"
 #include "command.h"
+#include "dynamic_menus.h"
 #include "../../gui/src/c/wsci/printf.h"
 /*-----------------------------------------------------------------------------------*/
 #define TEXTUSER 0xf1
@@ -57,7 +58,7 @@ extern struct sci_hist *cur_entry;
 /*-----------------------------------------------------------------------------------*/
 extern BOOL IsWindowInterface(void);
 extern struct sci_hist * SearchBackwardInHistory(char *line);
-extern int C2F(ismenu) ();
+
 extern int C2F (sxevents) ();
 extern int IsFromC(void);
 extern void  SignalCtrC(void);
@@ -260,7 +261,7 @@ char * readline_nw (char *prompt, int interrupt)
   for (;;)
     {
       cur_char = special_getc ();
-      	if (interrupt&&(C2F(ismenu) () == 1))
+      	if (interrupt&&(ismenu () == 1))
       	{/* abort current line aquisition SS */
 		sendprompt=0;
 		new_line = (char *) alloc ((unsigned long) 2, "history");
@@ -452,7 +453,7 @@ char * readline_win (char *prompt,int interrupt)
   for (;;)
     {
 	 /* Moved below (Francois VOGEL, bug 1052) */
-	 if (interrupt && (C2F(ismenu) () == 1))
+	 if (interrupt && (ismenu () == 1))
       	{/* abort current line aquisition SS */
 		sendprompt=0;
 		new_line = (char *) alloc ((unsigned long) 2, "history");
@@ -464,7 +465,7 @@ char * readline_win (char *prompt,int interrupt)
 
      cur_char = Windows_getch();
 
-	 if (interrupt && (C2F(ismenu) () == 1))
+	 if (interrupt && (ismenu () == 1))
       	{/* abort current line aquisition SS */
 		sendprompt=0;
 		new_line = (char *) alloc ((unsigned long) 2, "history");
@@ -754,13 +755,13 @@ static char msdos_getch ()
   
   if (!IsFromC())
   {
-	  while( !_kbhit() && C2F(ismenu)()==0)  /* Test on C2F(ismenu) added (bug 1052) - Francois VOGEL */
+	  while( !_kbhit() && ismenu()==0)  /* Test on ismenu added (bug 1052) - Francois VOGEL */
 	  {
 		  C2F (sxevents) ();
 		  Sleep(1);
 	  }
   }
-  if (C2F(ismenu)()==1) return 0;  /* This line added to fix bug 1052 - Francois VOGEL */
+  if (ismenu()==1) return 0;  /* This line added to fix bug 1052 - Francois VOGEL */
 
   c = getch ();
   
