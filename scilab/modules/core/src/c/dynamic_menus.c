@@ -25,7 +25,7 @@
  *  PUBLIC : set_scig_command_handler(Scig_command_handler f)
  *           void reset_scig_command_handler() 
  *           int StoreCommand( char *command)
- *           integer C2F(ismenu)()
+ *           integer ismenu()
  *           int C2F(getmen)(char * btn_cmd,integer * lb, integer * entry)  
  */
 /*-----------------------------------------------------------------------------------*/
@@ -178,7 +178,7 @@ int GetCommand ( char *str)
   return flag;
 }
 
-integer C2F(ismenu)(void)
+integer ismenu(void)
 {
   /* Do not manage comands while compiling scilab function */
   if ( (commandQueue == NULL) || (C2F(com).comp[0] != 0)) 
@@ -194,7 +194,7 @@ integer C2F(ismenu)(void)
 int C2F(getmen)(char * btn_cmd,integer * lb, integer * entry)
 {
   int flag;
-  if (C2F(ismenu)()==1) 
+  if (ismenu()==1) 
     {
       flag=GetCommand(btn_cmd);
       *lb=(integer)strlen(btn_cmd);
@@ -207,11 +207,6 @@ int C2F(getmen)(char * btn_cmd,integer * lb, integer * entry)
       *entry=0;  /* This parameter entry seems to be unused. Probably a very old thing... */
     }
   return flag;
-}
-/*-----------------------------------------------------------------------------------*/
-void C2F(waitforinputend)( int *flag)
-{
-  wait_for_input_end=*flag;
 }
 /*-----------------------------------------------------------------------------------*/
 int iswaitingforinputend(void)
