@@ -46,14 +46,6 @@ AC_DEFUN([AC_PVM], [
 
 	AC_DEFINE([WITH_PVM],[],[With PVM])
 		
-	case "$host" in
-	*-*-mingw32*)
-		PVMARCH=MINGW
-		PVMHOSTERFILES="pvmwinrexec.o pvmwinrsh.o"
-		PVMHOSTER=h
-		;;
-	esac
-		
 	PVMLIBDIR=$PVMROOT/lib/$PVMARCH
 	AC_ARG_WITH(pvm-library,
 		[  --with-pvm-library=DIR  PVM library files are in DIR ],
@@ -61,18 +53,6 @@ AC_DEFUN([AC_PVM], [
 	])
 	AC_PVM_LIBRARY($USER_PVMLIBDIR)
 
-	case "$host" in
-	*-*-mingw32*)
-		# add src to PVMINCLUDE 
-		PVMINCLUDE="$PVMINCLUDE -I$SCIDIR/pvm3/src"
-		#     to have path with SCIDIR 
-		# PVMROOT=`echo $PVMROOT | sed -e "s+$SCIDIR+\\$(SCIDIR)+g" `
-		
-		PVMLIB=`echo $PVMLIB | sed -e "s+$SCIDIR/pvm3+\\$(PVMROOT)+g" `
-		PVMGLIB=`echo $PVMGLIB | sed -e "s+$SCIDIR/pvm3+\\$(PVMROOT)+g" `
-		PVMINCLUDE=`echo $PVMINCLUDE | sed -e "s+$SCIDIR/pvm3+\\$(PVMROOT)+g" ` 
-		;;
-	esac
 
 if test ! -z "$PVM_INCLUDE" -a ! -z "$PVM_LIB"; then
 	PVM_OK=1
