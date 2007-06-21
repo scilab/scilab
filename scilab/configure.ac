@@ -730,11 +730,10 @@ AM_CONDITIONAL(FFTW, test "$with_fftw" = yes)
 AC_ARG_WITH(mpi,
     [  --with-mpi	           compile with MPI library ])
 
-#if test "$with_mpi" = yes; then
-#   AC_PKG_OPENMPI
-#   AC_PKG_LAMPI
-   # do we have to manage other stuff here?
-#fi
+if test "$with_mpi" = yes; then
+   AC_OPENMPI()
+   # We will have to detect other implementation of OpenMPI
+fi
 AM_CONDITIONAL(MPI, test "$with_mpi" = yes)
 
 #################
@@ -1066,6 +1065,7 @@ modules/graphics/Makefile
 modules/renderer/Makefile
 modules/gui/Makefile
 modules/pvm/Makefile
+modules/mpi/Makefile
 modules/randlib/Makefile
 modules/tclsci/Makefile
 modules/wintools/Makefile
@@ -1165,38 +1165,20 @@ fi
 
 echo ""
 
-if test "$with_mpi" = yes; then
-   echo "MPI Configuration:"
-   echo "MPI LIBS ........... = $MPILIBS"
-   echo "MPI C Compiler ..... = $MPICC"
-   echo "MPI C++ Compiler ... = $MPICXX"
-   echo "MPI F77 Compiler ... = $MPIF77"
-else
-   echo "Not using MPI"
-fi
+#if test "$with_mpi" = yes; then
+#   echo "MPI Configuration:"
+#   echo "MPI LIBS ........... = $MPILIBS"
+#   echo "MPI C Compiler ..... = $MPICC"
+#   echo "MPI C++ Compiler ... = $MPICXX"
+#   echo "MPI F77 Compiler ... = $MPIF77"
+#else 
+#   echo "Not using MPI"
+#fi
 
-
-if test "$found_lampi" = "1"; then
-   echo "LAMPI Configuration:"
-   echo "LAMPI LIBS ........... = $LAMPI_LIBS"
-   echo "LAMPI C Compiler ..... = $LAMPI_CC"
-   echo "LAMPI LD Flags ....... = $LAMPI_LDFLAGS"
-   echo "LAMPI Headers ........ = $LAMPI_HEADER"
-   echo "LAMPI directory ...... = $LAMPI_DIR"
-
-   echo "LAMPI F77 Compiler ... = $MPIF77"
-else
-   echo "Not using MPI"
-fi
-
-if test "$found_openmpi" = "1"; then
+if test "$with_openmpi" != "no"; then
    echo "OpenMPI Configuration:"
    echo "OpenMPI LIBS ........... = $OPENMPI_LIBS"
    echo "OpenMPI C Compiler ..... = $OPENMPI_CC"
-   echo "OpenMPI LD Flags ....... = $OPENMPI_LDFLAGS"
-   echo "OpenMPI Headers ........ = $OPENMPI_HEADER"
-   echo "OpenMPI directory ...... = $OPENMPI_DIR"
-
    echo "OpenMPI F77 Compiler ... = $MPIF77"
 else
    echo "Not using MPI"
