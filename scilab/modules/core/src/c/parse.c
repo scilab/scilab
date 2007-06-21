@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include "timer.h"
 #include "stack-c.h"
+#include "dynamic_menus.h"
 
 #include "parse.h"
 #include "basout.h"
@@ -71,7 +72,6 @@ extern logical C2F(ptover)();
 extern int C2F(funs)();
 
 extern int C2F(bexec)();
-extern int C2F(ismenu)();
 extern int C2F(getmen)();
 
 extern int C2F(findequal)();
@@ -288,7 +288,7 @@ int C2F(parse)()
   /* ------------------------------------------------------------ */
  L15:
   if (inxsci == 1 && scilab_timer_check() ) C2F(sxevents)();
-  if (C2F(ismenu)() == 1 && C2F(basbrk).interruptible) {
+  if (ismenu() == 1 && C2F(basbrk).interruptible) {
     iret = 1;
     goto L96;
   }

@@ -768,7 +768,7 @@ void C2F(xclick_any)(char *str,integer *ibutton,integer* x1,integer * yy1, integ
 	}
 
       /** Check menu activation **/
-      if ( *istr==1 && C2F(ismenu)()==1 ) 
+      if ( *istr==1 && ismenu()==1 ) 
 	{
 	  int entry;
 	  C2F(getmen)(str,&lstr,&entry);
@@ -839,7 +839,7 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int g
       return;
     }
 
-    if ( dyn_men == 1 &&  C2F(ismenu)()==1 ) 
+    if ( dyn_men == 1 &&  ismenu()==1 ) 
     {
       int entry;
       C2F(getmen)(str,lstr,&entry);

@@ -287,7 +287,7 @@ int Xorgetchar(int interrupt)
     }
 	
     C2F(sxevents)();
-    if (interrupt&&(C2F(ismenu)()==1)) return(-1);
+    if (interrupt&&(ismenu()==1)) return(-1);
 
   }
 
