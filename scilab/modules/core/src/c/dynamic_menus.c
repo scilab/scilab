@@ -25,7 +25,7 @@
  *  PUBLIC : set_scig_command_handler(Scig_command_handler f)
  *           void reset_scig_command_handler() 
  *           int StoreCommand( char *command)
- *           integer ismenu()
+ *           integer C2F(ismenu)()
  *           int C2F(getmen)(char * btn_cmd,integer * lb, integer * entry)  
  */
 /*-----------------------------------------------------------------------------------*/
@@ -49,7 +49,6 @@ extern int get_is_reading  __PARAMS((void));
 extern BOOL IsToThePrompt(void);
 #endif /*_MSC_VER*/
 /*-----------------------------------------------------------------------------------*/
-static int wait_for_input_end=0; 
 static CommandRec *commandQueue = NULL;
 static Scig_command_handler scig_command_handler = scig_command_handler_none;
 /*-----------------------------------------------------------------------------------*/
@@ -207,13 +206,5 @@ int C2F(getmen)(char * btn_cmd,integer * lb, integer * entry)
       *entry=0;  /* This parameter entry seems to be unused. Probably a very old thing... */
     }
   return flag;
-}
-/*-----------------------------------------------------------------------------------*/
-int iswaitingforinputend(void)
-{
-  int iwait;
-  iwait=wait_for_input_end;
-  wait_for_input_end=0;
-  return iwait;
 }
 /*-----------------------------------------------------------------------------------*/
