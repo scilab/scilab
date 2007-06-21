@@ -220,7 +220,8 @@ fi
 
 echo "SCI : $SCI"
 echo "SCIBIN : $SCIBIN"
-#echo "SCIDATA : $SCIDATA"
+
+# Returns to the original path
 cd $OLDPWD
 if test "$DISPLAY" = ""; then
   DISPLAY="unix:0.0"
@@ -244,11 +245,9 @@ else
 fi
 export LD_LIBRARY_PATH
 
-#TCL_LIBRARY
-
-#TK_LIBRARY
 # --suppressions=$SCI/tools/valgrind.supp 
-VALGRIND_OPTIONS=" --gen-suppressions=all  --num-callers=6 --trace-children=yes --demangle=no --leak-check=yes --smc-check=all --db-attach=yes "
+# --gen-suppressions=all 
+VALGRIND_OPTIONS=" --num-callers=6 --trace-children=yes --demangle=no --leak-check=yes --smc-check=all --db-attach=yes "
 
 do_scilex()
 {
