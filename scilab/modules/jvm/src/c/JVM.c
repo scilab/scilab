@@ -112,9 +112,9 @@ BOOL startJVM(char *SCI_PATH)
 			vm_args.version = JNI_VERSION_1_4;
 #else
 #ifdef _MSC_VER
-			MessageBox(NULL,"Incorrect version JNI.","Error",MB_ICONEXCLAMATION|MB_OK);
+			MessageBox(NULL,"Incorrect version JNI (needs at least JDK 1.4)","Error",MB_ICONEXCLAMATION|MB_OK);
 #else
-			printf("\n Error : Incorrect version JNI.\n");
+			printf("\n Error : Incorrect version JNI (needs at least JDK 1.4).\n");
 #endif
 			exit(1);
 #endif
