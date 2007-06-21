@@ -392,7 +392,8 @@ includes/cvstr.h \
 includes/error_scilab.h \
 includes/GetXmlFileEncoding.h \
 includes/syncexec.h \
-includes/getfastcode.h 
+includes/getfastcode.h \
+includes/dynamic_menus.h
 
 #### core : demos files ####
 libscicore_la_demosintrodir=$(mydatadir)/demos/intro/
