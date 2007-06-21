@@ -39,7 +39,6 @@ typedef struct commandRec
 /*-----------------------------------------------------------------------------------*/
 int  scig_command_handler_none (char *command);
 extern Scig_command_handler set_scig_command_handler __PARAMS((Scig_command_handler f));
-extern int StoreCommand  __PARAMS((char *command));  
 extern int StoreCommand1  __PARAMS((char *command, int flag));  
 extern int GetCommand  __PARAMS((char *str));  
 extern int C2F (getmen) __PARAMS((char *btn_cmd, integer *lb, integer *entry));  
@@ -75,13 +74,9 @@ void reset_scig_command_handler ()
   scig_command_handler = scig_command_handler_none;
 }
 /*-----------------------------------------------------------------------------------*/
-/*
- * try to execute a command or add it to the end of command queue 
- */
-/*-----------------------------------------------------------------------------------*/
 int StoreCommand ( char *command)
 {
-	return (StoreCommand1 (command, 0)); /* jpc 1->0 */
+	return (StoreCommand1 (command, 0));
 }
 /*-----------------------------------------------------------------------------------*/
 /*
@@ -182,12 +177,7 @@ int GetCommand ( char *str)
     }
   return flag;
 }
-/*-----------------------------------------------------------------------------------*/
-/*
- * Checks if there's something on the 
- * commandQueue 
- */
-/*-----------------------------------------------------------------------------------*/
+
 integer C2F(ismenu)(void)
 {
   /* Do not manage comands while compiling scilab function */
