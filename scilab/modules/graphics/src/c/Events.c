@@ -8,6 +8,7 @@
 #include "WindowList.h"
 #include "Events.h"
 #include "GetProperty.h"
+#include "dynamic_menus.h"
 
 typedef struct but
 { int win; /* graphic window containing the locator */
@@ -18,7 +19,6 @@ typedef struct but
 } But;
 
 
-extern int StoreCommand1(char *,int);
 
 int demo_menu_activate=0; /* add a demo menu in the graphic Window */
 
@@ -59,7 +59,7 @@ int scig_click_handler_sci (int win,int x,int y,int ibut,int motion,int release)
       && strlen(sciGetEventHandler(pFigure)) > 0 )
   {
     sprintf(buf,"%s(%d,%d,%d,%d)",sciGetEventHandler(pFigure),win,x,y,ibut);
-    StoreCommand1(buf,0);
+    StoreCommand(buf);
     return 1;}
   else
     return 0;
@@ -100,7 +100,7 @@ void scig_deletegwin_handler_sci (int win)
       && strlen(sciGetEventHandler(pFigure)) > 0 )
   {
     sprintf(buf,"%s(%d,0,0,-1000)",sciGetEventHandler(pFigure),win);
-    StoreCommand1(buf,0);
+    StoreCommand(buf);
   }
 }
 /*-----------------------------------------------------------------------------------*/
