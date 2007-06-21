@@ -57,9 +57,9 @@ fftw \
 pvm \
 jvm
 
-if MPI
-SUBDIRS += mpi
-endif
+#if MPI
+#SUBDIRS += mpi
+#endif
 
 SUBDIRS += .
 
@@ -122,9 +122,9 @@ else
 libscilab_la_LIBADD += $(top_builddir)/modules/string/libscistring.la
 endif
 
-if MPI
-libscilab_la_LIBADD += $(top_builddir)/modules/mpi/libscimpi.la
-endif
+#if MPI
+#libscilab_la_LIBADD += $(top_builddir)/modules/mpi/libscimpi.la
+#endif
 
 if FFTW
 libscilab_la_LIBADD += $(top_builddir)/modules/fftw/libscifftw.la

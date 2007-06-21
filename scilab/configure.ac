@@ -1095,9 +1095,9 @@ modules/helptools/macros/xmlfiletohtml.sci
 #done
 
 
-if test "$with_mpi" = yes; then
-AC_CONFIG_FILES([modules/mpi/Makefile])
-fi
+#if test "$with_mpi" = yes; then
+#AC_CONFIG_FILES([modules/mpi/Makefile])
+#fi
 
 AC_OUTPUT
 

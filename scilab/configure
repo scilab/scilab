@@ -31813,10 +31813,9 @@ ac_config_files="$ac_config_files libs/lapack/Makefile libs/blas/Makefile libs/M
 #done
 
 
-if test "$with_mpi" = yes; then
-ac_config_files="$ac_config_files modules/mpi/Makefile"
-
-fi
+#if test "$with_mpi" = yes; then
+#AC_CONFIG_FILES([modules/mpi/Makefile])
+#fi
 
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
@@ -32997,7 +32996,6 @@ do
     "libs/Makefile") CONFIG_FILES="$CONFIG_FILES libs/Makefile" ;;
     "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
     "modules/helptools/macros/xmlfiletohtml.sci") CONFIG_FILES="$CONFIG_FILES modules/helptools/macros/xmlfiletohtml.sci" ;;
-    "modules/mpi/Makefile") CONFIG_FILES="$CONFIG_FILES modules/mpi/Makefile" ;;
 
   *) { { echo "$as_me:$LINENO: error: invalid argument: $ac_config_target" >&5
 echo "$as_me: error: invalid argument: $ac_config_target" >&2;}
