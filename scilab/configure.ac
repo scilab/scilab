@@ -1065,7 +1065,6 @@ modules/graphics/Makefile
 modules/renderer/Makefile
 modules/gui/Makefile
 modules/pvm/Makefile
-modules/mpi/Makefile
 modules/randlib/Makefile
 modules/tclsci/Makefile
 modules/wintools/Makefile
@@ -1094,6 +1093,11 @@ modules/helptools/macros/xmlfiletohtml.sci
 #for top_builddir in . .. ../.. $ac_auxdir $ac_auxdir/..; do
 #  test -f $top_builddir/configure && break
 #done
+
+
+if test "$with_mpi" = yes; then
+AC_CONFIG_FILES([modules/mpi/Makefile])
+fi
 
 AC_OUTPUT
 
