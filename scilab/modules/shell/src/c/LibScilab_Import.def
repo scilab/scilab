@@ -36,7 +36,7 @@ GetCurrentPrompt
 get_is_reading
 SendChar
 IsWindowInterface
-ismenu_
+ismenu
 SetTextAttr
 MyFGetSstdout
 MyFPutSstdout

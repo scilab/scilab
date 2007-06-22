@@ -5045,3 +5045,27 @@ char * sciGetEventHandler( sciPointObj * pObj )
   return NULL ;
 }
 /*-------------------------------------------------------------------------------------------*/
+double * sciGetAxesBounds( sciPointObj * pObj )
+{
+  switch( sciGetEntityType(pObj) )
+  {
+  case SCI_SUBWIN:
+    return pSUBWIN_FEATURE(pObj)->WRect;
+  default:
+    sciprint( "This object has no axes_bounds property.\n" ) ;
+    return NULL ;
+  }
+}
+/*-------------------------------------------------------------------------------------------*/
+double * sciGetMargins( sciPointObj * pObj )
+{
+  switch( sciGetEntityType(pObj) )
+  {
+  case SCI_SUBWIN:
+    return pSUBWIN_FEATURE(pObj)->ARect;
+  default:
+    sciprint( "This object has no margins property.\n" ) ;
+    return NULL ;
+  }
+}
+/*-------------------------------------------------------------------------------------------*/

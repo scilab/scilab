@@ -203,5 +203,8 @@ void sciGetScreenPosition( sciPointObj * pObj, int * posX, int * posY ) ;
 BOOL sciGetIsEventHandlerEnable( sciPointObj * pObj ) ;
 char * sciGetEventHandler( sciPointObj * pObj ) ;
 
+double * sciGetAxesBounds( sciPointObj * pObj ) ;
+double * sciGetMargins( sciPointObj * pObj ) ;
+
 
 #endif /* __SCI_GET_PROPERTY__ */

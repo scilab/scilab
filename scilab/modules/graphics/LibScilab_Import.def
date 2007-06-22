@@ -24,6 +24,7 @@ syncexec_
 cha1_
 deletewin_
 StoreCommand1
+StoreCommand
 sciReturnString
 sciReturnDouble
 sciReturnRowVector
@@ -94,7 +95,6 @@ getSCIpath
 TryToGetDC
 RefreshGraphToolBar
 getmen_
-ismenu_
 sxevents_
 CtrlCHit
 GPopupResize
