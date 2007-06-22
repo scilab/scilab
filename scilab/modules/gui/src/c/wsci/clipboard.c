@@ -69,7 +69,7 @@ DWORD WINAPI SendInputText(LPVOID lpParam )
 
 	//if (SpecialPaste==TRUE)CleanPromptFromText(TextToSend); /* Desactiver pour le moment */
 		
-	while ( C2F (ismenu) () == 1 ) {Sleep(TEMPOTOUCHE);}
+	while ( ismenu () == 1 ) {Sleep(TEMPOTOUCHE);}
 	/* Il n'y a plus rien dans la queue des commandes */
 	while ( lptw->bGetCh == FALSE ) {Sleep(TEMPOTOUCHE);}
 	/* Nous sommes au prompt */
@@ -101,14 +101,14 @@ DWORD WINAPI SendInputText(LPVOID lpParam )
 				*lptw->KeyBufIn = 13;
 				SetReadyOrNotForAnewLign(FALSE);
 				while ( IsReadyForAnewLign() == FALSE ) {Sleep(TEMPOTOUCHE);}
-				while ( C2F (ismenu) () == 1 ) {Sleep(TEMPOTOUCHE);}
+				while ( ismenu () == 1 ) {Sleep(TEMPOTOUCHE);}
 				while ( lptw->bGetCh == FALSE ) {Sleep(TEMPOTOUCHE);}
 			}
 		if (TextToSend[i]==13) 
 			{
 				SetReadyOrNotForAnewLign(FALSE);
 				while ( IsReadyForAnewLign() == FALSE ) {Sleep(TEMPOTOUCHE);}
-				while ( C2F (ismenu) () == 1 ) {Sleep(TEMPOTOUCHE);}
+				while ( ismenu () == 1 ) {Sleep(TEMPOTOUCHE);}
 				while ( lptw->bGetCh == FALSE ) {Sleep(TEMPOTOUCHE);}
 				if (i<lg-1)
 				{

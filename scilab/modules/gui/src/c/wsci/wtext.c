@@ -1828,7 +1828,7 @@ DWORD WINAPI WriteTextThread(LPVOID lpParam)
 	line=(char *)lpParam;
 	
 	EnterCriticalSection(&Sync);
-	while ( C2F (ismenu) () == 1 ) {Sleep(TEMPOTOUCHE);}
+	while ( ismenu () == 1 ) {Sleep(TEMPOTOUCHE);}
 	/* Il n'y a plus rien dans la queue des commandes */
 	while ( lptw->bGetCh == FALSE ) {Sleep(TEMPOTOUCHE);}
 		
@@ -1923,7 +1923,7 @@ BOOL WriteIntoScilab(LPTW lptw,char *StringCommand)
 {
 	BOOL retour=FALSE;
 	
-	if  (( ( C2F (ismenu) () == 1 ) || ( lptw->bGetCh == FALSE ) ) && (!get_is_reading()) )
+	if  (( ( ismenu () == 1 ) || ( lptw->bGetCh == FALSE ) ) && (!get_is_reading()) )
 	{
 		StoreCommand(StringCommand);
 	}
@@ -1977,7 +1977,7 @@ BOOL IsToThePrompt(void)
 	BOOL retour=FALSE;
 	LPTW lptw=GetTextWinScilab();
 
-	if  (( ( C2F (ismenu) () == 1 ) || ( lptw->bGetCh == FALSE ) ) && (!get_is_reading()) ) retour=FALSE;
+	if  (( ( ismenu () == 1 ) || ( lptw->bGetCh == FALSE ) ) && (!get_is_reading()) ) retour=FALSE;
 	else retour=TRUE;
 
 	return retour;
