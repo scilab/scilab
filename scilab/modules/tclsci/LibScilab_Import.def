@@ -13,7 +13,7 @@ EXPORTS
  SetCommandflag
  StoreCommand
  GetCommand
- ismenu_
+ ismenu
  recu_
  syncexec_
  GetScreenProperty
