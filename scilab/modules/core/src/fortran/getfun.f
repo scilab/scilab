@@ -82,7 +82,7 @@ c     strip blanks at the beginning of the line
       if(buf(m:m).eq.' ') goto 16
 c
       if(buf(m:m+10).eq.'endfunction') goto 61
-      if(buf(m:m+7).eq.'function'.or.buf(m:m+7).eq.'FUNCTION') then
+      if(buf(m:m+7).eq.'function') then
          if(first.eq.1) then
             j=m+7
             goto 25            
