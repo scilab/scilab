@@ -199,7 +199,7 @@
 ::msgcat::mcset zh_tw "Hide watch variables" "隱藏檢視變數"
 ::msgcat::mcset zh_tw "Show call stack" "顯示呼叫堆疊"
 ::msgcat::mcset zh_tw "Hide call stack" "隱藏呼叫堆疊"
-::msgcat::mcset zh_tw "Undefined or non editable elements are not legal in variable" "變數中未定義元素"
+::msgcat::mcset zh_tw "Undefined elements are not legal in variable" "變數中未定義元素"
 ::msgcat::mcset zh_tw ".\nThis variable will not be updated in Scilab." ".\n此變數無法在 Scilab 內更新"
 ::msgcat::mcset zh_tw "Illegal undefined element found" "找到不合法之元素"
 

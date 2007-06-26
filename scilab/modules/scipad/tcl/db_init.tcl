@@ -1,13 +1,10 @@
 set funnameargs ""
 set funnames ""
 set unklabel "<?>" ;# Warning: if this is changed it must be changed accordingly in FormatStringsForWatch.sci
-set noedit_l "<<"  ;# Ditto
-set noedit_r ">>"  ;# Ditto
 set curdropind 0
 set dragndroplb ""
 set watchvars ""
-array unset watchvarsvals
-array unset watchvarstysi          ; # type and size of watch variables
+array unset watchvarsprops
 array unset varsforautowatch       ; # list of current variables for the auto watch feature input, output, globals and locals)
 set callstackfuns ""
 set callstacklines ""

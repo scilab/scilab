@@ -3057,3 +3057,13 @@ Francois VOGEL, 18/06/07
    Enrico)
  * Run to return point (Shift-F11) works correctly with recursive functions
  * version --> 6.114
+
+Francois VOGEL, 26/06/07
+ * Fixed Tcl error when calling the Replace dialog box (introduced in 6.113)
+ * Editability of watch variables is now set in function FormatStringsForWatch,
+   which fixes the watching of strings containing << or >>
+ * watchvarsvals and watchvarstysi reworked in a multidimensional array named
+   watchvarsprops that contains also the editability flag
+ * Fixed: Closing and reopening the watch window deleted all the watch
+   variables (this bug was introduced in 6.106)
+ * version --> 6.115

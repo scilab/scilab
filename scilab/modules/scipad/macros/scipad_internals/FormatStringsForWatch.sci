@@ -1,5 +1,5 @@
-function [svar,tysi] = FormatStringsForWatch(var)
-// Return two strings describing variable var in some way
+function [svar,tysi,editable] = FormatStringsForWatch(var)
+// Return three strings describing variable var in some way
 // svar:
 //   Convertion of variable var content into a single string (not a matrix
 //   of strings), taking into account the type of var.
@@ -8,19 +8,24 @@ function [svar,tysi] = FormatStringsForWatch(var)
 //   pass the string to Tcl/Tk.
 // tysi:
 //   A string containing the type and size of var
-// Both strings are used for the watch window of the debugger in Scipad.
+// editable:
+//   A string being "true" if var can be edited by the user in the Scipad
+//   debugger, and "false" otherwise
+// All this is used for the watch window of the debugger in Scipad.
 // Authors: François Vogel, 2004-2007, Enrico Segre 2007
 
   unklabel = "<?>"; // Warning: if this is changed it must be changed accordingly in db_init.tcl
-  noedit_l = "<<";  // Ditto
-  noedit_r = ">>";  // Ditto
+  noedit_l = "<<";
+  noedit_r = ">>";
 
   if execstr("tvar = type(var);","errcatch") <> 0 then
     warning(LocalizeForScipad(" what you try to watch is not supported by the debugger"));
     svar = unklabel;
     tysi = unklabel;
+    editable = "false";
 
   else
+
     tysi = LocalizeForScipad("Type:") + " " + typeof(var) 
     
     if and(tvar<>[1 2 4 5 6 7 8 9 10 11 13 14 15 16 17 128 129 130]) then
@@ -30,6 +35,7 @@ function [svar,tysi] = FormatStringsForWatch(var)
           +LocalizeForScipad(" - this type is not supported by the debugger"));
       svar = noedit_l+typeof(var)+" (type "+string(tvar)+")"+noedit_r;
       tysi = tysi + " " + LocalizeForScipad("(unsupported)")
+      editable = "false";
 
     else
       // supported cases
@@ -39,7 +45,7 @@ function [svar,tysi] = FormatStringsForWatch(var)
       if tvar == 16 then tvar = 15; listpref = "t"; end;
       if tvar == 17 then tvar = 15; listpref = "m"; end;
 
-// some common cathegorizatizations, factored out
+      // some common cathegorizatizations, factored out
       if or(tvar==[1 2 4 5 6 7 8 9 10]) then
         [nr,nc] = size(var);
         losi= LocalizeForScipad("size:") + " " + string(nr) + "x" + string(nc);
@@ -64,7 +70,12 @@ function [svar,tysi] = FormatStringsForWatch(var)
         tysi = tysi + ", " + losi
       end
 
-//case by case
+      editable = "true";
+      if or(tvar==[9 11 13 14 128 129 130]) then
+          editable = "false";
+      end
+
+      //case by case
       select tvar
 
       case 1 then  // real or complex matrix
@@ -163,7 +174,11 @@ function [svar,tysi] = FormatStringsForWatch(var)
           defs = definedfields(var);
           for i = 1:length(var)
             if find(defs==i) <> [] then
-              svar = svar + FormatStringsForWatch(getfield(i,var)) + ",";
+              [e_svar,e_tysi,e_edit] = FormatStringsForWatch(getfield(i,var));
+              svar = svar + e_svar + ",";
+              // a list is non editable as soon as one of its elements
+              // (possibly itself nested in a sublist) is non editable
+              if e_edit=="false" then editable = "false"; end
             else
               svar = svar + unklabel + ",";
             end

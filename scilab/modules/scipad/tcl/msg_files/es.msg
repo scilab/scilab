@@ -110,7 +110,7 @@
 ::msgcat::mcset es "Call stack:" "Llamar la pila del programa:"
 ::msgcat::mcset es "Hide watch &variables" "Esconder las &variables"
 ::msgcat::mcset es "Hide call &stack" "Esconder la &pila"
-::msgcat::mcset es "Undefined or non editable elements are not legal in variable"\
+::msgcat::mcset es "Undefined elements are not legal in variable"\
                    "Elementos no definidos no son validos en variables"
 ::msgcat::mcset es ".\nThis variable will not be updated in Scilab."\
                    ".\nEsta variable no sera actualizada en Scilab"

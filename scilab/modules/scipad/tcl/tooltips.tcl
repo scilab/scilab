@@ -36,7 +36,7 @@ proc update_bubble_watchvar {w type mousexy} {
 # Because there is no <Enter> and <Leave> events for listbox individual
 # entries, some gymnastics must be done here to update the bubble when
 # the mouse is hovering over a new entry
-    global pad watchvarstysi
+    global pad watchvarsprops
     global go_on_update_bubble_watchvar hovereditem_update_bubble_watchvar
 
     if {$type == "enter" && $go_on_update_bubble_watchvar} {
@@ -84,7 +84,7 @@ proc update_bubble_watchvar {w type mousexy} {
 
         # destroy the previous bubble and create the new one
         update_bubble leave $w [list ] ""
-        update_bubble enter $w $mousexy $watchvarstysi($wvar)
+        update_bubble enter $w $mousexy $watchvarsprops($wvar,tysi)
 
         # wait a bit and play the game again
         after 100 "update_bubble_watchvar $w $type \[winfo pointerxy $pad\]"

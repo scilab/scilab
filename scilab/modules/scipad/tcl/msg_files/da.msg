@@ -98,7 +98,7 @@
 ::msgcat::mcset da "Hide watch variables" "Skjul overvågede variable"
 ::msgcat::mcset da "Show call stack" "Vis call stack"
 ::msgcat::mcset da "Hide call stack" "Skjul kaldbunken"
-::msgcat::mcset da "Undefined or non editable elements are not legal in variable" "Udefinerede elementer er ulovlige i variable"
+::msgcat::mcset da "Undefined elements are not legal in variable" "Udefinerede elementer er ulovlige i variable"
 ::msgcat::mcset da ".\nThis variable will not be updated in Scilab." ".\nDenne variabel bliver ikke opdateret i Scilab"
 ::msgcat::mcset da "Illegal undefined element found" "Ulovlig udefineret element fundet"
 

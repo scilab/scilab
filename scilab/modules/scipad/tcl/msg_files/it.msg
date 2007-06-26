@@ -234,7 +234,7 @@
                    "indicatore per Scilab pronto/occupato"
 ::msgcat::mcset it "Debugger state indicator"\
                    "indicatore dello stato del debugger"
-::msgcat::mcset it "Undefined or non editable elements are not legal in\
+::msgcat::mcset it "Undefined elements are not legal in\
                     variable"\
                    "Gli elementi indefiniti sono illegali in questa variabile"
 ::msgcat::mcset it ".\nThis variable will not be updated in Scilab."\

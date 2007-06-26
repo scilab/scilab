@@ -104,12 +104,7 @@ endfunction
  createsetinscishellcomm should be recursive)
  example: watch Q in   M=list(1,2,[1,2]);M(5)=33;Q=list(M,888);
 
--watching a string containing either $unklabel or $noedit_l doesn't work
-
--Tcl/Tk 8.5 only: alt-f followed by 1 correctly opens the first file of the
- recent list, but Scipad rings a bell and opens also another menu afterwards.
- Does not happen with 8.4. Try to get a more stable/recent version of 8.5
- first...
+-watching a string containing $unklabel doesn't work
 
 
 Old bugs/whishes which have been hacked but could have been done better:

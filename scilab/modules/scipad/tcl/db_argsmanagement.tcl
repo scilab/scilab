@@ -21,7 +21,7 @@ proc Addarg_bp {w focusbut leftwin rightwin} {
         # check that what the user selected for edit is actually editable
         # (this check only concerns the watch window, not the configure box
         if {[string first listboxinput $leftwin] == -1} {
-            set editable [lindex [createsetinscishellcomm $argname] 3]
+            set editable [isvareditable $argname]
             if {!$editable} {
                 tk_messageBox -message \
                     [concat [mc "This variable can be watched but cannot be edited!"]\
@@ -120,10 +120,10 @@ proc Addarg_bp {w focusbut leftwin rightwin} {
 
 proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
 # Close the add argument dialog and take the values of its fields into account
-    global unklabel noedit_l
+    global unklabel
     global argname argvalue
     global spin funvars funvarsvals
-    global watchvars watchvarsvals watchvarstysi
+    global watchvars watchvarsprops
     global getvaluefromscilab
     global debugger_unwatchable_vars
 
@@ -179,27 +179,29 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
             }
         }
 
-        # 4. Attempts to update a global auto watched variable are killed
-        # Note that only attempts to redefine globals must be killed, but not
-        # necessarily attempts to redefine other non editable variables
-        # (starting with $noedit_l). This is because redefining globals would
-        # mess the visibility assumptions in the debugged function, i.e. the
-        # debug tool would potentially change the behavior of what is debugged.
-        # This is however not true for $noedit_l variables that can just
+        # 4. Attempts to update a global auto watched variable must be killed.
+        # Note that in principle only attempts to redefine globals must be
+        # killed, but not necessarily attempts to redefine other non editable
+        # variables. This is because redefining globals would mess the
+        # visibility assumptions in the debugged function, i.e. the debug tool
+        # would potentially change the behavior of what is debugged. This is
+        # however not true for non global non editable variables that could
         # be redefined to some editable types with no such side effect. However
         # allowing this wouldn't make a lot of sense, especially since the user
-        # previously got the non editable warning message box, so $noedit_l
-        # variables are also prevented from being redefined
+        # previously got the non editable warning message box, so all non
+        # editable variables are prevented from being redefined, not only the
+        # global ones
         if {$alreadyexists == "true" && \
             [string first listboxinput $leftwin] == -1 && \
-            ([isglobalautowatchvar $argname] || [string first $noedit_l $watchvarsvals($argname)] != -1)} {
+            ![isvareditable $argname]} {
             if {$pos == -1} {set pos 0}
             $leftwin selection set $pos
             return
         }
 
         # 5. Decide whether a roundtrip to Scilab is needed, so that when
-        # variable var has been modified, the watched var(1:2) will be also updated
+        # variable var has been modified, the watched var(1:2) (for instance)
+        # will also be updated
         set mustdoScilabroundtrip false
         if {[string first listboxinput $leftwin] == -1 && \
             [getdbstate] == "DebugInProgress" && \
@@ -234,13 +236,14 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
                 # the proc was called from the watch window
                 if {$argvalue == "" || $getvaluefromscilab == 1} {set argvalue $unklabel}
                 set watchvars [linsert $watchvars $pos $argname]
-                set watchvarsvals($argname) $argvalue
-                set watchvarstysi($argname) $unklabel
+                set watchvarsprops($argname,value) $argvalue
+                set watchvarsprops($argname,tysi) $unklabel
+                set watchvarsprops($argname,editable) true
                 if {$argvalue == $unklabel} {
                     getonewatchvarfromshell $argname
                     set fullcomm "TCL_EvalStr(\"updatewatch_bp\",\"scipad\");"
                     ScilabEval_lt $fullcomm "seq"
-                    set argvalue $watchvarsvals($argname)
+                    set argvalue $watchvarsprops($argname,value)
                 }
             }
             $leftwin insert $pos $argname
@@ -262,13 +265,14 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
                 # the proc was called from the watch window
                 if {$argvalue == ""} {set argvalue $unklabel}
                 if {$getvaluefromscilab == 1} {set forceget "true"}
-                set watchvarsvals($argname) $argvalue
-                set watchvarstysi($argname) $unklabel
+                set watchvarsprops($argname,value) $argvalue
+                set watchvarsprops($argname,tysi) $unklabel
+                set watchvarsprops($argname,editable) true
                 if {$forceget == "true"} {
                     getonewatchvarfromshell $argname
                     set fullcomm "TCL_EvalStr(\"updatewatch_bp\",\"scipad\");"
                     ScilabEval_lt $fullcomm "seq"
-                    set argvalue $watchvarsvals($argname)
+                    set argvalue $watchvarsprops($argname,value)
                 }
                 set selitem $eltindex
             }
@@ -371,15 +375,20 @@ proc quickAddWatch_bp {watchvar} {
 
 proc syncwatchvarsfromlistbox {} {
     global lbvarname lbvarval
-    global watchvars watchvarsvals
+    global watchvars watchvarsprops
+    foreach var $watchvars {
+        unset watchvarsprops($var,value)
+    }
     set watchvars ""
-    array unset watchvarsvals
     for {set i 0} {$i < [$lbvarname size]} {incr i} {
         set wvarname [$lbvarname get $i]
         set watchvars "$watchvars $wvarname"
         set wvarvalue [$lbvarval get $i]
-        set watchvarsvals($wvarname) $wvarvalue
+        set watchvarsprops($wvarname,value) $wvarvalue
     }
+    # <TODO>: here a slight memory leak: watchvarsprops(...,tysi & editable)
+    #         are not sync'ed to the watch window content (this proc is called
+    #         when closing the watch: no leak, or when removing an item: leak!)
 }
 
 proc removefuns_bp {textarea} {

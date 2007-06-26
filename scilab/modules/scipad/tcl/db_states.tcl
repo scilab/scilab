@@ -7,7 +7,7 @@
 # ---------
 # |NoDebug|---->---- insertremove_bp  |
 # ---------          removeall_bp     |
-# | \ \    \         showwatch_bp     |
+# | \ \    \                |         |
 # |  \ \    \               |
 # |   \ \    \----<---------|
 # |    \ \
@@ -15,7 +15,7 @@
 # |      \ \-------->----------|ReadyForDebug|-->-- insertremove_bp  |
 # |       \  canceldebug_bp    ---------------      removeall_bp     |
 # |        \--------<----------| /   /\             configurefoo_bp  |
-# |                             /   /  \            showwatch_bp
+# |                             /   /  \                  |
 # |canceldebug_bp   <enddebug> /   /    \                 |
 # |                |goonwo_bp /   /      \                |
 # |                          /   /        \-------<-------|
@@ -33,10 +33,10 @@
 #              \         stepbystepinto_bp   |
 #               \        stepbystepover_bp   |
 #                \       stepbystepout_bp    |
-#                 \      showwatch_bp        |
-#                  \     runtoreturnpoint_bp |
-#                   \    runtocursor_bp      |
-#                    \   break_bp
+#                 \      runtoreturnpoint_bp |
+#                  \     runtocursor_bp      |
+#                   \    break_bp            |
+#                    \            |
 #                     \           |
 #                      \----<-----|
 #
