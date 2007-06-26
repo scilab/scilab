@@ -3,12 +3,12 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
 #include "machine.h" 
+#include "norenderer.h"
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/ 
-extern int  Scierror __PARAMS((int iv,char *fmt,...));
-/*-----------------------------------------------------------------------------------*/ 
-int C2F(gw_module_skeleton)()
+int C2F(gw_renderer)()
 {
-	Scierror(999,"module_skeleton interface not installed.\r\n");
+	Scierror(999,"module Renderer interface not installed.\r\n");
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 
