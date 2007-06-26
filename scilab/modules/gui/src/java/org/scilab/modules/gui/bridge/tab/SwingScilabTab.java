@@ -3,6 +3,8 @@
 
 package org.scilab.modules.gui.bridge.tab;
 
+import javax.swing.JPanel;
+
 import org.flexdock.docking.DockingConstants;
 import org.flexdock.view.View;
 
@@ -114,8 +116,8 @@ public class SwingScilabTab extends View implements Tab {
 	 * @return index of member in ArrayList
 	 */
 	private int addMember(SwingScilabConsole member) {
-		this.setContentPane(member);
-		return this.getComponentZOrder(member);
+		this.setContentPane((JPanel) member);
+		return this.getComponentZOrder((JPanel) member);
 	}
 
 	// TODO : Check wether we want a Canvas in a Tab or not.
