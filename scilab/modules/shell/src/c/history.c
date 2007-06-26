@@ -446,4 +446,8 @@ int GetSaveHistoryAfterNcommands(void)
 	return SaveHistoryAfterNcommands;
 }
 /*-----------------------------------------------------------------------------------*/
-
+void setNewSearchInHistory(int state)
+{
+  NewSearchInHistory = (BOOL) state;
+}
+/*-----------------------------------------------------------------------------------*/

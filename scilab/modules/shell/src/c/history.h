@@ -64,4 +64,11 @@ int C2F(gethistory) _PARAMS((char *fname)); /* Affiche le contenu de l'historiqu
 void GetCommentDateSession(char *line,int BeginSession);
 int GetSaveHistoryAfterNcommands(void);
 int CreSmatFromHist(char *fname, int number, sci_hist *Parcours);
+/** 
+ * Sets the flag indicating that we begin a new search in history 
+ * or if we continue from current position in history index
+ *
+ * @param state value==1 if we begin a new search
+ */
+void setNewSearchInHistory(int state);
 #endif 
