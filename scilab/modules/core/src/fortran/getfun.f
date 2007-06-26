@@ -152,7 +152,7 @@ c
 
 c     first line
  24   if(l.gt.lpt(1)) goto 26
-      if(buf(m:m+7).eq.'function'.or.buf(m:m+7).eq.'FUNCTION') then
+      if(buf(m:m+7).eq.'function') then
          j=m+6
       elseif(k.ne.slash .or. buf(m+1:m+1).ne.buf(m:m)) then
          ierr=4
