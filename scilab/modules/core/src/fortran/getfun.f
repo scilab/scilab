@@ -382,6 +382,12 @@ c
          istk(l)=eol
          l=l+1
          sym=eol
+      elseif (sym.ne.eol) then
+         call getsym
+         if (sym.ne.eol) then
+            ierr=4
+            goto 90
+         endif
       endif
       if(lunit.eq.0) goto 33
       first=0
