@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<Setting>
+	<!-- Scilab configuration -->
+	<Profile name="scilab">
+		<!-- Welcome line -->
+		<WelcomeLine useCache="true" value=""/>
+	
+		<!-- GUI Part -->
+		<PromptView useCache="true" value="org.scilab.modules.console.SciPromptView"/>
+		<OutputView useCache="true" value="org.scilab.modules.console.SciOutputView"/>
+		<InputCommandView useCache="true" value="org.scilab.modules.console.SciInputCommandView"/>
+		<BackgroundColor useCache="true" value="#FFFFCC"/>
+		<ScrollableUnitIncrement useCache="true" value="20"/>
+		<ScrollableBlockIncrement useCache="true" value="20"/>
+		
+		<!-- Core part -->
+		<OutputViewStyledDocument useCache="true" value="javax.swing.text.DefaultStyledDocument"/>
+		<InputCommandViewStyledDocument useCache="true" value="javax.swing.text.DefaultStyledDocument"/>
+		<InputParsingManager useCache="true" value="com.artenum.console.core.DefaultInputParsingManager"/>
+		<GenericInterpreter useCache="true" value="org.scilab.modules.console.SciInterpreter"/>
+		<CompletionManager useCache="true" value="com.artenum.console.implementation.FakeDictionnaryCompletionManager"/>
+		<CompletionWindow useCache="true" value="com.artenum.console.ui.CompletionWindowImpl"/>
+		<HistoryManager useCache="true" value="org.scilab.modules.console.SciHistoryManager"/>
+		
+		<!-- Key mapping -->
+		<KeyMapping>
+			<Key name="VK_ENTER" mask="" action="VALIDATE"/>
+			<Key name="VK_SPACE" mask="CTRL_MASK" action="COMPLETION"/>
+			<Key name="VK_UP" mask="" action="PREVIOUS_HISTORY_LINE"/>
+			<Key name="VK_DOWN" mask="" action="NEXT_HISTORY_LINE"/>
+                        <Key name="VK_A" mask="CTRL_MASK" action="LINE_BEGINNING"/>
+                        <Key name="VK_B" mask="CTRL_MASK" action="PREVIOUS_CHAR"/>
+                        <Key name="VK_D" mask="CTRL_MASK" action="DEL_NEXT_CHAR"/>
+                        <Key name="VK_E" mask="CTRL_MASK" action="LINE_END"/>
+                        <Key name="VK_F" mask="CTRL_MASK" action="NEXT_CHAR"/>
+                        <Key name="VK_H" mask="CTRL_MASK" action="DEL_PREVIOUS_CHAR"/>
+                        <Key name="VK_K" mask="CTRL_MASK" action="DEL_END_OF_LINE"/>
+			<Key name="VK_N" mask="CTRL_MASK" action="NEXT_HISTORY_LINE"/>
+			<Key name="VK_P" mask="CTRL_MASK" action="PREVIOUS_HISTORY_LINE"/>
+                        <Key name="VK_U" mask="CTRL_MASK" action="DEL_WHOLE_LINE"/>
+                        <Key name="VK_W" mask="CTRL_MASK" action="DEL_LAST_WORD"/>
+		</KeyMapping>
+
+		<!-- Key mapping -->
+		<ActionMapping>
+			<Action name="VALIDATE" className="com.artenum.console.core.action.ValidationAction"/>
+			<Action name="COMPLETION" className="com.artenum.console.core.action.CompletionAction"/>
+			<Action name="LINE_BEGINNING" className="org.scilab.modules.console.LineBeginningAction"/>
+			<Action name="PREVIOUS_HISTORY_LINE" className="com.artenum.console.core.action.GetPreviousAction"/>
+			<Action name="NEXT_HISTORY_LINE" className="com.artenum.console.core.action.GetNextAction"/>
+			<Action name="LINE_END" className="org.scilab.modules.console.LineEndAction"/>
+			<Action name="PREVIOUS_CHAR" className="org.scilab.modules.console.PreviousCharAction"/>
+			<Action name="NEXT_CHAR" className="org.scilab.modules.console.NextCharAction"/>
+			<Action name="DEL_PREVIOUS_CHAR" className="org.scilab.modules.console.DelPreviousCharAction"/>
+			<Action name="DEL_NEXT_CHAR" className="org.scilab.modules.console.DelNextCharAction"/>
+			<Action name="DEL_LAST_WORD" className="org.scilab.modules.console.DelLastWordAction"/>
+			<Action name="DEL_END_OF_LINE" className="org.scilab.modules.console.DelEndOfLineAction"/>
+			<Action name="DEL_WHOLE_LINE" className="org.scilab.modules.console.DelWholeLineAction"/>
+		</ActionMapping>
+		
+	</Profile>
+	<!-- Test configuration -->
+	<Profile name="test">
+		<!-- Welcome line -->
+		<WelcomeLine useCache="true" value="Welcome on the generic console"/>
+	
+		<!-- GUI Part -->
+		<PromptView useCache="true" value="com.artenum.console.ui.PromptViewImpl"/>
+		<OutputView useCache="true" value="com.artenum.console.ui.OutputViewImpl"/>
+		<InputCommandView useCache="true" value="com.artenum.console.ui.InputCommandViewImpl"/>
+		<BackgroundColor useCache="true" value="#FFFFCC"/>
+		<ScrollableUnitIncrement useCache="true" value="20"/>
+		<ScrollableBlockIncrement useCache="true" value="20"/>
+		
+		<!-- Core part -->
+		<OutputViewStyledDocument useCache="true" value="javax.swing.text.DefaultStyledDocument"/>
+		<InputCommandViewStyledDocument useCache="true" value="javax.swing.text.DefaultStyledDocument"/>
+		<InputParsingManager useCache="true" value="com.artenum.console.core.DefaultInputParsingManager"/>
+		<GenericInterpreter useCache="true" value="com.artenum.console.implementation.JSR270Interpreter"/>
+		<CompletionManager useCache="true" value="com.artenum.console.implementation.FakeDictionnaryCompletionManager"/>
+		<CompletionWindow useCache="true" value="com.artenum.console.ui.CompletionWindowImpl"/>
+		
+		<!-- Key mapping -->
+		<KeyMapping>
+			<Key name="VK_ENTER" mask="" action="VALIDATE"/>
+			<Key name="VK_SPACE" mask="CTRL_MASK" action="COMPLETION"/>
+		</KeyMapping>
+		
+		<!-- Key mapping -->
+		<ActionMapping>
+			<Action name="VALIDATE" className="com.artenum.console.core.action.ValidationAction"/>
+			<Action name="COMPLETION" className="com.artenum.console.core.action.CompletionAction"/>
+		</ActionMapping>
+		
+	</Profile>
+	
+</Setting>
