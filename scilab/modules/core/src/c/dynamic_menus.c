@@ -6,7 +6,6 @@
  */
 /*-----------------------------------------------------------------------------------*/
 #include <string.h>
-#include "machine.h"
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "dynamic_menus.h"
@@ -39,7 +38,6 @@ typedef struct commandRec
 /*-----------------------------------------------------------------------------------*/
 int  scig_command_handler_none (char *command);
 extern Scig_command_handler set_scig_command_handler __PARAMS((Scig_command_handler f));
-extern int StoreCommand1  __PARAMS((char *command, int flag));  
 extern int GetCommand  __PARAMS((char *str));  
 extern int C2F (getmen) __PARAMS((char *btn_cmd, integer *lb, integer *entry));  
 extern void  reset_scig_command_handler __PARAMS((void));
