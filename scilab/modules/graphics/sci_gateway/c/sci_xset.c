@@ -271,13 +271,10 @@ int sci_xset( char *fname, unsigned long fname_len )
 
       }
       else if ( strcmp(cstk(l1),"wpdim") == 0) {
-        pFIGURE_FEATURE(sciGetParent(subwin))->figuredimwidth=x[0];  
-        pFIGURE_FEATURE(sciGetParent(subwin))->figuredimheight=x[1];
-
+        sciSetDimension(sciGetParent(subwin), x[0], x[1] ) ;
       } 
       else if ( strcmp(cstk(l1),"wdim") == 0) {
-        pFIGURE_FEATURE(sciGetParent(subwin))->windowdimwidth=x[0];  
-        pFIGURE_FEATURE(sciGetParent(subwin))->windowdimheight=x[1];
+        sciSetWindowDim(sciGetParent(subwin), x[0], x[1] ) ;
 
       } /*Ajout A.Djalel le 10/11/03 */
       else if ( strcmp(cstk(l1),"pixmap") == 0) {

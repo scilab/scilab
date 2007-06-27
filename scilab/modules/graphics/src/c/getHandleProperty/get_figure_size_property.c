@@ -25,25 +25,8 @@ int get_figure_size_property( sciPointObj * pobj )
     return -1;
   }
 
-  if ( pobj != getFigureModel() )
-  {
-    int cur ;
-    int num=pFIGURE_FEATURE(pobj)->number ;
-    integer itmp = 0 ;
-    integer na   = 0 ;
-    integer x[2] ;
-     
-    C2F(dr)("xget","window",&itmp,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
-    C2F(dr)("xset","window",&num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-
-    C2F(dr)("xget","wpdim",&itmp,x,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-    C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-
-    pFIGURE_FEATURE(pobj)->figuredimwidth  = x[0] ;  
-    pFIGURE_FEATURE(pobj)->figuredimheight = x[1] ; 
-  }
-  figureSize[0] = pFIGURE_FEATURE(pobj)->figuredimwidth;
-  figureSize[1] = pFIGURE_FEATURE(pobj)->figuredimheight;
+  figureSize[0] = sciGetWidth(pobj) ;
+  figureSize[1] = sciGetHeight(pobj) ;
 
   return sciReturnRowVector( figureSize, 2 ) ;
 
