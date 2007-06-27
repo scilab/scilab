@@ -3,7 +3,7 @@
 /* @author Ledru Sylvestre */
 /*-----------------------------------------------------------------------------------*/
 #ifndef __SCIPRINT_ND_H__
-#ifndef __SCIPRINT_ND_H__
+#define __SCIPRINT_ND_H__
 #include "machine.h"
 
 /**
