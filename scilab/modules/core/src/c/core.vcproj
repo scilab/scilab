@@ -694,6 +694,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sciprint_nd.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sciquit.c"
 				>
 			</File>
