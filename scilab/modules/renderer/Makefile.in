@@ -130,7 +130,15 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 	src/cpp/BuildDrawingObserver.cpp \
 	src/cpp/DrawableObjectJoGL.cpp src/cpp/GetJavaProperty.cpp \
 	src/cpp/SetJavaProperty.cpp src/cpp/DrawableObject.cpp \
-	src/cpp/DrawingBridge.cpp sci_gateway/c/gw_renderer.c
+	src/cpp/DrawingBridge.cpp src/cpp/subwinDrawing/CameraJoGL.cpp \
+	src/cpp/subwinDrawing/CameraBridge.cpp \
+	src/cpp/subwinDrawing/DrawableSubwinBridgeFactory.cpp \
+	src/cpp/subwinDrawing/CameraFactory.cpp \
+	src/cpp/subwinDrawing/DrawableSubwinJoGL.cpp \
+	src/cpp/subwinDrawing/DrawableSubwinBridge.cpp \
+	src/cpp/subwinDrawing/Camera.cpp \
+	src/cpp/subwinDrawing/CameraBridgeFactory.cpp \
+	sci_gateway/c/gw_renderer.c
 @GUI_TRUE@am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableSubwin.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableFigureJoGL.lo \
@@ -180,7 +188,15 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 @GUI_TRUE@	libscirenderer_la-GetJavaProperty.lo \
 @GUI_TRUE@	libscirenderer_la-SetJavaProperty.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableObject.lo \
-@GUI_TRUE@	libscirenderer_la-DrawingBridge.lo
+@GUI_TRUE@	libscirenderer_la-DrawingBridge.lo \
+@GUI_TRUE@	libscirenderer_la-CameraJoGL.lo \
+@GUI_TRUE@	libscirenderer_la-CameraBridge.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableSubwinBridgeFactory.lo \
+@GUI_TRUE@	libscirenderer_la-CameraFactory.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableSubwinJoGL.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableSubwinBridge.lo \
+@GUI_TRUE@	libscirenderer_la-Camera.lo \
+@GUI_TRUE@	libscirenderer_la-CameraBridgeFactory.lo
 @GUI_TRUE@am__objects_2 = libscirenderer_la-gw_renderer.lo
 @GUI_FALSE@am_libscirenderer_la_OBJECTS =  \
 @GUI_FALSE@	libscirenderer_la-norenderer.lo
@@ -423,7 +439,15 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/cpp/GetJavaProperty.cpp \
 @GUI_TRUE@src/cpp/SetJavaProperty.cpp \
 @GUI_TRUE@src/cpp/DrawableObject.cpp \
-@GUI_TRUE@src/cpp/DrawingBridge.cpp
+@GUI_TRUE@src/cpp/DrawingBridge.cpp \
+@GUI_TRUE@src/cpp/subwinDrawing/CameraJoGL.cpp \
+@GUI_TRUE@src/cpp/subwinDrawing/CameraBridge.cpp \
+@GUI_TRUE@src/cpp/subwinDrawing/DrawableSubwinBridgeFactory.cpp \
+@GUI_TRUE@src/cpp/subwinDrawing/CameraFactory.cpp \
+@GUI_TRUE@src/cpp/subwinDrawing/DrawableSubwinJoGL.cpp \
+@GUI_TRUE@src/cpp/subwinDrawing/DrawableSubwinBridge.cpp \
+@GUI_TRUE@src/cpp/subwinDrawing/Camera.cpp \
+@GUI_TRUE@src/cpp/subwinDrawing/CameraBridgeFactory.cpp
 
 
 # List of the gateway c files
@@ -579,6 +603,11 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-BuildDrawingObserver.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-Camera.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CameraBridge.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CameraBridgeFactory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CameraFactory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CameraJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableFigure.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableArc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableArcFactory.Plo@am__quote@
@@ -613,7 +642,10 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSegs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSegsFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSubwin.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSubwinBridge.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSubwinBridgeFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSubwinFactory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSubwinJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSurface.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSurfaceFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableText.Plo@am__quote@
@@ -1036,6 +1068,62 @@ libscirenderer_la-DrawingBridge.lo: src/cpp/DrawingBridge.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/DrawingBridge.cpp' object='libscirenderer_la-DrawingBridge.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawingBridge.lo `test -f 'src/cpp/DrawingBridge.cpp' || echo '$(srcdir)/'`src/cpp/DrawingBridge.cpp
+
+libscirenderer_la-CameraJoGL.lo: src/cpp/subwinDrawing/CameraJoGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-CameraJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-CameraJoGL.Tpo -c -o libscirenderer_la-CameraJoGL.lo `test -f 'src/cpp/subwinDrawing/CameraJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/CameraJoGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-CameraJoGL.Tpo $(DEPDIR)/libscirenderer_la-CameraJoGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/CameraJoGL.cpp' object='libscirenderer_la-CameraJoGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-CameraJoGL.lo `test -f 'src/cpp/subwinDrawing/CameraJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/CameraJoGL.cpp
+
+libscirenderer_la-CameraBridge.lo: src/cpp/subwinDrawing/CameraBridge.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-CameraBridge.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-CameraBridge.Tpo -c -o libscirenderer_la-CameraBridge.lo `test -f 'src/cpp/subwinDrawing/CameraBridge.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/CameraBridge.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-CameraBridge.Tpo $(DEPDIR)/libscirenderer_la-CameraBridge.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/CameraBridge.cpp' object='libscirenderer_la-CameraBridge.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-CameraBridge.lo `test -f 'src/cpp/subwinDrawing/CameraBridge.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/CameraBridge.cpp
+
+libscirenderer_la-DrawableSubwinBridgeFactory.lo: src/cpp/subwinDrawing/DrawableSubwinBridgeFactory.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableSubwinBridgeFactory.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableSubwinBridgeFactory.Tpo -c -o libscirenderer_la-DrawableSubwinBridgeFactory.lo `test -f 'src/cpp/subwinDrawing/DrawableSubwinBridgeFactory.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/DrawableSubwinBridgeFactory.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-DrawableSubwinBridgeFactory.Tpo $(DEPDIR)/libscirenderer_la-DrawableSubwinBridgeFactory.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/DrawableSubwinBridgeFactory.cpp' object='libscirenderer_la-DrawableSubwinBridgeFactory.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableSubwinBridgeFactory.lo `test -f 'src/cpp/subwinDrawing/DrawableSubwinBridgeFactory.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/DrawableSubwinBridgeFactory.cpp
+
+libscirenderer_la-CameraFactory.lo: src/cpp/subwinDrawing/CameraFactory.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-CameraFactory.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-CameraFactory.Tpo -c -o libscirenderer_la-CameraFactory.lo `test -f 'src/cpp/subwinDrawing/CameraFactory.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/CameraFactory.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-CameraFactory.Tpo $(DEPDIR)/libscirenderer_la-CameraFactory.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/CameraFactory.cpp' object='libscirenderer_la-CameraFactory.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-CameraFactory.lo `test -f 'src/cpp/subwinDrawing/CameraFactory.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/CameraFactory.cpp
+
+libscirenderer_la-DrawableSubwinJoGL.lo: src/cpp/subwinDrawing/DrawableSubwinJoGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableSubwinJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableSubwinJoGL.Tpo -c -o libscirenderer_la-DrawableSubwinJoGL.lo `test -f 'src/cpp/subwinDrawing/DrawableSubwinJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/DrawableSubwinJoGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-DrawableSubwinJoGL.Tpo $(DEPDIR)/libscirenderer_la-DrawableSubwinJoGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/DrawableSubwinJoGL.cpp' object='libscirenderer_la-DrawableSubwinJoGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableSubwinJoGL.lo `test -f 'src/cpp/subwinDrawing/DrawableSubwinJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/DrawableSubwinJoGL.cpp
+
+libscirenderer_la-DrawableSubwinBridge.lo: src/cpp/subwinDrawing/DrawableSubwinBridge.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableSubwinBridge.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableSubwinBridge.Tpo -c -o libscirenderer_la-DrawableSubwinBridge.lo `test -f 'src/cpp/subwinDrawing/DrawableSubwinBridge.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/DrawableSubwinBridge.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-DrawableSubwinBridge.Tpo $(DEPDIR)/libscirenderer_la-DrawableSubwinBridge.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/DrawableSubwinBridge.cpp' object='libscirenderer_la-DrawableSubwinBridge.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableSubwinBridge.lo `test -f 'src/cpp/subwinDrawing/DrawableSubwinBridge.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/DrawableSubwinBridge.cpp
+
+libscirenderer_la-Camera.lo: src/cpp/subwinDrawing/Camera.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-Camera.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-Camera.Tpo -c -o libscirenderer_la-Camera.lo `test -f 'src/cpp/subwinDrawing/Camera.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/Camera.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-Camera.Tpo $(DEPDIR)/libscirenderer_la-Camera.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/Camera.cpp' object='libscirenderer_la-Camera.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-Camera.lo `test -f 'src/cpp/subwinDrawing/Camera.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/Camera.cpp
+
+libscirenderer_la-CameraBridgeFactory.lo: src/cpp/subwinDrawing/CameraBridgeFactory.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-CameraBridgeFactory.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-CameraBridgeFactory.Tpo -c -o libscirenderer_la-CameraBridgeFactory.lo `test -f 'src/cpp/subwinDrawing/CameraBridgeFactory.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/CameraBridgeFactory.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-CameraBridgeFactory.Tpo $(DEPDIR)/libscirenderer_la-CameraBridgeFactory.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/CameraBridgeFactory.cpp' object='libscirenderer_la-CameraBridgeFactory.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-CameraBridgeFactory.lo `test -f 'src/cpp/subwinDrawing/CameraBridgeFactory.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/CameraBridgeFactory.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

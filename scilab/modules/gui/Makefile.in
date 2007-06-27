@@ -50,7 +50,6 @@ host_triplet = @host@
 DIST_COMMON = $(libscigui_la_include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
 @GUI_TRUE@am__append_1 = \
-@GUI_TRUE@src/c/xsci/x_VTPrsTbl.c \
 @GUI_TRUE@src/c/xsci/x_main.c \
 @GUI_TRUE@src/c/getlookandfeel.c \
 @GUI_TRUE@src/c/setlookandfeel.c \
@@ -141,10 +140,10 @@ libscigui_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/string/libscistring.la \
 	$(top_builddir)/modules/tclsci/libscitclsci.la
 am__libscigui_la_SOURCES_DIST = src/c/xsci/IsConsoleMode.c \
-	src/c/xsci/mainscic.c src/c/xsci/x_VTPrsTbl.c \
-	src/c/xsci/x_main.c src/c/getlookandfeel.c \
-	src/c/setlookandfeel.c src/c/getinstalledlookandfeels.c \
-	src/c/TerminateGui.c src/c/xsci/wf_w_util.c src/c/xsci/utils.c \
+	src/c/xsci/mainscic.c src/c/xsci/x_main.c \
+	src/c/getlookandfeel.c src/c/setlookandfeel.c \
+	src/c/getinstalledlookandfeels.c src/c/TerminateGui.c \
+	src/c/xsci/wf_w_util.c src/c/xsci/utils.c \
 	src/c/xsci/x_cursor.c src/c/xsci/wf_f_read.c \
 	src/c/xsci/wf_f_util.c src/c/xsci/x_tabs.c src/c/xsci/x_misc.c \
 	src/c/xsci/wf_e_edit.c src/c/xsci/windows.c \
@@ -185,8 +184,7 @@ am__libscigui_la_SOURCES_DIST = src/c/xsci/IsConsoleMode.c \
 	sci_gateway/fortran/sci_setmenu_old.f \
 	sci_gateway/fortran/sci_addmenu_old.f \
 	sci_gateway/fortran/sci_delmenu_old.f
-@GUI_TRUE@am__objects_1 = libscigui_la-x_VTPrsTbl.lo \
-@GUI_TRUE@	libscigui_la-x_main.lo \
+@GUI_TRUE@am__objects_1 = libscigui_la-x_main.lo \
 @GUI_TRUE@	libscigui_la-getlookandfeel.lo \
 @GUI_TRUE@	libscigui_la-setlookandfeel.lo \
 @GUI_TRUE@	libscigui_la-getinstalledlookandfeels.lo \
@@ -680,7 +678,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-wf_w_setup.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-wf_w_util.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-windows.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-x_VTPrsTbl.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-x_button.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-x_charproc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-x_cursor.Plo@am__quote@
@@ -738,13 +735,6 @@ libscigui_la-mainscic.lo: src/c/xsci/mainscic.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/mainscic.c' object='libscigui_la-mainscic.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-mainscic.lo `test -f 'src/c/xsci/mainscic.c' || echo '$(srcdir)/'`src/c/xsci/mainscic.c
-
-libscigui_la-x_VTPrsTbl.lo: src/c/xsci/x_VTPrsTbl.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-x_VTPrsTbl.lo -MD -MP -MF $(DEPDIR)/libscigui_la-x_VTPrsTbl.Tpo -c -o libscigui_la-x_VTPrsTbl.lo `test -f 'src/c/xsci/x_VTPrsTbl.c' || echo '$(srcdir)/'`src/c/xsci/x_VTPrsTbl.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-x_VTPrsTbl.Tpo $(DEPDIR)/libscigui_la-x_VTPrsTbl.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/x_VTPrsTbl.c' object='libscigui_la-x_VTPrsTbl.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-x_VTPrsTbl.lo `test -f 'src/c/xsci/x_VTPrsTbl.c' || echo '$(srcdir)/'`src/c/xsci/x_VTPrsTbl.c
 
 libscigui_la-x_main.lo: src/c/xsci/x_main.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-x_main.lo -MD -MP -MF $(DEPDIR)/libscigui_la-x_main.Tpo -c -o libscigui_la-x_main.lo `test -f 'src/c/xsci/x_main.c' || echo '$(srcdir)/'`src/c/xsci/x_main.c

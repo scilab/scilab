@@ -14,7 +14,6 @@ src/c/xsci/mainscic.c
 
 if GUI
 GUI_C_SOURCES += \
-src/c/xsci/x_VTPrsTbl.c \
 src/c/xsci/x_main.c \
 src/c/getlookandfeel.c \
 src/c/setlookandfeel.c \

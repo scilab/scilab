@@ -56,7 +56,16 @@ src/cpp/DrawableObjectJoGL.cpp \
 src/cpp/GetJavaProperty.cpp \
 src/cpp/SetJavaProperty.cpp \
 src/cpp/DrawableObject.cpp \
-src/cpp/DrawingBridge.cpp
+src/cpp/DrawingBridge.cpp \
+src/cpp/subwinDrawing/CameraJoGL.cpp \
+src/cpp/subwinDrawing/CameraBridge.cpp \
+src/cpp/subwinDrawing/DrawableSubwinBridgeFactory.cpp \
+src/cpp/subwinDrawing/CameraFactory.cpp \
+src/cpp/subwinDrawing/DrawableSubwinJoGL.cpp \
+src/cpp/subwinDrawing/DrawableSubwinBridge.cpp \
+src/cpp/subwinDrawing/Camera.cpp \
+src/cpp/subwinDrawing/CameraBridgeFactory.cpp
+
 
 
 # List of the gateway c files
