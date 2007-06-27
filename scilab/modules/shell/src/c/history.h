@@ -10,8 +10,7 @@
 #include <stdlib.h>
 
 #ifndef	_MSC_VER
-  #include "machine.h"
-  extern char *getenv();
+#include "machine.h"
 #endif
 
 
@@ -22,7 +21,7 @@ extern void reset_history(void);
   #define STRICT
 #endif
 
-#include "../../core/src/c/inffic.h" /* get_sci_data_strings */
+#include "inffic.h" /* get_sci_data_strings */
 #include "cluni0.h"
 
 extern void write_scilab  __PARAMS((char *s));
