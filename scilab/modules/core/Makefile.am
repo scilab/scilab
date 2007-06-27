@@ -52,6 +52,7 @@ src/c/timer.c \
 src/c/stack2.c \
 src/c/Scierror.c \
 src/c/sciprint.c \
+src/c/sciprint_nd.c \
 src/c/link.c \
 src/c/xscion.c \
 src/c/SciEnv.c \
@@ -302,13 +303,12 @@ sci_gateway/fortran/sci_debug.f \
 sci_gateway/fortran/sci_error.f \
 sci_gateway/fortran/sci_isglobal.f
 
+libscicore_la_CFLAGS=  -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ $(XML_FLAGS) 
 
-
-libscicore_la_CFLAGS=  -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ $(XML_FLAGS)
 libscicore_la_LDFLAGS = $(XML_LIBS)
 pkglib_LTLIBRARIES = libscicore.la
 
-libscicore_la_SOURCES = $(CORE_C_SOURCES) $(CORE_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscicore_la_SOURCES = $(CORE_C_SOURCES) $(CORE_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(JNI_SOURCES)
 
 libscicore_la_LIBADD = \
 	$(top_builddir)/libs/blas/libsciblas.la \
