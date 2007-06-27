@@ -420,9 +420,23 @@ typedef struct
 sciRange;  
 
 
-/**@name Figure
+/**
+ * FigureData only used by figure model
+ */
+typedef struct
+{
+  int figureWidth ;
+  int figureHeight ;
+  int windowWidth ;
+  int windowHeight ;
+  int windowPosition[2] ;
+  double * colorMap ;
+  int numColors ;
+}
+FigureModelData ;
+
+/**
  * Structure used to specify Figure (different to XGC) 
- * @see 
  */
 typedef struct
 {/** will be integrated in the new structure      */
@@ -436,17 +450,8 @@ typedef struct
   /** specifies le length of the string name */
   int namelen;
   /** specifies the number of this window            */
-  int number;			       
-  /** specifies the dimension of this graphic        */
-  int figuredimwidth;		       
-  int figuredimheight;		       
-  /* specifies the dimension of this figure         */
-  int windowdimwidth;		       
-  int windowdimheight;	
-  /* specifies the dimension of this window         */
-  /** */
-  int inrootposx;
-  int inrootposy;
+  int number;
+
   /** specifies the colr map                         */
   double *pcolormap;
   /** specifies if this window is iconified*/
@@ -472,6 +477,8 @@ typedef struct
   char * eventHandler         ; /**< Name of the EventHandler function */
   BOOL   isEventHandlerEnable ; /**< flag enabling or disabling eventhandler */
   
+  FigureModelData * pModelData ; /**< To be used by figure model */
+
   int * user_data; /* adding 27.06.05 */
   int size_of_user_data;
   

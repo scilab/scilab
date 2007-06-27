@@ -10,6 +10,7 @@
 #include "DrawableRectangleImpFactory.h"
 #include "DrawableRectangle.h"
 #include "../getHandleDrawer.h"
+#include "../subwinDrawing/CameraFactory.h"
 
 namespace sciGraphics
 {
@@ -28,7 +29,7 @@ DrawableObject * DrawableRectangleFactory::create( void )
 void DrawableRectangleFactory::update( void )
 {
   DrawableRectangleImpFactory imp ;
-  imp.setDrawedRectangle( (DrawableRectangle *)getHandleDrawer(m_pDrawed) ) ;
+  imp.setDrawedRectangle( getRectangleDrawer(m_pDrawed) ) ;
   imp.update();
 }
 /*------------------------------------------------------------------------------------------*/

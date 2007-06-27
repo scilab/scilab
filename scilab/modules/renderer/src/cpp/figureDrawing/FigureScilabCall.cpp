@@ -12,6 +12,7 @@
 
 extern "C"
 {
+#include "JniUtils.h"
 #include "GetProperty.h"
 }
 
@@ -21,7 +22,8 @@ JNIEXPORT void JNICALL Java_org_scilab_modules_renderer_figureDrawing_FigureScil
   int figIndex = (int) figureId ;
   sciPointObj * curFig = sciIsExistingFigure(&figIndex) ;
   if ( curFig == NULL ) { return ;}
-  ((sciGraphics::DrawableFigure*)sciGraphics::getHandleDrawer(curFig))->drawInContext() ;
+  jniSetCurrentEnv(env) ;
+  (sciGraphics::getFigureDrawer(curFig))->drawInContext() ;
 }
 /*-----------------------------------------------------------------------------------*/
 

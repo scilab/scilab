@@ -10,6 +10,7 @@
 
 
 #include "DrawableFigure.h"
+#include "DrawableFigureImp.h"
 
 namespace sciGraphics
 {

@@ -42,5 +42,13 @@ int sciprint2(int iv,char *fmt,...);
  */
 void sciprint_full(char *fmt,...) ;
 
+#ifdef _MSC_VER
+struct tagTW;
+/**
+ * To access variable textwin
+ */
+struct tagTW * getTextWin( void ) ;
+#endif
+
 #endif /* __SCIPRINT_H__ */
 /*-----------------------------------------------------------------------------------*/ 

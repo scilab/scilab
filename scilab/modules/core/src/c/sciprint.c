@@ -22,6 +22,10 @@
 #ifdef _MSC_VER
   #define vsnprintf _vsnprintf
   TW textwin;
+  TW * getTextWin( void )
+  {
+    return &textwin;
+  }
 #endif
 /*-----------------------------------------------------------------------------------*/ 
 #ifndef _MSC_VER
@@ -62,7 +66,7 @@ void  sciprint(char *fmt,...)
 	else 
 	{
 		#ifdef _MSC_VER
-		 TextPutS (&textwin,s_buf);
+		 TextPutS (getTextWin(),s_buf);
 		#else
 		 C2F(xscisrn)(s_buf,&lstr,0L);
 		#endif

@@ -199,6 +199,26 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\cpp\subwinDrawing\Camera.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\subwinDrawing\CameraBridge.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\subwinDrawing\CameraBridgeFactory.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\subwinDrawing\CameraFactory.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\subwinDrawing\CameraJoGL.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\figureDrawing\ConcreteDrawableFigure.cpp"
 				>
 			</File>
@@ -335,7 +355,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\cpp\subwinDrawing\DrawableSubwinBridge.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\subwinDrawing\DrawableSubwinBridgeFactory.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\subwinDrawing\DrawableSubwinFactory.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\subwinDrawing\DrawableSubwinJoGL.cpp"
 				>
 			</File>
 			<File
@@ -402,6 +434,26 @@
 			>
 			<File
 				RelativePath=".\src\cpp\BuildDrawingObserver.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\subwinDrawing\Camera.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\subwinDrawing\CameraBridge.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\subwinDrawing\CameraBridgeFactory.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\subwinDrawing\CameraFactory.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\subwinDrawing\CameraJoGL.h"
 				>
 			</File>
 			<File
@@ -545,7 +597,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\cpp\subwinDrawing\DrawableSubwinBridge.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\subwinDrawing\DrawableSubwinBridgeFactory.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\subwinDrawing\DrawableSubwinFactory.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\subwinDrawing\DrawableSubwinJoGL.h"
 				>
 			</File>
 			<File
@@ -581,7 +645,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\cpp\GetJavaProperty.h"
+				RelativePath=".\includes\GetJavaProperty.h"
 				>
 			</File>
 			<File
@@ -613,7 +677,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\cpp\SetJavaProperty.h"
+				RelativePath=".\includes\SetJavaProperty.h"
 				>
 			</File>
 		</Filter>

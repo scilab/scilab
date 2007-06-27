@@ -27,7 +27,7 @@ namespace sciGraphics
 
 /*------------------------------------------------------------------------------------------*/
 DrawableFigureJoGL::DrawableFigureJoGL( DrawableFigure * drawer )
-  : DrawableObjectImp(drawer), DrawableFigureImp( drawer ), DrawableObjectJoGL(drawer, "org/scilab/modules/renderer/figureDrawing/DrawableFigureJoGL") {}
+  : DrawableObjectImp(drawer), DrawableFigureImp(drawer), DrawableObjectJoGL(drawer, "org/scilab/modules/renderer/figureDrawing/DrawableFigureJoGL") {}
 /*------------------------------------------------------------------------------------------*/
 DrawableFigureJoGL::~DrawableFigureJoGL( void )
 {
@@ -39,13 +39,6 @@ void DrawableFigureJoGL::drawCanvas( void )
 {
   // We call the display function to be sure to be in the right context
   jniCallVoidFunctionSafe( m_oDrawableObject, "display", "" ) ;
-}
-/*------------------------------------------------------------------------------------------*/
-void DrawableFigureJoGL::updateInfoMessage( void )
-{
-  jstring infoMessage = jniCreateStringCopy( sciGetInfoMessage( m_pDrawer->getDrawedObject() ) ) ;
-  jniCallVoidFunctionSafe( m_oDrawableObject, "updateInfoMessage", "Ljava/lang/String;", infoMessage ) ;
-  jniDeleteLocalEntity( infoMessage ) ;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::openRenderingCanvas( int figureIndex )
@@ -107,6 +100,141 @@ void DrawableFigureJoGL::getColorMap( double rgbMat[] )
   jniCopyJavaDoubleArray( javaCMap, rgbMat ) ;
   
   jniDeleteLocalEntity(javaCMap) ;
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableFigureJoGL::getSize( int size[2] )
+{
+  jmethodID getSizeMethod = NULL ;
+  jniUpdateCurrentEnv();
+  JNIEnv * curEnv = jniGetCurrentJavaEnv() ;
+
+  // width
+  getSizeMethod = curEnv->GetMethodID( m_oDrawableClass, "getCanvasWidth", "()I" ) ;
+  if ( !jniCheckLastCall(TRUE) )
+  {
+    Scierror( 999, "Error when calling function %s.\r\n", "getCanvasWidth" ) ;
+    return ;
+  }
+
+  size[0] = curEnv->CallIntMethod( m_oDrawableObject, getSizeMethod ) ;
+  if ( !jniCheckLastCall(TRUE) )
+  {
+    Scierror( 999, "Error when calling function %s.\r\n", "getCanvasWidth" ) ;
+    return ;
+  }
+
+  // height
+  getSizeMethod = curEnv->GetMethodID( m_oDrawableClass, "getCanvasHeight", "()I" ) ;
+  if ( !jniCheckLastCall(TRUE) )
+  {
+    Scierror( 999, "Error when calling function %s.\r\n", "getCanvasHeight" ) ;
+    return ;
+  }
+
+  size[1] = curEnv->CallIntMethod( m_oDrawableObject, getSizeMethod ) ;
+  if ( !jniCheckLastCall(TRUE) )
+  {
+    Scierror( 999, "Error when calling function %s.\r\n", "getCanvasHeight" ) ;
+    return ;
+  }
+
+
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableFigureJoGL::setSize( const int size[2] )
+{
+  jniCallVoidFunctionSafe(m_oDrawableObject, "setCanvasSize", "II", size[0], size[1] ) ;
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableFigureJoGL::getWindowPosition( int pos[2] )
+{
+  jmethodID getPosMethod = NULL ;
+  jniUpdateCurrentEnv();
+  JNIEnv * curEnv = jniGetCurrentJavaEnv() ;
+
+  // X coord
+  getPosMethod = curEnv->GetMethodID( m_oDrawableClass, "getWindowPosX", "()I" ) ;
+  if ( !jniCheckLastCall(TRUE) )
+  {
+    Scierror( 999, "Error when calling function %s.\r\n", "getWindowPosX" ) ;
+    return ;
+  }
+
+  pos[0] = curEnv->CallIntMethod( m_oDrawableObject, getPosMethod ) ;
+  if ( !jniCheckLastCall(TRUE) )
+  {
+    Scierror( 999, "Error when calling function %s.\r\n", "getWindowPosX" ) ;
+    return ;
+  }
+
+  // Y coord
+  getPosMethod = curEnv->GetMethodID( m_oDrawableClass, "getWindowPosY", "()I" ) ;
+  if ( !jniCheckLastCall(TRUE) )
+  {
+    Scierror( 999, "Error when calling function %s.\r\n", "getWindowPosY" ) ;
+    return ;
+  }
+
+  pos[1] = curEnv->CallIntMethod( m_oDrawableObject, getPosMethod ) ;
+  if ( !jniCheckLastCall(TRUE) )
+  {
+    Scierror( 999, "Error when calling function %s.\r\n", "getWindowPosY" ) ;
+    return ;
+  }
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableFigureJoGL::setWindowPosition( const int pos[2] )
+{
+  jniCallVoidFunctionSafe(m_oDrawableObject, "setWindowPosition", "II", pos[0], pos[1] ) ;
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableFigureJoGL::getWindowSize( int size[2] )
+{
+  jmethodID getSizeMethod = NULL ;
+  jniUpdateCurrentEnv();
+  JNIEnv * curEnv = jniGetCurrentJavaEnv() ;
+
+  // width
+  getSizeMethod = curEnv->GetMethodID( m_oDrawableClass, "getWindowWidth", "()I" ) ;
+  if ( !jniCheckLastCall(TRUE) )
+  {
+    Scierror( 999, "Error when calling function %s.\r\n", "getWindowWidth" ) ;
+    return ;
+  }
+
+  size[0] = curEnv->CallIntMethod( m_oDrawableObject, getSizeMethod ) ;
+  if ( !jniCheckLastCall(TRUE) )
+  {
+    Scierror( 999, "Error when calling function %s.\r\n", "getWindowWidth" ) ;
+    return ;
+  }
+
+  // height
+  getSizeMethod = curEnv->GetMethodID( m_oDrawableClass, "getWindowHeight", "()I" ) ;
+  if ( !jniCheckLastCall(TRUE) )
+  {
+    Scierror( 999, "Error when calling function %s.\r\n", "getWindowHeight" ) ;
+    return ;
+  }
+
+  size[1] = curEnv->CallIntMethod( m_oDrawableObject, getSizeMethod ) ;
+  if ( !jniCheckLastCall(TRUE) )
+  {
+    Scierror( 999, "Error when calling function %s.\r\n", "getWindowHeight" ) ;
+    return ;
+  }
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableFigureJoGL::setWindowSize( const int size[2] )
+{
+  jniCallVoidFunctionSafe(m_oDrawableObject, "setWindowSize", "II", size[0], size[1] ) ;
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableFigureJoGL::setInfoMessage( const char * message )
+{
+  jstring infoMessage = jniCreateStringCopy( message ) ;
+  jniCallVoidFunctionSafe( m_oDrawableObject, "setInfoMessage", "Ljava/lang/String;", infoMessage ) ;
+  jniDeleteLocalEntity( infoMessage ) ;
 }
 /*------------------------------------------------------------------------------------------*/
 }

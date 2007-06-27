@@ -3,23 +3,23 @@
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
 /* desc : Class containing the driver dependant routines to draw a        */
-/*        rectangle object with JoGL                                      */
+/*        subwin object with JoGL                                         */
 /*------------------------------------------------------------------------*/
 
-package org.scilab.modules.renderer.rectangleDrawing;
+package org.scilab.modules.renderer.subwinDrawing;
 
 import org.scilab.modules.renderer.ObjectJoGL;
 
 /**
- * Class containing functions called by DrawableRectangleJoGL.cpp
+ * Class containing functions called by DrawableSubwinJoGL.cpp
  * @author Jean-Baptiste Silvy
  */
-public class DrawableRectangleJoGL extends ObjectJoGL {
+public class DrawableSubwinJoGL extends ObjectJoGL {
 
 	/**
 	 * Default Constructor
 	 */
-	public DrawableRectangleJoGL() {
+	public DrawableSubwinJoGL() {
 		super();
 	}
 	

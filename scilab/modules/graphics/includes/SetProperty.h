@@ -160,16 +160,19 @@ extern int sciInitNum( sciPointObj * pobj, int * value ) ;
 extern int sciSetNum ( sciPointObj * pobj, int * value ) ; /* SET */
 
 extern int sciInitDimension( sciPointObj * pobj, int newWidth, int newHeight ) ;
-extern int sciSetDimension ( sciPointObj * pobj, int newWidth, int newHeight ) ; /* SET */
+extern int sciSetDimension(  sciPointObj * pobj, int newWidth, int newHeight ) ; /* SET */
+
+extern int sciInitWindowDim( sciPointObj * pobj, int newWidth, int newHeight ) ;
+extern int sciSetWindowDim(  sciPointObj * pobj, int newWidth, int newHeight ) ; /* SET */
 
 extern int sciInitScreenPosition(sciPointObj * pobj, int pposx, int pposy);
-extern int sciSetScreenPosition(sciPointObj * pobj, int pposx, int pposy); /* SET */
+extern int sciSetScreenPosition( sciPointObj * pobj, int pposx, int pposy); /* SET */
 
 extern int sciInitFigureIconify(sciPointObj * pobj, BOOL value);
-extern int sciSetFigureIconify (sciPointObj * pobj, BOOL value); /* SET */
+extern int sciSetFigureIconify( sciPointObj * pobj, BOOL value); /* SET */
 
 extern int sciInitSubWindowPos(sciPointObj * pobj, int *x, int *y);
-extern int sciSetSubWindowPos (sciPointObj * pobj, int *x, int *y); /* SET */
+extern int sciSetSubWindowPos( sciPointObj * pobj, int *x, int *y); /* SET */
 
 extern void sciSelectFirstSubwin( sciPointObj * parentFigure ) ; /* SET */
 

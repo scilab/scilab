@@ -37,6 +37,7 @@
 #include "../../gui/includes/GraphicWindow.h"
 #include "CurrentObjectsManagement.h"
 #include "ObjectSelection.h"
+#include "BasicAlgos.h"
 
 #include "SetJavaProperty.h"
 
@@ -175,70 +176,19 @@ sciSetColormap ( sciPointObj * pobj, double *rgbmat, integer m, integer n )
     return -1 ;
   }
   
- // pFigure = pFIGURE_FEATURE( pobj ) ;
-
- // old_m = sciGetNumColors(pobj);
- // m1 = m ;
- // if ( pobj != getFigureModel() )
- // {
- //   int verbose = 0 ;
- //   sciSetUsedWindow( sciGetNum( pobj ) ) ;
- //   /*It should be impossible to set the colormap because of restriction on max 
- //     number of colors. In this case the old one is kept*/
- //   C2F(dr)("xset","colormap",&m,&n,&notSucceed,PI0,PI0,PI0,rgbmat,PD0,PD0,PD0,0L,0L);
- //   C2F(dr)("xget","cmap_size", &verbose, &m1, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L ) ;
- //   sciSetNumColors( pobj, m1 ) ;
- //   sciSetUsedWindow( curWinIndex ) ;
- // }
- // 
- // if ( notSucceed == 1 )
- // {
- //   /* failed to allocate or xinit (for Gif driver) was missing */
- //   sciprint ("Failed to change colormap : Allocation failed or missing xinit detected\n");
- //   return -1;
- // }
- // 
- // if ( m1 != old_m )
- // {
- //  /* color map size changes, reallocate it */
- //   if ( ( cmap = MALLOC ( m * n * sizeof(double) ) ) == NULL )
- //   {
- //     /* error allocating colormap */
- //     if (pobj != getFigureModel())
- //     {
-	//sciSetUsedWindow( sciGetNum( pobj ) ) ;
-	//C2F(dr)("xset","colormap",&old_m,&n,&notSucceed,PI0,PI0,PI0,
-	//	pFigure->pcolormap,PD0,PD0,PD0,0L,0L);
-	//
-	//if ( notSucceed == 1 )
- //       {
- //         /* failed to allocate or xinit (for Gif driver) was missing */
-	//  sciprint ("Failed to change colormap : Allocation failed or missing xinit detected\n");
-	//  return -1;
-	//}
-	//sciSetUsedWindow( curWinIndex ) ;
- //     }
- //     sciprint ("Not enough memory available for colormap, previous one kept\n");
- //     return -1;
- //   }  
- //   if (pFigure->pcolormap) FREE( pFigure->pcolormap ) ;
- //   pFigure->pcolormap = cmap ;
- // }
- // for ( k =  0  ; k < m1 * n ; k++ )
- // {
- //   pFigure->pcolormap[k] = rgbmat[k];
- // }
- // pFigure->numcolors = m1 ;
- // 
- // if ( pobj != getFigureModel() )
- // {
- //   sciRecursiveUpdateBaW( pobj, old_m, m ) ; /* missing line F.Leray */
- // }
 
   pFIGURE_FEATURE(pobj)->numcolors = m ;
-  sciSetJavaColormap( pobj, rgbmat, m * n ) ;
-  if ( pobj != getFigureModel() )
+
+  if ( pobj == getFigureModel() )
   {
+    // colormap is stored in the object
+    FREE(pFIGURE_FEATURE(pobj)->pModelData->colorMap) ;
+    pFIGURE_FEATURE(pobj)->pModelData->colorMap = createDoubleArrayCopy(rgbmat, m * n ) ;
+    pFIGURE_FEATURE(pobj)->pModelData->numColors = m * n ;
+  }
+  else
+  {
+    sciSetJavaColormap( pobj, rgbmat, m * n ) ;
     sciRecursiveUpdateBaW( pobj, oldNbColors, m ) ; /* missing line F.Leray */
   }
 
@@ -3320,22 +3270,15 @@ int sciInitDimension( sciPointObj * pobj, int newWidth, int newHeight )
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
+      if ( pobj == getFigureModel() )
       {
-        int verbose   = 0 ;
-        int curFigNum = 0 ;
-        int na        = 0 ;
-        int figNum    = sciGetNum( pobj ) ;
-
-        pFIGURE_FEATURE (pobj)->figuredimwidth  = newWidth  ;
-        pFIGURE_FEATURE (pobj)->figuredimheight = newHeight ;
-
-        C2F(dr)("xget","window",&verbose,&curFigNum,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
-        C2F(dr)("xset","window",&figNum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-        C2F(dr)("xset","wpdim",
-          &(pFIGURE_FEATURE( pobj )->figuredimwidth),
-          &(pFIGURE_FEATURE( pobj )->figuredimheight),
-          PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-        C2F(dr)("xset","window",&curFigNum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+        pFIGURE_FEATURE(pobj)->pModelData->figureWidth  = newWidth ;
+        pFIGURE_FEATURE(pobj)->pModelData->figureHeight = newHeight;
+      }
+      else
+      {
+        int size[2] = {newWidth, newHeight} ;
+        sciSetJavaFigureSize(pobj, size) ;
       }
       break;
     case SCI_SUBWIN:
@@ -3384,13 +3327,58 @@ int sciSetDimension( sciPointObj * pobj, int newWidth, int newHeight )
   
 }
 
+int sciInitWindowDim( sciPointObj * pobj, int newWidth, int newHeight )
+{
+  switch (sciGetEntityType (pobj))
+  {
+  case SCI_FIGURE:
+    if ( pobj == getFigureModel() )
+    {
+      pFIGURE_FEATURE(pobj)->pModelData->windowWidth  = newWidth ;
+      pFIGURE_FEATURE(pobj)->pModelData->windowHeight = newHeight;
+    }
+    else
+    {
+      int size[2] = {newWidth, newHeight} ;
+      sciSetJavaWindowSize(pobj, size) ;
+    }
+    break;
+  default:
+    sciprint ("Object can not be enclosed in a window.\n");
+    return -1 ;
+    break;
+  }
+  return 0 ;
+}
+
+int sciSetWindowDim( sciPointObj * pobj, int newWidth, int newHeight )
+{
+  if ( sciGetWindowWidth(pobj) == newWidth || sciGetWindowHeight(pobj) == newHeight )
+  {
+    // nothing to do
+    return 1 ;
+  }
+  return sciInitWindowDim(pobj, newWidth, newHeight ) ;
+}
+
 int sciInitScreenPosition( sciPointObj * pobj, int pposx, int pposy )
 {
-  integer y=0,cur,num,na ;
+  integer y = 0 ;
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
-      if (pobj != getFigureModel()) {
+      if ( pobj == getFigureModel() )
+      {
+        pFIGURE_FEATURE(pobj)->pModelData->windowPosition[0] = pposx ;
+        pFIGURE_FEATURE(pobj)->pModelData->windowPosition[1] = pposx ;
+      }
+      else
+      {
+        int pos[2] = {pposx, pposy} ;
+        sciSetJavaWindowPosition(pobj, pos) ;
+      }
+      return 0;
+      /*if (pobj != getFigureModel()) {
 	num=pFIGURE_FEATURE(pobj)->number;
 	C2F(dr)("xget","window",&y,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
 	C2F(dr)("xset","window",&num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -3399,9 +3387,9 @@ int sciInitScreenPosition( sciPointObj * pobj, int pposx, int pposy )
 
       }
       pFIGURE_FEATURE (pobj)->inrootposx = pposx;
-      pFIGURE_FEATURE (pobj)->inrootposy = pposy;
-      return 0;
-      break;
+      pFIGURE_FEATURE (pobj)->inrootposy = pposy;*/
+      /*return 0;
+      break;*/
     case SCI_CONSOLE:
       /* nothing for now */
       break ;
@@ -4793,6 +4781,7 @@ int sciSetInfoMessage( sciPointObj * pObj, const char * newMessage )
     {
       sciFigure * ppFigure = pFIGURE_FEATURE(pObj) ;
       
+      // We keep a copy of the message for convinience
       if ( newMessage == NULL )
       {
         FREE( ppFigure->infoMessage ) ;
@@ -4811,6 +4800,13 @@ int sciSetInfoMessage( sciPointObj * pObj, const char * newMessage )
         }
         strcpy( ppFigure->infoMessage, newMessage ) ;
       }
+
+      // set the java message
+      if ( pObj != getFigureModel() )
+      {
+        sciSetJavaInfoMessage(pObj, newMessage);
+      }
+      
 
       return 0 ;
     }

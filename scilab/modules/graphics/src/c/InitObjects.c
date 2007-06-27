@@ -467,8 +467,9 @@ int InitFigureModel( void )
   int i ;
   int m = NUMCOLORS_SCI ;
   double * colorMap ;
+  sciFigure * ppFigure = pFIGURE_FEATURE( pfiguremdl) ;
 
-  pFIGURE_FEATURE (pfiguremdl)->allredraw = FALSE;
+  ppFigure->allredraw = FALSE;
 
   if ( sciInitGraphicContext(pfiguremdl) < 0 )
   {
@@ -486,24 +487,10 @@ int InitFigureModel( void )
   strncpy (pFIGURE_FEATURE (pfiguremdl)->name, "Scilab Graphic", sizeof ("Scilab Graphic") + 4);
   pFIGURE_FEATURE (pfiguremdl)->namelen = Min (sizeof ("Scilab Graphic") + 4, 14); 
   pFIGURE_FEATURE (pfiguremdl)->number          = 0   ;
-  pFIGURE_FEATURE (pfiguremdl)->figuredimwidth  = 610 ;
-  pFIGURE_FEATURE (pfiguremdl)->figuredimheight = 461 ;
-  pFIGURE_FEATURE (pfiguremdl)->windowdimwidth  = 600 ;
-  pFIGURE_FEATURE (pfiguremdl)->windowdimheight = 400 ;
-  pFIGURE_FEATURE (pfiguremdl)->inrootposx      = 200 ;
-  pFIGURE_FEATURE (pfiguremdl)->inrootposy      = 200 ;
 
-  /*if((pFIGURE_FEATURE(pfiguremdl)->pcolormap = (double *) MALLOC (m * 3 * sizeof (double))) == (double *) NULL)
-    {
-      strcpy(error_message,"Cannot init color map");
-      return -1 ;
-    }  
-  for (i= 0 ; i < m ; i++)
-  {
-    pFIGURE_FEATURE(pfiguremdl)->pcolormap[i] = (double) (defcolors[3*i]/255.0);
-    pFIGURE_FEATURE(pfiguremdl)->pcolormap[i+m] = (double) (defcolors[3*i+1]/255.0); 
-    pFIGURE_FEATURE(pfiguremdl)->pcolormap[i+2*m] = (double) (defcolors[3*i+2]/255.0);
-  }*/
+  /* Set figure model attributes */
+  ppFigure->pModelData = newFigureModelData() ;
+
   pFIGURE_FEATURE (pfiguremdl)->isiconified = FALSE;
   pFIGURE_FEATURE (pfiguremdl)->isselected = TRUE;
   pFIGURE_FEATURE (pfiguremdl)->rotstyle = 0;
@@ -800,11 +787,13 @@ int ResetFigureToDefaultValues(sciPointObj * pobj)
   sciSetNum (pobj, &(XGC->CurWindow));		   
   sciSetName(pobj, sciGetName(pfiguremdl), sciGetNameLength(pfiguremdl));
   sciSetResize((sciPointObj *) pobj,sciGetResize(pobj));
-  pFIGURE_FEATURE(pobj)->windowdimwidth=pFIGURE_FEATURE(pfiguremdl)->windowdimwidth;  
-  pFIGURE_FEATURE(pobj)->windowdimheight=pFIGURE_FEATURE(pfiguremdl)->windowdimheight;
-  C2F(dr)("xset","wdim",&(pFIGURE_FEATURE(pobj)->windowdimwidth),
-	  &(pFIGURE_FEATURE(pobj)->windowdimheight),PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
-  pFIGURE_FEATURE (pobj)->figuredimwidth = pFIGURE_FEATURE (pfiguremdl)->figuredimwidth;
+  /*pFIGURE_FEATURE(pobj)->windowdimwidth=pFIGURE_FEATURE(pfiguremdl)->windowdimwidth;  
+  pFIGURE_FEATURE(pobj)->windowdimheight=pFIGURE_FEATURE(pfiguremdl)->windowdimheight;*/
+  sciSetWindowDim( pobj, sciGetWindowWidth(pfiguremdl), sciGetWindowHeight(pfiguremdl) ) ;
+  /*C2F(dr)("xset","wdim",&(pFIGURE_FEATURE(pobj)->windowdimwidth),
+	  &(pFIGURE_FEATURE(pobj)->windowdimheight),PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
+  sciSetDimension( pobj, sciGetWidth(pfiguremdl), sciGetHeight(pfiguremdl) ) ;
+  /*pFIGURE_FEATURE (pobj)->figuredimwidth = pFIGURE_FEATURE (pfiguremdl)->figuredimwidth;
   pFIGURE_FEATURE (pobj)->figuredimheight = pFIGURE_FEATURE (pfiguremdl)->figuredimheight;
   C2F(dr)("xset","wpdim",&(pFIGURE_FEATURE(pobj)->figuredimwidth),
 	  &(pFIGURE_FEATURE(pobj)->figuredimheight),PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -812,7 +801,8 @@ int ResetFigureToDefaultValues(sciPointObj * pobj)
   x[0]=(pFIGURE_FEATURE (pfiguremdl)->inrootposx <0)?x[0]:pFIGURE_FEATURE (pfiguremdl)->inrootposx;
   x[1]=(pFIGURE_FEATURE (pfiguremdl)->inrootposy <0)?x[1]:pFIGURE_FEATURE (pfiguremdl)->inrootposy;
   x[0]=(pFIGURE_FEATURE (pfiguremdl)->inrootposx <0)?x[0]:pFIGURE_FEATURE (pfiguremdl)->inrootposx;
-  x[1]=(pFIGURE_FEATURE (pfiguremdl)->inrootposy <0)?x[1]:pFIGURE_FEATURE (pfiguremdl)->inrootposy;
+  x[1]=(pFIGURE_FEATURE (pfiguremdl)->inrootposy <0)?x[1]:pFIGURE_FEATURE (pfiguremdl)->inrootposy;*/
+  sciGetScreenPosition(pfiguremdl, &x[0], &x[1]) ;
   sciSetScreenPosition(pobj,x[0],x[1]);
   pFIGURE_FEATURE (pobj)->isiconified = pFIGURE_FEATURE (pfiguremdl)->isiconified;
   pFIGURE_FEATURE (pobj)->isselected = pFIGURE_FEATURE (pfiguremdl)->isselected; 
@@ -989,5 +979,36 @@ void destroyDefaultObjects( void )
   DestroyAllGraphicsSons( pfiguremdl ) ;
   DestroyFigure( pfiguremdl ) ;
   pfiguremdl = NULL ;
+}
+/*------------------------------------------------------------------------------------------*/
+/**
+ * Create new data with defautl properties.
+ */
+FigureModelData * newFigureModelData( void )
+{
+  FigureModelData * modelData = MALLOC(sizeof(FigureModelData)) ;
+
+  if ( modelData == NULL ) { return NULL ; }
+
+  modelData->figureWidth  = 610 ;
+  modelData->figureHeight = 461 ;
+  modelData->windowWidth  = 600 ;
+  modelData->windowHeight = 400 ;
+  modelData->windowPosition[0] = 200 ;
+  modelData->windowPosition[1] = 200 ;
+
+  return modelData ;
+}
+/*------------------------------------------------------------------------------------------*/
+/**
+ * Free an existing model Data
+ */
+void destroyFigureModelData( FigureModelData * data )
+{
+  if ( data != NULL )
+  {
+    FREE( data ) ;
+    data = NULL ;
+  }
 }
 /*------------------------------------------------------------------------------------------*/

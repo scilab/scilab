@@ -38,6 +38,26 @@ void DrawableFigure::getColorMap( double rgbMat[] )
   getFigureImp()->getColorMap( rgbMat ) ;
 }
 /*------------------------------------------------------------------------------------------*/
+void DrawableFigure::getSize( int size[2] )
+{
+  getFigureImp()->getSize(size) ;
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableFigure::setSize( const int size[2] )
+{
+  getFigureImp()->setSize(size) ;
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableFigure::getWindowSize( int size[2] )
+{
+  getFigureImp()->getWindowSize(size) ;
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableFigure::setWindowSize( const int size[2] )
+{
+  getFigureImp()->setWindowSize(size);
+}
+/*------------------------------------------------------------------------------------------*/
 void DrawableFigure::openRenderingCanvas( void )
 {
   getFigureImp()->openRenderingCanvas( sciGetNum( m_pDrawed ) ) ;
@@ -54,7 +74,6 @@ void DrawableFigure::drawInContext( void )
   setBackgroundColor() ;
   if ( checkVisibility() )
   {
-    updateInfoMessage() ;
     displayChildren() ;
   }
 
@@ -69,7 +88,6 @@ void DrawableFigure::draw( void )
   }
 
   // make sure the context is created
-  openRenderingCanvas() ;
   drawCanvas() ;
 
 }
@@ -89,9 +107,9 @@ void DrawableFigure::drawCanvas( void )
   getFigureImp()->drawCanvas() ;
 }
 /*------------------------------------------------------------------------------------------*/
-void DrawableFigure::updateInfoMessage( void  )
+void DrawableFigure::setInfoMessage( const char * infoMessage )
 {
-  getFigureImp()->updateInfoMessage() ;
+  getFigureImp()->setInfoMessage(infoMessage) ;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigure::setBackgroundColor( void )
@@ -99,4 +117,15 @@ void DrawableFigure::setBackgroundColor( void )
   getFigureImp()->setBackgroundColor( sciGetGraphicContext(getDrawedObject())->backgroundcolor ) ;
 }
 /*------------------------------------------------------------------------------------------*/
+void DrawableFigure::getWindowPosition( int pos[2] )
+{
+  getFigureImp()->getWindowPosition(pos) ;
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableFigure::setWindowPosition( const int pos[2] )
+{
+  getFigureImp()->setWindowPosition(pos) ;
+}
+/*------------------------------------------------------------------------------------------*/
+
 }

@@ -27,6 +27,9 @@ extern sciPointObj * initLabel( sciPointObj * pParentObj ) ; /* INITOBJECT */
 extern void initsubwin(void); /* INITOBJECT */
 extern void reinitSubwin( void ) ;
 
+FigureModelData * newFigureModelData( void ) ;
+void destroyFigureModelData( FigureModelData * data ) ;
+
 extern int InitFigureModel(void); /* INITOBJECT */
 extern int InitAxesModel(void);   /* INITOBJECT */
 

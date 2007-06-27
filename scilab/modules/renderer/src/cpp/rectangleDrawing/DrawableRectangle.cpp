@@ -41,6 +41,11 @@ void DrawableRectangle::show( void )
   getRectangleImp()->show() ;
 }
 /*------------------------------------------------------------------------------------------*/
+DrawableRectangleImp * DrawableRectangle::getRectangleImp( void )
+{
+  return dynamic_cast<DrawableRectangleImp *>(m_pImp) ;
+}
+/*------------------------------------------------------------------------------------------*/
 void DrawableRectangle::drawRectangle( void )
 {
   getRectangleImp()->drawRectangle() ;

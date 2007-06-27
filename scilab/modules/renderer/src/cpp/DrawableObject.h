@@ -46,7 +46,7 @@ public:
   void hasChanged( void ) ;
 
   /**
-   * Ro specify that an object and its children have changed
+   * To specify that an object and its children have changed
    */
   void familyHasChanged( void ) ;
 

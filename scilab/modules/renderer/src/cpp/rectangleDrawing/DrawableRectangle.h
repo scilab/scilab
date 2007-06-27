@@ -32,7 +32,7 @@ public:
   /**
    * Return the real type of implementation object
    */
-  DrawableRectangleImp * getRectangleImp( void ) { return dynamic_cast<DrawableRectangleImp *>(m_pImp) ; }
+  DrawableRectangleImp * getRectangleImp( void ) ;
 
 protected:
 

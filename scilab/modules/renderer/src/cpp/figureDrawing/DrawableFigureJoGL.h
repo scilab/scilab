@@ -9,8 +9,6 @@
 #ifndef _DRAWABLE_FIGURE_JOGL_H_
 #define _DRAWABLE_FIGURE_JOGL_H_
 
-#include <jni.h>
-
 #include "DrawableFigureImp.h"
 #include "DrawableFigure.h"
 #include "../DrawableObjectJoGL.h"
@@ -31,11 +29,6 @@ public:
   * Tell the canvas to draw itself.
   */
   virtual void drawCanvas( void ) ;
-
-  /**
-   * Display the info message of the window
-   */
-  virtual void updateInfoMessage( void  ) ;
 
   /**
    * Create the rendering canvas for the figure if none exists.
@@ -64,6 +57,41 @@ public:
    * @param rgbMat should be a nbColor x 3 matrix with nbColor the number of color in the colormap
    */
   virtual void getColorMap( double rgbMat[] ) ;
+
+  /**
+   * Get the size (width, height) of the figure in parameter size.
+   */
+  virtual void getSize( int size[2] ) ;
+
+  /**
+   * Set the size (width, height) of the figure.
+   */
+  virtual void setSize( const int size[2] ) ;
+
+  /**
+   * Get the size of the window enclosing the figure.
+   */
+  virtual void getWindowSize( int size[2] ) ;
+
+  /**
+   * Set the size of the window enclosing the figure.
+   */
+  virtual void setWindowSize( const int size[2] ) ;
+
+  /**
+   * Get the size of the window enclosing the figure.
+   */
+  virtual void getWindowPosition( int pos[2] ) ;
+
+  /**
+   * Set the size of the window enclosing the figure.
+   */
+  virtual void setWindowPosition( const int pos[2] ) ;
+
+  /**
+   * Set the message displayed by the figure.
+   */
+  virtual void setInfoMessage( const char * message ) ;
 
 } ;
 

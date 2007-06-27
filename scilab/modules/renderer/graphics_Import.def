@@ -38,3 +38,6 @@ getHandleDrawer
 sciGetMarkSizeUnit
 sciGetMarkSize
 sciGetMarkStyle
+sciGetAxesBounds
+sciGetMargins
+doubleArrayCopy

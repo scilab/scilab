@@ -14,6 +14,8 @@ extern "C"
 #include "../../../graphics/includes/ObjectStructure.h"
 }
 #include "DrawableObject.h"
+#include "figureDrawing/DrawableFigure.h"
+#include "rectangleDrawing/DrawableRectangle.h"
 
 namespace sciGraphics
 {
@@ -27,6 +29,8 @@ struct DrawableObjectWrapper
 {
   DrawableObject * drawer ;
 } ;
+
+/*------------------------------------------------------------------------------*/
 
 /**
  * Return the drawer of a graphic handle
@@ -46,6 +50,20 @@ DrawableObject * getHandleDrawerPointer( sciPointObj * pObj ) ;
  * Should not be used directly.
  */
 void setHandleDrawerPointer( sciPointObj * pObj, DrawableObject * drawer) ;
+
+/*------------------------------------------------------------------------------*/
+
+/**
+ * Return a DrawableFigure object corresponding to a sciPointObj object.
+ * @return the corresponding figure to pFigure if pFigure if of type figure, NULL otherwise
+ */
+DrawableFigure * getFigureDrawer( sciPointObj * pFigure ) ;
+
+/**
+* Return a DrawableFigure object corresponding to a sciPointObj object.
+* @return the corresponding figure to pFigure if pFigure if of type figure, NULL otherwise
+*/
+DrawableRectangle * getRectangleDrawer( sciPointObj * pRectangle ) ;
 
 }
 

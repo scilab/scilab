@@ -32,7 +32,9 @@ int set_axes_size_property( sciPointObj * pobj, int stackPointer, int valueType,
     return SET_PROPERTY_ERROR ;
   }
 
-  pFIGURE_FEATURE(pobj)->windowdimwidth = (int) newWindowSize[0] ; 
+  sciSetDimension(pobj, (int) newWindowSize[0], (int) newWindowSize[1] ) ;
+
+  /*pFIGURE_FEATURE(pobj)->windowdimwidth = (int) newWindowSize[0] ; 
   pFIGURE_FEATURE(pobj)->windowdimheight= (int) newWindowSize[1] ;
 
   if ( pobj != getFigureModel() )
@@ -49,7 +51,7 @@ int set_axes_size_property( sciPointObj * pobj, int stackPointer, int valueType,
       &(pFIGURE_FEATURE(pobj)->windowdimheight),
       PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     C2F(dr)("xset","window",&curFigNum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  }
+  }*/
 
   return SET_PROPERTY_SUCCEED ;
 }

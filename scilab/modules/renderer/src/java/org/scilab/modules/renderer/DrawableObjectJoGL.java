@@ -35,9 +35,10 @@ public abstract class DrawableObjectJoGL extends ObjectJoGL {
 	
 	/**
 	 * To be called when the cpp object is destroyed
+	 * @param parentFigureIndex index of parent figure
 	 */
-	public void destroy() {
-		super.destroy();
+	public void clean(int parentFigureIndex) {
+		updateGLContext(parentFigureIndex);
 		clearDisplayList();
 	}
 	

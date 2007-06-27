@@ -30,6 +30,11 @@ void jniCloseUtils( void )
   sciJVM  = NULL ;
 }
 /*------------------------------------------------------------------------------------------*/
+void jniSetCurrentEnv( JNIEnv * env )
+{
+  sciJEnv = env ;
+}
+/*------------------------------------------------------------------------------------------*/
 void jniUpdateCurrentEnv( void )
 {
   /* tips from sun, use AttachCurrentThread to always get the right environment */ 
@@ -145,7 +150,7 @@ BOOL jniCallVoidFunctionV( jobject instance, const char * functionName, const ch
 
   /* Find the method in the class */
   voidMethod = (*sciJEnv)->GetMethodID( sciJEnv, instanceClass, functionName, callingSequence ) ;
-  if ( voidMethod == NULL || !jniCheckLastCall(TRUE) )
+  if ( !jniCheckLastCall(TRUE) || voidMethod == NULL )
   {
     Scierror( 999, "Unable to find function %s.\r\n", functionName ) ;
     FREE( callingSequence ) ;

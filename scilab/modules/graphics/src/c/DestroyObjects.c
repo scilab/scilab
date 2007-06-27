@@ -30,6 +30,7 @@
 #include "WindowList.h"
 #include "PloEch.h"
 #include "sciprint.h"
+#include "InitObjects.h"
 #include "CurrentObjectsManagement.h"
 #include "ObjectSelection.h"
 #include "BuildDrawingObserver.h"
@@ -271,6 +272,7 @@ int DestroyFigure (sciPointObj * pthis)
   FREE ((sciGetFontContext(pthis))->pfontname);
   FREE(pFIGURE_FEATURE(pthis)->pcolormap);
   FREE( pFIGURE_FEATURE(pthis)->infoMessage ) ;
+  destroyFigureModelData(pFIGURE_FEATURE(pthis)->pModelData) ;
   sciStandardDestroyOperations(pthis) ;
   /* delete windows() */
   return 0;

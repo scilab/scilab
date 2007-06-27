@@ -45,6 +45,46 @@ public:
    * @param rgbMat should be a nbColor x 3 matrix with nbColor the number of color in the colormap
    */
   void getColorMap( double rgbMat[] ) ;
+
+  /**
+   * Get the size (width, height) of the figure in parameter size.
+   */
+  void getSize( int size[2] ) ;
+
+  /**
+   * Set the size (width, height) of the figure.
+   */
+   void setSize( const int size[2] ) ;
+
+   /**
+    * Get the size of the window enclosing the figure.
+    */
+   void getWindowSize( int size[2] ) ;
+
+   /**
+    * Set the size of the window enclosing the figure.
+    */
+   void setWindowSize( const int size[2] ) ;
+
+   /**
+    * Get the size of the window enclosing the figure.
+    */
+   void getWindowPosition( int pos[2] ) ;
+
+   /**
+    * Set the size of the window enclosing the figure.
+    */
+   void setWindowPosition( const int pos[2] ) ;
+
+   /**
+    * Set the displayed the info message of the window
+    */
+   void setInfoMessage( const char * infoMessage ) ;
+
+   /**
+    * Create the rendering canvas for the figure.
+    */
+   void openRenderingCanvas( void ) ;
   /*--------------------------------------------------------------------------------------*/
 
 protected:
@@ -67,7 +107,7 @@ protected:
   DrawableFigureImp * getFigureImp( void ) ;
   
   /*--------------------------------------------------------------------------------------*/
-  // Driver Independant Algorithms
+  // Driver independent Algorithms
   /**
    * check if the auto_redraw option is enable
    */
@@ -75,11 +115,6 @@ protected:
 
   /*--------------------------------------------------------------------------------------*/
   // Driver dependant algorithms
-
-  /**
-   * Create the rendering canvas for the figure.
-   */
-  void openRenderingCanvas( void ) ;
 
   /**
   * Tell the canvas to draw itself.
@@ -90,11 +125,6 @@ protected:
    * Close the rendering canvas
    */
   void closeRenderingCanvas( void ) ;
-
-  /**
-   * Display the info message of the window
-   */
-  void updateInfoMessage( void ) ;
 
   /**
    * Set the background color of the figure

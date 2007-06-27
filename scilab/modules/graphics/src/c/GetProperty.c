@@ -26,10 +26,12 @@
 #include "WindowList.h"
 #include "sciprint.h"
 #include "PloEch.h"
+#include "InitObjects.h"
 #include "../../gui/includes/GraphicWindow.h"
 #include "CurrentObjectsManagement.h"
 #include "ObjectSelection.h"
 #include "GetJavaProperty.h"
+#include "BasicAlgos.h"
 
 #include "MALLOC.h" /* MALLOC */
 
@@ -351,7 +353,15 @@ sciGetNumColors (sciPointObj * pobj)
  */
 int sciGetColormap(sciPointObj * pobj, double rgbmat[] )
 {
-  sciGetJavaColormap( pobj, rgbmat ) ;
+  if ( pobj == getFigureModel() )
+  {
+    doubleArrayCopy(pFIGURE_FEATURE(pobj)->pModelData->colorMap, rgbmat, pFIGURE_FEATURE(pobj)->pModelData->numColors ) ;
+  }
+  else
+  {
+    sciGetJavaColormap( pobj, rgbmat ) ;
+  }
+  
   return 0 ;
 }
 
@@ -3222,13 +3232,19 @@ sciGetNum (sciPointObj * pobj)
  */
 int sciGetWidth (sciPointObj * pobj)
 {
-  struct BCG *Xgc;
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
-      Xgc=pFIGURE_FEATURE (pobj)->pScilabXgc;
-      pFIGURE_FEATURE (pobj)->windowdimwidth= Xgc->CWindowWidth;
-      return pFIGURE_FEATURE (pobj)->windowdimwidth;
+      if ( pobj == getFigureModel() )
+      {
+        return pFIGURE_FEATURE(pobj)->pModelData->figureWidth;
+      }
+      else
+      {
+        int size[2] ;
+        sciGetJavaFigureSize(pobj, size);
+        return size[0];
+      }      
       break;
     case SCI_SUBWIN:
        return pSUBWIN_FEATURE (pobj)->windimwidth;
@@ -3259,13 +3275,20 @@ int sciGetWidth (sciPointObj * pobj)
  */
 int sciGetHeight (sciPointObj * pobj)
 {
-  struct BCG *Xgc;
+  //struct BCG *Xgc;
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
-      Xgc=pFIGURE_FEATURE (pobj)->pScilabXgc;
-      pFIGURE_FEATURE (pobj)->windowdimheight= Xgc->CWindowHeight;
-      return pFIGURE_FEATURE (pobj)->windowdimheight;
+      if ( pobj == getFigureModel() )
+      {
+        return pFIGURE_FEATURE(pobj)->pModelData->figureHeight;
+      }
+      else
+      {
+        int size[2] ;
+        sciGetJavaFigureSize(pobj, size);
+        return size[1];
+      }
       break;
     case SCI_SUBWIN:
        return pSUBWIN_FEATURE (pobj)->windimheight;
@@ -3298,8 +3321,18 @@ void sciGetDim( sciPointObj * pobj, int * pWidth, int * pHeight )
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
-      *pWidth  = pFIGURE_FEATURE (pobj)->figuredimwidth ;
-      *pHeight = pFIGURE_FEATURE (pobj)->figuredimheight ;
+      if ( pobj == getFigureModel() )
+      {
+        *pWidth  = pFIGURE_FEATURE(pobj)->pModelData->figureWidth ;
+        *pHeight = pFIGURE_FEATURE(pobj)->pModelData->figureHeight;
+      }
+      else
+      {
+        int size[2] ;
+        sciGetJavaFigureSize(pobj, size);
+        *pWidth = size[0] ;
+        *pHeight = size[1] ;
+      }
       break;
     case SCI_SUBWIN:
       *pWidth  = pSUBWIN_FEATURE (pobj)->windimwidth ;
@@ -3309,6 +3342,56 @@ void sciGetDim( sciPointObj * pobj, int * pWidth, int * pHeight )
       sciprint ("Only Figure or Subwin can be sized\n");
       break;
     }
+}
+
+/**
+ * Get the size of the window enclosing a figure object
+ */
+int sciGetWindowWidth(sciPointObj * pObj)
+{
+  switch(sciGetEntityType(pObj))
+  {
+  case SCI_FIGURE:
+    if ( pObj == getFigureModel() )
+    {
+      return pFIGURE_FEATURE(pObj)->pModelData->windowWidth ;
+    }
+    else
+    {
+      int size[2] ;
+      sciGetJavaWindowSize(pObj, size) ;
+      return size[0] ;
+    }
+    break;
+  default:
+    sciprint("Only figure are enclosed by a window.\n");
+    break;
+  }
+  return -1;
+}
+
+
+int sciGetWindowHeight(sciPointObj * pObj)
+{
+  switch(sciGetEntityType(pObj))
+  {
+  case SCI_FIGURE:
+    if ( pObj == getFigureModel() )
+    {
+      return pFIGURE_FEATURE(pObj)->pModelData->windowHeight ;
+    }
+    else
+    {
+      int size[2] ;
+      sciGetJavaWindowSize(pObj, size) ;
+      return size[1] ;
+    }
+    break;
+  default:
+    sciprint("Only figure are enclosed by a window.\n");
+    break;
+  }
+  return -1;
 }
 
 /**sciGetIsFigureIconified
@@ -4986,8 +5069,18 @@ void sciGetScreenPosition( sciPointObj * pObj, int * posX, int * posY )
   switch ( sciGetEntityType(pObj) )
   {
   case SCI_FIGURE:
+    if ( pObj == getFigureModel() )
     {
-      int num = sciGetNum(pObj) ;
+      *posX = pFIGURE_FEATURE(pObj)->pModelData->windowPosition[0] ;
+      *posY = pFIGURE_FEATURE(pObj)->pModelData->windowPosition[1] ;
+    }
+    else
+    {
+      int pos[2];
+      sciGetJavaWindowPosition(pObj, pos) ;
+      *posX = pos[0] ;
+      *posY = pos[1] ;
+      /*int num = sciGetNum(pObj) ;
       int cur = sciGetNum(sciGetCurrentFigure()) ;
       int verbose = 0 ;
       int na = 0 ;
@@ -4996,7 +5089,7 @@ void sciGetScreenPosition( sciPointObj * pObj, int * posX, int * posY )
       C2F(dr)("xget","wpos",&verbose,pos,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,4L);
       sciSetUsedWindow( cur ) ;
       *posX = pos[0] ;
-      *posY = pos[1] ;
+      *posY = pos[1] ;*/
     }
     break ;
   case SCI_CONSOLE:

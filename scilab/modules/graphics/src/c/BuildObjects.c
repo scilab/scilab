@@ -179,20 +179,20 @@ sciPointObj * ConstructFigure( sciPointObj * pparent, struct BCG * XGC )
   sciInitNum (pobj, &(XGC->CurWindow));		   
   sciSetName(pobj, sciGetName(pfiguremdl), sciGetNameLength(pfiguremdl));
   sciInitResize((sciPointObj *) pobj,sciGetResize(pobj));
-  ppFigure->windowdimwidth=ppModel->windowdimwidth;  
+  /*ppFigure->windowdimwidth=ppModel->windowdimwidth;  
   ppFigure->windowdimheight=ppModel->windowdimheight;
   C2F(dr)("xset","wdim",&(ppFigure->windowdimwidth),
 	  &(ppFigure->windowdimheight),PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
   ppFigure->figuredimwidth = ppModel->figuredimwidth;
   ppFigure->figuredimheight = ppModel->figuredimheight;
   C2F(dr)("xset","wpdim",&(ppFigure->figuredimwidth),
-	  &(ppFigure->figuredimheight),PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr)("xget","wpos",&verbose,x,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,4L);
+	  &(ppFigure->figuredimheight),PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
+  
+  /*C2F(dr)("xget","wpos",&verbose,x,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,4L);
   x[0]=(ppModel->inrootposx <0)?x[0]:ppModel->inrootposx;
   x[1]=(ppModel->inrootposy <0)?x[1]:ppModel->inrootposy;
   x[0]=(ppModel->inrootposx <0)?x[0]:ppModel->inrootposx;
-  x[1]=(ppModel->inrootposy <0)?x[1]:ppModel->inrootposy;
-  sciInitScreenPosition(pobj,x[0],x[1]);
+  x[1]=(ppModel->inrootposy <0)?x[1]:ppModel->inrootposy;*/
   ppFigure->isiconified = ppModel->isiconified;
   ppFigure->isselected = ppModel->isselected; 
   ppFigure->rotstyle = ppModel->rotstyle;
@@ -203,9 +203,6 @@ sciPointObj * ConstructFigure( sciPointObj * pparent, struct BCG * XGC )
   ppFigure->pixmap = ppModel->pixmap ; 
   ppFigure->wshow = ppModel->wshow ; 
   ppFigure->allredraw = ppModel->allredraw;
-
-  ppFigure->infoMessage = NULL ; /* needed otherwise it will be realloc */
-  sciSetInfoMessage( pobj, sciGetInfoMessage(pfiguremdl) ) ;
 
   pFIGURE_FEATURE(pobj)->eventHandler = NULL ;
   sciInitIsEventHandlerEnable( pobj, sciGetIsEventHandlerEnable( pfiguremdl ) ) ;
@@ -225,6 +222,14 @@ sciPointObj * ConstructFigure( sciPointObj * pparent, struct BCG * XGC )
     DestroyFigure(pobj) ;
     return NULL;
   }
+
+  sciInitDimension(pobj, sciGetWidth(pfiguremdl), sciGetHeight(pfiguremdl)) ;
+  sciInitWindowDim(pobj, sciGetWindowWidth(pfiguremdl), sciGetWindowHeight(pfiguremdl) ) ;
+  sciGetScreenPosition(pfiguremdl, &x[0], &x[1]) ;
+  sciInitScreenPosition( pobj, x[0], x[1] );
+
+  ppFigure->infoMessage = NULL ; /* needed otherwise it will be realloc */
+  sciSetInfoMessage( pobj, sciGetInfoMessage(pfiguremdl) ) ;
 
   sciGetColormap(pfiguremdl, colorMap) ;
   sciSetColormap( pobj, colorMap, sciGetNumColors(pfiguremdl), 3 ) ;

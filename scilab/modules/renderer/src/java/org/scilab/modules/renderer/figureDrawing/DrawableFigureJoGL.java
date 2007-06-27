@@ -19,6 +19,10 @@ import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.renderer.ObjectJoGL;
 import org.scilab.modules.renderer.FigureMapper;
 import org.scilab.modules.renderer.utils.ColorMap;
+import org.scilab.modules.renderer.ObjectJoGLCleaner;
+
+import org.scilab.modules.gui.utils.Size;
+
 
 /**
  * Class containing functions called by DrawableFigureJoGL.cpp
@@ -32,6 +36,8 @@ public class DrawableFigureJoGL extends ObjectJoGL {
 	private Tab graphicTab;
 	/** store the figureIndex */
 	private int figureId;
+	/** To get all the objects which needs to be destroyed */
+	private ObjectJoGLCleaner destroyedObjects;
 	
 	/**
 	 * Default Constructor
@@ -41,7 +47,8 @@ public class DrawableFigureJoGL extends ObjectJoGL {
       	canvas = null;
       	graphicTab  = null;
       	setColorMap(ColorMap.create());
-      	figureId = -1; // ffigue ids should be greater than 0.
+      	figureId = -1; // figure ids should be greater than 0.
+      	destroyedObjects = new ObjectJoGLCleaner();
     }
 	
 	/**
@@ -63,6 +70,8 @@ public class DrawableFigureJoGL extends ObjectJoGL {
 	 *                          Needed to get the GL context to draw in.
 	 */
 	public void initializeDrawing(int parentFigureIndex) {
+		// destroy all the objects
+		destroyedObjects.destroyAll(parentFigureIndex);
 		super.initializeDrawing(parentFigureIndex);
 		GL gl = getGL();
 	    gl.glLoadIdentity();
@@ -76,12 +85,19 @@ public class DrawableFigureJoGL extends ObjectJoGL {
 		super.endDrawing();
 	}
   
+	/**
+   	 * Get the info message used by the figure
+   	 * @return the info message
+   	 */
+	public String getInfoMessage() {
+		return graphicTab.getName();
+	}
+	
   /**
    * Display the info message of the figure
    * @param infoMessage string to display describing the figure
    */
-  public void updateInfoMessage(String infoMessage) {
-    if (canvas == null) { return; }
+  public void setInfoMessage(String infoMessage) {
     graphicTab.setName(infoMessage);
   }
 
@@ -108,11 +124,11 @@ public class DrawableFigureJoGL extends ObjectJoGL {
       graphicTab = ScilabTab.createTab("");
       graphicTab.setName("");
       graphicView.addTab(graphicTab);
-      
+ 
       canvas = FigureCanvas.create();
       canvas.addGLEventListener(new SciRenderer(figureIndex));
       graphicTab.addMember(canvas);
-      canvas.draw();
+      //canvas.display();
     }
 
   /**
@@ -154,6 +170,13 @@ public class DrawableFigureJoGL extends ObjectJoGL {
   	}
   	
   	/**
+  	 * @return object used to destroy JoGL objects
+  	 */
+  	public ObjectJoGLCleaner getObjectCleaner() {
+  		return destroyedObjects;
+  	}
+  	
+  	/**
   	 * Get the canvas in which the figure is drawn
   	 * @return canvas in x=which the figur eis drawn or null if none exists
   	 */
@@ -168,5 +191,88 @@ public class DrawableFigureJoGL extends ObjectJoGL {
   		getGL().glClearColor((float) color[0], (float) color[1], (float) color[2], 1.0f); // alpha is set to 1
   		getGL().glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
   	}
+  	
+  	/**
+	 * Called when the object is destroyed from C code
+	 * @param parentFigureIndex index of parent figure
+	 */
+	public void destroy(int parentFigureIndex) {
+		// figure should not be add to the object cleaner or will destroy themselves.
+		// no operation for now
+	}
+	
+	
+	/**
+	 * @return width of the rendering canvas
+	 */
+	public int getCanvasWidth() {
+		return canvas.getDims().getWidth();
+	}
+	
+	/**
+	 * @return height of the rendering canvas
+	 */
+	public int getCanvasHeight() {
+		return canvas.getDims().getHeight();
+	}
+	
+	/**
+	 * Set the rendering canvas size.
+	 * @param width new width in pixels
+	 * @param height new height in pixels
+	 */
+	public void setCanvasSize(int width, int height) {
+		canvas.setDims(new Size(width, height));
+	}
+	
+	/**
+	 * @return width of the rendering window
+	 */
+	public int getWindowWidth() {
+		return graphicTab.getDims().getWidth();
+	}
+	
+	/**
+	 * @return height of the rendering window
+	 */
+	public int getWindowHeight() {
+		return graphicTab.getDims().getHeight();
+	}
+	
+	/**
+	 * Set the rendering window size.
+	 * @param width new width in pixels
+	 * @param height new height in pixels
+	 */
+	public void setWindowSize(int width, int height) {
+		graphicTab.getDims().setWidth(width);
+		graphicTab.getDims().setHeight(height);
+	}
+	
+	/**
+	 * Get the position of the window enclosing the figure
+	 * @return X coordinate in pixels of the window
+	 */
+	public int getWindowPosX() {
+		return graphicTab.getPosition().getX();
+	}
+	
+	/**
+	 * Get the position of the window enclosing the figure
+	 * @return Y coordinate in pixels of the window
+	 */
+	public int getWindowPosY() {
+		return graphicTab.getPosition().getY();
+	}
+	
+	/**
+	 * Get the position of the window enclosing the figure
+	 * @param posX X coordinate in pixels of the window
+	 * @param posY Y coordinate in pixels of the window
+	 */
+	public void setWindowPosition(int posX, int posY) {
+		graphicTab.getPosition().setX(posX);
+		graphicTab.getPosition().setY(posY);
+	}
   	
 }

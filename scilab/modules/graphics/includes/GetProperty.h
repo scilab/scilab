@@ -114,6 +114,8 @@ int sciGetNum (sciPointObj * pobj);  /* GET */
 int sciGetWidth (sciPointObj * pobj);   /* GET */
 int sciGetHeight (sciPointObj * pobj);  /* GET */
 void sciGetDim( sciPointObj * pobj, int * pWidth, int * pHeight ) ; /* GET */
+int sciGetWindowWidth(sciPointObj * pObj) ; /* GET */
+int sciGetWindowHeight(sciPointObj * pObj) ; /* GET */
 BOOL sciGetIsFigureIconified (sciPointObj * pobj);  /* GET */
 int sciGetSubwindowPosX (sciPointObj * pobj);  /* GET */
 int sciGetSubwindowPosY (sciPointObj * pobj);  /* GET */

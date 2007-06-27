@@ -43,6 +43,20 @@ public abstract class ObjectJoGL {
 	}
 	
 	/**
+	 * Called when the object is destroyed from C code
+	 * @param parentFigureIndex index of parent figure
+	 */
+	public void destroy(int parentFigureIndex) {
+		FigureMapper.getCorrespondingFigure(parentFigureIndex).getObjectCleaner().addObjectToDestroy(this);
+	}
+	
+	/**
+	 * Free all things used by this object
+	 * @param parentFigureIndex index of parent figure
+	 */
+	public void clean(int parentFigureIndex) { }
+	
+	/**
 	 * Function called before beginning to use OpenGL methods.
 	 * @param parentFigureIndex index of the parent figure.
 	 *                          Needed to get the GL context to draw in.
@@ -57,11 +71,6 @@ public abstract class ObjectJoGL {
 	 * Function called at the end of the OpenGL use.
 	 */
 	public void endDrawing() { }
-	
-	/**
-	 * Called when the objetc is destroyed from C code
-	 */
-	void destroy() { }
 	
 	/**
 	 * To avoid always creating new glu instance for the object,

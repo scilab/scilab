@@ -8,6 +8,10 @@
 #include <string.h>
 
 #include "sciprint_nd.h"
+#include <stdarg.h>
+#ifdef _MSC_VER
+#include "../../gui/src/c/wsci/wtext.h"
+#endif
 #include "xscion.h"
 
 #define MAXPRINTF 512
@@ -37,7 +41,7 @@ void sciprint_nd(char *fmt,...)
   else 
     {
 #ifdef _MSC_VER
-	TextPutS (&textwin, buf);
+	TextPutS (getTextWin(), buf);
 #else
     C2F(xscisrn)(buf,&lstr,0L);
 #endif

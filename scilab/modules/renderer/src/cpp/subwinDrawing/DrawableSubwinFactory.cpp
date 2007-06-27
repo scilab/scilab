@@ -8,6 +8,8 @@
 
 #include "DrawableSubwinFactory.h"
 #include "DrawableSubwin.h"
+#include "CameraFactory.h"
+#include "DrawableSubwinBridgeFactory.h"
 
 namespace sciGraphics
 {
@@ -15,7 +17,17 @@ namespace sciGraphics
 /*------------------------------------------------------------------------------------------*/
 DrawableObject * DrawableSubwinFactory::create( void )
 {
-  return new DrawableSubwin( m_pDrawed ) ;
+  DrawableSubwin * res = new DrawableSubwin( m_pDrawed ) ;
+  DrawableSubwinBridgeFactory dsbf;
+  dsbf.setDrawedSubwin(res);
+  res->setDrawableImp(dsbf.create());
+
+  // create the camera
+  //CameraFactory cf;
+  //cf.setCorrespondingSubwin(res) ;
+  //res->setCamera( cf.create() ) ;
+
+  return res;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableSubwinFactory::update( void )

@@ -211,9 +211,10 @@ public class RectangleMarkDrawerJoGL extends DrawableObjectJoGL {
 	
 	/**
 	 * To be called when the cpp object is destroyed
+	 * @param parentFigureIndex index of parent figure
 	 */
-	public void destroy() {
-		super.destroy();
-		drawer.destroy();
+	public void destroy(int parentFigureIndex) {
+		super.destroy(parentFigureIndex);
+		drawer.destroy(parentFigureIndex);
 	}
 }

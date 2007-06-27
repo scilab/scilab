@@ -26,7 +26,7 @@ namespace sciGraphics
     /**
      * Delete the Java instance used to implement the class 
      */
-    virtual ~DrawableObjectJoGL( void) ;
+    virtual ~DrawableObjectJoGL( void ) ;
 
     /**
      * Initialize the context for drawing (incl starting recording display list)

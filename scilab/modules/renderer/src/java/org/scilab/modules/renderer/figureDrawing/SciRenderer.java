@@ -96,7 +96,7 @@ public class SciRenderer
   public void reshape(GLAutoDrawable gLDrawable, int x, int y, int width, int height)
     {
       final GL gl = gLDrawable.getGL();
-      final GLU glu = new GLU();
+      //final GLU glu = new GLU();
       float h = 1.0f; 
 
       if (height > 0) {
@@ -106,7 +106,8 @@ public class SciRenderer
       h = (float) width / h;
       gl.glMatrixMode(GL.GL_PROJECTION);
       gl.glLoadIdentity();
-      glu.gluPerspective(45.0f, h, 1.0, 20.0);
+      //glu.gluPerspective(45.0f, h, 1.0, 20.0);
+      gl.glFrustum(0.0, 1.0, 0.0, 1.0, 1.0, 20.0);
       gl.glMatrixMode(GL.GL_MODELVIEW);
       gl.glLoadIdentity();
 

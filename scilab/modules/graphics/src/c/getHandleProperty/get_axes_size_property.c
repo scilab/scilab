@@ -24,16 +24,19 @@ int get_axes_size_property( sciPointObj * pobj )
     return -1;
   }
   
-  if ((sciPointObj *) pobj != getFigureModel())
-  { 
-    axesSize[0] = sciGetWidth(  pobj ) ; 
-    axesSize[1] = sciGetHeight( pobj ) ; 
-  }
-  else
-  {
-    axesSize[0] = pFIGURE_FEATURE(pobj)->windowdimwidth;
-    axesSize[1] = pFIGURE_FEATURE(pobj)->windowdimheight; 
-  }
+  axesSize[0] = sciGetWidth(  pobj ) ; 
+  axesSize[1] = sciGetHeight( pobj ) ; 
+
+  //if ((sciPointObj *) pobj != getFigureModel())
+  //{ 
+  //  axesSize[0] = sciGetWidth(  pobj ) ; 
+  //  axesSize[1] = sciGetHeight( pobj ) ; 
+  //}
+  //else
+  //{
+  //  axesSize[0] = pFIGURE_FEATURE(pobj)->windowdimwidth;
+  //  axesSize[1] = pFIGURE_FEATURE(pobj)->windowdimheight; 
+  //}
 
   return sciReturnRowVector( axesSize, 2 ) ;
 

@@ -24,6 +24,21 @@ extern "C" {
  */
 void sciGetJavaColormap( sciPointObj * pFigure, double rgbMat[] ) ;
 
+/**
+ * Get the size of a figure object
+ */
+void sciGetJavaFigureSize( sciPointObj * pFigure, int size[2] ) ;
+
+/**
+ * Get the size of a window enclosing a figure
+ */
+void sciGetJavaWindowSize( sciPointObj * pFigure, int size[2] ) ;
+
+/**
+ * Set the position in pixels of a window enclosing a figure.
+ */
+void sciGetJavaWindowPosition( sciPointObj * pFigure, int pos[2] ) ;
+
 #ifdef __cplusplus
 }
 #endif

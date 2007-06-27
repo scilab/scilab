@@ -9,6 +9,11 @@
 #include "getHandleDrawer.h"
 #include "DrawableObjectFactory.h"
 
+extern "C"
+{
+#include "GetProperty.h"
+}
+
 namespace sciGraphics
 {
 
@@ -42,10 +47,29 @@ void setHandleDrawerPointer( sciPointObj * pObj, DrawableObject * drawer )
 {
   if ( pObj->pDrawer == NULL )
   {
-    pObj->pDrawer = new DrawableObjectWrapper ;
+    pObj->pDrawer = new DrawableObjectWrapper() ;
   }
   ((DrawableObjectWrapper *)(pObj->pDrawer))->drawer = drawer ;
 }
 /*------------------------------------------------------------------------------------------*/
+DrawableFigure * getFigureDrawer( sciPointObj * pFigure )
+{
+  if ( sciGetEntityType(pFigure) != SCI_FIGURE )
+  {
+    return NULL;
+  }
 
+  return dynamic_cast<DrawableFigure *>(getHandleDrawer(pFigure));
+}
+/*------------------------------------------------------------------------------------------*/
+DrawableRectangle * getRectangleDrawer( sciPointObj * pRectangle )
+{
+  if ( sciGetEntityType(pRectangle) != SCI_RECTANGLE )
+  {
+    return NULL;
+  }
+
+  return dynamic_cast<DrawableRectangle *>(getHandleDrawer(pRectangle));
+}
+/*------------------------------------------------------------------------------------------*/
 }

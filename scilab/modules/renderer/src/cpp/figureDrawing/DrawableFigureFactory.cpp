@@ -22,6 +22,8 @@ DrawableObject * DrawableFigureFactory::create( void )
   imp.setDrawedFigure( newFig ) ;
   newFig->setDrawableImp( imp.create() ) ;
 
+  newFig->openRenderingCanvas();
+
   return newFig ;
 
 }

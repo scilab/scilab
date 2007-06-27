@@ -25,7 +25,7 @@ public:
 
   DrawableObjectFactory( void ) { m_pDrawed = NULL ; }
 
-  virtual ~DrawableObjectFactory( void ) {}
+  virtual ~DrawableObjectFactory( void ) { m_pDrawed = NULL ; }
   
   /**
    * Set the graphic handle we want to draw.

@@ -32,11 +32,6 @@ public:
   virtual void drawCanvas( void ) = 0 ;
 
   /**
-   * Display the info message of the window
-   */
-  virtual void updateInfoMessage( void  ) = 0 ;
-
-  /**
    * Create the rendering canvas for the figure.
    */
   virtual void openRenderingCanvas( int figureIndex ) = 0 ;
@@ -63,6 +58,41 @@ public:
    * @param rgbMat should be a nbColor x 3 matrix with nbColor the number of color in the colormap
    */
   virtual void getColorMap( double rgbMat[] ) = 0 ;
+
+  /**
+  * Get the size (width, height) of the figure in parameter size.
+  */
+  virtual void getSize( int size[2] ) = 0 ;
+
+  /**
+  * Set the size (width, height) of the figure.
+  */
+  virtual void setSize( const int size[2] ) = 0 ;
+
+  /**
+  * Get the size of the window enclosing the figure.
+  */
+  virtual void getWindowSize( int size[2] ) = 0 ;
+
+  /**
+  * Set the size of the window enclosing the figure.
+  */
+  virtual void setWindowSize( const int size[2] ) = 0 ;
+
+  /**
+   * Get the size of the window enclosing the figure.
+   */
+  virtual void getWindowPosition( int pos[2] ) = 0 ;
+
+  /**
+   * Set the size of the window enclosing the figure.
+   */
+  virtual void setWindowPosition( const int pos[2] ) = 0 ;
+
+  /**
+  * Set the displayed the info message of the window
+  */
+  virtual void setInfoMessage( const char * infoMessage ) = 0 ;
 
   /**
    * Return the drawed object

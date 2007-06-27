@@ -6,24 +6,53 @@
 /*------------------------------------------------------------------------*/
 
 #include "DrawableSubwin.h"
+#include "DrawableSubwinBridge.h"
 extern "C"
 {
-#include "drawSubWinEntity.h"
+#include "GetProperty.h"
 }
 
 namespace sciGraphics
 {
 
 /*------------------------------------------------------------------------------------------*/
+DrawableSubwin::DrawableSubwin(sciPointObj * pObj) : DrawableObject(pObj)
+{
+  m_pCamera = NULL ;
+}
+/*------------------------------------------------------------------------------------------*/
+DrawableSubwin::~DrawableSubwin( void )
+{
+  if ( m_pCamera != NULL )
+  {
+    delete m_pCamera ;
+  }
+  m_pCamera = NULL;
+}
+/*------------------------------------------------------------------------------------------*/
 void DrawableSubwin::draw( void )
 {
+  //initializeDrawing() ;
+  //if ( !checkVisibility() )
+  //{
+  //  endDrawing();
+  //  return;
+  //}
+  //m_pCamera->setViewingArea(sciGetAxesBounds(m_pDrawed), sciGetMargins(m_pDrawed)) ;
+  //m_pCamera->renderPosition();
   displayChildren() ;
+  //endDrawing();
   //drawSubWinEntity( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableSubwin::show( void )
 {
-  displayChildren() ;
+  draw();
+}
+/*------------------------------------------------------------------------------------------*/
+DrawableSubwinBridge * DrawableSubwin::getSubwinImp( void )
+{
+  return dynamic_cast<DrawableSubwinBridge *>(m_pImp) ;
 }
 /*------------------------------------------------------------------------------------------*/
 

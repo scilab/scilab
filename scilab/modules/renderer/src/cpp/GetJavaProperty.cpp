@@ -15,6 +15,21 @@ using namespace sciGraphics ;
 /*------------------------------------------------------------------------------------------*/
 void sciGetJavaColormap( sciPointObj * pFigure, double rgbMat[] )
 {
-  ((DrawableFigure *)getHandleDrawer(pFigure))->getColorMap( rgbMat ) ;
+  getFigureDrawer(pFigure)->getColorMap( rgbMat ) ;
+}
+/*------------------------------------------------------------------------------------------*/
+void sciGetJavaFigureSize( sciPointObj * pFigure, int size[2] )
+{
+  getFigureDrawer(pFigure)->getSize(size) ;
+}
+/*------------------------------------------------------------------------------------------*/
+void sciGetJavaWindowSize( sciPointObj * pFigure, int size[2] )
+{
+  getFigureDrawer(pFigure)->getWindowSize(size) ;
+}
+/*------------------------------------------------------------------------------------------*/
+void sciGetJavaWindowPosition( sciPointObj * pFigure, int pos[2] )
+{
+  getFigureDrawer(pFigure)->getWindowPosition(pos) ;
 }
 /*------------------------------------------------------------------------------------------*/

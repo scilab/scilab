@@ -10,6 +10,8 @@
 
 
 #include "../DrawableObject.h"
+#include "Camera.h"
+#include "DrawableSubwinBridge.h"
 
 namespace sciGraphics
 {
@@ -19,7 +21,16 @@ class DrawableSubwin : public DrawableObject
 
 public:
 
-  DrawableSubwin( sciPointObj * pObj ) : DrawableObject( pObj ) {}
+  DrawableSubwin( sciPointObj * pObj ) ;
+
+  virtual ~DrawableSubwin( void ) ;
+
+  /**
+   * Set/Get the current camera
+   */
+  Camera * getCamera( void ) { return m_pCamera; }
+
+  void setCamera( Camera * cam ) { m_pCamera = cam ; }
 
 protected:
 
@@ -34,6 +45,16 @@ protected:
    * Warning, be sure that draw is called before show each time the handle is modified.
    */
   virtual void show( void ) ;
+
+  /**
+   * Return the real type of implementation object
+   */
+  DrawableSubwinBridge * getSubwinImp( void ) ;
+
+  /*--------------------------------------------------------------------------------------*/
+  /** Camera used to visualize this axes */
+  Camera * m_pCamera;
+  /*--------------------------------------------------------------------------------------*/
 
 
 } ;

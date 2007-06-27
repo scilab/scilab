@@ -29,6 +29,12 @@ void jniCloseUtils( void ) ;
 JavaVM * jniGetJavaVM( void ) ;
 
 /**
+ * Manually specify the current java environment.
+ * Maught be used when calling C function from Java
+ */
+void jniSetCurrentEnv( JNIEnv * env ) ;
+
+/**
  * Retrieve the current Java environment from the JVM.
  * This function should be called each time the environment
  * May have changed.

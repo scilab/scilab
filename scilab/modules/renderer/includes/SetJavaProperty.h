@@ -25,6 +25,26 @@ extern "C" {
  */
 void sciSetJavaColormap( sciPointObj * pFigure, const double rgbMat[], int nbColor ) ;
 
+/**
+ * Set the size of a figure object
+ */
+void sciSetJavaFigureSize( sciPointObj * pFigure, const int size[2] ) ;
+
+/**
+ * Set the size of a window enclosing a figure.
+ */
+void sciSetJavaWindowSize( sciPointObj * pFigure, const int size[2] ) ;
+
+/**
+ * Set the position in pixels of a window enclosing a figure.
+ */
+void sciSetJavaWindowPosition( sciPointObj * pFigure, const int pos[2] ) ;
+
+/**
+ * Set the message displayed by a figure.
+ */
+void sciSetJavaInfoMessage( sciPointObj * pFigure, const char * infoMessage ) ;
+
 #ifdef __cplusplus
 }
 #endif

@@ -7,7 +7,7 @@
 
 extern "C"
 {
-#include "../../../graphics/includes/GetProperty.h"
+#include "GetProperty.h"
 }
 
 #include "DrawableObject.h"
