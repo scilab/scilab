@@ -8,31 +8,34 @@
 /*-----------------------------------------------------------------------------------*/
 char *GetNextEntry(char *beg)
 {
-  sci_hist *found = SearchForwardInHistory(beg);
-  
-  if (found==NULL)
+  if (cur_entry != NULL)
     {
-      return NULL;
+      cur_entry = cur_entry->next;
+      if (cur_entry != NULL)
+        return cur_entry->line;
+      else
+        return NULL;
     }
-  else
-    {
-      return found->line;
-    }
-
 }
 /*-----------------------------------------------------------------------------------*/
 char *GetPreviousEntry(char *beg)
 {
-  sci_hist *found = SearchBackwardInHistory(beg);
-  
-  if (found==NULL)
+  if (history != NULL)
     {
-      return NULL;
+      if (cur_entry == NULL)
+        {
+          cur_entry = history;
+          return cur_entry->line;
+        }
+      else if (cur_entry->prev != NULL)
+        {
+          cur_entry = cur_entry->prev;
+          return cur_entry->line;
+        }
+      else
+        return NULL;
     }
   else
-    {
-      return found->line;
-    }
-
+    return NULL;
 }
 /*-----------------------------------------------------------------------------------*/

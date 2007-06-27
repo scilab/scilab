@@ -450,5 +450,6 @@ int GetSaveHistoryAfterNcommands(void)
 void setNewSearchInHistory(int state)
 {
   NewSearchInHistory = (BOOL) state;
+  cur_entry = NULL;
 }
 /*-----------------------------------------------------------------------------------*/
