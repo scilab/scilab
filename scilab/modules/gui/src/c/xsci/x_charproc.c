@@ -198,14 +198,14 @@ static unsigned long ntotal;
 static jmp_buf vtjmpbuf;
 
 #include "x_VTPrsTbl.h"
-extern int csitable[];
-extern int dectable[];
-extern int eigtable[];
-extern int esctable[];
-extern int iestable[];
-extern int igntable[];
-extern int scrtable[];
-extern int scstable[];
+/* extern int csitable[]; */
+/* extern int dectable[]; */
+/* extern int eigtable[]; */
+/* extern int esctable[]; */
+/* extern int iestable[]; */
+/* extern int igntable[]; */
+/* extern int scrtable[]; */
+/* extern int scstable[]; */
 
 
 

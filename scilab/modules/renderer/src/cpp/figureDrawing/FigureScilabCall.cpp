@@ -22,7 +22,7 @@ JNIEXPORT void JNICALL Java_org_scilab_modules_renderer_figureDrawing_FigureScil
   int figIndex = (int) figureId ;
   sciPointObj * curFig = sciIsExistingFigure(&figIndex) ;
   if ( curFig == NULL ) { return ;}
-  jniSetCurrentEnv(env) ;
+  //jniSetCurrentEnv(env) ;
   (sciGraphics::getFigureDrawer(curFig))->drawInContext() ;
 }
 /*-----------------------------------------------------------------------------------*/
