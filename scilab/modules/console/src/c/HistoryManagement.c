@@ -16,6 +16,8 @@ char *GetNextEntry(char *beg)
       else
         return NULL;
     }
+  else
+    return NULL;
 }
 /*-----------------------------------------------------------------------------------*/
 char *GetPreviousEntry(char *beg)
