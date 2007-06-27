@@ -6,6 +6,7 @@
 #include "MALLOC.h" 
 #include "stack-c.h"
 #include "error_scilab.h"
+#include "cvstr.h"
 
 #ifndef Max 
 #define Max(x,y)	(((x)>(y))?(x):(y))
