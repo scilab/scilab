@@ -22,10 +22,3 @@ void C2F(xscisrn)(char *str,integer *n,integer dummy);
  */
 void C2F(xscisncr)(char *str,integer *n,integer dummy);
 
-/**
- * <long-description>
- *
- * @param fmt   
- * @param ...   
- */
-void sciprint_nd(char *fmt,...);

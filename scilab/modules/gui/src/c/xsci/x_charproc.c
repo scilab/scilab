@@ -197,7 +197,7 @@ static unsigned long ctotal;
 static unsigned long ntotal;
 static jmp_buf vtjmpbuf;
 
-extern int groundtable[];
+#include "x_VTPrsTbl.h"
 extern int csitable[];
 extern int dectable[];
 extern int eigtable[];
@@ -587,56 +587,6 @@ void Scisncr(char *str)
 #else
 #include <varargs.h>
 #endif 
-
-#define MAXPRINTF 512
-
-/* almost the same but no diary record */ 
-/* usefull for automatic tests */ 
-
-#ifdef __STDC__ 
-void  sciprint_nd(char *fmt,...) 
-#else 
-/*VARARGS0*/
-void sciprint_nd(va_alist) va_dcl
-#endif 
-{
-  int i;
-  integer lstr;
-  va_list ap;
-  char s_buf[MAXPRINTF];
-  int count=0;
-#ifdef __STDC__
-  va_start(ap,fmt);
-#else
-  char *fmt;
-  va_start(ap);
-  fmt = va_arg(ap, char *);
-#endif
-
-  #ifdef linux
-	count = vsnprintf (s_buf,MAXPRINTF-1, fmt, ap);
-	if (count == -1)
-	{
-		s_buf[MAXPRINTF-1]='\0';
-	}
-#else
-	(void ) vsprintf(s_buf, fmt, ap );
-#endif
-  lstr=strlen(s_buf);
-
-  C2F(xscion)(&i);
-  if (i == 0) 
-    {
-      printf("%s",s_buf); 
-    }
-  else 
-    {
-      C2F(xscisrn)(s_buf,&lstr,0L);
-      /* C2F(xscisncr)(s_buf,&lstr,0L); */
-    }
-  va_end(ap);
-}
-
 
 /* I/O Function */
 

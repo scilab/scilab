@@ -15,6 +15,7 @@
 #include "Errors.h"
 #include "printf.h"
 #include "../../../includes/xscimore.h"
+#include "sciprint_nd.h"
 /*-----------------------------------------------------------------------------------*/
 extern void Xputchar ();
 extern BOOL IsWindowInterface(void);
@@ -79,39 +80,6 @@ int MyFPutS (char *str, FILE * file)
 		return (*str);		/* different from Borland library */
 	}
 	return fputs (str, file);
-}
-/*-----------------------------------------------------------------------------------*/
-/*---------------------------------------------------
-* the same but no diary record
-*---------------------------------------------------*/
-void sciprint_nd (char *fmt,...)
-{
-	int i, count, lstr;
-	char buf[MAXPRINTF];
-	va_list args;
-	va_start (args, fmt);
-
-	/* next three lines added for diary SS */
-	count = _vsnprintf (buf,MAXPRINTF-1, fmt, args);
-	if (count == -1)
-	{
-		buf[MAXPRINTF-1]='\0';
-	}
-	lstr = strlen (buf);
-
-	C2F (xscion) (&i);
-	if (i == 0)
-	{
-		/*count = vfprintf(stdout, fmt, args ); */
-		printf ("%s", buf);
-	}
-	else
-	{
-		/*count = vsprintf(buf,fmt,args); SS */
-		TextPutS (&textwin, buf);
-	}
-	va_end (args);
-	/** return count; **/
 }
 /*-----------------------------------------------------------------------------------*/
 size_t MyFWrite (const void *ptr, size_t size, size_t n, FILE * file)

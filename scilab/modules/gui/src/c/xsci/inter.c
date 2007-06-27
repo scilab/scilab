@@ -77,7 +77,7 @@ extern void xevents1  __PARAMS((void));
 static fd_set Select_mask_ref,select_mask,Write_mask_ref,write_mask;
 static int inter_max_plus1 = 0;
 Display *the_dpy = (Display *) NULL;
-int BasicScilab = 1;
+int BasicScilab = 1; /* WTF is a basic Scilab ? */
 XtAppContext app_con;
 int IsClick_menu(void);
 void Click_menu(int n);
