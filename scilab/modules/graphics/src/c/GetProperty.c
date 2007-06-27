@@ -355,7 +355,7 @@ int sciGetColormap(sciPointObj * pobj, double rgbmat[] )
 {
   if ( pobj == getFigureModel() )
   {
-    doubleArrayCopy(pFIGURE_FEATURE(pobj)->pModelData->colorMap, rgbmat, pFIGURE_FEATURE(pobj)->pModelData->numColors ) ;
+    doubleArrayCopy( rgbmat, pFIGURE_FEATURE(pobj)->pModelData->colorMap , pFIGURE_FEATURE(pobj)->pModelData->numColors ) ;
   }
   else
   {
