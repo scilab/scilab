@@ -16,6 +16,8 @@
 /*------------------------------------------------------------------------*/
 int get_figure_position_property( sciPointObj * pobj )
 {
+  int posX ;
+  int posY ;
   double figurePos[2] ;
 
   if ( sciGetEntityType (pobj) != SCI_FIGURE )
@@ -24,24 +26,11 @@ int get_figure_position_property( sciPointObj * pobj )
     return -1;
   }
 
-  if ( pobj != getFigureModel())
-  {
-    int posX ;
-    int posY ;
-    sciGetScreenPosition( pobj, &posX, &posY ) ;
-#ifdef _MSC_VER /* Correction pour figure_position (Windows) Allan CORNET Mai 2004 */
-    figurePos[0] = (double) posX ; 
-    figurePos[1] = (double) posY ;
-#else
-    figurePos[0] = (double) posX - 4 ; 
-    figurePos[1] = (double) posY - 20 ;
-#endif
-  }
-  else
-  {
-    figurePos[0] = pFIGURE_FEATURE (pobj)->inrootposx; 
-    figurePos[1] = pFIGURE_FEATURE (pobj)->inrootposy;
-  }
+  sciGetScreenPosition( pobj, &posX, &posY ) ;
+
+  figurePos[0] = (double) posX ; 
+  figurePos[1] = (double) posY ;
+
   
   return sciReturnRowVector( figurePos, 2 ) ;
 
