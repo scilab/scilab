@@ -1,0 +1,6 @@
+LIBRARY    libshell.dll
+
+
+EXPORTS
+_cur_entry
+_history

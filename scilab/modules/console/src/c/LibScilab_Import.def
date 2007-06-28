@@ -1,0 +1,5 @@
+	LIBRARY    Libscilab.dll
+
+
+EXPORTS
+StoreCommand1

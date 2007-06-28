@@ -1,0 +1,15 @@
+LIBRARY    sciconsole.dll
+
+
+EXPORTS
+GetNextEntry
+GetPreviousEntry
+PutCommandInScilabQueue
+	GetNextEntry
+	GetPreviousEntry
+	Java_org_scilab_modules_console_HistoryManagementJNI_GetNextEntry
+	Java_org_scilab_modules_console_HistoryManagementJNI_GetPreviousEntry
+	Java_org_scilab_modules_console_HistoryManagementJNI_setNewSearchInHistory
+	PutCommandInScilabQueue
+	Java_org_scilab_modules_console_InterpreterManagementJNI_PutCommandInScilabQueue
+
