@@ -11,7 +11,6 @@
  */
 int C2F(gw_gui)(void);
 
-
 /**
  * This function is a wrapper when /fake Scilab is compiled without the 
  * graphic Interface
@@ -27,3 +26,47 @@ BOOL TerminateGUI(void);
  * @return 0
  */
 int XClearScreenConsole(char *fname);
+
+/**
+ * This function is a wrapper when /fake Scilab is compiled without the 
+ * graphic Interface
+ * @param string unused (just reproduce the profile)
+ * @param nbytes unused (just reproduce the profile)
+ */
+void str_to_xterm ( register char * string, int nbytes);
+
+
+/**
+ * This function is a wrapper when /fake Scilab is compiled without the 
+ * graphic Interface
+ * @param n unused (just reproduce the profile)
+ */
+void Click_menu(int n);
+
+
+/**
+ * This function is a wrapper when /fake Scilab is compiled without the 
+ * graphic Interface
+ * @param prop unused (just reproduce the profile)
+ * @param value unused (just reproduce the profile)
+ * @return 0
+ */
+int GetScreenProperty(char *prop, char *value);
+
+
+/**
+ * Read the next character
+ * This function is really used here !
+ * @param interrupt  unused (just reproduce the profile)
+ * @return the result of getchar
+ */
+int Xorgetchar(int interrupt);
+
+
+/**
+ * This function is a wrapper when /fake Scilab is compiled without the 
+ * graphic Interface
+ * @param interrupt  unused (just reproduce the profile)
+ * @return 0
+ */
+int XEvorgetchar(int interrupt);}

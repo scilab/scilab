@@ -26,6 +26,7 @@
  */
 
 /* util.c */
+#include <stdio.h>
 
 #include "x_ptyxP.h"
 #include "x_data.h"
@@ -34,8 +35,8 @@
 #include "stack-c.h"
 #include "machine.h"
 #include "All-extern-x.h"
+#include "tohome.h"
 
-#include <stdio.h>
 #include "GetScreenProperty.h"
 
 extern int IsConsoleMode(void);
@@ -987,33 +988,6 @@ void recolor_cursor (cursor, fg, bg)
     XRecolorCursor (dpy, cursor, colordefs, colordefs+1);
     return;
 }
-
-/* Scilab tohome() */
-/* Called by HomeFunction() in SCI/routines/console/zzledt.c */
-/* V.C. 04/2004 */
-void XHomeFunction(void)
-{
-  register TScreen *screen = &term->screen;
-  static int k=0;
-  
-  if (!IsConsoleMode())
-    {
-      /* Screen is filled with empty lines and then cleared */
-      for(k=0;k<(Height(screen) - 1)/FontHeight(screen) - 2;k++) /* 2 is the number of rows used by tohome()\r\n */
-	{
-	  sciprint("\r\n");
-	}
-      screen->cur_row = screen->topline; /* New cursor position */
-      ClearBelow(screen); /* Screen is cleared below cursor */
-      ScrollBarDrawThumb(screen->scrollWidget);
-    }
-  else
-    {
-      system("clear");
-    }
-  return;
-}
-
 
 /* Scilab clc() */
 /* Called by ClearScreenConsole() in SCI/routines/console/zzledt.c */

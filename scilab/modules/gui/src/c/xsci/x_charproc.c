@@ -512,34 +512,10 @@ int XEvorgetchar(int interrupt)
   return (in_put(interrupt));
 }
 
-void Xputstring(str,n)
-     char *str;
-     int n;
+void Xputstring(char *str,int n)
 {
   int i ;
   for ( i =0 ; i < n; i++) Xputchar(str[i]);
-}
-
-void C2F(xscisncr)(char *str,integer *n,integer dummy)
-{
-  int i;
-  for ( i =0 ; i < *n; i++) {
-    Xputchar(str[i]);
-  }
-}
-
-/** print str on Scilab window \n are changed to \r\n **/
-
-void C2F(xscisrn)(char *str,integer *n,integer dummy)
-{
-  int i;
-  for ( i =0 ; i < *n; i++) {
-    if ( str[i] == '\n' ) 
-      {
-	Xputchar('\r');
-      }
-    Xputchar(str[i]);
-  }
 }
 
 void C2F(xscistring)(char *str,integer *n,long int dummy)

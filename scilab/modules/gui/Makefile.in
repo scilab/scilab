@@ -140,6 +140,7 @@ libscigui_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/string/libscistring.la \
 	$(top_builddir)/modules/tclsci/libscitclsci.la
 am__libscigui_la_SOURCES_DIST = src/c/xsci/IsConsoleMode.c \
+	src/c/xsci/write_scilab.c src/c/xsci/xscisrn.c \
 	src/c/xsci/mainscic.c src/c/xsci/x_main.c \
 	src/c/getlookandfeel.c src/c/setlookandfeel.c \
 	src/c/getinstalledlookandfeels.c src/c/TerminateGui.c \
@@ -220,8 +221,9 @@ am__libscigui_la_SOURCES_DIST = src/c/xsci/IsConsoleMode.c \
 @GUI_TRUE@	libscigui_la-men_choice.lo libscigui_la-men_print.lo \
 @GUI_TRUE@	libscigui_la-guitable.lo
 @GUI_FALSE@am__objects_2 = libscigui_la-nogui.lo
-am__objects_3 = libscigui_la-IsConsoleMode.lo libscigui_la-mainscic.lo \
-	$(am__objects_1) $(am__objects_2)
+am__objects_3 = libscigui_la-IsConsoleMode.lo \
+	libscigui_la-write_scilab.lo libscigui_la-xscisrn.lo \
+	libscigui_la-mainscic.lo $(am__objects_1) $(am__objects_2)
 @GUI_TRUE@am__objects_4 = libscigui_la-sci_x_choice.lo \
 @GUI_TRUE@	libscigui_la-sci_x_message_modeless.lo \
 @GUI_TRUE@	libscigui_la-gw_gui.lo libscigui_la-sci_x_mdialog.lo \
@@ -486,8 +488,9 @@ libscigui_la_CFLAGS = -Isrc/c/ -Iincludes/ \
 	-I$(top_srcdir)/modules/jvm/includes/ \
 	-I$(top_srcdir)/modules/gui/src/c/xsci/ $(TCL_INC_PATH) \
 	$(Tk_INC_PATH) $(am__append_2)
-GUI_C_SOURCES = src/c/xsci/IsConsoleMode.c src/c/xsci/mainscic.c \
-	$(am__append_1) $(am__append_3)
+GUI_C_SOURCES = src/c/xsci/IsConsoleMode.c src/c/xsci/write_scilab.c \
+	src/c/xsci/xscisrn.c src/c/xsci/mainscic.c $(am__append_1) \
+	$(am__append_3)
 @GUI_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/sci_x_choice.c \
 @GUI_TRUE@sci_gateway/c/sci_x_message_modeless.c \
 @GUI_TRUE@sci_gateway/c/gw_gui.c \
@@ -678,6 +681,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-wf_w_setup.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-wf_w_util.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-windows.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-write_scilab.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-x_button.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-x_charproc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-x_cursor.Plo@am__quote@
@@ -699,6 +703,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-xmen_mdial.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-xmen_message.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-xmen_print.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-xscisrn.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-xwidgets.Plo@am__quote@
 
 .c.o:
@@ -728,6 +733,20 @@ libscigui_la-IsConsoleMode.lo: src/c/xsci/IsConsoleMode.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/IsConsoleMode.c' object='libscigui_la-IsConsoleMode.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-IsConsoleMode.lo `test -f 'src/c/xsci/IsConsoleMode.c' || echo '$(srcdir)/'`src/c/xsci/IsConsoleMode.c
+
+libscigui_la-write_scilab.lo: src/c/xsci/write_scilab.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-write_scilab.lo -MD -MP -MF $(DEPDIR)/libscigui_la-write_scilab.Tpo -c -o libscigui_la-write_scilab.lo `test -f 'src/c/xsci/write_scilab.c' || echo '$(srcdir)/'`src/c/xsci/write_scilab.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-write_scilab.Tpo $(DEPDIR)/libscigui_la-write_scilab.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/write_scilab.c' object='libscigui_la-write_scilab.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-write_scilab.lo `test -f 'src/c/xsci/write_scilab.c' || echo '$(srcdir)/'`src/c/xsci/write_scilab.c
+
+libscigui_la-xscisrn.lo: src/c/xsci/xscisrn.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-xscisrn.lo -MD -MP -MF $(DEPDIR)/libscigui_la-xscisrn.Tpo -c -o libscigui_la-xscisrn.lo `test -f 'src/c/xsci/xscisrn.c' || echo '$(srcdir)/'`src/c/xsci/xscisrn.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-xscisrn.Tpo $(DEPDIR)/libscigui_la-xscisrn.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xsci/xscisrn.c' object='libscigui_la-xscisrn.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-xscisrn.lo `test -f 'src/c/xsci/xscisrn.c' || echo '$(srcdir)/'`src/c/xsci/xscisrn.c
 
 libscigui_la-mainscic.lo: src/c/xsci/mainscic.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-mainscic.lo -MD -MP -MF $(DEPDIR)/libscigui_la-mainscic.Tpo -c -o libscigui_la-mainscic.lo `test -f 'src/c/xsci/mainscic.c' || echo '$(srcdir)/'`src/c/xsci/mainscic.c

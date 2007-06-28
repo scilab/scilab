@@ -10,6 +10,8 @@ libscigui_la_CFLAGS=  -Isrc/c/ -Iincludes/ -I$(top_srcdir)/modules/graphics/incl
 
 GUI_C_SOURCES = \
 src/c/xsci/IsConsoleMode.c \
+src/c/xsci/write_scilab.c \
+src/c/xsci/xscisrn.c \
 src/c/xsci/mainscic.c
 
 if GUI

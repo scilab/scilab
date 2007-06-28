@@ -62,9 +62,9 @@ extern int  Scierror __PARAMS((int iv,char *fmt,...));
 
 #define LF                    0x000a
 #define MAXBUFFSIZE 256
-static int ClickMenu=0;
+static int ClickMenu=0; /* what that ? */
 static char buffstring[MAXBUFFSIZE];
-static int lenbuffstring;
+
 static int posinbuff=0;
 extern int Xscilab  __PARAMS((Display **dpy, Widget *topwid));  
 extern void xevents1  __PARAMS((void));  
@@ -80,7 +80,6 @@ Display *the_dpy = (Display *) NULL;
 int BasicScilab = 1; /* WTF is a basic Scilab ? */
 XtAppContext app_con;
 int IsClick_menu(void);
-void Click_menu(int n);
 int charfromclick(void);
 
 
@@ -248,7 +247,7 @@ int Xorgetchar(int interrupt)
     select_timeout.tv_usec = 10;
     i = select(inter_max_plus1, &select_mask, &write_mask, (fd_set *)NULL, &select_timeout);
     if (i < 0) {
-      if (errno != EINTR)
+		if (errno != EINTR) /* EINTR  A signal was caught. */
 	{ 
 	  sciprint("Error.\n");
 	  exit(0);
@@ -275,13 +274,13 @@ int Xorgetchar(int interrupt)
       state=1;
     else
       if (QLength(the_dpy) ||  FD_ISSET(Xsocket,&select_mask ) ||!(intoemacs))
-	state=0;
+		  state=0;
 
     if (state) {
       if(IsClick_menu())
-	i=charfromclick();
+		  i=charfromclick();
       else
-	i=getchar();
+		  i=getchar();
       if (i==LF) state=0;
       return(i);
     }
@@ -333,44 +332,10 @@ int C2F(sxevents)()
   return(0);
 }
 
-
-
-void Click_menu(int n);
-
-static void str_to_xterm ( string, nbytes)
-     register char *string;
-     int nbytes;
+void str_to_xterm ( register char * string, int nbytes)
 {
   register TScreen *screen = &term->screen;
   StringInput(screen,string,strlen(string));
-}
-
-
-static void str_to_xterm_nw ( string, nbytes)
-     register char *string;
-     int nbytes;
-{
-  posinbuff=0;
-  if (nbytes>MAXBUFFSIZE-1)
-    {
-      Scierror(1020,"%s\n", "The menu  name is too long  to be strored");
-      return;
-    }
-  sprintf(buffstring,string);
-  buffstring[nbytes]='\n';
-  lenbuffstring=nbytes+1;
-  Click_menu(1);
-}
-
-void write_scilab(char *s)
-{
-  int  i;
-  C2F(xscion)(&i);
-  if (i==1)
-    str_to_xterm(s,strlen(s));
-  else
-    str_to_xterm_nw(s,strlen(s));
-  /*      	printf(" asynchronous actions are not supported with -nw option\n");*/
 }
 
 int IsClick_menu(void)
@@ -396,9 +361,3 @@ int charfromclick(void)
     return(buffstring[posinbuff++]);
 }
   
-
-
-
-
-
-
