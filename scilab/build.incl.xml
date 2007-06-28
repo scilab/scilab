@@ -52,11 +52,10 @@
 	
 	  <pathelement location="${library.localization.dir}/${library.localization.name}"/>
 		<pathelement location="${library.shell.dir}/${library.shell.name}"/>
+		<pathelement location="${library.console.dir}/${library.console.name}"/>
 		<pathelement location="${library.gui.dir}/${library.gui.name}"/>
 		<pathelement location="${library.jvm.dir}/${library.jvm.name}"/>
 		<pathelement location="${library.renderer.dir}/${library.renderer.name}"/>
-		
-		<pathelement location="${ArtTk.jar}"/>
 		
 		<pathelement location="${commons-logging.jar}"/>
 		
@@ -64,13 +63,13 @@
 		
 		<pathelement location="${gluegen.jar}"/>
 		
-		<pathelement location="${jyconsole.jar}"/>
+		<pathelement location="${Console-1.0-API.jar}"/>
 		
+		<pathelement location="${Console-1.0.jar}"/>
+
 		<pathelement location="${looks.jar}"/>
 		
 		<pathelement location="${jogl.jar}"/>
-		
-		<pathelement location="${jython.jar}"/>
 		
 		<pathelement location="${skinlf.jar}"/>
 	</path>
