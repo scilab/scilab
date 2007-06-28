@@ -36,6 +36,7 @@ tclsci \
 sparse \
 io \
 shell \
+console \
 gui \
 graphics \
 renderer \
@@ -113,7 +114,8 @@ libscilab_la_LIBADD = \
     $(top_builddir)/modules/tclsci/libscitclsci.la \
     $(top_builddir)/modules/fftw/libscifftw.la \
     $(top_builddir)/modules/pvm/libscipvm.la \
-	$(top_builddir)/modules/shell/libscishell.la
+	$(top_builddir)/modules/shell/libscishell.la \
+	$(top_builddir)/modules/console/libsciconsole.la
 
 
 if STRINGV2
