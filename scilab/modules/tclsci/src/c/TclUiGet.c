@@ -5,8 +5,7 @@
 #include "TclUiGet.h"
 #include "sci_TCL_GetVar.h"
 #include "error_scilab.h"
-/*-----------------------------------------------------------------------------------*/
-extern int GetScreenProperty(char *prop, char *value);
+#include "../../gui/includes/GetScreenProperty.h"
 /*-----------------------------------------------------------------------------------*/
 int TCL_UiGet(int  Handle,int RhsPropertieField)
 {
