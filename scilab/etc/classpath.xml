@@ -17,14 +17,14 @@
 <classpath path="$SCILAB/thirdparty/jogl.jar"/>
 <classpath path="$SCILAB/thirdparty/gluegen-rt.jar"/>
 <classpath path="$SCILAB/thirdparty/flexdock-0.5.1.jar"/>
-<classpath path="$SCILAB/thirdparty/JyConsole.jar"/>
-<classpath path="$SCILAB/thirdparty/jython.jar"/>
-<classpath path="$SCILAB/thirdparty/ArtTk.jar"/>
+<classpath path="$SCILAB/thirdparty/Console-1.0-API.jar"/>
+<classpath path="$SCILAB/thirdparty/Console-1.0.jar"/>
 <classpath path="$SCILAB/thirdparty/skinlf.jar"/>
 <classpath path="$SCILAB/thirdparty/looks-2.1.1.jar"/>
 <classpath path="$SCILAB/thirdparty/commons-logging-1.1.jar"/>
 <classpath path="$SCILAB/modules/jvm/jar/org.scilab.modules.jvm.jar"/>
 <classpath path="$SCILAB/modules/shell/jar/org.scilab.modules.shell.jar"/>
+<classpath path="$SCILAB/modules/console/jar/org.scilab.modules.console.jar"/>
 <classpath path="$SCILAB/modules/gui/jar/org.scilab.modules.gui.jar"/>
 <classpath path="$SCILAB/modules/javasci/jar/javasci.jar"/>
 <classpath path="$SCILAB/modules/renderer/jar/org.scilab.modules.renderer.jar"/>
