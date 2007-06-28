@@ -70,6 +70,7 @@
 #include "../../gui/src/c/xsci/x_charproc.h"
 #include "tmpdir.h"
 #include "setgetSCIpath.h"
+#include "sciprint_nd.h"
 
 #include "warningmode.h"
 
@@ -323,7 +324,7 @@ static int CreateShared(char **loaded_files, char *tmp_file)
   char *libs,*tmpdir;
   libs=getenv("SYSLIBS");
    /** XXXXX **/
-  if (debug) sciprint_nd("linking files ");
+  if (debug) sciprint_nd("Linking files ");
   while ( loaded_files[i] != NULL) 
     {
       if (debug) sciprint_nd("%s ",loaded_files[i]);
@@ -413,7 +414,7 @@ static int CreateCppShared(char **loaded_files, char *tmp_file)
   char *libs, *exec_cpp, *tmpdir;
   libs=getenv("SYSLIBS");
    /** XXXXX **/
-  if (debug) sciprint_nd("linking files ");
+  if (debug) sciprint_nd("Linking files ");
   while ( loaded_files[i] != NULL) 
     {
       if (debug) sciprint_nd("%s ",loaded_files[i]);
