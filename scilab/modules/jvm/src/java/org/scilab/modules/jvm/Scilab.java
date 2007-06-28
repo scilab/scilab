@@ -1,5 +1,7 @@
 package org.scilab.modules.jvm;
 
+import java.io.File;
+
 import org.scilab.modules.shell.ScilabShell;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
@@ -8,6 +10,7 @@ import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.utils.LookAndFeel;
+//import org.scilab.modules.gui.utils.Size;
 
 
 
@@ -24,7 +27,10 @@ public class Scilab {
 	public Console sciConsole;
 	private int mode;
 	
-	/**
+	  static {
+		  System.loadLibrary("sciconsole");
+		  }
+	  /**
 	 * Constructor Scilab Class.
 	 * @param mode Mode Scilab -NW -NWNI -STD -API
 	 */
