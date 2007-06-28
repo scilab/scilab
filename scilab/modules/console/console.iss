@@ -14,6 +14,8 @@
 Source: bin\console.dll; DestDir: {app}\bin; Components: {#COMPN_CONSOLE}
 ;
 Source: java\jar\modules\org.scilab.modules.console.jar;DestDir: {app}\java\jar\modules; Components: {#COMPN_CONSOLE}
+Source: thirdparty\Console-1.0-API.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\Console-1.0.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 ;
 ;Source: bin\noconsole.dll; DestDir: {app}\bin; DestName: console.dll; Components: not ({#COMPN_CONSOLE})
 ;

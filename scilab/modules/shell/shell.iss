@@ -13,9 +13,6 @@
 Source: bin\libshell.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#SHELL}\jar\org.scilab.modules.shell.jar;DestDir: {app}\modules\{#SHELL}\jar; Components: {#COMPN_SCILAB}
-Source: thirdparty\ArtTk.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
-Source: thirdparty\JyConsole.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
-Source: thirdparty\jython.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 ;
 ;
 Source: modules\{#SHELL}\changelog.txt; DestDir: {app}\modules\{#SHELL}; Components: {#COMPN_SCILAB};
