@@ -3,7 +3,7 @@
 // Copyright INRIA 2007
 // ====================================================================
 //Load  functions librarie
-load("SCI/modules/console/macros/lib");
+//load("SCI/modules/console/macros/lib");
 // ====================================================================
 //add help chapter
 add_module_help_chapter("console");
