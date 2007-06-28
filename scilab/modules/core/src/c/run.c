@@ -185,6 +185,8 @@ int C2F(run)()
      * or errcatch in execstr('foo()','errcatch') */
     if (C2F(errgst).errcatch == 0) goto L999;
     /* error under errcatch(....,'continue') */
+
+	/* @TODO : replace 903 909 1001 1002 by a #define ... */
     if (Rstk[Pt - 1] == 903 || Rstk[Pt - 1] == 909 || Rstk[Pt] == 1001 || Rstk[Pt] == 1002)  return 0;
   }
   if (lc - l0 == nc) { /* is current opcodes block (if, for, .. structure) finished ?*/
