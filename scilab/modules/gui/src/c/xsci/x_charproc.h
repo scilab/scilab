@@ -5,20 +5,8 @@
 #include "machine.h"
 
 /**
- * <long-description>
+ * @TODO : add comment
  *
- * @param str   
- * @param n 
- * @param dummy 
+ * @param c 
  */
-void C2F(xscisrn)(char *str,integer *n,integer dummy);
-
-/**
- * <long-description>
- *
- * @param str   
- * @param n 
- * @param dummy 
- */
-void C2F(xscisncr)(char *str,integer *n,integer dummy);
-
+void Xputchar(unsigned char c);
