@@ -152,7 +152,7 @@ BOOL jniCallVoidFunctionV( jobject instance, const char * functionName, const ch
   voidMethod = (*sciJEnv)->GetMethodID( sciJEnv, instanceClass, functionName, callingSequence ) ;
   if ( !jniCheckLastCall(TRUE) || voidMethod == NULL )
   {
-    Scierror( 999, "Unable to find function %s.\r\n", functionName ) ;
+    Scierror( 999, "Unable to find method %s.\r\n", functionName ) ;
     FREE( callingSequence ) ;
     return FALSE ;
   }
@@ -161,7 +161,7 @@ BOOL jniCallVoidFunctionV( jobject instance, const char * functionName, const ch
   (*sciJEnv)->CallVoidMethodV( sciJEnv, instance, voidMethod, args ) ;
   if ( !jniCheckLastCall(TRUE) )
   {
-    Scierror( 999, "Error when calling function %s.\r\n", functionName ) ;
+    Scierror( 999, "Error when calling method %s.\r\n", functionName ) ;
     FREE( callingSequence ) ;
     return FALSE ;
   }
