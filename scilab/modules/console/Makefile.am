@@ -4,12 +4,14 @@
 ### INRIA - Scilab 2007
 ##########
 
+if GUI
 # List of the c files
 CONSOLE_JNI_SOURCES = src/jni/InterpreterManagement_wrap.c \
 src/jni/HistoryManagement_wrap.c
 
 CONSOLE_C_SOURCES = src/c/InterpreterManagement.c \
 src/c/HistoryManagement.c
+endif
 
 # Includes need for the compilation
 libsciconsole_la_CFLAGS=  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ 

@@ -80,10 +80,15 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libsciconsole_la_DEPENDENCIES =  \
 	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
-am__objects_1 = libsciconsole_la-InterpreterManagement_wrap.lo \
-	libsciconsole_la-HistoryManagement_wrap.lo
-am__objects_2 = libsciconsole_la-InterpreterManagement.lo \
-	libsciconsole_la-HistoryManagement.lo
+am__libsciconsole_la_SOURCES_DIST =  \
+	src/jni/InterpreterManagement_wrap.c \
+	src/jni/HistoryManagement_wrap.c src/c/InterpreterManagement.c \
+	src/c/HistoryManagement.c
+@GUI_TRUE@am__objects_1 =  \
+@GUI_TRUE@	libsciconsole_la-InterpreterManagement_wrap.lo \
+@GUI_TRUE@	libsciconsole_la-HistoryManagement_wrap.lo
+@GUI_TRUE@am__objects_2 = libsciconsole_la-InterpreterManagement.lo \
+@GUI_TRUE@	libsciconsole_la-HistoryManagement.lo
 am_libsciconsole_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libsciconsole_la_OBJECTS = $(am_libsciconsole_la_OBJECTS)
 libsciconsole_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
@@ -102,7 +107,7 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libsciconsole_la_SOURCES)
-DIST_SOURCES = $(libsciconsole_la_SOURCES)
+DIST_SOURCES = $(am__libsciconsole_la_SOURCES_DIST)
 libsciconsole_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libsciconsole_la_rootDATA_INSTALL = $(INSTALL_DATA)
 DATA = $(libsciconsole_la_etc_DATA) $(libsciconsole_la_root_DATA)
@@ -264,11 +269,11 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 # List of the c files
-CONSOLE_JNI_SOURCES = src/jni/InterpreterManagement_wrap.c \
-src/jni/HistoryManagement_wrap.c
+@GUI_TRUE@CONSOLE_JNI_SOURCES = src/jni/InterpreterManagement_wrap.c \
+@GUI_TRUE@src/jni/HistoryManagement_wrap.c
 
-CONSOLE_C_SOURCES = src/c/InterpreterManagement.c \
-src/c/HistoryManagement.c
+@GUI_TRUE@CONSOLE_C_SOURCES = src/c/InterpreterManagement.c \
+@GUI_TRUE@src/c/HistoryManagement.c
 
 
 # Includes need for the compilation
