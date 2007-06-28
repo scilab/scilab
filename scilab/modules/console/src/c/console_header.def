@@ -2,6 +2,6 @@ LIBRARY    sciconsole.dll
 
 
 EXPORTS
-GetNextEntry
-GetPreviousEntry
-PutCommandInScilabQueue
+;GetNextEntry
+;GetPreviousEntry
+;PutCommandInScilabQueue
