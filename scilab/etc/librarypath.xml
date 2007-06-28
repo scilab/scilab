@@ -13,6 +13,7 @@
 
 <librarypaths>
 <librarypath path="$SCILAB/bin"/>
+<librarypath path="$SCILAB/modules/console/.libs"/>
 <librarypath path="$SCILAB/modules/localization/.libs"/>
 <librarypath path="$SCILAB/modules/renderer/.libs"/>
 <librarypath path="$SCILAB/.libs"/>
