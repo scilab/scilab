@@ -16,7 +16,7 @@ BOOL tohome(void)
 		#ifdef _MSC_VER
 			bOK = FALSE;
 		#else
-			system("clear");
+			system("clear"); /* @TODO What a crappy code ... !!! Must be changed !! */
 			bOK = TRUE;
 		#endif
 	}
