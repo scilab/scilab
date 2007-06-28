@@ -2,7 +2,7 @@
  *
  * @author INRIA 2007
  */
-
+#include "machine.h"
 #include "machine.h"
 
 /*
