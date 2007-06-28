@@ -8,7 +8,7 @@
 #ifdef _MSC_VER
 #include "../../gui/src/c/wsci/wgnuplib.h"
 #else
-#include "../../gui/src/c/xsci/x_charproc.h"
+#include "../../gui/src/c/xsci/xscisrn.h"
 #endif
 
 #include "machine.h"
@@ -18,6 +18,7 @@
 #include "../../localization/includes/QueryStringMessage.h"
 #include "../../shell/includes/ShellPrintf.h"
 #include "scilabmode.h"
+#include "xscion.h"
 /*-----------------------------------------------------------------------------------*/ 
 #ifdef _MSC_VER
   #define vsnprintf _vsnprintf
@@ -28,14 +29,10 @@
   }
 #endif
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef _MSC_VER
-#include "../../gui/src/c/xsci/x_charproc.h"
-#endif
 extern int getdiary __PARAMS(());
-extern int C2F(xscion)();
 extern void diary_nnl __PARAMS((char *str,int *n));
 /*-----------------------------------------------------------------------------------*/ 
-void  sciprint(char *fmt,...) 
+void sciprint(char *fmt,...) 
 {
 	int i;
 	integer lstr;
