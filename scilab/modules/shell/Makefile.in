@@ -47,8 +47,12 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@GUI_TRUE@am__append_1 = src/c/ShellPrintf.c
-@GUI_FALSE@am__append_2 = src/c/ShellPrintf_nojava.c
+@GUI_TRUE@am__append_1 = src/c/ShellPrintf.c \
+@GUI_TRUE@src/c/PutChar_linux.c
+
+@GUI_FALSE@am__append_2 = src/c/ShellPrintf_nogui.c \
+@GUI_FALSE@src/c/PutChar_linux_nogui.c
+
 DIST_COMMON = $(libscishell_la_include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
 subdir = modules/shell
@@ -85,14 +89,17 @@ libscishell_la_DEPENDENCIES = $(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
 am__libscishell_la_SOURCES_DIST = src/c/completion.c src/c/clc.c \
 	src/c/tohome.c src/c/history.c src/c/zzledt_Linux.c \
-	src/c/ShellPrintf.c src/c/ShellPrintf_nojava.c \
+	src/c/ShellPrintf.c src/c/PutChar_linux.c \
+	src/c/ShellPrintf_nogui.c src/c/PutChar_linux_nogui.c \
 	sci_gateway/c/sci_completion.c sci_gateway/c/gw_shell.c \
 	sci_gateway/c/sci_clc.c sci_gateway/c/sci_tohome.c \
 	sci_gateway/c/sci_gethistory.c sci_gateway/c/sci_loadhistory.c \
 	sci_gateway/c/sci_resethistory.c \
 	sci_gateway/c/sci_savehistory.c
-@GUI_TRUE@am__objects_1 = libscishell_la-ShellPrintf.lo
-@GUI_FALSE@am__objects_2 = libscishell_la-ShellPrintf_nojava.lo
+@GUI_TRUE@am__objects_1 = libscishell_la-ShellPrintf.lo \
+@GUI_TRUE@	libscishell_la-PutChar_linux.lo
+@GUI_FALSE@am__objects_2 = libscishell_la-ShellPrintf_nogui.lo \
+@GUI_FALSE@	libscishell_la-PutChar_linux_nogui.lo
 am__objects_3 = libscishell_la-completion.lo libscishell_la-clc.lo \
 	libscishell_la-tohome.lo libscishell_la-history.lo \
 	libscishell_la-zzledt_Linux.lo $(am__objects_1) \
@@ -447,8 +454,10 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-PutChar_linux.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-PutChar_linux_nogui.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-ShellPrintf.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-ShellPrintf_nojava.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-ShellPrintf_nogui.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-clc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-completion.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-gw_shell.Plo@am__quote@
@@ -526,12 +535,26 @@ libscishell_la-ShellPrintf.lo: src/c/ShellPrintf.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-ShellPrintf.lo `test -f 'src/c/ShellPrintf.c' || echo '$(srcdir)/'`src/c/ShellPrintf.c
 
-libscishell_la-ShellPrintf_nojava.lo: src/c/ShellPrintf_nojava.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-ShellPrintf_nojava.lo -MD -MP -MF $(DEPDIR)/libscishell_la-ShellPrintf_nojava.Tpo -c -o libscishell_la-ShellPrintf_nojava.lo `test -f 'src/c/ShellPrintf_nojava.c' || echo '$(srcdir)/'`src/c/ShellPrintf_nojava.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscishell_la-ShellPrintf_nojava.Tpo $(DEPDIR)/libscishell_la-ShellPrintf_nojava.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/ShellPrintf_nojava.c' object='libscishell_la-ShellPrintf_nojava.lo' libtool=yes @AMDEPBACKSLASH@
+libscishell_la-PutChar_linux.lo: src/c/PutChar_linux.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-PutChar_linux.lo -MD -MP -MF $(DEPDIR)/libscishell_la-PutChar_linux.Tpo -c -o libscishell_la-PutChar_linux.lo `test -f 'src/c/PutChar_linux.c' || echo '$(srcdir)/'`src/c/PutChar_linux.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscishell_la-PutChar_linux.Tpo $(DEPDIR)/libscishell_la-PutChar_linux.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/PutChar_linux.c' object='libscishell_la-PutChar_linux.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-ShellPrintf_nojava.lo `test -f 'src/c/ShellPrintf_nojava.c' || echo '$(srcdir)/'`src/c/ShellPrintf_nojava.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-PutChar_linux.lo `test -f 'src/c/PutChar_linux.c' || echo '$(srcdir)/'`src/c/PutChar_linux.c
+
+libscishell_la-ShellPrintf_nogui.lo: src/c/ShellPrintf_nogui.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-ShellPrintf_nogui.lo -MD -MP -MF $(DEPDIR)/libscishell_la-ShellPrintf_nogui.Tpo -c -o libscishell_la-ShellPrintf_nogui.lo `test -f 'src/c/ShellPrintf_nogui.c' || echo '$(srcdir)/'`src/c/ShellPrintf_nogui.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscishell_la-ShellPrintf_nogui.Tpo $(DEPDIR)/libscishell_la-ShellPrintf_nogui.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/ShellPrintf_nogui.c' object='libscishell_la-ShellPrintf_nogui.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-ShellPrintf_nogui.lo `test -f 'src/c/ShellPrintf_nogui.c' || echo '$(srcdir)/'`src/c/ShellPrintf_nogui.c
+
+libscishell_la-PutChar_linux_nogui.lo: src/c/PutChar_linux_nogui.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-PutChar_linux_nogui.lo -MD -MP -MF $(DEPDIR)/libscishell_la-PutChar_linux_nogui.Tpo -c -o libscishell_la-PutChar_linux_nogui.lo `test -f 'src/c/PutChar_linux_nogui.c' || echo '$(srcdir)/'`src/c/PutChar_linux_nogui.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscishell_la-PutChar_linux_nogui.Tpo $(DEPDIR)/libscishell_la-PutChar_linux_nogui.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/PutChar_linux_nogui.c' object='libscishell_la-PutChar_linux_nogui.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-PutChar_linux_nogui.lo `test -f 'src/c/PutChar_linux_nogui.c' || echo '$(srcdir)/'`src/c/PutChar_linux_nogui.c
 
 libscishell_la-sci_completion.lo: sci_gateway/c/sci_completion.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-sci_completion.lo -MD -MP -MF $(DEPDIR)/libscishell_la-sci_completion.Tpo -c -o libscishell_la-sci_completion.lo `test -f 'sci_gateway/c/sci_completion.c' || echo '$(srcdir)/'`sci_gateway/c/sci_completion.c

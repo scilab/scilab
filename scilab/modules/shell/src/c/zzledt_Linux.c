@@ -10,7 +10,7 @@
  **********************************************************************/
 #include "machine.h" 
 #include "sciprint.h"
-
+#include "sciprint_nd.h"
 static char Sci_Prompt[10];
 
 
@@ -68,6 +68,9 @@ static char Sci_Prompt[10];
 #include "core_math.h"
 #include "Scierror.h"
 #include "prompt.h"
+#include "PutChar.h"
+
+#include "../../../gui/src/c/xsci/x_VTPrsTbl.h"
 
 #ifndef HAVE_TERMCAP
 #undef TERMCAP
@@ -157,7 +160,6 @@ static int  gchar_no_echo(int interrupt);
 static int  CopyCurrentHist(char *wk_buf,int *cursor,int *cursor_max);
 static void strip_blank(char *source);
 static int  translate(int ichar);
-static void PutChar(int c);
 static int  GetCharOrEvent(int interrupt);
 
 /* function for console mode */
@@ -178,17 +180,12 @@ extern void set_echo_mode(int mode);
 extern void set_is_reading(int mode);
 extern int  get_echo_mode(void);
 extern void C2F(sigbas)(int *n);
-extern void XHomeFunction(void);
 extern int XClearScreenConsole(char *fname);
 
-/*history functions*/
 #include "history.h" 
 
-/*end history functions*/
-
-
 extern int  XEvorgetchar(int interrupt);  
-extern void Xputchar(int c);  
+
 
 extern int  Xorgetchar(int interrupt);
 /* --- End extern functions ---  */
@@ -201,8 +198,6 @@ static int interrupted=0;
 /*  ---- end of interruption handling ---*/
 
 static int sendprompt=1;
-
-extern int groundtable[]; /* character table */ 
 
 /*-------------- Declarations  specific for console mode    -----------------  */
 static int init_flag = TRUE;
@@ -229,7 +224,7 @@ static char *CL=NULL;            /* clear screen */
 extern int GetSaveHistoryAfterNcommands(void);
 extern char * getfilenamehistory(void);
 
-extern void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,	int *menusflag,int * modex,long int dummy1);
+void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,	int *menusflag,int * modex,long int dummy1);
 
 static int NumberOfCommands=0;
 
@@ -250,7 +245,7 @@ void resetNumberOfCommands(void)
  * line editor
  **********************************************************************/
 
-extern void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
+void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 			int *menusflag,int * modex,long int dummy1)
 {
   int cursor_max = 0;
@@ -373,7 +368,7 @@ extern void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 	    backspace(1);
 	  }
 	  else {
-	    PutChar(BEL); /* au lieu de XPutChar(BEL);*/
+	    PutChar(BEL); /* instead of XPutChar(BEL);*/
 	  }
 	  break;
 	case RIGHT_ARROW: /* move right*/
@@ -852,17 +847,7 @@ static int CopyCurrentHist(char *wk_buf,int *cursor,int *cursor_max)
     }
   return 0;
 }
-/************************************************************************
- * PutChar : common interface to putchar and Xputchar
- ***********************************************************************/
 
-void PutChar(int c)
-{
-  if(modeX)
-    Xputchar(c);
-  else
-    putchar(c);
-}
 
 /************************************************************************
  * GetCharOrEvent : common interface to XEvorgetchar and Xorgetchar
@@ -1022,12 +1007,6 @@ int XSaveNative _PARAMS((char *fname, unsigned long fname_len))
 {
 	Scierror(999,"\nNot yet implemented. \n");	
 	return 0;
-}
-
-int HomeFunction _PARAMS((char *fname, unsigned long fname_len))
-{
-  XHomeFunction(); /* In SCI/modules/gui/src/c/xsci/x_util.c */
-  return 0;
 }
 
 int ClearScreenConsole _PARAMS((char *fname, unsigned long fname_len))

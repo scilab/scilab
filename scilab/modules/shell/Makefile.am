@@ -21,9 +21,11 @@ sci_gateway/c/sci_resethistory.c \
 sci_gateway/c/sci_savehistory.c
 
 if GUI
-SHELL_C_SOURCES += src/c/ShellPrintf.c
+SHELL_C_SOURCES += src/c/ShellPrintf.c \
+src/c/PutChar_linux.c
 else
-SHELL_C_SOURCES += src/c/ShellPrintf_nojava.c
+SHELL_C_SOURCES += src/c/ShellPrintf_nogui.c \
+src/c/PutChar_linux_nogui.c
 endif
 
 # Includes need for the compilation
