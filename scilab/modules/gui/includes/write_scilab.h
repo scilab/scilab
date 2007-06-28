@@ -1,14 +1,14 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2007 */
-/* Sylvestre Ledru */
+/* @author Sylvestre Ledru */
 /*-----------------------------------------------------------------------------------*/
 #ifndef __WRITE_SCILAB_H__
 #define __WRITE_SCILAB_H__
 
 /**
- * <long-description>
+ * @TODO : add comment
  *
- * @param s 
+ * @param s
  */
 void write_scilab (char *s);
 
