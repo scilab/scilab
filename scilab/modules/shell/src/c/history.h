@@ -60,6 +60,10 @@ int C2F(savehistory) _PARAMS((char *fname));
 char * getfilenamehistory(void);
 int C2F(gethistory) _PARAMS((char *fname)); /* Affiche le contenu de l'historique */
 /*-----------------------------------------------------------------------------------*/
+void addNumberOfCommands(void);
+int getNumberOfCommands(void);
+void resetNumberOfCommands(void);
+/*-----------------------------------------------------------------------------------*/
 void GetCommentDateSession(char *line,int BeginSession);
 int GetSaveHistoryAfterNcommands(void);
 int CreSmatFromHist(char *fname, int number, sci_hist *Parcours);

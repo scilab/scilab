@@ -24,8 +24,9 @@ static int HistorySizeInMemory=0;
 BOOL NewSearchInHistory=FALSE; /* rlgets wsci\command.c */
 
 static int SaveHistoryAfterNcommands=0;
-extern int getNumberOfCommands(void);
-extern void resetNumberOfCommands(void);
+
+static int NumberOfCommands=0;
+
 /*-----------------------------------------------------------------------------------*/
 static char *ASCIItime(const struct tm *timeptr)
 {
@@ -451,5 +452,20 @@ void setNewSearchInHistory(int state)
 {
   NewSearchInHistory = (BOOL) state;
   cur_entry = NULL;
+}
+/*-----------------------------------------------------------------------------------*/
+int getNumberOfCommands(void)
+{
+	return NumberOfCommands;
+}
+/*-----------------------------------------------------------------------------------*/
+void addNumberOfCommands(void)
+{
+	NumberOfCommands++;
+}
+/*-----------------------------------------------------------------------------------*/
+void resetNumberOfCommands(void)
+{
+	NumberOfCommands = 0;
 }
 /*-----------------------------------------------------------------------------------*/

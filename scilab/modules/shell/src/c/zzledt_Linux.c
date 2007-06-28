@@ -1,12 +1,13 @@
 /* Copyright INRIA/ENPC */
 /***********************************************************************
- * zzledt.c - line editing routine
+ * zzledt_linux.c - line editing routine
  * Initial Version : Copyright (c) Mitchell and Gauthier assoc, inc 1993
  * Modified by Jean Philippe Chancelier (ENPC) and Serge Steer (INRIA) 
  *  - Console (xterm) and Scilab window mode handled, 
  *    used in Console mode for GTK
  *  - Interruption for Scilab menu execution
  *  - History functions changed to use linked lists
+ * Modified by Sylvestre LEDRU (INRIA) 2007
  **********************************************************************/
 #include "machine.h" 
 #include "sciprint.h"
@@ -69,6 +70,7 @@ static char Sci_Prompt[10];
 #include "Scierror.h"
 #include "prompt.h"
 #include "PutChar.h"
+#include "zzledt_Linux.h"
 
 #include "../../../gui/src/c/xsci/x_VTPrsTbl.h"
 
@@ -226,19 +228,14 @@ extern char * getfilenamehistory(void);
 
 void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,	int *menusflag,int * modex,long int dummy1);
 
-static int NumberOfCommands=0;
-
 /*-------------- End of Declarations  specific for console mode-----------------  */
-int getNumberOfCommands(void)
-{
-	return NumberOfCommands;
+int isModeX(){
+	return modeX;
 }
-/*-----------------------------------------------------------------------------------*/
-void resetNumberOfCommands(void)
-{
-	NumberOfCommands = 0;
+
+static void setModeX(int n){
+	modeX=n;
 }
-/*-----------------------------------------------------------------------------------*/
 
 
 /***********************************************************************
@@ -258,9 +255,9 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 
   GetCurrentPrompt(Sci_Prompt);
 
-  modeX=*modex;
+  setModeX(*modex);
 
-  if(!modeX) {
+  if(!isModeX()) {
     if(init_flag) {
       init_io();
       init_flag = FALSE;
@@ -289,7 +286,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
   else
     wk_buf[0] = NUL; /* initialize empty  buffer */
 
-  if(!modeX) {
+  if(!isModeX()) {
 #ifdef KEYPAD 
     set_cbreak();
     enable_keypad_mode();
@@ -482,7 +479,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 	  break;
 
 	case CTRL_L:
-	  if(modeX) {
+	  if(isModeX()) {
 	    PutChar(CTRL_L);
 	    wk_buf[0]=NUL;
 	    goto exit;
@@ -649,7 +646,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
     
   }
 #ifdef KEYPAD
-  if(!modeX) {
+  if(!isModeX()) {
     set_crmod();
     disable_keypad_mode();
   }
@@ -658,7 +655,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
   set_is_reading(FALSE);
   
   /* see savehistory */
-  NumberOfCommands++;
+  addNumberOfCommands();
   if ( ( GetSaveHistoryAfterNcommands() == getNumberOfCommands() ) && ( GetSaveHistoryAfterNcommands() > 0) )
   {
 	  char *filenamehistory=NULL;
@@ -720,7 +717,7 @@ static void backspace(int n)
 {
   if(n < 1)
     return;
-  if (modeX) {
+  if (isModeX()) {
     while(n--)
       PutChar('\010');
   }
@@ -855,7 +852,7 @@ static int CopyCurrentHist(char *wk_buf,int *cursor,int *cursor_max)
 
 int GetCharOrEvent(int interrupt)
 {
-  if(modeX)
+  if(isModeX())
     return XEvorgetchar(interrupt);
   else
     return Xorgetchar(interrupt);

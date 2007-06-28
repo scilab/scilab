@@ -35,9 +35,6 @@ void DisablePutLineInBuffer(void);
 char copycur_line[1024];
 BOOL PutLineInBuffer=FALSE;
 void ChangeCursorWhenScilabIsReady(void);
-static int NumberOfCommands=0;
-int getNumberOfCommands(void);
-void resetNumberOfCommands(void);
 extern void CleanCurrentLine(char *line);
 /*-----------------------------------------------------------------------------------*/
 /***********************************************************************
@@ -81,7 +78,7 @@ void C2F (zzledt) (char *buffer, int *buf_size, int *len_line, int *eof, int* in
   C2F (sxevents) ();
 
   /* see savehistory */
-  NumberOfCommands++;
+  addNumberOfCommands();
   if ( ( GetSaveHistoryAfterNcommands() == getNumberOfCommands() ) && ( GetSaveHistoryAfterNcommands() > 0) )
   {
 	  char *filenamehistory=NULL;
@@ -90,7 +87,6 @@ void C2F (zzledt) (char *buffer, int *buf_size, int *len_line, int *eof, int* in
 	  write_history( filenamehistory );
 	  FREE(filenamehistory);
 
-	  NumberOfCommands=0;
 	  resetNumberOfCommands();
   }
 
@@ -109,17 +105,6 @@ void SaveCurrentLine(BOOL RewriteLineAtPrompt)
 		if (RewriteLineAtPrompt) DisablePutLineInBuffer();
 	}
 }
-/*-----------------------------------------------------------------------------------*/
-int getNumberOfCommands(void)
-{
-	return NumberOfCommands;
-}
-/*-----------------------------------------------------------------------------------*/
-void resetNumberOfCommands(void)
-{
-	NumberOfCommands = 0;
-}
-/*-----------------------------------------------------------------------------------*/
 BOOL CanPutLineInBuffer(void)
 {
 	return PutLineInBuffer;
