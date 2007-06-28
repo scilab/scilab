@@ -486,7 +486,7 @@ libscigui_la_CFLAGS = -Isrc/c/ -Iincludes/ \
 	-I$(top_srcdir)/modules/string/includes/ \
 	-I$(top_srcdir)/modules/tclsci/includes/ \
 	-I$(top_srcdir)/modules/jvm/includes/ \
-	-I$(top_srcdir)/modules/gui/src/c/xsci/ $(TCL_INC_PATH) \
+	-I$(top_srcdir)/modules/shell/includes/ $(TCL_INC_PATH) \
 	$(Tk_INC_PATH) $(am__append_2)
 GUI_C_SOURCES = src/c/xsci/IsConsoleMode.c src/c/xsci/write_scilab.c \
 	src/c/xsci/xscisrn.c src/c/xsci/mainscic.c $(am__append_1) \
