@@ -68,6 +68,8 @@ int C2F(playsound)(char *fname,char *command,unsigned long fname_len)
 #else 
   /* linux : a player should be detected by configure ?
    */
+  /* !!!! This code MUST be rewrited !!! It is not at all the way of playing 
+	 sound with Linux */
   char system_cmd[FILENAME_MAX+10];
   int rep ;
   sprintf(system_cmd,"%s  %s > /dev/null 2>&1",(command == NULL) ? "play": command, filename);  

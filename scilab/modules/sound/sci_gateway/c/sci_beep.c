@@ -67,6 +67,8 @@ void BeepLinuxWindows(void)
 	#ifdef _MSC_VER
 		MessageBeep(-1);
 	#else
+  /* !!!! This code MUST be rewrited !!! It is not at all the way of playing 
+	 sound with Linux */
 		system("echo -en \"\a\"");
 	#endif
 }
