@@ -5,9 +5,7 @@ package org.scilab.modules.gui.bridge.console;
 
 import java.awt.Dimension;
 
-import com.artenum.jyconsole.JyConsole;
-
-
+import org.scilab.modules.console.SciConsole;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -17,7 +15,9 @@ import org.scilab.modules.gui.utils.Size;
  * This implementation uses JyConsole package
  * @author Vincent COUVERT
  */
-public class SwingScilabConsole extends JyConsole implements Console {
+public class SwingScilabConsole extends SciConsole implements Console {
+
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Constructor
@@ -32,12 +32,8 @@ public class SwingScilabConsole extends JyConsole implements Console {
 	 * @see fr.scilab.console.Console#display(java.lang.String)
 	 */
 	public void display(String dataToDisplay) {
-		// TODO write this method !!
-		System.out.println(dataToDisplay);
-		
-		// uncomment this line
-		//Sciprintf(dataToDisplay);
-		
+		this.getConfiguration().getOutputView().setCaretPositionToEnd();
+		this.getConfiguration().getOutputView().append(dataToDisplay);
 	}
 
 	/**
