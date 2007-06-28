@@ -26,6 +26,7 @@
 <module name="data_structures" activate="1"/>
 
 <module name="shell" activate="1"/>
+<module name="console" activate="1"/>
 <module name="gui" activate="1"/>
 <module name="incremental_link" activate="1"/>
 <module name="integer" activate="1"/>
