@@ -209,10 +209,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\bashos.c"
-				>
-			</File>
-			<File
 				RelativePath=".\basin.c"
 				>
 			</File>
@@ -818,10 +814,6 @@
 			</File>
 			<File
 				RelativePath=".\atome.f"
-				>
-			</File>
-			<File
-				RelativePath=".\bashos.f"
 				>
 			</File>
 			<File
