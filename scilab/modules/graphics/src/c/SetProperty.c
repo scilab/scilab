@@ -4892,3 +4892,20 @@ int sciSetIsEventHandlerEnable( sciPointObj * pObj, BOOL enable )
   return sciInitIsEventHandlerEnable( pObj, enable ) ;
 }
 /*--------------------------------------------------------------------------------------------*/
+/**
+ * To specify if an object can be rendered
+ */
+int sciInitIsReadyForRendering( sciPointObj * pObj, BOOL isReady )
+{
+  switch(sciGetEntityType(pObj))
+  {
+  case SCI_FIGURE:
+    pFIGURE_FEATURE(pObj)->isReadyForRendering = isReady ;
+    break;
+  default:
+    sciprint( "This object has no IsReadyForRendering property.\n" ) ;
+    return -1 ;
+  }
+  return 0 ;
+}
+/*--------------------------------------------------------------------------------------------*/

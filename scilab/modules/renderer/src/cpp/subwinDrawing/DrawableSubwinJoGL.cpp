@@ -6,9 +6,16 @@
 /*        subwin object with JoGL                                         */
 /*------------------------------------------------------------------------*/
 
-#include "../DrawableObjectJoGL.h"
-#include "DrawableSubwin.h"
+
 #include "DrawableSubwinJoGL.h"
+#include "DrawableSubwin.h"
+#include "../DrawableObjectJoGL.h"
+#include "../DrawableObjectImp.h"
+
+extern "C"
+{
+#include "JniUtils.h"
+}
 
 namespace sciGraphics
 {
@@ -23,7 +30,7 @@ DrawableSubwinJoGL::DrawableSubwinJoGL( DrawableSubwin * drawer )
 /*------------------------------------------------------------------------------------------*/
 DrawableSubwinJoGL::~DrawableSubwinJoGL( void )
 {
-  destroy() ;
+  //destroy() ;
 }
 /*------------------------------------------------------------------------------------------*/
 

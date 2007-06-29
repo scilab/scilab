@@ -16,33 +16,33 @@
 namespace sciGraphics
 {
 
-  class DrawableRectangleJoGL : public DrawableRectangleImp, public DrawableObjectJoGL
-  {
+class DrawableRectangleJoGL : public DrawableRectangleImp, public DrawableObjectJoGL
+{
 
-  public:
+public:
 
-    DrawableRectangleJoGL( DrawableRectangle * drawer ) ;
+  DrawableRectangleJoGL( DrawableRectangle * drawer ) ;
 
-    virtual ~DrawableRectangleJoGL( void ) ;
+  virtual ~DrawableRectangleJoGL( void ) ;
 
-    /**
-     * Tell the canvas to draw itself.
-     */
-    virtual void drawRectangle( void ) ;
+  /**
+   * Tell the canvas to draw itself.
+   */
+  virtual void drawRectangle( void ) ;
 
-    /**
-     * Call the display list of an object
-     */
-    virtual void show( void ) ;
+  /**
+   * Call the display list of an object
+   */
+  virtual void show( void ) ;
 
-  protected:
+protected:
 
-    /*-------------------------------------------------------------*/
-    /** destroy the rectangle entity */
-    void destroyRectangle( void ) ;
-    /*-------------------------------------------------------------*/
+  /*-------------------------------------------------------------*/
+  /** destroy the rectangle entity */
+  void destroyRectangle( void ) ;
+  /*-------------------------------------------------------------*/
 
-  } ;
+} ;
 
 }
 

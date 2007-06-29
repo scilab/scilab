@@ -144,6 +144,8 @@ sciPointObj * ConstructFigure( sciPointObj * pparent, struct BCG * XGC )
   
   ppFigure = pFIGURE_FEATURE(pobj) ;
 
+  sciInitIsReadyForRendering(pobj, FALSE) ;
+
   if ( sciStandardBuildOperations( pobj, pparent ) == NULL )
   {
     return NULL ;
@@ -235,6 +237,8 @@ sciPointObj * ConstructFigure( sciPointObj * pparent, struct BCG * XGC )
   sciSetColormap( pobj, colorMap, sciGetNumColors(pfiguremdl), 3 ) ;
 
   FREE(colorMap);
+
+  sciInitIsReadyForRendering(pobj, TRUE) ;
 
   return pobj;
 }
@@ -2867,8 +2871,10 @@ sciPointObj * sciStandardBuildOperations( sciPointObj * pObj, sciPointObj * pare
   *userData = NULL ;
   *udSize   = 0    ;
 
+ 
   pObj->pObservers = DoublyLinkedList_new() ;
   createDrawingObserver( pObj ) ;
+  
 
   pObj->pDrawer = NULL ;
 

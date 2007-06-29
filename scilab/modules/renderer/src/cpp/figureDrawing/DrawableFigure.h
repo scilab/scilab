@@ -113,6 +113,7 @@ protected:
    */
   virtual bool checkAutoRedraw( void ) = 0 ;
 
+
   /*--------------------------------------------------------------------------------------*/
   // Driver dependant algorithms
 

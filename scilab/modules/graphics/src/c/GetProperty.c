@@ -5162,3 +5162,18 @@ double * sciGetMargins( sciPointObj * pObj )
   }
 }
 /*-------------------------------------------------------------------------------------------*/
+/**
+ * To know if an object can be rendered
+ */
+BOOL sciGetIsReadyForRendering( sciPointObj * pobj )
+{
+  switch(sciGetEntityType(pobj))
+  {
+  case SCI_FIGURE:
+    return pFIGURE_FEATURE(pobj)->isReadyForRendering ;
+  default:
+    sciprint( "This object has no IsReadyForRendering property.\n" ) ;
+  }
+  return NULL ;
+}
+/*-------------------------------------------------------------------------------------------*/

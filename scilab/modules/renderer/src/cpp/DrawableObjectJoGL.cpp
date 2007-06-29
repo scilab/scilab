@@ -21,7 +21,7 @@ DrawableObjectJoGL::DrawableObjectJoGL( DrawableObject * drawer, const char * cl
   m_oDrawableClass  = NULL ;
   m_oDrawableObject = NULL ;
   jniCreateDefaultInstanceSafe( className, &m_oDrawableClass, &m_oDrawableObject ) ;
-  jniCallVoidFunctionSafe( m_oDrawableObject, "setFigureIndex", "I", sciGetNum(sciGetParentFigure(m_pDrawer->getDrawedObject())) ) ;
+  jniCallMemberFunctionSafe( m_oDrawableObject, NULL, "setFigureIndex", "(I)V", sciGetNum(sciGetParentFigure(m_pDrawer->getDrawedObject())) ) ;
 }
 /*------------------------------------------------------------------------------------------*/
 DrawableObjectJoGL::~DrawableObjectJoGL( void )
@@ -31,35 +31,36 @@ DrawableObjectJoGL::~DrawableObjectJoGL( void )
 /*------------------------------------------------------------------------------------------*/
 void DrawableObjectJoGL::initializeDrawing( void )
 {
-  jniCallVoidFunctionSafe( m_oDrawableObject, "initializeDrawing", "I", sciGetNum(sciGetParentFigure(m_pDrawer->getDrawedObject())) ) ;
+  jniCallMemberFunctionSafe( m_oDrawableObject, NULL, "initializeDrawing", "(I)V", sciGetNum(sciGetParentFigure(m_pDrawer->getDrawedObject())) ) ;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableObjectJoGL::endDrawing( void )
 {   
-  jniCallVoidFunctionSafe( m_oDrawableObject, "endDrawing", "" ) ;
+  jniCallMemberFunctionSafe( m_oDrawableObject, NULL, "endDrawing", "()V" ) ;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableObjectJoGL::initializeShowing( void )
 {
-  jniCallVoidFunctionSafe( m_oDrawableObject, "initializeShowing", "I", sciGetNum(sciGetParentFigure(m_pDrawer->getDrawedObject())) ) ;
+  jniCallMemberFunctionSafe( m_oDrawableObject, NULL, "initializeShowing", "(I)V", sciGetNum(sciGetParentFigure(m_pDrawer->getDrawedObject())) ) ;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableObjectJoGL::endShowing( void )
 {   
-  jniCallVoidFunctionSafe( m_oDrawableObject, "endShowing", "" ) ;
+  jniCallMemberFunctionSafe( m_oDrawableObject, NULL, "endShowing", "()V" ) ;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableObjectJoGL::show( void )
 {
-  jniCallVoidFunctionSafe( m_oDrawableObject, "show", "I", sciGetNum(sciGetParentFigure(m_pDrawer->getDrawedObject())) ) ;
+  jniCallMemberFunctionSafe( m_oDrawableObject, NULL, "show", "(I)V", sciGetNum(sciGetParentFigure(m_pDrawer->getDrawedObject())) ) ;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableObjectJoGL::destroy( void )
 {
   if ( m_oDrawableObject != NULL )
   {
-    jniCallVoidFunctionSafe( m_oDrawableObject, "destroy", "I", sciGetNum(sciGetParentFigure(m_pDrawer->getDrawedObject())) ) ;
-    jniDeleteLocalEntity( m_oDrawableObject ) ;
+    jniCallMemberFunctionSafe( m_oDrawableObject, NULL, "destroy", "(I)V", sciGetNum(sciGetParentFigure(m_pDrawer->getDrawedObject())) ) ;
+    jniDeleteGlobalEntity( m_oDrawableObject ) ;
+    jniDeleteGlobalEntity(m_oDrawableClass) ;
   }
   m_oDrawableObject = NULL ;
   m_oDrawableClass  = NULL ;

@@ -65,4 +65,5 @@ protected:
 
 }
 
-#endif _CAMERA_H_
+#endif /* _CAMERA_H_ */
+

@@ -208,5 +208,6 @@ char * sciGetEventHandler( sciPointObj * pObj ) ;
 double * sciGetAxesBounds( sciPointObj * pObj ) ;
 double * sciGetMargins( sciPointObj * pObj ) ;
 
+BOOL sciGetIsReadyForRendering( sciPointObj * pobj ) ; /* GET */
 
 #endif /* __SCI_GET_PROPERTY__ */

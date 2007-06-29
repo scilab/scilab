@@ -10,7 +10,7 @@
 
 
 #include "DrawableSubwin.h"
-//#include "DrawableSubwinBridge.h"
+#include "DrawableSubwinBridge.h"
 
 namespace sciGraphics
 {

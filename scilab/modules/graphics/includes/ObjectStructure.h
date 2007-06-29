@@ -452,6 +452,9 @@ typedef struct
   /** specifies the number of this window            */
   int number;
 
+  /** Specifies if the object has been totally build and is ready to be rendered on the screen */
+  BOOL isReadyForRendering;
+
   /** specifies the colr map                         */
   double *pcolormap;
   /** specifies if this window is iconified*/

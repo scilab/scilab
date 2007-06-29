@@ -22,8 +22,10 @@ JNIEXPORT void JNICALL Java_org_scilab_modules_renderer_figureDrawing_FigureScil
   int figIndex = (int) figureId ;
   sciPointObj * curFig = sciIsExistingFigure(&figIndex) ;
   if ( curFig == NULL ) { return ;}
-  //jniSetCurrentEnv(env) ;
-  (sciGraphics::getFigureDrawer(curFig))->drawInContext() ;
+  if ( sciGetIsReadyForRendering(curFig) )
+  {
+    (sciGraphics::getFigureDrawer(curFig))->drawInContext() ;
+  }
 }
 /*-----------------------------------------------------------------------------------*/
 
@@ -33,7 +35,10 @@ JNIEXPORT void JNICALL Java_org_scilab_modules_renderer_figureDrawing_FigureScil
   int figIndex = (int) figureId ;
   sciPointObj * curFig = sciIsExistingFigure(&figIndex) ;
   if ( curFig == NULL ) { return ;}
-  redrawHierarchy(curFig) ;
+  if ( sciGetIsReadyForRendering(curFig) )
+  {
+    redrawHierarchy(curFig) ;
+  }
 }
 /*-----------------------------------------------------------------------------------*/
 

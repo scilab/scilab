@@ -10,6 +10,7 @@
 
 
 #include "../DrawableClippedObject.h"
+#include "DrawablePolylineBridge.h"
 
 namespace sciGraphics
 {
@@ -20,6 +21,13 @@ class DrawablePolyline : public DrawableClippedObject
 public:
 
   DrawablePolyline( sciPointObj * pObj ) : DrawableClippedObject( pObj ) {}
+
+  virtual ~DrawablePolyline( void ) {}
+
+  /**
+   * Return the real type of implementation object
+   */
+  DrawablePolylineBridge * getPolylineImp( void ) ;
 
 protected:
 

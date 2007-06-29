@@ -15,9 +15,15 @@ namespace sciGraphics
 {
 
 /*------------------------------------------------------------------------------------------*/
+DrawablePolylineBridge * DrawablePolyline::getPolylineImp( void )
+{
+  return dynamic_cast<DrawablePolylineBridge *>(m_pImp) ;
+}
+/*------------------------------------------------------------------------------------------*/
 void DrawablePolyline::draw( void )
 {
-  //drawPolylineEntity( m_pDrawed ) ;
+  initializeDrawing() ;
+  endDrawing();
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawablePolyline::show( void )

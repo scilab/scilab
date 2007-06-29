@@ -38,26 +38,26 @@ DrawableFigureJoGL::~DrawableFigureJoGL( void )
 void DrawableFigureJoGL::drawCanvas( void )
 {
   // We call the display function to be sure to be in the right context
-  jniCallVoidFunctionSafe( m_oDrawableObject, "display", "" ) ;
+  jniCallMemberFunctionSafe( m_oDrawableObject, NULL, "display", "()V" ) ;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::openRenderingCanvas( int figureIndex )
 {
-  jniCallVoidFunctionSafe( m_oDrawableObject, "openRenderingCanvas", "I", figureIndex ) ;
+  jniCallMemberFunctionSafe( m_oDrawableObject, NULL, "openRenderingCanvas", "(I)V", figureIndex ) ;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::closeRenderingCanvas( void )
 {
   if ( m_oDrawableObject != NULL )
   {
-    jniCallVoidFunctionSafe( m_oDrawableObject, "closeRenderingCanvas", "" ) ;
+    jniCallMemberFunctionSafe( m_oDrawableObject, NULL, "closeRenderingCanvas", "()V" ) ;
   }
   DrawableObjectJoGL::destroy() ;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::setBackgroundColor( int backgroundColor )
 {
-  jniCallVoidFunctionSafe( m_oDrawableObject, "setBackgroundColor", "I", backgroundColor ) ;
+  jniCallMemberFunctionSafe( m_oDrawableObject, NULL, "setBackgroundColor", "(I)V", backgroundColor ) ;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::setColorMap( const double rgbMat[], int nbColor )
@@ -65,23 +65,16 @@ void DrawableFigureJoGL::setColorMap( const double rgbMat[], int nbColor )
   jdoubleArray javaCmap = NULL;
   jniUpdateCurrentEnv();
   javaCmap = jniCreateDoubleArrayCopy(rgbMat, nbColor) ;
-  jniCallVoidFunction( m_oDrawableObject, "setColorMapData", "[D", javaCmap ) ;
+  
+  jniCallMemberFunctionSafe( m_oDrawableObject, NULL, "setColorMapData", "([D)V", javaCmap ) ;
   jniDeleteLocalEntity(javaCmap) ;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::getColorMap( double rgbMat[] )
 {
-  jmethodID colorMapMethod = NULL ;
   jdoubleArray javaCMap = NULL ;
   jniUpdateCurrentEnv();
   JNIEnv * curEnv = jniGetCurrentJavaEnv() ;
-
-  colorMapMethod = curEnv->GetMethodID( m_oDrawableClass, "getColorMapData", "([D)V" ) ;
-  if ( !jniCheckLastCall(TRUE) )
-  {
-    Scierror( 999, "Error when calling function %s.\r\n", "getColorMapData" ) ;
-    return ;
-  }
 
   javaCMap = curEnv->NewDoubleArray( sciGetNumColors(getDrawer()->getDrawedObject()) * 3 ) ;
   if ( !jniCheckLastCall(TRUE) )
@@ -90,12 +83,8 @@ void DrawableFigureJoGL::getColorMap( double rgbMat[] )
     return ;
   }
 
-  curEnv->CallObjectMethod( m_oDrawableObject, colorMapMethod, javaCMap ) ;
-  if ( !jniCheckLastCall(TRUE) )
-  {
-    Scierror( 999, "Error when calling function %s.\r\n", "getColorMapData" ) ;
-    return ;
-  }
+  jniCallMemberFunctionSafe(m_oDrawableObject, NULL, "getColorMapData", "([D)V", javaCMap) ;
+
 
   jniCopyJavaDoubleArray( javaCMap, rgbMat ) ;
   
@@ -104,136 +93,43 @@ void DrawableFigureJoGL::getColorMap( double rgbMat[] )
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::getSize( int size[2] )
 {
-  jmethodID getSizeMethod = NULL ;
-  jniUpdateCurrentEnv();
-  JNIEnv * curEnv = jniGetCurrentJavaEnv() ;
 
-  // width
-  getSizeMethod = curEnv->GetMethodID( m_oDrawableClass, "getCanvasWidth", "()I" ) ;
-  if ( !jniCheckLastCall(TRUE) )
-  {
-    Scierror( 999, "Error when calling function %s.\r\n", "getCanvasWidth" ) ;
-    return ;
-  }
-
-  size[0] = curEnv->CallIntMethod( m_oDrawableObject, getSizeMethod ) ;
-  if ( !jniCheckLastCall(TRUE) )
-  {
-    Scierror( 999, "Error when calling function %s.\r\n", "getCanvasWidth" ) ;
-    return ;
-  }
-
-  // height
-  getSizeMethod = curEnv->GetMethodID( m_oDrawableClass, "getCanvasHeight", "()I" ) ;
-  if ( !jniCheckLastCall(TRUE) )
-  {
-    Scierror( 999, "Error when calling function %s.\r\n", "getCanvasHeight" ) ;
-    return ;
-  }
-
-  size[1] = curEnv->CallIntMethod( m_oDrawableObject, getSizeMethod ) ;
-  if ( !jniCheckLastCall(TRUE) )
-  {
-    Scierror( 999, "Error when calling function %s.\r\n", "getCanvasHeight" ) ;
-    return ;
-  }
-
+  size[0] = jniGetIntValue(jniCallMemberFunctionSafe(m_oDrawableObject, NULL, "getCanvasWidth", "()I")) ;
+  size[1] = jniGetIntValue(jniCallMemberFunctionSafe(m_oDrawableObject, NULL, "getCanvasWidth", "()I")) ;
 
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::setSize( const int size[2] )
 {
-  jniCallVoidFunctionSafe(m_oDrawableObject, "setCanvasSize", "II", size[0], size[1] ) ;
+  jniCallMemberFunctionSafe(m_oDrawableObject, NULL, "setCanvasSize", "(II)V", size[0], size[1] ) ;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::getWindowPosition( int pos[2] )
 {
-  jmethodID getPosMethod = NULL ;
-  jniUpdateCurrentEnv();
-  JNIEnv * curEnv = jniGetCurrentJavaEnv() ;
-
-  // X coord
-  getPosMethod = curEnv->GetMethodID( m_oDrawableClass, "getWindowPosX", "()I" ) ;
-  if ( !jniCheckLastCall(TRUE) )
-  {
-    Scierror( 999, "Error when calling function %s.\r\n", "getWindowPosX" ) ;
-    return ;
-  }
-
-  pos[0] = curEnv->CallIntMethod( m_oDrawableObject, getPosMethod ) ;
-  if ( !jniCheckLastCall(TRUE) )
-  {
-    Scierror( 999, "Error when calling function %s.\r\n", "getWindowPosX" ) ;
-    return ;
-  }
-
-  // Y coord
-  getPosMethod = curEnv->GetMethodID( m_oDrawableClass, "getWindowPosY", "()I" ) ;
-  if ( !jniCheckLastCall(TRUE) )
-  {
-    Scierror( 999, "Error when calling function %s.\r\n", "getWindowPosY" ) ;
-    return ;
-  }
-
-  pos[1] = curEnv->CallIntMethod( m_oDrawableObject, getPosMethod ) ;
-  if ( !jniCheckLastCall(TRUE) )
-  {
-    Scierror( 999, "Error when calling function %s.\r\n", "getWindowPosY" ) ;
-    return ;
-  }
+  pos[0] = jniGetIntValue(jniCallMemberFunctionSafe(m_oDrawableObject, NULL, "getWindowPosX", "()I")) ;
+  pos[1] = jniGetIntValue(jniCallMemberFunctionSafe(m_oDrawableObject, NULL, "getWindowPosY", "()I")) ;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::setWindowPosition( const int pos[2] )
 {
-  jniCallVoidFunctionSafe(m_oDrawableObject, "setWindowPosition", "II", pos[0], pos[1] ) ;
+  jniCallMemberFunctionSafe(m_oDrawableObject, NULL, "setWindowPosition", "(II)V", pos[0], pos[1] ) ;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::getWindowSize( int size[2] )
 {
-  jmethodID getSizeMethod = NULL ;
-  jniUpdateCurrentEnv();
-  JNIEnv * curEnv = jniGetCurrentJavaEnv() ;
-
-  // width
-  getSizeMethod = curEnv->GetMethodID( m_oDrawableClass, "getWindowWidth", "()I" ) ;
-  if ( !jniCheckLastCall(TRUE) )
-  {
-    Scierror( 999, "Error when calling function %s.\r\n", "getWindowWidth" ) ;
-    return ;
-  }
-
-  size[0] = curEnv->CallIntMethod( m_oDrawableObject, getSizeMethod ) ;
-  if ( !jniCheckLastCall(TRUE) )
-  {
-    Scierror( 999, "Error when calling function %s.\r\n", "getWindowWidth" ) ;
-    return ;
-  }
-
-  // height
-  getSizeMethod = curEnv->GetMethodID( m_oDrawableClass, "getWindowHeight", "()I" ) ;
-  if ( !jniCheckLastCall(TRUE) )
-  {
-    Scierror( 999, "Error when calling function %s.\r\n", "getWindowHeight" ) ;
-    return ;
-  }
-
-  size[1] = curEnv->CallIntMethod( m_oDrawableObject, getSizeMethod ) ;
-  if ( !jniCheckLastCall(TRUE) )
-  {
-    Scierror( 999, "Error when calling function %s.\r\n", "getWindowHeight" ) ;
-    return ;
-  }
+  size[0] = jniGetIntValue(jniCallMemberFunctionSafe(m_oDrawableObject, NULL, "getWindowWidth", "()I")) ;
+  size[1] = jniGetIntValue(jniCallMemberFunctionSafe(m_oDrawableObject, NULL, "getWindowHeight", "()I")) ;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::setWindowSize( const int size[2] )
 {
-  jniCallVoidFunctionSafe(m_oDrawableObject, "setWindowSize", "II", size[0], size[1] ) ;
+  jniCallMemberFunctionSafe(m_oDrawableObject, NULL, "setWindowSize", "(II)V", size[0], size[1] ) ;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::setInfoMessage( const char * message )
 {
   jstring infoMessage = jniCreateStringCopy( message ) ;
-  jniCallVoidFunctionSafe( m_oDrawableObject, "setInfoMessage", "Ljava/lang/String;", infoMessage ) ;
+  jniCallMemberFunctionSafe( m_oDrawableObject, NULL, "setInfoMessage", "(Ljava/lang/String;)V", infoMessage ) ;
   jniDeleteLocalEntity( infoMessage ) ;
 }
 /*------------------------------------------------------------------------------------------*/

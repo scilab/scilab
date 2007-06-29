@@ -8,6 +8,9 @@
 
 #include "DrawablePolylineFactory.h"
 #include "DrawablePolyline.h"
+#include "DrawablePolylineBridgeFactory.h"
+
+#include "../subwinDrawing/DrawableSubwinFactory.h"
 
 namespace sciGraphics
 {
@@ -15,7 +18,15 @@ namespace sciGraphics
 /*------------------------------------------------------------------------------------------*/
 DrawableObject * DrawablePolylineFactory::create( void )
 {
-  return new DrawablePolyline( m_pDrawed ) ;
+  /*DrawablePolyline * newPoly = new DrawablePolyline( m_pDrawed ) ;
+  DrawablePolylineBridgeFactory imp ;
+  imp.setDrawedPolyline( newPoly ) ;
+  newPoly->setDrawableImp( imp.create() ) ;
+
+  return newPoly ;*/
+  DrawableSubwinFactory fact ;
+  fact.setGraphicObj(m_pDrawed) ;
+  return fact.create();
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawablePolylineFactory::update( void )

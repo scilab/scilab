@@ -27,7 +27,7 @@ CameraJoGL::CameraJoGL( DrawableObject * subwin )
 void CameraJoGL::renderPosition( void )
 {
   initializeDrawing();
-  jniCallVoidFunctionSafe( m_oDrawableObject, "moveViewingArea", "");
+  jniCallVoidFunctionSafe( m_oDrawableObject, m_oDrawableClass, "moveViewingArea", "");
   endDrawing();
 }
 /*-----------------------------------------------------------------------------------*/

@@ -14,6 +14,35 @@
 #include "machine.h"
 
 /**
+ * Cache some data that does not change between functions calls
+ */
+typedef struct 
+{
+  jclass    instanceClass;
+  jmethodID methodId;
+} jniCallMethodCache;
+
+/**
+ * Create a new cache
+ */
+jniCallMethodCache * jniCreateCallMethodCache( void ) ;
+
+/**
+ * Destroy a cache
+ */
+void jniDestroyCallMethodCache( jniCallMethodCache * cache ) ;
+
+/**
+ * Initialize a cache with its values.
+ */
+void jniIntializeCallMethodCache( jniCallMethodCache * cache, jclass instanceClass, jmethodID methodId ) ;
+
+/**
+ * To know if a cache has alredy been initialized
+ */
+BOOL jniIsCallMethodCacheInitialized( jniCallMethodCache * cache ) ;
+
+/**
  * Initialize the environment from an already created jvm.
  */
 void jniInitUtils( JavaVM * jvm ) ;
@@ -69,6 +98,11 @@ jstring jniCreateStringCopy( const char * cString ) ;
 void jniDeleteLocalEntity( jobject entity ) ;
 
 /**
+* Delete a Java object (array, objects, ...)
+*/
+void jniDeleteGlobalEntity( jobject entity ) ;
+
+/**
  * Create a new instance of a Java class calling its
  * default constructor
  * @param className[in] string of the class name
@@ -87,9 +121,36 @@ BOOL jniCreateDefaultInstanceSafe( const char * className, jclass * instanceClas
  *                   This respect the JNI style and looks like "[DID".
  * @return TRUE if the call was succesful, FALSE otherwise.
  */
-BOOL jniCallVoidFunction(     jobject instance, const char * functionName, const char * paramTypes, ... ) ;
-BOOL jniCallVoidFunctionSafe( jobject instance, const char * functionName, const char * paramTypes, ... ) ;
-BOOL jniCallVoidFunctionV(    jobject instance, const char * functionName, const char * paramTypes, va_list args ) ;
+BOOL jniCallVoidFunction(     jobject instance, jclass instanceClass, const char * functionName, const char * paramTypes, ... ) ;
+BOOL jniCallVoidFunctionSafe( jobject instance, jclass instanceClass, const char * functionName, const char * paramTypes, ... ) ;
+BOOL jniCallVoidFunctionV(    jobject instance, jclass instanceClass, const char * functionName, const char * paramTypes, va_list args ) ;
+
+/**
+ * Call a java member function from C code.
+ * @param instance bject containing the function to call
+ * @param cache cache relative to this function used to speed up call to the function.
+ *              if cache is NULL, then it is not used. If cache is not initialized then the function will initialize it.
+ * @param pointer on the instance class. If NULL the class would be retrieved from the object and stored in the instance class.
+ * @param functionName Name of the function
+ * @param descriptor string containing the kinds of parameters the function takes and the return type.
+ *                   This respect the JNI style and looks like "([DID)V".
+ * The parameters are then given has optionals arguments.
+ */
+jvalue jniCallMemberFunction(     jobject instance, jniCallMethodCache * cache, const char * functionName, const char * descriptor, ... ) ;
+jvalue jniCallMemberFunctionSafe( jobject instance, jniCallMethodCache * cache, const char * functionName, const char * descriptor, ... ) ;
+jvalue jniCallMemberFunctionV(    jobject instance, jniCallMethodCache * cache, const char * functionName, const char * descriptor, va_list args ) ;
+
+
+/**
+ * Set a jvalue to default values
+ */
+void jniInitJValue( jvalue * value ) ;
+
+/**
+ * Get the double value of a jvalue;
+ */
+double jniGetDoubleValue( jvalue value ) ;
+int    jniGetIntValue(    jvalue value ) ;
 
 /**
  * Tell if the last call to JNI primitive was successful

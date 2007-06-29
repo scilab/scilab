@@ -93,6 +93,7 @@ public abstract class ObjectJoGL {
 		DrawableFigureJoGL figure = FigureMapper.getCorrespondingFigure(figureIndex);
 		FigureCanvas canvas = figure.getCanvas();
 		glPipeline = canvas.getGL();
+		if (glPipeline == null) { System.out.println("Error, GL Pipeline null\n;"); }
 		return glPipeline;
 	}
 	

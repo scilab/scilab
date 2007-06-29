@@ -996,6 +996,8 @@ FigureModelData * newFigureModelData( void )
   modelData->windowHeight = 400 ;
   modelData->windowPosition[0] = 200 ;
   modelData->windowPosition[1] = 200 ;
+  modelData->colorMap = NULL ;
+  modelData->numColors = 0 ;
 
   return modelData ;
 }

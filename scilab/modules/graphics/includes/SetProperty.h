@@ -247,6 +247,8 @@ int sciSetIsEventHandlerEnable(  sciPointObj * pObj, BOOL enable ) ;
 
 int sciSetSelectedObject( sciPointObj * pObj ) ;
 
+int sciInitIsReadyForRendering( sciPointObj * pObj, BOOL isReady ) ;
+
 /*---------------------------------------------------------------------------*/
 /* return 0 if the string contains any % character, 1 if a %d has been found */
 /* and -1 otherwise. */

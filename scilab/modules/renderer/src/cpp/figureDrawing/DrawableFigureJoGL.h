@@ -16,7 +16,7 @@
 namespace sciGraphics
 {
 
-class DrawableFigureJoGL : public DrawableObjectJoGL, public DrawableFigureImp
+class DrawableFigureJoGL : public DrawableFigureImp, public DrawableObjectJoGL
 {
 
 public:

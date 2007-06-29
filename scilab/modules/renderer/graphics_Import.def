@@ -41,3 +41,4 @@ sciGetMarkStyle
 sciGetAxesBounds
 sciGetMargins
 doubleArrayCopy
+sciGetIsReadyForRendering

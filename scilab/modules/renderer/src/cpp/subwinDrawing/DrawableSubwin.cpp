@@ -7,27 +7,23 @@
 
 #include "DrawableSubwin.h"
 #include "DrawableSubwinBridge.h"
-extern "C"
-{
-#include "GetProperty.h"
-}
 
 namespace sciGraphics
 {
 
 /*------------------------------------------------------------------------------------------*/
-DrawableSubwin::DrawableSubwin(sciPointObj * pObj) : DrawableObject(pObj)
+DrawableSubwin::DrawableSubwin(sciPointObj * pObj) : DrawableClippedObject(pObj)
 {
-  m_pCamera = NULL ;
+ /* m_pCamera = NULL ;*/
 }
 /*------------------------------------------------------------------------------------------*/
 DrawableSubwin::~DrawableSubwin( void )
 {
-  if ( m_pCamera != NULL )
-  {
-    delete m_pCamera ;
-  }
-  m_pCamera = NULL;
+  //if ( m_pCamera != NULL )
+  //{
+  //  delete m_pCamera ;
+  //}
+  //m_pCamera = NULL;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableSubwin::draw( void )
@@ -47,7 +43,7 @@ void DrawableSubwin::draw( void )
 /*------------------------------------------------------------------------------------------*/
 void DrawableSubwin::show( void )
 {
-  draw();
+  draw() ;
 }
 /*------------------------------------------------------------------------------------------*/
 DrawableSubwinBridge * DrawableSubwin::getSubwinImp( void )

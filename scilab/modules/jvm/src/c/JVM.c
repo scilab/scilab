@@ -11,7 +11,7 @@
 #include "getScilabJavaVM.h"
 #include "fromjava.h"
 /*-----------------------------------------------------------------------------------*/ 
-/* #define _JNI_DEBUG_TRACE */
+#define _JNI_DEBUG_TRACE
 /*-----------------------------------------------------------------------------------*/ 
 static JavaVM *jvm_SCILAB=NULL;
 /*-----------------------------------------------------------------------------------*/ 
@@ -69,7 +69,7 @@ BOOL startJVM(char *SCI_PATH)
 			long status=0;
 			JavaVMInitArgs vm_args;
 #ifdef _JNI_DEBUG_TRACE
-			JavaVMOption jvm_options[4];
+			JavaVMOption jvm_options[5];
 #else
 			JavaVMOption jvm_options[3];
 #endif
@@ -123,11 +123,12 @@ BOOL startJVM(char *SCI_PATH)
 			jvm_options[2].optionString = JAVALIBRARYPATH;
 #ifdef _JNI_DEBUG_TRACE
 			jvm_options[3].optionString = "-verbose:jni";  /* print JNI msgs */
+                        jvm_options[4].optionString = "-Xcheck:jni";  /* print JNI errors */
 #endif
 
 			vm_args.options = jvm_options;
 #ifdef _JNI_DEBUG_TRACE
-			vm_args.nOptions = 4;
+			vm_args.nOptions = 5;
 #else
 			vm_args.nOptions = 3;
 #endif

@@ -8,13 +8,13 @@
 
 package org.scilab.modules.renderer.subwinDrawing;
 
-import org.scilab.modules.renderer.ObjectJoGL;
+import org.scilab.modules.renderer.AutoDrawableObjectJoGL;
 
 /**
  * Class containing functions called by DrawableSubwinJoGL.cpp
  * @author Jean-Baptiste Silvy
  */
-public class DrawableSubwinJoGL extends ObjectJoGL {
+public class DrawableSubwinJoGL extends AutoDrawableObjectJoGL {
 
 	/**
 	 * Default Constructor
