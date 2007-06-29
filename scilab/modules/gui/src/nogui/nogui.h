@@ -69,4 +69,4 @@ int Xorgetchar(int interrupt);
  * @param interrupt  unused (just reproduce the profile)
  * @return 0
  */
-int XEvorgetchar(int interrupt);}
+int XEvorgetchar(int interrupt);
