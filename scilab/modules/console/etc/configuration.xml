@@ -9,7 +9,7 @@
 		<PromptView useCache="true" value="org.scilab.modules.console.SciPromptView"/>
 		<OutputView useCache="true" value="org.scilab.modules.console.SciOutputView"/>
 		<InputCommandView useCache="true" value="org.scilab.modules.console.SciInputCommandView"/>
-		<BackgroundColor useCache="true" value="#FFFFCC"/>
+		<BackgroundColor useCache="true" value="#FFFFFF"/>
 		<ScrollableUnitIncrement useCache="true" value="20"/>
 		<ScrollableBlockIncrement useCache="true" value="20"/>
 		<VerticalWrapAllowed useCache="true" value="false"/>
