@@ -12,6 +12,8 @@
 		<BackgroundColor useCache="true" value="#FFFFCC"/>
 		<ScrollableUnitIncrement useCache="true" value="20"/>
 		<ScrollableBlockIncrement useCache="true" value="20"/>
+		<VerticalWrapAllowed useCache="true" value="false"/>
+		<HorizontalWrapAllowed useCache="true" value="false"/>
 		
 		<!-- Core part -->
 		<OutputViewStyledDocument useCache="true" value="javax.swing.text.DefaultStyledDocument"/>
@@ -59,39 +61,4 @@
 		</ActionMapping>
 		
 	</Profile>
-	<!-- Test configuration -->
-	<Profile name="test">
-		<!-- Welcome line -->
-		<WelcomeLine useCache="true" value="Welcome on the generic console"/>
-	
-		<!-- GUI Part -->
-		<PromptView useCache="true" value="com.artenum.console.ui.PromptViewImpl"/>
-		<OutputView useCache="true" value="com.artenum.console.ui.OutputViewImpl"/>
-		<InputCommandView useCache="true" value="com.artenum.console.ui.InputCommandViewImpl"/>
-		<BackgroundColor useCache="true" value="#FFFFCC"/>
-		<ScrollableUnitIncrement useCache="true" value="20"/>
-		<ScrollableBlockIncrement useCache="true" value="20"/>
-		
-		<!-- Core part -->
-		<OutputViewStyledDocument useCache="true" value="javax.swing.text.DefaultStyledDocument"/>
-		<InputCommandViewStyledDocument useCache="true" value="javax.swing.text.DefaultStyledDocument"/>
-		<InputParsingManager useCache="true" value="com.artenum.console.core.DefaultInputParsingManager"/>
-		<GenericInterpreter useCache="true" value="com.artenum.console.implementation.JSR270Interpreter"/>
-		<CompletionManager useCache="true" value="com.artenum.console.implementation.FakeDictionnaryCompletionManager"/>
-		<CompletionWindow useCache="true" value="com.artenum.console.ui.CompletionWindowImpl"/>
-		
-		<!-- Key mapping -->
-		<KeyMapping>
-			<Key name="VK_ENTER" mask="" action="VALIDATE"/>
-			<Key name="VK_SPACE" mask="CTRL_MASK" action="COMPLETION"/>
-		</KeyMapping>
-		
-		<!-- Key mapping -->
-		<ActionMapping>
-			<Action name="VALIDATE" className="com.artenum.console.core.action.ValidationAction"/>
-			<Action name="COMPLETION" className="com.artenum.console.core.action.CompletionAction"/>
-		</ActionMapping>
-		
-	</Profile>
-	
 </Setting>
