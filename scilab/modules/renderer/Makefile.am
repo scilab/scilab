@@ -64,7 +64,10 @@ src/cpp/subwinDrawing/CameraFactory.cpp \
 src/cpp/subwinDrawing/DrawableSubwinJoGL.cpp \
 src/cpp/subwinDrawing/DrawableSubwinBridge.cpp \
 src/cpp/subwinDrawing/Camera.cpp \
-src/cpp/subwinDrawing/CameraBridgeFactory.cpp
+src/cpp/subwinDrawing/CameraBridgeFactory.cpp \
+src/cpp/polylineDrawing/DrawablePolylineBrirdgeFactory.cpp \
+src/cpp/polylineDrawing/DrawablePolylineJoGL.cpp \
+src/cpp/polylineDrawing/DrawablePolylineBridge.cpp
 
 
 
