@@ -76,7 +76,7 @@ void jniUpdateCurrentEnv( void )
 {
   /* tips from sun, use AttachCurrentThread to always get the right environment */ 
   (*sciJVM)->AttachCurrentThread( sciJVM, (void **) &sciJEnv, NULL ) ;
-
+  //(*sciJVM)->GetEnv( sciJVM, (void **) &sciJEnv, JNI_VERSION_1_6 ) ;
   /* clear all previous exceptions pending on the thread */
   (*sciJEnv)->ExceptionClear( sciJEnv ) ;
 }
@@ -318,7 +318,6 @@ jvalue jniCallMemberFunctionV( jobject instance, jniCallMethodCache * cache, con
     if ( methodId == NULL )
     {
       Scierror( 999, "Error when calling function %s.\r\n", functionName ) ;
-      (*sciJEnv)->DeleteLocalRef(sciJEnv, instanceClass) ;
       return res;
     }
 
@@ -367,8 +366,6 @@ jvalue jniCallMemberFunctionV( jobject instance, jniCallMethodCache * cache, con
       break;
     }
 
-    (*sciJEnv)->DeleteLocalRef(sciJEnv, instanceClass) ;
-
     if ( !jniCheckLastCall(TRUE) )
     {
       Scierror( 999, "Error when calling function %s.\r\n", functionName ) ;
@@ -405,6 +402,7 @@ int jniGetIntValue( jvalue value )
 /*------------------------------------------------------------------------------------------*/
 BOOL jniCheckLastCall( BOOL dumpStack )
 {
+  jniUpdateCurrentEnv() ;
   if ( !sciJEnv ) { return FALSE ; }
 
   if ( (*sciJEnv)->ExceptionOccurred(sciJEnv) )

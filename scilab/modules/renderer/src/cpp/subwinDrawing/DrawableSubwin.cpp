@@ -37,7 +37,7 @@ void DrawableSubwin::draw( void )
   //m_pCamera->setViewingArea(sciGetAxesBounds(m_pDrawed), sciGetMargins(m_pDrawed)) ;
   //m_pCamera->renderPosition();
   displayChildren() ;
-  //endDrawing();
+  endDrawing();
   //drawSubWinEntity( m_pDrawed ) ;
 }
 /*------------------------------------------------------------------------------------------*/
