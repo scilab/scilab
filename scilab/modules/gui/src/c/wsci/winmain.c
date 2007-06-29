@@ -42,6 +42,7 @@
 #include "win_mem_alloc.h" /* MALLOC */
 #include "scilabmode.h"
 #include "getcommandlineargs.h"
+#include "IsNoInteractiveWindow.h"
 /*-----------------------------------------------------------------------------------*/
 #define stricmp _stricmp
 #define strnicmp _strnicmp
@@ -580,11 +581,6 @@ BOOL ForbiddenToUseScilab(void)
 
 	bOK=TRUE;
 	return bOK;
-}
-/*-----------------------------------------------------------------------------------*/
-int IsNoInteractiveWindow(void)
-{
-	return (getScilabMode() == SCILAB_NWNI);
 }
 /*-----------------------------------------------------------------------------------*/
 /* strstr case insensitive */

@@ -62,7 +62,6 @@ BOOL ForbiddenToUseScilab(void);
 
 int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmdLine, int iCmdShow);
 int Console_Main(int argc, char **argv);
-int IsNoInteractiveWindow(void);
 
 char *stristr(const char *psz,const char *tofind);
 /*-----------------------------------------------------------------------------------*/

@@ -70,3 +70,18 @@ int Xorgetchar(int interrupt);
  * @return 0
  */
 int XEvorgetchar(int interrupt);
+
+/**
+ * This function is a wrapper when /fake Scilab is compiled without the 
+ * graphic Interface
+ * @param startup   unused (just reproduce the profile)
+ * @param lstartup  unused (just reproduce the profile)
+ * @param memory    unused (just reproduce the profile)
+ */
+void main_sci (char *startup, int lstartup,int memory);
+
+/**
+ * This function is a wrapper when /fake Scilab is compiled without the 
+ * graphic Interface
+ */
+void InitXsession(void);

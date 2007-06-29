@@ -62,3 +62,11 @@ int Xorgetchar(int interrupt){
 int XEvorgetchar(int interrupt){
 	return 0;
 }
+
+void main_sci (char *startup, int lstartup,int memory){
+	Scierror(999,"GUI interface not installed. However, you should not have this message\r\n");
+}
+
+void InitXsession(void){
+	Scierror(999,"GUI interface not installed. However, you should not have this message\r\n");
+}

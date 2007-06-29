@@ -28,7 +28,7 @@
 #include "version.h"
 #include "realmain.h" /* realmain */
 #include "scimem.h" /* nofpex */
-#include "scilabmode.h"
+#include "IsNoInteractiveWindow.h"
 
 #include "DestroyObjects.h"
 #include "periScreen.h"
@@ -91,7 +91,7 @@ extern void exit();
 /*-----------------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------------*/
-extern void sci_clear_and_exit (int);
+void sci_clear_and_exit (int);
 extern char *strindex (register char *s1, register char *s2);
 extern void do_hangup(void);
 extern void do_kill(Widget gw, caddr_t closure, caddr_t data);
@@ -504,16 +504,7 @@ static void Syntax(char *badOption)
 	   ProgramName);
   exit (1);
 }*/
-/*----------------------------------------------------------------------------------*/
-/** V.C 04/2004 
- * Function used to know if we are in window mode (returned value is 1)
- * or in console mode (returned value is 0) 
- */
-/*----------------------------------------------------------------------------------*/ 
-int IsNoInteractiveWindow(void)
-{
-	return (getScilabMode() == SCILAB_NWNI);
-}
+
 /*----------------------------------------------------------------------------------*/
 void InitXsession(void)
 { 

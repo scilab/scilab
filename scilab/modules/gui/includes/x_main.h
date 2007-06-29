@@ -46,13 +46,6 @@ void sci_sig_tstp(int n);
  */
 void InitXsession(void);
 
-/*
- * Used to know if we are in window mode (returned value is 1)
- * or in console mode (returned value is 0) 
- * @return 1 if we are in Windows mode & 0 if not
- */
-int IsNoInteractiveWindow(void);
-
 /*----------------------------------------------------------------------------------*/ 
 
 #endif /* #define __X_MAIN_H__ */
