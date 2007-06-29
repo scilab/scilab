@@ -24,7 +24,7 @@ Source: modules\{#CONSOLE}\licence.txt; DestDir: {app}\modules\{#CONSOLE}; Compo
 Source: modules\{#CONSOLE}\readme.txt; DestDir: {app}\modules\{#CONSOLE}; Components: {#COMPN_CONSOLE}
 Source: modules\{#CONSOLE}\version.xml; DestDir: {app}\modules\{#CONSOLE}; Components: {#COMPN_CONSOLE}
 ;
-Source: modules\{#CONSOLE}\sci_gateway\console.xml; DestDir: {app}\modules\{#CONSOLE}\sci_gateway; Components: {#COMPN_CONSOLE}
+;Source: modules\{#CONSOLE}\sci_gateway\console.xml; DestDir: {app}\modules\{#CONSOLE}\sci_gateway; Components: {#COMPN_CONSOLE}
 ;
 Source: modules\{#CONSOLE}\includes\*.h; DestDir: {app}\modules\{#CONSOLE}\includes; Components: {#COMPN_CONSOLE}
 ;
