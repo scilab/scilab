@@ -57,7 +57,7 @@ public class SciHistoryManager implements HistoryManager {
 	 */
 	public String getNextEntry(String beg) {
         /* Ask Scilab history manager for a matching entry */
-		return HistoryManagement.GetNextEntry(beg);
+		return HistoryManagement.getNextEntry(beg);
 	}
 
 	/**
@@ -68,7 +68,7 @@ public class SciHistoryManager implements HistoryManager {
 	 */
 	public String getPreviousEntry(String beg) {
         /* Ask Scilab history manager for a matching entry */
-		return HistoryManagement.GetPreviousEntry(beg);
+		return HistoryManagement.getPreviousEntry(beg);
 	}
 
 	/**
@@ -143,5 +143,15 @@ public class SciHistoryManager implements HistoryManager {
 			
 		}
 		this.inHistory = status;
+	}
+
+	/**
+	 * Gets next line/block in Scilab history beginning with a given character set
+	 * @param beg character set
+	 * @return the entry
+	 * @see com.artenum.console.interfaces.core.HistoryManager#getNextEntry(int)
+	 */
+	public String searchBackward(String beg) {
+			return HistoryManagement.searchBackward(beg);
 	}
 }

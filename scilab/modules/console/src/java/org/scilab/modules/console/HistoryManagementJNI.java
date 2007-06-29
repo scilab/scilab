@@ -9,7 +9,8 @@
 package org.scilab.modules.console;
 
 class HistoryManagementJNI {
-  public final static native String GetNextEntry(String jarg1);
-  public final static native String GetPreviousEntry(String jarg1);
+  public final static native String getNextEntry(String jarg1);
+  public final static native String getPreviousEntry(String jarg1);
   public final static native void setNewSearchInHistory(int jarg1);
+  public final static native String searchBackward(String jarg1);
 }

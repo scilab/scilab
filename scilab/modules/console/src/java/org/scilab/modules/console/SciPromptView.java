@@ -129,4 +129,12 @@ public class SciPromptView extends JPanel implements PromptView {
 		return inBlockPrompt;
 	}
 
+	/**
+	 * Sets the visibility status of the prompt view
+	 * @param status new visibility status
+	 * @see javax.swing.JComponent#setVisible(boolean)
+	 */
+	public void setVisible(boolean status) {
+		super.setVisible(status);
+	}
 }

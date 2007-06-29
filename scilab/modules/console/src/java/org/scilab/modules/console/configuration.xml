@@ -43,7 +43,7 @@
 
 		<!-- Key mapping -->
 		<ActionMapping>
-			<Action name="VALIDATE" className="com.artenum.console.core.action.ValidationAction"/>
+			<Action name="VALIDATE" className="org.scilab.modules.console.ValidationAction"/>
 			<Action name="COMPLETION" className="com.artenum.console.core.action.CompletionAction"/>
 			<Action name="LINE_BEGINNING" className="org.scilab.modules.console.LineBeginningAction"/>
 			<Action name="PREVIOUS_HISTORY_LINE" className="com.artenum.console.core.action.GetPreviousAction"/>

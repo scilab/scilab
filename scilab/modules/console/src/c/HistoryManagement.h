@@ -8,13 +8,20 @@
 /** Get next entry in Scilab history beginning with string beg
  *
  * @param beg the pattern that the entry beginning must match
- * return the entriy found or NULL
+ * return the entry found or NULL
  */
-char *GetNextEntry(char *beg);
+char *getNextEntry(char *beg);
 
 /** Get previous entry in Scilab history beginning with string beg
  *
  * @param beg the pattern that the entry beginning must match
- * return the entriy found or NULL
+ * return the entiy found or NULL
  */
-char *GetPreviousEntry(char *beg);
+char *getPreviousEntry(char *beg);
+
+/** Get previous entry in Scilab history beginning with string beg
+ * Used when entering commands beginning by a !
+ * @param beg the pattern that the entry beginning must match
+ * return the entry found or NULL
+ */
+char *gearchBackward(char *beg);

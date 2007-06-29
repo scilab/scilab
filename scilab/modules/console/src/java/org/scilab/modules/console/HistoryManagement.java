@@ -9,16 +9,20 @@
 package org.scilab.modules.console;
 
 public class HistoryManagement {
-  public static String GetNextEntry(String beg) {
-    return HistoryManagementJNI.GetNextEntry(beg);
+  public static String getNextEntry(String beg) {
+    return HistoryManagementJNI.getNextEntry(beg);
   }
 
-  public static String GetPreviousEntry(String beg) {
-    return HistoryManagementJNI.GetPreviousEntry(beg);
+  public static String getPreviousEntry(String beg) {
+    return HistoryManagementJNI.getPreviousEntry(beg);
   }
 
   public static void setNewSearchInHistory(int state) {
     HistoryManagementJNI.setNewSearchInHistory(state);
+  }
+
+  public static String searchBackward(String line) {
+    return HistoryManagementJNI.searchBackward(line);
   }
 
 }

@@ -6,7 +6,7 @@
 #include "HistoryManagement.h"
 
 /*-----------------------------------------------------------------------------------*/
-char *GetNextEntry(char *beg)
+char *getNextEntry(char *beg)
 {
   if (cur_entry != NULL)
     {
@@ -20,7 +20,7 @@ char *GetNextEntry(char *beg)
     return NULL;
 }
 /*-----------------------------------------------------------------------------------*/
-char *GetPreviousEntry(char *beg)
+char *getPreviousEntry(char *beg)
 {
   if (history != NULL)
     {
@@ -41,3 +41,12 @@ char *GetPreviousEntry(char *beg)
     return NULL;
 }
 /*-----------------------------------------------------------------------------------*/
+char *searchBackward(char *beg)
+{
+  sci_hist *tmpHistory = NULL;
+  tmpHistory = SearchBackwardInHistory(beg);
+  if (tmpHistory != NULL)
+    return tmpHistory->line;
+  else
+    return NULL;
+}
