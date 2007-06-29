@@ -24,4 +24,4 @@ char *getPreviousEntry(char *beg);
  * @param beg the pattern that the entry beginning must match
  * return the entry found or NULL
  */
-char *gearchBackward(char *beg);
+char *searchBackward(char *beg);
