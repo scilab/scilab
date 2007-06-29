@@ -35,7 +35,7 @@ public class SciConsole extends JPanel {
 	 */
 	public SciConsole() {
 		super(new BorderLayout());
-		String configFilePath = System.getenv("SCI") + "/modules/console/src/java/org/scilab/modules/console/configuration.xml";
+		String configFilePath = System.getenv("SCI") + "/modules/console/etc/configuration.xml";
 		String profileName = null;
 		Console sciConsole = null;
 		JScrollPane jSP = null;
