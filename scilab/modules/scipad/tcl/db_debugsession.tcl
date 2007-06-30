@@ -843,6 +843,9 @@ proc resume_bp {{checkbusyflag 1} {stepmode "nostep"}} {
             # the debugger is not currently skipping no code lines
             # save the name of the function in which the debugger stopped before resuming
             set previousstopfun [lindex $callstackfuns 0]
+            # save current value so that changes can be detected later
+            # and the variable be tagged
+            savecurrentwatchvarsvalues
             removeautovars
             set commnvars [createsetinscishellcomm $watchvars]
             set watchsetcomm [lindex $commnvars 0]
@@ -963,6 +966,9 @@ proc canceldebug_bp {} {
     if {[getdbstate] == "DebugInProgress"} {
         showinfo $waitmessage
         if {$funnameargs != ""} {
+            # save current value so that changes can be detected later
+            # and the variable be tagged
+            savecurrentwatchvarsvalues
             removeautovars
             removeallactive_bp
             ScilabEval_lt "abort" "seq"

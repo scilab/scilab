@@ -468,7 +468,7 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
     set comm4      "TCL_EvalStr(\"setdbstate \"\"ReadyForDebug\"\" \",\"scipad\");"
     set comm5      "TCL_EvalStr(\"scedebugcleanup_bp\",\"scipad\");"
     set comm6      "TCL_EvalStr(\"checkexecutionerror_bp\",\"scipad\");"
-    set comm7      "TCL_EvalStr(\"unsetdebuggerbusycursor\",\"scipad\");"
+    set comm7      "TCL_EvalStr(\"updatewatchvars;unsetdebuggerbusycursor\",\"scipad\");"
     set comm8      "TCL_SetVar(\"prevdbpauselevel\",$initprevdbpauselevel,\"scipad\");"
     set comm9  "else"
     set commc1     "if $steppedininsteadofover then"

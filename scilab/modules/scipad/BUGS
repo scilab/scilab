@@ -99,12 +99,10 @@ endfunction
  Scipad currently)
  Easier fix: use the same size for all the fonts displayed in textareas!
 
--watching a list containing a list with an undefined (or non editable)
+-watching a list containing a list with an undefined
  element resets the watched variable to an empty list (perhaps proc
  createsetinscishellcomm should be recursive)
  example: watch Q in   M=list(1,2,[1,2]);M(5)=33;Q=list(M,888);
-
--watching a string containing $unklabel doesn't work
 
 
 Old bugs/whishes which have been hacked but could have been done better:
@@ -328,3 +326,7 @@ http://groups.google.fr/group/comp.soft-sys.math.scilab/browse_thread/thread/dc0
 -Use eq/neq instead of ==/!= throughout the code whenever string comparison
  is meant:
 http://groups.google.fr/group/comp.lang.tcl/browse_thread/thread/eea78c744811e2c3/47482ff7037343ab
+
+-string comparisons (eq/ne) should be used instead of ==/!= when comparing
+ as strings. Must review Scipad's source code and make the change where
+ appropriate

@@ -3067,3 +3067,14 @@ Francois VOGEL, 26/06/07
  * Fixed: Closing and reopening the watch window deleted all the watch
    variables (this bug was introduced in 6.106)
  * version --> 6.115
+
+Francois VOGEL, 30/06/07
+ * Fixed: The configure box opened iconified when the watch window was open
+   and iconified
+ * Fixed: Watching a string containing $unklabel didn't work
+ * Non editable watch variables have their background greyed
+ * Watch variables whose value changed since last debugger stop are displayed
+   in red (declutters the watch window when watching many variables, such as
+   when in auto mode)
+ * Fixed: (non auto) watch variables are updated at the end of the debug
+ * version --> 6.116

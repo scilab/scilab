@@ -273,6 +273,12 @@ proc showwatch_bp {} {
         foreach var $watchvars {
             $lbvarname insert end $var
             $lbvarval insert end $watchvarsprops($var,value)
+            if {![isvareditable $var]} {
+                $lbvarval itemconfigure end -background grey95
+            }
+            if {[hasvarchangedsincelaststop $var]} {
+                $lbvarval itemconfigure end -foreground red
+            }
         }
     }
 
@@ -481,6 +487,12 @@ proc updatewatch_bp {} {
                 foreach var $watchvars {
                     $lbvarname insert end $var
                     $lbvarval insert end $watchvarsprops($var,value)
+                    if {![isvareditable $var]} {
+                        $lbvarval itemconfigure end -background grey95
+                    }
+                    if {[hasvarchangedsincelaststop $var]} {
+                        $lbvarval itemconfigure end -foreground red
+                    }
                 }
                 if {$curlbsel != ""} {
                     $lbvarname selection set $curlbsel
@@ -808,6 +820,62 @@ proc isvareditable {varname} {
     }
 }
 
+proc isunknownelementinvar {var} {
+# return true if the content of watch variable $var (seen as a character string)
+# contains at least an undefined element which is not in a string or matrix of strings
+# return false otherwise
+    global watchvarsprops unklabel
+    global ssmsRE
+    # get positions of matches of $unklabel against the watch variable value
+    set value $watchvarsprops($var,value)
+    set allunkmatches [regexp -all -inline -indices -- [escapespecialchars $unklabel] $value]
+    # get positions of matches of strings and matrices of strings against the watch variable value
+    set quote [list {"} {'}]
+    set allstrmatches [regexp -all -inline -indices -- $ssmsRE $value]
+    # if there is at least one $unklabel match that is not in a string then $var
+    # contains at least one undefined element: return true in this case
+    set hasanundefined false
+    foreach unkmatch $allunkmatches {
+        foreach {unk1 unk2} $unkmatch {}
+        set isinstring false
+        foreach strmatch $allstrmatches {
+            foreach {str1 str2} $strmatch {}
+            if {$str1 <= $unk1 && $unk2 <= $str2} {
+                set isinstring true
+                break
+            }
+        }
+        if {!$isinstring} {
+            set hasanundefined true
+            break
+        }
+    }
+    return $hasanundefined
+}
+
+proc savecurrentwatchvarsvalues {} {
+# copy value of all the watch variables into their prevvalue
+    global watchvars watchvarsprops
+    foreach var $watchvars {
+        set watchvarsprops($var,prevvalue) $watchvarsprops($var,value)
+    }
+}
+
+proc hasvarchangedsincelaststop {var} {
+# return true if previous value of $var is different from current value of $var,
+# otherwise return false
+# this proc also takes care of non initialized prevvalue, which happens at the
+# beginning of a debug session
+    global watchvarsprops
+    set haschanged false
+    if {[info exists watchvarsprops($var,prevvalue)]} {
+        if {$watchvarsprops($var,prevvalue) ne $watchvarsprops($var,value)} {
+            set haschanged true
+        }
+    }
+    return $haschanged
+}
+
 proc getcallstackfromshell {} {
 # update the call stack area with the textual call stack content retrieved
 # from Scilab, and set the global variables callstackfuns and callstacklines
@@ -880,7 +948,7 @@ proc createsetinscishellcomm {setofvars} {
         if {$watchvarsprops($var,value) == $unklabel} {
             continue
         }
-        if {[string first $unklabel $watchvarsprops($var,value)] == -1} {
+        if {![isunknownelementinvar $var]} {
             # Variable is fully defined
             set onecomm [duplicatechars "$var=$watchvarsprops($var,value);" "\""]
             set onecomm [duplicatechars $onecomm "'"]

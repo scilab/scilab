@@ -26,10 +26,13 @@ proc configurefoo_bp {} {
     wm withdraw $conf
 
     # the configure box must be a transient of $watch if it exists
-    # otherwise it might be obscured by the watch window if always on top
+    # and if it is not iconified, otherwise it might be obscured
+    # by the watch window if always on top
     if {[info exists watch]} {
         if {[winfo exists $watch]} {
-            wm transient $conf $watch
+            if {[winfo ismapped $watch]} {
+                wm transient $conf $watch
+            }
         }
     }
 

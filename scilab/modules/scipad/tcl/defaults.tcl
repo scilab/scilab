@@ -365,6 +365,24 @@ set bracescontlineRE   {(?:^(?:(?:[^/"']/?)*(?:[^\w%#!?$]["'][^"']*["'])*)*\{[^\
 append bracescontlineRE [createnestregexp $constructsmaxnestlevel "{" "}"]
 append bracescontlineRE {)*[^\}]*)*\n)+(?:(?:[^/]/?)*\.{2,} *(?://.*)?\n)*)}
 
+###
+
+# Scilab string, delimited by single quotes or double quotes, with no
+# continuation  dots nor comments (for this see proc colorizestringsandcomments_sd)
+# reporting version and non-reporting version
+set sstrRE   {(?:(?:["'][^"']*["'])+)}
+set sstrRE_rep {((?:["'][^"']*["'])+)}
+
+# Scilab matrix of strings (with no continuation dots nor comments)
+set smstRE_rep {}
+append smstRE_rep {\[} $sblRE {(?:} $sstrRE $sblRE {[,;]?} $sblRE {)+} {\]}
+
+# Scilab matrix of strings or string (all with no continuation dots nor comments)
+set ssmsRE {}
+append ssmsRE {(?:} $smstRE_rep {)|(?:} $sstrRE {)}
+
+###
+
 # the user might want the same behaviour on Windows as on Linux for
 # double-clicking - this is bug 1792, see also
 # http://groups.google.fr/group/comp.lang.tcl/browse_thread/thread/659fd6c1f41d9a81/eb2a841ac335580e

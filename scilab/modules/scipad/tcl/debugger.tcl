@@ -27,9 +27,10 @@
 #   Elements of $lbvarname
 #   Elements of $lbvarval
 #   watchvars: list of watch variables, e.g. {var1 var2}
-#   watchvarsprops($var,value)    : content of variable var
-#   watchvarsprops($var,tysi)     : type and size (in a single string) of variable var
-#   watchvarsprops($var,editable) : editability (true or false) of variable var
+#   watchvarsprops($var,value)    : content of variable $var
+#   watchvarsprops($var,prevvalue): content of variable $var at previous debug stop
+#   watchvarsprops($var,tysi)     : type and size (in a single string) of variable $var
+#   watchvarsprops($var,editable) : editability (true or false) of variable $var
 #
 # One further level down: ($adda level)
 # -----------------------

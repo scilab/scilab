@@ -1581,7 +1581,7 @@ proc setparentwname {w} {
 proc escapespecialchars {str} {
 # escape certain special characters that have a meaning in a Tcl string,
 # or in a regexp
-# these chars are \ " $ [ ]
+# these chars are \ " $ [ ] ?
 # use of this proc:
 #    - find/replace strings
 #    - watched variable names (debugger)
@@ -1594,6 +1594,7 @@ proc escapespecialchars {str} {
     set str [string map {"\$" "\\\$"} $str]
     set str [string map {"\[" "\\\["} $str]
     set str [string map {"\]" "\\\]"} $str]
+    set str [string map {"\?" "\\\?"} $str]
     return $str
 }
 
