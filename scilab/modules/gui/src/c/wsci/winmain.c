@@ -42,7 +42,7 @@
 #include "win_mem_alloc.h" /* MALLOC */
 #include "scilabmode.h"
 #include "getcommandlineargs.h"
-#include "IsNoInteractiveWindow.h"
+#include "../../../includes/IsNoInteractiveWindow.h"
 /*-----------------------------------------------------------------------------------*/
 #define stricmp _stricmp
 #define strnicmp _strnicmp

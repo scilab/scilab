@@ -177,9 +177,6 @@
 				RelativePath=".\getinstalledlookandfeels.c"
 				>
 			</File>
-			<File 
-				RelativePath=".\IsNoInteractiveWindow.c"
-			</File>
 			<File
 				RelativePath=".\getlookandfeel.c"
 				>
