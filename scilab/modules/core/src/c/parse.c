@@ -1483,7 +1483,7 @@ int C2F(parse)()
 void handle_onprompt(int *where)
 {
   /* Initialized data */
-
+	/* @TODO : add a comment to explain what are those number ... */
   static int onprompt[6] = { 420943928,420878363,673720349,673720360,
 				 673720360,673720360 };
   static int *Rstk = C2F(recu).rstk-1;
