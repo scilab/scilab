@@ -10,8 +10,6 @@
  *    Hash table for scilab functions 
  *    job is used to specify a job
  *   @param job : indicateur  de l'operation a effectuer
- *   0 impression de la table des primitives id et fptr ne sont pas
- *           references
  *   1 recherche du pointeur fptr associe au nom id, le sous programme
  *           retourne la valeur du pointeur dans fptr. S'il n'y a pas
  *           de fonction correspondant a id funtab retourne fptr=0

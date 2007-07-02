@@ -26,7 +26,7 @@ typedef struct
 /*-----------------------------------------------------------------------------------*/
 typedef enum 
 {
-	SCI_HFUNCTIONS_FIND, SCI_HFUNCTIONS_ENTER,SCI_HFUNCTIONS_DELETE,SCI_HFUNCTIONS_BACKSEARCH
+	SCI_HFUNCTIONS_FIND = 1,SCI_HFUNCTIONS_BACKSEARCH = 2, SCI_HFUNCTIONS_ENTER = 3,SCI_HFUNCTIONS_DELETE = 4
 } SCI_HFUNCTIONS_ACTION;
 /*-----------------------------------------------------------------------------------*/
 /* maximum number of entries in the htable */
