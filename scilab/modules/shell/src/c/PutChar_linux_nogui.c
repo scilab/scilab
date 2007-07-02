@@ -3,6 +3,7 @@
 /* @author Sylvestre LEDRU */
 /*-----------------------------------------------------------------------------------*/ 
 #include <stdio.h>
+#include "PutChar.h"
 
 void PutChar(int c)
 {
