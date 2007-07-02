@@ -273,7 +273,7 @@ function ilib_link_gen_Make_lcc(names,files,libs,Makename,libname,ldflags,cflags
   mfprintf(fd,"\n# added libraries \n");
   mfprintf(fd,"OTHERLIBS =");
   for x=libs(:)' ;
-  	mfprintf(fd," %s.lib",x);
+  	mfprintf(fd," ""%s.lib""",x);
   end
   mfprintf(fd,"\n");
   
