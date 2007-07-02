@@ -41,34 +41,36 @@
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>'n'  </PARAM_NAME>
+              <PARAM_NAME>'p'  </PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: function is &quot;compiled&quot; and prepared for profiling (see profile)</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+               <PARAM_NAME>'n'  </PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: function is not &quot;compiled&quot;</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
-          </PARAM_INDENT>
+         </PARAM_INDENT>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
     <P>
-    On-line definition of function (user defined function): the name of the 
-    created function is <VERB>newfunction</VERB>.
-    <VERB>text</VERB> is a sequence of instructions usually set as a vector of 
-    character strings.</P>
+    <VERB>deff</VERB> can be used to define functions from sequences of instructions
+    written in text strings. The resulting function object has the same proprerties
+    of any other function defined in a text file and loaded with <VERB>getf</VERB> 
+    or <VERB>exec</VERB>.</P>
     <P>
-    This command can be used inside a function and the new function
-    can be an input or output of any other function.</P>
-    <P>
-    Usually, functions are defined in a file and loaded into Scilab by
-    <VERB>getf</VERB></P>
-    <P>
-    Some time, in particular when you want to use define strings within
-    <VERB>deff</VERB> <VERB>text</VERB> is rather difficult to write. A more tractable
-    way may be to define your function in a file as usual, to load it into
-    Scilab by <VERB>getf</VERB> (without <VERB>'c'</VERB>  option) and use sci2exp to
-    get corresponding <VERB>deff</VERB> instructions.</P>
+    Quotes in the instructions (delimiting strings or meaning matrix transposition) 
+    have to be doubled to be interpreted correctly (see help quote). This can make
+    writing up a little awkward.
+    An option in such cases is to define functions in files as usual, to load them into
+    Scilab by <VERB>getf</VERB> (with the <VERB>'n'</VERB> option) and to use 
+    <VERB>sci2exp</VERB> to get a printout of corresponding <VERB>deff</VERB> 
+    instructions.</P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
@@ -89,6 +91,9 @@ deff('[x]=mymacro(y,z)',['a=3*y+1'; 'x=a*z+y'])
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>function</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>profile</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>
