@@ -8,21 +8,21 @@
 #include "timer.h"
 #include "stack-c.h"
 #include "dynamic_menus.h"
-
+/*-----------------------------------------------------------------------------------*/
 #include "parse.h"
 #include "basout.h"
 #include "../../gui/includes/checkevts.h"
 #include "../../gui/includes/sxevents.h"
 #include "../../tclsci/includes/tksynchro.h"
 #include "cvstr.h"
-
+/*-----------------------------------------------------------------------------------*/
 #undef Lstk
 #undef Infstk
-
+/*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 #define abs(x) ((x) >= 0 ? (x) : -(x)) /* pour abs  C2F(parse)() line 1393 */
 #endif
-
+/*-----------------------------------------------------------------------------------*/
 IMPORT struct {
   logical iflag, interruptible;
 } C2F(basbrk);
@@ -56,7 +56,7 @@ static int c_n1 = -1;
 #endif 
 
 #define Pt (C2F(recu).pt)
-
+/*-----------------------------------------------------------------------------------*/
 extern int C2F(clause)();
 extern int C2F(fact)();
 extern int C2F(expr)();
@@ -96,35 +96,36 @@ extern logical C2F(compil)();
 extern logical C2F(eptover)();
 extern logical C2F(Ptover)();
 extern int C2F(callinterf) (int *k);
-
+/*-----------------------------------------------------------------------------------*/
 void handle_onprompt(int *n);
-
+/*-----------------------------------------------------------------------------------*/
 void Msgs(int n,int ierr)
 {
    C2F(msgs)(&n,&ierr);
 }
- 
+/*-----------------------------------------------------------------------------------*/
 void SciError(int n)
 {
  C2F(error)(&n);
 }
-
+/*-----------------------------------------------------------------------------------*/
 logical Compil(int code,int * val1,int val2,int val3,int val4)
 {
   return C2F(compil)(&code, val1, &val2, &val3, &val4);
 }
-
+/*-----------------------------------------------------------------------------------*/
 logical Eptover(int n)
 {
   int c;
   return C2F(eptover)(&n,(c=psiz,&c));
 }
+/*-----------------------------------------------------------------------------------*/
 logical Ptover(int n)
 {
   int c;
   return C2F(ptover)(&n,(c=psiz,&c));
 }
-
+/*-----------------------------------------------------------------------------------*/
 int C2F(parse)()
 {
   /* Initialized data */
@@ -1476,22 +1477,28 @@ int C2F(parse)()
   SciError(22);
   goto L1;
 
-} /* C2F(parse) */
-
-
-
+} 
+/*-----------------------------------------------------------------------------------*/
+/**
+* checks if an implicit execution is required on the prompt
+* @param where_ returned indicator
+* where_ = 0 : no implicit execution is required
+* where_ = 1 : implicit execution is a primitive
+* where_ = 2 : implicit execution is a Scilab function
+*/
 void handle_onprompt(int *where_)
 {
   /* Initialized data */
-	/* @TODO : add a comment to explain what are those number ... */
-  static int onprompt[6] = { 420943928,420878363,673720349,673720360,
-				 673720360,673720360 };
+  /* onprompt[6] internal scilab code for %onprompt variable see C2F(cvname) */
+  static int onprompt[6] = {420943928,420878363,673720349,673720360,673720360,673720360 };
+
   static int *Rstk = C2F(recu).rstk-1;
   static int *Pstk = C2F(recu).pstk-1;
   static int *Lstk = C2F(vstk).lstk-1;
-
+  
   *where_ = 0;
-  if (Pt > 0) {
+  if (Pt > 0) 
+  {
     /* back from %onprompt */
     C2F(errgst).errct = Pstk[Pt];
     --Pt;
@@ -1500,7 +1507,8 @@ void handle_onprompt(int *where_)
     C2F(com).fin = 0;
     C2F(com).fun = 0;
   } 
-  else {
+  else 
+  {
     /* on prompt implicit execution */
     C2F(com).fun = 0;
     C2F(funs)(onprompt);
@@ -1515,22 +1523,21 @@ void handle_onprompt(int *where_)
     /* set error catch with mode continue */
     C2F(errgst).errct = -100001;
     C2F(errgst).errpt = 1;
-    if (C2F(com).fun > 0) {
+    if (C2F(com).fun > 0) 
+	{
       /* %onprompt is a primitive *call* matfns */
       *where_ = 1;
-    } else {
+    } 
+	else 
+	{
       /* %onprompt is a Scilab function *call*  macro */
       C2F(com).fin = Lstk[C2F(com).fin];
       *where_ = 2;
     }
   }
-} /* handleonprompt */
-
-
-
+}
+/*-----------------------------------------------------------------------------------*/
 void C2F(parsecomment)()
-/*     Copyright INRIA */
-
 {
 
   static int *Lstk    = C2F(vstk).lstk-1;
@@ -1543,20 +1550,22 @@ void C2F(parsecomment)()
   static integer l, ll, lkp, l0,c1=1;
   /* look for eol */
   l0=Lpt[4]-1;
-  if( (Lin[l0]==slash) &&(Lin[l0-1]==slash)&(Lin[l0+1]==eol)) /* Correction Warning */
-    l0=l0+1;
+  if( (Lin[l0]==slash) &&(Lin[l0-1]==slash)&(Lin[l0+1]==eol)) l0=l0+1;
     
   l=l0;
   while (Lin[l]!=eol) l++;
   ll = l - l0;
-  if (Comp[1] == 0) {
+  if (Comp[1] == 0) 
+  {
     /* ignore all characters up to the end */
   } 
-  else {
+  else 
+  {
     /* compilation [30 number-of-char chars-vector] */
     lkp = C2F(com).comp[0];
     C2F(iop).err = (lkp + 2 + ll) / 2 + 1 - Lstk[C2F(vstk).bot];
-    if (C2F(iop).err > 0) {
+    if (C2F(iop).err > 0) 
+	{
       SciError(17);
       return ;
     }
@@ -1569,6 +1578,6 @@ void C2F(parsecomment)()
   C2F(com).char1 = eol;
   C2F(com).sym = eol;
   return ;
-} /* parsecomment */
-
+}
+/*-----------------------------------------------------------------------------------*/
 

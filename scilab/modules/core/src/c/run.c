@@ -65,7 +65,6 @@ extern int C2F(whatln)();
 extern int C2F(prompt)();
 extern int C2F(seteol)();
 extern int C2F(name2var)();
-extern void handle_onprompt();
 extern int C2F(getendian)();
 extern int C2F(nextj)();
 extern int C2F(isafunptr)();
