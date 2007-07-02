@@ -52,21 +52,19 @@ void Click_menu(int n){
 int GetScreenProperty(char *prop, char *value){
 	return 0;
 }
-
-
+/*-----------------------------------------------------------------------------------*/
 int Xorgetchar(int interrupt){
 	return getchar();
 }
-
-
+/*-----------------------------------------------------------------------------------*/
 int XEvorgetchar(int interrupt){
 	return 0;
 }
-
+/*-----------------------------------------------------------------------------------*/
 void main_sci (char *startup, int lstartup,int memory){
 	Scierror(999,"GUI interface not installed.\r\n");
 }
-
+/*-----------------------------------------------------------------------------------*/
 void InitXsession(void){
 	Scierror(999,"GUI interface not installed.\r\n");
 }
