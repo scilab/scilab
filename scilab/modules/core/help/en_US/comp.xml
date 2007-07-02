@@ -7,14 +7,20 @@
   <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="comp">  scilab function compilation</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>comp(function)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>comp(function [,opt])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
         <PARAM_NAME>function</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: an not compiled scilab function (type 11)</SP>
+          <SP>: a scilab function, not compiled (type 11)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>opt</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: flag with value 0 (default), 1 or 2.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
@@ -28,12 +34,18 @@
       The online definition as well as the short syntax of the functions:
       <VERB>getf</VERB> and <VERB>deff</VERB> generate compiled function. 
       So comp has to be used in very particular cases. To produce uncompiled
-      function one must use <VERB>getf</VERB> or <VERB>deff</VERB> with  option <VERB>"n"</VERB>.
+      functions one must use <VERB>getf</VERB> or <VERB>deff</VERB> with  option <VERB>"n"</VERB>.
     </P> 
-  </DESCRIPTION>
+    <P>
+    The value opt==2 causes the function to be compiled "for profiling".
+    The osolete opt==1 option was specific to code analysis purposes and 
+    is now ignored, i.e treated as opt==0.</P>
+   </DESCRIPTION>
    <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>type</LINK> </SEE_ALSO_ITEM> 
     <SEE_ALSO_ITEM> <LINK>deff</LINK> </SEE_ALSO_ITEM> 
     <SEE_ALSO_ITEM> <LINK>getf</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>function</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>profile</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>
