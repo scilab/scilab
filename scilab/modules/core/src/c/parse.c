@@ -155,7 +155,7 @@ int C2F(parse)()
   static int ierr;
   static int k, p, r;
   static int imode, schar;
-  static int itime, where;
+  static int itime, where_;
   static logical found;
   static int excnt;
   static int l1;
@@ -276,11 +276,11 @@ int C2F(parse)()
     goto L15;
   }
  L14:
-  handle_onprompt(&where);
+  handle_onprompt(&where_);
   if (C2F(iop).err > 0) {
     goto L98;
   }
-  switch ((int)where) {
+  switch ((int)where_) {
   case 1:  goto L85;
   case 2:  goto L88;
   }
@@ -1480,7 +1480,7 @@ int C2F(parse)()
 
 
 
-void handle_onprompt(int *where)
+void handle_onprompt(int *where_)
 {
   /* Initialized data */
 	/* @TODO : add a comment to explain what are those number ... */
@@ -1490,7 +1490,7 @@ void handle_onprompt(int *where)
   static int *Pstk = C2F(recu).pstk-1;
   static int *Lstk = C2F(vstk).lstk-1;
 
-  *where = 0;
+  *where_ = 0;
   if (Pt > 0) {
     /* back from %onprompt */
     C2F(errgst).errct = Pstk[Pt];
@@ -1517,11 +1517,11 @@ void handle_onprompt(int *where)
     C2F(errgst).errpt = 1;
     if (C2F(com).fun > 0) {
       /* %onprompt is a primitive *call* matfns */
-      *where = 1;
+      *where_ = 1;
     } else {
       /* %onprompt is a Scilab function *call*  macro */
       C2F(com).fin = Lstk[C2F(com).fin];
-      *where = 2;
+      *where_ = 2;
     }
   }
 } /* handleonprompt */
