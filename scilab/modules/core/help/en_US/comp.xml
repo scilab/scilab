@@ -31,15 +31,20 @@
     compiled functions are much faster.
     The functions provided in the standard libraries are compiled.</P>
      <P>
-      The online definition as well as the short syntax of the functions:
-      <VERB>getf</VERB> and <VERB>deff</VERB> generate compiled function. 
+      The online definition as well as the short syntax of the commands
+      <VERB>getf</VERB> and <VERB>deff</VERB> generate compiled functions. 
       So comp has to be used in very particular cases. To produce uncompiled
-      functions one must use <VERB>getf</VERB> or <VERB>deff</VERB> with  option <VERB>"n"</VERB>.
+      functions one must use <VERB>getf</VERB> or <VERB>deff</VERB> with 
+      the option <VERB>"n"</VERB>.
     </P> 
     <P>
     The value opt==2 causes the function to be compiled "for profiling".
     The osolete opt==1 option was specific to code analysis purposes and 
     is now ignored, i.e treated as opt==0.</P>
+   <P>
+   <B>Note:</B> the compilation takes part "in place", i.e the original function is modified 
+   and no new object is created.
+   </P>
    </DESCRIPTION>
    <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>type</LINK> </SEE_ALSO_ITEM> 
