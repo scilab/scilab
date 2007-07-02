@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.115
+# in sync at least with v6.117
 
 
 # commons
@@ -102,6 +102,24 @@
                    "Vous devez autoriser la colorisation pour lancer le débuggueur !"
 ::msgcat::mcset fr "The debugger needs colorization" \
                    "Le débuggueur a besoin de la colorisation"
+::msgcat::mcset fr "Warning!\n\n \
+                 A function missing the closing \"endfunction\" has been found in the currently opened files.\n \
+                 Such syntax is now obsolete.\n\n \
+                 Please terminate function " \
+                   " Attention !\n\n \
+                 Une fonction sans \"endfunction\" a été trouvée dans les fichiers actuellement ouverts.\n \
+                 Cette syntaxe est obsolète.\n\n \
+                 Veuillez terminer la fonction "
+::msgcat::mcset fr " and try again." " et essayer une nouvelle fois."
+::msgcat::mcset fr "Note: This message might also be triggered by a string\n \
+                 quoted with single quotes and containing the word \"function\",\n \
+                 when \"Colorize \'strings\'\" is unchecked in the Options menu." \
+                   "Nota : Ce message peut aussi être dû à une chaîne de caractères\n \
+                 délimitée par des guillemets simples et contenant le mot \"function\",\n \
+                 lorsque \"Colorer \'chaîne\'\" n'est pas coché dans le menu Options."
+::msgcat::mcset fr "This known bug can be worked around simply by checking \"Colorize \'&strings\'\"." \
+                   "Ce bug connu peut être évité simplement en cochant l'option \"Colorer \'chaîne\'\"."
+::msgcat::mcset fr "Unterminated function definition found" "Fonction non terminée identifiée"
 ::msgcat::mcset fr "Warning!\n\n \
                  One or more function is defined more than once in the currently opened files.\n \
                  The debugger cannot cope with multiple copies of functions.\n \

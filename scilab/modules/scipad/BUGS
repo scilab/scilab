@@ -11,6 +11,8 @@ Bugs:
     existing (visible) textquoted tag used for colorization, and use only
     invisibletextquoted for Scilab function detection within buffers, in
     other words, separate the strings detection from their colorization
+    Note: when done, the messageBox in proc checkforduplicateorunterminatedfuns
+    must be updated (and the msg files as well)
 
 -proc blinkbrace blinks even if the brackets/braces are quoted, e.g. "[" "]"
 
@@ -229,9 +231,6 @@ Debugger wishes:
 -add a debugger command: "Show next instruction", with a little yellow arrow
  in the margin, and perhaps a breakpoint pink dot in that margin, or other
  debugger info
-
--highlight in color the watched variables that changed value during previous
- debugger command
 
 
 Other wishes:

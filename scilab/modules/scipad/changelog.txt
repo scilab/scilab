@@ -3078,3 +3078,10 @@ Francois VOGEL, 30/06/07
    when in auto mode)
  * Fixed: (non auto) watch variables are updated at the end of the debug
  * version --> 6.116
+
+Francois VOGEL, 02/07/07
+ * Further colorization of the watch variables
+ * The debugger detects unterminated functions (missing endfunction) and
+   prevents the debug launch when one such function definition is found.
+   The relevant message box is much clearer than before
+ * version --> 6.117

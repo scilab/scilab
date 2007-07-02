@@ -240,6 +240,8 @@ proc showwatch_bp {} {
     pack $watch.f.vpw.f2.f2l.label $buttonAddw $buttonRemove \
             $checkboxautowatchlocals $checkboxautowatchglobals -pady 4
     pack $watch.f.vpw.f2.f2l -anchor n
+    # this will also call proc updatewatch_bp, either rather directly, or through
+    # manageautowatchloc_bp -> getautowatchnames -> addautosinwatch -> getwatchvarfromshell
     updatewatchvars
 
     frame $watch.f.vpw.f2.f2r ;# -bg peachpuff
@@ -269,18 +271,6 @@ proc showwatch_bp {} {
                        "scrollyleftandscrollbar_bp $scrolly $lbvarname $lbvarval" \
                        -xscrollcommand "$scrollxr set" \
                        -takefocus 0 -exportselection 0
-    if {[info exists watchvars]} {
-        foreach var $watchvars {
-            $lbvarname insert end $var
-            $lbvarval insert end $watchvarsprops($var,value)
-            if {![isvareditable $var]} {
-                $lbvarval itemconfigure end -background grey95
-            }
-            if {[hasvarchangedsincelaststop $var]} {
-                $lbvarval itemconfigure end -foreground red
-            }
-        }
-    }
 
     pack $scrollxl             -expand 0 -fill x    -side bottom
     pack $lbvarname -side top  -expand 1 -fill both -padx 2
@@ -398,8 +388,17 @@ proc showwatch_bp {} {
     bind $watch <Down> {scrollarrows_bp $lbvarname down}
     bind $watch <Left>  {$lbvarval xview scroll -1 units}
     bind $watch <Right> {$lbvarval xview scroll  1 units}
+    # since the <MouseWheel> event does not trigger a <<ListboxSelect>> event,
+    # proc updatewatchcurselcolor_bp must be called by hand, contrary to other
+    # events such as <Up> or <Down>
     bind $watch <MouseWheel> {if {%D<0} {scrollarrows_bp $lbvarname down}\
-                                        {scrollarrows_bp $lbvarname up}   }
+                                        {scrollarrows_bp $lbvarname up}; \
+                              updatewatchcurselcolor_bp }
+
+    # ensure that the selectforeground tag gets updated when the listbox
+    # selection changes: this is to have the watch variable name displayed
+    # in red when it changed since the last debugger stop
+    bind $lbvarname <<ListboxSelect>> {updatewatchcurselcolor_bp}
 
     bind $callstackwidget <Double-Button-1> {openpointedstacklevel %W %x %y ; break}
 
@@ -486,12 +485,27 @@ proc updatewatch_bp {} {
                 $lbvarval delete 0 end
                 foreach var $watchvars {
                     $lbvarname insert end $var
-                    $lbvarval insert end $watchvarsprops($var,value)
-                    if {![isvareditable $var]} {
-                        $lbvarval itemconfigure end -background grey95
+                    $lbvarval  insert end $watchvarsprops($var,value)
+                    if {[isvareditable $var]} {
+                        $lbvarname itemconfigure end -background white
+                        $lbvarval  itemconfigure end -background white
+                    } else {
+                        if {[isglobalautowatchvar $var]} {
+                            # non editable because a global
+                            $lbvarname itemconfigure end -background thistle2
+                            $lbvarval  itemconfigure end -background thistle2
+                        } else {
+                            # non editable local
+                            $lbvarname itemconfigure end -background grey90
+                            $lbvarval  itemconfigure end -background grey90
+                        }
                     }
                     if {[hasvarchangedsincelaststop $var]} {
-                        $lbvarval itemconfigure end -foreground red
+                        $lbvarname itemconfigure end -foreground red
+                        $lbvarval  itemconfigure end -foreground red
+                    } else {
+                        $lbvarname itemconfigure end -foreground black
+                        $lbvarval  itemconfigure end -foreground black
                     }
                 }
                 if {$curlbsel != ""} {
@@ -501,6 +515,7 @@ proc updatewatch_bp {} {
                     $lbvarname selection set 0
                     $lbvarname see 0
                 }
+                updatewatchcurselcolor_bp
             }
             $callstackwidget configure -state normal
             $callstackwidget delete 1.0 end
@@ -508,6 +523,21 @@ proc updatewatch_bp {} {
             updateclickablelinetag
             $callstackwidget configure -state disabled
             updatebptcomplexityindicators_bp
+        }
+    }
+}
+
+proc updatewatchcurselcolor_bp {} {
+# update the selected item foreground in $lbvarname (left listbox of
+# the watch window)
+# this proc supposes that the watch window is open at the time it is called
+    global lbvarname
+    set curselind [$lbvarname curselection]
+    if {$curselind != ""} {
+        if {[hasvarchangedsincelaststop [$lbvarname get $curselind]]} {
+            $lbvarname itemconfigure $curselind -selectforeground red
+        } else {
+            $lbvarname itemconfigure $curselind -selectforeground white
         }
     }
 }

@@ -1,8 +1,9 @@
 proc tonextbreakpoint_bp {{checkbusyflag 1} {stepmode "nostep"}} {
 
-    # warn the user about duplicate function names possibly found
+    # warn the user about duplicate function names, or unterminated functions
+    # possibly found in the opened buffers
     # the debugger won't execute in that case
-    if {[checkforduplicatefunnames]} {return}
+    if {[checkforduplicateorunterminatedfuns]} {return}
 
     if {[getdbstate] == "ReadyForDebug"} {
         clearscilaberror
@@ -77,6 +78,8 @@ proc execfile_bp {{stepmode "nostep"}} {
                     if {$funsto == -1} {
                         # unterminated function (i.e. function keyword with
                         # no balanced endfunction keyword) -> ignore it
+                        # this can't happen in principle since proc execfile_bp
+                        # is called after checkforduplicateorunterminatedfuns
                         continue
                     }
                     set funsto [$textarea index "$funsto wordend"]
@@ -186,9 +189,10 @@ proc stepbystep_bp {checkbusyflag stepmode rescanbuffers} {
     global logicallinenumbersranges previousstepscope
     global CurBreakpointedMacros CurBreakpointedLines ; # globality mandatory, and only used while skipping lines (see proc checkendofdebug_bp)
 
-    # warn the user about duplicate function names possibly found
+    # warn the user about duplicate function names, or unterminated functions
+    # possibly found in the opened buffers
     # the debugger won't execute in that case
-    if {[checkforduplicatefunnames]} {return}
+    if {[checkforduplicateorunterminatedfuns]} {return}
 
     if {[getdbstate] == "ReadyForDebug"} {
         # always a busy check - this code part cannot be entered
@@ -349,12 +353,8 @@ proc getlogicallinenumbersranges {stepscope messagetype} {
 
             set curpos [getendfunctionpos $ta $precfun]
             if {$curpos == -1} {
-                # can't happen in principle
-                # <TODO>: It happens however in well-formed functions containing a string
-                #         containing the word "function", the string being quoted with
-                #         single quotes when these strings are not colorized (options menu)
-                #         Find a better way to handle such cases than just this messageBox!
-                tk_messageBox -message "getendfunctionpos returned $curpos in proc getlogicallinenumbersranges: please report"
+                # should never happen since handled much ealier by checkforduplicateorunterminatedfuns, but...
+                tk_messageBox -message "Unexpected missing endfunction in proc getlogicallinenumbersranges: please report"
             }
 
             # $curpos now contains the index in $ta of the first n of the word
@@ -589,9 +589,10 @@ proc runtocursor_bp {{checkbusyflag 1} {skipbptmode 0}} {
         if {[isscilabbusy 5]} {return}
     }
 
-    # warn the user about duplicate function names possibly found
+    # warn the user about duplicate function names, or unterminated functions
+    # possibly found in the opened buffers
     # the debugger won't execute in that case
-    if {[checkforduplicatefunnames]} {return}
+    if {[checkforduplicateorunterminatedfuns]} {return}
 
     set textarea [gettextareacur]
 
@@ -646,9 +647,10 @@ proc runtoreturnpoint_bp {{checkbusyflag 1} {skipbptmode 0}} {
         if {[isscilabbusy 5]} {return}
     }
 
-    # warn the user about duplicate function names possibly found
+    # warn the user about duplicate function names, or unterminated functions
+    # possibly found in the opened buffers
     # the debugger won't execute in that case
-    if {[checkforduplicatefunnames]} {return}
+    if {[checkforduplicateorunterminatedfuns]} {return}
 
     if {!$skipbptmode} {
         buildlistofreturnpoints
@@ -705,12 +707,8 @@ proc buildlistofreturnpoints {} {
     set currentfunstartline [lindex $fntafs 2]
     set currentfunendfunctionpos [getendfunctionpos $currentfunta $currentfunstartline "all_return_points"]
     if {$currentfunendfunctionpos == -1} {
-        # should never happen
-        # <TODO>: It happens however in well-formed functions containing a string
-        #         containing the word "function", the string being quoted with
-        #         single quotes when these strings are not colorized (options menu)
-        #         Find a better way to handle such cases than just this messageBox!
-        tk_messageBox -message "Unexpected missing endfunction in proc runtoreturnpoint_bp: please report"
+        # should never happen since handled much ealier by checkforduplicateorunterminatedfuns, but...
+        tk_messageBox -message "Unexpected missing endfunction in proc buildlistofreturnpoints: please report"
     }
     set currentfunreturnlineslist [list ]
     set currentfunreturnlinesvector {[}
@@ -832,9 +830,10 @@ proc resume_bp {{checkbusyflag 1} {stepmode "nostep"}} {
         if {[isscilabbusy 5]} {return}
     }
 
-    # warn the user about duplicate function names possibly found
+    # warn the user about duplicate function names, or unterminated functions
+    # possibly found in the opened buffers
     # the debugger won't execute in that case
-    if {[checkforduplicatefunnames]} {return}
+    if {[checkforduplicateorunterminatedfuns]} {return}
 
     showinfo $waitmessage
     if {$funnameargs != ""} {
@@ -875,9 +874,10 @@ proc goonwo_bp {} {
 
     if {[isscilabbusy 5]} {return}
 
-    # warn the user about duplicate function names possibly found
+    # warn the user about duplicate function names, or unterminated functions
+    # possibly found in the opened buffers
     # the debugger won't execute in that case
-    if {[checkforduplicatefunnames]} {return}
+    if {[checkforduplicateorunterminatedfuns]} {return}
 
     # no test on [getdbstate], this proc can only be called in "DebugInProgress"
     # state (this is set by the debugger state machine in proc setdbmenuentriesstates_bp)
@@ -954,9 +954,9 @@ proc canceldebug_bp {} {
 
     if {[isscilabbusy 5]} {return}
 
-    # note: here no checkforduplicatefunnames is made because there is
-    # one case where a duplicate exists temporarily: when exec-ing the
-    # temp buffer containing all the non level zero code (see proc
+    # note: here no checkforduplicateorunterminatedfuns is made because
+    # there is one case where a duplicate exists temporarily: when exec-ing
+    # the temp buffer containing all the non level zero code (see proc
     # execfile_bp). If this exec fails, then a canceldebug_bp is launched
     # by proc scilaberror, and at this point the temp buffer has not yet
     # been closed, thus a duplicate would be found here

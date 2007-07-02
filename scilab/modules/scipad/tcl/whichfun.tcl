@@ -409,7 +409,7 @@ proc getallfunsintextarea {{buf "current"}} {
 # Note further that the order of the functions returned is the order of their
 # definition in the buffer, i.e. the order of the function definition lines
 # when reading the buffer from its start to its end (nested functions are not
-# special in any respect). This order is important becasue it is used in
+# special in any respect). This order is important because it is used in
 # proc execfile_bp to eliminate nested functions from the list
 
     global listoffile
@@ -594,11 +594,9 @@ proc bufferhaslevelzerocode {w} {
                 # then we have reached the end of the buffer
                 # and there is no need to break
                 # there is neither no need to return a special error
-                # code since this proc will return false (i.e. no zero
-                # level code in that buffer), configuration of the
-                # debugger will be allowed, and an error "endfunction
-                # is missing" will be triggered when running the debug
-                # this error is catched and displayed in a message box
+                # code since proc checkforduplicateorunterminatedfuns
+                # has been called long before and the code we're now
+                # in won't be run when an unterminated function exists
                 set ind "end"
             }
         }
@@ -641,12 +639,8 @@ proc getlistofancillaries {ta fun tag {lifun -1}} {
         # all calls to ancillaries tagged as $tag
         set endpos [getendfunctionpos $ta $precfun]
         if {$endpos == -1} {
-            # can't happen in principle
-            # <TODO>: It happens however in well-formed functions containing a string
-            #         containing the word "function", the string being quoted with
-            #         single quotes when these strings are not colorized (options menu)
-            #         Find a better way to handle such cases than just this messageBox!
-            tk_messageBox -message "getendfunctionpos returned $endpos in proc getlistofancillaries: please report"
+            # should never happen since handled much ealier by checkforduplicateorunterminatedfuns, but...
+            tk_messageBox -message "Unexpected missing endfunction in proc getlistofancillaries: please report"
         }
         foreach {i j} [$ta tag ranges $tag] {
             if {[$ta compare $precfun <= $i]} {

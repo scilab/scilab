@@ -13,9 +13,10 @@ proc configurefoo_bp {} {
     # off in the current buffer
     if {[iscurrentbufnotcolorized]} {return}
 
-    # warn the user about duplicate function names possibly found
+    # warn the user about duplicate function names, or unterminated functions
+    # possibly found in the opened buffers
     # configure won't execute in that case
-    if {[checkforduplicatefunnames]} {return}
+    if {[checkforduplicateorunterminatedfuns]} {return}
 
     set conf $pad.conf
     catch {destroy $conf}
@@ -710,10 +711,12 @@ proc hasvarargin {arglist} {
     return [list $hasvarin $arglist]
 }
 
-proc checkforduplicatefunnames {} {
+proc checkforduplicateorunterminatedfuns {} {
 # check if the opened buffers define duplicate function names
 # if it is the case, then warn the user through a message box
 # and return true
+# check also if the opened buffers contain unterminated functions, i.e.
+# functions without an endfunction keyword
 # otherwise (no duplicate found), return false
 
     global listoffile
@@ -732,8 +735,27 @@ proc checkforduplicatefunnames {} {
                 set funsto [getendfunctionpos $textarea $funsta]
                 if {$funsto == -1} {
                     # unterminated function (i.e. function keyword with
-                    # no balanced endfunction keyword) -> ignore it
-                    continue
+                    # no balanced endfunction keyword) -> warn the user and return true
+                    # <TODO>: It happens in well-formed functions containing a string
+                    #         containing the word "function", the string being quoted
+                    #         with single quotes when these strings are not colorized
+                    #         (options menu)
+                    #         It happens also when debugging functions not terminated
+                    #         by an endfunction
+                    #         The former case should be handled (separate the strings
+                    #         detection from their colorization)
+                    set mes ""
+                    append mes [mc "Warning!\n\n \
+                            A function missing the closing \"endfunction\" has been found in the currently opened files.\n \
+                            Such syntax is now obsolete.\n\n \
+                            Please terminate function "] $funnam [mc " and try again."] \
+                            "\n\n " [mc "Note: This message might also be triggered by a string\n \
+                            quoted with single quotes and containing the word \"function\",\n \
+                            when \"Colorize \'strings\'\" is unchecked in the Options menu."] "\n " \
+                            [mc "This known bug can be worked around simply by checking \"Colorize \'&strings\'\"."]
+                    set tit [mc "Unterminated function definition found"]
+                    tk_messageBox -message $mes -icon warning -title $tit
+                    return true
                 }
                 lappend listoffunnames $funnam "$listoffile(\"$textarea\",fullname)\n"
             } else {
