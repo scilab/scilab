@@ -97,9 +97,10 @@ public class ValidationAction extends AbstractConsoleAction {
 			}
 			
 			// Show the prompt and command line
-			configuration.getInputCommandView().setVisible(true);
 			configuration.getPromptView().setVisible(true);
-
+			configuration.getInputCommandView().setVisible(true);
+			configuration.getInputCommandView().requestFocus();
+			
 			// To be sure to see the prompt when entering empty lines 
 			// If these lines removed, the prompt can be hidden (under the bottom of the console)
 			if (cmdToExecute.isEmpty()) {

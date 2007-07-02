@@ -4,6 +4,7 @@
 package org.scilab.modules.console;
 
 import java.awt.Color;
+import java.awt.Font;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -89,11 +90,30 @@ public class SciPromptView extends JPanel implements PromptView {
 	public void updatePrompt() {
 		promptTextContent.setLength(0);
 		promptTextContent.append(HTML_START);
-		promptTextContent.append(defaultPrompt.replaceAll(">", "&gt;"));
+		
+		// Text Color
+		String textStyle = "<P style=\"color:" + colorToString(promptUI.getForeground()) + ";";
+		
+		// Text Font
+		if (promptUI.isFontSet()) {
+			textStyle += "font-size:" + promptUI.getFont().getSize() + "pt;";
+			textStyle += "font-family:" + promptUI.getFont().getName() + ";";
+			if (promptUI.getFont().isBold()) {
+				textStyle += "font-weight:bold;";
+			}
+			
+			if (promptUI.getFont().isItalic()) {
+				textStyle += "font-style:italic;";
+			}
+		}
+		textStyle += "\">";
+
+		promptTextContent.append(textStyle + defaultPrompt.replaceAll(">", "&gt;") + "</P>");
+		
 		int nbLineToShow = inputParsingManager.getNumberOfLines();
 		while (nbLineToShow-- > 1) {
 			promptTextContent.append(HTML_NEW_LINE);
-			promptTextContent.append(inBlockPrompt);
+			promptTextContent.append(textStyle + inBlockPrompt + "</P>");
 		}
 		promptTextContent.append(HTML_END);
 		promptUI.setText(promptTextContent.toString());
@@ -108,6 +128,30 @@ public class SciPromptView extends JPanel implements PromptView {
 		super.setBackground(bgColor);
 		if (promptUI != null) {
 			promptUI.setBackground(bgColor);
+		}
+	}
+
+	/**
+	 * Sets the foreground of the prompt
+	 * @param fgColor the color to set
+	 * @see javax.swing.JComponent#setForeground(java.awt.Color)
+	 */
+	public void setForeground(Color fgColor) {
+		super.setForeground(fgColor);
+		if (promptUI != null) {
+			promptUI.setForeground(fgColor);
+		}
+	}
+
+	/**
+	 * Sets the font of the prompt
+	 * @param font the font to set
+	 * @see javax.swing.JComponent#setBackground(java.awt.font)
+	 */
+	public void setFont(Font font) {
+		super.setFont(font);
+		if (promptUI != null) {
+			promptUI.setFont(font);
 		}
 	}
 
@@ -137,4 +181,33 @@ public class SciPromptView extends JPanel implements PromptView {
 	public void setVisible(boolean status) {
 		super.setVisible(status);
 	}
+	
+	/**
+	 * Convert a color into an hexadecimal string
+	 * @param c the color to convert
+	 * @return the corresponding hexadecimal string
+	 */
+	private static String colorToString(Color c) {
+		String strColor = "#";
+		String s = Integer.toHexString(c.getRed());
+		if (s.length() == 1) {
+			strColor += "0" + s;
+		} else {
+			strColor += s;
+		}
+		s = Integer.toHexString(c.getGreen());
+		if (s.length() == 1) {
+			strColor += "0" + s;
+		} else {
+			strColor += s;
+		}
+		s = Integer.toHexString(c.getBlue());
+		if (s.length() == 1) {
+			strColor += "0" + s;
+		} else {
+			strColor += s;
+		}
+		return strColor;
+	}
+
 }

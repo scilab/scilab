@@ -32,5 +32,6 @@ public class SciOutputView extends ConsoleTextPane {
 	public Dimension getMinimumSize() {
 		return SMALL;
 	}
+	
 
 }

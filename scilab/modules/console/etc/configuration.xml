@@ -10,11 +10,15 @@
 		<OutputView useCache="true" value="org.scilab.modules.console.SciOutputView"/>
 		<InputCommandView useCache="true" value="org.scilab.modules.console.SciInputCommandView"/>
 		<BackgroundColor useCache="true" value="#FFFFFF"/>
+		<ForegroundColor useCache="true" value="#000000"/>
 		<ScrollableUnitIncrement useCache="true" value="20"/>
 		<ScrollableBlockIncrement useCache="true" value="20"/>
 		<VerticalWrapAllowed useCache="true" value="false"/>
 		<HorizontalWrapAllowed useCache="true" value="false"/>
-		
+		<FontName useCache="true" value="monospaced"/>
+                <FontStyle useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+                <FontSize useCache="true" value="12"/>
+
 		<!-- Core part -->
 		<OutputViewStyledDocument useCache="true" value="javax.swing.text.DefaultStyledDocument"/>
 		<InputCommandViewStyledDocument useCache="true" value="javax.swing.text.DefaultStyledDocument"/>
