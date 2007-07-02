@@ -111,6 +111,7 @@ void realmain(int no_startup_flag_l,char *initial_script,int initial_script_type
     {
     	if (! IsNoInteractiveWindow() )
     	{
+			/* As the mod NW will change in the near future, this will change */
     		InitXsession();
     	}
       /* initialize scilab interp  */
