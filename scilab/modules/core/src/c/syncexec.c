@@ -89,13 +89,13 @@ L60:
 
 L89:
 	if (Top < Rhs) {
-		int ierr = 22;
-		C2F(error)(&ierr);
+		int lierr = 22;
+		C2F(error)(&lierr);
 		goto L9999;
 	}
 	if (Top - Rhs + Lhs + 1 >= C2F(vstk).bot) {
-		int ierr = 18;
-		C2F(error)(&ierr);
+		int lierr = 18;
+		C2F(error)(&lierr);
 		goto L9999;
 	}
 	goto L91;
@@ -108,9 +108,9 @@ L91:
 	k = C2F(com).fun;
 	C2F(com).fun = 0;
 	if (k == C2F(recu).krec) {
-		int ierr = 22;
+		int lierr = 22;
 		C2F(recu).krec = -1;
-		C2F(error)(&ierr);
+		C2F(error)(&lierr);
 		goto L9999;
 	}
 	C2F(recu).krec = -1;
@@ -143,8 +143,8 @@ L95:
 		goto L91;
 	}
 	if (C2F(com).fin == 0) {
-		int ierr = 246;
-		C2F(error)(&ierr);
+		int lierr = 246;
+		C2F(error)(&lierr);
 		if (C2F(iop).err > 0) {
 			goto L9999;
 		}
