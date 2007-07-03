@@ -14,6 +14,12 @@ typedef struct functions_table_struct {
 	char *name;      /** its name **/
 } gw_generic_table;
 
+
+/**
+* call a function associated to a number "Fin-1"
+* in Tab
+* @param Tab gw_generic_table
+*/
 void callFunctionFromGateway(gw_generic_table *Tab);
 
 #endif /* __CALLFUNCTIONFROMGATEWAY_H__ */
