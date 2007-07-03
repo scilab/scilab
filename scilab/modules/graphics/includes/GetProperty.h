@@ -210,4 +210,7 @@ double * sciGetMargins( sciPointObj * pObj ) ;
 
 BOOL sciGetIsReadyForRendering( sciPointObj * pobj ) ; /* GET */
 
+void sciGetRealDataBounds( sciPointObj * pObj, double bounds[6] ) ; /* GET */
+void sciGetDataBounds( sciPointObj * pObj, double bounds[6] ) ; /* GET */
+
 #endif /* __SCI_GET_PROPERTY__ */

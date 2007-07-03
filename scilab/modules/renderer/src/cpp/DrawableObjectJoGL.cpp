@@ -59,7 +59,7 @@ void DrawableObjectJoGL::destroy( void )
   if ( m_oDrawableObject != NULL )
   {
     jniCallMemberFunctionSafe( m_oDrawableObject, NULL, "destroy", "(I)V", sciGetNum(sciGetParentFigure(m_pDrawer->getDrawedObject())) ) ;
-    jniDeleteGlobalEntity( m_oDrawableObject ) ;
+    jniDeleteGlobalEntity(m_oDrawableObject) ;
     jniDeleteGlobalEntity(m_oDrawableClass) ;
   }
   m_oDrawableObject = NULL ;

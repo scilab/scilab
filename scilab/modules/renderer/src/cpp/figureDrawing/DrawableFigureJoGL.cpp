@@ -38,12 +38,16 @@ DrawableFigureJoGL::~DrawableFigureJoGL( void )
 void DrawableFigureJoGL::drawCanvas( void )
 {
   // We call the display function to be sure to be in the right context
+  jniUpdateCurrentEnv();
   jniCallMemberFunctionSafe( m_oDrawableObject, NULL, "display", "()V" ) ;
+  jniUpdateCurrentEnv();
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::openRenderingCanvas( int figureIndex )
 {
+  jniUpdateCurrentEnv();
   jniCallMemberFunctionSafe( m_oDrawableObject, NULL, "openRenderingCanvas", "(I)V", figureIndex ) ;
+  jniUpdateCurrentEnv();
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::closeRenderingCanvas( void )

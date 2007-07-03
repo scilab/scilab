@@ -10,7 +10,7 @@
 
 
 #include "../DrawableClippedObject.h"
-//#include "Camera.h"
+#include "Camera.h"
 #include "DrawableSubwinBridge.h"
 
 namespace sciGraphics
@@ -28,9 +28,9 @@ public:
   /**
    * Set/Get the current camera
    */
-  /*Camera * getCamera( void ) { return m_pCamera; }
+  Camera * getCamera( void ) { return m_pCamera; }
 
-  void setCamera( Camera * cam ) { m_pCamera = cam ; }*/
+  void setCamera( Camera * cam ) { m_pCamera = cam ; }
 
 protected:
 
@@ -53,7 +53,7 @@ protected:
 
   /*--------------------------------------------------------------------------------------*/
   /** Camera used to visualize this axes */
-  /*Camera * m_pCamera;*/
+  Camera * m_pCamera;
   /*--------------------------------------------------------------------------------------*/
 
 

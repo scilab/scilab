@@ -8,22 +8,27 @@
 #include "DrawableSubwin.h"
 #include "DrawableSubwinBridge.h"
 
+extern "C"
+{
+#include "GetProperty.h"
+}
+
 namespace sciGraphics
 {
 
 /*------------------------------------------------------------------------------------------*/
 DrawableSubwin::DrawableSubwin(sciPointObj * pObj) : DrawableClippedObject(pObj)
 {
- /* m_pCamera = NULL ;*/
+  m_pCamera = NULL ;
 }
 /*------------------------------------------------------------------------------------------*/
 DrawableSubwin::~DrawableSubwin( void )
 {
-  //if ( m_pCamera != NULL )
-  //{
-  //  delete m_pCamera ;
-  //}
-  //m_pCamera = NULL;
+  if ( m_pCamera != NULL )
+  {
+    delete m_pCamera ;
+  }
+  m_pCamera = NULL;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableSubwin::draw( void )
@@ -34,11 +39,14 @@ void DrawableSubwin::draw( void )
   //  endDrawing();
   //  return;
   //}
-  //m_pCamera->setViewingArea(sciGetAxesBounds(m_pDrawed), sciGetMargins(m_pDrawed)) ;
-  //m_pCamera->renderPosition();
+  m_pCamera->setViewingArea(sciGetAxesBounds(m_pDrawed), sciGetMargins(m_pDrawed)) ;
+
+  double bounds[6] ;
+  sciGetRealDataBounds(m_pDrawed, bounds) ;
+  m_pCamera->setSubwinBox(bounds) ;
+  m_pCamera->renderPosition();
   displayChildren() ;
-  endDrawing();
-  //drawSubWinEntity( m_pDrawed ) ;
+  //endDrawing();
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableSubwin::show( void )

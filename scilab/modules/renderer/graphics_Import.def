@@ -42,3 +42,4 @@ sciGetAxesBounds
 sciGetMargins
 doubleArrayCopy
 sciGetIsReadyForRendering
+sciGetRealDataBounds

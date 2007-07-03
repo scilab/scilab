@@ -31,24 +31,19 @@ public:
   void setViewingArea( double translation[2], double scale[2] ) ;
 
   /**
-  * Set the rotation angles of the camera.
+   * Set the scale to fit with the subwin data bounds
    */
-  void setRotationAngles( double alpha, double theta ) ;
+  void setAxesScale( double scale[3] ) ;
 
   /**
-   * Specify the axes box to render.
+   * Set the translation to put the axes into view
    */
-  void setSubWinBox( double box[6] ) ;
+  void setAxesTranslation( double translation[3] ) ;
 
   /**
    * Specify the farthest distance from the camera in order to specify zNear and zFar
    */
   void setFarthestDistance( double maxDist ) ;
-
-  /**
-   *  Set the bouding box of axes (the one drawn on the screen)
-   */
-  void setAxesBox( double bbox[6] ) ;
 
   /**
    * Position the view and view area accordingly to previous calls.
@@ -64,21 +59,19 @@ protected:
   double m_aViewingTranslation[2];
 
   /**
-  * Scaling between the rendering canvas and current viewing area.
-  * Should be lower than 1 since the viewing area is smaller than the canvas.
-  */
+   * Scaling between the rendering canvas and current viewing area.
+   * Should be lower than 1 since the viewing area is smaller than the canvas.
+   */
   double m_aViewingScale[2];
-
-  /** Rotation angle around axe Z */
-  double m_dTheta;
-  /** Rotation around axe Y */
-  double m_dAlpha;
-
-  /** specify the axis box */
-  double m_aAxesBox[6];
 
   /** maximum found distance between a graphic object and the viewpoint */
   double m_dFarthestDist;
+
+  /** Scale modification to fit axes coordinates */
+  double m_aAxesScale[3];
+
+  /** Translation to put the axes in view */
+  double m_aAxesTranslation[3];
 
 };
 

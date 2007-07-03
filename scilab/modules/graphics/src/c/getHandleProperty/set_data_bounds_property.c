@@ -182,20 +182,24 @@ int set_data_bounds_property( sciPointObj * pobj, int stackPointer, int valueTyp
     if ( nbRow * nbCol == 4 )
     { 
       /* 2D */
-      ppSubWin->SRect[0] = xMin ;
-      ppSubWin->SRect[1] = xMax ;
-      ppSubWin->SRect[2] = yMin ;
-      ppSubWin->SRect[3] = yMax ;
+      double bounds[6];
+      
+      /* To get the Z coordinates */
+      sciGetDataBounds(pobj, bounds) ;
+      bounds[0] = xMin ;
+      bounds[1] = xMax ;
+      bounds[2] = yMin ;
+      bounds[3] = yMax ;
+
+      sciSetDataBounds(pobj, bounds) ;
     }
     else
     {
       /* 3D */
-      ppSubWin->SRect[0] = xMin ;
-      ppSubWin->SRect[1] = xMax ;
-      ppSubWin->SRect[2] = yMin ;
-      ppSubWin->SRect[3] = yMax ;
-      ppSubWin->SRect[4] = zMin ;
-      ppSubWin->SRect[5] = zMax ;
+      double bounds[6] = {xMin, xMax, yMin, yMax, zMin, zMax} ;
+      
+      sciSetDataBounds(pobj, bounds) ;
+      
     }
 
     ppSubWin->FirstPlot = FALSE;
@@ -209,8 +213,7 @@ int set_data_bounds_property( sciPointObj * pobj, int stackPointer, int valueTyp
       sciprint( "Second argument must have 6 elements.\n" ) ;
       return SET_PROPERTY_ERROR ;
     }
-
-    copyDoubleVectorFromStack( stackPointer, pSURFACE_FEATURE(pobj)->ebox, 6 ) ;
+    sciSetDataBounds(pobj, getDoubleMatrixFromStack(stackPointer) ) ;
 
     return SET_PROPERTY_SUCCEED ;
   }

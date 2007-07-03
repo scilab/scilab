@@ -56,19 +56,6 @@
 #define		round(a)	(int)(((a)<0.0)?(a)-.5:(a)+.5)
 #define EPSILON 1.0e-13
 
-
-
-/** 
-  #define linint(x) ((integer) floor(x)) 
-  #define inint(x) ((int) floor(x))  
-**/
-
-/** 
-  if we suppose that the x transmited is in the range of integers 
-  we could also use :
-  #define inint(x) (( x > 0 ) ? ((int) (x + 0.5)) : ((int) (x - 0.5));
- **/
-
 #define linint(x) ((integer) floor(x + 0.5 )) 
 #define inint(x) ((int) floor(x + 0.5 ))  
 
@@ -109,6 +96,9 @@ extern double exp10 __PARAMS((double));
 /* prototypes */
 
 /*----------------------------------------------------------------------------*/
+/************************************************************************/
+/* 2D algorithms                                                        */
+/************************************************************************/
 /* perform the rotation of point from to point dest with angle in radian  */
 void rotate2D( double from[2], double center[2], double angle, double dest[2] ) ;
 
@@ -161,6 +151,25 @@ void iNormalize2d( int vect[2] ) ;
  */
 #define DOT_PROD_2D(v1,v2) ( ((v1)[0]) * ((v2)[0]) + ((v1)[1]) * ((v2)[1]) )
 
+/**
+ * Norm of a 2D vector
+ */
+#define NORM_2D(v) ( sqrt( DOT_PROD_2D((v),(v)) ) ) ;
+
+/************************************************************************/
+/* 3D algorithms                                                        */
+/************************************************************************/
+
+/**
+ * Scalar product of 2 vectors in 3D
+ */
+#define DOT_PROD_3D(v1,v2) ( ((v1)[0]) * ((v2)[0]) + ((v1)[1]) * ((v2)[1]) + ((v1)[2]) * ((v2)[2]) )
+
+/**
+* Norm of a 3D vector
+*/
+#define NORM_3D(v) ( sqrt( DOT_PROD_3D((v),(v)) ) ) ;
+
 /*----------------------------------------------------------------------------*/
 
 /*----------------------------------------------------------------------------*/
@@ -177,19 +186,19 @@ int safeEqual( double val1, double val2, double accuracy ) ;
 /*----------------------------------------------------------------------------*/
 
 /*----------------------------------------------------------------------------*/
-/* truncate an integer to a 16 bits integer. Overflow value are trucated to the min */
+/* truncate an integer to a 16 bits integer. Overflow value are truncated to the min */
 /* and max of 16 bits integer. */
 #define INT_2_16B(i) ( (i) > INT16MAX ? (INT16MAX) : ( (i) < INT16MIN ? INT16MIN : ((SCIINT16) i)) )
 /*----------------------------------------------------------------------------*/
 
 /*----------------------------------------------------------------------------*/
-/* truncate an integer to a char. Overflow value are trucated to the min */
+/* truncate an integer to a char. Overflow value are truncated to the min */
 /* and max of char integer. */
 #define INT_2_UCHAR(i) ( (i) > UCHAR_MAX ? (UCHAR_MAX) : ( (i) < 0  ? 0 : ((char) i)) )
 /*----------------------------------------------------------------------------*/
 
 /*----------------------------------------------------------------------------*/
-/* truncate a float or double to an int. Overflow value are trucated to the min */
+/* truncate a float or double to an int. Overflow value are truncated to the min */
 /* and max of 32 bits integer. */
 #define FLOAT_2_INT(f) ( (f) > INT_MAX ? (INT_MAX) : ( (f) < INT_MIN ? (INT_MIN) : ( inint( f ) ) ) )
 /*----------------------------------------------------------------------------*/

@@ -27,7 +27,12 @@ CameraJoGL::CameraJoGL( DrawableObject * subwin )
 void CameraJoGL::renderPosition( void )
 {
   initializeDrawing();
-  jniCallVoidFunctionSafe( m_oDrawableObject, m_oDrawableClass, "moveViewingArea", "");
+  jniCallMemberFunctionSafe( m_oDrawableObject, NULL, "moveViewingArea", "(DDDD)V",
+                             m_aViewingTranslation[0], m_aViewingTranslation[1],
+                             m_aViewingScale[0], m_aViewingScale[1] ) ;
+  jniCallMemberFunctionSafe(m_oDrawableObject, NULL, "moveAxesBox", "(DDDDDD)V",
+                            m_aAxesScale[0], m_aAxesScale[1], m_aAxesScale[2],
+                            m_aAxesTranslation[0], m_aAxesTranslation[1], m_aAxesTranslation[2] ) ;
   endDrawing();
 }
 /*-----------------------------------------------------------------------------------*/

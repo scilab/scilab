@@ -8,7 +8,7 @@
 
 #include "DrawableSubwinFactory.h"
 #include "DrawableSubwin.h"
-//#include "CameraFactory.h"
+#include "CameraFactory.h"
 #include "DrawableSubwinBridgeFactory.h"
 
 
@@ -25,9 +25,9 @@ DrawableObject * DrawableSubwinFactory::create( void )
   newSubwin->setDrawableImp(imp.create());
 
   // create the camera
-  //CameraFactory cf;
-  //cf.setCorrespondingSubwin(res) ;
-  //res->setCamera( cf.create() ) ;
+  CameraFactory cf;
+  cf.setCorrespondingSubwin(newSubwin) ;
+  newSubwin->setCamera( cf.create() ) ;
 
   return newSubwin;
 }

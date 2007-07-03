@@ -15,6 +15,11 @@ extern "C" {
 #include "../../../graphics/includes/ObjectStructure.h"
 
   /**
+   * Create a render for this object
+   */
+  void createDrawer( sciPointObj * pObj ) ;
+
+  /**
    * Delete the drawer of a graphic handle
    */
   void destroyHandleDrawer( sciPointObj * pObj ) ;

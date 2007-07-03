@@ -653,7 +653,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\cpp\DrawingBridge.h"
+				RelativePath=".\includes\DrawingBridge.h"
 				>
 			</File>
 			<File

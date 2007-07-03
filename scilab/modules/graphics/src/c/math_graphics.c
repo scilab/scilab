@@ -129,14 +129,14 @@ void iTranslate2D( int from[2], int trans[2], int dest[2] )
 /*----------------------------------------------------------------------------*/
 void normalize2d( double vect[2] )
 {
-  double norm = sqrt( vect[0] * vect[0] + vect[1] * vect[1] ) ;
+  double norm = NORM_2D(vect) ;
   vect[0] /= norm ;
   vect[1] /= norm ;
 }
 /*----------------------------------------------------------------------------*/
 void iNormalize2d( int vect[2] )
 {
-  double norm = sqrt( vect[0] * vect[0] + vect[1] * vect[1] ) ;
+  double norm = NORM_2D(vect) ;
   vect[0] = round( vect[0] / norm ) ;
   vect[1] = round( vect[1] / norm ) ;
 }

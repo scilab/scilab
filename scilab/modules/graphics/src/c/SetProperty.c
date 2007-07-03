@@ -4909,3 +4909,39 @@ int sciInitIsReadyForRendering( sciPointObj * pObj, BOOL isReady )
   return 0 ;
 }
 /*--------------------------------------------------------------------------------------------*/
+/**
+ * Set data-bounds defined by the user.
+ * @param bounds [Xmin,Xmax,Ymain,Ymax,Zmin,Zmax] vector.
+ */
+int sciSetDataBounds( sciPointObj * pObj, double bounds[6] )
+{
+  int i;
+  switch( sciGetEntityType(pObj) )
+  {
+  case SCI_SUBWIN:
+    for ( i = 0 ; i < 6 ; i++ )
+    {
+      pSUBWIN_FEATURE(pObj)->SRect[i] = bounds[i] ;
+    }
+    /* Temporary */
+    pSUBWIN_FEATURE(pObj)->FRect[0] = bounds[0];
+    pSUBWIN_FEATURE(pObj)->FRect[1] = bounds[2];
+    pSUBWIN_FEATURE(pObj)->FRect[2] = bounds[1];
+    pSUBWIN_FEATURE(pObj)->FRect[3] = bounds[3];
+    pSUBWIN_FEATURE(pObj)->FRect[4] = bounds[4];
+    pSUBWIN_FEATURE(pObj)->FRect[5] = bounds[5];
+    break ;
+  case SCI_SURFACE:
+    for ( i = 0 ; i < 6 ; i++ )
+    {
+      pSURFACE_FEATURE(pObj)->ebox[i] = bounds[i] ;
+    }
+    break;
+  default:
+    sciprint("This object has no data bounds.\n");
+    return -1 ; 
+
+  }
+  return 0 ;
+}
+/*--------------------------------------------------------------------------------------------*/

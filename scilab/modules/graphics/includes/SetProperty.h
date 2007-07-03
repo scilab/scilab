@@ -20,7 +20,6 @@
 
 #include "ObjectStructure.h"
 #include "HandleManagement.h"
-/* #include "GraphicGlobals.h" */
 
 
 #ifndef __SCI_SET_PROPERTY__
@@ -248,6 +247,8 @@ int sciSetIsEventHandlerEnable(  sciPointObj * pObj, BOOL enable ) ;
 int sciSetSelectedObject( sciPointObj * pObj ) ;
 
 int sciInitIsReadyForRendering( sciPointObj * pObj, BOOL isReady ) ;
+
+int sciSetDataBounds( sciPointObj * pObj, double bounds[6] ) ; /* SET */
 
 /*---------------------------------------------------------------------------*/
 /* return 0 if the string contains any % character, 1 if a %d has been found */

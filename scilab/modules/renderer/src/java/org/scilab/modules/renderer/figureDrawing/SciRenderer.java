@@ -68,7 +68,7 @@ public class SciRenderer
       }
       final GL gl = gLDrawable.getGL();
       gl.glShadeModel(GL.GL_SMOOTH);              // Enable Smooth Shading
-      gl.glClearColor(1.0f, 1.0f, 1.0f, 0.5f);    // white Background
+      gl.glClearColor(1.0f, 1.0f, 1.0f, 0.0f);    // white Background
       gl.glClearDepth(1.0f);                      // Depth Buffer Setup
       gl.glEnable(GL.GL_DEPTH_TEST);							// Enables Depth Testing
       gl.glDepthFunc(GL.GL_LEQUAL);								// The Type Of Depth Testing To Do
@@ -94,21 +94,20 @@ public class SciRenderer
    */
   public void reshape(GLAutoDrawable gLDrawable, int x, int y, int width, int height)
     {
-      final GL gl = gLDrawable.getGL();
-      //final GLU glu = new GLU();
-      float h = 1.0f; 
+	  // not needed for now
+      //final GL gl = gLDrawable.getGL();
+      //float h = 1.0f;
 
-      if (height > 0) {
+      //if (height > 0) {
         // avoid a divide by zero error!
-        h = (float) height;
-      }
-      h = (float) width / h;
-      gl.glMatrixMode(GL.GL_PROJECTION);
-      gl.glLoadIdentity();
-      //glu.gluPerspective(45.0f, h, 1.0, 20.0);
-      gl.glFrustum(0.0, 1.0, 0.0, 1.0, 1.0, 20.0);
-      gl.glMatrixMode(GL.GL_MODELVIEW);
-      gl.glLoadIdentity();
+        //h = (float) height;
+      //}
+      //h = (float) width / h;
+      //gl.glMatrixMode(GL.GL_PROJECTION);
+      //gl.glLoadIdentity();
+      //gl.glFrustum(0.0, 1.0, 0.0, 1.0, 1.0, 20.0);
+      //gl.glMatrixMode(GL.GL_MODELVIEW);
+      //gl.glLoadIdentity();
 
     }
 

@@ -38,8 +38,9 @@ public:
 
   /**
    * Specify the axes box to render.
+   * @param bounds [Xmin,Xmax,Ymin,Ymax,Zmin,Zmax] vector.
    */
-  void setSubWinBox( double box[6] ) ;
+  void setSubwinBox( double bounds[6] ) ;
 
   /**
    * Specify the farthest distance from the camera in order to specify zNear and zFar
@@ -58,8 +59,30 @@ public:
 
 protected:
 
+  /*-----------------------------------------------------*/
+  /**
+   * Get the center of the watched subwin.
+   */
+  void getSubwinCenter( double center[3] ) ;
+
+  /**
+   * Compute the eye position which will be able to wtch the whole subwin
+   */
+  void computeEyePosition( double eyePosition[3] ) ;
+  /*-----------------------------------------------------*/
+
   /** bridge for driver dependent algorithms */
   CameraBridge * m_pImp;
+
+  /** specify the axis box */
+  double m_aAxesBox[6];
+
+  /** Rotation angle around axe Z */
+  double m_dTheta;
+  /** Rotation around axe Y */
+  double m_dAlpha;
+
+  /*-----------------------------------------------------*/
 
 };
 

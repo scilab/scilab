@@ -15,22 +15,25 @@
 int get_data_bounds_property( sciPointObj * pobj )
 {
 
+  double bounds[6] ;
+  sciGetDataBounds(pobj, bounds) ;
+
   if ( sciGetEntityType(pobj) == SCI_SUBWIN )
   {
     /**DJ.Abdemouche 2003**/
     if ( sciGetIs3d( pobj ) )
     {
-      return sciReturnMatrix( pSUBWIN_FEATURE (pobj)->SRect, 2, 3 ) ;
+      return sciReturnMatrix( bounds, 2, 3 ) ;
     }
     else
     {
-      return sciReturnMatrix( pSUBWIN_FEATURE (pobj)->SRect, 2, 2 ) ;
+      return sciReturnMatrix( bounds, 2, 2 ) ;
     }
   }
   else if ( sciGetEntityType (pobj) == SCI_SURFACE )
   {
     /* used for what ? F.Leray 20.04.05 */
-    return sciReturnMatrix( pSURFACE_FEATURE (pobj)->ebox, 3, 2 ) ;
+    return sciReturnMatrix( bounds, 3, 2 ) ;
   }
   else
   {

@@ -38,6 +38,7 @@
 #include "CurrentObjectsManagement.h"
 #include "ObjectSelection.h"
 #include "BuildDrawingObserver.h"
+#include "DrawingBridge.h"
 
 #include "MALLOC.h" /* MALLOC */
 
@@ -2877,6 +2878,7 @@ sciPointObj * sciStandardBuildOperations( sciPointObj * pObj, sciPointObj * pare
   
 
   pObj->pDrawer = NULL ;
+  //createDrawer(pObj) ;
 
   return pObj ;
 

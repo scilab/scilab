@@ -17,6 +17,11 @@ extern "C"
 using namespace sciGraphics ;
 
 /*------------------------------------------------------------------------------------------*/
+void createDrawer( sciPointObj * pObj )
+{
+  getHandleDrawer( pObj ) ;
+}
+/*------------------------------------------------------------------------------------------*/
 void destroyHandleDrawer( sciPointObj * pObj )
 {
   /* don't call getHandleDrawer for the test, otherwise a drawer will be created */

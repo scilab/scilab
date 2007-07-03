@@ -6,11 +6,6 @@
 /*------------------------------------------------------------------------*/
 
 #include "CameraBridge.h"
-extern "C"
-{
-#include "BasicAlgos.h"
-}
-
 
 namespace sciGraphics
 {
@@ -25,15 +20,18 @@ void CameraBridge::setViewingArea( double translation[2], double scale[2] )
   m_aViewingScale[1] = scale[1];
 }
 /*-----------------------------------------------------------------------------------*/
-void CameraBridge::setRotationAngles( double alpha, double theta )
+void CameraBridge::setAxesScale( double scale[3] )
 {
-  m_dTheta = theta ;
-  m_dAlpha = alpha ;
+  m_aAxesScale[0] = scale[0] ;
+  m_aAxesScale[1] = scale[1] ;
+  m_aAxesScale[2] = scale[2] ;
 }
 /*-----------------------------------------------------------------------------------*/
-void CameraBridge::setSubWinBox( double box[6] )
+void CameraBridge::setAxesTranslation( double translation[3] )
 {
-  doubleArrayCopy( m_aAxesBox, box, 6 );
+  m_aAxesTranslation[0] = translation[0] ;
+  m_aAxesTranslation[1] = translation[1] ;
+  m_aAxesTranslation[2] = translation[2] ;
 }
 /*-----------------------------------------------------------------------------------*/
 void CameraBridge::setFarthestDistance( double maxDist )
@@ -41,10 +39,4 @@ void CameraBridge::setFarthestDistance( double maxDist )
   m_dFarthestDist = maxDist;
 }
 /*-----------------------------------------------------------------------------------*/
-void CameraBridge::setAxesBox( double bbox[6] )
-{
-  doubleArrayCopy(m_aAxesBox, bbox, 6) ;
-}
-/*-----------------------------------------------------------------------------------*/
-
 }

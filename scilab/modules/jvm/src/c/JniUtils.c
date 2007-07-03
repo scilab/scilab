@@ -43,7 +43,7 @@ void jniDestroyCallMethodCache( jniCallMethodCache * cache )
   }
 }
 /*------------------------------------------------------------------------------------------*/
-void jniIntializeCallMethodCache( jniCallMethodCache * cache, jclass instanceClass, jmethodID methodId )
+void jniInitializeCallMethodCache( jniCallMethodCache * cache, jclass instanceClass, jmethodID methodId )
 {
   cache->methodId = methodId ;
 
@@ -72,13 +72,14 @@ void jniSetCurrentEnv( JNIEnv * env )
   sciJEnv = env ;
 }
 /*------------------------------------------------------------------------------------------*/
-void jniUpdateCurrentEnv( void )
+JNIEnv * jniUpdateCurrentEnv( void )
 {
   /* tips from sun, use AttachCurrentThread to always get the right environment */ 
   (*sciJVM)->AttachCurrentThread( sciJVM, (void **) &sciJEnv, NULL ) ;
   //(*sciJVM)->GetEnv( sciJVM, (void **) &sciJEnv, JNI_VERSION_1_6 ) ;
   /* clear all previous exceptions pending on the thread */
   (*sciJEnv)->ExceptionClear( sciJEnv ) ;
+  return sciJEnv;
 }
 /*------------------------------------------------------------------------------------------*/
 JNIEnv * jniGetCurrentJavaEnv( void )
@@ -163,9 +164,6 @@ BOOL jniCreateDefaultInstance( const char * className, jclass * instanceClass, j
 
   *instanceClass = (*sciJEnv)->NewGlobalRef(sciJEnv, localClass) ;
 
-  (*sciJEnv)->DeleteLocalRef(sciJEnv, localClass) ;
-  localClass = NULL ;
-
   /* "()V" for no parameters and return void */
   /* "<init>" for constructor */
   constructObject = (*sciJEnv)->GetMethodID( sciJEnv, *instanceClass, "<init>", "()V" ) ;
@@ -181,8 +179,6 @@ BOOL jniCreateDefaultInstance( const char * className, jclass * instanceClass, j
   }
   
   *instance = (*sciJEnv)->NewGlobalRef(sciJEnv, localInstance) ;
-  (*sciJEnv)->DeleteLocalRef(sciJEnv, localInstance) ;
-  localInstance = NULL;
 
   return TRUE ;
 }
@@ -192,69 +188,6 @@ BOOL jniCreateDefaultInstanceSafe( const char * className, jclass * instanceClas
   if ( instanceClass == NULL || instance == NULL ) { return FALSE ; }
   jniUpdateCurrentEnv() ;
   return jniCreateDefaultInstance( className, instanceClass, instance ) ;
-}
-/*------------------------------------------------------------------------------------------*/
-BOOL jniCallVoidFunctionV( jobject instance, jclass instanceClass, const char * functionName, const char * paramTypes, va_list args )
-{
-  jmethodID   voidMethod = NULL ;
-  jclass      instanceClasse = (*sciJEnv)->GetObjectClass( sciJEnv, instance ) ; /* retrieve the class of the object */
-  char      * callingSequence = NULL ;
-
-  /* Add (...)V around the paramList */
-  callingSequence = MALLOC( ( strlen(paramTypes) + 4 ) * sizeof(char) ) ; /* 3 for ()V and 1 for 0 terminating character */
-  if ( callingSequence == NULL ) { return FALSE ; }
-
-  sprintf( callingSequence, "(%s)V", paramTypes ) ;
-
-  /* Find the method in the class */
-  voidMethod = (*sciJEnv)->GetMethodID( sciJEnv, instanceClass, functionName, callingSequence ) ;
-  if ( !jniCheckLastCall(TRUE) || voidMethod == NULL )
-  {
-    Scierror( 999, "Unable to find method %s.\r\n", functionName ) ;
-    FREE( callingSequence ) ;
-    return FALSE ;
-  }
-
-  /* Call the function with the optionals parameters */
-  (*sciJEnv)->CallVoidMethodV( sciJEnv, instance, voidMethod, args ) ;
-  if ( !jniCheckLastCall(TRUE) )
-  {
-    Scierror( 999, "Error when calling method %s.\r\n", functionName ) ;
-    FREE( callingSequence ) ;
-    return FALSE ;
-  }
-
-  //(*sciJEnv)->DeleteLocalRef(sciJEnv, instanceClass) ;
-  FREE( callingSequence ) ;
-  return TRUE ;
-}
-/*------------------------------------------------------------------------------------------*/
-BOOL jniCallVoidFunction( jobject instance, jclass instanceClass, const char * functionName, const char * paramTypes, ... )
-{
-  BOOL status = FALSE ;
-  va_list args ;
-  va_start( args, paramTypes ) ;
-  status = jniCallVoidFunctionV( instance, instanceClass, functionName, paramTypes, args ) ;
-  va_end(args);
-  
-  return status ;
-}
-/*------------------------------------------------------------------------------------------*/
-BOOL jniCallVoidFunctionSafe( jobject instance, jclass instanceClass, const char * functionName, const char * paramTypes, ... )
-{
-  va_list args ;
-  BOOL status = FALSE ;
-
-  if ( instance == NULL ) { return FALSE ; }
-
-  jniUpdateCurrentEnv() ;
-
-  /* Call the function with the optionals parameters */
-  va_start( args, paramTypes ) ;
-  status = jniCallVoidFunctionV( instance, instanceClass, functionName, paramTypes, args ) ;
-  va_end(args);
-  return status ;
-
 }
 /*------------------------------------------------------------------------------------------*/
 jvalue jniCallMemberFunction( jobject instance, jniCallMethodCache * cache, const char * functionName, const char * descriptor, ... )
@@ -305,7 +238,7 @@ jvalue jniCallMemberFunctionV( jobject instance, jniCallMethodCache * cache, con
       methodId = (*sciJEnv)->GetMethodID(sciJEnv, instanceClass, functionName, descriptor ) ;
       if ( cache != NULL )
       {
-        jniIntializeCallMethodCache(cache, instanceClass, methodId) ;
+        jniInitializeCallMethodCache(cache, instanceClass, methodId) ;
       }
     }
     else

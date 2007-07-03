@@ -73,9 +73,7 @@ public class DrawableFigureJoGL extends ObjectJoGL {
 		// destroy all the objects
 		destroyedObjects.destroyAll(parentFigureIndex);
 		super.initializeDrawing(parentFigureIndex);
-		GL gl = getGL();
-	    gl.glLoadIdentity();
-	    gl.glTranslatef(0.0f, 0.0f, -6.0f);
+		getGL().glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 	}
 	
 	/**
@@ -187,9 +185,6 @@ public class DrawableFigureJoGL extends ObjectJoGL {
   	 * @param colorIndex index of the colro to use
   	 */
   	public void setBackgroundColor(int colorIndex) {
-  		if (getGL() == null) {
-  			updateGLContext(figureId);
-  		}
   		double[] color = getColorMap().getColor(colorIndex);
   		getGL().glClearColor((float) color[0], (float) color[1], (float) color[2], 1.0f); // alpha is set to 1
   		getGL().glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);

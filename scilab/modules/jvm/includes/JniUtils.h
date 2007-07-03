@@ -35,7 +35,7 @@ void jniDestroyCallMethodCache( jniCallMethodCache * cache ) ;
 /**
  * Initialize a cache with its values.
  */
-void jniIntializeCallMethodCache( jniCallMethodCache * cache, jclass instanceClass, jmethodID methodId ) ;
+void jniInitializeCallMethodCache( jniCallMethodCache * cache, jclass instanceClass, jmethodID methodId ) ;
 
 /**
  * To know if a cache has alredy been initialized
@@ -68,7 +68,7 @@ void jniSetCurrentEnv( JNIEnv * env ) ;
  * This function should be called each time the environment
  * May have changed.
  */
-void jniUpdateCurrentEnv( void ) ;
+JNIEnv * jniUpdateCurrentEnv( void ) ;
 
 /**
  * Get the current Java environment
@@ -114,23 +114,10 @@ BOOL jniCreateDefaultInstance(     const char * className, jclass * instanceClas
 BOOL jniCreateDefaultInstanceSafe( const char * className, jclass * instanceClass, jobject * instance ) ;
 
 /**
- * Call a Java function returning void.
- * @param instance Object caontaining the function to call
- * @param functionName Name of the function
- * @param paramTypes string containing the types of paramaters given as optionals argument.
- *                   This respect the JNI style and looks like "[DID".
- * @return TRUE if the call was succesful, FALSE otherwise.
- */
-BOOL jniCallVoidFunction(     jobject instance, jclass instanceClass, const char * functionName, const char * paramTypes, ... ) ;
-BOOL jniCallVoidFunctionSafe( jobject instance, jclass instanceClass, const char * functionName, const char * paramTypes, ... ) ;
-BOOL jniCallVoidFunctionV(    jobject instance, jclass instanceClass, const char * functionName, const char * paramTypes, va_list args ) ;
-
-/**
  * Call a java member function from C code.
- * @param instance bject containing the function to call
+ * @param instance object containing the function to call
  * @param cache cache relative to this function used to speed up call to the function.
  *              if cache is NULL, then it is not used. If cache is not initialized then the function will initialize it.
- * @param pointer on the instance class. If NULL the class would be retrieved from the object and stored in the instance class.
  * @param functionName Name of the function
  * @param descriptor string containing the kinds of parameters the function takes and the return type.
  *                   This respect the JNI style and looks like "([DID)V".

@@ -5177,3 +5177,62 @@ BOOL sciGetIsReadyForRendering( sciPointObj * pobj )
   return NULL ;
 }
 /*-------------------------------------------------------------------------------------------*/
+/**
+ * To get the computed data bounds of a subwin.
+ * * @param bounds [Xmin,Xmax,Ymain,Ymax,Zmin,Zmax] vector.
+ */
+void sciGetRealDataBounds( sciPointObj * pObj, double bounds[6] )
+{
+  int i;
+  switch( sciGetEntityType(pObj) )
+  {
+  case SCI_SUBWIN:
+    /* from history it is stored [xmin,ymin,xmax,ymax,zmin,zmax] */
+    bounds[0] = pSUBWIN_FEATURE(pObj)->FRect[0] ;
+    bounds[1] = pSUBWIN_FEATURE(pObj)->FRect[2] ;
+    bounds[2] = pSUBWIN_FEATURE(pObj)->FRect[1] ;
+    bounds[3] = pSUBWIN_FEATURE(pObj)->FRect[3] ;
+    bounds[4] = pSUBWIN_FEATURE(pObj)->FRect[4] ;
+    bounds[5] = pSUBWIN_FEATURE(pObj)->FRect[5] ;
+    return ;
+  default:
+    sciprint("This object has computed no data bounds.\n");
+    for ( i = 0 ; i < 6 ; i++ )
+    {
+      bounds[i] = 0.0 ;
+    } 
+  }
+  return ;
+}
+/*-------------------------------------------------------------------------------------------*/
+/**
+ * Get data-bounds defined by the user and not modified for pretty print by scilab.
+ * * @param bounds [Xmin,Xmax,Ymain,Ymax,Zmin,Zmax] vector.
+ */
+void sciGetDataBounds( sciPointObj * pObj, double bounds[6] )
+{
+  int i;
+  switch( sciGetEntityType(pObj) )
+  {
+  case SCI_SUBWIN:
+    for ( i = 0 ; i < 6 ; i++ )
+    {
+      bounds[i] = pSUBWIN_FEATURE(pObj)->SRect[i] ;
+    }
+    return ;
+  case SCI_SURFACE:
+    for ( i = 0 ; i < 6 ; i++ )
+    {
+      bounds[i] = pSURFACE_FEATURE(pObj)->ebox[i] ;
+    }
+    return ;
+  default:
+    sciprint("This object has no data bounds.\n");
+    for ( i = 0 ; i < 6 ; i++ )
+    {
+      bounds[i] = 0.0 ;
+    } 
+  }
+  return ;
+}
+/*-------------------------------------------------------------------------------------------*/

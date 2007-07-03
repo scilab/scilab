@@ -17,5 +17,6 @@ Java_org_scilab_modules_renderer_figureDrawing_FigureScilabCall_displayFigure
 Java_org_scilab_modules_renderer_figureDrawing_FigureScilabCall_redrawFigure
 sciSetJavaColormap
 sciGetJavaColormap
+createDrawer
 ; --------------------------------------- 
 
