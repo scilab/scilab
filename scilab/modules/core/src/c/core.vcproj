@@ -186,6 +186,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\callFunctionFromGateway.c"
+				>
+			</File>
+			<File
 				RelativePath=".\callinterf.c"
 				>
 			</File>
@@ -795,6 +799,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\callFunctionFromGateway.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\callinter.h"
 				>
 			</File>
@@ -855,11 +863,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\fromjava.h"
+				RelativePath=".\fromjava.h"
 				>
 			</File>
 			<File
-				RelativePath=".\fromjava.h"
+				RelativePath="..\..\includes\fromjava.h"
 				>
 			</File>
 			<File
@@ -987,11 +995,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Os_specific.h"
+				RelativePath="..\..\includes\Os_specific.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\Os_specific.h"
+				RelativePath=".\Os_specific.h"
 				>
 			</File>
 			<File

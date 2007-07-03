@@ -85,7 +85,8 @@ src/c/ifexpr.c \
 src/c/expr.c \
 src/c/getcommandlineargs.c \
 src/c/syncexec.c \
-src/c/getfastcode.c 
+src/c/getfastcode.c  \
+src/c/callFunctionFromGateway.c
 
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f \
 src/fortran/clunit.f \
@@ -393,7 +394,8 @@ includes/error_scilab.h \
 includes/GetXmlFileEncoding.h \
 includes/syncexec.h \
 includes/getfastcode.h \
-includes/dynamic_menus.h
+includes/dynamic_menus.h \
+includes/callFunctionFromGateway.c
 
 #### core : demos files ####
 libscicore_la_demosintrodir=$(mydatadir)/demos/intro/

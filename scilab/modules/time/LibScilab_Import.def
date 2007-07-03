@@ -19,4 +19,5 @@ EXPORTS
  createvar_
  error_scilab
  message_scilab
+ callFunctionFromGateway
  

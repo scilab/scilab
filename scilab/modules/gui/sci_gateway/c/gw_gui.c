@@ -3,22 +3,12 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include <string.h>
-#ifdef _MSC_VER
-#include <Windows.h>
-#include "ExceptionMessage.h"
-#endif
 #include "gw_gui.h"
 #include "stack-c.h"
 #include "scilabmode.h"
+#include "callFunctionFromGateway.h"
 /*-----------------------------------------------------------------------------------*/
-typedef int (*Gui_Interf) __PARAMS((char *fname,unsigned long l));
-typedef struct table_struct 
-{
-	Gui_Interf f;    /** function **/
-	char *name;      /** its name **/
-} GuiTable;
-/*-----------------------------------------------------------------------------------*/
-static GuiTable Tab[]=
+static gw_generic_table Tab[]=
 {
 	{C2F(sci_x_dialog),"x_dialog"},
 	{C2F(sci_x_message),"x_message"},
@@ -48,22 +38,8 @@ int C2F(gw_gui)(void)
 		return 0;
 	}
 
-#ifdef _MSC_VER
-	#ifndef _DEBUG
-		_try
-		{
-			(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
-		}
-		_except (EXCEPTION_EXECUTE_HANDLER)
-		{	
-			ExceptionMessage(GetExceptionCode(),Tab[Fin-1].name);
-		}
-	#else
-		(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
-	#endif
-#else
-		(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
-#endif
+	callFunctionFromGateway(Tab);
+
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

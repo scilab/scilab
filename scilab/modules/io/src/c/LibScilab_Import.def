@@ -27,5 +27,6 @@ getTMPDIR
 ExceptionMessage
 scigetcwd_
 vartype_
+callFunctionFromGateway
 ;
 

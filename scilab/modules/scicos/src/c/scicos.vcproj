@@ -659,6 +659,10 @@
 			>
 		</File>
 		<File
+			RelativePath=".\LibScilab_Import.def"
+			>
+		</File>
+		<File
 			RelativePath="..\..\Makefile.am"
 			>
 		</File>

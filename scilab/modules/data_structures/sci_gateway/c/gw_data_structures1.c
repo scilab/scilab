@@ -3,23 +3,13 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include <string.h>
-#ifdef _MSC_VER
-#include <Windows.h>
-#include "ExceptionMessage.h"
-#endif
 #include "gw_data_structures1.h"
+#include "callFunctionFromGateway.h"
 #include "stack-c.h"
-/*-----------------------------------------------------------------------------------*/
-typedef int (*Data_structures1_Interf) __PARAMS((char *fname,unsigned long fname_len));
-typedef struct table_struct 
-{
-	Data_structures1_Interf f;    /** function **/
-	char *name;      /** its name **/
-} DataStructures1Table;
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(error)();
 /*-----------------------------------------------------------------------------------*/
-static DataStructures1Table Tab[]=
+static gw_generic_table Tab[]=
 {
 	{C2F(sci_scilist),"list"},
 	{C2F(sci_scitlist),"tlist"},
@@ -42,22 +32,7 @@ int C2F(gwdatastructures1)()
 		return 0;
 	}
 
-#ifdef _MSC_VER
-#ifndef _DEBUG
-	_try
-	{
-		(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
-	}
-	_except (EXCEPTION_EXECUTE_HANDLER)
-	{	
-		ExceptionMessage(GetExceptionCode(),Tab[Fin-1].name);
-	}
-#else
-	(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
-#endif
-#else
-	(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
-#endif
+	callFunctionFromGateway(Tab);
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

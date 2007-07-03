@@ -6,4 +6,5 @@ EXPORTS
 com_
 sciprint
 ExceptionMessage
+callFunctionFromGateway
 ;

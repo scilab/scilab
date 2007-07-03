@@ -32,3 +32,4 @@ EXPORTS
  getSCIpath
  error_scilab
  message_scilab
+ callFunctionFromGateway

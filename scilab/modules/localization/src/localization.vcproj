@@ -361,6 +361,10 @@
 			</File>
 		</Filter>
 		<File
+			RelativePath=".\LibScilab_Import.def"
+			>
+		</File>
+		<File
 			RelativePath="..\localization.iss"
 			>
 		</File>

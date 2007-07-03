@@ -2,16 +2,13 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#ifdef _MSC_VER
-	#include <Windows.h>
-	#include "ExceptionMessage.h"
-#endif
 #include "gw_fileio.h"
+#include "callFunctionFromGateway.h"
 #include "stack-c.h"
 /*-----------------------------------------------------------------------------------*/ 
 /*  interface function */
 /*-----------------------------------------------------------------------------------*/ 
-static TabF Tab[]={
+static gw_generic_table Tab[]={
 	{ intsmopen, "mopen"},
 	{ intsmputstr, "mputstr"},
 	{ intsmclose, "mclose"},
@@ -44,23 +41,7 @@ static TabF Tab[]={
 int C2F(gw_fileio)(void)
 {
 	Rhs=Max(0,Rhs);
-#ifdef _MSC_VER
-#ifndef _DEBUG
-	_try
-	{
-		(*(Tab[Fin-1].f)) (Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
-	}
-	_except (EXCEPTION_EXECUTE_HANDLER)
-	{
-		ExceptionMessage(GetExceptionCode(),Tab[Fin-1].name);
-	}
-#else
-	(*(Tab[Fin-1].f)) (Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
-#endif
-#else
-	(*(Tab[Fin-1].f)) (Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
-#endif
-
+	callFunctionFromGateway(Tab);
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

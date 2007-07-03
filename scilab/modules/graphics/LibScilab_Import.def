@@ -19,6 +19,7 @@ EXPORTS
  createvarfromptr_
  Scierror
  ExceptionMessage
+ callFunctionFromGateway
 ;
 syncexec_
 cha1_

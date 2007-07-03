@@ -23,6 +23,7 @@ EXPORTS
  createvar_
  gettype_
  vstk_
+ callFunctionFromGateway
 ;
 ;elementaries_functions_f
  dset_

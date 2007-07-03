@@ -25,6 +25,7 @@ EXPORTS
  getmodules
  GetXmlFileEncoding
  error_scilab
+ callFunctionFromGateway
  
  
  

@@ -37,6 +37,7 @@ scilab_timer_check
 xscion_
 iislink_
 GetDynFunc
+callFunctionFromGateway
 ;
 ;core_f
 funs_

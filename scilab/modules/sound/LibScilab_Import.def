@@ -16,3 +16,4 @@ EXPORTS
  createvarfromptr_
  Scierror
  ExceptionMessage
+ callFunctionFromGateway

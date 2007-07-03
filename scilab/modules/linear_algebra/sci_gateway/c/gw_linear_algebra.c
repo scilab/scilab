@@ -3,26 +3,16 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
 #include <string.h>
-#ifdef _MSC_VER
-#include <Windows.h>
-#include "ExceptionMessage.h"
-#endif
 #include "stack-c.h"
 #include "gw_linear_algebra.h"
-/*-----------------------------------------------------------------------------------*/ 
-typedef int (*Linear_Algebra_Interf) __PARAMS((char *fname,unsigned long l));
-typedef struct table_struct 
-{
-	Linear_Algebra_Interf f;    /** function **/
-	char *name;      /** its name **/
-} LinearAlgebraTable;
+#include "callFunctionFromGateway.h"
 /*-----------------------------------------------------------------------------------*/ 
 static int C2F(intvoid) _PARAMS((char *fname, unsigned long fname_len))
 {
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 
-static LinearAlgebraTable Tab[]={
+static gw_generic_table Tab[]={
   {C2F(inthess),"hess"},
   {C2F(intschur),"schur"},
   {C2F(inteig),"spec"},
@@ -34,23 +24,7 @@ static LinearAlgebraTable Tab[]={
 int C2F(gw_linear_algebra)()
 {  
 	Rhs = Max(0, Rhs);
-	#ifdef _MSC_VER
-		#ifndef _DEBUG
-			_try
-			{
-				(*(Tab[Fin-1].f)) (Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
-			}
-			_except (EXCEPTION_EXECUTE_HANDLER)
-			{
-				ExceptionMessage(GetExceptionCode(),Tab[Fin-1].name);
-			}
-		#else
-			(*(Tab[Fin-1].f)) (Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
-		#endif
-	#else
-		(*(Tab[Fin-1].f)) (Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
-	#endif
-
+	callFunctionFromGateway(Tab);
 	C2F(putlhsvar)();
 	return 0;
 }

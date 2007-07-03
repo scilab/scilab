@@ -3,21 +3,12 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
 #include <string.h>
-#ifdef _MSC_VER
-#include <Windows.h>
-#include "ExceptionMessage.h"
-#endif
 #include "gw_graphics.h"
 #include "stack-c.h"
 #include "scilabmode.h"
+#include "callFunctionFromGateway.h"
 /*-----------------------------------------------------------------------------------*/ 
-typedef int (*des_interf) __PARAMS((char *fname,unsigned long l));
-typedef struct table_struct {
-	des_interf f;    /** function **/
-	char *name;      /** its name **/
-} MatdesTable;
-/*-----------------------------------------------------------------------------------*/ 
-static MatdesTable Tab[]={
+static gw_generic_table Tab[]={
 	{sci_champ,"champ"},	
 	{sci_champ1,"champ1"},
 	{sci_driver,"driver"},
@@ -116,30 +107,13 @@ int C2F(gw_graphics)(void)
   Rhs = Max(0, Rhs);
   if ( getScilabMode() != SCILAB_NWNI )
   {
-
-#ifdef _MSC_VER
-#ifndef _DEBUG
-	  _try
-	  {
-		  (*(Tab[Fin-1].f)) (Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
-	  }
-	  _except (EXCEPTION_EXECUTE_HANDLER)
-	  {
-		  ExceptionMessage(GetExceptionCode(),Tab[Fin-1].name);
-	  }
-#else
-	  (*(Tab[Fin-1].f)) (Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
-#endif
-#else
-	  (*(Tab[Fin-1].f)) (Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
-#endif
-
-	  C2F(putlhsvar)();
+	callFunctionFromGateway(Tab);
+	C2F(putlhsvar)();
   }
   else
   {
-	  Scierror(999,"graphic interface disabled -nogui or -nwni mode.\r\n");
-	  return 0;
+	Scierror(999,"graphic interface disabled -nogui or -nwni mode.\r\n");
+	return 0;
   }
 
   return 0;

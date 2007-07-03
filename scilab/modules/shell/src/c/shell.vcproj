@@ -96,7 +96,6 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				Description=""
 				CommandLine=""
 			/>
 		</Configuration>
@@ -186,7 +185,6 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				Description=""
 				CommandLine=""
 			/>
 		</Configuration>
@@ -324,6 +322,10 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath=".\LibScilab_Import.def"
+			>
+		</File>
 		<File
 			RelativePath="..\..\Makefile.am"
 			>

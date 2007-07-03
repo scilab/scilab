@@ -31,6 +31,7 @@ createvar_
 checklhs_
 checkrhs_
 ExceptionMessage
+callFunctionFromGateway
 ;
 ;core_f
 ;

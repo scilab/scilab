@@ -21,4 +21,5 @@ createvar_
 IsFromJava
 createvarfromptr_
 GetXmlFileEncoding
+callFunctionFromGateway
 

@@ -26,6 +26,7 @@ cvstr_
 get_sci_data_strings
 cluni0_
 resetNumberOfCommands
+callFunctionFromGateway
 ;
 CleanCurrentLine
 set_is_reading

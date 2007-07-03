@@ -3,20 +3,11 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include <string.h>
-#ifdef _MSC_VER
-  #include <Windows.h>
-  #include "ExceptionMessage.h"
-#endif
 #include "gw_pvm.h"
 #include "stack-c.h"
+#include "callFunctionFromGateway.h"
 /*-----------------------------------------------------------------------------------*/
-typedef int (*PVM_Interf) __PARAMS((char *fname,unsigned long l));
-typedef struct table_struct {
-	PVM_Interf f;     /** function **/
-	char *name;      /** its name **/
-} PVMTable;
-/*-----------------------------------------------------------------------------------*/
-  static PVMTable Tab[]={
+static gw_generic_table Tab[]={
   {intspvm_joingroup,"pvm_joingroup"},
   {intspvm_lvgroup,"pvm_lvgroup"},
   {intspvm_gsize,"pvm_gsize"},
@@ -55,22 +46,7 @@ typedef struct table_struct {
 int C2F(gw_pvm)(void)
 {
 	Rhs = Max(0, Rhs);
-	#ifdef _MSC_VER
-		#ifndef _DEBUG
-			_try
-			{
-				(*(Tab[Fin-1].f))(Tab[Fin-1].name,strlen(Tab[Fin-1].name));
-			}
-			_except (EXCEPTION_EXECUTE_HANDLER)
-			{	
-				ExceptionMessage(GetExceptionCode(),Tab[Fin-1].name);
-			}
-		#else
-			(*(Tab[Fin-1].f))(Tab[Fin-1].name,strlen(Tab[Fin-1].name));
-		#endif
-	#else
-		(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
-	#endif
+	callFunctionFromGateway(Tab);
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

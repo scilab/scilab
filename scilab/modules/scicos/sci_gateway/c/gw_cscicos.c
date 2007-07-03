@@ -3,20 +3,11 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include <string.h>
-#ifdef _MSC_VER
-#include <Windows.h>
-#include "ExceptionMessage.h"
-#endif
 #include "gw_cscicos.h"
 #include "stack-c.h"
+#include "callFunctionFromGateway.h"
 /*-----------------------------------------------------------------------------------*/ 
-typedef int (*scicosc_interf) __PARAMS((char *fname,unsigned long l));
-typedef struct table_struct {
-	scicosc_interf f;    /** function **/
-	char *name;      /** its name **/
-} intcscicosTable;
-/*-----------------------------------------------------------------------------------*/ 
-static intcscicosTable Tab[]={
+static gw_generic_table Tab[]={
   {inttimescicos,"scicos_time"},
   {intduplicate,"duplicate"},
   {intdiffobjs,"diffobjs"},
@@ -37,22 +28,7 @@ static intcscicosTable Tab[]={
 int C2F(gw_cscicos)()
 {  
 	Rhs = Max(0, Rhs);
-	#ifdef _MSC_VER
-		#ifndef _DEBUG
-			_try
-			{
-				(*(Tab[Fin-1].f)) (Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
-			}
-			_except (EXCEPTION_EXECUTE_HANDLER)
-			{
-				ExceptionMessage(GetExceptionCode(),Tab[Fin-1].name);
-			}
-		#else
-			(*(Tab[Fin-1].f)) (Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
-		#endif
-	#else
-		(*(Tab[Fin-1].f)) (Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
-	#endif
+	callFunctionFromGateway(Tab);
 	C2F(putlhsvar)();
 	
 	return 0;

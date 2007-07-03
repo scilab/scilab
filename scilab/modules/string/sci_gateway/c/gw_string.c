@@ -3,21 +3,10 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include <string.h>
-#ifdef _MSC_VER
-#include <Windows.h>
-#include "ExceptionMessage.h"
-#endif
 #include "gw_string.h"
-#include "stack-c.h"
+#include "callFunctionFromGateway.h"
 /*-----------------------------------------------------------------------------------*/
-typedef int (*String_Interf) __PARAMS((char *fname,unsigned long l));
-typedef struct table_struct 
-{
-	String_Interf f;    /** function **/
-	char *name;      /** its name **/
-} StringTable;
-/*-----------------------------------------------------------------------------------*/
-static StringTable Tab[]=
+static gw_generic_table Tab[]=
 {
 	{C2F(sci_length),"length"},
 	{C2F(sci_part),"part"},
@@ -38,22 +27,7 @@ static StringTable Tab[]=
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_string)(void)
 {  
-#ifdef _MSC_VER
-#ifndef _DEBUG
-	_try
-	{
-		(*(Tab[Fin-1].f)) (Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
-	}
-	_except (EXCEPTION_EXECUTE_HANDLER)
-	{	
-		ExceptionMessage(GetExceptionCode(),Tab[Fin-1].name);
-	}
-#else
-	(*(Tab[Fin-1].f)) (Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
-#endif
-#else
-	(*(Tab[Fin-1].f)) (Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
-#endif
+	callFunctionFromGateway(Tab);
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

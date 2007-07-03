@@ -5,23 +5,13 @@
 #include <math.h>
 #include <setjmp.h>
 /*-----------------------------------------------------------------------------------*/
-#ifdef _MSC_VER
-	#include <Windows.h>
-	#include "ExceptionMessage.h"
-#endif
 #include "gw_special_functions2.h"
+#include "callFunctionFromGateway.h"
 #include "stack-c.h"
 /*-----------------------------------------------------------------------------------*/
 extern jmp_buf slatec_jmp_env; 
 /*-----------------------------------------------------------------------------------*/
-typedef int (*Special_Functions2_Interf) __PARAMS((char *fname,unsigned long l));
-typedef struct table_struct 
-{
-	Special_Functions2_Interf f;    /** function **/
-	char *name;      /** its name **/
-} SpecialFunctions2Table;
-/*-----------------------------------------------------------------------------------*/
-static TabF Tab[]={ 
+static gw_generic_table Tab[]={ 
   {sci_legendre, "legendre"},
   {sci_beta, "beta"},
   {sci_besseli,"besseli"},
@@ -39,23 +29,7 @@ int C2F(gw_special_functions2)(void)
 		Scierror(999,"%s: arguments must be positive \r\n", Tab[Fin-1].name);
 		return 0;
 	}
-
-	#ifdef _MSC_VER
-		#ifndef _DEBUG
-		_try
-		{
-			(*(Tab[Fin-1].f))(Tab[Fin-1].name,strlen(Tab[Fin-1].name));
-		}
-		_except (EXCEPTION_EXECUTE_HANDLER)
-		{
-			ExceptionMessage(GetExceptionCode(),Tab[Fin-1].name);
-		}
-		#else
-			(*(Tab[Fin-1].f))(Tab[Fin-1].name,strlen(Tab[Fin-1].name));
-		#endif
-	#else
-		(*(Tab[Fin-1].f))(Tab[Fin-1].name,strlen(Tab[Fin-1].name));
-	#endif
+	callFunctionFromGateway(Tab);
 
 	C2F(putlhsvar)();
 	return 0;

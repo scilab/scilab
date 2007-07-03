@@ -3,27 +3,17 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include <string.h>
-#ifdef _MSC_VER
-	#include <Windows.h>
-	#include "ExceptionMessage.h"
-#endif
 #include "message_scilab.h"
 #include "error_scilab.h"
 #include "gw_tclsci.h"
 #include "stack-c.h"
 #include "inisci-c.h"
 #include "scilabmode.h"
-/*-----------------------------------------------------------------------------------*/
-typedef int (*TCLSci_Interf) __PARAMS((char *fname,unsigned long l));
-typedef struct table_struct 
-{
-	TCLSci_Interf f;    /** function **/
-	char *name;      /** its name **/
-} TCLSCITable;
+#include "callFunctionFromGateway.h"
 /*-----------------------------------------------------------------------------------*/
 extern int TK_Started;
 /*-----------------------------------------------------------------------------------*/
- static TCLSCITable Tab[]=
+ static gw_generic_table Tab[]=
  {
   {C2F(sci_TCL_DoOneEvent),"TCL_DoOneEvent"},
   {C2F(sci_TCL_EvalFile),"TCL_EvalFile"},
@@ -54,22 +44,7 @@ int C2F(gw_tclsci)()
 		if (TK_Started)
 		{
 			Rhs = Max(0, Rhs);
-#ifdef _MSC_VER
-#ifndef _DEBUG
-			_try
-			{
-				(*(Tab[Fin-1].f)) (Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
-			}
-			_except (EXCEPTION_EXECUTE_HANDLER)
-			{	
-				ExceptionMessage(GetExceptionCode(),Tab[Fin-1].name);
-			}
-#else
-			(*(Tab[Fin-1].f)) (Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
-#endif
-#else
-			(*(Tab[Fin-1].f)) (Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
-#endif
+			callFunctionFromGateway(Tab);		
 		}
 		else
 		{

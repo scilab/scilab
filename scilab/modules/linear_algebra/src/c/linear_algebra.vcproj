@@ -309,6 +309,10 @@
 			</File>
 		</Filter>
 		<File
+			RelativePath=".\LibScilab_Import.def"
+			>
+		</File>
+		<File
 			RelativePath="..\..\linear_algebra.iss"
 			>
 		</File>

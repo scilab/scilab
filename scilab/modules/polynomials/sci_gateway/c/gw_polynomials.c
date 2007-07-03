@@ -1,23 +1,11 @@
-
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#ifdef _MSC_VER
-#include <Windows.h>
-#include "ExceptionMessage.h"
-#endif
 #include "gw_polynomials.h"
-#include "stack-c.h"
+#include "callFunctionFromGateway.h"
 /*-----------------------------------------------------------------------------------*/
-typedef int (*Polynomials_Interf) __PARAMS((char *fname,unsigned long l));
-typedef struct table_struct 
-{
-	Polynomials_Interf f;    /** function **/
-	char *name;      /** its name **/
-} PolynomialsTable;
-/*-----------------------------------------------------------------------------------*/
-static PolynomialsTable Tab[]=
+static gw_generic_table Tab[]=
 {
 {C2F(sci_poly),"poly"},
 {C2F(sci_roots),"roots"},
@@ -40,22 +28,7 @@ static PolynomialsTable Tab[]=
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_polynomials)(void)
 {  
-#ifdef _MSC_VER
-	#ifndef _DEBUG
-		_try
-		{
-			(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
-		}
-		_except (EXCEPTION_EXECUTE_HANDLER)
-		{	
-			ExceptionMessage(GetExceptionCode(),Tab[Fin-1].name);
-		}
-	#else
-		(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
-	#endif
-#else
-		(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
-#endif
+	callFunctionFromGateway(Tab);
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

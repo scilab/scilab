@@ -11,3 +11,6 @@ EXPORTS
  errorinfo_
  sciprint
  ExceptionMessage
+ callFunctionFromGateway
+;
+ 
