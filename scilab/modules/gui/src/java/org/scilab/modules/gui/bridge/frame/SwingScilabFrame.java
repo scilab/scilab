@@ -3,14 +3,21 @@
 
 package org.scilab.modules.gui.bridge.frame;
 
+import java.awt.Color;
+
+import javax.swing.BoxLayout;
 import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
 
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
+import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.dockable.Dockable;
 import org.scilab.modules.gui.frame.Frame;
+import org.scilab.modules.gui.layout.LayoutManager;
 import org.scilab.modules.gui.pushbutton.PushButton;
+import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -89,9 +96,70 @@ public class SwingScilabFrame extends JPanel implements Frame {
 	 * @param member the member to add
 	 * @return index of member in ArrayList
 	 */
+	public int addMember(Frame member) {
+		return this.addMember((SwingScilabFrame) member);
+	}
+
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in ArrayList
+	 */
 	private int addMember(SwingScilabFrame member) {
 		this.add(member);
 		return this.getComponentZOrder(member);
+	}
+	
+	/**
+	 * Add a Frame in a Frame with a BorderLayout.
+	 * @param member the member to add
+	 * @param borderLayout the BorderLayout to use
+	 * @return the position of the Frame in the member list.
+	 */
+	public int addMember(Frame member, String borderLayout) {
+		return this.addMember((SwingScilabFrame) member, borderLayout);
+	}
+	
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @param borderLayout the BorderLayout to use
+	 * @return index of member in ArrayList
+	 */
+	private int addMember(SwingScilabFrame member, String borderLayout) {
+		this.add(member, borderLayout);
+		return this.getComponentZOrder(member);
+	}
+	
+	/**
+	 * Add a Frame in a Frame with a layout.
+	 * @param member the member to add
+	 * @param layoutPosition the Layout position to use
+	 * @return the position of the Frame in the member list.
+	 */
+	public int addMember(Frame member, int layoutPosition) {
+		return this.addMember((SwingScilabFrame) member, layoutPosition);
+	}
+	
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @param layoutPosition the Layout position to use
+	 * @return index of member in ArrayList
+	 */
+	private int addMember(SwingScilabFrame member, int layoutPosition) {
+		this.add(member, layoutPosition);
+		return this.getComponentZOrder(member);
+	}
+	
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in ArrayList
+	 */
+	public int addMember(Canvas member) {
+		//System.out.println("Test: start: public int addMember(Canvas member)");
+		return this.addMember((SwingScilabCanvas) member);
 	}
 
 	/**
@@ -109,19 +177,88 @@ public class SwingScilabFrame extends JPanel implements Frame {
 	 * @param member the member to add
 	 * @return index of member in ArrayList
 	 */
-	public int addMember(Frame member) {
-		return this.addMember((SwingScilabFrame) member);
+	public int addMember(PushButton member) {
+		//System.out.println("Test: start: public int addMember(PushButton member)");
+		return this.addMember((SwingScilabPushButton) member);
 	}
-
+	
 	/**
 	 * Add a member (dockable element) to container and returns its index
 	 * @param member the member to add
 	 * @return index of member in ArrayList
 	 */
-	public int addMember(Canvas member) {
-		return this.addMember((SwingScilabCanvas) member);
+	private int addMember(SwingScilabPushButton member) {
+		//System.out.println("Test: start: public int addMember(SwingScilabPushButton member)");
+		this.add(member);
+		return this.getComponentZOrder(member);
 	}
 
+	/**
+	 * Add a PushButton in a Frame with a BorderLayout.
+	 * @param member the PushButton to add
+	 * @param borderLayout the BorderLayout to use
+	 * @return the position of the PushButton in the member list.
+	 */
+	public int addMember(PushButton member, String borderLayout) {
+		return this.addMember((SwingScilabPushButton) member, borderLayout);
+	}
+	
+	/**
+	 * Add a PushButton (dockable element) to Frame and returns its index
+	 * @param member the PushButton to add
+	 * @param layoutPosition the layout Position to use
+	 * @return index of member in ArrayList
+	 */
+	private int addMember(SwingScilabPushButton member, int layoutPosition) {
+		this.add(member, layoutPosition);
+		return this.getComponentZOrder(member);
+	}
+	
+	/**
+	 * Add a PushButton in a Frame with a layout.
+	 * @param member the PushButton to add
+	 * @param layoutPosition the layout Position to use
+	 * @return the position of the PushButton in the member list.
+	 */
+	public int addMember(PushButton member, int layoutPosition) {
+		return this.addMember((SwingScilabPushButton) member, layoutPosition);
+	}
+	
+	/**
+	 * Add a PushButton (dockable element) to Frame and returns its index
+	 * @param member the PushButton to add
+	 * @param borderLayout the BorderLayout to use
+	 * @return index of member in ArrayList
+	 */
+	private int addMember(SwingScilabPushButton member, String borderLayout) {
+		this.add(member, borderLayout);
+		return this.getComponentZOrder(member);
+	}
+	
+	// TODO : check if possible
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in ArrayList
+	 */
+//	public int addMember(Tab member) {
+//		//System.out.println("Test: start: public int addMember(Tab member)");
+//		return this.addMember((SwingScilabTab) member);
+//	}
+	
+	// TODO : check if possible
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in ArrayList
+	 */
+//	private int addMember(SwingScilabTab member) {
+//		//System.out.println("Test: start: public int addMember(SwingScilabTab member)");
+//		this.add(member);
+//		return this.getComponentZOrder(member);
+//	}
+	
+	
 	/**
 	 * Add a member (dockable element) to container and returns its index
 	 * @param member the member to add
@@ -134,21 +271,26 @@ public class SwingScilabFrame extends JPanel implements Frame {
 	}
 	
 	/**
-	 * Add a member (dockable element) to container and returns its index
-	 * @param member the member to add
-	 * @return index of member in ArrayList
+	 * To set the Background color of the element.
+	 * @param color the Color
 	 */
-	public int addMember(PushButton member) {
-		return this.addMember((SwingScilabPushButton) member);
+	public void setBackground(Color color) {
+		super.setBackground(color);
 	}
 	
 	/**
-	 * Add a member (dockable element) to container and returns its index
-	 * @param member the member to add
-	 * @return index of member in ArrayList
+	 * To set the Border color and size of the element.
+	 * @param lineBorder the LineBorder
 	 */
-	private int addMember(SwingScilabPushButton member) {
-		this.add(member);
-		return this.getComponentZOrder(member);
+	public void setBorder(LineBorder lineBorder) {
+		super.setBorder(lineBorder);
+	}
+	
+	/**
+	 * To set the Layout of the element.
+	 * @param layout the layout
+	 */
+	public void setLayout(LayoutManager layout) {
+		super.setLayout((java.awt.LayoutManager) layout);
 	}
 }

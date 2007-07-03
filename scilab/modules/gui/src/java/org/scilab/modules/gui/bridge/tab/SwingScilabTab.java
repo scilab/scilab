@@ -115,10 +115,11 @@ public class SwingScilabTab extends View implements Tab {
 	 * @param member the member to add
 	 * @return index of member in ArrayList
 	 */
-	private int addMember(SwingScilabConsole member) {
-		this.setContentPane((JPanel) member);
-		return this.getComponentZOrder((JPanel) member);
-	}
+	// TODO : check problem of cast
+	//private int addMember(SwingScilabConsole member) {
+	//	this.setContentPane((JPanel) member);
+	//	return this.getComponentZOrder((JPanel) member);
+	//}
 
 	// TODO : Check wether we want a Canvas in a Tab or not.
 

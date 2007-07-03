@@ -3,6 +3,9 @@
 
 package org.scilab.modules.gui.uielement;
 
+//import java.awt.Color;
+//import javax.swing.border.LineBorder;
+
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -75,5 +78,17 @@ public interface UIElement {
 //	public abstract Layout getTextLayout();
 //
 //	public abstract void setTextLayout(Layout newLayout);
-
+	
+	/**
+	 * To set the Background color of the element.
+	 * @param color the Color
+	 */
+	//void setBackground(Color color);
+	
+	/**
+	 * To set the Border color and size of the element.
+	 * @param lineBorder the LineBorder
+	 */
+	//void setBorder(LineBorder lineBorder);
+	
 }

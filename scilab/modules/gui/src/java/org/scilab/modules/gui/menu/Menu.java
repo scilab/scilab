@@ -7,7 +7,7 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.widget.Widget;
 
 /**
- * Interface for MenuBar associated to objects in Scilab GUIs
+ * Interface for Menu associated to objects in Scilab GUIs
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
@@ -36,6 +36,6 @@ public interface Menu extends Widget {
 	/**
 	 * Add a Separator to a Menu
 	 */
-	void addSeparator( );
+	void addSeparator();
 	
 }

@@ -10,7 +10,7 @@ import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.window.Window;
 
 /**
- * Bridge for Scilab MenuBars in GUIs
+ * Bridge for Scilab Menus in GUIs
  * @author Marouane BEN JELLOUL
  */
 public class ScilabMenuBridge {

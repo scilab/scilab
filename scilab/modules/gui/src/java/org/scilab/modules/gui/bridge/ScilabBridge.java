@@ -19,6 +19,10 @@ import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.window.ScilabWindowBridge;
 import org.scilab.modules.gui.window.Window;
+import org.scilab.modules.gui.layout.BorderLayout;
+import org.scilab.modules.gui.layout.FlowLayout;
+import org.scilab.modules.gui.layout.ScilabBorderLayoutBridge;
+import org.scilab.modules.gui.layout.ScilabFlowLayoutBridge;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menu.Menu;
@@ -732,4 +736,25 @@ public class ScilabBridge {
 		return ScilabPushButtonBridge.createPushButton();
 	}
 	
+	/*****************/
+	/* FlowLayout Bridge */
+	/*****************/
+	/**
+	 * Creates a new FlowLayout
+	 * @return the created FlowLayout
+	 */
+	public static FlowLayout createFlowLayout() {
+		return ScilabFlowLayoutBridge.createFlowLayout();
+	}
+	
+	/*****************/
+	/* BorderLayout Bridge */
+	/*****************/
+	/**
+	 * Creates a new BorderLayout
+	 * @return the created BorderLayout
+	 */
+	public static BorderLayout createBorderLayout() {
+		return ScilabBorderLayoutBridge.createBorderLayout();
+	}
 }
