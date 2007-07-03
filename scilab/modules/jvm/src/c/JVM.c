@@ -28,11 +28,22 @@ JNIEnv *getScilabJNIEnv(void)
 {
 	JNIEnv *JNIEnv_SCILAB=NULL;
 	jint res=0;
+        if (jvm_SCILAB)
+          {
 #ifdef JNI_VERSION_1_6
 	res = (*jvm_SCILAB)->GetEnv(jvm_SCILAB, (void **)&JNIEnv_SCILAB, JNI_VERSION_1_6);
 #elif JNI_VERSION_1_4
 	res = (*jvm_SCILAB)->GetEnv(jvm_SCILAB, (void **)&JNIEnv_SCILAB, JNI_VERSION_1_4);
 #endif
+          }
+        else
+          {
+#ifdef _MSC_VER
+		MessageBox(NULL,"Error: Cannot return Scilab Java environment (jvm_SCILAB): check if the JVM has been loaded by Scilab before calling this function.","Error",MB_ICONEXCLAMATION|MB_OK);
+#else
+		printf("\nError: Cannot return Scilab Java environment (jvm_SCILAB): check if the JVM has been loaded by Scilab before calling this function.\n");
+#endif
+          }
 	return JNIEnv_SCILAB;
 }
 /*-----------------------------------------------------------------------------------*/ 
