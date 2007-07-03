@@ -395,7 +395,7 @@ includes/GetXmlFileEncoding.h \
 includes/syncexec.h \
 includes/getfastcode.h \
 includes/dynamic_menus.h \
-includes/callFunctionFromGateway.c
+includes/callFunctionFromGateway.h
 
 #### core : demos files ####
 libscicore_la_demosintrodir=$(mydatadir)/demos/intro/
