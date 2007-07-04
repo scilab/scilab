@@ -463,7 +463,7 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/gw_renderer.c
 
 # Includes need for the compilation
-@GUI_TRUE@libscirenderer_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -I$(top_srcdir)/modules/jvm/includes -I$(top_srcdir)/modules/graphics/includes/ -I$(top_srcdir)/modules/graphics/includes/handleDrawing/ 
+@GUI_TRUE@libscirenderer_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -I$(top_srcdir)/modules/jvm/includes -I$(top_srcdir)/modules/graphics/includes/ -I$(top_srcdir)/modules/graphics/includes/handleDrawing/ -I$(top_srcdir)/libs/doublylinkedlist/includes
 
 # All the sources needed by libscirenderer.la
 @GUI_FALSE@libscirenderer_la_SOURCES = src/norenderer/norenderer.c

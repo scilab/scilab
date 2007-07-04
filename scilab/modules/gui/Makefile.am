@@ -6,7 +6,8 @@
 include $(top_srcdir)/Makefile.incl.am
 
 
-libscigui_la_CFLAGS=  -Isrc/c/ -Isrc/c/xsci/ -Iincludes/ -I$(top_srcdir)/modules/graphics/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/core/src/c/ -I$(top_srcdir)/modules/string/includes/ -I$(top_srcdir)/modules/tclsci/includes/ -I$(top_srcdir)/modules/jvm/includes/ -I$(top_srcdir)/modules/shell/includes/ $(TCL_INC_PATH) $(Tk_INC_PATH) 
+libscigui_la_CFLAGS=  -Isrc/c/ -Isrc/c/xsci/ -Iincludes/ -I$(top_srcdir)/modules/graphics/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/core/src/c/ -I$(top_srcdir)/modules/string/includes/ -I$(top_srcdir)/modules/tclsci/includes/ -I$(top_srcdir)/modules/jvm/includes/ -I$(top_srcdir)/modules/shell/includes/ $(TCL_INC_PATH) $(Tk_INC_PATH) \
+-I$(top_srcdir)/libs/doublylinkedlist/includes
 
 GUI_C_SOURCES = \
 src/c/IsNoInteractiveWindow.c \

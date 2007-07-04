@@ -5,8 +5,7 @@
 
 
 DATA_STRUCTURES_C_SOURCES = src/c/stcreate.c \
-src/c/hmops.c \
-src/c/DoublyLinkedList.c
+src/c/hmops.c 
 
 DATA_STRUCTURES_FORTRAN_SOURCES = src/fortran/extractfields.f \
 src/fortran/forcerhs.f \
@@ -83,7 +82,6 @@ libscidata_structures_la_sci_gateway_DATA = sci_gateway/data_structures_gateway.
 #### data_structures : include files ####
 libscidata_structures_la_includedir=$(pkgincludedir)/data_structures
 libscidata_structures_la_include_HEADERS = includes/gw_data_structures1.h \
-includes/gw_data_structures2.h \
-includes/DoublyLinkedList.h
+includes/gw_data_structures2.h 
 
 include $(top_srcdir)/Makefile.incl.am
