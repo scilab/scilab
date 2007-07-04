@@ -56,15 +56,8 @@ gdImageDestroy
 gdImageCreateFromGif
 readxbmimg_
 getScilabMode
-List_free
-List_pop
-List_append
-List_find
 scistring_
 convert2sci_
-List_free_item
-List_free_full
-List_find_full
 gdImagePPM
 gdImageGif
 gdSetBackground

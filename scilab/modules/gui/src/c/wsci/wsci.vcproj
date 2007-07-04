@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../../../../modules/core/includes;../../../../../modules/graphics/includes;../../../../../libs/MALLOC/includes"
+				AdditionalIncludeDirectories="../../../../../modules/core/includes;../../../../../modules/graphics/includes;../../../../../libs/MALLOC/includes;../../../../../libs/doublylinkedlist/includes"
 				PreprocessorDefinitions="_LIB;STRICT;WITH_TK;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="1"
@@ -116,7 +116,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../../../../../modules/core/includes;../../../../../modules/graphics/includes;../../../../../libs/MALLOC/includes"
+				AdditionalIncludeDirectories="../../../../../modules/core/includes;../../../../../modules/graphics/includes;../../../../../libs/MALLOC/includes;../../../../../libs/doublylinkedlist/includes"
 				PreprocessorDefinitions="NDEBUG;_LIB;STRICT;WITH_TK;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="0"

@@ -105,6 +105,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\org\scilab\modules\gui\pushbutton\PushButton.java"
+				>
+			</File>
+			<File
 				RelativePath=".\org\scilab\modules\gui\bridge\Renderer.java"
 				>
 			</File>
@@ -142,6 +146,14 @@
 			</File>
 			<File
 				RelativePath=".\org\scilab\modules\gui\frame\ScilabFrameBridge.java"
+				>
+			</File>
+			<File
+				RelativePath=".\org\scilab\modules\gui\pushbutton\ScilabPushButton.java"
+				>
+			</File>
+			<File
+				RelativePath=".\org\scilab\modules\gui\pushbutton\ScilabPushButtonBridge.java"
 				>
 			</File>
 			<File

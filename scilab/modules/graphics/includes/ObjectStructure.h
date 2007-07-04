@@ -19,7 +19,7 @@
 #include "stack-c.h"
 #include "StringMatrix.h"
 #include "machine.h"
-#include "../../data_structures/includes/DoublyLinkedList.h" /* REORGANISATION TEMPORAIRE */
+#include "DoublyLinkedList.h"
 
 #ifdef _MSC_VER
 #undef Top 

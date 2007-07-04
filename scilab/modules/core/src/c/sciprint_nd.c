@@ -10,7 +10,7 @@
 #include "sciprint_nd.h"
 #include <stdarg.h>
 #ifdef _MSC_VER
-#include "../../gui/src/c/wsci/wtext.h"
+#include "../../../gui/src/c/wsci/wtext.h"
 #else
 #include "../../gui/src/c/xsci/xscisrn.h"
 #endif

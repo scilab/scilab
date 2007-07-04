@@ -26,7 +26,7 @@
 #include "BuildObjects.h"
 #include "bcg.h"
 #include "WindowList.h"
-#include "../../../data_structures/includes/DoublyLinkedList.h" /* REORGANISATION TEMPORAIRE */
+#include "DoublyLinkedList.h"
 #include "sciprint.h"
 #include "CurrentObjectsManagement.h"
 #include "ObjectSelection.h"

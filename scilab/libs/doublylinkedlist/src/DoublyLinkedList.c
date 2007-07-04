@@ -32,7 +32,7 @@ DoublyLinkedList *List_prepend(DoublyLinkedList *pDoublyLinkedList, void * data)
 
 	/* on alloue la memoire pour le nouvel element */
 	if((vDoublyLinkedList = (DoublyLinkedList *)MALLOC(sizeof(DoublyLinkedList))) == NULL)
-		{ sciprint("MALLOC failed "); return NULL ; }
+		{ printf("MALLOC failed.\n"); return NULL ; }
 
 	if(pDoublyLinkedList == NULL)
 		{ /* the DoublyLinkedListe is empty */
@@ -65,7 +65,7 @@ DoublyLinkedList *List_append(DoublyLinkedList *pDoublyLinkedList, void *  data)
 
 	/* on alloue la memoire pour le nouvelle element */
 	if((vDoublyLinkedList = (DoublyLinkedList *)MALLOC(sizeof(DoublyLinkedList))) == NULL)
-		{ sciprint("MALLOC failed "); return NULL ; }
+		{ printf("MALLOC failed.\n"); return NULL ; }
 
 	if(pDoublyLinkedList == NULL)
 		{ /* la DoublyLinkedListe est vide */
@@ -288,7 +288,7 @@ DoublyLinkedList *List_insert_after_item(DoublyLinkedList *pDoublyLinkedList, vo
 
 	/* on alloue la memoire pour le nouvelle element */
 	if((vDoublyLinkedList = (DoublyLinkedList *)MALLOC(sizeof(DoublyLinkedList))) == NULL)
-		{ sciprint("MALLOC failed "); return NULL; }
+		{ printf("MALLOC failed.\n"); return NULL; }
 
 	vDoublyLinkedListMove = pDoublyLinkedList;
 	while(!List_is_end(pDoublyLinkedList,vDoublyLinkedListMove) && (vDoublyLinkedListMove->data != before))
@@ -496,7 +496,7 @@ DoublyLinkedList *List_insert_sorted(DoublyLinkedList *pDoublyLinkedList,int (* 
 
 	/* on alloue la memoire pour le nouvelle element */
 	if((vDoublyLinkedList = (DoublyLinkedList *)MALLOC(sizeof(DoublyLinkedList))) == NULL)
-		{ sciprint("MALLOC failed "); return NULL; }
+		{ printf("MALLOC failed.\n"); return NULL; }
 
 	if(List_is_empty(pDoublyLinkedList))
 		{ /* si la DoublyLinkedListe est vide */

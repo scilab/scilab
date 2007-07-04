@@ -9,7 +9,7 @@
 #define _OBJECT_SELECTION_H_
 
 #include "ObjectStructure.h"
-#include "../../../data_structures/includes/DoublyLinkedList.h" /* REORGANISATION TEMPORAIRE */
+#include "DoublyLinkedList.h" 
 
 /**
  * The set of selected sons is lade as follow:

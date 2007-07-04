@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;../../java/jdk/include;../../java/jdk/include/win32;../core/includes;../../libs/MALLOC/includes;../../libs/hashtable;src/c;../renderer/includes;../jvm/includes;includes/handleDrawing"
+				AdditionalIncludeDirectories="includes;../../java/jdk/include;../../java/jdk/include/win32;../core/includes;../../libs/MALLOC/includes;../../libs/doublylinkedlist/includes;../../libs/hashtable;src/c;../renderer/includes;../jvm/includes;includes/handleDrawing"
 				PreprocessorDefinitions="FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -124,7 +124,7 @@
 				Name="VCCLCompilerTool"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="includes;../../java/jdk/include;../../java/jdk/include/win32;../core/includes;../../libs/MALLOC/includes;../../libs/hashtable;src/c;../renderer/includes;../jvm/includes;includes/handleDrawing"
+				AdditionalIncludeDirectories="includes;../../java/jdk/include;../../java/jdk/include/win32;../core/includes;../../libs/MALLOC/includes;../../libs/doublylinkedlist/includes;../../libs/hashtable;src/c;../renderer/includes;../jvm/includes;includes/handleDrawing"
 				PreprocessorDefinitions="FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"
