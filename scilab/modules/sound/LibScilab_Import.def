@@ -15,4 +15,6 @@ EXPORTS
  intersci_
  createvarfromptr_
  Scierror
+ callFunctionFromGateway
+ ;
 
