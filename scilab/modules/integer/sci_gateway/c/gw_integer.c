@@ -3,26 +3,16 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include <string.h>
-#ifdef _MSC_VER
-#include <Windows.h>
-#include "ExceptionMessage.h"
-#endif
 #include "gw_integer.h"
 #include "stack-c.h"
-/*-----------------------------------------------------------------------------------*/
-typedef int (*Integer_Interf) __PARAMS((char *fname,unsigned long fname_len));
-typedef struct table_struct 
-{
-	Integer_Interf f;    /** function **/
-	char *name;      /** its name **/
-} IntegerTable;
+#include "callFunctionFromGateway.h"
 /*-----------------------------------------------------------------------------------*/
 static int C2F(scivoid) _PARAMS((char *fname,unsigned long fname_len))
 {
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
-static IntegerTable Tab[]=
+static gw_generic_table Tab[]=
 {
   {C2F(sciint32),"int32"},
   {C2F(sciint16),"int16"},
@@ -53,22 +43,7 @@ static IntegerTable Tab[]=
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_integer)()
 {  
-#ifdef _MSC_VER
-	#ifndef _DEBUG
-		_try
-		{
-			(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
-		}
-		_except (EXCEPTION_EXECUTE_HANDLER)
-		{	
-			ExceptionMessage(GetExceptionCode(),Tab[Fin-1].name);
-		}
-	#else
-		(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
-	#endif
-#else
-		(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
-#endif
+	callFunctionFromGateway(Tab);
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
