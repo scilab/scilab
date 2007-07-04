@@ -19,8 +19,6 @@ import org.scilab.modules.gui.utils.Size;
 public class SwingScilabConsole extends SciConsole implements Console {
 
 	private static final long serialVersionUID = 1L;
-
-	public Thread waitingThread;
 	
 	/**
 	 * Constructor
