@@ -5,7 +5,6 @@ package org.scilab.modules.gui.bridge.frame;
 
 import java.awt.Color;
 
-import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
@@ -32,6 +31,8 @@ public class SwingScilabFrame extends JPanel implements Frame {
 	 */
 	public SwingScilabFrame() {
 		super();
+		// the Default layout is null so we have to set a Position and a Size of every Dockable we add to it
+		this.setLayout((LayoutManager) null);
 	}
 
 	/**
