@@ -302,42 +302,7 @@ void reset_history(void)
 
 }
 /*-----------------------------------------------------------------------------------*/
-
-
-/*-----------------------------------------------------------------------------------*/
-/*interface routine for Scilab function loadhistory  */
-static void read_history(char *filename);
-
-
-int C2F(loadhistory) _PARAMS((char *fname))
-{
-  char  line[MAXBUF];
-  char  *Path;
-  int l1, m1, n1, out_n;
-  Rhs=Max(Rhs,0);
-  CheckRhs(0,1) ;
-  CheckLhs(0,1) ;
-	
-
-  if (Rhs == 0) {
-    Path=get_sci_data_strings(HISTORY_ID);
-  }
-  else {
-    GetRhsVar(1,"c",&m1,&n1,&l1);
-    Path=cstk(l1);
-  }
-  
-  C2F(cluni0)(Path, line, &out_n,(long)strlen(Path),MAXBUF);
-
-  read_history (line);
-
-  LhsVar(1)=0;
-  C2F(putlhsvar)();
-  return 0;
-}
-
-
-static void read_history(char *filename)
+void read_history(char *filename)
 {
   char  line[MAXBUF];
   FILE * pFile;

@@ -63,6 +63,7 @@ int C2F(gethistory) _PARAMS((char *fname)); /* Affiche le contenu de l'historiqu
 void addNumberOfCommands(void);
 int getNumberOfCommands(void);
 void resetNumberOfCommands(void);
+void read_history(char *filename);
 /*-----------------------------------------------------------------------------------*/
 void GetCommentDateSession(char *line,int BeginSession);
 int GetSaveHistoryAfterNcommands(void);
