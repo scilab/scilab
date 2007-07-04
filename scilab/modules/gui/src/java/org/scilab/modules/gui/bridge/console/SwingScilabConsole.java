@@ -6,6 +6,7 @@ package org.scilab.modules.gui.bridge.console;
 import java.awt.Dimension;
 
 import org.scilab.modules.console.SciConsole;
+import org.scilab.modules.console.SciInputCommandView;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -19,6 +20,8 @@ public class SwingScilabConsole extends SciConsole implements Console {
 
 	private static final long serialVersionUID = 1L;
 
+	public Thread waitingThread;
+	
 	/**
 	 * Constructor
 	 */
@@ -42,8 +45,30 @@ public class SwingScilabConsole extends SciConsole implements Console {
 	 * @see fr.scilab.console.Console#readLine()
 	 */
 	public String readLine() {
-		// TODO write this method !!
-		return null;
+		String cmd;
+		
+		// Show the prompt
+		this.getConfiguration().getInputCommandView().setVisible(true);
+		this.getConfiguration().getPromptView().setVisible(true);
+		
+		// To be sure the prompt is not below the bottom of the console
+		this.getConfiguration().getInputCommandView().setText(" ");
+		this.getConfiguration().getInputCommandView().backspace();
+		
+		// Gets the focus to have th caret visible
+		this.getConfiguration().getInputCommandView().requestFocus();
+		
+		// Avoids reading of an empty buffer
+		((SciInputCommandView) this.getConfiguration().getInputCommandView()).setBufferProtected();
+		
+		// Reads the buffer
+		cmd = ((SciInputCommandView) this.getConfiguration().getInputCommandView()).getCmdBuffer();
+
+		// Hide the prompt
+		this.getConfiguration().getInputCommandView().setVisible(false);
+		this.getConfiguration().getPromptView().setVisible(false);
+	
+		return cmd;
 	}
 
 	/**
