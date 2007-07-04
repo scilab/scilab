@@ -4,7 +4,6 @@
 /*-----------------------------------------------------------------------------------*/
 #include "callfftw.h"
 #include "Scierror.h"
-#include "sciprint.h"
 #include "MALLOC.h"
 #include "fftwlibname.h"
 #include "gw_fftw.h"

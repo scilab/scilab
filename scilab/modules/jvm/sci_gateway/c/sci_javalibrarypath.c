@@ -7,7 +7,6 @@
 #include "MALLOC.h"
 #include "machine.h"
 #include "stack-c.h"
-#include "sciprint.h"
 #include "Scierror.h"
 #include "addToLibrarypath.h"
 #include "getLibrarypath.h"
