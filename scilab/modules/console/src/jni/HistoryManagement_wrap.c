@@ -246,6 +246,21 @@ SWIGEXPORT jstring JNICALL Java_org_scilab_modules_console_HistoryManagementJNI_
 }
 
 
+SWIGEXPORT void JNICALL Java_org_scilab_modules_console_HistoryManagementJNI_AddHistory(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  char *arg1 = (char *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = 0;
+  if (jarg1) {
+    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+    if (!arg1) return ;
+  }
+  AddHistory(arg1);
+  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+}
+
+
 #ifdef __cplusplus
 }
 #endif

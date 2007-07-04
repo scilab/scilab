@@ -6,6 +6,7 @@ package org.scilab.modules.console;
 import java.awt.Component;
 import java.awt.FontMetrics;
 import java.awt.Point;
+import java.util.concurrent.Semaphore;
 
 import javax.swing.text.BadLocationException;
 
@@ -23,10 +24,22 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 	private static final Point ERROR_POINT = new Point(0, 0);
 
 	/**
+	 * Variable used to store the command entered by the user 
+	 */
+	private String cmdBuffer = "";
+	
+	/**
+	 * Protection for safe reading
+	 */
+	private Semaphore canReadBuffer = new Semaphore(1);
+	
+	/**
 	 * Constructor
 	 */
 	public SciInputCommandView() {
 		super();
+		// Input command line is invisible when created
+		setVisible(false);
 	}
 
 	/**
@@ -53,5 +66,50 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 			currentComponent = currentComponent.getParent();
 		}
 		return result;
+	}
+
+	/**
+	 * Gets the command buffer
+	 * @return the command buffer
+	 */
+	public String getCmdBuffer() {
+		// Have to be allowed to write...
+		try {
+			canReadBuffer.acquire();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		// Store command in an temp 
+		String tmp = cmdBuffer;
+		
+		// Leave the buffer allowed
+		canReadBuffer.release();
+		
+		return tmp;
+	}
+	
+	/**
+	 * Sets the command buffer
+	 * @param command the string to set to the buffer
+	 */
+	public void setCmdBuffer(String command) {
+		// The console do not wait to be allowed to write
+		// Sure to have right to read
+		// See SwingScilabConsole.readLine
+		cmdBuffer = command;
+		
+		// Leave the buffer allowed
+		canReadBuffer.release();
+	}
+	
+	/**
+	 * Sets a protection on the buffer to forbid reading it
+	 */
+	public void setBufferProtected() {
+		try {
+			canReadBuffer.acquire();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 }

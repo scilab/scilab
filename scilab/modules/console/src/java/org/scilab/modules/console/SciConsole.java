@@ -26,10 +26,10 @@ public class SciConsole extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
 	/**
-	 * Configuration associated to the console ojetc
+	 * Configuration associated to the console oject
 	 */
 	private ConsoleConfiguration config;
-
+	
 	/**
 	 * Constructor
 	 */

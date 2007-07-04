@@ -2,8 +2,6 @@ package org.scilab.modules.console;
 
 import java.awt.event.ActionEvent;
 
-import javax.script.ScriptException;
-
 import com.artenum.console.core.action.AbstractConsoleAction;
 import com.artenum.console.interfaces.core.InputParsingManager;
 import com.artenum.console.interfaces.ui.OutputView;
@@ -31,7 +29,7 @@ public class ValidationAction extends AbstractConsoleAction {
 	 * Execute a command received
 	 * @param e the event to threat
 	 */
-	public void actionPerformed(ActionEvent e) {
+	public synchronized void actionPerformed(ActionEvent e) {
 		// Init
 		InputParsingManager inputParsingManager = configuration.getInputParsingManager();
 		OutputView outputView = configuration.getOutputView();
@@ -89,24 +87,10 @@ public class ValidationAction extends AbstractConsoleAction {
 				outputView.append(line);
 			}
 			outputView.append(StringConstants.NEW_LINE);
-			// Ask the engine to process the cmd
-			try {
-				configuration.getGenericInterpreter().eval(cmdToExecute);
-			} catch (ScriptException e1) {
-				e1.printStackTrace();
-			}
 			
-			// Show the prompt and command line
-			configuration.getPromptView().setVisible(true);
-			configuration.getInputCommandView().setVisible(true);
-			configuration.getInputCommandView().requestFocus();
-			
-			// To be sure to see the prompt when entering empty lines 
-			// If these lines removed, the prompt can be hidden (under the bottom of the console)
-			if (cmdToExecute.isEmpty()) {
-				configuration.getInputCommandView().setText(" ");
-				configuration.getInputCommandView().backspace();
-			}
+			// Store the command in the buffer so that Scilab can read it
+			((SciInputCommandView) configuration.getInputCommandView()).setCmdBuffer(cmdToExecute);
+			((SciHistoryManager) configuration.getHistoryManager()).addEntry(cmdToExecute);
 		}
 
 	}

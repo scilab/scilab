@@ -13,4 +13,5 @@ class HistoryManagementJNI {
   public final static native String getPreviousEntry(String jarg1);
   public final static native void setNewSearchInHistory(int jarg1);
   public final static native String searchBackward(String jarg1);
+  public final static native void AddHistory(String jarg1);
 }

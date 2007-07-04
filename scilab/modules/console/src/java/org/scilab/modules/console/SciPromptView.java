@@ -24,7 +24,7 @@ public class SciPromptView extends JPanel implements PromptView {
 	private static final long serialVersionUID = 1L;
 	
 	private static final String DEFAULT_PROMPT = "-->";
-	private static final String DEFAULT_IN_BLOCK_PROMPT = "-B->";
+	private static final String DEFAULT_IN_BLOCK_PROMPT = "-->";
 	private static final String HTML_START = "<html>";
 	private static final String HTML_NEW_LINE = "<br/>";
 	private static final String HTML_END = "</html>";
@@ -52,6 +52,8 @@ public class SciPromptView extends JPanel implements PromptView {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		add(promptUI);
 		add(Box.createVerticalGlue());
+		// Prompt is invisible when created
+		setVisible(false);
 	}
 
 	/**

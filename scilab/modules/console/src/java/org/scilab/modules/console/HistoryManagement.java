@@ -25,4 +25,8 @@ public class HistoryManagement {
     return HistoryManagementJNI.searchBackward(line);
   }
 
+  public static void AddHistory(String line) {
+    HistoryManagementJNI.AddHistory(line);
+  }
+
 }

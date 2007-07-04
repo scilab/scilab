@@ -27,7 +27,7 @@ public class SciHistoryManager implements HistoryManager {
 	 * @see com.artenum.console.interfaces.core.HistoryManager#addEntry(java.lang.String)
 	 */
 	public void addEntry(String newEntry) {
-		/* Nothing to do because Scilab core does the work */
+		HistoryManagement.AddHistory(newEntry);
 	}
 
 	/**
@@ -111,7 +111,11 @@ public class SciHistoryManager implements HistoryManager {
 	 * @see com.artenum.console.interfaces.core.HistoryManager#setTmpEntry(java.lang.String)
 	 */
 	public void setTmpEntry(String currentCommandLine) {
-		this.tmpEntry = currentCommandLine;
+		if (currentCommandLine != null && currentCommandLine.trim().equals("")) {
+			this.tmpEntry = "";
+		} else {
+			this.tmpEntry = currentCommandLine;
+		}
 	}
 
 	/**
