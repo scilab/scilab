@@ -46,7 +46,7 @@ pkglib_LTLIBRARIES = libjavasci.la
 
 libjavasci_la_SOURCES = $(JAVASCI_C_SOURCES)
 
-libjavasci_la_CFLAGS = -Iincludes/ $(JAVA_JNI_INCLUDE)
+libjavasci_la_CFLAGS = -Iincludes/ $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/libs/doublylinkedlist/includes
 
 libjavasci_la_LIBADD = \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \

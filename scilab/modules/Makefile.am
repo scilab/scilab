@@ -142,7 +142,7 @@ $(top_builddir)/libs/blas/libsciblas.la \
 $(top_builddir)/libs/hashtable/libscihashtable.la \
 $(top_builddir)/libs/lapack/libscilapack.la \
 $(top_builddir)/libs/MALLOC/libscimalloc.la  \
-$(top_builddir)/libs/MALLOC/libscidoublylinkedlist.la  \
+$(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la  \
 $(top_builddir)/libs/libst/libscilibst.la
 
 
