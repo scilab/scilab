@@ -274,9 +274,9 @@ public class SwingScilabFrame extends JPanel implements Frame {
 	 * To set the Background color of the element.
 	 * @param color the Color
 	 */
-	public void setBackground(Color color) {
-		super.setBackground(color);
-	}
+//	public void setBackground(Color color) {
+//		super.setBackground(color);
+//	}
 	
 	/**
 	 * To set the Border color and size of the element.

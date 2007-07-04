@@ -10,12 +10,12 @@ package org.scilab.modules.gui.layout;
  */
 public interface BorderLayout extends LayoutManager {
 	//	 TODO : Add the methods that are usefull for a BorderLayout
-
+	
 	/**
 	 * The center layout constraint (middle of container).
 	 */
 	String CENTER = java.awt.BorderLayout.CENTER;
-	
+	 
 	/**
 	 * The east layout constraint (right side of container).
 	 */
