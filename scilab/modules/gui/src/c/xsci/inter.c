@@ -273,7 +273,7 @@ int Xorgetchar(int interrupt)
     if (FD_ISSET(fd_in,&select_mask) || IsClick_menu()) 
       state=1;
     else
-      if (QLength(the_dpy) ||  FD_ISSET(Xsocket,&select_mask ) ||!(intoemacs))
+      if (QLength(the_dpy) ||  FD_ISSET(Xsocket,&select_mask ) ||!IntoEmacs())
 		  state=0;
 
     if (state) {
