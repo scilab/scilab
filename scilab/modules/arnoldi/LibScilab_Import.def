@@ -9,8 +9,6 @@ EXPORTS
  checklhs_
  checkrhs_
  errorinfo_
- sciprint
- ExceptionMessage
  callFunctionFromGateway
 ;
  

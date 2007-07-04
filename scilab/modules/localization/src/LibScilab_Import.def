@@ -3,7 +3,6 @@ LIBRARY    LibScilab.dll
 
 EXPORTS
  sciprint
- ExceptionMessage
  putlhsvar_
  intersci_
  Scierror

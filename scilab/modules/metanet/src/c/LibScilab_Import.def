@@ -5,6 +5,5 @@ EXPORTS
 ;core
 com_
 sciprint
-ExceptionMessage
 callFunctionFromGateway
 ;

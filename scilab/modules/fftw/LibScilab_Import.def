@@ -4,7 +4,6 @@ LIBRARY    LibScilab.dll
 EXPORTS
 ;
 ;core
- sciprint
  putlhsvar_
  stack_
  com_
@@ -12,7 +11,6 @@ EXPORTS
  checklhs_
  checkrhs_
  Scierror
- ExceptionMessage
  createcvar_
  vartype_
  check_dims

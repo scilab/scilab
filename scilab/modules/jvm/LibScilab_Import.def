@@ -2,24 +2,22 @@ LIBRARY    LibScilab.dll
 
 
 EXPORTS
-
-getSCIpath
-putlhsvar_
-intersci_
-com_
-sciprint
-ExceptionMessage
-stack_
-getrhsvar_
-vstk_
-checklhs_
-checkrhs_
-gettype_
-getScilabMode
-Scierror
-createvar_
-IsFromJava
-createvarfromptr_
-GetXmlFileEncoding
-callFunctionFromGateway
-
+; from core
+ getSCIpath
+ putlhsvar_
+ intersci_
+ com_
+ stack_
+ getrhsvar_
+ vstk_
+ checklhs_
+ checkrhs_
+ gettype_
+ getScilabMode
+ Scierror
+ createvar_
+ IsFromJava
+ createvarfromptr_
+ GetXmlFileEncoding
+ callFunctionFromGateway
+;

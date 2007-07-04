@@ -16,7 +16,6 @@ EXPORTS
  checkrhs_
  intersci_
  createvarfromptr_
- ExceptionMessage
  SetFileTypeOpenedInScilab
  SetSwapStatus
  SetFileOpenedInScilab

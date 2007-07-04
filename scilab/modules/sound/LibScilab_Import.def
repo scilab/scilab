@@ -15,5 +15,4 @@ EXPORTS
  intersci_
  createvarfromptr_
  Scierror
- ExceptionMessage
- callFunctionFromGateway
+

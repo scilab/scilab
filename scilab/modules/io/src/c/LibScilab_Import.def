@@ -5,28 +5,27 @@ EXPORTS
 ;
 ;core
 ;
-sciprint
-IsAFile 
-com_
-recu_
-putlhsvar_
-intersci_
-cluni0_
-stack_
-createvar_
-getrhsvar_
-checklhs_
-checkrhs_
-Scierror
-gettype_
-vstk_
-createvarfromptr_
-iop_
-GetFile
-getTMPDIR
-ExceptionMessage
-scigetcwd_
-vartype_
-callFunctionFromGateway
+ sciprint
+ IsAFile 
+ com_
+ recu_
+ putlhsvar_
+ intersci_
+ cluni0_
+ stack_
+ createvar_
+ getrhsvar_
+ checklhs_
+ checkrhs_
+ Scierror
+ gettype_
+ vstk_
+ createvarfromptr_
+ iop_
+ GetFile
+ getTMPDIR
+ scigetcwd_
+ vartype_
+ callFunctionFromGateway
 ;
 

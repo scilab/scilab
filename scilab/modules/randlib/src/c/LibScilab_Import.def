@@ -7,7 +7,6 @@ EXPORTS
 ;
 com_
 sciprint
-ExceptionMessage
 cvstr_
 putlhsvar_
 overload_

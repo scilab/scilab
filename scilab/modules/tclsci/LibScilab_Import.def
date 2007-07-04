@@ -28,7 +28,6 @@ EXPORTS
  checkrhs_
  intersci_
  createvarfromptr_
- ExceptionMessage
  getSCIpath
  error_scilab
  message_scilab

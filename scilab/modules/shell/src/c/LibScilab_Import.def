@@ -6,7 +6,6 @@ EXPORTS
 com_
 stack_
 sciprint
-ExceptionMessage
 createvarfromptr_
 putlhsvar_
 check_scalar
