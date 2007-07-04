@@ -226,7 +226,8 @@ top_srcdir = @top_srcdir@
 # The order DOES matter !!!
 # \
 #	f2c
-SUBDIRS = blas lapack MALLOC hashtable libst dynamiclibrary .
+SUBDIRS = blas lapack MALLOC hashtable libst dynamiclibrary \
+	doublylinkedlist .
 all: all-recursive
 
 .SUFFIXES:

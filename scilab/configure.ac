@@ -1028,6 +1028,7 @@ libs/lapack/Makefile
 libs/blas/Makefile
 libs/MALLOC/Makefile
 libs/dynamiclibrary/Makefile
+libs/doublylinkedlist/Makefile
 libs/hashtable/Makefile
 libs/f2c/Makefile
 libs/libst/Makefile

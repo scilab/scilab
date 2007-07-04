@@ -11,7 +11,7 @@ SUBDIRS = \
 	hashtable \
 	libst \
 	dynamiclibrary \
-	doublylinkedkist
+	doublylinkedlist
 # \
 #	f2c
 
