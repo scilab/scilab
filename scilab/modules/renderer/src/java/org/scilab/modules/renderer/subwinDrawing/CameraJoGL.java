@@ -87,12 +87,14 @@ public class CameraJoGL extends ObjectJoGL {
 	 * @param centerZ Z coordinates of the rotation center
 	 * @param alpha rotation angle around axe X
 	 * @param theta rotation angle around axe Z
+	 * @param reductionRatio graphic needs to be reduced a little to always fit the window
 	 */
 	public void rotateAxesBox(double centerX, double centerY, double centerZ,
-						      double alpha, double theta) {
+						      double alpha, double theta, double reductionRatio) {
 		GL gl = getGL();
 		// rotate around the center of the box axes
 		gl.glTranslated(centerX, centerY, centerZ);
+		gl.glScaled(reductionRatio, reductionRatio, reductionRatio); // reduction need to be performed on the center of the screen
 		gl.glRotated(-DEFAULT_ALPHA - alpha, 1.0 , 0.0, 0.0); /* Seems we need to rotate counterclok-wise */
 		gl.glRotated(-DEFAULT_THETA - theta, 0.0 , 0.0, 1.0);
 		gl.glTranslated(-centerX, -centerY, -centerZ); // translate origin back

@@ -47,9 +47,15 @@ void CameraBridge::setAxesCenter( double center[3] )
   m_aBoxCenter[2] = center[2];
 }
 /*-----------------------------------------------------------------------------------*/
+void CameraBridge::setFitWindowRation( double ratio )
+{
+  m_dFitWindowRatio = ratio;
+}
+/*-----------------------------------------------------------------------------------*/
 void CameraBridge::setFarthestDistance( double maxDist )
 {
   m_dFarthestDist = maxDist;
 }
 /*-----------------------------------------------------------------------------------*/
+
 }

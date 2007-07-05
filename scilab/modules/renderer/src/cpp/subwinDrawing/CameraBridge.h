@@ -58,6 +58,11 @@ public:
   void setFarthestDistance( double maxDist ) ;
 
   /**
+   * Sepecify the ration used to fit the graphic in the window
+   */
+  void setFitWindowRation( double ratio ) ;
+
+  /**
    * Position the view and view area accordingly to previous calls.
    */
   virtual void renderPosition( void ) = 0 ;
@@ -91,6 +96,9 @@ protected:
 
   /** Center of the axes box */
   double m_aBoxCenter[3];
+
+  /** Reduction Ration to be applied on the graphic in order for it to fit the window */
+  double m_dFitWindowRatio;
 
 };
 

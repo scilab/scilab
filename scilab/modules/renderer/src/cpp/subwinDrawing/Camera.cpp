@@ -14,6 +14,9 @@ extern "C"
 #include "math_graphics.h"
 }
 
+// distance between two farthest edges of a cube
+#define FIT_WINDOW_RATIO ((1.0)/(sqrt(3.0)))
+
 namespace sciGraphics
 {
 
@@ -35,7 +38,7 @@ Camera::~Camera( void )
 void Camera::setViewingArea( double axesBounds[4], double margins[4] )
 {
   double translation[2] ;
-  // T = Taxes + SizeAxes * [marginLeft, marginTop}.
+  // T = Taxes + SizeAxes * [marginLeft, marginTop].
   translation[0] = axesBounds[0] + axesBounds[2] * margins[0] ;
   translation[1] = axesBounds[1] + axesBounds[3] * margins[2] ;
 
@@ -73,6 +76,8 @@ void Camera::setSubwinBox( double bounds[6] )
   trans[1] = -bounds[2] ;
   trans[2] = bounds[4] ;
   m_pImp->setAxesTranslation(trans) ;
+
+  m_pImp->setFitWindowRation(FIT_WINDOW_RATIO);
 }
 /*-----------------------------------------------------------------------------------*/
 void Camera::setFarthestDistance( double maxDist )
@@ -87,3 +92,5 @@ void Camera::renderPosition( void )
 /*-----------------------------------------------------------------------------------*/
 
 }
+
+#undef FIT_WINDOW_RATIO
