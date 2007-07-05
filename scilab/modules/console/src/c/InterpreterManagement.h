@@ -13,4 +13,4 @@
  * @return execution status
  */
 
-int PutCommandInScilabQueue(char *command);
+int uutCommandInScilabQueue(char *command);

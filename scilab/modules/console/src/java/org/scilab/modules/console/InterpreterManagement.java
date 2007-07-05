@@ -8,9 +8,30 @@
 
 package org.scilab.modules.console;
 
+
+ /** 
+   * All Scilab interpreter management used in Java console 
+   * @author Vincent COUVERT
+   * @copyright INRIA 
+   */
 public class InterpreterManagement {
-  public static int PutCommandInScilabQueue(String command) {
-    return InterpreterManagementJNI.PutCommandInScilabQueue(command);
+
+ /**
+   * Constructor
+   */
+ protected InterpreterManagement() {
+	throw new UnsupportedOperationException();
+ }
+  
+ /**
+   * Put a command in Scilab command queue so that Scilab executes it
+   * The command is displayed in Scilab Window
+   *
+   * @param command the command to execute
+   * @return execution status
+   */
+ static int putCommandInScilabQueue(String command) {
+    return InterpreterManagementJNI.putCommandInScilabQueue(command);
   }
 
 }

@@ -8,6 +8,19 @@
 
 package org.scilab.modules.console;
 
+
+ /** 
+   * All Scilab interpreter management used in Java console 
+   * @author Vincent COUVERT
+   * @copyright INRIA 
+   */
 class InterpreterManagementJNI {
-  public final static native int PutCommandInScilabQueue(String jarg1);
+
+  /**
+    * Constructor
+    */
+  protected InterpreterManagementJNI() {
+	throw new UnsupportedOperationException();
+  }
+  public final static native int putCommandInScilabQueue(String jarg1);
 }

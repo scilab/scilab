@@ -5,7 +5,7 @@
 
 #include "InterpreterManagement.h"
 
-int PutCommandInScilabQueue(char *command)
+int putCommandInScilabQueue(char *command)
 {
   return StoreCommand1(command, 1);
 }

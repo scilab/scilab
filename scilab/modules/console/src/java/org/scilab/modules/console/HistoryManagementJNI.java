@@ -8,7 +8,20 @@
 
 package org.scilab.modules.console;
 
+
+ /** 
+   * All Scilab history management used in Java console 
+   * @author Vincent COUVERT
+   * @copyright INRIA 
+   */
 class HistoryManagementJNI {
+
+  /**
+    * Constructor
+    */
+  protected HistoryManagementJNI() {
+	throw new UnsupportedOperationException();
+  }
   public final static native String getNextEntry(String jarg1);
   public final static native String getPreviousEntry(String jarg1);
   public final static native void setNewSearchInHistory(int jarg1);

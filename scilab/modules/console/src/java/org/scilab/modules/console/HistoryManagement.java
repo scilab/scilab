@@ -8,24 +8,66 @@
 
 package org.scilab.modules.console;
 
+
+ /** 
+   * All Scilab history management used in Java console 
+   * @author Vincent COUVERT
+   * @copyright INRIA 
+   */
 public class HistoryManagement {
-  public static String getNextEntry(String beg) {
+
+ /**
+   * Constructor
+   */
+ protected HistoryManagement() {
+	throw new UnsupportedOperationException();
+ }
+  
+ /**
+   * Gets next entry in Scilab history beginning with a user input
+   * @param beg the beginning of the entry we are looking for
+   * @return next matching entry or null if no entry found
+   */
+ static String getNextEntry(String beg) {
     return HistoryManagementJNI.getNextEntry(beg);
   }
 
-  public static String getPreviousEntry(String beg) {
+  
+ /**
+   * Gets previous entry in Scilab history beginning with a user input
+   * @param beg the beginning of the entry we are looking for
+   * @return previous matching entry or null if no entry found
+   */
+ static String getPreviousEntry(String beg) {
     return HistoryManagementJNI.getPreviousEntry(beg);
   }
 
-  public static void setNewSearchInHistory(int state) {
+  
+ /**
+   * Resets all pointers to history initilized by a previous history search
+   * @param state if true then all pointers are reset
+   */
+ static void setNewSearchInHistory(int state) {
     HistoryManagementJNI.setNewSearchInHistory(state);
   }
 
-  public static String searchBackward(String line) {
+  
+ /**
+   * Gets previous entry in Scilab history beginning with a user input
+   * (used for history browsing based on user input beginning with a !)
+   * @param line the beginning of the entry we are looking for
+   * @return previous matching entry or null if no entry found
+   */
+ static String searchBackward(String line) {
     return HistoryManagementJNI.searchBackward(line);
   }
 
-  public static void AddHistory(String line) {
+  
+ /**
+   * Adds an entry to Scilab history
+   * @param line the line to add to Scilab history
+   */
+ static void AddHistory(String line) {
     HistoryManagementJNI.AddHistory(line);
   }
 

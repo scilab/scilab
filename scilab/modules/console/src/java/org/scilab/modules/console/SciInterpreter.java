@@ -30,7 +30,7 @@ public class SciInterpreter implements GenericInterpreter {
 	 * @see com.artenum.console.interfaces.core.GenericInterpreter#eval(java.lang.String)
 	 */
 	public Object eval(String script) throws ScriptException {
-		return InterpreterManagement.PutCommandInScilabQueue(script + "\n");
+		return InterpreterManagement.putCommandInScilabQueue(script + "\n");
 	}
 
 	/**
