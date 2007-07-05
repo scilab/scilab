@@ -104,6 +104,9 @@
       <LINK>mget</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
+      <LINK>mgetl</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
       <LINK>mgetstr</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
@@ -113,7 +116,7 @@
       <LINK>mprintf</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
-      <LINK>mput</LINK>
+      <LINK>mputl</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>mputstr</LINK>

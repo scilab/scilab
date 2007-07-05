@@ -122,7 +122,7 @@
       <LINK>fscanfMat</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
-      <LINK>mget</LINK>
+      <LINK>mgetl</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>mgetstr</LINK>
@@ -135,6 +135,9 @@
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>mput</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mputl</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>mputstr</LINK>

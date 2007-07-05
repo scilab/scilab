@@ -31,7 +31,10 @@
   </DESCRIPTION>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
-      <LINK>mputl</LINK>
+      <LINK>mget</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mgetl</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>mclose</LINK>
