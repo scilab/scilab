@@ -7,10 +7,12 @@
 if GUI
 # List of the c files
 CONSOLE_JNI_SOURCES = src/jni/InterpreterManagement_wrap.c \
-src/jni/HistoryManagement_wrap.c
+src/jni/HistoryManagement_wrap.c \
+src/jni/GuiManagement_wrap.c
 
 CONSOLE_C_SOURCES = src/c/InterpreterManagement.c \
-src/c/HistoryManagement.c
+src/c/HistoryManagement.c \
+src/c/GuiManagement.c
 endif
 
 # Includes need for the compilation

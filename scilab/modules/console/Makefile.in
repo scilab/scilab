@@ -82,13 +82,16 @@ libsciconsole_la_DEPENDENCIES =  \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
 am__libsciconsole_la_SOURCES_DIST =  \
 	src/jni/InterpreterManagement_wrap.c \
-	src/jni/HistoryManagement_wrap.c src/c/InterpreterManagement.c \
-	src/c/HistoryManagement.c
+	src/jni/HistoryManagement_wrap.c src/jni/GuiManagement_wrap.c \
+	src/c/InterpreterManagement.c src/c/HistoryManagement.c \
+	src/c/GuiManagement.c
 @GUI_TRUE@am__objects_1 =  \
 @GUI_TRUE@	libsciconsole_la-InterpreterManagement_wrap.lo \
-@GUI_TRUE@	libsciconsole_la-HistoryManagement_wrap.lo
+@GUI_TRUE@	libsciconsole_la-HistoryManagement_wrap.lo \
+@GUI_TRUE@	libsciconsole_la-GuiManagement_wrap.lo
 @GUI_TRUE@am__objects_2 = libsciconsole_la-InterpreterManagement.lo \
-@GUI_TRUE@	libsciconsole_la-HistoryManagement.lo
+@GUI_TRUE@	libsciconsole_la-HistoryManagement.lo \
+@GUI_TRUE@	libsciconsole_la-GuiManagement.lo
 am_libsciconsole_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libsciconsole_la_OBJECTS = $(am_libsciconsole_la_OBJECTS)
 libsciconsole_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
@@ -270,10 +273,12 @@ top_srcdir = @top_srcdir@
 
 # List of the c files
 @GUI_TRUE@CONSOLE_JNI_SOURCES = src/jni/InterpreterManagement_wrap.c \
-@GUI_TRUE@src/jni/HistoryManagement_wrap.c
+@GUI_TRUE@src/jni/HistoryManagement_wrap.c \
+@GUI_TRUE@src/jni/GuiManagement_wrap.c
 
 @GUI_TRUE@CONSOLE_C_SOURCES = src/c/InterpreterManagement.c \
-@GUI_TRUE@src/c/HistoryManagement.c
+@GUI_TRUE@src/c/HistoryManagement.c \
+@GUI_TRUE@src/c/GuiManagement.c
 
 
 # Includes need for the compilation
@@ -412,6 +417,8 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-GuiManagement.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-GuiManagement_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-HistoryManagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-HistoryManagement_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-InterpreterManagement.Plo@am__quote@
@@ -452,6 +459,13 @@ libsciconsole_la-HistoryManagement_wrap.lo: src/jni/HistoryManagement_wrap.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-HistoryManagement_wrap.lo `test -f 'src/jni/HistoryManagement_wrap.c' || echo '$(srcdir)/'`src/jni/HistoryManagement_wrap.c
 
+libsciconsole_la-GuiManagement_wrap.lo: src/jni/GuiManagement_wrap.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-GuiManagement_wrap.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-GuiManagement_wrap.Tpo -c -o libsciconsole_la-GuiManagement_wrap.lo `test -f 'src/jni/GuiManagement_wrap.c' || echo '$(srcdir)/'`src/jni/GuiManagement_wrap.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-GuiManagement_wrap.Tpo $(DEPDIR)/libsciconsole_la-GuiManagement_wrap.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/jni/GuiManagement_wrap.c' object='libsciconsole_la-GuiManagement_wrap.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-GuiManagement_wrap.lo `test -f 'src/jni/GuiManagement_wrap.c' || echo '$(srcdir)/'`src/jni/GuiManagement_wrap.c
+
 libsciconsole_la-InterpreterManagement.lo: src/c/InterpreterManagement.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-InterpreterManagement.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-InterpreterManagement.Tpo -c -o libsciconsole_la-InterpreterManagement.lo `test -f 'src/c/InterpreterManagement.c' || echo '$(srcdir)/'`src/c/InterpreterManagement.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-InterpreterManagement.Tpo $(DEPDIR)/libsciconsole_la-InterpreterManagement.Plo
@@ -465,6 +479,13 @@ libsciconsole_la-HistoryManagement.lo: src/c/HistoryManagement.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/HistoryManagement.c' object='libsciconsole_la-HistoryManagement.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-HistoryManagement.lo `test -f 'src/c/HistoryManagement.c' || echo '$(srcdir)/'`src/c/HistoryManagement.c
+
+libsciconsole_la-GuiManagement.lo: src/c/GuiManagement.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-GuiManagement.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-GuiManagement.Tpo -c -o libsciconsole_la-GuiManagement.lo `test -f 'src/c/GuiManagement.c' || echo '$(srcdir)/'`src/c/GuiManagement.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-GuiManagement.Tpo $(DEPDIR)/libsciconsole_la-GuiManagement.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/GuiManagement.c' object='libsciconsole_la-GuiManagement.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-GuiManagement.lo `test -f 'src/c/GuiManagement.c' || echo '$(srcdir)/'`src/c/GuiManagement.c
 
 mostlyclean-libtool:
 	-rm -f *.lo
