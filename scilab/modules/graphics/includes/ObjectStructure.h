@@ -400,8 +400,9 @@ typedef struct
 scigMode;  
 
 
-/**@name Range
- * Structure used to specifie Range
+/**
+ * @name Range
+ * Structure used to specify Range
  */
 typedef struct
 {/** */
