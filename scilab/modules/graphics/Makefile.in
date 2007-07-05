@@ -47,6 +47,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+@GUI_TRUE@am__append_1 = $(JAVA_JNI_INCLUDE) -Iincludes/handleDrawing -Isrc/cpp -Isrc/gd/  -Isrc/gd/gdfonts/ $(TCL_INC_PATH) $(TK_INC_PATH) -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/ -I$(top_srcdir)/modules/jvm/includes -I$(top_srcdir)/modules/renderer/includes/
 DIST_COMMON = $(am__libscigraphics_la_include_HEADERS_DIST) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
@@ -1078,6 +1079,12 @@ target_alias = @target_alias@
 tcldir = @tcldir@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
+
+# the module Doublylinkedlist  is included here... of course, it is not
+# used in the mode without gui but It causes some silly problems with includes
+libscigraphics_la_CFLAGS =  \
+	-I$(top_srcdir)/libs/doublylinkedlist/includes -Iincludes/ \
+	-Isrc/c/ $(am__append_1)
 @GUI_FALSE@GRAPHICS_C_SOURCES = src/nographics/nographics.c
 @GUI_TRUE@GRAPHICS_C_SOURCES = src/c/GetCommandArg.c \
 @GUI_TRUE@src/c/w_rottext.c \
@@ -1493,8 +1500,6 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@sci_gateway/c/sci_addcb.c \
 @GUI_TRUE@sci_gateway/c/sci_fec.c
 
-@GUI_FALSE@libscigraphics_la_CFLAGS = -Iincludes/ -Isrc/c/
-@GUI_TRUE@libscigraphics_la_CFLAGS = $(JAVA_JNI_INCLUDE) -Iincludes/ -Iincludes/handleDrawing -Isrc/c/ -Isrc/cpp -Isrc/gd/  -Isrc/gd/gdfonts/ $(TCL_INC_PATH) $(TK_INC_PATH) -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/ -I$(top_srcdir)/modules/jvm/includes -I$(top_srcdir)/modules/renderer/includes/ -I$(top_srcdir)/libs/doublylinkedlist/includes
 @GUI_TRUE@libscigraphics_la_CXXFLAGS = -Iincludes/ -Isrc/c/ $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/modules/jvm/includes
 @GUI_TRUE@libscigraphics_la_LDFLAGS = $(JAVA_JNI_LIBS) $(TCLTK_LIBS) $(X_LIBS)
 @GUI_FALSE@libscigraphics_la_SOURCES = $(GRAPHICS_C_SOURCES)

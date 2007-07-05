@@ -3,6 +3,10 @@
 ### INRIA - Scilab 2006 
 ##########
 
+# the module Doublylinkedlist  is included here... of course, it is not
+# used in the mode without gui but It causes some silly problems with includes
+libscigraphics_la_CFLAGS = -I$(top_srcdir)/libs/doublylinkedlist/includes  -Iincludes/ -Isrc/c/
+
 if GUI
 
 GRAPHICS_C_SOURCES = src/c/GetCommandArg.c \
@@ -419,7 +423,7 @@ sci_gateway/c/sci_winsid.c \
 sci_gateway/c/sci_addcb.c \
 sci_gateway/c/sci_fec.c
 
-libscigraphics_la_CFLAGS =  $(JAVA_JNI_INCLUDE) -Iincludes/ -Iincludes/handleDrawing -Isrc/c/ -Isrc/cpp -Isrc/gd/  -Isrc/gd/gdfonts/ $(TCL_INC_PATH) $(TK_INC_PATH) -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/ -I$(top_srcdir)/modules/jvm/includes -I$(top_srcdir)/modules/renderer/includes/ -I$(top_srcdir)/libs/doublylinkedlist/includes
+libscigraphics_la_CFLAGS +=  $(JAVA_JNI_INCLUDE) -Iincludes/handleDrawing -Isrc/cpp -Isrc/gd/  -Isrc/gd/gdfonts/ $(TCL_INC_PATH) $(TK_INC_PATH) -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/ -I$(top_srcdir)/modules/jvm/includes -I$(top_srcdir)/modules/renderer/includes/
 
 libscigraphics_la_CXXFLAGS =  -Iincludes/ -Isrc/c/ $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/modules/jvm/includes
 
@@ -655,11 +659,9 @@ USEANT=1
 
 else
 
-GRAPHICS_C_SOURCES=src/nographics/nographics.c
+GRAPHICS_C_SOURCES = src/nographics/nographics.c
 
 libscigraphics_la_SOURCES = $(GRAPHICS_C_SOURCES)
-
-libscigraphics_la_CFLAGS =  -Iincludes/ -Isrc/c/
 
 endif
 
