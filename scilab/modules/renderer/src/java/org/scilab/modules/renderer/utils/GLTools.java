@@ -18,6 +18,13 @@ public final class GLTools {
 	/** display lists index is always different than 0 */
 	public static final int UNINIT_DL_INDEX = 0;
 	
+	/** Depth range when using pixel values.
+	 * Actually when using gluProject z may vary between 0 and 1 (relative to depth buffer)
+	 * 0 is front clip plane and 1 back clip plane.
+	 */
+	public static final double MIN_PIXEL_Z = -0.1;
+	public static final double MAX_PIXEL_Z = 1.1;
+	
 	/** Contains the different line stipple pattern */
 	private static final short[] STIPPLE_PATTERN
 	  = {(short) 0xFFFF, // 16 solids, unused equivalent to no stipple
@@ -67,10 +74,8 @@ public final class GLTools {
 	 * Change coordinates to pixel values (for x and y).
 	 * To get back to user coordinates call endPixelCoordinates
 	 * @param gl current OpenGL pipeline
-	 * @param zNear distance of nearer clipping plane
-	 * @param zFar distance of farther clipping plane
 	 */
-	public static void usePixelCoordinates(GL gl, double zNear, double zFar) {
+	public static void usePixelCoordinates(GL gl) {
 		
 		int[] viewPort = new int[VIEWPORT_LENGTH];
 		
@@ -78,7 +83,8 @@ public final class GLTools {
 		gl.glPushMatrix();
 		gl.glLoadIdentity();
 		gl.glGetIntegerv(GL.GL_VIEWPORT, viewPort, 0);
-		gl.glOrtho(viewPort[0], viewPort[0] + viewPort[2], viewPort[1], viewPort[1] + viewPort[VIEWPORT_LENGTH - 1], zNear, zFar);
+		gl.glOrtho(viewPort[0], viewPort[0] + viewPort[2], viewPort[1], viewPort[1] + viewPort[VIEWPORT_LENGTH - 1],
+				   MIN_PIXEL_Z, MAX_PIXEL_Z);
 		gl.glMatrixMode(GL.GL_MODELVIEW);
 		gl.glPushMatrix();
 		gl.glLoadIdentity();

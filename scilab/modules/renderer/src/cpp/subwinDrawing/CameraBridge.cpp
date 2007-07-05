@@ -34,6 +34,19 @@ void CameraBridge::setAxesTranslation( double translation[3] )
   m_aAxesTranslation[2] = translation[2] ;
 }
 /*-----------------------------------------------------------------------------------*/
+void CameraBridge::setAxesRotation( double alpha, double theta )
+{
+  m_dAlpha = alpha;
+  m_dTheta = theta;
+}
+/*-----------------------------------------------------------------------------------*/
+void CameraBridge::setAxesCenter( double center[3] )
+{
+  m_aBoxCenter[0] = center[0];
+  m_aBoxCenter[1] = center[1];
+  m_aBoxCenter[2] = center[2];
+}
+/*-----------------------------------------------------------------------------------*/
 void CameraBridge::setFarthestDistance( double maxDist )
 {
   m_dFarthestDist = maxDist;

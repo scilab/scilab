@@ -31,7 +31,7 @@ void RectangleMarkDrawerJoGL::drawRectangle( void )
   initializeDrawing() ;
 
   // set the line parameters
-  jniCallMemberFunctionSafe(m_oDrawableObject, NULL, "setMarkParameters", "IIIII",
+  jniCallMemberFunctionSafe(m_oDrawableObject, NULL, "setMarkParameters", "(IIIII)V",
     sciGetGraphicContext(pObj)->markbackground, sciGetGraphicContext(pObj)->markforeground,
     sciGetMarkSizeUnit(pObj), sciGetMarkSize(pObj), sciGetMarkStyle(pObj) ) ;
 

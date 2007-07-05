@@ -213,4 +213,6 @@ BOOL sciGetIsReadyForRendering( sciPointObj * pobj ) ; /* GET */
 void sciGetRealDataBounds( sciPointObj * pObj, double bounds[6] ) ; /* GET */
 void sciGetDataBounds( sciPointObj * pObj, double bounds[6] ) ; /* GET */
 
+void sciGetViewingAngles( sciPointObj * pObj, double * alpha, double * theta) ; /* GET */
+
 #endif /* __SCI_GET_PROPERTY__ */

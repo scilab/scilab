@@ -41,6 +41,18 @@ public:
   void setAxesTranslation( double translation[3] ) ;
 
   /**
+   * Set the rotation of axes in accordance with viewing angles
+   * @param alpha rotation around Y axis
+   * @param theta rotation around X axis
+   */
+  void setAxesRotation( double alpha, double theta ) ;
+
+  /**
+   * Set the center of the axes around which the box turns.
+   */
+  void setAxesCenter( double center[3] ) ;
+
+  /**
    * Specify the farthest distance from the camera in order to specify zNear and zFar
    */
   void setFarthestDistance( double maxDist ) ;
@@ -72,6 +84,13 @@ protected:
 
   /** Translation to put the axes in view */
   double m_aAxesTranslation[3];
+
+  /** Rotation angles */
+  double m_dAlpha;
+  double m_dTheta;
+
+  /** Center of the axes box */
+  double m_aBoxCenter[3];
 
 };
 

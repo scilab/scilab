@@ -135,32 +135,14 @@ public class RectangleMarkDrawerJoGL extends DrawableObjectJoGL {
 	 */
 	public void drawRectangle() {
 		GL gl = getGL();
-		if (gl == null) { return; }
 		
 		CoordinateTransformation transform = CoordinateTransformation.getTransformation();
 		
 		// need to perform this befaore swithching to pixel coordinates
 		double[][] pixCoords = transform.getCanvasCoordinates(gl, cornersPos);
 		
-		// find min and max Z value
-		double minZ = pixCoords[0][2];
-		double maxZ = pixCoords[0][2];
-		for (int i = 1; i < NB_CORNERS; i++) {
-			double curValue = pixCoords[i][2];
-			if (curValue < minZ) {
-				minZ = curValue;
-			} else if (curValue > maxZ) {
-				maxZ = curValue;
-			}
-		}
-		
-		if (minZ == maxZ) {
-			minZ -= 100.0;
-			maxZ += 100.0;
-		}
-		
 		// switch to pixel coordinates
-		GLTools.usePixelCoordinates(gl, minZ, maxZ);
+		GLTools.usePixelCoordinates(gl);
 		
 		for (int i = 0; i < NB_CORNERS; i++) {
 			drawer.drawMark(pixCoords[i][0], pixCoords[i][1], pixCoords[i][2]);

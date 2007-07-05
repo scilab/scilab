@@ -9,6 +9,11 @@
 #include "Camera.h"
 #include "MALLOC.h"
 
+extern "C"
+{
+#include "math_graphics.h"
+}
+
 namespace sciGraphics
 {
 
@@ -44,16 +49,17 @@ void Camera::setViewingArea( double axesBounds[4], double margins[4] )
 /*-----------------------------------------------------------------------------------*/
 void Camera::setRotationAngles( double alpha, double theta )
 {
-  m_dAlpha = alpha ;
-  m_dTheta = theta ;
+  m_pImp->setAxesRotation(alpha, theta);
 }
 /*-----------------------------------------------------------------------------------*/
 void Camera::setSubwinBox( double bounds[6] )
 {
-  for ( int i = 0 ; i < 6 ; i++ )
-  {
-    m_aAxesBox[i] = bounds[i] ;
-  }
+
+  double boxCenter[3];
+  boxCenter[0] = (bounds[0] + bounds[1]) / 2.0 ;
+  boxCenter[1] = (bounds[2] + bounds[3]) / 2.0 ;
+  boxCenter[2] = (bounds[4] + bounds[5]) / 2.0 ;
+  m_pImp->setAxesCenter(boxCenter) ;
   
   double scale[3] ;
   // 1.0 / ( Xmax - Xmin )
@@ -79,14 +85,5 @@ void Camera::renderPosition( void )
   m_pImp->renderPosition();
 }
 /*-----------------------------------------------------------------------------------*/
-void Camera::getSubwinCenter( double center[3] )
-{
-  // middle of the box
-  center[0] = (m_aAxesBox[0] + m_aAxesBox[1]) / 2.0 ;
-  center[1] = (m_aAxesBox[2] + m_aAxesBox[3]) / 2.0 ;
-  center[2] = (m_aAxesBox[4] + m_aAxesBox[5]) / 2.0 ;
-}
-/*-----------------------------------------------------------------------------------*/
-
 
 }

@@ -33,7 +33,8 @@ public abstract class MarkDrawingStrategy {
 								   SQUARE,
 								   TRIANGLE_RIGHT,
 								   TRIANGLE_LEFT,
-								   PENTAGRAM };
+								   PENTAGRAM,
+								   UNDEFINED };
 			
 	/**
 	 * Mathching between indices and mark styles. 
@@ -65,10 +66,6 @@ public abstract class MarkDrawingStrategy {
 	 * @return new instance of MarkDrawingStrategy
 	 */
 	public static MarkDrawingStrategy create(int markStyleIndex) {
-		if (markStyleIndex < 0 || markStyleIndex >= MARK_STYLE.length) {
-			return null;
-		}
-		
 		MarkDrawingStrategy res;
 		switch(getMarkStyle(markStyleIndex)) {
 		case DOT:
@@ -128,6 +125,9 @@ public abstract class MarkDrawingStrategy {
 	 * @return kind of mark
 	 */
 	private static MarkStyle getMarkStyle(int markStyleIndex) {
+		if (markStyleIndex < 0 || markStyleIndex >= MARK_STYLE.length) {
+			return MarkStyle.UNDEFINED;
+		}
 		return MARK_STYLE[markStyleIndex];
 	}
 	

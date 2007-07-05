@@ -250,6 +250,9 @@ int sciInitIsReadyForRendering( sciPointObj * pObj, BOOL isReady ) ;
 
 int sciSetDataBounds( sciPointObj * pObj, double bounds[6] ) ; /* SET */
 
+int sciInitViewingAngles( sciPointObj * pObj, double alpha, double theta) ;
+int sciSetViewingAngles( sciPointObj * pObj, double alpha, double theta); /* SET */
+
 /*---------------------------------------------------------------------------*/
 /* return 0 if the string contains any % character, 1 if a %d has been found */
 /* and -1 otherwise. */

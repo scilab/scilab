@@ -44,6 +44,11 @@ void DrawableSubwin::draw( void )
   double bounds[6] ;
   sciGetRealDataBounds(m_pDrawed, bounds) ;
   m_pCamera->setSubwinBox(bounds) ;
+
+  double alpha;
+  double theta;
+  sciGetViewingAngles(m_pDrawed, &alpha, &theta);
+  m_pCamera->setRotationAngles(alpha, theta);
   m_pCamera->renderPosition();
   displayChildren() ;
   //endDrawing();

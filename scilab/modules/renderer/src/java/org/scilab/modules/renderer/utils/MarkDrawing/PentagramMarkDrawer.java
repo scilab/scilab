@@ -23,7 +23,7 @@ public class PentagramMarkDrawer extends MarkDrawingStrategy {
 	 * Distance of the insid epoints from the center
 	 * To compute this, I compute the intersection between two edges of the star
 	 * (note that each time, 4 points are aligned). Then I compute its distance from
-	 * origin. 1.2 is to make 
+	 * origin. 1.2 is to make the star a bit larger.
 	 */
 	private static final double INNER_DISTANCE = 1.2 * 0.3819660;
 	private static final double OUTER_DISTANCE = 1.2;

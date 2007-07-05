@@ -4945,3 +4945,35 @@ int sciSetDataBounds( sciPointObj * pObj, double bounds[6] )
   return 0 ;
 }
 /*--------------------------------------------------------------------------------------------*/
+int sciInitViewingAngles( sciPointObj * pObj, double alpha, double theta)
+{
+  switch(sciGetEntityType(pObj))
+  {
+  case SCI_SUBWIN:
+    pSUBWIN_FEATURE(pObj)->alpha = alpha;
+    pSUBWIN_FEATURE(pObj)->theta = theta;
+    return 0;
+  default:
+    sciprint("This object has no viewing angles.\n");
+  }
+  return -1;
+}
+/*--------------------------------------------------------------------------------------------*/
+/**
+ * Set the viewing angles (in degrees) of a subwindow
+ */
+int sciSetViewingAngles( sciPointObj * pObj, double alpha, double theta)
+{
+  double curAlpha;
+  double curTheta;
+  sciGetViewingAngles(pObj, &curAlpha, &curTheta);
+  if ( curAlpha == alpha && curTheta == theta )
+  {
+    // nothing to do
+    return 1;
+  }
+
+  return sciInitViewingAngles(pObj, alpha, theta) ;
+
+}
+/*--------------------------------------------------------------------------------------------*/

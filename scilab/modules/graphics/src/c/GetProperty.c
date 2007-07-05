@@ -3736,15 +3736,6 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
       return (double*)tab;
       break;
     case SCI_AGREG:
-      /*      *numrow = 2;
-      *numcol = 2;
-      if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
-	return (double*)NULL;
-      tab[0] = pAGREG_FEATURE (pthis)->xmin
-      tab[1] = pAGREG_FEATURE (pthis)->ymin
-      tab[2] = pAGREG_FEATURE (pthis)->xmax - pAGREG_FEATURE (pthis)->xmin
-      tab[3] = pAGREG_FEATURE (pthis)->ymax - pAGREG_FEATURE (pthis)->ymin
-      return (double*)tab;*/
       return (double*)NULL;
       break;
     case SCI_TEXT:
@@ -5207,7 +5198,7 @@ void sciGetRealDataBounds( sciPointObj * pObj, double bounds[6] )
 /*-------------------------------------------------------------------------------------------*/
 /**
  * Get data-bounds defined by the user and not modified for pretty print by scilab.
- * * @param bounds [Xmin,Xmax,Ymain,Ymax,Zmin,Zmax] vector.
+ * @param bounds [Xmin,Xmax,Ymain,Ymax,Zmin,Zmax] vector.
  */
 void sciGetDataBounds( sciPointObj * pObj, double bounds[6] )
 {
@@ -5234,5 +5225,24 @@ void sciGetDataBounds( sciPointObj * pObj, double bounds[6] )
     } 
   }
   return ;
+}
+/*-------------------------------------------------------------------------------------------*/
+/**
+ * Get the viewing angles of a subwindow in degrees.
+ */
+void sciGetViewingAngles( sciPointObj * pObj, double * alpha, double * theta)
+{
+  switch( sciGetEntityType(pObj) )
+  {
+  case SCI_SUBWIN:
+    *alpha = pSUBWIN_FEATURE(pObj)->alpha;
+    *theta = pSUBWIN_FEATURE(pObj)->theta;
+    break;
+  default:
+    sciprint("This object has no viewing angles.\n");
+    *alpha = 0.0;
+    *theta = 0.0;
+    break;
+  }
 }
 /*-------------------------------------------------------------------------------------------*/

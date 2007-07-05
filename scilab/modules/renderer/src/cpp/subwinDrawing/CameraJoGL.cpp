@@ -33,6 +33,8 @@ void CameraJoGL::renderPosition( void )
   jniCallMemberFunctionSafe(m_oDrawableObject, NULL, "moveAxesBox", "(DDDDDD)V",
                             m_aAxesScale[0], m_aAxesScale[1], m_aAxesScale[2],
                             m_aAxesTranslation[0], m_aAxesTranslation[1], m_aAxesTranslation[2] ) ;
+  jniCallMemberFunctionSafe(m_oDrawableObject, NULL, "rotateAxesBox", "(DDDDD)V",
+                            m_aBoxCenter[0], m_aBoxCenter[1], m_aBoxCenter[2], m_dAlpha, m_dTheta ) ;
   endDrawing();
 }
 /*-----------------------------------------------------------------------------------*/

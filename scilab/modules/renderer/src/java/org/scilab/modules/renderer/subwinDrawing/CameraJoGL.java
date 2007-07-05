@@ -21,6 +21,10 @@ public class CameraJoGL extends ObjectJoGL {
 	/** Distance of the far clipping plane, should be greater than 1.0 and not to high */
 	private static final double FAR_PLANE_DISTANCE = 100.0;
 	
+	/** Default rotation angles, 2D view */
+	private static final double DEFAULT_ALPHA = 0.0;
+	private static final double DEFAULT_THETA = 270.0;
+	
 	/**
 	 * Default constructor
 	 */
@@ -57,7 +61,6 @@ public class CameraJoGL extends ObjectJoGL {
 
 		gl.glTranslated(transX, transY, 0.0);
 		gl.glScaled(scaleX, scaleY, 1.0);
-		//gl.glTranslatef(0.0f, 0.0f, -1.0f); 
 		
 	}
 	
@@ -73,10 +76,26 @@ public class CameraJoGL extends ObjectJoGL {
 	public void moveAxesBox(double scaleX, double scaleY, double scaleZ,
 							double transX, double transY, double transZ) {
 		GL gl = getGL();
-		System.out.println("scaleX = " + scaleX + "scaleY = " + scaleY + "scaleZ = " + scaleZ);
 		gl.glScaled(scaleX, scaleY, scaleZ);
-		System.out.println("transX = " + transX + "transY = " + transY + "transZ = " + transZ);
 		gl.glTranslated(transX, transY, transZ);
+	}
+	
+	/**
+	 * Rotate the axes in accordance with viewing angles
+	 * @param centerX X coordiantes of the rotation center 
+	 * @param centerY Y coordinates of the rotation center
+	 * @param centerZ Z coordinates of the rotation center
+	 * @param alpha rotation angle around axe X
+	 * @param theta rotation angle around axe Z
+	 */
+	public void rotateAxesBox(double centerX, double centerY, double centerZ,
+						      double alpha, double theta) {
+		GL gl = getGL();
+		// rotate around the center of the box axes
+		gl.glTranslated(centerX, centerY, centerZ);
+		gl.glRotated(-DEFAULT_ALPHA - alpha, 1.0 , 0.0, 0.0); /* Seems we need to rotate counterclok-wise */
+		gl.glRotated(-DEFAULT_THETA - theta, 0.0 , 0.0, 1.0);
+		gl.glTranslated(-centerX, -centerY, -centerZ); // translate origin back
 	}
 	
 	
