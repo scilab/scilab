@@ -21,7 +21,6 @@
 #include "machine.h"
 #include "MALLOC.h" 
 /*-----------------------------------------------------------------------------------*/
-/*-----------------------------------------------------------------------------------*/
 int C2F(sci_tokens1) _PARAMS((char *fname,unsigned long fname_len))
 {
 
@@ -31,7 +30,6 @@ int C2F(sci_tokens1) _PARAMS((char *fname,unsigned long fname_len))
   int w=0;
   int numRow;
   int numCol;
-  int bo=0;
   Rhs = Max(0, Rhs);
   CheckRhs(1,2);
   switch ( VarType(1)) {
@@ -70,10 +68,10 @@ int C2F(sci_tokens1) _PARAMS((char *fname,unsigned long fname_len))
 				bo=0;
 		}
 	}*/
-	numRow   = u+1;  /*Output */
+    numRow   = u+1;  /*Output */
     numCol   = 1 ;
     CreateVarFromPtr( Rhs+1, "S", &numRow, &numCol, Str3 ) ;
-	LhsVar(1) = Rhs+1 ; 
+    LhsVar(1) = Rhs+1 ; 
     C2F(putlhsvar)();
     FREE(Str3);
   }
