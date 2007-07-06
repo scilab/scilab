@@ -20,19 +20,20 @@
 
 static char* substr(const char*str, unsigned start, unsigned end)
 
-{
+	{
 
-unsigned n = end - start;
+	unsigned n = end - start;
 
-static char stbuf[256];
+	char *stbuf;
+       stbuf=(char*)MALLOC(sizeof(char*)*(1));
 
-strncpy(stbuf, str + start, n);
+	strncpy(stbuf, str + start, n);
 
-stbuf[n] = 0;
+	stbuf[n] = 0;
 
-return stbuf;
+	return stbuf;
 
-}
+	}
 /**
 * Scilab regular expression 
 * 

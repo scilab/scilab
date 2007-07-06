@@ -25,14 +25,14 @@ int C2F(sci_strsplit1) _PARAMS((char *fname,unsigned long fname_len))
 {
   char **Str,**Str3;
   int *m4;
-  int x,y,m1,n1,mn,i,n4,l4,u,v,w=0;
+  int m1,n1,m2,mn,i,n4,l4,u,v,w=0;
   Rhs = Max(0, Rhs);
   CheckRhs(1,4);
   switch ( VarType(1)) {
   case 10 :
     GetRhsVar(1,"S",&m1,&n1,&Str);
     mn = m1*n1;  
-    GetRhsVar(2,"i",&m4,&n4,&l4);
+    GetRhsVar(2,"i",&m2,&n4,&l4);
     m4=istk(l4);
 	u=0;
 	v=0;
@@ -43,15 +43,7 @@ int C2F(sci_strsplit1) _PARAMS((char *fname,unsigned long fname_len))
 		Str3[i]=(char*)MALLOC(sizeof(char*)*(1));
 		strcpy(Str3[i],"");
 	}
-	for (x=0;x<mn;x++){
-		if (x!=m4[v]) Str3[u][w++]=Str[0][x];
-		else {
-			u++;
-			v++;
-			w=0;
-		}
-        Str3[u][w]=0;
-	}
+	strsplit1(Str,Str3,&u,&v,&w,mn,m4);
 	numRow   = u;  /*Output */
     numCol   = w ;
     CreateVarFromPtr( Rhs+1, "S", &numRow, &numCol, Str3 ) ;

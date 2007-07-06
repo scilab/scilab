@@ -14,37 +14,22 @@
 #include "stack-c.h"
 #include "machine.h"
 /*-------------------------------------------------------------------------------------*/
-
-/*-----------------------------------------------------------------------------------*/
 int C2F(sci_strcat1) _PARAMS((char *fname,unsigned long fname_len))
 {
   char **Str,**Str2; /**< the two input arguments */
-  int x,m1,n1,m2,n2,mn,mn2,numRow,numCol;
+  int m1,n1,m2,n2,mn,mn2,numRow,numCol;
   Rhs = Max(0, Rhs);
   CheckRhs(1,2);
-  switch ( VarType(1)) {
-  case 10 :
-		GetRhsVar(1,"S",&m1,&n1,&Str);
-		mn = m1*n1;  
-		GetRhsVar(2,"S",&m2,&n2,&Str2);
-		mn2 = m2*n2;
-		strcat(Str[0] ,Str2[0]);
-		if (mn>1) {
-			for (x=1;x<mn-1;++x){
-				if (strlen(Str2[0])==0) {
-					Scierror(999, "2th argument must not be an empty string");
-					return 1;
-				}
-				strcat(Str[0],Str[x]);
-				strcat(Str[0] ,Str2[0]);
-			}
-			strcat(Str[0] ,Str[mn-1]);
-		}
-		numRow   = 1 ;
-		numCol   = 1 ;
-		CreateVarFromPtr( Rhs+1, "S", &numRow, &numCol, Str ) ;
-		LhsVar(1) = Rhs+1 ; 
- }
+  GetRhsVar(1,"S",&m1,&n1,&Str);
+  mn = m1*n1;    /*@ the first argument*/
+  GetRhsVar(2,"S",&m2,&n2,&Str2);
+  mn2 = m2*n2;  /*@ the second argument*/
+  strcat(Str[0] ,Str2[0]);
+  scistrcat(Str,Str2,mn);
+  numRow   = 1 ;
+  numCol   = 1 ;
+  CreateVarFromPtr( Rhs+1, "S", &numRow, &numCol, Str ) ;
+  LhsVar(1) = Rhs+1 ; 
   C2F(putlhsvar)();
   return 0;
 }
