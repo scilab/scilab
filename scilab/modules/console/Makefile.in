@@ -59,8 +59,8 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
 	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/mpi.m4 \
 	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
 	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/sciman.m4 \
-	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
-	$(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
+	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
@@ -201,6 +201,9 @@ SED = @SED@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 STRIP = @STRIP@
+SWIG_BIN = @SWIG_BIN@
+SWIG_JAVA = @SWIG_JAVA@
+SWIG_RUNTIME_LIBS_DIR = @SWIG_RUNTIME_LIBS_DIR@
 TCLTK_LIBS = @TCLTK_LIBS@
 TCL_INC_PATH = @TCL_INC_PATH@
 TERMCAP_LIB = @TERMCAP_LIB@
@@ -304,6 +307,12 @@ libsciconsole_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 #### console : init scripts #### 
 libsciconsole_la_etcdir = $(mydatadir)/etc
 libsciconsole_la_etc_DATA = etc/console.quit etc/console.start
+
+#### SWIG Declaration ####
+SWIG_FILES = src/jni/HistoryManagement.i \
+src/jni/InterpreterManagement.i \
+src/jni/GuiManagement.i
+
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -605,7 +614,6 @@ distdir: $(DISTFILES)
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-am
-@GUI_FALSE@all-local:
 all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
 	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciconsole_la_etcdir)" "$(DESTDIR)$(libsciconsole_la_rootdir)"; do \
@@ -747,7 +755,20 @@ uninstall-am: uninstall-libsciconsole_la_etcDATA \
 @GUI_TRUE@		$(ANT) checkstyle; \
 @GUI_TRUE@	fi
 
-@GUI_TRUE@all-local: java-build
+@GUI_TRUE@@SWIG_TRUE@all-local: java-build swig-build
+@GUI_TRUE@@SWIG_FALSE@all-local: java-build
+
+# Not GUI
+@GUI_FALSE@@SWIG_TRUE@all-local: swig-build
+@GUI_FALSE@@SWIG_FALSE@all-local: 
+
+swig-build: $(SWIG_FILES)
+	@if test ! -z "$(SWIG_FILES)"; then \
+		for file in $(SWIG_FILES) ; do \
+			echo "Swig process of $$file ..."; \
+			$(SWIG_BIN) $(SWIG_JAVA)  -outdir src/jni/ $$file; \
+		done; \
+	fi
 
 # Replace all the .java by .class in JAVAFILES
 #CLASSFILES = $(JAVAFILES:.java=.class)
@@ -879,7 +900,7 @@ macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODI
 	$(top_builddir)/bin/scilab -nb -nwni -f $(abs_srcdir)/macros/buildmacros.sce 	)
 
 # Provides macros compilation, Java compilation, cleaning
-# If you want Makefile to call ant, added USEANT=1
+# If you want Makefile to call ant, add USEANT=1
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

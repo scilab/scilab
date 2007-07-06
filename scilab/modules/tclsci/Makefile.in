@@ -68,8 +68,8 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
 	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/mpi.m4 \
 	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
 	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/sciman.m4 \
-	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
-	$(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
+	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
@@ -278,6 +278,9 @@ SED = @SED@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 STRIP = @STRIP@
+SWIG_BIN = @SWIG_BIN@
+SWIG_JAVA = @SWIG_JAVA@
+SWIG_RUNTIME_LIBS_DIR = @SWIG_RUNTIME_LIBS_DIR@
 TCLTK_LIBS = @TCLTK_LIBS@
 TCL_INC_PATH = @TCL_INC_PATH@
 TERMCAP_LIB = @TERMCAP_LIB@
@@ -1307,7 +1310,6 @@ distdir: $(DISTFILES)
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-am
-@GUI_FALSE@all-local:
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
 	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscitclsci_la_demossciGUIdir)" "$(DESTDIR)$(libscitclsci_la_demostkdir)" "$(DESTDIR)$(libscitclsci_la_etcdir)" "$(DESTDIR)$(libscitclsci_la_rootdir)" "$(DESTDIR)$(libscitclsci_la_sci_gatewaydir)" "$(DESTDIR)$(libscitclsci_la_tcldir)" "$(DESTDIR)$(libscitclsci_la_includedir)"; do \
@@ -1470,7 +1472,20 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @GUI_TRUE@@TCLTK_TRUE@		$(ANT) checkstyle; \
 @GUI_TRUE@@TCLTK_TRUE@	fi
 
-@GUI_TRUE@@TCLTK_TRUE@all-local: java-build
+@GUI_TRUE@@SWIG_TRUE@@TCLTK_TRUE@all-local: java-build swig-build
+@GUI_TRUE@@SWIG_FALSE@@TCLTK_TRUE@all-local: java-build
+
+# Not GUI
+@GUI_FALSE@@SWIG_TRUE@@TCLTK_TRUE@all-local: swig-build
+@GUI_FALSE@@SWIG_FALSE@@TCLTK_TRUE@all-local: 
+
+@TCLTK_TRUE@swig-build: $(SWIG_FILES)
+@TCLTK_TRUE@	@if test ! -z "$(SWIG_FILES)"; then \
+@TCLTK_TRUE@		for file in $(SWIG_FILES) ; do \
+@TCLTK_TRUE@			echo "Swig process of $$file ..."; \
+@TCLTK_TRUE@			$(SWIG) $(SWIG_JAVA)  -outdir src/jni/ $$file; \
+@TCLTK_TRUE@		done; \
+@TCLTK_TRUE@	fi
 
 # Replace all the .java by .class in JAVAFILES
 #CLASSFILES = $(JAVAFILES:.java=.class)
@@ -1627,7 +1642,20 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @GUI_TRUE@@TCLTK_FALSE@		$(ANT) checkstyle; \
 @GUI_TRUE@@TCLTK_FALSE@	fi
 
-@GUI_TRUE@@TCLTK_FALSE@all-local: java-build
+@GUI_TRUE@@SWIG_TRUE@@TCLTK_FALSE@all-local: java-build swig-build
+@GUI_TRUE@@SWIG_FALSE@@TCLTK_FALSE@all-local: java-build
+
+# Not GUI
+@GUI_FALSE@@SWIG_TRUE@@TCLTK_FALSE@all-local: swig-build
+@GUI_FALSE@@SWIG_FALSE@@TCLTK_FALSE@all-local: 
+
+@TCLTK_FALSE@swig-build: $(SWIG_FILES)
+@TCLTK_FALSE@	@if test ! -z "$(SWIG_FILES)"; then \
+@TCLTK_FALSE@		for file in $(SWIG_FILES) ; do \
+@TCLTK_FALSE@			echo "Swig process of $$file ..."; \
+@TCLTK_FALSE@			$(SWIG) $(SWIG_JAVA)  -outdir src/jni/ $$file; \
+@TCLTK_FALSE@		done; \
+@TCLTK_FALSE@	fi
 
 # Replace all the .java by .class in JAVAFILES
 #CLASSFILES = $(JAVAFILES:.java=.class)

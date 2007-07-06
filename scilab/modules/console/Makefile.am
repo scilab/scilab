@@ -41,6 +41,12 @@ libsciconsole_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 libsciconsole_la_etcdir = $(mydatadir)/etc
 libsciconsole_la_etc_DATA = etc/console.quit etc/console.start
 
+#### SWIG Declaration ####
+SWIG_FILES=src/jni/HistoryManagement.i \
+src/jni/InterpreterManagement.i \
+src/jni/GuiManagement.i
+
 # Provides macros compilation, Java compilation, cleaning
-# If you want Makefile to call ant, added USEANT=1
+# If you want Makefile to call ant, add USEANT=1
 include $(top_srcdir)/Makefile.incl.am
+

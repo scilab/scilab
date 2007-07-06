@@ -87,6 +87,10 @@ AC_ARG_WITH(gui,
     [  --without-gui           do not compile the Graphical User Interface (GUI). Intended for embedded/clustering/grid Scilab ])
 
 
+AC_ARG_WITH(swig-generation,
+    [  --with-swig-generation  Regenerate Java => C wrappers produces by Swig (A Java Development Kit (JDK) is mandatory for this option)])
+
+
 
 ##############################
 ##########" compilator detection
@@ -234,7 +238,7 @@ FILES_TO_CLEAN='*.CKP *.ln *.BAK *.bak core errs ,* *~ *.a .emacs_* tags TAGS ma
 
 AC_PATH_XTRA
 
-if test "$no_x" == 'yes'; then
+if test "$no_x" = 'yes'; then
   AC_MSG_ERROR([Scilab requires the X Window System header files and libraries !])
 fi
 
@@ -551,9 +555,19 @@ if test "$with_javasci" != no -a "$with_gui" != no; then
 	AC_SUBST(JAVA_JNI_INCLUDE)
     AC_SUBST(JAVA_JNI_LIBS)
     AC_SUBST(JAVA_HOME)
+
+	if test "$with_swig_generation" = yes; then	
+		SWIG_PROG()
+		SWIG_ENABLE_JAVA()
+		AC_SUBST(SWIG_BIN)
+		AC_SUBST(SWIG_JAVA)
+	fi
+
 fi
+
 AM_CONDITIONAL(GUI, test "$with_gui" != no)
 AM_CONDITIONAL(JAVASCI, test "$with_javasci" != no)
+AM_CONDITIONAL(SWIG, test "$with_swig_generation" = yes)
 
 
 ##############################################################
@@ -901,7 +915,7 @@ if test "x$with_xsltproc" != 'x' -a "x$with_sablotron" != 'x'; then
 fi
 
 AC_CHECK_MAN_GENERATOR([$with_sablotron],[Sablotron],[sabcmd])
-if test "x$MANGENERATOR" == 'x' -o "x$with_xsltproc" != 'x'; then
+if test "x$MANGENERATOR" = 'x' -o "x$with_xsltproc" != 'x'; then
    AC_CHECK_MAN_GENERATOR([$with_xsltproc],[xsltproc],[xsltproc])
 fi
 AC_SUBST(MANGENERATOR)
@@ -1215,6 +1229,17 @@ echo "  ANT ................. = $ANT"
 else
 echo "  JAVA disabled"
 fi
+
+
+echo ""
+echo "SWIG Configuration:"
+if test ! -z "$SWIGBIN"; then
+echo "  SWIG_BIN ............ = $SWIG_BIN"
+echo "  SWIG_JAVA ........... = $SWIG_JAVA"
+else
+echo "  SWIG generation disabled"
+fi
+
 
 echo ""
 echo "Libtool config:"

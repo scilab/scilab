@@ -60,8 +60,8 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
 	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/mpi.m4 \
 	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
 	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/sciman.m4 \
-	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
-	$(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
+	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
@@ -234,6 +234,9 @@ SED = @SED@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 STRIP = @STRIP@
+SWIG_BIN = @SWIG_BIN@
+SWIG_JAVA = @SWIG_JAVA@
+SWIG_RUNTIME_LIBS_DIR = @SWIG_RUNTIME_LIBS_DIR@
 TCLTK_LIBS = @TCLTK_LIBS@
 TCL_INC_PATH = @TCL_INC_PATH@
 TERMCAP_LIB = @TERMCAP_LIB@
@@ -1113,7 +1116,6 @@ distdir: $(DISTFILES)
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-am
-@GUI_FALSE@all-local:
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
 	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscipolynomials_la_etcdir)" "$(DESTDIR)$(libscipolynomials_la_rootdir)" "$(DESTDIR)$(libscipolynomials_la_sci_gatewaydir)" "$(DESTDIR)$(libscipolynomials_la_includedir)"; do \
@@ -1265,7 +1267,20 @@ uninstall-am: uninstall-libscipolynomials_la_etcDATA \
 @GUI_TRUE@		$(ANT) checkstyle; \
 @GUI_TRUE@	fi
 
-@GUI_TRUE@all-local: java-build
+@GUI_TRUE@@SWIG_TRUE@all-local: java-build swig-build
+@GUI_TRUE@@SWIG_FALSE@all-local: java-build
+
+# Not GUI
+@GUI_FALSE@@SWIG_TRUE@all-local: swig-build
+@GUI_FALSE@@SWIG_FALSE@all-local: 
+
+swig-build: $(SWIG_FILES)
+	@if test ! -z "$(SWIG_FILES)"; then \
+		for file in $(SWIG_FILES) ; do \
+			echo "Swig process of $$file ..."; \
+			$(SWIG) $(SWIG_JAVA)  -outdir src/jni/ $$file; \
+		done; \
+	fi
 
 # Replace all the .java by .class in JAVAFILES
 #CLASSFILES = $(JAVAFILES:.java=.class)

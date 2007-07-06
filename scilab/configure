@@ -882,10 +882,15 @@ ANT
 JAVA_JNI_INCLUDE
 JAVA_JNI_LIBS
 JAVA_HOME
+SWIG_BIN
+SWIG_RUNTIME_LIBS_DIR
+SWIG_JAVA
 GUI_TRUE
 GUI_FALSE
 JAVASCI_TRUE
 JAVASCI_FALSE
+SWIG_TRUE
+SWIG_FALSE
 GREP
 EGREP
 LIBOBJS
@@ -1573,6 +1578,7 @@ Optional Packages:
   --without-tk            do not compile with TCL/TK
   --without-javasci       do not compile the Java/Scilab module
   --without-gui           do not compile the Graphical User Interface (GUI). Intended for embedded/clustering/grid Scilab
+  --with-swig-generation  Regenerate Java => C wrappers produces by Swig (A Java Development Kit (JDK) is mandatory for this option)
   --with-x                use the X Window System
   --with-jdk=DIR          use JDK from DIR
   --with-ant=DIR          use ant from DIR
@@ -4289,6 +4295,14 @@ fi
 # Check whether --with-gui was given.
 if test "${with_gui+set}" = set; then
   withval=$with_gui;
+fi
+
+
+
+
+# Check whether --with-swig-generation was given.
+if test "${with_swig_generation+set}" = set; then
+  withval=$with_swig_generation;
 fi
 
 
@@ -9341,7 +9355,7 @@ fi
 fi
 
 
-if test "$no_x" == 'yes'; then
+if test "$no_x" = 'yes'; then
   { { echo "$as_me:$LINENO: error: Scilab requires the X Window System header files and libraries !" >&5
 echo "$as_me: error: Scilab requires the X Window System header files and libraries !" >&2;}
    { (exit 1); exit 1; }; }
@@ -10093,7 +10107,7 @@ echo "${ECHO_T}$ac_java_classpath" >&6; }
 echo $ECHO_N "checking to see if the java compiler works... $ECHO_C" >&6; }
 
     cat << \EOF > conftest.java
-// #line 10096 "configure"
+// #line 10110 "configure"
 
 
 public class conftest {
@@ -10143,7 +10157,7 @@ echo $ECHO_N "checking type of jvm... $ECHO_C" >&6; }
     if test "x$ac_java_jvm_name" = "x" ; then
 
     cat << \EOF > conftest.java
-// #line 10146 "configure"
+// #line 10160 "configure"
 import gnu.java.io.EncodingManager;
 
 public class conftest {
@@ -10191,7 +10205,7 @@ echo $ECHO_N "checking java API version... $ECHO_C" >&6; }
 
 
     cat << \EOF > conftest.java
-// #line 10194 "configure"
+// #line 10208 "configure"
 import java.nio.charset.Charset;
 
 public class conftest {
@@ -10218,7 +10232,7 @@ EOF
 
 
     cat << \EOF > conftest.java
-// #line 10221 "configure"
+// #line 10235 "configure"
 import java.lang.StringBuilder;
 
 public class conftest {
@@ -11404,7 +11418,92 @@ echo "$as_me: WARNING: We do not support $ac_java_jvm_name yet" >&2;}
 
 
 
+
+	if test "$with_swig_generation" = yes; then
+
+	# Extract the first word of "swig", so it can be a program name with args.
+set dummy swig; ac_word=$2
+{ echo "$as_me:$LINENO: checking for $ac_word" >&5
+echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6; }
+if test "${ac_cv_path_SWIG_BIN+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  case $SWIG_BIN in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_SWIG_BIN="$SWIG_BIN" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+  for ac_exec_ext in '' $ac_executable_extensions; do
+  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
+    ac_cv_path_SWIG_BIN="$as_dir/$ac_word$ac_exec_ext"
+    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+done
+IFS=$as_save_IFS
+
+  ;;
+esac
 fi
+SWIG_BIN=$ac_cv_path_SWIG_BIN
+if test -n "$SWIG_BIN"; then
+  { echo "$as_me:$LINENO: result: $SWIG_BIN" >&5
+echo "${ECHO_T}$SWIG_BIN" >&6; }
+else
+  { echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6; }
+fi
+
+
+	if test -z "$SWIG_BIN" ; then
+		{ { echo "$as_me:$LINENO: error: Cannot find swig. Please install it (package swig under Debian) or remove the option --with-swig-generation" >&5
+echo "$as_me: error: Cannot find swig. Please install it (package swig under Debian) or remove the option --with-swig-generation" >&2;}
+   { (exit 1); exit 1; }; }
+	elif test -n "" ; then
+		{ echo "$as_me:$LINENO: checking for SWIG version" >&5
+echo $ECHO_N "checking for SWIG version... $ECHO_C" >&6; }
+		swig_version=`$SWIG_BIN -version 2>&1 | grep 'SWIG Version' | sed 's/.*\([0-9]\+\.[0-9]\+\.[0-9]\+\).*/\1/g'`
+		{ echo "$as_me:$LINENO: result: $swig_version" >&5
+echo "${ECHO_T}$swig_version" >&6; }
+		if test -n "$swig_version" ; then
+			# Calculate the required version number
+			swig_tmp=( `echo  | sed 's/[^0-9]\+/ /g'` )
+			swig_required_version=$(( 1000000 * ${swig_tmp[0]:-0} + 1000 * ${swig_tmp[1]:-0} + ${swig_tmp[2]:-0} ))
+
+			# Calculate the available version number
+			swig_tmp=( `echo $swig_version | sed 's/[^0-9]\+/ /g'` )
+			swig_tmp=$(( 1000000 * ${swig_tmp[0]:-0} + 1000 * ${swig_tmp[1]:-0} + ${swig_tmp[2]:-0} ))
+
+			if test $swig_required_version -gt $swig_tmp ; then
+				{ echo "$as_me:$LINENO: WARNING: SWIG version  is required, you have $swig_version" >&5
+echo "$as_me: WARNING: SWIG version  is required, you have $swig_version" >&2;}
+			fi
+		else
+			{ echo "$as_me:$LINENO: WARNING: cannot determine SWIG version" >&5
+echo "$as_me: WARNING: cannot determine SWIG version" >&2;}
+		fi
+		SWIG_RUNTIME_LIBS_DIR="${SWIG%/bin*}/lib"
+		{ echo "$as_me:$LINENO: SWIG runtime library directory is '$SWIG_RUNTIME_LIBS_DIR'" >&5
+echo "$as_me: SWIG runtime library directory is '$SWIG_RUNTIME_LIBS_DIR'" >&6;}
+	fi
+
+
+
+
+	SWIG_JAVA=" -java"
+
+
+
+	fi
+
+fi
+
  if test "$with_gui" != no; then
   GUI_TRUE=
   GUI_FALSE='#'
@@ -11419,6 +11518,14 @@ fi
 else
   JAVASCI_TRUE='#'
   JAVASCI_FALSE=
+fi
+
+ if test "$with_swig_generation" = yes; then
+  SWIG_TRUE=
+  SWIG_FALSE='#'
+else
+  SWIG_TRUE='#'
+  SWIG_FALSE=
 fi
 
 
@@ -17908,7 +18015,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 { echo "$as_me:$LINENO: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 echo $ECHO_N "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... $ECHO_C" >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 17911 "configure"
+#line 18018 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -18269,7 +18376,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 echo $ECHO_N "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... $ECHO_C" >&6; }
 
 cat > conftest.$ac_ext <<EOF
-#line 18272 "configure"
+#line 18379 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -18912,7 +19019,7 @@ unset ac_cv_prog_WITH # Void the caching of WITH
 unset WITH
 
 
-if test "x$MANGENERATOR" == 'x' -o "x$with_xsltproc" != 'x'; then
+if test "x$MANGENERATOR" = 'x' -o "x$with_xsltproc" != 'x'; then
 
 	with=$with_xsltproc
 	progname=xsltproc
@@ -19857,13 +19964,13 @@ if test "${lt_cv_nm_interface+set}" = set; then
 else
   lt_cv_nm_interface="BSD nm"
   echo "int some_variable = 0;" > conftest.$ac_ext
-  (eval echo "\"\$as_me:19860: $ac_compile\"" >&5)
+  (eval echo "\"\$as_me:19967: $ac_compile\"" >&5)
   (eval "$ac_compile" 2>conftest.err)
   cat conftest.err >&5
-  (eval echo "\"\$as_me:19863: $NM \\\"conftest.$ac_objext\\\"\"" >&5)
+  (eval echo "\"\$as_me:19970: $NM \\\"conftest.$ac_objext\\\"\"" >&5)
   (eval "$NM \"conftest.$ac_objext\"" 2>conftest.err > conftest.out)
   cat conftest.err >&5
-  (eval echo "\"\$as_me:19866: output\"" >&5)
+  (eval echo "\"\$as_me:19973: output\"" >&5)
   cat conftest.out >&5
   if $GREP 'External.*some_variable' conftest.out > /dev/null; then
     lt_cv_nm_interface="MS dumpbin"
@@ -20949,7 +21056,7 @@ ia64-*-hpux*)
   ;;
 *-*-irix6*)
   # Find out which ABI we are using.
-  echo '#line 20952 "configure"' > conftest.$ac_ext
+  echo '#line 21059 "configure"' > conftest.$ac_ext
   if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   (eval $ac_compile) 2>&5
   ac_status=$?
@@ -22543,11 +22650,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:22546: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:22653: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:22550: \$? = $ac_status" >&5
+   echo "$as_me:22657: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -22865,11 +22972,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:22868: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:22975: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:22872: \$? = $ac_status" >&5
+   echo "$as_me:22979: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -22970,11 +23077,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:22973: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:23080: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:22977: \$? = $ac_status" >&5
+   echo "$as_me:23084: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -23025,11 +23132,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:23028: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:23135: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:23032: \$? = $ac_status" >&5
+   echo "$as_me:23139: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -25774,7 +25881,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 25777 "configure"
+#line 25884 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -25874,7 +25981,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 25877 "configure"
+#line 25984 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -27896,11 +28003,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:27899: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:28006: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:27903: \$? = $ac_status" >&5
+   echo "$as_me:28010: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -27995,11 +28102,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:27998: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:28105: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:28002: \$? = $ac_status" >&5
+   echo "$as_me:28109: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -28047,11 +28154,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:28050: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:28157: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:28054: \$? = $ac_status" >&5
+   echo "$as_me:28161: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -29422,11 +29529,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:29425: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:29532: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:29429: \$? = $ac_status" >&5
+   echo "$as_me:29536: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -29521,11 +29628,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:29524: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:29631: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:29528: \$? = $ac_status" >&5
+   echo "$as_me:29635: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -29573,11 +29680,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:29576: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:29683: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:29580: \$? = $ac_status" >&5
+   echo "$as_me:29687: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -31976,6 +32083,13 @@ echo "$as_me: error: conditional \"JAVASCI\" was never defined.
 Usually this means the macro was only invoked conditionally." >&2;}
    { (exit 1); exit 1; }; }
 fi
+if test -z "${SWIG_TRUE}" && test -z "${SWIG_FALSE}"; then
+  { { echo "$as_me:$LINENO: error: conditional \"SWIG\" was never defined.
+Usually this means the macro was only invoked conditionally." >&5
+echo "$as_me: error: conditional \"SWIG\" was never defined.
+Usually this means the macro was only invoked conditionally." >&2;}
+   { (exit 1); exit 1; }; }
+fi
 if test -z "${SCICOS_TRUE}" && test -z "${SCICOS_FALSE}"; then
   { { echo "$as_me:$LINENO: error: conditional \"SCICOS\" was never defined.
 Usually this means the macro was only invoked conditionally." >&5
@@ -33219,10 +33333,15 @@ ANT!$ANT$ac_delim
 JAVA_JNI_INCLUDE!$JAVA_JNI_INCLUDE$ac_delim
 JAVA_JNI_LIBS!$JAVA_JNI_LIBS$ac_delim
 JAVA_HOME!$JAVA_HOME$ac_delim
+SWIG_BIN!$SWIG_BIN$ac_delim
+SWIG_RUNTIME_LIBS_DIR!$SWIG_RUNTIME_LIBS_DIR$ac_delim
+SWIG_JAVA!$SWIG_JAVA$ac_delim
 GUI_TRUE!$GUI_TRUE$ac_delim
 GUI_FALSE!$GUI_FALSE$ac_delim
 JAVASCI_TRUE!$JAVASCI_TRUE$ac_delim
 JAVASCI_FALSE!$JAVASCI_FALSE$ac_delim
+SWIG_TRUE!$SWIG_TRUE$ac_delim
+SWIG_FALSE!$SWIG_FALSE$ac_delim
 GREP!$GREP$ac_delim
 EGREP!$EGREP$ac_delim
 LIBOBJS!$LIBOBJS$ac_delim
@@ -33286,7 +33405,7 @@ tcldir!$tcldir$ac_delim
 LTLIBOBJS!$LTLIBOBJS$ac_delim
 _ACEOF
 
-  if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 86; then
+  if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 91; then
     break
   elif $ac_last_try; then
     { { echo "$as_me:$LINENO: error: could not make $CONFIG_STATUS" >&5
@@ -34816,6 +34935,17 @@ echo "  ANT ................. = $ANT"
 else
 echo "  JAVA disabled"
 fi
+
+
+echo ""
+echo "SWIG Configuration:"
+if test ! -z "$SWIGBIN"; then
+echo "  SWIG_BIN ............ = $SWIG_BIN"
+echo "  SWIG_JAVA ........... = $SWIG_JAVA"
+else
+echo "  SWIG generation disabled"
+fi
+
 
 echo ""
 echo "Libtool config:"

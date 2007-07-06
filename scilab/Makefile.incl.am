@@ -41,9 +41,34 @@ check-local:
 		$(ANT) checkstyle; \
 	fi
 
+endif
+
+if GUI
+
+if SWIG
+all-local: java-build swig-build
+else
 all-local: java-build
+endif
+
+else
+# Not GUI
+if SWIG
+all-local: swig-build
+else
+all-local: 
+endif
 
 endif
+
+## build Swig Java => C wrappers
+swig-build: $(SWIG_FILES)
+	@if test ! -z "$(SWIG_FILES)"; then \
+		for file in $(SWIG_FILES) ; do \
+			echo "Swig process of $$file ..."; \
+			$(SWIG_BIN) $(SWIG_JAVA)  -outdir src/jni/ $$file; \
+		done; \
+	fi
 
 # Replace all the .java by .class in JAVAFILES
 #CLASSFILES = $(JAVAFILES:.java=.class)
@@ -214,9 +239,6 @@ endif
 			rm -f $(srcdir)/$$dir/$(DOCMASK); \
 		fi; \
 	done
-
-
-
 
 macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODIRS)/$(MACROMASK)
 	-@( \
