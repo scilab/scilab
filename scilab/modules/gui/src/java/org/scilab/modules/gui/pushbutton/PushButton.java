@@ -25,6 +25,12 @@ public interface PushButton extends Widget {
 	void setText(String text);
 
 	/**
+	 * Sets the icon of a PushButton
+	 * @param filename the path to the icon image to set to the PushButton
+	 */
+	void setIcon(String filename);
+	
+	/**
 	 * To set the Background color of the element.
 	 * @param color the Color
 	 */

@@ -15,6 +15,8 @@ import org.scilab.modules.gui.separator.ScilabSeparatorBridge;
 import org.scilab.modules.gui.separator.Separator;
 import org.scilab.modules.gui.tab.ScilabTabBridge;
 import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.toolbar.ScilabToolBarBridge;
+import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.window.ScilabWindowBridge;
@@ -734,6 +736,18 @@ public class ScilabBridge {
 	 */
 	public static PushButton createPushButton() {
 		return ScilabPushButtonBridge.createPushButton();
+	}
+	
+	/*****************/
+	/* ToolBar Bridge */
+	/*****************/
+	
+	/**
+	 * Creates a new ToolBar
+	 * @return the created ToolBar
+	 */
+	public static ToolBar createToolBar() {
+		return ScilabToolBarBridge.createToolBar();
 	}
 	
 	/*****************/

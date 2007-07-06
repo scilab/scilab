@@ -9,6 +9,7 @@ import java.awt.Font;
 
 import javax.swing.border.LineBorder;
 
+import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.canvas.Canvas;
@@ -16,6 +17,7 @@ import org.scilab.modules.gui.container.ScilabContainer;
 import org.scilab.modules.gui.dockable.Dockable;
 import org.scilab.modules.gui.layout.LayoutManager;
 import org.scilab.modules.gui.pushbutton.PushButton;
+import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -136,11 +138,32 @@ public class ScilabFrame extends ScilabContainer implements Frame {
 	 * @param member the member to add
 	 * @return index of member in frame components
 	 */
-	public int addMember(PushButton member) {
+	public int addMember(CheckBox member) {
+//		 TODO code this
+		//return ScilabBridge.addMember(this, member);
+		return 0;
+	}
+	
+	/**
+	 * Add a member (dockable element) to a Scilab frame and returns its index
+	 * @param member the member to add
+	 * @return index of member in frame components
+	 */
+	public int addMember(RadioButton member) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
+	/**
+	 * Add a member (dockable element) to a Scilab frame and returns its index
+	 * @param member the member to add
+	 * @return index of member in frame components
+	 */
+	public int addMember(PushButton member) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
 	/**
 	 * Add a member (dockable element) to a Scilab frame and returns its index
 	 * @param member the member to add

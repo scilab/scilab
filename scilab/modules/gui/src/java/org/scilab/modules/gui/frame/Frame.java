@@ -10,9 +10,11 @@ import java.awt.Font;
 import javax.swing.border.LineBorder;
 
 import org.scilab.modules.gui.canvas.Canvas;
+import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.container.Container;
 import org.scilab.modules.gui.layout.LayoutManager;
 import org.scilab.modules.gui.pushbutton.PushButton;
+import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.tab.Tab;
 
 /**
@@ -27,6 +29,13 @@ public interface Frame extends Container {
 	 * @return the position of the canvas in the member list.
 	 */
 	int addMember(Canvas member);
+
+	/**
+	 * We want to be able to add a CheckBox in a Frame.
+	 * @param member the member to add
+	 * @return the position of the CheckBox in the member list.
+	 */
+	int addMember(CheckBox member);
 	
 	/**
 	 * We want to be able to add a PushButton in a Frame.
@@ -34,6 +43,13 @@ public interface Frame extends Container {
 	 * @return the position of the PushButton in the member list.
 	 */
 	int addMember(PushButton member);
+	
+	/**
+	 * We want to be able to add a RadioButton in a Frame.
+	 * @param member the member to add
+	 * @return the position of the RadioButton in the member list.
+	 */
+	int addMember(RadioButton member);
 	
 	/**
 	 * We want to be able to add a PushButton in a Frame with a BorderLayout.
@@ -74,7 +90,7 @@ public interface Frame extends Container {
 	 */
 	int addMember(Frame member, int flowLayoutPosition);
 	
-	// TODO : Check if this should be possible
+	// TODO : Check if this should be possible and how it will behave
 	/**
 	 * We want to be able to add a Tab in a Frame.
 	 * @param member the member to add

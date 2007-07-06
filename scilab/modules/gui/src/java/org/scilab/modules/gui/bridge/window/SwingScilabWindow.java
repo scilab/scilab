@@ -5,13 +5,19 @@ package org.scilab.modules.gui.bridge.window;
 
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
+import javax.swing.JToolBar;
 
 import org.flexdock.docking.DockingManager;
 import org.flexdock.docking.DockingPort;
 import org.flexdock.docking.defaults.DefaultDockingPort;
 
+import org.scilab.modules.gui.bridge.menubar.SwingScilabMenuBar;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
+import org.scilab.modules.gui.bridge.toolbar.SwingScilabToolBar;
 import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.textbox.TextBox;
+import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -22,12 +28,18 @@ import org.scilab.modules.gui.window.Window;
  * This implementation uses FlexDock package
  * @author Vincent COUVERT
  * @author Bruno JOFRET
+ * @author Marouane BEN JELLOUL
  */
 public class SwingScilabWindow extends JFrame implements Window {
 
 	private static final int DEFAULTWIDTH = 500;
 	private static final int DEFAULTHEIGHT = 500;
 
+	private DefaultDockingPort sciDockingPort;
+	private SwingScilabMenuBar menuBar;
+	private SwingScilabToolBar toolBar;
+	private SwingScilabTextBox infoBar;
+	
 	/**
 	 * Constructor
 	 */
@@ -37,11 +49,19 @@ public class SwingScilabWindow extends JFrame implements Window {
 		// TODO : Only for testing : Must be removed
 		this.setDims(new Size(DEFAULTWIDTH, DEFAULTHEIGHT));
 		this.setTitle("Scilab 5.0");
-
+		
+		/* defining the Layout */
+		super.setLayout(new java.awt.BorderLayout());
+		
 		/* Create automatically a docking port associated to the window */
-		DefaultDockingPort sciDockingPort = new DefaultDockingPort();
-		/* The docking port becomes the content panel of the new created window */
-		this.setContentPane(sciDockingPort);
+		sciDockingPort = new DefaultDockingPort();
+		/* The docking port is the center of the Layout of the Window */
+		super.add(sciDockingPort, java.awt.BorderLayout.CENTER);
+		
+		/* there is no menuBar, no toolBar and no infoBar at creation */
+		this.menuBar = null;
+		this.toolBar = null;
+		this.infoBar = null;
 	}
 
 	/**
@@ -120,7 +140,8 @@ public class SwingScilabWindow extends JFrame implements Window {
 	 * @return the docking port associated to the window
 	 */
 	private DockingPort getDockingPort() {
-		return (DockingPort) getContentPane();
+		//return (DockingPort) centerFrame.getContentPane();
+		return (DockingPort) sciDockingPort;
 	}
 
 	/**
@@ -135,9 +156,30 @@ public class SwingScilabWindow extends JFrame implements Window {
 	/**
 	 * Sets a Scilab MenuBar to a Scilab window
 	 * @param newMenuBar the Scilab MenuBar to add to the Scilab window
-	 * @see org.scilab.modules.gui.window.Window#setMenuBar(org.scilab.modules.gui.widget.MenuBar)
+	 * @see org.scilab.modules.gui.window.Window#setMenuBar(org.scilab.modules.gui.menubar.MenuBar)
 	 */
 	public void setMenuBar(MenuBar newMenuBar) {
-		super.setJMenuBar((JMenuBar) newMenuBar);
+		this.menuBar = (SwingScilabMenuBar) newMenuBar;
+		super.setJMenuBar(this.menuBar);
+	}
+	
+	/**
+	 * Sets a Scilab ToolBar to a Scilab window
+	 * @param newToolBar the Scilab ToolBar to set to the Scilab window
+	 * @see org.scilab.modules.gui.window.Window#setToolBar(org.scilab.modules.gui.toolbar.ToolBar)
+	 */
+	public void setToolBar(ToolBar newToolBar) {
+		this.toolBar = (SwingScilabToolBar) newToolBar;
+		super.add(this.toolBar, java.awt.BorderLayout.PAGE_START);
+	}
+
+	/**
+	 * Sets a Scilab InfoBar to a Scilab window
+	 * @param newInfoBar the Scilab InfoBar to set to the Scilab window
+	 * @see org.scilab.modules.gui.window.Window#setInfoBar(org.scilab.modules.gui.textbox.TextBox)
+	 */
+	public void setInfoBar(TextBox newInfoBar) {
+		this.infoBar = (SwingScilabTextBox) newInfoBar;
+		super.add(this.infoBar, java.awt.BorderLayout.PAGE_END);
 	}
 }

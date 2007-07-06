@@ -313,4 +313,12 @@ public class ScilabPushButton extends ScilabWidget implements PushButton {
 		
 	}
 
+	/**
+	 * Sets the icon of a PushButton
+	 * @param filename the path to the icon image to set to the PushButton
+	 */
+	public void setIcon(String filename) {
+		// TODO Auto-generated method stub
+		
+	}
 }

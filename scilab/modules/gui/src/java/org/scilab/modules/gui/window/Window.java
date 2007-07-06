@@ -5,8 +5,9 @@ package org.scilab.modules.gui.window;
 
 import org.scilab.modules.gui.uielement.UIElement;
 import org.scilab.modules.gui.menubar.MenuBar;
-
 import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.textbox.TextBox;
+import org.scilab.modules.gui.toolbar.ToolBar;
 
 /**
  * Interface for Scilab GUIs windows
@@ -38,4 +39,16 @@ public interface Window extends UIElement {
 	 * @param newMenuBar the MenuBar to add to the window
 	 */
 	void setMenuBar(MenuBar newMenuBar);
+	
+	/**
+	 * Sets a ToolBar to a window
+	 * @param newToolBar the ToolBar to set to the window
+	 */
+	void setToolBar(ToolBar newToolBar);
+	
+	/**
+	 * Sets a InfoBar to a window
+	 * @param newInfoBar the Scilab InfoBar to set to the Scilab window
+	 */
+	void setInfoBar(TextBox newInfoBar);
 }

@@ -3,8 +3,8 @@
 
 package org.scilab.modules.gui.bridge.pushbutton;
 
-import java.awt.Color;
-
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.border.LineBorder;
 
@@ -68,23 +68,7 @@ public class SwingScilabPushButton extends JButton implements PushButton {
 	public void setPosition(Position newPosition) {
 		this.setLocation(newPosition.getX(), newPosition.getY());
 	}
-
-//	/**
-//	 * Sets the text of a swing Scilab PushButton
-//	 * @param text the text to set to the PushButton
-//	*/
-//	public void setText(String text) {
-//		super.setText(text);
-//	}
-//	
-//	/**
-//	 * To set the Background color of the element.
-//	 * @param color the Color
-//	 */
-//	public void setBackground(Color color) {
-//		super.setBackground(color);
-//	}
-//	
+	
 	/**
 	 * To set the Border color and size of the element.
 	 * @param lineBorder the LineBorder
@@ -92,13 +76,14 @@ public class SwingScilabPushButton extends JButton implements PushButton {
 	public void setBorder(LineBorder lineBorder) {
 		super.setBorder(lineBorder);
 	}
-//	
-//	/**
-//	 * To enable or disable the PushButton.
-//	 * @param value true to enable or false to disable
-//	 */
-//	public void setEnabled(boolean value) {
-//		super.setEnabled(value);
-//	}
+	
+	/**
+	 * Sets the icon of a PushButton
+	 * @param filename the path to the icon image to set to the PushButton
+	 */
+	public void setIcon(String filename) {
+		super.setIcon(new ImageIcon(filename));
+	}
+
 }
 

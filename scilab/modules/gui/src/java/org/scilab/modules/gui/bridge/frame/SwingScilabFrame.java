@@ -9,13 +9,17 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
+import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
+import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.canvas.Canvas;
+import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.dockable.Dockable;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.layout.LayoutManager;
 import org.scilab.modules.gui.pushbutton.PushButton;
+import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -172,7 +176,45 @@ public class SwingScilabFrame extends JPanel implements Frame {
 		this.add(member);
 		return this.getComponentZOrder(member);
 	}
+	
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in ArrayList
+	 */
+	public int addMember(CheckBox member) {
+		return this.addMember((SwingScilabCheckBox) member);
+	}
 
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in ArrayList
+	 */
+	private int addMember(SwingScilabCheckBox member) {
+		this.add(member);
+		return this.getComponentZOrder(member);
+	}
+	
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in ArrayList
+	 */
+	public int addMember(RadioButton member) {
+		return this.addMember((SwingScilabRadioButton) member);
+	}
+
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in ArrayList
+	 */
+	private int addMember(SwingScilabRadioButton member) {
+		this.add(member);
+		return this.getComponentZOrder(member);
+	}
+	
 	/**
 	 * Add a member (dockable element) to container and returns its index
 	 * @param member the member to add
@@ -189,7 +231,7 @@ public class SwingScilabFrame extends JPanel implements Frame {
 	 * @return index of member in ArrayList
 	 */
 	private int addMember(SwingScilabPushButton member) {
-		//System.out.println("Test: start: public int addMember(SwingScilabPushButton member)");
+		//System.out.println("Test: start: private int addMember(SwingScilabPushButton member)");
 		this.add(member);
 		return this.getComponentZOrder(member);
 	}
@@ -270,14 +312,6 @@ public class SwingScilabFrame extends JPanel implements Frame {
 		System.out.println("[SwingScilabFrame.addMember(Dockable)] : Must not be there !!!");
 		return -1;
 	}
-	
-	/**
-	 * To set the Background color of the element.
-	 * @param color the Color
-	 */
-//	public void setBackground(Color color) {
-//		super.setBackground(color);
-//	}
 	
 	/**
 	 * To set the Border color and size of the element.

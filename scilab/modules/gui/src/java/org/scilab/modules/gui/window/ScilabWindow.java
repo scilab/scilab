@@ -6,6 +6,8 @@ package org.scilab.modules.gui.window;
 import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.uielement.ScilabUIElement;
 import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.textbox.TextBox;
+import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -16,9 +18,7 @@ import org.scilab.modules.gui.menubar.MenuBar;
  * @author Bruno JOFRET
  */
 public class ScilabWindow extends ScilabUIElement implements Window {
-
-	//private TextBox infoBar;
-
+	
 	/**
 	 * Constructor
 	 */
@@ -131,5 +131,24 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	public void setMenuBar(MenuBar newMenuBar) {
 		ScilabBridge.setMenuBar(this, newMenuBar);
 	}
-
+	
+	/**
+	 * Sets a Scilab ToolBar to a Scilab window
+	 * @param newToolBar the Scilab ToolBar to set to the Scilab window
+	 * @see org.scilab.modules.gui.window.Window#setToolBar(org.scilab.modules.gui.toolbar.ToolBar)
+	 */
+	public void setToolBar(ToolBar newToolBar) {
+		// TODO : add code and continue
+		//ScilabBridge.setToolBar(this, newToolBar);
+	}
+	
+	/**
+	 * Sets a Scilab InfoBar to a Scilab window
+	 * @param newInfoBar the Scilab InfoBar to set to the Scilab window
+	 * @see org.scilab.modules.gui.window.Window#setInfoBar(org.scilab.modules.gui.textbox.TextBox)
+	 */
+	public void setInfoBar(TextBox newInfoBar) {
+		// TODO : add code and continue
+		// ScilabBridge.setInfoBar(this, newInfoBar);
+	}
 }
