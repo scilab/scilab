@@ -21,7 +21,7 @@ int C2F(sci_stripblanks1) _PARAMS((char *fname,unsigned long fname_len))
 	  char **Str,**Str3; /*@ Str is the input string matrix, Str3 is the output string matrix*/
 	  int numRow;        /*@ The row number of the output string matrix*/
       int numCol;        /*@ The col number of the output string matrix*/
-	  int m1,n1,mn,m2,n2,i,l2,n4,l1=0;
+	  int m1,n1,mn,m2,n2,i,l2,n4=0;
 	  Rhs = Max(0, Rhs);
 	  CheckRhs(1,4);
       Str3=(char**)MALLOC(sizeof(char*)*(50*50));	  
