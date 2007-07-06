@@ -4,9 +4,9 @@
 /* Authors : Cong Wu                                                      */
 /* desc : converts the matrix of strings  str-matrix  into lower case (for*/  
 /*          "l"  ;default value) or upper case (for  "u" ).               */
-/*        [y]=convstr(str-matrix, ["flag"])
+/*        [y]=convstr(str-matrix, ["flag"])                               */
 /*              str-matrix, y : matrices of strings                       */
-/*              "flag"  : string ( "u"  for upper or  "l"  for lower 
+/*              "flag"  : string ( "u"  for upper or  "l"  for lower      */
 /*                        (default value))                                */
 /*------------------------------------------------------------------------*/
 #include <string.h>
@@ -19,8 +19,6 @@
 int numRow;
 int numCol;
 /*-------------------------------------------------------------------------------------*/
-
-/*-----------------------------------------------------------------------------------*/
 int C2F(sci_strsplit1) _PARAMS((char *fname,unsigned long fname_len))
 {
   char **Str,**Str3;
