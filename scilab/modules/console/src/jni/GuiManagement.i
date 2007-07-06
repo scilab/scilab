@@ -50,7 +50,7 @@ public class";
 /* JavaDoc */
 %javamethodmodifiers setScilabLines(int nbRows, int nbCols) "
  /**
-   * Sets Scilab parameters used to display data according the size of the console
+   * Set Scilab parameters used to display data according the size of the console
    * @param nbRows number of rows that can be used to display data
    * @param nbCols number of columns that can be used to display data
    */
