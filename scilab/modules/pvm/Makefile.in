@@ -451,6 +451,8 @@ top_srcdir = @top_srcdir@
 
 #SUFFIXES = .xml .sci .htm
 @PVM_TRUE@SUFFIXES = .sci 
+@PVM_FALSE@SWIGMASK = *.i
+@PVM_TRUE@SWIGMASK = *.i
 
 ########### INSTALL DOCUMENTATION ###################
 # Install HTML files into the right target
@@ -1292,18 +1294,16 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @GUI_TRUE@@PVM_TRUE@		$(ANT) checkstyle; \
 @GUI_TRUE@@PVM_TRUE@	fi
 
-@GUI_TRUE@@PVM_TRUE@@SWIG_TRUE@all-local: swig-build java-build
-@GUI_TRUE@@PVM_TRUE@@SWIG_FALSE@all-local: java-build
+@GUI_TRUE@@PVM_TRUE@all-local:  java-build
+@GUI_FALSE@@PVM_TRUE@all-local: 
 
 # Not GUI
-@GUI_FALSE@@PVM_TRUE@@SWIG_TRUE@all-local: swig-build
-@GUI_FALSE@@PVM_TRUE@@SWIG_FALSE@all-local: 
-
-@PVM_TRUE@swig-build: $(SWIG_FILES)
+@PVM_TRUE@@SWIG_TRUE@$(BUILT_SOURCES): swig-build
+@PVM_TRUE@swig-build: 
 @PVM_TRUE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 @PVM_TRUE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
-@PVM_TRUE@	if test ! -z "$(SWIG_FILES)"; then \
-@PVM_TRUE@		for file in $(SWIG_FILES) ; do \
+@PVM_TRUE@	if test ! -z "$(BUILT_SOURCES)"; then \
+@PVM_TRUE@		for file in $(BUILT_SOURCES) ; do \
 @PVM_TRUE@			echo "Swig process of $$file ..."; \
 @PVM_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
 @PVM_TRUE@		done; \
@@ -1464,18 +1464,16 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @GUI_TRUE@@PVM_FALSE@		$(ANT) checkstyle; \
 @GUI_TRUE@@PVM_FALSE@	fi
 
-@GUI_TRUE@@PVM_FALSE@@SWIG_TRUE@all-local: swig-build java-build
-@GUI_TRUE@@PVM_FALSE@@SWIG_FALSE@all-local: java-build
+@GUI_TRUE@@PVM_FALSE@all-local:  java-build
+@GUI_FALSE@@PVM_FALSE@all-local: 
 
 # Not GUI
-@GUI_FALSE@@PVM_FALSE@@SWIG_TRUE@all-local: swig-build
-@GUI_FALSE@@PVM_FALSE@@SWIG_FALSE@all-local: 
-
-@PVM_FALSE@swig-build: $(SWIG_FILES)
+@PVM_FALSE@@SWIG_TRUE@$(BUILT_SOURCES): swig-build
+@PVM_FALSE@swig-build: 
 @PVM_FALSE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 @PVM_FALSE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
-@PVM_FALSE@	if test ! -z "$(SWIG_FILES)"; then \
-@PVM_FALSE@		for file in $(SWIG_FILES) ; do \
+@PVM_FALSE@	if test ! -z "$(BUILT_SOURCES)"; then \
+@PVM_FALSE@		for file in $(BUILT_SOURCES) ; do \
 @PVM_FALSE@			echo "Swig process of $$file ..."; \
 @PVM_FALSE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
 @PVM_FALSE@		done; \

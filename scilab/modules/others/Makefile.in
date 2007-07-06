@@ -450,6 +450,7 @@ mydatadir = $(pkgdatadir)/modules/$(modulename)
 
 #SUFFIXES = .xml .sci .htm
 SUFFIXES = .sci 
+SWIGMASK = *.i
 
 ########### INSTALL DOCUMENTATION ###################
 # Install HTML files into the right target
@@ -753,18 +754,16 @@ uninstall-am: uninstall-libsciothers_la_etcDATA \
 @GUI_TRUE@		$(ANT) checkstyle; \
 @GUI_TRUE@	fi
 
-@GUI_TRUE@@SWIG_TRUE@all-local: swig-build java-build
-@GUI_TRUE@@SWIG_FALSE@all-local: java-build
+@GUI_TRUE@all-local:  java-build
+@GUI_FALSE@all-local: 
 
 # Not GUI
-@GUI_FALSE@@SWIG_TRUE@all-local: swig-build
-@GUI_FALSE@@SWIG_FALSE@all-local: 
-
-swig-build: $(SWIG_FILES)
+@SWIG_TRUE@$(BUILT_SOURCES): swig-build
+swig-build: 
 	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
-	if test ! -z "$(SWIG_FILES)"; then \
-		for file in $(SWIG_FILES) ; do \
+	if test ! -z "$(BUILT_SOURCES)"; then \
+		for file in $(BUILT_SOURCES) ; do \
 			echo "Swig process of $$file ..."; \
 			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
 		done; \

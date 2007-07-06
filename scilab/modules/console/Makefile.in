@@ -309,7 +309,7 @@ libsciconsole_la_etcdir = $(mydatadir)/etc
 libsciconsole_la_etc_DATA = etc/console.quit etc/console.start
 
 #### SWIG Declaration ####
-SWIG_FILES = src/jni/HistoryManagement.i \
+BUILT_SOURCES = src/jni/HistoryManagement.i \
 src/jni/InterpreterManagement.i \
 src/jni/GuiManagement.i
 
@@ -319,6 +319,7 @@ mydatadir = $(pkgdatadir)/modules/$(modulename)
 
 #SUFFIXES = .xml .sci .htm
 SUFFIXES = .sci 
+SWIGMASK = *.i
 
 ########### INSTALL DOCUMENTATION ###################
 # Install HTML files into the right target
@@ -357,7 +358,8 @@ JARDIR = jar/
 JARMASK = *.jar
 # List of the localisation (languages) files
 LOCALISATIONFILES = errors.xml menus.xml messages.xml
-all: all-am
+all: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) all-am
 
 .SUFFIXES:
 .SUFFIXES: .sci .bin .c .lo .o .obj
@@ -613,13 +615,15 @@ distdir: $(DISTFILES)
 @GUI_FALSE@check-local:
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
-check: check-am
+check: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
 	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciconsole_la_etcdir)" "$(DESTDIR)$(libsciconsole_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
-install: install-am
+install: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) install-am
 install-exec: install-exec-am
 install-data: install-data-am
 uninstall: uninstall-am
@@ -643,6 +647,7 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
+	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
@@ -755,18 +760,16 @@ uninstall-am: uninstall-libsciconsole_la_etcDATA \
 @GUI_TRUE@		$(ANT) checkstyle; \
 @GUI_TRUE@	fi
 
-@GUI_TRUE@@SWIG_TRUE@all-local: swig-build java-build
-@GUI_TRUE@@SWIG_FALSE@all-local: java-build
+@GUI_TRUE@all-local:  java-build
+@GUI_FALSE@all-local: 
 
 # Not GUI
-@GUI_FALSE@@SWIG_TRUE@all-local: swig-build
-@GUI_FALSE@@SWIG_FALSE@all-local: 
-
-swig-build: $(SWIG_FILES)
+@SWIG_TRUE@$(BUILT_SOURCES): swig-build
+swig-build: 
 	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
-	if test ! -z "$(SWIG_FILES)"; then \
-		for file in $(SWIG_FILES) ; do \
+	if test ! -z "$(BUILT_SOURCES)"; then \
+		for file in $(BUILT_SOURCES) ; do \
 			echo "Swig process of $$file ..."; \
 			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
 		done; \

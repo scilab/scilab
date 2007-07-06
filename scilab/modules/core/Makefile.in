@@ -695,7 +695,9 @@ sci_gateway/fortran/sci_debug.f \
 sci_gateway/fortran/sci_error.f \
 sci_gateway/fortran/sci_isglobal.f
 
-libscicore_la_CFLAGS = -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ $(XML_FLAGS) -I$(top_srcdir)/libs/doublylinkedlist/includes
+libscicore_la_CFLAGS = -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ $(XML_FLAGS) \
+-I$(top_srcdir)/libs/doublylinkedlist/includes
+
 libscicore_la_LDFLAGS = $(XML_LIBS)
 pkglib_LTLIBRARIES = libscicore.la
 libscicore_la_SOURCES = $(CORE_C_SOURCES) $(CORE_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(JNI_SOURCES)
@@ -795,6 +797,7 @@ mydatadir = $(pkgdatadir)/modules/$(modulename)
 
 #SUFFIXES = .xml .sci .htm
 SUFFIXES = .sci 
+SWIGMASK = *.i
 
 ########### INSTALL DOCUMENTATION ###################
 # Install HTML files into the right target
@@ -2906,18 +2909,18 @@ uninstall-am: uninstall-libscicore_la_demosintroDATA \
 @GUI_TRUE@		$(ANT) checkstyle; \
 @GUI_TRUE@	fi
 
-@GUI_TRUE@@SWIG_TRUE@all-local: java-build swig-build
-@GUI_TRUE@@SWIG_FALSE@all-local: java-build
+@GUI_TRUE@all-local:  java-build
+@GUI_FALSE@all-local: 
 
 # Not GUI
-@GUI_FALSE@@SWIG_TRUE@all-local: swig-build
-@GUI_FALSE@@SWIG_FALSE@all-local: 
-
-swig-build: $(SWIG_FILES)
-	@if test ! -z "$(SWIG_FILES)"; then \
-		for file in $(SWIG_FILES) ; do \
+@SWIG_TRUE@$(BUILT_SOURCES): swig-build
+swig-build: 
+	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
+	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
+	if test ! -z "$(BUILT_SOURCES)"; then \
+		for file in $(BUILT_SOURCES) ; do \
 			echo "Swig process of $$file ..."; \
-			$(SWIG) $(SWIG_JAVA)  -outdir src/jni/ $$file; \
+			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
 		done; \
 	fi
 
