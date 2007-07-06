@@ -2866,10 +2866,12 @@ libdummy_elementaries_functions_la-icopy.lo: src/fortran/icopy.f
 @GUI_FALSE@@SWIG_FALSE@all-local: 
 
 swig-build: $(SWIG_FILES)
-	@if test ! -z "$(SWIG_FILES)"; then \
+	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
+	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
+	if test ! -z "$(SWIG_FILES)"; then \
 		for file in $(SWIG_FILES) ; do \
 			echo "Swig process of $$file ..."; \
-			$(SWIG_BIN) $(SWIG_JAVA)  -outdir src/jni/ $$file; \
+			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
 		done; \
 	fi
 

@@ -1480,10 +1480,12 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @GUI_FALSE@@SWIG_FALSE@@TCLTK_TRUE@all-local: 
 
 @TCLTK_TRUE@swig-build: $(SWIG_FILES)
-@TCLTK_TRUE@	@if test ! -z "$(SWIG_FILES)"; then \
+@TCLTK_TRUE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
+@TCLTK_TRUE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
+@TCLTK_TRUE@	if test ! -z "$(SWIG_FILES)"; then \
 @TCLTK_TRUE@		for file in $(SWIG_FILES) ; do \
 @TCLTK_TRUE@			echo "Swig process of $$file ..."; \
-@TCLTK_TRUE@			$(SWIG_BIN) $(SWIG_JAVA)  -outdir src/jni/ $$file; \
+@TCLTK_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
 @TCLTK_TRUE@		done; \
 @TCLTK_TRUE@	fi
 
@@ -1650,10 +1652,12 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @GUI_FALSE@@SWIG_FALSE@@TCLTK_FALSE@all-local: 
 
 @TCLTK_FALSE@swig-build: $(SWIG_FILES)
-@TCLTK_FALSE@	@if test ! -z "$(SWIG_FILES)"; then \
+@TCLTK_FALSE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
+@TCLTK_FALSE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
+@TCLTK_FALSE@	if test ! -z "$(SWIG_FILES)"; then \
 @TCLTK_FALSE@		for file in $(SWIG_FILES) ; do \
 @TCLTK_FALSE@			echo "Swig process of $$file ..."; \
-@TCLTK_FALSE@			$(SWIG_BIN) $(SWIG_JAVA)  -outdir src/jni/ $$file; \
+@TCLTK_FALSE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
 @TCLTK_FALSE@		done; \
 @TCLTK_FALSE@	fi
 

@@ -1300,10 +1300,12 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @GUI_FALSE@@PVM_TRUE@@SWIG_FALSE@all-local: 
 
 @PVM_TRUE@swig-build: $(SWIG_FILES)
-@PVM_TRUE@	@if test ! -z "$(SWIG_FILES)"; then \
+@PVM_TRUE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
+@PVM_TRUE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
+@PVM_TRUE@	if test ! -z "$(SWIG_FILES)"; then \
 @PVM_TRUE@		for file in $(SWIG_FILES) ; do \
 @PVM_TRUE@			echo "Swig process of $$file ..."; \
-@PVM_TRUE@			$(SWIG_BIN) $(SWIG_JAVA)  -outdir src/jni/ $$file; \
+@PVM_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
 @PVM_TRUE@		done; \
 @PVM_TRUE@	fi
 
@@ -1470,10 +1472,12 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @GUI_FALSE@@PVM_FALSE@@SWIG_FALSE@all-local: 
 
 @PVM_FALSE@swig-build: $(SWIG_FILES)
-@PVM_FALSE@	@if test ! -z "$(SWIG_FILES)"; then \
+@PVM_FALSE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
+@PVM_FALSE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
+@PVM_FALSE@	if test ! -z "$(SWIG_FILES)"; then \
 @PVM_FALSE@		for file in $(SWIG_FILES) ; do \
 @PVM_FALSE@			echo "Swig process of $$file ..."; \
-@PVM_FALSE@			$(SWIG_BIN) $(SWIG_JAVA)  -outdir src/jni/ $$file; \
+@PVM_FALSE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
 @PVM_FALSE@		done; \
 @PVM_FALSE@	fi
 

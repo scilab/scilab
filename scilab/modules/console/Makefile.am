@@ -42,7 +42,7 @@ libsciconsole_la_etcdir = $(mydatadir)/etc
 libsciconsole_la_etc_DATA = etc/console.quit etc/console.start
 
 #### SWIG Declaration ####
-SWIG_FILES=src/jni/HistoryManagement.i \
+SWIG_FILES = src/jni/HistoryManagement.i \
 src/jni/InterpreterManagement.i \
 src/jni/GuiManagement.i
 
