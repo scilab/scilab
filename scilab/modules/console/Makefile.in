@@ -755,7 +755,7 @@ uninstall-am: uninstall-libsciconsole_la_etcDATA \
 @GUI_TRUE@		$(ANT) checkstyle; \
 @GUI_TRUE@	fi
 
-@GUI_TRUE@@SWIG_TRUE@all-local: java-build swig-build
+@GUI_TRUE@@SWIG_TRUE@all-local: swig-build java-build
 @GUI_TRUE@@SWIG_FALSE@all-local: java-build
 
 # Not GUI

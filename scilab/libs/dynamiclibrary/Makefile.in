@@ -655,7 +655,7 @@ uninstall-am: uninstall-libscidynamiclibrary_la_includeHEADERS \
 @GUI_TRUE@		$(ANT) checkstyle; \
 @GUI_TRUE@	fi
 
-@GUI_TRUE@@SWIG_TRUE@all-local: java-build swig-build
+@GUI_TRUE@@SWIG_TRUE@all-local: swig-build java-build
 @GUI_TRUE@@SWIG_FALSE@all-local: java-build
 
 # Not GUI
@@ -666,7 +666,7 @@ swig-build: $(SWIG_FILES)
 	@if test ! -z "$(SWIG_FILES)"; then \
 		for file in $(SWIG_FILES) ; do \
 			echo "Swig process of $$file ..."; \
-			$(SWIG) $(SWIG_JAVA)  -outdir src/jni/ $$file; \
+			$(SWIG_BIN) $(SWIG_JAVA)  -outdir src/jni/ $$file; \
 		done; \
 	fi
 

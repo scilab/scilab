@@ -1292,7 +1292,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @GUI_TRUE@@PVM_TRUE@		$(ANT) checkstyle; \
 @GUI_TRUE@@PVM_TRUE@	fi
 
-@GUI_TRUE@@PVM_TRUE@@SWIG_TRUE@all-local: java-build swig-build
+@GUI_TRUE@@PVM_TRUE@@SWIG_TRUE@all-local: swig-build java-build
 @GUI_TRUE@@PVM_TRUE@@SWIG_FALSE@all-local: java-build
 
 # Not GUI
@@ -1303,7 +1303,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_TRUE@	@if test ! -z "$(SWIG_FILES)"; then \
 @PVM_TRUE@		for file in $(SWIG_FILES) ; do \
 @PVM_TRUE@			echo "Swig process of $$file ..."; \
-@PVM_TRUE@			$(SWIG) $(SWIG_JAVA)  -outdir src/jni/ $$file; \
+@PVM_TRUE@			$(SWIG_BIN) $(SWIG_JAVA)  -outdir src/jni/ $$file; \
 @PVM_TRUE@		done; \
 @PVM_TRUE@	fi
 
@@ -1462,7 +1462,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @GUI_TRUE@@PVM_FALSE@		$(ANT) checkstyle; \
 @GUI_TRUE@@PVM_FALSE@	fi
 
-@GUI_TRUE@@PVM_FALSE@@SWIG_TRUE@all-local: java-build swig-build
+@GUI_TRUE@@PVM_FALSE@@SWIG_TRUE@all-local: swig-build java-build
 @GUI_TRUE@@PVM_FALSE@@SWIG_FALSE@all-local: java-build
 
 # Not GUI
@@ -1473,7 +1473,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_FALSE@	@if test ! -z "$(SWIG_FILES)"; then \
 @PVM_FALSE@		for file in $(SWIG_FILES) ; do \
 @PVM_FALSE@			echo "Swig process of $$file ..."; \
-@PVM_FALSE@			$(SWIG) $(SWIG_JAVA)  -outdir src/jni/ $$file; \
+@PVM_FALSE@			$(SWIG_BIN) $(SWIG_JAVA)  -outdir src/jni/ $$file; \
 @PVM_FALSE@		done; \
 @PVM_FALSE@	fi
 

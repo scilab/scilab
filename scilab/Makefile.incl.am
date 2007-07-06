@@ -46,7 +46,7 @@ endif
 if GUI
 
 if SWIG
-all-local: java-build swig-build
+all-local: swig-build java-build
 else
 all-local: java-build
 endif
