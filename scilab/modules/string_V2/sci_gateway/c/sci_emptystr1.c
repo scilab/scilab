@@ -26,7 +26,8 @@ int C2F(sci_emptystr1) _PARAMS((char *fname,unsigned long fname_len))
    char **Str,**Str4;
    int m1,n1,mn,m2,n2,i,m4,n4,l1,l2=0;
    Rhs = Max(0, Rhs);
-   if (Rhs < 1) {  /* With no input argument returns a zero length character string */ 
+   if (Rhs < 1) 
+   {                                       /* With no input argument returns a zero length character string */ 
 		int m1_2=0;
 		int n1_2=0;
 		int l1_2=0;
@@ -35,36 +36,49 @@ int C2F(sci_emptystr1) _PARAMS((char *fname,unsigned long fname_len))
 		C2F(putlhsvar)();
 	    return 0;
    }
-   if (Rhs ==1) {    /*With a matrix for input argument returns a zero length character strings matrix of the same size */
+   if (Rhs ==1) 
+   {                                        /*With a matrix for input argument returns a zero length character strings matrix of the same size */
 		GetRhsVar(1,"S",&m1,&n1,&Str);
 		mn = m1*n1;  
 		l1=0;
 		Str4=(char**)MALLOC(sizeof(char*)*(m1*n1));
-		for (i=0;i<m1*n1;i++)
+		for (i=0;i<m1*n1;i++)              /*m1 is the number of row ; n1 is the number of col*/
 			{
 				Str4[i]=(char*)MALLOC(sizeof(char*)*(1));
 				strcpy(Str4[i],"");
 			}
-		CreateVarFromPtr(1,"S",&m1, &n1, Str4);
+		CreateVarFromPtr(1,"S",&m1, &n1, Str4);    /*m1 is the number of row ; n1 is the number of col*/
 		LhsVar(1)=1;
    }
-   if (Rhs == 2){  /*With two integer arguments returns a mxn zero length character strings matrix */
+   if (Rhs == 2)
+   {                                         /*With two integer arguments returns a m*n zero length character strings matrix */
 		GetRhsVar(1,"i",&m1,&n1,&l1);
 		m4=*istk(l1);
 		GetRhsVar(2,"i",&m2,&n2,&l2);
 		n4=*istk(l2);
-		if (m4*n4!=0) Str4=(char**)MALLOC(sizeof(char*)*(m4*n4));
-		for (i=0;i<m4*n4;i++)
+		if (m4*n4!=0)
 		{
-			Str4[i]=(char*)MALLOC(sizeof(char*)*(1));
-			strcpy(Str4[i],"");
+			Str4=(char**)MALLOC(sizeof(char*)*(m4*n4));
+			for (i=0;i<m4*n4;i++)              /*m4 is the number of row ; n4 is the number of col*/
+			{
+				Str4[i]=(char*)MALLOC(sizeof(char*)*(1));
+				strcpy(Str4[i],"");
+			}
+			CreateVarFromPtr(1,"S",&m4, &n4, Str4);    /*m4 is the number of row ; n4 is the number of col*/
+			LhsVar(1)=1;
 		}
-		CreateVarFromPtr(1,"S",&m4, &n4, Str4);
-		LhsVar(1)=1;
+		else 
+		{
+			int m1_2=0;
+			int n1_2=0;
+			int l1_2=0;
+			CreateVar(1,"c",  &m1_2, &n1_2, &l1_2);
+			LhsVar(1)=1;
+		}   
    }
    C2F(putlhsvar)();
    FREE(Str4);
    return 0;
 }
 
-/*-----------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/       
