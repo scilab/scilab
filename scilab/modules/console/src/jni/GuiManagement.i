@@ -1,5 +1,5 @@
 /* GuiManagement.i */
-/*  swig -java -package org.scilab.modules.console -outdir ../java/org/scilab/modules/console/ GuiManagement.i */
+/*  swig -java -outdir ../java/org/scilab/modules/console/ GuiManagement.i */
 %module GuiManagement
 %{
 #include "../c/GuiManagement.h"
@@ -7,6 +7,9 @@
 
 /* JavaDoc for GuiManagementJNI class */
 %pragma(java) jniclassclassmodifiers=%{
+package org.scilab.modules.console;
+
+
  /** 
    * All Scilab gui management used in Java console 
    * @author Vincent COUVERT
@@ -25,6 +28,9 @@ public class%}
 
 /* JavaDoc for GuiManagement class */
 %pragma(java) moduleclassmodifiers="
+package org.scilab.modules.console;
+
+
  /** 
    * All Scilab gui management used in Java console 
    * @author Vincent COUVERT

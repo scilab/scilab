@@ -179,7 +179,7 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 extern "C" {
 #endif
 
-SWIGEXPORT jstring JNICALL Java_org_scilab_modules_console_HistoryManagementJNI_getNextEntry(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_HistoryManagementJNI_getNextEntry(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   char *arg1 = (char *) 0 ;
   char *result = 0 ;
@@ -198,7 +198,7 @@ SWIGEXPORT jstring JNICALL Java_org_scilab_modules_console_HistoryManagementJNI_
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_scilab_modules_console_HistoryManagementJNI_getPreviousEntry(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_HistoryManagementJNI_getPreviousEntry(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   char *arg1 = (char *) 0 ;
   char *result = 0 ;
@@ -217,7 +217,7 @@ SWIGEXPORT jstring JNICALL Java_org_scilab_modules_console_HistoryManagementJNI_
 }
 
 
-SWIGEXPORT void JNICALL Java_org_scilab_modules_console_HistoryManagementJNI_setNewSearchInHistory(JNIEnv *jenv, jclass jcls, jint jarg1) {
+SWIGEXPORT void JNICALL Java_HistoryManagementJNI_setNewSearchInHistory(JNIEnv *jenv, jclass jcls, jint jarg1) {
   int arg1 ;
   
   (void)jenv;
@@ -227,7 +227,7 @@ SWIGEXPORT void JNICALL Java_org_scilab_modules_console_HistoryManagementJNI_set
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_scilab_modules_console_HistoryManagementJNI_searchBackward(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_HistoryManagementJNI_searchBackward(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   char *arg1 = (char *) 0 ;
   char *result = 0 ;
@@ -246,7 +246,7 @@ SWIGEXPORT jstring JNICALL Java_org_scilab_modules_console_HistoryManagementJNI_
 }
 
 
-SWIGEXPORT void JNICALL Java_org_scilab_modules_console_HistoryManagementJNI_AddHistory(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT void JNICALL Java_HistoryManagementJNI_AddHistory(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   char *arg1 = (char *) 0 ;
   
   (void)jenv;

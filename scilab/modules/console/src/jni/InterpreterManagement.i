@@ -1,5 +1,5 @@
 /* InterpreterManagement.i */
-/*  swig -java -package org.scilab.modules.console -outdir ../java/org/scilab/modules/console/ InterpreterManagement.i */
+/*  swig -java -outdir ../java/org/scilab/modules/console/ InterpreterManagement.i */
 %module InterpreterManagement
 %{
 #include "../c/InterpreterManagement.h"
@@ -7,6 +7,9 @@
 
 /* JavaDoc for InterpreterManagementJNI class */
 %pragma(java) jniclassclassmodifiers=%{
+package org.scilab.modules.console;
+
+
  /** 
    * All Scilab interpreter management used in Java console 
    * @author Vincent COUVERT
@@ -25,6 +28,9 @@ class%}
 
 /* JavaDoc for InterpreterManagement class */
 %pragma(java) moduleclassmodifiers="
+package org.scilab.modules.console;
+
+
  /** 
    * All Scilab interpreter management used in Java console 
    * @author Vincent COUVERT
