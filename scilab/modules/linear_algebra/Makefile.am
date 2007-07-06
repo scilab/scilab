@@ -1,9 +1,9 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
+### INRIA - Scilab 2006
 ##########
 
-LINEAR_ALGEBRA_LOCALIZATION_C_SOURCES = src/c/schurtable.c
+LINEAR_ALGEBRA_C_SOURCES = src/c/schurtable.c
 
 LINEAR_ALGEBRA_FORTRAN_SOURCES = src/fortran/intdggbal.f \
 src/fortran/intzgeqpf4.f \
@@ -88,15 +88,15 @@ sci_gateway/c/sci_lsq.c
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/Ex-schur.f \
 sci_gateway/fortran/bschur.f
 
-libscilinear_algebra_la_CFLAGS=  -Iincludes/ 
+libscilinear_algebra_la_CFLAGS=  -Iincludes/
 
 pkglib_LTLIBRARIES = libscilinear_algebra.la
 
-libscilinear_algebra_la_SOURCES = $(LINEAR_ALGEBRA_FORTRAN_SOURCES) $(LINEAR_ALGEBRA_LOCALIZATION_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscilinear_algebra_la_SOURCES = $(LINEAR_ALGEBRA_FORTRAN_SOURCES) $(LINEAR_ALGEBRA_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 libscilinear_algebra_la_LIBADD = $(top_builddir)/libs/lapack/libscilapack.la \
 $(top_builddir)/libs/blas/libsciblas.la \
-$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la  
+$(top_builddir)/modules/elementaries_functions/libscielementaries_functions.la
 
 #### Target ######
 modulename=linear_algebra
@@ -107,10 +107,10 @@ libscilinear_algebra_la_rootdir = $(mydatadir)
 libscilinear_algebra_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 
-#### linear_algebra : init scripts #### 
+#### linear_algebra : init scripts ####
 libscilinear_algebra_la_etcdir = $(mydatadir)/etc
 libscilinear_algebra_la_etc_DATA = etc/linear_algebra.quit etc/linear_algebra.start
-#### linear_algebra : gateway declaration #### 
+#### linear_algebra : gateway declaration ####
 libscilinear_algebra_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscilinear_algebra_la_sci_gateway_DATA = sci_gateway/linear_algebra_gateway.xml
 
