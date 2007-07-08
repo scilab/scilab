@@ -27,7 +27,6 @@ extern void reset_history(void);
 extern void write_scilab  __PARAMS((char *s));
 /*-----------------------------------------------------------------------------------*/
 #define MAXBUF	1024
-#define HISTORY_ID 3
 /*-----------------------------------------------------------------------------------*/
 typedef struct hist_
 {

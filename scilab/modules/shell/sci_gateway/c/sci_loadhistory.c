@@ -6,6 +6,7 @@
 #include "machine.h"
 #include "stack-c.h"
 #include "history.h"
+#include "inffic.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_loadhistory) _PARAMS((char *fname,unsigned long fname_len))
 {

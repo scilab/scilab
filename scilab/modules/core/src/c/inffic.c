@@ -6,6 +6,8 @@
 
 #define MAXDATA 5 
 
+
+
 static char *dataStrings[] = {
   "$MANCHAPTERS",
   "exec('SCI/etc/scilab.start',-1);",         /* start_up instructions file   */

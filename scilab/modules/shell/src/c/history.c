@@ -7,7 +7,7 @@
 #include "stack-c.h"
 #include "error_scilab.h"
 #include "cvstr.h"
-
+#include "inffic.h"
 #ifndef Max 
 #define Max(x,y)	(((x)>(y))?(x):(y))
 #endif

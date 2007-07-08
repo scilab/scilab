@@ -6,6 +6,7 @@
 #include "gw_core.h"
 #include "gw_shell.h"
 #include "stack-c.h"
+#include "inffic.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_savehistory) _PARAMS((char *fname,unsigned long fname_len))
 {
