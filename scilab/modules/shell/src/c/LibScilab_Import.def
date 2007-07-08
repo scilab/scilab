@@ -26,6 +26,7 @@ get_sci_data_strings
 cluni0_
 resetNumberOfCommands
 callFunctionFromGateway
+getSCIHOME
 ;
 CleanCurrentLine
 set_is_reading
