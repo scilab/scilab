@@ -13,6 +13,7 @@
 #include "machine.h"
 #include "stack-c.h"
 #include "MALLOC.h" 
+#include "src_string.h"
 /*-------------------------------------------------------------------------------------*/
 void scistrcat(char **Str,char **Str2,int mn)
 {

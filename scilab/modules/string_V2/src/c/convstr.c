@@ -3,6 +3,7 @@
 #include <ctype.h> 
 #include "gw_string.h"
 #include "MALLOC.h" 
+#include "src_string.h"
 
 
 void convstr(char **Str, char **Str3, char typ, int mn)

@@ -10,6 +10,7 @@
 #include <ctype.h> 
 #include "gw_string.h"
 #include "MALLOC.h" 
+#include "src_string.h"
 static char* substr(const char*str, unsigned start, unsigned end)
 {
 	unsigned n = end - start;

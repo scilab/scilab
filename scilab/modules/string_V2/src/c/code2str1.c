@@ -11,6 +11,7 @@
 #include <ctype.h> 
 #include "gw_string.h"
 #include "MALLOC.h" 
+#include "src_string.h"
 /*-----------------------------------------------------------------------------------*/
 void code2str(char **Str3,int m1, int n1, int *m4)
 {

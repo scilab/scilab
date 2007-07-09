@@ -11,6 +11,7 @@
 #include <ctype.h> 
 #include "gw_string.h"
 #include "MALLOC.h" 
+#include "src_string.h"
 /*------------------------------------------------------------------------*/
 void strsplit1(char **Str,char **Str3,int *u,int *v,int *w,int mn,int *m4)
 {

@@ -11,6 +11,7 @@
 #include <ctype.h> 
 #include "gw_string.h"
 #include "MALLOC.h" 
+#include "src_string.h"
 /*------------------------------------------------------------------------*/
 void tokens(char **Str,char **Str2,char **Str3,int *u,int *w,int mn,int mn2)
 {

@@ -12,6 +12,7 @@
 #include "machine.h"
 #include "stack-c.h"
 #include "MALLOC.h" 
+#include "src_string.h"
 /*-------------------------------------------------------------------------------------*/
 void str2code(char **Str,int *values,int *nbValues)
 {
