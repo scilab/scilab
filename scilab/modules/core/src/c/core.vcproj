@@ -374,10 +374,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\mexlib.c"
-				>
-			</File>
-			<File
 				RelativePath=".\msgout.c"
 				>
 			</File>

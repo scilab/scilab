@@ -107,24 +107,23 @@ am__objects_1 = libscicore_la-inffic.lo libscicore_la-cs2st.lo \
 	libscicore_la-getmodules.lo libscicore_la-fromc.lo \
 	libscicore_la-setgetSCIpath.lo libscicore_la-getmemory.lo \
 	libscicore_la-msgout.lo libscicore_la-Funtab.lo \
-	libscicore_la-mexlib.lo libscicore_la-csignal.lo \
-	libscicore_la-prompt.lo libscicore_la-CallScilab.lo \
-	libscicore_la-SendScilabJobs.lo libscicore_la-scimem.lo \
-	libscicore_la-banier.lo libscicore_la-callinterf.lo \
-	libscicore_la-isanan.lo libscicore_la-parse.lo \
-	libscicore_la-timer.lo libscicore_la-stack2.lo \
-	libscicore_la-Scierror.lo libscicore_la-sciprint.lo \
-	libscicore_la-sciprint_nd.lo libscicore_la-link.lo \
-	libscicore_la-xscion.lo libscicore_la-SciEnv.lo \
-	libscicore_la-hashtable_core.lo libscicore_la-returnanan.lo \
-	libscicore_la-LoadFunctionsTab.lo libscicore_la-with_module.lo \
-	libscicore_la-loadversion.lo libscicore_la-version.lo \
-	libscicore_la-stackinfo.lo libscicore_la-scirun.lo \
-	libscicore_la-SCIHOME.lo libscicore_la-warningmode.lo \
-	libscicore_la-InitializeCore.lo libscicore_la-TerminateCore.lo \
-	libscicore_la-coretable.lo libscicore_la-error_scilab.lo \
-	libscicore_la-message_scilab.lo libscicore_la-force_link.lo \
-	libscicore_la-returnProperty.lo \
+	libscicore_la-csignal.lo libscicore_la-prompt.lo \
+	libscicore_la-CallScilab.lo libscicore_la-SendScilabJobs.lo \
+	libscicore_la-scimem.lo libscicore_la-banier.lo \
+	libscicore_la-callinterf.lo libscicore_la-isanan.lo \
+	libscicore_la-parse.lo libscicore_la-timer.lo \
+	libscicore_la-stack2.lo libscicore_la-Scierror.lo \
+	libscicore_la-sciprint.lo libscicore_la-sciprint_nd.lo \
+	libscicore_la-link.lo libscicore_la-xscion.lo \
+	libscicore_la-SciEnv.lo libscicore_la-hashtable_core.lo \
+	libscicore_la-returnanan.lo libscicore_la-LoadFunctionsTab.lo \
+	libscicore_la-with_module.lo libscicore_la-loadversion.lo \
+	libscicore_la-version.lo libscicore_la-stackinfo.lo \
+	libscicore_la-scirun.lo libscicore_la-SCIHOME.lo \
+	libscicore_la-warningmode.lo libscicore_la-InitializeCore.lo \
+	libscicore_la-TerminateCore.lo libscicore_la-coretable.lo \
+	libscicore_la-error_scilab.lo libscicore_la-message_scilab.lo \
+	libscicore_la-force_link.lo libscicore_la-returnProperty.lo \
 	libscicore_la-returnPropertyList.lo \
 	libscicore_la-scilabmode.lo \
 	libscicore_la-GetXmlFileEncoding.lo libscicore_la-msgs.lo \
@@ -429,7 +428,6 @@ src/c/setgetSCIpath.c \
 src/c/getmemory.c \
 src/c/msgout.c \
 src/c/Funtab.c \
-src/c/mexlib.c \
 src/c/csignal.c \
 src/c/prompt.c \
 src/c/CallScilab.c \
@@ -797,7 +795,6 @@ mydatadir = $(pkgdatadir)/modules/$(modulename)
 
 #SUFFIXES = .xml .sci .htm
 SUFFIXES = .sci 
-SWIGMASK = *.i
 
 ########### INSTALL DOCUMENTATION ###################
 # Install HTML files into the right target
@@ -956,7 +953,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-loadversion.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-md5.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-message_scilab.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-mexlib.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-msgout.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-msgs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-msgstore.Plo@am__quote@
@@ -1312,13 +1308,6 @@ libscicore_la-Funtab.lo: src/c/Funtab.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/Funtab.c' object='libscicore_la-Funtab.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-Funtab.lo `test -f 'src/c/Funtab.c' || echo '$(srcdir)/'`src/c/Funtab.c
-
-libscicore_la-mexlib.lo: src/c/mexlib.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-mexlib.lo -MD -MP -MF $(DEPDIR)/libscicore_la-mexlib.Tpo -c -o libscicore_la-mexlib.lo `test -f 'src/c/mexlib.c' || echo '$(srcdir)/'`src/c/mexlib.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-mexlib.Tpo $(DEPDIR)/libscicore_la-mexlib.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/mexlib.c' object='libscicore_la-mexlib.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-mexlib.lo `test -f 'src/c/mexlib.c' || echo '$(srcdir)/'`src/c/mexlib.c
 
 libscicore_la-csignal.lo: src/c/csignal.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-csignal.lo -MD -MP -MF $(DEPDIR)/libscicore_la-csignal.Tpo -c -o libscicore_la-csignal.lo `test -f 'src/c/csignal.c' || echo '$(srcdir)/'`src/c/csignal.c
@@ -2912,8 +2901,12 @@ uninstall-am: uninstall-libscicore_la_demosintroDATA \
 @GUI_TRUE@all-local:  java-build
 @GUI_FALSE@all-local: 
 
-# Not GUI
+# If the user request for the SWIG generation of the wrappers Java => C/C++ 
+# We call the target swig-build on the variable BUILT_SOURCES 
+# We need to use BUILT_SOURCES because we want SWIG to be called BEFORE
+# the compilation of the C/C++ files...
 @SWIG_TRUE@$(BUILT_SOURCES): swig-build
+
 swig-build: 
 	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
