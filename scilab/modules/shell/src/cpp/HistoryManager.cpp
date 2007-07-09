@@ -139,15 +139,58 @@ char *getNextLineInScilabHistory(void)
 	return ScilabHistory.getLineCurrentPositionIterator();
 }
 /*------------------------------------------------------------------------*/
+char **searchTokenInScilabHistory(char *token,int *nb)
+{
+	char **lines = ScilabHistory.searchToken(token,nb);
+	return lines;
+}
+/*------------------------------------------------------------------------*/
+int getNumberOfLinesInScilabHistory(void)
+{
+	return ScilabHistory.getNumberOfLines();
+}
+/*------------------------------------------------------------------------*/
+void setSaveConsecutiveDuplicateLinesInScilabHistory(BOOL doit)
+{
+	ScilabHistory.setSaveConsecutiveDuplicateLines(doit);
+}
+/*------------------------------------------------------------------------*/
+BOOL getSaveConsecutiveDuplicateLinesInScilabHistory(void)
+{
+	return ScilabHistory.getSaveConsecutiveDuplicateLines();
+}
+/*------------------------------------------------------------------------*/
+void setAfterHowManyLinesScilabHistoryIsSaved(int num)
+{
+	ScilabHistory.setAfterHowManyLinesHistoryIsSaved(num);
+}
+/*------------------------------------------------------------------------*/
+int getAfterHowManyLinesScilabHistoryIsSaved(void)
+{
+	return ScilabHistory.getAfterHowManyLinesHistoryIsSaved();
+}
+/*------------------------------------------------------------------------*/
+char *getNthLineInScilabHistory(int N)
+{
+	return ScilabHistory.getNthLine(N);
+}
+/*------------------------------------------------------------------------*/
 HistoryManager::HistoryManager()
 {
+	Commands.clear();
+	it_current_position = Commands.begin();
+	if (historyfilename) FREE(historyfilename);
 	historyfilename = NULL;
-	reset();
+	
+	saveconsecutiveduplicatelines = FALSE;
+	afterhowmanylineshistoryissaved = 0;
+	numberoflinesbeforehistoryissaved = 0;
 }
 /*------------------------------------------------------------------------*/
 HistoryManager::~HistoryManager()
 {
-	Commands.clear();
+	clear();
+	it_current_position = Commands.begin();
 	if (historyfilename)
 	{
 		FREE(historyfilename);
@@ -158,14 +201,60 @@ HistoryManager::~HistoryManager()
 BOOL HistoryManager::appendLine(char *line)
 {
 	BOOL bOK = FALSE;
+
 	if (line)
 	{
-		CommandLine Line(line);
-		Commands.push_back(Line);
-		bOK = TRUE;
+		if (!saveconsecutiveduplicatelines)
+		{
+			char *previousline = getLastLine();
+
+			if ( (previousline) && (strcmp(previousline,line)== 0) )
+			{
+				it_current_position = Commands.end();
+				it_current_position--;
+				bOK = FALSE;
+			}
+			else
+			{
+				CommandLine Line(line);
+				Commands.push_back(Line);
+				it_current_position = Commands.end();
+				it_current_position--;
+
+				numberoflinesbeforehistoryissaved++;
+				bOK = TRUE;
+			}
+			if (previousline) {FREE(previousline);previousline = NULL;}
+		}
+		else
+		{
+			CommandLine Line(line);
+			Commands.push_back(Line);
+			it_current_position = Commands.end();
+			it_current_position--;
+			numberoflinesbeforehistoryissaved++;
+			bOK = TRUE;
+		}
+	}
+	else 
+	{
+		it_current_position = Commands.end();
+		it_current_position--;
 	}
 
-	it_current_position = Commands.end();
+	if (afterhowmanylineshistoryissaved != 0)
+	{
+		if (afterhowmanylineshistoryissaved == numberoflinesbeforehistoryissaved)
+		{
+			saveHistory();
+			numberoflinesbeforehistoryissaved = 0;
+		}
+	}
+	else
+	{
+		numberoflinesbeforehistoryissaved = 0;
+	}
+	
 
 	return bOK;
 }
@@ -184,7 +273,7 @@ BOOL HistoryManager::appendLines(char **lines,int nbrlines)
 /*------------------------------------------------------------------------*/
 void HistoryManager::displayHistory(void)
 {
-	int nbline = 1;
+	int nbline = 0;
 	list<CommandLine>::iterator it_commands;
 	for(it_commands=Commands.begin(); it_commands != Commands.end(); ++it_commands) 
 	{
@@ -205,6 +294,7 @@ char *HistoryManager::getFilename(void)
 	if (historyfilename) 
 	{
 		filename = (char*)MALLOC(sizeof(char)*(strlen(historyfilename)+1));
+		strcpy(filename,historyfilename);
 	}
 	return filename;
 }
@@ -217,6 +307,13 @@ void HistoryManager::setFilename(char *filename)
 		historyfilename = (char*)MALLOC(sizeof(char)*(strlen(filename)+1));
 		if (historyfilename) strcpy(historyfilename,filename);
 	}
+}
+/*------------------------------------------------------------------------*/
+BOOL HistoryManager::saveHistory(void)
+{
+	BOOL bOK = FALSE;
+	if (historyfilename) bOK = writeToFile(historyfilename);
+	return bOK;
 }
 /*------------------------------------------------------------------------*/
 BOOL HistoryManager::writeToFile(char *filename)
@@ -233,7 +330,6 @@ BOOL HistoryManager::writeToFile(char *filename)
 			list<CommandLine>::iterator it_commands;
 			for(it_commands=Commands.begin(); it_commands != Commands.end(); ++it_commands) 
 			{
-				char *line = (*it_commands).get();
 				if (line)
 				{
 					fputs(line,pFile);
@@ -245,6 +341,7 @@ BOOL HistoryManager::writeToFile(char *filename)
 
 			commentendsession = getCommentDateSession(FALSE);
 			fputs(commentendsession,pFile);
+			fputs("\n",pFile);
 			if (commentendsession) {FREE(commentendsession);commentendsession=NULL;}
 			fclose(pFile);
 			bOK = TRUE;
@@ -255,6 +352,7 @@ BOOL HistoryManager::writeToFile(char *filename)
 /*------------------------------------------------------------------------*/
 BOOL HistoryManager::loadFromFile(char *filename)
 {
+	#define SECURITY_BUFFER 1000
 	BOOL bOK = FALSE;
 	char *commentbeginsession = NULL;
 	char  line[MAXBUF];
@@ -263,10 +361,17 @@ BOOL HistoryManager::loadFromFile(char *filename)
 	pFile = fopen (filename,"rt");
 	if (pFile)
 	{
+		int nb_lines = 0;
 		while(fgets (line,sizeof(line),pFile) != NULL)
 		{
-			line[strlen(line)-1]='\0'; /* enleve le retour chariot */
+			line[strlen(line)-1]='\0'; /* remove carriage return */
 			appendLine(line);
+			if ( nb_lines == (Commands.max_size() - SECURITY_BUFFER) )
+			{
+				sciprint("History file too huge : %s\n",filename);
+				sciprint("Please reduce size of history file.\n");
+				break;
+			}
 		}
 		fclose(pFile);
 		bOK = TRUE;
@@ -311,7 +416,7 @@ char *HistoryManager::ASCIItime(const struct tm *timeptr)
 		"Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
 	};
 
-	static char result[26];
+	static char result[27];
 
 	sprintf(result, "%.3s %.3s%3d %.2d:%.2d:%.2d %d",
 		wday_name[timeptr->tm_wday],
@@ -325,13 +430,23 @@ char *HistoryManager::ASCIItime(const struct tm *timeptr)
 /*-----------------------------------------------------------------------------------*/ 
 void HistoryManager::reset(void)
 {
-	Commands.clear();
-	it_current_position = Commands.end();
+	char *commentbeginsession = NULL;
+
+	clear();
+	it_current_position = Commands.begin();
 	if (historyfilename)
 	{
 		FREE(historyfilename);
 		historyfilename = NULL;
 	}
+	saveconsecutiveduplicatelines = FALSE;
+	afterhowmanylineshistoryissaved = 0;
+	numberoflinesbeforehistoryissaved = 0;
+
+	/* Ajout date & heure debut session */
+	commentbeginsession = getCommentDateSession(TRUE);
+	appendLine(commentbeginsession);
+	if (commentbeginsession) {FREE(commentbeginsession);commentbeginsession=NULL;}
 }
 /*-----------------------------------------------------------------------------------*/ 
 char **HistoryManager::getAllLines(int *numberoflines)
@@ -363,32 +478,144 @@ char **HistoryManager::getAllLines(int *numberoflines)
 /*-----------------------------------------------------------------------------------*/ 
 char *HistoryManager::getLastLine(void)
 {
-	list<CommandLine>::iterator it_commands = Commands.end();
-	 it_current_position = Commands.end();
-	return (*it_commands).get();
+	char *line = NULL;
+	if (!Commands.empty()) 
+	{
+		list<CommandLine>::iterator it_commands = Commands.end();
+		it_commands--;
+		line = (*it_commands).get();
+		it_current_position = it_commands;
+	}
+	return line;
 }
 /*-----------------------------------------------------------------------------------*/ 
 char *HistoryManager::getFirstLine(void)
 {
-	list<CommandLine>::iterator it_commands = Commands.begin();
-	it_current_position = Commands.begin();
-	return (*it_commands).get();
+	char *line = NULL;
+	if (!Commands.empty()) 
+	{
+		list<CommandLine>::iterator it_commands = Commands.begin();
+		it_current_position = it_commands;
+		line = (*it_commands).get();
+	}
+	return line;
 }
 /*-----------------------------------------------------------------------------------*/ 
 char *HistoryManager::getLineCurrentPositionIterator(void)
 {
-	return (*it_current_position).get();
+	char *line = NULL;
+	if (!Commands.empty()) 
+	{
+		line = (*it_current_position).get();
+	}
+	return line;
 }
 /*-----------------------------------------------------------------------------------*/ 
 void HistoryManager::moveToPreviousPositionIterator(void)
 {
-	it_current_position--;
+	list<CommandLine>::iterator it_begin = Commands.begin();
+	if (it_current_position == it_begin) it_current_position = it_begin;
+	else it_current_position--;
 }
 /*-----------------------------------------------------------------------------------*/ 
 void HistoryManager::moveToNextPositionIterator(void)
 {
-	it_current_position++;
+	list<CommandLine>::iterator it_end = Commands.end();
+	it_end--;
+	if (it_current_position == it_end) it_current_position = it_end;
+	else it_current_position++;
 }
 /*-----------------------------------------------------------------------------------*/ 
+char **HistoryManager::searchToken(char *token,int *nb)
+{
+	char **lines = NULL;
+	*nb = 0;
 
+	if (token)
+	{
+		int i = 0;
+		list<CommandLine>::iterator it_commands;
+		
+		for(it_commands=Commands.begin(); it_commands != Commands.end(); ++it_commands) 
+		{
+			char *line = (*it_commands).get();
+			if ( strncmp(line,token,strlen(token)) == 0 )
+			{
+				i++;
+				if (lines) lines = (char**)REALLOC(lines,i*(sizeof(char*)));
+				else lines = (char**)MALLOC(i*(sizeof(char*)));
+				lines[i-1] = line;
+			}
+			else 
+			{
+				FREE(line);
+				line = NULL;
+			}
+		}
+		*nb = i;
+	}
+	return lines;
+}
+/*-----------------------------------------------------------------------------------*/ 
+int HistoryManager::getNumberOfLines(void)
+{
+	return (int)Commands.size();
+}
+/*-----------------------------------------------------------------------------------*/ 
+char *HistoryManager::getNthLine(int N)
+{
+	char *line = NULL;
 
+	if (N < 0) N = getNumberOfLines() + N;
+
+	if ( (N >= 0) && (N <= getNumberOfLines()) )
+	{
+		int i = 0;
+		list<CommandLine>::iterator it_commands;
+		for(it_commands=Commands.begin(); it_commands != Commands.end(); ++it_commands) 
+		{
+			if (i == N) 
+			{
+				line = (*it_commands).get();
+				return line;
+			}
+			i++;
+		}
+	}
+	return line;
+}
+/*-----------------------------------------------------------------------------------*/ 
+void HistoryManager::setSaveConsecutiveDuplicateLines(BOOL doit)
+{
+	saveconsecutiveduplicatelines = doit;
+}
+/*-----------------------------------------------------------------------------------*/ 
+BOOL HistoryManager::getSaveConsecutiveDuplicateLines(void)
+{
+	return saveconsecutiveduplicatelines;
+}
+/*-----------------------------------------------------------------------------------*/ 
+void HistoryManager::setAfterHowManyLinesHistoryIsSaved(int num)
+{
+	if (num >= 0) 
+	{
+		afterhowmanylineshistoryissaved = num;
+		numberoflinesbeforehistoryissaved = 0;
+	}
+}
+/*-----------------------------------------------------------------------------------*/ 
+int HistoryManager::getAfterHowManyLinesHistoryIsSaved(void)
+{
+	return afterhowmanylineshistoryissaved;
+}
+/*-----------------------------------------------------------------------------------*/ 
+void HistoryManager::clear(void)
+{
+	list<CommandLine>::iterator it_commands;
+	for(it_commands=Commands.begin(); it_commands != Commands.end(); ++it_commands) 
+	{
+		(*it_commands).free();
+	}
+	Commands.clear();
+}
+/*-----------------------------------------------------------------------------------*/ 

@@ -12,16 +12,11 @@ CommandLine::CommandLine(void)
 /*------------------------------------------------------------------------*/
 CommandLine::CommandLine(char *line_)
 {
-	this->set(line_);
+	set(line_);
 }
 /*------------------------------------------------------------------------*/
 CommandLine::~CommandLine()
 {
-	if (line)
-	{
-		FREE(line);
-		line = NULL;
-	}
 }
 /*------------------------------------------------------------------------*/
 char *CommandLine::get(void)
@@ -41,8 +36,12 @@ BOOL CommandLine::set(char *line_)
 	if (line_)
 	{
 		line =  (char*) MALLOC ((strlen(line_)+1)*(sizeof(char)));
-		strcpy(line,line_);
-		bOK = TRUE;
+		if (line)
+		{
+			strcpy(line,line_);
+			bOK = TRUE;
+
+		}
 	}
 	else
 	{
@@ -50,5 +49,14 @@ BOOL CommandLine::set(char *line_)
 		bOK = FALSE;
 	}
 	return bOK;
+}
+/*------------------------------------------------------------------------*/
+void CommandLine::free(void)
+{
+	if (line)
+	{
+		FREE(line);
+		line = NULL;
+	}
 }
 /*------------------------------------------------------------------------*/

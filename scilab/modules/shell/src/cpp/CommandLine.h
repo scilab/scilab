@@ -14,10 +14,12 @@ class CommandLine
 {
 public:
 	CommandLine(void);
+	~CommandLine();
 	CommandLine(char *line_);
 	char *get(void);
 	BOOL set(char *line_);
-	~CommandLine();
+	void free(void);
+	
 protected:
 private:
 	char *line;

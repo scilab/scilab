@@ -31,10 +31,21 @@ public:
 	char **getAllLines(int *numberoflines);
 	char *getLastLine(void);
 	char *getFirstLine(void);
+	int getNumberOfLines(void);
+	char *getNthLine(int N);
 	
 	char *getLineCurrentPositionIterator(void);
 	void moveToPreviousPositionIterator(void);
 	void moveToNextPositionIterator(void);
+	char **searchToken(char *token,int *nb);
+
+	void setSaveConsecutiveDuplicateLines(BOOL doit);
+	BOOL getSaveConsecutiveDuplicateLines(void);
+
+	void setAfterHowManyLinesHistoryIsSaved(int num);
+	int getAfterHowManyLinesHistoryIsSaved(void);
+
+	
 
 protected:
 
@@ -42,9 +53,16 @@ private:
 	list<CommandLine> Commands;
 	char *historyfilename;
 	list<CommandLine>::iterator it_current_position;
+	BOOL saveconsecutiveduplicatelines;
+	int afterhowmanylineshistoryissaved;
+	int numberoflinesbeforehistoryissaved;
 
 	char *getCommentDateSession(BOOL BeginSession);
 	char *ASCIItime(const struct tm *timeptr);
+
+	BOOL saveHistory(void);
+	void clear(void);
+
 };
 /*------------------------------------------------------------------------*/
 #endif /* __HISTORYMANAGER_CPP_H__ */
