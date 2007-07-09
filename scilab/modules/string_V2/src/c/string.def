@@ -1,0 +1,57 @@
+LIBRARY    string.dll
+
+
+EXPORTS
+; --------------------------------------- 
+; string
+; --------------------------------------- 
+	code2str
+	convstr
+	gw_string_
+	strwidth
+	ScilabStr2C
+	ScilabMStr2CM
+	ScilabMStr2C
+	ScilabC2MStr2
+	squash_r
+	ScilabCM2MStr
+	scistrcat
+	sci_ascii_
+	sci_ascii1_
+	sci_code2str_
+	sci_code2str1_
+	sci_convstr_
+	sci_convstr1_
+	sci_emptystr_
+	sci_emptystr1_
+	sci_grep_
+	kmp
+	getnext
+	sci_grep1_
+	sci_length_
+	sci_length1_
+	sci_part_
+	sci_part1_
+	sci_regexp_
+	sci_regexppri_
+	sci_ssort_
+	sci_str2code_
+	sci_str2code1_
+	sci_strcat_
+	sci_strcat1_
+	sci_strindex_
+	sci_strindex1_
+	sci_string_
+	sci_stripblanks1_
+	sci_strsplit_
+	sci_strsplit1_
+	sci_strsubst_
+	sci_strsubst1_
+	sci_tokens_
+	sci_tokens1_
+	str2code
+	intstrcat_
+	stripblanks
+	strsplit1
+	tokens
+
