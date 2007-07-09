@@ -17,33 +17,31 @@
 #include "stack-c.h"
 #include "MALLOC.h" 
 #include "src_string.h"
-int numRow;
-int numCol;
-/*-------------------------------------------------------------------------------------*/
 
-/*-----------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------*/
 int C2F(sci_convstr1) _PARAMS((char *fname,unsigned long fname_len))
 {
   char **Str,**Str3;
   char typ = '*';
+  int numRow;
+  int numCol;
   int m1,n1,mn,i,m4,n4,l4=0;
   Rhs = Max(0, Rhs);
   CheckRhs(1,4);
   switch ( VarType(1)) {
   case 10 :
-    GetRhsVar(1,"S",&m1,&n1,&Str);
+    GetRhsVar(1,"S",&m1,&n1,&Str);     /* To input the string matrix */
     mn = m1*n1;  
     GetRhsVar(2,"c",&m4,&n4,&l4);
     if ( m4*n4 != 0) 
-	     typ = cstk(l4)[0]; 
+	     typ = cstk(l4)[0];                  /* To put "flag" into typ; whether "u" or "l" */
 	Str3=(char**)MALLOC(sizeof(char*)*(m1*n1));
-	for (i=0;i<m1*n1;i++)
+	for (i=0;i<m1*n1;i++)                  /* To malloc as the same size as the first input file */
 	{
 		Str3[i]=(char*)MALLOC(sizeof(char*)*(1));
 		strcpy(Str3[i],"");
 	}
-	
-	convstr(Str,Str3,typ,mn);
+	convstr(Str,Str3,typ,mn);     /* The algorithem */
 	//for (x=0;x<mn;x++){
 	//	for (y=0;y<strlen(Str[x]);y++){
 	//		if (typ=='u') {     /*converts the matrix of strings  str-matrix  into upper case */
@@ -59,8 +57,6 @@ int C2F(sci_convstr1) _PARAMS((char *fname,unsigned long fname_len))
 	//	}
  //       Str3[x][y]=0;
 	//}
-
-
 	numRow   = m1;  /*Output */
     numCol   = n1 ;
     CreateVarFromPtr( Rhs+1, "S", &numRow, &numCol, Str3 ) ;
