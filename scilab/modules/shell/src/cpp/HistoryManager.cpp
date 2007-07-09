@@ -330,6 +330,7 @@ BOOL HistoryManager::writeToFile(char *filename)
 			list<CommandLine>::iterator it_commands;
 			for(it_commands=Commands.begin(); it_commands != Commands.end(); ++it_commands) 
 			{
+				char *line = (*it_commands).get();
 				if (line)
 				{
 					fputs(line,pFile);
