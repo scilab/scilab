@@ -144,20 +144,17 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "machine.h"
-#include "sci_pvm.h"
-#include "setgetSCIpath.h"
-
 #ifndef _MSC_VER 
 #include <unistd.h>
 #endif 
-
 
 #ifdef _MSC_VER 
 #include <sys/utime.h>
 #else 
 #include <sys/time.h>
 #endif /** _MSC_VER **/
+
+#include <stdarg.h>
 
 /* stat function */
 #ifdef _MSC_VER
@@ -168,43 +165,46 @@
 #include "../../gui/src/c/xsci/x_charproc.h"
 #endif 
 
-#include <stdarg.h>
+#include "machine.h"
+#include "sci_pvm.h"
+#include "setgetSCIpath.h"
 #include "sciprint.h"
+#include "sciprint_nd.h"
 
 extern int pvmendtask(void);
 
 typedef char *strings;
 
 static strings Scipvm_error[]= { 
-      "OK",
-      "bad parameter",
-      "Barrier count mismatch",
-      "read past end of buffer",
-      "no such host",
-      "No such executable",
-      "can not get memory",
-      "can not decode received msg",
-      "daemond pvmd is not responding",
-      "no current buffer",
-      "bad message id",
-      "null group name is illegal",
-      "already in group",
-      "no group with that name",
-      "not in group",
-      "no such instance in group",
-      "host failed",
-      "no parent task",
-      "function not implemented",
-      "pvmd system error",
-      "pvmd-pvmd protocol mismatch",
-      "out of ressources",
-      "host already configured",
-      "failed to exec new slave pvmd",
-      "already oing operation",
-      "no such task",
-      "no such (group,instance)",
-      "(group,instance) already exists",
-      "Unknown error",
+	"OK", /* 0 */
+	"Bad parameter", /* 1 */
+	"Barrier count mismatch", /* 2 */
+	"Read past end of buffer", /* 3 */
+	"No such host", /* 4 */
+	"No such executable", /* 5 */
+	"Can not get memory", /* 6 */
+	"Can not decode received msg", /* 7 */
+	"Daemon pvmd is not responding", /* 8 */
+	"No current buffer", /* 9 */
+	"Bad message id", /* 10 */
+	"Null group name is illegal", /* 11 */
+	"Already in group", /* 12 */
+	"No group with that name", /* 13 */
+	"Not in group", /* 14 */
+	"No such instance in group", /* 15 */
+	"Host failed", /* 16 */
+	"No parent task", /* 17 */
+	"Function not implemented", /* 18 */
+	"Pvmd system error", /* 19 */
+	"Pvmd-pvmd protocol mismatch", /* 20 */
+	"Out of ressources", /* 21 */
+	"Host already configured (Duplicate host)", /* 22 */
+	"Failed to exec new slave pvmd", /* 23 */
+	"Already oing operation", /* 24 */
+	"No such task", /* 25 */
+	"No such (group,instance)", /* 26 */
+	"(group,instance) already exists", /* 27 */
+	"Unknown error", /* 28 */
 };
 
 /*--------------------------------------------------
@@ -268,75 +268,75 @@ char *scipvm_error_msg(int err)
  * start pvm 
  *------------------------------------------------------------------------*/
 
-
-void C2F(scipvmstart)(int *res, char *hostfile, int *l)
+void C2F(scipvmstart)(int *res, char *hostfile, int *hostfile_len)
 {
-  struct stat buf;
-  char *rd = 0;
-  char *ro = 0;
-  char *path = NULL;
-  int argc = 0;
-  char *argv[2];
+	struct stat buf;
+	char *rd = 0;
+	char *ro = 0;
+	char *path = NULL;
+	int argc = 0;
+	char *argv[2];
+	int block=1;
 
-  argv[0] = "";
-  argv[1] = (char*)0;
-  if (!strcmp(hostfile, "null")) 
-    {
-      /* If hostfile is not specified, we try
-       * $HOME/.pvmd.conf, then
-       * $SCI/.pvmd.conf 
-	   * if both files are not found, let pvmd does his work
-       */ 
-      if (!argc && (ro = getenv("PVM_ROOT")) && (rd = getenv("HOME"))){
-	if ((path = (char *) MALLOC(strlen(rd)+12)) == NULL) {
-	  (void) fprintf(stderr, "Error MALLOC in pvm_error\n");
-	  *res = PvmNoMem;
-	  return;
-	}
-	strcpy(path, rd);
-	strcat(path, "/.pvmd.conf"); 
-	if (stat(path, &buf) == 0){
-	  argc = 1;
-	  argv[0] = path;
-	  sciprint_nd("The configuration file\n %s\nis used.\n", path);
-	} else {
-	  sciprint_nd("Warning: PVM_ROOT is set to %s\r\n",ro);
-	  sciprint_nd("\tbut there exists no configuration file:\r\n");
-	  sciprint_nd("\t%s\r\n", path);
-	  FREE(path);
-	}
-      } /* PVM_ROOT + HOME */
-      if (!argc && (rd = getSCIpath())){
-	if ((path = (char *) MALLOC(strlen(rd)+12)) == NULL) {
-	  (void) fprintf(stderr, "Error malloc in pvm_error\n");
-	  *res = PvmNoMem;
-	  return;
-	}
-	strcpy(path, rd);
-	strcat(path, "/.pvmd.conf"); 
-	if (stat(path, &buf) == 0){
-	  sciprint_nd("The standard configuration file $SCI/.pvmd.conf will be used.\r\n");
-	  sciprint_nd("\tWith SCI=%s\r\n",rd);
-	  sciprint_nd("\tSCI will have to be set on remote hosts \r\n");
-	  sciprint_nd("\tin order to spawn scilab\r\n",rd);
-	  argc = 1;
-	  argv[0] = path;
-	} else {
-	  FREE(path);
-	  sciprint_nd("Warning: The standard configuration file $SCI/.pvmd.conf was not found.\r\n");
-	  sciprint_nd("\tWe supposed that PVM and scilab are in standard place on your net\r\n");
-	  sciprint_nd("\t (Cf. man pvmd3)\r\n");
-	}
-      } /* SCI */
-    } else {
-      if (stat(hostfile, &buf) == -1){
-	sciprint("%s: No such file or directory\r\n", hostfile);
-      } else {
-	argv[0] = hostfile;
-	argc = 1;
-      }
-    }
-  *res = pvm_start_pvmd(argc, argv, 1);
+	argv[0] = "";
+	argv[1] = (char*)0;
+	if (!strcmp(hostfile, "null")) 
+		{
+			/* If hostfile is not specified, we try
+			 * $HOME/.pvmd.conf, then
+			 * $SCI/.pvmd.conf 
+			 * if both files are not found, let pvmd does his work
+			 */ 
+			if (!argc && (ro = getenv("PVM_ROOT")) && (rd = getenv("HOME"))){
+				if ((path = (char *) MALLOC(strlen(rd)+strlen(PVM_CONFIG_FILE)+1)) == NULL) {
+					(void) fprintf(stderr, "Error MALLOC in pvm_error\n");
+					*res = PvmNoMem;
+					return;
+				}
+				strcpy(path, rd);
+				strcat(path, PVM_CONFIG_FILE); 
+				if (stat(path, &buf) == 0){
+					argc = 1;
+					argv[0] = path;
+					sciprint_nd("The configuration file\n %s\nis used.\n", path);
+				} else {
+					sciprint_nd("Warning: PVM_ROOT is set to %s\r\n",ro);
+					sciprint_nd("\tbut there exists no configuration file:\r\n");
+					sciprint_nd("\t%s\r\n", path);
+					FREE(path);
+				}
+			} /* PVM_ROOT + HOME */
+			if (!argc && (rd = getSCIpath())){
+				if ((path = (char *) MALLOC(strlen(rd)+strlen(PVM_CONFIG_FILE)+1)) == NULL) {
+					(void) fprintf(stderr, "Error malloc in pvm_error\n");
+					*res = PvmNoMem;
+					return;
+				}
+				strcpy(path, rd);
+				strcat(path, PVM_CONFIG_FILE); 
+				if (stat(path, &buf) == 0){
+					sciprint_nd("The standard configuration file $SCI%s will be used.\r\n",PVM_CONFIG_FILE);
+					sciprint_nd("\tWith SCI=%s\r\n",rd);
+					sciprint_nd("\tSCI will have to be set on remote hosts \r\n");
+					sciprint_nd("\tin order to spawn scilab\r\n",rd);
+					argc = 1;
+					argv[0] = path;
+				} else {
+					FREE(path);
+					sciprint_nd("Warning: The standard configuration file $SCI%s was not found.\r\n",PVM_CONFIG_FILE);
+					sciprint_nd("\tWe supposed that PVM and scilab are in standard place on your net\r\n");
+					sciprint_nd("\t (Cf. man pvmd3)\r\n");
+				}
+			} /* SCI */
+		} else {
+			if (stat(hostfile, &buf) == -1){
+				sciprint("%s: No such file or directory\r\n", hostfile);
+			} else {
+				argv[0] = hostfile;
+				argc = 1;
+			}
+		}
+	*res = pvm_start_pvmd(argc, argv, block);
 } 
 
 
@@ -399,10 +399,7 @@ void C2F(scipvmgettimer)(double *res)
  * spawn a scilab 
  *------------------------------------------------------------------------*/
 
-void C2F(scipvmspawn)(char *task,  int *l1, 
-		      char *win,   int *l2,
-		      char *where, int *l3, 
-		      int *ntask,  int *tids, int *res)
+void C2F(scipvmspawn)(char *task,  int *l1, char *win,   int *l2, char *where, int *l3, int *ntask,  int *taskId, int *res)
 {
   
   int flag = PvmTaskDefault;
@@ -415,13 +412,18 @@ void C2F(scipvmspawn)(char *task,  int *l1,
   cmd[0] = 0;
 
   if ( !strcmp(where, "null") )
+	  {
     where = NULL;
+	  }
   else
+	  {
     flag = PvmTaskHost;
+	  }
+  /* TODO : make a better detection of the remote scilab bin */
 #ifdef _MSC_VER
   strcpy(cmd, "scilex.exe");
 #else
-  strcpy(cmd, "scilab");
+  strcpy(cmd, "/home/sylvestre/dev/scilab5/bin/scilab");
 #endif 
 #ifdef _MSC_VER
   if ( _stricmp(task,"null") != 0) 
@@ -441,26 +443,24 @@ void C2F(scipvmspawn)(char *task,  int *l1,
   for ( i = 0 ; arg[i] != NULL ; i++) 
     sciprint("arg %d =[%s]\r\n",i,arg[i]) ;
   */
-  *res = pvm_spawn(cmd, arg, flag, where, *ntask, tids);
+  *res = pvm_spawn(cmd, arg, flag, where, *ntask, taskId);
 }
 
 /*------------------------------------------------------------------------
  * spawn 
  *------------------------------------------------------------------------*/
   
-void C2F(scipvmspawnindependent)(char *task,  int *l1, 
-				 int *ntask,
-				 char *where, int *l3, 
-				 int *tids, int *res)
+void C2F(scipvmspawnindependent)(char *task,  int *l1, int *ntask, char *where, int *l3, int *taskId, int *res)
 {
-  int flag = PvmTaskDefault;
+	int flag = PvmTaskDefault;
+	char **argv=NULL;
 
   if (!strcmp(where,"null"))
     where = NULL;
   else
     flag = PvmTaskHost;
 
-  *res = pvm_spawn(task, NULL, flag, where, *ntask, tids);
+  *res = pvm_spawn(task, argv, flag, where, *ntask, taskId);
 } 
 
 
