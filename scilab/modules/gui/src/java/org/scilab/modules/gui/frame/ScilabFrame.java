@@ -16,8 +16,10 @@ import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.container.ScilabContainer;
 import org.scilab.modules.gui.dockable.Dockable;
 import org.scilab.modules.gui.layout.LayoutManager;
+import org.scilab.modules.gui.listbox.ListBox;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.radiobutton.RadioButton;
+import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -139,6 +141,28 @@ public class ScilabFrame extends ScilabContainer implements Frame {
 	 * @return index of member in frame components
 	 */
 	public int addMember(CheckBox member) {
+//		 TODO code this
+		//return ScilabBridge.addMember(this, member);
+		return 0;
+	}
+	
+	/**
+	 * Add a member (dockable element) to a Scilab frame and returns its index
+	 * @param member the member to add
+	 * @return index of member in frame components
+	 */
+	public int addMember(ListBox member) {
+//		 TODO code this
+		//return ScilabBridge.addMember(this, member);
+		return 0;
+	}
+	
+	/**
+	 * Add a member (dockable element) to a Scilab frame and returns its index
+	 * @param member the member to add
+	 * @return index of member in frame components
+	 */
+	public int addMember(Slider member) {
 //		 TODO code this
 		//return ScilabBridge.addMember(this, member);
 		return 0;

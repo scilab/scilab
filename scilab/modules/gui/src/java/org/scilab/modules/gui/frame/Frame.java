@@ -13,8 +13,10 @@ import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.container.Container;
 import org.scilab.modules.gui.layout.LayoutManager;
+import org.scilab.modules.gui.listbox.ListBox;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.radiobutton.RadioButton;
+import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.tab.Tab;
 
 /**
@@ -36,6 +38,20 @@ public interface Frame extends Container {
 	 * @return the position of the CheckBox in the member list.
 	 */
 	int addMember(CheckBox member);
+
+	/**
+	 * We want to be able to add a ListBox in a Frame.
+	 * @param member the member to add
+	 * @return the position of the listbox in the member list.
+	 */
+	int addMember(ListBox member);
+	
+	/**
+	 * We want to be able to add a Slider in a Frame.
+	 * @param member the member to add
+	 * @return the position of the slider in the member list.
+	 */
+	int addMember(Slider member);
 	
 	/**
 	 * We want to be able to add a PushButton in a Frame.
