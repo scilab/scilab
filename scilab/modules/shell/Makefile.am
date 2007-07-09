@@ -3,6 +3,11 @@
 ### INRIA - Scilab 2007
 ##########
 
+# List of the cpp files
+SHELL_CPP_SOURCES = src/cpp/CommandLine.cpp \
+src/cpp/HistoryManager.cpp
+
+
 # List of the c files
 SHELL_C_SOURCES = src/c/completion.c \
 src/c/clc.c \
@@ -28,6 +33,10 @@ SHELL_C_SOURCES += src/c/ShellPrintf_nogui.c \
 src/c/PutChar_linux_nogui.c
 endif
 
+
+# Includes need for the compilation
+libscishell_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -I$(top_srcdir)/libs/MALLOC/includes/
+
 # Includes need for the compilation
 libscishell_la_CFLAGS= $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/
 
@@ -38,7 +47,7 @@ libscishell_la_LDFLAGS = $(JAVA_JNI_LIBS)
 pkglib_LTLIBRARIES = libscishell.la
 
 # All the sources needed by libscishell.la
-libscishell_la_SOURCES = $(SHELL_C_SOURCES) $(GATEWAY_C_SOURCES) 
+libscishell_la_SOURCES = $(SHELL_C_SOURCES) $(SHELL_CPP_SOURCES) $(GATEWAY_C_SOURCES) 
 
 ## Libraries necessary
 libscishell_la_LIBADD = \
