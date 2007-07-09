@@ -4,7 +4,15 @@
 ##########
 
 STRING_C_SOURCES = src/c/strcat-c.c \
-src/c/men_Sutils.c
+src/c/men_Sutils.c \
+src/c/code2str1.c \
+src/c/convstr.c \
+src/c/scistrcat.c \
+src/c/str2code.c \
+src/c/stripblanks.c \
+src/c/strsplit1.c \
+src/c/tokens.c
+
 
 STRING_FORTRAN_SOURCES =src/fortran/strord.f src/fortran/strdsp.f
 
@@ -58,8 +66,7 @@ sci_gateway/fortran/sci_ascii.f \
 sci_gateway/fortran/sci_strsubst.f \
 sci_gateway/fortran/strops.f
 
-libscistring_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/ $(PCRE_FLAGS) \
--Isrc/c
+libscistring_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/ $(PCRE_FLAGS)
 libscistring_la_LDFLAGS = $(PCRE_LIBS)
 
 pkglib_LTLIBRARIES = libscistring.la
@@ -96,6 +103,7 @@ libscistring_la_sci_gateway_DATA = sci_gateway/string_V2_gateway.xml
 #### string : include files ####
 libscistring_la_includedir=$(pkgincludedir)/string
 libscistring_la_include_HEADERS = includes/men_Sutils.h \
-includes/gw_string.h
+includes/gw_string.h \
+includes/src_string.h
 
 include $(top_srcdir)/Makefile.incl.am
