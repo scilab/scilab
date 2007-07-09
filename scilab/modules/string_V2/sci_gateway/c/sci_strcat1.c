@@ -13,6 +13,7 @@
 #include "machine.h"
 #include "stack-c.h"
 #include "machine.h"
+#include "src_string.h"
 /*-------------------------------------------------------------------------------------*/
 int C2F(sci_strcat1) _PARAMS((char *fname,unsigned long fname_len))
 {

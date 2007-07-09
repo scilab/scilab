@@ -16,6 +16,7 @@
 #include "machine.h"
 #include "stack-c.h"
 #include "MALLOC.h" 
+#include "src_string.h"
 int numRow;
 int numCol;
 /*-------------------------------------------------------------------------------------*/
