@@ -49,7 +49,7 @@
 
 #include "MALLOC.h" /* MALLOC */
 #include "mexlib.h"
-
+#include "cvstr.h"
 #include "sciprint.h"
 
 static char *the_current_mex_name;
