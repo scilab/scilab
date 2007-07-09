@@ -55,13 +55,5 @@ int C2F(sci_strsplit1) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_tokens1) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_code2str1) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_str2code1) _PARAMS((char *fname,unsigned long fname_len));
-void strsplit1(char **Str,char **Str3,int *u,int *v,int *w,int mn,int *m4);
-void tokens(char **Str,char **Str2,char **Str3,int *u,int *w,int mn,int mn2);
-void code2str(char **Str3,int m1, int n1, int *m4);
-void convstr(char **Str, char **Str3, char typ, int mn);
-void stripblanks(char **Str,char **Str3,int mn,int n4);
-void str2code(char **Str,int *values,int *nbValues);
-void scistrcat(char **Str,char **Str2,int mn);
-
 #endif /*  __GW_STRING__ */
 /*-----------------------------------------------------------------------------------*/
