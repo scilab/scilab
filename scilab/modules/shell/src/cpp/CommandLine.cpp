@@ -7,12 +7,12 @@
 /*------------------------------------------------------------------------*/
 CommandLine::CommandLine(void)
 {
-	line = NULL;
+
 }
 /*------------------------------------------------------------------------*/
 CommandLine::CommandLine(char *line_)
 {
-	set(line_);
+	str.assign(line_);
 }
 /*------------------------------------------------------------------------*/
 CommandLine::~CommandLine()
@@ -21,13 +21,13 @@ CommandLine::~CommandLine()
 /*------------------------------------------------------------------------*/
 char *CommandLine::get(void)
 {
-	char *str = NULL;
-	if (line)
+	char *line = NULL;
+	if (str.length()>0)
 	{
-		str =  (char*) MALLOC ((strlen(line)+1)*(sizeof(char)));
-		strcpy(str,line);
+		line =  (char*) MALLOC ((str.length()+1)*(sizeof(char)));
+		strcpy(line,str.c_str() );
 	}
-	return str;
+	return line ;
 }
 /*------------------------------------------------------------------------*/
 BOOL CommandLine::set(char *line_)
@@ -35,28 +35,13 @@ BOOL CommandLine::set(char *line_)
 	BOOL bOK = FALSE;
 	if (line_)
 	{
-		line =  (char*) MALLOC ((strlen(line_)+1)*(sizeof(char)));
-		if (line)
-		{
-			strcpy(line,line_);
-			bOK = TRUE;
-
-		}
+		str.assign(line_);
+		bOK = TRUE;
 	}
 	else
 	{
-		line = NULL;
 		bOK = FALSE;
 	}
 	return bOK;
-}
-/*------------------------------------------------------------------------*/
-void CommandLine::free(void)
-{
-	if (line)
-	{
-		FREE(line);
-		line = NULL;
-	}
 }
 /*------------------------------------------------------------------------*/

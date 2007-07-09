@@ -9,6 +9,9 @@ extern "C"
 {
 #include "machine.h" /* BOOL */
 };
+#include <string>
+/*------------------------------------------------------------------------*/
+using namespace std ;
 /*------------------------------------------------------------------------*/
 class CommandLine
 {
@@ -18,11 +21,10 @@ public:
 	CommandLine(char *line_);
 	char *get(void);
 	BOOL set(char *line_);
-	void free(void);
 	
 protected:
 private:
-	char *line;
+	string str;
 };
 /*------------------------------------------------------------------------*/
 #endif /* __COMMANDLINE_H__ */

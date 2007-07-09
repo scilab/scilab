@@ -189,7 +189,7 @@ HistoryManager::HistoryManager()
 /*------------------------------------------------------------------------*/
 HistoryManager::~HistoryManager()
 {
-	clear();
+	Commands.clear();
 	it_current_position = Commands.begin();
 	if (historyfilename)
 	{
@@ -433,7 +433,7 @@ void HistoryManager::reset(void)
 {
 	char *commentbeginsession = NULL;
 
-	clear();
+	Commands.clear();
 	it_current_position = Commands.begin();
 	if (historyfilename)
 	{
@@ -608,15 +608,5 @@ void HistoryManager::setAfterHowManyLinesHistoryIsSaved(int num)
 int HistoryManager::getAfterHowManyLinesHistoryIsSaved(void)
 {
 	return afterhowmanylineshistoryissaved;
-}
-/*-----------------------------------------------------------------------------------*/ 
-void HistoryManager::clear(void)
-{
-	list<CommandLine>::iterator it_commands;
-	for(it_commands=Commands.begin(); it_commands != Commands.end(); ++it_commands) 
-	{
-		(*it_commands).free();
-	}
-	Commands.clear();
 }
 /*-----------------------------------------------------------------------------------*/ 

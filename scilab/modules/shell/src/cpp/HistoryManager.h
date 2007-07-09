@@ -61,7 +61,6 @@ private:
 	char *ASCIItime(const struct tm *timeptr);
 
 	BOOL saveHistory(void);
-	void clear(void);
 
 };
 /*------------------------------------------------------------------------*/
