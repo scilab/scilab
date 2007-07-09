@@ -19,6 +19,9 @@
 int next[20];
 int numRow;
 int numCol;
+int lnumRow   ;
+int lnumCol   ;
+int loutIndex ;
 char *_replacedstr;
 /*-------------------------------------------------------------------------------------*/
 void getnext(char T[],int *next);
@@ -112,28 +115,34 @@ int C2F(sci_strsubst1) _PARAMS((char *fname,unsigned long fname_len))
 		   }
 	}
    else { 
-		for (x=0;x<mn;++x){
+	   for (x=0;x<mn;++x){
 		if (strlen(Str2[0])==0) {
 			Scierror(999, "2th argument must not be an empty string");
 			return 1;
 		}
+		do
+		{
 		getnext(Str2[0],next); 
 		w=kmp(Str[x],Str2[0],pos);
-		if (w!=0) {
+		if (w!=0) 
+		{
              _replacedstr=newstr(Str[x], w-1, w+strlen(Str2[0])-1,*Str3);
 			 strcpy(Str[x],_replacedstr);
-		} 	
-		else {
-			 int lnumRow   = 1 ;
-			 int lnumCol   = mn ;
-			 int loutIndex = 0 ;
+		}
+		pos=w;
+		}while(w!=0);
+
+		
+			 lnumRow   = 1 ;
+			 lnumCol   = mn ;
+			 loutIndex = 0 ;
 			 CreateVar(Rhs+1+x,"c",&lnumRow,&lnumCol,&loutIndex);
 			 strncpy(cstk(loutIndex),Str[x], lnumCol);
              CreateVarFromPtr( Rhs+1, "S", &lnumRow, &lnumCol, Str ) ;
 			 LhsVar(x+1) = Rhs+x+1 ;
+		
 		}
-		}
-   }  
+   } 
 		numRow   = 1 ;
 	    numCol   = mn ;
 		CreateVarFromPtr( Rhs+1, "S", &numRow, &numCol, Str ) ;
