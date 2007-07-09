@@ -360,7 +360,9 @@ sci_gateway/fortran/sci_ascii.f \
 sci_gateway/fortran/sci_strsubst.f \
 sci_gateway/fortran/strops.f
 
-libscistring_la_CFLAGS = -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/ $(PCRE_FLAGS)
+libscistring_la_CFLAGS = -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/ $(PCRE_FLAGS) \
+-Isrc/c
+
 libscistring_la_LDFLAGS = $(PCRE_LIBS)
 pkglib_LTLIBRARIES = libscistring.la
 libscistring_la_SOURCES = $(STRING_C_SOURCES) $(STRING_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
@@ -1167,7 +1169,7 @@ uninstall-am: uninstall-libscistring_la_etcDATA \
 @GUI_TRUE@all-local:  java-build
 @GUI_FALSE@all-local: 
 
-# Not GUI
+# @TODO : explain with this !!!!!!!
 @SWIG_TRUE@$(BUILT_SOURCES): swig-build
 swig-build: 
 	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \

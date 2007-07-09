@@ -2287,7 +2287,7 @@ uninstall-am: uninstall-libsciscicos_la_etcDATA \
 @GUI_TRUE@all-local:  java-build
 @GUI_FALSE@all-local: 
 
-# Not GUI
+# @TODO : explain with this !!!!!!!
 @SWIG_TRUE@$(BUILT_SOURCES): swig-build
 swig-build: 
 	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \

@@ -1297,7 +1297,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @GUI_TRUE@@PVM_TRUE@all-local:  java-build
 @GUI_FALSE@@PVM_TRUE@all-local: 
 
-# Not GUI
+# @TODO : explain with this !!!!!!!
 @PVM_TRUE@@SWIG_TRUE@$(BUILT_SOURCES): swig-build
 @PVM_TRUE@swig-build: 
 @PVM_TRUE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
@@ -1467,7 +1467,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @GUI_TRUE@@PVM_FALSE@all-local:  java-build
 @GUI_FALSE@@PVM_FALSE@all-local: 
 
-# Not GUI
+# @TODO : explain with this !!!!!!!
 @PVM_FALSE@@SWIG_TRUE@$(BUILT_SOURCES): swig-build
 @PVM_FALSE@swig-build: 
 @PVM_FALSE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \

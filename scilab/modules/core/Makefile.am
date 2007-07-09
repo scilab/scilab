@@ -38,7 +38,6 @@ src/c/setgetSCIpath.c \
 src/c/getmemory.c \
 src/c/msgout.c \
 src/c/Funtab.c \
-src/c/mexlib.c \
 src/c/csignal.c \
 src/c/prompt.c \
 src/c/CallScilab.c \

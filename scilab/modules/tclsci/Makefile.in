@@ -1477,7 +1477,7 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @GUI_TRUE@@TCLTK_TRUE@all-local:  java-build
 @GUI_FALSE@@TCLTK_TRUE@all-local: 
 
-# Not GUI
+# @TODO : explain with this !!!!!!!
 @SWIG_TRUE@@TCLTK_TRUE@$(BUILT_SOURCES): swig-build
 @TCLTK_TRUE@swig-build: 
 @TCLTK_TRUE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
@@ -1647,7 +1647,7 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @GUI_TRUE@@TCLTK_FALSE@all-local:  java-build
 @GUI_FALSE@@TCLTK_FALSE@all-local: 
 
-# Not GUI
+# @TODO : explain with this !!!!!!!
 @SWIG_TRUE@@TCLTK_FALSE@$(BUILT_SOURCES): swig-build
 @TCLTK_FALSE@swig-build: 
 @TCLTK_FALSE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
