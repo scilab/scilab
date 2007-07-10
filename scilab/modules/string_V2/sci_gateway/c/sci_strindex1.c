@@ -34,8 +34,7 @@ int C2F(sci_strindex1) _PARAMS((char *fname,unsigned long fname_len))
     char ebuf[128];
     char *lbuf;
     const size_t nmatch = 10;
-    char *pattern[100];
-    int  z, cflags = 0;
+    int  z;
     int values[10];
     int nbValues=0;
     int position[10];
