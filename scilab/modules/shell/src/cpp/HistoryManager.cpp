@@ -74,36 +74,7 @@ char *getFilenameScilabHistory(void)
 /*------------------------------------------------------------------------*/
 BOOL setDefaultFilenameScilabHistory(void)
 {
-	BOOL bOK = FALSE;
-	char *SCIHOME = getSCIHOME();
-	char *defaultfilename = NULL;
-
-	if (SCIHOME)
-	{
-		int lengthbuildfilename = 0;
-		if (defaultfilename) FREE(defaultfilename);
-		lengthbuildfilename = (int)(strlen(SCIHOME)+strlen(SEPARATOR_FILE)+strlen(DEFAULT_HISTORY_FILE)+1);
-		defaultfilename = (char*)MALLOC(sizeof(char)*(lengthbuildfilename));
-		sprintf(defaultfilename,"%s%s%s",SCIHOME,SEPARATOR_FILE,DEFAULT_HISTORY_FILE);
-		FREE(SCIHOME); SCIHOME = NULL;
-		bOK = TRUE;
-	}
-	else
-	{
-		char  *history_name = get_sci_data_strings(HISTORY_ID);
-		int out_n = 0;
-		defaultfilename = (char*)MALLOC(MAXBUF*sizeof(char));
-		if ( defaultfilename == NULL ) return NULL;
-		C2F(cluni0)(history_name, defaultfilename, &out_n,(long)strlen(history_name),MAXBUF);
-	}
-
-	if (defaultfilename)
-	{
-		bOK = setFilenameScilabHistory(defaultfilename);
-		FREE(defaultfilename);
-		defaultfilename = NULL;
-	}
-	return bOK;
+	return ScilabHistory.setDefaultFilename();
 }
 /*------------------------------------------------------------------------*/
 void resetScilabHistory(void)
@@ -179,8 +150,8 @@ HistoryManager::HistoryManager()
 {
 	Commands.clear();
 	it_current_position = Commands.begin();
-	if (historyfilename) FREE(historyfilename);
-	historyfilename = NULL;
+
+	if (historyfilename) {FREE(historyfilename);historyfilename = NULL;}
 	
 	saveconsecutiveduplicatelines = FALSE;
 	afterhowmanylineshistoryissaved = 0;
@@ -218,7 +189,6 @@ BOOL HistoryManager::appendLine(char *line)
 				CommandLine Line(line);
 				Commands.push_back(Line);
 				it_current_position = Commands.end();
-
 				numberoflinesbeforehistoryissaved++;
 				bOK = TRUE;
 			}
@@ -288,6 +258,9 @@ void HistoryManager::displayHistory(void)
 char *HistoryManager::getFilename(void)
 {
 	char *filename = NULL;
+
+	if (historyfilename == NULL) setDefaultFilename();
+
 	if (historyfilename) 
 	{
 		filename = (char*)MALLOC(sizeof(char)*(strlen(historyfilename)+1));
@@ -306,9 +279,44 @@ void HistoryManager::setFilename(char *filename)
 	}
 }
 /*------------------------------------------------------------------------*/
+BOOL HistoryManager::setDefaultFilename(void)
+{
+	BOOL bOK = FALSE;
+	char *SCIHOME = getSCIHOME();
+	char *defaultfilename = NULL;
+
+	if (SCIHOME)
+	{
+		int lengthbuildfilename = 0;
+		if (defaultfilename) FREE(defaultfilename);
+		lengthbuildfilename = (int)(strlen(SCIHOME)+strlen(SEPARATOR_FILE)+strlen(DEFAULT_HISTORY_FILE)+1);
+		defaultfilename = (char*)MALLOC(sizeof(char)*(lengthbuildfilename));
+		sprintf(defaultfilename,"%s%s%s",SCIHOME,SEPARATOR_FILE,DEFAULT_HISTORY_FILE);
+		FREE(SCIHOME); SCIHOME = NULL;
+		bOK = TRUE;
+	}
+	else
+	{
+		char  *history_name = get_sci_data_strings(HISTORY_ID);
+		int out_n = 0;
+		defaultfilename = (char*)MALLOC(MAXBUF*sizeof(char));
+		if ( defaultfilename == NULL ) return NULL;
+		C2F(cluni0)(history_name, defaultfilename, &out_n,(long)strlen(history_name),MAXBUF);
+	}
+
+	if (defaultfilename)
+	{
+		setFilename(defaultfilename);
+		FREE(defaultfilename);
+		defaultfilename = NULL;
+	}
+	return bOK;
+}
+/*------------------------------------------------------------------------*/
 BOOL HistoryManager::saveHistory(void)
 {
 	BOOL bOK = FALSE;
+	if (historyfilename == NULL) setDefaultFilename();
 	if (historyfilename) bOK = writeToFile(historyfilename);
 	return bOK;
 }
@@ -320,6 +328,9 @@ BOOL HistoryManager::writeToFile(char *filename)
 	else
 	{
 		FILE *pFile = NULL;
+
+		if (historyfilename == NULL) setDefaultFilename();
+
 		pFile = fopen (filename,"wt");
 		if (pFile)
 		{
@@ -356,6 +367,8 @@ BOOL HistoryManager::loadFromFile(char *filename)
 	char  line[MAXBUF];
 	FILE * pFile = NULL;
 
+	if (historyfilename == NULL) setDefaultFilename();
+
 	pFile = fopen (filename,"rt");
 	if (pFile)
 	{
@@ -378,6 +391,9 @@ BOOL HistoryManager::loadFromFile(char *filename)
 	commentbeginsession = getCommentDateSession(TRUE);
 	appendLine(commentbeginsession);
 	if (commentbeginsession) {FREE(commentbeginsession);commentbeginsession=NULL;}
+
+	it_current_position = Commands.end();
+	it_current_position--;
 
 	return bOK;
 }
@@ -432,11 +448,10 @@ void HistoryManager::reset(void)
 
 	Commands.clear();
 	it_current_position = Commands.begin();
-	if (historyfilename)
-	{
-		FREE(historyfilename);
-		historyfilename = NULL;
-	}
+
+	if (historyfilename) {FREE(historyfilename);historyfilename = NULL;}
+	setDefaultFilename();
+
 	saveconsecutiveduplicatelines = FALSE;
 	afterhowmanylineshistoryissaved = 0;
 	numberoflinesbeforehistoryissaved = 0;
@@ -522,6 +537,7 @@ void HistoryManager::moveToNextPositionIterator(void)
 	it_end--;
 	if (it_current_position == it_end) it_current_position = it_end;
 	else it_current_position++;
+
 }
 /*-----------------------------------------------------------------------------------*/ 
 char **HistoryManager::searchToken(char *token,int *nb)
@@ -553,6 +569,13 @@ char **HistoryManager::searchToken(char *token,int *nb)
 		*nb = i;
 	}
 	return lines;
+}
+/*-----------------------------------------------------------------------------------*/ 
+int **searchTokenAndReturnsLinesNumber(char *token,int *nb)
+{
+	int **linenumber = NULL;
+	*nb = 0;
+	return linenumber;
 }
 /*-----------------------------------------------------------------------------------*/ 
 int HistoryManager::getNumberOfLines(void)

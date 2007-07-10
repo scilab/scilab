@@ -17,14 +17,6 @@ int C2F(sci_savehistory) _PARAMS((char *fname,unsigned long fname_len))
 	if (Rhs == 0)
 	{
 		char *filename = getFilenameScilabHistory();
-
-		filename = getFilenameScilabHistory();
-		if (filename == NULL) 
-		{
-			setDefaultFilenameScilabHistory();
-			filename = getFilenameScilabHistory();
-		}
-
 		if (filename) 
 		{
 			writeScilabHistoryToFile(filename);

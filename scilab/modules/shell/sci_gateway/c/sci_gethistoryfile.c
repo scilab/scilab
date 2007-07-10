@@ -19,11 +19,6 @@ int C2F(sci_gethistoryfile) _PARAMS((char *fname,unsigned long fname_len))
 	CheckLhs(0,1) ;
 
 	filename = getFilenameScilabHistory();
-	if (filename == NULL) 
-	{
-		setDefaultFilenameScilabHistory();
-		filename = getFilenameScilabHistory();
-	}
 
 	if (filename)
 	{

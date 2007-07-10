@@ -23,8 +23,11 @@ public:
 	BOOL appendLine(char *line);
 	BOOL appendLines(char **lines,int nbrlines);
 	void displayHistory(void);
+
 	char *getFilename(void);
 	void setFilename(char *filename);
+	BOOL setDefaultFilename(void);
+
 	BOOL writeToFile(char *filename);
 	BOOL loadFromFile(char *filename);
 	void reset(void);
@@ -38,6 +41,7 @@ public:
 	void moveToPreviousPositionIterator(void);
 	void moveToNextPositionIterator(void);
 	char **searchToken(char *token,int *nb);
+	int **searchTokenAndReturnsLinesNumber(char *token,int *nb);
 
 	void setSaveConsecutiveDuplicateLines(BOOL doit);
 	BOOL getSaveConsecutiveDuplicateLines(void);

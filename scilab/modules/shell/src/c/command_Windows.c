@@ -11,13 +11,6 @@
 
 #include "../../gui/src/c/wsci/printf.h"
 #include "HistoryManager_c.h"
-struct hist
-{
-    		char *line;
-    		struct hist *prev;
-    		struct hist *next;
-};
-
 
 extern char * readline_nw (char *prompt, int interrupt);
 static char *rlgets (char *s, int n, char *prompt, int interrupt);
