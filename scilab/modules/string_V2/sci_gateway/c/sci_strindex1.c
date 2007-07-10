@@ -18,12 +18,14 @@
 #include "returnProperty.h"
 #include "machine.h"
 #include "MALLOC.h" 
-int next[20];
+/*------------------------------------------------------------------------*/
 void getnext(char T[],int *next);
 int kmp(char S[],char T[],int pos);
+/*------------------------------------------------------------------------*/
 int C2F(sci_strindex1) _PARAMS((char *fname,unsigned long fname_len))
 {
 	
+	int next[20];   /* This const is just for testing. I will make it better soon*/
 	char typ = '*';
     char **Str,**Str2;
     int x,m1,n1,mn,mn2,i,m2,n2,m3,n3,l3=0;
@@ -66,19 +68,19 @@ int C2F(sci_strindex1) _PARAMS((char *fname,unsigned long fname_len))
 		{            /*When we use the regexp;*/
 			for (i=0;i<mn2;++i)
 			{      /*  To compile the regexp pattern;*/
-				pattern[i]=Str2[i];
-				out1[i]=(regex_t *)malloc(sizeof(regex_t));
-				z = regcomp(out1[i], pattern[i], cflags);
+				  //pattern[i]=Str2[i];
+				out1[i]=(regex_t *)malloc(sizeof(regex_t));      /*malloc of the output matrix */
+				z = regcomp(out1[i], Str2[i], REG_EXTENDED);           /* out1 is the input matching pattern after compile (after Str2) */
 				if (z != 0)
 				{
 					regerror(z, out1[i], ebuf, sizeof(ebuf));
-					Scierror(999, "%s: pattern '%s' \n", ebuf, pattern);
+					Scierror(999, "%s: pattern '%s' \n", ebuf, Str2);
 					return 1;
 				}
 			}
 			for (x=0;x<mn2;++x)
 			{
-				z = regexec(out1[x], Str[0], nmatch, pm, 0);
+				z = regexec(out1[x], Str[0], nmatch, pm, 0);   /* use the regexec functions of the pcre lib. The answer of the startpoint is in pm.rm_so*/
 				if (z == REG_NOMATCH) 
 				{ 
 					int outIndex2= Rhs +x+1 ;
@@ -91,8 +93,8 @@ int C2F(sci_strindex1) _PARAMS((char *fname,unsigned long fname_len))
 				}
 				for (x1 = 0; x1 < nmatch && pm[x1].rm_so != -1; ++ x1) 
 				{         
-					values[nbValues++]=pm[x1].rm_so+1;
-					position[nbposition++]=x+1;
+					values[nbValues++]=pm[x1].rm_so+1;         /*adding the answer into the outputmatrix*/
+					position[nbposition++]=x+1;                /*The number according to the str2 matrix*/
 				}     
 
 			}
