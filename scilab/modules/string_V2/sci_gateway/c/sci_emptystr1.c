@@ -26,6 +26,7 @@ int C2F(sci_emptystr1) _PARAMS((char *fname,unsigned long fname_len))
    char **Str,**Str4;
    int m1,n1,mn,m2,n2,i,m4,n4,l1,l2=0;
    Rhs = Max(0, Rhs);
+   Str4=(char**)MALLOC(sizeof(char*)*(m1*n1));  
    if (Rhs < 1) 
    {                                       /* With no input argument returns a zero length character string */ 
 		int m1_2=0;
@@ -41,7 +42,7 @@ int C2F(sci_emptystr1) _PARAMS((char *fname,unsigned long fname_len))
 		GetRhsVar(1,"S",&m1,&n1,&Str);
 		mn = m1*n1;  
 		l1=0;
-		Str4=(char**)MALLOC(sizeof(char*)*(m1*n1));
+		
 		for (i=0;i<m1*n1;i++)              /*m1 is the number of row ; n1 is the number of col*/
 			{
 				Str4[i]=(char*)MALLOC(sizeof(char*)*(1));
