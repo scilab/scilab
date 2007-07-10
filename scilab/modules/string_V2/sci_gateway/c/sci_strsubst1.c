@@ -1,7 +1,7 @@
 /*------------------------------------------------------------------------*/
 /* File: sci_strsubst1.c                                                  */
 /* Copyright INRIA 2007                                                   */
-/* Authors : Cong Wu                                                      */
+/* @Authors : Cong Wu                                                      */
 /* desc : substitute a character string by another in a character string
           using regular express .                                         */
 /*------------------------------------------------------------------------*/
@@ -18,12 +18,6 @@
 #include "MALLOC.h" 
 /*-------------------------------------------------------------------------------------*/
 int next[20];
-int numRow;
-int numCol;
-int lnumRow   ;
-int lnumCol   ;
-int loutIndex ;
-char *_replacedstr;
 void getnext(char T[],int *next);
 int kmp(char S[],char T[],int pos);
 /*-------------------------------------------------------------------------------------*/
@@ -56,7 +50,13 @@ return stbuf4;
 
 int C2F(sci_strsubst1) _PARAMS((char *fname,unsigned long fname_len))
 {
-    char typ = '*';
+    int numRow;
+    int numCol;
+    int lnumRow   ;
+    int lnumCol   ;
+    int loutIndex ;
+    char *_replacedstr;
+	char typ = '*';
     char **Str,**Str2,**Str3;
     int x,m1,n1,mn,mn2,mn3,m2,n2,m3,n3,m4,n4,l4=0;
     unsigned x1;
