@@ -2,7 +2,7 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#include "history.h"
+//#include "history.h"
 #include "gw_core.h"
 #include "gw_shell.h"
 #include "stack-c.h"
@@ -10,6 +10,7 @@
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_savehistory) _PARAMS((char *fname,unsigned long fname_len))
 {
+#define MAXBUF 1024
 	char  line[MAXBUF];
 	char *Path;
 	int l1, m1, n1, out_n;
@@ -22,14 +23,14 @@ int C2F(sci_savehistory) _PARAMS((char *fname,unsigned long fname_len))
 	{
 		Path=get_sci_data_strings(HISTORY_ID);
 		C2F(cluni0)(Path, line, &out_n,(long)strlen(Path),MAXBUF);
-		write_history (line);
+//		write_history (line);
 	}
 	else
 	{
 		if ( GetType(1) == 1 ) 
 		{
 			GetRhsVar(1,"i",&m1,&n1,&l1);
-			savehistoryafterncommands(*istk(l1));
+//			savehistoryafterncommands(*istk(l1));
 		}
 		else if ( GetType(1) == 10 )
 		{
@@ -37,7 +38,7 @@ int C2F(sci_savehistory) _PARAMS((char *fname,unsigned long fname_len))
 			Path=cstk(l1);
 
 			C2F(cluni0)(Path, line, &out_n,(long)strlen(Path),MAXBUF);
-			write_history (line);
+//			write_history (line);
 		}
 	}
 

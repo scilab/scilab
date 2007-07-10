@@ -10,7 +10,7 @@
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_gethistory) _PARAMS((char *fname,unsigned long fname_len))
 {
-	static int l1 = 0, m1 = 0, n1 = 0;	
+/*	static int l1 = 0, m1 = 0, n1 = 0;	
 	int indice=1,GotoLine = 0;
 	sci_hist *Parcours = history;
 	
@@ -37,10 +37,10 @@ int C2F(sci_gethistory) _PARAMS((char *fname,unsigned long fname_len))
 	}
 
 	/* looking for the top of the hystory */
-	if (Parcours) Parcours=GoFirstKnot(Parcours);
+/*	if (Parcours) Parcours=GoFirstKnot(Parcours);
 
 	/* get the first requested record */
-	while  ( Parcours->next ) 
+/*	while  ( Parcours->next ) 
 	{
 		if ( indice == GotoLine ) break;
 		Parcours=GoNextKnot(Parcours);
@@ -59,6 +59,13 @@ int C2F(sci_gethistory) _PARAMS((char *fname,unsigned long fname_len))
 	if (!CreSmatFromHist(fname, Rhs+1, Parcours)) return 0;
 	LhsVar(1)=Rhs+1;
 	C2F(putlhsvar)();
+*/
+static int l1 = 0, m1 = 0, n1 = 0;
+		m1=0; n1=0;
+		CreateVar(Rhs+1,"d",  &m1, &n1, &l1);
+		LhsVar(1)=Rhs+1;
+		C2F(putlhsvar)();
+
 	return 0;
 
 }

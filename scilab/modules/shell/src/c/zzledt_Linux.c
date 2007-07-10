@@ -184,7 +184,7 @@ extern int  get_echo_mode(void);
 extern void C2F(sigbas)(int *n);
 extern int XClearScreenConsole(char *fname);
 
-#include "history.h" 
+//#include "history.h" 
 
 extern int  XEvorgetchar(int interrupt);  
 
@@ -331,7 +331,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 	switch(keystroke) {
 	case UP_ARROW: /* move one line up if any in history */
 	case CTRL_P:
-	  if (history != NULL) {
+/*	  if (history != NULL) {
 	    if (cur_entry == NULL) {
 	      cur_entry = history;
 	      CopyCurrentHist(wk_buf,&cursor, &cursor_max); 
@@ -341,14 +341,15 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 	      CopyCurrentHist(wk_buf,&cursor, &cursor_max); 
 	    }
 	  }
+*/
 	  break;
 	case DOWN_ARROW:  /* move one line down if any in history */
 	case CTRL_N:
-	  if (cur_entry != NULL) {
+/*	  if (cur_entry != NULL) {
 	    cur_entry = cur_entry->next;
-
+*/
 	    /* To get a empty line when no more data in history */
-	    backspace(cursor);
+/*	    backspace(cursor);
 	    erase_nchar(cursor_max);
 	    wk_buf[0] = NUL;
 	    cursor = cursor_max = 0;
@@ -357,6 +358,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 	      CopyCurrentHist(wk_buf,&cursor, &cursor_max); 
 	    }
 	  }
+*/
 	  break;
 	case LEFT_ARROW:/* move left*/
 	case CTRL_B:
@@ -504,31 +506,38 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 
 	case CR: /* carrage return indicates line is ok;*/
 	case LF:
+	   strip_blank(wk_buf);/* first strip any trailing blanks */
+	  /*
 	  strip_blank(wk_buf);/* first strip any trailing blanks */
-	  if (wk_buf[0]==EXCL) { /* search backward */
-	    strcpy(tosearch,wk_buf); /* memorise search key for further use */
-	    cur_entry=SearchBackwardInHistory(tosearch+1);
-	    if(cur_entry == NULL) {
-	      PutChar(BEL);
-	    }
-	    else {
+/*	  if (wk_buf[0]==EXCL) 
+	  { 
+	    /* search backward */
+/*	    strcpy(tosearch,wk_buf); 
+	    /* memorise search key for further use */
+/*	    cur_entry=SearchBackwardInHistory(tosearch+1);
+	    if(cur_entry == NULL) PutChar(BEL);
+	    else 
+	    {
 	      research_knot_last=cur_entry;
 	      CopyCurrentHist(wk_buf,&cursor, &cursor_max); 
 	      AddHistory(wk_buf);
 	      cur_entry=NULL;
-
 	    }
 	    break;
 	  }
 
-	  if(get_echo_mode()==1)   {
+	  if(get_echo_mode()==1)   
+	  {
 	    AddHistory(wk_buf);
 	    cur_entry=NULL;
 	  }
 	  goto exit;
+*/
+goto exit;
+	break;
 
 	case SEARCH_BACKWARD:
-	  if(tosearch[0]!=EXCL) {
+/*	  if(tosearch[0]!=EXCL) {
 	    PutChar(BEL);
 	  }
 	  else {
@@ -542,10 +551,11 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 	      CopyCurrentHist(wk_buf,&cursor, &cursor_max); 
 	    }
 	  }
+*/
 	  break;
 
 	case SEARCH_FORWARD:
-	  if(tosearch[0]!=EXCL) {
+/*	  if(tosearch[0]!=EXCL) {
 	    PutChar(BEL);
 	  }
 	  else {
@@ -558,6 +568,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 	      research_knot_last=cur_entry;
 	      CopyCurrentHist(wk_buf,&cursor, &cursor_max); 
 	    }}
+*/
 	  break;
 
 	default:
@@ -655,7 +666,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
   set_is_reading(FALSE);
   
   /* see savehistory */
-  addNumberOfCommands();
+/*  addNumberOfCommands();
   if ( ( GetSaveHistoryAfterNcommands() == getNumberOfCommands() ) && ( GetSaveHistoryAfterNcommands() > 0) )
   {
 	  char *filenamehistory=NULL;
@@ -666,7 +677,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 
 	  resetNumberOfCommands();
   }
-  
+  */
   return;
 
 }
@@ -831,17 +842,17 @@ static int translate(int ichar)
 
 static int CopyCurrentHist(char *wk_buf,int *cursor,int *cursor_max) 
 {
-  if (cur_entry != NULL) 
-    {
-      strcpy (wk_buf,cur_entry->line); /* copy history to buffer*/
-      backspace(*cursor);/* backspace to beginning of line */
-      display_string(wk_buf);/* copy to screen */
-      *cursor = strlen(wk_buf);/* cursor set at end of line */
-      /* erase extra characters left over if any */
-      erase_nchar(Max(0, *cursor_max - *cursor));
-      *cursor_max = *cursor;
-      return 1;
-    }
+//  if (cur_entry != NULL) 
+//    {
+//      strcpy (wk_buf,cur_entry->line); /* copy history to buffer*/
+//      backspace(*cursor);/* backspace to beginning of line */
+//      display_string(wk_buf);/* copy to screen */
+//      *cursor = strlen(wk_buf);/* cursor set at end of line */
+//      /* erase extra characters left over if any */
+//      erase_nchar(Max(0, *cursor_max - *cursor));
+//      *cursor_max = *cursor;
+//      return 1;
+//    }
   return 0;
 }
 

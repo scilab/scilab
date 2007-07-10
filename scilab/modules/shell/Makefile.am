@@ -12,8 +12,8 @@ src/cpp/HistoryManager.cpp
 SHELL_C_SOURCES = src/c/completion.c \
 src/c/clc.c \
 src/c/tohome.c \
-src/c/history.c \
 src/c/zzledt_Linux.c 
+
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/sci_completion.c \

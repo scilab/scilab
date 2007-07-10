@@ -8,7 +8,7 @@
 /*-----------------------------------------------------------------------------------*/
 char *getNextEntry(char *beg)
 {
-  if (cur_entry != NULL)
+/*  if (cur_entry != NULL)
     {
       cur_entry = cur_entry->next;
       if (cur_entry != NULL)
@@ -17,12 +17,13 @@ char *getNextEntry(char *beg)
         return NULL;
     }
   else
+*/
     return NULL;
 }
 /*-----------------------------------------------------------------------------------*/
 char *getPreviousEntry(char *beg)
 {
-  if (history != NULL)
+/*  if (history != NULL)
     {
       if (cur_entry == NULL)
         {
@@ -38,15 +39,17 @@ char *getPreviousEntry(char *beg)
         return NULL;
     }
   else
+*/
     return NULL;
 }
 /*-----------------------------------------------------------------------------------*/
 char *searchBackward(char *beg)
 {
-  sci_hist *tmpHistory = NULL;
+/*  sci_hist *tmpHistory = NULL;
   tmpHistory = SearchBackwardInHistory(beg);
   if (tmpHistory != NULL)
     return tmpHistory->line;
   else
+*/
     return NULL;
 }
