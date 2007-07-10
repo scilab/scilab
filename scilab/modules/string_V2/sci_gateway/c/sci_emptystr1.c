@@ -1,7 +1,7 @@
 /*------------------------------------------------------------------------*/
 /* File: sci_emptystr1.c                                                  */
 /* Copyright INRIA 2007                                                   */
-/* Authors : Cong Wu                                                      */
+/* @Authors : Cong Wu                                                      */
 /* desc : zero length string                                              */
 /*        With no input argument returns a zero length character string   */
 /*        With a matrix for input argument returns a zero length character*/ 
