@@ -211,7 +211,6 @@ BOOL HistoryManager::appendLine(char *line)
 			if ( (previousline) && (strcmp(previousline,line)== 0) )
 			{
 				it_current_position = Commands.end();
-				it_current_position--;
 				bOK = FALSE;
 			}
 			else
@@ -219,7 +218,6 @@ BOOL HistoryManager::appendLine(char *line)
 				CommandLine Line(line);
 				Commands.push_back(Line);
 				it_current_position = Commands.end();
-				it_current_position--;
 
 				numberoflinesbeforehistoryissaved++;
 				bOK = TRUE;
@@ -231,7 +229,7 @@ BOOL HistoryManager::appendLine(char *line)
 			CommandLine Line(line);
 			Commands.push_back(Line);
 			it_current_position = Commands.end();
-			it_current_position--;
+
 			numberoflinesbeforehistoryissaved++;
 			bOK = TRUE;
 		}
@@ -239,7 +237,6 @@ BOOL HistoryManager::appendLine(char *line)
 	else 
 	{
 		it_current_position = Commands.end();
-		it_current_position--;
 	}
 
 	if (afterhowmanylineshistoryissaved != 0)
