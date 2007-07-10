@@ -309,13 +309,7 @@ top_srcdir = @top_srcdir@
 STRING_C_SOURCES = src/c/men_Sutils.c \
 src/c/strcat-c.c 
 
-#src/c/code2str1.c \
-#src/c/convstr.c \
-#src/c/scistrcat.c \
-#src/c/str2code.c \
-#src/c/stripblanks.c \
-#src/c/strsplit1.c \
-#src/c/tokens.c
+
 STRING_FORTRAN_SOURCES = src/fortran/strord.f src/fortran/strdsp.f
 GATEWAY_C_SOURCES = sci_gateway/c/sci_strindex.c \
 sci_gateway/c/sci_strcat.c \
