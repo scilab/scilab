@@ -26,7 +26,7 @@
 
 #include "machine.h" 
 #include "sciprint.h"
-
+#include "others_generators.h"
 
 /* The Marsaglia 's macros : */
 #define znew  (z=36969*(z&65535)+(z>>16))

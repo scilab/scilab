@@ -46,6 +46,7 @@
  */
 #include "stack-c.h"
 #include <math.h>
+#include "grand.h"
 
 /* the external functions used  here : */
 double F2C(logp1)(double *x);  /* celle-ci est ds SCI/routines/calelm/watan.f */

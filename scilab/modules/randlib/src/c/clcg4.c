@@ -54,6 +54,7 @@
 #include "clcg4.h"
 #include <math.h>             /* for floor */
 #include "sciprint.h"
+#include "others_generators.h"
 
 /***********************************************************************/
 /* Private part.                                                       */
@@ -113,7 +114,7 @@ static long MultModM (long s, long t, long M)
   return R;
   }
 
-void comp_aw_and_avw(long v, long w)
+static void comp_aw_and_avw(long v, long w)
 {
   int i, j;
   for (j = 0; j < 4; j++)
@@ -127,7 +128,7 @@ void comp_aw_and_avw(long v, long w)
     }
 }
 
-void init_clcg4(long v, long w)
+static void init_clcg4(long v, long w)
 {
   /* currently the scilab interface don't let the user chooses
    * v and w (always v_default and w_default) so this routine
@@ -140,7 +141,7 @@ void init_clcg4(long v, long w)
   set_initial_seed_clcg4(sd[0], sd[1], sd[2], sd[3]);
 }
 
-int verif_seeds_clcg4(double s0, double s1, double s2, double s3)
+static int verif_seeds_clcg4(double s0, double s1, double s2, double s3)
 {
   /* verify that the seeds are "integers" and are in the good range */
   if ( s0 == floor(s0) && s1 == floor(s1) &&
@@ -154,7 +155,7 @@ int verif_seeds_clcg4(double s0, double s1, double s2, double s3)
     return ( 0 );
 }
  
-void display_info_clcg4()
+static void display_info_clcg4()
 {
   /* display the seeds range (in case of error) */
   sciprint("\n\r bad seeds for clcg4, must be integers with  s1 in [1, 2147483646]");

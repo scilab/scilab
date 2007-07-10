@@ -33,7 +33,7 @@ static int current_gen = MT;
 static int current_clcg4 = 0; 
 
 /* clcg4 must be called with the virtual generator number */
-unsigned long int clcg4_with_gen(void)
+static unsigned long int clcg4_with_gen(void)
 {
   return ( clcg4(current_clcg4) );
 }

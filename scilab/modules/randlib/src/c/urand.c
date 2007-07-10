@@ -21,6 +21,7 @@
 #include <math.h>             /* to use floor    */
 #include "machine.h"
 #include "sciprint.h"
+#include "others_generators.h"
 
 static unsigned long s = 0;
 

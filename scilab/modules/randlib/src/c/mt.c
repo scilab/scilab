@@ -54,6 +54,7 @@
 #include "machine.h"
 #include "grand.h"            /* to check prototypes */
 #include "sciprint.h"
+#include "others_generators.h"
 
 int set_state_mt_simple(double s);
 

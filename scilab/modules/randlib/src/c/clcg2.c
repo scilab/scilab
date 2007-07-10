@@ -30,6 +30,7 @@
 #include "machine.h" 
 #include <math.h>
 #include "sciprint.h"
+#include "others_generators.h"
 
 /* initial default state (seeds) : */
 static long s1 = 1234567890 ;
