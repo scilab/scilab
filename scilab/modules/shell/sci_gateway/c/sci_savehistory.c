@@ -2,43 +2,50 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-//#include "history.h"
 #include "gw_core.h"
 #include "gw_shell.h"
 #include "stack-c.h"
-#include "inffic.h"
+#include "HistoryManager_c.h"
+#include "MALLOC.h"
+#include "cluni0.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_savehistory) _PARAMS((char *fname,unsigned long fname_len))
 {
-#define MAXBUF 1024
-	char  line[MAXBUF];
-	char *Path;
-	int l1, m1, n1, out_n;
-
-	Rhs=Max(Rhs,0);
 	CheckRhs(0,1) ;
 	CheckLhs(0,1) ;
 
 	if (Rhs == 0)
 	{
-		Path=get_sci_data_strings(HISTORY_ID);
-		C2F(cluni0)(Path, line, &out_n,(long)strlen(Path),MAXBUF);
-//		write_history (line);
+		char *filename = getFilenameScilabHistory();
+
+		filename = getFilenameScilabHistory();
+		if (filename == NULL) 
+		{
+			setDefaultFilenameScilabHistory();
+			filename = getFilenameScilabHistory();
+		}
+
+		if (filename) 
+		{
+			writeScilabHistoryToFile(filename);
+			FREE(filename);
+			filename=NULL;
+		}
 	}
 	else
 	{
-		if ( GetType(1) == 1 ) 
-		{
-			GetRhsVar(1,"i",&m1,&n1,&l1);
-//			savehistoryafterncommands(*istk(l1));
-		}
-		else if ( GetType(1) == 10 )
+		#define MAXBUF	1024
+		char  line[MAXBUF];
+		char *Path;
+		int l1, m1, n1, out_n;
+
+		if ( GetType(1) == sci_strings )
 		{
 			GetRhsVar(1,"c",&m1,&n1,&l1);
 			Path=cstk(l1);
 
 			C2F(cluni0)(Path, line, &out_n,(long)strlen(Path),MAXBUF);
-//			write_history (line);
+			writeScilabHistoryToFile(line);
 		}
 	}
 

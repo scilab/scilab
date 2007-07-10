@@ -223,7 +223,7 @@ SWIGEXPORT void JNICALL Java_HistoryManagementJNI_setNewSearchInHistory(JNIEnv *
   (void)jenv;
   (void)jcls;
   arg1 = (int)jarg1; 
- // setNewSearchInHistory(arg1);
+  //setNewSearchInHistory(arg1);
 }
 
 
@@ -256,7 +256,7 @@ SWIGEXPORT void JNICALL Java_HistoryManagementJNI_AddHistory(JNIEnv *jenv, jclas
     arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
     if (!arg1) return ;
   }
-//  AddHistory(arg1);
+ // AddHistory(arg1);
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
 }
 

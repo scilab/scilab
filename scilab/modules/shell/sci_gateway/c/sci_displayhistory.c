@@ -1,23 +1,19 @@
-/** 
- * @copyright INRIA 2007
- * @author Vincent COUVERT
+/*-----------------------------------------------------------------------------------*/
+/**
+ * @author Allan CORNET INRIA 2007
  */
-
-#include "HistoryManagement.h"
-
 /*-----------------------------------------------------------------------------------*/
-char *getNextEntry(char *beg)
-{
-    return NULL;
-}
+#include "gw_shell.h"
+#include "MALLOC.h"
+#include "machine.h"
+#include "stack-c.h"
+#include "HistoryManager_c.h"
 /*-----------------------------------------------------------------------------------*/
-char *getPreviousEntry(char *beg)
+int C2F(sci_displayhistory) _PARAMS((char *fname,unsigned long fname_len))
 {
-    return NULL;
-}
-/*-----------------------------------------------------------------------------------*/
-char *searchBackward(char *beg)
-{
-    return NULL;
+	displayScilabHistory();
+	LhsVar(1) = 0;
+	C2F(putlhsvar)();	
+	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

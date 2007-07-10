@@ -77,19 +77,6 @@ void C2F (zzledt) (char *buffer, int *buf_size, int *len_line, int *eof, int* in
   set_is_reading (FALSE);
   C2F (sxevents) ();
 
-  /* see savehistory */
-  addNumberOfCommands();
-  if ( ( GetSaveHistoryAfterNcommands() == getNumberOfCommands() ) && ( GetSaveHistoryAfterNcommands() > 0) )
-  {
-	  char *filenamehistory=NULL;
-	
-	  filenamehistory=getfilenamehistory();
-	  write_history( filenamehistory );
-	  FREE(filenamehistory);
-
-	  resetNumberOfCommands();
-  }
-
   return;
 }
 /*-----------------------------------------------------------------------------------*/

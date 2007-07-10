@@ -5,29 +5,45 @@
 #include "gw_shell.h"
 #include "machine.h"
 #include "stack-c.h"
-//#include "history.h"
-#include "inffic.h"
+#include "HistoryManager_c.h"
+#include "MALLOC.h"
+#include "cluni0.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_loadhistory) _PARAMS((char *fname,unsigned long fname_len))
 {
-#define MAXBUF 1024
-	char  line[MAXBUF];
-	char  *Path = NULL;
-	int l1 = 0, m1 = 0, n1 = 0, out_n = 0;
-
 	CheckRhs(0,1) ;
 	CheckLhs(0,1) ;
 
-	if (Rhs == 0) Path=get_sci_data_strings(HISTORY_ID);
+	if (Rhs == 0) 
+	{
+		char *filename = getFilenameScilabHistory();
+
+		filename = getFilenameScilabHistory();
+		if (filename == NULL) 
+		{
+			setDefaultFilenameScilabHistory();
+			filename = getFilenameScilabHistory();
+		}
+		
+		if (filename) 
+		{
+			loadScilabHistoryFromFile(filename);
+			FREE(filename);
+			filename=NULL;
+		}
+	}
 	else 
 	{
+		#define MAXBUF	1024
+		char line[MAXBUF];
+		int l1 = 0, m1 = 0, n1 = 0, out_n = 0;
+		char *Path = NULL;
+
 		GetRhsVar(1,"c",&m1,&n1,&l1);
 		Path=cstk(l1);
+		C2F(cluni0)(Path, line, &out_n,(long)strlen(Path),MAXBUF);
+		loadScilabHistoryFromFile(line);
 	}
-
-	C2F(cluni0)(Path, line, &out_n,(long)strlen(Path),MAXBUF);
-
-//	read_history (line);
 
 	LhsVar(1)=0;
 	C2F(putlhsvar)();

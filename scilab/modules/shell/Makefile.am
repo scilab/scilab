@@ -23,7 +23,13 @@ sci_gateway/c/sci_tohome.c \
 sci_gateway/c/sci_gethistory.c \
 sci_gateway/c/sci_loadhistory.c \
 sci_gateway/c/sci_resethistory.c \
-sci_gateway/c/sci_savehistory.c
+sci_gateway/c/sci_savehistory.c \
+sci_gateway/c/sci_sethistoryfile.c \
+sci_gateway/c/sci_saveconsecutivecommands.c \
+sci_gateway/c/sci_saveafterncommands.c \
+sci_gateway/c/sci_gethistoryfile.c \
+sci_gateway/c/sci_displayhistory.c \
+sci_gateway/c/sci_addhistory.c
 
 if GUI
 SHELL_C_SOURCES += src/c/ShellPrintf.c \

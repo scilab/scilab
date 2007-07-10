@@ -104,6 +104,53 @@ extern "C" {
 	*/
 	char *getNextLineInScilabHistory(void);
 
+	/**
+	* Search a token in Scilab history
+	* @param token
+	* @param nb returns number of lines found
+	* @return array of string
+	*/
+	char **searchTokenInScilabHistory(char *token,int *nb);
+
+	/**
+	* Get numbers of lines in history
+	* @return number of lines
+	*/
+	int getNumberOfLinesInScilabHistory(void);
+
+	/**
+	* set consecutive duplicate lines are added
+	* @param doit (TRUE or FALSE)
+	*/
+	void setSaveConsecutiveDuplicateLinesInScilabHistory(BOOL doit);
+
+	/**
+	* indicate if consecutive duplicate lines are added
+	* @return TRUE or FALSE
+	*/
+	BOOL getSaveConsecutiveDuplicateLinesInScilabHistory(void);
+
+	/**
+	* Set after how many lines history is saved
+	* @param number between 0 and Max
+	* default value is 0 (disabled)
+	*/
+	void setAfterHowManyLinesScilabHistoryIsSaved(int num);
+
+	/**
+	* Get after how many lines history is saved
+	* @return number between 0 and Max
+	* default value is 0 (disabled)
+	*/
+	int getAfterHowManyLinesScilabHistoryIsSaved(void);
+
+	/**
+	* Get the Nth Line in history
+	* @param N
+	* @return the Nth Line
+	*/
+	char *getNthLineInScilabHistory(int N);
+
 /*------------------------------------------------------------------------*/
 #ifdef __cplusplus
 }

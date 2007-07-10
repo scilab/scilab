@@ -33,6 +33,7 @@
 #include "command.h"
 #include "dynamic_menus.h"
 #include "../../gui/src/c/wsci/printf.h"
+#include "HistoryManager_c.h"
 /*-----------------------------------------------------------------------------------*/
 #define TEXTUSER 0xf1
 #define TEXTGNUPLOT 0xf0
@@ -44,21 +45,10 @@
 #define SV_BUF_SIZE 5000
 #define getch _getch
 /*-----------------------------------------------------------------------------------*/
-struct sci_hist
-{
-    		char *line;
-    		struct sci_hist *prev;
-    		struct sci_hist *next;
-};
-/*-----------------------------------------------------------------------------------*/
 extern char copycur_line[MAXBUF];
 char cur_line[MAXBUF];	/* current contents of the line */
-extern struct sci_hist *history;	/* voir history.c */
-extern struct sci_hist *cur_entry;
 /*-----------------------------------------------------------------------------------*/
 extern BOOL IsWindowInterface(void);
-extern struct sci_hist * SearchBackwardInHistory(char *line);
-
 extern int C2F (sxevents) ();
 extern int IsFromC(void);
 extern void  SignalCtrC(void);
@@ -255,7 +245,7 @@ char * readline_nw (char *prompt, int interrupt)
   cur_line[0] = '\0';
   cur_pos = 0;
   max_pos = 0;
-  cur_entry = NULL;
+
 
   /* get characters */
   for (;;)
@@ -333,32 +323,32 @@ char * readline_nw (char *prompt, int interrupt)
 	      max_pos = cur_pos;
 	      break;
 	    case 020:		/* ^P */
-	      if (history != NULL)
-		{
-		  if (cur_entry == NULL)
-		    {
-		      cur_entry = history;
-		      clear_line (prompt);
-		      copy_line (cur_entry->line);
-		    }
-		  else if (cur_entry->prev != NULL)
-		    {
-		      cur_entry = cur_entry->prev;
-		      clear_line (prompt);
-		      copy_line (cur_entry->line);
-		    }
-		}
+/* move in history */
+			{
+				char *line = getPreviousLineInScilabHistory();
+				if (line)
+				{
+					clear_line(prompt);
+					copy_line(line);
+					FREE(line);
+				}
+
+			}
+		
+
 	      break;
 	    case 016:		/* ^N */
-	      if (cur_entry != NULL)
-		{
-		  cur_entry = cur_entry->next;
-		  clear_line (prompt);
-		  if (cur_entry != NULL)
-		    copy_line (cur_entry->line);
-		  else
-		    cur_pos = max_pos = 0;
-		}
+			/* move in history */
+			{
+				char *line = getNextLineInScilabHistory();
+				if (line)
+				{
+					clear_line(prompt);
+					copy_line(line);
+					FREE(line);
+				}
+
+			}
 	      break;
 	    case 014:		/* ^L */
 	    case 022:		/* ^R */
@@ -412,21 +402,41 @@ char * readline_nw (char *prompt, int interrupt)
 	    case '\n':		/* ^J */
 	    case '\r':		/* ^M */
 			cur_line[max_pos + 1] = '\0';
-	      	if (cur_line[0]=='!')
-			{ 
-				struct sci_hist *P=NULL;
-				P=SearchBackwardInHistory(&cur_line[1]);
-				clear_line (prompt);
-				if (P != NULL) copy_line (P->line);
-			}
-		    else
+			if (cur_line[0]=='!')
 			{
-				putc ('\n', stdout);
+				
+				char **lines = NULL;
+				int nb_lines_found = 0;
+
+				lines = searchTokenInScilabHistory(&cur_line[1],&nb_lines_found);
+
+				clear_line(prompt);
+				
+				if ( (lines) && (nb_lines_found > 0) )
+				{
+					int i = 0;
+					copy_line(lines[nb_lines_found-1]);
+					for (i = 0;i<nb_lines_found;i++)
+					{
+						if (lines[i])
+						{
+							FREE(lines[i]);
+							lines[i]=NULL;
+						}
+					}
+					FREE(lines);
+					lines=NULL;
+				}
+			}
+			else
+			{
+				putc('\n',stdout);
 				new_line = (char *) alloc ((unsigned long) (strlen (cur_line) + 1), "history");
 				strcpy (new_line, cur_line);
 				return (new_line);
+
 			}
-		break;
+			break;
 	    default:
 	      break;
 	    }
@@ -447,7 +457,7 @@ char * readline_win (char *prompt,int interrupt)
   cur_line[0] = '\0';
   cur_pos = 0;
   max_pos = 0;
-  cur_entry = NULL;
+  
   
   /* get characters */
   for (;;)
@@ -541,35 +551,35 @@ char * readline_win (char *prompt,int interrupt)
 	      clear_eoline ();
 	      max_pos = cur_pos;
 	      break;
-	     case 020:		/* ^P */
-	      if (history != NULL)
-		{
-		  if (cur_entry == NULL)
-		    {
-		      cur_entry = history;
-		      clear_line (prompt);
-		      copy_line (cur_entry->line);
-		    }
-		  else if (cur_entry->prev != NULL)
-		    {
-		      cur_entry = cur_entry->prev;
-		      clear_line (prompt);
-		      copy_line (cur_entry->line);
-		    }
-		}
-	      break;
-	    case 016:		/* ^N */
-	      if (cur_entry != NULL)
-		{
-		  cur_entry = cur_entry->next;
-		  clear_line (prompt);
-		  if (cur_entry != NULL)
-		    copy_line (cur_entry->line);
-		  else
-		    cur_pos = max_pos = 0;
-		}
-	      break;
-	    case 014:		/* ^L */
+		case 020:		/* ^P */
+			/* move in history */
+			{
+				char *line = getPreviousLineInScilabHistory();
+				if (line)
+				{
+					clear_line(prompt);
+					copy_line(line);
+					FREE(line);
+				}
+
+			}
+
+
+			break;
+		case 016:		/* ^N */
+			/* move in history */
+			{
+				char *line = getNextLineInScilabHistory();
+				if (line)
+				{
+					clear_line(prompt);
+					copy_line(line);
+					FREE(line);
+				}
+
+			}
+			break;
+		case 014:		/* ^L */
 	    case 022:		/* ^R */
 	      MyFPutCstdout ('\n');	/* go to a fresh line */
 	      MyFPutCstdout ('\n');
@@ -623,19 +633,36 @@ char * readline_win (char *prompt,int interrupt)
 	    case '\n':		/* ^J */
 	    case '\r':		/* ^M */
 			cur_line[max_pos + 1] = '\0';
-	      	if (cur_line[0]=='!')
-			{ 
-				struct sci_hist *P=NULL;
-				P=SearchBackwardInHistory(&cur_line[1]);
-				clear_line (prompt);
-				if (P != NULL) copy_line (P->line);
+			if (cur_line[0]=='!')
+			{
+				char **lines = NULL;
+				int nb_lines_found = 0;
+				lines = searchTokenInScilabHistory(&cur_line[1],&nb_lines_found);
+				clear_line(prompt);
+				if ( (lines) && (nb_lines_found > 0) )
+				{
+					int i = 0;
+					copy_line(lines[nb_lines_found-1]);
+					for (i = 0;i<nb_lines_found;i++)
+					{
+						if (lines[i])
+						{
+							FREE(lines[i]);
+							lines[i]=NULL;
+						}
+					}
+					FREE(lines);
+					lines=NULL;
+
+				}
 			}
-		    else
+			else
 			{
 				MyFPutCstdout ('\n');
 				new_line = (char *) alloc ((unsigned long) (strlen (cur_line) + 1), "history");
 				strcpy (new_line, cur_line);
 				return (new_line);
+
 			}
 		break;
 
@@ -740,8 +767,7 @@ static void clear_eoline (prompt)
 }
 /*-----------------------------------------------------------------------------------*/
 /* copy line to cur_line, draw it and set cur_pos and max_pos */
-static void copy_line (line)
-     char *line;
+static void copy_line (char *line)
 {
   strcpy (cur_line, line);
   user_puts (cur_line);

@@ -34,6 +34,7 @@
 #include "win_mem_alloc.h" /* MALLOC */
 #include "setgetSCIpath.h"
 #include "../../../includes/write_scilab.h"
+#include "../../../../shell/includes/HistoryManager_c.h"
 
 #ifndef STRICT
 #define STRICT
@@ -47,7 +48,6 @@ extern HDC TryToGetDC(HWND hWnd);
 extern void SwitchConsole(void);
 /* Efface la fenetre de "commandes" */
 extern void ClearCommandWindow(LPTW lptw,BOOL Clearfirstline);
-extern void reset_history(void); /* see Console\history.h*/
 extern void HideGraphToolBar(struct BCG * ScilabGC);
 extern void ShowGraphToolBar(struct BCG * ScilabGC);
 extern void SaveCurrentLine(BOOL RewriteLineAtPrompt);
@@ -605,11 +605,8 @@ void Callback_CLEARHISTORY(void)
 {
 	#define MAXBUF	1024
 	char Commentline[MAXBUF];
-
-	reset_history();
-
-	GetCommentDateSession(Commentline,TRUE);		
-	AddHistory (Commentline);
+	resetScilabHistory();
+	appendLineToScilabHistory(Commentline);
 
 }
 /*-----------------------------------------------------------------------------------*/

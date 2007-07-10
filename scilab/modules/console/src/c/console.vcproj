@@ -251,6 +251,22 @@
 			>
 		</File>
 		<File
+			RelativePath=".\console_header.def"
+			>
+		</File>
+		<File
+			RelativePath=".\libjvm_Import.def"
+			>
+		</File>
+		<File
+			RelativePath=".\LibScilab_Import.def"
+			>
+		</File>
+		<File
+			RelativePath=".\libshell_Import.def"
+			>
+		</File>
+		<File
 			RelativePath="..\..\Makefile.am"
 			>
 		</File>

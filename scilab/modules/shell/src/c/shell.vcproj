@@ -217,10 +217,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\history.c"
-				>
-			</File>
-			<File
 				RelativePath="..\cpp\HistoryManager.cpp"
 				>
 			</File>
@@ -233,6 +229,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_addhistory.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_clc.c"
 				>
 			</File>
@@ -241,7 +241,15 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_displayhistory.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_gethistory.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_gethistoryfile.c"
 				>
 			</File>
 			<File
@@ -253,7 +261,19 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_saveafterncommands.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_saveconsecutivecommands.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_savehistory.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_sethistoryfile.c"
 				>
 			</File>
 			<File
@@ -291,10 +311,6 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\gw_shell.h"
-				>
-			</File>
-			<File
-				RelativePath=".\history.h"
 				>
 			</File>
 			<File

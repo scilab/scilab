@@ -10,6 +10,7 @@
 #include "../../core/src/c/flags.h"
 
 #include "../../gui/src/c/wsci/printf.h"
+#include "HistoryManager_c.h"
 struct hist
 {
     		char *line;
@@ -17,14 +18,8 @@ struct hist
     		struct hist *next;
 };
 
-extern void AddHistory (char *line);
-extern struct hist * SearchBackwardInHistory(char *line);
-extern BOOL NewSearchInHistory;
+
 extern char * readline_nw (char *prompt, int interrupt);
-
-
-
-
 static char *rlgets (char *s, int n, char *prompt, int interrupt);
 static char *rlgets_nw (char *s, int n, char *prompt, int interrupt);
 
@@ -53,11 +48,11 @@ static char * rlgets (char *s, int n, char *prompt, int interrupt)
     FREE (line);
 
   line = readline_win (prompt,interrupt);
-  NewSearchInHistory=TRUE;	
+
   /* If it's not an EOF */
   if (line)
     {
-      if ( (*line>=0) && (strlen(line)>0) )AddHistory (line);
+      if ( (*line>=0) && (strlen(line)>0) ) appendLineToScilabHistory(line);
       strncpy (s, line, n);
       return s;
     }
@@ -77,13 +72,12 @@ static char * rlgets_nw (char *s, int n, char *prompt, int interrupt)
   /* If we already have a line, first FREE it */
   if (line != (char *) NULL)   FREE (line);
   line = readline_nw (prompt, interrupt);
-  NewSearchInHistory=TRUE;	
+
   /* If it's not an EOF */
   if (line)
     {
       /* -1 is added for eos ( end of input when using pipes ) */
-      if (*line>=0)
-	AddHistory (line);
+      if (*line>=0) appendLineToScilabHistory(line);
       strncpy (s, line, n);
       return s;
     }

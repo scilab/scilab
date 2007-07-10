@@ -30,5 +30,10 @@
 <PRIMITIVE gatewayId="53" primitiveId="5" primitiveName="savehistory" />
 <PRIMITIVE gatewayId="53" primitiveId="6" primitiveName="gethistory" />
 <PRIMITIVE gatewayId="53" primitiveId="7" primitiveName="resethistory" />
-
+<PRIMITIVE gatewayId="53" primitiveId="8" primitiveName="displayhistory" />  
+<PRIMITIVE gatewayId="53" primitiveId="9" primitiveName="addhistory" />  
+<PRIMITIVE gatewayId="53" primitiveId="10" primitiveName="saveconsecutivecommands" />  
+<PRIMITIVE gatewayId="53" primitiveId="11" primitiveName="saveafterncommands" />
+<PRIMITIVE gatewayId="53" primitiveId="12" primitiveName="gethistoryfile" />
+<PRIMITIVE gatewayId="53" primitiveId="13" primitiveName="sethistoryfile" />
 </GATEWAY>
