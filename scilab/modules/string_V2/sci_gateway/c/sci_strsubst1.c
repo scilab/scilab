@@ -32,7 +32,7 @@ static char* newstr(const char*str, unsigned start, unsigned end, char*_replaced
 {
 unsigned n = end - start;
 unsigned i,j;
-static char stbuf1[256];
+static char stbuf1[256];                 /* These const are all for test */
 static char stbuf2[256];
 static char stbuf3[256];
 static char stbuf4[256];
@@ -84,10 +84,10 @@ int C2F(sci_strsubst1) _PARAMS((char *fname,unsigned long fname_len))
            GetRhsVar(4,"c",&m4,&n4,&l4);
            if ( m4*n4 != 0) 
 	         typ = cstk(l4)[0];
-           if (typ == 'r' ) 
+           if (typ == 'r' )      /*When we want to use the regular expression to do with this substring */
 		   {  
-				out1=(regex_t *)MALLOC(sizeof(regex_t));
-				z = regcomp(out1, pattern, cflags);
+				out1=(regex_t *)MALLOC(sizeof(regex_t));        /*To malloc a new for regex*/
+ 				z = regcomp(out1, pattern, cflags);  /* use the regexec functions of the pcre lib. The answer of the startpoint is in pm.rm_so*/
 				if (z != 0)
 				{
 					regerror(z, out1, ebuf, sizeof(ebuf));
@@ -109,7 +109,7 @@ int C2F(sci_strsubst1) _PARAMS((char *fname,unsigned long fname_len))
 					}
 					for (x1 = 0; x1 < nmatch && pm[x1].rm_so != -1; ++ x1) 
 					{
-                        _replacedstr=newstr(Str[x], pm[x1].rm_so, pm[x1].rm_eo,*Str3);
+                        _replacedstr=newstr(Str[x], pm[x1].rm_so, pm[x1].rm_eo,*Str3);/*adding the answer into the outputmatrix*/
                         strcpy(Str[x],_replacedstr);
 					}    
 				}
