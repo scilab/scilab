@@ -3,7 +3,7 @@
  * @author Vincent COUVERT
  */
 
-#include "../../../shell/src/c/history.h"
+
 
 /** Get next entry in Scilab history beginning with string beg
  *

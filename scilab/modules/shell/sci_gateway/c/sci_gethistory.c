@@ -2,7 +2,6 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#include "history.h"
 #include "gw_core.h"
 #include "gw_shell.h"
 #include "machine.h"

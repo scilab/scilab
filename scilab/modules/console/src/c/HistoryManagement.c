@@ -4,6 +4,7 @@
  */
 
 #include "HistoryManagement.h"
+#include "MALLOC.h" /* NULL */
 
 /*-----------------------------------------------------------------------------------*/
 char *getNextEntry(char *beg)
