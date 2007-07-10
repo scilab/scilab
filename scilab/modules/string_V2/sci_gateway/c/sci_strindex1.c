@@ -19,6 +19,8 @@
 #include "machine.h"
 #include "MALLOC.h" 
 int next[20];
+void getnext(char T[],int *next);
+int kmp(char S[],char T[],int pos);
 int C2F(sci_strindex1) _PARAMS((char *fname,unsigned long fname_len))
 {
 	
