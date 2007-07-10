@@ -7,7 +7,7 @@
 #include "do_xxprintf.h"
 #include "do_xxscanf.h"
 #include "fileio.h"
-
+#include "cvstr.h"
 /*-----------------------------------------------------------------------------------*/
 int NumTokens __PARAMS((char *string))
 {
