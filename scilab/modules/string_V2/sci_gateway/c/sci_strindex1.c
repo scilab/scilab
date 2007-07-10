@@ -1,8 +1,7 @@
-
 /*------------------------------------------------------------------------*/
 /* File: sci_strindex1.c                                                  */
 /* Copyright INRIA 2007                                                   */
-/* Authors : Cong Wu                                                      */
+/* @Authors : Cong Wu                                                      */
 /* desc : search position of a character string in an other string
           using regular express .                                         */
 /*------------------------------------------------------------------------*/
@@ -67,7 +66,6 @@ int C2F(sci_strindex1) _PARAMS((char *fname,unsigned long fname_len))
 		{            /*When we use the regexp;*/
 			for (i=0;i<mn2;++i)
 			{      /*  To compile the regexp pattern;*/
-				  //pattern[i]=Str2[i];
 				out1[i]=(regex_t *)malloc(sizeof(regex_t));      /*malloc of the output matrix */
 				z = regcomp(out1[i], Str2[i], REG_EXTENDED);           /* out1 is the input matching pattern after compile (after Str2) */
 				if (z != 0)
