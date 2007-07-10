@@ -5,13 +5,7 @@
 
 STRING_C_SOURCES = src/c/men_Sutils.c \
 src/c/strcat-c.c 
-#src/c/code2str1.c \
-#src/c/convstr.c \
-#src/c/scistrcat.c \
-#src/c/str2code.c \
-#src/c/stripblanks.c \
-#src/c/strsplit1.c \
-#src/c/tokens.c
+
 
 
 STRING_FORTRAN_SOURCES =src/fortran/strord.f src/fortran/strdsp.f
@@ -104,6 +98,6 @@ libscistring_la_sci_gateway_DATA = sci_gateway/string_V2_gateway.xml
 libscistring_la_includedir=$(pkgincludedir)/string
 libscistring_la_include_HEADERS = includes/men_Sutils.h \
 includes/gw_string.h 
-#includes/src_string.h
+
 
 include $(top_srcdir)/Makefile.incl.am
