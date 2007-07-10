@@ -15,6 +15,7 @@
 #include "machine.h"
 #include "stack-c.h"
 #include "MALLOC.h" 
+#include "src_string.h"
 /*-------------------------------------------------------------------------------------*/
 int C2F(sci_stripblanks1) _PARAMS((char *fname,unsigned long fname_len))
 {
