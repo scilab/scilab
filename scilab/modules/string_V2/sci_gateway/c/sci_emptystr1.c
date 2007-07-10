@@ -56,9 +56,9 @@ int C2F(sci_emptystr1) _PARAMS((char *fname,unsigned long fname_len))
 		m4=*istk(l1);
 		GetRhsVar(2,"i",&m2,&n2,&l2);
 		n4=*istk(l2);
+		Str4=(char**)MALLOC(sizeof(char*)*(m4*n4));
 		if (m4*n4!=0)
 		{
-			Str4=(char**)MALLOC(sizeof(char*)*(m4*n4));
 			for (i=0;i<m4*n4;i++)              /*m4 is the number of row ; n4 is the number of col*/
 			{
 				Str4[i]=(char*)MALLOC(sizeof(char*)*(1));
