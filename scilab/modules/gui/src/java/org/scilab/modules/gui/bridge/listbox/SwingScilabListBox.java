@@ -11,7 +11,11 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
 
+import org.scilab.modules.gui.container.Container;
 import org.scilab.modules.gui.listbox.ListBox;
+import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.utils.Position;
+import org.scilab.modules.gui.utils.Size;
 
 /**
  * Swing implementation for Scilab ListBox in GUIs
@@ -172,5 +176,81 @@ public class SwingScilabListBox implements ListBox {
 	 */
 	public void setForeground(Color color) {
 		list.setForeground(color);
+	}
+	
+	/**
+	 * Draws a swing Scilab tab
+	 * @see org.scilab.modules.gui.uielement.UIElement#draw()
+	 */
+	public void draw() {
+		this.setVisible(true);
+	}
+
+	/**
+	 * Gets the dimensions (width and height) of a swing Scilab tab
+	 * @return the dimensions of the tab
+	 * @see org.scilab.modules.gui.uielement.UIElement#getDims()
+	 */
+	public Size getDims() {
+		return new Size(this.getSize().width, this.getSize().height);
+	}
+
+	/**
+	 * Gets the position (X-coordinate and Y-coordinate) of a swing Scilab tab
+	 * @return the position of the tab
+	 * @see org.scilab.modules.gui.uielement.UIElement#getPosition()
+	 */
+	public Position getPosition() {
+		return new Position(this.getX(), this.getY());
+	}
+
+	/**
+	 * Sets the dimensions (width and height) of a swing Scilab tab
+	 * @param newSize the dimensions we want to set to the tab
+	 * @see org.scilab.modules.gui.uielement.UIElement#setDims(org.scilab.modules.gui.utils.Size)
+	 */
+	public void setDims(Size newSize) {
+		scrollPane.setSize(newSize.getWidth(), newSize.getHeight());
+	}
+
+	/**
+	 * Sets the position (X-coordinate and Y-coordinate) of a swing Scilab tab
+	 * @param newPosition the position we want to set to the tab
+	 * @see org.scilab.modules.gui.uielement.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
+	 */
+	public void setPosition(Position newPosition) {
+		this.setLocation(newPosition.getX(), newPosition.getY());
+	}
+
+	/**
+	 * Gets the visibility status of an UIElement
+	 * @return the visibility status of the UIElement (true if the UIElement is visible, false if not)
+	 */
+	public boolean isVisible() {
+		// TODO check if this is ok
+		return list.isVisible();
+	}
+	
+	/**
+	 * Sets the visibility status of an UIElement
+	 * @param newVisibleState the visibility status we want to set for the UIElement
+	 * 			(true if the UIElement is visible, false if not)
+	 */
+	public void setVisible(boolean newVisibleState) {
+		scrollPane.setVisible(newVisibleState);
+		list.setVisible(newVisibleState);
+	}
+	
+	/**
+	 * Add this as member (dockable element) to the Scilab container and returns its index
+	 * @param container the container in which we add this
+	 * @return index of this in container components
+	 * @see org.scilab.modules.gui.container.Container#addMember(org.scilab.modules.gui.dockable.Dockable)
+	 * @see org.scilab.modules.gui.dockable.Dockable#addAsMemberTo(org.scilab.modules.gui.container.Container)
+	 */
+	public int addAsMemberTo(Container container) {
+		// delegate to the container but also adding info on how to handle me (ListBox)
+		// Interface Container must describe methode: int addMember(ListBox member);
+		return container.addMember((ListBox) this);
 	}
 }

@@ -9,11 +9,13 @@ import java.awt.Font;
 
 import javax.swing.border.LineBorder;
 
+import org.scilab.modules.gui.widget.Widget;
+
 /**
  * Interface for CheckBox associated to objects in Scilab GUIs
  * @author Marouane BEN JELLOUL
  */
-public interface CheckBox {
+public interface CheckBox extends Widget {
 	
 	/**
 	 * Sets the text of a CheckBox

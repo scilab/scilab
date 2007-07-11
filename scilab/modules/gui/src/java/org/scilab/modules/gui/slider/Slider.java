@@ -9,11 +9,13 @@ import java.awt.Font;
 
 import javax.swing.border.LineBorder;
 
+import org.scilab.modules.gui.widget.Widget;
+
 /**
  * Interface for RadioGroup associated to objects in Scilab GUIs
  * @author Marouane BEN JELLOUL
  */
-public interface Slider {
+public interface Slider extends Widget {
 
 	/**
 	 * Returns the slider's current value
@@ -76,7 +78,6 @@ public interface Slider {
 	 * @param b - whether or not to paint labels
 	 */
 	void setPaintLabels(boolean b);
-	
 	
 	/**
 	 * To set the Background color of the element.

@@ -25,5 +25,4 @@ public class ScilabSeparator implements Separator {
 	public static Separator createSeparator() {
 		return ScilabBridge.createSeparator();
 	}
-
 }

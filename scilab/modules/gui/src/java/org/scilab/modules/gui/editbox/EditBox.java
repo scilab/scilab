@@ -9,11 +9,13 @@ import java.awt.Font;
 
 import javax.swing.border.LineBorder;
 
+import org.scilab.modules.gui.text.Text;
+
 /**
  * Interface for editbox associated to objects in Scilab GUIs
  * @author Marouane BEN JELLOUL
  */
-public interface EditBox {
+public interface EditBox extends Text {
 	/**
 	 * Sets the text of a EditBox
 	 * @param text the text to set to the EditBox

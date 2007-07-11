@@ -3,28 +3,37 @@
 
 package org.scilab.modules.gui.bridge.frame;
 
-import java.awt.Color;
-
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
+import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
+import org.scilab.modules.gui.bridge.editbox.SwingScilabEditBox;
+import org.scilab.modules.gui.bridge.label.SwingScilabLabel;
 import org.scilab.modules.gui.bridge.listbox.SwingScilabListBox;
+import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
 import org.scilab.modules.gui.bridge.slider.SwingScilabSlider;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.checkbox.CheckBox;
+import org.scilab.modules.gui.console.Console;
+import org.scilab.modules.gui.container.Container;
 import org.scilab.modules.gui.dockable.Dockable;
+import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.frame.Frame;
+import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.layout.LayoutManager;
 import org.scilab.modules.gui.listbox.ListBox;
+import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -89,17 +98,63 @@ public class SwingScilabFrame extends JPanel implements Frame {
 	}
 
 	// TODO : Check wether we want a Console in a Frame or not.
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in ArrayList
+	 */
+	public int addMember(Console member) {
+		return this.addMember((SwingScilabConsole) member);
+	}
+	
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in ArrayList
+	 */
+	private int addMember(SwingScilabConsole member) {
+		this.add(member);
+		return this.getComponentZOrder(member);
+	}
 
-//	/**
-//	 * Add a member (dockable element) to container and returns its index
-//	 * @param member the member to add
-//	 * @return index of member in ArrayList
-//	 */
-//	private int addMember(SwingScilabConsole member) {
-//		this.add(member);
-//		return this.getComponentZOrder(member);
-//	}
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in ArrayList
+	 */
+	public int addMember(EditBox member) {
+		return this.addMember((SwingScilabEditBox) member);
+	}
+	
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in ArrayList
+	 */
+	private int addMember(SwingScilabEditBox member) {
+		this.add(member);
+		return this.getComponentZOrder(member);
+	}
+	
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in ArrayList
+	 */
+	public int addMember(Label member) {
+		return this.addMember((SwingScilabLabel) member);
+	}
 
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in ArrayList
+	 */
+	private int addMember(SwingScilabLabel member) {
+		this.add(member);
+		return this.getComponentZOrder(member);
+	}
+	
 	/**
 	 * Add a member (dockable element) to container and returns its index
 	 * @param member the member to add
@@ -117,6 +172,18 @@ public class SwingScilabFrame extends JPanel implements Frame {
 	private int addMember(SwingScilabFrame member) {
 		this.add(member);
 		return this.getComponentZOrder(member);
+	}
+	
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in ArrayList
+	 * @see org.scilab.modules.gui.container.Container#addMember(org.scilab.modules.gui.dockable.Dockable)
+	 * @see org.scilab.modules.gui.dockable.Dockable#addAsMemberTo(org.scilab.modules.gui.container.Container)
+	 */
+	public int addMember(Dockable member) {
+		// delegate to the member
+		return member.addAsMemberTo(this);
 	}
 	
 	/**
@@ -167,7 +234,6 @@ public class SwingScilabFrame extends JPanel implements Frame {
 	 * @return index of member in ArrayList
 	 */
 	public int addMember(Canvas member) {
-		//System.out.println("Test: start: public int addMember(Canvas member)");
 		return this.addMember((SwingScilabCanvas) member);
 	}
 
@@ -218,22 +284,22 @@ public class SwingScilabFrame extends JPanel implements Frame {
 		this.add(member.getScrollPane());
 		return this.getComponentZOrder(member.getScrollPane());
 	}
-	
-	/**
-	 * Add a member (dockable element) to container and returns its index
-	 * @param member the member to add
-	 * @return index of member in ArrayList
-	 */
-	public int addMember(Slider member) {
-		return this.addMember((SwingScilabSlider) member);
-	}
 
 	/**
 	 * Add a member (dockable element) to container and returns its index
 	 * @param member the member to add
 	 * @return index of member in ArrayList
 	 */
-	private int addMember(SwingScilabSlider member) {
+	public int addMember(PushButton member) {
+		return this.addMember((SwingScilabPushButton) member);
+	}
+	
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in ArrayList
+	 */
+	private int addMember(SwingScilabPushButton member) {
 		this.add(member);
 		return this.getComponentZOrder(member);
 	}
@@ -262,22 +328,20 @@ public class SwingScilabFrame extends JPanel implements Frame {
 	 * @param member the member to add
 	 * @return index of member in ArrayList
 	 */
-	public int addMember(PushButton member) {
-		//System.out.println("Test: start: public int addMember(PushButton member)");
-		return this.addMember((SwingScilabPushButton) member);
+	public int addMember(Slider member) {
+		return this.addMember((SwingScilabSlider) member);
 	}
-	
+
 	/**
 	 * Add a member (dockable element) to container and returns its index
 	 * @param member the member to add
 	 * @return index of member in ArrayList
 	 */
-	private int addMember(SwingScilabPushButton member) {
-		//System.out.println("Test: start: private int addMember(SwingScilabPushButton member)");
+	private int addMember(SwingScilabSlider member) {
 		this.add(member);
 		return this.getComponentZOrder(member);
 	}
-
+	
 	/**
 	 * Add a PushButton in a Frame with a BorderLayout.
 	 * @param member the PushButton to add
@@ -320,41 +384,44 @@ public class SwingScilabFrame extends JPanel implements Frame {
 		return this.getComponentZOrder(member);
 	}
 	
-	// TODO : check if possible
+//	 TODO : Check if it should be possible to add a Tab to a frame and how it should behave
 	/**
 	 * Add a member (dockable element) to container and returns its index
 	 * @param member the member to add
 	 * @return index of member in ArrayList
 	 */
-//	public int addMember(Tab member) {
-//		//System.out.println("Test: start: public int addMember(Tab member)");
-//		return this.addMember((SwingScilabTab) member);
-//	}
-	
-	// TODO : check if possible
+	public int addMember(Tab member) {
+		return this.addMember((SwingScilabTab) member);
+	}
+//	 TODO : Check if it should be possible to add a Tab to a frame and how it should behave
 	/**
 	 * Add a member (dockable element) to container and returns its index
 	 * @param member the member to add
 	 * @return index of member in ArrayList
 	 */
-//	private int addMember(SwingScilabTab member) {
-//		//System.out.println("Test: start: public int addMember(SwingScilabTab member)");
-//		this.add(member);
-//		return this.getComponentZOrder(member);
-//	}
-	
-	
-	/**
-	 * Add a member (dockable element) to container and returns its index
-	 * @param member the member to add
-	 * @return index of member in ArrayList
-	 */
-	public int addMember(Dockable member) {
-	// TODO : Must manage this with Exceptions.
-		System.out.println("[SwingScilabFrame.addMember(Dockable)] : Must not be there !!!");
-		return -1;
+	private int addMember(SwingScilabTab member) {
+		this.add(member);
+		return this.getComponentZOrder(member);
 	}
 	
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in ArrayList
+	 */
+	public int addMember(TextBox member) {
+		return this.addMember((SwingScilabTextBox) member);
+	}
+
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in ArrayList
+	 */
+	private int addMember(SwingScilabTextBox member) {
+		this.add(member);
+		return this.getComponentZOrder(member);
+	}
 	/**
 	 * To set the Border color and size of the element.
 	 * @param lineBorder the LineBorder
@@ -369,5 +436,18 @@ public class SwingScilabFrame extends JPanel implements Frame {
 	 */
 	public void setLayout(LayoutManager layout) {
 		super.setLayout((java.awt.LayoutManager) layout);
+	}
+	
+	/**
+	 * Add this as member (dockable element) to the Scilab container and returns its index
+	 * @param container the container in which we add this
+	 * @return index of this in container components
+	 * @see org.scilab.modules.gui.container.Container#addMember(org.scilab.modules.gui.dockable.Dockable)
+	 * @see org.scilab.modules.gui.dockable.Dockable#addAsMemberTo(org.scilab.modules.gui.container.Container)
+	 */
+	public int addAsMemberTo(Container container) {
+		// delegate to the container but also adding info on how to handle me (Frame)
+		// Interface Container must describe methode: int addMember(Frame member);
+		return container.addMember((Frame) this);
 	}
 }

@@ -10,4 +10,5 @@ package org.scilab.modules.gui.separator;
 public interface Separator {
 	// TODO : Add the methods that are usefull for a Separator
 
+	
 }

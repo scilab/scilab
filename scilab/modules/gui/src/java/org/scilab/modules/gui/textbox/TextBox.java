@@ -9,11 +9,13 @@ import java.awt.Font;
 
 import javax.swing.border.LineBorder;
 
+import org.scilab.modules.gui.text.Text;
+
 /**
  * Interface for textbox associated to objects in Scilab GUIs
  * @author Marouane BEN JELLOUL
  */
-public interface TextBox {
+public interface TextBox extends Text {
 
 	/**
 	 * Sets the text of a TextBox

@@ -86,7 +86,7 @@ public interface UIElement {
 	//void setBackground(Color color);
 	
 	/**
-	 * To set the Border color and size of the element.
+	 * To set the Border color and Border size of the element.
 	 * @param lineBorder the LineBorder
 	 */
 	//void setBorder(LineBorder lineBorder);

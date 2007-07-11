@@ -13,6 +13,7 @@ import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.widget.ScilabWidget;
 import org.scilab.modules.gui.bridge.ScilabBridge;
+import org.scilab.modules.gui.container.Container;
 
 /**
 * Class for Scilab PushButtons in GUIs
@@ -320,5 +321,16 @@ public class ScilabPushButton extends ScilabWidget implements PushButton {
 	public void setIcon(String filename) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	/**
+	 * Add this as member (dockable element) to the Scilab Container and returns its index
+	 * @param container the Container in which we add this
+	 * @return index of this in container components
+	 */
+	public int addAsMemberTo(Container container) {
+//		 TODO code this
+		//return ScilabBridge.addAsMemberTo(this, container);
+		return 0;
 	}
 }

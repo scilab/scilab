@@ -32,7 +32,7 @@ public class SwingScilabRadioGroup extends ButtonGroup implements RadioGroup {
 	}
 	
 	/**
-	 * remove a RadioButton from a RadioGroup.
+	 * Remove a RadioButton from a RadioGroup.
 	 * @param button the button to remove
 	 */
 	public void remove(RadioButton button) {

@@ -3,12 +3,21 @@
 
 package org.scilab.modules.gui.tab;
 
+import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.canvas.Canvas;
+import org.scilab.modules.gui.container.Container;
 import org.scilab.modules.gui.container.ScilabContainer;
 import org.scilab.modules.gui.dockable.Dockable;
+import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.frame.Frame;
+import org.scilab.modules.gui.label.Label;
+import org.scilab.modules.gui.listbox.ListBox;
+import org.scilab.modules.gui.pushbutton.PushButton;
+import org.scilab.modules.gui.radiobutton.RadioButton;
+import org.scilab.modules.gui.slider.Slider;
+import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -119,10 +128,21 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	 * @param member the member to add
 	 * @return index of member in ArrayList
 	 */
-	public int addMember(Frame member) {
+	public int addMember(Canvas member) {
 		return ScilabBridge.addMember(this, member);
 	}
 
+	/**
+	 * Add a member (dockable element) to a Scilab frame and returns its index
+	 * @param member the member to add
+	 * @return index of member in frame components
+	 */
+	public int addMember(CheckBox member) {
+//		 TODO code this
+		//return ScilabBridge.addMember(this, member);
+		return 0;
+	}
+	
 	/**
 	 * Add a member (dockable element) to container and returns its index
 	 * @param member the member to add
@@ -131,16 +151,7 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	public int addMember(Console member) {
 		return ScilabBridge.addMember(this, member);
 	}
-
-	/**
-	 * Add a member (dockable element) to container and returns its index
-	 * @param member the member to add
-	 * @return index of member in ArrayList
-	 */
-	public int addMember(Canvas member) {
-		return ScilabBridge.addMember(this, member);
-	}
-
+	
 	/**
 	 * Add a member (dockable element) to container and returns its index
 	 * @param member the member to add
@@ -149,6 +160,112 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	 */
 	public int addMember(Dockable member) {
 		return addMember(member);
+	}
+
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in frame components
+	 */
+	public int addMember(EditBox member) {
+//		 TODO code this
+		//return ScilabBridge.addMember(this, member);
+		return 0;
+	}
+
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in ArrayList
+	 */
+	public int addMember(Frame member) {
+		return ScilabBridge.addMember(this, member);
+	}
+
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in frame components
+	 */
+	public int addMember(Label member) {
+//		 TODO code this
+		//return ScilabBridge.addMember(this, member);
+		return 0;
+	}
+	
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in frame components
+	 */
+	public int addMember(ListBox member) {
+//		 TODO code this
+		//return ScilabBridge.addMember(this, member);
+		return 0;
+	}
+
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in frame components
+	 */
+	public int addMember(PushButton member) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in frame components
+	 */
+	public int addMember(RadioButton member) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in frame components
+	 */
+	public int addMember(Slider member) {
+//		 TODO code this
+		//return ScilabBridge.addMember(this, member);
+		return 0;
+	}
+	
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in frame components
+	 */
+	public int addMember(Tab member) {
+//		 TODO code this
+		//return ScilabBridge.addMember(this, member);
+		return 0;
+	}
+	
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in frame components
+	 */
+	public int addMember(TextBox member) {
+//		 TODO code this
+		//return ScilabBridge.addMember(this, member);
+		return 0;
+	}
+	
+	/**
+	 * Add this as member (dockable element) to the Scilab Container and returns its index
+	 * @param container the Container in which we add this
+	 * @return index of this in container components
+	 */
+	public int addAsMemberTo(Container container) {
+//		 TODO code this
+		//return ScilabBridge.addAsMemberTo(this, container);
+		return 0;
 	}
 
 }

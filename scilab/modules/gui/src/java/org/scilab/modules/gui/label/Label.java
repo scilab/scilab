@@ -1,7 +1,7 @@
 
 /* Copyright INRIA 2007 */
 
-package org.scilab.modules.gui.listbox;
+package org.scilab.modules.gui.label;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -9,38 +9,19 @@ import java.awt.Font;
 
 import javax.swing.border.LineBorder;
 
-import org.scilab.modules.gui.widget.Widget;
+import org.scilab.modules.gui.text.Text;
 
 /**
- * Interface for ListBox associated to objects in Scilab GUIs
- * @author Marouane BEN JELLOUL
- */
-public interface ListBox extends Widget {
-	
+* Interface for Label associated to objects in Scilab GUIs
+* @author Marouane BEN JELLOUL
+*/
+public interface Label extends Text {
+
 	/**
-	 * Only one list index can be selected at a time.
+	 * Sets the text of a Label
+	 * @param text the text to set to the Label
 	 */
-	int SINGLE_SELECTION = 0;
-	
-	/**
-	 * In this mode, there's no restriction on what can be selected.
-	 */
-	int MULTIPLE_SELECTION = 2;
-	
-	/**
-	 * To set the content of the ListBox.
-	 * @param listData the content of the ListBox 
-	 */
-	void setListData(String[] listData);
-	
-	/**
-	 * Set the selection mode. The accepted selection modes are:
-	 * - ListBox.SINGLE_SELECTION (=0)
-	 * - ListBox.MULTIPLE_SELECTION (=2)
-	 * @param mode - the selection mode we want
-	 * @throws java.lang.IllegalArgumentException - if the selection mode isn't one of those allowed
-	 */
-	void setSelectionMode(int mode) throws IllegalArgumentException;
+	void setText(String text);
 
 	/**
 	 * To set the Background color of the element.
@@ -115,4 +96,5 @@ public interface ListBox extends Widget {
 	 * @return the y coordinate
 	 */
 	int getY();
+
 }

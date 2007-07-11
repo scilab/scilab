@@ -101,7 +101,9 @@ public class ScilabFrameBridge {
  	 * @return index of member
  	 */
 	public static int addMember(Frame frame, Frame member) {
-		return ((SwingScilabFrame) frame).addMember((SwingScilabFrame) member);
+		// TODO : correct this
+//		return ((SwingScilabFrame) frame).addMember((SwingScilabFrame) member);
+		return 0;
 	}
 
 	/**
@@ -111,7 +113,9 @@ public class ScilabFrameBridge {
  	 * @return index of member
  	 */
 	public static int addMember(Frame frame, Console member) {
-		return ((SwingScilabFrame) frame).addMember((SwingScilabConsole) member);
+		// TODO : correct this
+//		return ((SwingScilabFrame) frame).addMember((SwingScilabConsole) member);
+		return 0;
 	}
 
 	/**

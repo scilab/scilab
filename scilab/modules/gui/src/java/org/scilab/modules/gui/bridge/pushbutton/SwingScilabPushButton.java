@@ -3,11 +3,11 @@
 
 package org.scilab.modules.gui.bridge.pushbutton;
 
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.border.LineBorder;
 
+import org.scilab.modules.gui.container.Container;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -17,7 +17,7 @@ import org.scilab.modules.gui.utils.Size;
 * @author Marouane BEN JELLOUL
 */
 public class SwingScilabPushButton extends JButton implements PushButton {
-
+	
 	/**
 	 * Constructor
 	 */
@@ -25,12 +25,26 @@ public class SwingScilabPushButton extends JButton implements PushButton {
 		super();
 	}
 
-	// TODO Question: What do we do with draw() for a PushButton ?
 	/**
-	 * 
+	 * Draws a swing Scilab PushButton
+	 * @see org.scilab.modules.gui.uielement.UIElement#draw()
 	 */
 	public void draw() {
-		// TODO Auto-generated method stub
+		this.setVisible(true);
+		this.doLayout();
+	}
+
+	/**
+	 * Add this as member (dockable element) to the Scilab container and returns its index
+	 * @param container the container in which we add this
+	 * @return index of this in container components
+	 * @see org.scilab.modules.gui.container.Container#addMember(org.scilab.modules.gui.dockable.Dockable)
+	 * @see org.scilab.modules.gui.dockable.Dockable#addAsMemberTo(org.scilab.modules.gui.container.Container)
+	 */
+	public int addAsMemberTo(Container container) {
+		// delegate to the container but also adding info on how to handle me (PushButton)
+		// Interface Container must describe methode: int addMember(PushButton member);
+		return container.addMember((PushButton) this);
 	}
 
 	/**

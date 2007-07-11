@@ -9,11 +9,13 @@ import java.awt.Font;
 
 import javax.swing.border.LineBorder;
 
+import org.scilab.modules.gui.widget.Widget;
+
 /**
  * Interface for RadioButton associated to objects in Scilab GUIs
  * @author Marouane BEN JELLOUL
  */
-public interface RadioButton {
+public interface RadioButton extends Widget {
 	
 	/**
 	 * Sets the text of a RadioButton
