@@ -22,6 +22,9 @@ function dynamickeywords()
     end
   endfunction
 
+  //are we in scilab4 or scilab5?
+  if listfiles(SCI+"/modules/scipad/")<>[] then scilab5=%t; else scilab5=%f; end
+
   //commands and primitives
   [primitives,commands]=what();
   setscipadwords(commands,"command")
@@ -47,20 +50,26 @@ function dynamickeywords()
 
   setscipadwords(libfun,"libfun")
 
-  if %scicos then
+  if exists("scicos") then  // was once %scicos==%t -- which test is stabler?
+    if scilab5 then
+      scicosdir=SCI+"/modules/scicos/macros/";
+    else 
+      scicosdir=SCI+"/macros/";
+    end
     //scicos basic functions: read the lib
-    [l,s,b]=listvarinfile(SCI+"/modules/scicos/macros/scicos/lib");
-    load(SCI+"/modules/scicos/macros/scicos/lib");
+    [l,s,b]=listvarinfile(scicosdir+"scicos/lib");
+    load(scicosdir+"scicos/lib");
     n=string(eval(l)); scicosfun=(n(2:$));
     execstr("clear "+l);
 
 
     //scicos palettes: read each lib
     scicosblocks=[];
-    if with_module('scicos') then
-     subdirs=listfiles("SCI/modules/scicos/macros/scicos_blocks");
+// if %scicos makes the next test (scilab5 only) redundant, not so?
+//    if with_module('scicos') then
+     subdirs=listfiles(scicosdir+"/scicos_blocks");
      for i=1:size(subdirs,"r")
-       blocklib="SCI/modules/scicos/macros/scicos_blocks/"+subdirs(i)+"/lib";
+       blocklib=scicosdir+"/scicos_blocks/"+subdirs(i)+"/lib";
        if fileinfo(blocklib)<>[] then
          [l,s,b]=listvarinfile(blocklib);
          load(blocklib);
@@ -68,7 +77,7 @@ function dynamickeywords()
          execstr("clear "+l);
        end
      end
-   end
+//   end
 
 
     setscipadwords([scicosfun;scicosblocks],"scicos")

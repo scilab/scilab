@@ -3085,3 +3085,8 @@ Francois VOGEL, 02/07/07
    prevents the debug launch when one such function definition is found.
    The relevant message box is much clearer than before
  * version --> 6.117
+
+ES, 11/7/07
+ * ensured that all files work in the BUILD_4 branch too (though dispatched
+   to different directories). A common codebase eases eventual backports.
+ * version --> 6.118

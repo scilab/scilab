@@ -12,14 +12,25 @@ if { [info exists pad] } {
 
     set pad .scipad
 
-    set moduledir [file join "$env(SCIINSTALLPATH)" "modules" "scipad"]
-    set sourcedir [file join "$moduledir" "tcl"]
+    if {[file exists [file join  "$env(SCIINSTALLPATH)" "modules" "scipad"]]} {
+  ## paths for scilab5
+      set moduledir [file join "$env(SCIINSTALLPATH)" "modules" "scipad"]
+      set sourcedir [file join "$moduledir" "tcl"]
+      set intmacdir [file join "$moduledir" "macros" "scipad_internals"]
+      set scicosdir [file join "$env(SCIINSTALLPATH)" "modules" "scicos" "macros" "scicos"]
+      set blocksdir [file join "$env(SCIINSTALLPATH)" "modules" "scicos" "macros" "scicos_blocks"]
+    } else { 
+  ##paths for scilab4
+      set moduledir [file join "$env(SCIINSTALLPATH)" "tcl" "scipadsources"]
+      set sourcedir [file join "$moduledir"]
+      set intmacdir [file join "$sourcedir"]
+      set scicosdir [file join "$env(SCIINSTALLPATH)" "macros" "scicos"]
+      set blocksdir [file join "$env(SCIINSTALLPATH)" "macros" "scicos_blocks"]
+    }    
+
     set msgsdir   [file join "$sourcedir" "msg_files"]
     set iconsdir  [file join "$sourcedir" "icons"]
     set binddir   [file join "$sourcedir" "bindings"]
-    set intmacdir [file join "$moduledir" "macros" "scipad_internals"]
-    set scicosdir [file join "$env(SCIINSTALLPATH)" "modules" "scicos" "macros" "scicos"]
-    set blocksdir [file join "$env(SCIINSTALLPATH)" "modules" "scicos" "macros" "scicos_blocks"]
 
     # load first some debug settings
     source [file join $sourcedir scipaddebug1.tcl]

@@ -1,12 +1,33 @@
 function scipad(varargin)
 // start Scipad editor
 
+// find out if we are in scilab4 or scilab5, and
+//  make some workarounds for scilab4
+    if listfiles(SCI+"/modules/scipad/")<>[] then
+      scilab5=%t;
+    else
+      scilab5=%f;
+    end 
+    if ~scilab5 then
+      function s=gettext(scope,sss)
+        labels=["scipad_message_"+string(1:6), "scipad_error_1"]
+        results=[" Scilab in no window no interactive mode : Scipad unavailable"
+                 "Function ";
+                 "is not contained in a loaded library, ";
+                 "Scipad doesn''t know where to find its source";
+                 "Scipad cannot open a ";" object!";
+                 " Scilab has not been built with tk: Scipad unavailable"
+        ]
+        s=results(labels==sss)
+      endfunction
+    end
+  
     global SCIPADISSTARTING
     // ensure that no concurrent launching occurs
     // this fixes the issue that shows up when quickly
     // clicking twice the menu or icon button in the
-    // Scilab window (bug 2226)
-    if exists("SCIPADISSTARTING","nolocal") then
+    // Scilab window (bug 2226) [relies on exists(..."nolocal"), only in scilab5]
+    if exists("SCIPADISSTARTING","nolocal") & scilab5 then
         return
     end
     SCIPADISSTARTING = 1;  // guard variable
@@ -41,15 +62,16 @@ function scipad(varargin)
         // level that is inherited/visible in this macro (same as SCI)
         if MSDOS then
             TCL_EvalStr("set tmpdir """+strsubst(TMPDIR,"\","/")+"""","scipad")
-        else
-            TCL_EvalStr("set tmpdir """+pathconvert(TMPDIR,%f,%t)+"""","scipad")
-        end
-        if MSDOS then
             TCL_EvalStr("set env(SCIINSTALLPATH) """+strsubst(SCI,"\","/")+"""","scipad")
         else
+            TCL_EvalStr("set tmpdir """+pathconvert(TMPDIR,%f,%t)+"""","scipad")
             TCL_EvalStr("set env(SCIINSTALLPATH) """+pathconvert(SCI,%f,%t)+"""","scipad")
         end
-        TCL_EvalStr("source """+SCI+"/modules/scipad/tcl/scipad.tcl""","scipad")
+        if scilab5 then
+          TCL_EvalStr("source """+SCI+"/modules/scipad/tcl/scipad.tcl""","scipad")
+        else
+          TCL_EvalStr("source """+SCI+"/tcl/scipadsources/scipad.tcl""","scipad")
+        end        
         nfiles=argn(2)
         if nfiles>0 then
             for i=1:nfiles

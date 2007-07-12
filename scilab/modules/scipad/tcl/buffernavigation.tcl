@@ -244,6 +244,12 @@ proc packbuffer {textarea} {
     set pwframe($textarea) $curtapwfr
 }
 
+proc montretext {textarea} {
+# old name of showtext, left for compatibility (backporting)
+# with plotprofile.sci of BUILD_4 Scilab
+  showtext $textarea
+}
+
 proc showtext {textarea} {
 # if $textarea is not currently visible, pack it in the current pane,
 # and make this textarea the current one
