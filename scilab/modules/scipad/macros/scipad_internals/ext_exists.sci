@@ -4,11 +4,37 @@ function ext_ex = ext_exists(varargin)
 // This is required for the Scipad debugger since if a matrix d exists in Scilab,
 // exists(d) is true but exists(d(1)) is false
 // Author: François Vogel, 2005
+//
+// For Scilab 4, there is an underlying problem:
+// the variable exists both in 'all' and in 'local' scopes
+// since 'all' includes 'local', there is no way to know if
+// the variable exists only outside of function ext_exists
+// this is the case for the varargin variable for instance
+// consequence is that this variable cannot be watched.
+// The limitation has been overcome after trunk commit 10635,
+//  with the introduction of exists("nolocal")
 
+ 
   if argn(2) == 0 then error(39); else var = varargin(1); end
 
-  if exists(var,"nolocal") then
-    ext_ex = %t;
+// The following part contains alternative blocks. Uncomment 
+// the relevant lines and comment the other.
+// The scilab 4 workaround is put here for easing
+//  backporting, will be removed once Scilab 5 is stabilized.
+
+//////code which works in Scilab 5:
+//  if exists(var,"nolocal") then   //Scilab5
+//    ext_ex = %t;                  //Scilab5
+
+///for Scilab 4, use this workaround:
+  if exists(var) then              //Scilab4
+    if ~exists(var,'local') then   //Scilab4
+      ext_ex = %t;                 //Scilab4
+    else                           //Scilab4
+      ext_ex = %f;                 //Scilab4
+    end                            //Scilab4
+  
+
   else
     var = string(var);
     if prod(size(var)) > 1 then
@@ -18,7 +44,13 @@ function ext_ex = ext_exists(varargin)
       if prod(size(var_tok)) <> 2 then
         ext_ex = %f;
       else
-        if ~exists(var_tok(1),"nolocal") then
+
+//        if ~exists(var_tok(1),"nolocal") then  //Scilab5
+
+        if ~exists(var_tok(1)) then           //Scilab4
+  
+//// end of the part with alternate code //////  
+
           ext_ex = %f;
         else
           accesstryresult = execstr(var_tok(1) + "(" + var_tok(2) + ")","errcatch");
