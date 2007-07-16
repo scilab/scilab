@@ -13,7 +13,7 @@ public interface MenuItem {
 	 * Gets this Bridge component object
 	 * @return this Bridge component object
 	 */
-	MenuItemBridge getMenuItemBridge();
+	SimpleMenuItem getAsSimpleMenuItem();
 	
 	/**
 	 * Sets the text of a MenuItem

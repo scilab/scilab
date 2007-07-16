@@ -21,16 +21,16 @@ public interface UIElement {
 
 	/**
 	 * Associate the Tool bar to the UIElement
-	 * @return the Tool bar.
+	 * @param toolBarToAdd - the Tool bar.
 	 */
-	public abstract void addToolBar(ToolBar toolBarToAdd);
+	void addToolBar(ToolBar toolBarToAdd);
 
 	/**
 	 * Associate the Menu bar to the UIElement
-	 * @return the Tool bar.
+	 * @param toolMenuToAdd - the Tool bar.
 	 */
-	public abstract void addMenuBar(MenuBar toolMenuToAdd);
-//
+	void addMenuBar(MenuBar toolMenuToAdd);
+
 //	public abstract void resize();
 //
 //	public abstract void focus();

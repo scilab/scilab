@@ -6,9 +6,7 @@ package org.scilab.modules.gui.bridge.editbox;
 import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
 
-import org.scilab.modules.gui.container.Container;
-import org.scilab.modules.gui.editbox.EditBox;
-import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.editbox.EditBoxBridge;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -16,7 +14,8 @@ import org.scilab.modules.gui.utils.Size;
  * Swing implementation for Scilab EditBox in GUIs
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabEditBox extends JTextArea implements EditBox {
+public class SwingScilabEditBox extends JTextArea implements EditBoxBridge {
+	
 	/**
 	 * Constructor
 	 */
@@ -25,13 +24,23 @@ public class SwingScilabEditBox extends JTextArea implements EditBox {
 	}
 	
 	/**
-	 * To set the Border color and size of the element.
-	 * @param lineBorder the LineBorder
+	 * Sets the text of a Text Widget
+	 * @param newText the text to set to the Text Widget
 	 */
-	public void setBorder(LineBorder lineBorder) {
-		super.setBorder(lineBorder);
+	@Override
+	public void setText(String newText) {
+		super.setText(newText);
 	}
 
+	/**
+	 * Gets the text of a Text Widget
+	 * @return the text of the Text Widget
+	 */
+	@Override
+	public String getText() {
+		return super.getText();
+	}
+	
 	/**
 	 * Draws a swing Scilab EditBox
 	 * @see org.scilab.modules.gui.uielement.UIElement#draw()
@@ -77,6 +86,14 @@ public class SwingScilabEditBox extends JTextArea implements EditBox {
 		this.setLocation(newPosition.getX(), newPosition.getY());
 	}
 	
+//	 TODO ============= En Developpement ==========/
+	/**
+	 * To set the Border color and size of the element.
+	 * @param lineBorder the LineBorder
+	 */
+	public void setBorder(LineBorder lineBorder) {
+		super.setBorder(lineBorder);
+	}
 	
 	/**
 	 * Add this as member (dockable element) to the Scilab container and returns its index
@@ -85,9 +102,11 @@ public class SwingScilabEditBox extends JTextArea implements EditBox {
 	 * @see org.scilab.modules.gui.container.Container#addMember(org.scilab.modules.gui.dockable.Dockable)
 	 * @see org.scilab.modules.gui.dockable.Dockable#addAsMemberTo(org.scilab.modules.gui.container.Container)
 	 */
-	public int addAsMemberTo(Container container) {
-		// delegate to the container but also adding info on how to handle me (EditBox)
-		// Interface Container must describe methode: int addMember(EditBox member);
-		return container.addMember((EditBox) this);
-	}
+//	public int addAsMemberTo(Container container) {
+//		// delegate to the container but also adding info on how to handle me (EditBox)
+//		// Interface Container must describe methode: int addMember(EditBox member);
+//		return container.addMember((EditBox) this);
+//	}
+//	 TODO ============= FIN En Developpement ==========/
+	
 }

@@ -7,7 +7,7 @@ package org.scilab.modules.gui.menuitem;
  * Interface for MenuItemBridge the associated object to Scilab GUIs MenuItem
  * @author Marouane BEN JELLOUL
  */
-public interface MenuItemBridge {
+public interface SimpleMenuItem {
 	
 	/**
 	 * Sets the text of a MenuItemBridge

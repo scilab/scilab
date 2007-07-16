@@ -12,7 +12,7 @@ import org.scilab.modules.gui.menu.Menu;
  */
 public class ScilabMenuBar implements MenuBar {
 
-	private MenuBarBridge component;
+	private SimpleMenuBar component;
 	
 	/**
 	 * Constructor
@@ -33,7 +33,7 @@ public class ScilabMenuBar implements MenuBar {
 	 * Gets this Bridge component object
 	 * @return this Bridge component object
 	 */
-	public MenuBarBridge getMenuBarBridge() {
+	public SimpleMenuBar getAsSimpleMenuBar() {
 		return component;
 	}
 	
@@ -44,6 +44,6 @@ public class ScilabMenuBar implements MenuBar {
 	 */
 //	* @return the added Menu
 	public void add(Menu newMenu) {
-		ScilabBridge.add(component, newMenu.getMenuBridge());
+		ScilabBridge.add(component, newMenu.getAsSimpleMenu());
 	}
 }

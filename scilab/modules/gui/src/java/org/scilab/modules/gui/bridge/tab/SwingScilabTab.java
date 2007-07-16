@@ -177,7 +177,7 @@ public class SwingScilabTab extends View implements Tab {
 	public int addMember(EditBox member) {
 //		TODO : can we add a EditBox? if yes find out how we should add a it to a Tab
 		// TODO code this
-		return 0;
+		return -1;
 	}
 	
 	/**
@@ -207,7 +207,7 @@ public class SwingScilabTab extends View implements Tab {
 	public int addMember(Label member) {
 //		TODO : can we add a Label? if yes find out how we should add a it to a Tab
 		// TODO code this
-		return 0;
+		return -1;
 	}
 	
 	/**
@@ -218,7 +218,7 @@ public class SwingScilabTab extends View implements Tab {
 	public int addMember(ListBox member) {
 //		TODO : can we add a ListBox? if yes find out how we should add a it to a Tab
 		// TODO code this
-		return 0;
+		return -1;
 	}
 	
 	/**
@@ -229,7 +229,7 @@ public class SwingScilabTab extends View implements Tab {
 	public int addMember(PushButton member) {
 //		TODO : can we add a PushButton? if yes find out how we should add a it to a Tab
 		// TODO code this
-		return 0;
+		return -1;
 	}
 	
 	/**
@@ -240,7 +240,7 @@ public class SwingScilabTab extends View implements Tab {
 	public int addMember(RadioButton member) {
 //		TODO : can we add a RadioButton? if yes find out how we should add a it to a Tab
 		// TODO code this
-		return 0;
+		return -1;
 	}
 	
 	/**
@@ -251,7 +251,7 @@ public class SwingScilabTab extends View implements Tab {
 	public int addMember(Slider member) {
 //		TODO : can we add a Slider? if yes find out how we should add a it to a Tab
 		// TODO code this
-		return 0;
+		return -1;
 	}
 	
 	/**
@@ -262,7 +262,7 @@ public class SwingScilabTab extends View implements Tab {
 	public int addMember(Tab member) {
 //		TODO : can we add a Tab? if yes find out how we should add a it to a Tab
 		// TODO code this
-		return 0;
+		return -1;
 	}
 	
 	/**
@@ -273,7 +273,7 @@ public class SwingScilabTab extends View implements Tab {
 	public int addMember(TextBox member) {
 //		TODO : can we add a Tab? if yes find out how we should add a it to a Tab
 		// TODO code this
-		return 0;
+		return -1;
 	}
 	
 	/**

@@ -17,7 +17,7 @@ public interface MenuBar {
 	 * Gets this Bridge component object
 	 * @return this Bridge component object
 	 */
-	MenuBarBridge getMenuBarBridge();
+	SimpleMenuBar getAsSimpleMenuBar();
 	
 	/**
 	 * Add a Menu to a MenuBar

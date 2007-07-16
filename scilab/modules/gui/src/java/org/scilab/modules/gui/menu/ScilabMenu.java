@@ -19,7 +19,7 @@ import org.scilab.modules.gui.menuitem.ScilabMenuItem;
  */
 public class ScilabMenu extends ScilabMenuItem implements Menu {
 
-	private MenuBridge component;
+	private SimpleMenu component;
 	
 	/**
 	 * Constructor
@@ -40,7 +40,7 @@ public class ScilabMenu extends ScilabMenuItem implements Menu {
 	 * Gets this Bridge component object
 	 * @return this Bridge component object
 	 */
-	public MenuBridge getMenuBridge() {
+	public SimpleMenu getAsSimpleMenu() {
 		return component;
 	}
 	
@@ -51,7 +51,7 @@ public class ScilabMenu extends ScilabMenuItem implements Menu {
 	 */
 	//  * @return the added MenuItem
 	public void add(MenuItem newMenuItem) {
-		ScilabBridge.add(component, newMenuItem.getMenuItemBridge());
+		ScilabBridge.add(component, newMenuItem.getAsSimpleMenuItem());
 	}
 	
 	/**

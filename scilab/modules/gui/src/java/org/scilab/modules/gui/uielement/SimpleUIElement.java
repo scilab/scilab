@@ -3,6 +3,8 @@
 
 package org.scilab.modules.gui.uielement;
 
+import org.scilab.modules.gui.menubar.SimpleMenuBar;
+import org.scilab.modules.gui.toolbar.SimpleToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -10,12 +12,20 @@ import org.scilab.modules.gui.utils.Size;
  * Interface for UIElementBridge the associated object to Scilab GUIs UIElement
  * @author Marouane BEN JELLOUL
  */
-public interface UIElementBridge {
+public interface SimpleUIElement {
 
-//	public abstract void addToolBar(ToolBar toolBarToAdd);
-//
-//	public abstract void addMenuBar(MenuBar toolMenuToAdd);
-//
+	/**
+	 * Sets a MenuBar to a window
+	 * @param newMenuBar the MenuBar to add to the window
+	 */
+	void addMenuBar(SimpleMenuBar newMenuBar);
+
+	/**
+	 * Sets a ToolBar to a window
+	 * @param newToolBar the ToolBar to set to the window
+	 */
+	void addToolBar(SimpleToolBar newToolBar);
+
 //	public abstract void resize();
 //
 //	public abstract void focus();

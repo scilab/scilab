@@ -1,43 +1,24 @@
 
 /* Copyright INRIA 2007 */
 
-package org.scilab.modules.gui.menu;
+package org.scilab.modules.gui.editbox;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 
-import org.scilab.modules.gui.menuitem.MenuItemBridge;
+import javax.swing.border.LineBorder;
+
+import org.scilab.modules.gui.text.TextBridge;
 
 /**
- * Interface for MenuBridge the associated object to Scilab GUIs Menu
+ * Interface for EditBoxBridge the associated object to Scilab GUIs EditBox
  * @author Marouane BEN JELLOUL
  */
-public interface MenuBridge {
-	/**
-	 * Append a MenuItemBridge to the MenuBridge
-	 * @param newMenuItem the MenuItemBridge to add to the MenuBridge
-	 * @return the added MenuItemBridge
-	 */
-	MenuItemBridge add(MenuItemBridge newMenuItem);
+public interface EditBoxBridge extends TextBridge {
 	
-	/**
-	 * Sets the text of the Menu
-	 * @param newText the text we want to set for the Menu
-	 */
-	void setText(String newText);
-	
-	/**
-	 * set a mnemonic to the Menu
-	 * @param mnemonic the new mnemonic of the Menu
-	 */
-	void setMnemonic(int mnemonic);
-	
-	/**
-	 * Add a Separator to a Menu
-	 */
-	void addSeparator();
-	
+
+	// TODO ============= En Developpement ==========/
 	/**
 	 * To set the Background color of the element.
 	 * @param color the Color
@@ -61,6 +42,12 @@ public interface MenuBridge {
 	 * @return color the Color
 	 */
 	Color getForeground();
+	
+	/**
+	 * To set the Border color and size of the element.
+	 * @param lineBorder the LineBorder
+	 */
+	void setBorder(LineBorder lineBorder);
 	
 	/**
 	 * To set the Font of the element.
@@ -105,4 +92,5 @@ public interface MenuBridge {
 	 * @return the y coordinate
 	 */
 	int getY();
+	// TODO ============= FIN En Developpement ==========/
 }

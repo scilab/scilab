@@ -7,14 +7,18 @@ import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.console.ScilabConsoleBridge;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.canvas.ScilabCanvasBridge;
+import org.scilab.modules.gui.editbox.EditBoxBridge;
+import org.scilab.modules.gui.editbox.ScilabEditBoxBridge;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.frame.ScilabFrameBridge;
-import org.scilab.modules.gui.pushbutton.PushButtonBridge;
+import org.scilab.modules.gui.pushbutton.SimplePushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButtonBridge;
 import org.scilab.modules.gui.separator.ScilabSeparatorBridge;
 import org.scilab.modules.gui.separator.Separator;
 import org.scilab.modules.gui.tab.ScilabTabBridge;
 import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.textbox.ScilabTextBoxBridge;
+import org.scilab.modules.gui.textbox.SimpleTextBox;
 import org.scilab.modules.gui.toolbar.ScilabToolBarBridge;
 import org.scilab.modules.gui.toolbar.SimpleToolBar;
 import org.scilab.modules.gui.utils.Position;
@@ -25,10 +29,10 @@ import org.scilab.modules.gui.layout.BorderLayout;
 import org.scilab.modules.gui.layout.FlowLayout;
 import org.scilab.modules.gui.layout.ScilabBorderLayoutBridge;
 import org.scilab.modules.gui.layout.ScilabFlowLayoutBridge;
-import org.scilab.modules.gui.menubar.MenuBarBridge;
-import org.scilab.modules.gui.menu.MenuBridge;
+import org.scilab.modules.gui.menubar.SimpleMenuBar;
+import org.scilab.modules.gui.menu.SimpleMenu;
 import org.scilab.modules.gui.menubar.ScilabMenuBarBridge;
-import org.scilab.modules.gui.menuitem.MenuItemBridge;
+import org.scilab.modules.gui.menuitem.SimpleMenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItemBridge;
 import org.scilab.modules.gui.menu.ScilabMenuBridge;
 
@@ -139,13 +143,13 @@ public class ScilabBridge {
 		ScilabWindowBridge.setVisible(window, newVisibleState);
 	}
 
-//	TODO uncomment when TabBridge ready
+//	TODO uncomment when SimpleTab ready
 //	/**
 //	 * Add a tab to a window
 //	 * @param window the window which we want to add the tab to
 //	 * @param newTab the tab to add to the window
 //	 */
-//	public static void addTab(WindowBridge window, TabBridge newTab) {
+//	public static void addTab(SimpleWindow window, SimpleTab newTab) {
 //		ScilabWindowBridge.addTab(window, newTab);
 //	}
 
@@ -154,8 +158,8 @@ public class ScilabBridge {
 	 * @param window the window which we want to add the MeunBar to
 	 * @param newMenuBar the MeunBar to add to the window
 	 */
-	public static void setMenuBar(SimpleWindow window, MenuBarBridge newMenuBar) {
-		ScilabWindowBridge.setMenuBar(window, newMenuBar);
+	public static void addMenuBar(SimpleWindow window, SimpleMenuBar newMenuBar) {
+		ScilabWindowBridge.addMenuBar(window, newMenuBar);
 	}
 	
 	/**
@@ -163,8 +167,17 @@ public class ScilabBridge {
 	 * @param window the window which we want to add the ToolBar to
 	 * @param newToolBar the ToolBar to add to the window
 	 */
-	public static void setToolBar(SimpleWindow window, SimpleToolBar newToolBar) {
-		ScilabWindowBridge.setToolBar(window, newToolBar);
+	public static void addToolBar(SimpleWindow window, SimpleToolBar newToolBar) {
+		ScilabWindowBridge.addToolBar(window, newToolBar);
+	}
+	
+	/**
+	 * Sets a InfoBar to a window
+	 * @param window the window which we want to add the InfoBar to
+	 * @param newInfoBar the InfoBar to add to the window
+	 */
+	public static void addInfoBar(SimpleWindow window, SimpleTextBox newInfoBar) {
+		ScilabWindowBridge.addInfoBar(window, newInfoBar);
 	}
 	
 	/*****************/
@@ -184,7 +197,7 @@ public class ScilabBridge {
 	 * @param toolBar the toolBar which we want to add the PushButton to
 	 * @param pushButton the PushButton to add.
 	 */
-	public static void add(SimpleToolBar toolBar, PushButtonBridge pushButton) {
+	public static void add(SimpleToolBar toolBar, SimplePushButton pushButton) {
 		ScilabToolBarBridge.add(toolBar, pushButton);
 	}
 
@@ -608,7 +621,7 @@ public class ScilabBridge {
 	 * Creates a new MenuBar
 	 * @return the created MenuBar
 	 */
-	public static MenuBarBridge createMenuBar() {
+	public static SimpleMenuBar createMenuBar() {
 		return ScilabMenuBarBridge.createMenuBar();
 	}
 	
@@ -618,7 +631,7 @@ public class ScilabBridge {
 	 * @param newMenu the Menu to add to the MenuBar
 	 */
 	// 	 * @return the added Menu
-	public static void add(MenuBarBridge menuBar, MenuBridge newMenu) {
+	public static void add(SimpleMenuBar menuBar, SimpleMenu newMenu) {
 		ScilabMenuBarBridge.add(menuBar, newMenu);
 	}
 	
@@ -630,7 +643,7 @@ public class ScilabBridge {
 	 * Creates a new MenuItem
 	 * @return the created MenuItem
 	 */
-	public static MenuItemBridge createMenuItem() {
+	public static SimpleMenuItem createMenuItem() {
 		return ScilabMenuItemBridge.createMenuItem();
 	}
 	
@@ -639,7 +652,7 @@ public class ScilabBridge {
 	 * @param menuItem the MenuItem we want to set the Text of
 	 * @param newText the Text to set for the MenuItem
 	 */
-	public static void setText(MenuItemBridge menuItem, String newText) {
+	public static void setText(SimpleMenuItem menuItem, String newText) {
 		ScilabMenuItemBridge.setText(menuItem, newText);
 	}
 	
@@ -648,7 +661,7 @@ public class ScilabBridge {
 	 * @param menuItem the MenuItem which we want to add the mnemonic to
 	 * @param mnemonic the mnemonic to add to the MenuItem
 	 */
-	public static void setMnemonic(MenuItemBridge menuItem, int mnemonic) {
+	public static void setMnemonic(SimpleMenuItem menuItem, int mnemonic) {
 		ScilabMenuItemBridge.setMnemonic(menuItem, mnemonic);
 	}
 	
@@ -660,7 +673,7 @@ public class ScilabBridge {
 	 * Creates a new Menu
 	 * @return the created Menu
 	 */
-	public static MenuBridge createMenu() {
+	public static SimpleMenu createMenu() {
 		return ScilabMenuBridge.createMenu();
 	}
 	
@@ -670,7 +683,7 @@ public class ScilabBridge {
 	 * @param newMenuItem the MenuItem to add to the Menu
 	 * @return the added MenuItem
 	 */
-	public static MenuItemBridge add(MenuBridge menu, MenuItemBridge newMenuItem) {
+	public static SimpleMenuItem add(SimpleMenu menu, SimpleMenuItem newMenuItem) {
 		return ScilabMenuBridge.add(menu, newMenuItem);
 	}
 	
@@ -679,7 +692,7 @@ public class ScilabBridge {
 	 * @param menu the Menu which we want to set the text to
 	 * @param newText the new text to set to the menu
 	 */
-	public static void setText(MenuBridge menu, String newText) {
+	public static void setText(SimpleMenu menu, String newText) {
 		ScilabMenuBridge.setText(menu, newText);
 	}
 	
@@ -688,7 +701,7 @@ public class ScilabBridge {
 	 * @param menu the Menu which we want to set the mnemonic to
 	 * @param mnemonic the new mnemonic to set to the menu
 	 */
-	public static void setMnemonic(MenuBridge menu, int mnemonic) {
+	public static void setMnemonic(SimpleMenu menu, int mnemonic) {
 		ScilabMenuBridge.setMnemonic(menu, mnemonic);
 	}
 	
@@ -696,7 +709,7 @@ public class ScilabBridge {
 	 * Add a Separator to a Menu
 	 * @param menu the Menu which we want to add the Separator to
 	 */
-	public static void addSeparator(MenuBridge menu) {
+	public static void addSeparator(SimpleMenu menu) {
 		ScilabMenuBridge.addSeparator(menu);
 	}
 	
@@ -720,7 +733,7 @@ public class ScilabBridge {
 	 * Creates a new PushButton
 	 * @return the created PushButton
 	 */
-	public static PushButtonBridge createPushButton() {
+	public static SimplePushButton createPushButton() {
 		return ScilabPushButtonBridge.createPushButton();
 	}
 	
@@ -729,8 +742,206 @@ public class ScilabBridge {
 	 * @param pushButton the PushButton we want to set the Text of
 	 * @param newText the Text to set for the MenuItem
 	 */
-	public static void setText(PushButtonBridge pushButton, String newText) {
+	public static void setText(SimplePushButton pushButton, String newText) {
 		ScilabPushButtonBridge.setText(pushButton, newText);
+	}
+	
+	/*****************/
+	/* TextBox Bridge */
+	/*****************/
+
+	/**
+	 * Creates a new TextBox
+	 * @return the created TextBox
+	 */
+	public static SimpleTextBox createTextBox() {
+		return ScilabTextBoxBridge.createTextBox();
+	}
+	
+	/**
+	 * Sets the Text of a TextBox
+	 * @param textBox the TextBox we want to set the Text of
+	 * @param newText the Text to set for the TextBox
+	 */
+	public static void setText(SimpleTextBox textBox, String newText) {
+		ScilabTextBoxBridge.setText(textBox, newText);
+	}
+	
+	/**
+	 * Gets the text of an TextBox
+	 * @param textBox the TextBox we want to get the text of
+	 * @return the text of the TextBox
+	 */
+	public static String getText(SimpleTextBox textBox) {
+		return ScilabTextBoxBridge.getText(textBox);
+	}
+	
+	/**
+	 * Draws a Scilab TextBox
+	 * @param textBox the TextBox to draw
+	 * @see org.scilab.modules.ihm.UIElement#draw()
+	 */
+	public static void draw(SimpleTextBox textBox) {
+		ScilabTextBoxBridge.draw(textBox);
+	}
+
+	/**
+	 * Gets the dimensions (width and height) of a Scilab TextBox
+	 * @param textBox the TextBox we want to get the dimensions of
+	 * @return the size of the textBox
+	 * @see org.scilab.modules.ihm.UIElement#getDims()
+	 */
+	public static Size getDims(SimpleTextBox textBox) {
+		return ScilabTextBoxBridge.getDims(textBox);
+	}
+
+	/**
+	 * Gets the position (X-coordinate and Y-coordinate) of a Scilab textBox
+	 * @param textBox the textBox we want to get the position of
+	 * @return the position of the textBox
+	 * @see org.scilab.modules.ihm.UIElement#getPosition()
+	 */
+	public static Position getPosition(SimpleTextBox textBox) {
+		return ScilabTextBoxBridge.getPosition(textBox);
+	}
+
+	/**
+	 * Gets the visibility status of a Scilab TextBox
+	 * @param textBox the textBox we want to get the visiblity status of
+	 * @return the visibility status of the textBox (true if the textBox is visible, false if not)
+	 * @see org.scilab.modules.ihm.UIElement#isVisible()
+	 */
+	public static boolean isVisible(SimpleTextBox textBox) {
+		return ScilabTextBoxBridge.isVisible(textBox);
+	}
+
+	/**
+	 * Sets the dimensions (width and height) of a Scilab TextBox
+	 * @param textBox the textBox we want to set the dimensions of
+	 * @param newSize the size we want to set to the textBox
+	 * @see org.scilab.modules.ihm.UIElement#setDims(org.scilab.modules.ihm.utils.Size)
+	 */
+	public static void setDims(SimpleTextBox textBox, Size newSize) {
+		ScilabTextBoxBridge.setDims(textBox, newSize);
+	}
+
+	/**
+	 * Sets the position (X-coordinate and Y-coordinate) of a Scilab textBox
+	 * @param textBox the textBox we want to set the position of
+	 * @param newPosition the position we want to set to the textBox
+	 * @see org.scilab.modules.ihm.UIElement#setPosition(org.scilab.modules.ihm.utils.Position)
+	 */
+	public static void setPosition(SimpleTextBox textBox, Position newPosition) {
+		ScilabTextBoxBridge.setPosition(textBox, newPosition);
+	}
+
+	/**
+	 * Sets the visibility status of a Scilab TextBox
+	 * @param textBox the textBox we want to set the visiblity status of
+	 * @param newVisibleState the visibility status we want to set to the textBox (true to set the textBox visible, false else)
+	 * @see org.scilab.modules.ihm.UIElement#setVisible(boolean)
+	 */
+	public static void setVisible(SimpleTextBox textBox, boolean newVisibleState) {
+		ScilabTextBoxBridge.setVisible(textBox, newVisibleState);
+	}
+	
+	/*****************/
+	/* EditBox Bridge */
+	/*****************/
+
+	/**
+	 * Creates a new EditBox
+	 * @return the created EditBox
+	 */
+	public static EditBoxBridge createEditBox() {
+		return ScilabEditBoxBridge.createEditBox();
+	}
+	
+	/**
+	 * Sets the Text of a EditBox
+	 * @param editBox the EditBox we want to set the Text of
+	 * @param newText the Text to set for the EditBox
+	 */
+	public static void setText(EditBoxBridge editBox, String newText) {
+		ScilabEditBoxBridge.setText(editBox, newText);
+	}
+	
+	/**
+	 * Gets the text of an EditBox
+	 * @param editBox the EditBox we want to get the text of
+	 * @return the text of the EditBox
+	 */
+	public static String getText(EditBoxBridge editBox) {
+		return ScilabEditBoxBridge.getText(editBox);
+	}
+	
+	/**
+	 * Draws a Scilab EditBox
+	 * @param editBox the EditBox to draw
+	 * @see org.scilab.modules.ihm.UIElement#draw()
+	 */
+	public static void draw(EditBoxBridge editBox) {
+		ScilabEditBoxBridge.draw(editBox);
+	}
+
+	/**
+	 * Gets the dimensions (width and height) of a Scilab EditBox
+	 * @param editBox the EditBox we want to get the dimensions of
+	 * @return the size of the editBox
+	 * @see org.scilab.modules.ihm.UIElement#getDims()
+	 */
+	public static Size getDims(EditBoxBridge editBox) {
+		return ScilabEditBoxBridge.getDims(editBox);
+	}
+
+	/**
+	 * Gets the position (X-coordinate and Y-coordinate) of a Scilab editBox
+	 * @param editBox the editBox we want to get the position of
+	 * @return the position of the editBox
+	 * @see org.scilab.modules.ihm.UIElement#getPosition()
+	 */
+	public static Position getPosition(EditBoxBridge editBox) {
+		return ScilabEditBoxBridge.getPosition(editBox);
+	}
+
+	/**
+	 * Gets the visibility status of a Scilab EditBox
+	 * @param editBox the editBox we want to get the visiblity status of
+	 * @return the visibility status of the editBox (true if the editBox is visible, false if not)
+	 * @see org.scilab.modules.ihm.UIElement#isVisible()
+	 */
+	public static boolean isVisible(EditBoxBridge editBox) {
+		return ScilabEditBoxBridge.isVisible(editBox);
+	}
+
+	/**
+	 * Sets the dimensions (width and height) of a Scilab EditBox
+	 * @param editBox the editBox we want to set the dimensions of
+	 * @param newSize the size we want to set to the editBox
+	 * @see org.scilab.modules.ihm.UIElement#setDims(org.scilab.modules.ihm.utils.Size)
+	 */
+	public static void setDims(EditBoxBridge editBox, Size newSize) {
+		ScilabEditBoxBridge.setDims(editBox, newSize);
+	}
+
+	/**
+	 * Sets the position (X-coordinate and Y-coordinate) of a Scilab editBox
+	 * @param editBox the editBox we want to set the position of
+	 * @param newPosition the position we want to set to the editBox
+	 * @see org.scilab.modules.ihm.UIElement#setPosition(org.scilab.modules.ihm.utils.Position)
+	 */
+	public static void setPosition(EditBoxBridge editBox, Position newPosition) {
+		ScilabEditBoxBridge.setPosition(editBox, newPosition);
+	}
+
+	/**
+	 * Sets the visibility status of a Scilab EditBox
+	 * @param editBox the editBox we want to set the visiblity status of
+	 * @param newVisibleState the visibility status we want to set to the editBox (true to set the editBox visible, false else)
+	 * @see org.scilab.modules.ihm.UIElement#setVisible(boolean)
+	 */
+	public static void setVisible(EditBoxBridge editBox, boolean newVisibleState) {
+		ScilabEditBoxBridge.setVisible(editBox, newVisibleState);
 	}
 	
 	/*****************/

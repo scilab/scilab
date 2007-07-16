@@ -13,7 +13,8 @@ import org.scilab.modules.gui.bridge.menubar.SwingScilabMenuBar;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
 import org.scilab.modules.gui.bridge.toolbar.SwingScilabToolBar;
-import org.scilab.modules.gui.menubar.MenuBarBridge;
+import org.scilab.modules.gui.menubar.SimpleMenuBar;
+import org.scilab.modules.gui.textbox.SimpleTextBox;
 import org.scilab.modules.gui.toolbar.SimpleToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -32,9 +33,9 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	private static final int DEFAULTHEIGHT = 500;
 
 	private DefaultDockingPort sciDockingPort;
-	private SwingScilabMenuBar menuBar;
-	private SwingScilabToolBar toolBar;
-	private SwingScilabTextBox infoBar;
+	private SimpleMenuBar menuBar;
+	private SimpleToolBar toolBar;
+	private SimpleTextBox infoBar;
 	
 	/**
 	 * Constructor
@@ -140,13 +141,13 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 		return (DockingPort) sciDockingPort;
 	}
 
-//	TODO add when TabBridge ready
+//	TODO add when SimpleTab ready
 //	/**
 //	 * Add a Scilab tab to a Scilab window
 //	 * @param newTab the Scilab tab to add to the Scilab window
 //	 * @see org.scilab.modules.gui.window.Window#addTab(org.scilab.modules.gui.tab.Tab)
 //	 */
-//	public void addTab(TabBridge newTab) {
+//	public void addTab(SimpleTab newTab) {
 //		DockingManager.dock((SwingScilabTab) newTab, this.getDockingPort());
 //	}
 	
@@ -155,49 +156,28 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	 * @param newMenuBar the Scilab MenuBar to add to the Scilab window
 	 * @see org.scilab.modules.gui.window.Window#setMenuBar(org.scilab.modules.gui.menubar.MenuBar)
 	 */
-	public void setMenuBar(MenuBarBridge newMenuBar) {
-		this.menuBar = (SwingScilabMenuBar) newMenuBar;
-		super.setJMenuBar(this.menuBar);
+	public void addMenuBar(SimpleMenuBar newMenuBar) {
+		this.menuBar = newMenuBar;
+		super.setJMenuBar((SwingScilabMenuBar) this.menuBar);
 	}
-	
-//	 TODO remove because getMenuBar handled by ScilabWindow
-//	/**
-//	 * Get the MenuBar of the window
-//	 * @return this window menuBar
-//	 * @see org.scilab.modules.gui.window.Window#getSGMenuBar()
-//	 */
-//	public MenuBarBridge getMenuBar() {
-//		return (MenuBarBridge) this.menuBar;
-//	}
-	
+		
 	/**
 	 * Sets a Scilab ToolBar to a Scilab window
 	 * @param newToolBar the Scilab ToolBar to set to the Scilab window
 	 * @see org.scilab.modules.gui.window.Window#setToolBar(org.scilab.modules.gui.toolbar.ToolBar)
 	 */
-	public void setToolBar(SimpleToolBar newToolBar) {
-		this.toolBar = (SwingScilabToolBar) newToolBar;
-		super.add(this.toolBar, java.awt.BorderLayout.PAGE_START);
+	public void addToolBar(SimpleToolBar newToolBar) {
+		this.toolBar = newToolBar;
+		super.add((SwingScilabToolBar) this.toolBar, java.awt.BorderLayout.PAGE_START);
 	}
 
-//	TODO remove because getToolBar handled by ScilabWindow
-//	/**
-//	 * Get the ToolBar of the window
-//	 * @return this window toolBar
-//	 * @see org.scilab.modules.gui.window.Window#getToolBar()
-//	 */
-//	public ToolBarBridge getToolBar() {
-//		return (ToolBarBridge) this.toolBar;
-//	}
-	
-//	TODO uncomment when TextBoxBridge ready
-//	/**
-//	 * Sets a Scilab InfoBar to a Scilab window
-//	 * @param newInfoBar the Scilab InfoBar to set to the Scilab window
-//	 * @see org.scilab.modules.gui.window.Window#setInfoBar(org.scilab.modules.gui.textbox.TextBox)
-//	 */
-//	public void setInfoBar(TextBoxBridge newInfoBar) {
-//		this.infoBar = (SwingScilabTextBox) newInfoBar;
-//		super.add(this.infoBar, java.awt.BorderLayout.PAGE_END);
-//	}
+	/**
+	 * Sets a Scilab InfoBar to a Scilab window
+	 * @param newInfoBar the Scilab InfoBar to set to the Scilab window
+	 * @see org.scilab.modules.gui.window.Window#setInfoBar(org.scilab.modules.gui.textbox.TextBox)
+	 */
+	public void addInfoBar(SimpleTextBox newInfoBar) {
+		this.infoBar = newInfoBar;
+		super.add((SwingScilabTextBox) this.infoBar, java.awt.BorderLayout.PAGE_END);
+	}
 }

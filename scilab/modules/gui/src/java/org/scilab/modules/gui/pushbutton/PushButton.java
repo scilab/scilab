@@ -22,7 +22,7 @@ public interface PushButton extends Widget {
 	 * Gets this Bridge component object
 	 * @return this Bridge component object
 	 */
-	PushButtonBridge getPushButtonBridge();
+	SimplePushButton getAsSimplePushButton();
 	
 	/**
 	 * Sets the text of a PushButton

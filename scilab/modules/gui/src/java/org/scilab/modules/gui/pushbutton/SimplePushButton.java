@@ -9,11 +9,13 @@ import java.awt.Font;
 
 import javax.swing.border.LineBorder;
 
+import org.scilab.modules.gui.widget.SimpleWidget;
+
 /**
- * Interface for PushButtonBridge the associated object to Scilab GUIs PushButton
+ * Interface for SimplePushButton the associated object to Scilab GUIs PushButton
  * @author Marouane BEN JELLOUL
  */
-public interface PushButtonBridge {
+public interface SimplePushButton extends SimpleWidget {
 	// TODO : Add the methods that are usefull for a PushButton
 	
 	/**

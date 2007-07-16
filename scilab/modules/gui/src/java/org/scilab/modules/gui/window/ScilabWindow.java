@@ -21,14 +21,16 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	
 	private SimpleWindow component;
 		
+	private TextBox infoBar;
 	
 	/**
 	 * Constructor
 	 */
 	protected ScilabWindow() {
 		component = ScilabBridge.createWindow();
-		setMenuBar(null);
-		setToolBar(null);
+		super.setMenuBar(null);
+		super.setToolBar(null);
+		this.infoBar = null;
 	}
 
 	/**
@@ -143,9 +145,9 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 * @see org.scilab.modules.gui.window.Window#setMenuBar(org.scilab.modules.gui.widget.MenuBar)
 	 */
 	public void addMenuBar(MenuBar newMenuBar) {
-		setMenuBar(newMenuBar);
+		super.setMenuBar(newMenuBar);
 		// FIXME : Do it a standard way : getAsMenuBar
-		ScilabBridge.setMenuBar(component, newMenuBar.getMenuBarBridge());
+		ScilabBridge.addMenuBar(component, newMenuBar.getAsSimpleMenuBar());
 	}
 	
 	/**
@@ -154,8 +156,8 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 * @see org.scilab.modules.gui.window.Window#setToolBar(org.scilab.modules.gui.toolbar.ToolBar)
 	 */
 	public void addToolBar(ToolBar newToolBar) {
-		setToolBar(newToolBar);
-		ScilabBridge.setToolBar(component, newToolBar.getAsSimpleToolBar());
+		super.setToolBar(newToolBar);
+		ScilabBridge.addToolBar(component, newToolBar.getAsSimpleToolBar());
 	}
 	
 	/**
@@ -163,8 +165,16 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 * @param newInfoBar the Scilab InfoBar to set to the Scilab window
 	 * @see org.scilab.modules.gui.window.Window#setInfoBar(org.scilab.modules.gui.textbox.TextBox)
 	 */
-	public void setInfoBar(TextBox newInfoBar) {
-		// TODO : add code and continue
-		// ScilabBridge.setInfoBar(component, newInfoBar.getComponent());
+	public void addInfoBar(TextBox newInfoBar) {
+		this.infoBar = newInfoBar;
+		ScilabBridge.addInfoBar(component, newInfoBar.getAsSimpleTextBox());
+	}
+	
+	/**
+	 * Get a Scilab InfoBar from this Scilab window
+	 * @return this window InfoBar
+	 */
+	public TextBox getInfoBar() {
+		return this.infoBar;
 	}
 }

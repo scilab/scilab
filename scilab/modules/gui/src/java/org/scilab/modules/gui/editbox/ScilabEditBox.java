@@ -1,7 +1,7 @@
 
 /* Copyright INRIA 2007 */
 
-package org.scilab.modules.gui.pushbutton;
+package org.scilab.modules.gui.editbox;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -9,57 +9,63 @@ import java.awt.Font;
 
 import javax.swing.border.LineBorder;
 
-import org.scilab.modules.gui.menubar.MenuBar;
-import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.bridge.ScilabBridge;
+import org.scilab.modules.gui.container.Container;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.widget.ScilabWidget;
-import org.scilab.modules.gui.bridge.ScilabBridge;
-import org.scilab.modules.gui.container.Container;
 
 /**
-* Class for Scilab PushButtons in GUIs
-* @author Marouane BEN JELLOUL
-*/
-public class ScilabPushButton extends ScilabWidget implements PushButton {
+ * Class for Scilab EditBoxs in GUIs
+ * @author Marouane BEN JELLOUL
+ */
+public class ScilabEditBox extends ScilabWidget implements EditBox {
 
-	private SimplePushButton component;
+	private EditBoxBridge component;
 	
 	/**
 	 * Constructor
 	 */
-	protected ScilabPushButton() {
-		component = ScilabBridge.createPushButton();
+	protected ScilabEditBox() {
+		component = ScilabBridge.createEditBox();
 	}
 
 	/**
-	 * Creates a Scilab PushButton object
-	 * @return the created PushButton
+	 * Creates a Scilab EditBox object
+	 * @return the created EditBox
 	 */
-	public static PushButton createPushButton() {
-		return new ScilabPushButton();
+	public static EditBox createEditBox() {
+		return new ScilabEditBox();
 	}
 	
 	/**
 	 * Gets this Bridge component object
 	 * @return this Bridge component object
 	 */
-	public SimplePushButton getAsSimplePushButton() {
+	public EditBoxBridge getEditBoxBridge() {
 		return component;
 	}
 	
-	
 	/**
-	 * Sets the text of a PushButton
-	 * @param newText the text to set to the PushButton
+	 * Sets the text of a EditBox
+	 * @param newText the text to set to the EditBox
 	 */
 	public void setText(String newText) {
 		ScilabBridge.setText(component, newText);
 	}
 	
-//	TODO Question: What do we do with draw() for a PushButton ?
 	/**
-	 * Draws a PushButton
+	 * Gets the text of a EditBox
+	 * @return text of the EditBox
+	 */
+	public String getText() {
+		return ScilabBridge.getText(component);
+	}
+	
+	
+//	TODO Question: What do we do with draw() for a EditBox ?
+	/**
+	 * Draws a EditBox
 	 */
 	public void draw() {
 		// TODO Auto-generated method stub
@@ -67,54 +73,42 @@ public class ScilabPushButton extends ScilabWidget implements PushButton {
 	}
 	
 	/**
-	 * Sets the dimensions (width and height) of a swing Scilab PushButton
-	 * @param newSize the dimensions to set to the PushButton
+	 * Sets the dimensions (width and height) of a swing Scilab element
+	 * @param newSize the dimensions to set to the element
 	 * @see org.scilab.modules.gui.uielement.UIElement#setDims(org.scilab.modules.gui.utils.Size)
 	 */
 	public void setDims(Size newSize) {
-//		TODO QUESTION is this code needed or this methode can be empty ?
-//		TODO uncomment if needed and code the needed methodes
-		//ScilabBridge.setDims(this, newSize);
-		throw new UnsupportedOperationException(); 
+		ScilabBridge.setDims(component, newSize); 
 	}
 	
 	/**
-	 * Gets the dimensions (width and height) of a swing Scilab Menu
-	 * @return the dimensions (width and height) of the window
+	 * Gets the dimensions (width and height) of a swing Scilab element
+	 * @return the dimensions (width and height) of the element
 	 * @see org.scilab.modules.gui.uielement.UIElement#getDims(org.scilab.modules.gui.utils.Size)
 	 */
 	public Size getDims() {
-//		TODO QUESTION is this code needed or this methode can be empty ?
-//		TODO uncomment if needed and code the needed methodes
-		//return ScilabBridge.getDims(this);
-		throw new UnsupportedOperationException(); 
+		return ScilabBridge.getDims(component); 
 	}
 	
 	/**
-	 * Gets the position (X-coordinate and Y-coordinate) of a Scilab Menu
-	 * @return the position of the Menu
+	 * Gets the position (X-coordinate and Y-coordinate) of a Scilab element
+	 * @return the position of the element
 	 * @see org.scilab.modules.gui.uielement.UIElement#getPosition()
 	 */
 	public Position getPosition() {
-//		TODO QUESTION is this code needed or this methode can be empty ?
-//		TODO uncomment if needed and code the needed methodes
-		//return ScilabBridge.getPosition(this);
-		throw new UnsupportedOperationException(); 
+		return ScilabBridge.getPosition(component); 
 	}
 
 	/**
-	 * Sets the position (X-coordinate and Y-coordinate) of a Scilab Menu
-	 * @param newPosition the position we want to set to the Menu
+	 * Sets the position (X-coordinate and Y-coordinate) of a Scilab element
+	 * @param newPosition the position we want to set to the element
 	 * @see org.scilab.modules.gui.uielement.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
 	 */
 	public void setPosition(Position newPosition) {
-//		TODO QUESTION is this code needed or this methode can be empty ?
-//		TODO uncomment if needed and code the needed methodes
-		//ScilabBridge.setPosition(this, newPosition);
-		throw new UnsupportedOperationException(); 
+		ScilabBridge.setPosition(component, newPosition);
 	}
 
-//	TODO Question: What do we do with isVisible() for a Menu ?
+//	TODO Question: What do we do with isVisible() for an EditBox ?
 	/**
 	 * Gets the visibility status of an UIElement
 	 * @return the visibility status of the UIElement (true if the UIElement is visible, false if not)
@@ -122,11 +116,11 @@ public class ScilabPushButton extends ScilabWidget implements PushButton {
 	public boolean isVisible() {
 //		TODO QUESTION is this code needed or this methode can be empty ?
 //		TODO uncomment if needed and code the needed methodes
-		//return ScilabBridge.isVisible(this);
+		//return ScilabBridge.isVisible(component);
 		throw new UnsupportedOperationException(); 
 	}
 	
-//	TODO Question: What do we do with setVisible() for a Menu ?
+//	TODO Question: What do we do with setVisible() for an EditBox ?
 	/**
 	 * Sets the visibility status of a Menu
 	 * @param newVisibleState the visibility status we want to set for the UIElement
@@ -135,7 +129,7 @@ public class ScilabPushButton extends ScilabWidget implements PushButton {
 	public void setVisible(boolean newVisibleState) {
 //		TODO QUESTION is this code needed or this methode can be empty ?
 //		TODO uncomment if needed and code the needed methodes
-		//ScilabBridge.setVisible(this, newVisibleState);
+		//ScilabBridge.setVisible(component, newVisibleState);
 		throw new UnsupportedOperationException();
 	}
 
@@ -226,7 +220,7 @@ public class ScilabPushButton extends ScilabWidget implements PushButton {
 	}
 	
 	/**
-	 * check if the PushButton is enable or disable.
+	 * check if the EditBox is enable or disable.
 	 * @return true if enable or false if disable
 	 */
 	public boolean isEnabled() {
@@ -253,7 +247,7 @@ public class ScilabPushButton extends ScilabWidget implements PushButton {
 	}
 	
 	/**
-	 * To enable or disable the PushButton.
+	 * To enable or disable the EditBox.
 	 * @param value true to enable or false to disable
 	 */
 	public void setEnabled(boolean value) {
@@ -327,14 +321,15 @@ public class ScilabPushButton extends ScilabWidget implements PushButton {
 	}
 
 	/**
-	 * Sets the icon of a PushButton
-	 * @param filename the path to the icon image to set to the PushButton
+	 * Sets the icon of a EditBox
+	 * @param filename the path to the icon image to set to the EditBox
 	 */
 	public void setIcon(String filename) {
 		// TODO Auto-generated method stub
 		
 	}
 
+	// TODO this will be deleted
 	/**
 	 * Add this as member (dockable element) to the Scilab Container and returns its index
 	 * @param container the Container in which we add this
@@ -344,23 +339,5 @@ public class ScilabPushButton extends ScilabWidget implements PushButton {
 //		 TODO code this
 		//return ScilabBridge.addAsMemberTo(this, container);
 		return 0;
-	}
-
-	/**
-	 * Sets a MenuBar to an element
-	 * @param newMenuBar the MenuBar to set to the element
-	 */
-	public void addMenuBar(MenuBar newMenuBar) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	/**
-	 * Sets a ToolBar to an element
-	 * @param newToolBar the ToolBar to set to the element
-	 */
-	public void addToolBar(ToolBar newToolBar) {
-		// TODO Auto-generated method stub
-		
 	}
 }

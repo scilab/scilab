@@ -20,7 +20,7 @@ public interface Menu extends MenuItem {
 	 * Gets this Bridge component object
 	 * @return this Bridge component object
 	 */
-	MenuBridge getMenuBridge();
+	SimpleMenu getAsSimpleMenu();
 	
 	/**
 	 * Append a MenuItem to the Menu

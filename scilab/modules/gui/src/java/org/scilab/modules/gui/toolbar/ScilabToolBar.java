@@ -42,6 +42,6 @@ public class ScilabToolBar implements ToolBar {
 	 * @param pushButton the PushButton to add .
 	 */
 	public void add(PushButton pushButton) {
-		ScilabBridge.add(component, pushButton.getPushButtonBridge());
+		ScilabBridge.add(component, pushButton.getAsSimplePushButton());
 	}
 }

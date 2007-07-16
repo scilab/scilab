@@ -3,13 +3,13 @@
 
 package org.scilab.modules.gui.text;
 
-import org.scilab.modules.gui.widget.Widget;
+import org.scilab.modules.gui.widget.SimpleWidget;
 
 /**
- * Interface for Text objects in Scilab GUIs
+ * Interface for TextBridge the associated object to Scilab GUIs Text
  * @author Marouane BEN JELLOUL
  */
-public interface Text extends Widget {
+public interface TextBridge extends SimpleWidget {
 
 	/**
 	 * Sets the text of a Text Widget

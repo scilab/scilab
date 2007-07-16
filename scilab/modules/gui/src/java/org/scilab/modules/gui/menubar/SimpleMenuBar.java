@@ -3,18 +3,18 @@
 
 package org.scilab.modules.gui.menubar;
 
-import org.scilab.modules.gui.menu.MenuBridge;
+import org.scilab.modules.gui.menu.SimpleMenu;
 
 /**
  * Interface for MenuBarBridge the associated object to Scilab GUIs MenuBar
  * @author Marouane BEN JELLOUL
  */
-public interface MenuBarBridge {
+public interface SimpleMenuBar {
 	
 	/**
 	 * Add a MenuBridge to a MenuBarBridge
 	 * @param newMenu the MenuBridge to add to the MenuBarBridge
 	 * @return the added MenuBridge
 	 */
-	MenuBridge add(MenuBridge newMenu);
+	SimpleMenu add(SimpleMenu newMenu);
 }

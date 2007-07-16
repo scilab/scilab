@@ -5,10 +5,11 @@ package org.scilab.modules.gui.window;
 
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.textbox.SimpleTextBox;
 import org.scilab.modules.gui.toolbar.SimpleToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.menubar.MenuBarBridge;
+import org.scilab.modules.gui.menubar.SimpleMenuBar;
 
 /**
  * Bridge for Scilab windows in GUIs
@@ -118,8 +119,8 @@ public class ScilabWindowBridge {
 	 * @param window the window which we want to add the tab to
 	 * @param newTab the tab to add to the window
 	 */
-	// TODO uncomment when TabBridge ready
-//	public static void addTab(WindowBridge window, TabBridge newTab) {
+	// TODO uncomment when SimpleTab ready
+//	public static void addTab(SimpleWindow window, SimpleTab newTab) {
 //		window.addTab(newTab);
 //	}
 	
@@ -128,8 +129,8 @@ public class ScilabWindowBridge {
 	 * @param window the window which we want to add the MenuBar to
 	 * @param newMenuBar the MenuBar to add to the window
 	 */
-	public static void setMenuBar(SimpleWindow window, MenuBarBridge newMenuBar) {
-		window.setMenuBar(newMenuBar);
+	public static void addMenuBar(SimpleWindow window, SimpleMenuBar newMenuBar) {
+		window.addMenuBar(newMenuBar);
 	}
 	
 	/**
@@ -137,7 +138,16 @@ public class ScilabWindowBridge {
 	 * @param window the window which we want to add the newToolBar to
 	 * @param newToolBar the ToolBar to add to the window
 	 */
-	public static void setToolBar(SimpleWindow window, SimpleToolBar newToolBar) {
-		window.setToolBar(newToolBar);
+	public static void addToolBar(SimpleWindow window, SimpleToolBar newToolBar) {
+		window.addToolBar(newToolBar);
+	}
+	
+	/**
+	 * Sets a InfoBar to a Scilab window
+	 * @param window the window which we want to add the newInfoBar to
+	 * @param newInfoBar the InfoBar to add to the window
+	 */
+	public static void addInfoBar(SimpleWindow window, SimpleTextBox newInfoBar) {
+		window.addInfoBar(newInfoBar);
 	}
 }

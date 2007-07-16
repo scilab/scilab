@@ -43,5 +43,11 @@ public interface Window extends UIElement {
 	 * Sets a InfoBar to a window
 	 * @param newInfoBar the Scilab InfoBar to set to the Scilab window
 	 */
-	void setInfoBar(TextBox newInfoBar);
+	void addInfoBar(TextBox newInfoBar);
+	
+	/**
+	 * Get a InfoBar from this window
+	 * @return this window InfoBar
+	 */
+	TextBox getInfoBar();
 }

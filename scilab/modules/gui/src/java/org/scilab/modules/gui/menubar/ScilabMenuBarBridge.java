@@ -4,7 +4,7 @@
 package org.scilab.modules.gui.menubar;
 
 import org.scilab.modules.gui.bridge.menubar.SwingScilabMenuBar;
-import org.scilab.modules.gui.menu.MenuBridge;
+import org.scilab.modules.gui.menu.SimpleMenu;
 
 /**
  * Bridge for Scilab MenuBars in GUIs
@@ -23,7 +23,7 @@ public class ScilabMenuBarBridge {
 	 * Creates a Scilab MenuBar
 	 * @return the created MenuBar
 	 */
-	public static MenuBarBridge createMenuBar() {
+	public static SimpleMenuBar createMenuBar() {
 		return new SwingScilabMenuBar();
 	}
 	
@@ -33,7 +33,7 @@ public class ScilabMenuBarBridge {
 	 * @param newMenu the Menu to add to the MenuBar
 	 */
 	// * @return the added Menu
-	public static void add(MenuBarBridge menuBar, MenuBridge newMenu) {
+	public static void add(SimpleMenuBar menuBar, SimpleMenu newMenu) {
 		menuBar.add(newMenu);
 	}
 }

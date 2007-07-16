@@ -11,7 +11,7 @@ import org.scilab.modules.gui.bridge.ScilabBridge;
  */
 public class ScilabMenuItem implements MenuItem {
 
-	private MenuItemBridge component;
+	private SimpleMenuItem component;
 	
 	/**
 	 * Constructor
@@ -32,7 +32,7 @@ public class ScilabMenuItem implements MenuItem {
 	 * Gets this Bridge component object
 	 * @return this Bridge component object
 	 */
-	public MenuItemBridge getMenuItemBridge() {
+	public SimpleMenuItem getAsSimpleMenuItem() {
 		return component;
 	}
 	
