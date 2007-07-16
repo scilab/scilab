@@ -23,7 +23,7 @@ public class ScilabToolBarBridge {
 	 * Creates a Scilab ToolBar
 	 * @return the created ToolBar
 	 */
-	public static ToolBarBridge createToolBar() {
+	public static SimpleToolBar createToolBar() {
 		return new SwingScilabToolBar();
 	}
 	
@@ -32,7 +32,7 @@ public class ScilabToolBarBridge {
 	 * @param toolBar the ToolBar which we want to add the pushButton to
 	 * @param pushButton the PushButton to add to the toolBar
 	 */
-	public static void add(ToolBarBridge toolBar, PushButtonBridge pushButton) {
+	public static void add(SimpleToolBar toolBar, PushButtonBridge pushButton) {
 		toolBar.add(pushButton);
 	}
 }

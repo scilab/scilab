@@ -12,7 +12,7 @@ import org.scilab.modules.gui.pushbutton.PushButton;
  */
 public class ScilabToolBar implements ToolBar {
 
-	private ToolBarBridge component;
+	private SimpleToolBar component;
 	
 	/**
 	 * Constructor
@@ -33,7 +33,7 @@ public class ScilabToolBar implements ToolBar {
 	 * Gets this Bridge component object
 	 * @return this Bridge component object
 	 */
-	public ToolBarBridge getToolBarBridge() {
+	public SimpleToolBar getAsSimpleToolBar() {
 		return component;
 	}
 	

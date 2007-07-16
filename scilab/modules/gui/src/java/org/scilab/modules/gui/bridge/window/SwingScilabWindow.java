@@ -14,10 +14,10 @@ import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
 import org.scilab.modules.gui.bridge.toolbar.SwingScilabToolBar;
 import org.scilab.modules.gui.menubar.MenuBarBridge;
-import org.scilab.modules.gui.toolbar.ToolBarBridge;
+import org.scilab.modules.gui.toolbar.SimpleToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.window.WindowBridge;
+import org.scilab.modules.gui.window.SimpleWindow;
 
 /**
  * Swing implementation for Scilab windows in GUIs
@@ -26,7 +26,7 @@ import org.scilab.modules.gui.window.WindowBridge;
  * @author Bruno JOFRET
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabWindow extends JFrame implements WindowBridge {
+public class SwingScilabWindow extends JFrame implements SimpleWindow {
 
 	private static final int DEFAULTWIDTH = 500;
 	private static final int DEFAULTHEIGHT = 500;
@@ -64,7 +64,7 @@ public class SwingScilabWindow extends JFrame implements WindowBridge {
 	 * Creates a swing Scilab window
 	 * @return the created window
 	 */
-	public static WindowBridge createWindow() {
+	public static SimpleWindow createWindow() {
 		return new SwingScilabWindow();
 	}
 
@@ -175,7 +175,7 @@ public class SwingScilabWindow extends JFrame implements WindowBridge {
 	 * @param newToolBar the Scilab ToolBar to set to the Scilab window
 	 * @see org.scilab.modules.gui.window.Window#setToolBar(org.scilab.modules.gui.toolbar.ToolBar)
 	 */
-	public void setToolBar(ToolBarBridge newToolBar) {
+	public void setToolBar(SimpleToolBar newToolBar) {
 		this.toolBar = (SwingScilabToolBar) newToolBar;
 		super.add(this.toolBar, java.awt.BorderLayout.PAGE_START);
 	}

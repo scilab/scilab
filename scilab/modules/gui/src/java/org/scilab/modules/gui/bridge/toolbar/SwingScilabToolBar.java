@@ -7,13 +7,13 @@ import javax.swing.JToolBar;
 
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.pushbutton.PushButtonBridge;
-import org.scilab.modules.gui.toolbar.ToolBarBridge;
+import org.scilab.modules.gui.toolbar.SimpleToolBar;
 
 /**
  * Swing implementation for Scilab ToolBar in GUIs
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabToolBar extends JToolBar implements ToolBarBridge {
+public class SwingScilabToolBar extends JToolBar implements SimpleToolBar {
 
 	/**
 	 * Constructor
