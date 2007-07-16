@@ -19,7 +19,7 @@ public interface Window extends UIElement {
 	 * Gets this Bridge component object
 	 * @return this Bridge component object
 	 */
-	WindowBridge getWindowBridge();
+	SimpleWindow getAsSimpleWindow();
 	
 	/**
 	 * Gets the title of a window
@@ -38,30 +38,6 @@ public interface Window extends UIElement {
 	 * @param newTab the tab to add to the window
 	 */
 //	void addTab(Tab newTab);
-	
-	/**
-	 * Sets a MenuBar to a window
-	 * @param newMenuBar the MenuBar to add to the window
-	 */
-	void setMenuBar(MenuBar newMenuBar);
-	
-	/**
-	 * Get a MenuBar from this window
-	 * @return this window MenuBar
-	 */
-	MenuBar getMenuBar();
-	
-	/**
-	 * Sets a ToolBar to a window
-	 * @param newToolBar the ToolBar to set to the window
-	 */
-	void setToolBar(ToolBar newToolBar);
-	
-	/**
-	 * Get a ToolBar from this window
-	 * @return this window ToolBar
-	 */
-	ToolBar getToolBar();
 	
 	/**
 	 * Sets a InfoBar to a window

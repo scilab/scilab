@@ -17,7 +17,7 @@ public interface ToolBar {
 	 * Gets this Bridge component object
 	 * @return this Bridge component object
 	 */
-	ToolBarBridge getToolBarBridge();
+	SimpleToolBar getAsSimpleToolBar();
 	
 	/**
 	 * Add a PushButton to the ToolBar.
