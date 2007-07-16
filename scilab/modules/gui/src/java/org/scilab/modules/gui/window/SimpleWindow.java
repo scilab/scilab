@@ -4,14 +4,14 @@
 package org.scilab.modules.gui.window;
 
 import org.scilab.modules.gui.menubar.MenuBarBridge;
-import org.scilab.modules.gui.toolbar.ToolBarBridge;
+import org.scilab.modules.gui.toolbar.SimpleToolBar;
 import org.scilab.modules.gui.uielement.UIElementBridge;
 
 /**
  * Interface for WindowBridge the associated object to Scilab GUIs Window
  * @author Marouane BEN JELLOUL
  */
-public interface WindowBridge extends UIElementBridge {
+public interface SimpleWindow extends UIElementBridge {
 	
 	/**
 	 * Gets the title of a windowBridge
@@ -49,7 +49,7 @@ public interface WindowBridge extends UIElementBridge {
 	 * Sets a ToolBarBridge to a windowBridge
 	 * @param newToolBar the ToolBarBridge to set to the windowBridge
 	 */
-	void setToolBar(ToolBarBridge newToolBar);
+	void setToolBar(SimpleToolBar newToolBar);
 	
 //	TODO remove because getToolBar handled by ScilabWindow
 //	/**

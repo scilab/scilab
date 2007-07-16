@@ -9,7 +9,7 @@ import org.scilab.modules.gui.pushbutton.PushButtonBridge;
  * Interface for ToolBarBridge the associated object to Scilab GUIs ToolBar
  * @author Marouane BEN JELLOUL
  */
-public interface ToolBarBridge {
+public interface SimpleToolBar {
 	
 	/**
 	 * Add a PushButton to the ToolBar.
