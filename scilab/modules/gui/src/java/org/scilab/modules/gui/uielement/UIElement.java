@@ -6,6 +6,8 @@ package org.scilab.modules.gui.uielement;
 //import java.awt.Color;
 //import javax.swing.border.LineBorder;
 
+import org.scilab.modules.gui.menubar.MenuBar;
+import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -17,9 +19,17 @@ import org.scilab.modules.gui.utils.Size;
  */
 public interface UIElement {
 
-//	public abstract void addToolBar(ToolBar toolBarToAdd);
-//
-//	public abstract void addMenuBar(MenuBar toolMenuToAdd);
+	/**
+	 * Associate the Tool bar to the UIElement
+	 * @return the Tool bar.
+	 */
+	public abstract void addToolBar(ToolBar toolBarToAdd);
+
+	/**
+	 * Associate the Menu bar to the UIElement
+	 * @return the Tool bar.
+	 */
+	public abstract void addMenuBar(MenuBar toolMenuToAdd);
 //
 //	public abstract void resize();
 //
