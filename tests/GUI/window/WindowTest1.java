@@ -1,13 +1,12 @@
 /* Copyright INRIA 2007 */
 
-package marouane;
+package window;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.*;
 
-import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 
@@ -28,6 +27,8 @@ import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 import org.scilab.modules.gui.tab.ScilabTab;
 import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.textbox.ScilabTextBox;
+import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Size;
@@ -100,9 +101,9 @@ public class WindowTest1 {
 		menu.add(menuItem);
 		menuBar.add(menu);
 		
-		System.out.println("mainView.menuBar is null : result = " + mainView.getMenuBar());
-		mainView.setMenuBar(menuBar);
-		System.out.println("mainView.menuBar Added : result = " + mainView.getMenuBar());
+		//System.out.println("mainView.menuBar is null : result = " + mainView.getMenuBar());
+		mainView.addMenuBar(menuBar);
+		//System.out.println("mainView.menuBar Added : result = " + mainView.getMenuBar());
 		
 		// toolBar
 		ToolBar toolBar = ScilabToolBar.createToolBar();
@@ -113,12 +114,20 @@ public class WindowTest1 {
 		pushButton.setText("PB Two");
 		toolBar.add(pushButton);
 
-		System.out.println("mainView.toolBar is null : result = " + mainView.getToolBar());
-		mainView.setToolBar(toolBar);
-		System.out.println("mainView.toolBar is null : result = " + mainView.getToolBar());
+		//System.out.println("mainView.toolBar is null : result = " + mainView.getToolBar());
+		mainView.addToolBar(toolBar);
+		//System.out.println("mainView.toolBar Added : result = " + mainView.getToolBar());
+		
+//		 infoBar
+		TextBox infoBar = ScilabTextBox.createTextBox();
+		
+		System.out.println("mainView.infoBar is null : result = " + mainView.getInfoBar());
+		mainView.addInfoBar(infoBar);
+		System.out.println("mainView.infoBar Added : result = " + mainView.getInfoBar());
 		
 		mainView.draw();
 		
+		mainView.getInfoBar().setText("Loaded WindowTest1");
 		System.out.println("-*- Last Line Program WindowTest1 -*-");
 	}	
 
