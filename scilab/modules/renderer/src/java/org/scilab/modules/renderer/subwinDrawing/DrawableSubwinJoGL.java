@@ -8,13 +8,13 @@
 
 package org.scilab.modules.renderer.subwinDrawing;
 
-import org.scilab.modules.renderer.AutoDrawableObjectJoGL;
+import org.scilab.modules.renderer.DrawableObjectJoGL;
 
 /**
  * Class containing functions called by DrawableSubwinJoGL.cpp
  * @author Jean-Baptiste Silvy
  */
-public class DrawableSubwinJoGL extends AutoDrawableObjectJoGL {
+public class DrawableSubwinJoGL extends DrawableObjectJoGL {
 
 	/**
 	 * Default Constructor
@@ -22,5 +22,11 @@ public class DrawableSubwinJoGL extends AutoDrawableObjectJoGL {
 	public DrawableSubwinJoGL() {
 		super();
 	}
+	
+	/**
+	 * Display the object by displaying its display list
+	 * @param parentFigureIndex index of the parent figure in which the object will be drawn
+	 */
+	public void show(int parentFigureIndex) { }
 	
 }

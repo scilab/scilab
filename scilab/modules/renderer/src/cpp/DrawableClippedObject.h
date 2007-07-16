@@ -2,24 +2,20 @@
 /* file: DrawableClippedObject.h                                          */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
-/* desc : Class wich represent an object wich can be clipped              */
+/* desc : Class which represent an object which can be clipped            */
 /*------------------------------------------------------------------------*/
 
 #ifndef _DRAWABLE_CLIPPED_OBJECT_H_
 #define _DRAWABLE_CLIPPED_OBJECT_H_
 
-extern "C"
-{
-#include "../../../graphics/includes/ObjectStructure.h"
-}
-
+#include "DrawableClippedObjectBridge.h"
 #include "DrawableObject.h"
 
 namespace sciGraphics
 {
 
 /**
- * Object dedicated to render a sciPointObj.
+ * Object dedicated to render a sciPointObj with clipping.
  */
 class DrawableClippedObject : public DrawableObject
 {
@@ -35,6 +31,11 @@ public:
   bool isClipped( void ) { return m_bIsClipped ; }
 
   /**
+   * Automatically set the clipping of an object.
+   */
+  void setClipBox( void ) ;
+
+  /**
    * Set the clipping zone of the object.
    * Warning, be sure that min bounds are lower than max bounds.
    */
@@ -45,27 +46,32 @@ public:
   /**
    * Actually clip the object
    */
-  virtual void clip( void ) ;
+  void clip( void ) ;
 
   /**
-   * remove clipping. Should be called at the end of the object drawing.
+   * Remove clipping. Should be called at the end of the object drawing.
    * Otherwise it may have effect on other objects.
    */
-  virtual void unClip( void ) ;
+  void unClip( void ) ;
   
+  /**
+   * Get the bridge object
+   */
+  DrawableClippedObjectBridge * getClippedObjBridge( void ) ;
 
 protected:
 
-  double m_dXmin ;
-  double m_dXmax ;
-
-  double m_dYmin ;
-  double m_dYmax ;
-
-  double m_dZmin ;
-  double m_dZmax ;
-
+  /** To know if clipping is active */
   bool m_bIsClipped ;
+
+  /** To know if clipping along X axis is enable */
+  bool m_bXClippingEnable;
+
+  /** To know if clipping along Y axis is enable */
+  bool m_bYClippingEnable;
+
+  /** To know if clipping along Z axis is enable */
+  bool m_bZClippingEnable;
 
 } ;
 

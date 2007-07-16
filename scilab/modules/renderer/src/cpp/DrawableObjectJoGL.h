@@ -10,6 +10,7 @@
 
 #include <jni.h>
 #include "DrawableObjectImp.h"
+#include "DrawableObject.h"
 
 namespace sciGraphics
 {
@@ -53,6 +54,11 @@ namespace sciGraphics
      */
     virtual void show( void ) ;
 
+    /**
+     * To retrieve the data from the drawer, specially the sciPointObj/
+     */
+    virtual DrawableObject * getDrawer( void ) { return m_pDrawer ; }
+
   protected:
     
     /*-----------------------------------------------------------------------------*/
@@ -67,6 +73,9 @@ namespace sciGraphics
 
     /** the instance of the Java class */
     jobject m_oDrawableObject ;
+    /*-----------------------------------------------------------------------------*/
+    /** To retrieve the data from the drawer */
+    DrawableObject * m_pDrawer;
     /*-----------------------------------------------------------------------------*/
 
   };

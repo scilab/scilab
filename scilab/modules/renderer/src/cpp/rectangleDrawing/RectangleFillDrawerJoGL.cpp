@@ -17,15 +17,15 @@ namespace sciGraphics
 {
 /*------------------------------------------------------------------------------------------*/
 RectangleFillDrawerJoGL::RectangleFillDrawerJoGL( DrawableRectangleImp * drawer )
-  : DrawableObjectImp(drawer->getDrawer()), DrawRectangleStrategy( drawer ),
-    DrawableObjectJoGL( drawer->getDrawer(), "org/scilab/modules/renderer/rectangleDrawing/RectangleFillDrawerJoGL" )
+  : DrawRectangleStrategy( drawer ),
+    DrawableObjectJoGL(drawer->getRectangleDrawer(),"org/scilab/modules/renderer/rectangleDrawing/RectangleFillDrawerJoGL" )
 {
 
 }
 /*------------------------------------------------------------------------------------------*/
 void RectangleFillDrawerJoGL::drawRectangle( void )
 {
-  sciPointObj * pObj = m_pDrawed->getDrawer()->getDrawedObject() ;
+  sciPointObj * pObj = m_pDrawed->getRectangleDrawer()->getDrawedObject() ;
   initializeDrawing() ;
 
   // set the line parameters
@@ -37,7 +37,7 @@ void RectangleFillDrawerJoGL::drawRectangle( void )
   double corner3[3] ;
   double corner4[3] ;
 
-  m_pDrawed->getDrawer()->getCornersCoordinates( corner1, corner2, corner3, corner4 ) ;
+  m_pDrawed->getRectangleDrawer()->getCornersCoordinates( corner1, corner2, corner3, corner4 ) ;
 
   // display the rectangle
   jniCallMemberFunctionSafe( m_oDrawableObject, NULL, "drawRectangle", "(DDDDDDDDDDDD)V",

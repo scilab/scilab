@@ -10,7 +10,7 @@
 #define _DRAWABLE_POLYLINE_BRIDGE_
 
 #include "../DrawableObject.h"
-#include "../DrawableObjectImp.h"
+#include "../DrawableClippedObjectBridge.h"
 
 namespace sciGraphics
 {
@@ -22,14 +22,14 @@ class DrawablePolylineBridge : public virtual DrawableObjectImp
 {
 public:
 
-  DrawablePolylineBridge( DrawablePolyline * drawer ) ;
+  DrawablePolylineBridge( void ) {}
 
-  virtual ~DrawablePolylineBridge( void ) ;
+  virtual ~DrawablePolylineBridge( void ) {}
 
   /**
-   * Return the drawed object
+   * Return the drawn object
    */
-  DrawablePolyline * getDrawer( void ) ;
+  virtual DrawablePolyline * getPolylineDrawer( void ) = 0 ;
 
 };
 

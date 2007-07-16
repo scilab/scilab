@@ -13,7 +13,7 @@ namespace sciGraphics
 {
 
 /*------------------------------------------------------------------------------------------*/
-DrawablePolylineBridge::DrawablePolylineBridge( DrawablePolyline * drawer ) : DrawableObjectImp( drawer )
+DrawablePolylineBridge::DrawablePolylineBridge( DrawablePolyline * drawer )
 {
 
 }

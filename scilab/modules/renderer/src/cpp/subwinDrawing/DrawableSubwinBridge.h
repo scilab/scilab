@@ -25,17 +25,17 @@ namespace sciGraphics
 
   public:
 
-    DrawableSubwinBridge( DrawableSubwin * drawer ) ;
+    DrawableSubwinBridge( void ) {}
 
     virtual ~DrawableSubwinBridge( void ) {}
+
+
+  protected:
 
     /**
      * Return the drawed object
      */
-    DrawableSubwin * getDrawer( void ) ;
-
-
-  protected:
+    virtual DrawableSubwin * getSubwinDrawer( void ) = 0 ;
 
   } ;
 

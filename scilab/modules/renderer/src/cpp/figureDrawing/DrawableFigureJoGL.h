@@ -16,7 +16,7 @@
 namespace sciGraphics
 {
 
-class DrawableFigureJoGL : public DrawableFigureImp, public DrawableObjectJoGL
+class DrawableFigureJoGL : public virtual DrawableFigureImp, public DrawableObjectJoGL
 {
 
 public:
@@ -92,6 +92,14 @@ public:
    * Set the message displayed by the figure.
    */
   virtual void setInfoMessage( const char * message ) ;
+
+  /**
+   * Return the drawn object
+   */
+  virtual DrawableFigure * getFigureDrawer( void ) ;
+
+protected:
+
 
 } ;
 

@@ -141,6 +141,21 @@ void iNormalize2d( int vect[2] )
   vect[1] = round( vect[1] / norm ) ;
 }
 /*----------------------------------------------------------------------------*/
+void crossProduct( const double v1[3], const double v2[3], double res[3] )
+{
+  res[0] = v1[1] * v2[2] - v1[2] * v2[1] ;
+  res[1] = v1[2] * v2[0] - v1[0] * v2[2] ;
+  res[2] = v1[0] * v2[1] - v1[1] * v2[0] ;
+}
+/*----------------------------------------------------------------------------*/
+void normalize3D( double vect[3] )
+{
+  double norm = NORM_3D(vect) ;
+  vect[0] /= norm ;
+  vect[1] /= norm ;
+  vect[2] /= norm ;
+}
+/*----------------------------------------------------------------------------*/
 /* check if two values can be considered equal given an accurracy */
 int safeEqual( double val1, double val2, double accuracy )
 {

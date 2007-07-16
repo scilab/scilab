@@ -44,3 +44,6 @@ doubleArrayCopy
 sciGetIsReadyForRendering
 sciGetRealDataBounds
 sciGetViewingAngles
+sciGetClipping
+sciGetParentSubwin
+sciGetIsClipping

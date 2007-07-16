@@ -7,18 +7,26 @@
 /*------------------------------------------------------------------------*/
 
 #include "DrawablePolylineBridge.h"
-#include "../DrawableObjectJoGL.h"
+#include "DrawablePolyline.h"
+#include "../DrawableClippedObjectJoGL.h"
 
 namespace sciGraphics
 {
 
-class DrawablePolylineJoGL : public DrawablePolylineBridge, public DrawableObjectJoGL
+class DrawablePolylineJoGL : public DrawablePolylineBridge, public DrawableClippedObjectJoGL
 {
 
 public:
   DrawablePolylineJoGL( DrawablePolyline * drawer ) ;
 
   virtual ~DrawablePolylineJoGL( void ) ;
+
+  /**
+   * Return the drawn object
+   */
+  virtual DrawablePolyline * getPolylineDrawer( void ) ;
+
+protected:
 
 };
 

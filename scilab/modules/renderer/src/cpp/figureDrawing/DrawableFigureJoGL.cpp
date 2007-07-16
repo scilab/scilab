@@ -27,12 +27,14 @@ namespace sciGraphics
 
 /*------------------------------------------------------------------------------------------*/
 DrawableFigureJoGL::DrawableFigureJoGL( DrawableFigure * drawer )
-  : DrawableObjectImp(drawer), DrawableFigureImp(drawer), DrawableObjectJoGL(drawer, "org/scilab/modules/renderer/figureDrawing/DrawableFigureJoGL") {}
+  : DrawableObjectJoGL(drawer, "org/scilab/modules/renderer/figureDrawing/DrawableFigureJoGL")
+{
+  
+}
 /*------------------------------------------------------------------------------------------*/
 DrawableFigureJoGL::~DrawableFigureJoGL( void )
 {
   closeRenderingCanvas() ;
-  destroy() ;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::drawCanvas( void )
@@ -135,6 +137,11 @@ void DrawableFigureJoGL::setInfoMessage( const char * message )
   jstring infoMessage = jniCreateStringCopy( message ) ;
   jniCallMemberFunctionSafe( m_oDrawableObject, NULL, "setInfoMessage", "(Ljava/lang/String;)V", infoMessage ) ;
   jniDeleteLocalEntity( infoMessage ) ;
+}
+/*------------------------------------------------------------------------------------------*/
+DrawableFigure * DrawableFigureJoGL::getFigureDrawer( void )
+{
+  return dynamic_cast<DrawableFigure *>(getDrawer()) ;
 }
 /*------------------------------------------------------------------------------------------*/
 }

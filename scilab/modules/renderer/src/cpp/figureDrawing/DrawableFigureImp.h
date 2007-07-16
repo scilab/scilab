@@ -22,7 +22,7 @@ class DrawableFigureImp : public virtual DrawableObjectImp
 
 public:
 
-  DrawableFigureImp( DrawableFigure * drawer ) ;
+  DrawableFigureImp( void ) {}
 
   virtual ~DrawableFigureImp( void ) {}
 
@@ -97,7 +97,7 @@ public:
   /**
    * Return the drawed object
    */
-  DrawableFigure * getDrawer( void ) ;
+  virtual DrawableFigure * getFigureDrawer( void ) = 0 ;
 
 protected:
 

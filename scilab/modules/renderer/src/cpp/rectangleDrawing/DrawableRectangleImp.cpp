@@ -16,7 +16,7 @@ namespace sciGraphics
 using namespace std ;
 
 /*------------------------------------------------------------------------------------------*/
-DrawableRectangleImp::DrawableRectangleImp( DrawableRectangle * drawer ) : DrawableObjectImp( drawer )
+DrawableRectangleImp::DrawableRectangleImp( void )
 {
   m_oDrawingStrategies.clear() ;
 }
@@ -25,11 +25,6 @@ DrawableRectangleImp::~DrawableRectangleImp( void )
 {
   // delete the strategies
   removeDrawingStrategies() ;
-}
-/*------------------------------------------------------------------------------------------*/
-DrawableRectangle * DrawableRectangleImp::getDrawer( void )
-{
-  return dynamic_cast<DrawableRectangle *>(m_pDrawer) ;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableRectangleImp::drawRectangle( void )

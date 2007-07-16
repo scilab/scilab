@@ -10,13 +10,13 @@
 #define _DRAWABLE_SUBWIN_JOGL_H_
 
 #include "DrawableSubwinBridge.h"
-//#include "DrawableSubwin.h"
+#include "DrawableSubwin.h"
 #include "../DrawableObjectJoGL.h"
 
 namespace sciGraphics
 {
 
-  class DrawableSubwinJoGL : public DrawableSubwinBridge, public DrawableObjectJoGL
+  class DrawableSubwinJoGL : public virtual DrawableSubwinBridge, public DrawableObjectJoGL
   {
 
   public:
@@ -24,6 +24,15 @@ namespace sciGraphics
     DrawableSubwinJoGL( DrawableSubwin * drawer ) ;
 
     virtual ~DrawableSubwinJoGL( void ) ;
+
+    /**
+     * Return the drawn object
+     */
+    virtual DrawableSubwin * getSubwinDrawer( void ) ;
+
+  protected:
+
+    DrawableSubwin * m_pDrawed ;
 
   } ;
 

@@ -11,6 +11,7 @@
 #include "JniUtils.h"
 #include "MALLOC.h"
 #include "Scierror.h"
+#include "sciprint.h"
 
 /*------------------------------------------------------------------------------------------*/
 /** Static variable containing the jvm. */
@@ -250,6 +251,7 @@ jvalue jniCallMemberFunctionV( jobject instance, jniCallMethodCache * cache, con
 
     if ( methodId == NULL )
     {
+      jniCheckLastCall(TRUE);
       Scierror( 999, "Error when calling function %s.\r\n", functionName ) ;
       return res;
     }

@@ -30,6 +30,8 @@ namespace sciGraphics
      */
     virtual void show( void ) { DrawableObjectJoGL::show(); }
 
+  protected:
+
   };
 
 

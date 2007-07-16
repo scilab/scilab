@@ -166,11 +166,20 @@ void iNormalize2d( int vect[2] ) ;
 #define DOT_PROD_3D(v1,v2) ( ((v1)[0]) * ((v2)[0]) + ((v1)[1]) * ((v2)[1]) + ((v1)[2]) * ((v2)[2]) )
 
 /**
-* Norm of a 3D vector
-*/
+ * Cross product of two vector
+ * @param res v1^v2
+ */
+void crossProduct( const double v1[3], const double v2[3], double res[3] ) ;
+
+/**
+ * Norm of a 3D vector
+ */
 #define NORM_3D(v) ( sqrt( DOT_PROD_3D((v),(v)) ) ) ;
 
-/*----------------------------------------------------------------------------*/
+/**
+ * Normalize a 3D vector
+ */
+void normalize3D( double vect[3] ) ;
 
 /*----------------------------------------------------------------------------*/
 /* check if two values can be considered equal given an accurracy */

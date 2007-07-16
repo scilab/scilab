@@ -19,14 +19,19 @@ namespace sciGraphics
 
 /*------------------------------------------------------------------------------------------*/
 DrawablePolylineJoGL::DrawablePolylineJoGL( DrawablePolyline * drawer )
-: DrawableObjectImp(drawer), DrawablePolylineBridge(drawer), DrawableObjectJoGL(drawer, "org/scilab/modules/renderer/polylineDrawing/DrawablePolylineJoGL")
+: DrawableClippedObjectJoGL(drawer, "org/scilab/modules/renderer/polylineDrawing/DrawablePolylineJoGL")
 {
-
+  
 }
 /*------------------------------------------------------------------------------------------*/
 DrawablePolylineJoGL::~DrawablePolylineJoGL( void )
 {
-
+  
+}
+/*------------------------------------------------------------------------------------------*/
+DrawablePolyline * DrawablePolylineJoGL::getPolylineDrawer( void )
+{
+  return dynamic_cast<DrawablePolyline *>(getDrawer()) ;
 }
 /*------------------------------------------------------------------------------------------*/
 

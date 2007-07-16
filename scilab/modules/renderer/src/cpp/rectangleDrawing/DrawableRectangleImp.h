@@ -10,7 +10,7 @@
 #define _DRAWABLE_RECTANGLE_IMP_H_
 
 #include "../DrawableObject.h"
-#include "../DrawableObjectImp.h"
+#include "../DrawableClippedObjectBridge.h"
 #include "DrawRectangleStrategy.h"
 #include <list>
 
@@ -22,12 +22,12 @@ namespace sciGraphics
   */
   class DrawableRectangle ;
 
-  class DrawableRectangleImp : public virtual DrawableObjectImp
+  class DrawableRectangleImp : public virtual DrawableClippedObjectBridge
   {
 
   public:
 
-    DrawableRectangleImp( DrawableRectangle * drawer ) ;
+    DrawableRectangleImp( void ) ;
 
     virtual ~DrawableRectangleImp( void ) ;
 
@@ -35,11 +35,6 @@ namespace sciGraphics
      * Tell the canvas to draw itself.
      */
     virtual void drawRectangle( void ) ;
-
-    /**
-     * Return the drawed object
-     */
-    DrawableRectangle * getDrawer( void ) ;
 
     /**
      * Add a rendering algorithm
@@ -51,11 +46,17 @@ namespace sciGraphics
      */
     void removeDrawingStrategies( void ) ;
 
+    /**
+     * Return the drawn object
+     */
+    virtual DrawableRectangle * getRectangleDrawer( void ) = 0 ;
+
   protected:
 
+
     /**
-    * List of different rendering algorithms to perform
-    */
+     * List of different rendering algorithms to perform
+     */
     std::list<DrawRectangleStrategy *> m_oDrawingStrategies ;
 
   } ;

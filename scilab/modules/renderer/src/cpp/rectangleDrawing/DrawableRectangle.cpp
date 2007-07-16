@@ -6,10 +6,7 @@
 /*------------------------------------------------------------------------*/
 
 #include "DrawableRectangle.h"
-extern "C"
-{
-#include "drawRectangleEntity.h"
-}
+
 
 namespace sciGraphics
 {
@@ -19,7 +16,7 @@ using namespace std;
 /*------------------------------------------------------------------------------------------*/
 DrawableRectangle::~DrawableRectangle( void )
 {
-  
+
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableRectangle::draw( void )
@@ -31,14 +28,17 @@ void DrawableRectangle::draw( void )
     endDrawing();
     return ;
   }
-  
+  clip();
   drawRectangle() ;
+  unClip();
   endDrawing();
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableRectangle::show( void )
 {
+  clip();
   getRectangleImp()->show() ;
+  unClip();
 }
 /*------------------------------------------------------------------------------------------*/
 DrawableRectangleImp * DrawableRectangle::getRectangleImp( void )

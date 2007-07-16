@@ -20,6 +20,8 @@ namespace sciGraphics
 
     RectangleLineDrawerJoGL( DrawableRectangleImp * drawer ) ;
 
+    virtual ~RectangleLineDrawerJoGL( void ) {}
+
     /**
      * Main algorithm to draw the outline of the rectangle
      */
@@ -29,6 +31,9 @@ namespace sciGraphics
      * Call the display list of an object
      */
     virtual void show( void ) { DrawableObjectJoGL::show(); }
+
+  protected:
+
 
   };
 

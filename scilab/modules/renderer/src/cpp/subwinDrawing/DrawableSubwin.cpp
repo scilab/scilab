@@ -17,7 +17,7 @@ namespace sciGraphics
 {
 
 /*------------------------------------------------------------------------------------------*/
-DrawableSubwin::DrawableSubwin(sciPointObj * pObj) : DrawableClippedObject(pObj)
+DrawableSubwin::DrawableSubwin(sciPointObj * pObj) : DrawableObject(pObj)
 {
   m_pCamera = NULL ;
 }
@@ -29,6 +29,7 @@ DrawableSubwin::~DrawableSubwin( void )
     delete m_pCamera ;
   }
   m_pCamera = NULL;
+
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableSubwin::draw( void )

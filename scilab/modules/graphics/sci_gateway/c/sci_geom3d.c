@@ -28,7 +28,7 @@ int geom3d(double *x, double *y, double *z, integer *n)
 
   if(ppsubwin->logflags[0] =='l')
   {
-    for ( j =0 ; j < (*n) ; j++) {
+    for ( j = 0 ; j < (*n) ; j++ ) {
       if(x[j] <= 0.){
         sciprint("geom3d error : Operation can not be performed because X axis is in logscale mode and the specified x vector has a negative value\n");
         return -1;

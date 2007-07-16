@@ -8,7 +8,7 @@
 
 package org.scilab.modules.renderer;
 
-import org.scilab.modules.renderer.utils.GLTools;
+import org.scilab.modules.renderer.utils.glTools.GLTools;
 
 /**
  * Class which can be automatically shown.

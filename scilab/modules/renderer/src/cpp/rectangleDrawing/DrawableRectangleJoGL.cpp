@@ -21,19 +21,14 @@ namespace sciGraphics
 {
 /*------------------------------------------------------------------------------------------*/
 DrawableRectangleJoGL::DrawableRectangleJoGL( DrawableRectangle * drawer )
-  : DrawableObjectImp(drawer), DrawableRectangleImp(drawer), DrawableObjectJoGL(drawer, "org/scilab/modules/renderer/rectangleDrawing/DrawableRectangleJoGL")
+  : DrawableClippedObjectJoGL(drawer, "org/scilab/modules/renderer/rectangleDrawing/DrawableRectangleJoGL")
 {
 
 }
 /*------------------------------------------------------------------------------------------*/
 DrawableRectangleJoGL::~DrawableRectangleJoGL( void )
 {
-  destroyRectangle() ;
-}
-/*------------------------------------------------------------------------------------------*/
-void DrawableRectangleJoGL::drawRectangle( void )
-{
-  DrawableRectangleImp::drawRectangle();
+
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableRectangleJoGL::show( void )
@@ -50,4 +45,10 @@ void DrawableRectangleJoGL::destroyRectangle( void )
   DrawableObjectJoGL::destroy() ;
 }
 /*------------------------------------------------------------------------------------------*/
+DrawableRectangle * DrawableRectangleJoGL::getRectangleDrawer( void )
+{
+  return dynamic_cast<DrawableRectangle *>(getDrawer()) ;
+}
+/*------------------------------------------------------------------------------------------*/
+
 }

@@ -10,7 +10,8 @@ package org.scilab.modules.renderer.rectangleDrawing;
 
 import org.scilab.modules.renderer.AutoDrawableObjectJoGL;
 import javax.media.opengl.GL;
-import org.scilab.modules.renderer.utils.GLTools;
+
+import org.scilab.modules.renderer.utils.glTools.GLTools;
 
 /**
  * Class containing functions called by RectangleLineDrawerJoGL.cpp

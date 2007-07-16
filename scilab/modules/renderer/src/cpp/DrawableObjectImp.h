@@ -2,11 +2,17 @@
 /* file: DrawableObjectImp.h                                              */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
-/* desc : Parent class for routine independent algorithms                 */
+/* desc : Parent interface for routine independent algorithms             */
 /*------------------------------------------------------------------------*/
 
 #ifndef _DRAWABLE_OBJECT_IMP_
 #define _DRAWABLE_OBJECT_IMP_
+
+
+extern "C"
+{
+#include "MALLOC.h"
+};
 
 namespace sciGraphics
 {
@@ -19,15 +25,19 @@ namespace sciGraphics
 
     /**
      * Default constructor
+     * Should not take any parameter to ease multiple inheritance
      */
-    DrawableObjectImp( DrawableObject * drawer ) { m_pDrawer = drawer ; }
+    DrawableObjectImp( void ) {}
 
+    /**
+     * Destructor should not take any parameter
+     */
     virtual ~DrawableObjectImp( void ) {}
 
     /**
-    * Initialize the context for drawing (incl starting recording display list)
-    * @param figureIndex index of parentFigure
-    */
+     * Initialize the context for drawing (incl starting recording display list)
+     * @param figureIndex index of parentFigure
+     */
     virtual void initializeDrawing( void ) = 0 ;
 
     /**
@@ -51,9 +61,12 @@ namespace sciGraphics
      */
     virtual void show( void ) = 0 ;
 
-  protected:
+    /**
+     * To retrieve drawable object properties
+     */
+    virtual DrawableObject * getDrawer( void ) = 0;
 
-    DrawableObject * m_pDrawer ; /**< bridge for driver dependent algorithm */
+  protected:
 
   };
 }

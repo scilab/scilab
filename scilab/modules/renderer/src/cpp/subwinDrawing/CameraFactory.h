@@ -31,11 +31,11 @@ public:
   /**
    * Set the parent subwin, needed by CameraImpFactory.
    */
-  void setCorrespondingSubwin( DrawableObject * subwin ) { m_pSubwin = subwin; }
+  void setCorrespondingSubwin( DrawableSubwin * subwin ) { m_pSubwin = subwin; }
 
 protected:
 
-  DrawableObject * m_pSubwin;
+  DrawableSubwin * m_pSubwin;
 
 };
 

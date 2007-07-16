@@ -19,7 +19,7 @@ import javax.media.opengl.GL;
 public class CameraJoGL extends ObjectJoGL {
 
 	/** Distance of the far clipping plane, should be greater than 1.0 and not to high */
-	private static final double FAR_PLANE_DISTANCE = 100.0;
+	public static final double FAR_PLANE_DISTANCE = 100.0;
 	
 	/** Default rotation angles, 2D view */
 	private static final double DEFAULT_ALPHA = 0.0;
@@ -95,8 +95,8 @@ public class CameraJoGL extends ObjectJoGL {
 		// rotate around the center of the box axes
 		gl.glTranslated(centerX, centerY, centerZ);
 		gl.glScaled(reductionRatio, reductionRatio, reductionRatio); // reduction need to be performed on the center of the screen
-		gl.glRotated(-DEFAULT_ALPHA - alpha, 1.0 , 0.0, 0.0); /* Seems we need to rotate counterclok-wise */
-		gl.glRotated(-DEFAULT_THETA - theta, 0.0 , 0.0, 1.0);
+		gl.glRotated(DEFAULT_ALPHA - alpha, 1.0 , 0.0, 0.0); /* Seems we need to rotate counterclok-wise */
+		gl.glRotated(DEFAULT_THETA - theta, 0.0 , 0.0, 1.0);
 		gl.glTranslated(-centerX, -centerY, -centerZ); // translate origin back
 	}
 	

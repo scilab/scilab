@@ -26,7 +26,7 @@ public:
    * Default constructor
    * @param subwin Subwindow containign the camera
    */
-  CameraJoGL( DrawableObject * subwin ) ;
+  CameraJoGL( DrawableSubwin * subwin ) ;
 
   /**
    * Position the view and view area accordingly to previous calls.

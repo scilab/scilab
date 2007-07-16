@@ -243,6 +243,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\cpp\DrawableClippedObjectJoGL.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\compoundDrawing\DrawableCompound.cpp"
 				>
 			</File>
@@ -264,10 +268,6 @@
 			</File>
 			<File
 				RelativePath=".\src\cpp\figureDrawing\DrawableFigureFactory.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\figureDrawing\DrawableFigureImp.cpp"
 				>
 			</File>
 			<File
@@ -319,10 +319,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\cpp\polylineDrawing\DrawablePolylineBridge.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\src\cpp\polylineDrawing\DrawablePolylineBrirdgeFactory.cpp"
 				>
 			</File>
@@ -364,10 +360,6 @@
 			</File>
 			<File
 				RelativePath=".\src\cpp\subwinDrawing\DrawableSubwin.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\subwinDrawing\DrawableSubwinBridge.cpp"
 				>
 			</File>
 			<File
@@ -490,6 +482,14 @@
 			</File>
 			<File
 				RelativePath=".\src\cpp\DrawableClippedObject.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\DrawableClippedObjectBridge.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\DrawableClippedObjectJoGL.h"
 				>
 			</File>
 			<File

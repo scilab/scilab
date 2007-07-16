@@ -11,12 +11,13 @@
 
 
 #include "DrawableRectangleImp.h"
-#include "../DrawableObjectJoGL.h"
+#include "DrawableRectangle.h"
+#include "../DrawableClippedObjectJoGL.h"
 
 namespace sciGraphics
 {
 
-class DrawableRectangleJoGL : public DrawableRectangleImp, public DrawableObjectJoGL
+class DrawableRectangleJoGL : public DrawableRectangleImp, public DrawableClippedObjectJoGL
 {
 
 public:
@@ -26,14 +27,15 @@ public:
   virtual ~DrawableRectangleJoGL( void ) ;
 
   /**
-   * Tell the canvas to draw itself.
-   */
-  virtual void drawRectangle( void ) ;
-
-  /**
    * Call the display list of an object
    */
   virtual void show( void ) ;
+
+  /**
+   * Return the drawn object
+   */
+  DrawableRectangle * getRectangleDrawer( void ) ;
+
 
 protected:
 

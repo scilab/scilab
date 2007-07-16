@@ -9,14 +9,14 @@
 #define _DRAWABLE_SUBWIN_H_
 
 
-#include "../DrawableClippedObject.h"
+#include "../DrawableObject.h"
 #include "Camera.h"
 #include "DrawableSubwinBridge.h"
 
 namespace sciGraphics
 {
 
-class DrawableSubwin : public DrawableClippedObject
+class DrawableSubwin : public DrawableObject
 {
 
 public:

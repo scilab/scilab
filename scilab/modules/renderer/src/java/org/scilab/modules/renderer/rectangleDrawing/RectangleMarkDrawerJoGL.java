@@ -13,8 +13,9 @@ import org.scilab.modules.renderer.DrawableObjectJoGL;
 import javax.media.opengl.GL;
 
 import org.scilab.modules.renderer.utils.MarkDrawing.MarkDrawer;
+import org.scilab.modules.renderer.utils.geom3D.Vector3D;
+import org.scilab.modules.renderer.utils.glTools.GLTools;
 import org.scilab.modules.renderer.utils.CoordinateTransformation;
-import org.scilab.modules.renderer.utils.GLTools;
 
 /**
  * Class containing functions called by RectangleMarkDrawerJoGL.cpp
@@ -23,21 +24,20 @@ import org.scilab.modules.renderer.utils.GLTools;
 public class RectangleMarkDrawerJoGL extends DrawableObjectJoGL {
 	
 	private static final int NB_CORNERS = 4;
-	private static final int NB_COORDS  = 3;
 	
 	
 	/** index of background color */
 	private MarkDrawer drawer;
 	
 	/** position of corners, needed to retrive pixels coordinates */
-	private double[][] cornersPos;
+	private Vector3D[] cornersPos;
 	
 	/**
 	 * Default Constructor
 	 */
 	public RectangleMarkDrawerJoGL() {
 		drawer = null;
-		cornersPos = new double[NB_CORNERS][NB_COORDS];
+		cornersPos = new Vector3D[NB_CORNERS];
 	}
 	
 	/**
@@ -139,13 +139,16 @@ public class RectangleMarkDrawerJoGL extends DrawableObjectJoGL {
 		CoordinateTransformation transform = CoordinateTransformation.getTransformation();
 		
 		// need to perform this befaore swithching to pixel coordinates
-		double[][] pixCoords = transform.getCanvasCoordinates(gl, cornersPos);
+		Vector3D[] pixCoords = transform.getCanvasCoordinates(gl, cornersPos);
+		
 		
 		// switch to pixel coordinates
 		GLTools.usePixelCoordinates(gl);
 		
 		for (int i = 0; i < NB_CORNERS; i++) {
-			drawer.drawMark(pixCoords[i][0], pixCoords[i][1], pixCoords[i][2]);
+			// switch back to the new frame
+			Vector3D curCoord = transform.retrieveSceneCoordinates(gl, pixCoords[i]);
+			drawer.drawMark(curCoord.getX(), curCoord.getY(), curCoord.getZ());
 		}
 		
 		GLTools.endPixelCoordinates(gl);
@@ -174,18 +177,10 @@ public class RectangleMarkDrawerJoGL extends DrawableObjectJoGL {
 		
 		
 		// save rectangle coordinates
-		cornersPos[0][0] = corner1X;
-		cornersPos[0][1] = corner1Y;
-		cornersPos[0][2] = corner1Z;
-		cornersPos[1][0] = corner2X;
-		cornersPos[1][1] = corner2Y;
-		cornersPos[1][2] = corner2Z;
-		cornersPos[2][0] = corner3X;
-		cornersPos[2][1] = corner3Y;
-		cornersPos[2][2] = corner3Z;
-		cornersPos[NB_CORNERS - 1][0] = corner4X; // To avoid javadoc warning
-		cornersPos[NB_CORNERS - 1][1] = corner4Y;
-		cornersPos[NB_CORNERS - 1][2] = corner4Z;
+		cornersPos[0] = new Vector3D(corner1X, corner1Y, corner1Z);
+		cornersPos[1] = new Vector3D(corner2X, corner2Y, corner2Z);
+		cornersPos[2] = new Vector3D(corner3X, corner3Y, corner3Z);
+		cornersPos[NB_CORNERS - 1] = new Vector3D(corner4X, corner4Y, corner4Z);
 		
 		drawRectangle();
 		

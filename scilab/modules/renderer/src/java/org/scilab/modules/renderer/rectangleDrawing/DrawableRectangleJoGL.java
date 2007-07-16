@@ -8,13 +8,13 @@
 
 package org.scilab.modules.renderer.rectangleDrawing;
 
-import org.scilab.modules.renderer.ObjectJoGL;
+import org.scilab.modules.renderer.DrawableClippedObjectJoGL;
 
 /**
  * Class containing functions called by DrawableRectangleJoGL.cpp
  * @author Jean-Baptiste Silvy
  */
-public class DrawableRectangleJoGL extends ObjectJoGL {
+public class DrawableRectangleJoGL extends DrawableClippedObjectJoGL {
 
 	/**
 	 * Default Constructor
@@ -22,5 +22,11 @@ public class DrawableRectangleJoGL extends ObjectJoGL {
 	public DrawableRectangleJoGL() {
 		super();
 	}
+	
+	/**
+	 * Display the object by displaying its display list
+	 * @param parentFigureIndex index of the parent figure in which the object will be drawn
+	 */
+	public void show(int parentFigureIndex) { }
 	
 }

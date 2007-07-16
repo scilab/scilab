@@ -74,6 +74,9 @@ public class DrawableFigureJoGL extends ObjectJoGL {
 		destroyedObjects.destroyAll(parentFigureIndex);
 		super.initializeDrawing(parentFigureIndex);
 		getGL().glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
+		getGL().glClearDepth(1.0f);
+		getGL().glEnable(GL.GL_DEPTH_TEST);
+		getGL().glDepthFunc(GL.GL_LEQUAL);
 	}
 	
 	/**
@@ -194,6 +197,7 @@ public class DrawableFigureJoGL extends ObjectJoGL {
 	 * Called when the object is destroyed from C code
 	 * @param parentFigureIndex index of parent figure
 	 */
+  	@Override
 	public void destroy(int parentFigureIndex) {
 		// figure should not be add to the object cleaner or will destroy themselves.
 		// no operation for now

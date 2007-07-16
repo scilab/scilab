@@ -8,7 +8,8 @@
 package org.scilab.modules.renderer;
 
 import javax.media.opengl.GL;
-import org.scilab.modules.renderer.utils.GLTools;
+
+import org.scilab.modules.renderer.utils.glTools.GLTools;
 
 /**
  * Parent class for all graphic classes corresponding to a cpp one

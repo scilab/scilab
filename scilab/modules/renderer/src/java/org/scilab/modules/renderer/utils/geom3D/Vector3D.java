@@ -1,0 +1,209 @@
+/*------------------------------------------------------------------------*/
+/* file: GLTools.java                                                     */
+/* Copyright INRIA 2007                                                   */
+/* Authors : Jean-Baptiste Silvy                                          */
+/* desc : Represent a 3D vector                                           */
+/*------------------------------------------------------------------------*/
+
+
+package org.scilab.modules.renderer.utils.geom3D;
+
+
+/**
+ * Class which represent a 3D vector
+ * @author Jean-Baptiste Silvy
+ */
+public class Vector3D {
+
+	private double xCoord;
+	private double yCoord;
+	private double zCoord;
+	
+	/**
+	 * Default constructor
+	 */
+	public Vector3D() {
+		xCoord = 0.0;
+		yCoord = 0.0;
+		zCoord = 0.0;
+	}
+	
+	/**
+	 * Copy constructor
+	 * @param copy the vector which is copied
+	 */
+	public Vector3D(Vector3D copy) {
+		setValues(copy);
+	}
+	
+	/**
+	 * Constructor from an array
+	 * @param values array with 3 values
+	 */
+	public Vector3D(double[] values) {
+		setValues(values);
+	}
+	
+	/**
+	 * Constructor from the 3 coordinates
+	 * @param xCoord X coordinate
+	 * @param yCoord Y coordinate
+	 * @param zCoord Z coordinate
+	 */
+	public Vector3D(double xCoord, double yCoord, double zCoord) {
+		setValues(xCoord, yCoord, zCoord);
+	}
+	
+	/**
+	 * @return Vector X coordinates
+	 */
+	public double getX() {
+		return xCoord;
+	}
+	
+	/**
+	 * @return Vector Y coordinates
+	 */
+	public double getY() {
+		return yCoord;
+	}
+	
+	/**
+	 * @return Vector Z coordinates
+	 */
+	public double getZ() {
+		return zCoord;
+	}
+	
+	
+	/**
+	 * Set new coordinates for the vector
+	 * @param x new X coordinate
+	 * @param y new Y coordinate
+	 * @param z new Z coordinate
+	 */
+	public void setValues(double x, double y, double z) {
+		xCoord = x;
+		yCoord = y;
+		zCoord = z;
+	}
+	
+	/**
+	 * Set coordinates of the vector
+	 * @param values array of size 3 containing the coordinates
+	 */
+	public void setValues(double[] values) {
+		xCoord = values[0];
+		yCoord = values[1];
+		zCoord = values[2];
+	}
+	
+	/**
+	 * Copy a vector to this one
+	 * @param copy vector to copy
+	 */
+	public void setValues(Vector3D copy) {
+		xCoord = copy.xCoord;
+		yCoord = copy.yCoord;
+		zCoord = copy.zCoord;
+	}
+	
+	/**
+	 * @return array of the 3 coodinates
+	 */
+	public double[] getValues() {
+		double[] res = {xCoord, yCoord, zCoord};
+		return res;
+	}
+	
+	/**
+	 * Return the dot product of this vector with an other
+	 * @param v2 other vector
+	 * @return dot prodeuct of the two vectors
+	 */
+	public double dotProduct(Vector3D v2) {
+		return xCoord * v2.xCoord + yCoord * v2.yCoord + zCoord * v2.zCoord;
+	}
+	
+	/**
+	 * Compute the cross product of this vector with an other
+	 * @param v2 other vector
+	 * @return new vector, result of the cross product
+	 */
+	public Vector3D crossProduct(Vector3D v2) {
+		return new Vector3D(yCoord * v2.zCoord - zCoord * v2.yCoord,
+							zCoord * v2.xCoord - xCoord * v2.zCoord,
+							xCoord * v2.yCoord - yCoord * v2.xCoord);
+	}
+	
+	/**
+	 * @return norm of the vector
+	 */
+	public double getNorm() {
+		return Math.sqrt(getSquareNorm());
+	}
+	
+	/**
+	 * @return square of the vector norm
+	 */
+	public double getSquareNorm() {
+		return this.dotProduct(this);
+	}
+	
+	/**
+	 * Normalize the vector
+	 */
+	public void normalize() {
+		double norm = getNorm();
+		xCoord /= norm;
+		yCoord /= norm;
+		zCoord /= norm;
+	}
+	
+	/**
+	 * Return a normalized vector of this
+	 * @return new normalized vector
+	 */
+	public Vector3D getNormalized() {
+		Vector3D res = new Vector3D(this);
+		res.normalize();
+		return res;
+	}
+	
+	/**
+	 * Create the relut of mutiplying the vactor by a scalar
+	 * @param scalar scalar to use
+	 * @return new vector result of mutiplying this by a scalar
+	 */
+	public Vector3D scalarMult(double scalar) {
+		return new Vector3D(scalar * xCoord, scalar * yCoord, scalar * zCoord);
+	}
+	
+	/**
+	 * Compute the sum of the vector and an other
+	 * @param v2 other vector
+	 * @return new vector which is the sum of the two above
+	 */
+	public Vector3D add(Vector3D v2) {
+		return new Vector3D(xCoord + v2.xCoord, yCoord + v2.yCoord, zCoord + v2.zCoord);
+	}
+	
+	/**
+	 * Compute the difference of the vector and an other
+	 * @param v2 other vector
+	 * @return new vector, this - v2
+	 */
+	public Vector3D substract(Vector3D v2) {
+		return new Vector3D(xCoord - v2.xCoord, yCoord - v2.yCoord, zCoord - v2.zCoord);
+	}
+	
+	/**
+	 * Print the vector
+	 * @return text of the vector
+	 */
+	public String toString() {
+		final String comma = ", ";
+		return "[" + xCoord + comma + yCoord + comma + zCoord + "]";
+	}
+	
+}

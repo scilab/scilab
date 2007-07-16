@@ -1,21 +1,24 @@
 /*------------------------------------------------------------------------*/
-/* file: DrawableFigureImp.cpp                                            */
+/* file: DrawableClippedObjectBridge.cpp                                  */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
-/* desc : Class containing the driver dependant routines to draw a        */
-/*        figure object                                                   */
+/* desc : Class with driver dependent algorithms of DrawableClippedObject */
+/*        class                                                           */
 /*------------------------------------------------------------------------*/
 
 
-#include "DrawableFigureImp.h"
-#include "DrawableFigure.h"
+#include "DrawableClippedObjectBridge.h"
+#include "DrawableClippedObject.h"
 
 namespace sciGraphics
 {
+
 /*------------------------------------------------------------------------------------------*/
-DrawableFigure * DrawableFigureImp::getDrawer( void )
+DrawableClippedObject * DrawableClippedObjectBridge::getClippedObjectDrawer( void )
 {
-  return dynamic_cast<DrawableFigure *>(m_pDrawer) ;
+  return dynamic_cast<DrawableClippedObject *>(m_pDrawer);
 }
 /*------------------------------------------------------------------------------------------*/
+
 }
+

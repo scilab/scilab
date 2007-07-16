@@ -17,8 +17,8 @@ namespace sciGraphics
 {
 
 /*-----------------------------------------------------------------------------------*/
-CameraJoGL::CameraJoGL( DrawableObject * subwin )
-  : DrawableObjectImp(subwin), CameraBridge(),
+CameraJoGL::CameraJoGL( DrawableSubwin * subwin )
+  : CameraBridge(),
     DrawableObjectJoGL(subwin, "org/scilab/modules/renderer/subwinDrawing/CameraJoGL")
 {
 
