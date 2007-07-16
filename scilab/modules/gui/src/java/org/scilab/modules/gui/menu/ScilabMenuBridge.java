@@ -4,7 +4,7 @@
 package org.scilab.modules.gui.menu;
 
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
-import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.menuitem.MenuItemBridge;
 
 /**
  * Bridge for Scilab Menus in GUIs
@@ -23,8 +23,17 @@ public class ScilabMenuBridge {
 	 * Creates a Scilab Menu
 	 * @return the created Menu
 	 */
-	public static Menu createMenu() {
+	public static MenuBridge createMenu() {
 		return new SwingScilabMenu();
+	}
+	
+	/**
+	 * set a text to a menu
+	 * @param menu the Menu which we want to set the text to
+	 * @param newText the new text to set to the menu
+	 */
+	public static void setText(MenuBridge menu, String newText) {
+		menu.setText(newText);
 	}
 	
 	/**
@@ -33,7 +42,7 @@ public class ScilabMenuBridge {
 	 * @param newMenuItem the MenuItem to add to the Menu
 	 * @return the added MenuItem
 	 */
-	public static MenuItem add(Menu menu, MenuItem newMenuItem) {
+	public static MenuItemBridge add(MenuBridge menu, MenuItemBridge newMenuItem) {
 		return menu.add(newMenuItem);
 	}
 	
@@ -42,7 +51,7 @@ public class ScilabMenuBridge {
 	 * @param menu the Menu which we want to set the mnemonic to
 	 * @param mnemonic the mnemonic to set to the menu
 	 */
-	public static void setMnemonic(Menu menu, int mnemonic) {
+	public static void setMnemonic(MenuBridge menu, int mnemonic) {
 		menu.setMnemonic(mnemonic);
 	}
 	
@@ -50,7 +59,7 @@ public class ScilabMenuBridge {
 	 * Add a Separator to a Menu
 	 * @param menu the Menu which we want to add the Separator to
 	 */
-	public static void addSeparator(Menu menu) {
+	public static void addSeparator(MenuBridge menu) {
 		menu.addSeparator();
 	}
 	

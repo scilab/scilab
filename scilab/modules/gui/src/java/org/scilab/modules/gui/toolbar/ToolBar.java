@@ -14,6 +14,12 @@ public interface ToolBar {
 	// TODO : Add the methods that are usefull for a ToolBar
 	
 	/**
+	 * Gets this Bridge component object
+	 * @return this Bridge component object
+	 */
+	ToolBarBridge getToolBarBridge();
+	
+	/**
 	 * Add a PushButton to the ToolBar.
 	 * @param pushButton the PushButton to add .
 	 */

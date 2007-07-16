@@ -9,26 +9,26 @@ import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.canvas.ScilabCanvasBridge;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.frame.ScilabFrameBridge;
-import org.scilab.modules.gui.pushbutton.PushButton;
+import org.scilab.modules.gui.pushbutton.PushButtonBridge;
 import org.scilab.modules.gui.pushbutton.ScilabPushButtonBridge;
 import org.scilab.modules.gui.separator.ScilabSeparatorBridge;
 import org.scilab.modules.gui.separator.Separator;
 import org.scilab.modules.gui.tab.ScilabTabBridge;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.toolbar.ScilabToolBarBridge;
-import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.toolbar.ToolBarBridge;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.window.ScilabWindowBridge;
-import org.scilab.modules.gui.window.Window;
+import org.scilab.modules.gui.window.WindowBridge;
 import org.scilab.modules.gui.layout.BorderLayout;
 import org.scilab.modules.gui.layout.FlowLayout;
 import org.scilab.modules.gui.layout.ScilabBorderLayoutBridge;
 import org.scilab.modules.gui.layout.ScilabFlowLayoutBridge;
-import org.scilab.modules.gui.menubar.MenuBar;
-import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.menu.Menu;
+import org.scilab.modules.gui.menubar.MenuBarBridge;
+import org.scilab.modules.gui.menu.MenuBridge;
 import org.scilab.modules.gui.menubar.ScilabMenuBarBridge;
+import org.scilab.modules.gui.menuitem.MenuItemBridge;
 import org.scilab.modules.gui.menuitem.ScilabMenuItemBridge;
 import org.scilab.modules.gui.menu.ScilabMenuBridge;
 
@@ -54,7 +54,7 @@ public class ScilabBridge {
 	 * Creates a new window
 	 * @return the created window
 	 */
-	public static Window createWindow() {
+	public static WindowBridge createWindow() {
 		return ScilabWindowBridge.createWindow();
 	}
 
@@ -62,7 +62,7 @@ public class ScilabBridge {
 	 * Draws a window on screen
 	 * @param window the window to be drawn
 	 */
-	public static void draw(Window window) {
+	public static void draw(WindowBridge window) {
 		ScilabWindowBridge.draw(window);
 	}
 
@@ -71,7 +71,7 @@ public class ScilabBridge {
 	 * @param window the window we want to get the dimensions of
 	 * @return dimensions of the window
 	 */
-	public static Size getDims(Window window) {
+	public static Size getDims(WindowBridge window) {
 		return ScilabWindowBridge.getDims(window);
 	}
 
@@ -80,7 +80,7 @@ public class ScilabBridge {
 	 * @param window the window we want to set the dimensions of
 	 * @param newWindowSize new dimensions of the window
 	 */
-	public static void setDims(Window window, Size newWindowSize) {
+	public static void setDims(WindowBridge window, Size newWindowSize) {
 		ScilabWindowBridge.setDims(window, newWindowSize);
 	}
 
@@ -89,7 +89,7 @@ public class ScilabBridge {
 	 * @param window the window we want to get the position of
 	 * @return position of the window
 	 */
-	public static Position getPosition(Window window) {
+	public static Position getPosition(WindowBridge window) {
 		return ScilabWindowBridge.getPosition(window);
 	}
 
@@ -98,7 +98,7 @@ public class ScilabBridge {
 	 * @param window the window we want to set the position of
 	 * @param newWindowPosition new position of the window
 	 */
-	public static void setPosition(Window window, Position newWindowPosition) {
+	public static void setPosition(WindowBridge window, Position newWindowPosition) {
 		ScilabWindowBridge.setPosition(window, newWindowPosition);
 	}
 
@@ -107,7 +107,7 @@ public class ScilabBridge {
 	 * @param window the window we want to get the title of
 	 * @return the title of the window
 	 */
-	public static String getTitle(Window window) {
+	public static String getTitle(WindowBridge window) {
 		return ScilabWindowBridge.getTitle(window);
 	}
 
@@ -116,7 +116,7 @@ public class ScilabBridge {
 	 * @param window the window we want to set the title of
 	 * @param newWindowTitle the title to set for the window
 	 */
-	public static void setTitle(Window window, String newWindowTitle) {
+	public static void setTitle(WindowBridge window, String newWindowTitle) {
 		ScilabWindowBridge.setTitle(window, newWindowTitle);
 	}
 
@@ -125,7 +125,7 @@ public class ScilabBridge {
 	 * @param window the window we want to get the status of
 	 * @return visibility status (true if the window is visible, false if not)
 	 */
-	public static boolean isVisible(Window window) {
+	public static boolean isVisible(WindowBridge window) {
 		return ScilabWindowBridge.isVisible(window);
 	}
 
@@ -135,27 +135,59 @@ public class ScilabBridge {
 	 * @param newVisibleState new visibility status for the window
 	 * 			(true set the window visible, false to set the window invisible)
 	 */
-	public static void setVisible(Window window, boolean newVisibleState) {
+	public static void setVisible(WindowBridge window, boolean newVisibleState) {
 		ScilabWindowBridge.setVisible(window, newVisibleState);
 	}
 
-	/**
-	 * Add a tab to a window
-	 * @param window the window which we want to add the tab to
-	 * @param newTab the tab to add to the window
-	 */
-	public static void addTab(Window window, Tab newTab) {
-		ScilabWindowBridge.addTab(window, newTab);
-	}
+//	TODO uncomment when TabBridge ready
+//	/**
+//	 * Add a tab to a window
+//	 * @param window the window which we want to add the tab to
+//	 * @param newTab the tab to add to the window
+//	 */
+//	public static void addTab(WindowBridge window, TabBridge newTab) {
+//		ScilabWindowBridge.addTab(window, newTab);
+//	}
 
 	/**
 	 * Sets a MeunBar to a window
 	 * @param window the window which we want to add the MeunBar to
 	 * @param newMenuBar the MeunBar to add to the window
 	 */
-	public static void setMenuBar(Window window, MenuBar newMenuBar) {
+	public static void setMenuBar(WindowBridge window, MenuBarBridge newMenuBar) {
 		ScilabWindowBridge.setMenuBar(window, newMenuBar);
 	}
+	
+	/**
+	 * Sets a ToolBar to a window
+	 * @param window the window which we want to add the ToolBar to
+	 * @param newToolBar the ToolBar to add to the window
+	 */
+	public static void setToolBar(WindowBridge window, ToolBarBridge newToolBar) {
+		ScilabWindowBridge.setToolBar(window, newToolBar);
+	}
+	
+	/*****************/
+	/* ToolBar Bridge */
+	/*****************/
+	
+	/**
+	 * Creates a new ToolBar
+	 * @return the created ToolBar
+	 */
+	public static ToolBarBridge createToolBar() {
+		return ScilabToolBarBridge.createToolBar();
+	}
+	
+	/**
+	 * Add a PushButton to the ToolBar.
+	 * @param toolBar the toolBar which we want to add the PushButton to
+	 * @param pushButton the PushButton to add.
+	 */
+	public static void add(ToolBarBridge toolBar, PushButtonBridge pushButton) {
+		ScilabToolBarBridge.add(toolBar, pushButton);
+	}
+
 	
 	/****************/
 	/* Frame Bridge */
@@ -260,7 +292,7 @@ public class ScilabBridge {
 	public static int addMember(Frame frame, Canvas member) {
 		return ScilabFrameBridge.addMember(frame, member);
 	}
-
+	
 
 	/**************/
 	/* Tab Bridge */
@@ -576,7 +608,7 @@ public class ScilabBridge {
 	 * Creates a new MenuBar
 	 * @return the created MenuBar
 	 */
-	public static MenuBar createMenuBar() {
+	public static MenuBarBridge createMenuBar() {
 		return ScilabMenuBarBridge.createMenuBar();
 	}
 	
@@ -584,10 +616,10 @@ public class ScilabBridge {
 	 * Append a Menu to a MenuBar
 	 * @param menuBar the MenuBar which we want to add the newMenu to
 	 * @param newMenu the Menu to add to the MenuBar
-	 * @return the added Menu
 	 */
-	public static Menu add(MenuBar menuBar, Menu newMenu) {
-		return ScilabMenuBarBridge.add(menuBar, newMenu);
+	// 	 * @return the added Menu
+	public static void add(MenuBarBridge menuBar, MenuBridge newMenu) {
+		ScilabMenuBarBridge.add(menuBar, newMenu);
 	}
 	
 	/*****************/
@@ -598,7 +630,7 @@ public class ScilabBridge {
 	 * Creates a new MenuItem
 	 * @return the created MenuItem
 	 */
-	public static MenuItem createMenuItem() {
+	public static MenuItemBridge createMenuItem() {
 		return ScilabMenuItemBridge.createMenuItem();
 	}
 	
@@ -607,7 +639,7 @@ public class ScilabBridge {
 	 * @param menuItem the MenuItem we want to set the Text of
 	 * @param newText the Text to set for the MenuItem
 	 */
-	public static void setText(MenuItem menuItem, String newText) {
+	public static void setText(MenuItemBridge menuItem, String newText) {
 		ScilabMenuItemBridge.setText(menuItem, newText);
 	}
 	
@@ -616,7 +648,7 @@ public class ScilabBridge {
 	 * @param menuItem the MenuItem which we want to add the mnemonic to
 	 * @param mnemonic the mnemonic to add to the MenuItem
 	 */
-	public static void setMnemonic(MenuItem menuItem, int mnemonic) {
+	public static void setMnemonic(MenuItemBridge menuItem, int mnemonic) {
 		ScilabMenuItemBridge.setMnemonic(menuItem, mnemonic);
 	}
 	
@@ -628,7 +660,7 @@ public class ScilabBridge {
 	 * Creates a new Menu
 	 * @return the created Menu
 	 */
-	public static Menu createMenu() {
+	public static MenuBridge createMenu() {
 		return ScilabMenuBridge.createMenu();
 	}
 	
@@ -638,8 +670,17 @@ public class ScilabBridge {
 	 * @param newMenuItem the MenuItem to add to the Menu
 	 * @return the added MenuItem
 	 */
-	public static MenuItem add(Menu menu, MenuItem newMenuItem) {
+	public static MenuItemBridge add(MenuBridge menu, MenuItemBridge newMenuItem) {
 		return ScilabMenuBridge.add(menu, newMenuItem);
+	}
+	
+	/**
+	 * set a text to a menu
+	 * @param menu the Menu which we want to set the text to
+	 * @param newText the new text to set to the menu
+	 */
+	public static void setText(MenuBridge menu, String newText) {
+		ScilabMenuBridge.setText(menu, newText);
 	}
 	
 	/**
@@ -647,7 +688,7 @@ public class ScilabBridge {
 	 * @param menu the Menu which we want to set the mnemonic to
 	 * @param mnemonic the new mnemonic to set to the menu
 	 */
-	public static void setMnemonic(Menu menu, int mnemonic) {
+	public static void setMnemonic(MenuBridge menu, int mnemonic) {
 		ScilabMenuBridge.setMnemonic(menu, mnemonic);
 	}
 	
@@ -655,7 +696,7 @@ public class ScilabBridge {
 	 * Add a Separator to a Menu
 	 * @param menu the Menu which we want to add the Separator to
 	 */
-	public static void addSeparator(Menu menu) {
+	public static void addSeparator(MenuBridge menu) {
 		ScilabMenuBridge.addSeparator(menu);
 	}
 	
@@ -679,20 +720,17 @@ public class ScilabBridge {
 	 * Creates a new PushButton
 	 * @return the created PushButton
 	 */
-	public static PushButton createPushButton() {
+	public static PushButtonBridge createPushButton() {
 		return ScilabPushButtonBridge.createPushButton();
 	}
 	
-	/*****************/
-	/* ToolBar Bridge */
-	/*****************/
-	
 	/**
-	 * Creates a new ToolBar
-	 * @return the created ToolBar
+	 * Sets the Text of a PushButton
+	 * @param pushButton the PushButton we want to set the Text of
+	 * @param newText the Text to set for the MenuItem
 	 */
-	public static ToolBar createToolBar() {
-		return ScilabToolBarBridge.createToolBar();
+	public static void setText(PushButtonBridge pushButton, String newText) {
+		ScilabPushButtonBridge.setText(pushButton, newText);
 	}
 	
 	/*****************/

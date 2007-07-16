@@ -5,9 +5,10 @@ package org.scilab.modules.gui.window;
 
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.toolbar.ToolBarBridge;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.menubar.MenuBar;
+import org.scilab.modules.gui.menubar.MenuBarBridge;
 
 /**
  * Bridge for Scilab windows in GUIs
@@ -28,7 +29,7 @@ public class ScilabWindowBridge {
 	 * Draws a Scilab window
 	 * @param window the window to draw
 	 */
-	public static void draw(Window window) {
+	public static void draw(WindowBridge window) {
 		window.draw();
 	}
 
@@ -36,7 +37,7 @@ public class ScilabWindowBridge {
 	 * Creates a Scilab window
 	 * @return the created window
 	 */
-	public static Window createWindow() {
+	public static WindowBridge createWindow() {
 		return new SwingScilabWindow();
 	}
 
@@ -45,7 +46,7 @@ public class ScilabWindowBridge {
 	 * @param window the window we want to get the dimensions of
 	 * @return the dimensions of the window
 	 */
-	public static Size getDims(Window window) {
+	public static Size getDims(WindowBridge window) {
 		return window.getDims();
 	}
 
@@ -54,7 +55,7 @@ public class ScilabWindowBridge {
 	 * @param window the window we want to set the dimensions of
 	 * @param newWindowSize the dimensions we want to set to the window
 	 */
-	public static void setDims(Window window, Size newWindowSize) {
+	public static void setDims(WindowBridge window, Size newWindowSize) {
 		window.setDims(newWindowSize);
 	}
 
@@ -63,7 +64,7 @@ public class ScilabWindowBridge {
 	 * @param window the window we want to get the position of
 	 * @return the position of the window
 	 */
-	public static Position getPosition(Window window) {
+	public static Position getPosition(WindowBridge window) {
 		return window.getPosition();
 	}
 
@@ -72,7 +73,7 @@ public class ScilabWindowBridge {
 	 * @param window the window we want to set the position of
 	 * @param newWindowPosition the position to set to the window
 	 */
-	public static void setPosition(Window window, Position newWindowPosition) {
+	public static void setPosition(WindowBridge window, Position newWindowPosition) {
 		window.setPosition(newWindowPosition);
 	}
 
@@ -81,7 +82,7 @@ public class ScilabWindowBridge {
 	 * @param window the window we want to get the title of
 	 * @return the title of the window
 	 */
-	public static String getTitle(Window window) {
+	public static String getTitle(WindowBridge window) {
 		return window.getTitle();
 	}
 
@@ -90,7 +91,7 @@ public class ScilabWindowBridge {
 	 * @param window the window we want to set the title of
 	 * @param newWindowTitle the title we want to set to the window
 	 */
-	public static void setTitle(Window window, String newWindowTitle) {
+	public static void setTitle(WindowBridge window, String newWindowTitle) {
 		window.setTitle(newWindowTitle);
 	}
 
@@ -99,7 +100,7 @@ public class ScilabWindowBridge {
 	 * @param window the window we want to getthe visibility status of
 	 * @return the visibility status of the window (true if the window is visible, false if not)
 	 */
-	public static boolean isVisible(Window window) {
+	public static boolean isVisible(WindowBridge window) {
 		return window.isVisible();
 	}
 
@@ -108,7 +109,7 @@ public class ScilabWindowBridge {
 	 * @param window the window we want to set the visibility status of
 	 * @param newVisibleState the visibility status we want to set to the window (true to set the window visible, false else)
 	 */
-	public static void setVisible(Window window, boolean newVisibleState) {
+	public static void setVisible(WindowBridge window, boolean newVisibleState) {
 		window.setVisible(newVisibleState);
 	}
 
@@ -117,16 +118,26 @@ public class ScilabWindowBridge {
 	 * @param window the window which we want to add the tab to
 	 * @param newTab the tab to add to the window
 	 */
-	public static void addTab(Window window, Tab newTab) {
-		window.addTab(newTab);
-	}
+	// TODO uncomment when TabBridge ready
+//	public static void addTab(WindowBridge window, TabBridge newTab) {
+//		window.addTab(newTab);
+//	}
 	
 	/**
 	 * Sets a MenuBar to a Scilab window
 	 * @param window the window which we want to add the MenuBar to
 	 * @param newMenuBar the MenuBar to add to the window
 	 */
-	public static void setMenuBar(Window window, MenuBar newMenuBar) {
+	public static void setMenuBar(WindowBridge window, MenuBarBridge newMenuBar) {
 		window.setMenuBar(newMenuBar);
+	}
+	
+	/**
+	 * Sets a ToolBar to a Scilab window
+	 * @param window the window which we want to add the newToolBar to
+	 * @param newToolBar the ToolBar to add to the window
+	 */
+	public static void setToolBar(WindowBridge window, ToolBarBridge newToolBar) {
+		window.setToolBar(newToolBar);
 	}
 }

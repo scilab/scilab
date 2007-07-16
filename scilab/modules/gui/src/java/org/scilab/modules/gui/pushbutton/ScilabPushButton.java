@@ -21,11 +21,13 @@ import org.scilab.modules.gui.container.Container;
 */
 public class ScilabPushButton extends ScilabWidget implements PushButton {
 
+	private PushButtonBridge component;
+	
 	/**
 	 * Constructor
 	 */
 	protected ScilabPushButton() {
-		throw new UnsupportedOperationException(); /* Prevents calls from subclass */
+		component = ScilabBridge.createPushButton();
 	}
 
 	/**
@@ -33,7 +35,24 @@ public class ScilabPushButton extends ScilabWidget implements PushButton {
 	 * @return the created PushButton
 	 */
 	public static PushButton createPushButton() {
-		return ScilabBridge.createPushButton();
+		return new ScilabPushButton();
+	}
+	
+	/**
+	 * Gets this Bridge component object
+	 * @return this Bridge component object
+	 */
+	public PushButtonBridge getPushButtonBridge() {
+		return component;
+	}
+	
+	
+	/**
+	 * Sets the text of a PushButton
+	 * @param newText the text to set to the PushButton
+	 */
+	public void setText(String newText) {
+		ScilabBridge.setText(component, newText);
 	}
 	
 //	TODO Question: What do we do with draw() for a PushButton ?
@@ -301,15 +320,6 @@ public class ScilabPushButton extends ScilabWidget implements PushButton {
 	 * @param dimension the Dimension
 	 */
 	public void setSize(Dimension dimension) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	/**
-	 * Sets the text of a PushButton
-	 * @param text the text to set to the PushButton
-	 */
-	public void setText(String text) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -11,11 +11,13 @@ import org.scilab.modules.gui.bridge.ScilabBridge;
  */
 public class ScilabMenuItem implements MenuItem {
 
+	private MenuItemBridge component;
+	
 	/**
 	 * Constructor
 	 */
 	protected ScilabMenuItem() {
-        throw new UnsupportedOperationException(); /* Prevents calls from subclass */
+        component = ScilabBridge.createMenuItem();
 	}
 
 	/**
@@ -23,7 +25,15 @@ public class ScilabMenuItem implements MenuItem {
 	 * @return the created MenuItem
 	 */
 	public static MenuItem createMenuItem() {
-		return ScilabBridge.createMenuItem();
+		return new ScilabMenuItem();
+	}
+	
+	/**
+	 * Gets this Bridge component object
+	 * @return this Bridge component object
+	 */
+	public MenuItemBridge getMenuItemBridge() {
+		return component;
 	}
 	
 	/**
@@ -32,7 +42,7 @@ public class ScilabMenuItem implements MenuItem {
 	 * @see org.scilab.modules.gui.widget.MenuItem#setText(java.lang.String)
 	 */
 	public void setText(String newText) {
-		ScilabBridge.setText(this, newText);
+		ScilabBridge.setText(component, newText);
 	}
 	
 	/**
@@ -41,6 +51,6 @@ public class ScilabMenuItem implements MenuItem {
 	 * @see org.scilab.modules.gui.widget.MenuItem#setMnemonic(org.scilab.modules.gui.widget.int)
 	 */
 	public void setMnemonic(int mnemonic) {
-		ScilabBridge.setMnemonic(this, mnemonic);
+		ScilabBridge.setMnemonic(component, mnemonic);
 	}
 }

@@ -19,11 +19,19 @@ import org.scilab.modules.gui.menubar.MenuBar;
  */
 public class ScilabWindow extends ScilabUIElement implements Window {
 	
+	private WindowBridge component;
+		
+	private MenuBar menuBar; // TODO should be ScilabMenuBar
+	
+	private ToolBar toolBar; // TODO should be ScilabToolBar
+	
 	/**
 	 * Constructor
 	 */
 	protected ScilabWindow() {
-        throw new UnsupportedOperationException(); /* Prevents calls from subclass */
+		component = ScilabBridge.createWindow();
+		this.menuBar = null;
+		this.toolBar = null;
 	}
 
 	/**
@@ -31,15 +39,23 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 * @return the created window
 	 */
 	public static Window createWindow() {
-		return ScilabBridge.createWindow();
+		return new ScilabWindow();
 	}
 
+	/**
+	 * Gets this Bridge component object
+	 * @return this Bridge component object
+	 */
+	public WindowBridge getWindowBridge() {
+		return component;
+	}
+	
 	/**
 	 * Draw a Scilab window
 	 * @see org.scilab.modules.gui.ScilabUIElement#draw()
 	 */
 	public void draw() {
-		ScilabBridge.draw(this);
+		ScilabBridge.draw(component);
 	}
 
 	/**
@@ -48,7 +64,7 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 * @see org.scilab.modules.gui.UIElement#getDims()
 	 */
 	public Size getDims() {
-		return ScilabBridge.getDims(this);
+		return ScilabBridge.getDims(component);
 	}
 
 	/**
@@ -57,7 +73,7 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 * @see org.scilab.modules.gui.UIElement#setDims(org.scilab.modules.gui.utils.Size)
 	 */
 	public void setDims(Size newWindowSize) {
-		ScilabBridge.setDims(this, newWindowSize);
+		ScilabBridge.setDims(component, newWindowSize);
 	}
 
 	/**
@@ -66,7 +82,7 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 * @see org.scilab.modules.gui.UIElement#getPosition()
 	 */
 	public Position getPosition() {
-		return ScilabBridge.getPosition(this);
+		return ScilabBridge.getPosition(component);
 	}
 
 	/**
@@ -75,7 +91,7 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 * @see org.scilab.modules.gui.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
 	 */
 	public void setPosition(Position newWindowPosition) {
-		ScilabBridge.setPosition(this, newWindowPosition);
+		ScilabBridge.setPosition(component, newWindowPosition);
 	}
 
 	/**
@@ -84,7 +100,7 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 * @see org.scilab.modules.gui.window.Window#getTitle()
 	 */
 	public String getTitle() {
-		return ScilabBridge.getTitle(this);
+		return ScilabBridge.getTitle(component);
 	}
 
 	/**
@@ -93,7 +109,7 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 * @see org.scilab.modules.gui.window.Window#setTitle(java.lang.String)
 	 */
 	public void setTitle(String newWindowTitle) {
-		ScilabBridge.setTitle(this, newWindowTitle);
+		ScilabBridge.setTitle(component, newWindowTitle);
 	}
 
 	/**
@@ -102,7 +118,7 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 * @see org.scilab.modules.gui.UIElement#isVisible()
 	 */
 	public boolean isVisible() {
-		return ScilabBridge.isVisible(this);
+		return ScilabBridge.isVisible(component);
 	}
 
 	/**
@@ -111,7 +127,7 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 * @see org.scilab.modules.gui.UIElement#setVisible(boolean)
 	 */
 	public void setVisible(boolean newVisibleState) {
-		ScilabBridge.setVisible(this, newVisibleState);
+		ScilabBridge.setVisible(component, newVisibleState);
 	}
 
 	/**
@@ -119,17 +135,28 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 * @param newTab the tab to add to the window
 	 * @see org.scilab.modules.gui.window.Window#addTab(org.scilab.modules.gui.tab.Tab)
 	 */
-	public void addTab(Tab newTab) {
-		ScilabBridge.addTab(this, newTab);
-	}
+//	TODO uncomment when TabBridge ready	
+//	public void addTab(Tab newTab) {
+//		ScilabBridge.addTab(component, newTab.component);
+//	}
 
 	/**
 	 * Sets a MeunBar to a Scilab window
 	 * @param newMenuBar the tab to add to the window
 	 * @see org.scilab.modules.gui.window.Window#setMenuBar(org.scilab.modules.gui.widget.MenuBar)
 	 */
+	@Override
 	public void setMenuBar(MenuBar newMenuBar) {
-		ScilabBridge.setMenuBar(this, newMenuBar);
+		this.menuBar = newMenuBar;
+		ScilabBridge.setMenuBar(component, newMenuBar.getMenuBarBridge());
+	}
+	
+	/**
+	 * Get a Scilab MenuBar from this Scilab window
+	 * @return this window MenuBar
+	 */
+	public MenuBar getMenuBar() {
+		return this.menuBar;
 	}
 	
 	/**
@@ -137,9 +164,19 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 * @param newToolBar the Scilab ToolBar to set to the Scilab window
 	 * @see org.scilab.modules.gui.window.Window#setToolBar(org.scilab.modules.gui.toolbar.ToolBar)
 	 */
+	@Override
 	public void setToolBar(ToolBar newToolBar) {
-		// TODO : add code and continue
-		//ScilabBridge.setToolBar(this, newToolBar);
+		this.toolBar = newToolBar;
+		ScilabBridge.setToolBar(component, newToolBar.getToolBarBridge());
+	}
+	
+	/**
+	 * Get a Scilab ToolBar from this Scilab window
+	 * @return this window ToolBar
+	 */
+	@Override
+	public ToolBar getToolBar() {
+		return this.toolBar;
 	}
 	
 	/**
@@ -149,6 +186,6 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 */
 	public void setInfoBar(TextBox newInfoBar) {
 		// TODO : add code and continue
-		// ScilabBridge.setInfoBar(this, newInfoBar);
+		// ScilabBridge.setInfoBar(component, newInfoBar.getComponent());
 	}
 }

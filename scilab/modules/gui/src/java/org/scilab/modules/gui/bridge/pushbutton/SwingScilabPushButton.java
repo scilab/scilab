@@ -7,8 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.border.LineBorder;
 
-import org.scilab.modules.gui.container.Container;
-import org.scilab.modules.gui.pushbutton.PushButton;
+import org.scilab.modules.gui.pushbutton.PushButtonBridge;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -16,7 +15,7 @@ import org.scilab.modules.gui.utils.Size;
 * Swing implementation for Scilab PushButtons in GUIs
 * @author Marouane BEN JELLOUL
 */
-public class SwingScilabPushButton extends JButton implements PushButton {
+public class SwingScilabPushButton extends JButton implements PushButtonBridge {
 	
 	/**
 	 * Constructor
@@ -41,11 +40,12 @@ public class SwingScilabPushButton extends JButton implements PushButton {
 	 * @see org.scilab.modules.gui.container.Container#addMember(org.scilab.modules.gui.dockable.Dockable)
 	 * @see org.scilab.modules.gui.dockable.Dockable#addAsMemberTo(org.scilab.modules.gui.container.Container)
 	 */
-	public int addAsMemberTo(Container container) {
-		// delegate to the container but also adding info on how to handle me (PushButton)
-		// Interface Container must describe methode: int addMember(PushButton member);
-		return container.addMember((PushButton) this);
-	}
+//	TODO uncomment when ContainerBridge ready
+//	public int addAsMemberTo(Container container) {
+//		// delegate to the container but also adding info on how to handle me (PushButton)
+//		// Interface Container must describe methode: int addMember(PushButton member);
+//		return container.addMember((PushButtonBridge) this);
+//	}
 
 	/**
 	 * Gets the dimensions (width and height) of a swing Scilab PushButton

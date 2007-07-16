@@ -19,11 +19,13 @@ import org.scilab.modules.gui.menuitem.ScilabMenuItem;
  */
 public class ScilabMenu extends ScilabMenuItem implements Menu {
 
+	private MenuBridge component;
+	
 	/**
 	 * Constructor
 	 */
 	protected ScilabMenu() {
-        throw new UnsupportedOperationException(); /* Prevents calls from subclass */
+		component = ScilabBridge.createMenu();
 	}
 	
 	/**
@@ -31,17 +33,25 @@ public class ScilabMenu extends ScilabMenuItem implements Menu {
 	 * @return the created Menu
 	 */
 	public static Menu createMenu() {
-		return ScilabBridge.createMenu();
+		return new ScilabMenu();
+	}
+	
+	/**
+	 * Gets this Bridge component object
+	 * @return this Bridge component object
+	 */
+	public MenuBridge getMenuBridge() {
+		return component;
 	}
 	
 	/**
 	 * Append a MenuItem to a Scilab Menu
 	 * @param newMenuItem the MenuItem to add to the Menu
-	 * @return the added MenuItem
 	 * @see org.scilab.modules.gui.menu.Menu#add(org.scilab.modules.gui.MenuItem)
 	 */
-	public MenuItem add(MenuItem newMenuItem) {
-		return ScilabBridge.add(this, newMenuItem);
+	//  * @return the added MenuItem
+	public void add(MenuItem newMenuItem) {
+		ScilabBridge.add(component, newMenuItem.getMenuItemBridge());
 	}
 	
 	/**
@@ -50,9 +60,7 @@ public class ScilabMenu extends ScilabMenuItem implements Menu {
 	 * @see org.scilab.modules.gui.menu.Menu#setText(java.lang.String)
 	 */
 	public void setText(String newText) {
-//		TODO QUESTION is this code needed or this methode can be empty ?
-//		TODO uncomment if needed and code the needed methodes
-		// ScilabBridge.setText(this, newText);
+		ScilabBridge.setText(component, newText);
 	}
 	
 	/**
@@ -61,7 +69,7 @@ public class ScilabMenu extends ScilabMenuItem implements Menu {
 	 * @see org.scilab.modules.gui.menu.Menu#setMnemonic(org.scilab.modules.gui.widget.int)
 	 */
 	public void setMnemonic(int mnemonic) {
-		ScilabBridge.setMnemonic(this, mnemonic);
+		ScilabBridge.setMnemonic(component, mnemonic);
 	}
 	
 	/**
@@ -69,7 +77,7 @@ public class ScilabMenu extends ScilabMenuItem implements Menu {
 	 * @see org.scilab.modules.gui.menu.Menu#addSeparator(org.scilab.modules.gui..)
 	 */
 	public void addSeparator() {
-		ScilabBridge.addSeparator(this);
+		ScilabBridge.addSeparator(component);
 	}
 
 	/**

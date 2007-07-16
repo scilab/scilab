@@ -14,9 +14,15 @@ public interface MenuBar {
 	//	 TODO : Add the methods that are usefull for a MenuBar
 	
 	/**
+	 * Gets this Bridge component object
+	 * @return this Bridge component object
+	 */
+	MenuBarBridge getMenuBarBridge();
+	
+	/**
 	 * Add a Menu to a MenuBar
 	 * @param newMenu the Menu to add to the MenuBar
-	 * @return the added Menu
 	 */
-	Menu add(Menu newMenu);
+	//  * @return the added Menu
+	void add(Menu newMenu);
 }

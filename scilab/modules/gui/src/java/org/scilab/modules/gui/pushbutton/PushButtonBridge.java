@@ -9,20 +9,12 @@ import java.awt.Font;
 
 import javax.swing.border.LineBorder;
 
-import org.scilab.modules.gui.widget.Widget;
-
 /**
-* Interface for PushButton associated to objects in Scilab GUIs
-* @author Marouane BEN JELLOUL
-*/
-public interface PushButton extends Widget {
+ * Interface for PushButtonBridge the associated object to Scilab GUIs PushButton
+ * @author Marouane BEN JELLOUL
+ */
+public interface PushButtonBridge {
 	// TODO : Add the methods that are usefull for a PushButton
-	
-	/**
-	 * Gets this Bridge component object
-	 * @return this Bridge component object
-	 */
-	PushButtonBridge getPushButtonBridge();
 	
 	/**
 	 * Sets the text of a PushButton
@@ -162,5 +154,4 @@ public interface PushButton extends Widget {
 	 * @return the minimum size
 	 */
 	Dimension getMinimumSize();
-	
 }

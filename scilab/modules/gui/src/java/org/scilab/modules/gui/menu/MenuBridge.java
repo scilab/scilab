@@ -7,27 +7,19 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 
-import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.menuitem.MenuItemBridge;
 
 /**
- * Interface for Menu associated to objects in Scilab GUIs
+ * Interface for MenuBridge the associated object to Scilab GUIs Menu
  * @author Marouane BEN JELLOUL
  */
-public interface Menu extends MenuItem {
-	//	 TODO : Add the methods that are usefull for a Menu
-	
+public interface MenuBridge {
 	/**
-	 * Gets this Bridge component object
-	 * @return this Bridge component object
+	 * Append a MenuItemBridge to the MenuBridge
+	 * @param newMenuItem the MenuItemBridge to add to the MenuBridge
+	 * @return the added MenuItemBridge
 	 */
-	MenuBridge getMenuBridge();
-	
-	/**
-	 * Append a MenuItem to the Menu
-	 * @param newMenuItem the MenuItem to add to the Menu
-	 */
-	// * @return the added MenuItem
-	void add(MenuItem newMenuItem);
+	MenuItemBridge add(MenuItemBridge newMenuItem);
 	
 	/**
 	 * Sets the text of the Menu

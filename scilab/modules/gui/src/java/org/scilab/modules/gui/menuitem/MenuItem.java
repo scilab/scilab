@@ -10,6 +10,12 @@ package org.scilab.modules.gui.menuitem;
 public interface MenuItem {
 	
 	/**
+	 * Gets this Bridge component object
+	 * @return this Bridge component object
+	 */
+	MenuItemBridge getMenuItemBridge();
+	
+	/**
 	 * Sets the text of a MenuItem
 	 * @param newText the text we want to set for the MenuItem
 	 */

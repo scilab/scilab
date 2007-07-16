@@ -5,7 +5,6 @@ package org.scilab.modules.gui.window;
 
 import org.scilab.modules.gui.uielement.UIElement;
 import org.scilab.modules.gui.menubar.MenuBar;
-import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 
@@ -16,6 +15,12 @@ import org.scilab.modules.gui.toolbar.ToolBar;
  */
 public interface Window extends UIElement {
 
+	/**
+	 * Gets this Bridge component object
+	 * @return this Bridge component object
+	 */
+	WindowBridge getWindowBridge();
+	
 	/**
 	 * Gets the title of a window
 	 * @return the title of the window
@@ -32,7 +37,7 @@ public interface Window extends UIElement {
 	 * Add a tab to a window
 	 * @param newTab the tab to add to the window
 	 */
-	void addTab(Tab newTab);
+//	void addTab(Tab newTab);
 	
 	/**
 	 * Sets a MenuBar to a window
@@ -41,10 +46,22 @@ public interface Window extends UIElement {
 	void setMenuBar(MenuBar newMenuBar);
 	
 	/**
+	 * Get a MenuBar from this window
+	 * @return this window MenuBar
+	 */
+	MenuBar getMenuBar();
+	
+	/**
 	 * Sets a ToolBar to a window
 	 * @param newToolBar the ToolBar to set to the window
 	 */
 	void setToolBar(ToolBar newToolBar);
+	
+	/**
+	 * Get a ToolBar from this window
+	 * @return this window ToolBar
+	 */
+	ToolBar getToolBar();
 	
 	/**
 	 * Sets a InfoBar to a window

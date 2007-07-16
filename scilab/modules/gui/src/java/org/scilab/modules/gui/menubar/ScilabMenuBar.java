@@ -12,11 +12,13 @@ import org.scilab.modules.gui.menu.Menu;
  */
 public class ScilabMenuBar implements MenuBar {
 
+	private MenuBarBridge component;
+	
 	/**
 	 * Constructor
 	 */
 	protected ScilabMenuBar() {
-        throw new UnsupportedOperationException(); /* Prevents calls from subclass */
+		component = ScilabBridge.createMenuBar();
 	}
 
 	/**
@@ -24,16 +26,24 @@ public class ScilabMenuBar implements MenuBar {
 	 * @return the created MenuBar
 	 */
 	public static MenuBar createMenuBar() {
-		return ScilabBridge.createMenuBar();
+		return new ScilabMenuBar();
+	}
+	
+	/**
+	 * Gets this Bridge component object
+	 * @return this Bridge component object
+	 */
+	public MenuBarBridge getMenuBarBridge() {
+		return component;
 	}
 	
 	/**
 	 * Add a Menu to a MenuBar
 	 * @param newMenu the Menu to add to the MenuBar
-	 * @return the added Menu
 	 * @see org.scilab.modules.gui.widget.MenuBar#add(org.scilab.modules.gui.widget.Menu)
 	 */
-	public Menu add(Menu newMenu) {
-		return ScilabBridge.add(this, newMenu);
+//	* @return the added Menu
+	public void add(Menu newMenu) {
+		ScilabBridge.add(component, newMenu.getMenuBridge());
 	}
 }

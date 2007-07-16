@@ -6,14 +6,14 @@ package org.scilab.modules.gui.bridge.menu;
 import javax.swing.JMenu;
 
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
-import org.scilab.modules.gui.menu.Menu;
-import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.menu.MenuBridge;
+import org.scilab.modules.gui.menuitem.MenuItemBridge;
 
 /**
  * Swing implementation for Scilab Menus in GUIs
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabMenu extends JMenu implements Menu {
+public class SwingScilabMenu extends JMenu implements MenuBridge {
 
 	/**
 	 * Constructor
@@ -28,8 +28,8 @@ public class SwingScilabMenu extends JMenu implements Menu {
 	 * @return the added MenuItem
 	 * @see org.scilab.modules.gui.menu.Menu#add(org.scilab.modules.gui.MenuItem)
 	 */
-	public MenuItem add(MenuItem newMenuItem) {
-		return (MenuItem) super.add((SwingScilabMenuItem) newMenuItem);
+	public MenuItemBridge add(MenuItemBridge newMenuItem) {
+		return (MenuItemBridge) super.add((SwingScilabMenuItem) newMenuItem);
 	}
 	
 	/**

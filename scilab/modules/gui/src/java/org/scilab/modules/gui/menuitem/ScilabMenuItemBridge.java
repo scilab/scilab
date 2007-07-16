@@ -22,7 +22,7 @@ public class ScilabMenuItemBridge {
 	 * Creates a Scilab MenuItem
 	 * @return the created MenuItem
 	 */
-	public static MenuItem createMenuItem() {
+	public static MenuItemBridge createMenuItem() {
 		return new SwingScilabMenuItem();
 	}
 	
@@ -31,7 +31,7 @@ public class ScilabMenuItemBridge {
 	 * @param menuItem the MenuItem we want to set the Text of
 	 * @param newText the Text we want to set to the menuItem
 	 */
-	public static void setText(MenuItem menuItem, String newText) {
+	public static void setText(MenuItemBridge menuItem, String newText) {
 		menuItem.setText(newText);
 	}
 	
@@ -40,7 +40,7 @@ public class ScilabMenuItemBridge {
 	 * @param menuItem the MenuItem which we want to add the mnemonic to
 	 * @param mnemonic the mnemonic to add to the MenuItem
 	 */
-	public static void setMnemonic(MenuItem menuItem, int mnemonic) {
+	public static void setMnemonic(MenuItemBridge menuItem, int mnemonic) {
 		menuItem.setMnemonic(mnemonic);
 	}
 }

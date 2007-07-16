@@ -4,8 +4,6 @@
 package org.scilab.modules.gui.bridge.window;
 
 import javax.swing.JFrame;
-import javax.swing.JMenuBar;
-import javax.swing.JToolBar;
 
 import org.flexdock.docking.DockingManager;
 import org.flexdock.docking.DockingPort;
@@ -15,13 +13,11 @@ import org.scilab.modules.gui.bridge.menubar.SwingScilabMenuBar;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
 import org.scilab.modules.gui.bridge.toolbar.SwingScilabToolBar;
-import org.scilab.modules.gui.tab.Tab;
-import org.scilab.modules.gui.textbox.TextBox;
-import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.menubar.MenuBarBridge;
+import org.scilab.modules.gui.toolbar.ToolBarBridge;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.menubar.MenuBar;
-import org.scilab.modules.gui.window.Window;
+import org.scilab.modules.gui.window.WindowBridge;
 
 /**
  * Swing implementation for Scilab windows in GUIs
@@ -30,7 +26,7 @@ import org.scilab.modules.gui.window.Window;
  * @author Bruno JOFRET
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabWindow extends JFrame implements Window {
+public class SwingScilabWindow extends JFrame implements WindowBridge {
 
 	private static final int DEFAULTWIDTH = 500;
 	private static final int DEFAULTHEIGHT = 500;
@@ -68,7 +64,7 @@ public class SwingScilabWindow extends JFrame implements Window {
 	 * Creates a swing Scilab window
 	 * @return the created window
 	 */
-	public static Window createWindow() {
+	public static WindowBridge createWindow() {
 		return new SwingScilabWindow();
 	}
 
@@ -144,42 +140,64 @@ public class SwingScilabWindow extends JFrame implements Window {
 		return (DockingPort) sciDockingPort;
 	}
 
-	/**
-	 * Add a Scilab tab to a Scilab window
-	 * @param newTab the Scilab tab to add to the Scilab window
-	 * @see org.scilab.modules.gui.window.Window#addTab(org.scilab.modules.gui.tab.Tab)
-	 */
-	public void addTab(Tab newTab) {
-		DockingManager.dock((SwingScilabTab) newTab, this.getDockingPort());
-	}
+//	TODO add when TabBridge ready
+//	/**
+//	 * Add a Scilab tab to a Scilab window
+//	 * @param newTab the Scilab tab to add to the Scilab window
+//	 * @see org.scilab.modules.gui.window.Window#addTab(org.scilab.modules.gui.tab.Tab)
+//	 */
+//	public void addTab(TabBridge newTab) {
+//		DockingManager.dock((SwingScilabTab) newTab, this.getDockingPort());
+//	}
 	
 	/**
 	 * Sets a Scilab MenuBar to a Scilab window
 	 * @param newMenuBar the Scilab MenuBar to add to the Scilab window
 	 * @see org.scilab.modules.gui.window.Window#setMenuBar(org.scilab.modules.gui.menubar.MenuBar)
 	 */
-	public void setMenuBar(MenuBar newMenuBar) {
+	public void setMenuBar(MenuBarBridge newMenuBar) {
 		this.menuBar = (SwingScilabMenuBar) newMenuBar;
 		super.setJMenuBar(this.menuBar);
 	}
+	
+//	 TODO remove because getMenuBar handled by ScilabWindow
+//	/**
+//	 * Get the MenuBar of the window
+//	 * @return this window menuBar
+//	 * @see org.scilab.modules.gui.window.Window#getSGMenuBar()
+//	 */
+//	public MenuBarBridge getMenuBar() {
+//		return (MenuBarBridge) this.menuBar;
+//	}
 	
 	/**
 	 * Sets a Scilab ToolBar to a Scilab window
 	 * @param newToolBar the Scilab ToolBar to set to the Scilab window
 	 * @see org.scilab.modules.gui.window.Window#setToolBar(org.scilab.modules.gui.toolbar.ToolBar)
 	 */
-	public void setToolBar(ToolBar newToolBar) {
+	public void setToolBar(ToolBarBridge newToolBar) {
 		this.toolBar = (SwingScilabToolBar) newToolBar;
 		super.add(this.toolBar, java.awt.BorderLayout.PAGE_START);
 	}
 
-	/**
-	 * Sets a Scilab InfoBar to a Scilab window
-	 * @param newInfoBar the Scilab InfoBar to set to the Scilab window
-	 * @see org.scilab.modules.gui.window.Window#setInfoBar(org.scilab.modules.gui.textbox.TextBox)
-	 */
-	public void setInfoBar(TextBox newInfoBar) {
-		this.infoBar = (SwingScilabTextBox) newInfoBar;
-		super.add(this.infoBar, java.awt.BorderLayout.PAGE_END);
-	}
+//	TODO remove because getToolBar handled by ScilabWindow
+//	/**
+//	 * Get the ToolBar of the window
+//	 * @return this window toolBar
+//	 * @see org.scilab.modules.gui.window.Window#getToolBar()
+//	 */
+//	public ToolBarBridge getToolBar() {
+//		return (ToolBarBridge) this.toolBar;
+//	}
+	
+//	TODO uncomment when TextBoxBridge ready
+//	/**
+//	 * Sets a Scilab InfoBar to a Scilab window
+//	 * @param newInfoBar the Scilab InfoBar to set to the Scilab window
+//	 * @see org.scilab.modules.gui.window.Window#setInfoBar(org.scilab.modules.gui.textbox.TextBox)
+//	 */
+//	public void setInfoBar(TextBoxBridge newInfoBar) {
+//		this.infoBar = (SwingScilabTextBox) newInfoBar;
+//		super.add(this.infoBar, java.awt.BorderLayout.PAGE_END);
+//	}
 }

@@ -3,19 +3,14 @@
 
 package org.scilab.modules.gui.uielement;
 
-//import java.awt.Color;
-//import javax.swing.border.LineBorder;
-
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
 /**
- * Interface for Scilab GUIs element
- * In the following, an UIElement is a Scilab GUI element
- * @author Vincent COUVERT
- * @author Bruno JOFRET
+ * Interface for UIElementBridge the associated object to Scilab GUIs UIElement
+ * @author Marouane BEN JELLOUL
  */
-public interface UIElement {
+public interface UIElementBridge {
 
 //	public abstract void addToolBar(ToolBar toolBarToAdd);
 //
@@ -25,7 +20,6 @@ public interface UIElement {
 //
 //	public abstract void focus();
 //
-	
 	/**
 	 * Gets the size of an UIElement (width and height)
 	 * @return the size of the UIElement
@@ -91,5 +85,4 @@ public interface UIElement {
 	 * @param lineBorder the LineBorder
 	 */
 	//void setBorder(LineBorder lineBorder);
-	
 }

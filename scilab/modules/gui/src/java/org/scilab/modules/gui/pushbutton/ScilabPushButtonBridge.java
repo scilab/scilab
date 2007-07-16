@@ -22,9 +22,18 @@ public class ScilabPushButtonBridge {
 	 * Creates a new Scilab PushButton
 	 * @return the created PushButton
 	 */
-	public static PushButton createPushButton() {
+	public static PushButtonBridge createPushButton() {
 		return new SwingScilabPushButton();
 	}
 
+	/**
+	 * Sets the Text of a Scilab PushButton
+	 * @param pushButton the PushButton we want to set the Text of
+	 * @param newText the Text we want to set to the PushButton
+	 */
+	public static void setText(PushButtonBridge pushButton, String newText) {
+		pushButton.setText(newText);
+	}
+	
 }
 
