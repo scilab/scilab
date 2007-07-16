@@ -19,19 +19,16 @@ import org.scilab.modules.gui.menubar.MenuBar;
  */
 public class ScilabWindow extends ScilabUIElement implements Window {
 	
-	private WindowBridge component;
+	private SimpleWindow component;
 		
-	private MenuBar menuBar; // TODO should be ScilabMenuBar
-	
-	private ToolBar toolBar; // TODO should be ScilabToolBar
 	
 	/**
 	 * Constructor
 	 */
 	protected ScilabWindow() {
 		component = ScilabBridge.createWindow();
-		this.menuBar = null;
-		this.toolBar = null;
+		setMenuBar(null);
+		setToolBar(null);
 	}
 
 	/**
@@ -46,7 +43,7 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 * Gets this Bridge component object
 	 * @return this Bridge component object
 	 */
-	public WindowBridge getWindowBridge() {
+	public SimpleWindow getAsSimpleWindow() {
 		return component;
 	}
 	
@@ -145,18 +142,10 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 * @param newMenuBar the tab to add to the window
 	 * @see org.scilab.modules.gui.window.Window#setMenuBar(org.scilab.modules.gui.widget.MenuBar)
 	 */
-	@Override
-	public void setMenuBar(MenuBar newMenuBar) {
-		this.menuBar = newMenuBar;
+	public void addMenuBar(MenuBar newMenuBar) {
+		setMenuBar(newMenuBar);
+		// FIXME : Do it a standard way : getAsMenuBar
 		ScilabBridge.setMenuBar(component, newMenuBar.getMenuBarBridge());
-	}
-	
-	/**
-	 * Get a Scilab MenuBar from this Scilab window
-	 * @return this window MenuBar
-	 */
-	public MenuBar getMenuBar() {
-		return this.menuBar;
 	}
 	
 	/**
@@ -164,19 +153,9 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 * @param newToolBar the Scilab ToolBar to set to the Scilab window
 	 * @see org.scilab.modules.gui.window.Window#setToolBar(org.scilab.modules.gui.toolbar.ToolBar)
 	 */
-	@Override
-	public void setToolBar(ToolBar newToolBar) {
-		this.toolBar = newToolBar;
-		ScilabBridge.setToolBar(component, newToolBar.getToolBarBridge());
-	}
-	
-	/**
-	 * Get a Scilab ToolBar from this Scilab window
-	 * @return this window ToolBar
-	 */
-	@Override
-	public ToolBar getToolBar() {
-		return this.toolBar;
+	public void addToolBar(ToolBar newToolBar) {
+		setToolBar(newToolBar);
+		ScilabBridge.setToolBar(component, newToolBar.getAsSimpleToolBar());
 	}
 	
 	/**
