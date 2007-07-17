@@ -13,7 +13,6 @@ src/cpp/figureDrawing/DrawableFigureJoGL.cpp \
 src/cpp/figureDrawing/DrawableFigureImpFactory.cpp \
 src/cpp/figureDrawing/DrawableFigure.cpp \
 src/cpp/figureDrawing/ConcreteDrawableFigure.cpp \
-src/cpp/figureDrawing/DrawableFigureImp.cpp \
 src/cpp/figureDrawing/DrawableFigureFactory.cpp \
 src/cpp/figureDrawing/FigureScilabCall.cpp \
 src/cpp/compoundDrawing/DrawableCompoundFactory.cpp \
@@ -62,12 +61,11 @@ src/cpp/subwinDrawing/CameraBridge.cpp \
 src/cpp/subwinDrawing/DrawableSubwinBridgeFactory.cpp \
 src/cpp/subwinDrawing/CameraFactory.cpp \
 src/cpp/subwinDrawing/DrawableSubwinJoGL.cpp \
-src/cpp/subwinDrawing/DrawableSubwinBridge.cpp \
 src/cpp/subwinDrawing/Camera.cpp \
 src/cpp/subwinDrawing/CameraBridgeFactory.cpp \
 src/cpp/polylineDrawing/DrawablePolylineBrirdgeFactory.cpp \
 src/cpp/polylineDrawing/DrawablePolylineJoGL.cpp \
-src/cpp/polylineDrawing/DrawablePolylineBridge.cpp
+src/cpp/DrawableClippedObjectJoGL.cpp
 
 
 

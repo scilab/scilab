@@ -89,7 +89,6 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 	src/cpp/figureDrawing/DrawableFigureImpFactory.cpp \
 	src/cpp/figureDrawing/DrawableFigure.cpp \
 	src/cpp/figureDrawing/ConcreteDrawableFigure.cpp \
-	src/cpp/figureDrawing/DrawableFigureImp.cpp \
 	src/cpp/figureDrawing/DrawableFigureFactory.cpp \
 	src/cpp/figureDrawing/FigureScilabCall.cpp \
 	src/cpp/compoundDrawing/DrawableCompoundFactory.cpp \
@@ -135,12 +134,11 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 	src/cpp/subwinDrawing/DrawableSubwinBridgeFactory.cpp \
 	src/cpp/subwinDrawing/CameraFactory.cpp \
 	src/cpp/subwinDrawing/DrawableSubwinJoGL.cpp \
-	src/cpp/subwinDrawing/DrawableSubwinBridge.cpp \
 	src/cpp/subwinDrawing/Camera.cpp \
 	src/cpp/subwinDrawing/CameraBridgeFactory.cpp \
 	src/cpp/polylineDrawing/DrawablePolylineBrirdgeFactory.cpp \
 	src/cpp/polylineDrawing/DrawablePolylineJoGL.cpp \
-	src/cpp/polylineDrawing/DrawablePolylineBridge.cpp \
+	src/cpp/DrawableClippedObjectJoGL.cpp \
 	sci_gateway/c/gw_renderer.c
 @GUI_TRUE@am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableSubwin.lo \
@@ -148,7 +146,6 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 @GUI_TRUE@	libscirenderer_la-DrawableFigureImpFactory.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableFigure.lo \
 @GUI_TRUE@	libscirenderer_la-ConcreteDrawableFigure.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableFigureImp.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableFigureFactory.lo \
 @GUI_TRUE@	libscirenderer_la-FigureScilabCall.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableCompoundFactory.lo \
@@ -197,12 +194,11 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 @GUI_TRUE@	libscirenderer_la-DrawableSubwinBridgeFactory.lo \
 @GUI_TRUE@	libscirenderer_la-CameraFactory.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableSubwinJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableSubwinBridge.lo \
 @GUI_TRUE@	libscirenderer_la-Camera.lo \
 @GUI_TRUE@	libscirenderer_la-CameraBridgeFactory.lo \
 @GUI_TRUE@	libscirenderer_la-DrawablePolylineBrirdgeFactory.lo \
 @GUI_TRUE@	libscirenderer_la-DrawablePolylineJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-DrawablePolylineBridge.lo
+@GUI_TRUE@	libscirenderer_la-DrawableClippedObjectJoGL.lo
 @GUI_TRUE@am__objects_2 = libscirenderer_la-gw_renderer.lo
 @GUI_FALSE@am_libscirenderer_la_OBJECTS =  \
 @GUI_FALSE@	libscirenderer_la-norenderer.lo
@@ -405,7 +401,6 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/cpp/figureDrawing/DrawableFigureImpFactory.cpp \
 @GUI_TRUE@src/cpp/figureDrawing/DrawableFigure.cpp \
 @GUI_TRUE@src/cpp/figureDrawing/ConcreteDrawableFigure.cpp \
-@GUI_TRUE@src/cpp/figureDrawing/DrawableFigureImp.cpp \
 @GUI_TRUE@src/cpp/figureDrawing/DrawableFigureFactory.cpp \
 @GUI_TRUE@src/cpp/figureDrawing/FigureScilabCall.cpp \
 @GUI_TRUE@src/cpp/compoundDrawing/DrawableCompoundFactory.cpp \
@@ -454,12 +449,11 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/cpp/subwinDrawing/DrawableSubwinBridgeFactory.cpp \
 @GUI_TRUE@src/cpp/subwinDrawing/CameraFactory.cpp \
 @GUI_TRUE@src/cpp/subwinDrawing/DrawableSubwinJoGL.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/DrawableSubwinBridge.cpp \
 @GUI_TRUE@src/cpp/subwinDrawing/Camera.cpp \
 @GUI_TRUE@src/cpp/subwinDrawing/CameraBridgeFactory.cpp \
 @GUI_TRUE@src/cpp/polylineDrawing/DrawablePolylineBrirdgeFactory.cpp \
 @GUI_TRUE@src/cpp/polylineDrawing/DrawablePolylineJoGL.cpp \
-@GUI_TRUE@src/cpp/polylineDrawing/DrawablePolylineBridge.cpp
+@GUI_TRUE@src/cpp/DrawableClippedObjectJoGL.cpp
 
 
 # List of the gateway c files
@@ -627,13 +621,13 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableAxes.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableAxesFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableClippedObject.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableClippedObjectJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableCompound.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableCompoundFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableFec.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableFecFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableFigure.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableFigureFactory.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableFigureImp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableFigureImpFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableFigureJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableGrayplot.Plo@am__quote@
@@ -646,7 +640,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableObjectFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableObjectJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawablePolyline.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawablePolylineBridge.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawablePolylineBrirdgeFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawablePolylineFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawablePolylineJoGL.Plo@am__quote@
@@ -658,7 +651,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSegs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSegsFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSubwin.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSubwinBridge.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSubwinBridgeFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSubwinFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSubwinJoGL.Plo@am__quote@
@@ -776,13 +768,6 @@ libscirenderer_la-ConcreteDrawableFigure.lo: src/cpp/figureDrawing/ConcreteDrawa
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/figureDrawing/ConcreteDrawableFigure.cpp' object='libscirenderer_la-ConcreteDrawableFigure.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-ConcreteDrawableFigure.lo `test -f 'src/cpp/figureDrawing/ConcreteDrawableFigure.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/ConcreteDrawableFigure.cpp
-
-libscirenderer_la-DrawableFigureImp.lo: src/cpp/figureDrawing/DrawableFigureImp.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableFigureImp.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableFigureImp.Tpo -c -o libscirenderer_la-DrawableFigureImp.lo `test -f 'src/cpp/figureDrawing/DrawableFigureImp.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/DrawableFigureImp.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-DrawableFigureImp.Tpo $(DEPDIR)/libscirenderer_la-DrawableFigureImp.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/figureDrawing/DrawableFigureImp.cpp' object='libscirenderer_la-DrawableFigureImp.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableFigureImp.lo `test -f 'src/cpp/figureDrawing/DrawableFigureImp.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/DrawableFigureImp.cpp
 
 libscirenderer_la-DrawableFigureFactory.lo: src/cpp/figureDrawing/DrawableFigureFactory.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableFigureFactory.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableFigureFactory.Tpo -c -o libscirenderer_la-DrawableFigureFactory.lo `test -f 'src/cpp/figureDrawing/DrawableFigureFactory.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/DrawableFigureFactory.cpp
@@ -1120,13 +1105,6 @@ libscirenderer_la-DrawableSubwinJoGL.lo: src/cpp/subwinDrawing/DrawableSubwinJoG
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableSubwinJoGL.lo `test -f 'src/cpp/subwinDrawing/DrawableSubwinJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/DrawableSubwinJoGL.cpp
 
-libscirenderer_la-DrawableSubwinBridge.lo: src/cpp/subwinDrawing/DrawableSubwinBridge.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableSubwinBridge.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableSubwinBridge.Tpo -c -o libscirenderer_la-DrawableSubwinBridge.lo `test -f 'src/cpp/subwinDrawing/DrawableSubwinBridge.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/DrawableSubwinBridge.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-DrawableSubwinBridge.Tpo $(DEPDIR)/libscirenderer_la-DrawableSubwinBridge.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/DrawableSubwinBridge.cpp' object='libscirenderer_la-DrawableSubwinBridge.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableSubwinBridge.lo `test -f 'src/cpp/subwinDrawing/DrawableSubwinBridge.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/DrawableSubwinBridge.cpp
-
 libscirenderer_la-Camera.lo: src/cpp/subwinDrawing/Camera.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-Camera.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-Camera.Tpo -c -o libscirenderer_la-Camera.lo `test -f 'src/cpp/subwinDrawing/Camera.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/Camera.cpp
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-Camera.Tpo $(DEPDIR)/libscirenderer_la-Camera.Plo
@@ -1155,12 +1133,12 @@ libscirenderer_la-DrawablePolylineJoGL.lo: src/cpp/polylineDrawing/DrawablePolyl
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawablePolylineJoGL.lo `test -f 'src/cpp/polylineDrawing/DrawablePolylineJoGL.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/DrawablePolylineJoGL.cpp
 
-libscirenderer_la-DrawablePolylineBridge.lo: src/cpp/polylineDrawing/DrawablePolylineBridge.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawablePolylineBridge.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawablePolylineBridge.Tpo -c -o libscirenderer_la-DrawablePolylineBridge.lo `test -f 'src/cpp/polylineDrawing/DrawablePolylineBridge.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/DrawablePolylineBridge.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-DrawablePolylineBridge.Tpo $(DEPDIR)/libscirenderer_la-DrawablePolylineBridge.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/polylineDrawing/DrawablePolylineBridge.cpp' object='libscirenderer_la-DrawablePolylineBridge.lo' libtool=yes @AMDEPBACKSLASH@
+libscirenderer_la-DrawableClippedObjectJoGL.lo: src/cpp/DrawableClippedObjectJoGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableClippedObjectJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableClippedObjectJoGL.Tpo -c -o libscirenderer_la-DrawableClippedObjectJoGL.lo `test -f 'src/cpp/DrawableClippedObjectJoGL.cpp' || echo '$(srcdir)/'`src/cpp/DrawableClippedObjectJoGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-DrawableClippedObjectJoGL.Tpo $(DEPDIR)/libscirenderer_la-DrawableClippedObjectJoGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/DrawableClippedObjectJoGL.cpp' object='libscirenderer_la-DrawableClippedObjectJoGL.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawablePolylineBridge.lo `test -f 'src/cpp/polylineDrawing/DrawablePolylineBridge.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/DrawablePolylineBridge.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableClippedObjectJoGL.lo `test -f 'src/cpp/DrawableClippedObjectJoGL.cpp' || echo '$(srcdir)/'`src/cpp/DrawableClippedObjectJoGL.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
