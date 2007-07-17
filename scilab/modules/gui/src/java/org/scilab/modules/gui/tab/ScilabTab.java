@@ -27,6 +27,8 @@ import org.scilab.modules.gui.utils.Size;
  */
 public class ScilabTab extends ScilabContainer implements Tab {
 
+	private SimpleTab component;
+	
 	/**
 	 * Constructor
 	 */

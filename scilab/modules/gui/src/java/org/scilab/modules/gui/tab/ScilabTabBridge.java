@@ -29,7 +29,7 @@ public class ScilabTabBridge {
 	 * @param name the name of the tab (used to identify it)
 	 * @return the created tab
 	 */
-	public static Tab createTab(String name) {
+	public static SimpleTab createTab(String name) {
 		return new SwingScilabTab(name);
 	}
 
