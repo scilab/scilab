@@ -5,6 +5,8 @@
 #ifndef __HISTORYMANAGER_CPP_H__
 #define __HISTORYMANAGER_CPP_H__
 /*------------------------------------------------------------------------*/
+#ifdef __cplusplus
+/*------------------------------------------------------------------------*/
 extern "C"
 {
 	#include <time.h>
@@ -13,6 +15,8 @@ extern "C"
 /*------------------------------------------------------------------------*/
 #include <list>
 #include "CommandLine.h"
+#include "HistoryFile.h"
+#include "HistorySearch.h"
 using namespace std;
 /*------------------------------------------------------------------------*/
 class HistoryManager
@@ -36,12 +40,6 @@ public:
 	char *getFirstLine(void);
 	int getNumberOfLines(void);
 	char *getNthLine(int N);
-	
-	char *getLineCurrentPositionIterator(void);
-	void moveToPreviousPositionIterator(void);
-	void moveToNextPositionIterator(void);
-	char **searchToken(char *token,int *nb);
-	int **searchTokenAndReturnsLinesNumber(char *token,int *nb);
 
 	void setSaveConsecutiveDuplicateLines(BOOL doit);
 	BOOL getSaveConsecutiveDuplicateLines(void);
@@ -49,23 +47,27 @@ public:
 	void setAfterHowManyLinesHistoryIsSaved(int num);
 	int getAfterHowManyLinesHistoryIsSaved(void);
 
-	
+
+	BOOL setToken(char *token);
+	BOOL resetToken(void);
+	char *getPreviousLine(void);
+	char *getNextLine(void);
 
 protected:
 
 private:
+	HistoryFile my_file;
+	HistorySearch my_search;
+
 	list<CommandLine> Commands;
-	char *historyfilename;
 	list<CommandLine>::iterator it_current_position;
+
 	BOOL saveconsecutiveduplicatelines;
 	int afterhowmanylineshistoryissaved;
 	int numberoflinesbeforehistoryissaved;
 
-	char *getCommentDateSession(BOOL BeginSession);
-	char *ASCIItime(const struct tm *timeptr);
-
-	BOOL saveHistory(void);
-
 };
+/*------------------------------------------------------------------------*/
+#endif /* __cplusplus */
 /*------------------------------------------------------------------------*/
 #endif /* __HISTORYMANAGER_CPP_H__ */

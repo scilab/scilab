@@ -3,8 +3,7 @@
  * zzledt_linux.c - line editing routine
  * Initial Version : Copyright (c) Mitchell and Gauthier assoc, inc 1993
  * Modified by Jean Philippe Chancelier (ENPC) and Serge Steer (INRIA) 
- *  - Console (xterm) and Scilab window mode handled, 
- *    used in Console mode for GTK
+ *  - Console (xterm) and Scilab window mode handled
  *  - Interruption for Scilab menu execution
  *  - History functions changed to use linked lists
  * Modified by Sylvestre LEDRU (INRIA) 2007
@@ -18,7 +17,7 @@ static char Sci_Prompt[10];
 
 
 #ifndef WITHOUT_STD_ZZLEDT 
-#ifndef _MSC_VER /** The win32 version is defined in the wsci directory **/
+#ifndef _MSC_VER /** see zzledt_Windows.c **/
 #include <string.h>
 #include <signal.h> /* for SIGINT */
 
@@ -227,413 +226,432 @@ static char *CL=NULL;            /* clear screen */
 
 
 void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,	int *menusflag,int * modex,long int dummy1);
-
 /*-------------- End of Declarations  specific for console mode-----------------  */
-int isModeX(){
+int isModeX()
+{
 	return modeX;
 }
 
-static void setModeX(int n){
+static void setModeX(int n)
+{
 	modeX=n;
 }
-
-
-
 /***********************************************************************
  * line editor
  **********************************************************************/
-
-void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
-			int *menusflag,int * modex,long int dummy1)
+void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,int *menusflag,int * modex,long int dummy1)
 {
-  int cursor_max = 0;
-  int cursor = 0;
-  int yank_len,i;
+	int cursor_max = 0;
+	int cursor = 0;
+	int yank_len,i;
 
-  int keystroke;
-  int character_count;
-  char wk_buf[WK_BUF_SIZE + 1];
+	int keystroke;
+	int character_count;
+	char wk_buf[WK_BUF_SIZE + 1];
 
-  GetCurrentPrompt(Sci_Prompt);
+	GetCurrentPrompt(Sci_Prompt);
+	setModeX(*modex);
 
-  setModeX(*modex);
-
-  if(!isModeX()) {
-    if(init_flag) {
-      init_io();
-      init_flag = FALSE;
-    }
+	if(!isModeX()) 
+	{
+		if(init_flag) 
+		{
+			init_io();
+			init_flag = FALSE;
+		}
     
-    if(!tty) { /* if not an interactive terminal */
-      /* read a line into the buffer, but not too
-       * big */
-      fputs("-->",stdout);
-      *eof = (fgets(buffer, *buf_size, stdin) == NULL);
-      *len_line = strlen(buffer);
-      /* remove newline character if there */
-      if(buffer[*len_line - 1] == '\n')
-	(*len_line)--;
-      return;
-    }
-  }
+		if(!tty) 
+		{ 
+			/* if not an interactive terminal */
+			/* read a line into the buffer, but not too
+			* big */
+			fputs("-->",stdout);
+			*eof = (fgets(buffer, *buf_size, stdin) == NULL);
+			*len_line = strlen(buffer);
+			/* remove newline character if there */
+			if(buffer[*len_line - 1] == '\n') (*len_line)--;
+			return;
+		}
+	}
 
-  if (interrupted) {
-    /* restore the state */
-    interrupted=0;
-    strcpy(wk_buf,wk_buf_save);
-    cursor=cursor_save;cursor_save=0;
-    cursor_max=cursor_max_save;cursor_max_save=0;
-  }
-  else
-    wk_buf[0] = NUL; /* initialize empty  buffer */
+	if (interrupted) 
+	{
+		/* restore the state */
+		interrupted=0;
+		strcpy(wk_buf,wk_buf_save);
+		cursor=cursor_save;cursor_save=0;
+		cursor_max=cursor_max_save;cursor_max_save=0;
+	}
+	else wk_buf[0] = NUL; /* initialize empty  buffer */
 
-  if(!isModeX()) {
-#ifdef KEYPAD 
-    set_cbreak();
-    enable_keypad_mode();
-#endif
-    if(sendprompt) printf(Sci_Prompt);/* write prompt */
-  }
-  else {
-    if(sendprompt) sciprint_nd(Sci_Prompt);/* write prompt */
-  }
+	if(!isModeX()) 
+	{
+		#ifdef KEYPAD 
+		set_cbreak();
+		enable_keypad_mode();
+		#endif
+		if(sendprompt) printf(Sci_Prompt);/* write prompt */
+	}
+	else 
+	{
+		if(sendprompt) sciprint_nd(Sci_Prompt);/* write prompt */
+	}
   
-  sendprompt=1;
-  set_is_reading(TRUE); /* did not exist in old gtk version */
+	sendprompt=1;
+	set_is_reading(TRUE); /* did not exist in old gtk version */
         
                     
-  while(1) {  /* main loop to read keyboard input */
-    /* get next keystroke (no echo) returns -1 if interrupted */
-    keystroke = gchar_no_echo(*menusflag);
+	while(1) 
+	{  
+		/* main loop to read keyboard input */
+		/* get next keystroke (no echo) returns -1 if interrupted */
+		keystroke = gchar_no_echo(*menusflag);
 
-    if (keystroke==-1) {
-      /* preserve the state */
-      interrupted=1;
-      strcpy(wk_buf_save,wk_buf);
-      cursor_save=cursor;
-      cursor_max_save=cursor_max;
-      sendprompt=0;
-      *eof=-1;
-      return;
-    }
-
-    if ( keystroke ==  CTRL_C ) /* did not exist in old gtk version */
-      {
-	int j = SIGINT;
-	C2F(sigbas)(&j);
-	keystroke = '\n';
-      };
-
-    /* check for ascii extended characters */
-    if( ( iscntrl(keystroke) && groundtable[keystroke] != CASE_PRINT)
-	|| keystroke > 0x0100 )
-      {
-	/* stroke is line editing command */
-	switch(keystroke) {
-	case UP_ARROW: /* move one line up if any in history */
-	case CTRL_P:
-        {
-	  char *line = getPreviousLineInScilabHistory();
-	  if (line)
-	  {
-	    CopyLineAtPrompt(wk_buf,line,&cursor,&cursor_max);
-	    FREE(line);
-	  }
-        }
-	  break;
-	case DOWN_ARROW:  /* move one line down if any in history */
-	case CTRL_N:
-        {
-	  char *line = getNextLineInScilabHistory();
-	  if (line)
-	  {
-	    CopyLineAtPrompt(wk_buf,line,&cursor,&cursor_max);
-	    FREE(line);
-	  }
-        }
-	  break;
-	case LEFT_ARROW:/* move left*/
-	case CTRL_B:
-	  if(cursor > 0) {/* is there room to move left */
-	    cursor--;
-	    backspace(1);
-	  }
-	  else {
-	    PutChar(BEL); /* instead of XPutChar(BEL);*/
-	  }
-	  break;
-	case RIGHT_ARROW: /* move right*/
-	case CTRL_F:
-	  if(cursor < cursor_max) {/* is there room to move right */
-	    PutChar(wk_buf[cursor++]);
-	  }
-	  else {
-	    PutChar(BEL);
-	  }
-	  break;
-
-	case HOME:
-	  backspace(cursor); /* move to beginning of the line */
-	  cursor = 0;
-	  break;
-
-	case ENDS:  /* move to end of line */
-	  while(cursor < cursor_max) {
-	    PutChar(wk_buf[cursor++]);
-	  }
-	  break;
-
-	case INS: /* toggle insert/overwrite flag */
-	  insert_flag = !insert_flag;
-	  break;
-		    
-	case CTRL_C: /** we never get there CTRL_C is explored above **/
-	  {
-	    int j = SIGINT;
-	    C2F(sigbas)(&j);
-	  };
-	  break;
-	   
-	case CTRL_D: /* delete next character*/
-	  if(cursor == cursor_max) {
-	    /* reminder that backing up over edge */
-	    PutChar(BEL);
-	    break;
-	  }
-	  move_left(&wk_buf[cursor]);
-	  cursor_max--;
-	  /* and write rest of line to end */
-	  display_string(&wk_buf[cursor]);
-	  /* erase extra character now at end. */
-	  erase_nchar(1);
-	  /* backspace to proper cursor position */
-	  backspace(cursor_max - cursor);
-	  break;
-
-	case DEL: /* backspace with delete */
-	case BS:
-	  if(cursor == 0) {
-	    /* reminder that backing up over edge */
-	    PutChar(BEL);
-	    break;
-	  }
-	  /* move string in work, one left from cursor */
-	  move_left(&wk_buf[cursor - 1]);
-	  cursor_max--;
-	  cursor--;
-	  backspace(1);
-	  /* and write rest of line to end */
-	  display_string(&wk_buf[cursor]);
-	  /* erase extra character now at end. */
-	  erase_nchar(1);
-	  /* backspace to proper cursor position */
-	  backspace(cursor_max - cursor);
-	  break;
-
-	case CTRL_K: /* delete to end of line */ 
-	  if(cursor == cursor_max) {
-	    /* reminder that backing up over edge */
-	    PutChar(BEL);
-	    break;
-	  }
-	  /* erase  character  at end. */
-	  erase_nchar(cursor_max - cursor);
-	  /* store cutted part in tyank buffer*/
-	  strcpy(yank_buf,&wk_buf[cursor]);
-	  /* backspace to proper cursor position */
-	  wk_buf[cursor] = NUL;
-	  cursor_max = cursor;
-	  break;
-
-	case CTRL_Y: /* Paste at the current point */
-	  yank_len=strlen(yank_buf);
-	  if(yank_len!=0 ){
-	    if (cursor==cursor_max) {
-	      strcpy(&wk_buf[cursor],yank_buf);
-	      display_string(&wk_buf[cursor]);
-	      cursor = cursor_max + yank_len;
-	      cursor_max = cursor;
-
-	    }
-	    else {
-	      for(i = 0; i <= cursor_max-cursor; i++)
-		wk_buf[cursor_max+yank_len-i]=wk_buf[cursor_max-i];
-	      wk_buf[cursor_max+yank_len]=NUL;
-	      strncpy(&wk_buf[cursor],yank_buf,yank_len);
-	      erase_nchar(cursor_max - cursor);
-	      display_string(&wk_buf[cursor]);
-	      backspace(cursor_max-cursor);
-	      cursor_max=cursor_max+yank_len;
-	      cursor=cursor+yank_len;
-	    }
-
-	  }
-	  break;
-	case CTRL_Z:
-	  break;
-
-	case CTRL_L:
-	  if(isModeX()) {
-	    PutChar(CTRL_L);
-	    wk_buf[0]=NUL;
-	    goto exit;
-	  }
-	  else {
-#ifdef TERMCAP
-	    fputs(CL,stdout);
-	    wk_buf[0]=NUL;
-	    goto exit;
-#else
-	    PutChar(BEL);
-	    break;
-#endif
-	  }
-
-	case LDEL: /* clear line buffer */
-	  backspace(cursor);
-	  erase_nchar(cursor_max);
-	  wk_buf[0] = NUL;
-	  cursor = cursor_max = 0;
-	  break;
-
-	case CR: /* carrage return indicates line is ok;*/
-	case LF:
-	   strip_blank(wk_buf);/* first strip any trailing blanks */
-	   if (wk_buf[0]==EXCL) 
-           {
-		char **lines = NULL;
-		int nb_lines_found = 0;
-		
-
-		lines = searchTokenInScilabHistory(&wk_buf[1],&nb_lines_found);
-		if ( (lines) && (nb_lines_found > 0) )
+		if (keystroke==-1) 
 		{
-			int i = 0;
-                        CopyLineAtPrompt(wk_buf,lines[nb_lines_found-1],&cursor,&cursor_max);
-			for (i = 0;i<nb_lines_found;i++)
+			/* preserve the state */
+			interrupted=1;
+			strcpy(wk_buf_save,wk_buf);
+			cursor_save=cursor;
+			cursor_max_save=cursor_max;
+			sendprompt=0;
+			*eof=-1;
+			return;
+		}
+
+		if ( keystroke ==  CTRL_C ) /* did not exist in old gtk version */
+		{
+			int j = SIGINT;
+			C2F(sigbas)(&j);
+			keystroke = '\n';
+		};
+
+		/* check for ascii extended characters */
+		if( ( iscntrl(keystroke) && groundtable[keystroke] != CASE_PRINT) || keystroke > 0x0100 )
+		{
+			/* stroke is line editing command */
+			switch(keystroke) 
 			{
-				if (lines[i])
+				case UP_ARROW: /* move one line up if any in history */
+				case CTRL_P:
 				{
-					FREE(lines[i]);
-					lines[i]=NULL;
+					char *line = getPreviousLineInScilabHistory();
+					if (line)
+					{
+						CopyLineAtPrompt(wk_buf,line,&cursor,&cursor_max);
+						FREE(line);
+					}
+				}
+				break;
+				case DOWN_ARROW:  /* move one line down if any in history */
+				case CTRL_N:
+				{
+					char *line = getNextLineInScilabHistory();
+					if (line)
+					{
+						CopyLineAtPrompt(wk_buf,line,&cursor,&cursor_max);
+						FREE(line);
+					}
+				}
+				break;
+				case LEFT_ARROW:/* move left*/
+				case CTRL_B:
+					if(cursor > 0) 
+					{
+						/* is there room to move left */
+						cursor--;
+						backspace(1);
+					}
+					else 
+					{
+						PutChar(BEL); /* instead of XPutChar(BEL);*/
+					}
+				break;
+				case RIGHT_ARROW: /* move right*/
+				case CTRL_F:
+					if(cursor < cursor_max) 
+					{
+						/* is there room to move right */
+						PutChar(wk_buf[cursor++]);
+					}
+					else 
+					{
+						PutChar(BEL);
+					}
+				break;
+
+				case HOME:
+					backspace(cursor); /* move to beginning of the line */
+					cursor = 0;
+				break;
+
+				case ENDS:  /* move to end of line */
+					while(cursor < cursor_max) PutChar(wk_buf[cursor++]);
+				break;
+
+				case INS: /* toggle insert/overwrite flag */
+					insert_flag = !insert_flag;
+				break;
+		    
+				case CTRL_C: /** we never get there CTRL_C is explored above **/
+				{
+					int j = SIGINT;
+					C2F(sigbas)(&j);
+				};
+				break;
+	   
+				case CTRL_D: /* delete next character*/
+					if(cursor == cursor_max) 
+					{
+						/* reminder that backing up over edge */
+						PutChar(BEL);
+						break;
+					}
+					move_left(&wk_buf[cursor]);
+					cursor_max--;
+					/* and write rest of line to end */
+					display_string(&wk_buf[cursor]);
+					/* erase extra character now at end. */
+					erase_nchar(1);
+					/* backspace to proper cursor position */
+					backspace(cursor_max - cursor);
+				break;
+
+				case DEL: /* backspace with delete */
+				case BS:
+					if(cursor == 0) 
+					{
+						/* reminder that backing up over edge */
+						PutChar(BEL);
+						break;
+					}
+					/* move string in work, one left from cursor */
+					move_left(&wk_buf[cursor - 1]);
+					cursor_max--;
+					cursor--;
+					backspace(1);
+					/* and write rest of line to end */
+					display_string(&wk_buf[cursor]);
+					/* erase extra character now at end. */
+					erase_nchar(1);
+					/* backspace to proper cursor position */
+					backspace(cursor_max - cursor);
+				break;
+
+				case CTRL_K: /* delete to end of line */ 
+					if(cursor == cursor_max) 
+					{
+						/* reminder that backing up over edge */
+						PutChar(BEL);
+						break;
+					}
+					/* erase  character  at end. */
+					erase_nchar(cursor_max - cursor);
+					/* store cutted part in tyank buffer*/
+					strcpy(yank_buf,&wk_buf[cursor]);
+					/* backspace to proper cursor position */
+					wk_buf[cursor] = NUL;
+					cursor_max = cursor;
+				break;
+
+				case CTRL_Y: /* Paste at the current point */
+					yank_len=strlen(yank_buf);
+					if(yank_len!=0 )
+					{
+						if (cursor==cursor_max) 
+						{
+							strcpy(&wk_buf[cursor],yank_buf);
+							display_string(&wk_buf[cursor]);
+							cursor = cursor_max + yank_len;
+							cursor_max = cursor;
+						}
+						else 
+						{
+							for(i = 0; i <= cursor_max-cursor; i++) wk_buf[cursor_max+yank_len-i]=wk_buf[cursor_max-i];
+							wk_buf[cursor_max+yank_len]=NUL;
+							strncpy(&wk_buf[cursor],yank_buf,yank_len);
+							erase_nchar(cursor_max - cursor);
+							display_string(&wk_buf[cursor]);
+							backspace(cursor_max-cursor);
+							cursor_max=cursor_max+yank_len;
+							cursor=cursor+yank_len;
+						}
+					}
+				break;
+				case CTRL_Z:
+				break;
+
+				case CTRL_L:
+					if(isModeX()) 
+					{
+						PutChar(CTRL_L);
+						wk_buf[0]=NUL;
+						goto exit;
+					}
+					else 
+					{
+						#ifdef TERMCAP
+							fputs(CL,stdout);
+							wk_buf[0]=NUL;
+							goto exit;
+						#else
+							PutChar(BEL);
+							break;
+						#endif	
+					}
+
+				case LDEL: /* clear line buffer */
+					backspace(cursor);
+					erase_nchar(cursor_max);
+					wk_buf[0] = NUL;
+					cursor = cursor_max = 0;
+				break;
+
+				case CR: /* carriage return indicates line is ok;*/
+				case LF:
+					strip_blank(wk_buf); /* first strip any trailing blanks */
+					if (wk_buf[0]==EXCL) 
+					{
+						char *token = NULL;
+						token = (char*)MALLOC(sizeof(char)*strlen(&wk_buf[1]));
+						if (token)
+						{
+							char *line = NULL;
+							strcpy(token,&wk_buf[1]);
+							setSearchedTokenInScilabHistory(token);
+							line = getNextLineInScilabHistory();
+							if (line)
+							{
+								CopyLineAtPrompt(wk_buf,line,&cursor,&cursor_max);
+								FREE(line);
+								line = NULL;
+							}
+							FREE(token);
+							token = NULL;
+						}
+						break;
+					}
+					else
+					{
+						if (strlen(wk_buf)>=0) 
+						{
+							setSearchedTokenInScilabHistory(NULL);
+							appendLineToScilabHistory(wk_buf);
+						}
+					}
+				goto exit;
+				break;
+
+				case SEARCH_BACKWARD:
+				break;
+
+				case SEARCH_FORWARD:
+				break;
+
+				default:
+					PutChar(BEL);
+				break;
+		}
+	} 
+    else 
+	{
+		/* alpha/numeric keystroke. substitute blank fill for tab char */
+		if(keystroke == '\t') 
+		{
+			keystroke = ' ';
+			character_count = TAB_SKIP - (cursor%TAB_SKIP);
+			if(character_count == 0)
+				character_count = TAB_SKIP;
+		}
+		else 
+		{
+			if(keystroke == EOF) 
+			{
+				character_count = 0;
+			}
+			else 
+			{
+				character_count = 1;
+			}
+		}
+		while(character_count--) 
+		{
+			if(get_echo_mode()==0) 
+			{
+				wk_buf[cursor] = keystroke;
+				cursor++;
+			}
+			else 
+			{
+				if(insert_flag) 
+				{
+					/* insert mode, move rest of line right and add character at cursor */
+					move_right(&wk_buf[cursor], WK_BUF_SIZE - cursor);
+					/* bump max cursor but not over buffer size */
+					cursor_max = (++cursor_max > WK_BUF_SIZE)?WK_BUF_SIZE : cursor_max;
+					/* if cursor at end of line, backspace so that new character overwrites last one */
+					if(cursor == WK_BUF_SIZE) 
+					{
+						cursor--;
+						backspace(1);
+					}
+					wk_buf[cursor] = keystroke;
+					display_string(&wk_buf[cursor]);
+					cursor++;
+					backspace(cursor_max - cursor);
+				} 
+				else 
+				{
+					/* overstrike mode */
+					if(cursor == WK_BUF_SIZE) 
+					{
+						cursor--;
+						backspace(1);
+					}
+					wk_buf[cursor] = keystroke;
+					PutChar(keystroke);
+					if(cursor < WK_BUF_SIZE - 1) 
+					{
+						cursor++;
+						cursor_max = Max(cursor_max, cursor);
+					}
+					else 
+					{
+						backspace(1);
+					}
 				}
 			}
-			FREE(lines);
-			lines=NULL;
 		}
-		break;
-           }
-           else
-           {
-             if (strlen(wk_buf)>=0) appendLineToScilabHistory(wk_buf);
-           }
-        goto exit;
-	break;
-
-	case SEARCH_BACKWARD:
-	break;
-
-	case SEARCH_FORWARD:
-        break;
-
-	default:
-	  PutChar(BEL);
-	  break;
-
 	}
-      } 
-    else {
-      /* alpha/numeric keystroke.
-       * substitute blank fill for tab char */
-      if(keystroke == '\t') {
-	keystroke = ' ';
-	character_count = TAB_SKIP - (cursor%TAB_SKIP);
-	if(character_count == 0)
-	  character_count = TAB_SKIP;
-      }
-      else {
-	if(keystroke == EOF) {
-	  character_count = 0;
 	}
-	else {
-	  character_count = 1;
-	}
-      }
-      while(character_count--) {
-	if(get_echo_mode()==0) {
-	  wk_buf[cursor] = keystroke;
-	  cursor++;
-	}
-	else {
-	  if(insert_flag) {
-	    /* insert mode, move rest of line right and
-	     * add character at cursor */
-	    move_right(&wk_buf[cursor], WK_BUF_SIZE - cursor);
-	    /* bump max cursor but not over buffer
-	     * size */
-	    cursor_max = (++cursor_max > WK_BUF_SIZE)
-	      ?WK_BUF_SIZE : cursor_max;
-	    /* if cursor at end of line, backspace so
-	     * that new character overwrites last one */
-	    if(cursor == WK_BUF_SIZE) {
-	      cursor--;
-	      backspace(1);
-	    }
-	    wk_buf[cursor] = keystroke;
-	    display_string(&wk_buf[cursor]);
-	    cursor++;
-	    backspace(cursor_max - cursor);
-               
-	  } 
-	  else {
-	    /* overstrike mode */
-	    if(cursor == WK_BUF_SIZE) {
-	      cursor--;
-	      backspace(1);
-	    }
-	    wk_buf[cursor] = keystroke;
-	    PutChar(keystroke);
-	    if(cursor < WK_BUF_SIZE - 1) {
-	      cursor++;
-	      cursor_max = Max(cursor_max, cursor);
-	    }
-	    else {
-	      backspace(1);
-	    }
-	  }
-	}
-      }
-    }
-  }
 
- exit:
-  /* copy to return buffer */
-  if(get_echo_mode()==0)  
-    {
-      *len_line=cursor;
-      strncpy(buffer,wk_buf,*buf_size);
-      set_echo_mode(TRUE);
-      wk_buf[0] = NUL;
-    }
-  else {
-    *len_line = strlen(wk_buf);
-    strncpy(buffer, wk_buf,*buf_size);
-    PutChar('\r');  PutChar('\n');
-    
-  }
-#ifdef KEYPAD
-  if(!isModeX()) {
-    set_crmod();
-    disable_keypad_mode();
-  }
-#endif
-  *eof = FALSE;
-  set_is_reading(FALSE);
+	exit:
+		/* copy to return buffer */
+		if(get_echo_mode()==0)  
+		{
+			*len_line=cursor;
+			strncpy(buffer,wk_buf,*buf_size);
+			set_echo_mode(TRUE);
+			wk_buf[0] = NUL;
+		}
+		else 
+		{
+			*len_line = strlen(wk_buf);
+			strncpy(buffer, wk_buf,*buf_size);
+			PutChar('\r');  PutChar('\n');
+		}
+		#ifdef KEYPAD
+		if(!isModeX()) 
+		{
+			set_crmod();
+			disable_keypad_mode();
+		}
+		#endif
+		*eof = FALSE;
+		set_is_reading(FALSE);
   
   return;
-
 }
-
 /***********************************************************************
  * move_right - move source string to one address larger (right)
  **********************************************************************/

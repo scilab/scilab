@@ -213,11 +213,23 @@
 				>
 			</File>
 			<File
+				RelativePath=".\getCommentDateSession.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\gw_shell.c"
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\HistoryFile.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\HistoryManager.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\HistorySearch.cpp"
 				>
 			</File>
 			<File
@@ -310,7 +322,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\getCommentDateSession.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\gw_shell.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\HistoryFile.h"
 				>
 			</File>
 			<File
@@ -319,6 +339,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\HistoryManager_c.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\HistorySearch.h"
 				>
 			</File>
 			<File

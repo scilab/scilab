@@ -85,6 +85,14 @@ extern "C" {
 	char *getLastLineInScilabHistory(void);
 
 	/**
+	*
+	*
+	*/
+	BOOL setSearchedTokenInScilabHistory(char *token);
+
+	BOOL resetSearchedTokenInScilabHistory(void);
+
+	/**
 	* Get the first line in history
 	* @return a line or NULL
 	*/
@@ -103,14 +111,6 @@ extern "C" {
 	* after a appendLine iterator go to end
 	*/
 	char *getNextLineInScilabHistory(void);
-
-	/**
-	* Search a token in Scilab history
-	* @param token
-	* @param nb returns number of lines found
-	* @return array of string
-	*/
-	char **searchTokenInScilabHistory(char *token,int *nb);
 
 	/**
 	* Get numbers of lines in history
@@ -150,6 +150,9 @@ extern "C" {
 	* @return the Nth Line
 	*/
 	char *getNthLineInScilabHistory(int N);
+
+
+	
 
 /*------------------------------------------------------------------------*/
 #ifdef __cplusplus

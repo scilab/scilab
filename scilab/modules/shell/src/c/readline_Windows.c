@@ -65,6 +65,10 @@ static void redraw_line ();
 static void clear_line ();
 static void clear_eoline ();
 static void copy_line ();
+
+/*-----------------------------------------------------------------------------------*/
+
+
 /*-----------------------------------------------------------------------------------*/
 /************************************
  * Send a string to scilab interaction window
@@ -216,462 +220,480 @@ static int NotTTyRead (char *prompt, char *buffer, int buf_size, int *eof)
 /***************************************************
  * reads one line 
  * a pointer to an allocated zone (alloc) where
- *   the read characters are stored is returned 
+ * the read characters are stored is returned 
  ***************************************************/
 #ifdef USE_CONSOLE
 char * readline_nw (char *prompt, int interrupt)
 {
-  unsigned char cur_char;
-  char *new_line;  /* unsigned char *new_line; */
-  int eof;
-  if (NotTTyRead (prompt, cur_line, MAXBUF, &eof) == 1)
-    {
-      if (eof == 1)
+	unsigned char cur_char;
+	char *new_line = NULL;
+	int eof;
+
+	if (NotTTyRead (prompt, cur_line, MAXBUF, &eof) == 1)
 	{
-	/** coded line to return eof **/
-	  cur_line[0] = -1;
-	  cur_line[1] = '\0';
-	}
-      new_line = (char *) alloc ((unsigned long)
-				 (strlen (cur_line) + 1), "history");
-      strcpy (new_line, cur_line);
-      return (new_line);
+		if (eof == 1)
+		{
+			/** coded line to return eof **/
+			cur_line[0] = -1;
+			cur_line[1] = '\0';
+		}
+		new_line = (char *) alloc ((unsigned long)(strlen (cur_line) + 1), "history");
+		strcpy (new_line, cur_line);
+		return (new_line);
     }
 
-  /* print the prompt */
-  if (sendprompt) fputs (prompt, stdout);
-  sendprompt=1;
+	/* print the prompt */
+	if (sendprompt) fputs (prompt, stdout);
+	sendprompt=1;
 
-  cur_line[0] = '\0';
-  cur_pos = 0;
-  max_pos = 0;
-
+	cur_line[0] = '\0';
+	cur_pos = 0;
+	max_pos = 0;
 
   /* get characters */
-  for (;;)
-    {
-      cur_char = special_getc ();
-      	if (interrupt&&(ismenu () == 1))
-      	{/* abort current line aquisition SS */
-		sendprompt=0;
-		new_line = (char *) alloc ((unsigned long) 2, "history");
-		new_line[0] = -2;
-		new_line[1] = '\0';
-		return (new_line);
-        }
-      if ((isprint (cur_char)  || ((unsigned char) cur_char > 0x7f)  ) && max_pos < MAXBUF - 1)
+	setSearchedTokenInScilabHistory(NULL);
+
+	for (;;)
 	{
-	  int i;
-	  for (i = max_pos; i > cur_pos; i--)
-	    {
-	      cur_line[i] = cur_line[i - 1];
-	    }
-	  user_putc (cur_char);
-	  cur_line[cur_pos] = cur_char;
-	  cur_pos += 1;
-	  max_pos += 1;
-	  if (cur_pos < max_pos)    fix_line ();
+		cur_char = special_getc ();
+
+		if (interrupt&&(ismenu () == 1))
+		{
+			/* abort current line aquisition SS */
+			sendprompt=0;
+			new_line = (char *) alloc ((unsigned long) 2, "history");
+			new_line[0] = -2;
+			new_line[1] = '\0';
+			return (new_line);
+		}
+
+		if ((isprint (cur_char)  || ((unsigned char) cur_char > 0x7f)  ) && max_pos < MAXBUF - 1)
+		{
+			int i;
+			for (i = max_pos; i > cur_pos; i--) cur_line[i] = cur_line[i - 1];
+			user_putc (cur_char);
+			cur_line[cur_pos] = cur_char;
+			cur_pos += 1;
+			max_pos += 1;
+			if (cur_pos < max_pos) fix_line ();
 	  
-	  cur_line[max_pos] = '\0';
-
-	}
-      else
-	{
-	  /* do normal editing commands */
-	  /* some of these are also done above */
-	  int i;
+			cur_line[max_pos] = '\0';
+			setSearchedTokenInScilabHistory(cur_line);
+		}
+		else
+		{
+			/* do normal editing commands */
+			/* some of these are also done above */
+			int i;
 	  
-	  switch (cur_char)
-	    {
-	    case 255:		/* jpc eof quand on fait un pipe */
-	      new_line = (char *) alloc ((unsigned long) 2, "history");
-	      new_line[0] = -1;
-	      new_line[1] = '\0';
-	      return (new_line);
-	    case EOF:
-	      return ((char *) NULL);
-	    case 001:		/* ^A */
-	      while (cur_pos > 0)
-		{
-		  cur_pos -= 1;
-		  backspace ();
-		}
-	      break;
-	    case 002:		/* ^B */
-	      if (cur_pos > 0)
-		{
-		  cur_pos -= 1;
-		  backspace ();
-		}
-	      break;
-	    case 005:		/* ^E */
-	      while (cur_pos < max_pos)
-		{
-		  user_putc (cur_line[cur_pos]);
-		  cur_pos += 1;
-		}
-	      break;
-	    case 006:		/* ^F */
-	      if (cur_pos < max_pos)
-		{
-		  user_putc (cur_line[cur_pos]);
-		  cur_pos += 1;
-		}
-	      break;
-	    case 013:		/* ^K */
-	      clear_eoline ();
-	      max_pos = cur_pos;
-	      break;
-	    case 020:		/* ^P */
-/* move in history */
+			switch (cur_char)
 			{
-				char *line = getPreviousLineInScilabHistory();
-				if (line)
-				{
-					clear_line(prompt);
-					copy_line(line);
-					FREE(line);
-				}
-
-			}
-		
-
-	      break;
-	    case 016:		/* ^N */
-			/* move in history */
-			{
-				char *line = getNextLineInScilabHistory();
-				if (line)
-				{
-					clear_line(prompt);
-					copy_line(line);
-					FREE(line);
-				}
-
-			}
-	      break;
-	    case 014:		/* ^L */
-	    case 022:		/* ^R */
-	      putc ('\n', stdout);	/* go to a fresh line */
-	      redraw_line (prompt);
-	      break;
-	    case 0177:		/* DEL */
-	    case 010:		/* ^H */
-	      if (cur_pos > 0)
-		{
-		  cur_pos -= 1;
-		  backspace ();
-		  for (i = cur_pos; i < max_pos; i++)
-		    cur_line[i] = cur_line[i + 1];
-		  max_pos -= 1;
-		  fix_line ();
-		}
-	      break;
-	    case 004:		/* ^D */
-	      if (max_pos == 0)
-		{
-		  return ((char *) NULL);
-		}
-	      if (cur_pos < max_pos)
-		{
-		  for (i = cur_pos; i < max_pos; i++)
-		    cur_line[i] = cur_line[i + 1];
-		  max_pos -= 1;
-		  fix_line ();
-		}
-	      break;
-	    case 025:		/* ^U */
-	      clear_line (prompt);
-	      break;
-	    case 027:		/* ^W */
-	      while ((cur_pos > 0) &&
-		     (cur_line[cur_pos - 1] == SPACE))
-		{
-		  cur_pos -= 1;
-		  backspace ();
-		}
-	      while ((cur_pos > 0) &&
-		     (cur_line[cur_pos - 1] != SPACE))
-		{
-		  cur_pos -= 1;
-		  backspace ();
-		}
-	      clear_eoline ();
-	      max_pos = cur_pos;
-	      break;
-	    case '\n':		/* ^J */
-	    case '\r':		/* ^M */
-			cur_line[max_pos + 1] = '\0';
-			if (cur_line[0]=='!')
-			{
-				
-				char **lines = NULL;
-				int nb_lines_found = 0;
-
-				lines = searchTokenInScilabHistory(&cur_line[1],&nb_lines_found);
-
-				clear_line(prompt);
-				
-				if ( (lines) && (nb_lines_found > 0) )
-				{
-					int i = 0;
-					copy_line(lines[nb_lines_found-1]);
-					for (i = 0;i<nb_lines_found;i++)
-					{
-						if (lines[i])
-						{
-							FREE(lines[i]);
-							lines[i]=NULL;
-						}
-					}
-					FREE(lines);
-					lines=NULL;
-				}
-			}
-			else
-			{
-				putc('\n',stdout);
-				new_line = (char *) alloc ((unsigned long) (strlen (cur_line) + 1), "history");
-				strcpy (new_line, cur_line);
+				case 255:		/* jpc eof quand on fait un pipe */
+					new_line = (char *) alloc ((unsigned long) 2, "history");
+					new_line[0] = -1;
+					new_line[1] = '\0';
 				return (new_line);
 
+				case EOF:
+					return ((char *) NULL);
+				case 001:		/* ^A */
+					while (cur_pos > 0)
+					{
+						cur_pos -= 1;
+						backspace ();
+					}
+					break;
+				case 002:		/* ^B */
+					if (cur_pos > 0)
+					{
+						cur_pos -= 1;
+						backspace ();
+					}
+				break;
+				case 005:		/* ^E */
+					while (cur_pos < max_pos)
+					{
+						user_putc (cur_line[cur_pos]);
+						cur_pos += 1;
+					}
+				break;
+				case 006:		/* ^F */
+					if (cur_pos < max_pos)
+					{
+						user_putc (cur_line[cur_pos]);
+						cur_pos += 1;
+					}
+				break;
+				case 013:		/* ^K */
+					clear_eoline ();
+					max_pos = cur_pos;
+				break;
+				case 020:		/* ^P */
+				{
+					/* move in history */
+					cur_line[max_pos + 1] = '\0';
+					if (cur_line[0]== '\0')
+					{
+						resetSearchedTokenInScilabHistory();
+						setSearchedTokenInScilabHistory(NULL);
+					}
+					
+					{
+						char *line = getPreviousLineInScilabHistory();
+						if (line)
+						{
+							clear_line(prompt);
+							copy_line(line);
+							FREE(line);
+						}
+					}
+				}
+			    break;
+				case 016:		/* ^N */
+				{
+					/* move in history */
+					cur_line[max_pos + 1] = '\0';
+					if (cur_line[0]== '\0')
+					{
+						resetSearchedTokenInScilabHistory();
+						setSearchedTokenInScilabHistory(NULL);
+					}
+					
+					{
+						char *line = getNextLineInScilabHistory();
+						if (line)
+						{
+							clear_line(prompt);
+							copy_line(line);
+							FREE(line);
+						}
+					}
+				}
+				break;
+				case 014:		/* ^L */
+				case 022:		/* ^R */
+					putc ('\n', stdout);	/* go to a fresh line */
+					redraw_line (prompt);
+				break;
+				case 0177:		/* DEL */
+				case 010:		/* ^H */
+					if (cur_pos > 0)
+					{
+						cur_pos -= 1;
+						backspace ();
+						for (i = cur_pos; i < max_pos; i++) cur_line[i] = cur_line[i + 1];
+						max_pos -= 1;
+						fix_line ();
+					}
+				break;
+				case 004:		/* ^D */
+					if (max_pos == 0) return ((char *) NULL);
+					if (cur_pos < max_pos)
+					{
+						for (i = cur_pos; i < max_pos; i++)
+						cur_line[i] = cur_line[i + 1];
+						max_pos -= 1;
+						fix_line ();
+					}
+				break;
+				case 025:		/* ^U */
+					clear_line (prompt);
+				break;
+				case 027:		/* ^W */
+					while ((cur_pos > 0) && (cur_line[cur_pos - 1] == SPACE))
+					{
+						cur_pos -= 1;
+						backspace ();
+					}
+					while ((cur_pos > 0) && (cur_line[cur_pos - 1] != SPACE))
+					{
+						cur_pos -= 1;
+						backspace ();
+					}
+					clear_eoline ();
+					max_pos = cur_pos;
+				break;
+				case '\n':		/* ^J */
+				case '\r':		/* ^M */
+					cur_line[max_pos + 1] = '\0';
+					if (cur_line[0]=='!')
+					{
+						char *token = NULL;
+						token = (char*)MALLOC(sizeof(char)*strlen(cur_line));
+						if (token)
+						{
+							char *line = NULL;
+							strcpy(token,&cur_line[1]);
+							setSearchedTokenInScilabHistory(token);
+							line = getNextLineInScilabHistory();
+							clear_line(prompt);
+							if (line)
+							{
+								copy_line(line);
+								FREE(line);
+								line = NULL;
+							}
+							
+
+							FREE(token);
+							token = NULL;
+						}
+						else clear_line(prompt);
+					}
+					else
+					{
+						putc('\n',stdout);
+						new_line = (char *) alloc ((unsigned long) (strlen (cur_line) + 1), "history");
+						strcpy (new_line, cur_line);
+						setSearchedTokenInScilabHistory(NULL);
+						return (new_line);
+						
+					}
+				break;
+
+				default:
+				break;
 			}
-			break;
-	    default:
-	      break;
-	    }
-	}
+		}
     }
 }
 #else
 /*-----------------------------------------------------------------------------------*/
 char * readline_win (char *prompt,int interrupt)
 {
-  unsigned char cur_char;
-  char *new_line;  /* unsigned char *new_line; */
+	unsigned char cur_char;
+	char *new_line = NULL;
   
-  /* print the prompt */
-  if (sendprompt) MyFPutSstdout (prompt);
-  sendprompt=1;
+	/* print the prompt */
+	if (sendprompt) MyFPutSstdout (prompt);
+	sendprompt=1;
 
-  cur_line[0] = '\0';
-  cur_pos = 0;
-  max_pos = 0;
+	cur_line[0] = '\0';
+	cur_pos = 0;
+	max_pos = 0;
   
   
-  /* get characters */
-  for (;;)
+	/* get characters */
+	setSearchedTokenInScilabHistory(NULL);
+	for (;;)
     {
-	 /* Moved below (Francois VOGEL, bug 1052) */
-	 if (interrupt && (ismenu () == 1))
-      	{/* abort current line aquisition SS */
-		sendprompt=0;
-		new_line = (char *) alloc ((unsigned long) 2, "history");
-		new_line[0] = -2;
-		new_line[1] = '\0';
-
-		return (new_line);
+		if (interrupt && (ismenu () == 1))
+      	{
+			/* abort current line aquisition SS */
+			sendprompt=0;
+			new_line = (char *) alloc ((unsigned long) 2, "history");
+			new_line[0] = -2;
+			new_line[1] = '\0';
+			return (new_line);
         }
 
-     cur_char = Windows_getch();
+		cur_char = Windows_getch();
 
-	 if (interrupt && (ismenu () == 1))
-      	{/* abort current line aquisition SS */
-		sendprompt=0;
-		new_line = (char *) alloc ((unsigned long) 2, "history");
-		new_line[0] = -2;
-		new_line[1] = '\0';
+		if (interrupt && (ismenu () == 1))
+		{
+			/* abort current line aquisition SS */
+			sendprompt=0;
+			new_line = (char *) alloc ((unsigned long) 2, "history");
+			new_line[0] = -2;
+			new_line[1] = '\0';
 
-		return (new_line);
-        }
+			return (new_line);
+		}
 	
-	if ((isprint (cur_char)  || ((unsigned char) cur_char > 0x7f)  ) && max_pos < MAXBUF - 1)
-	{
-	  int i;
+		if ((isprint (cur_char)  || ((unsigned char) cur_char > 0x7f)  ) && max_pos < MAXBUF - 1)
+		{
+			int i;
  
-	  for (i = max_pos; i > cur_pos; i--)
-	    {
-	      cur_line[i] = cur_line[i - 1];
-	    }
-	  user_putc (cur_char);
-	  cur_line[cur_pos] = cur_char;
-	  cur_pos += 1;
-	  max_pos += 1;
-	  if (cur_pos < max_pos)    fix_line ();
+			for (i = max_pos; i > cur_pos; i--) cur_line[i] = cur_line[i - 1];
+			user_putc (cur_char);
+			cur_line[cur_pos] = cur_char;
+			cur_pos += 1;
+			max_pos += 1;
+			if (cur_pos < max_pos)    fix_line ();
 	  
-	  cur_line[max_pos] = '\0';
-          
-	}
-      else
-	{
-	  /* do normal editing commands */
-	  /* some of these are also done above */
-	  int i;
+			cur_line[max_pos] = '\0';
+			setSearchedTokenInScilabHistory(cur_line);
+      	}
+		else
+		{
+			/* do normal editing commands */
+			/* some of these are also done above */
+			int i;
 	
-	  switch (cur_char)
-	    {
-	    case 255:		/* jpc eof quand on fait un pipe */
-	      new_line = (char *) alloc ((unsigned long) 2, "history");
-	      new_line[0] = -1;
-	      new_line[1] = '\0';
-      
-	      return (new_line);
-	    case EOF:
-	      return ((char *) NULL);
-	    case 001:		/* ^A */
-	      while (cur_pos > 0)
-		{
-		  cur_pos -= 1;
-		  backspace ();
-		}
-	      break;
-	    case 002:		/* ^B */
-	      if (cur_pos > 0)
-		{
-		  cur_pos -= 1;
-		  backspace ();
-		}
-	      break;
-    
-	    case 005:		/* ^E */
-	      while (cur_pos < max_pos)
-		{
-		  user_putc (cur_line[cur_pos]);
-		  cur_pos += 1;
-		}
-	      break;
-	    case 006:		/* ^F */
-	      if (cur_pos < max_pos)
-		{
-		  user_putc (cur_line[cur_pos]);
-		  cur_pos += 1;
-		}
-	      break;
-	    case 013:		/* ^K */
-	      clear_eoline ();
-	      max_pos = cur_pos;
-	      break;
-		case 020:		/* ^P */
-			/* move in history */
+			switch (cur_char)
 			{
-				char *line = getPreviousLineInScilabHistory();
-				if (line)
-				{
-					clear_line(prompt);
-					copy_line(line);
-					FREE(line);
-				}
-
-			}
-
-
-			break;
-		case 016:		/* ^N */
-			/* move in history */
-			{
-				char *line = getNextLineInScilabHistory();
-				if (line)
-				{
-					clear_line(prompt);
-					copy_line(line);
-					FREE(line);
-				}
-
-			}
-			break;
-		case 014:		/* ^L */
-	    case 022:		/* ^R */
-	      MyFPutCstdout ('\n');	/* go to a fresh line */
-	      MyFPutCstdout ('\n');
-	      redraw_line (prompt);
-	      break;
-	    case 0177:		/* DEL */
-	    case 010:		/* ^H */
-	      if (cur_pos > 0)
-		{
-		  cur_pos -= 1;
-		  backspace ();
-		  for (i = cur_pos; i < max_pos; i++)
-		    cur_line[i] = cur_line[i + 1];
-		  max_pos -= 1;
-		  fix_line ();
-		}
-	      break;
-	    case 004:		/* ^D */
-	      if (max_pos == 0)
-		{
-		  clear_line (prompt);
-		  break;
-		}
-	      if (cur_pos < max_pos)
-		{
-		  for (i = cur_pos; i < max_pos; i++)
-		    cur_line[i] = cur_line[i + 1];
-		  max_pos -= 1;
-		  fix_line ();
-		}
-	      break;
-	    case 025:		/* ^U */
-	      clear_line (prompt);
-	      break;
-	    case 027:		/* ^W */
-	      while ((cur_pos > 0) &&
-		     (cur_line[cur_pos - 1] == SPACE))
-		{
-		  cur_pos -= 1;
-		  backspace ();
-		}
-	      while ((cur_pos > 0) &&
-		     (cur_line[cur_pos - 1] != SPACE))
-		{
-		  cur_pos -= 1;
-		  backspace ();
-		}
-	      clear_eoline ();
-	      max_pos = cur_pos;
-	      break;
-	    case '\n':		/* ^J */
-	    case '\r':		/* ^M */
-			cur_line[max_pos + 1] = '\0';
-			if (cur_line[0]=='!')
-			{
-				char **lines = NULL;
-				int nb_lines_found = 0;
-				lines = searchTokenInScilabHistory(&cur_line[1],&nb_lines_found);
-				clear_line(prompt);
-				if ( (lines) && (nb_lines_found > 0) )
-				{
-					int i = 0;
-					copy_line(lines[nb_lines_found-1]);
-					for (i = 0;i<nb_lines_found;i++)
+				case 255:		/* jpc eof quand on fait un pipe */
+					new_line = (char *) alloc ((unsigned long) 2, "history");
+					new_line[0] = -1;
+					new_line[1] = '\0';
+      			return (new_line);
+				case EOF:
+				return ((char *) NULL);
+				case 001:		/* ^A */
+					while (cur_pos > 0)
 					{
-						if (lines[i])
+						cur_pos -= 1;
+						backspace ();
+					}
+				break;
+				case 002:		/* ^B */
+					if (cur_pos > 0)
+					{
+						cur_pos -= 1;
+						backspace ();
+					}
+				break;
+    
+				case 005:		/* ^E */
+					while (cur_pos < max_pos)
+					{
+						user_putc (cur_line[cur_pos]);
+						cur_pos += 1;
+					}
+				break;
+				case 006:		/* ^F */
+					if (cur_pos < max_pos)
+					{
+						user_putc (cur_line[cur_pos]);
+						cur_pos += 1;
+					}
+				break;
+				case 013:		/* ^K */
+					clear_eoline ();
+					max_pos = cur_pos;
+				break;
+				case 020:		/* ^P */
+					{
+						/* move in history */
+						cur_line[max_pos + 1] = '\0';
+						if (cur_line[0]== '\0')
 						{
-							FREE(lines[i]);
-							lines[i]=NULL;
+							resetSearchedTokenInScilabHistory();
+							setSearchedTokenInScilabHistory(NULL);
+						}
+
+						{
+							char *line = getPreviousLineInScilabHistory();
+							if (line)
+							{
+								clear_line(prompt);
+								copy_line(line);
+								FREE(line);
+							}
 						}
 					}
-					FREE(lines);
-					lines=NULL;
+					break;
+				case 016:		/* ^N */
+					{
+						/* move in history */
+						cur_line[max_pos + 1] = '\0';
+						if (cur_line[0]== '\0')
+						{
+							resetSearchedTokenInScilabHistory();
+							setSearchedTokenInScilabHistory(NULL);
+						}
 
+						{
+							char *line = getNextLineInScilabHistory();
+							if (line)
+							{
+								clear_line(prompt);
+								copy_line(line);
+								FREE(line);
+							}
+						}
+					}
+					break;
+				case 014:		/* ^L */
+				case 022:		/* ^R */
+					MyFPutCstdout ('\n');	/* go to a fresh line */
+					MyFPutCstdout ('\n');
+					redraw_line (prompt);
+				break;
+				case 0177:		/* DEL */
+				case 010:		/* ^H */
+					if (cur_pos > 0)
+					{
+						cur_pos -= 1;
+						backspace ();
+						for (i = cur_pos; i < max_pos; i++) cur_line[i] = cur_line[i + 1];
+						max_pos -= 1;
+						fix_line ();
+					}
+				break;
+				case 004:		/* ^D */
+					if (max_pos == 0)
+					{
+						clear_line (prompt);
+						break;
+					}
+					if (cur_pos < max_pos)
+					{
+						for (i = cur_pos; i < max_pos; i++) cur_line[i] = cur_line[i + 1];
+						max_pos -= 1;
+						fix_line ();
+					}
+				break;
+				case 025:		/* ^U */
+					clear_line (prompt);
+				break;
+				case 027:		/* ^W */
+					while ((cur_pos > 0) && (cur_line[cur_pos - 1] == SPACE))
+					{
+						cur_pos -= 1;
+						backspace ();
+					}
+					while ((cur_pos > 0) && (cur_line[cur_pos - 1] != SPACE))
+					{
+						cur_pos -= 1;
+						backspace ();
+					}
+					clear_eoline ();
+					max_pos = cur_pos;
+				break;
+				case '\n':		/* ^J */
+				case '\r':		/* ^M */
+					cur_line[max_pos + 1] = '\0';
+					if (cur_line[0]=='!')
+					{
+						char *token = NULL;
+						token = (char*)MALLOC(sizeof(char)*strlen(cur_line));
+						if (token)
+						{
+							char *line = NULL;
+							strcpy(token,&cur_line[1]);
+							setSearchedTokenInScilabHistory(token);
+							line = getNextLineInScilabHistory();
+							clear_line(prompt);
+							if (line)
+							{
+								copy_line(line);
+								FREE(line);
+								line = NULL;
+							}
+
+
+							FREE(token);
+							token = NULL;
+						}
+						else clear_line(prompt);
+					}
+					else
+					{
+						MyFPutCstdout ('\n');
+						new_line = (char *) alloc ((unsigned long) (strlen (cur_line) + 1), "history");
+						strcpy (new_line, cur_line);
+						setSearchedTokenInScilabHistory(NULL);
+						return (new_line);
+
+					}
+					break;
+
+					default:
+					break;
 				}
 			}
-			else
-			{
-				MyFPutCstdout ('\n');
-				new_line = (char *) alloc ((unsigned long) (strlen (cur_line) + 1), "history");
-				strcpy (new_line, cur_line);
-				return (new_line);
-
-			}
-		break;
-
-	    default:
- 
-	      break;
-	    }
-	}
-    }
+		}
       
 }
 #endif

@@ -5,14 +5,16 @@
 
 # List of the cpp files
 SHELL_CPP_SOURCES = src/cpp/CommandLine.cpp \
-src/cpp/HistoryManager.cpp
-
+src/cpp/HistoryManager.cpp \
+src/cpp/HistorySearch.cpp \
+src/cpp/HistoryFile.cpp
 
 # List of the c files
 SHELL_C_SOURCES = src/c/completion.c \
 src/c/clc.c \
 src/c/tohome.c \
-src/c/zzledt_Linux.c 
+src/c/zzledt_Linux.c \
+src/c/getCommentDateSession.c
 
 
 # List of the gateway c files
