@@ -93,6 +93,12 @@ extern "C" {
 	BOOL resetSearchedTokenInScilabHistory(void);
 
 	/**
+	*
+	*
+	*/
+	char *getSearchedTokenInScilabHistory(void);
+
+	/**
 	* Get the first line in history
 	* @return a line or NULL
 	*/
