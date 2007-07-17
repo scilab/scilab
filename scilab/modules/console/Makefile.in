@@ -84,14 +84,18 @@ am__libsciconsole_la_SOURCES_DIST =  \
 	src/jni/InterpreterManagement_wrap.c \
 	src/jni/HistoryManagement_wrap.c src/jni/GuiManagement_wrap.c \
 	src/c/InterpreterManagement.c src/c/HistoryManagement.c \
-	src/c/GuiManagement.c
+	src/c/GuiManagement.c src/c/ClearConsole.c \
+	src/c/ClearConsolePart.c src/c/PromptToHome.c
 @GUI_TRUE@am__objects_1 =  \
 @GUI_TRUE@	libsciconsole_la-InterpreterManagement_wrap.lo \
 @GUI_TRUE@	libsciconsole_la-HistoryManagement_wrap.lo \
 @GUI_TRUE@	libsciconsole_la-GuiManagement_wrap.lo
 @GUI_TRUE@am__objects_2 = libsciconsole_la-InterpreterManagement.lo \
 @GUI_TRUE@	libsciconsole_la-HistoryManagement.lo \
-@GUI_TRUE@	libsciconsole_la-GuiManagement.lo
+@GUI_TRUE@	libsciconsole_la-GuiManagement.lo \
+@GUI_TRUE@	libsciconsole_la-ClearConsole.lo \
+@GUI_TRUE@	libsciconsole_la-ClearConsolePart.lo \
+@GUI_TRUE@	libsciconsole_la-PromptToHome.lo
 am_libsciconsole_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libsciconsole_la_OBJECTS = $(am_libsciconsole_la_OBJECTS)
 libsciconsole_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
@@ -281,7 +285,10 @@ top_srcdir = @top_srcdir@
 
 @GUI_TRUE@CONSOLE_C_SOURCES = src/c/InterpreterManagement.c \
 @GUI_TRUE@src/c/HistoryManagement.c \
-@GUI_TRUE@src/c/GuiManagement.c
+@GUI_TRUE@src/c/GuiManagement.c \
+@GUI_TRUE@src/c/ClearConsole.c \
+@GUI_TRUE@src/c/ClearConsolePart.c \
+@GUI_TRUE@src/c/PromptToHome.c
 
 
 # Includes need for the compilation
@@ -428,12 +435,15 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-ClearConsole.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-ClearConsolePart.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-GuiManagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-GuiManagement_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-HistoryManagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-HistoryManagement_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-InterpreterManagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-InterpreterManagement_wrap.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-PromptToHome.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -497,6 +507,27 @@ libsciconsole_la-GuiManagement.lo: src/c/GuiManagement.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/GuiManagement.c' object='libsciconsole_la-GuiManagement.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-GuiManagement.lo `test -f 'src/c/GuiManagement.c' || echo '$(srcdir)/'`src/c/GuiManagement.c
+
+libsciconsole_la-ClearConsole.lo: src/c/ClearConsole.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-ClearConsole.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-ClearConsole.Tpo -c -o libsciconsole_la-ClearConsole.lo `test -f 'src/c/ClearConsole.c' || echo '$(srcdir)/'`src/c/ClearConsole.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-ClearConsole.Tpo $(DEPDIR)/libsciconsole_la-ClearConsole.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/ClearConsole.c' object='libsciconsole_la-ClearConsole.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-ClearConsole.lo `test -f 'src/c/ClearConsole.c' || echo '$(srcdir)/'`src/c/ClearConsole.c
+
+libsciconsole_la-ClearConsolePart.lo: src/c/ClearConsolePart.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-ClearConsolePart.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-ClearConsolePart.Tpo -c -o libsciconsole_la-ClearConsolePart.lo `test -f 'src/c/ClearConsolePart.c' || echo '$(srcdir)/'`src/c/ClearConsolePart.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-ClearConsolePart.Tpo $(DEPDIR)/libsciconsole_la-ClearConsolePart.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/ClearConsolePart.c' object='libsciconsole_la-ClearConsolePart.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-ClearConsolePart.lo `test -f 'src/c/ClearConsolePart.c' || echo '$(srcdir)/'`src/c/ClearConsolePart.c
+
+libsciconsole_la-PromptToHome.lo: src/c/PromptToHome.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-PromptToHome.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-PromptToHome.Tpo -c -o libsciconsole_la-PromptToHome.lo `test -f 'src/c/PromptToHome.c' || echo '$(srcdir)/'`src/c/PromptToHome.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-PromptToHome.Tpo $(DEPDIR)/libsciconsole_la-PromptToHome.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/PromptToHome.c' object='libsciconsole_la-PromptToHome.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-PromptToHome.lo `test -f 'src/c/PromptToHome.c' || echo '$(srcdir)/'`src/c/PromptToHome.c
 
 mostlyclean-libtool:
 	-rm -f *.lo

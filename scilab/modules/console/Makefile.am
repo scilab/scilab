@@ -12,7 +12,10 @@ src/jni/GuiManagement_wrap.c
 
 CONSOLE_C_SOURCES = src/c/InterpreterManagement.c \
 src/c/HistoryManagement.c \
-src/c/GuiManagement.c
+src/c/GuiManagement.c \
+src/c/ClearConsole.c \
+src/c/ClearConsolePart.c \
+src/c/PromptToHome.c
 endif
 
 # Includes need for the compilation
