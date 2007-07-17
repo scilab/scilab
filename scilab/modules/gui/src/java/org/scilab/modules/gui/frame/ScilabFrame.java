@@ -3,12 +3,6 @@
 
 package org.scilab.modules.gui.frame;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-
-import javax.swing.border.LineBorder;
-
 import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.bridge.ScilabBridge;
@@ -18,7 +12,6 @@ import org.scilab.modules.gui.container.ScilabContainer;
 import org.scilab.modules.gui.dockable.Dockable;
 import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.label.Label;
-import org.scilab.modules.gui.layout.LayoutManager;
 import org.scilab.modules.gui.listbox.ListBox;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.pushbutton.PushButton;
@@ -261,6 +254,7 @@ public class ScilabFrame extends ScilabContainer implements Frame {
 		//return ScilabBridge.addMember(this, member);
 		return 0;
 	}
+
 
 	@Override
 	public void addMenuBar(MenuBar toolMenuToAdd) {
