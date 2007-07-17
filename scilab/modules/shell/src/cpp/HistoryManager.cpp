@@ -40,8 +40,7 @@ BOOL resetSearchedTokenInScilabHistory(void)
 /*------------------------------------------------------------------------*/
 char *getSearchedTokenInScilabHistory(void)
 {
-	char *token = NULL;
-	return token;
+	return ScilabHistory.getToken();
 }
 /*------------------------------------------------------------------------*/
 BOOL appendLineToScilabHistory(char *line)
@@ -431,6 +430,11 @@ BOOL HistoryManager::setToken(char *token)
 {
 	my_search.setHistory(Commands);
 	return my_search.setToken(token);
+}
+/*-----------------------------------------------------------------------------------*/ 
+char * HistoryManager::getToken(void)
+{
+	return my_search.getToken();
 }
 /*-----------------------------------------------------------------------------------*/ 
 BOOL HistoryManager::resetToken(void)

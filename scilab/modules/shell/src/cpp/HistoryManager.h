@@ -49,6 +49,7 @@ public:
 
 
 	BOOL setToken(char *token);
+	char *getToken(void);
 	BOOL resetToken(void);
 	char *getPreviousLine(void);
 	char *getNextLine(void);
