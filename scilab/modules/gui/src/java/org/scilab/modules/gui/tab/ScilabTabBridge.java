@@ -83,7 +83,7 @@ public class ScilabTabBridge {
 	 * @return the title of the tab
 	 */
 	public static String getName(Tab tab) {
-		return tab.getName();
+		return tab.getAsSimpleTab().getName();
 	}
 
 	/**

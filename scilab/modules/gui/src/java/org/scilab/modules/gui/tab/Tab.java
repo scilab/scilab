@@ -15,6 +15,12 @@ import org.scilab.modules.gui.frame.Frame;
 public interface Tab extends Container {
 
 	/**
+	 * Gets a much more dummy Objects
+	 * @return the component.
+	 */
+	SimpleTab getAsSimpleTab();
+	
+	/**
 	 * Gets the Name of a tab
 	 * @return the Name of the tab
 	 */

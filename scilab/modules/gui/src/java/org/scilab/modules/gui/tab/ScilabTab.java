@@ -32,8 +32,8 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	/**
 	 * Constructor
 	 */
-	protected ScilabTab() {
-        throw new UnsupportedOperationException(); /* Prevents calls from subclass */
+	protected ScilabTab(String name) {
+		component = ScilabBridge.createTab(name);
     }
 
 	/**
@@ -42,7 +42,15 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	 * @return the created Scilab Tab
 	 */
 	public static Tab createTab(String name) {
-		return ScilabBridge.createTab(name);
+		return new ScilabTab(name);
+	}
+
+	/**
+	 * Gets the GUI Tab.
+	 * @return The GUI dummy Tab.
+	 */
+	public SimpleTab getAsSimpleTab() {
+		return component;
 	}
 
 	/**
