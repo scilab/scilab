@@ -145,7 +145,7 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	/**
 	 * Add a member (dockable element) to a Scilab frame and returns its index
 	 * @param member the member to add
-	 * @return index of member in frame components
+	 * @return index of member in frame thiss
 	 */
 	public int addMember(CheckBox member) {
 //		 TODO code this
@@ -175,7 +175,7 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	/**
 	 * Add a member (dockable element) to container and returns its index
 	 * @param member the member to add
-	 * @return index of member in frame components
+	 * @return index of member in frame thiss
 	 */
 	public int addMember(EditBox member) {
 //		 TODO code this
@@ -195,7 +195,7 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	/**
 	 * Add a member (dockable element) to container and returns its index
 	 * @param member the member to add
-	 * @return index of member in frame components
+	 * @return index of member in frame thiss
 	 */
 	public int addMember(Label member) {
 //		 TODO code this
@@ -209,8 +209,8 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	 * @return index of member in frame components
 	 */
 	public int addMember(ListBox member) {
-//		 TODO code this
-		//return ScilabBridge.addMember(this, member);
+//		 TODO code component
+		//return ScilabBridge.addMember(component, member);
 		return 0;
 	}
 
@@ -240,8 +240,8 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	 * @return index of member in frame components
 	 */
 	public int addMember(Slider member) {
-//		 TODO code this
-		//return ScilabBridge.addMember(this, member);
+//		 TODO code component
+		//return ScilabBridge.addMember(component, member);
 		return 0;
 	}
 	
@@ -251,8 +251,8 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	 * @return index of member in frame components
 	 */
 	public int addMember(Tab member) {
-//		 TODO code this
-		//return ScilabBridge.addMember(this, member);
+//		 TODO code component
+		//return ScilabBridge.addMember(component, member);
 		return 0;
 	}
 	
@@ -262,19 +262,19 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	 * @return index of member in frame components
 	 */
 	public int addMember(TextBox member) {
-//		 TODO code this
-		//return ScilabBridge.addMember(this, member);
+//		 TODO code component
+		//return ScilabBridge.addMember(component, member);
 		return 0;
 	}
 	
 	/**
-	 * Add this as member (dockable element) to the Scilab Container and returns its index
-	 * @param container the Container in which we add this
-	 * @return index of this in container components
+	 * Add component as member (dockable element) to the Scilab Container and returns its index
+	 * @param container the Container in which we add component
+	 * @return index of component in container components
 	 */
 	public int addAsMemberTo(Container container) {
-//		 TODO code this
-		//return ScilabBridge.addAsMemberTo(this, container);
+//		 TODO code component
+		//return ScilabBridge.addAsMemberTo(component, container);
 		return 0;
 	}
 

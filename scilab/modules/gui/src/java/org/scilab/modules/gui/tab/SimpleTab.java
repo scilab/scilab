@@ -3,9 +3,12 @@
 
 package org.scilab.modules.gui.tab;
 
+
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.frame.Frame;
+import org.scilab.modules.gui.utils.Position;
+import org.scilab.modules.gui.utils.Size;
 
 /**
  * Interface for tabs in Scilab GUIs
@@ -47,4 +50,18 @@ public interface SimpleTab  {
 	 * @return the position of the console in the member list.
 	 */
 	int addMember(Canvas member);
+
+	void draw();
+
+	Size getDims();
+
+	void setDims(Size newTabSize);
+
+	Position getPosition();
+
+	void setPosition(Position newTabPosition);
+
+	boolean isVisible();
+
+	void setVisible(boolean newVisibleState);
 }

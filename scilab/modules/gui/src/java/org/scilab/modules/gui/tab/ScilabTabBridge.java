@@ -38,7 +38,7 @@ public class ScilabTabBridge {
 	 * @param tab the tab to draw
 	 */
 	public static void draw(Tab tab) {
-		tab.draw();
+		tab.getAsSimpleTab().draw();
 	}
 
 	/**
@@ -47,7 +47,7 @@ public class ScilabTabBridge {
 	 * @return the dimensions of the tab
 	 */
 	public static Size getDims(Tab tab) {
-		return tab.getDims();
+		return tab.getAsSimpleTab().getDims();
 	}
 
 	/**
@@ -56,7 +56,7 @@ public class ScilabTabBridge {
 	 * @param newTabSize the dimensions we want to set to the tab
 	 */
 	public static void setDims(Tab tab, Size newTabSize) {
-		tab.setDims(newTabSize);
+		tab.getAsSimpleTab().setDims(newTabSize);
 	}
 
 	/**
@@ -65,7 +65,7 @@ public class ScilabTabBridge {
 	 * @return the position of the tab
 	 */
 	public static Position getPosition(Tab tab) {
-		return tab.getPosition();
+		return tab.getAsSimpleTab().getPosition();
 	}
 
 	/**
@@ -74,7 +74,7 @@ public class ScilabTabBridge {
 	 * @param newTabPosition the position we want to set to the tab
 	 */
 	public static void setPosition(Tab tab, Position newTabPosition) {
-		tab.setPosition(newTabPosition);
+		tab.getAsSimpleTab().setPosition(newTabPosition);
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class ScilabTabBridge {
 	 * @param newTabName the name to set to the tab
 	 */
 	public static void setName(Tab tab, String newTabName) {
-		tab.setName(newTabName);
+		tab.getAsSimpleTab().setName(newTabName);
 	}
 
 	/**
@@ -101,7 +101,7 @@ public class ScilabTabBridge {
 	 * @return the visibility status of the tab (true if the tab is visible, false if not)
 	 */
 	public static boolean isVisible(Tab tab) {
-		return tab.isVisible();
+		return tab.getAsSimpleTab().isVisible();
 	}
 
 	/**
@@ -110,7 +110,7 @@ public class ScilabTabBridge {
 	 * @param newVisibleState the visibility status to set to the tab (true to set the tab visible, false else)
 	 */
 	public static void setVisible(Tab tab, boolean newVisibleState) {
-		tab.setVisible(newVisibleState);
+		tab.getAsSimpleTab().setVisible(newVisibleState);
 	}
 
 	/**
@@ -120,7 +120,7 @@ public class ScilabTabBridge {
  	 * @return index of member
  	 */
 	public static int addMember(Tab tab, Frame member) {
-		return tab.addMember(member);
+		return tab.getAsSimpleTab().addMember(member);
 	}
 
 	/**
@@ -130,7 +130,7 @@ public class ScilabTabBridge {
  	 * @return index of member
  	 */
 	public static int addMember(Tab tab, Console member) {
-		return tab.addMember(member);
+		return tab.getAsSimpleTab().addMember(member);
 	}
 
 	/**
