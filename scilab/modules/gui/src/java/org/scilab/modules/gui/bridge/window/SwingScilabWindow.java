@@ -14,6 +14,7 @@ import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
 import org.scilab.modules.gui.bridge.toolbar.SwingScilabToolBar;
 import org.scilab.modules.gui.menubar.SimpleMenuBar;
+import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.textbox.SimpleTextBox;
 import org.scilab.modules.gui.toolbar.SimpleToolBar;
 import org.scilab.modules.gui.utils.Position;
@@ -141,15 +142,14 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 		return (DockingPort) sciDockingPort;
 	}
 
-//	TODO add when SimpleTab ready
-//	/**
-//	 * Add a Scilab tab to a Scilab window
-//	 * @param newTab the Scilab tab to add to the Scilab window
-//	 * @see org.scilab.modules.gui.window.Window#addTab(org.scilab.modules.gui.tab.Tab)
-//	 */
-//	public void addTab(SimpleTab newTab) {
-//		DockingManager.dock((SwingScilabTab) newTab, this.getDockingPort());
-//	}
+	/**
+	 * Add a Scilab tab to a Scilab window
+	 * @param newTab the Scilab tab to add to the Scilab window
+	 * @see org.scilab.modules.gui.window.Window#addTab(org.scilab.modules.gui.tab.Tab)
+	 */
+	public void addTab(SimpleTab newTab) {
+		DockingManager.dock((SwingScilabTab) newTab, this.getDockingPort());
+	}
 	
 	/**
 	 * Sets a Scilab MenuBar to a Scilab window

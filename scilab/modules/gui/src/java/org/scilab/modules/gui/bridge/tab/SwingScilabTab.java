@@ -13,7 +13,6 @@ import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.container.Container;
 import org.scilab.modules.gui.canvas.Canvas;
-import org.scilab.modules.gui.dockable.Dockable;
 import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.label.Label;
@@ -21,6 +20,7 @@ import org.scilab.modules.gui.listbox.ListBox;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.slider.Slider;
+import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.utils.Position;
@@ -31,8 +31,7 @@ import org.scilab.modules.gui.utils.Size;
  * This implementation uses FlexDock package
  * @author Vincent COUVERT
  */
-public class SwingScilabTab extends View implements Tab {
-
+public class SwingScilabTab extends View  implements SimpleTab {
 	/**
 	 * Constructor
 	 * @param name the name of the tab (used to identify it)
@@ -164,10 +163,10 @@ public class SwingScilabTab extends View implements Tab {
 	 * @see org.scilab.modules.gui.container.Container#addMember(org.scilab.modules.gui.dockable.Dockable)
 	 * @see org.scilab.modules.gui.dockable.Dockable#addAsMemberTo(org.scilab.modules.gui.container.Container)
 	 */
-	public int addMember(Dockable member) {
-		// delegate to the member
-		return member.addAsMemberTo(this);
-	}
+//	public int addMember(Dockable member) {
+//		// delegate to the member
+//		return member.addAsMemberTo(this);
+//	}
 	
 	/**
 	 * Add a member (dockable element) to container and returns its index

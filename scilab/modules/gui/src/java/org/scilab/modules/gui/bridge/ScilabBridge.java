@@ -16,6 +16,7 @@ import org.scilab.modules.gui.pushbutton.ScilabPushButtonBridge;
 import org.scilab.modules.gui.separator.ScilabSeparatorBridge;
 import org.scilab.modules.gui.separator.Separator;
 import org.scilab.modules.gui.tab.ScilabTabBridge;
+import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.ScilabTextBoxBridge;
 import org.scilab.modules.gui.textbox.SimpleTextBox;
@@ -143,15 +144,14 @@ public class ScilabBridge {
 		ScilabWindowBridge.setVisible(window, newVisibleState);
 	}
 
-//	TODO uncomment when SimpleTab ready
-//	/**
-//	 * Add a tab to a window
-//	 * @param window the window which we want to add the tab to
-//	 * @param newTab the tab to add to the window
-//	 */
-//	public static void addTab(SimpleWindow window, SimpleTab newTab) {
-//		ScilabWindowBridge.addTab(window, newTab);
-//	}
+	/**
+	 * Add a tab to a window
+	 * @param window the window which we want to add the tab to
+	 * @param newTab the tab to add to the window
+	 */
+	public static void addTab(SimpleWindow window, SimpleTab newTab) {
+		ScilabWindowBridge.addTab(window, newTab);
+	}
 
 	/**
 	 * Sets a MeunBar to a window
@@ -316,7 +316,7 @@ public class ScilabBridge {
 	 * @param name the name of the tab (used to identify it)
 	 * @return the created tab
 	 */
-	public static Tab createTab(String name) {
+	public static SimpleTab createTab(String name) {
 		return ScilabTabBridge.createTab(name);
 	}
 
