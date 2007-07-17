@@ -5,9 +5,9 @@
 /*-----------------------------------------------------------------------------------*/
 #include <stdlib.h>
 #include <jni.h>
+#include "PromptToHome.h"
 #include "./../../jvm/includes/getScilabObject.h"
 #include "../../../jvm/includes/getScilabJNIEnv.h"
-#include "machine.h"
 /*-----------------------------------------------------------------------------------*/
 BOOL PromptToHome(void)
 {

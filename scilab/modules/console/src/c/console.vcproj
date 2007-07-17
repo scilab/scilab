@@ -150,7 +150,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="LibScilab.lib libjvm.lib ../../../../bin/libshell.lib"
+				AdditionalDependencies="LibScilab.lib libjvm.lib"
 				OutputFile="../../../../bin/sciconsole.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="console.def"
@@ -197,6 +197,14 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
+				RelativePath=".\ClearConsole.c"
+				>
+			</File>
+			<File
+				RelativePath=".\ClearConsolePart.c"
+				>
+			</File>
+			<File
 				RelativePath=".\HistoryManagement.c"
 				>
 			</File>
@@ -212,17 +220,33 @@
 				RelativePath="..\jni\InterpreterManagement_wrap.c"
 				>
 			</File>
+			<File
+				RelativePath=".\PromptToHome.c"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
+				RelativePath="..\..\includes\ClearConsole.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\ClearConsolePart.h"
+				>
+			</File>
+			<File
 				RelativePath=".\HistoryManagement.h"
 				>
 			</File>
 			<File
 				RelativePath=".\InterpreterManagement.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\PromptToHome.h"
 				>
 			</File>
 		</Filter>

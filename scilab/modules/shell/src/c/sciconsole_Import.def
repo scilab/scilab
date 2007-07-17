@@ -1,0 +1,7 @@
+LIBRARY    sciconsole.dll
+
+
+EXPORTS
+	ClearConsole
+	ClearConsolePart
+	PromptToHome

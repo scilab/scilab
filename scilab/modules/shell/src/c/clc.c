@@ -6,6 +6,8 @@
 #include <stdlib.h>
 #include "clc.h"
 #include "scilabmode.h"
+#include "../../../Console/includes/ClearConsole.h"
+#include "../../../Console/includes/ClearConsolePart.h"
 /*-----------------------------------------------------------------------------------*/
 BOOL clc(int nblines)
 {
@@ -33,18 +35,18 @@ BOOL clc(int nblines)
 	{
           /* Java Console*/
           if ( nblines == -1) /* Clear the whole console window */
-            {
-              bOK = ClearConsole();
-            }
+          {
+			bOK = ClearConsole();
+          }
           else if (nblines >= 0) /* Clear a part of the console window */
-            {
+          {
               bOK = ClearConsolePart(nblines);
-            }
+          }
           else
-            {
+          {
               /* error */
               bOK = FALSE;
-            }
+          }
 	}
 	return bOK;
 }

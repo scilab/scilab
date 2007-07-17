@@ -5,9 +5,9 @@
 /*-----------------------------------------------------------------------------------*/
 #include <stdlib.h>
 #include <jni.h>
+#include "ClearConsolePart.h"
 #include "./../../jvm/includes/getScilabObject.h"
 #include "../../../jvm/includes/getScilabJNIEnv.h"
-#include "machine.h"
 /*-----------------------------------------------------------------------------------*/
 BOOL ClearConsolePart(int nbLines)
 {
@@ -52,3 +52,4 @@ BOOL ClearConsolePart(int nbLines)
   else
     return FALSE;
 }
+/*-----------------------------------------------------------------------------------*/
