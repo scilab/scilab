@@ -88,10 +88,12 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscishell_la_DEPENDENCIES = $(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
 am__libscishell_la_SOURCES_DIST = src/c/completion.c src/c/clc.c \
-	src/c/tohome.c src/c/zzledt_Linux.c src/c/ShellPrintf.c \
+	src/c/tohome.c src/c/zzledt_Linux.c \
+	src/c/getCommentDateSession.c src/c/ShellPrintf.c \
 	src/c/PutChar_linux.c src/c/ShellPrintf_nogui.c \
 	src/c/PutChar_linux_nogui.c src/cpp/CommandLine.cpp \
-	src/cpp/HistoryManager.cpp sci_gateway/c/sci_completion.c \
+	src/cpp/HistoryManager.cpp src/cpp/HistorySearch.cpp \
+	src/cpp/HistoryFile.cpp sci_gateway/c/sci_completion.c \
 	sci_gateway/c/gw_shell.c sci_gateway/c/sci_clc.c \
 	sci_gateway/c/sci_tohome.c sci_gateway/c/sci_gethistory.c \
 	sci_gateway/c/sci_loadhistory.c \
@@ -109,9 +111,11 @@ am__libscishell_la_SOURCES_DIST = src/c/completion.c src/c/clc.c \
 @GUI_FALSE@	libscishell_la-PutChar_linux_nogui.lo
 am__objects_3 = libscishell_la-completion.lo libscishell_la-clc.lo \
 	libscishell_la-tohome.lo libscishell_la-zzledt_Linux.lo \
-	$(am__objects_1) $(am__objects_2)
+	libscishell_la-getCommentDateSession.lo $(am__objects_1) \
+	$(am__objects_2)
 am__objects_4 = libscishell_la-CommandLine.lo \
-	libscishell_la-HistoryManager.lo
+	libscishell_la-HistoryManager.lo \
+	libscishell_la-HistorySearch.lo libscishell_la-HistoryFile.lo
 am__objects_5 = libscishell_la-sci_completion.lo \
 	libscishell_la-gw_shell.lo libscishell_la-sci_clc.lo \
 	libscishell_la-sci_tohome.lo libscishell_la-sci_gethistory.lo \
@@ -322,12 +326,15 @@ top_srcdir = @top_srcdir@
 
 # List of the cpp files
 SHELL_CPP_SOURCES = src/cpp/CommandLine.cpp \
-src/cpp/HistoryManager.cpp
+src/cpp/HistoryManager.cpp \
+src/cpp/HistorySearch.cpp \
+src/cpp/HistoryFile.cpp
 
 
 # List of the c files
 SHELL_C_SOURCES = src/c/completion.c src/c/clc.c src/c/tohome.c \
-	src/c/zzledt_Linux.c $(am__append_1) $(am__append_2)
+	src/c/zzledt_Linux.c src/c/getCommentDateSession.c \
+	$(am__append_1) $(am__append_2)
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/sci_completion.c \
@@ -347,7 +354,7 @@ sci_gateway/c/sci_addhistory.c
 
 
 # Includes need for the compilation
-libscishell_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -I$(top_srcdir)/libs/MALLOC/includes/
+libscishell_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/
 
 # Includes need for the compilation
 libscishell_la_CFLAGS = $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/
@@ -496,13 +503,16 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-CommandLine.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-HistoryFile.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-HistoryManager.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-HistorySearch.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-PutChar_linux.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-PutChar_linux_nogui.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-ShellPrintf.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-ShellPrintf_nogui.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-clc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-completion.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-getCommentDateSession.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-gw_shell.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-sci_addhistory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-sci_clc.Plo@am__quote@
@@ -568,6 +578,13 @@ libscishell_la-zzledt_Linux.lo: src/c/zzledt_Linux.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/zzledt_Linux.c' object='libscishell_la-zzledt_Linux.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-zzledt_Linux.lo `test -f 'src/c/zzledt_Linux.c' || echo '$(srcdir)/'`src/c/zzledt_Linux.c
+
+libscishell_la-getCommentDateSession.lo: src/c/getCommentDateSession.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-getCommentDateSession.lo -MD -MP -MF $(DEPDIR)/libscishell_la-getCommentDateSession.Tpo -c -o libscishell_la-getCommentDateSession.lo `test -f 'src/c/getCommentDateSession.c' || echo '$(srcdir)/'`src/c/getCommentDateSession.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscishell_la-getCommentDateSession.Tpo $(DEPDIR)/libscishell_la-getCommentDateSession.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getCommentDateSession.c' object='libscishell_la-getCommentDateSession.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-getCommentDateSession.lo `test -f 'src/c/getCommentDateSession.c' || echo '$(srcdir)/'`src/c/getCommentDateSession.c
 
 libscishell_la-ShellPrintf.lo: src/c/ShellPrintf.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-ShellPrintf.lo -MD -MP -MF $(DEPDIR)/libscishell_la-ShellPrintf.Tpo -c -o libscishell_la-ShellPrintf.lo `test -f 'src/c/ShellPrintf.c' || echo '$(srcdir)/'`src/c/ShellPrintf.c
@@ -729,6 +746,20 @@ libscishell_la-HistoryManager.lo: src/cpp/HistoryManager.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/HistoryManager.cpp' object='libscishell_la-HistoryManager.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscishell_la-HistoryManager.lo `test -f 'src/cpp/HistoryManager.cpp' || echo '$(srcdir)/'`src/cpp/HistoryManager.cpp
+
+libscishell_la-HistorySearch.lo: src/cpp/HistorySearch.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscishell_la-HistorySearch.lo -MD -MP -MF $(DEPDIR)/libscishell_la-HistorySearch.Tpo -c -o libscishell_la-HistorySearch.lo `test -f 'src/cpp/HistorySearch.cpp' || echo '$(srcdir)/'`src/cpp/HistorySearch.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscishell_la-HistorySearch.Tpo $(DEPDIR)/libscishell_la-HistorySearch.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/HistorySearch.cpp' object='libscishell_la-HistorySearch.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscishell_la-HistorySearch.lo `test -f 'src/cpp/HistorySearch.cpp' || echo '$(srcdir)/'`src/cpp/HistorySearch.cpp
+
+libscishell_la-HistoryFile.lo: src/cpp/HistoryFile.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscishell_la-HistoryFile.lo -MD -MP -MF $(DEPDIR)/libscishell_la-HistoryFile.Tpo -c -o libscishell_la-HistoryFile.lo `test -f 'src/cpp/HistoryFile.cpp' || echo '$(srcdir)/'`src/cpp/HistoryFile.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscishell_la-HistoryFile.Tpo $(DEPDIR)/libscishell_la-HistoryFile.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/HistoryFile.cpp' object='libscishell_la-HistoryFile.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscishell_la-HistoryFile.lo `test -f 'src/cpp/HistoryFile.cpp' || echo '$(srcdir)/'`src/cpp/HistoryFile.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
