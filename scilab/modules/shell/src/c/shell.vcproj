@@ -297,6 +297,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\ShellRead.c"
+				>
+			</File>
+			<File
 				RelativePath=".\tohome.c"
 				>
 			</File>

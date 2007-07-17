@@ -10,6 +10,7 @@
 #include "command.h"
 #include "../../core/src/c/flags.h"
 #include "win_mem_alloc.h" /* MALLOC */
+#include "ShellRead.h"
 /*-----------------------------------------------------------------------------------*/
 char save_prompt[10];
 /* Fonction Récuperant la ligne à executer par Scilab */
@@ -46,8 +47,10 @@ extern void CleanCurrentLine(char *line);
 /**** Warning here : eof can be true  ***/
 void C2F (zzledt) (char *buffer, int *buf_size, int *len_line, int *eof, int* interrupt, int *modex, long int dummy1)
 {
+
   int i;
   extern char copycur_line[1024];
+  char *line = NULL;
 
   GetCurrentPrompt(save_prompt);
 
@@ -62,7 +65,18 @@ void C2F (zzledt) (char *buffer, int *buf_size, int *len_line, int *eof, int* in
   }
   
   i = read_line (save_prompt,*interrupt);
-  
+  /*
+  i = 0;
+  line = ShellRead();
+  if (line)
+  {
+	strcpy(input_line,line);
+	FREE(line);
+	*len_line = (int)strlen(input_line);
+  }
+  */
+   
+
   if (i==-1) 
   { /* dynamic menu canceled read SS*/
     *len_line = 0;

@@ -5,17 +5,21 @@
 /*-----------------------------------------------------------------------------------*/
 #include <stdlib.h>
 #include <jni.h>
+#include "machine.h"
 #include "./../../jvm/includes/getScilabObject.h"
 #include "../../../jvm/includes/getScilabJNIEnv.h"
 #include "ShellRead.h"
+#include "MALLOC.h"
+/*-----------------------------------------------------------------------------------*/
+#define WK_BUF_SIZE 520
 /*-----------------------------------------------------------------------------------*/
 char *ShellRead()
 {
   jobject  ScilabObj = getScilabObject();
   JNIEnv *env = getScilabJNIEnv();
 
-  char strRead[WK_BUF_SIZE + 1];
-
+  char *strRead = NULL;
+  
   if (env)
     {
       jclass class_Mine = (*env)->GetObjectClass(env, ScilabObj);
@@ -39,7 +43,10 @@ char *ShellRead()
                                 const char *strValue = NULL;
                                 strValue = (*env)->GetStringUTFChars(env,jstrValue, 0);
                                 if (strValue)
-                                  strcpy(strRead,strValue);
+								{
+									strRead = (char*) MALLOC(sizeof(char)*(WK_BUF_SIZE + 1));
+									if (strRead) strcpy(strRead,strValue);
+								}
                               }
                           }
                       }

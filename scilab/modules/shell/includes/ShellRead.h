@@ -5,9 +5,6 @@
 * @author Vincent COUVERT - INRIA 2007
 */
 /*-----------------------------------------------------------------------------------*/
-#include "machine.h"
-#define WK_BUF_SIZE 520
-/*-----------------------------------------------------------------------------------*/
 /**
 * ShellRead function 
 * @return characters read in console

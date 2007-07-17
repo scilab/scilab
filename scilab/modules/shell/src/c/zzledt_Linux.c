@@ -635,12 +635,18 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
  else
    {
      /* Call Java Console to get a string */
+     char *line = NULL;
      *len_line = 0;
      cursor = 0;
      
-     strcpy(wk_buf,ShellRead());
-     
-     *buf_size = strlen(wk_buf);
+     line = ShellRead();
+     if (line) 
+     	{
+     		strcpy(wk_buf,line);
+     		FREE(line);
+     		*buf_size = (int)strlen(wk_buf);
+     	}
+     	else *buf_size = 0;
      /* End of call to Java Console */
    }
  exit:
