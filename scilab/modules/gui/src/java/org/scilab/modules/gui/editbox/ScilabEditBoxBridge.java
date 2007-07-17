@@ -25,7 +25,9 @@ public class ScilabEditBoxBridge {
 	 * @return the created EditBox
 	 */
 	public static EditBoxBridge createEditBox() {
-		return new SwingScilabEditBox();
+		// FIXME : UI CONTROL must be developped last !!!!!
+		return null;	
+		//return new SwingScilabEditBox();
 	}
 	
 	/**

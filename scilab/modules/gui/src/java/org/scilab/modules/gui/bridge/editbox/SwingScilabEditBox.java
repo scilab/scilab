@@ -14,7 +14,10 @@ import org.scilab.modules.gui.utils.Size;
  * Swing implementation for Scilab EditBox in GUIs
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabEditBox extends JTextArea implements EditBoxBridge {
+public class SwingScilabEditBox extends JTextArea {
+	// FIXME : Must have some Interface here...
+	//implements EditBoxBridge {
+
 	
 	/**
 	 * Constructor
