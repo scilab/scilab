@@ -25,7 +25,7 @@ char *CommandLine::get(void)
 	if (str.length()>0)
 	{
 		line =  (char*) MALLOC ((str.length()+1)*(sizeof(char)));
-		strcpy(line,str.c_str() );
+		if (line) strcpy(line,str.c_str() );
 	}
 	return line ;
 }
