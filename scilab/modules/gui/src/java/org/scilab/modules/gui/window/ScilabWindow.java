@@ -5,7 +5,6 @@ package org.scilab.modules.gui.window;
 
 import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.uielement.ScilabUIElement;
-import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
@@ -28,8 +27,8 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 */
 	protected ScilabWindow() {
 		component = ScilabBridge.createWindow();
-		super.setMenuBar(null);
-		super.setToolBar(null);
+		super.addMenuBar(null);
+		super.addToolBar(null);
 		this.infoBar = null;
 	}
 
@@ -145,7 +144,7 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 * @see org.scilab.modules.gui.window.Window#setMenuBar(org.scilab.modules.gui.widget.MenuBar)
 	 */
 	public void addMenuBar(MenuBar newMenuBar) {
-		super.setMenuBar(newMenuBar);
+		super.addMenuBar(newMenuBar);
 		// FIXME : Do it a standard way : getAsMenuBar
 		ScilabBridge.addMenuBar(component, newMenuBar.getAsSimpleMenuBar());
 	}
@@ -156,7 +155,7 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 * @see org.scilab.modules.gui.window.Window#setToolBar(org.scilab.modules.gui.toolbar.ToolBar)
 	 */
 	public void addToolBar(ToolBar newToolBar) {
-		super.setToolBar(newToolBar);
+		super.addToolBar(newToolBar);
 		ScilabBridge.addToolBar(component, newToolBar.getAsSimpleToolBar());
 	}
 	
