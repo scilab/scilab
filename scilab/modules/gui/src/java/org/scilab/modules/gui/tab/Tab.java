@@ -15,8 +15,8 @@ import org.scilab.modules.gui.frame.Frame;
 public interface Tab extends Container {
 
 	/**
-	 * Gets this Bridge component object
-	 * @return this Bridge component object
+	 * Gets a much more dummy Objects.
+	 * @return the component.
 	 */
 	SimpleTab getAsSimpleTab();
 	
@@ -32,24 +32,5 @@ public interface Tab extends Container {
 	 */
 	void setName(String newTabName);
 
-	/**
-	 * We want to be able to add directly a Frame in a Tab.
-	 * @param member the member to add
-	 * @return the position of the frame in the member list.
-	 */
-	int addMember(Frame member);
-
-	/**
-	 * We want to be able to add directly a Console in a Tab.
-	 * @param member the member to add
-	 * @return the position of the console in the member list.
-	 */
-	int addMember(Console member);
-
-	/**
-	 * We want to be able to add directly a Console in a Tab.
-	 * @param member the member to add
-	 * @return the position of the console in the member list.
-	 */
-	int addMember(Canvas member);
+	// Watch out not to override or add some inherited profiles...
 }
