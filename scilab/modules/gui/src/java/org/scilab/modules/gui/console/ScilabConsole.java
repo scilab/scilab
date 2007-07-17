@@ -157,6 +157,6 @@ public class ScilabConsole extends ScilabDockable implements Console {
 	 * Clears the console (no more scroll history and prompt on top left corner)
 	 */
 	public void clear() {
-		ScilabBridge.clear(this);
+		ScilabBridge.clear(component);
 	}
 }

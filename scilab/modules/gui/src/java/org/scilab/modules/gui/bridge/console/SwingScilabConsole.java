@@ -122,12 +122,10 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 		this.getConfiguration().getInputCommandView().requestFocus();
 		
 		// Avoids reading of an empty buffer
-// FIXME : commented next line because of compilation error		
-//		((SciInputCommandView) this.getConfiguration().getInputCommandView()).setBufferProtected();
+		((SciInputCommandView) this.getConfiguration().getInputCommandView()).setBufferProtected();
 		
 		// Reads the buffer
-// FIXME : commented next line because of compilation error
-//		cmd = ((SciInputCommandView) this.getConfiguration().getInputCommandView()).getCmdBuffer();
+		cmd = ((SciInputCommandView) this.getConfiguration().getInputCommandView()).getCmdBuffer();
 		
 		// Gives the focus to the console to avoid having a blinking caret in the not-editable input command view
 		this.requestFocus();
@@ -136,9 +134,7 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 		this.getConfiguration().getInputCommandView().setEditable(false);
 		this.getConfiguration().getPromptView().setVisible(false);
 		
-// FIXME : commented next line adn added one line because of compilation error
-//		return cmd;
-		return "";
+		return cmd;
 	}
 
 	/**

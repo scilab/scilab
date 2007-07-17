@@ -22,4 +22,9 @@ public interface SimpleConsole extends SimpleDockable {
 	 * @param dataToDisplay the data to be displayed
 	 */
 	void display(String dataToDisplay);
+	
+	/**
+	 * Clears the console (no more scroll history and prompt on top left corner)
+	 */
+	void clear();
 }
