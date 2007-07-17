@@ -29,4 +29,10 @@ public interface Console extends Dockable {
 	 * @param dataToDisplay the data to be displayed
 	 */
 	void display(String dataToDisplay);
+	
+	/**
+	 * Clears the console (all output view is cleared)
+	 */
+	void clear();
+
 }

@@ -109,4 +109,12 @@ public class ScilabConsoleBridge {
 	public static void setVisible(SimpleConsole console, boolean newVisibleState) {
 		console.setVisible(newVisibleState);
 	}
+	
+	/**
+	 * Clears the console (no more scroll history and prompt on top left corner)
+	 */
+	public static void clear(Console console) {
+		console.clear();
+	}
+
 }

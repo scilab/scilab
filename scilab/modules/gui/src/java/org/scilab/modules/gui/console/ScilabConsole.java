@@ -152,4 +152,11 @@ public class ScilabConsole extends ScilabDockable implements Console {
 		//return ScilabBridge.addAsMemberTo(component, container);
 		throw new UnsupportedOperationException();
 	}
+
+	/**
+	 * Clears the console (no more scroll history and prompt on top left corner)
+	 */
+	public void clear() {
+		ScilabBridge.clear(this);
+	}
 }

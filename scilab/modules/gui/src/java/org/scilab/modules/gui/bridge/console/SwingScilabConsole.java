@@ -5,8 +5,12 @@ package org.scilab.modules.gui.bridge.console;
 
 import java.awt.Dimension;
 
+import javax.swing.JPanel;
+import javax.swing.text.BadLocationException;
+
 import org.scilab.modules.console.SciConsole;
 import org.scilab.modules.console.SciInputCommandView;
+import org.scilab.modules.console.SciPromptView;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.console.SimpleConsole;
 import org.scilab.modules.gui.container.Container;
@@ -15,6 +19,8 @@ import org.scilab.modules.gui.menubar.SimpleMenuBar;
 import org.scilab.modules.gui.toolbar.SimpleToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
+
+import com.artenum.console.util.StringConstants;
 
 /**
  * Swing implementation for Scilab Console in GUIs
@@ -58,6 +64,7 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 	public void display(String dataToDisplay) {
 		this.getConfiguration().getOutputView().setCaretPositionToEnd();
 		this.getConfiguration().getOutputView().append(dataToDisplay);
+		updateScrollPosition();
 	}
 
 	/**
@@ -69,14 +76,49 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 		String cmd;
 		
 		// Show the prompt
-		this.getConfiguration().getInputCommandView().setVisible(true);
+		this.getConfiguration().getInputCommandView().setEditable(true);
 		this.getConfiguration().getPromptView().setVisible(true);
 		
-		// To be sure the prompt is not below the bottom of the console
-		this.getConfiguration().getInputCommandView().setText(" ");
-		this.getConfiguration().getInputCommandView().backspace();
+		// Modify the size of the input command view (the prompt was not visible when last size modification done
+		if (this.getInputCommandViewSizeForced()) {
+
+			JPanel promptView = ((JPanel) this.getConfiguration().getPromptView());
+	
+			int height = ((JPanel) promptView.getParent()).getPreferredSize().height;
+			int width = ((JPanel) promptView.getParent()).getPreferredSize().width;
+			int promptViewHeight = ((SciPromptView) promptView).getPromptUI().getHeight();
+			
+			/* New dimension for the input command view */
+			int newHeight = height + promptViewHeight;
+			Dimension newDim = null;
+			
+			if (newHeight > promptViewHeight) {
+				/* If the input command view is bigger than the promptUI */
+				/* It's height is descreased */
+				newDim = new Dimension(width, newHeight);
+			} else {
+				/* If the input command view is smaller than the promptUI */
+				/* It's height adapted to the promptUI height */
+				newDim = new Dimension(width, promptViewHeight);
+				this.setInputCommandViewSizeForced(false);
+			}
+			((JPanel) promptView.getParent()).setPreferredSize(newDim);
+			((JPanel) promptView.getParent()).invalidate();
+			((JPanel) promptView.getParent()).doLayout();
+		}
+
+		// Remove last line returned given by Scilab (carriage return)
+		try {
+			int lastEOL = this.getConfiguration().getOutputViewStyledDocument().getText(0, this.getConfiguration().getOutputViewStyledDocument().getLength()).lastIndexOf(StringConstants.NEW_LINE);
+			this.getConfiguration().getOutputViewStyledDocument().remove(lastEOL - 2, this.getConfiguration().getOutputViewStyledDocument().getLength() - lastEOL + 2);
+		} catch (BadLocationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		// Gets the focus to have th caret visible
+		updateScrollPosition();
+		
+		// Gets the focus to have the caret visible
 		this.getConfiguration().getInputCommandView().requestFocus();
 		
 		// Avoids reading of an empty buffer
@@ -86,11 +128,14 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 		// Reads the buffer
 // FIXME : commented next line because of compilation error
 //		cmd = ((SciInputCommandView) this.getConfiguration().getInputCommandView()).getCmdBuffer();
+		
+		// Gives the focus to the console to avoid having a blinking caret in the not-editable input command view
+		this.requestFocus();
 
 		// Hide the prompt
-		this.getConfiguration().getInputCommandView().setVisible(false);
+		this.getConfiguration().getInputCommandView().setEditable(false);
 		this.getConfiguration().getPromptView().setVisible(false);
-	
+		
 // FIXME : commented next line adn added one line because of compilation error
 //		return cmd;
 		return "";

@@ -550,6 +550,13 @@ public class ScilabBridge {
 		ScilabConsoleBridge.setVisible(console, newVisibleState);
 	}
 
+	/**
+	 * Clears the console (no more scroll history and prompt on top left corner)
+	 */
+	public static void clear(Console console) {
+		ScilabConsoleBridge.clear(console);
+	}
+	
 	/*****************/
 	/* Canvas Bridge */
 	/*****************/
