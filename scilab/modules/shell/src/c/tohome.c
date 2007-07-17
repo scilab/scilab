@@ -22,8 +22,8 @@ BOOL tohome(void)
 	}
 	else
 	{
-		/* console Java */
-		bOK = TRUE;
+          /* Java Console */
+          bOK = PromptToHome();
 	}
 
 	return bOK;

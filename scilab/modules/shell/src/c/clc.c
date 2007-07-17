@@ -10,7 +10,7 @@
 BOOL clc(int nblines)
 {
 	BOOL bOK = FALSE;
-	if ( getScilabMode() == SCILAB_NWNI )
+	if ( getScilabMode() == SCILAB_NWNI || getScilabMode() == SCILAB_NW )
 	{
 		/* console C */
 		if (nblines != -1)
@@ -31,17 +31,20 @@ BOOL clc(int nblines)
 	}
 	else
 	{
-		/* console Java */
-		if ( nblines >= -1)
-		{
-			/* TO DO : java */
-			bOK = TRUE;
-		}
-		else
-		{
-			/* error */
-			bOK = FALSE;
-		}
+          /* Java Console*/
+          if ( nblines == -1) /* Clear the whole console window */
+            {
+              bOK = ClearConsole();
+            }
+          else if (nblines >= 0) /* Clear a part of the console window */
+            {
+              bOK = ClearConsolePart(nblines);
+            }
+          else
+            {
+              /* error */
+              bOK = FALSE;
+            }
 	}
 	return bOK;
 }

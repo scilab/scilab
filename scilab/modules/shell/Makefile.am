@@ -35,9 +35,11 @@ sci_gateway/c/sci_addhistory.c
 
 if GUI
 SHELL_C_SOURCES += src/c/ShellPrintf.c \
+src/c/ShellRead.c \
 src/c/PutChar_linux.c
 else
 SHELL_C_SOURCES += src/c/ShellPrintf_nogui.c \
+src/c/ShellRead_nogui.c \
 src/c/PutChar_linux_nogui.c
 endif
 

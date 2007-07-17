@@ -9,6 +9,7 @@
  *  - History functions changed to use linked lists
  * Modified by Sylvestre LEDRU (INRIA) 2007
  **********************************************************************/
+#include "scilabmode.h"
 #include "machine.h" 
 #include "sciprint.h"
 #include "sciprint_nd.h"
@@ -314,6 +315,9 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
   set_is_reading(TRUE); /* did not exist in old gtk version */
         
   setSearchedTokenInScilabHistory(NULL);                 
+  if (getScilabMode()==SCILAB_NW || getScilabMode()==SCILAB_NWNI || getScilabMode()==SCILAB_API)
+    {
+
   while(1) {  /* main loop to read keyboard input */
     /* get next keystroke (no echo) returns -1 if interrupted */
     keystroke = gchar_no_echo(*menusflag);
@@ -627,6 +631,18 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
     }
   }
 
+  }
+ else
+   {
+     /* Call Java Console to get a string */
+     *len_line = 0;
+     cursor = 0;
+     
+     strcpy(wk_buf,ShellRead());
+     
+     *buf_size = strlen(wk_buf);
+     /* End of call to Java Console */
+   }
  exit:
   /* copy to return buffer */
   if(get_echo_mode()==0)  
