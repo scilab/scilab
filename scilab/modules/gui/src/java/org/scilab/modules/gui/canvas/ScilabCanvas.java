@@ -5,6 +5,7 @@ package org.scilab.modules.gui.canvas;
 
 import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.container.Container;
+import org.scilab.modules.gui.dockable.ScilabDockable;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -12,7 +13,7 @@ import org.scilab.modules.gui.utils.Size;
  * Class for Scilab Canvas in GUIs
  * @author Vincent COUVERT
  */
-public class ScilabCanvas implements Canvas {
+public class ScilabCanvas extends ScilabDockable implements Canvas {
 
 	/**
 	 * Constructor
