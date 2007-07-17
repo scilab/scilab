@@ -10,11 +10,9 @@ import com.artenum.console.interfaces.core.HistoryManager;
  * @author Vincent COUVERT
  */
 public class SciHistoryManager implements HistoryManager {
-    
-	private String tmpEntry;
-    //private int maxNumberOfEntries; 
-    private boolean inHistory;
-
+	
+	private boolean isInHistory = true;
+	
 	/**
 	 * Constructor
 	 */
@@ -27,7 +25,7 @@ public class SciHistoryManager implements HistoryManager {
 	 * @see com.artenum.console.interfaces.core.HistoryManager#addEntry(java.lang.String)
 	 */
 	public void addEntry(String newEntry) {
-		HistoryManagement.AddHistory(newEntry);
+		HistoryManagement.appendLineToScilabHistory(newEntry);
 	}
 
 	/**
@@ -35,7 +33,7 @@ public class SciHistoryManager implements HistoryManager {
 	 * @see com.artenum.console.interfaces.core.HistoryManager#display()
 	 */
 	public void display() {
-		// TODO Auto-generated method stub
+		HistoryManagement.displayScilabHistory();
 	}
 
 	/**
@@ -45,8 +43,7 @@ public class SciHistoryManager implements HistoryManager {
 	 * @see com.artenum.console.interfaces.core.HistoryManager#getEntry(int)
 	 */
 	public String getEntry(int entryIndex) {
-		// TODO Auto-generated method stub
-		return null;
+		return HistoryManagement.getNthLineInScilabHistory(entryIndex);
 	}
 
 	/**
@@ -57,7 +54,11 @@ public class SciHistoryManager implements HistoryManager {
 	 */
 	public String getNextEntry(String beg) {
         /* Ask Scilab history manager for a matching entry */
-		return HistoryManagement.getNextEntry(beg);
+		if (HistoryManagement.getSearchedTokenInScilabHistory() != beg) {
+			System.out.println("New beg " + beg + " replace " + HistoryManagement.getSearchedTokenInScilabHistory());
+			HistoryManagement.setSearchedTokenInScilabHistory(beg);
+		}
+		return HistoryManagement.getNextLineInScilabHistory();
 	}
 
 	/**
@@ -68,7 +69,11 @@ public class SciHistoryManager implements HistoryManager {
 	 */
 	public String getPreviousEntry(String beg) {
         /* Ask Scilab history manager for a matching entry */
-		return HistoryManagement.getPreviousEntry(beg);
+		if (HistoryManagement.getSearchedTokenInScilabHistory() != beg) {
+			System.out.println("New beg " + beg + " replace " + HistoryManagement.getSearchedTokenInScilabHistory());
+			HistoryManagement.setSearchedTokenInScilabHistory(beg);
+		}
+		return HistoryManagement.getPreviousLineInScilabHistory();
 	}
 
 	/**
@@ -112,9 +117,9 @@ public class SciHistoryManager implements HistoryManager {
 	 */
 	public void setTmpEntry(String currentCommandLine) {
 		if (currentCommandLine != null && currentCommandLine.trim().equals("")) {
-			this.tmpEntry = "";
+			HistoryManagement.setSearchedTokenInScilabHistory("");
 		} else {
-			this.tmpEntry = currentCommandLine;
+			HistoryManagement.setSearchedTokenInScilabHistory(currentCommandLine);
 		}
 	}
 
@@ -124,7 +129,7 @@ public class SciHistoryManager implements HistoryManager {
 	 * @see com.artenum.console.interfaces.core.HistoryManager#getTmpEntry()
 	 */
 	public String getTmpEntry() {
-		return this.tmpEntry;
+		return HistoryManagement.getSearchedTokenInScilabHistory();
 	}
 
 	/**
@@ -133,8 +138,9 @@ public class SciHistoryManager implements HistoryManager {
 	 * @see com.artenum.console.interfaces.core.HistoryManager#isInHistory()
 	 */
 	public boolean isInHistory() {
-        return this.inHistory;
-}
+		/* Nothing to do in because Scilab core does the work */
+		return isInHistory;
+	}
 
 	/**
 	 * Sets the flag saying that we are browsing history or not
@@ -142,20 +148,7 @@ public class SciHistoryManager implements HistoryManager {
 	 * @see com.artenum.console.interfaces.core.HistoryManager#setInHistory(boolean)
 	 */
 	public void setInHistory(boolean status) {
-		if (status) {
-			HistoryManagement.setNewSearchInHistory(1);
-			
-		}
-		this.inHistory = status;
-	}
-
-	/**
-	 * Gets next line/block in Scilab history beginning with a given character set
-	 * @param beg character set
-	 * @return the entry
-	 * @see com.artenum.console.interfaces.core.HistoryManager#getNextEntry(int)
-	 */
-	public String searchBackward(String beg) {
-			return HistoryManagement.searchBackward(beg);
+		/* Nothing to do in because Scilab core does the work */
+		isInHistory = status;
 	}
 }

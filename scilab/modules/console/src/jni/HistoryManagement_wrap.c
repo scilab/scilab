@@ -172,81 +172,26 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 #define SWIG_contract_assert(nullreturn, expr, msg) if (!(expr)) {SWIG_JavaThrowException(jenv, SWIG_JavaIllegalArgumentException, msg); return nullreturn; } else
 
 
-#include "../c/HistoryManagement.h"
+#include "../../../shell/includes/HistoryManager_c.h"
 
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-SWIGEXPORT jstring JNICALL Java_HistoryManagementJNI_getNextEntry(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_scilab_modules_console_HistoryManagementJNI_getSearchedTokenInScilabHistory(JNIEnv *jenv, jclass jcls) {
   jstring jresult = 0 ;
-  char *arg1 = (char *) 0 ;
   char *result = 0 ;
   
   (void)jenv;
   (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return 0;
-  }
-  result = (char *)getNextEntry(arg1);
+  result = (char *)getSearchedTokenInScilabHistory();
   if(result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_HistoryManagementJNI_getPreviousEntry(JNIEnv *jenv, jclass jcls, jstring jarg1) {
-  jstring jresult = 0 ;
-  char *arg1 = (char *) 0 ;
-  char *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return 0;
-  }
-  result = (char *)getPreviousEntry(arg1);
-  if(result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
-  return jresult;
-}
-
-
-SWIGEXPORT void JNICALL Java_HistoryManagementJNI_setNewSearchInHistory(JNIEnv *jenv, jclass jcls, jint jarg1) {
-  int arg1 ;
-  
-  (void)jenv;
-  (void)jcls;
-  arg1 = (int)jarg1; 
-  //setNewSearchInHistory(arg1);
-}
-
-
-SWIGEXPORT jstring JNICALL Java_HistoryManagementJNI_searchBackward(JNIEnv *jenv, jclass jcls, jstring jarg1) {
-  jstring jresult = 0 ;
-  char *arg1 = (char *) 0 ;
-  char *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return 0;
-  }
-  result = (char *)searchBackward(arg1);
-  if(result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
-  return jresult;
-}
-
-
-SWIGEXPORT void JNICALL Java_HistoryManagementJNI_AddHistory(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT void JNICALL Java_org_scilab_modules_console_HistoryManagementJNI_setSearchedTokenInScilabHistory(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   char *arg1 = (char *) 0 ;
   
   (void)jenv;
@@ -256,8 +201,72 @@ SWIGEXPORT void JNICALL Java_HistoryManagementJNI_AddHistory(JNIEnv *jenv, jclas
     arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
     if (!arg1) return ;
   }
- // AddHistory(arg1);
+  setSearchedTokenInScilabHistory(arg1);
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+}
+
+
+SWIGEXPORT jstring JNICALL Java_org_scilab_modules_console_HistoryManagementJNI_getNextLineInScilabHistory(JNIEnv *jenv, jclass jcls) {
+  jstring jresult = 0 ;
+  char *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (char *)getNextLineInScilabHistory();
+  if(result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_org_scilab_modules_console_HistoryManagementJNI_getPreviousLineInScilabHistory(JNIEnv *jenv, jclass jcls) {
+  jstring jresult = 0 ;
+  char *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (char *)getPreviousLineInScilabHistory();
+  if(result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_console_HistoryManagementJNI_appendLineToScilabHistory(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jint jresult = 0 ;
+  char *arg1 = (char *) 0 ;
+  BOOL result;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = 0;
+  if (jarg1) {
+    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+    if (!arg1) return 0;
+  }
+  result = (BOOL)appendLineToScilabHistory(arg1);
+  jresult = (jint)result; 
+  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_scilab_modules_console_HistoryManagementJNI_displayScilabHistory(JNIEnv *jenv, jclass jcls) {
+  (void)jenv;
+  (void)jcls;
+  displayScilabHistory();
+}
+
+
+SWIGEXPORT jstring JNICALL Java_org_scilab_modules_console_HistoryManagementJNI_getNthLineInScilabHistory(JNIEnv *jenv, jclass jcls, jint jarg1) {
+  jstring jresult = 0 ;
+  int arg1 ;
+  char *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = (int)jarg1; 
+  result = (char *)getNthLineInScilabHistory(arg1);
+  if(result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+  return jresult;
 }
 
 

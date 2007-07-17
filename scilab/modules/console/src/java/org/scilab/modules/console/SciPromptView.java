@@ -24,10 +24,14 @@ public class SciPromptView extends JPanel implements PromptView {
 	private static final long serialVersionUID = 1L;
 	
 	private static final String DEFAULT_PROMPT = "-->";
-	private static final String DEFAULT_IN_BLOCK_PROMPT = "-->";
+	private static final String DEFAULT_IN_BLOCK_PROMPT = DEFAULT_PROMPT;
 	private static final String HTML_START = "<html>";
 	private static final String HTML_NEW_LINE = "<br/>";
 	private static final String HTML_END = "</html>";
+	private static final String SEMI_COLON = ";";
+	private static final String PARAGRAPH_END = "</P>";
+	private static final String ZERO_STRING = "0";
+	
 	private String defaultPrompt;
 	private String inBlockPrompt;
 	private InputParsingManager inputParsingManager;
@@ -94,12 +98,12 @@ public class SciPromptView extends JPanel implements PromptView {
 		promptTextContent.append(HTML_START);
 		
 		// Text Color
-		String textStyle = "<P style=\"color:" + colorToString(promptUI.getForeground()) + ";";
+		String textStyle = "<P style=\"color:" + colorToString(promptUI.getForeground()) + SEMI_COLON;
 		
 		// Text Font
 		if (promptUI.isFontSet()) {
 			textStyle += "font-size:" + promptUI.getFont().getSize() + "pt;";
-			textStyle += "font-family:" + promptUI.getFont().getName() + ";";
+			textStyle += "font-family:" + promptUI.getFont().getName() + SEMI_COLON;
 			if (promptUI.getFont().isBold()) {
 				textStyle += "font-weight:bold;";
 			}
@@ -110,12 +114,12 @@ public class SciPromptView extends JPanel implements PromptView {
 		}
 		textStyle += "\">";
 
-		promptTextContent.append(textStyle + defaultPrompt.replaceAll(">", "&gt;") + "</P>");
+		promptTextContent.append(textStyle + defaultPrompt.replaceAll(">", "&gt;") + PARAGRAPH_END);
 		
 		int nbLineToShow = inputParsingManager.getNumberOfLines();
 		while (nbLineToShow-- > 1) {
 			promptTextContent.append(HTML_NEW_LINE);
-			promptTextContent.append(textStyle + inBlockPrompt + "</P>");
+			promptTextContent.append(textStyle + inBlockPrompt + PARAGRAPH_END);
 		}
 		promptTextContent.append(HTML_END);
 		promptUI.setText(promptTextContent.toString());
@@ -193,23 +197,30 @@ public class SciPromptView extends JPanel implements PromptView {
 		String strColor = "#";
 		String s = Integer.toHexString(c.getRed());
 		if (s.length() == 1) {
-			strColor += "0" + s;
+			strColor += ZERO_STRING + s;
 		} else {
 			strColor += s;
 		}
 		s = Integer.toHexString(c.getGreen());
 		if (s.length() == 1) {
-			strColor += "0" + s;
+			strColor += ZERO_STRING + s;
 		} else {
 			strColor += s;
 		}
 		s = Integer.toHexString(c.getBlue());
 		if (s.length() == 1) {
-			strColor += "0" + s;
+			strColor += ZERO_STRING + s;
 		} else {
 			strColor += s;
 		}
 		return strColor;
 	}
 
+	/**
+	 * @return the prompt JLabel
+	 */
+	public JLabel getPromptUI() {
+		return promptUI;
+	}
+	
 }

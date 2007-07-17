@@ -179,7 +179,7 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 extern "C" {
 #endif
 
-SWIGEXPORT void JNICALL Java_GuiManagementJNI_setScilabLines(JNIEnv *jenv, jclass jcls, jint jarg1, jint jarg2) {
+SWIGEXPORT void JNICALL Java_org_scilab_modules_console_GuiManagementJNI_setScilabLines(JNIEnv *jenv, jclass jcls, jint jarg1, jint jarg2) {
   int arg1 ;
   int arg2 ;
   

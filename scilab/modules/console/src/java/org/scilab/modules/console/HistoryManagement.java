@@ -6,8 +6,6 @@
  * the SWIG interface file instead.
  * ----------------------------------------------------------------------------- */
 
-
-
 package org.scilab.modules.console;
 
 
@@ -18,59 +16,74 @@ package org.scilab.modules.console;
    */
 public class HistoryManagement {
 
- /**
-   * Constructor
-   */
- protected HistoryManagement() {
+  /**
+    * Constructor
+    */
+  protected HistoryManagement() {
 	throw new UnsupportedOperationException();
- }
+  }
+  
+ /**
+   * Gets the token used as the beginning of the search entry
+   * @return the token
+   */
+ static String getSearchedTokenInScilabHistory() {
+    return HistoryManagementJNI.getSearchedTokenInScilabHistory();
+  }
+
+  
+ /**
+   * Sets the token used as the beginning of the search entry
+   * @param token the token to used for next search
+   */
+ static void setSearchedTokenInScilabHistory(String token) {
+    HistoryManagementJNI.setSearchedTokenInScilabHistory(token);
+  }
+
   
  /**
    * Gets next entry in Scilab history beginning with a user input
-   * @param beg the beginning of the entry we are looking for
    * @return next matching entry or null if no entry found
    */
- static String getNextEntry(String beg) {
-    return HistoryManagementJNI.getNextEntry(beg);
+ static String getNextLineInScilabHistory() {
+    return HistoryManagementJNI.getNextLineInScilabHistory();
   }
 
   
- /**
+ /***
    * Gets previous entry in Scilab history beginning with a user input
-   * @param beg the beginning of the entry we are looking for
    * @return previous matching entry or null if no entry found
    */
- static String getPreviousEntry(String beg) {
-    return HistoryManagementJNI.getPreviousEntry(beg);
-  }
-
-  
- /**
-   * Resets all pointers to history initilized by a previous history search
-   * @param state if true then all pointers are reset
-   */
- static void setNewSearchInHistory(int state) {
-    HistoryManagementJNI.setNewSearchInHistory(state);
-  }
-
-  
- /**
-   * Gets previous entry in Scilab history beginning with a user input
-   * (used for history browsing based on user input beginning with a !)
-   * @param line the beginning of the entry we are looking for
-   * @return previous matching entry or null if no entry found
-   */
- static String searchBackward(String line) {
-    return HistoryManagementJNI.searchBackward(line);
+ static String getPreviousLineInScilabHistory() {
+    return HistoryManagementJNI.getPreviousLineInScilabHistory();
   }
 
   
  /**
    * Adds an entry to Scilab history
    * @param line the line to add to Scilab history
+   * @return status flag indicating if the operation failed or not
    */
- static void AddHistory(String line) {
-    HistoryManagementJNI.AddHistory(line);
+ static int appendLineToScilabHistory(String line) {
+    return HistoryManagementJNI.appendLineToScilabHistory(line);
+  }
+
+  
+ /**
+   * Displays Scilab history
+   */
+ static void displayScilabHistory() {
+    HistoryManagementJNI.displayScilabHistory();
+  }
+
+  
+ /**
+  * Get the Nth Line in history
+  * @param n the number of the line
+  * @return the Nth Line
+  */
+ static String getNthLineInScilabHistory(int n) {
+    return HistoryManagementJNI.getNthLineInScilabHistory(n);
   }
 
 }

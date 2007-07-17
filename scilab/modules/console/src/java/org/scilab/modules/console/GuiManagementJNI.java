@@ -6,8 +6,6 @@
  * the SWIG interface file instead.
  * ----------------------------------------------------------------------------- */
 
-
-
 package org.scilab.modules.console;
 
 

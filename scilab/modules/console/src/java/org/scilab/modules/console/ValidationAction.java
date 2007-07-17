@@ -53,7 +53,8 @@ public class ValidationAction extends AbstractConsoleAction {
 			if (!cmdToExecute.isEmpty() && cmdToExecute.charAt(0) == '!') {
 				// Cast HistoryManager to SciHistoryManager 
 				// because searchBackward will not to be implemented in all not-generic console
-				histEntry = ((SciHistoryManager) configuration.getHistoryManager()).searchBackward(cmdToExecute.substring(1));
+				((SciHistoryManager) configuration.getHistoryManager()).setTmpEntry(cmdToExecute.substring(1));
+				histEntry = ((SciHistoryManager) configuration.getHistoryManager()).getPreviousEntry(cmdToExecute.substring(1));
 				if (histEntry != null) {
 					configuration.getInputCommandView().reset();
 					configuration.getInputCommandView().append(histEntry);
@@ -67,16 +68,16 @@ public class ValidationAction extends AbstractConsoleAction {
 			
 			// Reset history settings
 			configuration.getHistoryManager().setTmpEntry(null);
-			configuration.getHistoryManager().setInHistory(false);
 			
 			// Hide the prompt and command line
-			configuration.getInputCommandView().setVisible(false);
+			configuration.getInputCommandView().setEditable(false);
 			configuration.getPromptView().setVisible(false);
 
 			// Print the command in the output view
 			boolean firstPrompt = true;
+			outputView.setCaretPositionToEnd();
 			for (String line : cmdToExecute.split(StringConstants.NEW_LINE)) {
-				
+
 				outputView.append(StringConstants.NEW_LINE);
 				if (firstPrompt) {
 					firstPrompt = false;
@@ -87,7 +88,7 @@ public class ValidationAction extends AbstractConsoleAction {
 				outputView.append(line);
 			}
 			outputView.append(StringConstants.NEW_LINE);
-			
+
 			// Store the command in the buffer so that Scilab can read it
 			((SciInputCommandView) configuration.getInputCommandView()).setCmdBuffer(cmdToExecute);
 			((SciHistoryManager) configuration.getHistoryManager()).addEntry(cmdToExecute);

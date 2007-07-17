@@ -1,9 +1,12 @@
 /* HistoryManagement.i */
 /* To run this file execute the command below from current directory */
 /*  swig -java -package org.scilab.modules.console -outdir ../java/org/scilab/modules/console/ HistoryManagement.i */
+
+%include <windows.i>
+
 %module HistoryManagement
 %{
-#include "../c/HistoryManagement.h"
+#include "../../../shell/includes/HistoryManager_c.h"
 %}
 
 /* JavaDoc for HistoryManagementJNI class */
@@ -17,12 +20,12 @@ class%}
 
 /* Constructor for HistoryManagementJNI class */
 %pragma(java) jniclasscode="
-  /**
-    * Constructor
-    */
-  protected HistoryManagementJNI() {
-	throw new UnsupportedOperationException();
-  }";
+ /**
+   * Constructor
+   */
+ protected HistoryManagementJNI() {
+        throw new UnsupportedOperationException();
+ }";
 
 /* JavaDoc for HistoryManagement class */
 %pragma(java) moduleclassmodifiers="
@@ -35,59 +38,73 @@ public class";
 
 /* Constructor for HistoryManagement class */
 %pragma(java) modulecode="
- /**
-   * Constructor
-   */
- protected HistoryManagement() {
+  /**
+    * Constructor
+    */
+  protected HistoryManagement() {
 	throw new UnsupportedOperationException();
- }";
+  }";
 
 /* JavaDoc */
-%javamethodmodifiers getNextEntry(char *beg) "
+%javamethodmodifiers getSearchedTokenInScilabHistory(void) "
+ /**
+   * Gets the token used as the beginning of the search entry
+   * @return the token
+   */
+";
+char *getSearchedTokenInScilabHistory(void);
+
+/* JavaDoc */
+%javamethodmodifiers setSearchedTokenInScilabHistory(char *token) "
+ /**
+   * Sets the token used as the beginning of the search entry
+   * @param token the token to used for next search
+   */
+";
+void setSearchedTokenInScilabHistory(char *token);
+
+/* JavaDoc */
+%javamethodmodifiers getNextLineInScilabHistory(void) "
  /**
    * Gets next entry in Scilab history beginning with a user input
-   * @param beg the beginning of the entry we are looking for
    * @return next matching entry or null if no entry found
    */
 ";
-char *getNextEntry(char *beg);
+char *getNextLineInScilabHistory(void);
 
 /* JavaDoc */
-%javamethodmodifiers getPreviousEntry(char *beg) "
- /**
+%javamethodmodifiers getPreviousLineInScilabHistory(void) "
+ /***
    * Gets previous entry in Scilab history beginning with a user input
-   * @param beg the beginning of the entry we are looking for
    * @return previous matching entry or null if no entry found
    */
 ";
-char *getPreviousEntry(char *beg);
+char *getPreviousLineInScilabHistory(void);
 
 /* JavaDoc */
-%javamethodmodifiers setNewSearchInHistory(int state) "
- /**
-   * Resets all pointers to history initilized by a previous history search
-   * @param state if true then all pointers are reset
-   */
-";
-void setNewSearchInHistory(int state);
-
-/* JavaDoc */
-%javamethodmodifiers searchBackward(char *line) "
- /**
-   * Gets previous entry in Scilab history beginning with a user input
-   * (used for history browsing based on user input beginning with a !)
-   * @param line the beginning of the entry we are looking for
-   * @return previous matching entry or null if no entry found
-   */
-";
-char *searchBackward(char *line);
-
-/* JavaDoc */
-%javamethodmodifiers AddHistory(char *line) "
+%javamethodmodifiers appendLineToScilabHistory(char *line) "
  /**
    * Adds an entry to Scilab history
    * @param line the line to add to Scilab history
+   * @return status flag indicating if the operation failed or not
    */
 ";
-void AddHistory(char *line);
+BOOL appendLineToScilabHistory(char *line);
 
+/* JavaDoc */
+%javamethodmodifiers displayScilabHistory(void) "
+ /**
+   * Displays Scilab history
+   */
+";
+void displayScilabHistory(void);
+
+/* JavaDoc */
+%javamethodmodifiers getNthLineInScilabHistory(int n) "
+ /**
+  * Get the Nth Line in history
+  * @param n the number of the line
+  * @return the Nth Line
+  */
+";
+char *getNthLineInScilabHistory(int n);

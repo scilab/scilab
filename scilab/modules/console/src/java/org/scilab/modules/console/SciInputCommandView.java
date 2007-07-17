@@ -38,8 +38,8 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 	 */
 	public SciInputCommandView() {
 		super();
-		// Input command line is invisible when created
-		setVisible(false);
+		// Input command line is not editable when created
+		this.setEditable(false);
 	}
 
 	/**
@@ -112,4 +112,8 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * @param dte drop event
+	 */
 }

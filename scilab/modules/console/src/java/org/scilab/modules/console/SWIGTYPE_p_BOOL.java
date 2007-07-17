@@ -8,19 +8,19 @@
 
 package org.scilab.modules.console;
 
+public class SWIGTYPE_p_BOOL {
+  private long swigCPtr;
 
- /** 
-   * All Scilab interpreter management used in Java console 
-   * @author Vincent COUVERT
-   * @copyright INRIA 
-   */
-class InterpreterManagementJNI {
-
-  /**
-    * Constructor
-    */
-  protected InterpreterManagementJNI() {
-	throw new UnsupportedOperationException();
+  protected SWIGTYPE_p_BOOL(long cPtr, boolean futureUse) {
+    swigCPtr = cPtr;
   }
-  public final static native int putCommandInScilabQueue(String jarg1);
+
+  protected SWIGTYPE_p_BOOL() {
+    swigCPtr = 0;
+  }
+
+  protected static long getCPtr(SWIGTYPE_p_BOOL obj) {
+    return (obj == null) ? 0 : obj.swigCPtr;
+  }
 }
+

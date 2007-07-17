@@ -6,8 +6,6 @@
  * the SWIG interface file instead.
  * ----------------------------------------------------------------------------- */
 
-
-
 package org.scilab.modules.console;
 
 
@@ -18,15 +16,17 @@ package org.scilab.modules.console;
    */
 class HistoryManagementJNI {
 
-  /**
-    * Constructor
-    */
-  protected HistoryManagementJNI() {
-	throw new UnsupportedOperationException();
-  }
-  public final static native String getNextEntry(String jarg1);
-  public final static native String getPreviousEntry(String jarg1);
-  public final static native void setNewSearchInHistory(int jarg1);
-  public final static native String searchBackward(String jarg1);
-  public final static native void AddHistory(String jarg1);
+ /**
+   * Constructor
+   */
+ protected HistoryManagementJNI() {
+        throw new UnsupportedOperationException();
+ }
+  public final static native String getSearchedTokenInScilabHistory();
+  public final static native void setSearchedTokenInScilabHistory(String jarg1);
+  public final static native String getNextLineInScilabHistory();
+  public final static native String getPreviousLineInScilabHistory();
+  public final static native int appendLineToScilabHistory(String jarg1);
+  public final static native void displayScilabHistory();
+  public final static native String getNthLineInScilabHistory(int jarg1);
 }

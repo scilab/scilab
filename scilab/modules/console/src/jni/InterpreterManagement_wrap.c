@@ -179,7 +179,7 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 extern "C" {
 #endif
 
-SWIGEXPORT jint JNICALL Java_InterpreterManagementJNI_putCommandInScilabQueue(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_console_InterpreterManagementJNI_putCommandInScilabQueue(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jint jresult = 0 ;
   char *arg1 = (char *) 0 ;
   int result;
