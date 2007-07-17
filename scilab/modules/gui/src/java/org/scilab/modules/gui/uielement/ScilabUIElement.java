@@ -97,7 +97,7 @@ public abstract class ScilabUIElement implements UIElement {
 	 * Sets the menubar associated to an UIElement
 	 * @param menuBar the menuBar to set
 	 */
-	public void setMenuBar(MenuBar menuBar) {
+	public void addMenuBar(MenuBar menuBar) {
 		this.menuBar = menuBar;
 	}
 
@@ -131,7 +131,7 @@ public abstract class ScilabUIElement implements UIElement {
 	 * Sets the toolbar associated to an UIElement
 	 * @param toolBar the toolBar to set
 	 */
-	public void setToolBar(ToolBar toolBar) {
+	public void addToolBar(ToolBar toolBar) {
 		this.toolBar = toolBar;
 	}
 
