@@ -3,6 +3,7 @@
 
 package org.scilab.modules.gui.window;
 
+import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.textbox.SimpleTextBox;
 import org.scilab.modules.gui.uielement.SimpleUIElement;
 
@@ -28,8 +29,7 @@ public interface SimpleWindow extends SimpleUIElement {
 	 * Add a tab to a window
 	 * @param newTab the tab to add to the window
 	 */
-//	 TODO uncomment when SimpleTab ready
-//	void addTab(SimpleTab newTab);
+	void addTab(SimpleTab newTab);
 	
 	/**
 	 * Sets a InfoBar to a window

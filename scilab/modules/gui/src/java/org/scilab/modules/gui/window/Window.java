@@ -5,6 +5,7 @@ package org.scilab.modules.gui.window;
 
 import org.scilab.modules.gui.uielement.UIElement;
 import org.scilab.modules.gui.menubar.MenuBar;
+import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 
@@ -16,8 +17,8 @@ import org.scilab.modules.gui.toolbar.ToolBar;
 public interface Window extends UIElement {
 
 	/**
-	 * Gets this Bridge component object
-	 * @return this Bridge component object
+	 * Gets a much more dummy Objects
+	 * @return the component.
 	 */
 	SimpleWindow getAsSimpleWindow();
 	
@@ -37,7 +38,7 @@ public interface Window extends UIElement {
 	 * Add a tab to a window
 	 * @param newTab the tab to add to the window
 	 */
-//	void addTab(Tab newTab);
+	void addTab(Tab newTab);
 	
 	/**
 	 * Sets a InfoBar to a window

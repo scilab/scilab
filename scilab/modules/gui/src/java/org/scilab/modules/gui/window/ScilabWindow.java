@@ -5,6 +5,7 @@ package org.scilab.modules.gui.window;
 
 import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.uielement.ScilabUIElement;
+import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
@@ -41,8 +42,8 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	}
 
 	/**
-	 * Gets this Bridge component object
-	 * @return this Bridge component object
+	 * Gets the GUI Window.
+	 * @return the GUI dummy window.
 	 */
 	public SimpleWindow getAsSimpleWindow() {
 		return component;
@@ -133,10 +134,9 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 * @param newTab the tab to add to the window
 	 * @see org.scilab.modules.gui.window.Window#addTab(org.scilab.modules.gui.tab.Tab)
 	 */
-//	TODO uncomment when TabBridge ready	
-//	public void addTab(Tab newTab) {
-//		ScilabBridge.addTab(component, newTab.component);
-//	}
+	public void addTab(Tab newTab) {
+		ScilabBridge.addTab(component, newTab.getAsSimpleTab());
+	}
 
 	/**
 	 * Sets a MeunBar to a Scilab window
@@ -145,7 +145,6 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 */
 	public void addMenuBar(MenuBar newMenuBar) {
 		super.addMenuBar(newMenuBar);
-		// FIXME : Do it a standard way : getAsMenuBar
 		ScilabBridge.addMenuBar(component, newMenuBar.getAsSimpleMenuBar());
 	}
 	

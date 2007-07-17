@@ -4,6 +4,7 @@
 package org.scilab.modules.gui.window;
 
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
+import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.SimpleTextBox;
 import org.scilab.modules.gui.toolbar.SimpleToolBar;
@@ -119,10 +120,9 @@ public class ScilabWindowBridge {
 	 * @param window the window which we want to add the tab to
 	 * @param newTab the tab to add to the window
 	 */
-	// TODO uncomment when SimpleTab ready
-//	public static void addTab(SimpleWindow window, SimpleTab newTab) {
-//		window.addTab(newTab);
-//	}
+	public static void addTab(SimpleWindow window, SimpleTab newTab) {
+		window.addTab(newTab);
+	}
 	
 	/**
 	 * Sets a MenuBar to a Scilab window
