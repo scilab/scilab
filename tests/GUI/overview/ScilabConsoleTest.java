@@ -10,7 +10,7 @@ import javax.swing.UIManager;
 
 import org.flexdock.docking.DockingManager;
 import org.flexdock.util.SwingUtility;
-import org.scilab.modules.gui.bridge.SwingScilabConsole;
+import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.frame.Frame;

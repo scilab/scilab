@@ -7,9 +7,14 @@ import java.awt.event.*;
 
 import javax.swing.UIManager;
 
-
 import org.flexdock.util.SwingUtility;
 import org.flexdock.docking.DockingManager;
+import org.scilab.modules.gui.canvas.Canvas;
+import org.scilab.modules.gui.canvas.ScilabCanvas;
+import org.scilab.modules.gui.console.Console;
+import org.scilab.modules.gui.console.ScilabConsole;
+import org.scilab.modules.gui.frame.Frame;
+import org.scilab.modules.gui.frame.ScilabFrame;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -24,6 +29,8 @@ import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.utils.Position;
+import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
 
@@ -31,12 +38,12 @@ import org.scilab.modules.gui.window.Window;
  * Basic test 
  * @author Marouane BEN JELLOUL
  */
-public class WindowTest1 {
+public class WindowTest2 {
 
 	/**
 	 * Constructor
 	 */
-	protected WindowTest1() {
+	protected WindowTest2() {
         throw new UnsupportedOperationException(); /* Prevents calls from subclass */
 	}
 
@@ -57,13 +64,13 @@ public class WindowTest1 {
 	}
 
 	/**
-	 * Creates and show WindowTest1
+	 * Creates and show WindowTest2
 	 */
 	private static void createAndShowGui() {
-		System.out.println("-*- Starting Program WindowTest1 -*-");
+		System.out.println("-*- Starting Program WindowTest2 -*-");
 
 		Window mainView = ScilabWindow.createWindow();
-		mainView.setTitle("WindowTest1");
+		mainView.setTitle("WindowTest2");
 		
 		// menuBar
 		MenuBar menuBar = ScilabMenuBar.createMenuBar();
@@ -117,7 +124,7 @@ public class WindowTest1 {
 		mainView.addInfoBar(infoBar);
 		System.out.println("mainView.infoBar Added : result = " + mainView.getInfoBar());
 		
-		// adding Main tab to a window
+//		adding Main tab to a window
 		Tab mainTab = ScilabTab.createTab("Main");
 		
 		mainView.addTab(mainTab);
@@ -126,17 +133,41 @@ public class WindowTest1 {
 		Tab helpTab = ScilabTab.createTab("Help");
 		
 		mainView.addTab(helpTab);
+
+//		 adding Console tab to a window
+		Tab consoleTab = ScilabTab.createTab("Console");
+//		Console console = ScilabConsole.createConsole();
+//		consoleTab.addMember(console);
+		mainView.addTab(consoleTab);
+
+//		 adding Canvas tab to a window
+		Tab canvasTab = ScilabTab.createTab("Canvas");		
+		Canvas canvas = ScilabCanvas.createCanvas();
+		canvasTab.addMember(canvas);
+		mainView.addTab(canvasTab);
+
+//		creating Test tab
+		Tab testTab = ScilabTab.createTab("Test");
 		
-//		 adding Graph tab to a window
-		Tab graphTab = ScilabTab.createTab("Graph");
+//		adding a frame to the testTab
+		Frame frame1 = ScilabFrame.createFrame();
 		
-		mainView.addTab(graphTab);
+		// pushButton on frame
+		PushButton pushButton1 = ScilabPushButton.createPushButton();
+		pushButton1.setText("push Button in a Frame");
+		pushButton1.setPosition(new Position(0,0));
+		pushButton1.setDims(new Size(200,20));
+		frame1.addMember(pushButton1);
 		
+		testTab.addMember(frame1);
+		
+//		adding Test tab to a window
+		mainView.addTab(testTab);
 		// draw
 		mainView.draw();
 		
-		mainView.getInfoBar().setText("Loaded WindowTest1");
-		System.out.println("-*- Last Line Program WindowTest1 -*-");
+		mainView.getInfoBar().setText("Loaded WindowTest2");
+		System.out.println("-*- Last Line Program WindowTest2 -*-");
 	}	
 
 }

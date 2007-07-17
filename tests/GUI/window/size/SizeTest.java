@@ -16,17 +16,10 @@ import org.scilab.modules.gui.window.Window;
  */
 public class SizeTest {
 
-	private static final int DEFAULTWIDTH = 100;
-	private static final int DEFAULTHEIGHT = 100;
+	private static final int DEFAULTWIDTH = 400;
+	private static final int DEFAULTHEIGHT = 500;
 	private static final int NEWWIDTH = 500;
 	private static final int NEWHEIGHT = 800;
-
-	/**
-	 * Constructor for class SizeTest
-	 */
-	public SizeTest() {
-		throw new UnsupportedOperationException(); /* Prevents calls from subclass */
-	};
 
 	/**
 	 * Default window size test
