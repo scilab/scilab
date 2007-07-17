@@ -28,8 +28,11 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 */
 	protected ScilabWindow() {
 		component = ScilabBridge.createWindow();
-		super.setMenuBar(null);
-		super.setToolBar(null);
+		super.addMenuBar(null);
+		super.addToolBar(null);
+		// FIXME : infoBar must not be null when creating a Window !!
+		// Setter should not exists as used in java.
+		// Just think Scilab...
 		this.infoBar = null;
 	}
 
@@ -42,8 +45,8 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	}
 
 	/**
-	 * Gets this Bridge component object
-	 * @return this Bridge component object
+	 * Gets the GUI Window.
+	 * @return the GUI dummy window.
 	 */
 	public SimpleWindow getAsSimpleWindow() {
 		return component;
@@ -133,7 +136,7 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 * Add a tab to a Scilab window
 	 * @param newTab the tab to add to the window
 	 * @see org.scilab.modules.gui.window.Window#addTab(org.scilab.modules.gui.tab.Tab)
-	 */	
+	 */
 	public void addTab(Tab newTab) {
 		ScilabBridge.addTab(component, newTab.getAsSimpleTab());
 	}
@@ -144,7 +147,7 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 * @see org.scilab.modules.gui.window.Window#setMenuBar(org.scilab.modules.gui.widget.MenuBar)
 	 */
 	public void addMenuBar(MenuBar newMenuBar) {
-		super.setMenuBar(newMenuBar);
+		super.addMenuBar(newMenuBar);
 		ScilabBridge.addMenuBar(component, newMenuBar.getAsSimpleMenuBar());
 	}
 	
@@ -154,7 +157,7 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 * @see org.scilab.modules.gui.window.Window#setToolBar(org.scilab.modules.gui.toolbar.ToolBar)
 	 */
 	public void addToolBar(ToolBar newToolBar) {
-		super.setToolBar(newToolBar);
+		super.addToolBar(newToolBar);
 		ScilabBridge.addToolBar(component, newToolBar.getAsSimpleToolBar());
 	}
 	
