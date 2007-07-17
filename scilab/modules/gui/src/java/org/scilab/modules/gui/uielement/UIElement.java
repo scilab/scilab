@@ -24,13 +24,15 @@ public interface UIElement {
 	 * Associate the Tool bar to the UIElement
 	 * @param toolBarToAdd - the Tool bar.
 	 */
-	void addToolBar(ToolBar toolBarToAdd);
+	// FIXME : Must be available at all !!
+	//	void addToolBar(ToolBar toolBarToAdd);
 
 	/**
 	 * Associate the Menu bar to the UIElement
 	 * @param toolMenuToAdd - the Tool bar.
 	 */
-	void addMenuBar(MenuBar toolMenuToAdd);
+	// FIXME : Must be available at all !!
+	//void addMenuBar(MenuBar toolMenuToAdd);
 
 //	public abstract void resize();
 //
