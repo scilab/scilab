@@ -27,12 +27,12 @@ public class SwingScilabSlider extends JSlider implements Slider {
 		setSnapToTicks(true);
 	}
 	
-	// TODO Question: What do we do with draw() for a Slider ?
 	/**
 	 * 
 	 */
 	public void draw() {
-		// TODO Auto-generated method stub
+		this.setVisible(true);
+		this.doLayout();
 	}
 
 	/**

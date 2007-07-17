@@ -15,7 +15,7 @@ import org.scilab.modules.gui.text.TextBridge;
  * Interface for EditBoxBridge the associated object to Scilab GUIs EditBox
  * @author Marouane BEN JELLOUL
  */
-public interface EditBoxBridge extends TextBridge {
+public interface SimpleEditBox extends TextBridge {
 	
 
 	// TODO ============= En Developpement ==========/

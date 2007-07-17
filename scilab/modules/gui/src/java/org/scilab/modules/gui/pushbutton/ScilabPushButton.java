@@ -48,7 +48,6 @@ public class ScilabPushButton extends ScilabWidget implements PushButton {
 		return component;
 	}
 	
-	
 	/**
 	 * Sets the text of a PushButton
 	 * @param newText the text to set to the PushButton
@@ -57,13 +56,11 @@ public class ScilabPushButton extends ScilabWidget implements PushButton {
 		ScilabBridge.setText(component, newText);
 	}
 	
-//	TODO Question: What do we do with draw() for a PushButton ?
 	/**
 	 * Draws a PushButton
 	 */
 	public void draw() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException(); 
+		ScilabBridge.draw(component);
 	}
 	
 	/**
@@ -72,10 +69,7 @@ public class ScilabPushButton extends ScilabWidget implements PushButton {
 	 * @see org.scilab.modules.gui.uielement.UIElement#setDims(org.scilab.modules.gui.utils.Size)
 	 */
 	public void setDims(Size newSize) {
-//		TODO QUESTION is this code needed or this methode can be empty ?
-//		TODO uncomment if needed and code the needed methodes
-		//ScilabBridge.setDims(this, newSize);
-		throw new UnsupportedOperationException(); 
+		ScilabBridge.setDims(component, newSize);
 	}
 	
 	/**
@@ -84,10 +78,7 @@ public class ScilabPushButton extends ScilabWidget implements PushButton {
 	 * @see org.scilab.modules.gui.uielement.UIElement#getDims(org.scilab.modules.gui.utils.Size)
 	 */
 	public Size getDims() {
-//		TODO QUESTION is this code needed or this methode can be empty ?
-//		TODO uncomment if needed and code the needed methodes
-		//return ScilabBridge.getDims(this);
-		throw new UnsupportedOperationException(); 
+		return ScilabBridge.getDims(component); 
 	}
 	
 	/**
@@ -96,10 +87,7 @@ public class ScilabPushButton extends ScilabWidget implements PushButton {
 	 * @see org.scilab.modules.gui.uielement.UIElement#getPosition()
 	 */
 	public Position getPosition() {
-//		TODO QUESTION is this code needed or this methode can be empty ?
-//		TODO uncomment if needed and code the needed methodes
-		//return ScilabBridge.getPosition(this);
-		throw new UnsupportedOperationException(); 
+		return ScilabBridge.getPosition(component); 
 	}
 
 	/**
@@ -108,35 +96,24 @@ public class ScilabPushButton extends ScilabWidget implements PushButton {
 	 * @see org.scilab.modules.gui.uielement.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
 	 */
 	public void setPosition(Position newPosition) {
-//		TODO QUESTION is this code needed or this methode can be empty ?
-//		TODO uncomment if needed and code the needed methodes
-		//ScilabBridge.setPosition(this, newPosition);
-		throw new UnsupportedOperationException(); 
+		ScilabBridge.setPosition(component, newPosition); 
 	}
 
-//	TODO Question: What do we do with isVisible() for a Menu ?
 	/**
 	 * Gets the visibility status of an UIElement
 	 * @return the visibility status of the UIElement (true if the UIElement is visible, false if not)
 	 */
 	public boolean isVisible() {
-//		TODO QUESTION is this code needed or this methode can be empty ?
-//		TODO uncomment if needed and code the needed methodes
-		//return ScilabBridge.isVisible(this);
-		throw new UnsupportedOperationException(); 
+		return ScilabBridge.isVisible(component); 
 	}
 	
-//	TODO Question: What do we do with setVisible() for a Menu ?
 	/**
 	 * Sets the visibility status of a Menu
 	 * @param newVisibleState the visibility status we want to set for the UIElement
 	 * 			(true if the UIElement is visible, false if not)
 	 */
 	public void setVisible(boolean newVisibleState) {
-//		TODO QUESTION is this code needed or this methode can be empty ?
-//		TODO uncomment if needed and code the needed methodes
-		//ScilabBridge.setVisible(this, newVisibleState);
-		throw new UnsupportedOperationException();
+		ScilabBridge.setVisible(component, newVisibleState);
 	}
 
 	/**
@@ -342,7 +319,7 @@ public class ScilabPushButton extends ScilabWidget implements PushButton {
 	 */
 	public int addAsMemberTo(Container container) {
 //		 TODO code this
-		//return ScilabBridge.addAsMemberTo(this, container);
+		//return ScilabBridge.addAsMemberTo(this, container.getAsSimpleContainer());
 		return 0;
 	}
 

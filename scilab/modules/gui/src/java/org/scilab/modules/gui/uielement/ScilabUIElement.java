@@ -13,6 +13,7 @@ import org.scilab.modules.gui.toolbar.ToolBar;
  * In the following, an UIElement is an object in Scilab GUIs
  * @author Vincent COUVERT
  * @author Bruno JOFRET
+ * @author Marouane BEN JELLOUL
  */
 public abstract class ScilabUIElement implements UIElement {
 
@@ -96,7 +97,7 @@ public abstract class ScilabUIElement implements UIElement {
 	 * Sets the menubar associated to an UIElement
 	 * @param menuBar the menuBar to set
 	 */
-	public void addMenuBar(MenuBar menuBar) {
+	public void setMenuBar(MenuBar menuBar) {
 		this.menuBar = menuBar;
 	}
 
@@ -130,7 +131,7 @@ public abstract class ScilabUIElement implements UIElement {
 	 * Sets the toolbar associated to an UIElement
 	 * @param toolBar the toolBar to set
 	 */
-	public void addToolBar(ToolBar toolBar) {
+	public void setToolBar(ToolBar toolBar) {
 		this.toolBar = toolBar;
 	}
 

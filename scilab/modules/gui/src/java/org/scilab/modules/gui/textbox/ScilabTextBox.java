@@ -76,14 +76,11 @@ public class ScilabTextBox extends ScilabText implements TextBox {
 		return ScilabBridge.getText(component);
 	}
 	
-	
-//	TODO Question: What do we do with draw() for a TextBox ?
 	/**
 	 * Draws a TextBox
 	 */
 	public void draw() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException(); 
+		ScilabBridge.draw(component);
 	}
 	
 	/**
@@ -122,29 +119,21 @@ public class ScilabTextBox extends ScilabText implements TextBox {
 		ScilabBridge.setPosition(component, newPosition);
 	}
 
-//	TODO Question: What do we do with isVisible() for an TextBox ?
 	/**
 	 * Gets the visibility status of an UIElement
 	 * @return the visibility status of the UIElement (true if the UIElement is visible, false if not)
 	 */
 	public boolean isVisible() {
-//		TODO QUESTION is this code needed or this methode can be empty ?
-//		TODO uncomment if needed and code the needed methodes
-		//return ScilabBridge.isVisible(component);
-		throw new UnsupportedOperationException(); 
+		return ScilabBridge.isVisible(component); 
 	}
 	
-//	TODO Question: What do we do with setVisible() for an TextBox ?
 	/**
 	 * Sets the visibility status of a Menu
 	 * @param newVisibleState the visibility status we want to set for the UIElement
 	 * 			(true if the UIElement is visible, false if not)
 	 */
 	public void setVisible(boolean newVisibleState) {
-//		TODO QUESTION is this code needed or this methode can be empty ?
-//		TODO uncomment if needed and code the needed methodes
-		//ScilabBridge.setVisible(component, newVisibleState);
-		throw new UnsupportedOperationException();
+		ScilabBridge.setVisible(component, newVisibleState);
 	}
 	
 	/**
@@ -155,6 +144,6 @@ public class ScilabTextBox extends ScilabText implements TextBox {
 	public int addAsMemberTo(Container container) {
 //		 TODO code this
 		//return ScilabBridge.addAsMemberTo(this, container);
-		return 0;
+		throw new UnsupportedOperationException();
 	}
 }

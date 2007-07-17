@@ -11,9 +11,10 @@ import javax.media.opengl.GLJPanel;
 
 import com.sun.opengl.util.Animator;
 
-import org.scilab.modules.gui.canvas.Canvas;
-import org.scilab.modules.gui.container.Container;
-import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.canvas.SimpleCanvas;
+import org.scilab.modules.gui.container.SimpleContainer;
+import org.scilab.modules.gui.menubar.SimpleMenuBar;
+import org.scilab.modules.gui.toolbar.SimpleToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -21,8 +22,9 @@ import org.scilab.modules.gui.utils.Size;
  * Swing implementation for Scilab Canvas in GUIs
  * This implementation requires JOGL
  * @author Vincent COUVERT
+ * @author Marouane BEN JELLOUL
  */
-public class SwingScilabCanvas extends GLJPanel implements Canvas {
+public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 
 	/**
 	 * Constructor
@@ -44,13 +46,31 @@ public class SwingScilabCanvas extends GLJPanel implements Canvas {
 	 * Create a Scilab Canvas
 	 * @return the created canvas
 	 */
-	public static Canvas createCanvas() {
+	public static SimpleCanvas createCanvas() {
 		GLCapabilities cap = new GLCapabilities();
 		cap.setHardwareAccelerated(true);
 		cap.setDoubleBuffered(true);
 		return new SwingScilabCanvas(cap);
 	}
 
+	/**
+	 * Sets a MenuBar to an element
+	 * @param newMenuBar the MenuBar to set to the element
+	 */
+	public void addMenuBar(SimpleMenuBar newMenuBar) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Sets a ToolBar to an element
+	 * @param newToolBar the ToolBar to set to the element
+	 */
+	public void addToolBar(SimpleToolBar newToolBar) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException();
+	}
+	
 	/**
 	 * Draws a Scilab canvas
 	 * @see org.scilab.modules.gui.UIElement#draw()
@@ -83,6 +103,7 @@ public class SwingScilabCanvas extends GLJPanel implements Canvas {
 	 * @return the visibility status of the canvas (true if the canvas is visible, false if not)
 	 * @see org.scilab.modules.gui.UIElement#isVisible()
 	 */
+	@Override
 	public boolean isVisible() {
 		return super.isVisible();
 	}
@@ -110,6 +131,7 @@ public class SwingScilabCanvas extends GLJPanel implements Canvas {
 	 * @param newVisibleState the visibility status we want to set to the canvas (true to set the canvas visible, false else)
 	 * @see org.scilab.modules.gui.UIElement#setVisible(boolean)
 	 */
+	@Override
 	public void setVisible(boolean newVisibleState) {
 		super.setVisible(newVisibleState);
 	}
@@ -121,10 +143,10 @@ public class SwingScilabCanvas extends GLJPanel implements Canvas {
 	 * @see org.scilab.modules.gui.container.Container#addMember(org.scilab.modules.gui.dockable.Dockable)
 	 * @see org.scilab.modules.gui.dockable.Dockable#addAsMemberTo(org.scilab.modules.gui.container.Container)
 	 */
-	public int addAsMemberTo(Container container) {
+	public int addAsMemberTo(SimpleContainer container) {
 		// delegate to the container but also adding info on how to handle me (Canvas)
 		// Interface Container must describe methode: int addMember(Canvas member);
-		return container.addMember((Canvas) this);
+		return container.addMember((SimpleCanvas) this);
 	}
 
 }

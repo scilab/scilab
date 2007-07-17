@@ -11,6 +11,8 @@ import javax.swing.border.LineBorder;
 
 import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.container.Container;
+import org.scilab.modules.gui.menubar.MenuBar;
+import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.widget.ScilabWidget;
@@ -21,7 +23,7 @@ import org.scilab.modules.gui.widget.ScilabWidget;
  */
 public class ScilabEditBox extends ScilabWidget implements EditBox {
 
-	private EditBoxBridge component;
+	private SimpleEditBox component;
 	
 	/**
 	 * Constructor
@@ -42,8 +44,26 @@ public class ScilabEditBox extends ScilabWidget implements EditBox {
 	 * Gets this Bridge component object
 	 * @return this Bridge component object
 	 */
-	public EditBoxBridge getEditBoxBridge() {
+	public SimpleEditBox getAsSimpleEditBox() {
 		return component;
+	}
+	
+	/**
+	 * Sets a MenuBar to an element
+	 * @param newMenuBar the MenuBar to set to the element
+	 */
+	public void addMenuBar(MenuBar newMenuBar) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	 * Sets a ToolBar to an element
+	 * @param newToolBar the ToolBar to set to the element
+	 */
+	public void addToolBar(ToolBar newToolBar) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	/**

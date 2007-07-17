@@ -3,20 +3,19 @@
 
 package org.scilab.modules.gui.tab;
 
-
-import org.scilab.modules.gui.console.Console;
-import org.scilab.modules.gui.canvas.Canvas;
-import org.scilab.modules.gui.frame.Frame;
-import org.scilab.modules.gui.utils.Position;
-import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.canvas.SimpleCanvas;
+import org.scilab.modules.gui.console.SimpleConsole;
+import org.scilab.modules.gui.container.SimpleContainer;
+import org.scilab.modules.gui.frame.SimpleFrame;
 
 /**
- * Interface for tabs in Scilab GUIs
+ * Interface for SimpleTab the associated object to Scilab GUIs Tab
  * Describe all what the "widget" tab
  * must be able to do as a GUI Component
  * @author Bruno JOFRET
+ * @author Marouane BEN JELLOUL
  */
-public interface SimpleTab  {
+public interface SimpleTab extends SimpleContainer {
 
 	/**
 	 * Gets the Name of a tab
@@ -34,34 +33,20 @@ public interface SimpleTab  {
 	 * We want to be able to add directly a Frame in a Tab.
 	 * @param member the member to add
 	 * @return the position of the frame in the member list.
-	 */
-	int addMember(Frame member);
+	 */ 
+	int addMember(SimpleFrame member);
 
 	/**
 	 * We want to be able to add directly a Console in a Tab.
 	 * @param member the member to add
 	 * @return the position of the console in the member list.
 	 */
-	int addMember(Console member);
+	int addMember(SimpleConsole member);
 
 	/**
 	 * We want to be able to add directly a Console in a Tab.
 	 * @param member the member to add
 	 * @return the position of the console in the member list.
 	 */
-	int addMember(Canvas member);
-
-	void draw();
-
-	Size getDims();
-
-	void setDims(Size newTabSize);
-
-	Position getPosition();
-
-	void setPosition(Position newTabPosition);
-
-	boolean isVisible();
-
-	void setVisible(boolean newVisibleState);
+	int addMember(SimpleCanvas member);
 }

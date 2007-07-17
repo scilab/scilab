@@ -5,21 +5,26 @@ package org.scilab.modules.gui.console;
 
 import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.container.Container;
+import org.scilab.modules.gui.dockable.ScilabDockable;
+import org.scilab.modules.gui.menubar.MenuBar;
+import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.dockable.ScilabDockable;
 
 /**
  * Class for Scilab Console in GUIs
  * @author Vincent COUVERT
+ * @author Marouane BEN JELLOUL
  */
 public class ScilabConsole extends ScilabDockable implements Console {
 
+	private SimpleConsole component;
+	
 	/**
 	 * Constructor
 	 */
 	protected ScilabConsole() {
-        throw new UnsupportedOperationException(); /* Prevents calls from subclass */
+		component = ScilabBridge.createConsole();
 	}
 
 	/**
@@ -27,16 +32,42 @@ public class ScilabConsole extends ScilabDockable implements Console {
 	 * @return the created console
 	 */
 	public static Console createConsole() {
-		return ScilabBridge.createConsole();
+		return new ScilabConsole();
 	}
 
+	/**
+	 * Gets this Bridge component object
+	 * @return this Bridge component object
+	 */
+	public SimpleConsole getAsSimpleConsole() {
+		return component;
+	}
+	
+	/**
+	 * Sets a MenuBar to an element
+	 * @param newMenuBar the MenuBar to set to the element
+	 */
+	public void addMenuBar(MenuBar newMenuBar) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Sets a ToolBar to an element
+	 * @param newToolBar the ToolBar to set to the element
+	 */
+	public void addToolBar(ToolBar newToolBar) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException();
+	}
+	
 	/**
 	 * Displays data in the console
 	 * @param dataToDisplay the data to be displayed
 	 * @see fr.scilab.console.Console#display()
 	 */
 	public void display(String dataToDisplay) {
-		ScilabBridge.display(this, dataToDisplay);
+		ScilabBridge.display(component, dataToDisplay);
 	}
 
 	/**
@@ -45,7 +76,7 @@ public class ScilabConsole extends ScilabDockable implements Console {
 	 * @see org.scilab.modules.shell.Console#readLine()
 	 */
 	public String readLine() {
-		return ScilabBridge.readLine(this);
+		return ScilabBridge.readLine(component);
 	}
 
 	/**
@@ -53,7 +84,7 @@ public class ScilabConsole extends ScilabDockable implements Console {
 	 * @see org.scilab.modules.gui.UIElement#draw()
 	 */
 	public void draw() {
-		ScilabBridge.draw(this);
+		ScilabBridge.draw(component);
 	}
 
 	/**
@@ -62,7 +93,7 @@ public class ScilabConsole extends ScilabDockable implements Console {
 	 * @see org.scilab.modules.gui.UIElement#getDims()
 	 */
 	public Size getDims() {
-		return ScilabBridge.getDims(this);
+		return ScilabBridge.getDims(component);
 	}
 
 	/**
@@ -71,7 +102,7 @@ public class ScilabConsole extends ScilabDockable implements Console {
 	 * @see org.scilab.modules.gui.UIElement#getPosition()
 	 */
 	public Position getPosition() {
-		return ScilabBridge.getPosition(this);
+		return ScilabBridge.getPosition(component);
 	}
 
 	/**
@@ -80,7 +111,7 @@ public class ScilabConsole extends ScilabDockable implements Console {
 	 * @see org.scilab.modules.gui.UIElement#isVisible()
 	 */
 	public boolean isVisible() {
-		return ScilabBridge.isVisible(this);
+		return ScilabBridge.isVisible(component);
 	}
 
 	/**
@@ -89,7 +120,7 @@ public class ScilabConsole extends ScilabDockable implements Console {
 	 * @see org.scilab.modules.gui.UIElement#setDims(org.scilab.modules.gui.utils.Size)
 	 */
 	public void setDims(Size newSize) {
-		ScilabBridge.setDims(this, newSize);
+		ScilabBridge.setDims(component, newSize);
 	}
 
 	/**
@@ -98,7 +129,7 @@ public class ScilabConsole extends ScilabDockable implements Console {
 	 * @see org.scilab.modules.gui.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
 	 */
 	public void setPosition(Position newPosition) {
-		ScilabBridge.setPosition(this, newPosition);
+		ScilabBridge.setPosition(component, newPosition);
 	}
 
 	/**
@@ -107,7 +138,7 @@ public class ScilabConsole extends ScilabDockable implements Console {
 	 * @see org.scilab.modules.gui.UIElement#setVisible(boolean)
 	 */
 	public void setVisible(boolean newVisibleState) {
-		ScilabBridge.setPosition(this, newVisibleState);
+		ScilabBridge.setVisible(component, newVisibleState);
 	}
 
 	/**
@@ -118,8 +149,7 @@ public class ScilabConsole extends ScilabDockable implements Console {
 	 * @see org.scilab.modules.gui.dockable.Dockable#addAsMemberTo(org.scilab.modules.gui.container.Container)
 	 */
 	public int addAsMemberTo(Container container) {
-		// TODO uncomment when ready
-		// return ScilabBridge.addAsMemberTo(this, container);
-		return 0;
+		//return ScilabBridge.addAsMemberTo(component, container);
+		throw new UnsupportedOperationException();
 	}
 }

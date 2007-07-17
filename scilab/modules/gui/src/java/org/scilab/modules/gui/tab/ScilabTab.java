@@ -14,16 +14,19 @@ import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.listbox.ListBox;
+import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.textbox.TextBox;
+import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
 /**
  * Class for tabs is Scilab GUIs
  * @author Vincent COUVERT
+ * @author Marouane BEN JELLOUL
  */
 public class ScilabTab extends ScilabContainer implements Tab {
 
@@ -31,6 +34,7 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	
 	/**
 	 * Constructor
+	 * @param name - the name of this Tab
 	 */
 	protected ScilabTab(String name) {
 		component = ScilabBridge.createTab(name);
@@ -46,20 +50,38 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	}
 
 	/**
-	 * Gets the GUI Tab.
-	 * @return The GUI dummy Tab.
+	 * Gets this Bridge component object
+	 * @return this Bridge component object
 	 */
 	public SimpleTab getAsSimpleTab() {
 		return component;
 	}
+	
+	/**
+	 * Sets a MenuBar to an element
+	 * @param newMenuBar the MenuBar to set to the element
+	 */
+	public void addMenuBar(MenuBar newMenuBar) {
+		// TODO Auto-generated method stub
+		
+	}
 
+	/**
+	 * Sets a ToolBar to an element
+	 * @param newToolBar the ToolBar to set to the element
+	 */
+	public void addToolBar(ToolBar newToolBar) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	/**
 	 * Gets the title of a Scilab tab
 	 * @return the title of the frame
 	 * @see org.scilab.modules.gui.tab.Tab#getTitle()
 	 */
 	public String getName() {
-		return ScilabBridge.getName(this);
+		return ScilabBridge.getName(component);
 	}
 
 	/**
@@ -68,7 +90,7 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	 * @see org.scilab.modules.gui.tab.Tab#setName(java.lang.String)
 	 */
 	public void setName(String newTabName) {
-		ScilabBridge.setName(this, newTabName);
+		ScilabBridge.setName(component, newTabName);
 	}
 
 	/**
@@ -76,7 +98,7 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	 * @see org.scilab.modules.gui.UIElement#draw()
 	 */
 	public void draw() {
-		ScilabBridge.draw(this);
+		ScilabBridge.draw(component);
 	}
 
 	/**
@@ -85,7 +107,7 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	 * @see org.scilab.modules.gui.UIElement#getDims()
 	 */
 	public Size getDims() {
-		return ScilabBridge.getDims(this);
+		return ScilabBridge.getDims(component);
 	}
 
 	/**
@@ -94,7 +116,7 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	 * @see org.scilab.modules.gui.UIElement#getPosition()
 	 */
 	public Position getPosition() {
-		return ScilabBridge.getPosition(this);
+		return ScilabBridge.getPosition(component);
 	}
 
 	/**
@@ -103,7 +125,7 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	 * @see org.scilab.modules.gui.UIElement#isVisible()
 	 */
 	public boolean isVisible() {
-		return ScilabBridge.isVisible(this);
+		return ScilabBridge.isVisible(component);
 	}
 
 	/**
@@ -112,7 +134,7 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	 * @see org.scilab.modules.gui.UIElement#setDims(org.scilab.modules.gui.utils.Size)
 	 */
 	public void setDims(Size newSize) {
-		ScilabBridge.setDims(this, newSize);
+		ScilabBridge.setDims(component, newSize);
 	}
 
 	/**
@@ -121,7 +143,7 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	 * @see org.scilab.modules.gui.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
 	 */
 	public void setPosition(Position newPosition) {
-		ScilabBridge.setPosition(this, newPosition);
+		ScilabBridge.setPosition(component, newPosition);
 	}
 
 	/**
@@ -130,7 +152,7 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	 * @see org.scilab.modules.gui.UIElement#setVisible(boolean)
 	 */
 	public void setVisible(boolean newVisibleState) {
-		ScilabBridge.setVisible(this, newVisibleState);
+		ScilabBridge.setVisible(component, newVisibleState);
 	}
 
 	/**
@@ -139,18 +161,18 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	 * @return index of member in ArrayList
 	 */
 	public int addMember(Canvas member) {
-		return ScilabBridge.addMember(this, member);
+		return ScilabBridge.addMember(component, member.getAsSimpleCanvas());
 	}
 
 	/**
 	 * Add a member (dockable element) to a Scilab frame and returns its index
 	 * @param member the member to add
-	 * @return index of member in frame thiss
+	 * @return index of member in frame components
 	 */
 	public int addMember(CheckBox member) {
-//		 TODO code this
-		//return ScilabBridge.addMember(this, member);
-		return 0;
+//		TODO : can we add a CheckBox? if yes find out how we should add a it to a Tab
+		//return ScilabBridge.addMember(component, member);
+		throw new UnsupportedOperationException("Can not add a CheckBox in a Tab");
 	}
 	
 	/**
@@ -159,7 +181,7 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	 * @return index of member in ArrayList
 	 */
 	public int addMember(Console member) {
-		return ScilabBridge.addMember(this, member);
+		return ScilabBridge.addMember(component, member.getAsSimpleConsole());
 	}
 	
 	/**
@@ -168,6 +190,7 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	 * @return index of member in ArrayList
 	 * @see org.scilab.modules.gui.container.Container#addMember(org.scilab.modules.gui.dockable.Dockable)
 	 */
+	@Override
 	public int addMember(Dockable member) {
 		return addMember(member);
 	}
@@ -175,12 +198,12 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	/**
 	 * Add a member (dockable element) to container and returns its index
 	 * @param member the member to add
-	 * @return index of member in frame thiss
+	 * @return index of member in frame components
 	 */
 	public int addMember(EditBox member) {
-//		 TODO code this
-		//return ScilabBridge.addMember(this, member);
-		return 0;
+//		TODO : can we add a EditBox? if yes find out how we should add a it to a Tab
+		//return ScilabBridge.addMember(component, member);
+		throw new UnsupportedOperationException("Can not add a EditBox in a Tab");
 	}
 
 	/**
@@ -189,18 +212,18 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	 * @return index of member in ArrayList
 	 */
 	public int addMember(Frame member) {
-		return ScilabBridge.addMember(this, member);
+		return ScilabBridge.addMember(component, member.getAsSimpleFrame());
 	}
 
 	/**
 	 * Add a member (dockable element) to container and returns its index
 	 * @param member the member to add
-	 * @return index of member in frame thiss
+	 * @return index of member in frame components
 	 */
 	public int addMember(Label member) {
-//		 TODO code this
-		//return ScilabBridge.addMember(this, member);
-		return 0;
+//		TODO : can we add a Label? if yes find out how we should add a it to a Tab
+//		return ScilabBridge.addMember(component, member);
+		throw new UnsupportedOperationException("Can not add a Label in a Tab");
 	}
 	
 	/**
@@ -209,9 +232,9 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	 * @return index of member in frame components
 	 */
 	public int addMember(ListBox member) {
-//		 TODO code component
+//		TODO : can we add a ListBox? if yes find out how we should add a it to a Tab
 		//return ScilabBridge.addMember(component, member);
-		return 0;
+		throw new UnsupportedOperationException("Can not add a ListBox in a Tab");
 	}
 
 	/**
@@ -220,8 +243,9 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	 * @return index of member in frame components
 	 */
 	public int addMember(PushButton member) {
-		// TODO Auto-generated method stub
-		return 0;
+//		TODO : can we add a PushButton? if yes find out how we should add a it to a Tab
+		//return ScilabBridge.addMember(component, member);
+		throw new UnsupportedOperationException("Can not add a PushButton in a Tab");
 	}
 	
 	/**
@@ -230,8 +254,9 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	 * @return index of member in frame components
 	 */
 	public int addMember(RadioButton member) {
-		// TODO Auto-generated method stub
-		return 0;
+//		TODO : can we add a RadioButton? if yes find out how we should add a it to a Tab
+		//return ScilabBridge.addMember(component, member);
+		throw new UnsupportedOperationException("Can not add a RadioButton in a Tab");
 	}
 
 	/**
@@ -240,9 +265,9 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	 * @return index of member in frame components
 	 */
 	public int addMember(Slider member) {
-//		 TODO code component
+//		TODO : can we add a Slider? if yes find out how we should add a it to a Tab
 		//return ScilabBridge.addMember(component, member);
-		return 0;
+		throw new UnsupportedOperationException("Can not add a Slider in a Tab");
 	}
 	
 	/**
@@ -251,9 +276,9 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	 * @return index of member in frame components
 	 */
 	public int addMember(Tab member) {
-//		 TODO code component
+//		TODO : can we add a Tab? if yes find out how we should add a it to a Tab
 		//return ScilabBridge.addMember(component, member);
-		return 0;
+		throw new UnsupportedOperationException("Can not add a Tab in a Tab");
 	}
 	
 	/**
@@ -262,20 +287,20 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	 * @return index of member in frame components
 	 */
 	public int addMember(TextBox member) {
-//		 TODO code component
+//		TODO : can we add a TextBox? if yes find out how we should add a it to a Tab
 		//return ScilabBridge.addMember(component, member);
-		return 0;
+		throw new UnsupportedOperationException("Can not add a TextBox in a Tab");
 	}
 	
 	/**
-	 * Add component as member (dockable element) to the Scilab Container and returns its index
-	 * @param container the Container in which we add component
-	 * @return index of component in container components
+	 * Add this as member (dockable element) to the Scilab Container and returns its index
+	 * @param container the Container in which we add this
+	 * @return index of this in container components
 	 */
 	public int addAsMemberTo(Container container) {
-//		 TODO code component
+//		 TODO code this
 		//return ScilabBridge.addAsMemberTo(component, container);
-		return 0;
+		throw new UnsupportedOperationException();
 	}
 
 }

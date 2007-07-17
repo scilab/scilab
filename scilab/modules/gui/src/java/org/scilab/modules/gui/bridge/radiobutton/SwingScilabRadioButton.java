@@ -25,12 +25,12 @@ public class SwingScilabRadioButton extends JRadioButton implements RadioButton 
 		super();
 	}
 	
-	// TODO Question: What do we do with draw() for a RadioButton ?
 	/**
 	 * 
 	 */
 	public void draw() {
-		// TODO Auto-generated method stub
+		this.setVisible(true);
+		this.doLayout();
 	}
 	
 	/**

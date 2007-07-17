@@ -12,46 +12,65 @@ import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.editbox.SwingScilabEditBox;
 import org.scilab.modules.gui.bridge.label.SwingScilabLabel;
 import org.scilab.modules.gui.bridge.listbox.SwingScilabListBox;
-import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
 import org.scilab.modules.gui.bridge.slider.SwingScilabSlider;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
-import org.scilab.modules.gui.canvas.Canvas;
+import org.scilab.modules.gui.canvas.SimpleCanvas;
 import org.scilab.modules.gui.checkbox.CheckBox;
-import org.scilab.modules.gui.console.Console;
-import org.scilab.modules.gui.container.Container;
-import org.scilab.modules.gui.dockable.Dockable;
+import org.scilab.modules.gui.console.SimpleConsole;
+import org.scilab.modules.gui.container.SimpleContainer;
+import org.scilab.modules.gui.dockable.SimpleDockable;
 import org.scilab.modules.gui.editbox.EditBox;
-import org.scilab.modules.gui.frame.Frame;
+import org.scilab.modules.gui.frame.SimpleFrame;
 import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.layout.LayoutManager;
 import org.scilab.modules.gui.listbox.ListBox;
-import org.scilab.modules.gui.menu.Menu;
-import org.scilab.modules.gui.pushbutton.PushButton;
+import org.scilab.modules.gui.menubar.SimpleMenuBar;
+import org.scilab.modules.gui.pushbutton.SimplePushButton;
 import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.slider.Slider;
-import org.scilab.modules.gui.tab.Tab;
-import org.scilab.modules.gui.textbox.TextBox;
+import org.scilab.modules.gui.tab.SimpleTab;
+import org.scilab.modules.gui.textbox.SimpleTextBox;
+import org.scilab.modules.gui.toolbar.SimpleToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
 /**
  * Swing implementation for Scilab frames in GUI
  * @author Vincent COUVERT
+ * @author Marouane BEN JELLOUL
  */
-public class SwingScilabFrame extends JPanel implements Frame {
+public class SwingScilabFrame extends JPanel implements SimpleFrame {
 
 	/**
 	 * Constructor
 	 */
 	public SwingScilabFrame() {
 		super();
-		// the Default layout is null so we have to set a Position and a Size of every Dockable we add to it
+		// the Default layout is null so we have to set a Position and a Size for every Dockable we add to it
 		this.setLayout((LayoutManager) null);
 	}
 
+	/**
+	 * Sets a MenuBar to an element
+	 * @param newMenuBar the MenuBar to set to the element
+	 */
+	public void addMenuBar(SimpleMenuBar newMenuBar) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Sets a ToolBar to an element
+	 * @param newToolBar the ToolBar to set to the element
+	 */
+	public void addToolBar(SimpleToolBar newToolBar) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException();
+	}
+	
 	/**
 	 * Draws a Swing Scilab frame
 	 * @see org.scilab.modules.gui.UIElement#draw()
@@ -103,7 +122,7 @@ public class SwingScilabFrame extends JPanel implements Frame {
 	 * @param member the member to add
 	 * @return index of member in ArrayList
 	 */
-	public int addMember(Console member) {
+	public int addMember(SimpleConsole member) {
 		return this.addMember((SwingScilabConsole) member);
 	}
 	
@@ -160,7 +179,7 @@ public class SwingScilabFrame extends JPanel implements Frame {
 	 * @param member the member to add
 	 * @return index of member in ArrayList
 	 */
-	public int addMember(Frame member) {
+	public int addMember(SimpleFrame member) {
 		return this.addMember((SwingScilabFrame) member);
 	}
 
@@ -181,7 +200,7 @@ public class SwingScilabFrame extends JPanel implements Frame {
 	 * @see org.scilab.modules.gui.container.Container#addMember(org.scilab.modules.gui.dockable.Dockable)
 	 * @see org.scilab.modules.gui.dockable.Dockable#addAsMemberTo(org.scilab.modules.gui.container.Container)
 	 */
-	public int addMember(Dockable member) {
+	public int addMember(SimpleDockable member) {
 		// delegate to the member
 		return member.addAsMemberTo(this);
 	}
@@ -192,7 +211,7 @@ public class SwingScilabFrame extends JPanel implements Frame {
 	 * @param borderLayout the BorderLayout to use
 	 * @return the position of the Frame in the member list.
 	 */
-	public int addMember(Frame member, String borderLayout) {
+	public int addMember(SimpleFrame member, String borderLayout) {
 		return this.addMember((SwingScilabFrame) member, borderLayout);
 	}
 	
@@ -213,7 +232,7 @@ public class SwingScilabFrame extends JPanel implements Frame {
 	 * @param layoutPosition the Layout position to use
 	 * @return the position of the Frame in the member list.
 	 */
-	public int addMember(Frame member, int layoutPosition) {
+	public int addMember(SimpleFrame member, int layoutPosition) {
 		return this.addMember((SwingScilabFrame) member, layoutPosition);
 	}
 	
@@ -233,7 +252,7 @@ public class SwingScilabFrame extends JPanel implements Frame {
 	 * @param member the member to add
 	 * @return index of member in ArrayList
 	 */
-	public int addMember(Canvas member) {
+	public int addMember(SimpleCanvas member) {
 		return this.addMember((SwingScilabCanvas) member);
 	}
 
@@ -290,7 +309,7 @@ public class SwingScilabFrame extends JPanel implements Frame {
 	 * @param member the member to add
 	 * @return index of member in ArrayList
 	 */
-	public int addMember(PushButton member) {
+	public int addMember(SimplePushButton member) {
 		return this.addMember((SwingScilabPushButton) member);
 	}
 	
@@ -348,7 +367,7 @@ public class SwingScilabFrame extends JPanel implements Frame {
 	 * @param borderLayout the BorderLayout to use
 	 * @return the position of the PushButton in the member list.
 	 */
-	public int addMember(PushButton member, String borderLayout) {
+	public int addMember(SimplePushButton member, String borderLayout) {
 		return this.addMember((SwingScilabPushButton) member, borderLayout);
 	}
 	
@@ -369,7 +388,7 @@ public class SwingScilabFrame extends JPanel implements Frame {
 	 * @param layoutPosition the layout Position to use
 	 * @return the position of the PushButton in the member list.
 	 */
-	public int addMember(PushButton member, int layoutPosition) {
+	public int addMember(SimplePushButton member, int layoutPosition) {
 		return this.addMember((SwingScilabPushButton) member, layoutPosition);
 	}
 	
@@ -390,7 +409,7 @@ public class SwingScilabFrame extends JPanel implements Frame {
 	 * @param member the member to add
 	 * @return index of member in ArrayList
 	 */
-	public int addMember(Tab member) {
+	public int addMember(SimpleTab member) {
 		return this.addMember((SwingScilabTab) member);
 	}
 //	 TODO : Check if it should be possible to add a Tab to a frame and how it should behave
@@ -409,7 +428,7 @@ public class SwingScilabFrame extends JPanel implements Frame {
 	 * @param member the member to add
 	 * @return index of member in ArrayList
 	 */
-	public int addMember(TextBox member) {
+	public int addMember(SimpleTextBox member) {
 		return this.addMember((SwingScilabTextBox) member);
 	}
 
@@ -445,9 +464,9 @@ public class SwingScilabFrame extends JPanel implements Frame {
 	 * @see org.scilab.modules.gui.container.Container#addMember(org.scilab.modules.gui.dockable.Dockable)
 	 * @see org.scilab.modules.gui.dockable.Dockable#addAsMemberTo(org.scilab.modules.gui.container.Container)
 	 */
-	public int addAsMemberTo(Container container) {
+	public int addAsMemberTo(SimpleContainer container) {
 		// delegate to the container but also adding info on how to handle me (Frame)
 		// Interface Container must describe methode: int addMember(Frame member);
-		return container.addMember((Frame) this);
+		return container.addMember((SimpleFrame) this);
 	}
 }

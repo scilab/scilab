@@ -3,21 +3,20 @@
 
 package org.scilab.modules.gui.bridge;
 
-import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.console.ScilabConsoleBridge;
-import org.scilab.modules.gui.canvas.Canvas;
+import org.scilab.modules.gui.console.SimpleConsole;
 import org.scilab.modules.gui.canvas.ScilabCanvasBridge;
-import org.scilab.modules.gui.editbox.EditBoxBridge;
+import org.scilab.modules.gui.canvas.SimpleCanvas;
+import org.scilab.modules.gui.editbox.SimpleEditBox;
 import org.scilab.modules.gui.editbox.ScilabEditBoxBridge;
-import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.frame.ScilabFrameBridge;
+import org.scilab.modules.gui.frame.SimpleFrame;
 import org.scilab.modules.gui.pushbutton.SimplePushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButtonBridge;
 import org.scilab.modules.gui.separator.ScilabSeparatorBridge;
 import org.scilab.modules.gui.separator.Separator;
 import org.scilab.modules.gui.tab.ScilabTabBridge;
 import org.scilab.modules.gui.tab.SimpleTab;
-import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.ScilabTextBoxBridge;
 import org.scilab.modules.gui.textbox.SimpleTextBox;
 import org.scilab.modules.gui.toolbar.ScilabToolBarBridge;
@@ -210,14 +209,14 @@ public class ScilabBridge {
 	 * Creates a new frame
 	 * @return the created frame
 	 */
-	public static Frame createFrame() {
+	public static SimpleFrame createFrame() {
 		return ScilabFrameBridge.createFrame();
 	}
 	/**
 	 * Draws a frame on screen
 	 * @param frame the frame to be drawn
 	 */
-	public static void draw(Frame frame) {
+	public static void draw(SimpleFrame frame) {
 		ScilabFrameBridge.draw(frame);
 	}
 
@@ -226,7 +225,7 @@ public class ScilabBridge {
 	 * @param frame the frame we want to get the dimensions of
 	 * @return the dimensions of the frame
 	 */
-	public static Size getDims(Frame frame) {
+	public static Size getDims(SimpleFrame frame) {
 		return ScilabFrameBridge.getDims(frame);
 	}
 
@@ -235,7 +234,7 @@ public class ScilabBridge {
 	 * @param frame the frame we want to get the position of
 	 * @return position of the frame
 	 */
-	public static Position getPosition(Frame frame) {
+	public static Position getPosition(SimpleFrame frame) {
 		return ScilabFrameBridge.getPosition(frame);
 	}
 
@@ -244,7 +243,7 @@ public class ScilabBridge {
 	 * @param frame the frame we want to Gets the status of
 	 * @return visibility status (true if the frame is visible, false if not)
 	 */
-	public static boolean isVisible(Frame frame) {
+	public static boolean isVisible(SimpleFrame frame) {
 		return ScilabFrameBridge.isVisible(frame);
 	}
 
@@ -253,7 +252,7 @@ public class ScilabBridge {
 	 * @param frame the frame we want to set the dimensions of
 	 * @param newFrameSize new dimensions of the frame
 	 */
-	public static void setDims(Frame frame, Size newFrameSize) {
+	public static void setDims(SimpleFrame frame, Size newFrameSize) {
 		ScilabFrameBridge.setDims(frame, newFrameSize);
 	}
 
@@ -262,7 +261,7 @@ public class ScilabBridge {
 	 * @param frame the frame we want to set the position of
 	 * @param newFramePosition new position of the frame
 	 */
-	public static void setPosition(Frame frame, Position newFramePosition) {
+	public static void setPosition(SimpleFrame frame, Position newFramePosition) {
 		ScilabFrameBridge.setPosition(frame, newFramePosition);
 	}
 
@@ -272,7 +271,7 @@ public class ScilabBridge {
 	 * @param newVisibleState new visibility status for the window
 	 * 			(true set the window visible, false to set the window invisible)
 	 */
-	public static void setVisible(Frame frame, boolean newVisibleState) {
+	public static void setVisible(SimpleFrame frame, boolean newVisibleState) {
 		ScilabFrameBridge.setVisible(frame, newVisibleState);
 	}
 
@@ -282,7 +281,7 @@ public class ScilabBridge {
 	 * @param member the member to add
  	 * @return index of member
  	 */
-	public static int addMember(Frame frame, Frame member) {
+	public static int addMember(SimpleFrame frame, SimpleFrame member) {
 		return ScilabFrameBridge.addMember(frame, member);
 	}
 
@@ -292,7 +291,7 @@ public class ScilabBridge {
 	 * @param member the member to add
  	 * @return index of member
  	 */
-	public static int addMember(Frame frame, Console member) {
+	public static int addMember(SimpleFrame frame, SimpleConsole member) {
 		return ScilabFrameBridge.addMember(frame, member);
 	}
 
@@ -302,10 +301,29 @@ public class ScilabBridge {
 	 * @param member the member to add
  	 * @return index of member
  	 */
-	public static int addMember(Frame frame, Canvas member) {
+	public static int addMember(SimpleFrame frame, SimpleCanvas member) {
 		return ScilabFrameBridge.addMember(frame, member);
 	}
 	
+	/**
+	 * Add a member (dockable element) to a frame and returns the index of this member
+	 * @param frame the frame where we want to add the member
+	 * @param member the member to add
+ 	 * @return index of member
+ 	 */
+	public static int addMember(SimpleFrame frame, SimplePushButton member) {
+		return ScilabFrameBridge.addMember(frame, member);
+	}
+	
+	/**
+	 * Add a member (dockable element) to a frame and returns the index of this member
+	 * @param frame the frame where we want to add the member
+	 * @param member the member to add
+ 	 * @return index of member
+ 	 */
+	public static int addMember(SimpleFrame frame, SimpleTextBox member) {
+		return ScilabFrameBridge.addMember(frame, member);
+	}
 
 	/**************/
 	/* Tab Bridge */
@@ -324,7 +342,7 @@ public class ScilabBridge {
 	 * Draws a tab on screen
 	 * @param tab the tab to be drawn
 	 */
-	public static void draw(Tab tab) {
+	public static void draw(SimpleTab tab) {
 		ScilabTabBridge.draw(tab);
 	}
 
@@ -333,7 +351,7 @@ public class ScilabBridge {
 	 * @param tab the tab we want to get the dimensions of
 	 * @return the dimensions of the tab
 	 */
-	public static Size getDims(Tab tab) {
+	public static Size getDims(SimpleTab tab) {
 		return ScilabTabBridge.getDims(tab);
 	}
 
@@ -342,7 +360,7 @@ public class ScilabBridge {
 	 * @param tab the tab we want to set the dimensions of
 	 * @param newTabSize new dimensions of the tab
 	 */
-	public static void setDims(Tab tab, Size newTabSize) {
+	public static void setDims(SimpleTab tab, Size newTabSize) {
 		ScilabTabBridge.setDims(tab, newTabSize);
 	}
 
@@ -351,7 +369,7 @@ public class ScilabBridge {
 	 * @param tab the tab we want to get the position of
 	 * @return position of the tab
 	 */
-	public static Position getPosition(Tab tab) {
+	public static Position getPosition(SimpleTab tab) {
 		return ScilabTabBridge.getPosition(tab);
 	}
 
@@ -360,7 +378,7 @@ public class ScilabBridge {
 	 * @param tab the tab we want to set the position of
 	 * @param newTabPosition new position of the tab
 	 */
-	public static void setPosition(Tab tab, Position newTabPosition) {
+	public static void setPosition(SimpleTab tab, Position newTabPosition) {
 		ScilabTabBridge.setPosition(tab, newTabPosition);
 	}
 
@@ -369,7 +387,7 @@ public class ScilabBridge {
 	 * @param tab the tab we want to get the Name of
 	 * @return the Name of the tab
 	 */
-	public static String getName(Tab tab) {
+	public static String getName(SimpleTab tab) {
 		return ScilabTabBridge.getName(tab);
 	}
 
@@ -378,7 +396,7 @@ public class ScilabBridge {
 	 * @param tab the tab we want to set the name of
 	 * @param newTabName the name to set for the tab
 	 */
-	public static void setName(Tab tab, String newTabName) {
+	public static void setName(SimpleTab tab, String newTabName) {
 		ScilabTabBridge.setName(tab, newTabName);
 	}
 
@@ -387,7 +405,7 @@ public class ScilabBridge {
 	 * @param tab the tab we want to get the status of
 	 * @return visibility status (true if the tab is visible, false if not)
 	 */
-	public static boolean isVisible(Tab tab) {
+	public static boolean isVisible(SimpleTab tab) {
 		return ScilabTabBridge.isVisible(tab);
 	}
 
@@ -397,7 +415,7 @@ public class ScilabBridge {
 	 * @param newVisibleState new visibility status for the tab
 	 * 			(true set the tab visible, false to set the tab invisible)
 	 */
-	public static void setVisible(Tab tab, boolean newVisibleState) {
+	public static void setVisible(SimpleTab tab, boolean newVisibleState) {
 		ScilabTabBridge.setVisible(tab, newVisibleState);
 	}
 
@@ -407,7 +425,7 @@ public class ScilabBridge {
 	 * @param member the member to add
  	 * @return index of member
  	 */
-	public static int addMember(Tab tab, Frame member) {
+	public static int addMember(SimpleTab tab, SimpleFrame member) {
 		return ScilabTabBridge.addMember(tab, member);
 	}
 
@@ -417,7 +435,7 @@ public class ScilabBridge {
 	 * @param member the member to add
  	 * @return index of member
  	 */
-	public static int addMember(Tab tab, Console member) {
+	public static int addMember(SimpleTab tab, SimpleConsole member) {
 		return ScilabTabBridge.addMember(tab, member);
 	}
 
@@ -427,7 +445,7 @@ public class ScilabBridge {
 	 * @param member the member to add
  	 * @return index of member
  	 */
-	public static int addMember(Tab tab, Canvas member) {
+	public static int addMember(SimpleTab tab, SimpleCanvas member) {
 		return ScilabTabBridge.addMember(tab, member);
 	}
 
@@ -439,7 +457,7 @@ public class ScilabBridge {
 	 * Creates a Scilab Console
 	 * @return the created console
 	 */
-	public static Console createConsole() {
+	public static SimpleConsole createConsole() {
 		return ScilabConsoleBridge.createConsole();
 	}
 
@@ -449,7 +467,7 @@ public class ScilabBridge {
 	 * @param dataToDisplay the data to be displayed
 	 * @see org.scilab.modules.console.Console#display()
 	 */
-	public static void display(Console console, String dataToDisplay) {
+	public static void display(SimpleConsole console, String dataToDisplay) {
 		ScilabConsoleBridge.display(console, dataToDisplay);
 	}
 
@@ -459,7 +477,7 @@ public class ScilabBridge {
 	 * @return the data entered by the user
 	 * @see org.scilab.modules.console.Console#readLine()
 	 */
-	public static String readLine(Console console) {
+	public static String readLine(SimpleConsole console) {
 		return ScilabConsoleBridge.readLine(console);
 	}
 
@@ -468,7 +486,7 @@ public class ScilabBridge {
 	 * @param console the console to draw
 	 * @see org.scilab.modules.ihm.UIElement#draw()
 	 */
-	public static void draw(Console console) {
+	public static void draw(SimpleConsole console) {
 		ScilabConsoleBridge.draw(console);
 	}
 
@@ -478,7 +496,7 @@ public class ScilabBridge {
 	 * @return the size of the console
 	 * @see org.scilab.modules.ihm.UIElement#getDims()
 	 */
-	public static Size getDims(Console console) {
+	public static Size getDims(SimpleConsole console) {
 		return ScilabConsoleBridge.getDims(console);
 	}
 
@@ -488,7 +506,7 @@ public class ScilabBridge {
 	 * @return the position of the console
 	 * @see org.scilab.modules.ihm.UIElement#getPosition()
 	 */
-	public static Position getPosition(Console console) {
+	public static Position getPosition(SimpleConsole console) {
 		return ScilabConsoleBridge.getPosition(console);
 	}
 
@@ -498,7 +516,7 @@ public class ScilabBridge {
 	 * @return the visibility status of the console (true if the console is visible, false if not)
 	 * @see org.scilab.modules.ihm.UIElement#isVisible()
 	 */
-	public static boolean isVisible(Console console) {
+	public static boolean isVisible(SimpleConsole console) {
 		return ScilabConsoleBridge.isVisible(console);
 	}
 
@@ -508,7 +526,7 @@ public class ScilabBridge {
 	 * @param newSize the size we want to set to the console
 	 * @see org.scilab.modules.ihm.UIElement#setDims(org.scilab.modules.ihm.utils.Size)
 	 */
-	public static void setDims(Console console, Size newSize) {
+	public static void setDims(SimpleConsole console, Size newSize) {
 		ScilabConsoleBridge.setDims(console, newSize);
 	}
 
@@ -518,7 +536,7 @@ public class ScilabBridge {
 	 * @param newPosition the position we want to set to the console
 	 * @see org.scilab.modules.ihm.UIElement#setPosition(org.scilab.modules.ihm.utils.Position)
 	 */
-	public static void setPosition(Console console, Position newPosition) {
+	public static void setPosition(SimpleConsole console, Position newPosition) {
 		ScilabConsoleBridge.setPosition(console, newPosition);
 	}
 
@@ -528,7 +546,7 @@ public class ScilabBridge {
 	 * @param newVisibleState the visibility status we want to set to the console
 	 * @see org.scilab.modules.ihm.UIElement#setVisible(boolean)
 	 */
-	public static void setPosition(Console console, boolean newVisibleState) {
+	public static void setVisible(SimpleConsole console, boolean newVisibleState) {
 		ScilabConsoleBridge.setVisible(console, newVisibleState);
 	}
 
@@ -540,7 +558,7 @@ public class ScilabBridge {
 	 * Creates a Scilab Canvas
 	 * @return the created canvas
 	 */
-	public static Canvas createCanvas() {
+	public static SimpleCanvas createCanvas() {
 		return ScilabCanvasBridge.createCanvas();
 	}
 
@@ -549,7 +567,7 @@ public class ScilabBridge {
 	 * @param canvas the canvas to draw
 	 * @see org.scilab.modules.ihm.UIElement#draw()
 	 */
-	public static void draw(Canvas canvas) {
+	public static void draw(SimpleCanvas canvas) {
 		ScilabCanvasBridge.draw(canvas);
 	}
 
@@ -559,7 +577,7 @@ public class ScilabBridge {
 	 * @return the size of the canvas
 	 * @see org.scilab.modules.ihm.UIElement#getDims()
 	 */
-	public static Size getDims(Canvas canvas) {
+	public static Size getDims(SimpleCanvas canvas) {
 		return ScilabCanvasBridge.getDims(canvas);
 	}
 
@@ -569,7 +587,7 @@ public class ScilabBridge {
 	 * @return the position of the canvas
 	 * @see org.scilab.modules.ihm.UIElement#getPosition()
 	 */
-	public static Position getPosition(Canvas canvas) {
+	public static Position getPosition(SimpleCanvas canvas) {
 		return ScilabCanvasBridge.getPosition(canvas);
 	}
 
@@ -579,7 +597,7 @@ public class ScilabBridge {
 	 * @return the visibility status of the canvas (true if the canvas is visible, false if not)
 	 * @see org.scilab.modules.ihm.UIElement#isVisible()
 	 */
-	public static boolean isVisible(Canvas canvas) {
+	public static boolean isVisible(SimpleCanvas canvas) {
 		return ScilabCanvasBridge.isVisible(canvas);
 	}
 
@@ -589,7 +607,7 @@ public class ScilabBridge {
 	 * @param newSize the size we want to set to the canvas
 	 * @see org.scilab.modules.ihm.UIElement#setDims(org.scilab.modules.ihm.utils.Size)
 	 */
-	public static void setDims(Canvas canvas, Size newSize) {
+	public static void setDims(SimpleCanvas canvas, Size newSize) {
 		ScilabCanvasBridge.setDims(canvas, newSize);
 	}
 
@@ -599,7 +617,7 @@ public class ScilabBridge {
 	 * @param newPosition the position we want to set to the canvas
 	 * @see org.scilab.modules.ihm.UIElement#setPosition(org.scilab.modules.ihm.utils.Position)
 	 */
-	public static void setPosition(Canvas canvas, Position newPosition) {
+	public static void setPosition(SimpleCanvas canvas, Position newPosition) {
 		ScilabCanvasBridge.setPosition(canvas, newPosition);
 	}
 
@@ -609,7 +627,7 @@ public class ScilabBridge {
 	 * @param newVisibleState the visibility status we want to set to the canvas (true to set the canvas visible, false else)
 	 * @see org.scilab.modules.ihm.UIElement#setVisible(boolean)
 	 */
-	public static void setVisible(Canvas canvas, boolean newVisibleState) {
+	public static void setVisible(SimpleCanvas canvas, boolean newVisibleState) {
 		ScilabCanvasBridge.setVisible(canvas, newVisibleState);
 	}
 	
@@ -738,6 +756,69 @@ public class ScilabBridge {
 	}
 	
 	/**
+	 * Draws a pushButton on screen
+	 * @param pushButton the pushButton to be drawn
+	 */
+	public static void draw(SimplePushButton pushButton) {
+		ScilabPushButtonBridge.draw(pushButton);
+	}
+
+	/**
+	 * Gets the dimensions (width and height) of a pushButton
+	 * @param pushButton the pushButton we want to get the dimensions of
+	 * @return dimensions of the pushButton
+	 */
+	public static Size getDims(SimplePushButton pushButton) {
+		return ScilabPushButtonBridge.getDims(pushButton);
+	}
+
+	/**
+	 * Sets the dimensions (width and height) of a pushButton
+	 * @param pushButton the pushButton we want to set the dimensions of
+	 * @param newSize new dimensions of the pushButton
+	 */
+	public static void setDims(SimplePushButton pushButton, Size newSize) {
+		ScilabPushButtonBridge.setDims(pushButton, newSize);
+	}
+
+	/**
+	 * Gets the position (X-coordinate and Y-coordinate) of a pushButton
+	 * @param pushButton the pushButton we want to get the position of
+	 * @return position of the pushButton
+	 */
+	public static Position getPosition(SimplePushButton pushButton) {
+		return ScilabPushButtonBridge.getPosition(pushButton);
+	}
+
+	/**
+	 * Sets the position (X-coordinate and Y-coordinate) of a pushButton
+	 * @param pushButton the pushButton we want to set the position of
+	 * @param newPosition new position of the pushButton
+	 */
+	public static void setPosition(SimplePushButton pushButton, Position newPosition) {
+		ScilabPushButtonBridge.setPosition(pushButton, newPosition);
+	}
+	
+	/**
+	 * Gets the visibility status of a pushButton
+	 * @param pushButton the pushButton we want to get the status of
+	 * @return visibility status (true if the pushButton is visible, false if not)
+	 */
+	public static boolean isVisible(SimplePushButton pushButton) {
+		return ScilabPushButtonBridge.isVisible(pushButton);
+	}
+
+	/**
+	 * Sets the visibility status for a pushButton
+	 * @param pushButton the pushButton we want to set the visibility status of
+	 * @param newVisibleState new visibility status for the pushButton
+	 * 			(true set the pushButton visible, false to set the pushButton invisible)
+	 */
+	public static void setVisible(SimplePushButton pushButton, boolean newVisibleState) {
+		ScilabPushButtonBridge.setVisible(pushButton, newVisibleState);
+	}
+	
+	/**
 	 * Sets the Text of a PushButton
 	 * @param pushButton the PushButton we want to set the Text of
 	 * @param newText the Text to set for the MenuItem
@@ -853,7 +934,7 @@ public class ScilabBridge {
 	 * Creates a new EditBox
 	 * @return the created EditBox
 	 */
-	public static EditBoxBridge createEditBox() {
+	public static SimpleEditBox createEditBox() {
 		return ScilabEditBoxBridge.createEditBox();
 	}
 	
@@ -862,7 +943,7 @@ public class ScilabBridge {
 	 * @param editBox the EditBox we want to set the Text of
 	 * @param newText the Text to set for the EditBox
 	 */
-	public static void setText(EditBoxBridge editBox, String newText) {
+	public static void setText(SimpleEditBox editBox, String newText) {
 		ScilabEditBoxBridge.setText(editBox, newText);
 	}
 	
@@ -871,7 +952,7 @@ public class ScilabBridge {
 	 * @param editBox the EditBox we want to get the text of
 	 * @return the text of the EditBox
 	 */
-	public static String getText(EditBoxBridge editBox) {
+	public static String getText(SimpleEditBox editBox) {
 		return ScilabEditBoxBridge.getText(editBox);
 	}
 	
@@ -880,7 +961,7 @@ public class ScilabBridge {
 	 * @param editBox the EditBox to draw
 	 * @see org.scilab.modules.ihm.UIElement#draw()
 	 */
-	public static void draw(EditBoxBridge editBox) {
+	public static void draw(SimpleEditBox editBox) {
 		ScilabEditBoxBridge.draw(editBox);
 	}
 
@@ -890,7 +971,7 @@ public class ScilabBridge {
 	 * @return the size of the editBox
 	 * @see org.scilab.modules.ihm.UIElement#getDims()
 	 */
-	public static Size getDims(EditBoxBridge editBox) {
+	public static Size getDims(SimpleEditBox editBox) {
 		return ScilabEditBoxBridge.getDims(editBox);
 	}
 
@@ -900,7 +981,7 @@ public class ScilabBridge {
 	 * @return the position of the editBox
 	 * @see org.scilab.modules.ihm.UIElement#getPosition()
 	 */
-	public static Position getPosition(EditBoxBridge editBox) {
+	public static Position getPosition(SimpleEditBox editBox) {
 		return ScilabEditBoxBridge.getPosition(editBox);
 	}
 
@@ -910,7 +991,7 @@ public class ScilabBridge {
 	 * @return the visibility status of the editBox (true if the editBox is visible, false if not)
 	 * @see org.scilab.modules.ihm.UIElement#isVisible()
 	 */
-	public static boolean isVisible(EditBoxBridge editBox) {
+	public static boolean isVisible(SimpleEditBox editBox) {
 		return ScilabEditBoxBridge.isVisible(editBox);
 	}
 
@@ -920,7 +1001,7 @@ public class ScilabBridge {
 	 * @param newSize the size we want to set to the editBox
 	 * @see org.scilab.modules.ihm.UIElement#setDims(org.scilab.modules.ihm.utils.Size)
 	 */
-	public static void setDims(EditBoxBridge editBox, Size newSize) {
+	public static void setDims(SimpleEditBox editBox, Size newSize) {
 		ScilabEditBoxBridge.setDims(editBox, newSize);
 	}
 
@@ -930,7 +1011,7 @@ public class ScilabBridge {
 	 * @param newPosition the position we want to set to the editBox
 	 * @see org.scilab.modules.ihm.UIElement#setPosition(org.scilab.modules.ihm.utils.Position)
 	 */
-	public static void setPosition(EditBoxBridge editBox, Position newPosition) {
+	public static void setPosition(SimpleEditBox editBox, Position newPosition) {
 		ScilabEditBoxBridge.setPosition(editBox, newPosition);
 	}
 
@@ -940,7 +1021,7 @@ public class ScilabBridge {
 	 * @param newVisibleState the visibility status we want to set to the editBox (true to set the editBox visible, false else)
 	 * @see org.scilab.modules.ihm.UIElement#setVisible(boolean)
 	 */
-	public static void setVisible(EditBoxBridge editBox, boolean newVisibleState) {
+	public static void setVisible(SimpleEditBox editBox, boolean newVisibleState) {
 		ScilabEditBoxBridge.setVisible(editBox, newVisibleState);
 	}
 	

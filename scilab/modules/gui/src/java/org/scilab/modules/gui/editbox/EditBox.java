@@ -21,7 +21,7 @@ public interface EditBox extends Text {
 	 * Gets this Bridge component object
 	 * @return this Bridge component object
 	 */
-	EditBoxBridge getEditBoxBridge();
+	SimpleEditBox getAsSimpleEditBox();
 	
 //	 TODO ============= En Developpement ==========/
 	/**

@@ -16,6 +16,7 @@ import org.scilab.modules.gui.utils.Size;
  * In the following, an UIElement is a Scilab GUI element
  * @author Vincent COUVERT
  * @author Bruno JOFRET
+ * @author Marouane BEN JELLOUL
  */
 public interface UIElement {
 
@@ -23,15 +24,13 @@ public interface UIElement {
 	 * Associate the Tool bar to the UIElement
 	 * @param toolBarToAdd - the Tool bar.
 	 */
-	// FIXME : Must be available at all !!
-	//	void addToolBar(ToolBar toolBarToAdd);
+	void addToolBar(ToolBar toolBarToAdd);
 
 	/**
 	 * Associate the Menu bar to the UIElement
 	 * @param toolMenuToAdd - the Tool bar.
 	 */
-	// FIXME : Must be available at all !!
-	//void addMenuBar(MenuBar toolMenuToAdd);
+	void addMenuBar(MenuBar toolMenuToAdd);
 
 //	public abstract void resize();
 //

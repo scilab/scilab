@@ -8,7 +8,11 @@ import java.awt.Dimension;
 import org.scilab.modules.console.SciConsole;
 import org.scilab.modules.console.SciInputCommandView;
 import org.scilab.modules.gui.console.Console;
+import org.scilab.modules.gui.console.SimpleConsole;
 import org.scilab.modules.gui.container.Container;
+import org.scilab.modules.gui.container.SimpleContainer;
+import org.scilab.modules.gui.menubar.SimpleMenuBar;
+import org.scilab.modules.gui.toolbar.SimpleToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -17,7 +21,7 @@ import org.scilab.modules.gui.utils.Size;
  * This implementation uses JyConsole package
  * @author Vincent COUVERT
  */
-public class SwingScilabConsole extends SciConsole implements Console {
+public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -28,6 +32,24 @@ public class SwingScilabConsole extends SciConsole implements Console {
 		super();
 	}
 
+	/**
+	 * Sets a MenuBar to an element
+	 * @param newMenuBar the MenuBar to set to the element
+	 */
+	public void addMenuBar(SimpleMenuBar newMenuBar) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Sets a ToolBar to an element
+	 * @param newToolBar the ToolBar to set to the element
+	 */
+	public void addToolBar(SimpleToolBar newToolBar) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException();
+	}
+	
 	/**
 	 * Displays data in the console
 	 * @param dataToDisplay the data to be displayed
@@ -58,16 +80,20 @@ public class SwingScilabConsole extends SciConsole implements Console {
 		this.getConfiguration().getInputCommandView().requestFocus();
 		
 		// Avoids reading of an empty buffer
-		((SciInputCommandView) this.getConfiguration().getInputCommandView()).setBufferProtected();
+// FIXME : commented next line because of compilation error		
+//		((SciInputCommandView) this.getConfiguration().getInputCommandView()).setBufferProtected();
 		
 		// Reads the buffer
-		cmd = ((SciInputCommandView) this.getConfiguration().getInputCommandView()).getCmdBuffer();
+// FIXME : commented next line because of compilation error
+//		cmd = ((SciInputCommandView) this.getConfiguration().getInputCommandView()).getCmdBuffer();
 
 		// Hide the prompt
 		this.getConfiguration().getInputCommandView().setVisible(false);
 		this.getConfiguration().getPromptView().setVisible(false);
 	
-		return cmd;
+// FIXME : commented next line adn added one line because of compilation error
+//		return cmd;
+		return "";
 	}
 
 	/**
@@ -133,9 +159,9 @@ public class SwingScilabConsole extends SciConsole implements Console {
 	 * @see org.scilab.modules.gui.container.Container#addMember(org.scilab.modules.gui.dockable.Dockable)
 	 * @see org.scilab.modules.gui.dockable.Dockable#addAsMemberTo(org.scilab.modules.gui.container.Container)
 	 */
-	public int addAsMemberTo(Container container) {
+	public int addAsMemberTo(SimpleContainer container) {
 		// delegate to the container but also adding info on how to handle me (Console)
 		// Interface Container must describe methode: int addMember(Console member);
-		return container.addMember((Console) this);
+		return container.addMember((SimpleConsole) this);
 	}
 }

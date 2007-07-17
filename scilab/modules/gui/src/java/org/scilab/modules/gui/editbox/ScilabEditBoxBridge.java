@@ -24,10 +24,8 @@ public class ScilabEditBoxBridge {
 	 * Creates a Scilab EditBox
 	 * @return the created EditBox
 	 */
-	public static EditBoxBridge createEditBox() {
-		// FIXME : UI CONTROL must be developped last !!!!!
-		return null;	
-		//return new SwingScilabEditBox();
+	public static SimpleEditBox createEditBox() {
+		return new SwingScilabEditBox();
 	}
 	
 	/**
@@ -35,7 +33,7 @@ public class ScilabEditBoxBridge {
 	 * @param editBox the EditBox we want to set the Text of
 	 * @param newText the Text we want to set to the EditBox
 	 */
-	public static void setText(EditBoxBridge editBox, String newText) {
+	public static void setText(SimpleEditBox editBox, String newText) {
 		editBox.setText(newText);
 	}
 	
@@ -44,7 +42,7 @@ public class ScilabEditBoxBridge {
 	 * @param editBox the EditBox we want to get the Text of
 	 * @return the text of the EditBox
 	 */
-	public static String getText(EditBoxBridge editBox) {
+	public static String getText(SimpleEditBox editBox) {
 		return editBox.getText();
 	}
 	
@@ -53,7 +51,7 @@ public class ScilabEditBoxBridge {
 	 * @param editBox the editBox to draw
 	 * @see org.scilab.modules.gui.UIElement#draw()
 	 */
-	public static void draw(EditBoxBridge editBox) {
+	public static void draw(SimpleEditBox editBox) {
 		editBox.draw();
 	}
 
@@ -63,7 +61,7 @@ public class ScilabEditBoxBridge {
 	 * @return the size of the editBox
 	 * @see org.scilab.modules.gui.UIElement#getDims()
 	 */
-	public static Size getDims(EditBoxBridge editBox) {
+	public static Size getDims(SimpleEditBox editBox) {
 		return editBox.getDims();
 	}
 
@@ -73,7 +71,7 @@ public class ScilabEditBoxBridge {
 	 * @return the position of the editBox
 	 * @see org.scilab.modules.gui.UIElement#getPosition()
 	 */
-	public static Position getPosition(EditBoxBridge editBox) {
+	public static Position getPosition(SimpleEditBox editBox) {
 		return editBox.getPosition();
 	}
 
@@ -83,7 +81,7 @@ public class ScilabEditBoxBridge {
 	 * @return the visibility status of the editBox (true if the editBox is visible, false if not)
 	 * @see org.scilab.modules.gui.UIElement#isVisible()
 	 */
-	public static boolean isVisible(EditBoxBridge editBox) {
+	public static boolean isVisible(SimpleEditBox editBox) {
 		return editBox.isVisible();
 	}
 
@@ -93,7 +91,7 @@ public class ScilabEditBoxBridge {
 	 * @param newSize the size we want to set to the editBox
 	 * @see org.scilab.modules.gui.UIElement#setDims(org.scilab.modules.gui.utils.Size)
 	 */
-	public static void setDims(EditBoxBridge editBox, Size newSize) {
+	public static void setDims(SimpleEditBox editBox, Size newSize) {
 		editBox.setDims(newSize);
 	}
 
@@ -103,7 +101,7 @@ public class ScilabEditBoxBridge {
 	 * @param newPosition the position we want to set to the editBox
 	 * @see org.scilab.modules.gui.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
 	 */
-	public static void setPosition(EditBoxBridge editBox, Position newPosition) {
+	public static void setPosition(SimpleEditBox editBox, Position newPosition) {
 		editBox.setPosition(newPosition);
 	}
 
@@ -113,7 +111,7 @@ public class ScilabEditBoxBridge {
 	 * @param newVisibleState the visibility status we want to set to the editBox (true to set the editBox visible, false else)
 	 * @see org.scilab.modules.gui.UIElement#setVisible(boolean)
 	 */
-	public static void setVisible(EditBoxBridge editBox, boolean newVisibleState) {
+	public static void setVisible(SimpleEditBox editBox, boolean newVisibleState) {
 		editBox.setVisible(newVisibleState);
 	}
 }

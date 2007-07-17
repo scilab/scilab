@@ -10,19 +10,21 @@ import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
 import org.scilab.modules.gui.checkbox.CheckBox;
-import org.scilab.modules.gui.console.Console;
-import org.scilab.modules.gui.container.Container;
-import org.scilab.modules.gui.canvas.Canvas;
+import org.scilab.modules.gui.console.SimpleConsole;
+import org.scilab.modules.gui.container.SimpleContainer;
+import org.scilab.modules.gui.canvas.SimpleCanvas;
+import org.scilab.modules.gui.dockable.SimpleDockable;
 import org.scilab.modules.gui.editbox.EditBox;
-import org.scilab.modules.gui.frame.Frame;
+import org.scilab.modules.gui.frame.SimpleFrame;
 import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.listbox.ListBox;
-import org.scilab.modules.gui.pushbutton.PushButton;
+import org.scilab.modules.gui.menubar.SimpleMenuBar;
+import org.scilab.modules.gui.pushbutton.SimplePushButton;
 import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.tab.SimpleTab;
-import org.scilab.modules.gui.tab.Tab;
-import org.scilab.modules.gui.textbox.TextBox;
+import org.scilab.modules.gui.textbox.SimpleTextBox;
+import org.scilab.modules.gui.toolbar.SimpleToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -30,8 +32,10 @@ import org.scilab.modules.gui.utils.Size;
  * Swing implementation for Scilab tabs in GUIs
  * This implementation uses FlexDock package
  * @author Vincent COUVERT
+ * @author Marouane BEN JELLOUL
  */
-public class SwingScilabTab extends View  implements SimpleTab {
+public class SwingScilabTab extends View implements SimpleTab {
+
 	/**
 	 * Constructor
 	 * @param name the name of the tab (used to identify it)
@@ -42,6 +46,24 @@ public class SwingScilabTab extends View  implements SimpleTab {
 		this.addAction(DockingConstants.PIN_ACTION);
  	}
 
+	/**
+	 * Sets a MenuBar to an element
+	 * @param newMenuBar the MenuBar to set to the element
+	 */
+	public void addMenuBar(SimpleMenuBar newMenuBar) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Sets a ToolBar to an element
+	 * @param newToolBar the ToolBar to set to the element
+	 */
+	public void addToolBar(SimpleToolBar newToolBar) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException();
+	}
+	
 	/**
 	 * Sets the Name of a swing Scilab tab
 	 * @param newTabName the Name of the tab
@@ -111,7 +133,7 @@ public class SwingScilabTab extends View  implements SimpleTab {
 	 * @param member the member to add
 	 * @return index of member in ArrayList
 	 */
-	public int addMember(Canvas member) {
+	public int addMember(SimpleCanvas member) {
 		return this.addMember((SwingScilabCanvas) member);
 	}
 	
@@ -133,8 +155,7 @@ public class SwingScilabTab extends View  implements SimpleTab {
 	 */
 	public int addMember(CheckBox member) {
 //		TODO : can we add a CheckBox? if yes find out how we should add a it to a Tab
-		// TODO code this
-		return 0;
+		throw new UnsupportedOperationException("Can not add a CheckBox in a Tab");
 	}
 	
 	/**
@@ -142,7 +163,7 @@ public class SwingScilabTab extends View  implements SimpleTab {
 	 * @param member the member to add
 	 * @return index of member in ArrayList
 	 */
-	public int addMember(Console member) {
+	public int addMember(SimpleConsole member) {
 		return this.addMember((SwingScilabConsole) member);
 	}
 
@@ -163,10 +184,10 @@ public class SwingScilabTab extends View  implements SimpleTab {
 	 * @see org.scilab.modules.gui.container.Container#addMember(org.scilab.modules.gui.dockable.Dockable)
 	 * @see org.scilab.modules.gui.dockable.Dockable#addAsMemberTo(org.scilab.modules.gui.container.Container)
 	 */
-//	public int addMember(Dockable member) {
-//		// delegate to the member
-//		return member.addAsMemberTo(this);
-//	}
+	public int addMember(SimpleDockable member) {
+		// delegate to the member
+		return member.addAsMemberTo(this);
+	}
 	
 	/**
 	 * Add a member (dockable element) to container and returns its index
@@ -175,8 +196,7 @@ public class SwingScilabTab extends View  implements SimpleTab {
 	 */
 	public int addMember(EditBox member) {
 //		TODO : can we add a EditBox? if yes find out how we should add a it to a Tab
-		// TODO code this
-		return -1;
+		throw new UnsupportedOperationException("Can not add a EditBox in a Tab");
 	}
 	
 	/**
@@ -184,7 +204,7 @@ public class SwingScilabTab extends View  implements SimpleTab {
 	 * @param member the member to add
 	 * @return index of member in ArrayList
 	 */
-	public int addMember(Frame member) {
+	public int addMember(SimpleFrame member) {
 		return this.addMember((SwingScilabFrame) member);
 	}
 
@@ -205,8 +225,7 @@ public class SwingScilabTab extends View  implements SimpleTab {
 	 */
 	public int addMember(Label member) {
 //		TODO : can we add a Label? if yes find out how we should add a it to a Tab
-		// TODO code this
-		return -1;
+		throw new UnsupportedOperationException("Can not add a Label in a Tab");
 	}
 	
 	/**
@@ -216,8 +235,7 @@ public class SwingScilabTab extends View  implements SimpleTab {
 	 */
 	public int addMember(ListBox member) {
 //		TODO : can we add a ListBox? if yes find out how we should add a it to a Tab
-		// TODO code this
-		return -1;
+		throw new UnsupportedOperationException("Can not add a ListBox in a Tab");
 	}
 	
 	/**
@@ -225,10 +243,9 @@ public class SwingScilabTab extends View  implements SimpleTab {
 	 * @param member the member to add
 	 * @return index of member in ArrayList
 	 */
-	public int addMember(PushButton member) {
+	public int addMember(SimplePushButton member) {
 //		TODO : can we add a PushButton? if yes find out how we should add a it to a Tab
-		// TODO code this
-		return -1;
+		throw new UnsupportedOperationException("Can not add a PushButton in a Tab");
 	}
 	
 	/**
@@ -238,8 +255,7 @@ public class SwingScilabTab extends View  implements SimpleTab {
 	 */
 	public int addMember(RadioButton member) {
 //		TODO : can we add a RadioButton? if yes find out how we should add a it to a Tab
-		// TODO code this
-		return -1;
+		throw new UnsupportedOperationException("Can not add a RadioButton in a Tab");
 	}
 	
 	/**
@@ -249,8 +265,7 @@ public class SwingScilabTab extends View  implements SimpleTab {
 	 */
 	public int addMember(Slider member) {
 //		TODO : can we add a Slider? if yes find out how we should add a it to a Tab
-		// TODO code this
-		return -1;
+		throw new UnsupportedOperationException("Can not add a Slider in a Tab");
 	}
 	
 	/**
@@ -258,10 +273,9 @@ public class SwingScilabTab extends View  implements SimpleTab {
 	 * @param member the member to add
 	 * @return index of member in ArrayList
 	 */
-	public int addMember(Tab member) {
+	public int addMember(SimpleTab member) {
 //		TODO : can we add a Tab? if yes find out how we should add a it to a Tab
-		// TODO code this
-		return -1;
+		throw new UnsupportedOperationException("Can not add a Tab in a Tab");
 	}
 	
 	/**
@@ -269,10 +283,9 @@ public class SwingScilabTab extends View  implements SimpleTab {
 	 * @param member the member to add
 	 * @return index of member in ArrayList
 	 */
-	public int addMember(TextBox member) {
-//		TODO : can we add a Tab? if yes find out how we should add a it to a Tab
-		// TODO code this
-		return -1;
+	public int addMember(SimpleTextBox member) {
+//		TODO : can we add a TextBox? if yes find out how we should add a it to a Tab
+		throw new UnsupportedOperationException("Can not add a TextBox in a Tab");
 	}
 	
 	/**
@@ -282,10 +295,10 @@ public class SwingScilabTab extends View  implements SimpleTab {
 	 * @see org.scilab.modules.gui.container.Container#addMember(org.scilab.modules.gui.dockable.Dockable)
 	 * @see org.scilab.modules.gui.dockable.Dockable#addAsMemberTo(org.scilab.modules.gui.container.Container)
 	 */
-	public int addAsMemberTo(Container container) {
-		// delegate to the container but also adding info on how to handle me (Tab)
-		// Interface Container must describe methode: int addMember(Tab member);
-		return container.addMember((Tab) this);
+	public int addAsMemberTo(SimpleContainer container) {
+		// delegate to the SimpleContainer but also adding info on how to handle me (SimpleTab)
+		// Interface SimpleContainer must describe methode: int addMember(SimpleTab member);
+		return container.addMember((SimpleTab) this);
 	}
 
 }

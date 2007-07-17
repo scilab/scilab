@@ -17,24 +17,8 @@ import org.scilab.modules.gui.toolbar.ToolBar;
 public interface Window extends UIElement {
 
 	/**
-	 * Associate the Tool bar to the UIElement
-	 * @param toolBarToAdd - the Tool bar.
-	 */
-	// FIXME : Must be removed
-	// Comes from inherited UIElement
-	void addToolBar(ToolBar toolBarToAdd);
-
-	/**
-	 * Associate the Menu bar to the UIElement
-	 * @param toolMenuToAdd - the Tool bar.
-	 */
-	// FIXME : Must be removed
-	// Comes from inherited UIElement
-	void addMenuBar(MenuBar toolMenuToAdd);
-	
-	/**
-	 * Gets a much more dummy Objects
-	 * @return the component.
+	 * Gets this Bridge component object
+	 * @return this Bridge component object
 	 */
 	SimpleWindow getAsSimpleWindow();
 	

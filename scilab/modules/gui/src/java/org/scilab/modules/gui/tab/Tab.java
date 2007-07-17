@@ -15,8 +15,8 @@ import org.scilab.modules.gui.frame.Frame;
 public interface Tab extends Container {
 
 	/**
-	 * Gets a much more dummy Objects
-	 * @return the component.
+	 * Gets this Bridge component object
+	 * @return this Bridge component object
 	 */
 	SimpleTab getAsSimpleTab();
 	

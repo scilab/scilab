@@ -3,21 +3,14 @@
 
 package org.scilab.modules.gui.console;
 
-import org.scilab.modules.gui.dockable.Dockable;
+import org.scilab.modules.gui.dockable.SimpleDockable;
 
 /**
- * Interface for Scilab Console in GUIs
- * @author Vincent COUVERT
+ * Interface for SimpleConsole the associated object to Scilab GUIs Console
  * @author Marouane BEN JELLOUL
  */
-public interface Console extends Dockable {
+public interface SimpleConsole extends SimpleDockable {
 
-	/**
-	 * Gets this Bridge component object
-	 * @return this Bridge component object
-	 */
-	SimpleConsole getAsSimpleConsole();
-	
 	/**
 	 * Reads input data in console
 	 * @return the string entered by user

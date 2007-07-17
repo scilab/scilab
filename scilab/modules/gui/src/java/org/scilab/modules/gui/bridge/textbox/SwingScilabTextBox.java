@@ -6,6 +6,7 @@ package org.scilab.modules.gui.bridge.textbox;
 import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
 
+import org.scilab.modules.gui.container.SimpleContainer;
 import org.scilab.modules.gui.menubar.SimpleMenuBar;
 import org.scilab.modules.gui.textbox.SimpleTextBox;
 import org.scilab.modules.gui.toolbar.SimpleToolBar;
@@ -32,6 +33,7 @@ public class SwingScilabTextBox extends JTextArea implements SimpleTextBox {
 	 */
 	public void addMenuBar(SimpleMenuBar newMenuBar) {
 		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -39,7 +41,8 @@ public class SwingScilabTextBox extends JTextArea implements SimpleTextBox {
 	 * @param newToolBar the ToolBar to set to the element
 	 */
 	public void addToolBar(SimpleToolBar newToolBar) {
-		// TODO Auto-generated method stub	
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException();
 	}
 	
 	/**
@@ -113,7 +116,8 @@ public class SwingScilabTextBox extends JTextArea implements SimpleTextBox {
 	public void setBorder(LineBorder lineBorder) {
 		super.setBorder(lineBorder);
 	}
-
+//	 TODO ============= FIN En Developpement ==========/
+	
 	/**
 	 * Add this as member (dockable element) to the Scilab container and returns its index
 	 * @param container the container in which we add this
@@ -121,10 +125,10 @@ public class SwingScilabTextBox extends JTextArea implements SimpleTextBox {
 	 * @see org.scilab.modules.gui.container.Container#addMember(org.scilab.modules.gui.dockable.Dockable)
 	 * @see org.scilab.modules.gui.dockable.Dockable#addAsMemberTo(org.scilab.modules.gui.container.Container)
 	 */
-//	public int addAsMemberTo(Container container) {
-//		// delegate to the container but also adding info on how to handle me (TextBox)
-//		// Interface Container must describe methode: int addMember(TextBox member);
-//		return container.addMember((TextBox) this);
-//	}
-//	 TODO ============= FIN En Developpement ==========/
+	public int addAsMemberTo(SimpleContainer container) {
+		// delegate to the container but also adding info on how to handle me (TextBox)
+		// Interface Container must describe methode: int addMember(TextBox member);
+		return container.addMember((SimpleTextBox) this);
+	}
+
 }
