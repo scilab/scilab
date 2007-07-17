@@ -7,12 +7,13 @@ import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.container.Container;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.dockable.ScilabDockable;
 
 /**
  * Class for Scilab Console in GUIs
  * @author Vincent COUVERT
  */
-public class ScilabConsole implements Console {
+public class ScilabConsole extends ScilabDockable implements Console {
 
 	/**
 	 * Constructor
