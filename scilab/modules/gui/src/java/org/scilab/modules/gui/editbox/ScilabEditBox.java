@@ -11,8 +11,6 @@ import javax.swing.border.LineBorder;
 
 import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.container.Container;
-import org.scilab.modules.gui.menubar.MenuBar;
-import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.widget.ScilabWidget;
@@ -49,29 +47,11 @@ public class ScilabEditBox extends ScilabWidget implements EditBox {
 	}
 	
 	/**
-	 * Sets a MenuBar to an element
-	 * @param newMenuBar the MenuBar to set to the element
-	 */
-	public void addMenuBar(MenuBar newMenuBar) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	/**
-	 * Sets a ToolBar to an element
-	 * @param newToolBar the ToolBar to set to the element
-	 */
-	public void addToolBar(ToolBar newToolBar) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	/**
 	 * Sets the text of a EditBox
 	 * @param newText the text to set to the EditBox
 	 */
 	public void setText(String newText) {
-		ScilabBridge.setText(component, newText);
+		ScilabBridge.setText(this, newText);
 	}
 	
 	/**
@@ -79,7 +59,7 @@ public class ScilabEditBox extends ScilabWidget implements EditBox {
 	 * @return text of the EditBox
 	 */
 	public String getText() {
-		return ScilabBridge.getText(component);
+		return ScilabBridge.getText(this);
 	}
 	
 	
@@ -98,7 +78,7 @@ public class ScilabEditBox extends ScilabWidget implements EditBox {
 	 * @see org.scilab.modules.gui.uielement.UIElement#setDims(org.scilab.modules.gui.utils.Size)
 	 */
 	public void setDims(Size newSize) {
-		ScilabBridge.setDims(component, newSize); 
+		ScilabBridge.setDims(this, newSize); 
 	}
 	
 	/**
@@ -107,7 +87,7 @@ public class ScilabEditBox extends ScilabWidget implements EditBox {
 	 * @see org.scilab.modules.gui.uielement.UIElement#getDims(org.scilab.modules.gui.utils.Size)
 	 */
 	public Size getDims() {
-		return ScilabBridge.getDims(component); 
+		return ScilabBridge.getDims(this); 
 	}
 	
 	/**
@@ -116,7 +96,7 @@ public class ScilabEditBox extends ScilabWidget implements EditBox {
 	 * @see org.scilab.modules.gui.uielement.UIElement#getPosition()
 	 */
 	public Position getPosition() {
-		return ScilabBridge.getPosition(component); 
+		return ScilabBridge.getPosition(this); 
 	}
 
 	/**
@@ -125,7 +105,7 @@ public class ScilabEditBox extends ScilabWidget implements EditBox {
 	 * @see org.scilab.modules.gui.uielement.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
 	 */
 	public void setPosition(Position newPosition) {
-		ScilabBridge.setPosition(component, newPosition);
+		ScilabBridge.setPosition(this, newPosition);
 	}
 
 //	TODO Question: What do we do with isVisible() for an EditBox ?
