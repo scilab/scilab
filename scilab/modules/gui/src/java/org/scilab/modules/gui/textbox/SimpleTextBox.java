@@ -9,13 +9,13 @@ import java.awt.Font;
 
 import javax.swing.border.LineBorder;
 
-import org.scilab.modules.gui.text.TextBridge;
+import org.scilab.modules.gui.text.SimpleText;
 
 /**
  * Interface for TextBoxBridge the associated object to Scilab GUIs TextBox
  * @author Marouane BEN JELLOUL
  */
-public interface SimpleTextBox extends TextBridge {
+public interface SimpleTextBox extends SimpleText {
 
 	// TODO ============= En Developpement ==========/
 	/**

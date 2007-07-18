@@ -65,7 +65,7 @@ public class ScilabTextBox extends ScilabText implements TextBox {
 	 * @param newText the text to set to the TextBox
 	 */
 	public void setText(String newText) {
-		ScilabBridge.setText(component, newText);
+		ScilabBridge.setText(this, newText);
 	}
 	
 	/**
@@ -73,14 +73,14 @@ public class ScilabTextBox extends ScilabText implements TextBox {
 	 * @return text of the TextBox
 	 */
 	public String getText() {
-		return ScilabBridge.getText(component);
+		return ScilabBridge.getText(this);
 	}
 	
 	/**
 	 * Draws a TextBox
 	 */
 	public void draw() {
-		ScilabBridge.draw(component);
+		ScilabBridge.draw(this);
 	}
 	
 	/**
@@ -89,7 +89,7 @@ public class ScilabTextBox extends ScilabText implements TextBox {
 	 * @see org.scilab.modules.gui.uielement.UIElement#setDims(org.scilab.modules.gui.utils.Size)
 	 */
 	public void setDims(Size newSize) {
-		ScilabBridge.setDims(component, newSize); 
+		ScilabBridge.setDims(this, newSize); 
 	}
 	
 	/**
@@ -98,7 +98,7 @@ public class ScilabTextBox extends ScilabText implements TextBox {
 	 * @see org.scilab.modules.gui.uielement.UIElement#getDims(org.scilab.modules.gui.utils.Size)
 	 */
 	public Size getDims() {
-		return ScilabBridge.getDims(component); 
+		return ScilabBridge.getDims(this); 
 	}
 	
 	/**
@@ -107,7 +107,7 @@ public class ScilabTextBox extends ScilabText implements TextBox {
 	 * @see org.scilab.modules.gui.uielement.UIElement#getPosition()
 	 */
 	public Position getPosition() {
-		return ScilabBridge.getPosition(component); 
+		return ScilabBridge.getPosition(this); 
 	}
 
 	/**
@@ -116,7 +116,7 @@ public class ScilabTextBox extends ScilabText implements TextBox {
 	 * @see org.scilab.modules.gui.uielement.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
 	 */
 	public void setPosition(Position newPosition) {
-		ScilabBridge.setPosition(component, newPosition);
+		ScilabBridge.setPosition(this, newPosition);
 	}
 
 	/**
@@ -124,7 +124,7 @@ public class ScilabTextBox extends ScilabText implements TextBox {
 	 * @return the visibility status of the UIElement (true if the UIElement is visible, false if not)
 	 */
 	public boolean isVisible() {
-		return ScilabBridge.isVisible(component); 
+		return ScilabBridge.isVisible(this); 
 	}
 	
 	/**
@@ -133,7 +133,7 @@ public class ScilabTextBox extends ScilabText implements TextBox {
 	 * 			(true if the UIElement is visible, false if not)
 	 */
 	public void setVisible(boolean newVisibleState) {
-		ScilabBridge.setVisible(component, newVisibleState);
+		ScilabBridge.setVisible(this, newVisibleState);
 	}
 	
 	/**
