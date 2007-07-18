@@ -103,7 +103,7 @@ public class SwingScilabFrame extends JPanel implements SimpleFrame {
 	 * @return index of member in ArrayList
 	 */
 	public int addMember(Console member) {
-		return this.addMember((SwingScilabConsole) member);
+		return this.addMember((SwingScilabConsole) member.getAsSimpleConsole());
 	}
 	
 	/**
@@ -122,7 +122,7 @@ public class SwingScilabFrame extends JPanel implements SimpleFrame {
 	 * @return index of member in ArrayList
 	 */
 	public int addMember(EditBox member) {
-		return this.addMember((SwingScilabEditBox) member);
+		return this.addMember((SwingScilabEditBox) member.getAsSimpleEditBox());
 	}
 	
 	/**
@@ -141,6 +141,7 @@ public class SwingScilabFrame extends JPanel implements SimpleFrame {
 	 * @return index of member in ArrayList
 	 */
 	public int addMember(Label member) {
+		// FIXME replace member with member.getAsSimpleLabel() when ready
 		return this.addMember((SwingScilabLabel) member);
 	}
 
@@ -160,7 +161,7 @@ public class SwingScilabFrame extends JPanel implements SimpleFrame {
 	 * @return index of member in ArrayList
 	 */
 	public int addMember(Frame member) {
-		return this.addMember((SwingScilabFrame) member);
+		return this.addMember((SwingScilabFrame) member.getAsSimpleFrame());
 	}
 
 	/**
@@ -180,7 +181,7 @@ public class SwingScilabFrame extends JPanel implements SimpleFrame {
 	 * @return the position of the Frame in the member list.
 	 */
 	public int addMember(Frame member, String borderLayout) {
-		return this.addMember((SwingScilabFrame) member, borderLayout);
+		return this.addMember((SwingScilabFrame) member.getAsSimpleFrame(), borderLayout);
 	}
 	
 	/**
@@ -201,7 +202,7 @@ public class SwingScilabFrame extends JPanel implements SimpleFrame {
 	 * @return the position of the Frame in the member list.
 	 */
 	public int addMember(Frame member, int layoutPosition) {
-		return this.addMember((SwingScilabFrame) member, layoutPosition);
+		return this.addMember((SwingScilabFrame) member.getAsSimpleFrame(), layoutPosition);
 	}
 	
 	/**
@@ -221,7 +222,7 @@ public class SwingScilabFrame extends JPanel implements SimpleFrame {
 	 * @return index of member in ArrayList
 	 */
 	public int addMember(Canvas member) {
-		return this.addMember((SwingScilabCanvas) member);
+		return this.addMember((SwingScilabCanvas) member.getAsSimpleCanvas());
 	}
 
 	/**
@@ -240,6 +241,7 @@ public class SwingScilabFrame extends JPanel implements SimpleFrame {
 	 * @return index of member in ArrayList
 	 */
 	public int addMember(CheckBox member) {
+		// FIXME replace member with member.getAsSimpleCheckBox() when ready
 		return this.addMember((SwingScilabCheckBox) member);
 	}
 
@@ -259,6 +261,7 @@ public class SwingScilabFrame extends JPanel implements SimpleFrame {
 	 * @return index of member in ArrayList
 	 */
 	public int addMember(ListBox member) {
+//		 FIXME replace member with member.getAsSimpleListBox() when ready
 		return this.addMember((SwingScilabListBox) member);
 	}
 
@@ -278,7 +281,7 @@ public class SwingScilabFrame extends JPanel implements SimpleFrame {
 	 * @return index of member in ArrayList
 	 */
 	public int addMember(PushButton member) {
-		return this.addMember((SwingScilabPushButton) member);
+		return this.addMember((SwingScilabPushButton) member.getAsSimplePushButton());
 	}
 	
 	/**
@@ -297,6 +300,7 @@ public class SwingScilabFrame extends JPanel implements SimpleFrame {
 	 * @return index of member in ArrayList
 	 */
 	public int addMember(RadioButton member) {
+//		 FIXME replace member with member.getAsSimpleRadioButton() when ready
 		return this.addMember((SwingScilabRadioButton) member);
 	}
 
@@ -316,6 +320,7 @@ public class SwingScilabFrame extends JPanel implements SimpleFrame {
 	 * @return index of member in ArrayList
 	 */
 	public int addMember(Slider member) {
+//		 FIXME replace member with member.getAsSimpleSlider() when ready
 		return this.addMember((SwingScilabSlider) member);
 	}
 
@@ -336,7 +341,7 @@ public class SwingScilabFrame extends JPanel implements SimpleFrame {
 	 * @return the position of the PushButton in the member list.
 	 */
 	public int addMember(PushButton member, String borderLayout) {
-		return this.addMember((SwingScilabPushButton) member, borderLayout);
+		return this.addMember((SwingScilabPushButton) member.getAsSimplePushButton(), borderLayout);
 	}
 	
 	/**
@@ -357,7 +362,7 @@ public class SwingScilabFrame extends JPanel implements SimpleFrame {
 	 * @return the position of the PushButton in the member list.
 	 */
 	public int addMember(PushButton member, int layoutPosition) {
-		return this.addMember((SwingScilabPushButton) member, layoutPosition);
+		return this.addMember((SwingScilabPushButton) member.getAsSimplePushButton(), layoutPosition);
 	}
 	
 	/**
@@ -378,7 +383,7 @@ public class SwingScilabFrame extends JPanel implements SimpleFrame {
 	 * @return index of member in ArrayList
 	 */
 	public int addMember(Tab member) {
-		return this.addMember((SwingScilabTab) member);
+		return this.addMember((SwingScilabTab) member.getAsSimpleTab());
 	}
 //	 TODO : Check if it should be possible to add a Tab to a frame and how it should behave
 	/**
@@ -397,7 +402,7 @@ public class SwingScilabFrame extends JPanel implements SimpleFrame {
 	 * @return index of member in ArrayList
 	 */
 	public int addMember(TextBox member) {
-		return this.addMember((SwingScilabTextBox) member);
+		return this.addMember((SwingScilabTextBox) member.getAsSimpleTextBox());
 	}
 
 	/**
@@ -425,16 +430,4 @@ public class SwingScilabFrame extends JPanel implements SimpleFrame {
 		super.setLayout((java.awt.LayoutManager) layout);
 	}
 	
-	/**
-	 * Add this as member (dockable element) to the Scilab container and returns its index
-	 * @param container the container in which we add this
-	 * @return index of this in container components
-	 * @see org.scilab.modules.gui.container.Container#addMember(org.scilab.modules.gui.dockable.Dockable)
-	 * @see org.scilab.modules.gui.dockable.Dockable#addAsMemberTo(org.scilab.modules.gui.container.Container)
-	 */
-	public int addAsMemberTo(Container container) {
-		// delegate to the container but also adding info on how to handle me (Frame)
-		// Interface Container must describe methode: int addMember(Frame member);
-		return container.addMember((Frame) this);
-	}
 }

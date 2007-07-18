@@ -13,8 +13,6 @@ import org.scilab.modules.console.SciConsole;
 import org.scilab.modules.console.SciInputCommandView;
 import org.scilab.modules.console.SciPromptView;
 import org.scilab.modules.gui.console.SimpleConsole;
-import org.scilab.modules.gui.menubar.SimpleMenuBar;
-import org.scilab.modules.gui.toolbar.SimpleToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -34,24 +32,6 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 	 */
 	public SwingScilabConsole() {
 		super();
-	}
-
-	/**
-	 * Sets a MenuBar to an element
-	 * @param newMenuBar the MenuBar to set to the element
-	 */
-	public void addMenuBar(SimpleMenuBar newMenuBar) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * Sets a ToolBar to an element
-	 * @param newToolBar the ToolBar to set to the element
-	 */
-	public void addToolBar(SimpleToolBar newToolBar) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException();
 	}
 	
 	/**

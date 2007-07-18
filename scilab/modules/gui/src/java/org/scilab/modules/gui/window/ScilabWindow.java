@@ -57,7 +57,7 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 * @see org.scilab.modules.gui.ScilabUIElement#draw()
 	 */
 	public void draw() {
-		ScilabBridge.draw(component);
+		ScilabBridge.draw(this);
 	}
 
 	/**
@@ -66,7 +66,7 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 * @see org.scilab.modules.gui.UIElement#getDims()
 	 */
 	public Size getDims() {
-		return ScilabBridge.getDims(component);
+		return ScilabBridge.getDims(this);
 	}
 
 	/**
@@ -75,7 +75,7 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 * @see org.scilab.modules.gui.UIElement#setDims(org.scilab.modules.gui.utils.Size)
 	 */
 	public void setDims(Size newWindowSize) {
-		ScilabBridge.setDims(component, newWindowSize);
+		ScilabBridge.setDims(this, newWindowSize);
 	}
 
 	/**
@@ -84,7 +84,7 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 * @see org.scilab.modules.gui.UIElement#getPosition()
 	 */
 	public Position getPosition() {
-		return ScilabBridge.getPosition(component);
+		return ScilabBridge.getPosition(this);
 	}
 
 	/**
@@ -93,7 +93,7 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 * @see org.scilab.modules.gui.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
 	 */
 	public void setPosition(Position newWindowPosition) {
-		ScilabBridge.setPosition(component, newWindowPosition);
+		ScilabBridge.setPosition(this, newWindowPosition);
 	}
 
 	/**
@@ -102,7 +102,7 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 * @see org.scilab.modules.gui.window.Window#getTitle()
 	 */
 	public String getTitle() {
-		return ScilabBridge.getTitle(component);
+		return ScilabBridge.getTitle(this);
 	}
 
 	/**
@@ -111,7 +111,7 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 * @see org.scilab.modules.gui.window.Window#setTitle(java.lang.String)
 	 */
 	public void setTitle(String newWindowTitle) {
-		ScilabBridge.setTitle(component, newWindowTitle);
+		ScilabBridge.setTitle(this, newWindowTitle);
 	}
 
 	/**
@@ -120,7 +120,7 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 * @see org.scilab.modules.gui.UIElement#isVisible()
 	 */
 	public boolean isVisible() {
-		return ScilabBridge.isVisible(component);
+		return ScilabBridge.isVisible(this);
 	}
 
 	/**
@@ -129,7 +129,7 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 * @see org.scilab.modules.gui.UIElement#setVisible(boolean)
 	 */
 	public void setVisible(boolean newVisibleState) {
-		ScilabBridge.setVisible(component, newVisibleState);
+		ScilabBridge.setVisible(this, newVisibleState);
 	}
 
 	/**
@@ -138,7 +138,7 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 * @see org.scilab.modules.gui.window.Window#addTab(org.scilab.modules.gui.tab.Tab)
 	 */
 	public void addTab(Tab newTab) {
-		ScilabBridge.addTab(component, newTab.getAsSimpleTab());
+		ScilabBridge.addTab(this, newTab);
 	}
 
 	/**
@@ -148,7 +148,7 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 */
 	public void addMenuBar(MenuBar newMenuBar) {
 		super.addMenuBar(newMenuBar);
-		ScilabBridge.addMenuBar(component, newMenuBar.getAsSimpleMenuBar());
+		ScilabBridge.addMenuBar(this, newMenuBar);
 	}
 	
 	/**
@@ -158,7 +158,7 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 */
 	public void addToolBar(ToolBar newToolBar) {
 		super.addToolBar(newToolBar);
-		ScilabBridge.addToolBar(component, newToolBar.getAsSimpleToolBar());
+		ScilabBridge.addToolBar(this, newToolBar);
 	}
 	
 	/**
@@ -168,7 +168,7 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 */
 	public void addInfoBar(TextBox newInfoBar) {
 		this.infoBar = newInfoBar;
-		ScilabBridge.addInfoBar(component, newInfoBar.getAsSimpleTextBox());
+		ScilabBridge.addInfoBar(this, newInfoBar);
 	}
 	
 	/**

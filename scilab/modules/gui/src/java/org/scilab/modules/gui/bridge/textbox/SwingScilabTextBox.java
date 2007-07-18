@@ -4,11 +4,8 @@
 package org.scilab.modules.gui.bridge.textbox;
 
 import javax.swing.JTextArea;
-import javax.swing.border.LineBorder;
 
-import org.scilab.modules.gui.menubar.SimpleMenuBar;
 import org.scilab.modules.gui.textbox.SimpleTextBox;
-import org.scilab.modules.gui.toolbar.SimpleToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -26,24 +23,6 @@ public class SwingScilabTextBox extends JTextArea implements SimpleTextBox {
 		setEditable(false);
 	}
 
-	/**
-	 * Sets a MenuBar to an element
-	 * @param newMenuBar the MenuBar to set to the element
-	 */
-	public void addMenuBar(SimpleMenuBar newMenuBar) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * Sets a ToolBar to an element
-	 * @param newToolBar the ToolBar to set to the element
-	 */
-	public void addToolBar(SimpleToolBar newToolBar) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException();
-	}
-	
 	/**
 	 * Sets the text of a Text Widget
 	 * @param newText the text to set to the Text Widget
@@ -107,26 +86,4 @@ public class SwingScilabTextBox extends JTextArea implements SimpleTextBox {
 		this.setLocation(newPosition.getX(), newPosition.getY());
 	}
 	
-//	 TODO ============= En Developpement ==========/
-	/**
-	 * To set the Border color and size of the element.
-	 * @param lineBorder the LineBorder
-	 */
-	public void setBorder(LineBorder lineBorder) {
-		super.setBorder(lineBorder);
-	}
-
-	/**
-	 * Add this as member (dockable element) to the Scilab container and returns its index
-	 * @param container the container in which we add this
-	 * @return index of this in container components
-	 * @see org.scilab.modules.gui.container.Container#addMember(org.scilab.modules.gui.dockable.Dockable)
-	 * @see org.scilab.modules.gui.dockable.Dockable#addAsMemberTo(org.scilab.modules.gui.container.Container)
-	 */
-//	public int addAsMemberTo(Container container) {
-//		// delegate to the container but also adding info on how to handle me (TextBox)
-//		// Interface Container must describe methode: int addMember(TextBox member);
-//		return container.addMember((TextBox) this);
-//	}
-//	 TODO ============= FIN En Developpement ==========/
 }

@@ -42,8 +42,7 @@ public class ScilabMenuBar implements MenuBar {
 	 * @param newMenu the Menu to add to the MenuBar
 	 * @see org.scilab.modules.gui.widget.MenuBar#add(org.scilab.modules.gui.widget.Menu)
 	 */
-//	* @return the added Menu
 	public void add(Menu newMenu) {
-		ScilabBridge.add(component, newMenu.getAsSimpleMenu());
+		ScilabBridge.add(this, newMenu);
 	}
 }

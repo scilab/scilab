@@ -51,22 +51,46 @@ public interface SimpleTab  {
 	 */
 	int addMember(Canvas member);
 
-
-
 	/**
-	* FIXME : Add some comments here...	
-	*/
-	void draw();
-
+	 * Gets the size of an Tab (width and height)
+	 * @return the size of the Tab
+	 */
 	Size getDims();
 
-	void setDims(Size newTabSize);
+	/**
+	 * Sets the size of an Tab (width and height)
+	 * @param newSize the size we want to set to the Tab
+	 */
+	void setDims(Size newSize);
 
+	/**
+	 * Gets the position of an Tab (X-coordinate and Y-corrdinate)
+	 * @return the position of the Tab
+	 */
 	Position getPosition();
 
-	void setPosition(Position newTabPosition);
+	/**
+	 * Sets the position of an Tab (X-coordinate and Y-corrdinate)
+	 * @param newPosition the position we want to set to the Tab
+	 */
+	void setPosition(Position newPosition);
 
+	/**
+	 * Gets the visibility status of an Tab
+	 * @return the visibility status of the Tab (true if the Tab is visible, false if not)
+	 */
 	boolean isVisible();
 
+	/**
+	 * Sets the visibility status of an Tab
+	 * @param newVisibleState the visibility status we want to set for the Tab
+	 * 			(true if the Tab is visible, false if not)
+	 */
 	void setVisible(boolean newVisibleState);
+
+	/**
+	 * Draws an Tab
+	 */
+	void draw();
+
 }

@@ -5,10 +5,14 @@ package org.scilab.modules.gui.window;
 
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.tab.SimpleTab;
+import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.SimpleTextBox;
+import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.SimpleToolBar;
+import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.SimpleMenuBar;
 
 /**
@@ -30,8 +34,8 @@ public class ScilabWindowBridge {
 	 * Draws a Scilab window
 	 * @param window the window to draw
 	 */
-	public static void draw(SimpleWindow window) {
-		window.draw();
+	public static void draw(Window window) {
+		window.getAsSimpleWindow().draw();
 	}
 
 	/**
@@ -47,8 +51,8 @@ public class ScilabWindowBridge {
 	 * @param window the window we want to get the dimensions of
 	 * @return the dimensions of the window
 	 */
-	public static Size getDims(SimpleWindow window) {
-		return window.getDims();
+	public static Size getDims(Window window) {
+		return window.getAsSimpleWindow().getDims();
 	}
 
 	/**
@@ -56,8 +60,8 @@ public class ScilabWindowBridge {
 	 * @param window the window we want to set the dimensions of
 	 * @param newWindowSize the dimensions we want to set to the window
 	 */
-	public static void setDims(SimpleWindow window, Size newWindowSize) {
-		window.setDims(newWindowSize);
+	public static void setDims(Window window, Size newWindowSize) {
+		window.getAsSimpleWindow().setDims(newWindowSize);
 	}
 
 	/**
@@ -65,8 +69,8 @@ public class ScilabWindowBridge {
 	 * @param window the window we want to get the position of
 	 * @return the position of the window
 	 */
-	public static Position getPosition(SimpleWindow window) {
-		return window.getPosition();
+	public static Position getPosition(Window window) {
+		return window.getAsSimpleWindow().getPosition();
 	}
 
 	/**
@@ -74,8 +78,8 @@ public class ScilabWindowBridge {
 	 * @param window the window we want to set the position of
 	 * @param newWindowPosition the position to set to the window
 	 */
-	public static void setPosition(SimpleWindow window, Position newWindowPosition) {
-		window.setPosition(newWindowPosition);
+	public static void setPosition(Window window, Position newWindowPosition) {
+		window.getAsSimpleWindow().setPosition(newWindowPosition);
 	}
 
 	/**
@@ -83,8 +87,8 @@ public class ScilabWindowBridge {
 	 * @param window the window we want to get the title of
 	 * @return the title of the window
 	 */
-	public static String getTitle(SimpleWindow window) {
-		return window.getTitle();
+	public static String getTitle(Window window) {
+		return window.getAsSimpleWindow().getTitle();
 	}
 
 	/**
@@ -92,8 +96,8 @@ public class ScilabWindowBridge {
 	 * @param window the window we want to set the title of
 	 * @param newWindowTitle the title we want to set to the window
 	 */
-	public static void setTitle(SimpleWindow window, String newWindowTitle) {
-		window.setTitle(newWindowTitle);
+	public static void setTitle(Window window, String newWindowTitle) {
+		window.getAsSimpleWindow().setTitle(newWindowTitle);
 	}
 
 	/**
@@ -101,8 +105,8 @@ public class ScilabWindowBridge {
 	 * @param window the window we want to getthe visibility status of
 	 * @return the visibility status of the window (true if the window is visible, false if not)
 	 */
-	public static boolean isVisible(SimpleWindow window) {
-		return window.isVisible();
+	public static boolean isVisible(Window window) {
+		return window.getAsSimpleWindow().isVisible();
 	}
 
 	/**
@@ -110,8 +114,8 @@ public class ScilabWindowBridge {
 	 * @param window the window we want to set the visibility status of
 	 * @param newVisibleState the visibility status we want to set to the window (true to set the window visible, false else)
 	 */
-	public static void setVisible(SimpleWindow window, boolean newVisibleState) {
-		window.setVisible(newVisibleState);
+	public static void setVisible(Window window, boolean newVisibleState) {
+		window.getAsSimpleWindow().setVisible(newVisibleState);
 	}
 
 	/**
@@ -119,8 +123,8 @@ public class ScilabWindowBridge {
 	 * @param window the window which we want to add the tab to
 	 * @param newTab the tab to add to the window
 	 */
-	public static void addTab(SimpleWindow window, SimpleTab newTab) {
-		window.addTab(newTab);
+	public static void addTab(Window window, Tab newTab) {
+		window.getAsSimpleWindow().addTab(newTab);
 	}
 	
 	/**
@@ -128,8 +132,8 @@ public class ScilabWindowBridge {
 	 * @param window the window which we want to add the MenuBar to
 	 * @param newMenuBar the MenuBar to add to the window
 	 */
-	public static void addMenuBar(SimpleWindow window, SimpleMenuBar newMenuBar) {
-		window.addMenuBar(newMenuBar);
+	public static void addMenuBar(Window window, MenuBar newMenuBar) {
+		window.getAsSimpleWindow().addMenuBar(newMenuBar);
 	}
 	
 	/**
@@ -137,8 +141,8 @@ public class ScilabWindowBridge {
 	 * @param window the window which we want to add the newToolBar to
 	 * @param newToolBar the ToolBar to add to the window
 	 */
-	public static void addToolBar(SimpleWindow window, SimpleToolBar newToolBar) {
-		window.addToolBar(newToolBar);
+	public static void addToolBar(Window window, ToolBar newToolBar) {
+		window.getAsSimpleWindow().addToolBar(newToolBar);
 	}
 	
 	/**
@@ -146,7 +150,7 @@ public class ScilabWindowBridge {
 	 * @param window the window which we want to add the newInfoBar to
 	 * @param newInfoBar the InfoBar to add to the window
 	 */
-	public static void addInfoBar(SimpleWindow window, SimpleTextBox newInfoBar) {
-		window.addInfoBar(newInfoBar);
+	public static void addInfoBar(Window window, TextBox newInfoBar) {
+		window.getAsSimpleWindow().addInfoBar(newInfoBar);
 	}
 }

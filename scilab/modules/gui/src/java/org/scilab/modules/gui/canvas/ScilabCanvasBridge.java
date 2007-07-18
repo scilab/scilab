@@ -34,7 +34,7 @@ public class ScilabCanvasBridge {
 	 * @see org.scilab.modules.gui.UIElement#draw()
 	 */
 	public static void draw(Canvas canvas) {
-		canvas.draw();
+		canvas.getAsSimpleCanvas().draw();
 	}
 
 	/**
@@ -44,7 +44,7 @@ public class ScilabCanvasBridge {
 	 * @see org.scilab.modules.gui.UIElement#getDims()
 	 */
 	public static Size getDims(Canvas canvas) {
-		return canvas.getDims();
+		return canvas.getAsSimpleCanvas().getDims();
 	}
 
 	/**
@@ -54,7 +54,7 @@ public class ScilabCanvasBridge {
 	 * @see org.scilab.modules.gui.UIElement#getPosition()
 	 */
 	public static Position getPosition(Canvas canvas) {
-		return canvas.getPosition();
+		return canvas.getAsSimpleCanvas().getPosition();
 	}
 
 	/**
@@ -64,7 +64,7 @@ public class ScilabCanvasBridge {
 	 * @see org.scilab.modules.gui.UIElement#isVisible()
 	 */
 	public static boolean isVisible(Canvas canvas) {
-		return canvas.isVisible();
+		return canvas.getAsSimpleCanvas().isVisible();
 	}
 
 	/**
@@ -74,7 +74,7 @@ public class ScilabCanvasBridge {
 	 * @see org.scilab.modules.gui.UIElement#setDims(org.scilab.modules.gui.utils.Size)
 	 */
 	public static void setDims(Canvas canvas, Size newSize) {
-		canvas.setDims(newSize);
+		canvas.getAsSimpleCanvas().setDims(newSize);
 	}
 
 	/**
@@ -84,7 +84,7 @@ public class ScilabCanvasBridge {
 	 * @see org.scilab.modules.gui.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
 	 */
 	public static void setPosition(Canvas canvas, Position newPosition) {
-		canvas.setPosition(newPosition);
+		canvas.getAsSimpleCanvas().setPosition(newPosition);
 	}
 
 	/**
@@ -94,7 +94,7 @@ public class ScilabCanvasBridge {
 	 * @see org.scilab.modules.gui.UIElement#setVisible(boolean)
 	 */
 	public static void setVisible(Canvas canvas, boolean newVisibleState) {
-		canvas.setVisible(newVisibleState);
-	};
+		canvas.getAsSimpleCanvas().setVisible(newVisibleState);
+	}
 
 }

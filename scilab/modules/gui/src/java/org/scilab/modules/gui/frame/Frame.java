@@ -6,7 +6,6 @@ package org.scilab.modules.gui.frame;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.container.Container;
-import org.scilab.modules.gui.dockable.Dockable;
 import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.listbox.ListBox;
 import org.scilab.modules.gui.pushbutton.PushButton;
@@ -25,13 +24,6 @@ public interface Frame extends Container {
 	 * @return this Bridge component object
 	 */
 	SimpleFrame getAsSimpleFrame();
-	
-	/**
-	 * Add a member (dockable element) to container and returns its index
-	 * @param member the member to add
-	 * @return index of member in ArrayList
-	 */
-	int addMember(Dockable member);
 	
 	/**
 	 * We want to be able to add directly a Canvas in a Frame.

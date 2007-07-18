@@ -31,8 +31,8 @@ public class ScilabMenuItemBridge {
 	 * @param menuItem the MenuItem we want to set the Text of
 	 * @param newText the Text we want to set to the menuItem
 	 */
-	public static void setText(SimpleMenuItem menuItem, String newText) {
-		menuItem.setText(newText);
+	public static void setText(MenuItem menuItem, String newText) {
+		menuItem.getAsSimpleMenuItem().setText(newText);
 	}
 	
 	/**
@@ -40,7 +40,7 @@ public class ScilabMenuItemBridge {
 	 * @param menuItem the MenuItem which we want to add the mnemonic to
 	 * @param mnemonic the mnemonic to add to the MenuItem
 	 */
-	public static void setMnemonic(SimpleMenuItem menuItem, int mnemonic) {
-		menuItem.setMnemonic(mnemonic);
+	public static void setMnemonic(MenuItem menuItem, int mnemonic) {
+		menuItem.getAsSimpleMenuItem().setMnemonic(mnemonic);
 	}
 }

@@ -42,7 +42,7 @@ public class ScilabMenuItem implements MenuItem {
 	 * @see org.scilab.modules.gui.widget.MenuItem#setText(java.lang.String)
 	 */
 	public void setText(String newText) {
-		ScilabBridge.setText(component, newText);
+		ScilabBridge.setText(this, newText);
 	}
 	
 	/**
@@ -51,6 +51,6 @@ public class ScilabMenuItem implements MenuItem {
 	 * @see org.scilab.modules.gui.widget.MenuItem#setMnemonic(org.scilab.modules.gui.widget.int)
 	 */
 	public void setMnemonic(int mnemonic) {
-		ScilabBridge.setMnemonic(component, mnemonic);
+		ScilabBridge.setMnemonic(this, mnemonic);
 	}
 }

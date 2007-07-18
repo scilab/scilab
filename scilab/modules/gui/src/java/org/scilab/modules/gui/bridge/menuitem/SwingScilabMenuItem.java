@@ -24,6 +24,7 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 	 * @param newText the Text to set to the MenuItem
 	 * @see javax.swing.AbstractButton#setText(java.lang.String)
 	 */
+	@Override
 	public void setText(String newText) {
 		super.setText(newText);
 	}
@@ -33,6 +34,7 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 	 * @param mnemonic the mnemonic to add to the MenuItem
 	 * @see org.scilab.modules.gui.widget.MenuItem#setMnemonic(org.scilab.modules.gui.widget.int)
 	 */
+	@Override
 	public void setMnemonic(int mnemonic) {
 		super.setMnemonic(mnemonic);
 	}

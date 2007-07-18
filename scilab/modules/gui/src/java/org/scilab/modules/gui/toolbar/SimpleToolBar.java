@@ -3,10 +3,10 @@
 
 package org.scilab.modules.gui.toolbar;
 
-import org.scilab.modules.gui.pushbutton.SimplePushButton;
+import org.scilab.modules.gui.pushbutton.PushButton;
 
 /**
- * Interface for ToolBarBridge the associated object to Scilab GUIs ToolBar
+ * Interface for SimpleToolBar the associated object to Scilab GUIs ToolBar
  * @author Marouane BEN JELLOUL
  */
 public interface SimpleToolBar {
@@ -15,5 +15,5 @@ public interface SimpleToolBar {
 	 * Add a PushButton to the ToolBar.
 	 * @param pushButton the PushButton to add.
 	 */
-	void add(SimplePushButton pushButton);
+	void add(PushButton pushButton);
 }

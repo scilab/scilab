@@ -4,10 +4,7 @@
 package org.scilab.modules.gui.textbox;
 
 import org.scilab.modules.gui.bridge.ScilabBridge;
-import org.scilab.modules.gui.container.Container;
-import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.text.ScilabText;
-import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -40,24 +37,6 @@ public class ScilabTextBox extends ScilabText implements TextBox {
 	 */
 	public SimpleTextBox getAsSimpleTextBox() {
 		return component;
-	}
-	
-	/**
-	 * Sets a MenuBar to an element
-	 * @param newMenuBar the MenuBar to set to the element
-	 */
-	public void addMenuBar(MenuBar newMenuBar) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	/**
-	 * Sets a ToolBar to an element
-	 * @param newToolBar the ToolBar to set to the element
-	 */
-	public void addToolBar(ToolBar newToolBar) {
-		// TODO Auto-generated method stub
-		
 	}
 	
 	/**
@@ -120,30 +99,20 @@ public class ScilabTextBox extends ScilabText implements TextBox {
 	}
 
 	/**
-	 * Gets the visibility status of an UIElement
-	 * @return the visibility status of the UIElement (true if the UIElement is visible, false if not)
+	 * Gets the visibility status of an element
+	 * @return the visibility status of the element (true if the element is visible, false if not)
 	 */
 	public boolean isVisible() {
 		return ScilabBridge.isVisible(this); 
 	}
 	
 	/**
-	 * Sets the visibility status of a Menu
-	 * @param newVisibleState the visibility status we want to set for the UIElement
-	 * 			(true if the UIElement is visible, false if not)
+	 * Sets the visibility status of a element
+	 * @param newVisibleState the visibility status we want to set for the element
+	 * 			(true if the element is visible, false if not)
 	 */
 	public void setVisible(boolean newVisibleState) {
 		ScilabBridge.setVisible(this, newVisibleState);
 	}
 	
-	/**
-	 * Add this as member (dockable element) to the Scilab Container and returns its index
-	 * @param container the Container in which we add this
-	 * @return index of this in container components
-	 */
-	public int addAsMemberTo(Container container) {
-//		 TODO code this
-		//return ScilabBridge.addAsMemberTo(this, container);
-		throw new UnsupportedOperationException();
-	}
 }

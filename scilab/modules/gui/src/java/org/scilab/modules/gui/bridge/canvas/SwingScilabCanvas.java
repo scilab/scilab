@@ -114,17 +114,4 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 		super.setVisible(newVisibleState);
 	}
 
-	/**
-	 * Add this as member (dockable element) to the Scilab container and returns its index
-	 * @param container the container in which we add this
-	 * @return index of this in container components
-	 * @see org.scilab.modules.gui.container.Container#addMember(org.scilab.modules.gui.dockable.Dockable)
-	 * @see org.scilab.modules.gui.dockable.Dockable#addAsMemberTo(org.scilab.modules.gui.container.Container)
-	 */
-	public int addAsMemberTo(Container container) {
-		// delegate to the container but also adding info on how to handle me (Canvas)
-		// Interface Container must describe methode: int addMember(Canvas member);
-		return container.addMember((Canvas) this);
-	}
-
 }

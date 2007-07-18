@@ -13,10 +13,14 @@ import org.scilab.modules.gui.bridge.menubar.SwingScilabMenuBar;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
 import org.scilab.modules.gui.bridge.toolbar.SwingScilabToolBar;
+import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.SimpleMenuBar;
 import org.scilab.modules.gui.tab.SimpleTab;
+import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.SimpleTextBox;
+import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.SimpleToolBar;
+import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.window.SimpleWindow;
@@ -147,8 +151,8 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	 * @param newTab the Scilab tab to add to the Scilab window
 	 * @see org.scilab.modules.gui.window.Window#addTab(org.scilab.modules.gui.tab.Tab)
 	 */
-	public void addTab(SimpleTab newTab) {
-		DockingManager.dock((SwingScilabTab) newTab, this.getDockingPort());
+	public void addTab(Tab newTab) {
+		DockingManager.dock((SwingScilabTab) newTab.getAsSimpleTab(), this.getDockingPort());
 	}
 	
 	/**
@@ -156,8 +160,8 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	 * @param newMenuBar the Scilab MenuBar to add to the Scilab window
 	 * @see org.scilab.modules.gui.window.Window#setMenuBar(org.scilab.modules.gui.menubar.MenuBar)
 	 */
-	public void addMenuBar(SimpleMenuBar newMenuBar) {
-		this.menuBar = newMenuBar;
+	public void addMenuBar(MenuBar newMenuBar) {
+		this.menuBar = newMenuBar.getAsSimpleMenuBar();
 		super.setJMenuBar((SwingScilabMenuBar) this.menuBar);
 	}
 		
@@ -166,8 +170,8 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	 * @param newToolBar the Scilab ToolBar to set to the Scilab window
 	 * @see org.scilab.modules.gui.window.Window#setToolBar(org.scilab.modules.gui.toolbar.ToolBar)
 	 */
-	public void addToolBar(SimpleToolBar newToolBar) {
-		this.toolBar = newToolBar;
+	public void addToolBar(ToolBar newToolBar) {
+		this.toolBar = newToolBar.getAsSimpleToolBar();
 		super.add((SwingScilabToolBar) this.toolBar, java.awt.BorderLayout.PAGE_START);
 	}
 
@@ -176,8 +180,8 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	 * @param newInfoBar the Scilab InfoBar to set to the Scilab window
 	 * @see org.scilab.modules.gui.window.Window#setInfoBar(org.scilab.modules.gui.textbox.TextBox)
 	 */
-	public void addInfoBar(SimpleTextBox newInfoBar) {
-		this.infoBar = newInfoBar;
+	public void addInfoBar(TextBox newInfoBar) {
+		this.infoBar = newInfoBar.getAsSimpleTextBox();
 		super.add((SwingScilabTextBox) this.infoBar, java.awt.BorderLayout.PAGE_END);
 	}
 }

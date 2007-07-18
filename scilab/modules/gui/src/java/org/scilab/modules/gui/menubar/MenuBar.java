@@ -23,6 +23,5 @@ public interface MenuBar {
 	 * Add a Menu to a MenuBar
 	 * @param newMenu the Menu to add to the MenuBar
 	 */
-	//  * @return the added Menu
 	void add(Menu newMenu);
 }

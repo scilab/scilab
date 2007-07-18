@@ -5,13 +5,8 @@ package org.scilab.modules.gui.bridge.pushbutton;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.border.LineBorder;
 
-import org.scilab.modules.gui.menubar.MenuBar;
-import org.scilab.modules.gui.menubar.SimpleMenuBar;
 import org.scilab.modules.gui.pushbutton.SimplePushButton;
-import org.scilab.modules.gui.toolbar.SimpleToolBar;
-import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -28,22 +23,6 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 		super();
 	}
 
-	/**
-	 * Sets a MenuBar to an element
-	 * @param newMenuBar the MenuBar to set to the element
-	 */
-	public void addMenuBar(SimpleMenuBar newMenuBar) {
-		// TODO Auto-generated method stub
-	}
-
-	/**
-	 * Sets a ToolBar to an element
-	 * @param newToolBar the ToolBar to set to the element
-	 */
-	public void addToolBar(SimpleToolBar newToolBar) {
-		// TODO Auto-generated method stub	
-	}
-	
 	/**
 	 * Draws a swing Scilab PushButton
 	 * @see org.scilab.modules.gui.uielement.UIElement#draw()
@@ -87,14 +66,6 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 	 */
 	public void setPosition(Position newPosition) {
 		super.setLocation(newPosition.getX(), newPosition.getY());
-	}
-	
-	/**
-	 * To set the Border color and size of the element.
-	 * @param lineBorder the LineBorder
-	 */
-	public void setBorder(LineBorder lineBorder) {
-		super.setBorder(lineBorder);
 	}
 	
 	/**

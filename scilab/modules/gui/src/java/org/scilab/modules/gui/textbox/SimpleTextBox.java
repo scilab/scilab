@@ -3,13 +3,9 @@
 
 package org.scilab.modules.gui.textbox;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-
-import javax.swing.border.LineBorder;
-
 import org.scilab.modules.gui.text.SimpleText;
+import org.scilab.modules.gui.utils.Position;
+import org.scilab.modules.gui.utils.Size;
 
 /**
  * Interface for TextBoxBridge the associated object to Scilab GUIs TextBox
@@ -17,79 +13,46 @@ import org.scilab.modules.gui.text.SimpleText;
  */
 public interface SimpleTextBox extends SimpleText {
 
-	// TODO ============= En Developpement ==========/
 	/**
-	 * To set the Background color of the element.
-	 * @param color the Color
+	 * Gets the size of an TextBox (width and height)
+	 * @return the size of the TextBox
 	 */
-	void setBackground(Color color);
+	Size getDims();
+
+	/**
+	 * Sets the size of an TextBox (width and height)
+	 * @param newSize the size we want to set to the TextBox
+	 */
+	void setDims(Size newSize);
+
+	/**
+	 * Gets the position of an TextBox (X-coordinate and Y-corrdinate)
+	 * @return the position of the TextBox
+	 */
+	Position getPosition();
+
+	/**
+	 * Sets the position of an TextBox (X-coordinate and Y-corrdinate)
+	 * @param newPosition the position we want to set to the TextBox
+	 */
+	void setPosition(Position newPosition);
+
+	/**
+	 * Gets the visibility status of an TextBox
+	 * @return the visibility status of the TextBox (true if the TextBox is visible, false if not)
+	 */
+	boolean isVisible();
+
+	/**
+	 * Sets the visibility status of an TextBox
+	 * @param newVisibleState the visibility status we want to set for the TextBox
+	 * 			(true if the TextBox is visible, false if not)
+	 */
+	void setVisible(boolean newVisibleState);
+
+	/**
+	 * Draws an TextBox
+	 */
+	void draw();
 	
-	/**
-	 * To get the Background color of the element.
-	 * @return color the Color
-	 */
-	Color getBackground();
-	
-	/**
-	 * To set the Foreground color of the element.
-	 * @param color the Color
-	 */
-	void setForeground(Color color);
-	
-	/**
-	 * To get the Foreground color of the element.
-	 * @return color the Color
-	 */
-	Color getForeground();
-	
-	/**
-	 * To set the Border color and size of the element.
-	 * @param lineBorder the LineBorder
-	 */
-	void setBorder(LineBorder lineBorder);
-	
-	/**
-	 * To set the Font of the element.
-	 * @param font the Font
-	 */
-	void setFont(Font font);
-	
-	/**
-	 * To get the Font of the element.
-	 * @return font the Font
-	 */
-	Font getFont();
-	
-	/**
-	 * To set the Dimension of the element.
-	 * @param dimension the Dimension
-	 */
-	void setSize(Dimension dimension);
-	
-	/**
-	 * To get the Dimension of the element.
-	 * @return the Dimension
-	 */
-	Dimension getSize();
-	
-	/**
-	 * Moves this component to a new location. The top-left corner of the new location is specified by the x and y 
-	 * parameters in the coordinate space of this component's parent.
-	 * @param x - the x-coordinate of the new location's top-left corner in the parent's coordinate space
-	 * @param y - the y-coordinate of the new location's top-left corner in the parent's coordinate space
-	 */
-	void setLocation(int x, int y);
-	
-	/**
-	 * To get the x coordinate  of the element.
-	 * @return the x coordinate
-	 */
-	int getX();
-	
-	/**
-	 * To get the y coordinate  of the element.
-	 * @return the y coordinate
-	 */
-	int getY();
-	// TODO ============= FIN En Developpement ==========/
 }

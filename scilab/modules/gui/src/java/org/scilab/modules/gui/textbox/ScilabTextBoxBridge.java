@@ -34,7 +34,7 @@ public class ScilabTextBoxBridge {
 	 * @param newText the Text we want to set to the TextBox
 	 */
 	public static void setText(TextBox textBox, String newText) {
-		textBox.setText(newText);
+		textBox.getAsSimpleTextBox().setText(newText);
 	}
 	
 	/**
@@ -43,7 +43,7 @@ public class ScilabTextBoxBridge {
 	 * @return the text of the TextBox
 	 */
 	public static String getText(TextBox textBox) {
-		return textBox.getText();
+		return textBox.getAsSimpleTextBox().getText();
 	}
 	
 	/**
@@ -52,7 +52,7 @@ public class ScilabTextBoxBridge {
 	 * @see org.scilab.modules.gui.UIElement#draw()
 	 */
 	public static void draw(TextBox textBox) {
-		textBox.draw();
+		textBox.getAsSimpleTextBox().draw();
 	}
 
 	/**
@@ -62,7 +62,7 @@ public class ScilabTextBoxBridge {
 	 * @see org.scilab.modules.gui.UIElement#getDims()
 	 */
 	public static Size getDims(TextBox textBox) {
-		return textBox.getDims();
+		return textBox.getAsSimpleTextBox().getDims();
 	}
 
 	/**
@@ -72,7 +72,7 @@ public class ScilabTextBoxBridge {
 	 * @see org.scilab.modules.gui.UIElement#getPosition()
 	 */
 	public static Position getPosition(TextBox textBox) {
-		return textBox.getPosition();
+		return textBox.getAsSimpleTextBox().getPosition();
 	}
 
 	/**
@@ -82,7 +82,7 @@ public class ScilabTextBoxBridge {
 	 * @see org.scilab.modules.gui.UIElement#isVisible()
 	 */
 	public static boolean isVisible(TextBox textBox) {
-		return textBox.isVisible();
+		return textBox.getAsSimpleTextBox().isVisible();
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class ScilabTextBoxBridge {
 	 * @see org.scilab.modules.gui.UIElement#setDims(org.scilab.modules.gui.utils.Size)
 	 */
 	public static void setDims(TextBox textBox, Size newSize) {
-		textBox.setDims(newSize);
+		textBox.getAsSimpleTextBox().setDims(newSize);
 	}
 
 	/**
@@ -102,7 +102,7 @@ public class ScilabTextBoxBridge {
 	 * @see org.scilab.modules.gui.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
 	 */
 	public static void setPosition(TextBox textBox, Position newPosition) {
-		textBox.setPosition(newPosition);
+		textBox.getAsSimpleTextBox().setPosition(newPosition);
 	}
 
 	/**
@@ -112,6 +112,6 @@ public class ScilabTextBoxBridge {
 	 * @see org.scilab.modules.gui.UIElement#setVisible(boolean)
 	 */
 	public static void setVisible(TextBox textBox, boolean newVisibleState) {
-		textBox.setVisible(newVisibleState);
+		textBox.getAsSimpleTextBox().setVisible(newVisibleState);
 	}
 }

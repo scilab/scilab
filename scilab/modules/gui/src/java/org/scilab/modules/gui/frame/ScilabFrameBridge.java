@@ -6,6 +6,7 @@ package org.scilab.modules.gui.frame;
 import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.console.Console;
+import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -100,7 +101,7 @@ public class ScilabFrameBridge {
  	 */
 	public static int addMember(Frame frame, Frame member) {
 		// TODO : correct this
-//		return ((SwingScilabFrame) frame).addMember((SwingScilabFrame) member);
+//		return frame.getAsSimpleFrame().addMember(member);
 		return 0;
 	}
 
@@ -111,8 +112,8 @@ public class ScilabFrameBridge {
  	 * @return index of member
  	 */
 	public static int addMember(Frame frame, Console member) {
-		// TODO : correct this
-//		return ((SwingScilabFrame) frame).addMember((SwingScilabConsole) member);
+		// TODO : Just Connect all what is needed
+//		return frame.getAsSimpleFrame().addMember(member);
 		return 0;
 	}
 
@@ -124,7 +125,18 @@ public class ScilabFrameBridge {
  	 */
 	public static int addMember(Frame frame, Canvas member) {
 		// TODO : Just Connect all what is needed
-		//return (frame.getAsSimpleFrame().addMember(member));
+		//return frame.getAsSimpleFrame().addMember(member);
 		return 0;
 	}
+	
+	/**
+	 * Add a member (dockable element) to a frame and returns the index of this member
+	 * @param frame the frame where we want to add the member
+	 * @param member the member to add
+ 	 * @return index of member
+ 	 */
+	public static int addMember(Frame frame, PushButton member) {
+		return frame.getAsSimpleFrame().addMember(member);
+	}
+	
 }

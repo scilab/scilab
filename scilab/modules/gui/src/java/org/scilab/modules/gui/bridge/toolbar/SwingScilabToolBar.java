@@ -6,7 +6,7 @@ package org.scilab.modules.gui.bridge.toolbar;
 import javax.swing.JToolBar;
 
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
-import org.scilab.modules.gui.pushbutton.SimplePushButton;
+import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.toolbar.SimpleToolBar;
 
 /**
@@ -27,8 +27,8 @@ public class SwingScilabToolBar extends JToolBar implements SimpleToolBar {
 	 * Add a PushButton to the ToolBar.
 	 * @param pushButton the PushButton to add .
 	 */
-	public void add(SimplePushButton pushButton) {
-		super.add((SwingScilabPushButton) pushButton);
+	public void add(PushButton pushButton) {
+		super.add((SwingScilabPushButton) pushButton.getAsSimplePushButton());
 	}
 	
 }

@@ -3,6 +3,10 @@
 
 package org.scilab.modules.gui.frame;
 
+import org.scilab.modules.gui.pushbutton.PushButton;
+import org.scilab.modules.gui.utils.Position;
+import org.scilab.modules.gui.utils.Size;
+
 
 /**
  * Interface for SimpleFrame the associated object to Scilab GUIs Frame
@@ -15,20 +19,54 @@ public interface SimpleFrame {
 	 * TRY TO FOCUS ON MAIN STUFF FIRST !!!
 	 */
 	
-	
 	/**
-	 * Add a member (dockable element) to container and returns its index
-	 * @param member the member to add
-	 * @return index of member in ArrayList
+	 * Gets the size of an Frame (width and height)
+	 * @return the size of the Frame
 	 */
-	//int addMember(SimpleDockable member);
+	Size getDims();
+
+	/**
+	 * Sets the size of an Frame (width and height)
+	 * @param newSize the size we want to set to the Frame
+	 */
+	void setDims(Size newSize);
+
+	/**
+	 * Gets the position of an Frame (X-coordinate and Y-corrdinate)
+	 * @return the position of the Frame
+	 */
+	Position getPosition();
+
+	/**
+	 * Sets the position of an Frame (X-coordinate and Y-corrdinate)
+	 * @param newPosition the position we want to set to the Frame
+	 */
+	void setPosition(Position newPosition);
+
+	/**
+	 * Gets the visibility status of an Frame
+	 * @return the visibility status of the Frame (true if the Frame is visible, false if not)
+	 */
+	boolean isVisible();
+
+	/**
+	 * Sets the visibility status of an Frame
+	 * @param newVisibleState the visibility status we want to set for the Frame
+	 * 			(true if the Frame is visible, false if not)
+	 */
+	void setVisible(boolean newVisibleState);
+
+	/**
+	 * Draws an Frame
+	 */
+	void draw();
 	
 	/**
 	 * We want to be able to add directly a Canvas in a Frame.
 	 * @param member the member to add
 	 * @return the position of the canvas in the member list.
 	 */
-	//int addMember(SimpleCanvas member);
+	//int addMember(Canvas member);
 
 	/**
 	 * We want to be able to add a CheckBox in a Frame.
@@ -56,7 +94,7 @@ public interface SimpleFrame {
 	 * @param member the member to add
 	 * @return the position of the PushButton in the member list.
 	 */
-	//int addMember(SimplePushButton member);
+	int addMember(PushButton member);
 	
 	/**
 	 * We want to be able to add a RadioButton in a Frame.
@@ -77,7 +115,7 @@ public interface SimpleFrame {
 	 * @param member the member to add
 	 * @return the position of the Frame in the member list.
 	 */
-	//int addMember(SimpleFrame member);
+	int addMember(Frame member);
 	
 	// TODO : Check if it should be possible to add a Tab to a frame and how it should behave
 	/**
@@ -85,12 +123,15 @@ public interface SimpleFrame {
 	 * @param member the member to add
 	 * @return the position of the Tab in the member list.
 	 */
-	//int addMember(SimpleTab member);
+	//int addMember(Tab member);
 	
 	/**
 	 * We want to be able to add a TextBox in a Frame.
 	 * @param member the member to add
 	 * @return the position of the TextBox in the member list.
 	 */
-	//int addMember(SimpleTextBox member);
+	//int addMember(TextBox member);
+	
+	
+	
 }

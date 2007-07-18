@@ -4,7 +4,6 @@
 package org.scilab.modules.gui.console;
 
 import org.scilab.modules.gui.bridge.ScilabBridge;
-import org.scilab.modules.gui.container.Container;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.dockable.ScilabDockable;
@@ -119,18 +118,6 @@ public class ScilabConsole extends ScilabDockable implements Console {
 	 */
 	public void setVisible(boolean newVisibleState) {
 		ScilabBridge.setVisible(this, newVisibleState);
-	}
-
-	/**
-	 * Add this as member (dockable element) to the Scilab container and returns its index
-	 * @param container the container in which we add this
-	 * @return index of this in container components
-	 * @see org.scilab.modules.gui.container.Container#addMember(org.scilab.modules.gui.dockable.Dockable)
-	 * @see org.scilab.modules.gui.dockable.Dockable#addAsMemberTo(org.scilab.modules.gui.container.Container)
-	 */
-	public int addAsMemberTo(Container container) {
-		//return ScilabBridge.addAsMemberTo(component, container);
-		throw new UnsupportedOperationException();
 	}
 
 	/**

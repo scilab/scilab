@@ -52,15 +52,6 @@ public class ScilabFrame extends ScilabContainer implements Frame {
 	public SimpleFrame getAsSimpleFrame() {
 		return component;
 	}
-	
-	/**
-	 * Sets a MenuBar to an element
-	 * @param newMenuBar the MenuBar to set to the element
-	 */
-	public void addMenuBar(MenuBar newMenuBar) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException();
-	}
 
 	/**
 	 * Draws a frame
@@ -122,18 +113,6 @@ public class ScilabFrame extends ScilabContainer implements Frame {
 	 */
 	public void setVisible(boolean newVisibleState) {
 		ScilabBridge.setVisible(this, newVisibleState);
-	}
-
-	
-	/**
-	 * Add this as member (dockable element) to the Scilab Container and returns its index
-	 * @param container the Container in which we add this
-	 * @return index of this in container components
-	 */
-	public int addAsMemberTo(Container container) {
-//		 TODO code this
-		//return ScilabBridge.addAsMemberTo(this, container);
-		return 0;
 	}
 
 	/**
@@ -226,8 +205,7 @@ public class ScilabFrame extends ScilabContainer implements Frame {
 	 * @return index of member in frame components
 	 */
 	public int addMember(PushButton member) {
-		// TODO Auto-generated method stub
-		return 0;
+		return ScilabBridge.addMember(this, member);
 	}
 	
 	/**

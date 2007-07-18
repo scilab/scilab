@@ -9,20 +9,10 @@ import org.flexdock.view.View;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
-import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.console.Console;
-import org.scilab.modules.gui.container.Container;
 import org.scilab.modules.gui.canvas.Canvas;
-import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.frame.Frame;
-import org.scilab.modules.gui.label.Label;
-import org.scilab.modules.gui.listbox.ListBox;
-import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.gui.radiobutton.RadioButton;
-import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.tab.SimpleTab;
-import org.scilab.modules.gui.tab.Tab;
-import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -132,17 +122,6 @@ public class SwingScilabTab extends View  implements SimpleTab {
 	 * @param member the member to add
 	 * @return index of member in ArrayList
 	 */
-	public int addMember(CheckBox member) {
-//		TODO : can we add a CheckBox? if yes find out how we should add a it to a Tab
-		// TODO code this
-		return 0;
-	}
-	
-	/**
-	 * Add a member (dockable element) to container and returns its index
-	 * @param member the member to add
-	 * @return index of member in ArrayList
-	 */
 	public int addMember(Console member) {
 		return this.addMember((SwingScilabConsole) member.getAsSimpleConsole());
 	}
@@ -155,28 +134,6 @@ public class SwingScilabTab extends View  implements SimpleTab {
 	private int addMember(SwingScilabConsole member) {
 		this.setContentPane(member);
 		return this.getComponentZOrder(member);
-	}
-	
-	/**
-	 * Add a member (dockable element) to container and returns its index
-	 * @param member the member to add
-	 * @return index of member in ArrayList
-	 * @see org.scilab.modules.gui.container.Container#addMember(org.scilab.modules.gui.dockable.Dockable)
-	 * @see org.scilab.modules.gui.dockable.Dockable#addAsMemberTo(org.scilab.modules.gui.container.Container)
-	 */
-//	public int addMember(Dockable member) {
-//		// delegate to the member
-//		return member.addAsMemberTo(this);
-//	}
-	
-	/**
-	 * Add a member (dockable element) to container and returns its index
-	 * @param member the member to add
-	 * @return index of member in ArrayList
-	 */
-	public int addMember(EditBox member) {
-//		TODO : can we add a EditBox? if yes find out how we should add a it to a Tab
-		throw new UnsupportedOperationException("Can not add a EditBox in a Tab");
 	}
 	
 	/**
@@ -197,88 +154,5 @@ public class SwingScilabTab extends View  implements SimpleTab {
 		this.setContentPane(member);
 		return this.getComponentZOrder(member);
 	}
-	
-	/**
-	 * Add a member (dockable element) to container and returns its index
-	 * @param member the member to add
-	 * @return index of member in ArrayList
-	 */
-	public int addMember(Label member) {
-//		TODO : can we add a Label? if yes find out how we should add a it to a Tab
-		throw new UnsupportedOperationException("Can not add a Label in a Tab");
-	}
-	
-	/**
-	 * Add a member (dockable element) to container and returns its index
-	 * @param member the member to add
-	 * @return index of member in ArrayList
-	 */
-	public int addMember(ListBox member) {
-//		TODO : can we add a ListBox? if yes find out how we should add a it to a Tab
-		throw new UnsupportedOperationException("Can not add a ListBox in a Tab");
-	}
-	
-	/**
-	 * Add a member (dockable element) to container and returns its index
-	 * @param member the member to add
-	 * @return index of member in ArrayList
-	 */
-	public int addMember(PushButton member) {
-//		TODO : can we add a PushButton? if yes find out how we should add a it to a Tab
-		throw new UnsupportedOperationException("Can not add a PushButton in a Tab");
-	}
-	
-	/**
-	 * Add a member (dockable element) to container and returns its index
-	 * @param member the member to add
-	 * @return index of member in ArrayList
-	 */
-	public int addMember(RadioButton member) {
-//		TODO : can we add a RadioButton? if yes find out how we should add a it to a Tab
-		throw new UnsupportedOperationException("Can not add a RadioButton in a Tab");
-	}
-	
-	/**
-	 * Add a member (dockable element) to container and returns its index
-	 * @param member the member to add
-	 * @return index of member in ArrayList
-	 */
-	public int addMember(Slider member) {
-//		TODO : can we add a Slider? if yes find out how we should add a it to a Tab
-		throw new UnsupportedOperationException("Can not add a Slider in a Tab");
-	}
-	
-	/**
-	 * Add a member (dockable element) to container and returns its index
-	 * @param member the member to add
-	 * @return index of member in ArrayList
-	 */
-	public int addMember(Tab member) {
-//		TODO : can we add a Tab? if yes find out how we should add a it to a Tab
-		throw new UnsupportedOperationException("Can not add a Tab in a Tab");
-	}
-	
-	/**
-	 * Add a member (dockable element) to container and returns its index
-	 * @param member the member to add
-	 * @return index of member in ArrayList
-	 */
-	public int addMember(TextBox member) {
-//		TODO : can we add a TextBox? if yes find out how we should add a it to a Tab
-		throw new UnsupportedOperationException("Can not add a TextBox in a Tab");
-	}
-	
-	/**
-	 * Add this as member (dockable element) to the Scilab container and returns its index
-	 * @param container the container in which we add this
-	 * @return index of this in container components
-	 * @see org.scilab.modules.gui.container.Container#addMember(org.scilab.modules.gui.dockable.Dockable)
-	 * @see org.scilab.modules.gui.dockable.Dockable#addAsMemberTo(org.scilab.modules.gui.container.Container)
-	 */
-//	public int addAsMemberTo(SimpleContainer container) {
-//		// delegate to the SimpleContainer but also adding info on how to handle me (SimpleTab)
-//		// Interface SimpleContainer must describe methode: int addMember(SimpleTab member);
-//		return container.addMember((SimpleTab) this);
-//	}
 
 }

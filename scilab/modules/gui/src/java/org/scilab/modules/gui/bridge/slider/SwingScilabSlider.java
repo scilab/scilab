@@ -7,7 +7,6 @@ import javax.swing.JSlider;
 import javax.swing.border.LineBorder;
 
 import org.scilab.modules.gui.container.Container;
-import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;

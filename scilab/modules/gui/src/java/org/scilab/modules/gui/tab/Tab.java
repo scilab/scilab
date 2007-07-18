@@ -32,5 +32,25 @@ public interface Tab extends Container {
 	 */
 	void setName(String newTabName);
 
-	// Watch out not to override or add some inherited profiles...
+	/**
+	 * We want to be able to add directly a Canvas in a Tab.
+	 * @param member the member to add
+	 * @return the position of the canvas in the member list.
+	 */
+	int addMember(Canvas member);
+
+	/**
+	 * We want to be able to add directly a Console in a Tab.
+	 * @param member the member to add
+	 * @return the position of the canvas in the member list.
+	 */
+	int addMember(Console member);
+	
+	/**
+	 * We want to be able to add a Frame in a Tab.
+	 * @param member the member to add
+	 * @return the position of the Frame in the member list.
+	 */
+	int addMember(Frame member);
+	
 }

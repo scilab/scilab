@@ -17,7 +17,7 @@ public interface Console extends Dockable {
 	 * @return this Bridge component object
 	 */
 	SimpleConsole getAsSimpleConsole();
-	
+
 	/**
 	 * Reads input data in console
 	 * @return the string entered by user
