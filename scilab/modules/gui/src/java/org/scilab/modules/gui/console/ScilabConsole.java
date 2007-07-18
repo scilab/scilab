@@ -5,11 +5,9 @@ package org.scilab.modules.gui.console;
 
 import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.container.Container;
-import org.scilab.modules.gui.dockable.ScilabDockable;
-import org.scilab.modules.gui.menubar.MenuBar;
-import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.dockable.ScilabDockable;
 
 /**
  * Class for Scilab Console in GUIs
@@ -44,30 +42,12 @@ public class ScilabConsole extends ScilabDockable implements Console {
 	}
 	
 	/**
-	 * Sets a MenuBar to an element
-	 * @param newMenuBar the MenuBar to set to the element
-	 */
-	public void addMenuBar(MenuBar newMenuBar) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * Sets a ToolBar to an element
-	 * @param newToolBar the ToolBar to set to the element
-	 */
-	public void addToolBar(ToolBar newToolBar) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException();
-	}
-	
-	/**
 	 * Displays data in the console
 	 * @param dataToDisplay the data to be displayed
 	 * @see fr.scilab.console.Console#display()
 	 */
 	public void display(String dataToDisplay) {
-		ScilabBridge.display(component, dataToDisplay);
+		ScilabBridge.display(this, dataToDisplay);
 	}
 
 	/**
@@ -76,7 +56,7 @@ public class ScilabConsole extends ScilabDockable implements Console {
 	 * @see org.scilab.modules.shell.Console#readLine()
 	 */
 	public String readLine() {
-		return ScilabBridge.readLine(component);
+		return ScilabBridge.readLine(this);
 	}
 
 	/**
@@ -84,7 +64,7 @@ public class ScilabConsole extends ScilabDockable implements Console {
 	 * @see org.scilab.modules.gui.UIElement#draw()
 	 */
 	public void draw() {
-		ScilabBridge.draw(component);
+		ScilabBridge.draw(this);
 	}
 
 	/**
@@ -93,7 +73,7 @@ public class ScilabConsole extends ScilabDockable implements Console {
 	 * @see org.scilab.modules.gui.UIElement#getDims()
 	 */
 	public Size getDims() {
-		return ScilabBridge.getDims(component);
+		return ScilabBridge.getDims(this);
 	}
 
 	/**
@@ -102,7 +82,7 @@ public class ScilabConsole extends ScilabDockable implements Console {
 	 * @see org.scilab.modules.gui.UIElement#getPosition()
 	 */
 	public Position getPosition() {
-		return ScilabBridge.getPosition(component);
+		return ScilabBridge.getPosition(this);
 	}
 
 	/**
@@ -111,7 +91,7 @@ public class ScilabConsole extends ScilabDockable implements Console {
 	 * @see org.scilab.modules.gui.UIElement#isVisible()
 	 */
 	public boolean isVisible() {
-		return ScilabBridge.isVisible(component);
+		return ScilabBridge.isVisible(this);
 	}
 
 	/**
@@ -120,7 +100,7 @@ public class ScilabConsole extends ScilabDockable implements Console {
 	 * @see org.scilab.modules.gui.UIElement#setDims(org.scilab.modules.gui.utils.Size)
 	 */
 	public void setDims(Size newSize) {
-		ScilabBridge.setDims(component, newSize);
+		ScilabBridge.setDims(this, newSize);
 	}
 
 	/**
@@ -129,7 +109,7 @@ public class ScilabConsole extends ScilabDockable implements Console {
 	 * @see org.scilab.modules.gui.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
 	 */
 	public void setPosition(Position newPosition) {
-		ScilabBridge.setPosition(component, newPosition);
+		ScilabBridge.setPosition(this, newPosition);
 	}
 
 	/**
@@ -138,7 +118,7 @@ public class ScilabConsole extends ScilabDockable implements Console {
 	 * @see org.scilab.modules.gui.UIElement#setVisible(boolean)
 	 */
 	public void setVisible(boolean newVisibleState) {
-		ScilabBridge.setVisible(component, newVisibleState);
+		ScilabBridge.setVisible(this, newVisibleState);
 	}
 
 	/**
@@ -157,6 +137,6 @@ public class ScilabConsole extends ScilabDockable implements Console {
 	 * Clears the console (no more scroll history and prompt on top left corner)
 	 */
 	public void clear() {
-		ScilabBridge.clear(component);
+		ScilabBridge.clear(this);
 	}
 }

@@ -4,6 +4,8 @@
 package org.scilab.modules.gui.console;
 
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
+import org.scilab.modules.gui.frame.ScilabFrame;
+import org.scilab.modules.gui.tab.ScilabTab;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -34,7 +36,7 @@ public class ScilabConsoleBridge {
 	 * @param dataToDisplay the data to be displayed
 	 * @see fr.scilab.console.Console#display()
 	 */
-	public static void display(SimpleConsole console, String dataToDisplay) {
+	public static void display(Console console, String dataToDisplay) {
 		console.display(dataToDisplay);
 	}
 
@@ -44,15 +46,25 @@ public class ScilabConsoleBridge {
 	 * @return the data entered by the user
 	 * @see fr.scilab.console.Console#readLine()
 	 */
-	public static String readLine(SimpleConsole console) {
+	public static String readLine(Console console) {
 		return console.readLine();
+	}
+
+	/**
+	 * Add a member (dockable element) to a tab and returns the index of this member
+	 * @param tab the tab where we want to add the member
+	 * @param member the member to add
+	 * @return index of member in ArrayList
+	 */
+	public static int addMember(ScilabTab tab, ScilabFrame member) {
+		return tab.addMember(member);
 	}
 
 	/**
 	 * Draw a console
 	 * @param console the console to draw
 	 */
-	public static void draw(SimpleConsole console) {
+	public static void draw(Console console) {
 		console.draw();
 	}
 
@@ -61,7 +73,7 @@ public class ScilabConsoleBridge {
 	 * @param console the console which we want to get the dimensions of
 	 * @return the size of the console
 	 */
-	public static Size getDims(SimpleConsole console) {
+	public static Size getDims(Console console) {
 		return console.getDims();
 	}
 
@@ -70,7 +82,7 @@ public class ScilabConsoleBridge {
 	 * @param console the console which we want to get the position of
 	 * @return the position of the console
 	 */
-	public static Position getPosition(SimpleConsole console) {
+	public static Position getPosition(Console console) {
 		return console.getPosition();
 	}
 
@@ -79,16 +91,16 @@ public class ScilabConsoleBridge {
 	 * @param console the console which we want to get the visibility status of
 	 * @return the visibility status of the console (true if the console is visible, false if not)
 	 */
-	public static boolean isVisible(SimpleConsole console) {
+	public static boolean isVisible(Console console) {
 		return console.isVisible();
 	}
-
+	
 	/**
 	 * Sets the dimensions (width and height) of a Scilab console
 	 * @param console the console which we want to set the dimensions of
 	 * @param newSize the size we want to set to the console
 	 */
-	public static void setDims(SimpleConsole console, Size newSize) {
+	public static void setDims(Console console, Size newSize) {
 		console.setDims(newSize);
 	}
 
@@ -97,7 +109,7 @@ public class ScilabConsoleBridge {
 	 * @param console the console which we want to set the position of
 	 * @param newPosition the position we want to set to the console
 	 */
-	public static void setPosition(SimpleConsole console, Position newPosition) {
+	public static void setPosition(Console console, Position newPosition) {
 		console.setPosition(newPosition);
 	}
 
@@ -106,16 +118,16 @@ public class ScilabConsoleBridge {
 	 * @param console the console which we want to set the visibility status of
 	 * @param newVisibleState the visibility status we want to set to the console
 	 */
-	public static void setVisible(SimpleConsole console, boolean newVisibleState) {
-		console.setVisible(newVisibleState);
+	public static void setVisible(Console console, boolean newVisibleState) {
+		console.getAsSimpleConsole().setVisible(newVisibleState);
 	}
 	
 	/**
 	 * Clears the console (no more scroll history and prompt on top left corner)
 	 * @param console the console to be cleared
 	 */
-	public static void clear(SimpleConsole console) {
-		console.clear();
+	public static void clear(Console console) {
+		console.getAsSimpleConsole().clear();
 	}
 
 }
