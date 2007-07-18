@@ -53,14 +53,14 @@ public class ScilabPushButton extends ScilabWidget implements PushButton {
 	 * @param newText the text to set to the PushButton
 	 */
 	public void setText(String newText) {
-		ScilabBridge.setText(component, newText);
+		ScilabBridge.setText(this, newText);
 	}
 	
 	/**
 	 * Draws a PushButton
 	 */
 	public void draw() {
-		ScilabBridge.draw(component);
+		ScilabBridge.draw(this);
 	}
 	
 	/**
@@ -69,7 +69,7 @@ public class ScilabPushButton extends ScilabWidget implements PushButton {
 	 * @see org.scilab.modules.gui.uielement.UIElement#setDims(org.scilab.modules.gui.utils.Size)
 	 */
 	public void setDims(Size newSize) {
-		ScilabBridge.setDims(component, newSize);
+		ScilabBridge.setDims(this, newSize);
 	}
 	
 	/**
@@ -78,7 +78,7 @@ public class ScilabPushButton extends ScilabWidget implements PushButton {
 	 * @see org.scilab.modules.gui.uielement.UIElement#getDims(org.scilab.modules.gui.utils.Size)
 	 */
 	public Size getDims() {
-		return ScilabBridge.getDims(component); 
+		return ScilabBridge.getDims(this); 
 	}
 	
 	/**
@@ -87,7 +87,7 @@ public class ScilabPushButton extends ScilabWidget implements PushButton {
 	 * @see org.scilab.modules.gui.uielement.UIElement#getPosition()
 	 */
 	public Position getPosition() {
-		return ScilabBridge.getPosition(component); 
+		return ScilabBridge.getPosition(this); 
 	}
 
 	/**
@@ -96,7 +96,7 @@ public class ScilabPushButton extends ScilabWidget implements PushButton {
 	 * @see org.scilab.modules.gui.uielement.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
 	 */
 	public void setPosition(Position newPosition) {
-		ScilabBridge.setPosition(component, newPosition); 
+		ScilabBridge.setPosition(this, newPosition); 
 	}
 
 	/**
@@ -104,7 +104,7 @@ public class ScilabPushButton extends ScilabWidget implements PushButton {
 	 * @return the visibility status of the UIElement (true if the UIElement is visible, false if not)
 	 */
 	public boolean isVisible() {
-		return ScilabBridge.isVisible(component); 
+		return ScilabBridge.isVisible(this); 
 	}
 	
 	/**
@@ -113,7 +113,7 @@ public class ScilabPushButton extends ScilabWidget implements PushButton {
 	 * 			(true if the UIElement is visible, false if not)
 	 */
 	public void setVisible(boolean newVisibleState) {
-		ScilabBridge.setVisible(component, newVisibleState);
+		ScilabBridge.setVisible(this, newVisibleState);
 	}
 
 	/**

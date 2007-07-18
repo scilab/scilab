@@ -32,16 +32,19 @@ public class ScilabPushButtonBridge {
 	 * Draws a Scilab pushButton
 	 * @param pushButton the pushButton to draw
 	 */
-	public static void draw(SimplePushButton pushButton) {
-		pushButton.draw();
+	public static void draw(PushButton pushButton) {
+		// FIXME : Do it slowly : one by one !!!
+		//pushButton.getAsSimplePushButton().draw();
 	}
 	/**
 	 * Gets the dimensions (width and height) of a Scilab pushButton
 	 * @param pushButton the pushButton we want to get the dimensions of
 	 * @return the dimensions of the pushButton
 	 */
-	public static Size getDims(SimplePushButton pushButton) {
-		return pushButton.getDims();
+	public static Size getDims(PushButton pushButton) {
+		// FIXME : Do it slowly : one by one !!!
+		//return pushButton.getAsSimplePushButton().getDims();
+		return null;
 	}
 
 	/**
@@ -49,8 +52,9 @@ public class ScilabPushButtonBridge {
 	 * @param pushButton the pushButton we want to set the dimensions of
 	 * @param newSize the dimensions we want to set to the pushButton
 	 */
-	public static void setDims(SimplePushButton pushButton, Size newSize) {
-		pushButton.setDims(newSize);
+	public static void setDims(PushButton pushButton, Size newSize) {
+		// FIXME : Do it slowly : one by one !!!
+		//pushButton.getAsSimplePushButton().setDims(newSize);
 	}
 
 	/**
@@ -59,8 +63,10 @@ public class ScilabPushButtonBridge {
 	 * @return the position of the pushButton
 	 */
 
-	public static Position getPosition(SimplePushButton pushButton) {
-		return pushButton.getPosition();
+	public static Position getPosition(PushButton pushButton) {
+		// FIXME : Do it slowly : one by one !!!
+		//return pushButton.getAsSimplePushButton().getPosition();
+		return null;
 	}
 
 	/**
@@ -68,8 +74,9 @@ public class ScilabPushButtonBridge {
 	 * @param pushButton the pushButton we want to set the position of
 	 * @param newPosition the position to set to the pushButton
 	 */
-	public static void setPosition(SimplePushButton pushButton, Position newPosition) {
-		pushButton.setPosition(newPosition);
+	public static void setPosition(PushButton pushButton, Position newPosition) {
+		// FIXME : Do it slowly : one by one !!!
+		//pushButton.getAsSimplePushButton().setPosition(newPosition);
 	}
 
 	/**
@@ -77,8 +84,10 @@ public class ScilabPushButtonBridge {
 	 * @param pushButton the pushButton we want to getthe visibility status of
 	 * @return the visibility status of the pushButton (true if the pushButton is visible, false if not)
 	 */
-	public static boolean isVisible(SimplePushButton pushButton) {
-		return pushButton.isVisible();
+	public static boolean isVisible(PushButton pushButton) {
+		// FIXME : Do it slowly : one by one !!!
+		//return pushButton.getAsSimplePushButton().isVisible();
+		return false;
 	}
 
 	/**
@@ -86,8 +95,9 @@ public class ScilabPushButtonBridge {
 	 * @param pushButton the pushButton we want to set the visibility status of
 	 * @param newVisibleState the visibility status we want to set to the pushButton (true to set the pushButton visible, false else)
 	 */
-	public static void setVisible(SimplePushButton pushButton, boolean newVisibleState) {
-		pushButton.setVisible(newVisibleState);
+	public static void setVisible(PushButton pushButton, boolean newVisibleState) {
+		// FIXME : Do it slowly : one by one !!!
+		//pushButton.getAsSimplePushButton().setVisible(newVisibleState);
 	}
 	
 	/**
@@ -95,8 +105,9 @@ public class ScilabPushButtonBridge {
 	 * @param pushButton the PushButton we want to set the Text of
 	 * @param newText the Text we want to set to the PushButton
 	 */
-	public static void setText(SimplePushButton pushButton, String newText) {
-		pushButton.setText(newText);
+	public static void setText(PushButton pushButton, String newText) {
+		// FIXME : Do it slowly : one by one !!!
+		//pushButton.setText(newText);
 	}
 	
 }
