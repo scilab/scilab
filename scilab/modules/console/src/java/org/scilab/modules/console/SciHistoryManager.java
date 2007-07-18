@@ -55,7 +55,6 @@ public class SciHistoryManager implements HistoryManager {
 	public String getNextEntry(String beg) {
         /* Ask Scilab history manager for a matching entry */
 		if (HistoryManagement.getSearchedTokenInScilabHistory() != beg) {
-			System.out.println("New beg " + beg + " replace " + HistoryManagement.getSearchedTokenInScilabHistory());
 			HistoryManagement.setSearchedTokenInScilabHistory(beg);
 		}
 		return HistoryManagement.getNextLineInScilabHistory();
@@ -70,7 +69,6 @@ public class SciHistoryManager implements HistoryManager {
 	public String getPreviousEntry(String beg) {
         /* Ask Scilab history manager for a matching entry */
 		if (HistoryManagement.getSearchedTokenInScilabHistory() != beg) {
-			System.out.println("New beg " + beg + " replace " + HistoryManagement.getSearchedTokenInScilabHistory());
 			HistoryManagement.setSearchedTokenInScilabHistory(beg);
 		}
 		return HistoryManagement.getPreviousLineInScilabHistory();
