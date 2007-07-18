@@ -66,7 +66,7 @@ public class ScilabCanvas extends ScilabDockable implements Canvas {
 	 * @see org.scilab.modules.gui.UIElement#draw()
 	 */
 	public void draw() {
-		ScilabBridge.draw(component);
+		ScilabBridge.draw(this);
 	}
 
 	/**
@@ -75,7 +75,7 @@ public class ScilabCanvas extends ScilabDockable implements Canvas {
 	 * @see org.scilab.modules.gui.UIElement#getDims()
 	 */
 	public Size getDims() {
-		return ScilabBridge.getDims(component);
+		return ScilabBridge.getDims(this);
 	}
 
 	/**
@@ -84,7 +84,7 @@ public class ScilabCanvas extends ScilabDockable implements Canvas {
 	 * @see org.scilab.modules.gui.UIElement#getPosition()
 	 */
 	public Position getPosition() {
-		return ScilabBridge.getPosition(component);
+		return ScilabBridge.getPosition(this);
 	}
 
 	/**
@@ -93,7 +93,7 @@ public class ScilabCanvas extends ScilabDockable implements Canvas {
 	 * @see org.scilab.modules.gui.UIElement#isVisible()
 	 */
 	public boolean isVisible() {
-		return ScilabBridge.isVisible(component);
+		return ScilabBridge.isVisible(this);
 	}
 
 	/**
@@ -102,7 +102,7 @@ public class ScilabCanvas extends ScilabDockable implements Canvas {
 	 * @see org.scilab.modules.gui.UIElement#setDims(org.scilab.modules.gui.utils.Size)
 	 */
 	public void setDims(Size newSize) {
-		ScilabBridge.setDims(component, newSize);
+		ScilabBridge.setDims(this, newSize);
 	}
 
 	/**
@@ -111,7 +111,7 @@ public class ScilabCanvas extends ScilabDockable implements Canvas {
 	 * @see org.scilab.modules.gui.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
 	 */
 	public void setPosition(Position newPosition) {
-		ScilabBridge.setPosition(component, newPosition);
+		ScilabBridge.setPosition(this, newPosition);
 	}
 
 	/**
@@ -120,7 +120,7 @@ public class ScilabCanvas extends ScilabDockable implements Canvas {
 	 * @see org.scilab.modules.gui.UIElement#setVisible(boolean)
 	 */
 	public void setVisible(boolean newVisibleState) {
-		ScilabBridge.setVisible(component, newVisibleState);
+		ScilabBridge.setVisible(this, newVisibleState);
 	}
 
 	/**

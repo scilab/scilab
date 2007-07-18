@@ -33,7 +33,7 @@ public class ScilabCanvasBridge {
 	 * @param canvas the canvas to draw
 	 * @see org.scilab.modules.gui.UIElement#draw()
 	 */
-	public static void draw(SimpleCanvas canvas) {
+	public static void draw(Canvas canvas) {
 		canvas.draw();
 	}
 
@@ -43,7 +43,7 @@ public class ScilabCanvasBridge {
 	 * @return the size of the canvas
 	 * @see org.scilab.modules.gui.UIElement#getDims()
 	 */
-	public static Size getDims(SimpleCanvas canvas) {
+	public static Size getDims(Canvas canvas) {
 		return canvas.getDims();
 	}
 
@@ -53,7 +53,7 @@ public class ScilabCanvasBridge {
 	 * @return the position of the canvas
 	 * @see org.scilab.modules.gui.UIElement#getPosition()
 	 */
-	public static Position getPosition(SimpleCanvas canvas) {
+	public static Position getPosition(Canvas canvas) {
 		return canvas.getPosition();
 	}
 
@@ -63,7 +63,7 @@ public class ScilabCanvasBridge {
 	 * @return the visibility status of the canvas (true if the canvas is visible, false if not)
 	 * @see org.scilab.modules.gui.UIElement#isVisible()
 	 */
-	public static boolean isVisible(SimpleCanvas canvas) {
+	public static boolean isVisible(Canvas canvas) {
 		return canvas.isVisible();
 	}
 
@@ -73,7 +73,7 @@ public class ScilabCanvasBridge {
 	 * @param newSize the size we want to set to the canvas
 	 * @see org.scilab.modules.gui.UIElement#setDims(org.scilab.modules.gui.utils.Size)
 	 */
-	public static void setDims(SimpleCanvas canvas, Size newSize) {
+	public static void setDims(Canvas canvas, Size newSize) {
 		canvas.setDims(newSize);
 	}
 
@@ -83,7 +83,7 @@ public class ScilabCanvasBridge {
 	 * @param newPosition the position we want to set to the canvas
 	 * @see org.scilab.modules.gui.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
 	 */
-	public static void setPosition(SimpleCanvas canvas, Position newPosition) {
+	public static void setPosition(Canvas canvas, Position newPosition) {
 		canvas.setPosition(newPosition);
 	}
 
@@ -93,7 +93,7 @@ public class ScilabCanvasBridge {
 	 * @param newVisibleState the visibility status we want to set to the canvas (true to set the canvas visible, false else)
 	 * @see org.scilab.modules.gui.UIElement#setVisible(boolean)
 	 */
-	public static void setVisible(SimpleCanvas canvas, boolean newVisibleState) {
+	public static void setVisible(Canvas canvas, boolean newVisibleState) {
 		canvas.setVisible(newVisibleState);
 	};
 
