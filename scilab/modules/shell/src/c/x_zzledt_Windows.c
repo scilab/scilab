@@ -10,6 +10,7 @@
 #include "command.h"
 #include "../../core/src/c/flags.h"
 #include "win_mem_alloc.h" /* MALLOC */
+#include "scilabmode.h"
 #include "ShellRead.h"
 /*-----------------------------------------------------------------------------------*/
 char save_prompt[10];
@@ -64,18 +65,22 @@ void C2F (zzledt) (char *buffer, int *buf_size, int *len_line, int *eof, int* in
 	  DisablePutLineInBuffer();
   }
   
-  i = read_line (save_prompt,*interrupt);
-  /*
-  i = 0;
-  line = ShellRead();
-  if (line)
+  if (getScilabMode()==SCILAB_STD)
   {
-	strcpy(input_line,line);
-	FREE(line);
-	*len_line = (int)strlen(input_line);
+	  i = 0;
+	  line = ShellRead();
+	  if (line)
+	  {
+		  strcpy(input_line,line);
+		  FREE(line);
+		  *len_line = (int)strlen(input_line);
+	  }
+
   }
-  */
-   
+  else
+  {
+	i = read_line (save_prompt,*interrupt);
+  }
 
   if (i==-1) 
   { /* dynamic menu canceled read SS*/
