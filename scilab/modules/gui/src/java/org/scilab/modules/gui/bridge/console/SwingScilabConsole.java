@@ -7,13 +7,12 @@ import java.awt.Dimension;
 
 import javax.swing.JPanel;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.StyledDocument;
 
 import org.scilab.modules.console.SciConsole;
 import org.scilab.modules.console.SciInputCommandView;
 import org.scilab.modules.console.SciPromptView;
-import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.console.SimpleConsole;
-import org.scilab.modules.gui.container.Container;
 import org.scilab.modules.gui.container.SimpleContainer;
 import org.scilab.modules.gui.menubar.SimpleMenuBar;
 import org.scilab.modules.gui.toolbar.SimpleToolBar;
@@ -109,8 +108,9 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 
 		// Remove last line returned given by Scilab (carriage return)
 		try {
-			int lastEOL = this.getConfiguration().getOutputViewStyledDocument().getText(0, this.getConfiguration().getOutputViewStyledDocument().getLength()).lastIndexOf(StringConstants.NEW_LINE);
-			this.getConfiguration().getOutputViewStyledDocument().remove(lastEOL - 2, this.getConfiguration().getOutputViewStyledDocument().getLength() - lastEOL + 2);
+			StyledDocument outputStyledDoc = this.getConfiguration().getOutputViewStyledDocument();			
+			int lastEOL = outputStyledDoc.getText(0, outputStyledDoc.getLength()).lastIndexOf(StringConstants.NEW_LINE);
+			outputStyledDoc.remove(lastEOL - 2, outputStyledDoc.getLength() - lastEOL + 2);
 		} catch (BadLocationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
