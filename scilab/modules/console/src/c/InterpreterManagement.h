@@ -4,6 +4,7 @@
  */
 
 #include "../../../core/includes/dynamic_menus.h"
+#include "../../../gui/includes/sxevents.h"
 
 /**
  * Put a command in Scilab command queue so that Scilab executes it
@@ -13,4 +14,10 @@
  * @return execution status
  */
 
-int uutCommandInScilabQueue(char *command);
+int putCommandInScilabQueue(char *command);
+
+/**
+ * Executes Scilab event loop so that queued callbacks can be executed
+ * @return execution status
+ */
+int C2F(sxevents)(void);

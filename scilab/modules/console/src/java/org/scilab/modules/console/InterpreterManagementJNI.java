@@ -23,4 +23,5 @@ class InterpreterManagementJNI {
 	throw new UnsupportedOperationException();
   }
   public final static native int putCommandInScilabQueue(String jarg1);
+  public final static native int execScilabEventLoop();
 }

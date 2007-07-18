@@ -52,3 +52,12 @@ public class";
    */
 ";
 int putCommandInScilabQueue(char *command);
+
+/* JavaDoc */
+%javamethodmodifiers execScilabEventLoop(void) "
+ /**
+  * Executes Scilab event loop so that queued callbacks can be executed
+  * @return execution status
+  */
+";
+int execScilabEventLoop(void);

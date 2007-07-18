@@ -198,6 +198,18 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_console_InterpreterManagementJNI
 }
 
 
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_console_InterpreterManagementJNI_execScilabEventLoop(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int)execScilabEventLoop();
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
 #ifdef __cplusplus
 }
 #endif

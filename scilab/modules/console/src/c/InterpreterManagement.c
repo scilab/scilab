@@ -9,3 +9,8 @@ int putCommandInScilabQueue(char *command)
 {
   return StoreCommand1(command, 1);
 }
+
+int execScilabEventLoop(void)
+{
+  C2F(sxevents)();
+}

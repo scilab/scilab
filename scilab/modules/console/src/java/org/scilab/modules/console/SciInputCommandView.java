@@ -7,6 +7,7 @@ import java.awt.Component;
 import java.awt.FontMetrics;
 import java.awt.Point;
 import java.util.concurrent.Semaphore;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.text.BadLocationException;
 
@@ -75,7 +76,11 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 	public String getCmdBuffer() {
 		// Have to be allowed to write...
 		try {
-			canReadBuffer.acquire();
+			//canReadBuffer.acquire();
+			// Try to acquire semaphore, if not, executes Scilab event loop for callbacks
+			while (!canReadBuffer.tryAcquire(1, TimeUnit.MILLISECONDS)) {
+				InterpreterManagement.execScilabEventLoop();
+			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

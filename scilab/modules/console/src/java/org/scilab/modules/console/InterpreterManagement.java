@@ -34,4 +34,13 @@ public class InterpreterManagement {
     return InterpreterManagementJNI.putCommandInScilabQueue(command);
   }
 
+  
+ /**
+  * Executes Scilab event loop so that queued callbacks can be executed
+  * @return execution status
+  */
+ static int execScilabEventLoop() {
+    return InterpreterManagementJNI.execScilabEventLoop();
+  }
+
 }
