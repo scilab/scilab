@@ -98,10 +98,10 @@ am__objects_2 = rscar1.lo bcomp.lo lcomp.lo loren.lo prja.lo vnorm.lo \
 	rscma1.lo colnew.lo dcutet.lo xsetf.lo dgbsl.lo rkf45.lo \
 	rchek.lo dqag0.lo xerrwv.lo twodq.lo dqags.lo greatr.lo \
 	hpdel.lo hpins.lo svcar1.lo daux.lo dgbfa.lo rscom1.lo \
-	rksimp.lo roots.lo rgk4.lo stoda.lo bnorm.lo rchek2.lo \
-	stode.lo vmnorm.lo prepj.lo lsdisc.lo fnorm.lo ddasrt.lo \
-	stodi.lo xsetun.lo intdy.lo ewset.lo roots2.lo prepji.lo \
-	svcma1.lo
+	rksimp.lo roots.lo stoda.lo bnorm.lo rchek2.lo stode.lo \
+	vmnorm.lo prepj.lo lsdisc.lo fnorm.lo ddasrt.lo stodi.lo \
+	xsetun.lo intdy.lo ewset.lo roots2.lo prepji.lo svcma1.lo \
+	lsrgk.lo odeint.lo rk4.lo rkqc.lo
 am__objects_3 = libscidifferential_equations_la-sci_int2d.lo \
 	libscidifferential_equations_la-sci_int3d.lo \
 	libscidifferential_equations_la-sci_intg.lo \
@@ -363,7 +363,6 @@ src/fortran/dgbfa.f \
 src/fortran/rscom1.f \
 src/fortran/rksimp.f \
 src/fortran/roots.f \
-src/fortran/rgk4.f \
 src/fortran/stoda.f \
 src/fortran/bnorm.f \
 src/fortran/rchek2.f \
@@ -379,7 +378,11 @@ src/fortran/intdy.f \
 src/fortran/ewset.f \
 src/fortran/roots2.f \
 src/fortran/prepji.f \
-src/fortran/svcma1.f 
+src/fortran/svcma1.f \
+src/fortran/lsrgk.f \
+src/fortran/odeint.f \
+src/fortran/rk4.f \
+src/fortran/rkqc.f
 
 GATEWAY_C_SOURCES = \
 sci_gateway/c/sci_int2d.c \
@@ -914,9 +917,6 @@ rksimp.lo: src/fortran/rksimp.f
 roots.lo: src/fortran/roots.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o roots.lo `test -f 'src/fortran/roots.f' || echo '$(srcdir)/'`src/fortran/roots.f
 
-rgk4.lo: src/fortran/rgk4.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rgk4.lo `test -f 'src/fortran/rgk4.f' || echo '$(srcdir)/'`src/fortran/rgk4.f
-
 stoda.lo: src/fortran/stoda.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o stoda.lo `test -f 'src/fortran/stoda.f' || echo '$(srcdir)/'`src/fortran/stoda.f
 
@@ -964,6 +964,18 @@ prepji.lo: src/fortran/prepji.f
 
 svcma1.lo: src/fortran/svcma1.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o svcma1.lo `test -f 'src/fortran/svcma1.f' || echo '$(srcdir)/'`src/fortran/svcma1.f
+
+lsrgk.lo: src/fortran/lsrgk.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o lsrgk.lo `test -f 'src/fortran/lsrgk.f' || echo '$(srcdir)/'`src/fortran/lsrgk.f
+
+odeint.lo: src/fortran/odeint.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o odeint.lo `test -f 'src/fortran/odeint.f' || echo '$(srcdir)/'`src/fortran/odeint.f
+
+rk4.lo: src/fortran/rk4.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rk4.lo `test -f 'src/fortran/rk4.f' || echo '$(srcdir)/'`src/fortran/rk4.f
+
+rkqc.lo: src/fortran/rkqc.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rkqc.lo `test -f 'src/fortran/rkqc.f' || echo '$(srcdir)/'`src/fortran/rkqc.f
 
 sci_dasrt.lo: sci_gateway/fortran/sci_dasrt.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_dasrt.lo `test -f 'sci_gateway/fortran/sci_dasrt.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_dasrt.f
