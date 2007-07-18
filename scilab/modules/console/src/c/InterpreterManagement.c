@@ -13,4 +13,5 @@ int putCommandInScilabQueue(char *command)
 int execScilabEventLoop(void)
 {
   C2F(sxevents)();
+  return 0;
 }
