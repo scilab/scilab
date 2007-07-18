@@ -12,18 +12,20 @@ src/c/xerhlt.c \
 src/c/vfloor.c \
 src/c/vfrexp.c \
 src/c/scidcopy.c \
+src/c/int2db.c \
+src/c/rea2db.c \
+src/c/idmax.c \
+src/c/idmin.c \
 src/c/gsort.c \
 src/c/qsort.c \
 src/c/qsort-char.c \
 src/c/qsort-double.c \
 src/c/qsort-int.c \
 src/c/qsort-short.c \
-src/c/qsort-string.c \
-src/c/int2db.c \
-src/c/rea2db.c \
-src/c/idmax.c \
-src/c/idmin.c
+src/c/qsort-string.c 
 
+# List of the cpp files
+ELEMENTARIES_FUNCTIONS_CPP_SOURCES = src/cpp/sortTemplate.cpp
 
 SLATEC_SOURCES = src/fortran/slatec/zwrsk.f \
 src/fortran/slatec/d9b0mp.f \
@@ -360,14 +362,22 @@ libdummy_elementaries_functions_la_SOURCES = src/fortran/hqror2.f \
 
 libdummy_elementaries_functions_la_FFLAGS = $(FFLAGS:-O%=)
 
+
+
 libdummy_elementaries_functions_la_CFLAGS = $(CFLAGS:-O%=) -I$(top_srcdir)/modules/core/includes/ -Iincludes/ 
 
+# Includes need for the compilation
 libscielementaries_functions_la_FFLAGS= -Iincludes/ 
+
+# Includes need for the compilation
+libscishell_la_CPPFLAGS = -Iincludes/ -Isrc/cpp/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/
+
+# Includes need for the compilation
 libscielementaries_functions_la_CFLAGS= -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/ -Isrc/c/
 
 pkglib_LTLIBRARIES = libscielementaries_functions.la
 
-libscielementaries_functions_la_SOURCES = $(SLATEC_SOURCES) $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscielementaries_functions_la_SOURCES = $(SLATEC_SOURCES) $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(SHELL_CPP_SOURCES)
 
 libscielementaries_functions_la_LIBADD = \
 	libdummy-elementaries_functions.la \
