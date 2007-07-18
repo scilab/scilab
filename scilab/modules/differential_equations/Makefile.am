@@ -54,7 +54,6 @@ src/fortran/dgbfa.f \
 src/fortran/rscom1.f \
 src/fortran/rksimp.f \
 src/fortran/roots.f \
-src/fortran/rgk4.f \
 src/fortran/stoda.f \
 src/fortran/bnorm.f \
 src/fortran/rchek2.f \
@@ -70,7 +69,11 @@ src/fortran/intdy.f \
 src/fortran/ewset.f \
 src/fortran/roots2.f \
 src/fortran/prepji.f \
-src/fortran/svcma1.f 
+src/fortran/svcma1.f \
+src/fortran/lsrgk.f \
+src/fortran/odeint.f \
+src/fortran/rk4.f \
+src/fortran/rkqc.f
 
 GATEWAY_C_SOURCES = \
 sci_gateway/c/sci_int2d.c \

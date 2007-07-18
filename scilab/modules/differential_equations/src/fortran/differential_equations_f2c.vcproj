@@ -409,6 +409,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\lsrgk.c"
+				>
+			</File>
+			<File
+				RelativePath=".\odeint.c"
+				>
+			</File>
+			<File
 				RelativePath=".\order.c"
 				>
 			</File>
@@ -437,11 +445,15 @@
 				>
 			</File>
 			<File
-				RelativePath=".\rgk4.c"
+				RelativePath=".\rk4.c"
 				>
 			</File>
 			<File
 				RelativePath=".\rkf45.c"
+				>
+			</File>
+			<File
+				RelativePath=".\rkqc.c"
 				>
 			</File>
 			<File
@@ -781,6 +793,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\lsrgk.f"
+				>
+			</File>
+			<File
+				RelativePath=".\odeint.f"
+				>
+			</File>
+			<File
 				RelativePath=".\order.f"
 				>
 			</File>
@@ -809,11 +829,15 @@
 				>
 			</File>
 			<File
-				RelativePath=".\rgk4.f"
+				RelativePath=".\rk4.f"
 				>
 			</File>
 			<File
 				RelativePath=".\rkf45.f"
+				>
+			</File>
+			<File
+				RelativePath=".\rkqc.f"
 				>
 			</File>
 			<File
