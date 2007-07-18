@@ -7,10 +7,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.border.LineBorder;
 
-import org.scilab.modules.gui.container.SimpleContainer;
+import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.SimpleMenuBar;
 import org.scilab.modules.gui.pushbutton.SimplePushButton;
 import org.scilab.modules.gui.toolbar.SimpleToolBar;
+import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -33,7 +34,6 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 	 */
 	public void addMenuBar(SimpleMenuBar newMenuBar) {
 		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -41,8 +41,7 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 	 * @param newToolBar the ToolBar to set to the element
 	 */
 	public void addToolBar(SimpleToolBar newToolBar) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException();
+		// TODO Auto-generated method stub	
 	}
 	
 	/**
@@ -52,19 +51,6 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 	public void draw() {
 		this.setVisible(true);
 		this.doLayout();
-	}
-
-	/**
-	 * Add this as member (dockable element) to the Scilab container and returns its index
-	 * @param container the container in which we add this
-	 * @return index of this in container components
-	 * @see org.scilab.modules.gui.container.Container#addMember(org.scilab.modules.gui.dockable.Dockable)
-	 * @see org.scilab.modules.gui.dockable.Dockable#addAsMemberTo(org.scilab.modules.gui.container.Container)
-	 */
-	public int addAsMemberTo(SimpleContainer container) {
-		// delegate to the container but also adding info on how to handle me (PushButton)
-		// Interface Container must describe methode: int addMember(PushButton member);
-		return container.addMember((SimplePushButton) this);
 	}
 
 	/**

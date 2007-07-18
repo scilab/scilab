@@ -6,7 +6,6 @@ package org.scilab.modules.gui.bridge.editbox;
 import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
 
-import org.scilab.modules.gui.editbox.EditBoxBridge;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
