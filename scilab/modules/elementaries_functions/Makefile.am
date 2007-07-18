@@ -370,14 +370,14 @@ libdummy_elementaries_functions_la_CFLAGS = $(CFLAGS:-O%=) -I$(top_srcdir)/modul
 libscielementaries_functions_la_FFLAGS= -Iincludes/ 
 
 # Includes need for the compilation
-libscishell_la_CPPFLAGS = -Iincludes/ -Isrc/cpp/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/
+libscielementaries_functions_la_CPPFLAGS = -Iincludes/ -Isrc/cpp/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/
 
 # Includes need for the compilation
 libscielementaries_functions_la_CFLAGS= -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/ -Isrc/c/
 
 pkglib_LTLIBRARIES = libscielementaries_functions.la
 
-libscielementaries_functions_la_SOURCES = $(SLATEC_SOURCES) $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(SHELL_CPP_SOURCES)
+libscielementaries_functions_la_SOURCES = $(SLATEC_SOURCES) $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(ELEMENTARIES_FUNCTIONS_CPP_SOURCES)
 
 libscielementaries_functions_la_LIBADD = \
 	libdummy-elementaries_functions.la \

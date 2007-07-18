@@ -192,17 +192,17 @@ am__objects_2 = libscielementaries_functions_la-sci_tools.lo \
 	libscielementaries_functions_la-vfloor.lo \
 	libscielementaries_functions_la-vfrexp.lo \
 	libscielementaries_functions_la-scidcopy.lo \
+	libscielementaries_functions_la-int2db.lo \
+	libscielementaries_functions_la-rea2db.lo \
+	libscielementaries_functions_la-idmax.lo \
+	libscielementaries_functions_la-idmin.lo \
 	libscielementaries_functions_la-gsort.lo \
 	libscielementaries_functions_la-qsort.lo \
 	libscielementaries_functions_la-qsort-char.lo \
 	libscielementaries_functions_la-qsort-double.lo \
 	libscielementaries_functions_la-qsort-int.lo \
 	libscielementaries_functions_la-qsort-short.lo \
-	libscielementaries_functions_la-qsort-string.lo \
-	libscielementaries_functions_la-int2db.lo \
-	libscielementaries_functions_la-rea2db.lo \
-	libscielementaries_functions_la-idmax.lo \
-	libscielementaries_functions_la-idmin.lo
+	libscielementaries_functions_la-qsort-string.lo
 am__objects_3 = libscielementaries_functions_la-psi.lo \
 	libscielementaries_functions_la-wasum.lo \
 	libscielementaries_functions_la-dexpm1.lo \
@@ -436,15 +436,12 @@ am__objects_5 = libscielementaries_functions_la-sci_f_isequal.lo \
 	libscielementaries_functions_la-sci_f_int.lo \
 	libscielementaries_functions_la-sci_f_imult.lo \
 	libscielementaries_functions_la-sci_f_exp.lo
+am__objects_6 = libscielementaries_functions_la-sortTemplate.lo
 am_libscielementaries_functions_la_OBJECTS = $(am__objects_1) \
 	$(am__objects_2) $(am__objects_3) $(am__objects_4) \
-	$(am__objects_5)
+	$(am__objects_5) $(am__objects_6)
 libscielementaries_functions_la_OBJECTS =  \
 	$(am_libscielementaries_functions_la_OBJECTS)
-libscielementaries_functions_la_LINK = $(LIBTOOL) --tag=F77 \
-	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(F77LD) \
-	$(libscielementaries_functions_la_FFLAGS) $(FFLAGS) \
-	$(AM_LDFLAGS) $(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -456,6 +453,15 @@ LTCOMPILE = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
+	$(LDFLAGS) -o $@
+CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
+	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
+LTCXXCOMPILE = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
+	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
+CXXLD = $(CXX)
+CXXLINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
 F77COMPILE = $(F77) $(AM_FFLAGS) $(FFLAGS)
 LTF77COMPILE = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
@@ -644,18 +650,21 @@ src/c/xerhlt.c \
 src/c/vfloor.c \
 src/c/vfrexp.c \
 src/c/scidcopy.c \
+src/c/int2db.c \
+src/c/rea2db.c \
+src/c/idmax.c \
+src/c/idmin.c \
 src/c/gsort.c \
 src/c/qsort.c \
 src/c/qsort-char.c \
 src/c/qsort-double.c \
 src/c/qsort-int.c \
 src/c/qsort-short.c \
-src/c/qsort-string.c \
-src/c/int2db.c \
-src/c/rea2db.c \
-src/c/idmax.c \
-src/c/idmin.c
+src/c/qsort-string.c 
 
+
+# List of the cpp files
+ELEMENTARIES_FUNCTIONS_CPP_SOURCES = src/cpp/sortTemplate.cpp
 SLATEC_SOURCES = src/fortran/slatec/zwrsk.f \
 src/fortran/slatec/d9b0mp.f \
 src/fortran/slatec/d9b1mp.f \
@@ -990,10 +999,17 @@ libdummy_elementaries_functions_la_SOURCES = src/fortran/hqror2.f \
 
 libdummy_elementaries_functions_la_FFLAGS = $(FFLAGS:-O%=)
 libdummy_elementaries_functions_la_CFLAGS = $(CFLAGS:-O%=) -I$(top_srcdir)/modules/core/includes/ -Iincludes/ 
+
+# Includes need for the compilation
 libscielementaries_functions_la_FFLAGS = -Iincludes/ 
+
+# Includes need for the compilation
+libscielementaries_functions_la_CPPFLAGS = -Iincludes/ -Isrc/cpp/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/
+
+# Includes need for the compilation
 libscielementaries_functions_la_CFLAGS = -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/ -Isrc/c/
 pkglib_LTLIBRARIES = libscielementaries_functions.la
-libscielementaries_functions_la_SOURCES = $(SLATEC_SOURCES) $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscielementaries_functions_la_SOURCES = $(SLATEC_SOURCES) $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(ELEMENTARIES_FUNCTIONS_CPP_SOURCES)
 libscielementaries_functions_la_LIBADD = \
 	libdummy-elementaries_functions.la \
 	$(top_builddir)/modules/cacsd/libscicacsd.la \
@@ -1070,7 +1086,7 @@ LOCALISATIONFILES = errors.xml menus.xml messages.xml
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .sci .bin .c .f .lo .o .obj
+.SUFFIXES: .sci .bin .c .cpp .f .lo .o .obj
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -1139,7 +1155,7 @@ clean-pkglibLTLIBRARIES:
 libdummy-elementaries_functions.la: $(libdummy_elementaries_functions_la_OBJECTS) $(libdummy_elementaries_functions_la_DEPENDENCIES) 
 	$(libdummy_elementaries_functions_la_LINK)  $(libdummy_elementaries_functions_la_OBJECTS) $(libdummy_elementaries_functions_la_LIBADD) $(LIBS)
 libscielementaries_functions.la: $(libscielementaries_functions_la_OBJECTS) $(libscielementaries_functions_la_DEPENDENCIES) 
-	$(libscielementaries_functions_la_LINK) -rpath $(pkglibdir) $(libscielementaries_functions_la_OBJECTS) $(libscielementaries_functions_la_LIBADD) $(LIBS)
+	$(CXXLINK) -rpath $(pkglibdir) $(libscielementaries_functions_la_OBJECTS) $(libscielementaries_functions_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -1212,6 +1228,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-sci_triu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-sci_zeros.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-scidcopy.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-sortTemplate.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-vceil.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-vfinite.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementaries_functions_la-vfloor.Plo@am__quote@
@@ -1240,487 +1257,515 @@ distclean-compile:
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
 libscielementaries_functions_la-sci_tools.lo: src/c/sci_tools.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_tools.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_tools.Tpo -c -o libscielementaries_functions_la-sci_tools.lo `test -f 'src/c/sci_tools.c' || echo '$(srcdir)/'`src/c/sci_tools.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_tools.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_tools.Tpo -c -o libscielementaries_functions_la-sci_tools.lo `test -f 'src/c/sci_tools.c' || echo '$(srcdir)/'`src/c/sci_tools.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_tools.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_tools.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/sci_tools.c' object='libscielementaries_functions_la-sci_tools.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_tools.lo `test -f 'src/c/sci_tools.c' || echo '$(srcdir)/'`src/c/sci_tools.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_tools.lo `test -f 'src/c/sci_tools.c' || echo '$(srcdir)/'`src/c/sci_tools.c
 
 libscielementaries_functions_la-finite.lo: src/c/finite.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-finite.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-finite.Tpo -c -o libscielementaries_functions_la-finite.lo `test -f 'src/c/finite.c' || echo '$(srcdir)/'`src/c/finite.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-finite.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-finite.Tpo -c -o libscielementaries_functions_la-finite.lo `test -f 'src/c/finite.c' || echo '$(srcdir)/'`src/c/finite.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-finite.Tpo $(DEPDIR)/libscielementaries_functions_la-finite.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/finite.c' object='libscielementaries_functions_la-finite.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-finite.lo `test -f 'src/c/finite.c' || echo '$(srcdir)/'`src/c/finite.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-finite.lo `test -f 'src/c/finite.c' || echo '$(srcdir)/'`src/c/finite.c
 
 libscielementaries_functions_la-vfinite.lo: src/c/vfinite.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-vfinite.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-vfinite.Tpo -c -o libscielementaries_functions_la-vfinite.lo `test -f 'src/c/vfinite.c' || echo '$(srcdir)/'`src/c/vfinite.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-vfinite.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-vfinite.Tpo -c -o libscielementaries_functions_la-vfinite.lo `test -f 'src/c/vfinite.c' || echo '$(srcdir)/'`src/c/vfinite.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-vfinite.Tpo $(DEPDIR)/libscielementaries_functions_la-vfinite.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/vfinite.c' object='libscielementaries_functions_la-vfinite.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-vfinite.lo `test -f 'src/c/vfinite.c' || echo '$(srcdir)/'`src/c/vfinite.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-vfinite.lo `test -f 'src/c/vfinite.c' || echo '$(srcdir)/'`src/c/vfinite.c
 
 libscielementaries_functions_la-cmp.lo: src/c/cmp.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-cmp.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-cmp.Tpo -c -o libscielementaries_functions_la-cmp.lo `test -f 'src/c/cmp.c' || echo '$(srcdir)/'`src/c/cmp.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-cmp.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-cmp.Tpo -c -o libscielementaries_functions_la-cmp.lo `test -f 'src/c/cmp.c' || echo '$(srcdir)/'`src/c/cmp.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-cmp.Tpo $(DEPDIR)/libscielementaries_functions_la-cmp.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/cmp.c' object='libscielementaries_functions_la-cmp.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-cmp.lo `test -f 'src/c/cmp.c' || echo '$(srcdir)/'`src/c/cmp.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-cmp.lo `test -f 'src/c/cmp.c' || echo '$(srcdir)/'`src/c/cmp.c
 
 libscielementaries_functions_la-vceil.lo: src/c/vceil.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-vceil.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-vceil.Tpo -c -o libscielementaries_functions_la-vceil.lo `test -f 'src/c/vceil.c' || echo '$(srcdir)/'`src/c/vceil.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-vceil.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-vceil.Tpo -c -o libscielementaries_functions_la-vceil.lo `test -f 'src/c/vceil.c' || echo '$(srcdir)/'`src/c/vceil.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-vceil.Tpo $(DEPDIR)/libscielementaries_functions_la-vceil.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/vceil.c' object='libscielementaries_functions_la-vceil.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-vceil.lo `test -f 'src/c/vceil.c' || echo '$(srcdir)/'`src/c/vceil.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-vceil.lo `test -f 'src/c/vceil.c' || echo '$(srcdir)/'`src/c/vceil.c
 
 libscielementaries_functions_la-xerhlt.lo: src/c/xerhlt.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-xerhlt.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-xerhlt.Tpo -c -o libscielementaries_functions_la-xerhlt.lo `test -f 'src/c/xerhlt.c' || echo '$(srcdir)/'`src/c/xerhlt.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-xerhlt.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-xerhlt.Tpo -c -o libscielementaries_functions_la-xerhlt.lo `test -f 'src/c/xerhlt.c' || echo '$(srcdir)/'`src/c/xerhlt.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-xerhlt.Tpo $(DEPDIR)/libscielementaries_functions_la-xerhlt.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xerhlt.c' object='libscielementaries_functions_la-xerhlt.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-xerhlt.lo `test -f 'src/c/xerhlt.c' || echo '$(srcdir)/'`src/c/xerhlt.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-xerhlt.lo `test -f 'src/c/xerhlt.c' || echo '$(srcdir)/'`src/c/xerhlt.c
 
 libscielementaries_functions_la-vfloor.lo: src/c/vfloor.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-vfloor.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-vfloor.Tpo -c -o libscielementaries_functions_la-vfloor.lo `test -f 'src/c/vfloor.c' || echo '$(srcdir)/'`src/c/vfloor.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-vfloor.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-vfloor.Tpo -c -o libscielementaries_functions_la-vfloor.lo `test -f 'src/c/vfloor.c' || echo '$(srcdir)/'`src/c/vfloor.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-vfloor.Tpo $(DEPDIR)/libscielementaries_functions_la-vfloor.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/vfloor.c' object='libscielementaries_functions_la-vfloor.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-vfloor.lo `test -f 'src/c/vfloor.c' || echo '$(srcdir)/'`src/c/vfloor.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-vfloor.lo `test -f 'src/c/vfloor.c' || echo '$(srcdir)/'`src/c/vfloor.c
 
 libscielementaries_functions_la-vfrexp.lo: src/c/vfrexp.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-vfrexp.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-vfrexp.Tpo -c -o libscielementaries_functions_la-vfrexp.lo `test -f 'src/c/vfrexp.c' || echo '$(srcdir)/'`src/c/vfrexp.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-vfrexp.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-vfrexp.Tpo -c -o libscielementaries_functions_la-vfrexp.lo `test -f 'src/c/vfrexp.c' || echo '$(srcdir)/'`src/c/vfrexp.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-vfrexp.Tpo $(DEPDIR)/libscielementaries_functions_la-vfrexp.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/vfrexp.c' object='libscielementaries_functions_la-vfrexp.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-vfrexp.lo `test -f 'src/c/vfrexp.c' || echo '$(srcdir)/'`src/c/vfrexp.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-vfrexp.lo `test -f 'src/c/vfrexp.c' || echo '$(srcdir)/'`src/c/vfrexp.c
 
 libscielementaries_functions_la-scidcopy.lo: src/c/scidcopy.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-scidcopy.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-scidcopy.Tpo -c -o libscielementaries_functions_la-scidcopy.lo `test -f 'src/c/scidcopy.c' || echo '$(srcdir)/'`src/c/scidcopy.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-scidcopy.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-scidcopy.Tpo -c -o libscielementaries_functions_la-scidcopy.lo `test -f 'src/c/scidcopy.c' || echo '$(srcdir)/'`src/c/scidcopy.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-scidcopy.Tpo $(DEPDIR)/libscielementaries_functions_la-scidcopy.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/scidcopy.c' object='libscielementaries_functions_la-scidcopy.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-scidcopy.lo `test -f 'src/c/scidcopy.c' || echo '$(srcdir)/'`src/c/scidcopy.c
-
-libscielementaries_functions_la-gsort.lo: src/c/gsort.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-gsort.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-gsort.Tpo -c -o libscielementaries_functions_la-gsort.lo `test -f 'src/c/gsort.c' || echo '$(srcdir)/'`src/c/gsort.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-gsort.Tpo $(DEPDIR)/libscielementaries_functions_la-gsort.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/gsort.c' object='libscielementaries_functions_la-gsort.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-gsort.lo `test -f 'src/c/gsort.c' || echo '$(srcdir)/'`src/c/gsort.c
-
-libscielementaries_functions_la-qsort.lo: src/c/qsort.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-qsort.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-qsort.Tpo -c -o libscielementaries_functions_la-qsort.lo `test -f 'src/c/qsort.c' || echo '$(srcdir)/'`src/c/qsort.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-qsort.Tpo $(DEPDIR)/libscielementaries_functions_la-qsort.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/qsort.c' object='libscielementaries_functions_la-qsort.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-qsort.lo `test -f 'src/c/qsort.c' || echo '$(srcdir)/'`src/c/qsort.c
-
-libscielementaries_functions_la-qsort-char.lo: src/c/qsort-char.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-qsort-char.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-qsort-char.Tpo -c -o libscielementaries_functions_la-qsort-char.lo `test -f 'src/c/qsort-char.c' || echo '$(srcdir)/'`src/c/qsort-char.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-qsort-char.Tpo $(DEPDIR)/libscielementaries_functions_la-qsort-char.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/qsort-char.c' object='libscielementaries_functions_la-qsort-char.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-qsort-char.lo `test -f 'src/c/qsort-char.c' || echo '$(srcdir)/'`src/c/qsort-char.c
-
-libscielementaries_functions_la-qsort-double.lo: src/c/qsort-double.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-qsort-double.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-qsort-double.Tpo -c -o libscielementaries_functions_la-qsort-double.lo `test -f 'src/c/qsort-double.c' || echo '$(srcdir)/'`src/c/qsort-double.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-qsort-double.Tpo $(DEPDIR)/libscielementaries_functions_la-qsort-double.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/qsort-double.c' object='libscielementaries_functions_la-qsort-double.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-qsort-double.lo `test -f 'src/c/qsort-double.c' || echo '$(srcdir)/'`src/c/qsort-double.c
-
-libscielementaries_functions_la-qsort-int.lo: src/c/qsort-int.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-qsort-int.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-qsort-int.Tpo -c -o libscielementaries_functions_la-qsort-int.lo `test -f 'src/c/qsort-int.c' || echo '$(srcdir)/'`src/c/qsort-int.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-qsort-int.Tpo $(DEPDIR)/libscielementaries_functions_la-qsort-int.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/qsort-int.c' object='libscielementaries_functions_la-qsort-int.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-qsort-int.lo `test -f 'src/c/qsort-int.c' || echo '$(srcdir)/'`src/c/qsort-int.c
-
-libscielementaries_functions_la-qsort-short.lo: src/c/qsort-short.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-qsort-short.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-qsort-short.Tpo -c -o libscielementaries_functions_la-qsort-short.lo `test -f 'src/c/qsort-short.c' || echo '$(srcdir)/'`src/c/qsort-short.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-qsort-short.Tpo $(DEPDIR)/libscielementaries_functions_la-qsort-short.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/qsort-short.c' object='libscielementaries_functions_la-qsort-short.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-qsort-short.lo `test -f 'src/c/qsort-short.c' || echo '$(srcdir)/'`src/c/qsort-short.c
-
-libscielementaries_functions_la-qsort-string.lo: src/c/qsort-string.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-qsort-string.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-qsort-string.Tpo -c -o libscielementaries_functions_la-qsort-string.lo `test -f 'src/c/qsort-string.c' || echo '$(srcdir)/'`src/c/qsort-string.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-qsort-string.Tpo $(DEPDIR)/libscielementaries_functions_la-qsort-string.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/qsort-string.c' object='libscielementaries_functions_la-qsort-string.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-qsort-string.lo `test -f 'src/c/qsort-string.c' || echo '$(srcdir)/'`src/c/qsort-string.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-scidcopy.lo `test -f 'src/c/scidcopy.c' || echo '$(srcdir)/'`src/c/scidcopy.c
 
 libscielementaries_functions_la-int2db.lo: src/c/int2db.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-int2db.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-int2db.Tpo -c -o libscielementaries_functions_la-int2db.lo `test -f 'src/c/int2db.c' || echo '$(srcdir)/'`src/c/int2db.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-int2db.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-int2db.Tpo -c -o libscielementaries_functions_la-int2db.lo `test -f 'src/c/int2db.c' || echo '$(srcdir)/'`src/c/int2db.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-int2db.Tpo $(DEPDIR)/libscielementaries_functions_la-int2db.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/int2db.c' object='libscielementaries_functions_la-int2db.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-int2db.lo `test -f 'src/c/int2db.c' || echo '$(srcdir)/'`src/c/int2db.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-int2db.lo `test -f 'src/c/int2db.c' || echo '$(srcdir)/'`src/c/int2db.c
 
 libscielementaries_functions_la-rea2db.lo: src/c/rea2db.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-rea2db.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-rea2db.Tpo -c -o libscielementaries_functions_la-rea2db.lo `test -f 'src/c/rea2db.c' || echo '$(srcdir)/'`src/c/rea2db.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-rea2db.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-rea2db.Tpo -c -o libscielementaries_functions_la-rea2db.lo `test -f 'src/c/rea2db.c' || echo '$(srcdir)/'`src/c/rea2db.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-rea2db.Tpo $(DEPDIR)/libscielementaries_functions_la-rea2db.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/rea2db.c' object='libscielementaries_functions_la-rea2db.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-rea2db.lo `test -f 'src/c/rea2db.c' || echo '$(srcdir)/'`src/c/rea2db.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-rea2db.lo `test -f 'src/c/rea2db.c' || echo '$(srcdir)/'`src/c/rea2db.c
 
 libscielementaries_functions_la-idmax.lo: src/c/idmax.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-idmax.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-idmax.Tpo -c -o libscielementaries_functions_la-idmax.lo `test -f 'src/c/idmax.c' || echo '$(srcdir)/'`src/c/idmax.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-idmax.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-idmax.Tpo -c -o libscielementaries_functions_la-idmax.lo `test -f 'src/c/idmax.c' || echo '$(srcdir)/'`src/c/idmax.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-idmax.Tpo $(DEPDIR)/libscielementaries_functions_la-idmax.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/idmax.c' object='libscielementaries_functions_la-idmax.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-idmax.lo `test -f 'src/c/idmax.c' || echo '$(srcdir)/'`src/c/idmax.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-idmax.lo `test -f 'src/c/idmax.c' || echo '$(srcdir)/'`src/c/idmax.c
 
 libscielementaries_functions_la-idmin.lo: src/c/idmin.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-idmin.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-idmin.Tpo -c -o libscielementaries_functions_la-idmin.lo `test -f 'src/c/idmin.c' || echo '$(srcdir)/'`src/c/idmin.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-idmin.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-idmin.Tpo -c -o libscielementaries_functions_la-idmin.lo `test -f 'src/c/idmin.c' || echo '$(srcdir)/'`src/c/idmin.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-idmin.Tpo $(DEPDIR)/libscielementaries_functions_la-idmin.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/idmin.c' object='libscielementaries_functions_la-idmin.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-idmin.lo `test -f 'src/c/idmin.c' || echo '$(srcdir)/'`src/c/idmin.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-idmin.lo `test -f 'src/c/idmin.c' || echo '$(srcdir)/'`src/c/idmin.c
+
+libscielementaries_functions_la-gsort.lo: src/c/gsort.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-gsort.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-gsort.Tpo -c -o libscielementaries_functions_la-gsort.lo `test -f 'src/c/gsort.c' || echo '$(srcdir)/'`src/c/gsort.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-gsort.Tpo $(DEPDIR)/libscielementaries_functions_la-gsort.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/gsort.c' object='libscielementaries_functions_la-gsort.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-gsort.lo `test -f 'src/c/gsort.c' || echo '$(srcdir)/'`src/c/gsort.c
+
+libscielementaries_functions_la-qsort.lo: src/c/qsort.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-qsort.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-qsort.Tpo -c -o libscielementaries_functions_la-qsort.lo `test -f 'src/c/qsort.c' || echo '$(srcdir)/'`src/c/qsort.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-qsort.Tpo $(DEPDIR)/libscielementaries_functions_la-qsort.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/qsort.c' object='libscielementaries_functions_la-qsort.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-qsort.lo `test -f 'src/c/qsort.c' || echo '$(srcdir)/'`src/c/qsort.c
+
+libscielementaries_functions_la-qsort-char.lo: src/c/qsort-char.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-qsort-char.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-qsort-char.Tpo -c -o libscielementaries_functions_la-qsort-char.lo `test -f 'src/c/qsort-char.c' || echo '$(srcdir)/'`src/c/qsort-char.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-qsort-char.Tpo $(DEPDIR)/libscielementaries_functions_la-qsort-char.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/qsort-char.c' object='libscielementaries_functions_la-qsort-char.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-qsort-char.lo `test -f 'src/c/qsort-char.c' || echo '$(srcdir)/'`src/c/qsort-char.c
+
+libscielementaries_functions_la-qsort-double.lo: src/c/qsort-double.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-qsort-double.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-qsort-double.Tpo -c -o libscielementaries_functions_la-qsort-double.lo `test -f 'src/c/qsort-double.c' || echo '$(srcdir)/'`src/c/qsort-double.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-qsort-double.Tpo $(DEPDIR)/libscielementaries_functions_la-qsort-double.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/qsort-double.c' object='libscielementaries_functions_la-qsort-double.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-qsort-double.lo `test -f 'src/c/qsort-double.c' || echo '$(srcdir)/'`src/c/qsort-double.c
+
+libscielementaries_functions_la-qsort-int.lo: src/c/qsort-int.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-qsort-int.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-qsort-int.Tpo -c -o libscielementaries_functions_la-qsort-int.lo `test -f 'src/c/qsort-int.c' || echo '$(srcdir)/'`src/c/qsort-int.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-qsort-int.Tpo $(DEPDIR)/libscielementaries_functions_la-qsort-int.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/qsort-int.c' object='libscielementaries_functions_la-qsort-int.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-qsort-int.lo `test -f 'src/c/qsort-int.c' || echo '$(srcdir)/'`src/c/qsort-int.c
+
+libscielementaries_functions_la-qsort-short.lo: src/c/qsort-short.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-qsort-short.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-qsort-short.Tpo -c -o libscielementaries_functions_la-qsort-short.lo `test -f 'src/c/qsort-short.c' || echo '$(srcdir)/'`src/c/qsort-short.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-qsort-short.Tpo $(DEPDIR)/libscielementaries_functions_la-qsort-short.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/qsort-short.c' object='libscielementaries_functions_la-qsort-short.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-qsort-short.lo `test -f 'src/c/qsort-short.c' || echo '$(srcdir)/'`src/c/qsort-short.c
+
+libscielementaries_functions_la-qsort-string.lo: src/c/qsort-string.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-qsort-string.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-qsort-string.Tpo -c -o libscielementaries_functions_la-qsort-string.lo `test -f 'src/c/qsort-string.c' || echo '$(srcdir)/'`src/c/qsort-string.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-qsort-string.Tpo $(DEPDIR)/libscielementaries_functions_la-qsort-string.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/qsort-string.c' object='libscielementaries_functions_la-qsort-string.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-qsort-string.lo `test -f 'src/c/qsort-string.c' || echo '$(srcdir)/'`src/c/qsort-string.c
 
 libscielementaries_functions_la-sci_isequal.lo: sci_gateway/c/sci_isequal.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_isequal.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_isequal.Tpo -c -o libscielementaries_functions_la-sci_isequal.lo `test -f 'sci_gateway/c/sci_isequal.c' || echo '$(srcdir)/'`sci_gateway/c/sci_isequal.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_isequal.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_isequal.Tpo -c -o libscielementaries_functions_la-sci_isequal.lo `test -f 'sci_gateway/c/sci_isequal.c' || echo '$(srcdir)/'`sci_gateway/c/sci_isequal.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_isequal.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_isequal.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_isequal.c' object='libscielementaries_functions_la-sci_isequal.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_isequal.lo `test -f 'sci_gateway/c/sci_isequal.c' || echo '$(srcdir)/'`sci_gateway/c/sci_isequal.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_isequal.lo `test -f 'sci_gateway/c/sci_isequal.c' || echo '$(srcdir)/'`sci_gateway/c/sci_isequal.c
 
 libscielementaries_functions_la-sci_matrix.lo: sci_gateway/c/sci_matrix.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_matrix.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_matrix.Tpo -c -o libscielementaries_functions_la-sci_matrix.lo `test -f 'sci_gateway/c/sci_matrix.c' || echo '$(srcdir)/'`sci_gateway/c/sci_matrix.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_matrix.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_matrix.Tpo -c -o libscielementaries_functions_la-sci_matrix.lo `test -f 'sci_gateway/c/sci_matrix.c' || echo '$(srcdir)/'`sci_gateway/c/sci_matrix.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_matrix.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_matrix.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_matrix.c' object='libscielementaries_functions_la-sci_matrix.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_matrix.lo `test -f 'sci_gateway/c/sci_matrix.c' || echo '$(srcdir)/'`sci_gateway/c/sci_matrix.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_matrix.lo `test -f 'sci_gateway/c/sci_matrix.c' || echo '$(srcdir)/'`sci_gateway/c/sci_matrix.c
 
 libscielementaries_functions_la-sci_prod.lo: sci_gateway/c/sci_prod.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_prod.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_prod.Tpo -c -o libscielementaries_functions_la-sci_prod.lo `test -f 'sci_gateway/c/sci_prod.c' || echo '$(srcdir)/'`sci_gateway/c/sci_prod.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_prod.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_prod.Tpo -c -o libscielementaries_functions_la-sci_prod.lo `test -f 'sci_gateway/c/sci_prod.c' || echo '$(srcdir)/'`sci_gateway/c/sci_prod.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_prod.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_prod.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_prod.c' object='libscielementaries_functions_la-sci_prod.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_prod.lo `test -f 'sci_gateway/c/sci_prod.c' || echo '$(srcdir)/'`sci_gateway/c/sci_prod.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_prod.lo `test -f 'sci_gateway/c/sci_prod.c' || echo '$(srcdir)/'`sci_gateway/c/sci_prod.c
 
 libscielementaries_functions_la-sci_expm.lo: sci_gateway/c/sci_expm.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_expm.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_expm.Tpo -c -o libscielementaries_functions_la-sci_expm.lo `test -f 'sci_gateway/c/sci_expm.c' || echo '$(srcdir)/'`sci_gateway/c/sci_expm.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_expm.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_expm.Tpo -c -o libscielementaries_functions_la-sci_expm.lo `test -f 'sci_gateway/c/sci_expm.c' || echo '$(srcdir)/'`sci_gateway/c/sci_expm.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_expm.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_expm.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_expm.c' object='libscielementaries_functions_la-sci_expm.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_expm.lo `test -f 'sci_gateway/c/sci_expm.c' || echo '$(srcdir)/'`sci_gateway/c/sci_expm.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_expm.lo `test -f 'sci_gateway/c/sci_expm.c' || echo '$(srcdir)/'`sci_gateway/c/sci_expm.c
 
 libscielementaries_functions_la-sci_size.lo: sci_gateway/c/sci_size.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_size.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_size.Tpo -c -o libscielementaries_functions_la-sci_size.lo `test -f 'sci_gateway/c/sci_size.c' || echo '$(srcdir)/'`sci_gateway/c/sci_size.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_size.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_size.Tpo -c -o libscielementaries_functions_la-sci_size.lo `test -f 'sci_gateway/c/sci_size.c' || echo '$(srcdir)/'`sci_gateway/c/sci_size.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_size.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_size.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_size.c' object='libscielementaries_functions_la-sci_size.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_size.lo `test -f 'sci_gateway/c/sci_size.c' || echo '$(srcdir)/'`sci_gateway/c/sci_size.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_size.lo `test -f 'sci_gateway/c/sci_size.c' || echo '$(srcdir)/'`sci_gateway/c/sci_size.c
 
 libscielementaries_functions_la-sci_tril.lo: sci_gateway/c/sci_tril.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_tril.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_tril.Tpo -c -o libscielementaries_functions_la-sci_tril.lo `test -f 'sci_gateway/c/sci_tril.c' || echo '$(srcdir)/'`sci_gateway/c/sci_tril.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_tril.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_tril.Tpo -c -o libscielementaries_functions_la-sci_tril.lo `test -f 'sci_gateway/c/sci_tril.c' || echo '$(srcdir)/'`sci_gateway/c/sci_tril.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_tril.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_tril.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_tril.c' object='libscielementaries_functions_la-sci_tril.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_tril.lo `test -f 'sci_gateway/c/sci_tril.c' || echo '$(srcdir)/'`sci_gateway/c/sci_tril.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_tril.lo `test -f 'sci_gateway/c/sci_tril.c' || echo '$(srcdir)/'`sci_gateway/c/sci_tril.c
 
 libscielementaries_functions_la-sci_ceil.lo: sci_gateway/c/sci_ceil.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_ceil.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_ceil.Tpo -c -o libscielementaries_functions_la-sci_ceil.lo `test -f 'sci_gateway/c/sci_ceil.c' || echo '$(srcdir)/'`sci_gateway/c/sci_ceil.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_ceil.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_ceil.Tpo -c -o libscielementaries_functions_la-sci_ceil.lo `test -f 'sci_gateway/c/sci_ceil.c' || echo '$(srcdir)/'`sci_gateway/c/sci_ceil.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_ceil.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_ceil.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_ceil.c' object='libscielementaries_functions_la-sci_ceil.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_ceil.lo `test -f 'sci_gateway/c/sci_ceil.c' || echo '$(srcdir)/'`sci_gateway/c/sci_ceil.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_ceil.lo `test -f 'sci_gateway/c/sci_ceil.c' || echo '$(srcdir)/'`sci_gateway/c/sci_ceil.c
 
 libscielementaries_functions_la-sci_imag.lo: sci_gateway/c/sci_imag.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_imag.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_imag.Tpo -c -o libscielementaries_functions_la-sci_imag.lo `test -f 'sci_gateway/c/sci_imag.c' || echo '$(srcdir)/'`sci_gateway/c/sci_imag.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_imag.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_imag.Tpo -c -o libscielementaries_functions_la-sci_imag.lo `test -f 'sci_gateway/c/sci_imag.c' || echo '$(srcdir)/'`sci_gateway/c/sci_imag.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_imag.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_imag.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_imag.c' object='libscielementaries_functions_la-sci_imag.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_imag.lo `test -f 'sci_gateway/c/sci_imag.c' || echo '$(srcdir)/'`sci_gateway/c/sci_imag.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_imag.lo `test -f 'sci_gateway/c/sci_imag.c' || echo '$(srcdir)/'`sci_gateway/c/sci_imag.c
 
 libscielementaries_functions_la-sci_log.lo: sci_gateway/c/sci_log.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_log.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_log.Tpo -c -o libscielementaries_functions_la-sci_log.lo `test -f 'sci_gateway/c/sci_log.c' || echo '$(srcdir)/'`sci_gateway/c/sci_log.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_log.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_log.Tpo -c -o libscielementaries_functions_la-sci_log.lo `test -f 'sci_gateway/c/sci_log.c' || echo '$(srcdir)/'`sci_gateway/c/sci_log.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_log.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_log.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_log.c' object='libscielementaries_functions_la-sci_log.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_log.lo `test -f 'sci_gateway/c/sci_log.c' || echo '$(srcdir)/'`sci_gateway/c/sci_log.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_log.lo `test -f 'sci_gateway/c/sci_log.c' || echo '$(srcdir)/'`sci_gateway/c/sci_log.c
 
 libscielementaries_functions_la-sci_log1p.lo: sci_gateway/c/sci_log1p.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_log1p.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_log1p.Tpo -c -o libscielementaries_functions_la-sci_log1p.lo `test -f 'sci_gateway/c/sci_log1p.c' || echo '$(srcdir)/'`sci_gateway/c/sci_log1p.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_log1p.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_log1p.Tpo -c -o libscielementaries_functions_la-sci_log1p.lo `test -f 'sci_gateway/c/sci_log1p.c' || echo '$(srcdir)/'`sci_gateway/c/sci_log1p.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_log1p.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_log1p.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_log1p.c' object='libscielementaries_functions_la-sci_log1p.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_log1p.lo `test -f 'sci_gateway/c/sci_log1p.c' || echo '$(srcdir)/'`sci_gateway/c/sci_log1p.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_log1p.lo `test -f 'sci_gateway/c/sci_log1p.c' || echo '$(srcdir)/'`sci_gateway/c/sci_log1p.c
 
 libscielementaries_functions_la-sci_eye.lo: sci_gateway/c/sci_eye.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_eye.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_eye.Tpo -c -o libscielementaries_functions_la-sci_eye.lo `test -f 'sci_gateway/c/sci_eye.c' || echo '$(srcdir)/'`sci_gateway/c/sci_eye.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_eye.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_eye.Tpo -c -o libscielementaries_functions_la-sci_eye.lo `test -f 'sci_gateway/c/sci_eye.c' || echo '$(srcdir)/'`sci_gateway/c/sci_eye.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_eye.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_eye.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_eye.c' object='libscielementaries_functions_la-sci_eye.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_eye.lo `test -f 'sci_gateway/c/sci_eye.c' || echo '$(srcdir)/'`sci_gateway/c/sci_eye.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_eye.lo `test -f 'sci_gateway/c/sci_eye.c' || echo '$(srcdir)/'`sci_gateway/c/sci_eye.c
 
 libscielementaries_functions_la-sci_clean.lo: sci_gateway/c/sci_clean.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_clean.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_clean.Tpo -c -o libscielementaries_functions_la-sci_clean.lo `test -f 'sci_gateway/c/sci_clean.c' || echo '$(srcdir)/'`sci_gateway/c/sci_clean.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_clean.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_clean.Tpo -c -o libscielementaries_functions_la-sci_clean.lo `test -f 'sci_gateway/c/sci_clean.c' || echo '$(srcdir)/'`sci_gateway/c/sci_clean.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_clean.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_clean.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_clean.c' object='libscielementaries_functions_la-sci_clean.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_clean.lo `test -f 'sci_gateway/c/sci_clean.c' || echo '$(srcdir)/'`sci_gateway/c/sci_clean.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_clean.lo `test -f 'sci_gateway/c/sci_clean.c' || echo '$(srcdir)/'`sci_gateway/c/sci_clean.c
 
 libscielementaries_functions_la-sci_tan.lo: sci_gateway/c/sci_tan.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_tan.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_tan.Tpo -c -o libscielementaries_functions_la-sci_tan.lo `test -f 'sci_gateway/c/sci_tan.c' || echo '$(srcdir)/'`sci_gateway/c/sci_tan.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_tan.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_tan.Tpo -c -o libscielementaries_functions_la-sci_tan.lo `test -f 'sci_gateway/c/sci_tan.c' || echo '$(srcdir)/'`sci_gateway/c/sci_tan.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_tan.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_tan.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_tan.c' object='libscielementaries_functions_la-sci_tan.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_tan.lo `test -f 'sci_gateway/c/sci_tan.c' || echo '$(srcdir)/'`sci_gateway/c/sci_tan.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_tan.lo `test -f 'sci_gateway/c/sci_tan.c' || echo '$(srcdir)/'`sci_gateway/c/sci_tan.c
 
 libscielementaries_functions_la-sci_atan.lo: sci_gateway/c/sci_atan.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_atan.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_atan.Tpo -c -o libscielementaries_functions_la-sci_atan.lo `test -f 'sci_gateway/c/sci_atan.c' || echo '$(srcdir)/'`sci_gateway/c/sci_atan.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_atan.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_atan.Tpo -c -o libscielementaries_functions_la-sci_atan.lo `test -f 'sci_gateway/c/sci_atan.c' || echo '$(srcdir)/'`sci_gateway/c/sci_atan.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_atan.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_atan.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_atan.c' object='libscielementaries_functions_la-sci_atan.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_atan.lo `test -f 'sci_gateway/c/sci_atan.c' || echo '$(srcdir)/'`sci_gateway/c/sci_atan.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_atan.lo `test -f 'sci_gateway/c/sci_atan.c' || echo '$(srcdir)/'`sci_gateway/c/sci_atan.c
 
 libscielementaries_functions_la-sci_triu.lo: sci_gateway/c/sci_triu.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_triu.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_triu.Tpo -c -o libscielementaries_functions_la-sci_triu.lo `test -f 'sci_gateway/c/sci_triu.c' || echo '$(srcdir)/'`sci_gateway/c/sci_triu.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_triu.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_triu.Tpo -c -o libscielementaries_functions_la-sci_triu.lo `test -f 'sci_gateway/c/sci_triu.c' || echo '$(srcdir)/'`sci_gateway/c/sci_triu.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_triu.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_triu.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_triu.c' object='libscielementaries_functions_la-sci_triu.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_triu.lo `test -f 'sci_gateway/c/sci_triu.c' || echo '$(srcdir)/'`sci_gateway/c/sci_triu.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_triu.lo `test -f 'sci_gateway/c/sci_triu.c' || echo '$(srcdir)/'`sci_gateway/c/sci_triu.c
 
 libscielementaries_functions_la-sci_frexp.lo: sci_gateway/c/sci_frexp.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_frexp.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_frexp.Tpo -c -o libscielementaries_functions_la-sci_frexp.lo `test -f 'sci_gateway/c/sci_frexp.c' || echo '$(srcdir)/'`sci_gateway/c/sci_frexp.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_frexp.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_frexp.Tpo -c -o libscielementaries_functions_la-sci_frexp.lo `test -f 'sci_gateway/c/sci_frexp.c' || echo '$(srcdir)/'`sci_gateway/c/sci_frexp.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_frexp.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_frexp.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_frexp.c' object='libscielementaries_functions_la-sci_frexp.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_frexp.lo `test -f 'sci_gateway/c/sci_frexp.c' || echo '$(srcdir)/'`sci_gateway/c/sci_frexp.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_frexp.lo `test -f 'sci_gateway/c/sci_frexp.c' || echo '$(srcdir)/'`sci_gateway/c/sci_frexp.c
 
 libscielementaries_functions_la-sci_cos.lo: sci_gateway/c/sci_cos.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_cos.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_cos.Tpo -c -o libscielementaries_functions_la-sci_cos.lo `test -f 'sci_gateway/c/sci_cos.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cos.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_cos.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_cos.Tpo -c -o libscielementaries_functions_la-sci_cos.lo `test -f 'sci_gateway/c/sci_cos.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cos.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_cos.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_cos.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_cos.c' object='libscielementaries_functions_la-sci_cos.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_cos.lo `test -f 'sci_gateway/c/sci_cos.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cos.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_cos.lo `test -f 'sci_gateway/c/sci_cos.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cos.c
 
 libscielementaries_functions_la-sci_rand.lo: sci_gateway/c/sci_rand.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_rand.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_rand.Tpo -c -o libscielementaries_functions_la-sci_rand.lo `test -f 'sci_gateway/c/sci_rand.c' || echo '$(srcdir)/'`sci_gateway/c/sci_rand.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_rand.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_rand.Tpo -c -o libscielementaries_functions_la-sci_rand.lo `test -f 'sci_gateway/c/sci_rand.c' || echo '$(srcdir)/'`sci_gateway/c/sci_rand.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_rand.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_rand.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_rand.c' object='libscielementaries_functions_la-sci_rand.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_rand.lo `test -f 'sci_gateway/c/sci_rand.c' || echo '$(srcdir)/'`sci_gateway/c/sci_rand.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_rand.lo `test -f 'sci_gateway/c/sci_rand.c' || echo '$(srcdir)/'`sci_gateway/c/sci_rand.c
 
 libscielementaries_functions_la-sci_acos.lo: sci_gateway/c/sci_acos.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_acos.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_acos.Tpo -c -o libscielementaries_functions_la-sci_acos.lo `test -f 'sci_gateway/c/sci_acos.c' || echo '$(srcdir)/'`sci_gateway/c/sci_acos.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_acos.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_acos.Tpo -c -o libscielementaries_functions_la-sci_acos.lo `test -f 'sci_gateway/c/sci_acos.c' || echo '$(srcdir)/'`sci_gateway/c/sci_acos.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_acos.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_acos.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_acos.c' object='libscielementaries_functions_la-sci_acos.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_acos.lo `test -f 'sci_gateway/c/sci_acos.c' || echo '$(srcdir)/'`sci_gateway/c/sci_acos.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_acos.lo `test -f 'sci_gateway/c/sci_acos.c' || echo '$(srcdir)/'`sci_gateway/c/sci_acos.c
 
 libscielementaries_functions_la-sci_sort.lo: sci_gateway/c/sci_sort.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_sort.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_sort.Tpo -c -o libscielementaries_functions_la-sci_sort.lo `test -f 'sci_gateway/c/sci_sort.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sort.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_sort.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_sort.Tpo -c -o libscielementaries_functions_la-sci_sort.lo `test -f 'sci_gateway/c/sci_sort.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sort.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_sort.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_sort.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_sort.c' object='libscielementaries_functions_la-sci_sort.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_sort.lo `test -f 'sci_gateway/c/sci_sort.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sort.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_sort.lo `test -f 'sci_gateway/c/sci_sort.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sort.c
 
 libscielementaries_functions_la-sci_sin.lo: sci_gateway/c/sci_sin.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_sin.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_sin.Tpo -c -o libscielementaries_functions_la-sci_sin.lo `test -f 'sci_gateway/c/sci_sin.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sin.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_sin.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_sin.Tpo -c -o libscielementaries_functions_la-sci_sin.lo `test -f 'sci_gateway/c/sci_sin.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sin.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_sin.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_sin.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_sin.c' object='libscielementaries_functions_la-sci_sin.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_sin.lo `test -f 'sci_gateway/c/sci_sin.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sin.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_sin.lo `test -f 'sci_gateway/c/sci_sin.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sin.c
 
 libscielementaries_functions_la-sci_sqrt.lo: sci_gateway/c/sci_sqrt.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_sqrt.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_sqrt.Tpo -c -o libscielementaries_functions_la-sci_sqrt.lo `test -f 'sci_gateway/c/sci_sqrt.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sqrt.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_sqrt.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_sqrt.Tpo -c -o libscielementaries_functions_la-sci_sqrt.lo `test -f 'sci_gateway/c/sci_sqrt.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sqrt.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_sqrt.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_sqrt.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_sqrt.c' object='libscielementaries_functions_la-sci_sqrt.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_sqrt.lo `test -f 'sci_gateway/c/sci_sqrt.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sqrt.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_sqrt.lo `test -f 'sci_gateway/c/sci_sqrt.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sqrt.c
 
 libscielementaries_functions_la-sci_asin.lo: sci_gateway/c/sci_asin.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_asin.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_asin.Tpo -c -o libscielementaries_functions_la-sci_asin.lo `test -f 'sci_gateway/c/sci_asin.c' || echo '$(srcdir)/'`sci_gateway/c/sci_asin.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_asin.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_asin.Tpo -c -o libscielementaries_functions_la-sci_asin.lo `test -f 'sci_gateway/c/sci_asin.c' || echo '$(srcdir)/'`sci_gateway/c/sci_asin.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_asin.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_asin.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_asin.c' object='libscielementaries_functions_la-sci_asin.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_asin.lo `test -f 'sci_gateway/c/sci_asin.c' || echo '$(srcdir)/'`sci_gateway/c/sci_asin.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_asin.lo `test -f 'sci_gateway/c/sci_asin.c' || echo '$(srcdir)/'`sci_gateway/c/sci_asin.c
 
 libscielementaries_functions_la-sci_sign.lo: sci_gateway/c/sci_sign.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_sign.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_sign.Tpo -c -o libscielementaries_functions_la-sci_sign.lo `test -f 'sci_gateway/c/sci_sign.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sign.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_sign.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_sign.Tpo -c -o libscielementaries_functions_la-sci_sign.lo `test -f 'sci_gateway/c/sci_sign.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sign.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_sign.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_sign.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_sign.c' object='libscielementaries_functions_la-sci_sign.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_sign.lo `test -f 'sci_gateway/c/sci_sign.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sign.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_sign.lo `test -f 'sci_gateway/c/sci_sign.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sign.c
 
 libscielementaries_functions_la-sci_zeros.lo: sci_gateway/c/sci_zeros.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_zeros.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_zeros.Tpo -c -o libscielementaries_functions_la-sci_zeros.lo `test -f 'sci_gateway/c/sci_zeros.c' || echo '$(srcdir)/'`sci_gateway/c/sci_zeros.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_zeros.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_zeros.Tpo -c -o libscielementaries_functions_la-sci_zeros.lo `test -f 'sci_gateway/c/sci_zeros.c' || echo '$(srcdir)/'`sci_gateway/c/sci_zeros.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_zeros.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_zeros.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_zeros.c' object='libscielementaries_functions_la-sci_zeros.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_zeros.lo `test -f 'sci_gateway/c/sci_zeros.c' || echo '$(srcdir)/'`sci_gateway/c/sci_zeros.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_zeros.lo `test -f 'sci_gateway/c/sci_zeros.c' || echo '$(srcdir)/'`sci_gateway/c/sci_zeros.c
 
 libscielementaries_functions_la-sci_ones.lo: sci_gateway/c/sci_ones.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_ones.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_ones.Tpo -c -o libscielementaries_functions_la-sci_ones.lo `test -f 'sci_gateway/c/sci_ones.c' || echo '$(srcdir)/'`sci_gateway/c/sci_ones.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_ones.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_ones.Tpo -c -o libscielementaries_functions_la-sci_ones.lo `test -f 'sci_gateway/c/sci_ones.c' || echo '$(srcdir)/'`sci_gateway/c/sci_ones.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_ones.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_ones.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_ones.c' object='libscielementaries_functions_la-sci_ones.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_ones.lo `test -f 'sci_gateway/c/sci_ones.c' || echo '$(srcdir)/'`sci_gateway/c/sci_ones.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_ones.lo `test -f 'sci_gateway/c/sci_ones.c' || echo '$(srcdir)/'`sci_gateway/c/sci_ones.c
 
 libscielementaries_functions_la-gw_elementaries_functions.lo: sci_gateway/c/gw_elementaries_functions.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-gw_elementaries_functions.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-gw_elementaries_functions.Tpo -c -o libscielementaries_functions_la-gw_elementaries_functions.lo `test -f 'sci_gateway/c/gw_elementaries_functions.c' || echo '$(srcdir)/'`sci_gateway/c/gw_elementaries_functions.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-gw_elementaries_functions.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-gw_elementaries_functions.Tpo -c -o libscielementaries_functions_la-gw_elementaries_functions.lo `test -f 'sci_gateway/c/gw_elementaries_functions.c' || echo '$(srcdir)/'`sci_gateway/c/gw_elementaries_functions.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-gw_elementaries_functions.Tpo $(DEPDIR)/libscielementaries_functions_la-gw_elementaries_functions.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/gw_elementaries_functions.c' object='libscielementaries_functions_la-gw_elementaries_functions.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-gw_elementaries_functions.lo `test -f 'sci_gateway/c/gw_elementaries_functions.c' || echo '$(srcdir)/'`sci_gateway/c/gw_elementaries_functions.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-gw_elementaries_functions.lo `test -f 'sci_gateway/c/gw_elementaries_functions.c' || echo '$(srcdir)/'`sci_gateway/c/gw_elementaries_functions.c
 
 libscielementaries_functions_la-sci_number_properties.lo: sci_gateway/c/sci_number_properties.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_number_properties.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_number_properties.Tpo -c -o libscielementaries_functions_la-sci_number_properties.lo `test -f 'sci_gateway/c/sci_number_properties.c' || echo '$(srcdir)/'`sci_gateway/c/sci_number_properties.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_number_properties.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_number_properties.Tpo -c -o libscielementaries_functions_la-sci_number_properties.lo `test -f 'sci_gateway/c/sci_number_properties.c' || echo '$(srcdir)/'`sci_gateway/c/sci_number_properties.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_number_properties.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_number_properties.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_number_properties.c' object='libscielementaries_functions_la-sci_number_properties.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_number_properties.lo `test -f 'sci_gateway/c/sci_number_properties.c' || echo '$(srcdir)/'`sci_gateway/c/sci_number_properties.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_number_properties.lo `test -f 'sci_gateway/c/sci_number_properties.c' || echo '$(srcdir)/'`sci_gateway/c/sci_number_properties.c
 
 libscielementaries_functions_la-sci_diag.lo: sci_gateway/c/sci_diag.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_diag.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_diag.Tpo -c -o libscielementaries_functions_la-sci_diag.lo `test -f 'sci_gateway/c/sci_diag.c' || echo '$(srcdir)/'`sci_gateway/c/sci_diag.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_diag.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_diag.Tpo -c -o libscielementaries_functions_la-sci_diag.lo `test -f 'sci_gateway/c/sci_diag.c' || echo '$(srcdir)/'`sci_gateway/c/sci_diag.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_diag.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_diag.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_diag.c' object='libscielementaries_functions_la-sci_diag.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_diag.lo `test -f 'sci_gateway/c/sci_diag.c' || echo '$(srcdir)/'`sci_gateway/c/sci_diag.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_diag.lo `test -f 'sci_gateway/c/sci_diag.c' || echo '$(srcdir)/'`sci_gateway/c/sci_diag.c
 
 libscielementaries_functions_la-sci_sum.lo: sci_gateway/c/sci_sum.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_sum.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_sum.Tpo -c -o libscielementaries_functions_la-sci_sum.lo `test -f 'sci_gateway/c/sci_sum.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sum.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_sum.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_sum.Tpo -c -o libscielementaries_functions_la-sci_sum.lo `test -f 'sci_gateway/c/sci_sum.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sum.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_sum.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_sum.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_sum.c' object='libscielementaries_functions_la-sci_sum.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_sum.lo `test -f 'sci_gateway/c/sci_sum.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sum.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_sum.lo `test -f 'sci_gateway/c/sci_sum.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sum.c
 
 libscielementaries_functions_la-sci_testmatrix.lo: sci_gateway/c/sci_testmatrix.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_testmatrix.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_testmatrix.Tpo -c -o libscielementaries_functions_la-sci_testmatrix.lo `test -f 'sci_gateway/c/sci_testmatrix.c' || echo '$(srcdir)/'`sci_gateway/c/sci_testmatrix.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_testmatrix.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_testmatrix.Tpo -c -o libscielementaries_functions_la-sci_testmatrix.lo `test -f 'sci_gateway/c/sci_testmatrix.c' || echo '$(srcdir)/'`sci_gateway/c/sci_testmatrix.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_testmatrix.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_testmatrix.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_testmatrix.c' object='libscielementaries_functions_la-sci_testmatrix.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_testmatrix.lo `test -f 'sci_gateway/c/sci_testmatrix.c' || echo '$(srcdir)/'`sci_gateway/c/sci_testmatrix.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_testmatrix.lo `test -f 'sci_gateway/c/sci_testmatrix.c' || echo '$(srcdir)/'`sci_gateway/c/sci_testmatrix.c
 
 libscielementaries_functions_la-sci_abs.lo: sci_gateway/c/sci_abs.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_abs.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_abs.Tpo -c -o libscielementaries_functions_la-sci_abs.lo `test -f 'sci_gateway/c/sci_abs.c' || echo '$(srcdir)/'`sci_gateway/c/sci_abs.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_abs.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_abs.Tpo -c -o libscielementaries_functions_la-sci_abs.lo `test -f 'sci_gateway/c/sci_abs.c' || echo '$(srcdir)/'`sci_gateway/c/sci_abs.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_abs.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_abs.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_abs.c' object='libscielementaries_functions_la-sci_abs.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_abs.lo `test -f 'sci_gateway/c/sci_abs.c' || echo '$(srcdir)/'`sci_gateway/c/sci_abs.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_abs.lo `test -f 'sci_gateway/c/sci_abs.c' || echo '$(srcdir)/'`sci_gateway/c/sci_abs.c
 
 libscielementaries_functions_la-sci_spones.lo: sci_gateway/c/sci_spones.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_spones.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_spones.Tpo -c -o libscielementaries_functions_la-sci_spones.lo `test -f 'sci_gateway/c/sci_spones.c' || echo '$(srcdir)/'`sci_gateway/c/sci_spones.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_spones.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_spones.Tpo -c -o libscielementaries_functions_la-sci_spones.lo `test -f 'sci_gateway/c/sci_spones.c' || echo '$(srcdir)/'`sci_gateway/c/sci_spones.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_spones.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_spones.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_spones.c' object='libscielementaries_functions_la-sci_spones.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_spones.lo `test -f 'sci_gateway/c/sci_spones.c' || echo '$(srcdir)/'`sci_gateway/c/sci_spones.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_spones.lo `test -f 'sci_gateway/c/sci_spones.c' || echo '$(srcdir)/'`sci_gateway/c/sci_spones.c
 
 libscielementaries_functions_la-sci_kron.lo: sci_gateway/c/sci_kron.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_kron.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_kron.Tpo -c -o libscielementaries_functions_la-sci_kron.lo `test -f 'sci_gateway/c/sci_kron.c' || echo '$(srcdir)/'`sci_gateway/c/sci_kron.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_kron.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_kron.Tpo -c -o libscielementaries_functions_la-sci_kron.lo `test -f 'sci_gateway/c/sci_kron.c' || echo '$(srcdir)/'`sci_gateway/c/sci_kron.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_kron.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_kron.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_kron.c' object='libscielementaries_functions_la-sci_kron.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_kron.lo `test -f 'sci_gateway/c/sci_kron.c' || echo '$(srcdir)/'`sci_gateway/c/sci_kron.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_kron.lo `test -f 'sci_gateway/c/sci_kron.c' || echo '$(srcdir)/'`sci_gateway/c/sci_kron.c
 
 libscielementaries_functions_la-sci_cumprod.lo: sci_gateway/c/sci_cumprod.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_cumprod.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_cumprod.Tpo -c -o libscielementaries_functions_la-sci_cumprod.lo `test -f 'sci_gateway/c/sci_cumprod.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cumprod.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_cumprod.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_cumprod.Tpo -c -o libscielementaries_functions_la-sci_cumprod.lo `test -f 'sci_gateway/c/sci_cumprod.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cumprod.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_cumprod.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_cumprod.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_cumprod.c' object='libscielementaries_functions_la-sci_cumprod.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_cumprod.lo `test -f 'sci_gateway/c/sci_cumprod.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cumprod.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_cumprod.lo `test -f 'sci_gateway/c/sci_cumprod.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cumprod.c
 
 libscielementaries_functions_la-sci_cumsum.lo: sci_gateway/c/sci_cumsum.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_cumsum.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_cumsum.Tpo -c -o libscielementaries_functions_la-sci_cumsum.lo `test -f 'sci_gateway/c/sci_cumsum.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cumsum.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_cumsum.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_cumsum.Tpo -c -o libscielementaries_functions_la-sci_cumsum.lo `test -f 'sci_gateway/c/sci_cumsum.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cumsum.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_cumsum.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_cumsum.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_cumsum.c' object='libscielementaries_functions_la-sci_cumsum.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_cumsum.lo `test -f 'sci_gateway/c/sci_cumsum.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cumsum.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_cumsum.lo `test -f 'sci_gateway/c/sci_cumsum.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cumsum.c
 
 libscielementaries_functions_la-sci_dsearch.lo: sci_gateway/c/sci_dsearch.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_dsearch.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_dsearch.Tpo -c -o libscielementaries_functions_la-sci_dsearch.lo `test -f 'sci_gateway/c/sci_dsearch.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dsearch.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_dsearch.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_dsearch.Tpo -c -o libscielementaries_functions_la-sci_dsearch.lo `test -f 'sci_gateway/c/sci_dsearch.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dsearch.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_dsearch.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_dsearch.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_dsearch.c' object='libscielementaries_functions_la-sci_dsearch.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_dsearch.lo `test -f 'sci_gateway/c/sci_dsearch.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dsearch.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_dsearch.lo `test -f 'sci_gateway/c/sci_dsearch.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dsearch.c
 
 libscielementaries_functions_la-sci_nearfloat.lo: sci_gateway/c/sci_nearfloat.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_nearfloat.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_nearfloat.Tpo -c -o libscielementaries_functions_la-sci_nearfloat.lo `test -f 'sci_gateway/c/sci_nearfloat.c' || echo '$(srcdir)/'`sci_gateway/c/sci_nearfloat.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_nearfloat.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_nearfloat.Tpo -c -o libscielementaries_functions_la-sci_nearfloat.lo `test -f 'sci_gateway/c/sci_nearfloat.c' || echo '$(srcdir)/'`sci_gateway/c/sci_nearfloat.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_nearfloat.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_nearfloat.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_nearfloat.c' object='libscielementaries_functions_la-sci_nearfloat.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_nearfloat.lo `test -f 'sci_gateway/c/sci_nearfloat.c' || echo '$(srcdir)/'`sci_gateway/c/sci_nearfloat.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_nearfloat.lo `test -f 'sci_gateway/c/sci_nearfloat.c' || echo '$(srcdir)/'`sci_gateway/c/sci_nearfloat.c
 
 libscielementaries_functions_la-sci_chinesehat.lo: sci_gateway/c/sci_chinesehat.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_chinesehat.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_chinesehat.Tpo -c -o libscielementaries_functions_la-sci_chinesehat.lo `test -f 'sci_gateway/c/sci_chinesehat.c' || echo '$(srcdir)/'`sci_gateway/c/sci_chinesehat.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_chinesehat.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_chinesehat.Tpo -c -o libscielementaries_functions_la-sci_chinesehat.lo `test -f 'sci_gateway/c/sci_chinesehat.c' || echo '$(srcdir)/'`sci_gateway/c/sci_chinesehat.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_chinesehat.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_chinesehat.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_chinesehat.c' object='libscielementaries_functions_la-sci_chinesehat.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_chinesehat.lo `test -f 'sci_gateway/c/sci_chinesehat.c' || echo '$(srcdir)/'`sci_gateway/c/sci_chinesehat.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_chinesehat.lo `test -f 'sci_gateway/c/sci_chinesehat.c' || echo '$(srcdir)/'`sci_gateway/c/sci_chinesehat.c
 
 libscielementaries_functions_la-sci_isreal.lo: sci_gateway/c/sci_isreal.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_isreal.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_isreal.Tpo -c -o libscielementaries_functions_la-sci_isreal.lo `test -f 'sci_gateway/c/sci_isreal.c' || echo '$(srcdir)/'`sci_gateway/c/sci_isreal.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_isreal.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_isreal.Tpo -c -o libscielementaries_functions_la-sci_isreal.lo `test -f 'sci_gateway/c/sci_isreal.c' || echo '$(srcdir)/'`sci_gateway/c/sci_isreal.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_isreal.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_isreal.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_isreal.c' object='libscielementaries_functions_la-sci_isreal.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_isreal.lo `test -f 'sci_gateway/c/sci_isreal.c' || echo '$(srcdir)/'`sci_gateway/c/sci_isreal.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_isreal.lo `test -f 'sci_gateway/c/sci_isreal.c' || echo '$(srcdir)/'`sci_gateway/c/sci_isreal.c
 
 libscielementaries_functions_la-sci_floor.lo: sci_gateway/c/sci_floor.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_floor.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_floor.Tpo -c -o libscielementaries_functions_la-sci_floor.lo `test -f 'sci_gateway/c/sci_floor.c' || echo '$(srcdir)/'`sci_gateway/c/sci_floor.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_floor.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_floor.Tpo -c -o libscielementaries_functions_la-sci_floor.lo `test -f 'sci_gateway/c/sci_floor.c' || echo '$(srcdir)/'`sci_gateway/c/sci_floor.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_floor.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_floor.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_floor.c' object='libscielementaries_functions_la-sci_floor.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_floor.lo `test -f 'sci_gateway/c/sci_floor.c' || echo '$(srcdir)/'`sci_gateway/c/sci_floor.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_floor.lo `test -f 'sci_gateway/c/sci_floor.c' || echo '$(srcdir)/'`sci_gateway/c/sci_floor.c
 
 libscielementaries_functions_la-sci_real.lo: sci_gateway/c/sci_real.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_real.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_real.Tpo -c -o libscielementaries_functions_la-sci_real.lo `test -f 'sci_gateway/c/sci_real.c' || echo '$(srcdir)/'`sci_gateway/c/sci_real.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_real.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_real.Tpo -c -o libscielementaries_functions_la-sci_real.lo `test -f 'sci_gateway/c/sci_real.c' || echo '$(srcdir)/'`sci_gateway/c/sci_real.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_real.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_real.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_real.c' object='libscielementaries_functions_la-sci_real.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_real.lo `test -f 'sci_gateway/c/sci_real.c' || echo '$(srcdir)/'`sci_gateway/c/sci_real.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_real.lo `test -f 'sci_gateway/c/sci_real.c' || echo '$(srcdir)/'`sci_gateway/c/sci_real.c
 
 libscielementaries_functions_la-sci_round.lo: sci_gateway/c/sci_round.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_round.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_round.Tpo -c -o libscielementaries_functions_la-sci_round.lo `test -f 'sci_gateway/c/sci_round.c' || echo '$(srcdir)/'`sci_gateway/c/sci_round.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_round.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_round.Tpo -c -o libscielementaries_functions_la-sci_round.lo `test -f 'sci_gateway/c/sci_round.c' || echo '$(srcdir)/'`sci_gateway/c/sci_round.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_round.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_round.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_round.c' object='libscielementaries_functions_la-sci_round.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_round.lo `test -f 'sci_gateway/c/sci_round.c' || echo '$(srcdir)/'`sci_gateway/c/sci_round.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_round.lo `test -f 'sci_gateway/c/sci_round.c' || echo '$(srcdir)/'`sci_gateway/c/sci_round.c
 
 libscielementaries_functions_la-sci_conj.lo: sci_gateway/c/sci_conj.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_conj.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_conj.Tpo -c -o libscielementaries_functions_la-sci_conj.lo `test -f 'sci_gateway/c/sci_conj.c' || echo '$(srcdir)/'`sci_gateway/c/sci_conj.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_conj.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_conj.Tpo -c -o libscielementaries_functions_la-sci_conj.lo `test -f 'sci_gateway/c/sci_conj.c' || echo '$(srcdir)/'`sci_gateway/c/sci_conj.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_conj.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_conj.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_conj.c' object='libscielementaries_functions_la-sci_conj.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_conj.lo `test -f 'sci_gateway/c/sci_conj.c' || echo '$(srcdir)/'`sci_gateway/c/sci_conj.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_conj.lo `test -f 'sci_gateway/c/sci_conj.c' || echo '$(srcdir)/'`sci_gateway/c/sci_conj.c
 
 libscielementaries_functions_la-sci_int.lo: sci_gateway/c/sci_int.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_int.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_int.Tpo -c -o libscielementaries_functions_la-sci_int.lo `test -f 'sci_gateway/c/sci_int.c' || echo '$(srcdir)/'`sci_gateway/c/sci_int.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_int.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_int.Tpo -c -o libscielementaries_functions_la-sci_int.lo `test -f 'sci_gateway/c/sci_int.c' || echo '$(srcdir)/'`sci_gateway/c/sci_int.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_int.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_int.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_int.c' object='libscielementaries_functions_la-sci_int.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_int.lo `test -f 'sci_gateway/c/sci_int.c' || echo '$(srcdir)/'`sci_gateway/c/sci_int.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_int.lo `test -f 'sci_gateway/c/sci_int.c' || echo '$(srcdir)/'`sci_gateway/c/sci_int.c
 
 libscielementaries_functions_la-sci_imult.lo: sci_gateway/c/sci_imult.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_imult.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_imult.Tpo -c -o libscielementaries_functions_la-sci_imult.lo `test -f 'sci_gateway/c/sci_imult.c' || echo '$(srcdir)/'`sci_gateway/c/sci_imult.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_imult.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_imult.Tpo -c -o libscielementaries_functions_la-sci_imult.lo `test -f 'sci_gateway/c/sci_imult.c' || echo '$(srcdir)/'`sci_gateway/c/sci_imult.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_imult.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_imult.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_imult.c' object='libscielementaries_functions_la-sci_imult.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_imult.lo `test -f 'sci_gateway/c/sci_imult.c' || echo '$(srcdir)/'`sci_gateway/c/sci_imult.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_imult.lo `test -f 'sci_gateway/c/sci_imult.c' || echo '$(srcdir)/'`sci_gateway/c/sci_imult.c
 
 libscielementaries_functions_la-sci_exp.lo: sci_gateway/c/sci_exp.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_exp.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_exp.Tpo -c -o libscielementaries_functions_la-sci_exp.lo `test -f 'sci_gateway/c/sci_exp.c' || echo '$(srcdir)/'`sci_gateway/c/sci_exp.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_exp.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_exp.Tpo -c -o libscielementaries_functions_la-sci_exp.lo `test -f 'sci_gateway/c/sci_exp.c' || echo '$(srcdir)/'`sci_gateway/c/sci_exp.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_exp.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_exp.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_exp.c' object='libscielementaries_functions_la-sci_exp.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_exp.lo `test -f 'sci_gateway/c/sci_exp.c' || echo '$(srcdir)/'`sci_gateway/c/sci_exp.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_exp.lo `test -f 'sci_gateway/c/sci_exp.c' || echo '$(srcdir)/'`sci_gateway/c/sci_exp.c
 
 libscielementaries_functions_la-sci_maxi.lo: sci_gateway/c/sci_maxi.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_maxi.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_maxi.Tpo -c -o libscielementaries_functions_la-sci_maxi.lo `test -f 'sci_gateway/c/sci_maxi.c' || echo '$(srcdir)/'`sci_gateway/c/sci_maxi.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_maxi.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_maxi.Tpo -c -o libscielementaries_functions_la-sci_maxi.lo `test -f 'sci_gateway/c/sci_maxi.c' || echo '$(srcdir)/'`sci_gateway/c/sci_maxi.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_maxi.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_maxi.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_maxi.c' object='libscielementaries_functions_la-sci_maxi.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_maxi.lo `test -f 'sci_gateway/c/sci_maxi.c' || echo '$(srcdir)/'`sci_gateway/c/sci_maxi.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_maxi.lo `test -f 'sci_gateway/c/sci_maxi.c' || echo '$(srcdir)/'`sci_gateway/c/sci_maxi.c
 
 libscielementaries_functions_la-sci_gsort.lo: sci_gateway/c/sci_gsort.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_gsort.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_gsort.Tpo -c -o libscielementaries_functions_la-sci_gsort.lo `test -f 'sci_gateway/c/sci_gsort.c' || echo '$(srcdir)/'`sci_gateway/c/sci_gsort.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -MT libscielementaries_functions_la-sci_gsort.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sci_gsort.Tpo -c -o libscielementaries_functions_la-sci_gsort.lo `test -f 'sci_gateway/c/sci_gsort.c' || echo '$(srcdir)/'`sci_gateway/c/sci_gsort.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sci_gsort.Tpo $(DEPDIR)/libscielementaries_functions_la-sci_gsort.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_gsort.c' object='libscielementaries_functions_la-sci_gsort.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_gsort.lo `test -f 'sci_gateway/c/sci_gsort.c' || echo '$(srcdir)/'`sci_gateway/c/sci_gsort.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementaries_functions_la-sci_gsort.lo `test -f 'sci_gateway/c/sci_gsort.c' || echo '$(srcdir)/'`sci_gateway/c/sci_gsort.c
+
+.cpp.o:
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ $<
+
+.cpp.obj:
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
+
+.cpp.lo:
+@am__fastdepCXX_TRUE@	$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
+
+libscielementaries_functions_la-sortTemplate.lo: src/cpp/sortTemplate.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscielementaries_functions_la-sortTemplate.lo -MD -MP -MF $(DEPDIR)/libscielementaries_functions_la-sortTemplate.Tpo -c -o libscielementaries_functions_la-sortTemplate.lo `test -f 'src/cpp/sortTemplate.cpp' || echo '$(srcdir)/'`src/cpp/sortTemplate.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscielementaries_functions_la-sortTemplate.Tpo $(DEPDIR)/libscielementaries_functions_la-sortTemplate.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/sortTemplate.cpp' object='libscielementaries_functions_la-sortTemplate.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementaries_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscielementaries_functions_la-sortTemplate.lo `test -f 'src/cpp/sortTemplate.cpp' || echo '$(srcdir)/'`src/cpp/sortTemplate.cpp
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<

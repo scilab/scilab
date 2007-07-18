@@ -309,7 +309,6 @@ top_srcdir = @top_srcdir@
 STRING_C_SOURCES = src/c/men_Sutils.c \
 src/c/strcat-c.c 
 
-
 STRING_FORTRAN_SOURCES = src/fortran/strord.f src/fortran/strdsp.f
 GATEWAY_C_SOURCES = sci_gateway/c/sci_strindex.c \
 sci_gateway/c/sci_strcat.c \
@@ -1308,7 +1307,6 @@ macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODI
 	-@( \
 	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
 	$(top_builddir)/bin/scilab -nb -nwni -f $(abs_srcdir)/macros/buildmacros.sce 	)
-#includes/src_string.h
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
