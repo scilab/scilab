@@ -3,11 +3,9 @@
 
 package org.scilab.modules.gui.frame;
 
-import org.scilab.modules.gui.console.SimpleConsole;
 import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
-import org.scilab.modules.gui.canvas.SimpleCanvas;
-import org.scilab.modules.gui.pushbutton.SimplePushButton;
-import org.scilab.modules.gui.textbox.SimpleTextBox;
+import org.scilab.modules.gui.canvas.Canvas;
+import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -36,7 +34,7 @@ public class ScilabFrameBridge {
 	 * Draws a frame
 	 * @param frame the frame we want to draw
 	 */
-	public static void draw(SimpleFrame frame) {
+	public static void draw(Frame frame) {
 		frame.draw();
 	}
 
@@ -45,7 +43,7 @@ public class ScilabFrameBridge {
 	 * @param frame the frame we want to get the size of
 	 * @return the size of the frame
 	 */
-	public static Size getDims(SimpleFrame frame) {
+	public static Size getDims(Frame frame) {
 		return frame.getDims();
 	}
 
@@ -54,7 +52,7 @@ public class ScilabFrameBridge {
 	 * @param frame the frame we want to get the position of
 	 * @return the position of the frame
 	 */
-	public static Position getPosition(SimpleFrame frame) {
+	public static Position getPosition(Frame frame) {
 		return frame.getPosition();
 	}
 
@@ -63,7 +61,7 @@ public class ScilabFrameBridge {
 	 * @param frame the frame we want to get the visibility status of
 	 * @return the visibility status of the frame (true is the frame is visible, false if not)
 	 */
-	public static boolean isVisible(SimpleFrame frame) {
+	public static boolean isVisible(Frame frame) {
 		return frame.isVisible();
 	}
 
@@ -72,7 +70,7 @@ public class ScilabFrameBridge {
 	 * @param frame the frame we want to set the dimensions of
 	 * @param newFrameSize the size we want to set to the frame
 	 */
-	public static void setDims(SimpleFrame frame, Size newFrameSize) {
+	public static void setDims(Frame frame, Size newFrameSize) {
 		frame.setDims(newFrameSize);
 	}
 
@@ -81,7 +79,7 @@ public class ScilabFrameBridge {
 	 * @param frame the frame we want to set the position of
 	 * @param newFramePosition the position we want to set to the frame
 	 */
-	public static void setPosition(SimpleFrame frame, Position newFramePosition) {
+	public static void setPosition(Frame frame, Position newFramePosition) {
 		frame.setPosition(newFramePosition);
 	}
 
@@ -90,7 +88,7 @@ public class ScilabFrameBridge {
 	 * @param frame the frame we want to set the visibility status of
 	 * @param newVisibleState the visibility status we want to set (true to set the frame visible, false if not)
 	 */
-	public static void setVisible(SimpleFrame frame, boolean newVisibleState) {
+	public static void setVisible(Frame frame, boolean newVisibleState) {
 		frame.setVisible(newVisibleState);
 	}
 
@@ -100,8 +98,10 @@ public class ScilabFrameBridge {
 	 * @param member the member to add
  	 * @return index of member
  	 */
-	public static int addMember(SimpleFrame frame, SimpleFrame member) {
-		return frame.addMember(member);
+	public static int addMember(Frame frame, Frame member) {
+		// TODO : correct this
+//		return ((SwingScilabFrame) frame).addMember((SwingScilabFrame) member);
+		return 0;
 	}
 
 	/**
@@ -110,8 +110,10 @@ public class ScilabFrameBridge {
 	 * @param member the member to add
  	 * @return index of member
  	 */
-	public static int addMember(SimpleFrame frame, SimpleConsole member) {
-		return frame.addMember(member);
+	public static int addMember(Frame frame, Console member) {
+		// TODO : correct this
+//		return ((SwingScilabFrame) frame).addMember((SwingScilabConsole) member);
+		return 0;
 	}
 
 	/**
@@ -120,27 +122,9 @@ public class ScilabFrameBridge {
 	 * @param member the member to add
  	 * @return index of member
  	 */
-	public static int addMember(SimpleFrame frame, SimpleCanvas member) {
-		return frame.addMember(member);
-	}
-	
-	/**
-	 * Add a member (dockable element) to a frame and returns the index of this member
-	 * @param frame the frame where we want to add the member
-	 * @param member the member to add
- 	 * @return index of member
- 	 */
-	public static int addMember(SimpleFrame frame, SimplePushButton member) {
-		return frame.addMember(member);
-	}
-	
-	/**
-	 * Add a member (dockable element) to a frame and returns the index of this member
-	 * @param frame the frame where we want to add the member
-	 * @param member the member to add
- 	 * @return index of member
- 	 */
-	public static int addMember(SimpleFrame frame, SimpleTextBox member) {
-		return frame.addMember(member);
+	public static int addMember(Frame frame, Canvas member) {
+		// TODO : Just Connect all what is needed
+		//return (frame.getAsSimpleFrame().addMember(member));
+		return 0;
 	}
 }
