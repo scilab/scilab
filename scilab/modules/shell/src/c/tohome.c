@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include "tohome.h"
 #include "scilabmode.h"
-#include "../../../console/includes/PromptToHome.h"
+#include "PromptToHome.h"
 /*-----------------------------------------------------------------------------------*/
 BOOL tohome(void)
 {

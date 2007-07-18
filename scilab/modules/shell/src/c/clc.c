@@ -6,8 +6,8 @@
 #include <stdlib.h>
 #include "clc.h"
 #include "scilabmode.h"
-#include "../../../Console/includes/ClearConsole.h"
-#include "../../../Console/includes/ClearConsolePart.h"
+#include "ClearConsole.h"
+#include "ClearConsolePart.h"
 /*-----------------------------------------------------------------------------------*/
 BOOL clc(int nblines)
 {
