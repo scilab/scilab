@@ -2,8 +2,8 @@
 /* INRIA 2007 */
 /* Allan CORNET */
 /*------------------------------------------------------------------------*/
+#include "HistoryManager.hxx"
 #include "HistoryManager.h"
-#include "HistoryManager_c.h"
 #include "getCommentDateSession.h"
 #include "MALLOC.h"
 /*------------------------------------------------------------------------*/

@@ -7,7 +7,7 @@
 #include "MALLOC.h"
 #include "machine.h"
 #include "stack-c.h"
-#include "HistoryManager_c.h"
+#include "HistoryManager.h"
 #include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_gethistoryfile) _PARAMS((char *fname,unsigned long fname_len))

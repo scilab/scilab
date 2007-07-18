@@ -33,7 +33,7 @@
 #include "command.h"
 #include "dynamic_menus.h"
 #include "../../gui/src/c/wsci/printf.h"
-#include "HistoryManager_c.h"
+#include "HistoryManager.h"
 /*-----------------------------------------------------------------------------------*/
 #define TEXTUSER 0xf1
 #define TEXTGNUPLOT 0xf0

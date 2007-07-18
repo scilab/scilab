@@ -6,7 +6,7 @@
 
 %module HistoryManagement
 %{
-#include "../../../shell/includes/HistoryManager_c.h"
+#include "../../../shell/includes/HistoryManager.h"
 %}
 
 /* JavaDoc for HistoryManagementJNI class */

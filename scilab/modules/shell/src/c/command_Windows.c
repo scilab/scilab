@@ -10,7 +10,7 @@
 #include "../../core/src/c/flags.h"
 
 #include "../../gui/src/c/wsci/printf.h"
-#include "HistoryManager_c.h"
+#include "HistoryManager.h"
 
 extern char * readline_nw (char *prompt, int interrupt);
 static char *rlgets (char *s, int n, char *prompt, int interrupt);

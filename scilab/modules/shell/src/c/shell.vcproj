@@ -322,6 +322,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\CommandLine.hxx"
+				>
+			</File>
+			<File
 				RelativePath=".\completion.h"
 				>
 			</File>
@@ -334,19 +338,19 @@
 				>
 			</File>
 			<File
-				RelativePath="..\cpp\HistoryFile.h"
+				RelativePath="..\cpp\HistoryFile.hxx"
 				>
 			</File>
 			<File
-				RelativePath="..\cpp\HistoryManager.h"
+				RelativePath="..\..\includes\HistoryManager.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\HistoryManager_c.h"
+				RelativePath="..\cpp\HistoryManager.hxx"
 				>
 			</File>
 			<File
-				RelativePath="..\cpp\HistorySearch.h"
+				RelativePath="..\cpp\HistorySearch.hxx"
 				>
 			</File>
 			<File

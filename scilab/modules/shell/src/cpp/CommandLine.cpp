@@ -2,7 +2,7 @@
 /* INRIA 2007 */
 /* Allan CORNET */
 /*------------------------------------------------------------------------*/
-#include "CommandLine.h"
+#include "CommandLine.hxx"
 #include "MALLOC.h"
 /*------------------------------------------------------------------------*/
 CommandLine::CommandLine(void)

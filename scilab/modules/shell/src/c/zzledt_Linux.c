@@ -13,7 +13,7 @@
 #include "machine.h" 
 #include "sciprint.h"
 #include "sciprint_nd.h"
-#include "HistoryManager_c.h"
+#include "HistoryManager.h"
 #include "MALLOC.h"
 static char Sci_Prompt[10];
 

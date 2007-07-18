@@ -5,7 +5,7 @@
 #include "gw_core.h"
 #include "gw_shell.h"
 #include "stack-c.h"
-#include "HistoryManager_c.h"
+#include "HistoryManager.h"
 #include "MALLOC.h"
 #include "cluni0.h"
 /*-----------------------------------------------------------------------------------*/

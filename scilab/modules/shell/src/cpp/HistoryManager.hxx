@@ -14,9 +14,9 @@ extern "C"
 };
 /*------------------------------------------------------------------------*/
 #include <list>
-#include "CommandLine.h"
-#include "HistoryFile.h"
-#include "HistorySearch.h"
+#include "CommandLine.hxx"
+#include "HistoryFile.hxx"
+#include "HistorySearch.hxx"
 using namespace std;
 /*------------------------------------------------------------------------*/
 class HistoryManager

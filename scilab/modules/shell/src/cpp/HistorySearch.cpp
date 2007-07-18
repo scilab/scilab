@@ -6,7 +6,7 @@ extern "C"
 {
 	#include <string.h>
 }
-#include "HistorySearch.h"
+#include "HistorySearch.hxx"
 #include "MALLOC.h"
 /*------------------------------------------------------------------------*/
 HistorySearch::HistorySearch()

@@ -3,7 +3,7 @@
 /* Allan CORNET */
 /*------------------------------------------------------------------------*/
 #include <list>
-#include "CommandLine.h"
+#include "CommandLine.hxx"
 using namespace std;
 /*------------------------------------------------------------------------*/
 class HistoryFile
