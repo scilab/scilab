@@ -1,13 +1,14 @@
 /*------------------------------------------------------------------------*/
 /* file: sci_gsort.c                                                      */
 /* Copyright INRIA 2007                                                   */
-/* Authors : Jean-baptiste Silvy, Allan CORNET (2007)                     */
+/* Authors : Jean-baptiste Silvy, Allan CORNET ,Cong Wu (2007)            */
 /*------------------------------------------------------------------------*/
 #include "gw_elementaries_functions.h"
 #include "stack-c.h"
 #include "gsort.h"
 #include "Scierror.h"
 #include "MALLOC.h"
+#include "sortTemplate.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 {
@@ -87,14 +88,15 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 			ind_m1 = m1;
 			ind_n1 = 1;
 			ind_l1 = 0;
-			indices = (int*)MALLOC(sizeof(int)*(ind_m1));
+			indices = (int*)MALLOC(sizeof(int)*(ind_m1));   /* Only return in row*/
 		}
 		else 
 		{
 			ind_m1 = 1;
 			ind_n1 = n1;
 			ind_l1 = 0;
-			indices = (int*)MALLOC(sizeof(int)*(ind_n1));
+			indices = (int*)MALLOC(sizeof(int)*(ind_n1));  /*Only return in col */
+           
 		}
 	}
 	else 
@@ -102,7 +104,7 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 		ind_m1 = m1;
 		ind_n1 = n1;
 		ind_l1 = 0;
-		indices = (int*)MALLOC(sizeof(int)*(ind_m1*ind_n1));
+		indices = (int*)MALLOC(sizeof(int)*(ind_m1*ind_n1));  /* return a matrix*/
 	}
 
 	if (Lhs == 2) iflag = 1; 
@@ -115,15 +117,13 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 			int i = 0;
 			double *matrix = stk(l1);
 			double *tmp_matrix = NULL;
-
 			tmp_matrix = (double*)MALLOC(sizeof(double)*(m1*n1));
 			for (i = 0;i< m1*n1; i++) tmp_matrix[i] = matrix[i];
-
-			C2F(gsortd)(tmp_matrix,indices,&iflag,&m1,&n1,typex,iord);
-
+			if (typex[0]=='r' || typex[0]=='c') rowcolsortd(tmp_matrix,indices,m1,n1,typex,iord);/* When it is row sort or colume sort*/
+			if (typex[0]=='g' ) wholesortd(tmp_matrix,indices,m1,n1,typex,iord); /* When it is 'g', to sort them all*/
+			if (typex[0]=='l') lgsortd(tmp_matrix,indices,m1,n1,typex,iord);  /* When it is going to be lr or lc*/
 			CreateVarFromPtr(Rhs+1,"d",&m1,&n1,&tmp_matrix);
-			LhsVar(1)= Rhs+1 ;
-
+			LhsVar(1)= Rhs+1 ;                    /*Output */
 			if (Lhs == 2)
 			{
 				CreateVarFromPtr(Rhs+2,"i",&ind_m1,&ind_n1,&indices)
@@ -134,8 +134,31 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 			if (tmp_matrix)	{ FREE(tmp_matrix); tmp_matrix = NULL;}
 		}
 		break;
-
-	case sci_ints:
+	
+	case sci_strings:
+		{
+			int i;
+			char *tmp_matrix = NULL;
+			tmp_matrix = (char*)MALLOC(sizeof(double)*(m1*n1));
+            for (i = 0;i< m1*n1; i++) tmp_matrix[i] = S[i][0];
+			if (typex[0]=='l') lgsorts1(tmp_matrix,indices,m1,n1,typex,iord); /* When it is going to be lr or lc*/
+            if (typex[0]=='g' ) wholesorts(tmp_matrix,indices,m1,n1,typex,iord); /* When it is 'g', to sort them all*/
+			if (typex[0]=='r' || typex[0]=='c') rowcolsorts(tmp_matrix,indices,m1,n1,typex,iord);/* When it is row sort or colume sort*/
+			for (i = 0;i< m1*n1; i++) S[i][0]=tmp_matrix[i] ;
+			CreateVarFromPtr(Rhs+1,"S", &m1, &n1, S);    /*Output */
+			LhsVar(1)=Rhs+1;
+			if (Lhs == 2)
+			{
+				CreateVarFromPtr(Rhs+2,"i",&ind_m1,&ind_n1,&indices)
+				LhsVar(2)= Rhs+2 ;
+			}
+			C2F(putlhsvar)();
+			if (indices) {FREE(indices); indices = NULL;}
+			if (tmp_matrix)	{ FREE(tmp_matrix); tmp_matrix = NULL;}
+		}
+		break;
+	
+	case sci_ints:               /* Can not find a example , so can not just remove it */
 		{
 			switch(Im.it)
 			{
@@ -168,26 +191,8 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 			}
 			C2F(putlhsvar)();
 			if (indices) {FREE(indices); indices = NULL;}
-
 		}
 		break;
-
-	case sci_strings:
-		{
-			C2F(gsorts)(S,indices,&iflag,&m1,&n1,typex,iord);
-			CreateVarFromPtr(Rhs+1,"S", &m1, &n1, S);
-			LhsVar(1)=Rhs+1;
-
-			if (Lhs == 2)
-			{
-				CreateVarFromPtr(Rhs+2,"i",&ind_m1,&ind_n1,&indices)
-				LhsVar(2)= Rhs+2 ;
-			}
-			C2F(putlhsvar)();
-			if (indices) {FREE(indices); indices = NULL;}
-		}
-		break;
-
 	default:
 		Scierror(999,"invalid type.\r\n");
 		return 0;
