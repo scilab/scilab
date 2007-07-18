@@ -17,7 +17,6 @@ import org.scilab.modules.gui.tab.Tab;
 /**
  * Interface for Scilab frames in GUIs
  * @author Vincent COUVERT
- * @author Marouane BEN JELLOUL
  */
 public interface Frame extends Container {
 
@@ -89,7 +88,10 @@ public interface Frame extends Container {
 	 * @param borderLayout the BorderLayout to use
 	 * @return the position of the PushButton in the member list.
 	 */
-	int addMember(PushButton member, String borderLayout);
+	/**
+	 * JUST THINK SCILAB AND NOT JAVA !!! 
+	 */
+	//int addMember(PushButton member, String borderLayout);
 	
 	/**
 	 * We want to be able to add a PushButton in a Frame with a FlowLayout.
@@ -97,7 +99,10 @@ public interface Frame extends Container {
 	 * @param flowLayoutPosition the FlowLayout position to use
 	 * @return the position of the PushButton in the member list.
 	 */
-	int addMember(PushButton member, int flowLayoutPosition);
+	/**
+	 * JUST THINK SCILAB AND NOT JAVA !!! 
+	 */
+	//int addMember(PushButton member, int flowLayoutPosition);
 	
 	/**
 	 * We want to be able to add a Frame in a Frame.
@@ -112,7 +117,10 @@ public interface Frame extends Container {
 	 * @param borderLayout the BorderLayout to use
 	 * @return the position of the Frame in the member list.
 	 */
-	int addMember(Frame member, String borderLayout);
+	/**
+	 * JUST THINK SCILAB AND NOT JAVA !!! 
+	 */
+	//int addMember(Frame member, String borderLayout);
 	
 	/**
 	 * We want to be able to add a Frame in a Frame with a FlowLayout.
@@ -120,7 +128,10 @@ public interface Frame extends Container {
 	 * @param flowLayoutPosition the FlowLayout position to use
 	 * @return the position of the Frame in the member list.
 	 */
-	int addMember(Frame member, int flowLayoutPosition);
+	/**
+	 * JUST THINK SCILAB AND NOT JAVA !!! 
+	 */
+	//int addMember(Frame member, int flowLayoutPosition);
 	
 	// TODO : Check if it should be possible to add a Tab to a frame and how it should behave
 	/**
