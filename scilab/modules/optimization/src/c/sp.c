@@ -262,7 +262,6 @@ int sp(m,L,F,blck_szs,c,x,Z,ul,nu,abstol,reltol,tv,iters,work,
         nrmx, nrmz, nrmmax, rcond; 
  int int2=2, int1=1;  
  double dbl1=1.0, dbl0=0.0, sqrt2=sqrt(2.0);
- char str[100];
  double dbl_epsilon;
 
  if (m < 1){
