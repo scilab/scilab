@@ -23,17 +23,19 @@ public class ScilabCanvas extends ScilabDockable implements Canvas {
 	
 	/**
 	 * Constructor
+	 * @param figureIndex index of the displayed figure
 	 */
-	protected ScilabCanvas() {
-		component = ScilabBridge.createCanvas();
+	protected ScilabCanvas(int figureIndex) {
+		component = ScilabBridge.createCanvas(figureIndex);
 	}
 
 	/**
 	 * Creates a Scilab Canvas
+	 * @param figureIndex index of the displayed figure
 	 * @return the created canvas
 	 */
-	public static Canvas createCanvas() {
-		return new ScilabCanvas();
+	public static Canvas createCanvas(int figureIndex) {
+		return new ScilabCanvas(figureIndex);
 	}
 
 	/**

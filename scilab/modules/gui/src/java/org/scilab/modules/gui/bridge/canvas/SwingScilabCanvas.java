@@ -25,12 +25,13 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 	/**
 	 * Constructor
 	 * @param cap GLCapabilities associated to the GLJPanel
+	 * @param figureIndex index of the displayed figure
 	 */
-	public SwingScilabCanvas(GLCapabilities cap) {
+	public SwingScilabCanvas(GLCapabilities cap, int figureIndex) {
 		super(cap);
 		// TODO to remove, just for testing
 		this.setLayout(new BorderLayout());
-	    //this.addGLEventListener(new Renderer());
+	    this.addGLEventListener(new SciRenderer(figureIndex));
 	    //this.addMouseListener(new GLCanvasMouseListener(this));
 	    //Animator animator = new Animator(this);
 	    //animator.start();
@@ -40,13 +41,14 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 
 	/**
 	 * Create a Scilab Canvas
+	 * @param figureIndex index of the displayed figure
 	 * @return the created canvas
 	 */
-	public static SimpleCanvas createCanvas() {
+	public static SimpleCanvas createCanvas(int figureIndex) {
 		GLCapabilities cap = new GLCapabilities();
 		cap.setHardwareAccelerated(true);
 		cap.setDoubleBuffered(true);
-		return new SwingScilabCanvas(cap);
+		return new SwingScilabCanvas(cap, figureIndex);
 	}
 
 	/**

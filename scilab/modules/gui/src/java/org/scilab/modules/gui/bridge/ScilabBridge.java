@@ -578,10 +578,11 @@ public class ScilabBridge {
 
 	/**
 	 * Creates a Scilab Canvas
+	 * @param figureIndex index of the displayed figure
 	 * @return the created canvas
 	 */
-	public static SimpleCanvas createCanvas() {
-		return ScilabCanvasBridge.createCanvas();
+	public static SimpleCanvas createCanvas(int figureIndex) {
+		return ScilabCanvasBridge.createCanvas(figureIndex);
 	}
 
 	/**
