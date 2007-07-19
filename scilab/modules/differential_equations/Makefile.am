@@ -74,7 +74,7 @@ src/fortran/lsrgk.f \
 src/fortran/odeint.f \
 src/fortran/rk4.f \
 src/fortran/rkqc.f \
-src/fortran/writebufode.f
+src/fortran/writbufode.f
 
 GATEWAY_C_SOURCES = \
 sci_gateway/c/sci_int2d.c \

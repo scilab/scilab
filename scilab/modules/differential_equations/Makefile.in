@@ -101,7 +101,7 @@ am__objects_2 = rscar1.lo bcomp.lo lcomp.lo loren.lo prja.lo vnorm.lo \
 	rksimp.lo roots.lo stoda.lo bnorm.lo rchek2.lo stode.lo \
 	vmnorm.lo prepj.lo lsdisc.lo fnorm.lo ddasrt.lo stodi.lo \
 	xsetun.lo intdy.lo ewset.lo roots2.lo prepji.lo svcma1.lo \
-	lsrgk.lo odeint.lo rk4.lo rkqc.lo
+	lsrgk.lo odeint.lo rk4.lo rkqc.lo writbufode.lo
 am__objects_3 = libscidifferential_equations_la-sci_int2d.lo \
 	libscidifferential_equations_la-sci_int3d.lo \
 	libscidifferential_equations_la-sci_intg.lo \
@@ -382,7 +382,8 @@ src/fortran/svcma1.f \
 src/fortran/lsrgk.f \
 src/fortran/odeint.f \
 src/fortran/rk4.f \
-src/fortran/rkqc.f
+src/fortran/rkqc.f \
+src/fortran/writbufode.f
 
 GATEWAY_C_SOURCES = \
 sci_gateway/c/sci_int2d.c \
@@ -976,6 +977,9 @@ rk4.lo: src/fortran/rk4.f
 
 rkqc.lo: src/fortran/rkqc.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rkqc.lo `test -f 'src/fortran/rkqc.f' || echo '$(srcdir)/'`src/fortran/rkqc.f
+
+writbufode.lo: src/fortran/writbufode.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o writbufode.lo `test -f 'src/fortran/writbufode.f' || echo '$(srcdir)/'`src/fortran/writbufode.f
 
 sci_dasrt.lo: sci_gateway/fortran/sci_dasrt.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_dasrt.lo `test -f 'sci_gateway/fortran/sci_dasrt.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_dasrt.f
