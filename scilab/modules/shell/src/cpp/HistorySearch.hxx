@@ -34,6 +34,11 @@ class HistorySearch
 		int *my_linenumbers;
 		int my_sizearray;
 		int current_position;
+		BOOL moveOnNext;
+
+		BOOL freeMyToken(void);
+		BOOL freeMylines(void);
+		BOOL freeMylinenumbers(void);
 
 };
 /*------------------------------------------------------------------------*/

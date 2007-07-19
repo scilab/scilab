@@ -265,7 +265,15 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_historysize.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_loadhistory.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_removelinehistory.c"
 				>
 			</File>
 			<File

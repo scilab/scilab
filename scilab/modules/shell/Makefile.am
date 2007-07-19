@@ -31,7 +31,9 @@ sci_gateway/c/sci_saveconsecutivecommands.c \
 sci_gateway/c/sci_saveafterncommands.c \
 sci_gateway/c/sci_gethistoryfile.c \
 sci_gateway/c/sci_displayhistory.c \
-sci_gateway/c/sci_addhistory.c
+sci_gateway/c/sci_addhistory.c \
+sci_gateway/c/sci_removelinehistory.c \
+sci_gateway/c/historysize.c
 
 if GUI
 SHELL_C_SOURCES += src/c/ShellPrintf.c \

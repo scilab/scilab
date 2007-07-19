@@ -3,17 +3,9 @@
 // of a scilab session
 // Copyright INRIA
 // ====================================================================
-
- // Close multimedia files open with scilab
- if MSDOS then mcisendstring('close all'),end;
-
 // save history file ==================================================
 if (sciargs()<>'-nouserstartup') & (sciargs()<>"-nwni") then
-  if MSDOS then
-    savehistory(SCIHOME+'\history.scilab')
-  else
-    savehistory(SCIHOME+'/.history.scilab')
-  end
+    savehistory();
 end 
 // ====================================================================
 // starts modules .quit

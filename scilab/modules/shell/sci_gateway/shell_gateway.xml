@@ -36,4 +36,6 @@
 <PRIMITIVE gatewayId="53" primitiveId="11" primitiveName="saveafterncommands" />
 <PRIMITIVE gatewayId="53" primitiveId="12" primitiveName="gethistoryfile" />
 <PRIMITIVE gatewayId="53" primitiveId="13" primitiveName="sethistoryfile" />
+<PRIMITIVE gatewayId="53" primitiveId="14" primitiveName="removelinehistory" />
+<PRIMITIVE gatewayId="53" primitiveId="15" primitiveName="historysize" />
 </GATEWAY>

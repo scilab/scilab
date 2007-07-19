@@ -79,30 +79,23 @@ extern "C" {
 	char **getAllLinesOfScilabHistory(int *numberoflines);
 
 	/**
-	* Get the most recent line in history
-	* @return a line or NULL
-	*/
-	char *getLastLineInScilabHistory(void);
-
-	/**
-	*
-	*
+	* set new token to search in history
+	* @param token (a string)
+	* @return TRUE or FALSE
 	*/
 	BOOL setSearchedTokenInScilabHistory(char *token);
 
+	/**
+	* reset search in history
+	* @return TRUE or FALSE
+	*/
 	BOOL resetSearchedTokenInScilabHistory(void);
 
 	/**
-	*
-	*
+	* get token searched in history
+	* @return token (a string)
 	*/
 	char *getSearchedTokenInScilabHistory(void);
-
-	/**
-	* Get the first line in history
-	* @return a line or NULL
-	*/
-	char *getFirstLineInScilabHistory(void);
 
 	/**
 	* Get the previous line in Scilab history
@@ -157,7 +150,18 @@ extern "C" {
 	*/
 	char *getNthLineInScilabHistory(int N);
 
+	/**
+	* delete the Nth Line in history
+	* @param N
+	* @return TRUE or FALSE
+	*/
+	BOOL deleteNthLineScilabHistory(int N);
 
+	/**
+	* get number of lines of history
+	* @return a number >= 0
+	*/
+	int getSizeScilabHistory(void);
 	
 
 /*------------------------------------------------------------------------*/

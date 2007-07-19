@@ -37,9 +37,9 @@ public:
 	void reset(void);
 	char **getAllLines(int *numberoflines);
 	char *getLastLine(void);
-	char *getFirstLine(void);
 	int getNumberOfLines(void);
 	char *getNthLine(int N);
+	BOOL deleteNthLine(int N);
 
 	void setSaveConsecutiveDuplicateLines(BOOL doit);
 	BOOL getSaveConsecutiveDuplicateLines(void);
@@ -66,6 +66,7 @@ private:
 	BOOL saveconsecutiveduplicatelines;
 	int afterhowmanylineshistoryissaved;
 	int numberoflinesbeforehistoryissaved;
+
 
 };
 /*------------------------------------------------------------------------*/

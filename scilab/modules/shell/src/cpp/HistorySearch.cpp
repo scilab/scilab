@@ -16,6 +16,7 @@ HistorySearch::HistorySearch()
 	this->my_linenumbers = NULL;
 	this->my_sizearray = 0;
 	this->current_position = 0;
+	moveOnNext = FALSE;
 }
 /*------------------------------------------------------------------------*/
 HistorySearch::~HistorySearch()
@@ -74,8 +75,7 @@ BOOL HistorySearch::setToken(char *token)
 	}
 	else
 	{
-		FREE(this->my_token);
-		this->my_token = NULL;
+		freeMyToken();
 		bOK = this->search();
 	}
 	return bOK;
@@ -102,26 +102,8 @@ BOOL HistorySearch::search(void)
 		int i = 0;
 		list<CommandLine>::iterator it_commands;
 
-		if (this->my_lines)
-		{
-			int i = 0;
-			for (i = 0;i < this->my_sizearray; i++)
-			{
-				if (this->my_lines[i]) 
-				{
-					FREE(this->my_lines[i]);
-					this->my_lines[i] = NULL;
-				}
-			}
-			FREE(this->my_lines);
-			this->my_lines = NULL;
-		}
-
-		if (this->my_linenumbers)
-		{
-			FREE(this->my_linenumbers);
-			this->my_linenumbers = NULL;
-		}
+		freeMylines();
+		freeMylinenumbers();
 
 		this->my_sizearray = 0;
 
@@ -150,7 +132,8 @@ BOOL HistorySearch::search(void)
 		}
 		this->my_sizearray = i;
 
-		this->current_position = i - 1;
+		//this->current_position = i - 1;
+		this->current_position = i ;
 	}
 	else
 	{
@@ -158,26 +141,8 @@ BOOL HistorySearch::search(void)
 		int i = 0;
 		list<CommandLine>::iterator it_commands;
 
-		if (this->my_lines)
-		{
-			int i = 0;
-			for (i = 0;i < this->my_sizearray; i++)
-			{
-				if (this->my_lines[i]) 
-				{
-					FREE(this->my_lines[i]);
-					this->my_lines[i] = NULL;
-				}
-			}
-			FREE(this->my_lines);
-			this->my_lines = NULL;
-		}
-
-		if (this->my_linenumbers)
-		{
-			FREE(this->my_linenumbers);
-			this->my_linenumbers = NULL;
-		}
+		freeMylines();
+		freeMylinenumbers();
 
 		this->my_sizearray = 0;
 
@@ -199,9 +164,11 @@ BOOL HistorySearch::search(void)
 		}
 		this->my_sizearray = i;
 
-		this->current_position = i - 1;
+		//this->current_position = i - 1;
+		this->current_position = i ;
 	}
 
+	moveOnNext = FALSE;
 	return bOK;
 }
 /*------------------------------------------------------------------------*/
@@ -256,13 +223,78 @@ BOOL HistorySearch::reset(void)
 		check1 = TRUE;
 	}
 
+	check2 = freeMyToken();
+	check3 = freeMylines();
+	check4 = freeMylinenumbers();
+
+	this->my_sizearray = 0;
+	this->current_position = 0;
+
+	moveOnNext = FALSE;
+
+	if (check1 && check2 && check3 && check4) bOK = TRUE;
+
+	return bOK;
+}
+/*------------------------------------------------------------------------*/
+char * HistorySearch::getPreviousLine(void)
+{
+	char *line = NULL;
+
+	if (my_lines)
+	{
+		if ( (moveOnNext) && (this->current_position == this->my_sizearray)) this->current_position--;
+
+		if (this->current_position <= 0) this->current_position = 0;
+		else this->current_position--;
+
+		if (my_lines[this->current_position])
+		{
+			line = (char *)MALLOC(sizeof(char)*(strlen(my_lines[this->current_position])+1));
+			if (line) strcpy(line,my_lines[this->current_position]);
+		}
+	}
+
+	moveOnNext = FALSE;
+	return line;
+}
+/*------------------------------------------------------------------------*/
+char * HistorySearch::getNextLine(void)
+{
+	char *line = NULL;
+
+	if (my_lines)
+	{
+		if (this->current_position == this->my_sizearray) this->current_position = this->my_sizearray - 1;
+		else this->current_position++;
+
+		if ( my_lines[this->current_position] && (strlen(my_lines[this->current_position])>0))
+		{
+			line = (char *)MALLOC(sizeof(char)*(strlen(my_lines[this->current_position])+1));
+			if (line) strcpy(line,my_lines[this->current_position]);
+		}
+		if (this->current_position == this->my_sizearray - 1) this->current_position = this->my_sizearray;
+	}
+
+	moveOnNext = TRUE;
+	return line;
+}
+/*------------------------------------------------------------------------*/
+BOOL HistorySearch::freeMyToken(void)
+{
+	BOOL bOK = FALSE;
 	if (this->my_token) 
 	{
 		FREE(this->my_token);
 		this->my_token = NULL;
-		check1 = TRUE;
+		bOK = TRUE;
 	}
-
+	return bOK;
+}
+/*------------------------------------------------------------------------*/
+BOOL HistorySearch::freeMylines(void)
+{
+	BOOL bOK = FALSE;
 	if (this->my_lines)
 	{
 		int i = 0;
@@ -276,58 +308,21 @@ BOOL HistorySearch::reset(void)
 		}
 		FREE(this->my_lines);
 		this->my_lines = NULL;
-		check3 = TRUE;
+		bOK = TRUE;
 	}
-
+	return bOK;
+}
+/*------------------------------------------------------------------------*/
+BOOL HistorySearch::freeMylinenumbers(void)
+{
+	BOOL bOK = FALSE;
 	if (this->my_linenumbers)
 	{
 		FREE(this->my_linenumbers);
 		this->my_linenumbers = NULL;
-		check4 = TRUE;
+		bOK = TRUE;
 	}
-
-	this->my_sizearray = 0;
-	this->current_position = 0;
-
-	if (check1 && check2 && check3 && check4) bOK = TRUE;
-
 	return bOK;
-}
-/*------------------------------------------------------------------------*/
-char * HistorySearch::getPreviousLine(void)
-{
-	char *line = NULL;
-
-	if (my_lines)
-	{
-		if (my_lines[this->current_position])
-		{
-			line = (char *)MALLOC(sizeof(char)*(strlen(my_lines[this->current_position])+1));
-			strcpy(line,my_lines[this->current_position]);
-		}
-
-		this->current_position--;
-		if (this->current_position < 0) this->current_position = 0;
-	}
-	return line;
-}
-/*------------------------------------------------------------------------*/
-char * HistorySearch::getNextLine(void)
-{
-	char *line = NULL;
-
-	if (my_lines)
-	{
-		if (my_lines[this->current_position])
-		{
-			line = (char *)MALLOC(sizeof(char)*(strlen(my_lines[this->current_position])+1));
-			strcpy(line,my_lines[this->current_position]);
-		}
-
-		this->current_position++;
-		if (this->current_position >= this->my_sizearray ) this->current_position = this->my_sizearray - 1;
-	}
-	return line;
 }
 /*------------------------------------------------------------------------*/
 

@@ -22,12 +22,6 @@ extern "C"
 /*------------------------------------------------------------------------*/
 static HistoryManager ScilabHistory;
 /*------------------------------------------------------------------------*/
-BOOL hasSearchedInScilabHistory(void)
-{
-	BOOL bOK = FALSE;
-	return bOK;
-}
-/*------------------------------------------------------------------------*/
 BOOL setSearchedTokenInScilabHistory(char *token)
 {
 	return ScilabHistory.setToken(token);
@@ -105,11 +99,6 @@ char *getLastLineInScilabHistory(void)
 	return ScilabHistory.getLastLine();
 }
 /*------------------------------------------------------------------------*/
-char *getFirstLineInScilabHistory(void)
-{
-	return ScilabHistory.getFirstLine();
-}
-/*------------------------------------------------------------------------*/
 char *getPreviousLineInScilabHistory(void)
 {
 	return ScilabHistory.getPreviousLine();
@@ -148,6 +137,16 @@ int getAfterHowManyLinesScilabHistoryIsSaved(void)
 char *getNthLineInScilabHistory(int N)
 {
 	return ScilabHistory.getNthLine(N);
+}
+/*------------------------------------------------------------------------*/
+BOOL deleteNthLineScilabHistory(int N)
+{
+	return ScilabHistory.deleteNthLine(N);
+}
+/*------------------------------------------------------------------------*/
+int getSizeScilabHistory(void)
+{
+	return ScilabHistory.getNumberOfLines();
 }
 /*------------------------------------------------------------------------*/
 HistoryManager::HistoryManager()
@@ -296,11 +295,13 @@ void HistoryManager::reset(void)
 	my_file.reset();
 	my_file.setDefaultFilename();
 
+	my_search.reset();
+
 	saveconsecutiveduplicatelines = FALSE;
 	afterhowmanylineshistoryissaved = 0;
 	numberoflinesbeforehistoryissaved = 0;
 
-	/* Ajout date & heure debut session */
+	/* Add date & time begin session */
 	commentbeginsession = getCommentDateSession(TRUE);
 	appendLine(commentbeginsession);
 	if (commentbeginsession) {FREE(commentbeginsession);commentbeginsession=NULL;}
@@ -345,17 +346,6 @@ char *HistoryManager::getLastLine(void)
 	return line;
 }
 /*-----------------------------------------------------------------------------------*/ 
-char *HistoryManager::getFirstLine(void)
-{
-	char *line = NULL;
-	if (!Commands.empty()) 
-	{
-		list<CommandLine>::iterator it_commands = Commands.begin();
-		line = (*it_commands).get();
-	}
-	return line;
-}
-/*-----------------------------------------------------------------------------------*/ 
 int HistoryManager::getNumberOfLines(void)
 {
 	return (int)Commands.size();
@@ -382,6 +372,31 @@ char *HistoryManager::getNthLine(int N)
 		}
 	}
 	return line;
+}
+/*-----------------------------------------------------------------------------------*/ 
+BOOL HistoryManager::deleteNthLine(int N)
+{
+	BOOL bOK = FALSE;
+	if ( (N >= 0) && (N <= getNumberOfLines()) )
+	{
+		int i = 0;
+		list<CommandLine>::iterator it_commands;
+		for(it_commands=Commands.begin(); it_commands != Commands.end(); ++it_commands) 
+		{
+			if (i == N) 
+			{
+				if ( it_commands != Commands.end() ) 
+				{
+					Commands.erase(it_commands);
+					// After a remove , we update search
+					my_search.setToken(NULL);
+					return TRUE;
+				}
+			}
+			i++;
+		}
+	}
+	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/ 
 void HistoryManager::setSaveConsecutiveDuplicateLines(BOOL doit)

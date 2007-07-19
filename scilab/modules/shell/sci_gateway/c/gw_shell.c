@@ -22,7 +22,9 @@ static gw_generic_table Tab[]=
 {C2F(sci_saveconsecutivecommands),"saveconsecutivecommands"},
 {C2F(sci_saveafterncommands),"saveafterncommands"},
 {C2F(sci_gethistoryfile),"gethistoryfile"},
-{C2F(sci_sethistoryfile),"sethistoryfile"}
+{C2F(sci_sethistoryfile),"sethistoryfile"},
+{C2F(sci_removelinehistory),"removelinehistory"},
+{C2F(sci_historysize),"historysize"}
 };
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_shell)()
