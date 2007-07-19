@@ -5,6 +5,7 @@
 ##########
 
 if GUI
+
 # List of the c files
 CONSOLE_JNI_SOURCES = src/jni/InterpreterManagement_wrap.c \
 src/jni/HistoryManagement_wrap.c \
@@ -16,6 +17,13 @@ src/c/GuiManagement.c \
 src/c/ClearConsole.c \
 src/c/ClearConsolePart.c \
 src/c/PromptToHome.c
+
+else
+
+CONSOLE_C_SOURCES = src/c/ClearConsole_nogui.c \
+src/c/ClearConsolePart_nogui.c \
+src/c/PromptToHome_nogui.c
+
 endif
 
 # Includes need for the compilation

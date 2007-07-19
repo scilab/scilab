@@ -83,13 +83,18 @@ libsciconsole_la_DEPENDENCIES =  \
 am__libsciconsole_la_SOURCES_DIST =  \
 	src/jni/InterpreterManagement_wrap.c \
 	src/jni/HistoryManagement_wrap.c src/jni/GuiManagement_wrap.c \
-	src/c/InterpreterManagement.c src/c/HistoryManagement.c \
-	src/c/GuiManagement.c src/c/ClearConsole.c \
-	src/c/ClearConsolePart.c src/c/PromptToHome.c
+	src/c/ClearConsole_nogui.c src/c/ClearConsolePart_nogui.c \
+	src/c/PromptToHome_nogui.c src/c/InterpreterManagement.c \
+	src/c/HistoryManagement.c src/c/GuiManagement.c \
+	src/c/ClearConsole.c src/c/ClearConsolePart.c \
+	src/c/PromptToHome.c
 @GUI_TRUE@am__objects_1 =  \
 @GUI_TRUE@	libsciconsole_la-InterpreterManagement_wrap.lo \
 @GUI_TRUE@	libsciconsole_la-HistoryManagement_wrap.lo \
 @GUI_TRUE@	libsciconsole_la-GuiManagement_wrap.lo
+@GUI_FALSE@am__objects_2 = libsciconsole_la-ClearConsole_nogui.lo \
+@GUI_FALSE@	libsciconsole_la-ClearConsolePart_nogui.lo \
+@GUI_FALSE@	libsciconsole_la-PromptToHome_nogui.lo
 @GUI_TRUE@am__objects_2 = libsciconsole_la-InterpreterManagement.lo \
 @GUI_TRUE@	libsciconsole_la-HistoryManagement.lo \
 @GUI_TRUE@	libsciconsole_la-GuiManagement.lo \
@@ -283,6 +288,10 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/jni/HistoryManagement_wrap.c \
 @GUI_TRUE@src/jni/GuiManagement_wrap.c
 
+@GUI_FALSE@CONSOLE_C_SOURCES = src/c/ClearConsole_nogui.c \
+@GUI_FALSE@src/c/ClearConsolePart_nogui.c \
+@GUI_FALSE@src/c/PromptToHome_nogui.c
+
 @GUI_TRUE@CONSOLE_C_SOURCES = src/c/InterpreterManagement.c \
 @GUI_TRUE@src/c/HistoryManagement.c \
 @GUI_TRUE@src/c/GuiManagement.c \
@@ -437,6 +446,8 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-ClearConsole.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-ClearConsolePart.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-ClearConsolePart_nogui.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-ClearConsole_nogui.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-GuiManagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-GuiManagement_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-HistoryManagement.Plo@am__quote@
@@ -444,6 +455,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-InterpreterManagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-InterpreterManagement_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-PromptToHome.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-PromptToHome_nogui.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -486,6 +498,27 @@ libsciconsole_la-GuiManagement_wrap.lo: src/jni/GuiManagement_wrap.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/jni/GuiManagement_wrap.c' object='libsciconsole_la-GuiManagement_wrap.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-GuiManagement_wrap.lo `test -f 'src/jni/GuiManagement_wrap.c' || echo '$(srcdir)/'`src/jni/GuiManagement_wrap.c
+
+libsciconsole_la-ClearConsole_nogui.lo: src/c/ClearConsole_nogui.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-ClearConsole_nogui.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-ClearConsole_nogui.Tpo -c -o libsciconsole_la-ClearConsole_nogui.lo `test -f 'src/c/ClearConsole_nogui.c' || echo '$(srcdir)/'`src/c/ClearConsole_nogui.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-ClearConsole_nogui.Tpo $(DEPDIR)/libsciconsole_la-ClearConsole_nogui.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/ClearConsole_nogui.c' object='libsciconsole_la-ClearConsole_nogui.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-ClearConsole_nogui.lo `test -f 'src/c/ClearConsole_nogui.c' || echo '$(srcdir)/'`src/c/ClearConsole_nogui.c
+
+libsciconsole_la-ClearConsolePart_nogui.lo: src/c/ClearConsolePart_nogui.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-ClearConsolePart_nogui.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-ClearConsolePart_nogui.Tpo -c -o libsciconsole_la-ClearConsolePart_nogui.lo `test -f 'src/c/ClearConsolePart_nogui.c' || echo '$(srcdir)/'`src/c/ClearConsolePart_nogui.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-ClearConsolePart_nogui.Tpo $(DEPDIR)/libsciconsole_la-ClearConsolePart_nogui.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/ClearConsolePart_nogui.c' object='libsciconsole_la-ClearConsolePart_nogui.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-ClearConsolePart_nogui.lo `test -f 'src/c/ClearConsolePart_nogui.c' || echo '$(srcdir)/'`src/c/ClearConsolePart_nogui.c
+
+libsciconsole_la-PromptToHome_nogui.lo: src/c/PromptToHome_nogui.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-PromptToHome_nogui.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-PromptToHome_nogui.Tpo -c -o libsciconsole_la-PromptToHome_nogui.lo `test -f 'src/c/PromptToHome_nogui.c' || echo '$(srcdir)/'`src/c/PromptToHome_nogui.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-PromptToHome_nogui.Tpo $(DEPDIR)/libsciconsole_la-PromptToHome_nogui.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/PromptToHome_nogui.c' object='libsciconsole_la-PromptToHome_nogui.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-PromptToHome_nogui.lo `test -f 'src/c/PromptToHome_nogui.c' || echo '$(srcdir)/'`src/c/PromptToHome_nogui.c
 
 libsciconsole_la-InterpreterManagement.lo: src/c/InterpreterManagement.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-InterpreterManagement.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-InterpreterManagement.Tpo -c -o libsciconsole_la-InterpreterManagement.lo `test -f 'src/c/InterpreterManagement.c' || echo '$(srcdir)/'`src/c/InterpreterManagement.c
