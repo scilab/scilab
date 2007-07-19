@@ -10,40 +10,12 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-/**
-* TO DO : comments
-*/
 void sortTemplate( void);
-
-/**
-* TO DO : comments
-*/
 void lgsortd(double *,int *,int ,int ,char *,char *);
-
-/**
-* TO DO : comments
-*/
 void lgsorts1(char *,int *,int ,int ,char *,char *);
-
-/**
-* TO DO : comments
-*/
 void rowcolsortd(double *, int *, int , int , char *, char *);
-
-/**
-* TO DO : comments
-*/
 void wholesortd(double *, int *, int , int , char *, char *);
-
-/**
-* TO DO : comments
-*/
-void wholesorts(char *, int *, int , int , char *, char *);
-
-/**
-* TO DO : comments
-*/
+void wholesorts(char **, int *, int , int , char *, char *);
 void rowcolsorts(char *, int *, int , int , char *, char *);
 #ifdef __cplusplus
 }
