@@ -14,7 +14,8 @@ src/c/int2dtable.c \
 src/c/int3dtable.c \
 src/c/fydot2table.c \
 src/c/dassltable.c \
-src/c/arnol.c
+src/c/arnol.c \
+src/c/rk4.c
 
 DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES = src/fortran/rscar1.f \
 src/fortran/bcomp.f \
@@ -72,7 +73,6 @@ src/fortran/prepji.f \
 src/fortran/svcma1.f \
 src/fortran/lsrgk.f \
 src/fortran/odeint.f \
-src/fortran/rk4.f \
 src/fortran/rkqc.f \
 src/fortran/writbufode.f
 

@@ -445,10 +445,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\rk4.c"
-				>
-			</File>
-			<File
 				RelativePath=".\rkf45.c"
 				>
 			</File>
@@ -830,10 +826,6 @@
 			</File>
 			<File
 				RelativePath=".\rchek2.f"
-				>
-			</File>
-			<File
-				RelativePath=".\rk4.f"
 				>
 			</File>
 			<File

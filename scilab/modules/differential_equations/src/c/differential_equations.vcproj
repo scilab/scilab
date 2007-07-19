@@ -245,6 +245,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\rk4.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_bvode.c"
 				>
 			</File>
