@@ -432,7 +432,8 @@ libscielementaries_functions_la_sci_gateway_DATA = sci_gateway/elementaries_func
 libscielementaries_functions_la_includedir=$(pkgincludedir)/elementaries_functions
 libscielementaries_functions_la_include_HEADERS = includes/sci_tools.h \
 includes/gw_elementaries_functions.h \
-includes/elementaries_functions.h
+includes/elementaries_functions.h \
+includes/xerhlt.h
 
 include $(top_srcdir)/Makefile.incl.am
 

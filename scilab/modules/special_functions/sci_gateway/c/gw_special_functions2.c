@@ -3,13 +3,11 @@
 /*-----------------------------------------------------------------------------------*/
 #include <string.h> /*pour strcmp */
 #include <math.h>
-#include <setjmp.h>
 /*-----------------------------------------------------------------------------------*/
 #include "gw_special_functions2.h"
 #include "callFunctionFromGateway.h"
 #include "stack-c.h"
-/*-----------------------------------------------------------------------------------*/
-extern jmp_buf slatec_jmp_env; 
+#include "../../../elementaries_functions/includes/xerhlt.h"
 /*-----------------------------------------------------------------------------------*/
 static gw_generic_table Tab[]={ 
   {sci_legendre, "legendre"},
@@ -24,7 +22,7 @@ static gw_generic_table Tab[]={
 int C2F(gw_special_functions2)(void)
 {
 	Rhs = Max(0, Rhs);
-	if (setjmp(slatec_jmp_env)) 
+	if (setjmp_slatec_jmp_env()) 
 	{ 
 		Scierror(999,"%s: arguments must be positive \r\n", Tab[Fin-1].name);
 		return 0;
