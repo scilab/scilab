@@ -108,7 +108,7 @@ public class ScilabCanvasBridge {
 	
 	/**
 	 * @param canvas the canvas we want to get the GL object from
-	 * @return a GL object
+	 * @return GL pipeline of the object
 	 */
 	public static GL getGL(Canvas canvas) {
 		return canvas.getAsSimpleCanvas().getGL();

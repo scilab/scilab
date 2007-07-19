@@ -125,22 +125,22 @@ public class ScilabCanvas extends ScilabDockable implements Canvas {
 	}
 	
 	/**
-	 * 
+	 * Force the canvas to render itself immediately.
 	 */
 	public void display() {
 		ScilabBridge.display(this);
 	}
 
 	/**
-	 *
-	 * @return a GL object
+	  * Get the GL pipeline used by the canvas
+	  * @return GL pipeline
 	 */
 	public GL getGL() {
 		return ScilabBridge.getGL(this);
 	}
 	
 	/**
-	 * 
+	 * Force the canvas to render itself with synchronisation with its OpenGL process.
 	 */
 	public void repaint() {
 		ScilabBridge.repaint(this);

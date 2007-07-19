@@ -113,7 +113,7 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 	}
 	
 	/**
-	 * 
+	 * Force the canvas to render itself immediately.
 	 */
 	@Override
 	public void display() {
@@ -121,8 +121,8 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 	}
 	 
 	/**
-	 * 
-	 * @return a GL object
+	 * Get the GL pipeline used by the canvas
+	 * @return GL pipeline
 	 */
 	@Override
 	public GL getGL() {
@@ -130,7 +130,7 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 	}
 	 
 	/**
-	 * 
+	 * Force the canvas to render itself with synchronisation with its OpenGL process.
 	 */
 	@Override
 	public void repaint() {

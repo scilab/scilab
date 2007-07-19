@@ -20,18 +20,18 @@ public interface Canvas extends Dockable {
 	SimpleCanvas getAsSimpleCanvas();
 	
 	/**
-	 * 
+	 * Force the canvas to render itself immediately.
 	 */
 	 void display();
 	 
 	 /**
-	  * 
-	  * @return a GL object
+	  * Get the GL pipeline used by the canvas
+	  * @return GL pipeline
 	  */
 	 GL getGL();
 	 
 	 /**
-	  * 
+	  * Force the canvas to render itself with synchronisation with its OpenGL process.
 	  */
 	 void repaint();
 	 

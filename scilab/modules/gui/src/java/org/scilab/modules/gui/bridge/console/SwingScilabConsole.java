@@ -42,7 +42,7 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 	public void display(String dataToDisplay) {
 		this.getConfiguration().getOutputView().setCaretPositionToEnd();
 		this.getConfiguration().getOutputView().append(dataToDisplay);
-		updateScrollPosition();
+		//updateScrollPosition();
 	}
 
 	/**
@@ -58,32 +58,32 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 		this.getConfiguration().getPromptView().setVisible(true);
 		
 		// Modify the size of the input command view (the prompt was not visible when last size modification done
-		if (this.getInputCommandViewSizeForced()) {
-
-			JPanel promptView = ((JPanel) this.getConfiguration().getPromptView());
-	
-			int height = ((JPanel) promptView.getParent()).getPreferredSize().height;
-			int width = ((JPanel) promptView.getParent()).getPreferredSize().width;
-			int promptViewHeight = ((SciPromptView) promptView).getPromptUI().getHeight();
-			
-			/* New dimension for the input command view */
-			int newHeight = height + promptViewHeight;
-			Dimension newDim = null;
-			
-			if (newHeight > promptViewHeight) {
-				/* If the input command view is bigger than the promptUI */
-				/* It's height is descreased */
-				newDim = new Dimension(width, newHeight);
-			} else {
-				/* If the input command view is smaller than the promptUI */
-				/* It's height adapted to the promptUI height */
-				newDim = new Dimension(width, promptViewHeight);
-				this.setInputCommandViewSizeForced(false);
-			}
-			((JPanel) promptView.getParent()).setPreferredSize(newDim);
-			((JPanel) promptView.getParent()).invalidate();
-			((JPanel) promptView.getParent()).doLayout();
-		}
+//		if (this.getInputCommandViewSizeForced()) {
+//
+//			JPanel promptView = ((JPanel) this.getConfiguration().getPromptView());
+//	
+//			int height = ((JPanel) promptView.getParent()).getPreferredSize().height;
+//			int width = ((JPanel) promptView.getParent()).getPreferredSize().width;
+//			int promptViewHeight = ((SciPromptView) promptView).getPromptUI().getHeight();
+//			
+//			/* New dimension for the input command view */
+//			int newHeight = height + promptViewHeight;
+//			Dimension newDim = null;
+//			
+//			if (newHeight > promptViewHeight) {
+//				/* If the input command view is bigger than the promptUI */
+//				/* It's height is descreased */
+//				newDim = new Dimension(width, newHeight);
+//			} else {
+//				/* If the input command view is smaller than the promptUI */
+//				/* It's height adapted to the promptUI height */
+//				newDim = new Dimension(width, promptViewHeight);
+//				this.setInputCommandViewSizeForced(false);
+//			}
+//			((JPanel) promptView.getParent()).setPreferredSize(newDim);
+//			((JPanel) promptView.getParent()).invalidate();
+//			((JPanel) promptView.getParent()).doLayout();
+//		}
 
 		// Remove last line returned given by Scilab (carriage return)
 		try {
@@ -95,7 +95,7 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 			e.printStackTrace();
 		}
 		
-		updateScrollPosition();
+		//updateScrollPosition();
 		
 		// Gets the focus to have the caret visible
 		this.getConfiguration().getInputCommandView().requestFocus();
