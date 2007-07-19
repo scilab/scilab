@@ -706,13 +706,9 @@ c   lsode
       tmax=stk(lt1+nn-1)
       niter=nn
       if(ixpr.eq.1.and.iopt.eq.1) then
-         write(buf,'(''itask = '',i3,'' meth = '',i3,'' jactyp = '','//
-     $        'i3,'' ml = '',i3,'' mu = '',i3,'' iopt = '',i3)') 
-     $           itask,meth,jactyp,ml,mu,iopt
+         call writebufodea(buf,itask,meth,jactyp,ml,mu,iopt)
          call basout(io,wte,buf(1:80))
-      write(buf,'(''tcrit= '',e9.4,'' h0= '',e9.4, '' hmax= '','//
-     $       'e9.4,'' hmin = '',e9.4)')
-     $    tcrit,stk(lc+4),stk(lc+5),stk(lc+6)
+         call writebufodeb(buf,tcrit,stk(lc+4),stk(lc+5),stk(lc+6))
          call basout(io,wte,buf(1:80)) 
       endif
       if(single) then

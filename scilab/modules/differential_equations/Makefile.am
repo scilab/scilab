@@ -73,7 +73,8 @@ src/fortran/svcma1.f \
 src/fortran/lsrgk.f \
 src/fortran/odeint.f \
 src/fortran/rk4.f \
-src/fortran/rkqc.f
+src/fortran/rkqc.f \
+src/fortran/writebufode.f
 
 GATEWAY_C_SOURCES = \
 sci_gateway/c/sci_int2d.c \

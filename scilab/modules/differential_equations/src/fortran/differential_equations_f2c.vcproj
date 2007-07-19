@@ -549,6 +549,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\writbufode.c"
+				>
+			</File>
+			<File
 				RelativePath=".\xerrwv.c"
 				>
 			</File>
@@ -930,6 +934,10 @@
 			</File>
 			<File
 				RelativePath=".\vnorm.f"
+				>
+			</File>
+			<File
+				RelativePath=".\writbufode.f"
 				>
 			</File>
 			<File
