@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <iostream>
+#include <string.h>
 #include "stack-c.h"
 #include "sortTemplate.h"
+
 using namespace std;
 /*------------------------------------------------------------------------------------------*/
 template <class T>
@@ -219,9 +221,47 @@ void wholesortd(double *keys1, int indices[20], int m1, int n1, char *typex, cha
      wholesort(keys1,indices,m1,n1,typex,iord);
 }
 /*------------------------------------------------------------------------------------------*/
-void wholesorts(char *keys1, int indices[20], int m1, int n1, char *typex, char *iord)
+void wholesorts(char **keys, int indices[20], int m1, int n1, char *typex, char *iord)
 {
-     wholesort(keys1,indices,m1,n1,typex,iord);
+    int i,j,k,p,f;
+	k=0;
+    for (i=1;i<=m1;i++)
+      for (j=1;j<=n1;j++) indices[k++]=(i-1)*n1+j;
+	for(i=m1*n1-1;i>0;i--)
+	  for(j=0;j<i;j++)
+	  {
+		  for (p=0;keys[j][p]==keys[j+1][p] ;p++);
+		  if (iord[0]=='i')
+		  {
+			  if (GetMax(keys[j][p],keys[j+1][p])) 
+			  {
+					  swap(indices[j],indices[j+1]);
+					  for (f=0;f<max(strlen(keys[j]),strlen(keys[j+1]));f++)
+						{                
+						  swap(keys[j][f],keys[j+1][f]);			
+						}
+			
+			  }
+		  }
+		  else if (iord[0]=='d')
+			  if (!GetMax(keys[j][p],keys[j+1][p])) 
+			  {
+					  swap(indices[j],indices[j+1]);
+					  for (f=0;f<max(strlen(keys[j]),strlen(keys[j+1]));f++)
+						{                
+						  swap(keys[j][f],keys[j+1][f]);			
+						}
+			
+			  }
+	   }
+
+
+
+
+
+
+
+
 }
 /*------------------------------------------------------------------------------------------*/
 void rowcolsorts(char *keys1, int indices[20], int m1, int n1, char *typex, char *iord)
