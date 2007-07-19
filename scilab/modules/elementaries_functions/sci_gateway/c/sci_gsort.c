@@ -141,10 +141,10 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 			char *tmp_matrix = NULL;
 			tmp_matrix = (char*)MALLOC(sizeof(double)*(m1*n1));
             for (i = 0;i< m1*n1; i++) tmp_matrix[i] = S[i][0];
-			if (typex[0]=='l') lgsorts1(tmp_matrix,indices,m1,n1,typex,iord); /* When it is going to be lr or lc*/
-            if (typex[0]=='g' ) wholesorts(tmp_matrix,indices,m1,n1,typex,iord); /* When it is 'g', to sort them all*/
-			if (typex[0]=='r' || typex[0]=='c') rowcolsorts(tmp_matrix,indices,m1,n1,typex,iord);/* When it is row sort or colume sort*/
-			for (i = 0;i< m1*n1; i++) S[i][0]=tmp_matrix[i] ;
+			//if (typex[0]=='l') lgsorts1(tmp_matrix,indices,m1,n1,typex,iord); /* When it is going to be lr or lc*/
+            if (typex[0]=='g' ) wholesorts(S,indices,m1,n1,typex,iord); /* When it is 'g', to sort them all*/
+			//if (typex[0]=='r' || typex[0]=='c') rowcolsorts(tmp_matrix,indices,m1,n1,typex,iord);/* When it is row sort or colume sort*/
+			//for (i = 0;i< m1*n1; i++) S[i][0]=tmp_matrix[i] ;
 			CreateVarFromPtr(Rhs+1,"S", &m1, &n1, S);    /*Output */
 			LhsVar(1)=Rhs+1;
 			if (Lhs == 2)
