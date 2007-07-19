@@ -5,7 +5,6 @@ package org.scilab.modules.gui.menu;
 
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.menuitem.SimpleMenuItem;
 
 /**
  * Bridge for Scilab Menus in GUIs
@@ -44,6 +43,15 @@ public class ScilabMenuBridge {
 	 */
 	public static void add(Menu menu, MenuItem newMenuItem) {
 		menu.getAsSimpleMenu().add(newMenuItem);
+	}
+	
+	/**
+	 * Append a subMenu to a Scilab Menu
+	 * @param menu the Menu which we want to append the subMenu to
+	 * @param newSubMenu the subMenu to append to the Menu
+	 */
+	public static void add(Menu menu, Menu newSubMenu) {
+		menu.getAsSimpleMenu().add(newSubMenu);
 	}
 	
 	/**

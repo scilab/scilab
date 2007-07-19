@@ -5,7 +5,6 @@ package org.scilab.modules.gui.menubar;
 
 import org.scilab.modules.gui.bridge.menubar.SwingScilabMenuBar;
 import org.scilab.modules.gui.menu.Menu;
-import org.scilab.modules.gui.menu.SimpleMenu;
 
 /**
  * Bridge for Scilab MenuBars in GUIs

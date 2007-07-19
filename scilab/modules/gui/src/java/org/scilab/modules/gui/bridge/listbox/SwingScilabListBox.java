@@ -13,7 +13,6 @@ import javax.swing.border.LineBorder;
 
 import org.scilab.modules.gui.container.Container;
 import org.scilab.modules.gui.listbox.ListBox;
-import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -21,7 +20,9 @@ import org.scilab.modules.gui.utils.Size;
  * Swing implementation for Scilab ListBox in GUIs
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabListBox implements ListBox {
+public class SwingScilabListBox {
+//	 FIXME : Must have some Interface here...
+//	implements SimpleListBox {
 	
 	/**
 	 * the Scroll Pane that contain the JList

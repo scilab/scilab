@@ -23,6 +23,8 @@ public class ScilabCheckBoxBridge {
 	 * @return the created CheckBox
 	 */
 	public static CheckBox createCheckBox() {
-		return new SwingScilabCheckBox();
+//		 FIXME : UI CONTROL must be developped last !!!!!
+//		return new SwingScilabCheckBox();
+		return null;
 	}
 }

@@ -3,6 +3,8 @@
 
 package org.scilab.modules.gui.bridge;
 
+import javax.media.opengl.GL;
+
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.canvas.ScilabCanvasBridge;
 import org.scilab.modules.gui.canvas.SimpleCanvas;
@@ -651,6 +653,28 @@ public class ScilabBridge {
 		ScilabCanvasBridge.setVisible(canvas, newVisibleState);
 	}
 	
+	/**
+	 * @param canvas the canvas we want to display
+	 */
+	public static void display(Canvas canvas) {
+		ScilabCanvasBridge.display(canvas);
+	}
+	
+	/**
+	 * @param canvas the canvas we want to get the GL object from
+	 * @return a GL object
+	 */
+	public static GL getGL(Canvas canvas) {
+		return ScilabCanvasBridge.getGL(canvas);
+	}
+	
+	/**
+	 * @param canvas the canvas we want to repaint
+	 */
+	public static void repaint(Canvas canvas) {
+		ScilabCanvasBridge.repaint(canvas);
+	}
+	
 	/*****************/
 	/* MenuBar Bridge */
 	/*****************/
@@ -715,12 +739,21 @@ public class ScilabBridge {
 	}
 	
 	/**
-	 * Append a MenuItem to a MenuBar
+	 * Append a MenuItem to a Menu
 	 * @param menu the Menu which we want to add the MenuItem to
 	 * @param newMenuItem the MenuItem to add to the Menu
 	 */
 	public static void add(Menu menu, MenuItem newMenuItem) {
 		ScilabMenuBridge.add(menu, newMenuItem);
+	}
+	
+	/**
+	 * Append a Menu to a Menu
+	 * @param menu the Menu which we want to append the Menu to
+	 * @param newSubMenu the Menu to append to the Menu
+	 */
+	public static void add(Menu menu, Menu newSubMenu) {
+		ScilabMenuBridge.add(menu, newSubMenu);
 	}
 	
 	/**

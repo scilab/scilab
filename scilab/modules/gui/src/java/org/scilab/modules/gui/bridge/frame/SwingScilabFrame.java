@@ -20,7 +20,6 @@ import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.console.Console;
-import org.scilab.modules.gui.container.Container;
 import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.frame.SimpleFrame;

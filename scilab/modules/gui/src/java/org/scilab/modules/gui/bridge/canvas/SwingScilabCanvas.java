@@ -6,13 +6,11 @@ package org.scilab.modules.gui.bridge.canvas;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
+import javax.media.opengl.GL;
 import javax.media.opengl.GLCapabilities;
 import javax.media.opengl.GLJPanel;
 
-
-import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.canvas.SimpleCanvas;
-import org.scilab.modules.gui.container.Container;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -112,6 +110,31 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 	 */
 	public void setVisible(boolean newVisibleState) {
 		super.setVisible(newVisibleState);
+	}
+	
+	/**
+	 * 
+	 */
+	@Override
+	public void display() {
+		super.display();
+	}
+	 
+	/**
+	 * 
+	 * @return a GL object
+	 */
+	@Override
+	public GL getGL() {
+		return null;
+	}
+	 
+	/**
+	 * 
+	 */
+	@Override
+	public void repaint() {
+		super.repaint();
 	}
 
 }

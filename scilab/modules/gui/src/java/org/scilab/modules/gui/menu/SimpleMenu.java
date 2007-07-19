@@ -17,6 +17,12 @@ public interface SimpleMenu {
 	void add(MenuItem newMenuItem);
 	
 	/**
+	 * Append a subMenu to the Menu
+	 * @param newSubMenu the subMenu to append to the Menu
+	 */
+	void add(Menu newSubMenu);
+	
+	/**
 	 * Sets the text of the Menu
 	 * @param newText the text we want to set for the Menu
 	 */

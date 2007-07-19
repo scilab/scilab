@@ -16,8 +16,10 @@ import org.scilab.modules.gui.utils.Size;
  * Swing implementation for Scilab CheckBox in GUIs
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabCheckBox extends JCheckBox implements CheckBox {
-
+public class SwingScilabCheckBox extends JCheckBox {
+	// FIXME : Must have some Interface here...
+	//implements SimpleCheckBox {
+	
 	/**
 	 * Constructor
 	 */
@@ -78,16 +80,4 @@ public class SwingScilabCheckBox extends JCheckBox implements CheckBox {
 		this.setLocation(newPosition.getX(), newPosition.getY());
 	}
 
-	/**
-	 * Add this as member (dockable element) to the Scilab container and returns its index
-	 * @param container the container in which we add this
-	 * @return index of this in container components
-	 * @see org.scilab.modules.gui.container.Container#addMember(org.scilab.modules.gui.dockable.Dockable)
-	 * @see org.scilab.modules.gui.dockable.Dockable#addAsMemberTo(org.scilab.modules.gui.container.Container)
-	 */
-	public int addAsMemberTo(Container container) {
-		// delegate to the container but also adding info on how to handle me (CheckBox)
-		// Interface Container must describe methode: int addMember(CheckBox member);
-		return container.addMember((CheckBox) this);
-	}
 }

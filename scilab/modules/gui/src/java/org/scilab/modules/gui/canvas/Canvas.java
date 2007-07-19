@@ -3,6 +3,8 @@
 
 package org.scilab.modules.gui.canvas;
 
+import javax.media.opengl.GL;
+
 import org.scilab.modules.gui.dockable.Dockable;
 
 /**
@@ -16,4 +18,21 @@ public interface Canvas extends Dockable {
 	 * @return this Bridge component object
 	 */
 	SimpleCanvas getAsSimpleCanvas();
+	
+	/**
+	 * 
+	 */
+	 void display();
+	 
+	 /**
+	  * 
+	  * @return a GL object
+	  */
+	 GL getGL();
+	 
+	 /**
+	  * 
+	  */
+	 void repaint();
+	 
 }

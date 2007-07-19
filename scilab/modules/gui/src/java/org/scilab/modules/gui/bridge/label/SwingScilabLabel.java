@@ -15,8 +15,10 @@ import org.scilab.modules.gui.utils.Size;
 * Swing implementation for Scilab Labels in GUIs
 * @author Marouane BEN JELLOUL
 */
-public class SwingScilabLabel extends JLabel implements Label {
-
+public class SwingScilabLabel extends JLabel {
+// FIXME : Must have some Interface here...
+//implements SimpleLabel {
+	
 	/**
 	 * Constructor
 	 */

@@ -4,7 +4,6 @@
 package org.scilab.modules.gui.bridge.editbox;
 
 import javax.swing.JTextArea;
-import javax.swing.border.LineBorder;
 
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -15,8 +14,7 @@ import org.scilab.modules.gui.utils.Size;
  */
 public class SwingScilabEditBox extends JTextArea {
 	// FIXME : Must have some Interface here...
-	//implements EditBoxBridge {
-
+	//implements SimpleEditBox {
 	
 	/**
 	 * Constructor
@@ -25,28 +23,6 @@ public class SwingScilabEditBox extends JTextArea {
 		super();
 	}
 
-/*
-** DO NOT ADD METHODS THAT HAVE NOTHING TO DO
-** WITH WHAT WE ARE DEALING WITH !!!!!
-*/
-
-	
-//	/**
-//	 * Sets a MenuBar to an element
-//	 * @param newMenuBar the MenuBar to set to the element
-//	 */
-//	public void addMenuBar(SimpleMenuBar newMenuBar) {
-//		// TODO Auto-generated method stub
-//	}
-
-//	/**
-//	 * Sets a ToolBar to an element
-//	 * @param newToolBar the ToolBar to set to the element
-//	 */
-//	public void addToolBar(SimpleToolBar newToolBar) {
-//		// TODO Auto-generated method stub	
-//	}
-	
 	/**
 	 * Sets the text of a Text Widget
 	 * @param newText the text to set to the Text Widget
@@ -109,28 +85,5 @@ public class SwingScilabEditBox extends JTextArea {
 	public void setPosition(Position newPosition) {
 		this.setLocation(newPosition.getX(), newPosition.getY());
 	}
-	
-//	 TODO ============= En Developpement ==========/
-	/**
-	 * To set the Border color and size of the element.
-	 * @param lineBorder the LineBorder
-	 */
-	public void setBorder(LineBorder lineBorder) {
-		super.setBorder(lineBorder);
-	}
-	
-	/**
-	 * Add this as member (dockable element) to the Scilab container and returns its index
-	 * @param container the container in which we add this
-	 * @return index of this in container components
-	 * @see org.scilab.modules.gui.container.Container#addMember(org.scilab.modules.gui.dockable.Dockable)
-	 * @see org.scilab.modules.gui.dockable.Dockable#addAsMemberTo(org.scilab.modules.gui.container.Container)
-	 */
-//	public int addAsMemberTo(Container container) {
-//		// delegate to the container but also adding info on how to handle me (EditBox)
-//		// Interface Container must describe methode: int addMember(EditBox member);
-//		return container.addMember((EditBox) this);
-//	}
-//	 TODO ============= FIN En Developpement ==========/
 	
 }

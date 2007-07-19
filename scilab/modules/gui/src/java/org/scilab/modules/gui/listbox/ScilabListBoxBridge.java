@@ -23,6 +23,8 @@ public class ScilabListBoxBridge {
 	 * @return the created ListBox
 	 */
 	public static ListBox createListBox() {
-		return new SwingScilabListBox();
+//		 FIXME : UI CONTROL must be developped last !!!!!
+//		return new SwingScilabListBox();
+		return null;
 	}
 }

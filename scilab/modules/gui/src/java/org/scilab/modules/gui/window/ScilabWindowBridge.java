@@ -4,16 +4,12 @@
 package org.scilab.modules.gui.window;
 
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
-import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.tab.Tab;
-import org.scilab.modules.gui.textbox.SimpleTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
-import org.scilab.modules.gui.toolbar.SimpleToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.menubar.MenuBar;
-import org.scilab.modules.gui.menubar.SimpleMenuBar;
 
 /**
  * Bridge for Scilab windows in GUIs

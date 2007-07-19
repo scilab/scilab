@@ -3,6 +3,8 @@
 
 package org.scilab.modules.gui.canvas;
 
+import javax.media.opengl.GL;
+
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -97,4 +99,26 @@ public class ScilabCanvasBridge {
 		canvas.getAsSimpleCanvas().setVisible(newVisibleState);
 	}
 
+	/**
+	 * @param canvas the canvas we want to display
+	 */
+	public static void display(Canvas canvas) {
+		canvas.getAsSimpleCanvas().display();
+	}
+	
+	/**
+	 * @param canvas the canvas we want to get the GL object from
+	 * @return a GL object
+	 */
+	public static GL getGL(Canvas canvas) {
+		return canvas.getAsSimpleCanvas().getGL();
+	}
+	
+	/**
+	 * @param canvas the canvas we want to repaint
+	 */
+	public static void repaint(Canvas canvas) {
+		canvas.getAsSimpleCanvas().repaint();
+	}
+	
 }

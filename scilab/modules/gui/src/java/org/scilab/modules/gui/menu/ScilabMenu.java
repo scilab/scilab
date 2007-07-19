@@ -47,6 +47,15 @@ public class ScilabMenu implements Menu {
 	}
 	
 	/**
+	 * Append a subMenu to a Scilab Menu
+	 * @param newSubMenu the subMenu to append to the Menu
+	 * @see org.scilab.modules.gui.menu.Menu#add(org.scilab.modules.gui.Menu)
+	 */
+	public void add(Menu newSubMenu) {
+		ScilabBridge.add(this, newSubMenu);
+	}
+	
+	/**
 	 * Sets the text of a Scilab Menu
 	 * @param newText the Text to set to the Menu
 	 * @see org.scilab.modules.gui.menu.Menu#setText(java.lang.String)

@@ -23,6 +23,8 @@ public class ScilabSliderBridge {
 	 * @return the created Slider
 	 */
 	public static Slider createSlider() {
-		return new SwingScilabSlider();
+//		 FIXME : UI CONTROL must be developped last !!!!!
+//		return new SwingScilabSlider();
+		return null;
 	}
 }

@@ -3,6 +3,8 @@
 
 package org.scilab.modules.gui.canvas;
 
+import javax.media.opengl.GL;
+
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -54,5 +56,21 @@ public interface SimpleCanvas {
 	 * Draws an Canvas
 	 */
 	void draw();
+	
+	/**
+	 * 
+	 */
+	 void display();
+	 
+	 /**
+	  * 
+	  * @return a GL object
+	  */
+	 GL getGL();
+	 
+	 /**
+	  * 
+	  */
+	 void repaint();
 	
 }

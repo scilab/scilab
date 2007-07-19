@@ -15,7 +15,6 @@ import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
 import org.scilab.modules.gui.bridge.toolbar.SwingScilabToolBar;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.SimpleMenuBar;
-import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.SimpleTextBox;
 import org.scilab.modules.gui.textbox.TextBox;

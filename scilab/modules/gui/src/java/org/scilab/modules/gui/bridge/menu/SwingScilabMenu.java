@@ -6,6 +6,7 @@ package org.scilab.modules.gui.bridge.menu;
 import javax.swing.JMenu;
 
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
+import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.SimpleMenu;
 import org.scilab.modules.gui.menuitem.MenuItem;
 
@@ -29,6 +30,15 @@ public class SwingScilabMenu extends JMenu implements SimpleMenu {
 	 */
 	public void add(MenuItem newMenuItem) {
 		super.add((SwingScilabMenuItem) newMenuItem.getAsSimpleMenuItem());
+	}
+	
+	/**
+	 * Append a subMenu to a Scilab Menu
+	 * @param newSubMenu the subMenu to append to the Menu
+	 * @see org.scilab.modules.gui.menu.Menu#add(org.scilab.modules.gui.Menu)
+	 */
+	public void add(Menu newSubMenu) {
+		super.add((SwingScilabMenu) newSubMenu.getAsSimpleMenu());
 	}
 	
 	/**

@@ -7,7 +7,6 @@ import javax.swing.JRadioButton;
 import javax.swing.border.LineBorder;
 
 import org.scilab.modules.gui.container.Container;
-import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -16,8 +15,9 @@ import org.scilab.modules.gui.utils.Size;
  * Swing implementation for Scilab RadioButton in GUIs
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabRadioButton extends JRadioButton implements RadioButton {
-
+public class SwingScilabRadioButton extends JRadioButton {
+//	 FIXME : Must have some Interface here...
+//	implements SimpleRadioButton {
 	/**
 	 * Constructor
 	 */

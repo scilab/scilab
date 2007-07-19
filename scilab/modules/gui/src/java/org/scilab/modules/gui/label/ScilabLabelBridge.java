@@ -23,7 +23,9 @@ public class ScilabLabelBridge {
 	 * @return the created Label
 	 */
 	public static Label createLabel() {
-		return new SwingScilabLabel();
+//		 FIXME : UI CONTROL must be developped last !!!!!
+//		return new SwingScilabLabel();
+		return null;
 	}
 
 }

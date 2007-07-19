@@ -3,6 +3,8 @@
 
 package org.scilab.modules.gui.canvas;
 
+import javax.media.opengl.GL;
+
 import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.dockable.ScilabDockable;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -121,5 +123,26 @@ public class ScilabCanvas extends ScilabDockable implements Canvas {
 	public void setVisible(boolean newVisibleState) {
 		ScilabBridge.setVisible(this, newVisibleState);
 	}
+	
+	/**
+	 * 
+	 */
+	public void display() {
+		ScilabBridge.display(this);
+	}
 
+	/**
+	 *
+	 * @return a GL object
+	 */
+	public GL getGL() {
+		return ScilabBridge.getGL(this);
+	}
+	
+	/**
+	 * 
+	 */
+	public void repaint() {
+		ScilabBridge.repaint(this);
+	}
 }

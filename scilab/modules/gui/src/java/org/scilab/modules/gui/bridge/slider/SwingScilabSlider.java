@@ -15,8 +15,9 @@ import org.scilab.modules.gui.utils.Size;
  * Swing implementation for Scilab Slider in GUIs
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabSlider extends JSlider implements Slider {
-
+public class SwingScilabSlider extends JSlider {
+//	 FIXME : Must have some Interface here...
+//	implements SimpleSlider {
 	/**
 	 * Constructor
 	 */

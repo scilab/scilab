@@ -10,7 +10,6 @@ import java.awt.Font;
 import javax.swing.border.LineBorder;
 
 import org.scilab.modules.gui.bridge.ScilabBridge;
-import org.scilab.modules.gui.container.Container;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.widget.ScilabWidget;
@@ -19,7 +18,9 @@ import org.scilab.modules.gui.widget.ScilabWidget;
  * Class for Scilab EditBoxs in GUIs
  * @author Marouane BEN JELLOUL
  */
-public class ScilabEditBox extends ScilabWidget implements EditBox {
+public class ScilabEditBox extends ScilabWidget {
+// FIXME : Must have some Interface here when ready
+// implements EditBox {
 
 	private SimpleEditBox component;
 	
@@ -35,7 +36,9 @@ public class ScilabEditBox extends ScilabWidget implements EditBox {
 	 * @return the created EditBox
 	 */
 	public static EditBox createEditBox() {
-		return new ScilabEditBox();
+//		 FIXME : UI CONTROL must be developped last !!!!!
+//		return new ScilabEditBox();
+		return null;
 	}
 	
 	/**
@@ -51,7 +54,8 @@ public class ScilabEditBox extends ScilabWidget implements EditBox {
 	 * @param newText the text to set to the EditBox
 	 */
 	public void setText(String newText) {
-		ScilabBridge.setText(this, newText);
+//		 FIXME : UI CONTROL must be developped last !!!!!
+//		ScilabBridge.setText(this, newText);
 	}
 	
 	/**
@@ -59,17 +63,16 @@ public class ScilabEditBox extends ScilabWidget implements EditBox {
 	 * @return text of the EditBox
 	 */
 	public String getText() {
-		return ScilabBridge.getText(this);
+//		 FIXME : UI CONTROL must be developped last !!!!!
+//		return ScilabBridge.getText(this);
+		return null;
 	}
 	
-	
-//	TODO Question: What do we do with draw() for a EditBox ?
 	/**
 	 * Draws a EditBox
 	 */
 	public void draw() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException(); 
+//		 FIXME : UI CONTROL must be developped last !!!!!
 	}
 	
 	/**
@@ -78,7 +81,8 @@ public class ScilabEditBox extends ScilabWidget implements EditBox {
 	 * @see org.scilab.modules.gui.uielement.UIElement#setDims(org.scilab.modules.gui.utils.Size)
 	 */
 	public void setDims(Size newSize) {
-		ScilabBridge.setDims(this, newSize); 
+//		 FIXME : UI CONTROL must be developped last !!!!!
+//		ScilabBridge.setDims(this, newSize); 
 	}
 	
 	/**
@@ -87,7 +91,9 @@ public class ScilabEditBox extends ScilabWidget implements EditBox {
 	 * @see org.scilab.modules.gui.uielement.UIElement#getDims(org.scilab.modules.gui.utils.Size)
 	 */
 	public Size getDims() {
-		return ScilabBridge.getDims(this); 
+//		 FIXME : UI CONTROL must be developped last !!!!!
+//		return ScilabBridge.getDims(this);
+		return null;
 	}
 	
 	/**
@@ -96,7 +102,9 @@ public class ScilabEditBox extends ScilabWidget implements EditBox {
 	 * @see org.scilab.modules.gui.uielement.UIElement#getPosition()
 	 */
 	public Position getPosition() {
-		return ScilabBridge.getPosition(this); 
+//		 FIXME : UI CONTROL must be developped last !!!!!
+//		return ScilabBridge.getPosition(this);
+		return null;
 	}
 
 	/**
@@ -105,7 +113,8 @@ public class ScilabEditBox extends ScilabWidget implements EditBox {
 	 * @see org.scilab.modules.gui.uielement.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
 	 */
 	public void setPosition(Position newPosition) {
-		ScilabBridge.setPosition(this, newPosition);
+//		 FIXME : UI CONTROL must be developped last !!!!!
+//		ScilabBridge.setPosition(this, newPosition);
 	}
 
 //	TODO Question: What do we do with isVisible() for an EditBox ?
@@ -114,10 +123,9 @@ public class ScilabEditBox extends ScilabWidget implements EditBox {
 	 * @return the visibility status of the UIElement (true if the UIElement is visible, false if not)
 	 */
 	public boolean isVisible() {
-//		TODO QUESTION is this code needed or this methode can be empty ?
-//		TODO uncomment if needed and code the needed methodes
+//		 FIXME : UI CONTROL must be developped last !!!!!
 		//return ScilabBridge.isVisible(component);
-		throw new UnsupportedOperationException(); 
+		return false;
 	}
 	
 //	TODO Question: What do we do with setVisible() for an EditBox ?
@@ -127,10 +135,8 @@ public class ScilabEditBox extends ScilabWidget implements EditBox {
 	 * 			(true if the UIElement is visible, false if not)
 	 */
 	public void setVisible(boolean newVisibleState) {
-//		TODO QUESTION is this code needed or this methode can be empty ?
-//		TODO uncomment if needed and code the needed methodes
+//		 FIXME : UI CONTROL must be developped last !!!!!
 		//ScilabBridge.setVisible(component, newVisibleState);
-		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -320,24 +326,4 @@ public class ScilabEditBox extends ScilabWidget implements EditBox {
 		
 	}
 
-	/**
-	 * Sets the icon of a EditBox
-	 * @param filename the path to the icon image to set to the EditBox
-	 */
-	public void setIcon(String filename) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	// TODO this will be deleted
-	/**
-	 * Add this as member (dockable element) to the Scilab Container and returns its index
-	 * @param container the Container in which we add this
-	 * @return index of this in container components
-	 */
-	public int addAsMemberTo(Container container) {
-//		 TODO code this
-		//return ScilabBridge.addAsMemberTo(this, container);
-		return 0;
-	}
 }
