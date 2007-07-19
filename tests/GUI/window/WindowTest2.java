@@ -99,6 +99,17 @@ public class WindowTest2 {
 		menuItem.setMnemonic(KeyEvent.VK_S);
 		menu.add(menuItem);
 		menuBar.add(menu);
+		menu.addSeparator();
+		Menu subMenu = ScilabMenu.createMenu();
+		subMenu.setText("Sub Menu");
+		menuItem = ScilabMenuItem.createMenuItem();
+		menuItem.setText("Sub Menu Item 1");
+		subMenu.add(menuItem);
+		menuItem = ScilabMenuItem.createMenuItem();
+		menuItem.setText("Sub Menu Item 1");
+		subMenu.add(menuItem);
+		menu.add(subMenu);
+		menuBar.add(menu);
 		
 		//System.out.println("mainView.menuBar is null : result = " + mainView.getMenuBar());
 		mainView.addMenuBar(menuBar);
@@ -155,8 +166,8 @@ public class WindowTest2 {
 		// pushButton on frame
 		PushButton pushButton1 = ScilabPushButton.createPushButton();
 		pushButton1.setText("push Button in a Frame");
-		pushButton1.setPosition(new Position(0,0));
-		pushButton1.setDims(new Size(200,20));
+		pushButton1.setPosition(new Position(0, 0));
+		pushButton1.setDims(new Size(200, 20));
 		frame1.addMember(pushButton1);
 		
 		testTab.addMember(frame1);
