@@ -37,9 +37,10 @@ void mutisort (T *keys1,int indices[20],int m1,int n1,char *typex, char *iord)
 			  {
 				  if (GetMax(keys[j][p],keys[j+1][p])) 
 				  {
- 						for (f=0;f<n1;f++)
+ 					swap(indices[j],indices[j+1]);	
+					   for (f=0;f<n1;f++)
 						{                
-						  swap(indices[j],indices[j+1]);
+						  
 						  swap(keys[j][f],keys[j+1][f]);			
 						}
 				  }
@@ -47,9 +48,10 @@ void mutisort (T *keys1,int indices[20],int m1,int n1,char *typex, char *iord)
 			  else if (iord[0]=='d')
 				  if (!GetMax(keys[j][p],keys[j+1][p])) 
 				  {
- 						for (f=0;f<n1;f++)
+ 					swap(indices[j],indices[j+1]);	
+					  for (f=0;f<n1;f++)
 						{                
-						  swap(indices[j],indices[j+1]);
+						  
 						  swap(keys[j][f],keys[j+1][f]);			
 						}
 				  }
