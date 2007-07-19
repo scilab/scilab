@@ -13,6 +13,8 @@ import javax.media.opengl.GL;
 
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
+import org.scilab.modules.gui.canvas.Canvas;
+import org.scilab.modules.gui.canvas.ScilabCanvas;
 import org.scilab.modules.gui.tab.ScilabTab;
 import org.scilab.modules.gui.tab.Tab;
 
@@ -31,7 +33,7 @@ import org.scilab.modules.gui.utils.Size;
 public class DrawableFigureJoGL extends ObjectJoGL {
 	
 	/** Canvas to draw the figure */
-	private FigureCanvas canvas;
+	private Canvas canvas;
 	/** Window to draw the figure */
 	private Tab graphicTab;
 	/** store the figureIndex */
@@ -126,8 +128,8 @@ public class DrawableFigureJoGL extends ObjectJoGL {
       graphicTab.setName("");
       graphicView.addTab(graphicTab);
  
-      canvas = FigureCanvas.create();
-      canvas.addGLEventListener(new SciRenderer(figureIndex));
+      canvas = ScilabCanvas.createCanvas(figureIndex);
+      //canvas.addGLEventListener(new SciRenderer(figureIndex));
       graphicTab.addMember(canvas);
       canvas.display();
     }
@@ -181,7 +183,7 @@ public class DrawableFigureJoGL extends ObjectJoGL {
   	 * Get the canvas in which the figure is drawn
   	 * @return canvas in x=which the figur eis drawn or null if none exists
   	 */
-  	public FigureCanvas getCanvas() { return canvas; }
+  	public Canvas getCanvas() { return canvas; }
   	
   	/**
   	 * Set the background color of the figure

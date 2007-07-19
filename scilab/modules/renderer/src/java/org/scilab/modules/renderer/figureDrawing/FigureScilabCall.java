@@ -18,7 +18,7 @@ public class FigureScilabCall {
 	 * Default constructor
 	 * Do nothing it is just a set of functions
 	 */
-	FigureScilabCall() { }
+	public FigureScilabCall() { }
 	
 	/**
 	 * Draw the figure with figureId in the openGL context
