@@ -19,6 +19,7 @@ import org.scilab.modules.gui.utils.Size;
  * This implementation requires JOGL
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
+ * @author Jean-Baptiste Silvy
  */
 public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 
@@ -32,11 +33,6 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 		// TODO to remove, just for testing
 		this.setLayout(new BorderLayout());
 	    this.addGLEventListener(new SciRenderer(figureIndex));
-	    //this.addMouseListener(new GLCanvasMouseListener(this));
-	    //Animator animator = new Animator(this);
-	    //animator.start();
-		//this.setIgnoreRepaint(true);
-		//this.setAutoSwapBufferMode(true);
 	}
 
 	/**
@@ -128,7 +124,7 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 	 */
 	@Override
 	public GL getGL() {
-		return null;
+		return super.getGL();
 	}
 	 
 	/**
