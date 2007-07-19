@@ -1,8 +1,5 @@
 package org.scilab.modules.jvm;
 
-import java.io.File;
-
-import org.scilab.modules.shell.ScilabShell;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.gui.tab.ScilabTab;
@@ -24,7 +21,7 @@ public class Scilab {
 	private static final int DEFAULTWIDTH = 500;
 	private static final int DEFAULTHEIGHT = 500;
 
-	public Console sciConsole;
+	private Console sciConsole;
 	private int mode;
 	
 	  static {
@@ -70,6 +67,22 @@ public class Scilab {
 			System.out.println("mode -NW");
 		}
 		
+	}
+	
+	/**
+	 * Gets the console object associated to Scilab
+	 * @return the console
+	 */
+	public Console getSciConsole() {
+		return sciConsole;
+	}
+	
+	/**
+	 * Sets the console object associated to Scilab
+	 * @param sciConsole the console to associate to Scilab
+	 */
+	public void setSciConsole(Console sciConsole) {
+		this.sciConsole = sciConsole;
 	}
 }
 /*--------------------------------------------------------------------------*/
