@@ -42,8 +42,9 @@ src/c/GetCharWithoutOutput.c
 SHELL_CPP_SOURCES += src/cpp/ShellRead.cpp
 else
 SHELL_C_SOURCES += src/c/ShellPrintf_nogui.c \
-src/c/ShellRead_nogui.c \
-src/c/PutChar_linux_nogui.c
+src/c/PutChar_linux_nogui.c \
+src/c/GetCharWithoutOutput_nogui.c
+SHELL_CPP_SOURCES += src/cpp/ShellRead_nogui.cpp
 endif
 
 
