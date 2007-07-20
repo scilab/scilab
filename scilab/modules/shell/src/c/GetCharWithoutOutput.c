@@ -9,8 +9,9 @@
 #include "./../../jvm/includes/getScilabObject.h"
 #include "../../../jvm/includes/getScilabJNIEnv.h"
 #include "MALLOC.h"
+#include "GetCharWithoutOutput.h"
 /*-----------------------------------------------------------------------------------*/
-int GetCharWithoutOutput()
+int GetCharWithoutOutput(void)
 {
   jobject  ScilabObj = getScilabObject();
   JNIEnv *env = getScilabJNIEnv();
@@ -34,7 +35,7 @@ int GetCharWithoutOutput()
                         jmethodID mid = (*env)->GetMethodID(env, cls, "getCharWithoutOutput", "()I");
                         if (mid)
                           {
-                            intValue = (*env)->CallObjectMethod(env, jConsole, mid);
+                            intValue = (int) (*env)->CallObjectMethod(env, jConsole, mid);
                           }
                       }
                   }

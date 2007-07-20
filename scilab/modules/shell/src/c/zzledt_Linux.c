@@ -15,6 +15,7 @@
 #include "sciprint_nd.h"
 #include "HistoryManager.h"
 #include "MALLOC.h"
+#include "ShellRead.h"
 static char Sci_Prompt[10];
 
 
@@ -151,7 +152,6 @@ static int key_map[] = {UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, SEARCH_BA
 
 
 static char yank_buf[WK_BUF_SIZE + 1];/* yank buffer for copy/paste */
-static char tosearch[SV_BUF_SIZE] = "";/* place to store search string */
 static int insert_flag = 1; /*insertion mode */
 /* --- locally defined functions ---  */
 static void move_right(char *source, int max_chars);

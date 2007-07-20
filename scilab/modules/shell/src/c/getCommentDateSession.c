@@ -4,6 +4,7 @@
 /*------------------------------------------------------------------------*/
 #include <time.h>
 #include <stdio.h>
+#include <string.h> /* strlen */
 #include "getCommentDateSession.h"
 #include "MALLOC.h"
 /*------------------------------------------------------------------------*/

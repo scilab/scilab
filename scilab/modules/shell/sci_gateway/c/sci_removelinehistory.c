@@ -10,8 +10,6 @@
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_removelinehistory) _PARAMS((char *fname,unsigned long fname_len))
 {
-	BOOL res = FALSE;
-
 	Rhs = Max(Rhs,0);
 	CheckRhs(1,1);
 	CheckLhs(0,1);

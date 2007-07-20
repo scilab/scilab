@@ -184,7 +184,7 @@ char **HistorySearch::getSearchResult(void)
 		{
 			if (this->my_lines[i])
 			{
-				char *currentline = (char*)MALLOC((strlen(this->my_lines[i])+1)*sizeof(char));
+				currentline = (char*)MALLOC((strlen(this->my_lines[i])+1)*sizeof(char));
 				strcpy(currentline,this->my_lines[i]);
 				lines[i] = currentline;
 			}

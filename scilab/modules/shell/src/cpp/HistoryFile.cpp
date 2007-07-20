@@ -151,14 +151,12 @@ BOOL HistoryFile::loadFromFile(char *filename)
 {
 	#define SECURITY_BUFFER 1000
 	BOOL bOK = FALSE;
-	char *commentbeginsession = NULL;
 	char  line[MAXBUF];
 	FILE * pFile = NULL;
 
 	pFile = fopen (filename,"rt");
 	if (pFile)
 	{
-		int nb_lines = 0;
 		while(fgets (line,sizeof(line),pFile) != NULL)
 		{
 			line[strlen(line)-1]='\0'; /* remove carriage return */

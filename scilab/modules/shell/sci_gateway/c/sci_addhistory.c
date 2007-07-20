@@ -12,7 +12,7 @@
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_addhistory) _PARAMS((char *fname,unsigned long fname_len))
 {
-	static int l1,n1,m1;
+	static int n1,m1;
 
 	CheckRhs(1,1);
 	CheckLhs(0,1);
