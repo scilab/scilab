@@ -13,18 +13,25 @@
 #include "DrawObjects.h"
 #include "GetProperty.h"
 #include "CurrentObjectsManagement.h"
+#include "GraphicSynchronizerInterface.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_xrect( char *fname, unsigned long fname_len )
 {
   long hdl;
   integer m1,n1,l1,m2,n2,l2,m3,n3,l3,m4,n4,l4;
-  sciPointObj * psubwin = NULL ;
+  sciPointObj * psubwin = NULL;
+  sciPointObj * pFigure = NULL;
   
   SciWin();
   CheckRhs(1,4);
+  
 
-  psubwin = sciGetCurrentSubWin() ;
+  startGraphicDataWriting();
+  pFigure = sciGetCurrentFigure();
+  endGraphicDataWriting();
+  startFigureDataWriting(pFigure);
+  psubwin = sciGetCurrentSubWin();
 
   switch ( Rhs ) 
   {
@@ -46,6 +53,7 @@ int sci_xrect( char *fname, unsigned long fname_len )
 
     if ( hdl < 0 )
     {
+      endFigureDataWriting(pFigure);
       return -1 ;
     }
 
@@ -72,6 +80,7 @@ int sci_xrect( char *fname, unsigned long fname_len )
 
     if ( hdl < 0 )
     {
+      endFigureDataWriting(pFigure);
       return -1 ;
     }
 
@@ -82,6 +91,7 @@ int sci_xrect( char *fname, unsigned long fname_len )
     Scierror(999,"%s: wrong number of rhs argumens (%d), rhs must be 1 or 4\r\n",fname,Rhs);
     break ;
   }
+  endFigureDataWriting(pFigure);
   LhsVar(1)=0;
   return 0;
 } 

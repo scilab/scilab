@@ -10,6 +10,7 @@
 
 #include "../DrawableObject.h"
 #include "DrawableFigureImp.h"
+#include "GraphicSynchronization/GraphicSynchronizer.h"
 
 namespace sciGraphics
 {
@@ -86,6 +87,16 @@ public:
     */
    void openRenderingCanvas( void ) ;
   /*--------------------------------------------------------------------------------------*/
+   /**
+    * Get the synchronization object that protect this figure.
+    */
+   GraphicSynchronizer * getSynchronizer( void ) { return m_pSynchronizer; }
+
+   /**
+    * Set the synchronization object that protect this figure.
+    */
+   void setSynchronizer( GraphicSynchronizer * synchronizer ) { m_pSynchronizer = synchronizer ; }
+  /*--------------------------------------------------------------------------------------*/
 
 protected:
 
@@ -113,13 +124,12 @@ protected:
    */
   virtual bool checkAutoRedraw( void ) = 0 ;
 
-
   /*--------------------------------------------------------------------------------------*/
   // Driver dependant algorithms
 
   /**
-  * Tell the canvas to draw itself.
-  */
+   * Tell the canvas to draw itself.
+   */
   void drawCanvas( void ) ;
 
   /**
@@ -132,6 +142,9 @@ protected:
    */
   void setBackgroundColor( void ) ;
 
+  /*--------------------------------------------------------------------------------------*/
+  /** Synchronizer object used to protect data of the figure and its children */
+  GraphicSynchronizer * m_pSynchronizer;
   /*--------------------------------------------------------------------------------------*/
 
 } ;

@@ -22,7 +22,10 @@ DrawableObjectJoGL::DrawableObjectJoGL( DrawableObject * drawer, const char * cl
   m_oDrawableObject = NULL ;
   m_pDrawer = drawer ;
   jniCreateDefaultInstanceSafe( className, &m_oDrawableClass, &m_oDrawableObject ) ;
-  jniCallMemberFunctionSafe( m_oDrawableObject, NULL, "setFigureIndex", "(I)V", sciGetNum(sciGetParentFigure(getDrawer()->getDrawedObject())) ) ;
+  if ( getDrawer() != NULL )
+  {
+    jniCallMemberFunctionSafe( m_oDrawableObject, NULL, "setFigureIndex", "(I)V", sciGetNum(sciGetParentFigure(getDrawer()->getDrawedObject())) ) ;
+  }
 }
 /*------------------------------------------------------------------------------------------*/
 DrawableObjectJoGL::~DrawableObjectJoGL( void )

@@ -13,6 +13,7 @@ import javax.media.opengl.GLJPanel;
 import org.scilab.modules.gui.canvas.SimpleCanvas;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.renderer.figureDrawing.SciRenderer;
 
 /**
  * Swing implementation for Scilab Canvas in GUIs

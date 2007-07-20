@@ -21,11 +21,17 @@ DrawableFigure::DrawableFigure( sciPointObj * pObj )
   : DrawableObject( pObj )
 {
   m_bNeedRedraw = false ; // no display lists for figure
+  m_pSynchronizer = NULL;
 }
 /*------------------------------------------------------------------------------------------*/
 DrawableFigure::~DrawableFigure( void )
 {
   closeRenderingCanvas() ;
+  if ( m_pSynchronizer != NULL )
+  {
+    delete m_pSynchronizer;
+    m_pSynchronizer = NULL;
+  }
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigure::setColorMap( const double rgbMat[], int nbColor )

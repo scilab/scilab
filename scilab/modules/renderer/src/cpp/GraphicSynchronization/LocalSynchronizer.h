@@ -1,0 +1,123 @@
+/*------------------------------------------------------------------------*/
+/* file: LocalSynchronizer.h                                              */
+/* Copyright INRIA 2007                                                   */
+/* Authors : Jean-Baptiste Silvy                                          */
+/* desc : Synchronizer able to protect some part of the graphic data      */
+/*------------------------------------------------------------------------*/
+
+#ifndef _LOCAL_SYNCHRONIZER_H_
+#define _LOCAL_SYNCHRONIZER_H_
+
+#include "GraphicSynchronizer.h"
+#include "GlobalSynchronizer.h"
+
+namespace sciGraphics
+{
+
+class LocalSynchronizer : public GraphicSynchronizer
+{
+
+  friend class GraphicSynchronizerFactory;
+
+public:
+
+  virtual ~LocalSynchronizer( void ) ;
+
+  /**
+   * Set the parent Synchronizer which may lock the whole data
+   */
+  void setParentSynchronizer( GlobalSynchronizer * synchronizer ) { m_pParentSynchronizer = synchronizer ; }
+
+protected:
+
+  /**
+   * Default constructor. Factory should be used instead.
+   */
+  LocalSynchronizer( void ) ;
+
+  /*--------------------------------------------------------------------------------*/
+  /**
+   * To know if the object can currently be written or we should wait
+   */
+  virtual bool isWritable( void ) ;
+
+  /**
+   * To know if the object can be read of if we need to wait
+   */
+  virtual bool isReadable( void ) ;
+
+  /**
+   * To know if the object can be displayed or if we need to wait
+   */
+  virtual bool isDisplayable( void ) ;
+
+  /**
+   * Specify that a new writer has been added.
+   */
+  virtual void addWriter( void ) ;
+
+  /**
+   * Specify that a writer has finished is job.
+   */
+  virtual void removeWriter( void ) ;
+
+  /**
+   * Specify that a new writer has been added.
+   */
+  virtual void addReader( void ) ;
+
+  /**
+   * Specify that a writer has finished is job.
+   */
+  virtual void removeReader( void ) ;
+
+  /**
+   * Specify that a new writer has been added.
+   */
+  virtual void addDisplayer( void ) ;
+
+  /**
+   * Specify that a writer has finished is job.
+   */
+  virtual void removeDisplayer( void ) ;
+  /*--------------------------------------------------------------------------------*/
+  /* Driver dependent routines */
+
+  /**
+  * Protect some part of code to be accessed by several threads.
+  */
+  virtual void enterCriticalSection( void ) ;
+
+  /**
+  * End the a part a code which should not be accessed by several threads
+  */
+  virtual void exitCriticalSection( void ) ;
+
+  /**
+  * Cause the thread to wait until a call to notify or notify all wake him
+  */
+  virtual void wait( void ) ;
+
+  /**
+  * Wake one thread which called the wait method of this object.
+  */
+  virtual void notify( void ) ;
+
+  /**
+  * Wake all the thread which called the wait method of this object.
+  */
+  virtual void notifyAll( void ) ;
+  /*--------------------------------------------------------------------------------*/
+  /**
+   * Get a pointer on the parent synchronizer to know if graphic data are locked
+   * and specify that some part of the data is locked.
+   */
+  GlobalSynchronizer * m_pParentSynchronizer;
+  /*--------------------------------------------------------------------------------*/
+
+
+};
+
+}
+
+#endif /* _LOCAL_SYNCHRONIZER_H_ */

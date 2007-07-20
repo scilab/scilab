@@ -88,7 +88,7 @@ public abstract class ObjectJoGL {
 	 * @return updated OpenGL pipeline
 	 */
 	protected GL updateGLContext(int figureIndex) {
-		glPipeline = FigureMapper.getCorrespondingFigure(figureIndex).getCanvas().getGL();
+		glPipeline = FigureMapper.getCorrespondingFigure(figureIndex).getGL();
 		return glPipeline;
 	}
 	

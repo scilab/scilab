@@ -15,6 +15,8 @@
 #include "getScilabJavaVM.h"
 #include "JniUtils.h"
 
+#include "GraphicSynchronizerInterface.h"
+
 
 static BOOL isGraphicModuleLoaded = FALSE ;
 
@@ -23,10 +25,14 @@ void loadGraphicModule( void )
 {
   if ( isGraphicModuleLoaded ) { return ; }
   
+  /* Create hastable for get and set functions */
   createScilabGetHashTable() ;
   createScilabSetHashTable() ;
 
   jniInitUtils( getScilabJavaVM() ) ;
+
+  /* Create data for synchronization */
+  createGraphicSynchronizer();
 
   C2F(graphicsmodels)() ;
 
@@ -41,7 +47,6 @@ void closeGraphicModule( void )
   destroyScilabGetHashTable() ;
   destroyScilabSetHashTable() ;
 
-
   /* destroy all graphic windows */
   AllGraphWinDelete() ;
 
@@ -50,6 +55,9 @@ void closeGraphicModule( void )
 
   /* deleteTemporary points points in peri***.c */
   deletePoints() ;
+
+  /* Delete synchronization data */
+  destroyGraphicSynchronizer();
 
   jniCloseUtils() ;
 

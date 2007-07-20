@@ -14,11 +14,14 @@
 #include "DrawObjects.h"
 #include "CurrentObjectsManagement.h"
 #include "DrawingBridge.h"
+#include "GraphicSynchronizerInterface.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_drawnow(char *fname,unsigned long fname_len)
 { 
   sciPointObj *pfigure = NULL;
+
+  startGraphicDataWriting();
 
   SciWin(); 
   CheckRhs(0,0);
@@ -31,10 +34,13 @@ int sci_drawnow(char *fname,unsigned long fname_len)
 
     sciDrawObj(pfigure);
     LhsVar(1) = 0;
+    endGraphicDataWriting();
     return 0;
   }
 
   LhsVar(1) = 0;
+  endGraphicDataWriting();
+
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/

@@ -29,7 +29,10 @@ namespace sciGraphics
 DrawableFigureJoGL::DrawableFigureJoGL( DrawableFigure * drawer )
   : DrawableObjectJoGL(drawer, "org/scilab/modules/renderer/figureDrawing/DrawableFigureJoGL")
 {
-  
+  jobject graphicWindow = NULL;
+  jclass graphicWindowClass = NULL;
+  jniCreateDefaultInstance("org/scilab/modules/gui/graphicWindow/ScilabGraphicWindow", &graphicWindowClass, &graphicWindow);
+  jniCallMemberFunctionSafe(graphicWindow, NULL, "setFigureIndex", "(I)V", sciGetNum(drawer->getDrawedObject()));
 }
 /*------------------------------------------------------------------------------------------*/
 DrawableFigureJoGL::~DrawableFigureJoGL( void )
@@ -41,6 +44,7 @@ void DrawableFigureJoGL::drawCanvas( void )
 {
   // We call the display function to be sure to be in the right context
   jniUpdateCurrentEnv();
+  // locker le graphique ici
   jniCallMemberFunctionSafe( m_oDrawableObject, NULL, "display", "()V" ) ;
   jniUpdateCurrentEnv();
 }

@@ -10,6 +10,7 @@
 #include "ConcreteDrawableFigure.h"
 #include "DrawableFigureImp.h"
 #include "DrawableFigureImpFactory.h"
+#include "GraphicSynchronization/GraphicSynchronizerFactory.h"
 
 namespace sciGraphics
 {
@@ -18,9 +19,15 @@ namespace sciGraphics
 DrawableObject * DrawableFigureFactory::create( void )
 {
   DrawableFigure * newFig = new ConcreteDrawableFigure( m_pDrawed ) ;
+
+  // create bridge
   DrawableFigureImpFactory imp ;
   imp.setDrawedFigure( newFig ) ;
   newFig->setDrawableImp( imp.create() ) ;
+
+  // create synchronizer
+  GraphicSynchronizerFactory fact;
+  newFig->setSynchronizer(fact.createLocalSynchronizer());
 
   newFig->openRenderingCanvas();
 

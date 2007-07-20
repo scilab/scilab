@@ -11,19 +11,12 @@ package org.scilab.modules.renderer.figureDrawing;
 
 import javax.media.opengl.GL;
 
-import org.scilab.modules.gui.window.ScilabWindow;
-import org.scilab.modules.gui.window.Window;
-import org.scilab.modules.gui.canvas.Canvas;
-import org.scilab.modules.gui.canvas.ScilabCanvas;
-import org.scilab.modules.gui.tab.ScilabTab;
-import org.scilab.modules.gui.tab.Tab;
 
 import org.scilab.modules.renderer.ObjectJoGL;
 import org.scilab.modules.renderer.FigureMapper;
 import org.scilab.modules.renderer.utils.ColorMap;
 import org.scilab.modules.renderer.ObjectJoGLCleaner;
 
-import org.scilab.modules.gui.utils.Size;
 
 
 /**
@@ -33,9 +26,7 @@ import org.scilab.modules.gui.utils.Size;
 public class DrawableFigureJoGL extends ObjectJoGL {
 	
 	/** Canvas to draw the figure */
-	private Canvas canvas;
-	/** Window to draw the figure */
-	private Tab graphicTab;
+	private RendererProperties guiProperties;
 	/** store the figureIndex */
 	private int figureId;
 	/** To get all the objects which needs to be destroyed */
@@ -46,8 +37,7 @@ public class DrawableFigureJoGL extends ObjectJoGL {
 	 */
 	public DrawableFigureJoGL() {
 		super();
-      	canvas = null;
-      	graphicTab  = null;
+      	guiProperties = null;
       	setColorMap(ColorMap.create());
       	figureId = -1; // figure ids should be greater than 0.
       	destroyedObjects = new ObjectJoGLCleaner();
@@ -64,6 +54,14 @@ public class DrawableFigureJoGL extends ObjectJoGL {
 		this.figureId = figureId;
 		FigureMapper.addMapping(figureId, this);
 		super.setFigureIndex(figureId);
+	}
+	
+	/**
+	 * Specify a new object to access canvas and other gui related properties.
+	 * @param prop new object to access gui properties
+	 */
+	public void setRendererProperties(RendererProperties prop) {
+		guiProperties = prop;
 	}
 	
 	/**
@@ -93,57 +91,52 @@ public class DrawableFigureJoGL extends ObjectJoGL {
    	 * @return the info message
    	 */
 	public String getInfoMessage() {
-		return graphicTab.getName();
+		return guiProperties.getInfoMessage();
 	}
 	
-  /**
-   * Display the info message of the figure
-   * @param infoMessage string to display describing the figure
-   */
-  public void setInfoMessage(String infoMessage) {
-    graphicTab.setName(infoMessage);
-  }
+	/**
+	 * Display the info message of the figure
+	 * @param infoMessage string to display describing the figure
+	 */
+	public void setInfoMessage(String infoMessage) {
+		guiProperties.setInfoMessage(infoMessage);
+	}
 
-  /**
-   * Force the display of the canvas
-   * Called from C to be sure to be in the right context
-   */
-  public void display() {
-	  canvas.repaint();
-  }
+	/**
+	 * Force the display of the canvas
+	 * Called from C to be sure to be in the right context
+	 */
+	public void display() {
+		guiProperties.forceDisplay();
+	}
   
   /**
    * If needed create a new context to draw the figure
    * @param figureIndex number of the figurewhich will be displayed in the canvas
    */
   public void openRenderingCanvas(int figureIndex) {
-      if (canvas != null) { return; }
-      Window graphicView = ScilabWindow.createWindow();
-      graphicView.draw();
-      graphicView.setTitle("Graphic window number " + figureIndex);
-      
-      /* FIGURE */
-      /* Create the tab to put a canvas into */
-      graphicTab = ScilabTab.createTab("");
-      graphicTab.setName("");
-      graphicView.addTab(graphicTab);
- 
-      canvas = ScilabCanvas.createCanvas(figureIndex);
-      //canvas.addGLEventListener(new SciRenderer(figureIndex));
-      graphicTab.addMember(canvas);
-      canvas.display();
+//      if (canvas != null) { return; }
+//      Window graphicView = ScilabWindow.createWindow();
+//      graphicView.draw();
+//      graphicView.setTitle("Graphic window number " + figureIndex);
+//      
+//      /* FIGURE */
+//      /* Create the tab to put a canvas into */
+//      graphicTab = ScilabTab.createTab("");
+//      graphicTab.setName("");
+//      graphicView.addTab(graphicTab);
+// 
+//      canvas = ScilabCanvas.createCanvas(figureIndex);
+//      graphicTab.addMember(canvas);
+//      canvas.display();
     }
 
-  /**
-   * Destroyr the rendering context
-   */
-  public void closeRenderingCanvas() {
-      if (canvas != null) {
-    	FigureMapper.removeMapping(figureId);
-        canvas = null;
-        graphicTab = null;
-      }
-    }
+  	/**
+  	 * Destroyr the rendering context
+  	 */
+  	public void closeRenderingCanvas() {
+  		guiProperties = null;
+   	}
   
   /**
    * Set a new colormap to the figure
@@ -183,7 +176,7 @@ public class DrawableFigureJoGL extends ObjectJoGL {
   	 * Get the canvas in which the figure is drawn
   	 * @return canvas in x=which the figur eis drawn or null if none exists
   	 */
-  	public Canvas getCanvas() { return canvas; }
+  	public RendererProperties getRendererProperties() { return guiProperties; }
   	
   	/**
   	 * Set the background color of the figure
@@ -203,6 +196,7 @@ public class DrawableFigureJoGL extends ObjectJoGL {
 	public void destroy(int parentFigureIndex) {
 		// figure should not be add to the object cleaner or will destroy themselves.
 		// no operation for now
+  		FigureMapper.removeMapping(figureId);
 	}
 	
 	
@@ -210,14 +204,14 @@ public class DrawableFigureJoGL extends ObjectJoGL {
 	 * @return width of the rendering canvas
 	 */
 	public int getCanvasWidth() {
-		return canvas.getDims().getWidth();
+		return guiProperties.getCanvasWidth();
 	}
 	
 	/**
 	 * @return height of the rendering canvas
 	 */
 	public int getCanvasHeight() {
-		return canvas.getDims().getHeight();
+		return guiProperties.getCanvasHeight();
 	}
 	
 	/**
@@ -226,21 +220,21 @@ public class DrawableFigureJoGL extends ObjectJoGL {
 	 * @param height new height in pixels
 	 */
 	public void setCanvasSize(int width, int height) {
-		canvas.setDims(new Size(width, height));
+		guiProperties.setCanvasSize(width, height);
 	}
 	
 	/**
 	 * @return width of the rendering window
 	 */
 	public int getWindowWidth() {
-		return graphicTab.getDims().getWidth();
+		return guiProperties.getWindowWidth();
 	}
 	
 	/**
 	 * @return height of the rendering window
 	 */
 	public int getWindowHeight() {
-		return graphicTab.getDims().getHeight();
+		return guiProperties.getWindowHeight();
 	}
 	
 	/**
@@ -249,8 +243,7 @@ public class DrawableFigureJoGL extends ObjectJoGL {
 	 * @param height new height in pixels
 	 */
 	public void setWindowSize(int width, int height) {
-		graphicTab.getDims().setWidth(width);
-		graphicTab.getDims().setHeight(height);
+		guiProperties.setWindowSize(width, height);
 	}
 	
 	/**
@@ -258,7 +251,7 @@ public class DrawableFigureJoGL extends ObjectJoGL {
 	 * @return X coordinate in pixels of the window
 	 */
 	public int getWindowPosX() {
-		return graphicTab.getPosition().getX();
+		return guiProperties.getWindowPosX();
 	}
 	
 	/**
@@ -266,7 +259,7 @@ public class DrawableFigureJoGL extends ObjectJoGL {
 	 * @return Y coordinate in pixels of the window
 	 */
 	public int getWindowPosY() {
-		return graphicTab.getPosition().getY();
+		return guiProperties.getWindowPosY();
 	}
 	
 	/**
@@ -275,8 +268,17 @@ public class DrawableFigureJoGL extends ObjectJoGL {
 	 * @param posY Y coordinate in pixels of the window
 	 */
 	public void setWindowPosition(int posX, int posY) {
-		graphicTab.getPosition().setX(posX);
-		graphicTab.getPosition().setY(posY);
+		guiProperties.setWindowPosition(posX, posY);
 	}
+	
+	/**
+	 * Get the current GL pipeline associated with the rendering context
+	 * @return current GL pipeline
+	 */
+	@Override
+	public GL getGL() {
+		return guiProperties.getGLPipeline();
+	}
+	
   	
 }

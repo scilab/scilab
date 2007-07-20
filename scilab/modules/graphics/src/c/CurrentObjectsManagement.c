@@ -11,6 +11,7 @@
 #include "GetProperty.h"
 #include "SetProperty.h"
 #include "ObjectSelection.h"
+#include "GraphicSynchronizerInterface.h"
 
 /*----------------------------------------------------------------------------------*/
 /* root of the graphic hierarchy */
@@ -43,7 +44,7 @@ sciPointObj * sciGetCurrentFigure( void )
 
 
   static sciPointObj *mafigure;
-  static sciPointObj *masousfen;  
+  static sciPointObj *masousfen;
 
   moncurScilabXgc = sciGetCurrentScilabXgc();
   if(moncurScilabXgc == (struct BCG *) NULL)

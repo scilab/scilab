@@ -6,13 +6,12 @@
 /*        canvas                                                          */
 /*------------------------------------------------------------------------*/
 
-package org.scilab.modules.gui.bridge.canvas;
+package org.scilab.modules.renderer.figureDrawing;
 
 import javax.media.opengl.GLEventListener;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GL;
 
-import org.scilab.modules.renderer.figureDrawing.FigureScilabCall;
 
 
 /**

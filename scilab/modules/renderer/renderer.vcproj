@@ -407,11 +407,39 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\cpp\GraphicSynchronization\GlobalSynchronizer.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\GraphicSynchronization\GraphicSynchronizer.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\GraphicSynchronization\GraphicSynchronizerBridgeFactory.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\GraphicSynchronization\GraphicSynchronizerFactory.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\GraphicSynchronization\GraphicSynchronizerInterface.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\GraphicSynchronization\GraphicSynchronizerJava.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\HandleDrawingObserver.cpp"
 				>
 			</File>
 			<File
 				RelativePath=".\src\cpp\HandleObserverManagement.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\GraphicSynchronization\LocalSynchronizer.cpp"
 				>
 			</File>
 			<File
@@ -673,6 +701,34 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\cpp\GraphicSynchronization\GlobalSynchronizer.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\GraphicSynchronization\GraphicSynchronizer.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\GraphicSynchronization\GraphicSynchronizerBridge.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\GraphicSynchronization\GraphicSynchronizerBridgeFactory.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\GraphicSynchronization\GraphicSynchronizerFactory.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\GraphicSynchronizerInterface.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\GraphicSynchronization\GraphicSynchronizerJava.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\HandleDrawingObserver.h"
 				>
 			</File>
@@ -682,6 +738,10 @@
 			</File>
 			<File
 				RelativePath=".\src\cpp\HandleObserverManagement.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\GraphicSynchronization\LocalSynchronizer.h"
 				>
 			</File>
 			<File

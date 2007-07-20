@@ -9,6 +9,7 @@
 #include "DrawableFigure.h"
 #include "DrawingBridge.h"
 #include "getHandleDrawer.h"
+#include "GraphicSynchronizerInterface.h"
 
 extern "C"
 {
@@ -19,6 +20,7 @@ extern "C"
 /*-----------------------------------------------------------------------------------*/
 JNIEXPORT void JNICALL Java_org_scilab_modules_renderer_figureDrawing_FigureScilabCall_displayFigure( JNIEnv * env, jobject obj, jint figureId )
 {
+  startGraphicDataDisplaying();
   int figIndex = (int) figureId ;
   sciPointObj * curFig = sciIsExistingFigure(&figIndex) ;
   if ( curFig == NULL ) { return ;}
@@ -27,12 +29,14 @@ JNIEXPORT void JNICALL Java_org_scilab_modules_renderer_figureDrawing_FigureScil
   {
     (sciGraphics::getFigureDrawer(curFig))->drawInContext() ;
   }
+  endGraphicDataDisplaying();
 }
 /*-----------------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------------*/
 JNIEXPORT void JNICALL Java_org_scilab_modules_renderer_figureDrawing_FigureScilabCall_redrawFigure( JNIEnv * env, jobject obj, jint figureId )
 {
+  startGraphicDataDisplaying();
   int figIndex = (int) figureId ;
   sciPointObj * curFig = sciIsExistingFigure(&figIndex) ;
   if ( curFig == NULL ) { return ;}
@@ -41,6 +45,7 @@ JNIEXPORT void JNICALL Java_org_scilab_modules_renderer_figureDrawing_FigureScil
   {
     redrawHierarchy(curFig) ;
   }
+  endGraphicDataDisplaying();
 }
 /*-----------------------------------------------------------------------------------*/
 

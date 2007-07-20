@@ -21,6 +21,7 @@
 #include "DrawObjects.h"
 #include "Xcall1.h"
 #include "CurrentObjectsManagement.h"
+#include "GraphicSynchronizerInterface.h"
 
 #include "getHandleProperty/SetHashTable.h"
 #include "getHandleProperty/setHandleProperty.h"
@@ -83,6 +84,9 @@ int sci_set(char *fname, unsigned long fname_len)
 
   CheckRhs(2,3);
   CheckLhs(0,1);
+
+  startGraphicDataWriting();
+
   /*  set or create a graphic window */
   switch(VarType(1)) 
     {
@@ -247,11 +251,13 @@ int sci_set(char *fname, unsigned long fname_len)
     if ( pobj == NULL )
     {
       Scierror(999,"%s :the handle is not or no more valid\r\n",fname);
+      endGraphicDataWriting();
       return 0;
     }
     vis_save = sciGetVisibility(pobj) ; /*used not to redraw the figure is object remains invisible SS 20.04.04*/
     if ( (setStatus = sciSet(pobj, cstk(l2), &l3, valueType, &numrow3, &numcol3)) < 0 )
     {
+      endGraphicDataWriting();
       return 0 ;
     }
 
@@ -283,9 +289,11 @@ int sci_set(char *fname, unsigned long fname_len)
   }
   else if ( ( setStatus = sciSet( NULL, cstk(l2), &l3, valueType, &numrow3, &numcol3) ) < 0 )
   {
+    endGraphicDataWriting();
     return 0;
   }
 
+  endGraphicDataWriting();
   LhsVar(1)=0;
   return 0;
 }
