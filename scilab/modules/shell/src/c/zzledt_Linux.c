@@ -233,7 +233,7 @@ static void updateToken(char *linebuffer)
   if (linebuffer)
   {
      char *token = NULL;
-     token = (char*)MALLOC(sizeof(char)*strlen(linebuffer));
+     token = (char*)MALLOC(sizeof(char)*(strlen(linebuffer)+1));
      if (token)
      {
        strcpy(token,linebuffer);
