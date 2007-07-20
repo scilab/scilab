@@ -73,7 +73,6 @@ static char Sci_Prompt[10];
 #include "Scierror.h"
 #include "prompt.h"
 #include "PutChar.h"
-#include "zzledt_Linux.h"
 
 #include "../../../gui/src/c/xsci/x_VTPrsTbl.h"
 
@@ -154,7 +153,6 @@ static int key_map[] = {UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, SEARCH_BA
 static char yank_buf[WK_BUF_SIZE + 1];/* yank buffer for copy/paste */
 static char tosearch[SV_BUF_SIZE] = "";/* place to store search string */
 static int insert_flag = 1; /*insertion mode */
-static int modeX; /* Window or Console mode */
 /* --- locally defined functions ---  */
 static void move_right(char *source, int max_chars);
 static void move_left(char *source);
@@ -230,14 +228,6 @@ static char *CL=NULL;            /* clear screen */
 void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,	int *menusflag,int * modex,long int dummy1);
 
 /*-------------- End of Declarations  specific for console mode-----------------  */
-int isModeX(){
-  return modeX;
-}
-
-static void setModeX(int n){
-  modeX=n;
-}
-
 static void updateToken(char *linebuffer)
 {
   if (linebuffer)
@@ -270,9 +260,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 
   GetCurrentPrompt(Sci_Prompt);
 
-  setModeX(*modex);
-
-  if(!isModeX()) {
+  if(getScilabMode() != SCILAB_STD) {
     if(init_flag) {
       init_io();
       init_flag = FALSE;
@@ -300,7 +288,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
   }
   else wk_buf[0] = NUL; /* initialize empty  buffer */
 
-  if(!isModeX()) {
+  if(getScilabMode() != SCILAB_STD) {
 #ifdef KEYPAD 
     set_cbreak();
     enable_keypad_mode();
@@ -314,9 +302,12 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
   sendprompt=1;
   set_is_reading(TRUE); /* did not exist in old gtk version */
         
-  setSearchedTokenInScilabHistory(NULL);                 
+  setSearchedTokenInScilabHistory(NULL);
+
+#ifdef WITH_JAVA_CONSOLE              
   if (getScilabMode()==SCILAB_NW || getScilabMode()==SCILAB_NWNI || getScilabMode()==SCILAB_API)
     {
+#endif
 
   while(1) {  /* main loop to read keyboard input */
     /* get next keystroke (no echo) returns -1 if interrupted */
@@ -493,7 +484,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 	  break;
 
 	case CTRL_L:
-	  if(isModeX()) {
+	  if(getScilabMode() == SCILAB_STD) {
 	    PutChar(CTRL_L);
 	    wk_buf[0]=NUL;
 	    goto exit;
@@ -631,6 +622,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
     }
   }
 
+#ifdef WITH_JAVA_CONSOLE              
   }
  else
    {
@@ -649,6 +641,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
      	else *buf_size = 0;
      /* End of call to Java Console */
    }
+#endif
  exit:
   /* copy to return buffer */
   if(get_echo_mode()==0)  
@@ -665,7 +658,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
     
   }
 #ifdef KEYPAD
-  if(!isModeX()) {
+  if(getScilabMode() != SCILAB_STD) {
     set_crmod();
     disable_keypad_mode();
   }
@@ -723,7 +716,7 @@ static void backspace(int n)
 {
   if(n < 1)
     return;
-  if (isModeX()) {
+  if (getScilabMode() == SCILAB_STD) {
     while(n--)
       PutChar('\010');
   }
@@ -858,7 +851,7 @@ static int CopyLineAtPrompt(char *wk_buf,char *line,int *cursor,int *cursor_max)
 
 int GetCharOrEvent(int interrupt)
 {
-  if(isModeX())
+  if(getScilabMode() == SCILAB_STD)
     return XEvorgetchar(interrupt);
   else
     return Xorgetchar(interrupt);

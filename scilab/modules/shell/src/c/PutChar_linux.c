@@ -5,12 +5,12 @@
 
 #include <stdio.h>
 #include "PutChar.h"
-#include "zzledt_Linux.h"
+#include "scilabmode.h"
 #include "../../../gui/src/c/xsci/x_charproc.h"
 
 void PutChar(int c)
 {
-  if(isModeX())
+  if(getScilabMode() == SCILAB_STD)
     Xputchar(c);
   else
     putchar(c);
