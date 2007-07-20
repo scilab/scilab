@@ -10,7 +10,7 @@ extern "C" {
 #include "../../../jvm/includes/getScilabJNIEnv.h"
 #include "../../../jvm/includes/getScilabObject.h"
 }
-#include "../jni/org_scilab_modules_gui_bridge_console.hxx"
+//#include "../jni/org_scilab_modules_gui_bridge_console.hxx"
 #include "ShellRead.hxx"
 #include "MALLOC.h"
 
