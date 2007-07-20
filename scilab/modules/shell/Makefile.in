@@ -17,7 +17,7 @@
 ##########
 ### Allan CORNET
 ### INRIA - Scilab 2007
-##########
+########## *
 
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
@@ -48,10 +48,11 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 @GUI_TRUE@am__append_1 = src/c/ShellPrintf.c \
-@GUI_TRUE@src/c/ShellRead.c \
-@GUI_TRUE@src/c/PutChar_linux.c
+@GUI_TRUE@src/c/PutChar_linux.c \
+@GUI_TRUE@src/c/GetCharWithoutOutput.c
 
-@GUI_FALSE@am__append_2 = src/c/ShellPrintf_nogui.c \
+@GUI_TRUE@am__append_2 = src/cpp/ShellRead.cpp
+@GUI_FALSE@am__append_3 = src/c/ShellPrintf_nogui.c \
 @GUI_FALSE@src/c/ShellRead_nogui.c \
 @GUI_FALSE@src/c/PutChar_linux_nogui.c
 
@@ -92,14 +93,14 @@ libscishell_la_DEPENDENCIES = $(top_builddir)/libs/blas/libsciblas.la \
 am__libscishell_la_SOURCES_DIST = src/c/completion.c src/c/clc.c \
 	src/c/tohome.c src/c/zzledt_Linux.c \
 	src/c/getCommentDateSession.c src/c/ShellPrintf.c \
-	src/c/ShellRead.c src/c/PutChar_linux.c \
+	src/c/PutChar_linux.c src/c/GetCharWithoutOutput.c \
 	src/c/ShellPrintf_nogui.c src/c/ShellRead_nogui.c \
 	src/c/PutChar_linux_nogui.c src/cpp/CommandLine.cpp \
 	src/cpp/HistoryManager.cpp src/cpp/HistorySearch.cpp \
-	src/cpp/HistoryFile.cpp sci_gateway/c/sci_completion.c \
-	sci_gateway/c/gw_shell.c sci_gateway/c/sci_clc.c \
-	sci_gateway/c/sci_tohome.c sci_gateway/c/sci_gethistory.c \
-	sci_gateway/c/sci_loadhistory.c \
+	src/cpp/HistoryFile.cpp src/cpp/ShellRead.cpp \
+	sci_gateway/c/sci_completion.c sci_gateway/c/gw_shell.c \
+	sci_gateway/c/sci_clc.c sci_gateway/c/sci_tohome.c \
+	sci_gateway/c/sci_gethistory.c sci_gateway/c/sci_loadhistory.c \
 	sci_gateway/c/sci_resethistory.c \
 	sci_gateway/c/sci_savehistory.c \
 	sci_gateway/c/sci_sethistoryfile.c \
@@ -111,8 +112,8 @@ am__libscishell_la_SOURCES_DIST = src/c/completion.c src/c/clc.c \
 	sci_gateway/c/sci_removelinehistory.c \
 	sci_gateway/c/sci_historysize.c
 @GUI_TRUE@am__objects_1 = libscishell_la-ShellPrintf.lo \
-@GUI_TRUE@	libscishell_la-ShellRead.lo \
-@GUI_TRUE@	libscishell_la-PutChar_linux.lo
+@GUI_TRUE@	libscishell_la-PutChar_linux.lo \
+@GUI_TRUE@	libscishell_la-GetCharWithoutOutput.lo
 @GUI_FALSE@am__objects_2 = libscishell_la-ShellPrintf_nogui.lo \
 @GUI_FALSE@	libscishell_la-ShellRead_nogui.lo \
 @GUI_FALSE@	libscishell_la-PutChar_linux_nogui.lo
@@ -120,10 +121,12 @@ am__objects_3 = libscishell_la-completion.lo libscishell_la-clc.lo \
 	libscishell_la-tohome.lo libscishell_la-zzledt_Linux.lo \
 	libscishell_la-getCommentDateSession.lo $(am__objects_1) \
 	$(am__objects_2)
-am__objects_4 = libscishell_la-CommandLine.lo \
+@GUI_TRUE@am__objects_4 = libscishell_la-ShellRead.lo
+am__objects_5 = libscishell_la-CommandLine.lo \
 	libscishell_la-HistoryManager.lo \
-	libscishell_la-HistorySearch.lo libscishell_la-HistoryFile.lo
-am__objects_5 = libscishell_la-sci_completion.lo \
+	libscishell_la-HistorySearch.lo libscishell_la-HistoryFile.lo \
+	$(am__objects_4)
+am__objects_6 = libscishell_la-sci_completion.lo \
 	libscishell_la-gw_shell.lo libscishell_la-sci_clc.lo \
 	libscishell_la-sci_tohome.lo libscishell_la-sci_gethistory.lo \
 	libscishell_la-sci_loadhistory.lo \
@@ -137,8 +140,8 @@ am__objects_5 = libscishell_la-sci_completion.lo \
 	libscishell_la-sci_addhistory.lo \
 	libscishell_la-sci_removelinehistory.lo \
 	libscishell_la-sci_historysize.lo
-am_libscishell_la_OBJECTS = $(am__objects_3) $(am__objects_4) \
-	$(am__objects_5)
+am_libscishell_la_OBJECTS = $(am__objects_3) $(am__objects_5) \
+	$(am__objects_6)
 libscishell_la_OBJECTS = $(am_libscishell_la_OBJECTS)
 libscishell_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
@@ -334,16 +337,14 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 # List of the cpp files
-SHELL_CPP_SOURCES = src/cpp/CommandLine.cpp \
-src/cpp/HistoryManager.cpp \
-src/cpp/HistorySearch.cpp \
-src/cpp/HistoryFile.cpp
-
+SHELL_CPP_SOURCES = src/cpp/CommandLine.cpp src/cpp/HistoryManager.cpp \
+	src/cpp/HistorySearch.cpp src/cpp/HistoryFile.cpp \
+	$(am__append_2)
 
 # List of the c files
 SHELL_C_SOURCES = src/c/completion.c src/c/clc.c src/c/tohome.c \
 	src/c/zzledt_Linux.c src/c/getCommentDateSession.c \
-	$(am__append_1) $(am__append_2)
+	$(am__append_1) $(am__append_3)
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/sci_completion.c \
@@ -514,6 +515,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-CommandLine.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-GetCharWithoutOutput.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-HistoryFile.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-HistoryManager.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-HistorySearch.Plo@am__quote@
@@ -608,19 +610,19 @@ libscishell_la-ShellPrintf.lo: src/c/ShellPrintf.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-ShellPrintf.lo `test -f 'src/c/ShellPrintf.c' || echo '$(srcdir)/'`src/c/ShellPrintf.c
 
-libscishell_la-ShellRead.lo: src/c/ShellRead.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-ShellRead.lo -MD -MP -MF $(DEPDIR)/libscishell_la-ShellRead.Tpo -c -o libscishell_la-ShellRead.lo `test -f 'src/c/ShellRead.c' || echo '$(srcdir)/'`src/c/ShellRead.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscishell_la-ShellRead.Tpo $(DEPDIR)/libscishell_la-ShellRead.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/ShellRead.c' object='libscishell_la-ShellRead.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-ShellRead.lo `test -f 'src/c/ShellRead.c' || echo '$(srcdir)/'`src/c/ShellRead.c
-
 libscishell_la-PutChar_linux.lo: src/c/PutChar_linux.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-PutChar_linux.lo -MD -MP -MF $(DEPDIR)/libscishell_la-PutChar_linux.Tpo -c -o libscishell_la-PutChar_linux.lo `test -f 'src/c/PutChar_linux.c' || echo '$(srcdir)/'`src/c/PutChar_linux.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscishell_la-PutChar_linux.Tpo $(DEPDIR)/libscishell_la-PutChar_linux.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/PutChar_linux.c' object='libscishell_la-PutChar_linux.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-PutChar_linux.lo `test -f 'src/c/PutChar_linux.c' || echo '$(srcdir)/'`src/c/PutChar_linux.c
+
+libscishell_la-GetCharWithoutOutput.lo: src/c/GetCharWithoutOutput.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-GetCharWithoutOutput.lo -MD -MP -MF $(DEPDIR)/libscishell_la-GetCharWithoutOutput.Tpo -c -o libscishell_la-GetCharWithoutOutput.lo `test -f 'src/c/GetCharWithoutOutput.c' || echo '$(srcdir)/'`src/c/GetCharWithoutOutput.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscishell_la-GetCharWithoutOutput.Tpo $(DEPDIR)/libscishell_la-GetCharWithoutOutput.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/GetCharWithoutOutput.c' object='libscishell_la-GetCharWithoutOutput.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-GetCharWithoutOutput.lo `test -f 'src/c/GetCharWithoutOutput.c' || echo '$(srcdir)/'`src/c/GetCharWithoutOutput.c
 
 libscishell_la-ShellPrintf_nogui.lo: src/c/ShellPrintf_nogui.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-ShellPrintf_nogui.lo -MD -MP -MF $(DEPDIR)/libscishell_la-ShellPrintf_nogui.Tpo -c -o libscishell_la-ShellPrintf_nogui.lo `test -f 'src/c/ShellPrintf_nogui.c' || echo '$(srcdir)/'`src/c/ShellPrintf_nogui.c
@@ -803,6 +805,13 @@ libscishell_la-HistoryFile.lo: src/cpp/HistoryFile.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/HistoryFile.cpp' object='libscishell_la-HistoryFile.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscishell_la-HistoryFile.lo `test -f 'src/cpp/HistoryFile.cpp' || echo '$(srcdir)/'`src/cpp/HistoryFile.cpp
+
+libscishell_la-ShellRead.lo: src/cpp/ShellRead.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscishell_la-ShellRead.lo -MD -MP -MF $(DEPDIR)/libscishell_la-ShellRead.Tpo -c -o libscishell_la-ShellRead.lo `test -f 'src/cpp/ShellRead.cpp' || echo '$(srcdir)/'`src/cpp/ShellRead.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscishell_la-ShellRead.Tpo $(DEPDIR)/libscishell_la-ShellRead.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/ShellRead.cpp' object='libscishell_la-ShellRead.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscishell_la-ShellRead.lo `test -f 'src/cpp/ShellRead.cpp' || echo '$(srcdir)/'`src/cpp/ShellRead.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

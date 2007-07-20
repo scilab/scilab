@@ -1,7 +1,7 @@
 ##########
 ### Allan CORNET
 ### INRIA - Scilab 2007
-##########
+########## *
 
 # List of the cpp files
 SHELL_CPP_SOURCES = src/cpp/CommandLine.cpp \
@@ -37,8 +37,9 @@ sci_gateway/c/sci_historysize.c
 
 if GUI
 SHELL_C_SOURCES += src/c/ShellPrintf.c \
-src/c/ShellRead.c \
-src/c/PutChar_linux.c
+src/c/PutChar_linux.c \
+src/c/GetCharWithoutOutput.c
+SHELL_CPP_SOURCES += src/cpp/ShellRead.cpp
 else
 SHELL_C_SOURCES += src/c/ShellPrintf_nogui.c \
 src/c/ShellRead_nogui.c \
