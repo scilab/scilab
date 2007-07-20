@@ -65,7 +65,14 @@ src/cpp/subwinDrawing/Camera.cpp \
 src/cpp/subwinDrawing/CameraBridgeFactory.cpp \
 src/cpp/polylineDrawing/DrawablePolylineBrirdgeFactory.cpp \
 src/cpp/polylineDrawing/DrawablePolylineJoGL.cpp \
-src/cpp/DrawableClippedObjectJoGL.cpp
+src/cpp/DrawableClippedObjectJoGL.cpp \
+src/cpp/GraphicSynchronization/GlobalSynchronizer.cpp \
+src/cpp/GraphicSynchronization/GraphicSynchronizerBridgeFactory.cpp \
+src/cpp/GraphicSynchronization/GraphicSynchronizerFactory.cpp \
+src/cpp/GraphicSynchronization/LocalSynchronizer.cpp \
+src/cpp/GraphicSynchronization/GraphicSynchronizer.cpp \
+src/cpp/GraphicSynchronization/GraphicSynchronizerInterface.cpp \
+src/cpp/GraphicSynchronization/GraphicSynchronizerJava.cpp
 
 
 
