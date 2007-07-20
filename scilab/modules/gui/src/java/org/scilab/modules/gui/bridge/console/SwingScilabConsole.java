@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.StyledDocument;
 
+import org.scilab.modules.console.OneCharKeyEventListener;
 import org.scilab.modules.console.SciConsole;
 import org.scilab.modules.console.SciInputCommandView;
 import org.scilab.modules.console.SciPromptView;
@@ -52,7 +53,7 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 	 */
 	public String readLine() {
 		String cmd;
-		
+
 		// Show the prompt
 		this.getConfiguration().getInputCommandView().setEditable(true);
 		this.getConfiguration().getPromptView().setVisible(true);
@@ -105,7 +106,7 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 		
 		// Reads the buffer
 		cmd = ((SciInputCommandView) this.getConfiguration().getInputCommandView()).getCmdBuffer();
-		
+
 		// Gives the focus to the console to avoid having a blinking caret in the not-editable input command view
 		this.requestFocus();
 
@@ -114,6 +115,43 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 		this.getConfiguration().getPromptView().setVisible(false);
 		
 		return cmd;
+	}
+
+	/**
+	 * Reads one user input char
+	 * @return the data entered by the user
+	 * @see fr.scilab.console.Console#getCharWithoutOutput()
+	 */
+	public int getCharWithoutOutput() {
+		int retChar;
+
+		updateScrollPosition();
+		
+		// Gives the focus to the console to avoid having a blinking caret in the not-editable input command view
+		this.requestFocus();
+		
+		// Avoids reading of an empty buffer
+		try {
+			((SciConsole) this).getCanReadUserInputValue().acquire();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		// Add a keylistener which will set the returned char
+		OneCharKeyEventListener keyListener = new OneCharKeyEventListener(this);
+		this.addKeyListener(keyListener);
+		
+		// Reads the buffer
+		retChar = this.getUserInputValue();
+
+		// Remove the "more" message and replace it by an empty line
+		this.clear(1);
+		this.display("\n");
+
+		this.removeKeyListener(keyListener);
+
+		return retChar;
 	}
 
 	/**
@@ -173,9 +211,9 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 	}
 
 	/**
-	 * Clear the Console
+	 * Clears the Console
 	 */
 	public void clear() {
-	// TODO : Must do something... but what...
+		super.clear();
 	}
 }

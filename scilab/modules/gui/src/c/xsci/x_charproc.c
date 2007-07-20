@@ -31,6 +31,7 @@
 #define __STDC__ 1  
 #endif
 
+#include "scilabmode.h"
 #include "machine.h"
 
 #include "x_ptyxP.h"
@@ -534,10 +535,26 @@ void C2F(xscimore)(int *n)
   int n1,ln;
   *n=0;
   ln=strlen(MORESTR);
-  Xputstring(MORESTR,ln);
-  n1=XEvorgetchar(1);
-  if ( n1 == 110 )  *n=1;
-  Xputstring("\r\n",2);
+  
+#ifdef WITH_JAVA_CONSOLE
+  /* No-window modes or old X-Console mode*/
+  if (getScilabMode()==SCILAB_NW || getScilabMode()==SCILAB_NWNI || getScilabMode()==SCILAB_API)
+    {
+#endif
+      Xputstring(MORESTR,ln);
+      n1=XEvorgetchar(1);
+      if ( n1 == 110 )  *n=1;
+      Xputstring("\r\n",2);
+#ifdef WITH_JAVA_CONSOLE
+    }
+  else /* Java Console */
+    {
+      ShellPrintf(MORESTR);
+      n1 = GetCharWithoutOutput();
+      if ( n1 == 110 )  *n=1;
+      ShellPrintf("\n");
+    }
+#endif
 }
 
 

@@ -7,6 +7,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.io.IOException;
+import java.util.concurrent.Semaphore;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -56,6 +58,16 @@ public class SciConsole extends JPanel {
 	 */
 	private boolean inputCommandViewSizeForced;
 	
+	/**
+	 * Value used to get one char from user input (when using [more y or n ?])
+	 */
+	private int userInputValue;
+	
+	/**
+	 * Protection for userInputValue variable R/W
+	 */
+	private Semaphore canReadUserInputValue = new Semaphore(1);
+
 	/**
 	 * Constructor
 	 */
@@ -219,4 +231,36 @@ public class SciConsole extends JPanel {
     public boolean getInputCommandViewSizeForced() {
     	return inputCommandViewSizeForced;
     }
+
+	/**
+	 * Gets the user input value
+	 * @return the value entered by the used
+	 */
+	public int getUserInputValue() {
+		try {
+			while (!canReadUserInputValue.tryAcquire(1, TimeUnit.MILLISECONDS)) {
+				InterpreterManagement.execScilabEventLoop();
+			}
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		return userInputValue;
+	}
+
+	/**
+	 * Sets the value entered by the user
+	 * @param userInputValue new value
+	 */
+	public void setUserInputValue(int userInputValue) {
+		this.userInputValue = userInputValue;
+		canReadUserInputValue.release();
+	}
+
+	/**
+	 * Gets the semaphore protection so that it can be acquired
+	 * @return the semaphore
+	 */
+	public Semaphore getCanReadUserInputValue() {
+		return canReadUserInputValue;
+	}
 }

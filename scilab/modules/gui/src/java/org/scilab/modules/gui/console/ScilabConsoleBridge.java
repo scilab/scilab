@@ -4,6 +4,8 @@
 package org.scilab.modules.gui.console;
 
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
+import org.scilab.modules.gui.frame.Frame;
+import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -49,6 +51,19 @@ public class ScilabConsoleBridge {
 	}
 
 	/**
+<<<<<<< .mine
+	 * Add a member (dockable element) to a tab and returns the index of this member
+	 * @param tab the tab where we want to add the member
+	 * @param member the member to add
+	 * @return index of member in ArrayList
+	 */
+	public static int addMember(Tab tab, Frame member) {
+		return tab.addMember(member);
+	}
+
+	/**
+=======
+>>>>>>> .r17541
 	 * Draw a console
 	 * @param console the console to draw
 	 */
@@ -116,6 +131,16 @@ public class ScilabConsoleBridge {
 	 */
 	public static void clear(Console console) {
 		console.getAsSimpleConsole().clear();
+	}
+
+	/**
+	 * Reads one user input char
+	 * @param console the console used to get the char
+	 * @return the data entered by the user
+	 * @see fr.scilab.console.Console#getCharWithoutOutput()
+	 */
+	public static int getCharWithoutOutput(Console console) {
+		return console.getAsSimpleConsole().getCharWithoutOutput();
 	}
 
 }

@@ -66,10 +66,16 @@ public interface SimpleConsole {
 	 * 			(true if the Console is visible, false if not)
 	 */
 	void setVisible(boolean newVisibleState);
+	
+	/**
+	 * Reads one user input char
+	 * @return the data entered by the user
+	 * @see fr.scilab.console.Console#getCharWithoutOutput()
+	 */
+	int getCharWithoutOutput();
 
 	/**
-	 * Draws an Console
+	 * Draws a Console
 	 */
 	void draw();
-	
 }

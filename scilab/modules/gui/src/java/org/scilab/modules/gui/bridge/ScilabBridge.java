@@ -527,7 +527,7 @@ public class ScilabBridge {
 	/**
 	 * Sets the visibility status of a console
 	 * @param console the console which we want to get the visibility status of
-	 * 	 * @param newVisibleState the visibility status we want to set to the console (true to set the console visible, false else)
+ 	 * @param newVisibleState the visibility status we want to set to the console (true to set the console visible, false else)
 	 * @see org.scilab.modules.ihm.UIElement#isVisible()
 	 */
 	public static void setVisible(Console console, boolean newVisibleState) {
@@ -572,6 +572,16 @@ public class ScilabBridge {
 		ScilabConsoleBridge.clear(console);
 	}
 	
+	/**
+	 * Reads one user input char
+	 * @param console the console used to get the char
+	 * @return the data entered by the user
+	 * @see fr.scilab.console.Console#getCharWithoutOutput()
+	 */
+	public static int getCharWithoutOutput(Console console) {
+		return ScilabConsoleBridge.getCharWithoutOutput(console);
+	}
+
 	/*****************/
 	/* Canvas Bridge */
 	/*****************/

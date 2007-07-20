@@ -126,4 +126,14 @@ public class ScilabConsole extends ScilabDockable implements Console {
 	public void clear() {
 		ScilabBridge.clear(this);
 	}
+
+	/**
+	 * Reads one user input char
+	 * @return the data entered by the user
+	 * @see fr.scilab.console.Console#getCharWithoutOutput()
+	 */
+	public int getCharWithoutOutput() {
+		return ScilabBridge.getCharWithoutOutput(this);
+	}
+
 }
