@@ -32,7 +32,7 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 	/**
 	 * Protection for safe reading
 	 */
-	private Semaphore canReadBuffer = new Semaphore(1);
+	private Semaphore canReadBuffer;
 	
 	/**
 	 * Constructor
@@ -41,6 +41,7 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 		super();
 		// Input command line is not editable when created
 		this.setEditable(false);
+		canReadBuffer = new Semaphore(1);
 	}
 
 	/**
@@ -117,8 +118,4 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 			e.printStackTrace();
 		}
 	}
-	
-	/**
-	 * @param dte drop event
-	 */
 }
