@@ -3,6 +3,8 @@
 * @author Vincent COUVERT - INRIA 2007
 */
 /*-----------------------------------------------------------------------------------*/
+#include <iostream>
+
 #include <stdlib.h>
 #include <jni.h>
 #include "machine.h"
@@ -17,7 +19,7 @@ extern "C" {
 /*-----------------------------------------------------------------------------------*/
 #define WK_BUF_SIZE 520
 /*-----------------------------------------------------------------------------------*/
-using namespace  org_scilab_modules_gui_bridge_console;
+//using namespace  org_scilab_modules_gui_bridge_console;
 char *ShellRead()
 {
   /* Character string to be return */
