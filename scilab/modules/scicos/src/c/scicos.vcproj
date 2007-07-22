@@ -687,7 +687,7 @@
 			>
 		</File>
 		<File
-			RelativePath="..\..\VERSION.xml"
+			RelativePath="..\..\version.xml"
 			>
 		</File>
 	</Files>
