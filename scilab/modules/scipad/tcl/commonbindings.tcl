@@ -14,11 +14,12 @@ bind Text <Control-i> {}
 bind Text <Control-f> {} ; # avoids selection deletion on find box open
 
 bind Text <KeyPress>  {if {{%A} != {{}}} { \
-                          puttext %W %A ; \
+                          puttext %W %A "replaceallowed" ; \
                        }}
 
 bind Text <BackSpace> {backspacetext}
 bind Text <Return>    {insertnewline %W}
+bind Text <Insert>    {toggleinsertreplacemode}
 
 # break prevents from triggering the default Tk
 # binding: bind all <Key-Tab> tk::TabToWindow [tk_focusNext %W], which

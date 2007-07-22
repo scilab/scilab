@@ -47,7 +47,9 @@ set pwmaxid 0
 text $textareacur -relief sunken -bd 0 \
     -wrap $wordWrap -width 1 -height 1\
     -fg $FGCOLOR -bg $BGCOLOR  -setgrid 0 -font $textFont \
-    -insertwidth 3 -insertborderwidth 2 -insertbackground $CURCOLOR \
+    -insertwidth $textinsertcursorwidth \
+    -insertborderwidth $textinsertcursorborderwidth \
+    -insertbackground $CURCOLOR \
     -selectbackground $SELCOLOR -exportselection 1 \
     -undo 1 -autoseparators 1
 if {$cursorblink} {

@@ -109,6 +109,13 @@ set ColorizeIt true
 # now both issues have been fixed, therefore:
 set cursorblink true
 
+# by default, the cursor in textareas is the insert cursor
+set textinsertmode true
+set textinsertcursorwidth 3         ; # in pixels
+set textinsertcursorborderwidth 2   ; # in pixels
+set textreplacecursorwidth 6        ; # in pixels
+set textreplacecursorborderwidth 0  ; # in pixels
+
 # Drag and drop feature initial state
 set mouseoversel "false"
 set dndinitiated "false"

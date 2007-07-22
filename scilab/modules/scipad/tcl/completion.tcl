@@ -410,7 +410,7 @@ proc completewith {str ind ta} {
     }
 
     $ta delete $ind [$ta index insert]
-    puttext $ta $str
+    puttext $ta $str "replaceallowed"
     if {$oldSeparator} {
         $ta edit separator
         $ta configure -autoseparators 1
@@ -433,7 +433,7 @@ proc popup_completions_again_KP {w character keysym modstate} {
 
     if {$character != ""} {
         # non-shifted character
-        puttext [gettextareacur] $character
+        puttext [gettextareacur] $character "replaceallowed"
         popup_completions
 
     } elseif {$keysym == "Shift_L" || $keysym == "Shift_R"} {
@@ -443,7 +443,7 @@ proc popup_completions_again_KP {w character keysym modstate} {
     } elseif {[expr {$modstate & 1}] != 0} {
         # modstate (actually %s field of the KeyPress event) has
         # bit 1 set (LSB) if the shift key is pressed
-        puttext [gettextareacur] $character
+        puttext [gettextareacur] $character "replaceallowed"
         popup_completions
 
     } else {

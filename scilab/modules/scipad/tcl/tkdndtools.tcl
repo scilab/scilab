@@ -100,7 +100,7 @@ proc tkdndbind {w} {
         } else {
             # drag from outside of Scipad, drop in Scipad
             %W tag remove sel 1.0 end
-            puttext %W %D   
+            puttext %W %D "replaceallowed"
         }
 
         restorecursorblink ; # needed for drags from the outside
@@ -261,7 +261,7 @@ proc dnd_putorpastetext {w toput} {
     global dnd_issourceblocksel
     if {!$dnd_issourceblocksel} {
         # single selection
-        puttext $w $toput
+        puttext $w $toput "replaceallowed"
     } else {
         # multirange selection, i.e. block selection
         pastetext block $toput

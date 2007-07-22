@@ -266,6 +266,10 @@ proc pastetext {mode {topasteinblockmode ""}} {
     }
 
     # now paste it!
+    # note that the replace mode is not tested: paste is always an insert,
+    # whether in normal or in block mode
+    # this is a choice: if the user wants to paste over existing text he
+    # should select this text first
     set i1 [$textareacur index insert]
     if {$mode == "normal"} {
         # normal paste
@@ -284,7 +288,7 @@ proc pastetext {mode {topasteinblockmode ""}} {
             # make room for next line if end of buffer has been reached
             if {[$textareacur compare insert == "end - 1 c"] && \
                 $n < [llength $listoflines]} {
-                puttext $textareacur "\n"
+                puttext $textareacur "\n" "forceinsert"
                 $textareacur mark set insert "$i1 + $n l"
             }
         }

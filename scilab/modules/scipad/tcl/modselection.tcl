@@ -232,7 +232,7 @@ proc CommentSel {} {
 
     if {[gettaselind $ta any] == {}} {
         # if there is no selection, simply insert // at the insert point
-        puttext $ta "//"
+        puttext $ta "//" "forceinsert"
 
     } else {
         # there is a selection in the current textarea
@@ -423,7 +423,7 @@ proc apply_RE_to_sel_text {ta REpat repltext} {
         $ta delete $sta $sto
 
         # note that puttext (correctly) collapses multiple selections
-        puttext $ta $newtext
+        puttext $ta $newtext "forceinsert"
 
         # save new selection bounds, and cleanup marks
         lappend newselindices [$ta index leftbound] [$ta index rightbound]

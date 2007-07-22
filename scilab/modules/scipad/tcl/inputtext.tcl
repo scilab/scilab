@@ -138,13 +138,13 @@ proc blinkquote {w pos char} {
 proc insblinkbrace {w brace} {
 # this proc gets called when the user types a brace, one of ()[]{}
     if {[IsBufferEditable] == "No"} {return}
-    puttext $w $brace
+    puttext $w $brace "replaceallowed"
     blinkbrace $w insert $brace 
 }
 
 proc insblinkquote {w quote} {
     if {[IsBufferEditable] == "No"} {return}
-    puttext $w $quote
+    puttext $w $quote "replaceallowed"
     blinkquote $w insert $quote 
 }
 
@@ -204,7 +204,9 @@ proc insertnewline {w} {
     # insert a CR char and insert the same indentation as the previous line
     # note that if there is a block selection, puttext will first collapse
     # it to its first range (line)
-    puttext $w "\n$n"
+    # note further that the insert mode must be forced, otherwise there is no
+    # means to create a new line while in replace mode
+    puttext $w "\n$n" "forceinsert"
 
     # remove possible indentation chars located after the insertion above
     set c [$w get insert "insert+1c"]
@@ -302,24 +304,29 @@ proc inserttab {w} {
             for {set x 0} {$x<$nbtoinsert} {incr x} {
                 append toinsert " "
             }
-            puttext $w $toinsert
+            puttext $w $toinsert "replaceallowed"
         } else {
             # insert a tab character
-            puttext $w "\x9"
+            puttext $w "\x9" "replaceallowed"
         }
     }
 
     set buffermodifiedsincelastsearch true
 }
 
-proc puttext {w text} {
+proc puttext {w text insertorreplace} {
 # input text $text in textarea $w
 # note: existing block selection, if any, gets collapsed in the process
 # and then deleted resulting in the apparent (desired) result that the text
 # passed to this proc replaced the first line (range) of the block selection
 # only
+# the parameter $insertorreplace allows to:
+#   - ignore the replace mode if set to "forceinsert"
+#   - let replace happen (when in this mode) if set to "replaceallowed"
 
     global listoffile buffermodifiedsincelastsearch
+    global Tk85
+    global textinsertmode
 
     if {[IsBufferEditable] == "No"} {return}
 
@@ -351,11 +358,44 @@ proc puttext {w text} {
     # and delete it
     if {[gettaselind $w single] != ""} {
         $w delete sel.first sel.last
+        set aselectionwasdeleted true
+    } else {
+        set aselectionwasdeleted false
     }
 
     set i1 [$w index insert]
-    $w insert insert $text
+
+    if {$textinsertmode || $insertorreplace!="replaceallowed"} {
+
+        $w insert insert $text
+
+    } else {
+
+        # if there was initially a selection, then no further delete should occur
+        if {$aselectionwasdeleted} {
+            set replacelength 0
+        } else {
+            set replacelength [string length $text]
+        }
+        # don't span the \n at the end of the line
+        if {[$w compare "insert + $replacelength c" > "insert lineend"]} {
+            set replaceendind "insert lineend"
+        } else {
+            set replaceendind "insert + $replacelength c"
+        }
+        # do the replace
+        if {$Tk85} {
+            $w replace insert $replaceendind $text
+        } else {
+            # emulate the .text replace command of Tk8.5 with 8.4 commands only
+            $w delete insert $replaceendind
+            $w insert insert $text
+        }
+
+    }
+
     set i2 [$w index insert]
+
     if {$i1 != $i2} {
         tagcontlines $w
         set uplimit [getstartofcolorization $w $i1]
@@ -398,5 +438,32 @@ proc IsBufferEditable {} {
         return "No"
     } else {
         return "Yes"
+    }
+}
+
+proc toggleinsertreplacemode {} {
+# switch insert mode to replace mode in textareas, or vice versa
+# the visual appearance of the text cursor is also changed
+    global textinsertmode
+    global textinsertcursorwidth textreplacecursorwidth
+    global textinsertcursorborderwidth textreplacecursorborderwidth
+    global listoftextarea
+
+    set textinsertmode [expr !$textinsertmode]
+
+    if {$textinsertmode} {
+        # cursor is the insert cursor (I shaped)
+        # note: peers do not share a common cursor --> no filteroutpeers here!
+        foreach w $listoftextarea {
+            $w configure -insertwidth $textinsertcursorwidth \
+                         -insertborderwidth $textinsertcursorborderwidth
+        }
+    } else {
+        # cursor is the replace cursor (box shape)
+        # note: peers do not share a common cursor --> no filteroutpeers here!
+        foreach w $listoftextarea {
+            $w configure -insertwidth $textreplacecursorwidth \
+                         -insertborderwidth $textreplacecursorborderwidth
+        }
     }
 }

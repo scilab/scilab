@@ -185,6 +185,9 @@ Debugger wishes:
  instantiated by Scipad are not used in Scilab, so that conflicts would 
  always be avoided. For instance, browsing the existing known
  variables and checking for existence, etc. could be used (who, who_user...)
+ At least, db_xx names should be made 24 char long (longest=less likely that
+ mr. lambda chooses the same name) and have the word scipad sneaked inside
+ them to make things clearer.
 
 -Avoid to destroy and recreate the whole watch window when hiding/displaying
  one of its sub-areas. Would probably require -hide option for panedwindow,
@@ -262,18 +265,9 @@ Other wishes:
 
 -"auto smart wrap on": lines exceeding a margin could be truncated at
  word boundaries with .. dots and \n
+ Hint: some clever use of the -wraplength option of text widgets?
 
 -Add an eventual "revert to defaults button" (colors option menu)
-
--Currently any character typed in the buffer is inserted if there is
- no selection. Add a mode toggled by the Ins key in which characters
- would replace the existing ones. Add a visual indicator of this state.
- Note: this should be manageable in Tk8.4 using a combination of a delete
- and an insert (or perhaps selecting the next character and then puttext)
- but there is a new text widget subcommand .text replace in Tk 8.5
- that will do it at once and manage the undo/redo stacks at the same time.
- See TIP #155 for details: http://www.cs.man.ac.uk/fellowsd-bin/TIP/155.html
- .text replace is available at least from 8.5a3
 
 -*maybe* a global undo stack instead of one per buffer
  advantages: can undo at once a dnd from one pane to another one
@@ -329,3 +323,7 @@ http://groups.google.fr/group/comp.lang.tcl/browse_thread/thread/eea78c744811e2c
 -string comparisons (eq/ne) should be used instead of ==/!= when comparing
  as strings. Must review Scipad's source code and make the change where
  appropriate
+
+-remove the scilab4/scilab5 environment detection once scilab5 is stabilized
+ and if it doesn't ease backporting to scilab-gtk. Code to remove can be
+ found by highlighting differences between versions 6.117 and 6.118 of Scipad.

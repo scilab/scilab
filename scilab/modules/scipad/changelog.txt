@@ -3090,3 +3090,12 @@ ES, 11/7/07
  * ensured that all files work in the BUILD_4 branch too (though dispatched
    to different directories). A common codebase eases eventual backports.
  * version --> 6.118
+
+Francois VOGEL, 22/07/07
+ * Fixed selected watch variable font colorization
+ * Added a mode toggled by the Ins key in which characters replace the existing
+   ones. Visual indicator of this state is the text cursor becoming a block
+   cursor. Works with Tk8.5 (use of .text replace from TIP 155, see
+   http://www.cs.man.ac.uk/fellowsd-bin/TIP/155.html), and also with Tk8.4 by
+   emulation of the .text replace command
+ * version --> 6.119

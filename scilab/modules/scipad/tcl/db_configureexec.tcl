@@ -579,7 +579,7 @@ proc Obtainall_bp {} {
         set taid [gettaidfromwidgetname $textarea]
         append txt $taid "_db()\n"
         $textarea mark set insert 1.0
-        puttext $textarea $txt
+        puttext $textarea $txt "forceinsert"
         $textarea tag add db_wrapper 1.0 insert
 
         # add function return instructions
@@ -596,7 +596,7 @@ proc Obtainall_bp {} {
         append txt "endfunction\n"
         $textarea mark set insert end
         set oldinsert [$textarea index insert]
-        puttext $textarea $txt
+        puttext $textarea $txt "forceinsert"
         $textarea tag add db_wrapper $oldinsert insert
 
         # restore the undo capability in the buffer
