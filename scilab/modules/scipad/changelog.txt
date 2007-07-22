@@ -3104,3 +3104,7 @@ Francois VOGEL, 22/07/07
  * The -blockcursor option is used with Tk 8.5 for the replace cursor
  * The replace mode is binded to both Insert and KP_Insert
  * version --> 6.120
+
+Francois VOGEL, 23/07/07
+ * Binding of the replace mode to the non-existing KP_Insert keysym removed
+ * version --> 6.121
