@@ -3099,3 +3099,8 @@ Francois VOGEL, 22/07/07
    http://www.cs.man.ac.uk/fellowsd-bin/TIP/155.html), and also with Tk8.4 by
    emulation of the .text replace command
  * version --> 6.119
+
+Francois VOGEL, 22/07/07
+ * The -blockcursor option is used with Tk 8.5 for the replace cursor
+ * The replace mode is binded to both Insert and KP_Insert
+ * version --> 6.120

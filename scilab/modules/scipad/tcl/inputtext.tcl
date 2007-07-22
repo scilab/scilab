@@ -444,7 +444,7 @@ proc IsBufferEditable {} {
 proc toggleinsertreplacemode {} {
 # switch insert mode to replace mode in textareas, or vice versa
 # the visual appearance of the text cursor is also changed
-    global textinsertmode
+    global Tk85 textinsertmode
     global textinsertcursorwidth textreplacecursorwidth
     global textinsertcursorborderwidth textreplacecursorborderwidth
     global listoftextarea
@@ -454,16 +454,28 @@ proc toggleinsertreplacemode {} {
     if {$textinsertmode} {
         # cursor is the insert cursor (I shaped)
         # note: peers do not share a common cursor --> no filteroutpeers here!
-        foreach w $listoftextarea {
-            $w configure -insertwidth $textinsertcursorwidth \
-                         -insertborderwidth $textinsertcursorborderwidth
+        if {$Tk85} {
+            foreach w $listoftextarea {
+                $w configure -blockcursor false
+            }
+        } else {
+            foreach w $listoftextarea {
+                $w configure -insertwidth $textinsertcursorwidth \
+                             -insertborderwidth $textinsertcursorborderwidth
+            }
         }
     } else {
-        # cursor is the replace cursor (box shape)
+        # cursor is the replace cursor (block shape)
         # note: peers do not share a common cursor --> no filteroutpeers here!
-        foreach w $listoftextarea {
-            $w configure -insertwidth $textreplacecursorwidth \
-                         -insertborderwidth $textreplacecursorborderwidth
+        if {$Tk85} {
+            foreach w $listoftextarea {
+                $w configure -blockcursor true
+            }
+        } else {
+            foreach w $listoftextarea {
+                $w configure -insertwidth $textreplacecursorwidth \
+                             -insertborderwidth $textreplacecursorborderwidth
+            }
         }
     }
 }

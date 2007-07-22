@@ -18,8 +18,11 @@ bind Text <KeyPress>  {if {{%A} != {{}}} { \
                        }}
 
 bind Text <BackSpace> {backspacetext}
+
 bind Text <Return>    {insertnewline %W}
+
 bind Text <Insert>    {toggleinsertreplacemode}
+bind Text <KP_Insert> {toggleinsertreplacemode}
 
 # break prevents from triggering the default Tk
 # binding: bind all <Key-Tab> tk::TabToWindow [tk_focusNext %W], which
