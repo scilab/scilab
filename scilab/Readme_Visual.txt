@@ -3,7 +3,7 @@ Prerequirements:
 ----------------
 
 * Visual Studio C++ .NET 2005 Pro
-* Intel Fortran 9.1.3192
+* Intel Fortran 10.0.026 (or more)
 or 
 
 * Visual Studio C++ .NET 2005 Express
@@ -18,7 +18,7 @@ or on SVN :
 
 md Prerequirements
 cd Prerequirements
-svn co --username anonymous --password Scilab svn://frioul.inria.fr/scilab/trunk/Dev-Tools/Prerequirements/Windows
+svn co --username anonymous --password Scilab svn://frioul.inria.fr/scilab/trunk/Dev-Tools/SE/Prerequirements/Windows
 
 copy all files in your scilab directory
 
