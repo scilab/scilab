@@ -12,8 +12,8 @@ char *FindFileAssociation (char *ptrFindStr,char *Extra)
 
 	if ( ptrFindStr )
 	{
-		char szDefault[MAX_PATH];
-		DWORD ccDefault = MAX_PATH;
+		char szDefault[PATH_MAX];
+		DWORD ccDefault = PATH_MAX;
 		HRESULT rc = AssocQueryString (0, ASSOCSTR_EXECUTABLE,ptrFindStr, Extra, szDefault, &ccDefault);
 		if (ccDefault)
 		{
