@@ -18,6 +18,7 @@ static integer bslash = 49;
 static integer dot = 51;
 /*-----------------------------------------------------------------------------------*/
 static int ChooseOtherOperation(int op);
+int C2F(matops)(void);
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(matchsgn)();
 extern int C2F(matsubst)();
