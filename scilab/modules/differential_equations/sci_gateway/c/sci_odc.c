@@ -3,6 +3,7 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include "machine.h"
+#include "gw_differential_equations3.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_odc) _PARAMS((char *fname,unsigned long l))
 {
