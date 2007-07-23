@@ -73,9 +73,9 @@ BOOL HistoryFile::setDefaultFilename(void)
 	{
 		char  *history_name = get_sci_data_strings(HISTORY_ID);
 		int out_n = 0;
-		defaultfilename = (char*)MALLOC(MAX_PATH*sizeof(char));
+		defaultfilename = (char*)MALLOC(PATH_MAX*sizeof(char));
 		if ( defaultfilename == NULL ) return NULL;
-		C2F(cluni0)(history_name, defaultfilename, &out_n,(long)strlen(history_name),MAX_PATH);
+		C2F(cluni0)(history_name, defaultfilename, &out_n,(long)strlen(history_name),PATH_MAX);
 	}
 
 	if (defaultfilename)
