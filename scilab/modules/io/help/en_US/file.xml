@@ -107,8 +107,7 @@
         <PARAM_NAME>units</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer vector, logical unit descriptor of
-   the opened files. Units 1 5 and 6 are reserved by the system for
-   history file , input and output devices.</SP>
+   the opened files. Units 5 and 6 are reserved by the system for input and output devices.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
