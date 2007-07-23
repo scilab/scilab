@@ -184,6 +184,16 @@ extern  void * GetFuncPtr __PARAMS((char *,int,void *,void (*f)(),int *,int*,int
 
 #define OverLoad(n) C2F(overload)((c_local = n +Top - Rhs, &c_local),fname,(unsigned long)strlen(fname))
 
+/**
+ * <long-description>
+ *
+ * @param n 
+ * @param ct    
+ * @param mx    
+ * @param nx    
+ * @param lx    
+ * @return <ReturnValue>
+ */
 #define GetRhsVar(n,ct,mx,nx,lx) if (! C2F(getrhsvar)((c_local=n,&c_local),ct,mx,nx,(integer *) lx,1L))\
         { return 0;  }
 
