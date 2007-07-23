@@ -139,7 +139,7 @@ BOOL HistoryFile::loadFromFile(std::string filename)
 {
 	#define SECURITY_BUFFER 1000
 	BOOL bOK = FALSE;
-	char  line[MAX_PATH+1];
+	char  line[PATH_MAX+1];
 	FILE * pFile = NULL;
 
 	if (filename.empty()) return bOK;
