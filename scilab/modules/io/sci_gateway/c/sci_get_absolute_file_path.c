@@ -13,14 +13,14 @@
 #endif 
 
 #include "gw_io.h"
-#include "../../../fileio/includes/FileExist.h"
+#include "FileExist.h"
 #include "../../../core/src/c/scicurdir.h"
 #include "directories.h"
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "Scierror.h"
-#include "../../../fileio/includes/getfiledesc.h"
-#include "../../../fileio/includes/getfileinfo.h"
+#include "getfiledesc.h"
+#include "getfileinfo.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_get_absolute_file_path) _PARAMS((char *fname,unsigned long fname_len))
 {

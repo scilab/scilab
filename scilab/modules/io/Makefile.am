@@ -75,7 +75,7 @@ noinst_LTLIBRARIES = libdummy-io.la
 libdummy_io_la_SOURCES = sci_gateway/fortran/intmgetl.f
 libdummy_io_la_FFLAGS = $(FFLAGS:-O%=)
 
-libsciio_la_CFLAGS=  -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/
+libsciio_la_CFLAGS=  -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/fileio/includes/
 
 pkglib_LTLIBRARIES = libsciio.la
 
