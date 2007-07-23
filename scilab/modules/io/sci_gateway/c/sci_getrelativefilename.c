@@ -124,12 +124,12 @@ char* getrelativefilename(char *currentDirectory, char *absoluteFilename)
 		}
 	#endif
 	
-	if(i == cdLen && (absoluteFilename[i] == SLASH || absoluteFilename[i-1] == SLASH))
+	if(i == cdLen && (absoluteFilename[i] == DIR_SEPARATOR || absoluteFilename[i-1] == DIR_SEPARATOR))
 	{
 		// the whole current directory name is in the file name,
 		// so we just trim off the current directory name to get the
 		// current file name.
-		if(absoluteFilename[i] == SLASH)
+		if(absoluteFilename[i] == DIR_SEPARATOR)
 		{
 			// a directory name might have a trailing slash but a relative
 			// file name should not have a leading one...
@@ -152,7 +152,7 @@ char* getrelativefilename(char *currentDirectory, char *absoluteFilename)
 	while(i < cdLen)
 	{
 		i++;
-		if(currentDirectory[i] == SLASH)
+		if(currentDirectory[i] == DIR_SEPARATOR)
 		{
 			// make sure it's not a trailing slash
 			i++;
@@ -165,7 +165,7 @@ char* getrelativefilename(char *currentDirectory, char *absoluteFilename)
 	
 	// move the absolute filename marker back to the start of the directory name
 	// that it has stopped in.
-	while(afMarker > 0 && absoluteFilename[afMarker-1] != SLASH)
+	while(afMarker > 0 && absoluteFilename[afMarker-1] != DIR_SEPARATOR)
 	{
 		afMarker--;
 	}
@@ -182,7 +182,7 @@ char* getrelativefilename(char *currentDirectory, char *absoluteFilename)
 	{
 		relativeFilename[rfMarker++] = '.';
 		relativeFilename[rfMarker++] = '.';
-		relativeFilename[rfMarker++] = SLASH;
+		relativeFilename[rfMarker++] = DIR_SEPARATOR;
 	}
 	
 	// copy the rest of the filename into the result string
