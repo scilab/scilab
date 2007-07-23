@@ -124,13 +124,13 @@ BOOL IsAScicosFileCOSF(char *chainefichier)
 int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
 {
 	int Retour=FALSE;
-	char FinalFileName[MAX_PATH];
-	char ShortPath[MAX_PATH];
-	char PathWScilex[MAX_PATH];
+	char FinalFileName[PATH_MAX];
+	char ShortPath[PATH_MAX];
+	char PathWScilex[PATH_MAX];
 	
 	if (fichier[0]=='\"')
 	{
-		char buffertemp[MAX_PATH];
+		char buffertemp[PATH_MAX];
 		int i=1;
 		
 		while (fichier[i] != '"')
@@ -150,9 +150,9 @@ int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
 
 	if (IsAFile(fichier))
 	{
-		GetShortPathName(fichier,ShortPath,MAX_PATH); /* Recuperation du nom du fichier au format 8.3 */
+		GetShortPathName(fichier,ShortPath,PATH_MAX); /* Recuperation du nom du fichier au format 8.3 */
 		ReplaceSlash(FinalFileName,ShortPath);
-		GetModuleFileName ((HINSTANCE)GetModuleHandle(NULL), PathWScilex, MAX_PATH);
+		GetModuleFileName ((HINSTANCE)GetModuleHandle(NULL), PathWScilex, PATH_MAX);
 		Retour=TRUE;
 
 		switch (OpenCode)

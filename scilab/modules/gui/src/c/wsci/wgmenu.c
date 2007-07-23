@@ -935,7 +935,7 @@ void UpdateFileGraphNameMenu(struct BCG *ScilabGC)
 {
 #define FILEGRAPHMENUFRENCH "wgscilabF.mnu"
 #define FILEGRAPHMENUENGLISH "wgscilabE.mnu"
-  extern char ScilexWindowName[MAX_PATH];
+  extern char ScilexWindowName[PATH_MAX];
   char *ScilabDirectory=NULL;
 
   HWND hWndTmpScilex=FindWindow(NULL,ScilexWindowName);
@@ -974,7 +974,7 @@ void UpdateFileGraphNameMenu(struct BCG *ScilabGC)
 void NewFigure(struct BCG * ScilabGC)
 {
 	
-  char Command[MAX_PATH];
+  char Command[PATH_MAX];
   int FreeWindow=0;
 
   FreeWindow=FindFreeGraphicWindow(ScilabGC);

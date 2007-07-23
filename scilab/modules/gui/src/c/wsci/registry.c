@@ -27,7 +27,7 @@ void ReadRegistryTxt (LPTW lptw)
 	*/
 	HKEY key;
 	DWORD result,Length,size=4;
-	char Clef[MAX_PATH];
+	char Clef[PATH_MAX];
 	int Iconic,iconic;
 	int SizeX;
 	int SizeY;
@@ -36,11 +36,11 @@ void ReadRegistryTxt (LPTW lptw)
     DWORD BackgroundColor;
   	int Toolbar;
 // 	int Language;
-  	char TextFontName[MAX_PATH];
+  	char TextFontName[PATH_MAX];
   	int TextFontSize;
   	RECT rect;
 	
-	Length=MAX_PATH;
+	Length=PATH_MAX;
 	
 	wsprintf(Clef,"SOFTWARE\\Scilab\\%s\\Settings",SCI_VERSION_STRING);
   	result=RegOpenKeyEx(HKEY_CURRENT_USER, Clef, 0, KEY_QUERY_VALUE , &key);
@@ -211,13 +211,13 @@ void WriteRegistryTxt (LPTW lptw)
 	DWORD result,dwsize=4;
 	RECT rect;
 	int iconic;
-	char Clef[MAX_PATH];
+	char Clef[PATH_MAX];
 	int SizeX;
 	int SizeY;
   	int SysColors;
 	DWORD TextColor;
     DWORD BackgroundColor;
-  	char TextFontName[MAX_PATH];
+  	char TextFontName[PATH_MAX];
   	int TextFontSize;
 	BOOL ShowButtons;
 //	int LanguageCode;
@@ -280,7 +280,7 @@ void WriteRegistryGraph (struct BCG *ScilabGC)
 
 	HKEY key;
 	DWORD result,dwsize=4;
-	char Clef[MAX_PATH];
+	char Clef[PATH_MAX];
 
 	RECT rect;
 	long GraphSizeX,GraphSizeY;
@@ -321,7 +321,7 @@ void ReadRegistryGraph (struct BCG *ScilabGC)
 	HKEY key;
 	DWORD result,size=4;
 	long GraphSizeX,GraphSizeY;
-	char Clef[MAX_PATH];
+	char Clef[PATH_MAX];
 	int Toolbar;
 	
 	RECT rect;

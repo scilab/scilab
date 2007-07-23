@@ -210,7 +210,7 @@ void dos2win32 (char *filename, char *filename1)
 char * GetFileExtension(char* filename)
 {
 	char *StrReturn=NULL;
-	char ChaineTemp[MAX_PATH];
+	char ChaineTemp[PATH_MAX];
 	char *buffer=NULL;
 	char *lastdot=NULL;
 	

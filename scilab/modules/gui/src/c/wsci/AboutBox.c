@@ -50,7 +50,7 @@ void ON_ABOUT_WM_DESTROY(HWND hwnd)
 /*-----------------------------------------------------------------------------------*/
 BOOL ON_ABOUT_WM_INITDIALOG(HWND hDlg,HWND hwndFocus, LPARAM lParam)
 {
-	char buffer[MAX_PATH];
+	char buffer[PATH_MAX];
 	int cpubuild=_M_IX86;
 	
 	wsprintf(buffer,"%s %s",MSG_SCIMSG31,DEFAULT_SCI_VERSION_MESSAGE);
@@ -103,7 +103,7 @@ BOOL ON_ABOUT_WM_COMMAND(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify)
 #define LICENSEENG "License.txt"
 
 			char *ScilabDirectory=NULL;
-			char Chemin[MAX_PATH];
+			char Chemin[PATH_MAX];
 			int Language=0;
 
 			int error=0;

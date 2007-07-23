@@ -7,7 +7,7 @@
 
 typedef struct tagMYREC
 {
-   char  CommandFromAnotherScilab[MAX_PATH];
+   char  CommandFromAnotherScilab[PATH_MAX];
 } 
 MYREC;
 

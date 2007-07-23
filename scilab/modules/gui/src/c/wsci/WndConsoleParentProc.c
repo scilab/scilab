@@ -22,8 +22,8 @@ extern BOOL SetIhmSystemDefaultTextColor(void);
 extern char *getCopyCurrentLine(void);
 /*-----------------------------------------------------------------------------------*/
 extern POINT ScreenMinSize;
-extern char ScilexConsoleName[MAX_PATH];
-extern char ScilexWindowName[MAX_PATH];
+extern char ScilexConsoleName[PATH_MAX];
+extern char ScilexWindowName[PATH_MAX];
 /*-----------------------------------------------------------------------------------*/
 BOOL ON_WND_CONSOLE_WM_COPYDATA(HWND hwnd,HWND hWndSend,PCOPYDATASTRUCT MyCopyDataStruct);
 BOOL ON_WND_CONSOLE_WM_CLOSE(HWND hwnd);
@@ -83,8 +83,8 @@ EXPORT LRESULT CALLBACK WndParentProc (HWND hwnd, UINT message, WPARAM wParam, L
 /*-----------------------------------------------------------------------------------*/
 BOOL ON_WND_CONSOLE_WM_COPYDATA(HWND hwnd,HWND hWndSend,PCOPYDATASTRUCT MyCopyDataStruct)
 {
-	char Command[MAX_PATH];
-	char TitleWndSend[MAX_PATH];
+	char Command[PATH_MAX];
+	char TitleWndSend[PATH_MAX];
 
 	ReceiveFromAnotherScilab(hWndSend,MyCopyDataStruct);
 
@@ -124,7 +124,7 @@ BOOL ON_WND_CONSOLE_WM_CREATE(HWND hwnd,LPCREATESTRUCT lpCreateStruct)
 	/* Modification Allan CORNET 15/07/03 */
 	/* Renomme la fenetre avec SCI_VERSION_STRING et numero x associé à la console*/  
 	{
-		char CopyNameConsole[MAX_PATH];
+		char CopyNameConsole[PATH_MAX];
 		char *FirstOccurence;
 		char *SecondOccurence;
 		

@@ -234,11 +234,11 @@ BOOL TestRegistryKey(char *Key,char *ValueToCompare)
 {
 	BOOL bOK=TRUE;
 	HKEY key;
-	DWORD Length=MAX_PATH;
+	DWORD Length=PATH_MAX;
 
 	if ( RegOpenKeyEx(HKEY_CLASSES_ROOT, Key, 0, KEY_QUERY_VALUE , &key) == ERROR_SUCCESS )
 	{
-		char Line[MAX_PATH];
+		char Line[PATH_MAX];
 		if ( RegQueryValueEx(key,"", NULL, NULL, (LPBYTE)&Line, &Length) != ERROR_SUCCESS )
 		{
 			bOK=FALSE;
@@ -706,9 +706,9 @@ char * GetWhereIsThisExe(void)
 {
 	LPSTR tail;
 	char *fullfilename=NULL;
-	fullfilename=(char*)MALLOC(sizeof(char)*MAX_PATH);
+	fullfilename=(char*)MALLOC(sizeof(char)*PATH_MAX);
 
-	GetModuleFileName(GetModuleHandle(NULL),fullfilename,MAX_PATH);
+	GetModuleFileName(GetModuleHandle(NULL),fullfilename,PATH_MAX);
 
 	if ((tail = strrchr (fullfilename, '\\')) != (LPSTR) NULL)
 		{

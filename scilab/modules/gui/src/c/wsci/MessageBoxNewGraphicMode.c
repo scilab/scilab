@@ -18,7 +18,7 @@ void MessageBoxNewGraphicMode(void)
 {
 	HKEY key;
 	DWORD result,size=4;
-	char Clef[MAX_PATH];
+	char Clef[PATH_MAX];
 	int DontShowMessageNewGraphicMode,Ans;
 
 	wsprintf(Clef,"SOFTWARE\\Scilab\\%s\\Settings",SCI_VERSION_STRING);
@@ -57,12 +57,12 @@ BOOL CALLBACK MessageBoxNewGraphicModeDlgProc(HWND hwnd,UINT Message, WPARAM wPa
 BOOL ON_MESSAGEBOXNEWGRAPHICMODE_WM_INITDIALOG(HWND hDlg,HWND hwndFocus, LPARAM lParam)
 {
 	int LanguageCode=0;
-	extern char ScilexWindowName[MAX_PATH];
+	extern char ScilexWindowName[PATH_MAX];
 
 	HKEY key;
 	DWORD result,size=4;
 	int Language;
-	char Clef[MAX_PATH];
+	char Clef[PATH_MAX];
 	LPTW lptw=GetTextWinScilab();
 
 	wsprintf(Clef,"SOFTWARE\\Scilab\\%s\\Settings",SCI_VERSION_STRING);
@@ -107,7 +107,7 @@ BOOL ON_MESSAGEBOXNEWGRAPHICMODE_WM_COMMAND(HWND hwnd, int id, HWND hwndCtl, UIN
 		  {
 			  HKEY key;
 			  DWORD result,dwsize=4;
-			  char Clef[MAX_PATH];
+			  char Clef[PATH_MAX];
 			  int DontShowMessageNewGraphicMode;
 			  LONG TstRegCreateKeyEx=0;
 
@@ -137,7 +137,7 @@ BOOL ON_MESSAGEBOXNEWGRAPHICMODE_WM_COMMAND(HWND hwnd, int id, HWND hwndCtl, UIN
 		case IDC_OPENRELEASENOTES:
 		{
 			char *ScilabDirectory=NULL;
-			char Chemin[MAX_PATH];
+			char Chemin[PATH_MAX];
 			int error=0;
 
 			ScilabDirectory=GetScilabDirectory(FALSE);

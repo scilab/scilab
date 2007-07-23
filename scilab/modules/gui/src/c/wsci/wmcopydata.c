@@ -6,9 +6,9 @@
 #include "Errors.h"
 
 
-static char LineFromAnotherScilab[MAX_PATH];
+static char LineFromAnotherScilab[PATH_MAX];
 static BOOL ReceiveDatafromAnotherScilab=FALSE;
-static char TitleScilabSend[MAX_PATH];
+static char TitleScilabSend[PATH_MAX];
 
 /*-----------------------------------------------------------------------------------*/
 BOOL GetCommandFromAnotherScilab(char *TitleWindowSend,char *CommandLine)
@@ -67,7 +67,7 @@ BOOL ReceiveFromAnotherScilab(HWND hWndSend,PCOPYDATASTRUCT MyCopyDataStruct)
  
    if (wsprintf(LineFromAnotherScilab,"%s",(LPSTR) ((MYREC *)(MyCopyDataStruct->lpData))->CommandFromAnotherScilab)  <= 0) return FALSE;
    
-   GetWindowText(hWndSend,TitleScilabSend,MAX_PATH);
+   GetWindowText(hWndSend,TitleScilabSend,PATH_MAX);
    ReceiveDatafromAnotherScilab=TRUE;
    Retour=TRUE;
 

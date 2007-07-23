@@ -9,7 +9,7 @@
 #include "scilabmode.h"
 /*-----------------------------------------------------------------------------------*/
 static CONSOLE_SCREEN_BUFFER_INFO csbiInfoSave;
-char ScilexConsoleName[MAX_PATH];
+char ScilexConsoleName[PATH_MAX];
 static int Windows_Console_State;/* 0 Hide 1 Show */
 /*-----------------------------------------------------------------------------------*/
 typedef  UINT (WINAPI * GetWindowModuleFileNamePROC) (HWND,LPTSTR,UINT);
@@ -17,10 +17,10 @@ typedef  UINT (WINAPI * GetWindowModuleFileNamePROC) (HWND,LPTSTR,UINT);
 void RenameConsole(void)
 {
 	HMENU hmenuConsole = NULL;
-	char CurrentConsoleName[MAX_PATH];
-	char CurrentConsoleNameTmp[MAX_PATH];
+	char CurrentConsoleName[PATH_MAX];
+	char CurrentConsoleNameTmp[PATH_MAX];
 
-	GetConsoleTitle(CurrentConsoleName,MAX_PATH);
+	GetConsoleTitle(CurrentConsoleName,PATH_MAX);
 	strncpy(CurrentConsoleNameTmp,CurrentConsoleName,strlen(NameConsole));
 	CurrentConsoleNameTmp[strlen(NameConsole)]='\0';
 
@@ -139,17 +139,17 @@ int FindFreeScilexNumber(void)
 {
 	HWND hScilexN=NULL;
 	int Number_of_Scilex=0;
-	char NameScilex[MAX_PATH];
+	char NameScilex[PATH_MAX];
 
 	wsprintf(NameScilex,"%s (%d)",SCI_VERSION_STRING,Number_of_Scilex);
 	hScilexN=FindWindow(NULL,NameScilex);
 	while ( hScilexN )
 	{
 		UINT NbChar=0;
-		char FileName[MAX_PATH+1];
+		char FileName[PATH_MAX+1];
 		strcpy(FileName,"");
 
-		NbChar=GetWindowModuleFileName(hScilexN,FileName,MAX_PATH);
+		NbChar=GetWindowModuleFileName(hScilexN,FileName,PATH_MAX);
 		
 		if (NbChar>0)
 		{

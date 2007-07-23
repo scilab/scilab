@@ -78,7 +78,7 @@ extern void C2F (tmpdirc) (void);
 extern EXPORT LRESULT CALLBACK WndParentProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 extern EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 /*-----------------------------------------------------------------------------------*/
-char ScilexWindowName[MAX_PATH];
+char ScilexWindowName[PATH_MAX];
 POINT ScreenMinSize = {16, 4};
 POINT ScrollSize = {80,360}; /* the default is {80,360} */
 char szNoMemory[] = "out of memory";
@@ -1084,7 +1084,7 @@ void HelpOn(LPTW lptw)
 	UINT type;
 	LPSTR lpMem; /* Pointeur sur la chaine du clipboard */
 	char *MessagePaste=NULL;
-	char Command[MAX_PATH];
+	char Command[PATH_MAX];
 		
 	strcpy(Command,"");
 	
@@ -1135,10 +1135,10 @@ void HelpOn(LPTW lptw)
 		
 		int minlen=strlen("help \"\"");
 
-		if ( strlen(MessagePaste)+minlen > MAX_PATH)
+		if ( strlen(MessagePaste)+minlen > PATH_MAX)
 		{
-			char MessageTMP[MAX_PATH];
-			strncpy(MessageTMP,MessagePaste,MAX_PATH-minlen);
+			char MessageTMP[PATH_MAX];
+			strncpy(MessageTMP,MessagePaste,PATH_MAX-minlen);
 			wsprintf(Command,"help \"%s\"",MessageTMP);
 		}
 		else
@@ -1268,10 +1268,10 @@ void OpenSelection(LPTW lptw)
 	UINT type;
 	LPSTR lpMem; /* Pointeur sur la chaine du clipboard */
 	char *MessagePaste=NULL;
-	char FileName[MAX_PATH];
-	char FileNameSCE[MAX_PATH];	
-	char FileNameSCI[MAX_PATH];	
-	char Command[MAX_PATH];
+	char FileName[PATH_MAX];
+	char FileNameSCE[PATH_MAX];	
+	char FileNameSCI[PATH_MAX];	
+	char Command[PATH_MAX];
 	
 	
 	/* Copie dans le presse papier */
@@ -1325,8 +1325,8 @@ void OpenSelection(LPTW lptw)
 	
 	if ( IsAFile(FileNameSCI) )
 	{
-		char Fichier[MAX_PATH];
-		GetShortPathName(FileNameSCI,Fichier,MAX_PATH);
+		char Fichier[PATH_MAX];
+		GetShortPathName(FileNameSCI,Fichier,PATH_MAX);
 		ReplaceSlash(FileNameSCI,Fichier);
 		wsprintf(Command,"scipad('%s')",FileNameSCI);
 		
@@ -1336,8 +1336,8 @@ void OpenSelection(LPTW lptw)
 	
 	if ( IsAFile(FileNameSCE) )
 	{
-		char Fichier[MAX_PATH];
-		GetShortPathName(FileNameSCE,Fichier,MAX_PATH);
+		char Fichier[PATH_MAX];
+		GetShortPathName(FileNameSCE,Fichier,PATH_MAX);
 		ReplaceSlash(FileNameSCE,Fichier);
 		wsprintf(Command,"scipad('%s')",FileNameSCE);
 		StoreCommand1 (Command, 0);
@@ -1346,8 +1346,8 @@ void OpenSelection(LPTW lptw)
 	
 	if ( IsAFile(FileName) )
 	{
-		char Fichier[MAX_PATH];
-		GetShortPathName(FileName,Fichier,MAX_PATH);
+		char Fichier[PATH_MAX];
+		GetShortPathName(FileName,Fichier,PATH_MAX);
 		ReplaceSlash(FileName,Fichier);
 		//MessageBox(NULL,FileName,Fichier,MB_OK);
 		wsprintf(Command,"scipad('%s')",FileName);
@@ -1357,19 +1357,19 @@ void OpenSelection(LPTW lptw)
 	else
 	{
 		/*cree un fichier avec l'extension SCI */
-		char Message[MAX_PATH];
+		char Message[PATH_MAX];
 		
 		wsprintf(Message,MSG_SCIMSG81,FileNameSCI);
 		if ( MessageBox(lptw->hWndText,Message,MSG_SCIMSG82,MB_YESNO|MB_ICONWARNING)== IDYES )
 		{
 			FILE *fp;
-			char Fichier[MAX_PATH];
+			char Fichier[PATH_MAX];
 			
 			fp=fopen(FileNameSCI,"wt");
 			if ( fp )
 			{
 				fclose(fp);
-				GetShortPathName(FileNameSCI,Fichier,MAX_PATH);
+				GetShortPathName(FileNameSCI,Fichier,PATH_MAX);
 				ReplaceSlash(FileNameSCI,Fichier);
 				wsprintf(Command,"scipad('%s')",FileNameSCI);
 				StoreCommand1 (Command, 0);			

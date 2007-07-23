@@ -145,18 +145,18 @@ BOOL ConvertPathUnixToWindowsFormat(char *pathunix,char *pathwindows)
 BOOL Set_SCI_PATH(char *DefaultPath)
 {
 	BOOL bOK=FALSE;
-	char env[MAX_PATH + 1 + 10];
+	char env[PATH_MAX + 1 + 10];
 	char *GetSCIpath=NULL;
 
 	GetSCIpath=getenv ("SCI");
 
 	if (GetSCIpath) 
 	{
-		char ShortPath[MAX_PATH+1];
+		char ShortPath[PATH_MAX+1];
 		char *CopyOfDefaultPath=NULL;
 		CopyOfDefaultPath=MALLOC(((int)strlen(GetSCIpath)+1)*sizeof(char));
 
-		if (GetShortPathName(GetSCIpath,ShortPath,MAX_PATH) == 0)
+		if (GetShortPathName(GetSCIpath,ShortPath,PATH_MAX) == 0)
 		{
 			fprintf(stderr,"\n%s%s%s.\n",MSG_ERROR19,MSG_ERROR81,DefaultPath);
 			if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
@@ -164,7 +164,7 @@ BOOL Set_SCI_PATH(char *DefaultPath)
 
 			/* to be sure that it's unix format */
 			/* c:/progra~1/scilab-3.1 */
-			GetShortPathName(DefaultPath,ShortPath,MAX_PATH);
+			GetShortPathName(DefaultPath,ShortPath,PATH_MAX);
 			ConvertPathWindowsToUnixFormat(ShortPath,CopyOfDefaultPath);
 			sprintf (env, "SCI=%s",ShortPath);
 			setSCIpath(ShortPath);
@@ -181,13 +181,13 @@ BOOL Set_SCI_PATH(char *DefaultPath)
 	}
 	else
 	{
-		char ShortPath[MAX_PATH+1];
+		char ShortPath[PATH_MAX+1];
 		char *CopyOfDefaultPath=NULL;
 		CopyOfDefaultPath=MALLOC(((int)strlen(DefaultPath)+1)*sizeof(char));
 
 		/* to be sure that it's unix format */
 		/* c:/progra~1/scilab-3.1 */
-		GetShortPathName(DefaultPath,ShortPath,MAX_PATH);
+		GetShortPathName(DefaultPath,ShortPath,PATH_MAX);
 		ConvertPathWindowsToUnixFormat(ShortPath,CopyOfDefaultPath);
 		sprintf (env, "SCI=%s",ShortPath);
 		setSCIpath(ShortPath);
@@ -211,17 +211,17 @@ BOOL Set_SCI_PATH(char *DefaultPath)
 BOOL Set_HOME_PATH(char *DefaultPath)
 {
 	BOOL bOK=FALSE;
-	char env[MAX_PATH + 1 + 10];
+	char env[PATH_MAX + 1 + 10];
 	char *GetHOMEpath=NULL;
 
 	GetHOMEpath=getenv ("HOME");
 
 	if (GetHOMEpath) 
 	{
-		char ShortPath[MAX_PATH+1];
+		char ShortPath[PATH_MAX+1];
 		char *CopyOfDefaultPath=NULL;
 		CopyOfDefaultPath=MALLOC(((int)strlen(GetHOMEpath)+1)*sizeof(char));
-		if (GetShortPathName(GetHOMEpath,ShortPath,MAX_PATH)==0)
+		if (GetShortPathName(GetHOMEpath,ShortPath,PATH_MAX)==0)
 		{
 			fprintf(stderr,"\n%s%s\n",MSG_ERROR21,MSG_ERROR82);
 			if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
@@ -229,7 +229,7 @@ BOOL Set_HOME_PATH(char *DefaultPath)
 
 			/* to be sure that it's unix format */
 			/* c:/progra~1/scilab-3.1 */
-			GetShortPathName(DefaultPath,ShortPath,MAX_PATH);
+			GetShortPathName(DefaultPath,ShortPath,PATH_MAX);
 			ConvertPathWindowsToUnixFormat(ShortPath,CopyOfDefaultPath);
 			sprintf (env, "HOME=%s",ShortPath);
 
@@ -247,13 +247,13 @@ BOOL Set_HOME_PATH(char *DefaultPath)
 	}
 	else
 	{
-		char ShortPath[MAX_PATH+1];
+		char ShortPath[PATH_MAX+1];
 		char *CopyOfDefaultPath=NULL;
 		CopyOfDefaultPath=MALLOC(((int)strlen(DefaultPath)+1)*sizeof(char));
 
 		/* to be sure that it's unix format */
 		/* c:/progra~1/scilab-3.1 */
-		GetShortPathName(DefaultPath,ShortPath,MAX_PATH);
+		GetShortPathName(DefaultPath,ShortPath,PATH_MAX);
 		ConvertPathWindowsToUnixFormat(ShortPath,CopyOfDefaultPath);
 		sprintf (env, "HOME=%s",ShortPath);
 		
@@ -297,7 +297,7 @@ BOOL Set_SOME_ENVIRONMENTS_VARIABLES_FOR_SCILAB(void)
 BOOL IsTheGoodShell(void)
 {
 	BOOL bOK=FALSE;
-	char shellCmd[_MAX_PATH];
+	char shellCmd[PATH_MAX];
 	char drive[_MAX_DRIVE];
 	char dir[_MAX_DIR];
 	char fname[_MAX_FNAME];
@@ -305,7 +305,7 @@ BOOL IsTheGoodShell(void)
 
 	strcpy(shellCmd,"");
 	strcpy(fname,"");
-	GetEnvironmentVariable("ComSpec", shellCmd, _MAX_PATH);
+	GetEnvironmentVariable("ComSpec", shellCmd, PATH_MAX);
 	_splitpath(shellCmd,drive,dir,fname,ext);
 
 	if (_stricmp(fname,"cmd")==0) bOK=TRUE;

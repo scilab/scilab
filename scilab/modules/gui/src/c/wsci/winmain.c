@@ -218,7 +218,7 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	BOOL ShortCircuitExec=FALSE;
 	BOOL LaunchAFile=FALSE;
 	BOOL ShowMessageBoxInfo=TRUE;		
-	char FileName[MAX_PATH];
+	char FileName[PATH_MAX];
 	int nowin = 0, argcount = 0, lpath = 0, pathtype=0;
 	char *path = NULL;
 	char *ScilabDirectory=NULL;
@@ -276,12 +276,12 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 
 	pFullCmdLineTmp=GetCommandLine();
 	{
-		char LineCommand[MAX_PATH];
-		char LineCommandBis[MAX_PATH];
-		char ShortPath[MAX_PATH];
+		char LineCommand[PATH_MAX];
+		char LineCommandBis[PATH_MAX];
+		char ShortPath[PATH_MAX];
 		char *pPathCmdLine=NULL;
 		char PathCmdLineCopy[1024];
-		char StrWscilexToSearch[MAX_PATH];
+		char StrWscilexToSearch[PATH_MAX];
 		
 		sprintf(StrWscilexToSearch,"%s\" ",WSCILEX);
 
@@ -301,7 +301,7 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 			strncpy(LINE,&LineCommandBis[1],strlen(LineCommandBis)-strlen(PathCmdLineCopy)-1);
 			LINE[strlen(LineCommandBis)-strlen(PathCmdLineCopy)-1]='\0';
 		
-			GetShortPathName(LINE,ShortPath,MAX_PATH);
+			GetShortPathName(LINE,ShortPath,PATH_MAX);
 			strcat(ShortPath,PathCmdLineCopy);
 		
 			pFullCmdLine=(char*)MALLOC(sizeof(char)*(strlen(ShortPath)+1));
@@ -401,7 +401,7 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 			if (stricmp (my_argv[1], "-X") == 0) CodeAction=1; 
 			if (stricmp (my_argv[1], "-P") == 0) CodeAction=2;
 
-			Commande=(char*)MALLOC(MAX_PATH*sizeof(char));
+			Commande=(char*)MALLOC(PATH_MAX*sizeof(char));
 			strcpy(Commande,"empty");
 			CommandByFileExtension(FileName,CodeAction,Commande);
 
@@ -430,9 +430,9 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	
 	if ( ShortCircuitExec == TRUE)
 	{
-		char PathWScilex[MAX_PATH];
+		char PathWScilex[PATH_MAX];
 		int lenPathWScilex=0;
-		GetModuleFileName ((HINSTANCE)GetModuleHandle(NULL), PathWScilex, MAX_PATH);
+		GetModuleFileName ((HINSTANCE)GetModuleHandle(NULL), PathWScilex, PATH_MAX);
 		lenPathWScilex=strlen(PathWScilex);
 		path = my_argv[argcount]+lenPathWScilex+3;
 		lpath = strlen (my_argv[argcount]+lenPathWScilex+3);
@@ -442,7 +442,7 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	else
 	while (argcount > 0)
 	{
-    char ArgTmp[MAX_PATH];
+    char ArgTmp[PATH_MAX];
                 
 		argcount--;
 		strcpy(ArgTmp,my_argv[argcount]);

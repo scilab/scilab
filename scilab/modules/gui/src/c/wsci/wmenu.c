@@ -85,12 +85,12 @@ void Callback_NEWSCILAB(void)
 	STARTUPINFO start;
 	SECURITY_ATTRIBUTES sec_attrs;
 	PROCESS_INFORMATION child;
-	char ScilexName[MAX_PATH];
+	char ScilexName[PATH_MAX];
 	/* Windows NT */
 	char *VarEnvironmnt=NULL;
-	extern char ScilexWindowName[MAX_PATH];
+	extern char ScilexWindowName[PATH_MAX];
 	    		
-	GetModuleFileName (NULL,ScilexName, MAX_PATH);
+	GetModuleFileName (NULL,ScilexName, PATH_MAX);
 
 	memset (&start, 0, sizeof (start));
 	start.cb = sizeof (start);
@@ -120,9 +120,9 @@ void Callback_NEWSCILAB(void)
 /*-----------------------------------------------------------------------------------*/
 void Callback_OPEN(void)
 {
-	char File[MAX_PATH];
-	char ShortFile[MAX_PATH];
-	char command[MAX_PATH];
+	char File[PATH_MAX];
+	char ShortFile[PATH_MAX];
+	char command[PATH_MAX];
 	char TitleText[32];
 
 	LPTW lptw=GetTextWinScilab();
@@ -142,7 +142,7 @@ void Callback_OPEN(void)
 	{
 
 		char CommandBis[512];
-		GetShortPathName(File,ShortFile,MAX_PATH);
+		GetShortPathName(File,ShortFile,PATH_MAX);
 		wsprintf(command,"%cscipad('%s');",CTRLU,ShortFile);
 		wsprintf(CommandBis,"scipad('%s');",ShortFile);
 
@@ -156,8 +156,8 @@ void Callback_OPEN(void)
 /*-----------------------------------------------------------------------------------*/
 void Callback_EXEC(void)
 {
-	char Fichier[MAX_PATH];
-	char command[MAX_PATH];
+	char Fichier[PATH_MAX];
+	char command[PATH_MAX];
 	
 	LPTW lptw=GetTextWinScilab();
 
@@ -179,8 +179,8 @@ void Callback_EXEC(void)
 /*-----------------------------------------------------------------------------------*/
 void Callback_GETF(void)
 {
-	char Fichier[MAX_PATH];
-	char command[MAX_PATH];
+	char Fichier[PATH_MAX];
+	char command[PATH_MAX];
 	
 	LPTW lptw=GetTextWinScilab();
 	    			
@@ -194,8 +194,8 @@ void Callback_GETF(void)
 /*-----------------------------------------------------------------------------------*/
 void Callback_LOAD(void)
 {
-	char Fichier[MAX_PATH];
-	char command[MAX_PATH];
+	char Fichier[PATH_MAX];
+	char command[PATH_MAX];
 	    			
 	LPTW lptw=GetTextWinScilab();
 	    			
@@ -209,8 +209,8 @@ void Callback_LOAD(void)
 /*-----------------------------------------------------------------------------------*/
 void Callback_SAVE(void)
 {
-	char Fichier[MAX_PATH];
-	char command[MAX_PATH];
+	char Fichier[PATH_MAX];
+	char command[PATH_MAX];
 	
 	LPTW lptw=GetTextWinScilab();
 	    			
@@ -226,16 +226,16 @@ void Callback_CHDIR(void)
 {
 	#define NumberCharByLineInChdirBox	56
 	BROWSEINFO InfoBrowserDirectory;
-	char Path[MAX_PATH];
-	char PathToDisplay[MAX_PATH*2];
-	char command[MAX_PATH]; 
-	char TextPath[MAX_PATH*2];
+	char Path[PATH_MAX];
+	char PathToDisplay[PATH_MAX*2];
+	char command[PATH_MAX]; 
+	char TextPath[PATH_MAX*2];
 	
 	LPITEMIDLIST pidl; 
 			
 	LPTW lptw=GetTextWinScilab();
 		
-	GetCurrentDirectory(MAX_PATH,Path);
+	GetCurrentDirectory(PATH_MAX,Path);
 	CutLineForDisplay(PathToDisplay,Path,NumberCharByLineInChdirBox);		
 	InfoBrowserDirectory.hwndOwner = lptw->hWndParent; 
 	InfoBrowserDirectory.pidlRoot = NULL; 
@@ -564,7 +564,7 @@ void Callback_BUGZILLA(void)
 /*-----------------------------------------------------------------------------------*/
 void Callback_EMAIL(void)
 {
-	char Message[MAX_PATH];
+	char Message[PATH_MAX];
 	int error;
 	    		
 	wsprintf(Message,"mailto:%s?Subject=%s&CC=%s&body=%s",MAILTO, SUBJECT,CCMAILTO,"Message to Doctor Scilab");
@@ -1341,9 +1341,9 @@ void CreateButton(LPTW lptw, char *ButtonText[BUTTONMAX], int index,int ButtonSi
         else
         if ( ButtonText[index][0]=='|')
         {
-                char LineTmp[MAX_PATH];
-                char NameButton[MAX_PATH];
-                char PathIconButton[MAX_PATH];
+                char LineTmp[PATH_MAX];
+                char NameButton[PATH_MAX];
+                char PathIconButton[PATH_MAX];
                 char *Token=NULL;
                 HICON IconButton;
                 
@@ -1466,7 +1466,7 @@ void CreateButton(LPTW lptw, char *ButtonText[BUTTONMAX], int index,int ButtonSi
                 }
                 else
                 {
-                        char MsgErr[MAX_PATH];
+                        char MsgErr[PATH_MAX];
                         wsprintf(MsgErr,MSG_ERROR47,ButtonText[index]);
                         MessageBox(NULL,MsgErr,MSG_ERROR48,MB_ICONEXCLAMATION);
                         exit(1);
@@ -1635,7 +1635,7 @@ EXPORT BOOL CALLBACK InputBoxDlgProc (HWND hDlg, UINT message, WPARAM wParam, LP
 BOOL OpenSaveSCIFile(HWND hWndParent,char *titre,BOOL read,char *FileExt,char *file)
 {
 	BOOL Retour=FALSE;
-	char szBuffer[MAX_PATH] = "";
+	char szBuffer[PATH_MAX] = "";
 	OPENFILENAME OFN;
 		
 	ZeroMemory(&OFN, sizeof(OFN));
@@ -1648,7 +1648,7 @@ BOOL OpenSaveSCIFile(HWND hWndParent,char *titre,BOOL read,char *FileExt,char *f
   OFN.lpstrFile = NULL;/*FILE NAME*/
   OFN.nMaxFile = 0;/*SIZE OF FILE NAME*/
   OFN.lpstrFile = szBuffer;
-  OFN.nMaxFile = MAX_PATH;
+  OFN.nMaxFile = PATH_MAX;
   OFN.lpstrTitle = titre;
  
   if (read == TRUE)
@@ -1798,7 +1798,7 @@ BOOL SciOpenSave (HWND hWndParent, BYTE ** s,BOOL save, char **d, int *ierr)
 void SendCTRLandAKey(int code)
 {
 	extern TW textwin;
-	char command[MAX_PATH];
+	char command[PATH_MAX];
 	char *d;
 	
 	wsprintf(command,"%c",(char)code);
@@ -1900,10 +1900,10 @@ void ConfigureScilabStar(int LangCode)
 {
 	#define SCILABSTAR		"scilab.start"
 
-	char scilabstarfullpath[MAX_PATH];
-	char scilabstartmpfullpath[MAX_PATH];
+	char scilabstarfullpath[PATH_MAX];
+	char scilabstartmpfullpath[PATH_MAX];
 	char *WSCIPath=NULL;
-	char wscitmp[MAX_PATH+1];
+	char wscitmp[PATH_MAX+1];
 	
 	int CodeRetour=-2;
 
@@ -1946,8 +1946,8 @@ int ModifyFile(char *fichier,char *motclef,char *chaine)
 {
 		int Retour=1;
 		FILE *fileR,*fileW;
-		char Ligne[MAX_PATH];
-		char cmpchaine[MAX_PATH];
+		char Ligne[PATH_MAX];
+		char cmpchaine[PATH_MAX];
 		
 		fileR=NULL;
 		fileW=NULL;
@@ -1961,7 +1961,7 @@ int ModifyFile(char *fichier,char *motclef,char *chaine)
 
 		if ( (fileR) && (fileW) )
 		{
-			while( fgets(Ligne, MAX_PATH, fileR) != NULL)
+			while( fgets(Ligne, PATH_MAX, fileR) != NULL)
 			{ 
 				strncpy(cmpchaine,Ligne,strlen(motclef));
 				cmpchaine[strlen(motclef)]='\0';
@@ -2029,10 +2029,10 @@ int GetLanguageCodeInScilabDotStar(void)
 		#define MOTCLEF			"LANGUAGE="""
 
 		FILE *fileR=NULL;
-		char wscitmp[MAX_PATH+1];
-		char Ligne[MAX_PATH];
-		char scilabstarfullpath[MAX_PATH];
-		char cmpchaine[MAX_PATH];
+		char wscitmp[PATH_MAX+1];
+		char Ligne[PATH_MAX];
+		char scilabstarfullpath[PATH_MAX];
+		char cmpchaine[PATH_MAX];
 
 		ConvertPathUnixToWindowsFormat(WSCIPath,wscitmp);
 
@@ -2043,14 +2043,14 @@ int GetLanguageCodeInScilabDotStar(void)
 		fileR= fopen(scilabstarfullpath, "rt");
 		if (fileR)
 		{
-			while( fgets(Ligne, MAX_PATH, fileR) != NULL)
+			while( fgets(Ligne, PATH_MAX, fileR) != NULL)
 			{
 				strncpy(cmpchaine,Ligne,strlen(MOTCLEF));
 				cmpchaine[strlen(MOTCLEF)]='\0';
 				if (strcmp(cmpchaine,MOTCLEF)==0)
 				{
 					int i=0,j=0;
-					char LanguageTemp[MAX_PATH];
+					char LanguageTemp[PATH_MAX];
 
 					strcpy(LanguageTemp,"\0");
 					

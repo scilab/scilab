@@ -12,7 +12,7 @@ BOOL LaunchFilebyExtension(char *File);
 /*-----------------------------------------------------------------------------------*/
 void DragFunc (LPTW lptw, HDROP hdrop)
 {
-	static char szFile[MAX_PATH];
+	static char szFile[PATH_MAX];
 	int i, cFiles;
 	
 	cFiles = DragQueryFile (hdrop, 0xffffffff, (LPSTR) NULL, 0);
@@ -21,7 +21,7 @@ void DragFunc (LPTW lptw, HDROP hdrop)
 
 	for (i = 0; i < cFiles; i++)
 	{
-		DragQueryFile (hdrop, i, szFile, MAX_PATH);
+		DragQueryFile (hdrop, i, szFile, PATH_MAX);
 		LaunchFilebyExtension(szFile);	
 	}
 	DragFinish (hdrop);
