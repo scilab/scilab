@@ -13,6 +13,7 @@
 #include "Warnings.h"
 #include "Errors.h"
 #include "version.h"
+#include "machine.h"
 #include "win_mem_alloc.h"
 /*-----------------------------------------------------------------------------------*/
 void MessageBoxNewGraphicMode(void);

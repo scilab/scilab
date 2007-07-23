@@ -5,6 +5,7 @@
 #include <shlwapi.h>
 #include "FindFileAssociation.h"
 #include "MALLOC.h"
+#include "machine.h"
 /*-----------------------------------------------------------------------------------*/ 
 char *FindFileAssociation (char *ptrFindStr,char *Extra) 
 {

@@ -4,7 +4,7 @@
 #define __WMCOPYDATA__
 
 #include <windows.h>
-
+#include "machine.h"
 typedef struct tagMYREC
 {
    char  CommandFromAnotherScilab[PATH_MAX];

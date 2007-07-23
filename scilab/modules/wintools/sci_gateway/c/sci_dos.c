@@ -268,7 +268,7 @@ int C2F(sci_dos) _PARAMS((char *fname,unsigned long l))
 #ifdef _MSC_VER
 static int spawncommand(char *command,BOOL DetachProcess)
 {
-	char shellCmd[_PATH_MAX];
+	char shellCmd[PATH_MAX];
 	char *CmdLine=NULL;
 
 	STARTUPINFO si;
@@ -306,7 +306,7 @@ static int spawncommand(char *command,BOOL DetachProcess)
 		0, TRUE, DUPLICATE_SAME_ACCESS | DUPLICATE_CLOSE_SOURCE);
 
 	/* base command line */
-	GetEnvironmentVariable("ComSpec", shellCmd, _PATH_MAX);
+	GetEnvironmentVariable("ComSpec", shellCmd, PATH_MAX);
 
 	if (DetachProcess)
 	{

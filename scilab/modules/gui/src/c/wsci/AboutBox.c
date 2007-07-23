@@ -3,6 +3,7 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include "AboutBox.h"
+#include "machine.h"
 /*-----------------------------------------------------------------------------------*/
 extern LPTW GetTextWinScilab(void);
 extern char *GetScilabDirectory(BOOL UnixStyle);

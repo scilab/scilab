@@ -15,7 +15,7 @@
 #include "Errors.h"
 #include "version.h"
 #include "win_mem_alloc.h"
-
+#include "machine.h"
 /*-----------------------------------------------------------------------------------*/
 void DragFunc (LPTW lptw, HDROP hdrop);
 /*-----------------------------------------------------------------------------------*/
