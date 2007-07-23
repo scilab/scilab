@@ -17,16 +17,11 @@
 #endif
 /*-----------------------------------------------------------------------------------*/ 
 #ifdef _MSC_VER
-#define PATH_SEPARATOR ";"
-#else /* UNIX */
-#define PATH_SEPARATOR ":"
-#endif
-/*-----------------------------------------------------------------------------------*/ 
-#ifdef _MSC_VER
 #define DEFAULT_SCILAB_CLASSPATH "/bin" /* SCI/bin */
 #define DEFAULT_SCILAB_LIBRARYPATH "/bin" /* SCI/bin */
 #else
 /* not really used , java.library.path is used in fact */
+/* @TODO is it used or not ? Please explain or remove it */
 #define DEFAULT_SCILAB_CLASSPATH "/.libs/" /* SCI/.libs */
 #define DEFAULT_SCILAB_LIBRARYPATH "/.libs/" /* SCI/.libs */
 #endif
