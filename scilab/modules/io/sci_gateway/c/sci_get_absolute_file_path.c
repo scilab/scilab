@@ -22,12 +22,6 @@
 #include "../../../fileio/includes/getfiledesc.h"
 #include "../../../fileio/includes/getfileinfo.h"
 /*-----------------------------------------------------------------------------------*/
-#ifdef _MSC_VER
-	#define DIR_SEPARATOR "\\"
-#else
-	#define DIR_SEPARATOR "/"
-#endif
-/*-----------------------------------------------------------------------------------*/
 int C2F(sci_get_absolute_file_path) _PARAMS((char *fname,unsigned long fname_len))
 {
 	int l1,n1,m1;
