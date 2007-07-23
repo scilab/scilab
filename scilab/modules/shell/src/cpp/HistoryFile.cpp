@@ -63,9 +63,9 @@ BOOL HistoryFile::setDefaultFilename(void)
 	{
 		int lengthbuildfilename = 0;
 		if (defaultfilename) FREE(defaultfilename);
-		lengthbuildfilename = (int)(strlen(SCIHOME)+1+strlen(DEFAULT_HISTORY_FILE)+1);
+		lengthbuildfilename = (int)(strlen(SCIHOME)+strlen(DIR_SEPARATOR)+strlen(DEFAULT_HISTORY_FILE)+1);
 		defaultfilename = (char*)MALLOC(sizeof(char)*(lengthbuildfilename));
-		sprintf(defaultfilename,"%s%c%s",SCIHOME,DIR_SEPARATOR,DEFAULT_HISTORY_FILE);
+		sprintf(defaultfilename,"%s%s%s",SCIHOME,DIR_SEPARATOR,DEFAULT_HISTORY_FILE);
 		FREE(SCIHOME); SCIHOME = NULL;
 		bOK = TRUE;
 	}
