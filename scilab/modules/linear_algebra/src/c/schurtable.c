@@ -1,12 +1,13 @@
 /*-----------------------------------------------------------------------------------*/
-/* INRIA */
+/* @author INRIA 
+ * @TODO : a lot of code here could be factorized
+ */
 /*-----------------------------------------------------------------------------------*/
 #include <string.h>
-#include "FTables.h"
+#include "linear_FTables.h"
 #include "link.h"
-
-typedef struct {double r,i;} doublecmplx;
-
+#include "schur.h"
+#include "FTables.h"
 
 /***********************************
 * Search Table for fschur
@@ -14,20 +15,6 @@ typedef struct {double r,i;} doublecmplx;
 
 #define ARGS_fschur integer*,double *,double*,double*,double*
 typedef integer * (*fschurf)(ARGS_fschur);
-
-/***********************************
-* Search Table for schsel
-***********************************/
-
-#define ARGS_schsel double *,double*
-typedef integer * (*schself)(ARGS_schsel);
-
-/***********************************
-* Search Table for zchsel
-***********************************/
-
-#define ARGS_zchsel doublecmplx *
-typedef integer *(*zchself)(ARGS_zchsel);
 
 
 /***********************************
@@ -52,26 +39,6 @@ FTAB FTab_fschur[] =
 {
 	{"find", (voidf)  C2F(find)},
 	{"folhp", (voidf)  C2F(folhp)},
-	{(char *) 0, (voidf) 0}
-};
-/**************** schsel ***************/
-extern void C2F(sb02mv)(ARGS_schsel);
-extern void C2F(sb02mw)(ARGS_schsel);
-
-FTAB FTab_schsel[] =
-{
-	{"sb02mv", (voidf)  C2F(sb02mv)},
-	{"sb02mw", (voidf)  C2F(sb02mw)},
-	{(char *) 0, (voidf) 0}
-};
-/**************** zchsel ***************/
-extern void C2F(zb02mv)(ARGS_zchsel);
-extern void C2F(zb02mw)(ARGS_zchsel);
-
-FTAB FTab_zchsel[] =
-{
-	{"zb02mv", (voidf)  C2F(zb02mv)},
-	{"zb02mw", (voidf)  C2F(zb02mw)},
 	{(char *) 0, (voidf) 0}
 };
 /**************** gshsel ***************/

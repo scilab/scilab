@@ -14,6 +14,21 @@
 #define ARGS_schsel double *,double*
 typedef integer * (*schself)(ARGS_schsel);
 
+/** 
+ * function call : schsel  
+ * @param alpha
+ * @param beta
+ * @return
+ */
+integer *C2F(schsel)(double *alpha, double *beta);
+
+/** 
+ * fixes the function associated to name 
+ * @param len
+ * @param name
+ * @param rep
+ */
+void C2F(setschsel)(int *len, char *name, int *rep);
 
 /**************** schsel ***************/
 extern void C2F(sb02mv)(ARGS_schsel);
@@ -23,6 +38,119 @@ FTAB FTab_schsel[] ={
 {"sb02mv", (voidf)  C2F(sb02mv)},
 {"sb02mw", (voidf)  C2F(sb02mw)},
 {(char *) 0, (voidf) 0}};
+
+
+/***********************************
+* Search Table for gschur uses : gshsel
+***********************************/
+/**
+ * @TODO : add comment
+ *
+ * @param alphar
+ * @param alphai
+ * @param beta
+ * @return <ReturnValue>
+ */
+integer *C2F(gshsel)(double *alphar, double *alphai, double *beta);
+
+/**
+ *  fixes the function associated to name 
+ *
+ * @param len   
+ * @param name  
+ * @param rep   
+ */
+void C2F(setgshsel)(int *len, char *name, int *rep);
+
+
+/***********************************
+* Search Table for schur uses : fschur
+***********************************/
+
+/**
+ * @TODO : add comment
+ *
+ * @param alpha 
+ * @param beta
+ * @return <ReturnValue>
+ */
+integer *C2F(gzhsel)(doublecmplx *alpha, doublecmplx *beta);
+
+/**
+ *  fixes the function associated to name 
+ *
+ * @param len   
+ * @param name  
+ * @param rep   
+ */
+void C2F(setgzhsel)(int *len, char *name, int *rep);
+
+/***********************************
+* Search Table for gschur uses : gzhsel
+***********************************/
+/**
+ * @TODO : add comment
+ *
+ * @param alpha 
+ * @param beta
+ * @return <ReturnValue>
+ */
+integer *C2F(gzhsel)(doublecmplx *alpha, doublecmplx *beta);
+
+/**
+ *  fixes the function associated to name 
+ *
+ * @param len   
+ * @param name  
+ * @param rep   
+ */
+void C2F(setgzhsel)(int *len, char *name, int *rep);
+
+
+/***********************************
+* Search Table for schur uses : zchsel
+***********************************/
+/**
+ * @TODO : add comment
+ *
+ * @param alpha 
+ * @return <ReturnValue>
+ */
+integer *C2F(zchsel)(doublecmplx *alpha);
+
+/**
+ *  fixes the function associated to name 
+ *
+ * @param len   
+ * @param name  
+ * @param rep   
+ */
+ void C2F(setzchsel)(int *len, char *name, int *rep);
+
+/***********************************
+* Search Table for schur uses : fschur
+***********************************/
+
+/**
+ * @TODO add comment
+ *
+ * @param lsize 
+ * @param alpha 
+ * @param beta  
+ * @param s 
+ * @param p 
+ * @return <ReturnValue>
+ */
+integer *C2F(fschur)(integer *lsize, double *alpha, double *beta, double *s, double *p);
+
+/**
+ *  fixes the function associated to name 
+ *
+ * @param name  
+ * @param rep   
+ */
+void C2F(setfschur)(char *name, int *rep);
+
 
 
 /***********************************

@@ -5,17 +5,11 @@
 #define __LINEAR_FTABLES_H__
 
 #include "machine.h"
+#include "FTables.h"
 
 #define OK 1
 #define FAIL 0
 
-typedef void (*voidf)();
-
 typedef struct { double r, i; } doublecmplx;
-
-typedef struct {
-  char *name;
-  voidf f;
-} FTAB;
 
 #endif /* __LINEAR_FTABLES_H__ */
