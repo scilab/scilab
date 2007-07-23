@@ -21,10 +21,8 @@ extern "C"
 #define MAXBUF	1024
 #ifdef _MSC_VER
 #define DEFAULT_HISTORY_FILE "history.scilab"
-#define SEPARATOR_FILE "\\"
 #else
 #define DEFAULT_HISTORY_FILE ".history.scilab"
-#define SEPARATOR_FILE "/"
 #endif
 /*------------------------------------------------------------------------*/
 HistoryFile::HistoryFile()
@@ -79,9 +77,9 @@ BOOL HistoryFile::setDefaultFilename(void)
 	{
 		int lengthbuildfilename = 0;
 		if (defaultfilename) FREE(defaultfilename);
-		lengthbuildfilename = (int)(strlen(SCIHOME)+strlen(SEPARATOR_FILE)+strlen(DEFAULT_HISTORY_FILE)+1);
+		lengthbuildfilename = (int)(strlen(SCIHOME)+strlen(DIR_SEPARATOR)+strlen(DEFAULT_HISTORY_FILE)+1);
 		defaultfilename = (char*)MALLOC(sizeof(char)*(lengthbuildfilename));
-		sprintf(defaultfilename,"%s%s%s",SCIHOME,SEPARATOR_FILE,DEFAULT_HISTORY_FILE);
+		sprintf(defaultfilename,"%s%s%s",SCIHOME,DIR_SEPARATOR,DEFAULT_HISTORY_FILE);
 		FREE(SCIHOME); SCIHOME = NULL;
 		bOK = TRUE;
 	}
