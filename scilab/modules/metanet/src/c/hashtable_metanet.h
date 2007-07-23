@@ -19,7 +19,7 @@ typedef enum
 } SCIACTION;
 /*-----------------------------------------------------------------------------------*/ 
 int myhcreate(unsigned nel);
-void myhdestroy();
-ENTRY *myhsearch();
+void myhdestroy(void);
+ENTRY *myhsearch(ENTRY item,SCIACTION action);
 /*-----------------------------------------------------------------------------------*/ 
 #endif /* __HASHTABLE_METANET_H__ */
