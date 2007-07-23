@@ -93,4 +93,10 @@ typedef int BOOL ;
 
 #define SHARED_LIB_EXT ".dll"
 
+/* PATH_SEPARATOR : Under Windows by default is ; */
+#define PATH_SEPARATOR ";"
+
+/* DIR_SEPARATOR : Under Windows by default is \ */
+#define DIR_SEPARATOR "\\"
+
 #endif /* MACHINE_H  */
