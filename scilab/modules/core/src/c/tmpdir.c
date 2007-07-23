@@ -39,7 +39,6 @@ static char tmp_dir[256],buf[256];
 void C2F(settmpdir)(void)
 {
 #ifdef _MSC_VER
-	#define PATH_MAX 1024
 	char TmpDirDefault[PATH_MAX];
 #endif
   static int first =0;

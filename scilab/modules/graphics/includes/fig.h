@@ -323,19 +323,6 @@ extern char *getenv();
   #endif /* _POSIX_SOURCE */
 #endif /* X_NOT_POSIX */
 
-/* define PATH_MAX if not already defined */
-#ifndef PATH_MAX
-  #include <sys/param.h>
-  #ifndef PATH_MAX
-    #ifdef MAXPATHLEN
-      #define PATH_MAX MAXPATHLEN
-    #else
-      #define PATH_MAX 1024
-    #endif /* MAXPATHLEN */
-  #endif
-#endif /* PATH_MAX */
-
-
 
 /* use my own PI because GNUC has a long double and others have something else */
 #undef M_PI

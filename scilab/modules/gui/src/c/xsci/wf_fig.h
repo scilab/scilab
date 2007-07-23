@@ -66,6 +66,8 @@ extern char    *mktemp();
 
 #include <X11/Xos.h>
 
+#include "machine.h"
+
 /* for those who have an older (R4) Xos.h, we need to include unistd.h here */
 
 /*
@@ -321,15 +323,6 @@ extern char *getenv();
 #endif /* !defined(sun) || defined(sparc) */
 #endif /* _POSIX_SOURCE */
 #endif /* X_NOT_POSIX */
-
-#ifndef PATH_MAX
-#include <sys/param.h>
-#ifdef MAXPATHLEN
-#define PATH_MAX MAXPATHLEN
-#else
-#define PATH_MAX 1024
-#endif /* MAXPATHLEN */
-#endif /* PATH_MAX */
 
 #ifndef M_PI
 #define M_PI	3.14159265358979323846

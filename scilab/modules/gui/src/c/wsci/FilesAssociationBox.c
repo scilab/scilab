@@ -3,6 +3,7 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include <ShlObj.h>
+#include "machine.h"
 #pragma comment(lib, "shell32.lib")
 #include "FilesAssociationBox.h"
 /*-----------------------------------------------------------------------------------*/
@@ -59,8 +60,6 @@ char * GetWhereIsThisExe(void);
 extern BOOL IsWindowInterface(void);
 extern LPTW GetTextWinScilab(void);
 extern int GetCurrentLanguage(void);
-/*-----------------------------------------------------------------------------------*/
-#define PATH_MAX 512
 /*-----------------------------------------------------------------------------------*/
 EXPORT void WINAPI FilesAssociationBox (HWND hwnd)
 {

@@ -29,8 +29,6 @@ char * UsageStr[]={
   "\torientation : p[ortrait] or l[andscape]  \n",
   "fin"};
 
-#define PATH_MAX 1024
-
 static char file1[PATH_MAX],file2[PATH_MAX];
 
 int main(int argc,char *argv[])

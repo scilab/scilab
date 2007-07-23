@@ -96,9 +96,7 @@ int C2F(getcomp)(char *buf,int *nbuf,long int lbuf)
  */
 int SetSci()
 {
-#ifdef _MSC_VER
-#define PATH_MAX 1024
-#endif
+
 
 	int ierr,iflag=0;
 	int lbuf=PATH_MAX;

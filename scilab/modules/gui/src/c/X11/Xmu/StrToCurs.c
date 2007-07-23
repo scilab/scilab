@@ -58,31 +58,7 @@ SOFTWARE.
 #include	<X11/Xmu/Drawing.h>
 #include	<X11/Xmu/CurUtil.h>
 #include	<X11/Xmu/CharSet.h>
-
-#ifndef X_NOT_POSIX
-#include <stdlib.h>
-#ifdef _POSIX_SOURCE
-#include <limits.h>
-#else
-#define _POSIX_SOURCE
-#include <limits.h>
-#undef _POSIX_SOURCE
-#endif
-#endif /* X_NOT_POSIX */
-#ifndef PATH_MAX
-#ifdef WIN32
-#define PATH_MAX 512
-#else
-#include <sys/param.h>
-#endif
-#ifndef PATH_MAX
-#ifdef MAXPATHLEN
-#define PATH_MAX MAXPATHLEN
-#else
-#define PATH_MAX 1024
-#endif
-#endif
-#endif /* PATH_MAX */
+#include "machine.h"
 
 /* Kludge source to avoid encountering broken shared library linkers
    which insist on resolving references unused by the application,

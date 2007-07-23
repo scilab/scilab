@@ -29,9 +29,6 @@ static void strip_blank(char *source);
 static int no_startup_flag=0;
 /*-----------------------------------------------------------------------------------*/
 #define BSIZE 128
-#ifndef PATH_MAX
-#define PATH_MAX 1024
-#endif
 /*-----------------------------------------------------------------------------------*/
 void realmain(int no_startup_flag_l,char *initial_script,int initial_script_type,int memory)
 {
