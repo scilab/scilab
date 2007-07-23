@@ -476,7 +476,7 @@ void CutLineForDisplay(char *CutLine,char *Line,int NumberOfCharByLine)
 			}
 			else
 			{
-				char BufferCat[MAX_PATH];
+				char BufferCat[PATH_MAX];
 				lstrcpyn(BufferCat,&Line[i*NumberOfCharByLine],NumberOfCharByLine);
 				lstrcat(Buffer,BufferCat);
 
