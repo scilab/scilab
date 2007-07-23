@@ -23,7 +23,7 @@ typedef struct
 } jniCallMethodCache;
 
 /**
- * Create a new cache
+  * Create a new cache
  */
 jniCallMethodCache * jniCreateCallMethodCache( void ) ;
 
@@ -38,12 +38,14 @@ void jniDestroyCallMethodCache( jniCallMethodCache * cache ) ;
 void jniInitializeCallMethodCache( jniCallMethodCache * cache, jclass instanceClass, jmethodID methodId ) ;
 
 /**
- * To know if a cache has alredy been initialized
+ * To know if a cache has already been initialized
+ * @param cache
  */
 BOOL jniIsCallMethodCacheInitialized( jniCallMethodCache * cache ) ;
 
 /**
  * Initialize the environment from an already created jvm.
+ * @param jvm
  */
 void jniInitUtils( JavaVM * jvm ) ;
 
@@ -54,6 +56,7 @@ void jniCloseUtils( void ) ;
 
 /**
  * Return the virtual machine used by this object
+ * @return 
  */
 JavaVM * jniGetJavaVM( void ) ;
 
@@ -67,11 +70,13 @@ void jniSetCurrentEnv( JNIEnv * env ) ;
  * Retrieve the current Java environment from the JVM.
  * This function should be called each time the environment
  * May have changed.
+ * @return
  */
 JNIEnv * jniUpdateCurrentEnv( void ) ;
 
 /**
  * Get the current Java environment
+ * @return
  */
 JNIEnv * jniGetCurrentJavaEnv( void ) ;
 
@@ -83,22 +88,34 @@ jintArray    jniCreateIntArrayCopy(    const jint    * cArray, int nbElements ) 
 
 /**
  * Copy a java array into a preallocated C array
+ * @param javaArray
+ * @param cArray
  */
 void jniCopyJavaDoubleArray( const jdoubleArray javaArray, jdouble * cArray ) ;
+
+/**
+ * Copy a java array into a preallocated C array
+ * @param javaArray
+ * @param cArray
+ */
 void jniCopyJavaIntArray(    const jintArray    javaArray, jint    * cArray ) ;
 
 /**
  * Create a copy of a C string to a Java string
+ * @param cString
+ * @return 
  */
 jstring jniCreateStringCopy( const char * cString ) ;
 
 /**
  * Delete a Java object (array, objects, ...)
+ * @param entity
  */
 void jniDeleteLocalEntity( jobject entity ) ;
 
 /**
 * Delete a Java object (array, objects, ...)
+* @param entity
 */
 void jniDeleteGlobalEntity( jobject entity ) ;
 
