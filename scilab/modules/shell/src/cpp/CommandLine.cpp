@@ -12,7 +12,7 @@ CommandLine::CommandLine(void)
 /*------------------------------------------------------------------------*/
 CommandLine::CommandLine(char *line_)
 {
-	str.assign(line_);
+	theCommand.assign(line_);
 }
 /*------------------------------------------------------------------------*/
 CommandLine::~CommandLine()
@@ -22,12 +22,12 @@ CommandLine::~CommandLine()
 char *CommandLine::get(void)
 {
 	char *line = NULL;
-	if (str.length()>0)
+	if (theCommand.length()>0)
 	{
-		line =  (char*) MALLOC ((str.length()+1)*(sizeof(char)));
-		if (line) strcpy(line,str.c_str() );
+		line =  (char*) MALLOC ((theCommand.length()+1)*(sizeof(char)));
+		if (line) strcpy(line,theCommand.c_str() );
 	}
-	return line ;
+	return line;
 }
 /*------------------------------------------------------------------------*/
 BOOL CommandLine::set(char *line_)
@@ -35,7 +35,7 @@ BOOL CommandLine::set(char *line_)
 	BOOL bOK = FALSE;
 	if (line_)
 	{
-		str.assign(line_);
+		theCommand.assign(line_);
 		bOK = TRUE;
 	}
 	else
