@@ -10,8 +10,7 @@ extern void cerro();
 extern int F2C(arbor)();
 #endif
 
-void C2F(dmtree)(i0,la1,lp1,ls1,m,n,pred,w)
-int *i0,*la1,*lp1,*ls1,*m,*n,*pred,*w;
+void C2F(dmtree)(int *i0, int *la1, int *lp1, int *ls1, int *m, int *n, int *pred, int *w)
 {
   int i,nndim;
   int *alphi,*beta,*f,*g,*ind,*pred1;
