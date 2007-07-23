@@ -237,8 +237,8 @@ char * readline_nw (char *prompt, int interrupt)
 			cur_line[0] = -1;
 			cur_line[1] = '\0';
 		}
-		new_line = (char *) alloc ((unsigned long)(strlen (cur_line) + 1), "history");
-		strcpy (new_line, cur_line);
+		new_line = (char *) MALLOC (sizeof(char)*(strlen (cur_line) + 1));
+		if (new_line) strcpy (new_line, cur_line);
 		return (new_line);
     }
 
@@ -261,7 +261,8 @@ char * readline_nw (char *prompt, int interrupt)
 		{
 			/* abort current line aquisition SS */
 			sendprompt=0;
-			new_line = (char *) alloc ((unsigned long) 2, "history");
+			if (new_line) {FREE(new_line);new_line=NULL;}
+			new_line = (char*)MALLOC(sizeof(char)*2);
 			new_line[0] = -2;
 			new_line[1] = '\0';
 			return (new_line);
@@ -289,9 +290,13 @@ char * readline_nw (char *prompt, int interrupt)
 			switch (cur_char)
 			{
 				case 255:		/* jpc eof quand on fait un pipe */
-					new_line = (char *) alloc ((unsigned long) 2, "history");
-					new_line[0] = -1;
-					new_line[1] = '\0';
+					if (new_line) {FREE(new_line);new_line=NULL;}
+					new_line = (char *)MALLOC(sizeof(char)*2);
+					if (new_line)
+					{
+						new_line[0] = -1;
+						new_line[1] = '\0';
+					}
 				return (new_line);
 
 				case EOF:
@@ -443,11 +448,11 @@ char * readline_nw (char *prompt, int interrupt)
 					else
 					{
 						putc('\n',stdout);
-						new_line = (char *) alloc ((unsigned long) (strlen (cur_line) + 1), "history");
-						strcpy (new_line, cur_line);
+						if (new_line) {FREE(new_line);new_line=NULL;}
+						new_line = (char *) MALLOC (sizeof(char)*(strlen (cur_line) + 1));
+						if (new_line) strcpy (new_line, cur_line);
 						setSearchedTokenInScilabHistory(NULL);
 						return (new_line);
-						
 					}
 				break;
 
@@ -481,9 +486,13 @@ char * readline_win (char *prompt,int interrupt)
       	{
 			/* abort current line aquisition SS */
 			sendprompt=0;
-			new_line = (char *) alloc ((unsigned long) 2, "history");
-			new_line[0] = -2;
-			new_line[1] = '\0';
+			if (new_line) {FREE(new_line);new_line=NULL;}
+			new_line = (char *) MALLOC(sizeof(char)*2);
+			if (new_line)
+			{
+				new_line[0] = -2;
+				new_line[1] = '\0';
+			}
 			return (new_line);
         }
 
@@ -493,10 +502,13 @@ char * readline_win (char *prompt,int interrupt)
 		{
 			/* abort current line aquisition SS */
 			sendprompt=0;
-			new_line = (char *) alloc ((unsigned long) 2, "history");
-			new_line[0] = -2;
-			new_line[1] = '\0';
-
+			if (new_line) {FREE(new_line);new_line=NULL;}
+			new_line = (char *) MALLOC (sizeof(char)*2);
+			if (new_line)
+			{
+				new_line[0] = -2;
+				new_line[1] = '\0';
+			}
 			return (new_line);
 		}
 	
@@ -523,10 +535,14 @@ char * readline_win (char *prompt,int interrupt)
 			switch (cur_char)
 			{
 				case 255:		/* jpc eof quand on fait un pipe */
-					new_line = (char *) alloc ((unsigned long) 2, "history");
-					new_line[0] = -1;
-					new_line[1] = '\0';
-      			return (new_line);
+					if (new_line) {FREE(new_line);new_line=NULL;}
+					new_line = (char *) MALLOC(sizeof(char)* 2);
+					if (new_line)
+					{
+						new_line[0] = -1;
+						new_line[1] = '\0';
+					}
+      				return (new_line);
 				case EOF:
 				return ((char *) NULL);
 				case 001:		/* ^A */
@@ -681,8 +697,9 @@ char * readline_win (char *prompt,int interrupt)
 					else
 					{
 						MyFPutCstdout ('\n');
-						new_line = (char *) alloc ((unsigned long) (strlen (cur_line) + 1), "history");
-						strcpy (new_line, cur_line);
+						if (new_line) {FREE(new_line);new_line=NULL;}
+						new_line = (char *) MALLOC(sizeof(char)*(strlen (cur_line) + 1));
+						if (new_line) strcpy (new_line, cur_line);
 						setSearchedTokenInScilabHistory(NULL);
 						return (new_line);
 

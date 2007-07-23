@@ -12,13 +12,13 @@ public:
 	HistoryFile();
 	~HistoryFile();
 
-	char *getFilename(void);
-	void setFilename(char *filename);
+	std::string getFilename(void);
+	void setFilename(std::string filename);
 	BOOL setDefaultFilename(void);
 
-	BOOL writeToFile(char *filename);
+	BOOL writeToFile(std::string filename);
 	BOOL writeToFile(void);
-	BOOL loadFromFile(char *filename);
+	BOOL loadFromFile(std::string filename);
 	BOOL loadFromFile(void);
 
 	list<CommandLine> getHistory(void);
@@ -28,7 +28,7 @@ public:
 
 protected:
 private:
-	char *my_history_filename;
+	std::string my_history_filename;
 	list<CommandLine> Commands;
 };
 /*------------------------------------------------------------------------*/

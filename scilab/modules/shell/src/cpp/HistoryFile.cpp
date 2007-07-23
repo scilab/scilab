@@ -13,13 +13,11 @@ extern "C"
 #include <stdlib.h>
 #include "sciprint.h"
 #include "cluni0.h"
-#include "machine.h"
 #include "SCIHOME.h"
 #include "inffic.h"
 #include "getCommentDateSession.h"
 };
 /*------------------------------------------------------------------------*/
-#define MAXBUF	1024
 #ifdef _MSC_VER
 #define DEFAULT_HISTORY_FILE "history.scilab"
 #else
@@ -28,7 +26,7 @@ extern "C"
 /*------------------------------------------------------------------------*/
 HistoryFile::HistoryFile()
 {
-	my_history_filename = NULL;
+	my_history_filename.erase();
 }
 /*------------------------------------------------------------------------*/
 HistoryFile::~HistoryFile()
@@ -36,31 +34,18 @@ HistoryFile::~HistoryFile()
 	this->reset();
 }
 /*------------------------------------------------------------------------*/
-char *HistoryFile::getFilename(void)
+std::string HistoryFile::getFilename(void)
 {
-	char *filename = NULL;
-
-	if (this->my_history_filename == NULL) this->setDefaultFilename();
-
-	if (this->my_history_filename) 
-	{
-		filename = (char*)MALLOC(sizeof(char)*(strlen(this->my_history_filename)+1));
-		strcpy(filename,this->my_history_filename);
-	}
-	return filename;
+	if (this->my_history_filename.empty()) this->setDefaultFilename();
+	return this->my_history_filename;
 }
 /*------------------------------------------------------------------------*/
-void HistoryFile::setFilename(char *filename)
+void HistoryFile::setFilename(std::string filename)
 {
-	if (filename)
+	if (!filename.empty())
 	{
-		if (this->my_history_filename) 
-		{
-			FREE(this->my_history_filename);
-			this->my_history_filename = NULL;
-		}
-		this->my_history_filename = (char*)MALLOC(sizeof(char)*(strlen(filename)+1));
-		if (this->my_history_filename) strcpy(this->my_history_filename,filename);
+		this->my_history_filename.erase();
+		this->my_history_filename = filename;
 	}
 	else
 	{
@@ -78,9 +63,9 @@ BOOL HistoryFile::setDefaultFilename(void)
 	{
 		int lengthbuildfilename = 0;
 		if (defaultfilename) FREE(defaultfilename);
-		lengthbuildfilename = (int)(strlen(SCIHOME)+strlen(DIR_SEPARATOR)+strlen(DEFAULT_HISTORY_FILE)+1);
+		lengthbuildfilename = (int)(strlen(SCIHOME)+1+strlen(DEFAULT_HISTORY_FILE)+1);
 		defaultfilename = (char*)MALLOC(sizeof(char)*(lengthbuildfilename));
-		sprintf(defaultfilename,"%s%s%s",SCIHOME,DIR_SEPARATOR,DEFAULT_HISTORY_FILE);
+		sprintf(defaultfilename,"%s%c%s",SCIHOME,DIR_SEPARATOR,DEFAULT_HISTORY_FILE);
 		FREE(SCIHOME); SCIHOME = NULL;
 		bOK = TRUE;
 	}
@@ -88,21 +73,24 @@ BOOL HistoryFile::setDefaultFilename(void)
 	{
 		char  *history_name = get_sci_data_strings(HISTORY_ID);
 		int out_n = 0;
-		defaultfilename = (char*)MALLOC(MAXBUF*sizeof(char));
+		defaultfilename = (char*)MALLOC(MAX_PATH*sizeof(char));
 		if ( defaultfilename == NULL ) return NULL;
-		C2F(cluni0)(history_name, defaultfilename, &out_n,(long)strlen(history_name),MAXBUF);
+		C2F(cluni0)(history_name, defaultfilename, &out_n,(long)strlen(history_name),MAX_PATH);
 	}
 
 	if (defaultfilename)
 	{
-		this->setFilename(defaultfilename);
+		std::string filename;
+		filename.assign(defaultfilename);
 		FREE(defaultfilename);
 		defaultfilename = NULL;
+
+		this->setFilename(filename);
 	}
 	return bOK;
 }
 /*------------------------------------------------------------------------*/
-BOOL HistoryFile::writeToFile(char *filename)
+BOOL HistoryFile::writeToFile(std::string filename)
 {
 	BOOL bOK = FALSE;
 
@@ -110,7 +98,10 @@ BOOL HistoryFile::writeToFile(char *filename)
 	else
 	{
 		FILE *pFile = NULL;
-		pFile = fopen (filename,"wt");
+
+		if (filename.empty())  return bOK;
+
+		pFile = fopen (filename.c_str(),"wt");
 
 		if (pFile)
 		{
@@ -118,13 +109,11 @@ BOOL HistoryFile::writeToFile(char *filename)
 			list<CommandLine>::iterator it_commands;
 			for(it_commands=this->Commands.begin(); it_commands != this->Commands.end(); ++it_commands) 
 			{
-				char *line = (*it_commands).get();
-				if (line)
+				std::string line = (*it_commands).get();
+				if (!line.empty())
 				{
-					fputs(line,pFile);
+					fputs(line.c_str(),pFile);
 					fputs("\n",pFile);
-					FREE(line);
-					line = NULL;
 				}
 			}
 
@@ -142,18 +131,20 @@ BOOL HistoryFile::writeToFile(char *filename)
 BOOL HistoryFile::writeToFile(void)
 {
 	BOOL bOK = FALSE;
-	if (this->my_history_filename) bOK = this->writeToFile(my_history_filename);
+	if (!this->my_history_filename.empty()) bOK = this->writeToFile(my_history_filename);
 	return bOK;
 }
 /*------------------------------------------------------------------------*/
-BOOL HistoryFile::loadFromFile(char *filename)
+BOOL HistoryFile::loadFromFile(std::string filename)
 {
 	#define SECURITY_BUFFER 1000
 	BOOL bOK = FALSE;
-	char  line[MAXBUF];
+	char  line[MAX_PATH+1];
 	FILE * pFile = NULL;
 
-	pFile = fopen (filename,"rt");
+	if (filename.empty()) return bOK;
+
+	pFile = fopen (filename.c_str(),"rt");
 	if (pFile)
 	{
 		while(fgets (line,sizeof(line),pFile) != NULL)
@@ -171,7 +162,7 @@ BOOL HistoryFile::loadFromFile(char *filename)
 BOOL HistoryFile::loadFromFile(void)
 {
 	BOOL bOK = FALSE;
-	if (this->my_history_filename) bOK = this->loadFromFile(my_history_filename);
+	if (!this->my_history_filename.empty()) bOK = this->loadFromFile(my_history_filename);
 	return bOK;
 }
 /*------------------------------------------------------------------------*/
@@ -190,13 +181,11 @@ BOOL HistoryFile::setHistory(list<CommandLine> commands)
 
 	for(it_commands=commands.begin(); it_commands != commands.end(); ++it_commands) 
 	{
-		char *line = (*it_commands).get();
-		if (line)
+		std::string line = (*it_commands).get();
+		if (!line.empty())
 		{
 			CommandLine Line(line);
 			this->Commands.push_back(Line);
-			FREE(line);
-			line = NULL;
 		}
 	}
 	return bOK;
@@ -213,10 +202,9 @@ BOOL HistoryFile::reset(void)
 		check1 = TRUE;
 	}
 
-	if (my_history_filename) 
+	if (!my_history_filename.empty()) 
 	{
-		FREE(this->my_history_filename);
-		this->my_history_filename = NULL;
+		my_history_filename.erase();
 		check2 = TRUE;
 	}
 

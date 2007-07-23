@@ -65,19 +65,19 @@ void C2F (zzledt) (char *buffer, int *buf_size, int *len_line, int *eof, int* in
 	  DisablePutLineInBuffer();
   }
   
-  if (getScilabMode()==SCILAB_STD)
-  {
-	  i = 0;
-	  line = ShellRead();
-	  if (line)
-	  {
-		  strcpy(input_line,line);
-		  FREE(line);
-		  *len_line = (int)strlen(input_line);
-	  }
+  //if (getScilabMode()==SCILAB_STD)
+  //{
+	 // i = 0;
+	 // line = ShellRead();
+	 // if (line)
+	 // {
+		//  strcpy(input_line,line);
+		//  FREE(line);
+		//  *len_line = (int)strlen(input_line);
+	 // }
 
-  }
-  else
+  //}
+  //else
   {
 	i = read_line (save_prompt,*interrupt);
   }

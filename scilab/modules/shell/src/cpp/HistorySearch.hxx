@@ -12,29 +12,27 @@ class HistorySearch
 		HistorySearch();
 		~HistorySearch();
 		BOOL setHistory(list<CommandLine> commands);
-		BOOL setToken(char *token);
-		char *getToken(void);
-		BOOL search(void);
-		char **getSearchResult(void);
-		int *getSearchResultIndice(void);
+		BOOL setToken(std::string token);
+		std::string getToken(void);
+		
 		int getSize(void);
 		BOOL reset(void);
 
-		char *getPreviousLine(void);
-		char *getNextLine(void);
-
-
+		std::string getPreviousLine(void);
+		std::string getNextLine(void);
 
 	protected:
 
 	private:
 		list<CommandLine> Commands;
-		char *my_token;
+		std::string my_token;
 		char **my_lines;
 		int *my_linenumbers;
 		int my_sizearray;
 		int current_position;
 		BOOL moveOnNext;
+
+		BOOL search(void);
 
 		BOOL freeMyToken(void);
 		BOOL freeMylines(void);

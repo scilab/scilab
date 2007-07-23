@@ -17,14 +17,14 @@ class CommandLine
 {
 public:
 	CommandLine(void);
-	CommandLine(char *line_);
 	~CommandLine();
-	char *get(void);
+	CommandLine(std::string line_);
+	std::string get(void);
 	BOOL set(char *line_);
 	
 protected:
 private:
-	string theCommand;
+	std::string Command;
 };
 /*------------------------------------------------------------------------*/
 #endif /* __COMMANDLINE_H__ */

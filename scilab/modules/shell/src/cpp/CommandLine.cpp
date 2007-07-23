@@ -7,35 +7,29 @@
 /*------------------------------------------------------------------------*/
 CommandLine::CommandLine(void)
 {
-
 }
 /*------------------------------------------------------------------------*/
-CommandLine::CommandLine(char *line_)
+CommandLine::CommandLine(std::string line_)
 {
-	theCommand.assign(line_);
+	this->Command = line_ ;
 }
 /*------------------------------------------------------------------------*/
 CommandLine::~CommandLine()
 {
+	Command.erase();
 }
 /*------------------------------------------------------------------------*/
-char *CommandLine::get(void)
+std::string CommandLine::get(void)
 {
-	char *line = NULL;
-	if (theCommand.length()>0)
-	{
-		line =  (char*) MALLOC ((theCommand.length()+1)*(sizeof(char)));
-		if (line) strcpy(line,theCommand.c_str() );
-	}
-	return line;
+	return Command ;
 }
 /*------------------------------------------------------------------------*/
 BOOL CommandLine::set(char *line_)
 {
 	BOOL bOK = FALSE;
-	if (line_)
+	if (!Command.empty())
 	{
-		theCommand.assign(line_);
+		Command.assign(line_);
 		bOK = TRUE;
 	}
 	else

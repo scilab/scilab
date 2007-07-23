@@ -24,7 +24,7 @@ class HistoryManager
 public:
 	HistoryManager();
 	~HistoryManager();
-	BOOL appendLine(char *line);
+	BOOL appendLine(char *cline);
 	BOOL appendLines(char **lines,int nbrlines);
 	void displayHistory(void);
 
@@ -60,8 +60,7 @@ private:
 	HistoryFile my_file;
 	HistorySearch my_search;
 
-	list<CommandLine> Commands;
-	list<CommandLine>::iterator it_current_position;
+	list<CommandLine> CommandsList;
 
 	BOOL saveconsecutiveduplicatelines;
 	int afterhowmanylineshistoryissaved;

@@ -159,34 +159,3 @@ int read_line (char *prompt, int interrupt)
   
 }
 
-
-/****************************************************************
-*alloc:
-* allocate memory 
-* This is a protected version of malloc. It causes an int_error 
-* if there is not enough memory. If message is NULL, we 
-* allow NULL return. Otherwise, we handle the error, using the
-* message to create the int_error string. Note cp/sp_extend uses realloc,
-* so it depends on this using malloc().
-*****************************************************************/
-
-char * alloc (unsigned long size, char *message)
-/* unsigned long size;     # of bytes */
-/* char *message;           description of what is being allocated */
-{
-	char *p;			/* the new allocation */
-	char errbuf[100];		/* error message string */
-	p = MALLOC ((size_t) size);	/* try again */
-	if (p == (char *) NULL)
-	{
-		/* really out of memory */
-		if (message != NULL)
-		{
-			(void) sprintf (errbuf, "out of memory for %s", message);
-			int_error (errbuf, NO_CARET);
-			/* NOTREACHED */
-		}
-		/* else we return NULL */
-	}
-	return (p);
-}
