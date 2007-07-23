@@ -983,7 +983,7 @@ AC_C_INLINE()
 ###### Creation of the header file (machine.h)
 #######################
 
-AC_DEFINE_UNQUOTED([PATH_SEPARATOR], $PATH_SEPARATOR,
+AC_DEFINE_UNQUOTED([PATH_SEPARATOR], '$PATH_SEPARATOR',
 [The default path separator character.])
 
 AH_TOP([#ifndef MACHINE_H 
@@ -1026,7 +1026,7 @@ typedef int BOOL ;
 #ifdef DIR_SEPARATOR
 	   #undef DIR_SEPARATOR
 #endif
-#define DIR_SEPARATOR /
+#define DIR_SEPARATOR '/'
 
 /* make sure we have PATH_MAX */
 #if HAVE_LIMITS_H
