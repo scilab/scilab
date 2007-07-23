@@ -124,12 +124,12 @@ char* getrelativefilename(char *currentDirectory, char *absoluteFilename)
 		}
 	#endif
 	
-	if(i == cdLen && (absoluteFilename[i] == 'DIR_SEPARATOR' || absoluteFilename[i-1] == 'DIR_SEPARATOR'))
+	if(i == cdLen && (absoluteFilename[i] == DIR_SEPARATOR || absoluteFilename[i-1] == DIR_SEPARATOR))
 	{
 		// the whole current directory name is in the file name,
 		// so we just trim off the current directory name to get the
 		// current file name.
-		if(absoluteFilename[i] == 'DIR_SEPARATOR')
+		if(absoluteFilename[i] == DIR_SEPARATOR)
 		{
 			// a directory name might have a trailing slash but a relative
 			// file name should not have a leading one...
@@ -152,7 +152,7 @@ char* getrelativefilename(char *currentDirectory, char *absoluteFilename)
 	while(i < cdLen)
 	{
 		i++;
-		if(currentDirectory[i] == 'DIR_SEPARATOR')
+		if(currentDirectory[i] == DIR_SEPARATOR)
 		{
 			// make sure it's not a trailing slash
 			i++;
