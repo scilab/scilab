@@ -31,7 +31,7 @@ BOOL createMainScilabObject(void)
 				jint ScilabMode = getScilabMode();
 				ScilabObject = (*currentENV)->NewObject(currentENV,cls,mid,ScilabMode); 
 				/* Catch the exception and display an human-reading error message 
-				* @TODO See if is worst it to factorize that code */
+				 */
 				bOK=catchIfJavaException("Could not create a Scilab main class. Error :\n");
 			}
 		}
