@@ -6,6 +6,7 @@
 #include <stdlib.h>
 
 #include "intersci.h"
+#include "machine.h"
 
 static char buf[1024];
 
@@ -3329,9 +3330,9 @@ void  FCprintf(FILE *f,char *format,...)
 static void SciEnv ()
 {
   char *p,*p1;
-  char modname[MAX_PATH+1];
-  char env[MAX_PATH+1+10];
-  if (!GetModuleFileName (NULL, modname+1, MAX_PATH))
+  char modname[PATH_MAX+1];
+  char env[PATH_MAX+1+10];
+  if (!GetModuleFileName (NULL, modname+1, PATH_MAX))
     return;
   if ((p = strrchr (modname+1, '\\')) == NULL)
     return;

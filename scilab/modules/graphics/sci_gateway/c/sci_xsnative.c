@@ -26,13 +26,13 @@
 
 /*-----------------------------------------------------------------------------------*/
 static int NumBMP=0;
-static char DefaultFilenameTests[MAX_PATH]="IMG";
+static char DefaultFilenameTests[PATH_MAX]="IMG";
 #define ExtensionTests ".bmp"
 /*-----------------------------------------------------------------------------------*/
 int sci_xsnative( char * fname, unsigned long fname_len )
 {
   static int l1, m1, n1;
-  char FilenameBMP[MAX_PATH];
+  char FilenameBMP[PATH_MAX];
   integer iflag =0,ids,num,un=1;
   int *ArrayWGraph=NULL;
   int i=0;
@@ -60,7 +60,7 @@ int sci_xsnative( char * fname, unsigned long fname_len )
         GetRhsVar(1,"c",&m1,&n1,&l1);
         Input=cstk(l1);
 
-        C2F(cluni0)(Input,DefaultFilenameTests, &out_n,(long)strlen(Input),MAX_PATH);
+        C2F(cluni0)(Input,DefaultFilenameTests, &out_n,(long)strlen(Input),PATH_MAX);
         NumBMP=0;
       }
       else
