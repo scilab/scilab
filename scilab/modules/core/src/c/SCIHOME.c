@@ -38,10 +38,8 @@ BOOL setSCIHOME(void)
 	if (ierr) /* SCIHOME not define */
 	{
 		#ifdef _MSC_VER
-			#define DIRSEPARATOR "\\"
 			#define BASEDIR "Scilab"
 		#else
-			#define DIRSEPARATOR "/"
 			#define BASEDIR ".Scilab"
 		#endif
 
@@ -59,8 +57,8 @@ BOOL setSCIHOME(void)
 		if (ierr) {return bOK; }
 		else
 		{
-			sprintf(USERPATHSCILAB,"%s%s%s",USERHOMESYSTEM,DIRSEPARATOR,BASEDIR);
-			sprintf(SCIHOMEPATH,"%s%s%s",USERPATHSCILAB,DIRSEPARATOR,SCI_VERSION_STRING);
+			sprintf(USERPATHSCILAB,"%s%s%s",USERHOMESYSTEM,DIR_SEPARATOR,BASEDIR);
+			sprintf(SCIHOMEPATH,"%s%s%s",USERPATHSCILAB,DIR_SEPARATOR,SCI_VERSION_STRING);
 		}
 		sprintf(env,"SCIHOME=%s",SCIHOMEPATH);
 		putenv(env);
