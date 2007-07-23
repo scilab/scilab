@@ -5,7 +5,6 @@
 #ifdef _MSC_VER
 #include <windows.h>
 #else
-#define MAX_PATH 512
 #include "machine.h"
 #endif
 
@@ -25,10 +24,10 @@ BOOL Set_TCL_LIBRARY_PATH(char *DefaultPath)
 	int minor=4; /* Par defaut */
 	int patchLevel=0;
 	int type=0;
+	/* @TODO : WTF is 10 ? */
+	char env[PATH_MAX + 1 + 10];
 	
-	char env[MAX_PATH + 1 + 10];
-	
-	char ShortPath[MAX_PATH+1];
+	char ShortPath[PATH_MAX+1];
 	char *CopyOfDefaultPath=NULL;
 
 	CopyOfDefaultPath=MALLOC(((int)strlen(DefaultPath)+1)*sizeof(char));
@@ -38,7 +37,7 @@ BOOL Set_TCL_LIBRARY_PATH(char *DefaultPath)
 
 	/* to be sure that it's windows format */
 	/* c:\progra~1\scilab-5.0\modules\tclsci\tcl\tcl8.4 */
-	if (GetShortPathName(DefaultPath,ShortPath,MAX_PATH)==0)
+	if (GetShortPathName(DefaultPath,ShortPath,PATH_MAX)==0)
 	{
 		char *msg1=QueryStringError("tclsci_error_40");
 		char *msg2=QueryStringError("tclsci_error_43");
@@ -75,8 +74,8 @@ BOOL Set_TCL_LIBRARY_PATH(char *DefaultPath)
 BOOL Set_TK_LIBRARY_PATH(char *DefaultPath)
 {
 	BOOL bOK=FALSE;
-	char env[MAX_PATH + 1 + 10];
-	char ShortPath[MAX_PATH+1];
+	char env[PATH_MAX + 1 + 10];
+	char ShortPath[PATH_MAX+1];
 	char *CopyOfDefaultPath=NULL;
 
 	int major=8;
@@ -90,7 +89,7 @@ BOOL Set_TK_LIBRARY_PATH(char *DefaultPath)
 
 	/* to be sure that it's windows format */
 	/* c:\progra~1\scilab-3.1\modules\tclsci\tcl\tk8.4 */
-	if (GetShortPathName(DefaultPath,ShortPath,MAX_PATH)==0)
+	if (GetShortPathName(DefaultPath,ShortPath,PATH_MAX)==0)
 	{
 		char *msg1=QueryStringError("tclsci_error_41");
 		char *msg2=QueryStringError("tclsci_error_42");

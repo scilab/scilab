@@ -11,9 +11,6 @@
 #include "MALLOC.h"
 #include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
-#ifndef _MAX_PATH
-#define _MAX_PATH   260
-#endif
 #ifndef _MSC_VER
 #define _fullpath(a,r,l)        realpath(r,a)
 #endif
@@ -28,12 +25,12 @@ int C2F(sci_fullpath) _PARAMS((char *fname,unsigned long fname_len))
 	{
 		static int l1,n1,m1;
 		char *relPath=NULL;
-		char fullpath[_MAX_PATH*4];
+		char fullpath[PATH_MAX*4];
 		
 		GetRhsVar(1,"c",&m1,&n1,&l1);
 		relPath=cstk(l1);
 
-		if( _fullpath( fullpath, relPath, _MAX_PATH*4 ) != NULL )
+		if( _fullpath( fullpath, relPath, PATH_MAX*4 ) != NULL )
 		{
 			char *Output=NULL;
 			Output=(char*)MALLOC((strlen(fullpath)+1)*sizeof(char));
