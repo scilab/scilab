@@ -134,7 +134,7 @@ BOOL startJVM(char *SCI_PATH)
 			jvm_options[2].optionString = JAVALIBRARYPATH;
 #ifdef _JNI_DEBUG_TRACE
 			jvm_options[3].optionString = "-verbose:jni";  /* print JNI msgs */
-                        jvm_options[4].optionString = "-Xcheck:jni";  /* print JNI errors */
+			jvm_options[4].optionString = "-Xcheck:jni";  /* print JNI errors */
 #endif
 
 			vm_args.options = jvm_options;
