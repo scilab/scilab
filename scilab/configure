@@ -31887,12 +31887,6 @@ _ACEOF
 
 
 
-cat >>confdefs.h <<_ACEOF
-#define DIR_SEPARATOR '$DIR_SEPARATOR'
-_ACEOF
-
-
-
 
 
 
