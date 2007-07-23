@@ -31882,7 +31882,7 @@ esac
 
 
 cat >>confdefs.h <<_ACEOF
-#define PATH_SEPARATOR '$PATH_SEPARATOR'
+#define PATH_SEPARATOR $PATH_SEPARATOR
 _ACEOF
 
 
