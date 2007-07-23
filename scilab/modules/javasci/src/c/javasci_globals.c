@@ -57,8 +57,8 @@ void Initialize(void)
     if ( p1== NULL )
     {
 		/* Detection Scilab path */
-		char modname[MAX_PATH+1];
-		if (!GetModuleFileName (GetModuleHandle("javasci.dll"), modname, MAX_PATH))
+		char modname[PATH_MAX+1];
+		if (!GetModuleFileName (GetModuleHandle("javasci.dll"), modname, PATH_MAX))
 		{
 			MessageBox(NULL,"javasci.dll not found","Warning",MB_ICONWARNING);
 		}

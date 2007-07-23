@@ -5,9 +5,6 @@
 #include "gw_wintools.h"
 #include "MALLOC.h" /* MALLOC */
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef MAX_PATH
-#define MAX_PATH 512
-#endif
 
 #ifndef MAX_PATH_LONG
 #define MAX_PATH_LONG 32767

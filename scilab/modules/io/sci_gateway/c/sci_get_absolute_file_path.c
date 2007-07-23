@@ -43,7 +43,7 @@ int C2F(sci_get_absolute_file_path) _PARAMS((char *fname,unsigned long fname_len
 		{
 			int i=0;
 			int fdmax=0;
-			char fileNameFormList[MAX_PATH];
+			char fileNameFormList[PATH_MAX];
 			char *absolute_file_path=NULL;
 
 			filename=cstk(l1);

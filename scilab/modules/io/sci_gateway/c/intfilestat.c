@@ -25,7 +25,7 @@ int C2F(intfilestat)(char * fname,unsigned long fname_len)
 #endif
    int result, m1, n1, l1 , l2,one=1,n;
 #ifdef _MSC_VER
-   char DriveTemp[MAX_PATH];
+   char DriveTemp[PATH_MAX];
 #endif
    CheckRhs(1,1);
    CheckLhs(1,2);

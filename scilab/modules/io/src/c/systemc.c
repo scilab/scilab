@@ -44,7 +44,7 @@ int C2F(systemc)(char *command, integer *stat)
 BOOL CallWindowsShell(char *command,BOOL WaitInput)
 {
 	BOOL bReturn=FALSE;
-	char shellCmd[_MAX_PATH];
+	char shellCmd[PATH_MAX];
 	char *CmdLine=NULL;
 
 	PROCESS_INFORMATION piProcInfo; 
@@ -54,7 +54,7 @@ BOOL CallWindowsShell(char *command,BOOL WaitInput)
 	DWORD ExitCode;
 
 	char *TMPDir=NULL;
-	char FileTMPDir[MAX_PATH];
+	char FileTMPDir[PATH_MAX];
 
 	saAttr.nLength = sizeof(SECURITY_ATTRIBUTES); 
 	saAttr.bInheritHandle = TRUE; 
@@ -79,7 +79,7 @@ BOOL CallWindowsShell(char *command,BOOL WaitInput)
 	siStartInfo.hStdOutput = GetStdHandle(STD_OUTPUT_HANDLE);
 	siStartInfo.hStdError = GetStdHandle(STD_ERROR_HANDLE);
 
-	GetEnvironmentVariable("ComSpec", shellCmd, _MAX_PATH);
+	GetEnvironmentVariable("ComSpec", shellCmd, PATH_MAX);
 	TMPDir=getTMPDIR();
 	sprintf(FileTMPDir,"%s\\DOS.OK",TMPDir);
 	if (TMPDir) 

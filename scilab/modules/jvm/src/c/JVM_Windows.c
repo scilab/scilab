@@ -68,11 +68,11 @@ char *Search_Java_RuntimeLib_in_Windows_Registry(void)
 {
 	#define JRE_HKEY "Software\\JavaSoft\\Java Runtime Environment"
 	char *RuntimeLib=NULL;
-	char value[MAX_PATH];
-	char newKey[MAX_PATH];
+	char value[PATH_MAX];
+	char newKey[PATH_MAX];
 
 	HKEY  regKey;
-	DWORD size  = MAX_PATH;
+	DWORD size  = PATH_MAX;
 	int   result;
 
 #ifdef _WIN64 /* if Win64 search only 64 bits JRE version */
@@ -92,7 +92,7 @@ char *Search_Java_RuntimeLib_in_Windows_Registry(void)
 
 	RegCloseKey(regKey);
 	value[size] = '\0';
-	size = MAX_PATH;
+	size = PATH_MAX;
 
 	strcpy(newKey, JRE_HKEY);
 	strcat(newKey, "\\");

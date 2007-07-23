@@ -5,6 +5,7 @@
 #include <windows.h>
 #include "win_mem_alloc.h"
 #include "../../../../libs/GetWindowsVersion/GetWindowsVersion.h"
+#include "machine.h"
 /*-----------------------------------------------------------------------------------*/
 #define MAX_KEY_LENGTH 255
 #define MAX_VALUE_NAME 16383
@@ -43,8 +44,8 @@ BOOL WindowsQueryRegistry(char *ParamIn1,char *ParamIn2,char *ParamIn3,char *Par
 	{
 		if ( (type == REG_EXPAND_SZ) || (type == REG_SZ) )
 		{
-			DWORD Length=MAX_PATH;
-			char Line[MAX_PATH];
+			DWORD Length=PATH_MAX;
+			char Line[PATH_MAX];
 			if (RegQueryValueEx(key, ParamIn3, NULL, &type, (LPBYTE)&Line, &Length) == ERROR_SUCCESS )
 			{
 				wsprintf(ParamOut1,"%s",Line);
@@ -151,8 +152,8 @@ BOOL WindowsQueryRegistryNumberOfElementsInList(char *ParamIn1,char *ParamIn2,in
 
 	DWORD retCode; 
 
-	TCHAR    achClass[MAX_PATH] = TEXT("");  // buffer for class name 
-	DWORD    cchClassName = MAX_PATH;  // size of class string 
+	TCHAR    achClass[PATH_MAX] = TEXT("");  // buffer for class name 
+	DWORD    cchClassName = PATH_MAX;  // size of class string 
 	DWORD    cSubKeys=0;               // number of subkeys 
 	DWORD    cbMaxSubKey;              // longest subkey size 
 	DWORD    cchMaxClass;              // longest class string 

@@ -102,7 +102,7 @@ BOOL SetFileNameOpenedInScilab(int Id,char *name)
 {
 	BOOL bOK=FALSE;
 	char *ptrName=NULL;
-	char fullpath[_MAX_PATH*4];
+	char fullpath[PATH_MAX*4];
 
 	/* A exception for Id 5 and 6 */
 	/* no filename */
@@ -113,7 +113,7 @@ BOOL SetFileNameOpenedInScilab(int Id,char *name)
 	}
 	else
 	{
-		if( _fullpath( fullpath, name, _MAX_PATH*4 ) != NULL )
+		if( _fullpath( fullpath, name, PATH_MAX*4 ) != NULL )
 		{
 			ptrName=(char*)MALLOC(sizeof(char)*(strlen(fullpath)+1));
 			strcpy(ptrName,fullpath);
@@ -213,10 +213,10 @@ BOOL IsAlreadyOpenedInScilab(char *filename)
 
 	if (ScilabFileList)
 	{
-		char fullpath[_MAX_PATH*4];
+		char fullpath[PATH_MAX*4];
 		int i=0;
 
-		if( _fullpath( fullpath, filename, _MAX_PATH*4 ) == NULL )
+		if( _fullpath( fullpath, filename, PATH_MAX*4 ) == NULL )
 		{
 			/* if we are a problem */
 			strcpy(fullpath,filename);

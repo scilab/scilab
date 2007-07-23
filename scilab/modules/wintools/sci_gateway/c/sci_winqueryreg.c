@@ -118,7 +118,7 @@ int InterfaceWindowsQueryRegistry _PARAMS((char *fname))
 		}
 	}
 
-	output=(char*)MALLOC(MAX_PATH*sizeof(char));
+	output=(char*)MALLOC(PATH_MAX*sizeof(char));
 	paramoutINT=(int*)MALLOC(sizeof(int));
 
 	if ( Rhs == 3 )

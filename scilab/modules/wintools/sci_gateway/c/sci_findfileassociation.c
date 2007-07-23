@@ -6,9 +6,6 @@
 #include "gw_wintools.h"
 #include "MALLOC.h" 
 #include "Scierror.h"
-#ifndef MAX_PATH
-#define MAX_PATH 512
-#endif
 
 /*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
@@ -24,8 +21,8 @@ int C2F(sci_findfileassociation) _PARAMS((char *fname,unsigned long l))
 {	
 	static int l1,n1,m1;
 	char *Output=NULL;
-	char ExtraParam[MAX_PATH];
-	char AssocParam[MAX_PATH];
+	char ExtraParam[PATH_MAX];
+	char AssocParam[PATH_MAX];
 
 	Rhs=Max(Rhs,0);
 	CheckRhs(1,2);

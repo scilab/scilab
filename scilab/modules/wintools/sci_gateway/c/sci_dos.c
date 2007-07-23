@@ -108,7 +108,7 @@ int C2F(sci_dos) _PARAMS((char *fname,unsigned long l))
 	else
 	{
 		char *TMPDir=NULL;
-		char FileTMPDir[MAX_PATH];
+		char FileTMPDir[PATH_MAX];
 
 		TMPDir=getTMPDIR();
 		sprintf(FileTMPDir,"%s\\DOS.OK",TMPDir);
@@ -268,7 +268,7 @@ int C2F(sci_dos) _PARAMS((char *fname,unsigned long l))
 #ifdef _MSC_VER
 static int spawncommand(char *command,BOOL DetachProcess)
 {
-	char shellCmd[_MAX_PATH];
+	char shellCmd[_PATH_MAX];
 	char *CmdLine=NULL;
 
 	STARTUPINFO si;
@@ -306,7 +306,7 @@ static int spawncommand(char *command,BOOL DetachProcess)
 		0, TRUE, DUPLICATE_SAME_ACCESS | DUPLICATE_CLOSE_SOURCE);
 
 	/* base command line */
-	GetEnvironmentVariable("ComSpec", shellCmd, _MAX_PATH);
+	GetEnvironmentVariable("ComSpec", shellCmd, _PATH_MAX);
 
 	if (DetachProcess)
 	{
@@ -318,7 +318,7 @@ static int spawncommand(char *command,BOOL DetachProcess)
 	else
 	{
 		char *TMPDir=NULL;
-		char FileTMPDir[MAX_PATH];
+		char FileTMPDir[PATH_MAX];
 
 		TMPDir=getTMPDIR();
 		sprintf(FileTMPDir,"%s\\DOS.OK",TMPDir);
