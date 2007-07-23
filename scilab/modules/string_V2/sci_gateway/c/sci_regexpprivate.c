@@ -1,4 +1,3 @@
-
 /*------------------------------------------------------------------------*/
 /* File: sci_strsubst1.c                                                  */
 /* Copyright INRIA 2007                                                   */
@@ -19,21 +18,18 @@
 #include "MALLOC.h" /* MALLOC */
 
 static char* substr(const char*str, unsigned start, unsigned end)
-
 	{
-
-	unsigned n = end - start;
-
-	char *stbuf;
+		
+		unsigned n = end - start;
+		char *stbuf;
+/* @TODO is it really working ? */
        stbuf=(char*)MALLOC(sizeof(char*)*(1));
-
 	strncpy(stbuf, str + start, n);
-
 	stbuf[n] = 0;
-
 	return stbuf;
 
 	}
+
 /**
 * Scilab regular expression 
 * 
@@ -48,12 +44,16 @@ int C2F(sci_regexppri) _PARAMS((char *fname,unsigned long fname_len))
   int x,m1,n1,mn,i,m2,n2=0;
   unsigned x1;
   int outIndex = 0 ;
+
+/* @TODO : why 128 ? */
   char ebuf[128];
 
+/* @TODO : why 10 ? */
   const size_t nmatch = 10;
   char *pattern;
   int  z, cflags = 0;
 
+/* @TODO : why 10 ? */
   int stpoint[10];
   int endpoint[10];
   int nbstpoint=0;
@@ -61,9 +61,12 @@ int C2F(sci_regexppri) _PARAMS((char *fname,unsigned long fname_len))
   int nbresult=0;
   int numRow   = 1 ;
 
+/* @TODO : why 10 ? */
   char *result[10];
 
-  regmatch_t pm[10];
+/* @TODO : rename this variable for something more explicite */
+  regmatch_t pm[10]; 
+
 
 
 
@@ -90,20 +93,24 @@ int C2F(sci_regexppri) _PARAMS((char *fname,unsigned long fname_len))
 		z = regexec(out1, Str[x], nmatch, pm, 0);
 		if (z == REG_NOMATCH) { 
 			int outIndex2= Rhs +x+1 ;
-            int numCol   = 1 ;
+			int numCol   = 1 ;
 			numRow   = 1 ;
-            outIndex = 0 ;
-            CreateVar(Rhs+1+x,"c",&numRow,&numCol,&outIndex);
+			outIndex = 0 ;
+			
+CreateVar(Rhs+1+x,"c",&numRow,&numCol,&outIndex);
   			LhsVar(x+1) = outIndex2 ;
 			
 			continue;
 		}
+/* @TODO : add comment */
 		for (x1 = 0; x1 < nmatch && pm[x1].rm_so != -1; ++ x1) {
 			
        
 			stpoint[nbstpoint++]=pm[x1].rm_so+1;
 			endpoint[nbendpoint++]=pm[x1].rm_eo;
-            result[nbresult++]= substr(Str[x], pm[x1].rm_so, pm[x1].rm_eo);  
+			result[nbresult++]= substr(Str[x], 
+pm[x1].rm_so, 
+pm[x1].rm_eo);  
 			
 
         }     
