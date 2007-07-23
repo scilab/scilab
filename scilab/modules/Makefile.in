@@ -158,7 +158,7 @@ DIST_SUBDIRS = intersci polynomials cacsd elementaries_functions \
 	string_V2 signal_processing fileio core metanet optimization \
 	interpolation localization sound statistics time integer \
 	special_functions double randlib data_structures mexlib \
-	symbolic tclsci sparse io shell console gui graphics renderer \
+	symbolic tclsci sparse io shell console renderer gui graphics \
 	wintools functions incremental_link others overloading \
 	maple2scilab m2sci texmacs scipad scilab2fortran \
 	development_tools compatibility_functions helptools scicos \
@@ -331,7 +331,7 @@ SUBDIRS = intersci polynomials cacsd elementaries_functions arnoldi \
 	signal_processing fileio core metanet optimization \
 	interpolation localization sound statistics time integer \
 	special_functions double randlib data_structures mexlib \
-	symbolic tclsci sparse io shell console gui graphics renderer \
+	symbolic tclsci sparse io shell console renderer gui graphics \
 	wintools functions incremental_link others overloading \
 	maple2scilab m2sci texmacs scipad scilab2fortran \
 	development_tools compatibility_functions helptools scicos \
@@ -396,7 +396,6 @@ mydatadir = $(pkgdatadir)/modules/$(modulename)
 
 #SUFFIXES = .xml .sci .htm
 SUFFIXES = .sci 
-SWIGMASK = *.i
 
 ########### INSTALL DOCUMENTATION ###################
 # Install HTML files into the right target
@@ -828,8 +827,12 @@ uninstall-am: uninstall-pkglibLTLIBRARIES
 @GUI_TRUE@all-local:  java-build
 @GUI_FALSE@all-local: 
 
-# @TODO : explain with this !!!!!!!
+# If the user request for the SWIG generation of the wrappers Java => C/C++ 
+# We call the target swig-build on the variable BUILT_SOURCES 
+# We need to use BUILT_SOURCES because we want SWIG to be called BEFORE
+# the compilation of the C/C++ files...
 @SWIG_TRUE@$(BUILT_SOURCES): swig-build
+
 swig-build: 
 	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \

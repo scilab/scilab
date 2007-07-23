@@ -478,7 +478,6 @@ mydatadir = $(pkgdatadir)/modules/$(modulename)
 
 #SUFFIXES = .xml .sci .htm
 SUFFIXES = .sci 
-SWIGMASK = *.i
 
 ########### INSTALL DOCUMENTATION ###################
 # Install HTML files into the right target
@@ -1312,8 +1311,12 @@ uninstall-am: uninstall-libscimetanet_la_demosDATA \
 @GUI_TRUE@all-local:  java-build
 @GUI_FALSE@all-local: 
 
-# @TODO : explain with this !!!!!!!
+# If the user request for the SWIG generation of the wrappers Java => C/C++ 
+# We call the target swig-build on the variable BUILT_SOURCES 
+# We need to use BUILT_SOURCES because we want SWIG to be called BEFORE
+# the compilation of the C/C++ files...
 @SWIG_TRUE@$(BUILT_SOURCES): swig-build
+
 swig-build: 
 	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \

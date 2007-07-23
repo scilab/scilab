@@ -31881,6 +31881,18 @@ esac
 #######################
 
 
+cat >>confdefs.h <<_ACEOF
+#define PATH_SEPARATOR '$PATH_SEPARATOR'
+_ACEOF
+
+
+
+cat >>confdefs.h <<_ACEOF
+#define DIR_SEPARATOR '$DIR_SEPARATOR'
+_ACEOF
+
+
+
 
 
 

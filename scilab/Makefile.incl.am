@@ -49,13 +49,15 @@ else
 all-local: 
 endif
 
-# @TODO : explain with this !!!!!!!
+# If the user request for the SWIG generation of the wrappers Java => C/C++ 
+# We call the target swig-build on the variable BUILT_SOURCES 
+# We need to use BUILT_SOURCES because we want SWIG to be called BEFORE
+# the compilation of the C/C++ files...
 if SWIG
 $(BUILT_SOURCES): swig-build
 endif
 
 ## build Swig Java => C wrappers
-SWIGMASK=*.i
 swig-build: 
 	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \

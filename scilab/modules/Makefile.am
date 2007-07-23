@@ -37,9 +37,9 @@ sparse \
 io \
 shell \
 console \
+renderer \
 gui \
 graphics \
-renderer \
 wintools \
 functions \
 incremental_link \

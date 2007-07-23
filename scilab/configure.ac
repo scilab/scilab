@@ -983,6 +983,9 @@ AC_C_INLINE()
 ###### Creation of the header file (machine.h)
 #######################
 
+AC_DEFINE_UNQUOTED([PATH_SEPARATOR], '$PATH_SEPARATOR',
+[The default path separator character.])
+
 AH_TOP([#ifndef MACHINE_H 
 #define MACHINE_H 
 
@@ -1018,6 +1021,13 @@ typedef int BOOL ;
 	#undef FALSE
 #endif
 #define FALSE 0
+
+
+#ifdef DIR_SEPARATOR
+	   #undef DIR_SEPARATOR
+#endif
+# define DIR_SEPARATOR '/'
+
 
 #include "PARAMS.h"
 

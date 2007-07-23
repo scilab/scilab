@@ -451,8 +451,6 @@ top_srcdir = @top_srcdir@
 
 #SUFFIXES = .xml .sci .htm
 @PVM_TRUE@SUFFIXES = .sci 
-@PVM_FALSE@SWIGMASK = *.i
-@PVM_TRUE@SWIGMASK = *.i
 
 ########### INSTALL DOCUMENTATION ###################
 # Install HTML files into the right target
@@ -1297,8 +1295,12 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @GUI_TRUE@@PVM_TRUE@all-local:  java-build
 @GUI_FALSE@@PVM_TRUE@all-local: 
 
-# @TODO : explain with this !!!!!!!
+# If the user request for the SWIG generation of the wrappers Java => C/C++ 
+# We call the target swig-build on the variable BUILT_SOURCES 
+# We need to use BUILT_SOURCES because we want SWIG to be called BEFORE
+# the compilation of the C/C++ files...
 @PVM_TRUE@@SWIG_TRUE@$(BUILT_SOURCES): swig-build
+
 @PVM_TRUE@swig-build: 
 @PVM_TRUE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 @PVM_TRUE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
@@ -1467,8 +1469,12 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @GUI_TRUE@@PVM_FALSE@all-local:  java-build
 @GUI_FALSE@@PVM_FALSE@all-local: 
 
-# @TODO : explain with this !!!!!!!
+# If the user request for the SWIG generation of the wrappers Java => C/C++ 
+# We call the target swig-build on the variable BUILT_SOURCES 
+# We need to use BUILT_SOURCES because we want SWIG to be called BEFORE
+# the compilation of the C/C++ files...
 @PVM_FALSE@@SWIG_TRUE@$(BUILT_SOURCES): swig-build
+
 @PVM_FALSE@swig-build: 
 @PVM_FALSE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 @PVM_FALSE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \

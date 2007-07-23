@@ -14,6 +14,9 @@
 /* Cname */
 #undef CNAME
 
+/* The default path separator character. */
+#undef DIR_SEPARATOR
+
 /* Define C2F without Trailing Underscore */
 #undef F2C
 
@@ -330,6 +333,9 @@
 /* Define to the version of this package. */
 #undef PACKAGE_VERSION
 
+/* The default path separator character. */
+#undef PATH_SEPARATOR
+
 /* Define as the return type of signal handlers (`int' or `void'). */
 #undef RETSIGTYPE
 
@@ -359,6 +365,9 @@
 
 /* With the JAVA stuff (GUI, Console, JOGL... */
 #undef WITH_GUI
+
+/* Use the Java Console instead of X-window console */
+#undef WITH_JAVA_CONSOLE
 
 /* With OCAML */
 #undef WITH_OCAML
