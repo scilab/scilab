@@ -110,15 +110,15 @@ BOOL LoadHashTableLocalization(struct hashtable *table,char *filenamexml)
 					{ 
 						/* we found <tag> */
 						const char *tag=(const char*)child->children->content;
-						TAGVALUE=(char*)MALLOC(sizeof(char)*(strlen(tag)+1));
-						strcpy(TAGVALUE,tag);
+						TAGVALUE=(char*)MALLOC(sizeof(char)*(strlen((const char*)tag)+1));
+						if (TAGVALUE) strcpy(TAGVALUE,tag);
 					}
 					else if (xmlStrEqual (child->name, (const xmlChar*)"string"))
 					{ 
 						/* we found <string> */
 						const char *str=(const char*)child->children->content;
 						STRINGVALUE=(char*)MALLOC(sizeof(char)*(strlen((const char*)str)+1));
-						strcpy(STRINGVALUE,str);
+						if (STRINGVALUE) strcpy(STRINGVALUE,str);
 					}
 				}
 				child = child->next;

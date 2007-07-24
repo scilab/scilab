@@ -109,25 +109,34 @@ BOOL SetFileNameOpenedInScilab(int Id,char *name)
 	if ( strcmp(name,"") == 0 )
 	{
 		ptrName=(char*)MALLOC(sizeof(char)*(strlen(name)+1));
-		strcpy(ptrName,name);
+		if (ptrName)
+		{
+			strcpy(ptrName,name);
+			bOK=TRUE;
+		}
 	}
 	else
 	{
 		if( _fullpath( fullpath, name, PATH_MAX*4 ) != NULL )
 		{
 			ptrName=(char*)MALLOC(sizeof(char)*(strlen(fullpath)+1));
-			strcpy(ptrName,fullpath);
+			if (ptrName) 
+			{
+				strcpy(ptrName,fullpath);
+				bOK=TRUE;
+			}
 		}
 		else
 		{
 			ptrName=(char*)MALLOC(sizeof(char)*(strlen(name)+1));
-			strcpy(ptrName,name);
+			if (ptrName) 
+			{
+				strcpy(ptrName,name);
+				bOK=TRUE;
+			}
 		}
 	}
-	
 	ScilabFileList[Id].ftname = ptrName;
-	bOK=TRUE;
-
 	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/

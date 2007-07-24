@@ -88,14 +88,14 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 			ind_m1 = m1;
 			ind_n1 = 1;
 			ind_l1 = 0;
-			indices = (int*)MALLOC(sizeof(int)*(ind_m1));   /* Only return in row*/
+			if (ind_m1 != 0) indices = (int*)MALLOC(sizeof(int)*(ind_m1));   /* Only return in row*/
 		}
 		else 
 		{
 			ind_m1 = 1;
 			ind_n1 = n1;
 			ind_l1 = 0;
-			indices = (int*)MALLOC(sizeof(int)*(ind_n1));  /*Only return in col */
+			if (ind_n1 != 0) indices = (int*)MALLOC(sizeof(int)*(ind_n1));  /*Only return in col */
            
 		}
 	}
@@ -104,7 +104,7 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 		ind_m1 = m1;
 		ind_n1 = n1;
 		ind_l1 = 0;
-		indices = (int*)MALLOC(sizeof(int)*(ind_m1*ind_n1));  /* return a matrix*/
+		if ( ind_m1*ind_n1 != 0 )indices = (int*)MALLOC(sizeof(int)*(ind_m1*ind_n1));  /* return a matrix*/
 	}
 
 	if (Lhs == 2) iflag = 1; 
@@ -117,7 +117,7 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 			int i = 0;
 			double *matrix = stk(l1);
 			double *tmp_matrix = NULL;
-			tmp_matrix = (double*)MALLOC(sizeof(double)*(m1*n1));
+			if ( m1*n1 != 0 ) tmp_matrix = (double*)MALLOC(sizeof(double)*(m1*n1));
 			for (i = 0;i< m1*n1; i++) tmp_matrix[i] = matrix[i];
 			if (typex[0]=='r' || typex[0]=='c') rowcolsortd(tmp_matrix,indices,m1,n1,typex,iord);/* When it is row sort or colume sort*/
 			if (typex[0]=='g' ) wholesortd(tmp_matrix,indices,m1,n1,typex,iord); /* When it is 'g', to sort them all*/
