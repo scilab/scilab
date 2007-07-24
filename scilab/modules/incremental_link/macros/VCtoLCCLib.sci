@@ -23,11 +23,11 @@ endfunction
 //-------------------------------------------------------------------
 function bOK=Exportalibrary(libraryname)
   printf('\nExports from '+libraryname+'.dll\n');
-	unix('pedump /exp '+libraryname+'.dll >'+TMPDIR+'\'+libraryname+'.lcc');
+	unix('pedump /exp '+libraryname+'.dll >'+TMPDIR+filesep()+libraryname+'.lcc');
 	printf('Converting Library');
 	
-	fw=mopen(TMPDIR+'\'+libraryname+'.exp',"w");
-	fr=mopen(TMPDIR+'\'+libraryname+'.lcc',"r");
+	fw=mopen(TMPDIR+filesep()+libraryname+'.exp',"w");
+	fr=mopen(TMPDIR+filesep()+libraryname+'.lcc',"r");
 	
 	if (meof(fr) == 0) then 
 		line=mfscanf(1,fr,"%s");
@@ -46,7 +46,7 @@ function bOK=Exportalibrary(libraryname)
 	mclose(fr);
 	
 	printf('\nBuild '+libraryname+'.lib (Please waiting).\n');
-	command='buildLib ""'+TMPDIR+'\'+libraryname+'.exp""'+' ""'+WSCI+'\bin\lcclib\'+libraryname+'.lib""';
+	command='buildLib ""'+TMPDIR+filesep()+libraryname+'.exp""'+' ""'+WSCI+'\bin\lcclib\'+libraryname+'.lib""';
 	unix(command);
 	bOK=%T;
 endfunction

@@ -73,11 +73,8 @@ x_message(['Welcome to LMITOOL';'      ';'   ';
 
 
       pathname=getcwd();
-      if MSDOS then
-          fname = pathname+'\'+PROBNAME+'.sci';
-      else
-          fname = pathname+'/'+PROBNAME+'.sci';
-      end
+
+      fname = pathname+filesep()+PROBNAME+'.sci';
           
  
       txt0='function ['+XNAME+']='+PROBNAME+'('+DNAME+')'

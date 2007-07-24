@@ -9,11 +9,8 @@ function changevarname(fun,oldname,newname)
 // Copyright INRIA
 
 
-if MSDOS
-	sep="\";
-else
-	sep="/";
-end
+
+sep=filesep();
 
 sep_ind=strindex(fun,sep);
 dot_ind=strindex(fun,".");

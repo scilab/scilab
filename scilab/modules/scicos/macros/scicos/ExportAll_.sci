@@ -8,11 +8,9 @@ function ExportAll_()
     end
     if %exp_dir<>[] then 
       systexport(scs_m,%exp_dir),
-      if MSDOS then
-	fname=%exp_dir+'\'+'navigator'
-      else
-	fname=%exp_dir+'/'+'navigator'
-      end
+      
+      fname=%exp_dir+filesep()+'navigator'
+      
       [%junk,%jwin]=do_navigator(scs_m,windows)
       %winc=%jwin(find(%jwin(:,1)==100000),2)
       xbasimp(%winc,fname)

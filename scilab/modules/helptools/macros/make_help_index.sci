@@ -1,12 +1,10 @@
 function path=make_help_index()
 //we create a new index file each time to take into account dynamically
 //loaded toolboxes
-// Copyright INRIA   
-  if MSDOS then
-    OSseparator='\';
-  else
-    OSseparator='/';
-  end
+// Copyright INRIA  
+
+  OSseparator=filesep(); 
+  
   global %helps
   global %helps_modules
   %HELPS=[%helps_modules;%helps];

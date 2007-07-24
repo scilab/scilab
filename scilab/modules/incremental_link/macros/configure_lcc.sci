@@ -7,7 +7,7 @@ function bOK=configure_lcc()
     try
       lccincludepath=winqueryreg('HKEY_CURRENT_USER','Software\lcc\compiler','includepath');
       lcclibpath=winqueryreg('HKEY_CURRENT_USER','Software\lcc\lcclnk','libpath');
-      index=strindex(lccincludepath,'\');
+      index=strindex(lccincludepath,filesep());
       szindex=size(index);
       lccbasepath=part(lccincludepath,[1:index(szindex(2))]);
       lccbinpath=lccbasepath+'bin';

@@ -17,12 +17,8 @@ function flag = find_links(filein,fileout)
 	
 	if rhs<>2 then error(39), end
 	
-	if MSDOS then
-		sep='\';
-	else 
-		sep='/';
-	end
-	
+	sep=filesep();
+		
 	txt=mgetl(filein);
 	
 	//------------------------------------------------------------------------------------------

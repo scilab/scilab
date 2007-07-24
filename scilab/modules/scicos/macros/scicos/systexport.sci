@@ -1,10 +1,7 @@
 function systexport(scs_m,exp_dir)
 // Copyright INRIA
-  if getenv('WIN32','NO')=='OK' then
-    do_export(scs_m,exp_dir+'\'+scs_m.props.title(1))
-  else
-    do_export(scs_m,exp_dir+'/'+scs_m.props.title(1))
-  end
+  
+  do_export(scs_m,exp_dir+filesep()+scs_m.props.title(1))
 
   for k=1:lstsize(scs_m.objs)
     o=scs_m.objs(k)

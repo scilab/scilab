@@ -41,7 +41,7 @@ else
 end 
 if flag==1,
   if MSDOS then 
-	sci1 = strsubst(SCI,'/','\');
+	sci1 = strsubst(SCI,'/',directorysepator());
  	host(sci1+'\bin\Blpr.exe ''  '' '+fname+ ' | ' + sci1+'\bin\lpr.exe');
   else 
  	host('$SCI/bin/Blpr ''  '' '+fname+ ' |' + prc);

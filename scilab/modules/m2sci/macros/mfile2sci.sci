@@ -15,7 +15,7 @@ if rhs<3 then Recmode=%F,end
 if rhs<2 then res_path="./",end
 if rhs<1 then res=m2sci_gui();return;end
 if MSDOS then
-  fil=strsubst(fil,"\","/")
+  fil=strsubst(fil,filesep(),"/")
   res_path=strsubst(res_path,"\","/")
 end
 if part(res_path,length(res_path))<>"/" then 
@@ -88,10 +88,10 @@ if exists("Paths")==0 then
   if MSDOS then
     Paths=strsubst(Paths,"/","\")
     mfiles=listfiles(Paths+"*.m")
-    sep="\"
+    sep=filesep()
   else
     mfiles=listfiles(Paths+"*.m")
-    sep="/"
+    sep=filesep()
   end
 end
 

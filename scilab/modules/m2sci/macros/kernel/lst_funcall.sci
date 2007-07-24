@@ -47,12 +47,11 @@ end
 // file contains more than one function declaration 
 if bval then
 // Verify if the directory exists
+  sep=filesep();
   if MSDOS then
     dirnam=unix_g('dir /b '+pathconvert(TMPDIR))
-    sep="\"
   else  
     dirnam=unix_g('ls ' + pathconvert(TMPDIR))
-    sep="/"
   end
   if or(fnam==dirnam) then
     rmdir(pathconvert(TMPDIR)+fnam,'s')

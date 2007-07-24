@@ -16,12 +16,8 @@ function files= listfiles(paths,flag,flagexpand)
   if flag == %t then 
     paths = pathconvert(paths,%f,flagexpand); 
   end 
-  
-  if MSDOS then
-    DIR_SEPARATOR='\';
-  else
-    DIR_SEPARATOR='/';
-  end
+
+  DIR_SEPARATOR=filesep();
   
   for i=1:size(paths,'*') 
     [path,fname,extension]=fileparts(paths(i));

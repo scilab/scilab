@@ -104,7 +104,7 @@ function scipad(varargin)
                 if validfile then 
                     filetoopen=pathconvert(filetoopen,%f,%t);
                     if MSDOS then 
-                        filetoopen=strsubst(filetoopen,"\","/"); 
+                        filetoopen=strsubst(filetoopen,filesep(),"/"); 
                     end
                     // The complication below is needed to comply with ScilabEval sync limitations: what
                     // is executed during a sync is not available in the interpreter after the sync has

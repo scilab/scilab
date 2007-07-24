@@ -32,7 +32,7 @@ endfunction
 function bOK=setmsvc80pro()
 if MSDOS then
   MSVSDir=winqueryreg('HKEY_LOCAL_MACHINE','Software\Microsoft\VisualStudio\8.0\Setup\VS\Pro','ProductDir');
-  if ( part(MSVSDir,length(MSVSDir)) == '\' ) then MSVSDir=part(MSVSDir,1:length(MSVSDir)-1);end;
+  if ( part(MSVSDir,length(MSVSDir)) == filesep() ) then MSVSDir=part(MSVSDir,1:length(MSVSDir)-1);end;
   
   err=setenv('VSINSTALLDIR',MSVSDir);
   if (err == %F) then bOK=%F,return,end
@@ -74,7 +74,7 @@ endfunction
 function bOK=setmsvc80std()
 if MSDOS then
   MSVSDir=winqueryreg('HKEY_LOCAL_MACHINE','Software\Microsoft\VisualStudio\8.0\Setup\VS\Std','ProductDir');
-  if ( part(MSVSDir,length(MSVSDir)) == '\' ) then MSVSDir=part(MSVSDir,1:length(MSVSDir)-1);end;
+  if ( part(MSVSDir,length(MSVSDir)) == filesep() ) then MSVSDir=part(MSVSDir,1:length(MSVSDir)-1);end;
   
   err=setenv('VSINSTALLDIR',MSVSDir);
   if (err == %F) then bOK=%F,return,end
@@ -115,7 +115,7 @@ endfunction
 function bOK=setmsvc80express()
 if MSDOS then
   MSVSDir=winqueryreg('HKEY_LOCAL_MACHINE','Software\Microsoft\VCExpress\8.0\Setup\VS','ProductDir');
-  if ( part(MSVSDir,length(MSVSDir)) == '\' ) then MSVSDir=part(MSVSDir,1:length(MSVSDir)-1);end;
+  if ( part(MSVSDir,length(MSVSDir)) == filesep() ) then MSVSDir=part(MSVSDir,1:length(MSVSDir)-1);end;
   
   err=setenv('VSINSTALLDIR',MSVSDir);
   if (err == %F) then bOK=%F,return,end
@@ -170,7 +170,7 @@ endfunction
 function bOK=setmsvc71()
 if MSDOS then
   MSVCDir=winqueryreg('HKEY_LOCAL_MACHINE','SOFTWARE\Microsoft\VisualStudio\7.1\Setup\VC','ProductDir')
-  if ( part(MSVCDir,length(MSVCDir)) == '\' ) then MSVCDir=part(MSVCDir,1:length(MSVCDir)-1),end;
+  if ( part(MSVCDir,length(MSVCDir)) == filesep() ) then MSVCDir=part(MSVCDir,1:length(MSVCDir)-1),end;
 
   err=setenv('MSVCDir',MSVCDir);
   if (err == %F) then bOK=%F,return,end
@@ -206,7 +206,7 @@ endfunction
 function bOK=setmsvc70()
 if MSDOS then
   MSVCDir=winqueryreg('HKEY_LOCAL_MACHINE','SOFTWARE\Microsoft\VisualStudio\7.0\Setup\VC','ProductDir');
-  if ( part(MSVCDir,length(MSVCDir)) == '\' ) then MSVCDir=part(MSVCDir,1:length(MSVCDir)-1),end;
+  if ( part(MSVCDir,length(MSVCDir)) == filesep() ) then MSVCDir=part(MSVCDir,1:length(MSVCDir)-1),end;
   
   err=setenv('MSVCDir',MSVCDir);
   if (err == %F) then bOK=%F,return,end
@@ -242,7 +242,7 @@ endfunction
 function bOK=setmsvc60()
 if MSDOS then
   MSVCDir=winqueryreg('HKEY_LOCAL_MACHINE','SOFTWARE\Microsoft\DevStudio\6.0\Products\Microsoft Visual C++','ProductDir');
-  if ( part(MSVCDir,length(MSVCDir)) == '\' ) then MSVCDir=part(MSVCDir,1:length(MSVCDir)-1),end;
+  if ( part(MSVCDir,length(MSVCDir)) == filesep() ) then MSVCDir=part(MSVCDir,1:length(MSVCDir)-1),end;
   
   err=setenv('MSVCDir',MSVCDir);
   if (err == %F) then bOK=%F,return,end
@@ -278,7 +278,7 @@ endfunction
 function bOK=setmsvc50()
 if MSDOS then
   MSVCDir=winqueryreg('HKEY_LOCAL_MACHINE','SOFTWARE\Microsoft\DevStudio\5.0\Directories','ProductDir');
-  if ( part(MSVCDir,length(MSVCDir)) == '\' ) then MSVCDir=part(MSVCDir,1:length(MSVCDir)-1),end;
+  if ( part(MSVCDir,length(MSVCDir)) == filesep() ) then MSVCDir=part(MSVCDir,1:length(MSVCDir)-1),end;
   
   err=setenv('MSVCDir',MSVCDir);
   if (err == %F) then bOK=%F,return,end

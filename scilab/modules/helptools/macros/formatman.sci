@@ -30,15 +30,11 @@ else
 end
 
 path=stripblanks(path)
-if MSDOS then
-  if part(path,length(path))<>'\' then
-     path=path+'\';
-  end
-else
-  if part(path,length(path))<>'/' then
-     path=path+'/';
-  end
+
+if part(path,length(path))<>filesep() then
+  path=path+filesep();
 end
+
 
 path1=path
 if part(path,1:4)=='SCI/' then path=SCI+part(path,4:length(path)),end
@@ -46,7 +42,7 @@ if part(path,1:2)=='~/' then path=getenv('HOME')+part(path,2:length(path)),end
 
 if MSDOS then
   if part(path,1:4)=='SCI\' then path=SCI+part(path,4:length(path)),end
-  path=strsubst(path,'/','\')
+  path=strsubst(path,'/',filesep())
   lst=unix_g('dir /B  '""+path+'* ""')
   lst=lst($:-1:1)
 else

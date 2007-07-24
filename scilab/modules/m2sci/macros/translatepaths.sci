@@ -27,12 +27,11 @@ if exists("m2ssci_fileslib")==0 then load("SCI/modules/m2sci/macros/sci_files/li
 
 // Convert paths so that they can be used according to the platform
 
+sep = filesep();
 if MSDOS then 
-  sep='\'
   Paths=strsubst(Paths,'/',sep)
   res_path=strsubst(res_path,'/',sep)
 else
-  sep='/'
   Paths=strsubst(Paths,'\',sep)
   res_path=strsubst(res_path,'\',sep)
 end

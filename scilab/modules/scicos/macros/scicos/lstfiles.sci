@@ -20,7 +20,7 @@ lst=[]
 for k=1:np
   if MSDOS then 
     cmd='dir /b'+path(k);
-    tmp = strsubst(TMPDIR,'/','\')+'\unix.out';
+    tmp = strsubst(TMPDIR,'/',filesep())+filesep()+'unix.out';
     host(cmd+'> '+ tmp);
     lst1=read(tmp,-1,1,'(a)');
     host('del '+tmp);
@@ -31,7 +31,7 @@ for k=1:np
   else
     cmd='ls -F -c '+path(k)
     tmp=TMPDIR+'/unix.out';
-    host(cmd+'>'+tmp+' 2>'+TMPDIR+'/unix.err')
+    host(cmd+'>'+tmp+' 2>'+TMPDIR+filesep()+'unix.err')
     lst=[lst;read(tmp,-1,1,'(a)')]
     host('rm -f '+tmp);
   end

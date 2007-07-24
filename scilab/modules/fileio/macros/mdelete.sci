@@ -23,7 +23,7 @@ function mdelete(filename)
 	
 	// Handle file path
 	if MSDOS then
-		filename=strsubst(filename,"\","/");
+		filename=strsubst(filename,filesep(),"/");
 	end
 	
 	// File path

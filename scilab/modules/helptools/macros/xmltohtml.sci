@@ -393,7 +393,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 	
 	if MSDOS then
 		if step=='all' | step == 'hw' then
-			if (strindex(dirs(1),'\'+getlanguage()+'\') <> []) then
+			if (strindex(dirs(1),filesep()+getlanguage()+filesep()) <> []) then
 				mprintf("\nCreating sciman.hh* \n");
 				gener_hh(dirs,titles)
 			end

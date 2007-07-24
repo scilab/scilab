@@ -14,10 +14,11 @@ function scicos_pal=update_scicos_pal(path,name,fname)
       return;
     else
       scicos_pal(inde,2)=fname
+      
       if MSDOS then 
-	instr='del '+TMPDIR+'\'+name+'.pal'
+	instr='del '+TMPDIR+filesep()+name+'.pal'
       else
-	instr='\rm -f '+TMPDIR+'/'+name+'.pal'
+	instr='\rm -f '+TMPDIR+filesep()+name+'.pal'
       end
       if execstr('unix_s(instr)','errcatch')<>0 then
 	x_message(['I was not able to delete '+name+'.pal';

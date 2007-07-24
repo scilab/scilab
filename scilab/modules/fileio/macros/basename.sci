@@ -11,12 +11,8 @@ function [files]= basename(files,flag,flagexpand)
   if flag == %t then 
     files = pathconvert(files,%f,flagexpand); 
   end 
-  
-  if MSDOS then 
-    sep = '\' 
-  else
-     sep = '/' 
-  end
+
+  sep = filesep();
   
   for i=1:size(files,'*')
     fname = files(i) 
