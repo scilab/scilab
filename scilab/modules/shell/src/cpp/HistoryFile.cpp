@@ -56,6 +56,7 @@ BOOL HistoryFile::setDefaultFilename(void)
 
 	if (SCIHOME)
 	{
+		/* @TODO : we should use string here */
 		int lengthbuildfilename = 0;
 		if (defaultfilename) FREE(defaultfilename);
 		lengthbuildfilename = (int)(strlen(SCIHOME)+strlen(DIR_SEPARATOR)+strlen(DEFAULT_HISTORY_FILE)+1);
@@ -71,6 +72,7 @@ BOOL HistoryFile::setDefaultFilename(void)
 		defaultfilename = (char*)MALLOC(PATH_MAX*sizeof(char));
 		if ( defaultfilename == NULL ) return NULL;
 		C2F(cluni0)(history_name, defaultfilename, &out_n,(long)strlen(history_name),PATH_MAX);
+		/* @TODO : shouldn't we have a bOK=true here ? */
 	}
 
 	if (defaultfilename)
