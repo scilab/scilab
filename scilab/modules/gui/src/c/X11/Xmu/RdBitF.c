@@ -54,6 +54,7 @@ in this Software without prior written authorization from The Open Group.
 #include <stdio.h>
 #include <ctype.h>
 #include <X11/Xmu/Drawing.h>
+#include "machine.h"
 
 #define MAX_SIZE 255
 
@@ -284,14 +285,14 @@ access_file(char *path, char *pathbuf, int len_pathbuf, char **pathret)
 static int
 AccessFile(char *path, char *pathbuf, int len_pathbuf, char **pathret)
 {
-#ifndef MAX_PATH
-#define MAX_PATH 512
+#ifndef PATH_MAX
+#define PATH_MAX 512
 #endif
 
     unsigned long drives;
     int i, len;
     char* drive;
-    char buf[MAX_PATH];
+    char buf[PATH_MAX];
     char* bufp;
 
     /* just try the "raw" name first and see if it works */
@@ -307,7 +308,7 @@ AccessFile(char *path, char *pathbuf, int len_pathbuf, char **pathret)
     if (!drive)
 	drive = "C:";
     len = strlen (drive) + strlen (path);
-    if (len < MAX_PATH) bufp = buf;
+    if (len < PATH_MAX) bufp = buf;
     else bufp = malloc (len + 1);
     strcpy (bufp, drive);
     strcat (bufp, path);
@@ -321,7 +322,7 @@ AccessFile(char *path, char *pathbuf, int len_pathbuf, char **pathret)
     drive = getenv ("HOMEDRIVE");
     if (drive) {
 	len = strlen (drive) + strlen (path);
-	if (len < MAX_PATH) bufp = buf;
+	if (len < PATH_MAX) bufp = buf;
 	else bufp = malloc (len + 1);
 	strcpy (bufp, drive);
 	strcat (bufp, path);
@@ -339,7 +340,7 @@ AccessFile(char *path, char *pathbuf, int len_pathbuf, char **pathret)
     for (i = C_DRIVE; i <= Z_DRIVE; i++) { /* don't check on A: or B: */
 	if ((1 << i) & drives) {
 	    len = 2 + strlen (path);
-	    if (len < MAX_PATH) bufp = buf;
+	    if (len < PATH_MAX) bufp = buf;
 	    else bufp = malloc (len + 1);
 	    *bufp = 'A' + i;
 	    *(bufp + 1) = ':';
@@ -358,12 +359,12 @@ AccessFile(char *path, char *pathbuf, int len_pathbuf, char **pathret)
 FILE *
 fopen_file(char *path, char *mode)
 {
-    char buf[MAX_PATH];
+    char buf[PATH_MAX];
     char* bufp;
     void* ret = NULL;
     UINT olderror = SetErrorMode (SEM_FAILCRITICALERRORS);
 
-    if (AccessFile (path, buf, MAX_PATH, &bufp))
+    if (AccessFile (path, buf, PATH_MAX, &bufp))
 	ret = fopen (bufp, mode);
 
     (void) SetErrorMode (olderror);
