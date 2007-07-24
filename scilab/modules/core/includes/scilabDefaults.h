@@ -57,11 +57,14 @@
 #define FORMATVERSIONFILENAME  "%s/modules/%s/version.xml" 
 
 
-
+/* Where is the Scilab startup script */
 #define DEFAULTSCILABSTARTUP "SCI/etc/scilab.start"
+
+/* What is the default Scilab StackSize ? */
+#define DEFAULTSTACKSIZE 1000000
+
 //#define DefaultScilabQuit "SCI/etc/scilab.quit"
 //static char DefaultSCIenv[]="../..";
-#define DEFAULTSTACKSIZE 1000000
 
 
 #endif /*__SCILABDEFAULT_H__ */
