@@ -9,7 +9,7 @@
 #include "hashtable_core.h"
 /*-----------------------------------------------------------------------------------*/
 static _ENTRY   * htable = NULL;
-static unsigned   hsize;
+static unsigned   hashtableSize;
 static unsigned   filled;
 /*-----------------------------------------------------------------------------------*/
 static int Equal_id(int *x, int *y);
@@ -29,10 +29,10 @@ int create_hashtable_scilab_functions(unsigned int nel)
 		nel |= 1;      /* make odd */
 		while (!isprime(nel)) nel += 2;
 
-		hsize  = nel;
+		hashtableSize  = nel;
 		filled = 0;
 
-		if ((htable = (_ENTRY *)MALLOC((hsize+1)*sizeof(_ENTRY))) == NULL)	
+		if ((htable = (_ENTRY *)MALLOC((hashtableSize+1)*sizeof(_ENTRY))) == NULL)	
 		{
 			bOK=0;
 		}
@@ -60,7 +60,7 @@ int action_hashtable_scilab_functions(int *key,char *name, int *data, SCI_HFUNCT
 	if (action == SCI_HFUNCTIONS_BACKSEARCH)
 	{
 		unsigned int i=0;
-		for ( i = 0 ; i < hsize ; i++ ) if ( htable[i].used && htable[i].entry.data == *data ) 
+		for ( i = 0 ; i < hashtableSize ; i++ ) if ( htable[i].used && htable[i].entry.data == *data ) 
 		{
 			int j=0;
 			for (j = 0; j < nsiz ; j++ ) key[j] = htable[i].entry.key[j];
@@ -76,14 +76,16 @@ int action_hashtable_scilab_functions(int *key,char *name, int *data, SCI_HFUNCT
 
 		register unsigned idx=0;
 
-		if (action == SCI_HFUNCTIONS_ENTER && filled == hsize) return FAILED;
+		if (action == SCI_HFUNCTIONS_ENTER && filled == hashtableSize) return FAILED;
 
 		hval  = len;
 		count = len;
+
+		/* @TODO add comment : Why are doing this ? */
 		while (count-- > 0) 
 		{
 			hval += key[count];
-			hval %= hsize;
+			hval %= hashtableSize;
 		}
 
 		if (hval == 0) hval++;
@@ -117,11 +119,11 @@ int action_hashtable_scilab_functions(int *key,char *name, int *data, SCI_HFUNCT
 				}
 			}
 
-			hval2 = 1 + hval % (hsize-2);
+			hval2 = 1 + hval % (hashtableSize-2);
 
 			do 
 			{
-				if (idx <= hval2) idx = hsize+idx-hval2;
+				if (idx <= hval2) idx = hashtableSize+idx-hval2;
 				else idx -= hval2;
 
 				if (htable[idx].used == hval ) 
@@ -188,7 +190,7 @@ char **GetFunctionsList(int *sizeList)
 
 	*sizeList=0;
 
-	for ( i = 0 ; i < hsize ; i++ ) if ( htable[i].used) 
+	for ( i = 0 ; i < hashtableSize ; i++ ) if ( htable[i].used) 
 	{
 		if (htable[i].entry.namefunction) j++;
 	}
@@ -198,7 +200,7 @@ char **GetFunctionsList(int *sizeList)
 
 	j=0;
 
-	for ( i = 0 ; i < hsize ; i++ ) if ( htable[i].used) 
+	for ( i = 0 ; i < hashtableSize ; i++ ) if ( htable[i].used) 
 	{
 		if (htable[i].entry.namefunction)
 		{
@@ -215,7 +217,7 @@ BOOL ExistFunction(char *name)
 	BOOL bOK=FALSE;
 	int i=0;
 
-	for ( i = 0 ; i < (int)hsize ; i++ ) if ( htable[i].used) 
+	for ( i = 0 ; i < (int)hashtableSize ; i++ ) if ( htable[i].used) 
 	{
 		if (strcmp(htable[i].entry.namefunction,name) == 0)
 		{

@@ -33,7 +33,7 @@ typedef enum
 /* in fact create_hashtable_scilab_functions used a prime > MAXTAB */
 /* WARNING : MAXTAB must be chosen > 2* the number of scilab functions */
 /* for good efficiency of the hash code */
-#define MAXTAB 1536
+#define MAXELEMENTFUNCTIONLIST 1536
 /*-----------------------------------------------------------------------------------*/
 /** 
  * Create the hashtable of Scilab functions
