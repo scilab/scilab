@@ -24,17 +24,13 @@ std::string CommandLine::get(void)
 	return Command ;
 }
 /*------------------------------------------------------------------------*/
-BOOL CommandLine::set(char *line_)
+BOOL CommandLine::set(std::string line_)
 {
 	BOOL bOK = FALSE;
-	if (!Command.empty())
+	if (!line_.empty())
 	{
-		Command.assign(line_);
+		this->Command = line_ ;
 		bOK = TRUE;
-	}
-	else
-	{
-		bOK = FALSE;
 	}
 	return bOK;
 }

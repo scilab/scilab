@@ -16,13 +16,37 @@ using namespace std ;
 class CommandLine
 {
 public:
+	/**
+	* Constructor CommandLine
+	*/
 	CommandLine(void);
-	~CommandLine();
+
+	/**
+	* Constructor CommandLine
+	* @param line_ : a string 
+	*/
 	CommandLine(std::string line_);
+
+	/**
+	* Destructor CommandLine
+	*/
+	~CommandLine();
+
+	/**
+	* get command line
+	* @return a string
+	*/
 	std::string get(void);
-	BOOL set(char *line_);
+
+	/**
+	* set command line
+	* @param line_ : a string 
+	* @return TRUE or FALSE
+	*/
+	BOOL set(std::string line_);
 	
 protected:
+
 private:
 	std::string Command;
 };
