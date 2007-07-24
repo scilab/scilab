@@ -58,7 +58,9 @@ sci_gateway/c/sci_findfiles.c \
 sci_gateway/c/sci_maxfiles.c \
 sci_gateway/c/sci_getdrives.c \
 sci_gateway/c/sci_fullpath.c \
-sci_gateway/c/sci_deletefile.c
+sci_gateway/c/sci_deletefile.c \
+sci_gateway/c/sci_pathsep.c \
+sci_gateway/c/sci_filesep.c
 
 libscifileio_la_CFLAGS=-Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ 
 

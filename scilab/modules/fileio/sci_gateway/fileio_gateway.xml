@@ -51,4 +51,6 @@
 <PRIMITIVE gatewayId="34" primitiveId="25" primitiveName="getdrives" />
 <PRIMITIVE gatewayId="34" primitiveId="26" primitiveName="fullpath" />
 <PRIMITIVE gatewayId="34" primitiveId="27" primitiveName="deletefile" />
+<PRIMITIVE gatewayId="34" primitiveId="28" primitiveName="pathsep"/>
+<PRIMITIVE gatewayId="34" primitiveId="29" primitiveName="filesep"/>
 </GATEWAY>

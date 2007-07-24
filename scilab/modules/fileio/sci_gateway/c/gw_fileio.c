@@ -35,7 +35,9 @@ static gw_generic_table Tab[]={
 	{C2F(sci_maxfiles),"maxfiles"},
 	{C2F(sci_getdrives),"getdrives"},
 	{C2F(sci_fullpath),"fullpath"},
-	{C2F(sci_deletefile),"deletefile"}
+	{C2F(sci_deletefile),"deletefile"},
+	{C2F(sci_pathsep),"pathsep"},
+	{C2F(sci_filesep),"filesep"}
 	};
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(gw_fileio)(void)
