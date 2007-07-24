@@ -146,16 +146,14 @@ int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
 /*-----------------------------------------------------------------------------------*/
 int TerminateScilab(char *ScilabQuit)
 {
-	int bOK=FALSE;
-
 	if (StartScilabIsOK)
 	{
 		ExitScilab();
 		StartScilabIsOK=FALSE;
-		bOK=TRUE;
+		return TRUE;
 	}
 
-	return bOK;
+	return FALSE;
 }
 /*-----------------------------------------------------------------------------------*/
 void ScilabDoOneEvent(void)
