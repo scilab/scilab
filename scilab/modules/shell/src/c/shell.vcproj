@@ -344,10 +344,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\cpp\CommandLine.h"
-				>
-			</File>
-			<File
 				RelativePath="..\cpp\CommandLine.hxx"
 				>
 			</File>
