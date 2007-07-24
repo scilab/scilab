@@ -12,7 +12,7 @@ int C2F(sci_islittleendian) _PARAMS((char *fname,unsigned long fname_len))
 	static int n1,m1;
 	int *Status=NULL;
 
-	CheckRhs(0,1);
+	CheckRhs(0,0);
 	CheckLhs(1,1);
 
 	Status=(int*)MALLOC(sizeof(int));
