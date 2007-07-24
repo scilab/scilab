@@ -3,8 +3,8 @@
 #include "machine.h"
 #include "core_math.h"
 #include "inffic.h"
-
-#define MAXDATA 5 
+#include "scilabdefaults.h"
+#define MAXDATA 4 
 
 
 
@@ -12,11 +12,6 @@ static char *dataStrings[] = {
   "$MANCHAPTERS",
   "exec('SCI/etc/scilab.start',-1);",         /* start_up instructions file   */
   "scilab_demos();",	 /* demos instructions file      */
-#ifdef _MSC_VER
-  "home/history.scilab",		 /* history file                */
-#else 
-  "home/.history.scilab",		 /* history file                */
-#endif
   "home/scilab.save",			 /* on crash save file          */
   "exec('SCI/etc/scilab.quit',-1);quit;"	 /* exit instructions file      */
 };

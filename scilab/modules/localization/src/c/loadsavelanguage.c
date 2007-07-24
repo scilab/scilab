@@ -122,8 +122,18 @@ static char *getfilenamelanguagepref(void)
 
 	SCIHOME=getSCIHOME();
 
-	retFilename=(char*)MALLOC((strlen(namelanguagepref)+strlen(SCIHOME)+1)*sizeof(char));
-	sprintf(retFilename,"%s%s",SCIHOME,namelanguagepref);
+	if (SCIHOME)
+	{
+		retFilename=(char*)MALLOC((strlen(namelanguagepref)+strlen(SCIHOME)+1)*sizeof(char));
+		sprintf(retFilename,"%s%s",SCIHOME,namelanguagepref);
+		FREE(SCIHOME);
+		SCIHOME = NULL;
+	}
+	else
+	{
+		retFilename=(char*)MALLOC((strlen(namelanguagepref)+1)*sizeof(char));
+		sprintf(retFilename,"%s",namelanguagepref);
+	}
 
 	return retFilename;
 }

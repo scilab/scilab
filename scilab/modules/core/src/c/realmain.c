@@ -76,13 +76,13 @@ void realmain(int no_startup_flag_l,char *initial_script,int initial_script_type
     if ( initial_script != NULL ) switch ( initial_script_type ) 
 	{
 		case 0 : 
-			sprintf(startup,"%s;exec('%s',-1)",get_sci_data_strings(1),initial_script);
+			sprintf(startup,"%s;exec('%s',-1)",get_sci_data_strings(STARTUP_ID),initial_script);
 		break;
 		case 1 : 
-			sprintf(startup,"%s;%s;",get_sci_data_strings(1),initial_script);
+			sprintf(startup,"%s;%s;",get_sci_data_strings(STARTUP_ID),initial_script);
 		break;
 	}
-    else sprintf(startup,"%s;",get_sci_data_strings(1));
+    else sprintf(startup,"%s;",get_sci_data_strings(STARTUP_ID));
   }
   else 
   {

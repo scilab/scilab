@@ -17,7 +17,7 @@ BOOL TerminateCorePart1(void)
 {
 	if ( Get_no_startup_flag() == 0) 
 	{
-		char *quit_script =  get_sci_data_strings(5);
+		char *quit_script =  get_sci_data_strings(QUIT_ID);
 		C2F(scirun)(quit_script,strlen(quit_script));
 	}
 	return TRUE;

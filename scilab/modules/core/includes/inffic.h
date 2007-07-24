@@ -12,16 +12,14 @@
 * MANUAL_ID returns "$MANCHAPTERS"
 * STARTUP_ID returns "exec('SCI/etc/scilab.start',-1);"
 * DEMOS_ID returns "scilab_demos();"
-* HISTORY_ID returns "home/history.scilab"
 * SAVE_ID returns "home/scilab.save"
 * QUIT_ID returns "exec('SCI/etc/scilab.quit',-1);quit;"
 */
 #define MANUAL_ID 0 
 #define STARTUP_ID 1
 #define DEMOS_ID 2
-#define HISTORY_ID 3
-#define SAVE_ID 4
-#define QUIT_ID 5
+#define SAVE_ID 3
+#define QUIT_ID 4
 
 void C2F(inffic)(integer *iopt, char *name, integer *nc);
 

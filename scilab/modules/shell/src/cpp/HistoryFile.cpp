@@ -52,38 +52,35 @@ BOOL HistoryFile::setDefaultFilename(void)
 {
 	BOOL bOK = FALSE;
 	char *SCIHOME = getSCIHOME();
-	char *defaultfilename = NULL;
+	std::string defaultfilename;
+	std::string defautlhistoryfile;
+
+	defautlhistoryfile.assign(DEFAULT_HISTORY_FILE);
 
 	if (SCIHOME)
 	{
-		/* @TODO : we should use string here */
-		int lengthbuildfilename = 0;
-		if (defaultfilename) FREE(defaultfilename);
-		lengthbuildfilename = (int)(strlen(SCIHOME)+strlen(DIR_SEPARATOR)+strlen(DEFAULT_HISTORY_FILE)+1);
-		defaultfilename = (char*)MALLOC(sizeof(char)*(lengthbuildfilename));
-		sprintf(defaultfilename,"%s%s%s",SCIHOME,DIR_SEPARATOR,DEFAULT_HISTORY_FILE);
-		FREE(SCIHOME); SCIHOME = NULL;
+		std::string sep;
+		std::string scihome;
+
+		sep.assign(DIR_SEPARATOR);
+		scihome.assign(SCIHOME);
+
+		defaultfilename = scihome + sep + defautlhistoryfile;
+
+		FREE(SCIHOME);
+		SCIHOME = NULL;
 		bOK = TRUE;
 	}
 	else
 	{
-		char  *history_name = get_sci_data_strings(HISTORY_ID);
-		int out_n = 0;
-		defaultfilename = (char*)MALLOC(PATH_MAX*sizeof(char));
-		if ( defaultfilename == NULL ) return NULL;
-		C2F(cluni0)(history_name, defaultfilename, &out_n,(long)strlen(history_name),PATH_MAX);
-		/* @TODO : shouldn't we have a bOK=true here ? */
+		defaultfilename = defautlhistoryfile;
+		bOK = FALSE;
+		/* this isn't the standard path for history file */
+		/* but we set a filename */
 	}
 
-	if (defaultfilename)
-	{
-		std::string filename;
-		filename.assign(defaultfilename);
-		FREE(defaultfilename);
-		defaultfilename = NULL;
+	this->setFilename(defaultfilename);
 
-		this->setFilename(filename);
-	}
 	return bOK;
 }
 /*------------------------------------------------------------------------*/
