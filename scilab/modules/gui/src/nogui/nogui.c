@@ -55,6 +55,9 @@ int GetScreenProperty(char *prop, char *value){
 }
 /*-----------------------------------------------------------------------------------*/
 #define LF                    0x000a
+/* @TODO : this code is for a part duplicated from gui/src/c/xsci/inter.c 
+with some stuff removed (TCL/TK and a few other things)
+*/
 int Xorgetchar(int interrupt){
 	int i;
 int inter_max_plus1 = 0;
