@@ -3,7 +3,7 @@
 #include "machine.h"
 #include "core_math.h"
 #include "inffic.h"
-#include "scilabdefaults.h"
+#include "scilabDefaults.h"
 #define MAXDATA 4 
 
 
