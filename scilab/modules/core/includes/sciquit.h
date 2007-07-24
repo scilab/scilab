@@ -12,22 +12,18 @@
 #include "version.h"
 
 /**
- * TODO : comment
- * @return 
+ * 
+ * Clean up and end Scilab
  */
-int C2F(sciquit)(void);
+void C2F(sciquit)(void);
 
 /**
- * TODO : comment
- * @return 
+ *  Cleanup (terminate) all the different features/modules of scilab 
+ * (GUI, TCL/TK, JVM ...)
+ * but don't exist
+ * @return 0 is the end of function is reached
  */
-int ExitScilab(void);
-
-/**
- * TODO : comment
- * @param n
- */
-void sci_exit(int n);
+int ExitScilab(void)
 
 #endif /*__SCIQUIT__*/
 /*-----------------------------------------------------------------------------------*/ 

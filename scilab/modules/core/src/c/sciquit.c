@@ -40,25 +40,18 @@ int ExitScilab(void)
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 
-int C2F(sciquit)(void)
+void C2F(sciquit)(void)
 {
 	int status = 0;
 	ExitScilab();
-	sci_exit(status) ;
-	return 0;
-}
-/*-----------------------------------------------------------------------------------*/ 
-void sci_exit(int n) 
-{
-  /* really exit */
   #ifdef sun 
 		#ifndef SYSV
-  	{
+  	
     	char *mode, **out, *in;
     	ieee_flags("clearall","exeption","all", &out);
-  	}
+  	
 		#endif 
   #endif 
-  exit(n);
+		exit(0);
 }
 /*-----------------------------------------------------------------------------------*/
