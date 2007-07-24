@@ -123,4 +123,15 @@ int C2F(getsci)(char *buf,int *nbuf,long int lbuf);
 */
 int C2F(getscihome)(char *buf,int *nbuf,long int lbuf);
 
+
+/**
+ * Init the stack and a few global variable
+ *
+ * @param ini     = -1  for silent initialization  = -3  for special io initialization 
+ * @param memory  initial stack size (memory allocated)
+ * @param ierr flag
+ */
+int C2F(inisci)(int *ini,int *memory,int *ierr);
+
+
 #endif /* __INI_C_H__ */
