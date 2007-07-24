@@ -11,35 +11,41 @@
 #include "../../fileio/includes/diary.h"
 #include "sciprint.h"
 #include "MALLOC.h"
+#include "xscion.h"
 #include "../../../gui/includes/xscimore.h"
 
 /*-----------------------------------------------------------------------------------*/ 
 extern int C2F(writelunitstring)();
-extern int C2F(xscion)();
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(basout)(integer *io, integer *lunit, char *string,long int nbcharacters)
 {
-	static integer iflag;
+	static integer iflagSingleton=-1;
 
 	static integer ich;
 
 	if (*lunit == C2F(iop).wte)
 	{
-		/* Sortie sur la sortie standard */
-		C2F(xscion)(&iflag);
+		/* Display on the standard output */
+
+		/* We haven't called this function before ... Then we call it and 
+		   store the result once for all because it won't change */
+		if (iflagSingleton==-1){
+			C2F(xscion)(&iflagSingleton);
+		}
+
 		*io = 0;
 		if (C2F(iop).lct[0] == -1) { return 0; }
 		if (C2F(iop).lct[1] > 0) 
 		{
-			/* Gestion de la pagination */
+			/* Management of the page numbering (pagination in French) */
 			if (C2F(iop).lct[0] + 3 > C2F(iop).lct[1])
 			{
-				/* nombre maxi de ligne atteint,gestion du more */
+				/* Number of max line reached, management of the 'more' */
 				C2F(iop).lct[0] = 0;
-				if (iflag == 0) 
+				if (iflagSingleton == 0) 
 				{
 					int ch;
-					/* scilab n'a pas de  fenetre propre */
+					/* Scilab has not his own window */
 					sciprint(" more ? ");
 					ch = getchar();
 					if ( (ch != ' ') && (ch != '\n') && (ch != 'y') ) ich = 1;
@@ -63,7 +69,7 @@ int C2F(basout)(integer *io, integer *lunit, char *string,long int nbcharacters)
 			}
 		}
 
-		if (iflag == 0) 
+		if (iflagSingleton == 0) 
 		{
 			C2F(writelunitstring)(lunit, string,nbcharacters);
 			/* write to diary file if required */
@@ -88,7 +94,7 @@ int C2F(basout)(integer *io, integer *lunit, char *string,long int nbcharacters)
 	} 
 	else
 	{
-		/* sortie sur fichier */
+		/* Output to a file */
 		if (*lunit == C2F(iop).wio) 
 		{
 			C2F(diary)(string, &nbcharacters);

@@ -19,7 +19,7 @@
 #include "../../shell/includes/ShellPrintf.h"
 #include "scilabmode.h"
 #include "xscion.h"
-/*-----------------------------------------------------------------------------------*/ 
+/*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
   #define vsnprintf _vsnprintf
   TW textwin;
@@ -28,12 +28,19 @@
     return &textwin;
   }
 #endif
+
+/* Variable used in order to avoid multiple call on xscion which 
+ * will always return the same thing 
+ * -1 here is used to specific that it is not initialized
+*/
+
 /*-----------------------------------------------------------------------------------*/ 
 extern int getdiary __PARAMS(());
 extern void diary_nnl __PARAMS((char *str,int *n));
 /*-----------------------------------------------------------------------------------*/ 
 void sciprint(char *fmt,...) 
 {
+	static int xscionSingleton = -1;
 	int i;
 	integer lstr;
 	va_list ap;
@@ -54,9 +61,13 @@ void sciprint(char *fmt,...)
 	(void )vsprintf(s_buf, fmt, ap );
 #endif
 	lstr=strlen(s_buf);
+	if (xscionSingleton==-1) {
+		/* We haven't called this function before ... Then we call it and 
+		   store the result once for all because it won't change */
+		C2F(xscion)(&xscionSingleton);
+	}
 
-	C2F(xscion)(&i);
-	if (i == 0) 
+	if (xscionSingleton == 0) 
 	{
 		printf("%s",s_buf); 
 	}
