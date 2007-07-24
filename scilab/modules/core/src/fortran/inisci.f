@@ -184,6 +184,7 @@ c     .  ---------------------------------------------------
       else
          lct(2) = 0
       endif
+c @TODO : what is 28 & 72 ?
       call scilines(28,72)
 
 c     .  en mode fenetre ces valeurs sont remplacees par les dimension effectives
@@ -208,6 +209,7 @@ c     .  -------------
          alfb(i) = alphb(i)
  20   continue
 c     add tab
+c @TODO  What is 41 & 9 ?
       alfb(41)=char(9) 
 
 c     .  initial type names
@@ -226,6 +228,7 @@ c     .  Stack
 c     .  -----
 c     
 c     . initial values for number of local and global variables
+c @TODO : What is 768 ?
       isiz=isizt-768
 
 c     .  memory allocation
@@ -343,16 +346,27 @@ c     . %tk
 c     .  $    : formal index
       call putid(idstk(1,k),dollar)
       il=iadr(lstk(k))
+c @TODO: What is 2 ?
       istk(il)=2
+c @TODO: What is 1 ?
       istk(il+1)=1
+c @TODO: What is 1 ?
       istk(il+2)=1
+c @TODO: Why is 0 ?
       istk(il+3)=0
+c @TODO: What is 39 ?
       istk(il+4)=39
+c @TODO: What is 40 ?
       istk(il+5)=40
+c @TODO: What is 40 ?
       istk(il+6)=40
+c @TODO: What is 40 ?
       istk(il+7)=40
+c @TODO: What is 1 ?
       istk(il+8)=1
+c @TODO: What is 3 ?
       istk(il+9)=3
+c @TODO: Why 10 ?
       lw=sadr(il+10)
       stk(lw)=0.0d0
       stk(lw+1)=1.0d0
