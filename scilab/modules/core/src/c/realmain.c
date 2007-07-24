@@ -117,7 +117,7 @@ void realmain(int no_startup_flag_l,char *initial_script,int initial_script_type
       C2F(scirun)(startup,strlen(startup));
     }
   #else
-	/* initialize scilab interp  */
+	/* initialize scilab interp under Microsoft Windows  */
 	C2F(inisci)(&initialization, &memory, &ierr);
 	if (ierr > 0) sci_exit(1) ;
 
