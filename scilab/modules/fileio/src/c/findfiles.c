@@ -38,8 +38,8 @@ char **findfiles(char *path,char *filespec,int *sizeListReturned)
 			if ( strcmp(FileInformation.cFileName,".") && strcmp(FileInformation.cFileName,"..") )	
 			{
 				nbElements++;
-				if (ListFiles) ListFiles=(char**)REALLOC(ListFiles,sizeof(char**)*(nbElements));
-				else ListFiles=(char**)MALLOC(sizeof(char**)*(nbElements));
+				if (ListFiles) ListFiles=(char**)REALLOC(ListFiles,sizeof(char*)*(nbElements));
+				else ListFiles=(char**)MALLOC(sizeof(char*)*(nbElements));
 				ListFiles[nbElements-1]=(char*)MALLOC(sizeof(char)*(strlen(FileInformation.cFileName)+1));
 				strcpy(ListFiles[nbElements-1],FileInformation.cFileName);
 			}
@@ -72,8 +72,8 @@ char **findfiles(char *path,char *filespec,int *sizeListReturned)
 				if ( find_spec(read->d_name ,filespec) )
 				{
 					nbElements++;
-					if (ListFiles) ListFiles=(char**)REALLOC(ListFiles,sizeof(char**)*(nbElements));
-					else ListFiles=(char**)MALLOC(sizeof(char**)*(nbElements));
+					if (ListFiles) ListFiles=(char**)REALLOC(ListFiles,sizeof(char*)*(nbElements));
+					else ListFiles=(char**)MALLOC(sizeof(char*)*(nbElements));
 
 					ListFiles[nbElements-1]=(char*)MALLOC(sizeof(char)*(strlen(read->d_name)+1));
 					strcpy(ListFiles[nbElements-1],read->d_name);
