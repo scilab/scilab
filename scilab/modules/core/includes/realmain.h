@@ -18,13 +18,27 @@
 
 /**
 * The real main of Scilab
-* param no_startup_flag_l
-* param initial_script
-* param memory
+*
+* @param no_startup_flag_l  
+* @param initial_script 
+* @param initial_script_type    
+* @param memory 
 */
 void realmain(int no_startup_flag_l,char *initial_script,int initial_script_type,int memory);
 
+/**
+ * @TODO add comment
+ *
+ * @param void  
+ * @return <ReturnValue>
+ */
 int Get_no_startup_flag(void);
+
+/**
+ * @TODO add comment
+ *
+ * @param start 
+ */
 void Set_no_startup_flag(int start);
 
 #ifndef _MSC_VER
