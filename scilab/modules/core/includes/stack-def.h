@@ -15,6 +15,12 @@
  #endif
 #endif
 
+/* @TODO Add comment in order to explain
+ * What are all this variable ?
+ * Why the name is so short ? 
+ * What are those integer ?
+ * What mean csiz, bsiz, etc ... 
+ */
 #define csiz 63  
 #define bsiz 4096  
 #define isizt 10000
