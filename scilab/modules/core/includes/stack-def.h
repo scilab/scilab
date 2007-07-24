@@ -15,21 +15,34 @@
  #endif
 #endif
 
-/* @TODO Add comment in order to explain
- * What are all this variable ?
- * Why the name is so short ? 
- * What are those integer ?
- * What mean csiz, bsiz, etc ... 
- */
+/* C version of stack.h (fortran) */
+ 
+/* csiz used for character coding */
 #define csiz 63  
+
+/* bsiz size of internal chain buf */
 #define bsiz 4096  
+
+/* isizt  maximum number of scilab variables global and local */
 #define isizt 10000
+
+/* psiz  defines recursion size */
 #define psiz 4096  
+
 #define nsiz 6  
+
+/* lsiz  dim. of vector containing the command line */
 #define lsiz 65536
+
+/* nlgh  length of variable names */
 #define nlgh nsiz*4  
+
+/* vsiz  size of internal scilab stack */
 #define vsiz 2 
+
+/* intersiz used in interfaces */
 #define intersiz 1024
+
 #define maxdb 100
 #define maxbpt 1000
 
