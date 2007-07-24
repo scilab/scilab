@@ -7,29 +7,34 @@
 
 #include "machine.h"
 
-
-
-typedef enum {SCILAB_API=1,SCILAB_STD,SCILAB_NW,SCILAB_NWNI} scilabMode;
+typedef enum {
+	SCILAB_API=1, /* Scilab is launch as an API */
+	SCILAB_STD, /* The standard Scilab (gui, plot ...) */
+	SCILAB_NW, /* Scilab in command line with the plots */
+	SCILAB_NWNI /* Scilab in command line without any graphics. What not mandataroy here */
+} scilabMode;
 
 /* by default mode is API */
 
 /**
 * Set scilab mode 
-* param new scilab mode
-* return TRUE is newmode is OK
+* @param new scilab mode
+* @return TRUE is newmode is OK
 */
 BOOL setScilabMode(int newmode);
 
 /**
 * Get scilab mode
-* return current scilab mode
+* @return current scilab mode
 */
 int getScilabMode(void);
 
 
 /**
-* @return 1
-*/
+ * Gives the mode of scilab
+ * @param[out] the mode of scilab
+ * @return 1
+ */
 int C2F(getscilabmode)(int *mode);
 
 
