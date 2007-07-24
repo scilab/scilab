@@ -15,10 +15,9 @@
 #include "sciquit.h"
 #include "tmpdir.h"
 #include "scilabmode.h"
-
+#include "inisci-c.h"
 /*-----------------------------------------------------------------------------------*/
 extern void sci_clear_and_exit(int n);
-extern int C2F(inisci)(int *,int *,int *);
 extern void sci_usr1_signal(int n);
 #ifdef _MSC_VER
 #include "ExceptionMessage.h"
@@ -32,7 +31,7 @@ static int no_startup_flag=0;
 /*-----------------------------------------------------------------------------------*/
 void realmain(int no_startup_flag_l,char *initial_script,int initial_script_type,int memory)
 {
-  static int ini=-1;
+  static int initialization=-1;
   int ierr=0;
   char *startup=(char*)MALLOC(sizeof(char)*PATH_MAX+1);
   Set_no_startup_flag(no_startup_flag_l);
@@ -112,14 +111,14 @@ void realmain(int no_startup_flag_l,char *initial_script,int initial_script_type
     		InitXsession();
     	}
       /* initialize scilab interp  */
-      C2F(inisci)(&ini, &memory, &ierr);
+      C2F(inisci)(&initialization, &memory, &ierr);
       if (ierr > 0) sci_exit(1) ;
       /* execute the initial script and enter scilab */ 
       C2F(scirun)(startup,strlen(startup));
     }
   #else
 	/* initialize scilab interp  */
-	C2F(inisci)(&ini, &memory, &ierr);
+	C2F(inisci)(&initialization, &memory, &ierr);
 	if (ierr > 0) sci_exit(1) ;
 
 	/* execute the initial script and enter scilab */ 
