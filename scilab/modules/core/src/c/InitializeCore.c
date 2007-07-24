@@ -24,7 +24,7 @@ BOOL InitializeCore(void)
 
 	getmodules();
 
-	if ( create_hashtable_scilab_functions(MAXTAB) == 0 ) 
+	if ( create_hashtable_scilab_functions(MAXELEMENTFUNCTIONLIST) == 0 ) 
 	{
 		message_scilab("core_message_128");
 		exit(1);
