@@ -58,11 +58,10 @@
 
 
 
-static char DefaultScilabStartup[]="SCI/etc/scilab.start";
-// not used at the moment
-//static char DefaultScilabQuit[]="SCI/etc/scilab.quit";
+#define DEFAULTSCILABSTARTUP "SCI/etc/scilab.start"
+//#define DefaultScilabQuit "SCI/etc/scilab.quit"
 //static char DefaultSCIenv[]="../..";
-static int DefaultStacksize=1000000;
+#define DEFAULTSTACKSIZE 1000000
 
 
 #endif /*__SCILABDEFAULT_H__ */
