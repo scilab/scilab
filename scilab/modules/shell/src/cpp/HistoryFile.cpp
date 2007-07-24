@@ -16,13 +16,8 @@ extern "C"
 #include "SCIHOME.h"
 #include "inffic.h"
 #include "getCommentDateSession.h"
+#include "scilabDefaults.h"
 };
-/*------------------------------------------------------------------------*/
-#ifdef _MSC_VER
-#define DEFAULT_HISTORY_FILE "history.scilab"
-#else
-#define DEFAULT_HISTORY_FILE ".history.scilab"
-#endif
 /*------------------------------------------------------------------------*/
 HistoryFile::HistoryFile()
 {

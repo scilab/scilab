@@ -7,6 +7,7 @@
 #include "../../../graphics/includes/WindowList.h"
 #include "../../../graphics/includes/GetProperty.h"
 #include "../../../gui/includes/sxevents.h"
+#include "../../../io/includes/setenvc.h"
 #include "setgetSCIpath.h"
 #include "fromc.h"
 #include "sciquit.h"
@@ -16,22 +17,14 @@
 #include "scirun.h"
 #include "scilabmode.h"
 #include "dynamic_menus.h"
+#include "scilabDefaults.h"
 
 #ifdef _MSC_VER
 #define putenv _putenv
 #endif
 
 /*-----------------------------------------------------------------------------------*/
-
-static char DefaultScilabStartup[]="SCI/etc/scilab.start";
-// not used at the moment
-//static char DefaultScilabQuit[]="SCI/etc/scilab.quit";
-//static char DefaultSCIenv[]="../..";
-static int DefaultStacksize=1000000;
 static int StartScilabIsOK=FALSE;
-/*-----------------------------------------------------------------------------------*/
-extern int setenvc(char *string,char *value);
-extern int C2F(inisci)(int *,int *,int *);
 /*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 extern char *GetScilabDirectory(BOOL UnixStyle);

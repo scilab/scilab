@@ -10,9 +10,8 @@
 #include "setgetSCIpath.h"
 #include "MALLOC.h"
 #include "GetXmlFileEncoding.h"
+#include "scilabDefaults.h"
 #include "../../../fileio/includes/FileExist.h"
-/*-----------------------------------------------------------------------------------*/ 
-#define FORMATFILENAMEVERSION  "%s/modules/%s/version.xml" 
 /*-----------------------------------------------------------------------------------*/ 
 BOOL getversionmodule(char *modulename,
 					  int *sci_version_major,
@@ -30,9 +29,9 @@ BOOL getversionmodule(char *modulename,
 		int len=0;
 
 		SciPath=getSCIpath();
-		len=strlen(FORMATFILENAMEVERSION)+strlen(SciPath)+strlen(modulename)+1;
+		len=strlen(FORMATVERSIONFILENAME)+strlen(SciPath)+strlen(modulename)+1;
 		filename_VERSION_module=(char*)MALLOC(sizeof(char)*len);
-		sprintf(filename_VERSION_module,FORMATFILENAMEVERSION,SciPath,modulename);
+		sprintf(filename_VERSION_module,FORMATVERSIONFILENAME,SciPath,modulename);
 		if (SciPath){FREE(SciPath);SciPath=NULL;}
 
 		if (FileExist(filename_VERSION_module))

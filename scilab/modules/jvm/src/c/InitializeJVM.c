@@ -12,6 +12,7 @@
 #include "MALLOC.h"
 #include "JVM.h"
 #include "createMainScilabObject.h"
+#include "scilabDefaults.h"
 /*-----------------------------------------------------------------------------------*/ 
 static void DoLoadClasspathInEtc(char *SCIPATH);
 static void DoLoadLibrarypathInEtc(char *SCIPATH);
@@ -59,7 +60,6 @@ BOOL InitializeJVM(void)
 /*-----------------------------------------------------------------------------------*/ 
 static void DoLoadClasspathInEtc(char *SCIPATH)
 {
-	#define XMLCLASSPATH "%s/etc/classpath.xml"
 	char *classpathfile = NULL;
 	classpathfile = (char*)MALLOC(sizeof(char)*(strlen(SCIPATH)+strlen(XMLCLASSPATH)+1));
 	sprintf(classpathfile,XMLCLASSPATH,SCIPATH);
@@ -69,7 +69,6 @@ static void DoLoadClasspathInEtc(char *SCIPATH)
 /*-----------------------------------------------------------------------------------*/ 
 static void DoLoadLibrarypathInEtc(char *SCIPATH)
 {
-	#define XMLLIBRARYPATH "%s/etc/librarypath.xml"
 	char *librarypathfile = NULL;
 	librarypathfile = (char*)MALLOC(sizeof(char)*(strlen(SCIPATH)+strlen(XMLLIBRARYPATH)+1));
 	sprintf(librarypathfile,XMLLIBRARYPATH,SCIPATH);

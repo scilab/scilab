@@ -13,8 +13,7 @@
 #include "string.h"
 #include "sciprint.h"
 #include "GetXmlFileEncoding.h"
-/*-----------------------------------------------------------------------------------*/ 
-#define basenamemodulesfile "etc/modules.xml" 
+#include "scilabDefaults.h"
 /*-----------------------------------------------------------------------------------*/ 
 extern BOOL FileExist(char *filename);
 /*-----------------------------------------------------------------------------------*/ 

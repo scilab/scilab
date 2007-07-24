@@ -11,11 +11,7 @@
 #include "libxml/xmlreader.h"
 #include "../../fileio/includes/FileExist.h"
 #include "GetXmlFileEncoding.h"
-/*-----------------------------------------------------------------------------------*/ 
-#define FILEERRORS "errors"
-#define FILEMSGS "messages"
-#define FILEMENUS "menus"
-#define FILEFORMATPATH "%s/modules/%s/languages/%s/%s.xml"
+#include "scilabDefaults.h"
 /*-----------------------------------------------------------------------------------*/ 
 static BOOL LoadHashTableLocalization(struct hashtable *table,char *filenamexml);
 /*-----------------------------------------------------------------------------------*/ 
@@ -44,13 +40,13 @@ BOOL LoadHashTablesLocalization(char *language)
         char *full_filename_messages=NULL;
         char *full_filename_menus=NULL;
 
-		full_filename_errors=(char*)MALLOC(sizeof(char)*(strlen(SciPath)+strlen(FILEFORMATPATH)+strlen(moduleslist->ModuleList[i])+strlen(FILEERRORS)+strlen(language)+1));
-		full_filename_messages=(char*)MALLOC(sizeof(char)*(strlen(SciPath)+strlen(FILEFORMATPATH)+strlen(moduleslist->ModuleList[i])+strlen(FILEMSGS)+strlen(language)+1));
-		full_filename_menus=(char*)MALLOC(sizeof(char)*(strlen(SciPath)+strlen(FILEFORMATPATH)+strlen(moduleslist->ModuleList[i])+strlen(FILEMENUS)+strlen(language)+1));
+		full_filename_errors=(char*)MALLOC(sizeof(char)*(strlen(SciPath)+strlen(FILELOCALIZATIONFORMATPATH)+strlen(moduleslist->ModuleList[i])+strlen(FILELOCALIZATIONERROR)+strlen(language)+1));
+		full_filename_messages=(char*)MALLOC(sizeof(char)*(strlen(SciPath)+strlen(FILELOCALIZATIONFORMATPATH)+strlen(moduleslist->ModuleList[i])+strlen(FILELOCALIZATIONMSGS)+strlen(language)+1));
+		full_filename_menus=(char*)MALLOC(sizeof(char)*(strlen(SciPath)+strlen(FILELOCALIZATIONFORMATPATH)+strlen(moduleslist->ModuleList[i])+strlen(FILELOCALIZATIONMENUS)+strlen(language)+1));
 
-		sprintf(full_filename_errors,FILEFORMATPATH,SciPath,moduleslist->ModuleList[i],language,FILEERRORS);
-		sprintf(full_filename_messages,FILEFORMATPATH,SciPath,moduleslist->ModuleList[i],language,FILEMSGS);
-		sprintf(full_filename_menus,FILEFORMATPATH,SciPath,moduleslist->ModuleList[i],language,FILEMENUS);
+		sprintf(full_filename_errors,FILELOCALIZATIONFORMATPATH,SciPath,moduleslist->ModuleList[i],language,FILELOCALIZATIONERROR);
+		sprintf(full_filename_messages,FILELOCALIZATIONFORMATPATH,SciPath,moduleslist->ModuleList[i],language,FILELOCALIZATIONMSGS);
+		sprintf(full_filename_menus,FILELOCALIZATIONFORMATPATH,SciPath,moduleslist->ModuleList[i],language,FILELOCALIZATIONMENUS);
 
 		if (FileExist(full_filename_errors)) LoadHashTableLocalization(Table_Errors,full_filename_errors);
 		if (FileExist(full_filename_messages)) LoadHashTableLocalization(Table_Messages,full_filename_messages);

@@ -19,6 +19,7 @@
 #include "inisci-c.h"
 #include "SCIHOME.h"
 #include "scilabmode.h"
+#include "scilabDefaults.h"
 /*************************************************************************************************/
 int C2F(withgtk)(int *rep)
 { 
@@ -185,20 +186,13 @@ int C2F(gettmpdir)(char *buf,int *nbuf,long int lbuf)
 /*************************************************************************************************/
 BOOL ExistModelicac(void)
 {
-	#define ModelicacNameWindows "/modules/scicos/bin/modelicac.exe"
-	#define ModelicacNameLinux "/modules/scicos/bin/modelicac"
-
 	BOOL bOK=FALSE;
 	char *SCIPATH = (char*)getSCIpath();
 	char *fullpathModelicac=NULL;
 	
-	#ifdef _MSC_VER
-		fullpathModelicac=(char*)MALLOC((strlen(SCIPATH)+strlen(ModelicacNameWindows)+1)*sizeof(char));
-		sprintf(fullpathModelicac,"%s%s",SCIPATH,ModelicacNameWindows);
-	#else
-		fullpathModelicac=(char*)MALLOC((strlen(SCIPATH)+strlen(ModelicacNameLinux)+1)*sizeof(char));
-		sprintf(fullpathModelicac,"%s%s",SCIPATH,ModelicacNameLinux);
-	#endif
+	fullpathModelicac=(char*)MALLOC((strlen(SCIPATH)+strlen(ModelicacName)+1)*sizeof(char));
+	sprintf(fullpathModelicac,"%s%s",SCIPATH,ModelicacName);
+
 	bOK=FileExist(fullpathModelicac);
 	if (fullpathModelicac) FREE(fullpathModelicac);
 	if (SCIPATH) FREE(SCIPATH);
@@ -208,7 +202,6 @@ BOOL ExistModelicac(void)
 #ifdef _MSC_VER
 BOOL ExistJavaSciWin(void)
 {
-	#define JavaSCIName "/bin/javasci.dll"
 
 	BOOL bOK=FALSE;
 	char *SCIPATH = (char*)getSCIpath();
@@ -230,8 +223,6 @@ int ExistJavaSciUnix(void)
 	char *SCIPATH = (char*)getSCIpath();
 	char *fullpathJavaSci=NULL;
 
-	#define JavaSciName "libjavasci"
-
 	struct utsname uname_pointer;
 	FILE *fp;
 
@@ -251,8 +242,8 @@ int ExistJavaSciUnix(void)
 	{
 		strcpy(extension,".so");
 	}
-	fullpathJavaSci=(char*)MALLOC((strlen(SCIPATH)+strlen("/bin/")+strlen(JavaSciName)+strlen(extension)+1)*sizeof(char));
-	sprintf(fullpathJavaSci,"%s/bin/%s%s",SCIPATH,JavaSciName,extension);
+	fullpathJavaSci=(char*)MALLOC((strlen(SCIPATH)+strlen("/bin/")+strlen(JavaSCIName)+strlen(extension)+1)*sizeof(char));
+	sprintf(fullpathJavaSci,"%s/bin/%s%s",SCIPATH,JavaSCIName,extension);
 	fp=fopen(fullpathJavaSci,"r");
 	if (fp)
 	{

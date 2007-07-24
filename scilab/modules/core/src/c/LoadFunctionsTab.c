@@ -14,6 +14,7 @@
 #include "setgetSCIpath.h"
 #include "LoadFunctionsTab.h"
 #include "GetXmlFileEncoding.h"
+#include "scilabDefaults.h"
 #include "../../fileio/includes/FileExist.h"
 /*-----------------------------------------------------------------------------------*/  
 static int firstentry = 0;
@@ -39,12 +40,11 @@ void LoadFunctionsTab(void)
 
 	for (j=0;j<Modules->numberofModules;j++)
 	{
-		#define FORMATFILENAME "%s/modules/%s/sci_gateway/%s_gateway.xml"
 		char *filename_primitives_list=NULL;
-		int len=strlen(FORMATFILENAME)+strlen(SciPath)+strlen(Modules->ModuleList[j])*2;
+		int len=strlen(FORMATGATEWAYFILENAME)+strlen(SciPath)+strlen(Modules->ModuleList[j])*2;
 
 		filename_primitives_list=(char*)MALLOC((len+1)*sizeof(char));
-		sprintf(filename_primitives_list,FORMATFILENAME,SciPath,Modules->ModuleList[j],Modules->ModuleList[j]);
+		sprintf(filename_primitives_list,FORMATGATEWAYFILENAME,SciPath,Modules->ModuleList[j],Modules->ModuleList[j]);
 
 		Load_primitives_from_file(filename_primitives_list);
 
