@@ -87,7 +87,7 @@ libscirenderer_la_SOURCES = $(RENDERER_CPP_SOURCES) $(GATEWAY_C_SOURCES)
 
 ## Libraries necessary
 ## Change to include other Scilab modules/lib
-libscirenderer_la_LIBADD = $(top_builddir)/modules/graphics/libscigraphics.la
+#libscirenderer_la_LIBADD = $(top_builddir)/modules/graphics/libscigraphics.la
 
 else
 

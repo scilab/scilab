@@ -80,8 +80,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscirenderer_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-@GUI_TRUE@libscirenderer_la_DEPENDENCIES =  \
-@GUI_TRUE@	$(top_builddir)/modules/graphics/libscigraphics.la
+libscirenderer_la_LIBADD =
 am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 	src/cpp/subwinDrawing/DrawableSubwinFactory.cpp \
 	src/cpp/subwinDrawing/DrawableSubwin.cpp \
@@ -483,12 +482,13 @@ top_srcdir = @top_srcdir@
 # Includes need for the compilation
 @GUI_TRUE@libscirenderer_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -I$(top_srcdir)/modules/jvm/includes -I$(top_srcdir)/modules/graphics/includes/ -I$(top_srcdir)/modules/graphics/includes/handleDrawing/ -I$(top_srcdir)/libs/doublylinkedlist/includes
 
+#libscirenderer_la_LIBADD = $(top_builddir)/modules/graphics/libscigraphics.la
+
 # All the sources needed by libscirenderer.la
 @GUI_FALSE@libscirenderer_la_SOURCES = src/norenderer/norenderer.c
 
 # All the sources needed by libscirenderer.la
 @GUI_TRUE@libscirenderer_la_SOURCES = $(RENDERER_CPP_SOURCES) $(GATEWAY_C_SOURCES) 
-@GUI_TRUE@libscirenderer_la_LIBADD = $(top_builddir)/modules/graphics/libscigraphics.la
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding 
 # the system)
