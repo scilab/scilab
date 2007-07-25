@@ -12,6 +12,7 @@
 
 #include "../../../io/includes/directories.h"
 #include "../../../io/includes/getenvc.h"
+#include "scilabDefaults.h"
 /*-----------------------------------------------------------------------------------*/
 #if (defined _MSC_VER) 
 #undef putenv
