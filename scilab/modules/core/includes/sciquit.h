@@ -23,7 +23,7 @@ void C2F(sciquit)(void);
  * but don't exist
  * @return 0 is the end of function is reached
  */
-int ExitScilab(void)
+int ExitScilab(void);
 
 #endif /*__SCIQUIT__*/
 /*-----------------------------------------------------------------------------------*/ 
