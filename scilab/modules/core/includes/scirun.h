@@ -6,10 +6,12 @@
 #define __SCIRUN_H__ 
 
 #include "machine.h"
+
 /**
  * Run scilab parser with initial instruction 
- * @param bu1 : character string which contains the initial instruction 
- * @param bu1_len : length of bu1 
+ * @param startupCode : character string which contains the initial instruction 
+ * @param startupCode_len : length of startupCode 
  */
-int C2F(scirun)(char *bu1, long int bu1_len);
+int C2F(scirun)(char *startupCode, long int startupCode_len);
+
 #endif /* __SCIRUN_H__ */

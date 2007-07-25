@@ -4,9 +4,9 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include "stack-c.h"
 #include "scirun.h"
+#include "callinterf.h" 
 /*-----------------------------------------------------------------------------------*/ 
 extern int C2F(allowptr)(int *);
-extern int C2F(callinterf)(int *);
 extern int C2F(iset)(int *, int *, int *, int *);
 extern int C2F(funs)(int *);
 extern int C2F(parse)(void);
@@ -16,14 +16,19 @@ extern int C2F(isbyref)(int *);
 /*-----------------------------------------------------------------------------------*/ 
 static void str_copy_buf(register char *a, register char *b, long int la, long int lb);
 
-int C2F(scirun)(char *bu1, long int bu1_len)
+/** 
+ * This function should be completely rewritten... 
+ * It is not understable for someone normal
+ *
+ */
+int C2F(scirun)(char *startupCode, long int startupCode_len)
 {
 	static int k = 0;
 	static int ir = 0;
 
 	/* set instruction to execute at start-up */
 
-	str_copy_buf(cha1_.buf, bu1, bsiz, bu1_len);
+	str_copy_buf(cha1_.buf, startupCode, bsiz, startupCode_len);
     C2F(iop).rio = -1;
     C2F(iop).lpt[0] = 1;
     C2F(iop).lpt[5] = 0;
@@ -36,6 +41,7 @@ int C2F(scirun)(char *bu1, long int bu1_len)
 
 L60:
     C2F(parse)();
+	/* @TODO : What is 99 */
     if (C2F(com).fun == 99) 
 	{
 		C2F(com).fun = 0;
