@@ -2,9 +2,9 @@
 /* INRIA 2007 */
 /* Scilab */
 /*-----------------------------------------------------------------------------------*/ 
-#include "stack-c.h"
 #include "scirun.h"
 #include "callinterf.h" 
+#include "stack-c.h"
 /*-----------------------------------------------------------------------------------*/ 
 extern int C2F(allowptr)(int *);
 extern int C2F(iset)(int *, int *, int *, int *);
