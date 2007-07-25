@@ -12,6 +12,7 @@
 #include "../../../gui/includes/IsNoInteractiveWindow.h"
 #include "inffic.h" /* get_sci_data_strings */
 #include "scirun.h"
+#include "realmain.h" /* enum InitScriptType */
 #include "sciquit.h"
 #include "tmpdir.h"
 #include "scilabmode.h"
@@ -29,127 +30,138 @@ static int no_startup_flag=0;
 /*-----------------------------------------------------------------------------------*/
 #define BSIZE 128
 /*-----------------------------------------------------------------------------------*/
-void realmain(int no_startup_flag_l,char *initial_script,int initial_script_type,int memory)
+void realmain(int no_startup_flag_l, char *initial_script, InitScriptType initial_script_type, int memory)
 {
-  static int initialization=-1;
-  int ierr=0;
-  char *startup=(char*)MALLOC(sizeof(char)*PATH_MAX+1);
-  Set_no_startup_flag(no_startup_flag_l);
+	static int initialization=-1;
+	int ierr=0;
+	char *startup=(char*)MALLOC(sizeof(char)*PATH_MAX+1);
+	Set_no_startup_flag(no_startup_flag_l);
 
-  /* create temp directory */
-  C2F(settmpdir)();
+	/* create temp directory */
+	C2F(settmpdir)();
 
-  /* signals */
+	/* signals */
 
 #ifdef ENABLESIG
 #ifndef DEBUG
-  signal(SIGINT,sci_clear_and_exit);
-  #ifdef SIGBUS
-   signal(SIGBUS,sci_clear_and_exit);
-  #endif
-  signal(SIGSEGV,sci_clear_and_exit);
-  #if SIGQUIT
-   signal(SIGQUIT,sci_clear_and_exit);
-  #endif
-  #ifdef SIGHUP
-   signal(SIGHUP,sci_clear_and_exit);
-  #endif
-  #ifdef SIGUSR1
-   signal(SIGUSR1,sci_usr1_signal);
-  #endif
+	signal(SIGINT,sci_clear_and_exit);
+#ifdef SIGBUS
+	signal(SIGBUS,sci_clear_and_exit);
+#endif
+	signal(SIGSEGV,sci_clear_and_exit);
+#if SIGQUIT
+	signal(SIGQUIT,sci_clear_and_exit);
+#endif
+#ifdef SIGHUP
+	signal(SIGHUP,sci_clear_and_exit);
+#endif
+#ifdef SIGUSR1
+	signal(SIGUSR1,sci_usr1_signal);
+#endif
 #endif
 
-  #ifdef _MSC_VER
-   signal(SIGILL,sci_clear_and_exit);
-   signal(SIGFPE,sci_clear_and_exit);
-   signal(SIGTERM,sci_clear_and_exit);
-   signal(SIGBREAK,sci_clear_and_exit);
-   signal(SIGABRT,sci_clear_and_exit);
-  #endif
+#ifdef _MSC_VER
+	signal(SIGILL,sci_clear_and_exit);
+	signal(SIGFPE,sci_clear_and_exit);
+	signal(SIGTERM,sci_clear_and_exit);
+	signal(SIGBREAK,sci_clear_and_exit);
+	signal(SIGABRT,sci_clear_and_exit);
+#endif
 #endif
 
-  /*  prepare startup script  */
+	/*  prepare startup script  */
 
-  if ( no_startup_flag_l == 0) 
-  {
-	/* execute a startup */
-    if ( initial_script != NULL ) switch ( initial_script_type ) 
-	{
-		case 0 : 
-			sprintf(startup,"%s;exec('%s',-1)",get_sci_data_strings(STARTUP_ID),initial_script);
-		break;
-		case 1 : 
-			sprintf(startup,"%s;%s;",get_sci_data_strings(STARTUP_ID),initial_script);
-		break;
-	}
-    else sprintf(startup,"%s;",get_sci_data_strings(STARTUP_ID));
-  }
-  else 
-  {
-	/* No startup but maybe an initial script  */
-    if ( initial_script != NULL ) switch ( initial_script_type ) 
-	{
-	    case 0 : 
-	      sprintf(startup,"exec('%s',-1)",initial_script); break;
-	    case 1 : 
-	      sprintf(startup,"%s;",initial_script);   break;
-	}
-    else sprintf(startup," ");
-  }
+	if ( no_startup_flag_l == 0) 
+		{
+			/* execute a startup */
+			if ( initial_script != NULL ) 
+				{
+					switch ( initial_script_type ) 
+						{
+							case SCILAB_SCRIPT : 
+								sprintf(startup,"%s;exec('%s',-1)",get_sci_data_strings(STARTUP_ID),initial_script);
+								break;
+							case SCILAB_CODE : 
+								sprintf(startup,"%s;%s;",get_sci_data_strings(STARTUP_ID),initial_script);
+								break;
+						}
+				}
+			else 
+				{
+					sprintf(startup,"%s;",get_sci_data_strings(STARTUP_ID));
+				}
+		}
+	else 
+		{
+			/* No startup but maybe an initial script  */
+			if ( initial_script != NULL ) 
+				{
+					switch ( initial_script_type ) 
+						{
+							case SCILAB_SCRIPT : 
+								sprintf(startup,"exec('%s',-1)",initial_script); 
+								break;
+							case SCILAB_CODE : 
+								sprintf(startup,"%s;",initial_script);   
+								break;
+						}
+				}
+			else sprintf(startup," ");
+		}
 
-  #ifndef _MSC_VER
-  if ( getScilabMode() == SCILAB_STD ) 
-    {
-      /* we are in window mode */
-      main_sci(startup,strlen(startup),memory);
-    }
-  else 
-    {
-    	if (! IsNoInteractiveWindow() )
-    	{
-			/* As the mod NW will change in the near future, this will change */
-    		InitXsession();
-    	}
-      /* initialize scilab interp  */
-      C2F(inisci)(&initialization, &memory, &ierr);
-      if (ierr > 0) C2F(sciquit)() ;
-      /* execute the initial script and enter scilab */ 
-      C2F(scirun)(startup,strlen(startup));
-    }
-  #else
+#ifndef _MSC_VER
+	if ( getScilabMode() == SCILAB_STD ) 
+		{
+			/* we are in window mode */
+			main_sci(startup,strlen(startup),memory);
+		}
+	else 
+		{
+			if (! IsNoInteractiveWindow() )
+				{
+					/* As the mod NW will change in the near future, this will change */
+					InitXsession();
+				}
+			/* initialize scilab interp  */
+			C2F(inisci)(&initialization, &memory, &ierr);
+			if (ierr > 0) C2F(sciquit)() ;
+			/* execute the initial script and enter scilab */ 
+			C2F(scirun)(startup,strlen(startup));
+		}
+#else
 	/* initialize scilab interp under Microsoft Windows  */
 	C2F(inisci)(&initialization, &memory, &ierr);
 	if (ierr > 0) C2F(sciquit)() ;
 
 	/* execute the initial script and enter scilab */ 
-	#ifndef _DEBUG
+#ifndef _DEBUG
 	_try
-	{
-		C2F(scirun)(startup,strlen(startup));
-	}
+		{
+			C2F(scirun)(startup,strlen(startup));
+		}
 	_except (EXCEPTION_EXECUTE_HANDLER) 
-	{
+		{
 		Rerun:
-		{
-			ExceptionMessage(GetExceptionCode(),NULL);
-		}
-		_try
-		{
-			C2F(scirun)("",strlen(""));
-		}
-		_except (EXCEPTION_EXECUTE_HANDLER) 
-		{
-			goto Rerun;
-		}
+			{
+				ExceptionMessage(GetExceptionCode(),NULL);
+			}
+			_try
+				{
+					C2F(scirun)("",strlen(""));
+				}
+			_except (EXCEPTION_EXECUTE_HANDLER) 
+				{
+					goto Rerun;
+				}
 
-	}
-	#else
-		C2F(scirun)(startup,strlen(startup));
-	#endif
-  #endif
-  FREE(startup);
-  /* cleaning */
-  C2F(sciquit)();
+		}
+#else
+	C2F(scirun)(startup,strlen(startup));
+#endif
+#endif
+	FREE(startup);
+	/* cleaning */
+	C2F(sciquit)();
 }
 /*-----------------------------------------------------------------------------------*/
 void Set_no_startup_flag(int start)

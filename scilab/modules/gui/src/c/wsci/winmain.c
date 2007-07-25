@@ -39,6 +39,7 @@
 #include "GraphWindows.h"
 #include "MenuWindows.h"
 
+#include "realmain.h" /* enum InitScriptType */
 #include "win_mem_alloc.h" /* MALLOC */
 #include "scilabmode.h"
 #include "getcommandlineargs.h"
@@ -64,7 +65,7 @@ static LPSTR my_argv[MAXCMDTOKENS];
 /*-----------------------------------------------------------------------------------*/
 int Console_Main(int argc, char **argv)
 {
-  int nowin = 0, argcount = 0, lpath = 0, pathtype=0;
+  int nowin = 0, argcount = 0, lpath = 0, pathtype=SCILAB_SCRIPT;
   char *path = NULL;
   char *ScilabDirectory=NULL;
   int i=0;
@@ -141,7 +142,7 @@ int Console_Main(int argc, char **argv)
 		{
 			path = my_argv[argcount + 1];
 			lpath = strlen (my_argv[argcount + 1]);
-			pathtype=1;
+			pathtype=SCILAB_CODE;
 		}
       else if ( stricmp(my_argv[argcount],"-MEM") == 0 && argcount + 1 < my_argc)
 		{
@@ -199,7 +200,7 @@ int Console_Main(int argc, char **argv)
 		  UpdateConsoleColors();
 	  }
 	  
-	  sci_windows_main (&startupf,path,pathtype, &lpath,memory);
+	  sci_windows_main (&startupf, path, pathtype, &lpath,memory);
 	 
     }
   else
@@ -219,7 +220,7 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	BOOL LaunchAFile=FALSE;
 	BOOL ShowMessageBoxInfo=TRUE;		
 	char FileName[PATH_MAX];
-	int nowin = 0, argcount = 0, lpath = 0, pathtype=0;
+	int nowin = 0, argcount = 0, lpath = 0, pathtype=SCILAB_SCRIPT;
 	char *path = NULL;
 	char *ScilabDirectory=NULL;
 
@@ -436,7 +437,7 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 		lenPathWScilex=strlen(PathWScilex);
 		path = my_argv[argcount]+lenPathWScilex+3;
 		lpath = strlen (my_argv[argcount]+lenPathWScilex+3);
-		pathtype=1;
+		pathtype=SCILAB_CODE;
 		LaunchAFile=TRUE;
 	}
 	else
@@ -458,7 +459,7 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 		{
 			path = my_argv[argcount + 1];
 			lpath = strlen (my_argv[argcount + 1]);
-			pathtype=1;
+			pathtype=SCILAB_CODE;
 		}
 		else if ( stricmp(ArgTmp,"-MEM") == 0 && argcount + 1 < my_argc)
 		{

@@ -86,7 +86,7 @@ static void interrupt_setup (void)
   (void) signal (SIGINT, inter);
 }
 /*-----------------------------------------------------------------------------------*/
-void sci_windows_main ( int *nos, char *path,int pathtype,int *lpath,int memory)
+void sci_windows_main ( int *nos, char *path, InitScriptType pathtype, int *lpath, int memory)
 {
   setbuf (stderr, (char *) NULL);
   if (!setjmp (env))

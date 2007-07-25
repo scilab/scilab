@@ -16,6 +16,16 @@
 #include "stack-c.h"
 #include "version.h"
 
+/** 
+ * When Scilab is started with arguments ... defines if it is a scilab
+ * script or a scilab code
+ */
+typedef enum {
+	SCILAB_SCRIPT=0,  /* SCILAB_SCRIPT means filename as argument */
+	SCILAB_CODE=1 /*  SCILAB_CODE means a scilab code */
+} InitScriptType;
+
+
 /**
 * The real main of Scilab
 *
@@ -24,7 +34,7 @@
 * @param initial_script_type    
 * @param memory 
 */
-void realmain(int no_startup_flag_l,char *initial_script,int initial_script_type,int memory);
+void realmain(int no_startup_flag_l,char *initial_script,InitScriptType initial_script_type,int memory);
 
 /**
  * @TODO add comment

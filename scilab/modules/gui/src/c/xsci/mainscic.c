@@ -25,7 +25,7 @@ void mainscic(int argc, char **argv)
   int  memory = MIN_STACKSIZE;
 	
   char * initial_script = NULL;
-  int  initial_script_type = 0; /* 0 means filename 1 means code */
+  InitScriptType initial_script_type = SCILAB_SCRIPT; 
  
   char  *display = NULL;
   
@@ -41,9 +41,12 @@ fpsetmask(0);
 #endif
 
   ProgramName = argv[0];
-  
-  setScilabMode(SCILAB_STD);
-  
+#ifdef WITHOUT_GUI
+  setScilabMode(SCILAB_NWNI);  
+#else  
+  setScilabMode(SCILAB_STD);  
+#endif
+
   setCommandLineArgs(argv, argc);
   
   
@@ -60,18 +63,18 @@ fpsetmask(0);
       } 
       else if ( strcmp(argv[i],"-display") == 0) 
       { 
-	char dpy[128];
-	sprintf(dpy,"DISPLAY=%s",display);
-	putenv(dpy);
+		  char dpy[128];
+		  sprintf(dpy,"DISPLAY=%s",display);
+		  putenv(dpy);
       } 
       else if ( strcmp(argv[i],"-nb") == 0)  { sci_show_banner = 0; }
       else if ( strcmp(argv[i],"-ns") == 0)  { no_startup_flag = 1;}
-      else if ( strcmp(argv[i],"-mem") == 0) { i++;memory = Max(atoi(argv[i]),MIN_STACKSIZE );} 
+      else if ( strcmp(argv[i],"-mem") == 0) { i++; memory = Max(atoi(argv[i]),MIN_STACKSIZE );} 
       else if ( strcmp(argv[i],"-f") == 0)   { initial_script = argv[++i];} 
       else if ( strcmp(argv[i],"-e") == 0) 
       {
-	initial_script = argv[++i];
-	initial_script_type = 1;
+		  initial_script = argv[++i];
+		  initial_script_type = SCILAB_CODE;
       } 
       else if ( strcmp(argv[i],"--texmacs") == 0)  
       {
