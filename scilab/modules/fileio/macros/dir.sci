@@ -33,7 +33,12 @@ function L=dir(str)
     isd(n,1)=%f
     
     for k=1:n
-      [x,ierr]=fileinfo(basepath+'/'+files(k)) 
+      if (basepath == '') then
+        [x,ierr]=fileinfo(files(k)) 
+      else
+        [x,ierr]=fileinfo(basepath+'/'+files(k)) 
+      end
+
       if ( (x == []) & (ierr== -1) ) then [x,ierr]=fileinfo(files(k)),end
       
       if x<>[] then
