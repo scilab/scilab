@@ -7,12 +7,43 @@
 /*-----------------------------------------------------------------------------------*/
 #include "machine.h"
 /*-----------------------------------------------------------------------------------*/
-typedef int logical;
+
+/**
+ * @TODO : add comment
+ *
+ * @param n 
+ * @param ierr  
+ */
 void Msgs(int n,int ierr);
+
+/**
+ * @TODO : add comment
+ *
+ * @param n 
+ */
 void SciError(int n);
-logical Compil(int code,int * val1,int val2,int val3,int val4);
-logical Eptover(int n);
-logical Ptover(int n);
+
+/**
+ * @TODO : add comment
+ *
+ * @param n 
+ * @return <ReturnValue>
+ */
+int Eptover(int n);
+
+/**
+ * @TODO : add comment
+ *
+ * @param n 
+ * @return <ReturnValue>
+ */
+int Ptover(int n);
+
+/**
+ * @TODO : add comment
+ *
+ * @param void  
+ */
 void C2F(parsecomment)(void);
 /*-----------------------------------------------------------------------------------*/
 #endif /* __PARSE_H__ */

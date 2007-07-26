@@ -5,6 +5,7 @@
 #include "syncexec.h"
 #include "stack-c.h"
 #include "core_math.h"
+#include "parse.h"
 /*-----------------------------------------------------------------------------------*/ 
 #define Pt (C2F(recu).pt)
 /*-----------------------------------------------------------------------------------*/ 
@@ -17,8 +18,6 @@ int C2F(syncexec)(char *str, int *ns, int *ierr, int *seq, long int str_len)
 	extern int C2F(iset)();
 	extern int C2F(ref2val)();
 	extern int C2F(bexec)();
-	extern int C2F(eptover)();
-	extern int Eptover(int n);
 
 	/* Local variables */
 	static int zero = 0;

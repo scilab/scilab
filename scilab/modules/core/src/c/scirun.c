@@ -27,8 +27,9 @@ int C2F(scirun)(char *startupCode, long int startupCode_len)
 	static int ir = 0;
 
 	/* set instruction to execute at start-up */
+	/* cha1 is comming from stack-def.h */
+	str_copy_buf(C2F(cha1).buf, startupCode, bsiz, startupCode_len);
 
-	str_copy_buf(cha1_.buf, startupCode, bsiz, startupCode_len);
     C2F(iop).rio = -1;
     C2F(iop).lpt[0] = 1;
     C2F(iop).lpt[5] = 0;
@@ -52,7 +53,8 @@ L60:
 		if (C2F(recu).niv > 0 && C2F(recu).paus > 0) C2F(com).fun = 0;
 		goto L60;
     }
-
+	
+	/* @TODO : why / 100 ? why -1 ? what is 9 ? */
     if (C2F(recu).rstk[C2F(recu).pt - 1] / 100 == 9) 
 	{
 		ir = C2F(recu).rstk[C2F(recu).pt - 1] - 900;

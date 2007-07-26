@@ -22,7 +22,6 @@ static int isprime(unsigned int number);
 /*-----------------------------------------------------------------------------------*/
 int create_hashtable_scilab_functions(unsigned int nel)
 {
-	int bOK=0;
 
 	if (htable == NULL)
 	{
@@ -34,14 +33,13 @@ int create_hashtable_scilab_functions(unsigned int nel)
 
 		if ((htable = (_ENTRY *)MALLOC((hashtableSize+1)*sizeof(_ENTRY))) == NULL)	
 		{
-			bOK=0;
+			return 0;
 		}
 		else
 		{
-			bOK=1;
+			return 1;
 		}
 	}
-	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/
 void destroy_hashtable_scilab_functions()
@@ -55,7 +53,6 @@ void destroy_hashtable_scilab_functions()
 /*-----------------------------------------------------------------------------------*/
 int action_hashtable_scilab_functions(int *key,char *name, int *data, SCI_HFUNCTIONS_ACTION action)
 {
-	int bOK=FAILED;
 
 	if (action == SCI_HFUNCTIONS_BACKSEARCH)
 	{
@@ -64,7 +61,7 @@ int action_hashtable_scilab_functions(int *key,char *name, int *data, SCI_HFUNCT
 		{
 			int j=0;
 			for (j = 0; j < nsiz ; j++ ) key[j] = htable[i].entry.key[j];
-			return (bOK=OK);
+			return OK;
 		}
 	}
 	else
@@ -163,7 +160,7 @@ int action_hashtable_scilab_functions(int *key,char *name, int *data, SCI_HFUNCT
 		else return FAILED;
 	}
 
-	return bOK;
+	return FAILED;
 }
 /*-----------------------------------------------------------------------------------*/  
 static int Equal_id(int *x, int *y)

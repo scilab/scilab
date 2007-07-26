@@ -24,7 +24,7 @@
 #endif
 /*-----------------------------------------------------------------------------------*/
 IMPORT struct {
-  logical iflag, interruptible;
+  int iflag, interruptible;
 } C2F(basbrk);
 
 /* Table of constant values */
@@ -67,8 +67,7 @@ extern int C2F(macro)();
 extern int C2F(getsym)();
 
 extern int C2F(putid)(); 
-extern logical C2F(eqid)();
-extern logical C2F(ptover)();
+extern int C2F(eqid)();
 extern int C2F(funs)();
 
 extern int C2F(bexec)();
@@ -89,12 +88,11 @@ extern int C2F(seteol)();
 extern int C2F(allops)();
 extern int C2F(run)();
 extern int C2F(name2var)();
-extern void C2F(parsecomment)();
 extern int C2F(msgs)();
 extern int C2F(error)();
-extern logical C2F(compil)();
-extern logical C2F(eptover)();
-extern logical C2F(Ptover)();
+extern int C2F(compil)();
+extern int C2F(eptover)();
+extern int C2F(Ptover)();
 extern int C2F(callinterf) (int *k);
 /*-----------------------------------------------------------------------------------*/
 void handle_onprompt(int *n);
@@ -109,18 +107,18 @@ void SciError(int n)
  C2F(error)(&n);
 }
 /*-----------------------------------------------------------------------------------*/
-logical Compil(int code,int * val1,int val2,int val3,int val4)
+static int Compil(int code,int * val1,int val2,int val3,int val4)
 {
   return C2F(compil)(&code, val1, &val2, &val3, &val4);
 }
 /*-----------------------------------------------------------------------------------*/
-logical Eptover(int n)
+int Eptover(int n)
 {
   int c;
   return C2F(eptover)(&n,(c=psiz,&c));
 }
 /*-----------------------------------------------------------------------------------*/
-logical Ptover(int n)
+int Ptover(int n)
 {
   int c;
   return C2F(ptover)(&n,(c=psiz,&c));
@@ -157,12 +155,12 @@ int C2F(parse)()
   static int k, p, r;
   static int imode, schar;
   static int itime, where_;
-  static logical found;
+  static int found;
   static int excnt;
   static int l1;
   static int id[6], lb, io, ir;
   static int inxsci;
-  static logical dotsep;
+  static int dotsep;
   static int icount;
   static int nentry, lastindpos;
   static int job, nlc, pts;

@@ -21,12 +21,13 @@
 #include "../../gui/includes/checkevts.h"
 #include "../../gui/includes/sxevents.h"
 #include "dynamic_menus.h"
+#include "parse.h"
 
 #undef Lstk
 #undef Infstk
 
 IMPORT struct {
-  logical iflag, interruptible;
+  int iflag, interruptible;
 } C2F(basbrk);
 
 
@@ -49,7 +50,7 @@ extern int C2F(stackp)();
 extern int C2F(stackg)();
 
 extern int C2F(putid)(); 
-extern logical C2F(eqid)();
+extern int C2F(eqid)();
 extern int C2F(funs)();
 
 extern int C2F(bexec)();
@@ -76,13 +77,9 @@ extern int C2F(objvide)();
 extern int C2F(gettype)();
 extern int C2F(clunit)();
 
-extern logical Eptover(int n);
-extern logical Ptover(int n);
-extern void Msgs(int n,int ierr);
-extern void SciError(int n);
-extern logical C2F(istrue)();
+extern int C2F(istrue)();
 
-logical Istrue(int n)
+int Istrue(int n)
 {
 
   return C2F(istrue)(&n);
@@ -116,7 +113,7 @@ int C2F(run)()
   static int lname, imode;
   static int l0;
   static int id[6], lc, kc, nc, lb, li, il, io, ip;
-  static logical ok;
+  static int ok;
   static int ir, lr, op;
   static int inxsci;
   static int mm1;
@@ -853,13 +850,13 @@ int C2F(run)()
     }
     else if (Rstk[Pt] == 503) {
       if (C2F(iop).rio == C2F(iop).rte) {
-	    /* abort dans une pause*/
+	    /* abort in a pause mode */
 	C2F(iop).rio = Pstk[Pt-1];
 	C2F(recu).paus--;
 	C2F(vstk).bot = Lin[5 + k];}
       else {
 	int mode[3];
-	/*  abort dans un exec*/
+	/*  abort in an exec*/
 	mode[0]=0;
 	C2F(clunit)(-C2F(iop).rio,C2F(cha1).buf,mode);
 	C2F(iop).rio = Pstk[Pt-1];

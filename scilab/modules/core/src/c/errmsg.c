@@ -282,7 +282,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 51:
 			{
-				/* Pas de message */
+				/* no message  */
 			}
 			break;
 			case 52:
@@ -407,7 +407,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 79:
 			{
-				/* pas de message */
+				/* no message  */
 			}
 			break;
 			case 80:
@@ -578,7 +578,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 119:
 			{
-				/* pas de message */
+				/* no message  */
 			}
 			break;
 			case 120:
@@ -600,7 +600,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 124:
 			{
-				/* pas de message */
+				/* no message  */
 			}
 			break;
 			case 125:
@@ -678,7 +678,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			}
 			break;
 			case 140:
-			{/* pas de message */
+			{/* no message  */
 			}
 			break;
 			case 141:
@@ -704,7 +704,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			*/
 			case 200:
 			{
-				/* pas de message */
+				/* no message  */
 			}
 			break;
 			case 201:
@@ -827,7 +827,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 229:
 			{
-				/* pas de message */
+				/* no message  */
 			}
 			break;
 			case 230:
@@ -909,7 +909,7 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 247:
 			{
-				/* pas de message */
+				/* no message  */
 			}
 			break;
 			case 248:
@@ -1052,17 +1052,17 @@ int C2F(errmsg)(integer *n,integer *errtyp)
 			break;
 			case 278:
 			{
-				/* pas de message */
+				/* no message  */
 			}
 			break;
 			case 279:
 			{
-				/* pas de message */
+				/* no message  */
 			}
 			break;
 			case 280:
 			{
-				/* pas de message */
+				/* no message  */
 			}
 			break;
 			
