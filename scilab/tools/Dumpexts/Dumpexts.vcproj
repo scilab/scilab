@@ -12,7 +12,7 @@
 	</Platforms>
 	<ToolFiles>
 		<ToolFile
-			RelativePath="..\..\VS-2005-settings\renameheaders.rules"
+			RelativePath="..\..\VS-2005-settings\rename-vc-files.rules"
 		/>
 	</ToolFiles>
 	<Configurations>
