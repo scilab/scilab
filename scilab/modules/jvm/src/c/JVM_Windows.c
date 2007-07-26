@@ -48,7 +48,7 @@ BOOL LoadDynLibJVM(char *SCILAB_PATH)
 		{
 			if (JVMDLLFULLNAME){FREE(JVMDLLFULLNAME);JVMDLLFULLNAME=NULL;};
 			JVMDLLFULLNAME=(char*)MALLOC( (strlen("jvm")+strlen(SHARED_LIB_EXT)+1)*sizeof(char));
-			sprintf(JVMDLLFULLNAME,"%s%s",SCILAB_PATH,JRE_PATH,"jvm",SHARED_LIB_EXT);
+			sprintf(JVMDLLFULLNAME,"%s%s%s%s",SCILAB_PATH,JRE_PATH,"jvm",SHARED_LIB_EXT);
 			if ( LoadFuntionsJVM(JVMDLLFULLNAME) ) bOK = TRUE;
 		}
 		else bOK = TRUE;
