@@ -7,8 +7,7 @@
 #include "../../../io/includes/setenvc.h"
 #include "cluni0.h"
 #include "GetenvB.h"
-
-#define MAX_ENV 256 
+#include "machine.h"
 
 static char *SCI_a[] = {  "SCI/", "sci/", "$SCI", "SCI\\", "sci\\", (char *) 0 };
 static char *HOME_a[] = {  "HOME/", "home/", "~/" , "HOME\\", "home\\", "~\\" ,"$HOME", (char *) 0};
@@ -25,8 +24,8 @@ static int n=0;
 
 int C2F(cluni0)(char *in_name, char *out_name, int *out_n, long int lin, long int lout)
 {
-  int  nc= MAX_ENV;
-  static char SCI[MAX_ENV],HOME[MAX_ENV],TMP[MAX_ENV];
+  int  nc= PATH_MAX;
+  static char SCI[PATH_MAX],HOME[PATH_MAX],TMP[PATH_MAX];
   static int k;
   
   if ( ( n==0 ) || (getUpdateEnvVar() == 1) )
@@ -41,8 +40,8 @@ int C2F(cluni0)(char *in_name, char *out_name, int *out_n, long int lin, long in
   if ( Cluni0(SCI,SCI_a,in_name,out_name,lin) == 0 )
     if ( Cluni0(HOME,HOME_a,in_name,out_name,lin) == 0 )
       if ( Cluni0(TMP,TMP_a,in_name,out_name,lin) == 0 ){
-	strncpy(out_name,in_name,(size_t)lin);
-	out_name[lin]='\0';
+		  strncpy(out_name,in_name,(size_t)lin);
+		  out_name[lin]='\0';
       }
   *out_n = strlen(out_name);
 #ifdef _MSC_VER
