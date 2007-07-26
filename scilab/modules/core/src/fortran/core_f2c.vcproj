@@ -253,7 +253,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\comand.c"
+				RelativePath=".\command.c"
 				>
 			</File>
 			<File
@@ -861,7 +861,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\comand.f"
+				RelativePath=".\command.f"
 				>
 			</File>
 			<File

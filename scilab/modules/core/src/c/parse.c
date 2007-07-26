@@ -77,7 +77,7 @@ extern int C2F(getmen)();
 extern int C2F(findequal)();
 extern int C2F(print)();
 extern int C2F(createref1)();
-extern int C2F(comand)();
+extern int C2F(command)();
 extern int C2F(cvname)();
 extern int C2F(getlin)();
 extern int C2F(mrknmd)();
@@ -351,7 +351,7 @@ int C2F(parse)()
     goto L77;
   } else if (C2F(com).sym == name) {
     lpts = Lpt[3] - 1;
-    /* try to avoid the comand call whenever it is possible */
+    /* try to avoid the command call whenever it is possible */
     if (C2F(com).char1 == equal) {
       goto L25;
     }
@@ -403,7 +403,7 @@ int C2F(parse)()
   /* ------------------------- */
   /*     check if it is a simple command like clear,... */
  L20:
-  C2F(comand)(C2F(com).syn, &c__0);
+  C2F(command)(C2F(com).syn, &c__0);
   if (C2F(iop).err > 0) {
     goto L98;
   }

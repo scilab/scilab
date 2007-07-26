@@ -1,6 +1,6 @@
       subroutine cmdstr
 c ====================================================================
-c     interprets comands arguments (blank or quote delimited character strings)
+c     interprets commands arguments (blank or quote delimited character strings)
 c ====================================================================
 c     Copyright INRIA
       include 'stack.h'

@@ -48,7 +48,7 @@ cd .."/>
 		<File RelativePath="clunit.f"/>
 		<File RelativePath="cmdstr.f"/>
 		<File RelativePath="cmplxt.f"/>
-		<File RelativePath="comand.f"/>
+		<File RelativePath="command.f"/>
 		<File RelativePath="compcl.f"/>
 		<File RelativePath="compil.f"/>
 		<File RelativePath="complexify.f"/>

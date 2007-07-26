@@ -41,7 +41,7 @@ c
       if(.not.getsmat(fname,topk,top,m,n,1,1,l,n1)) return
       if(.not.checkval(fname,m*n,1) ) return
       call namstr(id,istk(l),n1,0)
-      call comand(id,job)
+      call command(id,job)
       if(err.gt.0) return
       il=iadr(lstk(top))
       istk(il)=0

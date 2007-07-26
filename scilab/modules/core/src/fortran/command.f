@@ -1,8 +1,8 @@
-      subroutine comand(id)
+      subroutine command(id)
 C     ====================================================================
 C     Scilab Command and Keyword 
 C     ====================================================================
-C     id(nsiz) coded name of the comand 
+C     id(nsiz) coded name of the command 
 c     Copyright INRIA
       include 'stack.h'
       logical compil
@@ -76,7 +76,7 @@ C
 C     
       if (ddt .eq. 4) then
          call cvname(id,buf,1)
-         call basout(io,wte,' comand   : '//buf(1:nlgh))
+         call basout(io,wte,' command   : '//buf(1:nlgh))
       endif
 C     
       kcont=27
@@ -166,7 +166,7 @@ C     pause
 C     -----
 C     
  20   continue
-c     if special compilation mode skip  comands
+c     if special compilation mode skip  commands
       if (comp(3).eq.1) then
          fin=0
          fun=0
@@ -263,7 +263,7 @@ C     quit
 C     -------------
 C     
  50   continue
-c     if special compilation mode skip  comands
+c     if special compilation mode skip  commands
       if (comp(3).eq.1) then
          fin=0
          fun=0
@@ -304,7 +304,7 @@ C     exit
 C     -------------
 C     
  55   continue
-c     if special compilation mode skip  comands
+c     if special compilation mode skip  commands
       if (comp(3).eq.1) then
          fin=0
          fun=0
@@ -327,7 +327,7 @@ C     ---
          fun=0
          return
       endif
-c     if special compilation mode skip  comands
+c     if special compilation mode skip  commands
       if (comp(3).eq.1) then
          fin=0
          fun=0
@@ -346,7 +346,7 @@ C     abort
 C     -----
 C     
  120  continue
-c     if special compilation mode skip  comands
+c     if special compilation mode skip  commands
       if (comp(3).eq.1) then
          fin=0
          fun=0
@@ -415,17 +415,17 @@ C     break, continue
 C------
  130  continue
       kcmd=k
-c     if special compilation mode skip  comands
+c     if special compilation mode skip  commands
       if (comp(3).eq.1) then
          fin=0
          fun=0
          return
       endif
       if(kcmd.eq.kcont) then
-C     compilation de continue:<13>
+C     compilation of continue:<13>
          if(compil(28,0,0,0,0)) return
       else
-C     compilation de break:<13>
+C     compilation of break:<13>
          if (compil(13,0,0,0,0)) return
       endif
       count = 0

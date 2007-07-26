@@ -140,7 +140,7 @@ src/fortran/allops.f \
 src/fortran/print.f \
 src/fortran/mname.f \
 src/fortran/prntid.f \
-src/fortran/comand.f \
+src/fortran/command.f \
 src/fortran/ref2val.f \
 src/fortran/namstr.f \
 src/fortran/stack.f \
