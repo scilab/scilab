@@ -354,6 +354,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\librarieslist.c"
+				>
+			</File>
+			<File
 				RelativePath=".\link.c"
 				>
 			</File>
@@ -579,6 +583,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_lasterror.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_librarieslist.c"
 				>
 			</File>
 			<File
@@ -863,11 +871,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\fromjava.h"
+				RelativePath=".\fromjava.h"
 				>
 			</File>
 			<File
-				RelativePath=".\fromjava.h"
+				RelativePath="..\..\includes\fromjava.h"
 				>
 			</File>
 			<File
@@ -952,6 +960,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\islittleendian.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\librarieslist.h"
 				>
 			</File>
 			<File
@@ -1188,8 +1200,24 @@
 			>
 		</File>
 		<File
-			RelativePath="..\..\includes\machine.vc"
+			RelativePath="..\..\includes\machine.h.vc"
 			>
+			<FileConfiguration
+				Name="Debug|Win32"
+				ExcludedFromBuild="true"
+				>
+				<Tool
+					Name="VCCustomBuildTool"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release|Win32"
+				ExcludedFromBuild="true"
+				>
+				<Tool
+					Name="VCCustomBuildTool"
+				/>
+			</FileConfiguration>
 		</File>
 		<File
 			RelativePath="..\..\Makefile.am"
