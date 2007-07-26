@@ -6,13 +6,13 @@
 #include "machine.h"
 
 #if _LCC_ & FORDLL 
-  #define IMPORT __declspec (dllimport)
+#define IMPORT __declspec (dllimport)
 #else
- #ifdef FORDLL 
-   #define IMPORT extern  __declspec (dllimport)
- #else 
-   #define IMPORT extern
- #endif
+#ifdef FORDLL 
+#define IMPORT extern  __declspec (dllimport)
+#else 
+#define IMPORT extern
+#endif
 #endif
 
 /* C version of stack.h (fortran) */
@@ -46,141 +46,329 @@
 #define maxdb 100
 #define maxbpt 1000
 
+
+/**
+ * @TODO : add comment 
+ */
 typedef struct 
 {
- double Stk[vsiz];
+	double Stk[vsiz];
 } STACK_struct;
 
 IMPORT STACK_struct C2F(stack);
 
+/**
+ * @TODO : add comment 
+ */
 typedef struct 
 {
- int bot, top, idstk[nsiz*isizt], lstk[isizt], leps,bbot, bot0, infstk[isizt], gbot, gtop, isiz;
+	int bot; /**< @TODO : add comment */
+	int top; /**< @TODO : add comment */
+	int idstk[nsiz*isizt]; /**< @TODO : add comment */
+	int lstk[isizt]; /**< @TODO : add comment */
+	int leps; /**< @TODO : add comment */
+	int bbot; /**< @TODO : add comment */
+	int bot0; /**< @TODO : add comment */
+	int infstk[isizt]; /**< @TODO : add comment */
+	int gbot; /**< @TODO : add comment */ 
+	int gtop; /**< @TODO : add comment */
+	int isiz; /**< @TODO : add comment */
 } VSTK_struct;
 
 IMPORT VSTK_struct C2F(vstk);
 
+/**
+ * @TODO : add comment 
+ */
 typedef struct 
 {
- int ids[nsiz*psiz], pstk[psiz], rstk[psiz], pt, niv, macr, paus, icall, krec;
+	int ids[nsiz*psiz]; /**< @TODO : add comment */
+	int pstk[psiz]; /**< @TODO : add comment */
+	int rstk[psiz];  /**< @TODO : add comment */
+	int pt;  /**< @TODO : add comment */
+	int niv;  /**< @TODO : add comment */
+	int macr;  /**< @TODO : add comment */
+	int paus;  /**< @TODO : add comment */
+	int icall;  /**< @TODO : add comment */
+	int krec; /**< @TODO : add comment */
 } RECU_struct;
 
 IMPORT RECU_struct C2F(recu);
 
+/**
+ * @TODO : add comment 
+ */
 typedef struct 
 {
- int ddt, err, lct[8], lin[lsiz], lpt[6], hio, rio, wio, rte, wte;
+	int ddt; /**< @TODO : add comment */
+	int err; /**< @TODO : add comment */
+	int lct[8]; /**< @TODO : add comment */
+	int lin[lsiz]; /**< @TODO : add comment */
+	int lpt[6]; /**< @TODO : add comment */
+	int hio; /**< @TODO : add comment */
+	int rio; /**< @TODO : add comment */
+	int wio; /**< @TODO : add comment */
+	int rte; /**< @TODO : add comment */
+	int wte; /**< @TODO : add comment */
 } IOP_struct;
 
 IMPORT IOP_struct C2F(iop);
 
+/**
+ * @TODO : add comment 
+ */
 typedef struct 
 {
- int err1, err2, errct, toperr, errpt, ieee ,errcatch;
+	int err1; /**< @TODO : add comment */
+	int err2; /**< @TODO : add comment */
+	int errct; /**< @TODO : add comment */
+	int toperr; /**< @TODO : add comment */
+	int errpt; /**< @TODO : add comment */
+	int ieee; /**< @TODO : add comment */
+	int errcatch; /**< @TODO : add comment */
 } ERRGST_struct; 
 
 IMPORT ERRGST_struct C2F(errgst);
 
+/**
+ * @TODO : add comment 
+ */
 typedef struct 
 {
- int sym, syn[nsiz], char1, fin, fun, lhs, rhs, ran[2], comp[3];
+	int sym; /**< @TODO : add comment */
+	int syn[nsiz]; /**< @TODO : add comment */
+	int char1; /**< @TODO : add comment */
+	int fin; /**< @TODO : add comment */
+	int fun; /**< @TODO : add comment */
+	int lhs; /**< @TODO : add comment */
+	int rhs; /**< @TODO : add comment */
+	int ran[2]; /**< @TODO : add comment */
+	int comp[3]; /**< @TODO : add comment */
 } COM_struct;
 
 IMPORT COM_struct C2F(com);
 
+/**
+ * @TODO : add comment 
+ */
 typedef struct 
 {
- int lbot, ie, is, ipal, nbarg, ladr[intersiz];
+	int lbot; /**< @TODO : add comment */
+	int ie; /**< @TODO : add comment */
+	int is; /**< @TODO : add comment */
+	int ipal; /**< @TODO : add comment */
+	int nbarg; /**< @TODO : add comment */
+	int ladr[intersiz]; /**< @TODO : add comment */
 } ADRE_struct;
 
 IMPORT ADRE_struct C2F(adre);
 
+/**
+ * @TODO : add comment 
+ */
 typedef struct 
 {
-  int nbvars, iwhere[intersiz], nbrows[intersiz], nbcols[intersiz], itflag[intersiz], ntypes[intersiz], lad[intersiz],ladc[intersiz],lhsvar[intersiz];
+	int nbvars; /**< @TODO : add comment */
+	int iwhere[intersiz]; /**< @TODO : add comment */
+	int nbrows[intersiz]; /**< @TODO : add comment */
+	int nbcols[intersiz]; /**< @TODO : add comment */
+	int itflag[intersiz]; /**< @TODO : add comment */
+	int ntypes[intersiz]; /**< @TODO : add comment */
+	int lad[intersiz]; /**< @TODO : add comment */
+	int ladc[intersiz]; /**< @TODO : add comment */
+	int lhsvar[intersiz]; /**< @TODO : add comment */
 } INTERSCI_struct;
 
 IMPORT INTERSCI_struct C2F(intersci);
 
+/**
+ * @TODO : add comment 
+ */
 typedef struct
 {
-  char alfa[csiz], alfb[csiz], buf[bsiz];
+	char alfa[csiz]; /**< @TODO : add comment */
+	char alfb[csiz]; /**< @TODO : add comment */
+	char buf[bsiz]; /**< @TODO : add comment */
 } CHA1_struct;
 
 IMPORT CHA1_struct C2F(cha1);
 
+/**
+ * @TODO : add comment 
+ */
 typedef struct 
 {
-  int wmac, lcntr, nmacs, macnms[nsiz*maxdb], lgptrs[maxdb+1], bptlg[maxbpt];
+	int wmac; /**< @TODO : add comment */
+	int lcntr; /**< @TODO : add comment */
+	int nmacs; /**< @TODO : add comment */
+	int macnms[nsiz*maxdb]; /**< @TODO : add comment */
+	int lgptrs[maxdb+1]; /**< @TODO : add comment */
+	int bptlg[maxbpt]; /**< @TODO : add comment */
 } DBG_struct;
 
 IMPORT DBG_struct C2F(dbg);
 
+/**
+ * @TODO : add comment 
+ */
 typedef struct 
 {
-  int mmode;
+	int mmode; /**< @TODO : add comment */
 } MTLBC_struct;
 
 IMPORT MTLBC_struct C2F(mtlbc);
 
+/**
+ * @TODO : add comment 
+ */
 typedef struct {
-	integer iero;
+	integer iero; /**< @TODO : add comment */
 } IERODE_struct;
 
 IMPORT IERODE_struct C2F(ierode);
 
+/**
+ * @TODO : add comment 
+ */
 typedef struct {
-	double rownr3[2], t0, tlast, toutc;
-	integer lg0, lg1, lgx, iownr3[2], irfnd, itaskc, ngc, nge;
+	double rownr3[2]; /**< @TODO : add comment */
+	double t0; /**< @TODO : add comment */
+	double tlast; /**< @TODO : add comment */
+	double toutc; /**< @TODO : add comment */ 
+	integer lg0; /**< @TODO : add comment */
+	integer lg1; /**< @TODO : add comment */
+	integer lgx; /**< @TODO : add comment */
+	integer iownr3[2]; /**< @TODO : add comment */
+	integer irfnd; /**< @TODO : add comment */
+	integer itaskc; /**< @TODO : add comment */
+	integer ngc; /**< @TODO : add comment */
+	integer nge; /**< @TODO : add comment */
 } LSR001_struct;
 
 IMPORT LSR001_struct C2F(lsr001);
 
+/**
+ * @TODO : add comment 
+ */
 typedef struct {
-	double tret, rowns[209], ccmax, el0, h__, hmin, hmxi, hu, rc, tn,uround;
-	integer illin, init, lyh, lewt, lacor, lsavf, lwm, liwm, mxstep, mxhnil, 
-		nhnil, ntrep, nslast, nyh, iowns[6], icf, ierpj, iersl, jcur, 
-		jstart, kflag, l, meth, miter, maxord, maxcor, msbp, mxncf, n, nq,
-		nst, nfe, nje, nqu;
+	double tret; /**< @TODO : add comment */
+	double rowns[209]; /**< @TODO : add comment */
+	double ccmax; /**< @TODO : add comment */
+	double el0; /**< @TODO : add comment */
+	double h__; /**< @TODO : add comment */
+	double hmin; /**< @TODO : add comment */
+	double hmxi; /**< @TODO : add comment */
+	double hu; /**< @TODO : add comment */
+	double rc; /**< @TODO : add comment */
+	double tn; /**< @TODO : add comment */
+	double uround; /**< @TODO : add comment */
+	integer illin; /**< @TODO : add comment */
+	integer init; /**< @TODO : add comment */
+	integer lyh; /**< @TODO : add comment */
+	integer lewt; /**< @TODO : add comment */
+	integer lacor; /**< @TODO : add comment */
+	integer lsavf; /**< @TODO : add comment */
+	integer lwm; /**< @TODO : add comment */
+	integer liwm; /**< @TODO : add comment */
+	integer mxstep; /**< @TODO : add comment */
+	integer mxhnil; /**< @TODO : add comment */
+
+	integer nhnil; /**< @TODO : add comment */
+	integer ntrep; /**< @TODO : add comment */
+	integer nslast; /**< @TODO : add comment */
+	integer nyh; /**< @TODO : add comment */
+	integer iowns[6]; /**< @TODO : add comment */
+	integer icf; /**< @TODO : add comment */
+	integer ierpj; /**< @TODO : add comment */
+	integer iersl; /**< @TODO : add comment */
+	integer jcur; /**< @TODO : add comment */
+
+	integer jstart; /**< @TODO : add comment */
+	integer kflag; /**< @TODO : add comment */
+	integer l; /**< @TODO : add comment */
+	integer meth; /**< @TODO : add comment */
+	integer miter; /**< @TODO : add comment */
+	integer maxord; /**< @TODO : add comment */
+	integer maxcor; /**< @TODO : add comment */
+	integer msbp; /**< @TODO : add comment */
+	integer mxncf; /**< @TODO : add comment */
+	integer n; /**< @TODO : add comment */
+	integer nq; /**< @TODO : add comment */
+	integer nst; /**< @TODO : add comment */
+	integer nfe; /**< @TODO : add comment */
+	integer nje; /**< @TODO : add comment */
+	integer nqu; /**< @TODO : add comment */
 } LS0001_struct;
 
 IMPORT LS0001_struct C2F(ls0001);
 
 
+/**
+ * @TODO : add comment 
+ */
 typedef struct {
-	double tsw, rowns2[20], pdnorm;
-	integer insufr, insufi, ixpr, iowns2[2], jtyp, mused, mxordn, mxords;
+	double tsw; /**< @TODO : add comment */
+	double rowns2[20]; /**< @TODO : add comment */
+	double pdnorm; /**< @TODO : add comment */
+	integer insufr; /**< @TODO : add comment */
+	integer insufi; /**< @TODO : add comment */
+	integer ixpr; /**< @TODO : add comment */
+	integer iowns2[2]; /**< @TODO : add comment */
+	integer jtyp; /**< @TODO : add comment */
+	integer mused; /**< @TODO : add comment */
+	integer mxordn; /**< @TODO : add comment */
+	integer mxords; /**< @TODO : add comment */
 } LSA001_struct;
 
 IMPORT LSA001_struct C2F(lsa001);
 
 
+/**
+ * @TODO : add comment 
+ */
 typedef struct {
-    integer iero;
+    integer iero; /**< @TODO : add comment */
 } IERINV_struct;
 
 IMPORT IERINV_struct C2F(ierinv);
 
 
+/**
+ * @TODO : add comment 
+ */
 typedef struct {
-    integer lf, nfree, nf;
+    integer lf; /**< @TODO : add comment */
+	integer nfree; /**< @TODO : add comment */
+	integer nf; /**< @TODO : add comment */
 } SCIGSCH_struct;
 
 IMPORT SCIGSCH_struct C2F(scigsch);
 
+/**
+ * @TODO : add comment 
+ */
 typedef struct {
-    integer lf, nx, nf;
+    integer lf; /**< @TODO : add comment */
+	integer nx; /**< @TODO : add comment */
+	integer nf; /**< @TODO : add comment */
 } SCISCH_struct;
 
 IMPORT SCISCH_struct C2F(scisch);
 
+/**
+ * @TODO : add comment 
+ */
 typedef union {
     struct {
-	integer lf, nfree, nf;
-    } _1;
+		integer lf; /**< @TODO : add comment */
+		integer nfree; /**< @TODO : add comment */
+		integer nf; /**< @TODO : add comment */
+    } _1; /**< @TODO : add comment */
     struct {
-	integer lf, nx, nf;
-    } _2;
+		integer lf; /**< @TODO : add comment */
+		integer nx; /**< @TODO : add comment */
+		integer nf; /**< @TODO : add comment */
+    } _2; /**< @TODO : add comment */
 } SCIZGSCH_union;
 
 IMPORT SCIZGSCH_union C2F(scizgsch);
