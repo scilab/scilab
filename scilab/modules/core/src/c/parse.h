@@ -9,6 +9,13 @@
 /*-----------------------------------------------------------------------------------*/
 
 /**
+ * Parse a the global variable C2F(cha1).buf (ugly ...)
+ *
+ * @return <ReturnValue>
+ */
+int C2F(parse)(void);
+
+/**
  * @TODO : add comment
  *
  * @param n 
