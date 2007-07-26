@@ -17,6 +17,7 @@
 #include "sciprint.h"
 #include "stack2.h"
 #include "cvstr.h"
+#include "parse.h"
 #include "../../../string/includes/men_Sutils.h" 
 #include "error_scilab.h"
 #include "message_scilab.h"
