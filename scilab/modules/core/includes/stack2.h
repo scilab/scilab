@@ -18,7 +18,6 @@ extern int C2F(mklist) __PARAMS((integer *));
 extern int C2F(mklistt) __PARAMS((integer *,integer *));
 extern int C2F(funs) __PARAMS((integer *));
 extern int C2F(putid) __PARAMS((integer *,integer *));
-extern int C2F(parse) __PARAMS((void));
 extern int C2F(allowptr) __PARAMS((integer *));
 extern int C2F(ref2val) __PARAMS((void));
 extern int C2F(allops) __PARAMS((void));
