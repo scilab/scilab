@@ -91,8 +91,8 @@ extern int C2F(name2var)();
 extern int C2F(msgs)();
 extern int C2F(error)();
 extern int C2F(compil)();
-extern int C2F(eptover)();
-extern int C2F(Ptover)();
+extern int C2F(ptover)(); /* see src/fortran/ptover.f */
+extern int C2F(eptover)();/* see src/fortran/eptover.f */
 extern int C2F(callinterf) (int *k);
 /*-----------------------------------------------------------------------------------*/
 void handle_onprompt(int *n);
