@@ -142,7 +142,7 @@ am__objects_2 = algebre.lo clunit.lo complexify.lo allowptr.lo \
 	inibrk.lo typ2cod.lo prompt.lo intstr.lo createref.lo btof.lo \
 	matzs.lo getnum.lo btofm.lo getsym.lo findequal.lo stackg.lo \
 	find.lo israt.lo setlnb.lo mrknmd.lo stackgl.lo allops.lo \
-	print.lo mname.lo prntid.lo comand.lo ref2val.lo namstr.lo \
+	print.lo mname.lo prntid.lo command.lo ref2val.lo namstr.lo \
 	stack.lo isbrk.lo majmin.lo dmdspf.lo xerbla.lo dtosci.lo \
 	bexec.lo varfunptr.lo getfun.lo savlod.lo error.lo cvdm.lo \
 	tradsl.lo mkindx.lo whatln.lo errmgr.lo defmat.lo mklist.lo \
@@ -530,7 +530,7 @@ src/fortran/allops.f \
 src/fortran/print.f \
 src/fortran/mname.f \
 src/fortran/prntid.f \
-src/fortran/comand.f \
+src/fortran/command.f \
 src/fortran/ref2val.f \
 src/fortran/namstr.f \
 src/fortran/stack.f \
@@ -2268,8 +2268,8 @@ mname.lo: src/fortran/mname.f
 prntid.lo: src/fortran/prntid.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o prntid.lo `test -f 'src/fortran/prntid.f' || echo '$(srcdir)/'`src/fortran/prntid.f
 
-comand.lo: src/fortran/comand.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o comand.lo `test -f 'src/fortran/comand.f' || echo '$(srcdir)/'`src/fortran/comand.f
+command.lo: src/fortran/command.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o command.lo `test -f 'src/fortran/command.f' || echo '$(srcdir)/'`src/fortran/command.f
 
 ref2val.lo: src/fortran/ref2val.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ref2val.lo `test -f 'src/fortran/ref2val.f' || echo '$(srcdir)/'`src/fortran/ref2val.f
