@@ -279,11 +279,11 @@
 			Name="Rename Header Files"
 			>
 			<File
-				RelativePath="..\..\modules\scicos\includes\blocks.vc"
+				RelativePath="..\..\modules\scicos\includes\blocks.h.vc"
 				>
 			</File>
 			<File
-				RelativePath="..\..\modules\core\includes\machine.vc"
+				RelativePath="..\..\modules\core\includes\machine.h.vc"
 				>
 			</File>
 		</Filter>
