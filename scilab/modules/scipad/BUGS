@@ -71,16 +71,6 @@ endfunction
  This is actually fixed in Tk 8.5: http://www.tcl.tk/cgi-bin/tct/tip/155.html
  No workaround available in 8.4, this is a deep Tk core issue.
 
--[me "accented_text_then_an_ampersand"] underlines the intended character,
- and seems to work perfectly, even if there are accented characters before
- the ampersand. However, launching such a menu option using the keyboard
- accelerator does apparently not trigger the associated -command proc.
- This is Tk bug #1638905 (which is a duplicate of #1599877), which is fixed
- in both 8.4.15 and 8.5a6 versions of Tcl/Tk.
- Once Scilab uses one of the above Tcl/Tk versions, check in fr.msg (in the
- menues section) whether there are missing accents on characters. I know at
- least of two occurrences where "Executer" should read "Exécuter".
-
 -Line numbers of lines located after the active breakpoint are slightly
  misaligned with the lines they're facing. This is due to the font of the
  active breakpoint tag ($actbptextFont), which has a slightly larger size
@@ -213,7 +203,7 @@ Debugger wishes:
 -breakpoint, activebreakpoint and continued lines tags are not visible
  when selected. No solution found so far. Only one tag with -background
  option has highest priority, and there is no -selectbackground option
- for tags
+ for tags (the latter is Tk request #1759972)
  This problem has been submitted in comp.lang.tcl, see:
  http://groups.google.com/group/comp.lang.tcl/browse_frm/thread/d60973524b786c0e/14a82aef3b1dd24f
  It has been suggested to create a tag that has the desired background

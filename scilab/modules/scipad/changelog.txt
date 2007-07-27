@@ -3108,3 +3108,12 @@ Francois VOGEL, 22/07/07
 Francois VOGEL, 23/07/07
  * Binding of the replace mode to the non-existing KP_Insert keysym removed
  * version --> 6.121
+
+Francois VOGEL, 27/07/07
+ * Added bindings for keypad keys in Linux (by Enrico)
+ * Simplified scipad.sci to avoid yet another difference between the BUILD_4
+   branch and the trunk (by Enrico)
+ * Revised fr.msg and added missing accents since Tk bug #1638905 (which is
+   a duplicate of #1599877) is fixed in both 8.4.15 and 8.5a6 versions of
+   Tcl/Tk, and Scilab is now delivered with Tcl/Tk 8.4.15
+ * version --> 6.122

@@ -1,8 +1,8 @@
 #bindings
-bind All <Alt-F> {}
-bind All <Alt-E> {}
-bind All <Alt-S> {}
-bind ALL <Alt-H> {}
+bind all <Alt-F> {}
+bind all <Alt-E> {}
+bind all <Alt-S> {}
+bind all <Alt-H> {}
 
 #delete "native" text bindings in the textarea -- we want all text
 # manipulation to pass through our procs, so that e.g. colorization and
@@ -116,6 +116,22 @@ pbind Text $Shift_Tab {UnIndentSel ; break}
 
 pbind $pad $Shift_F1 {aboutme}
 pbind $pad $Shift_F3 {reversefindnext}
+
+# bindings for KP_ keys in linux (how come that NumLock on means %s & 16? 
+# From http://wiki.tcl.tk/4238, we understand that %s & 8 is expected)
+# this is wrapped in a test on tcl_platform(platform) even if this code
+# is apparently harmless on Windows (KP_xxx never fires) - Anyway, on Win
+# %s & 8 is needed to detect NumLock
+if {$tcl_platform(platform) == "unix"} {
+    set KeyPadKeys {Home Up Prior Left Right End Down Next Insert Delete}
+    foreach k $KeyPadKeys {
+        catch {bind all <KP_$k> {if {[expr {%s & 16}] == 0} \
+                   {event generate %W <[string range %K 3 end]>}}
+               bind all <Control-KP_$k> {if {[expr {%s & 16}] == 0} \
+                   {event generate %W <Control-[string range %K 3 end]>}}
+        }
+    }
+}
 
 # the following call sets a binding for the completion popup menu
 # it must be sourced after all the possible bindings proposed in the
