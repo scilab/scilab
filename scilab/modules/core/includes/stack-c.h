@@ -1,12 +1,12 @@
 /* Common Block Declarations */
 /* Copyright INRIA/ENPC */
 
-#ifndef STACK_SCI 
-#define STACK_SCI 
+#ifndef STACK_SCI
+#define STACK_SCI
 
 #include <string.h>
 
-#if  ( !(defined __MATH__)  || (defined __APPLE__) || (defined aix) ) 
+#if  ( !(defined __MATH__)  || (defined __APPLE__) || (defined aix) )
 #include "core_math.h"
 #else
 #include "machine.h"
@@ -16,7 +16,7 @@
 
 
 /*-------------------------------------------------
- * types 
+ * types
  * -------------------------------------------------*/
 
 typedef enum {
@@ -34,13 +34,13 @@ typedef enum {
   sci_list= 15,
   sci_tlist= 16,
   sci_mlist= 17
-} sci_types; 
+} sci_types;
 
 
-/** 
- * Structure used for sparse matrix 
+/**
+ * Structure used for sparse matrix
  */
-typedef struct scisparse { 
+typedef struct scisparse {
 	integer m;
 	integer n;
 	integer it;
@@ -49,22 +49,22 @@ typedef struct scisparse {
 	integer *icol; /**< icol[j]: column of the j-th non nul element, size nel */
 	double *R; /**< R[j]: real value of the j-th non nul element, size nel */
 	double *I ; /**< I[j]: imag value of the j-th non nul element, size nel */
-} SciSparse ; 
+} SciSparse ;
 
 /*-------------------------------------------------
- * structure used for int matrix 
+ * structure used for int matrix
  * -------------------------------------------------*/
 
-/* a set of define to decode it argument */ 
+/* a set of define to decode it argument */
 
 #define I_CHAR 1
-#define I_INT16 2 
+#define I_INT16 2
 #define I_INT32 4
 #define I_UCHAR 11
-#define I_UINT16 12 
+#define I_UINT16 12
 #define I_UINT32 14
 
-/* a set of define for the associated casts */ 
+/* a set of define for the associated casts */
 
 #define IC_CHAR(x) ((char *) (x))
 #define IC_INT16(x) ((short int *) (x))
@@ -76,21 +76,21 @@ typedef struct scisparse {
 /**
  * sciintmat
  */
-typedef struct sciintmat { 
+typedef struct sciintmat {
 	integer m,n;
 	integer it ; /**< it : 1,2,4,11,12,14  */
 	integer l;   /**< if l != -1 then istk(l) == D */
 	void *D;     /**< data : should be casted according to it */
-} SciIntMat ; 
+} SciIntMat ;
 
 
-#include "stack1.h" 
-#include "stack2.h" 
-#include "stack3.h" 
+#include "stack1.h"
+#include "stack2.h"
+#include "stack3.h"
 
 
 /*-------------------------------------------------
- * set of defines for interface simplication 
+ * set of defines for interface simplication
  * -------------------------------------------------*/
 
 static int c1_local=0;
@@ -101,14 +101,14 @@ static void initial_c_local(void);
 
 /* Correction Warning variable "c_local" was declared but never referenced */
 /* initial_c_local not used */
-static void initial_c_local() 
+static void initial_c_local()
 {
 	initial_c1_local();
 	c_local=0;
 }
 /* Correction Warning variable "c1_local" was declared but never referenced */
 /* initial_c1_local not used */
-static void initial_c1_local() 
+static void initial_c1_local()
 {
 	initial_c_local();
 	c1_local=0;
@@ -128,7 +128,7 @@ static void initial_c1_local()
 #define Lhs C2F(com).lhs
 #define Bot C2F(vstk).bot
 #define Err C2F(iop).err
-#define Leps_sci  *stk(C2F(vstk).leps) 
+#define Leps_sci  *stk(C2F(vstk).leps)
 
 #define stk(x)  ( C2F(stack).Stk + x-1 )
 #define istk(x) (((int *) C2F(stack).Stk) + x-1 )
@@ -150,25 +150,25 @@ typedef struct { double r, i; } doublecomplex;
 
 
 #ifndef FTable_H
-extern  void * GetFuncPtr __PARAMS((char *,int,void *,void (*f)(),int *,int*,int*));  
-#endif 
+extern  void * GetFuncPtr __PARAMS((char *,int,void *,void (*f)(),int *,int*,int*));
+#endif
 #define CheckOpt(first) if ( C2F(checkopt)(first) ) {return 0;}
 
 #define FirstOpt() C2F(firstopt)()
 
 #define FindOpt(str,opts) C2F(findopt)(str,opts)
 
-#define NumOpt() C2F(numopt)() 
+#define NumOpt() C2F(numopt)()
 
 #define IsOpt(k,name) C2F(isopt)((c_local=k,&c_local),name,nlgh)
 
 #define Maxvol(n,ct)  C2F(maxvol)((c_local=n,&c_local),ct,1L)
 
 #define CreateVarFromPtr(n,ct,mx,nx,lx) if ( ! C2F(createvarfromptr)((c_local=n,&c_local),ct,mx,nx,(double *)lx,1L)) \
-					     { return 0;} 
+					     { return 0;}
 
 #define CreateCVarFromPtr(n,ct,it,mx,nx,lrx,lcx) if ( ! C2F(createcvarfromptr)((c_local=n,&c_local),ct,it,mx,nx,(double *)lrx,(double *) lcx,1L)) \
-					     { return 0;} 
+					     { return 0;}
 #define CreateRefFromName(n,nx) if(! C2F(createreffromname)(n,nx)){return 0;}
 
 #define CreateRef(num, point) if(! C2F(createreference)(num,point)){return 0;}
@@ -187,11 +187,11 @@ extern  void * GetFuncPtr __PARAMS((char *,int,void *,void (*f)(),int *,int*,int
 /**
  * <long-description>
  *
- * @param n 
- * @param ct    
- * @param mx    
- * @param nx    
- * @param lx    
+ * @param n
+ * @param ct
+ * @param mx
+ * @param nx
+ * @param lx
  * @return <ReturnValue>
  */
 #define GetRhsVar(n,ct,mx,nx,lx) if (! C2F(getrhsvar)((c_local=n,&c_local),ct,mx,nx,(integer *) lx,1L))\
@@ -235,18 +235,18 @@ extern  void * GetFuncPtr __PARAMS((char *,int,void *,void (*f)(),int *,int*,int
 
 #define GetMatrixdims(n,mx,nx)  if (! C2F(getmatdims)((c_local=n,&c_local),mx,nx)) {	return 0; }
 
-#define CreateVarFrom(n,ct,mx,nx,lx,lx1) if (!C2F(createvarfrom)((c_local=n,&c_local),ct,mx,nx,lx,lx1,1L))  { return 0;} 
-#define CreateCVarFrom(n,ct,it,mx,nx,lx,lc,lx1,lc1) if (!C2F(createcvarfrom)((c_local=n,&c_local),ct,it,mx,nx,lx,lc,lx1,lc1,1L))  { return 0;} 
+#define CreateVarFrom(n,ct,mx,nx,lx,lx1) if (!C2F(createvarfrom)((c_local=n,&c_local),ct,mx,nx,lx,lx1,1L))  { return 0;}
+#define CreateCVarFrom(n,ct,it,mx,nx,lx,lc,lx1,lc1) if (!C2F(createcvarfrom)((c_local=n,&c_local),ct,it,mx,nx,lx,lc,lx1,lc1,1L))  { return 0;}
 
 #define Createlist(m,n) C2F(createlist)((c_local=m,&c_local),(c1_local=n,&c1_local))
 
-#define CreateListVarFrom(n,m,ct,mx,nx,lx,lx1) if (!C2F(createlistvarfrom)((c_local=n,&c_local),(c1_local=m,&c1_local),ct,mx,nx,(void *)lx,(void *) lx1,1L))  { return 0;} 
+#define CreateListVarFrom(n,m,ct,mx,nx,lx,lx1) if (!C2F(createlistvarfrom)((c_local=n,&c_local),(c1_local=m,&c1_local),ct,mx,nx,(void *)lx,(void *) lx1,1L))  { return 0;}
 
-#define CreateListCVarFrom(n,m,ct,it,mx,nx,lx,lc,lx1,lc1) if (!C2F(createlistcvarfrom)((c_local=n,&c_local),(c1_local=m,&c1_local),ct,it,mx,nx,(void *)lx,(void *) lc,(void *) lx1,(void *)lc1,1L))  { return 0;} 
+#define CreateListCVarFrom(n,m,ct,it,mx,nx,lx,lc,lx1,lc1) if (!C2F(createlistcvarfrom)((c_local=n,&c_local),(c1_local=m,&c1_local),ct,it,mx,nx,(void *)lx,(void *) lc,(void *) lx1,(void *)lc1,1L))  { return 0;}
 
-#define CreateListVarFromPtr(n,m,ct,mx,nx,lx1) if (!C2F(createlistvarfromptr)((c_local=n,&c_local),(c1_local=m,&c1_local),ct,mx,nx,(void *) lx1,1L))  { return 0;} 
+#define CreateListVarFromPtr(n,m,ct,mx,nx,lx1) if (!C2F(createlistvarfromptr)((c_local=n,&c_local),(c1_local=m,&c1_local),ct,mx,nx,(void *) lx1,1L))  { return 0;}
 
-#define CreateListCVarFromPtr(n,m,ct,it,mx,nx,lx1,lc1) if (!C2F(createlistcvarfromptr)((c_local=n,&c_local),(c1_local=m,&c1_local),ct,it,mx,nx,(void *) lx1,(void *) lc1,1L))  { return 0;} 
+#define CreateListCVarFromPtr(n,m,ct,it,mx,nx,lx1,lc1) if (!C2F(createlistcvarfromptr)((c_local=n,&c_local),(c1_local=m,&c1_local),ct,it,mx,nx,(void *) lx1,(void *) lc1,1L))  { return 0;}
 
 
 
@@ -302,7 +302,7 @@ extern  void * GetFuncPtr __PARAMS((char *,int,void *,void (*f)(),int *,int*,int
   if(! C2F(scifunction)((c_local=n,&c_local),mx,nx,lx))\
 { message_scilab("core_message_111",name);  longjmp(fsqpenv,-1); }
 
-#define Nbvars C2F(intersci).nbvars 
+#define Nbvars C2F(intersci).nbvars
 
 /**
  * TODO : need a comment !!!!
@@ -311,22 +311,22 @@ extern  void * GetFuncPtr __PARAMS((char *,int,void *,void (*f)(),int *,int*,int
 #define LhsVar(x) C2F(intersci).lhsvar[x-1]
 
 
-/* used to access data associated to a variable 
- * for example when a variable is created with CreateVarFromPtr(...) 
+/* used to access data associated to a variable
+ * for example when a variable is created with CreateVarFromPtr(...)
  */
 
-#define VarPtr(x) C2F(intersci).lad[x-1] 
+#define VarPtr(x) C2F(intersci).lad[x-1]
 
 typedef int (*interfun) __PARAMS((char *fname,unsigned long l));
 
-typedef struct tagTabF { 
+typedef struct tagTabF {
   interfun f;
   char *name;
 } TabF;
 
 
 /*-------------------------------------------------
- * checks properties 
+ * checks properties
  * -------------------------------------------------*/
 
 #define CheckSquare(pos,m,n) if (! check_square(pos,m,n)) return 0;
@@ -351,9 +351,9 @@ typedef struct tagTabF {
  * structure used for optional arguments in interfaces
  * -------------------------------------------------*/
 
-typedef struct rhs_opts__ { 
+typedef struct rhs_opts__ {
   int position ; /** stack position : -1 if not present */
-  char *name   ; 
+  char *name   ;
   char *type;
   int m,n;
   unsigned long int l;
@@ -361,8 +361,22 @@ typedef struct rhs_opts__ {
 
 int get_optionals __PARAMS((char *name,rhs_opts opts[]));
 
+
+/*-------------------------------------
+ * get infos without being dependent
+ * of stack structure !!! (! WOW !)
+ *------------------------------------*/
+#define getType(il)			*istk(il)
+#define getNumberOfLines(il)		*istk(il+1)
+#define getNumberOfColumns(il)		*istk(il+2)
+#define getPrecision(il)		((getType(il) == sci_ints) ? (*istk(il+3)) : (0))
+#define getDoubleDataAddress(il)	sadr(il + 4)
+#define isComplex(il)			((getType(il) == sci_ints) ? (0) : (*istk(il+3))) == 0
+#define getElementByAddress(ea)		*stk(ea)
+
+
 /*------------------------------
- * prototypes 
+ * prototypes
  *-----------------------------*/
 
 extern int C2F(error) __PARAMS((int *));
