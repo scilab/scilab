@@ -2021,7 +2021,7 @@ void VTRun(char *startup, int lstartup,int memory)
   bptr = buffer;
 
   C2F(inisci)(&ini, &memory, &ierr);
-  if (ierr > 0) sci_exit(1) ;
+  if (ierr > 0) C2F(sciquit)();
   /** An interaction Loop for scilab interpreter */
 
   C2F(scirun)(startup,lstartup);
