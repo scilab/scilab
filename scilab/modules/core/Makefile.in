@@ -133,7 +133,7 @@ am__objects_1 = libscicore_la-inffic.lo libscicore_la-cs2st.lo \
 	libscicore_la-getcommandlineargs.lo libscicore_la-syncexec.lo \
 	libscicore_la-getfastcode.lo \
 	libscicore_la-callFunctionFromGateway.lo \
-	libscicore_la-librarieslist.lo
+	libscicore_la-librarieslist.lo libscicore_la-libraryinfo.lo
 am__objects_2 = algebre.lo clunit.lo complexify.lo allowptr.lo \
 	dldsp.lo bcol.lo getlin.lo isany.lo hmcreate.lo nextj.lo \
 	functionsforbasout.lo setgetmode.lo errmsgf.lo showstack.lo \
@@ -189,7 +189,8 @@ am__objects_3 = libscicore_la-sci_stacksize.lo \
 	libscicore_la-sci_getdynlibext.lo \
 	libscicore_la-sci_islittleendian.lo \
 	libscicore_la-sci_getscilabmode.lo \
-	libscicore_la-sci_librarieslist.lo
+	libscicore_la-sci_librarieslist.lo \
+	libscicore_la-sci_libraryinfo.lo
 am__objects_4 = sci_errclear.lo sci_c_link.lo sci_funcprot.lo \
 	sci_global.lo sci_mtlb_mode.lo sci_resume.lo sci_dispbpt.lo \
 	sci_useascommand.lo sci_whereis.lo sci_intppty.lo sci_ieee.lo \
@@ -478,7 +479,8 @@ src/c/getcommandlineargs.c \
 src/c/syncexec.c \
 src/c/getfastcode.c  \
 src/c/callFunctionFromGateway.c \
-src/c/librarieslist.c
+src/c/librarieslist.c \
+src/c/libraryinfo.c
 
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f \
 src/fortran/clunit.f \
@@ -658,7 +660,8 @@ sci_gateway/c/sci_with_module.c \
 sci_gateway/c/sci_getdynlibext.c \
 sci_gateway/c/sci_islittleendian.c \
 sci_gateway/c/sci_getscilabmode.c \
-sci_gateway/c/sci_librarieslist.c
+sci_gateway/c/sci_librarieslist.c \
+sci_gateway/c/sci_libraryinfo.c
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_errclear.f \
 sci_gateway/fortran/sci_c_link.f \
@@ -781,7 +784,8 @@ includes/syncexec.h \
 includes/getfastcode.h \
 includes/dynamic_menus.h \
 includes/callFunctionFromGateway.h \
-includes/librarieslist.h
+includes/librarieslist.h \
+includes/libraryinfo.h
 
 
 #### core : demos files ####
@@ -955,6 +959,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-isanan.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-islittleendian.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-librarieslist.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-libraryinfo.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-link.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-loadversion.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-md5.Plo@am__quote@
@@ -1011,6 +1016,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_islittleendian.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_lasterror.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_librarieslist.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_libraryinfo.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_lines.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_link.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_macr2lst.Plo@am__quote@
@@ -1659,6 +1665,13 @@ libscicore_la-librarieslist.lo: src/c/librarieslist.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-librarieslist.lo `test -f 'src/c/librarieslist.c' || echo '$(srcdir)/'`src/c/librarieslist.c
 
+libscicore_la-libraryinfo.lo: src/c/libraryinfo.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-libraryinfo.lo -MD -MP -MF $(DEPDIR)/libscicore_la-libraryinfo.Tpo -c -o libscicore_la-libraryinfo.lo `test -f 'src/c/libraryinfo.c' || echo '$(srcdir)/'`src/c/libraryinfo.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-libraryinfo.Tpo $(DEPDIR)/libscicore_la-libraryinfo.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/libraryinfo.c' object='libscicore_la-libraryinfo.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-libraryinfo.lo `test -f 'src/c/libraryinfo.c' || echo '$(srcdir)/'`src/c/libraryinfo.c
+
 libscicore_la-sci_stacksize.lo: sci_gateway/c/sci_stacksize.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_stacksize.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_stacksize.Tpo -c -o libscicore_la-sci_stacksize.lo `test -f 'sci_gateway/c/sci_stacksize.c' || echo '$(srcdir)/'`sci_gateway/c/sci_stacksize.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-sci_stacksize.Tpo $(DEPDIR)/libscicore_la-sci_stacksize.Plo
@@ -2120,6 +2133,13 @@ libscicore_la-sci_librarieslist.lo: sci_gateway/c/sci_librarieslist.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_librarieslist.c' object='libscicore_la-sci_librarieslist.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-sci_librarieslist.lo `test -f 'sci_gateway/c/sci_librarieslist.c' || echo '$(srcdir)/'`sci_gateway/c/sci_librarieslist.c
+
+libscicore_la-sci_libraryinfo.lo: sci_gateway/c/sci_libraryinfo.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_libraryinfo.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_libraryinfo.Tpo -c -o libscicore_la-sci_libraryinfo.lo `test -f 'sci_gateway/c/sci_libraryinfo.c' || echo '$(srcdir)/'`sci_gateway/c/sci_libraryinfo.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-sci_libraryinfo.Tpo $(DEPDIR)/libscicore_la-sci_libraryinfo.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_libraryinfo.c' object='libscicore_la-sci_libraryinfo.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-sci_libraryinfo.lo `test -f 'sci_gateway/c/sci_libraryinfo.c' || echo '$(srcdir)/'`sci_gateway/c/sci_libraryinfo.c
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<

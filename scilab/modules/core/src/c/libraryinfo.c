@@ -44,11 +44,11 @@ char **getlistmacrosfromlibrary(char *libraryname,int *sizearray)
 	{
 		/* in each library directory , we have a "names" file with list of macros */
 		#define filenameNAMES "names"
-		char expandedpath[MAX_PATH];
+		char expandedpath[PATH_MAX];
 		char *fullfilename = NULL;
 		int out_n = 0;
 
-		C2F(cluni0)(pathlibrary,expandedpath, &out_n,strlen(pathlibrary),MAX_PATH);
+		C2F(cluni0)(pathlibrary,expandedpath, &out_n,strlen(pathlibrary),PATH_MAX);
 
 		fullfilename = (char*)MALLOC(sizeof(char)*(strlen(expandedpath)+strlen(filenameNAMES)+1));
 		if (fullfilename)
