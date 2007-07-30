@@ -86,7 +86,8 @@ src/c/getcommandlineargs.c \
 src/c/syncexec.c \
 src/c/getfastcode.c  \
 src/c/callFunctionFromGateway.c \
-src/c/librarieslist.c
+src/c/librarieslist.c \
+src/c/libraryinfo.c
 
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f \
 src/fortran/clunit.f \
@@ -266,7 +267,8 @@ sci_gateway/c/sci_with_module.c \
 sci_gateway/c/sci_getdynlibext.c \
 sci_gateway/c/sci_islittleendian.c \
 sci_gateway/c/sci_getscilabmode.c \
-sci_gateway/c/sci_librarieslist.c
+sci_gateway/c/sci_librarieslist.c \
+sci_gateway/c/sci_libraryinfo.c
 
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_errclear.f \
@@ -399,7 +401,9 @@ includes/syncexec.h \
 includes/getfastcode.h \
 includes/dynamic_menus.h \
 includes/callFunctionFromGateway.h \
-includes/librarieslist.h
+includes/librarieslist.h \
+includes/libraryinfo.h
+
 
 #### core : demos files ####
 libscicore_la_demosintrodir=$(mydatadir)/demos/intro/
