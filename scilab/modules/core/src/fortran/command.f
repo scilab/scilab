@@ -3,6 +3,7 @@ C     ====================================================================
 C     Scilab Command and Keyword 
 C     ====================================================================
 C     id(nsiz) coded name of the command 
+c     if you update command.f , please update commandwords.c too ...
 c     Copyright INRIA
       include 'stack.h'
       logical compil

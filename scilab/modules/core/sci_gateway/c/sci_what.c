@@ -9,26 +9,8 @@
 #include "MALLOC.h"
 #include "sciprint.h"
 #include "message_scilab.h"
+#include "commandwords.h"
 /*-----------------------------------------------------------------------------------*/
-static const int nbrCommands=29;
-/*-----------------------------------------------------------------------------------*/
-static char *CommandWords[]={
-	"if","else",
-	"for","while",
-	"end","select",
-	"case","quit",
-	"exit","return",
-	"help","what",
-	"who","pause",
-	"clear","resume",
-	"then","do",
-	"apropos","abort",
-	"break","elseif",
-	"pwd","function",
-	"endfunction","clc",
-	"continue",
-	"try","catch"
-};
 static char **LocalFunctionsTab=NULL;
 static int SizeLocalFunctionsTab=0;
 /*-----------------------------------------------------------------------------------*/
@@ -42,14 +24,15 @@ extern char **GetFunctionsList(int *sizeList);
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_what) _PARAMS((char *fname,unsigned long fname_len))
 {
+	int sizecommandwords = 0;
+	char **commandwords = getcommandkeywords(&sizecommandwords);
+
 	Rhs = Max(0, Rhs);
 	CheckRhs(0,0);
 	CheckLhs(1,2);
 
-	SortStrings(CommandWords,nbrCommands);
 	CreateLocalFunctionsTab();
 	SortStrings(LocalFunctionsTab,SizeLocalFunctionsTab);
-
 
 	if (Lhs == 1)
 	{
@@ -63,16 +46,22 @@ int C2F(sci_what) _PARAMS((char *fname,unsigned long fname_len))
 
 		int ncol=1;	
 		int nrowFunctions=SizeLocalFunctionsTab;
-		int nrowCommands=nbrCommands;
+		int nrowCommands=sizecommandwords;
 
 		CreateVarFromPtr(Rhs+1, "S", &nrowFunctions, &ncol, LocalFunctionsTab);
 		LhsVar(1)=Rhs+1;
 
-		CreateVarFromPtr(Rhs+2, "S", &nrowCommands, &ncol, CommandWords);
+		CreateVarFromPtr(Rhs+2, "S", &nrowCommands, &ncol, commandwords);
 		LhsVar(2)=Rhs+2;
 
 		for (i2=0;i2<nrowFunctions;i2++) { FREE(LocalFunctionsTab[i2]);LocalFunctionsTab[i2]=NULL; }
-		FREE(LocalFunctionsTab);
+		FREE(LocalFunctionsTab); LocalFunctionsTab = NULL;
+
+		if (commandwords)
+		{
+			for (i2=0;i2<nrowCommands;i2++) { FREE(commandwords[i2]);commandwords[i2]=NULL; }
+			FREE(commandwords); commandwords = NULL;
+		}
 	}
 
 	C2F(putlhsvar)();
@@ -97,28 +86,52 @@ static void DispInternalFunctions(void)
 static void DispCommands(void)
 {
 	int i=0;
+	int sizecommandwords = 0;
+	char **commandwords = getcommandkeywords(&sizecommandwords);
+
 	sciprint("\n");
 	message_scilab("core_message_139");
 	sciprint("\n");
-	for (i=1;i<nbrCommands+1;i++)
+	for (i=1;i <sizecommandwords+1;i++)
 	{
-		sciprint("%+24s ",CommandWords[i-1]);
+		sciprint("%+24s ",commandwords[i-1]);
 		if (i%4==0) sciprint("\n");
 	}
 	sciprint("\n");
+
+	if (commandwords)
+	{
+		for (i=0;i<sizecommandwords;i++) { FREE(commandwords[i]);commandwords[i]=NULL; }
+		FREE(commandwords); commandwords = NULL;
+	}
 }
 /*-----------------------------------------------------------------------------------*/
 static int IsACommand(char *primitive)
 {
+	int sizecommandwords = 0;
+	char **commandwords = getcommandkeywords(&sizecommandwords);
 	int bOK=FALSE;
 	int i=0;
-	for (i=0;i<nbrCommands;i++)
+
+	for (i=0;i<sizecommandwords ;i++)
 	{
-		if (strcmp(CommandWords[i],primitive)==0)
+		if (strcmp(commandwords[i],primitive)==0)
 		{
+			if (commandwords)
+			{
+				for (i=0;i<sizecommandwords;i++) { FREE(commandwords[i]);commandwords[i]=NULL; }
+				FREE(commandwords); commandwords = NULL;
+			}
 			return TRUE;
 		}
 	}
+
+	if (commandwords)
+	{
+		for (i=0;i<sizecommandwords;i++) { FREE(commandwords[i]);commandwords[i]=NULL; }
+		FREE(commandwords); commandwords = NULL;
+	}
+
 	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/

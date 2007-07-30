@@ -88,7 +88,8 @@ src/c/getfastcode.c  \
 src/c/callFunctionFromGateway.c \
 src/c/librarieslist.c \
 src/c/libraryinfo.c \
-src/c/getvariablesname.c
+src/c/getvariablesname.c \
+src/c/commandwords.c
 
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f \
 src/fortran/clunit.f \
@@ -405,7 +406,8 @@ includes/dynamic_menus.h \
 includes/callFunctionFromGateway.h \
 includes/librarieslist.h \
 includes/libraryinfo.h \
-includes/getvariablesname.h
+includes/getvariablesname.h \
+includes/commandwords.h
 
 
 #### core : demos files ####
