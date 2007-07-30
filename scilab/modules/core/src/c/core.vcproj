@@ -298,6 +298,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\getvariablesname.c"
+				>
+			</File>
+			<File
 				RelativePath=".\GetXmlFileEncoding.c"
 				>
 			</File>
@@ -543,6 +547,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_getscilabmode.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_getvariablesonstack.c"
 				>
 			</File>
 			<File
@@ -915,6 +923,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\getvariablesname.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\GetXmlFileEncoding.h"
 				>
 			</File>
@@ -1015,11 +1027,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\Os_specific.h"
+				RelativePath=".\Os_specific.h"
 				>
 			</File>
 			<File
-				RelativePath=".\Os_specific.h"
+				RelativePath="..\..\includes\Os_specific.h"
 				>
 			</File>
 			<File

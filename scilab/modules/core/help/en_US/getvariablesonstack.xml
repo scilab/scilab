@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>getvariablesonstack</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>$LastChangedDate: 2007-07-29 20:39:36 +0200 (mar., 17 oct. 2007)$</DATE>
+
+  <SHORT_DESCRIPTION name="getvariablesonstack">get variable names on stack of scilab</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>s=getvariablesonstack()</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>s=getvariablesonstack('local')</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>s=getvariablesonstack('global')</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>s</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: a string matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>return in <VERB>s</VERB>variable names on scilab stack. </P>
+    <P>getvariablesonstack('local') returns local variables on scilab stack. </P>
+    <P>getvariablesonstack('global') returns global variables on scilab stack. </P>
+    <P>Variables are sorted by alphabetical order.</P>
+    
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[getvariablesonstack()
+  getvariablesonstack('local')
+  getvariablesonstack('global')
+
+   ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>who</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

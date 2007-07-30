@@ -73,7 +73,8 @@ static gw_generic_table Tab[]=
 {C2F(sci_islittleendian),"islittleendian"},
 {C2F(sci_getscilabmode),"getscilabmode"},
 {C2F(sci_librarieslist),"librarieslist"},
-{C2F(sci_libraryinfo),"libraryinfo"}
+{C2F(sci_libraryinfo),"libraryinfo"},
+{C2F(sci_getvariablesonstack),"getvariablesonstack"}
 };
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_core)()

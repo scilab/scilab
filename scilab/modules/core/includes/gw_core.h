@@ -74,6 +74,7 @@ int C2F(sci_islittleendian) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_getscilabmode) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_librarieslist) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_libraryinfo) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_getvariablesonstack) _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/ 
 #endif /*  __GW_CORE__ */
 /*-----------------------------------------------------------------------------------*/
