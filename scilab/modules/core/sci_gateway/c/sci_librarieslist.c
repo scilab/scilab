@@ -10,7 +10,6 @@
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_librarieslist) _PARAMS((char *fname,unsigned long fname_len))
 {
-	
 	char **libraries = NULL;
 	int sizelibraries = 0;
 
@@ -37,7 +36,6 @@ int C2F(sci_librarieslist) _PARAMS((char *fname,unsigned long fname_len))
 	if (libraries)
 	{
 		int i = 0;
-
 		for (i=0;i < sizelibraries;i++) 
 		{ 
 			if (libraries[i])

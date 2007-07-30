@@ -1,0 +1,87 @@
+/*-----------------------------------------------------------------------------------*/
+/* INRIA 2007 */
+/* Allan CORNET */
+/*-----------------------------------------------------------------------------------*/ 
+#include "gw_core.h"
+#include "machine.h"
+#include "stack-c.h"
+#include "libraryinfo.h"
+#include "MALLOC.h"
+#include "Scierror.h"
+/*-----------------------------------------------------------------------------------*/
+int C2F(sci_libraryinfo) _PARAMS((char *fname,unsigned long fname_len))
+{
+	int l1,n1,m1;
+
+	CheckRhs(1,1);
+	CheckLhs(2,2);
+	
+	if (GetType(1) == sci_strings)
+	{
+		char *pathlibrary = NULL;
+		char *libraryname = NULL;
+
+		GetRhsVar(1,"c",&m1,&n1,&l1);
+		libraryname = cstk(l1);
+
+		pathlibrary = getlibrarypath(libraryname);
+
+		if (pathlibrary)
+		{
+			int m = 0, n = 0, l = 0;
+			char **macros = NULL;
+			int sizemacrosarray = 0;
+
+			macros = getlistmacrosfromlibrary(libraryname,&sizemacrosarray);
+
+			if (macros)
+			{
+				m = sizemacrosarray;
+				n = 1;
+				CreateVarFromPtr(Rhs+1, "S", &m, &n, macros);
+			}
+			else
+			{
+				n = 0;
+				m = 0;
+				l = 0;
+				CreateVarFromPtr(Rhs+1, "d",&n,&m,&l);
+			}
+			LhsVar(1) = Rhs+1;
+
+			n = 1;
+			m = (int)strlen(pathlibrary);
+			CreateVarFromPtr(Rhs+2, "c",&m,&n,&pathlibrary);
+			LhsVar(2) = Rhs+2;
+
+			C2F(putlhsvar)();
+			
+			if (macros)
+			{
+				int i = 0;
+				for( i = 0; i < sizemacrosarray; i++)
+				{
+					if (macros[i]) 
+					{
+						FREE(macros[i]);
+						macros[i] = NULL;
+					}
+				}
+				FREE(macros);
+				macros = NULL;
+			}
+
+			if (pathlibrary) {FREE(pathlibrary);pathlibrary=NULL;}
+		}
+		else
+		{
+			Scierror(999,"Invalid library.\r\n");
+		}
+	}
+	else
+	{
+		Scierror(999,"Invalid parameter(s).\r\n");
+	}
+	return 0;
+}
+/*-----------------------------------------------------------------------------------*/

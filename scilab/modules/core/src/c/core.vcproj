@@ -358,6 +358,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\libraryinfo.c"
+				>
+			</File>
+			<File
 				RelativePath=".\link.c"
 				>
 			</File>
@@ -587,6 +591,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_librarieslist.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_libraryinfo.c"
 				>
 			</File>
 			<File
@@ -871,11 +879,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\fromjava.h"
+				RelativePath="..\..\includes\fromjava.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\fromjava.h"
+				RelativePath=".\fromjava.h"
 				>
 			</File>
 			<File
