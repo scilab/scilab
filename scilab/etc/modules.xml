@@ -60,9 +60,9 @@
 <module name="scipad" activate="1"/>
 <module name="randlib" activate="1"/>
 <module name="others" activate="1"/>
-<module name="scicos" activate="1"/>
 <module name="scilab2fortran" activate="1"/>
 <module name="development_tools" activate="1"/>
+<module name="scicos" activate="0"/>
 <!-- comments -->
 <module name="pvm" activate="0"/>
 <module name="sci2c" activate="0"/>
