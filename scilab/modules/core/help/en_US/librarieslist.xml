@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>librairieslist</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>$LastChangedDate: 2007-07-29 20:39:36 +0200 (mar., 17 oct. 2007)$</DATE>
+
+  <SHORT_DESCRIPTION name="librairieslist">get scilab libraries</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>s=librairieslist()</CALLING_SEQUENCE_ITEM>
+
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>s</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: a string matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>return in <VERB>s</VERB> all librairies on scilab stack. </P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[librairieslist()
+
+   ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>libraryinfo</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>
