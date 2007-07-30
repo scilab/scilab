@@ -25,7 +25,7 @@ char *getlibrarypath(char *libraryname)
 			int lengthpath = 0, job = 0;
 
 			lengthpath = header[1];
-			path = (char *) MALLOC(lengthpath*sizeof(char));
+			path = (char *) MALLOC((lengthpath+1)*sizeof(char));
 
 			job=1; /* convert scilab to ascii */
 			C2F(cvstr)(&lengthpath, &header[2], path,&job,lengthpath);
@@ -44,7 +44,7 @@ char **getlistmacrosfromlibrary(char *libraryname,int *sizearray)
 	{
 		/* in each library directory , we have a "names" file with list of macros */
 		#define filenameNAMES "names"
-		char expandedpath[PATH_MAX];
+		char expandedpath[PATH_MAX+1];
 		char *fullfilename = NULL;
 		int out_n = 0;
 
