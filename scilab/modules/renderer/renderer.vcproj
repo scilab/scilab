@@ -223,6 +223,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\cpp\rectangleDrawing\ConcreteDrawableRectangle.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\arcDrawing\DrawableArc.cpp"
 				>
 			</File>
@@ -267,11 +271,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\cpp\figureDrawing\DrawableFigureFactory.cpp"
+				RelativePath=".\src\cpp\figureDrawing\DrawableFigureBridgeFactory.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\src\cpp\figureDrawing\DrawableFigureImpFactory.cpp"
+				RelativePath=".\src\cpp\figureDrawing\DrawableFigureFactory.cpp"
 				>
 			</File>
 			<File
@@ -335,15 +339,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\cpp\rectangleDrawing\DrawableRectangleBridge.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\rectangleDrawing\DrawableRectangleBridgeFactory.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\rectangleDrawing\DrawableRectangleFactory.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\rectangleDrawing\DrawableRectangleImp.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\rectangleDrawing\DrawableRectangleImpFactory.cpp"
 				>
 			</File>
 			<File
@@ -493,6 +497,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\cpp\rectangleDrawing\ConcreteDrawableRectangle.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\arcDrawing\DrawableArc.h"
 				>
 			</File>
@@ -541,15 +549,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\cpp\figureDrawing\DrawableFigureBridge.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\figureDrawing\DrawableFigureBridgeFactory.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\figureDrawing\DrawableFigureFactory.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\figureDrawing\DrawableFigureImp.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\figureDrawing\DrawableFigureImpFactory.h"
 				>
 			</File>
 			<File
@@ -585,11 +593,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\cpp\DrawableObjectFactory.h"
+				RelativePath=".\src\cpp\DrawableObjectBridge.h"
 				>
 			</File>
 			<File
-				RelativePath=".\src\cpp\DrawableObjectImp.h"
+				RelativePath=".\src\cpp\DrawableObjectFactory.h"
 				>
 			</File>
 			<File
@@ -621,15 +629,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\cpp\rectangleDrawing\DrawableRectangleBridge.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\rectangleDrawing\DrawableRectangleBridgeFactory.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\rectangleDrawing\DrawableRectangleFactory.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\rectangleDrawing\DrawableRectangleImp.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\rectangleDrawing\DrawableRectangleImpFactory.h"
 				>
 			</File>
 			<File

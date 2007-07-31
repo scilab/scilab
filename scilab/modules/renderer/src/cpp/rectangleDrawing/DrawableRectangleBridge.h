@@ -6,8 +6,8 @@
 /*        rectangle object                                                */
 /*------------------------------------------------------------------------*/
 
-#ifndef _DRAWABLE_RECTANGLE_IMP_H_
-#define _DRAWABLE_RECTANGLE_IMP_H_
+#ifndef _DRAWABLE_RECTANGLE_BRIDGE_H_
+#define _DRAWABLE_RECTANGLE_BRIDGE_H_
 
 #include "../DrawableObject.h"
 #include "../DrawableClippedObjectBridge.h"
@@ -18,18 +18,18 @@ namespace sciGraphics
 {
 
   /**
-  * To avoid cyclic dependances.
+  * To avoid cyclic dependancies.
   */
   class DrawableRectangle ;
 
-  class DrawableRectangleImp : public virtual DrawableClippedObjectBridge
+  class DrawableRectangleBridge : public virtual DrawableClippedObjectBridge
   {
 
   public:
 
-    DrawableRectangleImp( void ) ;
+    DrawableRectangleBridge( void ) ;
 
-    virtual ~DrawableRectangleImp( void ) ;
+    virtual ~DrawableRectangleBridge( void ) ;
 
     /**
      * Tell the canvas to draw itself.
@@ -63,4 +63,4 @@ namespace sciGraphics
 
 }
 
-#endif /* _DRAWABLE_RECTANGLE_IMP_H_  */
+#endif /* _DRAWABLE_RECTANGLE_BRIDGE_H_  */

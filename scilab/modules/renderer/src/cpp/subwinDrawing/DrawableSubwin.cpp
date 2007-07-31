@@ -27,19 +27,18 @@ DrawableSubwin::~DrawableSubwin( void )
   if ( m_pCamera != NULL )
   {
     delete m_pCamera ;
+    m_pCamera = NULL ;
   }
-  m_pCamera = NULL;
-
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableSubwin::draw( void )
 {
-  //initializeDrawing() ;
-  //if ( !checkVisibility() )
-  //{
-  //  endDrawing();
-  //  return;
-  //}
+  initializeDrawing() ;
+  if ( !checkVisibility() )
+  {
+    endDrawing();
+    return;
+  }
   m_pCamera->setViewingArea(sciGetAxesBounds(m_pDrawed), sciGetMargins(m_pDrawed)) ;
 
   double bounds[6] ;
@@ -52,7 +51,7 @@ void DrawableSubwin::draw( void )
   m_pCamera->setRotationAngles(alpha, theta);
   m_pCamera->renderPosition();
   displayChildren() ;
-  //endDrawing();
+  endDrawing();
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableSubwin::show( void )

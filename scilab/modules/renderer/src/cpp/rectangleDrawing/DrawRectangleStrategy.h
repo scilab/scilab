@@ -11,13 +11,13 @@
 namespace sciGraphics
 {
   // cross reference
-  class DrawableRectangleImp ;
+  class DrawableRectangleBridge ;
 
   class DrawRectangleStrategy
   {
   public:
 
-    DrawRectangleStrategy( DrawableRectangleImp * drawer ) { m_pDrawed = drawer ; }
+    DrawRectangleStrategy( DrawableRectangleBridge * drawer ) { m_pDrawed = drawer ; }
     
     virtual ~DrawRectangleStrategy( void ) {}
 
@@ -33,7 +33,7 @@ namespace sciGraphics
 
   protected:
 
-    DrawableRectangleImp * m_pDrawed ;
+    DrawableRectangleBridge * m_pDrawed ;
 
   };
   

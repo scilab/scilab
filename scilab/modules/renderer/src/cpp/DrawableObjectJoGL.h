@@ -9,12 +9,12 @@
 #define _DRAWABLE_OBJECT_JOGL_H_
 
 #include <jni.h>
-#include "DrawableObjectImp.h"
+#include "DrawableObjectBridge.h"
 #include "DrawableObject.h"
 
 namespace sciGraphics
 {
-  class DrawableObjectJoGL : public virtual DrawableObjectImp
+  class DrawableObjectJoGL : public virtual DrawableObjectBridge
   {
   public:
     

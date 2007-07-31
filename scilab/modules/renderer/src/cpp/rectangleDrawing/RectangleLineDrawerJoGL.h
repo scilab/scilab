@@ -18,7 +18,7 @@ namespace sciGraphics
   {
   public:
 
-    RectangleLineDrawerJoGL( DrawableRectangleImp * drawer ) ;
+    RectangleLineDrawerJoGL( DrawableRectangleBridge * drawer ) ;
 
     virtual ~RectangleLineDrawerJoGL( void ) {}
 

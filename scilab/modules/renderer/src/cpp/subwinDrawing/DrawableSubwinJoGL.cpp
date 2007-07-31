@@ -10,7 +10,7 @@
 #include "DrawableSubwinJoGL.h"
 #include "DrawableSubwin.h"
 #include "../DrawableObjectJoGL.h"
-#include "../DrawableObjectImp.h"
+#include "../DrawableObjectBridge.h"
 
 extern "C"
 {

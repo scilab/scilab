@@ -10,7 +10,6 @@
 
 #include "DrawRectangleStrategy.h"
 #include "../DrawableObjectJoGL.h"
-#include "DrawableRectangleImp.h"
 
 namespace sciGraphics
 {
@@ -18,7 +17,7 @@ namespace sciGraphics
   {
   public:
 
-    RectangleMarkDrawerJoGL( DrawableRectangleImp * drawer ) ;
+    RectangleMarkDrawerJoGL( DrawableRectangleBridge * drawer ) ;
 
     /**
      * Main algorithm to draw the marks on the rectangle corners

@@ -109,27 +109,6 @@ public class DrawableFigureJoGL extends ObjectJoGL {
 	public void display() {
 		guiProperties.forceDisplay();
 	}
-  
-  /**
-   * If needed create a new context to draw the figure
-   * @param figureIndex number of the figurewhich will be displayed in the canvas
-   */
-  public void openRenderingCanvas(int figureIndex) {
-//      if (canvas != null) { return; }
-//      Window graphicView = ScilabWindow.createWindow();
-//      graphicView.draw();
-//      graphicView.setTitle("Graphic window number " + figureIndex);
-//      
-//      /* FIGURE */
-//      /* Create the tab to put a canvas into */
-//      graphicTab = ScilabTab.createTab("");
-//      graphicTab.setName("");
-//      graphicView.addTab(graphicTab);
-// 
-//      canvas = ScilabCanvas.createCanvas(figureIndex);
-//      graphicTab.addMember(canvas);
-//      canvas.display();
-    }
 
   	/**
   	 * Destroyr the rendering context

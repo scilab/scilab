@@ -9,14 +9,14 @@
 #ifndef _DRAWABLE_FIGURE_JOGL_H_
 #define _DRAWABLE_FIGURE_JOGL_H_
 
-#include "DrawableFigureImp.h"
+#include "DrawableFigureBridge.h"
 #include "DrawableFigure.h"
 #include "../DrawableObjectJoGL.h"
 
 namespace sciGraphics
 {
 
-class DrawableFigureJoGL : public virtual DrawableFigureImp, public DrawableObjectJoGL
+class DrawableFigureJoGL : public virtual DrawableFigureBridge, public DrawableObjectJoGL
 {
 
 public:

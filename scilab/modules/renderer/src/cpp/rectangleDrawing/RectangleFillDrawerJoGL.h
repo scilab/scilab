@@ -18,7 +18,7 @@ namespace sciGraphics
   {
   public:
 
-    RectangleFillDrawerJoGL( DrawableRectangleImp * drawer ) ;
+    RectangleFillDrawerJoGL( DrawableRectangleBridge * drawer ) ;
 
     /**
     * Main algorithm to fill the inside of a rectangle

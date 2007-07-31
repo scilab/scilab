@@ -7,7 +7,7 @@
 /*------------------------------------------------------------------------*/
 
 #include "DrawableClippedObjectJoGL.h"
-#include "DrawableObjectImp.h"
+#include "DrawableObjectBridge.h"
 
 extern "C"
 {

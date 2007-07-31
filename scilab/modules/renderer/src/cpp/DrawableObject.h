@@ -8,7 +8,7 @@
 #ifndef _DRAWABLE_OBJECT_H_
 #define _DRAWABLE_OBJECT_H_
 
-#include "DrawableObjectImp.h"
+#include "DrawableObjectBridge.h"
 
 extern "C"
 {
@@ -58,13 +58,13 @@ public:
   /**
    * Set the driver dependent implementation of algorithms
    */
-  void setDrawableImp( DrawableObjectImp * imp ) { m_pImp = imp ; }
+  void setDrawableImp( DrawableObjectBridge * imp ) { m_pImp = imp ; }
 
   /**
   * Get the driver dependent implementation of algorithm
   * Each graphic object must have is own
   */
-  DrawableObjectImp * getDrawableImp( void ) { return m_pImp ; }
+  DrawableObjectBridge * getDrawableImp( void ) { return m_pImp ; }
 
 protected:
 
@@ -112,7 +112,7 @@ protected:
   /**
    *  Contains drivers independent algorithm common to all DrawableObjects
    */
-  DrawableObjectImp * m_pImp ;
+  DrawableObjectBridge * m_pImp ;
   /*---------------------------------------------------------------------------------*/
 
 } ;

@@ -5,8 +5,8 @@
 /* desc : Factory for DrawableRectangleImp                                */
 /*------------------------------------------------------------------------*/
 
-#ifndef _DRAWABLE_RECTANGLE_IMP_FACTORY_H_
-#define _DRAWABLE_RECTANGLE_IMP_FACTORY_H_
+#ifndef _DRAWABLE_RECTANGLE_BRIDGE_FACTORY_H_
+#define _DRAWABLE_RECTANGLE_BRIDGE_FACTORY_H_
 
 
 #include "DrawableRectangle.h"
@@ -14,19 +14,19 @@
 namespace sciGraphics
 {
 
-  class DrawableRectangleImpFactory
+  class DrawableRectangleBridgeFactory
   {
 
   public:
 
-    DrawableRectangleImpFactory( void ) { m_pDrawable = NULL ; }
+    DrawableRectangleBridgeFactory( void ) { m_pDrawable = NULL ; }
 
-    virtual ~DrawableRectangleImpFactory( void ) {}
+    virtual ~DrawableRectangleBridgeFactory( void ) {}
 
     /**
      * Create a new drawer from the drawed object.
      */
-    virtual DrawableRectangleImp * create( void ) ;
+    virtual DrawableRectangleBridge * create( void ) ;
   
     /**
      * Update the drawer of the drawed object.
@@ -45,7 +45,7 @@ namespace sciGraphics
      * Create the drawing strategies.
      * @param imp Object on which to create the strategies
      */
-    void setStrategies( DrawableRectangleImp * imp ) ;
+    void setStrategies( DrawableRectangleBridge * imp ) ;
 
     DrawableRectangle * m_pDrawable ;
 
@@ -53,4 +53,4 @@ namespace sciGraphics
 
 }
 
-#endif /* _DRAWABLE_RECTANGLE_IMP_FACTORY_H_  */
+#endif /* _DRAWABLE_RECTANGLE_BRIDGE_FACTORY_H_  */

@@ -22,22 +22,22 @@ int sci_xrect( char *fname, unsigned long fname_len )
   integer m1,n1,l1,m2,n2,l2,m3,n3,l3,m4,n4,l4;
   sciPointObj * psubwin = NULL;
   sciPointObj * pFigure = NULL;
-  
-  SciWin();
+
   CheckRhs(1,4);
   
+  SciWin();
 
   startGraphicDataWriting();
   pFigure = sciGetCurrentFigure();
-  endGraphicDataWriting();
-  startFigureDataWriting(pFigure);
   psubwin = sciGetCurrentSubWin();
+  endGraphicDataWriting();
 
-  switch ( Rhs ) 
+  switch( Rhs )
   {
   case 1 :
     GetRhsVar(1,"d",&m1,&n1,&l1); 
     CheckLength(1,m1*n1,4);
+    startFigureDataWriting(pFigure);
     if (strcmp(fname,"xrect")==0)
     {
       int foreground = sciGetForeground(psubwin);
@@ -50,14 +50,16 @@ int sci_xrect( char *fname, unsigned long fname_len )
       Objrect (stk(l1),stk(l1+1),stk(l1+2),stk(l1+3),
         NULL,&foreground,TRUE,FALSE,0,&hdl,FALSE);
     }
+    endFigureDataWriting(pFigure);
 
     if ( hdl < 0 )
     {
-      endFigureDataWriting(pFigure);
-      return -1 ;
+      break;
     }
 
+    startFigureDataReading(pFigure);
     sciDrawObjIfRequired(sciGetCurrentObj ());
+    endFigureDataReading(pFigure);
 
     break;
   case 4 :
@@ -65,6 +67,7 @@ int sci_xrect( char *fname, unsigned long fname_len )
     GetRhsVar(2,"d",&m2,&n2,&l2); CheckScalar(2,m2,n2);
     GetRhsVar(3,"d",&m3,&n3,&l3); CheckScalar(3,m3,n3);
     GetRhsVar(4,"d",&m4,&n4,&l4); CheckScalar(4,m4,n4);
+    startFigureDataWriting(pFigure);
     if (strcmp(fname,"xrect")==0)
     {	
       int foreground = sciGetForeground(psubwin);
@@ -77,22 +80,27 @@ int sci_xrect( char *fname, unsigned long fname_len )
       Objrect (stk(l1),stk(l2),stk(l3),stk(l4),
         NULL,&foreground,TRUE,FALSE,0,&hdl,FALSE);
     }
+    endFigureDataWriting(pFigure);
 
     if ( hdl < 0 )
     {
-      endFigureDataWriting(pFigure);
-      return -1 ;
+      break;
     }
 
+    startFigureDataReading(pFigure);
     sciDrawObjIfRequired(sciGetCurrentObj ());
+    endFigureDataReading(pFigure);
 
     break;
   default :
     Scierror(999,"%s: wrong number of rhs argumens (%d), rhs must be 1 or 4\r\n",fname,Rhs);
     break ;
   }
-  endFigureDataWriting(pFigure);
-  LhsVar(1)=0;
+
+  if ( hdl > 0 )
+  {
+    LhsVar(1)=0;
+  }
   return 0;
 } 
 

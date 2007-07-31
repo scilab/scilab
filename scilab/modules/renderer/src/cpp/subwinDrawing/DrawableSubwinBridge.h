@@ -10,7 +10,7 @@
 #define _DRAWABLE_SUBWIN_BRIDGE_H_
 
 #include "../DrawableObject.h"
-#include "../DrawableObjectImp.h"
+#include "../DrawableObjectBridge.h"
 
 namespace sciGraphics
 {
@@ -20,7 +20,7 @@ namespace sciGraphics
   */
   class DrawableSubwin;
 
-  class DrawableSubwinBridge : public virtual DrawableObjectImp
+  class DrawableSubwinBridge : public virtual DrawableObjectBridge
   {
 
   public:

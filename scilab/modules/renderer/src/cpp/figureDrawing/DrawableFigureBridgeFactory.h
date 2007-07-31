@@ -1,33 +1,33 @@
 /*------------------------------------------------------------------------*/
-/* file: DrawableFigureImpFactory.h                                       */
+/* file: DrawableFigureBridgeFactory.h                                       */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
 /* desc : Factory for DrawableFigureImp                                   */
 /*------------------------------------------------------------------------*/
 
-#ifndef _DRAWABLE_FIGURE_IMP_FACTORY_H_
-#define _DRAWABLE_FIGURE_IMP_FACTORY_H_
+#ifndef _DRAWABLE_FIGURE_BRIDGE_FACTORY_H_
+#define _DRAWABLE_FIGURE_BRIDGE_FACTORY_H_
 
 
 #include "DrawableFigure.h"
-#include "DrawableFigureImp.h"
+#include "DrawableFigureBridge.h"
 
 namespace sciGraphics
 {
 
-class DrawableFigureImpFactory
+class DrawableFigureBridgeFactory
 {
 
 public:
 
-  DrawableFigureImpFactory( void ) { m_pDrawable = NULL ; }
+  DrawableFigureBridgeFactory( void ) { m_pDrawable = NULL ; }
 
-  virtual ~DrawableFigureImpFactory( void ) {}
+  virtual ~DrawableFigureBridgeFactory( void ) {}
 
   /**
    * Create a new drawer from the drawed object.
    */
-  virtual DrawableFigureImp * create( void ) ;
+  virtual DrawableFigureBridge * create( void ) ;
 
   /**
    * Set the DrawableFigure wich needs algorithms
@@ -42,4 +42,4 @@ protected:
 
 }
 
-#endif /* _DRAWABLE_FIGURE_IMP_FACTORY_H_  */
+#endif /* _DRAWABLE_FIGURE_BRIDGE_FACTORY_H_  */

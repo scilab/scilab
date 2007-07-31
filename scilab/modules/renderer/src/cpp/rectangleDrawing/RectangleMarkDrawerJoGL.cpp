@@ -17,7 +17,7 @@ extern "C"
 namespace sciGraphics
 {
 /*------------------------------------------------------------------------------------------*/
-RectangleMarkDrawerJoGL::RectangleMarkDrawerJoGL( DrawableRectangleImp * drawer )
+RectangleMarkDrawerJoGL::RectangleMarkDrawerJoGL( DrawableRectangleBridge * drawer )
   : DrawRectangleStrategy( drawer ),
     DrawableObjectJoGL(drawer->getRectangleDrawer(), "org/scilab/modules/renderer/rectangleDrawing/RectangleMarkDrawerJoGL" )
 {

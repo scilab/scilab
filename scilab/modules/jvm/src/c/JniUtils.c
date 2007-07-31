@@ -153,8 +153,9 @@ BOOL jniCreateDefaultInstance( const char * className, jclass * instanceClass, j
   jmethodID constructObject = NULL ;
   jobject localInstance ;
   jclass  localClass ;
+  JNIEnv * curEnv = jniUpdateCurrentEnv();
   
-  localClass = (*sciJEnv)->FindClass( sciJEnv, className ) ;
+  localClass = (*curEnv)->FindClass( curEnv, className ) ;
   if ( !jniCheckLastCall(TRUE) )
   {
     Scierror( 999, "Unable to find class %s.\r\n", className ) ;
@@ -163,23 +164,23 @@ BOOL jniCreateDefaultInstance( const char * className, jclass * instanceClass, j
     return FALSE ;
   }
 
-  *instanceClass = (*sciJEnv)->NewGlobalRef(sciJEnv, localClass) ;
+  *instanceClass = (*curEnv)->NewGlobalRef(curEnv, localClass) ;
 
   /* "()V" for no parameters and return void */
   /* "<init>" for constructor */
-  constructObject = (*sciJEnv)->GetMethodID( sciJEnv, *instanceClass, "<init>", "()V" ) ;
+  constructObject = (*curEnv)->GetMethodID( curEnv, *instanceClass, "<init>", "()V" ) ;
 
-  localInstance = (*sciJEnv)->NewObject( sciJEnv, *instanceClass, constructObject ) ;
+  localInstance = (*curEnv)->NewObject( curEnv, *instanceClass, constructObject ) ;
   if ( !jniCheckLastCall(TRUE) )
   {
     Scierror( 999, "Unable to create an instance of class %s.\r\n", className ) ;
-    (*sciJEnv)->DeleteGlobalRef(sciJEnv, *instanceClass) ;
+    (*curEnv)->DeleteGlobalRef(curEnv, *instanceClass) ;
     *instanceClass = NULL ;
     *instance      = NULL ;
     return FALSE ;
   }
   
-  *instance = (*sciJEnv)->NewGlobalRef(sciJEnv, localInstance) ;
+  *instance = (*curEnv)->NewGlobalRef(curEnv, localInstance) ;
 
   return TRUE ;
 }
@@ -227,16 +228,21 @@ jvalue jniCallMemberFunctionV( jobject instance, jniCallMethodCache * cache, con
   jmethodID methodId = NULL;
   jvalue res;
   int returnTypeIndex = 0 ;
+
+  JNIEnv * curEnv  = NULL;//= jniUpdateCurrentEnv();
+  jsize nbJvm = 0;
+
+  (*sciJVM)->AttachCurrentThread(sciJVM, (void **)&curEnv, NULL);
   
   jniInitJValue(&res) ;
   
-  if ((*sciJEnv)->EnsureLocalCapacity(sciJEnv, 2) == JNI_OK)
+  if ((*curEnv)->EnsureLocalCapacity(sciJEnv, 2) == JNI_OK)
   {
     if ( !jniIsCallMethodCacheInitialized(cache) )
     {
       // Need to intialize cache
-      instanceClass = (*sciJEnv)->GetObjectClass(sciJEnv, instance) ;
-      methodId = (*sciJEnv)->GetMethodID(sciJEnv, instanceClass, functionName, descriptor ) ;
+      instanceClass = (*curEnv)->GetObjectClass(curEnv, instance) ;
+      methodId = (*curEnv)->GetMethodID(curEnv, instanceClass, functionName, descriptor ) ;
       if ( cache != NULL )
       {
         jniInitializeCallMethodCache(cache, instanceClass, methodId) ;
@@ -266,35 +272,35 @@ jvalue jniCallMemberFunctionV( jobject instance, jniCallMethodCache * cache, con
     switch( descriptor[returnTypeIndex] )
     {
     case 'V':
-      (*sciJEnv)->CallVoidMethodV(sciJEnv, instance, methodId, args) ;
+      (*curEnv)->CallVoidMethodV(curEnv, instance, methodId, args) ;
       break;
     case 'Z':
-      res.z = (*sciJEnv)->CallBooleanMethodV(sciJEnv, instance, methodId, args) ;
+      res.z = (*curEnv)->CallBooleanMethodV(curEnv, instance, methodId, args) ;
       break;
     case 'B':
-      res.b = (*sciJEnv)->CallByteMethodV(sciJEnv, instance, methodId, args) ;
+      res.b = (*curEnv)->CallByteMethodV(curEnv, instance, methodId, args) ;
       break;
     case 'C':
-      res.c = (*sciJEnv)->CallCharMethodV(sciJEnv, instance, methodId, args) ;
+      res.c = (*curEnv)->CallCharMethodV(curEnv, instance, methodId, args) ;
       break;
     case 'S':
-      res.s = (*sciJEnv)->CallShortMethodV(sciJEnv, instance, methodId, args) ;
+      res.s = (*curEnv)->CallShortMethodV(curEnv, instance, methodId, args) ;
       break;
     case 'I':
-      res.i = (*sciJEnv)->CallIntMethodV(sciJEnv, instance, methodId, args) ;
+      res.i = (*curEnv)->CallIntMethodV(curEnv, instance, methodId, args) ;
       break;
     case 'J':
-      res.j = (*sciJEnv)->CallLongMethodV(sciJEnv, instance, methodId, args) ;
+      res.j = (*curEnv)->CallLongMethodV(curEnv, instance, methodId, args) ;
       break;
     case 'F':
-      res.f = (*sciJEnv)->CallFloatMethodV(sciJEnv, instance, methodId, args) ;
+      res.f = (*curEnv)->CallFloatMethodV(curEnv, instance, methodId, args) ;
       break;
     case 'D':
-      res.d = (*sciJEnv)->CallDoubleMethodV(sciJEnv, instance, methodId, args) ;
+      res.d = (*curEnv)->CallDoubleMethodV(curEnv, instance, methodId, args) ;
       break;
     case '[':
     case'L':
-      res.l = (*sciJEnv)->CallObjectMethodV(sciJEnv, instance, methodId, args) ;
+      res.l = (*curEnv)->CallObjectMethodV(curEnv, instance, methodId, args) ;
       break;
     default:
       Scierror( 999, "Error when calling function %s.\r\n", functionName ) ;
@@ -337,14 +343,14 @@ int jniGetIntValue( jvalue value )
 /*------------------------------------------------------------------------------------------*/
 BOOL jniCheckLastCall( BOOL dumpStack )
 {
-  jniUpdateCurrentEnv() ;
-  if ( !sciJEnv ) { return FALSE ; }
+  JNIEnv * curEnv = jniUpdateCurrentEnv() ;
+  if ( !curEnv ) { return FALSE ; }
 
-  if ( (*sciJEnv)->ExceptionOccurred(sciJEnv) )
+  if ( (*curEnv)->ExceptionOccurred(curEnv) )
   {
     if ( dumpStack )
     {
-      (*sciJEnv)->ExceptionDescribe(sciJEnv) ;
+      (*curEnv)->ExceptionDescribe(curEnv) ;
     }
     return FALSE ;
   }

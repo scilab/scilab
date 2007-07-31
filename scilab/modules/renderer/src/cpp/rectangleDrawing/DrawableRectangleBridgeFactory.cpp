@@ -1,11 +1,11 @@
 /*------------------------------------------------------------------------*/
-/* file: DrawableRectangleImpFactory.cpp                                  */
+/* file: DrawableRectangleBridgeFactory.cpp                               */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
 /* desc : Factory for DrawableRectangleImp                                */
 /*------------------------------------------------------------------------*/
 
-#include "DrawableRectangleImpFactory.h"
+#include "DrawableRectangleBridgeFactory.h"
 #include "DrawableRectangleJoGL.h"
 #include "RectangleFillDrawerJoGL.h"
 #include "RectangleLineDrawerJoGL.h"
@@ -18,7 +18,7 @@ extern "C"
 namespace sciGraphics
 {
 /*------------------------------------------------------------------------------------------*/
-DrawableRectangleImp * DrawableRectangleImpFactory::create( void )
+DrawableRectangleBridge * DrawableRectangleBridgeFactory::create( void )
 {
   DrawableRectangleJoGL * imp = new DrawableRectangleJoGL( m_pDrawable ) ;
 
@@ -27,17 +27,17 @@ DrawableRectangleImp * DrawableRectangleImpFactory::create( void )
   return imp ;
 }
 /*------------------------------------------------------------------------------------------*/
-void DrawableRectangleImpFactory::update( void )
+void DrawableRectangleBridgeFactory::update( void )
 {
   setStrategies( m_pDrawable->getRectangleImp() ) ;
 }
 /*------------------------------------------------------------------------------------------*/
-void DrawableRectangleImpFactory::setDrawedRectangle( DrawableRectangle * rect )
+void DrawableRectangleBridgeFactory::setDrawedRectangle( DrawableRectangle * rect )
 {
   m_pDrawable = rect ;
 }
 /*------------------------------------------------------------------------------------------*/
-void DrawableRectangleImpFactory::setStrategies( DrawableRectangleImp * imp )
+void DrawableRectangleBridgeFactory::setStrategies( DrawableRectangleBridge * imp )
 {
   imp->removeDrawingStrategies() ;
 

@@ -10,14 +10,14 @@
 #define _DRAWABLE_RECTANGLE_JOGL_H_
 
 
-#include "DrawableRectangleImp.h"
+#include "DrawableRectangleBridge.h"
 #include "DrawableRectangle.h"
 #include "../DrawableClippedObjectJoGL.h"
 
 namespace sciGraphics
 {
 
-class DrawableRectangleJoGL : public DrawableRectangleImp, public DrawableClippedObjectJoGL
+class DrawableRectangleJoGL : public DrawableRectangleBridge, public DrawableClippedObjectJoGL
 {
 
 public:

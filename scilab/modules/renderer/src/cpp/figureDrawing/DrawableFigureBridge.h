@@ -1,30 +1,30 @@
 /*------------------------------------------------------------------------*/
-/* file: DrawableFigureImp.h                                              */
+/* file: DrawableFigureBridge.h                                           */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
 /* desc : Class containing the driver dependant routines to draw a        */
 /*        figure object                                                   */
 /*------------------------------------------------------------------------*/
 
-#ifndef _DRAWABLE_FIGURE_IMP_H_
-#define _DRAWABLE_FIGURE_IMP_H_
+#ifndef _DRAWABLE_FIGURE_BRIDGE_H_
+#define _DRAWABLE_FIGURE_BRIDGE_H_
 
 #include "../DrawableObject.h"
-#include "../DrawableObjectImp.h"
+#include "../DrawableObjectBridge.h"
 
 namespace sciGraphics
 {
 
 class DrawableFigure;
 
-class DrawableFigureImp : public virtual DrawableObjectImp
+class DrawableFigureBridge : public virtual DrawableObjectBridge
 {
 
 public:
 
-  DrawableFigureImp( void ) {}
+  DrawableFigureBridge( void ) {}
 
-  virtual ~DrawableFigureImp( void ) {}
+  virtual ~DrawableFigureBridge( void ) {}
 
   /**
   * Tell the canvas to draw itself.
@@ -105,4 +105,4 @@ protected:
 
 }
 
-#endif /* _DRAWABLE_FIGURE_IMP_H_  */
+#endif /* _DRAWABLE_FIGURE_BRIDGE_H_  */

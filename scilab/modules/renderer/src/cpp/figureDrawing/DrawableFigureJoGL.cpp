@@ -7,7 +7,7 @@
 /*------------------------------------------------------------------------*/
 
 #include "DrawableFigure.h"
-#include "DrawableFigureImp.h"
+#include "DrawableFigureBridge.h"
 #include "DrawableFigureJoGL.h"
 extern "C"
 {
@@ -29,10 +29,7 @@ namespace sciGraphics
 DrawableFigureJoGL::DrawableFigureJoGL( DrawableFigure * drawer )
   : DrawableObjectJoGL(drawer, "org/scilab/modules/renderer/figureDrawing/DrawableFigureJoGL")
 {
-  jobject graphicWindow = NULL;
-  jclass graphicWindowClass = NULL;
-  jniCreateDefaultInstance("org/scilab/modules/gui/graphicWindow/ScilabGraphicWindow", &graphicWindowClass, &graphicWindow);
-  jniCallMemberFunctionSafe(graphicWindow, NULL, "setFigureIndex", "(I)V", sciGetNum(drawer->getDrawedObject()));
+  
 }
 /*------------------------------------------------------------------------------------------*/
 DrawableFigureJoGL::~DrawableFigureJoGL( void )
@@ -51,9 +48,10 @@ void DrawableFigureJoGL::drawCanvas( void )
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::openRenderingCanvas( int figureIndex )
 {
-  jniUpdateCurrentEnv();
-  jniCallMemberFunctionSafe( m_oDrawableObject, NULL, "openRenderingCanvas", "(I)V", figureIndex ) ;
-  jniUpdateCurrentEnv();
+  jobject graphicWindow = NULL;
+  jclass graphicWindowClass = NULL;
+  jniCreateDefaultInstanceSafe("org/scilab/modules/gui/graphicWindow/ScilabGraphicWindow", &graphicWindowClass, &graphicWindow);
+  jniCallMemberFunctionSafe(graphicWindow, NULL, "setFigureIndex", "(I)V", sciGetNum(getDrawer()->getDrawedObject()));
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::closeRenderingCanvas( void )

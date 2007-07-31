@@ -6,7 +6,7 @@
 /*------------------------------------------------------------------------*/
 
 #include "DrawableFigure.h"
-#include "DrawableFigureImp.h"
+#include "DrawableFigureBridge.h"
 extern "C"
 {
 #include "drawFigureEntity.h"
@@ -103,9 +103,9 @@ void DrawableFigure::show( void )
   draw() ;
 }
 /*------------------------------------------------------------------------------------------*/
-DrawableFigureImp * DrawableFigure::getFigureImp( void )
+DrawableFigureBridge * DrawableFigure::getFigureImp( void )
 {
-  return dynamic_cast<DrawableFigureImp *>(m_pImp) ;
+  return dynamic_cast<DrawableFigureBridge *>(m_pImp) ;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigure::drawCanvas( void )

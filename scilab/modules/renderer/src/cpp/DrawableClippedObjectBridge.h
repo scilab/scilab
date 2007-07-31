@@ -10,14 +10,14 @@
 #define _DRAWABLE_CLIPPED_OBJECT_BRIDGE_H_
 
 #include "DrawableObject.h"
-#include "DrawableObjectImp.h"
+#include "DrawableObjectBridge.h"
 
 namespace sciGraphics
 {
 
 class DrawableClippedObject;
 
-class DrawableClippedObjectBridge : public virtual DrawableObjectImp
+class DrawableClippedObjectBridge : public virtual DrawableObjectBridge
 {
 public:
 

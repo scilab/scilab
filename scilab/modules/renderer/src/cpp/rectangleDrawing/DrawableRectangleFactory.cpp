@@ -7,8 +7,8 @@
 /*------------------------------------------------------------------------*/
 
 #include "DrawableRectangleFactory.h"
-#include "DrawableRectangleImpFactory.h"
-#include "DrawableRectangle.h"
+#include "DrawableRectangleBridgeFactory.h"
+#include "ConcreteDrawableRectangle.h"
 #include "../getHandleDrawer.h"
 #include "../subwinDrawing/CameraFactory.h"
 
@@ -18,8 +18,8 @@ namespace sciGraphics
 /*------------------------------------------------------------------------------------------*/
 DrawableObject * DrawableRectangleFactory::create( void )
 {
-  DrawableRectangle * newRect = new DrawableRectangle( m_pDrawed ) ;
-  DrawableRectangleImpFactory imp ;
+  ConcreteDrawableRectangle * newRect = new ConcreteDrawableRectangle( m_pDrawed ) ;
+  DrawableRectangleBridgeFactory imp ;
   imp.setDrawedRectangle( newRect ) ;
   newRect->setDrawableImp( imp.create() ) ;
 
@@ -28,7 +28,7 @@ DrawableObject * DrawableRectangleFactory::create( void )
 /*------------------------------------------------------------------------------------------*/
 void DrawableRectangleFactory::update( void )
 {
-  DrawableRectangleImpFactory imp ;
+  DrawableRectangleBridgeFactory imp ;
   imp.setDrawedRectangle( getRectangleDrawer(m_pDrawed) ) ;
   imp.update();
 }

@@ -1,12 +1,12 @@
 /*------------------------------------------------------------------------*/
-/* file: DrawableObjectImp.h                                              */
+/* file: DrawableObjectBridge.h                                           */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
 /* desc : Parent interface for routine independent algorithms             */
 /*------------------------------------------------------------------------*/
 
-#ifndef _DRAWABLE_OBJECT_IMP_
-#define _DRAWABLE_OBJECT_IMP_
+#ifndef _DRAWABLE_OBJECT_BRIDGE_
+#define _DRAWABLE_OBJECT_BRIDGE_
 
 
 extern "C"
@@ -19,7 +19,7 @@ namespace sciGraphics
 
   class DrawableObject ;
 
-  class DrawableObjectImp
+  class DrawableObjectBridge
   {
   public:
 
@@ -27,12 +27,12 @@ namespace sciGraphics
      * Default constructor
      * Should not take any parameter to ease multiple inheritance
      */
-    DrawableObjectImp( void ) {}
+    DrawableObjectBridge( void ) {}
 
     /**
      * Destructor should not take any parameter
      */
-    virtual ~DrawableObjectImp( void ) {}
+    virtual ~DrawableObjectBridge( void ) {}
 
     /**
      * Initialize the context for drawing (incl starting recording display list)
@@ -71,4 +71,4 @@ namespace sciGraphics
   };
 }
 
-#endif /* _DRAWABLE_OBJECT_IMP_ */
+#endif /* _DRAWABLE_OBJECT_BRIDGE_ */

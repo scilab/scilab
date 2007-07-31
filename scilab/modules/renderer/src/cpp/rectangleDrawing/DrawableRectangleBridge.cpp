@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------*/
-/* file: DrawableRectangleImp.cpp                                         */
+/* file: DrawableRectangleBridge.cpp                                      */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
 /* desc : Class containing the driver dependant routines to draw a        */
@@ -7,7 +7,7 @@
 /*------------------------------------------------------------------------*/
 
 
-#include "DrawableRectangleImp.h"
+#include "DrawableRectangleBridge.h"
 #include "DrawableRectangle.h"
 
 namespace sciGraphics
@@ -16,18 +16,18 @@ namespace sciGraphics
 using namespace std ;
 
 /*------------------------------------------------------------------------------------------*/
-DrawableRectangleImp::DrawableRectangleImp( void )
+DrawableRectangleBridge::DrawableRectangleBridge( void )
 {
   m_oDrawingStrategies.clear() ;
 }
 /*------------------------------------------------------------------------------------------*/
-DrawableRectangleImp::~DrawableRectangleImp( void )
+DrawableRectangleBridge::~DrawableRectangleBridge( void )
 {
   // delete the strategies
   removeDrawingStrategies() ;
 }
 /*------------------------------------------------------------------------------------------*/
-void DrawableRectangleImp::drawRectangle( void )
+void DrawableRectangleBridge::drawRectangle( void )
 {
   list<DrawRectangleStrategy *>::iterator it = m_oDrawingStrategies.begin() ;
   for ( ; it != m_oDrawingStrategies.end() ; it++ )
@@ -36,12 +36,12 @@ void DrawableRectangleImp::drawRectangle( void )
   }
 }
 /*------------------------------------------------------------------------------------------*/
-void DrawableRectangleImp::addDrawingStrategy( DrawRectangleStrategy * strategy )
+void DrawableRectangleBridge::addDrawingStrategy( DrawRectangleStrategy * strategy )
 {
   m_oDrawingStrategies.push_back( strategy ) ;
 }
 /*------------------------------------------------------------------------------------------*/
-void DrawableRectangleImp::removeDrawingStrategies( void )
+void DrawableRectangleBridge::removeDrawingStrategies( void )
 {
   list<DrawRectangleStrategy *>::iterator it = m_oDrawingStrategies.begin() ;
   for ( ; it != m_oDrawingStrategies.end() ; it++ )

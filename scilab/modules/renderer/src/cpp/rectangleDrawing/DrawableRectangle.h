@@ -10,7 +10,7 @@
 
 
 #include "../DrawableClippedObject.h"
-#include "DrawableRectangleImp.h"
+#include "DrawableRectangleBridge.h"
 
 namespace sciGraphics
 {
@@ -27,12 +27,12 @@ public:
   /**
    * compute the coordinates of the 4 edges of the rectangle given clockwise.
    */
-  void getCornersCoordinates( double corner1[3], double corner2[3], double corner3[3], double corner4[3] ) ;
+  virtual void getCornersCoordinates( double corner1[3], double corner2[3], double corner3[3], double corner4[3] ) = 0 ;
 
   /**
    * Return the real type of implementation object
    */
-  DrawableRectangleImp * getRectangleImp( void ) ;
+  DrawableRectangleBridge * getRectangleImp( void ) ;
 
 protected:
 
@@ -41,13 +41,13 @@ protected:
    * Draw the graphic handle and store it representation in memory
    * for later faster drawing.
    */
-  virtual void draw( void ) ;
+  void draw( void ) ;
 
   /**
    * Fast draw of the graphic handle on the screen using the data created by draw.
    * Warning, be sure that draw is called before show each time the handle is modified.
    */
-  virtual void show( void ) ;
+  void show( void ) ;
 
   /**
    * Actually draw the rectangle on the screen

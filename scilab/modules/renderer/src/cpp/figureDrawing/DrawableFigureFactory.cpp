@@ -8,8 +8,8 @@
 
 #include "DrawableFigureFactory.h"
 #include "ConcreteDrawableFigure.h"
-#include "DrawableFigureImp.h"
-#include "DrawableFigureImpFactory.h"
+#include "DrawableFigureBridge.h"
+#include "DrawableFigureBridgeFactory.h"
 #include "GraphicSynchronization/GraphicSynchronizerFactory.h"
 
 namespace sciGraphics
@@ -21,7 +21,7 @@ DrawableObject * DrawableFigureFactory::create( void )
   DrawableFigure * newFig = new ConcreteDrawableFigure( m_pDrawed ) ;
 
   // create bridge
-  DrawableFigureImpFactory imp ;
+  DrawableFigureBridgeFactory imp ;
   imp.setDrawedFigure( newFig ) ;
   newFig->setDrawableImp( imp.create() ) ;
 

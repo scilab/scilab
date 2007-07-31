@@ -9,7 +9,7 @@
 #define _DRAWABLE_FIGURE_H_
 
 #include "../DrawableObject.h"
-#include "DrawableFigureImp.h"
+#include "DrawableFigureBridge.h"
 #include "GraphicSynchronization/GraphicSynchronizer.h"
 
 namespace sciGraphics
@@ -115,7 +115,7 @@ protected:
   /**
    * Return the real type of implementation object
    */
-  DrawableFigureImp * getFigureImp( void ) ;
+  DrawableFigureBridge * getFigureImp( void ) ;
   
   /*--------------------------------------------------------------------------------------*/
   // Driver independent Algorithms

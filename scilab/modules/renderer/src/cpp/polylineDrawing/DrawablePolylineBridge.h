@@ -18,7 +18,7 @@ namespace sciGraphics
 /** To avoid cyclic dependencies */
 class DrawablePolyline;
 
-class DrawablePolylineBridge : public virtual DrawableObjectImp
+class DrawablePolylineBridge : public virtual DrawableObjectBridge
 {
 public:
 

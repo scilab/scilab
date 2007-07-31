@@ -5,7 +5,7 @@
 /* desc : Factory for DrawableFigureImp                                   */
 /*------------------------------------------------------------------------*/
 
-#include "DrawableFigureImpFactory.h"
+#include "DrawableFigureBridgeFactory.h"
 #include "DrawableFigureJoGL.h"
 
 
@@ -13,12 +13,12 @@ namespace sciGraphics
 {
 
 /*------------------------------------------------------------------------------------------*/
-DrawableFigureImp * DrawableFigureImpFactory::create( void )
+DrawableFigureBridge * DrawableFigureBridgeFactory::create( void )
 {
   return new DrawableFigureJoGL( m_pDrawable ) ;
 }
 /*------------------------------------------------------------------------------------------*/
-void DrawableFigureImpFactory::setDrawedFigure( DrawableFigure * fig )
+void DrawableFigureBridgeFactory::setDrawedFigure( DrawableFigure * fig )
 {
   m_pDrawable = fig ;
 }
