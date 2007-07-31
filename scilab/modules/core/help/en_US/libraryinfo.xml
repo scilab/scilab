@@ -12,7 +12,8 @@
   <SHORT_DESCRIPTION name="libraryinfo">get macros and path of a scilab library</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[macros,path]=libraryinfo(libraryname)</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>macros = libraryinfo(libraryname)</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[macros,path] = libraryinfo(libraryname)</CALLING_SEQUENCE_ITEM>
 
   </CALLING_SEQUENCE>
 
