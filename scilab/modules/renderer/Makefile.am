@@ -10,7 +10,7 @@ RENDERER_CPP_SOURCES = \
 src/cpp/subwinDrawing/DrawableSubwinFactory.cpp \
 src/cpp/subwinDrawing/DrawableSubwin.cpp \
 src/cpp/figureDrawing/DrawableFigureJoGL.cpp \
-src/cpp/figureDrawing/DrawableFigureImpFactory.cpp \
+src/cpp/figureDrawing/DrawableFigureBridgeFactory.cpp \
 src/cpp/figureDrawing/DrawableFigure.cpp \
 src/cpp/figureDrawing/ConcreteDrawableFigure.cpp \
 src/cpp/figureDrawing/DrawableFigureFactory.cpp \
@@ -27,9 +27,9 @@ src/cpp/segsDrawing/DrawableSegs.cpp \
 src/cpp/segsDrawing/DrawableSegsFactory.cpp \
 src/cpp/rectangleDrawing/DrawableRectangleFactory.cpp \
 src/cpp/rectangleDrawing/RectangleMarkDrawerJoGL.cpp \
-src/cpp/rectangleDrawing/DrawableRectangleImpFactory.cpp \
+src/cpp/rectangleDrawing/DrawableRectangleBridgeFactory.cpp \
 src/cpp/rectangleDrawing/DrawableRectangle.cpp \
-src/cpp/rectangleDrawing/DrawableRectangleImp.cpp \
+src/cpp/rectangleDrawing/DrawableRectangleBridge.cpp \
 src/cpp/rectangleDrawing/DrawableRectangleJoGL.cpp \
 src/cpp/rectangleDrawing/RectangleFillDrawerJoGL.cpp \
 src/cpp/rectangleDrawing/RectangleLineDrawerJoGL.cpp \
@@ -72,7 +72,8 @@ src/cpp/GraphicSynchronization/GraphicSynchronizerFactory.cpp \
 src/cpp/GraphicSynchronization/LocalSynchronizer.cpp \
 src/cpp/GraphicSynchronization/GraphicSynchronizer.cpp \
 src/cpp/GraphicSynchronization/GraphicSynchronizerInterface.cpp \
-src/cpp/GraphicSynchronization/GraphicSynchronizerJava.cpp
+src/cpp/GraphicSynchronization/GraphicSynchronizerJava.cpp \
+src/cpp/rectangleDrawing/ConcreteDrawableRectangle.cpp
 
 
 

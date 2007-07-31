@@ -85,7 +85,7 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 	src/cpp/subwinDrawing/DrawableSubwinFactory.cpp \
 	src/cpp/subwinDrawing/DrawableSubwin.cpp \
 	src/cpp/figureDrawing/DrawableFigureJoGL.cpp \
-	src/cpp/figureDrawing/DrawableFigureImpFactory.cpp \
+	src/cpp/figureDrawing/DrawableFigureBridgeFactory.cpp \
 	src/cpp/figureDrawing/DrawableFigure.cpp \
 	src/cpp/figureDrawing/ConcreteDrawableFigure.cpp \
 	src/cpp/figureDrawing/DrawableFigureFactory.cpp \
@@ -102,9 +102,9 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 	src/cpp/segsDrawing/DrawableSegsFactory.cpp \
 	src/cpp/rectangleDrawing/DrawableRectangleFactory.cpp \
 	src/cpp/rectangleDrawing/RectangleMarkDrawerJoGL.cpp \
-	src/cpp/rectangleDrawing/DrawableRectangleImpFactory.cpp \
+	src/cpp/rectangleDrawing/DrawableRectangleBridgeFactory.cpp \
 	src/cpp/rectangleDrawing/DrawableRectangle.cpp \
-	src/cpp/rectangleDrawing/DrawableRectangleImp.cpp \
+	src/cpp/rectangleDrawing/DrawableRectangleBridge.cpp \
 	src/cpp/rectangleDrawing/DrawableRectangleJoGL.cpp \
 	src/cpp/rectangleDrawing/RectangleFillDrawerJoGL.cpp \
 	src/cpp/rectangleDrawing/RectangleLineDrawerJoGL.cpp \
@@ -145,11 +145,12 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 	src/cpp/GraphicSynchronization/GraphicSynchronizer.cpp \
 	src/cpp/GraphicSynchronization/GraphicSynchronizerInterface.cpp \
 	src/cpp/GraphicSynchronization/GraphicSynchronizerJava.cpp \
+	src/cpp/rectangleDrawing/ConcreteDrawableRectangle.cpp \
 	sci_gateway/c/gw_renderer.c
 @GUI_TRUE@am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableSubwin.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableFigureJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableFigureImpFactory.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableFigureBridgeFactory.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableFigure.lo \
 @GUI_TRUE@	libscirenderer_la-ConcreteDrawableFigure.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableFigureFactory.lo \
@@ -166,9 +167,9 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 @GUI_TRUE@	libscirenderer_la-DrawableSegsFactory.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableRectangleFactory.lo \
 @GUI_TRUE@	libscirenderer_la-RectangleMarkDrawerJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableRectangleImpFactory.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableRectangleBridgeFactory.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableRectangle.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableRectangleImp.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableRectangleBridge.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableRectangleJoGL.lo \
 @GUI_TRUE@	libscirenderer_la-RectangleFillDrawerJoGL.lo \
 @GUI_TRUE@	libscirenderer_la-RectangleLineDrawerJoGL.lo \
@@ -211,7 +212,8 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 @GUI_TRUE@	libscirenderer_la-LocalSynchronizer.lo \
 @GUI_TRUE@	libscirenderer_la-GraphicSynchronizer.lo \
 @GUI_TRUE@	libscirenderer_la-GraphicSynchronizerInterface.lo \
-@GUI_TRUE@	libscirenderer_la-GraphicSynchronizerJava.lo
+@GUI_TRUE@	libscirenderer_la-GraphicSynchronizerJava.lo \
+@GUI_TRUE@	libscirenderer_la-ConcreteDrawableRectangle.lo
 @GUI_TRUE@am__objects_2 = libscirenderer_la-gw_renderer.lo
 @GUI_FALSE@am_libscirenderer_la_OBJECTS =  \
 @GUI_FALSE@	libscirenderer_la-norenderer.lo
@@ -411,7 +413,7 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/cpp/subwinDrawing/DrawableSubwinFactory.cpp \
 @GUI_TRUE@src/cpp/subwinDrawing/DrawableSubwin.cpp \
 @GUI_TRUE@src/cpp/figureDrawing/DrawableFigureJoGL.cpp \
-@GUI_TRUE@src/cpp/figureDrawing/DrawableFigureImpFactory.cpp \
+@GUI_TRUE@src/cpp/figureDrawing/DrawableFigureBridgeFactory.cpp \
 @GUI_TRUE@src/cpp/figureDrawing/DrawableFigure.cpp \
 @GUI_TRUE@src/cpp/figureDrawing/ConcreteDrawableFigure.cpp \
 @GUI_TRUE@src/cpp/figureDrawing/DrawableFigureFactory.cpp \
@@ -428,9 +430,9 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/cpp/segsDrawing/DrawableSegsFactory.cpp \
 @GUI_TRUE@src/cpp/rectangleDrawing/DrawableRectangleFactory.cpp \
 @GUI_TRUE@src/cpp/rectangleDrawing/RectangleMarkDrawerJoGL.cpp \
-@GUI_TRUE@src/cpp/rectangleDrawing/DrawableRectangleImpFactory.cpp \
+@GUI_TRUE@src/cpp/rectangleDrawing/DrawableRectangleBridgeFactory.cpp \
 @GUI_TRUE@src/cpp/rectangleDrawing/DrawableRectangle.cpp \
-@GUI_TRUE@src/cpp/rectangleDrawing/DrawableRectangleImp.cpp \
+@GUI_TRUE@src/cpp/rectangleDrawing/DrawableRectangleBridge.cpp \
 @GUI_TRUE@src/cpp/rectangleDrawing/DrawableRectangleJoGL.cpp \
 @GUI_TRUE@src/cpp/rectangleDrawing/RectangleFillDrawerJoGL.cpp \
 @GUI_TRUE@src/cpp/rectangleDrawing/RectangleLineDrawerJoGL.cpp \
@@ -473,7 +475,8 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/cpp/GraphicSynchronization/LocalSynchronizer.cpp \
 @GUI_TRUE@src/cpp/GraphicSynchronization/GraphicSynchronizer.cpp \
 @GUI_TRUE@src/cpp/GraphicSynchronization/GraphicSynchronizerInterface.cpp \
-@GUI_TRUE@src/cpp/GraphicSynchronization/GraphicSynchronizerJava.cpp
+@GUI_TRUE@src/cpp/GraphicSynchronization/GraphicSynchronizerJava.cpp \
+@GUI_TRUE@src/cpp/rectangleDrawing/ConcreteDrawableRectangle.cpp
 
 
 # List of the gateway c files
@@ -636,6 +639,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CameraFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CameraJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableFigure.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableRectangle.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableArc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableArcFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableAxes.Plo@am__quote@
@@ -647,8 +651,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableFec.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableFecFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableFigure.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableFigureBridgeFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableFigureFactory.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableFigureImpFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableFigureJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableGrayplot.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableGrayplotFactory.Plo@am__quote@
@@ -664,9 +668,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawablePolylineFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawablePolylineJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableRectangle.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableRectangleBridge.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableRectangleBridgeFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableRectangleFactory.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableRectangleImp.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableRectangleImpFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableRectangleJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSegs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSegsFactory.Plo@am__quote@
@@ -775,12 +779,12 @@ libscirenderer_la-DrawableFigureJoGL.lo: src/cpp/figureDrawing/DrawableFigureJoG
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableFigureJoGL.lo `test -f 'src/cpp/figureDrawing/DrawableFigureJoGL.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/DrawableFigureJoGL.cpp
 
-libscirenderer_la-DrawableFigureImpFactory.lo: src/cpp/figureDrawing/DrawableFigureImpFactory.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableFigureImpFactory.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableFigureImpFactory.Tpo -c -o libscirenderer_la-DrawableFigureImpFactory.lo `test -f 'src/cpp/figureDrawing/DrawableFigureImpFactory.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/DrawableFigureImpFactory.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-DrawableFigureImpFactory.Tpo $(DEPDIR)/libscirenderer_la-DrawableFigureImpFactory.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/figureDrawing/DrawableFigureImpFactory.cpp' object='libscirenderer_la-DrawableFigureImpFactory.lo' libtool=yes @AMDEPBACKSLASH@
+libscirenderer_la-DrawableFigureBridgeFactory.lo: src/cpp/figureDrawing/DrawableFigureBridgeFactory.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableFigureBridgeFactory.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableFigureBridgeFactory.Tpo -c -o libscirenderer_la-DrawableFigureBridgeFactory.lo `test -f 'src/cpp/figureDrawing/DrawableFigureBridgeFactory.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/DrawableFigureBridgeFactory.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-DrawableFigureBridgeFactory.Tpo $(DEPDIR)/libscirenderer_la-DrawableFigureBridgeFactory.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/figureDrawing/DrawableFigureBridgeFactory.cpp' object='libscirenderer_la-DrawableFigureBridgeFactory.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableFigureImpFactory.lo `test -f 'src/cpp/figureDrawing/DrawableFigureImpFactory.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/DrawableFigureImpFactory.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableFigureBridgeFactory.lo `test -f 'src/cpp/figureDrawing/DrawableFigureBridgeFactory.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/DrawableFigureBridgeFactory.cpp
 
 libscirenderer_la-DrawableFigure.lo: src/cpp/figureDrawing/DrawableFigure.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableFigure.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableFigure.Tpo -c -o libscirenderer_la-DrawableFigure.lo `test -f 'src/cpp/figureDrawing/DrawableFigure.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/DrawableFigure.cpp
@@ -894,12 +898,12 @@ libscirenderer_la-RectangleMarkDrawerJoGL.lo: src/cpp/rectangleDrawing/Rectangle
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-RectangleMarkDrawerJoGL.lo `test -f 'src/cpp/rectangleDrawing/RectangleMarkDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/rectangleDrawing/RectangleMarkDrawerJoGL.cpp
 
-libscirenderer_la-DrawableRectangleImpFactory.lo: src/cpp/rectangleDrawing/DrawableRectangleImpFactory.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableRectangleImpFactory.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableRectangleImpFactory.Tpo -c -o libscirenderer_la-DrawableRectangleImpFactory.lo `test -f 'src/cpp/rectangleDrawing/DrawableRectangleImpFactory.cpp' || echo '$(srcdir)/'`src/cpp/rectangleDrawing/DrawableRectangleImpFactory.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-DrawableRectangleImpFactory.Tpo $(DEPDIR)/libscirenderer_la-DrawableRectangleImpFactory.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/rectangleDrawing/DrawableRectangleImpFactory.cpp' object='libscirenderer_la-DrawableRectangleImpFactory.lo' libtool=yes @AMDEPBACKSLASH@
+libscirenderer_la-DrawableRectangleBridgeFactory.lo: src/cpp/rectangleDrawing/DrawableRectangleBridgeFactory.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableRectangleBridgeFactory.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableRectangleBridgeFactory.Tpo -c -o libscirenderer_la-DrawableRectangleBridgeFactory.lo `test -f 'src/cpp/rectangleDrawing/DrawableRectangleBridgeFactory.cpp' || echo '$(srcdir)/'`src/cpp/rectangleDrawing/DrawableRectangleBridgeFactory.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-DrawableRectangleBridgeFactory.Tpo $(DEPDIR)/libscirenderer_la-DrawableRectangleBridgeFactory.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/rectangleDrawing/DrawableRectangleBridgeFactory.cpp' object='libscirenderer_la-DrawableRectangleBridgeFactory.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableRectangleImpFactory.lo `test -f 'src/cpp/rectangleDrawing/DrawableRectangleImpFactory.cpp' || echo '$(srcdir)/'`src/cpp/rectangleDrawing/DrawableRectangleImpFactory.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableRectangleBridgeFactory.lo `test -f 'src/cpp/rectangleDrawing/DrawableRectangleBridgeFactory.cpp' || echo '$(srcdir)/'`src/cpp/rectangleDrawing/DrawableRectangleBridgeFactory.cpp
 
 libscirenderer_la-DrawableRectangle.lo: src/cpp/rectangleDrawing/DrawableRectangle.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableRectangle.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableRectangle.Tpo -c -o libscirenderer_la-DrawableRectangle.lo `test -f 'src/cpp/rectangleDrawing/DrawableRectangle.cpp' || echo '$(srcdir)/'`src/cpp/rectangleDrawing/DrawableRectangle.cpp
@@ -908,12 +912,12 @@ libscirenderer_la-DrawableRectangle.lo: src/cpp/rectangleDrawing/DrawableRectang
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableRectangle.lo `test -f 'src/cpp/rectangleDrawing/DrawableRectangle.cpp' || echo '$(srcdir)/'`src/cpp/rectangleDrawing/DrawableRectangle.cpp
 
-libscirenderer_la-DrawableRectangleImp.lo: src/cpp/rectangleDrawing/DrawableRectangleImp.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableRectangleImp.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableRectangleImp.Tpo -c -o libscirenderer_la-DrawableRectangleImp.lo `test -f 'src/cpp/rectangleDrawing/DrawableRectangleImp.cpp' || echo '$(srcdir)/'`src/cpp/rectangleDrawing/DrawableRectangleImp.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-DrawableRectangleImp.Tpo $(DEPDIR)/libscirenderer_la-DrawableRectangleImp.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/rectangleDrawing/DrawableRectangleImp.cpp' object='libscirenderer_la-DrawableRectangleImp.lo' libtool=yes @AMDEPBACKSLASH@
+libscirenderer_la-DrawableRectangleBridge.lo: src/cpp/rectangleDrawing/DrawableRectangleBridge.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableRectangleBridge.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableRectangleBridge.Tpo -c -o libscirenderer_la-DrawableRectangleBridge.lo `test -f 'src/cpp/rectangleDrawing/DrawableRectangleBridge.cpp' || echo '$(srcdir)/'`src/cpp/rectangleDrawing/DrawableRectangleBridge.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-DrawableRectangleBridge.Tpo $(DEPDIR)/libscirenderer_la-DrawableRectangleBridge.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/rectangleDrawing/DrawableRectangleBridge.cpp' object='libscirenderer_la-DrawableRectangleBridge.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableRectangleImp.lo `test -f 'src/cpp/rectangleDrawing/DrawableRectangleImp.cpp' || echo '$(srcdir)/'`src/cpp/rectangleDrawing/DrawableRectangleImp.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableRectangleBridge.lo `test -f 'src/cpp/rectangleDrawing/DrawableRectangleBridge.cpp' || echo '$(srcdir)/'`src/cpp/rectangleDrawing/DrawableRectangleBridge.cpp
 
 libscirenderer_la-DrawableRectangleJoGL.lo: src/cpp/rectangleDrawing/DrawableRectangleJoGL.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableRectangleJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableRectangleJoGL.Tpo -c -o libscirenderer_la-DrawableRectangleJoGL.lo `test -f 'src/cpp/rectangleDrawing/DrawableRectangleJoGL.cpp' || echo '$(srcdir)/'`src/cpp/rectangleDrawing/DrawableRectangleJoGL.cpp
@@ -1215,6 +1219,13 @@ libscirenderer_la-GraphicSynchronizerJava.lo: src/cpp/GraphicSynchronization/Gra
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/GraphicSynchronization/GraphicSynchronizerJava.cpp' object='libscirenderer_la-GraphicSynchronizerJava.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-GraphicSynchronizerJava.lo `test -f 'src/cpp/GraphicSynchronization/GraphicSynchronizerJava.cpp' || echo '$(srcdir)/'`src/cpp/GraphicSynchronization/GraphicSynchronizerJava.cpp
+
+libscirenderer_la-ConcreteDrawableRectangle.lo: src/cpp/rectangleDrawing/ConcreteDrawableRectangle.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-ConcreteDrawableRectangle.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-ConcreteDrawableRectangle.Tpo -c -o libscirenderer_la-ConcreteDrawableRectangle.lo `test -f 'src/cpp/rectangleDrawing/ConcreteDrawableRectangle.cpp' || echo '$(srcdir)/'`src/cpp/rectangleDrawing/ConcreteDrawableRectangle.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-ConcreteDrawableRectangle.Tpo $(DEPDIR)/libscirenderer_la-ConcreteDrawableRectangle.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/rectangleDrawing/ConcreteDrawableRectangle.cpp' object='libscirenderer_la-ConcreteDrawableRectangle.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-ConcreteDrawableRectangle.lo `test -f 'src/cpp/rectangleDrawing/ConcreteDrawableRectangle.cpp' || echo '$(srcdir)/'`src/cpp/rectangleDrawing/ConcreteDrawableRectangle.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
