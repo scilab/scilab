@@ -8,6 +8,7 @@
 #include "MALLOC.h"
 #include "sci_getrelativefilename.h"
 #include "directories.h"
+#include "machine.h"
 /* ================================================================================== */
 // sci_getrelativefilename
 // 
@@ -30,7 +31,7 @@ int C2F(sci_getrelativefilename) _PARAMS((char *fname, unsigned long l))
 
 		char *param1=NULL;
 		char *param2=NULL;
-		char *result=(char*)MALLOC(MAX_PATH_LONG*sizeof(char));
+		char *result=(char*)MALLOC(PATH_MAX*sizeof(char));
 
 		GetRhsVar(1,"c",&m1,&n1,&l1);
 		GetRhsVar(2,"c",&m2,&n2,&l2);

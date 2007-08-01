@@ -86,7 +86,7 @@ int C2F(sci_get_absolute_file_path) _PARAMS((char *fname,unsigned long fname_len
 				int ierr=0;
 				int lpath=0;
 				char *path=NULL;
-				path=(char*)MALLOC(sizeof(char)*(MAX_PATH+1));
+				path=(char*)MALLOC(sizeof(char)*(PATH_MAX+1));
 				if (path)
 				{
 					C2F(scigetcwd)(&path,&lpath,&ierr);
