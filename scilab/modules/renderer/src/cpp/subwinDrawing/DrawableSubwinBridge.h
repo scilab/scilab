@@ -15,9 +15,7 @@
 namespace sciGraphics
 {
 
-  /**
-  * To avoid cyclic dependances.
-  */
+  // To avoid cyclic dependances. 
   class DrawableSubwin;
 
   class DrawableSubwinBridge : public virtual DrawableObjectBridge

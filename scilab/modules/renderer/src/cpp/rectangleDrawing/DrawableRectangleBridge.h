@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------*/
-/* file: DrawableRectangleImp.h                                           */
+/* file: DrawableRectangleBridge.h                                        */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
 /* desc : Class containing the driver dependant routines to draw a        */

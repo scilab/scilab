@@ -30,6 +30,9 @@ public:
    */
   Camera * getCamera( void ) { return m_pCamera; }
 
+  /**
+   * Set/Get the current camera
+   */
   void setCamera( Camera * cam ) { m_pCamera = cam ; }
 
 protected:
