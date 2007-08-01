@@ -33,7 +33,6 @@ BOOL isdir(const char *path);
  */
 BOOL RemoveDir(char *path);
 /*-----------------------------------------------------------------------------------*/ 
-#define MAX_PATH_LONG 32767
 #define MAX_FILENAME_LEN 512
 
 #endif /* __CREATEDIR_H__ */

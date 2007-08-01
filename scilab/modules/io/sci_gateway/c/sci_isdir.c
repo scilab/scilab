@@ -43,9 +43,9 @@ int C2F(sci_isdir) _PARAMS((char *fname,unsigned long fname_len))
 
 		/* make sure the names are not too long */
 		
-		if( strlen(path) > MAX_PATH_LONG )
+		if( strlen(path) > PATH_MAX )
 		{
-			Scierror(999,"The parameter is too long : must be less than %d caracters.\r\n",MAX_PATH_LONG);
+			Scierror(999,"The parameter is too long : must be less than %d caracters.\r\n",PATH_MAX);
 		}
 		
 		/* Crappy workaround because a / was added after SCI & ~ into 
