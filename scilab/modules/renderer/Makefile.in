@@ -145,7 +145,7 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 	src/cpp/GraphicSynchronization/GraphicSynchronizer.cpp \
 	src/cpp/GraphicSynchronization/GraphicSynchronizerInterface.cpp \
 	src/cpp/GraphicSynchronization/GraphicSynchronizerJava.cpp \
-	src/cpp/GraphicSynchronization/Object.cpp \
+	src/jni/Object.cpp \
 	src/cpp/rectangleDrawing/ConcreteDrawableRectangle.cpp \
 	sci_gateway/c/gw_renderer.c
 @GUI_TRUE@am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
@@ -478,7 +478,7 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/cpp/GraphicSynchronization/GraphicSynchronizer.cpp \
 @GUI_TRUE@src/cpp/GraphicSynchronization/GraphicSynchronizerInterface.cpp \
 @GUI_TRUE@src/cpp/GraphicSynchronization/GraphicSynchronizerJava.cpp \
-@GUI_TRUE@src/cpp/GraphicSynchronization/Object.cpp \
+@GUI_TRUE@src/jni/Object.cpp \
 @GUI_TRUE@src/cpp/rectangleDrawing/ConcreteDrawableRectangle.cpp
 
 
@@ -486,7 +486,7 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/gw_renderer.c
 
 # Includes need for the compilation
-@GUI_TRUE@libscirenderer_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -I$(top_srcdir)/modules/jvm/includes -I$(top_srcdir)/modules/graphics/includes/ -I$(top_srcdir)/modules/graphics/includes/handleDrawing/ -I$(top_srcdir)/libs/doublylinkedlist/includes
+@GUI_TRUE@libscirenderer_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -Isrc/jni -I$(top_srcdir)/modules/jvm/includes -I$(top_srcdir)/modules/graphics/includes/ -I$(top_srcdir)/modules/graphics/includes/handleDrawing/ -I$(top_srcdir)/libs/doublylinkedlist/includes
 
 #libscirenderer_la_LIBADD = $(top_builddir)/modules/graphics/libscigraphics.la
 
@@ -1224,12 +1224,12 @@ libscirenderer_la-GraphicSynchronizerJava.lo: src/cpp/GraphicSynchronization/Gra
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-GraphicSynchronizerJava.lo `test -f 'src/cpp/GraphicSynchronization/GraphicSynchronizerJava.cpp' || echo '$(srcdir)/'`src/cpp/GraphicSynchronization/GraphicSynchronizerJava.cpp
 
-libscirenderer_la-Object.lo: src/cpp/GraphicSynchronization/Object.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-Object.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-Object.Tpo -c -o libscirenderer_la-Object.lo `test -f 'src/cpp/GraphicSynchronization/Object.cpp' || echo '$(srcdir)/'`src/cpp/GraphicSynchronization/Object.cpp
+libscirenderer_la-Object.lo: src/jni/Object.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-Object.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-Object.Tpo -c -o libscirenderer_la-Object.lo `test -f 'src/jni/Object.cpp' || echo '$(srcdir)/'`src/jni/Object.cpp
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-Object.Tpo $(DEPDIR)/libscirenderer_la-Object.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/GraphicSynchronization/Object.cpp' object='libscirenderer_la-Object.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/Object.cpp' object='libscirenderer_la-Object.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-Object.lo `test -f 'src/cpp/GraphicSynchronization/Object.cpp' || echo '$(srcdir)/'`src/cpp/GraphicSynchronization/Object.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-Object.lo `test -f 'src/jni/Object.cpp' || echo '$(srcdir)/'`src/jni/Object.cpp
 
 libscirenderer_la-ConcreteDrawableRectangle.lo: src/cpp/rectangleDrawing/ConcreteDrawableRectangle.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-ConcreteDrawableRectangle.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-ConcreteDrawableRectangle.Tpo -c -o libscirenderer_la-ConcreteDrawableRectangle.lo `test -f 'src/cpp/rectangleDrawing/ConcreteDrawableRectangle.cpp' || echo '$(srcdir)/'`src/cpp/rectangleDrawing/ConcreteDrawableRectangle.cpp

@@ -73,7 +73,7 @@ src/cpp/GraphicSynchronization/LocalSynchronizer.cpp \
 src/cpp/GraphicSynchronization/GraphicSynchronizer.cpp \
 src/cpp/GraphicSynchronization/GraphicSynchronizerInterface.cpp \
 src/cpp/GraphicSynchronization/GraphicSynchronizerJava.cpp \
-src/cpp/GraphicSynchronization/Object.cpp \
+src/jni/Object.cpp \
 src/cpp/rectangleDrawing/ConcreteDrawableRectangle.cpp
 
 
@@ -82,7 +82,7 @@ src/cpp/rectangleDrawing/ConcreteDrawableRectangle.cpp
 GATEWAY_C_SOURCES = sci_gateway/c/gw_renderer.c
 
 # Includes need for the compilation
-libscirenderer_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -I$(top_srcdir)/modules/jvm/includes -I$(top_srcdir)/modules/graphics/includes/ -I$(top_srcdir)/modules/graphics/includes/handleDrawing/ -I$(top_srcdir)/libs/doublylinkedlist/includes
+libscirenderer_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -Isrc/jni -I$(top_srcdir)/modules/jvm/includes -I$(top_srcdir)/modules/graphics/includes/ -I$(top_srcdir)/modules/graphics/includes/handleDrawing/ -I$(top_srcdir)/libs/doublylinkedlist/includes
 
 # All the sources needed by libscirenderer.la
 libscirenderer_la_SOURCES = $(RENDERER_CPP_SOURCES) $(GATEWAY_C_SOURCES) 
