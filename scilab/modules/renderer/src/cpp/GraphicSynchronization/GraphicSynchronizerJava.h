@@ -10,12 +10,12 @@
 #define _GRAPHIC_SYNCHRONIZER_JAVA_H_
 
 #include "GraphicSynchronizerBridge.h"
-#include "DrawableObjectJoGL.h"
+#include "Object.hxx"
 
 namespace sciGraphics
 {
 
-class GraphicSynchronizerJava : public virtual GraphicSynchronizerBridge, public DrawableObjectJoGL
+class GraphicSynchronizerJava : public virtual GraphicSynchronizerBridge
 {
 public:
 
@@ -47,6 +47,10 @@ public:
    * Wake all the thread which called the wait method of this object.
    */
   virtual void notifyAll( void ) ;
+
+protected:
+
+  java_lang::Object * m_pJavaObject;
 
 };
 

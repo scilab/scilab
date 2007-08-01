@@ -73,6 +73,7 @@ src/cpp/GraphicSynchronization/LocalSynchronizer.cpp \
 src/cpp/GraphicSynchronization/GraphicSynchronizer.cpp \
 src/cpp/GraphicSynchronization/GraphicSynchronizerInterface.cpp \
 src/cpp/GraphicSynchronization/GraphicSynchronizerJava.cpp \
+src/cpp/GraphicSynchronization/Object.cpp \
 src/cpp/rectangleDrawing/ConcreteDrawableRectangle.cpp
 
 

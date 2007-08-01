@@ -1,0 +1,10 @@
+<package name="java.lang">
+  <object name="Object">
+	<method name="wait" returnType="void">
+	</method>
+	<method name="notify" returnType="void">
+	</method>
+        <method name="notifyAll" returnType="void">
+	</method>
+  </object>
+</package>

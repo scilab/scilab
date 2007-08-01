@@ -9,7 +9,7 @@
 #include "GraphicSynchronizerJava.h"
 extern "C"
 {
-#include "JniUtils.h"
+#include "getScilabJavaVM.h"
 }
 
 namespace sciGraphics
@@ -17,39 +17,39 @@ namespace sciGraphics
 
 /*------------------------------------------------------------------------------------------*/
 GraphicSynchronizerJava::GraphicSynchronizerJava( void )
-  : DrawableObjectJoGL(NULL, "java/lang/Object")
 {
-  
+  m_pJavaObject = new java_lang::Object(getScilabJavaVM());
 }
 /*------------------------------------------------------------------------------------------*/
 GraphicSynchronizerJava::~GraphicSynchronizerJava( void )
 {
-
+  delete m_pJavaObject;
+  m_pJavaObject = NULL;
 }
 /*------------------------------------------------------------------------------------------*/
 void GraphicSynchronizerJava::enterCriticalSection( void )
 {
-  jniUpdateCurrentEnv()->MonitorEnter(m_oDrawableObject);
+  m_pJavaObject->synchronize();
 }
 /*------------------------------------------------------------------------------------------*/
 void GraphicSynchronizerJava::exitCriticalSection( void )
 {
-  jniUpdateCurrentEnv()->MonitorExit(m_oDrawableObject);
+  m_pJavaObject->endSynchronize();
 }
 /*------------------------------------------------------------------------------------------*/
 void GraphicSynchronizerJava::wait( void )
 {
-  jniCallMemberFunctionSafe(m_oDrawableObject, NULL, "wait", "()V");
+  m_pJavaObject->wait();
 }
 /*------------------------------------------------------------------------------------------*/
 void GraphicSynchronizerJava::notify( void )
 {
-  jniCallMemberFunctionSafe(m_oDrawableObject, NULL, "notify", "()V");
+  m_pJavaObject->notify();
 }
 /*------------------------------------------------------------------------------------------*/
 void GraphicSynchronizerJava::notifyAll( void )
 {
-  jniCallMemberFunctionSafe(m_oDrawableObject, NULL, "notifyAll", "()V");
+  m_pJavaObject->notifyAll();
 }
 /*------------------------------------------------------------------------------------------*/
 
