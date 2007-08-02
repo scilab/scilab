@@ -49,16 +49,6 @@ int C2F(sci_libraryinfo) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			LhsVar(1) = Rhs+1;
 
-			if (Lhs == 2)
-			{
-				n = 1;
-				m = (int)strlen(pathlibrary);
-				CreateVarFromPtr(Rhs+2, "c",&m,&n,&pathlibrary);
-				LhsVar(2) = Rhs+2;
-			}
-
-			C2F(putlhsvar)();
-			
 			if (macros)
 			{
 				int i = 0;
@@ -74,7 +64,16 @@ int C2F(sci_libraryinfo) _PARAMS((char *fname,unsigned long fname_len))
 				macros = NULL;
 			}
 
-			if (pathlibrary) {FREE(pathlibrary);pathlibrary=NULL;}
+			if (Lhs == 2)
+			{
+				n = 1;
+				m = (int)strlen(pathlibrary);
+				CreateVarFromPtr(Rhs+2, "c",&m,&n,&pathlibrary);
+				LhsVar(2) = Rhs+2;
+				if (pathlibrary) {FREE(pathlibrary);pathlibrary=NULL;}
+			}
+
+			C2F(putlhsvar)();
 		}
 		else
 		{

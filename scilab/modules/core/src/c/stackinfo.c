@@ -82,14 +82,20 @@ char *getLocalNamefromId(int n)
 	integer *id=NULL;	
 	integer one = 1;
 	char *Name=NULL;
+	char fortranName[LengthNameVariableScilabMax+1];
 
 	id=&C2F(vstk).idstk[C2F(vstk).bot * 6 - 6];
 	id -= 7;
-	Name = (char*)MALLOC(sizeof(char)*LengthNameVariableScilabMax+1);
 
-	C2F(cvname)(&id[n * 6 + 1], Name, &one,LengthNameVariableScilabMax);
+	C2F(cvname)(&id[n * 6 + 1], fortranName, &one,LengthNameVariableScilabMax);
 
-	cleanFortranString(Name);
+	cleanFortranString(fortranName);
+
+	if (strlen(fortranName) > 0)
+	{
+		Name = (char*)MALLOC(sizeof(char)*(strlen(fortranName)+1));
+		if (Name) strcpy(Name,fortranName);
+	}
 	return Name;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -98,14 +104,20 @@ char *getGlobalNamefromId(int n)
 	integer *id=NULL;	
 	static integer one = 1;
 	char *Name=NULL;
+	char fortranName[LengthNameVariableScilabMax+1];
 
 	id=&C2F(vstk).idstk[(C2F(vstk).isiz + 2) * 6 - 6];
 	id -= 7;
-	Name = (char*)MALLOC(sizeof(char)*LengthNameVariableScilabMax+1);
 
-	C2F(cvname)(&id[(n+1) * 6 + 1], Name, &one,LengthNameVariableScilabMax);
+	C2F(cvname)(&id[(n+1) * 6 + 1], fortranName, &one,LengthNameVariableScilabMax);
 
-	cleanFortranString(Name);
+	cleanFortranString(fortranName);
+
+	if (strlen(fortranName) > 0)
+	{
+		Name = (char*)MALLOC(sizeof(char)*(strlen(fortranName)+1));
+		if (Name) strcpy(Name,fortranName);
+	}
 	return Name;
 }
 /*-----------------------------------------------------------------------------------*/

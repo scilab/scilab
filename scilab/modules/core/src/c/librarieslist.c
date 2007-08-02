@@ -9,35 +9,72 @@
 #include "stackinfo.h"
 #include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/
+static int getnumberoflibraries(void);
+/*-----------------------------------------------------------------------------------*/
 char **getlibrarieslist(int *sizearray)
 {
 	char **librarieslist = NULL;
+	int nbElements = getnumberoflibraries();
+
+	librarieslist = (char**)MALLOC(sizeof(char*)*(nbElements));
+
+	if (librarieslist)
+	{
+		int Lused=0; int Ltotal=0;
+		int j = 0; int i = 0;
+		int lw = 0;	int fin = 0;
+
+		C2F(getvariablesinfo)(&Ltotal,&Lused);
+
+		for (j=1;j<Lused+1;++j)
+		{
+			char *NameVariable = getLocalNamefromId(j);
+			if (C2F(objptr)(NameVariable,&lw,&fin,strlen(NameVariable))) 
+			{
+				int *header = istk( iadr(*Lstk(fin)));
+				if ( (header) && (header[0] == sci_lib ) ) 
+				{
+					char *cpybuf = NULL;
+
+					cpybuf = (char*)MALLOC(sizeof(char)*(strlen(NameVariable)+1));
+					if (cpybuf) strcpy(cpybuf,NameVariable);
+
+					librarieslist[i] = cpybuf;
+					i++;
+				}
+			}
+			if (NameVariable) {FREE(NameVariable);NameVariable = NULL;}
+		}
+		*sizearray = i;
+	}
+	else
+	{
+		*sizearray = 0;
+	}
+	return librarieslist;
+}
+/*-----------------------------------------------------------------------------------*/
+static int getnumberoflibraries(void)
+{
+	int nbrlibraries = 0;
 	int Lused=0;
 	int Ltotal=0;
 	int j = 0;
-	int nbElements=0;
 
 	C2F(getvariablesinfo)(&Ltotal,&Lused);
 
 	for (j=1;j<Lused+1;++j)
 	{
+		int lw = 0; int fin = 0;
 		char *NameVariable = getLocalNamefromId(j);
-		int lw; int fin;
 		
 		if (C2F(objptr)(NameVariable,&lw,&fin,strlen(NameVariable))) 
 		{
 			int *header = istk( iadr(*Lstk(fin)));  
-			if ( (header) && (header[0] == sci_lib ) ) 
-			{
-				nbElements++;
-				if (librarieslist) librarieslist=(char**)REALLOC(librarieslist,sizeof(char*)*(nbElements));
-				else librarieslist = (char**)MALLOC(sizeof(char*)*(nbElements));
-				librarieslist[nbElements-1] = NameVariable;
-			}
+			if ( (header) && (header[0] == sci_lib ) )  nbrlibraries++;
 		}
+		if (NameVariable) {FREE(NameVariable);NameVariable = NULL;}
 	}
-
-	*sizearray = nbElements;
-	return librarieslist;
+	return nbrlibraries;
 }
 /*-----------------------------------------------------------------------------------*/

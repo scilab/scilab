@@ -17,7 +17,7 @@ int C2F(sci_librarieslist) _PARAMS((char *fname,unsigned long fname_len))
 	CheckLhs(0,1);
 
 	libraries = getlibrarieslist(&sizelibraries);
-
+	
 	if (libraries)
 	{
 		int m = 0, n = 0;
@@ -30,8 +30,6 @@ int C2F(sci_librarieslist) _PARAMS((char *fname,unsigned long fname_len))
 		CreateVarFromPtr(Rhs+1, "d",&n,&m,&l);
 	}
 	LhsVar(1) = Rhs+1;
-
-	C2F(putlhsvar)();
 
 	if (libraries)
 	{
@@ -47,6 +45,8 @@ int C2F(sci_librarieslist) _PARAMS((char *fname,unsigned long fname_len))
 		FREE(libraries);
 		libraries = NULL; 
 	}
+	
+	C2F(putlhsvar)();
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

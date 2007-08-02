@@ -4,6 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include "machine.h"
 #include "stack-c.h"
 #include "libraryinfo.h"
@@ -15,7 +16,7 @@
 char *getlibrarypath(char *libraryname)
 {
 	char *path = NULL;
-	int lw; int fin;
+	int lw = 0; int fin = 0;
 
 	if (C2F(objptr)(libraryname,&lw,&fin,strlen(libraryname))) 
 	{
@@ -65,21 +66,22 @@ char **getlistmacrosfromlibrary(char *libraryname,int *sizearray)
 				while(fgets (line,sizeof(line),pFile) != NULL)
 				{
 					line[strlen(line)-1]='\0'; /* remove carriage return */
+					
+					if (macroslist) macroslist = (char**)REALLOC(macroslist,sizeof(char*)*(nbElements+1));
+					else macroslist =(char**)MALLOC(sizeof(char*)*(nbElements+1));
 
+					macroslist[nbElements] = (char*)MALLOC(sizeof(char)*(strlen(line)+1));
+					if (macroslist[nbElements]) strcpy(macroslist[nbElements],line);
 					nbElements++;
-					if (macroslist) macroslist=(char**)REALLOC(macroslist,sizeof(char*)*(nbElements));
-					else macroslist =(char**)MALLOC(sizeof(char*)*(nbElements));
-
-					macroslist[nbElements-1]=(char*)MALLOC(sizeof(char)*(strlen(line)+1));
-					strcpy(macroslist[nbElements-1],line);
 				}
 				fclose(pFile);
 				*sizearray = nbElements;
 			}
-
 			FREE(fullfilename);
 			fullfilename = NULL;
 		}
+		FREE(pathlibrary);
+		pathlibrary = NULL;
 	}
 	else
 	{
