@@ -12,6 +12,7 @@
 #include "DrawableClippedObjectBridge.h"
 #include "DrawableClippedObject.h"
 #include "DrawableObjectJoGL.h"
+#include "DrawableClippedObjectJavaMapper.hxx"
 
 namespace sciGraphics
 {
@@ -21,7 +22,7 @@ class DrawableClippedObjectJoGL : public virtual DrawableClippedObjectBridge, pu
 
 public:
 
-  DrawableClippedObjectJoGL( DrawableObject * drawer, const char * className ) ;
+  DrawableClippedObjectJoGL( DrawableObject * drawer ) ;
 
   virtual ~DrawableClippedObjectJoGL( void ) {}
 
@@ -56,9 +57,15 @@ public:
   /**
    * Return the drawed object
    */
-  virtual DrawableClippedObject * getClippedObjectDrawer( void ) ;
+  DrawableClippedObject * getClippedObjectDrawer( void ) ;
+
 
 protected:
+
+  /**
+  * Get the object performing mapping with Java class.
+  */
+  DrawableClippedObjectJavaMapper * getClippedJavaMapper(void);
 
   double m_dXmin ;
   double m_dXmax ;

@@ -23,6 +23,7 @@ DrawableObject * DrawableFigureFactory::create( void )
   // create bridge
   DrawableFigureBridgeFactory imp ;
   imp.setDrawedFigure( newFig ) ;
+
   newFig->setDrawableImp( imp.create() ) ;
 
   // create synchronizer

@@ -7,6 +7,7 @@
 
 #include "CameraBridgeFactory.h"
 #include "CameraJoGL.h"
+#include "CameraJavaMapper.hxx"
 
 namespace sciGraphics
 {
@@ -14,7 +15,9 @@ namespace sciGraphics
 /*------------------------------------------------------------------------*/
 CameraBridge * CameraBridgeFactory::create( void )
 {
-  return new CameraJoGL(m_pSubwin) ;
+  CameraJoGL * newBridge = new CameraJoGL(m_pSubwin) ;
+  newBridge->setJavaMapper(new CameraJavaMapper()) ;
+  return newBridge;
 }
 /*------------------------------------------------------------------------*/
 

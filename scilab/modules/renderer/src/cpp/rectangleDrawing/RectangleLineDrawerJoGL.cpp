@@ -7,6 +7,7 @@
 
 #include "RectangleLineDrawerJoGL.h"
 #include "DrawableRectangle.h"
+#include "RectangleLineDrawerJavaMapper.hxx"
 
 extern "C"
 {
@@ -18,8 +19,7 @@ namespace sciGraphics
 {
 /*------------------------------------------------------------------------------------------*/
 RectangleLineDrawerJoGL::RectangleLineDrawerJoGL( DrawableRectangleBridge * drawer )
-  : DrawRectangleStrategy( drawer ),
-    DrawableObjectJoGL(drawer->getRectangleDrawer(), "org/scilab/modules/renderer/rectangleDrawing/RectangleLineDrawerJoGL" )
+  : DrawRectangleStrategy( drawer ), DrawableObjectJoGL(drawer->getRectangleDrawer())
 {
 
 }
@@ -30,8 +30,9 @@ void RectangleLineDrawerJoGL::drawRectangle( void )
   initializeDrawing() ;
 
   // set the line parameters
-  jniCallMemberFunctionSafe(m_oDrawableObject, NULL, "setLineParameters", "(IFI)V",
-    sciGetGraphicContext(pObj)->foregroundcolor, (float)sciGetLineWidth(pObj), sciGetLineStyle(pObj) ) ;
+  getLineDrawerJavaMapper()->setLineParameters(sciGetGraphicContext(pObj)->foregroundcolor,
+                                               (float)sciGetLineWidth(pObj),
+                                               sciGetLineStyle(pObj));
 
   // get the coordinates of the four corners of the rectangle.
   double corner1[3] ;
@@ -42,14 +43,17 @@ void RectangleLineDrawerJoGL::drawRectangle( void )
   m_pDrawed->getRectangleDrawer()->getCornersCoordinates( corner1, corner2, corner3, corner4 ) ;
 
   // display the rectangle
-
-  jniCallMemberFunctionSafe( m_oDrawableObject, NULL, "drawRectangle", "(DDDDDDDDDDDD)V",
-    corner1[0], corner1[1], corner1[2],
-    corner2[0], corner2[1], corner2[2],
-    corner3[0], corner3[1], corner3[2],
-    corner4[0], corner4[1], corner4[2] ) ;
+  getLineDrawerJavaMapper()->drawRectangle(corner1[0], corner1[1], corner1[2],
+                                           corner2[0], corner2[1], corner2[2],
+                                           corner3[0], corner3[1], corner3[2],
+                                           corner4[0], corner4[1], corner4[2]);
 
   endDrawing() ;
+}
+/*------------------------------------------------------------------------------------------*/
+RectangleLineDrawerJavaMapper * RectangleLineDrawerJoGL::getLineDrawerJavaMapper(void)
+{
+  return dynamic_cast<RectangleLineDrawerJavaMapper *>(getJavaMapper());
 }
 /*------------------------------------------------------------------------------------------*/
 }

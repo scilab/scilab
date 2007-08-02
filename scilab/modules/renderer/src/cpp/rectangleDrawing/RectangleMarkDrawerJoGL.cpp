@@ -7,6 +7,7 @@
 
 #include "RectangleMarkDrawerJoGL.h"
 #include "DrawableRectangle.h"
+#include "RectangleMarkDrawerJavaMapper.hxx"
 
 extern "C"
 {
@@ -19,7 +20,7 @@ namespace sciGraphics
 /*------------------------------------------------------------------------------------------*/
 RectangleMarkDrawerJoGL::RectangleMarkDrawerJoGL( DrawableRectangleBridge * drawer )
   : DrawRectangleStrategy( drawer ),
-    DrawableObjectJoGL(drawer->getRectangleDrawer(), "org/scilab/modules/renderer/rectangleDrawing/RectangleMarkDrawerJoGL" )
+    DrawableObjectJoGL(drawer->getRectangleDrawer())
 {
 
 }
@@ -31,9 +32,11 @@ void RectangleMarkDrawerJoGL::drawRectangle( void )
   initializeDrawing() ;
 
   // set the line parameters
-  jniCallMemberFunctionSafe(m_oDrawableObject, NULL, "setMarkParameters", "(IIIII)V",
-    sciGetGraphicContext(pObj)->markbackground, sciGetGraphicContext(pObj)->markforeground,
-    sciGetMarkSizeUnit(pObj), sciGetMarkSize(pObj), sciGetMarkStyle(pObj) ) ;
+  getMarkDrawerJavaMapper()->setMarkParameters(sciGetGraphicContext(pObj)->markbackground,
+                                               sciGetGraphicContext(pObj)->markforeground,
+                                               sciGetMarkSizeUnit(pObj),
+                                               sciGetMarkSize(pObj),
+                                               sciGetMarkStyle(pObj));
 
   // get the coordinates of the four corners of the rectangle.
   double corner1[3] ;
@@ -44,15 +47,19 @@ void RectangleMarkDrawerJoGL::drawRectangle( void )
   m_pDrawed->getRectangleDrawer()->getCornersCoordinates( corner1, corner2, corner3, corner4 ) ;
 
   // display the rectangle
-
-  jniCallMemberFunctionSafe( m_oDrawableObject, NULL, "drawRectangle", "(DDDDDDDDDDDD)V",
-    corner1[0], corner1[1], corner1[2],
-    corner2[0], corner2[1], corner2[2],
-    corner3[0], corner3[1], corner3[2],
-    corner4[0], corner4[1], corner4[2] ) ;
+  getMarkDrawerJavaMapper()->drawRectangle(corner1[0], corner1[1], corner1[2],
+                                           corner2[0], corner2[1], corner2[2],
+                                           corner3[0], corner3[1], corner3[2],
+                                           corner4[0], corner4[1], corner4[2] ) ;
 
   endDrawing() ;
 }
 /*------------------------------------------------------------------------------------------*/
+RectangleMarkDrawerJavaMapper * RectangleMarkDrawerJoGL::getMarkDrawerJavaMapper(void)
+{
+  return dynamic_cast<RectangleMarkDrawerJavaMapper *>(getJavaMapper());
+}
+/*------------------------------------------------------------------------------------------*/
+
 }
 

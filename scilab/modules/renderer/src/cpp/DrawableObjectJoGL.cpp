@@ -16,16 +16,10 @@ extern "C"
 namespace sciGraphics
 {
 /*------------------------------------------------------------------------------------------*/
-DrawableObjectJoGL::DrawableObjectJoGL( DrawableObject * drawer, const char * className )
+DrawableObjectJoGL::DrawableObjectJoGL( DrawableObject * drawer )
 {
-  m_oDrawableClass  = NULL ;
-  m_oDrawableObject = NULL ;
   m_pDrawer = drawer ;
-  jniCreateDefaultInstanceSafe( className, &m_oDrawableClass, &m_oDrawableObject ) ;
-  if ( getDrawer() != NULL )
-  {
-    jniCallMemberFunctionSafe( m_oDrawableObject, NULL, "setFigureIndex", "(I)V", sciGetNum(sciGetParentFigure(getDrawer()->getDrawedObject())) ) ;
-  }
+  m_pJavaMapper = NULL;
 }
 /*------------------------------------------------------------------------------------------*/
 DrawableObjectJoGL::~DrawableObjectJoGL( void )
@@ -35,39 +29,35 @@ DrawableObjectJoGL::~DrawableObjectJoGL( void )
 /*------------------------------------------------------------------------------------------*/
 void DrawableObjectJoGL::initializeDrawing( void )
 {
-  jniCallMemberFunctionSafe( m_oDrawableObject, NULL, "initializeDrawing", "(I)V", sciGetNum(sciGetParentFigure(getDrawer()->getDrawedObject())) ) ;
+  getJavaMapper()->setFigureIndex(sciGetNum(sciGetParentFigure(getDrawer()->getDrawedObject())));
+  getJavaMapper()->initializeDrawing(sciGetNum(sciGetParentFigure(getDrawer()->getDrawedObject())) );
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableObjectJoGL::endDrawing( void )
-{   
-  jniCallMemberFunctionSafe( m_oDrawableObject, NULL, "endDrawing", "()V" ) ;
+{
+  getJavaMapper()->endDrawing();
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableObjectJoGL::initializeShowing( void )
 {
-  jniCallMemberFunctionSafe( m_oDrawableObject, NULL, "initializeShowing", "(I)V", sciGetNum(sciGetParentFigure(getDrawer()->getDrawedObject())) ) ;
+  
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableObjectJoGL::endShowing( void )
 {   
-  jniCallMemberFunctionSafe( m_oDrawableObject, NULL, "endShowing", "()V" ) ;
+  
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableObjectJoGL::show( void )
 {
-  jniCallMemberFunctionSafe( m_oDrawableObject, NULL, "show", "(I)V", sciGetNum(sciGetParentFigure(getDrawer()->getDrawedObject())) ) ;
+  getJavaMapper()->show();
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableObjectJoGL::destroy( void )
 {
-  if ( m_oDrawableObject != NULL )
-  {
-    jniCallMemberFunctionSafe( m_oDrawableObject, NULL, "destroy", "(I)V", sciGetNum(sciGetParentFigure(getDrawer()->getDrawedObject())) ) ;
-    jniDeleteGlobalEntity(m_oDrawableObject) ;
-    jniDeleteGlobalEntity(m_oDrawableClass) ;
-  }
-  m_oDrawableObject = NULL ;
-  m_oDrawableClass  = NULL ;
+  getJavaMapper()->destroy();
+  delete getJavaMapper();
+  m_pJavaMapper = NULL;
 }
 /*------------------------------------------------------------------------------------------*/
 }

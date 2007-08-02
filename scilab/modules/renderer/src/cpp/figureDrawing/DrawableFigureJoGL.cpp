@@ -20,14 +20,17 @@ extern "C"
 #include "Scierror.h"
 }
 
+#include <string>
 #include <stdio.h>
+
+using namespace std;
 
 namespace sciGraphics
 {
 
 /*------------------------------------------------------------------------------------------*/
 DrawableFigureJoGL::DrawableFigureJoGL( DrawableFigure * drawer )
-  : DrawableObjectJoGL(drawer, "org/scilab/modules/renderer/figureDrawing/DrawableFigureJoGL")
+  : DrawableObjectJoGL(drawer)
 {
   
 }
@@ -39,111 +42,90 @@ DrawableFigureJoGL::~DrawableFigureJoGL( void )
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::drawCanvas( void )
 {
-  // We call the display function to be sure to be in the right context
-  jniUpdateCurrentEnv();
-  // locker le graphique ici
-  jniCallMemberFunctionSafe( m_oDrawableObject, NULL, "display", "()V" ) ;
-  jniUpdateCurrentEnv();
+  getFigureJavaMapper()->drawCanvas();
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::openRenderingCanvas( int figureIndex )
 {
-  jobject graphicWindow = NULL;
-  jclass graphicWindowClass = NULL;
-  jniCreateDefaultInstanceSafe("org/scilab/modules/gui/graphicWindow/ScilabGraphicWindow", &graphicWindowClass, &graphicWindow);
-  jniCallMemberFunctionSafe(graphicWindow, NULL, "setFigureIndex", "(I)V", sciGetNum(getDrawer()->getDrawedObject()));
+  //jobject graphicWindow = NULL;
+  //jclass graphicWindowClass = NULL;
+  //jniCreateDefaultInstanceSafe("org/scilab/modules/gui/graphicWindow/ScilabGraphicWindow", &graphicWindowClass, &graphicWindow);
+  //jniCallMemberFunctionSafe(graphicWindow, NULL, "setFigureIndex", "(I)V", sciGetNum(getDrawer()->getDrawedObject()));
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::closeRenderingCanvas( void )
 {
-  if ( m_oDrawableObject != NULL )
+  if ( getFigureJavaMapper() != NULL )
   {
-    jniCallMemberFunctionSafe( m_oDrawableObject, NULL, "closeRenderingCanvas", "()V" ) ;
+    getFigureJavaMapper()->closeRenderingCanvas();
   }
-  DrawableObjectJoGL::destroy() ;
+  destroy() ;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::setBackgroundColor( int backgroundColor )
 {
-  jniCallMemberFunctionSafe( m_oDrawableObject, NULL, "setBackgroundColor", "(I)V", backgroundColor ) ;
+  getFigureJavaMapper()->setBackgroundColor(backgroundColor);
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::setColorMap( const double rgbMat[], int nbColor )
 {
-  jdoubleArray javaCmap = NULL;
-  jniUpdateCurrentEnv();
-  javaCmap = jniCreateDoubleArrayCopy(rgbMat, nbColor) ;
-  
-  jniCallMemberFunctionSafe( m_oDrawableObject, NULL, "setColorMapData", "([D)V", javaCmap ) ;
-  jniDeleteLocalEntity(javaCmap) ;
+  getFigureJavaMapper()->setColorMapData(rgbMat, nbColor);
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::getColorMap( double rgbMat[] )
 {
-  jdoubleArray javaCMap = NULL ;
-  jniUpdateCurrentEnv();
-  JNIEnv * curEnv = jniGetCurrentJavaEnv() ;
-
-  javaCMap = curEnv->NewDoubleArray( sciGetNumColors(getDrawer()->getDrawedObject()) * 3 ) ;
-  if ( !jniCheckLastCall(TRUE) )
-  {
-    Scierror( 999, "Unable to allocate colormap, memory full.\n" ) ;
-    return ;
-  }
-
-  jniCallMemberFunctionSafe(m_oDrawableObject, NULL, "getColorMapData", "([D)V", javaCMap) ;
-
-
-  jniCopyJavaDoubleArray( javaCMap, rgbMat ) ;
-  
-  jniDeleteLocalEntity(javaCMap) ;
+  getFigureJavaMapper()->getColorMapData(rgbMat);
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::getSize( int size[2] )
 {
 
-  size[0] = jniGetIntValue(jniCallMemberFunctionSafe(m_oDrawableObject, NULL, "getCanvasWidth", "()I")) ;
-  size[1] = jniGetIntValue(jniCallMemberFunctionSafe(m_oDrawableObject, NULL, "getCanvasWidth", "()I")) ;
+  size[0] = getFigureJavaMapper()->getCanvasWidth();
+  size[1] = getFigureJavaMapper()->getCanvasHeight();
 
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::setSize( const int size[2] )
 {
-  jniCallMemberFunctionSafe(m_oDrawableObject, NULL, "setCanvasSize", "(II)V", size[0], size[1] ) ;
+  getFigureJavaMapper()->setCanvasSize(size[0], size[1]);
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::getWindowPosition( int pos[2] )
 {
-  pos[0] = jniGetIntValue(jniCallMemberFunctionSafe(m_oDrawableObject, NULL, "getWindowPosX", "()I")) ;
-  pos[1] = jniGetIntValue(jniCallMemberFunctionSafe(m_oDrawableObject, NULL, "getWindowPosY", "()I")) ;
+  pos[0] = getFigureJavaMapper()->getWindowPosX();
+  pos[1] = getFigureJavaMapper()->getWindowPosY();
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::setWindowPosition( const int pos[2] )
 {
-  jniCallMemberFunctionSafe(m_oDrawableObject, NULL, "setWindowPosition", "(II)V", pos[0], pos[1] ) ;
+  getFigureJavaMapper()->setWindowPosition(pos[0], pos[1]);
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::getWindowSize( int size[2] )
 {
-  size[0] = jniGetIntValue(jniCallMemberFunctionSafe(m_oDrawableObject, NULL, "getWindowWidth", "()I")) ;
-  size[1] = jniGetIntValue(jniCallMemberFunctionSafe(m_oDrawableObject, NULL, "getWindowHeight", "()I")) ;
+  size[0] = getFigureJavaMapper()->getWindowWidth();
+  size[1] = getFigureJavaMapper()->getWindowHeight();
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::setWindowSize( const int size[2] )
 {
-  jniCallMemberFunctionSafe(m_oDrawableObject, NULL, "setWindowSize", "(II)V", size[0], size[1] ) ;
+  getFigureJavaMapper()->setWindowSize(size[0], size[1]);
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::setInfoMessage( const char * message )
 {
-  jstring infoMessage = jniCreateStringCopy( message ) ;
-  jniCallMemberFunctionSafe( m_oDrawableObject, NULL, "setInfoMessage", "(Ljava/lang/String;)V", infoMessage ) ;
-  jniDeleteLocalEntity( infoMessage ) ;
+  string infoMessage(message);
+  getFigureJavaMapper()->setInfoMessage(infoMessage);
 }
 /*------------------------------------------------------------------------------------------*/
 DrawableFigure * DrawableFigureJoGL::getFigureDrawer( void )
 {
   return dynamic_cast<DrawableFigure *>(getDrawer()) ;
+}
+/*------------------------------------------------------------------------------------------*/
+DrawableFigureJavaMapper * DrawableFigureJoGL::getFigureJavaMapper(void)
+{
+  return dynamic_cast<DrawableFigureJavaMapper *>(getJavaMapper());
 }
 /*------------------------------------------------------------------------------------------*/
 }

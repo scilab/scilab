@@ -106,7 +106,7 @@ public class DrawableFigureJoGL extends ObjectJoGL {
 	 * Force the display of the canvas
 	 * Called from C to be sure to be in the right context
 	 */
-	public void display() {
+	public void drawCanvas() {
 		guiProperties.forceDisplay();
 	}
 

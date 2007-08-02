@@ -11,6 +11,7 @@
 #include <jni.h>
 #include "DrawableObjectBridge.h"
 #include "DrawableObject.h"
+#include "DrawableObjectJavaMapper.hxx"
 
 namespace sciGraphics
 {
@@ -22,7 +23,7 @@ namespace sciGraphics
      * Constructor
      * @param className name of the Java class which implements the routines
      */
-    DrawableObjectJoGL( DrawableObject * drawer, const char * className ) ;
+    DrawableObjectJoGL( DrawableObject * drawer ) ;
     
     /**
      * Delete the Java instance used to implement the class 
@@ -57,25 +58,31 @@ namespace sciGraphics
     /**
      * To retrieve the data from the drawer, specially the sciPointObj/
      */
-    virtual DrawableObject * getDrawer( void ) { return m_pDrawer ; }
+    DrawableObject * getDrawer( void ) { return m_pDrawer ; }
+
+    /**
+     * Set the Java mapper to use
+     */
+    void setJavaMapper( DrawableObjectJavaMapper * javaMapper ) { m_pJavaMapper = javaMapper ; }
 
   protected:
     
-    /*-----------------------------------------------------------------------------*/
+    /**
+     * Get the object performing mapping with Java class.
+     */
+    DrawableObjectJavaMapper * getJavaMapper(void) { return m_pJavaMapper; }
 
+    /*-----------------------------------------------------------------------------*/
     /**
      * Free the Java resources used by this object
      */
     virtual void destroy( void ) ;
     /*-----------------------------------------------------------------------------*/
-    /** the Java class corresponding to this one */
-    jclass m_oDrawableClass ;
-
-    /** the instance of the Java class */
-    jobject m_oDrawableObject ;
-    /*-----------------------------------------------------------------------------*/
     /** To retrieve the data from the drawer */
     DrawableObject * m_pDrawer;
+
+    /** Interface for Java Methods */
+    DrawableObjectJavaMapper * m_pJavaMapper;
     /*-----------------------------------------------------------------------------*/
 
   };

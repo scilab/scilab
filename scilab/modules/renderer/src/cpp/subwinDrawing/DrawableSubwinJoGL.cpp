@@ -22,7 +22,7 @@ namespace sciGraphics
 
 /*------------------------------------------------------------------------------------------*/
 DrawableSubwinJoGL::DrawableSubwinJoGL( DrawableSubwin * drawer )
-  : DrawableObjectJoGL(drawer, "org/scilab/modules/renderer/subwinDrawing/DrawableSubwinJoGL")
+  : DrawableObjectJoGL(drawer)
 {
 
 }
@@ -37,5 +37,9 @@ DrawableSubwin * DrawableSubwinJoGL::getSubwinDrawer( void )
   return dynamic_cast<DrawableSubwin *>(getDrawer()) ;
 }
 /*------------------------------------------------------------------------------------------*/
-
+DrawableSubwinJavaMapper * DrawableSubwinJoGL::getSubwinJavaMapper(void)
+{
+  return dynamic_cast<DrawableSubwinJavaMapper *>(getJavaMapper());
+}
+/*------------------------------------------------------------------------------------------*/
 }

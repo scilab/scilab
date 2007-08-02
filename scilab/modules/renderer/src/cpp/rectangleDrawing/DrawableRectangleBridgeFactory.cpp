@@ -10,6 +10,11 @@
 #include "RectangleFillDrawerJoGL.h"
 #include "RectangleLineDrawerJoGL.h"
 #include "RectangleMarkDrawerJoGL.h"
+#include "DrawableRectangleJavaMapper.hxx"
+#include "RectangleFillDrawerJavaMapper.hxx"
+#include "RectangleLineDrawerJavaMapper.hxx"
+#include "RectangleMarkDrawerJavaMapper.hxx"
+
 extern "C"
 {
 #include "GetProperty.h"
@@ -21,8 +26,10 @@ namespace sciGraphics
 DrawableRectangleBridge * DrawableRectangleBridgeFactory::create( void )
 {
   DrawableRectangleJoGL * imp = new DrawableRectangleJoGL( m_pDrawable ) ;
+  
+  imp->setJavaMapper(new DrawableRectangleJavaMapper());
 
-  setStrategies( imp ) ;
+  setStrategies(imp) ;
 
   return imp ;
 }
@@ -46,17 +53,23 @@ void DrawableRectangleBridgeFactory::setStrategies( DrawableRectangleBridge * im
 
   if ( sciGetIsFilled( rect ) )
   {
-    imp->addDrawingStrategy( new RectangleFillDrawerJoGL( imp ) ) ;
+    RectangleFillDrawerJoGL * newFiller = new RectangleFillDrawerJoGL( imp ) ;
+    newFiller->setJavaMapper(new RectangleFillDrawerJavaMapper());
+    imp->addDrawingStrategy( newFiller ) ;
   }
 
   if ( sciGetIsLine( rect ) )
   {
-    imp->addDrawingStrategy( new RectangleLineDrawerJoGL( imp ) ) ;
+    RectangleLineDrawerJoGL * newLiner = new RectangleLineDrawerJoGL(imp);
+    newLiner->setJavaMapper(new RectangleLineDrawerJavaMapper());
+    imp->addDrawingStrategy( newLiner ) ;
   }
 
   if ( sciGetIsMark( rect ) )
   {
-    imp->addDrawingStrategy( new RectangleMarkDrawerJoGL( imp ) ) ;
+    RectangleMarkDrawerJoGL * newMarker = new RectangleMarkDrawerJoGL(imp);
+    newMarker->setJavaMapper(new RectangleMarkDrawerJavaMapper());
+    imp->addDrawingStrategy( newMarker ) ;
   }
 }
 /*------------------------------------------------------------------------------------------*/

@@ -11,6 +11,7 @@
 #include "DrawRectangleStrategy.h"
 #include "DrawableRectangleJoGL.h"
 #include "../DrawableObjectJoGL.h"
+#include "RectangleLineDrawerJavaMapper.hxx"
 
 namespace sciGraphics
 {
@@ -33,6 +34,11 @@ namespace sciGraphics
     virtual void show( void ) { DrawableObjectJoGL::show(); }
 
   protected:
+
+    /**
+     * Get the object performing mapping with Java class.
+     */
+    RectangleLineDrawerJavaMapper * getLineDrawerJavaMapper(void);
 
 
   };

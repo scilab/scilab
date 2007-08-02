@@ -1,0 +1,69 @@
+/*------------------------------------------------------------------------*/
+/* file: DrawableFigureJavaMapper.hxx                                     */
+/* Copyright INRIA 2007                                                   */
+/* Authors : Jean-Baptiste Silvy                                          */
+/* desc : Contains mapping of java method used by DrawableFigure          */
+/*------------------------------------------------------------------------*/
+
+#ifndef _DRAWABLE_FIGURE_JAVA_MAPPER_HXX_
+#define _DRAWABLE_FIGURE_JAVA_MAPPER_HXX
+
+#include "DrawableObjectJavaMapper.hxx"
+#include <string>
+
+namespace sciGraphics
+{
+
+class DrawableFigureJavaMapper : public virtual DrawableObjectJavaMapper
+{
+public:
+
+  DrawableFigureJavaMapper( void ) ;
+
+  virtual ~DrawableFigureJavaMapper( void ) ;
+
+  /*----------------------------------------------------------------------*/
+  // Inherited From DrawableObjectJavaMapper
+  virtual void display(void);
+
+  virtual void initializeDrawing(int figureIndex);
+  virtual void endDrawing(void);
+
+  virtual void show(void);
+
+  virtual void destroy(void);
+
+  virtual void setFigureIndex(int figureIndex);
+  /*----------------------------------------------------------------------*/
+  // specific for figures
+  virtual void drawCanvas(void);
+
+  virtual void closeRenderingCanvas(void);
+
+  virtual void setBackgroundColor(int backgroundColor);
+
+  virtual void setColorMapData(const double rgbmat[], int nbColor);
+  virtual void getColorMapData(double rgbmat[]);
+
+  virtual int getCanvasWidth(void);
+  virtual int getCanvasHeight(void);
+  virtual void setCanvasSize(int width, int height);
+
+  virtual int getWindowPosX(void);
+  virtual int getWindowPosY(void);
+  virtual void setWindowPosition(int posX, int posY);
+
+  virtual int getWindowWidth(void);
+  virtual int getWindowHeight(void);
+  virtual void setWindowSize(int width, int height);
+
+  virtual void setInfoMessage(std::string & infoMessage);
+  /*----------------------------------------------------------------------*/
+
+private:
+
+};
+
+}
+
+#endif /* _DRAWABLE_FIGURE_JAVA_MAPPER_HXX */

@@ -11,6 +11,7 @@
 
 #include "DrawableFigureBridge.h"
 #include "DrawableFigure.h"
+#include "DrawableFigureJavaMapper.hxx"
 #include "../DrawableObjectJoGL.h"
 
 namespace sciGraphics
@@ -96,10 +97,14 @@ public:
   /**
    * Return the drawn object
    */
-  virtual DrawableFigure * getFigureDrawer( void ) ;
+  DrawableFigure * getFigureDrawer( void ) ;
 
 protected:
 
+  /**
+   * Get the object performing mapping with Java class.
+   */
+  DrawableFigureJavaMapper * getFigureJavaMapper(void);
 
 } ;
 

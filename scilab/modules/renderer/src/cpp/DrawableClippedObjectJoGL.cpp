@@ -19,8 +19,8 @@ namespace sciGraphics
 {
 
 /*------------------------------------------------------------------------------------------*/
-DrawableClippedObjectJoGL::DrawableClippedObjectJoGL( DrawableObject * drawer, const char * className )
-  : DrawableObjectJoGL(drawer, className)
+DrawableClippedObjectJoGL::DrawableClippedObjectJoGL( DrawableObject * drawer )
+  : DrawableObjectJoGL(drawer)
 {
   m_dXmin = 0.0;
   m_dXmax = 0.0;
@@ -33,8 +33,8 @@ DrawableClippedObjectJoGL::DrawableClippedObjectJoGL( DrawableObject * drawer, c
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableClippedObjectJoGL::setClipBox( double xMin, double xMax,
-                                             double yMin, double yMax,
-                                             double zMin, double zMax )
+                                            double yMin, double yMax,
+                                            double zMin, double zMax )
 {
   m_dXmin = xMin;
   m_dXmax = xMax;
@@ -49,27 +49,32 @@ void DrawableClippedObjectJoGL::setClipBox( double xMin, double xMax,
 /*------------------------------------------------------------------------------------------*/
 void DrawableClippedObjectJoGL::clipX( void )
 {
-  jniCallMemberFunctionSafe(m_oDrawableObject, NULL, "clipX", "(DD)V", m_dXmin, m_dXmax) ;
+  getClippedJavaMapper()->clipX(m_dXmin, m_dXmax);
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableClippedObjectJoGL::clipY( void )
 {
-  jniCallMemberFunctionSafe(m_oDrawableObject, NULL, "clipY", "(DD)V", m_dYmin, m_dYmax) ;
+  getClippedJavaMapper()->clipY(m_dYmin, m_dYmax);
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableClippedObjectJoGL::clipZ( void )
 {
-  jniCallMemberFunctionSafe(m_oDrawableObject, NULL, "clipZ", "(DD)V", m_dZmin, m_dZmax) ;
+  getClippedJavaMapper()->clipZ(m_dZmin, m_dZmax);
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableClippedObjectJoGL::unClip( void )
 {
-  jniCallMemberFunctionSafe(m_oDrawableObject,NULL,"unClip","()V");
+  getClippedJavaMapper()->unClip();
 }
 /*------------------------------------------------------------------------------------------*/
 DrawableClippedObject * DrawableClippedObjectJoGL::getClippedObjectDrawer( void )
 {
   return dynamic_cast<DrawableClippedObject *>(getDrawer()) ;
+}
+/*------------------------------------------------------------------------------------------*/
+DrawableClippedObjectJavaMapper * DrawableClippedObjectJoGL::getClippedJavaMapper(void)
+{
+  return dynamic_cast<DrawableClippedObjectJavaMapper *>(getJavaMapper());
 }
 /*------------------------------------------------------------------------------------------*/
 }

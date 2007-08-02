@@ -12,6 +12,7 @@
 
 #include "DrawableRectangleBridge.h"
 #include "DrawableRectangle.h"
+#include "DrawableRectangleJavaMapper.hxx"
 #include "../DrawableClippedObjectJoGL.h"
 
 namespace sciGraphics
@@ -39,6 +40,10 @@ public:
 
 protected:
 
+  /**
+   * Get the object performing mapping with Java class.
+   */
+  DrawableRectangleJavaMapper * getRectangleJavaMapper(void);
   /*-------------------------------------------------------------*/
   /** destroy the rectangle entity */
   void destroyRectangle( void ) ;

@@ -24,7 +24,7 @@ namespace sciGraphics
     /**
      * Main algorithm
      */
-    virtual void drawRectangle( void ) = 0 ;
+    virtual void drawRectangle( void ) = 0;
 
     /**
      * Call the display list of an object

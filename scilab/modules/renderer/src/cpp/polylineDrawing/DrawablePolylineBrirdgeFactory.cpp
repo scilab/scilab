@@ -7,6 +7,7 @@
 
 #include "DrawablePolylineBridgeFactory.h"
 #include "DrawablePolylineJoGL.h"
+#include "DrawablePolylineJavaMapper.hxx"
 
 namespace sciGraphics
 {
@@ -14,7 +15,7 @@ namespace sciGraphics
 DrawablePolylineBridge * DrawablePolylineBridgeFactory::create( void )
 {
   DrawablePolylineJoGL * imp = new DrawablePolylineJoGL( m_pDrawable ) ;
-
+  imp->setJavaMapper(new DrawablePolylineJavaMapper()) ;
   return imp ;
 }
 

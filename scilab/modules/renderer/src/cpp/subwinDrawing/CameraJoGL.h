@@ -11,6 +11,7 @@
 #include "../DrawableObjectJoGL.h"
 #include "CameraBridge.h"
 #include "DrawableSubwin.h"
+#include "CameraJavaMapper.hxx"
 
 namespace sciGraphics
 {
@@ -34,6 +35,11 @@ public:
   virtual void renderPosition( void ) ;
 
 protected:
+
+  /**
+   * Get the object performing mapping with Java class.
+   */
+  CameraJavaMapper * getCameraJavaMapper(void);
 
 };
 

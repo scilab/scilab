@@ -12,6 +12,7 @@
 #include "DrawableSubwinBridge.h"
 #include "DrawableSubwin.h"
 #include "../DrawableObjectJoGL.h"
+#include "DrawableSubwinJavaMapper.hxx"
 
 namespace sciGraphics
 {
@@ -31,6 +32,13 @@ namespace sciGraphics
     virtual DrawableSubwin * getSubwinDrawer( void ) ;
 
   protected:
+
+    /*----------------------------------------------------------------*/
+    /**
+     * Get the object performing mapping with Java class.
+     */
+    DrawableSubwinJavaMapper * getSubwinJavaMapper(void);
+    /*----------------------------------------------------------------*/
 
     DrawableSubwin * m_pDrawed ;
 

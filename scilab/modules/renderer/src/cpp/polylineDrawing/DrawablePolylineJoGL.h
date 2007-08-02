@@ -8,6 +8,7 @@
 
 #include "DrawablePolylineBridge.h"
 #include "DrawablePolyline.h"
+#include "DrawablePolylineJavaMapper.hxx"
 #include "../DrawableClippedObjectJoGL.h"
 
 namespace sciGraphics
@@ -24,9 +25,14 @@ public:
   /**
    * Return the drawn object
    */
-  virtual DrawablePolyline * getPolylineDrawer( void ) ;
+  DrawablePolyline * getPolylineDrawer( void ) ;
 
 protected:
+
+  /**
+   * Get the object performing mapping with Java class.
+   */
+  DrawablePolylineJavaMapper * getPolylineJavaMapper(void);
 
 };
 

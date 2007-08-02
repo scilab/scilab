@@ -15,7 +15,9 @@ namespace sciGraphics
 /*------------------------------------------------------------------------------------------*/
 DrawableFigureBridge * DrawableFigureBridgeFactory::create( void )
 {
-  return new DrawableFigureJoGL( m_pDrawable ) ;
+  DrawableFigureJoGL * newBridge = new DrawableFigureJoGL( m_pDrawable ) ;
+  newBridge->setJavaMapper(new DrawableFigureJavaMapper() ) ;
+  return newBridge;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureBridgeFactory::setDrawedFigure( DrawableFigure * fig )
