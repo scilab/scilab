@@ -6,7 +6,6 @@
 #include "machine.h"
 #include "stack-c.h"
 #include "scicurdir.h"
-#include "../../../io/includes/directories.h"
 #include "MALLOC.h"
 #include "error_scilab.h"
 /*-----------------------------------------------------------------------------------*/
@@ -21,7 +20,7 @@ int C2F(sci_getcwd) _PARAMS((char *fname,unsigned long fname_len))
 	CheckRhs(0,0);
 	CheckLhs(0,1);
 
-	path=(char*)MALLOC(sizeof(char)*(MAX_PATH_LONG+1));
+	path=(char*)MALLOC(sizeof(char)*(PATH_MAX+1));
 
 	C2F(scigetcwd)(&path,&lpath,&ierr);
 	if (ierr)
