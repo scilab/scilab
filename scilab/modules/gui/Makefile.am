@@ -105,7 +105,7 @@ sci_gateway/fortran/sci_delmenu_old.f
 #$(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h: $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad src/c/xsci/x_main.c
 #	$(top_srcdir)/modules/gui/src/c/xsci/ad2c.sh $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad > $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
 
-CLEANFILES = $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
+#CLEANFILES = $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
 
 libscigui_la_CFLAGS += $(JAVA_JNI_INCLUDE)
 
