@@ -7,7 +7,6 @@
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "../../../core/src/c/scicurdir.h" /* C2F(scigetcwd) */
-#include "../../../io/includes/directories.h" /* MAX_PATH_LONG */
 #include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 #define DEFAULT_FILESPEC "*.*"
@@ -31,7 +30,7 @@ int C2F(sci_findfiles) _PARAMS((char *fname,unsigned long fname_len))
 			int ierr=0;
 			int lpath=0;
 
-			path=(char*)MALLOC(sizeof(char)*(MAX_PATH_LONG+1));
+			path=(char*)MALLOC(sizeof(char)*(PATH_MAX+1));
 
 			C2F(scigetcwd)(&path,&lpath,&ierr);
 
