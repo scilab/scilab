@@ -1656,62 +1656,62 @@ int C2F(getlistrhscvar)(integer *lnumber,integer *number,char *typex,integer *it
 
 int C2F(createvarfromptr)(integer *number,char *typex,integer *m,integer *n,void *iptr,unsigned long type_len)
 {
-  static int un=1;
-  unsigned char Type = *typex;
-  int MN= (*m)*(*n),lr,it,lw1;
-  char *fname = Get_Iname();
-  lw1 = *number + Top - Rhs;
-  switch ( Type ) 
-    {
-    case 'd' :
-      if ( C2F(createvar)(number, typex, m, n, &lr, type_len) == FALSE_ ) return FALSE_;
-      C2F(dcopy)(&MN,*((double **) iptr),&un, stk(lr),&un);
-      break;
-    case 'i' :
-    case 'b' :
-      if ( C2F(createvar)(number, typex, m, n, &lr, type_len) == FALSE_ ) return FALSE_;
-      C2F(icopy)(&MN,*((int **) iptr), &un, istk(lr), &un);
-      break;
-    case 'r' :
-      if ( C2F(createvar)(number, typex, m, n, &lr, type_len) == FALSE_ ) return FALSE_;
-      C2F(rcopy)(&MN,*((float **)iptr), &un, sstk(lr), &un);
-      break;
-    case 'c' :
-      if ( C2F(createvar)(number, typex, m, n, &lr, type_len) == FALSE_ ) return FALSE_;
-      strcpy(cstk(lr),*((char **) iptr));
-      break;
-    case 'I' :
-      /* on entry lr must gives the int type */
-      it = lr = ((SciIntMat *) iptr)->it;
-      if ( C2F(createvar)(number, typex, m, n, &lr, type_len) == FALSE_ ) return FALSE_;
-      C2F(tpconv)(&it,&it,&MN,((SciIntMat *) iptr)->D, &un,istk(lr), &un);
-      break;
-    case 'p' :
-      if ( C2F(createvar)(number, typex, m, n, &lr, type_len) == FALSE_ ) return FALSE_;
-      *stk(lr) = (double) ((unsigned long int) iptr);
-      break;
-    case 'S' :
-      /* special case: not taken into account in createvar */
-      Nbvars = Max(*number,Nbvars);
-      if ( !cre_smat_from_str(fname,&lw1, m, n, (char **) iptr, nlgh)) 
-	return FALSE_;
-      C2F(intersci).iwhere[*number - 1] = *Lstk(lw1);
-      C2F(intersci).ntypes[*number - 1] = '$';
-      break;
-    case 's' :
-      /* special case: not taken into account in createvar */
-      Nbvars = Max(*number,Nbvars);
-      if ( !cre_sparse_from_ptr(fname,&lw1, m, n, (SciSparse *) iptr, nlgh))
-	return FALSE_;
-      C2F(intersci).iwhere[*number - 1] = *Lstk(lw1);
-      C2F(intersci).ntypes[*number - 1] = '$';
-      break;
-    default :
-      error_scilab(999,"core_error_251",fname);
-      return FALSE_;
-    }
-  /*     this object will be copied with a vcopyobj in putlhsvar */
-  return TRUE_; 
+	static int un=1;
+	unsigned char Type = *typex;
+	int MN= (*m)*(*n),lr,it,lw1;
+	char *fname = Get_Iname();
+	lw1 = *number + Top - Rhs;
+	switch ( Type ) 
+		{
+			case 'd' :
+				if ( C2F(createvar)(number, typex, m, n, &lr, type_len) == FALSE_ ) return FALSE_;
+				C2F(dcopy)(&MN,*((double **) iptr),&un, stk(lr),&un);
+				break;
+			case 'i' :
+			case 'b' :
+				if ( C2F(createvar)(number, typex, m, n, &lr, type_len) == FALSE_ ) return FALSE_;
+				C2F(icopy)(&MN,*((int **) iptr), &un, istk(lr), &un);
+				break;
+			case 'r' :
+				if ( C2F(createvar)(number, typex, m, n, &lr, type_len) == FALSE_ ) return FALSE_;
+				C2F(rcopy)(&MN,*((float **)iptr), &un, sstk(lr), &un);
+				break;
+			case 'c' :
+				if ( C2F(createvar)(number, typex, m, n, &lr, type_len) == FALSE_ ) return FALSE_;
+				strcpy(cstk(lr),*((char **) iptr));
+				break;
+			case 'I' :
+				/* on entry lr must gives the int type */
+				it = lr = ((SciIntMat *) iptr)->it;
+				if ( C2F(createvar)(number, typex, m, n, &lr, type_len) == FALSE_ ) return FALSE_;
+				C2F(tpconv)(&it,&it,&MN,((SciIntMat *) iptr)->D, &un,istk(lr), &un);
+				break;
+			case 'p' :
+				if ( C2F(createvar)(number, typex, m, n, &lr, type_len) == FALSE_ ) return FALSE_;
+				*stk(lr) = (double) ((unsigned long int) iptr);
+				break;
+			case 'S' :
+				/* special case: not taken into account in createvar */
+				Nbvars = Max(*number,Nbvars);
+				if ( !cre_smat_from_str(fname,&lw1, m, n, (char **) iptr, nlgh)) 
+					return FALSE_;
+				C2F(intersci).iwhere[*number - 1] = *Lstk(lw1);
+				C2F(intersci).ntypes[*number - 1] = '$';
+				break;
+			case 's' :
+				/* special case: not taken into account in createvar */
+				Nbvars = Max(*number,Nbvars);
+				if ( !cre_sparse_from_ptr(fname,&lw1, m, n, (SciSparse *) iptr, nlgh))
+					return FALSE_;
+				C2F(intersci).iwhere[*number - 1] = *Lstk(lw1);
+				C2F(intersci).ntypes[*number - 1] = '$';
+				break;
+			default :
+				error_scilab(999,"core_error_251",fname);
+				return FALSE_;
+		}
+	/*     this object will be copied with a vcopyobj in putlhsvar */
+	return TRUE_; 
 } 
 
 
