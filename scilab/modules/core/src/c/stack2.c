@@ -36,8 +36,6 @@ static int C2F(mvfromto) __PARAMS((integer *itopl,integer *));
 
 static int rhs_opt_find __PARAMS((char *name,rhs_opts opts[]));
 static void rhs_opt_print_names __PARAMS((rhs_opts opts[]));
-static void intersci_pop();
-static int intersci_push();
 
 /*------------------------------------------------*/
 void strcpy_tws(char *str1,char *str2, int len);
