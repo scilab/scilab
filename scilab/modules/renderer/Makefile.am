@@ -74,9 +74,15 @@ src/cpp/GraphicSynchronization/GraphicSynchronizer.cpp \
 src/cpp/GraphicSynchronization/GraphicSynchronizerInterface.cpp \
 src/cpp/GraphicSynchronization/GraphicSynchronizerJava.cpp \
 src/jni/Object.cpp \
-src/cpp/rectangleDrawing/ConcreteDrawableRectangle.cpp
-
-
+src/cpp/rectangleDrawing/ConcreteDrawableRectangle.cpp \
+src/cpp/subwinDrawing/CameraJavaMapper.cpp \
+src/cpp/subwinDrawing/DrawableSubwinJavaMapper.cpp \
+src/cpp/figureDrawing/DrawableFigureJavaMapper.cpp \
+src/cpp/polylineDrawing/DrawablePolylineJavaMapper.cpp \
+src/cpp/rectangleDrawing/DrawableRectangleJavaMapper.cpp \
+src/cpp/rectangleDrawing/RectangleFillDrawerJavaMapper.cpp \
+src/cpp/rectangleDrawing/RectangleLineDrawerJavaMapper.cpp \
+src/cpp/rectangleDrawing/RectangleMarkDrawerJavaMapper.cpp
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_renderer.c
