@@ -31,6 +31,7 @@ char **findfiles(char *path,char *filespec,int *sizeListReturned)
 	sprintf(strPattern,"%s/%s",path,filespec);
 
 	hFile = FindFirstFile(strPattern, &FileInformation);
+	if (strPattern) {FREE(strPattern);strPattern=NULL;}
 	if(hFile != INVALID_HANDLE_VALUE)
 	{
 		do
@@ -48,6 +49,7 @@ char **findfiles(char *path,char *filespec,int *sizeListReturned)
 	}
 	FindClose(hFile);
 
+	
 	*sizeListReturned=nbElements;
 	return ListFiles;
 }
