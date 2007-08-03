@@ -793,7 +793,9 @@ includes/callFunctionFromGateway.h \
 includes/librarieslist.h \
 includes/libraryinfo.h \
 includes/getvariablesname.h \
-includes/commandwords.h
+includes/commandwords.h \
+includes/existfunction.h \
+includes/getfunctionslist.h
 
 
 #### core : demos files ####

@@ -6,7 +6,7 @@
 
 # List of the c files
 COMPLETION_C_SOURCES = src/c/completion.c \
-src/c/completion_generic \
+src/c/completion_generic.c \
 src/c/getfilesdictionary.c \
 src/c/getfulldictionary.c \
 src/c/getmacrosdictionary.c \
@@ -17,7 +17,8 @@ GATEWAY_C_SOURCES = sci_gateway/c/sci_completion.c \
 sci_gateway/c/gw_completion.c
 
 # Includes need for the compilation
-libscicompletion_la_CFLAGS=  -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/
+libscicompletion_la_CFLAGS=  -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ \
+-I$(top_srcdir)/modules/graphics/includes/ -I$(top_srcdir)/modules/fileio/includes/
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding 
 # the system)
