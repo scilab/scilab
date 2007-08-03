@@ -3,17 +3,20 @@
  * @author Allan CORNET INRIA 2007
  */
 /*-----------------------------------------------------------------------------------*/
-#include "gw_shell.h"
-#include "MALLOC.h"
-#include "machine.h"
+#include <string.h>
+#include "gw_completion.h"
 #include "stack-c.h"
-#include "completion.h"
+#include "callFunctionFromGateway.h"
 /*-----------------------------------------------------------------------------------*/
-int C2F(sci_completion) _PARAMS((char *fname,unsigned long fname_len))
+static gw_generic_table Tab[]=
 {
-
-	LhsVar(1) = 0;
-	C2F(putlhsvar)();	
+{C2F(sci_completion),"completion"}
+};
+/*-----------------------------------------------------------------------------------*/
+int C2F(gw_completion)()
+{  
+	Rhs = Max(0, Rhs);
+	callFunctionFromGateway(Tab);
 
 	return 0;
 }

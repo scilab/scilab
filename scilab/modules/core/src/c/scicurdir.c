@@ -42,7 +42,7 @@ int C2F(scigetcwd)(char **path,int *lpath,int *err)
 #ifndef _MSC_VER
 	if (GETCWD(cur_dir, FSIZE) == (char*) 0)
 #else
-	if ( GetCurrentDirectory(FSIZE,cur_dir) == 0 )
+	if ( _getcwd(cur_dir, FSIZE) == (char*) 0 )
 #endif
 	{
 		/* get current working dir */
@@ -53,12 +53,7 @@ int C2F(scigetcwd)(char **path,int *lpath,int *err)
 	}
     else 
 	{
-		char *returnPath=NULL;
-		returnPath=(char*)MALLOC(sizeof(char)*(strlen(cur_dir)+1));
-		strcpy(returnPath,cur_dir);
-
-		*path= returnPath;
-
+		*path= cur_dir;
 		*lpath=strlen(cur_dir);
 		*err=0;
 	}

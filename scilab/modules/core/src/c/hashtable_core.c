@@ -7,6 +7,8 @@
 #include <stdlib.h>
 #include "MALLOC.h"
 #include "hashtable_core.h"
+#include "getfunctionslist.h"
+#include "existfunction.h"
 /*-----------------------------------------------------------------------------------*/
 static _ENTRY   * htable = NULL;
 static unsigned   hashtableSize;

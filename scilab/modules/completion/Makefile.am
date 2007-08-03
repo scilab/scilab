@@ -1,0 +1,57 @@
+##########
+### Sylvestre Ledru <sylvestre.ledru@inria.fr>
+### TEMPLATE MAKEFILE 
+### INRIA - Scilab 2007
+##########
+
+# List of the c files
+COMPLETION_C_SOURCES = src/c/completion.c \
+src/c/completion_generic \
+src/c/getfilesdictionary.c \
+src/c/getfulldictionary.c \
+src/c/getmacrosdictionary.c \
+src/c/toolsdictionary.c
+
+# List of the gateway c files
+GATEWAY_C_SOURCES = sci_gateway/c/sci_completion.c \
+sci_gateway/c/gw_completion.c
+
+# Includes need for the compilation
+libscicompletion_la_CFLAGS=  -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/
+
+# Name of the future library (.la will be replace by .so, .a, etc regarding 
+# the system)
+pkglib_LTLIBRARIES = libscicompletion.la
+
+# All the sources needed by libscicompletion.la
+libscicompletion_la_SOURCES = $(COMPLETION_C_SOURCES) $(GATEWAY_C_SOURCES) 
+
+## Libraries necessary
+## Change to include other Scilab modules/lib
+libscicompletion_la_LIBADD = \
+	$(top_builddir)/libs/blas/libsciblas.la \
+	$(top_builddir)/libs/MALLOC/libscimalloc.la
+
+#### Name of the module and the path ######
+modulename=completion
+
+#### completion : Conf files ####
+libscicompletion_la_rootdir = $(mydatadir)
+libscicompletion_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
+
+#### completion : init scripts #### 
+libscicompletion_la_etcdir = $(mydatadir)/etc
+libscicompletion_la_etc_DATA = etc/completion.quit etc/completion.start
+
+#### completion : gateway declaration #### 
+libscicompletion_la_sci_gatewaydir = $(mydatadir)/sci_gateway
+libscicompletion_la_sci_gateway_DATA = sci_gateway/completion_gateway.xml
+
+#### completion : include files ####
+libscicompletion_la_includedir=$(pkgincludedir)/completion
+libscicompletion_la_include_HEADERS = includes/gw_completion.h \
+includes/completion.h
+
+# Provides macros compilation, Java compilation, cleaning
+# If you want Makefile to call ant, added USEANT=1
+include $(top_srcdir)/Makefile.incl.am

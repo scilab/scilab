@@ -9,7 +9,8 @@
 #include "machine.h"
 #include "setHandleProperty.h"
 #include "sciprint.h"
-
+#include "getDictionarySetProperties.h"
+#include "MALLOC.h"
 /** 
 * use for the singleton to know if the hashtable has already be created.
 */
@@ -221,5 +222,23 @@ void destroyScilabSetHashTable( void )
   setHashTableCreated = FALSE ;
 }
 /*-----------------------------------------------------------------------------------*/
-
+char **getDictionarySetProperties(int *sizearray)
+{
+	char **dictionary = NULL;
+	*sizearray = 0;
+	dictionary = (char **)MALLOC(sizeof(char*)*NB_PROPERTIES);
+	if (dictionary)
+	{
+		int i = 0;
+		*sizearray = NB_PROPERTIES;
+		for (i = 0;i < NB_PROPERTIES; i++)
+		{
+			char *propertyname = (char*)MALLOC(sizeof(char)*(strlen(propertyTable[i].key)+1));
+			if (propertyname) strcpy(propertyname,propertyTable[i].key);
+			dictionary [i] = propertyname;
+		}
+	}
+	return dictionary;
+}
+/*-----------------------------------------------------------------------------------*/
 #undef NB_PROPERTIES

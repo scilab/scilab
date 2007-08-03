@@ -1,6 +1,9 @@
 /*-----------------------------------------------------------------------------------*/
 /* Scilab */
 /*-----------------------------------------------------------------------------------*/
+#ifndef __HASHTABLE_CORE_H__
+#define __HASHTABLE_CORE_H__
+/*-----------------------------------------------------------------------------------*/
 #include "machine.h"
 #include "stack-def.h"
 /*-----------------------------------------------------------------------------------*/
@@ -57,16 +60,11 @@ void destroy_hashtable_scilab_functions(void);
 int action_hashtable_scilab_functions(int *key,char *name, int *data, SCI_HFUNCTIONS_ACTION action);
 
 /** 
- * Return the list of the functions 
- * @param[out] sizeList the size of the function list
- * @return all the functions
- */
-char **GetFunctionsList(int *sizeList);
-
-/** 
  * Check if a function exists in the list
  * @param[in] name the name of the function
  * @return if there is this function or not
  */
 BOOL ExistFunction(char *name);
+/*-----------------------------------------------------------------------------------*/
+#endif /* __HASHTABLE_CORE_H__ */
 /*-----------------------------------------------------------------------------------*/

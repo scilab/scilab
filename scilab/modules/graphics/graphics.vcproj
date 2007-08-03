@@ -1965,6 +1965,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\getDictionaryGetProperties.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\getDictionarySetProperties.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\getHandleProperty.h"
 				>
 			</File>

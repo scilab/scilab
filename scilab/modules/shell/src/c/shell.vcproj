@@ -209,10 +209,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\completion.c"
-				>
-			</File>
-			<File
 				RelativePath=".\getCommentDateSession.c"
 				>
 			</File>
@@ -246,10 +242,6 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_clc.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_completion.c"
 				>
 			</File>
 			<File
@@ -345,10 +337,6 @@
 			</File>
 			<File
 				RelativePath="..\cpp\CommandLine.hxx"
-				>
-			</File>
-			<File
-				RelativePath=".\completion.h"
 				>
 			</File>
 			<File

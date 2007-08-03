@@ -461,7 +461,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\findfiles.h"
+				RelativePath=".\includes\findfiles.h"
 				>
 			</File>
 			<File

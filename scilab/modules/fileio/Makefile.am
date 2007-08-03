@@ -99,7 +99,8 @@ libscifileio_la_sci_gateway_DATA = sci_gateway/fileio_gateway.xml
 libscifileio_la_includedir=$(pkgincludedir)/fileio
 libscifileio_la_include_HEADERS = includes/FileExist.h \
 includes/gw_fileio.h \
-includes/sci_fileio.h
+includes/sci_fileio.h \
+includes/findfiles.h
 
 
 #### fileio : demos files ####

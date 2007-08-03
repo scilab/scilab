@@ -18,6 +18,8 @@ int C2F(sci_findfiles) _PARAMS((char *fname,unsigned long fname_len))
 	char *filespec=NULL;
 	char **FilesList=NULL;
 	int sizeListReturned=0;
+	BOOL needtofreefilespec = FALSE;
+	BOOL needtofreepath = FALSE;
 
 	Rhs=Max(Rhs,0);
 	CheckRhs(0,2) ;
@@ -25,12 +27,13 @@ int C2F(sci_findfiles) _PARAMS((char *fname,unsigned long fname_len))
 
 	switch(Rhs)
 	{
-		default: case 0:
+	default: case 0:
 		{
 			int ierr=0;
 			int lpath=0;
 
 			C2F(scigetcwd)(&path,&lpath,&ierr);
+			needtofreepath = TRUE;
 
 			if (ierr)
 			{
@@ -41,19 +44,22 @@ int C2F(sci_findfiles) _PARAMS((char *fname,unsigned long fname_len))
 			{
 				filespec=(char *)MALLOC(sizeof(char)*(strlen(DEFAULT_FILESPEC)+1));
 				strcpy(filespec,DEFAULT_FILESPEC);
+				needtofreefilespec = TRUE;
 			}
 		}
 		break;
 
-		case 1:
+	case 1:
 		{
 			if (GetType(1) == sci_strings)
 			{
 				GetRhsVar(1,"c",&m1,&n1,&l1);
 				path=cstk(l1);
+				needtofreepath = FALSE;
 
 				filespec=(char *)MALLOC(sizeof(char)*(strlen(DEFAULT_FILESPEC)+1));
 				strcpy(filespec,DEFAULT_FILESPEC);
+				needtofreefilespec = TRUE;
 			}
 			else
 			{
@@ -64,15 +70,17 @@ int C2F(sci_findfiles) _PARAMS((char *fname,unsigned long fname_len))
 		}
 		break;
 
-		case 2:
+	case 2:
 		{
 			if ( (GetType(1) == sci_strings) && (GetType(2) == sci_strings) )
 			{
 				GetRhsVar(1,"c",&m1,&n1,&l1);
 				path=cstk(l1);
+				needtofreepath = FALSE;
 
 				GetRhsVar(2,"c",&m1,&n1,&l1);
 				filespec=cstk(l1);
+				needtofreefilespec = FALSE;
 			}
 			else
 			{
@@ -84,8 +92,8 @@ int C2F(sci_findfiles) _PARAMS((char *fname,unsigned long fname_len))
 	}
 
 	FilesList=findfiles(path,filespec,&sizeListReturned);
-	if (filespec) {FREE(filespec);filespec = NULL;}
-	if (path){FREE(path);path=NULL;}
+	if ( (filespec) && needtofreefilespec ) {FREE(filespec);filespec = NULL;}
+	if ( (path) && needtofreepath ) {FREE(path);path=NULL;}
 
 	if (FilesList)
 	{

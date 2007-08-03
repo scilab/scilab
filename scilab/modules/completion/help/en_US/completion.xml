@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>completion</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>$LastChangedDate: 2007-07-29 20:39:36 +0200 (mar., 17 oct. 2007)$</DATE>
+
+  <SHORT_DESCRIPTION name="completion">returns words that start with the text you pass as parameter.</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>r = completion(beginning_of_a_word)</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>r = completion(beginning_of_a_word,dictionary)</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[functions,commands,variables,macros,graphics_properties,files] = completion(beginning_of_a_word)</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[functions,commands,variables,macros,graphics_properties] = completion(beginning_of_a_word)</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[functions,commands,variables,macros] = completion(beginning_of_a_word)</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[functions,commands,variables] = completion(beginning_of_a_word)</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[functions,commands] = completion(beginning_of_a_word)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>r</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: a string matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>beginning_of_a_word</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: a string</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>dictionary</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: a string
+          ("functions","commands","variables","macros","graphics_properties","files")</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>functions,commands,variables,macros,graphics_properties,files</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: a string matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>returns words that start with the text you pass as parameter.</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[r = completion('w')
+r = completion('w','functions')
+r = completion('w','commands')
+r = completion('w','variables')
+r = completion('w','macros')
+r = completion('w','graphics_properties')
+r = completion('w','files')
+
+[functions,commands,variables,macros,graphics_properties,files] = completion('w')
+[functions,commands,variables,macros,graphics_properties] = completion('w')
+[functions,commands,variables,macros] = completion('w')
+[functions,commands,variables] = completion('w')
+[functions,commands] = completion('w')
+
+   ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>getscilabkeywords</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

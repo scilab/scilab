@@ -10,7 +10,6 @@
 /*-----------------------------------------------------------------------------------*/
 static gw_generic_table Tab[]=
 {
-{C2F(sci_completion),"completion"},
 {C2F(sci_clc),"clc"},
 {C2F(sci_tohome),"tohome"},
 {C2F(sci_loadhistory),"loadhistory"},

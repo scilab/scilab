@@ -10,16 +10,14 @@ src/cpp/HistorySearch.cpp \
 src/cpp/HistoryFile.cpp
 
 # List of the c files
-SHELL_C_SOURCES = src/c/completion.c \
-src/c/clc.c \
+SHELL_C_SOURCES = src/c/clc.c \
 src/c/tohome.c \
 src/c/zzledt_Linux.c \
 src/c/getCommentDateSession.c
 
 
 # List of the gateway c files
-GATEWAY_C_SOURCES = sci_gateway/c/sci_completion.c \
-sci_gateway/c/gw_shell.c \
+GATEWAY_C_SOURCES = sci_gateway/c/gw_shell.c \
 sci_gateway/c/sci_clc.c \
 sci_gateway/c/sci_tohome.c \
 sci_gateway/c/sci_gethistory.c \
