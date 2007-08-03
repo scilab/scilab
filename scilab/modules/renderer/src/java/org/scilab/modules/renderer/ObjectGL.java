@@ -16,7 +16,7 @@ import org.scilab.modules.renderer.utils.ColorMap;
  * Object which can be rendered in a GL pipeline
  * @author Jean-Baptiste Silvy
  */
-public abstract class ObjectJoGL {
+public abstract class ObjectGL {
 
 	/** Glu instance to use glu functionalities */
 	private GLU curGluInstance = new GLU();
@@ -28,7 +28,7 @@ public abstract class ObjectJoGL {
 	/**
 	 * Default constructor
 	 */
-	public ObjectJoGL() {
+	public ObjectGL() {
 		curGluInstance = null;
 	}
 	

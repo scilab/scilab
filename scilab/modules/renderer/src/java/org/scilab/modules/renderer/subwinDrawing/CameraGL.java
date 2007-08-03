@@ -9,14 +9,14 @@
 
 package org.scilab.modules.renderer.subwinDrawing;
 
-import org.scilab.modules.renderer.ObjectJoGL;
+import org.scilab.modules.renderer.ObjectGL;
 import javax.media.opengl.GL;
 
 /**
  * Class containing the driver dependant routines position the camera.
  * @author Jean-Baptiste Silvy
  */
-public class CameraJoGL extends ObjectJoGL {
+public class CameraGL extends ObjectGL {
 
 	/** Distance of the far clipping plane, should be greater than 1.0 and not to high */
 	public static final double FAR_PLANE_DISTANCE = 100.0;
@@ -28,7 +28,7 @@ public class CameraJoGL extends ObjectJoGL {
 	/**
 	 * Default constructor
 	 */
-	public CameraJoGL() {
+	public CameraGL() {
 		super();
 	}
 	

@@ -9,18 +9,18 @@
 
 package org.scilab.modules.renderer.polylineDrawing;
 
-import org.scilab.modules.renderer.AutoDrawableObjectJoGL;
+import org.scilab.modules.renderer.AutoDrawableObjectGL;
 
 /**
  * Class containing functions called by DrawablePolylineJoGL.cpp
  * @author Jean-Baptiste Silvy
  */
-public class DrawablePolylineJoGL extends AutoDrawableObjectJoGL {
+public class DrawablePolylineGL extends AutoDrawableObjectGL {
 
 	/**
 	 * Default constructor
 	 */
-	public DrawablePolylineJoGL() {
+	public DrawablePolylineGL() {
 		super();
 	}
 	

@@ -9,7 +9,7 @@ package org.scilab.modules.renderer;
 
 import java.util.HashMap;
 
-import org.scilab.modules.renderer.figureDrawing.DrawableFigureJoGL;
+import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
 
 /**
  * Glbal variable, mapping between Scilab figure number its correspondign canvas
@@ -20,7 +20,7 @@ public final class FigureMapper {
 	/**
 	 * We can't use directly HashMap.
 	 */
-	private static class FigureMap extends HashMap<Integer, DrawableFigureJoGL> {	
+	private static class FigureMap extends HashMap<Integer, DrawableFigureGL> {	
 		/**
 		 * To remove warning
 		 */
@@ -49,7 +49,7 @@ public final class FigureMapper {
 	 * @param figureId id of the figure
 	 * @param figure corresponding figure
 	 */
-	public static void addMapping(int figureId, DrawableFigureJoGL figure) {
+	public static void addMapping(int figureId, DrawableFigureGL figure) {
 		MAPPER.put(figureId, figure);
 	}
 	
@@ -66,7 +66,7 @@ public final class FigureMapper {
 	 * @param figureId id of the figure
 	 * @return the corresponding canvas
 	 */
-	public static DrawableFigureJoGL getCorrespondingFigure(int figureId) {
+	public static DrawableFigureGL getCorrespondingFigure(int figureId) {
 		return MAPPER.get(figureId);
 	}
 	
@@ -75,7 +75,7 @@ public final class FigureMapper {
 	 * @param figure figure object to be searched
 	 * @return true if the figure already exists in the hashmap, false otherwise
 	 */
-	public static boolean containsFigure(DrawableFigureJoGL figure) {
+	public static boolean containsFigure(DrawableFigureGL figure) {
 		return MAPPER.containsValue(figure);
 	}
 	

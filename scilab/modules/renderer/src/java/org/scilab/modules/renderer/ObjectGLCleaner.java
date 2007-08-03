@@ -22,23 +22,23 @@ import java.util.ListIterator;
  * be destroyed. Someone must destroy them from within the display function.
  * @author Jean-Baptiste Silvy
  */
-public class ObjectJoGLCleaner {
+public class ObjectGLCleaner {
 
 	/** list of objects to be destroyed */
-	private List<ObjectJoGL> destroyedObjects;
+	private List<ObjectGL> destroyedObjects;
 
 	/**
 	 * Default constructor
 	 */
-	public ObjectJoGLCleaner() {
-		destroyedObjects = new LinkedList<ObjectJoGL>();
+	public ObjectGLCleaner() {
+		destroyedObjects = new LinkedList<ObjectGL>();
 	}
 	
 	/**
 	 * Add an obkect in the list of objects which will be destroyed
 	 * @param obj object to add.
 	 */
-	public void addObjectToDestroy(ObjectJoGL obj) {
+	public void addObjectToDestroy(ObjectGL obj) {
 		destroyedObjects.add(obj);
 	}
 	
@@ -48,7 +48,7 @@ public class ObjectJoGLCleaner {
 	 * @param parentFigureIndex index of the figure containing this objects
 	 */
 	public void destroyAll(int parentFigureIndex) {
-		ListIterator<ObjectJoGL> it = destroyedObjects.listIterator();
+		ListIterator<ObjectGL> it = destroyedObjects.listIterator();
 		
 		while (it.hasNext()) {
 			it.next().clean(parentFigureIndex);

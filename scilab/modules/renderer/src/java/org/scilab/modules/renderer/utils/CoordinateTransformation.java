@@ -25,15 +25,6 @@ public class CoordinateTransformation {
 	private static final int MATRIX_4X4_SIZE = 16;
 	private static final int VIEWPORT_SIZE   = 4;
 	
-	/** Identity matrix of size 4x4 */
-	private static final double[] IDENTITY_4X4 = {1.0, 0.0, 0.0, 0.0,
-												  0.0, 1.0, 0.0, 0.0,
-												  0.0, 0.0, 1.0, 0.0,
-												  0.0, 0.0, 0.0, 1.0};
-	
-	/** The six translation indices in an frame changing matrix */
-	private static final int[] TRANSLATION_INDICES = {3, 7, 11, 12, 13, 14};
-	
 	/** Singleton */
 	private static CoordinateTransformation transform;
 	

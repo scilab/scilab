@@ -14,13 +14,13 @@ import org.scilab.modules.renderer.utils.glTools.GLTools;
  * Class which can be automatically shown.
  * @author Jean-Baptiste Silvy
  */
-public class AutoDrawableObjectJoGL extends DrawableObjectJoGL {
+public class AutoDrawableObjectGL extends DrawableObjectGL {
 
 	
 	/**
 	 * Default constructor
 	 */
-	public AutoDrawableObjectJoGL() {
+	public AutoDrawableObjectGL() {
 		super();
 	}
 	

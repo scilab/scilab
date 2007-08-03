@@ -8,14 +8,14 @@
 
 package org.scilab.modules.renderer.utils.MarkDrawing;
 
-import org.scilab.modules.renderer.DrawableObjectJoGL;
+import org.scilab.modules.renderer.DrawableObjectGL;
 import javax.media.opengl.GL;
 
 /**
  * Utility class to draw marks
  * @author Jean-Baptiste Silvy
  */
-public class MarkDrawer extends DrawableObjectJoGL {
+public class MarkDrawer extends DrawableObjectGL {
 
 	
 	/**

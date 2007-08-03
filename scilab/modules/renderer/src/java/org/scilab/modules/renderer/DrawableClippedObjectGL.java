@@ -15,7 +15,7 @@ import org.scilab.modules.renderer.utils.glTools.MovableClipPlane3D;
  * Parent class to render clipped objects
  * @author Jean-Baptiste Silvy
  */
-public abstract class DrawableClippedObjectJoGL extends DrawableObjectJoGL {
+public abstract class DrawableClippedObjectGL extends DrawableObjectGL {
 
 	private MovableClipPlane3D planeXmin;
 	private MovableClipPlane3D planeXmax;

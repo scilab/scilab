@@ -15,7 +15,7 @@ import org.scilab.modules.renderer.utils.glTools.GLTools;
  * Parent class for all graphic classes corresponding to a cpp one
  * @author Jean-Baptiste Silvy
  */
-public abstract class DrawableObjectJoGL extends ObjectJoGL {
+public abstract class DrawableObjectGL extends ObjectGL {
 
 	/** Index of the display list */
 	private int dlIndex;
@@ -23,7 +23,7 @@ public abstract class DrawableObjectJoGL extends ObjectJoGL {
 	/**
 	 * Default constructor
 	 */
-	public DrawableObjectJoGL() {
+	public DrawableObjectGL() {
 		super();
 		dlIndex = GLTools.UNINIT_DL_INDEX; // can't create the index outside the jogl thread.
 	}

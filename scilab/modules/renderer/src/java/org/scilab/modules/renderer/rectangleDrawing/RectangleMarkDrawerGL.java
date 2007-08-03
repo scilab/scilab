@@ -9,7 +9,7 @@
 
 package org.scilab.modules.renderer.rectangleDrawing;
 
-import org.scilab.modules.renderer.DrawableObjectJoGL;
+import org.scilab.modules.renderer.DrawableObjectGL;
 import javax.media.opengl.GL;
 
 import org.scilab.modules.renderer.utils.MarkDrawing.MarkDrawer;
@@ -21,7 +21,7 @@ import org.scilab.modules.renderer.utils.CoordinateTransformation;
  * Class containing functions called by RectangleMarkDrawerJoGL.cpp
  * @author Jean-Baptiste Silvy
  */
-public class RectangleMarkDrawerJoGL extends DrawableObjectJoGL {
+public class RectangleMarkDrawerGL extends DrawableObjectGL {
 	
 	private static final int NB_CORNERS = 4;
 	
@@ -35,7 +35,7 @@ public class RectangleMarkDrawerJoGL extends DrawableObjectJoGL {
 	/**
 	 * Default Constructor
 	 */
-	public RectangleMarkDrawerJoGL() {
+	public RectangleMarkDrawerGL() {
 		drawer = null;
 		cornersPos = new Vector3D[NB_CORNERS];
 	}
