@@ -30,8 +30,11 @@
 
       <DESCRIPTION_ITEM> 
 	<SP>
-	  Les mot-clés <VERB>then</VERB> et <VERB>do</VERB> peuvent être
-	  remplacés par un passage à la ligne ou une virgule.
+	  Les mot-clés <VERB>then</VERB> et <VERB>do</VERB> peuvent
+	  être remplacés par un passage à la ligne ou une
+	  virgule.  Pour la compatibilité avec Matlab, il est aussi
+	  possible, mais non recommendé de mettre un espace à la
+	  place de ces séparateurs.
 	</SP>
       </DESCRIPTION_ITEM>
 
