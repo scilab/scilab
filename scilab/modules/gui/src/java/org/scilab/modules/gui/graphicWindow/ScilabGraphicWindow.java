@@ -15,7 +15,7 @@ import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.renderer.FigureMapper;
-import org.scilab.modules.renderer.figureDrawing.DrawableFigureJoGL;
+import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
 
 
 
@@ -43,7 +43,7 @@ public class ScilabGraphicWindow extends ScilabWindow {
 		this.draw();
 		
 		// link the tab and canvas with theie figure
-		DrawableFigureJoGL associatedFigure = FigureMapper.getCorrespondingFigure(figureIndex);
+		DrawableFigureGL associatedFigure = FigureMapper.getCorrespondingFigure(figureIndex);
 		associatedFigure.setRendererProperties(new ScilabRendererProperties(graphicTab, graphicCanvas));
 		
 		graphicCanvas.display();
