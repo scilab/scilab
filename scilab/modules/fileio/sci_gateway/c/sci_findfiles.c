@@ -30,14 +30,11 @@ int C2F(sci_findfiles) _PARAMS((char *fname,unsigned long fname_len))
 			int ierr=0;
 			int lpath=0;
 
-			path=(char*)MALLOC(sizeof(char)*(PATH_MAX+1));
-
 			C2F(scigetcwd)(&path,&lpath,&ierr);
 
 			if (ierr)
 			{
 				Scierror(999,"Problem with current directory.\n");
-				if (path) {FREE(path);path=NULL;}
 				return 0;
 			}
 			else
@@ -87,6 +84,8 @@ int C2F(sci_findfiles) _PARAMS((char *fname,unsigned long fname_len))
 	}
 
 	FilesList=findfiles(path,filespec,&sizeListReturned);
+	if (filespec) {FREE(filespec);filespec = NULL;}
+	if (path){FREE(path);path=NULL;}
 
 	if (FilesList)
 	{
@@ -105,8 +104,6 @@ int C2F(sci_findfiles) _PARAMS((char *fname,unsigned long fname_len))
 		LhsVar(1) = Rhs+1;
 	}
 
-	C2F(putlhsvar)();
-
 	if (FilesList)
 	{
 		int i=0;
@@ -121,6 +118,8 @@ int C2F(sci_findfiles) _PARAMS((char *fname,unsigned long fname_len))
 		FREE(FilesList);
 		FilesList=NULL;
 	}
+
+	C2F(putlhsvar)();
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
