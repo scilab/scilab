@@ -10,37 +10,37 @@
 ;
 #define COMPLETION "completion"
 ;
-Source: bin\scicompletion.dll; DestDir: {app}\bin; Components: {#COMPN_COMPLETION}
+Source: bin\scicompletion.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
-Source: java\jar\modules\org.scilab.modules.completion.jar;DestDir: {app}\java\jar\modules; Components: {#COMPN_COMPLETION}
+;Source: java\jar\modules\org.scilab.modules.completion.jar;DestDir: {app}\java\jar\modules; Components: {#COMPN_SCILAB}
 ;
-Source: bin\noscicompletion.dll; DestDir: {app}\bin; DestName: scicompletion.dll; Components: not ({#COMPN_COMPLETION})
+;Source: bin\noscicompletion.dll; DestDir: {app}\bin; DestName: scicompletion.dll; Components: not ({#COMPN_SCILAB})
 ;
-Source: modules\{#COMPLETION}\changelog.txt; DestDir: {app}\modules\{#COMPLETION}; Components: {#COMPN_COMPLETION}; Check: set_with_completion
-Source: modules\{#COMPLETION}\licence.txt; DestDir: {app}\modules\{#COMPLETION}; Components: {#COMPN_COMPLETION}
-Source: modules\{#COMPLETION}\readme.txt; DestDir: {app}\modules\{#COMPLETION}; Components: {#COMPN_COMPLETION}
-Source: modules\{#COMPLETION}\version.xml; DestDir: {app}\modules\{#COMPLETION}; Components: {#COMPN_COMPLETION}
+Source: modules\{#COMPLETION}\changelog.txt; DestDir: {app}\modules\{#COMPLETION}; Components: {#COMPN_SCILAB};
+Source: modules\{#COMPLETION}\licence.txt; DestDir: {app}\modules\{#COMPLETION}; Components: {#COMPN_SCILAB}
+Source: modules\{#COMPLETION}\readme.txt; DestDir: {app}\modules\{#COMPLETION}; Components: {#COMPN_SCILAB}
+Source: modules\{#COMPLETION}\version.xml; DestDir: {app}\modules\{#COMPLETION}; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#COMPLETION}\sci_gateway\completion_gateway.xml; DestDir: {app}\modules\{#COMPLETION}\sci_gateway; Components: {#COMPN_COMPLETION}
+Source: modules\{#COMPLETION}\sci_gateway\completion_gateway.xml; DestDir: {app}\modules\{#COMPLETION}\sci_gateway; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#COMPLETION}\includes\*.h; DestDir: {app}\modules\{#COMPLETION}\includes; Components: {#COMPN_COMPLETION}
+Source: modules\{#COMPLETION}\includes\*.h; DestDir: {app}\modules\{#COMPLETION}\includes; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#COMPLETION}\help\addchapter.sce; DestDir: {app}\modules\{#COMPLETION}\help; Flags: recursesubdirs; Components:  {#COMPN_COMPLETION}
-Source: modules\{#COMPLETION}\help\removechapter.sce; DestDir: {app}\modules\{#COMPLETION}\help; Flags: recursesubdirs; Components: {#COMPN_COMPLETION}
+Source: modules\{#COMPLETION}\help\addchapter.sce; DestDir: {app}\modules\{#COMPLETION}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
+Source: modules\{#COMPLETION}\help\removechapter.sce; DestDir: {app}\modules\{#COMPLETION}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#COMPLETION}\etc\{#COMPLETION}.quit; DestDir: {app}\modules\{#COMPLETION}\etc; Components: {#COMPN_COMPLETION}
-Source: modules\{#COMPLETION}\etc\{#COMPLETION}.start; DestDir: {app}\modules\{#COMPLETION}\etc; Components: {#COMPN_COMPLETION}
+Source: modules\{#COMPLETION}\etc\{#COMPLETION}.quit; DestDir: {app}\modules\{#COMPLETION}\etc; Components: {#COMPN_SCILAB}
+Source: modules\{#COMPLETION}\etc\{#COMPLETION}.start; DestDir: {app}\modules\{#COMPLETION}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#COMPLETION}\help\*.htm; DestDir: {app}\modules\{#COMPLETION}\help; Flags: recursesubdirs; Components: {#COMPN_COMPLETION}
+Source: modules\{#COMPLETION}\help\*.htm; DestDir: {app}\modules\{#COMPLETION}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#COMPLETION}\languages\*.xml; DestDir: {app}\modules\{#COMPLETION}\languages; Flags: recursesubdirs; Components: {#COMPN_COMPLETION}
+Source: modules\{#COMPLETION}\languages\*.xml; DestDir: {app}\modules\{#COMPLETION}\languages; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#COMPLETION}\macros\buildmacros.sce; DestDir: {app}\modules\{#COMPLETION}\macros; Components: {#COMPN_COMPLETION}
-Source: modules\{#COMPLETION}\macros\*.bin; DestDir: {app}\modules\{#COMPLETION}\macros; Components: {#COMPN_COMPLETION}
-Source: modules\{#COMPLETION}\macros\*.sci; DestDir: {app}\modules\{#COMPLETION}\macros; Components: {#COMPN_COMPLETION}
-Source: modules\{#COMPLETION}\macros\lib; DestDir: {app}\modules\{#COMPLETION}\macros; Components: {#COMPN_COMPLETION}
-Source: modules\{#COMPLETION}\macros\names; DestDir: {app}\modules\{#COMPLETION}\macros; Components: {#COMPN_COMPLETION}
+;Source: modules\{#COMPLETION}\macros\buildmacros.sce; DestDir: {app}\modules\{#COMPLETION}\macros; Components: {#COMPN_SCILAB}
+;Source: modules\{#COMPLETION}\macros\*.bin; DestDir: {app}\modules\{#COMPLETION}\macros; Components: {#COMPN_SCILAB}
+;Source: modules\{#COMPLETION}\macros\*.sci; DestDir: {app}\modules\{#COMPLETION}\macros; Components: {#COMPN_SCILAB}
+;Source: modules\{#COMPLETION}\macros\lib; DestDir: {app}\modules\{#COMPLETION}\macros; Components: {#COMPN_SCILAB}
+;Source: modules\{#COMPLETION}\macros\names; DestDir: {app}\modules\{#COMPLETION}\macros; Components: {#COMPN_SCILAB}
 ;
-;Source: modules\{#COMPLETION}\demos\*.*; DestDir: {app}\modules\{#COMPLETION}\demos; Flags: recursesubdirs; Components: {#COMPN_COMPLETION}
+;Source: modules\{#COMPLETION}\demos\*.*; DestDir: {app}\modules\{#COMPLETION}\demos; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 ;--------------------------------------------------------------------------------------------------------------
