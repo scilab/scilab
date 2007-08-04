@@ -27,7 +27,7 @@ public class Completion {
 * @param[in] somechars first characters of a word
 * @return a array of chars 
 */
- static String[] searchAllDictionaries(String somechars) {
+public static String[] searchAllDictionaries(String somechars) {
     return CompletionJNI.searchAllDictionaries(somechars);
   }
 
@@ -37,7 +37,7 @@ public class Completion {
 * @param[in] somechars first characters of a word
 * @return a array of chars 
 */
- static String[] searchFunctionsDictionary(String somechars) {
+public static String[] searchFunctionsDictionary(String somechars) {
     return CompletionJNI.searchFunctionsDictionary(somechars);
   }
 
@@ -47,7 +47,7 @@ public class Completion {
 * @param[in] somechars first characters of a word
 * @return a array of chars 
 */
- static String[] searchCommandsDictionary(String somechars) {
+public static String[] searchCommandsDictionary(String somechars) {
     return CompletionJNI.searchCommandsDictionary(somechars);
   }
 
@@ -57,7 +57,7 @@ public class Completion {
 * @param[in] somechars first characters of a word
 * @return a array of chars 
 */
- static String[] searchMacrosDictionary(String somechars) {
+public static String[] searchMacrosDictionary(String somechars) {
     return CompletionJNI.searchMacrosDictionary(somechars);
   }
 
@@ -67,7 +67,7 @@ public class Completion {
 * @param[in] somechars first characters of a word
 * @return a array of chars 
 */
- static String[] searchVariablesDictionary(String somechars) {
+public static String[] searchVariablesDictionary(String somechars) {
     return CompletionJNI.searchVariablesDictionary(somechars);
   }
 
@@ -77,7 +77,7 @@ public class Completion {
 * @param[in] somechars first characters of a word
 * @return a array of chars 
 */
- static String[] searchFilesDictionary(String somechars) {
+public static String[] searchFilesDictionary(String somechars) {
     return CompletionJNI.searchFilesDictionary(somechars);
   }
 
@@ -87,7 +87,7 @@ public class Completion {
 * @param[in] somechars first characters of a word
 * @return a array of chars 
 */
- static String[] searchHandleGraphicsPropertiesDictionary(String somechars) {
+public static String[] searchHandleGraphicsPropertiesDictionary(String somechars) {
     return CompletionJNI.searchHandleGraphicsPropertiesDictionary(somechars);
   }
 

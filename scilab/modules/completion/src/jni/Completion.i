@@ -124,7 +124,7 @@ public class";
 * @param[in] somechars first characters of a word
 * @return a array of chars 
 */
-";
+public";
 char **searchAllDictionaries(char *somechars);
 
 /* JavaDoc */
@@ -134,7 +134,7 @@ char **searchAllDictionaries(char *somechars);
 * @param[in] somechars first characters of a word
 * @return a array of chars 
 */
-";
+public";
 char **searchFunctionsDictionary(char *somechars);
 
 /* JavaDoc */
@@ -144,7 +144,7 @@ char **searchFunctionsDictionary(char *somechars);
 * @param[in] somechars first characters of a word
 * @return a array of chars 
 */
-";
+public";
 char **searchCommandsDictionary(char *somechars);
 
 /* JavaDoc */
@@ -154,7 +154,7 @@ char **searchCommandsDictionary(char *somechars);
 * @param[in] somechars first characters of a word
 * @return a array of chars 
 */
-";
+public";
 char **searchMacrosDictionary(char *somechars);
 
 /* JavaDoc */
@@ -164,7 +164,7 @@ char **searchMacrosDictionary(char *somechars);
 * @param[in] somechars first characters of a word
 * @return a array of chars 
 */
-";
+public";
 char **searchVariablesDictionary(char *somechars);
 
 /* JavaDoc */
@@ -174,7 +174,7 @@ char **searchVariablesDictionary(char *somechars);
 * @param[in] somechars first characters of a word
 * @return a array of chars 
 */
-";
+public";
 char **searchFilesDictionary(char *somechars);
 
 /* JavaDoc */
@@ -184,6 +184,6 @@ char **searchFilesDictionary(char *somechars);
 * @param[in] somechars first characters of a word
 * @return a array of chars 
 */
-";
+public";
 char **searchHandleGraphicsPropertiesDictionary(char *somechars);
 

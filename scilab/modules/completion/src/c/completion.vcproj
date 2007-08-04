@@ -305,12 +305,16 @@
 				>
 			</File>
 		</Filter>
+		<Filter
+			Name="Resource Files"
+			>
+			<File
+				RelativePath=".\completion.rc"
+				>
+			</File>
+		</Filter>
 		<File
 			RelativePath="..\..\completion.iss"
-			>
-		</File>
-		<File
-			RelativePath=".\completion.rc"
 			>
 		</File>
 		<File
