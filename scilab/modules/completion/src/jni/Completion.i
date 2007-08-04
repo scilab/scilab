@@ -85,6 +85,21 @@ public class%}
 	throw new UnsupportedOperationException();
   }";
 
+/* static load of library */
+%pragma(java) jniclasscode=%{
+  static {
+    try {
+        System.loadLibrary("scicompletion");
+    } catch (SecurityException e) {
+		System.err.println("A security manager exists and does not allow the loading of the specified dynamic library :");
+		e.printStackTrace(System.err);
+	} catch (UnsatisfiedLinkError e)	{
+		System.err.println("The native library scicompletion does not exist or cannot be found.");
+		e.printStackTrace(System.err);
+    }
+  }
+%}
+
 /* JavaDoc for Completion class */
 %pragma(java) moduleclassmodifiers="
  /** 

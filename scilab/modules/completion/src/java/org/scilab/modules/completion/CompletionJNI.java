@@ -21,6 +21,19 @@ public class CompletionJNI {
   protected CompletionJNI() {
 	throw new UnsupportedOperationException();
   }
+
+  static {
+    try {
+        System.loadLibrary("scicompletion");
+    } catch (SecurityException e) {
+		System.err.println("A security manager exists and does not allow the loading of the specified dynamic library :");
+		e.printStackTrace(System.err);
+	} catch (UnsatisfiedLinkError e)	{
+		System.err.println("The native library scicompletion does not exist or cannot be found.");
+		e.printStackTrace(System.err);
+    }
+  }
+
   public final static native String[] searchAllDictionaries(String jarg1);
   public final static native String[] searchFunctionsDictionary(String jarg1);
   public final static native String[] searchCommandsDictionary(String jarg1);
