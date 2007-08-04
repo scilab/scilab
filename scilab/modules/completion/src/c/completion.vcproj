@@ -13,6 +13,9 @@
 		/>
 	</Platforms>
 	<ToolFiles>
+		<ToolFile
+			RelativePath="..\..\..\..\VS-2005-settings\swig.rules"
+		/>
 	</ToolFiles>
 	<Configurations>
 		<Configuration
@@ -29,6 +32,9 @@
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
+				Name="swig rule"
+			/>
+			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
@@ -40,7 +46,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../fileio/includes;../../../graphics/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../fileio/includes;../../../graphics/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;COMPLETION_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -113,6 +119,9 @@
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
+				Name="swig rule"
+			/>
+			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
@@ -126,7 +135,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../fileio/includes;../../../graphics/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../fileio/includes;../../../graphics/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;COMPLETION_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -203,6 +212,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\completion_wrap_java.c"
+				>
+			</File>
+			<File
 				RelativePath=".\getfilesdictionary.c"
 				>
 			</File>
@@ -240,6 +253,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\jni\Completion_wrap.c"
+				>
+			</File>
+			<File
+				RelativePath=".\completion_wrap_java.h"
+				>
+			</File>
+			<File
 				RelativePath=".\getfilesdictionary.h"
 				>
 			</File>
@@ -273,6 +294,14 @@
 			</File>
 			<File
 				RelativePath="..\..\languages\en_US\messages.xml"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Swig Files"
+			>
+			<File
+				RelativePath="..\jni\Completion.i"
 				>
 			</File>
 		</Filter>

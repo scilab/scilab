@@ -4,6 +4,11 @@
 ### INRIA - Scilab 2007
 ##########
 
+if GUI
+
+#List of the c files
+COMPLETION_JNI_SOURCES = src/jni/Completion_wrap.c 
+
 # List of the c files
 COMPLETION_C_SOURCES = src/c/completion.c \
 src/c/completion_generic.c \
@@ -16,8 +21,12 @@ src/c/toolsdictionary.c
 GATEWAY_C_SOURCES = sci_gateway/c/sci_completion.c \
 sci_gateway/c/gw_completion.c
 
+else
+COMPLETION_C_SOURCES =src/nocompletion/nocompletion.c
+endif
+
 # Includes need for the compilation
-libscicompletion_la_CFLAGS=  -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ \
+libscicompletion_la_CFLAGS=  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(top_srcdir)/modules/graphics/includes/ -I$(top_srcdir)/modules/fileio/includes/
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding 
@@ -25,7 +34,7 @@ libscicompletion_la_CFLAGS=  -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/in
 pkglib_LTLIBRARIES = libscicompletion.la
 
 # All the sources needed by libscicompletion.la
-libscicompletion_la_SOURCES = $(COMPLETION_C_SOURCES) $(GATEWAY_C_SOURCES) 
+libscicompletion_la_SOURCES = $(COMPLETION_JNI_SOURCES) $(COMPLETION_C_SOURCES) $(GATEWAY_C_SOURCES) 
 
 ## Libraries necessary
 ## Change to include other Scilab modules/lib
@@ -53,6 +62,15 @@ libscicompletion_la_includedir=$(pkgincludedir)/completion
 libscicompletion_la_include_HEADERS = includes/gw_completion.h \
 includes/completion.h
 
+
+#### SWIG Declaration ####
+BUILT_SOURCES = src/jni/Completion.i 
+
 # Provides macros compilation, Java compilation, cleaning
 # If you want Makefile to call ant, added USEANT=1
+
+if GUI
+USEANT=1
+endif
+
 include $(top_srcdir)/Makefile.incl.am

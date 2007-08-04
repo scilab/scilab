@@ -8,7 +8,7 @@
 			Name="swig rule"
 			DisplayName="swig rule"
 			CommandLine="&quot;$(SolutionDir)tools\swig\swig.exe&quot; -java -package org.scilab.modules.$(ProjectName) -outdir $(ProjectDir)../java/org/scilab/modules/$(ProjectName)  &quot;$(InputDir)$(InputFileName)&quot;"
-			Outputs="&quot;$(InputDir)$(InputName).c&quot;"
+			Outputs="&quot;$(InputDir)$(InputName)_wrap.c&quot;"
 			FileExtensions="*.i"
 			ExecutionDescription="Swig process of $(InputName).i ..."
 			>

@@ -29,4 +29,5 @@
 <classpath path="$SCILAB/modules/javasci/jar/javasci.jar"/>
 <classpath path="$SCILAB/modules/renderer/jar/org.scilab.modules.renderer.jar"/>
 <classpath path="$SCILAB/modules/localization/jar/org.scilab.modules.localization.jar"/>
+<classpath path="$SCILAB/modules/completion/jar/org.scilab.modules.completion.jar"/>
 </classpaths>

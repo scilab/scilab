@@ -59,5 +59,10 @@ src/jni/GuiManagement.i
 
 # Provides macros compilation, Java compilation, cleaning
 # If you want Makefile to call ant, add USEANT=1
+
+if GUI
+USEANT=1
+endif
+
 include $(top_srcdir)/Makefile.incl.am
 
