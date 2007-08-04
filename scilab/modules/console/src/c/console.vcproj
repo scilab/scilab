@@ -13,6 +13,9 @@
 		/>
 	</Platforms>
 	<ToolFiles>
+		<ToolFile
+			RelativePath="..\..\..\..\VS-2005-settings\swig.rules"
+		/>
 	</ToolFiles>
 	<Configurations>
 		<Configuration
@@ -21,12 +24,16 @@
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="2"
 			CharacterSet="2"
+			ExcludeBuckets="3"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="swig rule"
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
@@ -112,6 +119,9 @@
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="swig rule"
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
@@ -263,6 +273,22 @@
 			</File>
 			<File
 				RelativePath="..\..\languages\en_US\messages.xml"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Swig Files"
+			>
+			<File
+				RelativePath="..\jni\GuiManagement.i"
+				>
+			</File>
+			<File
+				RelativePath="..\jni\HistoryManagement.i"
+				>
+			</File>
+			<File
+				RelativePath="..\jni\InterpreterManagement.i"
 				>
 			</File>
 		</Filter>
