@@ -15,7 +15,8 @@ src/c/completion_generic.c \
 src/c/getfilesdictionary.c \
 src/c/getfulldictionary.c \
 src/c/getmacrosdictionary.c \
-src/c/toolsdictionary.c
+src/c/toolsdictionary.c \
+src/c/completion_wrap_java.c
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/sci_completion.c \

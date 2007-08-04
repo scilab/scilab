@@ -330,6 +330,10 @@ src/jni/InterpreterManagement.i \
 src/jni/GuiManagement.i
 
 
+# Provides macros compilation, Java compilation, cleaning
+# If you want Makefile to call ant, add USEANT=1
+@GUI_TRUE@USEANT = 1
+
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
 
@@ -970,9 +974,6 @@ macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODI
 	-@( \
 	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
 	$(top_builddir)/bin/scilab -nb -nwni -f $(abs_srcdir)/macros/buildmacros.sce 	)
-
-# Provides macros compilation, Java compilation, cleaning
-# If you want Makefile to call ant, add USEANT=1
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
