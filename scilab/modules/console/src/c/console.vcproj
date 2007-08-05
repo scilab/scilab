@@ -214,6 +214,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\GuiManagement.c"
+				>
+			</File>
+			<File
+				RelativePath="..\jni\GuiManagement_wrap.c"
+				>
+			</File>
+			<File
 				RelativePath=".\InterpreterManagement.c"
 				>
 			</File>
@@ -223,6 +231,14 @@
 			</File>
 			<File
 				RelativePath=".\PromptToHome.c"
+				>
+			</File>
+			<File
+				RelativePath=".\ShellPrintf.c"
+				>
+			</File>
+			<File
+				RelativePath="..\jni\ShellRead.cpp"
 				>
 			</File>
 		</Filter>
@@ -236,6 +252,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\ClearConsolePart.h"
+				>
+			</File>
+			<File
+				RelativePath=".\GuiManagement.h"
 				>
 			</File>
 			<File

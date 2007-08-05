@@ -6,6 +6,9 @@
 
 if GUI
 
+# List of the cpp files
+CONSOLE_CPP_SOURCES = 
+
 # List of the c files
 CONSOLE_JNI_SOURCES = src/jni/InterpreterManagement_wrap.c \
 src/jni/GuiManagement_wrap.c
@@ -18,11 +21,16 @@ src/c/PromptToHome.c
 
 else
 
-CONSOLE_C_SOURCES = src/c/ClearConsole_nogui.c \
-src/c/ClearConsolePart_nogui.c \
-src/c/PromptToHome_nogui.c
+# List of the c files
+CONSOLE_C_SOURCES = src/noconsole/noconsole.c
+
+# List of the cpp files
+CONSOLE_CPP_SOURCES = src/cpp/ShellRead.cpp
 
 endif
+
+# Includes need for the compilation
+libscishell_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/
 
 # Includes need for the compilation
 libsciconsole_la_CFLAGS=  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ 
@@ -53,6 +61,12 @@ libsciconsole_la_etc_DATA = etc/console.quit etc/console.start
 #### SWIG Declaration ####
 BUILT_SOURCES = src/jni/InterpreterManagement.i \
 src/jni/GuiManagement.i
+
+#### console : include files ####
+libscishell_la_includedir=$(pkgincludedir)/console
+libscishell_la_include_HEADERS = includes/ShellRead.h \
+includes/ShellPrintf.h
+
 
 # Provides macros compilation, Java compilation, cleaning
 # If you want Makefile to call ant, add USEANT=1

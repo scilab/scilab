@@ -2,5 +2,9 @@
 
 
 EXPORTS
+; core 
+;
 StoreCommand1
 sxevents_
+scilines_
+;

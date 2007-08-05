@@ -10,7 +10,7 @@
 * ShellRead function 
 * @return characters read in console
 */
-char *ShellRead();
+char *ShellRead(void);
 
 /*-----------------------------------------------------------------------------------*/
 #endif /* __SHELLREAD_H__ */

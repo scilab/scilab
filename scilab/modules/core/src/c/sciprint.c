@@ -16,7 +16,7 @@
 #include "MALLOC.h"
 #include "message_scilab.h"
 #include "../../localization/includes/QueryStringMessage.h"
-#include "../../shell/includes/ShellPrintf.h"
+#include "../../console/includes/ShellPrintf.h"
 #include "scilabmode.h"
 #include "xscion.h"
 /*-----------------------------------------------------------------------------------*/
