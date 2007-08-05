@@ -7,7 +7,7 @@
 if GUI
 
 # List of the cpp files
-CONSOLE_CPP_SOURCES = 
+CONSOLE_CPP_SOURCES =  src/jni/ShellRead.cpp 
 
 # List of the c files
 CONSOLE_JNI_SOURCES = src/jni/InterpreterManagement_wrap.c \
@@ -17,20 +17,18 @@ CONSOLE_C_SOURCES = src/c/InterpreterManagement.c \
 src/c/GuiManagement.c \
 src/c/ClearConsole.c \
 src/c/ClearConsolePart.c \
-src/c/PromptToHome.c
+src/c/PromptToHome.c \
+src/c/ShellPrintf.c
 
 else
 
 # List of the c files
 CONSOLE_C_SOURCES = src/noconsole/noconsole.c
 
-# List of the cpp files
-CONSOLE_CPP_SOURCES = src/cpp/ShellRead.cpp
-
 endif
 
 # Includes need for the compilation
-libscishell_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/
+libsciconsole_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/
 
 # Includes need for the compilation
 libsciconsole_la_CFLAGS=  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ 
@@ -39,7 +37,7 @@ libsciconsole_la_CFLAGS=  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ -I$(top_srcdi
 pkglib_LTLIBRARIES = libsciconsole.la
 
 # All the sources needed by libsciconsole.la
-libsciconsole_la_SOURCES = $(CONSOLE_JNI_SOURCES) $(CONSOLE_C_SOURCES)
+libsciconsole_la_SOURCES = $(CONSOLE_JNI_SOURCES) $(CONSOLE_C_SOURCES) $(CONSOLE_CPP_SOURCES)
 
 ## Libraries necessary
 ## Change to include other Scilab modules/lib

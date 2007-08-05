@@ -17,8 +17,7 @@ sci_gateway/c/sci_clc.c \
 sci_gateway/c/sci_tohome.c 
 
 if GUI
-SHELL_C_SOURCES += src/c/ShellPrintf.c \
-src/c/PutChar_linux.c \
+SHELL_C_SOURCES += src/c/PutChar_linux.c \
 src/c/GetCharWithoutOutput.c
 else
 src/c/PutChar_linux_nogui.c \
@@ -53,15 +52,15 @@ modulename=shell
 libscishell_la_rootdir = $(mydatadir)
 libscishell_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
-#### shell : init scripts #### 
+####ï¿½shell : init scripts #### 
 libscishell_la_etcdir = $(mydatadir)/etc
 libscishell_la_etc_DATA = etc/shell.quit etc/shell.start
 
-#### shell : gateway declaration #### 
+####ï¿½shell : gateway declaration #### 
 libscishell_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscishell_la_sci_gateway_DATA = sci_gateway/shell_gateway.xml
 
-#### shell : include files ####
+####ï¿½shell : include files ####
 libscishell_la_includedir=$(pkgincludedir)/shell
 libscishell_la_include_HEADERS = includes/gw_shell.h
 
