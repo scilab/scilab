@@ -8,11 +8,9 @@ if GUI
 
 # List of the c files
 CONSOLE_JNI_SOURCES = src/jni/InterpreterManagement_wrap.c \
-src/jni/HistoryManagement_wrap.c \
 src/jni/GuiManagement_wrap.c
 
 CONSOLE_C_SOURCES = src/c/InterpreterManagement.c \
-src/c/HistoryManagement.c \
 src/c/GuiManagement.c \
 src/c/ClearConsole.c \
 src/c/ClearConsolePart.c \
@@ -53,8 +51,7 @@ libsciconsole_la_etcdir = $(mydatadir)/etc
 libsciconsole_la_etc_DATA = etc/console.quit etc/console.start
 
 #### SWIG Declaration ####
-BUILT_SOURCES = src/jni/HistoryManagement.i \
-src/jni/InterpreterManagement.i \
+BUILT_SOURCES = src/jni/InterpreterManagement.i \
 src/jni/GuiManagement.i
 
 # Provides macros compilation, Java compilation, cleaning

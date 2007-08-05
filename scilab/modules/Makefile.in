@@ -120,6 +120,7 @@ libscilab_la_DEPENDENCIES = $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/shell/libscishell.la \
 	$(top_builddir)/modules/console/libsciconsole.la \
 	$(top_builddir)/modules/completion/libscicompletion.la \
+	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
 	$(am__append_2) $(am__append_3) $(am__append_4) \
 	$(top_builddir)/modules/jvm/libscijvm.la \
 	$(top_builddir)/modules/scicos/libsciscicos.la \
@@ -159,11 +160,11 @@ DIST_SUBDIRS = intersci polynomials cacsd elementaries_functions \
 	string_V2 signal_processing fileio core metanet optimization \
 	interpolation localization sound statistics time integer \
 	special_functions double randlib data_structures mexlib \
-	symbolic tclsci sparse io shell console renderer gui graphics \
-	wintools functions incremental_link others overloading \
-	maple2scilab m2sci texmacs scipad scilab2fortran \
-	development_tools compatibility_functions helptools scicos \
-	fftw pvm jvm completion . javasci
+	symbolic tclsci sparse io shell history_manager console \
+	renderer gui graphics wintools functions incremental_link \
+	others overloading maple2scilab m2sci texmacs scipad \
+	scilab2fortran development_tools compatibility_functions \
+	helptools scicos fftw pvm jvm completion . javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
@@ -332,11 +333,11 @@ SUBDIRS = intersci polynomials cacsd elementaries_functions arnoldi \
 	signal_processing fileio core metanet optimization \
 	interpolation localization sound statistics time integer \
 	special_functions double randlib data_structures mexlib \
-	symbolic tclsci sparse io shell console renderer gui graphics \
-	wintools functions incremental_link others overloading \
-	maple2scilab m2sci texmacs scipad scilab2fortran \
-	development_tools compatibility_functions helptools scicos \
-	fftw pvm jvm completion . $(am__append_1)
+	symbolic tclsci sparse io shell history_manager console \
+	renderer gui graphics wintools functions incremental_link \
+	others overloading maple2scilab m2sci texmacs scipad \
+	scilab2fortran development_tools compatibility_functions \
+	helptools scicos fftw pvm jvm completion . $(am__append_1)
 modulename = 
 
 #### Basic files ####
@@ -383,6 +384,7 @@ libscilab_la_LIBADD = $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/shell/libscishell.la \
 	$(top_builddir)/modules/console/libsciconsole.la \
 	$(top_builddir)/modules/completion/libscicompletion.la \
+	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
 	$(am__append_2) $(am__append_3) $(am__append_4) \
 	$(top_builddir)/modules/jvm/libscijvm.la \
 	$(top_builddir)/modules/scicos/libsciscicos.la \
