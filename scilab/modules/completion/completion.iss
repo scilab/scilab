@@ -12,7 +12,7 @@
 ;
 Source: bin\scicompletion.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
-Source: java\jar\modules\org.scilab.modules.completion.jar;DestDir: {app}\java\jar\modules; Components: {#COMPN_SCILAB}
+Source: modules\{#COMPLETION}\jar\org.scilab.modules.completion.jar;DestDir: {app}\modules\{#COMPLETION}\jar; Components: {#COMPN_SCILAB}
 ;
 ;Source: bin\noscicompletion.dll; DestDir: {app}\bin; DestName: scicompletion.dll; Components: not ({#COMPN_SCILAB})
 ;
