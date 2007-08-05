@@ -4,14 +4,25 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include "machine.h" 
 #include "HistoryManager.h"
+#include "InitializeHistoryManager.h"
+#include "TerminateHistoryManager.h"
 #include "MALLOC.h"
-/*-----------------------------------------------------------------------------------*/ 
-extern int  Scierror __PARAMS((int iv,char *fmt,...));
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(gw_history_manager)()
 {
 	Scierror(999,"history_manager interface not installed.\r\n");
 	return 0;
+}
+/*-----------------------------------------------------------------------------------*/ 
+BOOL InitializeHistoryManager(void)
+{
+	return TRUE;
+}
+/*-----------------------------------------------------------------------------------*/ 
+BOOL TerminateHistoryManager(void)
+{
+	return TRUE;
 }
 /*-----------------------------------------------------------------------------------*/ 
 BOOL appendLineToScilabHistory(char *line)

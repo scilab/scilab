@@ -15,6 +15,7 @@
 #include "../../../gui/includes/TerminateGui.h"
 #include "../../../localization/includes/TerminateLocalization.h"
 #include "../../../jvm/includes/TerminateJVM.h"
+#include "../../../history_manager/includes/TerminateHistoryManager.h"
 #include "scilabmode.h"
 /*-----------------------------------------------------------------------------------*/ 
 int ExitScilab(void)
@@ -29,6 +30,7 @@ int ExitScilab(void)
 
 	if ( getScilabMode() != SCILAB_NWNI ) 
 	{
+		TerminateHistoryManager();
 		TerminateGraphics();
 		TerminateJVM();
 	}

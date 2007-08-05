@@ -313,7 +313,15 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\InitializeHistoryManager.h"
+				>
+			</File>
+			<File
 				RelativePath=".\resource.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\TerminateHistoryManager.h"
 				>
 			</File>
 		</Filter>

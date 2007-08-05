@@ -16,25 +16,56 @@ extern "C"
 	#include "cluni0.h"
 	#include "SCIHOME.h"
 	#include "inffic.h"
+	#include "InitializeHistoryManager.h"
+	#include "TerminateHistoryManager.h"
 };
 /*------------------------------------------------------------------------*/
 #define MAXBUF	1024
 /*------------------------------------------------------------------------*/
-static HistoryManager ScilabHistory;
+static HistoryManager *ScilabHistory = NULL;
+/*------------------------------------------------------------------------*/
+BOOL InitializeHistoryManager(void)
+{
+	BOOL bOK = FALSE;
+	if (!ScilabHistory) 
+	{
+		ScilabHistory = new HistoryManager();
+		if (ScilabHistory) bOK = TRUE;
+	}
+	return bOK;
+}
+/*------------------------------------------------------------------------*/
+BOOL TerminateHistoryManager(void)
+{
+	BOOL bOK = FALSE;
+	if (ScilabHistory)
+	{
+		delete ScilabHistory;
+		ScilabHistory = NULL;
+		bOK = TRUE;
+	}
+	return bOK;
+}
 /*------------------------------------------------------------------------*/
 BOOL setSearchedTokenInScilabHistory(char *token)
 {
-	return ScilabHistory.setToken(token);
+	BOOL bOK = FALSE;
+	if (ScilabHistory) bOK = ScilabHistory->setToken(token);
+	return bOK;
 }
 /*------------------------------------------------------------------------*/
 BOOL resetSearchedTokenInScilabHistory(void)
 {
-	return ScilabHistory.resetToken();
+	BOOL bOK = FALSE;
+	if (ScilabHistory) bOK = ScilabHistory->resetToken();
+	return bOK;
 }
 /*------------------------------------------------------------------------*/
 char *getSearchedTokenInScilabHistory(void)
 {
-	return ScilabHistory.getToken();
+	char *token = NULL;
+	if (ScilabHistory) token = ScilabHistory->getToken();
+	return token;
 }
 /*------------------------------------------------------------------------*/
 BOOL appendLineToScilabHistory(char *line)
@@ -72,7 +103,8 @@ BOOL appendLineToScilabHistory(char *line)
 			i--;
 		}
 
-		bOK = ScilabHistory.appendLine(cleanedline);
+		if (ScilabHistory) bOK = ScilabHistory->appendLine(cleanedline);
+		
 
 		if (cleanedline) {FREE(cleanedline);cleanedline = NULL;}
 	}
@@ -81,22 +113,28 @@ BOOL appendLineToScilabHistory(char *line)
 /*------------------------------------------------------------------------*/
 BOOL appendLinesToScilabHistory(char **lines,int numberoflines)
 {
-	return ScilabHistory.appendLines(lines,numberoflines);
+	BOOL bOK = FALSE;
+	if (ScilabHistory) bOK = ScilabHistory->appendLines(lines,numberoflines);
+	return bOK;
 }
 /*------------------------------------------------------------------------*/
 void displayScilabHistory(void)
 {
-	ScilabHistory.displayHistory();
+	if (ScilabHistory) ScilabHistory->displayHistory();
 }
 /*------------------------------------------------------------------------*/
 BOOL writeScilabHistoryToFile(char *filename)
 {
-	return ScilabHistory.writeToFile(filename);
+	BOOL bOK = FALSE;
+	if (ScilabHistory) bOK = ScilabHistory->writeToFile(filename);
+	return bOK;
 }
 /*------------------------------------------------------------------------*/
 BOOL loadScilabHistoryFromFile(char *filename)
 {
-	return ScilabHistory.loadFromFile(filename);
+	BOOL bOK = FALSE;
+	if (ScilabHistory) bOK = ScilabHistory->loadFromFile(filename);
+	return bOK;
 }
 /*------------------------------------------------------------------------*/
 BOOL setFilenameScilabHistory(char *filename)
@@ -104,38 +142,48 @@ BOOL setFilenameScilabHistory(char *filename)
 	BOOL bOK = FALSE;
 	if (filename)
 	{
-		ScilabHistory.setFilename(filename);
-		bOK = TRUE;
+		if (ScilabHistory) 
+		{
+			ScilabHistory->setFilename(filename);
+			bOK = TRUE;
+		}
 	}
 	return bOK;
 }
 /*------------------------------------------------------------------------*/
 char *getFilenameScilabHistory(void)
 {
-	return ScilabHistory.getFilename();
+	char *filename = NULL;
+	if (ScilabHistory) filename = ScilabHistory->getFilename();
+	return filename;
 }
 /*------------------------------------------------------------------------*/
 BOOL setDefaultFilenameScilabHistory(void)
 {
-	return ScilabHistory.setDefaultFilename();
+	BOOL bOK = FALSE;
+	if (ScilabHistory) bOK = ScilabHistory->setDefaultFilename();
+	return bOK;
 }
 /*------------------------------------------------------------------------*/
 void resetScilabHistory(void)
 {
-	ScilabHistory.reset();
+	if (ScilabHistory) ScilabHistory->reset();
 }
 /*------------------------------------------------------------------------*/
 char **getAllLinesOfScilabHistory(void)
 {
 	int nbElements = 0;
-	char **lines = ScilabHistory.getAllLines(&nbElements);
+	char **lines = NULL;
+	if (ScilabHistory) lines = ScilabHistory->getAllLines(&nbElements);
 	return lines;
 }
 /*------------------------------------------------------------------------*/
 int getSizeAllLinesOfScilabHistory(void)
 {
 	int nbElements = 0;
-	char **lines = ScilabHistory.getAllLines(&nbElements);
+	char **lines = NULL;
+
+	if (ScilabHistory) lines = ScilabHistory->getAllLines(&nbElements);
 
 	if (lines)
 	{
@@ -158,60 +206,77 @@ int getSizeAllLinesOfScilabHistory(void)
 /*------------------------------------------------------------------------*/
 char *getLastLineInScilabHistory(void)
 {
-	return ScilabHistory.getLastLine();
+	char *line = NULL;
+	if (ScilabHistory) line = ScilabHistory->getLastLine();
+	return line;
 }
 /*------------------------------------------------------------------------*/
 char *getPreviousLineInScilabHistory(void)
 {
-	return ScilabHistory.getPreviousLine();
+	char *line = NULL;
+	if (ScilabHistory) line = ScilabHistory->getPreviousLine();
+	return line;
 }
 /*------------------------------------------------------------------------*/
 char *getNextLineInScilabHistory(void)
 {
-	return ScilabHistory.getNextLine();
+	char *line = NULL;
+	if (ScilabHistory) line = ScilabHistory->getNextLine();
+	return line;
 }
 /*------------------------------------------------------------------------*/
 int getNumberOfLinesInScilabHistory(void)
 {
-	return ScilabHistory.getNumberOfLines();
+	int val = 0;
+	if (ScilabHistory) val = ScilabHistory->getNumberOfLines();
+	return val;
 }
 /*------------------------------------------------------------------------*/
 void setSaveConsecutiveDuplicateLinesInScilabHistory(BOOL doit)
 {
-	ScilabHistory.setSaveConsecutiveDuplicateLines(doit);
+	if (ScilabHistory) ScilabHistory->setSaveConsecutiveDuplicateLines(doit);
 }
 /*------------------------------------------------------------------------*/
 BOOL getSaveConsecutiveDuplicateLinesInScilabHistory(void)
 {
-	return ScilabHistory.getSaveConsecutiveDuplicateLines();
+	BOOL bOK = FALSE;
+	if (ScilabHistory) bOK = ScilabHistory->getSaveConsecutiveDuplicateLines();
+	return bOK;
 }
 /*------------------------------------------------------------------------*/
 void setAfterHowManyLinesScilabHistoryIsSaved(int num)
 {
-	ScilabHistory.setAfterHowManyLinesHistoryIsSaved(num);
+	if (ScilabHistory) ScilabHistory->setAfterHowManyLinesHistoryIsSaved(num);
 }
 /*------------------------------------------------------------------------*/
 int getAfterHowManyLinesScilabHistoryIsSaved(void)
 {
-	return ScilabHistory.getAfterHowManyLinesHistoryIsSaved();
+	int val = 0;
+	if (ScilabHistory) val = ScilabHistory->getAfterHowManyLinesHistoryIsSaved();
+	return val;
 }
 /*------------------------------------------------------------------------*/
 char *getNthLineInScilabHistory(int N)
 {
-	return ScilabHistory.getNthLine(N);
+	char *line = NULL;
+	if (ScilabHistory) line = ScilabHistory->getNthLine(N);
+	return line;
 }
 /*------------------------------------------------------------------------*/
 BOOL deleteNthLineScilabHistory(int N)
 {
-	return ScilabHistory.deleteNthLine(N);
+	BOOL bOK = FALSE;
+	if (ScilabHistory) bOK = ScilabHistory->deleteNthLine(N);
+	return bOK;
 }
 /*------------------------------------------------------------------------*/
 int getSizeScilabHistory(void)
 {
-	return ScilabHistory.getNumberOfLines();
+	int val = 0;
+	if (ScilabHistory) val = ScilabHistory->getNumberOfLines();
+	return val;
 }
 /*------------------------------------------------------------------------*/
-
 
 
 /*------------------------------------------------------------------------*/
