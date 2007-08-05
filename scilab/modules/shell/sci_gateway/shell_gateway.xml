@@ -24,16 +24,4 @@
 <!-- =================== -->
 <PRIMITIVE gatewayId="53" primitiveId="1" primitiveName="clc"/>
 <PRIMITIVE gatewayId="53" primitiveId="2" primitiveName="tohome"/>
-<PRIMITIVE gatewayId="53" primitiveId="3" primitiveName="loadhistory" />
-<PRIMITIVE gatewayId="53" primitiveId="4" primitiveName="savehistory" />
-<PRIMITIVE gatewayId="53" primitiveId="5" primitiveName="gethistory" />
-<PRIMITIVE gatewayId="53" primitiveId="6" primitiveName="resethistory" />
-<PRIMITIVE gatewayId="53" primitiveId="7" primitiveName="displayhistory" />  
-<PRIMITIVE gatewayId="53" primitiveId="8" primitiveName="addhistory" />  
-<PRIMITIVE gatewayId="53" primitiveId="9" primitiveName="saveconsecutivecommands" />  
-<PRIMITIVE gatewayId="53" primitiveId="10" primitiveName="saveafterncommands" />
-<PRIMITIVE gatewayId="53" primitiveId="11" primitiveName="gethistoryfile" />
-<PRIMITIVE gatewayId="53" primitiveId="12" primitiveName="sethistoryfile" />
-<PRIMITIVE gatewayId="53" primitiveId="13" primitiveName="removelinehistory" />
-<PRIMITIVE gatewayId="53" primitiveId="14" primitiveName="historysize" />
 </GATEWAY>

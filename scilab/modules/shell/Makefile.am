@@ -4,34 +4,17 @@
 ########## *
 
 # List of the cpp files
-SHELL_CPP_SOURCES = src/cpp/CommandLine.cpp \
-src/cpp/HistoryManager.cpp \
-src/cpp/HistorySearch.cpp \
-src/cpp/HistoryFile.cpp
+SHELL_CPP_SOURCES = 
 
 # List of the c files
 SHELL_C_SOURCES = src/c/clc.c \
 src/c/tohome.c \
-src/c/zzledt_Linux.c \
-src/c/getCommentDateSession.c
-
+src/c/zzledt_Linux.c 
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_shell.c \
 sci_gateway/c/sci_clc.c \
 sci_gateway/c/sci_tohome.c \
-sci_gateway/c/sci_gethistory.c \
-sci_gateway/c/sci_loadhistory.c \
-sci_gateway/c/sci_resethistory.c \
-sci_gateway/c/sci_savehistory.c \
-sci_gateway/c/sci_sethistoryfile.c \
-sci_gateway/c/sci_saveconsecutivecommands.c \
-sci_gateway/c/sci_saveafterncommands.c \
-sci_gateway/c/sci_gethistoryfile.c \
-sci_gateway/c/sci_displayhistory.c \
-sci_gateway/c/sci_addhistory.c \
-sci_gateway/c/sci_removelinehistory.c \
-sci_gateway/c/sci_historysize.c
 
 if GUI
 SHELL_C_SOURCES += src/c/ShellPrintf.c \
@@ -50,7 +33,7 @@ endif
 libscishell_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/
 
 # Includes need for the compilation
-libscishell_la_CFLAGS= $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/console/includes/
+libscishell_la_CFLAGS= $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/console/includes/ -I$(top_srcdir)/modules/history_manager/includes/
 
 libscishell_la_LDFLAGS = $(JAVA_JNI_LIBS)
 

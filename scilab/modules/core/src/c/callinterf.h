@@ -73,6 +73,7 @@
 /* 52 */						#include "../../../jvm/includes/gw_jvm.h"
 /* 53 */						#include "../../../shell/includes/gw_shell.h"
 /* 54 */						#include "../../../completion/includes/gw_completion.h"
+/* 54 */						#include "../../../history_manager/includes/gw_history_manager.h"
 
 
 void errjump (int n);
@@ -139,7 +140,8 @@ static OpTab Interfaces[] = {
 	/* 51  */ {C2F(gw_fftw)},
 	/* 52  */ {C2F(gw_jvm)},
 	/* 53  */ {C2F(gw_shell)},
-	/* 54  */ {C2F(gw_completion)}
+	/* 54  */ {C2F(gw_completion)},
+	/* 55  */ {C2F(gw_history_manager)}
 };
 
 

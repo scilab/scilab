@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../console/includes/;../../../core/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../console/includes/;../../../core/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../history_manager/includes/"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;CONSOLE_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -127,7 +127,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../console/includes/;../../../core/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../console/includes/;../../../core/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../history_manager/includes/"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;CONSOLE_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -205,27 +205,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\cpp\CommandLine.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\getCommentDateSession.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\gw_shell.c"
-				>
-			</File>
-			<File
-				RelativePath="..\cpp\HistoryFile.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\cpp\HistoryManager.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\cpp\HistorySearch.cpp"
 				>
 			</File>
 			<File
@@ -237,55 +217,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_addhistory.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_clc.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_displayhistory.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_gethistory.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_gethistoryfile.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_historysize.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_loadhistory.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_removelinehistory.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_resethistory.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_saveafterncommands.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_saveconsecutivecommands.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_savehistory.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_sethistoryfile.c"
 				>
 			</File>
 			<File
@@ -336,31 +268,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\cpp\CommandLine.hxx"
-				>
-			</File>
-			<File
 				RelativePath=".\getCommentDateSession.h"
 				>
 			</File>
 			<File
 				RelativePath="..\..\includes\gw_shell.h"
-				>
-			</File>
-			<File
-				RelativePath="..\cpp\HistoryFile.hxx"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\HistoryManager.h"
-				>
-			</File>
-			<File
-				RelativePath="..\cpp\HistoryManager.hxx"
-				>
-			</File>
-			<File
-				RelativePath="..\cpp\HistorySearch.hxx"
 				>
 			</File>
 			<File

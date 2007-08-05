@@ -214,14 +214,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\HistoryManagement.c"
-				>
-			</File>
-			<File
-				RelativePath="..\jni\HistoryManagement_wrap.c"
-				>
-			</File>
-			<File
 				RelativePath=".\InterpreterManagement.c"
 				>
 			</File>
@@ -282,13 +274,6 @@
 				RelativePath="..\jni\GuiManagement.i"
 				>
 				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="swig rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
 					Name="Release|Win32"
 					ExcludedFromBuild="true"
 					>
@@ -298,40 +283,8 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\jni\HistoryManagement.i"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="swig rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="swig rule"
-					/>
-				</FileConfiguration>
-			</File>
-			<File
 				RelativePath="..\jni\InterpreterManagement.i"
 				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="swig rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="swig rule"
-					/>
-				</FileConfiguration>
 			</File>
 		</Filter>
 		<File

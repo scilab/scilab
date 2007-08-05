@@ -1,0 +1,11 @@
+// ====================================================================
+// history_manager module initialisation file 
+// Copyright INRIA 2007
+// ====================================================================
+//Load  functions librarie
+//load('SCI/modules/history_manager/macros/lib');
+// ====================================================================
+//add help chapter
+add_module_help_chapter('history_manager');
+clear add_module_help_chapter;
+// ====================================================================

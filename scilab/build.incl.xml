@@ -52,7 +52,10 @@
 	
 	  <pathelement location="${library.localization.dir}/${library.localization.name}"/>
 		<pathelement location="${library.shell.dir}/${library.shell.name}"/>
+		<pathelement location="${library.history_manager.dir}/${library.history_manager.name}"/>
+		<pathelement location="${library.completion.dir}/${library.completion.name}"/>
 		<pathelement location="${library.console.dir}/${library.console.name}"/>
+		
 		<pathelement location="${library.gui.dir}/${library.gui.name}"/>
 		<pathelement location="${library.jvm.dir}/${library.jvm.name}"/>
 		<pathelement location="${library.renderer.dir}/${library.renderer.name}"/>

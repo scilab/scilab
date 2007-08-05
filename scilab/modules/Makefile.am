@@ -36,6 +36,7 @@ tclsci \
 sparse \
 io \
 shell \
+history_manager \
 console \
 renderer \
 gui \
@@ -112,12 +113,13 @@ libscilab_la_LIBADD = \
 	$(top_builddir)/modules/statistics/libscistatistics.la \
 	$(top_builddir)/modules/time/libscitime.la \
 	$(top_builddir)/modules/wintools/libsciwintools.la \
-        $(top_builddir)/modules/tclsci/libscitclsci.la \
-        $(top_builddir)/modules/fftw/libscifftw.la \
-        $(top_builddir)/modules/pvm/libscipvm.la \
+  $(top_builddir)/modules/tclsci/libscitclsci.la \
+  $(top_builddir)/modules/fftw/libscifftw.la \
+  $(top_builddir)/modules/pvm/libscipvm.la \
 	$(top_builddir)/modules/shell/libscishell.la \
 	$(top_builddir)/modules/console/libsciconsole.la \
-	$(top_builddir)/modules/completion/libscicompletion.la
+	$(top_builddir)/modules/completion/libscicompletion.la \
+	$(top_builddir)/modules/history_manager/libscihistory_manager.la
 
 
 if STRINGV2

@@ -69,6 +69,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\org\scilab\modules\console\DelEndOfLineAction.java"
+				>
+			</File>
+			<File
 				RelativePath=".\org\scilab\modules\console\DelLastWordAction.java"
 				>
 			</File>
@@ -85,11 +89,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\org\scilab\modules\console\HistoryManagement.java"
+				RelativePath=".\org\scilab\modules\console\GuiManagement.java"
 				>
 			</File>
 			<File
-				RelativePath=".\org\scilab\modules\console\HistoryManagementJNI.java"
+				RelativePath=".\org\scilab\modules\console\GuiManagementJNI.java"
 				>
 			</File>
 			<File
@@ -110,6 +114,10 @@
 			</File>
 			<File
 				RelativePath=".\org\scilab\modules\console\NextCharAction.java"
+				>
+			</File>
+			<File
+				RelativePath=".\org\scilab\modules\console\OneCharKeyEventListener.java"
 				>
 			</File>
 			<File
@@ -142,6 +150,10 @@
 			</File>
 			<File
 				RelativePath=".\org\scilab\modules\console\SciPromptView.java"
+				>
+			</File>
+			<File
+				RelativePath=".\org\scilab\modules\console\ValidationAction.java"
 				>
 			</File>
 		</Filter>

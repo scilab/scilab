@@ -3,6 +3,8 @@
 
 package org.scilab.modules.console;
 
+
+import org.scilab.modules.history_manager.HistoryManagement;
 import com.artenum.console.interfaces.core.HistoryManager;
 
 /**

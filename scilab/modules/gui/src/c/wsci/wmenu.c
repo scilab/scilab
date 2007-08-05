@@ -34,7 +34,7 @@
 #include "win_mem_alloc.h" /* MALLOC */
 #include "setgetSCIpath.h"
 #include "../../../includes/write_scilab.h"
-#include "../../../../shell/includes/HistoryManager.h"
+#include "../../../../history_manager/includes/HistoryManager.h"
 
 #ifndef STRICT
 #define STRICT

@@ -1,0 +1,23 @@
+	LIBRARY    Libscilab.dll
+
+
+EXPORTS
+;core
+com_
+stack_
+sciprint
+callFunctionFromGateway
+createvarfromptr_
+putlhsvar_
+check_scalar
+getrhsvar_
+checkrhs_
+checklhs_
+intersci_
+createvar_
+vstk_
+Scierror
+getSCIHOME 
+cluni0_
+gettype_
+;
