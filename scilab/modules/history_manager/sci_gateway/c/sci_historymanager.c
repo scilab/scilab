@@ -11,6 +11,7 @@
 #include "HistoryManager.h"
 #include "InitializeHistoryManager.h"
 #include "TerminateHistoryManager.h"
+#include "getCommentDateSession.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_historymanager) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -46,7 +47,18 @@ int C2F(sci_historymanager) _PARAMS((char *fname,unsigned long fname_len))
 				}
 				else /* 'on' */
 				{
-					if (!historyIsEnabled()) InitializeHistoryManager();
+					
+					if (!historyIsEnabled()) 
+					{
+						char *commentbeginsession = NULL;
+						InitializeHistoryManager();
+
+						/* add date & time @ begin session */
+						commentbeginsession = getCommentDateSession(TRUE);
+						appendLineToScilabHistory(commentbeginsession);
+						if (commentbeginsession) {FREE(commentbeginsession);commentbeginsession=NULL;}
+					}
+					
 					strcpy(Output,"on");
 				}
 			}

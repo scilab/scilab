@@ -565,7 +565,7 @@ BOOL HistoryManager::deleteNthLine(int N)
 			{
 				if ( it_commands != CommandsList.end() ) 
 				{
-					string str;
+					std::string str;
 					str.empty();
 					CommandsList.erase(it_commands);
 					// After a remove , we update search
