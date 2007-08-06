@@ -11,17 +11,13 @@
 #include "DrawableFigureJoGL.h"
 extern "C"
 {
-#include "Xcall1.h"
 #include "GetProperty.h"
-#include "periScreen.h" /* should be removed */
 #include "DrawObjects.h"
 #include "getScilabJavaVM.h"
-#include "JniUtils.h"
 #include "Scierror.h"
 }
 
-#include <string>
-#include <stdio.h>
+#include <string.h>
 
 using namespace std;
 
@@ -47,10 +43,9 @@ void DrawableFigureJoGL::drawCanvas( void )
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::openRenderingCanvas( int figureIndex )
 {
-  //jobject graphicWindow = NULL;
-  //jclass graphicWindowClass = NULL;
-  //jniCreateDefaultInstanceSafe("org/scilab/modules/gui/graphicWindow/ScilabGraphicWindow", &graphicWindowClass, &graphicWindow);
-  //jniCallMemberFunctionSafe(graphicWindow, NULL, "setFigureIndex", "(I)V", sciGetNum(getDrawer()->getDrawedObject()));
+  m_pJavaWindow = new org_scilab_modules_gui_graphicWindow::ScilabGraphicWindow(getScilabJavaVM());
+  getFigureJavaMapper()->setFigureIndex(sciGetNum(getDrawer()->getDrawedObject()));
+  m_pJavaWindow->setFigureIndex(sciGetNum(getDrawer()->getDrawedObject()));
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::closeRenderingCanvas( void )
@@ -58,6 +53,11 @@ void DrawableFigureJoGL::closeRenderingCanvas( void )
   if ( getFigureJavaMapper() != NULL )
   {
     getFigureJavaMapper()->closeRenderingCanvas();
+  }
+  if ( m_pJavaWindow != NULL )
+  {
+    delete m_pJavaWindow;
+    m_pJavaWindow = NULL;
   }
   destroy() ;
 }
@@ -114,8 +114,11 @@ void DrawableFigureJoGL::setWindowSize( const int size[2] )
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::setInfoMessage( const char * message )
 {
-  string infoMessage(message);
-  getFigureJavaMapper()->setInfoMessage(infoMessage);
+  // we need to create a not const char
+  char * infoMessage = new char[strlen(message)+1];
+  strcpy(infoMessage, message);
+  //getFigureJavaMapper()->setInfoMessage(infoMessage);
+  delete[] infoMessage;
 }
 /*------------------------------------------------------------------------------------------*/
 DrawableFigure * DrawableFigureJoGL::getFigureDrawer( void )

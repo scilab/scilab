@@ -30,10 +30,10 @@ public class ColorMap {
 	 * Default constructor
 	 */
 	public ColorMap() {
-		redChannel   = null;
-		greenChannel = null;
-		blueChannel  = null;
-		colormapSize = 0;
+          redChannel   = new double[100];
+          greenChannel = new double[100];
+          blueChannel  = new double[100];
+          colormapSize = 100;
 	}
 	
 	/**

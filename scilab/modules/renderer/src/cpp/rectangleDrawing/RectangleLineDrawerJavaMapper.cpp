@@ -7,53 +7,59 @@
 
 #include "RectangleLineDrawerJavaMapper.hxx"
 
+extern "C"
+{
+#include "getScilabJavaVM.h"
+}
+
 namespace sciGraphics
 {
 
 /*------------------------------------------------------------------------------------------*/
 RectangleLineDrawerJavaMapper::RectangleLineDrawerJavaMapper(void)
 {
-
+  m_pJavaObject = new org_scilab_modules_renderer_rectangleDrawing::RectangleLineDrawerGL(getScilabJavaVM());
 }
 /*------------------------------------------------------------------------------------------*/
 RectangleLineDrawerJavaMapper::~RectangleLineDrawerJavaMapper(void)
 {
-
+  delete m_pJavaObject;
+  m_pJavaObject = NULL;
 }
 /*------------------------------------------------------------------------------------------*/
 void RectangleLineDrawerJavaMapper::display(void)
 {
-
+  m_pJavaObject->display();
 }
 /*------------------------------------------------------------------------------------------*/
 void RectangleLineDrawerJavaMapper::initializeDrawing(int figureIndex)
 {
-
+  m_pJavaObject->initializeDrawing(figureIndex);
 }
 /*------------------------------------------------------------------------------------------*/
 void RectangleLineDrawerJavaMapper::endDrawing(void)
 {
-
+  m_pJavaObject->endDrawing();
 }
 /*------------------------------------------------------------------------------------------*/
 void RectangleLineDrawerJavaMapper::show(void)
 {
-
+  m_pJavaObject->show();
 }
 /*------------------------------------------------------------------------------------------*/
-void RectangleLineDrawerJavaMapper::destroy(void)
+void RectangleLineDrawerJavaMapper::destroy(int parentFigureIndex)
 {
-
+ m_pJavaObject->destroy(parentFigureIndex); 
 }
 /*-----------------------------------------------------------------------------------*/
 void RectangleLineDrawerJavaMapper::setFigureIndex(int figureIndex)
 {
-
+  m_pJavaObject->setFigureIndex(figureIndex);
 }
 /*------------------------------------------------------------------------------------------*/
 void RectangleLineDrawerJavaMapper::setLineParameters(int lineColor, float thickness, int lineStyle)
 {
-
+  m_pJavaObject->setLineParameters(lineColor, thickness, lineStyle);
 }
 /*------------------------------------------------------------------------------------------*/
 void RectangleLineDrawerJavaMapper::drawRectangle(double corner1X, double corner1Y, double corner1Z,
@@ -61,7 +67,10 @@ void RectangleLineDrawerJavaMapper::drawRectangle(double corner1X, double corner
                                                   double corner3X, double corner3Y, double corner3Z,
                                                   double corner4X, double corner4Y, double corner4Z)
 {
-
+  m_pJavaObject->drawRectangle(corner1X, corner1Y, corner1Z,
+                               corner2X, corner2Y, corner2Z,
+                               corner3X, corner3Y, corner3Z,
+                               corner4X, corner4Y, corner4Z) ;
 }
 /*------------------------------------------------------------------------------------------*/
 

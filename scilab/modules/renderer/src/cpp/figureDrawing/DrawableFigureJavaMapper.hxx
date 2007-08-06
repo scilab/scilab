@@ -10,6 +10,7 @@
 
 #include "DrawableObjectJavaMapper.hxx"
 #include <string>
+#include "DrawableFigureGL.hxx"
 
 namespace sciGraphics
 {
@@ -31,7 +32,7 @@ public:
 
   virtual void show(void);
 
-  virtual void destroy(void);
+  virtual void destroy(int parentFigureIndex);
 
   virtual void setFigureIndex(int figureIndex);
   /*----------------------------------------------------------------------*/
@@ -57,10 +58,13 @@ public:
   virtual int getWindowHeight(void);
   virtual void setWindowSize(int width, int height);
 
-  virtual void setInfoMessage(std::string & infoMessage);
+  virtual void setInfoMessage(char * infoMessage);
   /*----------------------------------------------------------------------*/
 
-private:
+protected:
+
+  /** giws generated file */
+  org_scilab_modules_renderer_figureDrawing::DrawableFigureGL * m_pJavaObject;
 
 };
 

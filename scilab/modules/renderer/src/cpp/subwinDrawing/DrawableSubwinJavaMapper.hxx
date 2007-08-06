@@ -9,6 +9,7 @@
 #define _DRAWABLE_SUBWIN_JAVA_MAPPER_HXX_
 
 #include "DrawableObjectJavaMapper.hxx"
+#include "DrawableSubwinGL.hxx"
 
 namespace sciGraphics
 {
@@ -33,7 +34,7 @@ public:
 
   virtual void show(void);
 
-  virtual void destroy(void);
+  virtual void destroy(int figureIndex);
 
   virtual void setFigureIndex(int figureIndex);
   /*----------------------------------------------------------------------*/
@@ -42,6 +43,11 @@ public:
   /*----------------------------------------------------------------------*/
 
 protected:
+
+  /**
+   * Giws generated wrapper
+   */
+  org_scilab_modules_renderer_subwinDrawing::DrawableSubwinGL * m_pJavaObject;
 
 };
 

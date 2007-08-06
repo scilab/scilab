@@ -34,25 +34,25 @@ same conditions as regards security.
 The fact that you are presently reading this means that you have had
 knowledge of the CeCILL-B license and that you accept its terms.
 */
-#include "Object.hxx"
+#include "ScilabGraphicWindow.hxx"
 
 #include <string>
 #include <iostream>
 #include <stdlib.h>
 #include <jni.h>
 
-namespace java_lang {
+namespace org_scilab_modules_gui_graphicWindow {
 
 // Returns the current env
 
-JNIEnv * Object::getCurrentEnv() {
+JNIEnv * ScilabGraphicWindow::getCurrentEnv() {
 JNIEnv * curEnv = NULL;
 this->jvm->AttachCurrentThread((void **) &curEnv, NULL);
 return curEnv;
 }
 // Destructor
 
-Object::~Object() {
+ScilabGraphicWindow::~ScilabGraphicWindow() {
 JNIEnv * curEnv = NULL;
 this->jvm->AttachCurrentThread((void **) &curEnv, NULL);
 
@@ -62,11 +62,11 @@ curEnv->DeleteGlobalRef(this->instanceClass);
 
 // Constructors
 
-Object::Object(JavaVM * jvm_) {
+ScilabGraphicWindow::ScilabGraphicWindow(JavaVM * jvm_) {
 jmethodID constructObject = NULL ;
 jobject localInstance ;
 jclass localClass ;
-const std::string className="java/lang/Object";
+const std::string className="org/scilab/modules/gui/graphicWindow/ScilabGraphicWindow";
 const std::string construct="<init>";
 const std::string param="()V";
 jvm=jvm_;
@@ -103,9 +103,7 @@ std::cerr << "Could not create a new global ref of " << className << std::endl;
 exit(EXIT_FAILURE);
 }
 
-voidwaitID=NULL; 
-voidnotifyID=NULL; 
-voidnotifyAllID=NULL; 
+voidsetFigureIndexjintID=NULL; 
 
 
 }
@@ -113,7 +111,7 @@ voidnotifyAllID=NULL;
 // Generic methods
 
 
-void Object::synchronize() {
+void ScilabGraphicWindow::synchronize() {
 if (getCurrentEnv()->MonitorEnter(instance) != JNI_OK) {
 std::cerr << "Fail to enter monitor." << std::endl;
 exit(EXIT_FAILURE);
@@ -121,7 +119,7 @@ exit(EXIT_FAILURE);
 }
 
 
-void Object::endSynchronize() {
+void ScilabGraphicWindow::endSynchronize() {
 if ( getCurrentEnv()->MonitorExit(instance) != JNI_OK) {
 std::cerr << "Fail to exit monitor." << std::endl;
 exit(EXIT_FAILURE);
@@ -130,61 +128,19 @@ exit(EXIT_FAILURE);
 
 // Method(s)
 
-void Object::wait (){
+void ScilabGraphicWindow::setFigureIndex (long figureIndex){
 
 JNIEnv * curEnv = getCurrentEnv();
 
-if (this->voidwaitID == NULL)
+if (this->voidsetFigureIndexjintID == NULL)
 {
-this->voidwaitID = curEnv->GetMethodID(this->instanceClass, "wait", "()V" ) ;
-if (this->voidwaitID == NULL) {
-std::cerr << "Could not access to the method wait" << std::endl;
+this->voidsetFigureIndexjintID = curEnv->GetMethodID(this->instanceClass, "setFigureIndex", "(I)V" ) ;
+if (this->voidsetFigureIndexjintID == NULL) {
+std::cerr << "Could not access to the method setFigureIndex" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voidwaitID );
-
-if (curEnv->ExceptionOccurred()) {
-curEnv->ExceptionDescribe() ;
-}
-
-
-}
-
-void Object::notify (){
-
-JNIEnv * curEnv = getCurrentEnv();
-
-if (this->voidnotifyID == NULL)
-{
-this->voidnotifyID = curEnv->GetMethodID(this->instanceClass, "notify", "()V" ) ;
-if (this->voidnotifyID == NULL) {
-std::cerr << "Could not access to the method notify" << std::endl;
-exit(EXIT_FAILURE);
-}
-}
-  (void) curEnv->CallVoidMethod( this->instance, voidnotifyID );
-
-if (curEnv->ExceptionOccurred()) {
-curEnv->ExceptionDescribe() ;
-}
-
-
-}
-
-void Object::notifyAll (){
-
-JNIEnv * curEnv = getCurrentEnv();
-
-if (this->voidnotifyAllID == NULL)
-{
-this->voidnotifyAllID = curEnv->GetMethodID(this->instanceClass, "notifyAll", "()V" ) ;
-if (this->voidnotifyAllID == NULL) {
-std::cerr << "Could not access to the method notifyAll" << std::endl;
-exit(EXIT_FAILURE);
-}
-}
-  (void) curEnv->CallVoidMethod( this->instance, voidnotifyAllID );
+  (void) curEnv->CallVoidMethod( this->instance, voidsetFigureIndexjintID ,figureIndex);
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

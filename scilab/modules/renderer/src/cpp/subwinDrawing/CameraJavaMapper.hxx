@@ -9,6 +9,7 @@
 #define _CAMERA_JAVA_MAPPER_HXX_
 
 #include "DrawableObjectJavaMapper.hxx"
+#include "CameraGL.hxx"
 
 namespace sciGraphics
 {
@@ -30,7 +31,7 @@ public:
 
   virtual void show(void);
 
-  virtual void destroy(void);
+  virtual void destroy(int figureIndex);
 
   virtual void setFigureIndex(int figureIndex);
   /*----------------------------------------------------------------------*/
@@ -46,6 +47,10 @@ public:
 
 private:
   
+  /**
+   * Giws generated wrapper
+   */
+  org_scilab_modules_renderer_subwinDrawing::CameraGL * m_pJavaObject;
 
 };
 

@@ -155,7 +155,12 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 	src/cpp/rectangleDrawing/RectangleFillDrawerJavaMapper.cpp \
 	src/cpp/rectangleDrawing/RectangleLineDrawerJavaMapper.cpp \
 	src/cpp/rectangleDrawing/RectangleMarkDrawerJavaMapper.cpp \
-	sci_gateway/c/gw_renderer.c
+	src/jni/ScilabGraphicWindow.cpp src/jni/DrawableFigureGL.cpp \
+	src/jni/DrawableSubwinGL.cpp src/jni/CameraGL.cpp \
+	src/jni/DrawablePolylineGL.cpp src/jni/DrawableRectangleGL.cpp \
+	src/jni/RectangleFillDrawerGL.cpp \
+	src/jni/RectangleLineDrawerGL.cpp \
+	src/jni/RectangleMarkDrawerGL.cpp sci_gateway/c/gw_renderer.c
 @GUI_TRUE@am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableSubwin.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableFigureJoGL.lo \
@@ -231,7 +236,16 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 @GUI_TRUE@	libscirenderer_la-DrawableRectangleJavaMapper.lo \
 @GUI_TRUE@	libscirenderer_la-RectangleFillDrawerJavaMapper.lo \
 @GUI_TRUE@	libscirenderer_la-RectangleLineDrawerJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-RectangleMarkDrawerJavaMapper.lo
+@GUI_TRUE@	libscirenderer_la-RectangleMarkDrawerJavaMapper.lo \
+@GUI_TRUE@	libscirenderer_la-ScilabGraphicWindow.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableFigureGL.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableSubwinGL.lo \
+@GUI_TRUE@	libscirenderer_la-CameraGL.lo \
+@GUI_TRUE@	libscirenderer_la-DrawablePolylineGL.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableRectangleGL.lo \
+@GUI_TRUE@	libscirenderer_la-RectangleFillDrawerGL.lo \
+@GUI_TRUE@	libscirenderer_la-RectangleLineDrawerGL.lo \
+@GUI_TRUE@	libscirenderer_la-RectangleMarkDrawerGL.lo
 @GUI_TRUE@am__objects_2 = libscirenderer_la-gw_renderer.lo
 @GUI_FALSE@am_libscirenderer_la_OBJECTS =  \
 @GUI_FALSE@	libscirenderer_la-norenderer.lo
@@ -503,14 +517,23 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/cpp/rectangleDrawing/DrawableRectangleJavaMapper.cpp \
 @GUI_TRUE@src/cpp/rectangleDrawing/RectangleFillDrawerJavaMapper.cpp \
 @GUI_TRUE@src/cpp/rectangleDrawing/RectangleLineDrawerJavaMapper.cpp \
-@GUI_TRUE@src/cpp/rectangleDrawing/RectangleMarkDrawerJavaMapper.cpp
+@GUI_TRUE@src/cpp/rectangleDrawing/RectangleMarkDrawerJavaMapper.cpp \
+@GUI_TRUE@src/jni/ScilabGraphicWindow.cpp \
+@GUI_TRUE@src/jni/DrawableFigureGL.cpp \
+@GUI_TRUE@src/jni/DrawableSubwinGL.cpp \
+@GUI_TRUE@src/jni/CameraGL.cpp \
+@GUI_TRUE@src/jni/DrawablePolylineGL.cpp \
+@GUI_TRUE@src/jni/DrawableRectangleGL.cpp \
+@GUI_TRUE@src/jni/RectangleFillDrawerGL.cpp \
+@GUI_TRUE@src/jni/RectangleLineDrawerGL.cpp \
+@GUI_TRUE@src/jni/RectangleMarkDrawerGL.cpp
 
 
 # List of the gateway c files
 @GUI_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/gw_renderer.c
 
 # Includes need for the compilation
-@GUI_TRUE@libscirenderer_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -Isrc/jni -I$(top_srcdir)/modules/jvm/includes -I$(top_srcdir)/modules/graphics/includes/ -I$(top_srcdir)/modules/graphics/includes/handleDrawing/ -I$(top_srcdir)/libs/doublylinkedlist/includes
+@GUI_TRUE@libscirenderer_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -Isrc/jni/ -I$(top_srcdir)/modules/jvm/includes -I$(top_srcdir)/modules/graphics/includes/ -I$(top_srcdir)/modules/graphics/includes/handleDrawing/ -I$(top_srcdir)/libs/doublylinkedlist/includes
 
 #libscirenderer_la_LIBADD = $(top_builddir)/modules/graphics/libscigraphics.la
 
@@ -664,6 +687,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CameraBridge.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CameraBridgeFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CameraFactory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CameraGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CameraJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CameraJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableFigure.Plo@am__quote@
@@ -681,6 +705,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableFigure.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableFigureBridgeFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableFigureFactory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableFigureGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableFigureJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableFigureJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableGrayplot.Plo@am__quote@
@@ -695,12 +720,14 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawablePolyline.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawablePolylineBrirdgeFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawablePolylineFactory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawablePolylineGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawablePolylineJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawablePolylineJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableRectangle.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableRectangleBridge.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableRectangleBridgeFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableRectangleFactory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableRectangleGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableRectangleJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableRectangleJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSegs.Plo@am__quote@
@@ -708,6 +735,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSubwin.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSubwinBridgeFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSubwinFactory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSubwinGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSubwinJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSubwinJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSurface.Plo@am__quote@
@@ -727,12 +755,16 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-HandleObserverManagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-LocalSynchronizer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-Object.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-RectangleFillDrawerGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-RectangleFillDrawerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-RectangleFillDrawerJoGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-RectangleLineDrawerGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-RectangleLineDrawerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-RectangleLineDrawerJoGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-RectangleMarkDrawerGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-RectangleMarkDrawerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-RectangleMarkDrawerJoGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ScilabGraphicWindow.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SetJavaProperty.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-getHandleDrawer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-gw_renderer.Plo@am__quote@
@@ -1325,6 +1357,69 @@ libscirenderer_la-RectangleMarkDrawerJavaMapper.lo: src/cpp/rectangleDrawing/Rec
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/rectangleDrawing/RectangleMarkDrawerJavaMapper.cpp' object='libscirenderer_la-RectangleMarkDrawerJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-RectangleMarkDrawerJavaMapper.lo `test -f 'src/cpp/rectangleDrawing/RectangleMarkDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/rectangleDrawing/RectangleMarkDrawerJavaMapper.cpp
+
+libscirenderer_la-ScilabGraphicWindow.lo: src/jni/ScilabGraphicWindow.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-ScilabGraphicWindow.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-ScilabGraphicWindow.Tpo -c -o libscirenderer_la-ScilabGraphicWindow.lo `test -f 'src/jni/ScilabGraphicWindow.cpp' || echo '$(srcdir)/'`src/jni/ScilabGraphicWindow.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-ScilabGraphicWindow.Tpo $(DEPDIR)/libscirenderer_la-ScilabGraphicWindow.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/ScilabGraphicWindow.cpp' object='libscirenderer_la-ScilabGraphicWindow.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-ScilabGraphicWindow.lo `test -f 'src/jni/ScilabGraphicWindow.cpp' || echo '$(srcdir)/'`src/jni/ScilabGraphicWindow.cpp
+
+libscirenderer_la-DrawableFigureGL.lo: src/jni/DrawableFigureGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableFigureGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableFigureGL.Tpo -c -o libscirenderer_la-DrawableFigureGL.lo `test -f 'src/jni/DrawableFigureGL.cpp' || echo '$(srcdir)/'`src/jni/DrawableFigureGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-DrawableFigureGL.Tpo $(DEPDIR)/libscirenderer_la-DrawableFigureGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/DrawableFigureGL.cpp' object='libscirenderer_la-DrawableFigureGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableFigureGL.lo `test -f 'src/jni/DrawableFigureGL.cpp' || echo '$(srcdir)/'`src/jni/DrawableFigureGL.cpp
+
+libscirenderer_la-DrawableSubwinGL.lo: src/jni/DrawableSubwinGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableSubwinGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableSubwinGL.Tpo -c -o libscirenderer_la-DrawableSubwinGL.lo `test -f 'src/jni/DrawableSubwinGL.cpp' || echo '$(srcdir)/'`src/jni/DrawableSubwinGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-DrawableSubwinGL.Tpo $(DEPDIR)/libscirenderer_la-DrawableSubwinGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/DrawableSubwinGL.cpp' object='libscirenderer_la-DrawableSubwinGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableSubwinGL.lo `test -f 'src/jni/DrawableSubwinGL.cpp' || echo '$(srcdir)/'`src/jni/DrawableSubwinGL.cpp
+
+libscirenderer_la-CameraGL.lo: src/jni/CameraGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-CameraGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-CameraGL.Tpo -c -o libscirenderer_la-CameraGL.lo `test -f 'src/jni/CameraGL.cpp' || echo '$(srcdir)/'`src/jni/CameraGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-CameraGL.Tpo $(DEPDIR)/libscirenderer_la-CameraGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/CameraGL.cpp' object='libscirenderer_la-CameraGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-CameraGL.lo `test -f 'src/jni/CameraGL.cpp' || echo '$(srcdir)/'`src/jni/CameraGL.cpp
+
+libscirenderer_la-DrawablePolylineGL.lo: src/jni/DrawablePolylineGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawablePolylineGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawablePolylineGL.Tpo -c -o libscirenderer_la-DrawablePolylineGL.lo `test -f 'src/jni/DrawablePolylineGL.cpp' || echo '$(srcdir)/'`src/jni/DrawablePolylineGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-DrawablePolylineGL.Tpo $(DEPDIR)/libscirenderer_la-DrawablePolylineGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/DrawablePolylineGL.cpp' object='libscirenderer_la-DrawablePolylineGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawablePolylineGL.lo `test -f 'src/jni/DrawablePolylineGL.cpp' || echo '$(srcdir)/'`src/jni/DrawablePolylineGL.cpp
+
+libscirenderer_la-DrawableRectangleGL.lo: src/jni/DrawableRectangleGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableRectangleGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableRectangleGL.Tpo -c -o libscirenderer_la-DrawableRectangleGL.lo `test -f 'src/jni/DrawableRectangleGL.cpp' || echo '$(srcdir)/'`src/jni/DrawableRectangleGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-DrawableRectangleGL.Tpo $(DEPDIR)/libscirenderer_la-DrawableRectangleGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/DrawableRectangleGL.cpp' object='libscirenderer_la-DrawableRectangleGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableRectangleGL.lo `test -f 'src/jni/DrawableRectangleGL.cpp' || echo '$(srcdir)/'`src/jni/DrawableRectangleGL.cpp
+
+libscirenderer_la-RectangleFillDrawerGL.lo: src/jni/RectangleFillDrawerGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-RectangleFillDrawerGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-RectangleFillDrawerGL.Tpo -c -o libscirenderer_la-RectangleFillDrawerGL.lo `test -f 'src/jni/RectangleFillDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/RectangleFillDrawerGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-RectangleFillDrawerGL.Tpo $(DEPDIR)/libscirenderer_la-RectangleFillDrawerGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/RectangleFillDrawerGL.cpp' object='libscirenderer_la-RectangleFillDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-RectangleFillDrawerGL.lo `test -f 'src/jni/RectangleFillDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/RectangleFillDrawerGL.cpp
+
+libscirenderer_la-RectangleLineDrawerGL.lo: src/jni/RectangleLineDrawerGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-RectangleLineDrawerGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-RectangleLineDrawerGL.Tpo -c -o libscirenderer_la-RectangleLineDrawerGL.lo `test -f 'src/jni/RectangleLineDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/RectangleLineDrawerGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-RectangleLineDrawerGL.Tpo $(DEPDIR)/libscirenderer_la-RectangleLineDrawerGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/RectangleLineDrawerGL.cpp' object='libscirenderer_la-RectangleLineDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-RectangleLineDrawerGL.lo `test -f 'src/jni/RectangleLineDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/RectangleLineDrawerGL.cpp
+
+libscirenderer_la-RectangleMarkDrawerGL.lo: src/jni/RectangleMarkDrawerGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-RectangleMarkDrawerGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-RectangleMarkDrawerGL.Tpo -c -o libscirenderer_la-RectangleMarkDrawerGL.lo `test -f 'src/jni/RectangleMarkDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/RectangleMarkDrawerGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-RectangleMarkDrawerGL.Tpo $(DEPDIR)/libscirenderer_la-RectangleMarkDrawerGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/RectangleMarkDrawerGL.cpp' object='libscirenderer_la-RectangleMarkDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-RectangleMarkDrawerGL.lo `test -f 'src/jni/RectangleMarkDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/RectangleMarkDrawerGL.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

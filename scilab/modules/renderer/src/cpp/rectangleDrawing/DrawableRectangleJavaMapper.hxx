@@ -9,6 +9,7 @@
 #define _DRAWABLE_RECTANGLE_JAVA_MAPPER_HXX_
 
 #include "DrawableClippedObjectJavaMapper.hxx"
+#include "DrawableRectangleGL.hxx"
 
 namespace sciGraphics
 {
@@ -30,7 +31,7 @@ public:
 
   virtual void show(void);
 
-  virtual void destroy(void);
+  virtual void destroy(int figureIndex);
 
   virtual void setFigureIndex(int figureIndex);
   /*----------------------------------------------------------------------*/
@@ -45,6 +46,12 @@ public:
 
   /*----------------------------------------------------------------------*/
 
+private:
+
+  /**
+   * Giws generated wrapper.
+   */
+  org_scilab_modules_renderer_rectangleDrawing::DrawableRectangleGL * m_pJavaObject;
 
 };
 

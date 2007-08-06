@@ -27,7 +27,7 @@ public:
 
   virtual void show(void) = 0;
 
-  virtual void destroy(void) = 0;
+  virtual void destroy(int parentFigureIndex) = 0;
 
   virtual void setFigureIndex(int figureIndex) = 0;
 

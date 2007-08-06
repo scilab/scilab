@@ -18,7 +18,7 @@ namespace sciGraphics
 
 class DrawableSubwin;
 
-class CameraJoGL : public DrawableObjectJoGL, public CameraBridge
+class CameraJoGL : public CameraBridge, public DrawableObjectJoGL
 {
 
 public:

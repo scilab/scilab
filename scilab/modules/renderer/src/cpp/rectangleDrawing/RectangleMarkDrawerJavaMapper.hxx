@@ -9,6 +9,7 @@
 #define _RECTANGLE_MARK_DRAWER_JAVA_MAPPER_HXX_
 
 #include "DrawableObjectJavaMapper.hxx"
+#include "RectangleMarkDrawerGL.hxx"
 
 namespace sciGraphics
 {
@@ -31,7 +32,7 @@ public:
 
   virtual void show(void);
 
-  virtual void destroy(void);
+  virtual void destroy(int figureIndex);
 
   virtual void setFigureIndex(int figureIndex);
   /*----------------------------------------------------------------------*/
@@ -44,7 +45,12 @@ public:
                              double corner4X, double corner4Y, double corner4Z);
   /*----------------------------------------------------------------------*/
 
-protected:
+private:
+
+  /**
+   * Giws generated wrapper.
+   */
+  org_scilab_modules_renderer_rectangleDrawing::RectangleMarkDrawerGL * m_pJavaObject;
 
 };
 

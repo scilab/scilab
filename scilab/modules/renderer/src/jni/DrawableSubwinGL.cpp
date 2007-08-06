@@ -34,25 +34,25 @@ same conditions as regards security.
 The fact that you are presently reading this means that you have had
 knowledge of the CeCILL-B license and that you accept its terms.
 */
-#include "Object.hxx"
+#include "DrawableSubwinGL.hxx"
 
 #include <string>
 #include <iostream>
 #include <stdlib.h>
 #include <jni.h>
 
-namespace java_lang {
+namespace org_scilab_modules_renderer_subwinDrawing {
 
 // Returns the current env
 
-JNIEnv * Object::getCurrentEnv() {
+JNIEnv * DrawableSubwinGL::getCurrentEnv() {
 JNIEnv * curEnv = NULL;
 this->jvm->AttachCurrentThread((void **) &curEnv, NULL);
 return curEnv;
 }
 // Destructor
 
-Object::~Object() {
+DrawableSubwinGL::~DrawableSubwinGL() {
 JNIEnv * curEnv = NULL;
 this->jvm->AttachCurrentThread((void **) &curEnv, NULL);
 
@@ -62,11 +62,11 @@ curEnv->DeleteGlobalRef(this->instanceClass);
 
 // Constructors
 
-Object::Object(JavaVM * jvm_) {
+DrawableSubwinGL::DrawableSubwinGL(JavaVM * jvm_) {
 jmethodID constructObject = NULL ;
 jobject localInstance ;
 jclass localClass ;
-const std::string className="java/lang/Object";
+const std::string className="org/scilab/modules/renderer/subwinDrawing/DrawableSubwinGL";
 const std::string construct="<init>";
 const std::string param="()V";
 jvm=jvm_;
@@ -103,9 +103,12 @@ std::cerr << "Could not create a new global ref of " << className << std::endl;
 exit(EXIT_FAILURE);
 }
 
-voidwaitID=NULL; 
-voidnotifyID=NULL; 
-voidnotifyAllID=NULL; 
+voiddisplayID=NULL; 
+voidinitializeDrawingjintID=NULL; 
+voidendDrawingID=NULL; 
+voidshowID=NULL; 
+voiddestroyjintID=NULL; 
+voidsetFigureIndexjintID=NULL; 
 
 
 }
@@ -113,7 +116,7 @@ voidnotifyAllID=NULL;
 // Generic methods
 
 
-void Object::synchronize() {
+void DrawableSubwinGL::synchronize() {
 if (getCurrentEnv()->MonitorEnter(instance) != JNI_OK) {
 std::cerr << "Fail to enter monitor." << std::endl;
 exit(EXIT_FAILURE);
@@ -121,7 +124,7 @@ exit(EXIT_FAILURE);
 }
 
 
-void Object::endSynchronize() {
+void DrawableSubwinGL::endSynchronize() {
 if ( getCurrentEnv()->MonitorExit(instance) != JNI_OK) {
 std::cerr << "Fail to exit monitor." << std::endl;
 exit(EXIT_FAILURE);
@@ -130,19 +133,19 @@ exit(EXIT_FAILURE);
 
 // Method(s)
 
-void Object::wait (){
+void DrawableSubwinGL::display (){
 
 JNIEnv * curEnv = getCurrentEnv();
 
-if (this->voidwaitID == NULL)
+if (this->voiddisplayID == NULL)
 {
-this->voidwaitID = curEnv->GetMethodID(this->instanceClass, "wait", "()V" ) ;
-if (this->voidwaitID == NULL) {
-std::cerr << "Could not access to the method wait" << std::endl;
+this->voiddisplayID = curEnv->GetMethodID(this->instanceClass, "display", "()V" ) ;
+if (this->voiddisplayID == NULL) {
+std::cerr << "Could not access to the method display" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voidwaitID );
+  (void) curEnv->CallVoidMethod( this->instance, voiddisplayID );
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -151,19 +154,19 @@ curEnv->ExceptionDescribe() ;
 
 }
 
-void Object::notify (){
+void DrawableSubwinGL::initializeDrawing (long figureIndex){
 
 JNIEnv * curEnv = getCurrentEnv();
 
-if (this->voidnotifyID == NULL)
+if (this->voidinitializeDrawingjintID == NULL)
 {
-this->voidnotifyID = curEnv->GetMethodID(this->instanceClass, "notify", "()V" ) ;
-if (this->voidnotifyID == NULL) {
-std::cerr << "Could not access to the method notify" << std::endl;
+this->voidinitializeDrawingjintID = curEnv->GetMethodID(this->instanceClass, "initializeDrawing", "(I)V" ) ;
+if (this->voidinitializeDrawingjintID == NULL) {
+std::cerr << "Could not access to the method initializeDrawing" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voidnotifyID );
+  (void) curEnv->CallVoidMethod( this->instance, voidinitializeDrawingjintID ,figureIndex);
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -172,19 +175,82 @@ curEnv->ExceptionDescribe() ;
 
 }
 
-void Object::notifyAll (){
+void DrawableSubwinGL::endDrawing (){
 
 JNIEnv * curEnv = getCurrentEnv();
 
-if (this->voidnotifyAllID == NULL)
+if (this->voidendDrawingID == NULL)
 {
-this->voidnotifyAllID = curEnv->GetMethodID(this->instanceClass, "notifyAll", "()V" ) ;
-if (this->voidnotifyAllID == NULL) {
-std::cerr << "Could not access to the method notifyAll" << std::endl;
+this->voidendDrawingID = curEnv->GetMethodID(this->instanceClass, "endDrawing", "()V" ) ;
+if (this->voidendDrawingID == NULL) {
+std::cerr << "Could not access to the method endDrawing" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voidnotifyAllID );
+  (void) curEnv->CallVoidMethod( this->instance, voidendDrawingID );
+
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+
+}
+
+void DrawableSubwinGL::show (){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (this->voidshowID == NULL)
+{
+this->voidshowID = curEnv->GetMethodID(this->instanceClass, "show", "()V" ) ;
+if (this->voidshowID == NULL) {
+std::cerr << "Could not access to the method show" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+  (void) curEnv->CallVoidMethod( this->instance, voidshowID );
+
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+
+}
+
+void DrawableSubwinGL::destroy (long figureIndex){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (this->voiddestroyjintID == NULL)
+{
+this->voiddestroyjintID = curEnv->GetMethodID(this->instanceClass, "destroy", "(I)V" ) ;
+if (this->voiddestroyjintID == NULL) {
+std::cerr << "Could not access to the method destroy" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+  (void) curEnv->CallVoidMethod( this->instance, voiddestroyjintID ,figureIndex);
+
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+
+}
+
+void DrawableSubwinGL::setFigureIndex (long figureIndex){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (this->voidsetFigureIndexjintID == NULL)
+{
+this->voidsetFigureIndexjintID = curEnv->GetMethodID(this->instanceClass, "setFigureIndex", "(I)V" ) ;
+if (this->voidsetFigureIndexjintID == NULL) {
+std::cerr << "Could not access to the method setFigureIndex" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+  (void) curEnv->CallVoidMethod( this->instance, voidsetFigureIndexjintID ,figureIndex);
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

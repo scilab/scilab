@@ -82,13 +82,22 @@ src/cpp/polylineDrawing/DrawablePolylineJavaMapper.cpp \
 src/cpp/rectangleDrawing/DrawableRectangleJavaMapper.cpp \
 src/cpp/rectangleDrawing/RectangleFillDrawerJavaMapper.cpp \
 src/cpp/rectangleDrawing/RectangleLineDrawerJavaMapper.cpp \
-src/cpp/rectangleDrawing/RectangleMarkDrawerJavaMapper.cpp
+src/cpp/rectangleDrawing/RectangleMarkDrawerJavaMapper.cpp \
+src/jni/ScilabGraphicWindow.cpp \
+src/jni/DrawableFigureGL.cpp \
+src/jni/DrawableSubwinGL.cpp \
+src/jni/CameraGL.cpp \
+src/jni/DrawablePolylineGL.cpp \
+src/jni/DrawableRectangleGL.cpp \
+src/jni/RectangleFillDrawerGL.cpp \
+src/jni/RectangleLineDrawerGL.cpp \
+src/jni/RectangleMarkDrawerGL.cpp
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_renderer.c
 
 # Includes need for the compilation
-libscirenderer_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -Isrc/jni -I$(top_srcdir)/modules/jvm/includes -I$(top_srcdir)/modules/graphics/includes/ -I$(top_srcdir)/modules/graphics/includes/handleDrawing/ -I$(top_srcdir)/libs/doublylinkedlist/includes
+libscirenderer_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -Isrc/jni/ -I$(top_srcdir)/modules/jvm/includes -I$(top_srcdir)/modules/graphics/includes/ -I$(top_srcdir)/modules/graphics/includes/handleDrawing/ -I$(top_srcdir)/libs/doublylinkedlist/includes
 
 # All the sources needed by libscirenderer.la
 libscirenderer_la_SOURCES = $(RENDERER_CPP_SOURCES) $(GATEWAY_C_SOURCES) 

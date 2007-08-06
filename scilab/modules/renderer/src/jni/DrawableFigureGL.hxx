@@ -1,0 +1,153 @@
+
+/*
+
+Copyright 2007 INRIA
+
+Author : Sylvestre Ledru
+
+This software is a computer program whose purpose is to hide the complexity
+of accessing Java objects/methods from C++ code.
+
+This software is governed by the CeCILL-B license under French law and
+abiding by the rules of distribution of free software.  You can  use, 
+modify and/ or redistribute the software under the terms of the CeCILL-B
+license as circulated by CEA, CNRS and INRIA at the following URL
+"http://www.cecill.info". 
+
+As a counterpart to the access to the source code and  rights to copy,
+modify and redistribute granted by the license, users are provided only
+with a limited warranty  and the software's author,  the holder of the
+economic rights,  and the successive licensors  have only  limited
+liability. 
+
+In this respect, the user's attention is drawn to the risks associated
+with loading,  using,  modifying and/or developing or reproducing the
+software by the user in light of its specific status of free software,
+that may mean  that it is complicated to manipulate,  and  that  also
+therefore means  that it is reserved for developers  and  experienced
+professionals having in-depth computer knowledge. Users are therefore
+encouraged to load and test the software's suitability as regards their
+requirements in conditions enabling the security of their systems and/or 
+data to be ensured and,  more generally, to use and operate it in the 
+same conditions as regards security. 
+
+The fact that you are presently reading this means that you have had
+knowledge of the CeCILL-B license and that you accept its terms.
+*/
+
+#include <string>
+#include <iostream>
+#include <stdlib.h>
+#include <jni.h>
+
+namespace org_scilab_modules_renderer_figureDrawing {
+
+class DrawableFigureGL {
+private:
+JavaVM * jvm;
+jobject instance;
+
+jclass instanceClass; // cache class
+jmethodID voiddisplayID; // cache method id
+jmethodID voidinitializeDrawingjintID; // cache method id
+jmethodID voidendDrawingID; // cache method id
+jmethodID voidshowID; // cache method id
+jmethodID voiddestroyjintID; // cache method id
+jmethodID voidsetFigureIndexjintID; // cache method id
+jmethodID voiddrawCanvasID; // cache method id
+jmethodID voidcloseRenderingCanvasID; // cache method id
+jmethodID voidsetBackgroundColorjintID; // cache method id
+jmethodID jintgetCanvasWidthID; // cache method id
+jmethodID jintgetCanvasHeightID; // cache method id
+jmethodID voidsetCanvasSizejintjintID; // cache method id
+jmethodID jintgetWindowPosXID; // cache method id
+jmethodID jintgetWindowPosYID; // cache method id
+jmethodID voidsetWindowPositionjintjintID; // cache method id
+jmethodID jintgetWindowWidthID; // cache method id
+jmethodID jintgetWindowHeightID; // cache method id
+jmethodID voidsetWindowSizejintjintID; // cache method id
+jmethodID voidsetInfoMessagejstringID; // cache method id
+
+
+/**
+* Get the environmebnt matching to the current thread.
+*/
+JNIEnv * getCurrentEnv();
+
+public:
+// Constructor
+/**
+* Create a wrapping of the object from a JNIEnv.
+* It will call the default constructor
+* @param JEnv_ the Java Env
+*/
+DrawableFigureGL(JavaVM * jvm_);
+/**
+* Create a wrapping of an already existing object from a JNIEnv.
+* The object must have already been instantiated
+* @param JEnv_ the Java Env
+* @param JObj the object
+* @TODO removed because don't remember with we did it :$
+*/
+
+// Destructor
+~DrawableFigureGL();
+
+// Generic method
+// Synchronization methods
+/**
+* Enter monitor associated with the object.
+* Equivalent of creating a "synchronized(obj)" scope in Java.
+*/
+void synchronize();
+
+/**
+* Exit monitor associated with the object.
+* Equivalent of ending a "synchronized(obj)" scope.
+*/
+void endSynchronize();
+
+// Methods
+void display();
+ 
+void initializeDrawing(long figureIndex);
+ 
+void endDrawing();
+ 
+void show();
+ 
+void destroy(long parentFigureIndex);
+ 
+void setFigureIndex(long figureIndex);
+ 
+void drawCanvas();
+ 
+void closeRenderingCanvas();
+ 
+void setBackgroundColor(long backgroundColor);
+ 
+long getCanvasWidth();
+ 
+long getCanvasHeight();
+ 
+void setCanvasSize(long width, long height);
+ 
+long getWindowPosX();
+ 
+long getWindowPosY();
+ 
+void setWindowPosition(long posX, long posY);
+ 
+long getWindowWidth();
+ 
+long getWindowHeight();
+ 
+void setWindowSize(long width, long height);
+ 
+void setInfoMessage(char * infoMessage);
+ 
+
+};
+
+
+}
