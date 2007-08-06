@@ -2,6 +2,7 @@
 /* INRIA 2007 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
+#include <stdlib.h>
 #include "machine.h"
 #include "completion.h"
 #include "MALLOC.h"

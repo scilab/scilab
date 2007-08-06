@@ -2,6 +2,7 @@
 /* INRIA 2007 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
+#include <stdlib.h>
 #include "getmacrosdictionary.h"
 #include "librarieslist.h"
 #include "libraryinfo.h"
