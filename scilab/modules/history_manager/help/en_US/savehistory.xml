@@ -3,46 +3,51 @@
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
 
-  <TITLE>gethistory</TITLE>
+  <TITLE>savehistory</TITLE>
 
   <TYPE>Scilab Function</TYPE>
 
   <DATE>$LastChangedDate$</DATE>
 
-  <SHORT_DESCRIPTION name="gethistory">returns current scilab history in a
-  string matrix </SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="savehistory">save the current history in a file</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>matstr=gethistory()</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>savehistory()</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>savehistory(f)</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>matstr</PARAM_NAME>
+        <PARAM_NAME>f</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <P>a string matrix</P>
+          <SP>: file pathname</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
   </PARAM>
 
   <DESCRIPTION>
-    <P>returns current scilab history in a string matrix .</P>
+    <P>save the current history in a file.</P>
+
+    <P>by default, history filename is SCIHOME+'/history.scilab'</P>
   </DESCRIPTION>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>savehistory</LINK>
-    </SEE_ALSO_ITEM>
+  <EXAMPLE><![CDATA[savehistory(SCI+'/session.scilab')]]></EXAMPLE>
 
+  <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>loadhistory</LINK>
     </SEE_ALSO_ITEM>
 
     <SEE_ALSO_ITEM>
       <LINK>resethistory</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>gethistory</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 

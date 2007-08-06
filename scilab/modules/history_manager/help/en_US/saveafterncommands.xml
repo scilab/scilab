@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>saveafterncommands</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>$LastChangedDate: 2006-08-17 18:06:16 +0200 (jeu., 17 août 2006) $</DATE>
+
+  <SHORT_DESCRIPTION name="saveafterncommands">Save the history file after n statements are added to the file.</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>saveafterncommands(n)</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>v = saveafterncommands()</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>n</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a integer, n statements</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>v</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: current value</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  
+
+  <DESCRIPTION>
+    <P>Save the history file after n statements are added to the file.</P>
+    <P>For example, when you select the option and set n to 5, after every 5 statements are added,
+    the history file is automatically saved.</P>
+    <P>Use this option if you don't want to risk losing entries to the saved history because of an abnormal termination,
+    such as a power failure.</P>
+    <P>saveafterncommands() returns current value.</P>
+    <P>0 is default value.</P>
+    
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[  
+	saveafterncommands(3)
+
+]]></EXAMPLE>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>A.C</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

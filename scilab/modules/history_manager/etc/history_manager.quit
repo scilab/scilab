@@ -3,6 +3,14 @@
 // of a scilab session for history_manager module
 // Copyright INRIA 2007
 // ====================================================================
+// save history file 
+if (sciargs()<>'-nouserstartup') & (sciargs()<>"-nwni") then
+		// save history file 
+    savehistory();
+    // disable history manager
+    historymanager('off');
+end 
+// ====================================================================
 // delete help chapter
 del_module_help_chapter('history_manager');
 // ====================================================================

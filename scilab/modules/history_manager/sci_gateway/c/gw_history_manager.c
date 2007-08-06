@@ -23,7 +23,8 @@ static gw_generic_table Tab[]=
 	{C2F(sci_gethistoryfile),"gethistoryfile"},
 	{C2F(sci_sethistoryfile),"sethistoryfile"},
 	{C2F(sci_removelinehistory),"removelinehistory"},
-	{C2F(sci_historysize),"historysize"}
+	{C2F(sci_historysize),"historysize"},
+	{C2F(sci_historymanager),"historymanager"}
 };
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_history_manager)(void)

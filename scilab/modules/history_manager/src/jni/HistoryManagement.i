@@ -148,16 +148,6 @@ public class";
   }";
 
 
-/* JavaDoc */
-%javamethodmodifiers getSearchedTokenInScilabHistory(void) "
- /**
-   * Gets the token used as the beginning of the search entry
-   * @return the token
-   */
-public";
- char *getSearchedTokenInScilabHistory(void);
-
-
 %javamethodmodifiers appendLineToScilabHistory(char *line) "
 	/**
 	* add a line to History manager
@@ -366,5 +356,10 @@ public";
 public";
 	int getSizeScilabHistory(void);
 	
-
-
+%javamethodmodifiers historyIsEnabled(void) "
+	/**
+	* get history manager state
+	* @return true or false
+	*/
+public";
+	BOOL historyIsEnabled(void);

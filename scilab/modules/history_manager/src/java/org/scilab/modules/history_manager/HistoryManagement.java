@@ -24,15 +24,6 @@ public class HistoryManagement {
 	throw new UnsupportedOperationException();
   }
   
- /**
-   * Gets the token used as the beginning of the search entry
-   * @return the token
-   */
-public static String getSearchedTokenInScilabHistory() {
-    return HistoryManagementJNI.getSearchedTokenInScilabHistory();
-  }
-
-  
 	/**
 	* add a line to History manager
 	* @param a line to add
@@ -160,6 +151,15 @@ public static boolean resetSearchedTokenInScilabHistory() {
 
   
 	/**
+	* get token searched in history
+	* @return token (a string)
+	*/
+public static String getSearchedTokenInScilabHistory() {
+    return HistoryManagementJNI.getSearchedTokenInScilabHistory();
+  }
+
+  
+	/**
 	* Get the previous line in Scilab history
 	* @return a line or NULL
 	* after a appendLine iterator go to end
@@ -247,6 +247,15 @@ public static boolean deleteNthLineScilabHistory(int N) {
 	*/
 public static int getSizeScilabHistory() {
     return HistoryManagementJNI.getSizeScilabHistory();
+  }
+
+  
+	/**
+	* get history manager state
+	* @return true or false
+	*/
+public static boolean historyIsEnabled() {
+    return HistoryManagementJNI.historyIsEnabled();
   }
 
 }

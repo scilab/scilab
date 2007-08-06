@@ -9,7 +9,6 @@
 #include "../../../graphics/includes/graphicModuleLoad.h"
 #include "scilabmode.h"
 #include "../../../jvm/includes/InitializeJVM.h"
-#include "../../../history_manager/includes/InitializeHistoryManager.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(initscilab)(void)
 {
@@ -21,8 +20,6 @@ int C2F(initscilab)(void)
 		InitializeJVM();
 		/* create needed data structure if not already created */
 		loadGraphicModule() ;
-		InitializeHistoryManager();
-		
 	}
 
 	InitializeTclTk();

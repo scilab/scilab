@@ -28,7 +28,8 @@ sci_gateway/c/sci_resethistory.c  \
 sci_gateway/c/sci_saveafterncommands.c  \
 sci_gateway/c/sci_saveconsecutivecommands.c  \
 sci_gateway/c/sci_savehistory.c  \
-sci_gateway/c/sci_sethistoryfile.c  
+sci_gateway/c/sci_sethistoryfile.c  \
+sci_gateway/c/sci_historymanager.c
 
 else
 

@@ -248,6 +248,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_historymanager.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_historysize.c"
 				>
 			</File>

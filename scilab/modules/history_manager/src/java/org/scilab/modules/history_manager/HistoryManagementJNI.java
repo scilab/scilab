@@ -36,7 +36,6 @@ class HistoryManagementJNI {
     }
   }
 
-  public final static native String getSearchedTokenInScilabHistory();
   public final static native boolean appendLineToScilabHistory(String jarg1);
   public final static native boolean appendLinesToScilabHistory(String[] jarg1, int jarg2);
   public final static native void displayScilabHistory();
@@ -50,6 +49,7 @@ class HistoryManagementJNI {
   public final static native int getSizeAllLinesOfScilabHistory();
   public final static native boolean setSearchedTokenInScilabHistory(String jarg1);
   public final static native boolean resetSearchedTokenInScilabHistory();
+  public final static native String getSearchedTokenInScilabHistory();
   public final static native String getPreviousLineInScilabHistory();
   public final static native String getNextLineInScilabHistory();
   public final static native int getNumberOfLinesInScilabHistory();
@@ -60,4 +60,5 @@ class HistoryManagementJNI {
   public final static native String getNthLineInScilabHistory(int jarg1);
   public final static native boolean deleteNthLineScilabHistory(int jarg1);
   public final static native int getSizeScilabHistory();
+  public final static native boolean historyIsEnabled();
 }

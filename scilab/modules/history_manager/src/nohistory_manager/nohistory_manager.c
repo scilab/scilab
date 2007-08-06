@@ -15,6 +15,11 @@ int C2F(gw_history_manager)()
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 
+BOOL historyIsEnabled(void)
+{
+	return FALSE;
+}
+/*-----------------------------------------------------------------------------------*/ 
 BOOL InitializeHistoryManager(void)
 {
 	return TRUE;

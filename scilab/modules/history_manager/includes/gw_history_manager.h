@@ -24,5 +24,6 @@ int C2F(sci_gethistoryfile) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_sethistoryfile) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_removelinehistory) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_historysize) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_historymanager) _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/
 #endif /*  __GW_HISTORY_MANAGER_H__ */

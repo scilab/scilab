@@ -11,6 +11,12 @@ extern "C" {
 #endif
 /*------------------------------------------------------------------------*/
 	/**
+	* get history manager state
+	* @return TRUE or FALSE
+	*/
+	BOOL historyIsEnabled(void);
+
+	/**
 	* add a line to History manager
 	* @param a line to add
 	* line isn't added if it is the same as previous (FALSE)

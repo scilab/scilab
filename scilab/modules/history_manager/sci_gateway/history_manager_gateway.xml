@@ -33,4 +33,5 @@
   <PRIMITIVE gatewayId="55" primitiveId="10" primitiveName="sethistoryfile" />
   <PRIMITIVE gatewayId="55" primitiveId="11" primitiveName="removelinehistory" />
   <PRIMITIVE gatewayId="55" primitiveId="12" primitiveName="historysize" />
+  <PRIMITIVE gatewayId="55" primitiveId="13" primitiveName="historymanager" />
 </GATEWAY>

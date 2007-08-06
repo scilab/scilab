@@ -181,18 +181,6 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 extern "C" {
 #endif
 
-SWIGEXPORT jstring JNICALL Java_org_scilab_modules_history_1manager_HistoryManagementJNI_getSearchedTokenInScilabHistory(JNIEnv *jenv, jclass jcls) {
-  jstring jresult = 0 ;
-  char *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  result = (char *)getSearchedTokenInScilabHistory();
-  if(result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
-  return jresult;
-}
-
-
 SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_history_1manager_HistoryManagementJNI_appendLineToScilabHistory(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jboolean jresult = 0 ;
   char *arg1 = (char *) 0 ;
@@ -438,6 +426,18 @@ SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_history_1manager_HistoryMana
 }
 
 
+SWIGEXPORT jstring JNICALL Java_org_scilab_modules_history_1manager_HistoryManagementJNI_getSearchedTokenInScilabHistory(JNIEnv *jenv, jclass jcls) {
+  jstring jresult = 0 ;
+  char *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (char *)getSearchedTokenInScilabHistory();
+  if(result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+  return jresult;
+}
+
+
 SWIGEXPORT jstring JNICALL Java_org_scilab_modules_history_1manager_HistoryManagementJNI_getPreviousLineInScilabHistory(JNIEnv *jenv, jclass jcls) {
   jstring jresult = 0 ;
   char *result = 0 ;
@@ -563,6 +563,21 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_history_1manager_HistoryManageme
   (void)jcls;
   result = (int)getSizeScilabHistory();
   jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_history_1manager_HistoryManagementJNI_historyIsEnabled(JNIEnv *jenv, jclass jcls) {
+  jboolean jresult = 0 ;
+  BOOL result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (BOOL)historyIsEnabled();
+  {
+    if (result) jresult = JNI_TRUE   ;
+    else  jresult = JNI_FALSE   ;
+  }
   return jresult;
 }
 

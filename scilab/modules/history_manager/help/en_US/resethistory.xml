@@ -9,8 +9,7 @@
 
   <DATE>$LastChangedDate$</DATE>
 
-  <SHORT_DESCRIPTION name="resethistory">Deletes all entries in the scilab
-  history.</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="resethistory">Deletes all entries in the scilab history.</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>resethistory()</CALLING_SEQUENCE_ITEM>

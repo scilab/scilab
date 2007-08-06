@@ -9,8 +9,7 @@
 
   <DATE>$LastChangedDate$</DATE>
 
-  <SHORT_DESCRIPTION name="loadhistory">load a history
-  file</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="loadhistory">load a history file</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>loadhistory()</CALLING_SEQUENCE_ITEM>

@@ -3,11 +3,6 @@
 // of a scilab session
 // Copyright INRIA
 // ====================================================================
-// save history file ==================================================
-if (sciargs()<>'-nouserstartup') & (sciargs()<>"-nwni") then
-    savehistory();
-end 
-// ====================================================================
 // starts modules .quit
  modules=getmodules();
  index=size(modules);
@@ -21,4 +16,3 @@ clear modules index i
 // free all dynamics libraries
 ulink();
 // ====================================================================
-

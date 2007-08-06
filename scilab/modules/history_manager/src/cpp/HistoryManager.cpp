@@ -24,6 +24,13 @@ extern "C"
 /*------------------------------------------------------------------------*/
 static HistoryManager *ScilabHistory = NULL;
 /*------------------------------------------------------------------------*/
+BOOL historyIsEnabled(void)
+{
+	BOOL bOK = FALSE;
+	if (ScilabHistory) bOK = TRUE;
+	return bOK;
+}
+/*------------------------------------------------------------------------*/
 BOOL InitializeHistoryManager(void)
 {
 	BOOL bOK = FALSE;

@@ -4,8 +4,8 @@ build:: makehelp
 
 
 check :
-	@..\..\..\bin\scilex -nb -l fr -e check_help();exit;
-	@..\..\..\bin\scilex -nb -l en -e check_help();exit;
+	@..\..\..\bin\scilex -nb -nwni -nouserstartup -l fr -e check_help();exit;
+	@..\..\..\bin\scilex -nb -nwni -nouserstartup -l en -e check_help();exit;
 
 
 makehelp :
