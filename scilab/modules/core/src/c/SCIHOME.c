@@ -46,7 +46,8 @@ BOOL setSCIHOME(void)
 		iflag=1;
 
 		#ifdef _MSC_VER
-			C2F(getenvc)(&ierr,"USERPROFILE",USERHOMESYSTEM,&buflen,&iflag);
+			C2F(getenvc)(&ierr,"APPDATA",USERHOMESYSTEM,&buflen,&iflag);
+			if (ierr) C2F(getenvc)(&ierr,"USERPROFILE",USERHOMESYSTEM,&buflen,&iflag);
 		#else
 			C2F(getenvc)(&ierr,"HOME",USERHOMESYSTEM,&buflen,&iflag);
 		#endif
