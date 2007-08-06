@@ -3,8 +3,7 @@ MAN SYSTEM "../../../../modules/helptools/help.dtd"> <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>while</TITLE>
   <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate: 2006-09-10 20:58:00 +0200 (dim, 10 sep 2006)
-$</DATE>
+  <DATE>$LastChangedDate: 2006-09-10 20:58:00 +0200 (dim, 10 sep 2006)$</DATE>
   <SHORT_DESCRIPTION name="while"> while keyword</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P><VERB>while</VERB> clause. Must be terminated by
