@@ -565,9 +565,12 @@ BOOL HistoryManager::deleteNthLine(int N)
 			{
 				if ( it_commands != CommandsList.end() ) 
 				{
+					string str;
+					str.empty();
 					CommandsList.erase(it_commands);
 					// After a remove , we update search
-					my_search.setToken(NULL);
+					my_search.setHistory(CommandsList);
+					my_search.setToken(str);
 					return TRUE;
 				}
 			}
