@@ -280,7 +280,7 @@ BOOL deleteNthLineScilabHistory(int N)
 int getSizeScilabHistory(void)
 {
 	int val = 0;
-	if (ScilabHistory) val = ScilabHistory->getNumberOfLines();
+	if (ScilabHistory) val = ScilabHistory->getNumberOfLines() - 1;
 	return val;
 }
 /*------------------------------------------------------------------------*/
