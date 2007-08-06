@@ -31,7 +31,7 @@ Source: modules\{#HISTORY_MANAGER}\help\removechapter.sce; DestDir: {app}\module
 Source: modules\{#HISTORY_MANAGER}\etc\{#HISTORY_MANAGER}.quit; DestDir: {app}\modules\{#HISTORY_MANAGER}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#HISTORY_MANAGER}\etc\{#HISTORY_MANAGER}.start; DestDir: {app}\modules\{#HISTORY_MANAGER}\etc; Components: {#COMPN_SCILAB}
 ;
-;Source: modules\{#HISTORY_MANAGER}\help\*.htm; DestDir: {app}\modules\{#HISTORY_MANAGER}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+Source: modules\{#HISTORY_MANAGER}\help\*.htm; DestDir: {app}\modules\{#HISTORY_MANAGER}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#HISTORY_MANAGER}\languages\*.xml; DestDir: {app}\modules\{#HISTORY_MANAGER}\languages; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
