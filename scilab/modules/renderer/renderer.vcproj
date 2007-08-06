@@ -215,6 +215,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\jni\CameraGL.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\subwinDrawing\CameraJavaMapper.cpp"
 				>
 			</File>
@@ -283,6 +287,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\jni\DrawableFigureGL.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\figureDrawing\DrawableFigureJavaMapper.cpp"
 				>
 			</File>
@@ -339,6 +347,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\jni\DrawablePolylineGL.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\polylineDrawing\DrawablePolylineJavaMapper.cpp"
 				>
 			</File>
@@ -360,6 +372,10 @@
 			</File>
 			<File
 				RelativePath=".\src\cpp\rectangleDrawing\DrawableRectangleFactory.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\jni\DrawableRectangleGL.cpp"
 				>
 			</File>
 			<File
@@ -388,6 +404,10 @@
 			</File>
 			<File
 				RelativePath=".\src\cpp\subwinDrawing\DrawableSubwinFactory.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\jni\DrawableSubwinGL.cpp"
 				>
 			</File>
 			<File
@@ -471,11 +491,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\jni\RectangleFillDrawerGL.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\rectangleDrawing\RectangleFillDrawerJavaMapper.cpp"
 				>
 			</File>
 			<File
 				RelativePath=".\src\cpp\rectangleDrawing\RectangleFillDrawerJoGL.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\jni\RectangleLineDrawerGL.cpp"
 				>
 			</File>
 			<File
@@ -487,11 +515,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\jni\RectangleMarkDrawerGL.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\rectangleDrawing\RectangleMarkDrawerJavaMapper.cpp"
 				>
 			</File>
 			<File
 				RelativePath=".\src\cpp\rectangleDrawing\RectangleMarkDrawerJoGL.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\jni\ScilabGraphicWindow.cpp"
 				>
 			</File>
 			<File
@@ -522,6 +558,10 @@
 			</File>
 			<File
 				RelativePath=".\src\cpp\subwinDrawing\CameraFactory.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\jni\CameraGL.hxx"
 				>
 			</File>
 			<File
@@ -605,6 +645,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\jni\DrawableFigureGL.hxx"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\figureDrawing\DrawableFigureJavaMapper.hxx"
 				>
 			</File>
@@ -673,6 +717,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\jni\DrawablePolylineGL.hxx"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\polylineDrawing\DrawablePolylineJavaMapper.hxx"
 				>
 			</File>
@@ -694,6 +742,10 @@
 			</File>
 			<File
 				RelativePath=".\src\cpp\rectangleDrawing\DrawableRectangleFactory.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\jni\DrawableRectangleGL.hxx"
 				>
 			</File>
 			<File
@@ -726,6 +778,10 @@
 			</File>
 			<File
 				RelativePath=".\src\cpp\subwinDrawing\DrawableSubwinFactory.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\jni\DrawableSubwinGL.hxx"
 				>
 			</File>
 			<File
@@ -829,11 +885,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\jni\RectangleFillDrawerGL.hxx"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\rectangleDrawing\RectangleFillDrawerJavaMapper.hxx"
 				>
 			</File>
 			<File
 				RelativePath=".\src\cpp\rectangleDrawing\RectangleFillDrawerJoGL.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\jni\RectangleLineDrawerGL.hxx"
 				>
 			</File>
 			<File
@@ -845,11 +909,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\jni\RectangleMarkDrawerGL.hxx"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\rectangleDrawing\RectangleMarkDrawerJavaMapper.hxx"
 				>
 			</File>
 			<File
 				RelativePath=".\src\cpp\rectangleDrawing\RectangleMarkDrawerJoGL.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\jni\ScilabGraphicWindow.hxx"
 				>
 			</File>
 			<File
