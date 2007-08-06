@@ -287,6 +287,10 @@
 			>
 		</File>
 		<File
+			RelativePath=".\sciconsole_Import.def"
+			>
+		</File>
+		<File
 			RelativePath="..\..\shell.iss"
 			>
 		</File>
