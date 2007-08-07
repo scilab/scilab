@@ -21,8 +21,6 @@
   {C2F(sci_setlanguagemenu),"setlanguagemenu"},
   {C2F(sci_consoledos),"console"},
   {C2F(sci_about),"about"},
-  {C2F(sci_oemtochar),"oemtochar"},
-  {C2F(sci_chartooem),"chartooem"},
   {C2F(sci_printsetupbox),"printsetupbox"},
   {C2F(sci_toprint),"toprint"},
   {C2F(sci_settextcolor),"settextcolor"},
