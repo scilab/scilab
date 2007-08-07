@@ -1140,6 +1140,7 @@ modules/console/Makefile
 modules/Makefile
 libs/Makefile 
 Makefile
+etc/modules.xml
 modules/helptools/macros/xmlfiletohtml.sci
 ])#MAN_FR MAN_ENG
 #modules/mpi/Makefile
