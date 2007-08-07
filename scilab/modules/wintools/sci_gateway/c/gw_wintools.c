@@ -11,8 +11,6 @@
  {
   {C2F(sci_winopen),"winopen"},
   {C2F(sci_winqueryreg),"winqueryreg"},
-  {C2F(sci_getlongpathname),"getlongpathname"},
-  {C2F(sci_getshortpathname),"getshortpathname"},
   {C2F(sci_ddeopen),"ddeopen"},
   {C2F(sci_ddeclose),"ddeclose"},
   {C2F(sci_ddeexec),"ddeexec"},

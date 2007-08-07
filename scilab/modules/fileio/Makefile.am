@@ -36,7 +36,9 @@ src/c/mtell.c \
 src/c/diary.c \
 src/c/readline.c \
 src/c/getdrives.c \
-src/c/deleteafile.c
+src/c/deleteafile.c \
+src/c/getshorpathname.c \
+src/c/getlongpathname.c
 
 
 GATEWAY_SOURCES = \
@@ -60,7 +62,10 @@ sci_gateway/c/sci_getdrives.c \
 sci_gateway/c/sci_fullpath.c \
 sci_gateway/c/sci_deletefile.c \
 sci_gateway/c/sci_pathsep.c \
-sci_gateway/c/sci_filesep.c
+sci_gateway/c/sci_filesep.c \
+sci_gateway/c/sci_getshorpathname.c \
+sci_gateway/c/sci_getlongpathname.c
+
 
 libscifileio_la_CFLAGS=-Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ 
 

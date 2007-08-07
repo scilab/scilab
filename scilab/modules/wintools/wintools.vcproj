@@ -198,10 +198,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\intpathname.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\registry.c"
 				>
 			</File>
@@ -275,11 +271,11 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath=".\src\DDE.h"
+				RelativePath=".\src\c\DDE.h"
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\DDE.h"
+				RelativePath=".\src\DDE.h"
 				>
 			</File>
 			<File

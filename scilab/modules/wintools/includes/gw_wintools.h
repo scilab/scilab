@@ -12,8 +12,6 @@ int C2F(gw_wintools)(void);
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(sci_winopen) _PARAMS((char *fname,unsigned long l));
 int C2F(sci_winqueryreg) _PARAMS((char *fname,unsigned long l));
-int C2F(sci_getlongpathname) _PARAMS((char *fname,unsigned long l));
-int C2F(sci_getshortpathname) _PARAMS((char *fname,unsigned long l));
 int C2F(sci_ddeopen) _PARAMS((char *fname,unsigned long l));
 int C2F(sci_ddeclose) _PARAMS((char *fname,unsigned long l));
 int C2F(sci_ddeexec) _PARAMS((char *fname,unsigned long l));

@@ -8,7 +8,6 @@ GATEWAY_C_SOURCES = sci_gateway/c/sci_mcisendstring.c \
 sci_gateway/c/sci_toolbar.c \
 sci_gateway/c/sci_printbox.c \
 sci_gateway/c/sci_consoledos.c \
-sci_gateway/c/intpathname.c \
 sci_gateway/c/sci_about.c \
 sci_gateway/c/sci_winqueryreg.c \
 sci_gateway/c/gw_wintools.c \

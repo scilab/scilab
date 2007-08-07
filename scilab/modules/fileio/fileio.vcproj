@@ -255,6 +255,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getlongpathname.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getshortpathname.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\c\gw_fileio.c"
 				>
 			</File>
@@ -360,6 +368,14 @@
 			</File>
 			<File
 				RelativePath=".\sci_gateway\c\sci_getdrives.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\c\sci_getlongpathname.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\c\sci_getshortpathname.c"
 				>
 			</File>
 			<File
@@ -478,6 +494,14 @@
 			</File>
 			<File
 				RelativePath=".\includes\getfiletype.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getlongpathname.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getshortpathname.h"
 				>
 			</File>
 			<File
