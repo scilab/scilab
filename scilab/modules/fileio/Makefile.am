@@ -37,7 +37,7 @@ src/c/diary.c \
 src/c/readline.c \
 src/c/getdrives.c \
 src/c/deleteafile.c \
-src/c/getshorpathname.c \
+src/c/getshortpathname.c \
 src/c/getlongpathname.c
 
 
@@ -63,7 +63,7 @@ sci_gateway/c/sci_fullpath.c \
 sci_gateway/c/sci_deletefile.c \
 sci_gateway/c/sci_pathsep.c \
 sci_gateway/c/sci_filesep.c \
-sci_gateway/c/sci_getshorpathname.c \
+sci_gateway/c/sci_getshortpathname.c \
 sci_gateway/c/sci_getlongpathname.c
 
 

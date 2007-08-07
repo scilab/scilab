@@ -2,6 +2,7 @@
 /* INRIA 2007 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
+#include <string.h>
 #include "gw_fileio.h"
 #include "stack-c.h"
 #include "getshortpathname.h"
