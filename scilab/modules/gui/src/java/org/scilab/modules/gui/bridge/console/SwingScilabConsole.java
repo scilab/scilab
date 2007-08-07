@@ -5,14 +5,12 @@ package org.scilab.modules.gui.bridge.console;
 
 import java.awt.Dimension;
 
-import javax.swing.JPanel;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.StyledDocument;
 
 import org.scilab.modules.console.OneCharKeyEventListener;
 import org.scilab.modules.console.SciConsole;
 import org.scilab.modules.console.SciInputCommandView;
-import org.scilab.modules.console.SciPromptView;
 import org.scilab.modules.gui.console.SimpleConsole;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
