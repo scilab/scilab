@@ -83,23 +83,16 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libsciwintools_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
-am__objects_1 = libsciwintools_la-sci_mcisendstring.lo \
-	libsciwintools_la-sci_toolbar.lo \
+am__objects_1 = libsciwintools_la-sci_toolbar.lo \
 	libsciwintools_la-sci_printbox.lo \
 	libsciwintools_la-sci_consoledos.lo \
-	libsciwintools_la-intpathname.lo \
 	libsciwintools_la-sci_about.lo \
-	libsciwintools_la-sci_winqueryreg.lo \
 	libsciwintools_la-gw_wintools.lo \
-	libsciwintools_la-sci_winopen.lo \
 	libsciwintools_la-sci_setlanguagemenu.lo \
 	libsciwintools_la-sci_fileassociationbox.lo \
-	libsciwintools_la-sci_dos.lo libsciwintools_la-intihmcolor.lo \
-	libsciwintools_la-sci_dde.lo \
-	libsciwintools_la-intOEMconvert.lo \
+	libsciwintools_la-intihmcolor.lo libsciwintools_la-sci_dde.lo \
 	libsciwintools_la-sci_toprint.lo \
-	libsciwintools_la-sci_clipboard.lo \
-	libsciwintools_la-sci_findfileassociation.lo
+	libsciwintools_la-sci_clipboard.lo
 am_libsciwintools_la_OBJECTS = $(am__objects_1)
 libsciwintools_la_OBJECTS = $(am_libsciwintools_la_OBJECTS)
 libsciwintools_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
@@ -286,24 +279,17 @@ target_alias = @target_alias@
 tcldir = @tcldir@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-GATEWAY_C_SOURCES = sci_gateway/c/sci_mcisendstring.c \
-sci_gateway/c/sci_toolbar.c \
+GATEWAY_C_SOURCES = sci_gateway/c/sci_toolbar.c \
 sci_gateway/c/sci_printbox.c \
 sci_gateway/c/sci_consoledos.c \
-sci_gateway/c/intpathname.c \
 sci_gateway/c/sci_about.c \
-sci_gateway/c/sci_winqueryreg.c \
 sci_gateway/c/gw_wintools.c \
-sci_gateway/c/sci_winopen.c \
 sci_gateway/c/sci_setlanguagemenu.c \
 sci_gateway/c/sci_fileassociationbox.c \
-sci_gateway/c/sci_dos.c \
 sci_gateway/c/intihmcolor.c \
 sci_gateway/c/sci_dde.c \
-sci_gateway/c/intOEMconvert.c \
 sci_gateway/c/sci_toprint.c \
-sci_gateway/c/sci_clipboard.c \
-sci_gateway/c/sci_findfileassociation.c
+sci_gateway/c/sci_clipboard.c 
 
 libsciwintools_la_CFLAGS = -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 pkglib_LTLIBRARIES = libsciwintools.la
@@ -448,23 +434,16 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciwintools_la-gw_wintools.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciwintools_la-intOEMconvert.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciwintools_la-intihmcolor.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciwintools_la-intpathname.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciwintools_la-sci_about.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciwintools_la-sci_clipboard.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciwintools_la-sci_consoledos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciwintools_la-sci_dde.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciwintools_la-sci_dos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciwintools_la-sci_fileassociationbox.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciwintools_la-sci_findfileassociation.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciwintools_la-sci_mcisendstring.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciwintools_la-sci_printbox.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciwintools_la-sci_setlanguagemenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciwintools_la-sci_toolbar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciwintools_la-sci_toprint.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciwintools_la-sci_winopen.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciwintools_la-sci_winqueryreg.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -487,13 +466,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
-libsciwintools_la-sci_mcisendstring.lo: sci_gateway/c/sci_mcisendstring.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciwintools_la_CFLAGS) $(CFLAGS) -MT libsciwintools_la-sci_mcisendstring.lo -MD -MP -MF $(DEPDIR)/libsciwintools_la-sci_mcisendstring.Tpo -c -o libsciwintools_la-sci_mcisendstring.lo `test -f 'sci_gateway/c/sci_mcisendstring.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mcisendstring.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciwintools_la-sci_mcisendstring.Tpo $(DEPDIR)/libsciwintools_la-sci_mcisendstring.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_mcisendstring.c' object='libsciwintools_la-sci_mcisendstring.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciwintools_la_CFLAGS) $(CFLAGS) -c -o libsciwintools_la-sci_mcisendstring.lo `test -f 'sci_gateway/c/sci_mcisendstring.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mcisendstring.c
-
 libsciwintools_la-sci_toolbar.lo: sci_gateway/c/sci_toolbar.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciwintools_la_CFLAGS) $(CFLAGS) -MT libsciwintools_la-sci_toolbar.lo -MD -MP -MF $(DEPDIR)/libsciwintools_la-sci_toolbar.Tpo -c -o libsciwintools_la-sci_toolbar.lo `test -f 'sci_gateway/c/sci_toolbar.c' || echo '$(srcdir)/'`sci_gateway/c/sci_toolbar.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciwintools_la-sci_toolbar.Tpo $(DEPDIR)/libsciwintools_la-sci_toolbar.Plo
@@ -515,13 +487,6 @@ libsciwintools_la-sci_consoledos.lo: sci_gateway/c/sci_consoledos.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciwintools_la_CFLAGS) $(CFLAGS) -c -o libsciwintools_la-sci_consoledos.lo `test -f 'sci_gateway/c/sci_consoledos.c' || echo '$(srcdir)/'`sci_gateway/c/sci_consoledos.c
 
-libsciwintools_la-intpathname.lo: sci_gateway/c/intpathname.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciwintools_la_CFLAGS) $(CFLAGS) -MT libsciwintools_la-intpathname.lo -MD -MP -MF $(DEPDIR)/libsciwintools_la-intpathname.Tpo -c -o libsciwintools_la-intpathname.lo `test -f 'sci_gateway/c/intpathname.c' || echo '$(srcdir)/'`sci_gateway/c/intpathname.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciwintools_la-intpathname.Tpo $(DEPDIR)/libsciwintools_la-intpathname.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/intpathname.c' object='libsciwintools_la-intpathname.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciwintools_la_CFLAGS) $(CFLAGS) -c -o libsciwintools_la-intpathname.lo `test -f 'sci_gateway/c/intpathname.c' || echo '$(srcdir)/'`sci_gateway/c/intpathname.c
-
 libsciwintools_la-sci_about.lo: sci_gateway/c/sci_about.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciwintools_la_CFLAGS) $(CFLAGS) -MT libsciwintools_la-sci_about.lo -MD -MP -MF $(DEPDIR)/libsciwintools_la-sci_about.Tpo -c -o libsciwintools_la-sci_about.lo `test -f 'sci_gateway/c/sci_about.c' || echo '$(srcdir)/'`sci_gateway/c/sci_about.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciwintools_la-sci_about.Tpo $(DEPDIR)/libsciwintools_la-sci_about.Plo
@@ -529,26 +494,12 @@ libsciwintools_la-sci_about.lo: sci_gateway/c/sci_about.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciwintools_la_CFLAGS) $(CFLAGS) -c -o libsciwintools_la-sci_about.lo `test -f 'sci_gateway/c/sci_about.c' || echo '$(srcdir)/'`sci_gateway/c/sci_about.c
 
-libsciwintools_la-sci_winqueryreg.lo: sci_gateway/c/sci_winqueryreg.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciwintools_la_CFLAGS) $(CFLAGS) -MT libsciwintools_la-sci_winqueryreg.lo -MD -MP -MF $(DEPDIR)/libsciwintools_la-sci_winqueryreg.Tpo -c -o libsciwintools_la-sci_winqueryreg.lo `test -f 'sci_gateway/c/sci_winqueryreg.c' || echo '$(srcdir)/'`sci_gateway/c/sci_winqueryreg.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciwintools_la-sci_winqueryreg.Tpo $(DEPDIR)/libsciwintools_la-sci_winqueryreg.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_winqueryreg.c' object='libsciwintools_la-sci_winqueryreg.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciwintools_la_CFLAGS) $(CFLAGS) -c -o libsciwintools_la-sci_winqueryreg.lo `test -f 'sci_gateway/c/sci_winqueryreg.c' || echo '$(srcdir)/'`sci_gateway/c/sci_winqueryreg.c
-
 libsciwintools_la-gw_wintools.lo: sci_gateway/c/gw_wintools.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciwintools_la_CFLAGS) $(CFLAGS) -MT libsciwintools_la-gw_wintools.lo -MD -MP -MF $(DEPDIR)/libsciwintools_la-gw_wintools.Tpo -c -o libsciwintools_la-gw_wintools.lo `test -f 'sci_gateway/c/gw_wintools.c' || echo '$(srcdir)/'`sci_gateway/c/gw_wintools.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciwintools_la-gw_wintools.Tpo $(DEPDIR)/libsciwintools_la-gw_wintools.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/gw_wintools.c' object='libsciwintools_la-gw_wintools.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciwintools_la_CFLAGS) $(CFLAGS) -c -o libsciwintools_la-gw_wintools.lo `test -f 'sci_gateway/c/gw_wintools.c' || echo '$(srcdir)/'`sci_gateway/c/gw_wintools.c
-
-libsciwintools_la-sci_winopen.lo: sci_gateway/c/sci_winopen.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciwintools_la_CFLAGS) $(CFLAGS) -MT libsciwintools_la-sci_winopen.lo -MD -MP -MF $(DEPDIR)/libsciwintools_la-sci_winopen.Tpo -c -o libsciwintools_la-sci_winopen.lo `test -f 'sci_gateway/c/sci_winopen.c' || echo '$(srcdir)/'`sci_gateway/c/sci_winopen.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciwintools_la-sci_winopen.Tpo $(DEPDIR)/libsciwintools_la-sci_winopen.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_winopen.c' object='libsciwintools_la-sci_winopen.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciwintools_la_CFLAGS) $(CFLAGS) -c -o libsciwintools_la-sci_winopen.lo `test -f 'sci_gateway/c/sci_winopen.c' || echo '$(srcdir)/'`sci_gateway/c/sci_winopen.c
 
 libsciwintools_la-sci_setlanguagemenu.lo: sci_gateway/c/sci_setlanguagemenu.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciwintools_la_CFLAGS) $(CFLAGS) -MT libsciwintools_la-sci_setlanguagemenu.lo -MD -MP -MF $(DEPDIR)/libsciwintools_la-sci_setlanguagemenu.Tpo -c -o libsciwintools_la-sci_setlanguagemenu.lo `test -f 'sci_gateway/c/sci_setlanguagemenu.c' || echo '$(srcdir)/'`sci_gateway/c/sci_setlanguagemenu.c
@@ -564,13 +515,6 @@ libsciwintools_la-sci_fileassociationbox.lo: sci_gateway/c/sci_fileassociationbo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciwintools_la_CFLAGS) $(CFLAGS) -c -o libsciwintools_la-sci_fileassociationbox.lo `test -f 'sci_gateway/c/sci_fileassociationbox.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fileassociationbox.c
 
-libsciwintools_la-sci_dos.lo: sci_gateway/c/sci_dos.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciwintools_la_CFLAGS) $(CFLAGS) -MT libsciwintools_la-sci_dos.lo -MD -MP -MF $(DEPDIR)/libsciwintools_la-sci_dos.Tpo -c -o libsciwintools_la-sci_dos.lo `test -f 'sci_gateway/c/sci_dos.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dos.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciwintools_la-sci_dos.Tpo $(DEPDIR)/libsciwintools_la-sci_dos.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_dos.c' object='libsciwintools_la-sci_dos.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciwintools_la_CFLAGS) $(CFLAGS) -c -o libsciwintools_la-sci_dos.lo `test -f 'sci_gateway/c/sci_dos.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dos.c
-
 libsciwintools_la-intihmcolor.lo: sci_gateway/c/intihmcolor.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciwintools_la_CFLAGS) $(CFLAGS) -MT libsciwintools_la-intihmcolor.lo -MD -MP -MF $(DEPDIR)/libsciwintools_la-intihmcolor.Tpo -c -o libsciwintools_la-intihmcolor.lo `test -f 'sci_gateway/c/intihmcolor.c' || echo '$(srcdir)/'`sci_gateway/c/intihmcolor.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciwintools_la-intihmcolor.Tpo $(DEPDIR)/libsciwintools_la-intihmcolor.Plo
@@ -585,13 +529,6 @@ libsciwintools_la-sci_dde.lo: sci_gateway/c/sci_dde.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciwintools_la_CFLAGS) $(CFLAGS) -c -o libsciwintools_la-sci_dde.lo `test -f 'sci_gateway/c/sci_dde.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dde.c
 
-libsciwintools_la-intOEMconvert.lo: sci_gateway/c/intOEMconvert.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciwintools_la_CFLAGS) $(CFLAGS) -MT libsciwintools_la-intOEMconvert.lo -MD -MP -MF $(DEPDIR)/libsciwintools_la-intOEMconvert.Tpo -c -o libsciwintools_la-intOEMconvert.lo `test -f 'sci_gateway/c/intOEMconvert.c' || echo '$(srcdir)/'`sci_gateway/c/intOEMconvert.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciwintools_la-intOEMconvert.Tpo $(DEPDIR)/libsciwintools_la-intOEMconvert.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/intOEMconvert.c' object='libsciwintools_la-intOEMconvert.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciwintools_la_CFLAGS) $(CFLAGS) -c -o libsciwintools_la-intOEMconvert.lo `test -f 'sci_gateway/c/intOEMconvert.c' || echo '$(srcdir)/'`sci_gateway/c/intOEMconvert.c
-
 libsciwintools_la-sci_toprint.lo: sci_gateway/c/sci_toprint.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciwintools_la_CFLAGS) $(CFLAGS) -MT libsciwintools_la-sci_toprint.lo -MD -MP -MF $(DEPDIR)/libsciwintools_la-sci_toprint.Tpo -c -o libsciwintools_la-sci_toprint.lo `test -f 'sci_gateway/c/sci_toprint.c' || echo '$(srcdir)/'`sci_gateway/c/sci_toprint.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciwintools_la-sci_toprint.Tpo $(DEPDIR)/libsciwintools_la-sci_toprint.Plo
@@ -605,13 +542,6 @@ libsciwintools_la-sci_clipboard.lo: sci_gateway/c/sci_clipboard.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_clipboard.c' object='libsciwintools_la-sci_clipboard.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciwintools_la_CFLAGS) $(CFLAGS) -c -o libsciwintools_la-sci_clipboard.lo `test -f 'sci_gateway/c/sci_clipboard.c' || echo '$(srcdir)/'`sci_gateway/c/sci_clipboard.c
-
-libsciwintools_la-sci_findfileassociation.lo: sci_gateway/c/sci_findfileassociation.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciwintools_la_CFLAGS) $(CFLAGS) -MT libsciwintools_la-sci_findfileassociation.lo -MD -MP -MF $(DEPDIR)/libsciwintools_la-sci_findfileassociation.Tpo -c -o libsciwintools_la-sci_findfileassociation.lo `test -f 'sci_gateway/c/sci_findfileassociation.c' || echo '$(srcdir)/'`sci_gateway/c/sci_findfileassociation.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciwintools_la-sci_findfileassociation.Tpo $(DEPDIR)/libsciwintools_la-sci_findfileassociation.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_findfileassociation.c' object='libsciwintools_la-sci_findfileassociation.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciwintools_la_CFLAGS) $(CFLAGS) -c -o libsciwintools_la-sci_findfileassociation.lo `test -f 'sci_gateway/c/sci_findfileassociation.c' || echo '$(srcdir)/'`sci_gateway/c/sci_findfileassociation.c
 
 mostlyclean-libtool:
 	-rm -f *.lo

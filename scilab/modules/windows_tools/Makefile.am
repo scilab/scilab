@@ -5,7 +5,7 @@
 ##########
 
 # List of the c files
-WINDOWS_TOOLS_C_SOURCES = src/c/nowindows_tools/nowindows_tools_c.c
+WINDOWS_TOOLS_C_SOURCES = src/nowindows_tools/nowindows_tools.c
 
 # Includes need for the compilation
 libsciwindows_tools_la_CFLAGS=  -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/
@@ -39,7 +39,7 @@ libsciwindows_tools_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciwindows_tools_la_sci_gateway_DATA = sci_gateway/windows_tools_gateway.xml
 
 #### windows_tools : include files ####
-libsciskeleton_la_includedir=$(pkgincludedir)/windows_tools
+libsciwindows_tools_la_includedir=$(pkgincludedir)/windows_tools
 libsciwindows_tools_la_include_HEADERS = includes/gw_windows_tools.h
 
 # Provides macros compilation, Java compilation, cleaning
