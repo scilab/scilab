@@ -7,6 +7,7 @@
 
 #include "DrawableSubwinBridgeFactory.h"
 #include "DrawableSubwinJoGL.h"
+#include "DrawableSubwinJavaMapper.hxx"
 
 
 namespace sciGraphics
@@ -15,7 +16,9 @@ namespace sciGraphics
 /*------------------------------------------------------------------------------------------*/
 DrawableSubwinBridge * DrawableSubwinBridgeFactory::create( void )
 {
-  return new DrawableSubwinJoGL(m_pDrawable);
+  DrawableSubwinJoGL * newBridge =  new DrawableSubwinJoGL(m_pDrawable);
+  newBridge->setJavaMapper(new DrawableSubwinJavaMapper());
+  return newBridge;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableSubwinBridgeFactory::setDrawedSubwin( DrawableSubwin * subwin )
