@@ -219,7 +219,7 @@ std::string HistorySearch::getNextLine(void)
 		if (this->current_position == this->my_sizearray) this->current_position = this->my_sizearray - 1;
 		else this->current_position++;
 
-		if ( my_lines[this->current_position] && (strlen(my_lines[this->current_position])>0))
+		if ( (this->current_position <this->my_sizearray) && my_lines[this->current_position] && (strlen(my_lines[this->current_position])>0))
 		{
 			line.assign(my_lines[this->current_position]);
 		}
