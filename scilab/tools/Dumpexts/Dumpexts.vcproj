@@ -4,6 +4,7 @@
 	Version="8,00"
 	Name="Dumpexts"
 	ProjectGUID="{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}"
+	RootNamespace="Dumpexts"
 	>
 	<Platforms>
 		<Platform
@@ -26,15 +27,14 @@
 			CharacterSet="2"
 			>
 			<Tool
-				Name="Copy header files"
-				ExecutionBucket="1"
-			/>
-			<Tool
 				Name="VCPreBuildEventTool"
 				ExecutionBucket="2"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="rename .vc files"
 			/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"
@@ -134,15 +134,14 @@
 			CharacterSet="2"
 			>
 			<Tool
-				Name="Copy header files"
-				ExecutionBucket="1"
-			/>
-			<Tool
 				Name="VCPreBuildEventTool"
 				ExecutionBucket="2"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="rename .vc files"
 			/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"
@@ -284,6 +283,10 @@
 			</File>
 			<File
 				RelativePath="..\..\modules\core\includes\machine.h.vc"
+				>
+			</File>
+			<File
+				RelativePath="..\..\etc\modules.xml.vc"
 				>
 			</File>
 		</Filter>

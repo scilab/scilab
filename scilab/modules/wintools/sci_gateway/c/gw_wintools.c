@@ -9,8 +9,6 @@
 /*-----------------------------------------------------------------------------------*/
  static gw_generic_table Tab[]=
  {
-  {C2F(sci_winopen),"winopen"},
-  {C2F(sci_winqueryreg),"winqueryreg"},
   {C2F(sci_ddeopen),"ddeopen"},
   {C2F(sci_ddeclose),"ddeclose"},
   {C2F(sci_ddeexec),"ddeexec"},
@@ -23,7 +21,6 @@
   {C2F(sci_setlanguagemenu),"setlanguagemenu"},
   {C2F(sci_consoledos),"console"},
   {C2F(sci_about),"about"},
-  {C2F(sci_mcisendstring),"mcisendstring"},
   {C2F(sci_oemtochar),"oemtochar"},
   {C2F(sci_chartooem),"chartooem"},
   {C2F(sci_printsetupbox),"printsetupbox"},
@@ -31,9 +28,7 @@
   {C2F(sci_settextcolor),"settextcolor"},
   {C2F(sci_settextbackgroundcolor),"settextbackgroundcolor"},
   {C2F(sci_filesassociationbox),"filesassociationbox"},
-  {C2F(sci_dos),"dos"},
-  {C2F(sci_findfileassociation),"findfileassociation"}
- };
+  };
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_wintools)()
 {  

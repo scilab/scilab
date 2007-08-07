@@ -1,0 +1,47 @@
+##########
+### Sylvestre Ledru <sylvestre.ledru@inria.fr>
+### TEMPLATE MAKEFILE 
+### INRIA - Scilab 2007
+##########
+
+# List of the c files
+WINDOWS_TOOLS_C_SOURCES = src/c/nowindows_tools/nowindows_tools_c.c
+
+# Includes need for the compilation
+libsciwindows_tools_la_CFLAGS=  -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/
+
+# Name of the future library (.la will be replace by .so, .a, etc regarding 
+# the system)
+pkglib_LTLIBRARIES = libsciwindows_tools.la
+
+# All the sources needed by libsciwindows_tools.la
+libsciwindows_tools_la_SOURCES = $(WINDOWS_TOOLS_C_SOURCES)
+
+## Libraries necessary
+## Change to include other Scilab modules/lib
+libsciwindows_tools_la_LIBADD = \
+	$(top_builddir)/libs/blas/libsciblas.la \
+	$(top_builddir)/libs/MALLOC/libscimalloc.la
+
+#### Name of the module and the path ######
+modulename=windows_tools
+
+#### windows_tools : Conf files ####
+libsciwindows_tools_la_rootdir = $(mydatadir)
+libsciwindows_tools_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
+
+#### windows_tools : init scripts #### 
+libsciwindows_tools_la_etcdir = $(mydatadir)/etc
+libsciwindows_tools_la_etc_DATA = etc/windows_tools.quit etc/windows_tools.start
+
+#### windows_tools : gateway declaration #### 
+libsciwindows_tools_la_sci_gatewaydir = $(mydatadir)/sci_gateway
+libsciwindows_tools_la_sci_gateway_DATA = sci_gateway/windows_tools_gateway.xml
+
+#### windows_tools : include files ####
+libsciskeleton_la_includedir=$(pkgincludedir)/windows_tools
+libsciwindows_tools_la_include_HEADERS = includes/gw_windows_tools.h
+
+# Provides macros compilation, Java compilation, cleaning
+# If you want Makefile to call ant, added USEANT=1
+include $(top_srcdir)/Makefile.incl.am

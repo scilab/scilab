@@ -1,0 +1,11 @@
+// ====================================================================
+// windows_tools module initialisation file 
+// Copyright INRIA 2007
+// ====================================================================
+//Load  functions librarie
+//load('SCI/modules/windows_tools/macros/lib');
+// ====================================================================
+//add help chapter
+add_module_help_chapter('windows_tools');
+clear add_module_help_chapter;
+// ====================================================================
