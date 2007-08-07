@@ -41,9 +41,9 @@ void RectangleMarkDrawerJavaMapper::endDrawing(void)
   m_pJavaObject->endDrawing();
 }
 /*------------------------------------------------------------------------------------------*/
-void RectangleMarkDrawerJavaMapper::show(void)
+void RectangleMarkDrawerJavaMapper::show(int figureIndex)
 {
-  m_pJavaObject->show();
+  m_pJavaObject->show(figureIndex);
 }
 /*------------------------------------------------------------------------------------------*/
 void RectangleMarkDrawerJavaMapper::destroy(int parentFigureIndex)

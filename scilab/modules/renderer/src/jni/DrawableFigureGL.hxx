@@ -51,7 +51,7 @@ jclass instanceClass; // cache class
 jmethodID voiddisplayID; // cache method id
 jmethodID voidinitializeDrawingjintID; // cache method id
 jmethodID voidendDrawingID; // cache method id
-jmethodID voidshowID; // cache method id
+jmethodID voidshowjintID; // cache method id
 jmethodID voiddestroyjintID; // cache method id
 jmethodID voidsetFigureIndexjintID; // cache method id
 jmethodID voiddrawCanvasID; // cache method id
@@ -114,7 +114,7 @@ void initializeDrawing(long figureIndex);
  
 void endDrawing();
  
-void show();
+void show(long figureIndex);
  
 void destroy(long parentFigureIndex);
  

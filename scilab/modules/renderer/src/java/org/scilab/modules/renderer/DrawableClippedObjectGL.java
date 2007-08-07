@@ -80,6 +80,7 @@ public abstract class DrawableClippedObjectGL extends DrawableObjectGL {
 	 */
 	public void unClip() {
 		GL gl = getGL();
+                System.err.println("Unclip");
 		planeXmin.unClip(gl);
 		planeXmax.unClip(gl);
 		planeYmin.unClip(gl);

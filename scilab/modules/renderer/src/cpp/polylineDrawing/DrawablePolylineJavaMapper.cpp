@@ -42,9 +42,9 @@ void DrawablePolylineJavaMapper::endDrawing(void)
   m_pJavaObject->endDrawing();
 }
 /*------------------------------------------------------------------------------------------*/
-void DrawablePolylineJavaMapper::show(void)
+void DrawablePolylineJavaMapper::show(int figureIndex)
 {
-  m_pJavaObject->show();
+  m_pJavaObject->show(figureIndex);
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawablePolylineJavaMapper::destroy(int parentFigureIndex)

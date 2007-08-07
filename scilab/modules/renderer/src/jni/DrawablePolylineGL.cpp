@@ -106,7 +106,7 @@ exit(EXIT_FAILURE);
 voiddisplayID=NULL; 
 voidinitializeDrawingjintID=NULL; 
 voidendDrawingID=NULL; 
-voidshowID=NULL; 
+voidshowjintID=NULL; 
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
 voidclipXjdoublejdoubleID=NULL; 
@@ -149,7 +149,7 @@ std::cerr << "Could not access to the method display" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voiddisplayID );
+  curEnv->CallVoidMethod( this->instance, voiddisplayID );
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -170,7 +170,7 @@ std::cerr << "Could not access to the method initializeDrawing" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voidinitializeDrawingjintID ,figureIndex);
+  curEnv->CallVoidMethod( this->instance, voidinitializeDrawingjintID ,figureIndex);
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -191,7 +191,7 @@ std::cerr << "Could not access to the method endDrawing" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voidendDrawingID );
+  curEnv->CallVoidMethod( this->instance, voidendDrawingID );
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -200,19 +200,19 @@ curEnv->ExceptionDescribe() ;
 
 }
 
-void DrawablePolylineGL::show (){
+void DrawablePolylineGL::show (long figureIndex){
 
 JNIEnv * curEnv = getCurrentEnv();
 
-if (this->voidshowID == NULL)
+if (this->voidshowjintID == NULL)
 {
-this->voidshowID = curEnv->GetMethodID(this->instanceClass, "show", "()V" ) ;
-if (this->voidshowID == NULL) {
+this->voidshowjintID = curEnv->GetMethodID(this->instanceClass, "show", "(I)V" ) ;
+if (this->voidshowjintID == NULL) {
 std::cerr << "Could not access to the method show" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voidshowID );
+  curEnv->CallVoidMethod( this->instance, voidshowjintID ,figureIndex);
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -233,7 +233,7 @@ std::cerr << "Could not access to the method destroy" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voiddestroyjintID ,parentFigureIndex);
+  curEnv->CallVoidMethod( this->instance, voiddestroyjintID ,parentFigureIndex);
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -254,7 +254,7 @@ std::cerr << "Could not access to the method setFigureIndex" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voidsetFigureIndexjintID ,figureIndex);
+  curEnv->CallVoidMethod( this->instance, voidsetFigureIndexjintID ,figureIndex);
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -275,7 +275,7 @@ std::cerr << "Could not access to the method clipX" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voidclipXjdoublejdoubleID ,xMin, xMax);
+  curEnv->CallVoidMethod( this->instance, voidclipXjdoublejdoubleID ,xMin, xMax);
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -296,7 +296,7 @@ std::cerr << "Could not access to the method clipY" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voidclipYjdoublejdoubleID ,yMin, yMax);
+  curEnv->CallVoidMethod( this->instance, voidclipYjdoublejdoubleID ,yMin, yMax);
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -317,7 +317,7 @@ std::cerr << "Could not access to the method clipZ" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voidclipZjdoublejdoubleID ,zMin, zMax);
+  curEnv->CallVoidMethod( this->instance, voidclipZjdoublejdoubleID ,zMin, zMax);
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -338,7 +338,7 @@ std::cerr << "Could not access to the method unClip" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voidunClipID );
+  curEnv->CallVoidMethod( this->instance, voidunClipID );
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

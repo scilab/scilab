@@ -117,7 +117,7 @@ void DrawableFigureJoGL::setInfoMessage( const char * message )
   // we need to create a not const char
   char * infoMessage = new char[strlen(message)+1];
   strcpy(infoMessage, message);
-  //getFigureJavaMapper()->setInfoMessage(infoMessage);
+  getFigureJavaMapper()->setInfoMessage(infoMessage);
   delete[] infoMessage;
 }
 /*------------------------------------------------------------------------------------------*/

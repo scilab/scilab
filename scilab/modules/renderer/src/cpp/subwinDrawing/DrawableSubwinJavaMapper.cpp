@@ -42,9 +42,9 @@ void DrawableSubwinJavaMapper::endDrawing(void)
   m_pJavaObject->endDrawing();
 }
 /*-----------------------------------------------------------------------------------*/
-void DrawableSubwinJavaMapper::show(void)
+void DrawableSubwinJavaMapper::show(int figureIndex)
 {
-  m_pJavaObject->show();
+  m_pJavaObject->show(figureIndex);
 }
 /*-----------------------------------------------------------------------------------*/
 void DrawableSubwinJavaMapper::destroy(int parentFigureIndex)

@@ -43,9 +43,9 @@ void RectangleFillDrawerJavaMapper::endDrawing(void)
   m_pJavaObject->endDrawing();
 }
 /*------------------------------------------------------------------------------------------*/
-void RectangleFillDrawerJavaMapper::show(void)
+void RectangleFillDrawerJavaMapper::show(int figureIndex)
 {
-  m_pJavaObject->show();
+  m_pJavaObject->show(figureIndex);
 }
 /*------------------------------------------------------------------------------------------*/
 void RectangleFillDrawerJavaMapper::destroy(int parentFigureIndex)

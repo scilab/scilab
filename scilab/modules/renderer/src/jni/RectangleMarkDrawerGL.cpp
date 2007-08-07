@@ -106,7 +106,7 @@ exit(EXIT_FAILURE);
 voiddisplayID=NULL; 
 voidinitializeDrawingjintID=NULL; 
 voidendDrawingID=NULL; 
-voidshowID=NULL; 
+voidshowjintID=NULL; 
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
 voidsetMarkParametersjintjintjintjintjintID=NULL; 
@@ -147,7 +147,7 @@ std::cerr << "Could not access to the method display" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voiddisplayID );
+  curEnv->CallVoidMethod( this->instance, voiddisplayID );
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -168,7 +168,7 @@ std::cerr << "Could not access to the method initializeDrawing" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voidinitializeDrawingjintID ,figureIndex);
+  curEnv->CallVoidMethod( this->instance, voidinitializeDrawingjintID ,figureIndex);
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -189,7 +189,7 @@ std::cerr << "Could not access to the method endDrawing" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voidendDrawingID );
+  curEnv->CallVoidMethod( this->instance, voidendDrawingID );
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -198,19 +198,19 @@ curEnv->ExceptionDescribe() ;
 
 }
 
-void RectangleMarkDrawerGL::show (){
+void RectangleMarkDrawerGL::show (long figureIndex){
 
 JNIEnv * curEnv = getCurrentEnv();
 
-if (this->voidshowID == NULL)
+if (this->voidshowjintID == NULL)
 {
-this->voidshowID = curEnv->GetMethodID(this->instanceClass, "show", "()V" ) ;
-if (this->voidshowID == NULL) {
+this->voidshowjintID = curEnv->GetMethodID(this->instanceClass, "show", "(I)V" ) ;
+if (this->voidshowjintID == NULL) {
 std::cerr << "Could not access to the method show" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voidshowID );
+  curEnv->CallVoidMethod( this->instance, voidshowjintID ,figureIndex);
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -231,7 +231,7 @@ std::cerr << "Could not access to the method destroy" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voiddestroyjintID ,parentFigureIndex);
+  curEnv->CallVoidMethod( this->instance, voiddestroyjintID ,parentFigureIndex);
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -252,7 +252,7 @@ std::cerr << "Could not access to the method setFigureIndex" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voidsetFigureIndexjintID ,figureIndex);
+  curEnv->CallVoidMethod( this->instance, voidsetFigureIndexjintID ,figureIndex);
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -273,7 +273,7 @@ std::cerr << "Could not access to the method setMarkParameters" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voidsetMarkParametersjintjintjintjintjintID ,background, foreground, markSizeUnit, markSize, markStyleIndex);
+  curEnv->CallVoidMethod( this->instance, voidsetMarkParametersjintjintjintjintjintID ,background, foreground, markSizeUnit, markSize, markStyleIndex);
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -294,7 +294,7 @@ std::cerr << "Could not access to the method drawRectangle" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voiddrawRectanglejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoubleID ,corner1X, corner1Y, corner1Z, corner2X, corner2Y, corner2Z, corner3X, corner3Y, corner3Z, corner4X, corner4Y, corner4Z);
+  curEnv->CallVoidMethod( this->instance, voiddrawRectanglejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoubleID ,corner1X, corner1Y, corner1Z, corner2X, corner2Y, corner2Z, corner3X, corner3Y, corner3Z, corner4X, corner4Y, corner4Z);
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

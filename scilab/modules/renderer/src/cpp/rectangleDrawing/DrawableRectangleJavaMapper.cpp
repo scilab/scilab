@@ -41,9 +41,9 @@ void DrawableRectangleJavaMapper::endDrawing(void)
   m_pJavaObject->endDrawing();
 }
 /*------------------------------------------------------------------------------------------*/
-void DrawableRectangleJavaMapper::show(void)
+void DrawableRectangleJavaMapper::show(int figureIndex)
 {
-  m_pJavaObject->show();
+  m_pJavaObject->show(figureIndex);
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableRectangleJavaMapper::destroy(int parentFigureIndex)

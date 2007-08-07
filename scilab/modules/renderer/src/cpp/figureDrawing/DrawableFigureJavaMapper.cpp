@@ -43,9 +43,9 @@ void DrawableFigureJavaMapper::endDrawing(void)
   m_pJavaObject->endDrawing();
 }
 /*------------------------------------------------------------------------------------------*/
-void DrawableFigureJavaMapper::show(void)
+void DrawableFigureJavaMapper::show(int figureIndex)
 {
-  m_pJavaObject->show();
+  m_pJavaObject->show(figureIndex);
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJavaMapper::destroy(int parentFigureIndex)

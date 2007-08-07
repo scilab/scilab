@@ -106,7 +106,7 @@ exit(EXIT_FAILURE);
 voiddisplayID=NULL; 
 voidinitializeDrawingjintID=NULL; 
 voidendDrawingID=NULL; 
-voidshowID=NULL; 
+voidshowjintID=NULL; 
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
 voiddrawCanvasID=NULL; 
@@ -158,7 +158,7 @@ std::cerr << "Could not access to the method display" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voiddisplayID );
+  curEnv->CallVoidMethod( this->instance, voiddisplayID );
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -179,7 +179,7 @@ std::cerr << "Could not access to the method initializeDrawing" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voidinitializeDrawingjintID ,figureIndex);
+  curEnv->CallVoidMethod( this->instance, voidinitializeDrawingjintID ,figureIndex);
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -200,7 +200,7 @@ std::cerr << "Could not access to the method endDrawing" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voidendDrawingID );
+  curEnv->CallVoidMethod( this->instance, voidendDrawingID );
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -209,19 +209,19 @@ curEnv->ExceptionDescribe() ;
 
 }
 
-void DrawableFigureGL::show (){
+void DrawableFigureGL::show (long figureIndex){
 
 JNIEnv * curEnv = getCurrentEnv();
 
-if (this->voidshowID == NULL)
+if (this->voidshowjintID == NULL)
 {
-this->voidshowID = curEnv->GetMethodID(this->instanceClass, "show", "()V" ) ;
-if (this->voidshowID == NULL) {
+this->voidshowjintID = curEnv->GetMethodID(this->instanceClass, "show", "(I)V" ) ;
+if (this->voidshowjintID == NULL) {
 std::cerr << "Could not access to the method show" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voidshowID );
+  curEnv->CallVoidMethod( this->instance, voidshowjintID ,figureIndex);
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -242,7 +242,7 @@ std::cerr << "Could not access to the method destroy" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voiddestroyjintID ,parentFigureIndex);
+  curEnv->CallVoidMethod( this->instance, voiddestroyjintID ,parentFigureIndex);
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -263,7 +263,7 @@ std::cerr << "Could not access to the method setFigureIndex" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voidsetFigureIndexjintID ,figureIndex);
+  curEnv->CallVoidMethod( this->instance, voidsetFigureIndexjintID ,figureIndex);
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -284,7 +284,7 @@ std::cerr << "Could not access to the method drawCanvas" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voiddrawCanvasID );
+  curEnv->CallVoidMethod( this->instance, voiddrawCanvasID );
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -305,7 +305,7 @@ std::cerr << "Could not access to the method closeRenderingCanvas" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voidcloseRenderingCanvasID );
+  curEnv->CallVoidMethod( this->instance, voidcloseRenderingCanvasID );
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -326,7 +326,7 @@ std::cerr << "Could not access to the method setBackgroundColor" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voidsetBackgroundColorjintID ,backgroundColor);
+  curEnv->CallVoidMethod( this->instance, voidsetBackgroundColorjintID ,backgroundColor);
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -347,7 +347,7 @@ std::cerr << "Could not access to the method getCanvasWidth" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
- jint res = (jint) curEnv->CallIntMethod( this->instance, jintgetCanvasWidthID );
+ jint res =  (jint) curEnv->CallIntMethod( this->instance, jintgetCanvasWidthID );
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -370,7 +370,7 @@ std::cerr << "Could not access to the method getCanvasHeight" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
- jint res = (jint) curEnv->CallIntMethod( this->instance, jintgetCanvasHeightID );
+ jint res =  (jint) curEnv->CallIntMethod( this->instance, jintgetCanvasHeightID );
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -393,7 +393,7 @@ std::cerr << "Could not access to the method setCanvasSize" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voidsetCanvasSizejintjintID ,width, height);
+  curEnv->CallVoidMethod( this->instance, voidsetCanvasSizejintjintID ,width, height);
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -414,7 +414,7 @@ std::cerr << "Could not access to the method getWindowPosX" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
- jint res = (jint) curEnv->CallIntMethod( this->instance, jintgetWindowPosXID );
+ jint res =  (jint) curEnv->CallIntMethod( this->instance, jintgetWindowPosXID );
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -437,7 +437,7 @@ std::cerr << "Could not access to the method getWindowPosY" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
- jint res = (jint) curEnv->CallIntMethod( this->instance, jintgetWindowPosYID );
+ jint res =  (jint) curEnv->CallIntMethod( this->instance, jintgetWindowPosYID );
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -460,7 +460,7 @@ std::cerr << "Could not access to the method setWindowPosition" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voidsetWindowPositionjintjintID ,posX, posY);
+  curEnv->CallVoidMethod( this->instance, voidsetWindowPositionjintjintID ,posX, posY);
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -481,7 +481,7 @@ std::cerr << "Could not access to the method getWindowWidth" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
- jint res = (jint) curEnv->CallIntMethod( this->instance, jintgetWindowWidthID );
+ jint res =  (jint) curEnv->CallIntMethod( this->instance, jintgetWindowWidthID );
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -504,7 +504,7 @@ std::cerr << "Could not access to the method getWindowHeight" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
- jint res = (jint) curEnv->CallIntMethod( this->instance, jintgetWindowHeightID );
+ jint res =  (jint) curEnv->CallIntMethod( this->instance, jintgetWindowHeightID );
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -527,7 +527,7 @@ std::cerr << "Could not access to the method setWindowSize" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voidsetWindowSizejintjintID ,width, height);
+  curEnv->CallVoidMethod( this->instance, voidsetWindowSizejintjintID ,width, height);
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -548,7 +548,9 @@ std::cerr << "Could not access to the method setInfoMessage" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voidsetInfoMessagejstringID ,infoMessage);
+jstring infoMessage_ = curEnv->NewStringUTF( infoMessage );
+
+  curEnv->CallVoidMethod( this->instance, voidsetInfoMessagejstringID ,infoMessage_);
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

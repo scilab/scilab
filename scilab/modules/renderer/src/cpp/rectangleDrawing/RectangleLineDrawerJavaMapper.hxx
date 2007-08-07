@@ -30,7 +30,7 @@ namespace sciGraphics
     virtual void initializeDrawing(int figureIndex);
     virtual void endDrawing(void);
 
-    virtual void show(void);
+    virtual void show(int figureIndex);
 
     virtual void destroy(int figureIndex);
 

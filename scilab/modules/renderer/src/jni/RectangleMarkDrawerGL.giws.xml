@@ -8,6 +8,7 @@
     <method name="endDrawing" returnType="void">
     </method>
     <method name="show" returnType="void">
+      <param type="int" name="figureIndex" />
     </method>
     <method name="destroy" returnType="void">
       <param type="int" name="parentFigureIndex" />

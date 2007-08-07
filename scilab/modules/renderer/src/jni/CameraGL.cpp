@@ -106,7 +106,7 @@ exit(EXIT_FAILURE);
 voiddisplayID=NULL; 
 voidinitializeDrawingjintID=NULL; 
 voidendDrawingID=NULL; 
-voidshowID=NULL; 
+voidshowjintID=NULL; 
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
 voidmoveViewingAreajdoublejdoublejdoublejdoubleID=NULL; 
@@ -148,7 +148,7 @@ std::cerr << "Could not access to the method display" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voiddisplayID );
+  curEnv->CallVoidMethod( this->instance, voiddisplayID );
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -169,7 +169,7 @@ std::cerr << "Could not access to the method initializeDrawing" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voidinitializeDrawingjintID ,figureIndex);
+  curEnv->CallVoidMethod( this->instance, voidinitializeDrawingjintID ,figureIndex);
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -190,7 +190,7 @@ std::cerr << "Could not access to the method endDrawing" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voidendDrawingID );
+  curEnv->CallVoidMethod( this->instance, voidendDrawingID );
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -199,19 +199,19 @@ curEnv->ExceptionDescribe() ;
 
 }
 
-void CameraGL::show (){
+void CameraGL::show (long figureIndex){
 
 JNIEnv * curEnv = getCurrentEnv();
 
-if (this->voidshowID == NULL)
+if (this->voidshowjintID == NULL)
 {
-this->voidshowID = curEnv->GetMethodID(this->instanceClass, "show", "()V" ) ;
-if (this->voidshowID == NULL) {
+this->voidshowjintID = curEnv->GetMethodID(this->instanceClass, "show", "(I)V" ) ;
+if (this->voidshowjintID == NULL) {
 std::cerr << "Could not access to the method show" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voidshowID );
+  curEnv->CallVoidMethod( this->instance, voidshowjintID ,figureIndex);
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -232,7 +232,7 @@ std::cerr << "Could not access to the method destroy" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voiddestroyjintID ,parentFigureIndex);
+  curEnv->CallVoidMethod( this->instance, voiddestroyjintID ,parentFigureIndex);
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -253,7 +253,7 @@ std::cerr << "Could not access to the method setFigureIndex" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voidsetFigureIndexjintID ,figureIndex);
+  curEnv->CallVoidMethod( this->instance, voidsetFigureIndexjintID ,figureIndex);
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -274,7 +274,7 @@ std::cerr << "Could not access to the method moveViewingArea" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voidmoveViewingAreajdoublejdoublejdoublejdoubleID ,transX, transY, scaleX, scaleY);
+  curEnv->CallVoidMethod( this->instance, voidmoveViewingAreajdoublejdoublejdoublejdoubleID ,transX, transY, scaleX, scaleY);
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -295,7 +295,7 @@ std::cerr << "Could not access to the method moveAxesBox" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voidmoveAxesBoxjdoublejdoublejdoublejdoublejdoublejdoubleID ,scaleX, scaleY, scaleZ, transX, transY, transZ);
+  curEnv->CallVoidMethod( this->instance, voidmoveAxesBoxjdoublejdoublejdoublejdoublejdoublejdoubleID ,scaleX, scaleY, scaleZ, transX, transY, transZ);
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -316,7 +316,7 @@ std::cerr << "Could not access to the method rotateAxesBox" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voidrotateAxesBoxjdoublejdoublejdoublejdoublejdoublejdoubleID ,centerX, centerY, centerZ, alpha, theta, reductionRatio);
+  curEnv->CallVoidMethod( this->instance, voidrotateAxesBoxjdoublejdoublejdoublejdoublejdoublejdoubleID ,centerX, centerY, centerZ, alpha, theta, reductionRatio);
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

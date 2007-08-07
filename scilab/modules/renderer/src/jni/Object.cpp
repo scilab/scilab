@@ -142,7 +142,7 @@ std::cerr << "Could not access to the method wait" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voidwaitID );
+  curEnv->CallVoidMethod( this->instance, voidwaitID );
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -163,7 +163,7 @@ std::cerr << "Could not access to the method notify" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voidnotifyID );
+  curEnv->CallVoidMethod( this->instance, voidnotifyID );
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -184,7 +184,7 @@ std::cerr << "Could not access to the method notifyAll" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-  (void) curEnv->CallVoidMethod( this->instance, voidnotifyAllID );
+  curEnv->CallVoidMethod( this->instance, voidnotifyAllID );
 
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

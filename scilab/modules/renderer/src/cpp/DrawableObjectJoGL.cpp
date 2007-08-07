@@ -50,7 +50,7 @@ void DrawableObjectJoGL::endShowing( void )
 /*------------------------------------------------------------------------------------------*/
 void DrawableObjectJoGL::show( void )
 {
-  getJavaMapper()->show();
+  getJavaMapper()->show(sciGetNum(sciGetParentFigure(getDrawer()->getDrawedObject())));
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableObjectJoGL::destroy( void )

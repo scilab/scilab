@@ -25,7 +25,7 @@ public:
 
   virtual void endDrawing(void) = 0;
 
-  virtual void show(void) = 0;
+  virtual void show(int figureIndex) = 0;
 
   virtual void destroy(int parentFigureIndex) = 0;
 

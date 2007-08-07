@@ -42,9 +42,9 @@ void RectangleLineDrawerJavaMapper::endDrawing(void)
   m_pJavaObject->endDrawing();
 }
 /*------------------------------------------------------------------------------------------*/
-void RectangleLineDrawerJavaMapper::show(void)
+void RectangleLineDrawerJavaMapper::show(int figureIndex)
 {
-  m_pJavaObject->show();
+  m_pJavaObject->show(figureIndex);
 }
 /*------------------------------------------------------------------------------------------*/
 void RectangleLineDrawerJavaMapper::destroy(int parentFigureIndex)

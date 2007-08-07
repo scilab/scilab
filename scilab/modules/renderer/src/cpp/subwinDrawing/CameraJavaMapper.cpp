@@ -41,9 +41,9 @@ void CameraJavaMapper::endDrawing(void)
   m_pJavaObject->endDrawing();
 }
 /*-----------------------------------------------------------------------------------*/
-void CameraJavaMapper::show(void)
+void CameraJavaMapper::show(int figureIndex)
 {
-  m_pJavaObject->show();
+  m_pJavaObject->show(figureIndex);
 }
 /*-----------------------------------------------------------------------------------*/
 void CameraJavaMapper::destroy(int parentFigureIndex)
