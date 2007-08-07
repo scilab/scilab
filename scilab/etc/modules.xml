@@ -47,7 +47,7 @@
 <module name="symbolic" activate="1"/>
 <module name="time" activate="1"/>
 <module name="wintools" activate="1"/>
-<module name="windows_tools" activate="1"/>
+<module name="windows_tools" activate="0"/>
 <module name="statistics" activate="1"/>
 <!-- comments -->
 <module name="arnoldi" activate="1"/>
