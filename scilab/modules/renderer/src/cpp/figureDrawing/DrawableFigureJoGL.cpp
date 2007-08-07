@@ -50,16 +50,12 @@ void DrawableFigureJoGL::openRenderingCanvas( int figureIndex )
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::closeRenderingCanvas( void )
 {
-  if ( getFigureJavaMapper() != NULL )
-  {
-    getFigureJavaMapper()->closeRenderingCanvas();
-  }
+  destroy() ;
   if ( m_pJavaWindow != NULL )
   {
     delete m_pJavaWindow;
     m_pJavaWindow = NULL;
   }
-  destroy() ;
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::setBackgroundColor( int backgroundColor )

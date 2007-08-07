@@ -79,8 +79,8 @@ char ** getStringMatrixFromStack( int stackPointer ) ;
 char ** createCopyStringMatrixFromStack( int stackPointer, int nbElement ) ;
 
 /**
-* retireve a string on from the scilab stack
-*/
+ * retrieve a string on from the Scilab stack
+ */
 unsigned long getHandleFromStack( int stackPointer ) ;
 
 /**

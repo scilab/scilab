@@ -661,7 +661,7 @@ int InitAxesModel()
   /* /\*   ppaxesmdl->drawlater = sciGetDrawLater(pfiguremdl); *\/ */
   /*   ppaxesmdl->drawlater = FALSE; */
 
-  ppaxesmdl->isclip = -1;  
+  ppaxesmdl->isclip = 0; /* clipgrf */  
   ppaxesmdl->pPopMenu = (sciPointObj *)NULL;
 
   /* Les SRect sont rentres dans l'ordre: 
