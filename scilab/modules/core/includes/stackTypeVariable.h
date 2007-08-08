@@ -96,4 +96,3 @@
 #define EXTERNAL_DATATYPE "f"
 
 #endif /*__STACKTYPEVARIABLE_H__ */
-
