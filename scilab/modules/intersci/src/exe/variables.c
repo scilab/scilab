@@ -1,5 +1,5 @@
 #include <stdlib.h>
-
+#include "stackTypeVariable.h"
 #include "intersci-n.h"
 
 /*********************************************************************
@@ -521,17 +521,17 @@ static struct ftype { char *fname ; /* full fortran type name */
 }
 FType[] = {
   {"Cstringv",CSTRINGV,"XX","XX","XX",-1,"XX"},
-  {"boolean",BOOLEAN,"b","istk","icopy",DEC_INT,"int"},
+  {"boolean",BOOLEAN,MATRIX_OF_BOOLEAN_DATATYPE,"istk","icopy",DEC_INT,"int"},
   {"bpointer",BPOINTER,"XX","XX","XX",-1,"XX"},
-  {"char",CHAR,"c","cstk","cvstr1",DEC_CHAR,"char"},
-  {"double", DOUBLE,"d","stk","dcopy",DEC_DOUBLE,"double"},
-  {"int",INT,"i","istk","int2db",DEC_INT,"int"},
-  {"integer",INT,"i","istk","int2db",DEC_INT,"int"},
+  {"char",CHAR,STRING_DATATYPE,"cstk","cvstr1",DEC_CHAR,"char"},
+  {"double", DOUBLE,MATRIX_OF_DOUBLE_DATATYPE,"stk","dcopy",DEC_DOUBLE,"double"},
+  {"int",INT,MATRIX_OF_INTEGER_DATATYPE,"istk","int2db",DEC_INT,"int"},
+  {"integer",INT,MATRIX_OF_INTEGER_DATATYPE,"istk","int2db",DEC_INT,"int"},
   {"lpointer",LPOINTER,"XX","XX","XX",-1,"XX"},
   {"mpointer",MPOINTER,"XX","XX","XX",-1,"XX"},
   {"opointer",OPOINTER,"XX","XX","XX",-1,"XX"},
   {"predef",PREDEF,"XX","XX","XX",-1,"XX"},
-  {"real",REAL,"r","sstk","rea2db",DEC_REAL,"float"},
+  {"real",REAL,MATRIX_OF_RATIONAL_DATATYPE,"sstk","rea2db",DEC_REAL,"float"},
   {"smpointer",SMPOINTER,"XX","XX","XX",-1,"XX"},
   {(char *) 0 ,  -1}
 };
@@ -714,13 +714,13 @@ char *SGetExtForTypeAbrev(var)
      VARPTR var;
 {
   if ( var->type == BMATRIX ) 
-    return("b");
+    return MATRIX_OF_DOUBLE_DATATYPE;
   else 
     {
       if ( strcmp(var->fexternal,"cintf")==0) 
-	return "i";
+	return MATRIX_OF_INTEGER_DATATYPE;
       else 
-	return("d");
+	return MATRIX_OF_DOUBLE_DATATYPE;
     }
 }
 
