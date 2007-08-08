@@ -2,8 +2,7 @@
 /* File: sci_convstr1.c                                                   */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Cong Wu                                                      */
-/* desc : converts the matrix of strings  str-matrix  into lower case (for*/  
-/*          "l"  ;default value) or upper case (for  "u" ).               */
+/* desc : @TODO add comment (it was a wrong comment)
 /*                                                                        */
 /*------------------------------------------------------------------------*/
 #include <string.h>
