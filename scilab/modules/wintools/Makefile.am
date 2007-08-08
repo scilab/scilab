@@ -5,15 +5,12 @@
 
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_toolbar.c \
-sci_gateway/c/sci_printbox.c \
-sci_gateway/c/sci_consoledos.c \
 sci_gateway/c/sci_about.c \
 sci_gateway/c/gw_wintools.c \
 sci_gateway/c/sci_setlanguagemenu.c \
 sci_gateway/c/sci_fileassociationbox.c \
 sci_gateway/c/intihmcolor.c \
 sci_gateway/c/sci_dde.c \
-sci_gateway/c/sci_toprint.c \
 sci_gateway/c/sci_clipboard.c 
 
 libsciwintools_la_CFLAGS= -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
@@ -49,7 +46,6 @@ libsciwintools_la_sci_gateway_DATA = sci_gateway/wintools_gateway.xml
 #### wintools : include files ####
 libsciwintools_la_includedir=$(pkgincludedir)/wintools
 libsciwintools_la_include_HEADERS = includes/gw_wintools.h \
-includes/interfdde.h \
-includes/TextToPrint.h
+includes/interfdde.h
 
 include $(top_srcdir)/Makefile.incl.am
