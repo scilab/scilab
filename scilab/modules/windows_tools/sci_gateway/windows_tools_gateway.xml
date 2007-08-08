@@ -30,5 +30,5 @@
 <PRIMITIVE gatewayId="56" primitiveId="5" primitiveName="mcisendstring" />
 <PRIMITIVE gatewayId="56" primitiveId="6" primitiveName="oemtochar" />
 <PRIMITIVE gatewayId="56" primitiveId="7" primitiveName="chartooem" />
-
+<PRIMITIVE gatewayId="56" primitiveId="8" primitiveName="consolebox" />
 </GATEWAY>

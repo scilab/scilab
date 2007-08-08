@@ -32,7 +32,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include "WTEXT.h"   
 #include "wmcopydata.h"
-#include "WinConsole.h"
+//#include "WinConsole.h"
 
 #include "Messages.h"
 #include "Warnings.h"

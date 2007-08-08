@@ -401,10 +401,6 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath=".\WinConsole.c"
-				>
-			</File>
-			<File
 				RelativePath="winmain.c"
 				>
 				<FileConfiguration
@@ -746,10 +742,6 @@
 			</File>
 			<File
 				RelativePath="wgraph.h"
-				>
-			</File>
-			<File
-				RelativePath=".\WinConsole.h"
 				>
 			</File>
 			<File

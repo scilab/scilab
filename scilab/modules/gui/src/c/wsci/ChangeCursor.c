@@ -1,4 +1,4 @@
-#include "WinConsole.h"
+//#include "WinConsole.h"
 #include "wtext.h"
 #include "TextWindows.h"
 

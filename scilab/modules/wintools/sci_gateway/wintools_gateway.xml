@@ -33,11 +33,8 @@
 <PRIMITIVE gatewayId="47" primitiveId="8" primitiveName="hidetoolbar" />
 <PRIMITIVE gatewayId="47" primitiveId="9" primitiveName="toolbar" />
 <PRIMITIVE gatewayId="47" primitiveId="10" primitiveName="setlanguagemenu" />
-<PRIMITIVE gatewayId="47" primitiveId="11" primitiveName="console" />
-<PRIMITIVE gatewayId="47" primitiveId="12" primitiveName="about" />
-<PRIMITIVE gatewayId="47" primitiveId="13" primitiveName="printsetupbox" />
-<PRIMITIVE gatewayId="47" primitiveId="14" primitiveName="toprint" />
-<PRIMITIVE gatewayId="47" primitiveId="15" primitiveName="settextcolor" />
-<PRIMITIVE gatewayId="47" primitiveId="16" primitiveName="settextbackgroundcolor" />
-<PRIMITIVE gatewayId="47" primitiveId="17" primitiveName="filesassociationbox" />
+<PRIMITIVE gatewayId="47" primitiveId="11" primitiveName="about" />
+<PRIMITIVE gatewayId="47" primitiveId="12" primitiveName="settextcolor" />
+<PRIMITIVE gatewayId="47" primitiveId="13" primitiveName="settextbackgroundcolor" />
+<PRIMITIVE gatewayId="47" primitiveId="14" primitiveName="filesassociationbox" />
 </GATEWAY>

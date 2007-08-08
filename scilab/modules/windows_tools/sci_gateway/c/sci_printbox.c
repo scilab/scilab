@@ -2,14 +2,14 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "gw_wintools.h"
-#include "MALLOC.h" /* MALLOC */
+#include "TextToPrint.h"
+#include "gw_windows_tools.h"
+#include "machine.h"
+#include "stack-c.h"
+#include "MALLOC.h"
+//
+
 /*-----------------------------------------------------------------------------------*/
-#ifdef _MSC_VER
-	extern BOOL ConfigurePrinterDialogBox(void);
-#endif
-/*-----------------------------------------------------------------------------------*/
-/* Open Print DialogBox*/
 int C2F(sci_printsetupbox) _PARAMS((char *fname,unsigned long l))
 {
 	static int n1;
@@ -18,18 +18,14 @@ int C2F(sci_printsetupbox) _PARAMS((char *fname,unsigned long l))
 	CheckRhs(0,0);
 	CheckLhs(0,1);
 
-	#ifdef _MSC_VER
-		if (ConfigurePrinterDialogBox())
-		{
-			*paramoutINT=(int)(TRUE);
-		}
-		else
-		{
-			*paramoutINT=(int)(FALSE);
-		}
-	#else
+	if (ConfigurePrinterDialogBox())
+	{
+		*paramoutINT=(int)(TRUE);
+	}
+	else
+	{
 		*paramoutINT=(int)(FALSE);
-	#endif
+	}
 
 	n1=1;
 	CreateVarFromPtr(Rhs+1, "b", &n1, &n1,&paramoutINT);

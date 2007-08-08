@@ -2,32 +2,28 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "gw_wintools.h"
-#include "MALLOC.h" /* MALLOC */
+#include "TextToPrint.h"
+#include "gw_windows_tools.h"
+#include "machine.h"
+#include "stack-c.h"
+#include "MALLOC.h"
 #include "sciprint.h"
+#include "Scierror.h"
+#include "../../../fileio/includes/FileExist.h"
 /*-----------------------------------------------------------------------------------*/
-#ifdef _MSC_VER
-	extern void PrintFile(char *filename);
-	extern void PrintString(char *lines,char *Entete);
-	extern BOOL FileExist(char *filename);
-	extern BOOL FigureToPrint(int figurenumber,BOOL Postscript);
-	extern int IsAScalar(int RhsNumber);
-#endif
-
+extern int IsAScalar(int RhsNumber);
+extern BOOL FigureToPrint(int figurenumber,BOOL Postscript);
 /*-----------------------------------------------------------------------------------*/
-/* Print from scilab (Windows) for Scipad and figure */
 int C2F(sci_toprint) _PARAMS((char *fname,unsigned long l))
 {
-	static int n1;
-#ifdef _MSC_VER
-	static int l1,m1;
-#endif
+	int l1 = 0, m1 = 0, n1 = 0;
+
 	int *paramoutINT=(int*)MALLOC(sizeof(int));
 
 	CheckRhs(1,2);
 	CheckLhs(0,1);
 
-#ifdef _MSC_VER
+
 	if (Rhs == 1)
 	{
 		if (GetType(1) == sci_strings)
@@ -58,7 +54,6 @@ int C2F(sci_toprint) _PARAMS((char *fname,unsigned long l))
 		}
 		else
 		{
-			
 			if (GetType(1) == sci_matrix)
 			{
 				if (IsAScalar(1))
@@ -76,7 +71,6 @@ int C2F(sci_toprint) _PARAMS((char *fname,unsigned long l))
 						Scierror(999,"parameter must be >= 0.");
 						return 0;
 					}
-					
 				}
 				else
 				{
@@ -233,10 +227,6 @@ int C2F(sci_toprint) _PARAMS((char *fname,unsigned long l))
 			}
 		}
 	}
-
-#else
-		*paramoutINT=(int)(FALSE);
-#endif
 
 	n1=1;
 	CreateVarFromPtr(Rhs+1, "b", &n1, &n1,&paramoutINT);

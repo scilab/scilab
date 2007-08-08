@@ -4,6 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include "WndConsoleParentProc.h"
 #include "wtext.h"
+#include "../../../../windows_tools/src/c/WinConsole.h"
 /*-----------------------------------------------------------------------------------*/
 extern LPTW GetTextWinScilab(void);
 extern char *GetScilabDirectory(BOOL UnixStyle);
@@ -22,7 +23,6 @@ extern BOOL SetIhmSystemDefaultTextColor(void);
 extern char *getCopyCurrentLine(void);
 /*-----------------------------------------------------------------------------------*/
 extern POINT ScreenMinSize;
-extern char ScilexConsoleName[PATH_MAX];
 extern char ScilexWindowName[PATH_MAX];
 /*-----------------------------------------------------------------------------------*/
 BOOL ON_WND_CONSOLE_WM_COPYDATA(HWND hwnd,HWND hWndSend,PCOPYDATASTRUCT MyCopyDataStruct);
@@ -125,15 +125,26 @@ BOOL ON_WND_CONSOLE_WM_CREATE(HWND hwnd,LPCREATESTRUCT lpCreateStruct)
 	/* Renomme la fenetre avec SCI_VERSION_STRING et numero x associé à la console*/  
 	{
 		char CopyNameConsole[PATH_MAX];
+		char *ScilexConsoleName = NULL;
 		char *FirstOccurence;
 		char *SecondOccurence;
 		
-		strcpy(CopyNameConsole,ScilexConsoleName);
-		FirstOccurence = strtok(CopyNameConsole,"("); 
-		SecondOccurence= strtok(NULL,"("); 
-		wsprintf(ScilexWindowName,"%s (%s",SCI_VERSION_STRING,SecondOccurence);
+		ScilexConsoleName = getScilexConsoleName();
 
-		SetWindowText(hwnd,ScilexWindowName);  
+		if (ScilexConsoleName)
+		{
+			strcpy(CopyNameConsole,ScilexConsoleName);
+			strcpy(CopyNameConsole,ScilexConsoleName);
+			FirstOccurence = strtok(CopyNameConsole,"("); 
+			SecondOccurence= strtok(NULL,"("); 
+			wsprintf(ScilexWindowName,"%s (%s",SCI_VERSION_STRING,SecondOccurence);
+
+			SetWindowText(hwnd,ScilexWindowName);  
+			FREE(ScilexConsoleName);
+			ScilexConsoleName = NULL;
+		}
+
+		
 	}
 	return TRUE;
 }

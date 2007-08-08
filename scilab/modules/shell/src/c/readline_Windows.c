@@ -34,6 +34,7 @@
 #include "dynamic_menus.h"
 #include "../../gui/src/c/wsci/printf.h"
 #include "HistoryManager.h"
+#include "scilabmode.h"
 /*-----------------------------------------------------------------------------------*/
 #define TEXTUSER 0xf1
 #define TEXTGNUPLOT 0xf0
@@ -48,7 +49,6 @@
 extern char copycur_line[MAXBUF];
 char cur_line[MAXBUF];	/* current contents of the line */
 /*-----------------------------------------------------------------------------------*/
-extern BOOL IsWindowInterface(void);
 extern int C2F (sxevents) ();
 extern int IsFromC(void);
 extern void  SignalCtrC(void);
@@ -83,7 +83,7 @@ void Write_Scilab_Console (char *buf)
 void Write_Scilab_Window (char *buf)
 #endif
 {
-	if (IsWindowInterface())
+	if (getScilabMode() == SCILAB_STD)
 	{
 		char *d;
 		char buffer[1024];
@@ -126,9 +126,9 @@ static int user_putc (int ch)
 {
 	int rv;
 
-	if (IsWindowInterface()) SetTextAttr(1);
+	if (getScilabMode() == SCILAB_STD) SetTextAttr(1);
 	
-	if (IsWindowInterface())
+	if (getScilabMode() == SCILAB_STD)
 	{
 		rv =MyFPutCstdout (ch);
 	}
@@ -137,7 +137,7 @@ static int user_putc (int ch)
 		rv = fputc (ch,stdout);
 	}
 
-  	if (IsWindowInterface()) SetTextAttr(2);
+  	if (getScilabMode() == SCILAB_STD) SetTextAttr(2);
 	
   	return rv;
 }
@@ -146,9 +146,9 @@ static int user_puts (char *str)
 {
 	int rv;
 	
-  	if (IsWindowInterface()) SetTextAttr(1);
+  	if (getScilabMode() == SCILAB_STD) SetTextAttr(1);
 	
-	if (IsWindowInterface())
+	if (getScilabMode() == SCILAB_STD)
 	{
 		rv =MyFPutSstdout (str);
 	}
@@ -156,7 +156,7 @@ static int user_puts (char *str)
 	{
 		rv = fputs (str, stdout);
 	}
-   	if (IsWindowInterface()) SetTextAttr(2);
+   	if (getScilabMode() == SCILAB_STD) SetTextAttr(2);
   
   	return rv;
 }
@@ -198,7 +198,7 @@ static int NotTTyRead (char *prompt, char *buffer, int buf_size, int *eof)
   if (!tty)
     {
       /** We are reading a file ==> no prompts : XXXXX to test **/
-		if (IsWindowInterface())
+		if (getScilabMode() == SCILAB_STD)
 		{
 			MyFPutSstdout (SCIPROMPT);
 			/* read a line into the buffer, but not too* big */
@@ -720,7 +720,7 @@ static void redraw_line (prompt)
      char *prompt;
 {
   int i;
-  if (IsWindowInterface())
+  if (getScilabMode() == SCILAB_STD)
   {
 	  MyFPutSstdout (prompt);
   }
@@ -764,14 +764,14 @@ static void clear_line (prompt)
 
   for (i = 0; i < max_pos; i++)
   {
-	   if (IsWindowInterface())
+	   if (getScilabMode() == SCILAB_STD)
 	   {
 		    MyFPutCstdout (SPACE);
 	   }
 	   else putc (SPACE, stdout);
   }
 
-  if (IsWindowInterface())
+  if (getScilabMode() == SCILAB_STD)
   {
 	  MyFPutCstdout ('\r');
 	  MyFPutSstdout (prompt);
@@ -793,7 +793,7 @@ static void clear_eoline (prompt)
   for (i = cur_pos; i < max_pos; i++)  cur_line[i] = '\0';
 
   for (i = cur_pos; i < max_pos; i++)
-	  if (IsWindowInterface())
+	  if (getScilabMode() == SCILAB_STD)
 	  {
 		  MyFPutCstdout (SPACE);
 	  }

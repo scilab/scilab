@@ -16,7 +16,10 @@ static gw_generic_table Tab[]=
 {C2F(sci_dos),"dos"},
 {C2F(sci_mcisendstring),"mcisendstring"},
 {C2F(sci_oemtochar),"oemtochar"},
-{C2F(sci_chartooem),"chartooem"}
+{C2F(sci_chartooem),"chartooem"},
+{C2F(sci_consolebox),"consolebox"},
+{C2F(sci_printsetupbox),"printsetupbox"},
+{C2F(sci_toprint),"toprint"},
 };
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_windows_tools)(void)

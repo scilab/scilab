@@ -15,13 +15,7 @@
 #include <time.h>
 #include <math.h>
 
-#include "machine.h"
-#include "stack-c.h"
-#include "version.h"
-#include "wgnuplib.h"
-#include "Messages.h"
-#include "Warnings.h"
-#include "Errors.h"
+
 /*-----------------------------------------------------------------------------------*/ 
 /* EzCreateFont */
 /* Fonts Properties */
@@ -32,7 +26,6 @@
 /*-----------------------------------------------------------------------------------*/ 
 void PrintString(char *lines,char *Entete);
 void PrintFile(char *filename);
-void PrintSelection(HWND hWND,char *Entete,HFONT hfont);
 void PageHeader(HDC hdc,LPSTR Entete);
 void Footer(HDC hdc,int number);
 HFONT EzCreateFont (HDC hdc, TCHAR * szFaceName, int iDeciPtHeight,int iDeciPtWidth, int iAttributes, BOOL fLogRes);

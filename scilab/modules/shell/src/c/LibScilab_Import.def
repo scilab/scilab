@@ -36,7 +36,6 @@ ChangeCursorWhenScilabIsReady
 GetCurrentPrompt
 get_is_reading
 SendChar
-IsWindowInterface
 ismenu
 SetTextAttr
 MyFGetSstdout

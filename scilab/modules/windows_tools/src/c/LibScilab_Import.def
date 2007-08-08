@@ -22,3 +22,7 @@ getTMPDIR
 getScilabMode
 sciprint
 ;
+wsci
+;
+FigureToPrint
+IsAScalar

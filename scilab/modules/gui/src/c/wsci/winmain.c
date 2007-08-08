@@ -31,7 +31,7 @@
 #endif
 
 #include "winmain.h"
-#include "WinConsole.h"
+//#include "WinConsole.h"
 #include "wtext.h"
 #include "Messages.h"
 #include "Warnings.h"

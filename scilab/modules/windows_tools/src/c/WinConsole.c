@@ -1,16 +1,20 @@
+/*-----------------------------------------------------------------------------------*/
+/* INRIA 2007 */
 /* Allan CORNET */
-/* INRIA 2005 */
-
+/*-----------------------------------------------------------------------------------*/ 
+#define  _WIN32_WINNT 0x0500
+#include <Windows.h>
+#include <stdio.h>
 #include "WinConsole.h"
 #include "version.h"
-#include "Messages.h"
-#include "Warnings.h"
-#include "Errors.h"
 #include "scilabmode.h"
+#include "MALLOC.h"
+/*-----------------------------------------------------------------------------------*/
+#define NameConsole "Console" 
 /*-----------------------------------------------------------------------------------*/
 static CONSOLE_SCREEN_BUFFER_INFO csbiInfoSave;
-char ScilexConsoleName[PATH_MAX];
-static int Windows_Console_State;/* 0 Hide 1 Show */
+static int Windows_Console_State = 0;/* 0 Hide 1 Show */
+static char ScilexConsoleName[PATH_MAX];
 /*-----------------------------------------------------------------------------------*/
 typedef  UINT (WINAPI * GetWindowModuleFileNamePROC) (HWND,LPTSTR,UINT);
 /*-----------------------------------------------------------------------------------*/
@@ -219,5 +223,17 @@ int GetConsoleState(void)
 void SetConsoleState(int state)
 {
 	Windows_Console_State=state;
+}
+/*-----------------------------------------------------------------------------------*/
+char *getScilexConsoleName(void)
+{
+	char *retName = NULL;
+
+	if (strlen(ScilexConsoleName) > 0)
+	{
+		retName = (char*)MALLOC(sizeof(char)*(strlen(ScilexConsoleName)+1));
+		strcpy(retName,ScilexConsoleName);
+	}
+	return retName;
 }
 /*-----------------------------------------------------------------------------------*/

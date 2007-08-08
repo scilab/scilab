@@ -22,8 +22,6 @@ int C2F(sci_toolbar) _PARAMS((char *fname,unsigned long l));
 int C2F(sci_setlanguagemenu) _PARAMS((char *fname,unsigned long l));
 int C2F(sci_consoledos) _PARAMS((char *fname,unsigned long l));
 int C2F(sci_about) _PARAMS((char *fname,unsigned long l));
-int C2F(sci_printsetupbox) _PARAMS((char *fname,unsigned long l));
-int C2F(sci_toprint) _PARAMS((char *fname,unsigned long l));
 int C2F(sci_settextcolor) _PARAMS((char *fname,unsigned long l));
 int C2F(sci_settextbackgroundcolor) _PARAMS((char *fname,unsigned long l));
 int C2F(sci_filesassociationbox) _PARAMS((char *fname,unsigned long l));
