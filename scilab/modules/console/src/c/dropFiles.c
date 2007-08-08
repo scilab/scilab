@@ -4,6 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include "dropFiles.h"
 #include "MALLOC.h"
 #include "dynamic_menus.h" /* storecommand */
