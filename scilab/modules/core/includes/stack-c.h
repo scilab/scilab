@@ -13,7 +13,7 @@
 #endif
 
 #include "stack-def.h"
-
+#include "stackTypeVariable.h"
 
 /*-------------------------------------------------
  * types
