@@ -11,6 +11,7 @@
 #include <stdio.h>
 #endif
 #include "FindFileExtension.h"
+#include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/ 
 char *FindFileExtension(char *filename)
 {
