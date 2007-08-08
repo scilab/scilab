@@ -140,7 +140,7 @@ int getStackListNbElement( int paramNum )
   int nbCol        = 0 ;
   int stackPointer = 0 ;
 
-  GetRhsVar( paramNum, "t", &nbRow, &nbCol, &stackPointer ) ;
+  GetRhsVar( paramNum,TYPED_LIST_DATATYPE, &nbRow, &nbCol, &stackPointer );
 
   return nbRow - 1 ;
 
@@ -164,7 +164,7 @@ AssignedList * createAssignedList( int paramNum, int nbElement )
   newList->paramNumber = paramNum ;
 
   /* get the stack pointer */
-  GetRhsVar( paramNum, "t", &nbRow, &nbCol, &(newList->stackPointer) ) ;
+  GetRhsVar( paramNum,TYPED_LIST_DATATYPE, &nbRow, &nbCol, &(newList->stackPointer) );
 
   /* check the size */
   if ( nbRow != newList->nbElement || nbCol != 1 )
@@ -225,7 +225,7 @@ BOOL isListCurrentElementEmptyMatrix( AssignedList * list )
 double * getDoubleMatrixFromList( AssignedList * list, int rank, int * nbRow, int * nbCol )
 {
   int valueStackPointer = 0 ;
-  GetListRhsVar( list->paramNumber, rank, "d", nbRow, nbCol, &valueStackPointer ) ;
+  GetListRhsVar( list->paramNumber, rank,MATRIX_OF_DOUBLE_DATATYPE, nbRow, nbCol, &valueStackPointer );
   
   return getDoubleMatrixFromStack( valueStackPointer ) ;
 }
@@ -233,7 +233,7 @@ double * getDoubleMatrixFromList( AssignedList * list, int rank, int * nbRow, in
 char ** getStringMatrixFromList( AssignedList * list, int rank, int * nbRow, int * nbCol )
 {
   int valueStackPointer = 0 ;
-  GetListRhsVar( list->paramNumber, rank, "S", nbRow, nbCol, &valueStackPointer ) ;
+  GetListRhsVar( list->paramNumber, rank,MATRIX_OF_STRING_DATATYPE, nbRow, nbCol, &valueStackPointer );
 
   return getStringMatrixFromStack( valueStackPointer ) ;
 }

@@ -147,7 +147,7 @@ int sci_set(char *fname, unsigned long fname_len)
 
 			if ( valueType == 1 )
 			{
-				GetRhsVar(3,"d",&numrow3,&numcol3,&l3) ;
+				GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&numrow3,&numcol3,&l3);
 			}
 			else if ( valueType == 9 )
 			{

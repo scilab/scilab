@@ -140,13 +140,13 @@ int C2F(sci_strsubst1) _PARAMS((char *fname,unsigned long fname_len))
 			loutIndex = 0 ;
 			CreateVar(Rhs+1+x,STRING_DATATYPE,&lnumRow,&lnumCol,&loutIndex);
 			strncpy(cstk(loutIndex),Str[x], lnumCol);
-			CreateVarFromPtr( Rhs+1, "S", &lnumRow, &lnumCol, Str ) ;
+			CreateVarFromPtr( Rhs+1,MATRIX_OF_STRING_DATATYPE, &lnumRow, &lnumCol, Str );
 			LhsVar(x+1) = Rhs+x+1 ;
 	   }
    } 
    numRow   = 1 ;
    numCol   = mn ;
-   CreateVarFromPtr( Rhs+1, "S", &numRow, &numCol, Str ) ;
+   CreateVarFromPtr( Rhs+1,MATRIX_OF_STRING_DATATYPE, &numRow, &numCol, Str );
    LhsVar(1) = Rhs+1 ; 
    C2F(putlhsvar)();
    return 0;

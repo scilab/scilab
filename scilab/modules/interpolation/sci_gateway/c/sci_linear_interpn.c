@@ -37,7 +37,7 @@ int intlinear_interpn(char *fname,unsigned long fname_len)
     }
 
   /*  les points sur lesquels on evalue par interpolation */
-/*   l = I_UINT32; CreateVar(Rhs+1, "I", &n, &one, &l); */
+/*   l = I_UINT32; CreateVar(Rhs+1,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &n, &one, &l); */
 /*   xp = (double **) istk(l); */
   CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE, &n, &one, &l);  /* => lets store an array of pointers  */
   xp = (double **) stk(l);               /*   with size of 4 or 8 bytes */
@@ -57,9 +57,9 @@ int intlinear_interpn(char *fname,unsigned long fname_len)
     }
  
   /* coordonnées de la grille */
-  l = I_INT32; CreateVar(Rhs+2, "I", &n, &one, &l);
+  l = I_INT32; CreateVar(Rhs+2,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &n, &one, &l);
   dim = istk(l);
-/*   l = I_UINT32; CreateVar(Rhs+3, "I", &n, &one, &l); */
+/*   l = I_UINT32; CreateVar(Rhs+3,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &n, &one, &l); */
 /*   x = (double **) istk(l); */
   CreateVar(Rhs+3,MATRIX_OF_DOUBLE_DATATYPE, &n, &one, &l);  /* => lets store an array of pointers  */
   x = (double **) stk(l);               /*    with size(void *) = 4 or 8 bytes */
@@ -132,8 +132,8 @@ int intlinear_interpn(char *fname,unsigned long fname_len)
   CreateVar(Rhs+4,MATRIX_OF_DOUBLE_DATATYPE, &n, &one, &l); u = stk(l);
   m = 1; for ( i = 1 ; i <= n ; i++) m = 2*m;
   CreateVar(Rhs+5,MATRIX_OF_DOUBLE_DATATYPE, &m, &one, &l); v = stk(l);
-  l = 4; CreateVar(Rhs+6, "I", &m, &one, &l); ad = istk(l);
-  l = 4; CreateVar(Rhs+7, "I", &n, &one, &l); k = istk(l);
+  l = 4; CreateVar(Rhs+6,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &m, &one, &l); ad = istk(l);
+  l = 4; CreateVar(Rhs+7,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &n, &one, &l); k = istk(l);
   CreateVar(Rhs+8,MATRIX_OF_DOUBLE_DATATYPE, &mxp, &nxp, &l); yp = stk(l);
 
   nlinear_interp(x, val, dim, n, xp, yp, np, outmode, u, v, ad, k);

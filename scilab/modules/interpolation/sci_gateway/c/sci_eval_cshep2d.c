@@ -72,8 +72,8 @@ int inteval_cshep2d(char *fname,unsigned long fname_len)
 	  Str=NULL;
   }
   GetListRhsVar(3, 2,MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2,  &lxyz);   /* m2 = n , n2 = 3  */
-  GetListRhsVar(3, 3, "I", &m3, &n3,  (int *)&Cell);  /* m3 = nr, n3 = nr */
-  GetListRhsVar(3, 4, "I", &m4, &n4,  (int *)&Next);  /* m4 = 1 , n4 = n  */
+  GetListRhsVar(3, 3,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &m3, &n3,  (int *)&Cell);  /* m3 = nr, n3 = nr */
+  GetListRhsVar(3, 4,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &m4, &n4,  (int *)&Next);  /* m4 = 1 , n4 = n  */
   GetListRhsVar(3, 5,MATRIX_OF_DOUBLE_DATATYPE, &m5, &n5,  &lgrid);  /* m5 = 1 , n5 = 4  */
   GetListRhsVar(3, 6,MATRIX_OF_DOUBLE_DATATYPE, &m6, &n6,  &lrmax);  /* m6 = 1 , n6 = 1  */
   GetListRhsVar(3, 7,MATRIX_OF_DOUBLE_DATATYPE, &m7, &n7,  &lrw);    /* m7 = 1 , n7 = n  */

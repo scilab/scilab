@@ -33,7 +33,7 @@ int sci_draw( char * fname, unsigned long fname_len )
   }
   else
   {
-    GetRhsVar( 1, "h", &m, &n, &l ) ; 
+    GetRhsVar( 1,GRAPHICAL_HANDLE_DATATYPE, &m, &n, &l ); 
     if (m!=1||n!=1)
     {
       lw = 1 + Top - Rhs ;

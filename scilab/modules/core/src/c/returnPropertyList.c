@@ -26,10 +26,10 @@ returnedList * createReturnedList( int nbElements, char * elementName[] )
   newList->nbElements = nbElements + 1 ;
 
   /* create the tlist in the stack and get the stack pointer in newList->stackPointer */
-  CreateVar( Rhs+1, "t", &(newList->nbElements), &nbRow, &(newList->stackPointer) ) ;
+  CreateVar( Rhs+1,TYPED_LIST_DATATYPE, &(newList->nbElements), &nbRow, &(newList->stackPointer) );
 
   /* create the first element : names of properties */
-  CreateListVarFromPtr( Rhs+1, 1, "S", &nbRow, &(newList->nbElements), elementName ) ;
+  CreateListVarFromPtr( Rhs+1, 1,MATRIX_OF_STRING_DATATYPE, &nbRow, &(newList->nbElements), elementName );
   
   newList->curElement = 1 ;
 
@@ -62,7 +62,7 @@ int addRowVectorToReturnedList( returnedList * list, const double vector[], int 
 
   /* add a new element */
   list->curElement++ ;
-  CreateListVarFromPtr( Rhs+1, list->curElement, "d", &nbRow, &nbValues, &vector ) ;
+  CreateListVarFromPtr( Rhs+1, list->curElement,MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbValues, &vector );
 
   return 0 ;
 }
@@ -79,7 +79,7 @@ int addColVectorToReturnedList( returnedList * list, const double vector[], int 
 
   /* add a new element */
   list->curElement++ ;
-  CreateListVarFromPtr( Rhs+1, list->curElement, "d", &nbValues, &nbCol, &vector ) ;
+  CreateListVarFromPtr( Rhs+1, list->curElement,MATRIX_OF_DOUBLE_DATATYPE, &nbValues, &nbCol, &vector );
 
   return 0 ;
 }
@@ -95,7 +95,7 @@ int addMatrixToReturnedList( returnedList * list, const double matrix[], int nbR
 
   /* add a new element */
   list->curElement++ ;
-  CreateListVarFromPtr( Rhs+1, list->curElement, "d", &nbRow, &nbCol, &matrix ) ;
+  CreateListVarFromPtr( Rhs+1, list->curElement,MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &matrix );
 
   return 0 ;
 }
@@ -112,7 +112,7 @@ int addStringColVectorToReturnedList( returnedList * list, char * vector[], int 
 
   /* add a new element */
   list->curElement++ ;
-  CreateListVarFromPtr( Rhs+1, list->curElement, "S", &nbValues, &nbCol, vector ) ;
+  CreateListVarFromPtr( Rhs+1, list->curElement,MATRIX_OF_STRING_DATATYPE, &nbValues, &nbCol, vector );
 
   return 0 ;
 }

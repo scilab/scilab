@@ -52,7 +52,7 @@ int sci_xstringb(char *fname,unsigned long fname_len)
 
   if (Rhs == 6)
   {
-    GetRhsVar(6,"c",&m6,&n6,&l6) ;
+    GetRhsVar(6,STRING_DATATYPE,&m6,&n6,&l6);
     if ( m6*n6 !=0 && strcmp(cstk(l6),"fill") == 0 )
     {
       autoSize = FALSE ;

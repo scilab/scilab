@@ -47,9 +47,9 @@ int intcshep2d(char *fname,unsigned long fname_len)
   CreateListVarFromPtr(2, 1,MATRIX_OF_STRING_DATATYPE, &one,  &eight, Str);
   CreateListVarFrom(2, 2,MATRIX_OF_DOUBLE_DATATYPE, &n ,   &dim,  &lxyzn, &lxyz);
   lcell = 4; lar = -1;
-  CreateListVarFrom(2, 3, "I", &nr,   &nr,   &lcell, &lar); /* lcell */
+  CreateListVarFrom(2, 3,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &nr,   &nr,   &lcell, &lar); /* lcell */
   lnext = 4; lar = -1;
-  CreateListVarFrom(2, 4, "I", &one,  &n,    &lnext, &lar); /* lnext */
+  CreateListVarFrom(2, 4,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &one,  &n,    &lnext, &lar); /* lnext */
   lar = -1;
   CreateListVarFrom(2, 5,MATRIX_OF_DOUBLE_DATATYPE, &one,  &four, &lgrid, &lar); /* xmin, ymin, dx, dy */
   lar = -1;

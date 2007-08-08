@@ -35,7 +35,7 @@ int sci_StringBox( char * fname, unsigned long fname_len )
   }
 
   /* get the handle */
-  GetRhsVar( 1, "h", &m, &n, &stackPointer ) ;
+  GetRhsVar( 1,GRAPHICAL_HANDLE_DATATYPE, &m, &n, &stackPointer );
 
   if ( m * n != 1 )
   {
@@ -68,7 +68,7 @@ int sci_StringBox( char * fname, unsigned long fname_len )
   getTextBoundingBox( pText, NULL, corners ) ;
 
   /* copy everything into the lhs */
-  CreateVar( Rhs + 1, "d", &two, &four, &stackPointer ) ;
+  CreateVar( Rhs + 1,MATRIX_OF_DOUBLE_DATATYPE, &two, &four, &stackPointer );
   *stk( stackPointer     )  = corners[0][0] ; 
   *stk( stackPointer + 1 )  = corners[0][1] ;
   *stk( stackPointer + 2 )  = corners[1][0] ;

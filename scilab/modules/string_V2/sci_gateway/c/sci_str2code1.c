@@ -42,7 +42,7 @@ int C2F(sci_str2code1) _PARAMS((char *fname,unsigned long fname_len))
 			//			key=1;
 			//			values[nbValues++]=-x;
 			//		}	   
-		CreateVar(Rhs+1,"d",&numRow,&nbValues,&outIndex) ;    /*Output*/
+		CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&numRow,&nbValues,&outIndex);    /*Output*/
 		for ( i = 0 ; i < nbValues ; i++ )
 		{
 			stk(outIndex)[i] = (double)values[i] ;

@@ -3003,7 +3003,7 @@ int intgetscicosvarsc(fname,fname_len)
     if (ierr==TRUE_)
     {
      l_tmp = I_INT32; /* define type of integer */
-     CreateVar(j+2,"I",&nv,&mv,&l_tmp); /* Create int32 variable at the top+j+1 addr. of the stack */
+     CreateVar(j+2,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,&nv,&mv,&l_tmp); /* Create int32 variable at the top+j+1 addr. of the stack */
      il_tmp = (int *) istk(l_tmp);      /* Store value of address of istk(l_tmp) in il_tmp */
      ptr_int = (int *) ptr;             /* cast void* ptr to int* ptr */
      for (i=0;i<nv*mv;i++) il_tmp[i] = ptr_int[i]; /* copy returned array in istk */
@@ -3151,7 +3151,7 @@ int intgetscicosvarsc(fname,fname_len)
     if (ierr==TRUE_)
     {
      l_tmp = I_INT32; /* define type of integer */
-     CreateVar(j+2,"I",&nv,&mv,&l_tmp); /* Create int32 variable at the top+j+1 addr. of the stack */
+     CreateVar(j+2,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,&nv,&mv,&l_tmp); /* Create int32 variable at the top+j+1 addr. of the stack */
      il_tmp = (int *) istk(l_tmp);      /* Store value of address of istk(l_tmp) in il_tmp */
      ptr_elem = (outtb_el *) ptr;       /* cast void* ptr to int* ptr */
      for (i=0;i<nv;i++) /* copy returned array in istk */
@@ -3239,7 +3239,7 @@ int intcurblkc(fname,fname_len)
   /* define type of integer */
   l1 = I_INT32;
   /* Create int32 variable at the top addr. of the stack */
-  CreateVar(Rhs+1,"I",(j=1,&j),(k=1,&k),&l1);
+  CreateVar(Rhs+1,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,(j=1,&j),(k=1,&k),&l1);
   /* Store value of C2F(curblk).kfun at the l1 address in istk */
   *istk(l1) = C2F(curblk).kfun;
 
@@ -3311,7 +3311,7 @@ int intbuildouttb(fname)
  }
  else if (VarType(1)==8)
  {
-  GetRhsVar(1, "I", &m1, &n1, &M1);
+  GetRhsVar(1,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &m1, &n1, &M1);
  }
  else
  {
@@ -3340,7 +3340,7 @@ int intbuildouttb(fname)
  }
  else if (VarType(2)==8)
  {
-  GetRhsVar(2, "I", &m2, &n2, &M2);
+  GetRhsVar(2,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &m2, &n2, &M2);
  }
  else
  {
@@ -3565,7 +3565,7 @@ int intbuildouttb(fname)
              M3.it = 4;
              M3.l = -1;
              M3.D = ptr_i;
-             CreateListVarFromPtr(3,i+1,"I",&M3.m,&M3.n,&M3);
+             CreateListVarFromPtr(3,i+1,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,&M3.m,&M3.n,&M3);
              FREE(ptr_i);
              break;
 
@@ -3580,7 +3580,7 @@ int intbuildouttb(fname)
              M3.it = 2;
              M3.l = -1;
              M3.D = ptr_s;
-             CreateListVarFromPtr(3,i+1,"I",&M3.m,&M3.n,&M3);
+             CreateListVarFromPtr(3,i+1,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,&M3.m,&M3.n,&M3);
              FREE(ptr_s);
              break;
 
@@ -3595,7 +3595,7 @@ int intbuildouttb(fname)
              M3.it = 1;
              M3.l = -1;
              M3.D = ptr_c;
-             CreateListVarFromPtr(3,i+1,"I",&M3.m,&M3.n,&M3);
+             CreateListVarFromPtr(3,i+1,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,&M3.m,&M3.n,&M3);
              FREE(ptr_c);
              break;
 
@@ -3610,7 +3610,7 @@ int intbuildouttb(fname)
              M3.it = 14;
              M3.l = -1;
              M3.D = ptr_ui;
-             CreateListVarFromPtr(3,i+1,"I",&M3.m,&M3.n,&M3);
+             CreateListVarFromPtr(3,i+1,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,&M3.m,&M3.n,&M3);
              FREE(ptr_ui);
              break;
 
@@ -3625,7 +3625,7 @@ int intbuildouttb(fname)
              M3.it = 12;
              M3.l = -1;
              M3.D = ptr_us;
-             CreateListVarFromPtr(3,i+1,"I",&M3.m,&M3.n,&M3);
+             CreateListVarFromPtr(3,i+1,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,&M3.m,&M3.n,&M3);
              FREE(ptr_us);
              break;
 
@@ -3640,7 +3640,7 @@ int intbuildouttb(fname)
              M3.it = 11;
              M3.l = -1;
              M3.D = ptr_uc;
-             CreateListVarFromPtr(3,i+1,"I",&M3.m,&M3.n,&M3);
+             CreateListVarFromPtr(3,i+1,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,&M3.m,&M3.n,&M3);
              FREE(ptr_uc);
              break;
 

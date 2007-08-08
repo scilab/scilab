@@ -89,7 +89,7 @@ int intinterp3d(char *fname,unsigned long fname_len)
   GetListRhsVar(4, 2,MATRIX_OF_DOUBLE_DATATYPE, &mtx, &n,  &ltx);
   GetListRhsVar(4, 3,MATRIX_OF_DOUBLE_DATATYPE, &mty, &n,  &lty);
   GetListRhsVar(4, 4,MATRIX_OF_DOUBLE_DATATYPE, &mtz, &n,  &ltz);
-  GetListRhsVar(4, 5, "I", &m  , &n,  (int *)&Order);
+  GetListRhsVar(4, 5,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &m  , &n,  (int *)&Order);
   GetListRhsVar(4, 6,MATRIX_OF_DOUBLE_DATATYPE, &nxyz,&n,  &lbcoef);
   GetListRhsVar(4, 7,MATRIX_OF_DOUBLE_DATATYPE, &nsix,&n,  &lxyzminmax);
   xyzminmax = stk(lxyzminmax);

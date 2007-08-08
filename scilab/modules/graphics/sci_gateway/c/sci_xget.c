@@ -85,7 +85,7 @@ int sci_xget(char *fname,unsigned long fname_len)
     nbRow = sciGetNumColors( curFig ) ;
     if ( nbRow == 0 ) { nbCol = 0 ; }
 
-    CreateVar(Rhs+1,"d",&nbRow,&nbCol,&l3) ;
+    CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&nbRow,&nbCol,&l3);
 
     sciGetColormap( curFig, stk(l3) ) ;
 

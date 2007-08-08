@@ -172,7 +172,7 @@ int C2F(sci_grep1) _PARAMS((char *fname,unsigned long fname_len))
 	} 
 	numRow   = 1        ;  /* Output values[] and position[]*/
 	outIndex = 0        ;
-	CreateVar(Rhs+1,"d",&numRow,&nbValues,&outIndex) ;
+	CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&numRow,&nbValues,&outIndex);
 	for ( i = 0 ; i < nbposition ; i++ )
 	{
 		stk(outIndex)[i] = (double)values[i] ;
@@ -180,7 +180,7 @@ int C2F(sci_grep1) _PARAMS((char *fname,unsigned long fname_len))
 	LhsVar(1) = Rhs+1 ;
 	numRow   = 1        ;
 	outIndex = 0        ;
-	CreateVar(Rhs+2,"d",&numRow,&nbposition,&outIndex) ;
+	CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE,&numRow,&nbposition,&outIndex);
 	for ( i = 0 ; i < nbposition ; i++ )
 	{
 		stk(outIndex)[i] = (double)position[i] ;

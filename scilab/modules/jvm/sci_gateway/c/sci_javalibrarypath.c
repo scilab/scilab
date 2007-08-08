@@ -25,7 +25,7 @@ int C2F(sci_javalibrarypath) _PARAMS((char *fname,unsigned long fname_len))
 		char **Strings=NULL;
 
 		Strings=getLibrarypath(&nbRow);
-		CreateVarFromPtr( Rhs+1, "S", &nbRow, &nbCol,Strings ) ;
+		CreateVarFromPtr( Rhs+1,MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol,Strings );
 
 		LhsVar(1)=Rhs+1;
 		C2F(putlhsvar)();

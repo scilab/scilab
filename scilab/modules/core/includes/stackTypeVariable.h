@@ -31,8 +31,16 @@
 #define MATRIX_OF_RATIONAL_DATATYPE "r"
 
 
-/** @def MATRIX_OF_INTEGER_DATATYPE
+/** @def MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE
  * A matrix of integer
+ * if the size of the matrix is 1,1, it is a single value
+ */
+#define MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE "I"
+
+/** @def MATRIX_OF_INTEGER_DATATYPE
+ * A matrix of 'little' integer
+ * 'little' because in reality, this integer is a complex with the imaginary
+ * part set to 0
  * if the size of the matrix is 1,1, it is a single value
  */
 #define MATRIX_OF_INTEGER_DATATYPE "i"

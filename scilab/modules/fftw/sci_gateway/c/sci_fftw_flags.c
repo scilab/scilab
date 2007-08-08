@@ -107,7 +107,7 @@ int sci_fftw_flags __PARAMS((char *fname,unsigned long fname_len))
   }
   else {
    if (VarType(1)==8) { /* int */
-    GetRhsVar(1, "I", &m1, &n1, &M1);
+    GetRhsVar(1,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &m1, &n1, &M1);
     CheckDims(1,m1,n1,1,1);
     cur_fftw_flags=((int *)M1.D)[0];
    }
@@ -156,8 +156,8 @@ int sci_fftw_flags __PARAMS((char *fname,unsigned long fname_len))
   m2 = 1;
   n2 = m2;
   l2 = I_INT32;
-  /*CreateVar(2,"I",&m2,&n2,&l2);*/
-  CreateVar(Rhs+2,"I",&m2,&n2,&l2);
+  /*CreateVar(2,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,&m2,&n2,&l2);*/
+  CreateVar(Rhs+2,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,&m2,&n2,&l2);
   *istk(l2)=(int) cur_fftw_flags;
 
   /*Test for only FFTW_MEASURE*/

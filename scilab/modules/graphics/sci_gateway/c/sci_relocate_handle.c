@@ -30,9 +30,9 @@ int sci_relocate_handle( char * fname, unsigned long fname_len )
   CheckLhs(0,1) ;
 
 
-  GetRhsVar( 1, "h", &handleRow, &handleCol, &handleStkIndex ) ;
+  GetRhsVar( 1,GRAPHICAL_HANDLE_DATATYPE, &handleRow, &handleCol, &handleStkIndex );
   nbHandle = handleRow * handleCol ;
-  GetRhsVar( 2, "h", &parentRow, &parentCol, &parentStkIndex ) ;
+  GetRhsVar( 2,GRAPHICAL_HANDLE_DATATYPE, &parentRow, &parentCol, &parentStkIndex );
 
   if ( parentCol * parentRow != 1 )
   {
@@ -60,7 +60,7 @@ int sci_relocate_handle( char * fname, unsigned long fname_len )
     return 0 ;
   }
   FREE( handleArray ) ;
-  CreateVar( Rhs + 1, "h", &handleCol, &handleRow, &outIndex ) ;
+  CreateVar( Rhs + 1,GRAPHICAL_HANDLE_DATATYPE, &handleCol, &handleRow, &outIndex );
   *hstk(outIndex) = *hstk(handleStkIndex) ;
   LhsVar(1) = Rhs + 1 ;
   return 0 ;

@@ -45,7 +45,7 @@ int C2F(intzneupd) _PARAMS((char *fname,unsigned long fname_len))
   GetRhsVar( 2,STRING_DATATYPE, &mHOWMANY,&nHOWMANY,&pHOWMANY);   HOWMANY  =  2;
   GetRhsVar( 3,MATRIX_OF_INTEGER_DATATYPE, &mSELECT, &nSELECT, &pSELECT);     SELECT  =  3;
   GetRhsVar( 4,MATRIX_OF_COMPLEX_DATATYPE, &mD,      &nD,      &pD);               D  =  4;
-  GetRhsVar( 5, "z", &mZ,      &nZ,      &pZ) ;              Z  =  5;
+  GetRhsVar( 5,MATRIX_OF_COMPLEX_DATATYPE, &mZ,      &nZ,      &pZ);              Z  =  5;
   GetRhsVar( 6,MATRIX_OF_COMPLEX_DATATYPE, &mSIGMA,  &nSIGMA,  &pSIGMA);        SIGMA =  6;
   GetRhsVar( 7,MATRIX_OF_COMPLEX_DATATYPE, &mWORKev, &nWORKev, &pWORKev);      WORKev =  7;
   GetRhsVar( 8,STRING_DATATYPE, &mBMAT,   &nBMAT,   &pBMAT);          BMAT =  8;

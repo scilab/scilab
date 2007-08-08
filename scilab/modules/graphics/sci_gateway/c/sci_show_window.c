@@ -37,7 +37,7 @@ int sci_show_window( char *fname,unsigned long fname_len )
     {
       sciPointObj * shownFigure   = NULL ;
 
-      GetRhsVar( 1, "h", &nbRow, &nbCol, &stackPointer ) ;
+      GetRhsVar( 1,GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stackPointer );
 
       if ( nbRow * nbCol != 1 )
       {
@@ -58,7 +58,7 @@ int sci_show_window( char *fname,unsigned long fname_len )
     }
     else if ( isParameterDoubleMatrix( paramType ) )
     {
-      GetRhsVar(1, "d", &nbRow, &nbCol, &stackPointer ) ;
+      GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &stackPointer );
       if ( nbRow * nbCol != 1 )
       {
         sciprint("Only one window can be shown.\n") ;

@@ -273,7 +273,7 @@ static int cre_hmat(int pos, HyperMat *H)
   CreateVar(pos,MATRIX_ORIENTED_TYPED_LIST_DATATYPE, &mL, &nL, &lL);
   CreateListVarFromPtr(pos,1,MATRIX_OF_STRING_DATATYPE, &m1, &n1, Str);
   lr = 4; lar = -1;
-  CreateListVarFrom(pos,2,"I", &one, &H->dimsize, &lr, &lar);
+  CreateListVarFrom(pos,2,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &one, &H->dimsize, &lr, &lar);
   H->dims = istk(lr);
 
   lar = -1; lac = -1;
@@ -281,7 +281,7 @@ static int cre_hmat(int pos, HyperMat *H)
   switch (H->type)
     {
     case (SCI_REAL_OR_CMPLX):
-      CreateListCVarFrom(pos,3,"d", &H->it, &H->size, &one , &lr, &lc, &lar, &lac);
+      CreateListCVarFrom(pos,3,MATRIX_OF_DOUBLE_DATATYPE, &H->it, &H->size, &one , &lr, &lc, &lar, &lac);
       H->R = stk(lr);
       if ( H->it == 1)
 	H->I = stk(lc);
@@ -294,7 +294,7 @@ static int cre_hmat(int pos, HyperMat *H)
 
     case (SCI_INTEGER):
       lr = H->it;
-      CreateListVarFrom(pos, 3, "I", &H->size, &one, &lr, &lar);
+      CreateListVarFrom(pos, 3,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &H->size, &one, &lr, &lar);
       H->P = (void *) istk(lr);
       return 1;
     }
@@ -355,7 +355,7 @@ static int reshape_hmat(int pos, HyperMat *H, int new_dimsize)
   int *new_dims;
   int k, one=1, l;
 
-  l = SCI_INT32; CreateVar(pos, "I", &new_dimsize, &one, &l);
+  l = SCI_INT32; CreateVar(pos,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &new_dimsize, &one, &l);
   new_dims = istk(l);
   for ( k = 0 ; k < new_dimsize ; k++)
     new_dims[k] = H->dims[k];
@@ -421,7 +421,7 @@ static int create_index_vector(int pos, int pos_ind, int *mn,
       if ( m == -1 )      /* implicit index : */
 	{
 	  *mn = nmax; *ind_max = nmax;
-	  li = 4; CreateVar(pos_ind, "I", mn,   &one,   &li); ti = istk(li); 
+	  li = 4; CreateVar(pos_ind,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, mn,   &one,   &li); ti = istk(li); 
 	  for ( k = 0 ; k < *mn ; k++ )
 	    ti[k] = k;
 	  return 1;
@@ -434,20 +434,20 @@ static int create_index_vector(int pos, int pos_ind, int *mn,
       else                /* "normal" index */
 	{
 	  td = stk(l); *mn = m*n; *ind_max = 0;
-	  li = 4; CreateVar(pos_ind, "I", mn,   &one,   &li); ti = istk(li); 
+	  li = 4; CreateVar(pos_ind,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, mn,   &one,   &li); ti = istk(li); 
 	  return ( index_convert(td, ti, *mn, ind_max) );
 	}
 
     case (SCI_INTEGER):
 
-      GetRhsVar(pos, "I", &m, &n, (int *)&IV);
+      GetRhsVar(pos,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &m, &n, (int *)&IV);
 
       if ( m <= 0 )      /* normaly not possible */
 	return 0;
       else               /* "normal" index */
 	{
 	  *mn = m*n; *ind_max = 0;
-	  li = 4; CreateVar(pos_ind, "I", mn,   &one,   &li); ti = istk(li);
+	  li = 4; CreateVar(pos_ind,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, mn,   &one,   &li); ti = istk(li);
 	  li = 4; C2F(tpconv)(&(IV.it), &li, mn, IV.D, &one, (void *) ti, &one); /* convert to usual int */
 
 	  for ( i = 0 ; i < *mn ; i++ )
@@ -496,7 +496,7 @@ static int create_index_vector(int pos, int pos_ind, int *mn,
 	{
 	  *mn = (abs(ifin-ideb)+1)/abs(ipas);
 	  *ind_max = max(ideb, ifin);
-	  li = 4; CreateVar(pos_ind, "I", mn,   &one,   &li); ti = istk(li);
+	  li = 4; CreateVar(pos_ind,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, mn,   &one,   &li); ti = istk(li);
 	  ti[0] = ideb-1;  /* -1 to get 0-based indices */
 	  for ( k = 1 ; k < *mn ; k++ ) ti[k] = ti[k-1] + ipas;
 	  return 1;
@@ -515,7 +515,7 @@ static int create_index_vector(int pos, int pos_ind, int *mn,
 	{
 	  *ind_max = 0; return 1;
 	}
-      li = 4; CreateVar(pos_ind, "I", mn,   &one,   &li); ti = istk(li); 
+      li = 4; CreateVar(pos_ind,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, mn,   &one,   &li); ti = istk(li); 
       i = 0;
       for ( k = 0 ; k < nmax ; k++ )
 	if ( *istk(l+k) != 0 )
@@ -540,7 +540,7 @@ static int create_index_vector(int pos, int pos_ind, int *mn,
 	{
 	  *ind_max = 0; return 1;
 	}
-      li = 4; CreateVar(pos_ind, "I", mn,   &one,   &li); ti = istk(li); 
+      li = 4; CreateVar(pos_ind,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, mn,   &one,   &li); ti = istk(li); 
       i = 0;
       for ( k = 0 ; k < nmax ; k++ )
 	if ( P[k] != 0 )
@@ -564,7 +564,7 @@ static int create_index_vector(int pos, int pos_ind, int *mn,
 	}
 
       *mn = B.nel;
-      li = 4; CreateVar(pos_ind, "I", mn,   &one,   &li); ti = istk(li); 
+      li = 4; CreateVar(pos_ind,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, mn,   &one,   &li); ti = istk(li); 
       if ( B.m == 1 )
 	{
 	  for ( k = 0 ; k < B.nel ; k++ )
@@ -749,14 +749,14 @@ int C2F(intehm)()
 	  break;
 	case (SCI_INTEGER):
 	  lr = H.it;
-	  CreateVar(dec+Rhs, "I", &m, &n, &lr);
+	  CreateVar(dec+Rhs,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &m, &n, &lr);
 	  He.P = (void *) istk(lr);
 	  break;
 	}
     }
 
   /* indices computing */
-  ltot = 4; CreateVar(dec+Rhs+1, "I", &ntot, &one, &ltot); j = istk(ltot);
+  ltot = 4; CreateVar(dec+Rhs+1,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &ntot, &one, &ltot); j = istk(ltot);
   compute_indices(dec, nb_index_vectors, H.dims, j);
 
   /*  fill the resulting hypermatrix or matrix  */
@@ -922,7 +922,7 @@ int C2F(intihm)()
     }
 
   /* indices computing */
-  ltot = 4; CreateVar(dec+Rhs-1, "I", &ntot, &one, &ltot); j = istk(ltot);
+  ltot = 4; CreateVar(dec+Rhs-1,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &ntot, &one, &ltot); j = istk(ltot);
   compute_indices(dec, nb_index_vectors, A.dims, j);
 
   

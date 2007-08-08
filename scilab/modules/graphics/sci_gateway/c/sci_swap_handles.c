@@ -22,8 +22,8 @@ int sci_swap_handles( char * fname, unsigned long fname_len )
   CheckRhs( 2, 2 ) ;
   CheckLhs( 0, 1 ) ;
 
-  GetRhsVar( 1, "h", &firstHdlRow, &firstHdlCol, &firstHdlStkIndex ) ;
-  GetRhsVar( 2, "h", &secondHdlRow, &secondHdlCol, &secondHdlStkIndex ) ;
+  GetRhsVar( 1,GRAPHICAL_HANDLE_DATATYPE, &firstHdlRow, &firstHdlCol, &firstHdlStkIndex );
+  GetRhsVar( 2,GRAPHICAL_HANDLE_DATATYPE, &secondHdlRow, &secondHdlCol, &secondHdlStkIndex );
 
   if ( firstHdlRow * firstHdlCol != 1 || secondHdlRow * secondHdlCol != 1 )
   {

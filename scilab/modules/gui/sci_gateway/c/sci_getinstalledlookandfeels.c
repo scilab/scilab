@@ -23,7 +23,7 @@ int C2F(sci_getinstalledlookandfeels) _PARAMS((char *fname,unsigned long fname_l
 	lookandfeels = getinstalledlookandfeels(&nbElems);
 
 	nbCol = 1;
-	CreateVarFromPtr( Rhs+1, "S", &nbElems, &nbCol,lookandfeels ) ;
+	CreateVarFromPtr( Rhs+1,MATRIX_OF_STRING_DATATYPE, &nbElems, &nbCol,lookandfeels );
 
 	LhsVar(1)=Rhs+1;
 	C2F(putlhsvar)();

@@ -44,7 +44,7 @@ int C2F(sci_strsplit1) _PARAMS((char *fname,unsigned long fname_len))
   strsplit1(Str,Str3,&u,&v,&w,mn,m4);             /* The main function*/
   numRow   = u;                                         /*Output */
   numCol   = w ;
-  CreateVarFromPtr( Rhs+1, "S", &numRow, &numCol, Str3 ) ;
+  CreateVarFromPtr( Rhs+1,MATRIX_OF_STRING_DATATYPE, &numRow, &numCol, Str3 );
   LhsVar(1) = Rhs+1 ; 
   C2F(putlhsvar)();
   FREE(Str3);

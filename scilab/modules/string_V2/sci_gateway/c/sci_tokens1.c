@@ -59,7 +59,7 @@ int C2F(sci_tokens1) _PARAMS((char *fname,unsigned long fname_len))
 	tokens(Str,Str2,Str3,&u,&w,mn,mn2);   /*The main function of tokens*/
 	numRow   = u+1;  /*Output */
     numCol   = 1 ;
-    CreateVarFromPtr( Rhs+1, "S", &numRow, &numCol, Str3 ) ;
+    CreateVarFromPtr( Rhs+1,MATRIX_OF_STRING_DATATYPE, &numRow, &numCol, Str3 );
 	LhsVar(1) = Rhs+1 ; 
     C2F(putlhsvar)();
     FREE(Str3);

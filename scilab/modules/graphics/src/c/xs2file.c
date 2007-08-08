@@ -27,7 +27,7 @@ int xs2file( char * fname, char * dr, unsigned long fname_len, unsigned long dr_
   CheckRhs(2,3);
 
   /* the window number */ 
-  GetRhsVar(1,"d",&m1,&n1,&l1) ;
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
   CheckScalar(1,m1,n1) ;
   iwin = (integer) *stk(l1) ;
   /* the file name */ 
@@ -35,7 +35,7 @@ int xs2file( char * fname, char * dr, unsigned long fname_len, unsigned long dr_
   /* color or n & b */ 
   if ( Rhs >= 3 )
   {
-    GetRhsVar(3,"d",&m3,&n3,&l3) ;
+    GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&m3,&n3,&l3);
     CheckScalar(3,m3,n3) ;
     flagx = (integer) *stk(l3) ;
   }

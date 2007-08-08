@@ -42,7 +42,7 @@ int C2F(sci_stripblanks1) _PARAMS((char *fname,unsigned long fname_len))
 	  stripblanks(Str,Str3,mn,n4); /*@ The stripblank function*/
 	  numRow   = m1;
 	  numCol   = n1;
-	  CreateVarFromPtr( Rhs+1, "S", &numRow, &numCol, Str3) ; /*@ Output*/
+	  CreateVarFromPtr( Rhs+1,MATRIX_OF_STRING_DATATYPE, &numRow, &numCol, Str3); /*@ Output*/
 	  LhsVar(1) = Rhs+1 ; 
 	  FREE(Str3);      /*@Free the memory*/
 	  C2F(putlhsvar)();

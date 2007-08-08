@@ -29,7 +29,7 @@ int C2F(sci_strcat1) _PARAMS((char *fname,unsigned long fname_len))
   scistrcat(Str,Str2,mn);
   numRow   = 1 ;
   numCol   = 1 ;
-  CreateVarFromPtr( Rhs+1, "S", &numRow, &numCol, Str ) ;
+  CreateVarFromPtr( Rhs+1,MATRIX_OF_STRING_DATATYPE, &numRow, &numCol, Str );
   LhsVar(1) = Rhs+1 ; 
   C2F(putlhsvar)();
   return 0;

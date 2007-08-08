@@ -42,7 +42,7 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 			GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
 			break;
 		case sci_ints:
-			GetRhsVar(1,"I",&m1,&n1,&Im);
+			GetRhsVar(1,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,&m1,&n1,&Im);
 			break;
 		default :
 			Scierror(999,"%s: first argument has a wrong type, expecting scalar or string matrix\r\n",fname);

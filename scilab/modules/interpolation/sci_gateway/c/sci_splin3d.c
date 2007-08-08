@@ -91,7 +91,7 @@ int intsplin3d(char * fname,unsigned long fname_len)
   lar = -1; CreateListVarFrom(Rhs+1, 3,MATRIX_OF_DOUBLE_DATATYPE, &nty, &one, &lty, &lar);
   lar = -1; CreateListVarFrom(Rhs+1, 4,MATRIX_OF_DOUBLE_DATATYPE, &ntz, &one, &ltz, &lar);
   lorder = 4; 
-  lar = -1; CreateListVarFrom(Rhs+1, 5, "I", &three, &one, &lorder, &lar);
+  lar = -1; CreateListVarFrom(Rhs+1, 5,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &three, &one, &lorder, &lar);
   order = istk(lorder); order[0] = kx; order[1] = ky; order[2] = kz;
   lar = -1; CreateListVarFrom(Rhs+1, 6,MATRIX_OF_DOUBLE_DATATYPE, &nxyz,  &one, &lbcoef, &lar);
   lar = -1; CreateListVarFrom(Rhs+1, 7,MATRIX_OF_DOUBLE_DATATYPE, &six,  &one, &lxyzminmax, &lar); 

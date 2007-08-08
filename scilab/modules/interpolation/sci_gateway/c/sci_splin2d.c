@@ -102,7 +102,7 @@ int intsplin2d(char *fname,unsigned long fname_len)
 
       if (spline_type == PERIODIC)
 	{
-	  CreateVar(Rhs+10, "d", &nxym2, &one, &lll) ;
+	  CreateVar(Rhs+10,MATRIX_OF_DOUBLE_DATATYPE, &nxym2, &one, &lll);
 	}
       else
 	lll = lA_sd ;   /* bidon ... */
